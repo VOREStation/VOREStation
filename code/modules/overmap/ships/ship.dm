@@ -15,18 +15,19 @@
 	scanner_desc = "Unknown spacefaring vessel."
 	dir = NORTH
 	icon_state = "ship"
-	appearance_flags = TILE_BOUND|KEEP_TOGETHER //VOREStation Edit
+	appearance_flags = TILE_BOUND|KEEP_TOGETHER|LONG_GLIDE //VOREStation Edit
 	var/moving_state = "ship_moving"
 
 	var/vessel_mass = 10000             //tonnes, arbitrary number, affects acceleration provided by engines
 	var/vessel_size = SHIP_SIZE_LARGE	//arbitrary number, affects how likely are we to evade meteors
-	var/max_speed = 1/(1 SECOND)        //"speed of light" for the ship, in turfs/tick.
+	var/max_speed = 1/(1 SECOND)        //"speed of light" for the ship, in turfs/decisecond.
 	var/min_speed = 1/(2 MINUTES)       // Below this, we round speed to 0 to avoid math errors.
 
+	var/position_x						// Pixel coordinates in the world
+	var/position_y						// Pixel coordinates in the world.
 	var/list/speed = list(0,0)          //speed in x,y direction
 	var/last_burn = 0                   //worldtime when ship last acceleated
 	var/burn_delay = 1 SECOND           //how often ship can do burns
-	var/list/last_movement = list(0,0)  //worldtime when ship last moved in x,y direction
 	var/fore_dir = NORTH                //what dir ship flies towards for purpose of moving stars effect procs
 
 	var/list/engines = list()
@@ -41,10 +42,11 @@
 	min_speed = round(min_speed, SHIP_MOVE_RESOLUTION)
 	max_speed = round(max_speed, SHIP_MOVE_RESOLUTION)
 	SSshuttles.ships += src
-	START_PROCESSING(SSobj, src)
+	position_x = ((loc.x - 1) * WORLD_ICON_SIZE) + (WORLD_ICON_SIZE/2) + pixel_x + 1
+	position_y = ((loc.y - 1) * WORLD_ICON_SIZE) + (WORLD_ICON_SIZE/2) + pixel_y + 1
 
 /obj/effect/overmap/visitable/ship/Destroy()
-	STOP_PROCESSING(SSobj, src)
+	STOP_PROCESSING(SSprocessing, src)
 	SSshuttles.ships -= src
 	. = ..()
 
@@ -107,14 +109,22 @@
 	return (ATAN2(speed[2], speed[1]) + 360) % 360 // Yes ATAN2(y, x) is correct to get clockwise degrees
 
 /obj/effect/overmap/visitable/ship/proc/adjust_speed(n_x, n_y)
+	var/old_still = is_still()
 	CHANGE_SPEED_BY(speed[1], n_x)
 	CHANGE_SPEED_BY(speed[2], n_y)
-	for(var/zz in map_z)
-		if(is_still())
-			toggle_move_stars(zz)
-		else
-			toggle_move_stars(zz, fore_dir)
 	update_icon()
+	var/still = is_still()
+	if(still == old_still)
+		return
+	else if(still)
+		STOP_PROCESSING(SSprocessing, src)
+		for(var/zz in map_z)
+			toggle_move_stars(zz)
+	else
+		START_PROCESSING(SSprocessing, src)
+		glide_size = WORLD_ICON_SIZE/max(DS2TICKS(SSprocessing.wait), 1) //Down to whatever decimal
+		for(var/zz in map_z)
+			toggle_move_stars(zz, fore_dir)
 
 /obj/effect/overmap/visitable/ship/proc/get_brake_path()
 	if(!get_acceleration())
@@ -150,17 +160,42 @@
 		if(direction & SOUTH)
 			adjust_speed(0, -acceleration)
 
-/obj/effect/overmap/visitable/ship/process()
-	if(!halted && !is_still())
-		var/list/deltas = list(0,0)
-		for(var/i=1, i<=2, i++)
-			if(MOVING(speed[i]) && world.time > last_movement[i] + 1/abs(speed[i]))
-				deltas[i] = SIGN(speed[i])
-				last_movement[i] = world.time
-		var/turf/newloc = locate(x + deltas[1], y + deltas[2], z)
-		if(newloc)
-			Move(newloc)
-		update_icon()
+/obj/effect/overmap/visitable/ship/process(wait)
+	var/new_position_x = position_x + (speed[1] * WORLD_ICON_SIZE * wait)
+	var/new_position_y = position_y + (speed[2] * WORLD_ICON_SIZE * wait)
+
+	// For simplicity we assume that you can't travel more than one turf per tick.  That would be hella-fast.
+	var/new_turf_x = CEILING(new_position_x / WORLD_ICON_SIZE, 1)
+	var/new_turf_y = CEILING(new_position_y / WORLD_ICON_SIZE, 1)
+
+	var/new_pixel_x = MODULUS(new_position_x, WORLD_ICON_SIZE) - (WORLD_ICON_SIZE/2) - 1
+	var/new_pixel_y = MODULUS(new_position_y, WORLD_ICON_SIZE) - (WORLD_ICON_SIZE/2) - 1
+
+	var/new_loc = locate(new_turf_x, new_turf_y, z)
+
+	position_x = new_position_x
+	position_y = new_position_y
+
+	if(new_loc != loc)
+		var/turf/old_loc = loc
+		Move(new_loc, NORTH, wait)
+		if(get_dist(old_loc, loc) > 1)
+			pixel_x = new_pixel_x
+			pixel_y = new_pixel_y
+			return
+	animate(src, pixel_x = new_pixel_x, pixel_y = new_pixel_y, time = wait, flags = ANIMATION_END_NOW)
+
+// If we get moved, update our internal tracking to account for it
+/obj/effect/overmap/visitable/ship/Moved(atom/old_loc, direction, forced = FALSE)
+	. = ..()
+	// If moving out of another sector start off centered in the turf.
+	if(!isturf(old_loc))
+		position_x = (WORLD_ICON_SIZE/2) + 1
+		position_y = (WORLD_ICON_SIZE/2) + 1
+		pixel_x = 0
+		pixel_y = 0
+	position_x = ((loc.x - 1) * WORLD_ICON_SIZE) + MODULUS(position_x, WORLD_ICON_SIZE)
+	position_y = ((loc.y - 1) * WORLD_ICON_SIZE) + MODULUS(position_y, WORLD_ICON_SIZE)
 
 /obj/effect/overmap/visitable/ship/update_icon()
 	if(!is_still())
@@ -193,10 +228,15 @@
 //deciseconds to next step
 /obj/effect/overmap/visitable/ship/proc/ETA()
 	. = INFINITY
-	for(var/i=1, i<=2, i++)
-		if(MOVING(speed[i]))
-			. = min(last_movement[i] - world.time + 1/abs(speed[i]), .)
-	. = max(.,0)
+	if(MOVING(speed[1]))
+		var/offset = MODULUS(position_x, WORLD_ICON_SIZE)
+		var/dist_to_go = (speed[1] > 0) ? (WORLD_ICON_SIZE - offset) : offset
+		. = min(., (dist_to_go / abs(speed[1])) * (1/WORLD_ICON_SIZE))
+	if(MOVING(speed[2]))
+		var/offset = MODULUS(position_y, WORLD_ICON_SIZE)
+		var/dist_to_go = (speed[2] > 0) ? (WORLD_ICON_SIZE - offset) : offset
+		. = min(., (dist_to_go / abs(speed[2])) * (1/WORLD_ICON_SIZE))
+	. = max(., 0)
 
 /obj/effect/overmap/visitable/ship/proc/halt()
 	adjust_speed(-speed[1], -speed[2])
