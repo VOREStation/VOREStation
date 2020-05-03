@@ -35,8 +35,7 @@
 		/obj/item/device/flashlight,
 		/obj/item/weapon/tank,
 		/obj/item/device/suit_cooling_unit,
-		/obj/item/weapon/storage/briefcase,
-		/obj/item/weapon/storage/secure/briefcase
+		/obj/item/weapon/storage,
 		)
 
 	req_access = list()
@@ -83,7 +82,7 @@
 		/obj/item/device/flashlight,
 		/obj/item/weapon/tank,
 		/obj/item/device/suit_cooling_unit,
-		/obj/item/weapon/storage/bag/ore,
+		/obj/item/weapon/storage,
 		/obj/item/device/t_scanner,
 		/obj/item/weapon/pickaxe,
 		/obj/item/weapon/rcd
@@ -121,7 +120,7 @@
 		/obj/item/device/flashlight,
 		/obj/item/weapon/tank,
 		/obj/item/device/suit_cooling_unit,
-		/obj/item/weapon/storage/briefcase/inflatable,
+		/obj/item/weapon/storage,
 		/obj/item/device/t_scanner,
 		/obj/item/weapon/rcd
 		)
@@ -168,7 +167,7 @@
 		/obj/item/device/flashlight,
 		/obj/item/weapon/tank,
 		/obj/item/device/suit_cooling_unit,
-		/obj/item/weapon/storage/briefcase/inflatable,
+		/obj/item/weapon/storage,
 		/obj/item/device/t_scanner,
 		/obj/item/weapon/rcd
 		)
@@ -212,7 +211,7 @@
 		/obj/item/weapon/tank,
 		/obj/item/device/suit_cooling_unit,
 		/obj/item/stack/flag,
-		/obj/item/weapon/storage/excavation,
+		/obj/item/weapon/storage,
 		/obj/item/weapon/pickaxe,
 		/obj/item/device/healthanalyzer,
 		/obj/item/device/measuring_tape,
@@ -222,8 +221,8 @@
 		/obj/item/device/gps,
 		/obj/item/device/beacon_locator,
 		/obj/item/device/radio/beacon,
-		/obj/item/weapon/pickaxe/hand,
-		/obj/item/weapon/storage/bag/fossils)
+		/obj/item/weapon/pickaxe/hand
+		)
 
 	req_access = list()
 	req_one_access = list()
@@ -256,7 +255,7 @@
 		/obj/item/device/flashlight,
 		/obj/item/weapon/tank,
 		/obj/item/device/suit_cooling_unit,
-		/obj/item/weapon/storage/firstaid,
+		/obj/item/weapon/storage,
 		/obj/item/device/healthanalyzer,
 		/obj/item/stack/medical,
 		/obj/item/roller
@@ -296,7 +295,8 @@
 		/obj/item/device/flashlight,
 		/obj/item/weapon/tank,
 		/obj/item/device/suit_cooling_unit,
-		/obj/item/weapon/melee/baton
+		/obj/item/weapon/melee/baton,
+		/obj/item/weapon/storage
 		)
 
 	req_access = list()
