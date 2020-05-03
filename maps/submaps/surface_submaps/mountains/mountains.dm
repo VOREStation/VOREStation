@@ -338,17 +338,12 @@
 /datum/map_template/surface/mountains/normal/crashedmedshuttle //VOREStation Edit
 	name = "Crashed Med Shuttle"
 	desc = "A medical response shuttle that went missing some time ago. So this is where they went."
-<<<<<<< HEAD
 	mappath = 'maps/submaps/surface_submaps/mountains/CrashedMedShuttle1_vr.dmm'	//VOREStation Edit
 	cost = 20
 	fixed_orientation = TRUE
-=======
-	mappath = 'maps/submaps/surface_submaps/mountains/CrashedMedShuttle1.dmm'
-	cost = 20
 
 /datum/map_template/surface/mountains/deep/excavation1
 	name = "Excavation Site"
 	desc = "An abandoned mining site."
 	mappath = 'maps/submaps/surface_submaps/mountains/excavation1.dmm'
 	cost = 20
->>>>>>> aafd4b4... Explorer Expansion: New Horizons (#6960)
