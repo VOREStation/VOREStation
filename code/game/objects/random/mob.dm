@@ -203,8 +203,6 @@
 				prob(30);/mob/living/simple_mob/animal/passive/mouse/brown,
 				prob(30);/mob/living/simple_mob/animal/passive/mouse/gray,
 				prob(25);/obj/random/mouseremains) //because figuring out how to come up with it picking nothing is beyond my coding ability.
-<<<<<<< HEAD
-=======
 
 // Mercs
 /obj/random/mob/merc
@@ -331,4 +329,3 @@
 				/mob/living/simple_mob/animal/sif/sakimm
 			)
 		)
->>>>>>> 7d52c30... I love BYOND RNG, it is perfect and 100% reliable for testing. (#7070)
