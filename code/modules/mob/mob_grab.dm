@@ -239,8 +239,6 @@
 		return
 	if(state == GRAB_UPGRADING)
 		return
-	if(!assailant.checkClickCooldown())
-		return
 	if(world.time < (last_action + UPGRADE_COOLDOWN))
 		return
 	if(!assailant.canmove || assailant.lying)

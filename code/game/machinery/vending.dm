@@ -1014,7 +1014,8 @@
 	/obj/item/weapon/storage/toolbox/lunchbox/mars = 3,
 	/obj/item/weapon/storage/toolbox/lunchbox/cti = 3,
 	/obj/item/weapon/storage/toolbox/lunchbox/nymph = 3,
-	/obj/item/weapon/storage/toolbox/lunchbox/syndicate = 3)
+	/obj/item/weapon/storage/toolbox/lunchbox/syndicate = 3,
+	/obj/item/trash/bowl = 10) //VOREStation Add
 	contraband = list(/obj/item/weapon/material/knife/butch = 2)
 
 /obj/machinery/vending/sovietsoda

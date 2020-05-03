@@ -2774,14 +2774,14 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/surface_two_hall)
 "afN" = (
-/obj/structure/catwalk,
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
 /obj/structure/disposalpipe/down,
-/turf/simulated/floor/plating,
+/obj/effect/catwalk_plated/dark,
+/turf/simulated/open,
 /area/maintenance/lower/bar)
 "afO" = (
 /obj/structure/railing{
@@ -29344,6 +29344,10 @@
 /obj/random/cutout,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/north)
+"cHq" = (
+/obj/effect/catwalk_plated/dark,
+/turf/simulated/open,
+/area/maintenance/lower/bar)
 "fYA" = (
 /obj/structure/catwalk,
 /obj/structure/cable{
@@ -29358,10 +29362,33 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining)
+"hNH" = (
+/obj/structure/catwalk,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/supply,
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
+/obj/structure/disposalpipe/segment,
+/turf/simulated/open,
+/area/maintenance/lower/bar)
 "kaa" = (
 /obj/random/cutout,
 /turf/simulated/floor,
 /area/maintenance/lower/south)
+"nTp" = (
+/obj/structure/catwalk,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/supply,
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
+/turf/simulated/open,
+/area/maintenance/lower/bar)
+"peO" = (
+/obj/structure/catwalk,
+/turf/simulated/open,
+/area/maintenance/lower/bar)
 
 (1,1,1) = {"
 aaa
@@ -44456,9 +44483,9 @@ adL
 aec
 aew
 aeP
-aee
-aee
-aee
+peO
+cHq
+peO
 ago
 agC
 adu
@@ -44598,9 +44625,9 @@ adL
 aed
 aex
 aeQ
-afx
+nTp
 afN
-agc
+hNH
 agp
 agc
 agc
@@ -44740,9 +44767,9 @@ adL
 aee
 aey
 aeR
-aee
-aee
-aee
+peO
+cHq
+peO
 agq
 aee
 aee

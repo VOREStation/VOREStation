@@ -48,10 +48,20 @@
 	var/area/area = get_area(src)
 	if(direction == UP && area.has_gravity() && !can_overcome_gravity())
 		var/obj/structure/lattice/lattice = locate() in destination.contents
+		var/obj/structure/catwalk/catwalk = locate() in destination.contents
 		if(lattice)
 			var/pull_up_time = max(5 SECONDS + (src.movement_delay() * 10), 1)
 			to_chat(src, "<span class='notice'>You grab \the [lattice] and start pulling yourself upward...</span>")
 			destination.audible_message("<span class='notice'>You hear something climbing up \the [lattice].</span>")
+			if(do_after(src, pull_up_time))
+				to_chat(src, "<span class='notice'>You pull yourself up.</span>")
+			else
+				to_chat(src, "<span class='warning'>You gave up on pulling yourself up.</span>")
+				return 0
+		else if(catwalk?.hatch_open)
+			var/pull_up_time = max(5 SECONDS + (src.movement_delay() * 10), 1)
+			to_chat(src, "<span class='notice'>You grab the edge of \the [catwalk] and start pulling yourself upward...</span>")
+			destination.audible_message("<span class='notice'>You hear something climbing up \the [catwalk].</span>")
 			if(do_after(src, pull_up_time))
 				to_chat(src, "<span class='notice'>You pull yourself up.</span>")
 			else
@@ -294,7 +304,7 @@
 
 // Things that prevent objects standing on them from falling into turf below
 /obj/structure/catwalk/CanFallThru(atom/movable/mover as mob|obj, turf/target as turf)
-	if(target.z < z)
+	if((target.z < z) && !hatch_open)
 		return FALSE // TODO - Technically should be density = 1 and flags |= ON_BORDER
 	if(!isturf(mover.loc))
 		return FALSE // Only let loose floor items fall. No more snatching things off people's hands.

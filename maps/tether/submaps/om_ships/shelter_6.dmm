@@ -437,7 +437,7 @@
 /obj/structure/cable/cyan{
 	icon_state = "0-2"
 	},
-/obj/structure/catwalk,
+/obj/effect/catwalk_plated/white,
 /turf/simulated/floor/bluegrid,
 /area/shuttle/tabiranth)
 "aq" = (
@@ -532,7 +532,7 @@
 	layer = 2.45;
 	plane = -44
 	},
-/obj/structure/catwalk,
+/obj/effect/catwalk_plated/white,
 /turf/simulated/floor/bluegrid,
 /area/shuttle/tabiranth)
 "aD" = (
@@ -1059,9 +1059,6 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/effect/floor_decal/industrial/warning{
-	dir = 1
-	},
 /obj/structure/cable/cyan{
 	d1 = 2;
 	d2 = 8;
@@ -1081,9 +1078,6 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/obj/effect/floor_decal/industrial/warning{
-	dir = 6
-	},
 /turf/simulated/floor/tiled/white,
 /area/shuttle/tabiranth)
 "aY" = (
@@ -1092,7 +1086,7 @@
 	layer = 2.45;
 	plane = -44
 	},
-/obj/structure/catwalk,
+/obj/effect/catwalk_plated/white,
 /turf/simulated/floor/bluegrid,
 /area/shuttle/tabiranth)
 "aZ" = (
@@ -1100,10 +1094,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
-	},
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
-	dir = 8
 	},
 /turf/simulated/floor/tiled/white,
 /area/shuttle/tabiranth)
@@ -1150,10 +1140,6 @@
 /turf/simulated/floor/tiled/white,
 /area/shuttle/tabiranth)
 "bg" = (
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
-	dir = 4
-	},
 /turf/simulated/floor/tiled/white,
 /area/shuttle/tabiranth)
 "bh" = (
@@ -1169,9 +1155,10 @@
 	},
 /obj/machinery/recharge_station{
 	density = 0;
-	layer = 2.2
+	layer = 2.45;
+	plane = -44
 	},
-/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/effect/catwalk_plated/white,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/tabiranth)
 "bj" = (
@@ -1443,6 +1430,7 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 9
 	},
+/obj/item/weapon/inducer/hybrid,
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/tabiranth)
 "bk" = (
@@ -1722,9 +1710,6 @@
 /obj/item/weapon/extinguisher,
 /obj/item/clothing/head/hardhat/red,
 /obj/item/weapon/storage/toolbox/emergency,
-/obj/effect/floor_decal/industrial/warning{
-	dir = 10
-	},
 /turf/simulated/floor/tiled/white,
 /area/shuttle/tabiranth)
 "bI" = (
@@ -1760,9 +1745,10 @@
 	},
 /obj/machinery/recharge_station{
 	density = 0;
-	layer = 2.2
+	layer = 2.45;
+	plane = -44
 	},
-/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/effect/catwalk_plated/white,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/tabiranth)
 "bM" = (
