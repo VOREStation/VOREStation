@@ -1,0 +1,10 @@
+author: atlantiscze
+delete-after: True
+
+changes: 
+  - rscadd: "SMES units now have automatic load balancing both on inputs and outputs"
+  - rscadd: "SMES units (and derived objects, such as PSUs) can now have more than one input terminal. This allows for input from more otherwise isolated power networks."
+  - tweak: "Completely redesigned cell rack PSUs, removed ghetto variant. Cell rack PSUs now support multiple power cells and hot-swapping of cells during operation. This allows for either charging multiple cells at once in one device (directly from power cable) or for powering up various machinery with only a power cell. They are still inferior to SMESes in pretty much all aspects."
+  - tweak: "Multitool on a cable now shows nicer results with large currents (uses kW or MW accordingly)"
+  - tweak: "Multitool may be now used to change colour of cable coils."
+  

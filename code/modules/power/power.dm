@@ -17,8 +17,6 @@
 
 /obj/machinery/power/Destroy()
 	disconnect_from_network()
-	disconnect_terminal()
-
 	return ..()
 
 ///////////////////////////////
@@ -37,6 +35,8 @@
 /obj/machinery/power/proc/add_avail(var/amount)
 	if(powernet)
 		powernet.newavail += amount
+		return TRUE
+	return FALSE
 
 /obj/machinery/power/proc/draw_power(var/amount)
 	if(powernet)
@@ -61,7 +61,7 @@
 	else
 		return 0
 
-/obj/machinery/power/proc/disconnect_terminal() // machines without a terminal will just return, no harm no fowl.
+/obj/machinery/power/proc/disconnect_terminal(var/obj/machinery/power/terminal/term) // machines without a terminal will just return, no harm no fowl.
 	return
 
 // connect the machine to a powernet if a node cable is present on the turf
