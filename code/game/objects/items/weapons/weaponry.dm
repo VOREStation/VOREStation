@@ -99,7 +99,6 @@
 	anchored = 0
 
 	can_buckle = 1
-	buckle_movable = 1
 	buckle_lying = 0
 	buckle_dir = SOUTH
 

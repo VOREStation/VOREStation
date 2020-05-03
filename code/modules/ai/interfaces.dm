@@ -91,10 +91,12 @@
 	if(!old_T.Adjacent(newloc))
 		return MOVEMENT_FAILED
 
-	. = SelfMove(newloc) ? MOVEMENT_SUCCESSFUL : MOVEMENT_FAILED
+	var/delay_will_be = movement_delay()
+
+	. = SelfMove(newloc, get_dir(loc,newloc), delay_will_be) ? MOVEMENT_SUCCESSFUL : MOVEMENT_FAILED
 	if(. == MOVEMENT_SUCCESSFUL)
 		set_dir(get_dir(old_T, newloc))
 		// Apply movement delay.
 		// Player movement has more factors but its all in the client and fixing that would be its own project.
-		setMoveCooldown(movement_delay())
+		setMoveCooldown(delay_will_be)
 	return

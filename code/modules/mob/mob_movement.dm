@@ -279,9 +279,8 @@
 					n = get_step(my_mob, direct)
 	
 	total_delay = TICKS2DS(-round(-(DS2TICKS(total_delay)))) //Rounded to the next tick in equivalent ds
-	var/glide_size = WORLD_ICON_SIZE/max(DS2TICKS(total_delay), 1) //Down to whatever decimal
 	my_mob.setMoveCooldown(total_delay)
-	. = my_mob.SelfMove(n, direct, glide_size)
+	. = my_mob.SelfMove(n, direct, total_delay)
 
 	// If we have a grab
 	var/list/grablist = my_mob.ret_grab()
@@ -292,23 +291,19 @@
 		if(grablist.len == 1)
 			var/mob/M = grablist[1]
 			if(!my_mob.Adjacent(M)) //Oh no, we moved away
-				M.glide_size = glide_size
-				step(M, get_dir(M, pre_move_loc)) //Have them step towards where we were
+				M.Move(pre_move_loc, get_dir(M, pre_move_loc), total_delay) //Have them step towards where we were
 		
 		// It's a grab chain
 		else
 			for(var/mob/M in grablist)
 				my_mob.other_mobs = 1
 				M.other_mobs = 1 //Has something to do with people being able or unable to pass a chain of mobs
-				M.animate_movement = 3
 				
 				//Ugly!
 				spawn(0) //Step
-					M.glide_size = glide_size
-					step(M, direct)
+					M.Move(pre_move_loc, get_dir(M, pre_move_loc), total_delay)
 				spawn(1) //Unstep
 					M.other_mobs = null
-					M.animate_movement = 2
 				spawn(1) //Unset
 					my_mob.other_mobs = null
 
@@ -323,9 +318,8 @@
 	// We're not in the middle of a move anymore
 	moving = 0
 
-/mob/proc/SelfMove(turf/n, direct, glide_size = 8)
-	src.glide_size = glide_size
-	return Move(n, direct)
+/mob/proc/SelfMove(turf/n, direct, movetime)
+	return Move(n, direct, movetime)
 
 ///Process_Incorpmove
 ///Called by client/Move()

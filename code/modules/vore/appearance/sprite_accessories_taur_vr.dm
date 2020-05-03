@@ -20,7 +20,7 @@
 	return TRUE
 
 /datum/riding/taur/force_dismount(mob/M)
-	. =..()
+	. = ..()
 	ridden.visible_message("<span class='notice'>[M] stops riding [ridden]!</span>")
 
 //Hoooo boy.
