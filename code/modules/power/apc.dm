@@ -119,6 +119,9 @@
 	var/global/list/status_overlays_lighting
 	var/global/list/status_overlays_environ
 	var/alarms_hidden = FALSE //If power alarms from this APC are visible on consoles
+	
+	var/nightshift_lights = FALSE
+	var/last_nightshift_switch = 0
 
 /obj/machinery/power/apc/updateDialog()
 	if (stat & (BROKEN|MAINT))
@@ -798,6 +801,7 @@
 		"coverLocked" = coverlocked,
 		"siliconUser" = issilicon(user) || isobserver(user), //I add observer here so admins can have more control, even if it makes 'siliconUser' seem inaccurate.
 		"emergencyLights" = !emergency_lights,
+		"nightshiftLights" = nightshift_lights,
 
 		"powerChannels" = list(
 			list(
@@ -969,6 +973,13 @@
 		environ = setsubsystem(val)
 		update_icon()
 		update()
+
+	else if(href_list["nightshift"])
+		if(last_nightshift_switch > world.time + 10 SECONDS) // don't spam...
+			to_chat(usr, "<span class='warning'>[src]'s night lighting circuit breaker is still cycling!</span>")
+			return 0
+		last_nightshift_switch = world.time
+		set_nightshift(!nightshift_lights)
 
 	else if (href_list["overload"])
 		if(istype(usr, /mob/living/silicon))
@@ -1365,5 +1376,14 @@ obj/machinery/power/apc/proc/autoset(var/cur_state, var/on)
 	spawn(15 MINUTES) // Protection against someone deconning the grid checker after a grid check happens, preventing infinte blackout.
 		if(src && grid_check == TRUE)
 			grid_check = FALSE
+
+/obj/machinery/power/apc/proc/set_nightshift(on, var/automated)
+	set waitfor = FALSE
+	if(automated && istype(area, /area/shuttle))
+		return
+	nightshift_lights = on
+	for(var/obj/machinery/light/L in area)
+		L.nightshift_mode(on)
+		CHECK_TICK
 
 #undef APC_UPDATE_ICON_COOLDOWN

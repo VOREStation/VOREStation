@@ -244,6 +244,7 @@
 #include "code\controllers\subsystems\mapping_vr.dm"
 #include "code\controllers\subsystems\mobs.dm"
 #include "code\controllers\subsystems\nanoui.dm"
+#include "code\controllers\subsystems\nightshift.dm"
 #include "code\controllers\subsystems\open_space.dm"
 #include "code\controllers\subsystems\orbits.dm"
 #include "code\controllers\subsystems\overlays.dm"
