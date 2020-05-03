@@ -826,8 +826,8 @@
 	//Handle normal clothing
 	for(var/obj/item/clothing/C in list(head,wear_suit,w_uniform,shoes,gloves,wear_mask))
 		if(C)
-			if(C.min_cold_protection_temperature && C.min_cold_protection_temperature <= temperature)
-				. |= C.cold_protection
+			if(C.handle_low_temperature(temperature))
+				. |= C.get_cold_protection_flags()
 
 /mob/living/carbon/human/get_heat_protection(temperature) //Temperature is the temperature you're being exposed to.
 	var/thermal_protection_flags = get_heat_protection_flags(temperature)
