@@ -277,9 +277,9 @@
 	light_power = 3
 	light_color = "#3300ff"
 
-	muzzle_type = /obj/effect/projectile/tungsten/muzzle
-	tracer_type = /obj/effect/projectile/tungsten/tracer
-	impact_type = /obj/effect/projectile/tungsten/impact
+	muzzle_type = /obj/effect/projectile/muzzle/tungsten
+	tracer_type = /obj/effect/projectile/tracer/tungsten
+	impact_type = /obj/effect/projectile/impact/tungsten
 
 /obj/item/projectile/beam/tungsten/on_hit(var/atom/target, var/blocked = 0)
 	if(isliving(target))

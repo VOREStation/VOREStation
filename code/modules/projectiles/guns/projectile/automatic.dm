@@ -58,6 +58,9 @@
 
 //	one_handed_penalty = 15
 
+/obj/item/weapon/gun/projectile/automatic/c20r/empty
+	magazine_type = null
+
 /obj/item/weapon/gun/projectile/automatic/c20r/update_icon()
 	..()
 	if(ammo_magazine)
@@ -191,6 +194,9 @@
 		. += "\The [launcher] has \a [launcher.chambered] loaded."
 	else
 		. += "\The [launcher] is empty."
+
+/obj/item/weapon/gun/projectile/automatic/z8/empty
+	magazine_type = null
 
 /obj/item/weapon/gun/projectile/automatic/l6_saw
 	name = "light machine gun"

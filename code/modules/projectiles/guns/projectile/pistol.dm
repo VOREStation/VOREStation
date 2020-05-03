@@ -125,6 +125,9 @@
 	allowed_magazines = list(/obj/item/ammo_magazine/m45)
 	projectile_type = /obj/item/projectile/bullet/pistol/medium
 
+/obj/item/weapon/gun/projectile/silenced/empty
+	magazine_type = null
+
 /obj/item/weapon/gun/projectile/deagle
 	name = "desert eagle"
 	desc = "The perfect handgun for shooters with a need to hit targets through a wall and behind a fridge in your neighbor's house. Uses .44 rounds."

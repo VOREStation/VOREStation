@@ -5,7 +5,7 @@
 "ae" = (/obj/effect/decal/cleanable/blood,/turf/template_noop,/area/submap/Blackshuttledown)
 "af" = (/obj/structure/flora/tree/sif,/turf/template_noop,/area/submap/Blackshuttledown)
 "ag" = (/obj/structure/table/steel,/turf/template_noop,/area/submap/Blackshuttledown)
-"ah" = (/mob/living/simple_mob/humanoid/merc/ranged/smg/poi,/turf/template_noop,/area/submap/Blackshuttledown)
+"ah" = (/obj/random/mob/merc/all,/turf/template_noop,/area/submap/Blackshuttledown)
 "ai" = (/turf/template_noop,/turf/simulated/shuttle/wall/dark{icon_state = "dark6"; name = "Unknown Shuttle"},/area/submap/Blackshuttledown)
 "aj" = (/turf/simulated/shuttle/wall/dark{icon_state = "dark0"; name = "Unknown Shuttle"},/area/submap/Blackshuttledown)
 "ak" = (/turf/template_noop,/turf/simulated/shuttle/wall/dark{icon_state = "dark10"; name = "Unknown Shuttle"},/area/submap/Blackshuttledown)
@@ -63,16 +63,16 @@
 "bk" = (/obj/structure/table/steel,/obj/item/weapon/material/knife,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "bl" = (/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "bm" = (/obj/machinery/light{dir = 1},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
-"bn" = (/mob/living/simple_mob/humanoid/merc/ranged/smg/poi,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
+"bn" = (/obj/random/mob/merc/all,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "bo" = (/obj/structure/table/steel,/obj/random/toolbox,/turf/simulated/floor/tiled/yellow,/area/submap/Blackshuttledown)
-"bp" = (/obj/structure/table/steel,/obj/machinery/light/small{dir = 4; pixel_y = 0},/turf/simulated/floor/tiled/yellow,/area/submap/Blackshuttledown)
+"bp" = (/obj/structure/table/steel,/obj/machinery/light/small{dir = 4; pixel_y = 0},/obj/random/projectile/scrapped_gun,/obj/random/projectile/scrapped_gun,/turf/simulated/floor/tiled/yellow,/area/submap/Blackshuttledown)
 "bq" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor/plating,/area/submap/Blackshuttledown)
 "br" = (/obj/structure/table/steel,/obj/effect/floor_decal/borderfloor{dir = 8},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "bs" = (/obj/machinery/light{icon_state = "tube1"; dir = 8},/obj/effect/floor_decal/borderfloor{dir = 8},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "bt" = (/obj/machinery/light{dir = 4; icon_state = "tube1"; pixel_x = 0},/obj/effect/floor_decal/borderfloor{dir = 4},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "bu" = (/obj/item/weapon/stool,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "bv" = (/obj/structure/table/steel,/obj/random/projectile,/turf/simulated/floor/tiled/yellow,/area/submap/Blackshuttledown)
-"bw" = (/turf/simulated/floor/tiled/yellow,/area/submap/Blackshuttledown)
+"bw" = (/obj/machinery/fusion_fuel_compressor,/turf/simulated/floor/tiled/yellow,/area/submap/Blackshuttledown)
 "bx" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 8},/turf/simulated/floor/plating,/area/submap/Blackshuttledown)
 "by" = (/obj/machinery/door/airlock/glass,/obj/effect/floor_decal/borderfloor{dir = 1},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "bz" = (/obj/effect/floor_decal/corner/grey,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
@@ -86,7 +86,7 @@
 "bH" = (/obj/machinery/power/apc{dir = 8; name = "BSD APC"; pixel_x = -24},/turf/simulated/floor/tiled/yellow,/area/submap/Blackshuttledown)
 "bI" = (/mob/living/simple_mob/humanoid/merc/melee/sword/poi,/turf/simulated/floor/tiled/yellow,/area/submap/Blackshuttledown)
 "bJ" = (/obj/machinery/computer/area_atmos,/obj/effect/floor_decal/borderfloor{dir = 10},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
-"bK" = (/mob/living/simple_mob/humanoid/merc/ranged/laser/poi,/turf/template_noop,/area/submap/Blackshuttledown)
+"bK" = (/obj/machinery/fusion_fuel_injector/mapped{icon_state = "injector0"; dir = 4},/turf/simulated/floor/tiled/yellow,/area/submap/Blackshuttledown)
 "bL" = (/obj/effect/floor_decal/borderfloor{dir = 10},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "bM" = (/obj/effect/floor_decal/borderfloor{dir = 4},/obj/effect/floor_decal/borderfloor{dir = 4},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "bN" = (/obj/structure/table/steel,/obj/item/weapon/paper{info = "We need to take a short stop. The engine's are in need of minor repairs due to turbulence, should be a week's time. We've got reserve food supplies but pleanty of locale fauna to subsist on too if need be. PCRC is keeping most of there assets near New Reykjavik and locale authorities are more mindful then most to travel in this kind of weather. Our outfit should be at the rendezvous point in less then ten days assuming the upper ecehelon hasn't dropped ties with us yet."; name = "Operation Progress/M-53"},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
@@ -130,17 +130,17 @@ aaabababababababababababababadadabababafabababafababaeababadadabababaa
 aaababafabadadadababababafababababababababababababababababadadabababaa
 aaabababababadadadabacababababagagagagagagabababababacabafabadabababaa
 aaababababababadadabafababababagahabababagabababababababababababababaa
-aaabababababababaiajajajakababagabababbKagabababafaiajajajajakabababaa
+aaabababababababaiajajajakababagabababahagabababafaiajajajajakabababaa
 aaabababababababajajajajajajajajajababajajajajajajajajajajajalamababaa
 aaababababafababajajajajajajanaoajapapajaqarasatauajajajajajalamababaa
 aaabababababababavajajawaxajayazajaAaAajaBaCaDaEaEaEaFajajaGababababaa
 aaabababababababaHajajaIaJajayaKaLaLaMajaBaNaNaEaOaDaPajaGabababababaa
 aaabafababababaHajaQajawaRajayaSaTaTaUajaVaWaEaXaYaZbaajababababafabaa
 aaabababababaHajbbbcajbdajajayazajajajajajajbeajajajajajbfabababababaa
-aaabababababajbgbhazajbiaLaLbhazajbjbkblbmblbnblajbobobpajbfababababaa
+aaabababababajbgbhazajbiaLaLbhazajbjbkblbmbnblblajbobobpajbfababababaa
 aaabababababbqbrblazajbsblblblbtajblblbububublblajbvblblbwalamabababaa
-aaabababababbxbrblaKbybhblbzblblbAblblbBbCbCblblbDblblblbwalamabababaa
-aaabababababbxbrblaSbEbFblblblblbAblblbCbCbCblblbDblblblbwalamabababaa
+aaabababababbxbrblaKbybhblbzblblbAblblbBbCbCblblbDblblblbKalamabababaa
+aaabababababbxbrblaSbEbFblblblblbAblblbCbCbCblblbDblblblbKalamabababaa
 aaabababababbGbrblazajbsblblblbtajblblbububublblajbHblblbIalamabababaa
 aaabababababajbJbFcsajbLaTaTbFbMajbNbOblbPbnblblajbQbRbSajaGababababaa
 aaabababababavajbTbUajbdajajayazajajajajajajbAajajajajajaGabababababaa
@@ -149,7 +149,7 @@ aaabafabababababavajajcbccajayaSaTaTcdajceblbYblbYajcfajbfabafabababaa
 aaabababababababaHajajcgchajaycrajaAaAajbYblbYblbYajciajajbfababababaa
 aaabababababababajajajajajajcjckajapapajbYclcmcncoajajajajalamabababaa
 aaabababababababajajajajajajajajajababajajajajajajajajajajalamabababaa
-aaababafababababcpajajajcqababagbKabababagabababcpajajajajcqababababaa
+aaababafababababcpajajajcqababagahabababagabababcpajajajajcqababababaa
 aaabababadabababababafababababagabababahagababafabafabababadadadababaa
 aaababadadabacababababafabababagagagagagagababababacababadadadadababaa
 aaabadadadabababababababaeababababababababababadadabababadadadadababaa

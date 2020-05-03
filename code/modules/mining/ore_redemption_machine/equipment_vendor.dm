@@ -41,7 +41,7 @@
 		new /datum/data/mining_equipment("Fulton Pack",					/obj/item/extraction_pack,											1200),
 		new /datum/data/mining_equipment("Silver Pickaxe",				/obj/item/weapon/pickaxe/silver,									1200),
 		// new /datum/data/mining_equipment("Mining Conscription Kit",	/obj/item/storage/backpack/duffelbag/mining_conscript,				1000),
-		new /datum/data/mining_equipment("Space Cash",					/obj/item/weapon/spacecash/c100,									1000),
+		new /datum/data/mining_equipment("Thalers - 100",				/obj/item/weapon/spacecash/c100,									1000),
 		new /datum/data/mining_equipment("Hardsuit - Control Module",	/obj/item/weapon/rig/industrial/vendor,									2000),
 		new /datum/data/mining_equipment("Hardsuit - Plasma Cutter",		/obj/item/rig_module/device/plasmacutter,						800),
 		new /datum/data/mining_equipment("Hardsuit - Drill",				/obj/item/rig_module/device/drill,								5000),
@@ -58,6 +58,7 @@
 		new /datum/data/mining_equipment("Super Resonator",				/obj/item/resonator/upgraded,										2500),
 		new /datum/data/mining_equipment("Jump Boots",					/obj/item/clothing/shoes/bhop,										2500),
 		new /datum/data/mining_equipment("Luxury Shelter Capsule",		/obj/item/device/survivalcapsule/luxury,							3100),
+		new /datum/data/mining_equipment("Bar Shelter Capsule",		/obj/item/device/survivalcapsule/luxurybar,							10000),
 		new /datum/data/mining_equipment("KA White Tracer Rounds",		/obj/item/borg/upgrade/modkit/tracer,								125),
 		new /datum/data/mining_equipment("KA Adjustable Tracer Rounds",	/obj/item/borg/upgrade/modkit/tracer/adjustable,					175),
 		new /datum/data/mining_equipment("KA Super Chassis",			/obj/item/borg/upgrade/modkit/chassis_mod,							250),
@@ -82,7 +83,7 @@
 		new /datum/data/mining_equipment("Fishing Net",					/obj/item/weapon/material/fishing_net,								500),
 		new /datum/data/mining_equipment("Titanium Fishing Rod",		/obj/item/weapon/material/fishing_rod/modern,						1000),
 		new /datum/data/mining_equipment("Durasteel Fishing Rod",		/obj/item/weapon/material/fishing_rod/modern/strong,				7500),
-		new /datum/data/mining_equipment("Bar Shelter Capsule",		/obj/item/device/survivalcapsule/luxurybar,							10000)
+		new /datum/data/mining_equipment("Survival Equipment - Insulated Poncho",	/obj/random/thermalponcho,								750)
 		)
 	//VOREStation Edit End
 

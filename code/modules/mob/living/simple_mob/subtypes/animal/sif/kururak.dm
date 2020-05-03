@@ -28,7 +28,7 @@
 	icon_state = "bigcat"
 	icon_living = "bigcat"
 	icon_dead = "bigcat_dead"
-	icon_rest = "bigcat_rest"
+	icon_rest = "bigcat_sleep"
 	icon = 'icons/mob/64x64.dmi'
 
 	default_pixel_x = -16
@@ -122,7 +122,7 @@
 
 /mob/living/simple_mob/animal/sif/kururak/apply_melee_effects(atom/A)	// Only gains instinct.
 	instinct += rand(1, 2)
-	return
+	return ..()
 
 /mob/living/simple_mob/animal/sif/kururak/should_special_attack(atom/A)
 	return has_modifier_of_type(/datum/modifier/ace)
@@ -136,6 +136,8 @@
 			set_AI_busy(TRUE)
 			rending_strike(A)
 			set_AI_busy(FALSE)
+	a_intent = I_HURT
+	return ..()
 
 /mob/living/simple_mob/animal/sif/kururak/verb/do_flash()
 	set category = "Abilities"
@@ -329,6 +331,15 @@
 	else
 		remove_modifiers_of_type(/datum/modifier/ace)
 
+/mob/living/simple_mob/animal/sif/kururak/hibernate/Initialize()
+	..()
+	lay_down()
+	instinct = 0
+
+/*
+ * Kururak AI
+ */
+
 /datum/ai_holder/simple_mob/intentional/kururak
 	hostile = FALSE
 	retaliate = TRUE
@@ -359,6 +370,8 @@
 	else
 		hostile = initial(hostile)
 
+	return ..()
+
 /datum/ai_holder/simple_mob/intentional/kururak/pre_special_attack(atom/A)
 	holder.a_intent = I_HURT
 	if(isliving(A))
@@ -378,9 +391,12 @@
 	else if(istype(A, /obj/mecha))
 		holder.a_intent = I_GRAB
 
+	return ..()
+
 /datum/ai_holder/simple_mob/intentional/kururak/post_melee_attack()
 	if(holder.has_modifier_of_type(/datum/modifier/ace))
 		request_help()
+	return ..()
 
 // Kururak Ace modifier, given to the one with the highest Instinct.
 

@@ -142,6 +142,10 @@
 	if(O)
 		gather_all(get_turf(src), user)
 
+/obj/item/weapon/storage/bag/ore/proc/rangedload(atom/A, mob/user)
+	var/obj/item/weapon/ore/O = locate() in get_turf(A)
+	if(O)
+		gather_all(get_turf(A), user)
 
 /obj/item/weapon/storage/bag/ore/examine(mob/user)
 	. = ..()

@@ -386,6 +386,9 @@
 	strict_color_stacking = TRUE
 	drop_sound = 'sound/items/drop/clothing.ogg'
 
+/obj/item/stack/material/cloth/diyaab
+	color = "#c6ccf0"
+
 /obj/item/stack/material/resin
 	name = "resin"
 	icon_state = "sheet-resin"

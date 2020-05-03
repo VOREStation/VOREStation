@@ -1431,6 +1431,12 @@
 	dir = 9
 	},
 /obj/item/weapon/inducer/hybrid,
+/obj/item/weapon/cell/device/weapon/recharge/alien/hybrid,
+/obj/item/weapon/cell/device/weapon/recharge/alien/hybrid,
+/obj/item/weapon/cell/device/weapon/recharge/alien/hybrid,
+/obj/item/weapon/cell/device/weapon/recharge/alien/hybrid,
+/obj/item/weapon/circuitboard/machine/abductor/core/hybrid,
+/obj/item/weapon/circuitboard/machine/abductor/core/hybrid,
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/tabiranth)
 "bk" = (
