@@ -104,6 +104,15 @@
 				prob(33);/mob/living/simple_mob/animal/giant_spider/frost,
 				prob(45);/mob/living/simple_mob/animal/sif/shantak)
 
+/obj/random/mob/sif/kururak
+	name = "Random Kururak"
+	desc = "This is a random kururak, either waking or hibernating. Will be hostile if more than one are waking."
+	icon_state = "frost"
+
+/obj/random/mob/sif/kururak/item_to_spawn()
+	return pick(prob(1);/mob/living/simple_mob/animal/sif/kururak/hibernate,
+				prob(20);/mob/living/simple_mob/animal/sif/kururak)
+
 /obj/random/mob/spider
 	name = "Random Spider" //Spiders should patrol where they spawn.
 	desc = "This is a random boring spider."
@@ -163,6 +172,7 @@
 /obj/random/mob/robotic/item_to_spawn() //Hivebots have a total number of 'lots' equal to the lesser drone, at 60.
 	return pick(prob(60);/mob/living/simple_mob/mechanical/combat_drone/lesser,
 				prob(50);/mob/living/simple_mob/mechanical/combat_drone,
+				prob(50);/mob/living/simple_mob/mechanical/mining_drone,
 				prob(15);/mob/living/simple_mob/mechanical/mecha/ripley,
 				prob(15);/mob/living/simple_mob/mechanical/mecha/odysseus,
 				prob(10);/mob/living/simple_mob/mechanical/hivebot,
@@ -173,6 +183,25 @@
 				prob(5);/mob/living/simple_mob/mechanical/hivebot/ranged_damage/laser,
 				prob(5);/mob/living/simple_mob/mechanical/hivebot/ranged_damage/strong,
 				prob(5);/mob/living/simple_mob/mechanical/hivebot/ranged_damage/strong/guard)
+
+/obj/random/mob/robotic/drone
+	name = "Random Drone"
+	desc = "This is a random drone."
+	icon_state = "drone_dead"
+
+	overwrite_hostility = 1
+
+	mob_faction = "malf_drone"
+	mob_returns_home = 1
+	mob_wander = 1
+	mob_wander_distance = 5
+	mob_hostile = 1
+	mob_retaliate = 1
+
+/obj/random/mob/robotic/drone/item_to_spawn()
+	return pick(prob(6);/mob/living/simple_mob/mechanical/combat_drone/lesser,
+				prob(1);/mob/living/simple_mob/mechanical/combat_drone,
+				prob(3);/mob/living/simple_mob/mechanical/mining_drone)
 
 /obj/random/mob/robotic/hivebot
 	name = "Random Hivebot"

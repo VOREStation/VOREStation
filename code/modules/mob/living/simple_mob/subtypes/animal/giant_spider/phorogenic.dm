@@ -45,6 +45,11 @@
 	poison_per_bite = 0.5
 	poison_type = "phoron"
 
+	tame_items = list(
+	/obj/item/weapon/tank/phoron = 20,
+	/obj/item/stack/material/phoron = 30
+	)
+
 	var/exploded = FALSE
 	var/explosion_dev_range		= 1
 	var/explosion_heavy_range	= 2

@@ -1,0 +1,5 @@
+author: Layne
+delete-after: True
+changes: 
+  - rscadd: "Promethean language."
+  - tweak: "NONVERBAL define was changed a bit."

@@ -162,3 +162,6 @@
 	grave_breath.adjust_gas(gasid, BREATH_MOLES)
 	grave_breath.temperature = (above_air.temperature) - 30	//Underground
 	return grave_breath
+
+/obj/structure/closet/grave/dirthole
+	name = "hole"

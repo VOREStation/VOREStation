@@ -12,6 +12,13 @@ var/list/grass_types = list(
 		)
 	var/grass_chance = 20
 
+	var/animal_chance = 1
+
+	// Weighted spawn list.
+	var/list/animal_types = list(
+		/mob/living/simple_mob/animal/passive/tindalos = 1
+		)
+
 	var/list/grass_types = list(
 		/obj/structure/flora/ausbushes/sparsegrass,
 		/obj/structure/flora/ausbushes/fullgrass
@@ -63,6 +70,11 @@ var/list/grass_types = list(
 	if(grass_chance && prob(grass_chance) && !check_density())
 		var/grass_type = pickweight(grass_types)
 		new grass_type(src)
+
+	if(animal_chance && prob(animal_chance) && !check_density())
+		var/animal_type = pickweight(animal_types)
+		new animal_type(src)
+
 	. = ..()
 
 /turf/simulated/floor/outdoors/grass/forest

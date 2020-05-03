@@ -13,6 +13,9 @@
 /obj/item/weapon/gun/energy/ionrifle/emp_act(severity)
 	..(max(severity, 4)) //so it doesn't EMP itself, I guess
 
+/obj/item/weapon/gun/energy/ionrifle/empty
+	cell_type = null
+
 /obj/item/weapon/gun/energy/ionrifle/pistol
 	name = "ion pistol"
 	desc = "The NT Mk63 EW Pan is a man portable anti-armor weapon designed to disable mechanical threats, produced by NT. This model sacrifices capacity for portability."
