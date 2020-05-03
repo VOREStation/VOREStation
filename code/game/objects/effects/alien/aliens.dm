@@ -163,14 +163,26 @@
 	name = "growth"
 	desc = "Weird organic growth."
 	icon_state = "weeds"
-
 	anchored = 1
 	density = 0
 	plane = TURF_PLANE
 	layer = ABOVE_TURF_LAYER
+
 	var/health = 15
 	var/obj/effect/alien/weeds/node/linked_node = null
 	var/static/list/weedImageCache
+
+/obj/effect/alien/weeds/Initialize(var/mapload, node)
+	. = ..()
+	if(isspace(loc))
+		return INITIALIZE_HINT_QDEL
+	
+	linked_node = node
+	
+	if(icon_state == "weeds")
+		icon_state = pick("weeds", "weeds1", "weeds2")
+
+	fullUpdateWeedOverlays()
 
 /obj/effect/alien/weeds/Destroy()
 	var/turf/T = get_turf(src)
@@ -181,7 +193,7 @@
 		W.updateWeedOverlays()
 
 	linked_node = null
-	..()
+	return ..()
 
 /obj/effect/alien/weeds/node
 	icon_state = "weednode"
@@ -189,40 +201,29 @@
 	desc = "Weird glowing organic growth."
 	layer = ABOVE_TURF_LAYER+0.01
 	light_range = NODERANGE
+	
 	var/node_range = NODERANGE
-
 	var/set_color = null
 
-/obj/effect/alien/weeds/node/New(var/newloc, var/newcolor = "#321D37")
-	var/obj/effect/alien/weeds/existing = locate() in get_turf(newloc)
-	if(existing)
-		qdel(existing)
+/obj/effect/alien/weeds/node/Initialize(var/mapload, var/newcolor = "#321D37")
+	. = ..()
+
+	for(var/obj/effect/alien/weeds/existing in loc)
+		if(existing == src)
+			continue
+		else
+			qdel(existing)
 
 	if(newcolor)
 		set_color = newcolor
 
-	..(newloc, src)
-
-/obj/effect/alien/weeds/node/Initialize()
-	..()
-	START_PROCESSING(SSobj, src)
+	START_PROCESSING(SSobj, src) // Only the node processes in a subsystem, the rest are process()'d by the node
 
 /obj/effect/alien/weeds/node/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	..()
-
-/obj/effect/alien/weeds/New(pos, node)
-	..()
-	if(istype(loc, /turf/space))
-		qdel(src)
-		return
-	linked_node = node
-	if(icon_state == "weeds")icon_state = pick("weeds", "weeds1", "weeds2")
-
-	fullUpdateWeedOverlays()
+	return ..()
 
 /obj/effect/alien/weeds/proc/updateWeedOverlays()
-
 	cut_overlays()
 
 	if(!weedImageCache)
@@ -251,73 +252,53 @@
 
 	return
 
+// NB: This is not actually called by a processing subsystem, it's called by the node processing
 /obj/effect/alien/weeds/process()
 	set background = 1
 	var/turf/U = get_turf(src)
-/*
-	if (locate(/obj/movable, U))
-		U = locate(/obj/movable, U)
-		if(U.density == 1)
-			qdel(src)
-			return
-Alien plants should do something if theres a lot of poison
-	if(U.poison> 200000)
-		health -= round(U.poison/200000)
-		update()
-		return
-*/
-	if (istype(U, /turf/space))
+
+	if(isspace(U))
 		qdel(src)
 		return
 
 	if(!linked_node)
+		crash_with("Weeds somehow called process() with null linked_node")
 		return
-
-	if(linked_node != src)
-		color = linked_node.set_color
 
 	if(get_dist(linked_node, src) > linked_node.node_range)
 		return
 
-	direction_loop:
-		for(var/dirn in cardinal)
-			var/turf/T = get_step(src, dirn)
+	for(var/dirn in cardinal)
+		var/turf/T1 = get_turf(src)
+		var/turf/T2 = get_step(src, dirn)
 
-			if (!istype(T) || T.density || locate(/obj/effect/alien/weeds) in T || istype(T.loc, /area/arrival) || istype(T, /turf/space))
-				continue
+		if(!istype(T2) || locate(/obj/effect/alien/weeds) in T2 || istype(T2.loc, /area/arrival) || isspace(T2))
+			continue
 
-	//		if (locate(/obj/movable, T)) // don't propogate into movables
-	//			continue
+		if(T1.c_airblock(T2) == BLOCKED)
+			continue
 
-			for(var/obj/O in T)
-				if(!O.CanZASPass(U))
-					continue direction_loop
+		var/obj/effect/E = new /obj/effect/alien/weeds(T2, linked_node)
+		E.color = color
 
-			var/obj/effect/E = new /obj/effect/alien/weeds(T, linked_node)
+/obj/effect/alien/weeds/node/process()
+	set background = 1
+	. = ..()
 
-			E.color = color
+	var/list/nearby_weeds = list()
+	for(var/obj/effect/alien/weeds/W in orange(node_range, src))
+		nearby_weeds |= W
 
-	if(istype(src, /obj/effect/alien/weeds/node))
-		var/obj/effect/alien/weeds/node/N = src
-		var/list/nearby_weeds = list()
-		for(var/obj/effect/alien/weeds/W in range(N.node_range,src))
-			nearby_weeds |= W
+	for(var/nbw in nearby_weeds)
+		var/obj/effect/alien/weeds/W = nbw
 
-		for(var/obj/effect/alien/weeds/W in nearby_weeds)
-			if(!W)
-				continue
+		if(!W.linked_node)
+			W.linked_node = src
 
-			if(!W.linked_node)
-				W.linked_node = src
+		W.color = W.linked_node.set_color
 
-			W.color = W.linked_node.set_color
-
-			if(W == src)
-				continue
-
-			if(prob(max(10, 40 - (5 * nearby_weeds.len))))
-				W.process()
-
+		if(prob(max(10, 40 - (5 * nearby_weeds.len))))
+			W.process()
 
 /obj/effect/alien/weeds/ex_act(severity)
 	switch(severity)
