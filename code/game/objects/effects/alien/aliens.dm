@@ -266,7 +266,6 @@
 		return
 
 	if(!linked_node)
-		crash_with("Weeds somehow called process() with null linked_node")
 		return
 
 	if(get_dist(linked_node, src) > linked_node.node_range)
