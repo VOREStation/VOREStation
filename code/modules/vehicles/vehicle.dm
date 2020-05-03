@@ -66,8 +66,7 @@
 
 /obj/vehicle/unbuckle_mob(mob/living/buckled_mob, force = FALSE)
 	. = ..(buckled_mob, force)
-	for(var/mob/M in buckled_mobs)
-		buckled_mob.update_water()
+	buckled_mob?.update_water()
 	if(riding_datum)
 		riding_datum.restore_position(buckled_mob)
 		riding_datum.handle_vehicle_offsets() // So the person in back goes to the front.

@@ -780,7 +780,7 @@ default behaviour is:
 // Almost all of this handles pulling movables behind us
 /mob/living/Move(atom/newloc, direct, movetime)
 	if(buckled && buckled.loc != newloc) //not updating position
-		if(!buckled.anchored)
+		if(!buckled.anchored && buckled.buckle_movable)
 			return buckled.Move(newloc, direct)
 		else
 			return 0
