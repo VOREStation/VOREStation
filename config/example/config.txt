@@ -529,3 +529,6 @@ SQLITE_FEEDBACK_MIN_AGE 7
 
 ## Uncomment this if you want to disable the popup alert for people on the same CID (Don't do this on a live server if you ban multikeying)
 #DISABLE_CID_WARN_POPUP
+
+## Comment this out if you don't want to use the 'nightshift lighting' subsystem to adjust lights based on ingame time
+ENABLE_NIGHT_SHIFTS

@@ -201,6 +201,15 @@
 		</div>
 	</div>
 
+	<div class="item">
+		<div class="itemLabel">
+			Night Lighting:
+		</div>
+		<div class="itemContent">
+			{{:helper.link(data.nightshiftLights ? 'Enabled' : 'Disabled', data.nightshiftLights ? 'power' : 'close', {'nightshift' : 1}, null)}}
+		</div>
+	</div>
+
 	{{if data.siliconUser}}
 		<h3>System Overrides</h3>
 
