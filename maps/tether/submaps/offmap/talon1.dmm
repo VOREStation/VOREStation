@@ -672,7 +672,8 @@
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/segment,
-/turf/simulated/floor/tiled/dark,
+/obj/effect/catwalk_plated/dark,
+/turf/simulated/floor/plating,
 /area/talon/deckone/bridge_hallway)
 "bx" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -1201,7 +1202,8 @@
 	name = "Talon Port Solar Panels";
 	name_tag = "TLN-PRT-SLR"
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/obj/effect/catwalk_plated/dark,
+/turf/simulated/floor/plating,
 /area/talon/deckone/port_solar)
 "cs" = (
 /obj/machinery/power/terminal{
@@ -1374,7 +1376,8 @@
 	name = "Talon Starboard Solar Panels";
 	name_tag = "TLN-SBD-SLR"
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/obj/effect/catwalk_plated/dark,
+/turf/simulated/floor/plating,
 /area/talon/deckone/starboard_solar)
 "cJ" = (
 /obj/machinery/alarm/talon{
@@ -1423,7 +1426,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/techfloor,
+/obj/effect/catwalk_plated/dark,
+/turf/simulated/floor/plating,
 /area/talon/deckone/port_solar)
 "cO" = (
 /obj/structure/cable/green{
@@ -1573,7 +1577,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/techfloor,
+/obj/effect/catwalk_plated/dark,
+/turf/simulated/floor/plating,
 /area/talon/deckone/starboard_solar)
 "cY" = (
 /obj/structure/cable/green{
@@ -3848,7 +3853,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/steel,
+/obj/effect/catwalk_plated,
+/turf/simulated/floor/plating,
 /area/talon/deckone/central_hallway)
 "gP" = (
 /obj/machinery/computer/ship/navigation/telescreen{
@@ -3968,6 +3974,7 @@
 /obj/structure/table/standard,
 /obj/item/weapon/storage/toolbox/electrical,
 /obj/item/stack/marker_beacon/thirty,
+/obj/item/weapon/pipe_dispenser,
 /turf/simulated/floor/tiled/techfloor,
 /area/talon/deckone/port_eng_store)
 "he" = (
@@ -4542,7 +4549,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/steel,
+/obj/effect/catwalk_plated,
+/turf/simulated/floor/plating,
 /area/talon/deckone/central_hallway)
 "hX" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -4631,7 +4639,8 @@
 	icon_state = "pipe-s";
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel,
+/obj/effect/catwalk_plated,
+/turf/simulated/floor/plating,
 /area/talon/deckone/central_hallway)
 "ic" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -5057,7 +5066,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/techmaint,
+/obj/effect/catwalk_plated,
+/turf/simulated/floor/plating,
 /area/talon/deckone/port_eng)
 "iJ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -5162,7 +5172,8 @@
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/segment,
-/turf/simulated/floor/tiled/techmaint,
+/obj/effect/catwalk_plated,
+/turf/simulated/floor/plating,
 /area/talon/deckone/starboard_eng)
 "iU" = (
 /obj/effect/floor_decal/industrial/outline/grey,
@@ -7568,7 +7579,8 @@
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/segment,
-/turf/simulated/floor/tiled/steel,
+/obj/effect/catwalk_plated,
+/turf/simulated/floor/plating,
 /area/talon/deckone/central_hallway)
 
 (1,1,1) = {"
