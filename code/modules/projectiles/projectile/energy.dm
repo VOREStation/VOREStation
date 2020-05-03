@@ -101,6 +101,19 @@
 
 	combustion = FALSE
 
+/obj/item/projectile/energy/excavate
+	name = "kinetic blast"
+	icon_state = "kinetic_blast"
+	fire_sound = 'sound/weapons/pulse3.ogg'
+	damage_type = BRUTE
+	damage = 30
+	armor_penetration = 60
+	excavation_amount = 200
+	check_armour = "melee"
+
+	vacuum_traversal = 0
+	combustion = FALSE
+
 /obj/item/projectile/energy/dart
 	name = "dart"
 	icon_state = "toxin"

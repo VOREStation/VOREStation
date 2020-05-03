@@ -623,6 +623,12 @@
 		color_blend_mode = ICON_MULTIPLY
 		body_parts = list(BP_HEAD)
 
+	vulp_short_nose
+		name = "nose, short (Vulp)"
+		icon_state = "vulp_short_nose"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_HEAD)
+
 	snoutstripe
 		name = "snout stripe (Vulp)"
 		icon_state = "snoutstripe"
@@ -632,6 +638,12 @@
 	vulp_face
 		name = "face (Vulp)"
 		icon_state = "vulp_face"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_HEAD)
+
+	vulp_facealt
+		name = "face, alt. (Vulp)"
+		icon_state = "vulp_facealt"
 		color_blend_mode = ICON_MULTIPLY
 		body_parts = list(BP_HEAD)
 
@@ -1124,3 +1136,21 @@
 		color_blend_mode = ICON_MULTIPLY
 		body_parts = list(BP_HEAD)
 		species_allowed = list(SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW)
+
+	taj_nose_alt
+		name = "Nose Color, alt. (Taj)"
+		icon_state = "taj_nosealt"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_HEAD)
+
+	talons
+		name = "Talons"
+		icon_state = "talons"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG)
+
+	claws
+		name = "Claws"
+		icon_state = "claws"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_L_HAND,BP_R_HAND)

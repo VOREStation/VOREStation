@@ -938,6 +938,11 @@ Uniforms and such
 	name = "explorer's jumpsuit"
 	icon_state = "explorer"
 
+/obj/item/clothing/under/explorer/armored
+	desc = "A green uniform for operating in hazardous environments. This one looks like it's been modified."
+	armor = list(melee = 10, bullet = 10, laser = 10,energy = 10, bomb = 10, bio = 10, rad = 30)
+	armorsoak = list(melee = 5, bullet = 5, laser = 5,energy = 5, bomb = 5, bio = 5, rad = 0)
+
 /obj/item/clothing/under/cohesion
 	name = "black cohesion suit"
 	desc = "A plain black cohesion suit intended to assist Prometheans in maintaining their form and prevent direct skin exposure."

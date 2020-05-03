@@ -54,6 +54,9 @@
 	else
 		icon_state = "[icon_state]-empty"
 
+/obj/item/weapon/gun/projectile/shotgun/pump/empty
+	ammo_type = null
+
 /obj/item/weapon/gun/projectile/shotgun/pump/slug
 	ammo_type = /obj/item/ammo_casing/a12g
 
@@ -66,6 +69,9 @@
 	max_shells = 7 //match the ammo box capacity, also it can hold a round in the chamber anyways, for a total of 8.
 	ammo_type = /obj/item/ammo_casing/a12g
 	load_method = SINGLE_CASING|SPEEDLOADER
+
+/obj/item/weapon/gun/projectile/shotgun/pump/combat/empty
+	ammo_type = null
 
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel
 	name = "double-barreled shotgun"

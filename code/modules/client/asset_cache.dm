@@ -334,3 +334,15 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 
 	send_asset_list(client, uncommon)
 	send_asset_list(client, common)
+
+
+// VOREStation Add Start - pipes iconsheet asset
+/datum/asset/iconsheet/pipes
+	name = "pipes"
+
+/datum/asset/iconsheet/pipes/register()
+	var/list/sprites = list()
+	for (var/each in list('icons/obj/pipe-item.dmi', 'icons/obj/pipes/disposal.dmi'))
+		sprites += build_sprite_list(each, global.alldirs)
+	..(sprites)
+// VOREStation Add End

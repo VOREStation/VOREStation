@@ -940,10 +940,6 @@
 	update_canmove()
 
 /mob/living/silicon/robot/mode()
-	set name = "Activate Held Object"
-	set category = "IC"
-	set src = usr
-
 	if(!checkClickCooldown())
 		return
 

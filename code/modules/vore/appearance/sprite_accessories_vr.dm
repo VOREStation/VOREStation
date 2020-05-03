@@ -367,6 +367,29 @@
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "vulp-inner"
 
+/datum/sprite_accessory/ears/vulp_short
+	name = "vulpkanin short"
+	desc = ""
+	icon_state = "vulp_terrier"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/vulp_short_dc
+	name = "vulpkanin short, dual-color"
+	desc = ""
+	icon_state = "vulp_terrier"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "vulp_terrier-inner"
+
+/datum/sprite_accessory/ears/vulp_jackal
+	name = "vulpkanin thin, dual-color"
+	desc = ""
+	icon_state = "vulp_jackal"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "vulp_jackal-inner"
+
 /datum/sprite_accessory/ears/bunny_floppy
 	name = "floopy bunny ears (colorable)"
 	desc = ""
@@ -1694,3 +1717,19 @@
 	color_blend_mode = ICON_MULTIPLY
 	//apply_restrictions = TRUE
 	//species_allowed = list(SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW)
+
+/datum/sprite_accessory/tail/wartacosushi_tail //brightened +20RGB from matching roboparts
+	name = "Ward-Takahashi Tail"
+	desc = ""
+	icon_state = "wardtakahashi_vulp"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/wartacosushi_tail_dc
+	name = "Ward-Takahashi Tail, dual-color"
+	desc = ""
+	icon_state = "wardtakahashi_vulp_dc"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "wardtakahashi_vulp_dc_mark"
+

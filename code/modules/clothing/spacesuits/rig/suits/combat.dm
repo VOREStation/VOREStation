@@ -12,7 +12,14 @@
 	offline_vision_restriction = 1
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/combat
-	allowed = list(/obj/item/weapon/gun,/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/melee/baton)
+	allowed = list(
+		/obj/item/weapon/gun,
+		/obj/item/device/flashlight,
+		/obj/item/weapon/tank,
+		/obj/item/device/suit_cooling_unit,
+		/obj/item/weapon/melee/baton,
+		/obj/item/weapon/storage
+		)
 
 
 /obj/item/weapon/rig/combat/equipped
@@ -42,10 +49,26 @@
 	slowdown = 1
 	offline_slowdown = 3
 	offline_vision_restriction = 1
-	allowed = list(/obj/item/device/flashlight, /obj/item/weapon/tank,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/handcuffs, \
-	/obj/item/device/t_scanner, /obj/item/weapon/rcd, /obj/item/weapon/weldingtool, /obj/item/weapon/tool, /obj/item/device/multitool, \
-	/obj/item/device/radio, /obj/item/device/analyzer,/obj/item/weapon/storage/briefcase/inflatable, /obj/item/weapon/melee/baton, /obj/item/weapon/gun, \
-	/obj/item/weapon/storage/firstaid, /obj/item/weapon/reagent_containers/hypospray, /obj/item/roller, /obj/item/device/suit_cooling_unit)
+	allowed = list(
+		/obj/item/device/flashlight,
+		/obj/item/weapon/tank,
+		/obj/item/ammo_magazine,
+		/obj/item/ammo_casing,
+		/obj/item/weapon/handcuffs,
+		/obj/item/device/t_scanner,
+		/obj/item/weapon/rcd,
+		/obj/item/weapon/weldingtool,
+		/obj/item/weapon/tool,
+		/obj/item/device/multitool,
+		/obj/item/device/radio,
+		/obj/item/device/analyzer,
+		/obj/item/weapon/melee/baton,
+		/obj/item/weapon/gun,
+		/obj/item/weapon/storage,
+		/obj/item/weapon/reagent_containers/hypospray,
+		/obj/item/roller,
+		/obj/item/device/suit_cooling_unit
+		)
 
 	chest_type = /obj/item/clothing/suit/space/rig/military
 	helm_type = /obj/item/clothing/head/helmet/space/rig/military

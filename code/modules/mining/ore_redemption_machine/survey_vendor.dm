@@ -38,9 +38,10 @@
 		new /datum/data/mining_equipment("Nanopaste Tube",				/obj/item/stack/nanopaste,											100),
 		new /datum/data/mining_equipment("Mini-Translocator",			/obj/item/device/perfect_tele/one_beacon,							120),
 		new /datum/data/mining_equipment("UAV - Recon Skimmer",			/obj/item/device/uav,												400),
-		new /datum/data/mining_equipment("Space Cash",					/obj/item/weapon/spacecash/c100,									100),
+		new /datum/data/mining_equipment("Thalers - 100",				/obj/item/weapon/spacecash/c100,									100),
 		new /datum/data/mining_equipment("Jump Boots",					/obj/item/clothing/shoes/bhop,										250),
 		new /datum/data/mining_equipment("Luxury Shelter Capsule",		/obj/item/device/survivalcapsule/luxury,							310),
+		new /datum/data/mining_equipment("Bar Shelter Capsule",			/obj/item/device/survivalcapsule/luxurybar,							1000),
 		new /datum/data/mining_equipment("Industrial Equipment - Phoron Bore",/obj/item/weapon/gun/magnetic/matfed,							300),
 		new /datum/data/mining_equipment("Survey Tools - Shovel",		/obj/item/weapon/shovel,											40),
 		new /datum/data/mining_equipment("Survey Tools - Mechanical Trap",	/obj/item/weapon/beartrap,										50),
@@ -51,7 +52,7 @@
 		new /datum/data/mining_equipment("Fishing Net",					/obj/item/weapon/material/fishing_net,								50),
 		new /datum/data/mining_equipment("Titanium Fishing Rod",		/obj/item/weapon/material/fishing_rod/modern,						100),
 		new /datum/data/mining_equipment("Durasteel Fishing Rod",		/obj/item/weapon/material/fishing_rod/modern/strong,				750),
-		new /datum/data/mining_equipment("Bar Shelter Capsule",			/obj/item/device/survivalcapsule/luxurybar,							1000)
+		new /datum/data/mining_equipment("Survival Equipment - Insulated Poncho",	/obj/random/thermalponcho,								75)
 		)
 		//VOREStation Edit End
 

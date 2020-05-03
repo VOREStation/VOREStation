@@ -19,6 +19,9 @@
 		list(mode_name="suppressive", fire_delay=5, projectile_type=/obj/item/projectile/beam/weaklaser, charge_cost = 60),
 		)
 
+/obj/item/weapon/gun/energy/laser/empty
+	cell_type = null
+
 /obj/item/weapon/gun/energy/laser/mounted
 	self_recharge = 1
 	use_external_power = 1
@@ -175,7 +178,7 @@
 	force = 10
 	w_class = ITEMSIZE_HUGE // So it can't fit in a backpack.
 	accuracy = -45 //shooting at the hip
-	scoped_accuracy = 0
+	scoped_accuracy = 50
 	one_handed_penalty = 60 // The weapon itself is heavy, and the long barrel makes it hard to hold steady with just one hand.
 
 /obj/item/weapon/gun/energy/sniperrifle/ui_action_click()
@@ -192,7 +195,8 @@
 	name = "antique mono-rifle"
 	desc = "An old laser rifle. This one can only fire once before requiring recharging."
 	description_fluff = "Modeled after ancient hunting rifles, this rifle was dubbed the 'Rainy Day Special' by some, due to its use as some barmens' fight-stopper of choice. One shot is all it takes, or so they say."
-	icon_state = "eshotgun"
+	icon = 'icons/obj/energygun.dmi'
+	icon_state = "mono"
 	item_state = "shotgun"
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 4, TECH_POWER = 3)
 	projectile_type = /obj/item/projectile/beam/sniper
@@ -204,6 +208,7 @@
 	w_class = ITEMSIZE_LARGE
 	accuracy = 10
 	scoped_accuracy = 15
+	charge_meter = FALSE
 	var/scope_multiplier = 1.5
 
 /obj/item/weapon/gun/energy/monorifle/ui_action_click()
@@ -220,7 +225,7 @@
 	name = "combat mono-rifle"
 	desc = "A modernized version of the mono-rifle. This one can fire twice before requiring recharging."
 	description_fluff = "A modern design produced by a company once working from Saint Columbia, based on the antique mono-rifle 'Rainy Day Special' design."
-	icon_state = "ecshotgun"
+	icon_state = "cmono"
 	item_state = "cshotgun"
 	charge_cost = 1000
 	force = 12

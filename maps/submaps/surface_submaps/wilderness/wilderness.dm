@@ -22,6 +22,7 @@
 #include "Rockybase.dmm"
 #include "MHR.dmm"
 #include "GovPatrol.dmm"
+#include "kururakden.dmm"
 #include "DecoupledEngine.dmm"
 #include "DoomP.dmm"
 #include "CaveS.dmm"
@@ -202,6 +203,12 @@
 	mappath = 'maps/submaps/surface_submaps/wilderness/GovPatrol.dmm'
 	cost = 5
 
+/datum/map_template/surface/wilderness/normal/KururakDen
+	name = "Kururak Den"
+	desc = "The den of a Kururak pack. May contain hibernating members."
+	mappath = 'maps/submaps/surface_submaps/wilderness/kururakden.dmm'
+	cost = 5
+
 /datum/map_template/surface/wilderness/normal/DecoupledEngine
 	name = "Decoupled Engine"
 	desc = "A damaged fission engine jettisoned from a starship long ago."
@@ -273,3 +280,9 @@
 	desc = "A pool of water contaminated with highly dangerous chemicals."
 	mappath = 'maps/submaps/surface_submaps/wilderness/chemspill2.dmm'
 	cost = 10
+
+/datum/map_template/surface/wilderness/normal/FrostflyNest
+	name = "Frostfly Nest"
+	desc = "The nest of a Frostfly, or more."
+	mappath = 'maps/submaps/surface_submaps/wilderness/FrostflyNest.dmm'
+	cost = 20

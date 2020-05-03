@@ -145,13 +145,13 @@
 	
 	playsound(src, 'sound/effects/roll.ogg', 100, 1)
 
-/obj/structure/bed/chair/office/handle_buckled_mob_movement(atom/new_loc, direction)
+/obj/structure/bed/chair/office/handle_buckled_mob_movement(atom/new_loc, direction, movetime)
 	for(var/A in buckled_mobs)
 		var/mob/living/occupant = A
 		occupant.buckled = null
-		occupant.Move(src.loc)
+		occupant.Move(loc, direction, movetime)
 		occupant.buckled = src
-		if (occupant && (src.loc != occupant.loc))
+		if (occupant && (loc != occupant.loc))
 			if (propelled)
 				for (var/mob/O in src.loc)
 					if (O != occupant)
