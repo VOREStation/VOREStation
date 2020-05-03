@@ -32,8 +32,6 @@ var/list/grass_types = list(
 	grass_chance = 5
 	var/tree_chance = 2
 
-<<<<<<< HEAD
-=======
 	animal_chance = 0.5
 
 	animal_types = list(
@@ -44,7 +42,6 @@ var/list/grass_types = list(
 		/obj/random/mob/multiple/sifmobs = 1
 		)
 
->>>>>>> 7d52c30... I love BYOND RNG, it is perfect and 100% reliable for testing. (#7070)
 	grass_types = list(
 		/obj/structure/flora/sif/eyes = 1,
 		/obj/structure/flora/sif/tendrils = 10
