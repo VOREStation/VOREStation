@@ -324,18 +324,18 @@
 				/mob/living/simple_mob/animal/sif/diyaab,
 				/mob/living/simple_mob/animal/sif/diyaab
 			),
-			prob(30);list(
-				/mob/living/simple_mob/animal/sif/shantak/retaliate,
-				/mob/living/simple_mob/animal/sif/shantak/retaliate,
-				/mob/living/simple_mob/animal/sif/shantak/retaliate,
-				/mob/living/simple_mob/animal/sif/shantak/leader/autofollow/retaliate
-			),
-			prob(20);list(
+			prob(15);list(
 				/mob/living/simple_mob/animal/sif/duck,
 				/mob/living/simple_mob/animal/sif/duck,
 				/mob/living/simple_mob/animal/sif/duck
 			),
 			prob(10);list(
+				/mob/living/simple_mob/animal/sif/shantak/retaliate,
+				/mob/living/simple_mob/animal/sif/shantak/retaliate,
+				/mob/living/simple_mob/animal/sif/shantak/retaliate,
+				/mob/living/simple_mob/animal/sif/shantak/leader/autofollow/retaliate
+			),
+			prob(5);list(
 				/mob/living/simple_mob/animal/sif/kururak/leader,
 				/mob/living/simple_mob/animal/sif/kururak,
 				/mob/living/simple_mob/animal/sif/kururak

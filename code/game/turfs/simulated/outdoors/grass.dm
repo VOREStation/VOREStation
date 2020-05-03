@@ -42,6 +42,10 @@ var/list/grass_types = list(
 	animal_chance = 0.5
 
 	animal_types = list(
+		/mob/living/simple_mob/animal/sif/diyaab = 10,
+		/mob/living/simple_mob/animal/sif/glitterfly = 2,
+		/mob/living/simple_mob/animal/sif/duck = 2,
+		/mob/living/simple_mob/animal/sif/shantak/retaliate = 2,
 		/obj/random/mob/multiple/sifmobs = 1
 		)
 
