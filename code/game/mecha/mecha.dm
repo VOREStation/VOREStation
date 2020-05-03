@@ -95,6 +95,11 @@
 	var/list/cargo = list()
 	var/cargo_capacity = 3
 
+	var/static/image/radial_image_eject = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_eject"),
+	var/static/image/radial_image_airtoggle = image(icon= 'icons/mob/radial.dmi', icon_state = "radial_airtank"),
+	var/static/image/radial_image_lighttoggle = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_light"),
+	var/static/image/radial_image_statpanel = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_examine2")
+
 
 /obj/mecha/drain_power(var/drain_check)
 
@@ -292,6 +297,51 @@
 	if(M == occupant && radio.broadcasting)
 		radio.talk_into(M, message_pieces)
 
+/obj/mecha/proc/check_occupant_radial(var/mob/user)
+	if(!user)
+		return FALSE
+	if(user.stat)
+		return FALSE
+	if(user != occupant)
+		return FALSE
+	if(user.incapacitated())
+		return FALSE
+
+	return TRUE
+
+/obj/mecha/proc/show_radial_occupant(var/mob/user)
+	var/list/choices = list(
+		"Eject" = radial_image_eject,
+		"Toggle Airtank" = radial_image_airtoggle,
+		"Toggle Light" = radial_image_lighttoggle,
+		"View Stats" = radial_image_statpanel
+	)
+	var/choice = show_radial_menu(user, src, choices, custom_check = CALLBACK(src, .proc/check_occupant_radial, user), require_near = TRUE, tooltips = TRUE)
+	if(!check_occupant_radial(user))
+		return
+	if(!choice)
+		return
+	switch(choice)
+		if("Eject")
+			go_out()
+			add_fingerprint(usr)
+		if("Toggle Airtank")
+			use_internal_tank = !use_internal_tank
+			occupant_message("Now taking air from [use_internal_tank?"internal airtank":"environment"].")
+			log_message("Now taking air from [use_internal_tank?"internal airtank":"environment"].")
+		if("Toggle Light")
+			lights = !lights
+			if(lights)
+				set_light(light_range + lights_power)
+			else
+				set_light(light_range - lights_power)
+			occupant_message("Toggled lights [lights?"on":"off"].")
+			log_message("Toggled lights [lights?"on":"off"].")
+			playsound(src, 'sound/mecha/heavylightswitch.ogg', 50, 1)
+		if("View Stats")
+			occupant << browse(src.get_stats_html(), "window=exosuit")
+
+
 ////////////////////////////
 ///// Action processing ////
 ////////////////////////////
@@ -321,6 +371,9 @@
 /obj/mecha/proc/click_action(atom/target,mob/user, params)
 	if(!src.occupant || src.occupant != user ) return
 	if(user.stat) return
+	if(target == src && user == occupant)
+		show_radial_occupant(user)
+		return
 	if(state)
 		occupant_message("<font color='red'>Maintenance protocols in effect</font>")
 		return
@@ -603,6 +656,10 @@
 	return
 
 /obj/mecha/attack_hand(mob/user as mob)
+	if(user == occupant)
+		show_radial_occupant(user)
+		return
+	
 	user.setClickCooldown(user.get_attack_speed())
 	src.log_message("Attack by hand/paw. Attacker - [user].",1)
 
