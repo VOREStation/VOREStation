@@ -223,11 +223,10 @@
 
 /obj/effect/alien/weeds/proc/updateWeedOverlays()
 
-	overlays.Cut()
+	cut_overlays()
 
-	if(!weedImageCache || !weedImageCache.len)
+	if(!weedImageCache)
 		weedImageCache = list()
-//		weedImageCache.len = 4
 		weedImageCache[WEED_NORTH_EDGING] = image('icons/mob/alien.dmi', "weeds_side_n", layer=2.11, pixel_y = -32)
 		weedImageCache[WEED_SOUTH_EDGING] = image('icons/mob/alien.dmi', "weeds_side_s", layer=2.11, pixel_y = 32)
 		weedImageCache[WEED_EAST_EDGING] = image('icons/mob/alien.dmi', "weeds_side_e", layer=2.11, pixel_x = -32)
@@ -237,18 +236,14 @@
 	var/turf/S = get_step(src, SOUTH)
 	var/turf/E = get_step(src, EAST)
 	var/turf/W = get_step(src, WEST)
-	if(!locate(/obj/effect/alien) in N.contents)
-		if(istype(N, /turf/simulated/floor))
-			overlays += weedImageCache[WEED_SOUTH_EDGING]
-	if(!locate(/obj/effect/alien) in S.contents)
-		if(istype(S, /turf/simulated/floor))
-			overlays += weedImageCache[WEED_NORTH_EDGING]
-	if(!locate(/obj/effect/alien) in E.contents)
-		if(istype(E, /turf/simulated/floor))
-			overlays += weedImageCache[WEED_WEST_EDGING]
-	if(!locate(/obj/effect/alien) in W.contents)
-		if(istype(W, /turf/simulated/floor))
-			overlays += weedImageCache[WEED_EAST_EDGING]
+	if(istype(N, /turf/simulated/floor)) && !locate(/obj/effect/alien) in N.contents)
+		add_overlay(weedImageCache[WEED_SOUTH_EDGING])
+	if(istype(S, /turf/simulated/floor)) && !locate(/obj/effect/alien) in S.contents)
+		add_overlay(weedImageCache[WEED_NORTH_EDGING])
+	if(istype(E, /turf/simulated/floor)) && !locate(/obj/effect/alien) in E.contents)
+		add_overlay(weedImageCache[WEED_WEST_EDGING])
+	if(istype(W, /turf/simulated/floor)) && !locate(/obj/effect/alien) in W.contents)
+		add_overlay(weedImageCache[WEED_EAST_EDGING])
 
 /obj/effect/alien/weeds/proc/fullUpdateWeedOverlays()
 	for (var/obj/effect/alien/weeds/W in range(1,src))
