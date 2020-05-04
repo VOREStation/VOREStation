@@ -1,0 +1,6 @@
+author: atlantiscze
+
+delete-after: True
+
+changes: 
+  - rscadd: "Robots can now search loot piles."

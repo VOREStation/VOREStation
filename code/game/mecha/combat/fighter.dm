@@ -8,7 +8,7 @@
 	var/stabilization_enabled = TRUE //If our anti-space-drift is on
 	var/ground_capable = FALSE //If we can fly over normal turfs and not just space
 
-	icon = 'icons/mecha/fighters64x64.dmi'
+	icon = 'icons/mecha/fighters64x64.dmi' //See ATTRIBUTIONS.md for details on license
 
 	icon_state = ""
 	initial_icon = ""

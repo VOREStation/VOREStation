@@ -21723,6 +21723,7 @@
 /obj/effect/floor_decal/corner/paleblue/bordercorner2{
 	dir = 1
 	},
+/obj/machinery/vitals_monitor,
 /turf/simulated/floor/tiled/white,
 /area/medical/sleeper)
 "aHr" = (
@@ -22407,6 +22408,7 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 4
 	},
+/obj/machinery/vitals_monitor,
 /turf/simulated/floor/tiled/white,
 /area/medical/sleeper)
 "aIm" = (

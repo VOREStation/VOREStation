@@ -161,3 +161,10 @@
 	req_tech = list(TECH_DATA = 5, TECH_POWER = 5, TECH_PHORON = 5, TECH_ENGINEERING = 5)
 	build_path = /obj/item/weapon/circuitboard/machine/rtg/advanced
 	sort_string = "HAAE"
+
+/datum/design/circuit/rtg
+	name = "vitals monitor"
+	id = "vitals"
+	req_tech = list(TECH_DATA = 3, TECH_BIO = 4, TECH_ENGINEERING = 2)
+	build_path = /obj/item/weapon/circuitboard/machine/vitals_monitor
+	sort_string = "HAAF"

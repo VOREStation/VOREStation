@@ -23006,6 +23006,7 @@
 	icon_state = "extinguisher_closed";
 	pixel_x = -30
 	},
+/obj/machinery/vitals_monitor,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/storage)
 "aQR" = (

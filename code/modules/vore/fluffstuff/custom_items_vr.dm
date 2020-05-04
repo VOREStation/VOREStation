@@ -1821,3 +1821,8 @@
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "blindshades_mob"
+
+//Storesund97 - Aurora
+/obj/item/clothing/accessory/solgov/department/security/aurora
+	name = "Old security insignia"
+	desc = "Insignia denoting assignment to the security department. These fit Expeditionary Corps uniforms. This one seems to be from the 2100s..."
