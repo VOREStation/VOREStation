@@ -51,7 +51,7 @@
 	initial_generic_waypoints = list("aronai_fore", "aronai_aft", "aronai_port", "aronai_starboard")
 	initial_restricted_waypoints = list("Aro's Ship's Boat" = list("omship_spawn_aroboat"))
 
-	skybox_icon = 'aro.dmi'
+	skybox_icon = 'aro2.dmi'
 	skybox_icon_state = "skybox"
 	skybox_pixel_x = 120
 	skybox_pixel_y = 120

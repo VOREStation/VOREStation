@@ -68,10 +68,16 @@
 	initial_restricted_waypoints = list("Aro's Boat" = list("omship_spawn_aroboat2"))
 	fore_dir = EAST
 
-	skybox_icon = 'aro2.dmi' //Art by Harmful Mechanic, distributed under Creative Commons license
+	skybox_icon = 'aro2.dmi' //Art by Nia Tahl, see ATTRIBUTIONS.md
 	skybox_icon_state = "skybox"
 	skybox_pixel_x = 80
 	skybox_pixel_y = 100
+
+/obj/effect/overmap/visitable/ship/aro2/build_skybox_representation()
+	..()
+	if(!cached_skybox_image)
+		return
+	cached_skybox_image.add_overlay("glow")
 
 // The shuttle's 'shuttle' computer
 /obj/machinery/computer/shuttle_control/explore/aroboat2
