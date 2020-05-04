@@ -327,7 +327,7 @@
 	if(!istype(tasted))
 		return
 
-	if(!canClick() || incapacitated(INCAPACITATION_ALL))
+	if(!checkClickCooldown() || incapacitated(INCAPACITATION_ALL))
 		return
 
 	setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
@@ -748,11 +748,11 @@
 		if(O.material in rock_munch)
 			var/S = rock_munch[O.material]
 			to_chat(src, "<span class='notice'>[S["remark"]]</span>")
-			nutrition += S["nutrition"]
+			adjust_nutrition(S["nutrition"])
 		else //Handle everything else.
 			if(istype(O, /obj/item/weapon/ore/slag/))
 				to_chat(src, "<span class='notice'>You taste dusty, crunchy mistakes. This is a travesty... but at least it is an edible one.</span>")
-				nutrition += 15
+				adjust_nutrition(15)
 			else //Random rock.
 				to_chat(src, "<span class='notice'>You taste stony, gravelly goodness - but you crave something with actual nutritional value.</span>")
 
@@ -764,10 +764,10 @@
 	set desc = "Switch sharp/fuzzy scaling for current mob."
 	appearance_flags ^= PIXEL_SCALE
 
-/mob/living/examine(mob/user, distance, infix, suffix)
-	. = ..(user, distance, infix, suffix)
+/mob/living/examine(mob/user, infix, suffix)
+	. = ..()
 	if(showvoreprefs)
-		to_chat(user, "<span class='deptradio'><a href='?src=\ref[src];vore_prefs=1'>\[Mechanical Vore Preferences\]</a></span>")
+		. += "<span class='deptradio'><a href='?src=\ref[src];vore_prefs=1'>\[Mechanical Vore Preferences\]</a></span>"
 
 /mob/living/Topic(href, href_list)	//Can't find any instances of Topic() being overridden by /mob/living in polaris' base code, even though /mob/living/carbon/human's Topic() has a ..() call
 	if(href_list["vore_prefs"])

@@ -352,11 +352,9 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	circuit = /obj/item/weapon/circuitboard/telecomms/hub
 	long_range_link = 1
 	netspeed = 40
-	var/list/telecomms_map
 
 /obj/machinery/telecomms/hub/Initialize()
 	. = ..()
-	LAZYINITLIST(telecomms_map)
 	component_parts = list()
 	component_parts += new /obj/item/weapon/stock_parts/subspace/sub_filter(src)
 	component_parts += new /obj/item/weapon/stock_parts/subspace/sub_filter(src)
@@ -364,20 +362,6 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
 	component_parts += new /obj/item/stack/cable_coil(src, 2)
 	RefreshParts()
-
-/obj/machinery/telecomms/hub/process()
-	. = ..()
-	telecomms_map.Cut()
-
-	if(!on)
-		return
-
-	for(var/M in links)
-		if(istype(M,/obj/machinery/telecomms/receiver) || istype(M,/obj/machinery/telecomms/relay))
-			var/obj/machinery/telecomms/R = M
-			if(!R.on)
-				continue
-			telecomms_map |= R.listening_level
 
 /obj/machinery/telecomms/hub/receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
 	if(is_freq_listening(signal))
@@ -751,17 +735,10 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 		return FALSE
 
 	//Items don't have a Z when inside an object or mob
-	var/turf/src_turf = get_turf(A)
-	var/turf/dst_turf = get_turf(B)
+	var/turf/src_z = get_z(A)
+	var/turf/dst_z = get_z(B)
 
 	//Nullspace, probably.
-	if(!src_turf || !dst_turf)
-		return FALSE
-
-	var/src_z = src_turf.z
-	var/dst_z = dst_turf.z
-
-	//Mysterious!
 	if(!src_z || !dst_z)
 		return FALSE
 
@@ -769,11 +746,4 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	if(ad_hoc && src_z == dst_z)
 		return TRUE
 
-	//Let's look at hubs and see what we got.
-	var/can_comm = FALSE
-	for(var/obj/machinery/telecomms/hub/H in telecomms_list)
-		if((src_z in H.telecomms_map) && (dst_z in H.telecomms_map))
-			can_comm = TRUE
-			break
-
-	return can_comm
+	return src_z in using_map.get_map_levels(dst_z)

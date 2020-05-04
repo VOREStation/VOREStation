@@ -81,7 +81,7 @@
 		return
 	
 	if(sleeping || stat == UNCONSCIOUS)
-		hear_sleep(message)
+		hear_sleep(multilingual_to_message(message_pieces))
 		return FALSE
 
 	if(italics)
@@ -168,7 +168,7 @@
 
 	var/message = combine_message(message_pieces, verb, speaker, always_stars = hard_to_hear, radio = TRUE)
 	if(sleeping || stat == UNCONSCIOUS) //If unconscious or sleeping
-		hear_sleep(message)
+		hear_sleep(multilingual_to_message(message_pieces))
 		return
 
 	var/speaker_name = handle_speaker_name(speaker, vname, hard_to_hear)

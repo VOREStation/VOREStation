@@ -22,21 +22,26 @@ var/list/all_maps = list()
 	var/full_name = "Unnamed Map"
 	var/path
 
-	var/list/zlevels = list()
 	var/zlevel_datum_type			// If populated, all subtypes of this type will be instantiated and used to populate the *_levels lists.
-
-	var/list/station_levels = list() // Z-levels the station exists on
-	var/list/admin_levels = list()   // Z-levels for admin functionality (Centcom, shuttle transit, etc)
-	var/list/contact_levels = list() // Z-levels that can be contacted from the station, for eg announcements
-	var/list/player_levels = list()  // Z-levels a character can typically reach
-	var/list/sealed_levels = list()  // Z-levels that don't allow random transit at edge
-	var/list/xenoarch_exempt_levels = list()	//Z-levels exempt from xenoarch finds and digsites spawning.
-	var/list/empty_levels = null     // Empty Z-levels that may be used for various things (currently used by bluespace jump)
-
-	var/list/map_levels              // Z-levels available to various consoles, such as the crew monitor (when that gets coded in). Defaults to station_levels if unset.
 	var/list/base_turf_by_z = list() // Custom base turf by Z-level. Defaults to world.turf for unlisted Z-levels
 
+	// Automatically populated lists made static for faster lookups
+	var/static/list/zlevels = list()
+	var/static/list/station_levels = list() // Z-levels the station exists on
+	var/static/list/admin_levels = list()   // Z-levels for admin functionality (Centcom, shuttle transit, etc)
+	var/static/list/contact_levels = list() // Z-levels that can be contacted from the station, for eg announcements
+	var/static/list/player_levels = list()  // Z-levels a character can typically reach
+	var/static/list/sealed_levels = list()  // Z-levels that don't allow random transit at edge
+	var/static/list/xenoarch_exempt_levels = list()	//Z-levels exempt from xenoarch finds and digsites spawning.
+	var/static/list/empty_levels = null     // Empty Z-levels that may be used for various things (currently used by bluespace jump)
+	// End Static Lists
+
+	// Z-levels available to various consoles, such as the crew monitor. Defaults to station_levels if unset.
+	var/list/map_levels
+	
+	// E-mail TLDs to use for NTnet modular computer e-mail addresses
 	var/list/usable_email_tlds = list("freemail.nt")
+
 	//This list contains the z-level numbers which can be accessed via space travel and the percentile chances to get there.
 	var/list/accessible_z_levels = list()
 
@@ -136,6 +141,40 @@ var/list/all_maps = list()
 		default_skybox = new default_skybox()
 	else
 		default_skybox = new()
+
+// Gets the current time on a current zlevel, and returns a time datum
+/datum/map/proc/get_zlevel_time(var/z)
+	if(!z)
+		z = 1
+	var/datum/planet/P = SSplanets.z_to_planet[z]
+	// We found a planet tied to that zlevel, give them the time
+	if(istype(P))
+		return P.current_time
+
+	// We have to invent a time
+	else
+		var/seconds_stationtime = round(station_time_in_ticks*0.1) //Not actually ticks......
+		var/datum/time/T = new(seconds_stationtime)
+		return T
+
+// Returns a boolean for if it's night or not on a particular zlevel
+/datum/map/proc/get_night(var/z)
+	if(!z)
+		z = 1
+	var/datum/time/now = get_zlevel_time(z)
+	var/percent = now.seconds_stored / now.seconds_in_day
+	testing("get_night is [percent] through the day on [z]")
+
+	// First quarter, last quarter
+	if(percent < 0.25 || percent > 0.75)
+		return TRUE
+	// Second quarter, third quarter
+	else
+		return FALSE
+
+// Boolean for if we should use SSnightshift night hours
+/datum/map/proc/get_nightshift()
+	return get_night(1) //Defaults to z1, customize however you want on your own maps
 
 /datum/map/proc/setup_map()
 	return

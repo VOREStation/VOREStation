@@ -68,13 +68,15 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 #define INIT_ORDER_ASSETS		-3
 #define INIT_ORDER_PLANETS		-4
 #define INIT_ORDER_HOLOMAPS		-5
-#define INIT_ORDER_OVERLAY		-6
-#define INIT_ORDER_ALARM		-7
+#define INIT_ORDER_NIGHTSHIFT	-6
+#define INIT_ORDER_OVERLAY		-7
+#define INIT_ORDER_ALARM		-8
 #define INIT_ORDER_OPENSPACE	-10
 #define INIT_ORDER_XENOARCH		-20
 #define INIT_ORDER_CIRCUIT		-21
 #define INIT_ORDER_AI			-22
-#define INIT_ORDER_GAME_MASTER		-24
+#define INIT_ORDER_AI_FAST		-23
+#define INIT_ORDER_GAME_MASTER	-24
 #define INIT_ORDER_TICKER		-50
 #define INIT_ORDER_CHAT			-100 //Should be last to ensure chat remains smooth during init.
 
@@ -83,6 +85,7 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 // If the subsystem isn't listed here it's either DEFAULT or PROCESS (if it's a processing subsystem child)
 #define FIRE_PRIORITY_SHUTTLES		5
 #define FIRE_PRIORITY_SUPPLY		5
+#define FIRE_PRIORITY_NIGHTSHIFT	5
 #define FIRE_PRIORITY_ORBIT			8
 #define FIRE_PRIORITY_VOTE			9
 #define FIRE_PRIORITY_AI			10

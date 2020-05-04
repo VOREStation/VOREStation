@@ -56,23 +56,22 @@ var/global/list/light_type_cache = list()
 			icon_state = "tube-empty"
 
 /obj/machinery/light_construct/examine(mob/user)
-	if(!..(user, 2))
-		return
-
-	switch(src.stage)
-		if(1)
-			to_chat(user, "It's an empty frame.")
-		if(2)
-			to_chat(user, "It's wired.")
-		if(3)
-			to_chat(user, "The casing is closed.")
-	if(cell_connectors)
-		if(cell)
-			to_chat(user, "You see [cell] inside the casing.")
+	. = ..()
+	if(get_dist(user, src) <= 2)
+		switch(stage)
+			if(1)
+				. += "It's an empty frame."
+			if(2)
+				. += "It's wired."
+			if(3)
+				. += "The casing is closed."
+		if(cell_connectors)
+			if(cell)
+				. += "You see [cell] inside the casing."
+			else
+				. += "The casing has no power cell for backup power."
 		else
-			to_chat(user, "The casing has no power cell for backup power.")
-	else
-		to_chat(user, "<span class='danger'>This casing doesn't support power cells for backup power.</span>")
+			. += "<span class='danger'>This casing doesn't support power cells for backup power.</span>"
 
 /obj/machinery/light_construct/attack_hand(mob/user)
 	. = ..()
@@ -246,8 +245,17 @@ var/global/list/light_type_cache = list()
 	var/bulb_emergency_pow_mul = 0.75	// the multiplier for determining the light's power in emergency mode
 	var/bulb_emergency_pow_min = 0.5	// the minimum value for the light's power in emergency mode
 
+	var/nightshift_enabled = FALSE
+	var/nightshift_allowed = TRUE
+	var/brightness_range_ns
+	var/brightness_power_ns
+	var/brightness_color_ns
+
 /obj/machinery/light/flicker
 	auto_flicker = TRUE
+
+/obj/machinery/light/no_nightshift
+	nightshift_allowed = FALSE
 
 // the smaller bulb light fixture
 
@@ -418,7 +426,10 @@ var/global/list/light_type_cache = list()
 	//VOREStation Edit End
 
 	if(on)
-		if(light_range != brightness_range || light_power != brightness_power || light_color != brightness_color)
+		var/correct_range = nightshift_enabled ? brightness_range_ns : brightness_range
+		var/correct_power = nightshift_enabled ? brightness_power_ns : brightness_power
+		var/correct_color = nightshift_enabled ? brightness_color_ns : brightness_color
+		if(light_range != correct_range || light_power != correct_power || light_color != correct_color)
 			if(!auto_flicker)
 				switchcount++
 			if(rigged)
@@ -436,7 +447,7 @@ var/global/list/light_type_cache = list()
 					set_light(0)
 			else
 				update_use_power(USE_POWER_ACTIVE)
-				set_light(brightness_range, brightness_power, brightness_color)
+				set_light(correct_range, correct_power, correct_color)
 	else if(has_emergency_power(LIGHT_EMERGENCY_POWER_USE) && !turned_off())
 		update_use_power(USE_POWER_IDLE)
 		emergency_mode = TRUE
@@ -447,6 +458,13 @@ var/global/list/light_type_cache = list()
 
 	update_active_power_usage((light_range * light_power) * LIGHTING_POWER_FACTOR)
 
+/obj/machinery/light/proc/nightshift_mode(var/state)
+	if(!nightshift_allowed)
+		return
+
+	if(state != nightshift_enabled)
+		nightshift_enabled = state
+		update(FALSE)
 
 /obj/machinery/light/attack_generic(var/mob/user, var/damage)
 	if(!damage)
@@ -485,18 +503,19 @@ var/global/list/light_type_cache = list()
 
 // examine verb
 /obj/machinery/light/examine(mob/user)
+	. = ..()
 	var/fitting = get_fitting_name()
 	switch(status)
 		if(LIGHT_OK)
-			to_chat(user, "[desc] It is turned [on? "on" : "off"].")
+			. += "It is turned [on? "on" : "off"]."
 		if(LIGHT_EMPTY)
-			to_chat(user, "[desc] The [fitting] has been removed.")
+			. += "The [fitting] has been removed."
 		if(LIGHT_BURNED)
-			to_chat(user, "[desc] The [fitting] is burnt out.")
+			. += "The [fitting] is burnt out."
 		if(LIGHT_BROKEN)
-			to_chat(user, "[desc] The [fitting] has been smashed.")
+			. += "The [fitting] has been smashed."
 	if(cell)
-		to_chat(user, "Its backup power charge meter reads [round((cell.charge / cell.maxcharge) * 100, 0.1)]%.")
+		. += "Its backup power charge meter reads [round((cell.charge / cell.maxcharge) * 100, 0.1)]%."
 
 /obj/machinery/light/proc/get_fitting_name()
 	var/obj/item/weapon/light/L = light_type
@@ -506,9 +525,14 @@ var/global/list/light_type_cache = list()
 	status = L.status
 	switchcount = L.switchcount
 	rigged = L.rigged
+
 	brightness_range = L.brightness_range
 	brightness_power = L.brightness_power
 	brightness_color = L.brightness_color
+
+	brightness_range_ns = L.nightshift_range
+	brightness_power_ns = L.nightshift_power
+	brightness_color_ns = L.nightshift_color
 
 // attack with item - insert light (if right type), otherwise try to break the light
 
@@ -872,6 +896,10 @@ var/global/list/light_type_cache = list()
 	var/brightness_power = 1
 	var/brightness_color = LIGHT_COLOR_INCANDESCENT_TUBE
 
+	var/nightshift_range = 8
+	var/nightshift_power = 0.7
+	var/nightshift_color = LIGHT_COLOR_NIGHTSHIFT
+
 /obj/item/weapon/light/tube
 	name = "light tube"
 	desc = "A replacement light tube."
@@ -888,6 +916,9 @@ var/global/list/light_type_cache = list()
 	brightness_range = 15
 	brightness_power = 9
 
+	nightshift_range = 10
+	nightshift_power = 0.9
+
 /obj/item/weapon/light/bulb
 	name = "light bulb"
 	desc = "A replacement light bulb."
@@ -898,6 +929,9 @@ var/global/list/light_type_cache = list()
 	brightness_range = 5
 	brightness_power = 4
 	brightness_color = LIGHT_COLOR_INCANDESCENT_BULB
+
+	nightshift_range = 3
+	nightshift_power = 0.35
 
 /obj/item/weapon/light/throw_impact(atom/hit_atom)
 	..()

@@ -30,13 +30,11 @@
 	color = material.icon_colour
 
 /obj/structure/gravemarker/examine(mob/user)
-	..()
-	if(get_dist(src, user) < 4)
-		if(grave_name)
-			to_chat(user, "Here Lies [grave_name]")
-	if(get_dist(src, user) < 2)
-		if(epitaph)
-			to_chat(user, epitaph)
+	. = ..()
+	if(grave_name && get_dist(src, user) < 4)
+		. += "Here Lies [grave_name]"
+	if(epitaph && get_dist(src, user) < 2)
+		. += epitaph
 
 /obj/structure/gravemarker/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSTABLE))

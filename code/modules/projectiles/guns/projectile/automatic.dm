@@ -58,6 +58,9 @@
 
 //	one_handed_penalty = 15
 
+/obj/item/weapon/gun/projectile/automatic/c20r/empty
+	magazine_type = null
+
 /obj/item/weapon/gun/projectile/automatic/c20r/update_icon()
 	..()
 	if(ammo_magazine)
@@ -186,11 +189,14 @@
 	return
 
 /obj/item/weapon/gun/projectile/automatic/z8/examine(mob/user)
-	..()
+	. = ..()
 	if(launcher.chambered)
-		to_chat(user, "\The [launcher] has \a [launcher.chambered] loaded.")
+		. += "\The [launcher] has \a [launcher.chambered] loaded."
 	else
-		to_chat(user, "\The [launcher] is empty.")
+		. += "\The [launcher] is empty."
+
+/obj/item/weapon/gun/projectile/automatic/z8/empty
+	magazine_type = null
 
 /obj/item/weapon/gun/projectile/automatic/l6_saw
 	name = "light machine gun"

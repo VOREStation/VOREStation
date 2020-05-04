@@ -292,6 +292,26 @@
 	set_trait(TRAIT_PRODUCT_COLOUR,"#FFDD00")
 	set_trait(TRAIT_PLANT_COLOUR,"#D6B44D")
 
+/datum/seed/apple/sif
+	name = "sifbulb"
+	seed_name = "sivian tree"
+	display_name = "sivian tree"
+	kitchen_tag = "apple"
+	chems = list("nutriment" = list(1,5),"sifsap" = list(10,20))
+
+/datum/seed/apple/sif/New()
+	..()
+	set_trait(TRAIT_HARVEST_REPEAT,1)
+	set_trait(TRAIT_MATURATION,3)
+	set_trait(TRAIT_PRODUCTION,10)
+	set_trait(TRAIT_YIELD,3)
+	set_trait(TRAIT_POTENCY,12)
+	set_trait(TRAIT_PRODUCT_ICON,"alien3")
+	set_trait(TRAIT_PRODUCT_COLOUR,"#0720c3")
+	set_trait(TRAIT_PLANT_ICON,"tree5")
+	set_trait(TRAIT_FLESH_COLOUR,"#05157d")
+	set_trait(TRAIT_IDEAL_LIGHT, 1)
+
 //Ambrosia/varieties.
 /datum/seed/ambrosia
 	name = "ambrosia"

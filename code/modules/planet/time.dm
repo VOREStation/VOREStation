@@ -11,27 +11,29 @@
 
 /datum/time/New(new_time)
 	if(new_time)
+		if(new_time >= seconds_in_day)
+			new_time = rollover(new_time)
 		seconds_stored = new_time
 	..()
 
 /datum/time/proc/add_seconds(amount)
 	var/answer = seconds_stored + amount * 10
 	if(answer >= seconds_in_day)
-		rollover(answer)
+		answer = rollover(answer)
 	return new type(answer)
 
 /datum/time/proc/add_minutes(amount)
 	var/real_amount = amount * seconds_in_minute
 	var/answer = real_amount + seconds_stored
 	if(answer >= seconds_in_day)
-		rollover(answer)
+		answer = rollover(answer)
 	return new type(answer)
 
 /datum/time/proc/add_hours(amount)
 	var/real_amount = amount * seconds_in_hour
 	var/answer = real_amount + seconds_stored
 	if(answer >= seconds_in_day)
-		rollover(answer)
+		answer = rollover(answer)
 	return new type(answer)
 
 /datum/time/proc/rollover(time)

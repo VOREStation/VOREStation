@@ -144,9 +144,8 @@
 		src.add_fingerprint(usr)
 
 /obj/item/weapon/weldpack/examine(mob/user)
-	..(user)
-	to_chat(user, "[bicon(src)] [src.reagents.total_volume] units of fuel left!")
-	return
+	. = ..()
+	. += "It has [src.reagents.total_volume] units of fuel left!"
 
 /obj/item/weapon/weldpack/survival
 	name = "emergency welding kit"

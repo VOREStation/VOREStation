@@ -4,7 +4,7 @@
 /obj/machinery/organ_printer
 	name = "organ printer"
 	desc = "It's a machine that prints organs."
-	icon = 'icons/obj/surgery.dmi'
+	icon = 'icons/obj/surgery_vr.dmi' //VOREStation Edit
 	icon_state = "bioprinter"
 
 	anchored = 1
@@ -69,11 +69,13 @@
 	return ..()
 
 /obj/machinery/organ_printer/update_icon()
-	overlays.Cut()
+	//VOREStation Edit
+	cut_overlays()
 	if(panel_open)
-		overlays += "bioprinter_panel_open"
+		add_overlay("bioprinter_panel_open")
 	if(printing)
-		overlays += "bioprinter_working"
+		add_overlay("bioprinter_working")
+	//VOREStation Edit End
 
 /obj/machinery/organ_printer/New()
 	..()
@@ -87,9 +89,9 @@
 	. = ..()
 	var/biomass = get_biomass_volume()
 	if(biomass)
-		to_chat(user, "<span class='notice'>It is loaded with [biomass] units of biomass.</span>")
+		. += "<span class='notice'>It is loaded with [biomass] units of biomass.</span>"
 	else
-		to_chat(user, "<span class='notice'>It is not loaded with any biomass.</span>")
+		. += "<span class='notice'>It is not loaded with any biomass.</span>"
 
 /obj/machinery/organ_printer/RefreshParts()
 	// Print Delay updating

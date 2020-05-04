@@ -127,49 +127,37 @@
 	onclose(user, "mob[name]")
 	return
 
-/mob/living/ret_grab(obj/effect/list_container/mobl/L as obj, flag)
-	if ((!( istype(l_hand, /obj/item/weapon/grab) ) && !( istype(r_hand, /obj/item/weapon/grab) )))
-		if (!( L ))
-			return null
-		else
-			return L.container
-	else
-		if (!( L ))
-			L = new /obj/effect/list_container/mobl( null )
-			L.container += src
-			L.master = src
-		if (istype(l_hand, /obj/item/weapon/grab))
-			var/obj/item/weapon/grab/G = l_hand
-			if (!( L.container.Find(G.affecting) ))
-				L.container += G.affecting
-				if (G.affecting)
-					G.affecting.ret_grab(L, 1)
-		if (istype(r_hand, /obj/item/weapon/grab))
-			var/obj/item/weapon/grab/G = r_hand
-			if (!( L.container.Find(G.affecting) ))
-				L.container += G.affecting
-				if (G.affecting)
-					G.affecting.ret_grab(L, 1)
-		if (!( flag ))
-			if (L.master == src)
-				var/list/temp = list(  )
-				temp += L.container
-				//L = null
-				qdel(L)
-				return temp
-			else
-				return L.container
-	return
+/mob/living/ret_grab(var/list/L, var/mobchain_limit = 5)
+	// We're the first!
+	if(!L)
+		L = list()
+	
+	// Lefty grab!
+	if (istype(l_hand, /obj/item/weapon/grab))
+		var/obj/item/weapon/grab/G = l_hand
+		L |= G.affecting
+		if(mobchain_limit-- > 0)
+			G.affecting?.ret_grab(L, mobchain_limit) // Recurse! They can update the list. It's the same instance as ours.
+	
+	// Righty grab!
+	if (istype(r_hand, /obj/item/weapon/grab))
+		var/obj/item/weapon/grab/G = r_hand
+		L |= G.affecting
+		if(mobchain_limit-- > 0)
+			G.affecting?.ret_grab(L, mobchain_limit) // Same as lefty!
+
+	// On all but the one not called by us, this will just be ignored. Oh well!
+	return L
 
 /mob/living/mode()
 	set name = "Activate Held Object"
 	set category = "Object"
 	set src = usr
 
-	if(world.time <= next_click) // This isn't really a 'click' but it'll work for our purposes.
+	if(!checkClickCooldown())
 		return
-
-	next_click = world.time + 1
+	
+	setClickCooldown(1)
 
 	if(istype(loc,/obj/mecha)) return
 

@@ -588,6 +588,10 @@ function start_vue() {
 					}
 				}
 
+				newmessage.content = newmessage.content.replace(
+					/(\b(https?):\/\/[\-A-Z0-9+&@#\/%?=~_|!:,.;]*[\-A-Z09+&@#\/%=~_|])/img, //Honestly good luck with this regex ~Gear
+					'<a href="$1">$1</a>');
+
 				//Unread indicator and insertion into current tab shown messages if sensible
 				if(this.current_categories.length && (this.current_categories.indexOf(newmessage.category) < 0)) { //Not in the current categories
 					if (isNaN(this.unread_messages[newmessage.category])) {

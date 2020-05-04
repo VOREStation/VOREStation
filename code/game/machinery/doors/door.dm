@@ -9,7 +9,7 @@
 	anchored = 1
 	opacity = 1
 	density = 1
-	can_atmos_pass = ATMOS_PASS_DENSITY
+	can_atmos_pass = ATMOS_PASS_PROC
 	layer = DOOR_OPEN_LAYER
 	var/open_layer = DOOR_OPEN_LAYER
 	var/closed_layer = DOOR_CLOSED_LAYER
@@ -119,7 +119,13 @@
 			return																		//VOREStation Edit: unable to open doors
 		else
 			bumpopen(M)
-
+	// VOREStation Add - UAVs open public doors
+	if(istype(AM, /obj/item/device/uav))
+		if(check_access(null))
+			open()
+		else
+			do_animate("deny")
+	//VOREStation Add End
 
 	if(istype(AM, /mob/living/bot))
 		var/mob/living/bot/bot = AM
@@ -151,8 +157,8 @@
 
 /obj/machinery/door/CanZASPass(turf/T, is_zone)
 	if(is_zone)
-		return block_air_zones ? ATMOS_PASS_NO : ATMOS_PASS_YES
-	return ..()
+		return !block_air_zones // Block merging unless block_air_zones = 0
+	return !density // Block airflow unless density = 0
 
 /obj/machinery/door/proc/bumpopen(mob/user as mob)
 	if(operating)	return
@@ -332,13 +338,13 @@
 /obj/machinery/door/examine(mob/user)
 	. = ..()
 	if(src.health <= 0)
-		to_chat(user, "\The [src] is broken!")
+		. += "It is broken!"
 	else if(src.health < src.maxhealth / 4)
-		to_chat(user, "\The [src] looks like it's about to break!")
+		. += "It looks like it's about to break!"
 	else if(src.health < src.maxhealth / 2)
-		to_chat(user, "\The [src] looks seriously damaged!")
+		. += "It looks seriously damaged!"
 	else if(src.health < src.maxhealth * 3/4)
-		to_chat(user, "\The [src] shows signs of damage!")
+		. += "It shows signs of damage!"
 
 
 /obj/machinery/door/proc/set_broken()
@@ -490,8 +496,7 @@
 		else
 			source.thermal_conductivity = initial(source.thermal_conductivity)
 
-/obj/machinery/door/Move(new_loc, new_dir)
-	//update_nearby_tiles()
+/obj/machinery/door/Moved(atom/old_loc, direction, forced = FALSE)
 	. = ..()
 	if(width > 1)
 		if(dir in list(EAST, WEST))

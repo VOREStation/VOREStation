@@ -27,7 +27,7 @@
 	if(can_feel_pain())
 		if(halloss >= 10) tally += (halloss / 10) //halloss shouldn't slow you down if you can't even feel it
 
-	var/hungry = (500 - nutrition)/5 // So overeat would be 100 and default level would be 80
+	var/hungry = (500 - nutrition) / 5 //VOREStation Edit - Fixed 500 here instead of our huge MAX_NUTRITION
 	if (hungry >= 70) tally += hungry/50
 
 	//VOREstation start
@@ -224,6 +224,8 @@
 
 // Handle footstep sounds
 /mob/living/carbon/human/handle_footstep(var/turf/T)
+	if(!istype(T))
+		return
 	if(is_incorporeal())
 		return
 	if(!config.footstep_volume || !T.footstep_sounds || !T.footstep_sounds.len)

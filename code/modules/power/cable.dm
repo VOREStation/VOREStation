@@ -116,7 +116,7 @@ var/list/possible_cable_coil_colours = list(
 		user.examinate(src)
 		// following code taken from attackby (multitool)
 		if(powernet && (powernet.avail > 0))
-			to_chat(user, "<span class='warning'>[powernet.avail]W in power network.</span>")
+			to_chat(user, "<span class='warning'>[DisplayPower(powernet.avail)] in power network.</span>")
 		else
 			to_chat(user, "<span class='warning'>The cable is not powered.</span>")
 	return
@@ -230,7 +230,7 @@ var/list/possible_cable_coil_colours = list(
 	else if(istype(W, /obj/item/device/multitool))
 
 		if(powernet && (powernet.avail > 0))		// is it powered?
-			to_chat(user, "<span class='warning'>[powernet.avail]W in power network.</span>")
+			to_chat(user, "<span class='warning'>[DisplayPower(powernet.avail)] in power network.</span>")
 
 		else
 			to_chat(user, "<span class='warning'>The cable is not powered.</span>")
@@ -556,6 +556,11 @@ obj/structure/cable/proc/cableColor(var/colorC)
 		if(!S || S.robotic < ORGAN_ROBOT || S.open == 3)
 			return ..()
 
+		//VOREStation Add - No welding nanoform limbs
+		if(S.robotic > ORGAN_LIFELIKE)
+			return ..()
+		//VOREStation Add End
+
 		if(S.organ_tag == BP_HEAD)
 			if(H.head && istype(H.head,/obj/item/clothing/head/helmet/space))
 				to_chat(user, "<span class='warning'>You can't apply [src] through [H.head]!</span>")
@@ -604,20 +609,20 @@ obj/structure/cable/proc/cableColor(var/colorC)
 		w_class = ITEMSIZE_SMALL
 
 /obj/item/stack/cable_coil/examine(mob/user)
-	var/msg = ""
-
+	. = ..()
 	if(get_amount() == 1)
-		msg += "A short piece of power cable."
+		. += "Just a short piece remains."
 	else if(get_amount() == 2)
-		msg += "A piece of power cable."
-	else
-		msg += "A coil of power cable."
+		. += "Just a couple of short pieces remain."
+	else if(Adjacent(user))
+		. += "There are [get_amount()] lengths of cable in the coil."
 
-		if(get_dist(src, user) <= 1)
-			msg += " There are [get_amount()] lengths of cable in the coil."
-
-	to_chat(user, msg)
-
+/obj/item/stack/cable_coil/attackby(obj/item/W, mob/user)
+	if(istype(W, /obj/item/device/multitool))
+		var/selected_type = input("Pick new colour.", "Cable Colour", null, null) as null|anything in possible_cable_coil_colours
+		set_cable_color(selected_type, usr)
+		return
+	return ..()
 
 /obj/item/stack/cable_coil/verb/make_restraint()
 	set name = "Make Cable Restraints"
@@ -987,12 +992,10 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	return 0
 
 /obj/item/stack/cable_coil/alien/examine(mob/user)
-	var/msg = "A spool of cable."
+	. = ..()
 
-	if(get_dist(src, user) <= 1)
-		msg += " It doesn't seem to have a beginning, or an end."
-
-	to_chat(user, msg)
+	if(Adjacent(user))
+		. += "It doesn't seem to have a beginning, or an end."
 
 /obj/item/stack/cable_coil/alien/attack_hand(mob/user as mob)
 	if (user.get_inactive_hand() == src)

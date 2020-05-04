@@ -84,9 +84,9 @@
 	camtype = /obj/machinery/camera/bug/spy
 
 /obj/item/device/camerabug/examine(mob/user)
-	. = ..(user, 0)
-	if(.)
-		to_chat(user, "It has a tiny camera inside. Needs to be both configured and brought in contact with monitor device to be fully functional.")
+	. = ..()
+	if(get_dist(user, src) == 0)
+		. += "It has a tiny camera inside. Needs to be both configured and brought in contact with monitor device to be fully functional."
 
 /obj/item/device/camerabug/attackby(obj/item/W as obj, mob/living/user as mob)
 	if(istype(W, /obj/item/device/bug_monitor))
@@ -215,9 +215,9 @@
 	origin_tech = list(TECH_DATA = 1, TECH_ENGINEERING = 1, TECH_ILLEGAL = 3)
 
 /obj/item/device/bug_monitor/spy/examine(mob/user)
-	. = ..(user, 1)
-	if(.)
-		to_chat(user, "The time '12:00' is blinking in the corner of the screen and \the [src] looks very cheaply made.")
+	. = ..()
+	if(Adjacent(user))
+		. += "The time '12:00' is blinking in the corner of the screen and \the [src] looks very cheaply made."
 
 /obj/machinery/camera/bug/check_eye(var/mob/user as mob)
 	return 0

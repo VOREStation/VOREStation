@@ -143,9 +143,9 @@
 					var/mob/living/silicon/robot/R = owner
 					R.cell.charge += 25 * damage_gain
 				if(offset) // If any different than default weight, multiply the % of offset.
-					owner.nutrition += offset*((nutrition_percent / 100) * 4.5 * (damage_gain) / difference) //4.5 nutrition points per health point. Normal same size 100+100 health prey with average weight would give 900 points if the digestion was instant. With all the size/weight offset taxes plus over time oxyloss+hunger taxes deducted with non-instant digestion, this should be enough to not leave the pred starved.
+					owner.adjust_nutrition(offset*((nutrition_percent / 100) * 4.5 * (damage_gain) / difference)) //4.5 nutrition points per health point. Normal same size 100+100 health prey with average weight would give 900 points if the digestion was instant. With all the size/weight offset taxes plus over time oxyloss+hunger taxes deducted with non-instant digestion, this should be enough to not leave the pred starved.
 				else
-					owner.nutrition += (nutrition_percent / 100) * 4.5 * (damage_gain) / difference
+					owner.adjust_nutrition((nutrition_percent / 100) * 4.5 * (damage_gain) / difference)
 			if(DM_ABSORB)
 				if(!L.absorbable || L.absorbed)
 					continue
@@ -159,7 +159,7 @@
 					L.absorbed = FALSE
 					to_chat(L, "<span class='notice'>You suddenly feel solid again.</span>")
 					to_chat(owner,"<span class='notice'>You feel like a part of you is missing.</span>")
-					owner.nutrition -= 100
+					owner.adjust_nutrition(-100)
 					to_update = TRUE
 			if(DM_DRAIN)
 				digestion_noise_chance = 10
@@ -189,12 +189,12 @@
 					L.adjustToxLoss(-5)
 					L.adjustOxyLoss(-5)
 					L.adjustCloneLoss(-1.25)
-					owner.nutrition -= 2
+					owner.adjust_nutrition(-2)
 					if(L.nutrition <= 400)
-						L.nutrition += 1
+						L.adjust_nutrition(1)
 				else if(owner.nutrition > 90 && (L.nutrition <= 400))
-					owner.nutrition -= 1
-					L.nutrition += 1
+					owner.adjust_nutrition(-1)
+					L.adjust_nutrition(1)
 
 /////////////////////////// Make any noise ///////////////////////////
 	if(digestion_noise_chance && prob(digestion_noise_chance))
@@ -283,13 +283,13 @@
 			var/mob/living/silicon/robot/R = owner
 			R.cell.charge += 25*compensation
 		else
-			owner.nutrition += (nutrition_percent / 100)*4.5*compensation
+			owner.adjust_nutrition((nutrition_percent / 100)*4.5*compensation)
 
 /obj/belly/proc/steal_nutrition(mob/living/L)
 	if(L.nutrition >= 100)
 		var/oldnutrition = (L.nutrition * 0.05)
 		L.nutrition = (L.nutrition * 0.95)
-		owner.nutrition += oldnutrition
+		owner.adjust_nutrition(oldnutrition)
 
 /obj/belly/proc/updateVRPanels()
 	for(var/mob/living/M in contents)

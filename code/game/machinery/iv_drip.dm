@@ -165,21 +165,20 @@
 	to_chat(usr, "The IV drip is now [mode ? "injecting" : "taking blood"].")
 
 /obj/machinery/iv_drip/examine(mob/user)
-	..(user)
-	if(!(user in view(2)) && user != src.loc)
-		return
+	. = ..()
 
-	to_chat(user, "The IV drip is [mode ? "injecting" : "taking blood"].")
+	if(get_dist(user, src) <= 2)
+		. += "The IV drip is [mode ? "injecting" : "taking blood"]."
 
-	if(beaker)
-		if(beaker.reagents && beaker.reagents.reagent_list.len)
-			to_chat(user, "<span class='notice'>Attached is \a [beaker] with [beaker.reagents.total_volume] units of liquid.</span>")
+		if(beaker)
+			if(beaker.reagents?.reagent_list?.len)
+				. += "<span class='notice'>Attached is \a [beaker] with [beaker.reagents.total_volume] units of liquid.</span>"
+			else
+				. += "<span class='notice'>Attached is an empty [beaker].</span>"
 		else
-			to_chat(user, "<span class='notice'>Attached is an empty [beaker].</span>")
-	else
-		to_chat(user, "<span class='notice'>No chemicals are attached.</span>")
+			. += "<span class='notice'>No chemicals are attached.</span>"
 
-	to_chat(user, "<span class='notice'>[attached ? attached : "No one"] is attached.</span>")
+		. += "<span class='notice'>[attached ? attached : "No one"] is attached.</span>"
 
 /obj/machinery/iv_drip/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSTABLE)) //allow bullets, beams, thrown objects, mice, drones, and the like through.

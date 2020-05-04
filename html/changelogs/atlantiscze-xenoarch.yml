@@ -1,6 +1,0 @@
-author: atlantiscze
-
-delete-after: True
-
-changes: 
-  - rscadd: "Research robot module now has basic exploration and xenoarchaeology tools."

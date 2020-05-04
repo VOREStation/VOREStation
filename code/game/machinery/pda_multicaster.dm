@@ -19,6 +19,7 @@
 		"engineering" = new /obj/item/device/pda/multicaster/engineering(src),
 		"medical" = new /obj/item/device/pda/multicaster/medical(src),
 		"research" = new /obj/item/device/pda/multicaster/research(src),
+		"exploration" = new /obj/item/device/pda/multicaster/exploration(src), //VOREStation Add,
 		"cargo" = new /obj/item/device/pda/multicaster/cargo(src),
 		"civilian" = new /obj/item/device/pda/multicaster/civilian(src))
 

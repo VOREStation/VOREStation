@@ -63,6 +63,28 @@
 #define PIPING_DEFAULT_LAYER_ONLY 4			//can only exist at PIPING_LAYER_DEFAULT
 #define PIPING_CARDINAL_AUTONORMALIZE 8		//north/south east/west doesn't matter, auto normalize on build.
 
+// Disposals Construction
+// Future: Eliminate these type codes by adding disposals equivilent of pipe_state.
+#define DISPOSAL_PIPE_STRAIGHT 0
+#define DISPOSAL_PIPE_CORNER 1
+#define DISPOSAL_PIPE_JUNCTION 2
+#define DISPOSAL_PIPE_JUNCTION_FLIPPED 3
+#define DISPOSAL_PIPE_JUNCTION_Y 4
+#define DISPOSAL_PIPE_TRUNK 5
+#define DISPOSAL_PIPE_BIN 6
+#define DISPOSAL_PIPE_OUTLET 7
+#define DISPOSAL_PIPE_CHUTE 8
+#define DISPOSAL_PIPE_SORTER 9
+#define DISPOSAL_PIPE_SORTER_FLIPPED 10
+#define DISPOSAL_PIPE_UPWARD 11
+#define DISPOSAL_PIPE_DOWNWARD 12
+#define DISPOSAL_PIPE_TAGGER 13
+#define DISPOSAL_PIPE_TAGGER_PARTIAL 14
+
+#define DISPOSAL_SORT_NORMAL 0
+#define DISPOSAL_SORT_WILDCARD 1
+#define DISPOSAL_SORT_UNTAGGED 2
+
 // Macro for easy use of boilerplate code for searching for a valid node connection.
 #define STANDARD_ATMOS_CHOOSE_NODE(node_num, direction) \
 	for(var/obj/machinery/atmospherics/target in get_step(src, direction)) { \

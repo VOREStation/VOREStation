@@ -167,8 +167,8 @@
 
 //////////////////
 /obj/item/weapon/rcd_ammo/examine(mob/user)
-	..()
-	to_chat(user, display_resources())
+	. = ..()
+	. += display_resources()
 
 // Used to show how much stuff (matter units, cell charge, etc) is left inside.
 /obj/item/weapon/rcd_ammo/proc/display_resources()

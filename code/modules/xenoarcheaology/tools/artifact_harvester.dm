@@ -1,6 +1,6 @@
 /obj/machinery/artifact_harvester
 	name = "Exotic Particle Harvester"
-	icon = 'icons/obj/virology.dmi'
+	icon = 'icons/obj/virology_vr.dmi' //VOREStation Edit
 	icon_state = "incubator"	//incubator_on
 	anchored = 1
 	density = 1

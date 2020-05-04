@@ -13,9 +13,9 @@
 	var/static/radial_pickup = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_pickup")
 
 /obj/item/weapon/deskbell/examine(mob/user)
-	..()
+	. = ..()
 	if(broken)
-		to_chat(user,"<b>It looks damaged, the ringer is stuck firmly inside.</b>")
+		. += "<b>It looks damaged, the ringer is stuck firmly inside.</b>"
 
 /obj/item/weapon/deskbell/attack(mob/target as mob, mob/living/user as mob)
 	if(!broken)
@@ -49,7 +49,7 @@
 	// Once the player has decided their option, choose the behaviour that will happen under said option.
 	switch(choice)
 		if("examine")
-			examine(user)
+			user.examinate(src)
 
 		if("use")
 			if(check_ability(user))

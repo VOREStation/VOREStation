@@ -30,8 +30,8 @@ var/datum/species/shapeshifter/promethean/prometheans
 	spawn_flags		 = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
 	health_hud_intensity = 2
 	num_alternate_languages = 3
-	species_language = LANGUAGE_SOL_COMMON
-	secondary_langs = list(LANGUAGE_SOL_COMMON)	// For some reason, having this as their species language does not allow it to be chosen.
+	species_language = LANGUAGE_PROMETHEAN
+	secondary_langs = list(LANGUAGE_PROMETHEAN, LANGUAGE_SOL_COMMON)	// For some reason, having this as their species language does not allow it to be chosen.
 	assisted_langs = list(LANGUAGE_ROOTGLOBAL, LANGUAGE_VOX)	// Prometheans are weird, let's just assume they can use basically any language.
 
 	breath_type = null
@@ -189,32 +189,34 @@ var/datum/species/shapeshifter/promethean/prometheans
 		if(!(H.shoes || (H.wear_suit && (H.wear_suit.body_parts_covered & FEET))))
 			for(var/obj/O in T)
 				O.clean_blood()
-				H.nutrition = min(500, max(0, H.nutrition + rand(5, 15)))
+				H.adjust_nutrition(rand(5, 15))
 			if (istype(T, /turf/simulated))
 				var/turf/simulated/S = T
 				T.clean_blood()
 				S.dirt = 0
-				H.nutrition = max(H.nutrition, min(500, H.nutrition + rand(15, 30)))	//VOREStation Edit: Gives nutrition up to a point instead of being capped
+		//VOREStation Edit Start
+				H.adjust_nutrition(H.nutrition < 500 ? rand(15, 30) : 0)
 		if(H.clean_blood(1))
-			H.nutrition = max(H.nutrition, min(500, H.nutrition + rand(15, 30)))	//VOREStation Edit: Gives nutrition up to a point instead of being capped
+			H.adjust_nutrition(H.nutrition < 500 ? rand(15, 30) : 0)
 		if(H.r_hand)
 			if(H.r_hand.clean_blood())
-				H.nutrition = max(H.nutrition, min(500, H.nutrition + rand(15, 30)))	//VOREStation Edit: Gives nutrition up to a point instead of being capped
+				H.adjust_nutrition(H.nutrition < 500 ? rand(15, 30) : 0)
 		if(H.l_hand)
 			if(H.l_hand.clean_blood())
-				H.nutrition = max(H.nutrition, min(500, H.nutrition + rand(15, 30)))	//VOREStation Edit: Gives nutrition up to a point instead of being capped
+				H.adjust_nutrition(H.nutrition < 500 ? rand(15, 30) : 0)
 		if(H.head)
 			if(H.head.clean_blood())
 				H.update_inv_head(0)
-				H.nutrition = max(H.nutrition, min(500, H.nutrition + rand(15, 30)))	//VOREStation Edit: Gives nutrition up to a point instead of being capped
+				H.adjust_nutrition(H.nutrition < 500 ? rand(15, 30) : 0)
 		if(H.wear_suit)
 			if(H.wear_suit.clean_blood())
 				H.update_inv_wear_suit(0)
-				H.nutrition = max(H.nutrition, min(500, H.nutrition + rand(15, 30)))	//VOREStation Edit: Gives nutrition up to a point instead of being capped
+				H.adjust_nutrition(H.nutrition < 500 ? rand(15, 30) : 0)
 		if(H.w_uniform)
 			if(H.w_uniform.clean_blood())
 				H.update_inv_w_uniform(0)
-				H.nutrition = max(H.nutrition, min(500, H.nutrition + rand(15, 30)))	//VOREStation Edit: Gives nutrition up to a point instead of being capped
+				H.adjust_nutrition(H.nutrition < 500 ? rand(15, 30) : 0)
+		//VOREStation Edit End
 		//End cleaning code.
 
 		var/datum/gas_mixture/environment = T.return_air()
@@ -297,8 +299,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 				if(ToxReg)
 					strain_negation += to_pay * max(0, (1 - ToxReg.get_strain_percent()))
 
-			H.nutrition -= (3 * nutrition_cost) //Costs Nutrition when damage is being repaired, corresponding to the amount of damage being repaired.
-			H.nutrition = max(0, H.nutrition) //Ensure it's not below 0.
+			H.adjust_nutrition(-(3 * nutrition_cost)) // Costs Nutrition when damage is being repaired, corresponding to the amount of damage being repaired.
 
 			var/agony_to_apply = ((1 / starve_mod) * (nutrition_cost - strain_negation)) //Regenerating damage causes minor pain over time, if the organs responsible are nonexistant or too high on strain. Small injures will be no issue, large ones will cause problems.
 

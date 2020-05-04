@@ -197,14 +197,12 @@
 
 /obj/item/weapon/inducer/examine(mob/living/M)
 	. = ..()
-	var/dat = ""
 	if(cell)
-		dat += "<br><span class='notice'>Its display shows: [round(cell.charge)] / [cell.maxcharge].</span>"
+		. += "<span class='notice'>Its display shows: [round(cell.charge)] / [cell.maxcharge].</span>"
 	else
-		dat += "<br><span class='notice'>Its display is dark.</span>"
+		. += "<span class='notice'>Its display is dark.</span>"
 	if(opened)
-		dat += "<br><span class='notice'>Its battery compartment is open.</span>"
-	to_chat(M, dat)
+		. += "<span class='notice'>Its battery compartment is open.</span>"
 
 /obj/item/weapon/inducer/update_icon()
 	..()
@@ -269,7 +267,7 @@
 
 /obj/item/weapon/cell/standin/give(var/amount)
 	. = ..(amount * NUTRITION_COEFF) //Shrink amount to store
-	hume.nutrition += . //Add the amount we really stored
+	hume.adjust_nutrition(.) //Add the amount we really stored
 	. /= NUTRITION_COEFF //Inflate amount to take from the giver
 
 #undef NUTRITION_COEFF

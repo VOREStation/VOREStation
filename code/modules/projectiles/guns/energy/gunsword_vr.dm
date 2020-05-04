@@ -6,14 +6,13 @@
 	icon_state = "gbuster100"
 
 	icon_override = 'icons/vore/custom_guns_vr.dmi'
-	item_state = null
-	item_icons = null
+	item_state = "gbuster"
+	item_icons = list(slot_r_hand_str = 'icons/vore/custom_guns_vr.dmi', slot_l_hand_str = 'icons/vore/custom_guns_vr.dmi', "slot_belt" = 'icons/mob/belt_vr.dmi')
 
 	w_class = ITEMSIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 4)
-	slot_flags = null
 	projectile_type = /obj/item/projectile/beam/stun
-	fire_sound = 'sound/weapons/gauss_shoot.ogg'
+	fire_sound = 'sound/weapons/Taser.ogg'
 	charge_meter = 1
 
 	cell_type = /obj/item/weapon/cell/device/weapon/gunsword
@@ -22,7 +21,7 @@
 
 	firemodes = list(
 	list(mode_name="stun", charge_cost=240,projectile_type=/obj/item/projectile/beam/stun, modifystate="gbuster", fire_sound='sound/weapons/Taser.ogg'),
-	list(mode_name="lethal", charge_cost=480,projectile_type=/obj/item/projectile/beam, modifystate="gbuster", fire_sound='sound/weapons/gauss_shoot.ogg'),
+	list(mode_name="lethal", charge_cost=480,projectile_type=/obj/item/projectile/beam/imperial, modifystate="gbuster", fire_sound='sound/weapons/mandalorian.ogg'),
 	)
 
 

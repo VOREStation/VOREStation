@@ -68,15 +68,15 @@
 		pixel_y = (dir & 3) ? (dir == NORTH ? -y_offset : y_offset) : 0
 
 /obj/structure/construction/examine(mob/user)
-	if(!..(user, 2))
-		return
-	switch(stage)
-		if(FRAME_UNFASTENED)
-			to_chat(user, "It's an empty frame.")
-		if(FRAME_FASTENED)
-			to_chat(user, "It's fixed to the wall.")
-		if(FRAME_WIRED)
-			to_chat(user, "It's wired.")
+	. = ..()
+	if(get_dist(user, src) <= 2)
+		switch(stage)
+			if(FRAME_UNFASTENED)
+				. += "It's an empty frame."
+			if(FRAME_FASTENED)
+				. += "It's fixed to the wall."
+			if(FRAME_WIRED)
+				. += "It's wired."
 
 /obj/structure/construction/update_icon()
 	icon_state = "[base_icon][stage]"

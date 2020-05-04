@@ -119,6 +119,12 @@
 	check_eye(user)
 	return 1
 
+/obj/machinery/computer/security/relaymove(mob/user,direct)
+	var/turf/T = get_turf(current_camera)
+	for(var/i; i < 10; i++)
+		T = get_step(T, direct)
+	jump_on_click(user, T)
+
 //Camera control: moving.
 /obj/machinery/computer/security/proc/jump_on_click(var/mob/user,var/A)
 	if(user.machine != src)
@@ -185,22 +191,15 @@
 	update_use_power(USE_POWER_IDLE)
 
 //Camera control: mouse.
+/* Oh my god
 /atom/DblClick()
 	..()
 	if(istype(usr.machine,/obj/machinery/computer/security))
 		var/obj/machinery/computer/security/console = usr.machine
 		console.jump_on_click(usr,src)
-//Camera control: arrow keys.
-/mob/Move(n,direct)
-	if(istype(machine,/obj/machinery/computer/security))
-		var/obj/machinery/computer/security/console = machine
-		var/turf/T = get_turf(console.current_camera)
-		for(var/i;i<10;i++)
-			T = get_step(T,direct)
-		console.jump_on_click(src,T)
-		return
-	return ..(n,direct)
+*/
 
+//Camera control: arrow keys.
 /obj/machinery/computer/security/telescreen
 	name = "Telescreen"
 	desc = "Used for watching an empty arena."

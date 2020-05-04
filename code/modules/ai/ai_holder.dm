@@ -1,6 +1,14 @@
 // This is a datum-based artificial intelligence for simple mobs (and possibly others) to use.
 // The neat thing with having this here instead of on the mob is that it is independant of Life(), and that different mobs
 // can use a more or less complex AI by giving it a different datum.
+#define AI_NO_PROCESS			0
+#define AI_PROCESSING			(1<<0)
+#define AI_FASTPROCESSING		(1<<1)
+
+#define START_AIPROCESSING(Datum) if (!(Datum.process_flags & AI_PROCESSING)) {Datum.process_flags |= AI_PROCESSING;SSai.processing += Datum}
+#define STOP_AIPROCESSING(Datum) Datum.process_flags &= ~AI_PROCESSING;SSai.processing -= Datum
+#define START_AIFASTPROCESSING(Datum) if (!(Datum.process_flags & AI_FASTPROCESSING)) {Datum.process_flags |= AI_FASTPROCESSING;SSaifast.processing += Datum}
+#define STOP_AIFASTPROCESSING(Datum) Datum.process_flags &= ~AI_FASTPROCESSING;SSaifast.processing -= Datum
 
 /mob/living
 	var/datum/ai_holder/ai_holder = null
@@ -27,7 +35,21 @@
 	var/busy = FALSE					// If true, the ticker will skip processing this mob until this is false. Good for if you need the
 										// mob to stay still (e.g. delayed attacking). If you need the mob to be inactive for an extended period of time,
 										// consider sleeping the AI instead.
-
+	var/process_flags = 0				// Where we're processing, see flag defines.
+	var/list/static/fastprocess_stances = list(
+		STANCE_ALERT,
+		STANCE_APPROACH,
+		STANCE_FIGHT,
+		STANCE_BLINDFIGHT,
+		STANCE_REPOSITION,
+		STANCE_MOVE,
+		STANCE_FOLLOW,
+		STANCE_FLEE,
+		STANCE_DISABLED
+	)
+	var/list/static/noprocess_stances = list(
+		STANCE_SLEEP
+	)
 
 
 /datum/ai_holder/hostile
@@ -40,15 +62,33 @@
 /datum/ai_holder/New(var/new_holder)
 	ASSERT(new_holder)
 	holder = new_holder
-	SSai.processing += src
 	home_turf = get_turf(holder)
+	manage_processing(AI_PROCESSING)
+	GLOB.stat_set_event.register(holder, src, .proc/holder_stat_change)
 	..()
 
 /datum/ai_holder/Destroy()
 	holder = null
-	SSai.processing -= src // We might've already been asleep and removed, but byond won't care if we do this again and it saves a conditional.
+	manage_processing(AI_NO_PROCESS)
 	home_turf = null
 	return ..()
+
+/datum/ai_holder/proc/manage_processing(var/desired)
+	if(desired & AI_PROCESSING)
+		START_AIPROCESSING(src)
+	else
+		STOP_AIPROCESSING(src)
+
+	if(desired & AI_FASTPROCESSING)
+		START_AIFASTPROCESSING(src)
+	else
+		STOP_AIFASTPROCESSING(src)
+
+/datum/ai_holder/proc/holder_stat_change(var/mob, old_stat, new_stat)
+	if(old_stat >= DEAD && new_stat <= DEAD) //Revived
+		manage_processing(AI_PROCESSING)
+	else if(old_stat <= DEAD && new_stat >= DEAD) //Killed
+		manage_processing(AI_NO_PROCESS)
 
 /datum/ai_holder/proc/update_stance_hud()
 	var/image/stanceimage = holder.grab_hud(LIFE_HUD)
@@ -78,7 +118,6 @@
 		return
 	forget_everything() // If we ever wake up, its really unlikely that our current memory will be of use.
 	set_stance(STANCE_SLEEP)
-	SSai.processing -= src
 	update_paused_hud()
 
 // Reverses the above proc.
@@ -89,7 +128,6 @@
 	if(!should_wake())
 		return
 	set_stance(STANCE_IDLE)
-	SSai.processing += src
 	update_paused_hud()
 
 /datum/ai_holder/proc/should_wake()
@@ -122,11 +160,22 @@
 
 // For setting the stance WITHOUT processing it
 /datum/ai_holder/proc/set_stance(var/new_stance)
+	if(stance == new_stance)
+		ai_log("set_stance() : Ignoring change stance to same stance request.", AI_LOG_INFO)
+		return
+
 	ai_log("set_stance() : Setting stance from [stance] to [new_stance].", AI_LOG_INFO)
 	stance = new_stance
 	if(stance_coloring) // For debugging or really weird mobs.
 		stance_color()
 	update_stance_hud()
+
+	if(new_stance in fastprocess_stances) //Becoming fast
+		manage_processing(AI_PROCESSING|AI_FASTPROCESSING)
+	else if(new_stance in noprocess_stances)
+		manage_processing(AI_NO_PROCESS) //Becoming off
+	else
+		manage_processing(AI_PROCESSING) //Becoming slow
 
 // This is called every half a second.
 /datum/ai_holder/proc/handle_stance_tactical()
@@ -167,19 +216,6 @@
 			return
 
 	switch(stance)
-		if(STANCE_IDLE)
-			if(should_go_home())
-				ai_log("handle_stance_tactical() : STANCE_IDLE, going to go home.", AI_LOG_TRACE)
-				go_home()
-
-			else if(should_follow_leader())
-				ai_log("handle_stance_tactical() : STANCE_IDLE, going to follow leader.", AI_LOG_TRACE)
-				set_stance(STANCE_FOLLOW)
-
-			else if(should_wander())
-				ai_log("handle_stance_tactical() : STANCE_IDLE, going to wander randomly.", AI_LOG_TRACE)
-				handle_wander_movement()
-
 		if(STANCE_ALERT)
 			ai_log("handle_stance_tactical() : STANCE_ALERT, going to threaten_target().", AI_LOG_TRACE)
 			threaten_target()
@@ -241,9 +277,23 @@
 		if(STANCE_IDLE)
 			if(speak_chance) // In the long loop since otherwise it wont shut up.
 				handle_idle_speaking()
+			
 			if(hostile)
 				ai_log("handle_stance_strategical() : STANCE_IDLE, going to find_target().", AI_LOG_TRACE)
 				find_target()
+			
+			if(should_go_home())
+				ai_log("handle_stance_tactical() : STANCE_IDLE, going to go home.", AI_LOG_TRACE)
+				go_home()
+
+			else if(should_follow_leader())
+				ai_log("handle_stance_tactical() : STANCE_IDLE, going to follow leader.", AI_LOG_TRACE)
+				set_stance(STANCE_FOLLOW)
+
+			else if(should_wander())
+				ai_log("handle_stance_tactical() : STANCE_IDLE, going to wander randomly.", AI_LOG_TRACE)
+				handle_wander_movement()
+
 		if(STANCE_APPROACH)
 			if(target)
 				ai_log("handle_stance_strategical() : STANCE_APPROACH, going to calculate_path([target]).", AI_LOG_TRACE)
@@ -292,3 +342,6 @@
 /mob/living/proc/taunt(atom/movable/taunter, force_target_switch = FALSE)
 	if(ai_holder)
 		ai_holder.receive_taunt(taunter, force_target_switch)
+
+#undef AI_PROCESSING
+#undef AI_FASTPROCESSING

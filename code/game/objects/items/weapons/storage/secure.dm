@@ -29,8 +29,9 @@
 	use_sound = 'sound/items/storage/briefcase.ogg'
 
 	examine(mob/user)
-		if(..(user, 1))
-			to_chat(user, "The service panel is [src.open ? "open" : "closed"].")
+		. = ..()
+		if(Adjacent(user))
+			. += "The service panel is [src.open ? "open" : "closed"]."
 
 	attackby(obj/item/weapon/W as obj, mob/user as mob)
 		if(locked)

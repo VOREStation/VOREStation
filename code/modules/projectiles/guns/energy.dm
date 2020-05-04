@@ -76,7 +76,7 @@
 					var/start_nutrition = H.nutrition
 					var/end_nutrition = 0
 
-					H.nutrition -= rechargeamt / 15
+					H.adjust_nutrition(-rechargeamt / 15)
 
 					end_nutrition = H.nutrition
 
@@ -178,12 +178,11 @@
 	if(power_supply)
 		if(charge_cost)
 			var/shots_remaining = round(power_supply.charge / max(1, charge_cost))	// Paranoia
-			to_chat(user, "Has [shots_remaining] shot\s remaining.")
+			. += "Has [shots_remaining] shot\s remaining."
 		else
-			to_chat(user, "Has infinite shots remaining.")
+			. += "Has infinite shots remaining."
 	else
-		to_chat(user, "Does not have a power cell.")
-	return
+		. += "Does not have a power cell."
 
 /obj/item/weapon/gun/energy/update_icon(var/ignore_inhands)
 	if(power_supply == null)

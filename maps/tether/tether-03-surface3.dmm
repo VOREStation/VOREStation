@@ -23111,7 +23111,7 @@
 /obj/machinery/door/airlock/research{
 	name = "Xenobiology Equipment Storage";
 	req_access = list();
-	req_one_access = list(47,55)
+	req_one_access = list(55)
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -25270,7 +25270,7 @@
 /obj/machinery/door/airlock/research{
 	name = "Xenobiology Office";
 	req_access = list();
-	req_one_access = list(47,55)
+	req_one_access = list(55)
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -25641,7 +25641,7 @@
 /obj/machinery/door/airlock/research{
 	name = "Xenobiology Office";
 	req_access = list();
-	req_one_access = list(47,55)
+	req_one_access = list(55)
 	},
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled/steel,
@@ -25872,7 +25872,7 @@
 /obj/machinery/door/airlock/research{
 	name = "Xenobiology Autopsy Room";
 	req_access = list();
-	req_one_access = list(47,55)
+	req_one_access = list(55)
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -26070,7 +26070,7 @@
 /obj/machinery/door/airlock/research{
 	name = "Xenobiology Autopsy Room";
 	req_access = list();
-	req_one_access = list(47,55)
+	req_one_access = list(55)
 	},
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled/steel,

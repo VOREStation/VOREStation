@@ -406,7 +406,9 @@
 	name = "Research Hound Module"
 	sprites = list(
 					"Research Hound" = "science",
-					"Borgi" = "borgi-sci"
+					"Borgi" = "borgi-sci",
+					"SciHound" = "scihound",
+					"SciHoundDark" = "scihounddark"
 					)
 	channels = list("Science" = 1)
 	can_be_pushed = 0
@@ -478,7 +480,9 @@
 	sprites = list(
 					"Pupdozer" = "pupdozer",
 					"Borgi" = "borgi-eng",
-					"V2 Engidog" = "thottbot"
+					"V2 Engidog" = "thottbot",
+					"EngiHound" = "engihound",
+					"EngiHoundDark" = "engihounddark"
 					)
 	channels = list("Engineering" = 1)
 	networks = list(NETWORK_ENGINEERING)
@@ -695,6 +699,8 @@
 	name = "Supply Hound Module"
 	sprites = list(
 					"KMine" = "kmine",
+					"CargoHound" = "cargohound",
+					"CargoHoundDark" = "cargohounddark"
 					)
 	channels = list("Supply" = 1)
 	can_be_pushed = 0
@@ -708,6 +714,7 @@
 	src.modules += new /obj/item/weapon/storage/bag/sheetsnatcher/borg(src)
 	src.modules += new /obj/item/weapon/gripper/miner(src)
 	src.modules += new /obj/item/weapon/mining_scanner(src)
+	src.modules += new /obj/item/weapon/dogborg/jaws/small(src)
 	src.emag = new /obj/item/weapon/pickaxe/plasmacutter(src)
 	src.emag = new /obj/item/weapon/pickaxe/diamonddrill(src)
 

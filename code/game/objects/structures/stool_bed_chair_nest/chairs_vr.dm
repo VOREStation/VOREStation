@@ -120,6 +120,7 @@
 	desc = "Like a normal chair, but more stationary."
 	icon_state = "bay_chair_preview"
 	base_icon = "bay_chair"
+	buckle_movable = 1
 
 /obj/structure/bed/chair/bay/chair/padded/red/New(var/newloc, var/new_material, var/new_padding_material)
 	..(newloc, new_material, "carpet")
@@ -192,7 +193,6 @@
 	desc = "It's a chair. Only for the highest ranked asses."
 	icon_state = "capchair_preview"
 	base_icon = "capchair"
-	buckle_movable = 1
 
 /obj/structure/bed/chair/bay/comfy/captain/update_icon()
 	..()
@@ -209,6 +209,7 @@
 	desc = "A comfortable, secure seat. It has a sturdy-looking buckling system for smoother flights."
 	base_icon = "shuttle_chair"
 	icon_state = "shuttle_chair_preview"
+	buckle_movable = 0
 	var/buckling_sound = 'sound/effects/metal_close.ogg'
 	var/padding = "blue"
 

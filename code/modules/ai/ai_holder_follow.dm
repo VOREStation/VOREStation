@@ -57,7 +57,7 @@
 	ai_log("lose_follow() : Exited.", AI_LOG_DEBUG)
 
 /datum/ai_holder/proc/should_follow_leader()
-	if(!leader)
+	if(!leader || target)
 		return FALSE
 	if(follow_until_time && world.time > follow_until_time)
 		lose_follow()

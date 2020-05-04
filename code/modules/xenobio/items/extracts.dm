@@ -33,11 +33,11 @@
 	..()
 
 /obj/item/slime_extract/examine(mob/user)
-	..()
+	. = ..()
 	if(uses)
-		to_chat(user, "This extract has [uses] more use\s.")
+		. += "This extract has [uses] more use\s."
 	else
-		to_chat(user, "This extract is inert.")
+		. += "This extract is inert."
 
 /datum/chemical_reaction/slime
 	var/required = null

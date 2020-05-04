@@ -11,8 +11,8 @@
 	var/list/allowed_types = list()
 
 /obj/item/device/kit/examine()
-	..()
-	to_chat(usr, "It has [uses] use\s left.")
+	. = ..()
+	. += "It has [uses] use\s left."
 
 /obj/item/device/kit/proc/use(var/amt, var/mob/user)
 	uses -= amt
@@ -216,11 +216,11 @@
 
 
 /obj/item/device/kit/paint/examine()
-	..()
-	to_chat(usr, "This kit will convert an exosuit into: [new_name].")
-	to_chat(usr, "This kit can be used on the following exosuit models:")
+	. = ..()
+	. += "This kit will convert an exosuit into: [new_name]."
+	. += "This kit can be used on the following exosuit models:"
 	for(var/exotype in allowed_types)
-		to_chat(usr, "- [capitalize(exotype)]")
+		. += "- [capitalize(exotype)]"
 
 /obj/item/device/kit/paint/customize(var/obj/mecha/M, var/mob/user)
 	if(!can_customize(M))

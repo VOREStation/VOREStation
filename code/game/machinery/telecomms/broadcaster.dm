@@ -88,7 +88,6 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 							  signal.data["compression"], signal.data["level"], signal.frequency,
 							  signal.data["verb"], forced_radios)
 
-
 	   /** #### - Simple Broadcast - #### **/
 
 		if(signal.data["type"] == SIGNAL_SIMPLE)
@@ -345,7 +344,6 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 						var/list/message_pieces, var/name, var/job, var/realname, var/vname,
 						var/data, var/compression, var/list/level, var/freq, var/verbage = "says",
 						var/list/forced_radios)
-
 
   /* ###### Prepare the radio connection ###### */
 

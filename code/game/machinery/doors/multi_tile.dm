@@ -16,7 +16,7 @@
 	QDEL_NULL(filler2)
 	return ..()
 
-/obj/machinery/door/airlock/multi_tile/Move()
+/obj/machinery/door/airlock/multi_tile/Moved(atom/old_loc, direction, forced = FALSE)
 	. = ..()
 	SetBounds()
 

@@ -56,9 +56,9 @@
 	return ..()
 
 /obj/item/weapon/weldingtool/examine(mob/user)
-	if(..(user, 0))
-		if(max_fuel)
-			to_chat(user, "[bicon(src)] The [src.name] contains [get_fuel()]/[src.max_fuel] units of fuel!")
+	. = ..()
+	if(max_fuel && loc == user)
+		. += "It contains [get_fuel()]/[src.max_fuel] units of fuel!"
 
 /obj/item/weapon/weldingtool/attack(atom/A, mob/living/user, def_zone)
 	if(ishuman(A) && user.a_intent == I_HELP)
@@ -67,6 +67,11 @@
 
 		if(!S || S.robotic < ORGAN_ROBOT || S.open == 3)
 			return ..()
+
+		//VOREStation Add - No welding nanoform limbs
+		if(S.robotic > ORGAN_LIFELIKE)
+			return ..()
+		//VOREStation Add End
 
 		if(S.organ_tag == BP_HEAD)
 			if(H.head && istype(H.head,/obj/item/clothing/head/helmet/space))
@@ -557,13 +562,12 @@
 	return power_supply
 
 /obj/item/weapon/weldingtool/electric/examine(mob/user)
-	if(get_dist(src, user) > 1)
-		to_chat(user, desc)
-	else
+	. = ..()
+	if(Adjacent(user))
 		if(power_supply)
-			to_chat(user, "[bicon(src)] The [src.name] has [get_fuel()] charge left.")
+			. += "It [src.name] has [get_fuel()] charge left."
 		else
-			to_chat(user, "[bicon(src)] The [src.name] has no power cell!")
+			. += "It [src.name] has no power cell!"
 
 /obj/item/weapon/weldingtool/electric/get_fuel()
 	if(use_external_power)

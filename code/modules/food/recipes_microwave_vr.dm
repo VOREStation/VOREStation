@@ -232,3 +232,10 @@
 	reagents = list("enzyme" = 20, "virusfood" = 5, "nutriment" = 15, "protein" = 15) // labor intensive
 	items = list()
 	result = /obj/item/weapon/storage/box/wings/tray
+
+/datum/recipe/microwave/honeybun
+	reagents = list("milk" = 5, "egg" = 3,"honey" = 5)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/dough
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/honeybun

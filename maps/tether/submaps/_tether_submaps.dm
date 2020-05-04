@@ -494,6 +494,7 @@
 #include "om_ships/generic_shuttle.dm"
 #include "om_ships/mercenarybase.dm"
 #include "om_ships/mercship.dm"
+#include "om_ships/curashuttle.dm"
 
 //////////////////////////////////////////////////////////////////////////////
 //Capsule deployed ships

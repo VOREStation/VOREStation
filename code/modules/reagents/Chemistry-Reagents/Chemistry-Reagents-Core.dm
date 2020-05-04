@@ -46,11 +46,11 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.species.gets_food_nutrition == 0)
-			H.nutrition += removed
+			H.adjust_nutrition(removed)
 			is_vampire = 1 //VOREStation Edit END
 	if(alien == IS_SLIME)	// Treat it like nutriment for the jello, but not equivalent.
 		M.heal_organ_damage(0.2 * removed * volume_mod, 0)	// More 'effective' blood means more usable material.
-		M.nutrition += 20 * removed * volume_mod
+		M.adjust_nutrition(20 * removed * volume_mod)
 		M.add_chemical_effect(CE_BLOODRESTORE, 4 * removed)
 		M.adjustToxLoss(removed / 2)	// Still has some water in the form of plasma.
 		return

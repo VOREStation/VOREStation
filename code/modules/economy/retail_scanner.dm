@@ -57,10 +57,9 @@
 		interact(user)
 
 /obj/item/device/retail_scanner/examine(mob/user as mob)
-	..(user)
+	. = ..()
 	if(transaction_amount)
-		to_chat(user, "It has a purchase of [transaction_amount] pending[transaction_purpose ? " for [transaction_purpose]" : ""].")
-
+		. += "It has a purchase of [transaction_amount] pending[transaction_purpose ? " for [transaction_purpose]" : ""]."
 
 /obj/item/device/retail_scanner/interact(mob/user as mob)
 	var/dat = "<h2>Retail Scanner<hr></h2>"

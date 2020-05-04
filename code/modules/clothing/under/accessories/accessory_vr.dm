@@ -2,6 +2,29 @@
 // Collars and such like that
 //
 
+/obj/item/clothing/accessory/choker //A colorable, tagless choker
+	name = "plain choker"
+	slot_flags = SLOT_TIE | SLOT_OCLOTHING
+	desc = "A simple, plain choker. Or maybe it's a collar? Use in-hand to customize it."
+	icon = 'icons/obj/clothing/ties_vr.dmi'
+	icon_override = 'icons/mob/ties_vr.dmi'
+	icon_state = "choker_cst"
+	item_state = "choker_cst"
+	overlay_state = "choker_cst"
+	var/customized = 0
+
+/obj/item/clothing/accessory/choker/attack_self(mob/user as mob)
+	if(!customized)
+		var/design = input(user,"Descriptor?","Pick descriptor","") in list("plain","simple","ornate","elegant","opulent")
+		var/material = input(user,"Material?","Pick material","") in list("leather","velvet","lace","fabric","latex","plastic","metal","chain","silver","gold","platinum","steel","bead","ruby","sapphire","emerald","diamond")
+		var/type = input(user,"Type?","Pick type","") in list("choker","collar","necklace")
+		name = "[design] [material] [type]"
+		desc = "A [type], made of [material]. It's rather [design]."
+		customized = 1
+		to_chat(usr,"<span class='notice'>[src] has now been customized.</span>")
+	else
+		to_chat(usr,"<span class='notice'>[src] has already been customized!</span>")
+
 /obj/item/clothing/accessory/collar
 	slot_flags = SLOT_TIE | SLOT_OCLOTHING
 	icon = 'icons/obj/clothing/ties_vr.dmi'

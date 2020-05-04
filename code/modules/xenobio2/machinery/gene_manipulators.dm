@@ -115,7 +115,7 @@
 
 /obj/machinery/xenobio/extractor
 	name = "biological product destructive analyzer"
-	icon = 'icons/obj/hydroponics_machines.dmi'
+	icon = 'icons/obj/hydroponics_machines_vr.dmi' //VOREStation Edit
 	icon_state = "traitcopier"
 	circuit = /obj/item/weapon/circuitboard/bioproddestanalyzer
 

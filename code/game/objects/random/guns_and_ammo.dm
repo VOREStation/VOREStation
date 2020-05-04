@@ -401,3 +401,135 @@
 				/obj/item/weapon/storage/box/shotgunammo
 			)
 		)
+
+// Not strictly a gun, but is used in PoIs to spawn the dropped guns of mercs, or a busted version.
+/obj/random/projectile/scrapped_gun
+	name = "broken gun spawner"
+	desc = "Spawns a random broken gun, or rarely a fully functional one."
+	icon = 'icons/obj/gun.dmi'
+	icon_state = "revolver"
+
+/obj/random/projectile/scrapped_gun/item_to_spawn()
+	return pickweight(list(
+		/obj/random/projectile/scrapped_pistol = 10,
+		/obj/random/projectile/scrapped_smg = 5,
+		/obj/random/projectile/scrapped_laser = 5,
+		/obj/random/projectile/scrapped_shotgun = 3,
+		/obj/random/projectile/scrapped_ionrifle = 3,
+		/obj/random/projectile/scrapped_bulldog = 1,
+		/obj/random/projectile/scrapped_flechette = 1,
+		/obj/random/projectile/scrapped_grenadelauncher = 1,
+		/obj/random/projectile/scrapped_dartgun = 1
+		))
+
+/obj/random/projectile/scrapped_shotgun
+	name = "broken shotgun spawner"
+	desc = "Loot for PoIs, or their mobs."
+	icon = 'icons/obj/gun.dmi'
+	icon_state = "shotgun"
+
+/obj/random/projectile/scrapped_shotgun/item_to_spawn()
+	return pickweight(list(
+		/obj/item/weapon/broken_gun/pumpshotgun = 10,
+		/obj/item/weapon/broken_gun/pumpshotgun_combat = 5,
+		/obj/item/weapon/gun/projectile/shotgun/pump = 3,
+		/obj/item/weapon/gun/projectile/shotgun/pump/combat = 1
+		))
+
+/obj/random/projectile/scrapped_smg
+	name = "broken smg spawner"
+	desc = "Loot for PoIs, or their mobs."
+	icon = 'icons/obj/gun.dmi'
+	icon_state = "revolver"
+
+/obj/random/projectile/scrapped_smg/item_to_spawn()
+	return pickweight(list(
+		/obj/item/weapon/broken_gun/c20r = 10,
+		/obj/item/weapon/gun/projectile/automatic/c20r = 3
+		))
+
+/obj/random/projectile/scrapped_pistol
+	name = "broken pistol spawner"
+	desc = "Loot for PoIs, or their mobs."
+	icon = 'icons/obj/gun.dmi'
+	icon_state = "revolver"
+
+/obj/random/projectile/scrapped_pistol/item_to_spawn()
+	return pickweight(list(
+		/obj/item/weapon/broken_gun/silenced45 = 10,
+		/obj/item/weapon/gun/projectile/silenced = 3
+		))
+
+/obj/random/projectile/scrapped_laser
+	name = "broken laser spawner"
+	desc = "Loot for PoIs, or their mobs."
+	icon = 'icons/obj/gun.dmi'
+	icon_state = "revolver"
+
+/obj/random/projectile/scrapped_laser/item_to_spawn()
+	return pickweight(list(
+		/obj/item/weapon/broken_gun/laserrifle = 10,
+		/obj/item/weapon/broken_gun/laser_retro = 5,
+		/obj/item/weapon/gun/energy/laser = 3,
+		/obj/item/weapon/gun/energy/retro = 1
+		))
+
+/obj/random/projectile/scrapped_ionrifle
+	name = "broken ionrifle spawner"
+	desc = "Loot for PoIs, or their mobs."
+	icon = 'icons/obj/gun.dmi'
+	icon_state = "revolver"
+
+/obj/random/projectile/scrapped_ionrifle/item_to_spawn()
+	return pickweight(list(
+		/obj/item/weapon/broken_gun/ionrifle = 10,
+		/obj/item/weapon/gun/energy/ionrifle = 3
+		))
+
+/obj/random/projectile/scrapped_bulldog
+	name = "broken z8 spawner"
+	desc = "Loot for PoIs, or their mobs."
+	icon = 'icons/obj/gun.dmi'
+	icon_state = "revolver"
+
+/obj/random/projectile/scrapped_bulldog/item_to_spawn()
+	return pickweight(list(
+		/obj/item/weapon/broken_gun/z8 = 10,
+		/obj/item/weapon/gun/projectile/automatic/z8 = 3
+		))
+
+/obj/random/projectile/scrapped_flechette
+	name = "broken flechette spawner"
+	desc = "Loot for PoIs, or their mobs."
+	icon = 'icons/obj/gun.dmi'
+	icon_state = "revolver"
+
+/obj/random/projectile/scrapped_flechette/item_to_spawn()
+	return pickweight(list(
+		/obj/item/weapon/broken_gun/flechette = 10,
+		/obj/item/weapon/gun/magnetic/railgun/flechette = 3
+		))
+
+/obj/random/projectile/scrapped_grenadelauncher
+	name = "broken grenadelauncher spawner"
+	desc = "Loot for PoIs, or their mobs."
+	icon = 'icons/obj/gun.dmi'
+	icon_state = "revolver"
+
+/obj/random/projectile/scrapped_grenadelauncher/item_to_spawn()
+	return pickweight(list(
+		/obj/item/weapon/broken_gun/grenadelauncher = 10,
+		/obj/item/weapon/gun/launcher/grenade = 3
+		))
+
+/obj/random/projectile/scrapped_dartgun
+	name = "broken dartgun spawner"
+	desc = "Loot for PoIs, or their mobs."
+	icon = 'icons/obj/gun.dmi'
+	icon_state = "revolver"
+
+/obj/random/projectile/scrapped_dartgun/item_to_spawn()
+	return pickweight(list(
+		/obj/item/weapon/broken_gun/dartgun = 10,
+		/obj/item/weapon/gun/projectile/dartgun = 3
+		))

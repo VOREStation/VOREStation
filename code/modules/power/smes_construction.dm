@@ -113,7 +113,7 @@
 		to_chat(usr, "<span class='warning'>Connection error: Destination Unreachable.</span>")
 
 	// Cyborgs standing next to the SMES can play with the wiring.
-	if(istype(usr, /mob/living/silicon/robot) && Adjacent(usr) && open_hatch)
+	if(istype(usr, /mob/living/silicon/robot) && Adjacent(usr) && panel_open)
 		wires.Interact(usr)
 
 // Proc: New()
@@ -136,7 +136,7 @@
 // Description: Opens the UI as usual, and if cover is removed opens the wiring panel.
 /obj/machinery/power/smes/buildable/attack_hand()
 	..()
-	if(open_hatch)
+	if(panel_open)
 		wires.Interact(usr)
 
 // Proc: recalc_coils()
@@ -329,7 +329,7 @@
 
 		// Crowbar - Disassemble the SMES.
 		if(W.is_crowbar())
-			if (terminal)
+			if (terminals.len)
 				to_chat(user, "<span class='warning'>You have to disassemble the terminal first!</span>")
 				return
 

@@ -217,7 +217,7 @@
 		H.adjustFireLoss(-(light_amount * co2buff)) //this won't let you tank environmental damage from fire. MAYBE cold until your body temp drops.
 
 	if(H.nutrition < (200 + 400*co2buff)) //if no CO2, a fully lit tile gives them 1/tick up to 200. With CO2, potentially up to 600.
-		H.nutrition += (light_amount*(1+co2buff*5))
+		H.adjust_nutrition(light_amount*(1+co2buff*5))
 
 	// Too much poison in the air.
 	if(toxins_pp > safe_toxins_max)
@@ -357,7 +357,7 @@
 	var/short_emote_descriptor = list("picks", "grabs")
 	var/self_emote_descriptor = list("grab", "pick", "snatch")
 	var/fruit_type = "apple"
-	var/mob/organ_owner = null
+	var/mob/living/organ_owner = null
 	var/gen_cost = 0.5
 
 /obj/item/organ/internal/fruitgland/New()
@@ -382,7 +382,7 @@
 			to_chat(organ_owner, "<span class='warning'>[pick(full_message)]</span>")
 
 /obj/item/organ/internal/fruitgland/proc/do_generation()
-	organ_owner.nutrition -= gen_cost
+	organ_owner.adjust_nutrition(-gen_cost)
 	for(var/reagent in generated_reagents)
 		reagents.add_reagent(reagent, generated_reagents[reagent])
 
@@ -417,7 +417,7 @@
 	set src in view(1)
 
 	//do_reagent_implant(usr)
-	if(!isliving(usr) || !usr.canClick())
+	if(!isliving(usr) || !usr.checkClickCooldown())
 		return
 
 	if(usr.incapacitated() || usr.stat > CONSCIOUS)

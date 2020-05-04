@@ -28,8 +28,6 @@ var/list/table_icon_cache = list()
 	var/carpeted = 0
 	var/carpeted_type = /obj/item/stack/tile/carpet
 
-	var/list/connections = list("nw0", "ne0", "sw0", "se0")
-
 	var/item_place = 1 //allows items to be placed on the table, but not on benches.
 
 /obj/structure/table/proc/update_material()
@@ -92,11 +90,11 @@ var/list/table_icon_cache = list()
 	if(health < maxhealth)
 		switch(health / maxhealth)
 			if(0.0 to 0.5)
-				to_chat(user, "<span class='warning'>It looks severely damaged!</span>")
+				. += "<span class='warning'>It looks severely damaged!</span>"
 			if(0.25 to 0.5)
-				to_chat(user, "<span class='warning'>It looks damaged!</span>")
+				. += "<span class='warning'>It looks damaged!</span>"
 			if(0.5 to 1.0)
-				to_chat(user, "<span class='notice'>It has a few scrapes and dents.</span>")
+				. += "<span class='notice'>It has a few scrapes and dents.</span>"
 
 /obj/structure/table/attackby(obj/item/weapon/W, mob/user)
 
@@ -402,60 +400,6 @@ var/list/table_icon_cache = list()
 		if(carpeted)
 			overlays += "carpet_flip[type]"
 
-// set propagate if you're updating a table that should update tables around it too, for example if it's a new table or something important has changed (like material).
-/obj/structure/table/proc/update_connections(propagate=0)
-	if(!material)
-		connections = list("0", "0", "0", "0")
-
-		if(propagate)
-			for(var/obj/structure/table/T in oview(src, 1))
-				T.update_connections()
-		return
-
-	var/list/blocked_dirs = list()
-	for(var/obj/structure/window/W in get_turf(src))
-		if(W.is_fulltile())
-			connections = list("0", "0", "0", "0")
-			return
-		blocked_dirs |= W.dir
-
-	for(var/D in list(NORTH, SOUTH, EAST, WEST) - blocked_dirs)
-		var/turf/T = get_step(src, D)
-		for(var/obj/structure/window/W in T)
-			if(W.is_fulltile() || W.dir == reverse_dir[D])
-				blocked_dirs |= D
-				break
-			else
-				if(W.dir != D) // it's off to the side
-					blocked_dirs |= W.dir|D // blocks the diagonal
-
-	for(var/D in list(NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST) - blocked_dirs)
-		var/turf/T = get_step(src, D)
-
-		for(var/obj/structure/window/W in T)
-			if(W.is_fulltile() || W.dir & reverse_dir[D])
-				blocked_dirs |= D
-				break
-
-	// Blocked cardinals block the adjacent diagonals too. Prevents weirdness with tables.
-	for(var/x in list(NORTH, SOUTH))
-		for(var/y in list(EAST, WEST))
-			if((x in blocked_dirs) || (y in blocked_dirs))
-				blocked_dirs |= x|y
-
-	var/list/connection_dirs = list()
-
-	for(var/obj/structure/table/T in orange(src, 1))
-		var/T_dir = get_dir(src, T)
-		if(T_dir in blocked_dirs) continue
-		if(material && T.material && material.name == T.material.name && flipped == T.flipped)
-			connection_dirs |= T_dir
-		if(propagate)
-			spawn(0)
-				T.update_connections()
-				T.update_icon()
-
-	connections = dirs_to_corner_states(connection_dirs)
 
 #define CORNER_NONE 0
 #define CORNER_COUNTERCLOCKWISE 1

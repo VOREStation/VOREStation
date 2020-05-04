@@ -4,7 +4,7 @@
 	nanomodule_path = /datum/nano_module/program/ship/nav
 	program_icon_state = "helm"
 	program_key_state = "generic_key"
-	program_menu_icon = "search"
+	program_menu_icon = "pin-s"
 	extended_desc = "Displays a ship's location in the sector."
 	required_access = null
 	requires_ntnet = 1

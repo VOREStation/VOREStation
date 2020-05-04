@@ -20,7 +20,7 @@
 	return TRUE
 
 /datum/riding/taur/force_dismount(mob/M)
-	. =..()
+	. = ..()
 	ridden.visible_message("<span class='notice'>[M] stops riding [ridden]!</span>")
 
 //Hoooo boy.
@@ -276,6 +276,7 @@
 	name = "Deer dual-color (Taur)"
 	icon_state = "deer_s"
 	extra_overlay = "deer_markings"
+	suit_sprites = 'icons/mob/taursuits_deer_vr.dmi'
 
 	msg_owner_disarm_run = "You quickly push %prey to the ground with your hoof!"
 	msg_prey_disarm_run = "%owner pushes you down to the ground with their hoof!"
@@ -387,6 +388,7 @@
 /datum/sprite_accessory/tail/taur/slug
 	name = "Slug (Taur)"
 	icon_state = "slug_s"
+	suit_sprites = 'icons/mob/taursuits_slug_vr.dmi'
 
 	msg_owner_help_walk = "You carefully slither around %prey."
 	msg_prey_help_walk = "%owner's huge tail slithers past beside you!"
@@ -429,6 +431,7 @@
 	name = "Otie (Taur)"
 	icon_state = "otie_s"
 	extra_overlay = "otie_markings"
+	suit_sprites = 'icons/mob/taursuits_otie_vr.dmi'
 
 /datum/sprite_accessory/tail/taur/alraune/alraune_2c
 	name = "Alraune (dual color)"

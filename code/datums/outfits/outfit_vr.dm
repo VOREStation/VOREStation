@@ -48,8 +48,8 @@
 	C.registered_name = H.real_name
 	return C
 
-/decl/hierarchy/outfit/solgov/representative
-	name = "SolGov Representative"
+/decl/hierarchy/outfit/solcom/representative
+	name = "SolCom Representative"
 	shoes = /obj/item/clothing/shoes/laceup
 	l_ear = /obj/item/device/radio/headset/centcom
 	uniform = /obj/item/clothing/under/suit_jacket/navy
@@ -59,13 +59,13 @@
 	r_hand = /obj/item/device/pda/centcom
 	l_hand = /obj/item/weapon/clipboard
 
-/decl/hierarchy/outfit/solgov/representative/equip_id(mob/living/carbon/human/H)
+/decl/hierarchy/outfit/solcom/representative/equip_id(mob/living/carbon/human/H)
 	var/obj/item/weapon/card/id/C = ..()
-	C.name = "[H.real_name]'s SolGov ID Card"
+	C.name = "[H.real_name]'s SolCom ID Card"
 	C.icon_state = "lifetime"
 	C.access = get_all_station_access()
 	C.access += get_all_centcom_access()
-	C.assignment = "SolGov Representative"
+	C.assignment = "SolCom Representative"
 	C.registered_name = H.real_name
 	return C
 
@@ -101,3 +101,76 @@
 	r_hand = /obj/item/weapon/melee/energy/sword/imperial
 	l_hand = /obj/item/weapon/shield/energy/imperial
 	suit_store = /obj/item/weapon/gun/energy/imperial
+
+/*
+SOUTHERN CROSS OUTFITS
+Keep outfits simple. Spawn with basic uniforms and minimal gear. Gear instead goes in lockers. Keep this in mind if editing.
+*/
+
+
+/decl/hierarchy/outfit/job/explorer2
+	name = OUTFIT_JOB_NAME("Explorer")
+	shoes = /obj/item/clothing/shoes/boots/winter/explorer
+	uniform = /obj/item/clothing/under/explorer
+	l_ear = /obj/item/device/radio/headset/explorer
+	id_slot = slot_wear_id
+	pda_slot = slot_l_store
+	pda_type = /obj/item/device/pda/explorer //VORESTation Edit - Better Brown
+	id_type = /obj/item/weapon/card/id/explorer //VOREStation Edit
+	id_pda_assignment = "Explorer"
+	flags = OUTFIT_HAS_BACKPACK|OUTFIT_COMPREHENSIVE_SURVIVAL
+	backpack_contents = list(/obj/item/clothing/accessory/permit/gun/planetside = 1)
+
+/decl/hierarchy/outfit/job/explorer2/post_equip(mob/living/carbon/human/H)
+	..()
+	for(var/obj/item/clothing/accessory/permit/gun/planetside/permit in H.back.contents)
+		permit.set_name(H.real_name)
+
+/decl/hierarchy/outfit/job/pilot
+	name = OUTFIT_JOB_NAME("Pilot")
+	shoes = /obj/item/clothing/shoes/black
+	uniform = /obj/item/clothing/under/rank/pilot1
+	suit = /obj/item/clothing/suit/storage/toggle/bomber/pilot
+	gloves = /obj/item/clothing/gloves/fingerless
+	glasses = /obj/item/clothing/glasses/fakesunglasses/aviator
+	l_ear = /obj/item/device/radio/headset/pilot/alt
+	id_slot = slot_wear_id
+	pda_slot = slot_belt
+	pda_type = /obj/item/device/pda //VOREStation Edit - Civilian
+	id_pda_assignment = "Pilot"
+	flags = OUTFIT_HAS_BACKPACK|OUTFIT_COMPREHENSIVE_SURVIVAL
+
+/decl/hierarchy/outfit/job/medical/sar
+	name = OUTFIT_JOB_NAME("Field Medic") //VOREStation Edit
+	uniform = /obj/item/clothing/under/utility/blue
+	//suit = /obj/item/clothing/suit/storage/hooded/wintercoat/medical/sar //VOREStation Edit
+	shoes = /obj/item/clothing/shoes/boots/winter/explorer
+	l_ear = /obj/item/device/radio/headset/sar
+	l_hand = /obj/item/weapon/storage/firstaid/regular
+	belt = /obj/item/weapon/storage/belt/medical/emt
+	pda_slot = slot_l_store
+	pda_type = /obj/item/device/pda/sar //VOREStation Add
+	id_pda_assignment = "Field Medic" //VOREStation Edit
+	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL|OUTFIT_COMPREHENSIVE_SURVIVAL
+
+/decl/hierarchy/outfit/job/pathfinder
+	name = OUTFIT_JOB_NAME("Pathfinder")
+	shoes = /obj/item/clothing/shoes/boots/winter/explorer
+	uniform = /obj/item/clothing/under/explorer //TODO: Uniforms.
+	l_ear = /obj/item/device/radio/headset/pathfinder
+	id_slot = slot_wear_id
+	pda_slot = slot_l_store
+	pda_type = /obj/item/device/pda/pathfinder
+	id_type = /obj/item/weapon/card/id/explorer/head
+	id_pda_assignment = "Pathfinder"
+	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL|OUTFIT_COMPREHENSIVE_SURVIVAL
+	backpack_contents = list(/obj/item/clothing/accessory/permit/gun/planetside = 1)
+
+/decl/hierarchy/outfit/job/pathfinder/post_equip(mob/living/carbon/human/H)
+	..()
+	for(var/obj/item/clothing/accessory/permit/gun/planetside/permit in H.back.contents)
+		permit.set_name(H.real_name)
+
+/decl/hierarchy/outfit/job/assistant/explorer
+	id_type = /obj/item/weapon/card/id/explorer
+	flags = OUTFIT_HAS_BACKPACK|OUTFIT_COMPREHENSIVE_SURVIVAL

@@ -86,23 +86,20 @@
 		set_light(0)
 
 /obj/item/device/flashlight/examine(mob/user)
-	..()
+	. = ..()
 	if(power_use && brightness_level)
-		var/tempdesc
-		tempdesc += "\The [src] is set to [brightness_level]. "
+		. += "\The [src] is set to [brightness_level]."
 		if(cell)
-			tempdesc += "\The [src] has a \the [cell] attached. "
+			. += "\The [src] has a \the [cell] attached."
 
 			if(cell.charge <= cell.maxcharge*0.25)
-				tempdesc += "It appears to have a low amount of power remaining."
+				. += "It appears to have a low amount of power remaining."
 			else if(cell.charge > cell.maxcharge*0.25 && cell.charge <= cell.maxcharge*0.5)
-				tempdesc += "It appears to have an average amount of power remaining."
+				. += "It appears to have an average amount of power remaining."
 			else if(cell.charge > cell.maxcharge*0.5 && cell.charge <= cell.maxcharge*0.75)
-				tempdesc += "It appears to have an above average amount of power remaining."
+				. += "It appears to have an above average amount of power remaining."
 			else if(cell.charge > cell.maxcharge*0.75 && cell.charge <= cell.maxcharge)
-				tempdesc += "It appears to have a high amount of power remaining."
-
-		to_chat(user, "[tempdesc]")
+				. += "It appears to have a high amount of power remaining."
 
 /obj/item/device/flashlight/attack_self(mob/user)
 	if(power_use)
@@ -421,7 +418,7 @@
 
 	. = ..()
 	if(.)
-		user.visible_message("<span class='notice'>[user] cracks and shakes the glowstick.</span>", "<span class='notice'>You crack and shake the glowstick, turning it on!</span>")
+		user.visible_message("<span class='notice'>[user] cracks and shakes \the [name].</span>", "<span class='notice'>You crack and shake \the [src], turning it on!</span>")
 		START_PROCESSING(SSobj, src)
 
 /obj/item/device/flashlight/glowstick/red

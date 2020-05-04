@@ -255,6 +255,18 @@
 	else
 		return ..()
 
+/obj/item/modular_computer/apply_visual(var/mob/user)
+	if(active_program)
+		return active_program.apply_visual(user)
+
+/obj/item/modular_computer/remove_visual(var/mob/user)
+	if(active_program)
+		return active_program.remove_visual(user)
+
+/obj/item/modular_computer/relaymove(var/mob/user, direction)
+	if(active_program)
+		return active_program.relaymove(user, direction)
+
 /obj/item/modular_computer/proc/set_autorun(program)
 	if(!hard_drive)
 		return

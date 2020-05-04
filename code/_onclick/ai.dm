@@ -23,15 +23,19 @@
 
 
 /mob/living/silicon/ai/ClickOn(var/atom/A, params)
-	if(world.time <= next_click)
+	if(!checkClickCooldown())
 		return
-	next_click = world.time + 1
+	
+	setClickCooldown(1)
 
 	if(client.buildmode) // comes after object.Click to allow buildmode gui objects to be clicked
 		build_click(src, client.buildmode, params, A)
 		return
 
 	if(stat)
+		return
+
+	if(control_disabled)
 		return
 
 	var/list/modifiers = params2list(params)
@@ -44,14 +48,11 @@
 	if(modifiers["shift"])
 		ShiftClickOn(A)
 		return
-	if(modifiers["alt"]) // alt and alt-gr (rightalt)
+	if(modifiers["alt"])
 		AltClickOn(A)
 		return
 	if(modifiers["ctrl"])
 		CtrlClickOn(A)
-		return
-
-	if(control_disabled || !canClick())
 		return
 
 	if(aiCamera.in_camera_mode)
@@ -59,12 +60,6 @@
 		aiCamera.captureimage(A, usr)
 		return
 
-	/*
-		AI restrained() currently does nothing
-	if(restrained())
-		RestrainedClickOn(A)
-	else
-	*/
 	A.add_hiddenprint(src)
 	A.attack_ai(src)
 

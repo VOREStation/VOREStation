@@ -67,8 +67,19 @@ This allows for events that have their announcement happen after the end itself.
 
 // Returns the z-levels that are involved with the event.
 // In the future this might be handy for off-station events.
-/datum/event2/event/proc/get_location_z_levels()
-	return using_map.station_levels
+/datum/event2/event/proc/get_location_z_levels(space_only = FALSE)
+	. = using_map.station_levels.Copy()
+	if(space_only)
+		for(var/z_level in .)
+			if(is_planet_z_level(z_level))
+				. -= z_level
+
+
+/datum/event2/event/proc/is_planet_z_level(z_level)
+	var/datum/planet/P = LAZYACCESS(SSplanets.z_to_planet, z_level)
+	if(!istype(P))
+		return FALSE
+	return TRUE
 
 // Returns a list of empty turfs in the same area.
 /datum/event2/event/proc/find_random_turfs(minimum_free_space = 5, list/specific_areas = list(), ignore_occupancy = FALSE)
@@ -105,6 +116,7 @@ This allows for events that have their announcement happen after the end itself.
 		if(!ignore_occupancy && is_area_occupied(A))
 			continue // Occupied.
 		. += A
+
 
 // Starts the event.
 /datum/event2/event/proc/execute()

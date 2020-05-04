@@ -24,10 +24,9 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 
 
 /obj/structure/janitorialcart/examine(mob/user)
-	if(..(user, 1))
-		to_chat(user, "[src] [bicon(src)] contains [reagents.total_volume] unit\s of liquid!")
-	//everything else is visible, so doesn't need to be mentioned
-
+	. = ..()
+	if(Adjacent(user))
+		. += "It contains [reagents.total_volume] unit\s of liquid!"
 
 /obj/structure/janitorialcart/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/weapon/storage/bag/trash) && !mybag)
@@ -186,12 +185,11 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 
 
 /obj/structure/bed/chair/janicart/examine(mob/user)
-	if(!..(user, 1))
-		return
-
-	to_chat(user, "[bicon(src)] This [callme] contains [reagents.total_volume] unit\s of water!")
-	if(mybag)
-		to_chat(user, "\A [mybag] is hanging on the [callme].")
+	. = ..()
+	if(Adjacent(user))
+		. += "This [callme] contains [reagents.total_volume] unit\s of water!"
+		if(mybag)
+			. += "\A [mybag] is hanging on the [callme]."
 
 
 /obj/structure/bed/chair/janicart/attackby(obj/item/I, mob/user)
@@ -228,15 +226,6 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 		update_mob()
 	else
 		to_chat(user, "<span class='notice'>You'll need the keys in one of your hands to drive this [callme].</span>")
-
-
-/obj/structure/bed/chair/janicart/Move()
-	..()
-	if(has_buckled_mobs())
-		for(var/A in buckled_mobs)
-			var/mob/living/L = A
-			if(L.buckled == src)
-				L.loc = loc
 
 
 /obj/structure/bed/chair/janicart/post_buckle_mob(mob/living/M)
