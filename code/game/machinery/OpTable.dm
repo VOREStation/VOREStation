@@ -67,7 +67,13 @@
 		var/mob/living/carbon/human/M = locate(/mob/living/carbon/human, src.loc)
 		if(M.lying)
 			victim = M
-			icon_state = M.pulse ? "table2-active" : "table2-idle"
+			if(M.pulse)
+				if(M.stat)
+					icon_state = "table2-sleep"
+				else
+					icon_state = "table2-active"
+			else
+				icon_state = "table2-dead"
 			return 1
 	victim = null
 	icon_state = "table2-idle"
