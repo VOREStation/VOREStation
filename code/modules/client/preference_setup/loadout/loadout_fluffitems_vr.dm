@@ -89,6 +89,13 @@
 	ckeywhitelist = list("azurachitin")
 	character_name = list("Azura Chitin")
 
+/datum/gear/fluff/aurora
+	path = /obj/item/clothing/accessory/solgov/department/security/aurora
+	display_name = "Aurora's keepsake"
+	description = "An old solgov sec insignia given to Aurora"
+	ckeywhitelist = list("storesund97")
+	character_name = list("Aurora")
+
 //  B CKEYS
 /datum/gear/fluff/yuuko_kimono
 	path = /obj/item/clothing/under/fluff/sakura_hokkaido_kimono
