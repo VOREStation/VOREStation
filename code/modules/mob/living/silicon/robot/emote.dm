@@ -136,14 +136,16 @@
 				m_type = 2
 			else
 				to_chat(src, "You are not security.")
+		//Vorestation addition start
 		if("bark")
 			if (istype(module,/obj/item/weapon/robot_module/robot/knine) || istype(module,/obj/item/weapon/robot_module/robot/medihound) || istype(module,/obj/item/weapon/robot_module/robot/scrubpup) || istype(module,/obj/item/weapon/robot_module/robot/ert) || istype(module,/obj/item/weapon/robot_module/robot/science) || istype(module,/obj/item/weapon/robot_module/robot/engiedog) || istype(module,/obj/item/weapon/robot_module/robot/clerical/brodog) || istype(module,/obj/item/weapon/robot_module/robot/kmine) )
 				message = "<b>[src]</b> lets out a bark."
 
-				playsound(loc, 'sound/voice/bark2.ogg', 50, 1, -1)
+				playsound(loc, 'sound/voice/bark2.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
 				m_type = 2
 			else
 				src << "You're not a dog!"
+		//Vorestation addition end
 
 
 
