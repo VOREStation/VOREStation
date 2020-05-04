@@ -270,6 +270,9 @@ var/list/gamemode_cache = list()
 	// disables the annoying "You have already logged in this round, disconnect or be banned" popup for multikeying, because it annoys the shit out of me when testing.
 	var/static/disable_cid_warn_popup = FALSE
 
+	// whether or not to use the nightshift subsystem to perform lighting changes
+	var/static/enable_night_shifts = FALSE
+
 /datum/configuration/New()
 	var/list/L = typesof(/datum/game_mode) - /datum/game_mode
 	for (var/T in L)
@@ -887,6 +890,9 @@ var/list/gamemode_cache = list()
 
 				if("disable_cid_warn_popup")
 					config.disable_cid_warn_popup = TRUE
+
+				if("enable_night_shifts")
+					config.enable_night_shifts = TRUE
 
 				else
 					log_misc("Unknown setting in configuration: '[name]'")

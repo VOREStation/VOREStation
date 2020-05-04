@@ -86,13 +86,13 @@ datum/announcement/priority/command/Message(message as text, message_title as te
 			to_chat(M, command)
 
 datum/announcement/priority/Message(var/message as text, var/message_title as text, var/list/zlevels)
-	global_announcer.autosay("<span class='alert'>[message_title]:</span> [message]", announcer ? announcer : ANNOUNCER_NAME, zlevels)
+	global_announcer.autosay("<span class='alert'>[message_title]:</span> [message]", announcer ? announcer : ANNOUNCER_NAME, channel = "Common", zlevels = zlevels)
 
 datum/announcement/priority/command/Message(var/message as text, var/message_title as text, var/list/zlevels)
-	global_announcer.autosay("<span class='alert'>[command_name()] - [message_title]:</span> [message]", ANNOUNCER_NAME, zlevels)
+	global_announcer.autosay("<span class='alert'>[command_name()] - [message_title]:</span> [message]", ANNOUNCER_NAME, channel = "Common", zlevels = zlevels)
 
 datum/announcement/priority/security/Message(var/message as text, var/message_title as text, var/list/zlevels)
-	global_announcer.autosay("<span class='alert'>[message_title]:</span> [message]", ANNOUNCER_NAME, zlevels)
+	global_announcer.autosay("<span class='alert'>[message_title]:</span> [message]", ANNOUNCER_NAME, channel = "Common", zlevels = zlevels)
 
 datum/announcement/proc/NewsCast(var/message as text, var/message_title as text)
 	if(!newscast)

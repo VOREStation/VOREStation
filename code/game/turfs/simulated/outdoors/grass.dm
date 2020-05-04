@@ -39,7 +39,7 @@ var/list/grass_types = list(
 	grass_chance = 5
 	var/tree_chance = 2
 
-	animal_chance = 0.5
+	animal_chance = 0 //VOREStation Edit
 
 	animal_types = list(
 		/mob/living/simple_mob/animal/sif/diyaab = 10,

@@ -14,6 +14,8 @@
 	throw_speed = 3
 	throw_range = 5
 	w_class = ITEMSIZE_NORMAL
+	var/static/cell_uid = 1		// Unique ID of this power cell. Used to reduce bunch of uglier code in nanoUI.
+	var/c_uid
 	var/charge = 0	// note %age conveted to actual charge in New
 	var/maxcharge = 1000
 	var/rigged = 0		// true if rigged to explode
@@ -31,6 +33,7 @@
 
 /obj/item/weapon/cell/New()
 	..()
+	c_uid = cell_uid++
 	charge = maxcharge
 	update_icon()
 	if(self_recharge)
