@@ -921,6 +921,14 @@
 	if(!can_use(usr, 1))
 		return 1
 
+	if(href_list["nightshift"])
+		if(last_nightshift_switch > world.time + 10 SECONDS) // don't spam...
+			to_chat(usr, "<span class='warning'>[src]'s night lighting circuit breaker is still cycling!</span>")
+			return 0
+		last_nightshift_switch = world.time
+		set_nightshift(!nightshift_lights)
+		return 1
+
 	if(locked && !issilicon(usr) )
 		if(isobserver(usr) )
 			var/mob/observer/dead/O = usr	//Added to allow admin nanoUI interactions.
@@ -973,13 +981,6 @@
 		environ = setsubsystem(val)
 		update_icon()
 		update()
-
-	else if(href_list["nightshift"])
-		if(last_nightshift_switch > world.time + 10 SECONDS) // don't spam...
-			to_chat(usr, "<span class='warning'>[src]'s night lighting circuit breaker is still cycling!</span>")
-			return 0
-		last_nightshift_switch = world.time
-		set_nightshift(!nightshift_lights)
 
 	else if (href_list["overload"])
 		if(istype(usr, /mob/living/silicon))
