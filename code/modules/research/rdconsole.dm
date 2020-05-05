@@ -319,6 +319,17 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			if(being_built)
 				linked_lathe.addToQueue(being_built)
 
+	else if(href_list["buildfive"]) //Causes the Protolathe to build 5 of something.
+		if(linked_lathe)
+			var/datum/design/being_built = null
+			for(var/datum/design/D in files.known_designs)
+				if(D.id == href_list["buildfive"])
+					being_built = D
+					break
+			if(being_built)
+				for(var/i = 1 to 5)
+					linked_lathe.addToQueue(being_built)
+
 		screen = 3.1
 		updateUsrDialog()
 
@@ -489,7 +500,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			else if(d_disk)
 				dat += "<LI><A href='?src=\ref[src];menu=1.4'>Disk Operations</A>"
 			else
-				dat += "<LI>Disk Operations"
+				dat += "<LI><span class='linkOff'>Disk Operations</span>"
 			if(linked_destroy)
 				dat += "<LI><A href='?src=\ref[src];menu=2.2'>Destructive Analyzer Menu</A>"
 			if(linked_lathe)
@@ -649,7 +660,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				if(temp_dat)
 					temp_dat = " \[[copytext(temp_dat, 3)]\]"
 				if(linked_lathe.canBuild(D))
-					dat += "<LI><B><A href='?src=\ref[src];build=[D.id]'>[D.name]</A></B>[temp_dat]"
+					dat += "<LI><B><A href='?src=\ref[src];build=[D.id]'>[D.name]</A></B>(<A href='?src=\ref[src];buildfive=[D.id]'>x5</A>)[temp_dat]"
 				else
 					dat += "<LI><B>[D.name]</B>[temp_dat]"
 			dat += "</UL>"
@@ -683,7 +694,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		if(3.3) //Protolathe Chemical Storage Submenu
 			dat += "<A href='?src=\ref[src];menu=1.0'>Main Menu</A> || "
 			dat += "<A href='?src=\ref[src];menu=3.1'>Protolathe Menu</A><HR>"
-			dat += "Chemical Storage<BR><HR>"
+			dat += "Chemical Storage:<BR><HR>"
 			for(var/datum/reagent/R in linked_lathe.reagents.reagent_list)
 				dat += "Name: [R.name] | Units: [R.volume] "
 				dat += "<A href='?src=\ref[src];disposeP=[R.id]'>(Purge)</A><BR>"
@@ -692,7 +703,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		if(3.4) // Protolathe queue
 			dat += "<A href='?src=\ref[src];menu=1.0'>Main Menu</A> || "
 			dat += "<A href='?src=\ref[src];menu=3.1'>Protolathe Menu</A><HR>"
-			dat += "Queue<BR><HR>"
+			dat += "Protolathe Construction Queue:<BR><HR>"
 			if(!linked_lathe.queue.len)
 				dat += "Empty"
 			else
@@ -794,8 +805,10 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "List of Researched Technologies and Designs:"
 			dat += GetResearchListInfo()
 
-	user << browse("<TITLE>Research and Development Console</TITLE><HR>[dat.Join()]", "window=rdconsole;size=850x600")
-	onclose(user, "rdconsole")
+	dat = jointext(dat, null)
+	var/datum/browser/popup = new(user, "rdconsole", "Research and Development Console", 850, 600)
+	popup.set_content(dat)
+	popup.open()
 
 /obj/machinery/computer/rdconsole/robotics
 	name = "Robotics R&D Console"
