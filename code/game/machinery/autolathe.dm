@@ -27,6 +27,8 @@
 
 	var/datum/wires/autolathe/wires = null
 
+	var/filtertext
+
 /obj/machinery/autolathe/New()
 	..()
 	wires = new(src)
@@ -72,10 +74,13 @@
 			material_bottom += "<td width = '25%' align = center>[stored_material[material]]<b>/[storage_capacity[material]]</b></td>"
 
 		dat += "[material_top.Join()]</tr>[material_bottom.Join()]</tr></table><hr>"
+		dat += "<b>Filter:</b> <a href='?src=\ref[src];setfilter=1'>[filtertext ? filtertext : "None Set"]</a><br>"
 		dat += "<h2>Printable Designs</h2><h3>Showing: <a href='?src=\ref[src];change_category=1'>[current_category]</a>.</h3></center><table width = '100%'>"
 
 		for(var/datum/category_item/autolathe/R in current_category.items)
 			if(R.hidden && !hacked)
+				continue
+			if(filtertext && findtext(R.name, filtertext) == 0)
 				continue
 			var/can_make = 1
 			var/list/material_string = list()
@@ -108,12 +113,14 @@
 							multiplier_string  += "<a href='?src=\ref[src];make=\ref[R];multiplier=[i]'>\[x[i]\]</a>"
 						multiplier_string += "<a href='?src=\ref[src];make=\ref[R];multiplier=[max_sheets]'>\[x[max_sheets]\]</a>"
 
-			dat += "<tr><td width = 180>[R.hidden ? "<font color = 'red'>*</font>" : ""]<b>[can_make ? "<a href='?src=\ref[src];make=\ref[R];multiplier=1'>" : ""][R.name][can_make ? "</a>" : ""]</b>[R.hidden ? "<font color = 'red'>*</font>" : ""][multiplier_string.Join()]</td><td align = right>[material_string.Join()]</tr>"
+			dat += "<tr><td width = 180>[R.hidden ? "<font color = 'red'>*</font>" : ""]<b>[can_make ? "<a href='?src=\ref[src];make=\ref[R];multiplier=1'>" : "<span class='linkOff'>"][R.name][can_make ? "</a>" : "</span>"]</b>[R.hidden ? "<font color = 'red'>*</font>" : ""][multiplier_string.Join()]</td><td align = right>[material_string.Join()]</tr>"
 
 		dat += "</table><hr>"
 
-	user << browse(dat.Join(), "window=autolathe")
-	onclose(user, "autolathe")
+	dat = jointext(dat, null)
+	var/datum/browser/popup = new(user, "autolathe", "Autolathe Production Menu", 550, 700)
+	popup.set_content(dat)
+	popup.open()
 
 /obj/machinery/autolathe/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(busy)
@@ -228,6 +235,16 @@
 	if(busy)
 		to_chat(usr, "<span class='notice'>The autolathe is busy. Please wait for completion of previous operation.</span>")
 		return
+
+	else if(href_list["setfilter"])
+		var/filterstring = input(usr, "Input a filter string, or blank to not filter:", "Design Filter", filtertext) as null|text
+		if(!Adjacent(usr))
+			return
+		if(isnull(filterstring)) //Clicked Cancel
+			return
+		if(filterstring == "") //Cleared value
+			filtertext = null
+		filtertext = sanitize(filterstring, 25)
 
 	if(href_list["change_category"])
 

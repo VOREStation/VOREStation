@@ -336,6 +336,8 @@
 		next_alarm_notice = world.time + SecondsToTicks(10)
 	if(alarm.hidden)
 		return
+	if(alarm.origin && !(get_z(alarm.origin) in using_map.get_map_levels(get_z(src), TRUE)))
+		return
 
 	var/list/alarms = queued_alarms[alarm_handler]
 	if(was_raised)

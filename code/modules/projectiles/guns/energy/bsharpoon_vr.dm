@@ -14,22 +14,69 @@
 	origin_tech = list(TECH_BLUESPACE = 5)
 
 	var/mode = 1  // 1 mode - teleport you to turf  0 mode teleport turf to you
-	var/last_fire = 0
+	var/firable = TRUE
 	var/transforming = 0
+	var/failure_chance = 15 // This can become negative with part tiers above 3, which helps offset penalties
+	var/obj/item/weapon/stock_parts/scanning_module/scanmod
+
+/obj/item/weapon/bluespace_harpoon/Initialize()
+	. = ..()
+	scanmod = new(src)
+	update_fail_chance()
+
+/obj/item/weapon/bluespace_harpoon/examine(var/mob/user)
+	. = ..()
+	if(Adjacent(user))
+		. += "It has [scanmod ? scanmod : "no scanner module"] installed."
+
+/obj/item/weapon/bluespace_harpoon/proc/update_fail_chance()
+	if(scanmod)
+		failure_chance = initial(failure_chance) - (scanmod.rating * 5)
+	else
+		failure_chance = 75 // You can't even use it if there's no scanmod, but why not.
+
+/obj/item/weapon/bluespace_harpoon/attackby(var/obj/item/I, var/mob/living/user)
+	if(!istype(user))
+		return
+
+	if(I.is_screwdriver())
+		if(!scanmod)
+			to_chat(user, "<span class='warning'>There's no scanner module installed!</span>")
+			return
+		var/turf/T = get_turf(src)
+		to_chat(user, "<span class='notice'>You remove [scanmod] from [src].</span>")
+		playsound(T, I.usesound, 75, 1)
+		scanmod.forceMove(T)
+		scanmod = null
+		update_fail_chance()
+	else if(istype(I, /obj/item/weapon/stock_parts/scanning_module))
+		if(scanmod)
+			to_chat(user, "<span class='warning'>There's already [scanmod] installed! Remove it first.</span>")
+			return
+		user.remove_from_mob(I)
+		I.forceMove(src)
+		scanmod = I
+		to_chat(user, "<span class='notice'>You install [scanmod] into [src].</span>")
+		update_fail_chance()
+	else
+		return ..()
 
 /obj/item/weapon/bluespace_harpoon/afterattack(atom/A, mob/user as mob)
-	var/current_fire = world.time
-	if(!user || !A)
+	if(!user || !A || isstorage(A))
+		return
+	if(!scanmod)
+		to_chat(user,"<span class = 'warning'>The scanning module has been removed from [src]!</span>")
 		return
 	if(transforming)
 		to_chat(user,"<span class = 'warning'>You can't fire while \the [src] transforming!</span>")
 		return
-	if(!(current_fire - last_fire >= 30 SECONDS))
+	if(!firable)
 		to_chat(user,"<span class = 'warning'>\The [src] is recharging...</span>")
 		return
 	if(is_jammed(A) || is_jammed(user))
+		firable = FALSE
+		VARSET_IN(src, firable, TRUE, 30 SECONDS)
 		to_chat(user,"<span class = 'warning'>\The [src] shot fizzles due to interference!</span>")
-		last_fire = current_fire
 		playsound(user, 'sound/weapons/wave.ogg', 60, 1)
 		return
 	var/turf/T = get_turf(A)
@@ -47,7 +94,8 @@
 		to_chat(user, "<span class='warning'>Harpoon fails to lock on the obstructed target!</span>")
 		return
 
-	last_fire = current_fire
+	firable = FALSE
+	VARSET_IN(src, firable, TRUE, 30 SECONDS)
 	playsound(user, 'sound/weapons/wave.ogg', 60, 1)
 
 	user.visible_message("<span class='warning'>[user] fires \the [src]!</span>","<span class='warning'>You fire \the [src]!</span>")
@@ -62,8 +110,8 @@
 	var/turf/FromTurf = mode ? get_turf(user) : get_turf(A)
 	var/turf/ToTurf = mode ? get_turf(A) : get_turf(user)
 
-	var/recievefailchance = 5
-	var/sendfailchance = 5
+	var/recievefailchance = failure_chance
+	var/sendfailchance = failure_chance
 	if(istype(user, /mob/living))
 		var/mob/living/L = user
 		if(LAZYLEN(L.buckled_mobs))
