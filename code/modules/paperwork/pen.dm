@@ -26,6 +26,9 @@
 	drop_sound = 'sound/items/drop/accessory.ogg'
 
 /obj/item/weapon/pen/attack_self(var/mob/user)
+	if(!user.checkClickCooldown())
+		return
+	user.setClickCooldown(1 SECOND)
 	to_chat(user, "<span class='notice'>Click.</span>")
 	playsound(loc, 'sound/items/penclick.ogg', 50, 1)
 
