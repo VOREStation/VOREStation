@@ -1383,6 +1383,10 @@
 			see_in_dark = 8
 			if(!druggy)		see_invisible = SEE_INVISIBLE_LEVEL_TWO
 
+		for(var/datum/modifier/M in modifiers)
+			if(!isnull(M.vision_flags))
+				sight |= M.vision_flags
+
 		if(!glasses_processed && (species.get_vision_flags(src) > 0))
 			sight |= species.get_vision_flags(src)
 		if(!seer && !glasses_processed && seedarkness)

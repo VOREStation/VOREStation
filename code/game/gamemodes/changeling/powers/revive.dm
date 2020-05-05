@@ -82,10 +82,28 @@
 	C.set_stat(CONSCIOUS)
 	C.forbid_seeing_deadchat = FALSE
 	C.timeofdeath = null
-	src.verbs -= /mob/proc/changeling_revive
+	verbs.Remove(/mob/proc/changeling_revive)
 	// re-add our changeling powers
 	C.make_changeling()
 
-
-
 	return 1
+
+//Revive from revival stasis, but one level removed, as the tab refuses to update. Placed in its own tab to avoid hyper-exploding the original tab through the same name being used.
+
+/obj/changeling_revive_holder
+	name = "strange object"
+	desc = "Please report this object's existence to the dev team! You shouldn't see it."
+	mouse_opacity = FALSE
+	alpha = 1
+
+/obj/changeling_revive_holder/verb/ling_revive()
+	set src = usr.contents
+	set category = "Regenerate"
+	set name = "Revive"
+	set desc = "We are ready to revive ourselves on command."
+
+	if(iscarbon(usr))
+		var/mob/living/carbon/C = usr
+		C.changeling_revive()
+
+	qdel(src)
