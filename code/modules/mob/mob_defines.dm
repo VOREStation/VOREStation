@@ -230,3 +230,5 @@
 	var/attack_icon_state //State for above
 
 	var/registered_z
+
+	var/list/progressbars = null //for stacking do_after bars
