@@ -13,7 +13,13 @@
 
 
 /obj/item/device/bloodstone
-	name = "cult blade"
-	desc = "An arcane weapon wielded by the followers of Nar-Sie."
+	name = "strange stone"
+	desc = "It pulsates with a strange, arcane crackle of energy..."
 	icon = 'icons/obj/cult_vr.dmi'
-	icon_state = "cultblade"
+	icon_state = "soulstone1"
+	var/activated = FALSE
+
+/obj/item/device/bloodstone/attack_self(var/mob/user)
+    activated = !activated
+    icon_state = activated ? "soulstone2" : "soulstone1"
+    to_chat(user, "<span class='warning'>The stone powers [activated ? "up" : "down"]!</span>")
