@@ -5,17 +5,18 @@ var/global/list/special_roles = list( //keep synced with the defines BE_* in set
 	"operative" = 1,									// 1
 	"changeling" = 1,									// 2
 	"wizard" = 1,										// 3
-	"malf AI" = 1,								        // 4
+	"malf AI" = 1,										// 4
 	"revolutionary" = 1,								// 5
 	"alien candidate" = 1,								// 6
 	"positronic brain" = 1,								// 7
 	"cultist" = 1,										// 8
-	"renegade" = 1,                                     // 9
-	"ninja" = 1,	                                  	// 10
+	"renegade" = 1,										// 9
+	"ninja" = 1,										// 10
 	"raider" = 1,										// 11
-	"diona" = 1,                                        // 12
-	"loyalist" = 1,										// 13
-	"pAI candidate" = 1, // -- TLE                      // 14
+	"diona" = 1,										// 12
+	"mutineer" = 1,										// 13
+	"loyalist" = 1,										// 14
+	"pAI candidate" = 1,								// 15
 )
 
 /datum/category_item/player_setup_item/antagonism/candidacy
