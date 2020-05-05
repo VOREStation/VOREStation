@@ -2,7 +2,6 @@
 
 /obj/item/weapon/gun/projectile/multi_cannon
 	name = "Curabitur Cannon"
-	
 	desc = "A cannon developed by Curabitur Scimed, this weapon incorporates both Vey-Med and precursor technology to create a medical alternative to chemicals on the field."
 	icon = 'icons/vore/custom_guns_vr.dmi'
 	icon_state = "healcannon"
@@ -15,53 +14,44 @@
 	w_class = ITEMSIZE_LARGE
 	load_method = SINGLE_CASING
 	max_shells = 1
-
 	handle_casings = HOLD_CASINGS
 	auto_eject = FALSE
-
-
 	caliber = "macrobat"
-
-
 	icon_override = 'icons/vore/custom_guns_vr.dmi'
-	item_state = "healcannon"
+	item_state = "multicannon"
+	slot_flags = SLOT_BACK
 
 /obj/item/weapon/gun/projectile/multi_cannon/update_icon()
 	. = ..()
-	overlays.Cut()
+	cut_overlays()
 	var/istate = "healcannon_0"
 	var/indicator_colour = null
-	if(chambered)
-		if(istype(chambered,/obj/item/ammo_casing/macrobattery)) //should never not happen. but. you never, never know with this damn, cursed game.
-			var/obj/item/ammo_casing/macrobattery/bat = chambered
-			indicator_colour = bat.bat_colour
-			if(bat.charge)
-				istate = "healcannon_20"
-				var/percent_charged = round((bat.charge/bat.max_charge)*100)
-				switch(percent_charged)
-					if(21 to 40)
-						istate = "healcannon_40"
-					if(41 to 60)
-						istate = "healcannon_60"
-					if(61 to 80)
-						istate = "healcannon_80"
-					if(81 to INFINITY)//gotta cover any admemes/other ways to get above max charge here.
-						istate = "healcannon_100"
-			else
-				indicator_colour = null			
+	if(istype(chambered,/obj/item/ammo_casing/macrobattery)) //should never not happen. but. you never, never know with this damn, cursed game.
+		var/obj/item/ammo_casing/macrobattery/bat = chambered
+		indicator_colour = bat.bat_colour
+		if(bat.charge)
+			istate = "healcannon_20"
+			var/percent_charged = round((bat.charge/bat.max_charge)*100)
+			switch(percent_charged)
+				if(21 to 40)
+					istate = "healcannon_40"
+				if(41 to 60)
+					istate = "healcannon_60"
+				if(61 to 80)
+					istate = "healcannon_80"
+				if(81 to INFINITY)//gotta cover any admemes/other ways to get above max charge here.
+					istate = "healcannon_100"
+		else
+			indicator_colour = null			
 
-	var/image/x = image(icon = 'icons/vore/custom_guns_vr.dmi', icon_state = istate)
-	x.layer = FLOAT_LAYER
-	x.plane = FLOAT_PLANE
+	var/image/x = image(icon = icon, icon_state = istate)
 	x.color = indicator_colour
-	overlays += x
-	
+	add_overlay(x)
 
 /obj/item/weapon/gun/projectile/multi_cannon/load_ammo()
 	.=..()
 	consume_next_projectile()
 	update_icon()
-	
 
 /obj/item/weapon/gun/projectile/multi_cannon/unload_ammo(mob/user, var/allow_dump=1)
 	.=..()

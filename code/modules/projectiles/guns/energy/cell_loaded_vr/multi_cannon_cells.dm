@@ -34,7 +34,6 @@
 		charge --
 		ticks = 1 //so we have to start over on the charge time.
 		START_PROCESSING(SSobj, src)
-		update_icon()
 		. = BB
 		//alright, the below seems jank. it IS jank, but for whatever reason I can't reuse BB. big bad
 		BB = null
@@ -52,8 +51,7 @@
 	if(charge >= max_charge)
 		STOP_PROCESSING(SSobj, src)
 	if(istype(loc,/obj/item/weapon/gun/projectile/multi_cannon))
-		var/obj/item/weapon/gun/projectile/multi_cannon/gun = loc
-		gun.update_icon()	
+		loc.update_icon()	
 
 //variants here, there's not many of them.
 
