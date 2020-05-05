@@ -26,6 +26,8 @@
 		return
 
 /obj/item/weapon/reagent_containers/food/condiment/afterattack(var/obj/target, var/mob/user, var/flag)
+	if(!user.Adjacent(target))
+		return
 	if(standard_dispenser_refill(user, target))
 		return
 	if(standard_pour_into(user, target))
