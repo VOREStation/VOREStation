@@ -37,6 +37,11 @@
 #define BE_MUTINEER   0x2000
 #define BE_LOYALIST   0x4000
 #define BE_PAI        0x8000
+//VOREStation Add
+#define BE_LOSTDRONE  0x10000
+#define BE_MAINTPRED  0x20000
+#define BE_MORPH      0x40000
+//VOREStation Add End
 
 var/list/be_special_flags = list(
 	"Traitor"          = BE_TRAITOR,
@@ -55,6 +60,11 @@ var/list/be_special_flags = list(
 	"Mutineer"         = BE_MUTINEER,
 	"Loyalist"         = BE_LOYALIST,
 	"pAI"              = BE_PAI,
+	//VOREStation Add
+	"Lost Drone"       = BE_LOSTDRONE,
+	"Maint Pred"       = BE_MAINTPRED,
+	"Morph"            = BE_MORPH,
+	//VOREStation Add End
 )
 
 
