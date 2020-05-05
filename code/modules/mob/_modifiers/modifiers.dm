@@ -51,6 +51,8 @@
 	var/emp_modifier					// Added to the EMP strength, which is an inverse scale from 1 to 4, with 1 being the strongest EMP. 5 is a nullification.
 	var/explosion_modifier				// Added to the bomb strength, which is an inverse scale from 1 to 3, with 1 being gibstrength. 4 is a nullification.
 
+	var/vision_flags					// Vision flags to add to the mob. SEE_MOB, SEE_OBJ, etc.
+
 /datum/modifier/New(var/new_holder, var/new_origin)
 	holder = new_holder
 	if(new_origin)
