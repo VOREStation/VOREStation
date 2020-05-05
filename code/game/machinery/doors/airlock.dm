@@ -38,6 +38,9 @@
 	var/hasShocked = 0 //Prevents multiple shocks from happening
 	var/secured_wires = 0
 	var/datum/wires/airlock/wires = null
+	//VOREStation Edit
+	var/talon = 0 //So Talon roundstart airlocks will drop talon circuits
+	//VOREStation Edit End
 
 	var/open_sound_powered = 'sound/machines/airlock.ogg'
 	var/open_sound_unpowered = 'sound/machines/airlockforced.ogg'
@@ -1262,6 +1265,10 @@ About the new airlock wires panel:
 	//create new electronics
 	if (secured_wires)
 		src.electronics = new/obj/item/weapon/airlock_electronics/secure( src.loc )
+	//VOREStation Edit
+	else if(talon)
+		src.electronics = new/obj/item/weapon/airlock_electronics/talon( src.loc )
+	//VOREStation Edit End
 	else
 		src.electronics = new/obj/item/weapon/airlock_electronics( src.loc )
 

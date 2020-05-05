@@ -15,6 +15,9 @@
 	var/one_access = 0 //if set to 1, door would receive req_one_access instead of req_access
 	var/last_configurator = null
 	var/locked = 1
+	//VOREStation Edit
+	var/talon = 0
+	//VOREStation Edit End
 
 	attack_self(mob/user as mob)
 		if (!ishuman(user) && !istype(user,/mob/living/silicon/robot))
@@ -38,6 +41,10 @@
 			t1 += "<br>"
 
 			var/list/accesses = get_all_station_access()
+			//VOREStation Edit
+			if(talon == 1)
+				accesses = list(access_talon)
+			//VOREStation Edit End
 			for (var/acc in accesses)
 				var/aname = get_access_desc(acc)
 
@@ -111,3 +118,11 @@
 	desc = "designed to be somewhat more resistant to hacking than standard electronics."
 	origin_tech = list(TECH_DATA = 2)
 	secure = 1
+
+/obj/item/weapon/airlock_electronics/talon
+	name = "talon airlock electronics"
+	desc = "an airlock circuit. But Talon."
+	req_access = list(access_talon)
+	one_access = 1
+	talon = 1
+	conf_access = list(access_talon)
