@@ -48,6 +48,9 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 	req_access = list(access_research)	//Data and setting manipulation requires scientist access.
 
+	var/protofilter //String to filter protolathe designs by
+	var/circuitfilter //String to filter circuit designs by
+
 /obj/machinery/computer/rdconsole/proc/CallMaterialName(var/ID)
 	var/return_name = ID
 	switch(return_name)
@@ -169,7 +172,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 	else if(href_list["updt_tech"]) //Update the research holder with information from the technology disk.
 		screen = 0.0
-		spawn(50)
+		spawn(5 SECONDS)
 			screen = 1.2
 			files.AddTech2Known(t_disk.stored)
 			updateUsrDialog()
@@ -192,7 +195,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 	else if(href_list["updt_design"]) //Updates the research holder with design data from the design disk.
 		screen = 0.0
-		spawn(50)
+		spawn(5 SECONDS)
 			screen = 1.4
 			files.AddDesign2Known(d_disk.blueprint)
 			updateUsrDialog()
@@ -235,7 +238,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				screen = 0.1
 				updateUsrDialog()
 				flick("d_analyzer_process", linked_destroy)
-				spawn(24)
+				spawn(2.4 SECONDS)
 					if(linked_destroy)
 						linked_destroy.busy = 0
 						if(!linked_destroy.loaded_item)
@@ -283,7 +286,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			to_chat(usr, "<span class='notice'>You must connect to the network first.</span>")
 		else
 			griefProtection() //Putting this here because I dont trust the sync process
-			spawn(30)
+			spawn(3 SECONDS)
 				if(src)
 					for(var/obj/machinery/r_n_d/server/S in machines)
 						var/server_processed = 0
@@ -319,8 +322,38 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			if(being_built)
 				linked_lathe.addToQueue(being_built)
 
+	else if(href_list["buildfive"]) //Causes the Protolathe to build 5 of something.
+		if(linked_lathe)
+			var/datum/design/being_built = null
+			for(var/datum/design/D in files.known_designs)
+				if(D.id == href_list["buildfive"])
+					being_built = D
+					break
+			if(being_built)
+				for(var/i = 1 to 5)
+					linked_lathe.addToQueue(being_built)
+
 		screen = 3.1
-		updateUsrDialog()
+
+	else if(href_list["protofilter"])
+		var/filterstring = input(usr, "Input a filter string, or blank to not filter:", "Design Filter", protofilter) as null|text
+		if(!Adjacent(usr))
+			return
+		if(isnull(filterstring)) //Clicked Cancel
+			return
+		if(filterstring == "") //Cleared value
+			protofilter = null
+		protofilter = sanitize(filterstring, 25)
+
+	else if(href_list["circuitfilter"])
+		var/filterstring = input(usr, "Input a filter string, or blank to not filter:", "Design Filter", circuitfilter) as null|text
+		if(!Adjacent(usr))
+			return
+		if(isnull(filterstring)) //Clicked Cancel
+			return
+		if(filterstring == "") //Cleared value
+			circuitfilter = null
+		circuitfilter = sanitize(filterstring, 25)
 
 	else if(href_list["imprint"]) //Causes the Circuit Imprinter to build something.
 		if(linked_imprinter)
@@ -332,7 +365,6 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			if(being_built)
 				linked_imprinter.addToQueue(being_built)
 		screen = 4.1
-		updateUsrDialog()
 
 	else if(href_list["disposeI"] && linked_imprinter)  //Causes the circuit imprinter to dispose of a single reagent (all of it)
 		linked_imprinter.reagents.del_reagent(href_list["dispose"])
@@ -489,7 +521,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			else if(d_disk)
 				dat += "<LI><A href='?src=\ref[src];menu=1.4'>Disk Operations</A>"
 			else
-				dat += "<LI>Disk Operations"
+				dat += "<LI><span class='linkOff'>Disk Operations</span>"
 			if(linked_destroy)
 				dat += "<LI><A href='?src=\ref[src];menu=2.2'>Destructive Analyzer Menu</A>"
 			if(linked_lathe)
@@ -638,8 +670,11 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "<B>Material Amount:</B> [linked_lathe.TotalMaterials()] cm<sup>3</sup> (MAX: [linked_lathe.max_material_storage])<BR>"
 			dat += "<B>Chemical Volume:</B> [linked_lathe.reagents.total_volume] (MAX: [linked_lathe.reagents.maximum_volume])<HR>"
 			dat += "<UL>"
+			dat += "<B>Filter:</B> <A href='?src=\ref[src];protofilter=1'>[protofilter ? protofilter : "None Set"]</A>"
 			for(var/datum/design/D in files.known_designs)
 				if(!D.build_path || !(D.build_type & PROTOLATHE))
+					continue
+				if(protofilter && findtext(D.name, protofilter) == 0)
 					continue
 				var/temp_dat
 				for(var/M in D.materials)
@@ -649,7 +684,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				if(temp_dat)
 					temp_dat = " \[[copytext(temp_dat, 3)]\]"
 				if(linked_lathe.canBuild(D))
-					dat += "<LI><B><A href='?src=\ref[src];build=[D.id]'>[D.name]</A></B>[temp_dat]"
+					dat += "<LI><B><A href='?src=\ref[src];build=[D.id]'>[D.name]</A></B>(<A href='?src=\ref[src];buildfive=[D.id]'>x5</A>)[temp_dat]"
 				else
 					dat += "<LI><B>[D.name]</B>[temp_dat]"
 			dat += "</UL>"
@@ -683,7 +718,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		if(3.3) //Protolathe Chemical Storage Submenu
 			dat += "<A href='?src=\ref[src];menu=1.0'>Main Menu</A> || "
 			dat += "<A href='?src=\ref[src];menu=3.1'>Protolathe Menu</A><HR>"
-			dat += "Chemical Storage<BR><HR>"
+			dat += "Chemical Storage:<BR><HR>"
 			for(var/datum/reagent/R in linked_lathe.reagents.reagent_list)
 				dat += "Name: [R.name] | Units: [R.volume] "
 				dat += "<A href='?src=\ref[src];disposeP=[R.id]'>(Purge)</A><BR>"
@@ -692,7 +727,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		if(3.4) // Protolathe queue
 			dat += "<A href='?src=\ref[src];menu=1.0'>Main Menu</A> || "
 			dat += "<A href='?src=\ref[src];menu=3.1'>Protolathe Menu</A><HR>"
-			dat += "Queue<BR><HR>"
+			dat += "Protolathe Construction Queue:<BR><HR>"
 			if(!linked_lathe.queue.len)
 				dat += "Empty"
 			else
@@ -721,8 +756,11 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "Material Amount: [linked_imprinter.TotalMaterials()] cm<sup>3</sup><BR>"
 			dat += "Chemical Volume: [linked_imprinter.reagents.total_volume]<HR>"
 			dat += "<UL>"
+			dat += "<B>Filter:</B> <A href='?src=\ref[src];circuitfilter=1'>[circuitfilter ? circuitfilter : "None Set"]</A>"
 			for(var/datum/design/D in files.known_designs)
 				if(!D.build_path || !(D.build_type & IMPRINTER))
+					continue
+				if(circuitfilter && findtext(D.name, circuitfilter) == 0)
 					continue
 				var/temp_dat
 				for(var/M in D.materials)
@@ -794,8 +832,10 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "List of Researched Technologies and Designs:"
 			dat += GetResearchListInfo()
 
-	user << browse("<TITLE>Research and Development Console</TITLE><HR>[dat.Join()]", "window=rdconsole;size=850x600")
-	onclose(user, "rdconsole")
+	dat = jointext(dat, null)
+	var/datum/browser/popup = new(user, "rdconsole", "Research and Development Console", 850, 600)
+	popup.set_content(dat)
+	popup.open()
 
 /obj/machinery/computer/rdconsole/robotics
 	name = "Robotics R&D Console"
