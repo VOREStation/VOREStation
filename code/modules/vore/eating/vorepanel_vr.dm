@@ -392,7 +392,11 @@
 			intent = alert("What do you want to do to them?","Query","Examine","Help Out","Devour")
 			switch(intent)
 				if("Examine") //Examine a mob inside another mob
-					M.examine(user)
+					var/list/results = M.examine(user)
+					if(!results || !results.len)
+						results = list("You were unable to examine that. Tell a developer!")
+					to_chat(user, jointext(results, "<br>"))
+					return FALSE
 
 				if("Help Out") //Help the inside-mob out
 					if(user.stat || user.absorbed || M.absorbed)
@@ -442,7 +446,11 @@
 			intent = alert("What do you want to do to that?","Query","Examine","Use Hand")
 			switch(intent)
 				if("Examine")
-					T.examine(user)
+					var/list/results = T.examine(user)
+					if(!results || !results.len)
+						results = list("You were unable to examine that. Tell a developer!")
+					to_chat(user, jointext(results, "<br>"))
+					return FALSE
 
 				if("Use Hand")
 					if(user.stat)
@@ -489,7 +497,11 @@
 		intent = alert("Examine, Eject, Move? Examine if you want to leave this box.","Query","Examine","Eject","Move")
 		switch(intent)
 			if("Examine")
-				tgt.examine(user)
+				var/list/results = tgt.examine(user)
+				if(!results || !results.len)
+					results = list("You were unable to examine that. Tell a developer!")
+				to_chat(user, jointext(results, "<br>"))
+				return FALSE
 
 			if("Eject")
 				if(user.stat)
