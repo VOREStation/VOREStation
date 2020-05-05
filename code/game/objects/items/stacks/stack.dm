@@ -28,6 +28,8 @@
 
 	var/pass_color = FALSE // Will the item pass its own color var to the created item? Dyed cloth, wood, etc.
 	var/strict_color_stacking = FALSE // Will the stack merge with other stacks that are different colors? (Dyed cloth, wood, etc)
+	var/simultaneous_use = FALSE
+	var/currently_using = FALSE
 
 /obj/item/stack/New(var/loc, var/amount=null)
 	..()
@@ -128,6 +130,10 @@
 	var/required = quantity*recipe.req_amount
 	var/produced = min(quantity*recipe.res_amount, recipe.max_res_amount)
 
+	if (currently_using && !simultaneous_use)
+		to_chat(user, "<span class='warning'>You're already building something with [src]!</span>")
+		return
+	
 	if (!can_use(required))
 		if (produced>1)
 			to_chat(user, "<span class='warning'>You haven't got enough [src] to build \the [produced] [recipe.title]\s!</span>")
@@ -145,8 +151,11 @@
 
 	if (recipe.time)
 		to_chat(user, "<span class='notice'>Building [recipe.title] ...</span>")
+		currently_using = TRUE
 		if (!do_after(user, recipe.time))
+			currently_using = FALSE
 			return
+		currently_using = FALSE
 
 	if (use(required))
 		var/atom/O

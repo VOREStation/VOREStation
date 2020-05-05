@@ -13,16 +13,22 @@
 /obj/item/stack/nanopaste/attack(mob/living/M as mob, mob/user as mob)
 	if (!istype(M) || !istype(user))
 		return 0
+	if(currently_using && !simultaneous_use)
+		to_chat(user, "<span class='warning'>No body part there to work on!</span>")
+		return 1
 	if (istype(M,/mob/living/silicon/robot))	//Repairing cyborgs
 		var/mob/living/silicon/robot/R = M
 		if (R.getBruteLoss() || R.getFireLoss())
+			currently_using = TRUE
 			if(do_after(user,7 * toolspeed))
 				R.adjustBruteLoss(-15)
 				R.adjustFireLoss(-15)
 				R.updatehealth()
 				use(1)
+				currently_using = FALSE
 				user.visible_message("<span class='notice'>\The [user] applied some [src] on [R]'s damaged areas.</span>",\
 				"<span class='notice'>You apply some [src] at [R]'s damaged areas.</span>")
+			currently_using = FALSE
 		else
 			to_chat(user, "<span class='notice'>All [R]'s systems are nominal.</span>")
 
@@ -51,10 +57,12 @@
 			else if(can_use(1))
 				user.setClickCooldown(user.get_attack_speed(src))
 				if(S.open >= 2)
+					currently_using = TRUE
 					if(do_after(user,5 * toolspeed))
 						S.heal_damage(restoration_internal, restoration_internal, robo_repair = 1)
 				else if(do_after(user,5 * toolspeed))
 					S.heal_damage(restoration_external,restoration_external, robo_repair =1)
+				currently_using = FALSE
 				H.updatehealth()
 				use(1)
 				user.visible_message("<span class='notice'>\The [user] applies some nanite paste on [user != M ? "[M]'s [S.name]" : "[S]"] with [src].</span>",\
