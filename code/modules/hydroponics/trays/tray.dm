@@ -126,9 +126,11 @@
 		"mutagen" = 15
 		)
 
-/obj/machinery/portable_atmospherics/hydroponics/AltClick()
-	if(mechanical && !usr.incapacitated() && Adjacent(usr))
-		close_lid(usr)
+/obj/machinery/portable_atmospherics/hydroponics/AltClick(var/mob/living/user)
+	if(!istype(user))
+		return
+	if(mechanical && !user.incapacitated() && Adjacent(user))
+		close_lid(user)
 		return 1
 	return ..()
 
