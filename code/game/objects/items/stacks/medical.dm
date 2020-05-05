@@ -111,7 +111,7 @@
 					continue
 				if(used == amount)
 					break
-				if(!do_mob(user, M, W.damage/3))
+				if(!do_mob(user, M, W.damage/3, exclusive = TRUE))
 					to_chat(user, "<span class='notice'>You must stand still to bandage wounds.</span>")
 					break
 
@@ -174,7 +174,7 @@
 					continue
 				if(used == amount)
 					break
-				if(!do_mob(user, M, W.damage/5))
+				if(!do_mob(user, M, W.damage/5, exclusive = TRUE))
 					to_chat(user, "<span class='notice'>You must stand still to bandage wounds.</span>")
 					break
 
@@ -234,7 +234,7 @@
 		else
 			user.visible_message("<span class='notice'>\The [user] starts salving wounds on [M]'s [affecting.name].</span>", \
 					             "<span class='notice'>You start salving the wounds on [M]'s [affecting.name].</span>" )
-			if(!do_mob(user, M, 10))
+			if(!do_mob(user, M, 10, exclusive = TRUE))
 				to_chat(user, "<span class='notice'>You must stand still to salve wounds.</span>")
 				return 1
 			if(affecting.is_salved()) // We do a second check after the delay, in case it was bandaged after the first check.
@@ -281,7 +281,7 @@
 					continue
 				//if(used == amount) //VOREStation Edit
 				//	break //VOREStation Edit
-				if(!do_mob(user, M, W.damage/5))
+				if(!do_mob(user, M, W.damage/5, exclusive = TRUE))
 					to_chat(user, "<span class='notice'>You must stand still to bandage wounds.</span>")
 					break
 				if(affecting.is_bandaged() && affecting.is_disinfected()) // We do a second check after the delay, in case it was bandaged after the first check.
@@ -336,7 +336,7 @@
 		else
 			user.visible_message("<span class='notice'>\The [user] starts salving wounds on [M]'s [affecting.name].</span>", \
 					             "<span class='notice'>You start salving the wounds on [M]'s [affecting.name].</span>" )
-			if(!do_mob(user, M, 10))
+			if(!do_mob(user, M, 10, exclusive = TRUE))
 				to_chat(user, "<span class='notice'>You must stand still to salve wounds.</span>")
 				return 1
 			if(affecting.is_salved()) // We do a second check after the delay, in case it was bandaged after the first check.
@@ -383,7 +383,7 @@
 				to_chat(user, "<span class='danger'>You can't apply a splint to the arm you're using!</span>")
 				return
 			user.visible_message("<span class='danger'>[user] starts to apply \the [src] to their [limb].</span>", "<span class='danger'>You start to apply \the [src] to your [limb].</span>", "<span class='danger'>You hear something being wrapped.</span>")
-		if(do_after(user, 50, M))
+		if(do_after(user, 50, M, exclusive = TRUE))
 			if(affecting.splinted)
 				to_chat(user, "<span class='danger'>[M]'s [limb] is already splinted!</span>")
 				return

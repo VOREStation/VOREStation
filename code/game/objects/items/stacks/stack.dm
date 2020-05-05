@@ -145,7 +145,7 @@
 
 	if (recipe.time)
 		to_chat(user, "<span class='notice'>Building [recipe.title] ...</span>")
-		if (!do_after(user, recipe.time))
+		if (!do_after(user, recipe.time, exclusive = TRUE))
 			return
 
 	if (use(required))
