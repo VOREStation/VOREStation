@@ -67,8 +67,11 @@
 /obj/machinery/vitals_monitor/process()
 	if(QDELETED(victim))
 		victim = null
+		update_icon()
+		update_use_power(USE_POWER_IDLE)
 	if(victim && !Adjacent(victim))
 		victim = null
+		update_icon()
 		update_use_power(USE_POWER_IDLE)
 	if(victim)
 		update_icon()
