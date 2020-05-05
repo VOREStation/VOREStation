@@ -9,21 +9,15 @@
 	lobby_icon = 'icons/misc/title_vr.dmi'
 	lobby_screens = list("tether2_night")
 
-	admin_levels = list()
-	sealed_levels = list()
-	empty_levels = list()
-	station_levels = list(Z_LEVEL_MAIN_VIRGO_TESTING)
-	contact_levels = list(Z_LEVEL_MAIN_VIRGO_TESTING)
-	player_levels = list(Z_LEVEL_MAIN_VIRGO_TESTING)
-
-	accessible_z_levels = list("1" = 100) // The defines can't be used here sadly.
-	base_turf_by_z = list("1" = /turf/space)
+	accessible_z_levels = list("[Z_LEVEL_MAIN_VIRGO_TESTING]" = 100)
+	base_turf_by_z = list("[Z_LEVEL_MAIN_VIRGO_TESTING]" = /turf/space)
 
 	use_overmap = TRUE
 	//var/overmap_size = 20		 // Dimensions of overmap zlevel if overmap is used.
 	//var/overmap_z = 0		     // If 0 will generate overmap zlevel on init. Otherwise will populate the zlevel provided.
 	//var/overmap_event_areas = 0  // How many event "clouds" will be generated
 
+	zlevel_datum_type = /datum/map_z_level/minitest
 
 	station_name  = "NSS Ade-testing"
 	station_short = "VORE-testing"
@@ -64,6 +58,12 @@
 
 	allowed_spawns = list("Arrivals Shuttle")
 
+/datum/map_z_level/minitest/station
+	z = Z_LEVEL_MAIN_VIRGO_TESTING
+	name = "Station Level"
+	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_XENOARCH_EXEMPT
+	holomap_legend_x = 220
+	holomap_legend_y = 160
 
 /datum/map/virgo_minitest/perform_map_generation()
 /*
