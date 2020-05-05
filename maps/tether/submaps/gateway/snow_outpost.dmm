@@ -340,7 +340,7 @@
 /turf/simulated/floor/tiled/white,
 /area/awaymission/snow_outpost/powered)
 "bl" = (
-/obj/machinery/power/smes/magical,
+/obj/machinery/power/smes/buildable/point_of_interest,
 /turf/simulated/floor/tiled/white,
 /area/awaymission/snow_outpost/powered)
 "bm" = (

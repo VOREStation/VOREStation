@@ -54,7 +54,6 @@
 
 	var/tmp/mob/living/owner					// The mob whose belly this is.
 	var/tmp/digest_mode = DM_HOLD				// Current mode the belly is set to from digest_modes (+transform_modes if human)
-	var/tmp/tf_mode = DM_TRANSFORM_REPLICA		// Current transformation mode.
 	var/tmp/list/items_preserved = list()		// Stuff that wont digest so we shouldn't process it again.
 	var/tmp/next_emote = 0						// When we're supposed to print our next emote, as a world.time
 	var/tmp/recent_sound = FALSE				// Prevent audio spam

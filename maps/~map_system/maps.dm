@@ -163,7 +163,6 @@ var/list/all_maps = list()
 		z = 1
 	var/datum/time/now = get_zlevel_time(z)
 	var/percent = now.seconds_stored / now.seconds_in_day
-	testing("get_night is [percent] through the day on [z]")
 
 	// First quarter, last quarter
 	if(percent < 0.25 || percent > 0.75)

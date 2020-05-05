@@ -125,32 +125,30 @@
 				spanstyle = "color:purple;"
 			if(DM_SIZE_STEAL)
 				spanstyle = "color:purple;"
-			if(DM_TRANSFORM)
-				switch(B.tf_mode)
-					if(DM_TRANSFORM_MALE)
-						spanstyle = "color:purple;"
-					if(DM_TRANSFORM_HAIR_AND_EYES)
-						spanstyle = "color:purple;"
-					if(DM_TRANSFORM_FEMALE)
-						spanstyle = "color:purple;"
-					if(DM_TRANSFORM_KEEP_GENDER)
-						spanstyle = "color:purple;"
-					if(DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR)
-						spanstyle = "color:purple;"
-					if(DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR_EGG)
-						spanstyle = "color:purple;"
-					if(DM_TRANSFORM_REPLICA)
-						spanstyle = "color:purple;"
-					if(DM_TRANSFORM_REPLICA_EGG)
-						spanstyle = "color:purple;"
-					if(DM_TRANSFORM_KEEP_GENDER_EGG)
-						spanstyle = "color:purple;"
-					if(DM_TRANSFORM_MALE_EGG)
-						spanstyle = "color:purple;"
-					if(DM_TRANSFORM_FEMALE_EGG)
-						spanstyle = "color:purple;"
-					if(DM_EGG)
-						spanstyle = "color:purple;"
+			if(DM_TRANSFORM_MALE)
+				spanstyle = "color:purple;"
+			if(DM_TRANSFORM_HAIR_AND_EYES)
+				spanstyle = "color:purple;"
+			if(DM_TRANSFORM_FEMALE)
+				spanstyle = "color:purple;"
+			if(DM_TRANSFORM_KEEP_GENDER)
+				spanstyle = "color:purple;"
+			if(DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR)
+				spanstyle = "color:purple;"
+			if(DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR_EGG)
+				spanstyle = "color:purple;"
+			if(DM_TRANSFORM_REPLICA)
+				spanstyle = "color:purple;"
+			if(DM_TRANSFORM_REPLICA_EGG)
+				spanstyle = "color:purple;"
+			if(DM_TRANSFORM_KEEP_GENDER_EGG)
+				spanstyle = "color:purple;"
+			if(DM_TRANSFORM_MALE_EGG)
+				spanstyle = "color:purple;"
+			if(DM_TRANSFORM_FEMALE_EGG)
+				spanstyle = "color:purple;"
+			if(DM_EGG)
+				spanstyle = "color:purple;"
 
 		belly_list += "<span style='[spanstyle]'> ([B.contents.len])</span></a></li>"
 
@@ -203,7 +201,7 @@
 
 		//Digest Mode Button
 		var/mode = selected.digest_mode
-		dat += "<br><a href='?src=\ref[src];b_mode=\ref[selected]'>Belly Mode:</a> [mode == DM_TRANSFORM ? selected.tf_mode : mode]"
+		dat += "<br><a href='?src=\ref[src];b_mode=\ref[selected]'>Belly Mode:</a> [mode]"
 
 		//Mode addons button
 		var/list/flag_list = list()
@@ -394,7 +392,11 @@
 			intent = alert("What do you want to do to them?","Query","Examine","Help Out","Devour")
 			switch(intent)
 				if("Examine") //Examine a mob inside another mob
-					M.examine(user)
+					var/list/results = M.examine(user)
+					if(!results || !results.len)
+						results = list("You were unable to examine that. Tell a developer!")
+					to_chat(user, jointext(results, "<br>"))
+					return FALSE
 
 				if("Help Out") //Help the inside-mob out
 					if(user.stat || user.absorbed || M.absorbed)
@@ -444,7 +446,11 @@
 			intent = alert("What do you want to do to that?","Query","Examine","Use Hand")
 			switch(intent)
 				if("Examine")
-					T.examine(user)
+					var/list/results = T.examine(user)
+					if(!results || !results.len)
+						results = list("You were unable to examine that. Tell a developer!")
+					to_chat(user, jointext(results, "<br>"))
+					return FALSE
 
 				if("Use Hand")
 					if(user.stat)
@@ -491,7 +497,11 @@
 		intent = alert("Examine, Eject, Move? Examine if you want to leave this box.","Query","Examine","Eject","Move")
 		switch(intent)
 			if("Examine")
-				tgt.examine(user)
+				var/list/results = tgt.examine(user)
+				if(!results || !results.len)
+					results = list("You were unable to examine that. Tell a developer!")
+				to_chat(user, jointext(results, "<br>"))
+				return FALSE
 
 			if("Eject")
 				if(user.stat)
@@ -581,10 +591,11 @@
 
 		if(new_mode == DM_TRANSFORM) //Snowflek submenu
 			var/list/tf_list = selected.transform_modes
-			var/new_tf_mode = input("Choose TF Mode (currently [selected.tf_mode])") as null|anything in tf_list
+			var/new_tf_mode = input("Choose TF Mode (currently [selected.digest_mode])") as null|anything in tf_list
 			if(!new_tf_mode)
 				return FALSE
-			selected.tf_mode = new_tf_mode
+			selected.digest_mode = new_tf_mode
+			return
 
 		selected.digest_mode = new_mode
 		//selected.items_preserved.Cut() //Re-evaltuate all items in belly on belly-mode change	//Handled with item modes now
