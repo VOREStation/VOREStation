@@ -35,8 +35,13 @@
 #define BE_RAIDER     0x800
 #define BE_PLANT      0x1000
 #define BE_MUTINEER   0x2000
-#define BE_PAI        0x4000
-#define BE_LOYALIST   0x8000
+#define BE_LOYALIST   0x4000
+#define BE_PAI        0x8000
+//VOREStation Add
+#define BE_LOSTDRONE  0x10000
+#define BE_MAINTPRED  0x20000
+#define BE_MORPH      0x40000
+//VOREStation Add End
 
 var/list/be_special_flags = list(
 	"Traitor"          = BE_TRAITOR,
@@ -45,7 +50,6 @@ var/list/be_special_flags = list(
 	"Wizard"           = BE_WIZARD,
 	"Malf AI"          = BE_MALF,
 	"Revolutionary"    = BE_REV,
-	"Loyalist"         = BE_LOYALIST,
 	"Xenomorph"        = BE_ALIEN,
 	"Positronic Brain" = BE_AI,
 	"Cultist"          = BE_CULTIST,
@@ -54,7 +58,13 @@ var/list/be_special_flags = list(
 	"Raider"           = BE_RAIDER,
 	"Diona"            = BE_PLANT,
 	"Mutineer"         = BE_MUTINEER,
-	"pAI"              = BE_PAI
+	"Loyalist"         = BE_LOYALIST,
+	"pAI"              = BE_PAI,
+	//VOREStation Add
+	"Lost Drone"       = BE_LOSTDRONE,
+	"Maint Pred"       = BE_MAINTPRED,
+	"Morph"            = BE_MORPH,
+	//VOREStation Add End
 )
 
 
