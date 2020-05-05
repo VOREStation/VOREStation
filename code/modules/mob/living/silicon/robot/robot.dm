@@ -262,6 +262,14 @@
 	//VOREStatation Edit Start: shell restrictions
 	if(shell)
 		modules.Add(shell_module_types)
+	if(istype(get_area(src),/area/talon))
+		modules+="Talon K9 Medical Module"
+		modules+="Talon K9 Engineering Module"
+		modules+="Talon K9 Multipurpose Module"
+		modules+="Talon Engineering Module"
+		modules+="Talon Medical Module"
+		idcard_type = /obj/item/weapon/card/id/synthetic/talon
+		to_chat(src, "<font color= 'purple'>Talon modules available.</font>")
 	else
 		modules.Add(robot_module_types)
 		if(crisis || security_level == SEC_LEVEL_RED || crisis_override)

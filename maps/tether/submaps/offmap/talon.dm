@@ -47,6 +47,12 @@ var/global/list/latejoin_talon_cyborg = list()
 	on_store_visible_message_1 = "hums and hisses as it moves"
 	on_store_visible_message_2 = "into cryogenic storage."
 
+/obj/machinery/cryopod/robot/talon
+	announce_channel = "Talon"
+	on_store_message = "has entered robotic storage."
+	on_store_name = "ITV Talon Robotic Control"
+	on_enter_occupant_message = "The storage unit broadcasts a sleep signal to you. Your systems start to shut down, and you enter low-power mode."
+
 /obj/effect/landmark/map_data/talon
     height = 2
 

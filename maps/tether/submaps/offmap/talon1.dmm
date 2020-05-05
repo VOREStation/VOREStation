@@ -225,12 +225,6 @@
 "az" = (
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/talon/deckone/bridge)
-"aA" = (
-/obj/effect/landmark/start{
-	name = "Talon Cyborg"
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/talon/deckone/workroom)
 "aB" = (
 /obj/effect/floor_decal/techfloor{
 	icon_state = "techfloororange_edges";
@@ -1203,9 +1197,7 @@
 /turf/simulated/floor/plating,
 /area/talon/deckone/starboard_solar)
 "cq" = (
-/obj/machinery/cryopod/robot{
-	announce_channel = "Talon"
-	},
+/obj/machinery/cryopod/robot/talon,
 /turf/simulated/floor/tiled/techmaint,
 /area/talon/deckone/workroom)
 "cr" = (
@@ -6738,6 +6730,15 @@
 	},
 /turf/space,
 /area/talon/maintenance/deckone_starboard_aft_wing)
+"yA" = (
+/obj/effect/landmark/start{
+	name = "Talon Cyborg"
+	},
+/obj/machinery/computer/cryopod/robot{
+	pixel_x = 32
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/talon/deckone/workroom)
 "yN" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -19034,7 +19035,7 @@ fn
 dO
 OF
 fP
-aA
+yA
 cq
 fJ
 aP
