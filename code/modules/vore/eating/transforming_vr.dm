@@ -206,7 +206,7 @@
 	if(!istype(M) || !istype(O))
 		return 0
 
-	if(M.species != O.species || M.custom_species != O.custom_species)
+	if(M.species.name != O.species.name || M.custom_species != O.custom_species)
 		return 1
 	return 0
 
@@ -227,7 +227,7 @@
 	if(color_action == 1)
 		M.set_species(O.species.name,0,1,M)
 	else if(color_action == 2)
-		M.set_species(O.species.name,0,1,O)
+		M.species = O.species
 	else
 		M.set_species(O.species.name)
 	M.custom_species = O.custom_species
