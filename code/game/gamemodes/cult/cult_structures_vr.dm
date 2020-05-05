@@ -19,4 +19,4 @@
 /obj/structure/cult/path2
 	name = "Path"
 	desc = "A stone pentagon. Three horns protrude from the stone, rising up to waist height for an average human adult. An ash-like substance surrounds it, weaving into a writing that you cannot decipher."
-	icon_state = "path_stone"
+	icon_state = "path_entrance"
