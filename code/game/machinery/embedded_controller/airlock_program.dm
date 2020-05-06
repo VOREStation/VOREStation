@@ -210,6 +210,7 @@
 					//purge apparently means clearing the airlock chamber to vacuum (then refilling, handled later)
 					target_pressure = 0
 					state = STATE_DEPRESSURIZE
+					playsound(master, 'sound/AI/airlockout.ogg', 100, 0) //VOREStation Add - TTS
 					if(!cycle_to_external_air || target_state == TARGET_OUTOPEN) // if going outside, pump internal air into air tank
 						signalPump(tag_airpump, 1, 0, target_pressure)	//send a signal to start depressurizing
 					else
@@ -218,6 +219,7 @@
 
 				else if(chamber_pressure <= target_pressure)
 					state = STATE_PRESSURIZE
+					playsound(master, 'sound/AI/airlockin.ogg', 100, 0) //VOREStation Add - TTS
 					if(!cycle_to_external_air || target_state == TARGET_INOPEN) // if going inside, pump air into airlock
 						signalPump(tag_airpump, 1, 1, target_pressure)	//send a signal to start pressurizing
 					else
@@ -227,6 +229,7 @@
 				else if(chamber_pressure > target_pressure)
 					if(!cycle_to_external_air)
 						state = STATE_DEPRESSURIZE
+						playsound(master, 'sound/AI/airlockout.ogg', 100, 0) //VOREStation Add - TTS
 						signalPump(tag_airpump, 1, 0, target_pressure)	//send a signal to start depressurizing
 					else
 						memory["purge"] = 1 // should always purge first if using external air, chamber pressure should never be higher than target pressure here
@@ -234,6 +237,7 @@
 				memory["target_pressure"] = max(target_pressure, MIN_TARGET_PRESSURE)
 
 		if(STATE_PRESSURIZE)
+			playsound(master, 'sound/machines/2beep.ogg', 100, 0) //VOREStation Add - TTS
 			if(memory["chamber_sensor_pressure"] >= memory["target_pressure"] * 0.95)
 				//not done until the pump has reported that it's off
 				if(memory["pump_status"] != "off")
@@ -245,9 +249,11 @@
 					cycleDoors(target_state)
 					state = STATE_IDLE
 					target_state = TARGET_NONE
+					playsound(master, 'sound/AI/airlockdone.ogg', 100, 0) //VOREStation Add - TTS
 
 
 		if(STATE_DEPRESSURIZE)
+			playsound(master, 'sound/machines/2beep.ogg', 100, 0) //VOREStation Add - TTS
 			if(memory["chamber_sensor_pressure"] <= max(memory["target_pressure"] * 1.05, MIN_TARGET_PRESSURE))
 				if(memory["pump_status"] != "off")
 					signalPump(tag_airpump, 0)
@@ -263,6 +269,7 @@
 					cycleDoors(target_state)
 					state = STATE_IDLE
 					target_state = TARGET_NONE
+					playsound(master, 'sound/AI/airlockdone.ogg', 100, 0) //VOREStation Add - TTS
 
 
 	memory["processing"] = (state != target_state)
