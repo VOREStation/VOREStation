@@ -887,7 +887,7 @@
 
 	if(href_list["applyprefs"])
 		var/alert = alert("Are you sure you want to reload character slot preferences? This will remove your current vore organs and eject their contents.","Confirmation","Reload","Cancel")
-		if(!alert == "Reload")
+		if(alert != "Reload")
 			return FALSE
 		if(!user.apply_vore_prefs())
 			alert("ERROR: Virgo-specific preferences failed to apply!","Error")
