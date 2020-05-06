@@ -928,7 +928,7 @@
 		return 1
 
 	if(href_list["nightshift"])
-		if(last_nightshift_switch > world.time + 10 SECONDS) // don't spam...
+		if(last_nightshift_switch > world.time - 10 SECONDS) // don't spam...
 			to_chat(usr, "<span class='warning'>[src]'s night lighting circuit breaker is still cycling!</span>")
 			return 0
 		last_nightshift_switch = world.time
