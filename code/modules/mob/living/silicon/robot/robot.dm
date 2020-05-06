@@ -262,7 +262,8 @@
 	//VOREStatation Edit Start: shell restrictions
 	if(shell)
 		modules.Add(shell_module_types)
-	if(istype(get_area(src),/area/talon))
+	var/area/A = get_area(src)
+	if(findtext(A.type, "/area/talon"))
 		modules+="Talon K9 Medical Module"
 		modules+="Talon K9 Engineering Module"
 		modules+="Talon K9 Multipurpose Module"
