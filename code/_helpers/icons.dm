@@ -107,7 +107,7 @@ AngleToHue(hue)
     Converts an angle to a hue in the valid range.
 RotateHue(hsv, angle)
     Takes an HSV or HSVA value and rotates the hue forward through red, green, and blue by an angle from 0 to 360.
-    (Rotating red by 60° produces yellow.) The result is another HSV or HSVA color with the same saturation and value
+    (Rotating red by 60ï¿½ produces yellow.) The result is another HSV or HSVA color with the same saturation and value
     as the original, but a different hue.
 GrayScale(rgb)
     Takes an RGB or RGBA color and converts it to grayscale. Returns an RGB or RGBA string.
@@ -898,6 +898,25 @@ proc/ColorTone(rgb, tone)
 		var/image/I = O
 		composite.Blend(icon(I.icon, I.icon_state, I.dir, 1), ICON_OVERLAY)
 	return composite
+
+GLOBAL_LIST_EMPTY(icon_state_lists)
+/proc/cached_icon_states(var/icon/I)
+	if(!I)
+		return list()
+	var/key = "\ref[I]"
+	var/returnlist = GLOB.icon_state_lists[key]
+	if(!returnlist)
+		returnlist = icon_state_lists(I)
+		GLOB.icon_state_lists[key] = returnlist
+		if((returnlist?.len == 1) && (returnlist[1] == "")) //It's some icon_state that was generated in-round probably, very likely to be reused \ref soon.
+			addtimer(CALLBACK(GLOBAL_PROC, .proc/expire_states_cache, key), 600, TIMER_UNIQUE)
+	return returnlist
+
+/proc/expire_states_cache(var/key)
+	if(GLOB.icon_state_lists[key])
+		GLOB.icon_state_lists -= key
+		return TRUE
+	return FALSE
 
 proc/adjust_brightness(var/color, var/value)
 	if (!color) return "#FFFFFF"
