@@ -769,7 +769,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	var/obj/item/clothing/suit/suit = wear_suit
 	var/suit_sprite
 
-	if(suit.index)
+	if(istype(suit) && suit.index)
 		suit_sprite = "[INV_SUIT_DEF_ICON]_[suit.index].dmi"
 	else if(istype(suit, /obj/item/clothing) && !isnull(suit.update_icon_define))
 		suit_sprite = suit.update_icon_define

@@ -142,9 +142,14 @@ Proc for attack log creation, because really why not
 	else
 		return pick("chest", "groin")
 
-/proc/do_mob(mob/user , mob/target, time = 30, target_zone = 0, uninterruptible = FALSE, progress = TRUE, ignore_movement = FALSE)
+/proc/do_mob(mob/user , mob/target, time = 30, target_zone = 0, uninterruptible = FALSE, progress = TRUE, ignore_movement = FALSE, exclusive = FALSE)
 	if(!user || !target)
 		return 0
+	if(!time)
+		return 1 //Done!
+	if(user.status_flags & DOING_TASK)
+		to_chat(user, "<span class='warning'>You're in the middle of doing something else already.</span>")
+		return 0 //Performing an exclusive do_after or do_mob already
 	var/user_loc = user.loc
 	var/target_loc = target.loc
 
@@ -155,6 +160,10 @@ Proc for attack log creation, because really why not
 
 	var/endtime = world.time+time
 	var/starttime = world.time
+
+	if(exclusive)
+		user.status_flags |= DOING_TASK
+
 	. = TRUE
 	while (world.time < endtime)
 		stoplag(1)
@@ -186,14 +195,20 @@ Proc for attack log creation, because really why not
 			. = FALSE
 			break
 
+	if(exclusive)
+		user.status_flags &= ~DOING_TASK
+
 	if (progbar)
 		qdel(progbar)
 
-/proc/do_after(mob/user, delay, atom/target = null, needhand = TRUE, progress = TRUE, incapacitation_flags = INCAPACITATION_DEFAULT, ignore_movement = FALSE, max_distance = null)
+/proc/do_after(mob/user, delay, atom/target = null, needhand = TRUE, progress = TRUE, incapacitation_flags = INCAPACITATION_DEFAULT, ignore_movement = FALSE, max_distance = null, exclusive = FALSE)
 	if(!user)
 		return 0
 	if(!delay)
 		return 1 //Okay. Done.
+	if(user.status_flags & DOING_TASK)
+		to_chat(user, "<span class='warning'>You're in the middle of doing something else already.</span>")
+		return 0 //Performing an exclusive do_after or do_mob already
 	var/atom/target_loc = null
 	if(target)
 		target_loc = target.loc
@@ -214,6 +229,10 @@ Proc for attack log creation, because really why not
 
 	var/endtime = world.time + delay
 	var/starttime = world.time
+
+	if(exclusive)
+		user.status_flags |= DOING_TASK
+
 	. = 1
 	while (world.time < endtime)
 		stoplag(1)
@@ -249,6 +268,9 @@ Proc for attack log creation, because really why not
 		if(max_distance && target && get_dist(user, target) > max_distance)
 			. = FALSE
 			break
+
+	if(exclusive)
+		user.status_flags &= ~DOING_TASK
 
 	if(progbar)
 		qdel(progbar)
