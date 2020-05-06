@@ -47,6 +47,9 @@
 		else
 			. += "<span class='notice'>There is a thick layer of silicate covering it.</span>"
 
+/obj/structure/window/examine_icon()
+	return icon(icon=initial(icon),icon_state=initial(icon_state))
+
 /obj/structure/window/take_damage(var/damage = 0,  var/sound_effect = 1)
 	var/initialhealth = health
 
