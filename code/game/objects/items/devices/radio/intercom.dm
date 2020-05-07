@@ -7,7 +7,7 @@
 	layer = ABOVE_TURF_LAYER
 	anchored = 1
 	w_class = ITEMSIZE_LARGE
-	canhear_range = 2
+	canhear_range = 7 //VOREStation Edit
 	flags = NOBLOODY
 	var/circuit = /obj/item/weapon/circuitboard/intercom
 	var/number = 0
