@@ -37,6 +37,9 @@
 			if(isliving(usr))
 				var/mob/living/carbon/C = usr
 				if(!C.get_active_hand())
+					if(C.pulling)
+						C.stop_pulling()
+						return
 					to_chat(usr, "<font color='red'>You have nothing to drop in your hand.</font>")
 					return
 				drop_item()
@@ -246,25 +249,8 @@
 
 	// We are now going to move
 	moving = 1
-	var/total_delay = 0
+	var/total_delay = my_mob.movement_delay(n, direct)
 	var/pre_move_loc = loc
-
-	// Start tally'ing when we can next move
-	// Grabs slow you down
-	if(locate(/obj/item/weapon/grab) in my_mob)
-		total_delay += 7
-	
-	// Movespeed delay based on movement mode
-	switch(my_mob.m_intent)
-		if("run")
-			if(my_mob.drowsyness > 0)
-				total_delay += 6
-			total_delay += config.run_speed
-		if("walk")
-			total_delay += config.walk_speed
-	
-	// A billion other things can slow you down, ask the mob
-	total_delay += my_mob.movement_delay(n, direct)
 
 	// Confused direction randomization
 	if(my_mob.confused)
@@ -278,7 +264,7 @@
 					direct = turn(direct, pick(90, -90))
 					n = get_step(my_mob, direct)
 	
-	total_delay = TICKS2DS(-round(-(DS2TICKS(total_delay)))) //Rounded to the next tick in equivalent ds
+	total_delay = DS2NEARESTTICK(total_delay) //Rounded to the next tick in equivalent ds
 	my_mob.setMoveCooldown(total_delay)
 	. = my_mob.SelfMove(n, direct, total_delay)
 
