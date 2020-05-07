@@ -257,6 +257,9 @@
 	if(Adjacent(user))
 		user.start_pulling(src)
 
+/turf/CtrlClick(var/mob/user)
+	user.stop_pulling()
+
 /*
 	Alt click
 	Unused except for AI
