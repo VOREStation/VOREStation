@@ -212,9 +212,7 @@
 	return ..()
 */
 /mob/living/simple_mob/movement_delay()
-	. = ..()
-
-	. += movement_cooldown
+	. = movement_cooldown
 
 	if(force_max_speed)
 		return -3
@@ -242,6 +240,8 @@
 		. *= 1.5
 
 	 . += config.animal_delay
+
+	 . += ..()
 
 
 /mob/living/simple_mob/Stat()
