@@ -7,7 +7,7 @@
 	layer = ABOVE_TURF_LAYER
 	anchored = 1
 	w_class = ITEMSIZE_LARGE
-	canhear_range = 2
+	canhear_range = 7 //VOREStation Edit
 	flags = NOBLOODY
 	var/circuit = /obj/item/weapon/circuitboard/intercom
 	var/number = 0
@@ -189,7 +189,19 @@
 				icon_state = "intercom_open"
 			else
 				icon_state = initial(icon_state)
+//VOREStation Add Start
+/obj/item/device/radio/intercom/AICtrlClick(var/mob/user)
+	ToggleBroadcast()
+	to_chat(user, "<span class='notice'>\The [src]'s microphone is now <b>[broadcasting ? "enabled" : "disabled"]</b>.</span>")
 
+/obj/item/device/radio/intercom/AIAltClick(var/mob/user)
+	if(frequency == AI_FREQ)
+		set_frequency(initial(frequency))
+		to_chat(user, "<span class='notice'>\The [src]'s frequency is now set to <font color='green'><b>Default</b></font>.</span>")
+	else
+		set_frequency(AI_FREQ)
+		to_chat(user, "<span class='notice'>\The [src]'s frequency is now set to <font color='pink'><b>AI Private</b></font>.</span>")
+//VOREStation Add End
 /obj/item/device/radio/intercom/locked
     var/locked_frequency
 
