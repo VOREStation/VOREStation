@@ -39,6 +39,10 @@
 #define POWERCHAN_ON       2	// Power channel is on until there is no power
 #define POWERCHAN_ON_AUTO  3	// Power channel is on until power drops below a threshold
 
+#define NIGHTSHIFT_AUTO 1
+#define NIGHTSHIFT_NEVER 2
+#define NIGHTSHIFT_ALWAYS 3
+
 //NOTE: STUFF STOLEN FROM AIRLOCK.DM thx
 
 /obj/machinery/power/apc/critical
@@ -121,6 +125,7 @@
 	var/alarms_hidden = FALSE //If power alarms from this APC are visible on consoles
 	
 	var/nightshift_lights = FALSE
+	var/nightshift_setting = NIGHTSHIFT_AUTO
 	var/last_nightshift_switch = 0
 
 /obj/machinery/power/apc/updateDialog()
@@ -802,6 +807,7 @@
 		"siliconUser" = issilicon(user) || isobserver(user), //I add observer here so admins can have more control, even if it makes 'siliconUser' seem inaccurate.
 		"emergencyLights" = !emergency_lights,
 		"nightshiftLights" = nightshift_lights,
+		"nightshiftSetting" = nightshift_setting,
 
 		"powerChannels" = list(
 			list(
@@ -922,11 +928,12 @@
 		return 1
 
 	if(href_list["nightshift"])
-		if(last_nightshift_switch > world.time + 10 SECONDS) // don't spam...
+		if(last_nightshift_switch > world.time - 10 SECONDS) // don't spam...
 			to_chat(usr, "<span class='warning'>[src]'s night lighting circuit breaker is still cycling!</span>")
 			return 0
 		last_nightshift_switch = world.time
-		set_nightshift(!nightshift_lights)
+		nightshift_setting = text2num(href_list["nightshift"])
+		update_nightshift()
 		return 1
 
 	if(locked && !issilicon(usr) )
@@ -1383,8 +1390,19 @@ obj/machinery/power/apc/proc/autoset(var/cur_state, var/on)
 	if(automated && istype(area, /area/shuttle))
 		return
 	nightshift_lights = on
+	update_nightshift()
+
+/obj/machinery/power/apc/proc/update_nightshift()
+	var/new_state = nightshift_lights
+
+	switch(nightshift_setting)
+		if(NIGHTSHIFT_NEVER)
+			new_state = FALSE
+		if(NIGHTSHIFT_ALWAYS)
+			new_state = TRUE
+
 	for(var/obj/machinery/light/L in area)
-		L.nightshift_mode(on)
+		L.nightshift_mode(new_state)
 		CHECK_TICK
 
 #undef APC_UPDATE_ICON_COOLDOWN
