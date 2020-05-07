@@ -17,11 +17,14 @@ var/global/list/special_roles = list( //keep synced with the defines BE_* in set
 	"mutineer" = 1,										// 13
 	"loyalist" = 1,										// 14
 	"pAI candidate" = 1,								// 15
+<<<<<<< HEAD
 	//VOREStation Add
 	"lost drone" = 1,									// 16
 	"maint pred" = 1,									// 17
 	"morph" = 1,										// 18
 	//VOREStation Add End
+=======
+>>>>>>> c1a6ac8... Merge pull request #7092 from VOREStation/pol-roleprefs
 )
 
 /datum/category_item/player_setup_item/antagonism/candidacy
