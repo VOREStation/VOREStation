@@ -484,6 +484,8 @@
 	name = "tritail kitsune ears (Rosey)"
 	desc = ""
 	icon_state = "rosey"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 	ckeys_allowed = list("joey4298")
 
 /datum/sprite_accessory/ears/aronai
@@ -1030,6 +1032,8 @@
 	name = "pentatail kitsune tails (Rosey)" //I predict seven tails next. ~CK
 	desc = ""
 	icon_state = "rosey_five"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 	ckeys_allowed = list("joey4298")
 
 /datum/sprite_accessory/tail/scree
