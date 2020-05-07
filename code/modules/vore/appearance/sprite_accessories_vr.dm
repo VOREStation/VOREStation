@@ -484,6 +484,8 @@
 	name = "tritail kitsune ears (Rosey)"
 	desc = ""
 	icon_state = "rosey"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 	ckeys_allowed = list("joey4298")
 
 /datum/sprite_accessory/ears/aronai
