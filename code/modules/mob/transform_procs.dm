@@ -64,10 +64,34 @@
 	invisibility = 101
 	return ..()
 
-/mob/proc/AIize(move=1)
+/mob/proc/AIize(var/move = TRUE)
 	if(client)
 		src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // stop the jams for AIs
-	var/mob/living/silicon/ai/O = new (loc, using_map.default_law_type,,1)//No MMI but safety is in effect.
+	
+	var/newloc = loc
+	if(move)
+		var/obj/loc_landmark
+		for(var/obj/effect/landmark/start/sloc in landmarks_list)
+			if (sloc.name != "AI")
+				continue
+			if ((locate(/mob/living) in sloc.loc) || (locate(/obj/structure/AIcore) in sloc.loc))
+				continue
+			loc_landmark = sloc
+		if (!loc_landmark)
+			for(var/obj/effect/landmark/tripai in landmarks_list)
+				if (tripai.name == "tripai")
+					if((locate(/mob/living) in tripai.loc) || (locate(/obj/structure/AIcore) in tripai.loc))
+						continue
+					loc_landmark = tripai
+		if (!loc_landmark)
+			to_chat(src, "Oh god sorry we can't find an unoccupied AI spawn location, so we're spawning you on top of someone.")
+			for(var/obj/effect/landmark/start/sloc in landmarks_list)
+				if (sloc.name == "AI")
+					loc_landmark = sloc
+
+		newloc = loc_landmark.loc
+
+	var/mob/living/silicon/ai/O = new (newloc, using_map.default_law_type,,1)//No MMI but safety is in effect.
 	O.invisibility = 0
 	O.aiRestorePowerRoutine = 0
 
@@ -100,28 +124,6 @@
 			O.add_language(LANGUAGE_ROOTGLOBAL, 1)
 		if(LANGUAGE_ROOTLOCAL in B.alternate_languages)
 			O.add_language(LANGUAGE_ROOTLOCAL, 1)
-
-	if(move)
-		var/obj/loc_landmark
-		for(var/obj/effect/landmark/start/sloc in landmarks_list)
-			if (sloc.name != "AI")
-				continue
-			if ((locate(/mob/living) in sloc.loc) || (locate(/obj/structure/AIcore) in sloc.loc))
-				continue
-			loc_landmark = sloc
-		if (!loc_landmark)
-			for(var/obj/effect/landmark/tripai in landmarks_list)
-				if (tripai.name == "tripai")
-					if((locate(/mob/living) in tripai.loc) || (locate(/obj/structure/AIcore) in tripai.loc))
-						continue
-					loc_landmark = tripai
-		if (!loc_landmark)
-			to_chat(O, "Oh god sorry we can't find an unoccupied AI spawn location, so we're spawning you on top of someone.")
-			for(var/obj/effect/landmark/start/sloc in landmarks_list)
-				if (sloc.name == "AI")
-					loc_landmark = sloc
-
-		O.loc = loc_landmark.loc
 
 	O.on_mob_init()
 

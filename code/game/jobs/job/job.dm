@@ -31,6 +31,7 @@
 	var/outfit_type						  // What outfit datum does this job use in its default title?
 
 	var/offmap_spawn = FALSE			  // Do we require weird and special spawning and datacore handling?
+	var/mob_type = JOB_CARBON 		      // Bitflags representing mob type this job spawns
 
 	// Description of the job's role and minimum responsibilities.
 	var/job_description = "This Job doesn't have a description! Please report it!"

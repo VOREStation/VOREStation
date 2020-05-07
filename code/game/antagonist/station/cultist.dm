@@ -11,7 +11,8 @@ var/datum/antagonist/cultist/cult
 	role_text = "Cultist"
 	role_text_plural = "Cultists"
 	bantype = "cultist"
-	restricted_jobs = list("Chaplain","AI", "Cyborg")
+	restricted_jobs = list("Chaplain")
+	avoid_silicons = TRUE
 	protected_jobs = list("Security Officer", "Warden", "Detective", "Internal Affairs Agent", "Head of Security", "Colony Director")
 	roundstart_restricted = list("Internal Affairs Agent", "Head of Security", "Colony Director")
 	role_type = BE_CULTIST
