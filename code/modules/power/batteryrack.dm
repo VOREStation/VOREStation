@@ -40,7 +40,6 @@
 	component_parts += new /obj/item/weapon/stock_parts/capacitor/
 	component_parts += new /obj/item/weapon/stock_parts/matter_bin/				// Matter Bin: Max. amount of cells.
 
-
 /obj/machinery/power/smes/batteryrack/RefreshParts()
 	var/capacitor_efficiency = 0
 	var/maxcells = 0

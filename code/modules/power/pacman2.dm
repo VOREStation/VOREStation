@@ -6,8 +6,8 @@
 	name = "Pacman II"
 	desc = "P.A.C.M.A.N. type II portable generator. Uses liquid phoron as a fuel source."
 	power_gen = 4500
+	circuit = /obj/item/weapon/circuitboard/pacman2
 	var/obj/item/weapon/tank/phoron/P = null
-	var/board_path = "/obj/item/weapon/circuitboard/pacman2"
 	var/emagged = 0
 	var/heat = 0
 /*
@@ -30,16 +30,9 @@
 		P.air_contents.phoron -= 0.01
 		return
 
-	New()
-		..()
-		component_parts = list()
-		component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-		component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)
-		component_parts += new /obj/item/stack/cable_coil(src)
-		component_parts += new /obj/item/stack/cable_coil(src)
-		component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
-		component_parts += new board_path(src)
-		RefreshParts()
+	Initialize()
+		. = ..()
+		default_apply_parts()
 
 	RefreshParts()
 		var/temp_rating = 0

@@ -29,18 +29,11 @@
 	var/species = "Human"
 	var/sync_message = ""
 
-/obj/machinery/pros_fabricator/New()
-	..()
-	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)
-	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)
-	RefreshParts()
-
+/obj/machinery/pros_fabricator/Initialize()
+	. = ..()
+	default_apply_parts()
+	
 	files = new /datum/research(src) //Setup the research data holder.
-	return
 
 /obj/machinery/pros_fabricator/Initialize()
 	. = ..()

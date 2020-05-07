@@ -29,15 +29,10 @@
 
 	var/filtertext
 
-/obj/machinery/autolathe/New()
-	..()
+/obj/machinery/autolathe/Initialize()
+	. = ..()
 	wires = new(src)
-	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)
+	default_apply_parts()
 	RefreshParts()
 
 /obj/machinery/autolathe/Destroy()
