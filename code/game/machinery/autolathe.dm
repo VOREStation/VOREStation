@@ -27,15 +27,10 @@
 
 	var/datum/wires/autolathe/wires = null
 
-<<<<<<< HEAD
 	var/filtertext
 
-/obj/machinery/autolathe/New()
-	..()
-=======
 /obj/machinery/autolathe/Initialize()
 	. = ..()
->>>>>>> fcbcb0a... Merge pull request #7055 from VOREStation/pol-defaultparts
 	wires = new(src)
 	default_apply_parts()
 	RefreshParts()
