@@ -391,10 +391,10 @@
 	character = job_master.EquipRank(character, rank, 1)					//equips the human
 	UpdateFactionList(character)
 
-	// AIs don't need a spawnpoint, they must spawn at an empty core
-	if(character.mind.assigned_role == "AI")
+	var/datum/job/J = SSjob.get_job(rank)
 
-		character = character.AIize(move=0) // AIize the character, but don't move them yet
+	// AIs don't need a spawnpoint, they must spawn at an empty core
+	if(J.mob_type & JOB_SILICON_AI)
 
 		// IsJobAvailable for AI checks that there is an empty core available in this list
 		var/obj/structure/AIcore/deactivated/C = empty_playable_ai_cores[1]
@@ -402,11 +402,14 @@
 
 		character.loc = C.loc
 
+		// AIize the character, but don't move them yet
+		character = character.AIize(move = FALSE) // Dupe of code in /datum/controller/subsystem/ticker/proc/create_characters() for non-latespawn, unify?
+
 		AnnounceCyborg(character, rank, "has been transferred to the empty core in \the [character.loc.loc]")
 		ticker.mode.latespawn(character)
 
-		qdel(C)
-		qdel(src)
+		qdel(C) //Deletes empty core (really?)
+		qdel(src) //Deletes new_player
 		return
 
 	// Equip our custom items only AFTER deploying to spawn points eh?
@@ -420,18 +423,15 @@
 		character.buckled.set_dir(character.dir)
 
 	ticker.mode.latespawn(character)
-
-	if(character.mind.assigned_role != "Cyborg")
+	
+	if(J.mob_type & JOB_SILICON)
+		AnnounceCyborg(character, rank, join_message, announce_channel, character.z)
+	else
+		AnnounceArrival(character, rank, join_message, announce_channel, character.z)
 		data_core.manifest_inject(character)
 		ticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
-
-		//Grab some data from the character prefs for use in random news procs.
-
-		AnnounceArrival(character, rank, join_message, announce_channel, character.z)
-	else
-		AnnounceCyborg(character, rank, join_message, announce_channel, character.z)
-
-	qdel(src)
+		
+	qdel(src) // Delete new_player mob
 
 /mob/new_player/proc/AnnounceCyborg(var/mob/living/character, var/rank, var/join_message, var/channel, var/zlevel)
 	if (ticker.current_state == GAME_STATE_PLAYING)

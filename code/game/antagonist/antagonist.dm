@@ -4,6 +4,7 @@
 	var/list/restricted_jobs =     list()   // Jobs that cannot be this antagonist (depending on config)
 	var/list/protected_jobs =      list()   // As above.
 	var/list/roundstart_restricted =      list()	//Jobs that can be this antag, but not at roundstart
+	var/avoid_silicons = FALSE				// If we won't hand this antag role to silicons (AI, borg, etc)
 
 	// Strings.
 	var/welcome_text = "Cry havoc and let slip the dogs of war!"

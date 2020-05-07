@@ -373,54 +373,64 @@ var/global/datum/controller/occupations/job_master
 			//Equip custom gear loadout.
 			var/list/custom_equip_slots = list() //If more than one item takes the same slot, all after the first one spawn in storage.
 			var/list/custom_equip_leftovers = list()
-			if(H.client.prefs.gear && H.client.prefs.gear.len && job.title != "Cyborg" && job.title != "AI")
+			if(H.client.prefs.gear && H.client.prefs.gear.len && !(job.mob_type & JOB_SILICON))
 				for(var/thing in H.client.prefs.gear)
 					var/datum/gear/G = gear_datums[thing]
-					if(G)
-						var/permitted
-						if(G.allowed_roles)
-							for(var/job_name in G.allowed_roles)
-								if(job.title == job_name)
-									permitted = 1
+					if(!G) //Not a real gear datum (maybe removed, as this is loaded from their savefile)
+						continue
+					
+					var/permitted
+					// Check if it is restricted to certain roles
+					if(G.allowed_roles)
+						for(var/job_name in G.allowed_roles)
+							if(job.title == job_name)
+								permitted = 1
+					else
+						permitted = 1
+
+					// Check if they're whitelisted for this gear (in alien whitelist? seriously?)
+					if(G.whitelisted && !is_alien_whitelisted(H, GLOB.all_species[G.whitelisted]))
+						permitted = 0
+
+					// If they aren't, tell them
+					if(!permitted)
+						to_chat(H, "<span class='warning'>Your current species, job or whitelist status does not permit you to spawn with [thing]!</span>")
+						continue
+
+					// Implants get special treatment
+					if(G.slot == "implant")
+						var/obj/item/weapon/implant/I = G.spawn_item(H)
+						I.invisibility = 100
+						I.implant_loadout(H)
+						continue
+
+					// Try desperately (and sorta poorly) to equip the item
+					if(G.slot && !(G.slot in custom_equip_slots))
+						var/metadata = H.client.prefs.gear[G.display_name]
+						if(G.slot == slot_wear_mask || G.slot == slot_wear_suit || G.slot == slot_head)
+							custom_equip_leftovers += thing
+						else if(H.equip_to_slot_or_del(G.spawn_item(H, metadata), G.slot))
+							to_chat(H, "<span class='notice'>Equipping you with \the [thing]!</span>")
+							custom_equip_slots.Add(G.slot)
 						else
-							permitted = 1
+							custom_equip_leftovers.Add(thing)
+					else
+						spawn_in_storage += thing
 
-						if(G.whitelisted && !is_alien_whitelisted(H, GLOB.all_species[G.whitelisted]))
-
-						//if(G.whitelisted && (G.whitelisted != H.species.name || !is_alien_whitelisted(H, G.whitelisted)))
-							permitted = 0
-
-						if(!permitted)
-							to_chat(H, "<span class='warning'>Your current species, job or whitelist status does not permit you to spawn with [thing]!</span>")
-							continue
-
-						if(G.slot == "implant")
-							var/obj/item/weapon/implant/I = G.spawn_item(H)
-							I.invisibility = 100
-							I.implant_loadout(H)
-							continue
-
-						if(G.slot && !(G.slot in custom_equip_slots))
-							// This is a miserable way to fix the loadout overwrite bug, but the alternative requires
-							// adding an arg to a bunch of different procs. Will look into it after this merge. ~ Z
-							var/metadata = H.client.prefs.gear[G.display_name]
-							if(G.slot == slot_wear_mask || G.slot == slot_wear_suit || G.slot == slot_head)
-								custom_equip_leftovers += thing
-							else if(H.equip_to_slot_or_del(G.spawn_item(H, metadata), G.slot))
-								to_chat(H, "<span class='notice'>Equipping you with \the [thing]!</span>")
-								custom_equip_slots.Add(G.slot)
-							else
-								custom_equip_leftovers.Add(thing)
-						else
-							spawn_in_storage += thing
-			//Equip job items.
+			// Set up their account
 			job.setup_account(H)
+			
+			// Equip job items.
 			job.equip(H, H.mind ? H.mind.role_alt_title : "")
+			
+			// Stick their fingerprints on literally everything
 			job.apply_fingerprints(H)
-			if(job.title != "Cyborg" && job.title != "AI")
+			
+			// Only non-silicons get post-job-equip equipment
+			if(!(job.mob_type & JOB_SILICON))
 				H.equip_post_job()
 
-			//If some custom items could not be equipped before, try again now.
+			// If some custom items could not be equipped before, try again now.
 			for(var/thing in custom_equip_leftovers)
 				var/datum/gear/G = gear_datums[thing]
 				if(G.slot in custom_equip_slots)
@@ -456,14 +466,16 @@ var/global/datum/controller/occupations/job_master
 			H.mind.assigned_role = rank
 			alt_title = H.mind.role_alt_title
 
-			switch(rank)
-				if("Cyborg")
-					return H.Robotize()
-				if("AI")
-					return H
-				if("Colony Director")
-					var/sound/announce_sound = (ticker.current_state <= GAME_STATE_SETTING_UP) ? null : sound('sound/misc/boatswain.ogg', volume=20)
-					captain_announcement.Announce("All hands, [alt_title ? alt_title : "Colony Director"] [H.real_name] on deck!", new_sound = announce_sound, zlevel = H.z)
+			// If we're a silicon, we may be done at this point
+			if(job.mob_type & JOB_SILICON_ROBOT)
+				return H.Robotize()
+			if(job.mob_type & JOB_SILICON_AI)
+				return H
+			
+			// TWEET PEEP
+			if(rank == "Colony Director")
+				var/sound/announce_sound = (ticker.current_state <= GAME_STATE_SETTING_UP) ? null : sound('sound/misc/boatswain.ogg', volume=20)
+				captain_announcement.Announce("All hands, [alt_title ? alt_title : "Colony Director"] [H.real_name] on deck!", new_sound = announce_sound, zlevel = H.z)
 
 			//Deferred item spawning.
 			if(spawn_in_storage && spawn_in_storage.len)
@@ -573,7 +585,7 @@ var/global/datum/controller/occupations/job_master
 				if(!J)	continue
 				J.total_positions = text2num(value)
 				J.spawn_positions = text2num(value)
-				if(name == "AI" || name == "Cyborg")//I dont like this here but it will do for now
+				if(J.mob_type & JOB_SILICON)
 					J.total_positions = 0
 
 		return 1
