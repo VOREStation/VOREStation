@@ -2,22 +2,20 @@
 
 /mob/living/carbon/human/movement_delay(oldloc, direct)
 
-	. = ..()
+	. = 0
+
+	if (istype(loc, /turf/space))
+		return ..() - 1
 
 	if(species.slowdown)
-		. = species.slowdown
-
-	if (istype(loc, /turf/space)) return -1 // It's hard to be slowed down in space by... anything
-
-	if(embedded_flag)
-		handle_embedded_objects() //Moving with objects stuck in you can cause bad times.
+		. += species.slowdown
 
 	if(force_max_speed)
-		return HUMAN_LOWEST_SLOWDOWN
+		return ..() + HUMAN_LOWEST_SLOWDOWN
 
 	for(var/datum/modifier/M in modifiers)
 		if(!isnull(M.haste) && M.haste == TRUE)
-			return HUMAN_LOWEST_SLOWDOWN // Returning -1 will actually result in a slowdown for Teshari.
+			return ..() + HUMAN_LOWEST_SLOWDOWN // Returning -1 will actually result in a slowdown for Teshari.
 		if(!isnull(M.slowdown))
 			. += M.slowdown
 
@@ -114,6 +112,12 @@
 		. -= chem_effects[CE_SPEEDBOOST]	// give 'em a buff on top.
 
 	. = max(HUMAN_LOWEST_SLOWDOWN, . + config.human_delay)	// Minimum return should be the same as force_max_speed
+	. += ..()
+
+/mob/living/carbon/human/Moved()
+	. = ..()
+	if(embedded_flag)
+		handle_embedded_objects() //Moving with objects stuck in you can cause bad times.
 
 // This calculates the amount of slowdown to receive from items worn. This does NOT include species modifiers.
 // It is in a seperate place to avoid an infinite loop situation with dragging mobs dragging each other.
