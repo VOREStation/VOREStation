@@ -246,25 +246,8 @@
 
 	// We are now going to move
 	moving = 1
-	var/total_delay = 0
+	var/total_delay = my_mob.movement_delay(n, direct)
 	var/pre_move_loc = loc
-
-	// Start tally'ing when we can next move
-	// Grabs slow you down
-	if(locate(/obj/item/weapon/grab) in my_mob)
-		total_delay += 7
-	
-	// Movespeed delay based on movement mode
-	switch(my_mob.m_intent)
-		if("run")
-			if(my_mob.drowsyness > 0)
-				total_delay += 6
-			total_delay += config.run_speed
-		if("walk")
-			total_delay += config.walk_speed
-	
-	// A billion other things can slow you down, ask the mob
-	total_delay += my_mob.movement_delay(n, direct)
 
 	// Confused direction randomization
 	if(my_mob.confused)
