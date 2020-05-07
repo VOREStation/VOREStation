@@ -15,14 +15,14 @@
 
  //No longer needed, but I'll leave it here incase we plan to re-use it.
 /mob/living/silicon/robot/movement_delay()
-	var/tally = 0 //Incase I need to add stuff other than "speed" later
+	. = ..()
 
-	tally = speed
+	. += speed
 
 	if(module_active && istype(module_active,/obj/item/borg/combat/mobility))
-		tally-=2 // VOREStation Edit
+		. -= 2 // VOREStation Edit
 
-	return tally+config.robot_delay
+	. += config.robot_delay
 
 // NEW: Use power while moving.
 /mob/living/silicon/robot/SelfMove(turf/n, direct)

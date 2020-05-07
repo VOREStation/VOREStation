@@ -46,6 +46,9 @@
 	dismantle_wall(null,null,1)
 	..()
 
+/turf/simulated/wall/examine_icon()
+	return icon(icon=initial(icon), icon_state=initial(icon_state))
+
 /turf/simulated/wall/process()
 	// Calling parent will kill processing
 	if(!radiate())

@@ -897,7 +897,7 @@ var/global/list/light_type_cache = list()
 	var/brightness_color = LIGHT_COLOR_INCANDESCENT_TUBE
 
 	var/nightshift_range = 8
-	var/nightshift_power = 0.7
+	var/nightshift_power = 1
 	var/nightshift_color = LIGHT_COLOR_NIGHTSHIFT
 
 /obj/item/weapon/light/tube
@@ -917,7 +917,7 @@ var/global/list/light_type_cache = list()
 	brightness_power = 9
 
 	nightshift_range = 10
-	nightshift_power = 0.9
+	nightshift_power = 1.5
 
 /obj/item/weapon/light/bulb
 	name = "light bulb"
@@ -931,7 +931,7 @@ var/global/list/light_type_cache = list()
 	brightness_color = LIGHT_COLOR_INCANDESCENT_BULB
 
 	nightshift_range = 3
-	nightshift_power = 0.35
+	nightshift_power = 0.5
 
 /obj/item/weapon/light/throw_impact(atom/hit_atom)
 	..()

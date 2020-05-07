@@ -2049,7 +2049,9 @@
 /obj/effect/floor_decal/borderfloor/corner2{
 	dir = 1
 	},
-/obj/machinery/computer/ship/helm,
+/obj/machinery/computer/ship/helm{
+	req_one_access = list(301)
+	},
 /turf/simulated/floor/tiled/steel,
 /area/talon/decktwo/tech)
 "dD" = (

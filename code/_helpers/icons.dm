@@ -107,7 +107,7 @@ AngleToHue(hue)
     Converts an angle to a hue in the valid range.
 RotateHue(hsv, angle)
     Takes an HSV or HSVA value and rotates the hue forward through red, green, and blue by an angle from 0 to 360.
-    (Rotating red by 60° produces yellow.) The result is another HSV or HSVA color with the same saturation and value
+    (Rotating red by 60deg produces yellow.) The result is another HSV or HSVA color with the same saturation and value
     as the original, but a different hue.
 GrayScale(rgb)
     Takes an RGB or RGBA color and converts it to grayscale. Returns an RGB or RGBA string.
@@ -679,7 +679,7 @@ proc/ColorTone(rgb, tone)
 	var/curstate = A.icon_state || defstate
 
 	if(!((noIcon = (!curicon))))
-		var/curstates = icon_states(curicon)
+		var/curstates = cached_icon_states(curicon)
 		if(!(curstate in curstates))
 			if("" in curstates)
 				curstate = ""
@@ -689,19 +689,16 @@ proc/ColorTone(rgb, tone)
 	var/curdir
 	var/base_icon_dir	//We'll use this to get the icon state to display if not null BUT NOT pass it to overlays as the dir we have
 
-	//These should use the parent's direction (most likely)
-	if(!A.dir || A.dir == SOUTH)
-		curdir = defdir
-	else
-		curdir = A.dir
+	// Use the requested dir or the atom's current dir
+	curdir = defdir || A.dir
 
-	//Try to remove/optimize this section ASAP, CPU hog.
+	//Try to remove/optimize this section ASAP, CPU hog. //Slightly mitigated by implementing caching using cached_icon_states
 	//Determines if there's directionals.
 	if(!noIcon && curdir != SOUTH)
 		var/exist = FALSE
 		var/static/list/checkdirs = list(NORTH, EAST, WEST)
 		for(var/i in checkdirs)		//Not using GLOB for a reason.
-			if(length(icon_states(icon(curicon, curstate, i))))
+			if(length(cached_icon_states(icon(curicon, curstate, i))))
 				exist = TRUE
 				break
 		if(!exist)
@@ -739,8 +736,8 @@ proc/ColorTone(rgb, tone)
 					continue
 				var/current_layer = current.layer
 				if(current_layer < 0)
-					if(current_layer <= -1000)
-						return flat
+					//if(current_layer <= -1000)
+						//return flat
 					current_layer = process_set + A.layer + current_layer / 1000
 
 				for(var/p in 1 to layers.len)
@@ -768,7 +765,7 @@ proc/ColorTone(rgb, tone)
 				curblend = BLEND_OVERLAY
 				add = icon(I.icon, I.icon_state, base_icon_dir)
 			else // 'I' is an appearance object.
-				add = getFlatIcon(image(I), curdir, curicon, curstate, curblend, FALSE, no_anim)
+				add = getFlatIcon(image(I), I.dir||curdir, curicon, curstate, curblend, FALSE, no_anim)
 			if(!add)
 				continue
 			// Find the new dimensions of the flat icon to fit the added overlay
@@ -898,6 +895,37 @@ proc/ColorTone(rgb, tone)
 		var/image/I = O
 		composite.Blend(icon(I.icon, I.icon_state, I.dir, 1), ICON_OVERLAY)
 	return composite
+
+GLOBAL_LIST_EMPTY(icon_state_lists)
+/proc/cached_icon_states(var/icon/I)
+	if(!I)
+		return list()
+	var/key = I
+	var/returnlist = GLOB.icon_state_lists[key]
+	if(!returnlist)
+		returnlist = icon_states(I)
+		if(isfile(I)) // It's something that will stick around
+			GLOB.icon_state_lists[key] = returnlist
+	return returnlist
+
+/proc/expire_states_cache(var/key)
+	if(GLOB.icon_state_lists[key])
+		GLOB.icon_state_lists -= key
+		return TRUE
+	return FALSE
+
+GLOBAL_LIST_EMPTY(cached_examine_icons)
+/proc/set_cached_examine_icon(var/atom/A, var/icon/I, var/expiry = 12000)
+	GLOB.cached_examine_icons[weakref(A)] = I
+	if(expiry)
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/uncache_examine_icon, weakref(A)), expiry, TIMER_UNIQUE)
+
+/proc/get_cached_examine_icon(var/atom/A)
+	var/weakref/WR = weakref(A)
+	return GLOB.cached_examine_icons[WR]
+
+/proc/uncache_examine_icon(var/weakref/WR)
+	GLOB.cached_examine_icons -= WR
 
 proc/adjust_brightness(var/color, var/value)
 	if (!color) return "#FFFFFF"

@@ -158,6 +158,10 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
  * @return false if normal code should continue, true to prevent normal code.
  */
 /mob/living/proc/handle_micro_bump_helping(mob/living/tmob)
+	//Riding and being moved to us or something similar
+	if(tmob in buckled_mobs)
+		return TRUE
+
 	//Both small! Go ahead and go.
 	if(get_effective_size() <= RESIZE_A_SMALLTINY && tmob.get_effective_size() <= RESIZE_A_SMALLTINY)
 		return TRUE
@@ -213,6 +217,10 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 	//We can't be stepping on anyone
 	if(!canmove || buckled)
 		return
+
+	//Riding and being moved to us or something similar
+	if(tmob in buckled_mobs)
+		return TRUE
 
 	//Test/set if human
 	var/mob/living/carbon/human/pred = src
