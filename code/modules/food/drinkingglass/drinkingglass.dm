@@ -74,9 +74,9 @@
 	update_icon()
 
 /obj/item/weapon/reagent_containers/food/drinks/glass2/proc/can_add_extra(obj/item/weapon/glass_extra/GE)
-	if(!("[base_icon]_[GE.glass_addition]left" in icon_states(icon))) //VOREStation Edit
+	if(!("[base_icon]_[GE.glass_addition]left" in cached_icon_states(icon))) //VOREStation Edit
 		return 0
-	if(!("[base_icon]_[GE.glass_addition]right" in icon_states(icon))) //VOREStation Edit
+	if(!("[base_icon]_[GE.glass_addition]right" in cached_icon_states(icon))) //VOREStation Edit
 		return 0
 
 	return 1
@@ -106,9 +106,9 @@
 			over_liquid |= "[base_icon][amnt]_fizz"
 
 		for(var/S in R.glass_special)
-			if("[base_icon]_[S]" in icon_states(icon)) //VOREStation Edit
+			if("[base_icon]_[S]" in cached_icon_states(icon)) //VOREStation Edit
 				under_liquid |= "[base_icon]_[S]"
-			else if("[base_icon][amnt]_[S]" in icon_states(icon)) //VOREStation Edit
+			else if("[base_icon][amnt]_[S]" in cached_icon_states(icon)) //VOREStation Edit
 				over_liquid |= "[base_icon][amnt]_[S]"
 
 		for(var/k in under_liquid)

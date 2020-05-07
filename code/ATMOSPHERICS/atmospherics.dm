@@ -48,6 +48,9 @@ Pipelines + Other Objects -> Pipe network
 		pipe_color = null
 	init_dir()
 
+/obj/machinery/atmospherics/examine_icon()
+	return icon(icon=initial(icon),icon_state=initial(icon_state))
+
 // This is used to set up what directions pipes will connect to.  Should be called inside New() and whenever a dir changes.
 /obj/machinery/atmospherics/proc/init_dir()
 	return

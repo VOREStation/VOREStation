@@ -805,7 +805,7 @@
 
 	//autodetect rollability
 	if(rolled_down < 0)
-		if(("[worn_state]_d_s" in icon_states(icon)) || ("[worn_state]_s" in icon_states(rolled_down_icon)) || ("[worn_state]_d_s" in icon_states(icon_override)))
+		if(("[worn_state]_d_s" in cached_icon_states(icon)) || ("[worn_state]_s" in cached_icon_states(rolled_down_icon)) || ("[worn_state]_d_s" in cached_icon_states(icon_override)))
 			rolled_down = 0
 
 	if(rolled_down == -1)
@@ -842,11 +842,11 @@
 		under_icon = sprite_sheets[H.species.get_bodytype(H)]
 	else if(item_icons && item_icons[slot_w_uniform_str])
 		under_icon = item_icons[slot_w_uniform_str]
-	else if ("[worn_state]_s" in icon_states(rolled_down_icon))
+	else if ("[worn_state]_s" in cached_icon_states(rolled_down_icon))
 		under_icon = rolled_down_icon
 
 	// The _s is because the icon update procs append it.
-	if((under_icon == rolled_down_icon && "[worn_state]_s" in icon_states(under_icon)) || ("[worn_state]_d_s" in icon_states(under_icon)))
+	if((under_icon == rolled_down_icon && "[worn_state]_s" in cached_icon_states(under_icon)) || ("[worn_state]_d_s" in cached_icon_states(under_icon)))
 		if(rolled_down != 1)
 			rolled_down = 0
 	else
@@ -865,13 +865,13 @@
 		under_icon = sprite_sheets[H.species.get_bodytype(H)]
 	else if(item_icons && item_icons[slot_w_uniform_str])
 		under_icon = item_icons[slot_w_uniform_str]
-	else if ("[worn_state]_s" in icon_states(rolled_down_sleeves_icon))
+	else if ("[worn_state]_s" in cached_icon_states(rolled_down_sleeves_icon))
 		under_icon = rolled_down_sleeves_icon
 	else if(index)
 		under_icon = new /icon("[INV_W_UNIFORM_DEF_ICON]_[index].dmi")
 
 	// The _s is because the icon update procs append it.
-	if((under_icon == rolled_down_sleeves_icon && "[worn_state]_s" in icon_states(under_icon)) || ("[worn_state]_r_s" in icon_states(under_icon)))
+	if((under_icon == rolled_down_sleeves_icon && "[worn_state]_s" in cached_icon_states(under_icon)) || ("[worn_state]_r_s" in cached_icon_states(under_icon)))
 		if(rolled_sleeves != 1)
 			rolled_sleeves = 0
 	else
@@ -955,7 +955,7 @@
 	if(rolled_down)
 		body_parts_covered = initial(body_parts_covered)
 		body_parts_covered &= ~(UPPER_TORSO|ARMS)
-		if("[worn_state]_s" in icon_states(rolled_down_icon))
+		if("[worn_state]_s" in cached_icon_states(rolled_down_icon))
 			icon_override = rolled_down_icon
 			item_state_slots[slot_w_uniform_str] = "[worn_state]"
 		else
@@ -988,7 +988,7 @@
 	rolled_sleeves = !rolled_sleeves
 	if(rolled_sleeves)
 		body_parts_covered &= ~(ARMS)
-		if("[worn_state]_s" in icon_states(rolled_down_sleeves_icon))
+		if("[worn_state]_s" in cached_icon_states(rolled_down_sleeves_icon))
 			icon_override = rolled_down_sleeves_icon
 			item_state_slots[slot_w_uniform_str] = "[worn_state]"
 		else
