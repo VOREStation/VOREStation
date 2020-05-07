@@ -15,17 +15,12 @@
 	var/wire_allow_manual_3 = FALSE
 	var/opened = FALSE
 
-/obj/machinery/power/grid_checker/New()
-	..()
+/obj/machinery/power/grid_checker/Initialize()
+	. = ..()
 	connect_to_network()
 	update_icon()
 	wires = new(src)
-	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
-	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
-	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
-	component_parts += new /obj/item/stack/cable_coil(src, 10)
-	RefreshParts()
+	default_apply_parts()
 
 /obj/machinery/power/grid_checker/Destroy()
 	qdel(wires)

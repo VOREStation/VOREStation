@@ -13,13 +13,9 @@
 	var/chargelevel = -1
 	circuit = /obj/item/weapon/circuitboard/cell_charger
 
-/obj/machinery/cell_charger/New()
-	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
-	component_parts += new /obj/item/stack/cable_coil(src, 5)
-	RefreshParts()
-	..()
-	return
+/obj/machinery/cell_charger/Initialize()
+	. = ..()
+	default_apply_parts()
 
 /obj/machinery/cell_charger/update_icon()
 	icon_state = "ccharger[charging ? 1 : 0]"

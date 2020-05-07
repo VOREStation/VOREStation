@@ -32,13 +32,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 /obj/machinery/telecomms/processor/Initialize()
 	. = ..()
-	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/subspace/sub_filter(src)
-	component_parts += new /obj/item/weapon/stock_parts/subspace/crystal(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/micro_laser/high(src)
-	component_parts += new /obj/item/stack/cable_coil(src, 1)
+	default_apply_parts()
 
 /obj/machinery/telecomms/broadcaster/proc/link_radio(var/obj/item/device/radio/R)
 	if(!istype(R))

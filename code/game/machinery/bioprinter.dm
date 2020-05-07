@@ -77,14 +77,10 @@
 		add_overlay("bioprinter_working")
 	//VOREStation Edit End
 
-/obj/machinery/organ_printer/New()
-	..()
-
-	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	RefreshParts()
-
+/obj/machinery/organ_printer/Initialize()
+	. = ..()
+	default_apply_parts()
+	
 /obj/machinery/organ_printer/examine(var/mob/user)
 	. = ..()
 	var/biomass = get_biomass_volume()
@@ -274,7 +270,7 @@
 	icon_state = "bioprinter"
 	circuit = /obj/item/weapon/circuitboard/bioprinter
 
-/obj/machinery/organ_printer/flesh/full/New()
+/obj/machinery/organ_printer/flesh/full/Initialize()
 	. = ..()
 	container = new /obj/item/weapon/reagent_containers/glass/bottle/biomass(src)
 

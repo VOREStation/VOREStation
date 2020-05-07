@@ -178,22 +178,10 @@
 	circuit = /obj/item/weapon/circuitboard/teleporter_hub
 	var/obj/machinery/computer/teleporter/com
 
-/obj/machinery/teleport/hub/New()
-	..()
-	underlays.Cut()
+/obj/machinery/teleport/hub/Initialize()
+	. = ..()
 	underlays += image('icons/obj/stationobjs.dmi', icon_state = "tele-wires")
-
-	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
-	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
-	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
-	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
-	component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)
-	component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)
-	component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)
-	component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)
-	component_parts += new /obj/item/stack/cable_coil(src, 10)
-	RefreshParts()
+	default_apply_parts()
 
 /obj/machinery/teleport/hub/Bumped(M as mob|obj)
 	spawn()
@@ -335,18 +323,11 @@
 	circuit = /obj/item/weapon/circuitboard/teleporter_station
 	var/obj/machinery/teleport/hub/com
 
-/obj/machinery/teleport/station/New()
-	..()
-	overlays.Cut()
-	overlays += image('icons/obj/stationobjs.dmi', icon_state = "controller-wires")
-
-	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)
-	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
-	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
-	component_parts += new /obj/item/stack/cable_coil(src, 10)
-	RefreshParts()
-
+/obj/machinery/teleport/station/Initialize()
+	. = ..()
+	add_overlay("controller-wires")
+	default_apply_parts()
+	
 /obj/machinery/teleport/station/attackby(var/obj/item/weapon/W)
 	attack_hand()
 

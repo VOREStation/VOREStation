@@ -15,14 +15,9 @@
 	light_color = "#00FF00"
 	var/obj/machinery/body_scanconsole/console
 
-/obj/machinery/bodyscanner/New()
-	..()
-	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
-	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
-	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
-	component_parts += new /obj/item/stack/material/glass/reinforced(src, 2)
-	RefreshParts()
+/obj/machinery/bodyscanner/Initialize()
+	. = ..()
+	default_apply_parts()
 
 /obj/machinery/bodyscanner/Destroy()
 	if(console)

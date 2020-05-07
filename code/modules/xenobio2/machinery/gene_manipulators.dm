@@ -123,17 +123,10 @@
 	var/datum/xeno/traits/genetics // Currently scanned xeno genetic structure.
 	var/degradation = 0     // Increments with each scan, stops allowing gene mods after a certain point.
 
-/obj/machinery/xenobio/extractor/New()
-	..()
-	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
-	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
-	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
-	RefreshParts()
-
+/obj/machinery/xenobio/extractor/Initialize()
+	. = ..()
+	default_apply_parts()
+	
 /obj/machinery/xenobio/extractor/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/xenoproduct))
 		if(product)
@@ -265,16 +258,9 @@
 
 	var/mob/living/simple_mob/xeno/slime/occupant
 
-/obj/machinery/xenobio/editor/New()
-	..()
-	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
-	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
-	RefreshParts()
+/obj/machinery/xenobio/editor/Initialize()
+	. = ..()
+	default_apply_parts()
 
 /obj/machinery/xenobio/editor/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/weapon/grab))

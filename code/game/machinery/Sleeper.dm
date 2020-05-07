@@ -180,21 +180,10 @@
 	idle_power_usage = 15
 	active_power_usage = 200 //builtin health analyzer, dialysis machine, injectors.
 
-/obj/machinery/sleeper/New()
-	..()
+/obj/machinery/sleeper/Initialize()
+	. = ..()
 	beaker = new /obj/item/weapon/reagent_containers/glass/beaker/large(src)
-	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
-	component_parts += new /obj/item/weapon/reagent_containers/glass/beaker(src)
-	component_parts += new /obj/item/weapon/reagent_containers/glass/beaker(src)
-	component_parts += new /obj/item/weapon/reagent_containers/glass/beaker(src)
-	component_parts += new /obj/item/weapon/reagent_containers/syringe(src)
-	component_parts += new /obj/item/weapon/reagent_containers/syringe(src)
-	component_parts += new /obj/item/weapon/reagent_containers/syringe(src)
-	component_parts += new /obj/item/stack/material/glass/reinforced(src, 2)
-
-	RefreshParts()
+	default_apply_parts()
 
 /obj/machinery/sleeper/Destroy()
 	if(console)
