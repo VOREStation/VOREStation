@@ -81,6 +81,8 @@
 	else
 		player_setup.load_character(S)
 		S.cd = "/character[default_slot]"
+		player_setup.save_character(S)
+		sanitize_preferences()
 
 	player_setup.load_character(S)
 	return 1
