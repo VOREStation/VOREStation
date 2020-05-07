@@ -9,8 +9,8 @@
 	lobby_icon = 'icons/misc/title_vr.dmi'
 	lobby_screens = list("tether2_night")
 
-	accessible_z_levels = list("[Z_LEVEL_MAIN_VIRGO_TESTING]" = 100)
-	base_turf_by_z = list("[Z_LEVEL_MAIN_VIRGO_TESTING]" = /turf/space)
+	accessible_z_levels = list("1" = 100)
+	base_turf_by_z = list("1" = /turf/space)
 
 	use_overmap = TRUE
 	//var/overmap_size = 20		 // Dimensions of overmap zlevel if overmap is used.
@@ -56,7 +56,7 @@
 							NETWORK_INTERROGATION
 							)
 
-	allowed_spawns = list("Arrivals Shuttle")
+	allowed_spawns = list("Arrivals Shuttle","Gateway","Cryogenic Storage","Cyborg Storage")
 
 /datum/map_z_level/minitest/station
 	z = Z_LEVEL_MAIN_VIRGO_TESTING
