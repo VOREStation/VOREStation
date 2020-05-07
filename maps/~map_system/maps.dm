@@ -146,9 +146,9 @@ var/list/all_maps = list()
 /datum/map/proc/get_zlevel_time(var/z)
 	if(!z)
 		z = 1
-	var/datum/planet/P = SSplanets.z_to_planet[z]
+	var/datum/planet/P = z <= SSplanets.z_to_planet.len ? SSplanets.z_to_planet[z] : null
 	// We found a planet tied to that zlevel, give them the time
-	if(istype(P))
+	if(P?.current_time)
 		return P.current_time
 
 	// We have to invent a time
