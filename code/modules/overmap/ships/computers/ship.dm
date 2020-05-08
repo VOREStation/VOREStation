@@ -58,6 +58,7 @@ somewhere on that shuttle. Subtypes of these can be then used to perform ship ov
 
 /obj/machinery/computer/ship/proc/look(var/mob/user)
 	if(linked)
+		apply_visual(user)
 		user.reset_view(linked)
 	user.set_viewsize(world.view + extra_view)
 	GLOB.moved_event.register(user, src, /obj/machinery/computer/ship/proc/unlook)

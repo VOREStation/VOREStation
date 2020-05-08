@@ -456,6 +456,7 @@ Class Procs:
 	return 1
 
 /datum/proc/apply_visual(mob/M)
+	M.sight = 0 //Just reset their mesons and stuff so they can't use them, by default.
 	return
 
 /datum/proc/remove_visual(mob/M)
