@@ -404,6 +404,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 				continue
 			
 			// Ask their new_player mob to spawn them
+			if(!player.spawn_checks_vr(player.mind.assigned_role)) continue //VOREStation Add
 			var/mob/living/carbon/human/new_char = player.create_character()
 			
 			// Created their playable character, delete their /mob/new_player
