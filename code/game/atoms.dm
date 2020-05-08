@@ -184,10 +184,10 @@
 
 	var/list/output = list("[bicon(src)] That's [f_name] [suffix]", desc)
 
-	if(user.client?.examine_text_mode == EXAMINE_MODE_INCLUDE_USAGE)
+	if(user.client?.prefs.examine_text_mode == EXAMINE_MODE_INCLUDE_USAGE)
 		output += description_info
 
-	if(user.client?.examine_text_mode == EXAMINE_MODE_SWITCH_TO_PANEL)
+	if(user.client?.prefs.examine_text_mode == EXAMINE_MODE_SWITCH_TO_PANEL)
 		user.client.statpanel = "Examine" // Switch to stat panel
 
 	return output

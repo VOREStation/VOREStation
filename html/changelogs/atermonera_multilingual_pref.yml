@@ -1,0 +1,11 @@
+author: Atermonera
+delete-after: True
+
+# Any changes you've made.  See valid prefix list above.
+# INDENT WITH TWO SPACES.  NOT TABS.  SPACES.
+# SCREW THIS UP AND IT WON'T WORK.
+# Also, all entries are changed into a single [] after a master changelog generation. Just remove the brackets when you add new entries.
+# Please surround your changes in  double quotes ("), as certain characters otherwise screws up compiling. The quotes will not show up in the changelog.
+changes: 
+  - rscadd: "Added a preference to control multilingual parsing behaviour, with a few different modes. Should hopefully be less punishing to people who stutter and use hyphens as a language key."
+  - tweak:  "The examine mode preference should now persist across reconnections during a single round, but if the server is fully restarted it still appears to reset. This issue is also present for the multilingual preference, and I'm still looking into it. Savefiles are crpytic."
