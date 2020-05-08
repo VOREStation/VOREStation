@@ -47,31 +47,24 @@
 		return 2
 
 /obj/singularity_pull(S, current_size)
-	if(simulated)
-		if(anchored)
-			if(current_size >= STAGE_FIVE)
-				step_towards(src, S)
-		else
-			step_towards(src, S)
+	set waitfor = 0
+
+	if(anchored)
+		return
+
+	sleep(0) //this is needed or multiple items will be thrown sequentially and not simultaneously
+	if(current_size >= STAGE_FOUR)
+		step_towards(src,S)
+		sleep(1)
+		step_towards(src,S)
+	else if(current_size > STAGE_ONE)
+		step_towards(src,S)
+	else ..()
 
 /obj/effect/beam/singularity_pull()
 	return
 
 /obj/effect/overlay/singularity_pull()
-	return
-
-/obj/item/singularity_pull(S, current_size)
-	spawn(0) //this is needed or multiple items will be thrown sequentially and not simultaneously
-		if(current_size >= STAGE_FOUR)
-			//throw_at(S, 14, 3)
-			step_towards(src,S)
-			sleep(1)
-			step_towards(src,S)
-		else if(current_size > STAGE_ONE)
-			step_towards(src,S)
-		else ..()
-
-/obj/machinery/atmospherics/pipe/singularity_pull()
 	return
 
 /obj/machinery/power/supermatter/shard/singularity_act()
@@ -112,30 +105,6 @@
 				O.singularity_act(src, current_size)
 	ChangeTurf(get_base_turf_by_area(src))
 	return 2
-
-/turf/simulated/floor/singularity_pull(S, current_size)
-	if(flooring && current_size >= STAGE_THREE)
-		if(prob(current_size / 2))
-			var/leave_tile = TRUE
-			if(broken || burnt || flooring.flags & TURF_IS_FRAGILE)
-				leave_tile = FALSE
-			playsound(src, 'sound/items/crowbar.ogg', 50, 1)
-			make_plating(leave_tile)
-
-/turf/simulated/wall/singularity_pull(S, current_size)
-
-	if(!reinf_material)
-		if(current_size >= STAGE_FIVE)
-			if(prob(75))
-				dismantle_wall()
-			return
-		if(current_size == STAGE_FOUR)
-			if(prob(30))
-				dismantle_wall()
-	else
-		if(current_size >= STAGE_FIVE)
-			if(prob(30))
-				dismantle_wall()
 
 /turf/space/singularity_act()
 	return

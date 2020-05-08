@@ -50,8 +50,8 @@
 /obj/machinery/teleport/hub/attack_ghost(mob/user as mob)
 	var/atom/l = loc
 	var/obj/machinery/computer/teleporter/com = locate(/obj/machinery/computer/teleporter, locate(l.x - 2, l.y, l.z))
-	if(com.locked)
-		user.loc = get_turf(com.locked)
+	if(com?.teleport_control.locked)
+		user.loc = get_turf(com.teleport_control.locked)
 
 /obj/effect/portal/attack_ghost(mob/user as mob)
 	if(target)

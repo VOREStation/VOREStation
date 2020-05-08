@@ -365,7 +365,7 @@
 	if(!IsJobAvailable(rank))
 		alert(src,"[rank] is not available. Please try another.")
 		return 0
-	if(!attempt_vr(src,"spawn_checks_vr",list())) return 0 // VOREStation Insert
+	if(!spawn_checks_vr(rank)) return 0 // VOREStation Insert
 	if(!client)
 		return 0
 
@@ -491,7 +491,6 @@
 
 
 /mob/new_player/proc/create_character(var/turf/T)
-	if (!attempt_vr(src,"spawn_checks_vr",list())) return 0 // VOREStation Insert
 	spawning = 1
 	close_spawn_windows()
 
@@ -604,6 +603,9 @@
 
 // Prevents lobby players from seeing say, even with ghostears
 /mob/new_player/hear_say(var/list/message_pieces, var/verb = "says", var/italics = 0, var/mob/speaker = null)
+	return
+
+/mob/new_player/hear_holopad_talk(list/message_pieces, var/verb = "says", var/mob/speaker = null)
 	return
 
 // Prevents lobby players from seeing emotes, even with ghosteyes

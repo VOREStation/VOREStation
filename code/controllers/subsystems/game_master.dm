@@ -109,7 +109,7 @@ SUBSYSTEM_DEF(game_master)
 		return FALSE
 
 	// Last minute antagging is bad for humans to do, so the GM will respect the start and end of the round.
-	var/mills = round_duration_in_ticks
+	var/mills = round_duration_in_ds
 	var/mins = round((mills % 36000) / 600)
 	var/hours = round(mills / 36000)
 

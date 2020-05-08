@@ -20,7 +20,7 @@ SUBSYSTEM_DEF(nightshift)
 	return ..()
 
 /datum/controller/subsystem/nightshift/fire(resumed = FALSE)
-	if(round_duration_in_ticks < nightshift_first_check)
+	if(round_duration_in_ds < nightshift_first_check)
 		return
 	check_nightshift()
 

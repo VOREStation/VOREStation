@@ -175,7 +175,7 @@
 // Description: This writes to the logs list, so that people can see what people are doing on the Exonet ingame.  Note that this is not an admin logging function.
 // 		Communicators are already logged seperately.
 /obj/machinery/exonet_node/proc/write_log(var/origin_address, var/target_address, var/data_type, var/content)
-	//var/timestamp = time2text(station_time_in_ticks, "hh:mm:ss")
+	//var/timestamp = time2text(station_time_in_ds, "hh:mm:ss")
 	var/timestamp = "[stationdate2text()] [stationtime2text()]"
 	var/msg = "[timestamp] | FROM [origin_address] TO [target_address] | TYPE: [data_type] | CONTENT: [content]"
 	logs.Add(msg)

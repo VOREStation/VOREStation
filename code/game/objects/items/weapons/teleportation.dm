@@ -147,11 +147,11 @@ Frequency:
 					if(com)
 						break
 				break
-		if (istype(com, /obj/machinery/computer/teleporter) && com.locked && !com.one_time_use)
+		if (istype(com, /obj/machinery/computer/teleporter) && com.teleport_control.locked && !com.one_time_use)
 			if(R.icon_state == "tele1")
-				L["[com.id] (Active)"] = com.locked
+				L["[com.id] (Active)"] = com.teleport_control.locked
 			else
-				L["[com.id] (Inactive)"] = com.locked
+				L["[com.id] (Inactive)"] = com.teleport_control.locked
 	var/list/turfs = list(	)
 	for(var/turf/T in orange(10))
 		if(T.x>world.maxx-8 || T.x<8)	continue	//putting them at the edge is dumb
