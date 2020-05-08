@@ -131,6 +131,10 @@ datum/preferences
 
 	var/lastnews // Hash of last seen lobby news content.
 
+	var/examine_text_mode = 0 // Just examine text, include usage (description_info), switch to examine panel.
+	var/multilingual_mode = 0 // Default behaviour, delimiter-key-space, delimiter-key-delimiter, off
+
+
 /datum/preferences/New(client/C)
 	player_setup = new(src)
 	set_biological_gender(pick(MALE, FEMALE))

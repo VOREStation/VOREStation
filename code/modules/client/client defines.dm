@@ -27,8 +27,6 @@
 	var/chatOutputLoadedAt
 
 	var/adminhelped = 0
-	var/examine_text_mode = 0 // Just examine text, include usage (description_info), switch to examine panel.
-
 
 		///////////////
 		//SOUND STUFF//
