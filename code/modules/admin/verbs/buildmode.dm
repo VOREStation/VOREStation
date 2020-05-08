@@ -161,6 +161,7 @@
 								Right Mouse Button on enemy mob        = Command selected mobs to attack mob<br>\
 								Right Mouse Button on allied mob       = Command selected mobs to follow mob<br>\
 								Right Mouse Button + shift on any mob  = Command selected mobs to follow mob regardless of faction<br>\
+								Note: The following also reset the mob's home position:<br>\
 								Right Mouse Button on tile             = Command selected mobs to move to tile (will cancel if enemies are seen)<br>\
 								Right Mouse Button + shift on tile     = Command selected mobs to reposition to tile (will not be inturrupted by enemies)<br>\
 								Right Mouse Button + alt on obj/turfs  = Command selected mobs to attack obj/turf<br>\
@@ -569,6 +570,7 @@
 					var/told = 0
 					for(var/mob/living/unit in holder.selected_mobs)
 						var/datum/ai_holder/AI = unit.ai_holder
+						AI.home_turf = T
 						if(unit.get_AI_stance() == STANCE_SLEEP)
 							unit.forceMove(T)
 							forced++
