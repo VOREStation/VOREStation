@@ -36,25 +36,25 @@
 
 	return wtime + (time_offset + wusage) * world.tick_lag
 
-var/roundstart_hour
+GLOBAL_VAR_INIT(roundstart_hour, pick(2,7,12,17))
 var/station_date = ""
 var/next_station_date_change = 1 DAY
 
-#define duration2stationtime(time) time2text(station_time_in_ticks + time, "hh:mm")
-#define worldtime2stationtime(time) time2text(roundstart_hour HOURS + time, "hh:mm")
-#define round_duration_in_ticks (round_start_time ? world.time - round_start_time : 0)
-#define station_time_in_ticks (roundstart_hour HOURS + round_duration_in_ticks)
+#define duration2stationtime(time) time2text(station_time_in_ds + time, "hh:mm")
+#define worldtime2stationtime(time) time2text(GLOB.roundstart_hour HOURS + time, "hh:mm")
+#define round_duration_in_ds (GLOB.round_start_time ? world.time - GLOB.round_start_time : 0)
+#define station_time_in_ds (GLOB.roundstart_hour HOURS + round_duration_in_ds)
 
 /proc/stationtime2text()
-	return time2text(station_time_in_ticks, "hh:mm")
+	return time2text(station_time_in_ds, "hh:mm") //For some reason, this is not accurate. It's expecting some other kind of times, maybe? Like ones from world.realtime?
 
 /proc/stationdate2text()
 	var/update_time = FALSE
-	if(station_time_in_ticks > next_station_date_change)
+	if(station_time_in_ds > next_station_date_change)
 		next_station_date_change += 1 DAY
 		update_time = TRUE
 	if(!station_date || update_time)
-		var/extra_days = round(station_time_in_ticks / (1 DAY)) DAYS
+		var/extra_days = round(station_time_in_ds / (1 DAY)) DAYS
 		var/timeofday = world.timeofday + extra_days
 		station_date = num2text((text2num(time2text(timeofday, "YYYY"))+300)) + "-" + time2text(timeofday, "MM-DD") //VOREStation Edit
 	return station_date
@@ -84,19 +84,19 @@ proc/isDay(var/month, var/day)
 
 var/next_duration_update = 0
 var/last_round_duration = 0
-var/round_start_time = 0
+GLOBAL_VAR_INIT(round_start_time, 0)
 
 /hook/roundstart/proc/start_timer()
-	round_start_time = world.time
+	GLOB.round_start_time = world.time
 	return 1
 
 /proc/roundduration2text()
-	if(!round_start_time)
+	if(!GLOB.round_start_time)
 		return "00:00"
 	if(last_round_duration && world.time < next_duration_update)
 		return last_round_duration
 
-	var/mills = round_duration_in_ticks // 1/10 of a second, not real milliseconds but whatever
+	var/mills = round_duration_in_ds // 1/10 of a second, not real milliseconds but whatever
 	//var/secs = ((mills % 36000) % 600) / 10 //Not really needed, but I'll leave it here for refrence.. or something
 	var/mins = round((mills % 36000) / 600)
 	var/hours = round(mills / 36000)
@@ -107,10 +107,6 @@ var/round_start_time = 0
 	last_round_duration = "[hours]:[mins]"
 	next_duration_update = world.time + 1 MINUTES
 	return last_round_duration
-
-/hook/startup/proc/set_roundstart_hour()
-	roundstart_hour = pick(2,7,12,17)
-	return 1
 
 /var/midnight_rollovers = 0
 /var/rollovercheck_last_timeofday = 0
