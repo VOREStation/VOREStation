@@ -17,13 +17,9 @@
 	var/portable = 1
 	circuit = /obj/item/weapon/circuitboard/recharger
 
-/obj/machinery/recharger/New()
-	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
-	component_parts += new /obj/item/stack/cable_coil(src, 5)
-	RefreshParts()
-	..()
-	return
+/obj/machinery/recharger/Initialize()
+	. = ..()
+	default_apply_parts()
 
 /obj/machinery/recharger/examine(mob/user)
 	. = ..()

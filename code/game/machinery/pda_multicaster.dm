@@ -23,17 +23,9 @@
 		"cargo" = new /obj/item/device/pda/multicaster/cargo(src),
 		"civilian" = new /obj/item/device/pda/multicaster/civilian(src))
 
-/obj/machinery/pda_multicaster/prebuilt/New()
-	..()
-
-	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/telecomms/pda_multicaster(src)
-	component_parts += new /obj/item/weapon/stock_parts/subspace/ansible(src)
-	component_parts += new /obj/item/weapon/stock_parts/subspace/sub_filter(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/subspace/treatment(src)
-	component_parts += new /obj/item/stack/cable_coil(src, 2)
-	RefreshParts()
+/obj/machinery/pda_multicaster/prebuilt/Initialize()
+	. = ..()
+	default_apply_parts()
 
 /obj/machinery/pda_multicaster/Destroy()
 	for(var/atom/movable/AM in contents)

@@ -29,7 +29,7 @@ var/datum/antagonist/loyalists/loyalists
 	faction_welcome = "Preserve NanoTrasen's interests against the traitorous recidivists amongst the crew. Protect the heads of staff with your life."
 	faction_indicator = "loyal"
 	faction_invisible = 1
-	restricted_jobs = list("AI", "Cyborg")
+	avoid_silicons = TRUE
 
 /datum/antagonist/loyalists/New()
 	..()

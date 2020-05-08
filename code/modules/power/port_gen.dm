@@ -112,18 +112,10 @@
 
 /obj/machinery/power/port_gen/pacman/Initialize()
 	. = ..()
+	default_apply_parts()
 	if(anchored)
 		connect_to_network()
-
-/obj/machinery/power/port_gen/pacman/New()
-	..()
-	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)
-	component_parts += new /obj/item/stack/cable_coil(src, 2)
-	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
-	RefreshParts()
-
+		
 /obj/machinery/power/port_gen/pacman/Destroy()
 	DropFuel()
 	return ..()

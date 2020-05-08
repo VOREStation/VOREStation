@@ -6,6 +6,7 @@
 /turf/simulated/wall/r_wall,
 /area/tcommsat/computer)
 "ac" = (
+/obj/machinery/camera/network/civilian,
 /turf/simulated/floor/tiled/dark,
 /area/tcommsat/computer)
 "ad" = (
@@ -493,6 +494,10 @@
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 4
 	},
+/obj/machinery/camera/network/civilian{
+	icon_state = "camera";
+	dir = 9
+	},
 /turf/simulated/floor/plating,
 /area/engineering/engine_room)
 "bc" = (
@@ -702,6 +707,10 @@
 	dir = 4;
 	pixel_x = -25;
 	pixel_y = 0
+	},
+/obj/machinery/camera/network/civilian{
+	icon_state = "camera";
+	dir = 4
 	},
 /turf/simulated/floor/plating,
 /area/engineering/engine_room)
@@ -2289,6 +2298,10 @@
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
+/obj/machinery/camera/network/civilian{
+	icon_state = "camera";
+	dir = 10
+	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/bar)
 "eU" = (
@@ -3291,10 +3304,39 @@
 /turf/space,
 /turf/simulated/shuttle/plating/carry,
 /area/shuttle/overmapdemo)
+"jA" = (
+/obj/machinery/cryopod,
+/turf/simulated/floor/tiled,
+/area/bridge)
 "kU" = (
 /obj/structure/shuttle,
 /turf/simulated/shuttle/wall/voidcraft/green,
 /area/shuttle/overmapdemo)
+"mj" = (
+/obj/machinery/camera/network/civilian{
+	icon_state = "camera";
+	dir = 10
+	},
+/turf/simulated/floor/tiled,
+/area/crew_quarters/bar)
+"nM" = (
+/obj/machinery/camera/network/civilian{
+	icon_state = "camera";
+	dir = 9
+	},
+/turf/simulated/floor/tiled,
+/area/crew_quarters/cafeteria)
+"nQ" = (
+/obj/machinery/cryopod/robot,
+/turf/simulated/floor/tiled,
+/area/bridge)
+"pG" = (
+/obj/machinery/camera/network/civilian{
+	icon_state = "camera";
+	dir = 9
+	},
+/turf/simulated/floor/tiled,
+/area/bridge)
 "ql" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
@@ -3311,11 +3353,43 @@
 	},
 /turf/simulated/shuttle/floor/voidcraft/light,
 /area/shuttle/overmapdemo)
+"qZ" = (
+/obj/machinery/camera/network/civilian,
+/turf/simulated/floor/tiled,
+/area/medical/medbay)
+"rn" = (
+/obj/machinery/computer/cryopod,
+/turf/simulated/floor/tiled,
+/area/bridge)
+"rK" = (
+/obj/machinery/camera/network/civilian{
+	icon_state = "camera";
+	dir = 10
+	},
+/turf/simulated/floor/bluegrid{
+	name = "Mainframe Base";
+	nitrogen = 100;
+	oxygen = 0;
+	temperature = 80
+	},
+/area/tcommsat/chamber)
 "sA" = (
 /obj/structure/shuttle/engine/heater,
 /turf/space,
 /turf/simulated/shuttle/plating/carry,
 /area/shuttle/multidemo)
+"sB" = (
+/obj/effect/landmark{
+	name = "JoinLateCyborg"
+	},
+/turf/simulated/floor/tiled,
+/area/bridge)
+"vI" = (
+/obj/effect/landmark/start{
+	name = "AI"
+	},
+/turf/simulated/floor/tiled,
+/area/crew_quarters/bar)
 "vP" = (
 /obj/machinery/computer/ship/engines{
 	dir = 8;
@@ -3323,6 +3397,20 @@
 	},
 /turf/simulated/shuttle/floor/voidcraft/light,
 /area/shuttle/overmapdemo)
+"xM" = (
+/obj/machinery/camera/network/civilian{
+	icon_state = "camera";
+	dir = 5
+	},
+/turf/simulated/floor/tiled,
+/area/crew_quarters/cafeteria)
+"xX" = (
+/obj/machinery/camera/network/civilian{
+	icon_state = "camera";
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/medical/medbay)
 "zf" = (
 /obj/effect/wingrille_spawn/reinforced,
 /turf/simulated/shuttle/floor/voidcraft/external/light,
@@ -3338,10 +3426,24 @@
 "Gz" = (
 /turf/simulated/shuttle/wall/voidcraft/green,
 /area/shuttle/overmapdemo)
+"GC" = (
+/obj/machinery/camera/network/civilian,
+/turf/simulated/floor/tiled,
+/area/bridge)
 "JA" = (
 /obj/effect/overmap/visitable/sector/virgo_minitest/station,
 /turf/space,
 /area/space)
+"La" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/camera/network/civilian{
+	icon_state = "camera";
+	dir = 9
+	},
+/turf/simulated/floor/tiled,
+/area/hallway/primary/fore)
 "ML" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	id_tag = "station_dock2";
@@ -3362,6 +3464,13 @@
 	},
 /turf/simulated/shuttle/floor/voidcraft/light,
 /area/shuttle/overmapdemo)
+"OA" = (
+/obj/machinery/camera/network/civilian{
+	icon_state = "camera";
+	dir = 10
+	},
+/turf/simulated/floor/tiled,
+/area/medical/medbay)
 "Pg" = (
 /obj/structure/shuttle/engine/propulsion,
 /turf/space,
@@ -3376,16 +3485,47 @@
 	},
 /turf/simulated/floor/tiled,
 /area/bridge)
+"Ug" = (
+/obj/machinery/camera/network/civilian{
+	icon_state = "camera";
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/medical/medbay2)
 "Uh" = (
 /obj/machinery/computer/ship/sensors{
 	dir = 1
 	},
 /turf/simulated/shuttle/floor/voidcraft/light,
 /area/shuttle/overmapdemo)
+"Vf" = (
+/obj/machinery/camera/network/civilian{
+	icon_state = "camera";
+	dir = 9
+	},
+/turf/simulated/floor/tiled,
+/area/crew_quarters/bar)
+"Xm" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/camera/network/civilian,
+/turf/simulated/floor/tiled,
+/area/hallway/primary/fore)
 "XZ" = (
 /obj/machinery/computer/ship/helm,
 /turf/simulated/shuttle/floor/voidcraft/light,
 /area/shuttle/overmapdemo)
+"Yb" = (
+/obj/machinery/camera/network/civilian{
+	icon_state = "camera";
+	dir = 9
+	},
+/turf/simulated/floor/tiled,
+/area/medical/medbay2)
 
 (1,1,1) = {"
 aa
@@ -4791,9 +4931,9 @@ aa
 aa
 fY
 gf
-gf
-gf
-gf
+rn
+sB
+nQ
 gf
 gf
 gf
@@ -4996,8 +5136,8 @@ aa
 fY
 gg
 gf
-gf
-gf
+gC
+jA
 gf
 gx
 gA
@@ -5205,7 +5345,7 @@ gf
 gf
 gy
 gf
-gC
+gf
 gf
 gf
 gf
@@ -5402,7 +5542,7 @@ sA
 Pg
 aa
 fY
-gf
+GC
 gf
 gr
 gf
@@ -5715,7 +5855,7 @@ gf
 gf
 gy
 gf
-gC
+gf
 gf
 gf
 gf
@@ -5875,7 +6015,7 @@ bW
 bu
 bu
 bu
-bf
+rK
 aP
 aa
 aa
@@ -6223,14 +6363,14 @@ gf
 gv
 gf
 gf
-gf
+pG
 gv
 hk
 hy
 hl
 gf
 gv
-gf
+pG
 gf
 gf
 fY
@@ -6413,7 +6553,7 @@ aa
 aa
 aa
 fi
-fo
+Xm
 fu
 fi
 aa
@@ -6595,14 +6735,14 @@ aa
 cF
 cM
 cM
-cM
+xX
 dd
 cM
 cM
 cM
 cM
 cM
-cM
+xX
 dd
 cM
 cM
@@ -6906,7 +7046,7 @@ cM
 cM
 cM
 cM
-cM
+OA
 du
 cM
 cM
@@ -7223,7 +7363,7 @@ eO
 eO
 eO
 eO
-eO
+La
 eO
 eO
 eO
@@ -7415,7 +7555,7 @@ cM
 dh
 cM
 du
-cM
+qZ
 cM
 el
 cM
@@ -8129,7 +8269,7 @@ cZ
 dm
 dv
 cZ
-cZ
+Yb
 cZ
 dR
 cZ
@@ -8639,7 +8779,7 @@ cZ
 dl
 cZ
 cZ
-cZ
+Ug
 cZ
 dR
 cZ
@@ -10298,7 +10438,7 @@ fI
 fS
 fI
 fI
-fI
+xM
 fS
 fI
 fI
@@ -10573,6 +10713,7 @@ cC
 cK
 cR
 cW
+vI
 cK
 cK
 cK
@@ -10580,8 +10721,7 @@ cK
 cK
 cK
 cK
-cK
-cK
+mj
 cR
 eE
 eL
@@ -10675,7 +10815,7 @@ cC
 cK
 cR
 cK
-cK
+Vf
 cK
 cK
 cK
@@ -11314,7 +11454,7 @@ aa
 aa
 fA
 fI
-fI
+nM
 fW
 fI
 fI

@@ -21,15 +21,9 @@
 	var/set_temperature = T20C	//thermostat
 	var/heating = 0		//mainly for icon updates
 
-/obj/machinery/atmospherics/unary/heater/New()
-	..()
-	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
-	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
-	component_parts += new /obj/item/stack/cable_coil(src, 5)
-
-	RefreshParts()
+/obj/machinery/atmospherics/unary/heater/Initialize()
+	. = ..()
+	default_apply_parts()
 
 /obj/machinery/atmospherics/unary/heater/atmos_init()
 	if(node)

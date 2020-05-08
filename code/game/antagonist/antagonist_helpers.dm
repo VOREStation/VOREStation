@@ -10,6 +10,10 @@
 			return FALSE
 		if(config.protect_roles_from_antagonist && (player.assigned_role in protected_jobs))
 			return FALSE
+		if(avoid_silicons)
+			var/datum/job/J = SSjob.get_job(player.assigned_role)
+			if(J.mob_type & JOB_SILICON)
+				return FALSE
 	return TRUE
 
 /datum/antagonist/proc/antags_are_dead()

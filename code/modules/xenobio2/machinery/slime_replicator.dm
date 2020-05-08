@@ -17,16 +17,10 @@
 	var/emptycolor = "#FF2222"
 	var/operatingcolor = "#FFFF22"
 
-/obj/machinery/slime/replicator/New()
-	..()
-	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)
-	RefreshParts()
+/obj/machinery/slime/replicator/Initialize()
+	. = ..()
+	default_apply_parts()
 	update_light_color()
-
 
 /obj/machinery/slime/replicator/attackby(var/obj/item/W, var/mob/user)
 	//Let's try to deconstruct first.
