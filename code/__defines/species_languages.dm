@@ -53,7 +53,7 @@
 #define LANGUAGE_AKHANI "Akhani"
 #define LANGUAGE_ALAI "Alai"
 #define LANGUAGE_ZADDAT "Vedahq"
-#define LANGUAGE_PROMETHEAN "Promethean"
+#define LANGUAGE_PROMETHEAN "Promethean Biolinguistics"
 #define LANGUAGE_BLOB "Blob"
 #define LANGUAGE_GIBBERISH "Babel"
 
