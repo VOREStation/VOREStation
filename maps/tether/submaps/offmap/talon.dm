@@ -1,12 +1,21 @@
 ///////////////////////////
 //// Spawning and despawning
 var/global/list/latejoin_talon = list()
+var/global/list/latejoin_talon_cyborg = list()
 /obj/effect/landmark/talon
 	name = "JoinLateTalon"
 	delete_me = 1
 
 /obj/effect/landmark/talon/New()
 	latejoin_talon += loc // Register this turf as tram latejoin.
+	..()
+
+/obj/effect/landmark/talon/cyborg
+	name = "JoinLateTalonCyborg"
+	delete_me = 1
+
+/obj/effect/landmark/talon/cyborg/New()
+	latejoin_talon_cyborg += loc // Register this turf as tram latejoin
 	..()
 
 /datum/spawnpoint/talon
@@ -19,6 +28,16 @@ var/global/list/latejoin_talon = list()
 	..()
 	turfs = latejoin_talon
 
+/datum/spawnpoint/taloncyborg
+	display_name = "ITV Talon Robot Storage"
+	restrict_job = list("Talon Cyborg")
+	msg = "has exited robot storage"
+	announce_channel = "Talon"
+
+/datum/spawnpoint/taloncyborg/New()
+	..()
+	turfs = latejoin_talon_cyborg
+
 /obj/machinery/cryopod/talon
 	announce_channel = "Talon"
 	on_store_message = "has entered cryogenic storage."
@@ -27,6 +46,13 @@ var/global/list/latejoin_talon = list()
 	on_enter_occupant_message = "You feel cool air surround you. You go numb as your senses turn inward."
 	on_store_visible_message_1 = "hums and hisses as it moves"
 	on_store_visible_message_2 = "into cryogenic storage."
+
+/obj/machinery/cryopod/robot/talon
+	announce_channel = "Talon"
+	on_store_message = "has entered robotic storage."
+	on_store_name = "ITV Talon Robotic Control"
+	on_enter_visible_message = "enters the"
+	on_enter_occupant_message = "The storage unit broadcasts a sleep signal to you. Your systems start to shut down, and you enter low-power mode."
 
 /obj/effect/landmark/map_data/talon
     height = 2

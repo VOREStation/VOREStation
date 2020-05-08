@@ -261,12 +261,22 @@
 	//VOREStatation Edit Start: shell restrictions
 	if(shell)
 		modules.Add(shell_module_types)
+	var/area/A = get_area(src)
+	if(istype(A, /area/talon))
+		modules+="Talon K9 Medical Module"
+		modules+="Talon K9 Engineering Module"
+		modules+="Talon K9 Multipurpose Module"
+		modules+="Talon Engineering Module"
+		modules+="Talon Medical Module"
+		idcard_type = /obj/item/weapon/card/id/synthetic/talon
+		to_chat(src, "<font color= 'purple'>Talon modules available.</font>")
 	else
 		modules.Add(robot_module_types)
 		if(crisis || security_level == SEC_LEVEL_RED || crisis_override)
 			to_chat(src, "<font color='red'>Crisis mode active. Combat module available.</font>")
 			modules+="Combat"
 			modules+="ERT"
+		to_chat(src, "<font color= 'blue'>Tether modules available.</font>")
 	//VOREStatation Edit End: shell restrictions
 	modtype = input("Please, select a module!", "Robot module", null, null) as null|anything in modules
 

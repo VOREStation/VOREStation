@@ -109,6 +109,28 @@
 	access = list(access_talon)
 	minimal_access = list(access_talon)
 
+/datum/job/talon_cyborg
+	title = "Talon Cyborg"
+	flag = TALBORG
+	department_flag = TALON
+	job_description = "A Cyborg is a mobile synthetic, piloted by a cybernetically preserved brain. It is considered a person, but is still required \
+						to follow its Laws."
+	supervisors = "your Laws and the ITV Talon's Captain"	// Might add an AI to the Talon later :3
+	outfit_type = /decl/hierarchy/outfit/job/silicon/cyborg
+
+	offmap_spawn = TRUE
+	faction = "Station" //Required for SSjob to allow people to join as it
+	departments = list(DEPARTMENT_TALON)
+	total_positions = 1
+	spawn_positions = 1
+	selection_color = "#aaaaaa"
+	account_allowed = 0
+	economic_modifier = 0
+	minimal_player_age = 14
+	has_headset = FALSE
+	assignable = FALSE
+	mob_type = JOB_SILICON_ROBOT
+
 /decl/hierarchy/outfit/job/talon_captain
 	name = OUTFIT_JOB_NAME("Talon Captain")
 
@@ -193,3 +215,12 @@
 	messenger_bag = /obj/item/weapon/storage/backpack/messenger/engi
 	uniform = /obj/item/clothing/under/rank/atmospheric_technician
 	belt = /obj/item/weapon/storage/belt/utility/atmostech
+
+/datum/job/talon_cyborg/equip(var/mob/living/carbon/human/H)
+	if(!H)	return 0
+	return 1
+
+/datum/job/talon_cyborg/equip_preview(mob/living/carbon/human/H)
+	H.equip_to_slot_or_del(new /obj/item/clothing/suit/cardborg(H), slot_wear_suit)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/cardborg(H), slot_head)
+	return 1

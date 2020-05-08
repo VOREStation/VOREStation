@@ -648,6 +648,35 @@
 	R.verbs |= /mob/living/silicon/robot/proc/rest_style
 	..()
 
+// Rykka adds Talon modules
+
+/obj/item/weapon/robot_module/robot/talondogmed
+	name = "Talon K9 Medical Module"
+	channels = list("Talon" = 1)
+	networks = list(NETWORK_TALON_HELMETS, NETWORK_TALON_SHIP)
+
+/obj/item/weapon/robot_module/robot/talonengdog
+	name = "Talon K9 Engineering Module"
+	channels = list("Talon" = 1)
+	networks = list(NETWORK_TALON_HELMETS, NETWORK_TALON_SHIP)
+
+/obj/item/weapon/robot_module/robot/talonengborg
+	name = "Talon Engineering Module"
+	channels = list("Talon" = 1)
+	networks = list(NETWORK_TALON_HELMETS, NETWORK_TALON_SHIP)
+
+/obj/item/weapon/robot_module/robot/talonmedborg
+	name = "Talon Medical Module"
+	channels = list("Talon" = 1)
+	networks = list(NETWORK_TALON_HELMETS, NETWORK_TALON_SHIP)
+
+/obj/item/weapon/robot_module/robot/talonmultidog
+	name = "Talon K9 Multipurpose Module"
+	channels = list("Talon" = 1)
+	networks = list(NETWORK_TALON_HELMETS, NETWORK_TALON_SHIP)
+
+// Rykka edits stop here.
+
 // Uses modified K9 sprites.
 /obj/item/weapon/robot_module/robot/clerical/brodog
 	name = "service-hound module"
