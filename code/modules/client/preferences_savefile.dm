@@ -106,7 +106,9 @@
 		slot = sanitize_integer(slot, 1, config.character_slots, initial(default_slot))
 		if(slot != default_slot)
 			default_slot = slot
+			nif_path = nif_durability = nif_savedata = null //VOREStation Add - Don't copy NIF
 			S["default_slot"] << slot
+			
 	else
 		S["default_slot"] << default_slot
 
