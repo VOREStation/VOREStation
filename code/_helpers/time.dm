@@ -46,7 +46,7 @@ var/next_station_date_change = 1 DAY
 #define station_time_in_ds (GLOB.roundstart_hour HOURS + round_duration_in_ds)
 
 /proc/stationtime2text()
-	return time2text(station_time_in_ds, "hh:mm") //For some reason, this is not accurate. It's expecting some other kind of times, maybe? Like ones from world.realtime?
+	return time2text(station_time_in_ds + GLOB.timezoneOffset, "hh:mm")
 
 /proc/stationdate2text()
 	var/update_time = FALSE
@@ -64,6 +64,13 @@ var/next_station_date_change = 1 DAY
 	var/date_portion = time2text(world.timeofday, "YYYY-MM-DD")
 	var/time_portion = time2text(world.timeofday, "hh:mm:ss")
 	return "[date_portion]T[time_portion]"
+
+/proc/get_timezone_offset()
+	var/midnight_gmt_here = text2num(time2text(0,"hh")) * 36000
+	if(midnight_gmt_here > 12 HOURS)
+		return 24 HOURS - midnight_gmt_here
+	else
+		return midnight_gmt_here
 
 /proc/gameTimestamp(format = "hh:mm:ss", wtime=null)
 	if(!wtime)
