@@ -44,6 +44,7 @@ var/const/SAR 				=(1<<14)
 	economic_modifier = 8
 	minimal_player_age = 7
 	pto_type = PTO_EXPLORATION
+	dept_time_required = 20
 
 	access = list(access_eva, access_maint_tunnels, access_external_airlocks, access_pilot, access_explorer, access_gateway)
 	minimal_access = list(access_eva, access_maint_tunnels, access_external_airlocks, access_pilot, access_explorer, access_gateway)

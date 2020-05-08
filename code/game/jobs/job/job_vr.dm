@@ -14,6 +14,17 @@
 	//Disallow joining as this job midround from off-duty position via going on-duty
 	var/disallow_jobhop = FALSE
 
+	//Time required in the department as other jobs before playing this one (in hours)
+	var/dept_time_required = 0
+
 // Check client-specific availability rules.
 /datum/job/proc/player_has_enough_pto(client/C)
 	return timeoff_factor >= 0 || (C && LAZYACCESS(C.department_hours, pto_type) > 0)
+
+/datum/job/proc/player_has_enough_playtime(client/C)
+	return (available_in_playhours(C) == 0)
+
+/datum/job/proc/available_in_playhours(client/C)
+	if(C && config.use_playtime_restriction_for_jobs && isnum(C.play_hours[pto_type]) && dept_time_required > 0)
+		return max(0, dept_time_required - C.play_hours[pto_type])
+	return 0

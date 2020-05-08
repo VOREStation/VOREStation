@@ -11,6 +11,7 @@
 	var/static/pto_cap = 100 //Hours
 	var/static/require_flavor = FALSE
 	var/static/ipqualityscore_apikey //API key for ipqualityscore.com
+	var/static/use_playtime_restriction_for_jobs = FALSE
 
 /hook/startup/proc/read_vs_config()
 	var/list/Lines = file2list("config/config.txt")
@@ -61,4 +62,6 @@
 				config.require_flavor = TRUE
 			if ("ipqualityscore_apikey")
 				config.ipqualityscore_apikey = value
+			if ("use_playtime_restriction_for_jobs")
+				config.use_playtime_restriction_for_jobs = TRUE
 	return 1
