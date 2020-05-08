@@ -5,7 +5,7 @@
 
 // If our holder is able to do anything.
 /datum/ai_holder/proc/can_act()
-	if(!holder) // Holder missing.
+	if(!holder || (holder.client && !autopilot)) // Holder missing or occupied.
 		manage_processing(AI_NO_PROCESS)
 		return FALSE
 	if(holder.stat) // Dead or unconscious.
