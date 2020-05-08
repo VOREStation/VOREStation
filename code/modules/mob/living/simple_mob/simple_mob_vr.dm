@@ -66,6 +66,7 @@
 		var/obj/belly/B = belly
 		for(var/mob/living/M in B)
 			new_fullness += M.size_multiplier
+	new_fullness = new_fullness / size_multiplier //Divided by pred's size so a macro mob won't get macro belly from a regular prey.
 	new_fullness = round(new_fullness, 1) // Because intervals of 0.25 are going to make sprite artists cry.
 	vore_fullness = min(vore_capacity, new_fullness)
 

@@ -91,6 +91,7 @@
 	can_buckle = TRUE
 	buckle_movable = TRUE
 	buckle_lying = FALSE
+	vore_icons = SA_ICON_LIVING | SA_ICON_REST
 
 /mob/living/simple_mob/animal/wolf/direwolf/Login()
 	. = ..()
@@ -98,7 +99,7 @@
 		riding_datum = new /datum/riding/simple_mob(src)
 	verbs |= /mob/living/simple_mob/proc/animal_mount
 	verbs |= /mob/living/proc/toggle_rider_reins
-	movement_cooldown = 0
+	movement_cooldown = 2
 
 /mob/living/simple_mob/animal/wolf/direwolf/MouseDrop_T(mob/living/M, mob/living/user)
 	return
