@@ -605,6 +605,9 @@
 /mob/new_player/hear_say(var/list/message_pieces, var/verb = "says", var/italics = 0, var/mob/speaker = null)
 	return
 
+/mob/new_player/hear_holopad_talk(list/message_pieces, var/verb = "says", var/mob/speaker = null)
+	return
+
 // Prevents lobby players from seeing emotes, even with ghosteyes
 /mob/new_player/show_message(msg, type, alt, alt_type)
 	return
