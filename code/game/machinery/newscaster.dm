@@ -79,7 +79,7 @@
 	newMsg.body = msg
 	newMsg.time_stamp = "[stationtime2text()]"
 	newMsg.is_admin_message = adminMessage
-	newMsg.post_time = round_duration_in_ticks // Should be almost universally unique
+	newMsg.post_time = round_duration_in_ds // Should be almost universally unique
 	if(message_type)
 		newMsg.message_type = message_type
 	if(photo)
