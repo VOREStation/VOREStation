@@ -6,7 +6,11 @@
 
 	matter = list(DEFAULT_WALL_MATERIAL = 50,"glass" = 50)
 
+<<<<<<< HEAD
 	req_one_access = list(access_engine, access_talon) // Access to unlock the device, ignored if emagged //VOREStation Edit - Add talon
+=======
+	req_one_access = list(access_engine) // Access to unlock the device, ignored if emagged
+>>>>>>> 62c6693... Merge pull request #7099 from VOREStation/aro-airlockelec
 	var/list/apply_any_access = list(access_engine) // Can apply any access, not just their own
 
 	var/secure = 0 //if set, then wires will be randomized and bolts will drop if the door is broken
@@ -64,7 +68,11 @@
 	if (usr.stat || usr.restrained() || (!ishuman(usr) && !istype(usr,/mob/living/silicon)))
 		return
 	if (href_list["close"])
+<<<<<<< HEAD
 		usr << browse(null, "window=airlock")
+=======
+		usr << browse(null, "window=airlock_electronics")
+>>>>>>> 62c6693... Merge pull request #7099 from VOREStation/aro-airlockelec
 		return
 
 	if (href_list["login"])
