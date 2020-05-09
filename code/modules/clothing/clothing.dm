@@ -29,6 +29,7 @@
 
 	var/update_icon_define = null	// Only needed if you've got multiple files for the same type of clothing
 
+	var/polychromic = FALSE //VOREStation edit
 
 //Updates the icons of the mob wearing the clothing item, if any.
 /obj/item/clothing/proc/update_clothing_icon()
@@ -47,6 +48,8 @@
 			var/obj/item/clothing/accessory/tie = new T(src)
 			src.attach_accessory(null, tie)
 	set_clothing_index()
+	if(polychromic)
+		verbs |= /obj/item/clothing/proc/change_color
 
 /obj/item/clothing/equipped(var/mob/user,var/slot)
 	..()
@@ -159,6 +162,24 @@
 		icon = sprite_sheets_obj[target_species]
 	else
 		icon = initial(icon)
+
+//VOREStation edit start
+/obj/item/clothing/proc/change_color()
+	set name = "Change Color"
+	set category = "Object"
+	set desc = "Change the color of the clothing."
+	set src in usr
+
+	if(usr.stat || usr.restrained() || usr.incapacitated())
+		return
+
+	var/new_color = input(usr, "Pick a new color", "Color", color) as color|null
+
+	if(new_color && (new_color != color))
+		color = new_color
+	update_icon()
+	update_clothing_icon()
+//VOREStation edit end
 
 /obj/item/clothing/head/helmet/refit_for_species(var/target_species)
 	if(!species_restricted)
