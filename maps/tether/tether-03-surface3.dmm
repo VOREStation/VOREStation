@@ -13483,27 +13483,36 @@
 /area/hallway/lower/third_south)
 "awI" = (
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock/maintenance/command{
-	req_access = list(19)
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
-/obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/door/airlock/glass_security{
+	id_tag = "SurfaceFoyer";
+	layer = 2.8;
+	name = "Security";
+	req_access = list(1)
 	},
 /obj/machinery/door/blast/regular{
 	density = 0;
-	dir = 4;
+	dir = 1;
 	icon_state = "pdoor0";
-	id = "bridge blast";
-	name = "Bridge Blast Doors";
-	opacity = 0
+	id = "surfbriglockdown";
+	layer = 1;
+	name = "Security Blast Doors";
+	opacity = 0;
+	open_layer = 1
 	},
-/turf/simulated/floor,
-/area/bridge_hallway)
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/tether/surfacebase/security/lobby)
 "awJ" = (
 /turf/simulated/wall,
 /area/maintenance/lower/atrium)
@@ -27062,37 +27071,47 @@
 /area/maintenance/lower/mining)
 "aTt" = (
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock/glass_command{
-	dir = 1;
-	name = "Bridge";
+/obj/machinery/door/airlock/maintenance/command{
 	req_access = list(19)
 	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /obj/machinery/door/blast/regular{
+	closed_layer = 10;
 	density = 0;
-	dir = 1;
+	dir = 4;
 	icon_state = "pdoor0";
 	id = "bridge blast";
+	layer = 1;
 	name = "Bridge Blast Doors";
-	opacity = 0
+	opacity = 0;
+	open_layer = 1
 	},
-/turf/simulated/floor/tiled/dark,
-/area/bridge)
+/turf/simulated/floor,
+/area/bridge_hallway)
 "aTu" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/glass_command{
+	dir = 1;
 	name = "Bridge";
 	req_access = list(19)
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/machinery/door/blast/regular{
+	closed_layer = 10;
 	density = 0;
 	dir = 1;
 	icon_state = "pdoor0";
 	id = "bridge blast";
+	layer = 1;
 	name = "Bridge Blast Doors";
-	opacity = 0
+	opacity = 0;
+	open_layer = 1
 	},
 /turf/simulated/floor/tiled/dark,
 /area/bridge)
@@ -27758,34 +27777,26 @@
 /area/tether/surfacebase/security/common)
 "aUy" = (
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
+/obj/machinery/door/airlock/glass_command{
+	name = "Bridge";
+	req_access = list(19)
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/door/airlock/glass_security{
-	id_tag = "SurfaceFoyer";
-	layer = 2.8;
-	name = "Security";
-	req_access = list(1)
-	},
 /obj/machinery/door/blast/regular{
+	closed_layer = 10;
 	density = 0;
 	dir = 1;
 	icon_state = "pdoor0";
-	id = "surfbriglockdown";
-	name = "Security Blast Doors";
-	opacity = 0
+	id = "bridge blast";
+	layer = 1;
+	name = "Bridge Blast Doors";
+	opacity = 0;
+	open_layer = 1
 	},
-/obj/structure/cable/green{
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/tiled/steel_grid,
-/area/tether/surfacebase/security/lobby)
+/turf/simulated/floor/tiled/dark,
+/area/bridge)
 "aUz" = (
 /obj/effect/floor_decal/steeldecal/steel_decals6{
 	dir = 9
@@ -29770,10 +29781,26 @@
 /turf/simulated/floor/wood,
 /area/library)
 "aXx" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tether)
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/regular{
+	closed_layer = 10;
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "bridge blast";
+	layer = 1;
+	name = "Bridge Blast Doors";
+	opacity = 0;
+	open_layer = 1
+	},
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/obj/structure/cable/green{
+	icon_state = "0-4"
+	},
+/turf/simulated/floor/plating,
+/area/bridge)
 "aXy" = (
 /obj/structure/table/standard,
 /obj/item/weapon/gun/energy/taser/xeno,
@@ -29813,12 +29840,29 @@
 /turf/simulated/floor/tiled/white,
 /area/rnd/outpost/xenobiology/outpost_first_aid)
 "aXB" = (
-/obj/machinery/atmospherics/unary/engine{
-	dir = 1
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/regular{
+	closed_layer = 10;
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "bridge blast";
+	layer = 1;
+	name = "Bridge Blast Doors";
+	opacity = 0;
+	open_layer = 1
 	},
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tourbus/engines)
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/obj/structure/cable/green{
+	icon_state = "0-4"
+	},
+/obj/structure/cable/green{
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/plating,
+/area/bridge)
 "aXC" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -29833,6 +29877,61 @@
 	},
 /turf/simulated/floor/wood,
 /area/library)
+"aXD" = (
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/regular{
+	closed_layer = 10;
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "bridge blast";
+	layer = 1;
+	name = "Bridge Blast Doors";
+	opacity = 0;
+	open_layer = 1
+	},
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/obj/structure/cable/green{
+	icon_state = "0-4"
+	},
+/obj/structure/cable/green{
+	icon_state = "0-8"
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/plating,
+/area/bridge)
+"aXE" = (
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/regular{
+	closed_layer = 10;
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "bridge blast";
+	layer = 1;
+	name = "Bridge Blast Doors";
+	opacity = 0;
+	open_layer = 1
+	},
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/obj/structure/cable/green{
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/plating,
+/area/bridge)
 "aXF" = (
 /obj/machinery/power/apc{
 	dir = 2;
@@ -30004,6 +30103,18 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
+"aXU" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tether)
+"aXV" = (
+/obj/machinery/atmospherics/unary/engine{
+	dir = 1
+	},
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tourbus/engines)
 "aXW" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -31244,24 +31355,6 @@
 /obj/structure/cable/green,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/hop)
-"baq" = (
-/obj/structure/grille,
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "bridge blast";
-	name = "Bridge Blast Doors";
-	opacity = 0
-	},
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced,
-/obj/structure/cable/green{
-	icon_state = "0-4"
-	},
-/turf/simulated/floor/plating,
-/area/bridge)
 "bar" = (
 /obj/machinery/computer/communications,
 /obj/machinery/light/small{
@@ -31297,58 +31390,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/hop)
-"baw" = (
-/obj/structure/grille,
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "bridge blast";
-	name = "Bridge Blast Doors";
-	opacity = 0
-	},
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced,
-/obj/structure/cable/green{
-	icon_state = "0-4"
-	},
-/obj/structure/cable/green{
-	icon_state = "0-8"
-	},
-/turf/simulated/floor/plating,
-/area/bridge)
-"bay" = (
-/obj/structure/grille,
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "bridge blast";
-	name = "Bridge Blast Doors";
-	opacity = 0
-	},
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced,
-/obj/structure/cable/green{
-	icon_state = "0-4"
-	},
-/obj/structure/cable/green{
-	icon_state = "0-8"
-	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/turf/simulated/floor/plating,
-/area/bridge)
 "baz" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/lightgrey/border,
@@ -31361,24 +31402,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
-"baA" = (
-/obj/structure/grille,
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "bridge blast";
-	name = "Bridge Blast Doors";
-	opacity = 0
-	},
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced,
-/obj/structure/cable/green{
-	icon_state = "0-8"
-	},
-/turf/simulated/floor/plating,
-/area/bridge)
 "baG" = (
 /obj/structure/bed/chair/comfy/brown{
 	dir = 8
@@ -42927,7 +42950,7 @@ ahy
 ahx
 ahx
 ahx
-aUy
+awI
 aVN
 aWb
 aWn
@@ -43697,7 +43720,7 @@ mfi
 jHw
 jpB
 qWU
-aXB
+aXV
 aKU
 aOI
 aPb
@@ -44085,7 +44108,7 @@ alj
 alj
 alj
 asT
-aTt
+aTu
 asT
 alX
 alX
@@ -44549,7 +44572,7 @@ isR
 jHw
 gHh
 qWU
-aXB
+aXV
 aKU
 aOI
 aPb
@@ -44657,7 +44680,7 @@ aYb
 aYs
 aYx
 aYE
-baq
+aXx
 bbF
 ajM
 ape
@@ -44799,7 +44822,7 @@ aYb
 aYp
 aYy
 aYF
-baw
+aXB
 bbF
 ajM
 apf
@@ -44941,7 +44964,7 @@ aYb
 aYp
 aYz
 aYG
-baw
+aXB
 bbF
 ajM
 apD
@@ -45083,7 +45106,7 @@ aYb
 aYt
 aYA
 aYH
-baw
+aXB
 bbF
 aEq
 apE
@@ -45207,7 +45230,7 @@ ajV
 akn
 aYO
 aZs
-awI
+aTt
 aEb
 aSE
 aYS
@@ -45225,7 +45248,7 @@ aYo
 aYu
 aYI
 aPC
-bay
+aXD
 bbF
 avG
 aNE
@@ -45367,7 +45390,7 @@ bae
 aYv
 aYB
 aYJ
-baw
+aXB
 bbF
 ajR
 akx
@@ -45509,7 +45532,7 @@ bae
 aYb
 aTv
 aYK
-baw
+aXB
 bbF
 ajR
 aEx
@@ -45651,7 +45674,7 @@ aZI
 aYb
 aYy
 aYL
-baw
+aXB
 bbF
 avH
 awq
@@ -45793,7 +45816,7 @@ aYp
 aYw
 aYD
 aYM
-baA
+aXE
 bbF
 ajR
 awp
@@ -46357,7 +46380,7 @@ ayx
 alo
 alo
 asT
-aTu
+aUy
 asT
 alZ
 alZ
@@ -46534,7 +46557,7 @@ aNk
 uSA
 aNJ
 aNP
-aXx
+aXU
 aKU
 abg
 aOk
@@ -46676,7 +46699,7 @@ aNl
 aNl
 aNK
 aNP
-aXx
+aXU
 aKU
 abg
 aOk
@@ -46818,7 +46841,7 @@ aNm
 aNl
 aNK
 aNP
-aXx
+aXU
 aKU
 abg
 aOk
