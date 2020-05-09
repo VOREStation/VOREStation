@@ -11,7 +11,7 @@
 	var/charge
 	var/max_charge = 10
 	var/ticks = 1
-	var/ticks_to_charge = 5 //10 secs per shot charged
+	var/ticks_to_charge = 15 //10 secs per shot charged
 
 /obj/item/ammo_casing/macrobattery/Initialize(mapload, ...)
 	. = ..()
@@ -77,7 +77,7 @@
 	name = "Macrobattery - LETHAL"
 	icon_state = "macrobat_ouchie"
 	bat_colour = "#cc3300"
-	projectile_type = /obj/item/projectile/beam
+	projectile_type = /obj/item/projectile/beam/heavylaser/lessheavy
 
 /obj/item/ammo_casing/macrobattery/healie
 	name = "Macrobattery - RESTORE"
@@ -98,3 +98,7 @@
 		target.radiation = max(target.radiation - 75, 0) //worse than mlem for rad, better for tox.
 	else
 		return 1
+
+/obj/item/projectile/beam/heavylaser/lessheavy //all bark. no (or little) bite.
+	damage = 15
+	fire_sound = 'sound/weapons/Gunshot_cannon.ogg'

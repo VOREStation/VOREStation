@@ -20,6 +20,7 @@
 	icon_override = 'icons/vore/custom_guns_vr.dmi'
 	item_state = "multicannon"
 	slot_flags = SLOT_BACK
+	recoil = FALSE
 
 /obj/item/weapon/gun/projectile/multi_cannon/update_icon()
 	. = ..()
