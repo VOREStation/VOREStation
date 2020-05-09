@@ -2,7 +2,7 @@
 	name = "automated shutoff valve monitor"
 	desc = "Console used to remotely monitor shutoff valves on the station."
 	icon_keyboard = "power_key"
-	icon_screen = "power:0"
+	icon_screen = "power_monitor"
 	light_color = "#a97faa"
 	circuit = /obj/item/weapon/circuitboard/shutoff_monitor
 	var/datum/nano_module/shutoff_monitor/monitor
