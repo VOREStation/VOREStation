@@ -10,7 +10,7 @@
 
 	#define USING_MAP_DATUM /datum/map/virgo_minitest
 
-	#warning Please uncheck virgo_minitest.dm before committing.
+	#warn Please uncheck virgo_minitest before committing
 
 #elif !defined(MAP_OVERRIDE)
 
