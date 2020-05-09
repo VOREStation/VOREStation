@@ -42,8 +42,9 @@
 /turf/simulated/floor/outdoors/rocks,
 /area/submap/virgo2/DecoupledEngine)
 "al" = (
-/obj/item/projectile/bullet/magnetic/fuelrod,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/obj/effect/floor_decal/rust,
+/obj/item/weapon/fuel_assembly/supermatter,
+/turf/simulated/floor,
 /area/submap/virgo2/DecoupledEngine)
 "am" = (
 /obj/item/weapon/arrow/rod,
@@ -334,11 +335,6 @@
 "bd" = (
 /obj/machinery/atmospherics/pipe/tank/carbon_dioxide,
 /obj/effect/floor_decal/rust,
-/turf/simulated/floor,
-/area/submap/virgo2/DecoupledEngine)
-"be" = (
-/obj/effect/floor_decal/rust,
-/obj/item/projectile/bullet/magnetic/fuelrod,
 /turf/simulated/floor,
 /area/submap/virgo2/DecoupledEngine)
 "bf" = (
@@ -865,7 +861,7 @@ ao
 aw
 aI
 aP
-be
+al
 aA
 av
 br
@@ -1113,7 +1109,7 @@ ab
 ab
 ad
 ai
-al
+bB
 ad
 ad
 ad
