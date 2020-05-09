@@ -9,7 +9,6 @@
 "ai" = (/obj/item/stack/material/steel,/turf/template_noop,/area/submap/DecoupledEngine)
 "aj" = (/turf/simulated/floor/outdoors/rocks,/area/submap/DecoupledEngine)
 "ak" = (/obj/structure/lattice,/obj/structure/girder/displaced,/turf/simulated/floor/outdoors/rocks,/area/submap/DecoupledEngine)
-"al" = (/obj/item/projectile/bullet/magnetic/fuelrod,/turf/template_noop,/area/submap/DecoupledEngine)
 "am" = (/obj/item/weapon/arrow/rod,/turf/template_noop,/area/submap/DecoupledEngine)
 "an" = (/turf/simulated/floor/water,/area/submap/DecoupledEngine)
 "ao" = (/obj/structure/lattice,/turf/simulated/floor/outdoors/rocks,/area/submap/DecoupledEngine)
@@ -23,10 +22,9 @@
 "aw" = (/obj/structure/girder,/obj/item/stack/material/steel,/turf/simulated/floor,/area/submap/DecoupledEngine)
 "ax" = (/obj/structure/lattice,/obj/structure/grille/broken,/turf/simulated/floor/outdoors/rocks,/area/submap/DecoupledEngine)
 "ay" = (/obj/effect/floor_decal/rust,/obj/item/stack/material/steel,/turf/simulated/floor,/area/submap/DecoupledEngine)
-"az" = (/obj/machinery/atmospherics/pipe/simple/visible{ icon_state = "intact"; dir = 6},/obj/effect/floor_decal/rust,/turf/simulated/floor,/area/submap/DecoupledEngine)
+"az" = (/obj/machinery/atmospherics/pipe/simple/visible{icon_state = "intact"; dir = 6},/obj/effect/floor_decal/rust,/turf/simulated/floor,/area/submap/DecoupledEngine)
 "aA" = (/obj/machinery/atmospherics/pipe/simple/visible{dir = 4},/obj/effect/floor_decal/rust,/turf/simulated/floor,/area/submap/DecoupledEngine)
 "aB" = (/obj/structure/shuttle/engine/heater{icon_state = "heater"; dir = 4},/obj/effect/floor_decal/rust,/obj/effect/decal/cleanable/cobweb2,/obj/machinery/atmospherics/pipe/simple/visible{dir = 4},/turf/simulated/floor,/area/submap/DecoupledEngine)
-"aC" = (/obj/structure/shuttle/engine/propulsion{ icon_state = "propulsion_r"; dir = 4},/turf/simulated/floor/water,/area/submap/DecoupledEngine)
 "aD" = (/obj/structure/lattice,/obj/structure/grille,/turf/template_noop,/area/submap/DecoupledEngine)
 "aE" = (/obj/structure/lattice,/obj/structure/grille,/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced,/turf/template_noop,/area/submap/DecoupledEngine)
 "aF" = (/obj/structure/sign/warning/radioactive{dir = 8},/turf/simulated/wall/durasteel,/area/submap/DecoupledEngine)
@@ -35,7 +33,7 @@
 "aI" = (/obj/effect/decal/cleanable/blood/oil/streak{amount = 0},/obj/effect/floor_decal/rust,/turf/simulated/floor,/area/submap/DecoupledEngine)
 "aJ" = (/obj/machinery/power/rad_collector,/obj/effect/floor_decal/rust,/obj/effect/floor_decal/industrial/warning{icon_state = "warning"; dir = 9},/turf/simulated/floor,/area/submap/DecoupledEngine)
 "aK" = (/obj/effect/floor_decal/rust,/obj/effect/floor_decal/industrial/warning{icon_state = "warning"; dir = 5},/turf/simulated/floor,/area/submap/DecoupledEngine)
-"aL" = (/obj/structure/grille/broken,/obj/structure/window/phoronreinforced{ icon_state = "phoronrwindow"; dir = 4},/obj/item/weapon/material/shard/phoron,/obj/effect/floor_decal/rust,/turf/simulated/floor,/area/submap/DecoupledEngine)
+"aL" = (/obj/structure/grille/broken,/obj/structure/window/phoronreinforced{icon_state = "phoronrwindow"; dir = 4},/obj/item/weapon/material/shard/phoron,/obj/effect/floor_decal/rust,/turf/simulated/floor,/area/submap/DecoupledEngine)
 "aM" = (/obj/machinery/atmospherics/pipe/manifold4w/visible,/obj/effect/floor_decal/rust,/turf/simulated/floor,/area/submap/DecoupledEngine)
 "aN" = (/obj/structure/shuttle/engine/heater{icon_state = "heater"; dir = 4},/obj/effect/floor_decal/rust,/obj/machinery/atmospherics/pipe/simple/visible{dir = 4},/turf/simulated/floor,/area/submap/DecoupledEngine)
 "aO" = (/obj/structure/shuttle/engine/propulsion{icon_state = "propulsion_r"; dir = 4},/turf/simulated/floor/water,/area/submap/DecoupledEngine)
@@ -45,8 +43,8 @@
 "aS" = (/obj/structure/closet/crate/oldreactor{anchored = 1},/obj/effect/floor_decal/rust,/turf/simulated/floor,/area/submap/DecoupledEngine)
 "aT" = (/obj/item/poi/brokenoldreactor{anchored = 1},/obj/effect/floor_decal/rust,/obj/effect/floor_decal/industrial/warning{icon_state = "warning"; dir = 4},/turf/simulated/floor,/area/submap/DecoupledEngine)
 "aU" = (/obj/machinery/atmospherics/pipe/simple/visible,/obj/effect/floor_decal/rust,/turf/simulated/floor,/area/submap/DecoupledEngine)
-"aV" = (/obj/structure/grille,/obj/structure/window/phoronreinforced{ icon_state = "phoronrwindow"; dir = 4},/obj/structure/window/phoronreinforced{ icon_state = "phoronrwindow"; dir = 8},/turf/simulated/floor,/area/submap/DecoupledEngine)
-"aW" = (/obj/machinery/atmospherics/pipe/simple/visible{ icon_state = "intact"; dir = 5},/obj/effect/floor_decal/rust,/turf/simulated/floor,/area/submap/DecoupledEngine)
+"aV" = (/obj/structure/grille,/obj/structure/window/phoronreinforced{icon_state = "phoronrwindow"; dir = 4},/obj/structure/window/phoronreinforced{icon_state = "phoronrwindow"; dir = 8},/turf/simulated/floor,/area/submap/DecoupledEngine)
+"aW" = (/obj/machinery/atmospherics/pipe/simple/visible{icon_state = "intact"; dir = 5},/obj/effect/floor_decal/rust,/turf/simulated/floor,/area/submap/DecoupledEngine)
 "aX" = (/obj/structure/shuttle/engine/router,/turf/simulated/floor,/area/submap/DecoupledEngine)
 "aY" = (/obj/structure/shuttle/engine/propulsion{dir = 4},/turf/simulated/floor/water,/area/submap/DecoupledEngine)
 "aZ" = (/obj/item/stack/material/steel,/turf/simulated/floor/outdoors/rocks,/area/submap/DecoupledEngine)
@@ -54,22 +52,22 @@
 "bb" = (/obj/structure/lattice,/obj/structure/grille,/obj/structure/window/reinforced{dir = 2; health = 1e+006},/turf/template_noop,/area/submap/DecoupledEngine)
 "bc" = (/obj/structure/lattice,/obj/structure/grille,/obj/structure/window/reinforced{dir = 2; health = 1e+006},/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 1; health = 1e+006},/turf/template_noop,/area/submap/DecoupledEngine)
 "bd" = (/obj/machinery/atmospherics/pipe/tank/carbon_dioxide,/obj/effect/floor_decal/rust,/turf/simulated/floor,/area/submap/DecoupledEngine)
-"be" = (/obj/machinery/power/rad_collector,/obj/structure/window/phoronreinforced,/obj/structure/window/phoronreinforced{ icon_state = "phoronrwindow"; dir = 8},/obj/effect/floor_decal/rust,/obj/effect/floor_decal/industrial/warning{dir = 10},/turf/simulated/floor,/area/submap/DecoupledEngine)
+"be" = (/obj/machinery/power/rad_collector,/obj/structure/window/phoronreinforced,/obj/structure/window/phoronreinforced{icon_state = "phoronrwindow"; dir = 8},/obj/effect/floor_decal/rust,/obj/effect/floor_decal/industrial/warning{dir = 10},/turf/simulated/floor,/area/submap/DecoupledEngine)
 "bf" = (/obj/machinery/power/rad_collector,/obj/structure/window/phoronreinforced,/obj/effect/floor_decal/rust,/obj/effect/floor_decal/industrial/warning,/turf/simulated/floor,/area/submap/DecoupledEngine)
-"bg" = (/obj/machinery/power/rad_collector,/obj/structure/window/phoronreinforced{ icon_state = "phoronrwindow"; dir = 4},/obj/structure/window/phoronreinforced,/obj/effect/floor_decal/rust,/obj/effect/floor_decal/industrial/warning{dir = 6},/turf/simulated/floor,/area/submap/DecoupledEngine)
+"bg" = (/obj/machinery/power/rad_collector,/obj/structure/window/phoronreinforced{icon_state = "phoronrwindow"; dir = 4},/obj/structure/window/phoronreinforced,/obj/effect/floor_decal/rust,/obj/effect/floor_decal/industrial/warning{dir = 6},/turf/simulated/floor,/area/submap/DecoupledEngine)
 "bh" = (/obj/structure/shuttle/engine/propulsion{dir = 4},/turf/simulated/floor/outdoors/rocks,/area/submap/DecoupledEngine)
 "bi" = (/obj/machinery/atmospherics/tvalve/digital{dir = 8},/obj/effect/floor_decal/rust,/turf/simulated/floor,/area/submap/DecoupledEngine)
 "bj" = (/obj/machinery/atmospherics/binary/pump{dir = 8},/obj/effect/floor_decal/rust,/turf/simulated/floor,/area/submap/DecoupledEngine)
 "bk" = (/obj/machinery/atmospherics/pipe/manifold/visible,/obj/effect/floor_decal/rust,/turf/simulated/floor,/area/submap/DecoupledEngine)
-"bl" = (/obj/machinery/atmospherics/pipe/simple/visible{dir = 4},/obj/structure/grille,/obj/structure/window/phoronreinforced{ icon_state = "phoronrwindow"; dir = 4},/obj/structure/window/phoronreinforced,/obj/structure/window/phoronreinforced{ icon_state = "phoronrwindow"; dir = 8},/turf/simulated/floor,/area/submap/DecoupledEngine)
+"bl" = (/obj/machinery/atmospherics/pipe/simple/visible{dir = 4},/obj/structure/grille,/obj/structure/window/phoronreinforced{icon_state = "phoronrwindow"; dir = 4},/obj/structure/window/phoronreinforced,/obj/structure/window/phoronreinforced{icon_state = "phoronrwindow"; dir = 8},/turf/simulated/floor,/area/submap/DecoupledEngine)
 "bm" = (/obj/structure/shuttle/engine/propulsion{icon_state = "propulsion_l"; dir = 4},/turf/simulated/floor/outdoors/rocks,/area/submap/DecoupledEngine)
 "bn" = (/obj/effect/floor_decal/rust,/obj/structure/closet/crate/radiation,/turf/simulated/floor,/area/submap/DecoupledEngine)
 "bo" = (/obj/effect/decal/cleanable/blood/oil,/obj/effect/floor_decal/rust,/turf/simulated/floor,/area/submap/DecoupledEngine)
 "bp" = (/obj/effect/floor_decal/rust,/obj/effect/decal/cleanable/dirt,/obj/item/weapon/rcd,/turf/simulated/floor,/area/submap/DecoupledEngine)
 "bq" = (/obj/structure/sign/warning/radioactive,/turf/simulated/wall/durasteel,/area/submap/DecoupledEngine)
-"br" = (/obj/structure/grille,/obj/structure/window/phoronreinforced{ icon_state = "phoronrwindow"; dir = 1},/obj/structure/window/phoronreinforced{ icon_state = "phoronrwindow"; dir = 8},/obj/structure/window/phoronreinforced,/turf/simulated/floor,/area/submap/DecoupledEngine)
-"bs" = (/obj/structure/grille,/obj/structure/window/phoronreinforced{ icon_state = "phoronrwindow"; dir = 1},/obj/structure/window/phoronreinforced,/turf/simulated/floor,/area/submap/DecoupledEngine)
-"bt" = (/obj/structure/grille,/obj/structure/window/phoronreinforced{ icon_state = "phoronrwindow"; dir = 1},/obj/structure/window/phoronreinforced{ icon_state = "phoronrwindow"; dir = 4},/obj/structure/window/phoronreinforced,/turf/simulated/floor,/area/submap/DecoupledEngine)
+"br" = (/obj/structure/grille,/obj/structure/window/phoronreinforced{icon_state = "phoronrwindow"; dir = 1},/obj/structure/window/phoronreinforced{icon_state = "phoronrwindow"; dir = 8},/obj/structure/window/phoronreinforced,/turf/simulated/floor,/area/submap/DecoupledEngine)
+"bs" = (/obj/structure/grille,/obj/structure/window/phoronreinforced{icon_state = "phoronrwindow"; dir = 1},/obj/structure/window/phoronreinforced,/turf/simulated/floor,/area/submap/DecoupledEngine)
+"bt" = (/obj/structure/grille,/obj/structure/window/phoronreinforced{icon_state = "phoronrwindow"; dir = 1},/obj/structure/window/phoronreinforced{icon_state = "phoronrwindow"; dir = 4},/obj/structure/window/phoronreinforced,/turf/simulated/floor,/area/submap/DecoupledEngine)
 "bu" = (/obj/structure/sign/poi/engineleft,/turf/simulated/wall/durasteel,/area/submap/DecoupledEngine)
 "bv" = (/obj/structure/sign/poi/engineright,/turf/simulated/wall/r_wall,/area/submap/DecoupledEngine)
 "bw" = (/obj/structure/girder,/turf/simulated/floor/outdoors/rocks,/area/submap/DecoupledEngine)
@@ -86,12 +84,12 @@ aaababababababababababadababababacababababababababababababaa
 aaababafabababababababababababababababababababababababababaa
 aaabababababababababababababagababababababababababababababaa
 aaabababababadabahabababababababababaiabababababababababajaa
-aaababababababakababababababababababalababababababababababaa
+aaababababababakababababababababababacababababababababababaa
 aaababababababababababababababababababababababababajabajabaa
 aaabababaiababababababababababafababababamabajabajababababaa
 aaabababababacabababababababajajabababababajanajajajabadabaa
 aaabadabafababaoaoaoaoacabaoapaqaqarasatatanananajababababaa
-aaamababababauavavavawaxaoapayaqazaAaBaCanananajabababababaa
+aaamababababauavavavawaxaoapayaqazaAaBaOanananajabababababaa
 aaababauauaDaEaFaGaHaIaJaoaKaIaLaMaAaNaOananajajabababababaa
 aaababababaPaPaQaPaPaPaRaSaTaUaVaWaNaXaYanajajababababababaa
 aaababaZbabbbcavbdbdaPbebfbgaUaVazaNaXbhajajabadabajabababaa
