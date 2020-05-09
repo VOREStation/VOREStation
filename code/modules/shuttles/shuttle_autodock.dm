@@ -65,7 +65,7 @@
 		current_dock_target = docking_controller_tag
 	shuttle_docking_controller = SSshuttles.docking_registry[current_dock_target]
 	if(current_dock_target && !shuttle_docking_controller)
-		to_world("<span class='danger'>warning: shuttle [src] can't find its controller with tag [current_dock_target]!</span>")
+		log_shuttle("<span class='danger'>warning: shuttle [src] can't find its controller with tag [current_dock_target]!</span>") // No toggle because this is an error message that needs to be seen
 /*
 	Docking stuff
 */
