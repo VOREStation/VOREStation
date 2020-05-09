@@ -4,8 +4,9 @@ var/list/grass_types = list(
 
 /turf/simulated/floor/outdoors/grass
 	name = "grass"
-	icon_state = "grass"
+	icon_state = "grass0"
 	edge_blending_priority = 4
+	initial_flooring = /decl/flooring/grass
 	turf_layers = list(
 		/turf/simulated/floor/outdoors/rocks,
 		/turf/simulated/floor/outdoors/dirt
@@ -34,7 +35,8 @@ var/list/grass_types = list(
 
 /turf/simulated/floor/outdoors/grass/sif
 	name = "growth"
-	icon_state = "grass_sif"
+	icon_state = "grass_sif0"
+	initial_flooring = /decl/flooring/grass/sif
 	edge_blending_priority = 4
 	grass_chance = 5
 	var/tree_chance = 2
@@ -63,10 +65,6 @@ var/list/grass_types = list(
 	. = ..()
 
 /turf/simulated/floor/outdoors/grass/Initialize()
-	if(prob(50))
-		icon_state = "[initial(icon_state)]2"
-		//edge_blending_priority++
-
 	if(grass_chance && prob(grass_chance) && !check_density())
 		var/grass_type = pickweight(grass_types)
 		new grass_type(src)
@@ -79,14 +77,14 @@ var/list/grass_types = list(
 
 /turf/simulated/floor/outdoors/grass/forest
 	name = "thick grass"
-	icon_state = "grass-dark"
+	icon_state = "grass-dark0"
 	grass_chance = 80
 	//tree_chance = 20
 	edge_blending_priority = 5
 
 /turf/simulated/floor/outdoors/grass/sif/forest
 	name = "thick growth"
-	icon_state = "grass_sif_dark"
+	icon_state = "grass_sif_dark0"
 	edge_blending_priority = 5
 	tree_chance = 10
 	grass_chance = 0
