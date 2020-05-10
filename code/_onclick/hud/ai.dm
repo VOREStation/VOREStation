@@ -151,14 +151,14 @@
 	adding += using
 
 //Multicamera mode 
-    using = new /obj/screen/ai/multicam() 
-    using.screen_loc = ui_ai_multicam 
-    adding += using 
+	using = new /obj/screen/ai/multicam() 
+	using.screen_loc = ui_ai_multicam 
+	adding += using 
  
 //Add multicamera camera 
-    using = new /obj/screen/ai/add_multicam() 
-    using.screen_loc = ui_ai_add_multicam 
-    adding += using 
+	using = new /obj/screen/ai/add_multicam() 
+	using.screen_loc = ui_ai_add_multicam 
+	adding += using 
  
 	mymob.client.screen = list()
 	mymob.client.screen += adding + other
