@@ -154,6 +154,7 @@
 		   && !job.whitelist_only \
 		   && !jobban_isbanned(user,job.title) \
 		   && job.player_old_enough(user.client) \
+		   && job.player_has_enough_playtime(user.client) \
 		   && job.pto_type == department \
 		   && !job.disallow_jobhop \
 		   && job.timeoff_factor > 0

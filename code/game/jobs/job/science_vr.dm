@@ -1,6 +1,7 @@
 /datum/job/rd
 	disallow_jobhop = TRUE
 	pto_type = PTO_SCIENCE
+	dept_time_required = 60
 
 	access = list(access_rd, access_heads, access_tox, access_genetics, access_morgue,
 			            access_tox_storage, access_teleporter, access_sec_doors,

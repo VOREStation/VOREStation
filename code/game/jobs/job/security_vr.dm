@@ -1,6 +1,7 @@
 /datum/job/hos
 	disallow_jobhop = TRUE
 	pto_type = PTO_SECURITY
+	dept_time_required = 60
 
 	access = list(access_security, access_eva, access_sec_doors, access_brig, access_armory,
 						access_forensics_lockers, access_morgue, access_maint_tunnels, access_all_personal_lockers,
@@ -13,6 +14,7 @@
 
 /datum/job/warden
 	pto_type = PTO_SECURITY
+	dept_time_required = 20
 
 /datum/job/detective
 	pto_type = PTO_SECURITY

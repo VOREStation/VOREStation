@@ -324,11 +324,13 @@
 
 	// VOREStation Edit Start - Department Hours
 	if(config.time_off)
-		var/DBQuery/query_hours = dbcon.NewQuery("SELECT department, hours FROM vr_player_hours WHERE ckey = '[sql_ckey]'")
+		var/DBQuery/query_hours = dbcon.NewQuery("SELECT department, hours, total_hours FROM vr_player_hours WHERE ckey = '[sql_ckey]'")
 		query_hours.Execute()
+		LAZYINITLIST(department_hours)
+		LAZYINITLIST(play_hours)
 		while(query_hours.NextRow())
-			LAZYINITLIST(department_hours)
 			department_hours[query_hours.item[1]] = text2num(query_hours.item[2])
+			play_hours[query_hours.item[1]] = text2num(query_hours.item[3])
 	// VOREStation Edit End - Department Hours
 
 	if(sql_id)
