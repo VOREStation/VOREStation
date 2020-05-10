@@ -16,6 +16,17 @@
 	requires_power = 1
 	dynamic_lighting = 1
 
+
+
+
+
+
+
+
+
+
+/area/ship/expe/emergencystorage
+	name = "\improper Exp Ship - Emergency Storage"
 /area/ship/expe/telecomms
 	name = "\improper Exp Ship - Telecommunications"
 /area/ship/expe/enginestorage
@@ -68,14 +79,24 @@
 	name = "\improper Exp Ship - Corridor"
 /area/ship/expe/corridor4
 	name = "\improper Exp Ship - Corridor"
-/area/ship/expe/corridor5
-	name = "\improper Exp Ship - Corridor"
+/area/ship/expe/corridor5p
+	name = "\improper Exp Ship - Port Corridor"
+/area/ship/expe/corridor5s
+	name = "\improper Exp Ship - Starboard Corridor"
 /area/ship/expe/corridor6
 	name = "\improper Exp Ship - Corridor"
 /area/ship/expe/corridor7
-	name = "\improper Exp Ship - Corridor"
+	name = "\improper Exp Ship - Port Section Corridor"
+/area/ship/expe/corridor7p1
+	name = "\improper Exp Ship - Port Section Corridor"
+/area/ship/expe/corridor7inside
+	name = "\improper Exp Ship - Port Section Corridor"
 /area/ship/expe/corridor8
-	name = "\improper Exp Ship - Corridor"
+	name = "\improper Exp Ship - Starboard Section Corridor"
+/area/ship/expe/corridor8p2
+	name = "\improper Exp Ship - Starboard Section Corridor"
+/area/ship/expe/corridor8inside
+	name = "\improper Exp Ship - Starboard Section Corridor"
 /area/ship/expe/medical
 	name = "\improper Exp Ship - Medical"
 /area/ship/expe/medical1
