@@ -154,6 +154,8 @@ turf/simulated/mineral/floor/light_corner
 	if(random_icon)
 		dir = pick(alldirs)
 		. = INITIALIZE_HINT_LATELOAD
+	var/decl/flooring/F = get_flooring_data(/decl/flooring/sand)
+	footstep_sounds = F?.footstep_sounds
 
 /turf/simulated/mineral/LateInitialize()
 	if(density && mineral)

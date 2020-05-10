@@ -81,6 +81,7 @@ var/list/turf_edge_cache = list()
 	name = "mud"
 	icon_state = "mud_dark"
 	edge_blending_priority = 3
+	initial_flooring = /decl/flooring/mud
 
 /turf/simulated/floor/outdoors/rocks
 	name = "rocks"
