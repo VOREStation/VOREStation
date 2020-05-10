@@ -2,8 +2,8 @@
 
 //PT
 /obj/item/clothing/under/solgov/pt/sifguard
-	name = "\improper SolCom pt uniform"
-	desc = "A baggy shirt bearing the seal of the Terran Commonwealth Explorer Corps and some dorky looking blue shorts."
+	name = "\improper NDF pt uniform"
+	desc = "A baggy shirt bearing the seal of the Nanotrasen Defense Force and some dorky looking blue shorts."
 
 /obj/item/clothing/under/solgov/pt/fleet
 	name = "fleet pt uniform"
@@ -21,12 +21,12 @@
 	desc = "A comfortable turtleneck and black utility trousers."
 
 /obj/item/clothing/under/solgov/utility/sifguard
-	name = "\improper SolCom uniform"
-	desc = "The utility uniform of the Terran Commonwealth Explorer Corps, made from biohazard resistant material. This one has silver trim."
+	name = "\improper NDF uniform"
+	desc = "The utility uniform of the Nanotrasen Defense Force, made from biohazard resistant material. This one has silver trim."
 
 /obj/item/clothing/under/solgov/utility/sifguard/officer
-	name = "\improper SolCom officer uniform"
-	desc = "The utility uniform of the Terran Commonwealth Explorer Corps, made from biohazard resistant material. This one has gold trim."
+	name = "\improper NDF officer uniform"
+	desc = "The utility uniform of the Nanotrasen Defense Force, made from biohazard resistant material. This one has gold trim."
 
 
 /obj/item/clothing/under/solgov/utility/fleet
@@ -77,12 +77,12 @@
 	desc = "The service uniform of the TCG Marine Corps. Slimming and stylish."
 
 /obj/item/clothing/under/solgov/mildress/expeditionary
-	name = "\improper SolCom dress uniform"
-	desc = "The dress uniform of the Terran Commonwealth Explorer Corps in silver trim."
+	name = "\improper NDF dress uniform"
+	desc = "The dress uniform of the Nanotrasen Defense Force in silver trim."
 
 /obj/item/clothing/under/solgov/mildress/expeditionary/command
-	name = "\improper SolCom command dress uniform"
-	desc = "The dress uniform of the Terran Commonwealth Explorer Corps in gold trim."
+	name = "\improper NDF command dress uniform"
+	desc = "The dress uniform of the Nanotrasen Defense Force in gold trim."
 
 /obj/item/clothing/under/solgov/mildress/marine
 	name = "marine dress uniform"

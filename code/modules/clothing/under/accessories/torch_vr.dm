@@ -192,3 +192,22 @@ armour attachments
 /obj/item/clothing/accessory/armor/helmcover/blue/sol
 	name = "peacekeeper helmet cover"
 	desc = "A fabric cover for armored helmets. This one is in TCG peacekeeper colors."
+
+/*********
+ranks - ndf
+*********/
+/obj/item/clothing/accessory/solgov/rank/ec/enlisted
+	name = "ranks (E-1 seaman recruit)"
+	desc = "Insignia denoting the rank of Seaman Recruit."
+
+/obj/item/clothing/accessory/solgov/rank/ec/enlisted/e3
+	name = "ranks (E-3 seaman)"
+	desc = "Insignia denoting the rank of Seaman."
+
+/obj/item/clothing/accessory/solgov/rank/ec/enlisted/e5
+	name = "ranks (E-5 petty officer)"
+	desc = "Insignia denoting the rank of Petty Officer."
+
+/obj/item/clothing/accessory/solgov/rank/ec/enlisted/e7
+	name = "ranks (E-7 chief petty officer)"
+	desc = "Insignia denoting the rank of Chief Petty Officer."

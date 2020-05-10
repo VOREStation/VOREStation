@@ -2,40 +2,40 @@
 
 //Service
 /obj/item/clothing/suit/storage/service/sifguard
-	name = "\improper SolCom jacket"
-	desc = "A uniform service jacket belonging to the Terran Commonwealth Explorer Corps. It has silver buttons."
+	name = "\improper NDF jacket"
+	desc = "A uniform service jacket belonging to the Nanotrasen Defense Force. It has silver buttons."
 
 /obj/item/clothing/suit/storage/service/sifguard/medical
-	name = "\improper SolCom medical jacket"
-	desc = "A uniform service jacket belonging to the Terran Commonwealth Explorer Corps. It has silver buttons and blue trim."
+	name = "\improper NDF medical jacket"
+	desc = "A uniform service jacket belonging to the Nanotrasen Defense Force. It has silver buttons and blue trim."
 
 /obj/item/clothing/suit/storage/service/sifguard/medical/command
-	name = "\improper SolCom medical command jacket"
-	desc = "A uniform service jacket belonging to the Terran Commonwealth Explorer Corps. It has gold buttons and blue trim."
+	name = "\improper NDF medical command jacket"
+	desc = "A uniform service jacket belonging to the Nanotrasen Defense Force. It has gold buttons and blue trim."
 
 /obj/item/clothing/suit/storage/service/sifguard/engineering
-	name = "\improper SolCom engineering jacket"
-	desc = "A uniform service jacket belonging to the Terran Commonwealth Explorer Corps. It has silver buttons and orange trim."
+	name = "\improper NDF engineering jacket"
+	desc = "A uniform service jacket belonging to the Nanotrasen Defense Force. It has silver buttons and orange trim."
 
 /obj/item/clothing/suit/storage/service/sifguard/engineering/command
-	name = "\improper SolCom engineering command jacket"
-	desc = "A uniform service jacket belonging to the Terran Commonwealth Explorer Corps. It has gold buttons and orange trim."
+	name = "\improper NDF engineering command jacket"
+	desc = "A uniform service jacket belonging to the Nanotrasen Defense Force. It has gold buttons and orange trim."
 
 /obj/item/clothing/suit/storage/service/sifguard/supply
-	name = "\improper SolCom supply jacket"
-	desc = "A uniform service jacket belonging to the Terran Commonwealth Explorer Corps. It has silver buttons and brown trim."
+	name = "\improper NDF supply jacket"
+	desc = "A uniform service jacket belonging to the Nanotrasen Defense Force. It has silver buttons and brown trim."
 
 /obj/item/clothing/suit/storage/service/sifguard/security
-	name = "\improper SolCom security jacket"
-	desc = "A uniform service jacket belonging to the Terran Commonwealth Explorer Corps. It has silver buttons and red trim."
+	name = "\improper NDF security jacket"
+	desc = "A uniform service jacket belonging to the Nanotrasen Defense Force. It has silver buttons and red trim."
 
 /obj/item/clothing/suit/storage/service/sifguard/security/command
-	name = "\improper SolCom security command jacket"
-	desc = "A uniform service jacket belonging to the Terran Commonwealth Explorer Corps. It has gold buttons and red trim."
+	name = "\improper NDF security command jacket"
+	desc = "A uniform service jacket belonging to the Nanotrasen Defense Force. It has gold buttons and red trim."
 
 /obj/item/clothing/suit/storage/service/sifguard/command
-	name = "\improper SolCom command jacket"
-	desc = "A uniform service jacket belonging to the Terran Commonwealth Explorer Corps. It has gold buttons and gold trim."
+	name = "\improper NDF command jacket"
+	desc = "A uniform service jacket belonging to the Nanotrasen Defense Force. It has gold buttons and gold trim."
 
 /obj/item/clothing/suit/storage/service/marine
 	name = "marine coat"
@@ -76,12 +76,12 @@
 //Dress
 
 /obj/item/clothing/suit/dress/expedition
-	name = "SolCom dress jacket"
-	desc = "A silver and grey dress jacket belonging to the Terran Commonwealth Explorer Corps. Fashionable, for the 24th century at least."
+	name = "\improper NDF dress jacket"
+	desc = "A silver and grey dress jacket belonging to the Nanotrasen Defense Force. Fashionable, for the 24th century at least."
 
 /obj/item/clothing/suit/dress/expedition/command
-	name = "explorer's command dress jacket"
-	desc = "A gold and grey dress jacket belonging to the Terran Commonwealth Explorer Corps. The height of fashion."
+	name = "\improper NDF command dress jacket"
+	desc = "A gold and grey dress jacket belonging to the Nanotrasen Defense Force. The height of fashion."
 
 /obj/item/clothing/suit/storage/toggle/dress/fleet
 	name = "fleet dress jacket"
