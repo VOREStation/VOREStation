@@ -1,3 +1,25 @@
+/obj/screen/ai/multicam 
+	name = "Multicamera Mode"
+	icon = 'icons/mob/screen_ai.dmi'
+	icon_state = "multicam"
+ 
+/obj/screen/ai/multicam/Click() 
+    if(..()) 
+        return 
+    var/mob/living/silicon/ai/AI = usr 
+    AI.toggle_multicam() 
+ 
+/obj/screen/ai/add_multicam 
+	name = "New Camera"
+	icon = 'icons/mob/screen_ai.dmi'
+	icon_state = "new_cam"
+ 
+/obj/screen/ai/add_multicam/Click() 
+    if(..()) 
+        return 
+    var/mob/living/silicon/ai/AI = usr 
+    AI.drop_new_multicam() 
+
 /datum/hud/proc/ai_hud()
 	adding = list()
 	other = list()
@@ -130,6 +152,16 @@
 	using.layer = SCREEN_LAYER
 	adding += using
 
+//Multicamera mode 
+	using = new /obj/screen/ai/multicam() 
+	using.screen_loc = ui_ai_multicam 
+	adding += using 
+ 
+//Add multicamera camera 
+	using = new /obj/screen/ai/add_multicam() 
+	using.screen_loc = ui_ai_add_multicam 
+	adding += using 
+ 
 	mymob.client.screen = list()
 	mymob.client.screen += adding + other
 	mymob.client.screen += mymob.client.void
