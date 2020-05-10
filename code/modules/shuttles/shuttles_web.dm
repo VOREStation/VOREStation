@@ -181,7 +181,7 @@
 				my_doors[find_doors[A.id_tag]] = A
 				find_doors -= A.id_tag
 		for(var/lost in find_doors)
-			log_debug("[my_area] shuttle computer couldn't find [lost] door!")
+			log_shuttle("[my_area] shuttle computer couldn't find [lost] door!")
 
 	if(my_sensors)
 		var/list/find_sensors = my_sensors
@@ -191,7 +191,7 @@
 				my_sensors[find_sensors[S.id_tag]] = S
 				find_sensors -= S.id_tag
 		for(var/lost in find_sensors)
-			log_debug("[my_area] shuttle computer couldn't find [lost] sensor!")
+			log_shuttle("[my_area] shuttle computer couldn't find [lost] sensor!")
 
 /obj/machinery/computer/shuttle_control/web/attackby(obj/I, mob/user)
 	var/datum/shuttle/autodock/web_shuttle/shuttle = shuttle_controller.shuttles[shuttle_tag]
