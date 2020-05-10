@@ -1,6 +1,7 @@
 /obj/screen/ai/multicam 
-    name = "Multicamera Mode" 
-    icon_state = "multicam" 
+	name = "Multicamera Mode"
+	icon = 'icons/mob/screen_ai.dmi'
+	icon_state = "multicam"
  
 /obj/screen/ai/multicam/Click() 
     if(..()) 
@@ -9,8 +10,9 @@
     AI.toggle_multicam() 
  
 /obj/screen/ai/add_multicam 
-    name = "New Camera" 
-    icon_state = "new_cam" 
+	name = "New Camera"
+	icon = 'icons/mob/screen_ai.dmi'
+	icon_state = "new_cam"
  
 /obj/screen/ai/add_multicam/Click() 
     if(..()) 
