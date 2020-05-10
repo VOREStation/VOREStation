@@ -6,8 +6,8 @@
 	desc = "It's a blue ballcap in Terran Commonwealth Government colors."
 
 /obj/item/clothing/head/soft/sol/expedition
-	name = "\improper Explorer corps cap"
-	desc = "It's a black ballcap bearing a Terran Commonwealth Explorer Corps crest."
+	name = "\improper NDF cap"
+	desc = "It's a black ballcap bearing a Nanotrasen Defense Force crest."
 
 /obj/item/clothing/head/soft/sol/fleet
 	name = "fleet cap"
@@ -70,12 +70,12 @@
 //Dress
 
 /obj/item/clothing/head/dress/expedition
-	name = "explorer's dress cap"
-	desc = "A peaked grey dress uniform cap belonging to the Terran Commonwealth Explorer Corps."
+	name = "\improper NDF dress cap"
+	desc = "A peaked grey dress uniform cap belonging to the Nanotrasen Defense Force."
 
 /obj/item/clothing/head/dress/expedition/command
-	name = "explorer's command dress cap"
-	desc = "A peaked grey dress uniform cap belonging to the Terran Commonwealth Explorer Corps. This one is trimmed in gold."
+	name = "\improper NDF command dress cap"
+	desc = "A peaked grey dress uniform cap belonging to the Nanotrasen Defense Force. This one is trimmed in gold."
 
 /obj/item/clothing/head/dress/fleet
 	name = "fleet dress wheel cover"
@@ -124,28 +124,28 @@
 	desc = "A white beret denoting service in the Interstellar Health Service. For medics that are more inclined towards style than safety."
 
 /obj/item/clothing/head/beret/sol/expedition
-	name = "explorer's beret"
-	desc = "A black beret belonging to the Terran Commonwealth explorer corps. For personnel that are more inclined towards style than safety."
+	name = "\improper NDF beret"
+	desc = "A black beret belonging to the Nanotrasen Defense Force. For personnel that are more inclined towards style than safety."
 
 /obj/item/clothing/head/beret/sol/expedition/security
-	name = "explorer's security beret"
-	desc = "A Terran Commonwealth Explorer Corps beret with a security crest. For personnel that are more inclined towards style than safety."
+	name = "\improper NDF security beret"
+	desc = "A Nanotrasen Defense Force beret with a security crest. For personnel that are more inclined towards style than safety."
 
 /obj/item/clothing/head/beret/sol/expedition/medical
-	name = "explorer's medical beret"
-	desc = "A Terran Commonwealth Explorer Corps beret with a medical crest. For personnel that are more inclined towards style than safety."
+	name = "\improper NDF medical beret"
+	desc = "A Nanotrasen Defense Force beret with a medical crest. For personnel that are more inclined towards style than safety."
 
 /obj/item/clothing/head/beret/sol/expedition/engineering
-	name = "explorer's engineering beret"
-	desc = "A Terran Commonwealth Explorer Corps beret with an engineering crest. For personnel that are more inclined towards style than safety."
+	name = "\improper NDF engineering beret"
+	desc = "A Nanotrasen Defense Force beret with an engineering crest. For personnel that are more inclined towards style than safety."
 
 /obj/item/clothing/head/beret/sol/expedition/supply
-	name = "explorer's supply beret"
-	desc = "A Terran Commonwealth Explorer Corps beret with a supply crest. For personnel that are more inclined towards style than safety."
+	name = "\improper NDF supply beret"
+	desc = "A Nanotrasen Defense Force beret with a supply crest. For personnel that are more inclined towards style than safety."
 
 /obj/item/clothing/head/beret/sol/expedition/command
-	name = "explorer's command beret"
-	desc = "A Terran Commonwealth Explorer Corps beret with a command crest. For personnel that are more inclined towards style than safety."
+	name = "\improper NDF command beret"
+	desc = "A Nanotrasen Defense Force beret with a command crest. For personnel that are more inclined towards style than safety."
 
 /obj/item/clothing/head/beret/sol/fleet
 	name = "fleet beret"
