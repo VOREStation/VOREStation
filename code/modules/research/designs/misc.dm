@@ -63,3 +63,12 @@ datum/design/item/general/laserpointer
 	materials = list(DEFAULT_WALL_MATERIAL = 500)
 	build_path = /obj/item/weapon/storage/box/syndie_kit/chameleon
 	sort_string = "TBAAB"
+
+/datum/design/item/general/bsflare
+	name = "bluespace flare"
+	desc = "A marker that can be detected by shuttle landing systems."
+	id = "bsflare"
+	req_tech = list(TECH_DATA = 3, TECH_BLUESPACE = 4)
+	materials = list(DEFAULT_WALL_MATERIAL = 4000, MAT_GLASS = 2000, MAT_SILVER = 2000)
+	build_path = /obj/item/device/spaceflare
+	sort_string = "TBAAC"
