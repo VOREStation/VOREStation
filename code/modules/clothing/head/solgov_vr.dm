@@ -70,11 +70,11 @@
 //Dress
 
 /obj/item/clothing/head/dress/expedition
-	name = "\improper Nanotrasen dress cap"
+	name = "\improper NDF dress cap"
 	desc = "A peaked grey dress uniform cap belonging to the Nanotrasen Defense Force."
 
 /obj/item/clothing/head/dress/expedition/command
-	name = "\improper Nanotrasen command dress cap"
+	name = "\improper NDF command dress cap"
 	desc = "A peaked grey dress uniform cap belonging to the Nanotrasen Defense Force. This one is trimmed in gold."
 
 /obj/item/clothing/head/dress/fleet
