@@ -10492,24 +10492,40 @@
 /turf/simulated/wall,
 /area/medical/surgery_hallway)
 "ps" = (
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock/medical{
-	name = "Medical Waiting Room";
-	req_one_access = list()
-	},
-/obj/machinery/door/blast/shutters{
-	density = 0;
-	dir = 2;
-	icon_state = "shutter0";
-	id = "medbayquar";
-	name = "Medbay Emergency Lockdown Shutters";
-	opacity = 0
-	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled/white,
-/area/medical/surgery_hallway)
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/glass_engineering{
+	closed_layer = 8;
+	layer = 2;
+	name = "Engineering Mezzenine";
+	open_layer = 2;
+	req_one_access = list()
+	},
+/obj/machinery/door/firedoor/glass{
+	closed_layer = 7;
+	layer = 1.5;
+	open_layer = 1.5
+	},
+/obj/machinery/door/blast/regular{
+	closed_layer = 10;
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "englockdown";
+	layer = 1;
+	level = 1;
+	name = "Engineering Lockdown";
+	opacity = 0;
+	open_layer = 1
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/engineering/foyer_mezzenine)
 "pt" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/paleblue/border,
@@ -10699,45 +10715,40 @@
 /turf/simulated/floor/plating,
 /area/engineering/foyer_mezzenine)
 "pL" = (
-/obj/structure/disposalpipe/segment,
 /obj/machinery/door/airlock/glass_engineering{
+	closed_layer = 8;
+	layer = 2;
 	name = "Engineering Mezzenine";
+	open_layer = 2;
 	req_one_access = list()
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/door/firedoor/glass,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+/obj/machinery/door/firedoor/glass{
+	closed_layer = 7;
+	layer = 1.5;
+	open_layer = 1.5
 	},
 /obj/machinery/door/blast/regular{
+	closed_layer = 10;
 	density = 0;
 	dir = 4;
 	icon_state = "pdoor0";
 	id = "englockdown";
+	layer = 1;
+	level = 1;
 	name = "Engineering Lockdown";
-	opacity = 0
+	opacity = 0;
+	open_layer = 1
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/engineering/foyer_mezzenine)
 "pM" = (
-/obj/machinery/door/airlock/glass_engineering{
-	name = "Engineering Mezzenine";
-	req_one_access = list()
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_r"
 	},
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "englockdown";
-	name = "Engineering Lockdown";
-	opacity = 0
-	},
-/turf/simulated/floor/tiled/steel_grid,
-/area/engineering/foyer_mezzenine)
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1)
 "pN" = (
 /obj/machinery/requests_console{
 	department = "Tech storage";
@@ -10804,13 +10815,27 @@
 /turf/simulated/floor/tiled,
 /area/hallway/station/starboard)
 "pS" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_r"
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/medical{
+	name = "Medical Waiting Room";
+	req_one_access = list()
 	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1)
+/obj/machinery/door/blast/shutters{
+	closed_layer = 10;
+	density = 0;
+	dir = 2;
+	icon_state = "shutter0";
+	id = "medbayquar";
+	layer = 1;
+	name = "Medbay Emergency Lockdown Shutters";
+	opacity = 0;
+	open_layer = 1
+	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/floor/tiled/white,
+/area/medical/surgery_hallway)
 "pT" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -16170,6 +16195,30 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/ward)
+"yp" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/maintenance/medical,
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/door/blast/shutters{
+	closed_layer = 10;
+	density = 0;
+	dir = 8;
+	icon_state = "shutter0";
+	id = "medbayquar";
+	layer = 1;
+	name = "Medbay Emergency Lockdown Shutters";
+	opacity = 0;
+	open_layer = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/simulated/floor,
+/area/medical/surgery_hallway)
 "ys" = (
 /obj/structure/table/standard,
 /obj/item/weapon/reagent_containers/spray/cleaner{
@@ -17511,27 +17560,6 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
-/area/medical/surgery_hallway)
-"AS" = (
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock/maintenance/medical,
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/door/blast/shutters{
-	density = 0;
-	dir = 8;
-	icon_state = "shutter0";
-	id = "medbayquar";
-	name = "Medbay Emergency Lockdown Shutters";
-	opacity = 0
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/simulated/floor,
 /area/medical/surgery_hallway)
 "AT" = (
 /obj/structure/cable/green{
@@ -30817,7 +30845,7 @@ nB
 nk
 oh
 ox
-pL
+ps
 qr
 rh
 rU
@@ -31101,7 +31129,7 @@ nD
 oj
 oN
 qx
-pM
+pL
 qt
 rj
 rV
@@ -32951,7 +32979,7 @@ lK
 Fr
 fH
 op
-ps
+pS
 qO
 rx
 sb
@@ -33965,7 +33993,7 @@ zQ
 xf
 pp
 pp
-AS
+yp
 pp
 Ay
 BM
@@ -37493,7 +37521,7 @@ ot
 ou
 ou
 ou
-pS
+pM
 oY
 sW
 ef

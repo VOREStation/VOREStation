@@ -2822,12 +2822,15 @@
 /obj/machinery/door/firedoor/glass,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/blast/regular{
+	closed_layer = 10;
 	density = 0;
 	dir = 8;
 	icon_state = "pdoor0";
 	id = "secondary_bridge_blast";
+	layer = 1;
 	name = "Secondary Command Office Blast Doors";
-	opacity = 0
+	opacity = 0;
+	open_layer = 1
 	},
 /turf/simulated/floor/tiled,
 /area/bridge/secondary)
@@ -3705,26 +3708,23 @@
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
 "agr" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+/obj/machinery/door/airlock/command{
+	name = "Secondary Command Office"
 	},
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock/maintenance/engi{
-	name = "Asteroid Command Substation";
-	req_one_access = list(10,19)
-	},
 /obj/machinery/door/blast/regular{
+	closed_layer = 10;
 	density = 0;
 	dir = 8;
 	icon_state = "pdoor0";
 	id = "secondary_bridge_blast";
+	layer = 1;
 	name = "Secondary Command Office Blast Doors";
-	opacity = 0
+	opacity = 0;
+	open_layer = 1
 	},
-/turf/simulated/floor,
-/area/maintenance/substation/spacecommand)
+/turf/simulated/floor/tiled,
+/area/bridge/secondary)
 "ags" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -5113,20 +5113,29 @@
 /turf/simulated/floor/carpet/bcarpet,
 /area/tether/station/visitorhallway/office)
 "aiw" = (
-/obj/machinery/door/airlock/command{
-	name = "Secondary Command Office"
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/maintenance/engi{
+	name = "Asteroid Command Substation";
+	req_one_access = list(10,19)
+	},
 /obj/machinery/door/blast/regular{
+	closed_layer = 10;
 	density = 0;
 	dir = 8;
 	icon_state = "pdoor0";
 	id = "secondary_bridge_blast";
+	layer = 1;
 	name = "Secondary Command Office Blast Doors";
-	opacity = 0
+	opacity = 0;
+	open_layer = 1
 	},
-/turf/simulated/floor/tiled,
-/area/bridge/secondary)
+/turf/simulated/floor,
+/area/maintenance/substation/spacecommand)
 "aix" = (
 /obj/structure/table/rack{
 	dir = 8;
@@ -11605,12 +11614,15 @@
 	dir = 4
 	},
 /obj/machinery/door/blast/regular{
+	closed_layer = 10;
 	density = 0;
 	dir = 1;
 	icon_state = "pdoor0";
 	id = "secondary_bridge_blast";
+	layer = 1;
 	name = "Secondary Command Office Blast Doors";
-	opacity = 0
+	opacity = 0;
+	open_layer = 1
 	},
 /turf/simulated/floor,
 /area/bridge/secondary/hallway)
@@ -16382,12 +16394,15 @@
 	req_one_access = list(17)
 	},
 /obj/machinery/door/blast/regular{
+	closed_layer = 10;
 	density = 0;
 	dir = 8;
 	icon_state = "pdoor0";
 	id = "secondary_bridge_blast";
+	layer = 1;
 	name = "Secondary Command Office Blast Doors";
-	opacity = 0
+	opacity = 0;
+	open_layer = 1
 	},
 /turf/simulated/floor,
 /area/bridge/secondary/teleporter)
@@ -17624,12 +17639,15 @@
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/maintenance/command,
 /obj/machinery/door/blast/regular{
+	closed_layer = 10;
 	density = 0;
 	dir = 1;
 	icon_state = "pdoor0";
 	id = "secondary_bridge_blast";
+	layer = 1;
 	name = "Secondary Command Office Blast Doors";
-	opacity = 0
+	opacity = 0;
+	open_layer = 1
 	},
 /turf/simulated/floor,
 /area/bridge/meeting_room)
@@ -35267,7 +35285,7 @@ aix
 aBx
 ait
 aut
-agr
+aiw
 agB
 ahj
 aiu
@@ -35829,7 +35847,7 @@ acm
 acm
 acp
 are
-aiw
+agr
 asR
 afd
 afd
