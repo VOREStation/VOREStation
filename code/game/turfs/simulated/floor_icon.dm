@@ -81,15 +81,9 @@ var/image/no_ceiling_image = null
 	else if(flooring)
 		var/rand_key = rand(0,2)
 		if(!isnull(broken) && (flooring.flags & TURF_CAN_BREAK))
-<<<<<<< HEAD
-			add_overlay(get_flooring_overlay("[flooring.icon_base]-broken-[broken]","broken[broken]")) // VOREStation Edit - Eris overlays
-		if(!isnull(burnt) && (flooring.flags & TURF_CAN_BURN))
-			add_overlay(get_flooring_overlay("[flooring.icon_base]-burned-[burnt]","burned[burnt]")) // VOREStation Edit - Eris overlays
-=======
 			add_overlay(get_flooring_overlay("[flooring.icon_base]-broken-[rand_key]","broken[rand_key]"))
 		if(!isnull(burnt) && (flooring.flags & TURF_CAN_BURN))
 			add_overlay(get_flooring_overlay("[flooring.icon_base]-burned-[rand_key]","burned[rand_key]"))
->>>>>>> 6ea50f3... Merge pull request #7061 from Mechoid/FixFloorDamage
 
 	if(update_neighbors)
 		for(var/turf/simulated/floor/F in range(src, 1))
