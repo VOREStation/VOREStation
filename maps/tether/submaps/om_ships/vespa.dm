@@ -16,6 +16,7 @@
 	requires_power = 1
 	dynamic_lighting = 1
 
+<<<<<<< HEAD
 
 
 
@@ -27,6 +28,8 @@
 
 /area/ship/expe/emergencystorage
 	name = "\improper Exp Ship - Emergency Storage"
+=======
+>>>>>>> Vespa1.5boogaloo
 /area/ship/expe/telecomms
 	name = "\improper Exp Ship - Telecommunications"
 /area/ship/expe/enginestorage
@@ -86,6 +89,7 @@
 /area/ship/expe/corridor6
 	name = "\improper Exp Ship - Corridor"
 /area/ship/expe/corridor7
+<<<<<<< HEAD
 	name = "\improper Exp Ship - Port Section Corridor"
 /area/ship/expe/corridor7p1
 	name = "\improper Exp Ship - Port Section Corridor"
@@ -97,6 +101,11 @@
 	name = "\improper Exp Ship - Starboard Section Corridor"
 /area/ship/expe/corridor8inside
 	name = "\improper Exp Ship - Starboard Section Corridor"
+=======
+	name = "\improper Exp Ship - Corridor"
+/area/ship/expe/corridor8
+	name = "\improper Exp Ship - Corridor"
+>>>>>>> Vespa1.5boogaloo
 /area/ship/expe/medical
 	name = "\improper Exp Ship - Medical"
 /area/ship/expe/medical1
