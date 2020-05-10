@@ -64,7 +64,7 @@ datum/design/item/general/laserpointer
 	build_path = /obj/item/weapon/storage/box/syndie_kit/chameleon
 	sort_string = "TBAAB"
 
-/datum/design/item/general/chameleon
+/datum/design/item/general/bsflare
 	name = "bluespace flare"
 	desc = "A marker that can be detected by shuttle landing systems."
 	id = "bsflare"
