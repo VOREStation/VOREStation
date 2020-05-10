@@ -18,7 +18,7 @@ datum/controller/transfer_controller/process()
 	currenttick = currenttick + 1
 	//VOREStation Edit START
 	if (round_duration_in_ds >= shift_last_vote - 2 MINUTES) 
-		shift_last_vote = 999999999999 //Setting to a stupidly high number since it'll be not used again.
+		shift_last_vote = 99999999 //Setting to a stupidly high number since it'll be not used again.
 		to_world("<b>Warning: You have one hour left in the shift. Wrap up your scenes in the next 60 minutes before the transfer is called.</b>") //VOREStation Edit
 	if (round_duration_in_ds >= shift_hard_end - 1 MINUTE)
 		init_shift_change(null, 1)

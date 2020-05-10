@@ -72,7 +72,7 @@
 		riding_datum = new /datum/riding/simple_mob(src)
 	verbs |= /mob/living/simple_mob/proc/animal_mount
 	verbs |= /mob/living/proc/toggle_rider_reins
-	movement_cooldown = 0
+	movement_cooldown = 3
 
 /mob/living/simple_mob/vore/hippo/MouseDrop_T(mob/living/M, mob/living/user)
 	return
