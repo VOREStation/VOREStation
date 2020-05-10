@@ -38,13 +38,8 @@ var/list/grass_types = list(
 	edge_blending_priority = 4
 	grass_chance = 5
 	var/tree_chance = 2
-<<<<<<< HEAD
-
-	animal_chance = 0 //VOREStation Edit
-=======
 /*
 	animal_chance = 0.5
->>>>>>> ac4719e... Merge pull request #7132 from Mechoid/Simplemobageddon
 
 	animal_types = list(
 		/mob/living/simple_mob/animal/sif/diyaab = 10,
