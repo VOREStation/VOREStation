@@ -43,6 +43,10 @@
 #define NIGHTSHIFT_NEVER 2
 #define NIGHTSHIFT_ALWAYS 3
 
+#define NIGHTSHIFT_AUTO 1
+#define NIGHTSHIFT_NEVER 2
+#define NIGHTSHIFT_ALWAYS 3
+
 //NOTE: STUFF STOLEN FROM AIRLOCK.DM thx
 
 /obj/machinery/power/apc/critical

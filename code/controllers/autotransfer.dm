@@ -16,6 +16,7 @@ datum/controller/transfer_controller/Destroy()
 
 datum/controller/transfer_controller/process()
 	currenttick = currenttick + 1
+<<<<<<< HEAD
 	//VOREStation Edit START
 	if (round_duration_in_ds >= shift_last_vote - 2 MINUTES) 
 		shift_last_vote = 99999999 //Setting to a stupidly high number since it'll be not used again.
@@ -25,6 +26,9 @@ datum/controller/transfer_controller/process()
 		shift_hard_end = timerbuffer + config.vote_autotransfer_interval //If shuttle somehow gets recalled, let's force it to call again next time a vote would occur.
 		timerbuffer = timerbuffer + config.vote_autotransfer_interval //Just to make sure a vote doesn't occur immediately afterwords.
 	else if (round_duration_in_ds >= timerbuffer - 1 MINUTE)
+=======
+	if (round_duration_in_ds >= timerbuffer - 1 MINUTE)
+>>>>>>> d3b7d8e... Merge pull request #7087 from VOREStation/pol-nightshift
 		SSvote.autotransfer()
 	//VOREStation Edit END
 		timerbuffer = timerbuffer + config.vote_autotransfer_interval

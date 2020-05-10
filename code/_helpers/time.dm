@@ -115,6 +115,14 @@ GLOBAL_VAR_INIT(round_start_time, 0)
 	next_duration_update = world.time + 1 MINUTES
 	return last_round_duration
 
+<<<<<<< HEAD
+=======
+//Can be useful for things dependent on process timing
+/proc/process_schedule_interval(var/process_name)
+	var/datum/controller/process/process = processScheduler.getProcess(process_name)
+	return process.schedule_interval
+
+>>>>>>> d3b7d8e... Merge pull request #7087 from VOREStation/pol-nightshift
 /var/midnight_rollovers = 0
 /var/rollovercheck_last_timeofday = 0
 /proc/update_midnight_rollover()

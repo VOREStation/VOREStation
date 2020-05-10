@@ -84,7 +84,10 @@
 		spawn()
 			SSnightshift.check_nightshift()
 
+<<<<<<< HEAD
 		admin_chat_message(message = "Security level is now: [uppertext(get_security_level())]", color = "#CC2222") //VOREStation Add
+=======
+>>>>>>> d3b7d8e... Merge pull request #7087 from VOREStation/pol-nightshift
 
 /proc/get_security_level()
 	switch(security_level)

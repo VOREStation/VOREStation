@@ -897,7 +897,11 @@ var/global/list/light_type_cache = list()
 	var/brightness_color = LIGHT_COLOR_INCANDESCENT_TUBE
 
 	var/nightshift_range = 8
+<<<<<<< HEAD
 	var/nightshift_power = 1
+=======
+	var/nightshift_power = 0.7
+>>>>>>> d3b7d8e... Merge pull request #7087 from VOREStation/pol-nightshift
 	var/nightshift_color = LIGHT_COLOR_NIGHTSHIFT
 
 /obj/item/weapon/light/tube
@@ -917,7 +921,11 @@ var/global/list/light_type_cache = list()
 	brightness_power = 9
 
 	nightshift_range = 10
+<<<<<<< HEAD
 	nightshift_power = 1.5
+=======
+	nightshift_power = 0.9
+>>>>>>> d3b7d8e... Merge pull request #7087 from VOREStation/pol-nightshift
 
 /obj/item/weapon/light/bulb
 	name = "light bulb"
@@ -931,7 +939,11 @@ var/global/list/light_type_cache = list()
 	brightness_color = LIGHT_COLOR_INCANDESCENT_BULB
 
 	nightshift_range = 3
+<<<<<<< HEAD
 	nightshift_power = 0.5
+=======
+	nightshift_power = 0.35
+>>>>>>> d3b7d8e... Merge pull request #7087 from VOREStation/pol-nightshift
 
 /obj/item/weapon/light/throw_impact(atom/hit_atom)
 	..()
