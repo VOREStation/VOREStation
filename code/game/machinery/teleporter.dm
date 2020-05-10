@@ -17,7 +17,11 @@
 	id = "[rand(1000, 9999)]"
 	..()
 	underlays.Cut()
+<<<<<<< HEAD
 	underlays += image('icons/obj/stationobjs_vr.dmi', icon_state = "telecomp-wires")	//VOREStation Edit: different direction for wires to account for dirs
+=======
+	underlays += image('icons/obj/stationobjs.dmi', icon_state = "telecomp-wires")
+>>>>>>> c2b0769... Merge pull request #7105 from VOREStation/pol-telenano
 	teleport_control = new(src)
 
 /obj/machinery/computer/teleporter/Initialize()
@@ -361,7 +365,10 @@
 	visible_message("<span class='notice'>Test firing!</span>")
 	com.teleport()
 	use_power(5000)
+<<<<<<< HEAD
 	flick(src, "controller-c") //VOREStation Add
+=======
+>>>>>>> c2b0769... Merge pull request #7105 from VOREStation/pol-telenano
 
 	VARSET_IN(src, active, FALSE, 3 SECONDS)
 
