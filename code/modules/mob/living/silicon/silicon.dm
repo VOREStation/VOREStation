@@ -410,7 +410,7 @@
 	return
 
 /mob/living/silicon/reset_view()
-	..()
+	. = ..()
 	if(cameraFollow)
 		cameraFollow = null
 

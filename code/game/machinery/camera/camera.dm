@@ -29,6 +29,7 @@
 	var/short_range = 2
 
 	var/light_disabled = 0
+	var/in_use_lights = 0 // TO BE IMPLEMENTED - LIES.
 	var/alarm_on = 0
 	var/busy = 0
 

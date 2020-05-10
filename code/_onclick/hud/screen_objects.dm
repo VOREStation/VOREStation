@@ -19,6 +19,9 @@
 /obj/screen/Destroy()
 	master = null
 	return ..()
+	
+/obj/screen/proc/component_click(obj/screen/component_button/component, params)
+	return
 
 /obj/screen/text
 	icon = null
@@ -535,3 +538,16 @@
 		var/mob/living/carbon/C = hud.mymob
 		if(C.handcuffed)
 			overlays |= handcuff_overlay
+			
+// PIP stuff
+/obj/screen/component_button
+	var/obj/screen/parent
+
+
+/obj/screen/component_button/Initialize(mapload, obj/screen/new_parent)
+	. = ..()
+	parent = new_parent
+
+/obj/screen/component_button/Click(params)
+	if(parent)
+		parent.component_click(src, params)
