@@ -42,7 +42,7 @@
 	user.update_inv_shoes()	//so our mob-overlays update
 	user.update_action_buttons()
 
-/obj/item/clothing/shoes/magboots/mob_can_equip(mob/user, slot)
+/obj/item/clothing/shoes/magboots/mob_can_equip(mob/user, slot, disable_warning = FALSE)
 	var/mob/living/carbon/human/H = user
 
 	if(H.shoes)
