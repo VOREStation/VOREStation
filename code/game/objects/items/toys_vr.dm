@@ -10,6 +10,8 @@
 	desc = "An adorable stuffed toy that resembles a kobold."
 	icon = 'icons/obj/toy_vr.dmi'
 	icon_state = "kobold"
+	pokephrase = "Wehhh!"
+	attack_verb = list("raided", "kobolded", "weh'd")
 
 /obj/item/toy/plushie/slimeplushie
 	name = "slime plushie"
