@@ -1,7 +1,7 @@
 /datum/job/captain
 	disallow_jobhop = TRUE
 	pto_type = PTO_CIVILIAN
-	//dept_time_required = 60 //Pending something more complicated
+	dept_time_required = 80 //Pending something more complicated
 
 /datum/job/hop
 	disallow_jobhop = TRUE
