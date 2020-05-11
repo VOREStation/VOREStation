@@ -25,6 +25,9 @@
 	return (available_in_playhours(C) == 0)
 
 /datum/job/proc/available_in_playhours(client/C)
-	if(C && config.use_playtime_restriction_for_jobs && isnum(C.play_hours[pto_type]) && dept_time_required > 0)
-		return max(0, dept_time_required - C.play_hours[pto_type])
+	if(C && config.use_playtime_restriction_for_jobs)
+		if(isnum(C.play_hours[pto_type])) // Has played that department before
+			return max(0, dept_time_required - C.play_hours[pto_type])
+		else // List doesn't have that entry, maybe never played, maybe invalid PTO type (you should fix that...)
+			return dept_time_required // Could be 0, too, which is fine! They can play that
 	return 0
