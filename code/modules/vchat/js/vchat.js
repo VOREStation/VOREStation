@@ -589,7 +589,7 @@ function start_vue() {
 				}
 
 				newmessage.content = newmessage.content.replace(
-					/(\b(https?):\/\/[\-A-Z0-9+&@#\/%?=~_|!:,.;]*[\-A-Z09+&@#\/%=~_|])/img, //Honestly good luck with this regex ~Gear
+					/(\b(https?):\/\/[\-A-Z0-9+&@#\/%?=~_|!:,.;]*[\-A-Z0-9+&@#\/%=~_|])/img, //Honestly good luck with this regex ~Gear
 					'<a href="$1">$1</a>');
 
 				//Unread indicator and insertion into current tab shown messages if sensible
