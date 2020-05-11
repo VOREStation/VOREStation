@@ -35,6 +35,7 @@
 /obj/screen/inventory
 	var/slot_id	//The indentifier for the slot. It has nothing to do with ID cards.
 	var/list/object_overlays = list() // Required for inventory/screen overlays.
+<<<<<<< HEAD
 
 /obj/screen/inventory/MouseEntered()
 	..()
@@ -62,6 +63,35 @@
 		else
 			item_overlay.color = "#00ff00"
 
+=======
+
+/obj/screen/inventory/MouseEntered()
+	..()
+	add_overlays()
+
+/obj/screen/inventory/MouseExited()
+	..()
+	cut_overlay(object_overlays)
+	object_overlays.Cut()
+
+/obj/screen/inventory/proc/add_overlays()
+	var/mob/user = hud.mymob
+
+	if(hud && user && slot_id)
+		var/obj/item/holding = user.get_active_hand()
+
+		if(!holding || user.get_equipped_item(slot_id))
+			return
+
+		var/image/item_overlay = image(holding)
+		item_overlay.alpha = 92
+
+		if(!holding.mob_can_equip(user, slot_id, disable_warning = TRUE))
+			item_overlay.color = "#ff0000"
+		else
+			item_overlay.color = "#00ff00"
+
+>>>>>>> eb8ad57... Merge pull request #7135 from Rykka-Stormheart/shep-dev-hover-overlays
 		object_overlays += item_overlay
 		add_overlay(object_overlays)
 
@@ -142,10 +172,30 @@
 	if(isobserver(usr))
 		return
 
+<<<<<<< HEAD
+=======
 	var/list/PL = params2list(params)
 	var/icon_x = text2num(PL["icon-x"])
 	var/icon_y = text2num(PL["icon-y"])
 	var/choice = get_zone_at(icon_x, icon_y)
+	if(!choice)
+		return 1
+
+	return set_selected_zone(choice, usr)
+
+/obj/screen/zone_sel/MouseEntered(location, control, params)
+	MouseMove(location, control, params)
+
+/obj/screen/zone_sel/MouseMove(location, control, params)
+	if(isobserver(usr))
+		return
+
+>>>>>>> eb8ad57... Merge pull request #7135 from Rykka-Stormheart/shep-dev-hover-overlays
+	var/list/PL = params2list(params)
+	var/icon_x = text2num(PL["icon-x"])
+	var/icon_y = text2num(PL["icon-y"])
+	var/choice = get_zone_at(icon_x, icon_y)
+<<<<<<< HEAD
 	if(!choice)
 		return 1
 
@@ -163,6 +213,9 @@
 	var/icon_y = text2num(PL["icon-y"])
 	var/choice = get_zone_at(icon_x, icon_y)
 
+=======
+
+>>>>>>> eb8ad57... Merge pull request #7135 from Rykka-Stormheart/shep-dev-hover-overlays
 	if(hovering_choice == choice)
 		return
 	vis_contents -= hover_overlays_cache[hovering_choice]
