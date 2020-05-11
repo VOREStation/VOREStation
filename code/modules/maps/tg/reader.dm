@@ -30,6 +30,12 @@ GLOBAL_DATUM_INIT(_preloader, /dmm_suite/preloader, new)
  *
  */
 /dmm_suite/load_map(dmm_file as file, x_offset as num, y_offset as num, z_offset as num, cropMap as num, measureOnly as num, no_changeturf as num, orientation as num)
+	
+	dmmRegex = new/regex({""(\[a-zA-Z]+)" = \\(((?:.|\n)*?)\\)\n(?!\t)|\\((\\d+),(\\d+),(\\d+)\\) = \\{"(\[a-zA-Z\n]*)"\\}"}, "g")
+	trimQuotesRegex = new/regex({"^\[\\s\n]+"?|"?\[\\s\n]+$|^"|"$"}, "g")
+	trimRegex = new/regex("^\[\\s\n]+|\[\\s\n]+$", "g")
+	modelCache = list()
+
 	//How I wish for RAII
 	if(!measureOnly)
 		Master.StartLoadingMap()
