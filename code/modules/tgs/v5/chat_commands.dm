@@ -4,7 +4,7 @@
 	admin_only = FALSE
 
 /datum/tgs_chat_command/status/Run(datum/tgs_chat_user/sender, params)
-	return "```Players logged in: [GLOB.clients.len] - Round Duration: [roundduration2text()]```"
+	return "**Players:** [TGS_CLIENT_COUNT]\n**Round Duration:** [roundduration2text()]\n**Web Manifest:** <https://vore-station.net/manifest.php>"
 
 /datum/tgs_chat_command/parsetest
 	name = "parsetest"
