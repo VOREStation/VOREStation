@@ -64,7 +64,8 @@
 		swap_decals()
 	flooring = newflooring
 	footstep_sounds = newflooring.footstep_sounds
-	//update_icon(1) // We'll do it in late initialize
+	if(!initializing)
+		update_icon(1)
 	levelupdate()
 
 //This proc will set floor_type to null and the update_icon() proc will then change the icon_state of the turf
