@@ -1,4 +1,4 @@
-var/list/flooring_cache = list()
+GLOBAL_LIST_EMPTY(flooring_cache)
 
 var/image/no_ceiling_image = null
 
@@ -79,10 +79,11 @@ var/image/no_ceiling_image = null
 		icon = 'icons/turf/flooring/plating.dmi'
 		icon_state = "dmg[rand(1,4)]"
 	else if(flooring)
+		var/rand_key = rand(0,2)
 		if(!isnull(broken) && (flooring.flags & TURF_CAN_BREAK))
-			add_overlay(get_flooring_overlay("[flooring.icon_base]-broken-[broken]","broken[broken]")) // VOREStation Edit - Eris overlays
+			add_overlay(get_flooring_overlay("[flooring.icon_base]-broken-[rand_key]","broken[rand_key]"))
 		if(!isnull(burnt) && (flooring.flags & TURF_CAN_BURN))
-			add_overlay(get_flooring_overlay("[flooring.icon_base]-burned-[burnt]","burned[burnt]")) // VOREStation Edit - Eris overlays
+			add_overlay(get_flooring_overlay("[flooring.icon_base]-burned-[rand_key]","burned[rand_key]"))
 
 	if(update_neighbors)
 		for(var/turf/simulated/floor/F in range(src, 1))
@@ -96,8 +97,8 @@ var/image/no_ceiling_image = null
 		add_overlay(no_ceiling_image)
 
 /turf/simulated/floor/proc/get_flooring_overlay(var/cache_key, var/icon_base, var/icon_dir = 0)
-	if(!flooring_cache[cache_key])
+	if(!GLOB.flooring_cache[cache_key])
 		var/image/I = image(icon = flooring.icon, icon_state = icon_base, dir = icon_dir)
 		I.layer = layer
-		flooring_cache[cache_key] = I
-	return flooring_cache[cache_key]
+		GLOB.flooring_cache[cache_key] = I
+	return GLOB.flooring_cache[cache_key]

@@ -26,9 +26,10 @@ var/list/flooring_types
 	var/name = "floor"
 	var/desc
 	var/icon
-	var/icon_base
+	var/icon_base // initial base icon_state without edges or corners.
 
-	var/has_base_range
+	var/has_base_range // This will pick between a range of 0 - x. Number icon_states accordingly. 
+					   // Note that this will append a 0 - x number automatically to icon_base, but NOT the dmi. Do icon_base = "grass", but name grass0 inside the dmi. etc etc.
 	var/has_damage_range
 	var/has_burn_range
 	var/damage_temperature
@@ -42,17 +43,69 @@ var/list/flooring_types
 	var/descriptor = "tiles"
 	var/flags
 	var/can_paint
-	var/list/footstep_sounds = list() // key=species name, value = list of soundss
+	var/list/footstep_sounds = list() // key=species name, value = list of sounds, 
+									  // For instance, footstep_sounds = list("key" = list(sound.ogg))
 
 /decl/flooring/grass
 	name = "grass"
 	desc = "Do they smoke grass out in space, Bowie? Or do they smoke AstroTurf?"
 	icon = 'icons/turf/flooring/grass.dmi'
 	icon_base = "grass"
-	has_base_range = 3
+	has_base_range = 1
 	damage_temperature = T0C+80
 	flags = TURF_HAS_EDGES | TURF_REMOVE_SHOVEL
 	build_type = /obj/item/stack/tile/grass
+	footstep_sounds = list("human" = list(
+		'sound/effects/footstep/grass1.ogg',
+		'sound/effects/footstep/grass2.ogg',
+		'sound/effects/footstep/grass3.ogg',
+		'sound/effects/footstep/grass4.ogg'))
+
+/decl/flooring/grass/sif // Subtype for Sif's grass.
+	name = "growth"
+	desc = "A natural moss that has adapted to the sheer cold climate."
+	icon = 'icons/turf/outdoors.dmi'
+	icon_base = "grass_sif"
+	has_base_range = 1
+
+/decl/flooring/water
+	name = "water"
+	desc = "Water is wet, gosh, who knew!"
+	icon = 'icons/turf/outdoors.dmi'
+	icon_base = "seashallow"
+	footstep_sounds = list("human" = list(
+		'sound/effects/footstep/water1.ogg',
+		'sound/effects/footstep/water2.ogg',
+		'sound/effects/footstep/water3.ogg',
+		'sound/effects/footstep/water4.ogg'))
+
+/decl/flooring/sand
+	name = "sand"
+	desc = "I don't like sand. It's coarse and rough and irritating and it gets everywhere."
+	icon = 'icons/misc/beach.dmi'
+	icon_base = "sand"
+	footstep_sounds = list("human" = list(
+		'sound/effects/footstep/HeavySand1.ogg',
+		'sound/effects/footstep/HeavySand2.ogg',
+		'sound/effects/footstep/HeavySand3.ogg',
+		'sound/effects/footstep/HeavySand4.ogg'))
+
+/decl/flooring/sand/desert // Subtype of sand, desert.
+	name = "desert"
+	desc = "I don't like sand. It's coarse and rough and irritating and it gets everywhere."
+	icon = 'icons/turf/desert.dmi'
+	icon_base = "desert"
+
+/decl/flooring/mud
+	name = "mud"
+	desc = "STICKY AND WET!"
+	icon = 'icons/turf/outdoors.dmi'
+	icon_base = "mud_dark"
+	footstep_sounds = list("human" = list(
+		'sound/effects/footstep/mud1.ogg',
+		'sound/effects/footstep/mud2.ogg',
+		'sound/effects/footstep/mud3.ogg',
+		'sound/effects/footstep/mud4.ogg'))
 
 /decl/flooring/asteroid
 	name = "coarse sand"
@@ -61,6 +114,26 @@ var/list/flooring_types
 	icon_base = "asteroid"
 	flags = TURF_HAS_EDGES | TURF_REMOVE_SHOVEL
 	build_type = null
+	footstep_sounds = list("human" = list(
+		'sound/effects/footstep/asteroid1.ogg',
+		'sound/effects/footstep/asteroid2.ogg',
+		'sound/effects/footstep/asteroid3.ogg',
+		'sound/effects/footstep/asteroid4.ogg',
+		'sound/effects/footstep/asteroid5.ogg'))
+
+/decl/flooring/dirt
+	name = "dirt"
+	desc = "Gritty and unpleasant, just like dirt."
+	icon = 'icons/turf/outdoors.dmi'
+	icon_base = "dirt-dark"
+	flags = TURF_HAS_EDGES | TURF_REMOVE_SHOVEL
+	build_type = null
+	footstep_sounds = list("human" = list(
+		'sound/effects/footstep/asteroid1.ogg',
+		'sound/effects/footstep/asteroid2.ogg',
+		'sound/effects/footstep/asteroid3.ogg',
+		'sound/effects/footstep/asteroid4.ogg',
+		'sound/effects/footstep/asteroid5.ogg'))
 
 /decl/flooring/snow
 	name = "snow"
@@ -216,7 +289,7 @@ var/list/flooring_types
 	icon_base = "lino"
 	can_paint = 1
 	build_type = /obj/item/stack/tile/linoleum
-	flags = TURF_REMOVE_SCREWDRIVER
+	flags = TURF_REMOVE_SCREWDRIVER | TURF_CAN_BREAK | TURF_CAN_BURN
 
 /decl/flooring/tiling/red
 	name = "floor"
@@ -239,7 +312,6 @@ var/list/flooring_types
 	name = "floor"
 	icon_base = "asteroidfloor"
 	has_damage_range = null
-	flags = TURF_REMOVE_CROWBAR
 	build_type = /obj/item/stack/tile/floor/steel
 
 /decl/flooring/tiling/white
@@ -252,7 +324,6 @@ var/list/flooring_types
 	name = "floor"
 	icon_base = "white"
 	has_damage_range = null
-	flags = TURF_REMOVE_CROWBAR
 	build_type = /obj/item/stack/tile/floor/yellow
 
 /decl/flooring/tiling/dark
@@ -260,7 +331,6 @@ var/list/flooring_types
 	desc = "How ominous."
 	icon_base = "dark"
 	has_damage_range = null
-	flags = TURF_REMOVE_CROWBAR
 	build_type = /obj/item/stack/tile/floor/dark
 
 /decl/flooring/tiling/hydro
@@ -308,20 +378,26 @@ var/list/flooring_types
 	desc = "Heavily reinforced with steel rods."
 	icon = 'icons/turf/flooring/tiles.dmi'
 	icon_base = "reinforced"
-	flags = TURF_REMOVE_WRENCH | TURF_ACID_IMMUNE
+	flags = TURF_REMOVE_WRENCH | TURF_ACID_IMMUNE | TURF_CAN_BURN | TURF_CAN_BREAK
 	build_type = /obj/item/stack/rods
 	build_cost = 2
 	build_time = 30
 	apply_thermal_conductivity = 0.025
 	apply_heat_capacity = 325000
 	can_paint = 1
+	footstep_sounds = list("human" = list(
+		'sound/effects/footstep/hull1.ogg',
+		'sound/effects/footstep/hull2.ogg',
+		'sound/effects/footstep/hull3.ogg',
+		'sound/effects/footstep/hull4.ogg',
+		'sound/effects/footstep/hull5.ogg'))
 
 /decl/flooring/reinforced/circuit
 	name = "processing strata"
 	icon = 'icons/turf/flooring/circuit.dmi'
 	icon_base = "bcircuit"
 	build_type = null
-	flags = TURF_ACID_IMMUNE | TURF_CAN_BREAK | TURF_REMOVE_CROWBAR
+	flags = TURF_ACID_IMMUNE | TURF_CAN_BREAK | TURF_CAN_BURN | TURF_REMOVE_CROWBAR
 	can_paint = 1
 
 /decl/flooring/reinforced/circuit/green
@@ -337,3 +413,13 @@ var/list/flooring_types
 	has_damage_range = 6
 	flags = TURF_ACID_IMMUNE | TURF_CAN_BREAK
 	can_paint = null
+
+/decl/flooring/lava // Defining this in case someone DOES step on lava and survive. Somehow.
+	name = "lava"
+	desc = "Lava. Y'know. Sets you on fire. AAAAAAAAAAA"
+	icon = 'icons/turf/outdoors.dmi'
+	icon_base = "lava"
+	footstep_sounds = list("human" = list(
+		'sound/effects/footstep/lava1.ogg',
+		'sound/effects/footstep/lava2.ogg',
+		'sound/effects/footstep/lava3.ogg'))

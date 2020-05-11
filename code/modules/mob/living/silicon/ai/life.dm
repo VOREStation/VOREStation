@@ -94,6 +94,7 @@
 
 					spawn(20)
 						to_chat(src, "Backup battery online. Scanners, camera, and radio interface offline. Beginning fault-detection.")
+						end_multicam()
 						sleep(50)
 						if (loc.power_equip)
 							if (!istype(T, /turf/space))

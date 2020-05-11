@@ -1885,7 +1885,7 @@ Departamental Swimsuits, for general use
 
 	species_restricted = list("exclude", SPECIES_TESHARI)
 
-/obj/item/clothing/under/fluff/slime_skeleton/mob_can_equip(M as mob, slot)
+/obj/item/clothing/under/fluff/slime_skeleton/mob_can_equip(M as mob, slot, disable_warning = FALSE)
 	if(!..())
 		return 0
 

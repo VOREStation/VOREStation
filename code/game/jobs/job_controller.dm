@@ -60,8 +60,12 @@ var/global/datum/controller/occupations/job_master
 				return 0
 			if(!job.player_old_enough(player.client))
 				return 0
-			if(!is_job_whitelisted(player, rank)) //VOREStation Code
+			//VOREStation Add
+			if(!job.player_has_enough_playtime(player.client))
 				return 0
+			if(!is_job_whitelisted(player, rank))
+				return 0
+			//VOREStation Add End
 
 			var/position_limit = job.total_positions
 			if(!latejoin)
@@ -97,6 +101,9 @@ var/global/datum/controller/occupations/job_master
 				Debug("FOC character not old enough, Player: [player]")
 				continue
 			//VOREStation Code Start
+			if(!job.player_has_enough_playtime(player.client))
+				Debug("FOC character not enough playtime, Player: [player]")
+				continue
 			if(!is_job_whitelisted(player, job.title))
 				Debug("FOC is_job_whitelisted failed, Player: [player]")
 				continue
@@ -133,6 +140,9 @@ var/global/datum/controller/occupations/job_master
 				continue
 
 			//VOREStation Code Start
+			if(!job.player_has_enough_playtime(player.client))
+				Debug("GRJ player not enough playtime, Player: [player]")
+				continue
 			if(!is_job_whitelisted(player, job.title))
 				Debug("GRJ player not whitelisted for this job, Player: [player], Job: [job.title]")
 				continue
@@ -282,6 +292,12 @@ var/global/datum/controller/occupations/job_master
 					if(!job.player_old_enough(player.client))
 						Debug("DO player not old enough, Player: [player], Job:[job.title]")
 						continue
+
+					//VOREStation Add
+					if(!job.player_has_enough_playtime(player.client))
+						Debug("DO player not enough playtime, Player: [player]")
+						continue
+					//VOREStation Add End
 
 					// If the player wants that job on this level, then try give it to him.
 					if(player.client.prefs.GetJobDepartment(job, level) & job.flag)
@@ -610,6 +626,11 @@ var/global/datum/controller/occupations/job_master
 				if(!job.player_old_enough(player.client))
 					level6++
 					continue
+				//VOREStation Add
+				if(!job.player_has_enough_playtime(player.client))
+					level6++
+					continue
+				//VOREStation Add End
 				if(player.client.prefs.GetJobDepartment(job, 1) & job.flag)
 					level1++
 				else if(player.client.prefs.GetJobDepartment(job, 2) & job.flag)

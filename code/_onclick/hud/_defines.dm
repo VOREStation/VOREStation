@@ -75,6 +75,8 @@
 #define ui_ai_pda_log "SOUTH:6,WEST+11:16"
 #define ui_ai_take_picture "SOUTH:6,WEST+12:16"
 #define ui_ai_view_images "SOUTH:6,WEST+13:16"
+#define ui_ai_multicam "SOUTH+1:6,WEST+12:16"
+#define ui_ai_add_multicam "SOUTH+1:6,WEST+13:16"
 
 //Gun buttons
 #define ui_gun1 "EAST-2:26,SOUTH+2:7"

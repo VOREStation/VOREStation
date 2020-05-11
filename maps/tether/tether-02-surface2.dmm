@@ -2649,6 +2649,31 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/bar)
+"afw" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/maintenance/command{
+	req_access = list(19)
+	},
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable/green{
+	icon_state = "1-2";
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/door/blast/regular{
+	closed_layer = 10;
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "bridge blast";
+	layer = 1;
+	name = "Bridge Blast Doors";
+	opacity = 0;
+	open_layer = 1
+	},
+/turf/simulated/floor,
+/area/bridge_hallway)
 "afx" = (
 /obj/structure/catwalk,
 /obj/structure/cable{
@@ -3154,6 +3179,33 @@
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/bar)
+"agD" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/maintenance/command{
+	req_access = list(19)
+	},
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/door/blast/regular{
+	closed_layer = 10;
+	density = 0;
+	dir = 1;
+	icon_state = "pdoor0";
+	id = "bridge blast";
+	layer = 1;
+	name = "Bridge Blast Doors";
+	opacity = 0;
+	open_layer = 1
+	},
+/turf/simulated/floor,
+/area/bridge_hallway)
 "agE" = (
 /obj/structure/railing{
 	dir = 8
@@ -3298,6 +3350,30 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/lower/bar)
+"agX" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/cyan,
+/obj/machinery/door/airlock/glass_atmos{
+	name = "Atmospherics";
+	req_access = list(24)
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "atmoslockdown";
+	layer = 1;
+	name = "Atmospherics Lockdown";
+	opacity = 0;
+	open_layer = 1
+	},
+/turf/simulated/floor/tiled,
+/area/engineering/lower/lobby)
 "agY" = (
 /obj/structure/sign/department/chapel,
 /turf/simulated/wall,
@@ -3376,6 +3452,29 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/storage)
+"ahj" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/red,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/door/airlock/glass_atmos{
+	name = "Atmospherics";
+	req_access = list(24)
+	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/regular{
+	closed_layer = 10;
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "atmoslockdown";
+	layer = 1;
+	name = "Atmospherics Lockdown";
+	opacity = 0;
+	open_layer = 1
+	},
+/turf/simulated/floor/tiled,
+/area/engineering/lower/lobby)
 "ahk" = (
 /obj/structure/catwalk,
 /obj/structure/disposalpipe/segment{
@@ -7876,27 +7975,26 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/surface_two_hall)
 "apQ" = (
+/obj/machinery/door/airlock/maintenance/engi{
+	name = "Atmospherics";
+	req_access = list(24)
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock/maintenance/command{
-	req_access = list(19)
-	},
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable/green{
-	icon_state = "1-2";
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/door/blast/regular{
 	density = 0;
-	dir = 4;
+	dir = 1;
 	icon_state = "pdoor0";
-	id = "bridge blast";
-	name = "Bridge Blast Doors";
-	opacity = 0
+	id = "atmoslockdown";
+	layer = 1;
+	name = "Atmospherics Lockdown";
+	opacity = 0;
+	open_layer = 1
 	},
-/turf/simulated/floor,
-/area/bridge_hallway)
+/turf/simulated/floor/plating,
+/area/engineering/atmos)
 "apR" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
@@ -9851,27 +9949,25 @@
 /turf/simulated/floor/tiled,
 /area/engineering/lower/lobby)
 "atm" = (
-/obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan,
-/obj/machinery/door/airlock/glass_atmos{
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/door/airlock/maintenance/engi{
 	name = "Atmospherics";
 	req_access = list(24)
 	},
-/obj/machinery/door/firedoor/glass,
+/obj/structure/catwalk,
 /obj/machinery/door/blast/regular{
 	density = 0;
 	dir = 4;
 	icon_state = "pdoor0";
 	id = "atmoslockdown";
+	layer = 1;
 	name = "Atmospherics Lockdown";
-	opacity = 0
+	opacity = 0;
+	open_layer = 1
 	},
-/turf/simulated/floor/tiled,
-/area/engineering/lower/lobby)
+/turf/simulated/floor/plating,
+/area/engineering/atmos)
 "atn" = (
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -10833,25 +10929,29 @@
 /turf/simulated/wall/r_wall,
 /area/engineering/lower/lobby)
 "avd" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/red,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/door/airlock/glass_atmos{
-	name = "Atmospherics";
+/obj/machinery/door/airlock/maintenance/engi{
+	name = "Drone Bay";
 	req_access = list(24)
 	},
-/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/regular{
 	density = 0;
-	dir = 4;
+	dir = 1;
 	icon_state = "pdoor0";
 	id = "atmoslockdown";
+	layer = 1;
 	name = "Atmospherics Lockdown";
-	opacity = 0
+	opacity = 0;
+	open_layer = 1
 	},
-/turf/simulated/floor/tiled,
-/area/engineering/lower/lobby)
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/engineering/drone_fabrication)
 "ave" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1;
@@ -10990,6 +11090,25 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/south)
+"avp" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/maintenance/engi{
+	name = "Atmospherics Balcony";
+	req_access = list(24)
+	},
+/obj/structure/catwalk,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 1;
+	icon_state = "pdoor0";
+	id = "atmoslockdown";
+	layer = 1;
+	name = "Atmospherics Lockdown";
+	opacity = 0;
+	open_layer = 1
+	},
+/turf/simulated/floor/plating,
+/area/engineering/atmos)
 "avq" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
@@ -15739,25 +15858,6 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/maintenance/asmaint2)
-"aCY" = (
-/obj/machinery/door/airlock/maintenance/engi{
-	name = "Atmospherics";
-	req_access = list(24)
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 1;
-	icon_state = "pdoor0";
-	id = "atmoslockdown";
-	name = "Atmospherics Lockdown";
-	opacity = 0
-	},
-/turf/simulated/floor/plating,
-/area/engineering/atmos)
 "aCZ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -16646,24 +16746,6 @@
 /obj/random/tech_supply,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/maintenance/asmaint2)
-"aFa" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/door/airlock/maintenance/engi{
-	name = "Atmospherics";
-	req_access = list(24)
-	},
-/obj/structure/catwalk,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "atmoslockdown";
-	name = "Atmospherics Lockdown";
-	opacity = 0
-	},
-/turf/simulated/floor/plating,
-/area/engineering/atmos)
 "aFb" = (
 /obj/structure/catwalk,
 /turf/simulated/open,
@@ -24932,30 +25014,6 @@
 /obj/structure/bed/padded,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/solitary)
-"aTK" = (
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock/maintenance/command{
-	req_access = list(19)
-	},
-/obj/structure/cable/green{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 1;
-	icon_state = "pdoor0";
-	id = "bridge blast";
-	name = "Bridge Blast Doors";
-	opacity = 0
-	},
-/turf/simulated/floor,
-/area/bridge_hallway)
 "aTL" = (
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -26591,28 +26649,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/brig)
-"aVV" = (
-/obj/machinery/door/airlock/maintenance/engi{
-	name = "Drone Bay";
-	req_access = list(24)
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 1;
-	icon_state = "pdoor0";
-	id = "atmoslockdown";
-	name = "Atmospherics Lockdown";
-	opacity = 0
-	},
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/engineering/drone_fabrication)
 "aVW" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -27236,23 +27272,6 @@
 	},
 /turf/simulated/floor/reinforced,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
-"aWN" = (
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock/maintenance/engi{
-	name = "Atmospherics Balcony";
-	req_access = list(24)
-	},
-/obj/structure/catwalk,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 1;
-	icon_state = "pdoor0";
-	id = "atmoslockdown";
-	name = "Atmospherics Lockdown";
-	opacity = 0
-	},
-/turf/simulated/floor/plating,
-/area/engineering/atmos)
 "aWO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/green{
 	icon_state = "intact";
@@ -38423,7 +38442,7 @@ auk
 aAT
 aAT
 aAT
-aVV
+avd
 aAT
 aAT
 aAT
@@ -38560,7 +38579,7 @@ atJ
 axP
 auv
 azl
-aCY
+apQ
 aAT
 aAT
 aBW
@@ -39282,7 +39301,7 @@ aAU
 aAT
 azl
 azl
-aWN
+avp
 azl
 azl
 aEp
@@ -40399,7 +40418,7 @@ asF
 ati
 atT
 auC
-atm
+agX
 avH
 awx
 axm
@@ -40683,7 +40702,7 @@ asG
 atk
 atV
 auE
-avd
+ahj
 avJ
 awz
 axo
@@ -41798,7 +41817,7 @@ aYg
 aXY
 aqy
 aob
-aTK
+agD
 asc
 avj
 aWY
@@ -41934,7 +41953,7 @@ aiW
 anx
 apU
 arp
-apQ
+afw
 apS
 aXG
 aYa
@@ -42111,7 +42130,7 @@ ayh
 ayO
 azG
 aAB
-aFa
+atm
 aBN
 aCj
 aBO

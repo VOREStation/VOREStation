@@ -348,8 +348,11 @@
 	if(!job.is_position_available()) return 0
 	if(jobban_isbanned(src,rank))	return 0
 	if(!job.player_old_enough(src.client))	return 0
-	if(!is_job_whitelisted(src,rank))	return 0 //VOREStation Code
-	if(!job.player_has_enough_pto(src.client)) return 0 //VOREStation Code
+	//VOREStation Add
+	if(!job.player_has_enough_playtime(src.client))	return 0
+	if(!is_job_whitelisted(src,rank))	return 0
+	if(!job.player_has_enough_pto(src.client)) return 0
+	//VOREStation Add End
 	return 1
 
 
@@ -603,6 +606,9 @@
 
 // Prevents lobby players from seeing say, even with ghostears
 /mob/new_player/hear_say(var/list/message_pieces, var/verb = "says", var/italics = 0, var/mob/speaker = null)
+	return
+
+/mob/new_player/hear_holopad_talk(list/message_pieces, var/verb = "says", var/mob/speaker = null)
 	return
 
 /mob/new_player/hear_holopad_talk(list/message_pieces, var/verb = "says", var/mob/speaker = null)

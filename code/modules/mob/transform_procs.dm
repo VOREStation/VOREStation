@@ -41,11 +41,11 @@
 
 	return src
 
-/mob/new_player/AIize()
+/mob/new_player/AIize(var/move)
 	spawning = 1
 	return ..()
 
-/mob/living/carbon/human/AIize(move=1) // 'move' argument needs defining here too because BYOND is dumb
+/mob/living/carbon/human/AIize(var/move = TRUE) // 'move' argument needs defining here too because BYOND is dumb
 	if (transforming)
 		return
 	for(var/t in organs)
@@ -53,7 +53,7 @@
 
 	return ..(move)
 
-/mob/living/carbon/AIize()
+/mob/living/carbon/AIize(var/move)
 	if (transforming)
 		return
 	for(var/obj/item/W in src)

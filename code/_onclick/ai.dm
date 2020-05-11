@@ -31,6 +31,14 @@
 	if(client.buildmode) // comes after object.Click to allow buildmode gui objects to be clicked
 		build_click(src, client.buildmode, params, A)
 		return
+		
+	if(multicam_on)
+		var/turf/T = get_turf(A)
+		if(T)
+			for(var/obj/screen/movable/pic_in_pic/ai/P in T.vis_locs)
+				if(P.ai == src)
+					P.Click(params)
+					break
 
 	if(stat)
 		return

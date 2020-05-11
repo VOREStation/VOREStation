@@ -532,3 +532,6 @@ SQLITE_FEEDBACK_MIN_AGE 7
 
 ## Comment this out if you don't want to use the 'nightshift lighting' subsystem to adjust lights based on ingame time
 ENABLE_NIGHT_SHIFTS
+
+## Comment this out to enable playtime restrictions for jobs in their respective departments (mostly for heads)
+# USE_PLAYTIME_RESTRICTION_FOR_JOBS

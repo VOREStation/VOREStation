@@ -520,7 +520,7 @@
 		|ACCESSORY_SLOT_ARMOR_M)
 	blood_overlay_type = "armor"
 
-/obj/item/clothing/suit/armor/pcarrier/mob_can_equip(var/mob/living/carbon/human/H, slot)
+/obj/item/clothing/suit/armor/pcarrier/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = FALSE)
 	if(..()) //This will only run if no other problems occured when equiping.
 		if(H.gloves)
 			if(H.gloves.body_parts_covered & ARMS)

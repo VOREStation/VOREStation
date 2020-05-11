@@ -23,6 +23,8 @@
 
 	var/ghostimage = null
 	var/datum/visualnet/visualnet
+	var/use_static = TRUE
+	var/static_visibility_range = 16
 
 /mob/observer/eye/Destroy()
 	if(owner)
@@ -67,8 +69,8 @@
 				visualnet.updateVisibility(owner, 0)
 				owner.loc = loc
 				visualnet.updateVisibility(owner, 0)
-
-			visualnet.visibility(src)
+			if(use_static)
+				visualnet.visibility(src, owner.client)
 			return 1
 	return 0
 
@@ -85,6 +87,11 @@
 		return
 
 	return eyeobj.EyeMove(n, direct)
+	
+/mob/observer/eye/proc/GetViewerClient()
+    if(owner)
+        return owner.client
+    return null
 
 /mob/observer/eye/EyeMove(n, direct)
 	var/initial = initial(sprint)
