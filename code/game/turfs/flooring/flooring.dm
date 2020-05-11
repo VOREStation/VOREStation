@@ -64,6 +64,7 @@ var/list/flooring_types
 /decl/flooring/grass/sif // Subtype for Sif's grass.
 	name = "growth"
 	desc = "A natural moss that has adapted to the sheer cold climate."
+	flags = TURF_REMOVE_SHOVEL
 	icon = 'icons/turf/outdoors.dmi'
 	icon_base = "grass_sif"
 	has_base_range = 1
@@ -112,7 +113,7 @@ var/list/flooring_types
 	desc = "Gritty and unpleasant."
 	icon = 'icons/turf/flooring/asteroid.dmi'
 	icon_base = "asteroid"
-	flags = TURF_HAS_EDGES | TURF_REMOVE_SHOVEL
+	flags = TURF_REMOVE_SHOVEL
 	build_type = null
 	footstep_sounds = list("human" = list(
 		'sound/effects/footstep/asteroid1.ogg',
