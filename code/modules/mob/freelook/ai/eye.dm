@@ -87,11 +87,11 @@
 	if(istype(usr, /mob/living/silicon/ai))
 		var/mob/living/silicon/ai/AI = usr
 		if(AI.eyeobj)
-+            if(!AI.multicam_on || AI.client.eye != AI.eyeobj)
-+                return
-+            var/area/A = get_area(AI.eyeobj)
-+            if(istype(A, /area/ai_multicam_room))
-+                return
+			if(!AI.multicam_on || AI.client.eye != AI.eyeobj)
+				return
+			var/area/A = get_area(AI.eyeobj)
+			if(istype(A, /area/ai_multicam_room))
+				return
 			var/turf/T = get_turf(src)
 			if(T)
 				AI.eyeobj.setLoc(T)
