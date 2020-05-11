@@ -31,3 +31,28 @@
 		else // List doesn't have that entry, maybe never played, maybe invalid PTO type (you should fix that...)
 			return dept_time_required // Could be 0, too, which is fine! They can play that
 	return 0
+
+// Special treatment for some the more complicated heads
+
+// Captain gets every department combined
+/datum/job/captain/available_in_playhours(client/C)
+	if(C && config.use_playtime_restriction_for_jobs)
+		var/remaining_time_needed = dept_time_required
+		for(var/key in C.play_hours)
+			if(isnum(C.play_hours[key]))
+				remaining_time_needed = max(0, remaining_time_needed - C.play_hours[key])
+		return remaining_time_needed
+	return 0
+
+// HoP gets civilian, cargo, and exploration combined
+/datum/job/hop/available_in_playhours(client/C)
+	if(C && config.use_playtime_restriction_for_jobs)
+		var/remaining_time_needed = dept_time_required
+		if(isnum(C.play_hours[PTO_CIVILIAN]))
+			remaining_time_needed = max(0, remaining_time_needed - C.play_hours[PTO_CIVILIAN])
+		if(isnum(C.play_hours[PTO_CARGO]))
+			remaining_time_needed = max(0, remaining_time_needed - C.play_hours[PTO_CARGO])
+		if(isnum(C.play_hours[PTO_EXPLORATION]))
+			remaining_time_needed = max(0, remaining_time_needed - C.play_hours[PTO_EXPLORATION])
+		return remaining_time_needed
+	return 0
