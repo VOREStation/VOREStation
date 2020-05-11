@@ -32,8 +32,6 @@
 	var/image/water_sprite = image(icon = 'icons/turf/outdoors.dmi', icon_state = water_state, layer = WATER_LAYER)
 	add_overlay(water_sprite)
 
-	update_icon_edge()
-
 /turf/simulated/floor/water/get_edge_icon_state()
 	return "water_shallow"
 

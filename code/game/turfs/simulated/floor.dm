@@ -41,12 +41,17 @@
 		floortype = initial_flooring
 	if(floortype)
 		set_flooring(get_flooring_data(floortype), TRUE)
+		. = INITIALIZE_HINT_LATELOAD // We'll update our icons after everyone is ready
 	else
 		footstep_sounds = base_footstep_sounds
 	if(can_dirty && can_start_dirty)
 		if(prob(dirty_prob))
 			dirt += rand(50,100)
 			update_dirt() //5% chance to start with dirt on a floor tile- give the janitor something to do
+
+/turf/simulated/floor/LateInitialize()
+	. = ..()
+	update_icon(1)
 
 /turf/simulated/floor/proc/swap_decals()
 	var/current_decals = decals
@@ -59,7 +64,7 @@
 		swap_decals()
 	flooring = newflooring
 	footstep_sounds = newflooring.footstep_sounds
-	update_icon(1)
+	//update_icon(1) // We'll do it in late initialize
 	levelupdate()
 
 //This proc will set floor_type to null and the update_icon() proc will then change the icon_state of the turf
