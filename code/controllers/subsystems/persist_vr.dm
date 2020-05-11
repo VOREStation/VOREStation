@@ -45,6 +45,19 @@ SUBSYSTEM_DEF(persist)
 		var/department_earning = J.pto_type
 		clear_unused_pto(M)
 
+		// Determine special PTO types and convert properly
+		if(department_earning == PTO_AI)
+			department_earning = PTO_CIVILIAN
+		if(department_earning == PTO_CYBORG)
+			if(istype(M, /mob/living/silicon/robot))
+				var/mob/living/silicon/robot/C = M
+				if(C.module && C.module.pto_type)
+					department_earning = C.module.pto_type
+			if(department_earning == PTO_CYBORG)
+				if (MC_TICK_CHECK)
+					return
+				continue
+
 		// Update client whatever
 		var/client/C = M.client
 		var/wait_in_hours = wait / (1 HOUR)
