@@ -2,7 +2,7 @@
 
 /obj/screen/movable/pic_in_pic/ai
 	var/mob/living/silicon/ai/ai
-	var/mutable_appearance/highlighted_background
+	var/list/highlighted_mas = list()
 	var/highlighted = FALSE
 	var/mob/observer/eye/aiEye/pic_in_pic/aiEye
 
@@ -12,9 +12,12 @@
 	aiEye.screen = src
 
 /obj/screen/movable/pic_in_pic/ai/Destroy()
+	. = ..()
+	if(!QDELETED(aiEye))
+		QDEL_NULL(aiEye)
+	else
+		aiEye = null
 	set_ai(null)
-	QDEL_NULL(aiEye)
-	return ..()
 
 /obj/screen/movable/pic_in_pic/ai/Click()
 	..()
@@ -23,22 +26,57 @@
 
 /obj/screen/movable/pic_in_pic/ai/make_backgrounds()
 	..()
-	highlighted_background = new /mutable_appearance()
-	highlighted_background.icon = 'icons/misc/pic_in_pic.dmi'
-	highlighted_background.icon_state = "background_highlight"
-	highlighted_background.layer = DISPOSAL_LAYER
-	highlighted_background.plane = PLATING_PLANE
+	var/mutable_appearance/base = new /mutable_appearance()
+	base.icon = 'icons/misc/pic_in_pic.dmi'
+	base.layer = DISPOSAL_LAYER
+	base.plane = PLATING_PLANE
+	base.appearance_flags = PIXEL_SCALE
+
+	for(var/direction in cardinal)
+		var/mutable_appearance/dir = new /mutable_appearance(base)
+		dir.dir = direction
+		dir.icon_state = "background_highlight_[direction]"
+		highlighted_mas += dir
 
 /obj/screen/movable/pic_in_pic/ai/add_background()
 	if((width > 0) && (height > 0))
-		var/matrix/M = matrix()
-		M.Scale(width + 0.5, height + 0.5)
-		M.Translate((width-1)/2 * world.icon_size, (height-1)/2 * world.icon_size)
-		highlighted_background.transform = M
-		standard_background.transform = M
-		overlays += highlighted ? highlighted_background : standard_background
+		if(!highlighted)
+			return ..()
+
+		for(var/mutable_appearance/dir in highlighted_mas)
+			var/matrix/M = matrix()
+			var/x_scale = 1
+			var/y_scale = 1
+
+			var/x_off = 0
+			var/y_off = 0
+
+			if(dir.dir & (NORTH|SOUTH))
+				x_scale = width
+				x_off = (width-1)/2 * world.icon_size
+				if(dir.dir & NORTH)
+					y_off = ((height-1) * world.icon_size) + 3
+				else
+					y_off = -3
+
+			if(dir.dir & (EAST|WEST))
+				y_scale = height
+				y_off = (height-1)/2 * world.icon_size
+				if(dir.dir & EAST)
+					x_off = ((width-1) * world.icon_size) + 3
+				else
+					x_off = -3
+
+			M.Scale(x_scale, y_scale)
+			M.Translate(x_off, y_off)
+			dir.transform = M
+			overlays += dir
 
 /obj/screen/movable/pic_in_pic/ai/set_view_size(width, height, do_refresh = TRUE)
+	if(!aiEye)
+		qdel(src)
+		return
+
 	aiEye.static_visibility_range =	(round(max(width, height) / 2) + 1)
 	if(ai)
 		ai.camera_visibility(aiEye)
@@ -46,27 +84,50 @@
 
 /obj/screen/movable/pic_in_pic/ai/set_view_center(atom/target, do_refresh = TRUE)
 	..()
+	if(!aiEye)
+		qdel(src)
+		return
+
 	aiEye.setLoc(get_turf(target))
 
 /obj/screen/movable/pic_in_pic/ai/refresh_view()
 	..()
+	if(!aiEye)
+		qdel(src)
+		return
+
 	aiEye.setLoc(get_turf(center))
 
 /obj/screen/movable/pic_in_pic/ai/proc/highlight()
 	if(highlighted)
 		return
+	if(!aiEye)
+		qdel(src)
+		return
 	highlighted = TRUE
-	overlays -= standard_background
-	overlays += highlighted_background
+	overlays.Cut()
+	add_background()
+	add_buttons()
 
 /obj/screen/movable/pic_in_pic/ai/proc/unhighlight()
 	if(!highlighted)
 		return
+	if(!aiEye)
+		qdel(src)
+		return
 	highlighted = FALSE
-	overlays -= highlighted_background
-	overlays += standard_background
+	overlays.Cut()
+	add_background()
+	add_buttons()
 
 /obj/screen/movable/pic_in_pic/ai/proc/set_ai(mob/living/silicon/ai/new_ai)
+	if(!aiEye && !QDELETED(src))
+		if(new_ai)
+			to_chat(new_ai, "<span class='danger'><h2>You've run into a unfixable bug with AI eye code. \
+In order to create a new multicam, you will have to select a different camera first before trying to add one, or ask an admin to fix you. \
+Whatever you did that made the last camera window disappear-- don't do that again.</h2></span>")
+		qdel(src)
+		return
 	if(ai)
 		ai.multicam_screens -= src
 		ai.all_eyes -= aiEye
@@ -88,6 +149,8 @@
 	icon = 'icons/misc/pic_in_pic.dmi'
 	icon_state = "room_background"
 	flags = NOJAUNT
+	plane = SPACE_PLANE
+	layer = AREA_LAYER + 0.1
 
 /turf/unsimulated/ai_visible/Initialize()
 	. = ..()
@@ -182,6 +245,10 @@ GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
 	disable_camera_telegraphing()
 	if(screen && screen.ai)
 		screen.ai.all_eyes -= src
+	if(!QDELETED(screen))
+		QDEL_NULL(screen)
+	else
+		screen = null
 	return ..()
 
 //AI procs

@@ -12,7 +12,7 @@
 	var/obj/screen/component_button/button_expand
 	var/obj/screen/component_button/button_shrink
 
-	var/mutable_appearance/standard_background
+	var/list/background_mas = list()
 	var/const/max_dimensions = 10
 
 /obj/screen/movable/pic_in_pic/Initialize()
@@ -36,11 +36,17 @@
 		set_view_size(width-1, height-1)
 
 /obj/screen/movable/pic_in_pic/proc/make_backgrounds()
-	standard_background = new /mutable_appearance()
-	standard_background.icon = 'icons/misc/pic_in_pic.dmi'
-	standard_background.icon_state = "background"
-	standard_background.layer = DISPOSAL_LAYER
-	standard_background.plane = PLATING_PLANE
+	var/mutable_appearance/base = new /mutable_appearance()
+	base.icon = 'icons/misc/pic_in_pic.dmi'
+	base.layer = DISPOSAL_LAYER
+	base.plane = PLATING_PLANE
+	base.appearance_flags = PIXEL_SCALE
+
+	for(var/direction in cardinal)
+		var/mutable_appearance/dir = new /mutable_appearance(base)
+		dir.dir = direction
+		dir.icon_state = "background_[direction]"
+		background_mas += dir
 
 /obj/screen/movable/pic_in_pic/proc/add_buttons()
 	var/static/mutable_appearance/move_tab
@@ -97,11 +103,34 @@
 
 /obj/screen/movable/pic_in_pic/proc/add_background()
 	if((width > 0) && (height > 0))
-		var/matrix/M = matrix()
-		M.Scale(width + 0.5, height + 0.5)
-		M.Translate((width-1)/2 * world.icon_size, (height-1)/2 * world.icon_size)
-		standard_background.transform = M
-		overlays += standard_background
+		for(var/mutable_appearance/dir in background_mas)
+			var/matrix/M = matrix()
+			var/x_scale = 1
+			var/y_scale = 1
+
+			var/x_off = 0
+			var/y_off = 0
+
+			if(dir.dir & (NORTH|SOUTH))
+				x_scale = width
+				x_off = (width-1)/2 * world.icon_size
+				if(dir.dir & NORTH)
+					y_off = ((height-1) * world.icon_size) + 3
+				else
+					y_off = -3
+
+			if(dir.dir & (EAST|WEST))
+				y_scale = height
+				y_off = (height-1)/2 * world.icon_size
+				if(dir.dir & EAST)
+					x_off = ((width-1) * world.icon_size) + 3
+				else
+					x_off = -3
+
+			M.Scale(x_scale, y_scale)
+			M.Translate(x_off, y_off)
+			dir.transform = M
+			overlays += dir
 
 /obj/screen/movable/pic_in_pic/proc/set_view_size(width, height, do_refresh = TRUE)
 	width = CLAMP(width, 0, max_dimensions)
