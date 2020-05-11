@@ -12,8 +12,8 @@
 		pass = FALSE
 
 	//No OOC notes
-	if (config.allow_Metadata && !(client?.prefs?.metadata || length(client.prefs.metadata) < 15))
-		to_chat(src,"<span class='warning'>Please set informative OOC notes related to ERP preferences. Set them using the 'OOC Notes' button on the 'General' tab in character setup.</span>")
+	if (config.allow_Metadata && (!client?.prefs?.metadata || length(client.prefs.metadata) < 15))
+		to_chat(src,"<span class='warning'>Please set informative OOC notes related to RP/ERP preferences. Set them using the 'OOC Notes' button on the 'General' tab in character setup.</span>")
 		pass = FALSE
 
 	//Are they on the VERBOTEN LIST?
