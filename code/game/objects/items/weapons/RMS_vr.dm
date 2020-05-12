@@ -129,7 +129,7 @@
 										15; new /obj/item/weapon/cell/super/empty,
 										10; new /obj/item/weapon/cell/hyper/empty,
 										4; new /obj/item/device/fbp_backup_cell,
-										100; new /obj/item/weapon/cell/infinite)
+										1; new /obj/item/weapon/cell/infinite)
 					if(3)
 						product = pick(50; new /obj/item/weapon/cell/secborg/empty,
 										20; new /obj/item/weapon/cell/high/empty,
