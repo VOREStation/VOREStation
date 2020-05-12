@@ -126,7 +126,7 @@
 	var/z = get_z(nano_host())
 	var/list/map_levels = using_map.get_map_levels(z)
 
-	for(var/obj/machinery/power/smes/buildable/SMES in machines)
+	for(var/obj/machinery/power/smes/buildable/SMES in GLOB.smeses)
 		if(!(SMES.z in map_levels))
 			continue
 		if(SMES.RCon_tag && (SMES.RCon_tag != "NO_TAG") && SMES.RCon)

@@ -1,3 +1,5 @@
+GLOBAL_LIST_EMPTY(apcs)
+
 #define CRITICAL_APC_EMP_PROTECTION 10 // EMP effect duration is divided by this number if the APC has "critical" flag
 //update_state
 #define UPDATE_CELL_IN 1
@@ -169,6 +171,7 @@
 /obj/machinery/power/apc/New(turf/loc, var/ndir, var/building=0)
 	..()
 	wires = new(src)
+	GLOB.apcs += src
 
 	// offset 24 pixels in direction of dir
 	// this allows the APC to be embedded in a wall, yet still inside an area
@@ -189,6 +192,7 @@
 		src.update_icon()
 
 /obj/machinery/power/apc/Destroy()
+	GLOB.apcs -= src
 	src.update()
 	area.apc = null
 	area.power_light = 0

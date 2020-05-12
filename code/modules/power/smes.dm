@@ -1,6 +1,8 @@
 // the SMES
 // stores power
 
+GLOBAL_LIST_EMPTY(smeses)
+
 #define SMESMAXCHARGELEVEL 250000
 #define SMESMAXOUTPUT 250000
 
@@ -65,6 +67,7 @@
 
 /obj/machinery/power/smes/Initialize()
 	. = ..()
+	GLOB.smeses += src
 	for(var/d in GLOB.cardinal)
 		var/turf/T = get_step(src, d)
 		for(var/obj/machinery/power/terminal/term in T)
@@ -85,6 +88,7 @@
 	for(var/obj/machinery/power/terminal/T in terminals)
 		T.master = null
 	terminals = null
+	GLOB.smeses -= src
 	return ..()
 
 /obj/machinery/power/smes/add_avail(var/amount)
