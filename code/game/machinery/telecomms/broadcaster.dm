@@ -132,13 +132,8 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 /obj/machinery/telecomms/allinone
 	name = "Telecommunications Mainframe"
-<<<<<<< HEAD
-	//icon = 'icons/obj/stationobjs.dmi' //VOREStation Removal - use parent icon
-	icon_state = "allinone" //VOREStation Edit
-=======
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "allinone"
->>>>>>> 578ba46d... Merge pull request #7125 from Cerebulon/tcommsprites
 	desc = "A compact machine used for portable subspace telecommuniations processing."
 	density = 1
 	use_power = USE_POWER_IDLE

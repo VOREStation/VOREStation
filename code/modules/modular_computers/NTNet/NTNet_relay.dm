@@ -5,12 +5,7 @@
 	use_power = USE_POWER_ACTIVE
 	active_power_usage = 20000 //20kW, apropriate for machine that keeps massive cross-Zlevel wireless network operational.
 	idle_power_usage = 100
-<<<<<<< HEAD
-	icon = 'icons/obj/stationobjs_vr.dmi' //VOREStation Add
-	icon_state = "ntnet" //VOREStation Edit
-=======
 	icon_state = "ntnet"
->>>>>>> 578ba46d... Merge pull request #7125 from Cerebulon/tcommsprites
 	anchored = 1
 	density = 1
 	circuit = /obj/item/weapon/circuitboard/ntnet_relay
@@ -36,15 +31,10 @@
 	return 1
 
 /obj/machinery/ntnet_relay/update_icon()
-	//VOREStation Edit
 	if(operable())
 		icon_state = initial(icon_state)
 	else
 		icon_state = "[initial(icon_state)]_off"
-<<<<<<< HEAD
-	//VOREStation Edit End
-=======
->>>>>>> 578ba46d... Merge pull request #7125 from Cerebulon/tcommsprites
 
 /obj/machinery/ntnet_relay/process()
 	if(operable())
