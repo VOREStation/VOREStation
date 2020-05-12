@@ -162,6 +162,7 @@
 /datum/map_z_level/tether_lateload/away_beach
 	name = "Away Mission - Desert Beach"
 	z = Z_LEVEL_BEACH
+	base_turf = /turf/simulated/floor/outdoors/rocks/caves
 
 /datum/map_template/tether_lateload/away_beach_cave
 	name = "Desert Planet - Z2 Cave"
@@ -181,6 +182,7 @@
 /datum/map_z_level/tether_lateload/away_beach_cave
 	name = "Away Mission - Desert Cave"
 	z = Z_LEVEL_BEACH_CAVE
+	base_turf = /turf/simulated/floor/outdoors/rocks/caves
 
 /obj/effect/step_trigger/zlevel_fall/beach
 	var/static/target_z
@@ -207,6 +209,7 @@
 /datum/map_z_level/tether_lateload/away_aerostat
 	name = "Away Mission - Aerostat"
 	z = Z_LEVEL_AEROSTAT
+	base_turf = /turf/unsimulated/floor/sky/virgo2_sky
 
 /datum/map_template/tether_lateload/away_aerostat_surface
 	name = "Remmi Aerostat - Z2 Surface"
@@ -223,6 +226,7 @@
 /datum/map_z_level/tether_lateload/away_aerostat_surface
 	name = "Away Mission - Aerostat Surface"
 	z = Z_LEVEL_AEROSTAT_SURFACE
+	base_turf = /turf/simulated/mineral/floor/ignore_mapgen/virgo2
 
 
 #include "space/_debrisfield.dm"
