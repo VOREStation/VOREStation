@@ -130,7 +130,7 @@
 	//Admin Authorisation
 	holder = admin_datums[ckey]
 	if(holder)
-		admins += src
+		GLOB.admins += src
 		holder.owner = src
 
 	//preferences datum - also holds some persistant data for the client (because we may as well keep these datums to a minimum)
@@ -191,7 +191,7 @@
 			log_and_message_admins("PARANOIA: [key_name(src)] has a very new BYOND account ([account_age] days).")
 			alert = TRUE
 		if(alert)
-			for(var/client/X in admins)
+			for(var/client/X in GLOB.admins)
 				if(X.is_preference_enabled(/datum/client_preference/holder/play_adminhelp_ping))
 					X << 'sound/voice/bcriminal.ogg'
 				window_flash(X)
@@ -203,7 +203,7 @@
 /client/Del()
 	if(holder)
 		holder.owner = null
-		admins -= src
+		GLOB.admins -= src
 	GLOB.ahelp_tickets.ClientLogout(src)
 	GLOB.directory -= ckey
 	GLOB.clients -= src
