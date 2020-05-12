@@ -25,7 +25,7 @@
 	return (available_in_playhours(C) == 0)
 
 /datum/job/proc/available_in_playhours(client/C)
-	if(C && config.use_playtime_restriction_for_jobs)
+	if(C && config.use_playtime_restriction_for_jobs && dept_time_required)
 		if(isnum(C.play_hours[pto_type])) // Has played that department before
 			return max(0, dept_time_required - C.play_hours[pto_type])
 		else // List doesn't have that entry, maybe never played, maybe invalid PTO type (you should fix that...)
@@ -36,7 +36,7 @@
 
 // Captain gets every department combined
 /datum/job/captain/available_in_playhours(client/C)
-	if(C && config.use_playtime_restriction_for_jobs)
+	if(C && config.use_playtime_restriction_for_jobs && dept_time_required)
 		var/remaining_time_needed = dept_time_required
 		for(var/key in C.play_hours)
 			if(isnum(C.play_hours[key]))
@@ -46,7 +46,7 @@
 
 // HoP gets civilian, cargo, and exploration combined
 /datum/job/hop/available_in_playhours(client/C)
-	if(C && config.use_playtime_restriction_for_jobs)
+	if(C && config.use_playtime_restriction_for_jobs && dept_time_required)
 		var/remaining_time_needed = dept_time_required
 		if(isnum(C.play_hours[PTO_CIVILIAN]))
 			remaining_time_needed = max(0, remaining_time_needed - C.play_hours[PTO_CIVILIAN])

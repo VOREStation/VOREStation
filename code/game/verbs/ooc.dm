@@ -151,7 +151,7 @@
 				receivers |= E.owner.client
 
 	// Admins with RLOOC displayed who weren't already in
-	for(var/client/admin in admins)
+	for(var/client/admin in GLOB.admins)
 		if(!(admin in receivers) && admin.is_preference_enabled(/datum/client_preference/holder/show_rlooc))
 			r_receivers |= admin
 
@@ -159,7 +159,7 @@
 	for(var/client/target in receivers)
 		var/admin_stuff = ""
 
-		if(target in admins)
+		if(target in GLOB.admins)
 			admin_stuff += "/([key])"
 
 		to_chat(target, "<span class='ooc looc'>" + create_text_tag("looc", "LOOC:", target) + " <EM>[display_name][admin_stuff]:</EM> <span class='message'>[msg]</span></span>")

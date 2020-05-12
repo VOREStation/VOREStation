@@ -43,5 +43,9 @@
 	path = /obj/item/clothing/glasses/fluff/science_proper
 
 /datum/gear/eyes/security/secpatch
-	display_name = "security hudpatch"
+	display_name = "Security HUDpatch"
 	path = /obj/item/clothing/glasses/hud/security/eyepatch
+
+/datum/gear/eyes/medical/medpatch
+	display_name = "Health HUDpatch"
+	path = /obj/item/clothing/glasses/hud/health/eyepatch

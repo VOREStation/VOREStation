@@ -67,6 +67,46 @@
 	set category = "Admin"
 	set name = "Staffwho"
 
+	var/message = get_staffwho_message(holder)
+	to_chat(src, message)
+
+/proc/get_staffwho_numbers()
+	var/admin_count = 0
+	var/mod_count = 0
+	var/dev_count = 0
+	var/other_count = 0
+	var/list/keys = list()
+
+	for(var/client/C in GLOB.admins)
+		var/keymsg = "[C.key]"
+		if(C.is_afk())
+			keymsg += " *(AFK)*"
+		else if(C.holder.fakekey)
+			keymsg += " *(Stealth)*"
+		else if(isobserver(C.mob))
+			keymsg += " *(Ghost)*"
+		else if(isnewplayer(C.mob))
+			keymsg += " *(Lobby)*"
+		else
+			keymsg += " *(Ingame)*"
+		keys += keymsg
+
+		if(R_ADMIN & C.holder.rights && R_BAN & C.holder.rights) // R_ADMIN and R_BAN apparently an admin makes
+			admin_count++
+
+		else if(R_ADMIN & C.holder.rights && !(R_SERVER & C.holder.rights)) // R_ADMIN but not R_SERVER makes a moderator
+			mod_count++
+
+		else if(R_SERVER & C.holder.rights) // R_SERVER makes a dev
+			dev_count++
+
+		else // No R_ADMIN&&R_BAN, R_ADMIN!R_BAN, R_SERVER, must be a GM or something
+			other_count++
+
+	return list("Admins" = admin_count, "Mods" = mod_count, "Devs" = dev_count, "Other" = other_count, "keys" = keys)
+
+// VOREStation Edit - This whole proc has various vorestation edits throughout. Practically every other line.
+/proc/get_staffwho_message(datum/admins/holder)
 	var/msg = ""
 	var/modmsg = ""
 	var/devmsg = ""
@@ -75,9 +115,10 @@
 	var/num_admins_online = 0
 	var/num_devs_online = 0
 	var/num_event_managers_online = 0
+	
 	if(holder)
-		for(var/client/C in admins)
-			if(R_ADMIN & C.holder.rights && R_BAN & C.holder.rights) //VOREStation Edit
+		for(var/client/C in GLOB.admins)
+			if(R_ADMIN & C.holder.rights && R_BAN & C.holder.rights)
 
 				if(C.holder.fakekey && (!R_ADMIN & holder.rights && !R_MOD & holder.rights))		//Event Managerss can't see stealthmins
 					continue
@@ -102,15 +143,13 @@
 				msg += "\n"
 
 				num_admins_online++
-			else if(R_ADMIN & C.holder.rights && !(R_SERVER & C.holder.rights)) //VOREStation Edit
+			else if(R_ADMIN & C.holder.rights && !(R_SERVER & C.holder.rights))
 				modmsg += "\t[C] is a [C.holder.rank]"
 
-				//VOREStation Addition Start
 				if(C.holder.fakekey && (!R_ADMIN & holder.rights && !R_MOD & holder.rights))
 					continue
 				if(C.holder.fakekey)
 					msg += " <i>(as [C.holder.fakekey])</i>"
-				//VOREStation Addition End
 
 				if(isobserver(C.mob))
 					modmsg += " - Observing"
@@ -127,14 +166,12 @@
 				modmsg += "\n"
 				num_mods_online++
 
-			else if(R_SERVER & C.holder.rights) //VOREStation Edit
-				//VOREStation Edit Start - Adds Stealthmin support
+			else if(R_SERVER & C.holder.rights)
 				if(C.holder.fakekey && (!R_ADMIN & holder.rights && !R_MOD & holder.rights))
 					continue
 				devmsg += "\t[C] is a [C.holder.rank]"
 				if(C.holder.fakekey)
 					devmsg += " <i>(as [C.holder.fakekey])</i>"
-				//VOREStation Edit End
 				if(isobserver(C.mob))
 					devmsg += " - Observing"
 				else if(istype(C.mob,/mob/new_player))
@@ -150,14 +187,12 @@
 				devmsg += "\n"
 				num_devs_online++
 
-			else //VOREStation Edit
-				//VOREStation Edit Start - Adds Stealthmin support
+			else
 				if(C.holder.fakekey && (!R_ADMIN & holder.rights && !R_MOD & holder.rights))
 					continue
 				eventMmsg += "\t[C] is a [C.holder.rank]"
 				if(C.holder.fakekey)
 					eventMmsg += " <i>(as [C.holder.fakekey])</i>"
-				//VOREStation Edit End
 				if(isobserver(C.mob))
 					eventMmsg += " - Observing"
 				else if(istype(C.mob,/mob/new_player))
@@ -174,12 +209,11 @@
 				num_event_managers_online++
 
 	else
-		for(var/client/C in admins)
-			if(R_ADMIN & C.holder.rights && R_BAN & C.holder.rights) //VOREStation Edit
+		for(var/client/C in GLOB.admins)
+			if(R_ADMIN & C.holder.rights && R_BAN & C.holder.rights)
 				if(!C.holder.fakekey)
 					msg += "\t[C] is a [C.holder.rank]\n"
 					num_admins_online++
-			//VOREStation Block Edit Start
 			else if(R_ADMIN & C.holder.rights && !(R_SERVER & C.holder.rights))
 				if(!C.holder.fakekey)
 					modmsg += "\t[C] is a [C.holder.rank]\n"
@@ -192,19 +226,18 @@
 				if(!C.holder.fakekey)
 					eventMmsg += "\t[C] is a [C.holder.rank]\n"
 					num_event_managers_online++
-			//VOREStation Block Edit End
 
-	if(config.admin_irc)
-		to_chat(src, "<span class='info'>Adminhelps are also sent to IRC. If no admins are available in game try anyway and an admin on IRC may see it and respond.</span>")
 	msg = "<b>Current Admins ([num_admins_online]):</b>\n" + msg
 
 	if(config.show_mods)
-		msg += "\n<b> Current Game Masters ([num_mods_online]):</b>\n" + modmsg //VOREStation Edit
+		msg += "\n<b> Current Game Masters ([num_mods_online]):</b>\n" + modmsg
 
 	if(config.show_devs)
 		msg += "\n<b> Current Developers ([num_devs_online]):</b>\n" + devmsg
 
 	if(config.show_event_managers)
-		msg += "\n<b> Current Miscellaneous ([num_event_managers_online]):</b>\n" + eventMmsg //VOREStation Edit
+		msg += "\n<b> Current Miscellaneous ([num_event_managers_online]):</b>\n" + eventMmsg
 
-	to_chat(src,msg)
+	msg += "\n<span class='info'>Adminhelps are also sent to Discord. If no admins are available in game try anyway and an admin on Discord may see it and respond.</span>"
+
+	return msg

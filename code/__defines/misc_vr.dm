@@ -57,6 +57,7 @@
 #define PTO_EXPLORATION 	"Exploration"
 #define PTO_CARGO			"Cargo"
 #define PTO_CIVILIAN		"Civilian"
+#define PTO_CYBORG			"Cyborg"
 
 #define DEPARTMENT_TALON	"ITV Talon"
 

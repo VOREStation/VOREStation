@@ -584,7 +584,7 @@
 		if("Players")
 			to_chat(usr, span("filter_debuglogs", jointext(player_list,",")))
 		if("Admins")
-			to_chat(usr, span("filter_debuglogs", jointext(admins,",")))
+			to_chat(usr, span("filter_debuglogs", jointext(GLOB.admins,",")))
 		if("Mobs")
 			to_chat(usr, span("filter_debuglogs", jointext(mob_list,",")))
 		if("Living Mobs")

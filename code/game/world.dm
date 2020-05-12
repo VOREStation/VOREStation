@@ -344,7 +344,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		to_chat(C,message)
 
 
-		for(var/client/A in admins)
+		for(var/client/A in GLOB.admins)
 			if(A != C)
 				to_chat(A,amessage)
 
