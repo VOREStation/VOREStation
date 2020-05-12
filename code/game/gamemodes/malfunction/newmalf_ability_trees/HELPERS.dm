@@ -168,7 +168,7 @@
 // Description: Returns a list of all unhacked APCs
 /proc/get_unhacked_apcs(var/mob/living/silicon/ai/user)
 	var/list/H = list()
-	for(var/obj/machinery/power/apc/A in machines)
+	for(var/obj/machinery/power/apc/A in GLOB.apcs)
 		if(A.hacker && A.hacker == user)
 			continue
 		H.Add(A)

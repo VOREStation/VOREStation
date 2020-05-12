@@ -199,14 +199,14 @@ Would like to add a law like "Law x is _______" where x = a number, and _____ is
 
 	spawn(0)
 		to_world("Started processing APCs")
-		for (var/obj/machinery/power/apc/APC in machines)
+		for (var/obj/machinery/power/apc/APC in GLOB.apcs)
 			if(APC.z in station_levels)
 				APC.ion_act()
 				apcnum++
 		to_world("Finished processing APCs. Processed: [apcnum]")
 	spawn(0)
 		to_world("Started processing SMES")
-		for (var/obj/machinery/power/smes/SMES in machines)
+		for (var/obj/machinery/power/smes/SMES in GLOB.smeses)
 			if(SMES.z in station_levels)
 				SMES.ion_act()
 				smesnum++

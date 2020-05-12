@@ -183,7 +183,7 @@
 		to_chat(mob, "<span class='danger'>An invisible force slams you against the ground!</span>")
 
 	// Effect 2: Z-level wide electrical pulse
-	for(var/obj/machinery/power/apc/A in machines)
+	for(var/obj/machinery/power/apc/A in GLOB.apcs)
 		if(!(A.z in affected_z))
 			continue
 

@@ -38,7 +38,7 @@
 	valid_z_levels -= using_map.sealed_levels // Space levels only please!
 
 	valid_apcs = list()
-	for(var/obj/machinery/power/apc/A in global.machines)
+	for(var/obj/machinery/power/apc/A in GLOB.apcs)
 		if(A.z in valid_z_levels)
 			valid_apcs += A
 

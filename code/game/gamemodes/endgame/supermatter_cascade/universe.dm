@@ -107,7 +107,7 @@ The access requirements on the Asteroid Shuttles' consoles have now been revoked
 			alm.ex_act(2)
 
 /datum/universal_state/supermatter_cascade/proc/APCSet()
-	for (var/obj/machinery/power/apc/APC in machines)
+	for (var/obj/machinery/power/apc/APC in GLOB.apcs)
 		if (!(APC.stat & BROKEN) && !APC.is_critical)
 			APC.chargemode = 0
 			if(APC.cell)
