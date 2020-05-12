@@ -76,11 +76,11 @@
 	name = "marine command service uniform"
 	desc = "The service uniform of the TCG Marine Corps. Slimming and stylish."
 
-/obj/item/clothing/under/solgov/mildress/expeditionary
+/obj/item/clothing/under/solgov/mildress/sifguard
 	name = "\improper NDF dress uniform"
 	desc = "The dress uniform of the Nanotrasen Defense Force in silver trim."
 
-/obj/item/clothing/under/solgov/mildress/expeditionary/command
+/obj/item/clothing/under/solgov/mildress/sifguard/officer
 	name = "\improper NDF command dress uniform"
 	desc = "The dress uniform of the Nanotrasen Defense Force in gold trim."
 
