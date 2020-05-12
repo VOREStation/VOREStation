@@ -1,5 +1,5 @@
 /datum/job/ai
-	pto_type = PTO_AI
+	pto_type = PTO_CIVILIAN
 
 /datum/job/cyborg
 	pto_type = PTO_CYBORG

@@ -46,8 +46,6 @@ SUBSYSTEM_DEF(persist)
 		clear_unused_pto(M)
 
 		// Determine special PTO types and convert properly
-		if(department_earning == PTO_AI)
-			department_earning = PTO_CIVILIAN
 		if(department_earning == PTO_CYBORG)
 			if(isrobot(M))
 				var/mob/living/silicon/robot/C = M

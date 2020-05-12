@@ -58,7 +58,6 @@
 #define PTO_CARGO			"Cargo"
 #define PTO_CIVILIAN		"Civilian"
 #define PTO_CYBORG			"Cyborg"
-#define PTO_AI				"AI"
 
 #define DEPARTMENT_TALON	"ITV Talon"
 
