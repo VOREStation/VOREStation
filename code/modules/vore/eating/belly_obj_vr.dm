@@ -397,7 +397,7 @@
 // Default implementation calls M.death() and removes from internal contents.
 // Indigestable items are removed, and M is deleted.
 /obj/belly/proc/digestion_death(mob/living/M)
-	message_admins("[key_name(owner)] has digested [key_name(M)] in their [lowertext(name)] ([owner ? ADMIN_JMP(owner) : "null"])")
+	add_attack_logs(owner, M, "Digested in [lowertext(name)]")
 
 	// If digested prey is also a pred... anyone inside their bellies gets moved up.
 	if(is_vore_predator(M))
@@ -439,6 +439,7 @@
 	//Incase they have the loop going, let's double check to stop it.
 	M.stop_sound_channel(CHANNEL_PREYLOOP)
 	// Delete the digested mob
+	M.ghostize() // Make sure they're out, so we can copy attack logs and such.
 	qdel(M)
 
 // Handle a mob being absorbed
