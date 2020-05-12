@@ -67,6 +67,10 @@
 	set category = "Admin"
 	set name = "Staffwho"
 
+	var/message = get_staffwho_message(holder)
+	to_chat(src, message)
+
+/proc/get_staffwho_message(datum/admins/holder)
 	var/msg = ""
 	var/modmsg = ""
 	var/devmsg = ""
@@ -76,7 +80,7 @@
 	var/num_devs_online = 0
 	var/num_event_managers_online = 0
 	if(holder)
-		for(var/client/C in admins)
+		for(var/client/C in GLOB.admins)
 			if(R_ADMIN & C.holder.rights && R_BAN & C.holder.rights) //VOREStation Edit
 
 				if(C.holder.fakekey && (!R_ADMIN & holder.rights && !R_MOD & holder.rights))		//Event Managerss can't see stealthmins
@@ -174,7 +178,7 @@
 				num_event_managers_online++
 
 	else
-		for(var/client/C in admins)
+		for(var/client/C in GLOB.admins)
 			if(R_ADMIN & C.holder.rights && R_BAN & C.holder.rights) //VOREStation Edit
 				if(!C.holder.fakekey)
 					msg += "\t[C] is a [C.holder.rank]\n"
@@ -207,4 +211,4 @@
 	if(config.show_event_managers)
 		msg += "\n<b> Current Miscellaneous ([num_event_managers_online]):</b>\n" + eventMmsg //VOREStation Edit
 
-	to_chat(src,msg)
+	return msg
