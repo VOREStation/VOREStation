@@ -184,3 +184,28 @@
 	else
 		icon_state = initial(icon_state)
 	update_clothing_icon()
+
+
+/obj/item/clothing/glasses/hud/health/eyepatch
+    name = "Medical Hudpatch"
+    desc = "An eyepatch with built in scanners, that analyzes those in view and provides accurate data about their health status."
+    icon_state = "eyepatch"
+    item_state_slots = list(slot_r_hand_str = "blindfold", slot_l_hand_str = "blindfold")
+    body_parts_covered = 0
+    enables_planes =  list(VIS_CH_STATUS,VIS_CH_HEALTH)
+    var/eye = null
+
+/obj/item/clothing/glasses/hud/health/eyepatch/verb/switcheye()
+	set name = "Switch Eyepatch"
+	set category = "Object"
+	set src in usr
+	if(!istype(usr, /mob/living)) return
+	if(usr.stat) return
+
+	eye = !eye
+	if(eye)
+		icon_state = "[icon_state]_1"
+	else
+		icon_state = initial(icon_state)
+	update_clothing_icon()
+
