@@ -49,9 +49,9 @@ SUBSYSTEM_DEF(persist)
 		if(department_earning == PTO_AI)
 			department_earning = PTO_CIVILIAN
 		if(department_earning == PTO_CYBORG)
-			if(istype(M, /mob/living/silicon/robot))
+			if(isrobot(M))
 				var/mob/living/silicon/robot/C = M
-				if(C.module && C.module.pto_type)
+				if(C?.module?.pto_type)
 					department_earning = C.module.pto_type
 			if(department_earning == PTO_CYBORG)
 				if (MC_TICK_CHECK)
