@@ -28,14 +28,17 @@
 /obj/item/device/suit_cooling_unit/ui_action_click()
 	toggle(usr)
 
-/obj/item/device/suit_cooling_unit/New()
-	START_PROCESSING(SSobj, src)
-	cell = new/obj/item/weapon/cell/high()	//comes not with the crappy default power cell - because this is dedicated EVA equipment
-	cell.loc = src
+/obj/item/device/suit_cooling_unit/Initialize()
+	. = ..()
+	cell = new/obj/item/weapon/cell/high(src)	//comes not with the crappy default power cell - because this is dedicated EVA equipment
+
+/obj/item/device/suit_cooling_unit/Destroy()
+	qdel_null(cell)
+	return ..()
 
 /obj/item/device/suit_cooling_unit/process()
 	if (!on || !cell)
-		return
+		return PROCESS_KILL
 
 	if (!ismob(loc))
 		return
@@ -106,11 +109,13 @@
 		return
 
 	on = 1
+	START_PROCESSING(SSobj, src)
 	updateicon()
 
 /obj/item/device/suit_cooling_unit/proc/turn_off(var/failed)
 	if(failed) visible_message("\The [src] clicks and whines as it powers down.")
 	on = 0
+	STOP_PROCESSING(SSobj, src)
 	updateicon()
 
 /obj/item/device/suit_cooling_unit/attack_self(var/mob/user)
