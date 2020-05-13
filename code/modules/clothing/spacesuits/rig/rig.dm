@@ -482,7 +482,8 @@
 /obj/item/weapon/rig/process()
 	// Not on a mob...?
 	if(!ismob(loc))
-		wearer?.wearing_rig = null
+		if(wearer?.wearing_rig == src)
+			wearer.wearing_rig = null
 		wearer = null
 		return PROCESS_KILL
 	
