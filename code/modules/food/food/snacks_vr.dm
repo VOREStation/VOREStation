@@ -765,6 +765,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/honeybun
 	name = "Honeybun"
 	desc = "A delicious and sweet treat made with honey instead of sugar. On the sticky side."
+	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "honeybun"
 	bitesize = 2
 	nutriment_amt = 4

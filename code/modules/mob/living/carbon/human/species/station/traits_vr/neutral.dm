@@ -68,6 +68,9 @@
 /datum/trait/bloodsucker/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..(S,H)
 	H.verbs |= /mob/living/carbon/human/proc/bloodsuck
+	spawn(10 SECONDS) // Ugh!
+		if(H?.nutrition_icon)
+			H.nutrition_icon.icon = 'icons/mob/screen/vamp_hunger_vr.dmi'
 
 /datum/trait/succubus_drain
 	name = "Succubus Drain"
