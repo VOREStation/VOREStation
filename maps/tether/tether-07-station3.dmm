@@ -17367,7 +17367,7 @@
 	desc = "Looks like it's on the fishing channel. I wonder what else is on?";
 	icon_state = "frame";
 	pixel_x = 0;
-	pixel_y = 32
+	pixel_y = -32
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/sleeper)
