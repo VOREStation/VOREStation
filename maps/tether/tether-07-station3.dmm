@@ -8767,6 +8767,12 @@
 	icon_state = "corner_white";
 	dir = 9
 	},
+/obj/machinery/computer/security/telescreen/entertainment{
+	desc = "It looks to be a patriotic NT security stream. Officers from all over the universe proudly voicing their love for NT! I wonder what else is on?";
+	icon_state = "frame";
+	pixel_x = 32;
+	pixel_y = 0
+	},
 /turf/simulated/floor/tiled,
 /area/security/briefing_room)
 "anx" = (
@@ -13693,23 +13699,26 @@
 /turf/simulated/floor,
 /area/security/hallway)
 "auV" = (
-/obj/machinery/door/firedoor/glass,
-/obj/structure/cable/green{
-	d2 = 8;
-	icon_state = "0-8"
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
 	},
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "security_lockdown";
-	name = "Security Blast Doors";
-	opacity = 0
+/obj/effect/floor_decal/corner/red/border{
+	dir = 1
 	},
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/turf/simulated/floor,
-/area/security/hallway)
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/red/bordercorner2{
+	dir = 1
+	},
+/obj/machinery/computer/security/telescreen/entertainment{
+	desc = "Damn, looks like it's on the clown world channel. I wonder what else is on?";
+	icon_state = "frame";
+	pixel_x = 0;
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled,
+/area/security/lobby)
 "auW" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -14169,21 +14178,24 @@
 /turf/simulated/floor/tiled,
 /area/security/lobby)
 "avJ" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 1
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 9
 	},
-/obj/effect/floor_decal/corner/red/border{
-	dir = 1
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 6
 	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 1
+/obj/structure/table/bench/standard,
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 9
 	},
-/obj/effect/floor_decal/corner/red/bordercorner2{
-	dir = 1
+/obj/machinery/computer/security/telescreen/entertainment{
+	desc = "Looks like its set to the cooking channel. Wait did I just see one of those hot dogs moving? I wonder what else is on?";
+	icon_state = "frame";
+	pixel_x = 0;
+	pixel_y = 32
 	},
-/obj/structure/flora/pottedplant/stoutbush,
 /turf/simulated/floor/tiled,
-/area/security/lobby)
+/area/hallway/station/upper)
 "avK" = (
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 4
@@ -14623,18 +14635,29 @@
 /turf/simulated/open,
 /area/tether/exploration)
 "awF" = (
-/obj/effect/floor_decal/corner/lightgrey{
-	dir = 9
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
-/obj/effect/floor_decal/corner/lightgrey{
-	dir = 6
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 1
 	},
-/obj/structure/table/bench/standard,
-/obj/effect/floor_decal/steeldecal/steel_decals6{
-	dir = 9
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 1
 	},
-/turf/simulated/floor/tiled,
-/area/hallway/station/upper)
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 1
+	},
+/obj/machinery/computer/security/telescreen/entertainment{
+	desc = "Damn, looks like it's on the clown world channel. I wonder what else is on?";
+	icon_state = "frame";
+	pixel_x = 0;
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/white,
+/area/medical/reception)
 "awG" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -16785,6 +16808,12 @@
 	dir = 2;
 	icon_state = "pipe-c"
 	},
+/obj/machinery/computer/security/telescreen/entertainment{
+	desc = "Oh, hey look it's a shopping channel! Are... Are they selling acid resistant underwear? I wonder what else is on?";
+	icon_state = "frame";
+	pixel_x = 0;
+	pixel_y = 32
+	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/office)
 "azQ" = (
@@ -17329,24 +17358,19 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/reception)
 "aAB" = (
-/obj/structure/flora/pottedplant/stoutbush,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/floor_decal/borderfloorwhite{
+/obj/structure/bed/chair{
 	dir = 1
 	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 1
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 1
+/obj/effect/floor_decal/borderfloorwhite,
+/obj/effect/floor_decal/corner/paleblue/border,
+/obj/machinery/computer/security/telescreen/entertainment{
+	desc = "Looks like it's on the fishing channel. I wonder what else is on?";
+	icon_state = "frame";
+	pixel_x = 0;
+	pixel_y = -32
 	},
 /turf/simulated/floor/tiled/white,
-/area/medical/reception)
+/area/medical/sleeper)
 "aAC" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -25406,13 +25430,13 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
 "aNf" = (
-/obj/structure/bed/chair{
-	dir = 1
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_l"
 	},
-/obj/effect/floor_decal/borderfloorwhite,
-/obj/effect/floor_decal/corner/paleblue/border,
-/turf/simulated/floor/tiled/white,
-/area/medical/sleeper)
+/turf/simulated/floor/tiled/asteroid_steel/airless,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/mining_outpost/shuttle)
 "aNg" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -31194,8 +31218,7 @@
 /area/quartermaster/belterdock/gear)
 "aYo" = (
 /obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
+	dir = 8
 	},
 /turf/simulated/floor/tiled/asteroid_steel/airless,
 /turf/simulated/shuttle/plating/airless/carry,
@@ -31273,7 +31296,8 @@
 /area/crew_quarters/heads/hos)
 "aYy" = (
 /obj/structure/shuttle/engine/propulsion{
-	dir = 8
+	dir = 8;
+	icon_state = "propulsion_r"
 	},
 /turf/simulated/floor/tiled/asteroid_steel/airless,
 /turf/simulated/shuttle/plating/airless/carry,
@@ -31736,14 +31760,6 @@
 	},
 /turf/simulated/floor/airless,
 /area/shuttle/medivac/cockpit)
-"aZw" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_r"
-	},
-/turf/simulated/floor/tiled/asteroid_steel/airless,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/mining_outpost/shuttle)
 "aZx" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -41085,8 +41101,8 @@ alw
 aoA
 apE
 aqR
+amH
 auV
-avJ
 awp
 awU
 axL
@@ -41380,7 +41396,7 @@ ajf
 anc
 aqQ
 ayK
-aAB
+awF
 aCl
 aCl
 aEl
@@ -42226,7 +42242,7 @@ atn
 atn
 atn
 asp
-awF
+avJ
 azw
 aAr
 aAx
@@ -42392,7 +42408,7 @@ aKp
 aLK
 aMX
 aLh
-aNf
+aAB
 aIy
 aab
 aab
@@ -47648,11 +47664,11 @@ avt
 avt
 aVc
 aZS
+aNf
+aYo
+aYo
 aYo
 aYy
-aYy
-aYy
-aZw
 baB
 aVc
 avt

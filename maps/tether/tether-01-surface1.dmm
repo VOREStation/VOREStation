@@ -2870,6 +2870,18 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/lower/first_west)
+"aex" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/obj/machinery/computer/security/telescreen/entertainment{
+	desc = "Looks like it's set to history channel, the show is talking about modern aliens.  I wonder what else is on?";
+	icon_state = "frame";
+	pixel_x = 0;
+	pixel_y = -32
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/tram)
 "aey" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -3008,6 +3020,17 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/north_stairs_one)
+"aeI" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/computer/security/telescreen/entertainment{
+	desc = "Looks like its set to the kek-centeral. I wonder what else is on?";
+	icon_state = "frame";
+	pixel_x = 32;
+	pixel_y = 0
+	},
+/turf/simulated/floor/wood,
+/area/vacant/vacant_bar)
 "aeJ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 2;
@@ -3039,6 +3062,24 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/north_stairs_one)
+"aeL" = (
+/obj/machinery/computer/security/telescreen/entertainment{
+	desc = "Looks like it's on MTV. Now you can't blame that demi-cowgirl for working her money maker. I wonder what else is on?";
+	icon_state = "frame";
+	pixel_x = 0;
+	pixel_y = 32
+	},
+/turf/simulated/floor/lino,
+/area/crew_quarters/visitor_dining)
+"aeM" = (
+/obj/machinery/computer/security/telescreen/entertainment{
+	desc = "Looks like it's on the fishing channel. I wonder what else is on?";
+	icon_state = "frame";
+	pixel_x = 0;
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_one_hall)
 "aeN" = (
 /obj/machinery/conveyor{
 	dir = 8;
@@ -29467,11 +29508,6 @@
 /obj/effect/decal/cleanable/blood/oil,
 /turf/simulated/floor/plating,
 /area/vacant/vacant_bar)
-"aZg" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/wood,
-/area/vacant/vacant_bar)
 "aZh" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
@@ -43609,7 +43645,7 @@ aXH
 aYc
 aYq
 aYL
-aZg
+aeI
 aZy
 aZy
 baa
@@ -44995,7 +45031,7 @@ aCK
 aCK
 aCK
 agM
-ayG
+aeM
 aJd
 ayG
 aKA
@@ -47408,7 +47444,7 @@ aFD
 aFD
 aFD
 aCO
-aDu
+aeL
 aIw
 aDu
 aCQ
@@ -47676,7 +47712,7 @@ afG
 auB
 auB
 auB
-awi
+aex
 atx
 axy
 ayo
