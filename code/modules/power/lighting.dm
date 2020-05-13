@@ -448,6 +448,8 @@ var/global/list/light_type_cache = list()
 			else
 				update_use_power(USE_POWER_ACTIVE)
 				set_light(correct_range, correct_power, correct_color)
+		if(cell?.charge < cell?.maxcharge)
+			START_PROCESSING(SSobj, src)
 	else if(has_emergency_power(LIGHT_EMERGENCY_POWER_USE) && !turned_off())
 		update_use_power(USE_POWER_IDLE)
 		emergency_mode = TRUE
@@ -841,11 +843,11 @@ var/global/list/light_type_cache = list()
 	if(has_power())
 		emergency_mode = FALSE
 		update(FALSE)
-		if(cell.charge == cell.maxcharge)
+		if(!cell.give(LIGHT_EMERGENCY_POWER_USE*2)) // Recharge and stop if no more was able to be added
 			return PROCESS_KILL
-		cell.charge = min(cell.maxcharge, cell.charge + LIGHT_EMERGENCY_POWER_USE*2) //Recharge emergency power automatically while not using it
 	if(emergency_mode && !use_emergency_power(LIGHT_EMERGENCY_POWER_USE))
 		update(FALSE) //Disables emergency mode and sets the color to normal
+		return PROCESS_KILL // Drop out if we're out of cell power. These are often in POIs and there's no point in recharging.
 
 	if(auto_flicker && !flickering)
 		if(check_for_player_proximity(src, radius = 12, ignore_ghosts = FALSE, ignore_afk = TRUE))
