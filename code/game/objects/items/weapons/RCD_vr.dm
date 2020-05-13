@@ -90,6 +90,22 @@
 		return FALSE
 	return TRUE
 
+// Mounted one is more complex
+/obj/item/weapon/rcd/electric/mounted/rig/check_menu(mob/living/user)
+	if(!istype(user))
+		world.log << "One"
+		return FALSE
+	if(user.incapacitated())
+		world.log << "Two"
+		return FALSE
+	
+	var/obj/item/rig_module/device/D = loc
+	if(!istype(D) || !D?.holder?.wearer == user)
+		world.log << "Three"
+		return FALSE
+	
+	return TRUE
+
 /obj/item/weapon/rcd/attack_self(mob/living/user)
 	..()
 	var/list/choices = list(
@@ -118,7 +134,7 @@
 			"Change Window Type" = image(icon = 'icons/mob/radial.dmi', icon_state = "windowtype")
 		)
 	*/
-	var/choice = show_radial_menu(user, src, choices, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = TRUE)
+	var/choice = show_radial_menu(user, user, choices, custom_check = CALLBACK(src, .proc/check_menu, user), tooltips = TRUE)
 	if(!check_menu(user))
 		return
 	switch(choice)
