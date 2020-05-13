@@ -234,6 +234,14 @@
 		else
 			name = "[sofa_material] [initial(name)]"
 
+/obj/structure/bed/chair/update_layer()
+	// Corner east/west should be on top of mobs, any other state's north should be.
+	if((icon_state == "sofacorner" && ((dir & EAST) || (dir & WEST))) || (icon_state != "sofacorner" && (dir & NORTH)))
+		plane = MOB_PLANE
+		layer = MOB_LAYER + 0.1
+	else
+		reset_plane_and_layer()
+
 /obj/structure/bed/chair/sofa/left
 	icon_state = "sofaend_left"
 	base_icon = "sofaend_left"
