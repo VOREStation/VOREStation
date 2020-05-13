@@ -72,6 +72,7 @@ BLIND     // can't see anything
 	origin_tech = list(TECH_MAGNET = 2, TECH_ENGINEERING = 2)
 	toggleable = 1
 	vision_flags = SEE_TURFS
+	item_flags = AIRTIGHT
 	enables_planes = list(VIS_FULLBRIGHT, VIS_MESONS)
 
 /obj/item/clothing/glasses/meson/New()
@@ -192,6 +193,7 @@ BLIND     // can't see anything
 	toggleable = 1
 	action_button_name = "Toggle Goggles"
 	vision_flags = SEE_OBJS
+	item_flags = AIRTIGHT
 	enables_planes = list(VIS_FULLBRIGHT)
 
 /obj/item/clothing/glasses/material/New()
@@ -219,6 +221,36 @@ BLIND     // can't see anything
 /obj/item/clothing/glasses/graviton/New()
 	..()
 	overlay = global_hud.material
+
+
+/obj/item/clothing/glasses/security
+	name = "optical security scanner"
+	desc = "A pair of airtight goggles with a SecHUD matrix. They lack any form of flash protection"
+	icon_state = "security"
+	item_state_slots = list(slot_r_hand_str = "glasses", slot_l_hand_str = "glasses")
+	toggleable = 1
+	action_button_name = "Toggle Goggles"
+	item_flags = AIRTIGHT
+	enables_planes = list(VIS_CH_ID,VIS_CH_WANTED,VIS_CH_IMPTRACK,VIS_CH_IMPLOYAL,VIS_CH_IMPCHEM)
+
+/obj/item/clothing/glasses/security/prescription
+	name = "prescription optical secuirty scanner"
+	prescription = 1
+
+/obj/item/clothing/glasses/health
+	name = "optical health scanner"
+	desc = "A pair of airtight goggles with a HealthHUD matrix."
+	icon_state = "health"
+	item_state_slots = list(slot_r_hand_str = "glasses", slot_l_hand_str = "glasses")
+	toggleable = 1
+	action_button_name = "Toggle Goggles"
+	item_flags = AIRTIGHT
+	enables_planes = list(VIS_CH_STATUS,VIS_CH_HEALTH)
+
+/obj/item/clothing/glasses/health/prescription
+	name = "prescription optical medical scanner"
+	prescription = 1
+
 
 /obj/item/clothing/glasses/regular
 	name = "prescription glasses"

@@ -54,6 +54,14 @@
 	display_name = "Security HUD Aviators, prescription (Security)"
 	path = /obj/item/clothing/glasses/sunglasses/sechud/aviator/prescription
 
+/datum/gear/eyes/security/secgoggles
+	display_name = "Optical Security Scanner (Security)"
+	path = /obj/item/clothing/glasses/security
+
+/datum/gear/eyes/security/secgoggles/prescription
+	display_name = "Optical Security Scanner prescription (Security)"
+	path = /obj/item/clothing/glasses/security/prescription
+
 /datum/gear/eyes/medical
 	display_name = "Medical HUD (Medical)"
 	path = /obj/item/clothing/glasses/hud/health
@@ -70,6 +78,15 @@
 /datum/gear/eyes/medical/aviator/prescription
 	display_name = "Medical HUD Aviators, prescription (Medical)"
 	path = /obj/item/clothing/glasses/hud/health/aviator/prescription
+
+/datum/gear/eyes/medical/medgoggles
+	display_name = "Optical Medical Scanner (Medical)"
+	path = /obj/item/clothing/glasses/health
+
+/datum/gear/eyes/medical/medgoggles/prescription
+	display_name = "Optical Medical Scanner prescription (Medical)"
+	path = /obj/item/clothing/glasses/health/prescription
+
 
 /datum/gear/eyes/meson
 	display_name = "Optical Meson Scanners (Engineering, Science, Mining)"
