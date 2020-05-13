@@ -13,7 +13,6 @@
 	var/datum/looping_sound/geiger/soundloop
 
 /obj/item/device/geiger/Initialize()
-	START_PROCESSING(SSobj, src)
 	soundloop = new(list(src), FALSE)
 	return ..()
 
@@ -60,6 +59,10 @@
 
 /obj/item/device/geiger/attack_self(var/mob/user)
 	scanning = !scanning
+	if(scanning)
+		START_PROCESSING(SSobj, src)
+	else
+		STOP_PROCESSING(SSobj, src)
 	update_icon()
 	update_sound()
 	to_chat(user, "<span class='notice'>[bicon(src)] You switch [scanning ? "on" : "off"] \the [src].</span>")
