@@ -44,6 +44,12 @@
 	// Seed details/line data.
 	var/datum/seed/seed = null // The currently planted seed
 
+	var/image/ov_lowhealth
+	var/image/ov_lowwater
+	var/image/ov_lownutri
+	var/image/ov_harvest
+	var/image/ov_frozen
+	var/image/ov_alert3
 
 	// Reagent information for process(), consider moving this to a controller along
 	// with cycle information under 'mechanical concerns' at some point.
@@ -170,6 +176,8 @@
 
 /obj/machinery/portable_atmospherics/hydroponics/Initialize()
 	. = ..()
+	if(!ov_lowhealth)
+		setup_overlays()
 	temp_chem_holder = new()
 	temp_chem_holder.create_reagents(10)
 	create_reagents(200)
