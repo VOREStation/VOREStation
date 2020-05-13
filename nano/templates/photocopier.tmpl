@@ -3,12 +3,11 @@
 	See: code/modules/paperwork/photocopier.dm
 -->
 
-{{if data.copyItem}}
+{{if data.copyItem || data.assPresent}}
 	<div class='item'>
 	{{:helper.link('Remove Item', 'eject', {'remove' : 1})}}
 	{{if data.toner}}
-		{{:helper.link('Copy', 'copy', {'copy' : 1})}}</div>
-		<hr>
+		{{:helper.link('Copy', 'copy', {'copy' : 1})}}
 		<div class='item'>
 			<div class='itemLabel'>
 				Printing: 
@@ -27,10 +26,9 @@
 			<div class='itemContentNarrow'><b>{{:data.toner}}</b>u</div>
 		</div>
 	{{else}}
-	<div class='item'>
 		<span class='average'>Please insert a new toner cartridge!</span>
-	</div>
 	{{/if}}
+	</div>
 {{else data.toner}}
 	<h3>Please insert something to copy.</h3>
 	{{if data.isSilicon}}
