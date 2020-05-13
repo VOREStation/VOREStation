@@ -84,9 +84,8 @@
 	item_state_slots = list(slot_r_hand_str = "jetpack-void", slot_l_hand_str = "jetpack-void")
 
 /obj/item/weapon/tank/jetpack/void/Initialize()
-	..()
+	. = ..()
 	air_contents.adjust_gas("oxygen", (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
-	return
 
 /obj/item/weapon/tank/jetpack/oxygen
 	name = "jetpack (oxygen)"
@@ -95,9 +94,8 @@
 	item_state_slots = list(slot_r_hand_str = "jetpack", slot_l_hand_str = "jetpack")
 
 /obj/item/weapon/tank/jetpack/oxygen/Initialize()
-	..()
+	. = ..()
 	air_contents.adjust_gas("oxygen", (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
-	return
 
 /obj/item/weapon/tank/jetpack/carbondioxide
 	name = "jetpack (carbon dioxide)"
@@ -107,9 +105,8 @@
 	item_state_slots = list(slot_r_hand_str = "jetpack-black", slot_l_hand_str = "jetpack-black")
 
 /obj/item/weapon/tank/jetpack/carbondioxide/Initialize()
-	..()
+	. = ..()
 	air_contents.adjust_gas("carbon_dioxide", (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
-	return
 
 /obj/item/weapon/tank/jetpack/rig
 	name = "jetpack"

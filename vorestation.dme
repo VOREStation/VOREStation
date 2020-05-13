@@ -347,6 +347,7 @@
 #include "code\datums\observation\logged_in.dm"
 #include "code\datums\observation\moved.dm"
 #include "code\datums\observation\observation.dm"
+#include "code\datums\observation\power_change.dm"
 #include "code\datums\observation\shuttle_added.dm"
 #include "code\datums\observation\shuttle_moved.dm"
 #include "code\datums\observation\stat_set.dm"
