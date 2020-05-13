@@ -12475,6 +12475,15 @@
 "axB" = (
 /turf/simulated/wall,
 /area/janitor)
+"axC" = (
+/obj/machinery/computer/security/telescreen/entertainment{
+	desc = "Looks like it's set to Free-Anur-Entertanment, I wonder what else is on?";
+	icon_state = "frame";
+	pixel_x = 0;
+	pixel_y = 32
+	},
+/turf/simulated/floor/wood,
+/area/rnd/breakroom)
 "axD" = (
 /obj/structure/railing{
 	dir = 8
@@ -15332,6 +15341,12 @@
 	},
 /obj/effect/floor_decal/borderfloor/corner2{
 	dir = 6
+	},
+/obj/machinery/computer/security/telescreen/entertainment{
+	desc = "Looks like it's set to history channel, the show is talking about modern aliens.  I wonder what else is on?";
+	icon_state = "frame";
+	pixel_x = 32;
+	pixel_y = 0
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/east_stairs_two)
@@ -38570,7 +38585,7 @@ anZ
 arF
 asx
 atb
-atJ
+axC
 aut
 aut
 aut

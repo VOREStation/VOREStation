@@ -6186,15 +6186,25 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
 "ake" = (
-/obj/effect/floor_decal/corner/lightgrey{
-	dir = 9
+/obj/effect/floor_decal/borderfloor{
+	dir = 1;
+	icon_state = "borderfloor";
+	pixel_y = 0
 	},
-/obj/effect/floor_decal/corner/lightgrey{
-	dir = 6
+/obj/effect/floor_decal/corner/red/border{
+	dir = 1
 	},
-/obj/structure/table/standard,
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/obj/machinery/computer/security/telescreen/entertainment{
+	desc = "Is that, The worlds slowest spaceship chase?";
+	icon_state = "frame";
+	pixel_x = 0;
+	pixel_y = 32
+	},
 /turf/simulated/floor/tiled,
-/area/tether/surfacebase/surface_three_hall)
+/area/tether/surfacebase/security/lobby)
 "akf" = (
 /turf/simulated/floor/tiled/techfloor,
 /area/crew_quarters/panic_shelter)
@@ -8599,6 +8609,12 @@
 	},
 /obj/effect/floor_decal/spline/plain{
 	dir = 8
+	},
+/obj/machinery/computer/security/telescreen/entertainment{
+	desc = "Looks like it's set to history channel, the show is talking about modern aliens.  I wonder what else is on?";
+	icon_state = "frame";
+	pixel_x = -32;
+	pixel_y = 0
 	},
 /turf/simulated/floor/tiled/freezer,
 /area/crew_quarters/pool)
@@ -12472,13 +12488,21 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/bar)
 "auS" = (
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 6
+	},
+/obj/structure/table/standard,
 /obj/machinery/computer/security/telescreen/entertainment{
+	desc = "Look's like it's set to the info station... I wonder what else is on?";
 	icon_state = "frame";
 	pixel_x = 0;
 	pixel_y = 32
 	},
-/turf/simulated/floor/tiled/white,
-/area/crew_quarters/bar)
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_three_hall)
 "auT" = (
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/white,
@@ -28399,19 +28423,10 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/lobby)
 "aVC" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 1;
-	icon_state = "borderfloor";
-	pixel_y = 0
-	},
-/obj/effect/floor_decal/corner/red/border{
-	dir = 1
-	},
-/obj/structure/cable/green{
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/security/lobby)
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tether)
 "aVD" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 5
@@ -30104,10 +30119,14 @@
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
 "aXU" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tether)
+/obj/machinery/computer/security/telescreen/entertainment{
+	desc = "Damn, looks like it's on the clown world channel. I wonder what else is on?";
+	icon_state = "frame";
+	pixel_x = 0;
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/bar)
 "aXV" = (
 /obj/machinery/atmospherics/unary/engine{
 	dir = 1
@@ -43951,7 +43970,7 @@ ahX
 aiS
 ahx
 ahx
-aVC
+ake
 aVU
 ajT
 aWw
@@ -46508,7 +46527,7 @@ aUS
 aJl
 aVj
 aSP
-ake
+auS
 aVu
 aix
 ajX
@@ -46564,7 +46583,7 @@ aNk
 uSA
 aNJ
 aNP
-aXU
+aVC
 aKU
 abg
 aOk
@@ -46706,7 +46725,7 @@ aNl
 aNl
 aNK
 aNP
-aXU
+aVC
 aKU
 abg
 aOk
@@ -46848,7 +46867,7 @@ aNm
 aNl
 aNK
 aNP
-aXU
+aVC
 aKU
 abg
 aOk
@@ -48095,7 +48114,7 @@ atk
 arO
 atR
 aru
-auS
+aXU
 avr
 avO
 aww

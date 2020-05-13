@@ -4776,21 +4776,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/hallway)
-"ahP" = (
-/obj/machinery/computer/security/telescreen/entertainment{
-	icon_state = "frame";
-	pixel_x = 0;
-	pixel_y = 32
-	},
-/obj/effect/floor_decal/borderfloor{
-	dir = 1;
-	pixel_y = 0
-	},
-/obj/effect/floor_decal/corner/lightgrey/border{
-	dir = 1
-	},
-/turf/simulated/floor/tiled,
-/area/tether/station/visitorhallway/office)
 "ahQ" = (
 /obj/machinery/light{
 	dir = 4
@@ -7340,10 +7325,13 @@
 /turf/simulated/floor/water/pool,
 /area/hallway/station/atrium)
 "ams" = (
-/obj/machinery/newscaster{
+/obj/structure/bed/chair,
+/obj/machinery/computer/security/telescreen/entertainment{
+	desc = "Looks like it's set to the science channel, the show is talking about modern aliens.  I wonder what else is on?";
+	icon_state = "frame";
+	pixel_x = 0;
 	pixel_y = 32
 	},
-/obj/structure/bed/chair,
 /turf/simulated/floor/carpet,
 /area/engineering/foyer)
 "amt" = (
@@ -18065,6 +18053,34 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled,
 /area/tether/station/dock_two)
+"aEP" = (
+/obj/machinery/computer/security/telescreen/entertainment{
+	desc = "Damn, looks like it's on the clown world channel. I wonder what else is on?";
+	icon_state = "frame";
+	pixel_x = 0;
+	pixel_y = 32
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 1;
+	pixel_y = 0
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/tether/station/visitorhallway/office)
+"aEQ" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/obj/machinery/computer/security/telescreen/entertainment{
+	desc = "Looks like it's set to GNN, I wonder what else is on?";
+	icon_state = "frame";
+	pixel_x = 0;
+	pixel_y = -32
+	},
+/turf/simulated/floor/tiled,
+/area/hallway/station/docks)
 "aER" = (
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 1
@@ -18088,6 +18104,15 @@
 /obj/structure/curtain/open/shower/engineering,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/sleep/engi_wash)
+"aES" = (
+/obj/machinery/computer/security/telescreen/entertainment{
+	desc = "Looks like its Fawkes News, I wonder what else is on?";
+	icon_state = "frame";
+	pixel_x = 32;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled,
+/area/tether/station/visitorhallway/lounge)
 "aET" = (
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 1
@@ -30319,7 +30344,7 @@ bYj
 aeF
 aAV
 aDf
-aBZ
+aEQ
 awu
 aaa
 aaa
@@ -33741,7 +33766,7 @@ ayS
 azp
 azv
 azG
-azP
+aES
 aAb
 aAl
 aAY
@@ -34144,7 +34169,7 @@ agw
 air
 aAw
 afI
-ahP
+aEP
 aie
 asC
 aiA
