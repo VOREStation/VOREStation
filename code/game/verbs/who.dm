@@ -70,41 +70,6 @@
 	var/message = get_staffwho_message(holder)
 	to_chat(src, message)
 
-/proc/get_staffwho_numbers()
-	var/admin_count = 0
-	var/mod_count = 0
-	var/dev_count = 0
-	var/other_count = 0
-	var/list/keys = list()
-
-	for(var/client/C in GLOB.admins)
-		var/keymsg = "[C.key]"
-		if(C.is_afk())
-			keymsg += " *(AFK)*"
-		else if(C.holder.fakekey)
-			keymsg += " *(Stealth)*"
-		else if(isobserver(C.mob))
-			keymsg += " *(Ghost)*"
-		else if(isnewplayer(C.mob))
-			keymsg += " *(Lobby)*"
-		else
-			keymsg += " *(Ingame)*"
-		keys += keymsg
-
-		if(R_ADMIN & C.holder.rights && R_BAN & C.holder.rights) // R_ADMIN and R_BAN apparently an admin makes
-			admin_count++
-
-		else if(R_ADMIN & C.holder.rights && !(R_SERVER & C.holder.rights)) // R_ADMIN but not R_SERVER makes a moderator
-			mod_count++
-
-		else if(R_SERVER & C.holder.rights) // R_SERVER makes a dev
-			dev_count++
-
-		else // No R_ADMIN&&R_BAN, R_ADMIN!R_BAN, R_SERVER, must be a GM or something
-			other_count++
-
-	return list("Admins" = admin_count, "Mods" = mod_count, "Devs" = dev_count, "Other" = other_count, "keys" = keys)
-
 // VOREStation Edit - This whole proc has various vorestation edits throughout. Practically every other line.
 /proc/get_staffwho_message(datum/admins/holder)
 	var/msg = ""
