@@ -295,13 +295,17 @@
 				temp_img = icon('icons/obj/butts_vr.dmi', "vulp") // Give Werewolves their own thicc'er than a boal of oatmeal ass sprite someday?
 			if(SPECIES_XENOHYBRID, SPECIES_XENO, SPECIES_XENO_DRONE, SPECIES_XENO_HUNTER, SPECIES_XENO_QUEEN, SPECIES_XENO_SENTINEL) // Xenos + Xenohybrids have their own asses, thanks to Pybro.
 				temp_img = icon('icons/obj/butts_vr.dmi', "xeno")
+			if(SPECIES_ZORREN_HIGH)
+				temp_img = icon('icons/obj/butts_vr.dmi', "vulp") // placeholder until we get zorren butts.
+			if(SPECIES_FENNEC)
+				temp_img = icon('icons/obj/butts_vr.dmi', "vulp") // placeholder until we get fennec butts.
+			if(SPECIES_AKULA)
+				temp_img = icon('icons/obj/butts_vr.dmi', "xeno") // placeholder until we get proper sharkbutt. AKULA BE THICC ASS SHARKS MMMMMMMMMMMMMMKAY?
 			/* // Commented out because no icons exist, BUT if someone wants to sprite some more ASSCHEEKS, then just uncomment these and you have asses for each species. - Rykka.
 			if(SPECIES_TESHARI)
 				temp_img = icon('icons/obj/butts_vr.dmi', "tesh")
 			if(SPECIES_SHADEKIN || SPECIES_SHADEKIN_CREW)
 				temp_img = icon('icons/obj/butts_vr.dmi', "shadekin") 
-			if(SPECIES_AKULA)
-				temp_img = icon('icons/obj/butts_vr.dmi', "akula")
 			if(SPECIES_ALRAUNE)
 				temp_img = icon('icons/obj/butts_vr.dmi', "alraune")
 			if(SPECIES_NEVREAN)
@@ -310,10 +314,6 @@
 				temp_img = icon('icons/obj/butts_vr.dmi', "rapala")
 			if(SPECIES_ZADDAT)
 				temp_img = icon('icons/obj/butts_vr.dmi', "zaddat")
-			if(SPECIES_ZORREN_HIGH)
-				temp_img = icon('icons/obj/butts_vr.dmi', "zorren")
-			if(SPECIES_FENNEC)
-				temp_img = icon('icons/obj/butts_vr.dmi', "fennec")
 			if(SPECIES_SERGAL)
 				temp_img = icon('icons/obj/butts_vr.dmi', "sergal")
 			*/
