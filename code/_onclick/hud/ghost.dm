@@ -44,6 +44,21 @@
 	var/mob/observer/dead/G = usr
 	G.paialert()
 
+/obj/screen/ghost/up
+	name = "Move Upwards"
+	icon_state = "up"
+
+/obj/screen/ghost/up/Click()
+	var/mob/observer/dead/G = usr
+	G.zMove(UP)
+
+/obj/screen/ghost/down
+	name = "Move Downwards"
+	icon_state = "down"
+
+/obj/screen/ghost/down/Click()
+	var/mob/observer/dead/G = usr
+	G.zMove(DOWN)
 
 /mob/observer/dead/create_mob_hud(datum/hud/HUD, apply_to_client = TRUE)
 	..()
@@ -74,6 +89,16 @@
 
 	using = new /obj/screen/ghost/pai()
 	using.screen_loc = ui_ghost_pai
+	using.hud = src
+	adding += using
+
+	using = new /obj/screen/ghost/up()
+	using.screen_loc = ui_ghost_updown
+	using.hud = src
+	adding += using
+
+	using = new /obj/screen/ghost/down()
+	using.screen_loc = ui_ghost_updown
 	using.hud = src
 	adding += using
 

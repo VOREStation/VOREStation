@@ -75,8 +75,9 @@
 #define ui_ai_pda_log "SOUTH:6,WEST+11:16"
 #define ui_ai_take_picture "SOUTH:6,WEST+12:16"
 #define ui_ai_view_images "SOUTH:6,WEST+13:16"
-#define ui_ai_multicam "SOUTH+1:6,WEST+12:16"
-#define ui_ai_add_multicam "SOUTH+1:6,WEST+13:16"
+#define ui_ai_multicam "SOUTH+1:6,WEST+11:16"
+#define ui_ai_add_multicam "SOUTH+1:6,WEST+12:16"
+#define ui_ai_updown "SOUTH+1:6,WEST+13:16"
 
 //Upper-middle right (alerts)
 #define ui_alert1 "EAST-1:28,CENTER+5:27"
@@ -156,4 +157,5 @@
 #define ui_ghost_orbit "SOUTH:6,CENTER-1:24"
 #define ui_ghost_reenter_corpse "SOUTH:6,CENTER:24"
 #define ui_ghost_teleport "SOUTH:6,CENTER+1:24"
-#define ui_ghost_pai "SOUTH: 6, CENTER+2:24"
+#define ui_ghost_pai "SOUTH: 6,CENTER+2:24"
+#define ui_ghost_updown "SOUTH: 6,CENTER+3:24"

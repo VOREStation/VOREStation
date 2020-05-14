@@ -1,14 +1,22 @@
 /obj/screen/ai/multicam/Click() 
     if(..()) 
         return 
-    var/mob/living/silicon/ai/AI = usr 
+    var/mob/living/silicon/ai/AI = usr
     AI.toggle_multicam() 
  
 /obj/screen/ai/add_multicam/Click() 
     if(..()) 
         return 
-    var/mob/living/silicon/ai/AI = usr 
+    var/mob/living/silicon/ai/AI = usr
     AI.drop_new_multicam() 
+
+/obj/screen/ai/up/Click()
+	var/mob/living/silicon/ai/AI = usr
+	AI.zMove(UP)
+
+/obj/screen/ai/down/Click()
+	var/mob/living/silicon/ai/AI = usr
+	AI.zMove(DOWN)
 
 /mob/living/silicon/ai/create_mob_hud(datum/hud/HUD, apply_to_client = TRUE)
 	..()
@@ -161,6 +169,23 @@
 	using.icon = HUD.ui_style
 	using.icon_state = "new_cam"
 	using.screen_loc = ui_ai_add_multicam
+	using.layer = SCREEN_LAYER
+	HUD.adding += using
+
+//Up and Down
+	using = new /obj/screen/ai/up() // special
+	using.name = "Move Upwards"
+	using.icon = HUD.ui_style
+	using.icon_state = "up"
+	using.screen_loc = ui_ai_updown
+	using.layer = SCREEN_LAYER
+	HUD.adding += using
+
+	using = new /obj/screen/ai/down() // special
+	using.name = "Move Downwards"
+	using.icon = HUD.ui_style
+	using.icon_state = "down"
+	using.screen_loc = ui_ai_updown
 	using.layer = SCREEN_LAYER
 	HUD.adding += using
  
