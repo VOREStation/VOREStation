@@ -397,10 +397,10 @@ so as to remain in compliance with the most up-to-date laws."
 		return 1
 	for(var/i = 1, i <= alerts.len, i++)
 		var/obj/screen/alert/alert = alerts[alerts[i]]
-		if(!alert.no_underlay)
-			alert.underlays = list(image(icon = ui_style, icon_state = "template"))
 		if(alert.icon_state in cached_icon_states(ui_style))
 			alert.icon = ui_style
+		else if(!alert.no_underlay)
+			alert.underlays = list(image(icon = ui_style, icon_state = "template"))
 		switch(i)
 			if(1)
 				. = ui_alert1
