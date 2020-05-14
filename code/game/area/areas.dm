@@ -400,6 +400,7 @@ var/list/mob/living/forced_ambiance_list = new
 		if(has_gravity)
 			thunk(M)
 		M.update_floating( M.Check_Dense_Object() )
+		M.update_gravity(has_gravity)
 
 /area/proc/thunk(mob)
 	if(istype(get_turf(mob), /turf/space)) // Can't fall onto nothing.

@@ -148,11 +148,11 @@
 
 	if(environment.temperature > (T0C+66))
 		adjustFireLoss((environment.temperature - (T0C+66))/5) // Might be too high, check in testing.
-		if (fire) fire.icon_state = "fire2"
+		throw_alert("alien_fire", /obj/screen/alert/alien_fire)
 		if(prob(20))
 			to_chat(src, "<font color='red'>You feel a searing heat!</font>")
 	else
-		if (fire) fire.icon_state = "fire0"
+		clear_alert("alien_fire")
 
 /mob/living/carbon/alien/handle_fire()
 	if(..())

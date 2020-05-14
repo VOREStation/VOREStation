@@ -190,6 +190,8 @@ var/list/global_huds = list(
 	var/action_buttons_hidden = 0
 	var/list/slot_info
 
+	var/icon/ui_style
+
 datum/hud/New(mob/owner)
 	mymob = owner
 	instantiate()
@@ -305,7 +307,8 @@ datum/hud/New(mob/owner)
 /datum/hud/proc/instantiate()
 	if(!ismob(mymob)) return 0
 	if(!mymob.client) return 0
-	var/ui_style = ui_style2icon(mymob.client.prefs.UI_style)
+	
+	ui_style = ui_style2icon(mymob.client.prefs.UI_style)
 	var/ui_color = mymob.client.prefs.UI_style_color
 	var/ui_alpha = mymob.client.prefs.UI_style_alpha
 
@@ -323,6 +326,11 @@ datum/hud/New(mob/owner)
 		ghost_hud()
 	else
 		mymob.instantiate_hud(src)
+
+	persistant_inventory_update()
+	mymob.reload_fullscreen() // Reload any fullscreen overlays this mob has.
+	mymob.update_action_buttons()
+	reorganize_alerts()
 
 /mob/proc/instantiate_hud(var/datum/hud/HUD)
 	return
@@ -388,6 +396,7 @@ datum/hud/New(mob/owner)
 	hud_used.hidden_inventory_update()
 	hud_used.persistant_inventory_update()
 	update_action_buttons()
+	hud_used.reorganize_alerts()
 
 //Similar to button_pressed_F12() but keeps zone_sel, gun_setting_icon, and healths.
 /mob/proc/toggle_zoom_hud()

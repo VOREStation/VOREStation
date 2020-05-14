@@ -629,6 +629,7 @@
 ////////////////////////////////////////
 
 /obj/mecha/take_damage(amount, type="brute")
+	update_damage_alerts()
 	if(amount)
 		var/damage = absorbDamage(amount,type)
 		health -= damage
@@ -969,6 +970,7 @@
 		if(src.health<initial(src.health))
 			to_chat(user, "<span class='notice'>You repair some damage to [src.name].</span>")
 			src.health += min(10, initial(src.health)-src.health)
+			update_damage_alerts()
 		else
 			to_chat(user, "The [src.name] is at full integrity")
 		return
@@ -1319,6 +1321,8 @@
 		src.verbs += /obj/mecha/verb/eject
 		src.log_append_to_last("[H] moved in as pilot.")
 		src.icon_state = src.reset_icon()
+		update_cell_alerts()
+		update_damage_alerts()
 		set_dir(dir_in)
 		playsound(src, 'sound/machines/windowdoor.ogg', 50, 1)
 		if(occupant.client && cloaked_selfimage)
@@ -1401,6 +1405,8 @@
 				occupant.loc = mmi
 			mmi.mecha = null
 			occupant.canmove = 0
+		occupant.clear_alert("charge")
+		occupant.clear_alert("mech damage")
 		occupant = null
 		icon_state = src.reset_icon()+"-open"
 		set_dir(dir_in)
@@ -1975,12 +1981,14 @@
 	return call((proc_res["dynusepower"]||src), "dynusepower")(amount)
 
 /obj/mecha/proc/dynusepower(amount)
+	update_cell_alerts()
 	if(get_charge())
 		cell.use(amount)
 		return 1
 	return 0
 
 /obj/mecha/proc/give_power(amount)
+	update_cell_alerts()
 	if(!isnull(get_charge()))
 		cell.give(amount)
 		return 1
@@ -2158,3 +2166,31 @@
 	//src.check_for_internal_damage(list(MECHA_INT_FIRE,MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
 	return
 */
+
+/obj/mecha/proc/update_cell_alerts()
+	if(occupant && cell)
+		var/cellcharge = cell.charge/cell.maxcharge
+		switch(cellcharge)
+			if(0.75 to INFINITY)
+				occupant.clear_alert("charge")
+			if(0.5 to 0.75)
+				occupant.throw_alert("charge", /obj/screen/alert/lowcell, 1)
+			if(0.25 to 0.5)
+				occupant.throw_alert("charge", /obj/screen/alert/lowcell, 2)
+			if(0.01 to 0.25)
+				occupant.throw_alert("charge", /obj/screen/alert/lowcell, 3)
+			else
+				occupant.throw_alert("charge", /obj/screen/alert/emptycell)
+
+/obj/mecha/proc/update_damage_alerts()
+	if(occupant)
+		var/integrity = health/initial(health)*100
+		switch(integrity)
+			if(30 to 45)
+				occupant.throw_alert("mech damage", /obj/screen/alert/low_mech_integrity, 1)
+			if(15 to 35)
+				occupant.throw_alert("mech damage", /obj/screen/alert/low_mech_integrity, 2)
+			if(-INFINITY to 15)
+				occupant.throw_alert("mech damage", /obj/screen/alert/low_mech_integrity, 3)
+			else
+				occupant.clear_alert("mech damage")

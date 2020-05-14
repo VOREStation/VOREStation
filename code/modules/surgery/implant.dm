@@ -206,6 +206,8 @@
 			user.visible_message("<span class='notice'>[user] takes something out of incision on [target]'s [affected.name] with \the [tool]!</span>", \
 			"<span class='notice'>You take [obj] out of incision on [target]'s [affected.name]s with \the [tool]!</span>" )
 			affected.implants -= obj
+			if(!target.has_embedded_objects())
+				target.clear_alert("embeddedobject")
 
 			BITSET(target.hud_updateflag, IMPLOYAL_HUD)
 

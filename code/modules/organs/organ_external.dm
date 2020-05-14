@@ -469,6 +469,8 @@ This function completely restores a damaged organ to perfect condition.
 		if(!istype(implanted_object,/obj/item/weapon/implant) && !istype(implanted_object,/obj/item/device/nif))	// We don't want to remove REAL implants. Just shrapnel etc. //VOREStation Edit - NIFs pls
 			implanted_object.loc = get_turf(src)
 			implants -= implanted_object
+	if(!owner.has_embedded_objects())
+		owner.clear_alert("embeddedobject")
 
 	if(owner && !ignore_prosthetic_prefs)
 		if(owner.client && owner.client.prefs && owner.client.prefs.real_name == owner.real_name)
@@ -1184,6 +1186,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	implants += W
 	owner.embedded_flag = 1
 	owner.verbs += /mob/proc/yank_out_object
+	owner.throw_alert("embeddedobject", /obj/screen/alert/embeddedobject)
 	W.add_blood(owner)
 	if(ismob(W.loc))
 		var/mob/living/H = W.loc
@@ -1373,3 +1376,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 						covering_clothing |= bling
 
 	return covering_clothing
+
+/mob/living/carbon/human/proc/has_embedded_objects()
+	. = 0
+	for(var/obj/item/organ/external/L in organs)
+		for(var/obj/item/I in L.implants)
+			if(!istype(I,/obj/item/weapon/implant) && !istype(I,/obj/item/device/nif))
+				return 1

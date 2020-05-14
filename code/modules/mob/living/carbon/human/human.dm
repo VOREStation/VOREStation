@@ -1680,3 +1680,8 @@
 				var/turf/T = loc
 				T.add_blood(src)
 	. = ..()
+
+/mob/living/carbon/human/reduce_cuff_time()
+	if(istype(gloves, /obj/item/clothing/gloves/gauntlets/rig))
+		return 2
+	return ..()

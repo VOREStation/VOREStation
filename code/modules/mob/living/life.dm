@@ -160,9 +160,14 @@
 	//Eyes
 	if(sdisabilities & BLIND || stat)	//blindness from disability or unconsciousness doesn't get better on its own
 		SetBlinded(1)
+		throw_alert("blind", /obj/screen/alert/blind)
 	else if(eye_blind)			//blindness, heals slowly over time
 		AdjustBlinded(-1)
-	else if(eye_blurry)			//blurry eyes heal slowly
+		throw_alert("blind", /obj/screen/alert/blind)
+	else
+		clear_alert("blind")
+	
+	if(eye_blurry)			//blurry eyes heal slowly
 		eye_blurry = max(eye_blurry-1, 0)
 
 	//Ears

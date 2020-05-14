@@ -185,10 +185,11 @@
 //
 /mob/living/proc/vore_process_resist()
 	//Are we resisting from inside a belly?
-	if(isbelly(loc))
-		var/obj/belly/B = loc
-		B.relay_resist(src)
-		return TRUE //resist() on living does this TRUE thing.
+	// if(isbelly(loc))
+	// 	var/obj/belly/B = loc
+	// 	B.relay_resist(src)
+	// 	return TRUE //resist() on living does this TRUE thing.
+	// Note: This is no longer required, as the refactors to resisting allow bellies to just define container_resist
 
 	//Other overridden resists go here
 	return FALSE
@@ -508,51 +509,6 @@
     gas = list(
         "oxygen" = 21,
         "nitrogen" = 79)
-
-// Procs for micros stuffed into boots and the like to escape from them
-/mob/living/proc/escape_clothes(obj/item/clothing/C)
-	ASSERT(loc == C)
-
-	if(ishuman(C.loc)) //In a /mob/living/carbon/human
-		var/mob/living/carbon/human/H = C.loc
-		if(H.shoes == C) //Being worn
-			to_chat(src,"<font color='blue'> You start to climb around the larger creature's feet and ankles!</font>")
-			to_chat(H,"<font color='red'>Something is trying to climb out of your [C]!</font>")
-			var/original_loc = H.loc
-			for(var/escape_time = 100,escape_time > 0,escape_time--)
-				if(H.loc != original_loc)
-					to_chat(src,"<font color='red'>You're pinned back underfoot!</font>")
-					to_chat(H,"<font color='blue'>You pin the escapee back underfoot!</font>")
-					return
-				if(loc != C)
-					return
-				sleep(1)
-
-			to_chat(src,"<font color='blue'>You manage to escape \the [C]!</font>")
-			to_chat(H,"<font color='red'>Somone has climbed out of your [C]!</font>")
-			forceMove(H.loc)
-
-		else //Being held by a human
-			to_chat(src,"<font color='blue'>You start to climb out of \the [C]!</font>")
-			to_chat(H,"<font color='red'>Something is trying to climb out of your [C]!</font>")
-			for(var/escape_time = 60,escape_time > 0,escape_time--)
-				if(H.shoes == C)
-					to_chat(src,"<font color='red'>You're pinned underfoot!</font>")
-					to_chat(H,"<font color='blue'>You pin the escapee underfoot!</font>")
-					return
-				if(loc != C)
-					return
-				sleep(1)
-			to_chat(src,"<font color='blue'>You manage to escape \the [C]!</font>")
-			to_chat(H,"<font color='red'>Somone has climbed out of your [C]!</font>")
-			forceMove(H.loc)
-
-	to_chat(src,"<font color='blue'>You start to climb out of \the [C]!</font>")
-	sleep(50)
-	if(loc == C)
-		to_chat(src,"<font color='blue'>You climb out of \the [C]!</font>")
-		forceMove(C.loc)
-	return
 
 /mob/living/proc/feed_grabbed_to_self_falling_nom(var/mob/living/user, var/mob/living/prey)
 	var/belly = user.vore_selected
