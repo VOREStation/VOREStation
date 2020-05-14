@@ -93,7 +93,7 @@ var/list/holder_mob_icon_cache = list()
 	var/mob/M = loc
 	if(istype(M))
 		M.drop_from_inventory(src)
-		to_chat(M, "<span class='warning'>\The [held] wriggles out of your grip!")
+		to_chat(M, "<span class='warning'>\The [held] wriggles out of your grip!</span>")
 		to_chat(held, "<span class='warning'>You wiggle out of [M]'s grip!</span>")
 	else if(istype(loc, /obj/item/clothing/accessory/holster))
 		var/obj/item/clothing/accessory/holster/holster = loc
