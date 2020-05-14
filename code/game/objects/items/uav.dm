@@ -5,11 +5,7 @@
 
 /obj/item/device/uav
 	name = "recon skimmer"
-<<<<<<< HEAD
-	desc = "A semi-portable reconisance drone that folds into a backpack-sized carrying case."
-=======
 	desc = "A semi-portable reconnaissance drone that folds into a backpack-sized carrying case."
->>>>>>> 3b3e5b3... Merge pull request #7080 from VOREStation/pol-uavs
 	icon = 'icons/obj/uav.dmi'
 	icon_state = "uav"
 
@@ -62,7 +58,6 @@
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-<<<<<<< HEAD
 /obj/item/device/uav/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
@@ -75,8 +70,6 @@
 	else if(health <= (initial(health)/2))
 		. += "<span class='warning'>It looks pretty beaten up...</span>"
 
-=======
->>>>>>> 3b3e5b3... Merge pull request #7080 from VOREStation/pol-uavs
 /obj/item/device/uav/attack_hand(var/mob/user)
 	//Has to be on the ground to work with it properly
 	if(!isturf(loc))

@@ -114,7 +114,6 @@
 // NB: This is called for 'self movement', not for being pulled or things like that, which COULD be the case for /mob/Move
 // But to be honest, A LOT OF THIS CODE should be in /mob/Move
 /client/Move(n, direct)
-<<<<<<< HEAD
 	// Prevents a double-datum lookup each time this is referenced
 	// May seem dumb, but it's faster to look up a var on my_mob than dereferencing mob on client, then dereferencing the var on that mob
 	// Having it in a var here means it's more available to look up things on. It won't speed up that second dereference, though.
@@ -126,10 +125,6 @@
 
 	// Used many times below, faster reference.
 	var/atom/loc = my_mob.loc
-=======
-	//if(!mob) // Clients cannot have a null mob, as enforced by byond
-	//	return // Moved here to avoid nullrefs below
->>>>>>> 3b3e5b3... Merge pull request #7080 from VOREStation/pol-uavs
 
 	// We're controlling an object which is SOMEHOW DIFFERENT FROM AN EYE??
 	if(my_mob.control_object)
@@ -177,29 +172,9 @@
 	if(Process_Grab())
 		return
 
-<<<<<<< HEAD
 	// Can't move
 	if(!my_mob.canmove)
 		return
-=======
-	//Relaymove could handle it
-	if(mob.machine)
-		var/result = mob.machine.relaymove(mob, direct)
-		if(result)
-			return result
-
-	if(!mob.lastarea)
-		mob.lastarea = get_area(mob.loc)
-
-	if((istype(mob.loc, /turf/space)) || (mob.lastarea.has_gravity == 0))
-		if(!mob.Process_Spacemove(0))	return 0
-
-	if(isobj(mob.loc) || ismob(mob.loc))//Inside an object, tell it we moved
-		var/atom/O = mob.loc
-		return O.relaymove(mob, direct)
-
-	if(isturf(mob.loc))
->>>>>>> 3b3e5b3... Merge pull request #7080 from VOREStation/pol-uavs
 
 	// Relaymove could handle it
 	if(my_mob.machine)
@@ -216,7 +191,6 @@
 	if(isobj(loc) || ismob(loc))
 		return loc.relaymove(my_mob, direct)
 
-<<<<<<< HEAD
 	// Can't move unless you're in the world somewhere
 	if(!isturf(loc))
 		return
@@ -228,69 +202,6 @@
 				if(!M.restrained() && M.stat == 0 && M.canmove && my_mob.Adjacent(M))
 					to_chat(src, "<font color='blue'>You're restrained! You can't move!</font>")
 					return 0
-=======
-		switch(mob.m_intent)
-			if("run")
-				if(mob.drowsyness > 0)
-					mob.move_delay += 6
-				mob.move_delay += config.run_speed
-			if("walk")
-				mob.move_delay += config.walk_speed
-		mob.move_delay += mob.movement_delay(n, direct)
-
-		if(istype(mob.buckled, /obj/vehicle))
-			//manually set move_delay for vehicles so we don't inherit any mob movement penalties
-			//specific vehicle move delays are set in code\modules\vehicles\vehicle.dm
-			mob.move_delay = world.time
-			//drunk driving
-			if(mob.confused && prob(20)) //vehicles tend to keep moving in the same direction
-				direct = turn(direct, pick(90, -90))
-			return mob.buckled.relaymove(mob,direct)
-
-		if(mob.pulledby || mob.buckled) // Wheelchair driving!
-			if(istype(mob.loc, /turf/space))
-				return // No wheelchair driving in space
-			if(istype(mob.pulledby, /obj/structure/bed/chair/wheelchair))
-				return mob.pulledby.relaymove(mob, direct)
-			else if(istype(mob.buckled, /obj/structure/bed/chair/wheelchair))
-				if(ishuman(mob))
-					var/mob/living/carbon/human/driver = mob
-					var/obj/item/organ/external/l_hand = driver.get_organ("l_hand")
-					var/obj/item/organ/external/r_hand = driver.get_organ("r_hand")
-					if((!l_hand || l_hand.is_stump()) && (!r_hand || r_hand.is_stump()))
-						return // No hands to drive your chair? Tough luck!
-				//drunk wheelchair driving
-				else if(mob.confused)
-					switch(mob.m_intent)
-						if("run")
-							if(prob(50))	direct = turn(direct, pick(90, -90))
-						if("walk")
-							if(prob(25))	direct = turn(direct, pick(90, -90))
-				mob.move_delay += 2
-				return mob.buckled.relaymove(mob,direct)
-
-		//We are now going to move
-		moving = 1
-		//Something with pulling things
-		if(locate(/obj/item/weapon/grab, mob))
-			mob.move_delay = max(mob.move_delay, world.time + 7)
-			var/list/L = mob.ret_grab()
-			if(istype(L, /list))
-				if(L.len == 2)
-					L -= mob
-					var/mob/M = L[1]
-					if(M)
-						if ((get_dist(mob, M) <= 1 || M.loc == mob.loc))
-							var/turf/T = mob.loc
-							. = ..()
-							if (isturf(M.loc))
-								var/diag = get_dir(mob, M)
-								if ((diag - 1) & diag)
-								else
-									diag = null
-								if ((get_dist(mob, M) > 1 || diag))
-									step(M, get_dir(M.loc, T))
->>>>>>> 3b3e5b3... Merge pull request #7080 from VOREStation/pol-uavs
 				else
 					M.stop_pulling()
 
