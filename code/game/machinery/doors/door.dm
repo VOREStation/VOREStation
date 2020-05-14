@@ -119,13 +119,20 @@
 			return																		//VOREStation Edit: unable to open doors
 		else
 			bumpopen(M)
+<<<<<<< HEAD
 	// VOREStation Add - UAVs open public doors
+=======
+
+>>>>>>> 3b3e5b3... Merge pull request #7080 from VOREStation/pol-uavs
 	if(istype(AM, /obj/item/device/uav))
 		if(check_access(null))
 			open()
 		else
 			do_animate("deny")
+<<<<<<< HEAD
 	//VOREStation Add End
+=======
+>>>>>>> 3b3e5b3... Merge pull request #7080 from VOREStation/pol-uavs
 
 	if(istype(AM, /mob/living/bot))
 		var/mob/living/bot/bot = AM

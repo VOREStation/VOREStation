@@ -1079,9 +1079,13 @@
 #include "code\game\objects\items\toys_vr.dm"
 #include "code\game\objects\items\trash.dm"
 #include "code\game\objects\items\trash_material.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\game\objects\items\trash_vr.dm"
 #include "code\game\objects\items\uav.dm"
 #include "code\game\objects\items\devices\advnifrepair.dm"
+=======
+#include "code\game\objects\items\uav.dm"
+>>>>>>> 3b3e5b3... Merge pull request #7080 from VOREStation/pol-uavs:polaris.dme
 #include "code\game\objects\items\devices\ai_detector.dm"
 #include "code\game\objects\items\devices\aicard.dm"
 #include "code\game\objects\items\devices\binoculars.dm"

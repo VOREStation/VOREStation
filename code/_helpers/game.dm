@@ -281,10 +281,15 @@
 
 	//A list of every mob with a client
 	for(var/mob in player_list)
+<<<<<<< HEAD
 		//VOREStation Edit - Trying to fix some vorestation bug.
 		if(!ismob(mob))
 			player_list -= mob
 			crash_with("There is a null or non-mob reference inside player_list ([mob]).")
+=======
+		if(!ismob(mob))
+			player_list -= mob
+>>>>>>> 3b3e5b3... Merge pull request #7080 from VOREStation/pol-uavs
 			continue
 		//VOREStation Edit End - Trying to fix some vorestation bug.
 		if(get_turf(mob) in hearturfs)
