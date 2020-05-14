@@ -94,6 +94,8 @@
 
 	var/drop_sound = 'sound/items/drop/device.ogg' // drop sound - this is the default
 
+	var/tip_timer // reference to timer id for a tooltip we might open soon
+
 /obj/item/New()
 	..()
 	if(embed_chance < 0)
@@ -883,3 +885,17 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 /obj/item/proc/is_welder()
 	return FALSE
+
+/obj/item/MouseEntered(location,control,params)
+	. = ..()
+	if(usr.is_preference_enabled(/datum/client_preference/inv_tooltips) && ((src in usr) || isstorage(loc))) // If in inventory or in storage we're looking at
+		var/user = usr
+		tip_timer = addtimer(CALLBACK(src, .proc/openTip, location, control, params, user), 5, TIMER_STOPPABLE)
+
+/obj/item/MouseExited()
+	. = ..()
+	deltimer(tip_timer)
+	closeToolTip(usr)
+
+/obj/item/proc/openTip(location, control, params, user)
+	openToolTip(user, src, params, title = name, content = desc)
