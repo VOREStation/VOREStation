@@ -36,14 +36,10 @@
 		alert = new type
 
 	if(new_master)
-		var/old_layer = new_master.layer
-		var/old_plane = new_master.plane
-		new_master.layer = LAYER_HUD_ABOVE
-		new_master.plane = PLANE_PLAYER_HUD_ABOVE
-		alert.overlays += new_master
-		new_master.layer = old_layer
-		new_master.plane = old_plane
-		alert.icon_state = "template" // We'll set the icon to the client's ui pref in reorganize_alerts()
+		var/mutable_appearance/itemMA = new (new_master)
+		itemMA.layer = LAYER_HUD_ABOVE
+		itemMA.plane = PLANE_PLAYER_HUD_ABOVE
+		alert.add_overlay(itemMA)
 		alert.master = new_master
 	else
 		alert.icon_state = "[initial(alert.icon_state)][severity]"
@@ -83,6 +79,7 @@
 	var/timeout = 0 //If set to a number, this alert will clear itself after that many deciseconds
 	var/severity = 0
 	var/alerttooltipstyle = ""
+	var/no_underlay // Don't underlay the UI style's blank template icon under this
 
 
 /obj/screen/alert/MouseEntered(location,control,params)
@@ -394,17 +391,16 @@ so as to remain in compliance with the most up-to-date laws."
 // Re-render all alerts - also called in /datum/hud/show_hud() because it's needed there
 /datum/hud/proc/reorganize_alerts()
 	var/list/alerts = mymob.alerts
-	var/icon_pref
 	if(!hud_shown)
 		for(var/i = 1, i <= alerts.len, i++)
 			mymob.client.screen -= alerts[alerts[i]]
 		return 1
 	for(var/i = 1, i <= alerts.len, i++)
 		var/obj/screen/alert/alert = alerts[alerts[i]]
-		if(alert.icon_state == "template")
-			if(!icon_pref)
-				icon_pref = ui_style2icon(mymob.client.prefs.UI_style)
-			alert.icon = icon_pref
+		if(alert.icon_state in cached_icon_states(ui_style))
+			alert.icon = ui_style
+		else if(!alert.no_underlay)
+			alert.underlays = list(image(icon = ui_style, icon_state = "template"))
 		switch(i)
 			if(1)
 				. = ui_alert1
@@ -419,7 +415,7 @@ so as to remain in compliance with the most up-to-date laws."
 			else
 				. = ""
 		alert.screen_loc = .
-		mymob.client.screen |= alert
+		mymob?.client?.screen |= alert
 	return 1
 
 /mob

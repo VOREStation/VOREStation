@@ -190,6 +190,8 @@ var/list/global_huds = list(
 	var/action_buttons_hidden = 0
 	var/list/slot_info
 
+	var/icon/ui_style
+
 datum/hud/New(mob/owner)
 	mymob = owner
 	instantiate()
@@ -305,7 +307,8 @@ datum/hud/New(mob/owner)
 /datum/hud/proc/instantiate()
 	if(!ismob(mymob)) return 0
 	if(!mymob.client) return 0
-	var/ui_style = ui_style2icon(mymob.client.prefs.UI_style)
+	
+	ui_style = ui_style2icon(mymob.client.prefs.UI_style)
 	var/ui_color = mymob.client.prefs.UI_style_color
 	var/ui_alpha = mymob.client.prefs.UI_style_alpha
 
