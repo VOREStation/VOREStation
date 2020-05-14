@@ -328,6 +328,7 @@
 	O.loc = src
 	src.embedded += O
 	src.verbs += /mob/proc/yank_out_object
+	throw_alert("embeddedobject", /obj/screen/alert/embeddedobject)
 
 //This is called when the mob is thrown into a dense turf
 /mob/living/proc/turf_collision(var/turf/T, var/speed)
@@ -366,6 +367,7 @@
 	if(fire_stacks > 0 && !on_fire)
 		on_fire = 1
 		handle_light()
+		throw_alert("fire", /obj/screen/alert/fire)
 		update_fire()
 
 /mob/living/proc/ExtinguishMob()
@@ -373,6 +375,7 @@
 		on_fire = 0
 		fire_stacks = 0
 		handle_light()
+		clear_alert("fire")
 		update_fire()
 
 	if(has_modifier_of_type(/datum/modifier/fire))

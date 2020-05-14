@@ -159,53 +159,7 @@
 	healths.screen_loc = ui_health
 	hud_elements |= healths
 
-	//Oxygen dep icon
-	oxygen = new /obj/screen()
-	oxygen.icon = ui_style
-	oxygen.icon_state = "oxy0"
-	oxygen.name = "oxygen"
-	oxygen.screen_loc = ui_oxygen
-	hud_elements |= oxygen
 
-	//Toxins present icon
-	toxin = new /obj/screen()
-	toxin.icon = ui_style
-	toxin.icon_state = "tox0"
-	toxin.name = "toxin"
-	toxin.screen_loc = ui_toxin
-	hud_elements |= toxin
-
-	//Fire warning
-	fire = new /obj/screen()
-	fire.icon = ui_style
-	fire.icon_state = "fire0"
-	fire.name = "fire"
-	fire.screen_loc = ui_fire
-	hud_elements |= fire
-
-	//Pressure warning
-	pressure = new /obj/screen()
-	pressure.icon = ui_style
-	pressure.icon_state = "pressure0"
-	pressure.name = "pressure"
-	pressure.screen_loc = ui_pressure
-	hud_elements |= pressure
-
-	//Body temp warning
-	bodytemp = new /obj/screen()
-	bodytemp.icon = ui_style
-	bodytemp.icon_state = "temp0"
-	bodytemp.name = "body temperature"
-	bodytemp.screen_loc = ui_temp
-	hud_elements |= bodytemp
-
-	//Nutrition status
-	nutrition_icon = new /obj/screen()
-	nutrition_icon.icon = ui_style
-	nutrition_icon.icon_state = "nutrition0"
-	nutrition_icon.name = "nutrition"
-	nutrition_icon.screen_loc = ui_nutrition
-	hud_elements |= nutrition_icon
 
 	pain = new /obj/screen( null )
 

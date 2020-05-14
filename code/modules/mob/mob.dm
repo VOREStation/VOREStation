@@ -22,16 +22,10 @@
 	pullin = null
 	purged = null
 	internals = null
-	oxygen = null
 	i_select = null
 	m_select = null
-	toxin = null
-	fire = null
-	bodytemp = null
 	healths = null
 	throw_icon = null
-	nutrition_icon = null
-	pressure = null
 	pain = null
 	item_use_icon = null
 	gun_move_icon = null
@@ -962,6 +956,7 @@ mob/proc/yank_out_object()
 	valid_objects = get_visible_implants(0)
 	if(valid_objects.len == 1) //Yanking out last object - removing verb.
 		src.verbs -= /mob/proc/yank_out_object
+		clear_alert("embeddedobject")
 
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
@@ -1233,3 +1228,11 @@ mob/proc/yank_out_object()
 
 /mob/proc/GetAltName()
 	return ""
+
+/mob/proc/get_ghost(even_if_they_cant_reenter = 0)
+	if(mind)
+		return mind.get_ghost(even_if_they_cant_reenter)
+
+/mob/proc/grab_ghost(force)
+	if(mind)
+		return mind.grab_ghost(force = force)

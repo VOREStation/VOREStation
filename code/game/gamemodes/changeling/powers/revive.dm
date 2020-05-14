@@ -50,7 +50,7 @@
 			H.handcuffed = null
 			if(H.buckled && H.buckled.buckle_require_restraints)
 				H.buckled.unbuckle_mob()
-			H.update_inv_handcuffed()
+			H.update_handcuffed()
 			if (H.client)
 				H.client.screen -= W
 			W.forceMove(H.loc)

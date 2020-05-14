@@ -672,10 +672,10 @@
 							src.visible_message("The machine states, 'YOU ARE UNDER ARREST, RAIDER!' and shoots handcuffs onto [usr]!", "You hear something say 'YOU ARE UNDER ARREST, RAIDER!' and a clinking sound")
 							var/obj/item/weapon/handcuffs/C = new(src.loc)
 							var/mob/living/carbon/human/H = usr
-							if(istype(usr))
+							if(istype(H))
 								C.forceMove(H)
 								H.handcuffed = C
-								H.update_inv_handcuffed()
+								H.update_handcuffed()
 							else
 								C.throw_at(usr,16,3,src)
 

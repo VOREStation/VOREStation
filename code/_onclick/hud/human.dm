@@ -246,57 +246,12 @@
 		hud_elements |= mymob.internals
 
 	if(hud_data.has_warnings)
-		mymob.oxygen = new /obj/screen()
-		mymob.oxygen.icon = ui_style
-		mymob.oxygen.icon_state = "oxy0"
-		mymob.oxygen.name = "oxygen"
-		mymob.oxygen.screen_loc = ui_oxygen
-		hud_elements |= mymob.oxygen
-
-		mymob.toxin = new /obj/screen()
-		mymob.toxin.icon = ui_style
-		mymob.toxin.icon_state = "tox0"
-		mymob.toxin.name = "toxin"
-		mymob.toxin.screen_loc = ui_toxin
-		hud_elements |= mymob.toxin
-
-		mymob.fire = new /obj/screen()
-		mymob.fire.icon = ui_style
-		mymob.fire.icon_state = "fire0"
-		mymob.fire.name = "fire"
-		mymob.fire.screen_loc = ui_fire
-		hud_elements |= mymob.fire
-
 		mymob.healths = new /obj/screen()
 		mymob.healths.icon = ui_style
 		mymob.healths.icon_state = "health0"
 		mymob.healths.name = "health"
 		mymob.healths.screen_loc = ui_health
 		hud_elements |= mymob.healths
-
-	if(hud_data.has_pressure)
-		mymob.pressure = new /obj/screen()
-		mymob.pressure.icon = ui_style
-		mymob.pressure.icon_state = "pressure0"
-		mymob.pressure.name = "pressure"
-		mymob.pressure.screen_loc = ui_pressure
-		hud_elements |= mymob.pressure
-
-	if(hud_data.has_bodytemp)
-		mymob.bodytemp = new /obj/screen()
-		mymob.bodytemp.icon = ui_style
-		mymob.bodytemp.icon_state = "temp1"
-		mymob.bodytemp.name = "body temperature"
-		mymob.bodytemp.screen_loc = ui_temp
-		hud_elements |= mymob.bodytemp
-
-	if(hud_data.has_nutrition)
-		mymob.nutrition_icon = new /obj/screen()
-		mymob.nutrition_icon.icon = ui_style
-		mymob.nutrition_icon.icon_state = "nutrition0"
-		mymob.nutrition_icon.name = "nutrition"
-		mymob.nutrition_icon.screen_loc = ui_nutrition
-		hud_elements |= mymob.nutrition_icon
 
 	//VOREStation Addition begin
 	mymob.shadekin_dark_display = new /obj/screen/shadekin/darkness()

@@ -248,35 +248,22 @@
 				src.mind.special_role = "traitor"
 				traitors.current_antagonists |= src.mind
 
-	if (src.cells)
-		if (src.cell)
-			var/cellcharge = src.cell.charge/src.cell.maxcharge
-			switch(cellcharge)
-				if(0.75 to INFINITY)
-					src.cells.icon_state = "charge4"
-				if(0.5 to 0.75)
-					src.cells.icon_state = "charge3"
-				if(0.25 to 0.5)
-					src.cells.icon_state = "charge2"
-				if(0 to 0.25)
-					src.cells.icon_state = "charge1"
-				else
-					src.cells.icon_state = "charge0"
-		else
-			src.cells.icon_state = "charge-empty"
+	update_cell()
 
-	if(bodytemp)
-		switch(src.bodytemperature) //310.055 optimal body temp
-			if(335 to INFINITY)
-				src.bodytemp.icon_state = "temp2"
-			if(320 to 335)
-				src.bodytemp.icon_state = "temp1"
-			if(300 to 320)
-				src.bodytemp.icon_state = "temp0"
-			if(260 to 300)
-				src.bodytemp.icon_state = "temp-1"
+	var/turf/T = get_turf(src)
+	var/datum/gas_mixture/environment = T.return_air()
+	if(environment)
+		switch(environment.temperature) //310.055 optimal body temp
+			if(400 to INFINITY)
+				throw_alert("temp", /obj/screen/alert/hot/robot, 2)
+			if(360 to 400)
+				throw_alert("temp", /obj/screen/alert/hot/robot, 1)
+			if(260 to 360)
+				clear_alert("temp")
+			if(200 to 260)
+				throw_alert("temp", /obj/screen/alert/cold/robot, 1)
 			else
-				src.bodytemp.icon_state = "temp-2"
+				throw_alert("temp", /obj/screen/alert/cold/robot, 2)
 
 //Oxygen and fire does nothing yet!!
 //	if (src.oxygen) src.oxygen.icon_state = "oxy[src.oxygen_alert ? 1 : 0]"
@@ -298,20 +285,43 @@
 		if(client && !client.adminobs)
 			reset_view(null)
 
+	if(emagged)
+		throw_alert("hacked", /obj/screen/alert/hacked)
+	else
+		clear_alert("hacked")
+
 	return 1
 
+/mob/living/silicon/robot/proc/update_cell()
+	if(cell)
+		var/cellcharge = cell.charge/cell.maxcharge
+		switch(cellcharge)
+			if(0.75 to INFINITY)
+				clear_alert("charge")
+			if(0.5 to 0.75)
+				throw_alert("charge", /obj/screen/alert/lowcell, 1)
+			if(0.25 to 0.5)
+				throw_alert("charge", /obj/screen/alert/lowcell, 2)
+			if(0.01 to 0.25)
+				throw_alert("charge", /obj/screen/alert/lowcell, 3)
+			else
+				throw_alert("charge", /obj/screen/alert/emptycell)
+	else
+		throw_alert("charge", /obj/screen/alert/nocell)
+
+
 /mob/living/silicon/robot/proc/update_items()
-	if (src.client)
-		src.client.screen -= src.contents
-		for(var/obj/I in src.contents)
+	if(client)
+		client.screen -= contents
+		for(var/obj/I in contents)
 			if(I && !(istype(I,/obj/item/weapon/cell) || istype(I,/obj/item/device/radio)  || istype(I,/obj/machinery/camera) || istype(I,/obj/item/device/mmi)))
-				src.client.screen += I
-	if(src.module_state_1)
-		src.module_state_1:screen_loc = ui_inv1
-	if(src.module_state_2)
-		src.module_state_2:screen_loc = ui_inv2
-	if(src.module_state_3)
-		src.module_state_3:screen_loc = ui_inv3
+				client.screen += I
+	if(module_state_1)
+		module_state_1:screen_loc = ui_inv1
+	if(module_state_2)
+		module_state_2:screen_loc = ui_inv2
+	if(module_state_3)
+		module_state_3:screen_loc = ui_inv3
 	updateicon()
 
 /mob/living/silicon/robot/proc/process_killswitch()

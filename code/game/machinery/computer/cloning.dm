@@ -323,10 +323,9 @@
 	if ((!subject.ckey) || (!subject.client))
 		scantemp = "Error: Mental interface failure."
 		if(subject.stat == DEAD && subject.mind && subject.mind.key) // If they're dead and not in their body, tell them to get in it.
-			for(var/mob/observer/dead/ghost in player_list)
-				if(ghost.ckey == ckey(subject.mind.key))
-					ghost.notify_revive("Someone is trying to scan your body in the cloner. Re-enter your body if you want to be revived!", 'sound/effects/genetics.ogg')
-					break
+			var/mob/observer/dead/ghost = subject.get_ghost()
+			if(ghost)
+				ghost.notify_revive("Someone is trying to scan your body in the cloner. Re-enter your body if you want to be revived!", 'sound/effects/genetics.ogg', source = src)
 		return
 	if (!isnull(find_record(subject.ckey)))
 		scantemp = "Subject already in database."
