@@ -337,7 +337,7 @@
 		return
 */
 
-/obj/item/clothing/gloves/mob_can_equip(mob/user, slot)
+/obj/item/clothing/gloves/mob_can_equip(mob/user, slot, disable_warning = 0)
 	var/mob/living/carbon/human/H = user
 
 	if(slot && slot == slot_gloves)
