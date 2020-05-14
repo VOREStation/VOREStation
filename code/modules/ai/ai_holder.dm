@@ -20,7 +20,7 @@
 		if(istype(src, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = src
 			H.hud_used = new /datum/hud(H)
-			H.instantiate_hud(H.hud_used)
+			H.create_mob_hud(H.hud_used)
 	return ..()
 
 /mob/living/Destroy()
