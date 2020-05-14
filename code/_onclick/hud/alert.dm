@@ -36,10 +36,9 @@
 		alert = new type
 
 	if(new_master)
-		var/mutable_appearance/itemMA = new (new_master)
-		itemMA.layer = LAYER_HUD_ABOVE
-		itemMA.plane = PLANE_PLAYER_HUD_ABOVE
-		alert.add_overlay(itemMA)
+		alert.icon_state = "template" // blank, so our icon is presented
+		var/image/I = image(icon = new_master.icon, icon_state = new_master.icon_state, dir = SOUTH)
+		alert.add_overlay(I)
 		alert.master = new_master
 	else
 		alert.icon_state = "[initial(alert.icon_state)][severity]"
@@ -397,10 +396,15 @@ so as to remain in compliance with the most up-to-date laws."
 		return 1
 	for(var/i = 1, i <= alerts.len, i++)
 		var/obj/screen/alert/alert = alerts[alerts[i]]
-		if(alert.icon_state in cached_icon_states(ui_style))
+		
+		if(alert.icon_state in cached_icon_states(ui_style)) // prevents "" state from attempting matches
 			alert.icon = ui_style
+		
 		else if(!alert.no_underlay)
-			alert.underlays = list(image(icon = ui_style, icon_state = "template"))
+			var/image/I = image(icon = ui_style, icon_state = "template")
+			I.color = ui_color
+			alert.underlays = list(I)
+		
 		switch(i)
 			if(1)
 				. = ui_alert1
