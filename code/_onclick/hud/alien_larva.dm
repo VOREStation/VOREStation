@@ -21,13 +21,7 @@
 	mymob.healths.name = "health"
 	mymob.healths.screen_loc = ui_alien_health
 
-	mymob.fire = new /obj/screen()
-	mymob.fire.icon = 'icons/mob/screen1_alien.dmi'
-	mymob.fire.icon_state = "fire0"
-	mymob.fire.name = "fire"
-	mymob.fire.screen_loc = ui_fire
-
 	mymob.client.screen = list()
-	mymob.client.screen += list( mymob.healths, mymob.fire) //, mymob.rest, mymob.sleep, mymob.mach )
+	mymob.client.screen += list( mymob.healths) //, mymob.rest, mymob.sleep, mymob.mach )
 	mymob.client.screen += src.adding + src.other
 	mymob.client.screen += mymob.client.void

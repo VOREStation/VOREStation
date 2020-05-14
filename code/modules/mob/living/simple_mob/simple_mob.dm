@@ -67,7 +67,6 @@
 	var/maxbodytemp = 350			// Maximum of above
 	var/heat_damage_per_tick = 3	// Amount of damage applied if animal's body temperature is higher than maxbodytemp
 	var/cold_damage_per_tick = 2	// Same as heat_damage_per_tick, only if the bodytemperature it's lower than minbodytemp
-	var/fire_alert = 0				// 0 = fine, 1 = hot, 2 = cold
 
 	var/min_oxy = 5					// Oxygen in moles, minimum, 0 is 'no minimum'
 	var/max_oxy = 0					// Oxygen in moles, maximum, 0 is 'no maximum'

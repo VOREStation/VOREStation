@@ -827,7 +827,7 @@ mob/observer/dead/MayRespawn(var/feedback = 0)
 
 // Lets a ghost know someone's trying to bring them back, and for them to get into their body.
 // Mostly the same as TG's sans the hud element, since we don't have TG huds.
-/mob/observer/dead/proc/notify_revive(var/message, var/sound, flashwindow = TRUE)
+/mob/observer/dead/proc/notify_revive(var/message, var/sound, flashwindow = TRUE, var/atom/source)
 	if((last_revive_notification + 2 MINUTES) > world.time)
 		return
 	last_revive_notification = world.time
@@ -836,6 +836,16 @@ mob/observer/dead/MayRespawn(var/feedback = 0)
 		window_flash(client)
 	if(message)
 		to_chat(src, "<span class='ghostalert'><font size=4>[message]</font></span>")
+		if(source)
+			var/obj/screen/alert/A = throw_alert("\ref[source]_notify_revive", /obj/screen/alert/notify_cloning)
+			if(A)
+				if(client && client.prefs && client.prefs.UI_style)
+					A.icon = ui_style2icon(client.prefs.UI_style)
+				A.desc = message
+				var/old_layer = source.layer
+				source.layer = FLOAT_LAYER
+				A.overlays += source
+				source.layer = old_layer
 	to_chat(src, "<span class='ghostalert'><a href=?src=[REF(src)];reenter=1>(Click to re-enter)</a></span>")
 	if(sound)
 		SEND_SOUND(src, sound(sound))

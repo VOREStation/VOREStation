@@ -720,3 +720,6 @@
 			dupe.emote_lists[K] += I
 
 	return dupe
+
+/obj/belly/container_resist(mob/M)
+	return relay_resist(M)

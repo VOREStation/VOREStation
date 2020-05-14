@@ -55,6 +55,34 @@
 
 	..()
 
+/obj/item/clothing/shoes/container_resist(mob/living/micro)
+	var/mob/living/carbon/human/macro = loc
+	if(!istype(macro))
+		to_chat(micro, "<span class='notice'>You start to climb out of [src]!</span>")
+		if(do_after(micro, 50, src))
+			to_chat(micro, "<span class='notice'>You climb out of [src]!</span>")
+			micro.forceMove(loc)
+		return
+	
+	var/escape_message_micro = "You start to climb out of [src]!"
+	var/escape_message_macro = "Something is trying to climb out of your [src]!"
+	var/escape_time = 60
+
+	if(macro.shoes == src)
+		escape_message_micro = "You start to climb around the larger creature's feet and ankles!"
+		escape_time = 100
+	
+	to_chat(micro, "<span class='notice'>[escape_message_micro]</span>")
+	to_chat(macro, "<span class='danger'>[escape_message_macro]</span>")
+	if(!do_after(micro, escape_time, macro))
+		to_chat(micro, "<span class='danger'>You're pinned underfoot!</span>")
+		to_chat(macro, "<span class='danger'>You pin the escapee underfoot!</span>")
+		return
+	
+	to_chat(micro, "<span class='notice'>You manage to escape [src]!</span>")
+	to_chat(macro, "<span class='danger'>Someone has climbed out of your [src]!</span>")
+	micro.forceMove(macro.loc)
+
 /obj/item/clothing/gloves
 	sprite_sheets = list(
 		SPECIES_TESHARI = 'icons/mob/species/seromi/gloves.dmi',

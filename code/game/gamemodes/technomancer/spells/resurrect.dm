@@ -44,7 +44,7 @@
 					for(var/mob/observer/dead/ghost in player_list)
 						if(ghost.mind == H.mind)
 							ghost.notify_revive("The Technomancer [user.real_name] is trying to revive you. \
-							Re-enter your body if you want to be revived!", 'sound/effects/genetics.ogg')
+							Re-enter your body if you want to be revived!", 'sound/effects/genetics.ogg', source = user)
 							break
 
 				H.adjustBruteLoss(-40)

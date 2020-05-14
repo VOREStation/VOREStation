@@ -78,6 +78,13 @@
 #define ui_ai_multicam "SOUTH+1:6,WEST+12:16"
 #define ui_ai_add_multicam "SOUTH+1:6,WEST+13:16"
 
+//Upper-middle right (alerts)
+#define ui_alert1 "EAST-1:28,CENTER+5:27"
+#define ui_alert2 "EAST-1:28,CENTER+4:25"
+#define ui_alert3 "EAST-1:28,CENTER+3:23"
+#define ui_alert4 "EAST-1:28,CENTER+2:21"
+#define ui_alert5 "EAST-1:28,CENTER+1:19"
+
 //Gun buttons
 #define ui_gun1 "EAST-2:26,SOUTH+2:7"
 #define ui_gun2 "EAST-1:28, SOUTH+3:7"
@@ -96,13 +103,12 @@
 #define ui_alien_oxygen "EAST-1:28,NORTH-4:25"
 
 //Middle right (status indicators)
-#define ui_nutrition "EAST-1:28,CENTER-2:11"
-#define ui_temp "EAST-1:28,CENTER-1:13"
-#define ui_health "EAST-1:28,CENTER:15"
-#define ui_internal "EAST-1:28,CENTER+1:17"
+#define ui_temp "EAST-1:28,CENTER-2:13"
+#define ui_health "EAST-1:28,CENTER-1:15"
+#define ui_internal "EAST-1:28,CENTER:17"
 									//borgs
-#define ui_borg_health "EAST-1:28,CENTER-1:13" //borgs have the health display where humans have the pressure damage indicator.
-#define ui_alien_health "EAST-1:28,CENTER-1:13" //aliens have the health display where humans have the pressure damage indicator.
+#define ui_borg_health "EAST-1:28,CENTER-2:13" //borgs have the health display where humans have the pressure damage indicator.
+#define ui_alien_health "EAST-1:28,CENTER-2:13" //aliens have the health display where humans have the pressure damage indicator.
 
 #define ui_ling_chemical_display "EAST-1:28,CENTER-3:15"
 #define ui_wiz_energy_display "EAST-1:28,CENTER-3:15"

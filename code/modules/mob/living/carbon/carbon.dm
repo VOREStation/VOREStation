@@ -310,7 +310,7 @@
 
 	else if (W == handcuffed)
 		handcuffed = null
-		update_inv_handcuffed()
+		update_handcuffed()
 		if(buckled && buckled.buckle_require_restraints)
 			buckled.unbuckle_mob()
 
@@ -318,9 +318,8 @@
 		legcuffed = null
 		update_inv_legcuffed()
 	else
-	 ..()
+		..()
 
-	return
 
 //generates realistic-ish pulse output based on preset levels
 /mob/living/carbon/proc/get_pulse(var/method)	//method 0 is for hands, 1 is for machines, more accurate
@@ -403,3 +402,14 @@
 	if(does_not_breathe)
 		return FALSE
 	return ..()
+
+/mob/living/carbon/proc/update_handcuffed()
+	if(handcuffed)
+		drop_l_hand()
+		drop_r_hand()
+		stop_pulling()
+		throw_alert("handcuffed", /obj/screen/alert/restrained/handcuffed, new_master = handcuffed)
+	else
+		clear_alert("handcuffed")
+	update_action_buttons() //some of our action buttons might be unusable when we're handcuffed.
+	update_inv_handcuffed()

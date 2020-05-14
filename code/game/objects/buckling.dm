@@ -73,6 +73,7 @@
 	//VOREStation Add End
 
 	post_buckle_mob(M)
+	M.throw_alert("buckled", /obj/screen/alert/restrained/buckled, new_master = src)
 	return TRUE
 
 /atom/movable/proc/unbuckle_mob(mob/living/buckled_mob, force = FALSE)
@@ -88,6 +89,7 @@
 		buckled_mob.anchored = initial(buckled_mob.anchored)
 		buckled_mob.update_canmove()
 		buckled_mob.update_floating( buckled_mob.Check_Dense_Object() )
+		buckled_mob.clear_alert("buckled")
 	//	buckled_mob = null
 		buckled_mobs -= buckled_mob
 

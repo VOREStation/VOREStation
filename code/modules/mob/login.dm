@@ -51,7 +51,6 @@
 	else
 		client.eye = src
 		client.perspective = MOB_PERSPECTIVE
-	reload_fullscreen() // Reload any fullscreen overlays this mob has.
 	add_click_catcher()
 	update_client_color()
 
