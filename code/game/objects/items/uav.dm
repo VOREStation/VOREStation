@@ -5,7 +5,7 @@
 
 /obj/item/device/uav
 	name = "recon skimmer"
-	desc = "A semi-portable reconisance drone that folds into a backpack-sized carrying case."
+	desc = "A semi-portable reconnaissance drone that folds into a backpack-sized carrying case."
 	icon = 'icons/obj/uav.dmi'
 	icon_state = "uav"
 

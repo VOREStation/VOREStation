@@ -119,13 +119,11 @@
 			return																		//VOREStation Edit: unable to open doors
 		else
 			bumpopen(M)
-	// VOREStation Add - UAVs open public doors
 	if(istype(AM, /obj/item/device/uav))
 		if(check_access(null))
 			open()
 		else
 			do_animate("deny")
-	//VOREStation Add End
 
 	if(istype(AM, /mob/living/bot))
 		var/mob/living/bot/bot = AM
