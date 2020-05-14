@@ -1,27 +1,31 @@
-/datum/hud/proc/larva_hud()
+/mob/living/carbon/alien/create_mob_hud(datum/hud/HUD, apply_to_client = TRUE)
+	..()
 
-	src.adding = list()
-	src.other = list()
+	HUD.ui_style = 'icons/mob/screen1_alien.dmi'
+
+	HUD.adding = list()
+	HUD.other = list()
 
 	var/obj/screen/using
 
 	using = new /obj/screen()
 	using.name = "mov_intent"
 	using.set_dir(SOUTHWEST)
-	using.icon = 'icons/mob/screen1_alien.dmi'
-	using.icon_state = (mymob.m_intent == "run" ? "running" : "walking")
+	using.icon = HUD.ui_style
+	using.icon_state = (m_intent == "run" ? "running" : "walking")
 	using.screen_loc = ui_acti
 	using.layer = HUD_LAYER
-	src.adding += using
-	move_intent = using
+	HUD.adding += using
+	HUD.move_intent = using
 
-	mymob.healths = new /obj/screen()
-	mymob.healths.icon = 'icons/mob/screen1_alien.dmi'
-	mymob.healths.icon_state = "health0"
-	mymob.healths.name = "health"
-	mymob.healths.screen_loc = ui_alien_health
+	healths = new /obj/screen()
+	healths.icon = HUD.ui_style
+	healths.icon_state = "health0"
+	healths.name = "health"
+	healths.screen_loc = ui_alien_health
 
-	mymob.client.screen = list()
-	mymob.client.screen += list( mymob.healths) //, mymob.rest, mymob.sleep, mymob.mach )
-	mymob.client.screen += src.adding + src.other
-	mymob.client.screen += mymob.client.void
+	if(client && apply_to_client)
+		client.screen = list()
+		client.screen += list(healths)
+		client.screen += HUD.adding + HUD.other
+		client.screen += client.void
