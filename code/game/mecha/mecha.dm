@@ -100,6 +100,8 @@
 	var/static/image/radial_image_lighttoggle = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_light")
 	var/static/image/radial_image_statpanel = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_examine2")
 
+	var/datum/mini_hud/mech/minihud
+
 
 /obj/mecha/drain_power(var/drain_check)
 
@@ -195,6 +197,7 @@
 	QDEL_NULL(pr_give_air)
 	QDEL_NULL(pr_internal_damage)
 	QDEL_NULL(spark_system)
+	QDEL_NULL(minihud)
 
 	mechas_list -= src //global mech list
 	. = ..()
@@ -1321,6 +1324,8 @@
 		src.verbs += /obj/mecha/verb/eject
 		src.log_append_to_last("[H] moved in as pilot.")
 		src.icon_state = src.reset_icon()
+		if(occupant.hud_used)
+			minihud = new (occupant.hud_used, src)
 		update_cell_alerts()
 		update_damage_alerts()
 		set_dir(dir_in)
@@ -1386,6 +1391,7 @@
 /obj/mecha/proc/go_out()
 	if(!src.occupant) return
 	var/atom/movable/mob_container
+	QDEL_NULL(minihud)
 	if(ishuman(occupant))
 		mob_container = src.occupant
 	else if(istype(occupant, /mob/living/carbon/brain))
