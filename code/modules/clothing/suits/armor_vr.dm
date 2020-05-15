@@ -59,7 +59,7 @@
 
 /obj/item/clothing/suit/armor/combat/USDF
 	name = "marine body armor"
-	desc = "When I joined the Corps, we didn't have any fancy-schmanzy armor. We had sticks! Two sticks, and a rock for the whole platoon–and we had to <i>share</i> the rock!"
+	desc = "When I joined the Corps, we didn't have any fancy-schmanzy armor. We had sticks! Two sticks, and a rock for the whole platoon-and we had to <i>share</i> the rock!"
 	icon_state = "unsc_armor"
 	icon = 'icons/obj/clothing/suits_vr.dmi'
 	icon_override = 'icons/mob/suit_vr.dmi'
@@ -77,3 +77,11 @@
 	name = "imperial centurion armor"
 	desc = "Not all heroes wear capes, but it'd be cooler if they did."
 	icon_state = "ge_armorcent"
+
+/obj/item/clothing/suit/storage/vest/wardencoat/alt2
+	icon = 'icons/obj/clothing/suits_vr.dmi'
+	icon_override = 'icons/mob/suit_vr.dmi'
+
+/obj/item/clothing/suit/storage/vest/hoscoat/jensen/alt
+	icon = 'icons/obj/clothing/suits_vr.dmi'
+	icon_override = 'icons/mob/suit_vr.dmi'
