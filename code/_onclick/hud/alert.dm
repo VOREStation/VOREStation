@@ -220,6 +220,11 @@ The box in your backpack has an oxygen tank and gas mask in it."
 or something covering your eyes."
 	icon_state = "blind"
 
+/obj/screen/alert/confused
+	name = "Confused"
+	desc = "You're confused, and may stumble into things! This may be from concussive effects, drugs, or dizzyness. Walking will help reduce incidents."
+	icon_state = "confused"
+
 /obj/screen/alert/high
 	name = "High"
 	desc = "Whoa man, you're tripping balls! Careful you don't get addicted... if you aren't already."
