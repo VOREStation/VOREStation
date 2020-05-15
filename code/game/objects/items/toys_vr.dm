@@ -54,3 +54,9 @@
 	icon = 'icons/obj/toy_vr.dmi'
 	icon_state = "plushie_nuke"
 	attack_verb = list("shot", "nuked", "detonated")
+
+/obj/item/toy/plushie/otter
+	name = "otter plush"
+	desc = "A perfectly sized snuggable river weasel! Keep away from Clams."
+	icon = 'icons/obj/toy_vr.dmi'
+	icon_state = "plushie_otter"
