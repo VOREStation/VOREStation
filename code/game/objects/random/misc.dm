@@ -479,7 +479,8 @@
 				/obj/item/toy/plushie/borgplushie/medihound,
 				/obj/item/toy/plushie/borgplushie/scrubpuppy,
 				/obj/item/toy/plushie/foxbear,
-				/obj/item/toy/plushie/nukeplushie)
+				/obj/item/toy/plushie/nukeplushie,
+				/obj/item/toy/plushie/otter)
 				//VOREStation Add End
 
 /obj/random/plushielarge
