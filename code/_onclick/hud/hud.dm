@@ -191,6 +191,8 @@ var/list/global_huds = list(
 	var/list/slot_info
 
 	var/icon/ui_style
+	var/ui_color
+	var/ui_alpha
 
 datum/hud/New(mob/owner)
 	mymob = owner
@@ -305,35 +307,23 @@ datum/hud/New(mob/owner)
 
 
 /datum/hud/proc/instantiate()
-	if(!ismob(mymob)) return 0
-	if(!mymob.client) return 0
+	if(!ismob(mymob))
+		return 0
 	
-	ui_style = ui_style2icon(mymob.client.prefs.UI_style)
-	var/ui_color = mymob.client.prefs.UI_style_color
-	var/ui_alpha = mymob.client.prefs.UI_style_alpha
-
-	if(ishuman(mymob))
-		human_hud(ui_style, ui_color, ui_alpha, mymob) // Pass the player the UI style chosen in preferences
-	else if(isrobot(mymob))
-		robot_hud(ui_style, ui_color, ui_alpha, mymob)
-	else if(isbrain(mymob))
-		mymob.instantiate_hud(src)
-	else if(isalien(mymob))
-		larva_hud()
-	else if(isAI(mymob))
-		ai_hud()
-	else if(isobserver(mymob))
-		ghost_hud()
-	else
-		mymob.instantiate_hud(src)
+	mymob.create_mob_hud(src)
 
 	persistant_inventory_update()
 	mymob.reload_fullscreen() // Reload any fullscreen overlays this mob has.
 	mymob.update_action_buttons()
 	reorganize_alerts()
 
-/mob/proc/instantiate_hud(var/datum/hud/HUD)
-	return
+/mob/proc/create_mob_hud(datum/hud/HUD, apply_to_client = TRUE)
+	if(!client)
+		return 0
+
+	HUD.ui_style = ui_style2icon(client?.prefs?.UI_style)
+	HUD.ui_color = client?.prefs?.UI_style_color
+	HUD.ui_alpha = client?.prefs?.UI_style_alpha
 
 //Triggered when F12 is pressed (Unless someone changed something in the DMF)
 /mob/verb/button_pressed_F12(var/full = 0 as null)

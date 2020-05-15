@@ -20,7 +20,7 @@
 		if(istype(src, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = src
 			H.hud_used = new /datum/hud(H)
-			H.instantiate_hud(H.hud_used)
+			H.create_mob_hud(H.hud_used)
 	return ..()
 
 /mob/living/Destroy()
@@ -174,7 +174,7 @@
 
 // For setting the stance WITHOUT processing it
 /datum/ai_holder/proc/set_stance(var/new_stance)
-	if(holder.key && !autopilot)
+	if(holder?.key && !autopilot)
 		return
 	if(stance == new_stance)
 		ai_log("set_stance() : Ignoring change stance to same stance request.", AI_LOG_INFO)

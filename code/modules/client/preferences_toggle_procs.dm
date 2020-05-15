@@ -295,6 +295,19 @@
 
 	feedback_add_details("admin_verb","TMobTooltips") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+/client/verb/toggle_inv_tooltips()
+	set name = "Toggle Item Tooltips"
+	set category = "Preferences"
+	set desc = "Toggles displaying name/desc over items when moused over (only applies in inventory)."
+
+	var/pref_path = /datum/client_preference/inv_tooltips
+	toggle_preference(pref_path)
+	SScharacter_setup.queue_preferences_save(prefs)
+
+	to_chat(src,"You will now [(is_preference_enabled(/datum/client_preference/inv_tooltips)) ? "see" : "not see"] inventory tooltips.")
+
+	feedback_add_details("admin_verb","TInvTooltips") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
 /client/verb/toggle_hear_instruments()
 	set name = "Toggle Hear/Ignore Instruments"
 	set category = "Preferences"
