@@ -78,10 +78,10 @@
 	desc = "Not all heroes wear capes, but it'd be cooler if they did."
 	icon_state = "ge_armorcent"
 
-/obj/item/clothing/suit/storage/vest/wardencoat
+/obj/item/clothing/suit/storage/vest/wardencoat/alt2
 	icon = 'icons/obj/clothing/suits_vr.dmi'
 	icon_override = 'icons/mob/suit_vr.dmi'
 
-/obj/item/clothing/suit/storage/vest/hoscoat/jensen
+/obj/item/clothing/suit/storage/vest/hoscoat/jensen/alt
 	icon = 'icons/obj/clothing/suits_vr.dmi'
 	icon_override = 'icons/mob/suit_vr.dmi'
