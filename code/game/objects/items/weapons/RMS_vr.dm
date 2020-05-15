@@ -1,7 +1,9 @@
-#define RMS_STEEL "Steel"
-#define RMS_GLASS "Glass"
-#define RMS_BATT "Battery"
-#define RMS_RAND "Random Material"
+#define RMS_STEEL 1
+#define RMS_GLASS 2
+#define RMS_CLOTH 3
+#define RMS_PLASTIC 4
+#define RMS_STONE 5
+#define RMS_RAND 6
 
 /obj/item/weapon/rms
 	name = "Rapid Material Synthesizer"
@@ -22,23 +24,32 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 5000)
 	preserve_item = FALSE
 
-	var/mode_index = 1 //start at steel creation
-	var/list/modes = list(RMS_STEEL, RMS_GLASS, RMS_BATT, RMS_RAND)
+	var/mode_index = RMS_STEEL //start at steel creation
+	var/list/modes = list(RMS_STEEL, RMS_GLASS, RMS_CLOTH, RMS_PLASTIC, RMS_STONE, RMS_RAND)
 	var/stored_charge = 0
 	var/max_charge = 1000000 //large storage, equivalent to 50 steel sheets
 	var/charge_cost = 20000
-	var/charge_cost_r = 50000
-	var/charge_cost_m = 100000
+	var/charge_cost_o = 50000
+	var/charge_cost_r = 100000
 	var/charge_stage = 0
+	var/overcharge = 0
 	var/emagged = 0
 	var/datum/effect/effect/system/spark_spread/spark_system
+
+	var/static/image/radial_image_steel = image(icon = 'icons/mob/radial_vr.dmi', icon_state = "sheet-metal")
+	var/static/image/radial_image_glass = image(icon= 'icons/mob/radial_vr.dmi', icon_state = "sheet-glass")
+	var/static/image/radial_image_cloth = image(icon = 'icons/mob/radial_vr.dmi', icon_state = "sheet-cloth")
+	var/static/image/radial_image_plastic = image(icon = 'icons/mob/radial_vr.dmi', icon_state = "sheet-plastic")
+	var/static/image/radial_image_stone = image(icon = 'icons/mob/radial_vr.dmi', icon_state = "sheet-sandstone")
+	var/static/image/radial_image_random = image(icon = 'icons/mob/radial_vr.dmi', icon_state = "sheet-random")
+
 
 /obj/item/weapon/rms/Initialize()
 	. = ..()
 	src.spark_system = new /datum/effect/effect/system/spark_spread
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
-	update_icon()
+	add_overlay("rms_charge[charge_stage]")
 
 /obj/item/weapon/pipe_dispenser/Destroy()
 	qdel_null(spark_system)
@@ -48,6 +59,7 @@
 	charge_stage = round((stored_charge/max_charge)*4)
 	if(charge_stage >= 4)
 		charge_stage = 4
+	cut_overlays()
 	add_overlay("rms_charge[charge_stage]")
 
 /obj/item/weapon/rms/examine(mob/user)
@@ -58,15 +70,11 @@
 	return "It currently holds [round(stored_charge/1000)]/[max_charge/1000] kW charge."
 
 /obj/item/weapon/rms/proc/drain_battery(user, battery)
-	var/obj/item/weapon/cell.C = battery
+	var/obj/item/weapon/cell/C = battery
 	if(stored_charge == max_charge)
 		to_chat(user, "<span class='notice'>The Rapid Material Synthesizer is full on charge!.</span>")
-		update_icon()
-		return
 	if(C.charge == 0)
 		to_chat(user, "<span class='notice'>The battery has no charge.</span>")
-		update_icon()
-		return
 	else
 		playsound(get_turf(src), 'sound/machines/click.ogg', 50, 1)
 		if(do_after(user, 2,target = C))
@@ -74,10 +82,8 @@
 			C.charge = 0
 			C.update_icon()
 			to_chat(user, "<span class='notice'>You drain [C].</span>")
-			if(stored_charge > max_charge)
-				stored_charge = max_charge
-			update_icon()
-			return
+	stored_charge = CLAMP(stored_charge, 0, max_charge)
+	update_icon()
 
 /obj/item/weapon/rms/proc/consume_resources(amount)
 	stored_charge -= amount
@@ -86,112 +92,107 @@
 
 
 /obj/item/weapon/rms/proc/can_afford(amount)
-	if(mode_index != modes.len)
-		if(stored_charge >= charge_cost)
-			return TRUE
-		else
-			return FALSE
+	if(stored_charge < amount)
+		return FALSE
 	else
-		if(stored_charge >= charge_cost_r)
-			return TRUE
-		else
-			return FALSE
+		return TRUE
 
 /obj/item/weapon/rms/proc/use_rms(atom/A, mob/living/user)
 	var/obj/product
-	if(!can_afford())
-		to_chat(user, "<span class='notice'>There is not enough charge to use this mode.</span>")
-		return
+	if(!overcharge)
+		if(!can_afford(charge_cost))
+			to_chat(user, "<span class='notice'>There is not enough charge to use this mode.</span>")
+			return
+		else
+			consume_resources(charge_cost)
+	else
+		if(!can_afford(charge_cost_o))
+			to_chat(user, "<span class='notice'>There is not enough charge to use the overcharged mode.</span>")
+			return
+		else
+			consume_resources(charge_cost_o)
 	playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
 	if(do_after(user, 5, target = A))
 		switch(mode_index)
-			if(1)
-				if(charge_stage >= 4)
+			if(RMS_STEEL)
+				if(overcharge)
 					product = new /obj/item/stack/material/plasteel  // can only create one sheet at max charge, and uses five times more charge
-					consume_resources(charge_cost_m)
 					spark_system.start()
 				else
 					product = new /obj/item/stack/material/steel
-					consume_resources(charge_cost)
-			if(2)
-				if(charge_stage >= 4)
+			if(RMS_GLASS)
+				if(overcharge)
 					product= new /obj/item/stack/material/glass/phoronglass // can only create one sheet at max charge, and uses five times more charge
-					consume_resources(charge_cost_m)
 					spark_system.start()
 				else
 					product = new /obj/item/stack/material/glass
-					consume_resources(charge_cost)
-			if(3)
-				switch(charge_stage)
-					if(4)
-						product = pick(50; new /obj/item/weapon/cell/secborg/empty,
-										20; new /obj/item/weapon/cell/high/empty,
-										15; new /obj/item/weapon/cell/super/empty,
-										10; new /obj/item/weapon/cell/hyper/empty,
-										4; new /obj/item/device/fbp_backup_cell,
-										100; new /obj/item/weapon/cell/infinite)
-					if(3)
-						product = pick(50; new /obj/item/weapon/cell/secborg/empty,
-										20; new /obj/item/weapon/cell/high/empty,
-										15; new /obj/item/weapon/cell/super/empty,
-										10; new /obj/item/weapon/cell/hyper/empty,
-										5; new /obj/item/device/fbp_backup_cell)
-					if(2)
-						product = pick(50; new /obj/item/weapon/cell/secborg/empty,
-										20; new /obj/item/weapon/cell/high/empty,
-										20; new /obj/item/weapon/cell/super/empty,
-										5; new /obj/item/weapon/cell/hyper/empty,
-										5; new /obj/item/device/fbp_backup_cell)
-					if(1)
-						product = pick(50; new /obj/item/weapon/cell/secborg/empty,
-										25; new /obj/item/weapon/cell/high/empty,
-										20; new /obj/item/weapon/cell/super/empty,
-										5; new /obj/item/device/fbp_backup_cell)
-					if(0)
-						product = pick(50; new /obj/item/weapon/cell/secborg/empty,
-										30; new /obj/item/weapon/cell/high/empty,
-										15; new /obj/item/weapon/cell/super/empty,
-										5; new /obj/item/device/fbp_backup_cell)
-				if(istype(product,/obj/item/weapon/cell/infinite))
-					consume_resources(max_charge)
+			if(RMS_CLOTH)
+				if(overcharge)
+					product= new /obj/item/stack/material/leather // can only create one sheet at max charge, and uses five times more charge
 					spark_system.start()
 				else
-					consume_resources(charge_cost)
-			if(4)
-				if(!emagged)
-					product = pick(30;new /obj/item/stack/material/steel,
-									20;new /obj/item/stack/material/glass,
+					product = new /obj/item/stack/material/cloth
+			if(RMS_PLASTIC)
+				if(overcharge)
+					product= new /obj/item/stack/material/cardboard // can only create one sheet at max charge, and uses five times more charge
+					spark_system.start()
+				else
+					product = new /obj/item/stack/material/plastic
+			if(RMS_STONE)
+				if(overcharge)
+					product= new /obj/item/stack/material/marble // can only create one sheet at max charge, and uses five times more charge
+					spark_system.start()
+				else
+					product = new /obj/item/stack/material/sandstone
+			if(RMS_RAND)
+				if(!overcharge && !emagged)
+					product = pick(10;new /obj/item/trash/material/metal,
+									10;new /obj/item/weapon/material/shard,
 									10;new /obj/item/stack/cable_coil/random,
-									10;new /obj/item/stack/material/plastic,
 									10;new /obj/item/stack/material/wood,
 									10;new /obj/item/stack/material/wood/sif,
-									10;new /obj/item/stack/material/log,
-									10;new /obj/item/stack/material/log/sif,
-									10;new /obj/item/stack/material/cloth,
-									10;new /obj/item/stack/material/cardboard,
-									10;new /obj/item/trash/rkibble)
-					consume_resources(charge_cost_r)
+									10;new /obj/item/stack/material/snow)
+				if(overcharge && !emagged)
+					product = pick(1;new /obj/item/stack/rods,
+									5;new /obj/item/device/fbp_backup_cell,
+									5;new /obj/item/trash/rkibble,
+									10;new /obj/item/stack/tile/grass,
+									10;new /obj/item/stack/tile/carpet)
 					spark_system.start()
-				else
-					product = pick(10;new /obj/item/stack/cable_coil/random,
-									10;new /obj/item/stack/material/plastic,
+				if(!overcharge && emagged)
+					product = pick(10;new /obj/item/trash/material/metal,
+									10;new /obj/item/weapon/material/shard,
+									10;new /obj/item/stack/cable_coil/random,
 									10;new /obj/item/stack/material/wood,
 									10;new /obj/item/stack/material/wood/sif,
-									10;new /obj/item/stack/material/log,
-									10;new /obj/item/stack/material/log/sif,
-									10;new /obj/item/stack/material/cloth,
-									10;new /obj/item/stack/material/cardboard,
-									10;new /obj/item/trash/rkibble,
+									10;new /obj/item/stack/material/snow,
+									5;new /obj/item/stack/material/phoron,
+									5;new /obj/item/stack/material/silver,
+									5;new /obj/item/stack/material/gold,
+									1;new /obj/item/stack/material/diamond)
+				if(overcharge && emagged)
+					product = pick(1;new /obj/item/stack/rods,
+									5;new /obj/item/device/fbp_backup_cell,
+									5;new /obj/item/trash/rkibble,
+									10;new /obj/item/stack/tile/grass,
+									10;new /obj/item/stack/tile/carpet,
 									10;new /obj/item/weapon/reagent_containers/spray/waterflower,
 									10;new /obj/item/weapon/bikehorn,
 									10;new /obj/item/weapon/storage/backpack/clown,
 									10;new /obj/item/clothing/under/rank/clown,
 									10;new /obj/item/clothing/shoes/clown_shoes,
 									10;new /obj/item/clothing/mask/gas/clown_hat,
+									10;new /obj/item/device/pda/clown,
 									1;new /mob/living/simple_mob/vore/catgirl)
-					consume_resources(charge_cost)
 					spark_system.start()
 	product.loc = get_turf(A)
+
+/obj/item/weapon/rms/proc/check_menu(mob/living/user)
+	if(!istype(user))
+		return FALSE
+	if(user.incapacitated() || !user.Adjacent(src))
+		return FALSE
+	return TRUE
 
 //Start of attack functions
 
@@ -209,12 +210,35 @@
 		return
 
 /obj/item/weapon/rms/attack_self(mob/user)
-	if(mode_index >= modes.len)
-		mode_index = 1
-	else
-		mode_index++
+	var/list/choices = list(
+		"Steel" = radial_image_steel,
+		"Glass" = radial_image_glass,
+		"Cloth" = radial_image_cloth,
+		"Plastic" = radial_image_plastic,
+		"Stone" = radial_image_stone,
+		"Random" = radial_image_random
+	)
 
-	to_chat(user, span("notice", "Changed mode to '[modes[mode_index]]'."))
+	var/choice = show_radial_menu(user, src, choices, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = TRUE)
+	if(!check_menu(user))
+		return
+	switch(choice)
+		if("Steel")
+			mode_index = modes.Find(RMS_STEEL)
+		if("Glass")
+			mode_index = modes.Find(RMS_GLASS)
+		if("Cloth")
+			mode_index = modes.Find(RMS_CLOTH)
+		if("Plastic")
+			mode_index = modes.Find(RMS_PLASTIC)
+		if("Stone")
+			mode_index = modes.Find(RMS_STONE)
+		if("Random")
+			mode_index = modes.Find(RMS_RAND)
+		else
+			return
+
+	to_chat(user, span("notice", "Changed mode to '[choice]'."))
 	playsound(src.loc, 'sound/effects/pop.ogg', 50, 0)
 	return ..()
 
@@ -223,9 +247,19 @@
 	playsound(src.loc, "sparks", 100, 1)
 	return 1
 
+/obj/item/weapon/rms/attackby(obj/item/W, mob/user)
+	if(W.is_multitool())
+		overcharge = !overcharge
+	if(overcharge)
+		to_chat(user, "<span class='notice'>The Rapid Material Synthesizer quietly whirrs...</span>")
+	else
+		to_chat(user, "<span class='notice'>The Rapid Material Synthesizer resumes normal operation.</span>")
+	return ..()
 
 
 #undef RMS_STEEL
 #undef RMS_GLASS
-#undef RMS_BATT
+#undef RMS_CLOTH
+#undef RMS_PLASTIC
+#undef RMS_STONE
 #undef RMS_RAND
