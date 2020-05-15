@@ -193,7 +193,7 @@
 	. = ..()
 	to_chat(src,"<b>You are \the [src].</b> [player_msg]")
 
-/mob/living/simple_mob/SelfMove(turf/n, direct)
+/mob/living/simple_mob/SelfMove(turf/n, direct, movetime)
 	var/turf/old_turf = get_turf(src)
 	var/old_dir = dir
 	. = ..()
@@ -211,7 +211,13 @@
 	return ..()
 */
 /mob/living/simple_mob/movement_delay()
+<<<<<<< HEAD
 	. = movement_cooldown
+=======
+	. = ..()
+
+	. += movement_cooldown
+>>>>>>> 6de7439... Merge pull request #7082 from VOREStation/aro-moverefactor
 
 	if(force_max_speed)
 		return -3
@@ -237,10 +243,15 @@
 
 	if(m_intent == "walk")
 		. *= 1.5
+<<<<<<< HEAD
 
 	 . += config.animal_delay
 
 	 . += ..()
+=======
+
+	 . += config.animal_delay
+>>>>>>> 6de7439... Merge pull request #7082 from VOREStation/aro-moverefactor
 
 
 /mob/living/simple_mob/Stat()

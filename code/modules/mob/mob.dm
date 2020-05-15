@@ -40,7 +40,10 @@
 	else
 		living_mob_list += src
 	lastarea = get_area(src)
+<<<<<<< HEAD
 	hook_vr("mob_new",list(src)) //VOREStation Code
+=======
+>>>>>>> 6de7439... Merge pull request #7082 from VOREStation/aro-moverefactor
 	update_transform() // Some mobs may start bigger or smaller than normal.
 	return ..()
 

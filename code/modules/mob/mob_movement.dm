@@ -122,6 +122,7 @@
 	// Nothing to do in nullspace
 	if(!my_mob.loc)
 		return
+<<<<<<< HEAD
 
 	// Used many times below, faster reference.
 	var/atom/loc = my_mob.loc
@@ -130,6 +131,16 @@
 	if(my_mob.control_object)
 		Move_object(direct)
 
+=======
+
+	// Used many times below, faster reference.
+	var/atom/loc = my_mob.loc
+
+	// We're controlling an object which is SOMEHOW DIFFERENT FROM AN EYE??
+	if(my_mob.control_object)
+		Move_object(direct)
+
+>>>>>>> 6de7439... Merge pull request #7082 from VOREStation/aro-moverefactor
 	// Ghosty mob movement
 	if(my_mob.incorporeal_move && isobserver(my_mob))
 		Process_Incorpmove(direct)
@@ -170,12 +181,21 @@
 		*/
 
 	if(Process_Grab())
+<<<<<<< HEAD
 		return
 
 	// Can't move
 	if(!my_mob.canmove)
 		return
 
+=======
+		return
+
+	// Can't move
+	if(!my_mob.canmove)
+		return
+
+>>>>>>> 6de7439... Merge pull request #7082 from VOREStation/aro-moverefactor
 	// Relaymove could handle it
 	if(my_mob.machine)
 		var/result = my_mob.machine.relaymove(my_mob, direct)

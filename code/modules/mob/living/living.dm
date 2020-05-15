@@ -785,6 +785,11 @@ default behaviour is:
 		to_chat(usr, "OOC Metadata is not supported by this server!")
 	//VOREStation Edit End - Making it so SSD people have prefs with fallback to original style.
 
+<<<<<<< HEAD
+=======
+	return
+
+>>>>>>> 6de7439... Merge pull request #7082 from VOREStation/aro-moverefactor
 // Almost all of this handles pulling movables behind us
 /mob/living/Move(atom/newloc, direct, movetime)
 	if(buckled && buckled.loc != newloc) //not updating position
@@ -797,9 +802,14 @@ default behaviour is:
 	// Prior to our move it's already too far away
 	if(pullee && get_dist(src, pullee) > 1)
 		stop_pulling()
+<<<<<<< HEAD
 	// Shenanigans!
 	if(pullee && !isturf(pullee.loc) && pullee.loc != loc)
 		log_debug("[src]'s pull on [pullee] was broken despite [pullee] being in [pullee.loc]. Pull stopped manually.")
+=======
+	// Shenanigans! Pullee closed into locker for eg.
+	if(pullee && !isturf(pullee.loc) && pullee.loc != loc)
+>>>>>>> 6de7439... Merge pull request #7082 from VOREStation/aro-moverefactor
 		stop_pulling()
 	// Can't pull with no hands
 	if(restrained())
@@ -819,11 +829,19 @@ default behaviour is:
 	if(lying && !buckled && pull_damage() && A.has_gravity && (prob(getBruteLoss() * 200 / maxHealth)))
 		adjustBruteLoss(2)
 		visible_message("<span class='danger'>\The [src]'s [isSynthetic() ? "state" : "wounds"] worsen terribly from being dragged!</span>")
+<<<<<<< HEAD
 
 /mob/living/Moved(var/atom/oldloc, direct, forced, movetime)
 	. = ..()
 	handle_footstep(loc)
 
+=======
+
+/mob/living/Moved(var/atom/oldloc, direct, forced, movetime)
+	. = ..()
+	handle_footstep(loc)
+
+>>>>>>> 6de7439... Merge pull request #7082 from VOREStation/aro-moverefactor
 	if(pulling) // we were pulling a thing and didn't lose it during our move.
 		if(pulling.anchored || !isturf(pulling.loc))
 			stop_pulling()
@@ -1235,7 +1253,11 @@ default behaviour is:
 	//actually throw it!
 	src.visible_message("<span class='warning'>[src] has thrown [item].</span>")
 
+<<<<<<< HEAD
 	if((istype(src.loc, /turf/space)) || (src.lastarea?.has_gravity == 0))
+=======
+	if((isspace(src.loc)) || (src.lastarea?.has_gravity == 0))
+>>>>>>> 6de7439... Merge pull request #7082 from VOREStation/aro-moverefactor
 		src.inertia_dir = get_dir(target, src)
 		step(src, inertia_dir)
 

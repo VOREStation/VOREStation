@@ -15,6 +15,7 @@
 
  //No longer needed, but I'll leave it here incase we plan to re-use it.
 /mob/living/silicon/robot/movement_delay()
+<<<<<<< HEAD
 	. = speed
 
 	if(module_active && istype(module_active,/obj/item/borg/combat/mobility))
@@ -23,9 +24,19 @@
 	. += config.robot_delay
 
 	. += ..()
+=======
+	. = ..()
+
+	. += speed
+
+	if(module_active && istype(module_active,/obj/item/borg/combat/mobility))
+		. -= 3
+
+	. += config.robot_delay
+>>>>>>> 6de7439... Merge pull request #7082 from VOREStation/aro-moverefactor
 
 // NEW: Use power while moving.
-/mob/living/silicon/robot/SelfMove(turf/n, direct)
+/mob/living/silicon/robot/SelfMove(turf/n, direct, movetime)
 	if (!is_component_functioning("actuator"))
 		return 0
 

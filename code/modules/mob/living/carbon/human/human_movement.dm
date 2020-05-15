@@ -2,10 +2,19 @@
 
 /mob/living/carbon/human/movement_delay(oldloc, direct)
 
+<<<<<<< HEAD
 	. = 0
 
 	if (istype(loc, /turf/space))
 		return ..() - 1
+=======
+	. = ..()
+
+	if(species.slowdown)
+		. = species.slowdown
+
+	if (istype(loc, /turf/space)) return -1 // It's hard to be slowed down in space by... anything
+>>>>>>> 6de7439... Merge pull request #7082 from VOREStation/aro-moverefactor
 
 	if(species.slowdown)
 		. += species.slowdown
@@ -25,6 +34,7 @@
 	if(can_feel_pain())
 		if(halloss >= 10) . += (halloss / 10) //halloss shouldn't slow you down if you can't even feel it
 
+<<<<<<< HEAD
 	var/hungry = (500 - nutrition) / 5 //VOREStation Edit - Fixed 500 here instead of our huge MAX_NUTRITION
 	if (hungry >= 70) . += hungry/50
 
@@ -45,6 +55,10 @@
 				if(H.weight > L.weight)
 					. += 1
 	//VOREstation end
+=======
+	var/hungry = (MAX_NUTRITION - nutrition) / 5
+	if (hungry >= 70) . += hungry/50
+>>>>>>> 6de7439... Merge pull request #7082 from VOREStation/aro-moverefactor
 
 	if(istype(buckled, /obj/structure/bed/chair/wheelchair))
 		for(var/organ_name in list(BP_L_HAND, BP_R_HAND, BP_L_ARM, BP_R_ARM))
@@ -112,12 +126,15 @@
 		. -= chem_effects[CE_SPEEDBOOST]	// give 'em a buff on top.
 
 	. = max(HUMAN_LOWEST_SLOWDOWN, . + config.human_delay)	// Minimum return should be the same as force_max_speed
+<<<<<<< HEAD
 	. += ..()
 
 /mob/living/carbon/human/Moved()
 	. = ..()
 	if(embedded_flag)
 		handle_embedded_objects() //Moving with objects stuck in you can cause bad times.
+=======
+>>>>>>> 6de7439... Merge pull request #7082 from VOREStation/aro-moverefactor
 
 // This calculates the amount of slowdown to receive from items worn. This does NOT include species modifiers.
 // It is in a seperate place to avoid an infinite loop situation with dragging mobs dragging each other.

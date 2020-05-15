@@ -943,6 +943,13 @@
 	update_canmove()
 
 /mob/living/silicon/robot/mode()
+<<<<<<< HEAD
+=======
+	set name = "Activate Held Object"
+	set category = "IC"
+	set src = usr
+
+>>>>>>> 6de7439... Merge pull request #7082 from VOREStation/aro-moverefactor
 	if(!checkClickCooldown())
 		return
 

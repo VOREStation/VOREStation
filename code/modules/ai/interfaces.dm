@@ -76,6 +76,7 @@
 /mob/living/proc/IMove(turf/newloc, safety = TRUE)
 	if(!checkMoveCooldown())
 		return MOVEMENT_ON_COOLDOWN
+<<<<<<< HEAD
 
 	// Check to make sure moving to newloc won't actually kill us. e.g. we're a slime and trying to walk onto water.
 	if(istype(newloc))
@@ -94,9 +95,31 @@
 	var/delay_will_be = movement_delay()
 
 	. = SelfMove(newloc, get_dir(loc,newloc), delay_will_be) ? MOVEMENT_SUCCESSFUL : MOVEMENT_FAILED
+=======
+
+	// Check to make sure moving to newloc won't actually kill us. e.g. we're a slime and trying to walk onto water.
+	if(istype(newloc))
+		if(safety && !newloc.is_safe_to_enter(src))
+			return MOVEMENT_FAILED
+
+	// Move()ing to another tile successfully returns 32 because BYOND. Would rather deal with TRUE/FALSE-esque terms.
+	// Note that moving to the same tile will be 'successful'.
+	var/turf/old_T = get_turf(src)
+
+	// An adjacency check to avoid mobs phasing diagonally past windows.
+	// This might be better in general movement code but I'm too scared to add it, and most things don't move diagonally anyways.
+	if(!old_T.Adjacent(newloc))
+		return MOVEMENT_FAILED
+
+	. = SelfMove(newloc) ? MOVEMENT_SUCCESSFUL : MOVEMENT_FAILED
+>>>>>>> 6de7439... Merge pull request #7082 from VOREStation/aro-moverefactor
 	if(. == MOVEMENT_SUCCESSFUL)
 		set_dir(get_dir(old_T, newloc))
 		// Apply movement delay.
 		// Player movement has more factors but its all in the client and fixing that would be its own project.
+<<<<<<< HEAD
 		setMoveCooldown(delay_will_be)
+=======
+		setMoveCooldown(movement_delay())
+>>>>>>> 6de7439... Merge pull request #7082 from VOREStation/aro-moverefactor
 	return
