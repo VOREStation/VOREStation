@@ -65,11 +65,7 @@
 	return ..()
 
 ////////////////////////////////////////
-<<<<<<< HEAD
 /atom/movable/Move(atom/newloc, direct = 0, movetime)
-=======
-/atom/movable/Move(atom/newloc, direct = 0)
->>>>>>> 6571a10... Merge pull request #7052 from VOREStation/pol-moved
 	// Didn't pass enough info
 	if(!loc || !newloc)
 		return FALSE
@@ -108,10 +104,7 @@
 				var/dest_z = get_z(newloc)
 
 				// Do The Move
-<<<<<<< HEAD
 				glide_for(movetime)
-=======
->>>>>>> 6571a10... Merge pull request #7052 from VOREStation/pol-moved
 				loc = newloc
 				. = TRUE
 				
@@ -206,18 +199,13 @@
 
 	// If we moved, call Moved() on ourselves
 	if(.)
-<<<<<<< HEAD
 		Moved(oldloc, direct, FALSE, movetime)
-=======
-		Moved(oldloc, direct, FALSE)
->>>>>>> 6571a10... Merge pull request #7052 from VOREStation/pol-moved
 
 	// Update timers/cooldown stuff
 	move_speed = world.time - l_move_time
 	l_move_time = world.time
 	last_move = direct // The direction you last moved
 	// set_dir(direct) //Don't think this is necessary
-<<<<<<< HEAD
 
 //Called after a successful Move(). By this point, we've already moved
 /atom/movable/proc/Moved(atom/old_loc, direction, forced = FALSE, movetime)
@@ -227,15 +215,6 @@
 	if(riding_datum)
 		riding_datum.handle_vehicle_layer()
 		riding_datum.handle_vehicle_offsets()
-=======
-
-	// Handle any buckled mobs on this movable
-	if(has_buckled_mobs())
-		handle_buckled_mob_movement(oldloc,direct)
-
-//Called after a successful Move(). By this point, we've already moved
-/atom/movable/proc/Moved(atom/old_loc, direction, forced = FALSE)
->>>>>>> 6571a10... Merge pull request #7052 from VOREStation/pol-moved
 	return TRUE
 
 /atom/movable/set_dir(newdir)
@@ -291,11 +270,7 @@
 /atom/movable/proc/moveToNullspace()
 	return doMove(null)
 
-<<<<<<< HEAD
 /atom/movable/proc/doMove(atom/destination, direction, movetime)
-=======
-/atom/movable/proc/doMove(atom/destination)
->>>>>>> 6571a10... Merge pull request #7052 from VOREStation/pol-moved
 	var/atom/oldloc = loc
 	var/area/old_area = get_area(oldloc)
 	var/same_loc = oldloc == destination
@@ -304,12 +279,8 @@
 		var/area/destarea = get_area(destination)
 
 		// Do The Move
-<<<<<<< HEAD
 		glide_for(movetime)
 		last_move = isnull(direction) ? 0 : direction
-=======
-		last_move = 0
->>>>>>> 6571a10... Merge pull request #7052 from VOREStation/pol-moved
 		loc = destination
 		
 		// Unset this in case it was set in some other proc. We're no longer moving diagonally for sure.

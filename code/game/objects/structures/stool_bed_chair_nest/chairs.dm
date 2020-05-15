@@ -145,7 +145,6 @@
 	
 	playsound(src, 'sound/effects/roll.ogg', 100, 1)
 
-<<<<<<< HEAD
 /obj/structure/bed/chair/office/handle_buckled_mob_movement(atom/new_loc, direction, movetime)
 	for(var/A in buckled_mobs)
 		var/mob/living/occupant = A
@@ -153,15 +152,6 @@
 		occupant.Move(loc, direction, movetime)
 		occupant.buckled = src
 		if (occupant && (loc != occupant.loc))
-=======
-/obj/structure/bed/chair/office/handle_buckled_mob_movement(atom/new_loc, direction)
-	for(var/A in buckled_mobs)
-		var/mob/living/occupant = A
-		occupant.buckled = null
-		occupant.Move(src.loc)
-		occupant.buckled = src
-		if (occupant && (src.loc != occupant.loc))
->>>>>>> 6571a10... Merge pull request #7052 from VOREStation/pol-moved
 			if (propelled)
 				for (var/mob/O in src.loc)
 					if (O != occupant)
