@@ -61,6 +61,11 @@
 		else if(catwalk?.hatch_open)
 			var/pull_up_time = max(5 SECONDS + (src.movement_delay() * 10), 1)
 			to_chat(src, "<span class='notice'>You grab the edge of \the [catwalk] and start pulling yourself upward...</span>")
+			var/old_dest = destination
+			destination = get_step(destination, dir) // mob's dir
+			if(!destination?.Enter(src, old_dest))
+				to_chat(src, "<span class='notice'>There's something in the way up above in that direction, try another.</span>")
+				return 0
 			destination.audible_message("<span class='notice'>You hear something climbing up \the [catwalk].</span>")
 			if(do_after(src, pull_up_time))
 				to_chat(src, "<span class='notice'>You pull yourself up.</span>")
