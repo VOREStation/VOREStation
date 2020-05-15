@@ -178,6 +178,7 @@
 		add_fingerprint(user)
 	return M
 
+<<<<<<< HEAD
 /atom/movable/proc/handle_buckled_mob_movement(atom/old_loc, direct, movetime)
 	for(var/A in buckled_mobs)
 		var/mob/living/L = A
@@ -185,6 +186,14 @@
 			L.forceMove(loc, direct, movetime)
 			L.last_move = last_move
 			L.inertia_dir = last_move
+=======
+/atom/movable/proc/handle_buckled_mob_movement(atom/old_loc, direct)
+	for(var/A in buckled_mobs)
+		var/mob/living/L = A
+		L.forceMove(loc, direct)
+		L.last_move = last_move
+		L.inertia_dir = last_move
+>>>>>>> 6571a10... Merge pull request #7052 from VOREStation/pol-moved
 		
 		if(!buckle_dir)
 			L.set_dir(dir)
