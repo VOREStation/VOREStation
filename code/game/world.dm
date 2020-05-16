@@ -214,8 +214,8 @@ var/world_topic_spam_protect_time = world.timeofday
 		return list2params(positions)
 
 	else if(T == "revision")
-		if(revdata.revision)
-			return list2params(list(branch = revdata.branch, date = revdata.date, revision = revdata.revision))
+		if(GLOB.revdata.revision)
+			return list2params(list(branch = GLOB.revdata.branch, date = GLOB.revdata.date, revision = GLOB.revdata.revision))
 		else
 			return "unknown"
 
