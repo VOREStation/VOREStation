@@ -1154,3 +1154,15 @@
 		icon_state = "claws"
 		color_blend_mode = ICON_MULTIPLY
 		body_parts = list(BP_L_HAND,BP_R_HAND)
+
+	equine_snout //Why the long face? Works best with sergal bodytype.
+		name = "Equine Snout"
+		icon_state = "donkey"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_HEAD)
+
+	equine_nose
+		name = "Equine Nose"
+		icon_state = "dnose"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_HEAD)
