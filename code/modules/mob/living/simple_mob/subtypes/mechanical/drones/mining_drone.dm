@@ -32,7 +32,7 @@
 	movement_cooldown = 5
 	hovering = TRUE
 
-	base_attack_cooldown = 5
+	base_attack_cooldown = 2.5 SECONDS
 	projectiletype = /obj/item/projectile/energy/excavate
 	projectilesound = 'sound/weapons/pulse3.ogg'
 
