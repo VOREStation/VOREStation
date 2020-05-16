@@ -184,6 +184,7 @@ var/list/global_huds = list(
 
 	var/list/adding
 	var/list/other
+	var/list/miniobjs
 	var/list/obj/screen/hotkeybuttons
 
 	var/obj/screen/movable/action_button/hide_toggle/hide_actions_toggle
@@ -193,6 +194,8 @@ var/list/global_huds = list(
 	var/icon/ui_style
 	var/ui_color
 	var/ui_alpha
+	
+	var/list/minihuds = list()
 
 datum/hud/New(mob/owner)
 	mymob = owner
@@ -219,6 +222,7 @@ datum/hud/New(mob/owner)
 	hotkeybuttons = null
 //	item_action_list = null // ?
 	mymob = null
+	qdel_null(minihuds)
 
 /datum/hud/proc/hidden_inventory_update()
 	if(!mymob) return
@@ -324,6 +328,26 @@ datum/hud/New(mob/owner)
 	HUD.ui_style = ui_style2icon(client?.prefs?.UI_style)
 	HUD.ui_color = client?.prefs?.UI_style_color
 	HUD.ui_alpha = client?.prefs?.UI_style_alpha
+
+/datum/hud/proc/apply_minihud(var/datum/mini_hud/MH)
+	if(MH in minihuds)
+		return
+	minihuds += MH
+	if(mymob.client)
+		mymob.client.screen -= miniobjs
+	miniobjs += MH.get_screen_objs()
+	if(mymob.client)
+		mymob.client.screen += miniobjs
+
+/datum/hud/proc/remove_minihud(var/datum/mini_hud/MH)
+	if(!(MH in minihuds))
+		return
+	minihuds -= MH
+	if(mymob.client)
+		mymob.client.screen -= miniobjs
+	miniobjs -= MH.get_screen_objs()
+	if(mymob.client)
+		mymob.client.screen += miniobjs
 
 //Triggered when F12 is pressed (Unless someone changed something in the DMF)
 /mob/verb/button_pressed_F12(var/full = 0 as null)
