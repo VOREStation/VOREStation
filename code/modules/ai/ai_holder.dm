@@ -174,11 +174,7 @@
 
 // For setting the stance WITHOUT processing it
 /datum/ai_holder/proc/set_stance(var/new_stance)
-<<<<<<< HEAD
 	if(holder?.key && !autopilot)
-=======
-	if(holder.key && !autopilot)
->>>>>>> 8c938c5... Merge pull request #7120 from Verkister/patch-37
 		return
 	if(stance == new_stance)
 		ai_log("set_stance() : Ignoring change stance to same stance request.", AI_LOG_INFO)
