@@ -60,5 +60,5 @@
 	var/dev_msg = english_list(dev_keys, "-None-")
 	var/other_msg = english_list(other_keys, "-None-")
 
-	message += "**Admins:** [admin_msg]\n**Mods/GMs:** [mod_msg]\n **Devs:** [dev_msg]\n**Other:** [other_msg]\n**Total:** [count] online"
+	message += "**Admins:** [admin_msg]\n**Mods/GMs:** [mod_msg]\n**Devs:** [dev_msg]\n**Other:** [other_msg]\n**Total:** [count] online"
 	return message
