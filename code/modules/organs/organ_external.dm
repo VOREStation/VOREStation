@@ -353,13 +353,21 @@
 				else
 					edge_eligible = 1
 
-			if(edge_eligible && brute >= max_damage / DROPLIMB_THRESHOLD_EDGE && prob(brute))
+			//VOREStation Add
+			if(nonsolid && damage >= max_damage)
+				droplimb(TRUE, DROPLIMB_EDGE)
+			else if (robotic >= ORGAN_NANOFORM && damage >= max_damage)
+				droplimb(TRUE, DROPLIMB_BURN)
+			//VOREStation Add End
+			//VOREStation Edit - We have special droplimb handling for prom/proteans
+			else if(edge_eligible && brute >= max_damage / DROPLIMB_THRESHOLD_EDGE && prob(brute))
 				droplimb(0, DROPLIMB_EDGE)
-			else if((burn >= max_damage / DROPLIMB_THRESHOLD_DESTROY) || (nonsolid && burn >= 5 && (burn_dam + burn >= max_damage)) && prob(burn/3))
+			else if((burn >= max_damage / DROPLIMB_THRESHOLD_DESTROY) && prob(burn*0.33))
 				droplimb(0, DROPLIMB_BURN)
-			else if((brute >= max_damage / DROPLIMB_THRESHOLD_DESTROY && prob(brute)) || (nonsolid && brute >= 5 && (brute_dam + brute >= max_damage) && prob(brute/2)))
+			else if((brute >= max_damage / DROPLIMB_THRESHOLD_DESTROY && prob(brute)))
 				droplimb(0, DROPLIMB_BLUNT)
-			else if(brute >= max_damage / DROPLIMB_THRESHOLD_TEAROFF && prob(brute/3))
+			//VOREStation Edit End
+			else if(brute >= max_damage / DROPLIMB_THRESHOLD_TEAROFF && prob(brute*0.33))
 				droplimb(0, DROPLIMB_EDGE)
 			else if(spread_dam && owner && parent && (brute_overflow || burn_overflow) && (brute_overflow >= 5 || burn_overflow >= 5) && !permutation) //No infinite damage loops.
 				if(children && children.len)
@@ -511,7 +519,8 @@ This function completely restores a damaged organ to perfect condition.
 		owner.custom_pain("You feel something rip in your [name]!", 50)
 
 //Burn damage can cause fluid loss due to blistering and cook-off
-	if((damage > 5 || damage + burn_dam >= 15) && type == BURN && (robotic < ORGAN_ROBOT) && !(species.flags & NO_BLOOD) && !istype(owner.loc,/mob/living) && !istype(owner.loc,/obj/item/device/dogborg/sleeper)) // VOREStation Edit
+
+	if((damage > 5 || damage + burn_dam >= 15) && type == BURN && (robotic < ORGAN_ROBOT) && !(species.flags & NO_BLOOD))
 		var/fluid_loss = 0.4 * (damage/(owner.getMaxHealth() - config.health_threshold_dead)) * owner.species.blood_volume*(1 - BLOOD_VOLUME_SURVIVE/100)
 		owner.remove_blood(fluid_loss)
 
@@ -826,17 +835,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 	else
 		tbrute = 3
 	return "[tbrute][tburn]"
-
-/obj/item/organ/external/take_damage()
-	..()
-
-	if(!cannot_amputate)
-		if(nonsolid && damage >= max_damage)
-			droplimb(TRUE, DROPLIMB_EDGE)
-		//VOREStation Add Start
-		if(robotic >= ORGAN_NANOFORM && damage >= max_damage)
-			droplimb(TRUE, DROPLIMB_BURN)
-		//VOREStation Add End
 
 /****************************************************
 			   DISMEMBERMENT
