@@ -1220,6 +1220,7 @@
 				healths_ma.overlays += health_images
 				healths.appearance = healths_ma
 
+<<<<<<< HEAD
 
 		var/fat_alert = /obj/screen/alert/fat
 		var/hungry_alert = /obj/screen/alert/hungry
@@ -1245,6 +1246,45 @@
 				clear_alert("nutrition")
 			if(150 to 250)
 				throw_alert("nutrition", hungry_alert)
+=======
+		if(nutrition_icon)
+			var/prefix = isSynthetic() ? "c" : null
+			switch(nutrition)
+				if(450 to INFINITY)				nutrition_icon.icon_state = "[prefix]nutrition0"
+				if(350 to 450)					nutrition_icon.icon_state = "[prefix]nutrition1"
+				if(250 to 350)					nutrition_icon.icon_state = "[prefix]nutrition2"
+				if(150 to 250)					nutrition_icon.icon_state = "[prefix]nutrition3"
+				else							nutrition_icon.icon_state = "[prefix]nutrition4"
+
+		if(pressure)
+			pressure.icon_state = "pressure[pressure_alert]"
+
+//			if(rest)	//Not used with new UI
+//				if(resting || lying || sleeping)		rest.icon_state = "rest1"
+//				else									rest.icon_state = "rest0"
+		if(toxin)
+			if(hal_screwyhud == 4 || (phoron_alert && !does_not_breathe))	toxin.icon_state = "tox1"
+			else									toxin.icon_state = "tox0"
+		if(oxygen)
+			if(hal_screwyhud == 3 || (oxygen_alert && !does_not_breathe))	oxygen.icon_state = "oxy1"
+			else									oxygen.icon_state = "oxy0"
+		if(fire)
+			if(fire_alert)							fire.icon_state = "fire[fire_alert]" //fire_alert is either 0 if no alert, 1 for cold and 2 for heat.
+			else									fire.icon_state = "fire0"
+
+		if(bodytemp)
+			if (!species)
+				switch(bodytemperature) //310.055 optimal body temp
+					if(370 to INFINITY)		bodytemp.icon_state = "temp4"
+					if(350 to 370)			bodytemp.icon_state = "temp3"
+					if(335 to 350)			bodytemp.icon_state = "temp2"
+					if(320 to 335)			bodytemp.icon_state = "temp1"
+					if(300 to 320)			bodytemp.icon_state = "temp0"
+					if(295 to 300)			bodytemp.icon_state = "temp-1"
+					if(280 to 295)			bodytemp.icon_state = "temp-2"
+					if(260 to 280)			bodytemp.icon_state = "temp-3"
+					else					bodytemp.icon_state = "temp-4"
+>>>>>>> 7061aaf... Merge pull request #7151 from VOREStation/pol-hungrrr
 			else
 				throw_alert("nutrition", starving_alert)
 
