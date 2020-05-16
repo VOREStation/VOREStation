@@ -337,11 +337,7 @@
 		return
 */
 
-<<<<<<< HEAD
-/obj/item/clothing/gloves/mob_can_equip(mob/user, slot, disable_warning = 0)
-=======
 /obj/item/clothing/gloves/mob_can_equip(mob/user, slot, disable_warning = FALSE)
->>>>>>> fcdbc41f... Fixes Runtime in ,: bad arg name 'disable_warning' (#7162)
 	var/mob/living/carbon/human/H = user
 
 	if(slot && slot == slot_gloves)
