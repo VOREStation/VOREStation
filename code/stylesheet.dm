@@ -121,4 +121,13 @@ BIG IMG.icon 			{width: 32px; height: 32px;}
 .debug_debug					{color:#0000FF;}
 .debug_trace					{color:#888888;}
 
+.black					{color: #000000;}
+.darkgray				{color: #808080;}
+.gray					{color: #A9A9A9;}
+.red					{color: #FF0000;}
+.orange					{color: #FF8C00;}
+.blue					{color: #0000FF;}
+.green					{color: #00DD00;}
+
+
 </style>"}

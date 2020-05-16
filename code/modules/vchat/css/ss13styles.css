@@ -165,12 +165,27 @@ h1.alert, h2.alert		{color: #000000;}
 .bug					{color: #9e9e39;}
 .vox					{color: #AA00AA;}
 .promethean				{color: #5A5A5A; font-family:"Comic Sans MS","Comic Sans",cursive;}
-.inverted .promethean	{color: #A5A5A5; font-family:"Comic Sans MS","Comic Sans",cursive;}
+.inverted .promethean			{color: #A5A5A5; font-family:"Comic Sans MS","Comic Sans",cursive;}
 .zaddat					{color: #941C1C;}
 .rough					{font-family: "Trebuchet MS", cursive, sans-serif;}
 .say_quote				{font-family: Georgia, Verdana, sans-serif;}
 .terminus				{font-family: "Times New Roman", Times, serif, sans-serif}
 .interface				{color: #330033;}
+
+.black					{color: #000000;}
+.darkgray				{color: #808080;}
+.gray					{color: #A9A9A9;}
+.red					{color: #FF0000;}
+.orange					{color: #FF8C00;}
+.blue					{color: #0000FF;}
+.green					{color: #00DD00;}
+.inverted .black			{color: #606060;}
+.inverted .darkgray			{color: #808080;}
+.inverted .gray				{color: #A9A9A9;}
+.inverted .red				{color: #FF4444;}
+.inverted .orange			{color: #FF8C00;}
+.inverted .blue				{color: #6666FF;}
+.inverted .green			{color: #44FF44;}
 
 /*BIG IMG.icon 			{width: 32px; height: 32px;}*/
 img.icon				{vertical-align: middle; max-height: 1em;}
