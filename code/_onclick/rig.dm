@@ -63,11 +63,7 @@
 	return loc == card
 
 /mob/living/proc/HardsuitClickOn(var/atom/A, var/alert_ai = 0)
-<<<<<<< HEAD
 	if(!can_use_rig())
-=======
-	if(!can_use_rig() || !checkClickCooldown())
->>>>>>> 6de7439... Merge pull request #7082 from VOREStation/aro-moverefactor
 		return 0
 	var/obj/item/weapon/rig/rig = get_rig()
 	if(istype(rig) && !rig.offline && rig.selected_module)

@@ -1658,11 +1658,7 @@
 			var/obj/item/organ/external/e = organs_by_name[name]
 			if(!e)
 				continue
-<<<<<<< HEAD
-			if((e.status & ORGAN_BROKEN && (!e.splinted || (e.splinted && e.splinted in e.contents && prob(30))) || e.status & ORGAN_BLEEDING) && (getBruteLoss() + getFireLoss() >= 100))
-=======
 			if((e.status & ORGAN_BROKEN && (!e.splinted || (e.splinted in e.contents && prob(30))) || e.status & ORGAN_BLEEDING) && (getBruteLoss() + getFireLoss() >= 100))
->>>>>>> 6de7439... Merge pull request #7082 from VOREStation/aro-moverefactor
 				return 1
 	else
 		return ..()
@@ -1683,13 +1679,9 @@
 			if(istype(loc, /turf/simulated))
 				var/turf/T = loc
 				T.add_blood(src)
-<<<<<<< HEAD
 	. = ..()
 
 /mob/living/carbon/human/reduce_cuff_time()
 	if(istype(gloves, /obj/item/clothing/gloves/gauntlets/rig))
 		return 2
 	return ..()
-=======
-	. = ..()
->>>>>>> 6de7439... Merge pull request #7082 from VOREStation/aro-moverefactor

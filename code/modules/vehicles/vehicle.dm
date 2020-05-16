@@ -42,11 +42,6 @@
 	var/load_offset_y = 0		//pixel_y offset for item overlay
 	var/mob_offset_y = 0		//pixel_y offset for mob overlay
 
-<<<<<<< HEAD
-	//var/datum/riding/riding_datum = null //VOREStation Edit - Moved to movables.
-
-=======
->>>>>>> 6de7439... Merge pull request #7082 from VOREStation/aro-moverefactor
 //-------------------------------------------
 // Standard procs
 //-------------------------------------------
