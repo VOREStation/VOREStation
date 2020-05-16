@@ -1,7 +1,12 @@
 /obj/vehicle/train/engine
 	name = "cargo train tug"
 	desc = "A ridable electric car designed for pulling cargo trolleys."
+<<<<<<< HEAD
 	icon = 'icons/obj/vehicles_vr.dmi'	//VOREStation Edit
+=======
+	description_info = "Use ctrl-click to quickly toggle the engine if you're adjacent (only when vehicle is stationary). Alt-click will grab the keys, if present."
+	icon = 'icons/obj/vehicles.dmi'
+>>>>>>> e09f035... Merge pull request #7115 from VOREStation/pol-veh
 	icon_state = "cargo_engine"
 	on = 0
 	powered = 1
