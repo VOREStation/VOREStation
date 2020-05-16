@@ -268,8 +268,8 @@
 		// Damage an internal organ
 		if(internal_organs && internal_organs.len)
 			var/obj/item/organ/I = pick(internal_organs)
-			I.take_damage(brute / 2)
-			brute -= brute / 2
+			brute *= 0.5
+			I.take_damage(brute)
 
 	if(status & ORGAN_BROKEN && brute)
 		jostle_bone(brute)
@@ -370,12 +370,16 @@
 			else if(brute >= max_damage / DROPLIMB_THRESHOLD_TEAROFF && prob(brute*0.33))
 				droplimb(0, DROPLIMB_EDGE)
 			else if(spread_dam && owner && parent && (brute_overflow || burn_overflow) && (brute_overflow >= 5 || burn_overflow >= 5) && !permutation) //No infinite damage loops.
+				var/brute_third = brute_overflow * 0.33
+				var/burn_third = burn_overflow * 0.33	
 				if(children && children.len)
+					var/brute_on_children = brute_third / children.len
+					var/burn_on_children = burn_third / children.len
 					spawn()
 						for(var/obj/item/organ/external/C in children)
 							if(!C.is_stump())
-								C.take_damage(brute_overflow / children.len / 3, burn_overflow / children.len / 3, 0, 0, null, forbidden_limbs, 1) //Splits the damage to each individual 'child', incase multiple exist.
-				parent.take_damage(brute_overflow / 3, burn_overflow / 3, 0, 0, null, forbidden_limbs, 1)
+								C.take_damage(brute_on_children, burn_on_children, 0, 0, null, forbidden_limbs, 1) //Splits the damage to each individual 'child', incase multiple exist.
+				parent.take_damage(brute_third, burn_third, 0, 0, null, forbidden_limbs, 1)
 
 	return update_icon()
 
