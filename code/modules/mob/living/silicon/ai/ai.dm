@@ -483,6 +483,19 @@ var/list/ai_verbs_default = list(
 		else
 			to_chat(src, "<font color='red'>System error. Cannot locate [html_decode(href_list["trackname"])].</font>")
 		return
+		
+	if(href_list["trackbot"])
+		var/mob/living/bot/target = locate(href_list["trackbot"]) in mob_list
+		if(target)
+			ai_actual_track(target)
+		else
+			to_chat(src, "<span class='warning'>Target is not on or near any active cameras on the station.</span>")
+		return
+
+	if(href_list["open"])
+		var/mob/target = locate(href_list["open"]) in mob_list
+		if(target)
+			open_nearest_door(target)
 
 	return
 
@@ -825,6 +838,39 @@ var/list/ai_verbs_default = list(
 /mob/living/silicon/ai/proc/is_in_chassis()
 	return istype(loc, /turf)
 
+/mob/living/silicon/ai/proc/open_nearest_door(mob/living/target) // Rykka ports AI opening doors
+	if(!istype(target))
+		return
+
+	if(target && ai_actual_track(target))
+		var/obj/machinery/door/airlock/A = null
+
+		var/dist = -1
+		for(var/obj/machinery/door/airlock/D in range(3, target))
+			if(!D.density)
+				continue
+
+			var/curr_dist = get_dist(D, target)
+
+			if(dist < 0)
+				dist = curr_dist
+				A = D
+			else if(dist > curr_dist)
+				dist = curr_dist
+				A = D
+
+		if(istype(A))
+			switch(alert(src, "Do you want to open \the [A] for [target]?", "Doorknob_v2a.exe", "Yes", "No"))
+				if("Yes")
+					A.AIShiftClick()
+					to_chat(src, "<span class='notice'>You open \the [A] for [target].</span>")
+				else
+					to_chat(src, "<span class='warning'>You deny the request.</span>")
+		else
+			to_chat(src, "<span class='warning'>Unable to locate an airlock near [target].</span>")
+
+	else
+		to_chat(src, "<span class='warning'>Target is not on or near any active cameras on the station.</span>")
 
 /mob/living/silicon/ai/ex_act(var/severity)
 	if(severity == 1.0)
@@ -906,15 +952,20 @@ var/list/ai_verbs_default = list(
 		jobname = "Unknown"
 
 	var/track = ""
-	if(changed_voice)
-		if(impersonating)
+	if(changed_voice)  // They have a fake name
+		if(impersonating) // And we found a mob with that name above, track them instead
 			track = "<a href='byond://?src=\ref[src];trackname=[html_encode(speaker_name)];track=\ref[impersonating]'>[speaker_name] ([jobname])</a>"
-		else
+			track += "<a href='byond://?src=\ref[src];trackname=[html_encode(speaker_name)];open=\ref[impersonating]'>\[OPEN\]</a>" // Rykka ports AI opening doors
+		else // We couldn't find a mob with their fake name, don't track at all
 			track = "[speaker_name] ([jobname])"
-	else
-		track = "<a href='byond://?src=\ref[src];trackname=[html_encode(speaker_name)];track=\ref[speaker]'>[speaker_name] ([jobname])</a>"
+	else // Not faking their name
+		if(istype(speaker, /mob/living/bot)) // It's a bot, and no fake name! (That'd be kinda weird.) :p
+			track = "<a href='byond://?src=\ref[src];trackbot=\ref[speaker]'>[speaker_name] ([jobname])</a>"
+		else // It's not a bot, and no fake name!
+			track = "<a href='byond://?src=\ref[src];trackname=[html_encode(speaker_name)];track=\ref[speaker]'>[speaker_name] ([jobname])</a>"
+			track += "<a href='byond://?src=\ref[src];trackname=[html_encode(speaker_name)];open=\ref[speaker]'>\[OPEN\]</a>" // Rykka ports AI opening doors
 
-	return track
+	return track // Feed variable back to AI
 
 /mob/living/silicon/ai/proc/relay_speech(mob/living/M, list/message_pieces, verb)
 	var/message = combine_message(message_pieces, verb, M)
