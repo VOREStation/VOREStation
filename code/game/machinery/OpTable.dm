@@ -53,15 +53,6 @@
 		return TRUE
 	return FALSE
 
-/obj/machinery/optable/MouseDrop_T(obj/O as obj, mob/user as mob)
-
-	if((!(istype(O, /obj/item/weapon)) || user.get_active_hand() != O))
-		return
-	user.drop_item()
-	if(O.loc != src.loc)
-		step(O, get_dir(O, src))
-	return
-
 /obj/machinery/optable/proc/check_victim()
 	if(locate(/mob/living/carbon/human, src.loc))
 		var/mob/living/carbon/human/M = locate(/mob/living/carbon/human, src.loc)
@@ -102,40 +93,43 @@
 	else
 		icon_state = "table2-idle"
 
-/obj/machinery/optable/MouseDrop_T(mob/target, mob/user)
-
-	var/mob/living/M = user
-	if(user.stat || user.restrained() || !check_table(user) || !iscarbon(target))
-		return
-	if(istype(M))
-		take_victim(target,user)
-	else
+/obj/machinery/optable/MouseDrop_T(mob/living/carbon/target, mob/living/user)
+	if(!istype(target) || !istype(user))
 		return ..()
 
+	if(!Adjacent(target) || !Adjacent(user))
+		return ..()
+	
+	if(user.incapacitated() || !check_table(target, user))
+		return ..()
+
+	take_victim(target, user)
+	
 /obj/machinery/optable/verb/climb_on()
 	set name = "Climb On Table"
 	set category = "Object"
 	set src in oview(1)
 
-	if(usr.stat || !ishuman(usr) || usr.restrained() || !check_table(usr))
+	var/mob/living/user = usr
+	if(!istype(user) || user.incapacitated() || !check_table(user, user))
 		return
 
-	take_victim(usr,usr)
+	take_victim(user, user)
 
-/obj/machinery/optable/attackby(obj/item/weapon/W as obj, mob/living/carbon/user as mob)
+/obj/machinery/optable/attackby(obj/item/weapon/W, mob/living/carbon/user)
 	if(istype(W, /obj/item/weapon/grab))
 		var/obj/item/weapon/grab/G = W
-		if(iscarbon(G.affecting) && check_table(G.affecting))
-			take_victim(G.affecting,usr)
+		if(iscarbon(G.affecting) && check_table(G.affecting, user))
+			take_victim(G.affecting, user)
 			qdel(W)
 			return
 
-/obj/machinery/optable/proc/check_table(mob/living/carbon/patient as mob)
+/obj/machinery/optable/proc/check_table(mob/living/carbon/patient, mob/living/user)
 	check_victim()
 	if(victim && get_turf(victim) == get_turf(src) && victim.lying)
-		to_chat(usr, "<span class='warning'>\The [src] is already occupied!</span>")
+		to_chat(user, "<span class='warning'>\The [src] is already occupied!</span>")
 		return 0
 	if(patient.buckled)
-		to_chat(usr, "<span class='notice'>Unbuckle \the [patient] first!</span>")
+		to_chat(user, "<span class='notice'>Unbuckle \the [patient] first!</span>")
 		return 0
 	return 1

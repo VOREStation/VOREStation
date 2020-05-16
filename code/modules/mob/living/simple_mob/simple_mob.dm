@@ -193,7 +193,7 @@
 	. = ..()
 	to_chat(src,"<b>You are \the [src].</b> [player_msg]")
 
-/mob/living/simple_mob/SelfMove(turf/n, direct)
+/mob/living/simple_mob/SelfMove(turf/n, direct, movetime)
 	var/turf/old_turf = get_turf(src)
 	var/old_dir = dir
 	. = ..()

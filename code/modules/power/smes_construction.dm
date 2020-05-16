@@ -58,7 +58,7 @@
 // Pre-installed and pre-charged SMES hidden from the station, for use in submaps.
 /obj/machinery/power/smes/buildable/point_of_interest/Initialize()
 	. = ..()
-	charge = 1e7 // Should be enough for an individual POI.
+	charge = capacity // Should be enough for an individual POI.
 	RCon = FALSE
 	input_level = input_level_max
 	output_level = output_level_max

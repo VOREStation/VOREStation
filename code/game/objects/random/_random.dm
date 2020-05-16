@@ -11,15 +11,7 @@
 	. = ..()
 	if (!prob(spawn_nothing_percentage))
 		spawn_item()
-	Random_SafeDestroy(0)
-
-// This function should, theoretically, guarantee the deletion of the random object. Not all of them destroy themselves for some reason, especially if created through non-standard means.
-/obj/random/proc/Random_SafeDestroy(var/recursion_level)
-	set waitfor = FALSE
-	sleep(30)
-	qdel(src)
-	if(src && recursion_level < 5)
-		Random_SafeDestroy(recursion_level + 1)
+	return INITIALIZE_HINT_QDEL
 
 // this function should return a specific item to spawn
 /obj/random/proc/item_to_spawn()

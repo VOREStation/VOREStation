@@ -1,6 +1,0 @@
-author: atlantiscze
-
-delete-after: True
-
-changes: 
-  - tweak: "Supermatter delamination effects have been tweaked. Delamination is considerably less laggy, and less directly destructive. Instead, it causes larger health hazard and secondary engineering problems such as power outage or partial damage of solar arrays."

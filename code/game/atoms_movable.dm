@@ -21,7 +21,7 @@
 	var/icon_rotation = 0 // Used to rotate icons in update_transform()
 	var/old_x = 0
 	var/old_y = 0
-	var/datum/riding/riding_datum //VOREStation Add - Moved from /obj/vehicle
+	var/datum/riding/riding_datum = null
 	var/does_spin = TRUE // Does the atom spin when thrown (of course it does :P)
 	var/movement_type = NONE
 	

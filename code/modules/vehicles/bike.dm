@@ -1,6 +1,7 @@
 /obj/vehicle/bike
 	name = "space-bike"
 	desc = "Space wheelies! Woo!"
+	description_info = "Use ctrl-click to quickly toggle the engine if you're adjacent (only when vehicle is stationary). Alt-click will similarly toggle the kickstand."
 	icon = 'icons/obj/bike.dmi'
 	icon_state = "bike_off"
 	dir = SOUTH

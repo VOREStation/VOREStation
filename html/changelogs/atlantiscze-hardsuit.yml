@@ -1,6 +1,0 @@
-author: atlantiscze
-
-delete-after: True
-
-changes: 
-  - rscadd: "Hardsuits now allow backpacks to be carried in storage slot. This is limited to hardsuits which are worn on the back slot."

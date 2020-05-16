@@ -36,8 +36,9 @@
 		alert = new type
 
 	if(new_master)
-		alert.icon_state = "template" // blank, so our icon is presented
+		alert.icon_state = "itembased"
 		var/image/I = image(icon = new_master.icon, icon_state = new_master.icon_state, dir = SOUTH)
+		I.plane = PLANE_PLAYER_HUD_ABOVE
 		alert.add_overlay(I)
 		alert.master = new_master
 	else
@@ -220,6 +221,11 @@ The box in your backpack has an oxygen tank and gas mask in it."
 or something covering your eyes."
 	icon_state = "blind"
 
+/obj/screen/alert/confused
+	name = "Confused"
+	desc = "You're confused, and may stumble into things! This may be from concussive effects, drugs, or dizzyness. Walking will help reduce incidents."
+	icon_state = "confused"
+
 /obj/screen/alert/high
 	name = "High"
 	desc = "Whoa man, you're tripping balls! Careful you don't get addicted... if you aren't already."
@@ -312,12 +318,14 @@ Recharging stations are available in robotics, the dormitory bathrooms, and the 
 	name = "Hacked"
 	desc = "Hazardous non-standard equipment detected. Please ensure any usage of this equipment is in line with unit's laws, if any."
 	icon_state = "hacked"
+	no_underlay = TRUE
 
 /obj/screen/alert/locked
 	name = "Locked Down"
 	desc = "Unit has been remotely locked down. Usage of a Robotics Control Console like the one in the Research Director's \
 office by your AI master or any qualified human may resolve this matter. Robotics may provide further assistance if necessary."
 	icon_state = "locked"
+	no_underlay = TRUE
 
 /obj/screen/alert/newlaw
 	name = "Law Update"
@@ -325,6 +333,7 @@ office by your AI master or any qualified human may resolve this matter. Robotic
 so as to remain in compliance with the most up-to-date laws."
 	icon_state = "newlaw"
 	timeout = 300
+	no_underlay = TRUE
 
 //MECHS
 
@@ -397,12 +406,13 @@ so as to remain in compliance with the most up-to-date laws."
 	for(var/i = 1, i <= alerts.len, i++)
 		var/obj/screen/alert/alert = alerts[alerts[i]]
 		
-		if(alert.icon_state in cached_icon_states(ui_style)) // prevents "" state from attempting matches
+		if(alert.icon_state in cached_icon_states(ui_style))
 			alert.icon = ui_style
 		
 		else if(!alert.no_underlay)
 			var/image/I = image(icon = ui_style, icon_state = "template")
 			I.color = ui_color
+			I.alpha = ui_alpha
 			alert.underlays = list(I)
 		
 		switch(i)

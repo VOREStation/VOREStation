@@ -146,7 +146,7 @@
 		//VOREStation Add
 		if(!job.player_has_enough_playtime(user.client))
 			var/available_in_hours = job.available_in_playhours(user.client)
-			. += "<del>[rank]</del></td></a><td> \[IN [(available_in_hours)] DEPTHOURS]</td></tr>"
+			. += "<del>[rank]</del></td></a><td> \[IN [round(available_in_hours, 0.1)] DEPTHOURS]</td></tr>"
 			continue
 		//VOREStation Add End
 		if(job.minimum_character_age && user.client && (user.client.prefs.age < job.minimum_character_age))

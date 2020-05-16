@@ -42,8 +42,6 @@
 	var/load_offset_y = 0		//pixel_y offset for item overlay
 	var/mob_offset_y = 0		//pixel_y offset for mob overlay
 
-	//var/datum/riding/riding_datum = null //VOREStation Edit - Moved to movables.
-
 //-------------------------------------------
 // Standard procs
 //-------------------------------------------

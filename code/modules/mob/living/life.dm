@@ -154,6 +154,9 @@
 /mob/living/proc/handle_confused()
 	if(confused)
 		AdjustConfused(-1)
+		throw_alert("confused", /obj/screen/alert/confused)
+	else
+		clear_alert("confused")
 	return confused
 
 /mob/living/proc/handle_disabilities()

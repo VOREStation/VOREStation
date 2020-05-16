@@ -1,30 +1,43 @@
 /obj/screen/ghost
 	icon = 'icons/mob/screen_ghost.dmi'
 
-/obj/screen/ghost/MouseEntered()
+/obj/screen/ghost/MouseEntered(location,control,params)
 	flick(icon_state + "_anim", src)
+	openToolTip(usr, src, params, title = name, content = desc)
+
+/obj/screen/ghost/MouseExited()
+	closeToolTip(usr)
+
+/obj/screen/ghost/Click()
+	closeToolTip(usr)
 
 /obj/screen/ghost/jumptomob
 	name = "Jump to mob"
+	desc = "Pick a mob from a list to jump to."
 	icon_state = "jumptomob"
 
 /obj/screen/ghost/jumptomob/Click()
+	..()
 	var/mob/observer/dead/G = usr
 	G.jumptomob()
 
 /obj/screen/ghost/orbit
 	name = "Orbit"
+	desc = "Pick a mob to follow and orbit."
 	icon_state = "orbit"
 
 /obj/screen/ghost/orbit/Click()
+	..()
 	var/mob/observer/dead/G = usr
 	G.follow()
 
 /obj/screen/ghost/reenter_corpse
 	name = "Reenter corpse"
+	desc = "Only applicable if you HAVE a corpse..."
 	icon_state = "reenter_corpse"
 
 /obj/screen/ghost/reenter_corpse/Click()
+	..()
 	var/mob/observer/dead/G = usr
 	G.reenter_corpse()
 
@@ -33,30 +46,37 @@
 	icon_state = "teleport"
 
 /obj/screen/ghost/teleport/Click()
+	..()
 	var/mob/observer/dead/G = usr
 	G.dead_tele()
 
 /obj/screen/ghost/pai
-	name = "pAI Candidate"
+	name = "pAI Alert"
+	desc = "Ping all the unoccupied pAI devices in the world."
 	icon_state = "pai"
 
 /obj/screen/ghost/pai/Click()
+	..()
 	var/mob/observer/dead/G = usr
 	G.paialert()
 
 /obj/screen/ghost/up
 	name = "Move Upwards"
+	desc = "Move up a z-level."
 	icon_state = "up"
 
 /obj/screen/ghost/up/Click()
+	..()
 	var/mob/observer/dead/G = usr
 	G.zMove(UP)
 
 /obj/screen/ghost/down
 	name = "Move Downwards"
+	desc = "Move down a z-level."
 	icon_state = "down"
 
 /obj/screen/ghost/down/Click()
+	..()
 	var/mob/observer/dead/G = usr
 	G.zMove(DOWN)
 

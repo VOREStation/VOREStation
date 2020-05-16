@@ -93,6 +93,7 @@
 	// Wiring! How exciting.
 	var/datum/wires/rig/wires
 	var/datum/effect/effect/system/spark_spread/spark_system
+	var/datum/mini_hud/rig/minihud
 
 /obj/item/weapon/rig/examine()
 	. = ..()
@@ -188,6 +189,7 @@
 		START_PROCESSING(SSobj, src)
 	else
 		STOP_PROCESSING(SSobj, src)
+		QDEL_NULL(minihud) // Just in case we get removed some other way
 
 	// If we've lost any parts, grab them back.
 	var/mob/living/M
@@ -363,6 +365,11 @@
 
 	// Success!
 	canremove = seal_target
+	if(M.hud_used)
+		if(canremove)
+			QDEL_NULL(minihud)
+		else
+			minihud = new (M.hud_used, src)
 	to_chat(M, "<span class='notice'><b>Your entire suit [canremove ? "loosens as the components relax" : "tightens around you as the components lock into place"].</b></span>")
 	M.client.screen -= booting_L
 	qdel(booting_L)

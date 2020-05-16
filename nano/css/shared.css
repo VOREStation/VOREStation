@@ -663,7 +663,15 @@ th.Silicon {
 	font-weight: bold;
 	color: #ffffff;
 }
-/* Damage colors for crew monitoring computer */
+/* Damage/health colors for crew monitoring computer */
+
+.dead {
+    color: red;
+}
+
+.alive {
+    color: #7cfc00;
+}
 
 .burn {
     color: orange;
@@ -674,7 +682,7 @@ th.Silicon {
 }
 
 .toxin {
-    color: green;
+    color: lime;
 }
 
 .oxyloss {

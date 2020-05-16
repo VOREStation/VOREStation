@@ -8,7 +8,10 @@
 		return !P.can_hit_target(src, P.permutated, src == P.original, TRUE)
 	return (!mover.density || !density || lying)
 
-/mob/living/SelfMove(turf/n, direct)
+/mob/CanZASPass(turf/T, is_zone)
+	return ATMOS_PASS_YES
+
+/mob/living/SelfMove(turf/n, direct, movetime)
 	// If on walk intent, don't willingly step into hazardous tiles.
 	// Unless the walker is confused.
 	if(m_intent == "walk" && confused <= 0)
