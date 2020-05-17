@@ -55,6 +55,10 @@ var/global/datum/controller/subsystem/ticker/ticker
 /datum/controller/subsystem/ticker/Initialize()
 	pregame_timeleft = config.pregame_time
 	send2mainirc("Server lobby is loaded and open at byond://[config.serverurl ? config.serverurl : (config.server ? config.server : "[world.address]:[world.port]")]")
+
+	// Set up the global announcer
+	GLOB.autospeaker = new (null, null, null, 1)
+
 	return ..()
 
 /datum/controller/subsystem/ticker/fire(resumed = FALSE)

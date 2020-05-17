@@ -284,7 +284,10 @@ var/global/list/default_medbay_channels = list(
 	if(.)
 		SSnanoui.update_uis(src)
 
+GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 /obj/item/device/radio/proc/autosay(var/message, var/from, var/channel, var/list/zlevels) //BS12 EDIT
+	if(!GLOB.autospeaker)
+		return
 	var/datum/radio_frequency/connection = null
 	if(channel && channels && channels.len > 0)
 		if(channel == "department")
@@ -299,9 +302,8 @@ var/global/list/default_medbay_channels = list(
 	if(!LAZYLEN(zlevels))
 		zlevels = list(0)
 
-	var/static/mob/living/silicon/ai/announcer/A = new /mob/living/silicon/ai/announcer(src, null, null, 1)
-	A.SetName(from)
-	Broadcast_Message(connection, A,
+	GLOB.autospeaker.SetName(from)
+	Broadcast_Message(connection, GLOB.autospeaker,
 						0, "*garbled automated announcement*", src,
 						message_to_multilingual(message), from, "Automated Announcement", from, "synthesized voice",
 						DATA_FAKE, 0, zlevels, connection.frequency, "states")

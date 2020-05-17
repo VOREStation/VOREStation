@@ -156,6 +156,9 @@
 	// contained in a cage
 	var/in_stasis = 0
 
+	// don't process me if there's nobody around to see it
+	low_priority = TRUE
+
 /mob/living/simple_mob/Initialize()
 	verbs -= /mob/verb/observe
 	health = maxHealth

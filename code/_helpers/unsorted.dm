@@ -1303,6 +1303,11 @@ var/mob/dview/dview_mob = new
 	else
 		living_mob_list -= src
 
+/mob/dview/Life()
+	mob_list -= src
+	dead_mob_list -= src
+	living_mob_list -= src
+
 /mob/dview/Destroy(var/force)
 	crash_with("Attempt to delete the dview_mob: [log_info_line(src)]")
 	if (!force)

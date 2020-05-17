@@ -318,9 +318,11 @@
 		if(STANCE_MOVE)
 			if(hostile && find_target()) // This will switch its stance.
 				ai_log("handle_stance_strategical() : STANCE_MOVE, found target and was inturrupted.", AI_LOG_TRACE)
+				return
 		if(STANCE_FOLLOW)
 			if(hostile && find_target()) // This will switch its stance.
 				ai_log("handle_stance_strategical() : STANCE_FOLLOW, found target and was inturrupted.", AI_LOG_TRACE)
+				return
 			else if(leader)
 				ai_log("handle_stance_strategical() : STANCE_FOLLOW, going to calculate_path([leader]).", AI_LOG_TRACE)
 				calculate_path(leader)
@@ -359,5 +361,6 @@
 	if(ai_holder)
 		ai_holder.receive_taunt(taunter, force_target_switch)
 
+#undef AI_NO_PROCESS
 #undef AI_PROCESSING
 #undef AI_FASTPROCESSING

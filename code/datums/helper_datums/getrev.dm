@@ -1,4 +1,4 @@
-var/global/datum/getrev/revdata = new()
+GLOBAL_DATUM(revdata, /datum/getrev)
 
 /datum/getrev
 	var/branch
@@ -40,40 +40,46 @@ var/global/datum/getrev/revdata = new()
 	to_world_log("Revision: [revision]")
 
 /datum/getrev/proc/GetTestMergeInfo(header = TRUE)
+	. = list()
 	if(!testmerge.len)
-		return ""
-	. = header ? "The following pull requests are currently test merged:<br>" : ""
+		return
+	if(header)
+		. += "The following pull requests are currently test merged:"
 	for(var/line in testmerge)
 		var/datum/tgs_revision_information/test_merge/tm = line
 		var/cm = tm.pull_request_commit
 		var/details = ": '" + html_encode(tm.title) + "' by " + html_encode(tm.author) + " at commit " + html_encode(copytext_char(cm, 1, 11))
 		if(details && findtext(details, "\[s\]") && (!usr || !usr.client.holder))
 			continue
-		. += "<a href=\"[config.githuburl]/pull/[tm.number]\">#[tm.number][details]</a><br>"
+		. += "<a href=\"[config.githuburl]/pull/[tm.number]\">#[tm.number][details]</a>"
 
 client/verb/showrevinfo()
 	set category = "OOC"
 	set name = "Show Server Revision"
 	set desc = "Check the current server code revision"
 
+	if(!GLOB.revdata)
+		to_chat(src, "<span class='warning'>Please wait until server initializations are complete.</span>")
+		return
+	
 	var/list/msg = list()
 	
-	if(revdata.revision)
-		msg += "<b>Server revision:</b> [revdata.branch] - [revdata.date]"
+	if(GLOB.revdata.revision)
+		msg += "<b>Server revision:</b> B:[GLOB.revdata.branch] D:[GLOB.revdata.date]"
 		if(config.githuburl)
-			msg += "<a href='[config.githuburl]/commit/[revdata.revision]'>[revdata.revision]</a>"
+			msg += "<b>Commit:</b> <a href='[config.githuburl]/commit/[GLOB.revdata.revision]'>[GLOB.revdata.revision]</a>"
 		else
-			to_chat(src,revdata.revision)
+			msg += "<b>Commit:</b> GLOB.revdata.revision"
 	else
 		msg += "<b>Server revision:</b> Unknown"
 
 	if(world.TgsAvailable())
 		var/datum/tgs_version/version = world.TgsVersion()
-		msg += "TGS version: [version.raw_parameter]"
+		msg += "<b>TGS version:</b> [version.raw_parameter]"
 		var/datum/tgs_version/api_version = world.TgsApiVersion()
-		msg += "DMAPI version: [api_version.raw_parameter]"
+		msg += "<b>DMAPI version:</b> [api_version.raw_parameter]"
 
-	if(revdata.testmerge.len)
-		msg += revdata.GetTestMergeInfo()
+	if(GLOB.revdata.testmerge.len)
+		msg += GLOB.revdata.GetTestMergeInfo()
 
 	to_chat(src, msg.Join("<br>"))

@@ -24,6 +24,9 @@ labelPRBasedOnFilePath:
   "Type: Fluff":
     - '**/*custom_items*'
     - '**/*loadout_fluff*'
+    - 'config/alienwhitelist.txt'
+    - 'config/jobwhitelist.txt'
+    - 'config/custom_sprites.txt'
 
   # Contains changes to system folders
   "Type: .git or .github":
