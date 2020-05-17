@@ -126,6 +126,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 	masters[A] = hologram
 	set_light(2)			//pad lighting
 	icon_state = "holopad1"
+	flick("holopadload", src) //VOREStation Add
 	A.holo = src
 	if(LAZYLEN(masters))
 		START_MACHINE_PROCESSING(src)
@@ -187,6 +188,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
  */
 
 /obj/machinery/hologram
+	icon = 'icons/obj/stationobjs_vr.dmi' //VOREStation Edit
 	anchored = 1
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 5
@@ -237,7 +239,7 @@ Holographic project of everything else.
 /obj/machinery/hologram/projector
 	name = "hologram projector"
 	desc = "It makes a hologram appear...with magnets or something..."
-	icon = 'icons/obj/stationobjs.dmi'
+	icon = 'icons/obj/stationobjs_vr.dmi' //VOREStation Edit
 	icon_state = "hologram0"
 
 
