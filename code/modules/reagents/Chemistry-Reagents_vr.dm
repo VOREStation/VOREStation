@@ -98,3 +98,30 @@
 
 	M.adjust_fire_stacks(-reac_volume)
 	M.ExtinguishMob()
+
+/datum/reagent/liquid_protean
+	name = "Liquid protean"
+	id = "liquid_protean"
+	description = "This seems to be a small portion of a Protean creature, still slightly wiggling."
+	taste_description = "wiggly peanutbutter"
+	reagent_state = LIQUID
+	color = "#1d1d1d"
+	scannable = 0
+	metabolism = REM * 0.5
+
+/datum/reagent/liquid_protean/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien != IS_DIONA)
+		var/chem_effective = 1
+		if(alien == IS_SLIME)
+			chem_effective = 0.5
+		M.adjustOxyLoss(-1 * removed * chem_effective)
+		M.heal_organ_damage(0.5 * removed, 0.5 * removed * chem_effective)
+		M.adjustToxLoss(-0.5 * removed * chem_effective)
+
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(H.nif)
+			var/obj/item/device/nif/nif = H.nif //L o c a l
+			if(nif.stat == NIF_TEMPFAIL)
+				nif.stat = NIF_INSTALLING
+			nif.durability = min(nif.durability + removed*0.1, initial(nif.durability))
