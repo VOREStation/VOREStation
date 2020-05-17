@@ -1,11 +1,5 @@
 // Custom garbage or whatever
 
-/obj/item/trash/rkibble
-	name = "bowl of Borg-O's"
-	desc = "Contains every type of scrap material your robot puppy needs to grow big and strong."
-	icon = 'icons/mob/dogborg_vr.dmi'
-	icon_state = "kibble"
-
 /obj/item/trash/attack(mob/living/M as mob, mob/living/user as mob)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -25,6 +19,12 @@
 			R.visible_message("<span class='warning'>[user] feeds [R] with [src]!</span>")
 			return
 	..()
+
+/obj/item/trash/rkibble
+	name = "bowl of Borg-O's"
+	desc = "Contains every type of scrap material your robot puppy needs to grow big and strong."
+	icon = 'icons/mob/dogborg_vr.dmi'
+	icon_state = "kibble"
 
 /obj/item/trash/fancyplate
 	name = "dirty fancy plate"
