@@ -20679,23 +20679,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/station/public_meeting_room)
-"Gh" = (
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/corner/lightgrey/border,
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 8
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 1
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/holoposter{
-	pixel_y = -30
-	},
-/turf/simulated/floor/tiled,
-/area/hallway/station/starboard)
 "Go" = (
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating,
@@ -22101,6 +22084,25 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/white,
 /area/maintenance/station/sec_lower)
+"Tc" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/lightgrey/border,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 8
+	},
+/obj/machinery/holoposter{
+	pixel_y = -30
+	},
+/turf/simulated/floor/tiled,
+/area/hallway/station/port)
 "Tj" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet,
@@ -22192,25 +22194,6 @@
 "TY" = (
 /turf/simulated/wall/r_wall,
 /area/security/riot_control)
-"Ud" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/corner/lightgrey/border,
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 1
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 8
-	},
-/obj/machinery/holoposter{
-	pixel_y = -30
-	},
-/turf/simulated/floor/tiled,
-/area/hallway/station/port)
 "Uf" = (
 /obj/structure/railing{
 	dir = 8
@@ -22399,6 +22382,23 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor,
 /area/maintenance/station/sec_lower)
+"Vk" = (
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/lightgrey/border,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/holoposter{
+	pixel_y = -30
+	},
+/turf/simulated/floor/tiled,
+/area/hallway/station/starboard)
 "Vm" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -31168,7 +31168,7 @@ qx
 pL
 qt
 rj
-Ud
+Tc
 KI
 qH
 rp
@@ -35138,7 +35138,7 @@ Bt
 kp
 nb
 nR
-Gh
+Vk
 DL
 ac
 ac

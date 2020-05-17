@@ -32156,6 +32156,14 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/security/warden)
+"fuV" = (
+/obj/structure/bed/chair/comfy/brown,
+/obj/machinery/holoposter{
+	dir = 8;
+	pixel_x = 30
+	},
+/turf/simulated/floor/wood,
+/area/hallway/station/upper)
 "fxI" = (
 /obj/item/device/radio/intercom{
 	dir = 4;
@@ -32240,6 +32248,31 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/shuttle/securiship/general)
+"gBy" = (
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 6
+	},
+/obj/structure/sign/poster{
+	pixel_x = -32
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 8
+	},
+/obj/item/device/radio/intercom{
+	dir = 8;
+	pixel_x = -24
+	},
+/obj/machinery/holoposter{
+	pixel_y = 30
+	},
+/turf/simulated/floor/tiled,
+/area/hallway/station/upper)
 "gJa" = (
 /obj/machinery/door/airlock/multi_tile/metal/mait,
 /obj/structure/cable/cyan{
@@ -32351,14 +32384,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/security/warden)
-"hYK" = (
-/obj/effect/floor_decal/techfloor/orange,
-/obj/effect/floor_decal/techfloor/hole,
-/obj/machinery/holoposter{
-	pixel_y = -30
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/teleporter/departing)
 "ibu" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
@@ -32468,31 +32493,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/securiship/engines)
-"kqC" = (
-/obj/effect/floor_decal/corner/lightgrey{
-	dir = 9
-	},
-/obj/effect/floor_decal/corner/lightgrey{
-	dir = 6
-	},
-/obj/structure/sign/poster{
-	pixel_x = -32
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals6{
-	dir = 1
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals6{
-	dir = 8
-	},
-/obj/item/device/radio/intercom{
-	dir = 8;
-	pixel_x = -24
-	},
-/obj/machinery/holoposter{
-	pixel_y = 30
-	},
-/turf/simulated/floor/tiled,
-/area/hallway/station/upper)
 "kqS" = (
 /obj/structure/cable/green{
 	dir = 1;
@@ -32589,6 +32589,14 @@
 	},
 /turf/simulated/floor/tiled,
 /area/security/hallway)
+"mPW" = (
+/obj/effect/floor_decal/techfloor/orange,
+/obj/effect/floor_decal/techfloor/hole/right,
+/obj/machinery/holoposter{
+	pixel_y = -30
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/teleporter/departing)
 "ngb" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
@@ -32678,13 +32686,6 @@
 	},
 /turf/simulated/wall/rshull,
 /area/shuttle/securiship/engines)
-"osh" = (
-/obj/structure/bed/chair/comfy/brown,
-/obj/machinery/holoposter{
-	pixel_x = 30
-	},
-/turf/simulated/floor/wood,
-/area/hallway/station/upper)
 "owU" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 9
@@ -33114,6 +33115,14 @@
 /obj/effect/catwalk_plated/dark,
 /turf/simulated/floor,
 /area/security/armory/blue)
+"uSa" = (
+/obj/effect/floor_decal/techfloor/orange,
+/obj/effect/floor_decal/techfloor/hole,
+/obj/machinery/holoposter{
+	pixel_y = -30
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/teleporter/departing)
 "vbE" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -33142,14 +33151,6 @@
 /obj/machinery/atmospherics/binary/pump/fuel,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/securiship/engines)
-"vyg" = (
-/obj/effect/floor_decal/techfloor/orange,
-/obj/effect/floor_decal/techfloor/hole/right,
-/obj/machinery/holoposter{
-	pixel_y = -30
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/teleporter/departing)
 "vFD" = (
 /obj/structure/catwalk,
 /obj/random/cutout,
@@ -39398,7 +39399,7 @@ aDb
 aDG
 aEC
 aFq
-hYK
+uSa
 aDa
 aab
 aab
@@ -39682,7 +39683,7 @@ aDb
 aDI
 aEC
 aFq
-vyg
+mPW
 aDa
 aab
 aab
@@ -42229,7 +42230,7 @@ avO
 awu
 awX
 asp
-kqC
+gBy
 azv
 aAq
 aAw
@@ -44070,7 +44071,7 @@ aiV
 aiV
 asq
 awL
-osh
+fuV
 avQ
 awy
 axb

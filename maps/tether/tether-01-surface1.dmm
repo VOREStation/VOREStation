@@ -5971,21 +5971,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_one)
-"alb" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/lightgrey/border{
-	dir = 1
-	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/lightgrey/bordercorner2{
-	dir = 1
-	},
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/public_garden_one)
 "alc" = (
 /obj/machinery/door/firedoor/glass,
 /obj/effect/floor_decal/steeldecal/steel_decals_central1{
@@ -15536,25 +15521,6 @@
 /obj/random/contraband,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/surface_one_hall)
-"aAT" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
-	},
-/obj/effect/floor_decal/borderfloor{
-	dir = 10
-	},
-/obj/effect/floor_decal/corner/lightgrey/border{
-	dir = 10
-	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 9
-	},
-/obj/effect/floor_decal/corner/lightgrey/bordercorner2{
-	dir = 9
-	},
-/turf/simulated/floor/tiled,
-/area/crew_quarters/locker/laundry_arrival)
 "aAU" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -15769,32 +15735,6 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 1
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/surface_one_hall)
-"aBh" = (
-/obj/effect/floor_decal/borderfloor,
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/lightgrey/border,
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 8
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 1
-	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 9
-	},
-/obj/effect/floor_decal/corner/lightgrey/bordercorner2{
-	dir = 9
 	},
 /obj/structure/cable/green{
 	d1 = 4;
@@ -18650,14 +18590,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_one_hall)
-"aFQ" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/lino,
-/area/crew_quarters/visitor_dining)
 "aFR" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -31568,10 +31500,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/looking_glass/lg_1)
-"fbx" = (
-/obj/machinery/holoposter,
-/turf/simulated/wall,
-/area/crew_quarters/visitor_laundry)
 "fcT" = (
 /turf/simulated/floor/looking_glass{
 	dir = 8;
@@ -31611,6 +31539,28 @@
 	icon_state = "origin_arrow"
 	},
 /area/looking_glass/lg_1)
+"hmx" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 10
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/lightgrey/bordercorner2{
+	dir = 9
+	},
+/obj/machinery/holoposter{
+	pixel_x = -30
+	},
+/turf/simulated/floor/tiled,
+/area/crew_quarters/locker/laundry_arrival)
 "hAe" = (
 /turf/simulated/floor/looking_glass{
 	dir = 5;
@@ -31636,7 +31586,7 @@
 /obj/random/drinkbottle,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/vacant_site)
-"lrA" = (
+"lxU" = (
 /obj/machinery/holoposter,
 /turf/simulated/wall,
 /area/hallway/lower/first_west)
@@ -31646,6 +31596,24 @@
 	icon_state = "origin_optional_arrow"
 	},
 /area/looking_glass/lg_1)
+"lWT" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 1
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/lightgrey/bordercorner2{
+	dir = 1
+	},
+/obj/machinery/holoposter{
+	pixel_y = 30
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden_one)
 "mdP" = (
 /obj/machinery/door/airlock{
 	id_tag = "lg_1";
@@ -31668,10 +31636,6 @@
 /obj/random/trash_pile,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/vacant_site)
-"omD" = (
-/obj/machinery/holoposter,
-/turf/simulated/wall,
-/area/crew_quarters/visitor_dining)
 "orF" = (
 /obj/machinery/light/small{
 	dir = 4;
@@ -31709,6 +31673,18 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_one)
+"sya" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/holoposter{
+	dir = 4;
+	pixel_x = -30
+	},
+/turf/simulated/floor/lino,
+/area/crew_quarters/visitor_dining)
 "sIO" = (
 /turf/simulated/floor/looking_glass{
 	dir = 6;
@@ -31735,6 +31711,39 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/looking_glass/lg_1)
+"vNW" = (
+/obj/effect/floor_decal/borderfloor,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/lightgrey/border,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 1
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/lightgrey/bordercorner2{
+	dir = 9
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/holoposter{
+	pixel_y = -30
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_one_hall)
+"xnn" = (
+/obj/machinery/holoposter,
+/turf/simulated/wall,
+/area/crew_quarters/visitor_laundry)
 "xOH" = (
 /obj/effect/floor_decal/spline/plain{
 	dir = 8
@@ -37748,7 +37757,7 @@ aah
 aah
 ajS
 ajS
-alb
+lWT
 alm
 ajS
 ajS
@@ -39746,7 +39755,7 @@ abT
 abT
 abT
 abT
-lrA
+lxU
 ahL
 anP
 adu
@@ -44031,7 +44040,7 @@ axm
 ayh
 ayQ
 azZ
-aAT
+hmx
 aBR
 aCD
 aDl
@@ -46019,7 +46028,7 @@ axt
 awN
 azd
 aAk
-aBh
+vNW
 agM
 aDt
 aFt
@@ -46449,7 +46458,7 @@ aBk
 agM
 aCO
 aCO
-omD
+aCO
 aEI
 aFw
 aCO
@@ -46481,7 +46490,7 @@ aUm
 aUm
 aUq
 aUr
-fbx
+xnn
 aWn
 aWn
 aVn
@@ -46594,7 +46603,7 @@ aDu
 aDX
 aEJ
 aFx
-aFQ
+sya
 aGx
 aHl
 aDu

@@ -29407,19 +29407,20 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/open,
 /area/maintenance/lower/bar)
-"kaa" = (
-/obj/random/cutout,
-/turf/simulated/floor,
-/area/maintenance/lower/south)
-"kTB" = (
+"jnL" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
 	},
 /obj/machinery/holoposter{
+	dir = 8;
 	pixel_x = 30
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/surface_two_hall)
+"kaa" = (
+/obj/random/cutout,
+/turf/simulated/floor,
+/area/maintenance/lower/south)
 "nTp" = (
 /obj/structure/catwalk,
 /obj/structure/cable{
@@ -29433,6 +29434,15 @@
 /obj/structure/catwalk,
 /turf/simulated/open,
 /area/maintenance/lower/bar)
+"uoL" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/machinery/holoposter{
+	pixel_x = 30
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/surface_two_hall)
 
 (1,1,1) = {"
 aaa
@@ -43535,7 +43545,7 @@ aXo
 adY
 afu
 afM
-afM
+uoL
 aqG
 agz
 agH
@@ -43555,7 +43565,7 @@ ajI
 asB
 afG
 anu
-kTB
+jnL
 afM
 aiE
 apP
