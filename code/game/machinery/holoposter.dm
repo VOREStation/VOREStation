@@ -11,6 +11,7 @@ GLOBAL_LIST_EMPTY(holoposters)
 	var/icon_forced = FALSE
 	var/examine_addon = "It appears to be powered off."
 	var/mytimer
+	var/alerting = FALSE
 
 	var/list/postertypes = list(
 		"hephaestus" = list(LIGHT_COLOR_CYAN, "Hephaestus Aeronautics, a subsidiary of Hephaestus Industries. Known to make the best - if pricy - atmospheric to orbit shuttles and gliders for the consumer market."),
@@ -56,6 +57,11 @@ GLOBAL_LIST_EMPTY(holoposters)
 			icon_state = "attention"
 			examine_addon = "It warns you to remain calm and contact your supervisor as soon as possible."
 			new_color =  "#AA7039"
+			alerting = TRUE
+		else if(alerting && !global.security_level) // coming out of alert
+			alerting = FALSE
+			set_rand_sprite()
+			return
 		else if(icon_state in postertypes)
 			var/list/settings = postertypes[icon_state]
 			new_color = settings[1]
@@ -64,6 +70,8 @@ GLOBAL_LIST_EMPTY(holoposters)
 	set_light(l_range = 2, l_power = 2, l_color = new_color)
 
 /obj/machinery/holoposter/proc/set_rand_sprite()
+	if(alerting)
+		return
 	if(icon_forced && mytimer)
 		deltimer(mytimer)
 		return
