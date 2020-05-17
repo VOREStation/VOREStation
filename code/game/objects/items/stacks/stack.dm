@@ -363,6 +363,14 @@
 	else
 		return ..()
 
+/obj/item/stack/Moved(atom/old_loc, direction, forced = FALSE)
+	. = ..()
+	if(isturf(loc))
+		for(var/obj/item/stack/S in loc)
+			if(S == src)
+				continue
+			S.transfer_to(src) // them to us, so if we're being pulled, we can keep being pulled
+
 /*
  * Recipe datum
  */
