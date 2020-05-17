@@ -985,9 +985,15 @@ var/list/ai_verbs_default = list(
 	dead_mob_list -= src
 	ai_list -= src
 	silicon_mob_list -= src
+	QDEL_NULL(eyeobj)
 
 /mob/living/silicon/ai/announcer/Life()
-	return
+	mob_list -= src
+	living_mob_list -= src
+	dead_mob_list -= src
+	ai_list -= src
+	silicon_mob_list -= src
+	QDEL_NULL(eyeobj)
 
 #undef AI_CHECK_WIRELESS
 #undef AI_CHECK_RADIO

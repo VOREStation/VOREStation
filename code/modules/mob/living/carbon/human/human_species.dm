@@ -3,11 +3,22 @@
 	status_flags = GODMODE|CANPUSH
 	has_huds = FALSE
 
-/mob/living/carbon/human/dummy/mannequin/Initialize()
+/mob/living/carbon/human/dummy/Initialize()
 	. = ..()
 	mob_list -= src
 	living_mob_list -= src
 	dead_mob_list -= src
+	human_mob_list -= src
+
+/mob/living/carbon/human/dummy/Life()
+	mob_list -= src
+	living_mob_list -= src
+	dead_mob_list -= src
+	human_mob_list -= src
+	return
+
+/mob/living/carbon/human/dummy/mannequin/Initialize()
+	. = ..()
 	delete_inventory()
 
 /mob/living/carbon/human/skrell/Initialize(var/new_loc)
