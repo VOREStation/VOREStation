@@ -1147,25 +1147,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
-"acl" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 4
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7,
-/obj/effect/floor_decal/corner/lightgrey/border{
-	dir = 1
-	},
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/surface_three_hall)
 "acm" = (
 /obj/structure/sink{
 	dir = 4;
@@ -12647,22 +12628,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
-"avi" = (
-/obj/structure/disposalpipe/segment,
-/obj/effect/floor_decal/borderfloor{
-	dir = 8
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 5
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 6
-	},
-/obj/effect/floor_decal/corner/blue/border{
-	dir = 8
-	},
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/surface_three_hall)
 "avj" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -17371,22 +17336,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_hallway)
-"aCn" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/effect/floor_decal/borderfloor{
-	dir = 1;
-	pixel_y = 0
-	},
-/obj/effect/floor_decal/corner/mauve/border{
-	dir = 1
-	},
-/obj/structure/bed/chair,
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 4
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7,
-/turf/simulated/floor/tiled,
-/area/rnd/research/researchdivision)
 "aCo" = (
 /obj/structure/table/gamblingtable,
 /obj/item/weapon/deck/cards,
@@ -20094,12 +20043,6 @@
 /area/crew_quarters/bar)
 "aGG" = (
 /obj/item/weapon/stool/padded,
-/obj/effect/floor_decal/spline/plain{
-	dir = 1
-	},
-/turf/simulated/floor/lino,
-/area/crew_quarters/bar)
-"aGH" = (
 /obj/effect/floor_decal/spline/plain{
 	dir = 1
 	},
@@ -31875,6 +31818,25 @@
 /obj/effect/floor_decal/industrial/outline/red,
 /turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/shuttle_pad)
+"cEj" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/effect/floor_decal/borderfloor{
+	dir = 1;
+	pixel_y = 0
+	},
+/obj/effect/floor_decal/corner/mauve/border{
+	dir = 1
+	},
+/obj/structure/bed/chair,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7,
+/obj/machinery/holoposter{
+	pixel_y = 30
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/research/researchdivision)
 "cMs" = (
 /obj/machinery/power/smes/buildable{
 	charge = 500000
@@ -32225,6 +32187,24 @@
 	},
 /turf/simulated/floor/tiled/steel_dirty,
 /area/shuttle/tourbus/general)
+"mUH" = (
+/obj/effect/floor_decal/borderfloorblack{
+	dir = 8
+	},
+/obj/machinery/holoposter{
+	pixel_x = -30
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/outpost/xenobiology/outpost_hallway)
+"mUK" = (
+/obj/effect/floor_decal/spline/plain{
+	dir = 1
+	},
+/obj/machinery/holoposter{
+	pixel_x = 30
+	},
+/turf/simulated/floor/lino,
+/area/crew_quarters/bar)
 "noN" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/blue/border,
@@ -32258,6 +32238,42 @@
 	},
 /turf/simulated/floor/tiled/steel_dirty,
 /area/shuttle/tourbus/general)
+"nCI" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7,
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 1
+	},
+/obj/machinery/holoposter{
+	pixel_y = 30
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_three_hall)
+"nVf" = (
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/lightgrey/border,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 8
+	},
+/obj/machinery/holoposter{
+	pixel_y = -30
+	},
+/turf/simulated/floor/tiled,
+/area/hallway/lower/third_south)
 "nXl" = (
 /obj/machinery/door/airlock/glass{
 	req_one_access = list(19,43,67)
@@ -32270,6 +32286,25 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/shuttle/tourbus/cockpit)
+"odB" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 6
+	},
+/obj/effect/floor_decal/corner/blue/border{
+	dir = 8
+	},
+/obj/machinery/holoposter{
+	pixel_x = -30
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_three_hall)
 "onV" = (
 /obj/effect/shuttle_landmark{
 	base_area = /area/tether/surfacebase/shuttle_pad;
@@ -32299,6 +32334,13 @@
 /obj/machinery/atmospherics/unary/engine,
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/shuttle_pad)
+"oQJ" = (
+/obj/machinery/holoposter{
+	pixel_x = -30;
+	pixel_y = 30
+	},
+/turf/simulated/floor/grass,
+/area/tether/surfacebase/public_garden_three)
 "qem" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 8
@@ -37432,7 +37474,7 @@ aac
 aCZ
 aDc
 aiq
-aDe
+oQJ
 aDe
 aDe
 aDe
@@ -38196,7 +38238,7 @@ aCc
 aIp
 aIW
 aCc
-aCc
+mUH
 aBV
 aCc
 aCc
@@ -40849,7 +40891,7 @@ aTW
 aTW
 aTW
 agw
-acl
+nCI
 ajG
 aWN
 akY
@@ -42447,7 +42489,7 @@ atU
 ayt
 ayV
 atU
-aCn
+cEj
 azC
 aCV
 azE
@@ -43589,7 +43631,7 @@ aXg
 axg
 aHa
 aHR
-awf
+nVf
 ats
 aKb
 aKU
@@ -46545,7 +46587,7 @@ aZS
 aZZ
 anL
 axb
-avi
+odB
 avk
 axQ
 aiX
@@ -48556,7 +48598,7 @@ asX
 asX
 aFD
 asX
-aGH
+mUK
 aHB
 aIn
 aIT

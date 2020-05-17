@@ -5610,28 +5610,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/security/hallway)
-"ajm" = (
-/obj/effect/floor_decal/corner/lightgrey{
-	dir = 9
-	},
-/obj/effect/floor_decal/corner/lightgrey{
-	dir = 6
-	},
-/obj/structure/sign/poster{
-	pixel_x = -32
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals6{
-	dir = 1
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals6{
-	dir = 8
-	},
-/obj/item/device/radio/intercom{
-	dir = 8;
-	pixel_x = -24
-	},
-/turf/simulated/floor/tiled,
-/area/hallway/station/upper)
 "ajn" = (
 /obj/machinery/newscaster/security_unit{
 	pixel_y = 32
@@ -20434,21 +20412,11 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/teleporter/departing)
-"aGg" = (
-/obj/effect/floor_decal/techfloor/orange,
-/obj/effect/floor_decal/techfloor/hole,
-/turf/simulated/floor/tiled/techfloor,
-/area/teleporter/departing)
 "aGh" = (
 /obj/effect/floor_decal/techfloor/orange,
 /obj/machinery/camera/network/tether{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/techfloor,
-/area/teleporter/departing)
-"aGi" = (
-/obj/effect/floor_decal/techfloor/orange,
-/obj/effect/floor_decal/techfloor/hole/right,
 /turf/simulated/floor/tiled/techfloor,
 /area/teleporter/departing)
 "aGj" = (
@@ -32383,6 +32351,14 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/security/warden)
+"hYK" = (
+/obj/effect/floor_decal/techfloor/orange,
+/obj/effect/floor_decal/techfloor/hole,
+/obj/machinery/holoposter{
+	pixel_y = -30
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/teleporter/departing)
 "ibu" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
@@ -32492,6 +32468,31 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/securiship/engines)
+"kqC" = (
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 6
+	},
+/obj/structure/sign/poster{
+	pixel_x = -32
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 8
+	},
+/obj/item/device/radio/intercom{
+	dir = 8;
+	pixel_x = -24
+	},
+/obj/machinery/holoposter{
+	pixel_y = 30
+	},
+/turf/simulated/floor/tiled,
+/area/hallway/station/upper)
 "kqS" = (
 /obj/structure/cable/green{
 	dir = 1;
@@ -32677,6 +32678,13 @@
 	},
 /turf/simulated/wall/rshull,
 /area/shuttle/securiship/engines)
+"osh" = (
+/obj/structure/bed/chair/comfy/brown,
+/obj/machinery/holoposter{
+	pixel_x = 30
+	},
+/turf/simulated/floor/wood,
+/area/hallway/station/upper)
 "owU" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 9
@@ -33134,6 +33142,14 @@
 /obj/machinery/atmospherics/binary/pump/fuel,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/securiship/engines)
+"vyg" = (
+/obj/effect/floor_decal/techfloor/orange,
+/obj/effect/floor_decal/techfloor/hole/right,
+/obj/machinery/holoposter{
+	pixel_y = -30
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/teleporter/departing)
 "vFD" = (
 /obj/structure/catwalk,
 /obj/random/cutout,
@@ -39382,7 +39398,7 @@ aDb
 aDG
 aEC
 aFq
-aGg
+hYK
 aDa
 aab
 aab
@@ -39666,7 +39682,7 @@ aDb
 aDI
 aEC
 aFq
-aGi
+vyg
 aDa
 aab
 aab
@@ -42213,7 +42229,7 @@ avO
 awu
 awX
 asp
-ajm
+kqC
 azv
 aAq
 aAw
@@ -44054,7 +44070,7 @@ aiV
 aiV
 asq
 awL
-ava
+osh
 avQ
 awy
 axb
