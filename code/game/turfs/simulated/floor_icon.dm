@@ -79,9 +79,9 @@ var/image/no_ceiling_image = null
 		icon_state = "dmg[rand(1,4)]"
 	else if(flooring)
 		if(!isnull(broken) && (flooring.flags & TURF_CAN_BREAK))
-			add_overlay(get_flooring_overlay("[flooring.icon_base]-broken-[broken]","broken[broken]")) // VOREStation Edit - Eris overlays
+			add_overlay(get_flooring_overlay("[flooring.icon_base]-broken-[broken]","broken[broken]"))
 		if(!isnull(burnt) && (flooring.flags & TURF_CAN_BURN))
-			add_overlay(get_flooring_overlay("[flooring.icon_base]-burned-[burnt]","burned[burnt]")) // VOREStation Edit - Eris overlays
+			add_overlay(get_flooring_overlay("[flooring.icon_base]-burned-[burnt]","burned[burnt]"))
 
 	if(update_neighbors)
 		for(var/turf/simulated/floor/F in range(src, 1))
