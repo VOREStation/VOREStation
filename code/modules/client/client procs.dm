@@ -75,7 +75,7 @@
 				GLOB.pending_discord_registrations -= item
 				continue
 			if(L["ckey"] == ckey && L["id"] == their_id)
-				GLOB.pending_discord_registrations -= item
+				GLOB.pending_discord_registrations -= list(item)
 				var/time = L["time"]
 				if((world.realtime - time) > 10 MINUTES)
 					to_chat(src, "<span class='warning'>Sorry, that link has expired. Please request another on Discord.</span>")
@@ -98,6 +98,7 @@
 		else
 			to_chat(src, "<span class='warning'>There was an error registering your Discord ID in the database. Contact an administrator.</span>")
 			log_and_message_admins("[ckey] failed to register their Discord ID. Their Discord snowflake ID is: [their_id]. Is the database connected?")
+		return
 	//VOREStation Add End
 
 	//Logs all hrefs

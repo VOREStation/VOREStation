@@ -109,7 +109,7 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 	// Okay. We found them, they're in the DB, and they have no discord ID set.
 	var/message = "<span class='notice'>A request has been sent from Discord to validate your Byond username, by '[sender.friendly_name]' in '[sender.channel.friendly_name]'</span>\
 	<br><span class='warning'>If you did not send this request, do not click the link below, and do notify an administrator in-game or on Discord ASAP.</span>\
-	<br><a href='byond://?src=\ref[user];discord_reg=html_encode([sender.id])'>Click Here</a> if you authorized this registration attempt. This link is valid for 10 minutes."
+	<br><a href='byond://?src=\ref[user];discord_reg=[html_encode(sender.id)]'>Click Here</a> if you authorized this registration attempt. This link is valid for 10 minutes."
 	to_chat(user, message)
 
 	// To stifle href hacking
