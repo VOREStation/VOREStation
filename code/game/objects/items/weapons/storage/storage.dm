@@ -729,3 +729,12 @@
 
 /obj/item/weapon/storage/AllowDrop()
 	return TRUE
+
+//Useful for spilling the contents of containers all over the floor
+/obj/item/weapon/storage/proc/spill(var/dist = 2, var/turf/T = null)
+	if (!istype(T))//If its not on the floor this might cause issues
+		T = get_turf(src)
+
+	for (var/obj/O in contents)
+		remove_from_storage(O, T)
+		O.tumble(2)
