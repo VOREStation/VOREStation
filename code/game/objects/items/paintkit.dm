@@ -157,6 +157,7 @@
 /obj/item/device/kit/suit/rig/customize(var/obj/item/I, var/mob/user)
 	var/obj/item/weapon/rig/RIG = I
 	RIG.suit_state = new_icon
+	RIG.item_state = new_icon
 	RIG.suit_type = "customized [initial(RIG.suit_type)]"
 	RIG.name = "[new_name]"
 	RIG.desc = new_desc
@@ -170,17 +171,17 @@
 		piece.desc = "It seems to be part of a [RIG.name]."
 		piece.icon_state = "[RIG.suit_state]"
 		if(istype(piece, /obj/item/clothing/shoes))
-			icon = 'icons/mob/custom_items_rig_boots.dmi'
-			icon_override = 'icons/mob/custom_items_rig_boots.dmi'
+			piece.icon = 'icons/mob/custom_items_rig_boots.dmi'
+			piece.icon_override = 'icons/mob/custom_items_rig_boots.dmi'
 		if(istype(piece, /obj/item/clothing/suit))
-			icon = 'icons/mob/custom_items_rig_suit.dmi'
-			icon_override = 'icons/mob/custom_items_rig_suit.dmi'
+			piece.icon = 'icons/mob/custom_items_rig_suit.dmi'
+			piece.icon_override = 'icons/mob/custom_items_rig_suit.dmi'
 		if(istype(piece, /obj/item/clothing/head))
-			icon = 'icons/mob/custom_items_rig_helmet.dmi'
-			icon_override = 'icons/mob/custom_items_rig_helmet.dmi'
+			piece.icon = 'icons/mob/custom_items_rig_helmet.dmi'
+			piece.icon_override = 'icons/mob/custom_items_rig_helmet.dmi'
 		if(istype(piece, /obj/item/clothing/gloves))
-			icon = 'icons/mob/custom_items_rig_gloves.dmi'
-			icon_override = 'icons/mob/custom_items_rig_gloves.dmi'
+			piece.icon = 'icons/mob/custom_items_rig_gloves.dmi'
+			piece.icon_override = 'icons/mob/custom_items_rig_gloves.dmi'
 	if(RIG.helmet && istype(RIG.helmet, /obj/item/clothing/head/helmet) && new_light_overlay)
 		var/obj/item/clothing/head/helmet/H = RIG.helmet
 		H.light_overlay = new_light_overlay
@@ -195,6 +196,9 @@
 		kit.customize(src, user)
 		return
 	return ..()
+
+/obj/item/device/kit/suit/rig/debug/Initialize()
+	set_info("debug suit", "This is a test", "debug", CUSTOM_ITEM_OBJ, CUSTOM_ITEM_MOB)
 
 /obj/item/device/kit/paint
 	name = "mecha customisation kit"

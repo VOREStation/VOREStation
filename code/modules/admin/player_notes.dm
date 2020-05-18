@@ -105,7 +105,7 @@ datum/admins/proc/notes_gethtml(var/ckey)
 
 	message_admins("<font color='blue'>[key_name_admin(user)] has edited [key]'s notes.</font>")
 	log_admin("[key_name(user)] has edited [key]'s notes.")
-	admin_action_message(user.key, key, "added note on", note, 0) //VOREStation Add
+	admin_action_message(P.author, key, "added note on", note, 0) //VOREStation Add
 	del(info) // savefile, so NOT qdel
 
 	//Updating list of keys with notes on them

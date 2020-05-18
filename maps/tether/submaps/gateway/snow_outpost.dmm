@@ -58,6 +58,15 @@
 	},
 /turf/simulated/floor/tiled/old_tile/white,
 /area/awaymission/snow_outpost/powered)
+"am" = (
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	pixel_x = 24
+	},
+/obj/machinery/washing_machine,
+/turf/simulated/floor/tiled/white,
+/area/awaymission/snow_outpost/powered)
 "an" = (
 /obj/machinery/door/airlock/alien/public,
 /turf/simulated/wall/snowbrick,
@@ -229,7 +238,7 @@
 	},
 /area/awaymission/snow_outpost/powered)
 "aR" = (
-/obj/structure/AIcore,
+/obj/mecha/combat/marauder/mauler,
 /turf/simulated/floor/bluegrid{
 	name = "Mainframe Base";
 	nitrogen = 100;
@@ -285,6 +294,13 @@
 /obj/machinery/body_scanconsole,
 /turf/simulated/floor/tiled/white,
 /area/awaymission/snow_outpost/powered)
+"bc" = (
+/obj/machinery/atmospherics/unary/vent_scrubber{
+	dir = 8
+	},
+/obj/structure/ore_box,
+/turf/simulated/floor/tiled/white,
+/area/awaymission/snow_outpost/powered)
 "bd" = (
 /obj/machinery/telecomms/relay,
 /turf/simulated/floor/tiled/white,
@@ -311,14 +327,9 @@
 /turf/simulated/floor/tiled/white,
 /area/awaymission/snow_outpost/powered)
 "bh" = (
-/obj/structure/ore_box,
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "east bump";
-	pixel_x = 24
-	},
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
+/obj/structure/ghost_pod/manual/lost_drone/dogborg,
+/turf/simulated/floor/plating/external,
+/area/awaymission/snow_outpost/dark)
 "bi" = (
 /obj/machinery/power/apc{
 	dir = 4;
@@ -375,6 +386,9 @@
 /obj/machinery/door/window/northleft,
 /turf/simulated/floor/tiled/white,
 /area/awaymission/snow_outpost/powered)
+"bs" = (
+/turf/simulated/shuttle/floor/alienplating,
+/area/awaymission/snow_outpost/dark)
 "bt" = (
 /turf/simulated/wall/solidrock{
 	block_tele = 0
@@ -1001,6 +1015,14 @@
 /obj/machinery/light/small,
 /turf/simulated/floor/snow/snow2,
 /area/awaymission/snow_outpost/dark)
+"dF" = (
+/obj/structure/closet/crate,
+/obj/item/stack/cable_coil,
+/obj/item/stack/cable_coil,
+/obj/item/weapon/storage/toolbox,
+/obj/random/toolbox,
+/turf/simulated/shuttle/floor/alienplating,
+/area/awaymission/snow_outpost/dark)
 "dG" = (
 /obj/effect/decal/cleanable/blood,
 /turf/simulated/floor/snow/snow2,
@@ -1009,10 +1031,23 @@
 /obj/structure/flora/tree/sif,
 /turf/simulated/floor/snow/snow2,
 /area/awaymission/snow_outpost/outside)
+"dI" = (
+/obj/structure/loot_pile/maint/technical,
+/turf/simulated/shuttle/floor/alienplating,
+/area/awaymission/snow_outpost/dark)
+"dJ" = (
+/obj/structure/table/woodentable,
+/obj/item/weapon/cell/void,
+/turf/simulated/shuttle/floor/alienplating,
+/area/awaymission/snow_outpost/dark)
 "dK" = (
 /obj/structure/table/steel,
 /turf/simulated/floor/snow/snow2,
 /area/awaymission/snow_outpost/outside/nospawn)
+"dL" = (
+/obj/structure/table/woodentable,
+/turf/simulated/shuttle/floor/alienplating,
+/area/awaymission/snow_outpost/dark)
 "dM" = (
 /mob/living/simple_mob/humanoid/merc/ranged/smg/poi,
 /turf/simulated/floor/snow/snow2,
@@ -1931,30 +1966,14 @@
 /turf/simulated/floor/snow/snow2,
 /area/awaymission/snow_outpost/outside)
 "gD" = (
-/obj/structure/closet/crate,
-/obj/item/stack/cable_coil,
-/obj/item/stack/cable_coil,
-/obj/item/weapon/storage/toolbox,
-/obj/random/toolbox,
-/turf/simulated/floor,
-/area/awaymission/snow_outpost/dark)
-"gE" = (
-/obj/structure/loot_pile/maint/technical,
-/turf/simulated/floor,
-/area/awaymission/snow_outpost/dark)
-"gF" = (
-/obj/structure/table/woodentable,
-/turf/simulated/floor,
-/area/awaymission/snow_outpost/dark)
-"gG" = (
-/obj/machinery/power/port_gen/pacman,
 /obj/structure/cable{
 	icon_state = "0-2";
 	d2 = 2
 	},
-/turf/simulated/floor,
+/obj/machinery/porta_turret/alien/destroyed,
+/turf/simulated/shuttle/floor/alienplating,
 /area/awaymission/snow_outpost/dark)
-"gH" = (
+"gE" = (
 /obj/structure/closet/crate,
 /obj/item/weapon/reagent_containers/hypospray,
 /obj/item/weapon/reagent_containers/glass/bottle/stoxin,
@@ -1964,18 +1983,18 @@
 /obj/item/weapon/reagent_containers/pill/antitox,
 /obj/item/weapon/reagent_containers/pill/paracetamol,
 /obj/random/firstaid,
-/turf/simulated/floor,
+/turf/simulated/shuttle/floor/alienplating,
 /area/awaymission/snow_outpost/dark)
-"gI" = (
+"gF" = (
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2";
 	pixel_y = 0
 	},
-/turf/simulated/floor,
+/turf/simulated/shuttle/floor/alienplating,
 /area/awaymission/snow_outpost/dark)
-"gJ" = (
+"gG" = (
 /obj/structure/closet/crate,
 /obj/random/contraband,
 /obj/random/contraband,
@@ -1986,7 +2005,32 @@
 /obj/item/weapon/material/star,
 /obj/item/weapon/material/star,
 /obj/item/weapon/material/star,
-/turf/simulated/floor,
+/turf/simulated/shuttle/floor/alienplating,
+/area/awaymission/snow_outpost/dark)
+"gH" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/simulated/shuttle/floor/alienplating,
+/area/awaymission/snow_outpost/dark)
+"gI" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8";
+	pixel_x = 0
+	},
+/turf/simulated/shuttle/floor/alienplating,
+/area/awaymission/snow_outpost/dark)
+"gJ" = (
+/obj/structure/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/structure/prop/alien/power,
+/turf/simulated/shuttle/floor/alienplating,
 /area/awaymission/snow_outpost/dark)
 "gK" = (
 /obj/effect/spider/stickyweb,
@@ -1996,33 +2040,8 @@
 	},
 /area/awaymission/snow_outpost/dark)
 "gL" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/turf/simulated/floor,
-/area/awaymission/snow_outpost/dark)
-"gM" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
-	},
-/turf/simulated/floor,
-/area/awaymission/snow_outpost/dark)
-"gN" = (
-/obj/machinery/computer/communications,
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/turf/simulated/floor,
-/area/awaymission/snow_outpost/dark)
-"gO" = (
 /obj/structure/loot_pile/maint/boxfort,
-/turf/simulated/floor,
+/turf/simulated/shuttle/floor/alienplating,
 /area/awaymission/snow_outpost/dark)
 "gP" = (
 /obj/structure/flora/tree/pine{
@@ -2587,10 +2606,6 @@
 "iN" = (
 /turf/simulated/floor/water/deep,
 /area/awaymission/snow_outpost/dark)
-"iO" = (
-/obj/mecha/combat/phazon/equipped,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/snow_outpost/powered)
 "iP" = (
 /obj/machinery/atmospherics/unary/vent_pump,
 /obj/item/weapon/cell/infinite,
@@ -5424,7 +5439,7 @@ Lh
 ce
 ci
 ci
-ci
+bh
 ch
 ch
 ce
@@ -8895,7 +8910,7 @@ aQ
 aQ
 aQ
 as
-uy
+bj
 uy
 uy
 uy
@@ -9168,7 +9183,7 @@ aO
 as
 iP
 iQ
-iO
+aS
 yM
 bH
 ek
@@ -9179,7 +9194,7 @@ aQ
 bU
 aQ
 as
-uy
+bj
 uy
 uy
 uy
@@ -9590,7 +9605,7 @@ ab
 uy
 uy
 uy
-uy
+bj
 as
 as
 as
@@ -9733,7 +9748,7 @@ uy
 uy
 uy
 uy
-uy
+bj
 uy
 uy
 zF
@@ -10027,8 +10042,8 @@ uy
 as
 aJ
 iR
-bh
-bO
+am
+bc
 aN
 as
 uy
@@ -10173,7 +10188,7 @@ as
 as
 as
 as
-uy
+bj
 uy
 uy
 uy
@@ -10314,7 +10329,7 @@ uy
 zF
 uy
 uy
-uy
+bj
 aT
 uy
 uy
@@ -15947,9 +15962,9 @@ Lh
 Gr
 Gr
 Gr
-ki
-ki
-ki
+bs
+bs
+bs
 Gr
 Gr
 gu
@@ -16088,10 +16103,10 @@ Lh
 Gr
 Gr
 Gr
-ki
-gG
-gI
-gL
+bs
+gD
+gF
+gH
 Gr
 Gr
 Gr
@@ -16228,14 +16243,14 @@ Gr
 Lh
 gu
 Gr
-ki
-ki
-gF
+bs
+bs
+dJ
 cv
 cv
-gM
-ki
-ki
+gI
+bs
+bs
 Gr
 Lh
 Lh
@@ -16370,14 +16385,14 @@ Gr
 Lh
 Gr
 Gr
-ki
-ki
-gF
+bs
+bs
+dL
 cv
 cv
-gN
-ki
-gO
+gJ
+bs
+gL
 Lh
 Lh
 Lh
@@ -16512,13 +16527,13 @@ gt
 Lh
 Lh
 Gr
-gD
-ki
-ki
-gH
-gJ
-ki
-ki
+dF
+bs
+bs
+gE
+gG
+bs
+bs
 Lh
 Lh
 Lh
@@ -16655,11 +16670,11 @@ Lh
 Lh
 Gr
 Gr
-gE
-ki
+dI
+bs
 gz
 Gr
-ki
+bs
 Lh
 Lh
 Lh

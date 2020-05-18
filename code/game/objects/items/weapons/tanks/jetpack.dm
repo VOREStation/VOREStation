@@ -3,6 +3,7 @@
 /obj/item/weapon/tank/jetpack
 	name = "jetpack (empty)"
 	desc = "A tank of compressed gas for use as propulsion in zero-gravity areas. Use with caution."
+	icon = 'icons/obj/tank_vr.dmi' //VOREStation Edit
 	icon_state = "jetpack"
 	gauge_icon = null
 	w_class = ITEMSIZE_LARGE

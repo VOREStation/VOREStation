@@ -1147,25 +1147,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
-"acl" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 4
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7,
-/obj/effect/floor_decal/corner/lightgrey/border{
-	dir = 1
-	},
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/surface_three_hall)
 "acm" = (
 /obj/structure/sink{
 	dir = 4;
@@ -12647,22 +12628,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
-"avi" = (
-/obj/structure/disposalpipe/segment,
-/obj/effect/floor_decal/borderfloor{
-	dir = 8
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 5
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 6
-	},
-/obj/effect/floor_decal/corner/blue/border{
-	dir = 8
-	},
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/surface_three_hall)
 "avj" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -17371,22 +17336,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_hallway)
-"aCn" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/effect/floor_decal/borderfloor{
-	dir = 1;
-	pixel_y = 0
-	},
-/obj/effect/floor_decal/corner/mauve/border{
-	dir = 1
-	},
-/obj/structure/bed/chair,
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 4
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7,
-/turf/simulated/floor/tiled,
-/area/rnd/research/researchdivision)
 "aCo" = (
 /obj/structure/table/gamblingtable,
 /obj/item/weapon/deck/cards,
@@ -20094,12 +20043,6 @@
 /area/crew_quarters/bar)
 "aGG" = (
 /obj/item/weapon/stool/padded,
-/obj/effect/floor_decal/spline/plain{
-	dir = 1
-	},
-/turf/simulated/floor/lino,
-/area/crew_quarters/bar)
-"aGH" = (
 /obj/effect/floor_decal/spline/plain{
 	dir = 1
 	},
@@ -31875,6 +31818,20 @@
 /obj/effect/floor_decal/industrial/outline/red,
 /turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/shuttle_pad)
+"cmQ" = (
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/lightgrey/border,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 8
+	},
+/obj/machinery/holoposter{
+	pixel_y = -30
+	},
+/turf/simulated/floor/tiled,
+/area/hallway/lower/third_south)
 "cMs" = (
 /obj/machinery/power/smes/buildable{
 	charge = 500000
@@ -31936,6 +31893,28 @@
 	},
 /turf/simulated/floor/tiled/steel_dirty,
 /area/shuttle/tourbus/general)
+"dMP" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7,
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 1
+	},
+/obj/machinery/holoposter{
+	pixel_y = 30
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_three_hall)
 "esm" = (
 /obj/structure/bed/chair/bay/chair{
 	dir = 8;
@@ -32080,6 +32059,23 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/shuttle_pad)
+"gLg" = (
+/obj/item/weapon/stool/padded,
+/obj/machinery/holoposter{
+	dir = 8;
+	pixel_x = 30
+	},
+/turf/simulated/floor/tiled,
+/area/crew_quarters/pool)
+"hJt" = (
+/obj/effect/floor_decal/borderfloorblack{
+	dir = 8
+	},
+/obj/machinery/holoposter{
+	pixel_x = -30
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/outpost/xenobiology/outpost_hallway)
 "ieb" = (
 /obj/effect/floor_decal/borderfloorblack,
 /obj/effect/floor_decal/industrial/danger,
@@ -32429,6 +32425,13 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/shuttle_pad)
+"sXa" = (
+/obj/machinery/holoposter{
+	pixel_x = -30;
+	pixel_y = 30
+	},
+/turf/simulated/floor/grass,
+/area/tether/surfacebase/public_garden_three)
 "tdA" = (
 /obj/structure/bed/chair/bay/chair{
 	dir = 4;
@@ -32513,6 +32516,16 @@
 /obj/structure/cable,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/shuttle/tourbus/general)
+"uxo" = (
+/obj/effect/floor_decal/spline/plain{
+	dir = 1
+	},
+/obj/machinery/holoposter{
+	dir = 8;
+	pixel_x = 30
+	},
+/turf/simulated/floor/lino,
+/area/crew_quarters/bar)
 "uxT" = (
 /obj/effect/floor_decal/steeldecal/steel_decals_central5{
 	dir = 8;
@@ -32579,6 +32592,26 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/shuttle/tourbus/engines)
+"viF" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 6
+	},
+/obj/effect/floor_decal/corner/blue/border{
+	dir = 8
+	},
+/obj/machinery/holoposter{
+	dir = 4;
+	pixel_x = -30
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_three_hall)
 "voF" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 8
@@ -32597,6 +32630,19 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/shuttle_pad)
+"vtN" = (
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 6
+	},
+/obj/machinery/holoposter{
+	dir = 4;
+	pixel_x = -30
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_three_hall)
 "wiX" = (
 /obj/machinery/camera/network/civilian{
 	dir = 9
@@ -32663,6 +32709,25 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/shuttle/tourbus/cockpit)
+"xdM" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/effect/floor_decal/borderfloor{
+	dir = 1;
+	pixel_y = 0
+	},
+/obj/effect/floor_decal/corner/mauve/border{
+	dir = 1
+	},
+/obj/structure/bed/chair,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7,
+/obj/machinery/holoposter{
+	pixel_y = 30
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/research/researchdivision)
 "xoe" = (
 /obj/structure/table/standard,
 /turf/simulated/floor/tiled/white,
@@ -37432,7 +37497,7 @@ aac
 aCZ
 aDc
 aiq
-aDe
+sXa
 aDe
 aDe
 aDe
@@ -38196,7 +38261,7 @@ aCc
 aIp
 aIW
 aCc
-aCc
+hJt
 aBV
 aCc
 aCc
@@ -40717,7 +40782,7 @@ amU
 anB
 aoa
 aot
-aoa
+gLg
 amv
 apM
 aiK
@@ -40849,7 +40914,7 @@ aTW
 aTW
 aTW
 agw
-acl
+dMP
 ajG
 aWN
 akY
@@ -42447,7 +42512,7 @@ atU
 ayt
 ayV
 atU
-aCn
+xdM
 azC
 aCV
 azE
@@ -43589,7 +43654,7 @@ aXg
 axg
 aHa
 aHR
-awf
+cmQ
 ats
 aKb
 aKU
@@ -45540,7 +45605,7 @@ ajX
 akn
 alk
 aZt
-alk
+vtN
 ayx
 aZn
 aYq
@@ -46545,7 +46610,7 @@ aZS
 aZZ
 anL
 axb
-avi
+viF
 avk
 axQ
 aiX
@@ -48556,7 +48621,7 @@ asX
 asX
 aFD
 asX
-aGH
+uxo
 aHB
 aIn
 aIT

@@ -19,6 +19,8 @@
 
 #define isorgan(A)		istype(A, /obj/item/organ/external)
 
+#define isstorage(A)	istype(A, /obj/item/weapon/storage)
+
 //---------------
 //#define isarea(D)		istype(D, /area)	//Built in
 
