@@ -28,6 +28,7 @@
 
 /obj/structure/catwalk/Destroy()
 	redraw_nearby_catwalks()
+<<<<<<< HEAD
 	update_falling()
 	return ..()
 
@@ -43,7 +44,31 @@
 		if(L)
 			L.update_connections()
 			L.update_icon() //so siding get updated properly
+=======
+	return ..()
 
+/obj/structure/catwalk/proc/redraw_nearby_catwalks()
+	for(var/direction in alldirs)
+		var/obj/structure/catwalk/L = locate() in get_step(src, direction)
+		if(L)
+			L.update_connections()
+			L.update_icon() //so siding get updated properly
+
+>>>>>>> c62de50... Port Bay's Catwalks (#7083)
+
+/obj/structure/catwalk/update_icon()
+	update_connections()
+	cut_overlays()
+	icon_state = ""
+	var/image/I
+	if(!hatch_open)
+		for(var/i = 1 to 4)
+			I = image(icon, "catwalk[connections[i]]", dir = 1<<(i-1))
+			add_overlay(I)
+	if(plating_color)
+		I = image(icon, "plated")
+		I.color = plating_color
+		add_overlay(I)
 
 /obj/structure/catwalk/update_icon()
 	update_connections()
@@ -63,10 +88,17 @@
 	switch(severity)
 		if(1)
 			new /obj/item/stack/rods(src.loc)
+<<<<<<< HEAD
 			qdel(src)
 		if(2)
 			new /obj/item/stack/rods(src.loc)
 			qdel(src)
+=======
+			qdel(src)
+		if(2)
+			new /obj/item/stack/rods(src.loc)
+			qdel(src)
+>>>>>>> c62de50... Port Bay's Catwalks (#7083)
 
 /obj/structure/catwalk/attack_robot(var/mob/user)
 	if(Adjacent(user))
@@ -78,7 +110,11 @@
 	new /obj/item/stack/rods(src.loc)
 	new /obj/item/stack/rods(src.loc)
 	//Lattice would delete itself, but let's save ourselves a new obj
+<<<<<<< HEAD
 	if(istype(src.loc, /turf/space) || istype(src.loc, /turf/simulated/open))
+=======
+	if(isspace(loc) || isopenspace(loc))
+>>>>>>> c62de50... Port Bay's Catwalks (#7083)
 		new /obj/structure/lattice/(src.loc)
 	if(plated_tile)
 		new plated_tile(src.loc)
@@ -95,7 +131,10 @@
 		if(hatch_open)
 			playsound(src, 'sound/items/Crowbar.ogg', 100, 2)
 			to_chat(user, "<span class='notice'>You pry open \the [src]'s maintenance hatch.</span>")
+<<<<<<< HEAD
 			update_falling()
+=======
+>>>>>>> c62de50... Port Bay's Catwalks (#7083)
 		else
 			playsound(src, 'sound/items/Deconstruct.ogg', 100, 2)
 			to_chat(user, "<span class='notice'>You shut \the [src]'s maintenance hatch.</span>")
