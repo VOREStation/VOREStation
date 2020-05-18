@@ -72,7 +72,6 @@
 			else
 				to_chat(src, "<span class='warning'>You gave up on pulling yourself up.</span>")
 				return 0
-<<<<<<< HEAD
 		else if(ismob(src)) //VOREStation Edit Start. Are they a mob, and are they currently flying??
 			var/mob/H = src
 			if(H.flying)
@@ -92,8 +91,6 @@
 			else
 				to_chat(src, "<span class='warning'>Gravity stops you from moving upward.</span>")
 				return 0 //VOREStation Edit End.
-=======
->>>>>>> c62de50... Port Bay's Catwalks (#7083)
 		else
 			to_chat(src, "<span class='warning'>Gravity stops you from moving upward.</span>")
 			return 0

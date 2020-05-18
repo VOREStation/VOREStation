@@ -92,7 +92,7 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 
 	// Couldn't find them logged in.
 	if(!user)
-		return "[sender.friendly_name], I couldn't find a logged-in user with the username of '[key_to_find]', which is what you provided after conversion to Byond's \"ckey\" format. Please connect to the game server and try again."
+		return "[sender.friendly_name], I couldn't find a logged-in user with the username of '[key_to_find]', which is what you provided after conversion to Byond's ckey format. Please connect to the game server and try again."
 	
 	var/sql_ckey = sql_sanitize_text(key_to_find)
 	query = dbcon.NewQuery("SELECT discord_id FROM erro_player WHERE ckey = '[sql_ckey]'")
