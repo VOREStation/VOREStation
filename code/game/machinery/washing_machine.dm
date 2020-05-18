@@ -59,8 +59,8 @@
 		I.decontaminate()
 
 	//Tanning!
-	for(var/obj/item/stack/material/hairlesshide/HH in washing)
-		var/obj/item/stack/material/wetleather/WL = new(src)
+	for(var/obj/item/stack/hairlesshide/HH in washing)
+		var/obj/item/stack/wetleather/WL = new(src)
 		WL.amount = HH.amount
 		qdel(HH)
 

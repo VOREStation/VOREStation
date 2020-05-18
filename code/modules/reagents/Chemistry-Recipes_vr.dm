@@ -207,11 +207,11 @@
 
 		var/blocked = list(
 							/obj/item/stack/material,					//Technical stacks
-							/obj/item/stack/material/hairlesshide,		//Useless leather production steps
-							/obj/item/stack/material/wetleather,
+							/obj/item/stack/hairlesshide,		//Useless leather production steps
+							/obj/item/stack/wetleather,
 							/obj/item/stack/material/algae/ten)			//Why is this one even a separate thing
 		blocked += typesof(/obj/item/stack/material/cyborg)				//Borg matter synths, should only exist in borgs
-		blocked += typesof(/obj/item/stack/material/animalhide)			//Hides which are only used for leather production anyway
+		blocked += typesof(/obj/item/stack/animalhide)			//Hides which are only used for leather production anyway
 
 		var/rare_types = list(
 							/obj/item/stack/material/morphium,			//Complex materials requiring Particle Smasher to create
