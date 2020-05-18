@@ -212,9 +212,12 @@ var/global/list/engineering_networks = list(
 	update_coverage()
 
 /obj/machinery/camera/proc/upgradeMotion()
+	if(!isturf(loc))
+		return //nooooo
 	assembly.upgrades.Add(new /obj/item/device/assembly/prox_sensor(assembly))
 	setPowerUsage()
 	START_MACHINE_PROCESSING(src)
+	sense_proximity(callback = .HasProximity)
 	update_coverage()
 
 /obj/machinery/camera/proc/setPowerUsage()

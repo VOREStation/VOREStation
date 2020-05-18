@@ -441,7 +441,6 @@
 
 	var/health = 100
 	var/status = BURST //can be GROWING, GROWN or BURST; all mutually exclusive
-	flags = PROXMOVE
 
 /obj/effect/alien/egg/New()
 /*
@@ -546,15 +545,3 @@
 	if(exposed_temperature > 500 + T0C)
 		health -= 5
 		healthcheck()
-/*
-/obj/effect/alien/egg/HasProximity(atom/movable/AM as mob|obj)
-	if(status == GROWN)
-		if(!CanHug(AM))
-			return
-
-		var/mob/living/carbon/C = AM
-		if(C.stat == CONSCIOUS && C.status_flags & XENO_HOST)
-			return
-
-		Burst(0)
-*/
