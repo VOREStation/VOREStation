@@ -349,14 +349,6 @@
 		return TRUE
 	return FALSE
 
-/obj/item/device/electronic_assembly/on_loc_moved(oldloc)
-	for(var/obj/O in contents)
-		O.on_loc_moved(oldloc)
-
-/obj/item/device/electronic_assembly/Moved(var/oldloc)
-	for(var/obj/O in contents)
-		O.on_loc_moved(oldloc)
-
 /obj/item/device/electronic_assembly/proc/on_anchored()
 	for(var/obj/item/integrated_circuit/IC in contents)
 		IC.on_anchored()

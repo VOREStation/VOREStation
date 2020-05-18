@@ -457,21 +457,6 @@
 /mob/proc/update_gravity()
 	return
 
-// Called when a mob successfully moves.
-// Would've been an /atom/movable proc but it caused issues.
-/mob/Moved(atom/oldloc)
-	. = ..()
-	for(var/obj/O in contents)
-		O.on_loc_moved(oldloc)
-
-// Received from Moved(), useful for items that need to know that their loc just moved.
-/obj/proc/on_loc_moved(atom/oldloc)
-	return
-
-/obj/item/weapon/storage/on_loc_moved(atom/oldloc)
-	for(var/obj/O in contents)
-		O.on_loc_moved(oldloc)
-
 /client/verb/moveup()
 	set name = ".moveup"
 	set instant = 1
