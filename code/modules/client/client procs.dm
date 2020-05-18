@@ -65,6 +65,42 @@
 		send2adminirc(href_list["irc_msg"])
 		return
 
+	//VOREStation Add
+	if(href_list["discord_reg"])
+		var/their_id = html_decode(href_list["discord_reg"])
+		var/sane = FALSE
+		for(var/item in GLOB.pending_discord_registrations)
+			var/list/L = item
+			if(!islist(L))
+				GLOB.pending_discord_registrations -= item
+				continue
+			if(L["ckey"] == ckey && L["id"] == their_id)
+				GLOB.pending_discord_registrations -= list(item)
+				var/time = L["time"]
+				if((world.realtime - time) > 10 MINUTES)
+					to_chat(src, "<span class='warning'>Sorry, that link has expired. Please request another on Discord.</span>")
+					return
+				sane = TRUE
+				break
+		
+		if(!sane)
+			to_chat(src, "<span class='warning'>Sorry, that link doesn't appear to be valid. Please try again.</span>")
+			return
+
+		var/sql_discord = sql_sanitize_text(their_id)
+		var/sql_ckey = sql_sanitize_text(ckey)
+		var/DBQuery/query = dbcon.NewQuery("UPDATE erro_player SET discord_id = '[sql_discord]' WHERE ckey = '[sql_ckey]'")
+		if(query.Execute())
+			to_chat(src, "<span class='notice'>Registration complete! Thank you for taking the time to register your Discord ID.</span>")
+			log_and_message_admins("[ckey] has registered their Discord ID to obtain the Crew Member role. Their Discord snowflake ID is: [their_id]")
+			admin_chat_message(message = "[ckey] has registered their Discord ID to obtain the Crew Member role. Their Discord is: <@[their_id]>", color = "#4eff22")
+			notes_add(ckey, "Discord ID: [their_id]")
+		else
+			to_chat(src, "<span class='warning'>There was an error registering your Discord ID in the database. Contact an administrator.</span>")
+			log_and_message_admins("[ckey] failed to register their Discord ID. Their Discord snowflake ID is: [their_id]. Is the database connected?")
+		return
+	//VOREStation Add End
+
 	//Logs all hrefs
 	if(config && config.log_hrefs && href_logfile)
 		WRITE_LOG(href_logfile, "[src] (usr:[usr])</small> || [hsrc ? "[hsrc] " : ""][href]")
