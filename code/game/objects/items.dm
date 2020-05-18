@@ -643,11 +643,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 //Looking through a scope or binoculars should /not/ improve your periphereal vision. Still, increase viewsize a tiny bit so that sniping isn't as restricted to NSEW
 /obj/item/var/ignore_visor_zoom_restriction = FALSE
 
-/obj/item/on_loc_moved(var/oldloc)
-	. = ..()
-	if(zoom)
-		zoom() // aka unzoom
-
 /obj/item/proc/zoom(var/tileoffset = 14,var/viewsize = 9) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
 
 	var/devicename
@@ -677,6 +672,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			H.toggle_zoom_hud()	// If the user has already limited their HUD this avoids them having a HUD when they zoom in
 		H.set_viewsize(viewsize)
 		zoom = 1
+		GLOB.moved_event.register(H, src, .proc/zoom)
 
 		var/tilesize = 32
 		var/viewoffset = tilesize * tileoffset
@@ -705,6 +701,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		if(!H.hud_used.hud_shown)
 			H.toggle_zoom_hud()
 		zoom = 0
+		GLOB.moved_event.unregister(H, src, .proc/zoom)
 
 		H.client.pixel_x = 0
 		H.client.pixel_y = 0
