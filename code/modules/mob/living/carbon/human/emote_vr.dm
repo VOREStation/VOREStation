@@ -29,11 +29,11 @@
 		if("awoo")
 			m_type = 2
 			message = "lets out an awoo."
-			playsound(loc, 'sound/voice/long_awoo.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
+			playsound(loc, 'sound/voice/awoo.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
 		if("awoo2")
 			m_type = 2
 			message = "lets out an awoo."
-			playsound(loc, 'sound/voice/awoo.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
+			playsound(loc, 'sound/voice/long_awoo.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
 		if("growl")
 			m_type = 2
 			message = "lets out a growl."
