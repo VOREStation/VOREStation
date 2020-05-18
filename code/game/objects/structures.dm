@@ -223,25 +223,22 @@
 					if(istype(W))
 						W.update_connections(1)
 				if(success)
-					break
-			if(success)
-				break
+					break // breaks inner loop
 		if(!success)
-			for(var/obj/O in T)
-				for(var/b_type in blend_objects)
-					if(istype(O, b_type))
-						success = 1
-						for(var/obj/structure/S in T)
-							if(istype(S, src))
-								success = 0
-						for(var/nb_type in noblend_objects)
-							if(istype(O, nb_type))
-								success = 0
+			blend_obj_loop:
+				for(var/obj/O in T)
+					for(var/b_type in blend_objects)
+						if(istype(O, b_type))
+							success = 1
+							for(var/obj/structure/S in T)
+								if(istype(S, src))
+									success = 0
+							for(var/nb_type in noblend_objects)
+								if(istype(O, nb_type))
+									success = 0
 
-					if(success)
-						break
-				if(success)
-					break
+						if(success)
+							break blend_obj_loop // breaks outer loop
 
 		if(success)
 			dirs += get_dir(src, T)
