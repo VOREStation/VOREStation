@@ -1,7 +1,7 @@
 // Based on railing.dmi from https://github.com/Endless-Horizon/CEV-Eris
 /obj/structure/railing
 	name = "railing"
-	desc = "A standard steel railing.  Play stupid games, win stupid prizes."
+	desc = "A standard steel railing, painted orange.  Play stupid games, win stupid prizes."
 	icon = 'icons/obj/railing.dmi'
 	density = 1
 	throwpass = 1
@@ -14,6 +14,13 @@
 	var/health = 70
 	var/maxhealth = 70
 	var/check = 0
+	var/icon_modifier = ""
+
+/obj/structure/railing/grey
+	name = "grey railing"
+	desc = "A standard steel railing. Prevents stupid people from falling to their doom."
+	icon_modifier = "grey_"
+	icon_state = "grey_railing0"
 
 /obj/structure/railing/New(loc, constructed = 0)
 	..()
@@ -103,25 +110,25 @@
 	//layer = (dir == SOUTH) ? FLY_LAYER : initial(layer) // wtf does this even do
 	overlays.Cut()
 	if (!check || !anchored)//|| !anchored
-		icon_state = "railing0"
+		icon_state = "[icon_modifier]railing0"
 	else
-		icon_state = "railing1"
+		icon_state = "[icon_modifier]railing1"
 		if (check & 32)
-			overlays += image ('icons/obj/railing.dmi', src, "corneroverlay")
+			overlays += image ('icons/obj/railing.dmi', src, "[icon_modifier]corneroverlay")
 		if ((check & 16) || !(check & 32) || (check & 64))
-			overlays += image ('icons/obj/railing.dmi', src, "frontoverlay_l")
+			overlays += image ('icons/obj/railing.dmi', src, "[icon_modifier]frontoverlay_l")
 		if (!(check & 2) || (check & 1) || (check & 4))
-			overlays += image ('icons/obj/railing.dmi', src, "frontoverlay_r")
+			overlays += image ('icons/obj/railing.dmi', src, "[icon_modifier]frontoverlay_r")
 			if(check & 4)
 				switch (src.dir)
 					if (NORTH)
-						overlays += image ('icons/obj/railing.dmi', src, "mcorneroverlay", pixel_x = 32)
+						overlays += image ('icons/obj/railing.dmi', src, "[icon_modifier]mcorneroverlay", pixel_x = 32)
 					if (SOUTH)
-						overlays += image ('icons/obj/railing.dmi', src, "mcorneroverlay", pixel_x = -32)
+						overlays += image ('icons/obj/railing.dmi', src, "[icon_modifier]mcorneroverlay", pixel_x = -32)
 					if (EAST)
-						overlays += image ('icons/obj/railing.dmi', src, "mcorneroverlay", pixel_y = -32)
+						overlays += image ('icons/obj/railing.dmi', src, "[icon_modifier]mcorneroverlay", pixel_y = -32)
 					if (WEST)
-						overlays += image ('icons/obj/railing.dmi', src, "mcorneroverlay", pixel_y = 32)
+						overlays += image ('icons/obj/railing.dmi', src, "[icon_modifier]mcorneroverlay", pixel_y = 32)
 
 /obj/structure/railing/verb/rotate_counterclockwise()
 	set name = "Rotate Railing Counter-Clockwise"
