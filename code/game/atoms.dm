@@ -118,14 +118,32 @@
 /atom/proc/CheckExit()
 	return 1
 
-// If you want to use this, the atom must have the PROXMOVE flag, and the moving
-// atom must also have the PROXMOVE flag currently to help with lag. ~ ComicIronic
-/atom/proc/HasProximity(atom/movable/AM as mob|obj)
+// Used to be for the PROXMOVE flag, but that was terrible, so instead it's just here as a stub for
+// all the atoms that still have the proc, but get events other ways.
+/atom/proc/HasProximity(turf/T, atom/movable/AM, old_loc)
 	return
+
+//Register listeners on turfs in a certain range
+/atom/proc/sense_proximity(var/range = 1, var/callback)
+	ASSERT(callback)
+	ASSERT(isturf(loc))
+	var/list/turfs = trange(range, src)
+	for(var/t in turfs)
+		var/turf/T = t
+		GLOB.turf_entered_event.register(T, src, callback)
+
+//Unregister from prox listening in a certain range. You should do this BEFORE you move, but if you
+// really can't, then you can set the center where you moved from.
+/atom/proc/unsense_proximity(var/range = 1, var/callback, var/center)
+	ASSERT(isturf(center) || isturf(loc))
+	var/list/turfs = trange(range, center ? center : src)
+	for(var/t in turfs)
+		var/turf/T = t
+		GLOB.turf_entered_event.unregister(T, src, callback)
+
 
 /atom/proc/emp_act(var/severity)
 	return
-
 
 /atom/proc/bullet_act(obj/item/projectile/P, def_zone)
 	P.on_hit(src, 0, def_zone)

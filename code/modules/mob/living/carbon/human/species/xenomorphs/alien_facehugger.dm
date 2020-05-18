@@ -15,7 +15,6 @@ var/const/MAX_ACTIVE_TIME = 400
 	icon_state = "facehugger"
 	item_state = "facehugger"
 	w_class = 3 //note: can be picked up by aliens unlike most other items of w_class below 4
-	flags = PROXMOVE
 	body_parts_covered = FACE|EYES
 	throw_range = 5
 
