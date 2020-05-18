@@ -44,7 +44,6 @@
 			L.update_connections()
 			L.update_icon() //so siding get updated properly
 
-
 /obj/structure/catwalk/update_icon()
 	update_connections()
 	cut_overlays()
@@ -78,7 +77,7 @@
 	new /obj/item/stack/rods(src.loc)
 	new /obj/item/stack/rods(src.loc)
 	//Lattice would delete itself, but let's save ourselves a new obj
-	if(istype(src.loc, /turf/space) || istype(src.loc, /turf/simulated/open))
+	if(isspace(loc) || isopenspace(loc))
 		new /obj/structure/lattice/(src.loc)
 	if(plated_tile)
 		new plated_tile(src.loc)
