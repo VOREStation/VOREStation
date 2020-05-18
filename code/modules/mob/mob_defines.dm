@@ -3,7 +3,6 @@
 	layer = MOB_LAYER
 	plane = MOB_PLANE
 	animate_movement = 2
-	flags = PROXMOVE
 	var/datum/mind/mind
 
 	var/stat = 0 //Whether a mob is alive or dead. TODO: Move this to living - Nodrak
