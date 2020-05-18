@@ -67,18 +67,6 @@
 	else
 		..()
 
-/obj/item/clothing/Moved(oldloc)
-	if(IC)
-		IC.on_loc_moved(oldloc)
-	else
-		..()
-
-/obj/item/clothing/on_loc_moved(oldloc)
-	if(IC)
-		IC.on_loc_moved(oldloc)
-	else
-		..()
-
 // Does most of the repeatative setup.
 /obj/item/clothing/proc/setup_integrated_circuit(new_type)
 	// Set up the internal circuit holder.
