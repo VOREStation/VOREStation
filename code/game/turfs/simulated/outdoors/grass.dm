@@ -42,7 +42,7 @@ var/list/grass_types = list(
 	var/tree_chance = 2
 /*
 	animal_chance = 0.5
-
+  
 	animal_types = list(
 		/mob/living/simple_mob/animal/sif/diyaab = 10,
 		/mob/living/simple_mob/animal/sif/glitterfly = 2,
