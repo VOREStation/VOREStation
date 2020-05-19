@@ -134,15 +134,10 @@
 	return
 
 /turf/space/Entered(var/atom/movable/A)
-	..()
-
-	if (!A || src != A.loc)
-		return
-
-	inertial_drift(A)
+	. = ..()
 
 	if(edge && ticker?.mode)
-		A.touch_map_edge()
+		A?.touch_map_edge()
 
 /turf/space/proc/Sandbox_Spacemove(atom/movable/A as mob|obj)
 	var/cur_x

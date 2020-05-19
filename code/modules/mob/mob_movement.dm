@@ -391,9 +391,9 @@
 
 	//Check to see if we slipped
 	if(prob(Process_Spaceslipping(5)) && !buckled)
-		to_chat(src, "<font color='blue'><B>You slipped!</B></font>")
-		src.inertia_dir = src.last_move
-		step(src, src.inertia_dir)
+		to_chat(src, "<span class='notice'><B>You slipped!</B></span>")
+		inertia_dir = last_move
+		step(src, src.inertia_dir) // Not using Move for smooth glide here because this is a 'slip' so should be sudden.
 		return 0
 	//If not then we can reset inertia and move
 	inertia_dir = 0
@@ -405,7 +405,7 @@
 	var/shoegrip
 
 	for(var/turf/turf in oview(1,src))
-		if(istype(turf,/turf/space))
+		if(isspace(turf))
 			continue
 
 		if(istype(turf,/turf/simulated/floor)) // Floors don't count if they don't have gravity
