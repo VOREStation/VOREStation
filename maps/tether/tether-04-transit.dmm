@@ -13,8 +13,8 @@
 /obj/structure/cable{
 	d1 = 2;
 	d2 = 4;
-	icon_state = "2-4"
-	},
+	icon_state = "2-4"asdfsadf
+	},asdfasdfdsf
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
 	},
