@@ -52,7 +52,6 @@
 #include "code\__defines\lighting.dm"
 #include "code\__defines\lighting_vr.dm"
 #include "code\__defines\machinery.dm"
-#include "code\__defines\map.dm"
 #include "code\__defines\math.dm"
 #include "code\__defines\math_physics.dm"
 #include "code\__defines\MC.dm"
