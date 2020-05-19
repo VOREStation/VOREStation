@@ -28,9 +28,13 @@ labelPRBasedOnFilePath:
     - 'config/jobwhitelist.txt'
     - 'config/custom_sprites.txt'
 
-  # Contains changes to files in the root of the repo
-  "Contains Root Change"
-    - '*'
+  # Contains changes to the dme
+  "Contains .dme Change"
+    - '*.dme'
+
+  # Contains root file changes to files other than the dme (shouldn't happen)
+  "Contains non-dme root changes"
+    - '*.!(dme)'
 
   # Contains changes to system folders
   "Type: .git or .github":
