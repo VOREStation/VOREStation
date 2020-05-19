@@ -49,9 +49,9 @@
 	if(old_z != new_z)
 		client?.update_skybox(TRUE)
 
-/mob/doMove()
-	if((. = ..()))
-		client?.update_skybox()
+/mob/Moved()
+	. = ..()
+	client?.update_skybox()
 
 /mob/set_viewsize()
 	. = ..()
