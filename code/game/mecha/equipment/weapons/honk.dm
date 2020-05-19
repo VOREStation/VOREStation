@@ -16,7 +16,7 @@
 	if(!equip_ready)
 		return 0
 
-	playsound(chassis, 'sound/effects/bang.ogg', 30, 1, 30)
+	playsound(src, 'sound/effects/bang.ogg', 30, 1, 30)
 	chassis.occupant_message("<span class='warning'>You emit a high-pitched noise from the mech.</span>")
 	for(var/mob/living/carbon/M in ohearers(6, chassis))
 		if(istype(M, /mob/living/carbon/human))

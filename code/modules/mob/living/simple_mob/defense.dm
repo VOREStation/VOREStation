@@ -163,7 +163,7 @@
 		return 0
 
 	apply_damage(damage = shock_damage, damagetype = BURN, def_zone = null, blocked = null, blocked = resistance, used_weapon = null, sharp = FALSE, edge = FALSE)
-	playsound(loc, "sparks", 50, 1, -1)
+	playsound(src, "sparks", 50, 1, -1)
 
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(5, 1, loc)

@@ -145,7 +145,7 @@ var/global/list/stool_cache = list() //haha stool
 			to_chat(user, "\The [src] has no padding to remove.")
 			return
 		to_chat(user, "You remove the padding from \the [src].")
-		playsound(src.loc, W.usesound, 50, 1)
+		playsound(src, W.usesound, 50, 1)
 		remove_padding()
 	else
 		..()

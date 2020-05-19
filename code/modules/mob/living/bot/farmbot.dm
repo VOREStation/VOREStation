@@ -185,7 +185,7 @@
 
 				busy = 1
 				if(do_after(src, 30, A))
-					playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
+					playsound(src, 'sound/effects/slosh.ogg', 25, 1)
 					visible_message("<span class='notice'>[src] waters \the [A].</span>")
 					tank.reagents.trans_to(T, 100 - T.waterlevel)
 			if(FARMBOT_UPROOT)
@@ -223,7 +223,7 @@
 		while(do_after(src, 10) && tank.reagents.total_volume < tank.reagents.maximum_volume)
 			tank.reagents.add_reagent("water", 100) //VOREStation Edit
 			if(prob(5))
-				playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
+				playsound(src, 'sound/effects/slosh.ogg', 25, 1)
 
 		busy = 0
 		action = ""

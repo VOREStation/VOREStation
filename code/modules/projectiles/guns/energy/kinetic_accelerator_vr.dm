@@ -33,7 +33,7 @@
 	if(istype(A, /obj/item/weapon/tool/crowbar))
 		if(modkits.len)
 			to_chat(user, "<span class='notice'>You pry the modifications out.</span>")
-			playsound(loc, A.usesound, 100, 1)
+			playsound(src, A.usesound, 100, 1)
 			for(var/obj/item/borg/upgrade/modkit/M in modkits)
 				M.uninstall(src)
 		else
@@ -80,7 +80,7 @@
 	. = ..()
 	spawn(fire_delay)
 		if(power_supply && power_supply.check_charge(charge_cost))
-			playsound(loc, 'sound/weapons/kenetic_reload.ogg', 60, 1)
+			playsound(src, 'sound/weapons/kenetic_reload.ogg', 60, 1)
 
 /obj/item/weapon/gun/energy/kinetic_accelerator/update_icon()
 	cut_overlays()
@@ -195,7 +195,7 @@
 	if(KA.get_remaining_mod_capacity() >= cost)
 		if(.)
 			to_chat(user, "<span class='notice'>You install the modkit.</span>")
-			playsound(loc, usesound, 100, 1)
+			playsound(src, usesound, 100, 1)
 			user.unEquip(src)
 			forceMove(KA)
 			KA.modkits += src

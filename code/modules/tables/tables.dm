@@ -263,7 +263,7 @@ var/list/table_icon_cache = list()
 	user.visible_message("<span class='notice'>\The [user] begins removing the [type_holding] holding \the [src]'s [M.display_name] [what] in place.</span>",
 	                              "<span class='notice'>You begin removing the [type_holding] holding \the [src]'s [M.display_name] [what] in place.</span>")
 	if(sound)
-		playsound(src.loc, sound, 50, 1)
+		playsound(src, sound, 50, 1)
 	if(!do_after(user, delay))
 		manipulating = 0
 		return M

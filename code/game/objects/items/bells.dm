@@ -19,7 +19,7 @@
 
 /obj/item/weapon/deskbell/attack(mob/target as mob, mob/living/user as mob)
 	if(!broken)
-		playsound(user.loc, 'sound/effects/deskbell.ogg', 50, 1)
+		playsound(src, 'sound/effects/deskbell.ogg', 50, 1)
 	..()
 
 /obj/item/weapon/deskbell/attack_hand(mob/user)
@@ -61,12 +61,12 @@
 
 /obj/item/weapon/deskbell/proc/ring(mob/user)
 	if(user.a_intent == "harm")
-		playsound(user.loc, 'sound/effects/deskbell_rude.ogg', 50, 1)
+		playsound(src, 'sound/effects/deskbell_rude.ogg', 50, 1)
 		to_chat(user,"<span class='notice'>You hammer [src] rudely!</span>")
 		if (prob(2))
 			break_bell(user)
 	else
-		playsound(user.loc, 'sound/effects/deskbell.ogg', 50, 1)
+		playsound(src, 'sound/effects/deskbell.ogg', 50, 1)
 		to_chat(user,"<span class='notice'>You gracefully ring [src].</span>")
 
 /obj/item/weapon/deskbell/proc/check_ability(mob/user)

@@ -506,7 +506,7 @@ GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/device/perfect_tele_beac
 	while(recharging)
 		if(!do_after(user, 10, src))
 			break
-		playsound(get_turf(src),'sound/items/change_drill.ogg',25,1)
+		playsound(src,'sound/items/change_drill.ogg',25,1)
 		if(power_source.give(phase_power) < phase_power)
 			break
 

@@ -95,13 +95,13 @@
 	for(var/atom/movable/A as mob|obj in src.connected.loc)
 		if (!( A.anchored ))
 			A.forceMove(src)
-	playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+	playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 	qdel(src.connected)
 	src.connected = null
 
 
 /obj/structure/morgue/proc/open()
-	playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+	playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 	src.connected = new /obj/structure/m_tray( src.loc )
 	step(src.connected, src.dir)
 	src.connected.layer = OBJ_LAYER
@@ -225,11 +225,11 @@ GLOBAL_LIST_BOILERPLATE(all_crematoriums, /obj/structure/morgue/crematorium)
 		for(var/atom/movable/A as mob|obj in src.connected.loc)
 			if (!( A.anchored ))
 				A.forceMove(src)
-		playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+		playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 		//src.connected = null
 		qdel(src.connected)
 	else if (src.locked == 0)
-		playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+		playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 		src.connected = new /obj/structure/m_tray/c_tray( src.loc )
 		step(src.connected, dir) //Vorestation Edit
 		src.connected.layer = OBJ_LAYER
@@ -319,7 +319,7 @@ GLOBAL_LIST_BOILERPLATE(all_crematoriums, /obj/structure/morgue/crematorium)
 		sleep(30)
 		cremating = 0
 		locked = 0
-		playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
+		playsound(src, 'sound/machines/ding.ogg', 50, 1)
 	return
 
 

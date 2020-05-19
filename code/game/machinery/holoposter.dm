@@ -83,7 +83,7 @@ GLOBAL_LIST_EMPTY(holoposters)
 	if(stat & (NOPOWER))
 		return
 	if (W.is_multitool())
-		playsound(user.loc, 'sound/items/penclick.ogg', 60, 1)
+		playsound(src, 'sound/items/penclick.ogg', 60, 1)
 		icon_state = input("Available Posters", "Holographic Poster") as null|anything in postertypes + "random"
 		if(!Adjacent(user))
 			return

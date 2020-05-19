@@ -51,7 +51,7 @@
 /obj/structure/mirror/attackby(obj/item/I as obj, mob/user as mob)
 	if(I.is_wrench())
 		if(!glass)
-			playsound(src.loc, I.usesound, 50, 1)
+			playsound(src, I.usesound, 50, 1)
 			if(do_after(user, 20 * I.toolspeed))
 				to_chat(user, "<span class='notice'>You unfasten the frame.</span>")
 				new /obj/item/frame/mirror( src.loc )
@@ -65,7 +65,7 @@
 			new /obj/item/weapon/material/shard( src.loc )
 			return
 		if(!shattered && glass)
-			playsound(src.loc, I.usesound, 50, 1)
+			playsound(src, I.usesound, 50, 1)
 			to_chat(user, "<span class='notice'>You remove the glass.</span>")
 			glass = !glass
 			icon_state = "mirror_frame"
@@ -88,7 +88,7 @@
 			return
 
 	if(shattered && glass)
-		playsound(src.loc, 'sound/effects/hit_on_shattered_glass.ogg', 70, 1)
+		playsound(src, 'sound/effects/hit_on_shattered_glass.ogg', 70, 1)
 		return
 
 	if(prob(I.force * 2))
@@ -97,13 +97,13 @@
 			shatter()
 	else
 		visible_message("<span class='warning'>[user] hits [src] with [I]!</span>")
-		playsound(src.loc, 'sound/effects/Glasshit.ogg', 70, 1)
+		playsound(src, 'sound/effects/Glasshit.ogg', 70, 1)
 
 /obj/structure/mirror/attack_generic(var/mob/user, var/damage)
 
 	user.do_attack_animation(src)
 	if(shattered && glass)
-		playsound(src.loc, 'sound/effects/hit_on_shattered_glass.ogg', 70, 1)
+		playsound(src, 'sound/effects/hit_on_shattered_glass.ogg', 70, 1)
 		return 0
 
 	if(damage)

@@ -66,7 +66,7 @@
 
 /obj/effect/alien/resin/attack_generic(var/mob/user, var/damage, var/attack_verb)
 	visible_message("<span class='danger'>[user] [attack_verb] the [src]!</span>")
-	playsound(loc, 'sound/effects/attackblob.ogg', 100, 1)
+	playsound(src, 'sound/effects/attackblob.ogg', 100, 1)
 	user.do_attack_animation(src)
 	health -= damage
 	healthcheck()
@@ -100,7 +100,7 @@
 		tforce = 10
 	else
 		tforce = AM:throwforce
-	playsound(loc, 'sound/effects/attackblob.ogg', 100, 1)
+	playsound(src, 'sound/effects/attackblob.ogg', 100, 1)
 	health = max(0, health - tforce)
 	healthcheck()
 	..()
@@ -137,7 +137,7 @@
 	user.setClickCooldown(user.get_attack_speed(W))
 	var/aforce = W.force
 	health = max(0, health - aforce)
-	playsound(loc, 'sound/effects/attackblob.ogg', 100, 1)
+	playsound(src, 'sound/effects/attackblob.ogg', 100, 1)
 	healthcheck()
 	..()
 	return
@@ -328,7 +328,7 @@
 
 		if(WT.remove_fuel(0, user))
 			damage = 15
-			playsound(loc, 'sound/items/Welder.ogg', 100, 1)
+			playsound(src, 'sound/items/Welder.ogg', 100, 1)
 
 	health -= damage
 	healthcheck()
@@ -531,7 +531,7 @@
 
 		if(WT.remove_fuel(0, user))
 			damage = 15
-			playsound(src.loc, 'sound/items/Welder.ogg', 100, 1)
+			playsound(src, 'sound/items/Welder.ogg', 100, 1)
 
 	src.health -= damage
 	src.healthcheck()

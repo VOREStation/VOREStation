@@ -67,7 +67,7 @@
 /obj/effect/directional_shield/bullet_act(var/obj/item/projectile/P)
 	adjust_health(-P.get_structure_damage())
 	P.on_hit()
-	playsound(get_turf(src), 'sound/effects/EMPulse.ogg', 75, 1)
+	playsound(src, 'sound/effects/EMPulse.ogg', 75, 1)
 
 // All the shields tied to their projector are one 'unit', and don't have individualized health values like most other shields.
 /obj/effect/directional_shield/proc/adjust_health(amount)
@@ -144,12 +144,12 @@
 			destroy_shields()
 			var/turf/T = get_turf(src)
 			T.visible_message("<span class='danger'>\The [src] overloads and the shield vanishes!</span>")
-			playsound(get_turf(src), 'sound/machines/defib_failed.ogg', 75, 0)
+			playsound(src, 'sound/machines/defib_failed.ogg', 75, 0)
 		else
 			if(shield_health < max_shield_health / 4) // Play a more urgent sounding beep if it's at 25% health.
-				playsound(get_turf(src), 'sound/machines/defib_success.ogg', 75, 0)
+				playsound(src, 'sound/machines/defib_success.ogg', 75, 0)
 			else
-				playsound(get_turf(src), 'sound/machines/defib_SafetyOn.ogg', 75, 0)
+				playsound(src, 'sound/machines/defib_SafetyOn.ogg', 75, 0)
 		last_damaged_time = world.time
 	update_shield_colors()
 
@@ -203,9 +203,9 @@
 		if(always_on && !active) // Make shields as soon as possible if this is set.
 			create_shields()
 		if(shield_health == max_shield_health)
-			playsound(get_turf(src), 'sound/machines/defib_ready.ogg', 75, 0)
+			playsound(src, 'sound/machines/defib_ready.ogg', 75, 0)
 		else
-			playsound(get_turf(src), 'sound/machines/defib_safetyOff.ogg', 75, 0)
+			playsound(src, 'sound/machines/defib_safetyOff.ogg', 75, 0)
 
 /obj/item/shield_projector/examine(var/mob/user)
 	. = ..()

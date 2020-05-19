@@ -25,14 +25,14 @@
 			var/obj/o = target
 			var/amount = o.reagents.trans_to_obj(src, 200)
 			occupant_message("<span class='notice'>[amount] units transferred into internal tank.</span>")
-			playsound(chassis, 'sound/effects/refill.ogg', 50, 1, -6)
+			playsound(src, 'sound/effects/refill.ogg', 50, 1, -6)
 			return
 
 		if (src.reagents.total_volume < 1)
 			occupant_message("<span class='warning'>\The [src] is empty.</span>")
 			return
 
-		playsound(chassis, 'sound/effects/extinguish.ogg', 75, 1, -3)
+		playsound(src, 'sound/effects/extinguish.ogg', 75, 1, -3)
 
 		var/direction = get_dir(chassis,target)
 

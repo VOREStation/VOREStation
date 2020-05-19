@@ -183,7 +183,7 @@
 	locked = !locked
 	to_chat(user, "<span class='notice'>You [locked ? "lock" : "unlock"] the mulebot's controls!</span>")
 	flick("mulebot-emagged", src)
-	playsound(loc, 'sound/effects/sparks1.ogg', 100, 0)
+	playsound(src, 'sound/effects/sparks1.ogg', 100, 0)
 	return 1
 
 /mob/living/bot/mulebot/update_icons()
@@ -202,13 +202,13 @@
 
 /mob/living/bot/mulebot/handleFrustrated()
 	custom_emote(2, "makes a sighing buzz.")
-	playsound(loc, 'sound/machines/buzz-sigh.ogg', 50, 0)
+	playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 0)
 	..()
 
 /mob/living/bot/mulebot/handleAdjacentTarget()
 	if(target == src.loc)
 		custom_emote(2, "makes a chiming sound.")
-		playsound(loc, 'sound/machines/chime.ogg', 50, 0)
+		playsound(src, 'sound/machines/chime.ogg', 50, 0)
 		UnarmedAttack(target)
 		resetTarget()
 		if(auto_return && home && (loc != home))
@@ -244,7 +244,7 @@
 /mob/living/bot/mulebot/proc/runOver(var/mob/living/carbon/human/H)
 	if(istype(H)) // No safety checks - WILL run over lying humans. Stop ERPing in the maint!
 		visible_message("<span class='warning'>[src] drives over [H]!</span>")
-		playsound(loc, 'sound/effects/splat.ogg', 50, 1)
+		playsound(src, 'sound/effects/splat.ogg', 50, 1)
 
 		var/damage = rand(5, 7)
 		H.apply_damage(2 * damage, BRUTE, BP_HEAD)
@@ -298,7 +298,7 @@
 
 	if(crates_only && !istype(C,/obj/structure/closet/crate))
 		custom_emote(2, "makes a sighing buzz.")
-		playsound(loc, 'sound/machines/buzz-sigh.ogg', 50, 0)
+		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 0)
 		return
 
 	var/obj/structure/closet/crate/crate = C

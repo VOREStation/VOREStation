@@ -223,7 +223,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 				if(PS.get_amount() >= 10)
 					PS.use(10)
 					to_chat(user, "<span class='notice'>You add the plating to the framework.</span>")
-					playsound(src.loc, 'sound/machines/click.ogg', 75, 1)
+					playsound(src, 'sound/machines/click.ogg', 75, 1)
 					broken_state++
 					update_icon()
 				else
@@ -351,7 +351,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 				charge_count -= 2
 
 			if(charge_count % 4 == 0 && prob(75)) // Let them know it is charging/discharging.
-				playsound(src.loc, 'sound/effects/empulse.ogg', 100, 1)
+				playsound(src, 'sound/effects/empulse.ogg', 100, 1)
 
 			updateDialog()
 			if(prob(25)) // To help stop "Your clothes feel warm." spam.

@@ -51,7 +51,7 @@
 /*
 /obj/machinery/computer/pod/attackby(I as obj, user as mob)
 	if(I.is_screwdriver())
-		playsound(src.loc, W.usesound, 50, 1)
+		playsound(src, W.usesound, 50, 1)
 		if(do_after(user, 20))
 			if(stat & BROKEN)
 				to_chat(user, "<span class='notice'>The broken glass falls out.</span>")

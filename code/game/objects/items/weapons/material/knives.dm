@@ -46,7 +46,7 @@
 	active = !active
 	if(active)
 		to_chat(user, "<span class='notice'>You flip out \the [src].</span>")
-		playsound(user, 'sound/weapons/flipblade.ogg', 15, 1)
+		playsound(src, 'sound/weapons/flipblade.ogg', 15, 1)
 	else
 		to_chat(user, "<span class='notice'>\The [src] can now be concealed.</span>")
 	update_force()

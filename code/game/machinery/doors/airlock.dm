@@ -81,7 +81,7 @@
 				if(do_after(user,5 SECONDS,src))
 					visible_message("<span class='danger'>\The [user] forces \the [src] open, sparks flying from its electronics!</span>")
 					src.do_animate("spark")
-					playsound(src.loc, 'sound/machines/airlock_creaking.ogg', 100, 1)
+					playsound(src, 'sound/machines/airlock_creaking.ogg', 100, 1)
 					src.locked = 0
 					src.welded = 0
 					update_icon()
@@ -90,7 +90,7 @@
 			else if(src.density)
 				visible_message("<span class='alium'>\The [user] begins forcing \the [src] open!</span>")
 				if(do_after(user, 5 SECONDS,src))
-					playsound(src.loc, 'sound/machines/airlock_creaking.ogg', 100, 1)
+					playsound(src, 'sound/machines/airlock_creaking.ogg', 100, 1)
 					visible_message("<span class='danger'>\The [user] forces \the [src] open!</span>")
 					open(1)
 			else
@@ -946,7 +946,7 @@ About the new airlock wires panel:
 				src.welded = 1
 			else
 				src.welded = null
-			playsound(src.loc, C.usesound, 75, 1)
+			playsound(src, C.usesound, 75, 1)
 			src.update_icon()
 			return
 		else
@@ -1066,9 +1066,9 @@ About the new airlock wires panel:
 
 	//if the door is unpowered then it doesn't make sense to hear the woosh of a pneumatic actuator
 	if(arePowerSystemsOn())
-		playsound(src.loc, open_sound_powered, 50, 1)
+		playsound(src, open_sound_powered, 50, 1)
 	else
-		playsound(src.loc, open_sound_unpowered, 75, 1)
+		playsound(src, open_sound_unpowered, 75, 1)
 
 	if(src.closeOther != null && istype(src.closeOther, /obj/machinery/door/airlock/) && !src.closeOther.density)
 		src.closeOther.close()
@@ -1150,7 +1150,7 @@ About the new airlock wires panel:
 			for(var/atom/movable/AM in turf)
 				if(AM.blocks_airlock())
 					if(!has_beeped)
-						playsound(src.loc, 'sound/machines/buzz-two.ogg', 50, 0)
+						playsound(src, 'sound/machines/buzz-two.ogg', 50, 0)
 						has_beeped = 1
 					autoclose_in(6)
 					return
@@ -1163,9 +1163,9 @@ About the new airlock wires panel:
 	use_power(360)	//360 W seems much more appropriate for an actuator moving an industrial door capable of crushing people
 	has_beeped = 0
 	if(arePowerSystemsOn())
-		playsound(src.loc, close_sound_powered, 50, 1)
+		playsound(src, close_sound_powered, 50, 1)
 	else
-		playsound(src.loc, open_sound_unpowered, 75, 1)
+		playsound(src, open_sound_unpowered, 75, 1)
 	for(var/turf/turf in locs)
 		var/obj/structure/window/killthis = (locate(/obj/structure/window) in turf)
 		if(killthis)

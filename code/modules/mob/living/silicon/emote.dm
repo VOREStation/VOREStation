@@ -23,7 +23,7 @@
 				message = "<b>[src]</b> beeps at [param]."
 			else
 				message = "<b>[src]</b> beeps."
-			playsound(src.loc, 'sound/machines/twobeep.ogg', 50, 0)
+			playsound(src, 'sound/machines/twobeep.ogg', 50, 0)
 			m_type = 1
 
 		if("ping")
@@ -40,7 +40,7 @@
 				message = "<b>[src]</b> pings at [param]."
 			else
 				message = "<b>[src]</b> pings."
-			playsound(src.loc, 'sound/machines/ping.ogg', 50, 0)
+			playsound(src, 'sound/machines/ping.ogg', 50, 0)
 			m_type = 1
 
 		if("buzz")
@@ -57,7 +57,7 @@
 				message = "<b>[src]</b> buzzes at [param]."
 			else
 				message = "<b>[src]</b> buzzes."
-			playsound(src.loc, 'sound/machines/buzz-sigh.ogg', 50, 0)
+			playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 0)
 			m_type = 1
 
 		if("yes", "ye")
@@ -74,7 +74,7 @@
 				message = "<b>[src]</b> emits an affirmative blip at [param]."
 			else
 				message = "<b>[src]</b> emits an affirmative blip."
-			playsound(src.loc, 'sound/machines/synth_yes.ogg', 50, 0)
+			playsound(src, 'sound/machines/synth_yes.ogg', 50, 0)
 			m_type = 1
 
 		if("dwoop")
@@ -90,7 +90,7 @@
 				message = "<b>[src]</b> chirps happily at [param]"
 			else
 				message = "<b>[src]</b> chirps happily."
-			playsound(src.loc, 'sound/machines/dwoop.ogg', 50, 0)
+			playsound(src, 'sound/machines/dwoop.ogg', 50, 0)
 			m_type = 1
 
 		if("no")
@@ -107,7 +107,7 @@
 				message = "<b>[src]</b> emits a negative blip at [param]."
 			else
 				message = "<b>[src]</b> emits a negative blip."
-			playsound(src.loc, 'sound/machines/synth_no.ogg', 50, 0)
+			playsound(src, 'sound/machines/synth_no.ogg', 50, 0)
 			m_type = 1
 
 	..(act, m_type, message)

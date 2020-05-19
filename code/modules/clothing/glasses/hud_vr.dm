@@ -39,7 +39,7 @@
 
 /obj/item/clothing/glasses/omnihud/prescribe(var/mob/user)
 	prescription = !prescription
-	playsound(user,'sound/items/screwdriver.ogg', 50, 1)
+	playsound(src,'sound/items/screwdriver.ogg', 50, 1)
 	if(prescription)
 		name = "[initial(name)] (pr)"
 		user.visible_message("[user] uploads new prescription data to the [src.name].")

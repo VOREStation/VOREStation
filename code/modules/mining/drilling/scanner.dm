@@ -10,7 +10,7 @@
 
 /obj/item/weapon/mining_scanner/attack_self(mob/user as mob)
 	to_chat(user, "<span class='notice'>You begin sweeping \the [src] about, scanning for metal deposits.</span>")
-	playsound(loc, 'sound/items/goggles_charge.ogg', 50, 1, -6)
+	playsound(src, 'sound/items/goggles_charge.ogg', 50, 1, -6)
 
 	if(!do_after(user, scan_time))
 		return

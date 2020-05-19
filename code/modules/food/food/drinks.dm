@@ -25,7 +25,7 @@
 		open(user)
 
 /obj/item/weapon/reagent_containers/food/drinks/proc/open(mob/user)
-	playsound(loc,"canopen", rand(10,50), 1)
+	playsound(src,"canopen", rand(10,50), 1)
 	to_chat(user, "<span class='notice'>You open [src] with an audible pop!</span>")
 	flags |= OPENCONTAINER
 
@@ -69,7 +69,7 @@
 	to_chat(user, "<span class='notice'>You swallow a gulp from \the [src].</span>")
 
 /obj/item/weapon/reagent_containers/food/drinks/feed_sound(var/mob/user)
-	playsound(user.loc, 'sound/items/drink.ogg', rand(10, 50), 1)
+	playsound(src, 'sound/items/drink.ogg', rand(10, 50), 1)
 
 /obj/item/weapon/reagent_containers/food/drinks/examine(mob/user)
 	. = ..()

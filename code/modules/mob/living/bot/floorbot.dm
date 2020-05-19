@@ -58,7 +58,7 @@
 		emagged = 1
 		if(user)
 			to_chat(user, "<span class='notice'>The [src] buzzes and beeps.</span>")
-			playsound(src.loc, 'sound/machines/buzzbeep.ogg', 50, 0)
+			playsound(src, 'sound/machines/buzzbeep.ogg', 50, 0)
 		return 1
 
 /mob/living/bot/floorbot/Topic(href, href_list)
@@ -102,7 +102,7 @@
 
 	if(prob(1))
 		custom_emote(2, "makes an excited beeping sound!")
-		playsound(src.loc, 'sound/machines/twobeep.ogg', 50, 0)
+		playsound(src, 'sound/machines/twobeep.ogg', 50, 0)
 
 /mob/living/bot/floorbot/handleAdjacentTarget()
 	if(get_turf(target) == src.loc)
@@ -278,7 +278,7 @@
 /mob/living/bot/floorbot/explode()
 	turn_off()
 	visible_message("<span class='danger'>\The [src] blows apart!</span>")
-	playsound(src.loc, "sparks", 50, 1)
+	playsound(src, "sparks", 50, 1)
 	var/turf/Tsec = get_turf(src)
 
 	var/obj/item/weapon/storage/toolbox/mechanical/N = new /obj/item/weapon/storage/toolbox/mechanical(Tsec)

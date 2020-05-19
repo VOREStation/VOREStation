@@ -48,7 +48,7 @@ RSF
 		qdel(W)
 
 		stored_matter += 10
-		playsound(src.loc, 'sound/machines/click.ogg', 10, 1)
+		playsound(src, 'sound/machines/click.ogg', 10, 1)
 		to_chat(user,"<span class='notice'>The RSF now holds [stored_matter]/30 fabrication-units.</span>")
 		return
 
@@ -64,7 +64,7 @@ RSF
 		glasstype = /obj/item/weapon/reagent_containers/food/drinks/metaglass
 
 /obj/item/weapon/rsf/attack_self(mob/user as mob)
-	playsound(src.loc, 'sound/effects/pop.ogg', 50, 0)
+	playsound(src, 'sound/effects/pop.ogg', 50, 0)
 	if (mode == 1)
 		mode = 2
 		to_chat(user,"<span class='notice'>Changed dispensing mode to 'Container'.</span>")
@@ -101,7 +101,7 @@ RSF
 	if(!istype(A, /obj/structure/table) && !istype(A, /turf/simulated/floor))
 		return
 
-	playsound(src.loc, 'sound/machines/click.ogg', 10, 1)
+	playsound(src, 'sound/machines/click.ogg', 10, 1)
 	var/used_energy = 0
 	var/obj/product
 

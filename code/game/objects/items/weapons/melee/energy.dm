@@ -57,14 +57,14 @@
 	sharp = 1
 	edge = 1
 	w_class = active_w_class
-	playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
+	playsound(src, 'sound/weapons/saberon.ogg', 50, 1)
 	update_icon()
 	set_light(lrange, lpower, lcolor)
 
 /obj/item/weapon/melee/energy/proc/deactivate(mob/living/user)
 	if(!active)
 		return
-	playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
+	playsound(src, 'sound/weapons/saberoff.ogg', 50, 1)
 	item_state = "[icon_state]"
 	active = 0
 	embed_chance = initial(embed_chance)
@@ -310,7 +310,7 @@
 		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 		spark_system.set_up(5, 0, user.loc)
 		spark_system.start()
-		playsound(user.loc, 'sound/weapons/blade1.ogg', 50, 1)
+		playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
 		return 1
 	if(active && unique_parry_check(user, attacker, damage_source) && prob(projectile_parry_chance))
 		user.visible_message("<span class='danger'>\The [user] deflects [attack_text] with \the [src]!</span>")
@@ -318,7 +318,7 @@
 		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 		spark_system.set_up(5, 0, user.loc)
 		spark_system.start()
-		playsound(user.loc, 'sound/weapons/blade1.ogg', 50, 1)
+		playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
 		return 1
 
 	return 0
@@ -370,7 +370,7 @@
 		// EMP stuff.
 		var/obj/O = AM
 		O.emp_act(3) // A weaker severity is used because this has infinite uses.
-		playsound(get_turf(O), 'sound/effects/EMPulse.ogg', 100, 1)
+		playsound(O, 'sound/effects/EMPulse.ogg', 100, 1)
 		user.setClickCooldown(user.get_attack_speed(src)) // A lot of objects don't set click delay.
 	return ..()
 
@@ -379,9 +379,9 @@
 	if(target.isSynthetic() && active)
 		// Do some extra damage.  Not a whole lot more since emp_act() is pretty nasty on FBPs already.
 		target.emp_act(3) // A weaker severity is used because this has infinite uses.
-		playsound(get_turf(target), 'sound/effects/EMPulse.ogg', 100, 1)
+		playsound(target, 'sound/effects/EMPulse.ogg', 100, 1)
 		target.adjustFireLoss(force * 3) // 15 Burn, for 20 total.
-		playsound(get_turf(target), 'sound/weapons/blade1.ogg', 100, 1)
+		playsound(target, 'sound/weapons/blade1.ogg', 100, 1)
 
 		// Make lesser robots really mad at us.
 		if(target.mob_class & MOB_CLASS_SYNTHETIC)
@@ -481,7 +481,7 @@
 		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 		spark_system.set_up(5, 0, user.loc)
 		spark_system.start()
-		playsound(user.loc, 'sound/weapons/blade1.ogg', 50, 1)
+		playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
 		return 1
 	if(unique_parry_check(user, attacker, damage_source) && prob(projectile_parry_chance))
 		user.visible_message("<span class='danger'>\The [user] deflects [attack_text] with \the [src]!</span>")
@@ -489,7 +489,7 @@
 		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 		spark_system.set_up(5, 0, user.loc)
 		spark_system.start()
-		playsound(user.loc, 'sound/weapons/blade1.ogg', 50, 1)
+		playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
 		return 1
 
 	return 0
@@ -547,6 +547,6 @@
 		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 		spark_system.set_up(5, 0, user.loc)
 		spark_system.start()
-		playsound(user.loc, 'sound/weapons/blade1.ogg', 50, 1)
+		playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
 		return 1
 	return 0

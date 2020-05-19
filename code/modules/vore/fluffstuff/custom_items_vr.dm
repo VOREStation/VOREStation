@@ -101,7 +101,7 @@
 		if(user.ckey != owner_ckey) //ERROR: UNAUTHORIZED USER
 			to_chat(user, "<span class='warning'>You probably shouldn't mess with all these strange tools and parts...</span>") //give them a slightly fluffy explanation as to why it didn't work
 			return
-	playsound(user.loc, 'sound/items/Screwdriver.ogg', 100, 1)
+	playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
 	var/obj/N = new to_type(O.loc)
 	user.visible_message("<span class='notice'>[user] opens \the [src] and modifies \the [O] into \the [N].</span>","<span class='notice'>You open \the [src] and modify \the [O] into \the [N].</span>")
 
@@ -179,7 +179,7 @@
 
 	if(default_parry_check(user, attacker, damage_source) && prob(75))
 		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
-		playsound(user.loc, 'sound/weapons/punchmiss.ogg', 50, 1)
+		playsound(src, 'sound/weapons/punchmiss.ogg', 50, 1)
 		return 1
 	return 0
 
@@ -192,7 +192,7 @@
 
 	if(default_parry_check(user, attacker, damage_source) && prob(75))
 		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
-		playsound(user.loc, 'sound/weapons/punchmiss.ogg', 50, 1)
+		playsound(src, 'sound/weapons/punchmiss.ogg', 50, 1)
 		return 1
 	return 0
 
@@ -392,7 +392,7 @@
 	if(istype(O,/obj/item/weapon/card/id) && O.icon_state != new_icon)
 		//O.icon = icon // just in case we're using custom sprite paths with fluff items.
 		O.icon_state = new_icon // Changes the icon without changing the access.
-		playsound(user.loc, 'sound/items/polaroid2.ogg', 100, 1)
+		playsound(src, 'sound/items/polaroid2.ogg', 100, 1)
 		user.visible_message("<span class='warning'> [user] reprints their ID.</span>")
 		qdel(src)
 	else if(O.icon_state == new_icon)
@@ -658,7 +658,7 @@
 /obj/item/weapon/cane/wand/attack_self(mob/user)
     if(last_use + cooldown >= world.time)
         return
-    playsound(loc, 'sound/weapons/sparkle.ogg', 50, 1)
+    playsound(src, 'sound/weapons/sparkle.ogg', 50, 1)
     user.visible_message("<span class='warning'> [user] swings their wand.</span>")
     var/datum/effect/effect/system/spark_spread/s = new
     s.set_up(3, 1, src)
@@ -680,7 +680,7 @@
 		O.icon = new_icon
 		O.icon_state = new_icon_state // Changes the icon without changing the access.
 		O.desc = new_desc
-		playsound(user.loc, 'sound/items/polaroid2.ogg', 100, 1)
+		playsound(src, 'sound/items/polaroid2.ogg', 100, 1)
 		user.visible_message("<span class='warning'> [user] reprints their ID.</span>")
 		qdel(src)
 	else if(O.icon_state == new_icon)
@@ -1565,7 +1565,7 @@
 /obj/item/weapon/melee/baton/fluff/stunstaff/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(wielded && default_parry_check(user, attacker, damage_source) && prob(30))
 		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
-		playsound(user.loc, 'sound/weapons/punchmiss.ogg', 50, 1)
+		playsound(src, 'sound/weapons/punchmiss.ogg', 50, 1)
 		return 1
 	return 0
 
@@ -1589,9 +1589,9 @@
 		status = !status
 		to_chat(user, "<span class='notice'>[src] is now [status ? "on" : "off"].</span>")
 		if(status == 0)
-			playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
+			playsound(src, 'sound/weapons/saberoff.ogg', 50, 1)
 		else
-			playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
+			playsound(src, 'sound/weapons/saberon.ogg', 50, 1)
 	else
 		status = 0
 		to_chat(user, "<span class='warning'>[src] is out of charge.</span>")
@@ -1639,12 +1639,12 @@
 	sharp = 1
 	edge = 1
 	w_class = active_w_class
-	playsound(user, 'sound/weapons/sparkle.ogg', 50, 1)
+	playsound(src, 'sound/weapons/sparkle.ogg', 50, 1)
 
 /obj/item/weapon/melee/fluffstuff/proc/deactivate(mob/living/user)
 	if(!active)
 		return
-	playsound(user, 'sound/weapons/sparkle.ogg', 50, 1)
+	playsound(src, 'sound/weapons/sparkle.ogg', 50, 1)
 	active = 0
 	embed_chance = initial(embed_chance)
 	force = initial(force)

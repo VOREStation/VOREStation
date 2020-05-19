@@ -111,25 +111,25 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 		box_segments = draw_box(target, scan_range, user.client)
 		color_box(box_segments, "#00FF00", scan_delay)
 
-	playsound(src.loc, 'sound/machines/beep.ogg', 50)
+	playsound(src, 'sound/machines/beep.ogg', 50)
 
 	// The delay, and test for if the scan succeeds or not.
 	var/scan_start_time = world.time
 	if(do_after(user, scan_delay, target, ignore_movement = TRUE, max_distance = scan_range))
 		if(target.can_catalogue(user))
 			to_chat(user, span("notice", "You successfully scan \the [target] with \the [src]."))
-			playsound(src.loc, 'sound/machines/ping.ogg', 50)
+			playsound(src, 'sound/machines/ping.ogg', 50)
 			catalogue_object(target, user)
 		else
 			// In case someone else scans it first, or it died, etc.
 			to_chat(user, span("warning", "\The [target] is no longer valid to scan with \the [src]."))
-			playsound(src.loc, 'sound/machines/buzz-two.ogg', 50)
+			playsound(src, 'sound/machines/buzz-two.ogg', 50)
 
 		partial_scanned = null
 		partial_scan_time = 0
 	else
 		to_chat(user, span("warning", "You failed to finish scanning \the [target] with \the [src]."))
-		playsound(src.loc, 'sound/machines/buzz-two.ogg', 50)
+		playsound(src, 'sound/machines/buzz-two.ogg', 50)
 		color_box(box_segments, "#FF0000", 3)
 		partial_scanned = weakref(target)
 		partial_scan_time += world.time - scan_start_time // This is added to the existing value so two partial scans will add up correctly.
@@ -204,7 +204,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 
 	busy = TRUE
 	update_icon()
-	playsound(src.loc, 'sound/machines/beep.ogg', 50)
+	playsound(src, 'sound/machines/beep.ogg', 50)
 
 	// First, get everything able to be scanned.
 	var/list/scannable_atoms = list()
@@ -232,9 +232,9 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	busy = FALSE
 	update_icon()
 	if(scannable_atoms.len)
-		playsound(src.loc, 'sound/machines/ping.ogg', 50)
+		playsound(src, 'sound/machines/ping.ogg', 50)
 	else
-		playsound(src.loc, 'sound/machines/buzz-two.ogg', 50)
+		playsound(src, 'sound/machines/buzz-two.ogg', 50)
 	to_chat(user, span("notice", "\The [src] found [scannable_atoms.len] object\s that can be scanned."))
 
 

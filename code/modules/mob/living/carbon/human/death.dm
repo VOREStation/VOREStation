@@ -88,7 +88,7 @@
 				to_chat(O, "<span class='deadsay'><b>[src]</b> has died in <b>[get_area(src)]</b>. [ghost_follow_link(src, O)] </span>")
 
 	if(!gibbed && species.death_sound)
-		playsound(loc, species.death_sound, 80, 1, 1)
+		playsound(src, species.death_sound, 80, 1, 1)
 
 	if(ticker && ticker.mode)
 		sql_report_death(src)

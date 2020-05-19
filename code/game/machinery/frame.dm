@@ -277,7 +277,7 @@
 	if(P.is_wrench())
 		if(state == FRAME_PLACED && !anchored)
 			to_chat(user, "<span class='notice'>You start to wrench the frame into place.</span>")
-			playsound(src.loc, P.usesound, 50, 1)
+			playsound(src, P.usesound, 50, 1)
 			if(do_after(user, 20 * P.toolspeed))
 				anchored = TRUE
 				if(!need_circuit && circuit)
@@ -298,7 +298,7 @@
 		if(state == FRAME_PLACED)
 			var/obj/item/weapon/weldingtool/WT = P
 			if(WT.remove_fuel(0, user))
-				playsound(src.loc, P.usesound, 50, 1)
+				playsound(src, P.usesound, 50, 1)
 				if(do_after(user, 20 * P.toolspeed))
 					if(src && WT.isOn())
 						to_chat(user, "<span class='notice'>You deconstruct the frame.</span>")
@@ -314,7 +314,7 @@
 			var/obj/item/weapon/circuitboard/B = P
 			var/datum/frame/frame_types/board_type = B.board_type
 			if(board_type.name == frame_type.name)
-				playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+				playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 				to_chat(user, "<span class='notice'>You place the circuit board inside the frame.</span>")
 				circuit = P
 				user.drop_item()
@@ -467,7 +467,7 @@
 				to_chat(user, "<span class='warning'>You need five coils of wire to add them to the frame.</span>")
 				return
 			to_chat(user, "<span class='notice'>You start to add cables to the frame.</span>")
-			playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+			playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 			if(do_after(user, 20) && state == FRAME_FASTENED)
 				if(C.use(5))
 					to_chat(user, "<span class='notice'>You add cables to the frame.</span>")
@@ -478,7 +478,7 @@
 			if(frame_type.frame_class == FRAME_CLASS_MACHINE)
 				for(var/I in req_components)
 					if(istype(P, I) && (req_components[I] > 0))
-						playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+						playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 						if(istype(P, /obj/item/stack/cable_coil))
 							var/obj/item/stack/cable_coil/CP = P
 							if(CP.get_amount() > 1)
@@ -527,7 +527,7 @@
 				if(G.get_amount() < 2)
 					to_chat(user, "<span class='warning'>You need two sheets of glass to put in the glass panel.</span>")
 					return
-				playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+				playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 				to_chat(user, "<span class='notice'>You start to put in the glass panel.</span>")
 				if(do_after(user, 20) && state == FRAME_WIRED)
 					if(G.use(2))
@@ -539,7 +539,7 @@
 				if(G.get_amount() < 2)
 					to_chat(user, "<span class='warning'>You need two sheets of glass to put in the glass panel.</span>")
 					return
-				playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+				playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 				to_chat(user, "<span class='notice'>You start to put in the glass panel.</span>")
 				if(do_after(user, 20) && state == FRAME_WIRED)
 					if(G.use(2))
@@ -551,7 +551,7 @@
 			if(frame_type.frame_class == FRAME_CLASS_MACHINE)
 				for(var/I in req_components)
 					if(istype(P, I) && (req_components[I] > 0))
-						playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+						playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 						if(istype(P, /obj/item/stack))
 							var/obj/item/stack/ST = P
 							if(ST.get_amount() > 1)

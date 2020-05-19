@@ -265,7 +265,7 @@
 	if(I.is_wrench())
 		src.add_fingerprint(user)
 		if(bottle)
-			playsound(loc, I.usesound, 50, 1)
+			playsound(src, I.usesound, 50, 1)
 			if(do_after(user, 20) && bottle)
 				to_chat(user, "<span class='notice'>You unfasten the jug.</span>")
 				var/obj/item/weapon/reagent_containers/glass/cooler_bottle/G = new /obj/item/weapon/reagent_containers/glass/cooler_bottle( src.loc )
@@ -284,12 +284,12 @@
 				if(!src) return
 				to_chat(user, "<span class='notice'>You [anchored? "un" : ""]secured \the [src]!</span>")
 				anchored = !anchored
-				playsound(loc, I.usesound, 50, 1)
+				playsound(src, I.usesound, 50, 1)
 		return
 
 	if(I.is_screwdriver())
 		if(cupholder)
-			playsound(loc, I.usesound, 50, 1)
+			playsound(src, I.usesound, 50, 1)
 			to_chat(user, "<span class='notice'>You take the cup dispenser off.</span>")
 			new /obj/item/stack/material/plastic( src.loc )
 			if(cups)
@@ -300,7 +300,7 @@
 			update_icon()
 			return
 		if(!bottle && !cupholder)
-			playsound(loc, I.usesound, 50, 1)
+			playsound(src, I.usesound, 50, 1)
 			to_chat(user, "<span class='notice'>You start taking the water-cooler apart.</span>")
 			if(do_after(user, 20 * I.toolspeed) && !bottle && !cupholder)
 				to_chat(user, "<span class='notice'>You take the water-cooler apart.</span>")
@@ -334,7 +334,7 @@
 				var/obj/item/stack/material/plastic/P = I
 				src.add_fingerprint(user)
 				to_chat(user, "<span class='notice'>You start to attach a cup dispenser onto the water-cooler.</span>")
-				playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+				playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 				if(do_after(user, 20) && !cupholder && anchored)
 					if (P.use(1))
 						to_chat(user, "<span class='notice'>You attach a cup dispenser onto the water-cooler.</span>")

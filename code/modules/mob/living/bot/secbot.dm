@@ -172,7 +172,7 @@
 		return
 
 	if(!target)
-		playsound(src.loc, pick(threat_found_sounds), 50)
+		playsound(src, pick(threat_found_sounds), 50)
 		global_announcer.autosay("[src] was attacked by a hostile <b>[target_name(attacker)]</b> in <b>[get_area(src)]</b>.", "[src]", "Security")
 	target = attacker
 	attacked = TRUE
@@ -183,7 +183,7 @@
 	if(declare_arrests)
 		global_announcer.autosay("[src] is [arrest_type ? "detaining" : "arresting"] a level [threat] suspect <b>[suspect_name]</b> in <b>[get_area(src)]</b>.", "[src]", "Security")
 	say("Down on the floor, [suspect_name]! You have [SECBOT_WAIT_TIME*2] seconds to comply.")
-	playsound(src.loc, pick(preparing_arrest_sounds), 50)
+	playsound(src, pick(preparing_arrest_sounds), 50)
 	// Register to be told when the target moves
 	GLOB.moved_event.register(target, src, /mob/living/bot/secbot/proc/target_moved)
 
@@ -221,7 +221,7 @@
 			awaiting_surrender = 0
 			say("Level [threat] infraction alert!")
 			custom_emote(1, "points at [M.name]!")
-			playsound(src.loc, pick(threat_found_sounds), 50)
+			playsound(src, pick(threat_found_sounds), 50)
 			return
 
 /mob/living/bot/secbot/handleAdjacentTarget()
@@ -270,10 +270,10 @@
 	if(can_next_insult > world.time)
 		return
 	if(threat >= 10)
-		playsound(src.loc, 'sound/voice/binsult.ogg', 75)
+		playsound(src, 'sound/voice/binsult.ogg', 75)
 		can_next_insult = world.time + 20 SECONDS
 	else
-		playsound(src.loc, pick(fighting_sounds), 75)
+		playsound(src, pick(fighting_sounds), 75)
 		can_next_insult = world.time + 5 SECONDS
 
 
@@ -292,7 +292,7 @@
 			cuff = FALSE
 		if(!cuff)
 			H.stun_effect_act(0, stun_strength, null)
-			playsound(loc, 'sound/weapons/Egloves.ogg', 50, 1, -1)
+			playsound(src, 'sound/weapons/Egloves.ogg', 50, 1, -1)
 			do_attack_animation(H)
 			busy = TRUE
 			update_icons()
@@ -302,7 +302,7 @@
 			visible_message("<span class='warning'>\The [H] was prodded by \the [src] with a stun baton!</span>")
 			insult(H)
 		else
-			playsound(loc, 'sound/weapons/handcuffs.ogg', 30, 1, -2)
+			playsound(src, 'sound/weapons/handcuffs.ogg', 30, 1, -2)
 			visible_message("<span class='warning'>\The [src] is trying to put handcuffs on \the [H]!</span>")
 			busy = TRUE
 			if(do_mob(src, H, 60))
@@ -317,7 +317,7 @@
 		var/mob/living/L = M
 		L.adjustBruteLoss(xeno_harm_strength)
 		do_attack_animation(M)
-		playsound(loc, "swing_hit", 50, 1, -1)
+		playsound(src, "swing_hit", 50, 1, -1)
 		busy = TRUE
 		update_icons()
 		spawn(2)

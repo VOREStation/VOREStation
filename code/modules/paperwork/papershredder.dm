@@ -60,7 +60,7 @@
 			paperamount += paper_result
 			user.drop_from_inventory(W)
 			qdel(W)
-			playsound(src.loc, 'sound/items/pshred.ogg', 75, 1)
+			playsound(src, 'sound/items/pshred.ogg', 75, 1)
 			flick(shred_anim, src)
 			if(paperamount > max_paper)
 				to_chat(user,"<span class='danger'>\The [src] was too full, and shredded paper goes everywhere!</span>")

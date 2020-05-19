@@ -64,8 +64,8 @@
 /obj/item/weapon/pipe_dispenser/suicide_act(mob/user)
 	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
 	user.visible_message("<span class='suicide'>[user] points the end of the RPD down [TU.his] throat and presses a button! It looks like [TU.hes] trying to commit suicide...</span>")
-	playsound(get_turf(user), 'sound/machines/click.ogg', 50, 1)
-	playsound(get_turf(user), 'sound/items/deconstruct.ogg', 50, 1)
+	playsound(src, 'sound/machines/click.ogg', 50, 1)
+	playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
 	return(BRUTELOSS)
 
 /obj/item/weapon/pipe_dispenser/attack_self(mob/user)
@@ -231,7 +231,7 @@
 	if(anyclicked)
 		if(playeffect)
 			spark_system.start()
-			playsound(get_turf(src), 'sound/effects/pop.ogg', 50, 0)
+			playsound(src, 'sound/effects/pop.ogg', 50, 0)
 		src.interact(usr)
 
 /obj/item/weapon/pipe_dispenser/afterattack(atom/A, mob/user as mob, proximity)
@@ -255,7 +255,7 @@
 			if(!istype(A, /obj/machinery/atmospherics/pipe))
 				return ..()
 			var/obj/machinery/atmospherics/pipe/P = A
-			playsound(get_turf(src), 'sound/machines/click.ogg', 50, 1)
+			playsound(src, 'sound/machines/click.ogg', 50, 1)
 			P.change_color(pipe_colors[paint_color])
 			user.visible_message("<span class='notice'>[user] paints \the [P] [paint_color].</span>", "<span class='notice'>You paint \the [P] [paint_color].</span>")
 			return
@@ -264,7 +264,7 @@
 			if(!(istype(A, /obj/item/pipe) || istype(A, /obj/item/pipe_meter) || istype(A, /obj/structure/disposalconstruct)))
 				return ..()
 			to_chat(user, "<span class='notice'>You start destroying a pipe...</span>")
-			playsound(get_turf(src), 'sound/machines/click.ogg', 50, 1)
+			playsound(src, 'sound/machines/click.ogg', 50, 1)
 			if(do_after(user, 2, target = A))
 				activate()
 				animate_deletion(A)
@@ -272,7 +272,7 @@
 		if(ATMOS_MODE) //Making pipes
 			if(!can_make_pipe)
 				return ..()
-			playsound(get_turf(src), 'sound/machines/click.ogg', 50, 1)
+			playsound(src, 'sound/machines/click.ogg', 50, 1)
 			if (istype(recipe, /datum/pipe_recipe/meter))
 				to_chat(user, "<span class='notice'>You start building a meter...</span>")
 				if(do_after(user, 2, target = A))
@@ -311,7 +311,7 @@
 				to_chat(user, "<span class='warning'>[src]'s error light flickers; there's something in the way!</span>")
 				return
 			to_chat(user, "<span class='notice'>You start building a disposals pipe...</span>")
-			playsound(get_turf(src), 'sound/machines/click.ogg', 50, 1)
+			playsound(src, 'sound/machines/click.ogg', 50, 1)
 			if(do_after(user, 4, target = A))
 				var/obj/structure/disposalconstruct/C = new(A, R.pipe_type, queued_p_dir, queued_p_flipped, R.subtype)
 
@@ -352,7 +352,7 @@
 		qdel(P)
 
 /obj/item/weapon/pipe_dispenser/proc/activate()
-	playsound(get_turf(src), 'sound/items/deconstruct.ogg', 50, 1)
+	playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
 
 /obj/item/weapon/pipe_dispenser/proc/do_wrench(var/atom/target, mob/user)
 	var/resolved = target.attackby(tool,user)

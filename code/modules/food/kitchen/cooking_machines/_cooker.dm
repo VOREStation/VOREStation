@@ -166,7 +166,7 @@
 	qdel(cooking_obj)
 	src.visible_message("<span class='notice'>\The [src] pings!</span>")
 	if(cooked_sound)
-		playsound(get_turf(src), cooked_sound, 50, 1)
+		playsound(src, cooked_sound, 50, 1)
 
 	if(!can_burn_food)
 		icon_state = off_icon

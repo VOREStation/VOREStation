@@ -170,7 +170,7 @@
 		B.loc = src
 		stored_ammo.Add(B)
 		update_icon()
-	playsound(user.loc, 'sound/weapons/flipblade.ogg', 50, 1)
+	playsound(src, 'sound/weapons/flipblade.ogg', 50, 1)
 	update_icon()
 
 /obj/item/ammo_magazine/cell_mag/update_icon()

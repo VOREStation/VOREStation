@@ -45,7 +45,7 @@
 	else if(istype(O, /obj/item/weapon/mop))
 		O.reagents.add_reagent(reagent_type, 5)
 		to_chat(user, "<span class='notice'>You wet \the [O] in \the [src].</span>")
-		playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
+		playsound(src, 'sound/effects/slosh.ogg', 25, 1)
 		return 1
 
 	else return ..()

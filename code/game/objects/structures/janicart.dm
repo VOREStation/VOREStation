@@ -56,7 +56,7 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 				else
 					mybucket.reagents.trans_to_obj(I, 5)	//
 					to_chat(user, "<span class='notice'>You wet [I] in [mybucket].</span>")
-					playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
+					playsound(src, 'sound/effects/slosh.ogg', 25, 1)
 			else
 				to_chat(user, "<span class='notice'>[I] can't absorb anymore liquid!</span>")
 		else
@@ -328,7 +328,7 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 		if(reagents.total_volume > 1)
 			reagents.trans_to_obj(I, 2)
 			to_chat(user, "<span class='notice'>You wet [I] in the [callme].</span>")
-			playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
+			playsound(src, 'sound/effects/slosh.ogg', 25, 1)
 		else
 			to_chat(user, "<span class='notice'>This [callme] is out of water!</span>")
 	else if(istype(I, /obj/item/key))

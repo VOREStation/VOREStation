@@ -164,11 +164,11 @@
 		processing = 1
 		update_icon()
 		updateUsrDialog()
-		playsound(src.loc, 'sound/machines/blender.ogg', 40, 1)
+		playsound(src, 'sound/machines/blender.ogg', 40, 1)
 		use_power(S * 30)
 		sleep((S + 15) / eat_eff)
 		processing = 0
-		playsound(src.loc, 'sound/machines/biogenerator_end.ogg', 40, 1)
+		playsound(src, 'sound/machines/biogenerator_end.ogg', 40, 1)
 		update_icon()
 	else
 		menustat = "void"

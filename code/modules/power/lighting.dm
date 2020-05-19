@@ -112,7 +112,7 @@ var/global/list/light_type_cache = list()
 			new /obj/item/stack/material/steel( get_turf(src.loc), sheets_refunded )
 			user.visible_message("[user.name] deconstructs [src].", \
 				"You deconstruct [src].", "You hear a noise.")
-			playsound(src.loc, 'sound/items/Deconstruct.ogg', 75, 1)
+			playsound(src, 'sound/items/Deconstruct.ogg', 75, 1)
 			qdel(src)
 		if (src.stage == 2)
 			to_chat(usr, "You have to remove the wires first.")
@@ -129,7 +129,7 @@ var/global/list/light_type_cache = list()
 		new /obj/item/stack/cable_coil(get_turf(src.loc), 1, "red")
 		user.visible_message("[user.name] removes the wiring from [src].", \
 			"You remove the wiring from [src].", "You hear a noise.")
-		playsound(src.loc, W.usesound, 50, 1)
+		playsound(src, W.usesound, 50, 1)
 		return
 
 	if(istype(W, /obj/item/stack/cable_coil))
@@ -421,7 +421,7 @@ var/global/list/light_type_cache = list()
 	if(!on)
 		needsound = TRUE // Play sound next time we turn on
 	else if(needsound)
-		playsound(src.loc, 'sound/effects/lighton.ogg', 65, 1)
+		playsound(src, 'sound/effects/lighton.ogg', 65, 1)
 		needsound = FALSE // Don't play sound again until we've been turned off
 	//VOREStation Edit End
 
@@ -800,7 +800,7 @@ var/global/list/light_type_cache = list()
 
 	if(!skip_sound_and_sparks)
 		if(status == LIGHT_OK || status == LIGHT_BURNED)
-			playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, 1)
+			playsound(src, 'sound/effects/Glasshit.ogg', 75, 1)
 		if(on)
 			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 			s.set_up(3, 1, src)
@@ -1021,7 +1021,7 @@ var/global/list/light_type_cache = list()
 		status = LIGHT_BROKEN
 		force = 5
 		sharp = 1
-		playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, 1)
+		playsound(src, 'sound/effects/Glasshit.ogg', 75, 1)
 		update_icon()
 
 //Lamp Shade

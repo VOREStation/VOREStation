@@ -134,7 +134,7 @@
 			user.audible_message("<B>[user.GetVoice()]</B>[user.GetAltName()] broadcasts, <FONT size=[broadcast_size] face='[broadcast_font]' color='[broadcast_color]'>\"[pick(insultmsg)]\"</FONT>")
 			if(broadcast_size >= 11)
 				var/turf/T = get_turf(user)
-				playsound(T, 'sound/items/AirHorn.ogg', 100, 1)
+				playsound(src, 'sound/items/AirHorn.ogg', 100, 1)
 				for(var/mob/living/carbon/M in oviewers(4, T))
 					if(M.get_ear_protection() >= 2)
 						continue

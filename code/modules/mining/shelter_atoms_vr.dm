@@ -87,7 +87,7 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 		smoke.start()
 		sleep(4 SECONDS)
 
-		playsound(get_turf(src), 'sound/effects/phasein.ogg', 100, 1)
+		playsound(src, 'sound/effects/phasein.ogg', 100, 1)
 
 		log_and_message_admins("[key_name_admin(usr)] activated a bluespace capsule at [get_area(T)]!")
 		if(above_location)

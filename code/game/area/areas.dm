@@ -420,7 +420,7 @@ var/list/mob/living/forced_ambiance_list = new
 			H.AdjustStunned(3)
 			H.AdjustWeakened(3)
 		to_chat(mob, "<span class='notice'>The sudden appearance of gravity makes you fall to the floor!</span>")
-		playsound(get_turf(src), "bodyfall", 50, 1)
+		playsound(mob, "bodyfall", 50, 1)
 
 /area/proc/prison_break(break_lights = TRUE, open_doors = TRUE, open_blast_doors = TRUE)
 	var/obj/machinery/power/apc/theAPC = get_apc()

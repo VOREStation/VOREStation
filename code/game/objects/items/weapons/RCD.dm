@@ -59,7 +59,7 @@
 		stored_matter += cartridge.remaining
 		user.drop_from_inventory(W)
 		qdel(W)
-		playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
+		playsound(src, 'sound/machines/click.ogg', 50, 1)
 		to_chat(user, span("notice", "The RCD now holds [stored_matter]/[max_stored_matter] matter-units."))
 		return TRUE
 	return ..()
@@ -73,7 +73,7 @@
 		mode_index++
 
 	to_chat(user, span("notice", "Changed mode to '[modes[mode_index]]'."))
-	playsound(src.loc, 'sound/effects/pop.ogg', 50, 0)
+	playsound(src, 'sound/effects/pop.ogg', 50, 0)
 
 	if(prob(20))
 		src.spark_system.start()
@@ -109,7 +109,7 @@
 		to_chat(user, span("warning", "\The [src] lacks the required material to start."))
 		return FALSE
 
-	playsound(get_turf(src), 'sound/machines/click.ogg', 50, 1)
+	playsound(src, 'sound/machines/click.ogg', 50, 1)
 
 	var/true_delay = rcd_results[RCD_VALUE_DELAY] * toolspeed
 
@@ -130,7 +130,7 @@
 			return FALSE
 		if(A.rcd_act(user, src, rcd_results[RCD_VALUE_MODE]))
 			consume_resources(rcd_results[RCD_VALUE_COST])
-			playsound(get_turf(A), 'sound/items/deconstruct.ogg', 50, 1)
+			playsound(A, 'sound/items/deconstruct.ogg', 50, 1)
 			return TRUE
 
 	// If they moved, kill the beam immediately.

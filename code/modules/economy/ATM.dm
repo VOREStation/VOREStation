@@ -58,9 +58,9 @@ log transactions
 	for(var/obj/item/weapon/spacecash/S in src)
 		S.loc = src.loc
 		if(prob(50))
-			playsound(loc, 'sound/items/polaroid1.ogg', 50, 1)
+			playsound(src, 'sound/items/polaroid1.ogg', 50, 1)
 		else
-			playsound(loc, 'sound/items/polaroid2.ogg', 50, 1)
+			playsound(src, 'sound/items/polaroid2.ogg', 50, 1)
 		break
 
 /obj/machinery/atm/emag_act(var/remaining_charges, var/mob/user)
@@ -103,9 +103,9 @@ log transactions
 			//consume the money
 			authenticated_account.money += I:worth
 			if(prob(50))
-				playsound(loc, 'sound/items/polaroid1.ogg', 50, 1)
+				playsound(src, 'sound/items/polaroid1.ogg', 50, 1)
 			else
-				playsound(loc, 'sound/items/polaroid2.ogg', 50, 1)
+				playsound(src, 'sound/items/polaroid2.ogg', 50, 1)
 
 			//create a transaction log entry
 			var/datum/transaction/T = new()
@@ -383,9 +383,9 @@ log transactions
 					R.stamps += "<HR><i>This paper has been stamped by the Automatic Teller Machine.</i>"
 
 				if(prob(50))
-					playsound(loc, 'sound/items/polaroid1.ogg', 50, 1)
+					playsound(src, 'sound/items/polaroid1.ogg', 50, 1)
 				else
-					playsound(loc, 'sound/items/polaroid2.ogg', 50, 1)
+					playsound(src, 'sound/items/polaroid2.ogg', 50, 1)
 			if ("print_transaction")
 				if(authenticated_account)
 					var/obj/item/weapon/paper/R = new(src.loc)
@@ -425,9 +425,9 @@ log transactions
 					R.stamps += "<HR><i>This paper has been stamped by the Automatic Teller Machine.</i>"
 
 				if(prob(50))
-					playsound(loc, 'sound/items/polaroid1.ogg', 50, 1)
+					playsound(src, 'sound/items/polaroid1.ogg', 50, 1)
 				else
-					playsound(loc, 'sound/items/polaroid2.ogg', 50, 1)
+					playsound(src, 'sound/items/polaroid2.ogg', 50, 1)
 
 			if("insert_card")
 				if(!held_card)
