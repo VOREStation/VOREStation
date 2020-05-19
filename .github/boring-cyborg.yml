@@ -28,10 +28,6 @@ labelPRBasedOnFilePath:
     - 'config/jobwhitelist.txt'
     - 'config/custom_sprites.txt'
 
-  # Contains changes to files in the root of the repo
-  "Contains Root Change"
-    - '*'
-
   # Contains changes to system folders
   "Type: .git or .github":
     - '.github/**'
