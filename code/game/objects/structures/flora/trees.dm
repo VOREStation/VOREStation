@@ -58,9 +58,9 @@
 		damage_to_do = round(damage_to_do / 4)
 	if(damage_to_do > 0)
 		if(W.sharp && W.edge)
-			playsound(get_turf(src), 'sound/effects/woodcutting.ogg', 50, 1)
+			playsound(src, 'sound/effects/woodcutting.ogg', 50, 1)
 		else
-			playsound(get_turf(src), W.hitsound, 50, 1)
+			playsound(src, W.hitsound, 50, 1)
 		if(damage_to_do > 5 && !indestructable)
 			adjust_health(-damage_to_do)
 		else

@@ -70,35 +70,35 @@
 			break
 
 		if (istype(copyitem, /obj/item/weapon/paper))
-			playsound(loc, "sound/machines/copier.ogg", 100, 1)
+			playsound(src, "sound/machines/copier.ogg", 100, 1)
 			sleep(11)
 			copy(copyitem)
 			audible_message("<span class='notice'>You can hear [src] whirring as it finishes printing.</span>")
-			playsound(loc, "sound/machines/buzzbeep.ogg", 30)
+			playsound(src, "sound/machines/buzzbeep.ogg", 30)
 		else if (istype(copyitem, /obj/item/weapon/photo))
-			playsound(loc, "sound/machines/copier.ogg", 100, 1)
+			playsound(src, "sound/machines/copier.ogg", 100, 1)
 			sleep(11)
 			photocopy(copyitem)
 			audible_message("<span class='notice'>You can hear [src] whirring as it finishes printing.</span>")
-			playsound(loc, "sound/machines/buzzbeep.ogg", 30)
+			playsound(src, "sound/machines/buzzbeep.ogg", 30)
 		else if (istype(copyitem, /obj/item/weapon/paper_bundle))
 			sleep(11)
-			playsound(loc, "sound/machines/copier.ogg", 100, 1)
+			playsound(src, "sound/machines/copier.ogg", 100, 1)
 			var/obj/item/weapon/paper_bundle/B = bundlecopy(copyitem)
 			sleep(11*B.pages.len)
 			audible_message("<span class='notice'>You can hear [src] whirring as it finishes printing.</span>")
-			playsound(loc, "sound/machines/buzzbeep.ogg", 30)
+			playsound(src, "sound/machines/buzzbeep.ogg", 30)
 		else if (has_buckled_mobs()) // VOREStation EDIT: For ass-copying.
-			playsound(loc, "sound/machines/copier.ogg", 100, 1)
+			playsound(src, "sound/machines/copier.ogg", 100, 1)
 			audible_message("<span class='notice'>You can hear [src] whirring as it attempts to scan.</span>")
 			sleep(rand(20,45)) // Sit with your bare ass on the copier for a random time, feel like a fool, get stared at.
 			copyass(user)
 			sleep(15)
 			audible_message("<span class='notice'>You can hear [src] whirring as it finishes printing.</span>")
-			playsound(loc, "sound/machines/buzzbeep.ogg", 30)
+			playsound(src, "sound/machines/buzzbeep.ogg", 30)
 		else
 			to_chat(user, "<span class='warning'>\The [copyitem] can't be copied by [src].</span>")
-			playsound(loc, "sound/machines/buzz-two.ogg", 100)
+			playsound(src, "sound/machines/buzz-two.ogg", 100)
 			break
 
 		use_power(active_power_usage)
@@ -156,7 +156,7 @@
 			copyitem = O
 			O.loc = src
 			to_chat(user, "<span class='notice'>You insert \the [O] into \the [src].</span>")
-			playsound(loc, "sound/machines/click.ogg", 100, 1)
+			playsound(src, "sound/machines/click.ogg", 100, 1)
 			flick(insert_anim, src)
 		else
 			to_chat(user, "<span class='notice'>There is already something in \the [src].</span>")
@@ -170,7 +170,7 @@
 		else
 			to_chat(user, "<span class='notice'>This cartridge is not yet ready for replacement! Use up the rest of the toner.</span>")
 	else if(O.is_wrench())
-		playsound(loc, O.usesound, 50, 1)
+		playsound(src, O.usesound, 50, 1)
 		anchored = !anchored
 		to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
 	else if(default_deconstruction_screwdriver(user, O))
@@ -232,7 +232,7 @@
 	if(need_toner)
 		toner--
 	if(toner == 0)
-		playsound(loc, "sound/machines/buzz-sigh.ogg", 100)
+		playsound(src, "sound/machines/buzz-sigh.ogg", 100)
 		visible_message("<span class='notice'>A red light on \the [src] flashes, indicating that it is out of toner.</span>")
 	return c
 
@@ -255,7 +255,7 @@
 		toner -= 5	//photos use a lot of ink!
 	if(toner < 0)
 		toner = 0
-		playsound(loc, "sound/machines/buzz-sigh.ogg", 100)
+		playsound(src, "sound/machines/buzz-sigh.ogg", 100)
 		visible_message("<span class='notice'>A red light on \the [src] flashes, indicating that it is out of toner.</span>")
 
 	return p
@@ -339,7 +339,7 @@
 	toner -= 10 // PHOTOCOPYING YOUR ASS IS EXPENSIVE (And so you can't just spam it a bunch).
 	if(toner < 0)
 		toner = 0
-		playsound(loc, "sound/machines/buzz-sigh.ogg", 100)
+		playsound(src, "sound/machines/buzz-sigh.ogg", 100)
 		visible_message("<span class='notice'>A red light on \the [src] flashes, indicating that it is out of toner.</span>")
 	return p
 
@@ -351,7 +351,7 @@
 	for(var/obj/item/weapon/W in bundle.pages)
 		if(toner <= 0 && need_toner)
 			toner = 0
-			playsound(loc, "sound/machines/buzz-sigh.ogg", 100)
+			playsound(src, "sound/machines/buzz-sigh.ogg", 100)
 			visible_message("<span class='notice'>A red light on \the [src] flashes, indicating that it is out of toner.</span>")
 			break
 

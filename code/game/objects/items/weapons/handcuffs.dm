@@ -60,7 +60,7 @@
 	return 0
 
 /obj/item/weapon/handcuffs/proc/place_handcuffs(var/mob/living/carbon/target, var/mob/user)
-	playsound(src.loc, cuff_sound, 30, 1, -2)
+	playsound(src, cuff_sound, 30, 1, -2)
 
 	var/mob/living/carbon/human/H = target
 	if(!istype(H))
@@ -244,7 +244,7 @@ var/last_chew = 0
 			to_chat(user, "<span class='danger'>You need to have a firm grip on [C] before you can put \the [src] on!</span>")
 
 /obj/item/weapon/handcuffs/legcuffs/proc/place_legcuffs(var/mob/living/carbon/target, var/mob/user)
-	playsound(src.loc, cuff_sound, 30, 1, -2)
+	playsound(src, cuff_sound, 30, 1, -2)
 
 	var/mob/living/carbon/human/H = target
 	if(!istype(H))
@@ -315,7 +315,7 @@ var/last_chew = 0
 	qdel(src)
 
 /obj/item/weapon/handcuffs/legcuffs/bola/place_legcuffs(var/mob/living/carbon/target, var/mob/user)
-	playsound(src.loc, cuff_sound, 30, 1, -2)
+	playsound(src, cuff_sound, 30, 1, -2)
 
 	var/mob/living/carbon/human/H = target
 	if(!istype(H))

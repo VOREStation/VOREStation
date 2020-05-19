@@ -84,7 +84,7 @@
 			return
 		anchored = !anchored
 		to_chat(user, "You [anchored ? "attached" : "detached"] [src].")
-		playsound(loc, G.usesound, 75, 1)
+		playsound(src, G.usesound, 75, 1)
 	else if(default_deconstruction_screwdriver(user, G))
 		return
 	else if(default_deconstruction_crowbar(user, G))

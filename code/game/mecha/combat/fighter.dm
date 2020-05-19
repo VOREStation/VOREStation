@@ -164,7 +164,7 @@
 	else if(moved && gravity && !ground_capable)
 		occupant_message("Collision alert! Vehicle not rated for use in gravity!")
 		take_damage(NOGRAV_FIGHTER_DAMAGE, "brute")
-		playsound(loc, 'sound/effects/grillehit.ogg', 50, 1)
+		playsound(src, 'sound/effects/grillehit.ogg', 50, 1)
 
 /obj/mecha/combat/fighter/handle_equipment_movement()
 	. = ..()

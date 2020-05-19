@@ -36,7 +36,7 @@
 			aimloc = locate(targloc.x+GaussRandRound(deviation,1),targloc.y+GaussRandRound(deviation,1),targloc.z)
 		if(!aimloc || aimloc == curloc || (locs && aimloc in locs))
 			break
-		playsound(chassis, fire_sound, fire_volume, 1)
+		playsound(src, fire_sound, fire_volume, 1)
 		projectiles--
 		var/turf/projectile_turf
 		if(chassis.locs && chassis.locs.len)	// Multi tile.

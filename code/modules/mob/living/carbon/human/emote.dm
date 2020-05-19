@@ -77,7 +77,7 @@
 				message = "[display_msg] at [param]."
 			else
 				message = "[display_msg]."
-			playsound(loc, use_sound, 50, 0, preference = /datum/client_preference/emote_noises) //VOREStation Add
+			playsound(src, use_sound, 50, 0, preference = /datum/client_preference/emote_noises) //VOREStation Add
 			m_type = 1
 
 		//Promethean-only emotes
@@ -87,7 +87,7 @@
 				to_chat(src, "<span class='warning'>You are not a slime thing!</span>")
 				return
 			*/ //VOREStation Removal End
-			playsound(loc, 'sound/effects/slime_squish.ogg', 50, 0, preference = /datum/client_preference/emote_noises) //VOREStation Add //Credit to DrMinky (freesound.org) for the sound.
+			playsound(src, 'sound/effects/slime_squish.ogg', 50, 0, preference = /datum/client_preference/emote_noises) //VOREStation Add //Credit to DrMinky (freesound.org) for the sound.
 			message = "squishes."
 			m_type = 1
 
@@ -97,7 +97,7 @@
 				to_chat(src, "<span class='warning'>You are not a Skrell!</span>")
 				return
 
-			playsound(loc, 'sound/effects/warble.ogg', 50, 0, preference = /datum/client_preference/emote_noises) //VOREStation Add // Copyright CC BY 3.0 alienistcog (freesound.org) for the sound.
+			playsound(src, 'sound/effects/warble.ogg', 50, 0, preference = /datum/client_preference/emote_noises) //VOREStation Add // Copyright CC BY 3.0 alienistcog (freesound.org) for the sound.
 			message = "warbles."
 			m_type = 2
 
@@ -189,7 +189,7 @@
 		if("clap")
 			if(!restrained())
 				message = "claps."
-				playsound(loc, 'sound/misc/clapping.ogg')
+				playsound(src, 'sound/misc/clapping.ogg')
 				m_type = 2
 				if(miming)
 					m_type = 1
@@ -270,7 +270,7 @@
 							use_sound = pick('sound/effects/mob_effects/f_machine_cougha.ogg','sound/effects/mob_effects/f_machine_coughb.ogg')
 						else
 							use_sound = pick('sound/effects/mob_effects/m_machine_cougha.ogg','sound/effects/mob_effects/m_machine_coughb.ogg', 'sound/effects/mob_effects/m_machine_coughc.ogg')
-						playsound(loc, use_sound, 50, 0, preference = /datum/client_preference/emote_noises) //VOREStation Add
+						playsound(src, use_sound, 50, 0, preference = /datum/client_preference/emote_noises) //VOREStation Add
 				else
 					message = "makes a strong noise."
 					m_type = 2
@@ -543,7 +543,7 @@
 							use_sound = 'sound/effects/mob_effects/machine_sneeze.ogg'
 						else
 							use_sound = 'sound/effects/mob_effects/f_machine_sneeze.ogg'
-						playsound(loc, use_sound, 50, 0, preference = /datum/client_preference/emote_noises) //VOREStation Add
+						playsound(src, use_sound, 50, 0, preference = /datum/client_preference/emote_noises) //VOREStation Add
 				else
 					message = "makes a strange noise."
 					m_type = 2
@@ -656,14 +656,14 @@
 							break
 				if(M)
 					message = "<span class='danger'>slaps [M] across the face. Ouch!</span>"
-					playsound(loc, 'sound/effects/snap.ogg', 50, 1, preference = /datum/client_preference/emote_noises) //VOREStation Add
+					playsound(src, 'sound/effects/snap.ogg', 50, 1, preference = /datum/client_preference/emote_noises) //VOREStation Add
 					if(ishuman(M)) //Snowflakey!
 						var/mob/living/carbon/human/H = M
 						if(istype(H.wear_mask,/obj/item/clothing/mask/smokable))
 							H.drop_from_inventory(H.wear_mask)
 				else
 					message = "<span class='danger'>slaps [T.himself]!</span>"
-					playsound(loc, 'sound/effects/snap.ogg', 50, 1, preference = /datum/client_preference/emote_noises) //VOREStation Add
+					playsound(src, 'sound/effects/snap.ogg', 50, 1, preference = /datum/client_preference/emote_noises) //VOREStation Add
 
 		if("scream", "screams")
 			if(miming)
@@ -675,9 +675,9 @@
 					m_type = 2
 					/* Removed, pending the location of some actually good, properly licensed sounds.
 					if(get_gender() == FEMALE)
-						playsound(loc, "[species.female_scream_sound]", 80, 1)
+						playsound(src, "[species.female_scream_sound]", 80, 1)
 					else
-						playsound(loc, "[species.male_scream_sound]", 80, 1) //default to male screams if no gender is present.
+						playsound(src, "[species.male_scream_sound]", 80, 1) //default to male screams if no gender is present.
 					*/
 				else
 					message = "makes a very loud noise."
@@ -700,7 +700,7 @@
 				return
 
 			message = "snaps [T.his] fingers."
-			playsound(loc, 'sound/effects/fingersnap.ogg', 50, 1, -3, preference = /datum/client_preference/emote_noises) //VOREStation Add
+			playsound(src, 'sound/effects/fingersnap.ogg', 50, 1, -3, preference = /datum/client_preference/emote_noises) //VOREStation Add
 
 		if("swish")
 			animate_tail_once()
@@ -724,14 +724,14 @@
 		if("whistle" || "whistles")
 			if(!muzzled)
 				message = "whistles a tune."
-				playsound(loc, 'sound/misc/longwhistle.ogg', preference = /datum/client_preference/emote_noises) //VOREStation Add
+				playsound(src, 'sound/misc/longwhistle.ogg', preference = /datum/client_preference/emote_noises) //VOREStation Add
 			else
 				message = "makes a light spitting noise, a poor attempt at a whistle."
 
 		if("qwhistle")
 			if(!muzzled)
 				message = "whistles quietly."
-				playsound(loc, 'sound/misc/shortwhistle.ogg', preference = /datum/client_preference/emote_noises) //VOREStation Add
+				playsound(src, 'sound/misc/shortwhistle.ogg', preference = /datum/client_preference/emote_noises) //VOREStation Add
 			else
 				message = "makes a light spitting noise, a poor attempt at a whistle."
 

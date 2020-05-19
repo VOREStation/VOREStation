@@ -904,7 +904,7 @@ obj/item/weapon/newspaper/Topic(href, href_list)
 				if(curr_page == 0) //We're at the start, get to the middle
 					screen = 1
 			curr_page++
-			playsound(loc, "pageturn", 50, 1)
+			playsound(src, "pageturn", 50, 1)
 
 		else if(href_list["prev_page"])
 			if(curr_page == 0)
@@ -916,7 +916,7 @@ obj/item/weapon/newspaper/Topic(href, href_list)
 				if(curr_page == pages+1) //we're at the end, let's go back to the middle.
 					screen = 1
 			curr_page--
-			playsound(src.loc, "pageturn", 50, 1)
+			playsound(src, "pageturn", 50, 1)
 
 		if(istype(src.loc, /mob))
 			attack_self(src.loc)
@@ -974,9 +974,9 @@ obj/item/weapon/newspaper/attackby(obj/item/weapon/W as obj, mob/user as mob)
 		spawn(300)
 			alert = 0
 			update_icon()
-		playsound(src.loc, 'sound/machines/twobeep.ogg', 75, 1)
+		playsound(src, 'sound/machines/twobeep.ogg', 75, 1)
 	else
 		for(var/mob/O in hearers(world.view-1, T))
 			O.show_message("<span class='newscaster'><EM>[name]</EM> beeps, \"Attention! Wanted issue distributed!\"</span>",2)
-		playsound(src.loc, 'sound/machines/warning-buzzer.ogg', 75, 1)
+		playsound(src, 'sound/machines/warning-buzzer.ogg', 75, 1)
 	return

@@ -325,7 +325,7 @@
 			update_icon()
 			return
 
-		playsound(src.loc, W.usesound, 50, 1)
+		playsound(src, W.usesound, 50, 1)
 		user.visible_message("<font color='red'>[user] cuts the fingertips off of the [src].</font>","<font color='red'>You cut the fingertips off of the [src].</font>")
 
 		clipped = 1
@@ -602,7 +602,7 @@
 
 	if(usr.put_in_hands(holding))
 		usr.visible_message("<span class='danger'>\The [usr] pulls a knife out of their boot!</span>")
-		playsound(get_turf(src), 'sound/weapons/holster/sheathout.ogg', 25)
+		playsound(src, 'sound/weapons/holster/sheathout.ogg', 25)
 		holding = null
 		overlays -= image(icon, "[icon_state]_knife")
 	else

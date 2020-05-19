@@ -27,7 +27,7 @@
 			begin_processing()
 	else
 		to_chat(user, "<span class='warning'>The processor is empty.</span>")
-		playsound(src.loc, 'sound/machines/buzz-sigh.ogg', 50, 1)
+		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 1)
 		return
 
 // Verb to remove everything.
@@ -54,7 +54,7 @@
 		return
 	if(!can_insert(AM))
 		to_chat(user, "<span class='warning'>\The [src] cannot process \the [AM] at this time.</span>")
-		playsound(src.loc, 'sound/machines/buzz-sigh.ogg', 50, 1)
+		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 1)
 		return
 	to_be_processed.Add(AM)
 	AM.forceMove(src)
@@ -64,26 +64,26 @@
 	if(processing)
 		return // Already doing it.
 	processing = TRUE
-	playsound(src.loc, 'sound/machines/juicer.ogg', 50, 1)
+	playsound(src, 'sound/machines/juicer.ogg', 50, 1)
 	for(var/atom/movable/AM in to_be_processed)
 		extract(AM)
 		sleep(1 SECONDS)
 
 	while(monkeys_recycled >= 4)
 		new /obj/item/weapon/reagent_containers/food/snacks/monkeycube(get_turf(src))
-		playsound(src.loc, 'sound/effects/splat.ogg', 50, 1)
+		playsound(src, 'sound/effects/splat.ogg', 50, 1)
 		monkeys_recycled -= 4
 		sleep(1 SECOND)
 
 	processing = FALSE
-	playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
+	playsound(src, 'sound/machines/ding.ogg', 50, 1)
 
 /obj/machinery/processor/proc/extract(var/atom/movable/AM)
 	if(istype(AM, /mob/living/simple_mob/slime))
 		var/mob/living/simple_mob/slime/S = AM
 		while(S.cores)
 			new S.coretype(get_turf(src))
-			playsound(src.loc, 'sound/effects/splat.ogg', 50, 1)
+			playsound(src, 'sound/effects/splat.ogg', 50, 1)
 			S.cores--
 			sleep(1 SECOND)
 		to_be_processed.Remove(S)
@@ -91,7 +91,7 @@
 
 	if(istype(AM, /mob/living/carbon/human))
 		var/mob/living/carbon/human/M = AM
-		playsound(src.loc, 'sound/effects/splat.ogg', 50, 1)
+		playsound(src, 'sound/effects/splat.ogg', 50, 1)
 		to_be_processed.Remove(M)
 		qdel(M)
 		monkeys_recycled++

@@ -792,4 +792,4 @@
 		var/volume = CLAMP(vol_by_damage() + 20, 0, 100)
 		if(silenced)
 			volume = 5
-		playsound(get_turf(A), hitsound_wall, volume, 1, -1)
+		playsound(A, hitsound_wall, volume, 1, -1)

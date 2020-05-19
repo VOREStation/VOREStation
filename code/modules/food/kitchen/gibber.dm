@@ -227,7 +227,7 @@
 		occupant.gib()
 		occupant = null
 
-		playsound(src.loc, 'sound/effects/splat.ogg', 50, 1)
+		playsound(src, 'sound/effects/splat.ogg', 50, 1)
 		operating = 0
 		for (var/obj/thing in contents)
 			// There's a chance that the gibber will fail to destroy some evidence.

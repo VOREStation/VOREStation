@@ -61,7 +61,7 @@
 		grenades.len--
 		user.put_in_hands(G)
 		user.visible_message("[user] removes \a [G] from [src].", "<span class='notice'>You remove \a [G] from [src].</span>")
-		playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
+		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 	else
 		to_chat(user, "<span class='warning'>[src] is empty.</span>")
 
@@ -119,7 +119,7 @@
 	if(chambered)
 		user.put_in_hands(chambered)
 		user.visible_message("[user] removes \a [chambered] from [src].", "<span class='notice'>You remove \a [chambered] from [src].</span>")
-		playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
+		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 		chambered = null
 	else
 		to_chat(user, "<span class='warning'>[src] is empty.</span>")

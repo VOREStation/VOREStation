@@ -27,7 +27,7 @@
 /mob/living/bot/cleanbot/edCLN/handleIdle()
 	if(prob(10))
 		custom_emote(2, "makes a less than thrilled beeping sound.")
-		playsound(src.loc, 'sound/machines/synth_yes.ogg', 50, 0)
+		playsound(src, 'sound/machines/synth_yes.ogg', 50, 0)
 
 	if(red_switch && !blue_switch && !green_switch && prob(10) || src.emagged)
 		if(istype(loc, /turf/simulated))
@@ -124,7 +124,7 @@
 	if(!emagged)
 		if(user)
 			to_chat(user, "<span class='notice'>The [src] buzzes and beeps.</span>")
-			playsound(src.loc, 'sound/machines/buzzbeep.ogg', 50, 0)
+			playsound(src, 'sound/machines/buzzbeep.ogg', 50, 0)
 		emagged = 1
 		return 1
 

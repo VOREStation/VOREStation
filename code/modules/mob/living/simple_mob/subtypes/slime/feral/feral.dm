@@ -69,7 +69,7 @@
 	sharp = TRUE
 
 /obj/item/projectile/icicle/on_impact(atom/A)
-	playsound(get_turf(A), "shatter", 70, 1)
+	playsound(A, "shatter", 70, 1)
 	return ..()
 
 /obj/item/projectile/icicle/get_structure_damage()

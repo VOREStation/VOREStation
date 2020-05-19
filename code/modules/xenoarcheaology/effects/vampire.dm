@@ -12,7 +12,7 @@
 /datum/artifact_effect/vampire/proc/bloodcall(var/mob/living/carbon/human/M)
 	last_bloodcall = world.time
 	if(istype(M))
-		playsound(holder.loc, pick('sound/hallucinations/wail.ogg','sound/hallucinations/veryfar_noise.ogg','sound/hallucinations/far_noise.ogg'), 50, 1, -3)
+		playsound(holder, pick('sound/hallucinations/wail.ogg','sound/hallucinations/veryfar_noise.ogg','sound/hallucinations/far_noise.ogg'), 50, 1, -3)
 
 		var/target = pick(M.organs_by_name)
 		M.apply_damage(rand(5, 10), SEARING, target)
@@ -54,7 +54,7 @@
 				charges += 0.25
 			else
 				charges += 1
-				playsound(holder.loc, 'sound/effects/splat.ogg', 50, 1, -3)
+				playsound(holder, 'sound/effects/splat.ogg', 50, 1, -3)
 
 			qdel(B)
 
@@ -68,7 +68,7 @@
 			charges -= 1
 			var/spawn_type = pick(/mob/living/simple_mob/animal/space/bats, /mob/living/simple_mob/creature, /mob/living/simple_mob/faithless)
 			new spawn_type(get_turf(pick(view(1,T))))
-			playsound(holder.loc, pick('sound/hallucinations/growl1.ogg','sound/hallucinations/growl2.ogg','sound/hallucinations/growl3.ogg'), 50, 1, -3)
+			playsound(holder, pick('sound/hallucinations/growl1.ogg','sound/hallucinations/growl2.ogg','sound/hallucinations/growl3.ogg'), 50, 1, -3)
 
 	if(charges >= 1 && nearby_mobs.len && prob(15 * nearby_mobs.len))
 		var/mob/living/L = pick(nearby_mobs)

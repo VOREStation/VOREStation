@@ -161,7 +161,7 @@
 
 		var/list/borks = typesof(/obj/item/weapon/reagent_containers/food/snacks) - /obj/item/weapon/reagent_containers/food/snacks // BORK BORK BORK
 
-		playsound(get_turf(holder.my_atom), 'sound/effects/phasein.ogg', 100, 1)
+		playsound(holder.my_atom, 'sound/effects/phasein.ogg', 100, 1)
 /* Removed at some point, unsure what to replace with
 		for(var/mob/living/carbon/human/M in viewers(get_turf(holder.my_atom), null))
 			if(M:eyecheck() <= 0)
@@ -191,7 +191,7 @@
 			for(var/mob/O in viewers(get_turf(holder.my_atom), null))
 				O.show_message(text("<span class='warning'>The solution begins to vibrate violently!</span>"), 1) // It was at this moment, the Xenobiologist knew... he fucked up.
 			sleep(30)
-			playsound(get_turf(holder.my_atom), 'sound/items/Welder2.ogg', 100, 1)
+			playsound(holder.my_atom, 'sound/items/Welder2.ogg', 100, 1)
 			for(var/mob/O in viewers(get_turf(holder.my_atom), null))
 				O.show_message(text("<span class='warning'>The reaction begins to rapidly sizzle and swell outwards!</span>"), 1)
 			sleep(20)
@@ -200,7 +200,7 @@
 			return
 
 		if(fail_chance < 101) // 10% chance of it not working at all.
-			playsound(get_turf(holder.my_atom), 'sound/items/Welder.ogg', 100, 1)
+			playsound(holder.my_atom, 'sound/items/Welder.ogg', 100, 1)
 			for(var/mob/O in viewers(get_turf(holder.my_atom), null))
 				O.show_message(text("<span class='warning'>The slime core fizzles disappointingly.</span>"), 1)
 			return
@@ -221,7 +221,7 @@
 
 		var/list/material = typesof(/obj/item/stack/material) - blocked
 
-		playsound(get_turf(holder.my_atom), 'sound/effects/phasein.ogg', 100, 1)
+		playsound(holder.my_atom, 'sound/effects/phasein.ogg', 100, 1)
 /* Removed at some point, unsure what to replace with
 		for(var/mob/living/carbon/human/M in viewers(get_turf(holder.my_atom), null))
 			if(M:eyecheck() <= 0)
@@ -270,7 +270,7 @@
 		for(var/mob/O in viewers(get_turf(holder.my_atom), null))
 			O.show_message(text("<span class='warning'>The slime extract begins to vibrate violently!</span>"), 1)
 		sleep(50)
-		playsound(get_turf(holder.my_atom), 'sound/effects/phasein.ogg', 100, 1)
+		playsound(holder.my_atom, 'sound/effects/phasein.ogg', 100, 1)
 		for(var/mob/living/M in range (get_turf(holder.my_atom), 7))
 			M.bodytemperature -= 140
 			to_chat(M, "<span class='notice'> You suddenly feel a chill!</span>")
@@ -385,7 +385,7 @@
 		blocked += typesof(/mob/living/simple_mob/horror)
 		var/list/voremobs = typesof(mob_path) - blocked // list of possible hostile mobs
 
-		playsound(get_turf(holder.my_atom), 'sound/effects/phasein.ogg', 100, 1)
+		playsound(holder.my_atom, 'sound/effects/phasein.ogg', 100, 1)
 /* Removed at some point, unsure what to replace with
 		for(var/mob/living/carbon/human/M in viewers(get_turf(holder.my_atom), null))
 			if(M:eyecheck() <= 0)

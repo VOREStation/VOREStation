@@ -209,7 +209,7 @@
 		damage *= 0.66 // Take 2/3s as much damage.
 
 	visible_message("<span class='danger'>\The [B] [attack_verb] \the [src]!</span>", "<span class='danger'>[attack_message]!</span>")
-	playsound(loc, 'sound/effects/attackblob.ogg', 50, 1)
+	playsound(src, 'sound/effects/attackblob.ogg', 50, 1)
 
 	//Armor
 	var/soaked = get_armor_soak(def_zone, armor_check, armor_pen)

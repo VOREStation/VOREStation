@@ -38,7 +38,7 @@
 	if(O.is_wrench())
 		if(!has_extinguisher)
 			to_chat(user, "<span class='notice'>You start to unwrench the extinguisher cabinet.</span>")
-			playsound(src.loc, O.usesound, 50, 1)
+			playsound(src, O.usesound, 50, 1)
 			if(do_after(user, 15 * O.toolspeed))
 				to_chat(user, "<span class='notice'>You unwrench the extinguisher cabinet.</span>")
 				new /obj/item/frame/extinguisher_cabinet( src.loc )

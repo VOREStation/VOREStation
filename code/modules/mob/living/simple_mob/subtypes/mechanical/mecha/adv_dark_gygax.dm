@@ -152,7 +152,7 @@
 
 	visible_message(span("warning", "\The [src] creates \an [energy_ball] around itself!"))
 
-	playsound(src.loc, 'sound/effects/lightning_chargeup.ogg', 100, 1, extrarange = 30)
+	playsound(src, 'sound/effects/lightning_chargeup.ogg', 100, 1, extrarange = 30)
 
 	// Shock nearby things that aren't ourselves.
 	for(var/i = 1 to 10)
@@ -179,7 +179,7 @@
 
 	// Shoot a tesla bolt, and flashes people who are looking at the mecha without sufficent eye protection.
 	visible_message(span("warning", "\The [energy_ball] explodes in a flash of light, sending a shock everywhere!"))
-	playsound(src.loc, 'sound/effects/lightningbolt.ogg', 100, 1, extrarange = 30)
+	playsound(src, 'sound/effects/lightningbolt.ogg', 100, 1, extrarange = 30)
 	tesla_zap(src.loc, 5, ELECTRIC_ZAP_POWER, FALSE)
 	for(var/mob/living/L in viewers(src))
 		if(L == src)

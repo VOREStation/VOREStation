@@ -113,11 +113,11 @@
 /obj/item/weapon/melee/changeling/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(default_parry_check(user, attacker, damage_source) && prob(defend_chance))
 		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
-		playsound(user.loc, 'sound/weapons/slash.ogg', 50, 1)
+		playsound(src, 'sound/weapons/slash.ogg', 50, 1)
 		return 1
 	if(unique_parry_check(user, attacker, damage_source) && prob(projectile_parry_chance))
 		user.visible_message("<span class='danger'>\The [user] deflects [attack_text] with \the [src]!</span>")
-		playsound(user.loc, 'sound/weapons/slash.ogg', 50, 1)
+		playsound(src, 'sound/weapons/slash.ogg', 50, 1)
 		return 1
 
 	return 0

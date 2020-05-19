@@ -32,7 +32,7 @@ obj/structure/firedoor_assembly/attackby(obj/item/C, mob/user as mob)
 				to_chat(user, "<span class='notice'>You wire \the [src].</span>")
 
 	else if(C.is_wirecutter() && wired )
-		playsound(src.loc, C.usesound, 100, 1)
+		playsound(src, C.usesound, 100, 1)
 		user.visible_message("[user] cuts the wires from \the [src].", "You start to cut the wires from \the [src].")
 
 		if(do_after(user, 40))
@@ -43,7 +43,7 @@ obj/structure/firedoor_assembly/attackby(obj/item/C, mob/user as mob)
 
 	else if(istype(C, /obj/item/weapon/circuitboard/airalarm) && wired)
 		if(anchored)
-			playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+			playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 			user.visible_message("<span class='warning'>[user] has inserted a circuit into \the [src]!</span>",
 								  "You have inserted the circuit into \the [src]!")
 			if(glass)
@@ -56,7 +56,7 @@ obj/structure/firedoor_assembly/attackby(obj/item/C, mob/user as mob)
 			to_chat(user, "<span class='warning'>You must secure \the [src] first!</span>")
 	else if(C.is_wrench())
 		anchored = !anchored
-		playsound(src.loc, C.usesound, 50, 1)
+		playsound(src, C.usesound, 50, 1)
 		user.visible_message("<span class='warning'>[user] has [anchored ? "" : "un" ]secured \the [src]!</span>",
 							  "You have [anchored ? "" : "un" ]secured \the [src]!")
 		update_icon()
@@ -86,7 +86,7 @@ obj/structure/firedoor_assembly/attackby(obj/item/C, mob/user as mob)
 	else if(istype(C, /obj/item/stack/material) && C.get_material_name() == "rglass" && !glass)
 		var/obj/item/stack/S = C
 		if (S.get_amount() >= 1)
-			playsound(src.loc, 'sound/items/Crowbar.ogg', 100, 1)
+			playsound(src, 'sound/items/Crowbar.ogg', 100, 1)
 			user.visible_message("<span class='info'>[user] adds [S.name] to \the [src].</span>",
 								"<span class='notice'>You start to install [S.name] into \the [src].</span>")
 			if(do_after(user, 40, src) && !glass && S.use(1))

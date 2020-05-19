@@ -22,7 +22,7 @@
 /mob/living/bot/cleanbot/handleIdle()
 	if(!screwloose && !oddbutton && prob(2))
 		custom_emote(2, "makes an excited booping sound!")
-		playsound(src.loc, 'sound/machines/synth_yes.ogg', 50, 0)
+		playsound(src, 'sound/machines/synth_yes.ogg', 50, 0)
 
 	if(screwloose && prob(5)) // Make a mess
 		if(istype(loc, /turf/simulated))
@@ -179,7 +179,7 @@
 	if(!screwloose || !oddbutton)
 		if(user)
 			to_chat(user, "<span class='notice'>The [src] buzzes and beeps.</span>")
-			playsound(src.loc, 'sound/machines/buzzbeep.ogg', 50, 0)
+			playsound(src, 'sound/machines/buzzbeep.ogg', 50, 0)
 		oddbutton = 1
 		screwloose = 1
 		return 1

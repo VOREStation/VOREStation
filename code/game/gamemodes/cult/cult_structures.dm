@@ -57,7 +57,7 @@
 		if(prob(1+ damage * 5))
 			visible_message("<span class='danger'>[shatter_message]</span>")
 			STOP_PROCESSING(SSobj, src)
-			playsound(get_turf(src),shatter_sound, 75, 1)
+			playsound(src,shatter_sound, 75, 1)
 			isbroken = 1
 			density = 0
 			icon_state = "[initial(icon_state)]-broken"
@@ -73,21 +73,21 @@
 				)
 			STOP_PROCESSING(SSobj, src)
 			user.do_attack_animation(src)
-			playsound(get_turf(src),shatter_sound, 75, 1)
+			playsound(src,shatter_sound, 75, 1)
 			isbroken = 1
 			density = 0
 			icon_state = "[initial(icon_state)]-broken"
 			set_light(0)
 		else
 			to_chat(user, "You hit \the [src]!")
-			playsound(get_turf(src),impact_sound, 75, 1)
+			playsound(src,impact_sound, 75, 1)
 	else
 		if(prob(damage * 2))
 			to_chat(user, "You pulverize what was left of \the [src]!")
 			qdel(src)
 		else
 			to_chat(user, "You hit \the [src]!")
-		playsound(get_turf(src),impact_sound, 75, 1)
+		playsound(src,impact_sound, 75, 1)
 
 /obj/structure/cult/pylon/proc/repair(mob/user as mob)
 	if(isbroken)

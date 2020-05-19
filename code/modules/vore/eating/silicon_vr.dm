@@ -21,7 +21,7 @@
 
 /obj/effect/overlay/aiholo/proc/get_prey(var/mob/living/prey)
 	if(bellied) return
-	playsound('sound/effects/stealthoff.ogg',50,0)
+	playsound(src, 'sound/effects/stealthoff.ogg',50,0)
 	bellied = prey
 	prey.forceMove(src)
 	visible_message("[src] entirely engulfs [prey] in hardlight holograms!")
@@ -34,7 +34,7 @@
 
 /obj/effect/overlay/aiholo/proc/drop_prey()
 	if(!bellied) return
-	playsound('sound/effects/stealthoff.ogg',50,0)
+	playsound(src, 'sound/effects/stealthoff.ogg',50,0)
 	bellied.forceMove(get_turf(src))
 	bellied.Weaken(2)
 	bellied.visible_message("[bellied] flops out of [src].","You flop out of [src].","You hear a thud.")

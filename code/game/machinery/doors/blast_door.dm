@@ -100,7 +100,7 @@
 // Description: Opens or closes the door, depending on current state. No checks are done inside this proc.
 /obj/machinery/door/blast/proc/force_toggle(var/forced = 0, mob/user as mob)
 	if (forced)
-		playsound(src.loc, 'sound/machines/airlock_creaking.ogg', 100, 1)
+		playsound(src, 'sound/machines/airlock_creaking.ogg', 100, 1)
 
 	if(src.density)
 		src.force_open()
@@ -150,7 +150,7 @@
 					user.visible_message("<span class='danger'>\The [user] hits \the [src] with \the [W] with no visible effect.</span>")
 				else
 					user.visible_message("<span class='danger'>\The [user] forcefully strikes \the [src] with \the [W]!</span>")
-					playsound(src.loc, hitsound, 100, 1)
+					playsound(src, hitsound, 100, 1)
 					take_damage(W.force*0.35) //it's a blast door, it should take a while. -Luke
 				return
 
@@ -180,7 +180,7 @@
 				user.visible_message("<span class='danger'>\The [user] hits \the [src] with \the [W] with no visible effect.</span>")
 			else
 				user.visible_message("<span class='danger'>\The [user] forcefully strikes \the [src] with \the [W]!</span>")
-				playsound(src.loc, hitsound, 100, 1)
+				playsound(src, hitsound, 100, 1)
 				take_damage(W.force*0.15) //If the item isn't a weapon, let's make this take longer than usual to break it down.
 			return
 
@@ -194,13 +194,13 @@
 			if(src.density)
 				visible_message("<span class='alium'>\The [user] begins forcing \the [src] open!</span>")
 				if(do_after(user, 15 SECONDS,src))
-					playsound(src.loc, 'sound/machines/airlock_creaking.ogg', 100, 1)
+					playsound(src, 'sound/machines/airlock_creaking.ogg', 100, 1)
 					visible_message("<span class='danger'>\The [user] forces \the [src] open!</span>")
 					force_open(1)
 			else
 				visible_message("<span class='alium'>\The [user] begins forcing \the [src] closed!</span>")
 				if(do_after(user, 5 SECONDS,src))
-					playsound(src.loc, 'sound/machines/airlock_creaking.ogg', 100, 1)
+					playsound(src, 'sound/machines/airlock_creaking.ogg', 100, 1)
 					visible_message("<span class='danger'>\The [user] forces \the [src] closed!</span>")
 					force_close(1)
 		else

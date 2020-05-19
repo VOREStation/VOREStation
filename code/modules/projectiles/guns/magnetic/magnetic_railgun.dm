@@ -52,7 +52,7 @@
 	loaded.forceMove(get_turf(src))
 	loaded = null
 	visible_message("<span class='warning'>\The [src] beeps and ejects its empty cartridge.</span>","<span class='warning'>There's a beeping sound!</span>")
-	playsound(get_turf(src), empty_sound, 40, 1)
+	playsound(src, empty_sound, 40, 1)
 
 /obj/item/weapon/gun/magnetic/railgun/automatic // Adminspawn only, this shit is absurd.
 	name = "\improper RHR accelerator"

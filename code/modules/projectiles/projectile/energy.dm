@@ -195,7 +195,7 @@
 /obj/item/projectile/energy/plasmastun/proc/bang(var/mob/living/carbon/M)
 
 	to_chat(M, "<span class='danger'>You hear a loud roar.</span>")
-	playsound(M.loc, 'sound/effects/bang.ogg', 50, 1)
+	playsound(src, 'sound/effects/bang.ogg', 50, 1)
 	var/ear_safety = 0
 	ear_safety = M.get_ear_protection()
 	if(ear_safety == 1)

@@ -28,4 +28,4 @@ GLOBAL_LIST_BOILERPLATE(all_mopbuckets, /obj/structure/mopbucket)
 		else
 			reagents.trans_to_obj(I, 5)
 			to_chat(user, "<span class='notice'>You wet \the [I] in \the [src].</span>")
-			playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
+			playsound(src, 'sound/effects/slosh.ogg', 25, 1)

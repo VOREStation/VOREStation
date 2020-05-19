@@ -69,7 +69,7 @@
 	sharp = 1
 	edge = 1
 	w_class = active_w_class
-	playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
+	playsound(src, 'sound/weapons/saberon.ogg', 50, 1)
 	set_light(lrange, lpower, lcolor)
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
@@ -78,7 +78,7 @@
 /obj/item/weapon/cell/device/weapon/gunsword/proc/deactivate(mob/living/user)
 	if(!active)
 		return
-	playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
+	playsound(src, 'sound/weapons/saberoff.ogg', 50, 1)
 	icon_state = "gsaberoff"
 	item_state = "gsaberoff"
 	active = 0

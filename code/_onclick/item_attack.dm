@@ -98,7 +98,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 /obj/item/proc/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone, var/attack_modifier)
 	user.break_cloak()
 	if(hitsound)
-		playsound(loc, hitsound, 50, 1, -1)
+		playsound(src, hitsound, 50, 1, -1)
 
 	var/power = force
 	for(var/datum/modifier/M in user.modifiers)

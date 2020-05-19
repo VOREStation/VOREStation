@@ -198,7 +198,7 @@
 		if(!selected_sound)
 			return
 		vol = between(0, vol, 100)
-		playsound(get_turf(src), selected_sound, vol, freq, -1)
+		playsound(src, selected_sound, vol, freq, -1)
 
 /obj/item/integrated_circuit/output/sound/beeper
 	name = "beeper circuit"

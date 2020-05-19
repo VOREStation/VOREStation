@@ -548,7 +548,7 @@
 	if (!beaker || (beaker && beaker.reagents.total_volume >= beaker.reagents.maximum_volume))
 		return
 
-	playsound(src.loc, 'sound/machines/blender.ogg', 50, 1)
+	playsound(src, 'sound/machines/blender.ogg', 50, 1)
 	inuse = 1
 
 	// Reset the machine.

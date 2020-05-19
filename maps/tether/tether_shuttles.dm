@@ -172,7 +172,7 @@
 	if(!WT.remove_fuel(0, user))
 		to_chat(user,"<span class='warning'>\The [WT] must be on to complete this task.</span>")
 		return 1
-	playsound(src.loc, 'sound/items/Welder.ogg', 50, 1)
+	playsound(src, 'sound/items/Welder.ogg', 50, 1)
 	user.visible_message("<span class='notice'>\The [user] begins \the [src] overhaul.</span>","<span class='notice'>You begin an overhaul of \the [src].</span>")
 	if(!do_after(user, wear SECONDS, src))
 		return 1

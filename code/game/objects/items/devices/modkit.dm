@@ -47,7 +47,7 @@
 		to_chat(user, "<span class='warning'>[O] must be safely placed on the ground for modification.</span>")
 		return
 
-	playsound(src.loc, O.usesound, 100, 1)
+	playsound(src, O.usesound, 100, 1)
 
 	user.visible_message("<span class='notice'>\The [user] opens \the [src] and modifies \the [O].</span>","<span class='notice'>You open \the [src] and modify \the [O].</span>")
 

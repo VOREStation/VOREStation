@@ -243,6 +243,6 @@
 		if (prob(fail_prob))
 			var/obj/item/weapon/implant/imp = affected.implants[1]
 			user.visible_message("<span class='danger'> Something beeps inside [target]'s [affected.name]!</span>")
-			playsound(imp.loc, 'sound/items/countdown.ogg', 75, 1, -3)
+			playsound(imp, 'sound/items/countdown.ogg', 75, 1, -3)
 			spawn(25)
 				imp.activate()

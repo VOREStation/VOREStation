@@ -4,7 +4,7 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.species.trashcan == 1)
-			playsound(H.loc,'sound/items/eatfood.ogg', rand(10,50), 1)
+			playsound(src,'sound/items/eatfood.ogg', rand(10,50), 1)
 			user.drop_item()
 			forceMove(H.vore_selected)
 			to_chat(H, "<span class='notice'>You can taste the flavor of garbage. Wait what?</span>")
@@ -13,7 +13,7 @@
 	if(isrobot(M))
 		var/mob/living/silicon/robot/R = M
 		if(R.module.type == /obj/item/weapon/robot_module/robot/scrubpup) // You can now feed the trash borg yay.
-			playsound(R.loc,'sound/items/eatfood.ogg', rand(10,50), 1)
+			playsound(src,'sound/items/eatfood.ogg', rand(10,50), 1)
 			user.drop_item()
 			forceMove(R.vore_selected)
 			R.visible_message("<span class='warning'>[user] feeds [R] with [src]!</span>")
