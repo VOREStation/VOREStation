@@ -39,14 +39,29 @@
 	..()
 	update()
 
+/turf/simulated/open/ChangeTurf()
+	var/turf/T = GetBelow(src)
+	if(T)
+		GLOB.turf_entered_event.unregister(T, src, .proc/BelowOpenUpdated)
+		GLOB.turf_exited_event.unregister(T, src, .proc/BelowOpenUpdated)
+	. = ..()
+
 /turf/simulated/open/Initialize()
 	. = ..()
 	ASSERT(HasBelow(z))
 	update()
+	var/turf/T = GetBelow(src)
+	if(T)
+		GLOB.turf_entered_event.register(T, src, .proc/BelowOpenUpdated)
+		GLOB.turf_exited_event.register(T, src, .proc/BelowOpenUpdated)
 
 /turf/simulated/open/Entered(var/atom/movable/mover)
 	. = ..()
 	mover.fall()
+
+/turf/simulated/open/proc/BelowOpenUpdated(turf/T, atom/movable/AM, old_loc)
+	if(isobj(AM) && GLOB.open_space_initialised && !AM.invisibility)
+		SSopen_space.add_turf(src, 1)
 
 // Called when thrown object lands on this turf.
 /turf/simulated/open/hitby(var/atom/movable/AM, var/speed)
