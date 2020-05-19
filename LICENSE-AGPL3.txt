@@ -143,7 +143,7 @@ same work.
 
   All rights granted under this License are granted for the term of
 copyright on the Program, and are irrevocable provided the stated
-conditions are met.  This License explicitly affirms your unlimited
+conditions are met.  This License explicitly affirms your unlimitedfadsfasdfsadf
 permission to run the unmodified Program.  The output from running a
 covered work is covered by this License only if the output, given its
 content, constitutes a covered work.  This License acknowledges your
