@@ -31,7 +31,7 @@
 	if(req_access.len || req_one_access.len)
 		req_access = list()
 		req_one_access = list()
-		playsound(src.loc, "sparks", 100, 1)
+		playsound(src, "sparks", 100, 1)
 		return 1
 
 /obj/machinery/button/remote/attack_hand(mob/user as mob)

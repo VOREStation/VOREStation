@@ -81,4 +81,4 @@
 	lightning.old_style_target(target)
 	lightning.fire()
 	visible_message("<span class='danger'>\The [src] strikes \the [target] with lightning!</span>")
-	playsound(get_turf(src), 'sound/weapons/gauss_shoot.ogg', 75, 1)
+	playsound(src, 'sound/weapons/gauss_shoot.ogg', 75, 1)

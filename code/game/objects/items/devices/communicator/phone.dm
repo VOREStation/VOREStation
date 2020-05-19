@@ -161,7 +161,7 @@
 	voice_requests |= candidate
 
 	if(ringer)
-		playsound(loc, 'sound/machines/twobeep.ogg', 50, 1)
+		playsound(src, 'sound/machines/twobeep.ogg', 50, 1)
 		for (var/mob/O in hearers(2, loc))
 			O.show_message(text("[bicon(src)] *beep*"))
 

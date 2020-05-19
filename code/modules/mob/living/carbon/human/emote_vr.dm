@@ -29,107 +29,107 @@
 		if("awoo")
 			m_type = 2
 			message = "lets out an awoo."
-			playsound(loc, 'sound/voice/awoo.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
+			playsound(src, 'sound/voice/awoo.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
 		if("awoo2")
 			m_type = 2
 			message = "lets out an awoo."
-			playsound(loc, 'sound/voice/long_awoo.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
+			playsound(src, 'sound/voice/long_awoo.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
 		if("growl")
 			m_type = 2
 			message = "lets out a growl."
-			playsound(loc, 'sound/voice/growl.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
+			playsound(src, 'sound/voice/growl.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
 		if("woof")
 			m_type = 2
 			message = "lets out an woof."
-			playsound(loc, 'sound/voice/woof.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
+			playsound(src, 'sound/voice/woof.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
 		if("woof2")
 			m_type = 2
 			message = "lets out an woof."
-			playsound(loc, 'sound/voice/woof2.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
+			playsound(src, 'sound/voice/woof2.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
 		if("nya")
 			message = "lets out a nya."
 			m_type = 2
-			playsound(loc, 'sound/voice/nya.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
+			playsound(src, 'sound/voice/nya.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
 		if("mrowl")
 			message = "mrowls."
 			m_type = 2
-			playsound(loc, 'sound/voice/mrow.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
+			playsound(src, 'sound/voice/mrow.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
 		if("peep")
 			message = "peeps like a bird."
 			m_type = 2
-			playsound(loc, 'sound/voice/peep.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
+			playsound(src, 'sound/voice/peep.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
 		if("chirp")
 			message = "chirps!"
-			playsound(loc, 'sound/misc/nymphchirp.ogg', 50, 0, preference = /datum/client_preference/emote_noises)
+			playsound(src, 'sound/misc/nymphchirp.ogg', 50, 0, preference = /datum/client_preference/emote_noises)
 			m_type = 2
 		if("hoot")
 			message = "hoots!"
-			playsound(loc, 'sound/voice/hoot.ogg', 50, 1, ,-1, preference = /datum/client_preference/emote_noises)
+			playsound(src, 'sound/voice/hoot.ogg', 50, 1, ,-1, preference = /datum/client_preference/emote_noises)
 			m_type = 2
 		if("weh")
 			message = "lets out a weh."
 			m_type = 2
-			playsound(loc, 'sound/voice/weh.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
+			playsound(src, 'sound/voice/weh.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
 		if("merp")
 			message = "lets out a merp."
 			m_type = 2
-			playsound(loc, 'sound/voice/merp.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
+			playsound(src, 'sound/voice/merp.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
 		if("myarp")
 			message = "lets out a myarp."
 			m_type = 2
-			playsound(loc, 'sound/voice/myarp.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
+			playsound(src, 'sound/voice/myarp.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
 		if("bark")
 			message = "lets out a bark."
 			m_type = 2
-			playsound(loc, 'sound/voice/bark2.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
+			playsound(src, 'sound/voice/bark2.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
 		if("bork")
 			m_type = 2
 			message = "lets out a bork."
-			playsound(loc, 'sound/voice/bork.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
+			playsound(src, 'sound/voice/bork.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
 		if ("mrow")
 			m_type = 2
 			message = "lets out a mrow."
-			playsound(loc, 'sound/voice/mrow.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
+			playsound(src, 'sound/voice/mrow.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
 		if ("hypno")
 			m_type = 2
 			message = "lets out a mystifying tone."
-			playsound(loc, 'sound/voice/hypno.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
+			playsound(src, 'sound/voice/hypno.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
 		if("hiss")
 			message = "lets out a hiss."
 			m_type = 2
-			playsound(loc, 'sound/voice/hiss.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
+			playsound(src, 'sound/voice/hiss.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
 		if("rattle")
 			message = "rattles!"
 			m_type = 2
-			playsound(loc, 'sound/voice/rattle.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
+			playsound(src, 'sound/voice/rattle.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
 		if("squeak")
 			message = "lets out a squeak."
 			m_type = 2
-			playsound(loc, 'sound/effects/mouse_squeak.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
+			playsound(src, 'sound/effects/mouse_squeak.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
 		if("geck")
 			message = "geckers!"
 			m_type = 2
-			playsound(loc, 'sound/voice/geck.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
+			playsound(src, 'sound/voice/geck.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
 		if("baa")
 			message = "lets out a baa."
 			m_type = 2
-			playsound(loc, 'sound/voice/baa.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
+			playsound(src, 'sound/voice/baa.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
 		if("baa2")
 			message = "bleats."
 			m_type = 2
-			playsound(loc, 'sound/voice/baa2.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
+			playsound(src, 'sound/voice/baa2.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
 		if("deathgasp2")
 			message = "[species.get_death_message()]"
 			m_type = 1
-			playsound(loc, 'sound/voice/deathgasp2.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
+			playsound(src, 'sound/voice/deathgasp2.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
 		if("mar")
 			message = "lets out a mar."
 			m_type = 2
-			playsound(loc, 'sound/voice/mar.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
+			playsound(src, 'sound/voice/mar.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
 		if("wurble")
 			message = "lets out a wurble."
 			m_type = 2
-			playsound(loc, 'sound/voice/wurble.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
+			playsound(src, 'sound/voice/wurble.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
 		if("nsay")
 			nsay()
 			return TRUE

@@ -50,7 +50,7 @@ effective or pretty fucking useless.
 
 	add_attack_logs(user,affected,"Used a [name]")
 
-	playsound(src.loc, 'sound/misc/interference.ogg', 50, 1)
+	playsound(src, 'sound/misc/interference.ogg', 50, 1)
 	to_chat(user, "<span class='notice'>You trigger [src].</span>")
 	times_used += 1
 	if(times_used >= max_uses)

@@ -135,7 +135,7 @@
 	//		step_towards(M, src)
 
 	. = buckle_mob(M, forced)
-	playsound(src.loc, 'sound/effects/seatbelt.ogg', 50, 1)
+	playsound(src, 'sound/effects/seatbelt.ogg', 50, 1)
 	if(.)
 		var/reveal_message = list("buckled_mob" = null, "buckled_to" = null) //VORE EDIT: This being a list and messages existing for the buckle target atom.
 		if(!silent)
@@ -163,7 +163,7 @@
 
 /atom/movable/proc/user_unbuckle_mob(mob/living/buckled_mob, mob/user)
 	var/mob/living/M = unbuckle_mob(buckled_mob)
-	playsound(src.loc, 'sound/effects/seatbelt.ogg', 50, 1)
+	playsound(src, 'sound/effects/seatbelt.ogg', 50, 1)
 	if(M)
 		if(M != user)
 			M.visible_message(\

@@ -217,7 +217,7 @@
 	..(newloc, DEFAULT_WALL_MATERIAL, padding)
 
 /obj/structure/bed/chair/bay/shuttle/post_buckle_mob()
-	playsound(loc,buckling_sound,75,1)
+	playsound(src,buckling_sound,75,1)
 	if(has_buckled_mobs())
 		base_icon = "shuttle_chair-b"
 	else

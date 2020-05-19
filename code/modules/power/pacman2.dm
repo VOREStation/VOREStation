@@ -72,7 +72,7 @@
 		else if(!active)
 			if(O.is_wrench())
 				anchored = !anchored
-				playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+				playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 				if(anchored)
 					to_chat(user, "<font color='blue'>You secure the generator to the floor.</font>")
 				else
@@ -80,13 +80,13 @@
 				SSmachines.makepowernets()
 			else if(O.is_screwdriver())
 				open = !open
-				playsound(loc, O.usesound, 50, 1)
+				playsound(src, O.usesound, 50, 1)
 				if(open)
 					to_chat(user, "<font color='blue'>You open the access panel.</font>")
 				else
 					to_chat(user, "<font color='blue'>You close the access panel.</font>")
 			else if(O.is_crowbar() && !open)
-				playsound(loc, O.usesound, 50, 1)
+				playsound(src, O.usesound, 50, 1)
 				var/obj/machinery/constructable_frame/machine_frame/new_frame = new /obj/machinery/constructable_frame/machine_frame(src.loc)
 				for(var/obj/item/I in component_parts)
 					I.loc = src.loc

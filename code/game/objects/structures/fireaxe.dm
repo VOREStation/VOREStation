@@ -31,7 +31,7 @@
 	if (isrobot(user) || locked)
 		if(istype(O, /obj/item/device/multitool))
 			to_chat(user, "<span class='warning'>Resetting circuitry...</span>")
-			playsound(user, 'sound/machines/lockreset.ogg', 50, 1)
+			playsound(src, 'sound/machines/lockreset.ogg', 50, 1)
 			if(do_after(user, 20 * O.toolspeed))
 				locked = 0
 				to_chat(user, "<span class = 'caution'> You disable the locking modules.</span>")
@@ -44,13 +44,13 @@
 					toggle_close_open()
 				return
 			else
-				playsound(user, 'sound/effects/Glasshit.ogg', 100, 1) //We don't want this playing every time
+				playsound(src, 'sound/effects/Glasshit.ogg', 100, 1) //We don't want this playing every time
 			if(W.force < 15)
 				to_chat(user, "<span class='notice'>The cabinet's protective glass glances off the hit.</span>")
 			else
 				hitstaken++
 				if(hitstaken == 4)
-					playsound(user, 'sound/effects/Glassbr3.ogg', 100, 1) //Break cabinet, receive goodies. Cabinet's fucked for life after that.
+					playsound(src, 'sound/effects/Glassbr3.ogg', 100, 1) //Break cabinet, receive goodies. Cabinet's fucked for life after that.
 					smashed = 1
 					locked = 0
 					open= 1
@@ -82,7 +82,7 @@
 				return
 			else
 				to_chat(user, "<span class='warning'>Resetting circuitry...</span>")
-				playsound(user, 'sound/machines/lockenable.ogg', 50, 1)
+				playsound(src, 'sound/machines/lockenable.ogg', 50, 1)
 				if(do_after(user,20 * O.toolspeed))
 					locked = 1
 					to_chat(user, "<span class = 'caution'> You re-enable the locking modules.</span>")

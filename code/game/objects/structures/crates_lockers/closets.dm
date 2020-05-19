@@ -123,7 +123,7 @@
 
 	src.icon_state = src.icon_opened
 	src.opened = 1
-	playsound(src.loc, open_sound, 15, 1, -3)
+	playsound(src, open_sound, 15, 1, -3)
 	if(initial(density))
 		density = !density
 	return 1
@@ -148,7 +148,7 @@
 	src.icon_state = src.icon_closed
 	src.opened = 0
 
-	playsound(src.loc, close_sound, 15, 1, -3)
+	playsound(src, close_sound, 15, 1, -3)
 	if(initial(density))
 		density = !density
 	return 1
@@ -428,7 +428,7 @@
 				breakout = 0
 				return
 
-			playsound(src.loc, breakout_sound, 100, 1)
+			playsound(src, breakout_sound, 100, 1)
 			animate_shake()
 			add_fingerprint(escapee)
 
@@ -436,7 +436,7 @@
 		breakout = 0
 		to_chat(escapee, "<span class='warning'>You successfully break out!</span>")
 		visible_message("<span class='danger'>\The [escapee] successfully broke out of \the [src]!</span>")
-		playsound(src.loc, breakout_sound, 100, 1)
+		playsound(src, breakout_sound, 100, 1)
 		break_open()
 		animate_shake()
 

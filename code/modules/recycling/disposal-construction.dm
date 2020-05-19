@@ -281,7 +281,7 @@
 			else
 				density = 1 // We don't want disposal bins or outlets to go density 0
 			to_chat(user, "You attach the [nicetype] to the underfloor.")
-		playsound(loc, I.usesound, 100, 1)
+		playsound(src, I.usesound, 100, 1)
 		update()
 
 	// weldingtool: convert to real pipe

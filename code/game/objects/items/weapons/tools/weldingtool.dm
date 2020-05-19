@@ -151,7 +151,7 @@
 		if(!welding && max_fuel)
 			O.reagents.trans_to_obj(src, max_fuel)
 			to_chat(user, "<span class='notice'>Welder refueled</span>")
-			playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
+			playsound(src, 'sound/effects/refill.ogg', 50, 1, -6)
 			return
 		else if(!welding)
 			to_chat(user, "<span class='notice'>[src] doesn't use fuel.</span>")
@@ -278,7 +278,7 @@
 				to_chat(M, "<span class='notice'>You switch the [src] on.</span>")
 			else if(T)
 				T.visible_message("<span class='danger'>\The [src] turns on.</span>")
-			playsound(loc, acti_sound, 50, 1)
+			playsound(src, acti_sound, 50, 1)
 			src.force = 15
 			src.damtype = "fire"
 			src.w_class = ITEMSIZE_LARGE
@@ -300,7 +300,7 @@
 			to_chat(M, "<span class='notice'>You switch \the [src] off.</span>")
 		else if(T)
 			T.visible_message("<span class='warning'>\The [src] turns off.</span>")
-		playsound(loc, deac_sound, 50, 1)
+		playsound(src, deac_sound, 50, 1)
 		src.force = 3
 		src.damtype = "brute"
 		src.w_class = initial(src.w_class)

@@ -91,7 +91,7 @@
 		for(var/obj/item/weapon/reagent_containers/food/snacks/S in oview(src,3)) //Accept thrown offerings and scavenge surroundings.
 			if(get_dist(src,S) <=1)
 				visible_emote("hungrily devours \the [S].")
-				playsound(src.loc,'sound/items/eatfood.ogg', rand(10,50), 1)
+				playsound(src,'sound/items/eatfood.ogg', rand(10,50), 1)
 				qdel(S)
 				hunger = 0
 				food = null
@@ -155,7 +155,7 @@
 /mob/living/simple_mob/vore/aggressive/rat/tame/attackby(var/obj/item/O, var/mob/user) // Feed the rat your food to satisfy it.
 	if(istype(O, /obj/item/weapon/reagent_containers/food/snacks))
 		qdel(O)
-		playsound(src.loc,'sound/items/eatfood.ogg', rand(10,50), 1)
+		playsound(src,'sound/items/eatfood.ogg', rand(10,50), 1)
 		hunger = 0
 		food = null
 		return

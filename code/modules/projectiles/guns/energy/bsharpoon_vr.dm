@@ -45,7 +45,7 @@
 			return
 		var/turf/T = get_turf(src)
 		to_chat(user, "<span class='notice'>You remove [scanmod] from [src].</span>")
-		playsound(T, I.usesound, 75, 1)
+		playsound(src, I.usesound, 75, 1)
 		scanmod.forceMove(T)
 		scanmod = null
 		update_fail_chance()
@@ -77,7 +77,7 @@
 		firable = FALSE
 		VARSET_IN(src, firable, TRUE, 30 SECONDS)
 		to_chat(user,"<span class = 'warning'>\The [src] shot fizzles due to interference!</span>")
-		playsound(user, 'sound/weapons/wave.ogg', 60, 1)
+		playsound(src, 'sound/weapons/wave.ogg', 60, 1)
 		return
 	var/turf/T = get_turf(A)
 	if(!T || (T.check_density() && mode == 1))
@@ -96,7 +96,7 @@
 
 	firable = FALSE
 	VARSET_IN(src, firable, TRUE, 30 SECONDS)
-	playsound(user, 'sound/weapons/wave.ogg', 60, 1)
+	playsound(src, 'sound/weapons/wave.ogg', 60, 1)
 
 	user.visible_message("<span class='warning'>[user] fires \the [src]!</span>","<span class='warning'>You fire \the [src]!</span>")
 

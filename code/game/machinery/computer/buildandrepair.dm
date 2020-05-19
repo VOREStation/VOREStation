@@ -14,7 +14,7 @@
 	switch(state)
 		if(0)
 			if(P.is_wrench())
-				playsound(src.loc, P.usesound, 50, 1)
+				playsound(src, P.usesound, 50, 1)
 				if(do_after(user, 20 * P.toolspeed))
 					to_chat(user, "<span class='notice'>You wrench the frame into place.</span>")
 					src.anchored = 1
@@ -24,7 +24,7 @@
 				if(!WT.remove_fuel(0, user))
 					to_chat(user, "The welding tool must be on to complete this task.")
 					return
-				playsound(src.loc, WT.usesound, 50, 1)
+				playsound(src, WT.usesound, 50, 1)
 				if(do_after(user, 20 * WT.toolspeed))
 					if(!src || !WT.isOn()) return
 					to_chat(user, "<span class='notice'>You deconstruct the frame.</span>")
@@ -32,7 +32,7 @@
 					qdel(src)
 		if(1)
 			if(P.is_wrench())
-				playsound(src.loc, P.usesound, 50, 1)
+				playsound(src, P.usesound, 50, 1)
 				if(do_after(user, 20 * P.toolspeed))
 					to_chat(user, "<span class='notice'>You unfasten the frame.</span>")
 					src.anchored = 0
@@ -40,7 +40,7 @@
 			if(istype(P, /obj/item/weapon/circuitboard) && !circuit)
 				var/obj/item/weapon/circuitboard/B = P
 				if(B.board_type == "computer")
-					playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+					playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 					to_chat(user, "<span class='notice'>You place the circuit board inside the frame.</span>")
 					src.icon_state = "1"
 					src.circuit = P
@@ -49,12 +49,12 @@
 				else
 					to_chat(user, "<span class='warning'>This frame does not accept circuit boards of this type!</span>")
 			if(P.is_screwdriver() && circuit)
-				playsound(src.loc, P.usesound, 50, 1)
+				playsound(src, P.usesound, 50, 1)
 				to_chat(user, "<span class='notice'>You screw the circuit board into place.</span>")
 				src.state = 2
 				src.icon_state = "2"
 			if(P.is_crowbar()) && circuit)
-				playsound(src.loc, P.usesound, 50, 1)
+				playsound(src, P.usesound, 50, 1)
 				to_chat(user, "<span class='notice'>You remove the circuit board.</span>")
 				src.state = 1
 				src.icon_state = "0"
@@ -62,7 +62,7 @@
 				src.circuit = null
 		if(2)
 			if(P.is_screwdriver() && circuit)
-				playsound(src.loc, P.usesound, 50, 1)
+				playsound(src, P.usesound, 50, 1)
 				to_chat(user, "<span class='notice'>You unfasten the circuit board.</span>")
 				src.state = 1
 				src.icon_state = "1"
@@ -72,7 +72,7 @@
 					to_chat(user, "<span class='warning'>You need five coils of wire to add them to the frame.</span>")
 					return
 				to_chat(user, "<span class='notice'>You start to add cables to the frame.</span>")
-				playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+				playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 				if(do_after(user, 20) && state == 2)
 					if (C.use(5))
 						to_chat(user, "<span class='notice'>You add cables to the frame.</span>")
@@ -80,7 +80,7 @@
 						icon_state = "3"
 		if(3)
 			if(P.is_wirecutter())
-				playsound(src.loc, P.usesound, 50, 1)
+				playsound(src, P.usesound, 50, 1)
 				to_chat(user, "<span class='notice'>You remove the cables.</span>")
 				src.state = 2
 				src.icon_state = "2"
@@ -92,7 +92,7 @@
 				if (G.get_amount() < 2)
 					to_chat(user, "<span class='warning'>You need two sheets of glass to put in the glass panel.</span>")
 					return
-				playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+				playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 				to_chat(user, "<span class='notice'>You start to put in the glass panel.</span>")
 				if(do_after(user, 20) && state == 3)
 					if (G.use(2))
@@ -101,13 +101,13 @@
 						src.icon_state = "4"
 		if(4)
 			if(P.is_crowbar())
-				playsound(src.loc, P.usesound, 50, 1)
+				playsound(src, P.usesound, 50, 1)
 				to_chat(user, "<span class='notice'>You remove the glass panel.</span>")
 				src.state = 3
 				src.icon_state = "3"
 				new /obj/item/stack/material/glass( src.loc, 2 )
 			if(P.is_screwdriver())
-				playsound(src.loc, P.usesound, 50, 1)
+				playsound(src, P.usesound, 50, 1)
 				to_chat(user, "<span class='notice'>You connect the monitor.</span>")
 				var/B = new src.circuit.build_path ( src.loc )
 				src.circuit.construct(B)

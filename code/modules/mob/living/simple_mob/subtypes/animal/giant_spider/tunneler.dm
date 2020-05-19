@@ -115,7 +115,7 @@
 			continue
 
 		visible_message(span("danger","\The [src] erupts from underneath, and hits \the [L]!"))
-		playsound(L, 'sound/weapons/heavysmash.ogg', 75, 1)
+		playsound(src, 'sound/weapons/heavysmash.ogg', 75, 1)
 		L.Weaken(3)
 		overshoot = FALSE
 
@@ -164,7 +164,7 @@
 
 		// Stun anyone in our way.
 		for(var/mob/living/L in T)
-			playsound(L, 'sound/weapons/heavysmash.ogg', 75, 1)
+			playsound(src, 'sound/weapons/heavysmash.ogg', 75, 1)
 			L.Weaken(2)
 
 		// Get into the tile.

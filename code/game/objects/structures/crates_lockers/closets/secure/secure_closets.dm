@@ -56,7 +56,7 @@
 		return
 	if(src.allowed(user))
 		src.locked = !src.locked
-		playsound(src.loc, 'sound/machines/click.ogg', 15, 1, -3)
+		playsound(src, 'sound/machines/click.ogg', 15, 1, -3)
 		for(var/mob/O in viewers(user, 3))
 			if((O.client && !( O.blinded )))
 				to_chat(O, "<span class='notice'>The locker has been [locked ? null : "un"]locked by [user].</span>")
@@ -86,8 +86,8 @@
 			var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 			spark_system.set_up(5, 0, src.loc)
 			spark_system.start()
-			playsound(src.loc, 'sound/weapons/blade1.ogg', 50, 1)
-			playsound(src.loc, "sparks", 50, 1)
+			playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
+			playsound(src, "sparks", 50, 1)
 	else if(W.is_wrench())
 		if(sealed)
 			if(anchored)

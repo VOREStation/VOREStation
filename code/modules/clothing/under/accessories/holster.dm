@@ -25,7 +25,7 @@
 		return
 
 	if(holster_in)
-		playsound(get_turf(src), holster_in, 50)
+		playsound(src, holster_in, 50)
 
 	if(istype(user))
 		user.stop_aiming(no_message=1)
@@ -62,7 +62,7 @@
 				)
 
 		if(holster_out)
-			playsound(get_turf(src), holster_out, sound_vol)
+			playsound(src, holster_out, sound_vol)
 
 		user.put_in_hands(holstered)
 		holstered.add_fingerprint(user)

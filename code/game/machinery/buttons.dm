@@ -21,5 +21,5 @@
 // VOREStation Edit Begin
 /obj/machinery/button/attack_hand(obj/item/weapon/W, mob/user as mob)
 	if(..()) return 1
-	playsound(loc, 'sound/machines/button.ogg', 100, 1)
+	playsound(src, 'sound/machines/button.ogg', 100, 1)
 // VOREStation Edit End

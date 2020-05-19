@@ -125,7 +125,7 @@ Protectiveness | Armor %
 		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 		spark_system.set_up(5, 0, user.loc)
 		spark_system.start()
-		playsound(user.loc, 'sound/effects/teleport.ogg', 50, 1)
+		playsound(src, 'sound/effects/teleport.ogg', 50, 1)
 
 		user.loc = picked
 		return PROJECTILE_FORCE_MISS
