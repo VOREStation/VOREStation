@@ -15,6 +15,7 @@
 	var/datum/reagents/R = new/datum/reagents(1000)
 	reagents = R
 	R.my_atom = src
+	default_language = GLOB.all_languages[LANGUAGE_GALCOM]
 
 /mob/living/carbon/brain/Destroy()
 	if(key)				//If there is a mob connected to this thing. Have to check key twice to avoid false death reporting.
@@ -44,5 +45,24 @@
 /mob/living/carbon/brain/isSynthetic()
 	return istype(loc, /obj/item/device/mmi)
 
-///mob/living/carbon/brain/binarycheck()//No binary without a binary communication device
-//	return isSynthetic()
+/mob/living/carbon/brain/set_typing_indicator(var/state)
+	if(isturf(loc))
+		return ..()
+
+	if(!is_preference_enabled(/datum/client_preference/show_typing_indicator))
+		loc.cut_overlay(typing_indicator, TRUE)
+		return
+
+	if(!typing_indicator)
+		typing_indicator = new
+		typing_indicator.icon = 'icons/mob/talk_vr.dmi' //VOREStation Edit - talk_vr.dmi instead of talk.dmi for right-side icons
+		typing_indicator.icon_state = "[speech_bubble_appearance()]_typing"
+
+	if(state && !typing)
+		loc.add_overlay(typing_indicator, TRUE)
+		typing = TRUE
+	else if(typing)
+		loc.cut_overlay(typing_indicator, TRUE)
+		typing = FALSE
+
+	return state

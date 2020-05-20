@@ -12,8 +12,12 @@
 			return FALSE
 		if(avoid_silicons)
 			var/datum/job/J = SSjob.get_job(player.assigned_role)
-			if(J.mob_type & JOB_SILICON)
-				return FALSE
+			if(J)
+				if(J.mob_type & JOB_SILICON)
+					return FALSE
+			else // If SSjob couldn't find a job, they don't have one yet, so the next best thing we can switch on are job preferences
+				if((player.current.client.prefs.job_engsec_high | player.current.client.prefs.job_engsec_med | player.current.client.prefs.job_engsec_low) & (AI | CYBORG)) // If they have ANY chance of being silicon
+					return FALSE
 	return TRUE
 
 /datum/antagonist/proc/antags_are_dead()
