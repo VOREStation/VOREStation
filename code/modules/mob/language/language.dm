@@ -270,7 +270,7 @@
 			if (species_language)
 				set_default_language(GLOB.all_languages[species_language])
 			else
-				set_default_language(null)
+				set_default_language(GLOB.all_languages[LANGUAGE_GIBBERISH])
 		else
 			var/datum/language/L = locate(href_list["default_lang"])
 			if(L && (L in languages))
