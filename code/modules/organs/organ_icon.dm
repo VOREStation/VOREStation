@@ -131,9 +131,9 @@ var/global/list/limb_icon_cache = list()
 
 /obj/item/organ/external/proc/get_icon(var/skeletal)
 
-	var/gender = "f"
-	if(owner && owner.gender == MALE)
-		gender = "m"
+	var/gender = "m"
+	if(owner && owner.gender == FEMALE)
+		gender = "f"
 
 	icon_cache_key = "[icon_name]_[species ? species.get_bodytype() : SPECIES_HUMAN]" //VOREStation Edit
 
