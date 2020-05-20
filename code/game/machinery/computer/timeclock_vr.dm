@@ -210,9 +210,9 @@
 /obj/machinery/computer/timeclock/proc/checkCardCooldown()
 	if(!card)
 		return FALSE
-	var/time_left = 10 MINUTES - (world.time - card.last_job_switch)
+	var/time_left = 5 MINUTES - (world.time - card.last_job_switch)
 	if(time_left > 0)
-		to_chat(usr, "You need to wait another [round((time_left/10)/60, 1)] minute\s before you can switch.")
+		to_chat(usr, "You need to wait another [round((time_left/5)/60, 1)] minute\s before you can switch.")
 		return FALSE
 	return TRUE
 
