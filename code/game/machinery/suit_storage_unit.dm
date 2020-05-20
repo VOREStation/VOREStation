@@ -1068,6 +1068,22 @@
 		if("Gem-Encrusted" || "Wizard")
 			parent_helmet = /obj/item/clothing/head/helmet/space/void/wizard
 			parent_suit = /obj/item/clothing/suit/space/void/wizard
+		//Special or Event suits
+		if("Vintage Crew")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb
+			parent_suit = /obj/item/clothing/suit/space/void/refurb
+		if("Vintage Engineering")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/engineering
+			parent_suit = /obj/item/clothing/suit/space/void/refurb/engineering
+		if("Vintage Medical")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/medical
+			parent_suit = /obj/item/clothing/suit/space/void/refurb/medical
+		if("Vintage Marine")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/marine
+			parent_suit = /obj/item/clothing/suit/space/void/refurb/marine
+		if("Vintage Officer")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/officer
+			parent_suit = /obj/item/clothing/suit/space/void/refurb/officer
 		//BEGIN: Space for additional downstream variants
 		//VOREStation Addition Start
 		if("Director")
@@ -1076,6 +1092,21 @@
 		if("Prototype")
 			parent_helmet = /obj/item/clothing/head/helmet/space/void/merc/prototype
 			parent_suit = /obj/item/clothing/suit/space/void/merc/prototype
+		if("Talon Crew")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/talon
+			parent_suit = /obj/item/clothing/suit/space/void/refurb/talon
+		if("Talon Engineering")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/engineering/talon
+			parent_suit = /obj/item/clothing/suit/space/void/refurb/engineering/talon
+		if("Talon Medical")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/medical/talon
+			parent_suit = /obj/item/clothing/suit/space/void/refurb/medical/talon
+		if("Talon Marine")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/marine/talon
+			parent_suit = /obj/item/clothing/suit/space/void/refurb/marine/talon
+		if("Talon Officer")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/officer/talon
+			parent_suit = /obj/item/clothing/suit/space/void/refurb/officer/talon
 		//VOREStation Addition End
 		//END: downstream variant space
 	
