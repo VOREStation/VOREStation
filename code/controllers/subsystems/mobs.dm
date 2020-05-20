@@ -42,6 +42,7 @@ SUBSYSTEM_DEF(mobs)
 
 		if(!M || QDELETED(M))
 			mob_list -= M
+			continue
 		else if(M.low_priority && !(process_z[get_z(M)]))
 			slept_mobs++
 			continue
