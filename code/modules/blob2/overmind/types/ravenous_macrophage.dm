@@ -23,7 +23,7 @@
 
 /datum/blob_type/ravenous_macrophage/on_pulse(var/obj/structure/blob/B)
 	var/mob/living/L = locate() in range(world.view, B)
-	if(prob(1) && L.mind && !L.stat)	// There's some active living thing nearby, produce offgas.
+	if(L && prob(1) && L.mind && !L.stat)	// There's some active living thing nearby, produce offgas.
 		var/turf/T = get_turf(B)
 		var/datum/effect/effect/system/smoke_spread/noxious/BS = new /datum/effect/effect/system/smoke_spread/noxious
 		BS.attach(T)
