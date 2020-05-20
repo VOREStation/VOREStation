@@ -168,9 +168,8 @@
 
 /obj/belly/Destroy()
 	STOP_PROCESSING(SSbellies, src)
-	if(owner)
-		owner.vore_organs -= src
-		owner = null
+	owner?.vore_organs?.Remove(src)
+	owner = null
 	return ..()
 
 // Called whenever an atom enters this belly

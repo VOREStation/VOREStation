@@ -107,75 +107,113 @@
 	..()
 
 /mob/living/simple_mob/protean_blob/updatehealth()
-	if(humanform)
-		//Set the max
-		maxHealth = humanform.getMaxHealth()*2 //HUMANS, and their 'double health', bleh.
-		//Set us to their health, but, human health ignores robolimbs so we do it 'the hard way'
-		health = maxHealth - humanform.getOxyLoss() - humanform.getToxLoss() - humanform.getCloneLoss() - humanform.getActualFireLoss() - humanform.getActualBruteLoss()
+	if(!humanform)
+		return ..()
 
-		//Alive, becoming dead
-		if((stat < DEAD) && (health <= 0))
-			death()
+	//Set the max
+	maxHealth = humanform.getMaxHealth()*2 //HUMANS, and their 'double health', bleh.
+	//Set us to their health, but, human health ignores robolimbs so we do it 'the hard way'
+	health = maxHealth - humanform.getOxyLoss() - humanform.getToxLoss() - humanform.getCloneLoss() - humanform.getActualFireLoss() - humanform.getActualBruteLoss()
 
-		//Overhealth
-		if(health > getMaxHealth())
-			health = getMaxHealth()
+	//Alive, becoming dead
+	if((stat < DEAD) && (health <= 0))
+		death()
 
-		//Update our hud if we have one
-		if(healths)
-			if(stat != DEAD)
-				var/heal_per = (health / getMaxHealth()) * 100
-				switch(heal_per)
-					if(100 to INFINITY)
-						healths.icon_state = "health0"
-					if(80 to 100)
-						healths.icon_state = "health1"
-					if(60 to 80)
-						healths.icon_state = "health2"
-					if(40 to 60)
-						healths.icon_state = "health3"
-					if(20 to 40)
-						healths.icon_state = "health4"
-					if(0 to 20)
-						healths.icon_state = "health5"
-					else
-						healths.icon_state = "health6"
-			else
-				healths.icon_state = "health7"
-	else
-		..()
+	//Overhealth
+	if(health > getMaxHealth())
+		health = getMaxHealth()
 
+	//Grab any other interesting values
+	confused = humanform.confused
+	radiation = humanform.radiation
+	paralysis = humanform.paralysis
+
+	//Update our hud if we have one
+	if(healths)
+		if(stat != DEAD)
+			var/heal_per = (health / getMaxHealth()) * 100
+			switch(heal_per)
+				if(100 to INFINITY)
+					healths.icon_state = "health0"
+				if(80 to 100)
+					healths.icon_state = "health1"
+				if(60 to 80)
+					healths.icon_state = "health2"
+				if(40 to 60)
+					healths.icon_state = "health3"
+				if(20 to 40)
+					healths.icon_state = "health4"
+				if(0 to 20)
+					healths.icon_state = "health5"
+				else
+					healths.icon_state = "health6"
+		else
+			healths.icon_state = "health7"
+
+// All the damage and such to the blob translates to the human
 /mob/living/simple_mob/protean_blob/adjustBruteLoss(var/amount)
 	if(humanform)
-		humanform.adjustBruteLoss(amount)
+		return humanform.adjustBruteLoss(amount)
 	else
-		..()
+		return ..()
 
 /mob/living/simple_mob/protean_blob/adjustFireLoss(var/amount)
 	if(humanform)
-		humanform.adjustFireLoss(amount)
+		return humanform.adjustFireLoss(amount)
 	else
-		..()
+		return ..()
+
+/mob/living/simple_mob/protean_blob/adjustToxLoss(amount)
+	if(humanform)
+		return humanform.adjustToxLoss(amount)
+	else
+		return ..()
+
+/mob/living/simple_mob/protean_blob/adjustOxyLoss(amount)
+	if(humanform)
+		return humanform.adjustOxyLoss(amount)
+	else
+		return ..()
+	
+/mob/living/simple_mob/protean_blob/adjustHalLoss(amount)
+	if(humanform)
+		return humanform.adjustHalLoss(amount)
+	else
+		return ..()
+
+/mob/living/simple_mob/protean_blob/emp_act(severity)
+	if(humanform)
+		return humanform.emp_act(severity)
+	else
+		return ..()
+
+/mob/living/simple_mob/protean_blob/ex_act(severity)
+	if(humanform)
+		return humanform.ex_act(severity)
+	else
+		return ..()
+
+/mob/living/simple_mob/protean_blob/rad_act(severity)
+	if(humanform)
+		return humanform.ex_act(severity)
+	else
+		return ..()
+
+/mob/living/simple_mob/protean_blob/bullet_act(obj/item/projectile/P)
+	if(humanform)
+		return humanform.bullet_act(P)
+	else
+		return ..()
 
 /mob/living/simple_mob/protean_blob/death(gibbed, deathmessage = "dissolves away, leaving only a few spare parts!")
 	if(humanform)
-		humanform.death(gibbed = gibbed)
-		for(var/organ in humanform.internal_organs)
-			var/obj/item/organ/internal/O = organ
-			O.removed()
-			O.forceMove(drop_location())
-		var/list/items = humanform.get_equipped_items()
-		if(prev_left_hand) items += prev_left_hand
-		if(prev_right_hand) items += prev_right_hand
-		for(var/obj/object in items)
-			object.forceMove(drop_location())
-		QDEL_NULL(humanform) //Don't leave it just sitting in nullspace
-
-	animate(src,alpha = 0,time = 2 SECONDS)
-	sleep(2 SECONDS)
-	qdel(src)
-
-	..()
+		humanform.death(gibbed, deathmessage)
+	else
+		animate(src, alpha = 0, time = 2 SECONDS)
+		sleep(2 SECONDS)
+	
+	if(!QDELETED(src)) // Human's handle death should have taken us, but maybe we were adminspawned or something without a human counterpart
+		qdel(src)
 
 /mob/living/simple_mob/protean_blob/Life()
 	. = ..()
