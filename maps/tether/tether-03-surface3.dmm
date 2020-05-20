@@ -29456,6 +29456,24 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/lobby)
+"fxh" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/glass{
+	name = "Recreation Area"
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/crew_quarters/recreation_area)
 "fyZ" = (
 /obj/machinery/door/firedoor/glass/hidden/steel,
 /obj/structure/cable/green{
@@ -30627,15 +30645,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/lower/medsec_maintenance)
-"mzA" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/freezer,
-/area/crew_quarters/pool)
 "mDr" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -30839,21 +30848,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
-"nzE" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/tiled/steel_grid,
-/area/crew_quarters/recreation_area)
 "nHF" = (
 /obj/structure/table/gamblingtable,
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
@@ -31284,6 +31278,12 @@
 /obj/structure/window/reinforced,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/shuttle/tourbus/engines)
+"qqV" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor/plating,
+/area/crew_quarters/recreation_area)
 "qvp" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -31613,6 +31613,20 @@
 	},
 /turf/simulated/floor/tiled/monofloor,
 /area/crew_quarters/bar)
+"sSK" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/freezer,
+/area/crew_quarters/pool)
 "sSW" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -32184,15 +32198,6 @@
 /obj/machinery/photocopier,
 /turf/simulated/floor/wood,
 /area/library)
-"wlX" = (
-/obj/machinery/door/airlock/glass{
-	name = "Recreation Area"
-	},
-/obj/machinery/door/firedoor/glass,
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/turf/simulated/floor/plating,
-/area/crew_quarters/recreation_area)
 "wqP" = (
 /obj/structure/bed/chair/bay/chair{
 	dir = 1;
@@ -40128,7 +40133,7 @@ aUe
 aiJ
 akT
 alE
-mzA
+sSK
 amN
 amN
 amN
@@ -40696,9 +40701,9 @@ aWF
 aWN
 akY
 akY
-nzE
+fxh
 lqX
-wlX
+qqV
 akY
 akY
 akY
@@ -47403,7 +47408,7 @@ sSX
 qOw
 qCn
 bqA
-asX
+sJC
 aGF
 aHx
 aIk
