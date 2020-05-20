@@ -89,7 +89,7 @@
 
 /obj/item/organ/internal/mmi_holder/emp_act(severity)
 	// ..() // VOREStation Edit - Don't take damage
-	owner.adjustToxLoss(rand(6/severity, 12/severity))
+	owner?.adjustToxLoss(rand(6/severity, 12/severity))
 
 /obj/item/organ/internal/mmi_holder/posibrain
 	name = "positronic brain interface"
