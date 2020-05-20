@@ -323,6 +323,10 @@ proc/get_radio_key_from_channel(var/channel)
 	var/image/speech_bubble = image('icons/mob/talk_vr.dmi',src,"[speech_type][speech_bubble_test]") //VOREStation Edit - talk_vr.dmi instead of talk.dmi for right-side icons
 	var/sb_alpha = 255
 	var/atom/loc_before_turf = src
+	//VOREStation Add
+	if(isbelly(loc))
+		speech_bubble.pixel_y = -13 //teehee
+	//VOREStation Add End
 	while(loc_before_turf && !isturf(loc_before_turf.loc))
 		loc_before_turf = loc_before_turf.loc
 		sb_alpha -= 50
