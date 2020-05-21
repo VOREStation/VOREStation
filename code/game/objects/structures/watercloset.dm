@@ -387,10 +387,11 @@
 	playsound(src, 'sound/effects/sink_long.ogg', 75, 1)
 
 	busy = 1
-	sleep(40)
+	if(!do_after(user, 40, src))
+		busy = 0
+		to_chat(usr, "<span class='notice'>You stop washing your hands.</span>")
+		return
 	busy = 0
-
-	if(!Adjacent(user)) return		//Person has moved away from the sink
 
 	user.clean_blood()
 	if(ishuman(user))
@@ -443,12 +444,11 @@
 	to_chat(usr, "<span class='notice'>You start washing \the [I].</span>")
 
 	busy = 1
-	sleep(40)
+	if(!do_after(user, 40, src))
+		busy = 0
+		to_chat(usr, "<span class='notice'>You stop washing \the [I].</span>")
+		return
 	busy = 0
-
-	if(user.loc != location) return				//User has moved
-	if(!I) return 								//Item's been destroyed while washing
-	if(user.get_active_hand() != I) return		//Person has switched hands or the item in their hands
 
 	O.clean_blood()
 	user.visible_message( \
