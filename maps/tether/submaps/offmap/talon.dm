@@ -294,7 +294,7 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 		/obj/item/clothing/glasses/sunglasses,
 		/obj/item/weapon/storage/belt/security,
 		/obj/item/device/radio/headset/talon,
-		/obj/item/clothing/accessory/solgov/department/security/marine,
+		/obj/item/clothing/accessory/solgov/department/security/army,
 		/obj/item/clothing/head/helmet/space/void/refurb/marine/talon,
 		/obj/item/clothing/suit/space/void/refurb/marine/talon,
 		/obj/item/weapon/tank/oxygen,
