@@ -189,7 +189,10 @@
 		START_PROCESSING(SSobj, src)
 	else
 		STOP_PROCESSING(SSobj, src)
+<<<<<<< HEAD
 		QDEL_NULL(minihud) // Just in case we get removed some other way
+=======
+>>>>>>> 30613ff... Optimize what starts in SSobj (#7155)
 
 	// If we've lost any parts, grab them back.
 	var/mob/living/M

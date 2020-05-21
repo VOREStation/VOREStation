@@ -178,11 +178,14 @@
 			icon_state = "intercom_open"
 		else
 			icon_state = initial(icon_state)
+<<<<<<< HEAD
 
 //VOREStation Add Start
 /obj/item/device/radio/intercom/AICtrlClick(var/mob/user)
 	ToggleBroadcast()
 	to_chat(user, "<span class='notice'>\The [src]'s microphone is now <b>[broadcasting ? "enabled" : "disabled"]</b>.</span>")
+=======
+>>>>>>> 30613ff... Optimize what starts in SSobj (#7155)
 
 /obj/item/device/radio/intercom/AIAltClick(var/mob/user)
 	if(frequency == AI_FREQ)
