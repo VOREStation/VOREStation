@@ -127,6 +127,7 @@
 
 /*/datum/gear/head/cap/sol
 	display_name = "cap, sol"
+<<<<<<< HEAD
 	path = /obj/item/clothing/head/soft/sol
 
 /datum/gear/head/cap/expdition
@@ -136,6 +137,9 @@
 /datum/gear/head/cap/fleet
 	display_name = "cap, fleet"
 	path = /obj/item/clothing/head/soft/sol/fleet*/ // Vorestation removal
+=======
+	path = /obj/item/clothing/head/soft/solgov
+>>>>>>> 8a2baa1... Updates Solgov/Sifguard uniforms (#7138)
 
 /datum/gear/head/cowboy
 	display_name = "cowboy, rodeo"
@@ -337,15 +341,19 @@
 	display_name = "welding, engie (engineering/robotics)"
 	path = /obj/item/clothing/head/welding/engie
 
+<<<<<<< HEAD
 /*/datum/gear/head/beret/sol
+=======
+/datum/gear/head/beret/solgov
+>>>>>>> 8a2baa1... Updates Solgov/Sifguard uniforms (#7138)
 	display_name = "beret sol, selection"
-	path = /obj/item/clothing/head/beret/sol
+	path = /obj/item/clothing/head/beret/solgov
 
-/datum/gear/head/beret/sol/New()
+/datum/gear/head/beret/solgov/New()
 	..()
 	var/list/sols = list()
-	for(var/sol_style in typesof(/obj/item/clothing/head/beret/sol))
-		var/obj/item/clothing/head/beret/sol/sol = sol_style
+	for(var/sol_style in typesof(/obj/item/clothing/head/beret/solgov))
+		var/obj/item/clothing/head/beret/solgov/sol = sol_style
 		sols[initial(sol.name)] = sol
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(sols))*/ // Vorestation removal.
 
