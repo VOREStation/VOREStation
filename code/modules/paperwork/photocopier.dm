@@ -70,7 +70,6 @@
 			break
 
 		if (istype(copyitem, /obj/item/weapon/paper))
-<<<<<<< HEAD
 			playsound(src, "sound/machines/copier.ogg", 100, 1)
 			sleep(11)
 			copy(copyitem)
@@ -100,29 +99,6 @@
 		else
 			to_chat(user, "<span class='warning'>\The [copyitem] can't be copied by [src].</span>")
 			playsound(src, "sound/machines/buzz-two.ogg", 100)
-=======
-			playsound(loc, "sound/machines/copier.ogg", 100, 1)
-			sleep(11)
-			copy(copyitem)
-			audible_message("<span class='notice'>You can hear [src] whirring as it finishes printing.</span>")
-			playsound(loc, "sound/machines/buzzbeep.ogg", 30)
-		else if (istype(copyitem, /obj/item/weapon/photo))
-			playsound(loc, "sound/machines/copier.ogg", 100, 1)
-			sleep(11)
-			photocopy(copyitem)
-			audible_message("<span class='notice'>You can hear [src] whirring as it finishes printing.</span>")
-			playsound(loc, "sound/machines/buzzbeep.ogg", 30)
-		else if (istype(copyitem, /obj/item/weapon/paper_bundle))
-			sleep(11)
-			playsound(loc, "sound/machines/copier.ogg", 100, 1)
-			var/obj/item/weapon/paper_bundle/B = bundlecopy(copyitem)
-			sleep(11*B.pages.len)
-			audible_message("<span class='notice'>You can hear [src] whirring as it finishes printing.</span>")
-			playsound(loc, "sound/machines/buzzbeep.ogg", 30)
-		else
-			to_chat(user, "<span class='warning'>\The [copyitem] can't be copied by [src].</span>")
-			playsound(loc, "sound/machines/buzz-two.ogg", 100)
->>>>>>> d2d67d6... Merge pull request #7153 from Rykka-Stormheart/shep-dev-photocopier-improvements
 			break
 
 		use_power(active_power_usage)
@@ -256,11 +232,7 @@
 	if(need_toner)
 		toner--
 	if(toner == 0)
-<<<<<<< HEAD
 		playsound(src, "sound/machines/buzz-sigh.ogg", 100)
-=======
-		playsound(loc, "sound/machines/buzz-sigh.ogg", 100)
->>>>>>> d2d67d6... Merge pull request #7153 from Rykka-Stormheart/shep-dev-photocopier-improvements
 		visible_message("<span class='notice'>A red light on \the [src] flashes, indicating that it is out of toner.</span>")
 	return c
 
@@ -283,11 +255,7 @@
 		toner -= 5	//photos use a lot of ink!
 	if(toner < 0)
 		toner = 0
-<<<<<<< HEAD
 		playsound(src, "sound/machines/buzz-sigh.ogg", 100)
-=======
-		playsound(loc, "sound/machines/buzz-sigh.ogg", 100)
->>>>>>> d2d67d6... Merge pull request #7153 from Rykka-Stormheart/shep-dev-photocopier-improvements
 		visible_message("<span class='notice'>A red light on \the [src] flashes, indicating that it is out of toner.</span>")
 
 	return p
@@ -383,11 +351,7 @@
 	for(var/obj/item/weapon/W in bundle.pages)
 		if(toner <= 0 && need_toner)
 			toner = 0
-<<<<<<< HEAD
 			playsound(src, "sound/machines/buzz-sigh.ogg", 100)
-=======
-			playsound(loc, "sound/machines/buzz-sigh.ogg", 100)
->>>>>>> d2d67d6... Merge pull request #7153 from Rykka-Stormheart/shep-dev-photocopier-improvements
 			visible_message("<span class='notice'>A red light on \the [src] flashes, indicating that it is out of toner.</span>")
 			break
 
