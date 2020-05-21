@@ -393,3 +393,23 @@
 /datum/gear/suit/labcoat_tesh/New()
 	..()
 	gear_tweaks = list(gear_tweak_free_color_choice)
+
+/datum/gear/suit/teshcoat
+	display_name = "small black coat, recolorable stripes (Teshari)"
+	path = /obj/item/clothing/suit/storage/toggle/tesharicoat
+	whitelisted = SPECIES_TESHARI
+	sort_category = "Xenowear"
+
+/datum/gear/suit/teshcoat/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
+
+/datum/gear/suit/teshcoatwhite
+	display_name = "smallcoat, recolorable (Teshari)"
+	path = /obj/item/clothing/suit/storage/toggle/tesharicoatwhite
+	whitelisted = SPECIES_TESHARI
+	sort_category = "Xenowear"
+
+/datum/gear/suit/teshcoatwhite/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
