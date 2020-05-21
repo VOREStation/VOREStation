@@ -120,6 +120,13 @@
 	response_disarm = "gently pushes aside"
 	response_harm = "hits"
 
+/mob/living/simple_mob/animal/space/carp/large
+	vore_icons = 0
+/mob/living/simple_mob/animal/space/carp/large/huge
+	vore_icons = 0
+/mob/living/simple_mob/animal/space/carp/holographic
+	vore_icons = 0
+
 /* //VOREStation AI Temporary removal
 /mob/living/simple_mob/hostile/creature/vore
 	vore_active = 1
