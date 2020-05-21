@@ -71,7 +71,14 @@ datum/preferences
 	var/antag_vis = "Hidden"			//How visible antag association is to others.
 
 		//Mob preview
-	var/icon/preview_icon = null
+	var/list/char_render_holders		//Should only be a key-value list of north/south/east/west = obj/screen.
+	var/static/list/preview_screen_locs = list(
+		"1" = "character_preview_map:1,5:-12",
+		"2" = "character_preview_map:1,3:15",
+		"4"  = "character_preview_map:1:7,2:10",
+		"8"  = "character_preview_map:1:-7,1:5",
+		"BG" = "character_preview_map:1,1 to 1,5"
+	)
 
 		//Jobs, uses bitflags
 	var/job_civilian_high = 0
@@ -154,6 +161,10 @@ datum/preferences
 				if(load_character())
 					return
 
+/datum/preferences/Destroy()
+	. = ..()
+	QDEL_LIST_ASSOC_VAL(char_render_holders)
+
 /datum/preferences/proc/ZeroSkills(var/forced = 0)
 	for(var/V in SKILLS) for(var/datum/skill/S in SKILLS[V])
 		if(!skills.Find(S.ID) || forced)
@@ -213,6 +224,10 @@ datum/preferences
 		to_chat(user, "<span class='danger'>No mob exists for the given client!</span>")
 		close_load_dialog(user)
 		return
+	
+	if(!char_render_holders)
+		update_preview_icon()
+	show_character_previews()
 
 	var/dat = "<html><body><center>"
 
@@ -234,9 +249,48 @@ datum/preferences
 
 	dat += "</html></body>"
 	//user << browse(dat, "window=preferences;size=635x736")
-	var/datum/browser/popup = new(user, "Character Setup","Character Setup", 800, 800, src)
+	winshow(user, "preferences_window", TRUE)
+	var/datum/browser/popup = new(user, "preferences_browser", "Character Setup", 800, 800)
 	popup.set_content(dat)
-	popup.open()
+	popup.open(FALSE) // Skip registring onclose on the browser pane
+	onclose(user, "preferences_window", src) // We want to register on the window itself
+
+/datum/preferences/proc/update_character_previews(mutable_appearance/MA)
+	if(!client)
+		return
+
+	var/obj/screen/BG= LAZYACCESS(char_render_holders, "BG")
+	if(!BG)
+		BG = new
+		BG.plane = TURF_PLANE
+		BG.icon = 'icons/effects/128x48.dmi'
+		LAZYSET(char_render_holders, "BG", BG)
+		client.screen |= BG
+	BG.icon_state = bgstate
+	BG.screen_loc = preview_screen_locs["BG"]
+	
+	for(var/D in global.cardinal)
+		var/obj/screen/O = LAZYACCESS(char_render_holders, "[D]")
+		if(!O)
+			O = new
+			LAZYSET(char_render_holders, "[D]", O)
+			client.screen |= O
+		O.appearance = MA
+		O.dir = D
+		O.screen_loc = preview_screen_locs["[D]"]
+
+/datum/preferences/proc/show_character_previews()
+	if(!client || !char_render_holders)
+		return
+	for(var/render_holder in char_render_holders)
+		client.screen |= char_render_holders[render_holder]
+
+/datum/preferences/proc/clear_character_previews()
+	for(var/index in char_render_holders)
+		var/obj/screen/S = char_render_holders[index]
+		client?.screen -= S
+		qdel(S)
+	char_render_holders = null
 
 /datum/preferences/proc/process_link(mob/user, list/href_list)
 	if(!user)	return
@@ -286,6 +340,10 @@ datum/preferences
 		overwrite_character(text2num(href_list["overwrite"]))
 		sanitize_preferences()
 		close_load_dialog(usr)
+	else if(href_list["close"])
+		// User closed preferences window, cleanup anything we need to.
+		clear_character_previews()
+		return 1
 	else
 		return 0
 

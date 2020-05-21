@@ -255,19 +255,7 @@
 	dress_preview_mob(mannequin)
 	COMPILE_OVERLAYS(mannequin)
 
-	preview_icon = icon('icons/effects/128x48.dmi', bgstate)
-	preview_icon.Scale(48+32, 16+32)
-
-	var/icon/stamp = getFlatIcon(mannequin, defdir=NORTH)
-	preview_icon.Blend(stamp, ICON_OVERLAY, 25, 17)
-
-	stamp = getFlatIcon(mannequin, defdir=WEST)
-	preview_icon.Blend(stamp, ICON_OVERLAY, 1, 9)
-
-	stamp = getFlatIcon(mannequin, defdir=SOUTH)
-	preview_icon.Blend(stamp, ICON_OVERLAY, 49, 1)
-
-	preview_icon.Scale(preview_icon.Width() * 2, preview_icon.Height() * 2) // Scaling here to prevent blurring in the browser.
+	update_character_previews(new /mutable_appearance(mannequin))
 
 /datum/preferences/proc/get_highest_job()
 	var/datum/job/highJob
