@@ -35,7 +35,7 @@ var/global/list/special_roles = list( //keep synced with the defines BE_* in set
 	S["be_special"]	<< pref.be_special
 
 /datum/category_item/player_setup_item/antagonism/candidacy/sanitize_character()
-	pref.be_special	= sanitize_integer(pref.be_special, 0, 65535, initial(pref.be_special))
+	pref.be_special	= sanitize_integer(pref.be_special, 0, 16777215, initial(pref.be_special)) //VOREStation Edit - 24 bits of support
 
 /datum/category_item/player_setup_item/antagonism/candidacy/content(var/mob/user)
 	if(jobban_isbanned(user, "Syndicate"))
