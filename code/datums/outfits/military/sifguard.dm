@@ -12,12 +12,12 @@
 	name = OUTFIT_MILITARY("SifGuard Service")
 	uniform = /obj/item/clothing/under/solgov/utility/sifguard
 	shoes = /obj/item/clothing/shoes/boots/tactical
-	suit = /obj/item/clothing/suit/storage/service/sifguard
+	suit = /obj/item/clothing/suit/storage/solgov/service/sifguard
 
 /decl/hierarchy/outfit/military/sifguard/dress
 	name = OUTFIT_MILITARY("SifGuard Dress")
-	uniform = /obj/item/clothing/under/solgov/mildress/sifguard
+	uniform = /obj/item/clothing/under/solgov/service/sifguard
 	shoes = /obj/item/clothing/shoes/dress
-	suit = /obj/item/clothing/suit/dress/expedition
+	suit = /obj/item/clothing/suit/storage/solgov/dress/sifguard
 	gloves = /obj/item/clothing/gloves/white
-	head = /obj/item/clothing/head/dress/expedition
+	head = /obj/item/clothing/head/service/sifguard

@@ -50,8 +50,14 @@
 		return
 	for(var/t in organs)
 		qdel(t)
-
-	return ..(move)
+	
+	//VOREStation Edit Start - Hologram examine flavor
+	var/mob/living/silicon/ai/O = ..(move)
+	if(O)
+		O.flavor_text = O.client?.prefs?.flavor_texts["general"]
+	
+	return O
+	//VOREStation Edit End
 
 /mob/living/carbon/AIize(var/move)
 	if (transforming)

@@ -114,7 +114,7 @@
 
 /obj/structure/cult/pylon/swarm/defender/pylonhit(var/damage)
 	if(!isbroken)
-		if(prob(1 + damage * 3) && round(damage * 0.8) >= 30)
+		if(prob(1 + damage * 3) && damage >= 25)
 			visible_message("<span class='danger'>[shatter_message]</span>")
 			STOP_PROCESSING(SSobj, src)
 			playsound(src,shatter_sound, 75, 1)
@@ -125,7 +125,7 @@
 
 /obj/structure/cult/pylon/swarm/defender/attackpylon(mob/user as mob, var/damage)
 	if(!isbroken)
-		if(prob(1 + damage * 3) && round(damage * 0.8) >= 25)
+		if(prob(1 + damage * 2) && damage >= 15)
 			user.visible_message(
 				"<span class='danger'>[user] smashed \the [src]!</span>",
 				"<span class='warning'>You hit \the [src], and its crystal breaks apart!</span>",
@@ -142,7 +142,7 @@
 			to_chat(user, "You hit \the [src]!")
 			playsound(src,impact_sound, 75, 1)
 	else
-		if(prob(damage * 2))
+		if(prob(damage * 3))
 			to_chat(user, "You pulverize what was left of \the [src]!")
 			qdel(src)
 		else

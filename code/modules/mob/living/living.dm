@@ -83,7 +83,7 @@ default behaviour is:
 		return 0
 
 /mob/living/Bump(atom/movable/AM)
-	if(now_pushing || !loc)
+	if(now_pushing || !loc || buckled == AM)
 		return
 	now_pushing = 1
 	if (istype(AM, /mob/living))

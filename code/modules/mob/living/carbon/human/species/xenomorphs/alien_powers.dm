@@ -121,7 +121,7 @@
 
 	if(check_alien_ability(50,1,O_RESIN))
 		visible_message("<span class='alium'><B>[src] has planted some alien weeds!</B></span>")
-		new /obj/effect/alien/weeds/node(get_turf(src), "#321D37")
+		new /obj/effect/alien/weeds/node(get_turf(src), null, "#321D37")
 	return
 
 /mob/living/carbon/human/proc/Spit(var/atom/A)

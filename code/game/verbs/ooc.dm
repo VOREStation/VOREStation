@@ -29,7 +29,7 @@
 		if(prefs.muted & MUTE_OOC)
 			to_chat(src, "<span class='danger'>You cannot use OOC (muted).</span>")
 			return
-		if(findtext(msg, "byond://"))
+		if(findtext(msg, "byond://") && !config.allow_byond_links)
 			to_chat(src, "<B>Advertising other servers is not allowed.</B>")
 			log_admin("[key_name(src)] has attempted to advertise in OOC: [msg]")
 			message_admins("[key_name_admin(src)] has attempted to advertise in OOC: [msg]")
@@ -39,6 +39,16 @@
 			to_chat(src, "<span class='danger'>OOC is not allowed during voting.</span>")
 			return
 		//VOREStation Add End
+		if(findtext(msg, "discord.gg") && !config.allow_discord_links)
+			to_chat(src, "<B>Advertising discords is not allowed.</B>")
+			log_admin("[key_name(src)] has attempted to advertise a discord server in OOC: [msg]")
+			message_admins("[key_name_admin(src)] has attempted to advertise a discord server in OOC: [msg]")
+			return
+		if((findtext(msg, "http://") || findtext(msg, "https://")) && !config.allow_url_links)
+			to_chat(src, "<B>Posting external links is not allowed.</B>")
+			log_admin("[key_name(src)] has attempted to post a link in OOC: [msg]")
+			message_admins("[key_name_admin(src)] has attempted to post a link in OOC: [msg]")
+			return
 
 	log_ooc(msg, src)
 
@@ -109,10 +119,20 @@
 		if(prefs.muted & MUTE_OOC)
 			to_chat(src, "<span class='danger'>You cannot use OOC (muted).</span>")
 			return
-		if(findtext(msg, "byond://"))
+		if(findtext(msg, "byond://") && !config.allow_byond_links)
 			to_chat(src, "<B>Advertising other servers is not allowed.</B>")
 			log_admin("[key_name(src)] has attempted to advertise in OOC: [msg]")
 			message_admins("[key_name_admin(src)] has attempted to advertise in OOC: [msg]")
+			return
+		if(findtext(msg, "discord.gg") && !config.allow_discord_links)
+			to_chat(src, "<B>Advertising discords is not allowed.</B>")
+			log_admin("[key_name(src)] has attempted to advertise a discord server in OOC: [msg]")
+			message_admins("[key_name_admin(src)] has attempted to advertise a discord server in OOC: [msg]")
+			return
+		if((findtext(msg, "http://") || findtext(msg, "https://")) && !config.allow_url_links)
+			to_chat(src, "<B>Posting external links is not allowed.</B>")
+			log_admin("[key_name(src)] has attempted to post a link in OOC: [msg]")
+			message_admins("[key_name_admin(src)] has attempted to post a link in OOC: [msg]")
 			return
 
 	log_looc(msg,src)

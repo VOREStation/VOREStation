@@ -246,3 +246,22 @@
 	icon_override = 'icons/mob/species/seromi/suit.dmi'
 	icon_state = "tesh_labcoat"
 	species_restricted = list(SPECIES_TESHARI)
+
+/obj/item/clothing/suit/storage/toggle/tesharicoat
+	name = "small black coat"
+	desc = "A coat that seems too small to fit a human."
+	icon = 'icons/obj/clothing/species/seromi/suits.dmi'
+	icon_override = 'icons/mob/species/seromi/suit.dmi'
+	icon_state = "tesharicoat"
+	body_parts_covered = UPPER_TORSO|ARMS|LOWER_TORSO|LEGS
+	species_restricted = list(SPECIES_TESHARI)
+
+
+/obj/item/clothing/suit/storage/toggle/tesharicoatwhite
+	name = "small coat"
+	desc = "A coat that seems too small to fit a human."
+	icon = 'icons/obj/clothing/species/seromi/suits.dmi'
+	icon_override = 'icons/mob/species/seromi/suit.dmi'
+	icon_state = "tesharicoatwhite"
+	body_parts_covered = UPPER_TORSO|ARMS|LOWER_TORSO|LEGS
+	species_restricted = list(SPECIES_TESHARI)

@@ -115,6 +115,7 @@
 
 /obj/item/clothing/under/dress/qipao
 	name = "qipao"
+	desc = "A type of feminine body-hugging dress with distinctive Chinese features of Manchu origin."
 	icon = 'icons/obj/clothing/uniforms_vr.dmi'
 	icon_override = 'icons/mob/uniform_vr.dmi'
 	icon_state = "qipao"

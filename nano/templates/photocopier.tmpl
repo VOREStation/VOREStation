@@ -3,7 +3,7 @@
 	See: code/modules/paperwork/photocopier.dm
 -->
 
-{{if data.copyItem || data.assPresent}}
+{{if data.copyItem || data.assPresent}} <!-- VOREStation Add for ass copying -->
 	<div class='item'>
 	{{:helper.link('Remove Item', 'eject', {'remove' : 1})}}
 	{{if data.toner}}
