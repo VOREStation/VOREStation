@@ -134,8 +134,8 @@
 /area/outpost/mining_main/hangar)
 "ax" = (
 /obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
-	dir = 8
+	dir = 8;
+	icon_state = "warning"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled,
@@ -167,8 +167,8 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
-	dir = 5
+	dir = 5;
+	icon_state = "intact-scrubbers"
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/hangar)
@@ -698,10 +698,10 @@
 /area/outpost/mining_main/maintenance)
 "bD" = (
 /obj/machinery/power/smes/buildable{
+	RCon_tag = "Substation - Mining Outpost";
 	charge = 0;
 	output_attempt = 0;
-	outputting = 0;
-	RCon_tag = "Substation - Mining Outpost"
+	outputting = 0
 	},
 /obj/structure/cable{
 	d2 = 8;
@@ -829,8 +829,8 @@
 /area/outpost/mining_main/secondary_gear_storage)
 "bP" = (
 /obj/effect/floor_decal/industrial/warning/corner{
-	icon_state = "warningcorner";
-	dir = 1
+	dir = 1;
+	icon_state = "warningcorner"
 	},
 /obj/machinery/firealarm{
 	dir = 4;
@@ -952,14 +952,6 @@
 /obj/machinery/mining/brace,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/outpost/mining_main/drill_equipment)
-"cb" = (
-/obj/effect/floor_decal/rust,
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 1
-	},
-/obj/machinery/mining/drill,
-/turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/outpost/mining_main/drill_equipment)
 "cc" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 5
@@ -1072,10 +1064,6 @@
 /area/outpost/mining_main/passage)
 "cr" = (
 /obj/machinery/mining/brace,
-/turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/outpost/mining_main/drill_equipment)
-"cs" = (
-/obj/machinery/mining/drill,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/outpost/mining_main/drill_equipment)
 "ct" = (
@@ -1519,8 +1507,8 @@
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
-	dir = 5
+	dir = 5;
+	icon_state = "intact-scrubbers"
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/secondary_gear_storage)
@@ -1611,6 +1599,14 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/outpost/mining_main/airlock)
+"hw" = (
+/obj/effect/floor_decal/rust,
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 1
+	},
+/obj/machinery/mining/drill/loaded,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/outpost/mining_main/drill_equipment)
 "hK" = (
 /turf/simulated/wall/r_wall,
 /area/outpost/mining_main/dorms)
@@ -1636,8 +1632,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 8
+	dir = 8;
+	icon_state = "tube1"
 	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -1834,8 +1830,8 @@
 	dir = 8
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 8
+	dir = 8;
+	icon_state = "tube1"
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/outpost/mining_main/airlock)
@@ -1861,6 +1857,10 @@
 /obj/structure/bed/padded,
 /turf/simulated/floor/wood,
 /area/outpost/mining_main/dorms)
+"Lp" = (
+/obj/machinery/mining/drill/loaded,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/outpost/mining_main/drill_equipment)
 "Ma" = (
 /obj/machinery/door/airlock/mining{
 	name = "Quarters"
@@ -1881,8 +1881,8 @@
 /area/outpost/mining_main/dorms)
 "Nh" = (
 /obj/structure/railing{
-	icon_state = "railing0";
-	dir = 4
+	dir = 4;
+	icon_state = "railing0"
 	},
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/mine/explored)
@@ -1978,8 +1978,8 @@
 /area/outpost/mining_main/break_room)
 "Wy" = (
 /obj/structure/railing{
-	icon_state = "railing0";
-	dir = 1
+	dir = 1;
+	icon_state = "railing0"
 	},
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/mine/explored)
@@ -5718,9 +5718,9 @@ ab
 ab
 ab
 ab
-cb
+hw
 ch
-cs
+Lp
 ch
 ch
 ch
