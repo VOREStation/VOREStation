@@ -232,15 +232,11 @@ var/list/gamemode_cache = list()
 	var/static/dooc_allowed = 1
 	var/static/dsay_allowed = 1
 
-<<<<<<< HEAD
-	var/static/starlight = 0	// Whether space turfs have ambient light or not
-=======
 	var/allow_byond_links = 0
 	var/allow_discord_links = 0
 	var/allow_url_links = 0					// honestly if I were you i'd leave this one off, only use in dire situations
 
 	var/starlight = 0	// Whether space turfs have ambient light or not
->>>>>>> 3fbc72a... Merge pull request #7206 from GeneriedJenelle/patch-1
 
 	var/static/list/ert_species = list(SPECIES_HUMAN)
 
