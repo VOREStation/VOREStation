@@ -26,7 +26,7 @@
 	usesound = 'sound/items/drill_use.ogg'
 	toolspeed = 0.5
 
-/obj/item/weapon/tool/wrench/hybrid	// Slower and bulkier than normal power tools, but it has the power of reach.
+/obj/item/weapon/tool/wrench/hybrid	// Slower and bulkier than normal power tools, but it has the power of reach. If reach even worked half the time.
 	name = "strange wrench"
 	desc = "A wrench with many common uses. Can be usually found in your hand."
 	icon = 'icons/obj/tools.dmi'
@@ -42,13 +42,6 @@
 	toolspeed = 0.5
 	reach = 2
 
-/obj/item/weapon/tool/wrench/hybrid/is_wrench()
-	if(prob(10))
-		var/turf/T = get_turf(src)
-		SSradiation.radiate(get_turf(src), 5)
-		T.visible_message("<span class='alien'>\The [src] shudders!</span>")
-		return FALSE
-	return TRUE
 
 /datum/category_item/catalogue/anomalous/precursor_a/alien_wrench
 	name = "Precursor Alpha Object - Fastener Torque Tool"
