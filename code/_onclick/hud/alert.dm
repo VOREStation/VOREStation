@@ -221,6 +221,21 @@ The box in your backpack has an oxygen tank and gas mask in it."
 or something covering your eyes."
 	icon_state = "blind"
 
+/obj/screen/alert/stunned
+	name = "Stunned"
+	desc = "You're temporarily stunned! You'll have trouble moving or performing actions, but it should clear up on it's own."
+	icon_state = "stun"
+
+/obj/screen/alert/paralyzed
+	name = "Paralyzed"
+	desc = "You're paralyzed! This could be due to drugs or serious injury. You'll be unable to move or perform actions."
+	icon_state = "paralysis"
+
+/obj/screen/alert/weakened
+	name = "Weakened"
+	desc = "You're weakened! This could be a temporary issue due to injury or the result of drugs or drinking."
+	icon_state = "weaken"
+
 /obj/screen/alert/confused
 	name = "Confused"
 	desc = "You're confused, and may stumble into things! This may be from concussive effects, drugs, or dizzyness. Walking will help reduce incidents."

@@ -98,6 +98,16 @@
 	if(!L.apply_damage(30, BRUTE, target_zone, blocked, soaked, used_weapon=src))
 		return 0
 
+	if(ishuman(L))
+		var/mob/living/carbon/human/H = L
+		var/obj/item/organ/external/affected = H.get_organ(check_zone(target_zone))
+		if(!affected) // took it clean off!
+			to_chat(H, "<span class='danger'>The steel jaws of \the [src] take your limb clean off!</span>")
+			L.Stun(stun_length*2)
+			deployed = 0
+			anchored = FALSE
+			return
+
 	//trap the victim in place
 	set_dir(L.dir)
 	can_buckle = 1
