@@ -55,6 +55,11 @@
 /obj/machinery/mining/drill/Initialize()
 	. = ..()
 	default_apply_parts()
+	if(ispath(cell))
+		cell = new cell(src)
+
+/obj/machinery/mining/drill/loaded
+	cell = /obj/item/weapon/cell/high
 
 /obj/machinery/mining/drill/process()
 
