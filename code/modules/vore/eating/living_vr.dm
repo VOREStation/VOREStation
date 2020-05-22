@@ -29,7 +29,7 @@
 	var/can_be_drop_pred = TRUE			// Mobs are pred by default.
 	var/next_preyloop					// For Fancy sound internal loop
 	var/adminbus_trash = FALSE			// For abusing trash eater for event shenanigans.
-	var/adminbus_eat_ore = FALSE		// This creature subsists on a diet of pure adminium.
+	var/adminbus_eat_minerals = FALSE	// This creature subsists on a diet of pure adminium.
 	var/vis_height = 32					// Sprite height used for resize features.
 
 //
@@ -646,17 +646,17 @@
 	to_chat(src, "<span class='notice'>This item is not appropriate for ethical consumption.</span>")
 	return
 
-/mob/living/proc/eat_ore() //Actual eating abstracted so the user isn't given a prompt due to an argument in this verb.
-	set name = "Eat Ore"
+/mob/living/proc/eat_minerals() //Actual eating abstracted so the user isn't given a prompt due to an argument in this verb.
+	set name = "Eat Minerals"
 	set category = "Abilities"
-	set desc = "Consume held ore and gems. Snack time!"
+	set desc = "Consume held raw ore, gems and refined minerals. Snack time!"
 
-	handle_eat_ore()
+	handle_eat_minerals()
 
-/mob/living/proc/handle_eat_ore(obj/item/snack, mob/living/user)
+/mob/living/proc/handle_eat_minerals(obj/item/snack, mob/living/user)
 	var/mob/living/feeder = user ? user : src //Whoever's doing the feeding - us or someone else.
 	var/mob/living/carbon/human/H = src
-	if(!(adminbus_eat_ore || (istype(H) && H.species.eat_ore))) //Am I awesome enough to eat a shiny rock?
+	if(!(adminbus_eat_minerals || (istype(H) && H.species.eat_minerals))) //Am I awesome enough to eat a shiny rock?
 		return
 
 	if(!vore_selected)
@@ -665,7 +665,7 @@
 
 	var/obj/item/I = (snack ? snack : feeder.get_active_hand())
 	if(!I)
-		to_chat(feeder, "<span class='notice'>Why is the ore gone?</span>")
+		to_chat(feeder, "<span class='notice'>You look longingly at your empty hands, imagining if they held something edible...</span>")
 		return
 
 	if(!istype(I))
@@ -731,7 +731,7 @@
 			MAT_LEAD						= list("nutrition" = 0,   "remark" = "It takes some work to break down [O] but you manage it, unlocking lasting tangy goodness in the process. Yum.", "WTF" = FALSE),
 			MAT_VERDANTIUM					= list("nutrition" = 55,  "remark" = "You taste scientific mystery and a rare delicacy. Your tastebuds tingle pleasantly as you eat [O] and the feeling warmly blossoms in your chest for a moment.", "WTF" = FALSE),
 			MAT_MORPHIUM					= list("nutrition" = 75,  "remark" = "The question, the answer and the taste: It all floods your mouth and your mind to momentarily overwhelm the senses. What the hell was that? Your mouth and throat are left tingling for a while.", "WTF" = 10),
-			"alienalloy"					= list("nutrition" = 120, "remark" = "Working hard for so to rend the material apart has left your jaw sore, but a veritable explosion of mind boggling indescribable flavour is unleashed. Completely alien sensations dazes and overwhelms you while it feels like an interdimensional rift opened in your mouth, briefly numbing your face.", "WTF" = 15)
+			"alienalloy"					= list("nutrition" = 120, "remark" = "Working hard for so long to rend the material apart has left your jaw sore, but a veritable explosion of mind boggling indescribable flavour is unleashed. Completely alien sensations daze and overwhelm you while it feels like an interdimensional rift opened in your mouth, briefly numbing your face.", "WTF" = 15)
 		)
 		if(O.default_type in refined_taste)
 			var/obj/item/stack/material/stack = O.split(1) //A little off the top.
@@ -743,12 +743,12 @@
 		playsound(src, 'sound/items/eatfood.ogg', rand(10,50), 1)
 		var/T = (istype(M) ? M.hardness/40 : 1) SECONDS //1.5 seconds to eat a sheet of metal. 2.5 for durasteel and diamond & 1 by default (applies to some ores like raw carbon, slag, etc.
 		to_chat(src, "<span class='notice'>You start crunching on [I] with your powerful jaws, attempting to tear it apart...</span>")
-		if(do_after(feeder, T, ignore_movement = TRUE, exclusive = TRUE))
+		if(do_after(feeder, T, ignore_movement = TRUE, exclusive = TRUE)) //Eat on the move, but not multiple things at once.
 			if(feeder != src)
 				to_chat(feeder, "<span class='notice'>You feed [I] to [src].</span>")
 				log_admin("VORE: [feeder] fed [src] [I].")
 			else
-				log_admin("VORE: [src] used Eat Ore to swallow [I].")
+				log_admin("VORE: [src] used Eat Minerals to swallow [I].")
 			//Eat the ore using the vorebelly for the sound then get rid of the ore to prevent infinite nutrition.
 			drop_from_inventory(I, vore_selected) //Never touches the ground - straight to the gut.
 			visible_message("[src] crunches [I] to pieces and swallows it down.",
