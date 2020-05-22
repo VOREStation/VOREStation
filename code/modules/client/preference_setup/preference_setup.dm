@@ -232,7 +232,7 @@
 
 	. = OnTopic(href, href_list, usr)
 	if(. & TOPIC_UPDATE_PREVIEW)
-		pref_mob.client.prefs.preview_icon = null
+		pref_mob.client.prefs.update_preview_icon()
 	if(. & TOPIC_REFRESH)
 		pref_mob.client.prefs.ShowChoices(usr)
 
