@@ -25,6 +25,7 @@
 		O.show_inv(usr)
 
 /obj/item/weapon/holder/micro/attack_self(mob/living/carbon/user) //reworked so it works w/ nonhumans
+	user.setClickCooldown(user.get_attack_speed())
 	for(var/L in contents)
 		if(ishuman(L))
 			var/mob/living/carbon/human/H = L
