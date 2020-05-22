@@ -41,11 +41,7 @@
 
 	return src
 
-<<<<<<< HEAD
-/mob/new_player/AIize(var/move)
-=======
 /mob/new_player/AIize(var/move = TRUE)
->>>>>>> 37d66ca... Fixes runtime in AI generation (#7224)
 	spawning = 1
 	return ..()
 
@@ -63,13 +59,9 @@
 	return O
 	//VOREStation Edit End
 
-<<<<<<< HEAD
-/mob/living/carbon/AIize(var/move)
-=======
 	return ..(move)
 
 /mob/living/carbon/AIize(var/move = TRUE)
->>>>>>> 37d66ca... Fixes runtime in AI generation (#7224)
 	if (transforming)
 		return
 	for(var/obj/item/W in src)
