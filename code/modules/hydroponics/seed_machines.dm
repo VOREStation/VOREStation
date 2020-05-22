@@ -33,8 +33,8 @@
 		new /obj/item/weapon/disk/botany(src)
 
 /obj/machinery/botany
-	icon = 'icons/obj/hydroponics_machines_vr.dmi' //VOREStation Edit
-	icon_state = "hydrotray3"
+	icon = 'icons/obj/hydroponics_machines.dmi' //VOREStation Edit
+	icon_state = "hydrotray"
 	density = 1
 	anchored = 1
 	use_power = USE_POWER_IDLE
