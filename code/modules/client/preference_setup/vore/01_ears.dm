@@ -27,7 +27,6 @@
 	var/r_wing2 = 30	// Wing extra color
 	var/g_wing2 = 30	// Wing extra color
 	var/b_wing2 = 30	// Wing extra color
-	var/dress_mob = TRUE
 
 // Definition of the stuff for Ears
 /datum/category_item/player_setup_item/vore/ears
@@ -142,14 +141,6 @@
 
 /datum/category_item/player_setup_item/vore/ears/content(var/mob/user)
 	. += "<h2>VORE Station Settings</h2>"
-
-	if(!pref.preview_icon)
-		pref.update_preview_icon()
- 	user << browse_rsc(pref.preview_icon, "previewicon.png")
-
-	. += "<b>Preview</b><br>"
-	. += "<div class='statusDisplay'><center><img src=previewicon.png width=[pref.preview_icon.Width()] height=[pref.preview_icon.Height()]></center></div>"
-	. += "<br><a href='?src=\ref[src];toggle_clothing=1'>[pref.dress_mob ? "Hide equipment" : "Show equipment"]</a><br>"
 
 	var/ear_display = "Normal"
 	if(pref.ear_style && (pref.ear_style in ear_styles_list))
@@ -301,9 +292,5 @@
 			pref.g_wing2 = hex2num(copytext(new_wingc2, 4, 6))
 			pref.b_wing2 = hex2num(copytext(new_wingc2, 6, 8))
 			return TOPIC_REFRESH_UPDATE_PREVIEW
-
-	else if(href_list["toggle_clothing"])
-		pref.dress_mob = !pref.dress_mob
-		return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	return ..()
