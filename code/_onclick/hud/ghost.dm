@@ -43,6 +43,7 @@
 
 /obj/screen/ghost/teleport
 	name = "Teleport"
+	desc = "Pick an area to teleport to."
 	icon_state = "teleport"
 
 /obj/screen/ghost/teleport/Click()
