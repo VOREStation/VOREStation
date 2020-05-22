@@ -1422,7 +1422,7 @@ window "preferences_window"
 		size = 200x800
 		anchor1 = 80,0
 		anchor2 = 100,100
-		right-click = false
+		right-click = true
 
 window "infowindow"
 	elem "infowindow"
