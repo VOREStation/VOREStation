@@ -39,7 +39,7 @@
 	item_state = "sheet-silver"
 	no_variants = FALSE
 	drop_sound = 'sound/items/drop/glass.ogg'
-	default_type = MAT_PLASTANIUMGLASS
+	default_type = MAT_PLASTITANIUMGLASS
 
 /obj/fiftyspawner/plastitanium_glass
 	name = "stack of plastitanium glass"

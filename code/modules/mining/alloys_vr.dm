@@ -18,7 +18,7 @@
 	product = /obj/item/stack/material/glass/titanium
 
 /datum/alloy/plastiglass
-	metaltag = MAT_PLASTANIUMGLASS
+	metaltag = MAT_PLASTITANIUMGLASS
 	requires = list(
 		"rutile" = 1,
 		"sand" = 2,
