@@ -12,45 +12,37 @@
 /area/aro2
 	requires_power = 1
 
-/area/aro2/bighallway
-	name = "Aronai - Central Hallway"
-/area/aro2/powerroom
-	name = "Aronai - Power Room"
-/area/aro2/atmosroom
-	name = "Aronai - Atmos Room"
-/area/aro2/boatbay
-	name = "Aronai - Boat Bay"
-/area/aro2/couchroom
-	name = "Aronai - Relax Room"
-/area/aro2/resleeving
-	name = "Aronai - Fox Printer"
-/area/aro2/room0
-	name = "Aronai - Aro's Bedroom"
-/area/aro2/room1
-	name = "Aronai - Bedroom One"
-/area/aro2/room2
-	name = "Aronai - Bedroom Two"
-/area/aro2/room3
-	name = "Aronai - Bedroom Three"
 /area/aro2/cockpit
-	name = "Aronai - Cockpit"
-/area/aro2/cafe
-	name = "Aronai - Cafe"
-/area/aro2/storage
-	name = "Aronai - Storage"
-/area/aro2/holodeckroom
-	name = "Aronai - Holodeck Room"
-/area/aro2/holodeck
-	name = "Aronai - Holodeck"
+	name = "Aronai - Room1"
+/area/aro2/room1
+	name = "Aronai - Room2"
+/area/aro2/room2
+	name = "Aronai - Room3"
+/area/aro2/room3
+	name = "Aronai - "
+/area/aro2/frontroom
+	name = "Aronai - Front Living"
+/area/aro2/dining
+	name = "Aronai - Dining"
+/area/aro2/boatdeck
+	name = "Aronai - Boat Deck"
+/area/aro2/surfluid
+	name = "Aronai - Surfluid Res"
+/area/aro2/portbay
+	name = "Aronai - Port Bay"
+/area/aro2/starboardbay
+	name = "Aronai - Starboard Bay"
+/area/aro2/powerarea
+	name = "Aronai - Power"
+/area/aro2/airarea
+	name = "Aronai - Air"
+/area/aro2/observation
+	name = "Aronai - Observation"
 
 /area/shuttle/aroboat2
 	name = "Aronai - Ship's Boat"
 	requires_power = 1
 	dynamic_lighting = 1
-
-/obj/machinery/computer/HolodeckControl/holodorm/aro2
-	name = "aro holodeck control"
-	projection_area = /area/aro2/holodeck
 
 // The 'ship'
 /obj/effect/overmap/visitable/ship/aro2
@@ -88,7 +80,7 @@
 // A shuttle lateloader landmark
 /obj/effect/shuttle_landmark/shuttle_initializer/aroboat2
 	name = "Aronai's Boat Bay"
-	base_area = /area/aro2/boatbay
+	base_area = /area/aro2/boatdeck
 	base_turf = /turf/simulated/floor/reinforced
 	landmark_tag = "omship_spawn_aroboat2"
 	docking_controller = "aroship2_boatbay"
