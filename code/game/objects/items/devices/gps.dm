@@ -59,11 +59,11 @@ var/list/GPS_list = list()
 		visible_message("\The [src] appears to be functional again.")
 
 /obj/item/device/gps/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(emped)
-		overlays += image(icon, src, "emp")
+		add_overlay("emp")
 	else if(tracking)
-		overlays += image(icon, src, "working")
+		add_overlay("working")
 
 /obj/item/device/gps/attack_self(mob/user)
 	display(user)
@@ -89,6 +89,8 @@ var/list/GPS_list = list()
 			continue
 
 		var/turf/T = get_turf(G)
+		if(!T)
+			continue
 		if(local_mode && curr.z != T.z)
 			continue
 		if(!(T.z in dat["z_level_detection"]))
