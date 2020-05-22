@@ -319,12 +319,12 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled/techmaint,
 /area/aro2/room1)
-"aW" = (
-/obj/effect/floor_decal/industrial/loading{
-	dir = 4
+"aV" = (
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 8
 	},
-/turf/simulated/floor/tiled/monotile,
-/area/aro2/starboardbay)
+/turf/simulated/floor/wood,
+/area/aro2/frontroom)
 "aX" = (
 /turf/simulated/wall,
 /area/aro2/cockpit)
@@ -1391,23 +1391,6 @@
 	},
 /turf/simulated/wall/r_wall,
 /area/aro2/dining)
-"dx" = (
-/obj/effect/floor_decal/spline/fancy/wood{
-	dir = 8
-	},
-/obj/structure/table/steel,
-/obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/light_switch{
-	dir = 4;
-	pixel_x = -24;
-	pixel_y = 6
-	},
-/turf/simulated/floor/wood,
-/area/aro2/dining)
 "dy" = (
 /obj/effect/floor_decal/spline/fancy/wood/corner{
 	dir = 1
@@ -1760,14 +1743,6 @@
 /obj/machinery/telecomms/allinone,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/aro2/boatdeck)
-"ei" = (
-/obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/shuttle/aroboat2)
 "ek" = (
 /obj/structure/sign/poster{
 	dir = 1;
@@ -2106,6 +2081,14 @@
 /obj/structure/bed/chair/bay/comfy/blue,
 /turf/simulated/floor/tiled/techfloor,
 /area/aro2/boatdeck)
+"eZ" = (
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/aroboat2)
 "fg" = (
 /obj/structure/window/plastitanium/full,
 /obj/structure/window/plastitanium{
@@ -2268,6 +2251,12 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/aro2/boatdeck)
+"fF" = (
+/obj/effect/floor_decal/industrial/loading{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/aro2/portbay)
 "fH" = (
 /obj/machinery/firealarm{
 	dir = 4;
@@ -5124,6 +5113,20 @@
 /obj/structure/sign/pods,
 /turf/simulated/wall,
 /area/aro2/portbay)
+"lH" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/aroboat2)
 "lK" = (
 /obj/structure/sign/pods,
 /turf/simulated/wall,
@@ -5173,21 +5176,147 @@
 /obj/structure/flora/pottedplant/stoutbush,
 /turf/simulated/floor/carpet/purcarpet,
 /area/aro2/room3)
-"mc" = (
-/obj/structure/railing/grey{
+"mh" = (
+/obj/machinery/alarm{
+	alarm_id = null;
+	breach_detection = 0;
+	dir = 1;
+	icon_state = "alarm0";
+	pixel_y = -22
+	},
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_x = -24;
+	pixel_y = 6
+	},
+/obj/effect/floor_decal/spline/fancy/wood/corner{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/aro2/frontroom)
+"mp" = (
+/obj/structure/table/bench/wooden,
+/turf/simulated/floor/tiled/techfloor,
+/area/aro2/dining)
+"mD" = (
+/obj/effect/floor_decal/industrial/loading{
 	dir = 8
 	},
+/turf/simulated/floor/tiled/monotile,
+/area/aro2/starboardbay)
+"mY" = (
+/obj/machinery/computer/shuttle_control/explore/aroboat2{
+	dir = 8;
+	icon_state = "computer"
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/aroboat2)
+"nk" = (
+/obj/effect/floor_decal/industrial/outline/blue,
+/obj/structure/closet/crate/secure/gear,
+/turf/simulated/floor/tiled/monotile,
+/area/shuttle/aroboat2)
+"nm" = (
+/obj/machinery/shipsensors{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/warning/dust,
+/turf/simulated/floor/airless,
+/area/aro2/cockpit)
+"nA" = (
+/obj/structure/table/fancyblack,
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/turf/simulated/floor/carpet/blue,
+/area/aro2/frontroom)
+"oa" = (
+/obj/machinery/light,
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	pixel_x = 24
+	},
+/obj/structure/cable/cyan,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/aroboat2)
+"oe" = (
+/obj/structure/table/steel,
+/turf/simulated/floor/tiled/monotile,
+/area/shuttle/aroboat2)
+"oQ" = (
+/obj/structure/window/plastitanium/full,
+/obj/structure/window/plastitanium{
+	dir = 1
+	},
+/obj/machinery/door/blast/regular{
+	dir = 8;
+	icon_state = "pdoor1";
+	id = "aroboatshut"
+	},
+/obj/machinery/door/firedoor/glass{
+	dir = 2
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/aroboat2)
+"pw" = (
 /obj/structure/cable/cyan{
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/simulated/floor/tiled/techfloor,
-/area/aro2/boatdeck)
-"mf" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 1
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/aro2/frontroom)
+"qQ" = (
+/obj/structure/bed/chair/bay/comfy/blue,
+/turf/simulated/floor/carpet/bcarpet,
+/area/shuttle/aroboat2)
+"sg" = (
+/obj/effect/floor_decal/spline/fancy/wood,
+/turf/simulated/floor/wood,
+/area/aro2/frontroom)
+"tj" = (
+/obj/machinery/button/remote/blast_door{
+	dir = 4;
+	id = "aroshipshutter";
+	name = "exterior shutters";
+	pixel_x = -28
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/aro2/frontroom)
+"tl" = (
+/obj/structure/fans/hardlight,
+/obj/machinery/door/blast/regular{
+	dir = 8;
+	icon_state = "pdoor1";
+	id = "aroboatshut"
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/aroboat2)
-"mg" = (
+"ts" = (
 /obj/machinery/power/shield_generator/upgraded{
 	field_radius = 39;
 	initial_shield_modes = 2113;
@@ -5199,35 +5328,233 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/aro2/boatdeck)
-"mm" = (
+"tT" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/obj/structure/bed/chair/bay/comfy/beige{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/aro2/cockpit)
+"tX" = (
+/obj/structure/bed/chair/bay/comfy/blue{
+	dir = 4
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/shuttle/aroboat2)
+"uJ" = (
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/turf/simulated/floor/tiled/monotile,
+/area/aro2/portbay)
+"wj" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/structure/bed/chair/wood{
+	dir = 8
+	},
+/turf/simulated/floor/carpet/blue,
+/area/aro2/frontroom)
+"xe" = (
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/aroboat2)
+"xw" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/aroboat2)
+"xH" = (
+/obj/effect/shuttle_landmark{
+	base_area = /area/space;
+	base_turf = /turf/space;
+	landmark_tag = "aronai2_aft";
+	name = "Aft"
+	},
+/turf/space,
+/area/space)
+"xO" = (
+/obj/effect/floor_decal/industrial/loading{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/aro2/portbay)
+"ye" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/aroboat2)
+"yu" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/aux,
+/obj/effect/floor_decal/industrial/hatch,
+/turf/simulated/floor/tiled/dark,
+/area/shuttle/aroboat2)
+"yD" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/aroboat2)
+"yO" = (
+/obj/structure/bed/chair/bay/comfy/blue{
+	dir = 4
+	},
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/aroboat2)
+"AL" = (
+/obj/effect/shuttle_landmark{
+	base_area = /area/space;
+	base_turf = /turf/space;
+	landmark_tag = "aronai2_fore";
+	name = "Fore"
+	},
+/turf/space,
+/area/space)
+"Be" = (
+/obj/effect/floor_decal/industrial/loading{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/aro2/starboardbay)
+"BL" = (
+/obj/structure/table/steel,
+/turf/simulated/floor/tiled/techfloor,
+/area/aro2/airarea)
+"Cp" = (
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 8
+	},
+/turf/simulated/floor/wood,
+/area/aro2/frontroom)
+"CQ" = (
 /obj/effect/floor_decal/spline/fancy/wood/corner{
 	dir = 4
 	},
 /turf/simulated/floor/wood,
 /area/aro2/frontroom)
-"ng" = (
-/obj/machinery/power/rtg/abductor/hybrid/built,
+"CS" = (
 /obj/structure/cable/cyan{
-	d2 = 4;
-	icon_state = "0-4"
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/obj/machinery/light,
-/turf/simulated/floor/tiled/dark,
-/area/shuttle/aroboat2)
-"nm" = (
-/obj/structure/window/plastitanium/full,
-/obj/structure/window/plastitanium{
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/aro2/frontroom)
+"DO" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 1
 	},
-/obj/machinery/door/blast/regular{
-	dir = 8;
-	icon_state = "pdoor1";
-	id = "aroboatshut"
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
 	},
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/tiled/techmaint,
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/carpet/blue,
+/area/aro2/frontroom)
+"Ey" = (
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/aro2/frontroom)
+"EI" = (
+/obj/structure/bed/chair/wood{
+	dir = 4
+	},
+/turf/simulated/floor/carpet/blue,
+/area/aro2/frontroom)
+"Fk" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
 /area/shuttle/aroboat2)
-"nz" = (
+"Fu" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/aro2/boatdeck)
+"Fz" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 8
+	},
+/turf/simulated/floor/wood,
+/area/aro2/frontroom)
+"FA" = (
+/obj/structure/bed/chair/bay/comfy/blue{
+	dir = 8
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/shuttle/aroboat2)
+"FY" = (
+/obj/effect/floor_decal/industrial/outline,
+/obj/structure/closet/crate/large,
+/turf/simulated/floor/tiled/monotile,
+/area/shuttle/aroboat2)
+"GX" = (
+/obj/structure/table/steel,
+/obj/machinery/recharger,
+/turf/simulated/floor/tiled/monotile,
+/area/shuttle/aroboat2)
+"Hw" = (
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/warning/dust,
+/turf/simulated/floor/airless,
+/area/aro2/cockpit)
+"HL" = (
+/obj/effect/floor_decal/industrial/outline/blue,
+/obj/structure/closet/crate/internals,
+/turf/simulated/floor/tiled/monotile,
+/area/shuttle/aroboat2)
+"Ib" = (
 /obj/machinery/portable_atmospherics/canister/air,
 /obj/machinery/atmospherics/portables_connector/aux{
 	icon_state = "map_connector-aux"
@@ -5243,7 +5570,48 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/shuttle/aroboat2)
-"nR" = (
+"JF" = (
+/obj/structure/table/steel,
+/turf/simulated/floor/tiled/techfloor,
+/area/aro2/powerarea)
+"JS" = (
+/turf/simulated/floor/tiled/monotile,
+/area/shuttle/aroboat2)
+"Kd" = (
+/turf/simulated/floor/carpet/bcarpet,
+/area/shuttle/aroboat2)
+"Ki" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/shuttle_landmark/shuttle_initializer/aroboat2,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/aroboat2)
+"Kx" = (
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 5
+	},
+/obj/machinery/computer/ship/helm{
+	req_one_access = list(101)
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/aro2/observation)
+"KC" = (
+/obj/machinery/light,
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/aro2/frontroom)
+"Lk" = (
+/obj/machinery/atmospherics/binary/pump/aux,
+/turf/simulated/floor/tiled/dark,
+/area/shuttle/aroboat2)
+"LV" = (
 /obj/machinery/door/airlock/multi_tile/glass,
 /obj/structure/fans/hardlight,
 /obj/structure/cable/cyan{
@@ -5267,424 +5635,108 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/aroboat2)
-"nW" = (
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 1
-	},
-/obj/effect/floor_decal/industrial/warning/dust,
-/turf/simulated/floor/airless,
-/area/aro2/cockpit)
-"om" = (
-/obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/effect/shuttle_landmark/shuttle_initializer/aroboat2,
-/turf/simulated/floor/tiled/techfloor,
-/area/shuttle/aroboat2)
-"oG" = (
-/obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/effect/floor_decal/spline/fancy/wood{
-	dir = 4
-	},
-/turf/simulated/floor/wood,
-/area/aro2/frontroom)
-"pe" = (
-/obj/effect/floor_decal/industrial/loading{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/aro2/starboardbay)
-"qf" = (
-/obj/effect/floor_decal/industrial/outline,
-/obj/structure/closet/crate/large,
-/turf/simulated/floor/tiled/monotile,
-/area/shuttle/aroboat2)
-"rc" = (
-/obj/machinery/light,
-/obj/effect/floor_decal/spline/fancy/wood{
-	dir = 1
-	},
-/turf/simulated/floor/wood,
-/area/aro2/frontroom)
-"rh" = (
-/obj/machinery/alarm{
-	alarm_id = null;
-	breach_detection = 0;
-	dir = 1;
-	icon_state = "alarm0";
-	pixel_y = -22
-	},
-/obj/machinery/light_switch{
-	dir = 4;
-	pixel_x = -24;
-	pixel_y = 6
-	},
-/obj/effect/floor_decal/spline/fancy/wood/corner{
-	dir = 1
-	},
-/turf/simulated/floor/wood,
-/area/aro2/frontroom)
-"rj" = (
+"LW" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10
-	},
-/obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/cable/cyan{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/turf/simulated/floor/carpet/blue,
-/area/aro2/frontroom)
-"rq" = (
-/obj/machinery/mech_recharger{
-	icon = 'icons/turf/shuttle_alien_blue.dmi'
-	},
-/turf/simulated/floor/tiled/dark,
-/area/shuttle/aroboat2)
-"rP" = (
-/obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/shuttle/aroboat2)
-"rX" = (
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/shuttle/aroboat2)
-"se" = (
-/obj/effect/floor_decal/techfloor/orange{
-	dir = 5
-	},
-/obj/machinery/computer/ship/helm{
-	req_one_access = list(101)
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/aro2/observation)
-"tj" = (
-/obj/structure/table/fancyblack,
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
-/turf/simulated/floor/carpet/blue,
-/area/aro2/frontroom)
-"ty" = (
-/obj/effect/floor_decal/industrial/outline/blue,
-/obj/structure/closet/crate/secure/gear,
-/turf/simulated/floor/tiled/monotile,
-/area/shuttle/aroboat2)
-"tB" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
-	},
-/obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/carpet/blue,
-/area/aro2/frontroom)
-"tV" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/aro2/boatdeck)
-"vw" = (
-/obj/structure/bed/chair/bay/comfy/blue{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/shuttle/aroboat2)
-"xd" = (
-/obj/structure/cable/cyan{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/obj/machinery/power/apc{
-	dir = 2;
-	name = "south bump";
-	pixel_y = -28
-	},
-/obj/effect/floor_decal/spline/fancy/wood{
-	dir = 1
-	},
-/turf/simulated/floor/wood,
-/area/aro2/frontroom)
-"xt" = (
-/obj/structure/bed/chair/bay/comfy/blue{
+"Mb" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
-	},
-/turf/simulated/floor/carpet/bcarpet,
-/area/shuttle/aroboat2)
-"zj" = (
-/obj/structure/table/bench/wooden,
-/turf/simulated/floor/wood,
-/area/aro2/frontroom)
-"zk" = (
-/obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable/cyan{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/aroboat2)
-"zF" = (
-/obj/structure/bed/chair/bay/comfy/blue{
-	dir = 4
+"Mf" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
 	},
-/turf/simulated/floor/carpet/bcarpet,
-/area/shuttle/aroboat2)
-"Ad" = (
-/turf/simulated/floor/tiled/monotile,
-/area/shuttle/aroboat2)
-"Aq" = (
 /obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/carpet/blue,
+/area/aro2/frontroom)
+"NI" = (
+/obj/machinery/recharge_station,
+/turf/simulated/floor/tiled/dark,
+/area/shuttle/aroboat2)
+"NZ" = (
+/obj/machinery/light{
+	dir = 1
 	},
 /obj/structure/closet/crate/bin,
-/turf/simulated/floor/wood,
-/area/aro2/frontroom)
-"AP" = (
-/obj/structure/bed/chair/wood{
-	dir = 4
-	},
-/turf/simulated/floor/carpet/blue,
-/area/aro2/frontroom)
-"Bb" = (
-/turf/simulated/floor/carpet/bcarpet,
-/area/shuttle/aroboat2)
-"Bt" = (
-/obj/structure/bed/chair/wood{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
-	},
-/turf/simulated/floor/carpet/blue,
-/area/aro2/frontroom)
-"BF" = (
-/obj/structure/table/bench/wooden,
-/turf/simulated/floor/tiled/techfloor,
-/area/aro2/dining)
-"Cc" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 6
-	},
-/obj/structure/bed/chair/bay/comfy/beige{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/aro2/cockpit)
-"Ct" = (
-/obj/structure/table/fancyblack,
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 4
-	},
-/turf/simulated/floor/carpet/blue,
-/area/aro2/frontroom)
-"CC" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/floor_decal/spline/fancy/wood{
-	dir = 8
-	},
-/turf/simulated/floor/wood,
-/area/aro2/frontroom)
-"CY" = (
-/obj/effect/floor_decal/industrial/outline/blue,
-/obj/structure/closet/crate/internals,
-/turf/simulated/floor/tiled/monotile,
-/area/shuttle/aroboat2)
-"Dc" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/aux,
-/obj/effect/floor_decal/industrial/hatch,
-/turf/simulated/floor/tiled/dark,
-/area/shuttle/aroboat2)
-"DI" = (
-/obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/aroboat2)
-"DN" = (
-/obj/machinery/button/remote/blast_door{
-	dir = 4;
-	id = "aroshipshutter";
-	name = "exterior shutters";
-	pixel_x = -28
-	},
-/obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/effect/floor_decal/spline/fancy/wood{
-	dir = 4
-	},
-/turf/simulated/floor/wood,
-/area/aro2/frontroom)
-"DO" = (
-/obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/effect/floor_decal/spline/fancy/wood{
-	dir = 1
-	},
-/turf/simulated/floor/wood,
-/area/aro2/frontroom)
-"Ec" = (
-/obj/structure/table/steel,
-/turf/simulated/floor/tiled/techfloor,
-/area/aro2/powerarea)
-"Ed" = (
-/obj/effect/floor_decal/industrial/loading{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/aro2/portbay)
-"En" = (
-/obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
-	id_tag = "aroboat2_docker";
-	pixel_y = 28
-	},
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/shuttle/aroboat2)
-"EM" = (
-/obj/effect/shuttle_landmark{
-	base_area = /area/space;
-	base_turf = /turf/space;
-	landmark_tag = "aronai2_fore";
-	name = "Fore"
-	},
-/turf/space,
-/area/space)
-"EO" = (
-/obj/structure/cable/cyan{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 1
-	},
-/obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/effect/floor_decal/spline/fancy/wood{
-	dir = 1
-	},
-/turf/simulated/floor/wood,
-/area/aro2/frontroom)
-"Gv" = (
-/obj/structure/fans/hardlight,
-/obj/machinery/door/blast/regular{
-	dir = 8;
-	icon_state = "pdoor1";
-	id = "aroboatshut"
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/shuttle/aroboat2)
-"Hp" = (
-/obj/machinery/atmospherics/portables_connector/aux{
-	dir = 1;
-	icon_state = "map_connector-aux"
-	},
-/obj/effect/floor_decal/industrial/outline,
-/turf/simulated/floor/tiled/dark,
-/area/shuttle/aroboat2)
-"Hu" = (
-/obj/effect/shuttle_landmark{
-	base_area = /area/space;
-	base_turf = /turf/space;
-	landmark_tag = "aronai2_starboard";
-	name = "Starboard"
-	},
-/turf/space,
-/area/space)
-"Hy" = (
-/obj/structure/table/steel,
-/turf/simulated/floor/tiled/monotile,
-/area/shuttle/aroboat2)
-"HZ" = (
-/obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/effect/floor_decal/spline/fancy/wood{
-	dir = 8
-	},
-/turf/simulated/floor/wood,
-/area/aro2/frontroom)
-"If" = (
-/obj/structure/table/fancyblack,
-/turf/simulated/floor/carpet/bcarpet,
-/area/shuttle/aroboat2)
-"Ix" = (
-/obj/effect/floor_decal/industrial/hatch,
-/turf/simulated/floor/tiled/dark,
-/area/shuttle/aroboat2)
-"JU" = (
+"Oh" = (
 /obj/effect/floor_decal/techfloor/orange{
 	dir = 9
 	},
 /obj/machinery/computer/ship/engines,
 /turf/simulated/floor/tiled/techfloor,
 /area/aro2/observation)
-"Ky" = (
-/obj/structure/bed/chair/bay/comfy/blue,
-/turf/simulated/floor/carpet/bcarpet,
-/area/shuttle/aroboat2)
-"KL" = (
-/obj/structure/table/steel,
+"Ol" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/techfloor,
-/area/aro2/airarea)
-"Mr" = (
+/area/shuttle/aroboat2)
+"Oy" = (
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 8
+	},
 /obj/structure/cable/cyan{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/techfloor,
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_x = -24;
+	pixel_y = 6
+	},
+/obj/machinery/vending/dinnerware{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/aro2/dining)
+"Pk" = (
+/obj/structure/window/plastitanium/full,
+/turf/simulated/floor/tiled/techmaint,
+/area/aro2/surfluid)
+"Qj" = (
+/obj/structure/window/plastitanium/full,
+/obj/structure/window/plastitanium{
+	dir = 4
+	},
+/obj/machinery/door/blast/regular{
+	dir = 1;
+	icon_state = "pdoor1";
+	id = "aroboatshut"
+	},
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/tiled/techmaint,
 /area/shuttle/aroboat2)
-"MG" = (
+"Qz" = (
+/turf/space,
+/area/space)
+"Rx" = (
+/obj/machinery/power/rtg/abductor/hybrid/built,
+/obj/structure/cable/cyan{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/light,
+/turf/simulated/floor/tiled/dark,
+/area/shuttle/aroboat2)
+"Ry" = (
 /obj/structure/cable/cyan{
 	d1 = 4;
 	d2 = 8;
@@ -5703,22 +5755,37 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/aro2/boatdeck)
-"MO" = (
-/obj/effect/shuttle_landmark{
-	base_area = /area/space;
-	base_turf = /turf/space;
-	landmark_tag = "aronai2_aft";
-	name = "Aft"
+"RD" = (
+/obj/structure/cable/cyan{
+	d2 = 4;
+	icon_state = "0-4"
 	},
-/turf/space,
-/area/space)
-"MU" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
+/obj/machinery/power/apc{
+	dir = 2;
+	name = "south bump";
+	pixel_y = -28
+	},
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/aro2/frontroom)
+"RZ" = (
+/obj/structure/table/bench/wooden,
+/turf/simulated/floor/wood,
+/area/aro2/frontroom)
+"SB" = (
+/obj/structure/railing/grey{
 	dir = 8
 	},
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
 /turf/simulated/floor/tiled/techfloor,
-/area/shuttle/aroboat2)
-"NJ" = (
+/area/aro2/boatdeck)
+"Tn" = (
 /obj/structure/cable/cyan{
 	d1 = 4;
 	d2 = 8;
@@ -5729,52 +5796,111 @@
 	},
 /turf/simulated/floor/carpet/blue,
 /area/aro2/frontroom)
-"Oj" = (
-/obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+"Tp" = (
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/aroboat2)
-"OG" = (
-/obj/effect/floor_decal/spline/fancy/wood{
-	dir = 8
-	},
-/turf/simulated/floor/wood,
-/area/aro2/frontroom)
-"OU" = (
-/obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/effect/floor_decal/spline/fancy/wood/corner,
-/turf/simulated/floor/wood,
-/area/aro2/frontroom)
-"PX" = (
+"TN" = (
 /obj/structure/window/plastitanium/full,
+/obj/structure/window/plastitanium,
+/obj/machinery/door/blast/regular{
+	dir = 8;
+	icon_state = "pdoor1";
+	id = "aroboatshut"
+	},
+/obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled/techmaint,
-/area/aro2/surfluid)
-"Qz" = (
-/turf/space,
-/area/space)
-"SC" = (
+/area/shuttle/aroboat2)
+"TQ" = (
 /obj/effect/shuttle_landmark{
 	base_area = /area/space;
 	base_turf = /turf/space;
-	landmark_tag = "aronai2_port";
-	name = "Port"
+	landmark_tag = "aronai2_starboard";
+	name = "Starboard"
 	},
 /turf/space,
 /area/space)
-"SD" = (
-/obj/effect/floor_decal/industrial/loading{
+"Ul" = (
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/turf/simulated/floor/tiled/monotile,
+/area/aro2/starboardbay)
+"Ur" = (
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/aroboat2)
+"UG" = (
+/obj/structure/table/fancyblack,
+/obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/monotile,
-/area/aro2/portbay)
-"Tf" = (
+/turf/simulated/floor/carpet/blue,
+/area/aro2/frontroom)
+"UK" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/closet/crate/bin,
+/turf/simulated/floor/wood,
+/area/aro2/frontroom)
+"UM" = (
+/obj/structure/bed/chair/wood{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/turf/simulated/floor/carpet/blue,
+/area/aro2/frontroom)
+"UN" = (
+/obj/machinery/mech_recharger{
+	icon = 'icons/turf/shuttle_alien_blue.dmi'
+	},
+/turf/simulated/floor/tiled/dark,
+/area/shuttle/aroboat2)
+"UZ" = (
+/obj/effect/floor_decal/industrial/hatch,
+/turf/simulated/floor/tiled/dark,
+/area/shuttle/aroboat2)
+"Vk" = (
+/obj/machinery/atmospherics/portables_connector/aux{
+	dir = 1;
+	icon_state = "map_connector-aux"
+	},
+/obj/effect/floor_decal/industrial/outline,
+/turf/simulated/floor/tiled/dark,
+/area/shuttle/aroboat2)
+"Vu" = (
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/aro2/boatdeck)
+"Vx" = (
+/turf/simulated/wall/rdshull,
+/area/shuttle/aroboat2)
+"VI" = (
+/obj/machinery/embedded_controller/radio/simple_docking_controller{
+	frequency = 1380;
+	id_tag = "aroboat2_docker";
+	pixel_y = 28
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/aroboat2)
+"VV" = (
+/obj/structure/table/fancyblack,
+/turf/simulated/floor/carpet/bcarpet,
+/area/shuttle/aroboat2)
+"VX" = (
 /obj/structure/window/plastitanium/full,
 /obj/structure/window/plastitanium{
 	dir = 1
@@ -5784,39 +5910,34 @@
 	icon_state = "pdoor1";
 	id = "aroboatshut"
 	},
-/obj/machinery/door/firedoor/glass{
-	dir = 2
-	},
+/obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/aroboat2)
-"Ti" = (
-/obj/effect/floor_decal/industrial/hatch/yellow,
-/turf/simulated/floor/tiled/monotile,
-/area/aro2/starboardbay)
-"To" = (
-/obj/machinery/light,
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "east bump";
-	pixel_x = 24
+"Xl" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/obj/structure/cable/cyan,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/shuttle/aroboat2)
-"TI" = (
-/obj/structure/table/steel,
-/obj/machinery/recharger,
-/turf/simulated/floor/tiled/monotile,
-/area/shuttle/aroboat2)
-"TO" = (
-/obj/effect/floor_decal/spline/fancy/wood,
+/obj/effect/floor_decal/spline/fancy/wood/corner,
 /turf/simulated/floor/wood,
 /area/aro2/frontroom)
-"Uc" = (
-/obj/machinery/recharge_station,
-/turf/simulated/floor/tiled/dark,
+"Yl" = (
+/obj/effect/shuttle_landmark{
+	base_area = /area/space;
+	base_turf = /turf/space;
+	landmark_tag = "aronai2_port";
+	name = "Port"
+	},
+/turf/space,
+/area/space)
+"Yx" = (
+/obj/structure/bed/chair/bay/comfy/blue{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/monotile,
 /area/shuttle/aroboat2)
-"Uh" = (
+"ZP" = (
 /obj/machinery/door/airlock/multi_tile/glass,
 /obj/structure/fans/hardlight,
 /obj/effect/map_helper/airlock/door/simple,
@@ -5833,125 +5954,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/aroboat2)
-"Us" = (
-/obj/structure/window/plastitanium/full,
-/obj/structure/window/plastitanium{
-	dir = 4
-	},
-/obj/machinery/door/blast/regular{
-	dir = 1;
-	icon_state = "pdoor1";
-	id = "aroboatshut"
-	},
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/tiled/techmaint,
-/area/shuttle/aroboat2)
-"UE" = (
-/obj/effect/floor_decal/industrial/hatch/yellow,
-/turf/simulated/floor/tiled/monotile,
-/area/aro2/portbay)
-"UO" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/aro2/boatdeck)
-"VN" = (
-/turf/simulated/wall/rdshull,
-/area/shuttle/aroboat2)
-"Wy" = (
-/obj/structure/window/plastitanium/full,
-/obj/structure/window/plastitanium,
-/obj/machinery/door/blast/regular{
-	dir = 8;
-	icon_state = "pdoor1";
-	id = "aroboatshut"
-	},
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/tiled/techmaint,
-/area/shuttle/aroboat2)
-"WB" = (
-/obj/structure/bed/chair/bay/comfy/blue{
-	dir = 4
-	},
-/obj/structure/cable/cyan{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/shuttle/aroboat2)
-"WO" = (
-/obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/techfloor,
-/area/shuttle/aroboat2)
-"Xp" = (
-/obj/machinery/computer/shuttle_control/explore/aroboat2{
-	dir = 8;
-	icon_state = "computer"
-	},
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/shuttle/aroboat2)
-"Xt" = (
-/obj/machinery/atmospherics/binary/pump/aux,
-/turf/simulated/floor/tiled/dark,
-/area/shuttle/aroboat2)
-"Xv" = (
-/obj/machinery/shipsensors{
-	dir = 1
-	},
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 1
-	},
-/obj/effect/floor_decal/industrial/warning/dust,
-/turf/simulated/floor/airless,
-/area/aro2/cockpit)
-"XM" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/shuttle/aroboat2)
-"Yc" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/closet/crate/bin,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/shuttle/aroboat2)
-"Yk" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 1
-	},
-/obj/structure/cable/cyan{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/structure/bed/chair/wood{
-	dir = 8
-	},
-/turf/simulated/floor/carpet/blue,
-/area/aro2/frontroom)
-"YR" = (
-/obj/structure/railing/grey{
-	dir = 8
-	},
-/obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/aro2/boatdeck)
 
 (1,1,1) = {"
 Qz
@@ -9709,7 +9711,7 @@ Qz
 Qz
 Qz
 Qz
-SC
+Yl
 Qz
 Qz
 Qz
@@ -13559,11 +13561,11 @@ Qz
 fT
 gP
 fU
-Ed
-Ed
-UE
-SD
-SD
+fF
+fF
+uJ
+xO
+xO
 fU
 gP
 fT
@@ -14233,16 +14235,16 @@ Qz
 af
 ao
 ao
-zj
-zj
-zj
+RZ
+RZ
+RZ
 ao
 ao
 bT
 bT
-BF
-BF
-BF
+mp
+mp
+mp
 bT
 bT
 dv
@@ -14282,8 +14284,8 @@ jl
 jl
 jl
 jl
-Ec
-Ec
+JF
+JF
 jl
 ll
 jx
@@ -14374,12 +14376,12 @@ Qz
 Qz
 ag
 ap
-OU
-oG
-oG
-oG
-DN
-rh
+Xl
+CS
+CS
+CS
+tj
+mh
 bU
 cf
 cs
@@ -14515,13 +14517,13 @@ Qz
 Qz
 Qz
 aq
-zj
-TO
+RZ
+sg
 ax
-AP
-AP
+EI
+EI
 bd
-rc
+KC
 bU
 cg
 ct
@@ -14541,8 +14543,8 @@ ec
 ec
 eL
 ec
-UO
-tV
+LW
+Fu
 ec
 ec
 ec
@@ -14657,13 +14659,13 @@ Qz
 Qz
 Qz
 aq
-zj
-TO
+RZ
+sg
 ax
 aH
-tj
-NJ
-xd
+nA
+Tn
+RD
 bU
 cg
 cu
@@ -14671,7 +14673,7 @@ cI
 cY
 dk
 dj
-dx
+Oy
 dI
 dP
 bU
@@ -14799,13 +14801,13 @@ Qz
 Qz
 Qz
 aq
-zj
-TO
+RZ
+sg
 ax
-Ct
+UG
 aH
-tB
-DO
+Mf
+Ey
 bU
 ch
 cv
@@ -14942,12 +14944,12 @@ Qz
 Qz
 ah
 ao
-TO
+sg
 ax
-Bt
-Yk
-rj
-EO
+UM
+wj
+DO
+pw
 bV
 ci
 cw
@@ -15085,11 +15087,11 @@ Qz
 ah
 ao
 ao
-CC
-OG
-HZ
-OG
-mm
+Fz
+aV
+Cp
+aV
+CQ
 cz
 bW
 bW
@@ -15107,11 +15109,11 @@ ec
 et
 cM
 eT
-VN
-VN
-VN
-VN
-VN
+Vx
+Vx
+Vx
+Vx
+Vx
 eT
 fJ
 fN
@@ -15228,7 +15230,7 @@ ai
 ai
 ap
 ap
-Aq
+UK
 bg
 bp
 bI
@@ -15248,13 +15250,13 @@ ec
 ec
 et
 cM
-VN
-VN
-Uc
-Ix
-rq
-VN
-VN
+Vx
+Vx
+NI
+UZ
+UN
+Vx
+Vx
 fJ
 fP
 fW
@@ -15390,13 +15392,13 @@ ec
 ec
 et
 cM
-VN
-nz
-Xt
-Dc
-Hp
-ng
-VN
+Vx
+Ib
+Lk
+yu
+Vk
+Rx
+Vx
 fJ
 fQ
 fV
@@ -15532,13 +15534,13 @@ ec
 ec
 eu
 eC
-nR
-om
-WO
-zk
-rP
-ei
-Uh
+LV
+Ki
+Ol
+lH
+ye
+xw
+ZP
 fJ
 fQ
 fX
@@ -15674,17 +15676,17 @@ eg
 eg
 et
 cM
-Gv
-mf
-MU
-Mr
-XM
-mf
-Gv
+tl
+xe
+Fk
+Ur
+Mb
+xe
+tl
 fJ
 fQ
 ec
-PX
+Pk
 gp
 gF
 gB
@@ -15699,7 +15701,7 @@ iG
 iY
 je
 jp
-JU
+Oh
 jY
 ko
 kH
@@ -15729,7 +15731,7 @@ Qz
 Qz
 Qz
 Qz
-MO
+xH
 Qz
 Qz
 Qz
@@ -15766,7 +15768,7 @@ Qz
 Qz
 Qz
 Qz
-EM
+AL
 Qz
 Qz
 Qz
@@ -15796,7 +15798,7 @@ Qz
 Qz
 Qz
 aK
-nW
+Hw
 bi
 bs
 bw
@@ -15816,13 +15818,13 @@ eh
 em
 ev
 cM
-VN
-qf
-qf
-DI
-Bb
-zF
-VN
+Vx
+FY
+FY
+eZ
+Kd
+tX
+Vx
 fJ
 fQ
 ec
@@ -15938,7 +15940,7 @@ Qz
 Qz
 Qz
 aK
-Xv
+nm
 bi
 bt
 bL
@@ -15954,17 +15956,17 @@ dm
 dm
 dZ
 ee
-mg
+ts
 en
 ev
 cM
-Tf
-CY
-ty
-DI
-Ky
-If
-Wy
+oQ
+HL
+nk
+eZ
+qQ
+VV
+TN
 fJ
 fQ
 ec
@@ -16096,21 +16098,21 @@ dq
 dm
 dZ
 ec
-mc
-YR
-MG
+SB
+Vu
+Ry
 cM
-nm
-Hy
-vw
-DI
-Ky
-If
-Wy
+VX
+oe
+Yx
+eZ
+qQ
+VV
+TN
 fJ
 fQ
 ec
-PX
+Pk
 gs
 gI
 gY
@@ -16125,7 +16127,7 @@ iJ
 iW
 je
 js
-se
+Kx
 kb
 kr
 kJ
@@ -16226,7 +16228,7 @@ aL
 aL
 bv
 bv
-Cc
+tT
 co
 aX
 cP
@@ -16242,13 +16244,13 @@ ec
 ec
 et
 cM
-VN
-TI
-Ad
-DI
-Bb
-xt
-VN
+Vx
+GX
+JS
+eZ
+Kd
+FA
+Vx
 fJ
 fQ
 fY
@@ -16384,13 +16386,13 @@ ec
 ec
 et
 cM
-VN
-Yc
-rX
-WB
-Oj
-To
-VN
+Vx
+NZ
+Tp
+yO
+yD
+oa
+Vx
 fJ
 fQ
 fZ
@@ -16526,13 +16528,13 @@ ec
 ec
 et
 cM
-VN
-VN
-En
-Xp
-rX
-VN
-VN
+Vx
+Vx
+VI
+mY
+Tp
+Vx
+Vx
 fJ
 fQ
 fV
@@ -16669,11 +16671,11 @@ ec
 et
 cM
 eT
-VN
-Us
-Us
-Us
-VN
+Vx
+Qj
+Qj
+Qj
+Vx
 eT
 fJ
 fQ
@@ -17239,8 +17241,8 @@ ec
 ec
 eL
 ec
-UO
-tV
+LW
+Fu
 ec
 ec
 ec
@@ -17548,8 +17550,8 @@ jw
 jw
 jw
 jw
-KL
-KL
+BL
+BL
 jw
 lr
 jS
@@ -18245,11 +18247,11 @@ Qz
 gb
 hg
 ga
-pe
-pe
-Ti
-aW
-aW
+mD
+mD
+Ul
+Be
+Be
 ga
 hg
 gb
@@ -22063,7 +22065,7 @@ Qz
 Qz
 Qz
 Qz
-Hu
+TQ
 Qz
 Qz
 Qz
