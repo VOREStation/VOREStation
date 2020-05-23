@@ -201,12 +201,9 @@
 /obj/proc/is_safe_to_step(mob/living/L)
 	return TRUE
 
-<<<<<<< HEAD
 /obj/proc/container_resist(var/mob/living)
 	return
 
-=======
->>>>>>> 656cbe7... Merge pull request #7190 from VOREStation/Arokha/janicart
 //To be called from things that spill objects on the floor.
 //Makes an object move around randomly for a couple of tiles
 /obj/proc/tumble(var/dist = 2)

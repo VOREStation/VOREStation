@@ -57,11 +57,7 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 				else
 					mybucket.reagents.trans_to_obj(I, 5)	//
 					to_chat(user, "<span class='notice'>You wet [I] in [mybucket].</span>")
-<<<<<<< HEAD
 					playsound(src, 'sound/effects/slosh.ogg', 25, 1)
-=======
-					playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
->>>>>>> 656cbe7... Merge pull request #7190 from VOREStation/Arokha/janicart
 			else
 				to_chat(user, "<span class='notice'>[I] can't absorb anymore liquid!</span>")
 		else
