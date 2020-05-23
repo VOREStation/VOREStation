@@ -1,11 +1,6 @@
 /obj/machinery/pros_fabricator
-<<<<<<< HEAD
-	icon = 'icons/obj/robotics_vr.dmi' //VOREStation Edit - New icon
-	icon_state = "fab-idle"
-=======
 	icon = 'icons/obj/robotics.dmi'
 	icon_state = "prosfab"
->>>>>>> 5100fa1... Eris Research/Machine Sprite Port (#7127)
 	name = "Prosthetics Fabricator"
 	desc = "A machine used for construction of prosthetics."
 	density = 1
