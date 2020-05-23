@@ -61,6 +61,7 @@
 			removeFromQueue(1)
 			if(linked_console)
 				linked_console.updateUsrDialog()
+			flick("[initial(icon_state)]_finish", src)
 		update_icon()
 	else
 		if(busy)
@@ -93,15 +94,20 @@
 		eject_materials(f, -1)
 	..()
 
+
 /obj/machinery/r_n_d/protolathe/update_icon()
+	overlays.Cut()
+
+	icon_state = initial(icon_state)
+
 	if(panel_open)
-		icon_state = "protolathe_t"
-	else if(busy)
-		icon_state = "protolathe_n"
-	else
-		if(icon_state == "protolathe_n")
-			flick("protolathe_u", src) // If lid WAS closed, show opening animation
-		icon_state = "protolathe"
+		overlays.Add(image(icon, "[icon_state]_panel"))
+
+	if(stat & NOPOWER)
+		return
+
+	if(busy)
+		icon_state = "[icon_state]_work"
 
 /obj/machinery/r_n_d/protolathe/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(busy)
@@ -147,9 +153,7 @@
 	if(materials[S.material.name] + amnt <= max_res_amount)
 		if(S && S.get_amount() >= 1)
 			var/count = 0
-			overlays += "fab-load-metal"
-			spawn(10)
-				overlays -= "fab-load-metal"
+			flick("[initial(icon_state)]_loading", src)
 			while(materials[S.material.name] + amnt <= max_res_amount && S.get_amount() >= 1)
 				materials[S.material.name] += amnt
 				S.use(1)
