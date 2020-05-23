@@ -86,6 +86,7 @@
 		"Beepsky" = "secbot"
 		)
 	var/last_revive_notification = null // world.time of last notification, used to avoid spamming players from defibs or cloners.
+	var/cleanup_timer // Refernece to a timer that will delete this mob if no client returns
 
 /mob/observer/dead/New(mob/body)
 	sight |= SEE_TURFS | SEE_MOBS | SEE_OBJS | SEE_SELF
