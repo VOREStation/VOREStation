@@ -1,7 +1,10 @@
 /obj/machinery/autolathe
 	name = "autolathe"
 	desc = "It produces items using metal and glass."
+<<<<<<< HEAD
 	icon = 'icons/obj/stationobjs_vr.dmi'
+=======
+>>>>>>> 5100fa1... Eris Research/Machine Sprite Port (#7127)
 	icon_state = "autolathe"
 	density = 1
 	anchored = 1
@@ -145,7 +148,11 @@
 	if(is_robot_module(O))
 		return 0
 
+<<<<<<< HEAD
 	if(istype(O,/obj/item/ammo_magazine/clip) || istype(O,/obj/item/ammo_magazine/s357) || istype(O,/obj/item/ammo_magazine/s38) || istype (O,/obj/item/ammo_magazine/s44)/* VOREstation Edit*/) // Prevents ammo recycling exploit with speedloaders.
+=======
+	if(istype(O,/obj/item/ammo_magazine/clip) || istype(O,/obj/item/ammo_magazine/s357) || istype(O,/obj/item/ammo_magazine/s38)) // Prevents ammo recycling exploit with speedloaders.
+>>>>>>> 5100fa1... Eris Research/Machine Sprite Port (#7127)
 		to_chat(user, "\The [O] is too hazardous to recycle with the autolathe!")
 		return
 		/*  ToDo: Make this actually check for ammo and change the value of the magazine if it's empty. -Spades
@@ -204,7 +211,11 @@
 	else
 		to_chat(user, "You fill \the [src] with \the [eating].")
 
+<<<<<<< HEAD
 	flick("autolathe_o", src) // Plays metal insertion animation. Work out a good way to work out a fitting animation. ~Z
+=======
+	flick("autolathe_loading", src) // Plays metal insertion animation. Work out a good way to work out a fitting animation. ~Z
+>>>>>>> 5100fa1... Eris Research/Machine Sprite Port (#7127)
 
 	if(istype(eating,/obj/item/stack))
 		var/obj/item/stack/stack = eating
@@ -286,6 +297,10 @@
 
 		//Create the desired item.
 		var/obj/item/I = new making.path(src.loc)
+<<<<<<< HEAD
+=======
+		flick("[initial(icon_state)]_finish", src)
+>>>>>>> 5100fa1... Eris Research/Machine Sprite Port (#7127)
 		if(multiplier > 1)
 			if(istype(I, /obj/item/stack))
 				var/obj/item/stack/S = I
@@ -297,6 +312,7 @@
 	updateUsrDialog()
 
 /obj/machinery/autolathe/update_icon()
+<<<<<<< HEAD
 	if(panel_open)
 		icon_state = "autolathe_t"
 	else if(busy)
@@ -305,6 +321,18 @@
 		if(icon_state == "autolathe_n")
 			flick("autolathe_u", src) // If lid WAS closed, show opening animation
 		icon_state = "autolathe"
+=======
+	overlays.Cut()
+
+	icon_state = initial(icon_state)
+
+	if(panel_open)
+		overlays.Add(image(icon, "[icon_state]_panel"))
+	if(stat & NOPOWER)
+		return
+	if(busy)
+		icon_state = "[icon_state]_work"
+>>>>>>> 5100fa1... Eris Research/Machine Sprite Port (#7127)
 
 //Updates overall lathe storage size.
 /obj/machinery/autolathe/RefreshParts()
