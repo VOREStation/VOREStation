@@ -1,7 +1,6 @@
 /obj/machinery/autolathe
 	name = "autolathe"
 	desc = "It produces items using metal and glass."
-	icon = 'icons/obj/stationobjs_vr.dmi'
 	icon_state = "autolathe"
 	density = 1
 	anchored = 1
@@ -204,7 +203,7 @@
 	else
 		to_chat(user, "You fill \the [src] with \the [eating].")
 
-	flick("autolathe_o", src) // Plays metal insertion animation. Work out a good way to work out a fitting animation. ~Z
+	flick("autolathe_loading", src) // Plays metal insertion animation. Work out a good way to work out a fitting animation. ~Z
 
 	if(istype(eating,/obj/item/stack))
 		var/obj/item/stack/stack = eating
@@ -286,6 +285,7 @@
 
 		//Create the desired item.
 		var/obj/item/I = new making.path(src.loc)
+		flick("[initial(icon_state)]_finish", src)
 		if(multiplier > 1)
 			if(istype(I, /obj/item/stack))
 				var/obj/item/stack/S = I
@@ -297,14 +297,16 @@
 	updateUsrDialog()
 
 /obj/machinery/autolathe/update_icon()
+	overlays.Cut()
+
+	icon_state = initial(icon_state)
+
 	if(panel_open)
-		icon_state = "autolathe_t"
-	else if(busy)
-		icon_state = "autolathe_n"
-	else
-		if(icon_state == "autolathe_n")
-			flick("autolathe_u", src) // If lid WAS closed, show opening animation
-		icon_state = "autolathe"
+		overlays.Add(image(icon, "[icon_state]_panel"))
+	if(stat & NOPOWER)
+		return
+	if(busy)
+		icon_state = "[icon_state]_work"
 
 //Updates overall lathe storage size.
 /obj/machinery/autolathe/RefreshParts()

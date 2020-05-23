@@ -330,11 +330,21 @@
 	desc = "This is a 'Permit for Advanced Nanotechnology' card. It allows the owner to possess and operate advanced nanotechnology on NanoTrasen property. It must be renewed on a monthly basis."
 	icon = 'icons/mob/species/protean/protean.dmi'
 	icon_state = "permit_pan"
+
+	var/validstring = "VALID THROUGH END OF: "
+	var/registring = "REGISTRANT: "
+
 /obj/item/clothing/accessory/permit/nanotech/set_name(var/new_name)
 	owner = 1
 	if(new_name)
-		src.name += " ([new_name])"
-		desc += "\nVALID THROUGH END OF: [time2text(world.timeofday, "Month") +" "+ num2text(text2num(time2text(world.timeofday, "YYYY"))+300)]\nREGISTRANT: [new_name]"
+		name += " ([new_name])"
+		validstring += "[time2text(world.timeofday, "Month") +" "+ num2text(text2num(time2text(world.timeofday, "YYYY"))+300)]"
+		registring += "[new_name]"
+
+/obj/item/clothing/accessory/permit/nanotech/examine(mob/user)
+	. = ..()
+	. += validstring
+	. += registring
 
 #undef DAM_SCALE_FACTOR
 #undef METAL_PER_TICK
