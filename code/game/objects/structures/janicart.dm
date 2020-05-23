@@ -3,6 +3,7 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 /obj/structure/janitorialcart
 	name = "janitorial cart"
 	desc = "The ultimate in janitorial carts! Has space for water, mops, signs, trash bags, and more!"
+	description_info = "You can use alt-click while holding a mop to stow the mop. Alt-click holding a reagent container will empty the contents into the bucket without trying to put the container in any attached trash bag."
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "cart"
 	anchored = 0
