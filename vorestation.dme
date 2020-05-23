@@ -1878,9 +1878,13 @@
 #include "code\modules\clothing\spacesuits\rig\suits\pmc.dm"
 #include "code\modules\clothing\spacesuits\rig\suits\robotics.dm"
 #include "code\modules\clothing\spacesuits\rig\suits\station.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\modules\clothing\spacesuits\rig\suits\station_vr.dm"
 #include "code\modules\clothing\spacesuits\void\event.dm"
 #include "code\modules\clothing\spacesuits\void\event_vr.dm"
+=======
+#include "code\modules\clothing\spacesuits\void\event.dm"
+>>>>>>> 5505a61... [Project] Vintage Voidsuits (#7152):polaris.dme
 #include "code\modules\clothing\spacesuits\void\merc.dm"
 #include "code\modules\clothing\spacesuits\void\military_vr.dm"
 #include "code\modules\clothing\spacesuits\void\station.dm"

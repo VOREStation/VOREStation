@@ -8,6 +8,7 @@
 	name = "vintage crewman's voidsuit helmet"
 	desc = "A refurbished early contact era voidsuit helmet of human design. These things aren't especially good against modern weapons but they're sturdy, incredibly easy to come by, and there are lots of spare parts for repairs. The visor has a bad habit of fogging up and collecting condensation, but it beats sucking hard vacuum. This one is devoid of any identifying markings or rank indicators."
 	icon_state = "rig0-vintagecrew"
+<<<<<<< HEAD
 	icon = 'icons/obj/clothing/helmets_vr.dmi'
 	item_state_slots = list(slot_r_hand_str = "syndicate-helm-black", slot_l_hand_str = "syndicate-helm-black")
 	armor = list(melee = 30, bullet = 15, laser = 15,energy = 5, bomb = 20, bio = 100, rad = 50)
@@ -36,12 +37,20 @@
 		SPECIES_FENNEC			= 'icons/obj/clothing/species/vulpkanin/helmets_vr.dmi'
 		)
 	sprite_sheets_refit = list()	//have to nullify this as well just to be thorough
+=======
+	item_state_slots = list(slot_r_hand_str = "syndicate-helm-black", slot_l_hand_str = "syndicate-helm-black")
+	armor = list(melee = 30, bullet = 15, laser = 15,energy = 5, bomb = 20, bio = 100, rad = 50)
+	light_overlay = "helmet_light"
+>>>>>>> 5505a61... [Project] Vintage Voidsuits (#7152)
 
 /obj/item/clothing/suit/space/void/refurb
 	name = "vintage crewman's voidsuit"
 	desc = "A refurbished early contact era voidsuit of human design. These things aren't especially good against modern weapons but they're sturdy, incredibly easy to come by, and there are lots of spare parts for repairs. Many old-timer spacers swear by these old things, even if new powered hardsuits have more features and better armor. This one is devoid of any identifying markings or rank indicators."
 	icon_state = "rig-vintagecrew"
+<<<<<<< HEAD
 	icon = 'icons/obj/clothing/spacesuits_vr.dmi'
+=======
+>>>>>>> 5505a61... [Project] Vintage Voidsuits (#7152)
 	item_state_slots = list(slot_r_hand_str = "sec_voidsuitTG", slot_l_hand_str = "sec_voidsuitTG")
 	slowdown = 0.5
 	armor = list(melee = 30, bullet = 15, laser = 15,energy = 5, bomb = 20, bio = 100, rad = 50)
@@ -54,6 +63,7 @@
 			/obj/item/weapon/pickaxe,
 			/obj/item/weapon/shovel
 			)
+<<<<<<< HEAD
 	sprite_sheets = list(
 		SPECIES_HUMAN			= 'icons/mob/spacesuit_vr.dmi',
 		SPECIES_TAJ 			= 'icons/mob/species/tajaran/suit_vr.dmi',
@@ -77,6 +87,8 @@
 		SPECIES_ZORREN_HIGH		= 'icons/obj/clothing/species/vulpkanin/spacesuits_vr.dmi',
 		SPECIES_FENNEC			= 'icons/obj/clothing/species/vulpkanin/spacesuits_vr.dmi'
 		)
+=======
+>>>>>>> 5505a61... [Project] Vintage Voidsuits (#7152)
 
 //Engineering Crewsuit (ORANGE, RING)
 //This is probably the most appealing to get your hands on for basic protection and the specialist stuff

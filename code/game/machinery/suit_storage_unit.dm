@@ -657,6 +657,15 @@
 	model_text = "Pilot"
 	departments = list("Pilot Blue","Pilot")
 
+/obj/machinery/suit_cycler/vintage
+	name = "Vintage suit cycler"
+	model_text = "Vintage"
+	departments = list("Vintage Crew","Vintage Engineering","Vintage Marine","Vintage Medical","Vintage Officer")
+
+/obj/machinery/suit_cycler/vintage/Initialize()
+	species -= SPECIES_TESHARI
+	return ..()
+
 /obj/machinery/suit_cycler/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
@@ -766,8 +775,13 @@
 
 	//Clear the access reqs, disable the safeties, and open up all paintjobs.
 	to_chat(user, "<span class='danger'>You run the sequencer across the interface, corrupting the operating protocols.</span>")
+<<<<<<< HEAD
 	departments = list("Engineering","Mining","Medical","Security","Atmospherics","HAZMAT","Construction","Biohazard","Crowd Control","Security EVA","Emergency Medical Response","^%###^%$", "Charring")
 	species = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_VULPKANIN) //VORESTATION EDIT
+=======
+	departments = list("Engineering","Mining","Medical","Security","Atmospherics","HAZMAT","Construction","Biohazard","Crowd Control","Security EVA","Emergency Medical Response","^%###^%$", "Charring","Vintage Crew","Vintage Engineering","Vintage Marine","Vintage Medical","Vintage Officer")
+	species = list(SPECIES_HUMAN,SPECIES_TAJ,SPECIES_SKRELL,SPECIES_UNATHI, SPECIES_TESHARI)
+>>>>>>> 5505a61... [Project] Vintage Voidsuits (#7152)
 
 	emagged = 1
 	safeties = 0
