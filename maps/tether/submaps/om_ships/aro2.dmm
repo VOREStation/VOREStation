@@ -3027,15 +3027,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/aro2/surfluid)
-"hq" = (
-/obj/structure/railing/grey{
-	dir = 1
-	},
-/turf/simulated/floor/water/indoors{
-	color = "#444444";
-	name = "surfluid pool"
-	},
-/area/aro2/surfluid)
 "hr" = (
 /obj/machinery/light{
 	dir = 8
@@ -3160,21 +3151,6 @@
 /obj/structure/table/rack/shelf/steel,
 /turf/simulated/floor/tiled/techfloor,
 /area/aro2/portbay)
-"hF" = (
-/obj/structure/railing/grey{
-	dir = 8
-	},
-/turf/simulated/floor/water/indoors{
-	color = "#444444";
-	name = "surfluid pool"
-	},
-/area/aro2/surfluid)
-"hG" = (
-/turf/simulated/floor/water/indoors{
-	color = "#444444";
-	name = "surfluid pool"
-	},
-/area/aro2/surfluid)
 "hH" = (
 /obj/structure/railing/grey{
 	dir = 8
@@ -3188,15 +3164,6 @@
 	},
 /obj/structure/table/steel,
 /turf/simulated/floor/tiled/techfloor,
-/area/aro2/surfluid)
-"hJ" = (
-/obj/structure/railing/grey{
-	dir = 4
-	},
-/turf/simulated/floor/water/indoors{
-	color = "#444444";
-	name = "surfluid pool"
-	},
 /area/aro2/surfluid)
 "hK" = (
 /obj/effect/floor_decal/techfloor/orange{
@@ -3423,13 +3390,6 @@
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled/techfloor,
-/area/aro2/surfluid)
-"io" = (
-/obj/structure/railing/grey,
-/turf/simulated/floor/water/indoors{
-	color = "#444444";
-	name = "surfluid pool"
-	},
 /area/aro2/surfluid)
 "ip" = (
 /obj/machinery/light{
@@ -5211,6 +5171,15 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/aroboat2)
+"na" = (
+/obj/structure/railing/grey,
+/turf/simulated/floor/water/indoors{
+	color = "#222222";
+	desc = "A pool of inky-black fluid that shimmers oddly in the light if hit just right.";
+	description_info = "Surfluid is KHI's main method of production, using swarms of nanites to process raw materials into finished products at the cost of immense amounts of energy.";
+	name = "surfluid pool"
+	},
+/area/aro2/surfluid)
 "nk" = (
 /obj/effect/floor_decal/industrial/outline/blue,
 /obj/structure/closet/crate/secure/gear,
@@ -5343,6 +5312,17 @@
 	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/shuttle/aroboat2)
+"uD" = (
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/turf/simulated/floor/water/indoors{
+	color = "#222222";
+	desc = "A pool of inky-black fluid that shimmers oddly in the light if hit just right.";
+	description_info = "Surfluid is KHI's main method of production, using swarms of nanites to process raw materials into finished products at the cost of immense amounts of energy.";
+	name = "surfluid pool"
+	},
+/area/aro2/surfluid)
 "uJ" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /turf/simulated/floor/tiled/monotile,
@@ -5570,6 +5550,17 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/shuttle/aroboat2)
+"Iv" = (
+/obj/structure/railing/grey{
+	dir = 1
+	},
+/turf/simulated/floor/water/indoors{
+	color = "#222222";
+	desc = "A pool of inky-black fluid that shimmers oddly in the light if hit just right.";
+	description_info = "Surfluid is KHI's main method of production, using swarms of nanites to process raw materials into finished products at the cost of immense amounts of energy.";
+	name = "surfluid pool"
+	},
+/area/aro2/surfluid)
 "JF" = (
 /obj/structure/table/steel,
 /turf/simulated/floor/tiled/techfloor,
@@ -5688,6 +5679,17 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/aroboat2)
+"Ow" = (
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/turf/simulated/floor/water/indoors{
+	color = "#222222";
+	desc = "A pool of inky-black fluid that shimmers oddly in the light if hit just right.";
+	description_info = "Surfluid is KHI's main method of production, using swarms of nanites to process raw materials into finished products at the cost of immense amounts of energy.";
+	name = "surfluid pool"
+	},
+/area/aro2/surfluid)
 "Oy" = (
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 8
@@ -5913,6 +5915,14 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/aroboat2)
+"Xg" = (
+/turf/simulated/floor/water/indoors{
+	color = "#222222";
+	desc = "A pool of inky-black fluid that shimmers oddly in the light if hit just right.";
+	description_info = "Surfluid is KHI's main method of production, using swarms of nanites to process raw materials into finished products at the cost of immense amounts of energy.";
+	name = "surfluid pool"
+	},
+/area/aro2/surfluid)
 "Xl" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -15123,11 +15133,11 @@ gm
 gD
 gB
 gd
-hF
-hF
-hF
-hF
-hF
+uD
+uD
+uD
+uD
+uD
 gd
 iC
 iW
@@ -15264,13 +15274,13 @@ ge
 gn
 gE
 gB
-hq
-hG
-hG
-hG
-hG
-hG
-io
+Iv
+Xg
+Xg
+Xg
+Xg
+Xg
+na
 iD
 iX
 je
@@ -15406,13 +15416,13 @@ gf
 go
 gF
 gB
-hq
-hG
-hG
-hG
-hG
-hG
-io
+Iv
+Xg
+Xg
+Xg
+Xg
+Xg
+na
 iE
 iX
 jf
@@ -15548,13 +15558,13 @@ gd
 gm
 gF
 gB
-hq
-hG
-hG
-hG
-hG
-hG
-io
+Iv
+Xg
+Xg
+Xg
+Xg
+Xg
+na
 iF
 iX
 je
@@ -16258,13 +16268,13 @@ gd
 gm
 gI
 gB
-hq
-hG
-hG
-hG
-hG
-hG
-io
+Iv
+Xg
+Xg
+Xg
+Xg
+Xg
+na
 iK
 iX
 jh
@@ -16400,13 +16410,13 @@ gg
 gt
 gI
 gB
-hq
-hG
-hG
-hG
-hG
-hG
-io
+Iv
+Xg
+Xg
+Xg
+Xg
+Xg
+na
 iL
 iX
 jf
@@ -16542,13 +16552,13 @@ gf
 go
 gI
 gB
-hq
-hG
-hG
-hG
-hG
-hG
-io
+Iv
+Xg
+Xg
+Xg
+Xg
+Xg
+na
 iM
 iX
 je
@@ -16685,11 +16695,11 @@ gm
 gI
 gB
 gd
-hJ
-hJ
-hJ
-hJ
-hJ
+Ow
+Ow
+Ow
+Ow
+Ow
 gd
 iN
 iY
