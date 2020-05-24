@@ -104,6 +104,7 @@
 
 //Put this at the start of /world/Topic()
 #define TGS_TOPIC var/tgs_topic_return = TgsTopic(args[1]); if(tgs_topic_return) return tgs_topic_return
+#define VGS_TOPIC var/vgs_topic_return = VgsTopic(args[1]); if(vgs_topic_return) return vgs_topic_return // VOREStation Edit - VGS
 
 //Call this at the beginning of world/Reboot(reason)
 /world/proc/TgsReboot()
