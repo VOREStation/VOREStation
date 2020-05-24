@@ -30,15 +30,6 @@
 	species -= SPECIES_TESHARI
 	return ..()
 
-/obj/machinery/suit_cycler/vintage
-	name = "Vintage suit cycler"
-	model_text = "Vintage"
-	departments = list("Vintage Crew","Vintage Engineering","Vintage Marine","Vintage Medical","Vintage Officer")
-	
-/obj/machinery/suit_cycler/vintage/Initialize() //No Teshari Sprites
-	species -= SPECIES_TESHARI
-	return ..()
-
 /obj/machinery/suit_cycler/vintage/tcrew
 	name = "Talon crew suit cycler"
 	model_text = "Talon crew"
