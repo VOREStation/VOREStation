@@ -594,7 +594,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	var/icon/c_mask = tail_style?.clip_mask
 	if(c_mask)
 		var/obj/item/clothing/suit/S = wear_suit
-		if(!istype(S) || (wear_suit.flags_inv & HIDETAIL) || S.taurized) // Reasons to not mask
+		if((wear_suit?.flags_inv & HIDETAIL) || (istype(S) && S.taurized)) // Reasons to not mask: 1. If you're wearing a suit that hides the tail or if you're wearing a taurized suit.
 			c_mask = null
 	overlays_standing[UNIFORM_LAYER] = w_uniform.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_w_uniform_str, default_icon = uniform_sprite, default_layer = UNIFORM_LAYER, clip_mask = c_mask)
 	//VOREStation Edit end.
@@ -781,7 +781,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	var/tail_is_rendered = (overlays_standing[TAIL_LAYER] || overlays_standing[TAIL_LAYER_ALT])
 	var/valid_clip_mask = tail_style?.clip_mask
 
-	if(tail_is_rendered && valid_clip_mask && !(suit && istype(suit) && suit.taurized)) //Clip the lower half of the suit off using the tail's clip mask for taurs since taur bodies aren't hidden.
+	if(tail_is_rendered && valid_clip_mask && !(istype(suit) && suit.taurized)) //Clip the lower half of the suit off using the tail's clip mask for taurs since taur bodies aren't hidden.
 		c_mask = valid_clip_mask
 	overlays_standing[SUIT_LAYER] = wear_suit.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_wear_suit_str, default_icon = suit_sprite, default_layer = SUIT_LAYER, clip_mask = c_mask)
 

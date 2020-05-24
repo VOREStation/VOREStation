@@ -63,7 +63,7 @@
 			to_chat(micro, "<span class='notice'>You climb out of [src]!</span>")
 			micro.forceMove(loc)
 		return
-	
+
 	var/escape_message_micro = "You start to climb out of [src]!"
 	var/escape_message_macro = "Something is trying to climb out of your [src]!"
 	var/escape_time = 60
@@ -71,14 +71,14 @@
 	if(macro.shoes == src)
 		escape_message_micro = "You start to climb around the larger creature's feet and ankles!"
 		escape_time = 100
-	
+
 	to_chat(micro, "<span class='notice'>[escape_message_micro]</span>")
 	to_chat(macro, "<span class='danger'>[escape_message_macro]</span>")
 	if(!do_after(micro, escape_time, macro))
 		to_chat(micro, "<span class='danger'>You're pinned underfoot!</span>")
 		to_chat(macro, "<span class='danger'>You pin the escapee underfoot!</span>")
 		return
-	
+
 	to_chat(micro, "<span class='notice'>You manage to escape [src]!</span>")
 	to_chat(macro, "<span class='danger'>Someone has climbed out of your [src]!</span>")
 	micro.forceMove(macro.loc)
@@ -180,6 +180,15 @@
 		standing.pixel_x = -16
 		standing.layer = BODY_LAYER + 15 // 15 is above tail layer, so will not be covered by taurbody.
 	return standing
+
+/obj/item/clothing/suit/apply_accessories(var/image/standing)
+	if(LAZYLEN(accessories) && taurized)
+		for(var/obj/item/clothing/accessory/A in accessories)
+			var/image/I = new(A.get_mob_overlay())
+			I.pixel_x = 16 //Opposite of the pixel_x on the suit (-16) from taurization to cancel it out and puts the accessory in the correct place on the body.
+			standing.add_overlay(I)
+	else
+		return ..()
 
 //TFF 5/8/19 - sets Vorestation /obj/item/clothing/under sensor setting default?
 /obj/item/clothing/under
