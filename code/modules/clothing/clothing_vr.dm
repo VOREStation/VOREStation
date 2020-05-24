@@ -187,6 +187,8 @@
 			var/image/I = new(A.get_mob_overlay())
 			I.pixel_x = 16 //Opposite of the pixel_x on the suit (-16) from taurization to cancel it out and puts the accessory in the correct place on the body.
 			standing.add_overlay(I)
+	else
+		return ..()
 
 //TFF 5/8/19 - sets Vorestation /obj/item/clothing/under sensor setting default?
 /obj/item/clothing/under
