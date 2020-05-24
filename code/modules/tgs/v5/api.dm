@@ -125,6 +125,11 @@
 			if(!result)
 				result = TopicResponse("Error running chat command!")
 			return result
+		// VOREStation Edit Start - GetChatCommands command
+		if(DMAPI5_TOPIC_COMMAND_GET_CHAT_COMMANDS)
+			var/topic_response = list(DMAPI5_BRIDGE_PARAMETER_CUSTOM_COMMANDS = ListCustomCommands())
+			return json_encode(topic_response)
+		// VOREStation Edit - End
 		if(DMAPI5_TOPIC_COMMAND_EVENT_NOTIFICATION)
 			intercepted_message_queue = list()
 			var/list/event_notification = topic_parameters[DMAPI5_TOPIC_PARAMETER_EVENT_NOTIFICATION]
