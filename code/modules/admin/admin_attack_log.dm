@@ -1,4 +1,4 @@
-/mob/var/lastattacker = null
+/atom/var/lastattacker = null
 /mob/var/lastattacked = null
 /mob/var/attack_log = list( )
 /mob/var/dialogue_log = list( )
