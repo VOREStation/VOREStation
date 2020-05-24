@@ -171,11 +171,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 	create_characters() //Create player characters and transfer them.
 	collect_minds()
 	equip_characters()
-<<<<<<< HEAD
-	//data_core.manifest()	//VOREStation Removal
-=======
 //	data_core.manifest()
->>>>>>> 15a1747... Ports manifest duplication fix from Virgo (#7230)
 
 	callHook("roundstart")
 
