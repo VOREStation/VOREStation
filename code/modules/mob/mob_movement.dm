@@ -6,6 +6,20 @@
 		return FALSE // Need to wait more.
 	return TRUE
 
+/mob/proc/movement_delay(oldloc, direct)
+	. = 0
+	if(locate(/obj/item/weapon/grab) in src)
+		. += 5
+
+	// Movespeed delay based on movement mode
+	switch(m_intent)
+		if("run")
+			if(drowsyness > 0)
+				. += 6
+			. += config.run_speed
+		if("walk")
+			. += config.walk_speed
+
 /client/proc/client_dir(input, direction=-1)
 	return turn(input, direction*dir2angle(dir))
 
@@ -222,12 +236,13 @@
 				return
 		return my_mob.buckled.relaymove(my_mob,direct)
 
+	var/total_delay = my_mob.movement_delay(n, direct)
+
 	if(my_mob.pulledby || my_mob.buckled) // Wheelchair driving!
 		if(isspace(loc))
 			return // No wheelchair driving in space
 		if(istype(my_mob.pulledby, /obj/structure/bed/chair/wheelchair))
-			my_mob.setMoveCooldown(3)
-			return my_mob.pulledby.relaymove(my_mob, direct)
+			total_delay += 3
 		else if(istype(my_mob.buckled, /obj/structure/bed/chair/wheelchair))
 			if(ishuman(my_mob))
 				var/mob/living/carbon/human/driver = my_mob
@@ -244,12 +259,10 @@
 					if("walk")
 						if(prob(25))
 							direct = turn(direct, pick(90, -90))
-			my_mob.setMoveCooldown(3)
-			return my_mob.buckled.relaymove(my_mob,direct)
+			total_delay += 3
 
 	// We are now going to move
 	moving = 1
-	var/total_delay = my_mob.movement_delay(n, direct)
 	var/pre_move_loc = loc
 
 	// Confused direction randomization
@@ -263,28 +276,34 @@
 				if(prob(25))
 					direct = turn(direct, pick(90, -90))
 					n = get_step(my_mob, direct)
-	
+
 	total_delay = DS2NEARESTTICK(total_delay) //Rounded to the next tick in equivalent ds
 	my_mob.setMoveCooldown(total_delay)
-	. = my_mob.SelfMove(n, direct, total_delay)
+
+	if(istype(my_mob.pulledby, /obj/structure/bed/chair/wheelchair))
+		. = my_mob.pulledby.relaymove(my_mob, direct)
+	else if(istype(my_mob.buckled, /obj/structure/bed/chair/wheelchair))
+		. = my_mob.buckled.relaymove(my_mob,direct)
+	else
+		. = my_mob.SelfMove(n, direct, total_delay)
 
 	// If we have a grab
 	var/list/grablist = my_mob.ret_grab()
 	if(grablist.len)
 		grablist -= my_mob // Just in case we're in a circular grab chain
-		
+
 		// It's just us and another person
 		if(grablist.len == 1)
 			var/mob/M = grablist[1]
 			if(!my_mob.Adjacent(M)) //Oh no, we moved away
 				M.Move(pre_move_loc, get_dir(M, pre_move_loc), total_delay) //Have them step towards where we were
-		
+
 		// It's a grab chain
 		else
 			for(var/mob/M in grablist)
 				my_mob.other_mobs = 1
 				M.other_mobs = 1 //Has something to do with people being able or unable to pass a chain of mobs
-				
+
 				//Ugly!
 				spawn(0) //Step
 					M.Move(pre_move_loc, get_dir(M, pre_move_loc), total_delay)
@@ -300,7 +319,7 @@
 		G.adjust_position()
 	for (var/obj/item/weapon/grab/G in my_mob.grabbed_by)
 		G.adjust_position()
-	
+
 	// We're not in the middle of a move anymore
 	moving = 0
 
