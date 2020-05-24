@@ -182,11 +182,11 @@
 	return standing
 
 /obj/item/clothing/suit/apply_accessories(var/image/standing)
-	if(LAZYLEN(accessories))
+	if(LAZYLEN(accessories) && taurized)
 		for(var/obj/item/clothing/accessory/A in accessories)
-			var/mutable_appearance/M = new(A.get_mob_overlay())
-			M.pixel_x = 16 //Opposite of the pixel_x on the suit (-16) from taurization to cancel it out and puts the accessory in the correct place on the body.
-			standing.add_overlay(M)
+			var/image/I = new(A.get_mob_overlay())
+			I.pixel_x = 16 //Opposite of the pixel_x on the suit (-16) from taurization to cancel it out and puts the accessory in the correct place on the body.
+			standing.add_overlay(I)
 
 //TFF 5/8/19 - sets Vorestation /obj/item/clothing/under sensor setting default?
 /obj/item/clothing/under
