@@ -665,7 +665,7 @@
 /datum/reagent/myelamine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
-	M.eye_blurry += min(M.eye_blurry + (repair_strength * removed), 250)
+	M.eye_blurry = min(M.eye_blurry + (repair_strength * removed), 250)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/wound_heal = removed * repair_strength
