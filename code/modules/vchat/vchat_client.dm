@@ -367,15 +367,13 @@ var/to_chat_src
 			time = world.time
 
 		var/client/C = CLIENT_FROM_VAR(target)
-		if(C && C.chatOutput)
-			if(C.chatOutput.broken)
-				DIRECT_OUTPUT(C, original_message)
-				return
-
-			// // Client still loading, put their messages in a queue - Actually don't, logged already in database.
-			// if(!C.chatOutput.loaded && C.chatOutput.message_queue && islist(C.chatOutput.message_queue))
-			// 	C.chatOutput.message_queue[++C.chatOutput.message_queue.len] = list("time" = time, "message" = message)
-			// 	return
+		if(!C)
+			return // No client? No care.
+		else if(C.chatOutput.broken)
+			DIRECT_OUTPUT(C, original_message)
+			return
+		else if(!C.chatOutput.loaded)
+			return // If not loaded yet, do nothing and history-sending on load will get it.
 
 		var/list/tojson = list("time" = time, "message" = message);
 		target << output(jsEncode(tojson), "htmloutput:putmessage")
