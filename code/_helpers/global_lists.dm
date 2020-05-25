@@ -22,6 +22,9 @@ var/global/list/joblist = list()					//list of all jobstypes, minus borg and AI
 
 var/list/mannequins_
 
+// Times that players are allowed to respawn ("ckey" = world.time)
+GLOBAL_LIST_EMPTY(respawn_timers)
+
 // Posters
 var/global/list/poster_designs = list()
 var/global/list/NT_poster_designs = list()

@@ -265,32 +265,39 @@ Ccomp's first proc.
 /client/proc/allow_character_respawn()
 	set category = "Special Verbs"
 	set name = "Allow player to respawn"
-	set desc = "Let's the player bypass the wait to respawn or allow them to re-enter their corpse."
+	set desc = "Let a player bypass the wait to respawn or allow them to re-enter their corpse."
 
 	if(!holder)
 		return
 
-	var/list/ghosts= get_ghosts(1,1)
-
-	var/target = input("Please, select a ghost!", "COME BACK TO LIFE!", null, null) as null|anything in ghosts
+	var/target = input("Select a ckey to allow to rejoin", "Allow Respawn Selector") as null|anything in GLOB.respawn_timers
 	if(!target)
-		to_chat(src, "Hrm, appears you didn't select a ghost")		// Sanity check, if no ghosts in the list we don't want to edit a null variable and cause a runtime error.
 		return
+	
+	if(GLOB.respawn_timers[target] == -1) // Their respawn timer is set to -1, which is 'not allowed to respawn'
+		var/response = alert(src, "Are you sure you wish to allow this individual to respawn? They would normally not be able to.","Allow impossible respawn?","No","Yes")
+		if(response == "No")
+			return
+	
+	GLOB.respawn_timers -= target
 
-	var/mob/observer/dead/G = ghosts[target]
-	if(G.has_enabled_antagHUD && config.antag_hud_restricted)
-		var/response = alert(src, "Are you sure you wish to allow this individual to play?","Ghost has used AntagHUD","Yes","No")
-		if(response == "No") return
-	G.timeofdeath=-19999						/* time of death is checked in /mob/verb/abandon_mob() which is the Respawn verb.
-									   timeofdeath is used for bodies on autopsy but since we're messing with a ghost I'm pretty sure
-									   there won't be an autopsy.
-									*/
-	G.has_enabled_antagHUD = 2
-	G.can_reenter_corpse = 1
+	var/found_client = FALSE
+	for(var/c in GLOB.clients)
+		var/client/C = c
+		if(C.ckey == target)
+			found_client = C
+			to_chat(C, "<span class='notice'><B>You may now respawn. You should roleplay as if you learned nothing about the round during your time with the dead.</B></span>")
+			if(isobserver(C.mob))
+				var/mob/observer/dead/G = C.mob
+				G.can_reenter_corpse = 1
+				to_chat(C, "<span class='notice'><B>You can also re-enter your corpse, if you still have one!</B></span>")
+			break
 
-	G:show_message(text("<font color='blue'><B>You may now respawn.  You should roleplay as if you learned nothing about the round during your time with the dead.</B></font>"), 1)
-	log_admin("[key_name(usr)] allowed [key_name(G)] to bypass the respawn time limit")
-	message_admins("Admin [key_name_admin(usr)] allowed [key_name_admin(G)] to bypass the respawn time limit", 1)
+	if(!found_client)
+		to_chat(src, "<span class='notice'>The associated client didn't appear to be connected, so they couldn't be notified, but they can now respawn if they reconnect.</span>")
+	
+	log_admin("[key_name(usr)] allowed [found_client ? key_name(found_client) : target] to bypass the respawn time limit")
+	message_admins("Admin [key_name_admin(usr)] allowed [found_client ? key_name_admin(found_client) : target] to bypass the respawn time limit", 1)
 
 
 /client/proc/toggle_antagHUD_use()
