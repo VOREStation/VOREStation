@@ -160,49 +160,54 @@
 /obj/machinery/particle_accelerator/control_box/proc/part_scan()
 	for(var/obj/structure/particle_accelerator/fuel_chamber/F in orange(1,src))
 		src.set_dir(F.dir)
+		break
+
 	connected_parts = list()
-	var/tally = 0
-	var/ldir = turn(dir,-90)
-	var/rdir = turn(dir,90)
+	assembled = 0
+	var/ldir = turn(dir,90)
+	var/rdir = turn(dir,-90)
 	var/odir = turn(dir,180)
 	var/turf/T = src.loc
-	T = get_step(T,rdir)
-	if(check_part(T,/obj/structure/particle_accelerator/fuel_chamber))
-		tally++
-	T = get_step(T,odir)
-	if(check_part(T,/obj/structure/particle_accelerator/end_cap))
-		tally++
-	T = get_step(T,dir)
-	T = get_step(T,dir)
-	if(check_part(T,/obj/structure/particle_accelerator/power_box))
-		tally++
-	T = get_step(T,dir)
-	if(check_part(T,/obj/structure/particle_accelerator/particle_emitter/center))
-		tally++
+
 	T = get_step(T,ldir)
-	if(check_part(T,/obj/structure/particle_accelerator/particle_emitter/left))
-		tally++
-	T = get_step(T,rdir)
-	T = get_step(T,rdir)
-	if(check_part(T,/obj/structure/particle_accelerator/particle_emitter/right))
-		tally++
-	if(tally >= 6)
-		assembled = 1
-		return 1
-	else
-		assembled = 0
+	if(!check_part(T,/obj/structure/particle_accelerator/fuel_chamber))
 		return 0
+
+	T = get_step(T,odir)
+	if(!check_part(T,/obj/structure/particle_accelerator/end_cap))
+		return 0
+
+	T = get_step(T,dir)
+	T = get_step(T,dir)
+	if(!check_part(T,/obj/structure/particle_accelerator/power_box))
+		return 0
+
+	T = get_step(T,dir)
+	if(!check_part(T,/obj/structure/particle_accelerator/particle_emitter/center))
+		return 0
+
+	T = get_step(T,ldir)
+	if(!check_part(T,/obj/structure/particle_accelerator/particle_emitter/left))
+		return 0
+
+	T = get_step(T,rdir)
+	T = get_step(T,rdir)
+	if(!check_part(T,/obj/structure/particle_accelerator/particle_emitter/right))
+		return 0
+
+	assembled = 1
+	return 1
+
 
 
 /obj/machinery/particle_accelerator/control_box/proc/check_part(var/turf/T, var/type)
 	if(!(T)||!(type))
 		return 0
+
 	var/obj/structure/particle_accelerator/PA = locate(/obj/structure/particle_accelerator) in T
-	if(istype(PA, type))
-		if(PA.connect_master(src))
-			if(PA.report_ready(src))
-				src.connected_parts.Add(PA)
-				return 1
+	if(istype(PA, type) && PA.connect_master(src) && PA.report_ready(src))
+		src.connected_parts.Add(PA)
+		return 1
 	return 0
 
 

@@ -656,6 +656,21 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/cargo/mining)
+"abb" = (
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_one_hall)
 "abd" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /obj/effect/floor_decal/borderfloor{
@@ -30360,15 +30375,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/hallway)
-"oog" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 1
-	},
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/surface_one_hall)
 "orF" = (
 /obj/machinery/light/small{
 	dir = 4;
@@ -31010,18 +31016,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/xenoflora)
-"tpe" = (
-/obj/effect/floor_decal/steeldecal/steel_decals6{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/surface_one_hall)
 "tvk" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -45875,7 +45869,7 @@ eUS
 axi
 mCe
 xzn
-tpe
+abb
 rxq
 aMc
 aLg
@@ -46017,7 +46011,7 @@ ayG
 ayG
 ayG
 ayG
-oog
+aJg
 nsp
 aKH
 aLh

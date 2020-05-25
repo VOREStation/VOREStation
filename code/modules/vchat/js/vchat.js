@@ -89,6 +89,7 @@ function start_vchat() {
 	//Inform byond we're done
 	vchat_state.ready = true;
 	push_Topic('done_loading');
+	push_Topic_showingnum(this.showingnum);
 
 	//I'll do my own winsets
 	doWinset("htmloutput", {"is-visible": true});
@@ -352,6 +353,7 @@ function start_vue() {
 				}
 
 				set_storage("showingnum",this.showingnum);
+				push_Topic_showingnum(this.showingnum); // Send the buffer length back to byond so we have it in case of reconnect
 				this.attempt_archive();
 			},
 			current_categories: function(newSetting, oldSetting) {
@@ -797,6 +799,11 @@ function system_message(message) {
 //This is the other direction of communication, to push a Topic message back
 function push_Topic(topic_uri) {
 	window.location = '?_src_=chat&proc=' + topic_uri; //Yes that's really how it works.
+}
+
+// Send the showingnum back to byond
+function push_Topic_showingnum(topic_num) {
+	window.location = '?_src_=chat&showingnum=' + topic_num;
 }
 
 //Tells byond client to focus the main map window.
