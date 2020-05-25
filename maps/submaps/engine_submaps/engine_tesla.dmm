@@ -317,8 +317,8 @@
 "aD" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /obj/effect/floor_decal/industrial/warning/corner{
-	icon_state = "warningcorner";
-	dir = 1
+	dir = 1;
+	icon_state = "warningcorner"
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/engine_room)
@@ -534,8 +534,8 @@
 /area/engineering/engine_room)
 "aU" = (
 /obj/effect/floor_decal/steeldecal/steel_decals_central5{
-	icon_state = "steel_decals_central5";
-	dir = 8
+	dir = 8;
+	icon_state = "steel_decals_central5"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
@@ -849,19 +849,10 @@
 /area/template_noop)
 "bw" = (
 /obj/effect/floor_decal/techfloor/orange/corner{
-	icon_state = "techfloororange_corners";
-	dir = 4
+	dir = 4;
+	icon_state = "techfloororange_corners"
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
-/area/submap/pa_room)
-"bx" = (
-/obj/structure/particle_accelerator/particle_emitter/left{
-	dir = 8
-	},
-/obj/effect/floor_decal/techfloor/orange{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/techfloor,
 /area/submap/pa_room)
 "by" = (
 /obj/effect/floor_decal/techfloor/orange{
@@ -1054,12 +1045,12 @@
 	req_access = list(10)
 	},
 /obj/machinery/button/remote/blast_door{
-	name = "Engine Monitoring Room Blast Doors";
 	desc = "A remote control-switch for the engine control room blast doors.";
+	id = "EngineBlast";
+	name = "Engine Monitoring Room Blast Doors";
 	pixel_x = 5;
 	pixel_y = 7;
-	req_access = list(10);
-	id = "EngineBlast"
+	req_access = list(10)
 	},
 /turf/template_noop,
 /area/template_noop)
@@ -1087,13 +1078,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/submap/pa_room)
-"bR" = (
-/obj/structure/particle_accelerator/particle_emitter/right{
-	dir = 8
-	},
-/obj/effect/floor_decal/techfloor/orange,
-/turf/simulated/floor/tiled/techfloor,
-/area/submap/pa_room)
 "bS" = (
 /obj/effect/floor_decal/techfloor/orange,
 /turf/simulated/floor/tiled/techfloor,
@@ -1105,8 +1089,8 @@
 /area/submap/pa_room)
 "bU" = (
 /obj/effect/floor_decal/techfloor/orange{
-	icon_state = "techfloororange_edges";
-	dir = 6
+	dir = 6;
+	icon_state = "techfloororange_edges"
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/submap/pa_room)
@@ -1127,8 +1111,8 @@
 /area/submap/pa_room)
 "bX" = (
 /obj/effect/floor_decal/techfloor/orange{
-	icon_state = "techfloororange_edges";
-	dir = 6
+	dir = 6;
+	icon_state = "techfloororange_edges"
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -1267,8 +1251,8 @@
 "ci" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /obj/effect/floor_decal/industrial/warning/corner{
-	icon_state = "warningcorner";
-	dir = 8
+	dir = 8;
+	icon_state = "warningcorner"
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/engine_room)
@@ -1279,8 +1263,8 @@
 	icon_state = "4-8"
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals_central5{
-	icon_state = "steel_decals_central5";
-	dir = 8
+	dir = 8;
+	icon_state = "steel_decals_central5"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
@@ -1653,8 +1637,8 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/emitter{
-	dir = 1;
 	anchored = 1;
+	dir = 1;
 	state = 1
 	},
 /turf/simulated/floor/airless,
@@ -1686,6 +1670,22 @@
 	},
 /turf/simulated/floor/airless,
 /area/space)
+"hV" = (
+/obj/effect/floor_decal/techfloor/orange,
+/obj/structure/particle_accelerator/particle_emitter/left{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/pa_room)
+"kq" = (
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 1
+	},
+/obj/structure/particle_accelerator/particle_emitter/right{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/pa_room)
 
 (1,1,1) = {"
 aa
@@ -2248,9 +2248,9 @@ ab
 ab
 bP
 bf
-bx
+kq
 bG
-bR
+hV
 ca
 cm
 ab
