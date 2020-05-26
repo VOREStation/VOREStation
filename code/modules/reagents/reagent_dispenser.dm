@@ -365,23 +365,12 @@
 		return
 
 /obj/structure/reagent_dispensers/water_cooler/update_icon()
-	/* VOREStation Lazy Fix for Right Now
 	icon_state = "water_cooler"
 	overlays.Cut()
 	var/image/I
 	if(bottle)
 		I = image(icon, "water_cooler_bottle")
 		overlays += I
-<<<<<<< HEAD
-	if(cupholder)
-		I = image(icon, "water_cooler_cupholder")
-		overlays += I
-	if(cups)
-		I = image(icon, "water_cooler_cups")
-		overlays += I
-	*/
-=======
->>>>>>> 767ab7b... Merge pull request #7239 from Cerebulon/rotatemapstuff
 	return
 
 /obj/structure/reagent_dispensers/beerkeg
