@@ -36,7 +36,7 @@
 "aJ" = (/obj/effect/step_trigger/thrower{direction = 1; name = "thrower_throwup"; nostop = 0; tiles = 0},/turf/space/transit/east,/area/space)
 "aK" = (/obj/effect/step_trigger/thrower{direction = 1; name = "thrower_throwup"; nostop = 0; tiles = 0},/turf/space,/area/space)
 "aL" = (/obj/machinery/light,/obj/structure/bed/chair{dir = 8},/turf/simulated/shuttle/floor{icon_state = "floor_red"},/area/shuttle/arrival/pre_game)
-"aM" = (/obj/machinery/computer/shuttle_control/arrivals,/turf/simulated/shuttle/floor{icon_state = "floor_red"},/area/shuttle/arrival/pre_game)
+"aM" = (/obj/machinery/computer/shuttle_control/arrivals{dir = 4},/turf/simulated/shuttle/floor{icon_state = "floor_red"},/area/shuttle/arrival/pre_game)
 "aN" = (/obj/machinery/light,/obj/structure/bed/chair{dir = 4},/turf/simulated/shuttle/floor{icon_state = "floor_red"},/area/shuttle/arrival/pre_game)
 "aO" = (/obj/structure/table/steel,/obj/structure/flora/pottedplant{icon_state = "plant-09"; name = "Dave"; pixel_y = 15},/turf/simulated/shuttle/floor{icon_state = "floor_red"},/area/shuttle/arrival/pre_game)
 "aP" = (/turf/space/transit/east,/area/shuttle/response_ship/transit)
