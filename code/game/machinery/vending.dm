@@ -65,6 +65,7 @@
 	var/list/log = list()
 	var/req_log_access = access_cargo //default access for checking logs is cargo
 	var/has_logs = 0 //defaults to 0, set to anything else for vendor to have logs
+	var/can_rotate = 1 //Defaults to yes, can be set to 0 for vendors without or with unwanted directionals.
 
 
 /obj/machinery/vending/Initialize()
@@ -545,6 +546,22 @@
 	else
 		to_chat(user,"<span class='warning'>You do not have the required access to view the vending logs for this machine.</span>")
 
+
+/obj/machinery/vending/verb/rotate_clockwise()
+	set name = "Rotate Vending Machine Clockwise"
+	set category = "Object"
+	set src in oview(1)
+
+	if (src.can_rotate == 0)
+		to_chat(usr, "<span class='warning'>\The [src] cannot be rotated.</span>")
+		return 0
+
+	if (src.anchored || usr:stat)
+		to_chat(usr, "It is bolted down!")
+		return 0
+	src.set_dir(turn(src.dir, 270))
+	return 1
+
 /obj/machinery/vending/verb/check_logs()
 	set name = "Check Vending Logs"
 	set category = "Object"
@@ -900,6 +917,7 @@
 	contraband = list(/obj/item/weapon/reagent_containers/syringe/antitoxin = 4,/obj/item/weapon/reagent_containers/syringe/antiviral = 4,/obj/item/weapon/reagent_containers/pill/tox = 1)
 	req_log_access = access_cmo
 	has_logs = 1
+	can_rotate = 0
 
 /obj/machinery/vending/wallmed2
 	name = "NanoMed"
@@ -911,6 +929,7 @@
 	contraband = list(/obj/item/weapon/reagent_containers/pill/tox = 3)
 	req_log_access = access_cmo
 	has_logs = 1
+	can_rotate = 0
 
 /obj/machinery/vending/security
 	name = "SecTech"
@@ -934,6 +953,7 @@
 					/obj/item/weapon/reagent_containers/syringe = 5,/obj/item/weapon/reagent_containers/glass/beaker = 4,/obj/item/weapon/storage/bag/plants = 5)
 	premium = list(/obj/item/weapon/reagent_containers/glass/bottle/ammonia = 10,/obj/item/weapon/reagent_containers/glass/bottle/diethylamine = 5)
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
+
 
 /obj/machinery/vending/hydroseeds
 	name = "MegaSeed Servitor"
@@ -1178,6 +1198,7 @@
 					/obj/item/toy/plushie/nukeplushie = 50,
 					/obj/item/toy/plushie/otter = 50)
 					//VOREStation Add End
+
 
 /obj/machinery/vending/fishing
 	name = "Loot Trawler"
