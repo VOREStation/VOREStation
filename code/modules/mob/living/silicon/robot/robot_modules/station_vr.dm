@@ -252,6 +252,15 @@
 	src.modules += new /obj/item/weapon/shockpaddles/robot/hound(src) //Paws of life
 	src.emag 	 = new /obj/item/weapon/dogborg/pounce(src) //Pounce
 
+	var/datum/matter_synth/medicine = new /datum/matter_synth/medicine(2000)
+	synths += medicine
+	
+	var/obj/item/stack/medical/advanced/clotting/C = new (src)
+	C.uses_charge = 1
+	C.charge_costs = list(1000)
+	C.synths = list(medicine)
+	src.modules += C
+
 	var/datum/matter_synth/water = new /datum/matter_synth(500)
 	water.name = "Water reserves"
 	water.recharge_rate = 0
