@@ -45,6 +45,9 @@
 	var/obj/prev_left_hand
 	var/obj/prev_right_hand
 
+	var/human_brute = 0
+	var/human_burn = 0
+
 	player_msg = "In this form, you can move a little faster, your health will regenerate as long as you have metal in you, and you can ventcrawl!"
 
 	can_buckle = TRUE //Blobsurfing
@@ -113,7 +116,9 @@
 	//Set the max
 	maxHealth = humanform.getMaxHealth()*2 //HUMANS, and their 'double health', bleh.
 	//Set us to their health, but, human health ignores robolimbs so we do it 'the hard way'
-	health = maxHealth - humanform.getOxyLoss() - humanform.getToxLoss() - humanform.getCloneLoss() - humanform.getActualFireLoss() - humanform.getActualBruteLoss()
+	human_brute = humanform.getActualBruteLoss()
+	human_burn = humanform.getActualFireLoss()
+	health = maxHealth - humanform.getOxyLoss() - humanform.getToxLoss() - humanform.getCloneLoss() - human_brute - human_burn
 
 	//Alive, becoming dead
 	if((stat < DEAD) && (health <= 0))
@@ -151,6 +156,12 @@
 			healths.icon_state = "health7"
 
 // All the damage and such to the blob translates to the human
+/mob/living/simple_mob/protean_blob/apply_effect(var/effect = 0, var/effecttype = STUN, var/blocked = 0, var/check_protection = 1)
+	if(humanform)
+		return humanform.apply_effect(effect, effecttype, blocked, check_protection)
+	else
+		return ..()
+
 /mob/living/simple_mob/protean_blob/adjustBruteLoss(var/amount)
 	if(humanform)
 		return humanform.adjustBruteLoss(amount)
@@ -178,6 +189,12 @@
 /mob/living/simple_mob/protean_blob/adjustHalLoss(amount)
 	if(humanform)
 		return humanform.adjustHalLoss(amount)
+	else
+		return ..()
+
+/mob/living/simple_mob/protean_blob/adjustCloneLoss(amount)
+	if(humanform)
+		return humanform.adjustCloneLoss(amount)
 	else
 		return ..()
 
@@ -218,9 +235,9 @@
 /mob/living/simple_mob/protean_blob/Life()
 	. = ..()
 	if(. && istype(refactory) && humanform)
-		if(!healing && health < maxHealth && refactory.get_stored_material(DEFAULT_WALL_MATERIAL) >= 100)
+		if(!healing && (human_brute || human_burn) && refactory.get_stored_material(DEFAULT_WALL_MATERIAL) >= 100)
 			healing = humanform.add_modifier(/datum/modifier/protean/steel, origin = refactory)
-		else if(healing && health == maxHealth)
+		else if(healing && !(human_brute || human_burn))
 			healing.expire()
 			healing = null
 

@@ -178,35 +178,35 @@
 		if(prob(20))
 			to_chat(src, "<span class='warning'>You feel your headset vibrate but can hear nothing from it!</span>")
 	else
-		on_hear_radio(part_a, speaker_name, track, part_b, message)
+		on_hear_radio(part_a, speaker_name, track, part_b, message, part_c)
 
 /proc/say_timestamp()
 	return "<span class='say_quote'>\[[stationtime2text()]\]</span>"
 
-/mob/proc/on_hear_radio(part_a, speaker_name, track, part_b, formatted)
-	var/final_message = "[part_a][speaker_name][part_b][formatted]"
+/mob/proc/on_hear_radio(part_a, speaker_name, track, part_b, formatted, part_c)
+	var/final_message = "[part_a][speaker_name][part_b][formatted][part_c]"
 	if(check_mentioned(formatted) && is_preference_enabled(/datum/client_preference/check_mention))
 		final_message = "<font size='3'><b>[final_message]</b></font>"
 	to_chat(src, final_message)
 
-/mob/observer/dead/on_hear_radio(part_a, speaker_name, track, part_b, formatted)
-	var/final_message = "[part_a][track][part_b][formatted]"
+/mob/observer/dead/on_hear_radio(part_a, speaker_name, track, part_b, formatted, part_c)
+	var/final_message = "[part_a][track][part_b][formatted][part_c]"
 	if(check_mentioned(formatted) && is_preference_enabled(/datum/client_preference/check_mention))
 		final_message = "<font size='3'><b>[final_message]</b></font>"
 	to_chat(src, final_message)
 
-/mob/living/silicon/on_hear_radio(part_a, speaker_name, track, part_b, formatted)
+/mob/living/silicon/on_hear_radio(part_a, speaker_name, track, part_b, formatted, part_c)
 	var/time = say_timestamp()
-	var/final_message = "[part_a][speaker_name][part_b][formatted]"
+	var/final_message = "[part_a][speaker_name][part_b][formatted][part_c]"
 	if(check_mentioned(formatted) && is_preference_enabled(/datum/client_preference/check_mention))
 		final_message = "[time]<font size='3'><b>[final_message]</b></font>"
 	else
 		final_message = "[time][final_message]"
 	to_chat(src, final_message)
 
-/mob/living/silicon/ai/on_hear_radio(part_a, speaker_name, track, part_b, formatted)
+/mob/living/silicon/ai/on_hear_radio(part_a, speaker_name, track, part_b, formatted, part_c)
 	var/time = say_timestamp()
-	var/final_message = "[part_a][track][part_b][formatted]"
+	var/final_message = "[part_a][track][part_b][formatted][part_c]"
 	if(check_mentioned(formatted) && is_preference_enabled(/datum/client_preference/check_mention))
 		final_message = "[time]<font size='3'><b>[final_message]</b></font>"
 	else
