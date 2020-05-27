@@ -108,12 +108,16 @@ GLOBAL_DATUM(vchatdb, /database)
 
 	return vchat_exec_update(messagedef)
 
-//Get a player's message history
-/proc/vchat_get_messages(var/ckey, var/oldest = 0)
+//Get a player's message history.  If limit is supplied, messages will be in reverse order.
+/proc/vchat_get_messages(var/ckey, var/limit)
 	if(!ckey)
 		return
 
-	var/list/getdef = list("SELECT * FROM messages WHERE ckey = ? AND worldtime >= ?", ckey, oldest)
+	var/list/getdef
+	if (limit)
+		getdef = list("SELECT * FROM messages WHERE ckey = ? ORDER BY id DESC LIMIT [text2num(limit)]", ckey)
+	else
+		getdef = list("SELECT * FROM messages WHERE ckey = ?", ckey)
 
 	return vchat_exec_query(getdef)
 

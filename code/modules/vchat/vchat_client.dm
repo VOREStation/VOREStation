@@ -138,8 +138,9 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 //Perform DB shenanigans
 /datum/chatOutput/proc/load_database()
 	set waitfor = FALSE
-	var/list/results = vchat_get_messages(owner.ckey) //If there's bad performance on reconnects, look no further
-	for(var/i in max(1, results.len - message_buffer)) // Only send them the number of buffered messages, instead of the ENTIRE log
+	// Only send them the number of buffered messages, instead of the ENTIRE log
+	var/list/results = vchat_get_messages(owner.ckey, message_buffer) //If there's bad performance on reconnects, look no further
+	for(var/i in results.len to 1 step -1)
 		var/list/message = results[i]
 		var/count = 10
 		to_chat_immediate(owner, message["time"], message["message"])
@@ -367,15 +368,13 @@ var/to_chat_src
 			time = world.time
 
 		var/client/C = CLIENT_FROM_VAR(target)
-		if(C && C.chatOutput)
-			if(C.chatOutput.broken)
-				DIRECT_OUTPUT(C, original_message)
-				return
-
-			// // Client still loading, put their messages in a queue - Actually don't, logged already in database.
-			// if(!C.chatOutput.loaded && C.chatOutput.message_queue && islist(C.chatOutput.message_queue))
-			// 	C.chatOutput.message_queue[++C.chatOutput.message_queue.len] = list("time" = time, "message" = message)
-			// 	return
+		if(!C)
+			return // No client? No care.
+		else if(C.chatOutput.broken)
+			DIRECT_OUTPUT(C, original_message)
+			return
+		else if(!C.chatOutput.loaded)
+			return // If not loaded yet, do nothing and history-sending on load will get it.
 
 		var/list/tojson = list("time" = time, "message" = message);
 		target << output(jsEncode(tojson), "htmloutput:putmessage")
