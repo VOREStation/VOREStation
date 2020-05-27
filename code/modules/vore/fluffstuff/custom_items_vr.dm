@@ -37,34 +37,121 @@
 	var/to_helmet = /obj/item/clothing/head/cardborg
 	var/to_suit = /obj/item/clothing/suit/cardborg
 
+	//conversion costs. refunds all parts by default, but can be tweaked per-kit
+	var/from_helmet_cost = 1
+	var/from_suit_cost = 2
+	var/to_helmet_cost = -1
+	var/to_suit_cost = -2
+
+	var/owner_ckey = null		//ckey of the kit owner as a string
+	var/skip_content_check = FALSE	//can we skip the contents check? we generally shouldn't, but this is necessary for rigs/coats with hoods/etc.
+	var/transfer_contents = FALSE	//should we transfer the contents across before deleting? we generally shouldn't, esp. in the case of rigs/coats with hoods/etc. note this does nothing if skip is FALSE.
+	var/can_repair = FALSE		//can we be used to repair damaged voidsuits when converting them?
+	var/can_revert = TRUE		//can we revert items, or is it a one-way trip?
+	var/delete_on_empty = FALSE	//do we self-delete when emptied?
+
 	//Conversion proc
 /obj/item/device/modkit_conversion/afterattack(obj/O, mob/user as mob)
-	var/flag
+	var/cost
 	var/to_type
-	if(istype(O,from_helmet))
-		flag = 1
+	var/keycheck
+
+	if(isturf(O)) //silently fail if you click on a turf. shouldn't work anyway because turfs aren't objects but if I don't do this it spits runtimes.
+		return
+	if(istype(O,/obj/item/clothing/suit/space/void/) && !can_repair) //check if we're a voidsuit and if we're allowed to repair
+		var/obj/item/clothing/suit/space/void/SS = O
+		if(LAZYLEN(SS.breaches))
+			to_chat(user, "<span class='warning'>You should probably repair that before you start tinkering with it.</span>")
+			return
+	if(O.blood_DNA || O.contaminated) //check if we're bloody or gooey or whatever, so modkits can't be used to hide crimes easily.
+		to_chat(user, "<span class='warning'>You should probably clean that up before you start tinkering with it.</span>")
+		return
+	//we have to check that it's not the original type first, because otherwise it might convert wrong based on pathing; the subtype can still count as the basetype
+	if(istype(O,to_helmet) && can_revert)
+		cost = to_helmet_cost
+		to_type = from_helmet
+	else if(istype(O,to_suit) && can_revert)
+		cost = to_suit_cost
+		to_type = from_suit
+	else if(!can_revert && (istype(O,to_helmet) || istype (O,to_suit)))
+		to_chat(user, "<span class='warning'>This kit doesn't seem to have the tools necessary to revert changes to modified items.</span>")
+		return
+	else if(istype(O,from_helmet))
+		cost = from_helmet_cost
 		to_type = to_helmet
+		keycheck = TRUE
 	else if(istype(O,from_suit))
-		flag = 2
+		cost = from_suit_cost
 		to_type = to_suit
+		keycheck = TRUE
 	else
 		return
-	if(!(parts & flag))
-		to_chat(user, "<span class='warning'>This kit has no parts for this modification left.</span>")
-		return
-	if(istype(O,to_type))
-		to_chat(user, "<span class='notice'>[O] is already modified.</span>")
-		return
 	if(!isturf(O.loc))
-		to_chat(user, "<span class='warning'>[O] must be safely placed on the ground for modification.</span>")
+		to_chat(user, "<span class='warning'>You need to put \the [O] on the ground, a table, or other worksurface before modifying it.</span>")
 		return
-	playsound(user.loc, 'sound/items/Screwdriver.ogg', 100, 1)
-	var/N = new to_type(O.loc)
-	user.visible_message("<span class='warning'>[user] opens \the [src] and modifies \the [O] into \the [N].</span>","<span class='warning'>You open \the [src] and modify \the [O] into \the [N].</span>")
+	if(!skip_content_check && O.contents.len) //check if we're loaded/modified, in the event of gun/suit kits, to avoid purging stuff like ammo, badges, armbands, or suit helmets
+		to_chat(user, "<span class='warning'>You should probably remove any attached items or loaded ammunition before trying to modify that!</span>")
+		return
+	if(cost > parts)
+		to_chat(user, "<span class='warning'>The kit doesn't have enough parts left to modify that.</span>")
+		if(can_revert && ((to_helmet_cost || to_suit_cost) < 0))
+			to_chat(user, "<span class='notice'> You can recover parts by using the kit on an already-modified item.</span>")
+		return
+	if(keycheck && owner_ckey) //check if we're supposed to care
+		if(user.ckey != owner_ckey) //ERROR: UNAUTHORIZED USER
+			to_chat(user, "<span class='warning'>You probably shouldn't mess with all these strange tools and parts...</span>") //give them a slightly fluffy explanation as to why it didn't work
+			return
+	playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
+	var/obj/N = new to_type(O.loc)
+	user.visible_message("<span class='notice'>[user] opens \the [src] and modifies \the [O] into \the [N].</span>","<span class='notice'>You open \the [src] and modify \the [O] into \the [N].</span>")
+
+	//crude, but transfer prints and fibers to avoid forensics abuse, same as the bloody/gooey check above
+	N.fingerprints = O.fingerprints
+	N.fingerprintshidden = O.fingerprintshidden
+	N.fingerprintslast = O.fingerprintslast
+	N.suit_fibers = O.suit_fibers
+
+	//transfer logic could technically be made more thorough and handle stuff like helmet/boots/tank vars for suits, but in those cases you should be removing the items first anyway
+	if(skip_content_check && transfer_contents)
+		N.contents = O.contents
+		if(istype(N,/obj/item/weapon/gun/projectile/))
+			var/obj/item/weapon/gun/projectile/NN = N
+			var/obj/item/weapon/gun/projectile/OO = O
+			NN.magazine_type = OO.magazine_type
+			NN.ammo_magazine = OO.ammo_magazine
+		if(istype(N,/obj/item/weapon/gun/energy/))
+			var/obj/item/weapon/gun/energy/NE = N
+			var/obj/item/weapon/gun/energy/OE = O
+			NE.cell_type = OE.cell_type
+	else
+		if(istype(N,/obj/item/weapon/gun/projectile/))
+			var/obj/item/weapon/gun/projectile/NM = N
+			NM.contents = list()
+			NM.magazine_type = null
+			NM.ammo_magazine = null
+		if(istype(N,/obj/item/weapon/gun/energy/))
+			var/obj/item/weapon/gun/energy/NO = N
+			NO.contents = list()
+			NO.cell_type = null
+
 	qdel(O)
-	parts &= ~flag
-	if(!parts)
+	parts -= cost
+	if(!parts && delete_on_empty)
 		qdel(src)
+
+//DEBUG ITEM
+/obj/item/device/modkit_conversion/fluff/debug_gunkit
+	name = "Gun Transformation Kit"
+	desc = "A kit containing all the needed tools and fabric to modify one sidearm to another."
+	skip_content_check = FALSE
+	transfer_contents = FALSE
+
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "harmony_kit"
+
+	from_helmet = /obj/item/weapon/gun/energy/laser
+	to_helmet = /obj/item/weapon/gun/energy/retro
+//DEBUG ITEM ENDS
 
 //JoanRisu:Joan Risu
 /obj/item/weapon/flame/lighter/zippo/fluff/joan
@@ -92,7 +179,7 @@
 
 	if(default_parry_check(user, attacker, damage_source) && prob(75))
 		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
-		playsound(user.loc, 'sound/weapons/punchmiss.ogg', 50, 1)
+		playsound(src, 'sound/weapons/punchmiss.ogg', 50, 1)
 		return 1
 	return 0
 
@@ -105,7 +192,7 @@
 
 	if(default_parry_check(user, attacker, damage_source) && prob(75))
 		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
-		playsound(user.loc, 'sound/weapons/punchmiss.ogg', 50, 1)
+		playsound(src, 'sound/weapons/punchmiss.ogg', 50, 1)
 		return 1
 	return 0
 
@@ -305,7 +392,7 @@
 	if(istype(O,/obj/item/weapon/card/id) && O.icon_state != new_icon)
 		//O.icon = icon // just in case we're using custom sprite paths with fluff items.
 		O.icon_state = new_icon // Changes the icon without changing the access.
-		playsound(user.loc, 'sound/items/polaroid2.ogg', 100, 1)
+		playsound(src, 'sound/items/polaroid2.ogg', 100, 1)
 		user.visible_message("<span class='warning'> [user] reprints their ID.</span>")
 		qdel(src)
 	else if(O.icon_state == new_icon)
@@ -352,8 +439,8 @@
 
 //SilencedMP5A5:Serdykov Antoz
 /obj/item/clothing/suit/armor/vest/wolftaur/serdy //SilencedMP5A5's specialty armor suit.
-	name = "KSS-8 security armor"
-	desc = "A set of armor made from pieces of many other armors. There are two orange holobadges on it, one on the chestplate, one on the steel flank plates. The holobadges appear to be russian in origin. 'Kosmicheskaya Stantsiya-8' is printed in faded white letters on one side, along the spine. It smells strongly of dog."
+	name = "custom security cuirass"
+	desc = "An armored vest that protects against some damage. It appears to be created for a wolfhound. The name 'Serdykov L. Antoz' is written on a tag inside one of the haunchplates."
 	species_restricted = null //Species restricted since all it cares about is a taur half
 	icon = 'icons/mob/taursuits_wolf_vr.dmi'
 	icon_state = "serdy_armor"
@@ -367,16 +454,27 @@
 		to_chat(H, "<span class='warning'>You need to have a wolf-taur half to wear this.</span>")
 		return 0
 
-/obj/item/clothing/head/helmet/serdy //SilencedMP5A5's specialty helmet. Uncomment if/when they make their custom item app and are accepted.
-	name = "KSS-8 security helmet"
-	desc = "desc = An old production model steel-ceramic lined helmet with a white stripe and a custom orange holographic visor. It has ear holes, and smells of dog. It's been heavily modified, and fitted with a metal mask to protect the jaw."
+/obj/item/clothing/head/serdyhelmet //SilencedMP5A5's specialty helmet.
+	name = "custom security helmet"
+	desc = "An old production model steel-ceramic lined helmet with a white stripe and a custom orange holographic visor. It has ear holes, and smells of dog."
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "serdyhelm"
-
+	valid_accessory_slots = (ACCESSORY_SLOT_HELM_C)
+	restricted_accessory_slots = (ACCESSORY_SLOT_HELM_C)
+	flags = THICKMATERIAL
+	armor = list(melee = 40, bullet = 30, laser = 30, energy = 10, bomb = 10, bio = 0, rad = 0)
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "serdyhelm_mob"
+	cold_protection = HEAD
+	min_cold_protection_temperature = HELMET_MIN_COLD_PROTECTION_TEMPERATURE
+	heat_protection = HEAD
+	max_heat_protection_temperature = HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
+	siemens_coefficient = 0.7
+	w_class = ITEMSIZE_NORMAL
+	ear_protection = 1
+	drop_sound = 'sound/items/drop/helm.ogg'
 
-/*
+
 //SilencedMP5A5:Serdykov Antoz
 /obj/item/device/modkit_conversion/fluff/serdykit
 	name = "Serdykov's armor modification kit"
@@ -387,9 +485,9 @@
 
 	from_helmet = /obj/item/clothing/head/helmet
 	from_suit = /obj/item/clothing/suit/armor/vest/wolftaur
-	to_helmet = /obj/item/clothing/head/helmet/serdy
+	to_helmet = /obj/item/clothing/head/serdyhelmet
 	to_suit = /obj/item/clothing/suit/armor/vest/wolftaur/serdy
-*/
+
 
 //Cameron653: Diana Kuznetsova
 /obj/item/clothing/suit/fluff/purp_robes
@@ -560,7 +658,7 @@
 /obj/item/weapon/cane/wand/attack_self(mob/user)
     if(last_use + cooldown >= world.time)
         return
-    playsound(loc, 'sound/weapons/sparkle.ogg', 50, 1)
+    playsound(src, 'sound/weapons/sparkle.ogg', 50, 1)
     user.visible_message("<span class='warning'> [user] swings their wand.</span>")
     var/datum/effect/effect/system/spark_spread/s = new
     s.set_up(3, 1, src)
@@ -582,7 +680,7 @@
 		O.icon = new_icon
 		O.icon_state = new_icon_state // Changes the icon without changing the access.
 		O.desc = new_desc
-		playsound(user.loc, 'sound/items/polaroid2.ogg', 100, 1)
+		playsound(src, 'sound/items/polaroid2.ogg', 100, 1)
 		user.visible_message("<span class='warning'> [user] reprints their ID.</span>")
 		qdel(src)
 	else if(O.icon_state == new_icon)
@@ -793,7 +891,7 @@
 	set src in view(1)
 
 	//do_reagent_implant(usr)
-	if(!isliving(usr) || !usr.canClick())
+	if(!isliving(usr) || !usr.checkClickCooldown())
 		return
 
 	if(usr.incapacitated() || usr.stat > CONSCIOUS)
@@ -862,7 +960,7 @@
 	set src in view(1)
 
 	//do_reagent_implant(usr)
-	if(!isliving(usr) || !usr.canClick())
+	if(!isliving(usr) || !usr.checkClickCooldown())
 		return
 
 	if(usr.incapacitated() || usr.stat > CONSCIOUS)
@@ -931,7 +1029,7 @@
 	set src in view(1)
 
 	//do_reagent_implant(usr)
-	if(!isliving(usr) || !usr.canClick())
+	if(!isliving(usr) || !usr.checkClickCooldown())
 		return
 
 	if(usr.incapacitated() || usr.stat > CONSCIOUS)
@@ -1016,7 +1114,7 @@
 	set src in view(1)
 
 	//do_reagent_implant(usr)
-	if(!isliving(usr) || !usr.canClick())
+	if(!isliving(usr) || !usr.checkClickCooldown())
 		return
 
 	if(usr.incapacitated() || usr.stat > CONSCIOUS)
@@ -1376,7 +1474,7 @@
 	set src in view(1)
 
 	//do_reagent_implant(usr)
-	if(!isliving(usr) || !usr.canClick())
+	if(!isliving(usr) || !usr.checkClickCooldown())
 		return
 
 	if(usr.incapacitated() || usr.stat > CONSCIOUS)
@@ -1467,7 +1565,7 @@
 /obj/item/weapon/melee/baton/fluff/stunstaff/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(wielded && default_parry_check(user, attacker, damage_source) && prob(30))
 		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
-		playsound(user.loc, 'sound/weapons/punchmiss.ogg', 50, 1)
+		playsound(src, 'sound/weapons/punchmiss.ogg', 50, 1)
 		return 1
 	return 0
 
@@ -1491,9 +1589,9 @@
 		status = !status
 		to_chat(user, "<span class='notice'>[src] is now [status ? "on" : "off"].</span>")
 		if(status == 0)
-			playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
+			playsound(src, 'sound/weapons/saberoff.ogg', 50, 1)
 		else
-			playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
+			playsound(src, 'sound/weapons/saberon.ogg', 50, 1)
 	else
 		status = 0
 		to_chat(user, "<span class='warning'>[src] is out of charge.</span>")
@@ -1541,12 +1639,12 @@
 	sharp = 1
 	edge = 1
 	w_class = active_w_class
-	playsound(user, 'sound/weapons/sparkle.ogg', 50, 1)
+	playsound(src, 'sound/weapons/sparkle.ogg', 50, 1)
 
 /obj/item/weapon/melee/fluffstuff/proc/deactivate(mob/living/user)
 	if(!active)
 		return
-	playsound(user, 'sound/weapons/sparkle.ogg', 50, 1)
+	playsound(src, 'sound/weapons/sparkle.ogg', 50, 1)
 	active = 0
 	embed_chance = initial(embed_chance)
 	force = initial(force)
@@ -1703,3 +1801,28 @@
          return 0
       else
          return 1
+
+//Nickcrazy - Damon Bones Xrim
+/obj/item/clothing/suit/storage/toggle/bomber/bombersec
+    name = "Security Bomber Jacket"
+    desc = "A black bomber jacket with the security emblem sewn onto it."
+    icon = 'icons/vore/custom_items_vr.dmi'
+    icon_override = 'icons/vore/custom_items_vr.dmi'
+    icon_state = "bombersec"
+
+
+//pimientopyro - Scylla Casmus
+/obj/item/clothing/glasses/fluff/scylla
+	name = "Cherry-Red Shades"
+	desc = "These cheap, cherry-red cat-eye glasses seem to give you the inclination to eat chalk when you wear them."
+
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "blindshades"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "blindshades_mob"
+
+//Storesund97 - Aurora
+/obj/item/clothing/accessory/solgov/department/security/aurora
+	name = "Old security insignia"
+	desc = "Insignia denoting assignment to the security department. These fit Expeditionary Corps uniforms. This one seems to be from the 2100s..."

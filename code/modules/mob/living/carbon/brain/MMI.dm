@@ -59,6 +59,7 @@
 				return
 
 		user.visible_message("<span class='notice'>\The [user] sticks \a [O] into \the [src].</span>")
+		B.preserved = TRUE
 
 		brainmob = B.brainmob
 		B.brainmob = null
@@ -108,6 +109,7 @@
 			brainobj = null
 		else	//Or make a new one if empty.
 			brain = new(user.loc)
+		brain.preserved = FALSE
 		brainmob.container = null//Reset brainmob mmi var.
 		brainmob.loc = brain//Throw mob into brain.
 		living_mob_list -= brainmob//Get outta here
@@ -194,24 +196,20 @@
 	return	//Doesn't do anything right now because none of the things that can be done to a regular MMI make any sense for these
 
 /obj/item/device/mmi/digital/examine(mob/user)
-	if(!..(user))
-		return
-
-	var/msg = "<span class='info'>*---------*</span>\nThis is [bicon(src)] \a <EM>[src]</EM>!\n[desc]\n"
-	msg += "<span class='warning'>"
+	. = ..()
 
 	if(src.brainmob && src.brainmob.key)
 		switch(src.brainmob.stat)
 			if(CONSCIOUS)
-				if(!src.brainmob.client)	msg += "It appears to be in stand-by mode.\n" //afk
-			if(UNCONSCIOUS)		msg += "<span class='warning'>It doesn't seem to be responsive.</span>\n"
-			if(DEAD)			msg += "<span class='deadsay'>It appears to be completely inactive.</span>\n"
+				if(!src.brainmob.client)
+					. += "<span class='warning'>It appears to be in stand-by mode.</span>" //afk
+			if(UNCONSCIOUS)
+				. += "<span class='warning'>It doesn't seem to be responsive.</span>"
+			if(DEAD)
+				. += "<span class='deadsay'>It appears to be completely inactive.</span>"
 	else
-		msg += "<span class='deadsay'>It appears to be completely inactive.</span>\n"
-	msg += "</span><span class='info'>*---------*</span>"
-	to_chat(user,msg)
-	return
-
+		. += "<span class='deadsay'>It appears to be completely inactive.</span>"
+		
 /obj/item/device/mmi/digital/emp_act(severity)
 	if(!src.brainmob)
 		return

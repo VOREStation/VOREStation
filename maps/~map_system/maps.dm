@@ -22,21 +22,26 @@ var/list/all_maps = list()
 	var/full_name = "Unnamed Map"
 	var/path
 
-	var/list/zlevels = list()
 	var/zlevel_datum_type			// If populated, all subtypes of this type will be instantiated and used to populate the *_levels lists.
-
-	var/list/station_levels = list() // Z-levels the station exists on
-	var/list/admin_levels = list()   // Z-levels for admin functionality (Centcom, shuttle transit, etc)
-	var/list/contact_levels = list() // Z-levels that can be contacted from the station, for eg announcements
-	var/list/player_levels = list()  // Z-levels a character can typically reach
-	var/list/sealed_levels = list()  // Z-levels that don't allow random transit at edge
-	var/list/xenoarch_exempt_levels = list()	//Z-levels exempt from xenoarch finds and digsites spawning.
-	var/list/empty_levels = null     // Empty Z-levels that may be used for various things (currently used by bluespace jump)
-
-	var/list/map_levels              // Z-levels available to various consoles, such as the crew monitor (when that gets coded in). Defaults to station_levels if unset.
 	var/list/base_turf_by_z = list() // Custom base turf by Z-level. Defaults to world.turf for unlisted Z-levels
 
+	// Automatically populated lists made static for faster lookups
+	var/static/list/zlevels = list()
+	var/static/list/station_levels = list() // Z-levels the station exists on
+	var/static/list/admin_levels = list()   // Z-levels for admin functionality (Centcom, shuttle transit, etc)
+	var/static/list/contact_levels = list() // Z-levels that can be contacted from the station, for eg announcements
+	var/static/list/player_levels = list()  // Z-levels a character can typically reach
+	var/static/list/sealed_levels = list()  // Z-levels that don't allow random transit at edge
+	var/static/list/xenoarch_exempt_levels = list()	//Z-levels exempt from xenoarch finds and digsites spawning.
+	var/static/list/empty_levels = null     // Empty Z-levels that may be used for various things (currently used by bluespace jump)
+	// End Static Lists
+
+	// Z-levels available to various consoles, such as the crew monitor. Defaults to station_levels if unset.
+	var/list/map_levels
+	
+	// E-mail TLDs to use for NTnet modular computer e-mail addresses
 	var/list/usable_email_tlds = list("freemail.nt")
+
 	//This list contains the z-level numbers which can be accessed via space travel and the percentile chances to get there.
 	var/list/accessible_z_levels = list()
 
@@ -62,11 +67,13 @@ var/list/all_maps = list()
 	var/ai_shell_restricted = FALSE			//VOREStation Addition - are there z-levels restricted?
 	var/ai_shell_allowed_levels = list()	//VOREStation Addition - which z-levels ARE we allowed to visit?
 
-	//VOREStation Addition Start - belter stuff
+	//VOREStation Addition Start - belter stuff	TFF 16/4/20 - Mining Outpost Shuttle
 	var/list/belter_docked_z = list()
 	var/list/belter_transit_z = list()
 	var/list/belter_belt_z = list()
-	//VOREStation Addition End - belter stuff
+	var/list/mining_station_z = list()
+	var/list/mining_outpost_z = list()
+	//VOREStation Addition End
 
 	var/station_name  = "BAD Station"
 	var/station_short = "Baddy"
@@ -135,6 +142,38 @@ var/list/all_maps = list()
 	else
 		default_skybox = new()
 
+// Gets the current time on a current zlevel, and returns a time datum
+/datum/map/proc/get_zlevel_time(var/z)
+	if(!z)
+		z = 1
+	var/datum/planet/P = z <= SSplanets.z_to_planet.len ? SSplanets.z_to_planet[z] : null
+	// We found a planet tied to that zlevel, give them the time
+	if(P?.current_time)
+		return P.current_time
+
+	// We have to invent a time
+	else
+		var/datum/time/T = new (station_time_in_ds)
+		return T
+
+// Returns a boolean for if it's night or not on a particular zlevel
+/datum/map/proc/get_night(var/z)
+	if(!z)
+		z = 1
+	var/datum/time/now = get_zlevel_time(z)
+	var/percent = now.seconds_stored / now.seconds_in_day //practically all of these are in DS
+
+	// First quarter, last quarter
+	if(percent < 0.25 || percent > 0.75)
+		return TRUE
+	// Second quarter, third quarter
+	else
+		return FALSE
+
+// Boolean for if we should use SSnightshift night hours
+/datum/map/proc/get_nightshift()
+	return get_night(1) //Defaults to z1, customize however you want on your own maps
+
 /datum/map/proc/setup_map()
 	return
 
@@ -159,20 +198,44 @@ var/list/all_maps = list()
 		empty_levels = list(world.maxz)
 	return pick(empty_levels)
 
-// Get the list of zlevels that a computer on srcz can see maps of (for power/crew monitor, cameras, etc)
-// The long_range parameter expands the coverage.  Default is to return map_levels for long range otherwise just srcz.
-// zLevels outside station_levels will return an empty list.
-/datum/map/proc/get_map_levels(var/srcz, var/long_range = TRUE)
-	if (long_range && (srcz in map_levels))
-		return map_levels
-	else if (srcz in station_levels)
-		return list(srcz)
+// Get a list of 'nearby' or 'connected' zlevels.
+// You should at least return a list with the given z if nothing else.
+/datum/map/proc/get_map_levels(var/srcz, var/long_range = FALSE, var/om_range = -1)
+	//Overmap behavior
+	if(use_overmap)
+		//Get what sector we're in
+		var/obj/effect/overmap/visitable/O = get_overmap_sector(srcz)
+		if(!istype(O))
+			//Anything in multiz then (or just themselves)
+			return GetConnectedZlevels(srcz)
+
+		//Just the sector we're in
+		if(om_range == -1)
+			return O.map_z.Copy()
+
+		//Otherwise every sector we're on top of
+		var/list/connections = list()
+		var/turf/T = get_turf(O)
+		var/turfrange = long_range ? max(0, om_range) : om_range
+		for(var/obj/effect/overmap/visitable/V in range(turfrange, T))
+			connections += V.map_z // Adding list to list adds contents
+		return connections
+
+	//Traditional behavior
 	else
-		return list()
+		//If long range, and they're at least in contact levels, return contact levels.
+		if (long_range && (srcz in contact_levels))
+			return contact_levels.Copy()
+		//If in station levels, return station levels
+		else if (srcz in station_levels)
+			return station_levels.Copy()
+		//Anything in multiz then (or just themselves)
+		else
+			return GetConnectedZlevels(srcz)
 
 /datum/map/proc/get_zlevel_name(var/index)
 	var/datum/map_z_level/Z = zlevels["[index]"]
-	return Z.name
+	return Z?.name
 
 // Access check is of the type requires one. These have been carefully selected to avoid allowing the janitor to see channels he shouldn't
 // This list needs to be purged but people insist on adding more cruft to the radio.
@@ -194,10 +257,9 @@ var/list/all_maps = list()
 	)
 
 /datum/map/proc/get_skybox_datum(z)
-	if(map_levels["[z]"])
-		var/datum/map_z_level/picked = map_levels["[z]"]
-		if(picked.custom_skybox)
-			return picked.custom_skybox
+	var/datum/map_z_level/picked = zlevels["[z]"]
+	if(picked?.custom_skybox)
+		return picked.custom_skybox
 
 	return default_skybox
 

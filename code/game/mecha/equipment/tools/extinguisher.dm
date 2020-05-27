@@ -14,25 +14,25 @@
 	. = ..()
 	reagents = new/datum/reagents(max_water)
 	reagents.my_atom = src
-	reagents.add_reagent("water", max_water)
+	reagents.add_reagent("firefoam", max_water) //VOREStation Edit
 
 /obj/item/mecha_parts/mecha_equipment/tool/extinguisher/action(atom/target) //copypasted from extinguisher. TODO: Rewrite from scratch.
 	if(!action_checks(target) || get_dist(chassis, target)>3) return
 	if(get_dist(chassis, target)>2) return
 	set_ready_state(0)
 	if(do_after_cooldown(target))
-		if( istype(target, /obj/structure/reagent_dispensers/watertank) && get_dist(chassis,target) <= 1)
+		if( istype(target, /obj/structure/reagent_dispensers) && get_dist(chassis,target) <= 1) //VOREStation Edit
 			var/obj/o = target
 			var/amount = o.reagents.trans_to_obj(src, 200)
 			occupant_message("<span class='notice'>[amount] units transferred into internal tank.</span>")
-			playsound(chassis, 'sound/effects/refill.ogg', 50, 1, -6)
+			playsound(src, 'sound/effects/refill.ogg', 50, 1, -6)
 			return
 
 		if (src.reagents.total_volume < 1)
 			occupant_message("<span class='warning'>\The [src] is empty.</span>")
 			return
 
-		playsound(chassis, 'sound/effects/extinguish.ogg', 75, 1, -3)
+		playsound(src, 'sound/effects/extinguish.ogg', 75, 1, -3)
 
 		var/direction = get_dir(chassis,target)
 

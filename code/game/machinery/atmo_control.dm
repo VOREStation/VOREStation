@@ -29,7 +29,7 @@
 /obj/machinery/air_sensor/process()
 	if(on)
 		var/datum/signal/signal = new
-		signal.transmission_method = 1 //radio signal
+		signal.transmission_method = TRANSMISSION_RADIO //radio signal
 		signal.data["tag"] = id_tag
 		signal.data["timestamp"] = world.time
 
@@ -212,7 +212,7 @@ obj/machinery/computer/general_air_control/Destroy()
 	if(!radio_connection)
 		return 0
 	var/datum/signal/signal = new
-	signal.transmission_method = 1 //radio signal
+	signal.transmission_method = TRANSMISSION_RADIO //radio signal
 	signal.source = src
 	if(href_list["in_refresh_status"])
 		input_info = null
@@ -322,7 +322,7 @@ obj/machinery/computer/general_air_control/Destroy()
 	if(!radio_connection)
 		return 0
 	var/datum/signal/signal = new
-	signal.transmission_method = 1 //radio signal
+	signal.transmission_method = TRANSMISSION_RADIO //radio signal
 	signal.source = src
 	if(href_list["in_refresh_status"])
 		input_info = null
@@ -383,7 +383,7 @@ obj/machinery/computer/general_air_control/Destroy()
 					injecting = 1
 
 		var/datum/signal/signal = new
-		signal.transmission_method = 1 //radio signal
+		signal.transmission_method = TRANSMISSION_RADIO //radio signal
 		signal.source = src
 
 		signal.data = list(
@@ -445,7 +445,7 @@ obj/machinery/computer/general_air_control/Destroy()
 			return 0
 
 		var/datum/signal/signal = new
-		signal.transmission_method = 1 //radio signal
+		signal.transmission_method = TRANSMISSION_RADIO //radio signal
 		signal.source = src
 		signal.data = list(
 			"tag" = device_tag,
@@ -463,7 +463,7 @@ obj/machinery/computer/general_air_control/Destroy()
 			return 0
 
 		var/datum/signal/signal = new
-		signal.transmission_method = 1 //radio signal
+		signal.transmission_method = TRANSMISSION_RADIO //radio signal
 		signal.source = src
 		signal.data = list(
 			"tag" = device_tag,
@@ -478,7 +478,7 @@ obj/machinery/computer/general_air_control/Destroy()
 			return 0
 
 		var/datum/signal/signal = new
-		signal.transmission_method = 1 //radio signal
+		signal.transmission_method = TRANSMISSION_RADIO //radio signal
 		signal.source = src
 		signal.data = list(
 			"tag" = device_tag,

@@ -149,22 +149,21 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	..()
 
 /obj/item/clothing/mask/smokable/examine(mob/user)
-	..()
-	if(is_pipe)
-		return
-	var/smoke_percent = round((smoketime / max_smoketime) * 100)
-	switch(smoke_percent)
-		if(90 to INFINITY)
-			to_chat(user, "[src] is still fresh.")
-		if(60 to 90)
-			to_chat(user, "[src] has a good amount of burn time remaining.")
-		if(30 to 60)
-			to_chat(user, "[src] is about half finished.")
-		if(10 to 30)
-			to_chat(user, "[src] is starting to burn low.")
-		else
-			to_chat(user, "[src] is nearly burnt out!")
-
+	. = ..()
+	
+	if(!is_pipe)
+		var/smoke_percent = round((smoketime / max_smoketime) * 100)
+		switch(smoke_percent)
+			if(90 to INFINITY)
+				. += "[src] is still fresh."
+			if(60 to 90)
+				. += "[src] has a good amount of burn time remaining."
+			if(30 to 60)
+				. += "[src] is about half finished."
+			if(10 to 30)
+				. += "[src] is starting to burn low."
+			else
+				. += "[src] is nearly burnt out!"
 
 /obj/item/clothing/mask/smokable/proc/light(var/flavor_text = "[usr] lights the [name].")
 	if(!src.lit)
@@ -194,7 +193,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/clothing/mask/smokable/proc/die(var/nomessage = 0)
 	var/turf/T = get_turf(src)
 	set_light(0)
-	playsound(src.loc, 'sound/items/cigs_lighters/cig_snuff.ogg', 50, 1)
+	playsound(src, 'sound/items/cigs_lighters/cig_snuff.ogg', 50, 1)
 	STOP_PROCESSING(SSobj, src)
 	if (type_butt)
 		var/obj/item/butt = new type_butt(T)
@@ -216,7 +215,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			var/mob/living/M = loc
 			if (!nomessage)
 				to_chat(M, "<span class='notice'>Your [name] goes out, and you empty the ash.</span>")
-				playsound(src.loc, 'sound/items/cigs_lighters/cig_snuff.ogg', 50, 1)
+				playsound(src, 'sound/items/cigs_lighters/cig_snuff.ogg', 50, 1)
 			lit = 0
 			icon_state = initial(icon_state)
 			item_state = initial(item_state)
@@ -328,7 +327,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(lit == 1)
 		if(user.a_intent == I_HURT)
 			user.visible_message("<span class='notice'>[user] drops and treads on the lit [src], putting it out instantly.</span>")
-			playsound(src.loc, 'sound/items/cigs_lighters/cig_snuff.ogg', 50, 1)
+			playsound(src, 'sound/items/cigs_lighters/cig_snuff.ogg', 50, 1)
 			die(1)
 		else
 			user.visible_message("<span class='notice'>[user] puts out \the [src].</span>")
@@ -422,7 +421,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(lit == 1)
 		if(user.a_intent == I_HURT)
 			user.visible_message("<span class='notice'>[user] empties the lit [src] on the floor!.</span>")
-			playsound(src.loc, 'sound/items/cigs_lighters/cig_snuff.ogg', 50, 1)
+			playsound(src, 'sound/items/cigs_lighters/cig_snuff.ogg', 50, 1)
 			die(1)
 		else
 			user.visible_message("<span class='notice'>[user] puts out \the [src].</span>")
@@ -547,7 +546,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		lit = 1
 		icon_state = "[base_state]on"
 		item_state = "[base_state]on"
-		playsound(src.loc, activation_sound, 75, 1)
+		playsound(src, activation_sound, 75, 1)
 		if(istype(src, /obj/item/weapon/flame/lighter/zippo) )
 			user.visible_message("<span class='rose'>Without even breaking stride, [user] flips open and lights [src] in one smooth movement.</span>")
 		else
@@ -567,7 +566,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		lit = 0
 		icon_state = "[base_state]"
 		item_state = "[base_state]"
-		playsound(src.loc, deactivation_sound, 75, 1)
+		playsound(src, deactivation_sound, 75, 1)
 		if(istype(src, /obj/item/weapon/flame/lighter/zippo) )
 			user.visible_message("<span class='rose'>You hear a quiet click, as [user] shuts off [src] without even looking at what they're doing.</span>")
 		else

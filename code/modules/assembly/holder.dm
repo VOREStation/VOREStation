@@ -3,7 +3,6 @@
 	icon = 'icons/obj/assemblies/new_assemblies.dmi'
 	icon_state = "holder"
 	item_state = "assembly"
-	flags = PROXMOVE
 	throwforce = 5
 	w_class = ITEMSIZE_SMALL
 	throw_speed = 3
@@ -57,18 +56,25 @@
 		master.update_icon()
 
 /obj/item/device/assembly_holder/examine(mob/user)
-	..(user)
+	. = ..()
 	if ((in_range(src, user) || src.loc == user))
 		if (src.secured)
-			to_chat(user, "\The [src] is ready!")
+			. += "\The [src] is ready!"
 		else
-			to_chat(user, "\The [src] can be attached!")
+			. += "\The [src] can be attached!"
 
-/obj/item/device/assembly_holder/HasProximity(atom/movable/AM as mob|obj)
+/obj/item/device/assembly_holder/Moved(atom/old_loc, direction, forced = FALSE)
+	. = ..()
+	if(isturf(old_loc))
+		unsense_proximity(callback = .HasProximity, center = old_loc)
+	if(isturf(loc))
+		sense_proximity(callback = .HasProximity)
+
+/obj/item/device/assembly_holder/HasProximity(turf/T, atom/movable/AM, old_loc)
 	if(a_left)
-		a_left.HasProximity(AM)
+		a_left.HasProximity(T, AM, old_loc)
 	if(a_right)
-		a_right.HasProximity(AM)
+		a_right.HasProximity(T, AM, old_loc)
 
 /obj/item/device/assembly_holder/Crossed(atom/movable/AM as mob|obj)
 	if(AM.is_incorporeal())
@@ -84,8 +90,8 @@
 	if(a_right)
 		a_right.on_found(finder)
 
-/obj/item/device/assembly_holder/Move()
-	..()
+/obj/item/device/assembly_holder/Moved(atom/old_loc, direction, forced = FALSE)
+	. = ..()
 	if(a_left && a_right)
 		a_left.holder_movement()
 		a_right.holder_movement()
@@ -155,11 +161,11 @@
 		master.receive_signal()
 	return 1
 
-/obj/item/device/assembly_holder/hear_talk(mob/living/M as mob, msg, verb, datum/language/speaking)
+/obj/item/device/assembly_holder/hear_talk(mob/M, list/message_pieces, verb)
 	if(a_right)
-		a_right.hear_talk(M,msg,verb,speaking)
+		a_right.hear_talk(M, message_pieces, verb)
 	if(a_left)
-		a_left.hear_talk(M,msg,verb,speaking)
+		a_left.hear_talk(M, message_pieces, verb)
 
 /obj/item/device/assembly_holder/timer_igniter
 	name = "timer-igniter assembly"

@@ -40,6 +40,10 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 	var/list/uncommon_loot = list()	// Uncommon is actually maybe some useful items, usually the reason someone bothers looking inside.
 	var/list/rare_loot = list()		// Rare is really powerful, or at least unique items.
 
+/obj/structure/loot_pile/attack_ai(var/mob/user)
+	if(isrobot(user) && Adjacent(user))
+		return attack_hand(user)
+
 /obj/structure/loot_pile/attack_hand(mob/user)
 	//Human mob
 	if(isliving(user))
@@ -351,8 +355,8 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/weapon/circuitboard/atmos_alert,
 		/obj/item/weapon/circuitboard/airalarm,
 		/obj/item/weapon/circuitboard/fax,
-		/obj/item/weapon/circuitboard/ghettosmes,
 		/obj/item/weapon/circuitboard/jukebox,
+		/obj/item/weapon/circuitboard/batteryrack,
 		/obj/item/weapon/circuitboard/message_monitor,
 		/obj/item/weapon/circuitboard/rcon_console,
 		/obj/item/weapon/smes_coil,

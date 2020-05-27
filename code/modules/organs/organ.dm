@@ -106,8 +106,8 @@ var/list/organ_cache = list()
 	STOP_PROCESSING(SSobj, src)
 	handle_organ_mod_special(TRUE)
 	if(owner && vital)
-		owner.death()
 		owner.can_defib = 0
+		owner.death()
 
 /obj/item/organ/proc/adjust_germ_level(var/amount)		// Unless you're setting germ level directly to 0, use this proc instead
 	germ_level = CLAMP(germ_level + amount, 0, INFECTION_LEVEL_MAX)
@@ -158,9 +158,9 @@ var/list/organ_cache = list()
 		handle_germ_effects()
 
 /obj/item/organ/examine(mob/user)
-	..(user)
+	. = ..()
 	if(status & ORGAN_DEAD)
-		to_chat(user, "<span class='notice'>The decay has set in.</span>")
+		. += "<span class='notice'>Decay appears to have set in.</span>"
 
 //A little wonky: internal organs stop calling this (they return early in process) when dead, but external ones cause further damage when dead
 /obj/item/organ/proc/handle_germ_effects()
@@ -352,7 +352,7 @@ var/list/organ_cache = list()
 	var/obj/item/organ/external/affected = owner.get_organ(parent_organ)
 	if(affected) affected.internal_organs -= src
 
-	loc = get_turf(owner)
+	forceMove(owner.drop_location())
 	START_PROCESSING(SSobj, src)
 	rejecting = null
 	var/datum/reagent/blood/organ_blood = locate(/datum/reagent/blood) in reagents.reagent_list
@@ -361,9 +361,10 @@ var/list/organ_cache = list()
 
 	if(owner && vital)
 		if(user)
-			add_attack_logs(user,owner,"Removed vital organ [src.name]")
-		owner.death()
-		owner.can_defib = 0
+			add_attack_logs(user, owner, "Removed vital organ [src.name]")
+		if(owner.stat != DEAD)
+			owner.can_defib = 0
+			owner.death()
 
 	handle_organ_mod_special(TRUE)
 

@@ -71,3 +71,106 @@
 	power_equip = FALSE
 	power_environ = FALSE
 	power_light = FALSE
+
+/area/submap/admin_upload/AU7
+	name = "\improper Unknown Area F"
+	requires_power = 1
+	dynamic_lighting = 1
+	power_equip = FALSE
+	power_environ = FALSE
+	power_light = FALSE
+
+/area/submap/admin_upload/AU8
+	name = "\improper Unknown Area G"
+	requires_power = 1
+	dynamic_lighting = 1
+	power_equip = FALSE
+	power_environ = FALSE
+	power_light = FALSE
+
+/area/submap/admin_upload/AU9
+	name = "\improper Unknown Area H"
+	requires_power = 1
+	dynamic_lighting = 1
+	power_equip = FALSE
+	power_environ = FALSE
+	power_light = FALSE
+
+/area/submap/admin_upload/AU10
+	name = "\improper Unknown Area I"
+	requires_power = 1
+	dynamic_lighting = 1
+	power_equip = FALSE
+	power_environ = FALSE
+	power_light = FALSE
+
+/area/submap/admin_upload/AU11
+	name = "\improper Unknown Area J"
+	requires_power = 1
+	dynamic_lighting = 1
+	power_equip = FALSE
+	power_environ = FALSE
+	power_light = FALSE
+
+/area/submap/admin_upload/AU12
+	name = "\improper Unknown Area K"
+	requires_power = 1
+	dynamic_lighting = 1
+	power_equip = FALSE
+	power_environ = FALSE
+	power_light = FALSE
+
+// Adminbuse things for overmap sectors
+
+// This is a stationary overmap sector, you can spawn it in any zlevel and it will pop onto the overmap to represent those zlevels. It always moves to 2,2 on the overmap and you can move it elsewhere.
+/obj/effect/overmap/visitable/admin_use
+	name = "space destination"
+	desc = "Some space destination!"
+	scanner_name = "REPLACE ME"
+	scanner_desc = @{"[i]Registration[/i]: REPLACE ME
+[i]Class[/i]: REPLACE ME
+[i]Transponder[/i]: REPLACE ME
+[b]Notice[/b]: REPLACE ME"} //Uses the paper/book syntax
+	start_x = 2
+	start_y = 2
+	known = 0
+
+// It notifies admins when you spawn it and gives you a 'JMP' and 'VV' link in the message so you can find it easily.
+/obj/effect/overmap/visitable/admin_use/Initialize()
+	. = ..()
+	message_admins("An uploaded sector [ADMIN_JMP(src)][ADMIN_VV(src)] has been placed on the overmap. Don't forget to rename and set cool scanner info on it!")
+
+// This is the same, but makes a whole spaceship!
+/obj/effect/overmap/visitable/ship/admin_use
+	name = "spacecraft"
+	desc = "Spacefaring vessel."
+	scanner_name = "REPLACE ME"
+	scanner_desc = @{"[i]Registration[/i]: REPLACE ME
+[i]Class[/i]: REPLACE ME
+[i]Transponder[/i]: REPLACE ME
+[b]Notice[/b]: REPLACE ME"}
+	vessel_mass = 8000
+	vessel_size = SHIP_SIZE_LARGE //Mostly so it's obviously visible on the map.
+	fore_dir = NORTH //You may need to edit this ingame if you want your ship to fly correctly!
+	start_x = 2
+	start_y = 2
+	known = 0
+
+// Similarly notifies you
+/obj/effect/overmap/visitable/ship/admin_use/Initialize()
+	. = ..()
+	message_admins("An uploaded ship [ADMIN_JMP(src)][ADMIN_VV(src)] has been placed on the overmap. Don't forget to rename and set cool scanner info on it!")
+
+// These landmarks, placed in any map that is being represented by an overmap sector, will add themselves to landable destinations in that map!
+// Note the names, pick whichever makes the most sense for your map. No need to use them in any particular order or use any/all of them.
+/obj/effect/shuttle_landmark/automatic/admin_use1
+	name = "Landing Zone"
+	landmark_tag = "adminuse_lz_alpha"
+
+/obj/effect/shuttle_landmark/automatic/admin_use2
+	name = "Parking Area"
+	landmark_tag = "adminuse_lz_beta"
+
+/obj/effect/shuttle_landmark/automatic/admin_use3
+	name = "Docking Node"
+	landmark_tag = "adminuse_lz_gamma"

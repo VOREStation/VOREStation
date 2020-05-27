@@ -42,7 +42,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 	ASSERT(!ishuman(src))
 	var/matrix/M = matrix()
 	M.Scale(size_multiplier)
-	M.Translate(0, 16*(size_multiplier-1))
+	M.Translate(0, (vis_height/2)*(size_multiplier-1))
 	transform = M
 
 /**
@@ -141,7 +141,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 	if(buckled)
 		to_chat(usr,"<span class='notice'>You have to unbuckle \the [M] before you pick them up.</span>")
 		return 0
-	if(size_diff >= 0.50)
+	if(size_diff >= 0.50 || mob_size < MOB_SMALL)
 		holder_type = /obj/item/weapon/holder/micro
 		var/obj/item/weapon/holder/m_holder = get_scooped(M, G)
 		holder_type = holder_default
@@ -158,6 +158,10 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
  * @return false if normal code should continue, true to prevent normal code.
  */
 /mob/living/proc/handle_micro_bump_helping(mob/living/tmob)
+	//Riding and being moved to us or something similar
+	if(tmob in buckled_mobs)
+		return TRUE
+
 	//Both small! Go ahead and go.
 	if(get_effective_size() <= RESIZE_A_SMALLTINY && tmob.get_effective_size() <= RESIZE_A_SMALLTINY)
 		return TRUE
@@ -213,6 +217,10 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 	//We can't be stepping on anyone
 	if(!canmove || buckled)
 		return
+
+	//Riding and being moved to us or something similar
+	if(tmob in buckled_mobs)
+		return TRUE
 
 	//Test/set if human
 	var/mob/living/carbon/human/pred = src

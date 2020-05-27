@@ -54,7 +54,7 @@ In short:
 
 
 /datum/universal_state/hell/proc/AreaSet()
-	for(var/area/A in all_areas)
+	for(var/area/A in world)
 		if(!istype(A,/area) || istype(A, /area/space))
 			continue
 
@@ -78,7 +78,7 @@ In short:
 			alm.ex_act(2)
 
 /datum/universal_state/hell/proc/APCSet()
-	for (var/obj/machinery/power/apc/APC in machines)
+	for (var/obj/machinery/power/apc/APC in GLOB.apcs)
 		if (!(APC.stat & BROKEN) && !APC.is_critical)
 			APC.emagged = 1
 			APC.queue_icon_update()

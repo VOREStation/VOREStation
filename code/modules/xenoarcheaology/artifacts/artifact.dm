@@ -9,19 +9,43 @@
 	var/datum/artifact_effect/secondary_effect
 	var/being_used = 0
 
+	var/predefined_effects = FALSE
+
+	var/predefined_primary
+	var/predefined_secondary
+
+	var/predefined_icon_num
+
+	var/predefined_triggers = FALSE
+
+	var/predefined_trig_primary
+	var/predefined_trig_secondary
+
 /obj/machinery/artifact/New()
 	..()
 
-	var/effecttype = pick(typesof(/datum/artifact_effect) - /datum/artifact_effect)
-	my_effect = new effecttype(src)
+	if(predefined_effects && predefined_primary)
+		my_effect = new predefined_primary(src)
 
-	if(prob(75))
-		effecttype = pick(typesof(/datum/artifact_effect) - /datum/artifact_effect)
-		secondary_effect = new effecttype(src)
+		if(predefined_secondary)
+			secondary_effect = new predefined_secondary(src)
+			if(prob(75))
+				secondary_effect.ToggleActivate(0)
+
+	else
+		var/effecttype = pick(typesof(/datum/artifact_effect) - /datum/artifact_effect)
+		my_effect = new effecttype(src)
+
 		if(prob(75))
-			secondary_effect.ToggleActivate(0)
+			effecttype = pick(typesof(/datum/artifact_effect) - /datum/artifact_effect)
+			secondary_effect = new effecttype(src)
+			if(prob(75))
+				secondary_effect.ToggleActivate(0)
 
-	icon_num = rand(0, 14)
+	if(!isnull(predefined_icon_num))
+		icon_num = predefined_icon_num
+	else
+		icon_num = rand(0, 14)
 
 	icon_state = "ano[icon_num]0"
 	if(icon_num == 7 || icon_num == 8)
@@ -52,6 +76,13 @@
 		desc = "A strange statue."
 		if(prob(60))
 			my_effect.trigger = pick(TRIGGER_TOUCH, TRIGGER_HEAT, TRIGGER_COLD, TRIGGER_PHORON, TRIGGER_OXY, TRIGGER_CO2, TRIGGER_NITRO)
+
+	if(predefined_triggers)
+		if(predefined_trig_primary && my_effect)
+			my_effect.trigger = predefined_trig_primary
+
+		if(predefined_trig_secondary && secondary_effect)
+			secondary_effect.trigger = predefined_trig_secondary
 
 /obj/machinery/artifact/proc/choose_effect()
 	var/effect_type = input(usr, "What type do you want?", "Effect Type") as null|anything in typesof(/datum/artifact_effect) - /datum/artifact_effect
@@ -336,8 +367,8 @@
 				secondary_effect.ToggleActivate(0)
 	return
 
-/obj/machinery/artifact/Move()
-	..()
+/obj/machinery/artifact/Moved()
+	. = ..()
 	if(my_effect)
 		my_effect.UpdateMove()
 	if(secondary_effect)

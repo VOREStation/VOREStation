@@ -16,6 +16,7 @@
 	density = FALSE
 	circuit = /obj/item/weapon/circuitboard/timeclock
 	clicksound = null
+	var/channel = "Common" //Radio channel to announce on
 
 	var/obj/item/weapon/card/id/card // Inserted Id card
 	var/obj/item/device/radio/intercom/announce	// Integreated announcer
@@ -153,6 +154,7 @@
 		   && !job.whitelist_only \
 		   && !jobban_isbanned(user,job.title) \
 		   && job.player_old_enough(user.client) \
+		   && job.player_has_enough_playtime(user.client) \
 		   && job.pto_type == department \
 		   && !job.disallow_jobhop \
 		   && job.timeoff_factor > 0
@@ -176,7 +178,7 @@
 		var/mob/living/carbon/human/H = usr
 		H.mind.assigned_role = card.rank
 		H.mind.role_alt_title = card.assignment
-		announce.autosay("[card.registered_name] has moved On-Duty as [card.assignment].", "Employee Oversight")
+		announce.autosay("[card.registered_name] has moved On-Duty as [card.assignment].", "Employee Oversight", channel, zlevels = using_map.get_map_levels(get_z(src)))
 	return
 
 /obj/machinery/computer/timeclock/proc/makeOffDuty()
@@ -202,14 +204,15 @@
 		H.mind.assigned_role = ptojob.title
 		H.mind.role_alt_title = ptojob.title
 		foundjob.current_positions--
-		announce.autosay("[card.registered_name], [oldtitle], has moved Off-Duty.", "Employee Oversight")
+		announce.autosay("[card.registered_name], [oldtitle], has moved Off-Duty.", "Employee Oversight", channel, zlevels = using_map.get_map_levels(get_z(src)))
 	return
 
 /obj/machinery/computer/timeclock/proc/checkCardCooldown()
 	if(!card)
 		return FALSE
-	if((world.time - card.last_job_switch) < 15 MINUTES)
-		to_chat(usr, "You need to wait at least 15 minutes after last duty switch.")
+	var/time_left = 10 MINUTES - (world.time - card.last_job_switch)
+	if(time_left > 0)
+		to_chat(usr, "You need to wait another [round((time_left/10)/60, 1)] minute\s before you can switch.")
 		return FALSE
 	return TRUE
 

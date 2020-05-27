@@ -147,3 +147,24 @@
 	req_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 4, TECH_PHORON = 4, TECH_BLUESPACE = 5)
 	build_path = /obj/item/weapon/circuitboard/quantumpad
 	sort_string = "HAAC"
+
+/datum/design/circuit/rtg
+	name = "radioisotope TEG"
+	id = "rtg"
+	req_tech = list(TECH_DATA = 3, TECH_POWER = 3, TECH_PHORON = 3, TECH_ENGINEERING = 3)
+	build_path = /obj/item/weapon/circuitboard/machine/rtg
+	sort_string = "HAAD"
+
+/datum/design/circuit/rtg_advanced
+	name = "advanced radioisotope TEG"
+	id = "adv_rtg"
+	req_tech = list(TECH_DATA = 5, TECH_POWER = 5, TECH_PHORON = 5, TECH_ENGINEERING = 5)
+	build_path = /obj/item/weapon/circuitboard/machine/rtg/advanced
+	sort_string = "HAAE"
+
+/datum/design/circuit/rtg
+	name = "vitals monitor"
+	id = "vitals"
+	req_tech = list(TECH_DATA = 3, TECH_BIO = 4, TECH_ENGINEERING = 2)
+	build_path = /obj/item/weapon/circuitboard/machine/vitals_monitor
+	sort_string = "HAAF"

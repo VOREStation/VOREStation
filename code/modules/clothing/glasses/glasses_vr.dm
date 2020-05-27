@@ -9,7 +9,7 @@
 		name = "[initial(name)]"
 		user.visible_message("[user] replaces the prescription lenses in \the [src] with generics.")
 
-	playsound(user,'sound/items/screwdriver.ogg', 50, 1)
+	playsound(src,'sound/items/screwdriver.ogg', 50, 1)
 
 //Prescription kit
 /obj/item/device/glasses_kit

@@ -1,7 +1,7 @@
 /obj/item/clothing/glasses/omnihud
 	name = "\improper AR glasses"
-	desc = "The KHI-62 AR Glasses are a design from Kitsuhana Heavy Industries. These are a cheap export version \
-	for Nanotrasen. Probably not as complete as KHI could make them, but more readily available for NT."
+	desc = "The ARG-62 AR Glasses are capable of displaying information on individuals. \
+	Commonly used to allow non-augmented crew to interact with virtual interfaces."
 	origin_tech = list(TECH_MAGNET = 3, TECH_BIO = 3)
 	var/obj/item/clothing/glasses/hud/omni/hud = null
 	var/mode = "civ"
@@ -39,7 +39,7 @@
 
 /obj/item/clothing/glasses/omnihud/prescribe(var/mob/user)
 	prescription = !prescription
-	playsound(user,'sound/items/screwdriver.ogg', 50, 1)
+	playsound(src,'sound/items/screwdriver.ogg', 50, 1)
 	if(prescription)
 		name = "[initial(name)] (pr)"
 		user.visible_message("[user] uploads new prescription data to the [src.name].")
@@ -67,11 +67,11 @@
 
 /obj/item/clothing/glasses/omnihud/med
 	name = "\improper AR-M glasses"
-	desc = "The KHI-62-M AR glasses are a design from Kitsuhana Heavy Industries. \
+	desc = "The ARG-62-M AR Glasses are capable of displaying information on individuals. \
 	These have been upgraded with medical records access and virus database integration."
 	mode = "med"
 	action_button_name = "AR Console (Crew Monitor)"
-	arscreen_path = /datum/nano_module/crew_monitor
+	arscreen_path = /datum/nano_module/program/crew_monitor
 	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_STATUS_R,VIS_CH_BACKUP,VIS_AUGMENTED)
 
 	ar_interact(var/mob/living/carbon/human/user)
@@ -81,7 +81,7 @@
 
 /obj/item/clothing/glasses/omnihud/sec
 	name = "\improper AR-S glasses"
-	desc = "The KHI-62-S AR glasses are a design from Kitsuhana Heavy Industries. \
+	desc = "The ARG-62-S AR Glasses are capable of displaying information on individuals. \
 	These have been upgraded with security records integration and flash protection."
 	mode = "sec"
 	flash_protection = FLASH_PROTECTION_MAJOR
@@ -96,7 +96,7 @@
 
 /obj/item/clothing/glasses/omnihud/eng
 	name = "\improper AR-E glasses"
-	desc = "The KHI-62-E AR glasses are a design from Kitsuhana Heavy Industries. \
+	desc = "The ARG-62-E AR Glasses are capable of displaying information on individuals. \
 	These have been upgraded with advanced electrochromic lenses to protect your eyes during welding."
 	mode = "eng"
 	flash_protection = FLASH_PROTECTION_MAJOR
@@ -110,7 +110,7 @@
 
 /obj/item/clothing/glasses/omnihud/rnd
 	name = "\improper AR-R glasses"
-	desc = "The KHI-62-R AR glasses are a design from Kitsuhana Heavy Industries. \
+	desc = "The ARG-62-R AR Glasses are capable of displaying information on individuals. \
 	These have been ... modified ... to fit into a different frame."
 	mode = "sci"
 	icon = 'icons/obj/clothing/glasses.dmi'
@@ -156,7 +156,7 @@
 
 /obj/item/clothing/glasses/omnihud/all
 	name = "\improper AR-B glasses"
-	desc = "The KHI-62-B AR glasses are a design from Kitsuhana Heavy Industries. \
+	desc = "The ARG-62-B AR Glasses are capable of displaying information on individuals. \
 	These have been upgraded with every feature the lesser models have. Now we're talkin'."
 	mode = "best"
 	flash_protection = FLASH_PROTECTION_MAJOR
@@ -184,3 +184,28 @@
 	else
 		icon_state = initial(icon_state)
 	update_clothing_icon()
+
+
+/obj/item/clothing/glasses/hud/health/eyepatch
+    name = "Medical Hudpatch"
+    desc = "An eyepatch with built in scanners, that analyzes those in view and provides accurate data about their health status."
+    icon_state = "eyepatch"
+    item_state_slots = list(slot_r_hand_str = "blindfold", slot_l_hand_str = "blindfold")
+    body_parts_covered = 0
+    enables_planes =  list(VIS_CH_STATUS,VIS_CH_HEALTH)
+    var/eye = null
+
+/obj/item/clothing/glasses/hud/health/eyepatch/verb/switcheye()
+	set name = "Switch Eyepatch"
+	set category = "Object"
+	set src in usr
+	if(!istype(usr, /mob/living)) return
+	if(usr.stat) return
+
+	eye = !eye
+	if(eye)
+		icon_state = "[icon_state]_1"
+	else
+		icon_state = initial(icon_state)
+	update_clothing_icon()
+

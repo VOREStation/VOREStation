@@ -4,7 +4,7 @@
 	icon_state = "griffinboots"
 	item_state = "griffinboots"
 	icon = 'icons/obj/clothing/shoes_vr.dmi'
-	icon_override = 'icons/mob/feet_vr.dmi' // This appends "_r" "_l" to icon state
+	icon_override = 'icons/mob/feet_vr.dmi'
 
 /obj/item/clothing/shoes/bhop
 	name = "jump boots"
@@ -12,7 +12,7 @@
 	icon_state = "jetboots"
 	item_state = "jetboots"
 	icon = 'icons/obj/clothing/shoes_vr.dmi'
-	icon_override = 'icons/mob/feet_vr.dmi' // This appends "_r" "_l" to icon state
+	icon_override = 'icons/mob/feet_vr.dmi'
 	// resistance_flags = FIRE_PROOF
 	action_button_name = "Activate Jump Boots"
 	permeability_coefficient = 0.05
@@ -40,3 +40,22 @@
 	user.visible_message("<span class='warning'>[user] dashes forward into the air!</span>")
 	user.throw_at(target, jumpdistance, jumpspeed)
 	recharging_time = world.time + recharging_rate	
+
+/obj/item/clothing/shoes/magboots/adv
+	name = "advanced magboots"
+	desc = "Advanced magnetic boots for a trained user. They have a lower magnetic force, allowing the user to move more quickly."
+	icon = 'icons/obj/clothing/shoes_vr.dmi'
+	icon_override = 'icons/mob/feet_vr.dmi'
+	
+	icon_state = "advmag0"
+	item_flags = PHORONGUARD
+	item_state_slots = list(slot_r_hand_str = "magboots", slot_l_hand_str = "magboots")
+	icon_base = "advmag"
+
+/obj/item/clothing/shoes/magboots/adv/set_slowdown()
+	if(magpulse)
+		slowdown = shoes ? max(SHOES_SLOWDOWN, shoes.slowdown) : SHOES_SLOWDOWN	//So you can't put on magboots to make you walk faster.
+	else if(shoes)
+		slowdown = shoes.slowdown
+	else
+		slowdown = SHOES_SLOWDOWN

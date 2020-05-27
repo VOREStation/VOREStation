@@ -47,7 +47,7 @@
 		to_chat(user, "<span class='warning'>[O] must be safely placed on the ground for modification.</span>")
 		return
 
-	playsound(src.loc, O.usesound, 100, 1)
+	playsound(src, O.usesound, 100, 1)
 
 	user.visible_message("<span class='notice'>\The [user] opens \the [src] and modifies \the [O].</span>","<span class='notice'>You open \the [src] and modify \the [O].</span>")
 
@@ -63,8 +63,8 @@
 		qdel(src)
 
 /obj/item/device/modkit/examine(mob/user)
-	..(user)
-	to_chat(user, "It looks as though it modifies hardsuits to fit [target_species] users.")
+	. = ..()
+	. += "It looks as though it modifies hardsuits to fit [target_species] users."
 
 /obj/item/device/modkit/tajaran
 	name = "tajaran hardsuit modification kit"

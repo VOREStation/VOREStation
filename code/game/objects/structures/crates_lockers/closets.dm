@@ -58,24 +58,25 @@
 	update_icon()
 
 /obj/structure/closet/examine(mob/user)
-	if(!src.opened && (..(user, 1) || isobserver(user)))
+	. = ..()
+	if(Adjacent(user) || isobserver(user))
 		var/content_size = 0
 		for(var/obj/item/I in src.contents)
 			if(!I.anchored)
 				content_size += CEILING(I.w_class/2, 1)
 		if(!content_size)
-			to_chat(user, "It is empty.")
+			. += "It is empty."
 		else if(storage_capacity > content_size*4)
-			to_chat(user, "It is barely filled.")
+			. += "It is barely filled."
 		else if(storage_capacity > content_size*2)
-			to_chat(user, "It is less than half full.")
+			. += "It is less than half full."
 		else if(storage_capacity > content_size)
-			to_chat(user, "There is still some free space.")
+			. += "There is still some free space."
 		else
-			to_chat(user, "It is full.")
+			. += "It is full."
 
 	if(!src.opened && isobserver(user))
-		to_chat(user, "It contains: [counting_english_list(contents)]")
+		. += "It contains: [counting_english_list(contents)]"
 
 /obj/structure/closet/CanPass(atom/movable/mover, turf/target)
 	if(wall_mounted)
@@ -122,7 +123,7 @@
 
 	src.icon_state = src.icon_opened
 	src.opened = 1
-	playsound(src.loc, open_sound, 15, 1, -3)
+	playsound(src, open_sound, 15, 1, -3)
 	if(initial(density))
 		density = !density
 	return 1
@@ -147,7 +148,7 @@
 	src.icon_state = src.icon_closed
 	src.opened = 0
 
-	playsound(src.loc, close_sound, 15, 1, -3)
+	playsound(src, close_sound, 15, 1, -3)
 	if(initial(density))
 		density = !density
 	return 1
@@ -402,8 +403,7 @@
 		return 0 //closed but not sealed...
 	return 1
 
-/obj/structure/closet/proc/mob_breakout(var/mob/living/escapee)
-
+/obj/structure/closet/container_resist(var/mob/living/escapee)
 	if(breakout || !req_breakout())
 		return
 
@@ -414,30 +414,31 @@
 
 	visible_message("<span class='danger'>\The [src] begins to shake violently!</span>")
 
-	breakout = 1 //can't think of a better way to do this right now.
-	for(var/i in 1 to (6*breakout_time * 2)) //minutes * 6 * 5seconds * 2
-		if(!do_after(escapee, 50)) //5 seconds
-			breakout = 0
-			return
-		if(!escapee || escapee.incapacitated() || escapee.loc != src)
-			breakout = 0
-			return //closet/user destroyed OR user dead/unconcious OR user no longer in closet OR closet opened
-		//Perform the same set of checks as above for weld and lock status to determine if there is even still a point in 'resisting'...
-		if(!req_breakout())
-			breakout = 0
-			return
+	spawn(0)
+		breakout = 1 //can't think of a better way to do this right now.
+		for(var/i in 1 to (6*breakout_time * 2)) //minutes * 6 * 5seconds * 2
+			if(!do_after(escapee, 50)) //5 seconds
+				breakout = 0
+				return
+			if(!escapee || escapee.incapacitated() || escapee.loc != src)
+				breakout = 0
+				return //closet/user destroyed OR user dead/unconcious OR user no longer in closet OR closet opened
+			//Perform the same set of checks as above for weld and lock status to determine if there is even still a point in 'resisting'...
+			if(!req_breakout())
+				breakout = 0
+				return
 
-		playsound(src.loc, breakout_sound, 100, 1)
+			playsound(src, breakout_sound, 100, 1)
+			animate_shake()
+			add_fingerprint(escapee)
+
+		//Well then break it!
+		breakout = 0
+		to_chat(escapee, "<span class='warning'>You successfully break out!</span>")
+		visible_message("<span class='danger'>\The [escapee] successfully broke out of \the [src]!</span>")
+		playsound(src, breakout_sound, 100, 1)
+		break_open()
 		animate_shake()
-		add_fingerprint(escapee)
-
-	//Well then break it!
-	breakout = 0
-	to_chat(escapee, "<span class='warning'>You successfully break out!</span>")
-	visible_message("<span class='danger'>\The [escapee] successfully broke out of \the [src]!</span>")
-	playsound(src.loc, breakout_sound, 100, 1)
-	break_open()
-	animate_shake()
 
 /obj/structure/closet/proc/break_open()
 	sealed = 0

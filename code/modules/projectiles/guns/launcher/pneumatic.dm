@@ -53,7 +53,7 @@
 		item_storage.remove_from_storage(removing, src.loc)
 		user.put_in_hands(removing)
 		to_chat(user, "You remove [removing] from the hopper.")
-		playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
+		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 	else
 		to_chat(user, "There is nothing to remove in \the [src].")
 
@@ -99,13 +99,13 @@
 	return launched
 
 /obj/item/weapon/gun/launcher/pneumatic/examine(mob/user)
-	if(!..(user, 2))
-		return
-	to_chat(user, "The valve is dialed to [pressure_setting]%.")
-	if(tank)
-		to_chat(user, "The tank dial reads [tank.air_contents.return_pressure()] kPa.")
-	else
-		to_chat(user, "Nothing is attached to the tank valve!")
+	. = ..()
+	if(get_dist(user, src) <= 2)
+		. += "The valve is dialed to [pressure_setting]%."
+		if(tank)
+			. += "The tank dial reads [tank.air_contents.return_pressure()] kPa."
+		else
+			. += "Nothing is attached to the tank valve!"
 
 /obj/item/weapon/gun/launcher/pneumatic/update_release_force(obj/item/projectile)
 	if(tank)
@@ -150,18 +150,18 @@
 	icon_state = "pneumatic[buildstate]"
 
 /obj/item/weapon/cannonframe/examine(mob/user)
-	..(user)
+	. = ..()
 	switch(buildstate)
 		if(1)
-			to_chat(user, "It has a pipe segment installed.")
+			. += "It has a pipe segment installed."
 		if(2)
-			to_chat(user, "It has a pipe segment welded in place.")
+			. += "It has a pipe segment welded in place."
 		if(3)
-			to_chat(user, "It has an outer chassis installed.")
+			. += "It has an outer chassis installed."
 		if(4)
-			to_chat(user, "It has an outer chassis welded in place.")
+			. += "It has an outer chassis welded in place."
 		if(5)
-			to_chat(user, "It has a transfer valve installed.")
+			. += "It has a transfer valve installed."
 
 /obj/item/weapon/cannonframe/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/pipe))

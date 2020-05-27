@@ -30,8 +30,11 @@ SUBSYSTEM_DEF(time_track)
 		time_dilation_avg_fast = MC_AVERAGE_FAST(time_dilation_avg_fast, time_dilation_current)
 		time_dilation_avg = MC_AVERAGE(time_dilation_avg, time_dilation_avg_fast)
 		time_dilation_avg_slow = MC_AVERAGE_SLOW(time_dilation_avg_slow, time_dilation_avg)
+
+		log_game("TIDI: [time_dilation_current];[time_dilation_avg_fast];[time_dilation_avg];[time_dilation_avg_slow]")
 	else
 		first_run = FALSE
+		log_debug("TiDi Starting Log")
 	last_tick_realtime = current_realtime
 	last_tick_byond_time = current_byondtime
 	last_tick_tickcount = current_tickcount

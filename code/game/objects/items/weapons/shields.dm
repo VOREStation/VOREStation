@@ -94,7 +94,7 @@
 					return 0
 			//Otherwise, if we're here, we're gonna stop the attack entirely.
 			user.visible_message("<span class='danger'>\The [user] blocks [attack_text] with \the [src]!</span>")
-			playsound(user.loc, 'sound/weapons/Genhit.ogg', 50, 1)
+			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
 			return 1
 	return 0
 
@@ -102,7 +102,7 @@
 	if(istype(W, /obj/item/weapon/melee/baton))
 		if(cooldown < world.time - 25)
 			user.visible_message("<span class='warning'>[user] bashes [src] with [W]!</span>")
-			playsound(user.loc, 'sound/effects/shieldbash.ogg', 50, 1)
+			playsound(src, 'sound/effects/shieldbash.ogg', 50, 1)
 			cooldown = world.time
 	else
 		..()
@@ -144,7 +144,7 @@
 		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 		spark_system.set_up(5, 0, user.loc)
 		spark_system.start()
-		playsound(user.loc, 'sound/weapons/blade1.ogg', 50, 1)
+		playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
 
 /obj/item/weapon/shield/energy/get_block_chance(mob/user, var/damage, atom/damage_source = null, mob/attacker = null)
 	if(istype(damage_source, /obj/item/projectile))
@@ -163,7 +163,7 @@
 		update_icon()
 		w_class = ITEMSIZE_LARGE
 		slot_flags = null
-		playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
+		playsound(src, 'sound/weapons/saberon.ogg', 50, 1)
 		to_chat(user, "<span class='notice'>\The [src] is now active.</span>")
 
 	else
@@ -171,7 +171,7 @@
 		update_icon()
 		w_class = ITEMSIZE_TINY
 		slot_flags = SLOT_EARS
-		playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
+		playsound(src, 'sound/weapons/saberoff.ogg', 50, 1)
 		to_chat(user, "<span class='notice'>\The [src] can now be concealed.</span>")
 
 	if(istype(user,/mob/living/carbon/human))
@@ -215,8 +215,8 @@
 		update_icon()
 
 /obj/item/weapon/shield/energy/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>Alt-click to recolor it.</span>")
+	. = ..()
+	. += "<span class='notice'>Alt-click to recolor it.</span>"
 
 /obj/item/weapon/shield/riot/tele
 	name = "telescopic shield"
@@ -240,7 +240,7 @@
 /obj/item/weapon/shield/riot/tele/attack_self(mob/living/user)
 	active = !active
 	icon_state = "teleriot[active]"
-	playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
+	playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 
 	if(active)
 		force = 8

@@ -1,5 +1,5 @@
 var/list/obj/machinery/photocopier/faxmachine/allfaxes = list()
-var/list/admin_departments = list("[using_map.boss_name]", "Virgo-Prime Governmental Authority", "Supply") // Vorestation Edit
+var/list/admin_departments = list("[using_map.boss_name]", "Virgo-Prime Governmental Authority", "Virgo-Erigonne Job Boards", "Supply") // Vorestation Edit
 var/list/alldepartments = list()
 
 var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
@@ -120,17 +120,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	SSnanoui.update_uis(src)
 
 /obj/machinery/photocopier/faxmachine/attackby(obj/item/O as obj, mob/user as mob)
-	if(istype(O, /obj/item/weapon/paper) || istype(O, /obj/item/weapon/photo) || istype(O, /obj/item/weapon/paper_bundle))
-		if(!copyitem)
-			user.drop_item()
-			copyitem = O
-			O.loc = src
-			to_chat(user, "<span class='notice'>You insert \the [O] into \the [src].</span>")
-			playsound(loc, "sound/machines/click.ogg", 100, 1)
-			flick(insert_anim, src)
-		else
-			to_chat(user, "<span class='notice'>There is already something in \the [src].</span>")
-	else if(istype(O, /obj/item/device/multitool) && panel_open)
+	if(O.is_multitool() && panel_open)
 		var/input = sanitize(input(usr, "What Department ID would you like to give this fax machine?", "Multitool-Fax Machine Interface", department))
 		if(!input)
 			to_chat(usr, "No input found. Please hang up and try your call again.")
@@ -138,17 +128,8 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 		department = input
 		if( !(("[department]" in alldepartments) || ("[department]" in admin_departments)) && !(department == "Unknown"))
 			alldepartments |= department
-	else if(O.is_wrench())
-		playsound(loc, O.usesound, 50, 1)
-		anchored = !anchored
-		to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
 
-	else if(default_deconstruction_screwdriver(user, O))
-		return
-	else if(default_deconstruction_crowbar(user, O))
-		return
-
-	return
+	return ..()
 
 /obj/machinery/photocopier/faxmachine/proc/sendfax(var/destination)
 	if(stat & (BROKEN|NOPOWER))
@@ -175,7 +156,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 		return 0	//You can't send faxes to "Unknown"
 
 	flick("faxreceive", src)
-	playsound(loc, "sound/effects/printer.ogg", 50, 1)
+	playsound(src, "sound/effects/printer.ogg", 50, 1)
 
 
 	// give the sprite some time to flick
@@ -235,7 +216,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	msg += "(<a href='?_src_=holder;FaxReply=\ref[sender];originfax=\ref[src];replyorigin=[reply_type]'>REPLY</a>)</b>: "
 	msg += "Receiving '[sent.name]' via secure connection ... <a href='?_src_=holder;AdminFaxView=\ref[sent]'>view message</a></span>"
 
-	for(var/client/C in admins)
+	for(var/client/C in GLOB.admins)
 		if(check_rights((R_ADMIN|R_MOD|R_EVENT),0,C))
 			to_chat(C,msg)
 			C << 'sound/effects/printer.ogg'

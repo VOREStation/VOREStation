@@ -21,7 +21,7 @@
 	if(!cell)
 		cell = new /obj/item/weapon/cell/high(src) // 15k cell, as recharging stations are a lot more rare on the Surface.
 
-	playsound(loc, 'sound/mecha/nominalsyndi.ogg', 75, 0)
+	playsound(src, 'sound/mecha/nominalsyndi.ogg', 75, 0)
 
 /mob/living/silicon/robot/stray/speech_bubble_appearance()
 	return "synthetic_evil"
@@ -157,7 +157,7 @@
 
 			if("corrupted") // Load them up with ion laws.
 				var/datum/ai_laws/laws = new() // Start with an empty lawset.
-				for(1 to rand(1, 3))
+				for(var/i=1 to rand(1, 3))
 					laws.add_ion_law(generate_ion_law(exclude_crew_names = TRUE))
 				return laws
 

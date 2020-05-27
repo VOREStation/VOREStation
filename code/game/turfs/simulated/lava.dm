@@ -13,6 +13,7 @@
 	movement_cost = 2
 	can_build_into_floor = TRUE
 	can_dirty = FALSE
+	initial_flooring = /decl/flooring/lava // Defining this in case someone DOES step on lava and survive. Somehow.
 
 /turf/simulated/floor/lava/outdoors
 	outdoors = TRUE
@@ -31,11 +32,6 @@
 /turf/simulated/floor/lava/make_indoors()
 	..()
 	name = "magma"
-
-/turf/simulated/floor/lava/update_icon()
-	cut_overlays()
-	..()
-	update_icon_edge()
 
 /turf/simulated/floor/lava/Entered(atom/movable/AM)
 	if(burn_stuff(AM))

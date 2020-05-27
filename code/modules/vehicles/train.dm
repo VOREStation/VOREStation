@@ -29,14 +29,11 @@
 
 /obj/vehicle/train/Move()
 	var/old_loc = get_turf(src)
-	if(..())
+	if((. = ..()))
 		if(tow)
 			tow.Move(old_loc)
-		return 1
-	else
-		if(lead)
-			unattach()
-		return 0
+	else if(lead)
+		unattach()
 
 /obj/vehicle/train/Bump(atom/Obstacle)
 	if(!istype(Obstacle, /atom/movable))

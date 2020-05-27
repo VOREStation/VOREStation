@@ -18,7 +18,6 @@
 		//OTHER//
 		/////////
 	var/datum/preferences/prefs = null
-	//var/move_delay		= 1
 	var/moving			= null
 	var/adminobs		= null
 	var/area			= null
@@ -55,6 +54,7 @@
 	var/account_join_date = "(Requires database)"
 	var/account_age = "(Requires database)"
 	var/list/department_hours	// VOREStation Edit - Track hours of leave accured for each department.
+	var/list/play_hours	// VOREStation Edit - Tracks total playtime hours for each departments.
 
 	preload_rsc = PRELOAD_RSC
 

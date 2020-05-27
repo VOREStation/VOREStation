@@ -1,5 +1,5 @@
 /obj/machinery/suit_cycler
-	departments = list("Engineering","Mining","Medical","Security","Atmos","HAZMAT","Construction","Biohazard","Emergency Medical Response","Crowd Control","Exploration","Pilot Blue","Pilot")
+	departments = list("Engineering","Mining","Medical","Security","Atmos","HAZMAT","Construction","Biohazard","Emergency Medical Response","Crowd Control","Exploration","Pilot Blue","Pilot","Director","Prototype")
 	species = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_VULPKANIN)
 
 // Old Exploration is too WIP to use right now
@@ -9,3 +9,53 @@
 
 /obj/machinery/suit_cycler/pilot
 	req_access = list(access_pilot)
+
+/obj/machinery/suit_cycler/captain
+	name = "Director suit cycler"
+	model_text = "Director"
+	req_access = list(access_captain)
+	departments = list("Director")
+
+/obj/machinery/suit_cycler/captain/Initialize() //No Teshari Sprites
+	species -= SPECIES_TESHARI
+	return ..()
+
+/obj/machinery/suit_cycler/prototype
+	name = "Prototype suit cycler"
+	model_text = "Prototype"
+	req_access = list(access_cent_specops)
+	departments = list("Prototype")
+
+/obj/machinery/suit_cycler/prototype/Initialize() //No Teshari Sprites
+	species -= SPECIES_TESHARI
+	return ..()
+
+/obj/machinery/suit_cycler/vintage/tcrew
+	name = "Talon crew suit cycler"
+	model_text = "Talon crew"
+	req_access = list(access_talon)
+	departments = list("Talon Crew")
+
+/obj/machinery/suit_cycler/vintage/tengi
+	name = "Talon engineer suit cycler"
+	model_text = "Talon engineer"
+	req_access = list(access_talon)
+	departments = list("Talon Engineering")
+
+/obj/machinery/suit_cycler/vintage/tguard
+	name = "Talon guard suit cycler"
+	model_text = "Talon guard"
+	req_access = list(access_talon)
+	departments = list("Talon Marine")
+
+/obj/machinery/suit_cycler/vintage/tmedic
+	name = "Talon doctor suit cycler"
+	model_text = "Talon doctor"
+	req_access = list(access_talon)
+	departments = list("Talon Medical")
+
+/obj/machinery/suit_cycler/vintage/tcaptain
+	name = "Talon captain suit cycler"
+	model_text = "Talon captain"
+	req_access = list(access_talon)
+	departments = list("Talon Officer")

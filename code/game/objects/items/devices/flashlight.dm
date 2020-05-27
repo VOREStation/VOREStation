@@ -20,23 +20,19 @@
 
 /obj/item/device/flashlight/Initialize()
 	. = ..()
-	update_icon()
 
-/obj/item/device/flashlight/New()
-	if(power_use)
-		START_PROCESSING(SSobj, src)
-		if(cell_type)
-			cell = new cell_type(src)
-			brightness_levels = list("low" = 0.25, "medium" = 0.5, "high" = 1)
-			power_usage = brightness_levels[brightness_level]
-
+	if(power_use && cell_type)
+		cell = new cell_type(src)
+		brightness_levels = list("low" = 0.25, "medium" = 0.5, "high" = 1)
+		power_usage = brightness_levels[brightness_level]
 	else
 		verbs -= /obj/item/device/flashlight/verb/toggle
-	..()
+	
+	update_icon()
 
 /obj/item/device/flashlight/Destroy()
-	if(power_use)
-		STOP_PROCESSING(SSobj, src)
+	STOP_PROCESSING(SSobj, src)
+	qdel_null(cell)
 	return ..()
 
 /obj/item/device/flashlight/get_cell()
@@ -57,18 +53,17 @@
 		update_icon()
 
 /obj/item/device/flashlight/process()
-	if(on)
-		if(cell)
-			if(brightness_level && power_usage)
-				if(power_usage < cell.charge)
-					cell.charge -= power_usage
-				else
-					cell.charge = 0
-					visible_message("<span class='warning'>\The [src] flickers before going dull.</span>")
-					set_light(0)
-					playsound(src.loc, 'sound/effects/sparks3.ogg', 10, 1, -3) //Small cue that your light went dull in your pocket.
-					on = 0
-					update_icon()
+	if(!on || !cell)
+		return PROCESS_KILL
+
+	if(brightness_level && power_usage)
+		if(cell.use(power_usage) != power_usage) // we weren't able to use our full power_usage amount!
+			visible_message("<span class='warning'>\The [src] flickers before going dull.</span>")
+			set_light(0)
+			playsound(src, 'sound/effects/sparks3.ogg', 10, 1, -3) //Small cue that your light went dull in your pocket.
+			on = 0
+			update_icon()
+			return PROCESS_KILL
 
 /obj/item/device/flashlight/update_icon()
 	if(on)
@@ -86,23 +81,20 @@
 		set_light(0)
 
 /obj/item/device/flashlight/examine(mob/user)
-	..()
+	. = ..()
 	if(power_use && brightness_level)
-		var/tempdesc
-		tempdesc += "\The [src] is set to [brightness_level]. "
+		. += "\The [src] is set to [brightness_level]."
 		if(cell)
-			tempdesc += "\The [src] has a \the [cell] attached. "
+			. += "\The [src] has a \the [cell] attached."
 
 			if(cell.charge <= cell.maxcharge*0.25)
-				tempdesc += "It appears to have a low amount of power remaining."
+				. += "It appears to have a low amount of power remaining."
 			else if(cell.charge > cell.maxcharge*0.25 && cell.charge <= cell.maxcharge*0.5)
-				tempdesc += "It appears to have an average amount of power remaining."
+				. += "It appears to have an average amount of power remaining."
 			else if(cell.charge > cell.maxcharge*0.5 && cell.charge <= cell.maxcharge*0.75)
-				tempdesc += "It appears to have an above average amount of power remaining."
+				. += "It appears to have an above average amount of power remaining."
 			else if(cell.charge > cell.maxcharge*0.75 && cell.charge <= cell.maxcharge)
-				tempdesc += "It appears to have a high amount of power remaining."
-
-		to_chat(user, "[tempdesc]")
+				. += "It appears to have a high amount of power remaining."
 
 /obj/item/device/flashlight/attack_self(mob/user)
 	if(power_use)
@@ -113,7 +105,11 @@
 			to_chat(user, "You flick the switch on [src], but nothing happens.")
 			return 0
 	on = !on
-	playsound(src.loc, 'sound/weapons/empty.ogg', 15, 1, -3)
+	if(on && power_use)
+		START_PROCESSING(SSobj, src)
+	else if(power_use)
+		STOP_PROCESSING(SSobj, src)
+	playsound(src, 'sound/weapons/empty.ogg', 15, 1, -3)
 	update_icon()
 	user.update_action_buttons()
 	return 1
@@ -421,7 +417,7 @@
 
 	. = ..()
 	if(.)
-		user.visible_message("<span class='notice'>[user] cracks and shakes the glowstick.</span>", "<span class='notice'>You crack and shake the glowstick, turning it on!</span>")
+		user.visible_message("<span class='notice'>[user] cracks and shakes \the [name].</span>", "<span class='notice'>You crack and shake \the [src], turning it on!</span>")
 		START_PROCESSING(SSobj, src)
 
 /obj/item/device/flashlight/glowstick/red

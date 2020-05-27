@@ -2,6 +2,7 @@
 	name = "cargo train tug"
 	desc = "A ridable electric car designed for pulling cargo trolleys."
 	icon = 'icons/obj/vehicles_vr.dmi'	//VOREStation Edit
+	description_info = "Use ctrl-click to quickly toggle the engine if you're adjacent (only when vehicle is stationary). Alt-click will grab the keys, if present."
 	icon_state = "cargo_engine"
 	on = 0
 	powered = 1
@@ -192,14 +193,26 @@
 		return ..()
 
 /obj/vehicle/train/engine/examine(mob/user)
-	if(!..(user, 1))
-		return
+	. = ..()
+	if(ishuman(user) && Adjacent(user))
+		. += "The power light is [on ? "on" : "off"].\nThere are[key ? "" : " no"] keys in the ignition."
+		. += "The charge meter reads [cell? round(cell.percent(), 0.01) : 0]%"
 
-	if(!istype(usr, /mob/living/carbon/human))
-		return
 
-	to_chat(user, "The power light is [on ? "on" : "off"].\nThere are[key ? "" : " no"] keys in the ignition.")
-	to_chat(user, "The charge meter reads [cell? round(cell.percent(), 0.01) : 0]%")
+/obj/vehicle/train/engine/CtrlClick(var/mob/user)
+	if(Adjacent(user))
+		if(on)
+			stop_engine()
+		else
+			start_engine()
+	else
+		return ..()
+
+/obj/vehicle/train/engine/AltClick(var/mob/user)
+	if(Adjacent(user))
+		remove_key()
+	else
+		return ..()
 
 /obj/vehicle/train/engine/verb/start_engine()
 	set name = "Start engine"

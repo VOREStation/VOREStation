@@ -1,3 +1,6 @@
+/obj/item/clothing/suit/customs
+	desc = "A standard SolCom Customs formal jacket."
+
 //HERE BE TAUR RELATED CLOTHES
 
 /*
@@ -68,3 +71,18 @@
 	icon_state = "whitedress1"
 	flags_inv = HIDESHOES
 
+/obj/item/clothing/suit/storage/det_trench/alt
+	name = "sleek modern coat"
+	desc = "A sleek overcoat made of neo-laminated fabric. Has a reasonably sized pocket on the inside."
+	icon = 'icons/obj/clothing/suits_vr.dmi'
+	icon_override = 'icons/mob/suit_vr.dmi'
+	icon_state = "cyberpunksleek"
+	item_state = "cyberpunksleek"
+
+/obj/item/clothing/suit/storage/det_trench/alt2
+	name = "sleek modern coat (long)"
+	desc = "A sleek long overcoat made of neo-laminated fabric. Has a reasonably sized pocket on the inside."
+	icon = 'icons/obj/clothing/suits_vr.dmi'
+	icon_override = 'icons/mob/suit_vr.dmi'
+	icon_state = "cyberpunksleek_long"
+	item_state = "cyberpunksleek_long"

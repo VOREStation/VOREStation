@@ -25,14 +25,9 @@
 		/obj/item/weapon/paper_bundle = 3,
 		)
 
-/obj/machinery/papershredder/New()
-	..()
-	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/motor(src)
-	component_parts += new /obj/item/weapon/stock_parts/gear(src)
-	component_parts += new /obj/item/weapon/stock_parts/gear(src)
-	component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)
-	RefreshParts()
+/obj/machinery/papershredder/Initialize()
+	. = ..()
+	default_apply_parts()
 	update_icon()
 
 /obj/machinery/papershredder/attackby(var/obj/item/W, var/mob/user)
@@ -65,7 +60,7 @@
 			paperamount += paper_result
 			user.drop_from_inventory(W)
 			qdel(W)
-			playsound(src.loc, 'sound/items/pshred.ogg', 75, 1)
+			playsound(src, 'sound/items/pshred.ogg', 75, 1)
 			flick(shred_anim, src)
 			if(paperamount > max_paper)
 				to_chat(user,"<span class='danger'>\The [src] was too full, and shredded paper goes everywhere!</span>")

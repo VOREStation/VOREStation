@@ -28,15 +28,23 @@
 /datum/event/electrical_storm/start()
 	..()
 	valid_apcs = list()
-	for(var/obj/machinery/power/apc/A in global.machines)
+	for(var/obj/machinery/power/apc/A in GLOB.apcs)
 		if(A.z in affecting_z)
 			valid_apcs.Add(A)
 	endWhen = (severity * 60) + startWhen
 
 /datum/event/electrical_storm/tick()
 	..()
-	// See if shields can stop it first (It would be nice to port baystation's cooler shield gens perhaps)
-	// TODO - We need a better shield generator system to handle this properly.
+	// See if shields can stop it first
+	var/list/shields = list()
+	for(var/obj/machinery/power/shield_generator/G in global.machines)
+		if((G.z in affecting_z) && G.running && G.check_flag(MODEFLAG_EM))
+			shields += G
+	if(shields.len)
+		var/obj/machinery/power/shield_generator/shield_gen = pick(shields)
+		//Minor breaches aren't enough to let through frying amounts of power
+		if(shield_gen.deal_shield_damage(30 * severity, SHIELD_DAMTYPE_EM) <= SHIELD_BREACHED_MINOR)
+			return
 	if(!valid_apcs.len)
 		log_debug("No valid APCs found for electrical storm event ship=[victim]!")
 		return

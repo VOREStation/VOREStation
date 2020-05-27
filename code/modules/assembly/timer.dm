@@ -17,7 +17,7 @@
 	if(!..())
 		return FALSE
 
-	timing = !timing
+	set_state(!timing)
 
 	update_icon()
 	return 0

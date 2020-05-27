@@ -1,6 +1,7 @@
 /datum/job/cmo
 	disallow_jobhop = TRUE
 	pto_type = PTO_MEDICAL
+	dept_time_required = 60
 
 /datum/job/doctor
 	spawn_positions = 5

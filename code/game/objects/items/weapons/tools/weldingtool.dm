@@ -56,9 +56,9 @@
 	return ..()
 
 /obj/item/weapon/weldingtool/examine(mob/user)
-	if(..(user, 0))
-		if(max_fuel)
-			to_chat(user, "[bicon(src)] The [src.name] contains [get_fuel()]/[src.max_fuel] units of fuel!")
+	. = ..()
+	if(max_fuel && loc == user)
+		. += "It contains [get_fuel()]/[src.max_fuel] units of fuel!"
 
 /obj/item/weapon/weldingtool/attack(atom/A, mob/living/user, def_zone)
 	if(ishuman(A) && user.a_intent == I_HELP)
@@ -67,6 +67,11 @@
 
 		if(!S || S.robotic < ORGAN_ROBOT || S.open == 3)
 			return ..()
+
+		//VOREStation Add - No welding nanoform limbs
+		if(S.robotic > ORGAN_LIFELIKE)
+			return ..()
+		//VOREStation Add End
 
 		if(S.organ_tag == BP_HEAD)
 			if(H.head && istype(H.head,/obj/item/clothing/head/helmet/space))
@@ -146,7 +151,7 @@
 		if(!welding && max_fuel)
 			O.reagents.trans_to_obj(src, max_fuel)
 			to_chat(user, "<span class='notice'>Welder refueled</span>")
-			playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
+			playsound(src, 'sound/effects/refill.ogg', 50, 1, -6)
 			return
 		else if(!welding)
 			to_chat(user, "<span class='notice'>[src] doesn't use fuel.</span>")
@@ -273,7 +278,7 @@
 				to_chat(M, "<span class='notice'>You switch the [src] on.</span>")
 			else if(T)
 				T.visible_message("<span class='danger'>\The [src] turns on.</span>")
-			playsound(loc, acti_sound, 50, 1)
+			playsound(src, acti_sound, 50, 1)
 			src.force = 15
 			src.damtype = "fire"
 			src.w_class = ITEMSIZE_LARGE
@@ -295,7 +300,7 @@
 			to_chat(M, "<span class='notice'>You switch \the [src] off.</span>")
 		else if(T)
 			T.visible_message("<span class='warning'>\The [src] turns off.</span>")
-		playsound(loc, deac_sound, 50, 1)
+		playsound(src, deac_sound, 50, 1)
 		src.force = 3
 		src.damtype = "brute"
 		src.w_class = initial(src.w_class)
@@ -450,11 +455,11 @@
 	name = "strange welding tool"
 	desc = "An experimental welder capable of synthesizing its own fuel from spatial waveforms. It's like welding with a star!"
 	icon_state = "hybwelder"
-	max_fuel = 20
+	max_fuel = 80 //more max fuel is better! Even if it doesn't actually use fuel.
 	eye_safety_modifier = -2	// Brighter than the sun. Literally, you can look at the sun with a welding mask of proper grade, this will burn through that.
 	slowdown = 0.1
 	toolspeed = 0.25
-	w_class = ITEMSIZE_LARGE
+	w_class = ITEMSIZE_NORMAL
 	flame_intensity = 5
 	origin_tech = list(TECH_ENGINEERING = 5, TECH_PHORON = 4, TECH_PRECURSOR = 1)
 	reach = 2
@@ -557,13 +562,12 @@
 	return power_supply
 
 /obj/item/weapon/weldingtool/electric/examine(mob/user)
-	if(get_dist(src, user) > 1)
-		to_chat(user, desc)
-	else
+	. = ..()
+	if(Adjacent(user))
 		if(power_supply)
-			to_chat(user, "[bicon(src)] The [src.name] has [get_fuel()] charge left.")
+			. += "It [src.name] has [get_fuel()] charge left."
 		else
-			to_chat(user, "[bicon(src)] The [src.name] has no power cell!")
+			. += "It [src.name] has no power cell!"
 
 /obj/item/weapon/weldingtool/electric/get_fuel()
 	if(use_external_power)

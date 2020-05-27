@@ -92,7 +92,11 @@
 	signlang_verb = list("gestures with their hands", "gestures with their ears and tail", "gestures with their ears, tail and hands")
 	colour = "tajaran"
 	key = "l"
-	flags = WHITELISTED | SIGNLANG | NO_STUTTER | NONVERBAL
+	flags = WHITELISTED | SIGNLANG | NO_STUTTER //nonverbal define was not needed here, and i need to use it ~Layne
+
+/datum/language/tajsign/broadcast(var/mob/living/speaker, var/message, var/speaker_mask)
+	log_say("(SIGN) [message]", speaker)
+	speaker.say_signlang(message, pick(signlang_verb), src)
 
 /datum/language/tajsign/can_speak_special(var/mob/speaker)	// TODO: If ever we make external organs assist languages, convert this over to the new format
 	var/list/allowed_species = list(SPECIES_TAJ, SPECIES_TESHARI)	// Need a tail and ears and such to use this.
@@ -214,6 +218,19 @@
 	flags = WHITELISTED
 	space_chance = 20
 	syllables = list("z", "dz", "i", "iv", "ti", "az", "hix", "xo", "av", "xo", "x", "za", "at", "vi")
+
+/datum/language/promethean
+	name = LANGUAGE_PROMETHEAN
+	desc = "A complex language composed of guttural noises and bioluminescent signals"
+	signlang_verb = list("flickers","flashes","rapidly flashes a light","quickly flickers a light")
+	speech_verb = "gurgles"
+	ask_verb = "gurgles"
+	exclaim_verb = "gurgles"
+	colour = "promethean"
+	key = "t"
+	flags = WHITELISTED | NONVERBAL
+	space_chance = 20
+	syllables = list("gur","gul","gug","gel","ger","geg","gir","gil","gig","gor","gol","gog","ug","ul","ur","uu","el","eg","er","oe","ig","il","ir","oi","og","ol","or","oo")
 
 
 //Syllable Lists

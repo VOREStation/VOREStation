@@ -65,9 +65,12 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 	var/obj/item/device/paicard/pai = null	// A slot for a personal AI device
 
+	var/spam_proof = FALSE // If true, it can't be spammed by random events.
+
 /obj/item/device/pda/examine(mob/user)
-	if(..(user, 1))
-		to_chat(user, "The time [stationtime2text()] is displayed in the corner of the screen.")
+	. = ..()
+	if(Adjacent(user))
+		. += "The time [stationtime2text()] is displayed in the corner of the screen."
 
 /obj/item/device/pda/CtrlClick()
 	if(issilicon(usr))
@@ -327,13 +330,15 @@ var/global/list/obj/item/device/pda/PDAs = list()
 /obj/item/device/pda/ai/attack_self(mob/user as mob)
 	if ((honkamt > 0) && (prob(60)))//For clown virus.
 		honkamt--
-		playsound(loc, 'sound/items/bikehorn.ogg', 30, 1)
+		playsound(src, 'sound/items/bikehorn.ogg', 30, 1)
 	return
 
 
 /obj/item/device/pda/ai/pai
 	ttone = "assist"
 
+/obj/item/device/pda/ai/shell
+	spam_proof = TRUE // Since empty shells get a functional PDA.
 
 // Used for the PDA multicaster, which mirrors messages sent to it to a specific department,
 /obj/item/device/pda/multicaster
@@ -342,6 +347,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	ttone = "data"
 	detonate = 0
 	news_silent = 1
+	spam_proof = TRUE // Spam messages don't actually work and its difficult to disable these.
 	var/list/cartridges_to_send_to = list()
 
 // This is what actually mirrors the message,
@@ -768,7 +774,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 				scanmode = 4
 		if("Honk")
 			if ( !(last_honk && world.time < last_honk + 20) )
-				playsound(loc, 'sound/items/bikehorn.ogg', 50, 1)
+				playsound(src, 'sound/items/bikehorn.ogg', 50, 1)
 				last_honk = world.time
 		if("Gas Scan")
 			if(scanmode == 5)
@@ -977,7 +983,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 	if ((honkamt > 0) && (prob(60)))//For clown virus.
 		honkamt--
-		playsound(loc, 'sound/items/bikehorn.ogg', 30, 1)
+		playsound(src, 'sound/items/bikehorn.ogg', 30, 1)
 
 	return 1 // return 1 tells it to refresh the UI in NanoUI
 
@@ -1014,14 +1020,14 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		var/datum/effect/effect/system/smoke_spread/chem/S = new /datum/effect/effect/system/smoke_spread/chem
 		S.attach(P.loc)
 		S.set_up(P, 10, 0, P.loc)
-		playsound(P.loc, 'sound/effects/smoke.ogg', 50, 1, -3)
+		playsound(P, 'sound/effects/smoke.ogg', 50, 1, -3)
 		S.start()
 		message += "Large clouds of smoke billow forth from your [P]!"
 	if(i>=40 && i<=45) //Bad smoke
 		var/datum/effect/effect/system/smoke_spread/bad/B = new /datum/effect/effect/system/smoke_spread/bad
 		B.attach(P.loc)
 		B.set_up(P, 10, 0, P.loc)
-		playsound(P.loc, 'sound/effects/smoke.ogg', 50, 1, -3)
+		playsound(P, 'sound/effects/smoke.ogg', 50, 1, -3)
 		B.start()
 		message += "Large clouds of noxious smoke billow forth from your [P]!"
 	if(i>=65 && i<=75) //Weaken
@@ -1058,7 +1064,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			var/mob/M = loc
 			M.put_in_hands(id)
 			to_chat(usr, "<span class='notice'>You remove the ID from the [name].</span>")
-			playsound(loc, 'sound/machines/id_swipe.ogg', 100, 1)
+			playsound(src, 'sound/machines/id_swipe.ogg', 100, 1)
 		else
 			id.loc = get_turf(src)
 		id = null
@@ -1127,7 +1133,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			conversations.Add("\ref[P]")
 		if(!P.conversations.Find("\ref[src]"))
 			P.conversations.Add("\ref[src]")
-
+		to_chat(U, "[bicon(src)] <b>Sent message to [P.owner] ([P.ownjob]), </b>\"[t]\"")
 
 		if (prob(5) && security_level >= SEC_LEVEL_BLUE) //Give the AI a chance of intercepting the message		//VOREStation Edit: no spam interception on lower codes + lower interception chance
 			var/who = src.owner
@@ -1145,7 +1151,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 /obj/item/device/pda/proc/new_info(var/beep_silent, var/message_tone, var/reception_message)
 	if (!beep_silent)
-		playsound(loc, 'sound/machines/twobeep.ogg', 50, 1)
+		playsound(src, 'sound/machines/twobeep.ogg', 50, 1)
 		for (var/mob/O in hearers(2, loc))
 			O.show_message(text("[bicon(src)] *[message_tone]*"))
 	//Search for holder of the PDA.
@@ -1194,6 +1200,15 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 	log_pda("(PDA: [sending_unit]) sent \"[message]\" to [name]",usr)
 	new_message = 1
+
+/obj/item/device/pda/proc/spam_message(sender, message)
+	var/reception_message = "\icon[src] <b>Message from [sender] (Unknown / spam?), </b>\"[message]\" (Unable to Reply)"
+	new_info(message_silent, ttone, reception_message)
+
+	if(prob(50)) // Give the AI an increased chance to intercept the message
+		for(var/mob/living/silicon/ai/ai in mob_list)
+			if(ai.aiPDA != src)
+				ai.show_message("<i>Intercepted message from <b>[sender]</b></i> (Unknown / spam?) <i>to <b>[owner]</b>: [message]</i>")
 
 /obj/item/device/pda/verb/verb_reset_pda()
 	set category = "Object"
@@ -1265,7 +1280,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	if (cartridge.radio)
 		cartridge.radio.hostpda = null
 	to_chat(usr, "<span class='notice'>You remove \the [cartridge] from the [name].</span>")
-	playsound(loc, 'sound/machines/id_swipe.ogg', 100, 1)
+	playsound(src, 'sound/machines/id_swipe.ogg', 100, 1)
 	cartridge = null
 
 /obj/item/device/pda/proc/id_check(mob/user as mob, choice as num)//To check for IDs; 1 for in-pda use, 2 for out of pda use.

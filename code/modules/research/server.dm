@@ -15,13 +15,9 @@
 	req_access = list(access_rd) //Only the R&D can change server settings.
 	circuit = /obj/item/weapon/circuitboard/rdserver
 
-/obj/machinery/r_n_d/server/New()
-	..()
-	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
-	component_parts += new /obj/item/stack/cable_coil(src)
-	component_parts += new /obj/item/stack/cable_coil(src)
-	RefreshParts()
+/obj/machinery/r_n_d/server/Initialize()
+	. = ..()
+	default_apply_parts()
 
 /obj/machinery/r_n_d/server/Destroy()
 	griefProtection()
@@ -31,7 +27,7 @@
 	var/tot_rating = 0
 	for(var/obj/item/weapon/stock_parts/SP in src)
 		tot_rating += SP.rating
-	idle_power_usage /= max(1, tot_rating)
+	update_idle_power_usage(initial(idle_power_usage) / max(1, tot_rating))
 
 /obj/machinery/r_n_d/server/Initialize()
 	. = ..()
@@ -294,7 +290,7 @@
 
 /obj/machinery/computer/rdservercontrol/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
-		playsound(src.loc, 'sound/effects/sparks4.ogg', 75, 1)
+		playsound(src, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = 1
 		to_chat(user, "<span class='notice'>You you disable the security protocols.</span>")
 		src.updateUsrDialog()

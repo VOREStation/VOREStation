@@ -65,25 +65,25 @@
 	var/list/log = list()
 	var/req_log_access = access_cargo //default access for checking logs is cargo
 	var/has_logs = 0 //defaults to 0, set to anything else for vendor to have logs
+	var/can_rotate = 1 //Defaults to yes, can be set to 0 for vendors without or with unwanted directionals.
 
 
 /obj/machinery/vending/Initialize()
 	. = ..()
 	wires = new(src)
-	spawn(4)
-		if(product_slogans)
-			slogan_list += splittext(product_slogans, ";")
+	if(product_slogans)
+		slogan_list += splittext(product_slogans, ";")
 
-			// So not all machines speak at the exact same time.
-			// The first time this machine says something will be at slogantime + this random value,
-			// so if slogantime is 10 minutes, it will say it at somewhere between 10 and 20 minutes after the machine is crated.
-			last_slogan = world.time + rand(0, slogan_delay)
+		// So not all machines speak at the exact same time.
+		// The first time this machine says something will be at slogantime + this random value,
+		// so if slogantime is 10 minutes, it will say it at somewhere between 10 and 20 minutes after the machine is crated.
+		last_slogan = world.time + rand(0, slogan_delay)
 
-		if(product_ads)
-			ads_list += splittext(product_ads, ";")
+	if(product_ads)
+		ads_list += splittext(product_ads, ";")
 
-		build_inventory()
-		power_change()
+	build_inventory()
+	power_change()
 
 /**
  *  Build produdct_records from the products lists
@@ -253,7 +253,7 @@
  */
 /obj/machinery/vending/proc/pay_with_ewallet(var/obj/item/weapon/spacecash/ewallet/wallet)
 	visible_message("<span class='info'>\The [usr] swipes \the [wallet] through \the [src].</span>")
-	playsound(src.loc, 'sound/machines/id_swipe.ogg', 50, 1)
+	playsound(src, 'sound/machines/id_swipe.ogg', 50, 1)
 	if(currently_vending.price > wallet.worth)
 		status_message = "Insufficient funds on chargecard."
 		status_error = 1
@@ -274,7 +274,7 @@
 		visible_message("<span class='info'>\The [usr] swipes \the [I] through \the [src].</span>")
 	else
 		visible_message("<span class='info'>\The [usr] swipes \the [ID_container] through \the [src].</span>")
-	playsound(src.loc, 'sound/machines/id_swipe.ogg', 50, 1)
+	playsound(src, 'sound/machines/id_swipe.ogg', 50, 1)
 	var/datum/money_account/customer_account = get_account(I.associated_account_number)
 	if(!customer_account)
 		status_message = "Error: Unable to access account. Please contact technical support if problem persists."
@@ -430,7 +430,7 @@
 			if((!allowed(usr)) && !emagged && scan_id)	//For SECURE VENDING MACHINES YEAH
 				to_chat(usr, "<span class='warning'>Access denied.</span>")	//Unless emagged of course
 				flick("[icon_state]-deny",src)
-				playsound(src.loc, 'sound/machines/deniedbeep.ogg', 50, 0)
+				playsound(src, 'sound/machines/deniedbeep.ogg', 50, 0)
 				return
 
 			var/key = text2num(href_list["vend"])
@@ -467,7 +467,7 @@
 	if((!allowed(usr)) && !emagged && scan_id)	//For SECURE VENDING MACHINES YEAH
 		to_chat(usr, "<span class='warning'>Access denied.</span>")	//Unless emagged of course
 		flick("[icon_state]-deny",src)
-		playsound(src.loc, 'sound/machines/deniedbeep.ogg', 50, 0)
+		playsound(src, 'sound/machines/deniedbeep.ogg', 50, 0)
 		return
 	vend_ready = 0 //One thing at a time!!
 	status_message = "Vending..."
@@ -506,7 +506,7 @@
 			sleep(3)
 			if(R.get_product(get_turf(src)))
 				visible_message("<span class='notice'>\The [src] clunks as it vends an additional item.</span>")
-		playsound(src.loc, "sound/[vending_sound]", 100, 1, 1)
+		playsound(src, "sound/[vending_sound]", 100, 1, 1)
 
 		status_message = ""
 		status_error = 0
@@ -545,6 +545,22 @@
 			popup.open()
 	else
 		to_chat(user,"<span class='warning'>You do not have the required access to view the vending logs for this machine.</span>")
+
+
+/obj/machinery/vending/verb/rotate_clockwise()
+	set name = "Rotate Vending Machine Clockwise"
+	set category = "Object"
+	set src in oview(1)
+
+	if (src.can_rotate == 0)
+		to_chat(usr, "<span class='warning'>\The [src] cannot be rotated.</span>")
+		return 0
+
+	if (src.anchored || usr:stat)
+		to_chat(usr, "It is bolted down!")
+		return 0
+	src.set_dir(turn(src.dir, 270))
+	return 1
 
 /obj/machinery/vending/verb/check_logs()
 	set name = "Check Vending Logs"
@@ -820,7 +836,8 @@
 					/obj/item/weapon/towel/random = 20)
 	//VOREStation Edit End
 
-	contraband = list(/obj/item/weapon/reagent_containers/syringe/steroid = 4)
+	contraband = list(/obj/item/weapon/reagent_containers/syringe/steroid = 4, /obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask/proteanshake = 2) // VOREStation Add - Slurpable blobs.
+	
 
 /obj/machinery/vending/cart
 	name = "PTech"
@@ -900,6 +917,7 @@
 	contraband = list(/obj/item/weapon/reagent_containers/syringe/antitoxin = 4,/obj/item/weapon/reagent_containers/syringe/antiviral = 4,/obj/item/weapon/reagent_containers/pill/tox = 1)
 	req_log_access = access_cmo
 	has_logs = 1
+	can_rotate = 0
 
 /obj/machinery/vending/wallmed2
 	name = "NanoMed"
@@ -911,6 +929,7 @@
 	contraband = list(/obj/item/weapon/reagent_containers/pill/tox = 3)
 	req_log_access = access_cmo
 	has_logs = 1
+	can_rotate = 0
 
 /obj/machinery/vending/security
 	name = "SecTech"
@@ -935,6 +954,7 @@
 	premium = list(/obj/item/weapon/reagent_containers/glass/bottle/ammonia = 10,/obj/item/weapon/reagent_containers/glass/bottle/diethylamine = 5)
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 
+
 /obj/machinery/vending/hydroseeds
 	name = "MegaSeed Servitor"
 	desc = "When you need seeds fast!"
@@ -950,7 +970,7 @@
 					/obj/item/seeds/cabbageseed = 3,/obj/item/seeds/grapeseed = 3,/obj/item/seeds/pumpkinseed = 3,/obj/item/seeds/cherryseed = 3,/obj/item/seeds/plastiseed = 3,/obj/item/seeds/riceseed = 3)
 	contraband = list(/obj/item/seeds/amanitamycelium = 2,/obj/item/seeds/glowshroom = 2,/obj/item/seeds/libertymycelium = 2,/obj/item/seeds/mtearseed = 2,
 					  /obj/item/seeds/nettleseed = 2,/obj/item/seeds/reishimycelium = 2,/obj/item/seeds/reishimycelium = 2,/obj/item/seeds/shandseed = 2,)
-	premium = list(/obj/item/toy/waterflower = 1)
+	premium = list(/obj/item/weapon/reagent_containers/spray/waterflower = 1)
 
 /**
  *  Populate hydroseeds product_records
@@ -1015,7 +1035,8 @@
 	/obj/item/weapon/storage/toolbox/lunchbox/mars = 3,
 	/obj/item/weapon/storage/toolbox/lunchbox/cti = 3,
 	/obj/item/weapon/storage/toolbox/lunchbox/nymph = 3,
-	/obj/item/weapon/storage/toolbox/lunchbox/syndicate = 3)
+	/obj/item/weapon/storage/toolbox/lunchbox/syndicate = 3,
+	/obj/item/trash/bowl = 10) //VOREStation Add
 	contraband = list(/obj/item/weapon/material/knife/butch = 2)
 
 /obj/machinery/vending/sovietsoda
@@ -1125,7 +1146,18 @@
 					/obj/item/toy/plushie/carp = 1,
 					/obj/item/toy/plushie/deer = 1,
 					/obj/item/toy/plushie/tabby_cat = 1,
-					/obj/item/device/threadneedle = 3)
+					/obj/item/device/threadneedle = 3,
+					//VOREStation Add Start
+					/obj/item/toy/plushie/lizardplushie/kobold = 1,
+					/obj/item/toy/plushie/slimeplushie = 1,
+					/obj/item/toy/plushie/box = 1,
+					/obj/item/toy/plushie/borgplushie = 1,
+					/obj/item/toy/plushie/borgplushie/medihound = 1,
+					/obj/item/toy/plushie/borgplushie/scrubpuppy = 1,
+					/obj/item/toy/plushie/foxbear = 1,
+					/obj/item/toy/plushie/nukeplushie = 1,
+					/obj/item/toy/plushie/otter = 1)
+					//VOREStation Add End
 	premium = list(/obj/item/weapon/reagent_containers/food/drinks/bottle/champagne = 1,
 					/obj/item/weapon/storage/trinketbox = 2)
 	prices = list(/obj/item/weapon/storage/fancy/heartbox = 15,
@@ -1154,7 +1186,19 @@
 					/obj/item/toy/plushie/carp = 50,
 					/obj/item/toy/plushie/deer = 50,
 					/obj/item/toy/plushie/tabby_cat = 50,
-					/obj/item/device/threadneedle = 2)
+					/obj/item/device/threadneedle = 2,
+					//VOREStation Add Start
+					/obj/item/toy/plushie/lizardplushie/kobold = 50,
+					/obj/item/toy/plushie/slimeplushie = 50,
+					/obj/item/toy/plushie/box = 50,
+					/obj/item/toy/plushie/borgplushie = 50,
+					/obj/item/toy/plushie/borgplushie/medihound = 50,
+					/obj/item/toy/plushie/borgplushie/scrubpuppy = 50,
+					/obj/item/toy/plushie/foxbear = 50,
+					/obj/item/toy/plushie/nukeplushie = 50,
+					/obj/item/toy/plushie/otter = 50)
+					//VOREStation Add End
+
 
 /obj/machinery/vending/fishing
 	name = "Loot Trawler"

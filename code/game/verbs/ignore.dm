@@ -42,7 +42,7 @@
 /client/proc/is_key_ignored(var/key_to_check)
 	key_to_check = ckey(key_to_check)
 	if(key_to_check in prefs.ignored_players)
-		if(GLOB.directory[key_to_check] in admins) // This is here so this is only evaluated if someone is actually being blocked.
+		if(GLOB.directory[key_to_check] in GLOB.admins) // This is here so this is only evaluated if someone is actually being blocked.
 			return 0
 		return 1
 	return 0

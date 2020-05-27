@@ -28,21 +28,21 @@
 	matter = list("glass" = 60)
 
 /obj/item/weapon/reagent_containers/food/drinks/glass2/examine(mob/M as mob)
-	..()
+	. = ..()
 
 	for(var/I in extras)
 		if(istype(I, /obj/item/weapon/glass_extra))
-			to_chat(M, "There is \a [I] in \the [src].")
+			. += "There is \a [I] in \the [src]."
 		else if(istype(I, /obj/item/weapon/reagent_containers/food/snacks/fruit_slice))
-			to_chat(M, "There is \a [I] on the rim.")
+			. += "There is \a [I] on the rim."
 		else
-			to_chat(M, "There is \a [I] somewhere on the glass. Somehow.")
+			. += "There is \a [I] somewhere on the glass. Somehow."
 
 	if(has_ice())
-		to_chat(M, "There is some ice floating in the drink.")
+		. += "There is some ice floating in the drink."
 
 	if(has_fizz())
-		to_chat(M, "It is fizzing slightly.")
+		. += "It is fizzing slightly."
 
 /obj/item/weapon/reagent_containers/food/drinks/glass2/proc/has_ice()
 	if(reagents.reagent_list.len > 0)
@@ -74,9 +74,9 @@
 	update_icon()
 
 /obj/item/weapon/reagent_containers/food/drinks/glass2/proc/can_add_extra(obj/item/weapon/glass_extra/GE)
-	if(!("[base_icon]_[GE.glass_addition]left" in icon_states(icon))) //VOREStation Edit
+	if(!("[base_icon]_[GE.glass_addition]left" in cached_icon_states(icon))) //VOREStation Edit
 		return 0
-	if(!("[base_icon]_[GE.glass_addition]right" in icon_states(icon))) //VOREStation Edit
+	if(!("[base_icon]_[GE.glass_addition]right" in cached_icon_states(icon))) //VOREStation Edit
 		return 0
 
 	return 1
@@ -106,9 +106,9 @@
 			over_liquid |= "[base_icon][amnt]_fizz"
 
 		for(var/S in R.glass_special)
-			if("[base_icon]_[S]" in icon_states(icon)) //VOREStation Edit
+			if("[base_icon]_[S]" in cached_icon_states(icon)) //VOREStation Edit
 				under_liquid |= "[base_icon]_[S]"
-			else if("[base_icon][amnt]_[S]" in icon_states(icon)) //VOREStation Edit
+			else if("[base_icon][amnt]_[S]" in cached_icon_states(icon)) //VOREStation Edit
 				over_liquid |= "[base_icon][amnt]_[S]"
 
 		for(var/k in under_liquid)

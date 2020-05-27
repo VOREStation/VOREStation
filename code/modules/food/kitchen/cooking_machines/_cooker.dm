@@ -39,10 +39,10 @@
 	cooking = new_setting
 	icon_state = new_setting ? on_icon : off_icon
 
-/obj/machinery/cooker/examine()
-	..()
-	if(cooking_obj && Adjacent(usr))
-		to_chat(usr, "You can see \a [cooking_obj] inside.")
+/obj/machinery/cooker/examine(mob/user)
+	. = ..()
+	if(cooking_obj && Adjacent(user))
+		. += "You can see \a [cooking_obj] inside."
 
 /obj/machinery/cooker/attackby(var/obj/item/I, var/mob/user)
 
@@ -166,7 +166,7 @@
 	qdel(cooking_obj)
 	src.visible_message("<span class='notice'>\The [src] pings!</span>")
 	if(cooked_sound)
-		playsound(get_turf(src), cooked_sound, 50, 1)
+		playsound(src, cooked_sound, 50, 1)
 
 	if(!can_burn_food)
 		icon_state = off_icon

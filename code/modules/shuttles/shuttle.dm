@@ -30,6 +30,8 @@
 
 	var/tmp/depart_time = 0 //Similar to above, set when the shuttle leaves when long jumping. Used for progress bars.
 
+	var/debug_logging = FALSE // If set to true, the shuttle will start broadcasting its debug messages to admins
+
 	// Future Thoughts: Baystation put "docking" stuff in a subtype, leaving base type pure and free of docking stuff. Is this best?
 
 /datum/shuttle/New(_name, var/obj/effect/shuttle_landmark/initial_location)
@@ -52,7 +54,8 @@
 	else
 		current_location = SSshuttles.get_landmark(current_location)
 	if(!istype(current_location))
-		log_debug("UM whoops, no initial? [src]")
+		if(debug_logging)
+			log_shuttle("UM whoops, no initial? [src]")
 		CRASH("Shuttle '[name]' could not find its starting location landmark [current_location].")
 
 	if(src.name in SSshuttles.shuttles)
@@ -73,6 +76,16 @@
 	if(SSsupply.shuttle == src)
 		SSsupply.shuttle = null
 	. = ..()
+
+// This is called after all shuttles have been initialized by SSshuttles, but before sectors have been initialized.
+// Importantly for subtypes, all shuttles will have been initialized and mothershuttles hooked up by the time this is called.
+/datum/shuttle/proc/populate_shuttle_objects()
+	// Scan for shuttle consoles on them needing auto-config.
+	for(var/area/A in find_childfree_areas()) // Let sub-shuttles handle their areas, only do our own.
+		for(var/obj/machinery/computer/shuttle_control/SC in A)
+			if(!SC.shuttle_tag)
+				SC.set_shuttle_tag(src.name)
+	return
 
 // This creates a graphical warning to where the shuttle is about to land, in approximately five seconds.
 /datum/shuttle/proc/create_warning_effect(var/obj/effect/shuttle_landmark/destination)
@@ -229,34 +242,39 @@
 // Returns TRUE if we actually moved, otherwise FALSE.
 /datum/shuttle/proc/attempt_move(var/obj/effect/shuttle_landmark/destination, var/interim = FALSE)
 	if(current_location == destination)
-		log_shuttle("Shuttle [src] attempted to move to [destination] but is already there!")
+		if(debug_logging)
+			log_shuttle("Shuttle [src] attempted to move to [destination] but is already there!")
 		return FALSE
 
 	if(!destination.is_valid(src))
-		log_shuttle("Shuttle [src] aborting attempt_move() because destination=[destination] is not valid")
+		if(debug_logging)
+			log_shuttle("Shuttle [src] aborting attempt_move() because destination=[destination] is not valid")
 		return FALSE
 	if(current_location.cannot_depart(src))
-		log_shuttle("Shuttle [src] aborting attempt_move() because current_location=[current_location] refuses.")
+		if(debug_logging)
+			log_shuttle("Shuttle [src] aborting attempt_move() because current_location=[current_location] refuses.")
 		return FALSE
 
-	log_shuttle("[src] moving to [destination]. Areas are [english_list(shuttle_area)]")
-	var/list/translation = list()
-	for(var/area/A in shuttle_area)
-		log_shuttle("Translating [A]")
-		translation += get_turf_translation(get_turf(current_location), get_turf(destination), A.contents)
+	// Observer pattern pre-move
 	var/old_location = current_location
-
- 	// Observer pattern pre-move
 	GLOB.shuttle_pre_move_event.raise_event(src, old_location, destination)
 	current_location.shuttle_departed(src)
 
+	if(debug_logging)
+		log_shuttle("[src] moving to [destination]. Areas are [english_list(shuttle_area)]")
+	var/list/translation = list()
+	for(var/area/A in shuttle_area)
+		if(debug_logging)
+			log_shuttle("Translating [A]")
+		translation += get_turf_translation(get_turf(current_location), get_turf(destination), A.contents)
+
 	// Actually do it! (This never fails)
 	perform_shuttle_move(destination, translation)
-	
+
 	// Observer pattern post-move
 	destination.shuttle_arrived(src)
 	GLOB.shuttle_moved_event.raise_event(src, old_location, destination)
-	
+
 	return TRUE
 
 
@@ -264,7 +282,8 @@
 //A note to anyone overriding move in a subtype. perform_shuttle_move() must absolutely not, under any circumstances, fail to move the shuttle.
 //If you want to conditionally cancel shuttle launches, that logic must go in short_jump() or long_jump()
 /datum/shuttle/proc/perform_shuttle_move(var/obj/effect/shuttle_landmark/destination, var/list/turf_translation)
-	log_shuttle("perform_shuttle_move() current=[current_location] destination=[destination]")
+	if(debug_logging)
+		log_shuttle("perform_shuttle_move() current=[current_location] destination=[destination]")
 	//to_world("move_shuttle() called for [name] leaving [origin] en route to [destination].")
 
 	//to_world("area_coming_from: [origin]")
@@ -321,6 +340,10 @@
 						//M.throw_at_random(FALSE, 4, 1)
 						if(istype(M, /mob/living/carbon))
 							M.Weaken(3)
+							//VOREStation Add
+							if(move_direction)
+								throw_a_mob(M,move_direction)
+							//VOREStation Add End
 		// We only need to rebuild powernets for our cables.  No need to check machines because they are on top of cables.
 		for(var/obj/structure/cable/C in A)
 			powernets |= C.powernet
@@ -347,6 +370,15 @@
 		cables |= P.cables
 		qdel(P)
 	SSmachines.setup_powernets_for_cables(cables)
+
+	// Adjust areas of mothershuttle so it doesn't try and bring us with it if it jumps while we aren't on it.
+	if(mothershuttle)
+		var/datum/shuttle/MS = SSshuttles.shuttles[mothershuttle]
+		if(MS)
+			if(current_location.landmark_tag == motherdock)
+				MS.shuttle_area |= shuttle_area // We are now on mothershuttle! Bring us along!
+			else
+				MS.shuttle_area -= shuttle_area // We have left mothershuttle! Don't bring us along!
 
 	return
 

@@ -15,11 +15,15 @@ GLOBAL_LIST_INIT(vchatFiles, list(
 	// First do logging in database
 	if(isclient(target))
 		var/client/C = target
-		vchat_add_message(C.ckey,message)
+		vchat_add_message(C.ckey, message)
 	else if(ismob(target))
 		var/mob/M = target
 		if(M.ckey)
-			vchat_add_message(M.ckey,message)
+			vchat_add_message(M.ckey, message)
+	else if(target == world)
+		for(var/client/C in GLOB.clients)
+			if(!QDESTROYING(C)) // Might be necessary?
+				vchat_add_message(C.ckey, message)
 
 	// Now lets either queue it for sending, or send it right now
 	if(Master.current_runlevel == RUNLEVEL_INIT || !SSchat?.subsystem_initialized)
@@ -37,6 +41,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 	var/list/message_queue = list()
 	var/broken = FALSE
 	var/resources_sent = FALSE
+	var/message_buffer = 200 // Number of messages being actively shown to the user, used to play back that many messages on reconnect
 
 	var/last_topic_time = 0
 	var/too_many_topics = 0
@@ -77,6 +82,10 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 		become_broken()
 		return FALSE
 
+	if(!owner.is_preference_enabled(/datum/client_preference/vchat_enable))
+		become_broken()
+		return FALSE
+
 	//Could be loaded from a previous round, are you still there?
 	if(winget(owner,"outputwindow.htmloutput","is-visible") == "true") //Winget returns strings
 		send_event(event = list("evttype" = "availability"))
@@ -101,7 +110,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 		return
 
 	owner << browse(file2text("code/modules/vchat/html/vchat.html"), "window=htmloutput")
-	
+
 	//Check back later
 	spawn(15 SECONDS)
 		if(!src)
@@ -118,17 +127,21 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 	loaded = TRUE
 	broken = FALSE
 	owner.chatOutputLoadedAt = world.time
-	
+
 	//update_vis() //It does it's own winsets
 	ping_cycle()
 	send_playerinfo()
 	load_database()
-	
+
+	owner.verbs += /client/proc/vchat_export_log
+
 //Perform DB shenanigans
 /datum/chatOutput/proc/load_database()
 	set waitfor = FALSE
-	var/list/results = vchat_get_messages(owner.ckey) //If there's bad performance on reconnects, look no further
-	for(var/list/message in results)
+	// Only send them the number of buffered messages, instead of the ENTIRE log
+	var/list/results = vchat_get_messages(owner.ckey, message_buffer) //If there's bad performance on reconnects, look no further
+	for(var/i in results.len to 1 step -1)
+		var/list/message = results[i]
 		var/count = 10
 		to_chat_immediate(owner, message["time"], message["message"])
 		count++
@@ -144,12 +157,12 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 	if(!owner)
 		qdel(src)
 		return
-	
+
 	update_vis()
-	
+
 	spawn()
 		alert(owner,"VChat didn't load after some time. Switching to use oldchat as a fallback. Try using 'Reload VChat' verb in OOC verbs, or reconnecting to try again.")
-	
+
 //Provide the JS with who we are
 /datum/chatOutput/proc/send_playerinfo()
 	if(!owner)
@@ -229,6 +242,9 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 		if("debug")
 			data = debugmsg(arglist(params))
 
+	if(href_list["showingnum"])
+		message_buffer = CLAMP(text2num(href_list["showingnum"]), 50, 2000)
+
 	if(data)
 		send_event(event = data)
 
@@ -262,31 +278,45 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 	var/list/partial = splittext(iconData, "{")
 	return replacetext(copytext(partial[2], 3, -5), "\n", "")
 
+/proc/expire_bicon_cache(key)
+	if(GLOB.bicon_cache[key])
+		GLOB.bicon_cache -= key
+		return TRUE
+	return FALSE
+
+GLOBAL_LIST_EMPTY(bicon_cache) // Cache of the <img> tag results, not the icons
 /proc/bicon(var/obj, var/use_class = 1, var/custom_classes = "")
 	var/class = use_class ? "class='icon misc [custom_classes]'" : null
-	if (!obj)
+	if(!obj)
 		return
 
-	var/static/list/bicon_cache = list()
-	if (isicon(obj))
-		//Icon refs get reused all the time especially on temporarily made ones like chat tags, too difficult to cache.
-		//if (!bicon_cache["\ref[obj]"]) // Doesn't exist yet, make it.
-			//bicon_cache["\ref[obj]"] = icon2base64(obj)
-
+	// Try to avoid passing bicon an /icon directly. It is better to pass it an atom so it can cache.
+	if(isicon(obj)) // Passed an icon directly, nothing to cache-key on, as icon refs get reused *often*
 		return "<img [class] src='data:image/png;base64,[icon2base64(obj)]'>"
 
 	// Either an atom or somebody fucked up and is gonna get a runtime, which I'm fine with.
 	var/atom/A = obj
-	var/key = "[istype(A.icon, /icon) ? "\ref[A.icon]" : A.icon]:[A.icon_state]"
-	if (!bicon_cache[key]) // Doesn't exist, make it.
-		var/icon/I = icon(A.icon, A.icon_state, SOUTH, 1)
-		if (ishuman(obj))
-			I = getFlatIcon(obj) //Ugly
-		bicon_cache[key] = icon2base64(I, key)
+	var/key
+	var/changes_often = ishuman(A) || isobserver(A) // If this ends up with more, move it into a proc or var on atom.
+	
+	if(changes_often)
+		key = "\ref[A]"
+	else
+		key = "[istype(A.icon, /icon) ? "\ref[A.icon]" : A.icon]:[A.icon_state]"
+	
+	var/base64 = GLOB.bicon_cache[key]
+	// Non-human atom, no cache
+	if(!base64) // Doesn't exist, make it.
+		base64 = icon2base64(A.examine_icon(), key)
+		GLOB.bicon_cache[key] = base64
+		if(changes_often)
+			addtimer(CALLBACK(GLOBAL_PROC, .proc/expire_bicon_cache, key), 50 SECONDS, TIMER_UNIQUE)
+
+	// May add a class to the img tag created by bicon
 	if(use_class)
 		class = "class='icon [A.icon_state] [custom_classes]'"
 
-	return "<img [class] src='data:image/png;base64,[bicon_cache[key]]'>"
+	return "<img [class] src='data:image/png;base64,[base64]'>"
 
 //Checks if the message content is a valid to_chat message
 /proc/is_valid_tochat_message(message)
@@ -338,15 +368,54 @@ var/to_chat_src
 			time = world.time
 
 		var/client/C = CLIENT_FROM_VAR(target)
-		if(C && C.chatOutput)
-			if(C.chatOutput.broken)
-				DIRECT_OUTPUT(C, original_message)
-				return
-			
-			// // Client still loading, put their messages in a queue - Actually don't, logged already in database.
-			// if(!C.chatOutput.loaded && C.chatOutput.message_queue && islist(C.chatOutput.message_queue))
-			// 	C.chatOutput.message_queue[++C.chatOutput.message_queue.len] = list("time" = time, "message" = message)
-			// 	return
+		if(!C)
+			return // No client? No care.
+		else if(C.chatOutput.broken)
+			DIRECT_OUTPUT(C, original_message)
+			return
+		else if(!C.chatOutput.loaded)
+			return // If not loaded yet, do nothing and history-sending on load will get it.
 
 		var/list/tojson = list("time" = time, "message" = message);
 		target << output(jsEncode(tojson), "htmloutput:putmessage")
+
+/client/proc/vchat_export_log()
+	set name = "Export chatlog"
+	set category = "OOC"
+
+	if(chatOutput.broken)
+		to_chat(src, "<span class='warning'>Error: VChat isn't processing your messages!</span>")
+		return
+
+	var/list/results = vchat_get_messages(ckey)
+	if(!LAZYLEN(results))
+		to_chat(src, "<span class='warning'>Error: No messages found! Please inform a dev if you do have messages!</span>")
+		return
+
+	var/o_file = "data/chatlog_tmp/[ckey]_chat_log"
+	if(fexists(o_file) && !fdel(o_file))
+		to_chat(src, "<span class='warning'>Error: Your chat log is already being prepared. Please wait until it's been downloaded before trying to export it again.</span>")
+		return
+
+	o_file = file(o_file)
+
+	// Write the CSS file to the log
+	o_file << "<html><head><style>"
+	o_file << file2text(file("code/modules/vchat/css/ss13styles.css"))
+	o_file << "</style></head><body>"
+
+	// Write the messages to the log
+	for(var/list/result in results)
+		o_file << "[result["message"]]<br>"
+
+	o_file << "</body></html>"
+
+	// Send the log to the client
+	src << ftp(o_file, "log_[time2text(world.timeofday, "YYYY_MM_DD_(hh_mm)")].html")
+
+	// clean up the file on our end
+	spawn(10 SECONDS)
+		if(!fdel(o_file))
+			spawn(1 MINUTE)
+				if(!fdel(o_file))
+					log_debug("Warning: [ckey]'s chatlog could not be deleted one minute after file transfer was initiated. It is located at 'data/chatlog_tmp/[ckey]_chat_log' and will need to be manually removed.")

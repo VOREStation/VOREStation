@@ -6,7 +6,7 @@ var/datum/antagonist/renegade/renegades
 	role_text = "Renegade"
 	role_text_plural = "Renegades"
 	bantype = "renegade"
-	restricted_jobs = list("AI", "Cyborg")
+	avoid_silicons = TRUE
 	welcome_text = "Something's going to go wrong today, you can just feel it. You're paranoid, you've got a gun, and you're going to survive."
 	antag_sound = 'sound/effects/antag_notice/general_goodie_alert.ogg'
 	antag_text = "You are a <b>minor</b> antagonist! Within the rules, \

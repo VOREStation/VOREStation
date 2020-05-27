@@ -22,16 +22,10 @@
 	pullin = null
 	purged = null
 	internals = null
-	oxygen = null
 	i_select = null
 	m_select = null
-	toxin = null
-	fire = null
-	bodytemp = null
 	healths = null
 	throw_icon = null
-	nutrition_icon = null
-	pressure = null
 	pain = null
 	item_use_icon = null
 	gun_move_icon = null
@@ -45,6 +39,7 @@
 		dead_mob_list += src
 	else
 		living_mob_list += src
+	lastarea = get_area(src)
 	hook_vr("mob_new",list(src)) //VOREStation Code
 	update_transform() // Some mobs may start bigger or smaller than normal.
 	return ..()
@@ -146,9 +141,6 @@
 			return M
 	return 0
 
-/mob/proc/movement_delay(oldloc, direct)
-	return 0
-
 /mob/proc/Life()
 //	if(organStructure)
 //		organStructure.ProcessOrgans()
@@ -217,7 +209,7 @@
 			else
 				client.perspective = EYE_PERSPECTIVE
 				client.eye = loc
-	return
+		return 1
 
 
 /mob/proc/show_inv(mob/user as mob)
@@ -232,8 +224,15 @@
 		to_chat(src, "<span class='notice'>Something is there but you can't see it.</span>")
 		return 1
 
+	//Could be gone by the time they finally pick something
+	if(!A)
+		return 1
+
 	face_atom(A)
-	A.examine(src)
+	var/list/results = A.examine(src)
+	if(!results || !results.len)
+		results = list("You were unable to examine that. Tell a developer!")
+	to_chat(src, jointext(results, "<br>"))
 
 /mob/verb/pointed(atom/A as mob|obj|turf in view())
 	set name = "Point To"
@@ -342,46 +341,56 @@
 	return
 */
 
+/mob/proc/set_respawn_timer(var/time)
+	// Try to figure out what time to use
+	
+	// Special cases, can never respawn
+	if(ticker?.mode?.deny_respawn)
+		time = -1
+	else if(!config.abandon_allowed)
+		time = -1
+	else if(!config.respawn)
+		time = -1
+	
+	// Special case for observing before game start
+	else if(ticker?.current_state <= GAME_STATE_SETTING_UP)
+		time = 1 MINUTE
+	
+	// Wasn't given a time, use the config time
+	else if(!time)
+		time = config.respawn_time
+	
+	var/keytouse = ckey
+	// Try harder to find a key to use
+	if(!keytouse && key)
+		keytouse = ckey(key)
+	else if(!keytouse && mind?.key)
+		keytouse = ckey(mind.key)
+	
+	GLOB.respawn_timers[keytouse] = world.time + time
+
+/mob/observer/dead/set_respawn_timer()
+	if(config.antag_hud_restricted && has_enabled_antagHUD)
+		..(-1)
+	else
+		return // Don't set it, no need
+
 /mob/verb/abandon_mob()
-	set name = "Respawn"
+	set name = "Return to Menu"
 	set category = "OOC"
 
-	if (!( config.abandon_allowed ))
-		to_chat(usr, "<span class='notice'>Respawn is disabled.</span>")
-		return
-	if ((stat != 2 || !( ticker )))
+	if(stat != DEAD || !ticker)
 		to_chat(usr, "<span class='notice'><B>You must be dead to use this!</B></span>")
 		return
-	if (ticker.mode && ticker.mode.deny_respawn) //BS12 EDIT
-		to_chat(usr, "<span class='notice'>Respawn is disabled for this roundtype.</span>")
-		return
-	else
-		var/deathtime = world.time - src.timeofdeath
-		if(istype(src,/mob/observer/dead))
-			var/mob/observer/dead/G = src
-			if(G.has_enabled_antagHUD == 1 && config.antag_hud_restricted)
-				to_chat(usr, "<font color='blue'><B>By using the antagHUD you forfeit the ability to join the round.</B></font>")
-				return
-		var/deathtimeminutes = round(deathtime / 600)
-		var/pluralcheck = "minute"
-		if(deathtimeminutes == 0)
-			pluralcheck = ""
-		else if(deathtimeminutes == 1)
-			pluralcheck = " [deathtimeminutes] minute and"
-		else if(deathtimeminutes > 1)
-			pluralcheck = " [deathtimeminutes] minutes and"
-		var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
-		to_chat(usr, "You have been dead for[pluralcheck] [deathtimeseconds] seconds.")
 
-		if ((deathtime < (1 * 600)) && (ticker && ticker.current_state > GAME_STATE_PREGAME))	//VOREStation Edit: lower respawn timer
-			to_chat(usr, "You must wait 1 minute to respawn!")
+	// Final chance to abort "respawning"
+	if(mind && timeofdeath) // They had spawned before
+		var/choice = alert(usr, "Returning to the menu will prevent your character from being revived in-round. Are you sure?", "Confirmation", "No, wait", "Yes, leave")
+		if(choice == "No, wait")
 			return
-		else
-			to_chat(usr, "You can respawn now, enjoy your new life!")
-
-	log_game("[usr.name]/[usr.key] used abandon mob.")
-
-	to_chat(usr, "<font color='blue'><B>Make sure to play a different character, and please roleplay correctly!</B></font>")
+	
+	// Beyond this point, you're going to respawn
+	to_chat(usr, config.respawn_message)
 
 	if(!client)
 		log_game("[usr.key] AM failed due to disconnect.")
@@ -508,15 +517,6 @@
 
 
 /mob/proc/pull_damage()
-	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
-		if(H.health - H.halloss <= config.health_threshold_softcrit)
-			for(var/name in H.organs_by_name)
-				var/obj/item/organ/external/e = H.organs_by_name[name]
-				if(e && H.lying)
-					if((e.status & ORGAN_BROKEN && (!e.splinted || (e.splinted && e.splinted in e.contents && prob(30))) || e.status & ORGAN_BLEEDING) && (H.getBruteLoss() + H.getFireLoss() >= 100))
-						return 1
-						break
 	return 0
 
 /mob/MouseDrop(mob/M as mob)
@@ -666,10 +666,6 @@
 				stat("Instances:","[world.contents.len]")
 				stat(null, "Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)")
 
-			if(statpanel("Processes"))
-				if(processScheduler)
-					processScheduler.statProcesses()
-
 			if(statpanel("MC"))
 				stat("Location:", "([x], [y], [z]) [loc]")
 				stat("CPU:","[world.cpu]")
@@ -741,12 +737,12 @@
 
 
 /mob/proc/facedir(var/ndir)
-	if(!canface() || (client && (client.moving || (world.time < move_delay))))
+	if(!canface() || (client && (client.moving || !checkMoveCooldown())))
 		return 0
 	set_dir(ndir)
 	if(buckled && buckled.buckle_movable)
 		buckled.set_dir(ndir)
-	move_delay += movement_delay()
+	setMoveCooldown(movement_delay())
 	return 1
 
 
@@ -909,7 +905,7 @@ mob/proc/yank_out_object()
 	set desc = "Remove an embedded item at the cost of bleeding and pain."
 	set src in view(1)
 
-	if(!isliving(usr) || !usr.canClick())
+	if(!isliving(usr) || !usr.checkClickCooldown())
 		return
 	usr.setClickCooldown(20)
 
@@ -956,6 +952,7 @@ mob/proc/yank_out_object()
 	valid_objects = get_visible_implants(0)
 	if(valid_objects.len == 1) //Yanking out last object - removing verb.
 		src.verbs -= /mob/proc/yank_out_object
+		clear_alert("embeddedobject")
 
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
@@ -1199,6 +1196,16 @@ mob/proc/yank_out_object()
 		else
 			registered_z = null
 
+GLOBAL_LIST_EMPTY(living_players_by_zlevel)
+/mob/living/update_client_z(new_z)
+	var/precall_reg_z = registered_z
+	. = ..() // will update registered_z if necessary
+	if(precall_reg_z != registered_z) // parent did work, let's do work too
+		if(precall_reg_z)
+			GLOB.living_players_by_zlevel[precall_reg_z] -= src
+		if(registered_z)
+			GLOB.living_players_by_zlevel[registered_z] += src
+
 /mob/onTransitZ(old_z, new_z)
 	..()
 	update_client_z(new_z)
@@ -1224,3 +1231,14 @@ mob/proc/yank_out_object()
 	selfimage.loc = src
 
 	return selfimage
+
+/mob/proc/GetAltName()
+	return ""
+
+/mob/proc/get_ghost(even_if_they_cant_reenter = 0)
+	if(mind)
+		return mind.get_ghost(even_if_they_cant_reenter)
+
+/mob/proc/grab_ghost(force)
+	if(mind)
+		return mind.grab_ghost(force = force)

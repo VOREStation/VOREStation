@@ -146,9 +146,11 @@
 		else
 			H.adjustOxyLoss(ALRAUNE_CRIT_MAX_OXYLOSS)
 
-		H.oxygen_alert = max(H.oxygen_alert, 1)
+		H.throw_alert("pressure", /obj/screen/alert/lowpressure)
 
 		return // skip air processing if there's no air
+	else
+		H.clear_alert("pressure")
 
 	// now into the good stuff
 
@@ -188,10 +190,10 @@
 		H.adjustOxyLoss(max(ALRAUNE_MAX_OXYLOSS*(1-ratio), 0))
 		failed_inhale = 1
 
-		H.oxygen_alert = max(H.oxygen_alert, 1)
+		H.throw_alert("oxy", /obj/screen/alert/not_enough_co2)
 	else
 		// We're in safe limits
-		H.oxygen_alert = 0
+		H.clear_alert("oxy")
 
 	inhaled_gas_used = inhaling/6
 	breath.adjust_gas("carbon_dioxide", -inhaled_gas_used, update = 0) //update afterwards
@@ -199,10 +201,9 @@
 
 	//Now we handle CO2.
 	if(inhale_pp > safe_exhaled_max * 0.7) // For a human, this would be too much exhaled gas in the air. But plants don't care.
-		H.co2_alert = 1 // Give them the alert on the HUD. They'll be aware when the good stuff is present.
-
+		H.throw_alert("co2", /obj/screen/alert/too_much_co2/plant) // Give them the alert on the HUD. They'll be aware when the good stuff is present.
 	else
-		H.co2_alert = 0
+		H.clear_alert("co2")
 
 	//do the CO2 buff stuff here
 
@@ -217,7 +218,7 @@
 		H.adjustFireLoss(-(light_amount * co2buff)) //this won't let you tank environmental damage from fire. MAYBE cold until your body temp drops.
 
 	if(H.nutrition < (200 + 400*co2buff)) //if no CO2, a fully lit tile gives them 1/tick up to 200. With CO2, potentially up to 600.
-		H.nutrition += (light_amount*(1+co2buff*5))
+		H.adjust_nutrition(light_amount*(1+co2buff*5))
 
 	// Too much poison in the air.
 	if(toxins_pp > safe_toxins_max)
@@ -225,9 +226,9 @@
 		if(H.reagents)
 			H.reagents.add_reagent("toxin", CLAMP(ratio, MIN_TOXIN_DAMAGE, MAX_TOXIN_DAMAGE))
 			breath.adjust_gas(poison_type, -poison/6, update = 0) //update after
-		H.phoron_alert = max(H.phoron_alert, 1)
+		H.throw_alert("tox_in_air", /obj/screen/alert/tox_in_air)
 	else
-		H.phoron_alert = 0
+		H.clear_alert("tox_in_air")
 
 	// If there's some other shit in the air lets deal with it here.
 	if(breath.gas["sleeping_agent"])
@@ -271,24 +272,18 @@
 		if(breath.temperature >= breath_heat_level_1)
 			if(breath.temperature < breath_heat_level_2)
 				H.apply_damage(HEAT_GAS_DAMAGE_LEVEL_1, BURN, bodypart, used_weapon = "Excessive Heat")
-				H.fire_alert = max(H.fire_alert, 2)
 			else if(breath.temperature < breath_heat_level_3)
 				H.apply_damage(HEAT_GAS_DAMAGE_LEVEL_2, BURN, bodypart, used_weapon = "Excessive Heat")
-				H.fire_alert = max(H.fire_alert, 2)
 			else
 				H.apply_damage(HEAT_GAS_DAMAGE_LEVEL_3, BURN, bodypart, used_weapon = "Excessive Heat")
-				H.fire_alert = max(H.fire_alert, 2)
 
 		else if(breath.temperature <= breath_cold_level_1)
 			if(breath.temperature > breath_cold_level_2)
 				H.apply_damage(COLD_GAS_DAMAGE_LEVEL_1, BURN, bodypart, used_weapon = "Excessive Cold")
-				H.fire_alert = max(H.fire_alert, 1)
 			else if(breath.temperature > breath_cold_level_3)
 				H.apply_damage(COLD_GAS_DAMAGE_LEVEL_2, BURN, bodypart, used_weapon = "Excessive Cold")
-				H.fire_alert = max(H.fire_alert, 1)
 			else
 				H.apply_damage(COLD_GAS_DAMAGE_LEVEL_3, BURN, bodypart, used_weapon = "Excessive Cold")
-				H.fire_alert = max(H.fire_alert, 1)
 
 
 		//breathing in hot/cold air also heats/cools you a bit
@@ -357,7 +352,7 @@
 	var/short_emote_descriptor = list("picks", "grabs")
 	var/self_emote_descriptor = list("grab", "pick", "snatch")
 	var/fruit_type = "apple"
-	var/mob/organ_owner = null
+	var/mob/living/organ_owner = null
 	var/gen_cost = 0.5
 
 /obj/item/organ/internal/fruitgland/New()
@@ -382,7 +377,7 @@
 			to_chat(organ_owner, "<span class='warning'>[pick(full_message)]</span>")
 
 /obj/item/organ/internal/fruitgland/proc/do_generation()
-	organ_owner.nutrition -= gen_cost
+	organ_owner.adjust_nutrition(-gen_cost)
 	for(var/reagent in generated_reagents)
 		reagents.add_reagent(reagent, generated_reagents[reagent])
 
@@ -417,7 +412,7 @@
 	set src in view(1)
 
 	//do_reagent_implant(usr)
-	if(!isliving(usr) || !usr.canClick())
+	if(!isliving(usr) || !usr.checkClickCooldown())
 		return
 
 	if(usr.incapacitated() || usr.stat > CONSCIOUS)

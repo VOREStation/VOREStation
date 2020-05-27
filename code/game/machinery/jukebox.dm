@@ -54,8 +54,8 @@
 		new/datum/track("Russkiy rep Diskoteka", 'sound/music/russianrapdisco.ogg')
 	)
 
-/obj/machinery/media/jukebox/New()
-	..()
+/obj/machinery/media/jukebox/Initialize()
+	. = ..()
 	default_apply_parts()
 	wires = new/datum/wires/jukebox(src)
 	update_icon()
@@ -63,7 +63,7 @@
 /obj/machinery/media/jukebox/Destroy()
 	qdel(wires)
 	wires = null
-	..()
+	return ..()
 
 // On initialization, copy our tracks from the global list
 /obj/machinery/media/jukebox/Initialize()
@@ -217,7 +217,7 @@
 		StopPlaying()
 	else if(href_list["play"])
 		if(emagged)
-			playsound(src.loc, 'sound/items/AirHorn.ogg', 100, 1)
+			playsound(src, 'sound/items/AirHorn.ogg', 100, 1)
 			for(var/mob/living/carbon/M in ohearers(6, src))
 				if(M.get_ear_protection() >= 2)
 					continue

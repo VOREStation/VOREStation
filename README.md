@@ -31,6 +31,8 @@ Creative Commons 3.0 BY-NC-SA license
 
 All assets including icons and sound are under a [CC BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0/) license unless otherwise indicated.
 
+Attributions and other licenses with links to original works are noted in [ATTRIBUTIONS.md](./ATTRIBUTIONS.md).
+
 ### GETTING THE CODE
 The simplest way to obtain the code is using the github .zip feature. If you do this, you won't be able to make a Pull Request later, though. You'll need to use the git method.
 

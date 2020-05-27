@@ -341,11 +341,11 @@
 	var/list/areas_with_intercom = list()
 	var/list/areas_with_camera = list()
 
-	for(var/area/A in all_areas)
+	for(var/area/A in world)
 		if(!(A.type in areas_all))
 			areas_all.Add(A.type)
 
-	for(var/obj/machinery/power/apc/APC in machines)
+	for(var/obj/machinery/power/apc/APC in GLOB.apcs)
 		var/area/A = get_area(APC)
 		if(A && !(A.type in areas_with_APC))
 			areas_with_APC.Add(A.type)
@@ -582,17 +582,17 @@
 
 	switch(input("Which list?") in list("Players","Admins","Mobs","Living Mobs","Dead Mobs", "Clients"))
 		if("Players")
-			usr << jointext(player_list,",")
+			to_chat(usr, span("filter_debuglogs", jointext(player_list,",")))
 		if("Admins")
-			usr << jointext(admins,",")
+			to_chat(usr, span("filter_debuglogs", jointext(GLOB.admins,",")))
 		if("Mobs")
-			usr << jointext(mob_list,",")
+			to_chat(usr, span("filter_debuglogs", jointext(mob_list,",")))
 		if("Living Mobs")
-			usr << jointext(living_mob_list,",")
+			to_chat(usr, span("filter_debuglogs", jointext(living_mob_list,",")))
 		if("Dead Mobs")
-			usr << jointext(dead_mob_list,",")
+			to_chat(usr, span("filter_debuglogs", jointext(dead_mob_list,",")))
 		if("Clients")
-			usr << jointext(GLOB.clients,",")
+			to_chat(usr, span("filter_debuglogs", jointext(GLOB.clients,",")))
 
 /client/proc/cmd_debug_using_map()
 	set category = "Debug"

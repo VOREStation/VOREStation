@@ -4,6 +4,61 @@ Title: Syndicate Uplink, uses some javascript to change nanoUI up a bit.
 Used In File(s): \code\game\objects\items\devices\uplinks.dm
  -->
 {{:helper.syndicateMode()}}
+
+<style type="text/css">
+.fixedLengthLink .link {
+	float: left;
+	width: 270px;
+	height: auto;
+	white-space: normal;
+	background-color: #8f1414;
+	border: none;
+	text-align: center;
+}
+
+.link {
+	background: none;
+	border: none;
+	white-space: normal;
+	height: auto;
+	text-align: left;
+}
+
+.fixedLengthLink .link:hover {
+	border: none;
+}
+
+a:hover, .zoomLink:hover, .linkActive:hover {
+	cursor: pointer;
+	background-color: #ff1414;
+}
+
+.category {
+	width: 150px;
+	margin-left: 20px;
+}
+
+.category .uiIcon16 {
+	margin-left: -20px;
+}
+
+.categoryActive {
+	background-color: #ff1414;
+}
+
+.scroll {
+	overflow-y: auto;
+	overflow-x: hidden;
+	scrollbar-base-color: #8f1414;
+	scrollbar-arrow-color: #ffffff;
+	height: 374px;
+}
+
+.statusDisplay {
+	border: 1px solid #8f1414;
+}
+</style>
+
 <H2><span class="white">{{:data.welcome}}</span></H2>
 <br>
 <div class="item">
@@ -11,10 +66,14 @@ Used In File(s): \code\game\objects\items\devices\uplinks.dm
 		<b>Functions</b>:
 	</div>
 	<div class="itemContent">
-		{{:helper.link('Request Items', 'gear', {'menu' : 0}, null, 'fixedLeftWider')}}
-		{{:helper.link('Exploitable Information', 'gear', {'menu' : 2}, null, 'fixedLeftWider')}}
-		{{:helper.link('Return', 'arrowreturn-1-w', {'return' : 1}, null, 'fixedLeft')}}
-		{{:helper.link('Close', 'gear', {'lock' : "1"}, null, 'fixedLeft')}}
+		<div class="line">
+			{{:helper.link('Request Items', 'gear', {'menu' : 0}, null, 'fixedLeftWider')}}
+			{{:helper.link('Exploitable Information', 'gear', {'menu' : 2}, null, 'fixedLeftWider')}}
+		</div>
+		<div class="line">
+			{{:helper.link('Return', 'arrowreturn-1-w', {'return' : 1}, null, 'fixedLeft')}}
+			{{:helper.link('Close', 'gear', {'lock' : "1"}, null, 'fixedLeft')}}
+		</div>
 	</div>
 </div>
 <br>
@@ -28,9 +87,10 @@ Used In File(s): \code\game\objects\items\devices\uplinks.dm
 	</div>
 </div>
 
+
 {{if data.menu == 0}}
 	{{if data.discount_amount < 100}}
-		<div class="item">
+		<div class="item" style="margin-bottom: 10px;">
 			<div class="itemLabel">
 				<b>Currently discounted</b>:
 			</div>
@@ -40,24 +100,37 @@ Used In File(s): \code\game\objects\items\devices\uplinks.dm
 		</div>
 	{{/if}}
 
-	<H2>Categories:</H2>
-	{{for data.categories}}
-		<div class="item">
-			{{:helper.link(value.name, 'gear', {'menu' : 1, 'category' : value.ref})}}
+	<div style="float: left; width: 30%;">
+		<div class="itemLabel">Categories</div>
+		{{for data.categories}}
+			<div class="line">
+				{{:helper.link(value.name, 'gear', {'category' : value.ref}, (value.name == data.current_category) ? 'categoryActive' : '', 'category')}}
+			</div>
+		{{/for}}
+	</div>
+
+	<div style="float: right; width: 70%">
+		<div class="itemLabel">
+			Request Items
 		</div>
-	{{/for}}
-{{else data.menu == 1}}
-    <H2><span class="white">Request items:</span></H2>
-    <span class="white"><i>Each item costs a number of tele-crystals as indicated by the number following their name.</i></span>
-	
-	{{for data.items}}
-		<div class="item">
-			{{:helper.link(value.name, 'gear', {'buy_item' : value.ref}, value.can_buy ? null : 'disabled')}} - <span class="white">{{:value.cost}}</span>
+		<div class="itemContentWide" style="width: 95%;">
+			<div class="statusDisplay">
+				<div class="line scroll">
+					{{for data.items}}
+						<div class="line">
+							<div class="statusValue">
+								<div class="fixedLengthLink">
+									{{:helper.link(value.name, 'gear', {'buy_item' : value.ref}, value.can_buy ? null : 'disabled')}}
+								</div>
+								<div style="float: right; margin-right: 20px;">{{:value.cost}} points</div>
+							</div>
+						</div>
+					{{/for}}
+				</div>
+			</div>
 		</div>
-		<div class="item">
-			{{:value.description}}
-		</div>
-    {{/for}}
+	</div>
+
 {{else data.menu == 2}}
     <H2><span class="white">Information Record List:</span></H2>
     <br>

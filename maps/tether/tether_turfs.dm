@@ -15,18 +15,22 @@ VIRGO3B_TURF_CREATE(/turf/simulated/floor)
 	return 0
 
 VIRGO3B_TURF_CREATE(/turf/simulated/floor/reinforced)
+
 VIRGO3B_TURF_CREATE(/turf/simulated/floor/tiled/steel_dirty)
 
 VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/dirt)
+/turf/simulated/floor/outdoors/dirt/virgo3b
+	icon = 'icons/turf/flooring/asteroid.dmi'
+	icon_state = "asteroid"
+
 VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/rocks)
+
 VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/grass/sif)
 /turf/simulated/floor/outdoors/grass/sif
 	turf_layers = list(
 		/turf/simulated/floor/outdoors/rocks/virgo3b,
 		/turf/simulated/floor/outdoors/dirt/virgo3b
 		)
-
-
 
 // Overriding these for the sake of submaps that use them on other planets.
 // This means that mining on tether base and space is oxygen-generating, but solars and mining should use the virgo3b subtype
@@ -133,7 +137,7 @@ VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor)
 
 /turf/unsimulated/floor/techfloor_grid
 	name = "floor"
-	icon = 'icons/turf/flooring/techfloor_vr.dmi'
+	icon = 'icons/turf/flooring/techfloor.dmi'
 	icon_state = "techfloor_grid"
 
 /turf/unsimulated/floor/maglev

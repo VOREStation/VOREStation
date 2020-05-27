@@ -7,12 +7,23 @@
 	layer = ABOVE_TURF_LAYER
 	anchored = 1
 	w_class = ITEMSIZE_LARGE
-	canhear_range = 2
+	canhear_range = 7 //VOREStation Edit
 	flags = NOBLOODY
 	var/circuit = /obj/item/weapon/circuitboard/intercom
 	var/number = 0
-	var/last_tick //used to delay the powercheck
 	var/wiresexposed = 0
+
+/obj/item/device/radio/intercom/Initialize()
+	. = ..()
+	var/area/A = get_area(src)
+	if(A)
+		GLOB.apc_event.register(A, src, /obj/update_icon)
+
+/obj/item/device/radio/intercom/Destroy()
+	var/area/A = get_area(src)
+	if(A)
+		GLOB.apc_event.unregister(A, src, /obj/update_icon)
+	return ..()
 
 /obj/item/device/radio/intercom/custom
 	name = "station intercom (Custom)"
@@ -60,7 +71,6 @@
 
 /obj/item/device/radio/intercom/New()
 	..()
-	START_PROCESSING(SSobj, src)
 	circuit = new circuit(src)
 
 /obj/item/device/radio/intercom/department/medbay/New()
@@ -103,10 +113,6 @@
 	..()
 	internal_channels[num2text(RAID_FREQ)] = list(access_syndicate)
 
-/obj/item/device/radio/intercom/Destroy()
-	STOP_PROCESSING(SSobj, src)
-	return ..()
-
 /obj/item/device/radio/intercom/attack_ai(mob/user as mob)
 	src.add_fingerprint(user)
 	spawn (0)
@@ -123,15 +129,8 @@
 		wiresexposed = !wiresexposed
 		to_chat(user, "The wires have been [wiresexposed ? "exposed" : "unexposed"]")
 		playsound(src, W.usesound, 50, 1)
-		if(wiresexposed)
-			if(!on)
-				icon_state = "intercom-p_open"
-			else
-				icon_state = "intercom_open"
-		else
-			icon_state = "intercom"
-		return
-	if(wiresexposed && W.is_wirecutter())
+		update_icon()
+	else if(wiresexposed && W.is_wirecutter())
 		user.visible_message("<span class='warning'>[user] has cut the wires inside \the [src]!</span>", "You have cut the wires inside \the [src].")
 		playsound(src, W.usesound, 50, 1)
 		new/obj/item/stack/cable_coil(get_turf(src), 5)
@@ -149,7 +148,6 @@
 		qdel(src)
 	else
 		src.attack_hand(user)
-	return
 
 /obj/item/device/radio/intercom/receive_range(freq, level)
 	if (!on)
@@ -166,30 +164,34 @@
 
 	return canhear_range
 
-/obj/item/device/radio/intercom/process()
-	if(((world.timeofday - last_tick) > 30) || ((world.timeofday - last_tick) < 0))
-		last_tick = world.timeofday
+/obj/item/device/radio/intercom/update_icon()
+	var/area/A = get_area(src)
+	on = A?.powered(EQUIP)
 
-		if(!src.loc)
-			on = 0
+	if(!on)
+		if(wiresexposed)
+			icon_state = "intercom-p_open"
 		else
-			var/area/A = get_area(src)
-			if(!A)
-				on = 0
-			else
-				on = A.powered(EQUIP) // set "on" to the power status
-
-		if(!on)
-			if(wiresexposed)
-				icon_state = "intercom-p_open"
-			else
-				icon_state = "intercom-p"
+			icon_state = "intercom-p"
+	else
+		if(wiresexposed)
+			icon_state = "intercom_open"
 		else
-			if(wiresexposed)
-				icon_state = "intercom_open"
-			else
-				icon_state = initial(icon_state)
+			icon_state = initial(icon_state)
 
+//VOREStation Add Start
+/obj/item/device/radio/intercom/AICtrlClick(var/mob/user)
+	ToggleBroadcast()
+	to_chat(user, "<span class='notice'>\The [src]'s microphone is now <b>[broadcasting ? "enabled" : "disabled"]</b>.</span>")
+
+/obj/item/device/radio/intercom/AIAltClick(var/mob/user)
+	if(frequency == AI_FREQ)
+		set_frequency(initial(frequency))
+		to_chat(user, "<span class='notice'>\The [src]'s frequency is now set to <font color='green'><b>Default</b></font>.</span>")
+	else
+		set_frequency(AI_FREQ)
+		to_chat(user, "<span class='notice'>\The [src]'s frequency is now set to <font color='pink'><b>AI Private</b></font>.</span>")
+//VOREStation Add End
 /obj/item/device/radio/intercom/locked
     var/locked_frequency
 

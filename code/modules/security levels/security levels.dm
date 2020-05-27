@@ -64,10 +64,6 @@
 				else
 					security_announcement_down.Announce("[config.alert_desc_red_downto]", "Attention! Code red!")
 				security_level = SEC_LEVEL_RED
-				/*	- At the time of commit, setting status displays didn't work properly
-				var/obj/machinery/computer/communications/CC = locate(/obj/machinery/computer/communications,world)
-				if(CC)
-					CC.post_status("alert", "redalert")*/
 			if(SEC_LEVEL_DELTA)
 				security_announcement_up.Announce("[config.alert_desc_delta]", "Attention! Delta alert level reached!", new_sound = 'sound/effects/siren.ogg')
 				security_level = SEC_LEVEL_DELTA
@@ -79,11 +75,20 @@
 		for(var/obj/machinery/status_display/FA in machines)
 			if(FA.z in using_map.contact_levels)
 				FA.on_alert_changed(newlevel)
+		//VOREStation Add
+		for(var/hp in GLOB.holoposters)
+			var/obj/machinery/holoposter/HP = hp
+			HP.update_icon()
+		//VOREStation Add End
 
 		if(level >= SEC_LEVEL_RED)
 			atc.reroute_traffic(yes = 1) // Tell them fuck off we're busy.
 		else
 			atc.reroute_traffic(yes = 0)
+
+		spawn()
+			SSnightshift.check_nightshift()
+
 		admin_chat_message(message = "Security level is now: [uppertext(get_security_level())]", color = "#CC2222") //VOREStation Add
 
 /proc/get_security_level()

@@ -76,7 +76,7 @@
 					var/start_nutrition = H.nutrition
 					var/end_nutrition = 0
 
-					H.nutrition -= rechargeamt / 15
+					H.adjust_nutrition(-rechargeamt / 15)
 
 					end_nutrition = H.nutrition
 
@@ -127,7 +127,7 @@
 					power_supply = P
 					P.loc = src
 					user.visible_message("[user] inserts [P] into [src].", "<span class='notice'>You insert [P] into [src].</span>")
-					playsound(src.loc, 'sound/weapons/flipblade.ogg', 50, 1)
+					playsound(src, 'sound/weapons/flipblade.ogg', 50, 1)
 					update_icon()
 					update_held_icon()
 		else
@@ -143,7 +143,7 @@
 		power_supply.update_icon()
 		user.visible_message("[user] removes [power_supply] from [src].", "<span class='notice'>You remove [power_supply] from [src].</span>")
 		power_supply = null
-		playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
+		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 		update_icon()
 		update_held_icon()
 	else
@@ -178,12 +178,11 @@
 	if(power_supply)
 		if(charge_cost)
 			var/shots_remaining = round(power_supply.charge / max(1, charge_cost))	// Paranoia
-			to_chat(user, "Has [shots_remaining] shot\s remaining.")
+			. += "Has [shots_remaining] shot\s remaining."
 		else
-			to_chat(user, "Has infinite shots remaining.")
+			. += "Has infinite shots remaining."
 	else
-		to_chat(user, "Does not have a power cell.")
-	return
+		. += "Does not have a power cell."
 
 /obj/item/weapon/gun/energy/update_icon(var/ignore_inhands)
 	if(power_supply == null)

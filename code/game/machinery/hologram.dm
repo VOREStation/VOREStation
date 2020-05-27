@@ -92,22 +92,11 @@ var/const/HOLOPAD_MODE = RANGE_BASED
 
 /*This is the proc for special two-way communication between AI and holopad/people talking near holopad.
 For the other part of the code, check silicon say.dm. Particularly robot talk.*/
-/obj/machinery/hologram/holopad/hear_talk(mob/living/M, text, verb, datum/language/speaking)
-	if(M)
+/obj/machinery/hologram/holopad/hear_talk(mob/M, list/message_pieces, verb)
+	if(M && LAZYLEN(masters))
 		for(var/mob/living/silicon/ai/master in masters)
-			if(!master.say_understands(M, speaking))//The AI will be able to understand most mobs talking through the holopad.
-				if(speaking)
-					text = speaking.scramble(text)
-				else
-					text = stars(text)
-			var/name_used = M.GetVoice()
-			//This communication is imperfect because the holopad "filters" voices and is only designed to connect to the master only.
-			var/rendered
-			if(speaking)
-				rendered = "<i><span class='game say'>Holopad received, <span class='name'>[name_used]</span> [speaking.format_message(text, verb)]</span></i>"
-			else
-				rendered = "<i><span class='game say'>Holopad received, <span class='name'>[name_used]</span> [verb], <span class='message'>\"[text]\"</span></span></i>"
-			master.show_message(rendered, 2)
+			if(masters[master] && M != master)
+				master.relay_speech(M, message_pieces, verb)
 
 /obj/machinery/hologram/holopad/see_emote(mob/living/M, text)
 	if(M)
@@ -137,7 +126,10 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 	masters[A] = hologram
 	set_light(2)			//pad lighting
 	icon_state = "holopad1"
+	flick("holopadload", src) //VOREStation Add
 	A.holo = src
+	if(LAZYLEN(masters))
+		START_MACHINE_PROCESSING(src)
 	return 1
 
 /obj/machinery/hologram/holopad/proc/clear_holo(mob/living/silicon/ai/user)
@@ -158,7 +150,8 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 			continue
 
 		use_power(power_per_hologram)
-	return 1
+	if(..() == PROCESS_KILL && !LAZYLEN(masters))
+		return PROCESS_KILL
 
 /obj/machinery/hologram/holopad/proc/move_hologram(mob/living/silicon/ai/user)
 	if(masters[user])
@@ -195,6 +188,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
  */
 
 /obj/machinery/hologram
+	icon = 'icons/obj/stationobjs_vr.dmi' //VOREStation Edit
 	anchored = 1
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 5
@@ -245,7 +239,7 @@ Holographic project of everything else.
 /obj/machinery/hologram/projector
 	name = "hologram projector"
 	desc = "It makes a hologram appear...with magnets or something..."
-	icon = 'icons/obj/stationobjs.dmi'
+	icon = 'icons/obj/stationobjs_vr.dmi' //VOREStation Edit
 	icon_state = "hologram0"
 
 

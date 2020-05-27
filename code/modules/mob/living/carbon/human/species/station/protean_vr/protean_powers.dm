@@ -46,6 +46,7 @@
 			var/obj/item/organ/external/new_eo = new limbpath(src)
 			organs_by_name[choice] = new_eo
 			new_eo.robotize(synthetic ? synthetic.company : null) //Use the base we started with
+			new_eo.sync_colour_to_human(src)
 			regenerate_icons()
 		active_regen = FALSE
 		nano_outofblob(blob)

@@ -27,7 +27,7 @@
 
 /obj/item/weapon/gift/attack_self(mob/user as mob)
 	user.drop_item()
-	playsound(src.loc, 'sound/items/package_unwrap.ogg', 50,1)
+	playsound(src, 'sound/items/package_unwrap.ogg', 50,1)
 	if(src.gift)
 		user.put_in_active_hand(gift)
 		src.gift.add_fingerprint(user)
@@ -164,8 +164,9 @@
 
 
 /obj/item/weapon/wrapping_paper/examine(mob/user)
-	if(..(user, 1))
-		to_chat(user, "There is about [src.amount] square units of paper left!")
+	. = ..()
+	if(Adjacent(user))
+		. += "There is about [src.amount] square units of paper left!"
 
 /obj/item/weapon/wrapping_paper/attack(mob/target as mob, mob/user as mob)
 	if (!istype(target, /mob/living/carbon/human)) return

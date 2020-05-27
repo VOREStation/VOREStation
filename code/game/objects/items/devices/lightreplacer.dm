@@ -64,8 +64,9 @@
 	..()
 
 /obj/item/device/lightreplacer/examine(mob/user)
-	if(..(user, 2))
-		to_chat(user, "It has [uses] lights remaining.")
+	. = ..()
+	if(get_dist(user, src) <= 2)
+		. += "It has [uses] lights remaining."
 
 /obj/item/device/lightreplacer/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/stack/material) && W.get_material_name() == "glass")
@@ -95,7 +96,7 @@
 			new_bulbs += AddShards(1)
 			qdel(L)
 		if(new_bulbs != 0)
-			playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
+			playsound(src, 'sound/machines/ding.ogg', 50, 1)
 		to_chat(user, "You insert \the [L.name] into \the [src.name]. You have [uses] light\s remaining.")
 		return
 
@@ -147,7 +148,7 @@
 
 /obj/item/device/lightreplacer/proc/Use(var/mob/user)
 
-	playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
+	playsound(src, 'sound/machines/click.ogg', 50, 1)
 	add_uses(-1)
 	return 1
 
@@ -181,7 +182,7 @@
 				var/new_bulbs = AddShards(1)
 				if(new_bulbs != 0)
 					to_chat(U, "<span class='notice'>\The [src] has fabricated a new bulb from the broken bulbs it has stored. It now has [uses] uses.</span>")
-					playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
+					playsound(src, 'sound/machines/ding.ogg', 50, 1)
 				target.status = LIGHT_EMPTY
 				target.update()
 
@@ -210,7 +211,7 @@
 
 /obj/item/device/lightreplacer/emag_act(var/remaining_charges, var/mob/user)
 	emagged = !emagged
-	playsound(src.loc, "sparks", 100, 1)
+	playsound(src, "sparks", 100, 1)
 	update_icon()
 	return 1
 

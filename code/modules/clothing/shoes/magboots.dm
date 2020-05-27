@@ -37,12 +37,12 @@
 		set_slowdown()
 		force = 5
 		if(icon_base) icon_state = "[icon_base]1"
-		playsound(get_turf(src), 'sound/effects/magnetclamp.ogg', 20)
+		playsound(src, 'sound/effects/magnetclamp.ogg', 20)
 		to_chat(user, "You enable the mag-pulse traction system.")
 	user.update_inv_shoes()	//so our mob-overlays update
 	user.update_action_buttons()
 
-/obj/item/clothing/shoes/magboots/mob_can_equip(mob/user, slot)
+/obj/item/clothing/shoes/magboots/mob_can_equip(mob/user, slot, disable_warning = FALSE)
 	var/mob/living/carbon/human/H = user
 
 	if(H.shoes)
@@ -78,11 +78,8 @@
 	wearer = null
 
 /obj/item/clothing/shoes/magboots/examine(mob/user)
-	..(user)
-	var/state = "disabled"
-	if(item_flags & NOSLIP)
-		state = "enabled"
-	to_chat(user, "Its mag-pulse traction system appears to be [state].")
+	. = ..()
+	. += "Its mag-pulse traction system appears to be [item_flags & NOSLIP ? "enabled" : "disabled"]."
 
 /obj/item/clothing/shoes/magboots/vox
 
@@ -126,6 +123,6 @@
 		canremove = 1
 
 /obj/item/clothing/shoes/magboots/vox/examine(mob/user)
-	..(user)
-	if (magpulse)
-		to_chat(user, "It would be hard to take these off without relaxing your grip first.")//theoretically this message should only be seen by the wearer when the claws are equipped.
+	. = ..()
+	if(magpulse)
+		. += "It would be hard to take these off without relaxing your grip first." // Theoretically this message should only be seen by the wearer when the claws are equipped.

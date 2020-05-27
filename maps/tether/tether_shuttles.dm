@@ -32,6 +32,11 @@
 	shuttle_tag = "Trade"
 	req_one_access = list(access_trader)
 
+//TFF 12/4/20 - Add console for Mining Outpost Shuttle
+/obj/machinery/computer/shuttle_control/surface_mining_outpost
+	name = "surface mining outpost shuttle control console"
+	shuttle_tag = "Mining Outpost"
+	req_one_access = list(access_mining)
 //
 // "Tram" Emergency Shuttler
 // Becuase the tram only has its own doors and no corresponding station doors, a docking controller is overkill.
@@ -41,6 +46,7 @@
 	var/tag_door_offsite = "escape_shuttle_hatch_offsite"
 	var/frequency = 1380 // Why this frequency? BECAUSE! Thats what someone decided once.
 	var/datum/radio_frequency/radio_connection
+	move_direction = NORTH
 
 /datum/shuttle/autodock/ferry/emergency/New()
 	radio_connection = radio_controller.add_object(src, frequency, null)
@@ -166,7 +172,7 @@
 	if(!WT.remove_fuel(0, user))
 		to_chat(user,"<span class='warning'>\The [WT] must be on to complete this task.</span>")
 		return 1
-	playsound(src.loc, 'sound/items/Welder.ogg', 50, 1)
+	playsound(src, 'sound/items/Welder.ogg', 50, 1)
 	user.visible_message("<span class='notice'>\The [user] begins \the [src] overhaul.</span>","<span class='notice'>You begin an overhaul of \the [src].</span>")
 	if(!do_after(user, wear SECONDS, src))
 		return 1
@@ -189,6 +195,7 @@
 	docking_controller_tag = "expshuttle_docker"
 	shuttle_area = list(/area/shuttle/excursion/cockpit, /area/shuttle/excursion/general, /area/shuttle/excursion/cargo)
 	fuel_consumption = 3
+	move_direction = NORTH
 
 // The 'ship' of the excursion shuttle
 /obj/effect/overmap/visitable/ship/landable/excursion
@@ -213,6 +220,7 @@
 	docking_controller_tag = "tourbus_docker"
 	shuttle_area = list(/area/shuttle/tourbus/cockpit, /area/shuttle/tourbus/general, /area/shuttle/tourbus/engines)
 	fuel_consumption = 1
+	move_direction = NORTH
 
 // The 'ship' of the excursion shuttle
 /obj/effect/overmap/visitable/ship/landable/tourbus
@@ -237,6 +245,7 @@
 	docking_controller_tag = "medivac_docker"
 	shuttle_area = list(/area/shuttle/medivac/cockpit, /area/shuttle/medivac/general, /area/shuttle/medivac/engines)
 	fuel_consumption = 1
+	move_direction = EAST
 
 // The 'ship' of the excursion shuttle
 /obj/effect/overmap/visitable/ship/landable/medivac
@@ -250,4 +259,30 @@
 /obj/machinery/computer/shuttle_control/explore/medivac
 	name = "short jump console"
 	shuttle_tag = "Medivac Shuttle"
-	req_one_access = list(access_pilot)
+	req_one_access = list(access_cmo, access_pilot)
+
+////////////////////////////////////////
+////////      Securiship   /////////////
+////////////////////////////////////////
+/datum/shuttle/autodock/overmap/securiship
+	name = "Securiship Shuttle"
+	warmup_time = 0
+	current_location = "tether_securiship_dock"
+	docking_controller_tag = "securiship_docker"
+	shuttle_area = list(/area/shuttle/securiship/cockpit, /area/shuttle/securiship/general, /area/shuttle/securiship/engines)
+	fuel_consumption = 1
+	move_direction = NORTH
+
+// The 'ship' of the excursion shuttle
+/obj/effect/overmap/visitable/ship/landable/securiship
+	name = "Securiship Shuttle"
+	desc = "A security transport ship."
+	vessel_mass = 3000
+	vessel_size = SHIP_SIZE_SMALL
+	shuttle = "Securiship Shuttle"
+	fore_dir = EAST
+
+/obj/machinery/computer/shuttle_control/explore/securiship
+	name = "short jump console"
+	shuttle_tag = "Securiship Shuttle"
+	req_one_access = list(access_pilot, access_hos)

@@ -2,40 +2,38 @@
 
 /mob/living/carbon/human/movement_delay(oldloc, direct)
 
-	var/tally = 0
+	. = 0
+
+	if (istype(loc, /turf/space))
+		return ..() - 1
 
 	if(species.slowdown)
-		tally = species.slowdown
-
-	if (istype(loc, /turf/space)) return -1 // It's hard to be slowed down in space by... anything
-
-	if(embedded_flag)
-		handle_embedded_objects() //Moving with objects stuck in you can cause bad times.
+		. += species.slowdown
 
 	if(force_max_speed)
-		return HUMAN_LOWEST_SLOWDOWN
+		return ..() + HUMAN_LOWEST_SLOWDOWN
 
 	for(var/datum/modifier/M in modifiers)
 		if(!isnull(M.haste) && M.haste == TRUE)
-			return HUMAN_LOWEST_SLOWDOWN // Returning -1 will actually result in a slowdown for Teshari.
+			return ..() + HUMAN_LOWEST_SLOWDOWN // Returning -1 will actually result in a slowdown for Teshari.
 		if(!isnull(M.slowdown))
-			tally += M.slowdown
+			. += M.slowdown
 
 	var/health_deficiency = (getMaxHealth() - health)
-	if(health_deficiency >= 40) tally += (health_deficiency / 25)
+	if(health_deficiency >= 40) . += (health_deficiency / 25)
 
 	if(can_feel_pain())
-		if(halloss >= 10) tally += (halloss / 10) //halloss shouldn't slow you down if you can't even feel it
+		if(halloss >= 10) . += (halloss / 10) //halloss shouldn't slow you down if you can't even feel it
 
-	var/hungry = (500 - nutrition)/5 // So overeat would be 100 and default level would be 80
-	if (hungry >= 70) tally += hungry/50
+	var/hungry = (500 - nutrition) / 5 //VOREStation Edit - Fixed 500 here instead of our huge MAX_NUTRITION
+	if (hungry >= 70) . += hungry/50
 
 	//VOREstation start
 	if (feral >= 10) //crazy feral animals give less and less of a shit about pain and hunger as they get crazier
-		tally = max(species.slowdown, species.slowdown+((tally-species.slowdown)/(feral/10))) // As feral scales to damage, this amounts to an effective +1 slowdown cap
-		if(shock_stage >= 10) tally -= 1.5 //this gets a +3 later, feral critters take reduced penalty
+		. = max(species.slowdown, species.slowdown+((.-species.slowdown)/(feral/10))) // As feral scales to damage, this amounts to an effective +1 slowdown cap
+		if(shock_stage >= 10) . -= 1.5 //this gets a +3 later, feral critters take reduced penalty
 	if(reagents.has_reagent("numbenzyme"))
-		tally += 1.5 //A tad bit of slowdown.
+		. += 1.5 //A tad bit of slowdown.
 	if(riding_datum) //Bit of slowdown for taur rides if rider is bigger or fatter than mount.
 		var/datum/riding/R = riding_datum
 		var/mob/living/L = R.ridden
@@ -43,48 +41,48 @@
 			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
 				if(H.size_multiplier > L.size_multiplier)
-					tally += 1
+					. += 1
 				if(H.weight > L.weight)
-					tally += 1
+					. += 1
 	//VOREstation end
 
 	if(istype(buckled, /obj/structure/bed/chair/wheelchair))
 		for(var/organ_name in list(BP_L_HAND, BP_R_HAND, BP_L_ARM, BP_R_ARM))
 			var/obj/item/organ/external/E = get_organ(organ_name)
 			if(!E || E.is_stump())
-				tally += 4
+				. += 4
 			else if(E.splinted && E.splinted.loc != E)
-				tally += 0.5
+				. += 0.5
 			else if(E.status & ORGAN_BROKEN)
-				tally += 1.5
+				. += 1.5
 	else
 		for(var/organ_name in list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT))
 			var/obj/item/organ/external/E = get_organ(organ_name)
 			if(!E || E.is_stump())
-				tally += 4
+				. += 4
 			else if(E.splinted && E.splinted.loc != E)
-				tally += 0.5
+				. += 0.5
 			else if(E.status & ORGAN_BROKEN)
-				tally += 1.5
+				. += 1.5
 
-	if(shock_stage >= 10) tally += 3
+	if(shock_stage >= 10) . += 3
 
-	if(aiming && aiming.aiming_at) tally += 5 // Iron sights make you slower, it's a well-known fact.
+	if(aiming && aiming.aiming_at) . += 5 // Iron sights make you slower, it's a well-known fact.
 
 	if(FAT in src.mutations)
-		tally += 1.5
+		. += 1.5
 
 	if (bodytemperature < species.cold_level_1)
-		tally += (species.cold_level_1 - bodytemperature) / 10 * 1.75
+		. += (species.cold_level_1 - bodytemperature) / 10 * 1.75
 
-	tally += max(2 * stance_damage, 0) //damaged/missing feet or legs is slow
+	. += max(2 * stance_damage, 0) //damaged/missing feet or legs is slow
 
 	if(mRun in mutations)
-		tally = 0
+		. = 0
 
 	// Turf related slowdown
 	var/turf/T = get_turf(src)
-	tally += calculate_turf_slowdown(T, direct)
+	. += calculate_turf_slowdown(T, direct)
 
 	// Item related slowdown.
 	var/item_tally = calculate_item_encumbrance()
@@ -101,19 +99,25 @@
 
 	item_tally *= species.item_slowdown_mod
 
-	tally += item_tally
+	. += item_tally
 
 	if(CE_SLOWDOWN in chem_effects)
-		if (tally >= 0 )
-			tally = (tally + tally/4) //Add a quarter of penalties on top.
-		tally += chem_effects[CE_SLOWDOWN]
+		if (. >= 0 )
+			. *= 1.25 //Add a quarter of penalties on top.
+		. += chem_effects[CE_SLOWDOWN]
 
 	if(CE_SPEEDBOOST in chem_effects)
-		if (tally >= 0)	// cut any penalties in half
-			tally = tally/2
-		tally -= chem_effects[CE_SPEEDBOOST]	// give 'em a buff on top.
+		if (. >= 0)	// cut any penalties in half
+			. *= 0.5
+		. -= chem_effects[CE_SPEEDBOOST]	// give 'em a buff on top.
 
-	return max(HUMAN_LOWEST_SLOWDOWN, tally+config.human_delay)	// Minimum return should be the same as force_max_speed
+	. = max(HUMAN_LOWEST_SLOWDOWN, . + config.human_delay)	// Minimum return should be the same as force_max_speed
+	. += ..()
+
+/mob/living/carbon/human/Moved()
+	. = ..()
+	if(embedded_flag)
+		handle_embedded_objects() //Moving with objects stuck in you can cause bad times.
 
 // This calculates the amount of slowdown to receive from items worn. This does NOT include species modifiers.
 // It is in a seperate place to avoid an infinite loop situation with dragging mobs dragging each other.
@@ -224,6 +228,8 @@
 
 // Handle footstep sounds
 /mob/living/carbon/human/handle_footstep(var/turf/T)
+	if(!istype(T))
+		return
 	if(is_incorporeal())
 		return
 	if(!config.footstep_volume || !T.footstep_sounds || !T.footstep_sounds.len)

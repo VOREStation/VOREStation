@@ -72,7 +72,7 @@
 	var/obj/item/weapon/card/id/id = W.GetID()
 	if(istype(id))
 		if(!check_access(id))
-			playsound(src.loc, 'sound/machines/buzz-two.ogg', 50, 0)
+			playsound(src, 'sound/machines/buzz-two.ogg', 50, 0)
 			return
 		lift.priority_mode()
 		if(floor == lift.current_floor)
@@ -86,7 +86,7 @@
 	if(!..())
 		return
 	if(lift.fire_mode || lift.priority_mode)
-		playsound(src.loc, 'sound/machines/buzz-two.ogg', 50, 0)
+		playsound(src, 'sound/machines/buzz-two.ogg', 50, 0)
 		return
 	light_up()
 	pressed(user)
@@ -126,12 +126,12 @@
 	var/obj/item/weapon/card/id/id = W.GetID()
 	if(istype(id))
 		if(!check_access(id))
-			playsound(src.loc, 'sound/machines/buzz-two.ogg', 50, 0)
+			playsound(src, 'sound/machines/buzz-two.ogg', 50, 0)
 			return
 		lift.update_fire_mode(!lift.fire_mode)
 		if(lift.fire_mode)
 			audible_message("<span class='danger'>Firefighter Mode Activated.  Door safeties disabled.  Manual control engaged.</span>")
-			playsound(src.loc, 'sound/machines/airalarm.ogg', 25, 0, 4)
+			playsound(src, 'sound/machines/airalarm.ogg', 25, 0, 4)
 		else
 			audible_message("<span class='warning'>Firefighter Mode Deactivated. Door safeties enabled.  Automatic control engaged.</span>")
 		return

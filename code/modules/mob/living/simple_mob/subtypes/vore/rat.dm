@@ -91,7 +91,7 @@
 		for(var/obj/item/weapon/reagent_containers/food/snacks/S in oview(src,3)) //Accept thrown offerings and scavenge surroundings.
 			if(get_dist(src,S) <=1)
 				visible_emote("hungrily devours \the [S].")
-				playsound(src.loc,'sound/items/eatfood.ogg', rand(10,50), 1)
+				playsound(src,'sound/items/eatfood.ogg', rand(10,50), 1)
 				qdel(S)
 				hunger = 0
 				food = null
@@ -155,7 +155,7 @@
 /mob/living/simple_mob/vore/aggressive/rat/tame/attackby(var/obj/item/O, var/mob/user) // Feed the rat your food to satisfy it.
 	if(istype(O, /obj/item/weapon/reagent_containers/food/snacks))
 		qdel(O)
-		playsound(src.loc,'sound/items/eatfood.ogg', rand(10,50), 1)
+		playsound(src,'sound/items/eatfood.ogg', rand(10,50), 1)
 		hunger = 0
 		food = null
 		return
@@ -197,7 +197,7 @@
 		riding_datum = new /datum/riding/simple_mob(src)
 	verbs |= /mob/living/simple_mob/proc/animal_mount
 	verbs |= /mob/living/proc/toggle_rider_reins
-	movement_cooldown = 0
+	movement_cooldown = 3
 
 /mob/living/simple_mob/vore/aggressive/rat/MouseDrop_T(mob/living/M, mob/living/user)
 	return
@@ -236,4 +236,4 @@
 	say_got_target = list("SQUEEK!")
 
 /datum/ai_holder/simple_mob/melee/rat
-	speak_chance = 3
+	speak_chance = 2

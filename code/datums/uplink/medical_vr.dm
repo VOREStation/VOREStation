@@ -1,6 +1,26 @@
 /**********
 * Medical *
 **********/
+/datum/uplink_item/item/medical/fire
+	name = "Fire medical kit"
+	item_cost = 10
+	path = /obj/item/weapon/storage/firstaid/fire
+
+/datum/uplink_item/item/medical/toxin
+	name = "Toxin medical kit"
+	item_cost = 10
+	path = /obj/item/weapon/storage/firstaid/toxin
+
+/datum/uplink_item/item/medical/o2
+	name = "Oxygen medical kit"
+	item_cost = 10
+	path = /obj/item/weapon/storage/firstaid/o2
+
+/datum/uplink_item/item/medical/adv
+	name = "Advanced medical kit"
+	item_cost = 10
+	path = /obj/item/weapon/storage/firstaid/adv
+
 /datum/uplink_item/item/medical/mre
 	name = "Meal, Ready to eat (Random)"
 	item_cost = 5
@@ -26,6 +46,11 @@
 	item_cost = 5
 	path = /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/purity
 
+/datum/uplink_item/item/medical/pain
+	name = "Pain injector"
+	item_cost = 5
+	path = /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/pain
+
 /datum/uplink_item/item/medical/brute
 	name = "Brute injector"
 	item_cost = 5
@@ -46,12 +71,12 @@
 	item_cost = 5
 	path = /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/oxy
 
+/datum/uplink_item/item/medical/organ
+	name = "Organ Repair injector"
+	item_cost = 10
+	path = /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/organ
+
 /datum/uplink_item/item/medical/nanites
 	name = "Healing Nanite pill bottle"
 	item_cost = 30
 	path = /obj/item/weapon/storage/pill_bottle/healing_nanites
-
-/datum/uplink_item/item/medical/insiderepair
-	name = "Combat organ kit"
-	item_cost = 120
-	path = /obj/item/weapon/storage/firstaid/insiderepair

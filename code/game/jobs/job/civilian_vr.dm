@@ -12,6 +12,7 @@
 
 /datum/job/qm
 	pto_type = PTO_CARGO
+	dept_time_required = 20
 
 /datum/job/cargo_tech
 	total_positions = 3

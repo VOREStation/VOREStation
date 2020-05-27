@@ -53,7 +53,8 @@ var/list/mining_overlay_cache = list()
 		"carbon" = /obj/item/weapon/ore/coal,
 		"verdantium" = /obj/item/weapon/ore/verdantium,
 		"marble" = /obj/item/weapon/ore/marble,
-		"lead" = /obj/item/weapon/ore/lead
+		"lead" = /obj/item/weapon/ore/lead,
+		"rutile" = /obj/item/weapon/ore/rutile //VOREStation Add
 	)
 
 	has_resources = 1
@@ -153,6 +154,8 @@ turf/simulated/mineral/floor/light_corner
 	if(random_icon)
 		dir = pick(alldirs)
 		. = INITIALIZE_HINT_LATELOAD
+	var/decl/flooring/F = get_flooring_data(/decl/flooring/sand)
+	footstep_sounds = F?.footstep_sounds
 
 /turf/simulated/mineral/LateInitialize()
 	if(density && mineral)
@@ -325,7 +328,7 @@ turf/simulated/mineral/floor/light_corner
 				return
 
 			to_chat(user, "<span class='notice'>You start digging.</span>")
-			playsound(user.loc, 'sound/effects/rustle1.ogg', 50, 1)
+			playsound(user, 'sound/effects/rustle1.ogg', 50, 1)
 
 			if(!do_after(user,40)) return
 
@@ -638,10 +641,10 @@ turf/simulated/mineral/floor/light_corner
 
 	var/mineral_name
 	if(rare_ore)
-		mineral_name = pickweight(list("marble" = 5, "uranium" = 10, "platinum" = 10, "hematite" = 20, "carbon" = 20, "diamond" = 2, "gold" = 10, "silver" = 10, "phoron" = 20, "lead" = 5, "verdantium" = 1))
+		mineral_name = pickweight(list("marble" = 5, "uranium" = 10, "platinum" = 10, "hematite" = 20, "carbon" = 20, "diamond" = 2, "gold" = 10, "silver" = 10, "phoron" = 20, "lead" = 5, "verdantium" = 1, "rutile" = 4)) //VOREStation Edit
 
 	else
-		mineral_name = pickweight(list("marble" = 3, "uranium" = 10, "platinum" = 10, "hematite" = 70, "carbon" = 70, "diamond" = 2, "gold" = 10, "silver" = 10, "phoron" = 20, "lead" = 2, "verdantium" = 1))
+		mineral_name = pickweight(list("marble" = 3, "uranium" = 10, "platinum" = 10, "hematite" = 70, "carbon" = 70, "diamond" = 2, "gold" = 10, "silver" = 10, "phoron" = 20, "lead" = 2, "verdantium" = 1, "rutile" = 4)) //VOREStation Edit
 
 	if(mineral_name && (mineral_name in ore_data))
 		mineral = ore_data[mineral_name]

@@ -216,6 +216,16 @@
 	armor_penetration = 80
 	hitscan = 1 //so the PTR isn't useless as a sniper weapon
 
+	icon_state = "bullet_alt"
+	tracer_type = /obj/effect/projectile/tracer/cannon
+
+/obj/item/projectile/bullet/rifle/a145/highvel
+	damage = 50
+	stun = 1
+	weaken = 0
+	penetrating = 15
+	armor_penetration = 90
+
 /* Miscellaneous */
 
 /obj/item/projectile/bullet/suffocationbullet//How does this even work?

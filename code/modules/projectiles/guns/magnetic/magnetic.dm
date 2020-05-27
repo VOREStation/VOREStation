@@ -66,28 +66,30 @@
 	overlays = overlays_to_add
 	..()
 
-/obj/item/weapon/gun/magnetic/proc/show_ammo(var/mob/user)
+/obj/item/weapon/gun/magnetic/proc/show_ammo()
+	var/list/ammotext = list()
 	if(loaded)
-		to_chat(user, "<span class='notice'>It has \a [loaded] loaded.</span>")
+		ammotext += "<span class='notice'>It has \a [loaded] loaded.</span>"
+
+	return ammotext
 
 /obj/item/weapon/gun/magnetic/examine(var/mob/user)
-	. = ..(user, 2)
-	if(.)
-		show_ammo(user)
+	. = ..()
+	if(get_dist(user, src) <= 2)
+		. += show_ammo()
 
 		if(cell)
-			to_chat(user, "<span class='notice'>The installed [cell.name] has a charge level of [round((cell.charge/cell.maxcharge)*100)]%.</span>")
+			. += "<span class='notice'>The installed [cell.name] has a charge level of [round((cell.charge/cell.maxcharge)*100)]%.</span>"
 		if(capacitor)
-			to_chat(user, "<span class='notice'>The installed [capacitor.name] has a charge level of [round((capacitor.charge/capacitor.max_charge)*100)]%.</span>")
+			. += "<span class='notice'>The installed [capacitor.name] has a charge level of [round((capacitor.charge/capacitor.max_charge)*100)]%.</span>"
 
 		if(!cell || !capacitor)
-			to_chat(user, "<span class='notice'>The capacitor charge indicator is blinking <font color ='[COLOR_RED]'>red</font>. Maybe you should check the cell or capacitor.</span>")
+			. += "<span class='notice'>The capacitor charge indicator is blinking <font color ='[COLOR_RED]'>red</font>. Maybe you should check the cell or capacitor.</span>"
 		else
 			if(capacitor.charge < power_cost)
-				to_chat(user, "<span class='notice'>The capacitor charge indicator is <font color ='[COLOR_ORANGE]'>amber</font>.</span>")
+				. += "<span class='notice'>The capacitor charge indicator is <font color ='[COLOR_ORANGE]'>amber</font>.</span>"
 			else
-				to_chat(user, "<span class='notice'>The capacitor charge indicator is <font color ='[COLOR_GREEN]'>green</font>.</span>")
-		return TRUE
+				. += "<span class='notice'>The capacitor charge indicator is <font color ='[COLOR_GREEN]'>green</font>.</span>"
 
 /obj/item/weapon/gun/magnetic/attackby(var/obj/item/thing, var/mob/user)
 
@@ -99,7 +101,7 @@
 			cell = thing
 			user.drop_from_inventory(cell)
 			cell.forceMove(src)
-			playsound(loc, 'sound/machines/click.ogg', 10, 1)
+			playsound(src, 'sound/machines/click.ogg', 10, 1)
 			user.visible_message("<span class='notice'>\The [user] slots \the [cell] into \the [src].</span>")
 			update_icon()
 			return
@@ -111,7 +113,7 @@
 			capacitor.forceMove(get_turf(src))
 			user.put_in_hands(capacitor)
 			user.visible_message("<span class='notice'>\The [user] unscrews \the [capacitor] from \the [src].</span>")
-			playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
+			playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 			capacitor = null
 			update_icon()
 			return
@@ -123,7 +125,7 @@
 			capacitor = thing
 			user.drop_from_inventory(capacitor)
 			capacitor.forceMove(src)
-			playsound(loc, 'sound/machines/click.ogg', 10, 1)
+			playsound(src, 'sound/machines/click.ogg', 10, 1)
 			power_per_tick = (power_cost*0.15) * capacitor.rating
 			user.visible_message("<span class='notice'>\The [user] slots \the [capacitor] into \the [src].</span>")
 			update_icon()
@@ -147,7 +149,7 @@
 			ammo.use(1)
 
 		user.visible_message("<span class='notice'>\The [user] loads \the [src] with \the [loaded].</span>")
-		playsound(loc, 'sound/weapons/flipblade.ogg', 50, 1)
+		playsound(src, 'sound/weapons/flipblade.ogg', 50, 1)
 		update_icon()
 		return
 	. = ..()
@@ -167,7 +169,7 @@
 			removing.forceMove(get_turf(src))
 			user.put_in_hands(removing)
 			user.visible_message("<span class='notice'>\The [user] removes \the [removing] from \the [src].</span>")
-			playsound(loc, 'sound/machines/click.ogg', 10, 1)
+			playsound(src, 'sound/machines/click.ogg', 10, 1)
 			update_icon()
 			return
 	. = ..()
@@ -236,7 +238,7 @@
 					removable_components = FALSE
 					spawn(15)
 						audible_message("<span class='critical'>\The [src]'s power supply begins to overload as the device crumples!</span>") //Why are you still holding this?
-						playsound(loc, 'sound/effects/grillehit.ogg', 10, 1)
+						playsound(src, 'sound/effects/grillehit.ogg', 10, 1)
 						var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 						var/turf/T = get_turf(src)
 						sparks.set_up(2, 1, T)

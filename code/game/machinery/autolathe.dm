@@ -1,7 +1,6 @@
 /obj/machinery/autolathe
 	name = "autolathe"
 	desc = "It produces items using metal and glass."
-	icon = 'icons/obj/stationobjs_vr.dmi'
 	icon_state = "autolathe"
 	density = 1
 	anchored = 1
@@ -27,15 +26,12 @@
 
 	var/datum/wires/autolathe/wires = null
 
-/obj/machinery/autolathe/New()
-	..()
+	var/filtertext
+
+/obj/machinery/autolathe/Initialize()
+	. = ..()
 	wires = new(src)
-	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)
+	default_apply_parts()
 	RefreshParts()
 
 /obj/machinery/autolathe/Destroy()
@@ -72,10 +68,13 @@
 			material_bottom += "<td width = '25%' align = center>[stored_material[material]]<b>/[storage_capacity[material]]</b></td>"
 
 		dat += "[material_top.Join()]</tr>[material_bottom.Join()]</tr></table><hr>"
+		dat += "<b>Filter:</b> <a href='?src=\ref[src];setfilter=1'>[filtertext ? filtertext : "None Set"]</a><br>"
 		dat += "<h2>Printable Designs</h2><h3>Showing: <a href='?src=\ref[src];change_category=1'>[current_category]</a>.</h3></center><table width = '100%'>"
 
 		for(var/datum/category_item/autolathe/R in current_category.items)
 			if(R.hidden && !hacked)
+				continue
+			if(filtertext && findtext(R.name, filtertext) == 0)
 				continue
 			var/can_make = 1
 			var/list/material_string = list()
@@ -108,12 +107,14 @@
 							multiplier_string  += "<a href='?src=\ref[src];make=\ref[R];multiplier=[i]'>\[x[i]\]</a>"
 						multiplier_string += "<a href='?src=\ref[src];make=\ref[R];multiplier=[max_sheets]'>\[x[max_sheets]\]</a>"
 
-			dat += "<tr><td width = 180>[R.hidden ? "<font color = 'red'>*</font>" : ""]<b>[can_make ? "<a href='?src=\ref[src];make=\ref[R];multiplier=1'>" : ""][R.name][can_make ? "</a>" : ""]</b>[R.hidden ? "<font color = 'red'>*</font>" : ""][multiplier_string.Join()]</td><td align = right>[material_string.Join()]</tr>"
+			dat += "<tr><td width = 180>[R.hidden ? "<font color = 'red'>*</font>" : ""]<b>[can_make ? "<a href='?src=\ref[src];make=\ref[R];multiplier=1'>" : "<span class='linkOff'>"][R.name][can_make ? "</a>" : "</span>"]</b>[R.hidden ? "<font color = 'red'>*</font>" : ""][multiplier_string.Join()]</td><td align = right>[material_string.Join()]</tr>"
 
 		dat += "</table><hr>"
 
-	user << browse(dat.Join(), "window=autolathe")
-	onclose(user, "autolathe")
+	dat = jointext(dat, null)
+	var/datum/browser/popup = new(user, "autolathe", "Autolathe Production Menu", 550, 700)
+	popup.set_content(dat)
+	popup.open()
 
 /obj/machinery/autolathe/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(busy)
@@ -202,7 +203,7 @@
 	else
 		to_chat(user, "You fill \the [src] with \the [eating].")
 
-	flick("autolathe_o", src) // Plays metal insertion animation. Work out a good way to work out a fitting animation. ~Z
+	flick("autolathe_loading", src) // Plays metal insertion animation. Work out a good way to work out a fitting animation. ~Z
 
 	if(istype(eating,/obj/item/stack))
 		var/obj/item/stack/stack = eating
@@ -228,6 +229,16 @@
 	if(busy)
 		to_chat(usr, "<span class='notice'>The autolathe is busy. Please wait for completion of previous operation.</span>")
 		return
+
+	else if(href_list["setfilter"])
+		var/filterstring = input(usr, "Input a filter string, or blank to not filter:", "Design Filter", filtertext) as null|text
+		if(!Adjacent(usr))
+			return
+		if(isnull(filterstring)) //Clicked Cancel
+			return
+		if(filterstring == "") //Cleared value
+			filtertext = null
+		filtertext = sanitize(filterstring, 25)
 
 	if(href_list["change_category"])
 
@@ -274,6 +285,7 @@
 
 		//Create the desired item.
 		var/obj/item/I = new making.path(src.loc)
+		flick("[initial(icon_state)]_finish", src)
 		if(multiplier > 1)
 			if(istype(I, /obj/item/stack))
 				var/obj/item/stack/S = I
@@ -285,14 +297,16 @@
 	updateUsrDialog()
 
 /obj/machinery/autolathe/update_icon()
+	overlays.Cut()
+
+	icon_state = initial(icon_state)
+
 	if(panel_open)
-		icon_state = "autolathe_t"
-	else if(busy)
-		icon_state = "autolathe_n"
-	else
-		if(icon_state == "autolathe_n")
-			flick("autolathe_u", src) // If lid WAS closed, show opening animation
-		icon_state = "autolathe"
+		overlays.Add(image(icon, "[icon_state]_panel"))
+	if(stat & NOPOWER)
+		return
+	if(busy)
+		icon_state = "[icon_state]_work"
 
 //Updates overall lathe storage size.
 /obj/machinery/autolathe/RefreshParts()

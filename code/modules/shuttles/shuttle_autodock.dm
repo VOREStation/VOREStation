@@ -30,7 +30,7 @@
 	if(active_docking_controller)
 		set_docking_codes(active_docking_controller.docking_codes)
 	else if(global.using_map.use_overmap)
-		var/obj/effect/overmap/visitable/location = map_sectors["[current_location.z]"]
+		var/obj/effect/overmap/visitable/location = get_overmap_sector(get_z(current_location))
 		if(location && location.docking_codes)
 			set_docking_codes(location.docking_codes)
 	dock()
@@ -65,7 +65,7 @@
 		current_dock_target = docking_controller_tag
 	shuttle_docking_controller = SSshuttles.docking_registry[current_dock_target]
 	if(current_dock_target && !shuttle_docking_controller)
-		to_world("<span class='danger'>warning: shuttle [src] can't find its controller with tag [current_dock_target]!</span>")
+		log_shuttle("<span class='danger'>warning: shuttle [src] can't find its controller with tag [current_dock_target]!</span>") // No toggle because this is an error message that needs to be seen
 /*
 	Docking stuff
 */

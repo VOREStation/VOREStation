@@ -48,7 +48,7 @@
 		src.health -= aforce
 
 	//Play a fitting sound
-	playsound(src.loc, 'sound/effects/EMPulse.ogg', 75, 1)
+	playsound(src, 'sound/effects/EMPulse.ogg', 75, 1)
 
 	check_failure()
 	set_opacity(1)
@@ -105,7 +105,7 @@
 	src.health -= tforce
 
 	//This seemed to be the best sound for hitting a force field.
-	playsound(src.loc, 'sound/effects/EMPulse.ogg', 100, 1)
+	playsound(src, 'sound/effects/EMPulse.ogg', 100, 1)
 
 	check_failure()
 
@@ -153,9 +153,10 @@
 
 	create_shields()
 
-	idle_power_usage = 0
+	var/new_power_usage = 0
 	for(var/obj/machinery/shield/shield_tile in deployed_shields)
-		idle_power_usage += shield_tile.shield_idle_power
+		new_power_usage += shield_tile.shield_idle_power
+	update_idle_power_usage(new_power_usage)
 	update_use_power(USE_POWER_IDLE)
 
 /obj/machinery/shieldgen/proc/shields_down()
@@ -205,7 +206,7 @@
 				new_power_usage += shield_tile.shield_idle_power
 
 			if (new_power_usage != idle_power_usage)
-				idle_power_usage = new_power_usage
+				update_idle_power_usage(new_power_usage)
 				use_power(0)
 
 			check_delay = 60

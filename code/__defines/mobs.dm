@@ -14,6 +14,7 @@
 #define GODMODE     0x1000
 #define FAKEDEATH   0x2000  // Replaces stuff like changeling.changeling_fakedeath.
 #define DISFIGURED  0x4000  // Set but never checked. Remove this sometime and replace occurences with the appropriate organ code
+#define DOING_TASK	0x8000  // Performing a do_after or do_mob that's exclusive
 
 // Grab levels.
 #define GRAB_PASSIVE    1
@@ -427,3 +428,5 @@
 #define EXAMINE_SKIPHANDS			0x0040
 #define EXAMINE_SKIPLEGS			0x0080
 #define EXAMINE_SKIPFEET			0x0100
+
+#define MAX_NUTRITION	5000 //VOREStation Edit

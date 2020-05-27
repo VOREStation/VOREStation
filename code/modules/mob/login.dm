@@ -15,7 +15,7 @@
 					if(matches)	matches += " and "
 					matches += "ID ([client.computer_id])"
 					if(!config.disable_cid_warn_popup)
-						spawn() alert("You have logged in already with another key this round, please log out of this one NOW or risk being banned!")
+						spawn() alert("You appear to have logged in with another key this round, which is not permitted. Please contact an administrator if you believe this message to be in error.")
 				if(matches)
 					if(M.client)
 						message_admins("<font color='red'><B>Notice: </B></font><font color='blue'>[key_name_admin(src)] has the same [matches] as [key_name_admin(M)].</font>", 1)
@@ -51,7 +51,6 @@
 	else
 		client.eye = src
 		client.perspective = MOB_PERSPECTIVE
-	reload_fullscreen() // Reload any fullscreen overlays this mob has.
 	add_click_catcher()
 	update_client_color()
 

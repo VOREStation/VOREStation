@@ -147,7 +147,7 @@
 			return
 
 		else if(((occupant.health == occupant.maxHealth)) && (!eject_wait))
-			playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
+			playsound(src, 'sound/machines/ding.ogg', 50, 1)
 			audible_message("\The [src] signals that the growing process is complete.")
 			connected_message("Growing Process Complete.")
 			locked = 0
@@ -472,10 +472,6 @@
 		var/obj/item/weapon/grab/G = W
 		if(!ismob(G.affecting))
 			return
-		for(var/mob/living/carbon/slime/M in range(1, G.affecting))
-			if(M.Victim == G.affecting)
-				to_chat(usr, "[G.affecting:name] will not fit into the [src.name] because they have a slime latched onto their head.")
-				return
 		var/mob/M = G.affecting
 		if(put_mob(M))
 			qdel(G)

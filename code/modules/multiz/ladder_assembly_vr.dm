@@ -25,14 +25,14 @@
 		switch(state)
 			if(CONSTRUCTION_UNANCHORED)
 				state = CONSTRUCTION_WRENCHED
-				playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
+				playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
 				user.visible_message("\The [user] secures \the [src]'s reinforcing bolts.", \
 					"You secure the reinforcing bolts.", \
 					"You hear a ratchet")
 				src.anchored = 1
 			if(CONSTRUCTION_WRENCHED)
 				state = CONSTRUCTION_UNANCHORED
-				playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
+				playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
 				user.visible_message("\The [user] unsecures \the [src]'s reinforcing bolts.", \
 					"You undo the reinforcing bolts.", \
 					"You hear a ratchet")
@@ -48,7 +48,7 @@
 				to_chat(user, "<span class='warning'>The refinforcing bolts need to be secured.</span>")
 			if(CONSTRUCTION_WRENCHED)
 				if(WT.remove_fuel(0, user))
-					playsound(src.loc, 'sound/items/Welder2.ogg', 50, 1)
+					playsound(src, 'sound/items/Welder2.ogg', 50, 1)
 					user.visible_message("\The [user] starts to weld \the [src] to the floor.", \
 						"You start to weld \the [src] to the floor.", \
 						"You hear welding")
@@ -61,7 +61,7 @@
 					to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 			if(CONSTRUCTION_WELDED)
 				if(WT.remove_fuel(0, user))
-					playsound(src.loc, 'sound/items/Welder2.ogg', 50, 1)
+					playsound(src, 'sound/items/Welder2.ogg', 50, 1)
 					user.visible_message("\The [user] starts to cut \the [src] free from the floor.", \
 						"You start to cut \the [src] free from the floor.", \
 						"You hear welding")

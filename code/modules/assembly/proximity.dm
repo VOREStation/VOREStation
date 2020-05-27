@@ -4,7 +4,6 @@
 	icon_state = "prox"
 	origin_tech = list(TECH_MAGNET = 1)
 	matter = list(DEFAULT_WALL_MATERIAL = 800, "glass" = 200, "waste" = 50)
-	flags = PROXMOVE
 	wires = WIRE_PULSE
 
 	secured = 0
@@ -33,7 +32,7 @@
 	update_icon()
 	return secured
 
-/obj/item/device/assembly/prox_sensor/HasProximity(atom/movable/AM as mob|obj)
+/obj/item/device/assembly/prox_sensor/HasProximity(turf/T, atom/movable/AM, old_loc)
 	if(!istype(AM))
 		log_debug("DEBUG: HasProximity called with [AM] on [src] ([usr]).")
 		return
@@ -88,8 +87,12 @@
 		var/obj/item/weapon/grenade/chem_grenade/grenade = holder.loc
 		grenade.primed(scanning)
 
-/obj/item/device/assembly/prox_sensor/Move()
-	..()
+/obj/item/device/assembly/prox_sensor/Moved(atom/old_loc, direction, forced = FALSE)
+	. = ..()
+	if(isturf(old_loc))
+		unsense_proximity(range = range, callback = .HasProximity, center = old_loc)
+	if(isturf(loc))
+		sense_proximity(range = range, callback = .HasProximity)
 	sense()
 
 /obj/item/device/assembly/prox_sensor/interact(mob/user as mob)//TODO: Change this to the wires thingy

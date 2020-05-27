@@ -187,6 +187,7 @@
 	desc = "What appears to be an oversized rodent with hands. This one has a curious look in its eyes."
 	ai_holder_type = /datum/ai_holder/simple_mob/intentional/sakimm
 	randomize_size = FALSE	// Most likely to have a hat.
+	melee_attack_delay = 0	// For some reason, having a delay makes item pick-up not work.
 
 /datum/ai_holder/simple_mob/intentional/sakimm
 	hostile = FALSE
@@ -256,14 +257,10 @@
 
 	for(var/possible_target in possible_targets)
 		var/atom/A = possible_target
-		if(found(A))
-			. = list(A)
-			break
 		if(istype(A, /mob/living) && !can_pick_mobs)
 			continue
 		if(can_attack(A)) // Can we attack it?
 			. += A
-			continue
 
 	for(var/obj/item/I in .)
 		last_search = world.time

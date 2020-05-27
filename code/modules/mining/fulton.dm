@@ -14,7 +14,7 @@ var/global/list/total_extraction_beacons = list()
 
 /obj/item/extraction_pack/examine()
 	. = ..()
-	usr.show_message("It has [uses_left] use\s remaining.", 1)
+	. += "It has [uses_left] use\s remaining."
 
 /obj/item/extraction_pack/attack_self(mob/user)
 	var/list/possible_beacons = list()
@@ -93,7 +93,7 @@ var/global/list/total_extraction_beacons = list()
 			balloon.appearance_flags = RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM
 			holder_obj.cut_overlay(balloon2)
 			holder_obj.add_overlay(balloon)
-			playsound(holder_obj.loc, 'sound/items/fulext_deploy.wav', 50, 1, -3)
+			playsound(holder_obj, 'sound/items/fulext_deploy.wav', 50, 1, -3)
 			animate(holder_obj, pixel_z = 10, time = 20)
 			sleep(20)
 			animate(holder_obj, pixel_z = 15, time = 10)
@@ -104,7 +104,7 @@ var/global/list/total_extraction_beacons = list()
 			sleep(10)
 			animate(holder_obj, pixel_z = 10, time = 10)
 			sleep(10)
-			playsound(holder_obj.loc, 'sound/items/fultext_launch.wav', 50, 1, -3)
+			playsound(holder_obj, 'sound/items/fultext_launch.wav', 50, 1, -3)
 			animate(holder_obj, pixel_z = 1000, time = 30)
 			if(ishuman(A))
 				var/mob/living/carbon/human/L = A

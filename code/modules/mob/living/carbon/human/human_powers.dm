@@ -72,7 +72,7 @@
 	else
 		failed = 1
 
-	playsound(loc, 'sound/weapons/pierce.ogg', 25, 1, -1)
+	playsound(src, 'sound/weapons/pierce.ogg', 25, 1, -1)
 	if(failed)
 		src.Weaken(rand(2,4))
 
@@ -302,7 +302,7 @@
 
 	var/delay_length = round(active_regen_delay * species.active_regen_mult)
 	if(do_after(src,delay_length))
-		nutrition -= 200
+		adjust_nutrition(-200)
 
 		for(var/obj/item/organ/I in internal_organs)
 			if(I.robotic >= ORGAN_ROBOT) // No free robofix.
@@ -345,5 +345,5 @@
 		active_regen = FALSE
 	else
 		to_chat(src, "<span class='critical'>Your regeneration is interrupted!</span>")
-		nutrition -= 75
+		adjust_nutrition(-75)
 		active_regen = FALSE

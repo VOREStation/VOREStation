@@ -10,7 +10,7 @@
 
 /obj/item/weapon/mining_scanner/attack_self(mob/user as mob)
 	to_chat(user, "<span class='notice'>You begin sweeping \the [src] about, scanning for metal deposits.</span>")
-	playsound(loc, 'sound/items/goggles_charge.ogg', 50, 1, -6)
+	playsound(src, 'sound/items/goggles_charge.ogg', 50, 1, -6)
 
 	if(!do_after(user, scan_time))
 		return
@@ -21,6 +21,7 @@
 	var/list/metals = list(
 		"surface minerals" = 0,
 		"precious metals" = 0,
+		"precious gems" = 0,
 		"nuclear fuel" = 0,
 		"exotic matter" = 0,
 		"anomalous matter" = 0
@@ -38,7 +39,8 @@
 
 			switch(metal)
 				if("silicates", "carbon", "hematite", "marble")	ore_type = "surface minerals"
-				if("gold", "silver", "diamond", "lead")					ore_type = "precious metals"
+				if("gold", "silver", "lead")					ore_type = "precious metals"
+				if("diamond")									ore_type = "precious gems"
 				if("uranium")									ore_type = "nuclear fuel"
 				if("phoron", "osmium", "hydrogen")				ore_type = "exotic matter"
 				if("verdantium")				ore_type = "anomalous matter"

@@ -50,8 +50,6 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 	var/current_runlevel	//for scheduling different subsystems for different stages of the round
 
-	var/dbg_is_running_subsystem = FALSE  // TEMPORARY DEBUGGING - true only while we are actually waiting on a subsystem
-
 	var/static/restart_clear = 0
 	var/static/restart_timeout = 0
 	var/static/restart_count = 0
@@ -158,11 +156,14 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 // Please don't stuff random bullshit here,
 // 	Make a subsystem, give it the SS_NO_FIRE flag, and do your work in it's Initialize()
-/datum/controller/master/Initialize(delay, init_sss)
+/datum/controller/master/Initialize(delay, init_sss, tgs_prime)
 	set waitfor = 0
 
 	if(delay)
 		sleep(delay)
+
+	if(tgs_prime)
+		world.TgsInitializationComplete()
 
 	if(init_sss)
 		init_subtypes(/datum/controller/subsystem, subsystems)
@@ -189,6 +190,8 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 	if (!current_runlevel)
 		SetRunLevel(RUNLEVEL_LOBBY)
+
+	GLOB.revdata = new // It can load revdata now, from tgs or .git or whatever
 
 	// Sort subsystems by display setting for easy access.
 	sortTim(subsystems, /proc/cmp_subsystem_display)
@@ -476,11 +479,9 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 			queue_node.state = SS_RUNNING
 
-			dbg_is_running_subsystem = TRUE // TEMPORARY DEBUGGING
 			tick_usage = TICK_USAGE
 			var/state = queue_node.ignite(queue_node_paused)
 			tick_usage = TICK_USAGE - tick_usage
-			dbg_is_running_subsystem = FALSE // TEMPORARY DEBUGGING
 
 			if (state == SS_RUNNING)
 				state = SS_IDLE

@@ -30,7 +30,7 @@
 		to_chat(user, "<span class='notice'>You begin to shorten the barrel and stock of \the [src].</span>")
 		if(loaded.len)
 			afterattack(user, user)
-			playsound(user, fire_sound, 50, 1)
+			playsound(src, fire_sound, 50, 1)
 			user.visible_message("<span class='danger'>[src] goes off!</span>", "<span class='danger'>The rifle goes off in your face!</span>")
 			return
 		if(do_after(user, 30))

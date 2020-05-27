@@ -7,7 +7,7 @@
 /obj/item/weapon/storage/internal/New(obj/item/MI)
 	master_item = MI
 	loc = master_item
-	//name = master_item.name //VOREStation Removal
+	name = master_item.name
 	verbs -= /obj/item/verb/verb_pickup	//make sure this is never picked up.
 	..()
 
@@ -18,7 +18,7 @@
 /obj/item/weapon/storage/internal/attack_hand()
 	return		//make sure this is never picked up
 
-/obj/item/weapon/storage/internal/mob_can_equip()
+/obj/item/weapon/storage/internal/mob_can_equip(M as mob, slot, disable_warning = FALSE)
 	return 0	//make sure this is never picked up
 
 //Helper procs to cleanly implement internal storages - storage items that provide inventory slots for other items.

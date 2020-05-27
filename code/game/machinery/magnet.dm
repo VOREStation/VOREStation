@@ -143,7 +143,7 @@
 	// Update power usage:
 	if(on)
 		update_use_power(USE_POWER_ACTIVE)
-		active_power_usage = electricity_level*15
+		update_active_power_usage(electricity_level * 15)
 	else
 		update_use_power(USE_POWER_OFF)
 
@@ -275,7 +275,7 @@
 
 		// Prepare signal beforehand, because this is a radio operation
 		var/datum/signal/signal = new
-		signal.transmission_method = 1 // radio transmission
+		signal.transmission_method = TRANSMISSION_RADIO // radio transmission
 		signal.source = src
 		signal.frequency = frequency
 		signal.data["code"] = code
@@ -341,7 +341,7 @@
 
 		// Prepare the radio signal
 		var/datum/signal/signal = new
-		signal.transmission_method = 1 // radio transmission
+		signal.transmission_method = TRANSMISSION_RADIO // radio transmission
 		signal.source = src
 		signal.frequency = frequency
 		signal.data["code"] = code

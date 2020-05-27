@@ -29,7 +29,7 @@ var/datum/antagonist/revolutionary/revs
 	faction_indicator = "rev"
 	faction_invisible = 1
 
-	restricted_jobs = list("AI", "Cyborg")
+	avoid_silicons = TRUE
 	protected_jobs = list("Security Officer", "Warden", "Detective", "Internal Affairs Agent", "Colony Director", "Head of Personnel", "Head of Security", "Chief Engineer", "Research Director", "Chief Medical Officer")
 	roundstart_restricted = list("Internal Affairs Agent", "Colony Director", "Head of Personnel", "Head of Security", "Chief Engineer", "Research Director", "Chief Medical Officer")
 

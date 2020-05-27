@@ -58,17 +58,18 @@
 	nif.save_data["commlink_name"] = owner
 
 //So that only the owner's chat is relayed to others.
-/obj/item/device/communicator/commlink/hear_talk(mob/living/M, text, verb, datum/language/speaking)
-	if(M != nif.human) return
-	for(var/obj/item/device/communicator/comm in communicating)
+/obj/item/device/communicator/commlink/hear_talk(mob/living/M, list/message_pieces, verb)
+	if(M != nif.human)
+		return
 
+	for(var/obj/item/device/communicator/comm in communicating)
 		var/turf/T = get_turf(comm)
 		if(!T) return
 
 		var/icon_object = src
 
 		var/list/mobs_to_relay
-		if(istype(comm,/obj/item/device/communicator/commlink))
+		if(istype(comm, /obj/item/device/communicator/commlink))
 			var/obj/item/device/communicator/commlink/CL = comm
 			mobs_to_relay = list(CL.nif.human)
 			icon_object = CL.nif.big_icon
@@ -77,18 +78,10 @@
 			mobs_to_relay = in_range["mobs"]
 
 		for(var/mob/mob in mobs_to_relay)
-			//Can whoever is hearing us understand?
-			if(!mob.say_understands(M, speaking))
-				if(speaking)
-					text = speaking.scramble(text)
-				else
-					text = stars(text)
+			var/message = mob.combine_message(message_pieces, verb, M)
 			var/name_used = M.GetVoice()
 			var/rendered = null
-			if(speaking) //Language being used
-				rendered = "<span class='game say'>[bicon(icon_object)] <span class='name'>[name_used]</span> [speaking.format_message(text, verb)]</span>"
-			else
-				rendered = "<span class='game say'>[bicon(icon_object)] <span class='name'>[name_used]</span> [verb], <span class='message'>\"[text]\"</span></span>"
+			rendered = "<span class='game say'>[bicon(icon_object)] <span class='name'>[name_used]</span> [message]</span>"
 			mob.show_message(rendered, 2)
 
 //Not supported by the internal one

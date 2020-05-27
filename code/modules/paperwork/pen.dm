@@ -12,7 +12,7 @@
 /obj/item/weapon/pen
 	desc = "It's a normal black ink pen."
 	name = "pen"
-	icon = 'icons/obj/bureaucracy_vr.dmi' //VOREStation Edit
+	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "pen"
 	item_state = "pen"
 	slot_flags = SLOT_BELT | SLOT_EARS
@@ -26,8 +26,11 @@
 	drop_sound = 'sound/items/drop/accessory.ogg'
 
 /obj/item/weapon/pen/attack_self(var/mob/user)
+	if(!user.checkClickCooldown())
+		return
+	user.setClickCooldown(1 SECOND)
 	to_chat(user, "<span class='notice'>Click.</span>")
-	playsound(loc, 'sound/items/penclick.ogg', 50, 1)
+	playsound(src, 'sound/items/penclick.ogg', 50, 1)
 
 /obj/item/weapon/pen/blue
 	desc = "It's a normal blue ink pen."
@@ -50,7 +53,7 @@
 
 /obj/item/weapon/pen/AltClick(mob/user)
 	to_chat(user, "<span class='notice'>Click.</span>")
-	playsound(loc, 'sound/items/penclick.ogg', 50, 1)
+	playsound(src, 'sound/items/penclick.ogg', 50, 1)
 	return
 
 /obj/item/weapon/pen/multi/attack_self(mob/user)
@@ -149,7 +152,7 @@
 	sharp = 1
 	edge = 1
 	w_class = active_w_class
-	playsound(user, 'sound/weapons/saberon.ogg', 15, 1)
+	playsound(src, 'sound/weapons/saberon.ogg', 15, 1)
 	damtype = SEARING
 	catchable = FALSE
 
@@ -163,7 +166,7 @@
 /obj/item/weapon/pen/blade/proc/deactivate(mob/living/user)
 	if(!active)
 		return
-	playsound(user, 'sound/weapons/saberoff.ogg', 15, 1)
+	playsound(src, 'sound/weapons/saberoff.ogg', 15, 1)
 	active = 0
 	icon_state = default_icon_state
 	embed_chance = initial(embed_chance)

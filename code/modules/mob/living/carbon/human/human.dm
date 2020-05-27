@@ -100,6 +100,15 @@
 	if(!blinded)
 		flash_eyes()
 
+	for(var/datum/modifier/M in modifiers)
+		if(!isnull(M.explosion_modifier))
+			severity = CLAMP(severity + M.explosion_modifier, 1, 4)
+
+	severity = round(severity)
+
+	if(severity > 3)
+		return
+
 	var/shielded = 0
 	var/b_loss = null
 	var/f_loss = null
@@ -141,6 +150,11 @@
 				ear_deaf += 60
 			if (prob(50) && !shielded)
 				Paralyse(10)
+
+	var/blastsoak = getsoak(null, "bomb")
+
+	b_loss = max(1, b_loss - blastsoak)
+	f_loss = max(1, f_loss - blastsoak)
 
 	var/update = 0
 
@@ -409,7 +423,7 @@
 											BITSET(hud_updateflag, WANTED_HUD)
 											if(istype(usr,/mob/living/carbon/human))
 												var/mob/living/carbon/human/U = usr
-												U.handle_regular_hud_updates()
+												U.handle_hud_list()
 											if(istype(usr,/mob/living/silicon/robot))
 												var/mob/living/silicon/robot/U = usr
 												U.handle_regular_hud_updates()
@@ -743,7 +757,7 @@
 		var/datum/gender/T = gender_datums[get_visible_gender()]
 		visible_message("<font color='red'>\The [src] begins playing [T.his] ribcage like a xylophone. It's quite spooky.</font>","<font color='blue'>You begin to play a spooky refrain on your ribcage.</font>","<font color='red'>You hear a spooky xylophone melody.</font>")
 		var/song = pick('sound/effects/xylophone1.ogg','sound/effects/xylophone2.ogg','sound/effects/xylophone3.ogg')
-		playsound(loc, song, 50, 1, -1)
+		playsound(src, song, 50, 1, -1)
 		xylophone = 1
 		spawn(1200)
 			xylophone=0
@@ -1132,6 +1146,7 @@
 		// Clear out their species abilities.
 		species.remove_inherent_verbs(src)
 		holder_type = null
+		hunger_rate = initial(hunger_rate) //VOREStation Add
 
 	species = GLOB.all_species[new_species]
 
@@ -1175,6 +1190,7 @@
 
 
 	maxHealth = species.total_health
+	hunger_rate = species.hunger_factor //VOREStation Add
 
 	if(LAZYLEN(descriptors))
 		descriptors = null
@@ -1387,7 +1403,7 @@
 	set desc = "Pop a joint back into place. Extremely painful."
 	set src in view(1)
 
-	if(!isliving(usr) || !usr.canClick())
+	if(!isliving(usr) || !usr.checkClickCooldown())
 		return
 
 	usr.setClickCooldown(20)
@@ -1580,6 +1596,13 @@
 		else
 			layer = HIDING_LAYER
 
+/mob/living/carbon/human/examine_icon()
+	var/icon/I = get_cached_examine_icon(src)
+	if(!I)
+		I = getFlatIcon(src, defdir = SOUTH, no_anim = TRUE)
+		set_cached_examine_icon(src, I, 50 SECONDS)
+	return I
+
 /mob/living/carbon/human/proc/get_display_species()
 	//Shows species in tooltip
 	if(src.custom_species) //VOREStation Add
@@ -1628,3 +1651,37 @@
 
 	msg += get_display_species()
 	return msg
+
+/mob/living/carbon/human/pull_damage()
+	if(((health - halloss) <= config.health_threshold_softcrit))
+		for(var/name in organs_by_name)
+			var/obj/item/organ/external/e = organs_by_name[name]
+			if(!e)
+				continue
+			if((e.status & ORGAN_BROKEN && (!e.splinted || (e.splinted in e.contents && prob(30))) || e.status & ORGAN_BLEEDING) && (getBruteLoss() + getFireLoss() >= 100))
+				return 1
+	else
+		return ..()
+
+// Drag damage is handled in a parent
+/mob/living/carbon/human/dragged(var/mob/living/dragger, var/oldloc)
+	if(prob(getBruteLoss() * 200 / maxHealth))
+		var/bloodtrail = 1
+		if(species?.flags & NO_BLOOD)
+			bloodtrail = 0
+		else
+			var/blood_volume = round((vessel.get_reagent_amount("blood")/species.blood_volume)*100)
+			if(blood_volume < BLOOD_VOLUME_SURVIVE)
+				bloodtrail = 0	//Most of it's gone already, just leave it be
+			else
+				vessel.remove_reagent("blood", 1)
+		if(bloodtrail)
+			if(istype(loc, /turf/simulated))
+				var/turf/T = loc
+				T.add_blood(src)
+	. = ..()
+
+/mob/living/carbon/human/reduce_cuff_time()
+	if(istype(gloves, /obj/item/clothing/gloves/gauntlets/rig))
+		return 2
+	return ..()

@@ -527,13 +527,15 @@
 	listening_objects -= src
 	return ..()
 
-/obj/item/integrated_circuit/input/microphone/hear_talk(mob/living/M, msg, var/verb="says", datum/language/speaking=null)
+/obj/item/integrated_circuit/input/microphone/hear_talk(mob/M, list/message_pieces, verb)
+	var/msg = multilingual_to_message(message_pieces, requires_machine_understands = TRUE)
+
 	var/translated = FALSE
 	if(M && msg)
-		if(speaking)
-			if(!speaking.machine_understands)
-				msg = speaking.scramble(msg)
-			if(!istype(speaking, /datum/language/common))
+		for(var/datum/multilingual_say_piece/S in message_pieces)
+			// S.speaking && here is not redundant, it's preventing `S.speaking = null` from flagging
+			// as a translation, when it is not.
+			if(S.speaking && !istype(S.speaking, /datum/language/common))
 				translated = TRUE
 		set_pin_data(IC_OUTPUT, 1, M.GetVoice())
 		set_pin_data(IC_OUTPUT, 2, msg)
@@ -577,25 +579,41 @@
 		var/datum/language/newlang = GLOB.all_languages[lang]
 		my_langs |= newlang
 
-/obj/item/integrated_circuit/input/microphone/sign/hear_talk(mob/living/M, msg, var/verb="says", datum/language/speaking=null)
+/obj/item/integrated_circuit/input/microphone/sign/hear_talk(mob/M, list/message_pieces, verb)
+	var/msg = multilingual_to_message(message_pieces)
+
 	var/translated = FALSE
 	if(M && msg)
-		if(speaking)
-			if(!((speaking.flags & NONVERBAL) || (speaking.flags & SIGNLANG)))
-				translated = TRUE
-				msg = speaking.scramble(msg, my_langs)
+		for(var/datum/multilingual_say_piece/S in message_pieces)
+			if(S.speaking)
+				if(!((S.speaking.flags & NONVERBAL) || (S.speaking.flags & SIGNLANG)))
+					translated = TRUE
+					msg = stars(msg)
+					break
 		set_pin_data(IC_OUTPUT, 1, M.GetVoice())
 		set_pin_data(IC_OUTPUT, 2, msg)
 
 	push_data()
 	if(!translated)
 		activate_pin(1)
-	if(translated)
+	else
 		activate_pin(2)
 
 /obj/item/integrated_circuit/input/microphone/sign/hear_signlang(text, verb, datum/language/speaking, mob/M as mob)
-	hear_talk(M, text, verb, speaking)
-	return
+	var/translated = FALSE
+	if(M && text)
+		if(speaking)
+			if(!((speaking.flags & NONVERBAL) || (speaking.flags & SIGNLANG)))
+				translated = TRUE
+				text = speaking.scramble(text, my_langs)
+		set_pin_data(IC_OUTPUT, 1, M.GetVoice())
+		set_pin_data(IC_OUTPUT, 2, text)
+
+	push_data()
+	if(!translated)
+		activate_pin(1)
+	else
+		activate_pin(2)
 
 /obj/item/integrated_circuit/input/sensor
 	name = "sensor"

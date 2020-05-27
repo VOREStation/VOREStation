@@ -1,6 +1,6 @@
 /obj/machinery/pros_fabricator
-	icon = 'icons/obj/robotics_vr.dmi' //VOREStation Edit - New icon
-	icon_state = "fab-idle"
+	icon = 'icons/obj/robotics.dmi'
+	icon_state = "prosfab"
 	name = "Prosthetics Fabricator"
 	desc = "A machine used for construction of prosthetics."
 	density = 1
@@ -29,18 +29,11 @@
 	var/species = "Human"
 	var/sync_message = ""
 
-/obj/machinery/pros_fabricator/New()
-	..()
-	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/micro_laser(src)
-	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)
-	RefreshParts()
+/obj/machinery/pros_fabricator/Initialize()
+	. = ..()
+	default_apply_parts()
 
 	files = new /datum/research(src) //Setup the research data holder.
-	return
 
 /obj/machinery/pros_fabricator/Initialize()
 	. = ..()
@@ -61,12 +54,14 @@
 
 /obj/machinery/pros_fabricator/update_icon()
 	overlays.Cut()
+	icon_state = initial(icon_state)
+
 	if(panel_open)
-		icon_state = "fab-o"
-	else
-		icon_state = "fab-idle"
+		overlays.Add(image(icon, "[icon_state]_panel"))
+	if(stat & NOPOWER)
+		return
 	if(busy)
-		overlays += "fab-active"
+		icon_state = "[icon_state]_work"
 
 /obj/machinery/pros_fabricator/dismantle()
 	for(var/f in materials)
@@ -205,9 +200,7 @@
 		if(materials[S.material.name] + amnt <= res_max_amount)
 			if(S && S.get_amount() >= 1)
 				var/count = 0
-				overlays += "fab-load-metal"
-				spawn(10)
-					overlays -= "fab-load-metal"
+				flick("[initial(icon_state)]_loading", src)
 				while(materials[S.material.name] + amnt <= res_max_amount && S.get_amount() >= 1)
 					materials[S.material.name] += amnt
 					S.use(1)
@@ -280,6 +273,7 @@
 		materials[M] = max(0, materials[M] - D.materials[M] * mat_efficiency)
 	if(D.build_path)
 		var/obj/new_item = D.Fabricate(get_step(get_turf(src), src.dir), src) // Sometimes returns a mob. Beware!
+		flick("[initial(icon_state)]_finish", src)
 		visible_message("\The [src] pings, indicating that \the [D] is complete.", "You hear a ping.")
 		if(mat_efficiency != 1)
 			if(istype(new_item, /obj/) && new_item.matter && new_item.matter.len > 0)

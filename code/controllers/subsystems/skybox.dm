@@ -4,54 +4,94 @@ SUBSYSTEM_DEF(skybox)
 	name = "Space skybox"
 	init_order = INIT_ORDER_SKYBOX
 	flags = SS_NO_FIRE
-	var/list/skybox_cache = list()
+	var/static/list/skybox_cache = list()
 
-	var/list/dust_cache = list()
-	var/list/speedspace_cache = list()
-	var/list/phase_shift_by_x = list()
-	var/list/phase_shift_by_y = list()
+	var/static/mutable_appearance/normal_space
+	var/static/list/dust_cache = list()
+	var/static/list/speedspace_cache = list()
+	var/static/list/mapedge_cache = list()
+	var/static/list/phase_shift_by_x = list()
+	var/static/list/phase_shift_by_y = list()
 
 /datum/controller/subsystem/skybox/PreInit()
+	//Shuffle some lists
+	phase_shift_by_x = get_cross_shift_list(15)
+	phase_shift_by_y = get_cross_shift_list(15)
+
+	//Create our 'normal' space appearance
+	normal_space = new()
+	normal_space.name = "\proper space"
+	normal_space.desc = "Space!"
+	normal_space.mouse_opacity = 2 //Always fully opaque. It's SPACE there can't be things BEHIND IT.
+	normal_space.appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER
+	normal_space.plane = SPACE_PLANE
+	normal_space.layer = TURF_LAYER
+	normal_space.icon = 'icons/turf/space.dmi'
+	normal_space.icon_state = "white"
+	
 	//Static
 	for (var/i in 0 to 25)
+		var/mutable_appearance/MA = new(normal_space)
 		var/image/im = image('icons/turf/space_dust.dmi', "[i]")
 		im.plane = DUST_PLANE
 		im.alpha = 128 //80
 		im.blend_mode = BLEND_ADD
-		dust_cache["[i]"] = im
+		
+		MA.overlays = list(im)
+
+		dust_cache["[i]"] = MA
+	
 	//Moving
 	for (var/i in 0 to 14)
 		// NORTH/SOUTH
+		var/mutable_appearance/MA = new(normal_space)
 		var/image/im = image('icons/turf/space_dust_transit.dmi', "speedspace_ns_[i]")
 		im.plane = DUST_PLANE
 		im.blend_mode = BLEND_ADD
-		speedspace_cache["NS_[i]"] = im
+		MA.overlays = list(im)
+		speedspace_cache["NS_[i]"] = MA
 		// EAST/WEST
+		MA = new(normal_space)
 		im = image('icons/turf/space_dust_transit.dmi', "speedspace_ew_[i]")
 		im.plane = DUST_PLANE
 		im.blend_mode = BLEND_ADD
-		speedspace_cache["EW_[i]"] = im
+		
+		MA.overlays = list(im)
+		
+		speedspace_cache["EW_[i]"] = MA
+	
+	//Over-the-edge images
+	for (var/dir in alldirs)
+		var/mutable_appearance/MA = new(normal_space)
+		var/matrix/M = matrix()
+		var/horizontal = (dir & (WEST|EAST))
+		var/vertical = (dir & (NORTH|SOUTH))
+		M.Scale(horizontal ? 8 : 1, vertical ? 8 : 1)
+		MA.transform = M
+		MA.appearance_flags = KEEP_APART | TILE_BOUND
+		MA.plane = SPACE_PLANE
+		MA.layer = 0
 
-	//Shuffle some lists
-	phase_shift_by_x = get_cross_shift_list(15)
-	phase_shift_by_y = get_cross_shift_list(15)
+		if(dir & NORTH)
+			MA.pixel_y = 112
+		else if(dir & SOUTH)
+			MA.pixel_y = -112
+
+		if(dir & EAST)
+			MA.pixel_x = 112
+		else if(dir & WEST)
+			MA.pixel_x = -112
+
+		mapedge_cache["[dir]"] = MA
 
 	. = ..()
 
 /datum/controller/subsystem/skybox/Initialize()
 	. = ..()
 
-/datum/controller/subsystem/skybox/Recover()
-	skybox_cache = SSskybox.skybox_cache
-
 /datum/controller/subsystem/skybox/proc/get_skybox(z)
 	if(!skybox_cache["[z]"])
 		skybox_cache["[z]"] = generate_skybox(z)
-		if(global.using_map.use_overmap)
-			var/obj/effect/overmap/visitable/O = map_sectors["[z]"]
-			if(istype(O))
-				for(var/zlevel in O.map_z)
-					skybox_cache["[zlevel]"] = skybox_cache["[z]"]
 	return skybox_cache["[z]"]
 
 /datum/controller/subsystem/skybox/proc/generate_skybox(z)
@@ -71,7 +111,7 @@ SUBSYSTEM_DEF(skybox)
 	res.overlays += base
 
 	if(global.using_map.use_overmap && settings.use_overmap_details)
-		var/obj/effect/overmap/visitable/O = map_sectors["[z]"]
+		var/obj/effect/overmap/visitable/O = get_overmap_sector(z)
 		if(istype(O))
 			var/image/overmap = image(settings.icon)
 			overmap.overlays += O.generate_skybox()
@@ -93,7 +133,11 @@ SUBSYSTEM_DEF(skybox)
 		skybox_cache["[z]"] = generate_skybox(z)
 
 	for(var/client/C)
-		C.update_skybox(1)
+		var/their_z = get_z(C.mob)
+		if(!their_z) //Nullspace
+			continue
+		if(their_z in zlevels)
+			C.update_skybox(1)
 
 // Settings datum that maps can override to play with their skyboxes
 /datum/skybox_settings

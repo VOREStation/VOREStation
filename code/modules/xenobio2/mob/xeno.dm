@@ -67,7 +67,7 @@ Also includes Life and New
 			nutrition = 0
 		if((nutrition > 0 ) && traitdat.traits[TRAIT_XENO_EATS])
 			if(nutrition >= 300)
-				nutrition -= hunger_factor
+				adjust_nutrition(-hunger_factor)
 		else
 			if(traitdat.traits[TRAIT_XENO_EATS])
 				health = starve_damage

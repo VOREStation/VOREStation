@@ -52,7 +52,7 @@
 		return
 	// Now make the cardboard
 	to_chat(user, "<span class='notice'>You fold [src] flat.</span>")
-	playsound(src.loc, 'sound/items/storage/boxfold.ogg', 30, 1)
+	playsound(src, 'sound/items/storage/boxfold.ogg', 30, 1)
 	new foldable(get_turf(src))
 	qdel(src)
 
@@ -203,6 +203,11 @@
 	name = "box of 14.5mm shells"
 	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
 	starts_with = list(/obj/item/ammo_casing/a145 = 7)
+
+/obj/item/weapon/storage/box/sniperammo/highvel
+	name = "box of 14.5mm sabot shells"
+	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
+	starts_with = list(/obj/item/ammo_casing/a145/highvel = 7)
 
 /obj/item/weapon/storage/box/flashbangs
 	name = "box of flashbangs (WARNING)"

@@ -750,3 +750,26 @@
 	)
 	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/cube/protein,
 					/obj/item/weapon/reagent_containers/food/snacks/cube/nutriment)
+
+/obj/item/weapon/reagent_containers/food/snacks/carpmeat/sif //Making fish meat non-toxic!  As advised by Ascian!
+	toxin_type = null
+	toxin_amount = null
+
+/obj/item/weapon/reagent_containers/food/snacks/carpmeat/sif/murkfish
+	toxin_type = null
+
+/obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish
+	toxin_type = null
+	toxin_amount = null
+
+/obj/item/weapon/reagent_containers/food/snacks/honeybun
+	name = "Honeybun"
+	desc = "A delicious and sweet treat made with honey instead of sugar. On the sticky side."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "honeybun"
+	bitesize = 2
+	nutriment_amt = 4
+	nutriment_desc = list("honey" = 2, "pastry" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/bun/Initialize()
+	. = ..()

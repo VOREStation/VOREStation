@@ -154,8 +154,9 @@
 	drop_sound = 'sound/items/drop/gun.ogg'
 
 	examine(mob/user)
-		if(..(user, 2) && bullets)
-			to_chat(user, "<span class='notice'>It is loaded with [bullets] foam darts!</span>")
+		. = ..()
+		if(bullets && get_dist(user, src) <= 2)
+			. += "<span class='notice'>It is loaded with [bullets] foam darts!</span>"
 
 	attackby(obj/item/I as obj, mob/user as mob)
 		if(istype(I, /obj/item/toy/ammo/crossbow))
@@ -180,7 +181,7 @@
 			bullets--
 			D.icon_state = "foamdart"
 			D.name = "foam dart"
-			playsound(user.loc, 'sound/items/syringeproj.ogg', 50, 1)
+			playsound(src, 'sound/items/syringeproj.ogg', 50, 1)
 
 			for(var/i=0, i<6, i++)
 				if (D)
@@ -228,7 +229,7 @@
 					O.show_message(text("<span class='danger'>\The [] casually lines up a shot with []'s head and pulls the trigger!</span>", user, M), 1, "<span class='warning'>You hear the sound of foam against skull</span>", 2)
 					O.show_message(text("<span class='warning'>\The [] was hit in the head by the foam dart!</span>", M), 1)
 
-			playsound(user.loc, 'sound/items/syringeproj.ogg', 50, 1)
+			playsound(src, 'sound/items/syringeproj.ogg', 50, 1)
 			new /obj/item/toy/ammo/crossbow(M.loc)
 			src.bullets--
 		else if (M.lying && src.bullets == 0)
@@ -277,12 +278,12 @@
 		src.active = !( src.active )
 		if (src.active)
 			to_chat(user, "<span class='notice'>You extend the plastic blade with a quick flick of your wrist.</span>")
-			playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
+			playsound(src, 'sound/weapons/saberon.ogg', 50, 1)
 			src.item_state = "[icon_state]_blade"
 			src.w_class = ITEMSIZE_LARGE
 		else
 			to_chat(user, "<span class='notice'>You push the plastic blade back down into the handle.</span>")
-			playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
+			playsound(src, 'sound/weapons/saberoff.ogg', 50, 1)
 			src.item_state = "[icon_state]"
 			src.w_class = ITEMSIZE_SMALL
 		update_icon()
@@ -315,8 +316,8 @@
 		update_icon()
 
 /obj/item/toy/sword/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>Alt-click to recolor it.</span>")
+	. = ..()
+	. += "<span class='notice'>Alt-click to recolor it.</span>"
 
 /obj/item/toy/sword/attackby(obj/item/weapon/W, mob/user)
 	if(istype(W, /obj/item/device/multitool) && !active)
@@ -380,75 +381,6 @@
 			qdel(src)
 
 /*
- * Water flower
- */
-/obj/item/toy/waterflower
-	name = "water flower"
-	desc = "A seemingly innocent sunflower...with a twist."
-	icon = 'icons/obj/device.dmi'
-	drop_sound = 'sound/items/drop/food.ogg'
-	icon_state = "sunflower"
-	item_state = "sunflower"
-	var/empty = 0
-	slot_flags = SLOT_HOLSTER
-
-/obj/item/toy/waterflower/New()
-	var/datum/reagents/R = new/datum/reagents(10)
-	reagents = R
-	R.my_atom = src
-	R.add_reagent("water", 10)
-
-/obj/item/toy/waterflower/attack(mob/living/carbon/human/M as mob, mob/user as mob)
-	return
-
-/obj/item/toy/waterflower/afterattack(atom/A as mob|obj, mob/user as mob)
-
-	if (istype(A, /obj/item/weapon/storage/backpack ))
-		return
-
-	else if (locate (/obj/structure/table, src.loc))
-		return
-
-	else if (istype(A, /obj/structure/reagent_dispensers/watertank) && get_dist(src,A) <= 1)
-		A.reagents.trans_to_obj(src, 10)
-		to_chat(user, "<span class='notice'>You refill your flower!</span>")
-		return
-
-	else if (src.reagents.total_volume < 1)
-		src.empty = 1
-		to_chat(user, "<span class='notice'>Your flower has run dry!</span>")
-		return
-
-	else
-		src.empty = 0
-
-
-		var/obj/effect/decal/D = new/obj/effect/decal/(get_turf(src))
-		D.name = "water"
-		D.icon = 'icons/obj/chemical.dmi'
-		D.icon_state = "chempuff"
-		D.create_reagents(5)
-		src.reagents.trans_to_obj(D, 1)
-		playsound(src.loc, 'sound/effects/spray3.ogg', 50, 1, -6)
-
-		spawn(0)
-			for(var/i=0, i<1, i++)
-				step_towards(D,A)
-				D.reagents.touch_turf(get_turf(D))
-				for(var/atom/T in get_turf(D))
-					D.reagents.touch(T)
-					if(ismob(T) && T:client)
-						to_chat(T:client, "<span class='warning'>\The [user] has sprayed you with water!</span>")
-				sleep(4)
-			qdel(D)
-
-		return
-
-/obj/item/toy/waterflower/examine(mob/user)
-	if(..(user, 0))
-		to_chat(user, "[bicon(src)] [src.reagents.total_volume] units of water left!")
-
-/*
  * Bosun's whistle
  */
 
@@ -465,7 +397,7 @@
 /obj/item/toy/bosunwhistle/attack_self(mob/user as mob)
 	if(cooldown < world.time - 35)
 		to_chat(user, "<span class='notice'>You blow on [src], creating an ear-splitting noise!</span>")
-		playsound(user, 'sound/misc/boatswain.ogg', 20, 1)
+		playsound(src, 'sound/misc/boatswain.ogg', 20, 1)
 		cooldown = world.time
 
 /*
@@ -481,14 +413,14 @@
 /obj/item/toy/prize/attack_self(mob/user as mob)
 	if(cooldown < world.time - 8)
 		to_chat(user, "<span class='notice'>You play with [src].</span>")
-		playsound(user, 'sound/mecha/mechstep.ogg', 20, 1)
+		playsound(src, 'sound/mecha/mechstep.ogg', 20, 1)
 		cooldown = world.time
 
 /obj/item/toy/prize/attack_hand(mob/user as mob)
 	if(loc == user)
 		if(cooldown < world.time - 8)
 			to_chat(user, "<span class='notice'>You play with [src].</span>")
-			playsound(user, 'sound/mecha/mechturn.ogg', 20, 1)
+			playsound(src, 'sound/mecha/mechturn.ogg', 20, 1)
 			cooldown = world.time
 			return
 	..()
@@ -567,7 +499,7 @@
 	if(cooldown < world.time)
 		cooldown = (world.time + 30) //3 second cooldown
 		user.visible_message("<span class='notice'>The [src] says \"[toysay]\".</span>")
-		playsound(user, 'sound/machines/click.ogg', 20, 1)
+		playsound(src, 'sound/machines/click.ogg', 20, 1)
 
 /obj/item/toy/figure/cmo
 	name = "Chief Medical Officer action figure"
@@ -821,12 +753,12 @@
 
 // Attack mob
 /obj/item/toy/plushie/carp/attack(mob/M as mob, mob/user as mob)
-	playsound(loc, bitesound, 20, 1)	// Play bite sound in local area
+	playsound(src, bitesound, 20, 1)	// Play bite sound in local area
 	return ..()
 
 // Attack self
 /obj/item/toy/plushie/carp/attack_self(mob/user as mob)
-	playsound(src.loc, bitesound, 20, 1)
+	playsound(src, bitesound, 20, 1)
 	return ..()
 
 
@@ -893,11 +825,11 @@
 	var/obj/item/stored_item	// Note: Stored items can't be bigger than the plushie itself.
 
 /obj/structure/plushie/examine(mob/user)
-	..()
+	. = ..()
 	if(opened)
-		to_chat(user, "<i>You notice an incision has been made on [src].</i>")
+		. += "<i>You notice an incision has been made on [src].</i>"
 		if(in_range(user, src) && stored_item)
-			to_chat(user, "<i>You can see something in there...</i>")
+			. += "<i>You can see something in there...</i>"
 
 /obj/structure/plushie/attack_hand(mob/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
@@ -992,11 +924,11 @@
 
 
 /obj/item/toy/plushie/examine(mob/user)
-	..()
+	. = ..()
 	if(opened)
-		to_chat(user, "<i>You notice an incision has been made on [src].</i>")
+		. += "<i>You notice an incision has been made on [src].</i>"
 		if(in_range(user, src) && stored_item)
-			to_chat(user, "<i>You can see something in there...</i>")
+			. += "<i>You can see something in there...</i>"
 
 /obj/item/toy/plushie/attack_self(mob/user as mob)
 	if(stored_item && opened && !searching)
@@ -1439,7 +1371,7 @@
 	if(!cooldown) //for the sanity of everyone
 		var/message = generate_ion_law()
 		to_chat(user, "<span class='notice'>You press the button on [src].</span>")
-		playsound(user, 'sound/machines/click.ogg', 20, 1)
+		playsound(src, 'sound/machines/click.ogg', 20, 1)
 		visible_message("<span class='danger'>[message]</span>")
 		cooldown = 1
 		spawn(30) cooldown = 0
@@ -1458,7 +1390,7 @@
 	if(!cooldown) //for the sanity of everyone
 		var/message = pick("You won't get away this time, Griffin!", "Stop right there, criminal!", "Hoot! Hoot!", "I am the night!")
 		to_chat(user, "<span class='notice'>You pull the string on the [src].</span>")
-		//playsound(user, 'sound/misc/hoot.ogg', 25, 1)
+		//playsound(src, 'sound/misc/hoot.ogg', 25, 1)
 		visible_message("<span class='danger'>[message]</span>")
 		cooldown = 1
 		spawn(30) cooldown = 0
@@ -1477,7 +1409,7 @@
 	if(!cooldown) //for the sanity of everyone
 		var/message = pick("You can't stop me, Owl!", "My plan is flawless! The vault is mine!", "Caaaawwww!", "You will never catch me!")
 		to_chat(user, "<span class='notice'>You pull the string on the [src].</span>")
-		//playsound(user, 'sound/misc/caw.ogg', 25, 1)
+		//playsound(src, 'sound/misc/caw.ogg', 25, 1)
 		visible_message("<span class='danger'>[message]</span>")
 		cooldown = 1
 		spawn(30) cooldown = 0

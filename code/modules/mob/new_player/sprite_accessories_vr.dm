@@ -623,6 +623,12 @@
 		color_blend_mode = ICON_MULTIPLY
 		body_parts = list(BP_HEAD)
 
+	vulp_short_nose
+		name = "nose, short (Vulp)"
+		icon_state = "vulp_short_nose"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_HEAD)
+
 	snoutstripe
 		name = "snout stripe (Vulp)"
 		icon_state = "snoutstripe"
@@ -632,6 +638,12 @@
 	vulp_face
 		name = "face (Vulp)"
 		icon_state = "vulp_face"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_HEAD)
+
+	vulp_facealt
+		name = "face, alt. (Vulp)"
+		icon_state = "vulp_facealt"
 		color_blend_mode = ICON_MULTIPLY
 		body_parts = list(BP_HEAD)
 
@@ -1086,12 +1098,6 @@
 		icon_state = "rosette"
 		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO,BP_HEAD)
 
-	heterochromia
-		name = "Heterochromia"
-		icon_state = "heterochromia"
-		body_parts = list(BP_HEAD)
-		species_allowed = list(SPECIES_HUMAN, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_FENNEC, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST) //This lets all races use the default hairstyles.
-
 	werewolf_nose
 		name = "Werewolf nose"
 		icon = 'icons/mob/species/werebeast/werebeast_markings.dmi'
@@ -1130,3 +1136,33 @@
 		color_blend_mode = ICON_MULTIPLY
 		body_parts = list(BP_HEAD)
 		species_allowed = list(SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW)
+
+	taj_nose_alt
+		name = "Nose Color, alt. (Taj)"
+		icon_state = "taj_nosealt"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_HEAD)
+
+	talons
+		name = "Talons"
+		icon_state = "talons"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG)
+
+	claws
+		name = "Claws"
+		icon_state = "claws"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_L_HAND,BP_R_HAND)
+
+	equine_snout //Why the long face? Works best with sergal bodytype.
+		name = "Equine Snout"
+		icon_state = "donkey"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_HEAD)
+
+	equine_nose
+		name = "Equine Nose"
+		icon_state = "dnose"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_HEAD)

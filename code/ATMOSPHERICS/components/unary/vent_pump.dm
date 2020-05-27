@@ -47,11 +47,16 @@
 	var/radio_filter_out
 	var/radio_filter_in
 
-	//var/datum/looping_sound/air_pump/soundloop //VOREStation Removal
+	var/datum/looping_sound/air_pump/soundloop
 
 /obj/machinery/atmospherics/unary/vent_pump/on
 	use_power = USE_POWER_IDLE
 	icon_state = "map_vent_out"
+
+/obj/machinery/atmospherics/unary/vent_pump/aux
+	icon_state = "map_vent_aux"
+	icon_connect_type = "-aux"
+	connect_types = CONNECT_TYPE_AUX //connects to aux pipes
 
 /obj/machinery/atmospherics/unary/vent_pump/siphon
 	pump_direction = 0
@@ -72,7 +77,7 @@
 
 /obj/machinery/atmospherics/unary/vent_pump/Initialize()
 	. = ..()
-	//soundloop = new(list(src), FALSE) //VOREStation Removal
+	soundloop = new(list(src), FALSE)
 
 /obj/machinery/atmospherics/unary/vent_pump/New()
 	..()
@@ -80,7 +85,7 @@
 
 	icon = null
 	initial_loc = get_area(loc)
-	area_uid = initial_loc.uid
+	area_uid = "\ref[initial_loc]"
 	if (!id_tag)
 		assign_uid()
 		id_tag = num2text(uid)
@@ -90,13 +95,18 @@
 	if(initial_loc)
 		initial_loc.air_vent_info -= id_tag
 		initial_loc.air_vent_names -= id_tag
-	//QDEL_NULL(soundloop) //VOREStation Removal
+	QDEL_NULL(soundloop)
 	return ..()
 
 /obj/machinery/atmospherics/unary/vent_pump/high_volume
 	name = "Large Air Vent"
 	power_channel = EQUIP
 	power_rating = 45000	//15 kW ~ 20 HP //VOREStation Edit - 45000
+
+/obj/machinery/atmospherics/unary/vent_pump/high_volume/aux
+	icon_state = "map_vent_aux"
+	icon_connect_type = "-aux"
+	connect_types = CONNECT_TYPE_AUX //connects to aux pipes
 
 /obj/machinery/atmospherics/unary/vent_pump/high_volume/New()
 	..()
@@ -171,15 +181,15 @@
 
 /obj/machinery/atmospherics/unary/vent_pump/proc/can_pump()
 	if(stat & (NOPOWER|BROKEN))
-		//soundloop.stop() //VOREStation Removal
+		soundloop.stop()
 		return 0
 	if(!use_power)
-		//soundloop.stop() //VOREStation Removal
+		soundloop.stop() 
 		return 0
 	if(welded)
-		//soundloop.stop() //VOREStation Removal
+		soundloop.stop()
 		return 0
-	//soundloop.start() //VOREStation Removal
+	soundloop.start()
 	return 1
 
 /obj/machinery/atmospherics/unary/vent_pump/process()
@@ -253,7 +263,7 @@
 		return 0
 
 	var/datum/signal/signal = new
-	signal.transmission_method = 1 //radio signal
+	signal.transmission_method = TRANSMISSION_RADIO //radio signal
 	signal.source = src
 
 	signal.data = list(
@@ -386,7 +396,7 @@
 			to_chat(user, "<span class='notice'>Now welding the vent.</span>")
 			if(do_after(user, 20 * WT.toolspeed))
 				if(!src || !WT.isOn()) return
-				playsound(src.loc, WT.usesound, 50, 1)
+				playsound(src, WT.usesound, 50, 1)
 				if(!welded)
 					user.visible_message("<span class='notice'>\The [user] welds the vent shut.</span>", "<span class='notice'>You weld the vent shut.</span>", "You hear welding.")
 					welded = 1
@@ -404,12 +414,13 @@
 		..()
 
 /obj/machinery/atmospherics/unary/vent_pump/examine(mob/user)
-	if(..(user, 1))
-		to_chat(user, "A small gauge in the corner reads [round(last_flow_rate, 0.1)] L/s; [round(last_power_draw)] W")
+	. = ..()
+	if(Adjacent(user))
+		. += "A small gauge in the corner reads [round(last_flow_rate, 0.1)] L/s; [round(last_power_draw)] W"
 	else
-		to_chat(user, "You are too far away to read the gauge.")
+		. += "You are too far away to read the gauge."
 	if(welded)
-		to_chat(user, "It seems welded shut.")
+		. += "It seems welded shut."
 
 /obj/machinery/atmospherics/unary/vent_pump/power_change()
 	var/old_stat = stat

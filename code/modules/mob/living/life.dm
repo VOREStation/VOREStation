@@ -119,11 +119,17 @@
 /mob/living/proc/handle_stunned()
 	if(stunned)
 		AdjustStunned(-1)
+		throw_alert("stunned", /obj/screen/alert/stunned)
+	else
+		clear_alert("stunned")
 	return stunned
 
 /mob/living/proc/handle_weakened()
 	if(weakened)
 		weakened = max(weakened-1,0)
+		throw_alert("weakened", /obj/screen/alert/weakened)
+	else
+		clear_alert("weakened")
 	return weakened
 
 /mob/living/proc/handle_stuttering()
@@ -139,6 +145,9 @@
 /mob/living/proc/handle_drugged()
 	if(druggy)
 		druggy = max(druggy-1, 0)
+		throw_alert("high", /obj/screen/alert/high)
+	else
+		clear_alert("high")
 	return druggy
 
 /mob/living/proc/handle_slurring()
@@ -149,20 +158,31 @@
 /mob/living/proc/handle_paralysed()
 	if(paralysis)
 		AdjustParalysis(-1)
+		throw_alert("paralyzed", /obj/screen/alert/paralyzed)
+	else
+		clear_alert("paralyzed")
 	return paralysis
 
 /mob/living/proc/handle_confused()
 	if(confused)
 		AdjustConfused(-1)
+		throw_alert("confused", /obj/screen/alert/confused)
+	else
+		clear_alert("confused")
 	return confused
 
 /mob/living/proc/handle_disabilities()
 	//Eyes
 	if(sdisabilities & BLIND || stat)	//blindness from disability or unconsciousness doesn't get better on its own
 		SetBlinded(1)
+		throw_alert("blind", /obj/screen/alert/blind)
 	else if(eye_blind)			//blindness, heals slowly over time
 		AdjustBlinded(-1)
-	else if(eye_blurry)			//blurry eyes heal slowly
+		throw_alert("blind", /obj/screen/alert/blind)
+	else
+		clear_alert("blind")
+	
+	if(eye_blurry)			//blurry eyes heal slowly
 		eye_blurry = max(eye_blurry-1, 0)
 
 	//Ears
@@ -173,13 +193,11 @@
 		if(ear_damage < 100)
 			adjustEarDamage(-0.05,-1)
 
-//this handles hud updates. Calls update_vision() and handle_hud_icons()
 /mob/living/handle_regular_hud_updates()
 	if(!client)
 		return 0
 	..()
 
-	handle_vision()
 	handle_darksight()
 	handle_hud_icons()
 
@@ -190,6 +208,13 @@
 		see_invisible = SEE_INVISIBLE_NOLIGHTING
 	else
 		see_invisible = initial(see_invisible)
+
+	sight = initial(sight)
+
+	for(var/datum/modifier/M in modifiers)
+		if(!isnull(M.vision_flags))
+			sight |= M.vision_flags
+
 	return
 
 /mob/living/proc/handle_hud_icons()

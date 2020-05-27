@@ -3,10 +3,12 @@
 /obj/effect/overmap/visitable/sector/debrisfield
 	name = "Debris Field"
 	desc = "Space junk galore."
+	scanner_desc = @{"[i]Transponder[/i]: Various faint signals
+[b]Notice[/b]: Warning! Significant field of space debris detected. May be salvagable."}
 	icon_state = "dust1"
 	known = FALSE
 	color = "#ee3333" //Redish, so it stands out against the other debris-like icons
-	initial_generic_waypoints = list("tether_excursion_debrisfield")
+	initial_generic_waypoints = list("debrisfield_se", "debrisfield_nw")
 
 // -- Objs -- //
 

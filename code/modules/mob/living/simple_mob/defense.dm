@@ -72,6 +72,23 @@
 		if(istype(O, /obj/item/weapon/material/knife))
 			harvest(user)
 
+	if(user.a_intent == I_HELP && harvest_tool && istype(O, harvest_tool) && stat != DEAD)
+		if(world.time > (harvest_recent + harvest_cooldown))
+			livestock_harvest(O, user)
+			return
+		else
+			to_chat(user, "<span class='notice'>\The [src] can't be [harvest_verb] so soon.</span>")
+			return
+
+	if(can_tame(O, user))
+		to_chat(user, "<span class='notice'>You offer \the [src] \the [O].</span>")
+		if(tame_prob(O, user))
+			to_chat(user, "<span class='notice'>\The [src] appears to accept \the [O], seemingly calmed.</span>")
+			do_tame(O,user)
+		else
+			fail_tame(O, user)
+		return
+
 	return ..()
 
 
@@ -96,6 +113,16 @@
 /mob/living/simple_mob/ex_act(severity)
 	if(!blinded)
 		flash_eyes()
+
+	for(var/datum/modifier/M in modifiers)
+		if(!isnull(M.explosion_modifier))
+			severity = CLAMP(severity + M.explosion_modifier, 1, 4)
+
+	severity = round(severity)
+
+	if(severity > 3)
+		return
+
 	var/armor = run_armor_check(def_zone = null, attack_flag = "bomb")
 	var/bombdam = 500
 	switch (severity)
@@ -136,7 +163,7 @@
 		return 0
 
 	apply_damage(damage = shock_damage, damagetype = BURN, def_zone = null, blocked = null, blocked = resistance, used_weapon = null, sharp = FALSE, edge = FALSE)
-	playsound(loc, "sparks", 50, 1, -1)
+	playsound(src, "sparks", 50, 1, -1)
 
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(5, 1, loc)

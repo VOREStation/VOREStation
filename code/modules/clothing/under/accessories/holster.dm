@@ -25,7 +25,7 @@
 		return
 
 	if(holster_in)
-		playsound(get_turf(src), holster_in, 50)
+		playsound(src, holster_in, 50)
 
 	if(istype(user))
 		user.stop_aiming(no_message=1)
@@ -62,7 +62,7 @@
 				)
 
 		if(holster_out)
-			playsound(get_turf(src), holster_out, sound_vol)
+			playsound(src, holster_out, sound_vol)
 
 		user.put_in_hands(holstered)
 		holstered.add_fingerprint(user)
@@ -86,11 +86,11 @@
 	..()
 
 /obj/item/clothing/accessory/holster/examine(mob/user)
-	..(user)
-	if (holstered)
-		to_chat(user, "A [holstered] is holstered here.")
+	. = ..(user)
+	if(holstered)
+		. += "A [holstered] is holstered here."
 	else
-		to_chat(user, "It is empty.")
+		. += "It is empty."
 
 /obj/item/clothing/accessory/holster/on_attached(obj/item/clothing/under/S, mob/user as mob)
 	..()

@@ -8,9 +8,9 @@
 
 
 /obj/item/device/assembly/mousetrap/examine(var/mob/user)
-	..(user)
+	. = ..(user)
 	if(armed)
-		to_chat(user, "It looks like it's armed.")
+		. += "It looks like it's armed."
 
 /obj/item/device/assembly/mousetrap/update_icon()
 	if(armed)
@@ -43,7 +43,7 @@
 		var/mob/living/simple_mob/animal/passive/mouse/M = target
 		visible_message("<font color='red'><b>SPLAT!</b></font>")
 		M.splat()
-	playsound(target.loc, 'sound/effects/snap.ogg', 50, 1)
+	playsound(target, 'sound/effects/snap.ogg', 50, 1)
 	layer = MOB_LAYER - 0.2
 	armed = 0
 	update_icon()
@@ -65,7 +65,7 @@
 		to_chat(user, "<span class='notice'>You disarm [src].</span>")
 	armed = !armed
 	update_icon()
-	playsound(user.loc, 'sound/weapons/handcuffs.ogg', 30, 1, -3)
+	playsound(user, 'sound/weapons/handcuffs.ogg', 30, 1, -3)
 
 /obj/item/device/assembly/mousetrap/attack_hand(var/mob/living/user)
 	if(armed)

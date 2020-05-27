@@ -204,6 +204,7 @@
 /datum/robolimb/dsi_teshari/New()
 	species_cannot_use = GLOB.all_species.Copy()
 	species_cannot_use -= SPECIES_TESHARI
+	species_cannot_use -= SPECIES_CUSTOM
 	..()
 
 /obj/item/weapon/disk/limb/dsi_teshari

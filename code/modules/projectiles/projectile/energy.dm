@@ -101,6 +101,19 @@
 
 	combustion = FALSE
 
+/obj/item/projectile/energy/excavate
+	name = "kinetic blast"
+	icon_state = "kinetic_blast"
+	fire_sound = 'sound/weapons/pulse3.ogg'
+	damage_type = BRUTE
+	damage = 30
+	armor_penetration = 60
+	excavation_amount = 200
+	check_armour = "melee"
+
+	vacuum_traversal = 0
+	combustion = FALSE
+
 /obj/item/projectile/energy/dart
 	name = "dart"
 	icon_state = "toxin"
@@ -182,7 +195,7 @@
 /obj/item/projectile/energy/plasmastun/proc/bang(var/mob/living/carbon/M)
 
 	to_chat(M, "<span class='danger'>You hear a loud roar.</span>")
-	playsound(M.loc, 'sound/effects/bang.ogg', 50, 1)
+	playsound(src, 'sound/effects/bang.ogg', 50, 1)
 	var/ear_safety = 0
 	ear_safety = M.get_ear_protection()
 	if(ear_safety == 1)

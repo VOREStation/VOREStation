@@ -79,8 +79,11 @@
 
 /obj/item/device/assembly/infra/Move()
 	var/t = dir
-	..()
+	. = ..()
 	set_dir(t)
+
+/obj/item/device/assembly/infra/Moved(atom/old_loc, direction, forced = FALSE)
+	. = ..()
 	QDEL_LIST_NULL(i_beams)
 
 /obj/item/device/assembly/infra/holder_movement()

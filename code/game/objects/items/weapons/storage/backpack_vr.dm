@@ -137,3 +137,53 @@
 
 /obj/item/weapon/storage/backpack/ert
 	max_storage_space = INVENTORY_DUFFLEBAG_SPACE
+
+/obj/item/weapon/storage/backpack/satchel/explorer
+	name = "explorer satchel"
+	desc = "A satchel for carrying a large number of supplies easily."
+	icon = 'icons/obj/storage_vr.dmi'
+	icon_override = 'icons/mob/back_vr.dmi'
+	item_state = "satchel-explorer"
+	icon_state = "satchel-explorer"
+/obj/item/weapon/storage/backpack/explorer
+	name = "explorer backpack"
+	desc = "A backpack for carrying a large number of supplies easily."
+	icon = 'icons/obj/storage_vr.dmi'
+	icon_override = 'icons/mob/back_vr.dmi'
+	item_state = "explorerpack"
+	icon_state = "explorerpack"
+/obj/item/weapon/storage/backpack/satchel/roboticist
+	name = "roboticist satchel"
+	desc = "A satchel for carrying a large number of spare parts easily."
+	icon = 'icons/obj/storage_vr.dmi'
+	icon_override = 'icons/mob/back_vr.dmi'
+	item_state = "satchel-robo"
+	icon_state = "satchel-robo"
+/obj/item/weapon/storage/backpack/roboticist
+	name = "roboticist backpack"
+	desc = "A backpack for carrying a large number of spare parts easily."
+	icon = 'icons/obj/storage_vr.dmi'
+	icon_override = 'icons/mob/back_vr.dmi'
+	item_state = "backpack-robo"
+	icon_state = "backpack-robo"
+/obj/item/weapon/storage/backpack/vietnam
+	name = "vietnam backpack"
+	desc = "There are tangos in the trees! We need napalm right now! Why is my gun jammed?"
+	icon = 'icons/obj/storage_vr.dmi'
+	icon_override = 'icons/mob/back_vr.dmi'
+	item_state = "nambackpack"
+	icon_state = "nambackpack"
+/obj/item/weapon/storage/backpack/russian
+	name = "russian backpack"
+	desc = "Useful for carrying large quantities of vodka."
+	icon = 'icons/obj/storage_vr.dmi'
+	icon_override = 'icons/mob/back_vr.dmi'
+	item_state = "ru_rucksack"
+	icon_state = "ru_rucksack"
+/obj/item/weapon/storage/backpack/korean
+	name = "korean backpack"
+	desc = "Insert witty description here."
+	icon = 'icons/obj/storage_vr.dmi'
+	icon_override = 'icons/mob/back_vr.dmi'
+	item_state = "kr_rucksack"
+	icon_state = "kr_rucksack"

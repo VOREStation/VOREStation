@@ -1,6 +1,7 @@
 /obj/vehicle/bike
 	name = "space-bike"
 	desc = "Space wheelies! Woo!"
+	description_info = "Use ctrl-click to quickly toggle the engine if you're adjacent (only when vehicle is stationary). Alt-click will similarly toggle the kickstand."
 	icon = 'icons/obj/bike.dmi'
 	icon_state = "bike_off"
 	dir = SOUTH
@@ -54,6 +55,12 @@
 			return
 	..()
 
+/obj/vehicle/bike/CtrlClick(var/mob/user)
+	if(Adjacent(user) && anchored)
+		toggle()
+	else
+		return ..()
+
 /obj/vehicle/bike/verb/toggle()
 	set name = "Toggle Engine"
 	set category = "Vehicle"
@@ -71,7 +78,13 @@
 		turn_off()
 		src.visible_message("\The [src] putters before turning off.", "You hear something putter slowly.")
 
-/obj/vehicle/bike/verb/kickstand(var/mob/user as mob)	//TFF 22/3/20 - Tweaking the visible_message output so it's not "You put kickstand down" to everyone.
+/obj/vehicle/bike/AltClick(var/mob/user)
+	if(Adjacent(user))
+		kickstand(user)
+	else
+		return ..()
+
+/obj/vehicle/bike/verb/kickstand(var/mob/user as mob)
 	set name = "Toggle Kickstand"
 	set category = "Vehicle"
 	set src in view(0)

@@ -21,7 +21,7 @@
 
 /obj/effect/overlay/aiholo/proc/get_prey(var/mob/living/prey)
 	if(bellied) return
-	playsound('sound/effects/stealthoff.ogg',50,0)
+	playsound(src, 'sound/effects/stealthoff.ogg',50,0)
 	bellied = prey
 	prey.forceMove(src)
 	visible_message("[src] entirely engulfs [prey] in hardlight holograms!")
@@ -34,7 +34,7 @@
 
 /obj/effect/overlay/aiholo/proc/drop_prey()
 	if(!bellied) return
-	playsound('sound/effects/stealthoff.ogg',50,0)
+	playsound(src, 'sound/effects/stealthoff.ogg',50,0)
 	bellied.forceMove(get_turf(src))
 	bellied.Weaken(2)
 	bellied.visible_message("[bellied] flops out of [src].","You flop out of [src].","You hear a thud.")
@@ -98,13 +98,11 @@
 
 //This can go here with all the references.
 /obj/effect/overlay/aiholo/examine(mob/user)
-	. = ..(user)
+	. = ..()
+	if(master)
+		var/flavor_text = master.print_flavor_text()
+		if(flavor_text)
+			. += "[flavor_text]"
 
-	var/msg = "\n"
-
-	//If you need an ooc_notes copy paste, this is NOT the one to use.
-	var/ooc_notes = master.ooc_notes
-	if(ooc_notes)
-		msg += "<span class = 'deptradio'>OOC Notes:</span> <a href='?src=\ref[master];ooc_notes=1'>\[View\]</a>\n"
-
-	to_chat(user,msg)
+		if(master.ooc_notes)
+			. += "<span class = 'deptradio'>OOC Notes:</span> <a href='?src=\ref[master];ooc_notes=1'>\[View\]</a>"

@@ -260,6 +260,7 @@
 	inherent_verbs = list(/mob/living/proc/shred_limb, /mob/living/carbon/human/proc/lick_wounds)
 	heat_discomfort_level = 295 //Prevents heat discomfort spam at 20c
 	wikilink="https://wiki.vore-station.net/Tajaran"
+	agility = 90
 
 /datum/species/skrell
 	spawn_flags = SPECIES_CAN_JOIN
@@ -304,6 +305,7 @@
 	gluttonous = 0
 	descriptors = list()
 	wikilink="https://wiki.vore-station.net/Teshari"
+	agility = 90
 
 	inherent_verbs = list(
 		/mob/living/carbon/human/proc/sonar_ping,

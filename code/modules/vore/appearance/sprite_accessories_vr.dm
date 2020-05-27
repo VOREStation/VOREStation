@@ -331,6 +331,14 @@
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "otie-inner"
 
+/datum/sprite_accessory/ears/donkey
+	name = "donkey, colorable"
+	desc = ""
+	icon_state = "donkey"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "otie-inner"
+
 /datum/sprite_accessory/ears/zears
 	name = "jagged ears"
 	desc = ""
@@ -366,6 +374,29 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "vulp-inner"
+
+/datum/sprite_accessory/ears/vulp_short
+	name = "vulpkanin short"
+	desc = ""
+	icon_state = "vulp_terrier"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/vulp_short_dc
+	name = "vulpkanin short, dual-color"
+	desc = ""
+	icon_state = "vulp_terrier"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "vulp_terrier-inner"
+
+/datum/sprite_accessory/ears/vulp_jackal
+	name = "vulpkanin thin, dual-color"
+	desc = ""
+	icon_state = "vulp_jackal"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "vulp_jackal-inner"
 
 /datum/sprite_accessory/ears/bunny_floppy
 	name = "floopy bunny ears (colorable)"
@@ -461,6 +492,8 @@
 	name = "tritail kitsune ears (Rosey)"
 	desc = ""
 	icon_state = "rosey"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 	ckeys_allowed = list("joey4298")
 
 /datum/sprite_accessory/ears/aronai
@@ -505,7 +538,45 @@
     icon_state = "pipears"
     ckeys_allowed = list("phoaly")
 
+/datum/sprite_accessory/ears/elf_caprine_colorable
+	name = "Caprine horns with pointy ears, colorable"
+	desc = ""
+	icon_state = "elfs"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "caprahorns"
 
+/datum/sprite_accessory/ears/elf_oni_colorable
+	name = "oni horns with pointy ears, colorable"
+	desc = ""
+	icon_state = "elfs"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "oni-h1_c"
+
+/datum/sprite_accessory/ears/elf_demon_colorable
+	name = "Demon horns with pointy ears, colorable"
+	desc = ""
+	icon_state = "elfs"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "demon-horns1_c"
+
+/datum/sprite_accessory/ears/elf_demon_outwards_colorable
+	name = "Demon horns with pointy ears, outwards, colourable"
+	desc = ""
+	icon_state = "elfs"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "demon-horns2"
+
+/datum/sprite_accessory/ears/elf_dragon_colorable
+	name = "Dragon horns with pointy ears, colourable"
+	desc = ""
+	icon_state = "elfs"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "dragon-horns"
 /*
 ////////////////////////////
 /  =--------------------=  /
@@ -720,17 +791,14 @@
 	var/list/hide_body_parts = list() //Uses organ tag defines. Bodyparts in this list do not have their icons rendered, allowing for more spriter freedom when doing taur/digitigrade stuff.
 	var/icon/clip_mask_icon = null //Icon file used for clip mask.
 	var/clip_mask_state = null //Icon state to generate clip mask. Clip mask is used to 'clip' off the lower part of clothing such as jumpsuits & full suits.
+	var/icon/clip_mask = null //Instantiated clip mask of given icon and state
+
+/datum/sprite_accessory/tail/New()
+	. = ..()
+	if(clip_mask_icon && clip_mask_state)
+		clip_mask = icon(icon = clip_mask_icon, icon_state = clip_mask_state)
 
 // Species-unique tails
-
-/datum/sprite_accessory/tail/shadekin_short
-	name = "Shadekin Short Tail, colorable"
-	desc = ""
-	icon_state = "shadekin-short"
-	do_colouration = 1
-	color_blend_mode = ICON_MULTIPLY
-	apply_restrictions = TRUE
-	species_allowed = list(SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW)
 
 // Everyone tails
 
@@ -978,6 +1046,8 @@
 	name = "pentatail kitsune tails (Rosey)" //I predict seven tails next. ~CK
 	desc = ""
 	icon_state = "rosey_five"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 	ckeys_allowed = list("joey4298")
 
 /datum/sprite_accessory/tail/scree
@@ -1168,6 +1238,13 @@
 	desc = ""
 	icon_state = "teshari_fluffytail"
 	extra_overlay = "teshari_fluffytail_mark"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/nightstalker
+	name = "Nightstalker, colorable"
+	desc = ""
+	icon_state = "nightstalker"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
@@ -1627,27 +1704,50 @@
 	extra_overlay_w = "buggofatfirefly_vass_markings"
 
 /datum/sprite_accessory/tail/tail_smooth
-	name = "Smooth Lizard Tail, Colorable"
+	name = "Smooth Lizard Tail, colorable"
 	desc = ""
 	icon_state = "tail_smooth"
 	ani_state = "tail_smooth_w"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
-	
+
 /datum/sprite_accessory/tail/triplekitsune_colorable
-	icon = 'icons/mob/vore/tails_vr.dmi'
-	name = "Kitsune 3 tails - colorable"
+	name = "Kitsune 3 tails, colorable"
 	desc = ""
 	icon_state = "triplekitsune"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "triplekitsune_tips"
-	
+
 /datum/sprite_accessory/tail/ninekitsune_colorable
-	icon = 'icons/mob/vore/tails_vr.dmi'
-	name = "Kitsune 9 tails - colorable"
+	name = "Kitsune 9 tails, colorable"
 	desc = ""
 	icon_state = "ninekitsune"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "ninekitsune-tips"
+
+/datum/sprite_accessory/tail/shadekin_short
+	name = "Shadekin Short Tail, colorable"
+	desc = ""
+	icon_state = "shadekin-short"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	//apply_restrictions = TRUE
+	//species_allowed = list(SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW)
+
+/datum/sprite_accessory/tail/wartacosushi_tail //brightened +20RGB from matching roboparts
+	name = "Ward-Takahashi Tail"
+	desc = ""
+	icon_state = "wardtakahashi_vulp"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/wartacosushi_tail_dc
+	name = "Ward-Takahashi Tail, dual-color"
+	desc = ""
+	icon_state = "wardtakahashi_vulp_dc"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "wardtakahashi_vulp_dc_mark"
+

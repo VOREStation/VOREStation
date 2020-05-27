@@ -152,10 +152,10 @@
 	if(T.type == flooring.build_type)
 		return
 	var/obj/item/weapon/W = user.is_holding_item_of_type(/obj/item/weapon)
+	if(!istype(W))
+		return
 	if(!try_deconstruct_tile(W, user))
 		return
 	if(flooring)
-		return
-	if(!istype(W))
 		return
 	attackby(T, user)

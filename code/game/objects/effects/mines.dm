@@ -16,6 +16,10 @@
 	icon_state = "uglyminearmed"
 	wires = new(src)
 
+/obj/effect/mine/Destroy()
+	qdel_null(wires)
+	return ..()
+
 /obj/effect/mine/proc/explode(var/mob/living/M)
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
 	triggered = 1
@@ -45,6 +49,9 @@
 	if(triggered)
 		return
 
+	if(istype(M, /obj/mecha))
+		explode(M)
+
 	if(istype(M, /mob/living/))
 		if(!M.hovering)
 			explode(M)
@@ -54,7 +61,7 @@
 		panel_open = !panel_open
 		user.visible_message("<span class='warning'>[user] very carefully screws the mine's panel [panel_open ? "open" : "closed"].</span>",
 		"<span class='notice'>You very carefully screw the mine's panel [panel_open ? "open" : "closed"].</span>")
-		playsound(src.loc, W.usesound, 50, 1)
+		playsound(src, W.usesound, 50, 1)
 
 	else if((W.is_wirecutter() || istype(W, /obj/item/device/multitool)) && panel_open)
 		interact(user)
@@ -75,7 +82,7 @@
 	triggered = 1
 	s.set_up(3, 1, src)
 	s.start()
-	if(M)
+	if(istype(M))
 		M.radiation += 50
 		randmutb(M)
 		domutcheck(M,null)
@@ -92,7 +99,7 @@
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
 	s.set_up(3, 1, src)
 	s.start()
-	if(M)
+	if(istype(M))
 		M.Stun(30)
 	visible_message("\The [src.name] flashes violently before disintegrating!")
 	spawn(0)
@@ -132,7 +139,10 @@
 	triggered = 1
 	s.set_up(3, 1, src)
 	s.start()
-	if(M)
+	if(istype(M, /obj/mecha))
+		var/obj/mecha/E = M
+		M = E.occupant
+	if(istype(M))
 		qdel(M.client)
 	spawn(0)
 		qdel(s)
@@ -191,7 +201,7 @@
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
 	s.set_up(3, 1, src)
 	s.start()
-	if(M)
+	if(istype(M))
 		M.adjust_fire_stacks(5)
 		M.fire_act()
 	visible_message("\The [src.name] bursts into flames!")
@@ -214,7 +224,7 @@
 	msg_admin_attack("[key_name_admin(user)] primed \a [src]")
 	user.visible_message("[user] starts priming \the [src.name].", "You start priming \the [src.name]. Hold still!")
 	if(do_after(user, 10 SECONDS))
-		playsound(loc, 'sound/weapons/armbomb.ogg', 75, 1, -3)
+		playsound(src, 'sound/weapons/armbomb.ogg', 75, 1, -3)
 		prime(user)
 	else
 		visible_message("[user] triggers \the [src.name]!", "You accidentally trigger \the [src.name]!")

@@ -41,10 +41,10 @@
 // Refreshes list of active supermatter crystals
 /datum/nano_module/supermatter_monitor/proc/refresh()
 	supermatters = list()
-	var/turf/T = get_turf(nano_host())
-	if(!T)
+	var/z = get_z(nano_host())
+	if(!z)
 		return
-	var/valid_z_levels = (GetConnectedZlevels(T.z) & using_map.station_levels)
+	var/valid_z_levels = using_map.get_map_levels(z)
 	for(var/obj/machinery/power/supermatter/S in machines)
 		// Delaminating, not within coverage, not on a tile.
 		if(S.grav_pulling || S.exploded || !(S.z in valid_z_levels) || !istype(S.loc, /turf/))
@@ -77,6 +77,7 @@
 		data["SM_power"] = active.power
 		data["SM_ambienttemp"] = air.temperature
 		data["SM_ambientpressure"] = air.return_pressure()
+		data["SM_EPR"] = active.get_epr()
 		//data["SM_EPR"] = active.get_epr()
 		if(air.total_moles)
 			data["SM_gas_O2"] = round(100*air.gas["oxygen"]/air.total_moles,0.01)

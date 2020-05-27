@@ -142,34 +142,36 @@
 	if(O)
 		gather_all(get_turf(src), user)
 
+/obj/item/weapon/storage/bag/ore/proc/rangedload(atom/A, mob/user)
+	var/obj/item/weapon/ore/O = locate() in get_turf(A)
+	if(O)
+		gather_all(get_turf(A), user)
 
 /obj/item/weapon/storage/bag/ore/examine(mob/user)
-	..()
+	. = ..()
 
 	if(!Adjacent(user)) //Can only check the contents of ore bags if you can physically reach them.
-		return
+		return .
 
 	if(istype(user, /mob/living))
 		add_fingerprint(user)
 
 	if(!contents.len)
-		to_chat(user, "It is empty.")
-		return
+		. += "It is empty."
 
-	if(world.time > last_update + 10)
+	else if(world.time > last_update + 10)
 		update_ore_count()
 		last_update = world.time
 
-	to_chat(user, "<span class='notice'>It holds:</span>")
-	for(var/ore in stored_ore)
-		to_chat(user, "<span class='notice'>- [stored_ore[ore]] [ore]</span>")
-	return
+		. += "<span class='notice'>It holds:</span>"
+		for(var/ore in stored_ore)
+			. += "<span class='notice'>- [stored_ore[ore]] [ore]</span>"
 
 /obj/item/weapon/storage/bag/ore/open(mob/user as mob) //No opening it for the weird UI of having shit-tons of ore inside it.
 	if(world.time > last_update + 10)
 		update_ore_count()
 		last_update = world.time
-		examine(user)
+		user.examinate(src)
 
 /obj/item/weapon/storage/bag/ore/proc/update_ore_count() //Stolen from ore boxes.
 
@@ -336,6 +338,21 @@
 	name = "sheet snatcher 9000"
 	desc = ""
 	capacity = 500//Borgs get more because >specialization
+
+// -----------------------------
+//    Food Bag (Service Hound)
+// -----------------------------
+/obj/item/weapon/storage/bag/dogborg
+	name = "dog bag"
+	icon = 'icons/obj/storage.dmi'
+	icon_state = "foodbag"
+	desc = "A bag for storing things of all kinds."
+	max_storage_space = ITEMSIZE_COST_NORMAL * 25
+	max_w_class = ITEMSIZE_NORMAL
+	w_class = ITEMSIZE_SMALL
+	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks,/obj/item/weapon/reagent_containers/food/condiment,
+	/obj/item/weapon/reagent_containers/glass/beaker,/obj/item/weapon/reagent_containers/glass/bottle,/obj/item/weapon/coin,/obj/item/weapon/spacecash,
+	/obj/item/weapon/reagent_containers/food/snacks/grown,/obj/item/seeds,/obj/item/weapon/grown,/obj/item/weapon/reagent_containers/pill)
 
 // -----------------------------
 //           Cash Bag

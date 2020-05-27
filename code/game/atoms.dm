@@ -37,8 +37,8 @@
 
 	// During dynamic mapload (reader.dm) this assigns the var overrides from the .dmm file
 	// Native BYOND maploading sets those vars before invoking New(), by doing this FIRST we come as close to that behavior as we can.
-	if(use_preloader && (src.type == _preloader.target_path))//in case the instanciated atom is creating other atoms in New()
-		_preloader.load(src)
+	if(GLOB.use_preloader && (src.type == GLOB._preloader.target_path))//in case the instanciated atom is creating other atoms in New()
+		GLOB._preloader.load(src)
 
 	// Pass our arguments to InitAtom so they can be passed to initialize(), but replace 1st with if-we're-during-mapload.
 	var/do_initialize = SSatoms.initialized
@@ -118,14 +118,32 @@
 /atom/proc/CheckExit()
 	return 1
 
-// If you want to use this, the atom must have the PROXMOVE flag, and the moving
-// atom must also have the PROXMOVE flag currently to help with lag. ~ ComicIronic
-/atom/proc/HasProximity(atom/movable/AM as mob|obj)
+// Used to be for the PROXMOVE flag, but that was terrible, so instead it's just here as a stub for
+// all the atoms that still have the proc, but get events other ways.
+/atom/proc/HasProximity(turf/T, atom/movable/AM, old_loc)
 	return
+
+//Register listeners on turfs in a certain range
+/atom/proc/sense_proximity(var/range = 1, var/callback)
+	ASSERT(callback)
+	ASSERT(isturf(loc))
+	var/list/turfs = trange(range, src)
+	for(var/t in turfs)
+		var/turf/T = t
+		GLOB.turf_entered_event.register(T, src, callback)
+
+//Unregister from prox listening in a certain range. You should do this BEFORE you move, but if you
+// really can't, then you can set the center where you moved from.
+/atom/proc/unsense_proximity(var/range = 1, var/callback, var/center)
+	ASSERT(isturf(center) || isturf(loc))
+	var/list/turfs = trange(range, center ? center : src)
+	for(var/t in turfs)
+		var/turf/T = t
+		GLOB.turf_entered_event.unregister(T, src, callback)
+
 
 /atom/proc/emp_act(var/severity)
 	return
-
 
 /atom/proc/bullet_act(obj/item/projectile/P, def_zone)
 	P.on_hit(src, 0, def_zone)
@@ -169,7 +187,7 @@
 	return found
 
 //All atoms
-/atom/proc/examine(mob/user, var/distance = -1, var/infix = "", var/suffix = "")
+/atom/proc/examine(mob/user, var/infix = "", var/suffix = "")
 	//This reformat names to get a/an properly working on item descriptions when they are bloody
 	var/f_name = "\a [src][infix]."
 	if(src.blood_DNA && !istype(src, /obj/effect/decal))
@@ -182,10 +200,19 @@
 		else
 			f_name += "oil-stained [name][infix]."
 
-	to_chat(user, "[bicon(src)] That's [f_name] [suffix]")
-	to_chat(user,desc)
+	var/list/output = list("[bicon(src)] That's [f_name] [suffix]", desc)
 
-	return distance == -1 || (get_dist(src, user) <= distance)
+	if(user.client?.prefs.examine_text_mode == EXAMINE_MODE_INCLUDE_USAGE)
+		output += description_info
+
+	if(user.client?.prefs.examine_text_mode == EXAMINE_MODE_SWITCH_TO_PANEL)
+		user.client.statpanel = "Examine" // Switch to stat panel
+
+	return output
+
+// Don't make these call bicon or anything, these are what bicon uses. They need to return an icon.
+/atom/proc/examine_icon()
+	return icon(icon=src.icon, icon_state=src.icon_state, dir=SOUTH, frame=1, moving=0)
 
 // called by mobs when e.g. having the atom as their machine, pulledby, loc (AKA mob being inside the atom) or buckled var set.
 // see code/modules/mob/mob_movement.dm for more.
@@ -196,6 +223,20 @@
 /atom/proc/set_dir(new_dir)
 	. = new_dir != dir
 	dir = new_dir
+
+// Called to set the atom's density and used to add behavior to density changes.
+/atom/proc/set_density(var/new_density)
+	if(density == new_density)
+		return FALSE
+	density = !!new_density // Sanitize to be strictly 0 or 1
+	return TRUE
+
+// Called to set the atom's invisibility and usd to add behavior to invisibility changes.
+/atom/proc/set_invisibility(var/new_invisibility)
+	if(invisibility == new_invisibility)
+		return FALSE
+	invisibility = new_invisibility
+	return TRUE
 
 /atom/proc/ex_act()
 	return
@@ -567,3 +608,5 @@
 		<a href='?_src_=vars;rotatedatum=\ref[src];rotatedir=right'>>></a>
 		</font>
 		"}
+	var/turf/T = get_turf(src)
+	. += "<br><font size='1'>[ADMIN_COORDJMP(T)]</font>"

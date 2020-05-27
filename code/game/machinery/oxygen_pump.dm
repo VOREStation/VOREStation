@@ -41,8 +41,11 @@
 	return ..()
 
 /obj/machinery/oxygen_pump/MouseDrop(var/mob/living/carbon/human/target, src_location, over_location)
-	..()
-	if(istype(target) && CanMouseDrop(target))
+	var/mob/living/user = usr
+	if(!istype(user) || !istype(target))
+		return ..()
+
+	if(CanMouseDrop(target, user))
 		if(!can_apply_to_target(target, usr)) // There is no point in attempting to apply a mask if it's impossible.
 			return
 		usr.visible_message("\The [usr] begins placing \the [contained] onto [target].")
@@ -148,9 +151,9 @@
 /obj/machinery/oxygen_pump/examine(var/mob/user)
 	. = ..()
 	if(tank)
-		to_chat(user, "The meter shows [round(tank.air_contents.return_pressure())] kPa.")
+		. += "The meter shows [round(tank.air_contents.return_pressure())] kPa."
 	else
-		to_chat(user, "<span class='warning'>It is missing a tank!</span>")
+		. += "<span class='warning'>It is missing a tank!</span>"
 
 
 /obj/machinery/oxygen_pump/process()

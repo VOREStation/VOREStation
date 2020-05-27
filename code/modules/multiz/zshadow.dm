@@ -37,16 +37,16 @@
 	if(!owner)
 	 	// The only time we should have a null owner is if we are in nullspace. Help figure out why we were examined.
 		crash_with("[src] ([type]) @ [log_info_line()] was examined by [user] @ [global.log_info_line(user)]")
-		return
+		return list()
 	return owner.examine(user, distance, infix, suffix)
 
 // Relay some stuff they hear
-/mob/zshadow/hear_say(var/message, var/verb = "says", var/datum/language/language = null, var/alt_name = "", var/italics = 0, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol)
+/mob/zshadow/hear_say(var/list/message_pieces, var/verb = "says", var/italics = 0, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol)
 	if(speaker && speaker.z != src.z)
 		return // Only relay speech on our acutal z, otherwise we might relay sounds that were themselves relayed up!
 	if(isliving(owner))
 		verb += " from above"
-	return owner.hear_say(message, verb, language, alt_name, italics, speaker, speech_sound, sound_vol)
+	return owner.hear_say(message_pieces, verb, italics, speaker, speech_sound, sound_vol)
 
 /mob/zshadow/proc/sync_icon(var/mob/M)
 	name = M.name
@@ -61,7 +61,7 @@
 	if(shadow)
 		shadow.sync_icon(src)
 
-/mob/living/Move()
+/mob/living/Moved()
 	. = ..()
 	check_shadow()
 

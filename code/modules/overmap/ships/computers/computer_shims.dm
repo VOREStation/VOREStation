@@ -12,17 +12,13 @@
 // Power
 //
 
-// This will have this machine have its area eat this much power next tick, and not afterwards. Do not use for continued power draw.
-/obj/machinery/proc/use_power_oneoff(var/amount, var/chan = -1)
-	return use_power(amount, chan)
-
 // Change one of the power consumption vars
 /obj/machinery/proc/change_power_consumption(new_power_consumption, use_power_mode = USE_POWER_IDLE)
 	switch(use_power_mode)
 		if(USE_POWER_IDLE)
-			idle_power_usage = new_power_consumption
+			update_idle_power_usage(new_power_consumption)
 		if(USE_POWER_ACTIVE)
-			active_power_usage = new_power_consumption
+			update_active_power_usage(new_power_consumption)
 	// No need to do anything else in our power scheme.
 
 // Defining directly here to avoid conflicts with existing set_broken procs in our codebase that behave differently.
@@ -95,10 +91,13 @@
 /obj/machinery/computer/ship/attack_ghost(mob/user)
 	interface_interact(user)
 
-// If you don't call parent in this proc, you must make all appropriate checks yourself. 
+// If you don't call parent in this proc, you must make all appropriate checks yourself.
 // If you do, you must respect the return value.
 /obj/machinery/computer/ship/attack_hand(mob/user)
 	if((. = ..()))
 		return
+	if(!allowed(user))
+		to_chat(user, "<span class='warning'>Access Denied.</span>")
+		return 1
 	if(CanUseTopic(user, DefaultTopicState()) > STATUS_CLOSE)
 		return interface_interact(user)

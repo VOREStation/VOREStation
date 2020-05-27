@@ -83,7 +83,7 @@ default behaviour is:
 		return 0
 
 /mob/living/Bump(atom/movable/AM)
-	if(now_pushing || !loc)
+	if(now_pushing || !loc || buckled == AM)
 		return
 	now_pushing = 1
 	if (istype(AM, /mob/living))
@@ -206,7 +206,7 @@ default behaviour is:
 		/* VOREStation Removal - See above
 		if(confused && prob(50) && m_intent=="run")
 			Weaken(2)
-			playsound(loc, "punch", 25, 1, -1)
+			playsound(src, "punch", 25, 1, -1)
 			visible_message("<span class='warning'>[src] [pick("ran", "slammed")] into \the [AM]!</span>")
 			src.apply_damage(5, BRUTE)
 			to_chat(src, "<span class='warning'>You just [pick("ran", "slammed")] into \the [AM]!</span>")
@@ -224,7 +224,15 @@ default behaviour is:
 			for(var/obj/structure/window/win in get_step(AM,t))
 				now_pushing = 0
 				return
-		step(AM, t)
+		var/turf/T = AM.loc
+		var/turf/T2 = get_step(AM,t)
+		if(!T2) // Map edge
+			now_pushing = 0
+			return
+		var/move_time = movement_delay(loc, t)
+		move_time = DS2NEARESTTICK(move_time)
+		if(AM.Move(T2, t, move_time))
+			Move(T, t, move_time)
 		if(ishuman(AM) && AM:grabbed_by)
 			for(var/obj/item/weapon/grab/G in AM:grabbed_by)
 				step(G:assailant, get_dir(G:assailant, AM))
@@ -777,116 +785,95 @@ default behaviour is:
 		to_chat(usr, "OOC Metadata is not supported by this server!")
 	//VOREStation Edit End - Making it so SSD people have prefs with fallback to original style.
 
-/mob/living/Move(a, b, flag)
-	if (buckled && buckled.loc != a) //not updating position
-		if(istype(buckled, /mob))	//If you're buckled to a mob, a la slime things, keep on rolling.
-			return buckled.Move(a, b)
-		else	//Otherwise, no running around for you.
+	return
+
+// Almost all of this handles pulling movables behind us
+/mob/living/Move(atom/newloc, direct, movetime)
+	if(buckled && buckled.loc != newloc) //not updating position
+		if(!buckled.anchored && buckled.buckle_movable)
+			return buckled.Move(newloc, direct)
+		else
 			return 0
 
-	if (restrained())
+	var/atom/movable/pullee = pulling
+	// Prior to our move it's already too far away
+	if(pullee && get_dist(src, pullee) > 1)
+		stop_pulling()
+	// Shenanigans! Pullee closed into locker for eg.
+	if(pullee && !isturf(pullee.loc) && pullee.loc != loc)
+		stop_pulling()
+	// Can't pull with no hands
+	if(restrained())
 		stop_pulling()
 
+	// Will move our mob (probably)
+	. = ..() // Moved() called at this point if successful
 
-	var/t7 = 1
-	if (restrained())
-		for(var/mob/living/M in range(src, 1))
-			if ((M.pulling == src && M.stat == 0 && !( M.restrained() )))
-				t7 = null
-	if ((t7 && (pulling && ((get_dist(src, pulling) <= 1 || pulling.loc == loc) && (client && client.moving)))))
-		var/turf/T = loc
-		. = ..()
+	if(pulledby && moving_diagonally != FIRST_DIAG_STEP && get_dist(src, pulledby) > 1) //seperated from our puller and not in the middle of a diagonal move
+		pulledby.stop_pulling()
 
-		if (pulling && pulling.loc)
-			if(!( isturf(pulling.loc) ))
-				stop_pulling()
-				return
-
-		/////
-		if(pulling && pulling.anchored)
-			stop_pulling()
-			return
-
-		if (!restrained())
-			var/diag = get_dir(src, pulling)
-			if ((diag - 1) & diag)
-			else
-				diag = null
-			if ((get_dist(src, pulling) > 1 || diag))
-				if (isliving(pulling))
-					var/mob/living/M = pulling
-					var/atom/movable/t = M.pulling
-					M.stop_pulling()
-
-					if(!istype(M.loc, /turf/space))
-						var/area/A = get_area(M)
-						if(A.has_gravity)
-							//this is the gay blood on floor shit -- Added back -- Skie
-							if (M.lying && (prob(M.getBruteLoss() / 6)))
-								var/bloodtrail = 1	//Checks if it's possible to even spill blood
-								if(ishuman(M))
-									var/mob/living/carbon/human/H = M
-									if(H.species.flags & NO_BLOOD)
-										bloodtrail = 0
-									else
-										var/blood_volume = round((H.vessel.get_reagent_amount("blood")/H.species.blood_volume)*100)
-										if(blood_volume < BLOOD_VOLUME_SURVIVE)
-											bloodtrail = 0	//Most of it's gone already, just leave it be
-										else
-											H.vessel.remove_reagent("blood", 1)
-								if(bloodtrail)
-									var/turf/location = M.loc
-									if(istype(location, /turf/simulated))
-										location.add_blood(M)
-							//pull damage with injured people
-								if(prob(25))
-									M.adjustBruteLoss(1)
-									visible_message("<span class='danger'>\The [M]'s [M.isSynthetic() ? "state worsens": "wounds open more"] from being dragged!</span>")
-							if(M.pull_damage())
-								if(prob(25))
-									M.adjustBruteLoss(2)
-									visible_message("<span class='danger'>\The [M]'s [M.isSynthetic() ? "state" : "wounds"] worsen terribly from being dragged!</span>")
-									var/turf/location = M.loc
-									if (istype(location, /turf/simulated))
-										var/bloodtrail = 1	//Checks if it's possible to even spill blood
-										if(ishuman(M))
-											var/mob/living/carbon/human/H = M
-											if(H.species.flags & NO_BLOOD)
-												bloodtrail = 0
-											else
-												var/blood_volume = round((H.vessel.get_reagent_amount("blood")/H.species.blood_volume)*100)
-												if(blood_volume < BLOOD_VOLUME_SURVIVE)
-													bloodtrail = 0	//Most of it's gone already, just leave it be
-												else
-													H.vessel.remove_reagent("blood", 1)
-										if(bloodtrail)
-											if(istype(location, /turf/simulated))
-												location.add_blood(M)
-
-					if(get_dist(pulling.loc, T) > 1 || pulling.loc.z != T.z)
-						M.stop_pulling()
-					else
-						step(pulling, get_dir(pulling.loc, T))
-						if(t)
-							M.start_pulling(t)
-				else
-					if (pulling)
-						if (istype(pulling, /obj/structure/window))
-							var/obj/structure/window/W = pulling
-							if(W.is_fulltile())
-								for(var/obj/structure/window/win in get_step(pulling,get_dir(pulling.loc, T)))
-									stop_pulling()
-
-						if(get_dist(pulling.loc, T) > 1 || pulling.loc.z != T.z) // This is needed or else pulled objects can't get pushed away.
-							stop_pulling()
-						else
-							step(pulling, get_dir(pulling.loc, T))
-	else
-		stop_pulling()
-		. = ..()
-
-	if (s_active && !( s_active in contents ) && get_turf(s_active) != get_turf(src))	//check !( s_active in contents ) first so we hopefully don't have to call get_turf() so much.
+	if(s_active && !(s_active in contents) && get_turf(s_active) != get_turf(src))	//check !( s_active in contents ) first so we hopefully don't have to call get_turf() so much.
 		s_active.close(src)
+
+/mob/living/proc/dragged(var/mob/living/dragger, var/oldloc)
+	var/area/A = get_area(src)
+	if(lying && !buckled && pull_damage() && A.has_gravity && (prob(getBruteLoss() * 200 / maxHealth)))
+		adjustBruteLoss(2)
+		visible_message("<span class='danger'>\The [src]'s [isSynthetic() ? "state" : "wounds"] worsen terribly from being dragged!</span>")
+
+/mob/living/Moved(var/atom/oldloc, direct, forced, movetime)
+	. = ..()
+	handle_footstep(loc)
+
+	if(pulling) // we were pulling a thing and didn't lose it during our move.
+		var/pull_dir = get_dir(src, pulling)
+		
+		if(pulling.anchored || !isturf(pulling.loc))
+			stop_pulling()
+			
+		else if(get_dist(src, pulling) > 1 || (moving_diagonally != SECOND_DIAG_STEP && ((pull_dir - 1) & pull_dir))) // puller and pullee more than one tile away or in diagonal position
+			// If it is too far away or across z-levels from old location, stop pulling.
+			if(get_dist(pulling.loc, oldloc) > 1 || pulling.loc.z != oldloc?.z)
+				stop_pulling()
+
+			// living might take damage from drags
+			else if(isliving(pulling))
+				var/mob/living/M = pulling
+				M.dragged(src, oldloc)
+
+			pulling.Move(oldloc, 0, movetime) // the pullee tries to reach our previous position
+			if(pulling && get_dist(src, pulling) > 1) // the pullee couldn't keep up
+				stop_pulling()
+
+	if(!isturf(loc))
+		return	
+	else if(lastarea?.has_gravity == 0)
+		inertial_drift()
+	//VOREStation Edit Start
+	else if(flying)
+		inertial_drift()
+		make_floating(1)
+	//VOREStation Edit End
+	else if(!isspace(loc))
+		inertia_dir = 0
+		make_floating(0)
+
+/mob/living/proc/inertial_drift()
+	if(x > 1 && x < (world.maxx) && y > 1 && y < (world.maxy))
+		if(Process_Spacemove(1))
+			inertia_dir = 0
+			return
+		
+		var/locthen = loc
+		spawn(5)
+			if(!anchored && !pulledby && loc == locthen)
+				var/stepdir = inertia_dir ? inertia_dir : last_move
+				if(!stepdir)
+					return
+				var/turf/T = get_step(src, stepdir)
+				if(!T)
+					return
+				Move(T, stepdir, 5)
 
 /mob/living/proc/handle_footstep(turf/T)
 	return FALSE
@@ -895,60 +882,32 @@ default behaviour is:
 	set name = "Resist"
 	set category = "IC"
 
-	if(!incapacitated(INCAPACITATION_KNOCKOUT) && canClick())
+	if(!incapacitated(INCAPACITATION_KNOCKOUT) && checkClickCooldown())
 		setClickCooldown(20)
 		resist_grab()
 		if(!weakened)
 			process_resist()
 
 /mob/living/proc/process_resist()
-	//Getting out of someone's inventory.
-	if(istype(src.loc, /obj/item/weapon/holder))
-		escape_inventory(src.loc)
-		return
-
 	//unbuckling yourself
 	if(buckled)
-		spawn() escape_buckle()
+		resist_buckle()
 		return TRUE
 
-	//Breaking out of a locker?
-	if( src.loc && (istype(src.loc, /obj/structure/closet)) )
-		var/obj/structure/closet/C = loc
-		spawn() C.mob_breakout(src)
+	if(isobj(loc))
+		var/obj/C = loc
+		C.container_resist(src)
 		return TRUE
 
-	if(istype(loc,/obj/item/clothing))
-		spawn() escape_clothes(loc)
+	else if(canmove)
+		if(on_fire)
+			resist_fire() //stop, drop, and roll
+		else
+			resist_restraints()
 
 	if(attempt_vr(src,"vore_process_resist",args)) return TRUE //VOREStation Code
 
-/mob/living/proc/escape_inventory(obj/item/weapon/holder/H)
-	if(H != src.loc) return
-
-	var/mob/M = H.loc //Get our mob holder (if any).
-
-	if(istype(M))
-		M.drop_from_inventory(H)
-		to_chat(M, "<span class='warning'>\The [H] wriggles out of your grip!</span>")
-		to_chat(src, "<span class='warning'>You wriggle out of \the [M]'s grip!</span>")
-
-		// Update whether or not this mob needs to pass emotes to contents.
-		for(var/atom/A in M.contents)
-			if(istype(A,/mob/living/simple_mob/animal/borer) || istype(A,/obj/item/weapon/holder))
-				return
-
-	else if(istype(H.loc,/obj/item/clothing/accessory/holster))
-		var/obj/item/clothing/accessory/holster/holster = H.loc
-		if(holster.holstered == H)
-			holster.clear_holster()
-		to_chat(src, "<span class='warning'>You extricate yourself from \the [holster].</span>")
-		H.forceMove(get_turf(H))
-	else if(istype(H.loc,/obj/item))
-		to_chat(src, "<span class='warning'>You struggle free of \the [H.loc].</span>")
-		H.forceMove(get_turf(H))
-
-/mob/living/proc/escape_buckle()
+/mob/living/proc/resist_buckle()
 	if(buckled)
 		if(istype(buckled, /obj/vehicle))
 			var/obj/vehicle/vehicle = buckled
@@ -963,6 +922,12 @@ default behaviour is:
 		G.handle_resist()
 	if(resisting)
 		visible_message("<span class='danger'>[src] resists!</span>")
+
+/mob/living/proc/resist_fire()
+	return
+
+/mob/living/proc/resist_restraints()
+	return
 
 /mob/living/verb/lay_down()
 	set name = "Rest"
@@ -1073,7 +1038,7 @@ default behaviour is:
 
 					Stun(5)
 					src.visible_message("<span class='warning'>[src] throws up!</span>","<span class='warning'>You throw up!</span>")
-					playsound(loc, 'sound/effects/splat.ogg', 50, 1)
+					playsound(src, 'sound/effects/splat.ogg', 50, 1)
 
 					var/turf/simulated/T = get_turf(src)	//TODO: Make add_blood_floor remove blood from human mobs
 					if(istype(T))
@@ -1086,7 +1051,7 @@ default behaviour is:
 						if(getBruteLoss() < 50)
 							adjustBruteLoss(3)
 					else
-						nutrition -= 40
+						adjust_nutrition(-40)
 						adjustToxLoss(-3)
 
 		spawn(350)
@@ -1194,8 +1159,8 @@ default behaviour is:
 	// Now for the regular stuff.
 	var/matrix/M = matrix()
 	M.Scale(desired_scale_x, desired_scale_y)
-	M.Translate(0, 16*(desired_scale_y-1))
-	//animate(src, transform = M, time = 10) //VOREStation edit
+	M.Translate(0, (vis_height/2)*(desired_scale_y-1)) //VOREStation edit
+	src.transform = M //VOREStation edit
 
 // This handles setting the client's color variable, which makes everything look a specific color.
 // This proc is here so it can be called without needing to check if the client exists, or if the client relogs.
@@ -1299,9 +1264,7 @@ default behaviour is:
 	//actually throw it!
 	src.visible_message("<span class='warning'>[src] has thrown [item].</span>")
 
-	if(!src.lastarea)
-		src.lastarea = get_area(src.loc)
-	if((istype(src.loc, /turf/space)) || (src.lastarea.has_gravity == 0))
+	if((isspace(src.loc)) || (src.lastarea?.has_gravity == 0))
 		src.inertia_dir = get_dir(target, src)
 		step(src, inertia_dir)
 
@@ -1362,6 +1325,9 @@ default behaviour is:
 /mob/living/proc/needs_to_breathe()
 	return !isSynthetic()
 
+/mob/living/proc/adjust_nutrition(amount)
+	nutrition = between(0, nutrition + amount, max_nutrition)
+
 /mob/living/vv_get_header()
 	. = ..()
 	. += {"
@@ -1376,3 +1342,11 @@ default behaviour is:
 		BRAIN:<a href='?_src_=vars;mobToDamage=\ref[src];adjustDamage=brain'>[getBrainLoss()]</a>
 		</font>
 		"}
+
+/mob/living/update_gravity(has_gravity)
+	if(!ticker)
+		return
+	if(has_gravity)
+		clear_alert("weightless")
+	else
+		throw_alert("weightless", /obj/screen/alert/weightless)

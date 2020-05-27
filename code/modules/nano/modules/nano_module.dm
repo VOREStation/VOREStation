@@ -62,3 +62,6 @@
 
 /datum/proc/update_layout()
 	return FALSE
+
+/datum/nano_module/proc/relaymove(var/mob/user, direction)
+	return FALSE

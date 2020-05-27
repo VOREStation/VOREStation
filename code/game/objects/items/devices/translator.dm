@@ -33,8 +33,8 @@
 		icon_state = "[initial(icon_state)]"
 		to_chat(user, "<span class='notice'>You disable \the [src].</span>")
 
-/obj/item/device/universal_translator/hear_talk(var/mob/speaker, var/message, var/vrb, var/datum/language/language)
-	if(!listening || !istype(speaker))
+/obj/item/device/universal_translator/hear_talk(mob/M, list/message_pieces, verb)
+	if(!listening || !istype(M))
 		return
 
 	//Show the "I heard something" animation.
@@ -46,34 +46,38 @@
 		return
 
 	var/mob/living/L = loc
+	if(visual && ((L.sdisabilities & BLIND) || L.eye_blind))
+		return
+	if(audio && ((L.sdisabilities & DEAF) || L.ear_deaf))
+		return
 
-	if(!language)
-		return //Borgs were causing runtimes when passing language=null
+	// Using two for loops kinda sucks, but I think it's more efficient
+	// to shortcut past string building if we're just going to discard the string
+	// anyways.
+	if(user_understands(M, L, message_pieces))
+		return
 
-	if (language && (language.flags & NONVERBAL))
-		return //Not gonna translate sign language
+	var/new_message = ""
 
-	if (!language.machine_understands)
-		return //Any other languages that it can't translate.
+	for(var/datum/multilingual_say_piece/S in message_pieces)
+		if(S.speaking.flags & NONVERBAL)
+			continue
+		if(!S.speaking.machine_understands)
+			new_message += stars(S.message) + " "
+			continue
 
-	if (visual && ((L.sdisabilities & BLIND) || L.eye_blind))
-		return //Can't see the screen, don't get the message
+		new_message += (S.message + " ")
 
-	if (audio && ((L.sdisabilities & DEAF) || L.ear_deaf))
-		return //Can't hear the translation, don't get the message
+	if(!L.say_understands(null, langset))
+		new_message = langset.scramble(new_message)
 
-	//Only translate if they can't understand, otherwise pointlessly spammy
-	//I'll just assume they don't look at the screen in that case
+	to_chat(L, "<span class='filter_say'><i><b>[src]</b> translates, </i>\"<span class='[langset.colour]'>[new_message]</span>\"</span>")
 
-	//They don't understand the spoken language we're translating FROM
-	if(!L.say_understands(speaker,language))
-		//They understand the output language
-		if(L.say_understands(null,langset))
-			to_chat(L, "<i><b>[src]</b> translates, </i>\"<span class='[langset.colour]'>[message]</span>\"")
-
-		//They don't understand the output language
-		else
-			to_chat(L, "<i><b>[src]</b> translates, </i>\"<span class='[langset.colour]'>[langset.scramble(message)]</span>\"")
+/obj/item/device/universal_translator/proc/user_understands(mob/M, mob/living/L, list/message_pieces)
+	for(var/datum/multilingual_say_piece/S in message_pieces)
+		if(S.speaking && !L.say_understands(M, S.speaking))
+			return FALSE
+	return TRUE
 
 //Let's try an ear-worn version
 /obj/item/device/universal_translator/ear

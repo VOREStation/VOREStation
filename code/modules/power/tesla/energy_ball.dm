@@ -60,7 +60,7 @@
 
 		move_the_basket_ball(max(wait - 5, 4 + orbiting_balls.len * 1.5))
 
-		playsound(src.loc, 'sound/effects/lightningbolt.ogg', 100, 1, extrarange = 30)
+		playsound(src, 'sound/effects/lightningbolt.ogg', 100, 1, extrarange = 30)
 
 		set_dir(tesla_zap(src, 7, TESLA_DEFAULT_POWER, TRUE))
 
@@ -71,10 +71,9 @@
 		energy = 0 // ensure we dont have miniballs of miniballs
 
 /obj/singularity/energy_ball/examine(mob/user)
-	..()
+	. = ..()
 	if(orbiting_balls.len)
-		to_chat(user, "The amount of orbiting mini-balls is [orbiting_balls.len].")
-
+		. += "The amount of orbiting mini-balls is [orbiting_balls.len]."
 
 /obj/singularity/energy_ball/proc/move_the_basket_ball(var/move_amount)
 	//we face the last thing we zapped, so this lets us favor that direction a bit
@@ -102,7 +101,7 @@
 		energy_to_lower = energy_to_raise - 20
 		energy_to_raise = energy_to_raise * 1.25
 
-		playsound(src.loc, 'sound/effects/lightning_chargeup.ogg', 100, 1, extrarange = 30)
+		playsound(src, 'sound/effects/lightning_chargeup.ogg', 100, 1, extrarange = 30)
 		//addtimer(CALLBACK(src, .proc/new_mini_ball), 100)
 		spawn(100) new_mini_ball()
 

@@ -6,6 +6,14 @@
 	sort_category = "Suits and Overwear"
 	cost = 2
 
+/datum/gear/suit/apron_white
+	display_name = "apron, colorable"
+	path = /obj/item/clothing/suit/storage/apron/white
+
+/datum/gear/suit/apron_white/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
+
 /datum/gear/suit/greatcoat
 	display_name = "greatcoat"
 	path = /obj/item/clothing/suit/greatcoat
@@ -67,16 +75,16 @@
 	path = /obj/item/clothing/suit/storage/toggle/brown_jacket/nanotrasen/sleeveless
 
 /datum/gear/suit/mil
-	display_name = "military jacket"
+	display_name = "military jacket selection"
 	path = /obj/item/clothing/suit/storage/miljacket
-
-/datum/gear/suit/mil/alt
-	display_name = "military jacket, alt"
-	path = /obj/item/clothing/suit/storage/miljacket/alt
-
-/datum/gear/suit/mil/green
-	display_name = "military jacket, green"
-	path = /obj/item/clothing/suit/storage/miljacket/green
+	
+/datum/gear/suit/mil/New()
+	..()
+	var/list/mil_jackets = list()
+	for(var/military_style in typesof(/obj/item/clothing/suit/storage/miljacket))
+		var/obj/item/clothing/suit/storage/miljacket/miljacket = military_style
+		mil_jackets[initial(miljacket.name)] = miljacket
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(mil_jackets))
 
 /datum/gear/suit/greyjacket
 	display_name = "grey jacket"

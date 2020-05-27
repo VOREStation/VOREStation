@@ -13,6 +13,13 @@
 	if(isnull(location))
 		return
 
+	// Set the supply shuttle displays to read out the ETA
+	var/datum/signal/S = new()
+	S.source = src
+	S.data = list("command" = "supply")
+	var/datum/radio_frequency/F = radio_controller.return_frequency(1435)
+	F.post_signal(src, S)
+
 	//it would be cool to play a sound here
 	moving_status = SHUTTLE_WARMUP
 	spawn(warmup_time*10)
@@ -77,5 +84,8 @@
 
 //returns the ETA in minutes
 /datum/shuttle/autodock/ferry/supply/proc/eta_minutes()
-	var/ticksleft = arrive_time - world.time
-	return round(ticksleft/600,1)
+	return round((arrive_time - world.time) / (1 MINUTE), 1) // Floor, so it's an actual timer
+
+// returns the ETA in seconds
+/datum/shuttle/autodock/ferry/supply/proc/eta_seconds()
+	return round((arrive_time - world.time) / (1 SECOND)) // Floor, so it's an actual timer

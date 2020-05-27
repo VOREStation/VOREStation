@@ -22,18 +22,18 @@
 	var/empty_state = "kineticgun_empty"
 
 /obj/item/weapon/gun/energy/kinetic_accelerator/examine(mob/user)
-	if(..(user, 1))
-		if(max_mod_capacity)
-			to_chat(user, "<b>[get_remaining_mod_capacity()]%</b> mod capacity remaining.")
-			for(var/A in get_modkits())
-				var/obj/item/borg/upgrade/modkit/M = A
-				to_chat(user, "<span class='notice'>There is a [M.name] mod installed, using <b>[M.cost]%</b> capacity.</span>")
+	. = ..()
+	if(Adjacent(user) && max_mod_capacity)
+		. += "<b>[get_remaining_mod_capacity()]%</b> mod capacity remaining."
+		for(var/A in get_modkits())
+			var/obj/item/borg/upgrade/modkit/M = A
+			. += "<span class='notice'>There is a [M.name] mod installed, using <b>[M.cost]%</b> capacity.</span>"
 
 /obj/item/weapon/gun/energy/kinetic_accelerator/attackby(obj/item/A, mob/user)
 	if(istype(A, /obj/item/weapon/tool/crowbar))
 		if(modkits.len)
 			to_chat(user, "<span class='notice'>You pry the modifications out.</span>")
-			playsound(loc, A.usesound, 100, 1)
+			playsound(src, A.usesound, 100, 1)
 			for(var/obj/item/borg/upgrade/modkit/M in modkits)
 				M.uninstall(src)
 		else
@@ -80,7 +80,7 @@
 	. = ..()
 	spawn(fire_delay)
 		if(power_supply && power_supply.check_charge(charge_cost))
-			playsound(loc, 'sound/weapons/kenetic_reload.ogg', 60, 1)
+			playsound(src, 'sound/weapons/kenetic_reload.ogg', 60, 1)
 
 /obj/item/weapon/gun/energy/kinetic_accelerator/update_icon()
 	cut_overlays()
@@ -164,8 +164,9 @@
 	var/modifier = 1 //For use in any mod kit that has numerical modifiers
 
 /obj/item/borg/upgrade/modkit/examine(mob/user)
-	if(..(user, 1))
-		to_chat(user, "<span class='notice'>Occupies <b>[cost]%</b> of mod capacity.</span>")
+	. = ..()
+	if(Adjacent(user))
+		. += "<span class='notice'>Occupies <b>[cost]%</b> of mod capacity.</span>"
 
 /obj/item/borg/upgrade/modkit/attackby(obj/item/A, mob/user)
 	if(istype(A, /obj/item/weapon/gun/energy/kinetic_accelerator) && !issilicon(user))
@@ -194,7 +195,7 @@
 	if(KA.get_remaining_mod_capacity() >= cost)
 		if(.)
 			to_chat(user, "<span class='notice'>You install the modkit.</span>")
-			playsound(loc, usesound, 100, 1)
+			playsound(src, usesound, 100, 1)
 			user.unEquip(src)
 			forceMove(KA)
 			KA.modkits += src

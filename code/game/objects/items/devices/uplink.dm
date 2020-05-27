@@ -1,3 +1,5 @@
+GLOBAL_LIST_BOILERPLATE(world_uplinks, /obj/item/device/uplink)
+
 /obj/item/device/uplink
 	var/welcome = "Welcome, Operative"	// Welcoming menu message
 	var/uses 							// Numbers of crystals
@@ -12,31 +14,28 @@
 	var/datum/mind/uplink_owner = null
 	var/used_TC = 0
 	var/offer_time = 10 MINUTES			//The time increment per discount offered
-	var/next_offer_time					//The time a discount will next be offered
+	var/next_offer_time
 	var/datum/uplink_item/discount_item	//The item to be discounted
 	var/discount_amount					//The amount as a percent the item will be discounted by
 
 /obj/item/device/uplink/nano_host()
 	return loc
 
-/obj/item/device/uplink/New(var/location, var/datum/mind/owner = null, var/telecrystals = DEFAULT_TELECRYSTAL_AMOUNT)
-	..()
-	src.uplink_owner = owner
+/obj/item/device/uplink/Initialize(var/mapload, var/datum/mind/owner = null, var/telecrystals = DEFAULT_TELECRYSTAL_AMOUNT)
+	. = ..()
+	uplink_owner = owner
 	purchase_log = list()
-	world_uplinks += src
 	if(owner)
 		uses = owner.tcrystals
 	else
 		uses = telecrystals
-	START_PROCESSING(SSobj, src)
-
-/obj/item/device/uplink/Destroy()
-	world_uplinks -= src
-	STOP_PROCESSING(SSobj, src)
-	return ..()
+	addtimer(CALLBACK(src, .proc/next_offer), offer_time) //It seems like only the /hidden type actually makes use of this...
 
 /obj/item/device/uplink/get_item_cost(var/item_type, var/item_cost)
 	return (discount_item && (item_type == discount_item)) ? max(1, round(item_cost*discount_amount)) : item_cost
+
+/obj/item/device/uplink/proc/next_offer()
+	return //Stub, used on children.
 
 // HIDDEN UPLINK - Can be stored in anything but the host item has to have a trigger for it.
 /* How to create an uplink in 3 easy steps!
@@ -58,21 +57,20 @@
 	var/exploit_id								// Id of the current exploit record we are viewing
 
 // The hidden uplink MUST be inside an obj/item's contents.
-/obj/item/device/uplink/hidden/New()
-	spawn(2)
-		if(!istype(src.loc, /obj/item))
-			qdel(src)
-	..()
+/obj/item/device/uplink/hidden/Initialize()
+	. = ..()
+	if(!isitem(loc))
+		return INITIALIZE_HINT_QDEL
 	nanoui_data = list()
 	update_nano_data()
 
-/obj/item/device/uplink/hidden/process()
-	if(world.time > next_offer_time)
-		discount_item = default_uplink_selection.get_random_item(INFINITY)
-		discount_amount = pick(90;0.9, 80;0.8, 70;0.7, 60;0.6, 50;0.5, 40;0.4, 30;0.3, 20;0.2, 10;0.1)
-		next_offer_time = world.time + offer_time
-		update_nano_data()
-		SSnanoui.update_uis(src)
+/obj/item/device/uplink/hidden/next_offer()
+	discount_item = default_uplink_selection.get_random_item(INFINITY)
+	discount_amount = pick(90;0.9, 80;0.8, 70;0.7, 60;0.6, 50;0.5, 40;0.4, 30;0.3, 20;0.2, 10;0.1)
+	update_nano_data()
+	SSnanoui.update_uis(src)
+	next_offer_time = world.time + offer_time
+	addtimer(CALLBACK(src, .proc/next_offer), offer_time)
 
 // Toggles the uplink on and off. Normally this will bypass the item's normal functions and go to the uplink menu, if activated.
 /obj/item/device/uplink/hidden/proc/toggle()
@@ -112,7 +110,7 @@
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)	// No auto-refresh
-		ui = new(user, src, ui_key, "uplink.tmpl", title, 450, 600, state = inventory_state)
+		ui = new(user, src, ui_key, "uplink.tmpl", title, 630, 700, state = inventory_state)
 		data["menu"] = 0
 		ui.set_initial_data(data)
 		ui.open()
@@ -146,8 +144,8 @@
 		nanoui_menu = text2num(href_list["menu"])
 		if(href_list["id"])
 			exploit_id = href_list["id"]
-		if(href_list["category"])
-			category = locate(href_list["category"]) in uplink.categories
+	else if(href_list["category"])
+		category = locate(href_list["category"]) in uplink.categories
 
 	update_nano_data()
 	return 1
@@ -162,14 +160,17 @@
 		nanoui_data["discount_name"] = discount_item ? discount_item.name : ""
 		nanoui_data["discount_amount"] = (1-discount_amount)*100
 		nanoui_data["offer_expiry"] = worldtime2stationtime(next_offer_time)
-	else if(nanoui_menu == 1)
-		var/items[0]
-		for(var/datum/uplink_item/item in category.items)
-			if(item.can_view(src))
-				var/cost = item.cost(uses, src)
-				if(!cost) cost = "???"
-				items[++items.len] = list("name" = item.name, "description" = replacetext(item.description(), "\n", "<br>"), "can_buy" = item.can_buy(src), "cost" = cost, "ref" = "\ref[item]")
-		nanoui_data["items"] = items
+
+		if(category)
+			nanoui_data["current_category"] = category.name
+			var/items[0]
+			for(var/datum/uplink_item/item in category.items)
+				if(item.can_view(src))
+					var/cost = item.cost(uses, src)
+					if(!cost) cost = "???"
+					items[++items.len] = list("name" = item.name, "description" = replacetext(item.description(), "\n", "<br>"), "can_buy" = item.can_buy(src), "cost" = cost, "ref" = "\ref[item]")
+			nanoui_data["items"] = items
+
 	else if(nanoui_menu == 2)
 		var/permanentData[0]
 		for(var/datum/data/record/L in sortRecord(data_core.locked))

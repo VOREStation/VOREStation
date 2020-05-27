@@ -108,16 +108,23 @@
 	underlays.Cut()
 
 	var/turf/T = get_turf(src)
-	var/list/directions = list(NORTH, SOUTH, EAST, WEST)
-	var/node1_direction = get_dir(src, node1)
-	var/node2_direction = get_dir(src, node2)
-	var/node3_direction = get_dir(src, node3)
 
+	// Unfortunately our nodes are not in consistent directions (see atmos_init()) so do the dance...
+	var/list/directions = list(NORTH, SOUTH, EAST, WEST) // UN-connected directions
 	directions -= dir
+	if(node1)
+		var/node1_direction = get_dir(src, node1)
+		add_underlay(T, node1, node1_direction, icon_connect_type)
+		directions -= node1_direction
+	if(node2)
+		var/node2_direction = get_dir(src, node2)
+		add_underlay(T, node2, node2_direction, icon_connect_type)
+		directions -= node2_direction
+	if(node3)
+		var/node3_direction = get_dir(src, node3)
+		add_underlay(T, node3, node3_direction, icon_connect_type)
+		directions -= node3_direction
 
-	directions -= add_underlay(T,node1,node1_direction,icon_connect_type)
-	directions -= add_underlay(T,node2,node2_direction,icon_connect_type)
-	directions -= add_underlay(T,node3,node3_direction,icon_connect_type)
 
 	for(var/D in directions)
 		add_underlay(T,,D,icon_connect_type)
@@ -195,6 +202,26 @@
 	icon_connect_type = "-supply"
 	color = PIPE_COLOR_BLUE
 
+/obj/machinery/atmospherics/pipe/manifold/visible/fuel
+	name="Fuel pipe manifold"
+	desc = "A manifold composed of fuel pipes"
+	icon_state = "map-fuel"
+	connect_types = CONNECT_TYPE_FUEL
+	piping_layer = PIPING_LAYER_FUEL
+	layer = PIPES_FUEL_LAYER
+	icon_connect_type = "-fuel"
+	color = PIPE_COLOR_YELLOW
+
+/obj/machinery/atmospherics/pipe/manifold/visible/aux
+	name="Aux pipe manifold"
+	desc = "A manifold composed of aux pipes"
+	icon_state = "map-aux"
+	connect_types = CONNECT_TYPE_AUX
+	piping_layer = PIPING_LAYER_AUX
+	layer = PIPES_AUX_LAYER
+	icon_connect_type = "-aux"
+	color = PIPE_COLOR_CYAN
+
 /obj/machinery/atmospherics/pipe/manifold/visible/yellow
 	color = PIPE_COLOR_YELLOW
 
@@ -240,6 +267,26 @@
 	layer = PIPES_SUPPLY_LAYER
 	icon_connect_type = "-supply"
 	color = PIPE_COLOR_BLUE
+
+/obj/machinery/atmospherics/pipe/manifold/hidden/fuel
+	name="Fuel pipe manifold"
+	desc = "A manifold composed of fuel pipes"
+	icon_state = "map-fuel"
+	connect_types = CONNECT_TYPE_FUEL
+	piping_layer = PIPING_LAYER_FUEL
+	layer = PIPES_FUEL_LAYER
+	icon_connect_type = "-fuel"
+	color = PIPE_COLOR_YELLOW
+
+/obj/machinery/atmospherics/pipe/manifold/hidden/aux
+	name="Aux pipe manifold"
+	desc = "A manifold composed of aux pipes"
+	icon_state = "map-aux"
+	connect_types = CONNECT_TYPE_AUX
+	piping_layer = PIPING_LAYER_AUX
+	layer = PIPES_AUX_LAYER
+	icon_connect_type = "-aux"
+	color = PIPE_COLOR_CYAN
 
 /obj/machinery/atmospherics/pipe/manifold/hidden/yellow
 	color = PIPE_COLOR_YELLOW

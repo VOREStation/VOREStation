@@ -13,26 +13,16 @@
 	var/list/event_icon_states				// Randomly picked from
 	var/difficulty = EVENT_LEVEL_MODERATE
 	var/weaknesses //if the BSA can destroy them and with what
-	var/list/victims //basically cached events on which Z level
 
 /obj/effect/overmap/event/Initialize()
 	. = ..()
 	icon_state = pick(event_icon_states)
 	GLOB.overmap_event_handler.update_hazards(loc)
 
-/obj/effect/overmap/event/Move()
-	var/turf/old_loc = loc
+/obj/effect/overmap/event/Moved(atom/old_loc, direction, forced = FALSE)
 	. = ..()
-	if(.)
-		GLOB.overmap_event_handler.update_hazards(old_loc)
-		GLOB.overmap_event_handler.update_hazards(loc)
-
-/obj/effect/overmap/event/forceMove(atom/destination)
-	var/old_loc = loc
-	. = ..()
-	if(.)
-		GLOB.overmap_event_handler.update_hazards(old_loc)
-		GLOB.overmap_event_handler.update_hazards(loc)
+	GLOB.overmap_event_handler.update_hazards(old_loc)
+	GLOB.overmap_event_handler.update_hazards(loc)
 
 /obj/effect/overmap/event/Destroy()//takes a look at this one as well, make sure everything is A-OK
 	var/turf/T = loc

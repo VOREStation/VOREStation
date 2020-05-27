@@ -42,8 +42,6 @@
 	var/load_offset_y = 0		//pixel_y offset for item overlay
 	var/mob_offset_y = 0		//pixel_y offset for mob overlay
 
-	//var/datum/riding/riding_datum = null //VOREStation Edit - Moved to movables.
-
 //-------------------------------------------
 // Standard procs
 //-------------------------------------------
@@ -66,54 +64,29 @@
 
 /obj/vehicle/unbuckle_mob(mob/living/buckled_mob, force = FALSE)
 	. = ..(buckled_mob, force)
-	buckled_mob.update_water()
+	buckled_mob?.update_water()
 	if(riding_datum)
 		riding_datum.restore_position(buckled_mob)
 		riding_datum.handle_vehicle_offsets() // So the person in back goes to the front.
 
-/obj/vehicle/set_dir(newdir)
-	..(newdir)
-	if(riding_datum)
-		riding_datum.handle_vehicle_offsets()
+/obj/vehicle/Move(var/newloc, var/direction, var/movetime)
+	if(world.time < l_move_time + move_delay) //This AND the riding datum move speed limit?
+		return
 
-//MOVEMENT
-/obj/vehicle/relaymove(mob/user, direction)
-	if(riding_datum)
-		riding_datum.handle_ride(user, direction)
+	if(mechanical && on && powered && cell.charge < charge_use)
+		turn_off()
+		return
 
-/obj/vehicle/Moved()
 	. = ..()
-	if(riding_datum)
-		riding_datum.handle_vehicle_layer()
-		riding_datum.handle_vehicle_offsets()
 
-/obj/vehicle/Move()
-	if(world.time > l_move_time + move_delay)
-		var/old_loc = get_turf(src)
-		if(mechanical && on && powered && cell.charge < charge_use)
-			turn_off()
+	if(mechanical && on && powered)
+		cell.use(charge_use)
 
-		var/init_anc = anchored
-		anchored = 0
-		if(!..())
-			anchored = init_anc
-			return 0
-
-		set_dir(get_dir(old_loc, loc))
-		anchored = init_anc
-
-		if(mechanical && on && powered)
-			cell.use(charge_use)
-
-		//Dummy loads do not have to be moved as they are just an overlay
-		//See load_object() proc in cargo_trains.dm for an example
-		if(load && !istype(load, /datum/vehicle_dummy_load))
-			load.forceMove(loc)
-			load.set_dir(dir)
-
-		return 1
-	else
-		return 0
+	//Dummy loads do not have to be moved as they are just an overlay
+	//See load_object() proc in cargo_trains.dm for an example
+	//Also mobs are buckled to the vehicle and get moved in atom/movable/Move's call to take care of that
+	if(load && !(load in buckled_mobs) && !istype(load, /datum/vehicle_dummy_load))
+		load.forceMove(loc)
 
 /obj/vehicle/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/hand_labeler))

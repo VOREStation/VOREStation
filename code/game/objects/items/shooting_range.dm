@@ -18,12 +18,12 @@
 				break
 		..() // delete target
 
-	Move()
-		..()
+	Moved(atom/old_loc, direction, forced = FALSE)
+		. = ..()
 		// After target moves, check for nearby stakes. If associated, move to target
 		for(var/obj/structure/target_stake/M in view(3,src))
 			if(M.density == 0 && M.pinned_target == src)
-				M.loc = loc
+				M.forceMove(loc)
 
 		// This may seem a little counter-intuitive but I assure you that's for a purpose.
 		// Stakes are the ones that carry targets, yes, but in the stake code we set

@@ -89,6 +89,7 @@ function start_vchat() {
 	//Inform byond we're done
 	vchat_state.ready = true;
 	push_Topic('done_loading');
+	push_Topic_showingnum(this.showingnum);
 
 	//I'll do my own winsets
 	doWinset("htmloutput", {"is-visible": true});
@@ -136,7 +137,7 @@ function start_vue() {
 			//The table to map game css classes to our vchat categories
 			type_table: [
 				{
-					matches: ".say, .emote",
+					matches: ".filter_say, .say, .emote",
 					becomes: "vc_localchat",
 					pretty: "Local Chat",
 					tooltip: "In-character local messages (say, emote, etc)",
@@ -144,7 +145,7 @@ function start_vue() {
 					admin: false
 				},
 				{
-					matches: ".alert, .syndradio, .centradio, .airadio, .entradio, .comradio, .secradio, .engradio, .medradio, .sciradio, .supradio, .srvradio, .expradio, .radio, .deptradio, .newscaster",
+					matches: ".filter_radio, .alert, .syndradio, .centradio, .airadio, .entradio, .comradio, .secradio, .engradio, .medradio, .sciradio, .supradio, .srvradio, .expradio, .radio, .deptradio, .newscaster",
 					becomes: "vc_radio",
 					pretty: "Radio Comms",
 					tooltip: "All departments of radio messages",
@@ -152,7 +153,7 @@ function start_vue() {
 					admin: false
 				},
 				{
-					matches: ".notice:not(.pm), .adminnotice, .info, .sinister, .cult",
+					matches: ".filter_notice, .notice:not(.pm), .adminnotice, .info, .sinister, .cult",
 					becomes: "vc_info",
 					pretty: "Notices",
 					tooltip: "Non-urgent messages from the game and items",
@@ -160,7 +161,7 @@ function start_vue() {
 					admin: false
 				},
 				{
-					matches: ".critical, .danger, .userdanger, .warning:not(.pm), .italics",
+					matches: ".filter_warning, .warning:not(.pm), .critical, .userdanger, .italics",
 					becomes: "vc_warnings",
 					pretty: "Warnings",
 					tooltip: "Urgent messages from the game and items",
@@ -168,7 +169,7 @@ function start_vue() {
 					admin: false
 				},
 				{
-					matches: ".deadsay",
+					matches: ".filter_deadsay, .deadsay",
 					becomes: "vc_deadchat",
 					pretty: "Deadchat",
 					tooltip: "All of deadchat",
@@ -176,7 +177,7 @@ function start_vue() {
 					admin: false
 				},
 				{
-					matches: ".ooc:not(.looc)",
+					matches: ".filter_ooc, .ooc:not(.looc)",
 					becomes: "vc_globalooc",
 					pretty: "Global OOC",
 					tooltip: "The bluewall of global OOC messages",
@@ -194,7 +195,7 @@ function start_vue() {
 				},
 				//VOREStation Add End
 				{
-					matches: ".pm",
+					matches: ".filter_pm, .pm",
 					becomes: "vc_adminpm",
 					pretty: "Admin PMs",
 					tooltip: "Messages to/from admins ('adminhelps')",
@@ -202,7 +203,7 @@ function start_vue() {
 					admin: false
 				},
 				{
-					matches: ".admin_channel",
+					matches: ".filter_ASAY, .admin_channel",
 					becomes: "vc_adminchat",
 					pretty: "Admin Chat",
 					tooltip: "ASAY messages",
@@ -210,7 +211,7 @@ function start_vue() {
 					admin: true
 				},
 				{
-					matches: ".mod_channel",
+					matches: ".filter_MSAY, .mod_channel",
 					becomes: "vc_modchat",
 					pretty: "Mod Chat",
 					tooltip: "MSAY messages",
@@ -218,7 +219,7 @@ function start_vue() {
 					admin: true
 				},
 				{
-					matches: ".event_channel",
+					matches: ".filter_ESAY, .event_channel",
 					becomes: "vc_eventchat",
 					pretty: "Event Chat",
 					tooltip: "ESAY messages",
@@ -226,14 +227,46 @@ function start_vue() {
 					admin: true
 				},
 				{
-					matches: ".ooc.looc, .ooc .looc", //Dumb game
+					matches: ".filter_combat, .danger",
+					becomes: "vc_combat",
+					pretty: "Combat Logs",
+					tooltip: "Urist McTraitor has stabbed you with a knife!",
+					required: false,
+					admin: false
+				},
+				{
+					matches: ".filter_adminlogs, .log_message",
+					becomes: "vc_adminlogs",
+					pretty: "Admin Logs",
+					tooltip: "ADMIN LOG: Urist McAdmin has jumped to coordinates X, Y, Z",
+					required: false,
+					admin: true
+				},
+				{
+					matches: ".filter_attacklogs",
+					becomes: "vc_attacklogs",
+					pretty: "Attack Logs",
+					tooltip: "Urist McTraitor has shot John Doe",
+					required: false,
+					admin: true
+				},
+				{
+					matches: ".filter_debuglogs",
+					becomes: "vc_debuglogs",
+					pretty: "Debug Logs",
+					tooltip: "DEBUG: SSPlanets subsystem Recover().",
+					required: false,
+					admin: true
+				},
+				{
+					matches: ".ooc.looc, .ooc, .looc", //Dumb game
 					becomes: "vc_looc",
 					pretty: "Local OOC",
 					tooltip: "Local OOC messages, always enabled",
 					required: true
 				},
 				{
-					matches: ".boldannounce",
+					matches: ".boldannounce, .filter_system",
 					becomes: "vc_system",
 					pretty: "System Messages",
 					tooltip: "Messages from your client, always enabled",
@@ -320,6 +353,7 @@ function start_vue() {
 				}
 
 				set_storage("showingnum",this.showingnum);
+				push_Topic_showingnum(this.showingnum); // Send the buffer length back to byond so we have it in case of reconnect
 				this.attempt_archive();
 			},
 			current_categories: function(newSetting, oldSetting) {
@@ -556,6 +590,10 @@ function start_vue() {
 					}
 				}
 
+				newmessage.content = newmessage.content.replace(
+					/(\b(https?):\/\/[\-A-Z0-9+&@#\/%?=~_|!:,.;]*[\-A-Z0-9+&@#\/%=~_|])/img, //Honestly good luck with this regex ~Gear
+					'<a href="$1">$1</a>');
+
 				//Unread indicator and insertion into current tab shown messages if sensible
 				if(this.current_categories.length && (this.current_categories.indexOf(newmessage.category) < 0)) { //Not in the current categories
 					if (isNaN(this.unread_messages[newmessage.category])) {
@@ -761,6 +799,11 @@ function system_message(message) {
 //This is the other direction of communication, to push a Topic message back
 function push_Topic(topic_uri) {
 	window.location = '?_src_=chat&proc=' + topic_uri; //Yes that's really how it works.
+}
+
+// Send the showingnum back to byond
+function push_Topic_showingnum(topic_num) {
+	window.location = '?_src_=chat&showingnum=' + topic_num;
 }
 
 //Tells byond client to focus the main map window.

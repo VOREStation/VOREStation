@@ -520,7 +520,7 @@
 		return
 	if(alien == IS_SLIME)
 		if(dose >= 5) //Not effective in small doses, though it causes toxloss at higher ones, it will make the regeneration for brute and burn more 'efficient' at the cost of more nutrition.
-			M.nutrition -= removed * 2
+			M.adjust_nutrition(removed * 2)
 			M.adjustBruteLoss(-2 * removed)
 			M.adjustFireLoss(-1 * removed)
 		chem_effective = 0.5
@@ -548,7 +548,7 @@
 	if(alien == IS_SLIME)
 		M.make_jittery(4) //Hyperactive fluid pumping results in unstable 'skeleton', resulting in vibration.
 		if(dose >= 5)
-			M.nutrition = (M.nutrition - (removed * 2)) //Sadly this movement starts burning food in higher doses.
+			M.adjust_nutrition(-removed * 2) // Sadly this movement starts burning food in higher doses.
 	..()
 	if(prob(5))
 		M.emote(pick("twitch", "blink_r", "shiver"))
@@ -665,7 +665,7 @@
 /datum/reagent/myelamine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
-	M.eye_blurry += min(M.eye_blurry + (repair_strength * removed), 250)
+	M.eye_blurry = min(M.eye_blurry + (repair_strength * removed), 250)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/wound_heal = removed * repair_strength
@@ -738,7 +738,7 @@
 			if(prob(10))
 				H.vomit(1)
 			else if(H.nutrition > 30)
-				H.nutrition = max(0, H.nutrition - round(30 * removed))
+				M.adjust_nutrition(-removed * 30)
 		else
 			H.adjustToxLoss(-10 * removed) // Carthatoline based, considering cost.
 
@@ -960,7 +960,7 @@
 	color = "#605048"
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/ethylredoxrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/ethylredoxrazine/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
 	M.dizziness = 0
@@ -971,6 +971,14 @@
 		for(var/datum/reagent/R in M.ingested.reagent_list)
 			if(istype(R, /datum/reagent/ethanol))
 				R.remove_self(removed * 30)
+
+/datum/reagent/ethylredoxrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien == IS_DIONA)
+		return
+	M.dizziness = 0
+	M.drowsyness = 0
+	M.stuttering = 0
+	M.SetConfused(0)
 	if(M.bloodstr)
 		for(var/datum/reagent/R in M.bloodstr.reagent_list)
 			if(istype(R, /datum/reagent/ethanol))
@@ -1084,7 +1092,7 @@
 			M.make_jittery(5)
 		if(dose >= 20 || M.toxloss >= 60) //Core disentigration, cellular mass begins treating itself as an enemy, while maintaining regeneration. Slime-cancer.
 			M.adjustBrainLoss(2 * removed)
-			M.nutrition = max(H.nutrition - 20, 0)
+			M.adjust_nutrition(-20)
 		if(M.bruteloss >= 60 && M.toxloss >= 60 && M.brainloss >= 30) //Total Structural Failure. Limbs start splattering.
 			var/obj/item/organ/external/O = pick(H.organs)
 			if(prob(20) && !istype(O, /obj/item/organ/external/chest/unbreakable/slime) && !istype(O, /obj/item/organ/external/groin/unbreakable/slime))

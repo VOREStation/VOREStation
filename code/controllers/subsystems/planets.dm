@@ -6,16 +6,16 @@ SUBSYSTEM_DEF(planets)
 	flags = SS_BACKGROUND
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 
-	var/list/new_outdoor_turfs = list()
-	var/list/new_outdoor_walls = list()
+	var/static/list/new_outdoor_turfs = list()
+	var/static/list/new_outdoor_walls = list()
 
-	var/list/planets = list()
-	var/list/z_to_planet = list()
+	var/static/list/planets = list()
+	var/static/list/z_to_planet = list()
 
-	var/list/currentrun = list()
+	var/static/list/currentrun = list()
 
-	var/list/needs_sun_update = list()
-	var/list/needs_temp_update = list()
+	var/static/list/needs_sun_update = list()
+	var/static/list/needs_temp_update = list()
 
 /datum/controller/subsystem/planets/Initialize(timeofday)
 	admin_notice("<span class='danger'>Initializing planetary weather.</span>", R_DEBUG)

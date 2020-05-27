@@ -676,7 +676,7 @@ proc/GaussRandRound(var/sigma,var/roundto)
 //Returns: all the areas in the world
 /proc/return_areas()
 	var/list/area/areas = list()
-	for(var/area/A in all_areas)
+	for(var/area/A in world)
 		areas += A
 	return areas
 
@@ -694,7 +694,7 @@ proc/GaussRandRound(var/sigma,var/roundto)
 		areatype = areatemp.type
 
 	var/list/areas = new/list()
-	for(var/area/N in all_areas)
+	for(var/area/N in world)
 		if(istype(N, areatype)) areas += N
 	return areas
 
@@ -708,7 +708,7 @@ proc/GaussRandRound(var/sigma,var/roundto)
 		areatype = areatemp.type
 
 	var/list/turfs = new/list()
-	for(var/area/N in all_areas)
+	for(var/area/N in world)
 		if(istype(N, areatype))
 			for(var/turf/T in N) turfs += T
 	return turfs
@@ -723,7 +723,7 @@ proc/GaussRandRound(var/sigma,var/roundto)
 		areatype = areatemp.type
 
 	var/list/atoms = new/list()
-	for(var/area/N in all_areas)
+	for(var/area/N in world)
 		if(istype(N, areatype))
 			for(var/atom/A in N)
 				atoms += A
@@ -1273,14 +1273,8 @@ var/mob/dview/dview_mob = new
 	if(!center)
 		return
 
-	//VOREStation Add - Emergency Backup
-	if(!dview_mob)
-		dview_mob = new()
-		WARNING("dview mob was lost, and had to be recreated!")
-	//VOREStation Add End
-
 	dview_mob.loc = center
-
+	
 	dview_mob.see_invisible = invis_flags
 
 	. = view(range, dview_mob)
@@ -1308,6 +1302,11 @@ var/mob/dview/dview_mob = new
 		dead_mob_list -= src
 	else
 		living_mob_list -= src
+
+/mob/dview/Life()
+	mob_list -= src
+	dead_mob_list -= src
+	living_mob_list -= src
 
 /mob/dview/Destroy(var/force)
 	crash_with("Attempt to delete the dview_mob: [log_info_line(src)]")
@@ -1417,7 +1416,7 @@ var/mob/dview/dview_mob = new
 #define VARSET_LIST_CALLBACK(target, var_name, var_value) CALLBACK(GLOBAL_PROC, /proc/___callbackvarset, ##target, ##var_name, ##var_value)
 //dupe code because dm can't handle 3 level deep macros
 #define VARSET_CALLBACK(datum, var, var_value) CALLBACK(GLOBAL_PROC, /proc/___callbackvarset, ##datum, NAMEOF(##datum, ##var), ##var_value)
-//the 3 level deep myth DEBUNKED
+//we'll see about those 3-level deep macros
 #define VARSET_IN(datum, var, var_value, time) addtimer(VARSET_CALLBACK(datum, var, var_value), time)
 
 /proc/___callbackvarset(list_or_datum, var_name, var_value)

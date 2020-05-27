@@ -674,8 +674,9 @@
 
 		if(talkative)
 			new_item.talking_atom = new(new_item)
-			LAZYSET(new_item.origin_tech, TECH_ARCANE, 1)
-			LAZYSET(new_item.origin_tech, TECH_PRECURSOR, 1)
+			LAZYINITLIST(new_item.origin_tech)
+			new_item.origin_tech[TECH_ARCANE] += 1
+			new_item.origin_tech[TECH_PRECURSOR] += 1
 
 		var/turf/simulated/mineral/T = get_turf(new_item)
 		if(istype(T))
@@ -685,5 +686,6 @@
 
 	else if(talkative)
 		src.talking_atom = new(src)
-		LAZYSET(new_item.origin_tech, TECH_ARCANE, 1)
-		LAZYSET(new_item.origin_tech, TECH_PRECURSOR, 1)
+		LAZYINITLIST(origin_tech)
+		origin_tech[TECH_ARCANE] += 1
+		origin_tech[TECH_PRECURSOR] += 1

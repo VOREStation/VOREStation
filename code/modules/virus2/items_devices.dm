@@ -66,9 +66,9 @@
 		qdel(src)
 
 /obj/item/weapon/virusdish/examine(mob/user)
-	..()
+	. = ..()
 	if(basic_info)
-		to_chat(user, "[basic_info] : <a href='?src=\ref[src];info=1'>More Information</a>")
+		. += "[basic_info] : <a href='?src=\ref[src];info=1'>More Information</a>"
 
 /obj/item/weapon/virusdish/Topic(href, href_list)
 	. = ..()

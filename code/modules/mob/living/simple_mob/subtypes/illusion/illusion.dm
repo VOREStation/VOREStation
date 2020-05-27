@@ -41,9 +41,9 @@
 // this is to prevent easy checks from the opposing force.
 /mob/living/simple_mob/illusion/examine(mob/user)
 	if(copying)
-		copying.examine(user)
-		return
-	..()
+		return copying.examine(user)
+	else
+		return list("???")
 
 /mob/living/simple_mob/illusion/bullet_act(obj/item/projectile/P)
 	if(!P)
@@ -56,7 +56,7 @@
 
 /mob/living/simple_mob/illusion/attack_hand(mob/living/carbon/human/M)
 	if(!realistic)
-		playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+		playsound(src, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 		visible_message(span("warning", "\The [M]'s hand goes through \the [src]!"))
 		return
 	else
@@ -67,10 +67,10 @@
 					span("notice", "\The [M] hugs [src] to make [T.him] feel better!"), \
 					span("notice", "You hug [src] to make [T.him] feel better!")
 					) // slightly redundant as at the moment most mobs still use the normal gender var, but it works and future-proofs it
-				playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+				playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 
 			if(I_DISARM)
-				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+				playsound(src, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 				visible_message(span("danger", "\The [M] attempted to disarm [src]!"))
 				M.do_attack_animation(src)
 
@@ -86,7 +86,7 @@
 	if(realistic)
 		return ..()
 
-	playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+	playsound(src, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 	visible_message(span("warning", "\The [user]'s [I] goes through \the [src]!"))
 	return FALSE
 

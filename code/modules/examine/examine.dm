@@ -5,7 +5,7 @@
 	This means that this file can be unchecked, along with the other examine files, and can be removed entirely with no effort.
 */
 
-#define EXAMINE_PANEL_PADDING "        "
+#define EXAMINE_PANEL_PADDING "               "
 
 /atom/
 	var/description_info = null //Helpful blue text.
@@ -56,7 +56,7 @@
 	description_holders["interactions"] = A.get_description_interaction()
 
 	description_holders["name"] = "[A.name]"
-	description_holders["icon"] = "\icon[A]"
+	description_holders["icon"] = "\icon[A.examine_icon()]"
 	description_holders["desc"] = A.desc
 
 /mob/Stat()

@@ -6,6 +6,10 @@
 	display_name = "basic headband"
 	path = /obj/item/clothing/head/fluff/headbando
 
+/datum/gear/head/maid
+	display_name = "maid headband"
+	path = /obj/item/clothing/head/headband/maid
+
 /datum/gear/head/headbando/New()
 	..()
 	gear_tweaks = list(gear_tweak_free_color_choice)

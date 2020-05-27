@@ -25,10 +25,10 @@
 
 // Step 1, find out what we can see.
 /datum/ai_holder/proc/list_targets()
-	. = hearers(vision_range, holder) - holder // Remove ourselves to prevent suicidal decisions. ~ SRC is the ai_holder.
-	. -= dview_mob // Not the dview mob either, nerd.
+	. = ohearers(vision_range, holder)
+	. -= dview_mob // Not the dview mob!
 
-	var/static/hostile_machines = typecacheof(list(/obj/machinery/porta_turret, /obj/mecha))
+	var/static/hostile_machines = typecacheof(list(/obj/machinery/porta_turret, /obj/mecha, /obj/structure/blob))
 
 	for(var/HM in typecache_filter_list(range(vision_range, holder), hostile_machines))
 		if(can_see(holder, HM, vision_range))
@@ -43,13 +43,8 @@
 	if(!has_targets_list)
 		possible_targets = list_targets()
 	for(var/possible_target in possible_targets)
-		var/atom/A = possible_target
-		if(found(A)) // In case people want to override this.
-			. = list(A)
-			break
-		if(can_attack(A)) // Can we attack it?
-			. += A
-			continue
+		if(can_attack(possible_target)) // Can we attack it?
+			. += possible_target
 
 	var/new_target = pick_target(.)
 	give_target(new_target)
@@ -57,7 +52,7 @@
 
 // Step 3, pick among the possible, attackable targets.
 /datum/ai_holder/proc/pick_target(list/targets)
-	if(target != null) // If we already have a target, but are told to pick again, calculate the lowest distance between all possible, and pick from the lowest distance targets.
+	if(target) // If we already have a target, but are told to pick again, calculate the lowest distance between all possible, and pick from the lowest distance targets.
 		targets = target_filter_distance(targets)
 	else
 		targets = target_filter_closest(targets)
@@ -75,7 +70,7 @@
 /datum/ai_holder/proc/give_target(new_target, urgent = FALSE)
 	ai_log("give_target() : Given '[new_target]', urgent=[urgent].", AI_LOG_TRACE)
 	target = new_target
-	
+
 	if(target != null)
 		lose_target_time = 0
 		track_target_position()
@@ -88,32 +83,31 @@
 
 // Filters return one or more 'preferred' targets.
 
-// This one is for closest targets.
+// This one is for targets closer than our current one.
 /datum/ai_holder/proc/target_filter_distance(list/targets)
+	var/target_dist = get_dist(holder, target)
+	var/list/better_targets = list()
 	for(var/possible_target in targets)
 		var/atom/A = possible_target
-		var/target_dist = get_dist(holder, target)
 		var/possible_target_distance = get_dist(holder, A)
-		if(target_dist < possible_target_distance)
-			targets -= A
-	return targets
+		if(possible_target_distance < target_dist)
+			better_targets += A
+	return better_targets
 
+// Returns the closest target and anything tied with it for distance
 /datum/ai_holder/proc/target_filter_closest(list/targets)
-	var/lowest_distance = -1
-	var/list/sorted_targets = list()
+	var/lowest_distance = 1e6 //fakely far
+	var/list/closest_targets = list()
 	for(var/possible_target in targets)
 		var/atom/A = possible_target
 		var/current_distance = get_dist(holder, A)
-		if(lowest_distance == -1)
+		if(current_distance < lowest_distance)
+			closest_targets.Cut()
 			lowest_distance = current_distance
-			sorted_targets += A
-		else if(current_distance < lowest_distance)
-			targets.Cut()
-			lowest_distance = current_distance
-			sorted_targets += A
+			closest_targets += A
 		else if(current_distance == lowest_distance)
-			sorted_targets += A
-	return sorted_targets
+			closest_targets += A
+	return closest_targets
 
 /datum/ai_holder/proc/can_attack(atom/movable/the_target, var/vision_required = TRUE)
 	if(!can_see_target(the_target) && vision_required)
@@ -155,13 +149,13 @@
 			return FALSE // Turrets won't get hurt if they're still in their cover.
 		return TRUE
 
+	if(istype(the_target, /obj/structure/blob)) // Blob mobs are always blob faction, but the blob can anger other things.
+		var/obj/structure/blob/Blob = the_target
+		if(holder.faction == Blob.faction)
+			return FALSE
+
 	return TRUE
 //	return FALSE
-
-// Override this for special targeting criteria.
-// If it returns true, the mob will always select it as the target.
-/datum/ai_holder/proc/found(atom/movable/the_target)
-	return FALSE
 
 // 'Soft' loss of target. They may still exist, we still have some info about them maybe.
 /datum/ai_holder/proc/lose_target()
@@ -189,12 +183,12 @@
 	ai_log("remove_target() : Entering.", AI_LOG_TRACE)
 	if(target)
 		target = null
-	
+
 	lose_target_time = 0
 	give_up_movement()
 	lose_target_position()
 	set_stance(STANCE_IDLE)
-	
+
 // Check if target is visible to us.
 /datum/ai_holder/proc/can_see_target(atom/movable/the_target, view_range = vision_range)
 	ai_log("can_see_target() : Entering.", AI_LOG_TRACE)
@@ -274,7 +268,7 @@
 // Sets a few vars so mobs that threaten will react faster to an attacker or someone who attacked them before.
 /datum/ai_holder/proc/on_attacked(atom/movable/AM)
 	last_conflict_time = world.time
-	add_attacker(AM)		
+	add_attacker(AM)
 
 // Checks to see if an atom attacked us lately
 /datum/ai_holder/proc/check_attacker(var/atom/movable/A)
@@ -287,7 +281,7 @@
 // Forgive this attacker
 /datum/ai_holder/proc/remove_attacker(var/atom/movable/A)
 	attackers -= A.name
-			
+
 // Causes targeting to prefer targeting the taunter if possible.
 // This generally occurs if more than one option is within striking distance, including the taunter.
 // Otherwise the default filter will prefer the closest target.

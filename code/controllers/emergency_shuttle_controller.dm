@@ -2,7 +2,7 @@
 
 // Controls the emergency shuttle
 
-var/global/datum/emergency_shuttle_controller/emergency_shuttle
+var/global/datum/emergency_shuttle_controller/emergency_shuttle = new
 
 /datum/emergency_shuttle_controller
 	var/datum/shuttle/autodock/ferry/emergency/shuttle // Set in shuttle_emergency.dm TODO - is it really?
@@ -58,7 +58,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 			if (evac)
 				emergency_shuttle_docked.Announce(replacetext(replacetext(using_map.emergency_shuttle_docked_message, "%dock_name%", "[using_map.dock_name]"),  "%ETD%", "[estimated_time] minute\s"))
 			else
-				priority_announcement.Announce(replacetext(replacetext(using_map.shuttle_docked_message, "%dock_name%", "[using_map.dock_name]"),  "%ETD%", "[estimated_time] minute\s"))
+				priority_announcement.Announce(replacetext(replacetext(using_map.shuttle_docked_message, "%dock_name%", "[using_map.dock_name]"),  "%ETD%", "[estimated_time] minute\s"), "Transfer System", 'sound/AI/tramarrived.ogg') //VOREStation Edit - TTS
 
 		//arm the escape pods
 		if (evac)
@@ -75,8 +75,10 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 /datum/emergency_shuttle_controller/proc/set_launch_countdown(var/seconds)
 	wait_for_launch = 1
 	launch_time = world.time + seconds*10
+	START_PROCESSING(SSprocessing, src)
 
 /datum/emergency_shuttle_controller/proc/stop_launch_countdown()
+	STOP_PROCESSING(SSprocessing, src)
 	wait_for_launch = 0
 
 //calls the shuttle for an emergency evacuation
@@ -94,7 +96,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 
 	evac = 1
 	emergency_shuttle_called.Announce(replacetext(using_map.emergency_shuttle_called_message, "%ETA%", "[estimated_time] minute\s"))
-	for(var/area/A in all_areas)
+	for(var/area/A in world)
 		if(istype(A, /area/hallway))
 			A.readyalert()
 
@@ -113,20 +115,20 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 	shuttle.move_time = SHUTTLE_TRANSIT_DURATION
 	var/estimated_time = round(estimate_arrival_time()/60,1)
 
-	priority_announcement.Announce(replacetext(replacetext(using_map.shuttle_called_message, "%dock_name%", "[using_map.dock_name]"),  "%ETA%", "[estimated_time] minute\s"))
+	priority_announcement.Announce(replacetext(replacetext(using_map.shuttle_called_message, "%dock_name%", "[using_map.dock_name]"),  "%ETA%", "[estimated_time] minute\s"), "Transfer System", 'sound/AI/tramcalled.ogg') //VOREStation Edit - TTS
 	atc.shift_ending()
 
 //recalls the shuttle
 /datum/emergency_shuttle_controller/proc/recall()
 	if (!can_recall()) return
 
-	wait_for_launch = 0
+	stop_launch_countdown()
 	shuttle.cancel_launch(src)
 
 	if (evac)
 		emergency_shuttle_recalled.Announce(using_map.emergency_shuttle_recall_message)
 
-		for(var/area/A in all_areas)
+		for(var/area/A in world)
 			if(istype(A, /area/hallway))
 				A.readyreset()
 		evac = 0

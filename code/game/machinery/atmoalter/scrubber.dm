@@ -220,7 +220,7 @@
 			return
 
 		anchored = !anchored
-		playsound(src.loc, I.usesound, 50, 1)
+		playsound(src, I.usesound, 50, 1)
 		to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
 
 		return

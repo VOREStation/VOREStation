@@ -14,6 +14,8 @@
 	throw_speed = 3
 	throw_range = 5
 	w_class = ITEMSIZE_NORMAL
+	var/static/cell_uid = 1		// Unique ID of this power cell. Used to reduce bunch of uglier code in nanoUI.
+	var/c_uid
 	var/charge = 0	// note %age conveted to actual charge in New
 	var/maxcharge = 1000
 	var/rigged = 0		// true if rigged to explode
@@ -31,6 +33,7 @@
 
 /obj/item/weapon/cell/New()
 	..()
+	c_uid = cell_uid++
 	charge = maxcharge
 	update_icon()
 	if(self_recharge)
@@ -145,10 +148,10 @@
 
 
 /obj/item/weapon/cell/examine(mob/user)
-	..()
-	if(get_dist(src, user) <= 1)
-		to_chat(user, " It has a power rating of [maxcharge].\nThe charge meter reads [round(src.percent() )]%.")
-	return
+	. = ..()
+	if(Adjacent(user))
+		. += "It has a power rating of [maxcharge]."
+		. += "The charge meter reads [round(src.percent() )]%."
 
 /obj/item/weapon/cell/attackby(obj/item/W, mob/user)
 	..()

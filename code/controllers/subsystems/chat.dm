@@ -54,17 +54,12 @@ SUBSYSTEM_DEF(chat)
 			var/client/C = CLIENT_FROM_VAR(I) //Grab us a client if possible
 
 			if(!C)
-				return
-
-			if(!C?.chatOutput || C.chatOutput.broken) //A player who hasn't updated his skin file.
-				//Send it to the old style output window.
+				continue // No client? No care.
+			else if(C.chatOutput.broken)
 				DIRECT_OUTPUT(C, original_message)
 				continue
-
-			// // Client still loading, put their messages in a queue - Actually don't, logged already in database.
-			// if(!C.chatOutput.loaded && C.chatOutput.message_queue && islist(C.chatOutput.message_queue))
-			// 	C.chatOutput.message_queue[++C.chatOutput.message_queue.len] = messageStruct
-			// 	continue
+			else if(!C.chatOutput.loaded)
+				continue // If not loaded yet, do nothing and history-sending on load will get it.
 
 			LAZYINITLIST(msg_queue[C])
 			msg_queue[C][++msg_queue[C].len] = messageStruct
@@ -72,16 +67,12 @@ SUBSYSTEM_DEF(chat)
 		var/client/C = CLIENT_FROM_VAR(target) //Grab us a client if possible
 
 		if(!C)
-			return
-
-		if(!C?.chatOutput || C.chatOutput.broken) //A player who hasn't updated his skin file.
+			return // No client? No care.
+		else if(C.chatOutput.broken)
 			DIRECT_OUTPUT(C, original_message)
 			return
-
-		// // Client still loading, put their messages in a queue - Actually don't, logged already in database.
-		// if(!C.chatOutput.loaded && C.chatOutput.message_queue && islist(C.chatOutput.message_queue))
-		// 	C.chatOutput.message_queue[++C.chatOutput.message_queue.len] = messageStruct
-		// 	return
+		else if(!C.chatOutput.loaded)
+			return // If not loaded yet, do nothing and history-sending on load will get it.
 
 		LAZYINITLIST(msg_queue[C])
 		msg_queue[C][++msg_queue[C].len] = messageStruct

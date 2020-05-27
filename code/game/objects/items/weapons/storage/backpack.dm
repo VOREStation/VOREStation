@@ -21,13 +21,13 @@
 
 /obj/item/weapon/storage/backpack/equipped(var/mob/user, var/slot)
 	if (slot == slot_back && src.use_sound)
-		playsound(src.loc, src.use_sound, 50, 1, -5)
+		playsound(src, src.use_sound, 50, 1, -5)
 	..(user, slot)
 
 /*
 /obj/item/weapon/storage/backpack/dropped(mob/user as mob)
 	if (loc == user && src.use_sound)
-		playsound(src.loc, src.use_sound, 50, 1, -5)
+		playsound(src, src.use_sound, 50, 1, -5)
 	..(user)
 */
 
@@ -363,13 +363,12 @@
 	max_storage_space = ITEMSIZE_COST_NORMAL * 5
 
 /obj/item/weapon/storage/backpack/parachute/examine(mob/user)
-	var/msg = desc
-	if(get_dist(src, user) <= 1)
+	. = ..()
+	if(Adjacent(user))
 		if(parachute)
-			msg += " It seems to be packed."
+			. += "It seems to be packed."
 		else
-			msg += " It seems to be unpacked."
-	to_chat(user, msg)
+			. += "It seems to be unpacked."
 
 /obj/item/weapon/storage/backpack/parachute/handleParachute()
 	parachute = FALSE	//If you parachute in, the parachute has probably been used.

@@ -167,6 +167,15 @@
 
 /mob/living/emp_act(severity)
 	var/list/L = src.get_contents()
+
+	if(LAZYLEN(modifiers))
+		for(var/datum/modifier/M in modifiers)
+			if(!isnull(M.emp_modifier))
+				severity = CLAMP(severity + M.emp_modifier, 1, 5)
+
+	if(severity == 5)	// Effectively nullified.
+		return
+
 	for(var/obj/O in L)
 		O.emp_act(severity)
 	..()
@@ -200,11 +209,14 @@
 		damage *= 0.66 // Take 2/3s as much damage.
 
 	visible_message("<span class='danger'>\The [B] [attack_verb] \the [src]!</span>", "<span class='danger'>[attack_message]!</span>")
-	playsound(loc, 'sound/effects/attackblob.ogg', 50, 1)
+	playsound(src, 'sound/effects/attackblob.ogg', 50, 1)
 
 	//Armor
 	var/soaked = get_armor_soak(def_zone, armor_check, armor_pen)
 	var/absorb = run_armor_check(def_zone, armor_check, armor_pen)
+
+	if(ai_holder)
+		ai_holder.react_to_attack(B)
 
 	apply_damage(damage, damage_type, def_zone, absorb, soaked)
 
@@ -316,6 +328,7 @@
 	O.loc = src
 	src.embedded += O
 	src.verbs += /mob/proc/yank_out_object
+	throw_alert("embeddedobject", /obj/screen/alert/embeddedobject)
 
 //This is called when the mob is thrown into a dense turf
 /mob/living/proc/turf_collision(var/turf/T, var/speed)
@@ -354,6 +367,7 @@
 	if(fire_stacks > 0 && !on_fire)
 		on_fire = 1
 		handle_light()
+		throw_alert("fire", /obj/screen/alert/fire)
 		update_fire()
 
 /mob/living/proc/ExtinguishMob()
@@ -361,6 +375,7 @@
 		on_fire = 0
 		fire_stacks = 0
 		handle_light()
+		clear_alert("fire")
 		update_fire()
 
 	if(has_modifier_of_type(/datum/modifier/fire))

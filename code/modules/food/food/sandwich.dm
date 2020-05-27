@@ -79,9 +79,10 @@
 	..()
 
 /obj/item/weapon/reagent_containers/food/snacks/csandwich/examine(mob/user)
-	..(user)
-	var/obj/item/O = pick(contents)
-	to_chat(user, "<font color='blue'>You think you can see [O.name] in there.</font>")
+	. = ..()
+	if(contents.len)
+		var/obj/item/O = pick(contents)
+		. += "<font color='blue'>You think you can see [O.name] in there.</font>"
 
 /obj/item/weapon/reagent_containers/food/snacks/csandwich/attack(mob/M as mob, mob/user as mob, def_zone)
 

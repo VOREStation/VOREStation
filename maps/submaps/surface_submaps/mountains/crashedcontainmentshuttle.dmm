@@ -25,6 +25,7 @@
 "ay" = (/obj/effect/decal/mecha_wreckage/gygax{anchored = 1},/turf/simulated/shuttle/floor/black,/area/submap/crashedcontainmentshuttle)
 "az" = (/obj/effect/gibspawner/generic,/turf/simulated/shuttle/floor/black,/area/submap/crashedcontainmentshuttle)
 "aA" = (/obj/structure/closet/medical_wall,/turf/simulated/shuttle/wall/dark,/area/submap/crashedcontainmentshuttle)
+"aB" = (/obj/machinery/artifact/predefined/hungry_statue,/obj/structure/largecrate,/turf/simulated/shuttle/floor/red,/area/submap/crashedcontainmentshuttle)
 "aC" = (/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/crashedcontainmentshuttle)
 "aD" = (/obj/structure/door_assembly/door_assembly_ext,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/crashedcontainmentshuttle)
 "aE" = (/obj/structure/extinguisher_cabinet,/turf/simulated/shuttle/wall/dark,/area/submap/crashedcontainmentshuttle)
@@ -103,7 +104,7 @@ aaaYaaaRacaaadadaZapbIbybIazbbadaNacanbJaaaaaaaaaa
 aaaababdbeapapapadadadbIadadauadaNaAaeaTanaaaaataa
 acaaaaaaapadauadadadacacaSacanadavacbhaeaeahaaaaaa
 aPadaVaRacadadadbiadacbjafafacadadadbKbpaHaraaaaaa
-aaaPadaaacaMadbkadbbacbvafbwacaLadaSbKbqaHaoapaaaa
+aaaPadaaacaMadbkadbbacbvaBbwacaLadaSbKbqaHaoapaaaa
 aPbxaVaRacaWadbbadbbanblbLbzanadbbasaebraFaIaabfaa
 aPaPaaaaaaaabEazadadanacacacaEadadahaebpaHaoaaaiaa
 aPaPadaaaJapbIadadaPaPadadadadadadacaeaeaeahaaaaaa
@@ -118,4 +119,3 @@ aaaaaaaaaaaaadaLaaaabmbMbObmbmaaaaaaaaaaaaaaaaaaaa
 aaaaadadaaaaaaacaPbCbmbmbmaaajaaaaaaaaaaaaaaaaaaaa
 aaaaaaadaaaaaaaPaPaaaaaabmaaaaaaaaaaaaaaaaaaaaaaaa
 "}
-

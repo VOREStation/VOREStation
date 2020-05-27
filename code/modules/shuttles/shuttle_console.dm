@@ -64,11 +64,13 @@
 	var/cannot_depart = shuttle.current_location.cannot_depart(shuttle)
 	if(cannot_depart)
 		to_chat(user, "<span class='warning'>[cannot_depart]</span>")
-		log_shuttle("Shuttle [shuttle] cannot depart [shuttle.current_location] because: [cannot_depart].")
+		if(shuttle.debug_logging)
+			log_shuttle("Shuttle [shuttle] cannot depart [shuttle.current_location] because: [cannot_depart].")
 		return FALSE
 	if(!shuttle.next_location.is_valid(shuttle))
 		to_chat(user, "<span class='warning'>Destination zone is invalid or obstructed.</span>")
-		log_shuttle("Shuttle [shuttle] destination [shuttle.next_location] is invalid.")
+		if(shuttle.debug_logging)
+			log_shuttle("Shuttle [shuttle] destination [shuttle.next_location] is invalid.")
 		return FALSE
 	return TRUE
 
@@ -126,6 +128,13 @@
 		ui.open()
 		ui.set_auto_update(1)
 
+// Call to set the linked shuttle tag; override to add behaviour to shuttle tag changes
+/obj/machinery/computer/shuttle_control/proc/set_shuttle_tag(var/new_shuttle_tag)
+	if(shuttle_tag == new_shuttle_tag)
+		return FALSE
+	shuttle_tag = new_shuttle_tag
+	return TRUE
+
 /obj/machinery/computer/shuttle_control/emag_act(var/remaining_charges, var/mob/user)
 	if (!hacked)
 		req_access = list()
@@ -159,7 +168,7 @@ GLOBAL_LIST_BOILERPLATE(papers_dockingcode, /obj/item/weapon/paper/dockingcodes)
 	var/dockingcodes = null
 	var/z_to_check = codes_from_z ? codes_from_z : z
 	if(using_map.use_overmap)
-		var/obj/effect/overmap/visitable/location = map_sectors["[z_to_check]"]
+		var/obj/effect/overmap/visitable/location = get_overmap_sector(z_to_check)
 		if(location && location.docking_codes)
 			dockingcodes = location.docking_codes
 

@@ -1,7 +1,10 @@
-//TFF 5/8/19 - minor refactoring of this thing from 09_misc.dm to call this for preferences.
-datum/preferences
-	var/show_in_directory = 1	//TFF 5/8/19 - show in Character Directory
-	var/sensorpref = 5			//TFF 5/8/19 - set character's suit sensor level
+/datum/preferences
+	var/show_in_directory = 1	//Show in Character Directory
+	var/sensorpref = 5			//Set character's suit sensor level
+
+	var/job_talon_high = 0
+	var/job_talon_med = 0
+	var/job_talon_low = 0
 
 //Why weren't these in game toggles already?
 /client/verb/toggle_eating_noises()
@@ -50,3 +53,18 @@ datum/preferences
 	SScharacter_setup.queue_preferences_save(prefs)
 
 	feedback_add_details("admin_verb","TEmoteNoise") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/verb/toggle_ghost_quiets()
+	set name = "Toggle Whisper/Subtle Vis"
+	set category = "Preferences"
+	set desc = "Toggle ghosts viewing your subtles/whispers."
+
+	var/pref_path = /datum/client_preference/whisubtle_vis
+
+	toggle_preference(pref_path)
+
+	to_chat(src, "Ghosts will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear subtles/whispers made by you.")
+
+	SScharacter_setup.queue_preferences_save(prefs)
+
+	feedback_add_details("admin_verb","TWhisubtleVis") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

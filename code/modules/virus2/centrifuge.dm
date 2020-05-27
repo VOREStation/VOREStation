@@ -1,7 +1,7 @@
 /obj/machinery/computer/centrifuge
 	name = "isolation centrifuge"
 	desc = "Used to separate things with different weight. Spin 'em round, round, right round."
-	icon = 'icons/obj/virology.dmi'
+	icon = 'icons/obj/virology_vr.dmi' //VOREStation Edit
 	icon_state = "centrifuge"
 	var/curing
 	var/isolating
@@ -138,7 +138,7 @@
 					delay = delay/2
 
 			curing = round(delay)
-			playsound(src.loc, 'sound/machines/juicer.ogg', 50, 1)
+			playsound(src, 'sound/machines/juicer.ogg', 50, 1)
 			update_icon()
 			return 1
 

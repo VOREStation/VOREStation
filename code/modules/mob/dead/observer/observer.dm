@@ -86,6 +86,7 @@
 		"Beepsky" = "secbot"
 		)
 	var/last_revive_notification = null // world.time of last notification, used to avoid spamming players from defibs or cloners.
+	var/cleanup_timer // Refernece to a timer that will delete this mob if no client returns
 
 /mob/observer/dead/New(mob/body)
 	sight |= SEE_TURFS | SEE_MOBS | SEE_OBJS | SEE_SELF
@@ -129,6 +130,7 @@
 	if(!name)							//To prevent nameless ghosts
 		name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
 	real_name = name
+	animate(src, pixel_y = 2, time = 10, loop = -1)
 	..()
 
 /mob/observer/dead/Topic(href, href_list)
@@ -151,6 +153,13 @@
 /mob/observer/dead/set_stat(var/new_stat)
 	if(new_stat != DEAD)
 		CRASH("It is best if observers stay dead, thank you.")
+
+/mob/observer/dead/examine_icon()
+	var/icon/I = get_cached_examine_icon(src)
+	if(!I)
+		I = getFlatIcon(src, defdir = SOUTH, no_anim = TRUE)
+		set_cached_examine_icon(src, I, 200 SECONDS)
+	return I
 
 /*
 Transfer_mind is there to check if mob is being deleted/not going to have a body.
@@ -220,6 +229,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		var/mob/observer/dead/ghost = ghostize(0)	// 0 parameter is so we can never re-enter our body, "Charlie, you can never come baaaack~" :3
 		if(ghost)
 			ghost.timeofdeath = world.time 	// Because the living mob won't have a time of death and we want the respawn timer to work properly.
+			ghost.set_respawn_timer()
 			announce_ghost_joinleave(ghost)
 
 /mob/observer/dead/can_use_hands()	return 0
@@ -295,6 +305,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		var/response = alert(src, "If you turn this on, you will not be able to take any part in the round.","Are you sure you want to turn this feature on?","Yes","No")
 		if(response == "No") return
 		can_reenter_corpse = FALSE
+		set_respawn_timer(-1) // Foreeeever
 	if(!has_enabled_antagHUD && !client.holder)
 		has_enabled_antagHUD = TRUE
 
@@ -311,6 +322,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(usr, "Not when you're not dead!")
 		return
 
+	if(!A)
+		A = input(usr, "Select an area:", "Ghost Teleport") as null|anything in return_sorted_areas()
+	if(!A)
+		return
+	
 	usr.forceMove(pick(get_area_turfs(A)))
 	usr.on_mob_jump()
 
@@ -319,6 +335,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set name = "Follow" // "Haunt"
 	set desc = "Follow and haunt a mob."
 
+	if(!input)
+		input = input(usr, "Select a mob:", "Ghost Follow") as null|anything in getmobs()
+	if(!input)
+		return
+	
 	var/target = getmobs()[input]
 	if(!target) return
 	ManualFollow(target)
@@ -352,6 +373,45 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 						forceMove(T)
 					sleep(15)
 
+	var/icon/I = icon(target.icon,target.icon_state,target.dir)
+
+	var/orbitsize = (I.Width()+I.Height())*0.5
+	orbitsize -= (orbitsize/world.icon_size)*(world.icon_size*0.25)
+
+	var/rot_seg
+
+	/* We don't have this pref yet
+	switch(ghost_orbit)
+		if(GHOST_ORBIT_TRIANGLE)
+			rot_seg = 3
+		if(GHOST_ORBIT_SQUARE)
+			rot_seg = 4
+		if(GHOST_ORBIT_PENTAGON)
+			rot_seg = 5
+		if(GHOST_ORBIT_HEXAGON)
+			rot_seg = 6
+		else //Circular
+			rot_seg = 36 //360/10 bby, smooth enough aproximation of a circle
+	*/
+
+	orbit(target, orbitsize, FALSE, 20, rot_seg)
+
+/mob/observer/dead/orbit()
+	set_dir(2) //reset dir so the right directional sprites show up
+	return ..()
+
+/mob/observer/dead/stop_orbit(datum/component/orbiter/orbits)
+	. = ..()
+	//restart our floating animation after orbit is done.
+	pixel_y = 0
+	pixel_x = 0
+	transform = null
+	animate(src, pixel_y = 2, time = 10, loop = -1)
+
+/mob/observer/dead/proc/stop_following()
+	following = null
+	stop_orbit()
+
 /mob/proc/update_following()
 	. = get_turf(src)
 	for(var/mob/observer/dead/M in following_mobs)
@@ -366,7 +426,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/Destroy()
 	for(var/mob/observer/dead/M in following_mobs)
-		M.following = null
+		M.stop_following()
 	following_mobs = null
 	return ..()
 
@@ -374,13 +434,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(ismob(following))
 		var/mob/M = following
 		M.following_mobs -= src
-	following = null
+	stop_following()
 	return ..()
 
-/mob/Move()
+/mob/Moved(atom/old_loc, direction, forced = FALSE)
 	. = ..()
-	if(.)
-		update_following()
+	update_following()
 
 /mob/Life()
 	// to catch teleports etc which directly set loc
@@ -400,35 +459,28 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set category = "Ghost"
 	set name = "Jump to Mob"
 	set desc = "Teleport to a mob"
-	set popup_menu = FALSE //VOREStation Edit - Declutter.
-	if(istype(usr, /mob/observer/dead)) //Make sure they're an observer!
-		var/target = getmobs()[input]
-		if (!target)//Make sure we actually have a target
-			return
-		else
-			var/mob/M = target //Destination mob
-			var/turf/T = get_turf(M) //Turf of the destination mob
+	set popup_menu = FALSE
 
-			if(T && isturf(T))	//Make sure the turf exists, then move the source to that destination.
-				forceMove(T)
-				following = null
-			else
-				to_chat(src, "This mob is not located in the game world.")
-/*
-/mob/observer/dead/verb/boo()
-	set category = "Ghost"
-	set name = "Boo!"
-	set desc= "Scare your crew members because of boredom!"
-
-	if(bootime > world.time) return
-	var/obj/machinery/light/L = locate(/obj/machinery/light) in view(1, src)
-	if(L)
-		L.flicker()
-		bootime = world.time + 600
+	if(!istype(usr, /mob/observer/dead)) //Make sure they're an observer!
 		return
-	//Maybe in the future we can add more <i>spooky</i> code here!
-	return
-*/
+
+	if(!input)
+		input = input(usr, "Select a mob:", "Ghost Jump") as null|anything in getmobs()
+	if(!input)
+		return
+
+	var/target = getmobs()[input]
+	if (!target)//Make sure we actually have a target
+		return
+	else
+		var/mob/M = target //Destination mob
+		var/turf/T = get_turf(M) //Turf of the destination mob
+
+		if(T && isturf(T))	//Make sure the turf exists, then move the source to that destination.
+			forceMove(T)
+			stop_following()
+		else
+			to_chat(src, "This mob is not located in the game world.")
 
 /mob/observer/dead/memory()
 	set hidden = 1
@@ -439,7 +491,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	to_chat(src, "<font color='red'>You are dead! You have no mind to store memory!</font>")
 
 /mob/observer/dead/Post_Incorpmove()
-	following = null
+	stop_following()
 
 /mob/observer/dead/verb/analyze_air()
 	set name = "Analyze Air"
@@ -807,21 +859,27 @@ mob/observer/dead/MayRespawn(var/feedback = 0)
 	set category = "Ghost"
 	set name = "Blank pAI alert"
 	set desc = "Flash an indicator light on available blank pAI devices for a smidgen of hope."
-	if(usr.client.prefs.be_special & BE_PAI)
+	
+	if(usr.client.prefs?.be_special & BE_PAI)
+		var/count = 0
 		for(var/obj/item/device/paicard/p in all_pai_cards)
 			var/obj/item/device/paicard/PP = p
 			if(PP.pai == null)
+				count++
 				PP.icon = 'icons/obj/pda_vr.dmi' // VOREStation Edit
 				PP.overlays += "pai-ghostalert"
 				spawn(54)
 					PP.overlays.Cut()
+		to_chat(usr,"<span class='notice'>Flashing the displays of [count] unoccupied PAIs.</span>")
+	else
+		to_chat(usr,"<span class='warning'>You have 'Be pAI' disabled in your character prefs, so we can't help you.</span>")
 
 /mob/observer/dead/speech_bubble_appearance()
 	return "ghost"
 
 // Lets a ghost know someone's trying to bring them back, and for them to get into their body.
 // Mostly the same as TG's sans the hud element, since we don't have TG huds.
-/mob/observer/dead/proc/notify_revive(var/message, var/sound, flashwindow = TRUE)
+/mob/observer/dead/proc/notify_revive(var/message, var/sound, flashwindow = TRUE, var/atom/source)
 	if((last_revive_notification + 2 MINUTES) > world.time)
 		return
 	last_revive_notification = world.time
@@ -830,6 +888,8 @@ mob/observer/dead/MayRespawn(var/feedback = 0)
 		window_flash(client)
 	if(message)
 		to_chat(src, "<span class='ghostalert'><font size=4>[message]</font></span>")
+		if(source)
+			throw_alert("\ref[source]_notify_revive", /obj/screen/alert/notify_cloning, new_master = source)
 	to_chat(src, "<span class='ghostalert'><a href=?src=[REF(src)];reenter=1>(Click to re-enter)</a></span>")
 	if(sound)
 		SEND_SOUND(src, sound(sound))

@@ -1030,3 +1030,12 @@
 	req_tech = list(TECH_MATERIAL = 7, TECH_ENGINEERING = 5, TECH_MAGNET = 5, TECH_POWER = 6, TECH_ILLEGAL = 3, TECH_BLUESPACE = 4, TECH_ARCANE = 2, TECH_PRECURSOR = 3)
 	materials = list(MAT_DURASTEEL = 5000, MAT_GRAPHITE = 3000, MAT_MORPHIUM = 1500, MAT_OSMIUM = 1500, MAT_PHORON = 1750, MAT_VERDANTIUM = 3000, MAT_SUPERMATTER = 2000)
 	build_path = /obj/item/rig_module/teleporter
+
+/datum/design/item/mechfab/uav/basic
+	name = "UAV - Recon Skimmer"
+	id = "recon_skimmer"
+	build_path = /obj/item/device/uav
+	time = 20
+	req_tech = list(TECH_MATERIAL = 6, TECH_ENGINEERING = 5, TECH_PHORON = 3, TECH_MAGNET = 4, TECH_POWER = 6)
+	materials = list(DEFAULT_WALL_MATERIAL = 10000, "glass" = 6000, "silver" = 4000)
+	

@@ -24,7 +24,9 @@
 
 /obj/item/weapon/gun/magnetic/matfed/examine(mob/user)
 	. = ..()
-	show_ammo(user)
+	var/ammotext = show_ammo()
+	if(ammotext)
+		. += ammotext
 
 /obj/item/weapon/gun/magnetic/matfed/update_icon()
 	var/list/overlays_to_add = list()
@@ -56,7 +58,7 @@
 			removing.forceMove(get_turf(src))
 			user.put_in_hands(removing)
 			user.visible_message("<span class='notice'>\The [user] removes \the [removing] from \the [src].</span>")
-			playsound(loc, 'sound/machines/click.ogg', 10, 1)
+			playsound(src, 'sound/machines/click.ogg', 10, 1)
 			update_icon()
 			return
 	. = ..()
@@ -69,9 +71,9 @@
 /obj/item/weapon/gun/magnetic/matfed/use_ammo()
 	mat_storage -= mat_cost
 
-/obj/item/weapon/gun/magnetic/matfed/show_ammo(var/mob/user)
+/obj/item/weapon/gun/magnetic/matfed/show_ammo()
 	if(mat_storage)
-		to_chat(user, "<span class='notice'>It has [mat_storage] out of [max_mat_storage] units of [ammo_material] loaded.</span>")
+		return list("<span class='notice'>It has [mat_storage] out of [max_mat_storage] units of [ammo_material] loaded.</span>")
 
 /obj/item/weapon/gun/magnetic/matfed/attackby(var/obj/item/thing, var/mob/user)
 	if(removable_components)
@@ -82,7 +84,7 @@
 			cell = thing
 			user.drop_from_inventory(cell)
 			cell.forceMove(src)
-			playsound(loc, 'sound/machines/click.ogg', 10, 1)
+			playsound(src, 'sound/machines/click.ogg', 10, 1)
 			user.visible_message("<span class='notice'>\The [user] slots \the [cell] into \the [src].</span>")
 			update_icon()
 			return
@@ -93,7 +95,7 @@
 			manipulator.forceMove(get_turf(src))
 			user.put_in_hands(manipulator)
 			user.visible_message("<span class='notice'>\The [user] levers \the [manipulator] from \the [src].</span>")
-			playsound(loc, 'sound/items/Crowbar.ogg', 50, 1)
+			playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 			manipulator = null
 			update_icon()
 			return
@@ -104,7 +106,7 @@
 			capacitor.forceMove(get_turf(src))
 			user.put_in_hands(capacitor)
 			user.visible_message("<span class='notice'>\The [user] unscrews \the [capacitor] from \the [src].</span>")
-			playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
+			playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 			capacitor = null
 			update_icon()
 			return
@@ -116,7 +118,7 @@
 			capacitor = thing
 			user.drop_from_inventory(capacitor)
 			capacitor.forceMove(src)
-			playsound(loc, 'sound/machines/click.ogg', 10, 1)
+			playsound(src, 'sound/machines/click.ogg', 10, 1)
 			power_per_tick = (power_cost*0.15) * capacitor.rating
 			user.visible_message("<span class='notice'>\The [user] slots \the [capacitor] into \the [src].</span>")
 			update_icon()
@@ -129,7 +131,7 @@
 			manipulator = thing
 			user.drop_from_inventory(manipulator)
 			manipulator.forceMove(src)
-			playsound(loc, 'sound/machines/click.ogg', 10,1)
+			playsound(src, 'sound/machines/click.ogg', 10,1)
 			mat_cost = initial(mat_cost) % (2*manipulator.rating)
 			user.visible_message("<span class='notice'>\The [user] slots \the [manipulator] into \the [src].</span>")
 			update_icon()
@@ -152,14 +154,14 @@
 			if(mat_storage + 2000 <= max_mat_storage && do_after(user,1.5 SECONDS))
 				can_hold_val ++
 				mat_storage += 2000
-				playsound(loc, 'sound/effects/phasein.ogg', 15, 1)
+				playsound(src, 'sound/effects/phasein.ogg', 15, 1)
 			else
 				loading = FALSE
 				break
 		M.use(can_hold_val)
 
 		user.visible_message("<span class='notice'>\The [user] loads \the [src] with \the [M].</span>")
-		playsound(loc, 'sound/weapons/flipblade.ogg', 50, 1)
+		playsound(src, 'sound/weapons/flipblade.ogg', 50, 1)
 		update_icon()
 		return
 	. = ..()

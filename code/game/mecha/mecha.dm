@@ -95,6 +95,13 @@
 	var/list/cargo = list()
 	var/cargo_capacity = 3
 
+	var/static/image/radial_image_eject = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_eject")
+	var/static/image/radial_image_airtoggle = image(icon= 'icons/mob/radial.dmi', icon_state = "radial_airtank")
+	var/static/image/radial_image_lighttoggle = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_light")
+	var/static/image/radial_image_statpanel = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_examine2")
+
+	var/datum/mini_hud/mech/minihud
+
 
 /obj/mecha/drain_power(var/drain_check)
 
@@ -190,6 +197,7 @@
 	QDEL_NULL(pr_give_air)
 	QDEL_NULL(pr_internal_damage)
 	QDEL_NULL(spark_system)
+	QDEL_NULL(minihud)
 
 	mechas_list -= src //global mech list
 	. = ..()
@@ -261,39 +269,81 @@
 /obj/mecha/proc/check_for_support()
 	var/list/things = orange(1, src)
 
-	if(locate(/obj/structure/grille in things) || locate(/obj/structure/lattice in things) || locate(/turf/simulated in things) || locate(/turf/unsimulated in things))
+	if(locate(/obj/structure/grille) in things || locate(/obj/structure/lattice) in things || locate(/turf/simulated) in things || locate(/turf/unsimulated) in things)
 		return 1
 	else
 		return 0
 
 /obj/mecha/examine(mob/user)
-	..(user)
+	. = ..()
 	var/integrity = health/initial(health)*100
 	switch(integrity)
 		if(85 to 100)
-			to_chat(user, "It's fully intact.")
+			. += "It's fully intact."
 		if(65 to 85)
-			to_chat(user, "It's slightly damaged.")
+			. += "It's slightly damaged."
 		if(45 to 65)
-			to_chat(user, "It's badly damaged.")
+			. += "It's badly damaged."
 		if(25 to 45)
-			to_chat(user, "It's heavily damaged.")
+			. += "It's heavily damaged."
 		else
-			to_chat(user, "It's falling apart.")
-	if(equipment && equipment.len)
-		to_chat(user, "It's equipped with:")
+			. += "It's falling apart."
+	if(equipment?.len)
+		. += "It's equipped with:"
 		for(var/obj/item/mecha_parts/mecha_equipment/ME in equipment)
-			to_chat(user, "[bicon(ME)] [ME]")
-	return
-
+			. += "[bicon(ME)] [ME]"
 
 /obj/mecha/proc/drop_item()//Derpfix, but may be useful in future for engineering exosuits.
 	return
 
-/obj/mecha/hear_talk(mob/M as mob, text)
-	if(M==occupant && radio.broadcasting)
-		radio.talk_into(M, text)
-	return
+/obj/mecha/hear_talk(mob/M, list/message_pieces, verb)
+	if(M == occupant && radio.broadcasting)
+		radio.talk_into(M, message_pieces)
+
+/obj/mecha/proc/check_occupant_radial(var/mob/user)
+	if(!user)
+		return FALSE
+	if(user.stat)
+		return FALSE
+	if(user != occupant)
+		return FALSE
+	if(user.incapacitated())
+		return FALSE
+
+	return TRUE
+
+/obj/mecha/proc/show_radial_occupant(var/mob/user)
+	var/list/choices = list(
+		"Eject" = radial_image_eject,
+		"Toggle Airtank" = radial_image_airtoggle,
+		"Toggle Light" = radial_image_lighttoggle,
+		"View Stats" = radial_image_statpanel
+	)
+	var/choice = show_radial_menu(user, src, choices, custom_check = CALLBACK(src, .proc/check_occupant_radial, user), require_near = TRUE, tooltips = TRUE)
+	if(!check_occupant_radial(user))
+		return
+	if(!choice)
+		return
+	switch(choice)
+		if("Eject")
+			go_out()
+			add_fingerprint(usr)
+		if("Toggle Airtank")
+			use_internal_tank = !use_internal_tank
+			occupant_message("Now taking air from [use_internal_tank?"internal airtank":"environment"].")
+			log_message("Now taking air from [use_internal_tank?"internal airtank":"environment"].")
+		if("Toggle Light")
+			lights = !lights
+			if(lights)
+				set_light(light_range + lights_power)
+			else
+				set_light(light_range - lights_power)
+			occupant_message("Toggled lights [lights?"on":"off"].")
+			log_message("Toggled lights [lights?"on":"off"].")
+			playsound(src, 'sound/mecha/heavylightswitch.ogg', 50, 1)
+		if("View Stats")
+			occupant << browse(src.get_stats_html(), "window=exosuit")
+
 
 ////////////////////////////
 ///// Action processing ////
@@ -324,6 +374,9 @@
 /obj/mecha/proc/click_action(atom/target,mob/user, params)
 	if(!src.occupant || src.occupant != user ) return
 	if(user.stat) return
+	if(target == src && user == occupant)
+		show_radial_occupant(user)
+		return
 	if(state)
 		occupant_message("<font color='red'>Maintenance protocols in effect</font>")
 		return
@@ -383,11 +436,9 @@
 ////////  Movement procs  ////////
 //////////////////////////////////
 
-/obj/mecha/Move()
+/obj/mecha/Moved(atom/old_loc, direction, forced = FALSE)
 	. = ..()
-	if(.)
-		MoveAction()
-	return
+	MoveAction()
 
 /obj/mecha/proc/MoveAction() //Allows mech equipment to do an action once the mech moves
 	if(!equipment.len)
@@ -581,6 +632,7 @@
 ////////////////////////////////////////
 
 /obj/mecha/take_damage(amount, type="brute")
+	update_damage_alerts()
 	if(amount)
 		var/damage = absorbDamage(amount,type)
 		health -= damage
@@ -608,6 +660,10 @@
 	return
 
 /obj/mecha/attack_hand(mob/user as mob)
+	if(user == occupant)
+		show_radial_occupant(user)
+		return
+	
 	user.setClickCooldown(user.get_attack_speed())
 	src.log_message("Attack by hand/paw. Attacker - [user].",1)
 
@@ -617,12 +673,12 @@
 			if(!prob(src.deflect_chance))
 				src.take_damage(15)
 				src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
-				playsound(src.loc, 'sound/weapons/slash.ogg', 50, 1, -1)
+				playsound(src, 'sound/weapons/slash.ogg', 50, 1, -1)
 				to_chat(user, "<span class='danger'>You slash at the armored suit!</span>")
 				visible_message("<span class='danger'>\The [user] slashes at [src.name]'s armor!</span>")
 			else
 				src.log_append_to_last("Armor saved.")
-				playsound(src.loc, 'sound/weapons/slash.ogg', 50, 1, -1)
+				playsound(src, 'sound/weapons/slash.ogg', 50, 1, -1)
 				to_chat(user, "<span class='danger'>Your claws had no effect!</span>")
 				src.occupant_message("<span class='notice'>\The [user]'s claws are stopped by the armor.</span>")
 				visible_message("<span class='warning'>\The [user] rebounds off [src.name]'s armor!</span>")
@@ -751,14 +807,14 @@
 	if(!prob(src.deflect_chance))
 		src.take_damage(6)
 		src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
-		playsound(src.loc, 'sound/effects/blobattack.ogg', 50, 1, -1)
+		playsound(src, 'sound/effects/blobattack.ogg', 50, 1, -1)
 		to_chat(user, "<span class='danger'>You smash at the armored suit!</span>")
 		for (var/mob/V in viewers(src))
 			if(V.client && !(V.blinded))
 				V.show_message("<span class='danger'>\The [user] smashes against [src.name]'s armor!</span>", 1)
 	else
 		src.log_append_to_last("Armor saved.")
-		playsound(src.loc, 'sound/effects/blobattack.ogg', 50, 1, -1)
+		playsound(src, 'sound/effects/blobattack.ogg', 50, 1, -1)
 		to_chat(user, "<span class='warning'>Your attack had no effect!</span>")
 		src.occupant_message("<span class='warning'>\The [user]'s attack is stopped by the armor.</span>")
 		for (var/mob/V in viewers(src))
@@ -799,7 +855,7 @@
 
 		var/pass_damage = W.force
 		for(var/obj/item/mecha_parts/mecha_equipment/ME in equipment)
-			pass_damage = ME.handle_projectile_contact(W, user, pass_damage)
+			pass_damage = ME.handle_projectile_contact(W, pass_damage)
 		src.take_damage(pass_damage,W.damtype)
 		src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
 	return
@@ -917,6 +973,7 @@
 		if(src.health<initial(src.health))
 			to_chat(user, "<span class='notice'>You repair some damage to [src.name].</span>")
 			src.health += min(10, initial(src.health)-src.health)
+			update_damage_alerts()
 		else
 			to_chat(user, "The [src.name] is at full integrity")
 		return
@@ -1075,7 +1132,7 @@
 		return 0
 
 	//Make sure are close enough for a valid connection
-	if(new_port.loc != src.loc)
+	if(!(new_port.loc in locs))
 		return 0
 
 	//Perform the connection
@@ -1116,21 +1173,26 @@
 	set category = "Exosuit Interface"
 	set src = usr.loc
 	set popup_menu = 0
-	if(!src.occupant) return
-	if(usr!=src.occupant)
+	
+	if(!occupant)
 		return
-	var/obj/machinery/atmospherics/portables_connector/possible_port = locate(/obj/machinery/atmospherics/portables_connector/) in loc
-	if(possible_port)
-		if(connect(possible_port))
-			src.occupant_message("<span class='notice'>\The [name] connects to the port.</span>")
-			src.verbs += /obj/mecha/verb/disconnect_from_port
-			src.verbs -= /obj/mecha/verb/connect_to_port
-			return
+	
+	if(usr != occupant)
+		return
+	
+	for(var/turf/T in locs)
+		var/obj/machinery/atmospherics/portables_connector/possible_port = locate(/obj/machinery/atmospherics/portables_connector) in T
+		if(possible_port)
+			if(connect(possible_port))
+				occupant_message("<span class='notice'>\The [name] connects to the port.</span>")
+				verbs += /obj/mecha/verb/disconnect_from_port
+				verbs -= /obj/mecha/verb/connect_to_port
+				return
+			else
+				occupant_message("<span class='danger'>\The [name] failed to connect to the port.</span>")
+				return
 		else
-			src.occupant_message("<span class='danger'>\The [name] failed to connect to the port.</span>")
-			return
-	else
-		src.occupant_message("Nothing happens")
+			occupant_message("Nothing happens")
 
 
 /obj/mecha/verb/disconnect_from_port()
@@ -1138,15 +1200,19 @@
 	set category = "Exosuit Interface"
 	set src = usr.loc
 	set popup_menu = 0
-	if(!src.occupant) return
-	if(usr!=src.occupant)
+	
+	if(!occupant)
 		return
+	
+	if(usr != occupant)
+		return
+	
 	if(disconnect())
-		src.occupant_message("<span class='notice'>[name] disconnects from the port.</span>")
-		src.verbs -= /obj/mecha/verb/disconnect_from_port
-		src.verbs += /obj/mecha/verb/connect_to_port
+		occupant_message("<span class='notice'>[name] disconnects from the port.</span>")
+		verbs -= /obj/mecha/verb/disconnect_from_port
+		verbs += /obj/mecha/verb/connect_to_port
 	else
-		src.occupant_message("<span class='danger'>[name] is not connected to the port at the moment.</span>")
+		occupant_message("<span class='danger'>[name] is not connected to the port at the moment.</span>")
 
 /obj/mecha/verb/toggle_lights()
 	set name = "Toggle Lights"
@@ -1258,6 +1324,10 @@
 		src.verbs += /obj/mecha/verb/eject
 		src.log_append_to_last("[H] moved in as pilot.")
 		src.icon_state = src.reset_icon()
+		if(occupant.hud_used)
+			minihud = new (occupant.hud_used, src)
+		update_cell_alerts()
+		update_damage_alerts()
 		set_dir(dir_in)
 		playsound(src, 'sound/machines/windowdoor.ogg', 50, 1)
 		if(occupant.client && cloaked_selfimage)
@@ -1321,6 +1391,7 @@
 /obj/mecha/proc/go_out()
 	if(!src.occupant) return
 	var/atom/movable/mob_container
+	QDEL_NULL(minihud)
 	if(ishuman(occupant))
 		mob_container = src.occupant
 	else if(istype(occupant, /mob/living/carbon/brain))
@@ -1340,6 +1411,8 @@
 				occupant.loc = mmi
 			mmi.mecha = null
 			occupant.canmove = 0
+		occupant.clear_alert("charge")
+		occupant.clear_alert("mech damage")
 		occupant = null
 		icon_state = src.reset_icon()+"-open"
 		set_dir(dir_in)
@@ -1914,12 +1987,14 @@
 	return call((proc_res["dynusepower"]||src), "dynusepower")(amount)
 
 /obj/mecha/proc/dynusepower(amount)
+	update_cell_alerts()
 	if(get_charge())
 		cell.use(amount)
 		return 1
 	return 0
 
 /obj/mecha/proc/give_power(amount)
+	update_cell_alerts()
 	if(!isnull(get_charge()))
 		cell.give(amount)
 		return 1
@@ -1948,7 +2023,7 @@
 		user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name]</font>")
 	else
 		src.log_append_to_last("Armor saved.")
-		playsound(src.loc, 'sound/weapons/slash.ogg', 50, 1, -1)
+		playsound(src, 'sound/weapons/slash.ogg', 50, 1, -1)
 		src.occupant_message("<span class='notice'>\The [user]'s attack is stopped by the armor.</span>")
 		visible_message("<span class='notice'>\The [user] rebounds off [src.name]'s armor!</span>")
 		user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name]</font>")
@@ -2097,3 +2172,31 @@
 	//src.check_for_internal_damage(list(MECHA_INT_FIRE,MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
 	return
 */
+
+/obj/mecha/proc/update_cell_alerts()
+	if(occupant && cell)
+		var/cellcharge = cell.charge/cell.maxcharge
+		switch(cellcharge)
+			if(0.75 to INFINITY)
+				occupant.clear_alert("charge")
+			if(0.5 to 0.75)
+				occupant.throw_alert("charge", /obj/screen/alert/lowcell, 1)
+			if(0.25 to 0.5)
+				occupant.throw_alert("charge", /obj/screen/alert/lowcell, 2)
+			if(0.01 to 0.25)
+				occupant.throw_alert("charge", /obj/screen/alert/lowcell, 3)
+			else
+				occupant.throw_alert("charge", /obj/screen/alert/emptycell)
+
+/obj/mecha/proc/update_damage_alerts()
+	if(occupant)
+		var/integrity = health/initial(health)*100
+		switch(integrity)
+			if(30 to 45)
+				occupant.throw_alert("mech damage", /obj/screen/alert/low_mech_integrity, 1)
+			if(15 to 35)
+				occupant.throw_alert("mech damage", /obj/screen/alert/low_mech_integrity, 2)
+			if(-INFINITY to 15)
+				occupant.throw_alert("mech damage", /obj/screen/alert/low_mech_integrity, 3)
+			else
+				occupant.clear_alert("mech damage")

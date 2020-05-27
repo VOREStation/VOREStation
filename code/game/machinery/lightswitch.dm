@@ -15,19 +15,24 @@
 	var/otherarea = null
 	var/image/overlay
 
-/obj/machinery/light_switch/New()
-	..()
-	spawn(5)
-		area = get_area(src)
+/obj/machinery/light_switch/Initialize()
+	. = ..()
 
-		if(otherarea)
-			area = locate(text2path("/area/[otherarea]"))
+	area = get_area(src)
 
-		if(!name)
-			name = "light switch ([area.name])"
+	if(otherarea)
+		area = locate(text2path("/area/[otherarea]"))
 
-		on = area.lightswitch
-		updateicon()
+	if(!name)
+		name = "light switch ([area.name])"
+
+	on = area.lightswitch
+	updateicon()
+
+/obj/machinery/light_switch/Destroy()
+	area = null
+	overlay = null
+	return ..()
 
 /obj/machinery/light_switch/proc/updateicon()
 	if(!overlay)
@@ -45,8 +50,9 @@
 		set_light(2, 0.1, on ? "#82FF4C" : "#F86060")
 
 /obj/machinery/light_switch/examine(mob/user)
-	if(..(user, 1))
-		to_chat(user, "A light switch. It is [on? "on" : "off"].")
+	. = ..()
+	if(Adjacent(user))
+		. += "A light switch. It is [on? "on" : "off"]."
 
 /obj/machinery/light_switch/attack_hand(mob/user)
 

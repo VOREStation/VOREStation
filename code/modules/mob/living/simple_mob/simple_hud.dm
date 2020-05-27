@@ -1,6 +1,5 @@
-/mob/living/simple_mob/instantiate_hud(var/datum/hud/hud)
-	if(!client)
-		return //Why bother.
+/mob/living/simple_mob/create_mob_hud(datum/hud/HUD)
+	..()
 
 	var/ui_style = 'icons/mob/screen1_animal.dmi'
 	if(ui_icons)
@@ -14,9 +13,9 @@
 	var/list/hotkeybuttons = list()
 	var/list/slot_info = list()
 
-	hud.adding = adding
-	hud.other = other
-	hud.hotkeybuttons = hotkeybuttons
+	HUD.adding = adding
+	HUD.other = other
+	HUD.hotkeybuttons = hotkeybuttons
 
 	var/list/hud_elements = list()
 	var/obj/screen/using
@@ -65,8 +64,8 @@
 	using.screen_loc = ui_acti
 	using.color = ui_color
 	using.alpha = ui_alpha
-	hud.adding += using
-	hud.action_intent = using
+	HUD.adding += using
+	HUD.action_intent = using
 
 	hud_elements |= using
 
@@ -82,8 +81,8 @@
 	using.screen_loc = ui_acti
 	using.alpha = ui_alpha
 	using.layer = LAYER_HUD_ITEM //These sit on the intent box
-	hud.adding += using
-	hud.help_intent = using
+	HUD.adding += using
+	HUD.help_intent = using
 
 	ico = new(ui_style, "black")
 	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
@@ -94,8 +93,8 @@
 	using.screen_loc = ui_acti
 	using.alpha = ui_alpha
 	using.layer = LAYER_HUD_ITEM
-	hud.adding += using
-	hud.disarm_intent = using
+	HUD.adding += using
+	HUD.disarm_intent = using
 
 	ico = new(ui_style, "black")
 	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
@@ -106,8 +105,8 @@
 	using.screen_loc = ui_acti
 	using.alpha = ui_alpha
 	using.layer = LAYER_HUD_ITEM
-	hud.adding += using
-	hud.grab_intent = using
+	HUD.adding += using
+	HUD.grab_intent = using
 
 	ico = new(ui_style, "black")
 	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
@@ -118,8 +117,8 @@
 	using.screen_loc = ui_acti
 	using.alpha = ui_alpha
 	using.layer = LAYER_HUD_ITEM
-	hud.adding += using
-	hud.hurt_intent = using
+	HUD.adding += using
+	HUD.hurt_intent = using
 
 	//Move intent (walk/run)
 	using = new /obj/screen()
@@ -129,8 +128,8 @@
 	using.screen_loc = ui_movi
 	using.color = ui_color
 	using.alpha = ui_alpha
-	hud.adding += using
-	hud.move_intent = using
+	HUD.adding += using
+	HUD.move_intent = using
 
 	//Resist button
 	using = new /obj/screen()
@@ -140,7 +139,7 @@
 	using.screen_loc = ui_pull_resist
 	using.color = ui_color
 	using.alpha = ui_alpha
-	hud.hotkeybuttons += using
+	HUD.hotkeybuttons += using
 
 	//Pull button
 	pullin = new /obj/screen()
@@ -148,7 +147,7 @@
 	pullin.icon_state = "pull0"
 	pullin.name = "pull"
 	pullin.screen_loc = ui_pull_resist
-	hud.hotkeybuttons += pullin
+	HUD.hotkeybuttons += pullin
 	hud_elements |= pullin
 
 	//Health status
@@ -158,54 +157,6 @@
 	healths.name = "health"
 	healths.screen_loc = ui_health
 	hud_elements |= healths
-
-	//Oxygen dep icon
-	oxygen = new /obj/screen()
-	oxygen.icon = ui_style
-	oxygen.icon_state = "oxy0"
-	oxygen.name = "oxygen"
-	oxygen.screen_loc = ui_oxygen
-	hud_elements |= oxygen
-
-	//Toxins present icon
-	toxin = new /obj/screen()
-	toxin.icon = ui_style
-	toxin.icon_state = "tox0"
-	toxin.name = "toxin"
-	toxin.screen_loc = ui_toxin
-	hud_elements |= toxin
-
-	//Fire warning
-	fire = new /obj/screen()
-	fire.icon = ui_style
-	fire.icon_state = "fire0"
-	fire.name = "fire"
-	fire.screen_loc = ui_fire
-	hud_elements |= fire
-
-	//Pressure warning
-	pressure = new /obj/screen()
-	pressure.icon = ui_style
-	pressure.icon_state = "pressure0"
-	pressure.name = "pressure"
-	pressure.screen_loc = ui_pressure
-	hud_elements |= pressure
-
-	//Body temp warning
-	bodytemp = new /obj/screen()
-	bodytemp.icon = ui_style
-	bodytemp.icon_state = "temp0"
-	bodytemp.name = "body temperature"
-	bodytemp.screen_loc = ui_temp
-	hud_elements |= bodytemp
-
-	//Nutrition status
-	nutrition_icon = new /obj/screen()
-	nutrition_icon.icon = ui_style
-	nutrition_icon.icon_state = "nutrition0"
-	nutrition_icon.name = "nutrition"
-	nutrition_icon.screen_loc = ui_nutrition
-	hud_elements |= nutrition_icon
 
 	pain = new /obj/screen( null )
 
@@ -227,7 +178,7 @@
 		using.screen_loc = ui_drop_throw
 		using.color = ui_color
 		using.alpha = ui_alpha
-		hud.hotkeybuttons += using
+		HUD.hotkeybuttons += using
 
 		//Equip detail
 		using = new /obj/screen()
@@ -237,7 +188,7 @@
 		using.screen_loc = ui_equip
 		using.color = ui_color
 		using.alpha = ui_alpha
-		hud.adding += using
+		HUD.adding += using
 
 		//Hand slots themselves
 		inv_box = new /obj/screen/inventory/hand()
@@ -251,8 +202,8 @@
 		inv_box.slot_id = slot_r_hand
 		inv_box.color = ui_color
 		inv_box.alpha = ui_alpha
-		hud.r_hand_hud_object = inv_box
-		hud.adding += inv_box
+		HUD.r_hand_hud_object = inv_box
+		HUD.adding += inv_box
 		slot_info["[slot_r_hand]"] = inv_box.screen_loc
 
 		inv_box = new /obj/screen/inventory/hand()
@@ -266,8 +217,8 @@
 		inv_box.slot_id = slot_l_hand
 		inv_box.color = ui_color
 		inv_box.alpha = ui_alpha
-		hud.l_hand_hud_object = inv_box
-		hud.adding += inv_box
+		HUD.l_hand_hud_object = inv_box
+		HUD.adding += inv_box
 		slot_info["[slot_l_hand]"] = inv_box.screen_loc
 
 		//Swaphand titlebar
@@ -278,7 +229,7 @@
 		using.screen_loc = ui_swaphand1
 		using.color = ui_color
 		using.alpha = ui_alpha
-		hud.adding += using
+		HUD.adding += using
 
 		using = new /obj/screen/inventory()
 		using.name = "hand"
@@ -287,7 +238,7 @@
 		using.screen_loc = ui_swaphand2
 		using.color = ui_color
 		using.alpha = ui_alpha
-		hud.adding += using
+		HUD.adding += using
 
 		//Throw button
 		throw_icon = new /obj/screen()
@@ -297,15 +248,13 @@
 		throw_icon.screen_loc = ui_drop_throw
 		throw_icon.color = ui_color
 		throw_icon.alpha = ui_alpha
-		hud.hotkeybuttons += throw_icon
+		HUD.hotkeybuttons += throw_icon
 		hud_elements |= throw_icon
 
-	extra_huds(hud,ui_style,hud_elements)
+	extra_huds(HUD, HUD.ui_style, hud_elements)
 
-	client.screen = list()
-
-	client.screen += hud_elements
-	client.screen += adding + hotkeybuttons
-	client.screen += client.void
-
-	return
+	if(client)
+		client.screen = list()
+		client.screen += hud_elements
+		client.screen += adding + hotkeybuttons
+		client.screen += client.void

@@ -142,6 +142,7 @@
 	return
 
 /mob/proc/unset_machine()
+	machine?.remove_visual(src)
 	src.machine = null
 
 /mob/proc/set_machine(var/obj/O)
@@ -162,9 +163,9 @@
 /obj/proc/hides_under_flooring()
 	return 0
 
-/obj/proc/hear_talk(mob/M as mob, text, verb, datum/language/speaking)
+/obj/proc/hear_talk(mob/M, list/message_pieces, verb)
 	if(talking_atom)
-		talking_atom.catchMessage(text, M)
+		talking_atom.catchMessage(multilingual_to_message(message_pieces), M)
 /*
 	var/mob/mo = locate(/mob) in src
 	if(mo)
@@ -199,3 +200,17 @@
 // Test for if stepping on a tile containing this obj is safe to do, used for things like landmines and cliffs.
 /obj/proc/is_safe_to_step(mob/living/L)
 	return TRUE
+
+/obj/proc/container_resist(var/mob/living)
+	return
+
+//To be called from things that spill objects on the floor.
+//Makes an object move around randomly for a couple of tiles
+/obj/proc/tumble(var/dist = 2)
+	set waitfor = FALSE
+	if (dist >= 1)
+		dist += rand(0,1)
+		for(var/i = 1, i <= dist, i++)
+			if(src)
+				step(src, pick(NORTH,SOUTH,EAST,WEST))
+				sleep(rand(2,4))

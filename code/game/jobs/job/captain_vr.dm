@@ -1,10 +1,14 @@
 /datum/job/captain
 	disallow_jobhop = TRUE
 	pto_type = PTO_CIVILIAN
+	dept_time_required = 80 //Pending something more complicated
 
 /datum/job/hop
 	disallow_jobhop = TRUE
 	pto_type = PTO_CIVILIAN
+	departments = list(DEPARTMENT_COMMAND, DEPARTMENT_CIVILIAN)
+	departments_managed = list(DEPARTMENT_CIVILIAN, DEPARTMENT_CARGO, DEPARTMENT_PLANET)
+	dept_time_required = 60
 
 	alt_titles = list("Crew Resources Officer" = /datum/alt_title/cro,
 					  "Deputy Director" = /datum/alt_title/deputy_director)

@@ -42,15 +42,15 @@
 	..()
 
 // Whenever we move, if enabled try and lay pipe
-/obj/machinery/pipelayer/Move(new_turf,M_Dir)
-	..()
+/obj/machinery/pipelayer/Moved(atom/old_loc, direction, forced = FALSE)
+	. = ..()
 
 	if(on && a_dis)
 		dismantleFloor(old_turf)
-	layPipe(old_turf, M_Dir, old_dir)
+	layPipe(old_turf, direction, old_dir)
 
-	old_turf = new_turf
-	old_dir = turn(M_Dir, 180)
+	old_turf = loc
+	old_dir = turn(direction, 180)
 
 /obj/machinery/pipelayer/attack_hand(mob/user as mob)
 	if(..())
@@ -115,8 +115,8 @@
 	..()
 
 /obj/machinery/pipelayer/examine(mob/user)
-	..()
-	to_chat(user, "\The [src] has [metal] sheet\s, is set to produce [P_type_t], and auto-dismantling is [!a_dis?"de":""]activated.")
+	. = ..()
+	. += "[src] has [metal] sheet\s, is set to produce [P_type_t], and auto-dismantling is [!a_dis?"de":""]activated."
 
 /obj/machinery/pipelayer/proc/reset()
 	on = 0

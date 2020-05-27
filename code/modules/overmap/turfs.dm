@@ -1,7 +1,7 @@
 //Dimension of overmap (squares 4 lyfe)
 var/global/list/map_sectors = list()
 
-/area/overmap/
+/area/overmap
 	name = "System Map"
 	icon_state = "start"
 	requires_power = 0
@@ -19,7 +19,10 @@ var/global/list/map_sectors = list()
 	var/turf/unsimulated/map/edge/wrap_buddy
 
 /turf/unsimulated/map/edge/Initialize()
-	. = ..()
+	..()
+	return INITIALIZE_HINT_LATELOAD
+
+/turf/unsimulated/map/edge/LateInitialize()
 	//This could be done by using the using_map.overmap_size much faster, HOWEVER, doing it programatically to 'find'
 	//  the edges this way allows for 'sub overmaps' elsewhere and whatnot.
 	for(var/side in alldirs) //The order of this list is relevant: It should definitely break on finding a cardinal FIRST.

@@ -33,6 +33,6 @@ fi
 if [ $RUN -eq 1 ];
 then
   DreamDaemon $BASENAME.dmb -invisible -trusted -core 2>&1 | tee log.txt;
-  grep "All Unit Tests Passed" log.txt
-  grep "Caught 0 Runtimes" log.txt
+  grep "All Unit Tests Passed" log.txt || exit 1
+  grep "Caught 0 Runtimes" log.txt || exit 1
 fi

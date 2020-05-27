@@ -1,5 +1,3 @@
-var/list/admins = list()							//list of all clients whom are admins
-
 //Since it didn't really belong in any other category, I'm putting this here
 //This is for procs to replace all the goddamn 'in world's that are chilling around the code
 
@@ -24,12 +22,12 @@ var/global/list/joblist = list()					//list of all jobstypes, minus borg and AI
 
 var/list/mannequins_
 
+// Times that players are allowed to respawn ("ckey" = world.time)
+GLOBAL_LIST_EMPTY(respawn_timers)
+
 // Posters
 var/global/list/poster_designs = list()
 var/global/list/NT_poster_designs = list()
-
-// Uplinks
-var/list/obj/item/device/uplink/world_uplinks = list()
 
 //Preferences stuff
 	//Hairstyles
@@ -205,6 +203,13 @@ var/global/list/string_slot_flags = list(
 	for(var/T in paths)
 		var/datum/poster/P = new T
 		NT_poster_designs += P
+
+	// VOREStation Add - Vore Modes!
+	paths = typesof(/datum/digest_mode) - /datum/digest_mode/transform
+	for(var/T in paths)
+		var/datum/digest_mode/DM = new T
+		GLOB.digest_modes[DM.id] = DM
+	// VOREStation Add End
 
 	return 1
 

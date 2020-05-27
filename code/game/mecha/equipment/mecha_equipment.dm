@@ -32,14 +32,14 @@
 	sleep(equip_cooldown)
 	set_ready_state(1)
 	if(ready_sound) //Kind of like the kinetic accelerator.
-		playsound(loc, ready_sound, 50, 1, -1)
+		playsound(src, ready_sound, 50, 1, -1)
 	if(target && chassis)
 		return 1
 	return 0
 
 /obj/item/mecha_parts/mecha_equipment/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>\The [src] will fill [equip_type?"a [equip_type]":"any"] slot.</span>")
+	. = ..()
+	. += "<span class='notice'>[src] will fill [equip_type?"a [equip_type]":"any"] slot.</span>"
 
 /obj/item/mecha_parts/mecha_equipment/New()
 	..()

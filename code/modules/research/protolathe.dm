@@ -15,20 +15,32 @@
 	var/mat_efficiency = 1
 	var/speed = 1
 
-	materials = list(DEFAULT_WALL_MATERIAL = 0, "glass" = 0, MAT_PLASTEEL = 0, "plastic" = 0, MAT_GRAPHITE = 0, "gold" = 0, "silver" = 0, "osmium" = 0, MAT_LEAD = 0, "phoron" = 0, "uranium" = 0, "diamond" = 0, MAT_DURASTEEL = 0, MAT_VERDANTIUM = 0, MAT_MORPHIUM = 0, MAT_METALHYDROGEN = 0, MAT_SUPERMATTER = 0)
+	//VOREStation Edit - Broke this into lines
+	materials = list(
+		DEFAULT_WALL_MATERIAL = 0,
+		"glass" = 0,
+		MAT_PLASTEEL = 0,
+		"plastic" = 0,
+		MAT_GRAPHITE = 0,
+		"gold" = 0,
+		"silver" = 0,
+		"osmium" = 0,
+		MAT_LEAD = 0,
+		"phoron" = 0,
+		"uranium" = 0,
+		"diamond" = 0,
+		MAT_DURASTEEL = 0,
+		MAT_VERDANTIUM = 0,
+		MAT_MORPHIUM = 0,
+		MAT_METALHYDROGEN = 0,
+		MAT_SUPERMATTER = 0,
+		MAT_TITANIUM = 0)
 
 	hidden_materials = list(MAT_PLASTEEL, MAT_DURASTEEL, MAT_GRAPHITE, MAT_VERDANTIUM, MAT_MORPHIUM, MAT_METALHYDROGEN, MAT_SUPERMATTER)
 
 /obj/machinery/r_n_d/protolathe/Initialize()
 	. = ..()
-	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/reagent_containers/glass/beaker(src)
-	component_parts += new /obj/item/weapon/reagent_containers/glass/beaker(src)
-	RefreshParts()
+	default_apply_parts()
 
 /obj/machinery/r_n_d/protolathe/process()
 	..()
@@ -49,6 +61,7 @@
 			removeFromQueue(1)
 			if(linked_console)
 				linked_console.updateUsrDialog()
+			flick("[initial(icon_state)]_finish", src)
 		update_icon()
 	else
 		if(busy)
@@ -81,15 +94,20 @@
 		eject_materials(f, -1)
 	..()
 
+
 /obj/machinery/r_n_d/protolathe/update_icon()
+	overlays.Cut()
+
+	icon_state = initial(icon_state)
+
 	if(panel_open)
-		icon_state = "protolathe_t"
-	else if(busy)
-		icon_state = "protolathe_n"
-	else
-		if(icon_state == "protolathe_n")
-			flick("protolathe_u", src) // If lid WAS closed, show opening animation
-		icon_state = "protolathe"
+		overlays.Add(image(icon, "[icon_state]_panel"))
+
+	if(stat & NOPOWER)
+		return
+
+	if(busy)
+		icon_state = "[icon_state]_work"
 
 /obj/machinery/r_n_d/protolathe/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(busy)
@@ -135,9 +153,7 @@
 	if(materials[S.material.name] + amnt <= max_res_amount)
 		if(S && S.get_amount() >= 1)
 			var/count = 0
-			overlays += "fab-load-metal"
-			spawn(10)
-				overlays -= "fab-load-metal"
+			flick("[initial(icon_state)]_loading", src)
 			while(materials[S.material.name] + amnt <= max_res_amount && S.get_amount() >= 1)
 				materials[S.material.name] += amnt
 				S.use(1)

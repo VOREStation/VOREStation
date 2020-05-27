@@ -43,11 +43,14 @@
 	data["current_camera"] = current_camera ? current_camera.nano_structure() : null
 	data["current_network"] = current_network
 	data["networks"] = network ? network : list()
+	
+	var/map_levels = using_map.get_map_levels(src.z, TRUE)
+	data["map_levels"] = map_levels
+	
 	if(current_network)
-		data["cameras"] = camera_repository.cameras_in_network(current_network)
+		data["cameras"] = camera_repository.cameras_in_network(current_network, map_levels)
 	if(current_camera)
 		switch_to_camera(user, current_camera)
-	data["map_levels"] = using_map.get_map_levels(src.z)
 
 	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
@@ -91,9 +94,6 @@
 		. = ..()
 
 /obj/machinery/computer/security/attack_hand(var/mob/user as mob)
-	if (using_map && !(src.z in using_map.contact_levels))
-		to_chat(user, "<span class='danger'>Unable to establish a connection:</span> You're too far away from the station!")
-		return
 	if(stat & (NOPOWER|BROKEN))	return
 
 	if(!isAI(user))
@@ -118,6 +118,12 @@
 	user.reset_view(current_camera)
 	check_eye(user)
 	return 1
+
+/obj/machinery/computer/security/relaymove(mob/user,direct)
+	var/turf/T = get_turf(current_camera)
+	for(var/i; i < 10; i++)
+		T = get_step(T, direct)
+	jump_on_click(user, T)
 
 //Camera control: moving.
 /obj/machinery/computer/security/proc/jump_on_click(var/mob/user,var/A)
@@ -182,25 +188,18 @@
 		if(istype(L))
 			L.tracking_cancelled()
 	current_camera = null
-	use_power = USE_POWER_IDLE
+	update_use_power(USE_POWER_IDLE)
 
 //Camera control: mouse.
+/* Oh my god
 /atom/DblClick()
 	..()
 	if(istype(usr.machine,/obj/machinery/computer/security))
 		var/obj/machinery/computer/security/console = usr.machine
 		console.jump_on_click(usr,src)
-//Camera control: arrow keys.
-/mob/Move(n,direct)
-	if(istype(machine,/obj/machinery/computer/security))
-		var/obj/machinery/computer/security/console = machine
-		var/turf/T = get_turf(console.current_camera)
-		for(var/i;i<10;i++)
-			T = get_step(T,direct)
-		console.jump_on_click(src,T)
-		return
-	return ..(n,direct)
+*/
 
+//Camera control: arrow keys.
 /obj/machinery/computer/security/telescreen
 	name = "Telescreen"
 	desc = "Used for watching an empty arena."

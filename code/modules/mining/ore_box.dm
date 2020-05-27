@@ -39,26 +39,24 @@
 			stored_ore[O.name] = 1
 
 /obj/structure/ore_box/examine(mob/user)
-	to_chat(user, "That's an [src].")
-	to_chat(user, desc)
+	. = ..()
 
 	if(!Adjacent(user)) //Can only check the contents of ore boxes if you can physically reach them.
-		return
+		return .
 
 	add_fingerprint(user)
 
 	if(!contents.len)
-		to_chat(user, "It is empty.")
-		return
+		. += "It is empty."
+		return .
 
 	if(world.time > last_update + 10)
 		update_ore_count()
 		last_update = world.time
 
-	to_chat(user, "It holds:")
+	. += "It holds:"
 	for(var/ore in stored_ore)
-		to_chat(user, "- [stored_ore[ore]] [ore]")
-	return
+		. += "- [stored_ore[ore]] [ore]"
 
 /obj/structure/ore_box/verb/empty_box()
 	set name = "Empty Ore Box"

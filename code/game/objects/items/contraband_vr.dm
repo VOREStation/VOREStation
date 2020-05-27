@@ -101,11 +101,11 @@
 	icon_type = "cigar"
 
 /obj/item/weapon/miscdisc
-	name = "wah thing"
-	desc = "wahwahwah wahwahwa"
+	name = "strange artefact"
+	desc = "A large disc-shaped item, with a red, opaque crystal embedded in the center. It is some what heavy. There are indentations along the ring of the disc. Alien scripture lines the disc."
 	icon_state = "wahdisc"
 	icon = 'icons/obj/contraband_vr.dmi'
 	w_class = ITEMSIZE_NORMAL
 
 /obj/item/weapon/miscdisc/attack_self(mob/living/user as mob)
-	to_chat(user, "LORE.")
+	to_chat(user, "As you hold the large disc in your open palm, fingers cusped around the edge, the crystal embedded in the item begins to vibrate. It lifts itself from the disc a few cenimetres, before beginning to glow with a bright red light. The glow lasts for a few seconds, before the crystal embeds itself back into the disc with a quick snap.")

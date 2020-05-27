@@ -98,3 +98,35 @@
 
 /obj/effect/floor_decal/corner/yellow/border/shifted
 	icon_state = "bordercolor_shifted"
+
+/obj/effect/floor_decal/emblem/blu
+	icon_state = "blu"
+/obj/effect/floor_decal/emblem/blu_big
+	icon_state = "blu_big"
+
+/obj/effect/floor_decal/emblem/red
+	icon_state = "red"
+/obj/effect/floor_decal/emblem/red_big
+	icon_state = "red_big"
+
+/obj/effect/floor_decal/emblem/black
+	icon_state = "black"
+/obj/effect/floor_decal/emblem/black_big
+	icon_state = "black_big"
+
+/obj/effect/floor_decal/emblem/sword
+	icon_state = "sword"
+/obj/effect/floor_decal/emblem/sword_big
+	icon_state = "sword_big"
+
+/obj/effect/floor_decal/emblem/ark
+	icon_state = "ark"
+/obj/effect/floor_decal/emblem/ark_big
+	icon_state = "ark_big"
+
+/obj/effect/floor_decal/emblem/talon
+	icon_state = "talon"
+/obj/effect/floor_decal/emblem/talon_big
+	icon_state = "talon_big"
+/obj/effect/floor_decal/emblem/talon_big/center
+	icon_state = "talon_center"

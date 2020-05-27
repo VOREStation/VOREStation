@@ -5,7 +5,7 @@
 	use_power = USE_POWER_ACTIVE
 	active_power_usage = 20000 //20kW, apropriate for machine that keeps massive cross-Zlevel wireless network operational.
 	idle_power_usage = 100
-	icon_state = "bus"
+	icon_state = "ntnet"
 	anchored = 1
 	density = 1
 	circuit = /obj/item/weapon/circuitboard/ntnet_relay
@@ -32,9 +32,9 @@
 
 /obj/machinery/ntnet_relay/update_icon()
 	if(operable())
-		icon_state = "bus"
+		icon_state = initial(icon_state)
 	else
-		icon_state = "bus_off"
+		icon_state = "[initial(icon_state)]_off"
 
 /obj/machinery/ntnet_relay/process()
 	if(operable())

@@ -66,6 +66,7 @@
 		var/obj/belly/B = belly
 		for(var/mob/living/M in B)
 			new_fullness += M.size_multiplier
+	new_fullness = new_fullness / size_multiplier //Divided by pred's size so a macro mob won't get macro belly from a regular prey.
 	new_fullness = round(new_fullness, 1) // Because intervals of 0.25 are going to make sprite artists cry.
 	vore_fullness = min(vore_capacity, new_fullness)
 
@@ -153,7 +154,7 @@
 		M.visible_message("<span class='danger'>\the [src] pounces on \the [M]!</span>!")
 	else // pounce misses!
 		M.visible_message("<span class='danger'>\the [src] attempts to pounce \the [M] but misses!</span>!")
-		playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+		playsound(src, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 
 	if(will_eat(M) && (!M.canmove || vore_standing_too)) //if they're edible then eat them too
 		return EatTarget(M)
@@ -410,7 +411,7 @@
 
 	src.visible_message("<span class='danger'>\The [src] leaps at [T]!</span>")
 	src.throw_at(get_step(get_turf(T),get_turf(src)), 4, 1, src)
-	playsound(src.loc, 'sound/effects/bodyfall1.ogg', 50, 1)
+	playsound(src, 'sound/effects/bodyfall1.ogg', 50, 1)
 	pixel_y = default_pixel_y
 
 	sleep(5)

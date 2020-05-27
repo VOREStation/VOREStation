@@ -34,7 +34,7 @@
 	return ..()
 
 /obj/machinery/light_switch/dismantle()
-	playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
+	playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 	var/obj/structure/construction/lightswitch/A = new(src.loc, src.dir)
 	A.stage = FRAME_WIRED
 	A.pixel_x = pixel_x
@@ -68,15 +68,15 @@
 		pixel_y = (dir & 3) ? (dir == NORTH ? -y_offset : y_offset) : 0
 
 /obj/structure/construction/examine(mob/user)
-	if(!..(user, 2))
-		return
-	switch(stage)
-		if(FRAME_UNFASTENED)
-			to_chat(user, "It's an empty frame.")
-		if(FRAME_FASTENED)
-			to_chat(user, "It's fixed to the wall.")
-		if(FRAME_WIRED)
-			to_chat(user, "It's wired.")
+	. = ..()
+	if(get_dist(user, src) <= 2)
+		switch(stage)
+			if(FRAME_UNFASTENED)
+				. += "It's an empty frame."
+			if(FRAME_FASTENED)
+				. += "It's fixed to the wall."
+			if(FRAME_WIRED)
+				. += "It's wired."
 
 /obj/structure/construction/update_icon()
 	icon_state = "[base_icon][stage]"
@@ -89,7 +89,7 @@
 			if(!WT.remove_fuel(0, user))
 				to_chat(user, "<span class='warning'>\The [src] must be on to complete this task.</span>")
 				return
-			playsound(src.loc, WT.usesound, 50, 1)
+			playsound(src, WT.usesound, 50, 1)
 			user.visible_message( \
 				"<span class='warning'>\The [user] begins deconstructing \the [src].</span>", \
 				"<span class='notice'>You start deconstructing \the [src].</span>")
@@ -98,7 +98,7 @@
 				user.visible_message( \
 					"<span class='warning'>\The [user] has deconstructed \the [src].</span>", \
 					"<span class='notice'>You deconstruct \the [src].</span>")
-				playsound(src.loc, 'sound/items/Deconstruct.ogg', 75, 1)
+				playsound(src, 'sound/items/Deconstruct.ogg', 75, 1)
 				qdel(src)
 		else if (stage == FRAME_FASTENED)
 			to_chat(user, "You have to unscrew the case first.")
@@ -113,7 +113,7 @@
 			new /obj/item/stack/cable_coil(get_turf(src), 1, "red")
 			user.visible_message("\The [user] removes the wiring from \the [src].", \
 				"You remove the wiring from \the [src].", "You hear a snip.")
-			playsound(src.loc, W.usesound, 50, 1)
+			playsound(src, W.usesound, 50, 1)
 			update_icon()
 		return
 
@@ -125,7 +125,7 @@
 				user.update_examine_panel(src)
 				user.visible_message("\The [user] adds wires to \the [src].", \
 					"You add wires to \the [src].", "You hear a noise.")
-				playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+				playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 				update_icon()
 		return
 

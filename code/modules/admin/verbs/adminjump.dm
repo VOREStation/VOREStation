@@ -13,7 +13,7 @@
 
 	if(config.allow_admin_jump)
 		usr.on_mob_jump()
-		usr.loc = pick(get_area_turfs(A))
+		usr.forceMove(pick(get_area_turfs(A)))
 
 		log_admin("[key_name(usr)] jumped to [A]")
 		message_admins("[key_name_admin(usr)] jumped to [A]", 1)
@@ -30,7 +30,7 @@
 		log_admin("[key_name(usr)] jumped to [T.x],[T.y],[T.z] in [T.loc]")
 		message_admins("[key_name_admin(usr)] jumped to [T.x],[T.y],[T.z] in [T.loc]", 1)
 		usr.on_mob_jump()
-		usr.loc = T
+		usr.forceMove(T)
 		feedback_add_details("admin_verb","JT") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	else
 		alert("Admin jumping disabled")
@@ -53,9 +53,9 @@
 			if(T && isturf(T))
 				feedback_add_details("admin_verb","JM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 				A.on_mob_jump()
-				A.loc = T
+				A.forceMove(T)
 			else
-				to_chat(A, "This mob is not located in the game world.")
+				to_chat(A, "<span class='filter_adminlog'>This mob is not located in the game world.</span>")
 	else
 		alert("Admin jumping disabled")
 
@@ -70,9 +70,11 @@
 		if(src.mob)
 			var/mob/A = src.mob
 			A.on_mob_jump()
-			A.x = tx
-			A.y = ty
-			A.z = tz
+			var/turf/T = locate(tx, ty, tz)
+			if(!T)
+				to_chat(usr, "<span class='warning'>Those coordinates are outside the boundaries of the map.</span>")
+				return
+			A.forceMove(T)			
 			feedback_add_details("admin_verb","JC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 		message_admins("[key_name_admin(usr)] jumped to coordinates [tx], [ty], [tz]")
 
@@ -92,13 +94,13 @@
 			keys += M.client
 		var/selection = input("Please, select a player!", "Admin Jumping", null, null) as null|anything in sortKey(keys)
 		if(!selection)
-			to_chat(src, "No keys found.")
+			to_chat(src, "<span class='filter_adminlog'>No keys found.</span>")
 			return
 		var/mob/M = selection:mob
 		log_admin("[key_name(usr)] jumped to [key_name(M)]")
 		message_admins("[key_name_admin(usr)] jumped to [key_name_admin(M)]", 1)
 		usr.on_mob_jump()
-		usr.loc = M.loc
+		usr.forceMove(get_turf(M))
 		feedback_add_details("admin_verb","JK") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	else
 		alert("Admin jumping disabled")
@@ -115,7 +117,7 @@
 		message_admins(msg)
 		admin_ticket_log(M, msg)
 		M.on_mob_jump()
-		M.loc = get_turf(usr)
+		M.forceMove(get_turf(usr))
 		feedback_add_details("admin_verb","GM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	else
 		alert("Admin jumping disabled")
@@ -145,7 +147,7 @@
 		admin_ticket_log(M, msg)
 		if(M)
 			M.on_mob_jump()
-			M.loc = get_turf(usr)
+			M.forceMove(get_turf(usr))
 			feedback_add_details("admin_verb","GK") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	else
 		alert("Admin jumping disabled")
@@ -159,7 +161,7 @@
 	if(A)
 		if(config.allow_admin_jump)
 			M.on_mob_jump()
-			M.loc = pick(get_area_turfs(A))
+			M.forceMove(pick(get_area_turfs(A)))
 			feedback_add_details("admin_verb","SMOB") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 			log_admin("[key_name(usr)] teleported [key_name(M)]")
@@ -168,3 +170,33 @@
 			admin_ticket_log(M, msg)
 		else
 			alert("Admin jumping disabled")
+
+/client/proc/cmd_admin_move_atom(var/atom/movable/AM, tx as num, ty as num, tz as num)
+	set category = "Admin"
+	set name = "Move Atom to Coordinate"
+
+	if(!check_rights(R_ADMIN|R_DEBUG|R_EVENT))
+		return
+
+	if(config.allow_admin_jump)
+		if(isnull(tx))
+			tx = input("Select X coordinate", "Move Atom", null, null) as null|num
+			if(!tx) return
+		if(isnull(ty))
+			ty = input("Select Y coordinate", "Move Atom", null, null) as null|num
+			if(!ty) return
+		if(isnull(tz))
+			tz = input("Select Z coordinate", "Move Atom", null, null) as null|num
+			if(!tz) return
+		var/turf/T = locate(tx, ty, tz)
+		if(!T)
+			to_chat(usr, "<span class='warning'>Those coordinates are outside the boundaries of the map.</span>")
+			return
+		if(ismob(AM))
+			var/mob/M = AM
+			M.on_mob_jump()
+		AM.forceMove(T)
+		feedback_add_details("admin_verb", "MA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+		message_admins("[key_name_admin(usr)] jumped [AM] to coordinates [tx], [ty], [tz]")
+	else
+		alert("Admin jumping disabled")

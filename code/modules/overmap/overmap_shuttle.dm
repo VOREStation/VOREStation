@@ -1,4 +1,4 @@
-#define waypoint_sector(waypoint) map_sectors["[waypoint.z]"]
+#define waypoint_sector(waypoint) get_overmap_sector(get_z(waypoint))
 
 /datum/shuttle/autodock/overmap
 	warmup_time = 10
@@ -42,7 +42,7 @@
 	if(moving_status == SHUTTLE_INTRANSIT)
 		return FALSE //already going somewhere, current_location may be an intransit location instead of in a sector
 	var/our_sector = waypoint_sector(current_location)
-	if(!our_sector && myship?.landmark && next_location == myship.landmark)
+	if(myship?.landmark && next_location == myship.landmark)
 		return TRUE //We're not on the overmap yet (admin spawned probably), and we're trying to hook up with our openspace sector
 	return get_dist(our_sector, waypoint_sector(next_location)) <= range
 
@@ -160,11 +160,11 @@
 	if(W.is_crowbar())
 		if(opened)
 			to_chat(user, "<spawn class='notice'>You tightly shut \the [src] door.")
-			playsound(src.loc, 'sound/effects/locker_close.ogg', 25, 0, -3)
+			playsound(src, 'sound/effects/locker_close.ogg', 25, 0, -3)
 			opened = 0
 		else
 			to_chat(user, "<spawn class='notice'>You open up \the [src] door.")
-			playsound(src.loc, 'sound/effects/locker_open.ogg', 15, 1, -3)
+			playsound(src, 'sound/effects/locker_open.ogg', 15, 1, -3)
 			opened = 1
 	else if(istype(W,/obj/item/weapon/tank))
 		if(!opened)
