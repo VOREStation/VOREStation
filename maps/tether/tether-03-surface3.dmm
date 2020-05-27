@@ -24194,24 +24194,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/chemistry)
-"aTc" = (
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 1
-	},
-/obj/structure/closet/secure_closet/medical1,
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/chemistry)
 "aTd" = (
 /obj/structure/table/reinforced,
 /obj/effect/floor_decal/borderfloorwhite{
@@ -30675,6 +30657,25 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
+"mHO" = (
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 1
+	},
+/obj/structure/closet/secure_closet/medical1,
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/item/weapon/reagent_containers/glass/beaker/vial/imidazoline,
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/chemistry)
 "mIX" = (
 /obj/structure/bed/chair/bay/chair{
 	dir = 4;
@@ -46224,7 +46225,7 @@ aed
 afD
 aDp
 aSP
-aTc
+mHO
 aTp
 aUE
 aUL
