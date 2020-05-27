@@ -889,17 +889,16 @@
 	movable_atom_whitelist = list(list(/obj/machinery/door/airlock, list(), 2))
 	*/
 
-/obj/item/stack/tile/floor/rplating
-	name = "reinforced plating"
-	singular_name = "dark floor tile"
-	icon_state = "tile_dark"
-	matter = list(MAT_STEEL = 1)
-
 /turf/simulated/floor/plating/eris
 	name = "reinforced plating"
 	icon = 'icons/turf/flooring/eris/plating.dmi'
 	icon_state = "plating"
 	initial_flooring = /decl/flooring/reinforced/plating
+
+/turf/simulated/floor/plating/eris/airless
+	oxygen = 0
+	nitrogen = 0
+	temperature = TCMB
 
 //==========UNDERPLATING==============\\
 /decl/flooring/reinforced/plating/under
@@ -908,7 +907,6 @@
 	descriptor = "support beams"
 	icon_base = "under"
 	flags = TURF_HAS_CORNERS | TURF_HAS_EDGES | TURF_CAN_BURN | TURF_CAN_BREAK
-	can_paint = 1
 	has_base_range = 0
 
 	//build_type = /obj/item/stack/material/underplating
@@ -928,8 +926,11 @@
 /turf/simulated/floor/plating/eris/under
 	name = "underplating"
 	icon_state = "under"
-	icon = 'icons/turf/flooring/eris/plating.dmi'
 	initial_flooring = /decl/flooring/reinforced/plating/under
+/turf/simulated/floor/plating/eris/under/airless
+	oxygen = 0
+	nitrogen = 0
+	temperature = TCMB
 
 //============HULL PLATING=========\\
 /decl/flooring/reinforced/plating/hull
@@ -972,6 +973,12 @@
 	icon = 'icons/turf/flooring/eris/hull.dmi'
 	icon_state = "hullcenter0"
 	initial_flooring = /decl/flooring/reinforced/plating/hull
+
+/turf/simulated/floor/hull/airless
+	oxygen = 0
+	nitrogen = 0
+	temperature = TCMB
+
 /*
 /turf/simulated/floor/hull/New()
 	if(icon_state != "hullcenter0")
