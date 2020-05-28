@@ -1060,7 +1060,10 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	if(!depth || lying)
 		return
 
-	overlays_standing[WATER_LAYER] = image(icon = 'icons/mob/submerged.dmi', icon_state = "human_swimming_[depth]", layer = BODY_LAYER+WATER_LAYER) //TODO: Improve
+	var/atom/A = loc // We'd better be swimming and on a turf
+	var/image/I = image(icon = 'icons/mob/submerged.dmi', icon_state = "human_swimming_[depth]", layer = BODY_LAYER+WATER_LAYER) //TODO: Improve
+	I.color = A.color
+	overlays_standing[WATER_LAYER] = I
 
 	apply_layer(WATER_LAYER)
 
