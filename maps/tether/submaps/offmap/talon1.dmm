@@ -841,9 +841,6 @@
 /obj/item/weapon/pipe_dispenser,
 /turf/simulated/floor/tiled/eris/dark/brown_platform,
 /area/talon/deckone/port_eng_store)
-"gN" = (
-/turf/simulated/floor/tiled/eris/white/gray_platform,
-/area/shuttle/talonboat)
 "gQ" = (
 /obj/machinery/vending/cola,
 /turf/simulated/floor/tiled/steel_ridged,
@@ -1485,6 +1482,14 @@
 	},
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/deckone/central_hallway)
+"me" = (
+/obj/machinery/camera/network/talon{
+	dir = 9;
+	icon_state = "camera"
+	},
+/obj/structure/table/standard,
+/turf/simulated/floor/tiled/eris/white/gray_platform,
+/area/shuttle/talonboat)
 "mf" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -2250,13 +2255,6 @@
 /obj/effect/catwalk_plated,
 /turf/simulated/floor/plating/eris/under,
 /area/talon/deckone/central_hallway)
-"tv" = (
-/obj/machinery/camera/network/talon{
-	dir = 9;
-	icon_state = "camera"
-	},
-/turf/simulated/floor/tiled/eris/white/gray_platform,
-/area/shuttle/talonboat)
 "tw" = (
 /obj/item/modular_computer/console/preset/talon{
 	dir = 4;
@@ -2583,6 +2581,11 @@
 /obj/item/device/spaceflare,
 /turf/simulated/floor/tiled/eris/white/danger,
 /area/talon/deckone/armory)
+"xf" = (
+/obj/structure/table/standard,
+/obj/item/weapon/pickaxe/drill,
+/turf/simulated/floor/tiled/eris/white/gray_platform,
+/area/shuttle/talonboat)
 "xk" = (
 /obj/structure/catwalk,
 /obj/structure/cable/green{
@@ -15728,7 +15731,7 @@ uW
 mb
 nc
 Nn
-gN
+xf
 YO
 YO
 ys
@@ -15870,7 +15873,7 @@ MG
 dL
 nc
 Nn
-tv
+me
 ht
 xu
 Kk
