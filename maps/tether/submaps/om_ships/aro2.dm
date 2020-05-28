@@ -13,13 +13,13 @@
 	requires_power = 1
 
 /area/aro2/cockpit
-	name = "Aronai - Room1"
+	name = "Aronai - Cockpit"
 /area/aro2/room1
-	name = "Aronai - Room2"
+	name = "Aronai - Room1"
 /area/aro2/room2
-	name = "Aronai - Room3"
+	name = "Aronai - Room2"
 /area/aro2/room3
-	name = "Aronai - "
+	name = "Aronai - Room3"
 /area/aro2/frontroom
 	name = "Aronai - Front Living"
 /area/aro2/dining
@@ -43,6 +43,14 @@
 	name = "Aronai - Ship's Boat"
 	requires_power = 1
 	dynamic_lighting = 1
+
+/turf/simulated/floor/water/indoors/surfluid
+	name = "surfluid pool"
+	desc = "A pool of inky-black fluid that shimmers oddly in the light if hit just right."
+	description_info = "Surfluid is KHI's main method of production, using swarms of nanites to process raw materials into finished products at the cost of immense amounts of energy."
+	color = "#222222"
+	outdoors = FALSE
+	reagent_type = "liquid_protean"
 
 // The 'ship'
 /obj/effect/overmap/visitable/ship/aro2
@@ -81,7 +89,7 @@
 /obj/effect/shuttle_landmark/shuttle_initializer/aroboat2
 	name = "Aronai's Boat Bay"
 	base_area = /area/aro2/boatdeck
-	base_turf = /turf/simulated/floor/reinforced
+	base_turf = /turf/simulated/floor/water/indoors/surfluid
 	landmark_tag = "omship_spawn_aroboat2"
 	docking_controller = "aroship2_boatbay"
 	shuttle_type = /datum/shuttle/autodock/overmap/aroboat2
