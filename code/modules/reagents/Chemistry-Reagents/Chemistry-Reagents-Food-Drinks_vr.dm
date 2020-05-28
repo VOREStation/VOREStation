@@ -162,7 +162,7 @@
 /datum/reagent/ethanol/italiancrisis
 	name = "Italian Crisis"
 	id = "italiancrisis"
-	description = "This drink was concocted by a madwoman to cause to the Italian Crisis of 2123."
+	description = "This drink was concocted by a madwoman because of the Italian Crisis of 2123."
 	taste_description = "cola, fruit, fizz, coffee, and cream swirled together in an old boot."
 	strength = 20
 	druggy = 0
