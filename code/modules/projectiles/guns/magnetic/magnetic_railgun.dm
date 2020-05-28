@@ -3,31 +3,24 @@
 	desc = "The Mars Military Industries MI-76 Thunderclap. A man-portable mass driver for squad support anti-armour and destruction of fortifications and emplacements."
 	gun_unreliable = 0
 	icon_state = "railgun"
-	removable_components = FALSE
-	load_type = /obj/item/weapon/rcd_ammo
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 4, TECH_MAGNET = 4)
-	projectile_type = /obj/item/projectile/bullet/magnetic/slug
 	power_cost = 300
 	w_class = ITEMSIZE_HUGE
 	slot_flags = SLOT_BELT
-	loaded = /obj/item/weapon/rcd_ammo/large
 	slowdown = 1	// Slowdown equals slowdown_worn, until we decide to import the system to differentiate between held and worn items
 	fire_delay = 1
 
-	var/initial_cell_type = /obj/item/weapon/cell/hyper
-	var/initial_capacitor_type = /obj/item/weapon/stock_parts/capacitor/adv
+	load_type = /obj/item/weapon/rcd_ammo
+	projectile_type = /obj/item/projectile/bullet/magnetic/slug
+
+	cell = /obj/item/weapon/cell/hyper
+	capacitor = /obj/item/weapon/stock_parts/capacitor/adv
+	loaded = /obj/item/weapon/rcd_ammo/large
+	removable_components = FALSE
+	
 	var/slowdown_held = 2
 	var/slowdown_worn = 1
 	var/empty_sound = 'sound/machines/twobeep.ogg'
-
-/obj/item/weapon/gun/magnetic/railgun/New()
-	capacitor = new initial_capacitor_type(src)
-	capacitor.charge = capacitor.max_charge
-
-	cell = new initial_cell_type(src)
-	if (ispath(loaded))
-		loaded = new loaded
-	. = ..()
 
 // Not going to check type repeatedly, if you code or varedit
 // load_type and get runtime errors, don't come crying to me.
@@ -53,14 +46,15 @@
 	loaded = null
 	visible_message("<span class='warning'>\The [src] beeps and ejects its empty cartridge.</span>","<span class='warning'>There's a beeping sound!</span>")
 	playsound(src, empty_sound, 40, 1)
+	update_state()
 
 /obj/item/weapon/gun/magnetic/railgun/automatic // Adminspawn only, this shit is absurd.
 	name = "\improper RHR accelerator"
 	desc = "The Mars Military Industries MI-227 Meteor. Originally a vehicle-mounted turret weapon for heavy anti-vehicular and anti-structural fire, the fact that it was made man-portable is mindboggling in itself."
 	icon_state = "heavy_railgun"
 
-	initial_cell_type = /obj/item/weapon/cell/infinite
-	initial_capacitor_type = /obj/item/weapon/stock_parts/capacitor/super
+	cell = /obj/item/weapon/cell/infinite
+	capacitor = /obj/item/weapon/stock_parts/capacitor/super
 	fire_delay = 0
 
 	slowdown = 2
@@ -87,8 +81,8 @@
 	icon_state = "flechette_gun"
 	item_state = "z8carbine"
 
-	initial_cell_type = /obj/item/weapon/cell/hyper
-	initial_capacitor_type = /obj/item/weapon/stock_parts/capacitor/adv
+	cell = /obj/item/weapon/cell/hyper
+	capacitor = /obj/item/weapon/stock_parts/capacitor/adv
 
 	fire_delay = 0
 
@@ -109,6 +103,36 @@
 		list(mode_name="short bursts", burst=3, fire_delay=null, move_delay=5, one_handed_penalty=30, burst_accuracy=list(0,-15,-15), dispersion=list(0.0, 0.6, 1.0)),
 		)
 
+/obj/item/weapon/gun/magnetic/railgun/flechette/pistol
+	name = "flechette pistol"
+	desc = "The MI-6a Ullr is a small-form-factor railgun that fires flechette rounds at high velocity. Deadly against armour, but much less effective against soft targets."
+	icon_state = "railpistol"
+	item_state = "combatrevolver"
+	w_class = ITEMSIZE_SMALL
+
+	cell = /obj/item/weapon/cell/super
+	capacitor = /obj/item/weapon/stock_parts/capacitor
+
+	fire_delay = 0
+
+	slot_flags = SLOT_BELT
+
+	slowdown = 0
+	slowdown_held = 0
+	slowdown_worn = 0
+
+	power_cost = 100
+	load_type = /obj/item/weapon/magnetic_ammo/pistol
+	projectile_type = /obj/item/projectile/bullet/magnetic/flechette/small
+	loaded = /obj/item/weapon/magnetic_ammo/pistol
+	removable_components = TRUE
+	empty_sound = 'sound/weapons/smg_empty_alarm.ogg'
+
+	firemodes = list(
+		list(mode_name="semiauto", burst=1, fire_delay=0, move_delay=null, one_handed_penalty=15, burst_accuracy=null, dispersion=null),
+		list(mode_name="short bursts", burst=3, fire_delay=null, move_delay=5, one_handed_penalty=30, burst_accuracy=list(0,-15,-15), dispersion=list(0.0, 0.6, 1.0)),
+	)
+
 /obj/item/weapon/gun/magnetic/railgun/heater
 	name = "coil rifle"
 	desc = "A large rifle designed and produced after the Grey Hour."
@@ -119,8 +143,8 @@
 
 	removable_components = TRUE
 
-	initial_cell_type = /obj/item/weapon/cell/device/weapon
-	initial_capacitor_type = /obj/item/weapon/stock_parts/capacitor
+	cell = /obj/item/weapon/cell/device/weapon
+	capacitor = /obj/item/weapon/stock_parts/capacitor
 
 	fire_delay = 8
 
@@ -152,8 +176,8 @@
 
 	slowdown_held = 0.1
 
-	initial_cell_type = /obj/item/weapon/cell/device/weapon
-	initial_capacitor_type = /obj/item/weapon/stock_parts/capacitor
+	cell = /obj/item/weapon/cell/device/weapon
+	capacitor = /obj/item/weapon/stock_parts/capacitor
 
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 
@@ -181,8 +205,8 @@
 	icon_state = "railgun_sifguard"
 	item_state = "z8carbine"
 
-	initial_cell_type = /obj/item/weapon/cell/high
-	initial_capacitor_type = /obj/item/weapon/stock_parts/capacitor/adv
+	cell = /obj/item/weapon/cell/high
+	capacitor = /obj/item/weapon/stock_parts/capacitor/adv
 
 	slot_flags = SLOT_BACK
 
