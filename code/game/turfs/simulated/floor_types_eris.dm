@@ -872,11 +872,11 @@
 	flags = TURF_REMOVE_WRENCH | TURF_HAS_CORNERS | TURF_HAS_EDGES | TURF_CAN_BURN | TURF_CAN_BREAK
 	can_paint = 1
 	has_base_range = 18
+	is_plating = TRUE
 	//build_type = /obj/item/stack/material/steel
 	
 	/* Eris features we lack on flooring decls
 	plating_type = /decl/flooring/reinforced/plating/under
-	is_plating = TRUE
 	footstep_sound = "plating"
 	space_smooth = FALSE
 	removal_time = 150
@@ -908,12 +908,12 @@
 	icon_base = "under"
 	flags = TURF_HAS_CORNERS | TURF_HAS_EDGES | TURF_CAN_BURN | TURF_CAN_BREAK
 	has_base_range = 0
+	is_plating = TRUE
 
 	//build_type = /obj/item/stack/material/underplating
 	
 	/* Eris features we lack on flooring decls
 	plating_type = /decl/flooring/reinforced/plating/hull
-	is_plating = TRUE
 	removal_time = 250
 	health = 200
 	resistance = RESISTANCE_ARMOURED
@@ -941,11 +941,11 @@
 	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_REMOVE_WRENCH | TURF_CAN_BURN | TURF_CAN_BREAK
 	build_type = /obj/item/stack/material/plasteel
 	has_base_range = 35
+	is_plating = FALSE
 	
 	/* Eris features we lack on flooring decls
 	try_update_icon = 0
 	plating_type = null
-	is_plating = TRUE
 	health = 350
 	resistance = RESISTANCE_HEAVILY_ARMOURED
 	removal_time = 1 MINUTES //Cutting through the hull is very slow work

@@ -45,6 +45,7 @@ var/list/flooring_types
 	var/can_paint
 	var/list/footstep_sounds = list() // key=species name, value = list of sounds, 
 									  // For instance, footstep_sounds = list("key" = list(sound.ogg))
+	var/is_plating = FALSE
 
 /decl/flooring/grass
 	name = "grass"
