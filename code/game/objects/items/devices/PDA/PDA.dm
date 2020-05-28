@@ -1135,7 +1135,11 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			P.conversations.Add("\ref[src]")
 		to_chat(U, "[bicon(src)] <b>Sent message to [P.owner] ([P.ownjob]), </b>\"[t]\"")
 
+<<<<<<< HEAD
 		if (prob(5) && security_level >= SEC_LEVEL_BLUE) //Give the AI a chance of intercepting the message		//VOREStation Edit: no spam interception on lower codes + lower interception chance
+=======
+		if (prob(15)) //Give the AI a chance of intercepting the message
+>>>>>>> a4e924b... Merge pull request #7242 from Cyantime/patch-1
 			var/who = src.owner
 			if(prob(50))
 				who = P.owner
