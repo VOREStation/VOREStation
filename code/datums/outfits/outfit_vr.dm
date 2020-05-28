@@ -1,6 +1,6 @@
 /decl/hierarchy/outfit/USDF/Marine
 	name = "USDF marine"
-	uniform = /obj/item/clothing/under/solgov/utility/marine/green
+	uniform = /obj/item/clothing/under/solgov/utility/army/urban
 	shoes = /obj/item/clothing/shoes/boots/jackboots
 	gloves = /obj/item/clothing/gloves/combat
 	l_ear = /obj/item/device/radio/headset/centcom
@@ -27,10 +27,10 @@
 
 /decl/hierarchy/outfit/USDF/Officer
 	name = "USDF officer"
-	head = /obj/item/clothing/head/dress/marine/command/admiral
+	head = /obj/item/clothing/head/dress/army/command
 	shoes = /obj/item/clothing/shoes/boots/jackboots
 	l_ear = /obj/item/device/radio/headset/centcom
-	uniform = /obj/item/clothing/under/solgov/mildress/marine/command
+	uniform = /obj/item/clothing/under/solgov/mildress/army/command
 	back = /obj/item/weapon/storage/backpack/satchel
 	belt = /obj/item/weapon/gun/projectile/revolver/consul
 	l_pocket = /obj/item/ammo_magazine/s44
