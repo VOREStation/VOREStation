@@ -54,6 +54,23 @@
 	name = "tan fatigues"
 	desc = "A tan version of the TCG Marines utility uniform, made from durable material."
 
+/obj/item/clothing/under/solgov/utility/army/olive
+	name = "olive fatigues"
+	desc = "An olive version of the TCG marine utility uniform, made from durable material."
+	icon = 'icons/obj/clothing/uniforms_vr.dmi'
+	icon_override = 'icons/mob/uniform_vr.dmi'
+	icon_state = "bdu_olive"
+	item_state = "bdu_olive"
+
+/obj/item/clothing/under/solgov/utility/army/desert
+	name = "desert fatigues"
+	desc = "A desert version of the TCG marine utility uniform, made from durable material."
+	icon = 'icons/obj/clothing/uniforms_vr.dmi'
+	icon_override = 'icons/mob/uniform_vr.dmi'
+	icon_state = "bdu_olive"
+	item_state = "bdu_olive"
+	desc = "A tan version of the TCG Marines utility uniform, made from durable material."
+
 //Service
 /obj/item/clothing/under/solgov/service/sifguard
 	name = "\improper NDF service uniform"
