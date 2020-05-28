@@ -857,7 +857,11 @@
 /obj/structure/table/steel,
 /obj/item/weapon/storage/box/shotgunshells{
 	pixel_x = 6;
-	pixel_y = -1
+	pixel_y = -3
+	},
+/obj/item/weapon/storage/box/shotgunammo/large{
+	pixel_x = 0;
+	pixel_y = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
