@@ -849,11 +849,14 @@ default behaviour is:
 		return	
 	else if(lastarea?.has_gravity == 0)
 		inertial_drift()
+<<<<<<< HEAD
 	//VOREStation Edit Start
 	else if(flying)
 		inertial_drift()
 		make_floating(1)
 	//VOREStation Edit End
+=======
+>>>>>>> 551fc88... Merge pull request #7204 from VOREStation/Arokha/performance
 	else if(!isspace(loc))
 		inertia_dir = 0
 		make_floating(0)
