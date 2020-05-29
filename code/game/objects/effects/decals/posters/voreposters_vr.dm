@@ -50,7 +50,7 @@
 	icon_state = "sbsposter13"
 	name = "Ammer"
 	desc = "You see a blue panda on the poster. She's awfully smug about her size."
-	/datum/poster/vore_14
+/datum/poster/vore_14
 	icon_state = "dwposter1"
 	name = "WANTED: WAR CRIMINAL"
 	desc = "A poster bringing awareness to the distinguishing costume of a known war criminal operating in Virgo-Erigonne space."
