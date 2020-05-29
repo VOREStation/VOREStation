@@ -2687,17 +2687,6 @@
 "age" = (
 /turf/simulated/wall,
 /area/tether/surfacebase/north_staires_two)
-"agf" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 8
-	},
-/obj/machinery/computer/guestpass{
-	dir = 4;
-	pixel_x = -28;
-	pixel_y = 0
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/tether/surfacebase/surface_two_hall)
 "agg" = (
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/techmaint,
@@ -6702,18 +6691,6 @@
 "aox" = (
 /turf/simulated/floor/holofloor/tiled/dark,
 /area/tether/elevator)
-"aoy" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 1
-	},
-/obj/machinery/station_map{
-	pixel_y = 32
-	},
-/obj/machinery/door/firedoor/glass/hidden/steel{
-	dir = 2
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/tether/surfacebase/surface_two_hall)
 "aoz" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 5
@@ -6922,10 +6899,6 @@
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/rnd)
-"aoV" = (
-/obj/machinery/door/firedoor/glass/hidden/steel,
-/turf/simulated/floor/tiled/techmaint,
-/area/tether/surfacebase/surface_two_hall)
 "aoW" = (
 /obj/effect/floor_decal/borderfloor/corner{
 	dir = 4
@@ -7629,12 +7602,6 @@
 	hard_corner = 1
 	},
 /area/tether/elevator)
-"aqo" = (
-/obj/machinery/door/firedoor/glass/hidden/steel{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/tether/surfacebase/surface_two_hall)
 "aqp" = (
 /obj/effect/floor_decal/borderfloor/corner,
 /turf/simulated/floor/tiled/techmaint,
@@ -7789,15 +7756,6 @@
 	},
 /obj/effect/floor_decal/borderfloor/corner{
 	dir = 8
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/tether/surfacebase/surface_two_hall)
-"aqG" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 4
-	},
-/obj/machinery/camera/network/tether{
-	dir = 9
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/surface_two_hall)
@@ -28378,6 +28336,10 @@
 /obj/random/cutout,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
+"bvS" = (
+/obj/machinery/door/firedoor/glass/hidden,
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/surface_two_hall)
 "ceC" = (
 /obj/structure/catwalk,
 /obj/machinery/light/small{
@@ -28475,6 +28437,26 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining)
+"emJ" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/green/border{
+	dir = 8
+	},
+/obj/structure/window/basic{
+	dir = 8
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/door/firedoor/glass/hidden,
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/surface_two_hall)
 "exx" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -28489,6 +28471,12 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/lower/security)
+"eXR" = (
+/obj/machinery/door/firedoor/glass/hidden{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/surface_two_hall)
 "fGk" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -28553,6 +28541,14 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining)
+"gjq" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/door/firedoor/glass/hidden{
+	dir = 2
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/surface_two_hall)
 "gDW" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -28581,6 +28577,13 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/open,
 /area/maintenance/lower/bar)
+"isi" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/firedoor/glass/hidden{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/surface_two_hall)
 "iwn" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -28650,6 +28653,15 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/drone_fabrication)
+"jfi" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/glass/hidden{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/surface_two_hall)
 "jfF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -28684,6 +28696,39 @@
 /obj/machinery/door/airlock/maintenance/common,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/north_staires_two)
+"ksZ" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/green/border{
+	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/obj/structure/window/basic{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/glass/hidden{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/surface_two_hall)
+"ktW" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
+	},
+/obj/machinery/computer/guestpass{
+	dir = 4;
+	pixel_x = -28;
+	pixel_y = 0
+	},
+/obj/machinery/door/firedoor/glass/hidden,
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/surface_two_hall)
 "kuw" = (
 /obj/structure/catwalk,
 /obj/machinery/atmospherics/pipe/manifold/visible/scrubbers{
@@ -28758,6 +28803,18 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/bar)
+"maZ" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/machinery/camera/network/tether{
+	dir = 9
+	},
+/obj/machinery/door/firedoor/glass/hidden{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/surface_two_hall)
 "msI" = (
 /obj/machinery/door/airlock/maintenance/common,
 /obj/machinery/door/firedoor/glass,
@@ -28792,6 +28849,19 @@
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/north)
+"mLQ" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/green/border{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/door/firedoor/glass/hidden,
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/surface_two_hall)
 "nGX" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -29036,6 +29106,21 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/north_staires_two)
+"pwQ" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/green/border{
+	dir = 4
+	},
+/obj/structure/window/basic{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/glass/hidden{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/surface_two_hall)
 "pGt" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable{
@@ -29080,6 +29165,16 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/north)
+"qrg" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
+	},
+/obj/machinery/camera/network/tether{
+	dir = 5
+	},
+/obj/machinery/door/firedoor/glass/hidden,
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/surface_two_hall)
 "qNo" = (
 /obj/structure/cable{
 	icon_state = "16-0"
@@ -29175,6 +29270,18 @@
 	},
 /turf/simulated/floor/plating,
 /area/engineering/drone_fabrication)
+"tIb" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/obj/machinery/station_map{
+	pixel_y = 32
+	},
+/obj/machinery/door/firedoor/glass/hidden{
+	dir = 2
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/surface_two_hall)
 "tKq" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 9
@@ -29329,6 +29436,12 @@
 	},
 /obj/structure/catwalk,
 /turf/simulated/floor/tiled/techfloor/grid,
+/area/tether/surfacebase/surface_two_hall)
+"wQg" = (
+/obj/machinery/door/firedoor/glass/hidden{
+	dir = 2
+	},
+/turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/surface_two_hall)
 "wRZ" = (
 /obj/effect/floor_decal/borderfloor{
@@ -39296,10 +39409,10 @@ ajy
 ajy
 aii
 adY
-aoy
-aoV
-aoV
-aqo
+tIb
+bvS
+bvS
+eXR
 aqZ
 arG
 asA
@@ -40412,7 +40525,7 @@ adY
 afa
 iIV
 afV
-agf
+ktW
 aRV
 agG
 afV
@@ -40432,7 +40545,7 @@ afV
 ans
 agG
 afV
-aRV
+qrg
 apd
 apJ
 afG
@@ -40554,7 +40667,7 @@ iJj
 kDh
 cZo
 afW
-agg
+isi
 agg
 agg
 agg
@@ -40574,7 +40687,7 @@ ajB
 ajB
 ajB
 ajB
-ajB
+gjq
 ajB
 hCD
 nVB
@@ -40696,7 +40809,7 @@ pGt
 pUx
 xUz
 afX
-agh
+ksZ
 agh
 agh
 agh
@@ -40716,7 +40829,7 @@ aia
 aia
 aia
 aia
-aia
+pwQ
 ape
 apM
 aqw
@@ -43252,7 +43365,7 @@ aOQ
 ldx
 nQX
 cIm
-uin
+mLQ
 iwn
 pbf
 pbf
@@ -43272,7 +43385,7 @@ svN
 bcC
 nUt
 nUt
-nUt
+emJ
 iGv
 nGX
 aqE
@@ -43394,7 +43507,7 @@ adY
 aft
 afL
 afG
-afG
+eXR
 gDW
 afG
 afG
@@ -43414,7 +43527,7 @@ afL
 afG
 afG
 afG
-afG
+wQg
 afG
 jfF
 aqD
@@ -43536,7 +43649,7 @@ adY
 afu
 afM
 uoL
-aqG
+maZ
 agz
 agH
 agR
@@ -43556,7 +43669,7 @@ asB
 afG
 anu
 jnL
-afM
+jfi
 aiE
 apP
 aSL
