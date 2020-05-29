@@ -33,7 +33,9 @@
 	var/lava = 0
 
 /turf/simulated/floor/is_plating()
-	return !flooring
+	if(!flooring || flooring.is_plating)
+		return TRUE
+	return FALSE
 
 /turf/simulated/floor/Initialize(mapload, floortype)
 	. = ..()
@@ -95,8 +97,9 @@
 		update_icon(1)
 
 /turf/simulated/floor/levelupdate()
+	var/floored_over = !is_plating()
 	for(var/obj/O in src)
-		O.hide(O.hides_under_flooring() && src.flooring)
+		O.hide(O.hides_under_flooring() && floored_over)
 
 /turf/simulated/floor/rcd_values(mob/living/user, obj/item/weapon/rcd/the_rcd, passed_mode)
 	switch(passed_mode)

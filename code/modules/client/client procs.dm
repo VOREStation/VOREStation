@@ -332,8 +332,7 @@
 		if (config.panic_bunker && !holder && !deadmin_holder)
 			log_adminwarn("Failed Login: [key] - New account attempting to connect during panic bunker")
 			message_admins("<span class='adminnotice'>Failed Login: [key] - New account attempting to connect during panic bunker</span>")
-			to_chat_immediate(src, "<span class='danger'>Sorry but the server is currently not accepting connections from never before seen players.</span>")
-			qdel(src)
+			disconnect_with_message("Sorry but the server is currently not accepting connections from never before seen players.")
 			return 0
 
 	// IP Reputation Check
@@ -351,12 +350,10 @@
 
 				//Take action if required
 				if(config.ipr_block_bad_ips && config.ipr_allow_existing) //We allow players of an age, but you don't meet it
-					to_chat_immediate(src, "<span class='danger'>Sorry, we only allow VPN/Proxy/Tor usage for players who have spent at least [config.ipr_minimum_age] days on the server. If you are unable to use the internet without your VPN/Proxy/Tor, please contact an admin out-of-game to let them know so we can accommodate this.</span>")
-					qdel(src)
+					disconnect_with_message("Sorry, we only allow VPN/Proxy/Tor usage for players who have spent at least [config.ipr_minimum_age] days on the server. If you are unable to use the internet without your VPN/Proxy/Tor, please contact an admin out-of-game to let them know so we can accommodate this.")
 					return 0
 				else if(config.ipr_block_bad_ips) //We don't allow players of any particular age
-					to_chat_immediate(src, "<span class='danger'>Sorry, we do not accept connections from users via VPN/Proxy/Tor connections. If you believe this is in error, contact an admin out-of-game.</span>")
-					qdel(src)
+					disconnect_with_message("Sorry, we do not accept connections from users via VPN/Proxy/Tor connections. If you believe this is in error, contact an admin out-of-game.")
 					return 0
 		else
 			log_admin("Couldn't perform IP check on [key] with [address]")
@@ -528,3 +525,9 @@ client/verb/character_setup()
 	else
 		ip_reputation = score
 		return TRUE
+
+/client/proc/disconnect_with_message(var/message = "You have been intentionally disconnected by the server.<br>This may be for security or administrative reasons.")
+	message = "<head><title>You Have Been Disconnected</title></head><body><hr><center><b>[message]</b></center><hr><br>If you feel this is in error, you can contact an administrator out-of-game (for example, on Discord).</body>"
+	window_flash(src)
+	src << browse(message,"window=dropmessage;size=480x360;can_close=1")
+	qdel(src)

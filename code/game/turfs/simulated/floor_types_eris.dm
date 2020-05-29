@@ -872,11 +872,11 @@
 	flags = TURF_REMOVE_WRENCH | TURF_HAS_CORNERS | TURF_HAS_EDGES | TURF_CAN_BURN | TURF_CAN_BREAK
 	can_paint = 1
 	has_base_range = 18
+	is_plating = TRUE
 	//build_type = /obj/item/stack/material/steel
 	
 	/* Eris features we lack on flooring decls
 	plating_type = /decl/flooring/reinforced/plating/under
-	is_plating = TRUE
 	footstep_sound = "plating"
 	space_smooth = FALSE
 	removal_time = 150
@@ -889,17 +889,16 @@
 	movable_atom_whitelist = list(list(/obj/machinery/door/airlock, list(), 2))
 	*/
 
-/obj/item/stack/tile/floor/rplating
-	name = "reinforced plating"
-	singular_name = "dark floor tile"
-	icon_state = "tile_dark"
-	matter = list(MAT_STEEL = 1)
-
 /turf/simulated/floor/plating/eris
 	name = "reinforced plating"
 	icon = 'icons/turf/flooring/eris/plating.dmi'
 	icon_state = "plating"
 	initial_flooring = /decl/flooring/reinforced/plating
+
+/turf/simulated/floor/plating/eris/airless
+	oxygen = 0
+	nitrogen = 0
+	temperature = TCMB
 
 //==========UNDERPLATING==============\\
 /decl/flooring/reinforced/plating/under
@@ -908,14 +907,13 @@
 	descriptor = "support beams"
 	icon_base = "under"
 	flags = TURF_HAS_CORNERS | TURF_HAS_EDGES | TURF_CAN_BURN | TURF_CAN_BREAK
-	can_paint = 1
 	has_base_range = 0
+	is_plating = TRUE
 
 	//build_type = /obj/item/stack/material/underplating
 	
 	/* Eris features we lack on flooring decls
 	plating_type = /decl/flooring/reinforced/plating/hull
-	is_plating = TRUE
 	removal_time = 250
 	health = 200
 	resistance = RESISTANCE_ARMOURED
@@ -928,8 +926,11 @@
 /turf/simulated/floor/plating/eris/under
 	name = "underplating"
 	icon_state = "under"
-	icon = 'icons/turf/flooring/eris/plating.dmi'
 	initial_flooring = /decl/flooring/reinforced/plating/under
+/turf/simulated/floor/plating/eris/under/airless
+	oxygen = 0
+	nitrogen = 0
+	temperature = TCMB
 
 //============HULL PLATING=========\\
 /decl/flooring/reinforced/plating/hull
@@ -940,11 +941,11 @@
 	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_REMOVE_WRENCH | TURF_CAN_BURN | TURF_CAN_BREAK
 	build_type = /obj/item/stack/material/plasteel
 	has_base_range = 35
+	is_plating = FALSE
 	
 	/* Eris features we lack on flooring decls
 	try_update_icon = 0
 	plating_type = null
-	is_plating = TRUE
 	health = 350
 	resistance = RESISTANCE_HEAVILY_ARMOURED
 	removal_time = 1 MINUTES //Cutting through the hull is very slow work
@@ -972,6 +973,12 @@
 	icon = 'icons/turf/flooring/eris/hull.dmi'
 	icon_state = "hullcenter0"
 	initial_flooring = /decl/flooring/reinforced/plating/hull
+
+/turf/simulated/floor/hull/airless
+	oxygen = 0
+	nitrogen = 0
+	temperature = TCMB
+
 /*
 /turf/simulated/floor/hull/New()
 	if(icon_state != "hullcenter0")
