@@ -89,8 +89,8 @@
 /datum/poster/vore_23
 	icon_state = "dwposter10"
 	name = "Visit Luna"
-	desc = "Part of a tourism campaign from Solcom encouraging people to visit Earth's moon, Luna."
+	desc = "Part of a tourism campaign from SolCom encouraging people to visit Earth's moon, Luna."
 /datum/poster/vore_24
 	icon_state = "dwposter11"
 	name = "Secgun"
-	desc = "A striking, wordless advertisement for NanoTrasnen's security department. It wasn't very effective and just seems to be used as a warning sign."
+	desc = "A striking, wordless advertisement for NanoTrasen's security department. It wasn't very effective and just seems to be used as a warning sign."
