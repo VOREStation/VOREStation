@@ -587,7 +587,7 @@
 /obj/machinery/door/firedoor/glass{
 	dir = 2
 	},
-/turf/simulated/floor/tiled/eris/dark/monofloor,
+/turf/simulated/floor/tiled/eris/techmaint_panels,
 /area/talon/decktwo/central_hallway)
 "cE" = (
 /obj/structure/railing,
@@ -1295,7 +1295,7 @@
 	name = "Talon Secure Airlock";
 	req_one_access = list(301)
 	},
-/turf/simulated/floor/tiled/steel_grid,
+/turf/simulated/floor/tiled/eris/techmaint_panels,
 /area/talon/decktwo/cap_room)
 "fZ" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -1848,7 +1848,7 @@
 /obj/machinery/door/firedoor/glass{
 	dir = 2
 	},
-/turf/simulated/floor/tiled/eris/dark/monofloor,
+/turf/simulated/floor/tiled/eris/techmaint_panels,
 /area/talon/decktwo/central_hallway)
 "mh" = (
 /obj/structure/disposalpipe/segment,
@@ -2092,7 +2092,7 @@
 	dir = 2
 	},
 /obj/machinery/door/firedoor/glass/talon,
-/turf/simulated/floor/tiled/steel_grid,
+/turf/simulated/floor/tiled/eris/techmaint_panels,
 /area/talon/decktwo/bar)
 "oX" = (
 /obj/structure/cable/heavyduty{
@@ -2177,7 +2177,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/tiled/eris/dark/monofloor,
+/turf/simulated/floor/tiled/eris/techmaint_panels,
 /area/talon/decktwo/central_hallway)
 "qb" = (
 /obj/machinery/atmospherics/pipe/simple/visible/supply{
@@ -2521,13 +2521,13 @@
 "uA" = (
 /obj/machinery/door/firedoor/glass/talon,
 /obj/machinery/door/airlock,
-/turf/simulated/floor/tiled/eris/steel,
+/turf/simulated/floor/tiled/eris/techmaint_panels,
 /area/talon/decktwo/central_hallway)
 "uJ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/tiled/eris/dark/monofloor,
+/turf/simulated/floor/tiled/eris/techmaint_panels,
 /area/talon/decktwo/central_hallway)
 "uL" = (
 /obj/structure/cable/green{
@@ -3652,7 +3652,7 @@
 	name = "Talon Secure Airlock";
 	req_one_access = list(301)
 	},
-/turf/simulated/floor/tiled/steel_grid,
+/turf/simulated/floor/tiled/eris/techmaint_panels,
 /area/talon/decktwo/cap_room)
 "Lo" = (
 /obj/structure/catwalk,
@@ -3760,7 +3760,7 @@
 	dir = 4;
 	icon_state = "pipe-s"
 	},
-/turf/simulated/floor/tiled/steel_grid,
+/turf/simulated/floor/tiled/eris/techmaint_panels,
 /area/talon/decktwo/bar)
 "Np" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -4109,7 +4109,7 @@
 /obj/machinery/door/firedoor/glass{
 	dir = 2
 	},
-/turf/simulated/floor/tiled/eris/dark/monofloor,
+/turf/simulated/floor/tiled/eris/techmaint_panels,
 /area/talon/decktwo/central_hallway)
 "Sb" = (
 /obj/machinery/power/pointdefense{
@@ -4356,7 +4356,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/tiled/eris/dark/monofloor,
+/turf/simulated/floor/tiled/eris/techmaint_panels,
 /area/talon/decktwo/central_hallway)
 "Vu" = (
 /obj/structure/grille,
@@ -4392,7 +4392,7 @@
 /obj/machinery/door/airlock/glass,
 /obj/machinery/door/firedoor/glass/talon,
 /obj/structure/disposalpipe/segment,
-/turf/simulated/floor/tiled/eris/steel,
+/turf/simulated/floor/tiled/eris/techmaint_panels,
 /area/talon/decktwo/central_hallway)
 "VV" = (
 /obj/structure/disposalpipe/segment{
@@ -4516,7 +4516,7 @@
 "XU" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/tiled/eris/dark/monofloor,
+/turf/simulated/floor/tiled/eris/techmaint_panels,
 /area/talon/decktwo/central_hallway)
 "XY" = (
 /obj/structure/cable/green{
