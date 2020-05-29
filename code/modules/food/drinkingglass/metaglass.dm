@@ -761,3 +761,4 @@ Drinks Data
 /datum/reagent/ethanol/hairoftherat
 	glass_icon_state = "SBShairoftheratglass"
 	glass_center_of_mass = list("x"=16, "y"=8)
+
