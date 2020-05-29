@@ -14,13 +14,28 @@
 	build_type = /obj/item/stack/tile/floor/eris
 	can_paint = 1
 
+	plating_type = /decl/flooring/reinforced/plating/under
+
+	floor_smooth = SMOOTH_WHITELIST
+	flooring_whitelist = list(
+		/decl/flooring/reinforced/plating/under
+	)
+
+	smooth_movable_atom = SMOOTH_GREYLIST
+	movable_atom_whitelist = list(
+		list(/obj/machinery/door/airlock, list(), 1) // Smooth Eris floors with airlocks
+	)
+	movable_atom_blacklist = list(
+		list(/obj/machinery/door/airlock/maintenance, list(), 2), // But not maintenance airlocks
+		list(/obj/structure/window, list("anchored" = TRUE, "fulltile" = TRUE), 2) // Don't blend under full windows
+	)
+
 /decl/flooring/tiling/eris/steel
 	name = "steel floor"
 	icon_base = "tiles"
 	icon = 'icons/turf/flooring/eris/tiles_steel.dmi'
 	build_type = /obj/item/stack/tile/floor/eris/steel
-	//footstep_sound = "floor"
-
+	
 /decl/flooring/tiling/eris/steel/panels
 	icon_base = "panels"
 	build_type = /obj/item/stack/tile/floor/eris/steel/panels
@@ -86,16 +101,22 @@
 	name = "flat bar floor"
 	icon_base = "bar_flat"
 	build_type = /obj/item/stack/tile/floor/eris/steel/bar_flat
+	floor_smooth = SMOOTH_NONE
+	smooth_movable_atom = SMOOTH_NONE
 
 /decl/flooring/tiling/eris/steel/bar_dance
 	name = "dancefloor"
 	icon_base = "bar_dance"
 	build_type = /obj/item/stack/tile/floor/eris/steel/bar_dance
+	floor_smooth = SMOOTH_NONE
+	smooth_movable_atom = SMOOTH_NONE
 
 /decl/flooring/tiling/eris/steel/bar_light
 	name = "lit bar floor"
 	icon_base = "bar_light"
 	build_type = /obj/item/stack/tile/floor/eris/steel/bar_light
+	floor_smooth = SMOOTH_NONE
+	smooth_movable_atom = SMOOTH_NONE
 
 /decl/flooring/tiling/eris/white
 	name = "white floor"
@@ -169,7 +190,6 @@
 	icon_base = "tiles"
 	icon = 'icons/turf/flooring/eris/tiles_dark.dmi'
 	build_type = /obj/item/stack/tile/floor/eris/dark
-	//footstep_sound = "floor"
 
 /decl/flooring/tiling/eris/dark/panels
 	icon_base = "panels"
@@ -237,36 +257,40 @@
 	icon_base = "cafe"
 	icon = 'icons/turf/flooring/eris/tiles.dmi'
 	build_type = /obj/item/stack/tile/floor/eris/cafe
-	//footstep_sound = "floor"
+	floor_smooth = SMOOTH_NONE
+	smooth_movable_atom = SMOOTH_NONE
 
 /decl/flooring/tiling/eris/techmaint
 	name = "techmaint floor"
 	icon_base = "techmaint"
 	icon = 'icons/turf/flooring/eris/tiles_maint.dmi'
 	build_type = /obj/item/stack/tile/floor/eris/techmaint
-	//footstep_sound = "floor"
+	floor_smooth = SMOOTH_NONE
+	smooth_movable_atom = SMOOTH_NONE
 
 /decl/flooring/tiling/eris/techmaint_perforated
 	name = "techmaint floor"
 	icon_base = "techmaint_perforated"
 	icon = 'icons/turf/flooring/eris/tiles_maint.dmi'
 	build_type = /obj/item/stack/tile/floor/eris/techmaint/perforated
-	//footstep_sound = "floor"
+	floor_smooth = SMOOTH_NONE
+	smooth_movable_atom = SMOOTH_NONE
 
 /decl/flooring/tiling/eris/techmaint_panels
 	name = "techmaint floor"
 	icon_base = "techmaint_panels"
 	icon = 'icons/turf/flooring/eris/tiles_maint.dmi'
 	build_type = /obj/item/stack/tile/floor/eris/techmaint/panels
-	//footstep_sound = "floor"
+	floor_smooth = SMOOTH_NONE
+	smooth_movable_atom = SMOOTH_NONE
 
 /decl/flooring/tiling/eris/techmaint_cargo
 	name = "techmaint floor"
 	icon_base = "techmaint_cargo"
 	icon = 'icons/turf/flooring/eris/tiles_maint.dmi'
 	build_type = /obj/item/stack/tile/floor/eris/techmaint/cargo
-	//footstep_sound = "floor"
-
+	floor_smooth = SMOOTH_NONE
+	smooth_movable_atom = SMOOTH_NONE
 
 ///////////////////////
 /// TILE OBJS   ///////
@@ -875,8 +899,8 @@
 	is_plating = TRUE
 	//build_type = /obj/item/stack/material/steel
 	
-	/* Eris features we lack on flooring decls
 	plating_type = /decl/flooring/reinforced/plating/under
+	/*
 	footstep_sound = "plating"
 	space_smooth = FALSE
 	removal_time = 150
@@ -910,10 +934,16 @@
 	has_base_range = 0
 	is_plating = TRUE
 
+	floor_smooth = SMOOTH_WHITELIST
+	flooring_whitelist = list(
+		/decl/flooring/tiling/eris
+	)
+	
+	plating_type = null
+
 	//build_type = /obj/item/stack/material/underplating
 	
 	/* Eris features we lack on flooring decls
-	plating_type = /decl/flooring/reinforced/plating/hull
 	removal_time = 250
 	health = 200
 	resistance = RESISTANCE_ARMOURED
