@@ -125,7 +125,7 @@
 /area/tether/midpoint)
 "l" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/door/firedoor/glass/hidden/steel{
+/obj/machinery/door/firedoor/glass/hidden{
 	dir = 2
 	},
 /turf/simulated/floor/tiled/dark,
@@ -150,6 +150,13 @@
 /obj/structure/table/woodentable,
 /turf/simulated/floor/wood,
 /area/tether/midpoint)
+"o" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/door/firedoor/glass/hidden{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark,
+/area/tether/midpoint)
 "p" = (
 /obj/machinery/light{
 	dir = 8;
@@ -169,7 +176,7 @@
 /area/tether/midpoint)
 "r" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/door/firedoor/glass/hidden/steel,
+/obj/machinery/door/firedoor/glass/hidden,
 /turf/simulated/floor/tiled/dark,
 /area/tether/midpoint)
 "s" = (
@@ -441,13 +448,6 @@
 /obj/machinery/light{
 	dir = 8;
 	icon_state = "tube1"
-	},
-/turf/simulated/floor/tiled/dark,
-/area/tether/midpoint)
-"W" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/door/firedoor/glass/hidden/steel{
-	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/midpoint)
@@ -10358,7 +10358,7 @@ V
 l
 r
 r
-W
+o
 S
 X
 y
