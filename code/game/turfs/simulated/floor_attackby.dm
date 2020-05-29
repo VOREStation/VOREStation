@@ -53,7 +53,7 @@
 					break
 		return
 
-	if(flooring)
+	if(flooring && !flooring.is_plating)
 		if(istype(C, /obj/item/weapon))
 			try_deconstruct_tile(C, user)
 			return
