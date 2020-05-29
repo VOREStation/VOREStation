@@ -46,6 +46,14 @@ var/list/flooring_types
 	var/list/footstep_sounds = list() // key=species name, value = list of sounds, 
 									  // For instance, footstep_sounds = list("key" = list(sound.ogg))
 	var/is_plating = FALSE
+	var/list/flooring_cache = list() // Cached overlays for our edges and corners and junk
+
+/decl/flooring/proc/get_flooring_overlay(var/cache_key, var/icon_base, var/icon_dir = 0, var/layer = ABOVE_TURF_LAYER)
+	if(!flooring_cache[cache_key])
+		var/image/I = image(icon = icon, icon_state = icon_base, dir = icon_dir)
+		I.layer = layer
+		flooring_cache[cache_key] = I
+	return flooring_cache[cache_key]
 
 /decl/flooring/grass
 	name = "grass"
