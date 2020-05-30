@@ -142,7 +142,7 @@
 	armor = list(melee = 15, bullet = 5, laser = 5,energy = 5, bomb = 5, bio = 100, rad = 80)
 	slowdown = 0
 	siemens_coefficient = 1
-	species_restricted = list("exclude",SPECIES_DIONA,SPECIES_TESHARI,SPECIES_VOX)	//this thing can autoadapt
+	species_restricted = list("exclude",SPECIES_DIONA,SPECIES_VOX)	//this thing can autoadapt
 	icon = 'icons/obj/clothing/suits_vr.dmi'
 	breach_threshold = 6 //this thing is basically tissue paper
 
@@ -157,7 +157,8 @@
 		SPECIES_SERGAL			= 'icons/mob/species/unathi/suit_vr.dmi',
 		SPECIES_VULPKANIN		= 'icons/mob/species/vulpkanin/suit_vr.dmi',
 		SPECIES_ZORREN_HIGH		= 'icons/mob/species/vulpkanin/suit_vr.dmi',
-		SPECIES_FENNEC			= 'icons/mob/species/vulpkanin/suit_vr.dmi'
+		SPECIES_FENNEC			= 'icons/mob/species/vulpkanin/suit_vr.dmi',
+		SPECIES_TESHARI			= 'icons/mob/species/seromi/suit_vr.dmi'
 		)
 	sprite_sheets_obj = list(
 		SPECIES_TAJ			= 'icons/obj/clothing/suits_vr.dmi',
@@ -168,7 +169,8 @@
 		SPECIES_SERGAL			= 'icons/obj/clothing/suits_vr.dmi',
 		SPECIES_VULPKANIN		= 'icons/obj/clothing/suits_vr.dmi',
 		SPECIES_ZORREN_HIGH		= 'icons/obj/clothing/suits_vr.dmi',
-		SPECIES_FENNEC			= 'icons/obj/clothing/suits_vr.dmi'
+		SPECIES_FENNEC			= 'icons/obj/clothing/suits_vr.dmi',
+		SPECIES_TESHARI			= 'icons/obj/clothing/suits_vr.dmi'
 		)
 
 /obj/item/clothing/suit/space/void/autolok/Initialize()
@@ -251,7 +253,7 @@
 	desc = "A rather close-fitting helmet designed to protect the wearer from hazardous conditions. Automatically deploys when the suit's sensors detect an environment that is hazardous to the wearer."
 	icon_state = "autolokhelmet"
 	item_state = "autolokhelmet"
-	species_restricted = list("exclude",SPECIES_DIONA,SPECIES_TESHARI,SPECIES_VOX)	//this thing can autoadapt too
+	species_restricted = list("exclude",SPECIES_DIONA,SPECIES_VOX)	//this thing can autoadapt too
 	icon = 'icons/obj/clothing/hats_vr.dmi'
 
 /obj/item/clothing/head/helmet/space/void/autolok
@@ -265,7 +267,8 @@
 		SPECIES_SERGAL			= 'icons/mob/species/unathi/helmet_vr.dmi',
 		SPECIES_VULPKANIN		= 'icons/mob/species/vulpkanin/helmet_vr.dmi',
 		SPECIES_ZORREN_HIGH		= 'icons/mob/species/vulpkanin/helmet_vr.dmi',
-		SPECIES_FENNEC			= 'icons/mob/species/vulpkanin/helmet_vr.dmi'
+		SPECIES_FENNEC			= 'icons/mob/species/vulpkanin/helmet_vr.dmi',
+		SPECIES_TESHARI			= 'icons/mob/species/seromi/helmet_vr.dmi'
 		)
 	sprite_sheets_obj = list(
 		SPECIES_TAJ 			= 'icons/obj/clothing/hats_vr.dmi',
@@ -276,6 +279,7 @@
 		SPECIES_SERGAL			= 'icons/obj/clothing/hats_vr.dmi',
 		SPECIES_VULPKANIN		= 'icons/obj/clothing/hats_vr.dmi',
 		SPECIES_ZORREN_HIGH		= 'icons/obj/clothing/hats_vr.dmi',
-		SPECIES_FENNEC			= 'icons/obj/clothing/hats_vr.dmi'
+		SPECIES_FENNEC			= 'icons/obj/clothing/hats_vr.dmi',
+		SPECIES_TESHARI			= 'icons/obj/clothing/hats_vr.dmi'
 		)
 	sprite_sheets_refit = list()	//have to nullify this as well just to be thorough
