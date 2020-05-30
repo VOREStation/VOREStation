@@ -133,3 +133,149 @@
 	item_state = "chronosuit"
 	icon = 'icons/obj/clothing/suits_vr.dmi'
 	icon_override = 'icons/mob/suit_vr.dmi'
+
+/obj/item/clothing/suit/space/void/autolok
+	name = "AutoLok pressure suit"
+	desc = "A high-tech snug-fitting pressure suit. Fits any species. It offers very little physical protection, but is equipped with sensors that will automatically deploy the integral helmet to protect the wearer."
+	icon_state = "autoloksuit"
+	item_state = "autoloksuit"
+	armor = list(melee = 15, bullet = 5, laser = 5,energy = 5, bomb = 5, bio = 100, rad = 80)
+	slowdown = 0
+	siemens_coefficient = 1
+	species_restricted = list("exclude",SPECIES_DIONA,SPECIES_TESHARI,SPECIES_VOX)	//this thing can autoadapt
+	icon = 'icons/obj/clothing/suits_vr.dmi'
+	breach_threshold = 6 //this thing is basically tissue paper
+
+/obj/item/clothing/suit/space/void/autolok
+	sprite_sheets = list(
+		SPECIES_HUMAN			= 'icons/mob/spacesuit_vr.dmi',
+		SPECIES_TAJ 			= 'icons/mob/species/tajaran/suit_vr.dmi',
+		SPECIES_SKRELL 			= 'icons/mob/species/skrell/suit_vr.dmi',
+		SPECIES_UNATHI 			= 'icons/mob/species/unathi/suit_vr.dmi',
+		SPECIES_XENOHYBRID 		= 'icons/mob/species/unathi/suit_vr.dmi',
+		SPECIES_AKULA			= 'icons/mob/species/unathi/suit_vr.dmi',
+		SPECIES_SERGAL			= 'icons/mob/species/unathi/suit_vr.dmi',
+		SPECIES_VULPKANIN		= 'icons/mob/species/vulpkanin/suit_vr.dmi',
+		SPECIES_ZORREN_HIGH		= 'icons/mob/species/vulpkanin/suit_vr.dmi',
+		SPECIES_FENNEC			= 'icons/mob/species/vulpkanin/suit_vr.dmi'
+		)
+	sprite_sheets_obj = list(
+		SPECIES_TAJ			= 'icons/obj/clothing/suits_vr.dmi',
+		SPECIES_SKRELL			= 'icons/obj/clothing/suits_vr.dmi',
+		SPECIES_UNATHI			= 'icons/obj/clothing/suits_vr.dmi',
+		SPECIES_XENOHYBRID		= 'icons/obj/clothing/suits_vr.dmi',
+		SPECIES_AKULA			= 'icons/obj/clothing/suits_vr.dmi',
+		SPECIES_SERGAL			= 'icons/obj/clothing/suits_vr.dmi',
+		SPECIES_VULPKANIN		= 'icons/obj/clothing/suits_vr.dmi',
+		SPECIES_ZORREN_HIGH		= 'icons/obj/clothing/suits_vr.dmi',
+		SPECIES_FENNEC			= 'icons/obj/clothing/suits_vr.dmi'
+		)
+
+/obj/item/clothing/suit/space/void/autolok/Initialize()
+	..()
+	helmet = new /obj/item/clothing/head/helmet/space/void/autolok //autoinstall the helmet
+
+//override the attackby screwdriver proc so that people can't remove the helmet
+/obj/item/clothing/suit/space/void/attackby(obj/item/W as obj, mob/user as mob)
+
+	if(!istype(user,/mob/living)) return
+
+	if(istype(W,/obj/item/clothing/accessory) || istype(W, /obj/item/weapon/hand_labeler))
+		return ..()
+
+	if(user.get_inventory_slot(src) == slot_wear_suit)
+		to_chat(user, "<span class='warning'>You cannot modify \the [src] while it is being worn.</span>")
+		return
+
+	if(W.is_screwdriver())
+		if(boots || tank)
+			var/choice = input("What component would you like to remove?") as null|anything in list(boots,tank,cooler)
+			if(!choice) return
+
+			if(choice == tank)	//No, a switch doesn't work here. Sorry. ~Techhead
+				to_chat(user, "You pop \the [tank] out of \the [src]'s storage compartment.")
+				tank.forceMove(get_turf(src))
+				playsound(src, W.usesound, 50, 1)
+				src.tank = null
+			else if(choice == cooler)
+				to_chat(user, "You pop \the [cooler] out of \the [src]'s storage compartment.")
+				cooler.forceMove(get_turf(src))
+				playsound(src, W.usesound, 50, 1)
+				src.cooler = null
+			else if(choice == boots)
+				to_chat(user, "You detach \the [boots] from \the [src]'s boot mounts.")
+				boots.forceMove(get_turf(src))
+				playsound(src, W.usesound, 50, 1)
+				src.boots = null
+		else
+			to_chat(user, "\The [src] does not have anything installed.")
+		return
+	else if(istype(W,/obj/item/clothing/shoes/magboots))
+		if(boots)
+			to_chat(user, "\The [src] already has magboots installed.")
+		else
+			to_chat(user, "You attach \the [W] to \the [src]'s boot mounts.")
+			user.drop_item()
+			W.forceMove(src)
+			boots = W
+		return
+	else if(istype(W,/obj/item/weapon/tank))
+		if(tank)
+			to_chat(user, "\The [src] already has an airtank installed.")
+		else if(cooler)
+			to_chat(user, "\The [src]'s suit cooling unit is in the way.  Remove it first.")
+		else if(istype(W,/obj/item/weapon/tank/phoron))
+			to_chat(user, "\The [W] cannot be inserted into \the [src]'s storage compartment.")
+		else
+			to_chat(user, "You insert \the [W] into \the [src]'s storage compartment.")
+			user.drop_item()
+			W.forceMove(src)
+			tank = W
+		return
+	else if(istype(W,/obj/item/device/suit_cooling_unit))
+		if(cooler)
+			to_chat(user, "\The [src] already has a suit cooling unit installed.")
+		else if(tank)
+			to_chat(user, "\The [src]'s airtank is in the way.  Remove it first.")
+		else
+			to_chat(user, "You insert \the [W] into \the [src]'s storage compartment.")
+			user.drop_item()
+			W.forceMove(src)
+			cooler = W
+		return
+
+	..()
+
+/obj/item/clothing/head/helmet/space/void/autolok
+	name = "AutoLok pressure helmet"
+	desc = "A rather close-fitting helmet designed to protect the wearer from hazardous conditions. Automatically deploys when the suit's sensors detect an environment that is hazardous to the wearer."
+	icon_state = "autolokhelmet"
+	item_state = "autolokhelmet"
+	species_restricted = list("exclude",SPECIES_DIONA,SPECIES_TESHARI,SPECIES_VOX)	//this thing can autoadapt too
+	icon = 'icons/obj/clothing/hats_vr.dmi'
+
+/obj/item/clothing/head/helmet/space/void/autolok
+	sprite_sheets = list(
+		SPECIES_HUMAN			= 'icons/mob/head_vr.dmi',
+		SPECIES_TAJ 			= 'icons/mob/species/tajaran/helmet_vr.dmi',
+		SPECIES_SKRELL 			= 'icons/mob/species/skrell/helmet_vr.dmi',
+		SPECIES_UNATHI 			= 'icons/mob/species/unathi/helmet_vr.dmi',
+		SPECIES_XENOHYBRID 		= 'icons/mob/species/unathi/helmet_vr.dmi',
+		SPECIES_AKULA			= 'icons/mob/species/unathi/helmet_vr.dmi',
+		SPECIES_SERGAL			= 'icons/mob/species/unathi/helmet_vr.dmi',
+		SPECIES_VULPKANIN		= 'icons/mob/species/vulpkanin/helmet_vr.dmi',
+		SPECIES_ZORREN_HIGH		= 'icons/mob/species/vulpkanin/helmet_vr.dmi',
+		SPECIES_FENNEC			= 'icons/mob/species/vulpkanin/helmet_vr.dmi'
+		)
+	sprite_sheets_obj = list(
+		SPECIES_TAJ 			= 'icons/obj/clothing/hats_vr.dmi',
+		SPECIES_SKRELL			= 'icons/obj/clothing/hats_vr.dmi',
+		SPECIES_UNATHI			= 'icons/obj/clothing/hats_vr.dmi',
+		SPECIES_XENOHYBRID		= 'icons/obj/clothing/hats_vr.dmi',
+		SPECIES_AKULA			= 'icons/obj/clothing/hats_vr.dmi',
+		SPECIES_SERGAL			= 'icons/obj/clothing/hats_vr.dmi',
+		SPECIES_VULPKANIN		= 'icons/obj/clothing/hats_vr.dmi',
+		SPECIES_ZORREN_HIGH		= 'icons/obj/clothing/hats_vr.dmi',
+		SPECIES_FENNEC			= 'icons/obj/clothing/hats_vr.dmi'
+		)
+	sprite_sheets_refit = list()	//have to nullify this as well just to be thorough
