@@ -142,8 +142,9 @@
 	armor = list(melee = 15, bullet = 5, laser = 5,energy = 5, bomb = 5, bio = 100, rad = 80)
 	slowdown = 0
 	siemens_coefficient = 1
-	species_restricted = list("exclude",SPECIES_TESHARI,SPECIES_VOX)	//this thing can autoadapt
+	species_restricted = list("exclude",SPECIES_DIONA,SPECIES_TESHARI,SPECIES_VOX)	//this thing can autoadapt
 	icon = 'icons/obj/clothing/suits_vr.dmi'
+	breach_threshold = 6 //this thing is basically tissue paper
 
 /obj/item/clothing/suit/space/void/autolok
 	sprite_sheets = list(
@@ -174,6 +175,7 @@
 	..()
 	helmet = new /obj/item/clothing/head/helmet/space/void/autolok //autoinstall the helmet
 
+//override the attackby screwdriver proc so that people can't remove the helmet
 /obj/item/clothing/suit/space/void/attackby(obj/item/W as obj, mob/user as mob)
 
 	if(!istype(user,/mob/living)) return
@@ -249,7 +251,7 @@
 	desc = "A rather close-fitting helmet designed to protect the wearer from hazardous conditions. Automatically deploys when the suit's sensors detect an environment that is hazardous to the wearer."
 	icon_state = "autolokhelmet"
 	item_state = "autolokhelmet"
-	species_restricted = list("exclude",SPECIES_TESHARI,SPECIES_VOX)	//this thing can autoadapt too
+	species_restricted = list("exclude",SPECIES_DIONA,SPECIES_TESHARI,SPECIES_VOX)	//this thing can autoadapt too
 	icon = 'icons/obj/clothing/hats_vr.dmi'
 
 /obj/item/clothing/head/helmet/space/void/autolok
