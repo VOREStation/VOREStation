@@ -23491,19 +23491,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
-"aSH" = (
-/obj/structure/table/bench/standard,
-/obj/effect/landmark/start{
-	name = "Medical Doctor"
-	},
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/breakroom)
 "aSI" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 1
@@ -29149,6 +29136,25 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/surface_two_hall)
+"qaW" = (
+/obj/structure/table/bench/standard,
+/obj/effect/landmark/start{
+	name = "Medical Doctor"
+	},
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 1
+	},
+/obj/machinery/computer/security/telescreen/entertainment{
+	desc = "Looks like it's set to ree-Anur-ntertanment, I wonder what else is on?";
+	icon_state = "frame";
+	pixel_x = 0;
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/breakroom)
 "qfL" = (
 /obj/structure/catwalk,
 /obj/structure/cable{
@@ -42215,7 +42221,7 @@ aRO
 aap
 acD
 aSr
-aSH
+qaW
 aSO
 aSW
 aSr
