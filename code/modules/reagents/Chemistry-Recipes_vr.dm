@@ -129,6 +129,146 @@
 	required_reagents = list("whiskey" = 1, "protein" = 1)
 	result_amount = 2
 
+/datum/chemical_reaction/drinks/bigbeer
+	name = "Giant Beer"
+	id = "bigbeer"
+	result = "bigbeer"
+	required_reagents = list("syndicatebomb" = 1, "manlydorf" = 1, "grog" =1)
+	result_amount = 3
+
+/datum/chemical_reaction/drinks/sweettea
+	name = "Sweetened Tea"
+	id = "sweettea"
+	result = "sweettea"
+	required_reagents = list("icetea" = 2, "sugar" = 1,)
+	result_amount = 3
+
+/datum/chemical_reaction/drinks/unsweettea
+	name = "Unsweetened Tea"
+	id = "unsweettea"
+	result = "unsweettea"
+	required_reagents = list("sweettea" = 3, "phoron" = 1)
+	result_amount = 2
+
+/datum/chemical_reaction/drinks/galacticpanic
+	name = "Galactic Panic Attack"
+	id = "galacticpanic"
+	result = "galacticpanic"
+	required_reagents = list("gargleblaster" = 1, "singulo" = 1, "phoronspecial" =1, "neurotoxin" = 1, "atomicbomb" = 1, "hippiesdelight" = 1)
+	result_amount = 6
+
+/datum/chemical_reaction/drinks/bulldog
+	name = "Space Bulldog"
+	id = "bulldog"
+	result = "bulldog"
+	required_reagents = list("kahlua" = 1, "vodka" = 1, "cola" =1, "cream" =1)
+	result_amount = 4
+
+/datum/chemical_reaction/drinks/sbagliato
+	name = "Negroni Sbagliato"
+	id = "sbagliato"
+	result = "sbagliato"
+	required_reagents = list("champagne" = 1, "vermouth" = 1, "sodawater" =1)
+	result_amount = 3
+
+/datum/chemical_reaction/drinks/italiancrisis
+	name = "Italian Crisis"
+	id = "italiancrisis"
+	result = "italiancrisis"
+	required_reagents = list("bulldog" = 1, "sbagliato" = 1)
+	result_amount = 2
+
+/datum/chemical_reaction/drinks/sugarrush
+	name = "Sweet Rush"
+	id = "sugarrush"
+	result = "sugarrush"
+	required_reagents = list("sugar" = 1, "sodawater" = 1, "vodka" =1)
+	result_amount = 3
+
+/datum/chemical_reaction/drinks/lotus
+	name = "Lotus"
+	id = "lotus"
+	result = "lotus"
+	required_reagents = list("sbagliato" = 1, "sugarrush" = 1)
+	result_amount = 2
+
+/datum/chemical_reaction/drinks/shroomjuice
+	name = "Dumb Shroom Juice"
+	id = "shroomjuice"
+	result = "shroomjuice"
+	required_reagents = list("psilocybin" = 1, "applejuice" = 1, "limejuice" =1)
+	result_amount = 3
+
+/datum/chemical_reaction/drinks/russianroulette
+	name = "Russian Roulette"
+	id = "russianroulette"
+	result = "russianroulette"
+	required_reagents = list("whiterussian" = 5, "iron" = 1)
+	result_amount = 6
+
+/datum/chemical_reaction/drinks/lovepotion
+	name = "Love Potion"
+	id = "lovepotion"
+	result = "lovepotion"
+	required_reagents = list("honey" = 1, "sexonthebeach" = 5)
+	result_amount = 6
+
+/datum/chemical_reaction/drinks/honeyshot
+	name = "Honey Shot"
+	id = "honeyshot"
+	result = "honeyshot"
+	required_reagents = list("honey" = 1, "vodka" = 1, "grenadine" =1)
+	result_amount = 3
+
+/datum/chemical_reaction/drinks/appletini
+	name = "Appletini"
+	id = "appletini"
+	result = "appletini"
+	required_reagents = list("applejuice" = 2, "vodka" = 1)
+	result_amount = 3
+
+/datum/chemical_reaction/drinks/glowingappletini
+	name = "Glowing Appletini"
+	id = "glowingappletini"
+	result = "glowingappletini"
+	required_reagents = list("appletini" = 5, "uranium" = 1)
+	result_amount = 6
+
+/datum/chemical_reaction/drinks/scsatw
+	name = "Slow Comfortable Screw Against the Wall"
+	id = "scsatw"
+	result = "scsatw"
+	required_reagents = list("vodka" = 1, "orangejuice" = 1, "rum" =1, "whiskey" =1, "gin" =1)
+	result_amount = 5
+
+/datum/chemical_reaction/drinks/choccymilk
+	name = "Choccy Milk"
+	id = "choccymilk"
+	result = "choccymilk"
+	required_reagents = list("milk" = 3, "coco" = 1)
+	result_amount = 4
+
+/datum/chemical_reaction/drinks/redspaceflush
+	name = "Redspace Flush"
+	id = "redspaceflush"
+	result = "redspaceflush"
+	required_reagents = list("rum" = 2, "whiskey" = 2, "blood" =1, "phoron" =1)
+	result_amount = 6
+
+/datum/chemical_reaction/drinks/graveyard
+	name = "Graveyard"
+	id = "graveyard"
+	result = "graveyard"
+	required_reagents = list("cola" = 1, "spacemountainwind" = 1, "dr_gibb" =1, "space_up" = 1)
+	result_amount = 4
+
+/datum/chemical_reaction/drinks/hairoftherat
+	name = "Hair of the Rat"
+	id = "hairoftherat"
+	result = "hairoftherat"
+	required_reagents = list("protein" = 3, "nutriment" = 2, "whiskey" =1)
+	result_amount = 6
+
 ///////////////////////////////////////////////////////////////////////////////////
 /// Reagent colonies.
 /datum/chemical_reaction/meatcolony
