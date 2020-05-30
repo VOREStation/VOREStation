@@ -446,19 +446,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["hair_style"])
-<<<<<<< HEAD
-		var/list/valid_hairstyles = list()
-		for(var/hairstyle in hair_styles_list)
-			var/datum/sprite_accessory/S = hair_styles_list[hairstyle]
-			if(!(pref.species in S.species_allowed) && (!pref.custom_base || !(pref.custom_base in S.species_allowed))) //VOREStation Edit - Custom species base species allowance
-				continue
-			if((!S.ckeys_allowed) || (usr.ckey in S.ckeys_allowed)) //VOREStation Edit, allows ckey locked hairstyles.
-				valid_hairstyles[S.name] = hairstyle //VOREStation Edit, allows ckey locked hairstyles.
-
-			//valid_hairstyles[hairstyle] = hair_styles_list[hairstyle] //VOREStation Edit. Replaced by above.
-=======
 		var/list/valid_hairstyles = pref.get_valid_hairstyles()
->>>>>>> bb08266... Merge pull request #7215 from KasparoVy/faster-faster-yet-faster
 
 		var/new_h_style = input(user, "Choose your character's hair style:", "Character Preference", pref.h_style)  as null|anything in valid_hairstyles
 		if(new_h_style && CanUseTopic(user))
@@ -526,21 +514,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["facial_style"])
-<<<<<<< HEAD
-		var/list/valid_facialhairstyles = list()
-		for(var/facialhairstyle in facial_hair_styles_list)
-			var/datum/sprite_accessory/S = facial_hair_styles_list[facialhairstyle]
-			if(pref.biological_gender == MALE && S.gender == FEMALE)
-				continue
-			if(pref.biological_gender == FEMALE && S.gender == MALE)
-				continue
-			if(!(pref.species in S.species_allowed) && (!pref.custom_base || !(pref.custom_base in S.species_allowed))) //VOREStation Edit - Custom species base species allowance
-				continue
-
-			valid_facialhairstyles[facialhairstyle] = facial_hair_styles_list[facialhairstyle]
-=======
 		var/list/valid_facialhairstyles = pref.get_valid_facialhairstyles()
->>>>>>> bb08266... Merge pull request #7215 from KasparoVy/faster-faster-yet-faster
 
 		var/new_f_style = input(user, "Choose your character's facial-hair style:", "Character Preference", pref.f_style)  as null|anything in valid_facialhairstyles
 		if(new_f_style && has_flag(mob_species, HAS_HAIR_COLOR) && CanUseTopic(user))
