@@ -577,12 +577,6 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "dragon-horns"
-
-/datum/sprite_accessory/ears/moelamp
-	name = "moelamp"
-	desc = ""
-	icon_state = "moelamp"
-	ckeys_allowed = list("drainquake")
 /*
 ////////////////////////////
 /  =--------------------=  /
@@ -1756,3 +1750,4 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "wardtakahashi_vulp_dc_mark"
+
