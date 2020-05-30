@@ -780,15 +780,13 @@
 	product_slogans = "Try our new nougat bar!;Twice the calories for half the price!"
 	product_ads = "The healthiest!;Award-winning chocolate bars!;Mmm! So good!;Oh my god it's so juicy!;Have a snack.;Snacks are good for you!;Have some more Getmore!;Best quality snacks straight from mars.;We love chocolate!;Try our new jerky!"
 	icon_state = "snack"
-	products = list(/obj/item/weapon/reagent_containers/food/snacks/candy = 6,/obj/item/weapon/reagent_containers/food/drinks/dry_ramen = 6,/obj/item/weapon/reagent_containers/food/snacks/chips =6,
-					/obj/item/weapon/reagent_containers/food/snacks/sosjerky = 6,/obj/item/weapon/reagent_containers/food/snacks/no_raisin = 6,/obj/item/weapon/reagent_containers/food/snacks/spacetwinkie = 6,
-					/obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers = 6, /obj/item/weapon/reagent_containers/food/snacks/tastybread = 6, /obj/item/weapon/reagent_containers/food/snacks/skrellsnacks = 3)
-	contraband = list(/obj/item/weapon/reagent_containers/food/snacks/syndicake = 6,/obj/item/weapon/reagent_containers/food/snacks/unajerky = 6,)
-	//VOREStation Edit Start
-	prices = list(/obj/item/weapon/reagent_containers/food/snacks/candy = 1,/obj/item/weapon/reagent_containers/food/drinks/dry_ramen = 2,/obj/item/weapon/reagent_containers/food/snacks/chips = 1,
+	products = list(/obj/item/weapon/reagent_containers/food/snacks/candy = 12,/obj/item/weapon/reagent_containers/food/drinks/dry_ramen = 12,/obj/item/weapon/reagent_containers/food/snacks/chips =12,
+					/obj/item/weapon/reagent_containers/food/snacks/sosjerky = 12,/obj/item/weapon/reagent_containers/food/snacks/no_raisin = 12,/obj/item/weapon/reagent_containers/food/snacks/spacetwinkie = 12,
+					/obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers = 12, /obj/item/weapon/reagent_containers/food/snacks/tastybread = 12, /obj/item/weapon/reagent_containers/food/snacks/skrellsnacks = 6)
+	contraband = list(/obj/item/weapon/reagent_containers/food/snacks/syndicake = 6,/obj/item/weapon/reagent_containers/food/snacks/unajerky = 12,)
+	prices = list(/obj/item/weapon/reagent_containers/food/snacks/candy = 1,/obj/item/weapon/reagent_containers/food/drinks/dry_ramen = 5,/obj/item/weapon/reagent_containers/food/snacks/chips = 1,
 					/obj/item/weapon/reagent_containers/food/snacks/sosjerky = 2,/obj/item/weapon/reagent_containers/food/snacks/no_raisin = 1,/obj/item/weapon/reagent_containers/food/snacks/spacetwinkie = 1,
 					/obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers = 1, /obj/item/weapon/reagent_containers/food/snacks/tastybread = 2, /obj/item/weapon/reagent_containers/food/snacks/skrellsnacks = 2)
-	//VOREStation Edit End
 					
 /obj/machinery/vending/cola
 	name = "Robust Softdrinks"
@@ -814,11 +812,11 @@
 	name = "SweatMAX"
 	desc = "Fueled by your inner inadequacy!"
 	icon_state = "fitness"
-	products = list(/obj/item/weapon/reagent_containers/food/drinks/smallmilk = 8,
-					/obj/item/weapon/reagent_containers/food/drinks/smallchocmilk = 8,
-					/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake = 16,	//VOREStation Edit,
+	products = list(/obj/item/weapon/reagent_containers/food/drinks/smallmilk = 16,
+					/obj/item/weapon/reagent_containers/food/drinks/smallchocmilk = 16,
+					/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake = 8,
 					/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask = 8,
-					/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar = 8,
+					/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar = 16,
 					/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 8,
 					/obj/item/weapon/reagent_containers/pill/diet = 8,
 					///obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/glucose = 5,	//VOREStation Removal,
@@ -858,13 +856,13 @@
 	product_ads = "Probably not bad for you!;Don't believe the scientists!;It's good for you!;Don't quit, buy more!;Smoke!;Nicotine heaven.;Best cigarettes since 2150.;Award-winning cigs.;Feeling temperamental? Try a Temperamento!;Carcinoma Angels - go fuck yerself!;Don't be so hard on yourself, kid. Smoke a Lucky Star!"
 	vend_delay = 34
 	icon_state = "cigs"
-	products = list(/obj/item/weapon/storage/fancy/cigarettes = 5,
-					/obj/item/weapon/storage/fancy/cigarettes/dromedaryco = 5,
-					/obj/item/weapon/storage/fancy/cigarettes/killthroat = 5,
-					/obj/item/weapon/storage/fancy/cigarettes/luckystars = 5,
-					/obj/item/weapon/storage/fancy/cigarettes/jerichos = 5,
-					/obj/item/weapon/storage/fancy/cigarettes/menthols = 5,
-					/obj/item/weapon/storage/rollingpapers = 5,
+	products = list(/obj/item/weapon/storage/fancy/cigarettes = 10,
+					/obj/item/weapon/storage/fancy/cigarettes/dromedaryco = 10,
+					/obj/item/weapon/storage/fancy/cigarettes/killthroat = 10,
+					/obj/item/weapon/storage/fancy/cigarettes/luckystars = 10,
+					/obj/item/weapon/storage/fancy/cigarettes/jerichos = 10,
+					/obj/item/weapon/storage/fancy/cigarettes/menthols = 10,
+					/obj/item/weapon/storage/rollingpapers = 10,
 					/obj/item/weapon/storage/box/matches = 10,
 					/obj/item/weapon/flame/lighter/random = 4)
 	contraband = list(/obj/item/weapon/flame/lighter/zippo = 4)
