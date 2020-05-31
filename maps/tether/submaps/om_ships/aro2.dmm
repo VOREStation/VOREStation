@@ -107,6 +107,9 @@
 	name = "west bump";
 	pixel_x = -24
 	},
+/obj/structure/closet/autolok_wall{
+	pixel_y = 32
+	},
 /turf/simulated/floor/carpet/blue,
 /area/aro2/room1)
 "aD" = (
@@ -418,6 +421,9 @@
 	name = "west bump";
 	pixel_x = -24
 	},
+/obj/structure/closet/autolok_wall{
+	pixel_y = 32
+	},
 /turf/simulated/floor/carpet/gaycarpet,
 /area/aro2/room2)
 "cE" = (
@@ -561,9 +567,6 @@
 /obj/structure/flora/tree/jungle_small,
 /turf/simulated/floor/grass,
 /area/aro2/boatdeck)
-"dF" = (
-/turf/simulated/floor/tiled/eris/techmaint_perforated,
-/area/aro2/dining)
 "dG" = (
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -813,6 +816,9 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
+/obj/structure/closet/autolok_wall{
+	pixel_y = 32
+	},
 /turf/simulated/floor/tiled/eris/dark,
 /area/aro2/starboardbay)
 "fn" = (
@@ -924,6 +930,9 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8"
+	},
+/obj/structure/closet/autolok_wall{
+	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/eris/dark,
 /area/aro2/portbay)
@@ -1467,6 +1476,9 @@
 	name = "west bump";
 	pixel_x = -24
 	},
+/obj/structure/closet/autolok_wall{
+	pixel_y = 32
+	},
 /turf/simulated/floor/carpet/purcarpet,
 /area/aro2/room3)
 "lR" = (
@@ -1949,6 +1961,12 @@
 /obj/machinery/portable_atmospherics/canister/air,
 /turf/simulated/floor/plating/eris/under,
 /area/aro2/airarea)
+"rd" = (
+/obj/structure/closet/autolok_wall{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/aro2/powerarea)
 "rl" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -2328,7 +2346,6 @@
 	name = "exterior shutters";
 	pixel_x = 28
 	},
-/obj/structure/closet/crate/bin,
 /turf/simulated/floor/wood,
 /area/aro2/dining)
 "va" = (
@@ -2394,12 +2411,6 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/dark/cyancorner,
-/area/aro2/dining)
-"vJ" = (
-/obj/machinery/vending/cola{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/eris/techmaint_perforated,
 /area/aro2/dining)
 "vN" = (
 /obj/structure/cable/cyan{
@@ -2505,6 +2516,8 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/structure/table/steel,
+/obj/machinery/chemical_dispenser/bar_soft/full,
 /turf/simulated/floor/tiled/eris/techmaint_perforated,
 /area/aro2/dining)
 "xk" = (
@@ -2637,9 +2650,16 @@
 /turf/simulated/floor/tiled/eris/dark,
 /area/aro2/boatdeck)
 "yK" = (
-/obj/machinery/vending/food/arojoan{
-	dir = 8
+/obj/structure/closet/secure_closet/freezer/fridge{
+	starts_with = null
 	},
+/obj/item/weapon/reagent_containers/food/snacks/generalschicken,
+/obj/item/weapon/storage/box/wings,
+/obj/item/weapon/reagent_containers/food/snacks/kitsuneudon,
+/obj/item/weapon/reagent_containers/food/snacks/fries,
+/obj/item/weapon/reagent_containers/food/snacks/grilledcheese,
+/obj/item/weapon/reagent_containers/food/snacks/jellysandwich,
+/obj/item/weapon/reagent_containers/food/snacks/enchiladas,
 /turf/simulated/floor/tiled/eris/techmaint_perforated,
 /area/aro2/dining)
 "yY" = (
@@ -4184,6 +4204,12 @@
 	},
 /turf/simulated/floor/tiled/eris/dark,
 /area/aro2/portbay)
+"PR" = (
+/obj/structure/closet/autolok_wall{
+	pixel_y = 32
+	},
+/turf/simulated/floor/carpet/oracarpet,
+/area/aro2/cockpit)
 "PV" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -4370,10 +4396,10 @@
 /turf/simulated/floor/plating/eris/under,
 /area/aro2/airarea)
 "Sp" = (
-/obj/machinery/vending/snack{
+/obj/machinery/vending/dinnerware{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/eris/techmaint_perforated,
+/turf/simulated/floor/wood,
 /area/aro2/dining)
 "Sq" = (
 /obj/structure/railing/grey{
@@ -4382,11 +4408,8 @@
 /turf/simulated/floor/water/indoors/surfluid,
 /area/aro2/surfluid)
 "Sr" = (
-/obj/machinery/chemical_dispenser/bar_soft/full{
-	dir = 8
-	},
-/obj/structure/table/steel,
-/turf/simulated/floor/tiled/eris/techmaint_perforated,
+/obj/structure/closet/crate/bin,
+/turf/simulated/floor/wood,
 /area/aro2/dining)
 "St" = (
 /obj/machinery/computer/ship/navigation/telescreen{
@@ -4738,6 +4761,12 @@
 /obj/structure/table/fancyblack,
 /turf/simulated/floor/carpet/bcarpet,
 /area/shuttle/aroboat2)
+"VW" = (
+/obj/structure/closet/autolok_wall{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/aro2/airarea)
 "VZ" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -13606,7 +13635,7 @@ Jm
 lE
 gc
 jm
-sP
+rd
 oj
 oj
 oj
@@ -14277,9 +14306,9 @@ zV
 oU
 bU
 xb
-dF
-dF
-dF
+dk
+dk
+dk
 QW
 QW
 dk
@@ -14419,7 +14448,7 @@ pe
 pe
 bU
 yK
-vJ
+dk
 Sr
 Sp
 QW
@@ -15267,7 +15296,7 @@ az
 az
 aL
 aL
-XN
+PR
 XN
 Me
 yx
@@ -16304,7 +16333,7 @@ Ln
 lK
 gi
 jt
-nq
+VW
 qT
 Pd
 ih

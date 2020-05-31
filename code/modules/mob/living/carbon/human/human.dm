@@ -1652,6 +1652,11 @@
 	msg += get_display_species()
 	return msg
 
+/mob/living/carbon/human/reduce_cuff_time()
+	if(istype(gloves, /obj/item/clothing/gloves/gauntlets/rig))
+		return 2
+	return ..()
+
 /mob/living/carbon/human/pull_damage()
 	if(((health - halloss) <= config.health_threshold_softcrit))
 		for(var/name in organs_by_name)

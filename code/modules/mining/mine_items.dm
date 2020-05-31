@@ -138,11 +138,8 @@
 /obj/structure/closet/crate/miningcar
 	desc = "A mining car. This one doesn't work on rails, but has to be dragged."
 	name = "Mining car (not for rails)"
-	icon = 'icons/obj/storage.dmi'
-	icon_state = "miningcar"
+	icon = 'icons/obj/closets/miningcar.dmi'
 	density = 1
-	icon_opened = "miningcaropen"
-	icon_closed = "miningcar"
 
 // Flags.
 
