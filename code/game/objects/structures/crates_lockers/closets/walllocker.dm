@@ -8,6 +8,7 @@
 	closet_appearance = /decl/closet_appearance/wall
 	density = 0
 	anchored = 1
+	store_mobs = 0
 
 //spawns endless (3 sets) amounts of breathmask, emergency oxy tank and crowbar
 

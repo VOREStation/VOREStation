@@ -201,3 +201,19 @@
 		/obj/item/seeds/kudzuseed,
 		/obj/item/seeds/libertymycelium,
 		/obj/item/seeds/reishimycelium)
+
+/obj/structure/closet/autolok_wall
+	name = "autolok suit storage"
+	desc = "It's wall-mounted storage unit for an AutoLok suit."
+	icon = 'icons/obj/closets/bases/wall.dmi'
+	closet_appearance = /decl/closet_appearance/wall/autolok
+	anchored = 1
+	density = 0
+	wall_mounted = 1
+	store_mobs = 0
+
+	starts_with = list(
+		/obj/item/clothing/suit/space/void/autolok,
+		/obj/item/weapon/tank/emergency/oxygen/double,
+		/obj/item/device/suit_cooling_unit/emergency
+	)

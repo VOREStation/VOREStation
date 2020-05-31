@@ -1094,7 +1094,9 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/closet/emcloset,
+/obj/structure/closet/autolok_wall{
+	pixel_x = -27
+	},
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/deckone/central_hallway)
 "iX" = (
@@ -1876,7 +1878,9 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
-/obj/structure/closet/emcloset,
+/obj/structure/closet/autolok_wall{
+	pixel_y = -24
+	},
 /turf/simulated/floor/tiled/eris/dark/cyancorner,
 /area/talon/deckone/bridge)
 "pJ" = (
@@ -2307,7 +2311,9 @@
 	icon_state = "extinguisher_closed";
 	pixel_x = -30
 	},
-/obj/structure/closet/emcloset,
+/obj/structure/closet/autolok_wall{
+	pixel_y = -24
+	},
 /turf/simulated/floor/tiled/eris/dark/cyancorner,
 /area/talon/deckone/bridge)
 "uj" = (
@@ -3019,6 +3025,15 @@
 	},
 /turf/simulated/floor/tiled/eris/steel/gray_perforated,
 /area/talon/deckone/workroom)
+"AU" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/closet/autolok_wall{
+	pixel_x = 27
+	},
+/turf/simulated/floor/tiled/eris/steel,
+/area/talon/deckone/central_hallway)
 "AV" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled/eris/steel,
@@ -16438,7 +16453,7 @@ fJ
 Bj
 Jw
 oe
-iT
+AU
 IW
 Zq
 Lf

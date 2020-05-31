@@ -190,6 +190,7 @@
 	anchored = 1
 	density = 0
 	wall_mounted = 1
+	store_mobs = 0
 
 	starts_with = list(
 		/obj/item/clothing/suit/fire/firefighter,
@@ -209,3 +210,4 @@
 	anchored = 1
 	density = 0
 	wall_mounted = 1
+	store_mobs = 0

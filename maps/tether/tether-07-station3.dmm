@@ -29814,6 +29814,9 @@
 /obj/structure/bed/chair/shuttle{
 	dir = 4
 	},
+/obj/structure/closet/autolok_wall{
+	pixel_y = 32
+	},
 /turf/simulated/floor/tiled/eris/white,
 /area/shuttle/medivac/general)
 "gYC" = (
@@ -30408,6 +30411,9 @@
 	health = 1e+006
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/aux,
+/obj/structure/closet/autolok_wall{
+	pixel_x = 27
+	},
 /turf/simulated/floor/tiled/eris/steel/gray_perforated,
 /area/shuttle/securiship/general)
 "knm" = (

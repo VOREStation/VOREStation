@@ -2485,15 +2485,12 @@
 	icon_state = "0-4"
 	},
 /obj/structure/closet/crate/plastic,
-/obj/item/clothing/suit/space/emergency,
 /obj/item/device/flashlight,
 /obj/item/weapon/storage/briefcase/inflatable,
-/obj/item/clothing/head/helmet/space/emergency,
 /obj/item/device/flashlight/glowstick,
 /obj/item/device/flashlight/glowstick,
 /obj/item/device/flashlight/glowstick,
 /obj/item/weapon/storage/box/metalfoam,
-/obj/item/weapon/tank/oxygen,
 /obj/item/device/survivalcapsule/luxury,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/talon/decktwo/lifeboat)
@@ -2986,6 +2983,9 @@
 /turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/decktwo_aft)
 "Bd" = (
+/obj/structure/closet/autolok_wall{
+	pixel_y = -24
+	},
 /turf/simulated/floor/tiled/eris/dark/cyancorner,
 /area/talon/decktwo/bridge_upper)
 "Bv" = (
@@ -3100,6 +3100,9 @@
 "CN" = (
 /obj/structure/bed/padded,
 /obj/item/weapon/bedsheet,
+/obj/structure/closet/autolok_wall{
+	pixel_x = 27
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/talon/decktwo/lifeboat)
 "CW" = (
@@ -3638,6 +3641,9 @@
 	},
 /obj/item/weapon/bedsheet,
 /obj/structure/bed/padded,
+/obj/structure/closet/autolok_wall{
+	pixel_x = 27
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/talon/decktwo/lifeboat)
 "Lj" = (
