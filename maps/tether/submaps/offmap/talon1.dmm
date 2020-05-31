@@ -8,6 +8,15 @@
 "ac" = (
 /turf/simulated/wall,
 /area/talon/deckone/bridge)
+"ah" = (
+/obj/effect/floor_decal/industrial/outline/grey,
+/obj/machinery/atmospherics/portables_connector/aux{
+	dir = 4;
+	icon_state = "map_connector-aux"
+	},
+/obj/machinery/portable_atmospherics/canister/air/airlock,
+/turf/simulated/floor/tiled/eris/steel/gray_perforated,
+/area/talon/deckone/port_eng)
 "aj" = (
 /obj/machinery/light{
 	dir = 8;
@@ -1402,19 +1411,6 @@
 	},
 /turf/simulated/floor/tiled/eris/white/danger,
 /area/talon/deckone/armory)
-"lk" = (
-/obj/machinery/atmospherics/portables_connector/fuel{
-	dir = 1;
-	icon_state = "map_connector-fuel"
-	},
-/obj/effect/floor_decal/industrial/outline/red,
-/obj/machinery/portable_atmospherics/canister/phoron,
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = -24
-	},
-/turf/simulated/floor/tiled/eris/dark/brown_perforated,
-/area/talon/deckone/starboard_eng)
 "lo" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -2002,6 +1998,15 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/cyancorner,
 /area/talon/deckone/port_solar)
+"qR" = (
+/obj/machinery/atmospherics/portables_connector/fuel{
+	dir = 1;
+	icon_state = "map_connector-fuel"
+	},
+/obj/effect/floor_decal/industrial/outline/red,
+/obj/machinery/portable_atmospherics/canister/phoron,
+/turf/simulated/floor/tiled/eris/steel/gray_perforated,
+/area/talon/deckone/starboard_eng)
 "rm" = (
 /obj/effect/floor_decal/industrial/warning/dust/corner{
 	dir = 1;
@@ -2328,6 +2333,15 @@
 	},
 /turf/simulated/floor/hull/airless,
 /area/talon/maintenance/deckone_starboard_aft_wing)
+"up" = (
+/obj/effect/floor_decal/industrial/outline/grey,
+/obj/machinery/atmospherics/portables_connector/aux{
+	dir = 8;
+	icon_state = "map_connector-aux"
+	},
+/obj/machinery/portable_atmospherics/canister/air/airlock,
+/turf/simulated/floor/tiled/eris/steel/gray_perforated,
+/area/talon/deckone/starboard_eng)
 "ur" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -2682,14 +2696,6 @@
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/deckone_starboard)
-"xU" = (
-/obj/machinery/atmospherics/portables_connector{
-	dir = 4
-	},
-/obj/effect/floor_decal/industrial/outline/yellow,
-/obj/machinery/portable_atmospherics/canister/empty,
-/turf/simulated/floor/tiled/eris/dark/brown_perforated,
-/area/talon/deckone/starboard_eng)
 "xV" = (
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
 /area/talon/deckone/secure_storage)
@@ -3147,15 +3153,6 @@
 	},
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/deckone/central_hallway)
-"CN" = (
-/obj/machinery/atmospherics/portables_connector/fuel{
-	dir = 1;
-	icon_state = "map_connector-fuel"
-	},
-/obj/effect/floor_decal/industrial/outline/red,
-/obj/machinery/portable_atmospherics/canister/phoron,
-/turf/simulated/floor/tiled/eris/dark/brown_perforated,
-/area/talon/deckone/port_eng)
 "CP" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 4;
@@ -3441,6 +3438,14 @@
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/talon/deckone/brig)
+"Fd" = (
+/obj/machinery/atmospherics/portables_connector{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/machinery/portable_atmospherics/canister/empty,
+/turf/simulated/floor/tiled/eris/steel/gray_perforated,
+/area/talon/deckone/starboard_eng)
 "Fg" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -3486,6 +3491,15 @@
 	},
 /turf/simulated/floor/tiled/eris/techmaint_panels,
 /area/talon/deckone/medical)
+"Fw" = (
+/obj/machinery/atmospherics/portables_connector/fuel{
+	dir = 1;
+	icon_state = "map_connector-fuel"
+	},
+/obj/effect/floor_decal/industrial/outline/red,
+/obj/machinery/portable_atmospherics/canister/phoron,
+/turf/simulated/floor/tiled/eris/steel/gray_perforated,
+/area/talon/deckone/port_eng)
 "FA" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -3568,19 +3582,6 @@
 	},
 /turf/simulated/floor/tiled/eris/steel/gray_perforated,
 /area/talon/deckone/workroom)
-"Gv" = (
-/obj/machinery/atmospherics/portables_connector/fuel{
-	dir = 1;
-	icon_state = "map_connector-fuel"
-	},
-/obj/effect/floor_decal/industrial/outline/red,
-/obj/machinery/portable_atmospherics/canister/phoron,
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = 26
-	},
-/turf/simulated/floor/tiled/eris/dark/brown_perforated,
-/area/talon/deckone/port_eng)
 "Gw" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4;
@@ -3597,6 +3598,19 @@
 	},
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/talon/deckone/workroom)
+"GC" = (
+/obj/machinery/atmospherics/portables_connector/fuel{
+	dir = 1;
+	icon_state = "map_connector-fuel"
+	},
+/obj/effect/floor_decal/industrial/outline/red,
+/obj/machinery/portable_atmospherics/canister/phoron,
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24
+	},
+/turf/simulated/floor/tiled/eris/steel/gray_perforated,
+/area/talon/deckone/starboard_eng)
 "GG" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 4
@@ -3612,15 +3626,6 @@
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/deckone_port)
-"GI" = (
-/obj/effect/floor_decal/industrial/outline/grey,
-/obj/machinery/atmospherics/portables_connector/aux{
-	dir = 8;
-	icon_state = "map_connector-aux"
-	},
-/obj/machinery/portable_atmospherics/canister/air/airlock,
-/turf/simulated/floor/tiled/eris/dark/brown_perforated,
-/area/talon/deckone/starboard_eng)
 "GJ" = (
 /obj/machinery/door/firedoor/glass/talon,
 /turf/simulated/floor/tiled/eris/techmaint_panels,
@@ -4243,15 +4248,6 @@
 "LH" = (
 /turf/simulated/floor/tiled/eris/white/golden,
 /area/talon/deckone/bridge)
-"LI" = (
-/obj/effect/floor_decal/industrial/outline/grey,
-/obj/machinery/atmospherics/portables_connector/aux{
-	dir = 4;
-	icon_state = "map_connector-aux"
-	},
-/obj/machinery/portable_atmospherics/canister/air/airlock,
-/turf/simulated/floor/tiled/eris/dark/brown_perforated,
-/area/talon/deckone/port_eng)
 "LK" = (
 /obj/structure/cable/green,
 /obj/machinery/power/apc/talon{
@@ -4609,14 +4605,6 @@
 	},
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/deckone/central_hallway)
-"OP" = (
-/obj/machinery/atmospherics/portables_connector{
-	dir = 8
-	},
-/obj/effect/floor_decal/industrial/outline/blue,
-/obj/machinery/portable_atmospherics/canister/air,
-/turf/simulated/floor/tiled/eris/dark/brown_perforated,
-/area/talon/deckone/port_eng)
 "OQ" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 4
@@ -4674,6 +4662,19 @@
 /obj/machinery/suit_storage_unit,
 /turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/deckone_starboard)
+"Py" = (
+/obj/machinery/atmospherics/portables_connector/fuel{
+	dir = 1;
+	icon_state = "map_connector-fuel"
+	},
+/obj/effect/floor_decal/industrial/outline/red,
+/obj/machinery/portable_atmospherics/canister/phoron,
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 26
+	},
+/turf/simulated/floor/tiled/eris/steel/gray_perforated,
+/area/talon/deckone/port_eng)
 "PD" = (
 /obj/machinery/door/firedoor/glass{
 	dir = 2
@@ -4733,15 +4734,6 @@
 	},
 /turf/space,
 /area/talon/deckone/bridge)
-"Ql" = (
-/obj/machinery/atmospherics/portables_connector/fuel{
-	dir = 1;
-	icon_state = "map_connector-fuel"
-	},
-/obj/effect/floor_decal/industrial/outline/red,
-/obj/machinery/portable_atmospherics/canister/phoron,
-/turf/simulated/floor/tiled/eris/dark/brown_perforated,
-/area/talon/deckone/starboard_eng)
 "Qx" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4;
@@ -5611,6 +5603,14 @@
 /obj/structure/disposalpipe/junction,
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/deckone/central_hallway)
+"Yc" = (
+/obj/machinery/atmospherics/portables_connector{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/outline/blue,
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/simulated/floor/tiled/eris/steel/gray_perforated,
+/area/talon/deckone/port_eng)
 "Yd" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -14171,7 +14171,7 @@ gU
 NP
 ho
 iA
-LI
+ah
 IT
 Ik
 aj
@@ -14319,7 +14319,7 @@ hs
 Uy
 CW
 YI
-CN
+Fw
 kb
 JI
 SX
@@ -14461,7 +14461,7 @@ vV
 lM
 ir
 YI
-CN
+Fw
 kb
 ji
 aa
@@ -14603,7 +14603,7 @@ lM
 OZ
 bw
 YI
-CN
+Fw
 kc
 kh
 OS
@@ -14739,13 +14739,13 @@ gU
 CH
 Bj
 iA
-OP
-OP
-OP
-OP
+Yc
+Yc
+Yc
+Yc
 Xk
 iR
-Gv
+Py
 ji
 JI
 SX
@@ -16727,13 +16727,13 @@ gY
 MG
 Bj
 iF
-xU
-xU
-xU
-xU
+Fd
+Fd
+Fd
+Fd
 IO
 Ie
-lk
+GC
 kd
 kj
 QJ
@@ -16875,7 +16875,7 @@ yf
 bP
 fi
 WA
-Ql
+qR
 kf
 GP
 yg
@@ -17017,7 +17017,7 @@ jE
 yf
 jb
 WA
-Ql
+qR
 kf
 jY
 aa
@@ -17159,7 +17159,7 @@ EL
 YG
 dm
 WA
-Ql
+qR
 ke
 kj
 QJ
@@ -17295,7 +17295,7 @@ gY
 NP
 ho
 iF
-GI
+up
 yB
 Mi
 Bm
