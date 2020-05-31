@@ -36,7 +36,8 @@
 /obj/item/borg/sight/xray
 	name = "\proper x-ray vision"
 	sight_mode = BORGXRAY
-
+	icon_state = "thermal"
+	icon = 'icons/obj/clothing/glasses.dmi'
 
 /obj/item/borg/sight/thermal
 	name = "\proper thermal vision"

@@ -46,6 +46,7 @@
 	robot_modules["Pupdozer"] = /obj/item/weapon/robot_module/robot/engiedog
 	robot_modules["Service-Hound"] = /obj/item/weapon/robot_module/robot/clerical/brodog
 	robot_modules["KMine"] = /obj/item/weapon/robot_module/robot/kmine
+	robot_modules["Command-Hound"] = /obj/item/weapon/robot_module/robot/command
 	return 1
 
 //Just add a new proc with the robot_module type if you wish to run some other vore code
@@ -254,7 +255,7 @@
 
 	var/datum/matter_synth/medicine = new /datum/matter_synth/medicine(2000)
 	synths += medicine
-	
+
 	var/obj/item/stack/medical/advanced/clotting/C = new (src)
 	C.uses_charge = 1
 	C.charge_costs = list(1000)
@@ -757,6 +758,84 @@
 	src.modules += T
 
 	var/obj/item/device/dogborg/sleeper/B = new /obj/item/device/dogborg/sleeper/compactor/supply(src)
+	B.water = water
+	src.modules += B
+
+	R.icon = 'icons/mob/widerobot_vr.dmi'
+	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
+	R.ui_style_vr = TRUE
+	R.pixel_x 	 = -16
+	R.old_x  	 = -16
+	R.default_pixel_x = -16
+	R.dogborg = TRUE
+	R.wideborg = TRUE
+	R.verbs |= /mob/living/silicon/robot/proc/ex_reserve_refill
+	R.verbs |= /mob/living/silicon/robot/proc/robot_mount
+	R.verbs |= /mob/living/proc/toggle_rider_reins
+	R.verbs |= /mob/living/proc/shred_limb
+	R.verbs |= /mob/living/silicon/robot/proc/rest_style
+
+	..()
+
+/obj/item/weapon/robot_module/Reset(var/mob/living/silicon/robot/R)
+	R.pixel_x = initial(pixel_x)
+	R.pixel_y = initial(pixel_y)
+	R.icon = initial(R.icon)
+	R.dogborg = FALSE
+	R.wideborg = FALSE
+	R.ui_style_vr = FALSE
+	R.default_pixel_x = initial(pixel_x)
+	R.scrubbing = FALSE
+	R.verbs -= /mob/living/silicon/robot/proc/ex_reserve_refill
+	R.verbs -= /mob/living/silicon/robot/proc/robot_mount
+	R.verbs -= /mob/living/proc/toggle_rider_reins
+	R.verbs -= /mob/living/proc/shred_limb
+	R.verbs -= /mob/living/silicon/robot/proc/rest_style
+	..()
+
+/obj/item/weapon/robot_module/robot/command
+	name = "Command Hound Module"
+	sprites = list(
+					"Kcom" = "kcom"
+					)
+	channels = list(
+			"Medical" = 1,
+			"Engineering" = 1,
+			"Security" = 1,
+			"Service" = 1,
+			"Supply" = 1,
+			"Science" = 1,
+			"Command" = 1,
+			"Explorer" = 1
+			)
+	pto_type = PTO_CIVILIAN
+	can_be_pushed = 0
+
+/obj/item/weapon/robot_module/robot/command/New(var/mob/living/silicon/robot/R)
+	src.modules += new /obj/item/weapon/pen/robopen(src)
+	src.modules += new /obj/item/weapon/form_printer(src)
+	src.modules += new /obj/item/weapon/id_printer(src) // For creating new, blank IDs, can't grab any from boxes with robopaws!
+	src.modules += new /obj/item/weapon/gripper/paperwork(src)
+	src.modules += new /obj/item/weapon/hand_labeler(src)
+	src.modules += new /obj/item/weapon/stamp(src)
+	src.modules += new /obj/item/weapon/stamp/denied(src)
+	src.modules += new /obj/item/weapon/card/id/gold/captain/spare(src) // For use in ID modification consoles
+	src.modules += new /obj/item/weapon/bluespace_harpoon(src) // For appearing when needed!
+	src.modules += new /obj/item/weapon/inducer/hybrid(src) // For charging weapon cells on expeditions
+	src.modules += new /obj/item/borg/sight/xray(src) // Discount AI vision
+	src.emag 	 = new /obj/item/weapon/dogborg/pounce(src) //Pounce
+
+	var/datum/matter_synth/water = new /datum/matter_synth(500)
+	water.name = "Water reserves"
+	water.recharge_rate = 0
+	R.water_res = water
+	synths += water
+
+	var/obj/item/device/dogborg/tongue/T = new /obj/item/device/dogborg/tongue(src)
+	T.water = water
+	src.modules += T
+
+	var/obj/item/device/dogborg/sleeper/B = new /obj/item/device/dogborg/sleeper/command(src)
 	B.water = water
 	src.modules += B
 

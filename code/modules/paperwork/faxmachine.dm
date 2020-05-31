@@ -32,8 +32,11 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 
 /obj/machinery/photocopier/faxmachine/attack_hand(mob/user as mob)
 	user.set_machine(src)
-
-	ui_interact(user)
+	if(issilicon(usr))
+		authenticated = 1
+		ui_interact(user)
+	else
+		ui_interact(user)
 
 /**
  *  Display the NanoUI window for the fax machine.

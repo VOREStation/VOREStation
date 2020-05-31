@@ -691,12 +691,21 @@
 	icon_state = "decompiler"
 	max_item_count = 20
 	delivery = TRUE
-	
+
 /obj/item/device/dogborg/sleeper/compactor/supply //Miner borg belly
 	name = "Supply Satchel"
 	desc = "A mounted survival unit with fuel processor."
 	icon_state = "sleeperc"
 	injection_chems = list("glucose","inaprovaline","tricordrazine")
 	max_item_count = 1
+
+/obj/item/device/dogborg/sleeper/command //Command borg belly
+	name = "Bluespace Filing Belly"
+	desc = "A mounted bluespace storage unit for carrying paperwork"
+	icon_state = "sleeperd"
+	injection_chems = null //So they don't have all the same chems as the medihound!
+	compactor = TRUE
+	recycles = FALSE
+	max_item_count = 25
 
 #undef SLEEPER_INJECT_COST

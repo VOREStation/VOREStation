@@ -339,6 +339,34 @@
 	T.visible_message("<font color='blue'>\The [src.loc] dispenses a sheet of crisp white paper.</font>")
 	new /obj/item/weapon/paper(T)
 
+/obj/item/weapon/id_printer
+	//name = "id printer"
+	name = "id dispenser"
+	icon = 'icons/obj/bureaucracy.dmi'
+	icon_state = "paper_bin0"
+	item_icons = list(
+			slot_l_hand_str = 'icons/mob/items/lefthand_material.dmi',
+			slot_r_hand_str = 'icons/mob/items/righthand_material.dmi',
+			)
+	item_state = "sheet-metal"
+
+/obj/item/weapon/id_printer/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+	return
+
+/obj/item/weapon/id_printer/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag, params)
+
+	if(!target || !flag)
+		return
+
+	if(istype(target,/obj/structure/table))
+		deploy_id(get_turf(target))
+
+/obj/item/weapon/id_printer/attack_self(mob/user as mob)
+	deploy_id(get_turf(src))
+
+/obj/item/weapon/id_printer/proc/deploy_id(var/turf/T)
+	T.visible_message("<font color='blue'>\The [src.loc] dispenses a blank id.</font>")
+	new /obj/item/weapon/card/id(T)
 
 //Personal shielding for the combat module.
 /obj/item/borg/combat/shield
