@@ -1,8 +1,7 @@
 /obj/structure/closet/athletic_mixed
 	name = "athletic wardrobe"
 	desc = "It's a storage unit for athletic wear."
-	icon_state = "mixed"
-	icon_closed = "mixed"
+	closet_appearance = /decl/closet_appearance/wardrobe/mixed
 
 	starts_with = list(
 		/obj/item/clothing/under/shorts/grey,
@@ -44,8 +43,7 @@
 /obj/structure/closet/lasertag/red
 	name = "red laser tag equipment"
 	desc = "It's a storage unit for laser tag equipment."
-	icon_state = "red"
-	icon_closed = "red"
+	closet_appearance = /decl/closet_appearance/wardrobe/red
 
 	starts_with = list(
 		/obj/item/weapon/gun/energy/lasertag/red = 5,
@@ -55,8 +53,7 @@
 /obj/structure/closet/lasertag/blue
 	name = "blue laser tag equipment"
 	desc = "It's a storage unit for laser tag equipment."
-	icon_state = "blue"
-	icon_closed = "blue"
+	closet_appearance = /decl/closet_appearance/wardrobe
 
 	starts_with = list(
 		/obj/item/weapon/gun/energy/lasertag/blue = 5,

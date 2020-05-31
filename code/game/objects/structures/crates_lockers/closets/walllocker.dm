@@ -4,12 +4,9 @@
 /obj/structure/closet/walllocker
 	desc = "A wall mounted storage locker."
 	name = "Wall Locker"
-	icon = 'icons/obj/walllocker.dmi'
-	icon_state = "wall-locker"
+	closet_appearance = /decl/closet_appearance/wall
 	density = 0
 	anchored = 1
-	icon_closed = "wall-locker"
-	icon_opened = "wall-lockeropen"
 
 //spawns endless (3 sets) amounts of breathmask, emergency oxy tank and crowbar
 
@@ -18,9 +15,7 @@
 	desc = "A wall mounted locker with emergency supplies."
 	var/list/spawnitems = list(/obj/item/weapon/tank/emergency/oxygen,/obj/item/clothing/mask/breath,/obj/item/weapon/tool/crowbar/red)
 	var/amount = 2 // spawns each items X times.
-	icon_state = "emerg"
-	icon_closed = "emerg"
-	icon_opened = "emerg_open"
+	closet_appearance = /decl/closet_appearance/wall/emergency
 
 /obj/structure/closet/walllocker/emerglocker/toggle(mob/user as mob)
 	src.attack_hand(user)

@@ -51,49 +51,6 @@
 	new /obj/item/weapon/book/manual/stasis(src)
 	update_icon()
 
-/obj/structure/closet/secure_closet/xenoarchaeologist
-	name = "Xenoarchaeologist Locker"
-	icon_state = "secureres1"
-	icon_closed = "secureres"
-	icon_locked = "secureres1"
-	icon_opened = "secureresopen"
-	icon_broken = "secureresbroken"
-	icon_off = "secureresoff"
-	req_access = list(access_tox_storage)
-
-	starts_with = list(
-		/obj/item/clothing/under/rank/scientist,
-		/obj/item/clothing/suit/storage/toggle/labcoat,
-		/obj/item/clothing/shoes/white,
-		/obj/item/weapon/melee/umbrella, // vorestation addition,
-		/obj/item/clothing/glasses/science,
-		/obj/item/device/radio/headset/headset_sci,
-		/obj/item/weapon/storage/belt/archaeology,
-		/obj/item/weapon/storage/excavation)
-
-/obj/structure/closet/excavation
-	name = "Excavation tools"
-	icon_state = "toolcloset"
-	icon_closed = "toolcloset"
-	icon_opened = "toolclosetopen"
-
-	starts_with = list(
-		/obj/item/weapon/storage/belt/archaeology,
-		/obj/item/weapon/storage/excavation,
-		/obj/item/device/flashlight/lantern,
-		/obj/item/device/ano_scanner,
-		/obj/item/device/depth_scanner,
-		/obj/item/device/core_sampler,
-		/obj/item/device/gps,
-		/obj/item/device/beacon_locator,
-		/obj/item/device/radio/beacon,
-		/obj/item/clothing/glasses/meson,
-		/obj/item/weapon/pickaxe,
-		/obj/item/device/measuring_tape,
-		/obj/item/weapon/pickaxe/hand,
-		/obj/item/weapon/storage/bag/fossils,
-		/obj/item/weapon/hand_labeler)
-
 /obj/machinery/alarm/isolation
 	req_one_access = list(access_research, access_atmospherics, access_engine_equip)
 
