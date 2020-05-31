@@ -2,8 +2,8 @@
 /obj/structure/closet
 	name = "closet"
 	desc = "It's a basic storage unit."
-	icon = 'icons/obj/closet.dmi'
-	icon_state = "closed_unlocked"
+	icon = 'icons/obj/closets/bases/closet.dmi'
+	icon_state = "base"
 	density = 1
 	w_class = ITEMSIZE_HUGE
 	layer = UNDER_JUNK_LAYER
@@ -482,4 +482,5 @@
 // Just a generic cabinet for mappers to use
 /obj/structure/closet/cabinet
 	name = "cabinet"
+	icon = 'icons/obj/closets/bases/cabinet.dmi'
 	closet_appearance = /decl/closet_appearance/cabinet

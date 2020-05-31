@@ -3,6 +3,7 @@
 /obj/structure/closet/crate
 	name = "crate"
 	desc = "A rectangular steel crate."
+	icon = 'icons/obj/closets/bases/crate.dmi'
 	closet_appearance = /decl/closet_appearance/crate
 	climbable = 1
 	var/points_per_crate = 5
@@ -367,6 +368,7 @@
 /obj/structure/closet/crate/large
 	name = "large crate"
 	desc = "A hefty metal crate."
+	icon = 'icons/obj/closets/bases/large_crate.dmi'
 	closet_appearance = /decl/closet_appearance/large_crate
 
 /obj/structure/closet/crate/large/close()
@@ -391,6 +393,7 @@
 /obj/structure/closet/crate/secure/large
 	name = "large crate"
 	desc = "A hefty metal crate with an electronic locking system."
+	icon = 'icons/obj/closets/bases/large_crate.dmi'
 	closet_appearance = /decl/closet_appearance/large_crate/secure
 
 
