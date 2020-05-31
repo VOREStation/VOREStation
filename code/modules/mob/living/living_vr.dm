@@ -40,3 +40,14 @@
 				to_chat(src, "Rider control restricted.")
 				return
 	return
+
+/mob/living/verb/set_metainfo()
+	set name = "Set OOC Metainfo"
+	set desc = "Sets OOC notes about yourself or your RP preferences or status."
+	set category = "OOC"
+
+	var/new_metadata = sanitize(input(usr, "Enter any information you'd like others to see, such as Roleplay-preferences. This will not be saved permanently, only for this round.", "Game Preference" , html_decode(ooc_notes)) as message, extra = 0)
+	if(new_metadata && CanUseTopic(usr))
+		ooc_notes = new_metadata
+		to_chat(usr, "OOC notes updated.")
+		log_admin("[key_name(usr)] updated their OOC notes mid-round.")

@@ -421,6 +421,10 @@
 	name = "Frog (Taur)"
 	icon_state = "frog_s"
 
+/datum/sprite_accessory/tail/taur/thicktentacles
+	name = "Tentacles(Thick)"
+	icon_state = "tentacles_s"
+
 /datum/sprite_accessory/tail/taur/drake //Enabling on request, no suit compatibility but then again see 2 above.
 	name = "Drake (Taur)"
 	icon_state = "drake_s"
