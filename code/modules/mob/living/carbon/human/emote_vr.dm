@@ -134,11 +134,11 @@
 			message = "snorts!"
 			m_type = 2
 			playsound(src, 'sound/voice/Generic-Snort.ogg', 50, 0, preference = /datum/client_preference/emote_noises)
-		if("laugh")
+		if("vlaugh")
 			message = "lets out a laugh."
 			m_type = 2
 			playsound(src, 'sound/voice/Generic-laugh.ogg', 50, 0, preference = /datum/client_preference/emote_noises)
-		if("chuckle")
+		if("vchuckle")
 			message = "gives a small chuckle."
 			m_type = 2
 			playsound(src, 'sound/voice/Generic-Chuckle.ogg', 50, 0, preference = /datum/client_preference/emote_noises)
