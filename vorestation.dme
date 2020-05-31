@@ -3608,6 +3608,12 @@
 #include "maps\submaps\surface_submaps\plains\plains_areas.dm"
 #include "maps\submaps\surface_submaps\wilderness\wilderness.dm"
 #include "maps\submaps\surface_submaps\wilderness\wilderness_areas.dm"
-#include "maps\tether\tether.dm"
+#include "maps\virgo_minitest\virgo_minitest.dm"
+#include "maps\virgo_minitest\virgo_minitest_defines.dm"
+#include "maps\virgo_minitest\virgo_minitest_sectors.dm"
+#include "maps\virgo_minitest\virgo_minitest_shuttles.dm"
+#include "maps\virgo_minitest\virgo_minitest-1.dmm"
+#include "maps\virgo_minitest\virgo_minitest-sector-2.dmm"
+#include "maps\virgo_minitest\virgo_minitest-sector-3.dmm"
 #include "maps\~map_system\maps.dm"
 // END_INCLUDE
