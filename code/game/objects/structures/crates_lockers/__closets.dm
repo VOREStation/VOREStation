@@ -478,3 +478,8 @@
 	dump_contents()
 	spawn(1) qdel(src)
 	return 1
+
+// Just a generic cabinet for mappers to use
+/obj/structure/closet/cabinet
+	name = "cabinet"
+	closet_appearance = /decl/closet_appearance/cabinet
