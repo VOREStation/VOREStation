@@ -266,7 +266,7 @@
 	name = "Hair of the Rat"
 	id = "hairoftherat"
 	result = "hairoftherat"
-	required_reagents = list("monstertamer" = 2, "nutriment" = 1)
+	required_reagents = list("monstertamer" = 4, "nutriment" = 1)
 	result_amount = 5
 
 ///////////////////////////////////////////////////////////////////////////////////
