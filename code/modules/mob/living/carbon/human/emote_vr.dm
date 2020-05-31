@@ -146,6 +146,14 @@
 			message = "rears back and lets loose a massive set of cackles!"
 			m_type = 2
 			playsound(src, 'sound/voice/Cackle.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
+		if("meow")
+			message = "gently meows!"
+			m_type = 2
+			playsound(src, 'sound/voice/Meow.ogg', 50, 0, preference = /datum/client_preference/emote_noises)
+		if("moo")
+			message = "takes a breath and lets out a moo."
+			m_type = 2
+			playsound(src, 'sound/voice/Moo.ogg', 50, 0, preference = /datum/client_preference/emote_noises)
 		if("nsay")
 			nsay()
 			return TRUE
