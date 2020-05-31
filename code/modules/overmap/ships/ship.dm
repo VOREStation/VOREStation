@@ -10,12 +10,20 @@
 // Uses Lorentzian dynamics to avoid going too fast.
 
 /obj/effect/overmap/visitable/ship
+<<<<<<< HEAD
 	name = "spacecraft"
 	desc = "This marker represents a spaceship. Scan it for more information."
 	scanner_desc = "Unknown spacefaring vessel."
 	dir = NORTH
 	icon_state = "ship"
 	appearance_flags = TILE_BOUND|KEEP_TOGETHER|LONG_GLIDE //VOREStation Edit
+=======
+	name = "generic ship"
+	desc = "Space faring vessel."
+	dir = NORTH
+	icon_state = "ship"
+	appearance_flags = TILE_BOUND|KEEP_TOGETHER|LONG_GLIDE
+>>>>>>> 1487211... Merge pull request #7246 from VOREStation/vplk-overmap-pixel-movement
 	var/moving_state = "ship_moving"
 
 	var/vessel_mass = 10000             //tonnes, arbitrary number, affects acceleration provided by engines
