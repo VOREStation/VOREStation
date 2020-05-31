@@ -145,6 +145,7 @@
 	species_restricted = list("exclude",SPECIES_DIONA,SPECIES_VOX)	//this thing can autoadapt
 	icon = 'icons/obj/clothing/suits_vr.dmi'
 	breach_threshold = 6 //this thing is basically tissue paper
+	w_class = ITEMSIZE_NORMAL //if it's snug, high-tech, and made of relatively soft materials, it should be much easier to store!
 
 /obj/item/clothing/suit/space/void/autolok
 	sprite_sheets = list(
@@ -255,6 +256,7 @@
 	item_state = "autolokhelmet"
 	species_restricted = list("exclude",SPECIES_DIONA,SPECIES_VOX)	//this thing can autoadapt too
 	icon = 'icons/obj/clothing/hats_vr.dmi'
+	flags_inv = HIDEEARS|BLOCKHAIR //removed HIDEFACE/MASK/EYES flags so sunglasses or facemasks don't disappear. still gotta have BLOCKHAIR or it'll clip out tho.
 
 /obj/item/clothing/head/helmet/space/void/autolok
 	sprite_sheets = list(
