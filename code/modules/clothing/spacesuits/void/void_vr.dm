@@ -179,11 +179,12 @@
 	helmet = new /obj/item/clothing/head/helmet/space/void/autolok //autoinstall the helmet
 
 //override the attackby screwdriver proc so that people can't remove the helmet
-/obj/item/clothing/suit/space/void/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/clothing/suit/space/void/autolok/attackby(obj/item/W as obj, mob/user as mob)
 
-	if(!istype(user,/mob/living)) return
+	if(!isliving(user))
+		return
 
-	if(istype(W,/obj/item/clothing/accessory) || istype(W, /obj/item/weapon/hand_labeler))
+	if(istype(W, /obj/item/clothing/accessory) || istype(W, /obj/item/weapon/hand_labeler))
 		return ..()
 
 	if(user.get_inventory_slot(src) == slot_wear_suit)
@@ -191,7 +192,7 @@
 		return
 
 	if(W.is_screwdriver())
-		if(boots || tank)
+		if(boots || tank || cooler)
 			var/choice = input("What component would you like to remove?") as null|anything in list(boots,tank,cooler)
 			if(!choice) return
 
@@ -212,39 +213,6 @@
 				src.boots = null
 		else
 			to_chat(user, "\The [src] does not have anything installed.")
-		return
-	else if(istype(W,/obj/item/clothing/shoes/magboots))
-		if(boots)
-			to_chat(user, "\The [src] already has magboots installed.")
-		else
-			to_chat(user, "You attach \the [W] to \the [src]'s boot mounts.")
-			user.drop_item()
-			W.forceMove(src)
-			boots = W
-		return
-	else if(istype(W,/obj/item/weapon/tank))
-		if(tank)
-			to_chat(user, "\The [src] already has an airtank installed.")
-		else if(cooler)
-			to_chat(user, "\The [src]'s suit cooling unit is in the way.  Remove it first.")
-		else if(istype(W,/obj/item/weapon/tank/phoron))
-			to_chat(user, "\The [W] cannot be inserted into \the [src]'s storage compartment.")
-		else
-			to_chat(user, "You insert \the [W] into \the [src]'s storage compartment.")
-			user.drop_item()
-			W.forceMove(src)
-			tank = W
-		return
-	else if(istype(W,/obj/item/device/suit_cooling_unit))
-		if(cooler)
-			to_chat(user, "\The [src] already has a suit cooling unit installed.")
-		else if(tank)
-			to_chat(user, "\The [src]'s airtank is in the way.  Remove it first.")
-		else
-			to_chat(user, "You insert \the [W] into \the [src]'s storage compartment.")
-			user.drop_item()
-			W.forceMove(src)
-			cooler = W
 		return
 
 	..()
