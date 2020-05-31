@@ -957,6 +957,7 @@
 	name = "underplating"
 	icon_state = "under"
 	initial_flooring = /decl/flooring/reinforced/plating/under
+
 /turf/simulated/floor/plating/eris/under/airless
 	oxygen = 0
 	nitrogen = 0
