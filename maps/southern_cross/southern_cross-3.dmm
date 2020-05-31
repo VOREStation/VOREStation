@@ -863,7 +863,7 @@
 "qE" = (/obj/machinery/atmospherics/unary/vent_scrubber/on{dir = 4},/turf/simulated/floor/tiled,/area/surface/outpost/main)
 "qF" = (/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/structure/cable/blue{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/tiled,/area/surface/outpost/main)
 "qG" = (/obj/structure/disposalpipe/segment,/obj/item/device/radio/intercom{dir = 4; name = "Station Intercom (General)"; pixel_x = 21},/turf/simulated/floor/tiled,/area/surface/outpost/main)
-"qH" = (/obj/structure/closet{icon_closed = "cabinet_closed"; icon_opened = "cabinet_open"; icon_state = "cabinet_closed"; name = "Clothing Storage"},/obj/machinery/light{dir = 8},/turf/simulated/floor/tiled/freezer,/area/surface/outpost/main/restroom)
+"qH" = (/obj/structure/closet/cabinet{name = "Clothing Storage"},/obj/machinery/light{dir = 8},/turf/simulated/floor/tiled/freezer,/area/surface/outpost/main/restroom)
 "qI" = (/obj/machinery/atmospherics/unary/vent_scrubber/on{dir = 4},/turf/simulated/floor/tiled/freezer,/area/surface/outpost/main/restroom)
 "qJ" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 5},/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,/turf/simulated/floor/tiled/freezer,/area/surface/outpost/main/restroom)
 "qK" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 4},/obj/effect/floor_decal/steeldecal/steel_decals4,/obj/effect/floor_decal/steeldecal/steel_decals4{dir = 10},/turf/simulated/floor/tiled/freezer,/area/surface/outpost/main/restroom)
