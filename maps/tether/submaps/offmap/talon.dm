@@ -249,12 +249,6 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 
 /obj/structure/closet/secure_closet/talon_captain
 	name = "talon captain's locker"
-	icon_state = "capsecure1"
-	icon_closed = "capsecure"
-	icon_locked = "capsecure1"
-	icon_opened = "capsecureopen"
-	icon_broken = "capsecurebroken"
-	icon_off = "capsecureoff"
 	req_access = list(access_talon)
 
 	starts_with = list(
@@ -272,13 +266,6 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 
 /obj/structure/closet/secure_closet/talon_guard
 	name = "talon guard's locker"
-	req_access = list(access_hos)
-	icon_state = "hossecure1"
-	icon_closed = "hossecure"
-	icon_locked = "hossecure1"
-	icon_opened = "hossecureopen"
-	icon_broken = "hossecurebroken"
-	icon_off = "hossecureoff"
 	req_access = list(access_talon)
 
 	starts_with = list(
@@ -304,12 +291,6 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 
 /obj/structure/closet/secure_closet/talon_doctor
 	name = "talon doctor's locker"
-	icon_state = "cmosecure1"
-	icon_closed = "cmosecure"
-	icon_locked = "cmosecure1"
-	icon_opened = "cmosecureopen"
-	icon_broken = "cmosecurebroken"
-	icon_off = "cmosecureoff"
 	req_access = list(access_talon)
 
 	starts_with = list(
@@ -329,12 +310,6 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 
 /obj/structure/closet/secure_closet/talon_engineer
 	name = "talon engineer's locker"
-	icon_state = "securece1"
-	icon_closed = "securece"
-	icon_locked = "securece1"
-	icon_opened = "secureceopen"
-	icon_broken = "securecebroken"
-	icon_off = "secureceoff"
 	req_access = list(access_talon)
 
 	starts_with = list(

@@ -1,15 +1,16 @@
+// Someone should really merge secure closets and crates into this, which Bay has done already.
 /obj/structure/closet
 	name = "closet"
 	desc = "It's a basic storage unit."
-	icon = 'icons/obj/closet.dmi'
-	icon_state = "closed"
+	icon = 'icons/obj/closets/bases/closet.dmi'
+	icon_state = "base"
 	density = 1
 	w_class = ITEMSIZE_HUGE
 	layer = UNDER_JUNK_LAYER
-	var/icon_closed = "closed"
-	var/icon_opened = "open"
+	
 	var/opened = 0
 	var/sealed = 0
+	
 	var/seal_tool = /obj/item/weapon/weldingtool	//Tool used to seal the closet, defaults to welder
 	var/wall_mounted = 0 //never solid (You can always pass over it)
 	var/health = 100
@@ -30,7 +31,9 @@
 	var/store_mobs = 1		//Will the closet store mobs?
 	var/max_closets = 0		//Number of other closets allowed on tile before it won't close.
 
-	var/list/starts_with
+	var/list/starts_with // List of type = count (or just type for 1)
+
+	var/closet_appearance = /decl/closet_appearance // The /decl that defines what decals we end up with, that makes our look unique
 
 /obj/structure/closet/Initialize()
 	..()
@@ -46,22 +49,28 @@
 	if(!opened)		// if closed, any item at the crate's loc is put in the contents
 		if(istype(loc, /mob/living)) return //VOREStation Edit - No collecting mob organs if spawned inside mob
 		var/obj/item/I
-		for(I in src.loc)
+		for(I in loc)
 			if(I.density || I.anchored || I == src) continue
 			I.forceMove(src)
 		// adjust locker size to hold all items with 5 units of free store room
 		var/content_size = 0
-		for(I in src.contents)
+		for(I in contents)
 			content_size += CEILING(I.w_class/2, 1)
 		if(content_size > storage_capacity-5)
 			storage_capacity = content_size + 5
+
+	if(ispath(closet_appearance))
+		var/decl/closet_appearance/app = GLOB.closet_appearances[closet_appearance]
+		if(app)
+			icon = app.icon
+			color = null
 	update_icon()
 
 /obj/structure/closet/examine(mob/user)
 	. = ..()
 	if(Adjacent(user) || isobserver(user))
 		var/content_size = 0
-		for(var/obj/item/I in src.contents)
+		for(var/obj/item/I in contents)
 			if(!I.anchored)
 				content_size += CEILING(I.w_class/2, 1)
 		if(!content_size)
@@ -75,7 +84,7 @@
 		else
 			. += "It is full."
 
-	if(!src.opened && isobserver(user))
+	if(!opened && isobserver(user))
 		. += "It contains: [counting_english_list(contents)]"
 
 /obj/structure/closet/CanPass(atom/movable/mover, turf/target)
@@ -84,7 +93,7 @@
 	return ..()
 
 /obj/structure/closet/proc/can_open()
-	if(src.sealed)
+	if(sealed)
 		return 0
 	return 1
 
@@ -101,37 +110,37 @@
 /obj/structure/closet/proc/dump_contents()
 	//Cham Projector Exception
 	for(var/obj/effect/dummy/chameleon/AD in src)
-		AD.forceMove(src.loc)
+		AD.forceMove(loc)
 
 	for(var/obj/I in src)
-		I.forceMove(src.loc)
+		I.forceMove(loc)
 
 	for(var/mob/M in src)
-		M.forceMove(src.loc)
+		M.forceMove(loc)
 		if(M.client)
 			M.client.eye = M.client.mob
 			M.client.perspective = MOB_PERSPECTIVE
 
 /obj/structure/closet/proc/open()
-	if(src.opened)
+	if(opened)
 		return 0
 
-	if(!src.can_open())
+	if(!can_open())
 		return 0
 
-	src.dump_contents()
+	dump_contents()
 
-	src.icon_state = src.icon_opened
-	src.opened = 1
+	opened = 1
 	playsound(src, open_sound, 15, 1, -3)
 	if(initial(density))
 		density = !density
+	update_icon()
 	return 1
 
 /obj/structure/closet/proc/close()
-	if(!src.opened)
+	if(!opened)
 		return 0
-	if(!src.can_close())
+	if(!can_close())
 		return 0
 
 	var/stored_units = 0
@@ -145,18 +154,18 @@
 	if(max_closets)
 		stored_units += store_closets(stored_units)
 
-	src.icon_state = src.icon_closed
-	src.opened = 0
+	opened = 0
 
 	playsound(src, close_sound, 15, 1, -3)
 	if(initial(density))
 		density = !density
+	update_icon()
 	return 1
 
 //Cham Projector Exception
 /obj/structure/closet/proc/store_misc(var/stored_units)
 	var/added_units = 0
-	for(var/obj/effect/dummy/chameleon/AD in src.loc)
+	for(var/obj/effect/dummy/chameleon/AD in loc)
 		if((stored_units + added_units) > storage_capacity)
 			break
 		AD.forceMove(src)
@@ -165,7 +174,7 @@
 
 /obj/structure/closet/proc/store_items(var/stored_units)
 	var/added_units = 0
-	for(var/obj/item/I in src.loc)
+	for(var/obj/item/I in loc)
 		var/item_size = CEILING(I.w_class / 2, 1)
 		if(stored_units + added_units + item_size > storage_capacity)
 			continue
@@ -176,7 +185,7 @@
 
 /obj/structure/closet/proc/store_mobs(var/stored_units)
 	var/added_units = 0
-	for(var/mob/living/M in src.loc)
+	for(var/mob/living/M in loc)
 		if(M.buckled || M.pinned.len)
 			continue
 		if(stored_units + added_units + M.mob_size > storage_capacity)
@@ -190,7 +199,7 @@
 
 /obj/structure/closet/proc/store_closets(var/stored_units)
 	var/added_units = 0
-	for(var/obj/structure/closet/C in src.loc)
+	for(var/obj/structure/closet/C in loc)
 		if(C == src)	//Don't store ourself
 			continue
 		if(C.anchored)	//Don't worry about anchored things on the same tile
@@ -205,7 +214,7 @@
 
 
 /obj/structure/closet/proc/toggle(mob/user as mob)
-	if(!(src.opened ? src.close() : src.open()))
+	if(!(opened ? close() : open()))
 		to_chat(user, "<span class='notice'>It won't budge!</span>")
 		return
 	update_icon()
@@ -215,19 +224,19 @@
 	switch(severity)
 		if(1)
 			for(var/atom/movable/A as mob|obj in src)//pulls everything out of the locker and hits it with an explosion
-				A.forceMove(src.loc)
+				A.forceMove(loc)
 				A.ex_act(severity + 1)
 			qdel(src)
 		if(2)
 			if(prob(50))
 				for (var/atom/movable/A as mob|obj in src)
-					A.forceMove(src.loc)
+					A.forceMove(loc)
 					A.ex_act(severity + 1)
 				qdel(src)
 		if(3)
 			if(prob(5))
 				for(var/atom/movable/A as mob|obj in src)
-					A.forceMove(src.loc)
+					A.forceMove(loc)
 				qdel(src)
 
 /obj/structure/closet/blob_act()
@@ -237,7 +246,7 @@
 	health -= damage
 	if(health <= 0)
 		for(var/atom/movable/A in src)
-			A.forceMove(src.loc)
+			A.forceMove(loc)
 		qdel(src)
 
 /obj/structure/closet/bullet_act(var/obj/item/projectile/Proj)
@@ -251,10 +260,10 @@
 	return
 
 /obj/structure/closet/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(src.opened)
+	if(opened)
 		if(istype(W, /obj/item/weapon/grab))
 			var/obj/item/weapon/grab/G = W
-			src.MouseDrop_T(G.affecting, user)      //act like they were dragged onto the closet
+			MouseDrop_T(G.affecting, user)      //act like they were dragged onto the closet
 			return 0
 		if(istype(W,/obj/item/tk_grab))
 			return 0
@@ -267,7 +276,7 @@
 					to_chat(user, "<span class='notice'>You need more welding fuel to complete this task.</span>")
 					return
 			playsound(src, WT.usesound, 50)
-			new /obj/item/stack/material/steel(src.loc)
+			new /obj/item/stack/material/steel(loc)
 			for(var/mob/M in viewers(src))
 				M.show_message("<span class='notice'>\The [src] has been cut apart by [user] with \the [WT].</span>", 3, "You hear welding.", 2)
 			qdel(src)
@@ -287,7 +296,7 @@
 			return
 		usr.drop_item()
 		if(W)
-			W.forceMove(src.loc)
+			W.forceMove(loc)
 	else if(istype(W, /obj/item/weapon/packageWrap))
 		return
 	else if(seal_tool)
@@ -303,8 +312,8 @@
 						return
 			if(do_after(user, 20 * S.toolspeed))
 				playsound(src, S.usesound, 50)
-				src.sealed = !src.sealed
-				src.update_icon()
+				sealed = !sealed
+				update_icon()
 				for(var/mob/M in viewers(src))
 					M.show_message("<span class='warning'>[src] has been [sealed?"sealed":"unsealed"] by [user.name].</span>", 3)
 	else if(W.is_wrench())
@@ -319,7 +328,7 @@
 				to_chat(user, "<span class='notice'>You [anchored? "un" : ""]secured \the [src]!</span>")
 				anchored = !anchored
 	else
-		src.attack_hand(user)
+		attack_hand(user)
 	return
 
 /obj/structure/closet/MouseDrop_T(atom/movable/O as mob|obj, mob/user as mob)
@@ -333,14 +342,14 @@
 		return
 	if(!isturf(user.loc)) // are you in a container/closet/pod/etc?
 		return
-	if(!src.opened)
+	if(!opened)
 		return
 	if(istype(O, /obj/structure/closet))
 		return
-	step_towards(O, src.loc)
+	step_towards(O, loc)
 	if(user != O)
 		user.show_viewers("<span class='danger'>[user] stuffs [O] into [src]!</span>")
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	return
 
 /obj/structure/closet/attack_robot(mob/user)
@@ -348,20 +357,20 @@
 		attack_hand(user)
 
 /obj/structure/closet/relaymove(mob/user as mob)
-	if(user.stat || !isturf(src.loc))
+	if(user.stat || !isturf(loc))
 		return
 
-	if(!src.open())
+	if(!open())
 		to_chat(user, "<span class='notice'>It won't budge!</span>")
 
 /obj/structure/closet/attack_hand(mob/user as mob)
-	src.add_fingerprint(user)
-	src.toggle(user)
+	add_fingerprint(user)
+	toggle(user)
 
 // tk grab then use on self
 /obj/structure/closet/attack_self_tk(mob/user as mob)
-	src.add_fingerprint(user)
-	if(!src.toggle())
+	add_fingerprint(user)
+	if(!toggle())
 		to_chat(usr, "<span class='notice'>It won't budge!</span>")
 
 /obj/structure/closet/verb/verb_toggleopen()
@@ -373,19 +382,16 @@
 		return
 
 	if(ishuman(usr) || isrobot(usr))
-		src.add_fingerprint(usr)
-		src.toggle(usr)
+		add_fingerprint(usr)
+		toggle(usr)
 	else
 		to_chat(usr, "<span class='warning'>This mob type can't use this verb.</span>")
 
-/obj/structure/closet/update_icon()//Putting the sealed stuff in updateicon() so it's easy to overwrite for special cases (Fridges, cabinets, and whatnot)
-	overlays.Cut()
-	if(!opened)
-		icon_state = icon_closed
-		if(sealed)
-			overlays += "welded"
+/obj/structure/closet/update_icon()
+	if(opened)
+		icon_state = "open"
 	else
-		icon_state = icon_opened
+		icon_state = "closed_unlocked[sealed ? "_welded" : ""]"
 
 /obj/structure/closet/attack_generic(var/mob/user, var/damage, var/attack_message = "destroys")
 	if(damage < STRUCTURE_MIN_DAMAGE_THRESHOLD)
@@ -461,8 +467,8 @@
 	return TRUE
 
 /obj/structure/closet/return_air_for_internal_lifeform(var/mob/living/L)
-	if(src.loc)
-		if(istype(src.loc, /obj/structure/closet))
+	if(loc)
+		if(istype(loc, /obj/structure/closet))
 			return (loc.return_air_for_internal_lifeform(L))
 	return return_air()
 
@@ -472,3 +478,9 @@
 	dump_contents()
 	spawn(1) qdel(src)
 	return 1
+
+// Just a generic cabinet for mappers to use
+/obj/structure/closet/cabinet
+	name = "cabinet"
+	icon = 'icons/obj/closets/bases/cabinet.dmi'
+	closet_appearance = /decl/closet_appearance/cabinet

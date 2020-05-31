@@ -20,11 +20,7 @@
 /turf/simulated/floor/lino,
 /area/submap/Rockb1)
 "g" = (
-/obj/structure/closet{
-	icon_closed = "cabinet_closed";
-	icon_opened = "cabinet_open";
-	icon_state = "cabinet_closed"
-	},
+/obj/structure/closet/cabinet,
 /obj/item/weapon/gun/projectile/pistol,
 /obj/item/ammo_magazine/m9mm/compact,
 /turf/simulated/floor/lino,
