@@ -53,7 +53,7 @@
 	glass_center_of_mass = list("x"=16, "y"=8)
 	glass_icon_file = 'icons/obj/drinks_vr.dmi'
 
-/datum/reagent/drink/shroomjuice
+/datum/reagent/ethanol/shroomjuice
 	glass_icon_state = "shroomjuiceglass"
 	glass_center_of_mass = list("x"=16, "y"=8)
 	glass_icon_file = 'icons/obj/drinks_vr.dmi'
@@ -108,7 +108,7 @@
 	glass_center_of_mass = list("x"=16, "y"=8)
 	glass_icon_file = 'icons/obj/drinks_vr.dmi'
 
-/datum/reagent/drink/unsweettea
+/datum/reagent/ethanol/unsweettea
 	glass_icon_state = "unsweetteaglass"
 	glass_center_of_mass = list("x"=16, "y"=8)
 	glass_icon_file = 'icons/obj/drinks_vr.dmi'
