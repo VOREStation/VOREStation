@@ -226,6 +226,7 @@
 	anchored = 1
 	density = 0
 	wall_mounted = 1
+	store_mobs = 0
 	req_access = list(access_medical_equip)
 	closet_appearance = /decl/closet_appearance/wall/medical
 
