@@ -33,6 +33,17 @@
 	..()
 	name = "magma"
 
+/turf/simulated/floor/lava/make_plating(place_product, defer_icon_update)
+	return
+
+/turf/simulated/floor/lava/set_flooring(decl/flooring/newflooring, initializing)
+	if(newflooring?.type == initial_flooring)
+		return ..()
+	return
+
+/turf/simulated/floor/lava/ex_act(severity)
+	return
+
 /turf/simulated/floor/lava/Entered(atom/movable/AM)
 	if(burn_stuff(AM))
 		START_PROCESSING(SSturfs, src)
