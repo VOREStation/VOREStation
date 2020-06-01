@@ -6436,9 +6436,6 @@
 	dir = 1
 	},
 /obj/structure/closet{
-	icon_closed = "cabinet_closed";
-	icon_opened = "cabinet_open";
-	icon_state = "cabinet_closed";
 	name = "Clothing Storage"
 	},
 /obj/machinery/camera/network/civilian,
@@ -20424,8 +20421,6 @@
 /area/tether/surfacebase/bar_backroom)
 "aLH" = (
 /obj/structure/closet/gmcloset{
-	icon_closed = "black";
-	icon_state = "black";
 	name = "formal wardrobe"
 	},
 /obj/item/glass_jar,

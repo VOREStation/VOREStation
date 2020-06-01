@@ -4499,9 +4499,6 @@
 /obj/item/weapon/storage/belt/security/tactical,
 /obj/structure/closet{
 	desc = "It's a storage unit for standard-issue attire.";
-	icon_closed = "syndicate1";
-	icon_opened = "syndicate1open";
-	icon_state = "syndicate1";
 	name = "tactical equipment"
 	},
 /obj/effect/floor_decal/industrial/outline/grey,
@@ -4523,9 +4520,6 @@
 /obj/item/weapon/storage/belt/security/tactical,
 /obj/structure/closet{
 	desc = "It's a storage unit for standard-issue attire.";
-	icon_closed = "syndicate1";
-	icon_opened = "syndicate1open";
-	icon_state = "syndicate1";
 	name = "tactical equipment"
 	},
 /obj/effect/floor_decal/industrial/outline/grey,

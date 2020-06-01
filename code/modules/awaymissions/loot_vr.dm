@@ -78,8 +78,6 @@
 				new /obj/effect/decal/remains/xeno(src.loc)
 		if("clothes")
 			var/obj/structure/closet/C = new(src.loc)
-			C.icon_state = "blue"
-			C.icon_closed = "blue"
 			if(prob(33))
 				new /obj/item/clothing/under/color/rainbow(C)
 				new /obj/item/clothing/shoes/rainbow(C)

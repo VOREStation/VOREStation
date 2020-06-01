@@ -9565,7 +9565,6 @@
 	pixel_x = 5
 	},
 /obj/item/weapon/reagent_containers/spray/cleaner,
-/obj/item/device/closet_painter,
 /obj/machinery/camera/network/engineering{
 	dir = 4
 	},
