@@ -33,9 +33,7 @@
 	var/lava = 0
 
 /turf/simulated/floor/is_plating()
-	if(!flooring || flooring.is_plating)
-		return TRUE
-	return FALSE
+	return (!flooring || flooring.is_plating)
 
 /turf/simulated/floor/Initialize(mapload, floortype)
 	. = ..()
