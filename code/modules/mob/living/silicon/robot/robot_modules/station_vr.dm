@@ -813,16 +813,13 @@
 
 /obj/item/weapon/robot_module/robot/command/New(var/mob/living/silicon/robot/R)
 	src.modules += new /obj/item/weapon/pen/robopen(src)
-	src.modules += new /obj/item/weapon/form_printer(src)
-	src.modules += new /obj/item/weapon/id_printer(src) // For creating new, blank IDs, can't grab any from boxes with robopaws!
 	src.modules += new /obj/item/weapon/gripper/paperwork(src)
 	src.modules += new /obj/item/weapon/hand_labeler(src)
 	src.modules += new /obj/item/weapon/stamp(src)
 	src.modules += new /obj/item/weapon/stamp/denied(src)
-	src.modules += new /obj/item/weapon/card/id/gold/captain/spare(src) // For use in ID modification consoles
-	src.modules += new /obj/item/weapon/bluespace_harpoon(src) // For appearing when needed!
-	src.modules += new /obj/item/weapon/inducer/hybrid(src) // For charging weapon cells on expeditions
-	src.modules += new /obj/item/borg/sight/xray(src) // Discount AI vision
+	src.modules += new /obj/item/weapon/folder/blue(src)
+	src.modules += new /obj/item/weapon/clipboard(src)
+	src.modules += new /obj/item/weapon/rpf(src)
 	src.emag 	 = new /obj/item/weapon/dogborg/pounce(src) //Pounce
 
 	var/datum/matter_synth/water = new /datum/matter_synth(500)
