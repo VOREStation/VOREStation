@@ -161,14 +161,14 @@
 	name = "Space Bulldog"
 	id = "bulldog"
 	result = "bulldog"
-	required_reagents = list("kahlua" = 1, "vodka" = 1, "cola" =1, "cream" =1)
-	result_amount = 4
+	required_reagents = list("blackrussian" = 3, "cola" =1, "cream" =1)
+	result_amount = 5
 
 /datum/chemical_reaction/drinks/sbagliato
 	name = "Negroni Sbagliato"
 	id = "sbagliato"
 	result = "sbagliato"
-	required_reagents = list("champagne" = 1, "vermouth" = 1, "sodawater" =1)
+	required_reagents = list("wine" = 1, "vermouth" = 1, "sodawater" =1)
 	result_amount = 3
 
 /datum/chemical_reaction/drinks/italiancrisis
@@ -238,8 +238,8 @@
 	name = "Slow Comfortable Screw Against the Wall"
 	id = "scsatw"
 	result = "scsatw"
-	required_reagents = list("vodka" = 1, "orangejuice" = 1, "rum" =1, "whiskey" =1, "gin" =1)
-	result_amount = 5
+	required_reagents = list("screwdrivercocktail" = 3, "rum" =1, "whiskey" =1, "gin" =1)
+	result_amount = 6
 
 /datum/chemical_reaction/drinks/choccymilk
 	name = "Choccy Milk"
@@ -266,8 +266,8 @@
 	name = "Hair of the Rat"
 	id = "hairoftherat"
 	result = "hairoftherat"
-	required_reagents = list("protein" = 3, "nutriment" = 2, "whiskey" =1)
-	result_amount = 6
+	required_reagents = list("monstertamer" = 2, "nutriment" = 1)
+	result_amount = 3
 
 ///////////////////////////////////////////////////////////////////////////////////
 /// Reagent colonies.
