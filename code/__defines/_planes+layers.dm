@@ -64,10 +64,11 @@ What is the naming convention for planes or layers?
 	#define ABOVE_UTILITY		2.5 // Above stuff like pipes and wires
 #define TURF_PLANE				-45 // Turfs themselves, most flooring
 	#define WATER_FLOOR_LAYER	2.0 // The 'bottom' of water tiles.
+	#define BUILTIN_DECAL_LAYER 2.01 // For floors that automatically add decal overlays
+	#define MAPPER_DECAL_LAYER	2.02 // For intentionally placed floor decal overlays
 	#define UNDERWATER_LAYER	2.5 // Anything on this layer will render under the water layer.
 	#define WATER_LAYER			3.0 // Layer for water overlays.
 	#define ABOVE_TURF_LAYER	3.1	// Snow and wallmounted/floormounted equipment
-	#define TURF_DECAL_LAYER	3.2 // Mapped in floor decals, not automatic edges/corners
 #define DECAL_PLANE				-44 // Permanent decals
 #define DIRTY_PLANE				-43 // Nonpermanent decals
 #define BLOOD_PLANE				-42 // Blood is really dirty, but we can do special stuff if we separate it
