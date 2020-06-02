@@ -29035,6 +29035,31 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/upper)
+"dzC" = (
+/obj/machinery/atmospherics/unary/vent_pump/high_volume,
+/obj/machinery/embedded_controller/radio/airlock/docking_port{
+	cycle_to_external_air = 1;
+	dir = 4;
+	frequency = 1380;
+	id_tag = "medivac_docker";
+	pixel_x = -28
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/effect/shuttle_landmark{
+	base_area = /area/mine/explored/upper_level;
+	base_turf = /turf/simulated/floor/airless;
+	docking_controller = "medivac_bay";
+	landmark_tag = "tether_medivac_dock";
+	name = "Medivac Bay"
+	},
+/obj/effect/overmap/visitable/ship/landable/medivac,
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/turf/simulated/floor/tiled/eris/steel/gray_perforated,
+/area/shuttle/medivac/general)
 "dzV" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 1;
@@ -29153,30 +29178,6 @@
 	},
 /turf/simulated/floor/tiled/eris/steel/cyancorner,
 /area/shuttle/medivac/cockpit)
-"eaH" = (
-/obj/machinery/atmospherics/unary/vent_pump/high_volume,
-/obj/machinery/embedded_controller/radio/airlock/docking_port{
-	dir = 4;
-	frequency = 1380;
-	id_tag = "medivac_docker";
-	pixel_x = -28
-	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/effect/shuttle_landmark{
-	base_area = /area/mine/explored/upper_level;
-	base_turf = /turf/simulated/floor/airless;
-	docking_controller = "medivac_bay";
-	landmark_tag = "tether_medivac_dock";
-	name = "Medivac Bay"
-	},
-/obj/effect/overmap/visitable/ship/landable/medivac,
-/obj/effect/map_helper/airlock/atmos/chamber_pump,
-/turf/simulated/floor/tiled/eris/steel/gray_perforated,
-/area/shuttle/medivac/general)
 "ebj" = (
 /obj/machinery/door/airlock/glass_external,
 /obj/structure/cable/green{
@@ -30205,13 +30206,6 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/plating/eris/under,
 /area/shuttle/excursion/general)
-"iWZ" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/yellow,
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/shuttle/excursion/cargo)
 "iXe" = (
 /obj/machinery/light{
 	dir = 8
@@ -30492,6 +30486,19 @@
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/eris/steel/cyancorner,
 /area/shuttle/medivac/cockpit)
+"kEo" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/yellow,
+/obj/machinery/airlock_sensor{
+	dir = 8;
+	pixel_x = 26;
+	pixel_y = -27
+	},
+/obj/effect/map_helper/airlock/sensor/int_sensor,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/shuttle/excursion/cargo)
 "kFO" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -31706,6 +31713,17 @@
 	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/shuttle/excursion/cockpit)
+"qVL" = (
+/obj/machinery/door/airlock/glass_external,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/effect/map_helper/airlock/door/int_door,
+/turf/simulated/floor/tiled/eris/techmaint_panels,
+/area/shuttle/excursion/cargo)
 "qYJ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 1
@@ -31748,6 +31766,22 @@
 	},
 /turf/simulated/floor/tiled/eris/techmaint_panels,
 /area/shuttle/excursion/general)
+"rfw" = (
+/obj/machinery/embedded_controller/radio/airlock/docking_port{
+	cycle_to_external_air = 1;
+	frequency = 1380;
+	id_tag = "expshuttle_docker";
+	pixel_y = 28
+	},
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 2;
+	frequency = 1380;
+	id_tag = "expshuttle_vent"
+	},
+/obj/structure/handrail,
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/turf/simulated/floor/tiled/eris/dark/danger,
+/area/shuttle/excursion/cargo)
 "rgV" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -32008,21 +32042,6 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/shuttle/securiship/engines)
-"ssc" = (
-/obj/machinery/embedded_controller/radio/airlock/docking_port{
-	frequency = 1380;
-	id_tag = "expshuttle_docker";
-	pixel_y = 28
-	},
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 2;
-	frequency = 1380;
-	id_tag = "expshuttle_vent"
-	},
-/obj/structure/handrail,
-/obj/effect/map_helper/airlock/atmos/chamber_pump,
-/turf/simulated/floor/tiled/eris/dark/danger,
-/area/shuttle/excursion/cargo)
 "sso" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 10
@@ -32862,23 +32881,6 @@
 /obj/machinery/power/smes/buildable/point_of_interest,
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/shuttle/excursion/general)
-"xla" = (
-/obj/machinery/door/airlock/glass_external,
-/obj/machinery/access_button{
-	command = "cycle_interior";
-	frequency = 1380;
-	master_tag = "expshuttle_docker";
-	pixel_y = -24
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 4
-	},
-/obj/effect/floor_decal/industrial/warning{
-	dir = 4
-	},
-/obj/effect/map_helper/airlock/door/int_door,
-/turf/simulated/floor/tiled/eris/techmaint_panels,
-/area/shuttle/excursion/cargo)
 "xlU" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/cable/green{
@@ -43430,7 +43432,7 @@ aNj
 aNu
 aNF
 fkB
-eaH
+dzC
 ykh
 pfr
 crE
@@ -44937,7 +44939,7 @@ adj
 aWp
 aiX
 kUK
-iWZ
+kEo
 xCq
 aXr
 aWp
@@ -45079,7 +45081,7 @@ nlw
 wOI
 aiY
 aXS
-xla
+qVL
 aWp
 aiY
 aWp
@@ -45362,7 +45364,7 @@ xeA
 sFS
 gAZ
 aWp
-ssc
+rfw
 pPy
 vbD
 aWp
