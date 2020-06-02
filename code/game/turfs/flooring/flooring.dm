@@ -498,6 +498,8 @@ var/list/flooring_types
 	desc = "Lava. Y'know. Sets you on fire. AAAAAAAAAAA"
 	icon = 'icons/turf/outdoors.dmi'
 	icon_base = "lava"
+	is_plating = TRUE
+	flags = 0
 	footstep_sounds = list("human" = list(
 		'sound/effects/footstep/lava1.ogg',
 		'sound/effects/footstep/lava2.ogg',
