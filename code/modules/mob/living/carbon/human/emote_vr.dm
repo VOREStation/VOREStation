@@ -133,7 +133,7 @@
 		if("snort")
 			message = "snorts!"
 			m_type = 2
-			playsound(src, 'sound/voice/Generic-Snort.ogg', 50, 0, preference = /datum/client_preference/emote_noises)
+			playsound(src, 'sound/voice/Snort.ogg', 50, 0, preference = /datum/client_preference/emote_noises)
 		if("meow")
 			message = "gently meows!"
 			m_type = 2
