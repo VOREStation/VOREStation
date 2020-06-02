@@ -209,6 +209,7 @@
 			overlays += I
 
 	examine(mob/user)
+		. = ..()
 		if(get_dist(user, src) <= 4)
 			if(sortTag)
 				. += "<span class='notice'>It is labeled \"[sortTag]\"</span>"
