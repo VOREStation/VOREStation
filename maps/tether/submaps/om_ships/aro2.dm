@@ -66,7 +66,7 @@
 	vessel_size = SHIP_SIZE_SMALL
 	initial_generic_waypoints = list("aronai2_fore", "aronai2_aft", "aronai2_port", "aronai2_starboard")
 	initial_restricted_waypoints = list("Aro's Boat" = list("omship_spawn_aroboat2"))
-	fore_dir = EAST
+	fore_dir = NORTH
 
 	skybox_icon = 'aro2.dmi' //Art by Nia Tahl, see ATTRIBUTIONS.md
 	skybox_icon_state = "skybox"
