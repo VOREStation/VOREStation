@@ -134,18 +134,6 @@
 			message = "snorts!"
 			m_type = 2
 			playsound(src, 'sound/voice/Generic-Snort.ogg', 50, 0, preference = /datum/client_preference/emote_noises)
-		if("vlaugh")
-			message = "lets out a laugh."
-			m_type = 2
-			playsound(src, 'sound/voice/Generic-laugh.ogg', 50, 0, preference = /datum/client_preference/emote_noises)
-		if("vchuckle")
-			message = "gives a small chuckle."
-			m_type = 2
-			playsound(src, 'sound/voice/Generic-Chuckle.ogg', 50, 0, preference = /datum/client_preference/emote_noises)
-		if("Ccackles")
-			message = "rears back and lets loose a massive set of cackles!"
-			m_type = 2
-			playsound(src, 'sound/voice/Cackle.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
 		if("meow")
 			message = "gently meows!"
 			m_type = 2
@@ -154,6 +142,10 @@
 			message = "takes a breath and lets out a moo."
 			m_type = 2
 			playsound(src, 'sound/voice/Moo.ogg', 50, 0, preference = /datum/client_preference/emote_noises)
+		if("croak")
+			message = "rumbles their throat, puffs their cheeks and croaks."
+			m_type = 2
+			playsound(src, 'sound/voice/Croak.ogg', 50, 0, preference = /datum/client_preference/emote_noises)
 		if("nsay")
 			nsay()
 			return TRUE
@@ -172,7 +164,7 @@
 				message = "does a flip!"
 				m_type = 1
 		if("vhelp") //Help for Virgo-specific emotes.
-			to_chat(src, "vwag, vflap, mlem, blep, awoo, awoo2, growl, nya, peep, chirp, hoot, weh, merp, myarp, bark, bork, mrow, hypno, hiss, rattle, squeak, geck, baa, baa2, mar, wurble, vchuckle, vlaugh, snort, meow, moo, nsay, nme, flip")
+			to_chat(src, "vwag, vflap, mlem, blep, awoo, awoo2, growl, nya, peep, chirp, hoot, weh, merp, myarp, bark, bork, mrow, hypno, hiss, rattle, squeak, geck, baa, baa2, mar, wurble, snort, meow, moo, croak, nsay, nme, flip")
 			return TRUE
 
 	if(message)
