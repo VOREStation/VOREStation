@@ -608,10 +608,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/aro2/dining)
-"dQ" = (
-/obj/structure/table/steel,
-/turf/simulated/floor/tiled/eris/techmaint_perforated,
-/area/aro2/surfluid)
 "dU" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -1524,10 +1520,6 @@
 	},
 /turf/simulated/floor/water/indoors/surfluid,
 /area/aro2/boatdeck)
-"mp" = (
-/obj/structure/table/bench/wooden,
-/turf/simulated/floor/tiled/techfloor,
-/area/aro2/dining)
 "ms" = (
 /obj/structure/railing/grey,
 /turf/simulated/floor/water/indoors/surfluid,
@@ -2106,6 +2098,18 @@
 	},
 /turf/simulated/floor/tiled/eris/techmaint_panels,
 /area/aro2/airarea)
+"sB" = (
+/obj/structure/table/steel,
+/obj/item/weapon/magnetic_ammo/pistol/khi{
+	pixel_x = 5;
+	pixel_y = 2
+	},
+/obj/item/weapon/magnetic_ammo/pistol/khi{
+	pixel_x = -3;
+	pixel_y = 5
+	},
+/turf/simulated/floor/tiled/eris/techmaint_perforated,
+/area/aro2/surfluid)
 "sF" = (
 /turf/simulated/floor/tiled/eris/dark,
 /area/aro2/portbay)
@@ -3509,6 +3513,10 @@
 /obj/machinery/door/airlock/multi_tile/glass,
 /turf/simulated/floor/tiled/eris/techmaint_panels,
 /area/aro2/surfluid)
+"II" = (
+/obj/structure/table/bench/steel,
+/turf/simulated/floor/tiled/techfloor,
+/area/aro2/dining)
 "IK" = (
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -3568,6 +3576,10 @@
 	},
 /turf/simulated/floor/tiled/eris/techmaint_panels,
 /area/aro2/portbay)
+"Jn" = (
+/obj/structure/table/bench/steel,
+/turf/simulated/floor/tiled/eris/steel/bar_flat,
+/area/aro2/frontroom)
 "Js" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
@@ -4781,10 +4793,6 @@
 	},
 /turf/simulated/floor/tiled/eris/dark,
 /area/aro2/boatdeck)
-"We" = (
-/obj/structure/table/bench/wooden,
-/turf/simulated/floor/tiled/eris/steel/bar_flat,
-/area/aro2/frontroom)
 "Wg" = (
 /obj/effect/floor_decal/industrial/warning/full,
 /obj/machinery/power/pointdefense{
@@ -13305,16 +13313,16 @@ Qz
 af
 ao
 ao
-We
-We
-We
+Jn
+Jn
+Jn
 ao
 ao
 bT
 bT
-mp
-mp
-mp
+II
+II
+II
 bT
 bT
 dv
@@ -13587,7 +13595,7 @@ Qz
 Qz
 Qz
 bV
-We
+Jn
 zV
 zV
 Kx
@@ -13729,7 +13737,7 @@ Qz
 Qz
 Qz
 bV
-We
+Jn
 zV
 us
 ED
@@ -13871,7 +13879,7 @@ Qz
 Qz
 Qz
 bV
-We
+Jn
 zV
 us
 AT
@@ -15041,7 +15049,7 @@ RY
 FZ
 ds
 gd
-dQ
+sB
 kK
 nO
 TL
