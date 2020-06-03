@@ -73,10 +73,9 @@
 			overlays += dir
 
 /obj/screen/movable/pic_in_pic/ai/set_view_size(width, height, do_refresh = TRUE)
-	if(!aiEye)
+	if(!aiEye) // Exploit fix
 		qdel(src)
 		return
-
 	aiEye.static_visibility_range =	(round(max(width, height) / 2) + 1)
 	if(ai)
 		ai.camera_visibility(aiEye)
@@ -84,18 +83,16 @@
 
 /obj/screen/movable/pic_in_pic/ai/set_view_center(atom/target, do_refresh = TRUE)
 	..()
-	if(!aiEye)
+	if(!aiEye) // Exploit Fix
 		qdel(src)
 		return
-
 	aiEye.setLoc(get_turf(target))
 
 /obj/screen/movable/pic_in_pic/ai/refresh_view()
 	..()
-	if(!aiEye)
+	if(!aiEye) // Exploit Fix
 		qdel(src)
 		return
-
 	aiEye.setLoc(get_turf(center))
 
 /obj/screen/movable/pic_in_pic/ai/proc/highlight()
