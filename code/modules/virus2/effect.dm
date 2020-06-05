@@ -136,7 +136,7 @@
 	mob.updatehealth()
 
 /datum/disease2/effect/killertoxins
-	name = "Autoimmune Reponse"
+	name = "Autoimmune Response"
 	stage = 4
 	badness = 2
 
