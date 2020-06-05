@@ -57,6 +57,7 @@
 	if(ispath(cell))
 		cell = new cell(src)
 	default_apply_parts()
+	default_use_hicell()
 
 /obj/machinery/mining/drill/loaded
 	cell = /obj/item/weapon/cell/high
@@ -174,7 +175,7 @@
 			to_chat(user, "The drill already has a cell installed.")
 		else
 			user.drop_item()
-			O.loc = src
+			O.forceMove(src)
 			cell = O
 			component_parts += O
 			to_chat(user, "You install \the [O].")
@@ -186,7 +187,7 @@
 
 	if (panel_open && cell && user.Adjacent(src))
 		to_chat(user, "You take out \the [cell].")
-		cell.loc = get_turf(user)
+		cell.forceMove(get_turf(user))
 		component_parts -= cell
 		cell = null
 		return
