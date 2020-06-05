@@ -395,7 +395,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 		M.update_gravity(M.mob_has_gravity())
 		if(M.client)
 			shake_camera(M, 15, 1)
-			M.playsound_local(src, null, 100, 1, 0.5, S = alert_sound)
+			M.playsound_local(src, null, 50, 1, 0.5, S = alert_sound)
 
 /obj/machinery/gravity_generator/main/proc/gravity_in_level()
 	var/my_z = get_z(src)
