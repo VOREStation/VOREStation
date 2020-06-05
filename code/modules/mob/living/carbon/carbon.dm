@@ -96,6 +96,60 @@
 
 	return
 
+//EMP vulnerability for non-synth carbons. could be useful for diona, vox, or others
+//the species' emp_sensitivity var needs to be greater than 0 for this to proc, and it defaults to 0 - shouldn't stack with prosthetics/fbps in most cases
+//higher sensitivity values incur additional effects, starting with confusion/blinding/knockdown and ending with increasing amounts of damage
+//the degree of damage and duration of effects can be tweaked up or down based on the species emp_dmg_mod and emp_stun_mod vars (default 1) on top of tuning the random ranges
+/mob/living/carbon/emp_act(severity)
+	//pregen our stunning stuff, had to do this seperately or else byond complained. remember that severity falls off with distance based on the source, so we don't need to do any extra distance calcs here.
+	var/agony_str = ((rand(4,6)*15)-(15*severity))*species.emp_stun_mod //big ouchies at high severity, causes 0-75 halloss/agony; shotgun beanbags and revolver rubbers do 60
+	var/deafen_dur = (rand(9,16)-severity)*species.emp_stun_mod //5-15 deafen, on par with a flashbang
+	var/confuse_dur = (rand(4,11)-severity)*species.emp_stun_mod //0-10 wobbliness, on par with a flashbang
+	var/weaken_dur = (rand(2,4)-severity)*species.emp_stun_mod //0-3 knockdown, on par with.. you get the idea
+	var/blind_dur = (rand(3,6)-severity)*species.emp_stun_mod //0-5 blind
+	if(species.emp_sensitivity) //receive warning message and basic effects
+		to_chat(src, "<span class='danger'><B>*BZZZT*</B></span>")
+		switch(severity)
+			if(1)
+				to_chat(src, "<span class='danger'>DANGER: Extreme EM flux detected!</span>")
+			if(2)
+				to_chat(src, "<span class='danger'>Danger: High EM flux detected!</span>")
+			if(3)
+				to_chat(src, "<span class='danger'>Warning: Moderate EM flux detected!</span>")
+			if(4)
+				to_chat(src, "<span class='danger'>Warning: Minor EM flux detected!</span>")
+		if(prob(90-(10*severity))) //50-80% chance to fire an emote. most are harmless, but vomit might reduce your nutrition level which could suck (so the whole thing is padded out with extras)
+			src.emote(pick("twitch", "twitch_v", "choke", "pale", "blink", "blink_r", "shiver", "sneeze", "vomit", "gasp", "cough", "drool"))
+		//stun effects block, effects vary wildly
+		if(species.emp_sensitivity & EMP_PAIN)
+			to_chat(src, "<span class='danger'>A wave of intense pain washes over you.</span>")
+			src.adjustHalLoss(agony_str)
+		if(species.emp_sensitivity & EMP_BLIND)
+			if(blind_dur >= 1) //don't flash them unless they actually roll a positive blind duration
+				src.flash_eyes(3)	//3 allows it to bypass any tier of eye protection, necessary or else sec sunglasses/etc. protect you from this
+			Blind(max(0,blind_dur))
+		if(species.emp_sensitivity & EMP_DEAFEN)
+			src.ear_damage += rand(0,deafen_dur) //this will heal pretty quickly, but spamming them at someone could cause serious damage
+			src.ear_deaf = max(src.ear_deaf,deafen_dur)
+		if(species.emp_sensitivity & EMP_CONFUSE)
+			if(confuse_dur >= 1)
+				to_chat(src, "<span class='danger'>Oh god, everything's spinning!</span>")
+			Confuse(max(0,confuse_dur))
+		if(species.emp_sensitivity & EMP_WEAKEN)
+			if(weaken_dur >= 1) 
+				to_chat(src, "<span class='danger'>Your limbs go slack!</span>")
+			Weaken(max(0,weaken_dur))
+		//physical damage block, deals (minor-4) 5-15, 10-20, 15-25, 20-30 (extreme-1) of *each* type
+		if(species.emp_sensitivity & EMP_BRUTE_DMG)
+			src.adjustBruteLoss(rand(25-(severity*5),35-(severity*5)) * species.emp_dmg_mod)
+		if(species.emp_sensitivity & EMP_BURN_DMG)
+			src.adjustFireLoss(rand(25-(severity*5),35-(severity*5)) * species.emp_dmg_mod)
+		if(species.emp_sensitivity & EMP_TOX_DMG)
+			src.adjustToxLoss(rand(25-(severity*5),35-(severity*5)) * species.emp_dmg_mod)
+		if(species.emp_sensitivity & EMP_OXY_DMG)
+			src.adjustOxyLoss(rand(25-(severity*5),35-(severity*5)) * species.emp_dmg_mod)
+	..()
+
 /mob/living/carbon/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0, var/def_zone = null, var/stun = 1)
 	if(status_flags & GODMODE)	return 0	//godmode
 	if(def_zone == "l_hand" || def_zone == "r_hand") //Diona (And any other potential plant people) hands don't get shocked.
