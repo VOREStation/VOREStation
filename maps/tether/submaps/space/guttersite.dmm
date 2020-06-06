@@ -2,25 +2,25 @@
 "ab" = (/turf/simulated/mineral/floor/vacuum,/area/space)
 "ac" = (/turf/simulated/mineral/cave,/area/space)
 "ad" = (/turf/simulated/mineral/floor/vacuum,/area/tether_away/guttersite/unexplored)
-"ae" = (/turf/simulated/wall/r_wall,/area/tether_away/guttersite/unexplored)
+"ae" = (/turf/simulated/mineral/floor/vacuum,/area/tether_away/guttersite/teleporter)
 "af" = (/obj/structure/lattice,/turf/simulated/mineral/floor/vacuum,/area/tether_away/guttersite/unexplored)
 "ag" = (/turf/simulated/mineral/cave,/area/tether_away/guttersite/unexplored)
-"ah" = (/obj/structure/frame/computer,/obj/structure/cable{icon_state = "0-2"; d2 = 2},/turf/simulated/floor/airless,/area/tether_away/guttersite/unexplored)
-"ai" = (/obj/machinery/teleport/station,/obj/structure/cable{icon_state = "0-2"; d2 = 2},/turf/simulated/floor/airless,/area/tether_away/guttersite/unexplored)
-"aj" = (/obj/machinery/teleport/hub,/turf/simulated/floor/airless,/area/tether_away/guttersite/unexplored)
+"ah" = (/turf/simulated/wall/r_wall,/area/tether_away/guttersite/teleporter)
+"ai" = (/obj/structure/lattice,/turf/simulated/mineral/floor/vacuum,/area/tether_away/guttersite/teleporter)
+"aj" = (/turf/simulated/mineral/cave,/area/tether_away/guttersite/teleporter)
 "ak" = (/obj/structure/lattice,/turf/space,/area/tether_away/guttersite/unexplored)
-"al" = (/obj/item/weapon/material/shard{icon_state = "medium"},/turf/simulated/floor/airless,/area/tether_away/guttersite/unexplored)
-"am" = (/turf/simulated/floor/airless,/area/tether_away/guttersite/unexplored)
-"an" = (/obj/structure/cable,/turf/simulated/floor/airless,/area/tether_away/guttersite/unexplored)
-"ao" = (/obj/structure/table/rack,/obj/item/clothing/gloves/yellow,/turf/simulated/floor/airless,/area/tether_away/guttersite/unexplored)
-"ap" = (/obj/structure/girder,/turf/simulated/floor/airless,/area/tether_away/guttersite/unexplored)
-"aq" = (/obj/item/weapon/cell,/turf/simulated/floor/airless,/area/tether_away/guttersite/unexplored)
-"ar" = (/obj/structure/grille/broken,/turf/simulated/floor/airless,/area/tether_away/guttersite/unexplored)
-"as" = (/obj/structure/table,/turf/simulated/floor/airless,/area/tether_away/guttersite/unexplored)
-"at" = (/obj/structure/closet,/turf/simulated/floor/airless,/area/tether_away/guttersite/unexplored)
-"au" = (/obj/structure/cable{icon_state = "0-4"; d2 = 4},/obj/machinery/power/apc{cell_type = /obj/item/weapon/cell/super; dir = 8; name = "west bump"; pixel_x = -24},/turf/simulated/floor/airless,/area/tether_away/guttersite/unexplored)
-"av" = (/obj/structure/grille/broken,/turf/simulated/mineral/floor/vacuum,/area/tether_away/guttersite/unexplored)
-"aw" = (/obj/item/weapon/storage/toolbox/electrical{pixel_x = 1; pixel_y = -1},/turf/simulated/floor/airless,/area/tether_away/guttersite/unexplored)
+"al" = (/obj/structure/frame/computer,/obj/structure/cable{icon_state = "0-2"; d2 = 2},/turf/simulated/floor/airless,/area/tether_away/guttersite/teleporter)
+"am" = (/obj/machinery/teleport/station,/obj/structure/cable{icon_state = "0-2"; d2 = 2},/turf/simulated/floor/airless,/area/tether_away/guttersite/teleporter)
+"an" = (/obj/machinery/teleport/hub,/turf/simulated/floor/airless,/area/tether_away/guttersite/teleporter)
+"ao" = (/obj/item/weapon/material/shard{icon_state = "medium"},/turf/simulated/floor/airless,/area/tether_away/guttersite/teleporter)
+"ap" = (/turf/simulated/floor/airless,/area/tether_away/guttersite/teleporter)
+"aq" = (/obj/structure/cable,/turf/simulated/floor/airless,/area/tether_away/guttersite/teleporter)
+"ar" = (/obj/structure/table/rack,/obj/item/clothing/gloves/yellow,/turf/simulated/floor/airless,/area/tether_away/guttersite/teleporter)
+"as" = (/obj/structure/girder,/turf/simulated/floor/airless,/area/tether_away/guttersite/teleporter)
+"at" = (/obj/item/weapon/cell,/turf/simulated/floor/airless,/area/tether_away/guttersite/teleporter)
+"au" = (/obj/structure/grille/broken,/turf/simulated/floor/airless,/area/tether_away/guttersite/teleporter)
+"av" = (/obj/structure/table,/turf/simulated/floor/airless,/area/tether_away/guttersite/teleporter)
+"aw" = (/obj/structure/closet,/turf/simulated/floor/airless,/area/tether_away/guttersite/teleporter)
 "ax" = (/turf/simulated/wall/r_wall,/area/tether_away/guttersite/storage)
 "ay" = (/obj/structure/boulder,/turf/simulated/mineral/floor/vacuum,/area/tether_away/guttersite/unexplored)
 "az" = (/obj/structure/inflatable/door,/turf/simulated/mineral/floor/vacuum,/area/tether_away/guttersite/unexplored)
@@ -554,6 +554,7 @@
 "kH" = (/obj/structure/cable/cyan{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 8},/obj/machinery/atmospherics/pipe/simple/hidden/supply{icon_state = "intact-supply"; dir = 4},/obj/structure/bed/chair/bay/comfy/black{icon_state = "bay_comfychair_preview"; dir = 8},/turf/simulated/floor/tiled/eris/dark/gray_perforated,/area/tether_away/guttersite/commons)
 "kI" = (/obj/machinery/vending/medical,/turf/simulated/floor/tiled/eris/dark/gray_perforated,/area/tether_away/guttersite/medbay)
 "kJ" = (/obj/machinery/vending/security,/turf/space,/area/tether_away/guttersite/unexplored)
+"kK" = (/obj/structure/cable{icon_state = "0-4"; d2 = 4},/obj/machinery/power/apc{cell_type = /obj/item/weapon/cell/super; dir = 8; name = "west bump"; pixel_x = -24},/turf/simulated/floor/airless,/area/tether_away/guttersite/teleporter)
 "kL" = (/obj/machinery/atmospherics/unary/vent_pump/on{icon_state = "map_vent_out"; dir = 1},/obj/structure/table/darkglass,/obj/structure/window/basic,/obj/structure/window/basic{dir = 8},/turf/simulated/floor/tiled/eris/dark/gray_perforated,/area/tether_away/guttersite/commons)
 "kM" = (/obj/structure/table/darkglass,/obj/structure/window/basic,/turf/simulated/floor/tiled/eris/dark/gray_perforated,/area/tether_away/guttersite/commons)
 "kN" = (/obj/structure/table/darkglass,/obj/structure/window/basic{dir = 1},/turf/simulated/floor/tiled/eris/dark/gray_perforated,/area/tether_away/guttersite/commons)
@@ -603,6 +604,8 @@
 "lF" = (/obj/machinery/light,/turf/simulated/floor/tiled/eris/dark/gray_perforated,/area/tether_away/guttersite/office)
 "lG" = (/obj/machinery/light{icon_state = "tube1"; dir = 1},/turf/simulated/floor/plating/eris/under,/area/tether_away/guttersite/security)
 "lH" = (/obj/machinery/light{dir = 8; icon_state = "tube1"},/turf/simulated/floor/tiled/eris/dark/gray_perforated,/area/tether_away/guttersite/security)
+"lI" = (/obj/structure/grille/broken,/turf/simulated/mineral/floor/vacuum,/area/tether_away/guttersite/teleporter)
+"lJ" = (/obj/item/weapon/storage/toolbox/electrical{pixel_x = 1; pixel_y = -1},/turf/simulated/floor/airless,/area/tether_away/guttersite/teleporter)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -630,18 +633,18 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadadadadadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacacacacacacacacacabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadaeaeaeaeaeafagagaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababababacacacacacacacacacacacacacacababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaafafaeaeahaiajaeaeagagagaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabacacacacacacacacacacacacacacacacacacacacacacacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaakafafaeaealamanamaoaeaeagagaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadapaqamaradamamasaeagagaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaagaaaaaaaaaaaaaaaaaaaaadamamamafafafamamaeagagaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaagagaaaaaaaaaaaaaaaaaaadadaeamafafadafadataeagagaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaxaxaxaxaxaxacacacacacacacaaaaaaaaaaaaaaaaaaagagagagaaaaaaaaaaaaaaakafafaeaeauavadafawaeaeagagaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaBaBaBaBaBaBaBaBaBaBaBaBaBaBaBaBaBaBaBaBaBaBaBaBacacacacacacacacacacacaxaxaxaxlblcldlcaxaxacacacacacacacacacaaaaaaaaaaaaagagagadaaaaaaaaaaaaaaaaaaafafaeaeamafamaeaeagagagaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaBaEaEaEaEaEaEaEaFaGaGaGaGaGaGaGaGaGaGaGaGaHaEaBacacacacacacacacacacaxaxlelelfaDaDaDaDlgaxaxacacacacacacacacacaaaaaaaaaaaaaaadadaaaaaaaaaaaaaaaaaaadadadaeaeamaeaeafagagagaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaIaJaJaJaKaMaJaJaJaJaNaOaEaPaPaQaQaQaRaSaQaQaQaTaUaEaBacacacacacacacacacaxaxaCaDaDlhliaDaDaDlgljaxacacacacacacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadafadafadafadadagaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaIaVaVaWaVaVaXaYaZaJbabcaEbdaPbebfbgbhbhbibhbhaTaUaEaBacacacacacacacacacaxlkaDaDaDlhlnaDaDaDlglraxacacacacacacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadadafafafadadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeaeaeaeaeaeaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacacacacacacacacacabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeaeahahahahahaiajajaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababababacacacacacacacacacacacacacacababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiaiahahalamanahahajajajaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabacacacacacacacacacacacacacacacacacacacacacacacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaakafaiahahaoapaqaparahahajajaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeaeasatapauaeapapavahajajaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaagaaaaaaaaaaaaaaaaaaaaaeapapapaiaiaiapapahajajaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaagagaaaaaaaaaaaaaaaaaaaeaeahapaiaiaeaiaeawahajajaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacacaxaxaxaxaxaxacacacacacacacaaaaaaaaaaaaaaaaaaagagagagaaaaaaaaaaaaaaakaiaiahahkKlIaeailJahahajajaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaBaBaBaBaBaBaBaBaBaBaBaBaBaBaBaBaBaBaBaBaBaBaBaBacacacacacacacacacacacaxaxaxaxlblcldlcaxaxacacacacacacacacacaaaaaaaaaaaaagagagadaaaaaaaaaaaaaaaaaaaiaiahahapaiapahahajajajaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaBaEaEaEaEaEaEaEaFaGaGaGaGaGaGaGaGaGaGaGaGaHaEaBacacacacacacacacacacaxaxlelelfaDaDaDaDlgaxaxacacacacacacacacacaaaaaaaaaaaaaaadadaaaaaaaaaaaaaaaaaaaeaeaeahahapahahaiajajajaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaIaJaJaJaKaMaJaJaJaJaNaOaEaPaPaQaQaQaRaSaQaQaQaTaUaEaBacacacacacacacacacaxaxaCaDaDlhliaDaDaDlgljaxacacacacacacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeaeaiaeaiaeaiaeaeajaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaIaVaVaWaVaVaXaYaZaJbabcaEbdaPbebfbgbhbhbibhbhaTaUaEaBacacacacacacacacacaxlkaDaDaDlhlnaDaDaDlglraxacacacacacacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeaeaiaiaiaeaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaIaVbjbkblblblblbmaJaEbnboaEaPbpbqbqbqbqbrbsbhaTaUaEaBaBaBaBaBaBaBaBaBaBaxlllmaDbtlAlBbubvbvbvbwaxacacacacacacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaakaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaIaVbjbxbybzbAbzbBbCbDbEbFbDbGbHbIbJbKbLbMbNbhaTbOaGaGbPaGaGaGaGaGaGaGbPbQbRbRbRbSbRbRbTaDaDlglsaxacacacacacacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaIaVbjbUbVbzcpblbXbYaEbobZaEcacbccbJcdcecfcgbhaTaPaPaBaBaBaBaBaBaBaBaBaBaxaDaDaDchaDaDciaDaDloltaxacacacacacacacacacaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
