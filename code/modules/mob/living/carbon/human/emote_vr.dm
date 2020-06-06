@@ -40,11 +40,11 @@
 			playsound(loc, 'sound/voice/growl.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
 		if("woof")
 			m_type = 2
-			message = "lets out an woof."
+			message = "lets out a woof."
 			playsound(loc, 'sound/voice/woof.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
 		if("woof2")
 			m_type = 2
-			message = "lets out an woof."
+			message = "lets out a woof."
 			playsound(loc, 'sound/voice/woof2.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
 		if("nya")
 			message = "lets out a nya."
