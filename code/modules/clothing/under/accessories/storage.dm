@@ -57,7 +57,7 @@
 
 /obj/item/clothing/accessory/storage/black_vest
 	name = "black webbing vest"
-	desc = "Robust black synthcotton vest with lots of pockets to hold whatever you need, but cannot hold in hands."
+	desc = "Robust black synthcotton vest with lots of pockets to hold whatever you need, but cannot hold in your hands."
 	icon_state = "vest_black"
 
 /obj/item/clothing/accessory/storage/brown_vest
@@ -73,19 +73,19 @@
 /obj/item/clothing/accessory/storage/black_drop_pouches
 	name = "black drop pouches"
 	gender = PLURAL
-	desc = "Robust black synthcotton bags to hold whatever you need, but cannot hold in hands."
+	desc = "Robust black synthcotton bags to hold whatever you need, but cannot hold in your hands."
 	icon_state = "thigh_black"
 
 /obj/item/clothing/accessory/storage/brown_drop_pouches
 	name = "brown drop pouches"
 	gender = PLURAL
-	desc = "Worn brownish synthcotton bags to hold whatever you need, but cannot hold in hands."
+	desc = "Worn brownish synthcotton bags to hold whatever you need, but cannot hold in your hands."
 	icon_state = "thigh_brown"
 
 /obj/item/clothing/accessory/storage/white_drop_pouches
 	name = "white drop pouches"
 	gender = PLURAL
-	desc = "Durable white synthcotton bags to hold whatever you need, but cannot hold in hands."
+	desc = "Durable white synthcotton bags to hold whatever you need, but cannot hold in your hands."
 	icon_state = "thigh_white"
 
 /obj/item/clothing/accessory/storage/knifeharness
