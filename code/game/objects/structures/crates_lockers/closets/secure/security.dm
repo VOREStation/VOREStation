@@ -246,6 +246,7 @@
 /obj/structure/closet/secure_closet/injection
 	name = "lethal injections locker"
 	req_access = list(access_captain)
+	closet_appearance = /decl/closet_appearance/secure_closet/courtroom
 
 	starts_with = list(
 		/obj/item/weapon/reagent_containers/syringe/ld50_syringe/choral = 2)
@@ -255,6 +256,7 @@ GLOBAL_LIST_BOILERPLATE(all_brig_closets, /obj/structure/closet/secure_closet/br
 /obj/structure/closet/secure_closet/brig
 	name = "brig locker"
 	req_access = list(access_brig)
+	closet_appearance = /decl/closet_appearance/secure_closet/brig
 	anchored = 1
 	var/id = null
 
@@ -277,6 +279,7 @@ GLOBAL_LIST_BOILERPLATE(all_brig_closets, /obj/structure/closet/secure_closet/br
 /obj/structure/closet/secure_closet/courtroom
 	name = "courtroom locker"
 	req_access = list(access_lawyer)
+	closet_appearance = /decl/closet_appearance/secure_closet/courtroom
 
 	starts_with = list(
 		/obj/item/clothing/shoes/brown,
