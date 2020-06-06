@@ -67,7 +67,7 @@
 /decl/closet_appearance/secure_closet/expedition
 	color = COLOR_LIGHT_VIOLET
 	decals = list(
-		"lower_holes"
+		"lower_side_vent"
 	)
 
 /decl/closet_appearance/secure_closet/expedition/pilot

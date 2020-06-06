@@ -198,7 +198,7 @@
 
 
 /obj/structure/closet/secure_closet/psych
-	name = "psychiatric closet"
+	name = "psychiatric cabinet"
 	desc = "Store psychology tools and medicines in here."
 	req_access = list(access_psychiatrist)
 	closet_appearance = /decl/closet_appearance/cabinet/secure

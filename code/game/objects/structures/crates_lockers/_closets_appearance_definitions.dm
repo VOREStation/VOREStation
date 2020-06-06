@@ -496,7 +496,7 @@
 
 /decl/closet_appearance/secure_closet/medical/paramedic
 	decals = list(
-		"lower_holes"
+		"lower_side_vent"
 	)
 	extra_decals = list(
 		"medical" = COLOR_BLUE_GRAY,
@@ -505,7 +505,7 @@
 
 /decl/closet_appearance/secure_closet/medical/doctor
 	decals = list(
-		"lower_holes"
+		"lower_side_vent"
 	)
 	extra_decals = list(
 		"medical" = COLOR_BLUE_GRAY,
