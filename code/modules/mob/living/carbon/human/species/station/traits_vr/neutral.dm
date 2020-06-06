@@ -47,6 +47,7 @@
 	autohiss_exempt = list("Sinta'unathi"))
 
 	excludes = list(/datum/trait/autohiss_tajaran)
+	allow_allspecies = TRUE
 
 /datum/trait/autohiss_tajaran
 	name = "Autohiss (Tajaran)"
@@ -58,13 +59,14 @@
 		),
 	autohiss_exempt = list("Siik"))
 	excludes = list(/datum/trait/autohiss_unathi)
+	allow_allspecies = TRUE
 
 /datum/trait/bloodsucker
 	name = "Bloodsucker"
 	desc = "Makes you unable to gain nutrition from anything but blood. To compenstate, you get fangs that can be used to drain blood from prey."
 	cost = 0
 	var_changes = list("gets_food_nutrition" = 0) //The verb is given in human.dm
-	allow_noncustom = TRUE
+	allow_allspecies = TRUE
 
 /datum/trait/bloodsucker/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..(S,H)
@@ -74,7 +76,7 @@
 	name = "Succubus Drain"
 	desc = "Makes you able to gain nutrition from draining prey in your grasp."
 	cost = 0
-	allow_noncustom = TRUE
+	allow_allspecies = TRUE
 
 /datum/trait/succubus_drain/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..(S,H)
@@ -86,7 +88,7 @@
 	name = "Brutal Predation"
 	desc = "Allows you to tear off limbs & tear out internal organs."
 	cost = 0 //I would make this cost a point, since it has some in game value, but there are easier, less damaging ways to perform the same functions.
-	allow_noncustom = TRUE
+	allow_allspecies = TRUE
 
 /datum/trait/hard_vore/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..(S,H)
@@ -97,7 +99,7 @@
 	desc = "Allows you to dispose of some garbage on the go instead of having to look for a bin or littering like an animal."
 	cost = 0
 	var_changes = list("trashcan" = 1)
-	allow_noncustom = TRUE
+	allow_allspecies = TRUE
 
 /datum/trait/trashcan/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..(S,H)
@@ -108,7 +110,7 @@
 	desc = "You only gain nutrition from raw ore and refined minerals. There's nothing that sates the appetite better than precious gems, exotic or rare minerals and you have damn fine taste. Anything else is beneath you."
 	cost = 0
 	var_changes = list("gets_food_nutrition" = 0, "eat_minerals" = 1)
-	allow_noncustom = TRUE
+	allow_allspecies = TRUE
 
 /datum/trait/gem_eater/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..(S,H)
@@ -119,7 +121,7 @@
 	desc = "Your eyes show up above darkness. SPOOKY! And kinda edgey too."
 	cost = 0
 	var_changes = list("has_glowing_eyes" = 1)
-	allow_noncustom = TRUE
+	allow_allspecies = TRUE
 
 /datum/trait/glowing_body
 	name = "Glowing Body"

@@ -229,7 +229,7 @@
 		var/list/nicelist = list()
 		for(var/P in picklist)
 			var/datum/trait/T = picklist[P]
-			if(pref.species == SPECIES_CUSTOM || (pref.species != SPECIES_CUSTOM && T.allow_noncustom))
+			if(pref.species == SPECIES_CUSTOM || (pref.species != SPECIES_CUSTOM && T.allow_allspecies))
 				nicelist[T.name] = P
 
 		var/points_left = pref.starting_trait_points
