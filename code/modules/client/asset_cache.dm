@@ -308,7 +308,7 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 		"nano/images/modular_computers/",
 		"nano/js/"
 	)
-	var/list/uncommon_dirs = list(
+	var/list/template_dirs = list(
 		"nano/templates/"
 	)
 
@@ -321,18 +321,21 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 				if(fexists(path + filename))
 					common[filename] = fcopy_rsc(path + filename)
 					register_asset(filename, common[filename])
-	for(var/path in uncommon_dirs)
+	// Combine all templates into a single bundle.
+	var/list/template_data = list()
+	for(var/path in template_dirs)
 		var/list/filenames = flist(path)
 		for(var/filename in filenames)
-			if(copytext(filename, length(filename)) != "/") // Ignore directories.
-				if(fexists(path + filename))
-					register_asset(filename, fcopy_rsc(path + filename))
+			if(copytext(filename, length(filename) - 4) == ".tmpl") // Ignore directories.
+				template_data[filename] = file2text(path + filename)
+	var/template_bundle = "function nanouiTemplateBundle(){return [json_encode(template_data)];}"
+	var/fname = "data/nano_templates_bundle.js"
+	fdel(fname)
+	text2file(template_bundle, fname)
+	register_asset("nano_templates_bundle.js", fcopy_rsc(fname))
+	fdel(fname)
 
-/datum/asset/nanoui/send(client, uncommon)
-	if(!islist(uncommon))
-		uncommon = list(uncommon)
-
-	send_asset_list(client, uncommon)
+/datum/asset/nanoui/send(client)
 	send_asset_list(client, common)
 
 
