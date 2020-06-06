@@ -57,21 +57,21 @@
 
 	if(pref.species != SPECIES_CUSTOM)
 		pref.pos_traits.Cut()
-		pref.neu_traits.Cut()
 		pref.neg_traits.Cut()
 	else
 		// Clean up positive traits
 		for(var/path in pref.pos_traits)
 			if(!(path in positive_traits))
 				pref.pos_traits -= path
-		//Neutral traits
-		for(var/path in pref.neu_traits)
-			if(!(path in neutral_traits))
-				pref.neu_traits -= path
 		//Negative traits
 		for(var/path in pref.neg_traits)
 			if(!(path in negative_traits))
 				pref.neg_traits -= path
+
+	//Neutral traits for all
+	for(var/path in pref.neu_traits)
+		if(!(path in neutral_traits))
+			pref.neu_traits -= path
 
 	var/datum/species/selected_species = GLOB.all_species[pref.species]
 	if(selected_species.selects_bodytype)
@@ -82,6 +82,7 @@
 /datum/category_item/player_setup_item/vore/traits/copy_to_mob(var/mob/living/carbon/human/character)
 	character.custom_species	= pref.custom_species
 	var/datum/species/selected_species = GLOB.all_species[pref.species]
+	var/english_traits
 	if(selected_species.selects_bodytype)
 		var/datum/species/custom/CS = character.species
 		var/S = pref.custom_base ? pref.custom_base : "Human"
@@ -89,11 +90,14 @@
 
 		//Any additional non-trait settings can be applied here
 		new_CS.blood_color = pref.blood_color
+		english_traits = english_list(new_CS.traits, and_text = ";", comma_text = ";")
+	else if(pref.species != SPECIES_CUSTOM) //Apply neutral traits only.
+		for(var/trait in pref.neu_traits)
+			var/datum/trait/T = all_traits[trait]
+			T.apply(character.species, character)
+		english_traits = english_list(character.species.traits, and_text = ";", comma_text = ";")
 
-		if(pref.species == SPECIES_CUSTOM)
-			//Statistics for this would be nice
-			var/english_traits = english_list(new_CS.traits, and_text = ";", comma_text = ";")
-			log_game("TRAITS [pref.client_ckey]/([character]) with: [english_traits]") //Terrible 'fake' key_name()... but they aren't in the same entity yet
+	log_game("TRAITS [pref.client_ckey]/([character]) with: [english_traits]") //Terrible 'fake' key_name()... but they aren't in the same entity yet
 
 /datum/category_item/player_setup_item/vore/traits/content(var/mob/user)
 	. += "<b>Custom Species Name:</b> "
@@ -123,13 +127,14 @@
 			. += "<li>- <a href='?src=\ref[src];clicked_pos_trait=[T]'>[trait.name] ([trait.cost])</a></li>"
 		. += "</ul>"
 
-		. += "<a href='?src=\ref[src];add_trait=[NEUTRAL_MODE]'>Neutral Trait +</a><br>"
-		. += "<ul>"
-		for(var/T in pref.neu_traits)
-			var/datum/trait/trait = neutral_traits[T]
-			. += "<li>- <a href='?src=\ref[src];clicked_neu_trait=[T]'>[trait.name] ([trait.cost])</a></li>"
-		. += "</ul>"
+	. += "<a href='?src=\ref[src];add_trait=[NEUTRAL_MODE]'>Neutral Trait +</a><br>"
+	. += "<ul>"
+	for(var/T in pref.neu_traits)
+		var/datum/trait/trait = neutral_traits[T]
+		. += "<li>- <a href='?src=\ref[src];clicked_neu_trait=[T]'>[trait.name] ([trait.cost])</a></li>"
+	. += "</ul>"
 
+	if(pref.species == SPECIES_CUSTOM)
 		. += "<a href='?src=\ref[src];add_trait=[NEGATIVE_MODE]'>Negative Trait +</a><br>"
 		. += "<ul>"
 		for(var/T in pref.neg_traits)
@@ -224,7 +229,8 @@
 		var/list/nicelist = list()
 		for(var/P in picklist)
 			var/datum/trait/T = picklist[P]
-			nicelist[T.name] = P
+			if(pref.species == SPECIES_CUSTOM || (pref.species != SPECIES_CUSTOM && T.allow_noncustom))
+				nicelist[T.name] = P
 
 		var/points_left = pref.starting_trait_points
 		for(var/T in pref.pos_traits + pref.neu_traits + pref.neg_traits)

@@ -8,6 +8,7 @@
 	var/eat_minerals = FALSE //HEAVY METAL DIET
 	var/base_species = null // Unused outside of a few species
 	var/selects_bodytype = FALSE // Allows the species to choose from body types intead of being forced to be just one.
+	var/list/traits = list() //Contains select neutral traits only unless you're a custom species.
 
 /datum/species/custom
 	name = SPECIES_CUSTOM
@@ -31,8 +32,6 @@
 
 	spawn_flags = SPECIES_CAN_JOIN
 	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR
-
-	var/list/traits = list()
 
 	has_limbs = list(
 		BP_TORSO =  list("path" = /obj/item/organ/external/chest, "descriptor" = "torso"),
