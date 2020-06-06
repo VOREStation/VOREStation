@@ -55,7 +55,11 @@
 
 	if(!typing_indicator)
 		typing_indicator = new
+<<<<<<< HEAD
 		typing_indicator.icon = 'icons/mob/talk_vr.dmi' //VOREStation Edit - talk_vr.dmi instead of talk.dmi for right-side icons
+=======
+		typing_indicator.icon = 'icons/mob/talk.dmi'
+>>>>>>> 32f9e43... Merge pull request #7211 from VOREStation/Arokha/talks
 		typing_indicator.icon_state = "[speech_bubble_appearance()]_typing"
 
 	if(state && !typing)

@@ -88,7 +88,11 @@
 	qdel(src)
 
 /obj/item/organ/internal/mmi_holder/emp_act(severity)
+<<<<<<< HEAD
 	// ..() // VOREStation Edit - Don't take damage
+=======
+	..()
+>>>>>>> 32f9e43... Merge pull request #7211 from VOREStation/Arokha/talks
 	owner?.adjustToxLoss(rand(6/severity, 12/severity))
 
 /obj/item/organ/internal/mmi_holder/posibrain

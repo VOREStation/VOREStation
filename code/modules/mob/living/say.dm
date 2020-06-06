@@ -40,18 +40,18 @@ var/list/department_radio_keys = list(
 
 	  //kinda localization -- rastaf0
 	  //same keys as above, but on russian keyboard layout. This file uses cp1251 as encoding.
-	  ":ê" = "right ear",	".ê" = "right ear",
-	  ":ä" = "left ear",	".ä" = "left ear",
-	  ":ø" = "intercom",	".ø" = "intercom",
-	  ":ð" = "department",	".ð" = "department",
-	  ":ñ" = "Command",		".ñ" = "Command",
-	  ":ò" = "Science",		".ò" = "Science",
-	  ":ü" = "Medical",		".ü" = "Medical",
-	  ":ó" = "Engineering",	".ó" = "Engineering",
-	  ":û" = "Security",	".û" = "Security",
-	  ":ö" = "whisper",		".ö" = "whisper",
-	  ":å" = "Mercenary",	".å" = "Mercenary",
-	  ":é" = "Supply",		".é" = "Supply",
+	  ":ï¿½" = "right ear",	".ï¿½" = "right ear",
+	  ":ï¿½" = "left ear",	".ï¿½" = "left ear",
+	  ":ï¿½" = "intercom",	".ï¿½" = "intercom",
+	  ":ï¿½" = "department",	".ï¿½" = "department",
+	  ":ï¿½" = "Command",		".ï¿½" = "Command",
+	  ":ï¿½" = "Science",		".ï¿½" = "Science",
+	  ":ï¿½" = "Medical",		".ï¿½" = "Medical",
+	  ":ï¿½" = "Engineering",	".ï¿½" = "Engineering",
+	  ":ï¿½" = "Security",	".ï¿½" = "Security",
+	  ":ï¿½" = "whisper",		".ï¿½" = "whisper",
+	  ":ï¿½" = "Mercenary",	".ï¿½" = "Mercenary",
+	  ":ï¿½" = "Supply",		".ï¿½" = "Supply",
 )
 
 
@@ -320,6 +320,7 @@ proc/get_radio_key_from_channel(var/channel)
 	var/speech_bubble_test = say_test(message)
 	//var/image/speech_bubble = image('icons/mob/talk_vr.dmi',src,"h[speech_bubble_test]") //VOREStation Edit. Commented this out in case we need to reenable.
 	var/speech_type = speech_bubble_appearance()
+<<<<<<< HEAD
 	var/image/speech_bubble = image('icons/mob/talk_vr.dmi',src,"[speech_type][speech_bubble_test]") //VOREStation Edit - talk_vr.dmi instead of talk.dmi for right-side icons
 	var/sb_alpha = 255
 	var/atom/loc_before_turf = src
@@ -327,6 +328,11 @@ proc/get_radio_key_from_channel(var/channel)
 	if(isbelly(loc))
 		speech_bubble.pixel_y = -13 //teehee
 	//VOREStation Add End
+=======
+	var/image/speech_bubble = image('icons/mob/talk.dmi',src,"[speech_type][speech_bubble_test]")
+	var/sb_alpha = 255
+	var/atom/loc_before_turf = src
+>>>>>>> 32f9e43... Merge pull request #7211 from VOREStation/Arokha/talks
 	while(loc_before_turf && !isturf(loc_before_turf.loc))
 		loc_before_turf = loc_before_turf.loc
 		sb_alpha -= 50
