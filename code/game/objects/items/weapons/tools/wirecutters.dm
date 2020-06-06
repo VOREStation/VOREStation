@@ -87,14 +87,6 @@
 	toolspeed = 0.4
 	reach = 2
 
-/obj/item/weapon/tool/wirecutters/hybrid/is_wirecutter()
-	if(prob(10))
-		var/turf/T = get_turf(src)
-		SSradiation.radiate(get_turf(src), 5)
-		T.visible_message("<span class='alien'>\The [src] shudders!</span>")
-		return FALSE
-	return TRUE
-
 /obj/item/weapon/tool/wirecutters/power
 	name = "jaws of life"
 	desc = "A set of jaws of life, compressed through the magic of science. It's fitted with a cutting head."
@@ -121,7 +113,7 @@
 	return ..()
 
 /obj/item/weapon/tool/wirecutters/power/attack_self(mob/user)
-	playsound(get_turf(user), 'sound/items/change_jaws.ogg', 50, 1)
+	playsound(src, 'sound/items/change_jaws.ogg', 50, 1)
 	user.drop_item(src)
 	counterpart.forceMove(get_turf(src))
 	src.forceMove(counterpart)

@@ -296,7 +296,7 @@
 		else
 			reagents.trans_to_obj(D, 5)
 			to_chat(user, "<span class='notice'>You wet \the [D] in \the [src].</span>")
-			playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
+			playsound(src, 'sound/effects/slosh.ogg', 25, 1)
 	else
 		return ..()
 
@@ -337,7 +337,7 @@ obj/item/weapon/reagent_containers/glass/bucket/wood
 		else
 			reagents.trans_to_obj(D, 5)
 			to_chat(user, "<span class='notice'>You wet \the [D] in \the [src].</span>")
-			playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
+			playsound(src, 'sound/effects/slosh.ogg', 25, 1)
 		return
 	else
 		return ..()

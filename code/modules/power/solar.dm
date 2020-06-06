@@ -65,14 +65,14 @@ GLOBAL_LIST_EMPTY(solars_list)
 /obj/machinery/power/solar/attackby(obj/item/weapon/W, mob/user)
 
 	if(W.is_crowbar())
-		playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
+		playsound(src, 'sound/machines/click.ogg', 50, 1)
 		user.visible_message("<span class='notice'>[user] begins to take the glass off the solar panel.</span>")
 		if(do_after(user, 50))
 			var/obj/item/solar_assembly/S = locate() in src
 			if(S)
 				S.loc = src.loc
 				S.give_glass()
-			playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+			playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 			user.visible_message("<span class='notice'>[user] takes the glass off the solar panel.</span>")
 			qdel(src)
 		return
@@ -247,7 +247,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 			var/obj/item/stack/material/S = W
 			if(S.use(2))
 				glass_type = W.type
-				playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
+				playsound(src, 'sound/machines/click.ogg', 50, 1)
 				user.visible_message("<span class='notice'>[user] places the glass on the solar assembly.</span>")
 				if(tracker)
 					new /obj/machinery/power/tracker(get_turf(src), src)

@@ -39,7 +39,7 @@
 		size += gun.w_class
 		gun.forceMove(src)
 		to_chat(user, "<span class='notice'>You slide \the [gun] into the firing mechanism.</span>")
-		playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
+		playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 	else
 		..()
 
@@ -48,7 +48,7 @@
 		installed_gun.forceMove(get_turf(src))
 		to_chat(user, "<span class='notice'>You slide \the [installed_gun] out of the firing mechanism.</span>")
 		size = initial(size)
-		playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
+		playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 		installed_gun = null
 	else
 		to_chat(user, "<span class='notice'>There's no weapon to remove from the mechanism.</span>")

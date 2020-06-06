@@ -129,6 +129,146 @@
 	required_reagents = list("whiskey" = 1, "protein" = 1)
 	result_amount = 2
 
+/datum/chemical_reaction/drinks/bigbeer
+	name = "Giant Beer"
+	id = "bigbeer"
+	result = "bigbeer"
+	required_reagents = list("syndicatebomb" = 1, "manlydorf" = 1, "grog" =1)
+	result_amount = 3
+
+/datum/chemical_reaction/drinks/sweettea
+	name = "Sweetened Tea"
+	id = "sweettea"
+	result = "sweettea"
+	required_reagents = list("icetea" = 2, "sugar" = 1,)
+	result_amount = 3
+
+/datum/chemical_reaction/drinks/unsweettea
+	name = "Unsweetened Tea"
+	id = "unsweettea"
+	result = "unsweettea"
+	required_reagents = list("sweettea" = 3, "phoron" = 1)
+	result_amount = 2
+
+/datum/chemical_reaction/drinks/galacticpanic
+	name = "Galactic Panic Attack"
+	id = "galacticpanic"
+	result = "galacticpanic"
+	required_reagents = list("gargleblaster" = 1, "singulo" = 1, "phoronspecial" =1, "neurotoxin" = 1, "atomicbomb" = 1, "hippiesdelight" = 1)
+	result_amount = 6
+
+/datum/chemical_reaction/drinks/bulldog
+	name = "Space Bulldog"
+	id = "bulldog"
+	result = "bulldog"
+	required_reagents = list("blackrussian" = 3, "cola" =1, "cream" =1)
+	result_amount = 5
+
+/datum/chemical_reaction/drinks/sbagliato
+	name = "Negroni Sbagliato"
+	id = "sbagliato"
+	result = "sbagliato"
+	required_reagents = list("wine" = 1, "vermouth" = 1, "sodawater" =1)
+	result_amount = 3
+
+/datum/chemical_reaction/drinks/italiancrisis
+	name = "Italian Crisis"
+	id = "italiancrisis"
+	result = "italiancrisis"
+	required_reagents = list("bulldog" = 1, "sbagliato" = 1)
+	result_amount = 2
+
+/datum/chemical_reaction/drinks/sugarrush
+	name = "Sweet Rush"
+	id = "sugarrush"
+	result = "sugarrush"
+	required_reagents = list("sugar" = 1, "sodawater" = 1, "vodka" =1)
+	result_amount = 3
+
+/datum/chemical_reaction/drinks/lotus
+	name = "Lotus"
+	id = "lotus"
+	result = "lotus"
+	required_reagents = list("sbagliato" = 1, "sugarrush" = 1)
+	result_amount = 2
+
+/datum/chemical_reaction/drinks/shroomjuice
+	name = "Dumb Shroom Juice"
+	id = "shroomjuice"
+	result = "shroomjuice"
+	required_reagents = list("psilocybin" = 1, "applejuice" = 1, "limejuice" =1)
+	result_amount = 3
+
+/datum/chemical_reaction/drinks/russianroulette
+	name = "Russian Roulette"
+	id = "russianroulette"
+	result = "russianroulette"
+	required_reagents = list("whiterussian" = 5, "iron" = 1)
+	result_amount = 6
+
+/datum/chemical_reaction/drinks/lovepotion
+	name = "Love Potion"
+	id = "lovepotion"
+	result = "lovepotion"
+	required_reagents = list("honey" = 1, "sexonthebeach" = 5)
+	result_amount = 6
+
+/datum/chemical_reaction/drinks/honeyshot
+	name = "Honey Shot"
+	id = "honeyshot"
+	result = "honeyshot"
+	required_reagents = list("honey" = 1, "vodka" = 1, "grenadine" =1)
+	result_amount = 3
+
+/datum/chemical_reaction/drinks/appletini
+	name = "Appletini"
+	id = "appletini"
+	result = "appletini"
+	required_reagents = list("applejuice" = 2, "vodka" = 1)
+	result_amount = 3
+
+/datum/chemical_reaction/drinks/glowingappletini
+	name = "Glowing Appletini"
+	id = "glowingappletini"
+	result = "glowingappletini"
+	required_reagents = list("appletini" = 5, "uranium" = 1)
+	result_amount = 6
+
+/datum/chemical_reaction/drinks/scsatw
+	name = "Slow Comfortable Screw Against the Wall"
+	id = "scsatw"
+	result = "scsatw"
+	required_reagents = list("screwdrivercocktail" = 3, "rum" =1, "whiskey" =1, "gin" =1)
+	result_amount = 6
+
+/datum/chemical_reaction/drinks/choccymilk
+	name = "Choccy Milk"
+	id = "choccymilk"
+	result = "choccymilk"
+	required_reagents = list("milk" = 3, "coco" = 1)
+	result_amount = 4
+
+/datum/chemical_reaction/drinks/redspaceflush
+	name = "Redspace Flush"
+	id = "redspaceflush"
+	result = "redspaceflush"
+	required_reagents = list("rum" = 2, "whiskey" = 2, "blood" =1, "phoron" =1)
+	result_amount = 6
+
+/datum/chemical_reaction/drinks/graveyard
+	name = "Graveyard"
+	id = "graveyard"
+	result = "graveyard"
+	required_reagents = list("cola" = 1, "spacemountainwind" = 1, "dr_gibb" =1, "space_up" = 1)
+	result_amount = 4
+
+/datum/chemical_reaction/drinks/hairoftherat
+	name = "Hair of the Rat"
+	id = "hairoftherat"
+	result = "hairoftherat"
+	required_reagents = list("monstertamer" = 2, "nutriment" = 1)
+	result_amount = 3
+
 ///////////////////////////////////////////////////////////////////////////////////
 /// Reagent colonies.
 /datum/chemical_reaction/meatcolony
@@ -161,7 +301,7 @@
 
 		var/list/borks = typesof(/obj/item/weapon/reagent_containers/food/snacks) - /obj/item/weapon/reagent_containers/food/snacks // BORK BORK BORK
 
-		playsound(get_turf(holder.my_atom), 'sound/effects/phasein.ogg', 100, 1)
+		playsound(holder.my_atom, 'sound/effects/phasein.ogg', 100, 1)
 /* Removed at some point, unsure what to replace with
 		for(var/mob/living/carbon/human/M in viewers(get_turf(holder.my_atom), null))
 			if(M:eyecheck() <= 0)
@@ -191,7 +331,7 @@
 			for(var/mob/O in viewers(get_turf(holder.my_atom), null))
 				O.show_message(text("<span class='warning'>The solution begins to vibrate violently!</span>"), 1) // It was at this moment, the Xenobiologist knew... he fucked up.
 			sleep(30)
-			playsound(get_turf(holder.my_atom), 'sound/items/Welder2.ogg', 100, 1)
+			playsound(holder.my_atom, 'sound/items/Welder2.ogg', 100, 1)
 			for(var/mob/O in viewers(get_turf(holder.my_atom), null))
 				O.show_message(text("<span class='warning'>The reaction begins to rapidly sizzle and swell outwards!</span>"), 1)
 			sleep(20)
@@ -200,18 +340,18 @@
 			return
 
 		if(fail_chance < 101) // 10% chance of it not working at all.
-			playsound(get_turf(holder.my_atom), 'sound/items/Welder.ogg', 100, 1)
+			playsound(holder.my_atom, 'sound/items/Welder.ogg', 100, 1)
 			for(var/mob/O in viewers(get_turf(holder.my_atom), null))
 				O.show_message(text("<span class='warning'>The slime core fizzles disappointingly.</span>"), 1)
 			return
 
 		var/blocked = list(
 							/obj/item/stack/material,					//Technical stacks
-							/obj/item/stack/material/hairlesshide,		//Useless leather production steps
-							/obj/item/stack/material/wetleather,
+							/obj/item/stack/hairlesshide,		//Useless leather production steps
+							/obj/item/stack/wetleather,
 							/obj/item/stack/material/algae/ten)			//Why is this one even a separate thing
 		blocked += typesof(/obj/item/stack/material/cyborg)				//Borg matter synths, should only exist in borgs
-		blocked += typesof(/obj/item/stack/material/animalhide)			//Hides which are only used for leather production anyway
+		blocked += typesof(/obj/item/stack/animalhide)			//Hides which are only used for leather production anyway
 
 		var/rare_types = list(
 							/obj/item/stack/material/morphium,			//Complex materials requiring Particle Smasher to create
@@ -221,7 +361,7 @@
 
 		var/list/material = typesof(/obj/item/stack/material) - blocked
 
-		playsound(get_turf(holder.my_atom), 'sound/effects/phasein.ogg', 100, 1)
+		playsound(holder.my_atom, 'sound/effects/phasein.ogg', 100, 1)
 /* Removed at some point, unsure what to replace with
 		for(var/mob/living/carbon/human/M in viewers(get_turf(holder.my_atom), null))
 			if(M:eyecheck() <= 0)
@@ -270,7 +410,7 @@
 		for(var/mob/O in viewers(get_turf(holder.my_atom), null))
 			O.show_message(text("<span class='warning'>The slime extract begins to vibrate violently!</span>"), 1)
 		sleep(50)
-		playsound(get_turf(holder.my_atom), 'sound/effects/phasein.ogg', 100, 1)
+		playsound(holder.my_atom, 'sound/effects/phasein.ogg', 100, 1)
 		for(var/mob/living/M in range (get_turf(holder.my_atom), 7))
 			M.bodytemperature -= 140
 			to_chat(M, "<span class='notice'> You suddenly feel a chill!</span>")
@@ -385,7 +525,7 @@
 		blocked += typesof(/mob/living/simple_mob/horror)
 		var/list/voremobs = typesof(mob_path) - blocked // list of possible hostile mobs
 
-		playsound(get_turf(holder.my_atom), 'sound/effects/phasein.ogg', 100, 1)
+		playsound(holder.my_atom, 'sound/effects/phasein.ogg', 100, 1)
 /* Removed at some point, unsure what to replace with
 		for(var/mob/living/carbon/human/M in viewers(get_turf(holder.my_atom), null))
 			if(M:eyecheck() <= 0)

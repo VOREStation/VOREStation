@@ -198,7 +198,7 @@
 		if(!selected_sound)
 			return
 		vol = between(0, vol, 100)
-		playsound(get_turf(src), selected_sound, vol, freq, -1)
+		playsound(src, selected_sound, vol, freq, -1)
 
 /obj/item/integrated_circuit/output/sound/beeper
 	name = "beeper circuit"
@@ -414,8 +414,13 @@
 //	var/datum/beam/holo_beam = null // A visual effect, to make it easy to know where a hologram is coming from.
 	// It is commented out due to picking up the assembly killing the beam.
 
+/obj/item/integrated_circuit/output/holographic_projector/Initialize()
+	. = ..()
+	GLOB.moved_event.register(src, src, .proc/on_moved)
+
 /obj/item/integrated_circuit/output/holographic_projector/Destroy()
 	destroy_hologram()
+	GLOB.moved_event.unregister(src, src, .proc/on_moved)
 	return ..()
 
 /obj/item/integrated_circuit/output/holographic_projector/do_work()
@@ -506,7 +511,7 @@
 	if(hologram)
 		update_hologram()
 
-/obj/item/integrated_circuit/output/holographic_projector/on_loc_moved(atom/oldloc)
+/obj/item/integrated_circuit/output/holographic_projector/proc/on_moved()
 	if(hologram)
 		update_hologram_position()
 

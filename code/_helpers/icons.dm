@@ -367,6 +367,13 @@ proc/ReadRGB(rgb)
 	. = list(r, g, b)
 	if(usealpha) . += alpha
 
+proc/RGBdec2hex(var/list/values)
+	var/string = ""
+	while(values.len)
+		string = "[num2text(values[values.len], 2, 16)][string]"
+		values.len--
+	return "#[string]"
+
 proc/ReadHSV(hsv)
 	if(!hsv) return
 

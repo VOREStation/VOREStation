@@ -328,7 +328,7 @@ turf/simulated/mineral/floor/light_corner
 				return
 
 			to_chat(user, "<span class='notice'>You start digging.</span>")
-			playsound(user.loc, 'sound/effects/rustle1.ogg', 50, 1)
+			playsound(user, 'sound/effects/rustle1.ogg', 50, 1)
 
 			if(!do_after(user,40)) return
 

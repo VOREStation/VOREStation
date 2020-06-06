@@ -20,7 +20,7 @@
 		..()
 
 /obj/item/device/assembly/electronic_assembly/proc/toggle_open(mob/user)
-	playsound(get_turf(src), 'sound/items/Crowbar.ogg', 50, 1)
+	playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 	opened = !opened
 	EA.opened = opened
 	to_chat(user, "<span class='notice'>You [opened ? "opened" : "closed"] \the [src].</span>")

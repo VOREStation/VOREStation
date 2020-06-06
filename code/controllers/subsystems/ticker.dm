@@ -171,7 +171,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 	create_characters() //Create player characters and transfer them.
 	collect_minds()
 	equip_characters()
-	//data_core.manifest()	//VOREStation Removal
+//	data_core.manifest()
 
 	callHook("roundstart")
 
@@ -402,7 +402,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 			var/datum/job/J = SSjob.get_job(player.mind.assigned_role)
 			
 			// Snowflakey AI treatment
-			if(J.mob_type & JOB_SILICON_AI)
+			if(J?.mob_type & JOB_SILICON_AI)
 				player.close_spawn_windows()
 				player.AIize(move = TRUE)
 				continue
@@ -416,7 +416,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 				qdel(player)
 
 			// If they're a carbon, they can get manifested
-			if(J.mob_type & JOB_CARBON)
+			if(J?.mob_type & JOB_CARBON)
 				data_core.manifest_inject(new_char)
 
 /datum/controller/subsystem/ticker/proc/collect_minds()

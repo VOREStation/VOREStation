@@ -104,8 +104,8 @@
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
-	dir = 5
+	dir = 5;
+	icon_state = "intact-scrubbers"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -117,15 +117,15 @@
 /area/maintenance/tether_midpoint)
 "k" = (
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 8
+	dir = 8;
+	icon_state = "tube1"
 	},
 /obj/structure/flora/pottedplant/unusual,
 /turf/simulated/floor/wood,
 /area/tether/midpoint)
 "l" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/door/firedoor/glass/hidden/steel{
+/obj/machinery/door/firedoor/glass/hidden{
 	dir = 2
 	},
 /turf/simulated/floor/tiled/dark,
@@ -151,15 +151,16 @@
 /turf/simulated/floor/wood,
 /area/tether/midpoint)
 "o" = (
-/obj/machinery/vending/coffee{
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/door/firedoor/glass/hidden{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/midpoint)
 "p" = (
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 8
+	dir = 8;
+	icon_state = "tube1"
 	},
 /obj/structure/flora/pottedplant/unusual,
 /obj/structure/cable,
@@ -175,7 +176,7 @@
 /area/tether/midpoint)
 "r" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/door/firedoor/glass/hidden/steel,
+/obj/machinery/door/firedoor/glass/hidden,
 /turf/simulated/floor/tiled/dark,
 /area/tether/midpoint)
 "s" = (
@@ -188,8 +189,8 @@
 	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/visible/scrubbers{
-	icon_state = "map-scrubbers";
-	dir = 4
+	dir = 4;
+	icon_state = "map-scrubbers"
 	},
 /obj/machinery/atmospherics/pipe/manifold/visible/supply{
 	dir = 4
@@ -419,8 +420,8 @@
 	dir = 5
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 8
+	dir = 8;
+	icon_state = "tube1"
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/midpoint)
@@ -441,19 +442,21 @@
 "V" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
-	dir = 5
+	dir = 5;
+	icon_state = "intact-scrubbers"
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 8
+	dir = 8;
+	icon_state = "tube1"
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/midpoint)
-"W" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/door/firedoor/glass/hidden/steel{
+"X" = (
+/obj/machinery/vending/coffee{
 	dir = 1
+	},
+/obj/machinery/holoposter{
+	pixel_y = -30
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/midpoint)
@@ -10355,9 +10358,9 @@ V
 l
 r
 r
-W
-S
 o
+S
+X
 y
 u
 u

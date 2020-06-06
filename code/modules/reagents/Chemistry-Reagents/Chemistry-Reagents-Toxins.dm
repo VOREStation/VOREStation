@@ -14,6 +14,7 @@
 	var/skin_danger = 0.2 // The multiplier for how effective the toxin is when making skin contact.
 
 /datum/reagent/toxin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	strength *= M.species.chem_strength_tox
 	if(strength && alien != IS_DIONA)
 		if(issmall(M)) removed *= 2 // Small bodymass, more effect from lower volume.
 		if(alien == IS_SLIME)
@@ -615,7 +616,7 @@
 	if(alien == IS_DIONA)
 		return
 
-	var/threshold = 1
+	var/threshold = 1 * M.species.chem_strength_tox
 	if(alien == IS_SKRELL)
 		threshold = 1.2
 
@@ -663,7 +664,7 @@
 	if(alien == IS_DIONA)
 		return
 
-	var/threshold = 1
+	var/threshold = 1 * M.species.chem_strength_tox
 	if(alien == IS_SKRELL)
 		threshold = 1.2
 
@@ -726,7 +727,7 @@
 	if(alien == IS_DIONA)
 		return
 
-	var/drug_strength = 15
+	var/drug_strength = 15 * M.species.chem_strength_tox
 	if(alien == IS_SKRELL)
 		drug_strength = drug_strength * 0.8
 
@@ -785,7 +786,7 @@
 /datum/reagent/cryptobiolin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
-	var/drug_strength = 4
+	var/drug_strength = 4 * M.species.chem_strength_tox
 
 	if(alien == IS_SKRELL)
 		drug_strength = drug_strength * 0.8
@@ -831,7 +832,7 @@
 	if(alien == IS_DIONA)
 		return
 
-	var/drug_strength = 100
+	var/drug_strength = 100 * M.species.chem_strength_tox
 
 	if(alien == IS_SKRELL)
 		drug_strength *= 0.8
@@ -854,7 +855,7 @@
 	if(alien == IS_DIONA)
 		return
 
-	var/threshold = 1
+	var/threshold = 1 * M.species.chem_strength_tox
 	if(alien == IS_SKRELL)
 		threshold = 1.2
 
@@ -908,7 +909,7 @@ datum/reagent/talum_quem/affect_blood(var/mob/living/carbon/M, var/alien, var/re
 	if(alien == IS_DIONA)
 		return
 
-	var/drug_strength = 29
+	var/drug_strength = 29 * M.species.chem_strength_tox
 	if(alien == IS_SKRELL)
 		drug_strength = drug_strength * 0.8
 	else

@@ -13,6 +13,7 @@
 
 #include "v5\_defines.dm"
 #include "v5\api.dm"
+#include "v5\api_vgs.dm" // VOREStation Edit - Include here so it has access to v5 defines
 #include "v5\commands.dm"
 #include "v5\chat_commands.dm"
 #include "v5\undef.dm"

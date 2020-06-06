@@ -3,7 +3,6 @@
 	icon = 'icons/obj/assemblies/new_assemblies.dmi'
 	icon_state = "holder"
 	item_state = "assembly"
-	flags = PROXMOVE
 	throwforce = 5
 	w_class = ITEMSIZE_SMALL
 	throw_speed = 3
@@ -64,11 +63,18 @@
 		else
 			. += "\The [src] can be attached!"
 
-/obj/item/device/assembly_holder/HasProximity(atom/movable/AM as mob|obj)
+/obj/item/device/assembly_holder/Moved(atom/old_loc, direction, forced = FALSE)
+	. = ..()
+	if(isturf(old_loc))
+		unsense_proximity(callback = .HasProximity, center = old_loc)
+	if(isturf(loc))
+		sense_proximity(callback = .HasProximity)
+
+/obj/item/device/assembly_holder/HasProximity(turf/T, atom/movable/AM, old_loc)
 	if(a_left)
-		a_left.HasProximity(AM)
+		a_left.HasProximity(T, AM, old_loc)
 	if(a_right)
-		a_right.HasProximity(AM)
+		a_right.HasProximity(T, AM, old_loc)
 
 /obj/item/device/assembly_holder/Crossed(atom/movable/AM as mob|obj)
 	if(AM.is_incorporeal())

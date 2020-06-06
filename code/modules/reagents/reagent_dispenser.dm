@@ -261,11 +261,22 @@
 	if(cupholder)
 		. += "<span class='notice'>There are [cups] cups in the cup dispenser.</span>"
 
+/obj/structure/reagent_dispensers/water_cooler/verb/rotate_clockwise()
+	set name = "Rotate Cooler Clockwise"
+	set category = "Object"
+	set src in oview(1)
+
+	if (src.anchored || usr:stat)
+		to_chat(usr, "It is fastened to the floor!")
+		return 0
+	src.set_dir(turn(src.dir, 270))
+	return 1
+
 /obj/structure/reagent_dispensers/water_cooler/attackby(obj/item/I as obj, mob/user as mob)
 	if(I.is_wrench())
 		src.add_fingerprint(user)
 		if(bottle)
-			playsound(loc, I.usesound, 50, 1)
+			playsound(src, I.usesound, 50, 1)
 			if(do_after(user, 20) && bottle)
 				to_chat(user, "<span class='notice'>You unfasten the jug.</span>")
 				var/obj/item/weapon/reagent_containers/glass/cooler_bottle/G = new /obj/item/weapon/reagent_containers/glass/cooler_bottle( src.loc )
@@ -284,12 +295,12 @@
 				if(!src) return
 				to_chat(user, "<span class='notice'>You [anchored? "un" : ""]secured \the [src]!</span>")
 				anchored = !anchored
-				playsound(loc, I.usesound, 50, 1)
+				playsound(src, I.usesound, 50, 1)
 		return
 
 	if(I.is_screwdriver())
 		if(cupholder)
-			playsound(loc, I.usesound, 50, 1)
+			playsound(src, I.usesound, 50, 1)
 			to_chat(user, "<span class='notice'>You take the cup dispenser off.</span>")
 			new /obj/item/stack/material/plastic( src.loc )
 			if(cups)
@@ -300,7 +311,7 @@
 			update_icon()
 			return
 		if(!bottle && !cupholder)
-			playsound(loc, I.usesound, 50, 1)
+			playsound(src, I.usesound, 50, 1)
 			to_chat(user, "<span class='notice'>You start taking the water-cooler apart.</span>")
 			if(do_after(user, 20 * I.toolspeed) && !bottle && !cupholder)
 				to_chat(user, "<span class='notice'>You take the water-cooler apart.</span>")
@@ -334,7 +345,7 @@
 				var/obj/item/stack/material/plastic/P = I
 				src.add_fingerprint(user)
 				to_chat(user, "<span class='notice'>You start to attach a cup dispenser onto the water-cooler.</span>")
-				playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+				playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 				if(do_after(user, 20) && !cupholder && anchored)
 					if (P.use(1))
 						to_chat(user, "<span class='notice'>You attach a cup dispenser onto the water-cooler.</span>")
@@ -350,24 +361,16 @@
 	if(cups)
 		new /obj/item/weapon/reagent_containers/food/drinks/sillycup(src.loc)
 		cups--
-		update_icon()
+		flick("[icon_state]-vend", src)
 		return
 
 /obj/structure/reagent_dispensers/water_cooler/update_icon()
-	/* VOREStation Lazy Fix for Right Now
 	icon_state = "water_cooler"
 	overlays.Cut()
 	var/image/I
 	if(bottle)
 		I = image(icon, "water_cooler_bottle")
 		overlays += I
-	if(cupholder)
-		I = image(icon, "water_cooler_cupholder")
-		overlays += I
-	if(cups)
-		I = image(icon, "water_cooler_cups")
-		overlays += I
-	*/
 	return
 
 /obj/structure/reagent_dispensers/beerkeg

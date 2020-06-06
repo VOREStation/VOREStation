@@ -52,7 +52,7 @@
 				var/amount = rand(2,6)
 				var/quantity = rand(10,50)
 				var/list/possible_spawns = list()
-				for(var/bar_type in typesof(/obj/item/stack/material) - /obj/item/stack/material - /obj/item/stack/material/animalhide - typesof(/obj/item/stack/material/cyborg))
+				for(var/bar_type in typesof(/obj/item/stack/material) - /obj/item/stack/material - /obj/item/stack/animalhide - typesof(/obj/item/stack/material/cyborg))
 					possible_spawns += bar_type
 
 				var/bar_type = pick(possible_spawns)
@@ -78,8 +78,6 @@
 				new /obj/effect/decal/remains/xeno(src.loc)
 		if("clothes")
 			var/obj/structure/closet/C = new(src.loc)
-			C.icon_state = "blue"
-			C.icon_closed = "blue"
 			if(prob(33))
 				new /obj/item/clothing/under/color/rainbow(C)
 				new /obj/item/clothing/shoes/rainbow(C)

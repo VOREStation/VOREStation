@@ -359,11 +359,7 @@
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/trade)
 "aP" = (
-/obj/structure/closet{
-	icon_closed = "cabinet_closed";
-	icon_opened = "cabinet_open";
-	icon_state = "cabinet_closed"
-	},
+/obj/structure/closet/cabinet,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade)
 "aQ" = (

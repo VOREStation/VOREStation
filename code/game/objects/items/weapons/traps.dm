@@ -39,7 +39,7 @@
 				"<span class='danger'>You have deployed \the [src]!</span>",
 				"You hear a latch click loudly."
 				)
-			playsound(src.loc, 'sound/machines/click.ogg',70, 1)
+			playsound(src, 'sound/machines/click.ogg',70, 1)
 
 			deployed = 1
 			user.drop_from_inventory(src)
@@ -64,7 +64,7 @@
 			"<span class='notice'>You begin disarming \the [src]!</span>",
 			"You hear a latch click followed by the slow creaking of a spring."
 			)
-		playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
+		playsound(src, 'sound/machines/click.ogg', 50, 1)
 
 		if(do_after(user, 60))
 			user.visible_message(
@@ -97,6 +97,16 @@
 
 	if(!L.apply_damage(30, BRUTE, target_zone, blocked, soaked, used_weapon=src))
 		return 0
+
+	if(ishuman(L))
+		var/mob/living/carbon/human/H = L
+		var/obj/item/organ/external/affected = H.get_organ(check_zone(target_zone))
+		if(!affected) // took it clean off!
+			to_chat(H, "<span class='danger'>The steel jaws of \the [src] take your limb clean off!</span>")
+			L.Stun(stun_length*2)
+			deployed = 0
+			anchored = FALSE
+			return
 
 	//trap the victim in place
 	set_dir(L.dir)

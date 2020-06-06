@@ -72,7 +72,7 @@
 	else
 		failed = 1
 
-	playsound(loc, 'sound/weapons/pierce.ogg', 25, 1, -1)
+	playsound(src, 'sound/weapons/pierce.ogg', 25, 1, -1)
 	if(failed)
 		src.Weaken(rand(2,4))
 

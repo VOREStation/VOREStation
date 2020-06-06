@@ -10,12 +10,15 @@
 	unacidable = 1
 	use_power = USE_POWER_OFF
 	light_range = 4
-	flags = PROXMOVE
 	var/obj/machinery/field_generator/FG1 = null
 	var/obj/machinery/field_generator/FG2 = null
 	var/hasShocked = 0 //Used to add a delay between shocks. In some cases this used to crash servers by spawning hundreds of sparks every second.
 
+/obj/machinery/containment_field/Initialize()
+	sense_proximity(callback = .HasProximity)
+
 /obj/machinery/containment_field/Destroy()
+	unsense_proximity(callback = .HasProximity)
 	if(FG1 && !FG1.clean_up)
 		FG1.cleanup()
 	if(FG2 && !FG2.clean_up)
@@ -33,7 +36,7 @@
 /obj/machinery/containment_field/ex_act(severity)
 	return 0
 
-/obj/machinery/containment_field/HasProximity(atom/movable/AM as mob|obj)
+/obj/machinery/containment_field/HasProximity(turf/T, atom/movable/AM, old_loc)
 	if(istype(AM,/mob/living/silicon) && prob(40))
 		shock(AM)
 		return 1
@@ -41,8 +44,6 @@
 		shock(AM)
 		return 1
 	return 0
-
-
 
 /obj/machinery/containment_field/shock(mob/living/user as mob)
 	if(hasShocked)

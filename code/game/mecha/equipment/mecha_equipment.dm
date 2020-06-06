@@ -32,7 +32,7 @@
 	sleep(equip_cooldown)
 	set_ready_state(1)
 	if(ready_sound) //Kind of like the kinetic accelerator.
-		playsound(loc, ready_sound, 50, 1, -1)
+		playsound(src, ready_sound, 50, 1, -1)
 	if(target && chassis)
 		return 1
 	return 0

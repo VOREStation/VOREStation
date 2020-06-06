@@ -11,6 +11,16 @@
 /obj/screen/ghost/Click()
 	closeToolTip(usr)
 
+/obj/screen/ghost/returntomenu
+	name = "Return to menu"
+	desc = "Return to the title screen menu."
+	icon_state = "returntomenu"
+
+/obj/screen/ghost/returntomenu/Click()
+	..()
+	var/mob/observer/dead/G = usr
+	G.abandon_mob()
+
 /obj/screen/ghost/jumptomob
 	name = "Jump to mob"
 	desc = "Pick a mob from a list to jump to."
@@ -43,6 +53,7 @@
 
 /obj/screen/ghost/teleport
 	name = "Teleport"
+	desc = "Pick an area to teleport to."
 	icon_state = "teleport"
 
 /obj/screen/ghost/teleport/Click()
@@ -87,6 +98,11 @@
 	HUD.adding = adding
 	
 	var/obj/screen/using
+	using = new /obj/screen/ghost/returntomenu()
+	using.screen_loc = ui_ghost_returntomenu
+	using.hud = src
+	adding += using
+
 	using = new /obj/screen/ghost/jumptomob()
 	using.screen_loc = ui_ghost_jumptomob
 	using.hud = src

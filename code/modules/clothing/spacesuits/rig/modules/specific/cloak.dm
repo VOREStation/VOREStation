@@ -50,4 +50,4 @@
 	H.alpha = initial(H.alpha)
 
 	H.visible_message("[H.name] appears from thin air!")
-	playsound(get_turf(H), 'sound/effects/stealthoff.ogg', 75, 1)
+	playsound(H, 'sound/effects/stealthoff.ogg', 75, 1)

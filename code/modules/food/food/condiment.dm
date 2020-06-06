@@ -48,7 +48,7 @@
 		..()
 
 /obj/item/weapon/reagent_containers/food/condiment/feed_sound(var/mob/user)
-	playsound(user.loc, 'sound/items/drink.ogg', rand(10, 50), 1)
+	playsound(src, 'sound/items/drink.ogg', rand(10, 50), 1)
 
 /obj/item/weapon/reagent_containers/food/condiment/self_feed_message(var/mob/user)
 	to_chat(user, "<span class='notice'>You swallow some of contents of \the [src].</span>")

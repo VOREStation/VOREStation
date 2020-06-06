@@ -3,6 +3,7 @@
 /obj/item/weapon/tank/jetpack
 	name = "jetpack (empty)"
 	desc = "A tank of compressed gas for use as propulsion in zero-gravity areas. Use with caution."
+	icon = 'icons/obj/tank_vr.dmi' //VOREStation Edit
 	icon_state = "jetpack"
 	gauge_icon = null
 	w_class = ITEMSIZE_LARGE
@@ -31,7 +32,7 @@
 	. = ..()
 	if(air_contents.total_moles < 5)
 		. += "<span class='danger'>The meter on \the [src] indicates you are almost out of gas!</span>"
-		playsound(user, 'sound/effects/alert.ogg', 50, 1)
+		playsound(src, 'sound/effects/alert.ogg', 50, 1)
 
 /obj/item/weapon/tank/jetpack/verb/toggle_rockets()
 	set name = "Toggle Jetpack Stabilization"

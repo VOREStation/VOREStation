@@ -285,7 +285,7 @@
 /obj/machinery/organ_printer/flesh/print_organ(var/choice)
 	var/obj/item/organ/O = ..()
 
-	playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
+	playsound(src, 'sound/machines/ding.ogg', 50, 1)
 	visible_message("<span class='info'>\The [src] dings, then spits out \a [O].</span>")
 	return O
 
@@ -350,7 +350,7 @@
 	var/obj/item/organ/O = ..()
 	O.robotize()
 	O.status |= ORGAN_CUT_AWAY  // robotize() resets status to 0
-	playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
+	playsound(src, 'sound/machines/ding.ogg', 50, 1)
 	audible_message("<span class='info'>\The [src] dings, then spits out \a [O].</span>")
 	return O
 

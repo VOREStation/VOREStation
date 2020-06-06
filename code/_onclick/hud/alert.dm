@@ -52,11 +52,13 @@
 	animate(alert, transform = matrix(), time = 2.5, easing = CUBIC_EASING)
 
 	if(alert.timeout)
-		spawn(alert.timeout)
-			if(alert.timeout && alerts[category] == alert && world.time >= alert.timeout)
-				clear_alert(category)
+		addtimer(CALLBACK(src, .proc/alert_timeout, alert, category), alert.timeout)
 		alert.timeout = world.time + alert.timeout - world.tick_lag
 	return alert
+
+/mob/proc/alert_timeout(obj/screen/alert/alert, category)
+	if(alert.timeout && alerts[category] == alert && world.time >= alert.timeout)
+		clear_alert(category)
 
 // Proc to clear an existing alert.
 /mob/proc/clear_alert(category)
@@ -220,6 +222,21 @@ The box in your backpack has an oxygen tank and gas mask in it."
 	desc = "You can't see! This may be caused by a genetic defect, eye trauma, being unconscious, \
 or something covering your eyes."
 	icon_state = "blind"
+
+/obj/screen/alert/stunned
+	name = "Stunned"
+	desc = "You're temporarily stunned! You'll have trouble moving or performing actions, but it should clear up on it's own."
+	icon_state = "stun"
+
+/obj/screen/alert/paralyzed
+	name = "Paralyzed"
+	desc = "You're paralyzed! This could be due to drugs or serious injury. You'll be unable to move or perform actions."
+	icon_state = "paralysis"
+
+/obj/screen/alert/weakened
+	name = "Weakened"
+	desc = "You're weakened! This could be a temporary issue due to injury or the result of drugs or drinking."
+	icon_state = "weaken"
 
 /obj/screen/alert/confused
 	name = "Confused"
@@ -440,7 +457,7 @@ so as to remain in compliance with the most up-to-date laws."
 		return
 	var/paramslist = params2list(params)
 	if(paramslist["shift"]) // screen objects don't do the normal Click() stuff so we'll cheat
-		usr << "<span class='boldnotice'>[name]</span> - <span class='info'>[desc]</span>"
+		to_chat(usr,"<span class='boldnotice'>[name]</span> - <span class='info'>[desc]</span>")
 		return
 	if(master)
 		return usr.client.Click(master, location, control, params)

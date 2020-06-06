@@ -43,7 +43,7 @@
 			to_chat(user, "<span class='notice'>You reach to pin your paper to the board but hesitate. You are certain your paper will not be seen among the many others already attached.</span>")
 	if(O.is_wrench())
 		to_chat(user, "<span class='notice'>You start to unwrench the noticeboard.</span>")
-		playsound(src.loc, O.usesound, 50, 1)
+		playsound(src, O.usesound, 50, 1)
 		if(do_after(user, 15 * O.toolspeed))
 			to_chat(user, "<span class='notice'>You unwrench the noticeboard.</span>")
 			new /obj/item/frame/noticeboard( src.loc )

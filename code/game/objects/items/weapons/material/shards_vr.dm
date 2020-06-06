@@ -2,4 +2,4 @@
 	..(loc, MAT_TITANIUMGLASS)
 
 /obj/item/weapon/material/shard/plastitaniumglass/New(loc)
-	..(loc, MAT_PLASTANIUMGLASS)
+	..(loc, MAT_PLASTITANIUMGLASS)

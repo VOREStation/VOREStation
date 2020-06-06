@@ -231,34 +231,42 @@
 	. = list()
 	// Returns a list of mobs who can hear any of the radios given in @radios
 	var/list/speaker_coverage = list()
-	for(var/obj/item/device/radio/R in radios)
-		if(R)
-			//Cyborg checks. Receiving message uses a bit of cyborg's charge.
-			var/obj/item/device/radio/borg/BR = R
-			if(istype(BR) && BR.myborg)
-				var/mob/living/silicon/robot/borg = BR.myborg
-				var/datum/robot_component/CO = borg.get_component("radio")
-				if(!CO)
-					continue //No radio component (Shouldn't happen)
-				if(!borg.is_component_functioning("radio") || !borg.cell_use_power(CO.active_usage))
-					continue //No power.
-
-			var/turf/speaker = get_turf(R)
-			if(speaker)
-				for(var/turf/T in hear(R.canhear_range,speaker))
-					speaker_coverage[T] = R
+	for(var/r in radios)
+		var/obj/item/device/radio/R = r // You better fucking be a radio.
+		var/turf/speaker = get_turf(R)
+		if(speaker)
+			for(var/turf/T in hear(R.canhear_range,speaker))
+				speaker_coverage[T] = R
 
 
 	// Try to find all the players who can hear the message
 	for(var/i = 1; i <= player_list.len; i++)
 		var/mob/M = player_list[i]
-		if(M)
-			var/turf/ear = get_turf(M)
-			if(ear)
-				// Ghostship is magic: Ghosts can hear radio chatter from anywhere
-				if(speaker_coverage[ear] || (istype(M, /mob/observer/dead) && M.is_preference_enabled(/datum/client_preference/ghost_radio)))
-					. |= M		// Since we're already looping through mobs, why bother using |= ? This only slows things down.
+		if(M.can_hear_radio(speaker_coverage))
+			. += M
 	return .
+
+/mob/proc/can_hear_radio(var/list/hearturfs)
+	return FALSE
+
+/mob/living/can_hear_radio(var/list/hearturfs)
+	return get_turf(src) in hearturfs
+
+/mob/living/silicon/robot/can_hear_radio(var/list/hearturfs)
+	var/turf/T = get_turf(src)
+	var/obj/item/device/radio/borg/R = hearturfs[T] // this should be an assoc list of turf-to-radio
+	
+	// We heard it on our own radio? We use power for that.
+	if(istype(R) && R.myborg == src)
+		var/datum/robot_component/CO = get_component("radio")
+		if(!CO || !is_component_functioning("radio") || !cell_use_power(CO.active_usage))
+			return FALSE // Sorry, couldn't hear
+	
+	return R // radio, true, false, what's the difference
+
+/mob/observer/dead/can_hear_radio(var/list/hearturfs)
+	return is_preference_enabled(/datum/client_preference/ghost_radio)
+
 
 //Uses dview to quickly return mobs and objects in view,
 // then adds additional mobs or objects if they are in range 'smartly',

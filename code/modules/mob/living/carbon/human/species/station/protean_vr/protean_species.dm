@@ -162,10 +162,23 @@
 	return rgb(80,80,80,230)
 
 /datum/species/protean/handle_death(var/mob/living/carbon/human/H)
-	to_chat(H,"<span class='warning'>You died as a Protean. Please sit out of the round for at least 60 minutes before respawning, to represent the time it would take to ship a new-you to the station.</span>")
-	spawn(1) //This spawn is here so that if the protean_blob calls qdel, it doesn't try to gib the humanform.
-		if(H)
-			H.gib()
+	if(!H)
+		return // Iono!
+
+	if(H.temporary_form)
+		H.forceMove(H.temporary_form.drop_location())
+		H.ckey = H.temporary_form.ckey
+		QDEL_NULL(H.temporary_form)
+	
+	to_chat(H, "<span class='warning'>You died as a Protean. Please sit out of the round for at least 60 minutes before respawning, to represent the time it would take to ship a new-you to the station.</span>")
+
+	for(var/obj/item/organ/I in H.internal_organs)
+		I.removed()
+
+	for(var/obj/item/I in src)
+		H.drop_from_inventory(I)
+
+	qdel(H)
 
 /datum/species/protean/handle_environment_special(var/mob/living/carbon/human/H)
 	if((H.getActualBruteLoss() + H.getActualFireLoss()) > H.maxHealth*0.5 && isturf(H.loc)) //So, only if we're not a blob (we're in nullspace) or in someone (or a locker, really, but whatever)
@@ -317,11 +330,21 @@
 	desc = "This is a 'Permit for Advanced Nanotechnology' card. It allows the owner to possess and operate advanced nanotechnology on NanoTrasen property. It must be renewed on a monthly basis."
 	icon = 'icons/mob/species/protean/protean.dmi'
 	icon_state = "permit_pan"
+
+	var/validstring = "VALID THROUGH END OF: "
+	var/registring = "REGISTRANT: "
+
 /obj/item/clothing/accessory/permit/nanotech/set_name(var/new_name)
 	owner = 1
 	if(new_name)
-		src.name += " ([new_name])"
-		desc += "\nVALID THROUGH END OF: [time2text(world.timeofday, "Month") +" "+ num2text(text2num(time2text(world.timeofday, "YYYY"))+300)]\nREGISTRANT: [new_name]"
+		name += " ([new_name])"
+		validstring += "[time2text(world.timeofday, "Month") +" "+ num2text(text2num(time2text(world.timeofday, "YYYY"))+300)]"
+		registring += "[new_name]"
+
+/obj/item/clothing/accessory/permit/nanotech/examine(mob/user)
+	. = ..()
+	. += validstring
+	. += registring
 
 #undef DAM_SCALE_FACTOR
 #undef METAL_PER_TICK

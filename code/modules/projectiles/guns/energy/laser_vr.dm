@@ -223,7 +223,7 @@
 	while(recharging)
 		if(!do_after(user, 10, src))
 			break
-		playsound(get_turf(src),'sound/items/change_drill.ogg',25,1)
+		playsound(src,'sound/items/change_drill.ogg',25,1)
 		if(power_supply.give(phase_power) < phase_power)
 			break
 

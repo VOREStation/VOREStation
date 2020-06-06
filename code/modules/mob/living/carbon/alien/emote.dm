@@ -98,7 +98,7 @@
 			m_type = 2
 		if("chirp")
 			message = "<B>[src]</B> chirps!"
-			playsound(loc, 'sound/misc/nymphchirp.ogg', 50, 0)
+			playsound(src, 'sound/misc/nymphchirp.ogg', 50, 0)
 			m_type = 2
 		if("help")
 			to_chat(src, "<span class='filter_say'>burp, chirp, choke, collapse, dance, drool, gasp, shiver, gnarl, jump, moan, nod, roll, scratch,\nscretch, shake, sign-#, sulk, sway, tail, twitch, whimper</span>")

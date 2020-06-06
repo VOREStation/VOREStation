@@ -54,7 +54,16 @@
 
 /obj/machinery/mining/drill/Initialize()
 	. = ..()
+	if(ispath(cell))
+		cell = new cell(src)
 	default_apply_parts()
+	default_use_hicell()
+
+/obj/machinery/mining/drill/loaded
+	cell = /obj/item/weapon/cell/high
+
+/obj/machinery/mining/drill/get_cell()
+	return cell	
 
 /obj/machinery/mining/drill/process()
 
@@ -166,7 +175,7 @@
 			to_chat(user, "The drill already has a cell installed.")
 		else
 			user.drop_item()
-			O.loc = src
+			O.forceMove(src)
 			cell = O
 			component_parts += O
 			to_chat(user, "You install \the [O].")
@@ -178,7 +187,7 @@
 
 	if (panel_open && cell && user.Adjacent(src))
 		to_chat(user, "You take out \the [cell].")
-		cell.loc = get_turf(user)
+		cell.forceMove(get_turf(user))
 		component_parts -= cell
 		cell = null
 		return
@@ -236,7 +245,7 @@
 			capacity = 200 * P.rating
 		if(istype(P, /obj/item/weapon/stock_parts/capacitor))
 			charge_use -= 10 * P.rating
-	cell = locate(/obj/item/weapon/cell) in component_parts
+	cell = locate(/obj/item/weapon/cell) in src
 
 /obj/machinery/mining/drill/proc/check_supports()
 

@@ -9,7 +9,6 @@
 	var/mob/attacher = null
 	var/valve_open = 0
 	var/toggle = 1
-	flags = PROXMOVE
 
 /obj/item/device/transfer_valve/attackby(obj/item/item, mob/user)
 	var/turf/location = get_turf(src) // For admin logs
@@ -57,11 +56,15 @@
 	return
 
 
-/obj/item/device/transfer_valve/HasProximity(atom/movable/AM as mob|obj)
-	if(!attached_device)	return
-	attached_device.HasProximity(AM)
-	return
+/obj/item/device/transfer_valve/HasProximity(turf/T, atom/movable/AM, old_loc)
+	attached_device?.HasProximity(T, AM, old_loc)
 
+/obj/item/device/transfer_valve/Moved(old_loc, direction, forced)
+	. = ..()
+	if(isturf(old_loc))
+		unsense_proximity(callback = .HasProximity, center = old_loc)
+	if(isturf(loc))
+		sense_proximity(callback = .HasProximity)
 
 /obj/item/device/transfer_valve/attack_self(mob/user as mob)
 	ui_interact(user)

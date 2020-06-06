@@ -61,8 +61,10 @@ CREATE TABLE `erro_player` (
   `ip` varchar(18) NOT NULL,
   `computerid` varchar(32) NOT NULL,
   `lastadminrank` varchar(32) NOT NULL DEFAULT 'Player',
+  `discord_id` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `ckey` (`ckey`)
+  UNIQUE KEY `ckey` (`ckey`),
+  KEY `discord_id` (`discord_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
 
 CREATE TABLE `erro_poll_option` (
@@ -123,5 +125,6 @@ CREATE TABLE `vr_player_hours` (
   `ckey` varchar(32) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `department` varchar(64) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `hours` double NOT NULL,
+  `total_hours` double NOT NULL DEFAULT '0',
   PRIMARY KEY (`ckey`,`department`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

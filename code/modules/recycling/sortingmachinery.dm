@@ -18,7 +18,7 @@
 		unwrap()
 
 	proc/unwrap()
-		playsound(loc, 'sound/items/package_unwrap.ogg', 50, 1)
+		playsound(src, 'sound/items/package_unwrap.ogg', 50, 1)
 		// Destroy will drop our wrapped object on the turf, so let it.
 		qdel(src)
 
@@ -33,7 +33,7 @@
 						update_icon()
 					else
 						src.sortTag = O.currTag
-					playsound(src.loc, 'sound/machines/twobeep.ogg', 50, 1)
+					playsound(src, 'sound/machines/twobeep.ogg', 50, 1)
 				else
 					to_chat(user, "<span class='warning'>The package is already labeled for [O.currTag].</span>")
 			else
@@ -143,7 +143,7 @@
 						update_icon()
 					else
 						src.sortTag = O.currTag
-					playsound(src.loc, 'sound/machines/twobeep.ogg', 50, 1)
+					playsound(src, 'sound/machines/twobeep.ogg', 50, 1)
 				else
 					to_chat(user, "<span class='warning'>The package is already labeled for [O.currTag].</span>")
 			else
@@ -209,6 +209,7 @@
 			overlays += I
 
 	examine(mob/user)
+		. = ..()
 		if(get_dist(user, src) <= 4)
 			if(sortTag)
 				. += "<span class='notice'>It is labeled \"[sortTag]\"</span>"
@@ -273,7 +274,7 @@
 				user.visible_message("\The [user] wraps \a [target] with \a [src].",\
 				"<span class='notice'>You wrap \the [target], leaving [amount] units of paper on \the [src].</span>",\
 				"You hear someone taping paper around a small object.")
-				playsound(loc, 'sound/items/package_wrap.ogg', 50, 1)
+				playsound(src, 'sound/items/package_wrap.ogg', 50, 1)
 		else if (istype(target, /obj/structure/closet/crate))
 			var/obj/structure/closet/crate/O = target
 			if (src.amount > 3 && !O.opened)
@@ -285,7 +286,7 @@
 				user.visible_message("\The [user] wraps \a [target] with \a [src].",\
 				"<span class='notice'>You wrap \the [target], leaving [amount] units of paper on \the [src].</span>",\
 				"You hear someone taping paper around a large object.")
-				playsound(loc, 'sound/items/package_wrap.ogg', 50, 1)
+				playsound(src, 'sound/items/package_wrap.ogg', 50, 1)
 			else if(src.amount < 3)
 				to_chat(user, "<span class='warning'>You need more paper.</span>")
 		else if (istype (target, /obj/structure/closet))
@@ -299,7 +300,7 @@
 				user.visible_message("\The [user] wraps \a [target] with \a [src].",\
 				"<span class='notice'>You wrap \the [target], leaving [amount] units of paper on \the [src].</span>",\
 				"You hear someone taping paper around a large object.")
-				playsound(loc, 'sound/items/package_wrap.ogg', 50, 1)
+				playsound(src, 'sound/items/package_wrap.ogg', 50, 1)
 			else if(src.amount < 3)
 				to_chat(user, "<span class='warning'>You need more paper.</span>")
 		else
@@ -432,18 +433,18 @@
 		if(I.is_screwdriver())
 			if(c_mode==0)
 				c_mode=1
-				playsound(src.loc, I.usesound, 50, 1)
+				playsound(src, I.usesound, 50, 1)
 				to_chat(user, "You remove the screws around the power connection.")
 				return
 			else if(c_mode==1)
 				c_mode=0
-				playsound(src.loc, I.usesound, 50, 1)
+				playsound(src, I.usesound, 50, 1)
 				to_chat(user, "You attach the screws around the power connection.")
 				return
 		else if(istype(I, /obj/item/weapon/weldingtool) && c_mode==1)
 			var/obj/item/weapon/weldingtool/W = I
 			if(W.remove_fuel(0,user))
-				playsound(src.loc, W.usesound, 50, 1)
+				playsound(src, W.usesound, 50, 1)
 				to_chat(user, "You start slicing the floorweld off the delivery chute.")
 				if(do_after(user,20 * W.toolspeed))
 					if(!src || !W.isOn()) return

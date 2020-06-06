@@ -26,7 +26,7 @@
 		var/message = pick(messages)
 		to_chat(user, "<span class='notice'>[message].</span>")
 		for(var/s in workout_sounds)
-			playsound(loc, s, 50, 1)
+			playsound(src, s, 50, 1)
 
 /obj/machinery/fitness/punching_bag
 	name = "punching bag"
@@ -59,7 +59,7 @@
 		add_fingerprint(user)
 		user.visible_message("<span class='warning'>[user] has [anchored ? "un" : ""]secured \the [src].</span>", "<span class='notice'>You [anchored ? "un" : ""]secure \the [src].</span>")
 		anchored = !anchored
-		playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
+		playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 		return
 
 /obj/machinery/fitness/heavy/attack_hand(mob/living/user)

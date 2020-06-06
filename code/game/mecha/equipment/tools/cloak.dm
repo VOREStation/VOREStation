@@ -46,7 +46,7 @@
 	log_message("Activated.")
 	cloak_iterator.start()
 	set_ready_state(0)
-	playsound(get_turf(src), 'sound/effects/EMPulse.ogg', 100, 1)
+	playsound(src, 'sound/effects/EMPulse.ogg', 100, 1)
 
 /obj/item/mecha_parts/mecha_equipment/cloak/proc/stop_cloak()
 	if(chassis)
@@ -54,7 +54,7 @@
 	log_message("Deactivated.")
 	cloak_iterator.stop()
 	set_ready_state(1)
-	playsound(get_turf(src), 'sound/effects/EMPulse.ogg', 100, 1)
+	playsound(src, 'sound/effects/EMPulse.ogg', 100, 1)
 
 // These things are so silly
 /datum/global_iterator/mecha_cloak/process(var/obj/item/mecha_parts/mecha_equipment/cloak/cloak)

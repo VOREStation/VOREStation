@@ -65,6 +65,7 @@
 	var/list/log = list()
 	var/req_log_access = access_cargo //default access for checking logs is cargo
 	var/has_logs = 0 //defaults to 0, set to anything else for vendor to have logs
+	var/can_rotate = 1 //Defaults to yes, can be set to 0 for vendors without or with unwanted directionals.
 
 
 /obj/machinery/vending/Initialize()
@@ -252,7 +253,7 @@
  */
 /obj/machinery/vending/proc/pay_with_ewallet(var/obj/item/weapon/spacecash/ewallet/wallet)
 	visible_message("<span class='info'>\The [usr] swipes \the [wallet] through \the [src].</span>")
-	playsound(src.loc, 'sound/machines/id_swipe.ogg', 50, 1)
+	playsound(src, 'sound/machines/id_swipe.ogg', 50, 1)
 	if(currently_vending.price > wallet.worth)
 		status_message = "Insufficient funds on chargecard."
 		status_error = 1
@@ -273,7 +274,7 @@
 		visible_message("<span class='info'>\The [usr] swipes \the [I] through \the [src].</span>")
 	else
 		visible_message("<span class='info'>\The [usr] swipes \the [ID_container] through \the [src].</span>")
-	playsound(src.loc, 'sound/machines/id_swipe.ogg', 50, 1)
+	playsound(src, 'sound/machines/id_swipe.ogg', 50, 1)
 	var/datum/money_account/customer_account = get_account(I.associated_account_number)
 	if(!customer_account)
 		status_message = "Error: Unable to access account. Please contact technical support if problem persists."
@@ -429,7 +430,7 @@
 			if((!allowed(usr)) && !emagged && scan_id)	//For SECURE VENDING MACHINES YEAH
 				to_chat(usr, "<span class='warning'>Access denied.</span>")	//Unless emagged of course
 				flick("[icon_state]-deny",src)
-				playsound(src.loc, 'sound/machines/deniedbeep.ogg', 50, 0)
+				playsound(src, 'sound/machines/deniedbeep.ogg', 50, 0)
 				return
 
 			var/key = text2num(href_list["vend"])
@@ -466,7 +467,7 @@
 	if((!allowed(usr)) && !emagged && scan_id)	//For SECURE VENDING MACHINES YEAH
 		to_chat(usr, "<span class='warning'>Access denied.</span>")	//Unless emagged of course
 		flick("[icon_state]-deny",src)
-		playsound(src.loc, 'sound/machines/deniedbeep.ogg', 50, 0)
+		playsound(src, 'sound/machines/deniedbeep.ogg', 50, 0)
 		return
 	vend_ready = 0 //One thing at a time!!
 	status_message = "Vending..."
@@ -505,7 +506,7 @@
 			sleep(3)
 			if(R.get_product(get_turf(src)))
 				visible_message("<span class='notice'>\The [src] clunks as it vends an additional item.</span>")
-		playsound(src.loc, "sound/[vending_sound]", 100, 1, 1)
+		playsound(src, "sound/[vending_sound]", 100, 1, 1)
 
 		status_message = ""
 		status_error = 0
@@ -544,6 +545,22 @@
 			popup.open()
 	else
 		to_chat(user,"<span class='warning'>You do not have the required access to view the vending logs for this machine.</span>")
+
+
+/obj/machinery/vending/verb/rotate_clockwise()
+	set name = "Rotate Vending Machine Clockwise"
+	set category = "Object"
+	set src in oview(1)
+
+	if (src.can_rotate == 0)
+		to_chat(usr, "<span class='warning'>\The [src] cannot be rotated.</span>")
+		return 0
+
+	if (src.anchored || usr:stat)
+		to_chat(usr, "It is bolted down!")
+		return 0
+	src.set_dir(turn(src.dir, 270))
+	return 1
 
 /obj/machinery/vending/verb/check_logs()
 	set name = "Check Vending Logs"
@@ -763,15 +780,13 @@
 	product_slogans = "Try our new nougat bar!;Twice the calories for half the price!"
 	product_ads = "The healthiest!;Award-winning chocolate bars!;Mmm! So good!;Oh my god it's so juicy!;Have a snack.;Snacks are good for you!;Have some more Getmore!;Best quality snacks straight from mars.;We love chocolate!;Try our new jerky!"
 	icon_state = "snack"
-	products = list(/obj/item/weapon/reagent_containers/food/snacks/candy = 6,/obj/item/weapon/reagent_containers/food/drinks/dry_ramen = 6,/obj/item/weapon/reagent_containers/food/snacks/chips =6,
-					/obj/item/weapon/reagent_containers/food/snacks/sosjerky = 6,/obj/item/weapon/reagent_containers/food/snacks/no_raisin = 6,/obj/item/weapon/reagent_containers/food/snacks/spacetwinkie = 6,
-					/obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers = 6, /obj/item/weapon/reagent_containers/food/snacks/tastybread = 6, /obj/item/weapon/reagent_containers/food/snacks/skrellsnacks = 3)
-	contraband = list(/obj/item/weapon/reagent_containers/food/snacks/syndicake = 6,/obj/item/weapon/reagent_containers/food/snacks/unajerky = 6,)
-	//VOREStation Edit Start
-	prices = list(/obj/item/weapon/reagent_containers/food/snacks/candy = 1,/obj/item/weapon/reagent_containers/food/drinks/dry_ramen = 2,/obj/item/weapon/reagent_containers/food/snacks/chips = 1,
+	products = list(/obj/item/weapon/reagent_containers/food/snacks/candy = 12,/obj/item/weapon/reagent_containers/food/drinks/dry_ramen = 12,/obj/item/weapon/reagent_containers/food/snacks/chips =12,
+					/obj/item/weapon/reagent_containers/food/snacks/sosjerky = 12,/obj/item/weapon/reagent_containers/food/snacks/no_raisin = 12,/obj/item/weapon/reagent_containers/food/snacks/spacetwinkie = 12,
+					/obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers = 12, /obj/item/weapon/reagent_containers/food/snacks/tastybread = 12, /obj/item/weapon/reagent_containers/food/snacks/skrellsnacks = 6)
+	contraband = list(/obj/item/weapon/reagent_containers/food/snacks/syndicake = 6,/obj/item/weapon/reagent_containers/food/snacks/unajerky = 12,)
+	prices = list(/obj/item/weapon/reagent_containers/food/snacks/candy = 1,/obj/item/weapon/reagent_containers/food/drinks/dry_ramen = 5,/obj/item/weapon/reagent_containers/food/snacks/chips = 1,
 					/obj/item/weapon/reagent_containers/food/snacks/sosjerky = 2,/obj/item/weapon/reagent_containers/food/snacks/no_raisin = 1,/obj/item/weapon/reagent_containers/food/snacks/spacetwinkie = 1,
 					/obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers = 1, /obj/item/weapon/reagent_containers/food/snacks/tastybread = 2, /obj/item/weapon/reagent_containers/food/snacks/skrellsnacks = 2)
-	//VOREStation Edit End
 					
 /obj/machinery/vending/cola
 	name = "Robust Softdrinks"
@@ -797,11 +812,11 @@
 	name = "SweatMAX"
 	desc = "Fueled by your inner inadequacy!"
 	icon_state = "fitness"
-	products = list(/obj/item/weapon/reagent_containers/food/drinks/smallmilk = 8,
-					/obj/item/weapon/reagent_containers/food/drinks/smallchocmilk = 8,
-					/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake = 16,	//VOREStation Edit,
+	products = list(/obj/item/weapon/reagent_containers/food/drinks/smallmilk = 16,
+					/obj/item/weapon/reagent_containers/food/drinks/smallchocmilk = 16,
+					/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake = 8,
 					/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask = 8,
-					/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar = 8,
+					/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar = 16,
 					/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 8,
 					/obj/item/weapon/reagent_containers/pill/diet = 8,
 					///obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/glucose = 5,	//VOREStation Removal,
@@ -841,13 +856,13 @@
 	product_ads = "Probably not bad for you!;Don't believe the scientists!;It's good for you!;Don't quit, buy more!;Smoke!;Nicotine heaven.;Best cigarettes since 2150.;Award-winning cigs.;Feeling temperamental? Try a Temperamento!;Carcinoma Angels - go fuck yerself!;Don't be so hard on yourself, kid. Smoke a Lucky Star!"
 	vend_delay = 34
 	icon_state = "cigs"
-	products = list(/obj/item/weapon/storage/fancy/cigarettes = 5,
-					/obj/item/weapon/storage/fancy/cigarettes/dromedaryco = 5,
-					/obj/item/weapon/storage/fancy/cigarettes/killthroat = 5,
-					/obj/item/weapon/storage/fancy/cigarettes/luckystars = 5,
-					/obj/item/weapon/storage/fancy/cigarettes/jerichos = 5,
-					/obj/item/weapon/storage/fancy/cigarettes/menthols = 5,
-					/obj/item/weapon/storage/rollingpapers = 5,
+	products = list(/obj/item/weapon/storage/fancy/cigarettes = 10,
+					/obj/item/weapon/storage/fancy/cigarettes/dromedaryco = 10,
+					/obj/item/weapon/storage/fancy/cigarettes/killthroat = 10,
+					/obj/item/weapon/storage/fancy/cigarettes/luckystars = 10,
+					/obj/item/weapon/storage/fancy/cigarettes/jerichos = 10,
+					/obj/item/weapon/storage/fancy/cigarettes/menthols = 10,
+					/obj/item/weapon/storage/rollingpapers = 10,
 					/obj/item/weapon/storage/box/matches = 10,
 					/obj/item/weapon/flame/lighter/random = 4)
 	contraband = list(/obj/item/weapon/flame/lighter/zippo = 4)
@@ -900,6 +915,7 @@
 	contraband = list(/obj/item/weapon/reagent_containers/syringe/antitoxin = 4,/obj/item/weapon/reagent_containers/syringe/antiviral = 4,/obj/item/weapon/reagent_containers/pill/tox = 1)
 	req_log_access = access_cmo
 	has_logs = 1
+	can_rotate = 0
 
 /obj/machinery/vending/wallmed2
 	name = "NanoMed"
@@ -911,6 +927,7 @@
 	contraband = list(/obj/item/weapon/reagent_containers/pill/tox = 3)
 	req_log_access = access_cmo
 	has_logs = 1
+	can_rotate = 0
 
 /obj/machinery/vending/security
 	name = "SecTech"
@@ -934,6 +951,7 @@
 					/obj/item/weapon/reagent_containers/syringe = 5,/obj/item/weapon/reagent_containers/glass/beaker = 4,/obj/item/weapon/storage/bag/plants = 5)
 	premium = list(/obj/item/weapon/reagent_containers/glass/bottle/ammonia = 10,/obj/item/weapon/reagent_containers/glass/bottle/diethylamine = 5)
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
+
 
 /obj/machinery/vending/hydroseeds
 	name = "MegaSeed Servitor"
@@ -1178,6 +1196,7 @@
 					/obj/item/toy/plushie/nukeplushie = 50,
 					/obj/item/toy/plushie/otter = 50)
 					//VOREStation Add End
+
 
 /obj/machinery/vending/fishing
 	name = "Loot Trawler"

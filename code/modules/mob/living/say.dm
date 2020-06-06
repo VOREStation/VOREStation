@@ -321,6 +321,19 @@ proc/get_radio_key_from_channel(var/channel)
 	//var/image/speech_bubble = image('icons/mob/talk_vr.dmi',src,"h[speech_bubble_test]") //VOREStation Edit. Commented this out in case we need to reenable.
 	var/speech_type = speech_bubble_appearance()
 	var/image/speech_bubble = image('icons/mob/talk_vr.dmi',src,"[speech_type][speech_bubble_test]") //VOREStation Edit - talk_vr.dmi instead of talk.dmi for right-side icons
+	var/sb_alpha = 255
+	var/atom/loc_before_turf = src
+	//VOREStation Add
+	if(isbelly(loc))
+		speech_bubble.pixel_y = -13 //teehee
+	//VOREStation Add End
+	while(loc_before_turf && !isturf(loc_before_turf.loc))
+		loc_before_turf = loc_before_turf.loc
+		sb_alpha -= 50
+		if(sb_alpha < 0)
+			break
+	speech_bubble.loc = loc_before_turf
+	speech_bubble.alpha = CLAMP(sb_alpha, 0, 255)
 	images_to_clients[speech_bubble] = list()
 
 	// Attempt Multi-Z Talking
@@ -356,7 +369,7 @@ proc/get_radio_key_from_channel(var/channel)
 						images_to_clients[I1] |= M.client
 						M << I1
 					M.hear_say(message_pieces, verb, italics, src, speech_sound, sound_vol)
-				if(whispering) //Don't even bother with these unless whispering
+				if(whispering && !isobserver(M)) //Don't even bother with these unless whispering
 					if(dst > message_range && dst <= w_scramble_range) //Inside whisper scramble range
 						if(M.client)
 							var/image/I2 = listening[M] || speech_bubble

@@ -363,13 +363,18 @@
 	else
 		return ..()
 
-/obj/item/stack/Moved(atom/old_loc, direction, forced = FALSE)
+/obj/item/stack/proc/combine_in_loc()
+	return //STUBBED for now, as it seems to randomly delete stacks
+
+/obj/item/stack/dropped(atom/old_loc)
 	. = ..()
 	if(isturf(loc))
-		for(var/obj/item/stack/S in loc)
-			if(S == src)
-				continue
-			S.transfer_to(src) // them to us, so if we're being pulled, we can keep being pulled
+		combine_in_loc()
+
+/obj/item/stack/Moved(atom/old_loc, direction, forced)
+	. = ..()
+	if(pulledby && isturf(loc))
+		combine_in_loc()
 
 /*
  * Recipe datum

@@ -23,8 +23,8 @@
 
 	src.gender = gender
 	//reset_hair() //VOREStation Remove - Don't just randomize hair on gender swaps for prometheans.
-	update_icons_body()
 	update_dna()
+	update_icons_body()
 	return 1
 
 /mob/living/carbon/human/proc/change_gender_identity(var/identifying_gender)
@@ -141,6 +141,8 @@
 /mob/living/carbon/human/proc/update_dna()
 	check_dna()
 	dna.ready_dna(src)
+	for(var/obj/item/organ/O in organs)
+		O.dna = dna // Update all of those because apparently they're separate, and icons won't update properly
 
 /mob/living/carbon/human/proc/generate_valid_species(var/check_whitelist = 1, var/list/whitelist = list(), var/list/blacklist = list())
 	var/list/valid_species = new()

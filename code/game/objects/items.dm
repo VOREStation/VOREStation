@@ -508,7 +508,7 @@ var/list/global/slot_flags_enumeration = list(
 	var/hit_zone = get_zone_with_miss_chance(U.zone_sel.selecting, M, U.get_accuracy_penalty(U))
 	if(!hit_zone)
 		U.do_attack_animation(M)
-		playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+		playsound(src, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 		//visible_message("<span class='danger'>[U] attempts to stab [M] in the eyes, but misses!</span>")
 		for(var/mob/V in viewers(M))
 			V.show_message("<span class='danger'>[U] attempts to stab [M] in the eyes, but misses!</span>")
@@ -643,11 +643,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 //Looking through a scope or binoculars should /not/ improve your periphereal vision. Still, increase viewsize a tiny bit so that sniping isn't as restricted to NSEW
 /obj/item/var/ignore_visor_zoom_restriction = FALSE
 
-/obj/item/on_loc_moved(var/oldloc)
-	. = ..()
-	if(zoom)
-		zoom() // aka unzoom
-
 /obj/item/proc/zoom(var/tileoffset = 14,var/viewsize = 9) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
 
 	var/devicename
@@ -677,6 +672,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			H.toggle_zoom_hud()	// If the user has already limited their HUD this avoids them having a HUD when they zoom in
 		H.set_viewsize(viewsize)
 		zoom = 1
+		GLOB.moved_event.register(H, src, .proc/zoom)
 
 		var/tilesize = 32
 		var/viewoffset = tilesize * tileoffset
@@ -705,6 +701,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		if(!H.hud_used.hud_shown)
 			H.toggle_zoom_hud()
 		zoom = 0
+		GLOB.moved_event.unregister(H, src, .proc/zoom)
 
 		H.client.pixel_x = 0
 		H.client.pixel_y = 0
@@ -773,13 +770,13 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	if(!inhands)
 		apply_custom(standing_icon)		//Pre-image overridable proc to customize the thing
 		apply_addblends(icon2use,standing_icon)		//Some items have ICON_ADD blend shaders
-		if(istype(clip_mask)) //VOREStation Edit - For taur bodies/tails clipping off parts of uniforms and suits.
-			standing_icon = get_icon_difference(standing_icon, clip_mask, 1)
 
 	var/image/standing = image(standing_icon)
 	standing.alpha = alpha
 	standing.color = color
 	standing.layer = layer2use
+	if(istype(clip_mask)) //VOREStation Edit - For taur bodies/tails clipping off parts of uniforms and suits.
+		standing.filters += filter(type = "alpha", icon = clip_mask)
 
 	//Apply any special features
 	if(!inhands)

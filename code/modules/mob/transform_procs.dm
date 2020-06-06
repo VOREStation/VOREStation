@@ -41,7 +41,7 @@
 
 	return src
 
-/mob/new_player/AIize(var/move)
+/mob/new_player/AIize(var/move = TRUE)
 	spawning = 1
 	return ..()
 
@@ -50,10 +50,18 @@
 		return
 	for(var/t in organs)
 		qdel(t)
+	
+	//VOREStation Edit Start - Hologram examine flavor
+	var/mob/living/silicon/ai/O = ..(move)
+	if(O)
+		O.flavor_text = O.client?.prefs?.flavor_texts["general"]
+	
+	return O
+	//VOREStation Edit End
 
 	return ..(move)
 
-/mob/living/carbon/AIize(var/move)
+/mob/living/carbon/AIize(var/move = TRUE)
 	if (transforming)
 		return
 	for(var/obj/item/W in src)
@@ -67,7 +75,7 @@
 /mob/proc/AIize(var/move = TRUE)
 	if(client)
 		src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // stop the jams for AIs
-	
+
 	var/newloc = loc
 	if(move)
 		var/obj/loc_landmark

@@ -142,40 +142,6 @@ turf/attackby(obj/item/weapon/W as obj, mob/user as mob)
 			sleep(2)
 			O.update_transform()
 
-var/const/enterloopsanity = 100
-/turf/Entered(atom/atom as mob|obj)
-
-	if(movement_disabled)
-		to_chat(usr, "<span class='warning'>Movement is admin-disabled.</span>") //This is to identify lag problems
-		return
-	..()
-
-	if(!istype(atom, /atom/movable))
-		return
-
-	var/atom/movable/A = atom
-
-	if(ismob(A))
-		var/mob/M = A
-		if(M.lastarea?.has_gravity == 0)
-			inertial_drift(M)
-		if(M.flying) //VORESTATION Edit Start. This overwrites the above is_space without touching it all that much.
-			inertial_drift(M)
-			M.make_floating(1) //VOREStation Edit End.
-		else if(!is_space())
-			M.inertia_dir = 0
-			M.make_floating(0)
-
-	var/objects = 0
-	if(A && (A.flags & PROXMOVE))
-		for(var/atom/movable/thing in range(1))
-			if(objects++ > enterloopsanity) break
-			spawn(0)
-				if(A) //Runtime prevention
-					A.HasProximity(thing, 1)
-					if ((thing && A) && (thing.flags & PROXMOVE))
-						thing.HasProximity(A, 1)
-
 /turf/CanPass(atom/movable/mover, turf/target)
 	if(!target)
 		return FALSE
@@ -243,22 +209,6 @@ var/const/enterloopsanity = 100
 
 /turf/proc/is_plating()
 	return 0
-
-/turf/proc/inertial_drift(atom/movable/A as mob|obj)
-	if(!(A.last_move))	return
-	if((istype(A, /mob/) && src.x > 1 && src.x < (world.maxx) && src.y > 1 && src.y < (world.maxy)))
-		var/mob/M = A
-		if(M.Process_Spacemove(1))
-			M.inertia_dir  = 0
-			return
-		spawn(5)
-			if((M && !(M.anchored) && !(M.pulledby) && (M.loc == src)))
-				if(M.inertia_dir)
-					step(M, M.inertia_dir)
-					return
-				M.inertia_dir = M.last_move
-				step(M, M.inertia_dir)
-	return
 
 /turf/proc/levelupdate()
 	for(var/obj/O in src)

@@ -45,7 +45,7 @@
 			return
 
 		user.visible_message("<span class='notice'>\The [user] welds the barrel of \the [src] into place.</span>")
-		playsound(src.loc, 'sound/items/Welder2.ogg', 100, 1)
+		playsound(src, 'sound/items/Welder2.ogg', 100, 1)
 		increment_construction_stage()
 		return
 
@@ -68,7 +68,7 @@
 
 	if(thing.is_screwdriver() && construction_stage >= 9)
 		user.visible_message("<span class='notice'>\The [user] secures \the [src] and finishes it off.</span>")
-		playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
+		playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 		var/obj/item/weapon/gun/magnetic/coilgun = new(loc)
 		var/put_in_hands
 		var/mob/M = src.loc

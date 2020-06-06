@@ -323,7 +323,7 @@
 /datum/chemical_reaction/slime/orange_fire/on_reaction(var/datum/reagents/holder)
 	log_and_message_admins("Orange extract reaction (fire) has been activated in [get_area(holder.my_atom)].  Last fingerprints: [holder.my_atom.fingerprintslast]")
 	holder.my_atom.visible_message("<span class='danger'>\The [src] begins to vibrate violently!</span>")
-	playsound(get_turf(holder.my_atom), 'sound/effects/phasein.ogg', 75, 1)
+	playsound(holder.my_atom, 'sound/effects/phasein.ogg', 75, 1)
 	spawn(5 SECONDS)
 		if(holder && holder.my_atom)
 			var/turf/simulated/T = get_turf(holder.my_atom)
@@ -360,11 +360,11 @@
 /datum/chemical_reaction/slime/yellow_emp/on_reaction(var/datum/reagents/holder)
 	log_and_message_admins("Yellow extract reaction (emp) has been activated in [get_area(holder.my_atom)].  Last fingerprints: [holder.my_atom.fingerprintslast]")
 	holder.my_atom.visible_message("<span class='danger'>\The [src] begins to vibrate violently!</span>")
-	playsound(get_turf(holder.my_atom), 'sound/effects/phasein.ogg', 75, 1)
+	playsound(holder.my_atom, 'sound/effects/phasein.ogg', 75, 1)
 	spawn(5 SECONDS)
 		if(holder && holder.my_atom)
 			empulse(get_turf(holder.my_atom), 2, 4, 7, 10) // As strong as a normal EMP grenade.
-			playsound(get_turf(holder.my_atom), 'sound/effects/phasein.ogg', 75, 1)
+			playsound(holder.my_atom, 'sound/effects/phasein.ogg', 75, 1)
 	..()
 
 
@@ -575,7 +575,7 @@
 
 	log_and_message_admins("Red extract reaction (enrage) has been activated in [get_area(holder.my_atom)].  Last fingerprints: [holder.my_atom.fingerprintslast]")
 
-	playsound(get_turf(holder.my_atom), 'sound/effects/phasein.ogg', 75, 1)
+	playsound(holder.my_atom, 'sound/effects/phasein.ogg', 75, 1)
 	..()
 
 
@@ -696,7 +696,7 @@
 		power++
 	E.uses = 0
 
-	playsound(get_turf(holder.my_atom), 'sound/effects/phasein.ogg', 75, 1)
+	playsound(holder.my_atom, 'sound/effects/phasein.ogg', 75, 1)
 	holder.my_atom.visible_message("<span class='danger'>\The [holder.my_atom] begins to vibrate violently!</span>")
 	log_and_message_admins("Oil extract reaction (explosion) has been activated in [get_area(holder.my_atom)].  Last fingerprints: [holder.my_atom.fingerprintslast]")
 

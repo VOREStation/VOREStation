@@ -50,3 +50,47 @@
 	icon_state = "sbsposter13"
 	name = "Ammer"
 	desc = "You see a blue panda on the poster. She's awfully smug about her size."
+/datum/poster/vore_14
+	icon_state = "dwposter1"
+	name = "WANTED: WAR CRIMINAL"
+	desc = "A poster bringing awareness to the distinguishing costume of a known war criminal operating in Virgo-Erigonne space."
+/datum/poster/vore_15
+	icon_state = "dwposter2"
+	name = "Implanter"
+	desc = "A poster explaining the benefits and function of back-up implanters."
+/datum/poster/vore_16
+	icon_state = "dwposter3"
+	name = "Back-up implant"
+	desc = "A poster describing the electronics implanted by back-up implanters."
+/datum/poster/vore_17
+	icon_state = "dwposter4"
+	name = "We know"
+	desc = "A poster purporting the infallibility of NanoTrasen's forensics department."
+/datum/poster/vore_18
+	icon_state = "dwposter5"
+	name = "KAT"
+	desc = "A promotional poster for popular exotube show 'Kat-Kat Korner'"
+/datum/poster/vore_19
+	icon_state = "dwposter6"
+	name = "install.css"
+	desc = "A nostalgia trip."
+/datum/poster/vore_20
+	icon_state = "dwposter7"
+	name = "TALON"
+	desc = "The logo and banner of a notable group of contractors known to trade with NanoTrasen."
+/datum/poster/vore_21
+	icon_state = "dwposter8"
+	name = "GPA"
+	desc = "A pretentious advertisement for the drink 'Galactic Panic Attack'"
+/datum/poster/vore_22
+	icon_state = "dwposter9"
+	name = "Rope"
+	desc = "A poster outlining proper pit-traversal gear."
+/datum/poster/vore_23
+	icon_state = "dwposter10"
+	name = "Visit Luna"
+	desc = "Part of a tourism campaign from SolCom encouraging people to visit Earth's moon, Luna."
+/datum/poster/vore_24
+	icon_state = "dwposter11"
+	name = "Secgun"
+	desc = "A striking, wordless advertisement for NanoTrasen's security department. It wasn't very effective and just seems to be used as a warning sign."

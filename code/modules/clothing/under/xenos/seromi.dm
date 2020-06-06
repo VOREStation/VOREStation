@@ -33,6 +33,18 @@
 	name = "small rainbow smock"
 	icon_state = "seromi_rainbow"
 
+/obj/item/clothing/under/seromi/smock/dress
+	name = "small command dress"
+	icon_state = "seromi_dress_cap"
+
+/obj/item/clothing/under/seromi/smock/uniform
+	name = "small command uniform"
+	icon_state = "seromi_captain"
+
+/obj/item/clothing/under/seromi/smock/formal
+	name = "small formal uniform"
+	icon_state = "seromi_captain_formal"
+
 /obj/item/clothing/under/seromi/undercoat
 	name = "Undercoat"
 	desc =  "A Teshari traditional garb, with a modern twist! Made of micro and nanofibres to make it light and billowy, perfect for going fast and stylishly!"

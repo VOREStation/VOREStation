@@ -88,6 +88,18 @@
 		return
 	return ..()
 
+//VOREStation Add
+/obj/item/stack/material/attack(mob/living/M as mob, mob/living/user as mob)
+	if(M.handle_eat_minerals(src, user))
+		return
+	..()
+
+/obj/item/stack/material/attack_generic(var/mob/living/user) //Allow adminbussed mobs to eat ore if they click it while NOT on help intent.
+	if(user.handle_eat_minerals(src))
+		return
+	..()
+//VOREStation Add End
+
 /obj/item/stack/material/iron
 	name = "iron"
 	icon_state = "sheet-silver"
@@ -362,7 +374,7 @@
 		user.setClickCooldown(time)
 		if(do_after(user, time, src) && use(1))
 			to_chat(user, "<span class='notice'>You cut up a log into planks.</span>")
-			playsound(get_turf(src), 'sound/effects/woodcutting.ogg', 50, 1)
+			playsound(src, 'sound/effects/woodcutting.ogg', 50, 1)
 			var/obj/item/stack/material/wood/existing_wood = null
 			for(var/obj/item/stack/material/wood/M in user.loc)
 				if(M.material.name == src.material.name)

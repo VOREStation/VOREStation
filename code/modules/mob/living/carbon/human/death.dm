@@ -12,7 +12,7 @@
 
 	for(var/obj/item/organ/I in internal_organs)
 		I.removed()
-		if(istype(loc,/turf))
+		if(isturf(I?.loc)) // Some organs qdel themselves or other things when removed
 			I.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),30)
 
 	for(var/obj/item/organ/external/E in src.organs)
@@ -88,7 +88,7 @@
 				to_chat(O, "<span class='deadsay'><b>[src]</b> has died in <b>[get_area(src)]</b>. [ghost_follow_link(src, O)] </span>")
 
 	if(!gibbed && species.death_sound)
-		playsound(loc, species.death_sound, 80, 1, 1)
+		playsound(src, species.death_sound, 80, 1, 1)
 
 	if(ticker && ticker.mode)
 		sql_report_death(src)

@@ -55,7 +55,7 @@
 	feedback_add_details("admin_verb","TEmoteNoise") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/verb/toggle_ghost_quiets()
-	set name = "Whisper/Subtle Vis"
+	set name = "Toggle Whisper/Subtle Vis"
 	set category = "Preferences"
 	set desc = "Toggle ghosts viewing your subtles/whispers."
 

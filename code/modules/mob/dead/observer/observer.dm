@@ -86,6 +86,7 @@
 		"Beepsky" = "secbot"
 		)
 	var/last_revive_notification = null // world.time of last notification, used to avoid spamming players from defibs or cloners.
+	var/cleanup_timer // Refernece to a timer that will delete this mob if no client returns
 
 /mob/observer/dead/New(mob/body)
 	sight |= SEE_TURFS | SEE_MOBS | SEE_OBJS | SEE_SELF
@@ -228,6 +229,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		var/mob/observer/dead/ghost = ghostize(0)	// 0 parameter is so we can never re-enter our body, "Charlie, you can never come baaaack~" :3
 		if(ghost)
 			ghost.timeofdeath = world.time 	// Because the living mob won't have a time of death and we want the respawn timer to work properly.
+			ghost.set_respawn_timer()
 			announce_ghost_joinleave(ghost)
 
 /mob/observer/dead/can_use_hands()	return 0
@@ -303,6 +305,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		var/response = alert(src, "If you turn this on, you will not be able to take any part in the round.","Are you sure you want to turn this feature on?","Yes","No")
 		if(response == "No") return
 		can_reenter_corpse = FALSE
+		set_respawn_timer(-1) // Foreeeever
 	if(!has_enabled_antagHUD && !client.holder)
 		has_enabled_antagHUD = TRUE
 

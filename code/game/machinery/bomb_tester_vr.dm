@@ -359,11 +359,11 @@
 	if(cancelled)
 		return
 	if(simulation_results == "Error")
-		playsound(get_turf(src), 'sound/machines/buzz-sigh.ogg', 50, 0)
+		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 0)
 		state("Invalid parameters.")
 	else
 		ping("Simulation complete!")
-		playsound(loc, "sound/effects/printer.ogg", 50, 1)
+		playsound(src, "sound/effects/printer.ogg", 50, 1)
 		var/obj/item/weapon/paper/P = new(get_turf(src))
 		P.name = "Explosive Simulator printout"
 		P.info = simulation_results

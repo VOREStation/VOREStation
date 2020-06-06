@@ -75,7 +75,7 @@
 	character_name = list("Aronai Sieyes")
 
 /datum/gear/fluff/aronai_ccmedjacket
-	path = /obj/item/clothing/suit/storage/service/sifguard/medical/command
+	path = /obj/item/clothing/suit/storage/solgov/service/sifguard/medical/command
 	display_name  = "centcom medical jacket"
 	description = "A medical jacket straight from Central Command."
 	slot = slot_wear_suit

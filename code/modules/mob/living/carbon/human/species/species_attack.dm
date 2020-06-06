@@ -92,4 +92,4 @@
 /datum/unarmed_attack/stomp/weak/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
 	var/obj/item/organ/external/affecting = target.get_organ(zone)
 	user.visible_message("<span class='warning'>[user] jumped up and down on \the [target]'s [affecting.name]!</span>")
-	playsound(user.loc, attack_sound, 25, 1, -1)
+	playsound(user, attack_sound, 25, 1, -1)

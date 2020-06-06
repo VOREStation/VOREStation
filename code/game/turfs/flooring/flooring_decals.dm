@@ -7,6 +7,7 @@ var/list/floor_decals = list()
 	name = "floor decal"
 	icon = 'icons/turf/flooring/decals_vr.dmi' // VOREStation Edit
 	plane = DECAL_PLANE
+	layer = MAPPER_DECAL_LAYER
 	var/supplied_dir
 
 /obj/effect/floor_decal/New(var/newloc, var/newdir, var/newcolour)
@@ -29,7 +30,7 @@ var/list/floor_decals = list()
 		var/image/I = floor_decals[cache_key]
 		if(!I)
 			I = image(icon = icon, icon_state = icon_state, dir = dir)
-			I.layer = T.layer
+			I.layer = MAPPER_DECAL_LAYER
 			I.color = color
 			I.alpha = alpha
 			floor_decals[cache_key] = I

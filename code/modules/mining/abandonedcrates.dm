@@ -1,9 +1,7 @@
 /obj/structure/closet/crate/secure/loot
 	name = "abandoned crate"
 	desc = "What could be inside?"
-	icon_state = "securecrate"
-	icon_opened = "securecrateopen"
-	icon_closed = "securecrate"
+	closet_appearance = /decl/closet_appearance/crate/secure
 	var/list/code = list()
 	var/list/lastattempt = list()
 	var/attempts = 10
@@ -164,7 +162,7 @@
 		to_chat(user, "<span class='notice'>You leave the crate alone.</span>")
 	else if(check_input(input))
 		to_chat(user, "<span class='notice'>The crate unlocks!</span>")
-		playsound(user, 'sound/machines/lockreset.ogg', 50, 1)
+		playsound(src, 'sound/machines/lockreset.ogg', 50, 1)
 		set_locked(0)
 	else
 		visible_message("<span class='warning'>A red light on \the [src]'s control panel flashes briefly.</span>")

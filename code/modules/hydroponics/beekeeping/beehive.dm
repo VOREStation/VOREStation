@@ -43,7 +43,7 @@
 		return
 	else if(I.is_wrench())
 		anchored = !anchored
-		playsound(loc, I.usesound, 50, 1)
+		playsound(src, I.usesound, 50, 1)
 		user.visible_message("<span class='notice'>[user] [anchored ? "wrenches" : "unwrenches"] \the [src].</span>", "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
 		return
 	else if(istype(I, /obj/item/bee_smoker))

@@ -93,12 +93,12 @@
 	if(href_list["paint"])
 		for(var/atom/movable/O in processing)
 			O.color = activecolor
-		playsound(src.loc, 'sound/effects/spray3.ogg', 50, 1)
+		playsound(src, 'sound/effects/spray3.ogg', 50, 1)
 
 	if(href_list["clear"])
 		for(var/atom/movable/O in processing)
 			O.color = initial(O.color)
-		playsound(src.loc, 'sound/effects/spray3.ogg', 50, 1)
+		playsound(src, 'sound/effects/spray3.ogg', 50, 1)
 
 	if(href_list["eject"])
 		for(var/atom/movable/O in processing)

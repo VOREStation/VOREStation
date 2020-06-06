@@ -119,11 +119,17 @@
 /mob/living/proc/handle_stunned()
 	if(stunned)
 		AdjustStunned(-1)
+		throw_alert("stunned", /obj/screen/alert/stunned)
+	else
+		clear_alert("stunned")
 	return stunned
 
 /mob/living/proc/handle_weakened()
 	if(weakened)
 		weakened = max(weakened-1,0)
+		throw_alert("weakened", /obj/screen/alert/weakened)
+	else
+		clear_alert("weakened")
 	return weakened
 
 /mob/living/proc/handle_stuttering()
@@ -139,6 +145,9 @@
 /mob/living/proc/handle_drugged()
 	if(druggy)
 		druggy = max(druggy-1, 0)
+		throw_alert("high", /obj/screen/alert/high)
+	else
+		clear_alert("high")
 	return druggy
 
 /mob/living/proc/handle_slurring()
@@ -149,6 +158,9 @@
 /mob/living/proc/handle_paralysed()
 	if(paralysis)
 		AdjustParalysis(-1)
+		throw_alert("paralyzed", /obj/screen/alert/paralyzed)
+	else
+		clear_alert("paralyzed")
 	return paralysis
 
 /mob/living/proc/handle_confused()

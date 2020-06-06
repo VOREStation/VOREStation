@@ -1,4 +1,4 @@
-/obj/effect/plant/HasProximity(var/atom/movable/AM)
+/obj/effect/plant/HasProximity(turf/T, atom/movable/AM, old_loc)
 
 	if(!is_mature() || seed.get_trait(TRAIT_SPREAD) != 2)
 		return
@@ -12,6 +12,14 @@
 		//so we don't appear to teleport from two tiles away when moving into a turf adjacent to vines.
 		spawn(1)
 			entangle(M)
+
+/obj/effect/plant/Moved(atom/old_loc, direction, forced = FALSE)
+	. = ..()
+	if(seed.get_trait(TRAIT_SPREAD)==2)
+		if(isturf(old_loc))
+			unsense_proximity(callback = .HasProximity, center = old_loc)
+		if(isturf(loc))
+			sense_proximity(callback = .HasProximity)
 
 /obj/effect/plant/attack_hand(var/mob/user)
 	manual_unbuckle(user)

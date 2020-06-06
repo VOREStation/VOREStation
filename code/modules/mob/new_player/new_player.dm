@@ -120,8 +120,9 @@
 		new_player_panel_proc()
 
 	if(href_list["observe"])
+		var/alert_time = ticker?.current_state <= GAME_STATE_SETTING_UP ? 1 : round(config.respawn_time/10/60)
 
-		if(alert(src,"Are you sure you wish to observe? You will have to wait 60 seconds before being able to respawn!","Player Setup","Yes","No") == "Yes") //Vorestation edit - Rykka corrected to 60 seconds to match current spawn time
+		if(alert(src,"Are you sure you wish to observe? You will have to wait up to [alert_time] minute\s before being able to spawn into the game!","Player Setup","Yes","No") == "Yes")
 			if(!client)	return 1
 
 			//Make a new mannequin quickly, and allow the observer to take the appearance
@@ -143,7 +144,6 @@
 				observer.forceMove(O.loc)
 			else
 				to_chat(src, "<span class='danger'>Could not locate an observer spawn point. Use the Teleport verb to jump to the station map.</span>")
-			observer.timeofdeath = world.time // Set the time of death so that the respawn timer works correctly.
 
 			announce_ghost_joinleave(src)
 
@@ -154,6 +154,7 @@
 			if(!client.holder && !config.antag_hud_allowed)           // For new ghosts we remove the verb from even showing up if it's not allowed.
 				observer.verbs -= /mob/observer/dead/verb/toggle_antagHUD        // Poor guys, don't know what they are missing!
 			observer.key = key
+			observer.set_respawn_timer(time_till_respawn()) // Will keep their existing time if any, or return 0 and pass 0 into set_respawn_timer which will use the defaults
 			qdel(src)
 
 			return 1
@@ -162,6 +163,13 @@
 
 		if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
 			to_chat(usr, "<font color='red'>The round is either not ready, or has already finished...</font>")
+			return
+		
+		var/time_till_respawn = time_till_respawn()
+		if(time_till_respawn == -1) // Special case, never allowed to respawn
+			to_chat(usr, "<span class='warning'>Respawning is not allowed!</span>")
+		else if(time_till_respawn) // Nonzero time to respawn
+			to_chat(usr, "<span class='warning'>You can't respawn yet! You need to wait another [round(time_till_respawn/10/60, 0.1)] minutes.</span>")
 			return
 /*
 		if(client.prefs.species != "Human" && !check_rights(R_ADMIN, 0)) //VORESTATION EDITS: THE COMMENTED OUT AREAS FROM LINE 154 TO 178
@@ -341,6 +349,23 @@
 		popup.set_content(dat)
 		popup.open()
 
+/mob/new_player/proc/time_till_respawn()
+	if(!ckey)
+		return -1 // What?
+		
+	var/timer = GLOB.respawn_timers[ckey]
+	// No timer at all
+	if(!timer)
+		return 0
+	// Special case, infinite timer
+	if(timer == -1)
+		return -1
+	// Timer expired
+	if(timer <= world.time)
+		GLOB.respawn_timers -= ckey
+		return 0
+	// Timer still going
+	return timer - world.time
 
 /mob/new_player/proc/IsJobAvailable(rank)
 	var/datum/job/job = job_master.GetJob(rank)
@@ -578,7 +603,7 @@
 /mob/new_player/proc/close_spawn_windows()
 
 	src << browse(null, "window=latechoices") //closes late choices window
-	//src << browse(null, "window=playersetup") //closes the player setup window
+	src << browse(null, "window=preferences_window") //closes the player setup window
 	panel.close()
 
 /mob/new_player/proc/has_admin_rights()

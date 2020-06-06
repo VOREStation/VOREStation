@@ -2,7 +2,6 @@
 	name = "Picture-in-picture"
 	screen_loc = "CENTER"
 	plane = PLANE_WORLD
-	icon = null
 	var/atom/center
 	var/width = 0
 	var/height = 0

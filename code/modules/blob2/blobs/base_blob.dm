@@ -32,7 +32,7 @@ GLOBAL_LIST_EMPTY(all_blobs)
 
 
 /obj/structure/blob/Destroy()
-	playsound(src.loc, 'sound/effects/splat.ogg', 50, 1) //Expand() is no longer broken, no check necessary.
+	playsound(src, 'sound/effects/splat.ogg', 50, 1) //Expand() is no longer broken, no check necessary.
 	GLOB.all_blobs -= src
 	overmind = null
 	return ..()
@@ -149,7 +149,7 @@ GLOBAL_LIST_EMPTY(all_blobs)
 
 	if(istype(T, /turf/space) && !(locate(/obj/structure/lattice) in T) && prob(80))
 		make_blob = FALSE
-		playsound(src.loc, 'sound/effects/splat.ogg', 50, 1) //Let's give some feedback that we DID try to spawn in space, since players are used to it
+		playsound(src, 'sound/effects/splat.ogg', 50, 1) //Let's give some feedback that we DID try to spawn in space, since players are used to it
 
 	consume_tile() //hit the tile we're in, making sure there are no border objects blocking us
 
@@ -223,7 +223,7 @@ GLOBAL_LIST_EMPTY(all_blobs)
 
 /obj/structure/blob/attack_generic(var/mob/user, var/damage, var/attack_verb)
 	visible_message("<span class='danger'>[user] [attack_verb] the [src]!</span>")
-	playsound(loc, 'sound/effects/attackblob.ogg', 100, 1)
+	playsound(src, 'sound/effects/attackblob.ogg', 100, 1)
 	user.do_attack_animation(src)
 	if(overmind)
 		damage *= overmind.blob_type.brute_multiplier
@@ -307,7 +307,7 @@ GLOBAL_LIST_EMPTY(all_blobs)
 
 /obj/structure/blob/attackby(var/obj/item/weapon/W, var/mob/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	playsound(loc, 'sound/effects/attackblob.ogg', 50, 1)
+	playsound(src, 'sound/effects/attackblob.ogg', 50, 1)
 	visible_message("<span class='danger'>\The [src] has been attacked with \the [W][(user ? " by [user]." : ".")]</span>")
 	var/damage = W.force
 	switch(W.damtype)
@@ -318,7 +318,7 @@ GLOBAL_LIST_EMPTY(all_blobs)
 				damage *= 2
 
 			if(damage > 0)
-				playsound(src.loc, 'sound/items/welder.ogg', 100, 1)
+				playsound(src, 'sound/items/welder.ogg', 100, 1)
 			else
 				playsound(src, 'sound/weapons/tap.ogg', 50, 1)
 		if(BRUTE, SEARING, TOX, CLONE)
@@ -328,7 +328,7 @@ GLOBAL_LIST_EMPTY(all_blobs)
 				damage *= 2
 
 			if(damage > 0)
-				playsound(src.loc, 'sound/effects/attackblob.ogg', 50, 1)
+				playsound(src, 'sound/effects/attackblob.ogg', 50, 1)
 			else
 				playsound(src, 'sound/weapons/tap.ogg', 50, 1)
 	if(overmind)
@@ -369,7 +369,7 @@ GLOBAL_LIST_EMPTY(all_blobs)
 /obj/structure/blob/proc/adjust_integrity(amount)
 	integrity = between(0, integrity + amount, max_integrity)
 	if(integrity == 0)
-		playsound(loc, 'sound/effects/splat.ogg', 50, 1)
+		playsound(src, 'sound/effects/splat.ogg', 50, 1)
 		if(overmind)
 			overmind.blob_type.on_death(src)
 		qdel(src)

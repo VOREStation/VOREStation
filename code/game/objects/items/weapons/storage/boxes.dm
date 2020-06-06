@@ -52,7 +52,7 @@
 		return
 	// Now make the cardboard
 	to_chat(user, "<span class='notice'>You fold [src] flat.</span>")
-	playsound(src.loc, 'sound/items/storage/boxfold.ogg', 30, 1)
+	playsound(src, 'sound/items/storage/boxfold.ogg', 30, 1)
 	new foldable(get_turf(src))
 	qdel(src)
 

@@ -230,7 +230,7 @@
 			cards -= P
 		cards = newcards
 		user.visible_message("<span class = 'notice'>\The [user] shuffles [src].</span>")
-		playsound(user, 'sound/items/cardshuffle.ogg', 50, 1)
+		playsound(src, 'sound/items/cardshuffle.ogg', 50, 1)
 		cooldown = world.time
 	else
 		return

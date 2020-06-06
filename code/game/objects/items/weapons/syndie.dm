@@ -48,7 +48,7 @@
 
 /obj/item/weapon/syndie/c4explosive/proc/detonate()
 	icon_state = "c-4[size]_1"
-	playsound(loc, 'sound/weapons/armbomb.ogg', 75, 1)
+	playsound(src, 'sound/weapons/armbomb.ogg', 75, 1)
 	for(var/mob/O in hearers(src, null))
 		O.show_message("[bicon(src)] <span class = 'warning'> The [src.name] beeps! </span>")
 	sleep(50)

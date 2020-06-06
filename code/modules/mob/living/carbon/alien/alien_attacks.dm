@@ -25,7 +25,7 @@
 
 			LAssailant = M
 
-			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+			playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 			for(var/mob/O in viewers(src, null))
 				if ((O.client && !( O.blinded )))
 					O.show_message(text("<font color='red'>[] has grabbed [] passively!</font>", M, src), 1)
@@ -40,7 +40,7 @@
 						step_away(src,M,15)
 						sleep(3)
 						step_away(src,M,15)
-				playsound(loc, "punch", 25, 1, -1)
+				playsound(src, "punch", 25, 1, -1)
 				for(var/mob/O in viewers(src, null))
 					if ((O.client && !( O.blinded )))
 						O.show_message(text("<font color='red'><B>[] has punched []!</B></font>", M, src), 1)
@@ -52,7 +52,7 @@
 				adjustBruteLoss(damage)
 				updatehealth()
 			else
-				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+				playsound(src, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 				for(var/mob/O in viewers(src, null))
 					if ((O.client && !( O.blinded )))
 						O.show_message(text("<font color='red'><B>[] has attempted to punch []!</B></font>", M, src), 1)

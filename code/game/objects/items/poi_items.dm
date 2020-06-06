@@ -61,10 +61,8 @@
 /obj/structure/closet/crate/oldreactor
 	name = "fission reactor rack"
 	desc = "Used in older models of nuclear reactors, essentially a cooling rack for high volumes of radioactive material."
-	icon = 'icons/obj/objects.dmi'
-	icon_state = "poireactor"
-	icon_opened = "poireactor_open"
-	icon_closed = "poireactor"
+	icon = 'icons/obj/closets/poireactor.dmi'
+	closet_appearance = null
 	catalogue_data = list(/datum/category_item/catalogue/information/objects/oldreactor)
 	climbable = 0
 

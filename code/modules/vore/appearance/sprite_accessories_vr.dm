@@ -791,6 +791,12 @@
 	var/list/hide_body_parts = list() //Uses organ tag defines. Bodyparts in this list do not have their icons rendered, allowing for more spriter freedom when doing taur/digitigrade stuff.
 	var/icon/clip_mask_icon = null //Icon file used for clip mask.
 	var/clip_mask_state = null //Icon state to generate clip mask. Clip mask is used to 'clip' off the lower part of clothing such as jumpsuits & full suits.
+	var/icon/clip_mask = null //Instantiated clip mask of given icon and state
+
+/datum/sprite_accessory/tail/New()
+	. = ..()
+	if(clip_mask_icon && clip_mask_state)
+		clip_mask = icon(icon = clip_mask_icon, icon_state = clip_mask_state)
 
 // Species-unique tails
 

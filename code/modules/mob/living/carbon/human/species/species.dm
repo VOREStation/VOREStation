@@ -74,23 +74,32 @@
 	var/male_sneeze_sound = 'sound/effects/mob_effects/sneeze.ogg'
 	var/female_sneeze_sound = 'sound/effects/mob_effects/f_sneeze.ogg'
 
-	// Combat vars.
-	var/total_health = 100									// Point at which the mob will enter crit.
+	// Combat/health/chem/etc. vars.
+	var/total_health = 100								// How much damage the mob can take before entering crit.
 	var/list/unarmed_types = list(							// Possible unarmed attacks that the mob will use in combat,
 		/datum/unarmed_attack,
 		/datum/unarmed_attack/bite
 		)
 	var/list/unarmed_attacks = null							// For empty hand harm-intent attack
-	var/brute_mod =     1									// Physical damage multiplier.
-	var/burn_mod =      1									// Burn damage multiplier.
-	var/oxy_mod =       1									// Oxyloss modifier
-	var/toxins_mod =    1									// Toxloss modifier
-	var/radiation_mod = 1									// Radiation modifier
-	var/flash_mod =     1									// Stun from blindness modifier.
-	var/flash_burn =    0									// how much damage to take from being flashed if light hypersensitive
-	var/sound_mod =     1									// Stun from sounds, I.E. flashbangs.
-	var/chemOD_mod =	1									// Damage modifier for overdose
-	var/vision_flags = SEE_SELF								// Same flags as glasses.
+	var/brute_mod =     1								// Physical damage multiplier.
+	var/burn_mod =      1								// Burn damage multiplier.
+	var/oxy_mod =       1								// Oxyloss modifier
+	var/toxins_mod =    1								// Toxloss modifier. overridden by NO_POISON flag.
+	var/radiation_mod = 1								// Radiation modifier, determines the practically negligable burn damage from direct exposure to extreme sources.
+	var/flash_mod =     1								// Stun from blindness modifier (flashes and flashbangs)
+	var/flash_burn =    0								// how much damage to take from being flashed if light hypersensitive
+	var/sound_mod =     1								// Multiplier to the effective *range* of flashbangs. a flashbang's bang hits an entire screen radius, with some falloff.
+	var/chem_strength_heal =	1						// Multiplier to most beneficial chem strength
+	var/chem_strength_pain =	1						// Multiplier to painkiller strength (could be used in a negative trait to simulate long-term addiction reducing effects, etc.)
+	var/chem_strength_tox =		1						// Multiplier to toxic chem strength (inc. chloral/sopo/mindbreaker/etc. thresholds)
+	var/chemOD_threshold =		1						// Multiplier to overdose threshold; lower = easier overdosing
+	var/chemOD_mod =		1						// Damage modifier for overdose; higher = more damage from ODs
+	var/alcohol_mod =		1						// Multiplier to alcohol strength; 0.5 = half, 0 = no effect at all, 2 = double, etc.
+	// set below is EMP interactivity for nonsynth carbons
+	var/emp_sensitivity =		0			// bitflag. valid flags are: EMP_PAIN, EMP_BLIND, EMP_DEAFEN, EMP_CONFUSE, EMP_STUN, and EMP_(BRUTE/BURN/TOX/OXY)_DMG
+	var/emp_dmg_mod =		1			// Multiplier to all EMP damage sustained by the mob, if it's EMP-sensitive
+	var/emp_stun_mod = 		1			// Multiplier to all EMP disorient/etc. sustained by the mob, if it's EMP-sensitive
+	var/vision_flags = SEE_SELF							// Same flags as glasses.
 
 	// Death vars.
 	var/meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/human

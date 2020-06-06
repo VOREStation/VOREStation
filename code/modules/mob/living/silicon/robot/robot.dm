@@ -701,12 +701,12 @@
 					attack_generic(H, rand(30,50), "slashed")
 					return
 				else
-					playsound(src.loc, 'sound/effects/bang.ogg', 10, 1)
+					playsound(src, 'sound/effects/bang.ogg', 10, 1)
 					visible_message("<span class='warning'>[H] punches [src], but doesn't leave a dent.</span>")
 					return
 			if(I_DISARM)
 				H.do_attack_animation(src)
-				playsound(src.loc, 'sound/effects/clang1.ogg', 10, 1)
+				playsound(src, 'sound/effects/clang1.ogg', 10, 1)
 				visible_message("<span class='warning'>[H] taps [src].</span>")
 				return
 		//VOREStation Edit: Addition of borg petting end

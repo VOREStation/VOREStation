@@ -255,19 +255,7 @@
 	dress_preview_mob(mannequin)
 	COMPILE_OVERLAYS(mannequin)
 
-	preview_icon = icon('icons/effects/128x48.dmi', bgstate)
-	preview_icon.Scale(48+32, 16+32)
-
-	var/icon/stamp = getFlatIcon(mannequin, defdir=NORTH)
-	preview_icon.Blend(stamp, ICON_OVERLAY, 25, 17)
-
-	stamp = getFlatIcon(mannequin, defdir=WEST)
-	preview_icon.Blend(stamp, ICON_OVERLAY, 1, 9)
-
-	stamp = getFlatIcon(mannequin, defdir=SOUTH)
-	preview_icon.Blend(stamp, ICON_OVERLAY, 49, 1)
-
-	preview_icon.Scale(preview_icon.Width() * 2, preview_icon.Height() * 2) // Scaling here to prevent blurring in the browser.
+	update_character_previews(new /mutable_appearance(mannequin))
 
 /datum/preferences/proc/get_highest_job()
 	var/datum/job/highJob
@@ -289,3 +277,31 @@
 				break
 
 	return highJob
+
+/datum/preferences/proc/get_valid_hairstyles()
+	var/list/valid_hairstyles = list()
+	for(var/hairstyle in hair_styles_list)
+		var/datum/sprite_accessory/S = hair_styles_list[hairstyle]
+		if(!(species in S.species_allowed) && (!custom_base || !(custom_base in S.species_allowed))) //VOREStation Edit - Custom species base species allowance
+			continue
+		if((!S.ckeys_allowed) || (usr.ckey in S.ckeys_allowed)) //VOREStation Edit, allows ckey locked hairstyles.
+			valid_hairstyles[S.name] = hairstyle //VOREStation Edit, allows ckey locked hairstyles.
+
+		//valid_hairstyles[hairstyle] = hair_styles_list[hairstyle] //VOREStation Edit. Replaced by above.
+
+	return valid_hairstyles
+
+/datum/preferences/proc/get_valid_facialhairstyles()
+	var/list/valid_facialhairstyles = list()
+	for(var/facialhairstyle in facial_hair_styles_list)
+		var/datum/sprite_accessory/S = facial_hair_styles_list[facialhairstyle]
+		if(biological_gender == MALE && S.gender == FEMALE)
+			continue
+		if(biological_gender == FEMALE && S.gender == MALE)
+			continue
+		if(!(species in S.species_allowed) && (!custom_base || !(custom_base in S.species_allowed))) //VOREStation Edit - Custom species base species allowance
+			continue
+
+		valid_facialhairstyles[facialhairstyle] = facial_hair_styles_list[facialhairstyle]
+
+	return valid_facialhairstyles

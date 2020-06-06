@@ -471,7 +471,7 @@ var/list/global/tank_gauge_cache = list()
 			if(!T)
 				return
 			T.assume_air(air_contents)
-			playsound(get_turf(src), 'sound/weapons/Gunshot_shotgun.ogg', 20, 1)
+			playsound(src, 'sound/weapons/Gunshot_shotgun.ogg', 20, 1)
 			visible_message("[bicon(src)] <span class='danger'>\The [src] flies apart!</span>", "<span class='warning'>You hear a bang!</span>")
 			T.hotspot_expose(air_contents.temperature, 70, 1)
 
@@ -518,7 +518,7 @@ var/list/global/tank_gauge_cache = list()
 			T.assume_air(leaked_gas)
 			if(!leaking)
 				visible_message("[bicon(src)] <span class='warning'>\The [src] relief valve flips open with a hiss!</span>", "You hear hissing.")
-				playsound(src.loc, 'sound/effects/spray.ogg', 10, 1, -3)
+				playsound(src, 'sound/effects/spray.ogg', 10, 1, -3)
 				leaking = 1
 				#ifdef FIREDBG
 				log_debug("<span class='warning'>[x],[y] tank is leaking: [pressure] kPa, integrity [integrity]</span>")
@@ -678,6 +678,11 @@ var/list/global/tank_gauge_cache = list()
 		tank.update_icon()
 		tank.overlays -= "bomb_assembly"
 
-/obj/item/device/tankassemblyproxy/HasProximity(atom/movable/AM as mob|obj)
-	if(src.assembly)
-		src.assembly.HasProximity(AM)
+/obj/item/device/tankassemblyproxy/HasProximity(turf/T, atom/movable/AM, old_loc)
+	assembly?.HasProximity(T, AM, old_loc)
+
+/obj/item/device/tankassemblyproxy/Moved(old_loc, direction, forced)
+	if(isturf(old_loc))
+		unsense_proximity(callback = .HasProximity, center = old_loc)
+	if(isturf(loc))
+		sense_proximity(callback = .HasProximity)

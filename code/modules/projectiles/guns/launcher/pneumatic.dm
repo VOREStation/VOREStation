@@ -53,7 +53,7 @@
 		item_storage.remove_from_storage(removing, src.loc)
 		user.put_in_hands(removing)
 		to_chat(user, "You remove [removing] from the hopper.")
-		playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
+		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 	else
 		to_chat(user, "There is nothing to remove in \the [src].")
 

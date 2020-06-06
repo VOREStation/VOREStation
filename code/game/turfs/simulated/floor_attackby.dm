@@ -53,7 +53,7 @@
 					break
 		return
 
-	if(flooring)
+	if(!is_plating())
 		if(istype(C, /obj/item/weapon))
 			try_deconstruct_tile(C, user)
 			return
@@ -64,7 +64,6 @@
 			try_replace_tile(C, user)
 			return
 	else
-
 		if(istype(C, /obj/item/stack/cable_coil))
 			if(broken || burnt)
 				to_chat(user, "<span class='warning'>This section is too damaged to support anything. Use a welder to fix the damage.</span>")
@@ -94,7 +93,7 @@
 			// Stay still and focus...
 			if(use_flooring.build_time && !do_after(user, use_flooring.build_time))
 				return
-			if(flooring || !S || !user || !use_flooring)
+			if(!is_plating() || !S || !user || !use_flooring)
 				return
 			if(S.use(use_flooring.build_cost))
 				set_flooring(use_flooring)
