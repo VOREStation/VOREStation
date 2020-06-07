@@ -14,11 +14,11 @@
 	build_type = /obj/item/stack/tile/floor/eris
 	can_paint = 1
 
-	plating_type = /decl/flooring/reinforced/plating/under
+	plating_type = /decl/flooring/eris_plating/under
 
 	floor_smooth = SMOOTH_WHITELIST
 	flooring_whitelist = list(
-		/decl/flooring/reinforced/plating/under
+		/decl/flooring/eris_plating/under
 	)
 
 	smooth_movable_atom = SMOOTH_GREYLIST
@@ -887,8 +887,9 @@
 		/obj/structure/flora/ausbushes/fullgrass
 		)
 
-//=========R. PLATING==========\\
-/decl/flooring/reinforced/plating
+//=========Eris Plating==========\\
+// This is the light grey tiles with random geometric shapes extruded
+/decl/flooring/eris_plating
 	name = "reinforced plating"
 	descriptor = "reinforced plating"
 	icon = 'icons/turf/flooring/eris/plating.dmi'
@@ -897,9 +898,11 @@
 	can_paint = 1
 	has_base_range = 18
 	is_plating = TRUE
-	//build_type = /obj/item/stack/material/steel
 	
-	plating_type = /decl/flooring/reinforced/plating/under
+	build_type = null
+	
+	plating_type = /decl/flooring/eris_plating/under
+	
 	/*
 	footstep_sound = "plating"
 	space_smooth = FALSE
@@ -917,15 +920,16 @@
 	name = "reinforced plating"
 	icon = 'icons/turf/flooring/eris/plating.dmi'
 	icon_state = "plating"
-	initial_flooring = /decl/flooring/reinforced/plating
+	initial_flooring = /decl/flooring/eris_plating
 
 /turf/simulated/floor/plating/eris/airless
 	oxygen = 0
 	nitrogen = 0
 	temperature = TCMB
 
-//==========UNDERPLATING==============\\
-/decl/flooring/reinforced/plating/under
+//==========Eris Underplating==============\\
+// This looks similar to normal plating, but with edges
+/decl/flooring/eris_plating/under
 	name = "underplating"
 	icon = 'icons/turf/flooring/eris/plating.dmi'
 	descriptor = "support beams"
@@ -956,23 +960,24 @@
 /turf/simulated/floor/plating/eris/under
 	name = "underplating"
 	icon_state = "under"
-	initial_flooring = /decl/flooring/reinforced/plating/under
+	initial_flooring = /decl/flooring/eris_plating/under
 
 /turf/simulated/floor/plating/eris/under/airless
 	oxygen = 0
 	nitrogen = 0
 	temperature = TCMB
 
-//============HULL PLATING=========\\
-/decl/flooring/reinforced/plating/hull
+//============Eris Hull Plating=========\\
+// This is 'spaceship outside' plating, black with random rounded rectangles.
+/decl/flooring/eris_plating/hull
 	name = "hull"
 	descriptor = "outer hull"
 	icon = 'icons/turf/flooring/eris/hull.dmi'
 	icon_base = "hullcenter"
 	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_REMOVE_WRENCH | TURF_CAN_BURN | TURF_CAN_BREAK
-	build_type = /obj/item/stack/material/plasteel
 	has_base_range = 35
 	is_plating = FALSE
+	build_type = /obj/item/stack/material/plasteel
 	
 	/* Eris features we lack on flooring decls
 	try_update_icon = 0
@@ -1003,7 +1008,7 @@
 	name = "hull"
 	icon = 'icons/turf/flooring/eris/hull.dmi'
 	icon_state = "hullcenter0"
-	initial_flooring = /decl/flooring/reinforced/plating/hull
+	initial_flooring = /decl/flooring/eris_plating/hull
 
 /turf/simulated/floor/hull/airless
 	oxygen = 0
