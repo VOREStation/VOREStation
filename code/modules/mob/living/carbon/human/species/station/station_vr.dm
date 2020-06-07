@@ -61,6 +61,16 @@
 		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right)
 		)
 
+/datum/species/sergal/nsergal
+	//lankier appearing
+	name = SPECIES_NSERGAL
+	name_plural = "Low Gee Sergals"
+	icobase = 'icons/mob/human_races/r_nsergal.dmi'
+	deform = 'icons/mob/human_races/r_def_nsergal.dmi'
+	blurb = "After decades of adaptation in all lines of work, the usual heavier set sergals have developed into a more lanky build. \
+			 Extended time in micro gravity environments have promoted more flexibility and little loss of wiry strengths. \
+			 However, it can be more difficult for them to spend extended periods of time on terrestrial worlds without powered assistance."
+
 /datum/species/akula
 	name = SPECIES_AKULA
 	name_plural = "Akula"

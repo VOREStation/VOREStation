@@ -7,7 +7,9 @@
 	sprite_sheets = list(
 		SPECIES_TESHARI = 'icons/mob/species/seromi/shoes.dmi',
 		SPECIES_VOX = 'icons/mob/species/vox/shoes.dmi',
-		SPECIES_WEREBEAST = 'icons/mob/species/werebeast/feet.dmi')
+		SPECIES_WEREBEAST = 'icons/mob/species/werebeast/feet.dmi',
+		SPECIES_NSERGAL = 'icons/mob/species/nsergal/shoes.dmi'
+		))
 
 /obj/item/clothing/shoes/New()
 	inside_emotes = list(
@@ -87,12 +89,16 @@
 	sprite_sheets = list(
 		SPECIES_TESHARI = 'icons/mob/species/seromi/gloves.dmi',
 		SPECIES_VOX = 'icons/mob/species/vox/gloves.dmi',
-		SPECIES_WEREBEAST = 'icons/mob/species/werebeast/hands.dmi')
+		SPECIES_WEREBEAST = 'icons/mob/species/werebeast/hands.dmi',
+		SPECIES_NSERGAL = 'icons/mob/species/nsergal/gloves.dmi'
+		))
 
 /obj/item/clothing/ears
 	sprite_sheets = list(
 		SPECIES_TESHARI = 'icons/mob/species/seromi/ears.dmi',
-		SPECIES_WEREBEAST = 'icons/mob/species/werebeast/ears.dmi')
+		SPECIES_WEREBEAST = 'icons/mob/species/werebeast/ears.dmi',
+		SPECIES_NSERGAL = 'icons/mob/species/nsergal/gloves.dmi'
+		))
 
 /obj/item/clothing/relaymove(var/mob/living/user,var/direction)
 
@@ -136,6 +142,7 @@
 		SPECIES_TAJ 		= 'icons/mob/species/tajaran/mask_vr.dmi',
 		SPECIES_UNATHI 		= 'icons/mob/species/unathi/mask_vr.dmi',
 		SPECIES_SERGAL 		= 'icons/mob/species/sergal/mask_vr.dmi',
+		SPECIES_NSERGAL 	= 'icons/mob/species/nsergal/mask.dmi',
 		SPECIES_NEVREAN 	= 'icons/mob/species/nevrean/mask_vr.dmi',
 		SPECIES_ZORREN_HIGH	= 'icons/mob/species/fox/mask_vr.dmi',
 		SPECIES_ZORREN_FLAT = 'icons/mob/species/fennec/mask_vr.dmi',
@@ -152,7 +159,9 @@
 	sprite_sheets = list(
 		SPECIES_TESHARI = 'icons/mob/species/seromi/suit.dmi',
 		SPECIES_VOX = 'icons/mob/species/vox/suit.dmi',
-		SPECIES_WEREBEAST = 'icons/mob/species/werebeast/suit.dmi')
+		SPECIES_WEREBEAST = 'icons/mob/species/werebeast/suit.dmi',
+		SPECIES_NSERGAL = 'icons/mob/species/nsergal/suit.dmi'
+		)
 
 /obj/item/clothing/suit/equipped(var/mob/user, var/slot)
 	var/normalize = TRUE
@@ -197,7 +206,8 @@
 	sprite_sheets = list(
 		SPECIES_TESHARI = 'icons/mob/species/seromi/uniform.dmi',
 		SPECIES_VOX = 'icons/mob/species/vox/uniform.dmi',
-		SPECIES_WEREBEAST = 'icons/mob/species/werebeast/uniform.dmi')
+		SPECIES_WEREBEAST = 'icons/mob/species/werebeast/uniform.dmi',
+		SPECIES_NSERGAL		= 'icons/mob/species/nsergal/uniform.dmi')
 
 //TFF 5/8/19 - define numbers and specifics for suit sensor settings
 /obj/item/clothing/under/New(var/mob/living/carbon/human/H)
@@ -217,4 +227,5 @@
 	sprite_sheets = list(
 		SPECIES_TESHARI = 'icons/mob/species/seromi/head.dmi',
 		SPECIES_VOX = 'icons/mob/species/vox/head.dmi',
-		SPECIES_WEREBEAST = 'icons/mob/species/werebeast/head.dmi')
+		SPECIES_WEREBEAST = 'icons/mob/species/werebeast/head.dmi',
+		SPECIES_NSERGAL 	= 'icons/mob/species/nsergal/head.dmi')

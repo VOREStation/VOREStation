@@ -5,6 +5,10 @@
 	h_style = "Sergal Plain"
 	..(new_loc, "Sergal")
 
+/mob/living/carbon/human/sergal/nsergal/New(var/new_loc)
+	h_style = "Sergal Plain"
+	..(new_loc, SPECIES_NSERGAL)
+
 /mob/living/carbon/human/akula/New(var/new_loc)
 	..(new_loc, "Akula")
 

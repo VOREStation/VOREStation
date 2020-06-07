@@ -7,6 +7,7 @@
 		SPECIES_XENOHYBRID 		= 'icons/mob/species/unathi/helmet.dmi',
 		SPECIES_AKULA			= 'icons/mob/species/unathi/helmet.dmi',
 		SPECIES_SERGAL			= 'icons/mob/species/unathi/helmet.dmi',
+		SPECIES_NSERGAL			= 'icons/mob/species/nsergal/helmet_vr.dmi',
 		SPECIES_VULPKANIN		= 'icons/mob/species/vulpkanin/helmet_vr.dmi',
 		SPECIES_ZORREN_HIGH		= 'icons/mob/species/vulpkanin/helmet_vr.dmi',
 		SPECIES_FENNEC			= 'icons/mob/species/vulpkanin/helmet_vr.dmi'
@@ -18,6 +19,7 @@
 		SPECIES_XENOHYBRID		= 'icons/obj/clothing/species/unathi/helmets_vr.dmi',
 		SPECIES_AKULA			= 'icons/obj/clothing/species/unathi/helmets_vr.dmi',
 		SPECIES_SERGAL			= 'icons/obj/clothing/species/unathi/helmets_vr.dmi',
+		SPECIES_NSERGAL			= 'icons/obj/clothing/species/unathi/helmets_vr.dmi',
 		SPECIES_VULPKANIN		= 'icons/obj/clothing/species/vulpkanin/helmets_vr.dmi',
 		SPECIES_ZORREN_HIGH		= 'icons/obj/clothing/species/vulpkanin/helmets_vr.dmi',
 		SPECIES_FENNEC			= 'icons/obj/clothing/species/vulpkanin/helmets_vr.dmi'
@@ -33,6 +35,7 @@
 		SPECIES_XENOHYBRID 		= 'icons/mob/species/unathi/suit.dmi',
 		SPECIES_AKULA			= 'icons/mob/species/unathi/suit.dmi',
 		SPECIES_SERGAL			= 'icons/mob/species/unathi/suit.dmi',
+		SPECIES_NSERGAL			= 'icons/mob/species/nsergal/suit.dmi',
 		SPECIES_VULPKANIN		= 'icons/mob/species/vulpkanin/suit_vr.dmi',
 		SPECIES_ZORREN_HIGH		= 'icons/mob/species/vulpkanin/suit_vr.dmi',
 		SPECIES_FENNEC			= 'icons/mob/species/vulpkanin/suit_vr.dmi'
@@ -44,6 +47,7 @@
 		SPECIES_XENOHYBRID		= 'icons/obj/clothing/species/unathi/suits.dmi',
 		SPECIES_AKULA			= 'icons/obj/clothing/species/unathi/suits.dmi',
 		SPECIES_SERGAL			= 'icons/obj/clothing/species/unathi/suits.dmi',
+		SPECIES_NSERGAL			= 'icons/obj/clothing/species/unathi/suits.dmi',
 		SPECIES_VULPKANIN		= 'icons/obj/clothing/species/vulpkanin/spacesuits_vr.dmi',
 		SPECIES_ZORREN_HIGH		= 'icons/obj/clothing/species/vulpkanin/spacesuits_vr.dmi',
 		SPECIES_FENNEC			= 'icons/obj/clothing/species/vulpkanin/spacesuits_vr.dmi'

@@ -145,6 +145,8 @@
 			species_restricted = list(SPECIES_UNATHI, SPECIES_XENOHYBRID)
 		if(SPECIES_VULPKANIN)
 			species_restricted = list(SPECIES_VULPKANIN, SPECIES_ZORREN_HIGH, SPECIES_FENNEC)
+		if(SPECIES_SERGAL)
+			species_restricted = list(SPECIES_SERGAL, SPECIES_NSERGAL)
 		//VOREStation Edit End
 		else
 			species_restricted = list(target_species)
@@ -173,6 +175,8 @@
 			species_restricted = list(SPECIES_UNATHI, SPECIES_XENOHYBRID)
 		if(SPECIES_VULPKANIN)
 			species_restricted = list(SPECIES_VULPKANIN, SPECIES_ZORREN_HIGH, SPECIES_FENNEC)
+		if(SPECIES_SERGAL)
+			species_restricted = list(SPECIES_SERGAL, SPECIES_NSERGAL)
 		//VOREStation Edit End
 
 		else
