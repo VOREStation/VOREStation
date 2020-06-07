@@ -15,6 +15,7 @@
 
 /obj/machinery/vending/engivend/New()
 	products += list(/obj/item/clothing/glasses/omnihud/eng = 6)
+	contraband += list(/obj/item/weapon/rms = 5)
 	..()
 
 /obj/machinery/vending/medical/New()
