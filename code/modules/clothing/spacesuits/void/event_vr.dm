@@ -51,12 +51,12 @@
 
 /obj/item/clothing/head/helmet/space/void/refurb/talon
 	name = "talon crew voidsuit helmet"
-	desc = "A refurbished early contact era voidsuit helmet of human design. These things aren't especially good against modern weapons but they're sturdy, incredibly easy to come by, and there are lots of spare parts for repairs. The visor has a bad habit of fogging up and collecting condensation, but it beats sucking hard vacuum. This one belongs to the ship's pilot."
+	desc = "A refurbished early contact era voidsuit helmet of human design. These things aren't especially good against modern weapons but they're sturdy, incredibly easy to come by, and there are lots of spare parts for repairs. The visor has a bad habit of fogging up and collecting condensation, but it beats sucking hard vacuum."
 	camera_networks = list(NETWORK_TALON_HELMETS)
 
 /obj/item/clothing/suit/space/void/refurb/talon
 	name = "talon crew voidsuit"
-	desc = "A refurbished early contact era voidsuit of human design. These things aren't especially good against modern weapons but they're sturdy, incredibly easy to come by, and there are lots of spare parts for repairs. Many old-timer spacers swear by these old things, even if new powered hardsuits have more features and better armor. This one belongs to the ship's pilot."
+	desc = "A refurbished early contact era voidsuit of human design. These things aren't especially good against modern weapons but they're sturdy, incredibly easy to come by, and there are lots of spare parts for repairs. Many old-timer spacers swear by these old things, even if new powered hardsuits have more features and better armor."
 
 /obj/item/clothing/head/helmet/space/void/refurb/engineering/talon
 	name = "talon engineering voidsuit helmet"
