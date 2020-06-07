@@ -67,7 +67,7 @@
 	log_admin("[key_name_admin(src)] has spawned [new_mob.key] as mob [new_mob.type].")
 	message_admins("[key_name_admin(src)] has spawned [new_mob.key] as mob [new_mob.type].", 1)
 
-	to_chat(new_mob, "You've been spawned as a mob! Have fun.")
+	to_chat(new_mob, "You've been spawned as a mob! Have REMOVED.")
 
 	feedback_add_details("admin_verb","SCAM") //heh
 

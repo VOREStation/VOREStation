@@ -1012,7 +1012,7 @@
 		H.corgize()
 
 	else if(href_list["forcespeech"])
-		if(!check_rights(R_FUN))	return
+		if(!check_rights(R_REMOVED))	return
 
 		var/mob/M = locate(href_list["forcespeech"])
 		if(!ismob(M))
@@ -1089,7 +1089,7 @@
 		qdel(M)
 
 	else if(href_list["tdome1"])
-		if(!check_rights(R_FUN))	return
+		if(!check_rights(R_REMOVED))	return
 
 		if(alert(usr, "Confirm?", "Message", "Yes", "No") != "Yes")
 			return
@@ -1114,7 +1114,7 @@
 		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] to the thunderdome. (Team 1)", 1)
 
 	else if(href_list["tdome2"])
-		if(!check_rights(R_FUN))	return
+		if(!check_rights(R_REMOVED))	return
 
 		if(alert(usr, "Confirm?", "Message", "Yes", "No") != "Yes")
 			return
@@ -1139,7 +1139,7 @@
 		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] to the thunderdome. (Team 2)", 1)
 
 	else if(href_list["tdomeadmin"])
-		if(!check_rights(R_FUN))	return
+		if(!check_rights(R_REMOVED))	return
 
 		if(alert(usr, "Confirm?", "Message", "Yes", "No") != "Yes")
 			return
@@ -1161,7 +1161,7 @@
 		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] to the thunderdome. (Admin.)", 1)
 
 	else if(href_list["tdomeobserve"])
-		if(!check_rights(R_FUN))	return
+		if(!check_rights(R_REMOVED))	return
 
 		if(alert(usr, "Confirm?", "Message", "Yes", "No") != "Yes")
 			return
@@ -1383,7 +1383,7 @@
 							(<A HREF='?src=\ref[src];subtlemessage=\ref[M]'>SM</A>) ([admin_jump_link(M, src)]) (<A HREF='?src=\ref[src];secretsadmin=check_antagonist'>CA</A>)</span>")
 
 	else if(href_list["adminspawncookie"])
-		if(!check_rights(R_ADMIN|R_FUN|R_EVENT))	return
+		if(!check_rights(R_ADMIN|R_REMOVED|R_EVENT))	return
 
 		var/mob/living/carbon/human/H = locate(href_list["adminspawncookie"])
 		if(!ishuman(H))
@@ -1407,7 +1407,7 @@
 		to_chat(H, "<span class='notice'>Your prayers have been answered!! You received the <b>best cookie</b>!</span>")
 
 	else if(href_list["adminsmite"])
-		if(!check_rights(R_ADMIN|R_FUN|R_EVENT))	return
+		if(!check_rights(R_ADMIN|R_REMOVED|R_EVENT))	return
 
 		var/mob/living/carbon/human/H = locate(href_list["adminsmite"])
 		if(!ishuman(H))
@@ -1417,7 +1417,7 @@
 		owner.smite(H)
 
 	else if(href_list["BlueSpaceArtillery"])
-		if(!check_rights(R_ADMIN|R_FUN|R_EVENT))	return
+		if(!check_rights(R_ADMIN|R_REMOVED|R_EVENT))	return
 
 		var/mob/living/M = locate(href_list["BlueSpaceArtillery"])
 		if(!isliving(M))
@@ -1449,7 +1449,7 @@
 			to_chat(L, "<span class='notice'>[input]</span>")
 			to_chat(L, "<span class='info'>Message ends.</span>")
 		else
-			to_chat(src.owner, "<span class='filter_adminlog'>The person you are trying to contact does not have functional radio equipment.</span>")
+			to_chat(src.owner, "<span class='filter_adminlog'>The person you are trying to contact does not have REMOVEDctional radio equipment.</span>")
 
 
 	else if(href_list["SyndicateReply"])
@@ -1528,26 +1528,26 @@
 		usr.client.jumptomob(M)
 
 	else if(href_list["getmob"])
-		if(!check_rights(R_ADMIN|R_EVENT|R_FUN))	return
+		if(!check_rights(R_ADMIN|R_EVENT|R_REMOVED))	return
 
 		if(alert(usr, "Confirm?", "Message", "Yes", "No") != "Yes")	return
 		var/mob/M = locate(href_list["getmob"])
 		usr.client.Getmob(M)
 
 	else if(href_list["sendmob"])
-		if(!check_rights(R_ADMIN|R_EVENT|R_FUN))	return
+		if(!check_rights(R_ADMIN|R_EVENT|R_REMOVED))	return
 
 		var/mob/M = locate(href_list["sendmob"])
 		usr.client.sendmob(M)
 
 	else if(href_list["narrateto"])
-		if(!check_rights(R_ADMIN|R_EVENT|R_FUN))	return
+		if(!check_rights(R_ADMIN|R_EVENT|R_REMOVED))	return
 
 		var/mob/M = locate(href_list["narrateto"])
 		usr.client.cmd_admin_direct_narrate(M)
 
 	else if(href_list["subtlemessage"])
-		if(!check_rights(R_MOD|R_ADMIN|R_EVENT|R_FUN,0))  return
+		if(!check_rights(R_MOD|R_ADMIN|R_EVENT|R_REMOVED,0))  return
 
 		var/mob/M = locate(href_list["subtlemessage"])
 		usr.client.cmd_admin_subtle_message(M)
@@ -1608,15 +1608,15 @@
 				removed_paths += dirty_path
 				continue
 			else if(ispath(path, /obj/item/weapon/gun/energy/pulse_rifle))
-				if(!check_rights(R_FUN,0))
+				if(!check_rights(R_REMOVED,0))
 					removed_paths += dirty_path
 					continue
 			else if(ispath(path, /obj/item/weapon/melee/energy/blade))//Not an item one should be able to spawn./N
-				if(!check_rights(R_FUN,0))
+				if(!check_rights(R_REMOVED,0))
 					removed_paths += dirty_path
 					continue
 			else if(ispath(path, /obj/effect/bhole))
-				if(!check_rights(R_FUN,0))
+				if(!check_rights(R_REMOVED,0))
 					removed_paths += dirty_path
 					continue
 			paths += path

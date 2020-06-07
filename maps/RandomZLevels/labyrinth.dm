@@ -73,7 +73,7 @@
 /obj/effect/decal/mecha_wreckage/honker/cluwne
 	name = "cluwne mech wreckage"
 	icon_state = "cluwne-broken"
-	desc = "Not so funny anymore."
+	desc = "Not so REMOVEDny anymore."
 
 /*
 /obj/structure/falsewall/cultspecial
@@ -270,7 +270,7 @@
 
 /mob/living/simple_mob/hostile/cluwne
 	name = "cluwne"
-	desc = "A mutated clown alleged to have been cursed by the Honk Mother and permanently banished to these catacombs for once being an unfunny shitter who brought grief instead of laughter."
+	desc = "A mutated clown alleged to have been cursed by the Honk Mother and permanently banished to these catacombs for once being an unREMOVEDny shitter who brought grief instead of laughter."
 	faction = "tunnelclown"
 	icon = 'icons/mob/clowns_vr.dmi'
 	icon_state = "cluwne"
@@ -349,7 +349,7 @@
 			</p><p>I just heard a noise. Oh god, please let me be alone.
 			</p><p><b>Date unknown</b>
 			</p><p>Oh god they're here. Some of them made it, I can hear them. What the hell did I do to deserve this? I can't even count the sounds, there must be over a dozen of them, dear god how did they fit so many of them into that tiny cockpit?
-			</p><p>Oh holy honkmonther preserve me, this isn't funny. This isn't funny at a-
+			</p><p>Oh holy honkmonther preserve me, this isn't REMOVEDny. This isn't REMOVEDny at a-
 			</p><p>HONK</p>
 			<b>//END//</b>"}
 

@@ -1048,7 +1048,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/clownburger
 	name = "Clown Burger"
-	desc = "This tastes funny..."
+	desc = "This tastes REMOVEDny..."
 	icon_state = "clownburger"
 	filling_color = "#FF00FF"
 	center_of_mass = list("x"=17, "y"=12)
@@ -1688,7 +1688,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/clownstears
 	name = "Clown's Tears"
-	desc = "Not very funny."
+	desc = "Not very REMOVEDny."
 	icon_state = "clownstears"
 	filling_color = "#C4FBFF"
 	center_of_mass = list("x"=16, "y"=7)
@@ -3818,7 +3818,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/skrellsnacks
 	name = "\improper SkrellSnax"
-	desc = "Cured fungus shipped all the way from Qerr'balak, almost like jerky! Almost."
+	desc = "Cured REMOVEDgus shipped all the way from Qerr'balak, almost like jerky! Almost."
 	icon_state = "skrellsnacks"
 	filling_color = "#A66829"
 	center_of_mass = list("x"=15, "y"=12)

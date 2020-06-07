@@ -101,7 +101,7 @@
 						errors+=new/scriptError/BadToken(ntok)
 						continue
 					if(ntok.value=="(")
-						ParseFunctionStatement()
+						ParseREMOVEDctionStatement()
 					else if(options.assign_operators.Find(ntok.value))
 						ParseAssignment()
 					else
@@ -162,20 +162,20 @@
 				stmt.value=ParseExpression()
 			curBlock.statements+=stmt
 
-		ParseFunctionStatement()
+		ParseREMOVEDctionStatement()
 			if(!istype(curToken, /token/word))
-				errors+=new/scriptError("Bad identifier in function call.")
+				errors+=new/scriptError("Bad identifier in REMOVEDction call.")
 				return
-			var/node/statement/FunctionCall/stmt=new
-			stmt.func_name=curToken.value
-			NextToken() //skip function name
+			var/node/statement/REMOVEDctionCall/stmt=new
+			stmt.REMOVEDc_name=curToken.value
+			NextToken() //skip REMOVEDction name
 			if(!CheckToken("(", /token/symbol)) //Check for and skip open parenthesis
 				return
 			var/loops = 0
 			while(TRUE)
 				loops++
 				if(loops>=6000)
-					CRASH("Something TERRIBLE has gone wrong in ParseFunctionStatement ;__;")
+					CRASH("Something TERRIBLE has gone wrong in ParseREMOVEDctionStatement ;__;")
 
 				if(!curToken)
 					errors+=new/scriptError/EndOfFile()

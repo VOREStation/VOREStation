@@ -8,7 +8,7 @@
 // containt unreacted fuel - plasma and oxygen that needs to be filtered out and re-routed back. This of course requires smart piping
 // For a computer to work with the turbine the compressor requires a comp_id matching with the turbine computer's id. This will be
 // subjected to a change in the near future mind you. Right now this method of generating power is a good backup but don't expect it
-// become a main power source unless some work is done. Have fun. At 50k RPM it generates 60k power. So more than one turbine is needed!
+// become a main power source unless some work is done. Have REMOVED. At 50k RPM it generates 60k power. So more than one turbine is needed!
 //
 // - Numbers
 //
@@ -160,7 +160,7 @@
 	var/datum/gas_mixture/removed = inturf.remove_air(transfer_moles)
 	gas_contained.merge(removed)
 
-	// RPM function to include compression friction - be advised that too low/high of a compfriction value can make things screwy
+	// RPM REMOVEDction to include compression friction - be advised that too low/high of a compfriction value can make things screwy
 	rpm = max(0, rpm - (rpm*rpm)/(COMPFRICTION*efficiency))
 
 	if(starter && !(stat & NOPOWER))
@@ -250,13 +250,13 @@
 		return
 	overlays.Cut()
 
-	// This is the power generation function. If anything is needed it's good to plot it in EXCEL before modifying
+	// This is the power generation REMOVEDction. If anything is needed it's good to plot it in EXCEL before modifying
 	// the TURBGENQ and TURBGENG values
 	lastgen = ((compressor.rpm / TURBGENQ)**TURBGENG) * TURBGENQ * productivity
 
 	add_avail(lastgen)
 
-	// Weird function but it works. Should be something else...
+	// Weird REMOVEDction but it works. Should be something else...
 	var/newrpm = ((compressor.gas_contained.temperature) * compressor.gas_contained.total_moles)/4
 
 	newrpm = max(0, newrpm)

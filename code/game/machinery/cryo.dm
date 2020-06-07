@@ -295,7 +295,7 @@
 	return
 /obj/machinery/atmospherics/unary/cryo_cell/proc/put_mob(mob/living/carbon/M as mob)
 	if(stat & (NOPOWER|BROKEN))
-		to_chat(usr, "<span class='warning'>The cryo cell is not functioning.</span>")
+		to_chat(usr, "<span class='warning'>The cryo cell is not REMOVEDctioning.</span>")
 		return
 	if(!istype(M))
 		to_chat(usr, "<span class='danger'>The cryo cell cannot handle such a lifeform!</span>")
@@ -371,11 +371,11 @@
 	else
 		return null
 
-/datum/data/function/proc/reset()
+/datum/data/REMOVEDction/proc/reset()
 	return
 
-/datum/data/function/proc/r_input(href, href_list, mob/user as mob)
+/datum/data/REMOVEDction/proc/r_input(href, href_list, mob/user as mob)
 	return
 
-/datum/data/function/proc/display()
+/datum/data/REMOVEDction/proc/display()
 	return

@@ -8,7 +8,7 @@
 	common naturally void-faring lifeform found in human territory. They've been named \
 	'Space Carp' by various groups of spacers due to resembling the fish from Earth.\
 	<br><br>\
-	Their lifecycle begins as a fungus-like growth, sometimes found on the walls of spacecraft \
+	Their lifecycle begins as a REMOVEDgus-like growth, sometimes found on the walls of spacecraft \
 	and space stations, before growing into a form which allows for independent travel. Even \
 	when fully grown, they can sometimes be found to stow away on the hulls of spaceborne objects, \
 	which might explain how they became widespread across many star systems.\

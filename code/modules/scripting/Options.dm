@@ -16,11 +16,11 @@ var/const  //Ascii values of characters
 */
 n_scriptOptions
 	proc
-		CanStartID(char) //returns true if the character can start a variable, function, or keyword name (by default letters or an underscore)
+		CanStartID(char) //returns true if the character can start a variable, REMOVEDction, or keyword name (by default letters or an underscore)
 			if(!isnum(char))char=text2ascii(char)
 			return (char in ascii_A to ascii_Z) || (char in ascii_a to ascii_z) || char==ascii_UNDERSCORE || char==ascii_DOLLAR
 
-		IsValidIDChar(char) //returns true if the character can be in the body of a variable, function, or keyword name (by default letters, numbers, and underscore)
+		IsValidIDChar(char) //returns true if the character can be in the body of a variable, REMOVEDction, or keyword name (by default letters, numbers, and underscore)
 			if(!isnum(char))char=text2ascii(char)
 			return CanStartID(char) || IsDigit(char)
 

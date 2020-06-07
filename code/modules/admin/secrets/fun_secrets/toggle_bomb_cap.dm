@@ -1,8 +1,8 @@
-/datum/admin_secret_item/fun_secret/toggle_bomb_cap
+/datum/admin_secret_item/REMOVED_secret/toggle_bomb_cap
 	name = "Toggle Bomb Cap"
 	permissions = R_SERVER
 
-/datum/admin_secret_item/fun_secret/toggle_bomb_cap/execute(var/mob/user)
+/datum/admin_secret_item/REMOVED_secret/toggle_bomb_cap/execute(var/mob/user)
 	. = ..()
 	if(!.)
 		return

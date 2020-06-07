@@ -518,7 +518,7 @@
 /datum/reagent/defective_nanites
 	name = "Defective Nanites"
 	id = "defective_nanites"
-	description = "Miniature medical robots that are malfunctioning and cause bodily harm. Fortunately, they cannot self-replicate."
+	description = "Miniature medical robots that are malREMOVEDctioning and cause bodily harm. Fortunately, they cannot self-replicate."
 	taste_description = "metal"
 	reagent_state = SOLID
 	color = "#333333"

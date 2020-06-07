@@ -79,7 +79,7 @@
 	T.purpose = pick(list(
 		"Ne$ ---ount fu%ds init*&lisat@*n",
 		"PAY BACK YOUR MUM",
-		"Funds withdrawal",
+		"REMOVEDds withdrawal",
 		"pWnAgE",
 		"l33t hax",
 		"liberationez",

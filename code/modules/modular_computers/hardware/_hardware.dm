@@ -9,9 +9,9 @@
 	var/hardware_size = 1			// Limits which devices can contain this component. 1: Tablets/Laptops/Consoles, 2: Laptops/Consoles, 3: Consoles only
 	var/damage = 0					// Current damage level
 	var/max_damage = 100			// Maximal damage level.
-	var/damage_malfunction = 20		// "Malfunction" threshold. When damage exceeds this value the hardware piece will semi-randomly fail and do !!FUN!! things
+	var/damage_malREMOVEDction = 20		// "MalREMOVEDction" threshold. When damage exceeds this value the hardware piece will semi-randomly fail and do !!REMOVED!! things
 	var/damage_failure = 50			// "Failure" threshold. When damage exceeds this value the hardware piece will not work at all.
-	var/malfunction_probability = 10// Chance of malfunction when the component is damaged
+	var/malREMOVEDction_probability = 10// Chance of malREMOVEDction when the component is damaged
 
 /obj/item/weapon/computer_hardware/attackby(var/obj/item/W as obj, var/mob/living/user as mob)
 	// Multitool. Runs diagnostics
@@ -44,7 +44,7 @@
 
 // Called on multitool click, prints diagnostic information to the user.
 /obj/item/weapon/computer_hardware/proc/diagnostics(var/mob/user)
-	to_chat(user, "Hardware Integrity Test... (Corruption: [damage]/[max_damage]) [damage > damage_failure ? "FAIL" : damage > damage_malfunction ? "WARN" : "PASS"]")
+	to_chat(user, "Hardware Integrity Test... (Corruption: [damage]/[max_damage]) [damage > damage_failure ? "FAIL" : damage > damage_malREMOVEDction ? "WARN" : "PASS"]")
 
 /obj/item/weapon/computer_hardware/New(var/obj/L)
 	..()
@@ -58,7 +58,7 @@
 	return ..()
 
 // Handles damage checks
-/obj/item/weapon/computer_hardware/proc/check_functionality()
+/obj/item/weapon/computer_hardware/proc/check_REMOVEDctionality()
 	// Turned off
 	if(!enabled)
 		return 0
@@ -66,8 +66,8 @@
 	if(damage > damage_failure)
 		return 0
 	// Still working. Well, sometimes...
-	if(damage > damage_malfunction)
-		if(prob(malfunction_probability))
+	if(damage > damage_malREMOVEDction)
+		if(prob(malREMOVEDction_probability))
 			return 0
 	// Good to go.
 	return 1
@@ -76,7 +76,7 @@
 	. = ..()
 	if(damage > damage_failure)
 		. += "<span class='danger'>It seems to be severely damaged!</span>"
-	else if(damage > damage_malfunction)
+	else if(damage > damage_malREMOVEDction)
 		. += "<span class='notice'>It seems to be damaged!</span>"
 	else if(damage)
 		. += "It seems to be slightly damaged."

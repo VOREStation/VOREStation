@@ -117,7 +117,7 @@
 	if(user.gloves)
 		germ_level = user.gloves.germ_level
 
-	E.germ_level = max(germ_level,E.germ_level) //as funny as scrubbing microbes out with clean gloves is - no.
+	E.germ_level = max(germ_level,E.germ_level) //as REMOVEDny as scrubbing microbes out with clean gloves is - no.
 
 
 /obj/item/proc/can_do_surgery(mob/living/carbon/M, mob/living/user)

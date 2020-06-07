@@ -1,8 +1,8 @@
 /client/proc/smite(var/mob/living/carbon/human/target in player_list)
 	set name = "Smite"
 	set desc = "Abuse a player with various 'special treatments' from a list."
-	set category = "Fun"
-	if(!check_rights(R_FUN))
+	set category = "REMOVED"
+	if(!check_rights(R_REMOVED))
 		return
 
 	if(!istype(target))

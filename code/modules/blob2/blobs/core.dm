@@ -50,8 +50,8 @@ var/list/blob_cores = list()
 /obj/structure/blob/core/electromagnetic_web
 	desired_blob_type = /datum/blob_type/electromagnetic_web
 
-/obj/structure/blob/core/fungal_bloom
-	desired_blob_type = /datum/blob_type/fungal_bloom
+/obj/structure/blob/core/REMOVEDgal_bloom
+	desired_blob_type = /datum/blob_type/REMOVEDgal_bloom
 
 /obj/structure/blob/core/fulminant_organism
 	desired_blob_type = /datum/blob_type/fulminant_organism

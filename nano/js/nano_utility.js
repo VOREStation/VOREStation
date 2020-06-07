@@ -1,17 +1,17 @@
-// NanoUtility is the place to store utility functions
-var NanoUtility = function () 
+// NanoUtility is the place to store utility REMOVEDctions
+var NanoUtility = REMOVEDction () 
 {
     var _urlParameters = {}; // This is populated with the base url parameters (used by all links), which is probaby just the "src" parameter
 
 	return {
-        init: function () 
+        init: REMOVEDction () 
 		{
 			var body = $('body'); // We store data in the body tag, it's as good a place as any
 
 			_urlParameters = body.data('urlParameters');
         },
 		// generate a Byond href, combines _urlParameters with parameters
-		generateHref: function (parameters)
+		generateHref: REMOVEDction (parameters)
 		{
 			var queryString = '?';
 
@@ -50,16 +50,16 @@ if (typeof doT == 'undefined') {
 	alert('ERROR: Template engine failed to load!');
 }	
 
-(function() {
+(REMOVEDction() {
 	var _alert = window.alert;
-	window.alert = function(str) {
+	window.alert = REMOVEDction(str) {
 		window.location = "byond://?nano_err=" + encodeURIComponent(str);
 		_alert(str);
 	};
 })();
 
 // All scripts are initialised here, this allows control of init order
-$(document).ready(function () {
+$(document).ready(REMOVEDction () {
 	NanoUtility.init();
 	NanoStateManager.init();
 	NanoTemplate.init();
@@ -67,7 +67,7 @@ $(document).ready(function () {
 
 if (!Array.prototype.indexOf)
 {
-    Array.prototype.indexOf = function(elt /*, from*/)
+    Array.prototype.indexOf = REMOVEDction(elt /*, from*/)
     {
         var len = this.length;
 
@@ -90,9 +90,9 @@ if (!Array.prototype.indexOf)
 
 if (!String.prototype.format)
 {
-    String.prototype.format = function (args) {
+    String.prototype.format = REMOVEDction (args) {
         var str = this;
-        return str.replace(String.prototype.format.regex, function(item) {
+        return str.replace(String.prototype.format.regex, REMOVEDction(item) {
             var intVal = parseInt(item.substring(1, item.length - 1));
             var replace;
             if (intVal >= 0) {
@@ -110,7 +110,7 @@ if (!String.prototype.format)
     String.prototype.format.regex = new RegExp("{-?[0-9]+}", "g");
 };
 
-Object.size = function(obj) {
+Object.size = REMOVEDction(obj) {
     var size = 0, key;
     for (var key in obj) {
         if (obj.hasOwnProperty(key)) size++;
@@ -120,16 +120,16 @@ Object.size = function(obj) {
 
 if(!window.console) {
     window.console = {
-        log : function(str) {
+        log : REMOVEDction(str) {
             return false;
         }
     };
 };
 
-String.prototype.toTitleCase = function () {
+String.prototype.toTitleCase = REMOVEDction () {
     var smallWords = /^(a|an|and|as|at|but|by|en|for|if|in|of|on|or|the|to|vs?\.?|via)$/i;
 
-    return this.replace(/([^\W_]+[^\s-]*) */g, function (match, p1, index, title) {
+    return this.replace(/([^\W_]+[^\s-]*) */g, REMOVEDction (match, p1, index, title) {
         if (index > 0 && index + p1.length !== title.length &&
             p1.search(smallWords) > -1 && title.charAt(index - 2) !== ":" &&
             title.charAt(index - 1).search(/[^\s-]/) < 0) {
@@ -148,7 +148,7 @@ $.ajaxSetup({
     cache: false
 });
 
-Function.prototype.inheritsFrom = function (parentClassOrObject) {
+REMOVEDction.prototype.inheritsFrom = REMOVEDction (parentClassOrObject) {
     this.prototype = new parentClassOrObject;
     this.prototype.constructor = this;
     this.prototype.parent = parentClassOrObject.prototype;
@@ -156,14 +156,14 @@ Function.prototype.inheritsFrom = function (parentClassOrObject) {
 };
 
 if (!String.prototype.trim) {
-    String.prototype.trim = function () {
+    String.prototype.trim = REMOVEDction () {
         return this.replace(/^\s+|\s+$/g, '');
     };
 }
 
 // Replicate the ckey proc from BYOND
 if (!String.prototype.ckey) {
-    String.prototype.ckey = function () {
+    String.prototype.ckey = REMOVEDction () {
         return this.replace(/\W/g, '').toLowerCase();
     };
 }

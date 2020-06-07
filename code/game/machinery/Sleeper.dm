@@ -417,7 +417,7 @@
 
 //Survival/Stasis sleepers
 /obj/machinery/sleeper/survival_pod
-	desc = "A limited functionality sleeper, all it can do is put patients into stasis. It lacks the medication and configuration of the larger units."
+	desc = "A limited REMOVEDctionality sleeper, all it can do is put patients into stasis. It lacks the medication and configuration of the larger units."
 	icon_state = "sleeper"
 	stasis_level = 100 //Just one setting
 

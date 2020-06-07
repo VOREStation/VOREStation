@@ -203,7 +203,7 @@ datum/supply_drop_loot/riot
 		/obj/item/device/flashlight/flare)
 
 /datum/supply_drop_loot/plushie
-	name = "Cuddly Fun!"
+	name = "Cuddly REMOVED!"
 	container = /obj/structure/largecrate
 /datum/supply_drop_loot/plushie/New()
 	..()

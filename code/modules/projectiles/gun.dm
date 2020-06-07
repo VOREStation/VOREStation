@@ -353,7 +353,7 @@
 
 	var/shoot_time = (burst - 1)* burst_delay
 
-	//These should apparently be disabled to allow for the automatic system to function without causing near-permanant paralysis. Re-enabling them while we sort that out.
+	//These should apparently be disabled to allow for the automatic system to REMOVEDction without causing near-permanant paralysis. Re-enabling them while we sort that out.
 	user.setClickCooldown(shoot_time) //no clicking on things while shooting
 	user.setMoveCooldown(shoot_time) //no moving while shooting either
 
@@ -520,7 +520,7 @@
 	//just assume we can shoot through glass and stuff. No big deal, the player can just choose to not target someone
 	//on the other side of a window if it makes a difference. Or if they run behind a window, too bad.
 	if(check_trajectory(target, user))
-		return 1 // Magic numbers are fun.
+		return 1 // Magic numbers are REMOVED.
 
 //called if there was no projectile to shoot
 /obj/item/weapon/gun/proc/handle_click_empty(mob/user)

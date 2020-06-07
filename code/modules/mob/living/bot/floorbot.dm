@@ -1,7 +1,7 @@
 // Configure whether or not floorbot will fix hull breaches.
 // This can be a problem if it tries to pave over space or shuttles.  That should be fixed but...
 // If it can see space outside windows, it can be laggy since it keeps wondering if it should fix them.
-// Therefore that functionality is disabled for now.  But it can be turned on by uncommenting this.
+// Therefore that REMOVEDctionality is disabled for now.  But it can be turned on by uncommenting this.
 // #define FLOORBOT_PATCHES_HOLES 1
 
 /mob/living/bot/floorbot

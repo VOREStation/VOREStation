@@ -1,6 +1,6 @@
 /datum/technomancer/spell/resurrect
 	name = "Resurrect"
-	desc = "This function injects various regenetive medical compounds and nanomachines, in an effort to restart the body, \
+	desc = "This REMOVEDction injects various regenetive medical compounds and nanomachines, in an effort to restart the body, \
 	however this must be done soon after they die, as this will have no effect on people who have died long ago.  It also doesn't \
 	resolve whatever caused them to die originally."
 	cost = 100
@@ -26,7 +26,7 @@
 			return 0
 		if(pay_energy(5000))
 			if(L.tod > world.time + 30 MINUTES)
-				to_chat(user, "<span class='danger'>\The [L]'s been dead for too long, even this function cannot replace cloning at this point.</span>")
+				to_chat(user, "<span class='danger'>\The [L]'s been dead for too long, even this REMOVEDction cannot replace cloning at this point.</span>")
 				return 0
 			to_chat(user, "<span class='notice'>You stab \the [L] with a hidden integrated hypo, attempting to bring them back...</span>")
 			if(istype(L, /mob/living/simple_mob))

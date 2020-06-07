@@ -44,7 +44,7 @@
 		if(!check_rights(R_DEBUG))
 			return
 	if(variable in GLOB.VVicon_edit_lock)
-		if(!check_rights(R_FUN|R_DEBUG))
+		if(!check_rights(R_REMOVED|R_DEBUG))
 			return
 	if(variable in GLOB.VVpixelmovement)
 		if(!check_rights(R_DEBUG))

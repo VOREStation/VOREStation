@@ -9,7 +9,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/taser/rigged
 	name = "jury-rigged static rifle"
-	desc = "A vaguely functional taser analog, inside an extinguisher casing."
+	desc = "A vaguely REMOVEDctional taser analog, inside an extinguisher casing."
 	icon_state = "mecha_taser-rig"
 	energy_drain = 30
 	projectile = /obj/item/projectile/beam/stun/weak

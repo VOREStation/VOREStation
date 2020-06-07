@@ -128,7 +128,7 @@
 	var/const/max_health = 100
 	var/health = max_health
 	var/active = 0
-	var/malfunction = 0 //Malfunction causes parts of the shield to slowly dissapate
+	var/malREMOVEDction = 0 //MalREMOVEDction causes parts of the shield to slowly dissapate
 	var/list/deployed_shields = list()
 	var/list/regenerating = list()
 	var/is_open = 0 //Whether or not the wires are exposed
@@ -172,7 +172,7 @@
 /obj/machinery/shieldgen/proc/create_shields()
 	for(var/turf/target_tile in range(2, src))
 		if (is_type_in_list(target_tile,blockedturfs) && !(locate(/obj/machinery/shield) in target_tile))
-			if (malfunction && prob(33) || !malfunction)
+			if (malREMOVEDction && prob(33) || !malREMOVEDction)
 				var/obj/machinery/shield/S = new/obj/machinery/shield(target_tile)
 				deployed_shields += S
 				use_power(S.shield_generate_power)
@@ -194,7 +194,7 @@
 	if (!active || (stat & NOPOWER))
 		return
 
-	if(malfunction)
+	if(malREMOVEDction)
 		if(deployed_shields.len && prob(5))
 			qdel(pick(deployed_shields))
 	else
@@ -215,7 +215,7 @@
 
 /obj/machinery/shieldgen/proc/checkhp()
 	if(health <= 30)
-		src.malfunction = 1
+		src.malREMOVEDction = 1
 	if(health <= 0)
 		spawn(0)
 			explosion(get_turf(src.loc), 0, 0, 1, 0, 0, 0)
@@ -231,7 +231,7 @@
 		if(2.0)
 			src.health -= 30
 			if (prob(15))
-				src.malfunction = 1
+				src.malREMOVEDction = 1
 			src.checkhp()
 		if(3.0)
 			src.health -= 10
@@ -242,12 +242,12 @@
 	switch(severity)
 		if(1)
 			src.health /= 2 //cut health in half
-			malfunction = 1
+			malREMOVEDction = 1
 			locked = pick(0,1)
 		if(2)
 			if(prob(50))
 				src.health *= 0.3 //chop off a third of the health
-				malfunction = 1
+				malREMOVEDction = 1
 	checkhp()
 
 /obj/machinery/shieldgen/attack_hand(mob/user as mob)
@@ -274,8 +274,8 @@
 	return
 
 /obj/machinery/shieldgen/emag_act(var/remaining_charges, var/mob/user)
-	if(!malfunction)
-		malfunction = 1
+	if(!malREMOVEDction)
+		malREMOVEDction = 1
 		update_icon()
 		return 1
 
@@ -289,14 +289,14 @@
 			to_chat(user, "<font color='blue'>You open the panel and expose the wiring.</font>")
 			is_open = 1
 
-	else if(istype(W, /obj/item/stack/cable_coil) && malfunction && is_open)
+	else if(istype(W, /obj/item/stack/cable_coil) && malREMOVEDction && is_open)
 		var/obj/item/stack/cable_coil/coil = W
 		to_chat(user, "<span class='notice'>You begin to replace the wires.</span>")
-		//if(do_after(user, min(60, round( ((getMaxHealth()/health)*10)+(malfunction*10) ))) //Take longer to repair heavier damage
+		//if(do_after(user, min(60, round( ((getMaxHealth()/health)*10)+(malREMOVEDction*10) ))) //Take longer to repair heavier damage
 		if(do_after(user, 30))
 			if (coil.use(1))
 				health = max_health
-				malfunction = 0
+				malREMOVEDction = 0
 				to_chat(user, "<span class='notice'>You repair the [src]!</span>")
 				update_icon()
 
@@ -331,7 +331,7 @@
 
 /obj/machinery/shieldgen/update_icon()
 	if(active && !(stat & NOPOWER))
-		src.icon_state = malfunction ? "shieldonbr":"shieldon"
+		src.icon_state = malREMOVEDction ? "shieldonbr":"shieldon"
 	else
-		src.icon_state = malfunction ? "shieldoffbr":"shieldoff"
+		src.icon_state = malREMOVEDction ? "shieldoffbr":"shieldoff"
 	return

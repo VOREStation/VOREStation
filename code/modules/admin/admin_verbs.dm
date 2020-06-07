@@ -1,4 +1,4 @@
-/client/proc/hide_most_verbs()//Allows you to keep some functionality while hiding some verbs
+/client/proc/hide_most_verbs()//Allows you to keep some REMOVEDctionality while hiding some verbs
 	set name = "Adminverbs - Hide Most"
 	set category = "Admin"
 
@@ -138,7 +138,7 @@
 	return
 
 /client/proc/colorooc()
-	set category = "Fun"
+	set category = "REMOVED"
 	set name = "OOC Text Color"
 	if(!holder)	return
 	var/response = alert(src, "Please choose a distinct color that is easy to read and doesn't mix with all the other chat and radio frequency colors.", "Change own OOC color", "Pick new color", "Reset to default", "Cancel")
@@ -262,7 +262,7 @@
 	feedback_add_details("admin_verb","DB") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/give_disease2(mob/T as mob in mob_list) // -- Giacom
-	set category = "Fun"
+	set category = "REMOVED"
 	set name = "Give Disease"
 	set desc = "Gives a Disease to a mob."
 
@@ -401,7 +401,7 @@
 	set name = "Rename Silicon"
 	set category = "Admin"
 
-	if(!check_rights(R_ADMIN|R_FUN|R_EVENT)) return
+	if(!check_rights(R_ADMIN|R_REMOVED|R_EVENT)) return
 
 	var/mob/living/silicon/S = input("Select silicon.", "Rename Silicon.") as null|anything in silicon_mob_list
 	if(!S) return
@@ -489,7 +489,7 @@
 		message_admins("Admin [key_name_admin(usr)] has [config.allow_drone_spawn ? "en" : "dis"]abled maintenance drones.", 1)
 
 /client/proc/man_up(mob/T as mob in mob_list)
-	set category = "Fun"
+	set category = "REMOVED"
 	set name = "Man Up"
 	set desc = "Tells mob to man up and deal with it."
 	set popup_menu = FALSE //VOREStation Edit - Declutter.
@@ -503,7 +503,7 @@
 	message_admins("<font color='blue'>[key_name_admin(usr)] told [key_name(T)] to man up and deal with it.</font>", 1)
 
 /client/proc/global_man_up()
-	set category = "Fun"
+	set category = "REMOVED"
 	set name = "Man Up Global"
 	set desc = "Tells everyone to man up and deal with it."
 
@@ -517,7 +517,7 @@
 	message_admins("<font color='blue'>[key_name_admin(usr)] told everyone to man up and deal with it.</font>", 1)
 
 /client/proc/give_spell(mob/T as mob in mob_list) // -- Urist
-	set category = "Fun"
+	set category = "REMOVED"
 	set name = "Give Spell"
 	set desc = "Gives a spell to a mob."
 	var/spell/S = input("Choose the spell to give to that guy", "ABRAKADABRA") as null|anything in spells

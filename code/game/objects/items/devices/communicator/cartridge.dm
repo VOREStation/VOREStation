@@ -1,6 +1,6 @@
 // Communicator peripheral devices
 // Internal devices that attack() can be relayed to
-// Additional UI menus for added functionality
+// Additional UI menus for added REMOVEDctionality
 /obj/item/weapon/commcard
 	name = "generic commcard"
 	desc = "A peripheral plug-in for personal communicators."
@@ -32,8 +32,8 @@
 /obj/item/weapon/commcard/proc/get_data()
 	return list()
 
-// Handles cartridge-specific functions
-// The helper.link() MUST HAVE 'cartridge_topic' passed into the href in order for cartridge functions to be processed.
+// Handles cartridge-specific REMOVEDctions
+// The helper.link() MUST HAVE 'cartridge_topic' passed into the href in order for cartridge REMOVEDctions to be processed.
 // Doesn't matter what the value of it is for now, it's just a flag to say, "Hey, there's cartridge data to change!"
 /obj/item/weapon/commcard/Topic(href, href_list)
 
@@ -110,7 +110,7 @@
 	// Supply topic
 	// Copied from /obj/machinery/computer/supplycomp/Topic()
 	// code\game\machinery\computer\supply.dm, line 188
-	// Unfortunately, in order to support complete functionality, the whole thing is necessary
+	// Unfortunately, in order to support complete REMOVEDctionality, the whole thing is necessary
 	if(href_list["pack_ref"])
 		var/datum/supply_pack/S = locate(href_list["pack_ref"])
 

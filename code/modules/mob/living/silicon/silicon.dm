@@ -143,19 +143,19 @@
 	return 0
 
 
-// this function shows the health of the AI in the Status panel
+// this REMOVEDction shows the health of the AI in the Status panel
 /mob/living/silicon/proc/show_system_integrity()
 	if(!src.stat)
 		stat(null, text("System integrity: [round((health/getMaxHealth())*100)]%"))
 	else
-		stat(null, text("Systems nonfunctional"))
+		stat(null, text("Systems nonREMOVEDctional"))
 
 
-// This is a pure virtual function, it should be overwritten by all subclasses
+// This is a pure virtual REMOVEDction, it should be overwritten by all subclasses
 /mob/living/silicon/proc/show_malf_ai()
 	return 0
 
-// this function displays the shuttles ETA in the status panel if the shuttle has been called
+// this REMOVEDction displays the shuttles ETA in the status panel if the shuttle has been called
 /mob/living/silicon/proc/show_emergency_shuttle_eta()
 	if(emergency_shuttle)
 		var/eta_status = emergency_shuttle.get_status_panel_eta()
@@ -171,7 +171,7 @@
 		show_malf_ai()
 	..()
 
-// this function displays the stations manifest in a separate window
+// this REMOVEDction displays the stations manifest in a separate window
 /mob/living/silicon/proc/show_station_manifest()
 	var/dat = "<div align='center'>"
 	if(!data_core)

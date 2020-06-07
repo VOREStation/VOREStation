@@ -1,8 +1,8 @@
 /datum/technomancer/spell/control
 	name = "Control"
-	desc = "This function allows you to exert control over simple-minded entities to an extent, such as spiders and carp.  \
+	desc = "This REMOVEDction allows you to exert control over simple-minded entities to an extent, such as spiders and carp.  \
 	Controlled entities will not be hostile towards you, and you may direct them to move to specific areas or to attack specific \
-	targets.  This function will have no effect on entities of higher intelligence, such as humans and similar alien species, as it's \
+	targets.  This REMOVEDction will have no effect on entities of higher intelligence, such as humans and similar alien species, as it's \
 	not true mind control, but merely pheromone synthesis for living animals, and electronic hacking for simple robots.  The green web \
 	around the entity is merely a hologram used to allow the user to know if the creature is safe or not."
 	cost = 100
@@ -100,7 +100,7 @@
 	if(isliving(hit_atom))
 		var/mob/living/L = hit_atom
 		if(L == user && !controlled_mobs.len)
-			to_chat(user, "<span class='warning'>This function doesn't work on higher-intelligence entities, however since you're \
+			to_chat(user, "<span class='warning'>This REMOVEDction doesn't work on higher-intelligence entities, however since you're \
 			trying to use it on yourself, perhaps you're an exception?  Regardless, nothing happens.</span>")
 			return 0
 

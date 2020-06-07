@@ -84,7 +84,7 @@
 			else
 				dat += "<tt><font color=red>[A]</tt></font><br>"
 
-		dat += "<br><tt>Maintenance Functions:</tt><br>"
+		dat += "<br><tt>Maintenance REMOVEDctions:</tt><br>"
 		if(gravity_generator:on)
 			dat += "<a href='byond://?src=\ref[src];gentoggle=1'><font color=red> TURN GRAVITY GENERATOR OFF. </font></a>"
 		else

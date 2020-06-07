@@ -9,7 +9,7 @@
 	desc = "Deadly to anyone it perceives as an enemy, this drone model tries to capture the ideal balance \
 	between effectiveness, versatility, and expendability. It possesses sophisticated technology that allows it \
 	to both be dangerous, and be less costly to build compared to alternatives such as exosuits. It was designed \
-	for combat in space, however they are also able to function inside a gravity well, due to a favorable \
+	for combat in space, however they are also able to REMOVEDction inside a gravity well, due to a favorable \
 	thrust-to-weight ratio.\
 	<br><br>\
 	One notable feature of this model is its ability to rapidly fire lasers at the target. This is accomplished \

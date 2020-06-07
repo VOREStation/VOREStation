@@ -44,7 +44,7 @@
 			to_chat(user, "<span class='danger'>You cannot inject a robotic limb.</span>")
 			return
 
-		//VOREStation Add Start - Adds Prototype Hypo functionality
+		//VOREStation Add Start - Adds Prototype Hypo REMOVEDctionality
 		if(H != user && prototype)
 			to_chat(user, "<span class='notice'>You begin injecting [H] with \the [src].</span>")
 			to_chat(H, "<span class='danger'> [user] is trying to inject you with \the [src]!</span>")
@@ -298,7 +298,7 @@
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/impedrezene
 	name = "impedrezene injector"
 	desc = "A refined version of the standard autoinjector, allowing greater capacity. \
-	This one has impedrezene inside, a narcotic that impairs higher brain functioning. \
+	This one has impedrezene inside, a narcotic that impairs higher brain REMOVEDctioning. \
 	This autoinjector is almost certainly created illegitimately."
 	filled_reagents = list("impedrezene" = 15)
 
@@ -342,7 +342,7 @@
 	name = "defective nanite injector"
 	desc = "A refined version of the standard autoinjector, allowing greater capacity. \
 	The injector stores a slurry of highly advanced and specialized nanomachines that \
-	are unfortunately malfunctioning, making them unsafe to use inside of a living body. \
+	are unfortunately malREMOVEDctioning, making them unsafe to use inside of a living body. \
 	Because of the Five Points, these nanites cannot self-replicate."
 	filled_reagents = list("defective_nanites" = 15)
 

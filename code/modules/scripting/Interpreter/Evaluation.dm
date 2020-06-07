@@ -4,8 +4,8 @@
 /n_Interpreter
 	proc
 		Eval(node/expression/exp)
-			if(istype(exp, /node/expression/FunctionCall))
-				return RunFunction(exp)
+			if(istype(exp, /node/expression/REMOVEDctionCall))
+				return RunREMOVEDction(exp)
 			else if(istype(exp, /node/expression/operator))
 				return EvalOperator(exp)
 			else if(istype(exp, /node/expression/value/literal))

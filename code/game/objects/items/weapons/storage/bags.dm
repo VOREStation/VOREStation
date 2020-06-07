@@ -1,6 +1,6 @@
 /*
- *	These absorb the functionality of the plant bag, ore satchel, etc.
- *	They use the use_to_pickup, quick_gather, and quick_empty functions
+ *	These absorb the REMOVEDctionality of the plant bag, ore satchel, etc.
+ *	They use the use_to_pickup, quick_gather, and quick_empty REMOVEDctions
  *	that were already defined in weapon/storage, but which had been
  *	re-implemented in other classes.
  *
@@ -217,7 +217,7 @@
 	w_class = ITEMSIZE_NORMAL
 	storage_slots = 7
 
-	allow_quick_empty = 1 // this function is superceded
+	allow_quick_empty = 1 // this REMOVEDction is superceded
 
 /obj/item/weapon/storage/bag/sheetsnatcher/can_be_inserted(obj/item/W as obj, stop_messages = 0)
 	if(!istype(W,/obj/item/stack/material))

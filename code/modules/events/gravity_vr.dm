@@ -35,4 +35,4 @@
 			did_anything = TRUE
 
 	if(did_anything)
-		command_announcement.Announce("Gravity generators are again functioning within normal parameters. Sorry for any inconvenience.", "Gravity Restored")
+		command_announcement.Announce("Gravity generators are again REMOVEDctioning within normal parameters. Sorry for any inconvenience.", "Gravity Restored")

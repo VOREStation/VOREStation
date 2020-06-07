@@ -9,7 +9,7 @@
 
 // Logging level defines.
 #define AI_LOG_OFF		0 // Don't show anything.
-#define AI_LOG_ERROR	1 // Show logs of things likely causing the mob to not be functioning correctly.
+#define AI_LOG_ERROR	1 // Show logs of things likely causing the mob to not be REMOVEDctioning correctly.
 #define AI_LOG_WARNING	2 // Show less serious but still helpful to know issues that might be causing things to work incorrectly.
 #define AI_LOG_INFO		3 // Important regular events, like selecting a target or switching stances.
 #define AI_LOG_DEBUG	4 // More detailed information about the flow of execution.

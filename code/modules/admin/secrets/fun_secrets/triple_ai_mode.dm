@@ -1,7 +1,7 @@
-/datum/admin_secret_item/fun_secret/triple_ai_mode
+/datum/admin_secret_item/REMOVED_secret/triple_ai_mode
 	name = "Triple AI Mode"
 
-/datum/admin_secret_item/fun_secret/triple_ai_mode/can_execute(var/mob/user)
+/datum/admin_secret_item/REMOVED_secret/triple_ai_mode/can_execute(var/mob/user)
 	if(ticker && ticker.current_state > GAME_STATE_PREGAME)
 		return 0
 

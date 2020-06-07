@@ -1,9 +1,9 @@
 /client/proc/admin_lightning_strike()
 	set name = "Lightning Strike"
 	set desc = "Causes lightning to strike on your tile. This can be made to hurt things on or nearby it severely."
-	set category = "Fun"
+	set category = "REMOVED"
 
-	if(!check_rights(R_FUN))
+	if(!check_rights(R_REMOVED))
 		return
 
 	var/result = alert(src, "Really strike your tile with lightning?", "Confirm Badmin" , "No", "Yes (Cosmetic)", "Yes (Real)")

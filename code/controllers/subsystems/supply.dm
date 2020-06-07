@@ -308,7 +308,7 @@ SUBSYSTEM_DEF(supply)
 // Will delete the specified order from the user-side list
 /datum/controller/subsystem/supply/proc/delete_order(var/datum/supply_order/O, var/mob/user)
 	// Making sure they know what they're doing
-	if(alert(user, "Are you sure you want to delete this record? If it has been approved, cargo points will NOT be refunded!", "Delete Record","No","Yes") == "Yes")
+	if(alert(user, "Are you sure you want to delete this record? If it has been approved, cargo points will NOT be reREMOVEDded!", "Delete Record","No","Yes") == "Yes")
 		if(alert(user, "Are you really sure? There is no way to recover the order once deleted.", "Delete Record", "No", "Yes") == "Yes")
 			log_admin("[key_name(user)] has deleted supply order \ref[O] [O] from the user-side order history.")
 			order_history -= O

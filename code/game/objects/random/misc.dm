@@ -1,6 +1,6 @@
 /*
 // This is going to get so incredibly bloated.
-// But this is where all of the "Loot" goes. Anything fun or useful that doesn't deserve its own file, pile in.
+// But this is where all of the "Loot" goes. Anything REMOVED or useful that doesn't deserve its own file, pile in.
 */
 
 /obj/random/tool

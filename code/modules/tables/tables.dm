@@ -56,7 +56,7 @@ var/list/table_icon_cache = list()
 	health -= amount
 	if(health <= 0)
 		visible_message("<span class='warning'>\The [src] breaks down!</span>")
-		return break_to_parts() // if we break and form shards, return them to the caller to do !FUN! things with
+		return break_to_parts() // if we break and form shards, return them to the caller to do !REMOVED! things with
 
 /obj/structure/table/blob_act()
 	take_damage(100)
@@ -295,7 +295,7 @@ var/list/table_icon_cache = list()
 	return
 
 // Returns a list of /obj/item/weapon/material/shard objects that were created as a result of this table's breakage.
-// Used for !fun! things such as embedding shards in the faces of tableslammed people.
+// Used for !REMOVED! things such as embedding shards in the faces of tableslammed people.
 
 // The repeated
 //     S = [x].place_shard(loc)

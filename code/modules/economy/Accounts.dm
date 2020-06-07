@@ -19,20 +19,20 @@
 	var/time = ""
 	var/source_terminal = ""
 
-/proc/create_account(var/new_owner_name = "Default user", var/starting_funds = 0, var/obj/machinery/account_database/source_db, var/offmap = FALSE)
+/proc/create_account(var/new_owner_name = "Default user", var/starting_REMOVEDds = 0, var/obj/machinery/account_database/source_db, var/offmap = FALSE)
 
 	//create a new account
 	var/datum/money_account/M = new()
 	M.offmap = offmap
 	M.owner_name = new_owner_name
 	M.remote_access_pin = rand(1111, 111111)
-	M.money = starting_funds
+	M.money = starting_REMOVEDds
 
 	//create an entry in the account transaction log for when it was created
 	var/datum/transaction/T = new()
 	T.target_name = new_owner_name
 	T.purpose = "Account creation"
-	T.amount = starting_funds
+	T.amount = starting_REMOVEDds
 	if(!source_db)
 		//set a random date, time and location some time over the past few decades
 		T.date = "[num2text(rand(1,31))] [pick("January","February","March","April","May","June","July","August","September","October","November","December")], 25[rand(10,56)]"

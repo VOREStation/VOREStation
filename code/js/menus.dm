@@ -1,5 +1,5 @@
 var/const/js_dropdowns = {"
-function dropdowns() {
+REMOVEDction dropdowns() {
     var divs = document.getElementsByTagName('div');
     var headers = new Array();
     var links = new Array();
@@ -16,8 +16,8 @@ function dropdowns() {
     }
     for(var i=0;i<headers.length;i++){
         if(typeof(links\[i\])!== 'undefined' && links\[i\]!=null) {
-            headers\[i\].onclick = (function(elem) {
-                return function() {
+            headers\[i\].onclick = (REMOVEDction(elem) {
+                return REMOVEDction() {
                     if(elem.className.search('visible')>=0) {
                         elem.className = elem.className.replace('visible','hidden');
                         this.className = this.className.replace('open','closed');

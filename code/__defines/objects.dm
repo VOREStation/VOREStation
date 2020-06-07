@@ -10,7 +10,7 @@
 
 // Identity system defines.
 #define IDENTITY_UNKNOWN	0 // Nothing is known so far.
-#define IDENTITY_PROPERTIES	1 // Basic function of the item, and amount of charges available if it uses them.
+#define IDENTITY_PROPERTIES	1 // Basic REMOVEDction of the item, and amount of charges available if it uses them.
 #define IDENTITY_QUALITY	2 // Blessed/Uncursed/Cursed status. Some things don't use this.
 #define IDENTITY_FULL		IDENTITY_PROPERTIES|IDENTITY_QUALITY // Know everything.
 

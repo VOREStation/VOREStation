@@ -355,7 +355,7 @@
 
 			despawn_occupant(occupant)
 
-// This function can not be undone; do not call this unless you are sure
+// This REMOVEDction can not be undone; do not call this unless you are sure
 // Also make sure there is a valid control computer
 /obj/machinery/cryopod/robot/despawn_occupant(var/mob/to_despawn)
 	var/mob/living/silicon/robot/R = to_despawn
@@ -377,7 +377,7 @@
 		G.icon_state = "off"
 	..()
 
-// This function can not be undone; do not call this unless you are sure
+// This REMOVEDction can not be undone; do not call this unless you are sure
 // Also make sure there is a valid control computer
 /obj/machinery/cryopod/proc/despawn_occupant(var/mob/to_despawn)
 	//Recursively despawn mobs

@@ -155,7 +155,7 @@
 	alpha = 100
 	animate(src, alpha = initial(alpha), time = 1 SECOND)
 
-// Just for fun
+// Just for REMOVED
 /obj/effect/shield/attack_hand(var/user)
 	flash_adjacent_segments(3)
 

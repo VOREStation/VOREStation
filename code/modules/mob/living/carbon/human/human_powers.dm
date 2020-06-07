@@ -308,7 +308,7 @@
 			if(I.robotic >= ORGAN_ROBOT) // No free robofix.
 				continue
 			if(I.damage > 0)
-				I.damage = max(I.damage - 30, 0) //Repair functionally half of a dead internal organ.
+				I.damage = max(I.damage - 30, 0) //Repair REMOVEDctionally half of a dead internal organ.
 				I.status = 0	// Wipe status, as it's being regenerated from possibly dead.
 				to_chat(src, "<span class='notice'>You feel a soothing sensation within your [I.name]...</span>")
 

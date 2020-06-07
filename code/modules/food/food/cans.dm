@@ -109,7 +109,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/tonic
 	name = "\improper T-Borg's Tonic Water"
-	desc = "Quinine tastes funny, but at least it'll keep that Space Malaria away."
+	desc = "Quinine tastes REMOVEDny, but at least it'll keep that Space Malaria away."
 	icon_state = "tonic"
 	center_of_mass = list("x"=16, "y"=8)
 

@@ -33,9 +33,9 @@
 <b>Important Notes:</b> Affects hearing and speech.<BR>
 <HR>
 <b>Implant Details:</b><BR>
-<b>Function:</b> Allows a being otherwise incapable of speaking Galactic Common to produce the phonemes of the language.<BR>
+<b>REMOVEDction:</b> Allows a being otherwise incapable of speaking Galactic Common to produce the phonemes of the language.<BR>
 <b>Special Features:</b> None.<BR>
-<b>Integrity:</b> Implant will function for expected life, barring physical damage."}
+<b>Integrity:</b> Implant will REMOVEDction for expected life, barring physical damage."}
 	return dat
 
 
@@ -53,9 +53,9 @@
 <b>Important Notes:</b> Affects hearing and speech.<BR>
 <HR>
 <b>Implant Details:</b><BR>
-<b>Function:</b> Allows an organic to accurately speak Encoded Audio Language.<BR>
+<b>REMOVEDction:</b> Allows an organic to accurately speak Encoded Audio Language.<BR>
 <b>Special Features:</b> None.<BR>
-<b>Integrity:</b> Implant will function for expected life, barring physical damage."}
+<b>Integrity:</b> Implant will REMOVEDction for expected life, barring physical damage."}
 	return dat
 
 /obj/item/weapon/implant/language/skrellian
@@ -71,7 +71,7 @@
 <b>Important Notes:</b> Affects hearing and speech.<BR>
 <HR>
 <b>Implant Details:</b><BR>
-<b>Function:</b> Allows a being otherwise incapable of speaking Skrellian to produce the phonemes of the language.<BR>
+<b>REMOVEDction:</b> Allows a being otherwise incapable of speaking Skrellian to produce the phonemes of the language.<BR>
 <b>Special Features:</b> None.<BR>
-<b>Integrity:</b> Implant will function for expected life, barring physical damage."}
+<b>Integrity:</b> Implant will REMOVEDction for expected life, barring physical damage."}
 	return dat

@@ -50,7 +50,7 @@ GLOBAL_LIST_EMPTY(holoposters)
 	var/new_color = LIGHT_COLOR_HALOGEN
 	if(stat & BROKEN)
 		icon_state = "glitch"
-		examine_addon = "It appears to be malfunctioning."
+		examine_addon = "It appears to be malREMOVEDctioning."
 		new_color = "#6A6C71"
 	else
 		if((z in using_map.station_levels) && global.security_level) // 0 is fine, everything higher is alert levels

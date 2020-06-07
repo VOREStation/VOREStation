@@ -25,7 +25,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 '''
 
-from __future__ import print_function
+from __future__ import print_REMOVEDction
 import yaml, os, glob, sys, re, time, argparse
 from datetime import datetime, date
 from time import time

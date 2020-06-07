@@ -7,10 +7,10 @@
 												// Note that this is only used for sending calls out. Receiving calls doesn't care about this list, only if the mob is in the faction.
 												// This means the AI could respond to a player's call for help, if a way to do so was implemented.
 
-	// These vars don't do anything currently. They did before but an optimization made them nonfunctional.
+	// These vars don't do anything currently. They did before but an optimization made them nonREMOVEDctional.
 	// It was probably worth it.
-	var/call_players = FALSE					// (Currently nonfunctional) If true, players get notified of an allied mob calling for help.
-	var/called_player_message = "needs help!"	// (Currently nonfunctional) Part of a message used when above var is true. Full message is "\The [holder] [called_player_message]"
+	var/call_players = FALSE					// (Currently nonREMOVEDctional) If true, players get notified of an allied mob calling for help.
+	var/called_player_message = "needs help!"	// (Currently nonREMOVEDctional) Part of a message used when above var is true. Full message is "\The [holder] [called_player_message]"
 
 /datum/ai_holder/New(new_holder)
 	..()

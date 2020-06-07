@@ -38,7 +38,7 @@
 
 	BadReturn
 		var/token/token
-		message = "Unexpected return statement outside of a function."
+		message = "Unexpected return statement outside of a REMOVEDction."
 		New(token/t)
 			src.token=t
 
@@ -56,9 +56,9 @@
 	UnterminatedComment
 		message="Unterminated multi-line comment statement: expected */"
 
-	DuplicateFunction
+	DuplicateREMOVEDction
 		New(name, token/t)
-			message="Function '[name]' defined twice."
+			message="REMOVEDction '[name]' defined twice."
 
 /*
 	Class: runtimeError
@@ -84,8 +84,8 @@
 			if(!stack.Top()) return
 			.+="\nStack:"
 			while(stack.Top())
-				var/node/statement/FunctionCall/stmt=stack.Pop()
-				. += "\n\t [stmt.func_name]()"
+				var/node/statement/REMOVEDctionCall/stmt=stack.Pop()
+				. += "\n\t [stmt.REMOVEDc_name]()"
 
 	TypeMismatch
 		name="TypeMismatchError"
@@ -105,10 +105,10 @@
 		New(variable)
 			message="Variable '[variable]' has not been declared."
 
-	UndefinedFunction
-		name="UndefinedFunctionError"
-		New(function)
-			message="Function '[function]()' has not been defined."
+	UndefinedREMOVEDction
+		name="UndefinedREMOVEDctionError"
+		New(REMOVEDction)
+			message="REMOVEDction '[REMOVEDction]()' has not been defined."
 
 	DuplicateVariableDeclaration
 		name="DuplicateVariableError"

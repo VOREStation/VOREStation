@@ -46,7 +46,7 @@ GLOBAL_VAR_INIT(account_hack_attempted, 0)
 		//create a taunting log entry
 		var/datum/transaction/T = new()
 		T.target_name = pick("","yo brotha from anotha motha","el Presidente","chieF smackDowN")
-		T.purpose = pick("Ne$ ---ount fu%ds init*&lisat@*n","PAY BACK YOUR MUM","Funds withdrawal","pWnAgE","l33t hax","liberationez")
+		T.purpose = pick("Ne$ ---ount fu%ds init*&lisat@*n","PAY BACK YOUR MUM","REMOVEDds withdrawal","pWnAgE","l33t hax","liberationez")
 		T.amount = pick("","([rand(0,99999)])","alla money","9001$","HOLLA HOLLA GET DOLLA","([lost])")
 		var/date1 = "31 December, 1999"
 		var/date2 = "[num2text(rand(1,31))] [pick("January","February","March","April","May","June","July","August","September","October","November","December")], [rand(1000,3000)]"

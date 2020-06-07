@@ -9,7 +9,7 @@ log transactions
 
 #define NO_SCREEN 0
 #define CHANGE_SECURITY_LEVEL 1
-#define TRANSFER_FUNDS 2
+#define TRANSFER_REMOVEDDS 2
 #define VIEW_TRANSACTION_LOGS 3
 
 /obj/item/weapon/card/id/var/money = 2000
@@ -143,7 +143,7 @@ log transactions
 				dat += "<span class='alert'>Maximum number of pin attempts exceeded! Access to this ATM has been temporarily disabled.</span>"
 			else if(authenticated_account)
 				if(authenticated_account.suspended)
-					dat += "<font color='red'><b>Access to this account has been suspended, and the funds within frozen.</b></font>"
+					dat += "<font color='red'><b>Access to this account has been suspended, and the REMOVEDds within frozen.</b></font>"
 				else
 					switch(view_screen)
 						if(CHANGE_SECURITY_LEVEL)
@@ -184,16 +184,16 @@ log transactions
 								dat += "</tr>"
 							dat += "</table>"
 							dat += "<A href='?src=\ref[src];choice=print_transaction'>Print</a><br>"
-						if(TRANSFER_FUNDS)
+						if(TRANSFER_REMOVEDDS)
 							dat += "<b>Account balance:</b> $[authenticated_account.money]<br>"
 							dat += "<A href='?src=\ref[src];choice=view_screen;view_screen=0'>Back</a><br><br>"
 							dat += "<form name='transfer' action='?src=\ref[src]' method='get'>"
 							dat += "<input type='hidden' name='src' value='\ref[src]'>"
 							dat += "<input type='hidden' name='choice' value='transfer'>"
 							dat += "Target account number: <input type='text' name='target_acc_number' value='' style='width:200px; background-color:white;'><br>"
-							dat += "Funds to transfer: <input type='text' name='funds_amount' value='' style='width:200px; background-color:white;'><br>"
-							dat += "Transaction purpose: <input type='text' name='purpose' value='Funds transfer' style='width:200px; background-color:white;'><br>"
-							dat += "<input type='submit' value='Transfer funds'><br>"
+							dat += "REMOVEDds to transfer: <input type='text' name='REMOVEDds_amount' value='' style='width:200px; background-color:white;'><br>"
+							dat += "Transaction purpose: <input type='text' name='purpose' value='REMOVEDds transfer' style='width:200px; background-color:white;'><br>"
+							dat += "<input type='submit' value='Transfer REMOVEDds'><br>"
 							dat += "</form>"
 						else
 							dat += "Welcome, <b>[authenticated_account.owner_name].</b><br/>"
@@ -201,7 +201,7 @@ log transactions
 							dat += "<form name='withdrawal' action='?src=\ref[src]' method='get'>"
 							dat += "<input type='hidden' name='src' value='\ref[src]'>"
 							dat += "<input type='radio' name='choice' value='withdrawal' checked> Cash  <input type='radio' name='choice' value='e_withdrawal'> Chargecard<br>"
-							dat += "<input type='text' name='funds_amount' value='' style='width:200px; background-color:white;'><input type='submit' value='Withdraw'>"
+							dat += "<input type='text' name='REMOVEDds_amount' value='' style='width:200px; background-color:white;'><input type='submit' value='Withdraw'>"
 							dat += "</form>"
 							dat += "<A href='?src=\ref[src];choice=view_screen;view_screen=1'>Change account security level</a><br>"
 							dat += "<A href='?src=\ref[src];choice=view_screen;view_screen=2'>Make transfer</a><br>"
@@ -226,7 +226,7 @@ log transactions
 		switch(href_list["choice"])
 			if("transfer")
 				if(authenticated_account)
-					var/transfer_amount = text2num(href_list["funds_amount"])
+					var/transfer_amount = text2num(href_list["REMOVEDds_amount"])
 					transfer_amount = round(transfer_amount, 0.01)
 					if(transfer_amount <= 0)
 						alert("That is not a valid amount.")
@@ -234,7 +234,7 @@ log transactions
 						var/target_account_number = text2num(href_list["target_acc_number"])
 						var/transfer_purpose = href_list["purpose"]
 						if(charge_to_account(target_account_number, authenticated_account.owner_name, transfer_purpose, machine_id, transfer_amount))
-							to_chat(usr, "[bicon(src)]<span class='info'>Funds transfer successful.</span>")
+							to_chat(usr, "[bicon(src)]<span class='info'>REMOVEDds transfer successful.</span>")
 							authenticated_account.money -= transfer_amount
 
 							//create an entry in the account transaction log
@@ -247,10 +247,10 @@ log transactions
 							T.amount = "([transfer_amount])"
 							authenticated_account.transaction_log.Add(T)
 						else
-							to_chat(usr, "[bicon(src)]<span class='warning'>Funds transfer failed.</span>")
+							to_chat(usr, "[bicon(src)]<span class='warning'>REMOVEDds transfer failed.</span>")
 
 					else
-						to_chat(usr, "[bicon(src)]<span class='warning'>You don't have enough funds to do that!</span>")
+						to_chat(usr, "[bicon(src)]<span class='warning'>You don't have enough REMOVEDds to do that!</span>")
 			if("view_screen")
 				view_screen = text2num(href_list["view_screen"])
 			if("change_security_level")
@@ -312,7 +312,7 @@ log transactions
 
 					previous_account_number = tried_account_num
 			if("e_withdrawal")
-				var/amount = max(text2num(href_list["funds_amount"]),0)
+				var/amount = max(text2num(href_list["REMOVEDds_amount"]),0)
 				amount = round(amount, 0.01)
 				if(amount <= 0)
 					alert("That is not a valid amount.")
@@ -336,9 +336,9 @@ log transactions
 						T.time = stationtime2text()
 						authenticated_account.transaction_log.Add(T)
 					else
-						to_chat(usr, "[bicon(src)]<span class='warning'>You don't have enough funds to do that!</span>")
+						to_chat(usr, "[bicon(src)]<span class='warning'>You don't have enough REMOVEDds to do that!</span>")
 			if("withdrawal")
-				var/amount = max(text2num(href_list["funds_amount"]),0)
+				var/amount = max(text2num(href_list["REMOVEDds_amount"]),0)
 				amount = round(amount, 0.01)
 				if(amount <= 0)
 					alert("That is not a valid amount.")
@@ -361,7 +361,7 @@ log transactions
 						T.time = stationtime2text()
 						authenticated_account.transaction_log.Add(T)
 					else
-						to_chat(usr, "[bicon(src)]<span class='warning'>You don't have enough funds to do that!</span>")
+						to_chat(usr, "[bicon(src)]<span class='warning'>You don't have enough REMOVEDds to do that!</span>")
 			if("balance_statement")
 				if(authenticated_account)
 					var/obj/item/weapon/paper/R = new(src.loc)

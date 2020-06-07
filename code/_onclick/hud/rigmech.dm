@@ -83,7 +83,7 @@
 
 	power.icon_state = "pwr[round(charge_percentage / 0.2, 1)]"
 	air.icon_state = "air[round(air_percentage / 0.2, 1)]"
-	health.icon_state = owner_rig.malfunctioning ? "health1" : "health5"
+	health.icon_state = owner_rig.malREMOVEDctioning ? "health1" : "health5"
 	airtoggle.icon_state = "airon[air_on]"
 
 /datum/mini_hud/mech

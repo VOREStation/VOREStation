@@ -37,7 +37,7 @@ var/global/const/base_law_type = /datum/ai_laws/nanotrasen
 	..()
 	sort_laws()
 
-/* General ai_law functions */
+/* General ai_law REMOVEDctions */
 /datum/ai_laws/proc/all_laws()
 	sort_laws()
 	return sorted_laws

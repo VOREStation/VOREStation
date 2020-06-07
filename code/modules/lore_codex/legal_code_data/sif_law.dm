@@ -148,8 +148,8 @@
 /datum/lore/codex/page/law/embezzlement
 	name = "Embezzlement"
 	definition = "Stealing money that is entrusted to you by a corporation or person."
-	suggested_punishments = "Hold until Transfer.  Termination.  Reimbursement of embezzled funds.  Fax Central Command and VirGov."
-	notes = "This includes funneling Departmental, Facility, or Crew funds into the offender's account.  It also includes pocketing \
+	suggested_punishments = "Hold until Transfer.  Termination.  Reimbursement of embezzled REMOVEDds.  Fax Central Command and VirGov."
+	notes = "This includes REMOVEDneling Departmental, Facility, or Crew REMOVEDds into the offender's account.  It also includes pocketing \
 	transactions directly that are meant to go to a seperate account."
 	mandated = TRUE
 

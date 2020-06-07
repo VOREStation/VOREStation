@@ -130,7 +130,7 @@ proc/airborne_can_reach(turf/source, turf/target)
 	D.makerandom(2)
 	infect_mob(M, D)
 
-//Fancy prob() function.
+//Fancy prob() REMOVEDction.
 /proc/dprob(var/p)
 	return(prob(sqrt(p)) && prob(sqrt(p)))
 

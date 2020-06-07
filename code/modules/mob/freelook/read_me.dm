@@ -1,7 +1,7 @@
 // CREDITS
 /*
  Initial code credit for this goes to Uristqwerty.
- Debugging, functionality, all comments and porting by Giacom.
+ Debugging, REMOVEDctionality, all comments and porting by Giacom.
 
  Everything about freelook (or what we can put in here) will be stored here.
 

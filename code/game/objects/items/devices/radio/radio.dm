@@ -27,7 +27,7 @@ var/global/list/default_medbay_channels = list(
 /obj/item/device/radio
 	icon = 'icons/obj/radio_vr.dmi' //VOREStation Edit
 	name = "shortwave radio" //VOREStation Edit
-	desc = "Used to talk to people when headsets don't function. Range is limited."
+	desc = "Used to talk to people when headsets don't REMOVEDction. Range is limited."
 	suffix = "\[3\]"
 	icon_state = "walkietalkie"
 	item_state = "radio"
@@ -455,14 +455,14 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 	if(bluespace_radio)
 		//Nothing to transmit to
 		if(!bs_tx_weakref)
-			to_chat(loc, "<span class='warning'>\The [src] buzzes to inform you of the lack of a functioning connection.</span>")
+			to_chat(loc, "<span class='warning'>\The [src] buzzes to inform you of the lack of a REMOVEDctioning connection.</span>")
 			return FALSE
 
 		var/obj/machinery/telecomms/tx_to = bs_tx_weakref.resolve()
 		//Was linked, now destroyed or something
 		if(!tx_to)
 			bs_tx_weakref = null
-			to_chat(loc, "<span class='warning'>\The [src] buzzes to inform you of the lack of a functioning connection.</span>")
+			to_chat(loc, "<span class='warning'>\The [src] buzzes to inform you of the lack of a REMOVEDctioning connection.</span>")
 			return FALSE
 
 		//Transmitted in the blind. If we get a message back, cool. If not, oh well.

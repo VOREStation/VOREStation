@@ -68,7 +68,7 @@ When an ai_holder is iterated on inside the AI subsystem's list, it first
 calls that ai_holder's handle_tactics(). It will then call that ai_holder's
 handle_strategicals() every fourth tick, effectively doing so every two seconds.
 
-Both functions do different things depending on which 'stance' the
+Both REMOVEDctions do different things depending on which 'stance' the
 ai_holder is in. See the Stances section for more information.
 
 The fast track is for 'cheap' processing that needs to happen fast, such as
@@ -111,7 +111,7 @@ logs into an AI-controlled mob (and the AI is not set to ignore that,
 with the autopilot variable). If the mob is revived, the AI will be
 awakened automatically.
 
-The ai_holder functions, and mob functions that are called by the
+The ai_holder REMOVEDctions, and mob REMOVEDctions that are called by the
 ai_holder, should not be sleep()ed, as it will block the AI Subsystem
 from processing the other ai_holders until the sleep() finishes.
 Delays on the mob typically have set waitfor = FALSE, or spawn() is used.
@@ -157,8 +157,8 @@ implementations and instead just tell the Interface that it wants to attack
 something, or move into a tile. The AI does not need to know if the mob its
 controlling has hands, instead that is the mob's responsibility.
 
-Interface functions have an uppercase I at the start of the function name,
-and then the function they are bridging between the AI and the mob
+Interface REMOVEDctions have an uppercase I at the start of the REMOVEDction name,
+and then the REMOVEDction they are bridging between the AI and the mob
 (if it exists), e.g. IMove(), IAttack(), ISay().
 
 Interfaces are also used for the AI to ask its mob if it can do certain
@@ -185,7 +185,7 @@ The say_list datum is applied to the mob itself and not held inside the AI datum
 
 Some subtypes of ai_holder are more specialized, but remain compatible with
 most mob types. There are many different subtypes that make the AI act different
-by overriding a function, such as kiting their target, moving up close while
+by overriding a REMOVEDction, such as kiting their target, moving up close while
 using ranged attacks, or running away if not cloaked.
 
 Other subtypes are very specific about what kind of mob it controls, and trying

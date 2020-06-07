@@ -58,7 +58,7 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 		switch(status)
 			//Not allowed due to /area technical reasons
 			if(SHELTER_DEPLOY_BAD_AREA)
-				src.loc.visible_message("<span class='warning'>\The [src] will not function in this area.</span>")
+				src.loc.visible_message("<span class='warning'>\The [src] will not REMOVEDction in this area.</span>")
 
 			//Anchored objects or no space
 			if(SHELTER_DEPLOY_BAD_TURFS, SHELTER_DEPLOY_ANCHORED_OBJECTS)
@@ -152,7 +152,7 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 /obj/machinery/button/remote/airlock/survival_pod
 	name = "shelter privacy control"
 	desc = "You can secure yourself inside the shelter here."
-	specialfunctions = 4 // 4 is bolts
+	specialREMOVEDctions = 4 // 4 is bolts
 	id = "placeholder_id_do_not_use" //This has to be this way, otherwise it will control ALL doors if left blank.
 	var/obj/machinery/door/airlock/voidcraft/survival_pod/door
 
@@ -208,7 +208,7 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 
 //Sleeper
 /obj/machinery/sleeper/survival_pod
-	desc = "A limited functionality sleeper, all it can do is put patients into stasis. It lacks the medication and configuration of the larger units."
+	desc = "A limited REMOVEDctionality sleeper, all it can do is put patients into stasis. It lacks the medication and configuration of the larger units."
 	icon = 'icons/obj/survival_pod.dmi'
 	icon_state = "sleeper"
 	stasis_level = 100 //Just one setting

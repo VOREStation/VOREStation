@@ -31,7 +31,7 @@ SOCKADDR_IN addr;
 #define BUFFER_SIZE 1024
 char return_buffer[BUFFER_SIZE];
 
-// exposed functions
+// exposed REMOVEDctions
 // ------------------------------
 
 const char* SUCCESS = "1\0"; // string representing success

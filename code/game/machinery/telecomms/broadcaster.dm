@@ -278,7 +278,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 /**
 
-	Here is the big, bad function that broadcasts a message given the appropriate
+	Here is the big, bad REMOVEDction that broadcasts a message given the appropriate
 	parameters.
 
 	@param connection:
@@ -604,7 +604,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 
 	  /* --- Loop through the receivers and categorize them --- */
 
-		if(!R.is_preference_enabled(/datum/client_preference/holder/hear_radio)) //Adminning with 80 people on can be fun when you're trying to talk and all you can hear is radios.
+		if(!R.is_preference_enabled(/datum/client_preference/holder/hear_radio)) //Adminning with 80 people on can be REMOVED when you're trying to talk and all you can hear is radios.
 			continue
 
 

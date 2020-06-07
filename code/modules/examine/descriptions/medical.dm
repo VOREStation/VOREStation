@@ -12,7 +12,7 @@
 	<br>\
 	In order for it to work, it must be loaded with chemicals, and the temperature of the solution must reach a certain point. Additionally, it \
 	requires a supply of pure oxygen, provided by canisters that are attached. The most commonly used chemicals in the chambers are Cryoxadone and \
-	Clonexadone. Clonexadone is more effective in treating all damage, including Genetic damage, but is otherwise functionally identical.<br>\
+	Clonexadone. Clonexadone is more effective in treating all damage, including Genetic damage, but is otherwise REMOVEDctionally identical.<br>\
 	<br>\
 	Activating the freezer nearby, and setting it to a temperature setting below 150, is recommended before operation! Further, any clothing the patient \
 	is wearing that act as an insulator will reduce its effectiveness, and should be removed.<br>\

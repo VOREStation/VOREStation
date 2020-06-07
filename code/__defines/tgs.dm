@@ -2,7 +2,7 @@
 
 #define TGS_DMAPI_VERSION "5.1.1"
 
-//All functions and datums outside this document are subject to change with any version and should not be relied on
+//All REMOVEDctions and datums outside this document are subject to change with any version and should not be relied on
 
 //CONFIGURATION
 
@@ -89,7 +89,7 @@
 //REQUIRED HOOKS
 
 //Call this somewhere in /world/New() that is always run
-//IMPORTANT: This function may sleep!
+//IMPORTANT: This REMOVEDction may sleep!
 //event_handler: optional user defined event handler. The default behaviour is to broadcast the event in english to all connected admin channels
 //minimum_required_security_level: The minimum required security level to run the game in which the DMAPI is integrated
 /world/proc/TgsNew(datum/tgs_event_handler/event_handler, minimum_required_security_level = TGS_SECURITY_ULTRASAFE)
@@ -98,7 +98,7 @@
 //Call this when your initializations are complete and your game is ready to play before any player interactions happen
 //This may use world.sleep_offline to make this happen so ensure no changes are made to it while this call is running
 //Most importantly, before this point, note that any static files or directories may be in use by another server. Your code should account for this
-//This function should not be called before ..() in /world/New()
+//This REMOVEDction should not be called before ..() in /world/New()
 /world/proc/TgsInitializationComplete()
 	return
 
@@ -184,7 +184,7 @@
 /datum/tgs_chat_command/proc/Run(datum/tgs_chat_user/sender, params)
 	CRASH("[type] has no implementation for Run()")
 
-//FUNCTIONS
+//REMOVEDCTIONS
 
 //Returns the respective supported /datum/tgs_version of the API
 /world/proc/TgsMaximumAPIVersion()
@@ -194,7 +194,7 @@
 	return
 
 //Returns TRUE if the world was launched under the server tools and the API matches, FALSE otherwise
-//No function below this succeeds if it returns FALSE or if TgsNew() has yet to be called
+//No REMOVEDction below this succeeds if it returns FALSE or if TgsNew() has yet to be called
 /world/proc/TgsAvailable()
 	return
 
@@ -216,7 +216,7 @@
 /world/proc/TgsChatPrivateMessage(message, datum/tgs_chat_user/user)
 	return
 
-//The following functions will sleep if a call to TgsNew() is sleeping
+//The following REMOVEDctions will sleep if a call to TgsNew() is sleeping
 
 //Sends a message to connected game chats
 //message: The message to send

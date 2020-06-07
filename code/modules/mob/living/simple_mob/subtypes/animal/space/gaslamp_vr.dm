@@ -1,7 +1,7 @@
 /*
 LORE:
 Gaslamps are a phoron-based life form endemic to the world of Virgo-3B. They are
-a sort of fungal organism with physical ties to Diona and Vox, deriving energy
+a sort of REMOVEDgal organism with physical ties to Diona and Vox, deriving energy
 for movement from a gentle combustion-like reaction in their bodies using
 atmospheric phoron, carefully filtered trace oxygen, and captured meat products.
 Over-exposure to oxygen causes their insides to burn too hot and eventually
@@ -95,7 +95,7 @@ TODO: Make them light up and heat the air when exposed to oxygen.
 
 	B.emote_lists[DM_HOLD] = list(
 		"The gaslamp gently bobs up and down as it lazily drifts elsewhere, the movement hardly enough to disturb the shadowy, indistinct figure curled up within it: you.",
-		"The fungal creature’s inner walls tenderly ripple and squeeze about your form for a few moments, squelching softly... until another wave of warmth pulses through the chamber.",
+		"The REMOVEDgal creature’s inner walls tenderly ripple and squeeze about your form for a few moments, squelching softly... until another wave of warmth pulses through the chamber.",
 		"You attempt to shift into another, more comfortable position, only for the alien’s innards to more thoroughly squish inwards; both encouraging you to stay still, and to do the reorienting for you.",
 		"Occasionally, a soft glow mutedly shines through the gaslamp and into its prey-filled insides, whenever it drifts close to something bright... yet, it always fades back into warm, slick darkness.",
 		"The surrounding slimy walls suddenly knead and squish you about more thoroughly than before, massaging a stronger heat into your body... before easing, leaving you feeling pleasantly loose.",
@@ -103,7 +103,7 @@ TODO: Make them light up and heat the air when exposed to oxygen.
 
 	B.emote_lists[DM_ABSORB] = list(
 		"As the gaslamp slowly drifts off somewhere, its inner chamber grips and squeezes over its indistinct, shadowy filling with a lazily increasing fervor, that bump gradually shrinking!",
-		"The fungal creature’s pseudo-stomach slimily squelches about your form, every tight clench and the following burst of heat draining your energy... as the walls grow squishier, almost molten!",
+		"The REMOVEDgal creature’s pseudo-stomach slimily squelches about your form, every tight clench and the following burst of heat draining your energy... as the walls grow squishier, almost molten!",
 		"You attempt to push out against those kneading, steadily encroaching insides, yet the doughy flesh accepts the advance with ease... and, on the outside, your effort makes a faint bulge at most!",
 		"Light occasionally filters down through the gaslamp’s various membranes, but it is becoming hard to notice, your eyelids feeling leaden, weighed down as the looming creature comes ever closer to claiming you!",
 		"The gaslamp’s rhythmically undulating innards abruptly squish and massage down into your curled-up body, each squeeze bringing another brief increase to the heat already sinking deep into you... making it harder to tell where you end, and it begins!",

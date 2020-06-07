@@ -21,7 +21,7 @@
 			spawn owner?.emote("me", 1, "gasps for air!")
 			owner.AdjustLosebreath(15)
 
-	if(owner.internal_organs_by_name[O_BRAIN]) // As the brain starts having Trouble, the lungs start malfunctioning.
+	if(owner.internal_organs_by_name[O_BRAIN]) // As the brain starts having Trouble, the lungs start malREMOVEDctioning.
 		var/obj/item/organ/internal/brain/Brain = owner.internal_organs_by_name[O_BRAIN]
 		if(Brain.get_control_efficiency() <= 0.8)
 			if(prob(4 / max(0.1,Brain.get_control_efficiency())))

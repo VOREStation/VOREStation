@@ -83,8 +83,8 @@ var/datum/admin_secrets/admin_secrets = new()
 /datum/admin_secret_category/random_events
 	name = "'Random' Events"
 
-/datum/admin_secret_category/fun_secrets
-	name = "Fun Secrets"
+/datum/admin_secret_category/REMOVED_secrets
+	name = "REMOVED Secrets"
 
 /datum/admin_secret_category/final_solutions
 	name = "Final Solutions"
@@ -100,14 +100,14 @@ var/datum/admin_secrets/admin_secrets = new()
 
 /datum/admin_secret_item/random_event
 	category = /datum/admin_secret_category/random_events
-	permissions = R_FUN //VOREStation Edit
+	permissions = R_REMOVED //VOREStation Edit
 	warn_before_use = 1
 
-/datum/admin_secret_item/fun_secret
-	category = /datum/admin_secret_category/fun_secrets
-	permissions = R_FUN //VOREStation Edit
+/datum/admin_secret_item/REMOVED_secret
+	category = /datum/admin_secret_category/REMOVED_secrets
+	permissions = R_REMOVED //VOREStation Edit
 	warn_before_use = 1
 
 /datum/admin_secret_item/final_solution
 	category = /datum/admin_secret_category/final_solutions
-	permissions = R_FUN|R_SERVER|R_ADMIN //VOREStation Edit
+	permissions = R_REMOVED|R_SERVER|R_ADMIN //VOREStation Edit

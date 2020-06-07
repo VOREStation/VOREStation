@@ -26,7 +26,7 @@
 	name = "data disk"
 	desc = "A disk of data."
 	icon_state = "data"
-	var/function = "storage"
+	var/REMOVEDction = "storage"
 	var/data = "null"
 	var/special = null
 	item_state = "card-id"
@@ -49,7 +49,7 @@
 	item_state = "card-id"
 	level = 2
 	desc = "This card contains coordinates to the fabled Clown Planet. Handle with care."
-	function = "teleporter"
+	REMOVEDction = "teleporter"
 	data = "Clown Land"
 
 /*

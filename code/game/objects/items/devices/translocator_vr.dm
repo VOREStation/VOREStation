@@ -306,7 +306,7 @@
 		var/list/wrong_choices = beacons - destination.tele_name
 		var/wrong_name = pick(wrong_choices)
 		destination = beacons[wrong_name]
-		to_chat(user,"<span class='warning'>\The [src] malfunctions and sends you to the wrong beacon!</span>")
+		to_chat(user,"<span class='warning'>\The [src] malREMOVEDctions and sends you to the wrong beacon!</span>")
 
 	//Destination beacon vore checking
 	var/turf/dT = get_turf(destination)

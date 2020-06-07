@@ -1,10 +1,10 @@
 /datum/technomancer/equipment/default_core
 	name = "Manipulation Core"
 //	desc = "The default core that you most likely already have.  This is here in-case you change your mind after buying \
-//	another core, don't forget to refund the old core.  This has a capacity of 10,000 units of energy, and recharges at a \
-//	rate of 50 units.  It also reduces incoming instability from functions by 20%."
+//	another core, don't forget to reREMOVEDd the old core.  This has a capacity of 10,000 units of energy, and recharges at a \
+//	rate of 50 units.  It also reduces incoming instability from REMOVEDctions by 20%."
 	desc = "The default core that you most likely already have.  This is here in-case you change your mind after buying \
-	another core, don't forget to refund the old core.<br>\
+	another core, don't forget to reREMOVEDd the old core.<br>\
 	Capacity: 10k<br>\
 	Recharge: 50/s<br>\
 	Instability Modifier: 80%<br>\
@@ -28,7 +28,7 @@
 /datum/technomancer/equipment/bulky_core
 	name = "Bulky Core"
 	desc = "This core has very large capacitors, however it also has a subpar fractal reactor.  The user is recommended to \
-	purchase one or more energy-generating Functions as well if using this core.  The intense weight of the core unfortunately can \
+	purchase one or more energy-generating REMOVEDctions as well if using this core.  The intense weight of the core unfortunately can \
 	cause the wear to move slightly slower, and the closeness of the capacitors causes a slight increase in incoming instability.<br>\
 	<font color='green'><b>Capacity: 20k</b></font><br>\
 	<font color='red'>Recharge: 25/s</font><br>\
@@ -90,8 +90,8 @@
 
 /datum/technomancer/equipment/overcharged
 	name = "Overcharged Core"
-	desc = "A core that was created in order to get the most power out of functions.  It does this by shoving the most power into \
-	those functions, so it is the opposite of energy efficent, however the enhancement of functions is second to none for other \
+	desc = "A core that was created in order to get the most power out of REMOVEDctions.  It does this by shoving the most power into \
+	those REMOVEDctions, so it is the opposite of energy efficent, however the enhancement of REMOVEDctions is second to none for other \
 	cores.<br>\
 	<font color='red'>Capacity: 15k (effectively 7.5k)</font><br>\
 	<font color='red'>Recharge: 40/s</font><br>\
@@ -179,7 +179,7 @@
 /datum/technomancer/equipment/scepter
 	name = "Scepter of Empowerment"
 	desc = "A gem sometimes found in the depths of asteroids makes up the basis for this device.  Energy is channeled into it from \
-	the Core and the user, causing many functions to be enhanced in various ways, so long as it is held in the off-hand.  \
+	the Core and the user, causing many REMOVEDctions to be enhanced in various ways, so long as it is held in the off-hand.  \
 	Be careful not to lose this!"
 	cost = 200
 	obj_path = /obj/item/weapon/scepter

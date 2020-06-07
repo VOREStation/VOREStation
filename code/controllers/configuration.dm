@@ -263,7 +263,7 @@ var/list/gamemode_cache = list()
 
 	// New shiny SQLite stuff.
 	// The basics.
-	var/static/sqlite_enabled = FALSE // If it should even be active. SQLite can be ran alongside other databases but you should not have them do the same functions.
+	var/static/sqlite_enabled = FALSE // If it should even be active. SQLite can be ran alongside other databases but you should not have them do the same REMOVEDctions.
 
 	// In-Game Feedback.
 	var/static/sqlite_feedback = FALSE // Feedback cannot be submitted if this is false.

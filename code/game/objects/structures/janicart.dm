@@ -117,7 +117,7 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 	..()
 
 
-//New Altclick functionality!
+//New Altclick REMOVEDctionality!
 //Altclick the cart with a mop to stow the mop away
 //Altclick the cart with a reagent container to pour things into the bucket without putting the bottle in trash
 /obj/structure/janitorialcart/AltClick(mob/living/user)

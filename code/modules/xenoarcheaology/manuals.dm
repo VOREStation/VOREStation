@@ -98,11 +98,11 @@
 					<li><b>Choose stasis field</b> - Chemical analysis on a core sample from the rock face will tell you which field is necessary to extract the find safely.</li>
 					<li><b>Setup field gen</b> - Bolt it down, choose the field, check the charge, and activate it. If you forget it, you'll wish you hadn't when that priceless
 						Uryom vase crumbles as it sees the light of day.</li>
-					<li><b>FUNCTIONAL AND SAFE digging</b> - Dig into the rock until you've cleared away a depth equal to (the anomaly depth MINUS the clearance range). The find
+					<li><b>REMOVEDCTIONAL AND SAFE digging</b> - Dig into the rock until you've cleared away a depth equal to (the anomaly depth MINUS the clearance range). The find
 						should come loose on it's own, but it will be in the midst of a chunk of rock. Use a welder or miniature excavation tool to clear away the excess.</li>
 					<li><b>FANCY AND SPEEDY digging</b> - Dig into the rock until you've cleared away a depth equal to the anomaly depth, but without any of your strokes
 						entering the clearance range.</li>
-					<li><b>The big find</b> - Sometimes, you'll chance upon something big, both literally and figuratively. Giant statues and functioning remnants of Precursor
+					<li><b>The big find</b> - Sometimes, you'll chance upon something big, both literally and figuratively. Giant statues and REMOVEDctioning remnants of Precursor
 						technology are just as exciting, to the right buyers. If your digging leaves a large boulder behind, dig into it normally and see if anything's hidden
 							inside.</li>
 				</ul><br>

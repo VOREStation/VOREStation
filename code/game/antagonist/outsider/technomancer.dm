@@ -7,8 +7,8 @@ var/datum/antagonist/technomancer/technomancers
 	role_text_plural = "Technomancers"
 	bantype = "wizard"
 	landmark_id = "wizard"
-	welcome_text = "You will need to purchase <b>functions</b> and perhaps some <b>equipment</b> from the various machines around your \
-	base. Choose your technological arsenal carefully.  Remember that without the <b>core</b> on your back, your functions are \
+	welcome_text = "You will need to purchase <b>REMOVEDctions</b> and perhaps some <b>equipment</b> from the various machines around your \
+	base. Choose your technological arsenal carefully.  Remember that without the <b>core</b> on your back, your REMOVEDctions are \
 	powerless, and therefore you will be as well.<br>\
 	In your pockets you will find a one-time use teleport device. Use it to leave the base and go to the station, when you are ready."
 	antag_sound = 'sound/effects/antag_notice/technomancer_alert.ogg'
@@ -28,7 +28,7 @@ var/datum/antagonist/technomancer/technomancers
 
 /datum/antagonist/technomancer/update_antag_mob(var/datum/mind/technomancer)
 	..()
-	technomancer.store_memory("<B>Remember:</B> Do not forget to purchase the functions and equipment you need.")
+	technomancer.store_memory("<B>Remember:</B> Do not forget to purchase the REMOVEDctions and equipment you need.")
 	technomancer.current.real_name = "[pick(wizard_first)] [pick(wizard_second)]"
 	technomancer.current.name = technomancer.current.real_name
 

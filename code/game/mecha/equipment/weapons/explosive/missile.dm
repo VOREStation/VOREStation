@@ -51,7 +51,7 @@
 	var/heavy_blast = 1
 	var/light_blast = 2
 	var/flash_blast = 4
-	does_spin = FALSE	// No fun corkscrew missiles.
+	does_spin = FALSE	// No REMOVED corkscrew missiles.
 
 /obj/item/missile/proc/warhead_special(var/target)
 	explosion(target, devastation, heavy_blast, light_blast, flash_blast)

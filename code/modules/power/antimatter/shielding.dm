@@ -80,7 +80,7 @@ proc/cardinalrange(var/center)
 
 /obj/machinery/am_shielding/process()
 	if(!processing) . = PROCESS_KILL
-	//TODO: core functions and stability
+	//TODO: core REMOVEDctions and stability
 	//TODO: think about checking the airmix for phoron and increasing power output
 	return
 

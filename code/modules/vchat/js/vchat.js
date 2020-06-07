@@ -1,17 +1,17 @@
 //The 'V' is for 'VORE' but you can pretend it's for Vue.js if you really want.
 
-(function(){
+(REMOVEDction(){
     var oldLog = console.log;
-    console.log = function (message) {
+    console.log = REMOVEDction (message) {
         send_debug(message);
         oldLog.apply(console, arguments);
     };
     var oldError = console.error;
-    console.error = function (message) {
+    console.error = REMOVEDction (message) {
         send_debug(message);
         oldError.apply(console, arguments);
     }
-    window.onerror = function (message, url, line, col, error) {
+    window.onerror = REMOVEDction (message, url, line, col, error) {
 	var stacktrace = "";
 	if(error && error.stack) {
 		stacktrace = error.stack;
@@ -82,7 +82,7 @@ var vchat_state = {
 	lastId: 0
 }
 
-function start_vchat() {
+REMOVEDction start_vchat() {
 	//Instantiate Vue.js
 	start_vue();
 
@@ -99,7 +99,7 @@ function start_vchat() {
 	//Commence the pingening
 	setInterval(check_ping, vchat_opts.msBeforeDropped);
 
-	//For fun
+	//For REMOVED
 	send_debug("VChat Loaded!");
 	//throw new Error("VChat Loaded!");
 
@@ -107,7 +107,7 @@ function start_vchat() {
 
 //Loads vue for chat usage
 var vueapp;
-function start_vue() {
+REMOVEDction start_vue() {
 	vueapp = new Vue({
 		el: '#app',
 		data: {
@@ -274,24 +274,24 @@ function start_vue() {
 				}
 			],
 		},
-		mounted: function() {
+		mounted: REMOVEDction() {
 			//Load our settings
 			this.load_settings();
 
 			var xhr = new XMLHttpRequest();
 			xhr.open('GET', 'ss13styles.css');
-			xhr.onreadystatechange = (function() {
+			xhr.onreadystatechange = (REMOVEDction() {
 				this.ext_styles = xhr.responseText;
 			}).bind(this);
 			xhr.send();
 		},
-		updated: function() {
+		updated: REMOVEDction() {
 			if(!this.editing && !this.paused) {
 				window.scrollTo(0,document.getElementById("messagebox").scrollHeight);
 			}
 		},
 		watch: {
-			reconnecting: function(newSetting, oldSetting) {
+			reconnecting: REMOVEDction(newSetting, oldSetting) {
 				if(newSetting == true && oldSetting == false) {
 					this.internal_message("Your client has lost connection to the server, or there is severe lag. Your client will reconnect if possible.");
 				} else if (newSetting == false && oldSetting == true) {
@@ -299,7 +299,7 @@ function start_vue() {
 				}
 			},
 			//Save the inverted setting to LS
-			inverted: function (newSetting) {
+			inverted: REMOVEDction (newSetting) {
 				set_storage("darkmode",newSetting);
 				if(newSetting) { //Special treatment for <body> which is outside Vue's scope and has custom css
 					document.body.classList.add("inverted");
@@ -309,13 +309,13 @@ function start_vue() {
 					switch_ui_mode(LIGHTMODE_COLORS);
 				}
 			}, 
-			crushing: function (newSetting) {
+			crushing: REMOVEDction (newSetting) {
 				set_storage("crushing",newSetting);
 			},
-			animated: function (newSetting) {
+			animated: REMOVEDction (newSetting) {
 				set_storage("animated",newSetting);
 			},
-			fontsize: function (newSetting, oldSetting) {
+			fontsize: REMOVEDction (newSetting, oldSetting) {
 				if(isNaN(newSetting)) { //Numbers only
 					this.fontsize = oldSetting;
 					return;
@@ -327,7 +327,7 @@ function start_vue() {
 				}
 				set_storage("fontsize",newSetting);
 			},
-			lineheight: function (newSetting, oldSetting) {
+			lineheight: REMOVEDction (newSetting, oldSetting) {
 				if(!isFinite(newSetting)) { //Integers only
 					this.lineheight = oldSetting;
 					return;
@@ -339,7 +339,7 @@ function start_vue() {
 				}
 				set_storage("lineheight",newSetting);
 			},
-			showingnum: function (newSetting, oldSetting) {
+			showingnum: REMOVEDction (newSetting, oldSetting) {
 				if(!isFinite(newSetting)) { //Integers only
 					this.showingnum = oldSetting;
 					return;
@@ -356,7 +356,7 @@ function start_vue() {
 				push_Topic_showingnum(this.showingnum); // Send the buffer length back to byond so we have it in case of reconnect
 				this.attempt_archive();
 			},
-			current_categories: function(newSetting, oldSetting) {
+			current_categories: REMOVEDction(newSetting, oldSetting) {
 				if(newSetting.length) {
 					this.apply_filter(newSetting);
 				}
@@ -364,15 +364,15 @@ function start_vue() {
 		},
 		computed: {
 			//Which tab is active?
-			active_tab: function() {
+			active_tab: REMOVEDction() {
 				//Had to polyfill this stupid .find since IE doesn't have EC6
-				let tab = this.tabs.find( function(tab) {
+				let tab = this.tabs.find( REMOVEDction(tab) {
 					return tab.active;
 				});
 				return tab;
 			},
 			//What color does the latency pip get?
-			ping_classes: function() {
+			ping_classes: REMOVEDction() {
 				if(!this.latency) {
 					return this.reconnecting ? "red" : "green"; //Standard
 				} 
@@ -383,7 +383,7 @@ function start_vue() {
 				else if(this.latency <= 400) { return "yellow"; }
 				else { return "grey"; }
 			},
-			current_categories: function() {
+			current_categories: REMOVEDction() {
 				if(this.active_tab == this.tabs[0]) {
 					return []; //Everything, no filtering, special case for speed.
 				} else {
@@ -393,7 +393,7 @@ function start_vue() {
 		},
 		methods: {
 			//Load the chat settings
-			load_settings: function() {
+			load_settings: REMOVEDction() {
 				this.inverted = get_storage("darkmode", false);
 				this.crushing = get_storage("crushing", 3);
 				this.animated = get_storage("animated", false);
@@ -406,7 +406,7 @@ function start_vue() {
 
 				this.load_tabs();
 			},
-			load_tabs: function() {
+			load_tabs: REMOVEDction() {
 				var loadstring = get_storage("tabs")
 				if(!loadstring)
 					return;
@@ -424,21 +424,21 @@ function start_vue() {
 
 				this.tabs.push.apply(this.tabs, loadfile.tabs);
 			},
-			save_tabs: function() {
+			save_tabs: REMOVEDction() {
 				var savefile = {
 					version: vchat_opts.vchatTabsVer,
 					tabs: []
 				}
 
-				//The tabs contain a bunch of vue stuff that gets funky when you try to serialize it with stringify, so we 'purify' it
-				this.tabs.forEach(function(tab){
+				//The tabs contain a bunch of vue stuff that gets REMOVEDky when you try to serialize it with stringify, so we 'purify' it
+				this.tabs.forEach(REMOVEDction(tab){
 					if(tab.immutable)
 						return;
 					
 					var name = tab.name;
 					
 					var categories = [];
-					tab.categories.forEach(function(category){categories.push(category);});
+					tab.categories.forEach(REMOVEDction(category){categories.push(category);});
 
 					var cleantab = {name: name, categories: categories, immutable: false, active: false}
 
@@ -449,28 +449,28 @@ function start_vue() {
 				set_storage("tabs", savestring);
 			},
 			//Change to another tab
-			switchtab: function(tab) {
+			switchtab: REMOVEDction(tab) {
 				if(tab == this.active_tab) return;
 				this.active_tab.active = false;
 				tab.active = true;
 
-				tab.categories.forEach( function(cls) {
+				tab.categories.forEach( REMOVEDction(cls) {
 					this.unread_messages[cls] = 0;
 				}, this);
 
 				this.apply_filter(this.current_categories);
 			},
 			//Toggle edit mode
-			editmode: function() {
+			editmode: REMOVEDction() {
 				this.editing = !this.editing;
 				this.save_tabs();
 			},
 			//Toggle autoscroll
-			pause: function() {
+			pause: REMOVEDction() {
 				this.paused = !this.paused;
 			},
 			//Create a new tab (stupid lack of classes in ES5...)
-			newtab: function() {
+			newtab: REMOVEDction() {
 				this.tabs.push({
 					name: "New Tab",
 					categories: [],
@@ -480,7 +480,7 @@ function start_vue() {
 				this.switchtab(this.tabs[this.tabs.length - 1]);
 			},
 			//Rename an existing tab
-			renametab: function() {
+			renametab: REMOVEDction() {
 				if(this.active_tab.immutable) {
 					return;
 				}
@@ -492,7 +492,7 @@ function start_vue() {
 				tabtorename.name = newname;
 			},
 			//Delete the currently active tab
-			deltab: function(tab) {
+			deltab: REMOVEDction(tab) {
 				if(!tab) {
 					tab = this.active_tab;
 				}
@@ -502,7 +502,7 @@ function start_vue() {
 				this.switchtab(this.tabs[0]);
 				this.tabs.splice(this.tabs.indexOf(tab), 1);
 			},
-			movetab: function(tab, shift) {
+			movetab: REMOVEDction(tab, shift) {
 				if(!tab || tab.immutable) {
 					return;
 				}
@@ -510,20 +510,20 @@ function start_vue() {
 				var to = at + shift;
 				this.tabs.splice(to, 0, this.tabs.splice(at, 1)[0]);
 			},
-			tab_unread_count: function(tab) {
+			tab_unread_count: REMOVEDction(tab) {
 				var unreads = 0;
 				var thisum = this.unread_messages;
-				tab.categories.find( function(cls){
+				tab.categories.find( REMOVEDction(cls){
 					if(thisum[cls]) {
 						unreads += thisum[cls];
 					}
 				});
 				return unreads;
 			},
-			tab_unread_categories: function(tab) {
+			tab_unread_categories: REMOVEDction(tab) {
 				var unreads = false;
 				var thisum = this.unread_messages;
-				tab.categories.find( function(cls){
+				tab.categories.find( REMOVEDction(cls){
 					if(thisum[cls]) {
 						unreads = true;
 						return true;
@@ -532,7 +532,7 @@ function start_vue() {
 
 				return { red: unreads, grey: !unreads};
 			},
-			attempt_archive: function() {
+			attempt_archive: REMOVEDction() {
 				var wiggle = 20; //Wiggle room to prevent hysterisis effects. Slice off 20 at a time.
 				//Pushing out old messages
 				if(this.messages.length > this.showingnum) {//Time to slice off old messages
@@ -546,27 +546,27 @@ function start_vue() {
 				}
 				*/
 			},
-			apply_filter: function(cat_array) {
+			apply_filter: REMOVEDction(cat_array) {
 				//Clean up the array
 				this.shown_messages.splice(0);
 				this.unshown_messages = 0;
 
 				//For each message, try to find it's category in the categories we're showing
-				this.messages.forEach( function(msg){
+				this.messages.forEach( REMOVEDction(msg){
 					if(cat_array.indexOf(msg.category) > -1) { //Returns the position in the array, and -1 for not found
 						this.shown_messages.push(msg);
 					}
 				}, this);
 
 				//For each message, try to find it's category in the categories we're showing
-				this.archived_messages.forEach( function(msg){
+				this.archived_messages.forEach( REMOVEDction(msg){
 					if(cat_array.indexOf(msg.category) > -1) { //Returns the position in the array, and -1 for not found
 						this.unshown_messages++;
 					}
 				}, this);
 			},
 			//Push a new message into our array
-			add_message: function(message) {
+			add_message: REMOVEDction(message) {
 				//IE doesn't support the 'class' syntactic sugar so we're left making our own object.
 				let newmessage = {
 					time: message.time,
@@ -610,7 +610,7 @@ function start_vue() {
 				this.messages.push(newmessage);
 			},
 			//Push an internally generated message into our array
-			internal_message: function(message) {
+			internal_message: REMOVEDction(message) {
 				let newmessage = {
 					time: this.messages.length ? this.messages.slice(-1).time+1 : 0,
 					category: "vc_system",
@@ -619,7 +619,7 @@ function start_vue() {
 				newmessage.id = ++vchat_state.lastId;
 				this.messages.push(newmessage);
 			},
-			on_mouseup: function(event) {
+			on_mouseup: REMOVEDction(event) {
 				// Focus map window on mouseup so hotkeys work.  Exception for if they highlighted text or clicked an input.
 				let ele = event.target;
 				let textSelected = ('getSelection' in window) && window.getSelection().isCollapsed === false;
@@ -630,7 +630,7 @@ function start_vue() {
 					event.target.click();
 				}
 			},
-			click_message: function(event) {
+			click_message: REMOVEDction(event) {
 				let ele = event.target;
 				if(ele.tagName === "A") {
 					event.stopPropagation();
@@ -646,7 +646,7 @@ function start_vue() {
 				}
 			},
 			//Derive a vchat category based on css classes
-			get_category: function(message) {
+			get_category: REMOVEDction(message) {
 				if(!vchat_state.ready) {
 					push_Topic('not_ready');
 					return;
@@ -657,7 +657,7 @@ function start_vue() {
 
 				let category = "nomatch"; //What we use if the classes aren't anything we know.
 				if(!evaluating) return category;
-				this.type_table.find( function(type) {
+				this.type_table.find( REMOVEDction(type) {
 					if(evaluating.msMatchesSelector(type.matches)) {
 						category = type.becomes;
 						return true;
@@ -666,12 +666,12 @@ function start_vue() {
 
 				return category;
 			},
-			save_chatlog: function() {
+			save_chatlog: REMOVEDction() {
 				var textToSave = "<html><head><style>"+this.ext_styles+"</style></head><body>";
 				
 				var messagesToSave = this.archived_messages.concat(this.messages);
 
-				messagesToSave.forEach( function(message) {
+				messagesToSave.forEach( REMOVEDction(message) {
 					textToSave += message.content;
 					if(message.repeats > 1) {
 						textToSave += "(x"+message.repeats+")";
@@ -718,10 +718,10 @@ function start_vue() {
 					saved = window.navigator.msSaveOrOpenBlob(blob, filename);
 				}
 			},
-			do_latency_test: function() {
+			do_latency_test: REMOVEDction() {
 				send_latency_check();
 			},
-			blur_this: function(event) {
+			blur_this: REMOVEDction(event) {
 				event.target.blur();
 			}
 		}
@@ -733,32 +733,32 @@ function start_vue() {
 * Actual Methods
 *
 ************/
-function check_ping() {
+REMOVEDction check_ping() {
 	var time_ago = Date.now() - vchat_state.lastPingReceived;
 	if(time_ago > vchat_opts.msBeforeDropped)
 		vueapp.reconnecting = true;
 }
 
 //Send a 'ping' to byond
-function send_latency_check() {
+REMOVEDction send_latency_check() {
 	if(vchat_state.latency_sent)
 			return;
 	
 	vchat_state.latency_sent = Date.now();
 	vueapp.latency = "?";
 	push_Topic("ping");
-	setTimeout(function() {
+	setTimeout(REMOVEDction() {
 		if(vchat_state.latency_ms == "?") {
 			vchat_state.latency_ms = 999;
 		}
 	}, 1000); // 1 second to reply otherwise we mark it as bad
-	setTimeout(function() {
+	setTimeout(REMOVEDction() {
 		vchat_state.latency_sent = 0;
 		vueapp.latency = 0;
 	}, 5000); //5 seconds to display ping time overall
 }
 
-function get_latency_check() {
+REMOVEDction get_latency_check() {
 	if(!vchat_state.latency_sent) {
 		return; //Too late
 	}
@@ -767,7 +767,7 @@ function get_latency_check() {
 }
 
 //We accept double-url-encoded JSON strings because Byond is garbage and UTF-8 encoded url_encode() text has crazy garbage in it.
-function byondDecode(message) {
+REMOVEDction byondDecode(message) {
 	
 	//Byond encodes spaces as pluses?! This is 1998 I guess.
 	message = message.replace(/\+/g, "%20");
@@ -779,11 +779,11 @@ function byondDecode(message) {
 	return JSON.parse(message);
 }
 
-//This is the function byond actually communicates with using byond's client << output() method.
-function putmessage(messages) {
+//This is the REMOVEDction byond actually communicates with using byond's client << output() method.
+REMOVEDction putmessage(messages) {
 	messages = byondDecode(messages);
 	if (Array.isArray(messages)) {
-		messages.forEach(function(message) {
+		messages.forEach(REMOVEDction(message) {
 			vueapp.add_message(message);
 		});
 	} else if (typeof messages === 'object') {
@@ -792,32 +792,32 @@ function putmessage(messages) {
 }
 
 //Send an internal message generated in the javascript
-function system_message(message) {
+REMOVEDction system_message(message) {
 	vueapp.internal_message(message);
 }
 
 //This is the other direction of communication, to push a Topic message back
-function push_Topic(topic_uri) {
+REMOVEDction push_Topic(topic_uri) {
 	window.location = '?_src_=chat&proc=' + topic_uri; //Yes that's really how it works.
 }
 
 // Send the showingnum back to byond
-function push_Topic_showingnum(topic_num) {
+REMOVEDction push_Topic_showingnum(topic_num) {
 	window.location = '?_src_=chat&showingnum=' + topic_num;
 }
 
 //Tells byond client to focus the main map window.
-function focusMapWindow() {
+REMOVEDction focusMapWindow() {
 	window.location = 'byond://winset?mapwindow.map.focus=true';
 }
 
 //Debug event
-function send_debug(message) {
+REMOVEDction send_debug(message) {
 	push_Topic("debug&param[message]="+encodeURIComponent(message));
 }
 
 //A side-channel to send events over that aren't just chat messages, if necessary.
-function get_event(event) {
+REMOVEDction get_event(event) {
 	if(!vchat_state.ready) {
 		push_Topic("not_ready");
 		return;
@@ -866,7 +866,7 @@ function get_event(event) {
 }
 
 //Send information retrieved from storage
-function send_client_data() {
+REMOVEDction send_client_data() {
 	let client_data = {
 		ip: get_storage("ip"),
 		cid: get_storage("cid"),
@@ -876,12 +876,12 @@ function send_client_data() {
 }
 
 //Newer localstorage methods
-function set_localstorage(key, value) {
+REMOVEDction set_localstorage(key, value) {
 	let localstorage = window.localStorage;
 	localstorage.setItem(vchat_opts.cookiePrefix+key,value);
 }
 
-function get_localstorage(key, deffo) {
+REMOVEDction get_localstorage(key, deffo) {
 	let localstorage = window.localStorage;
 	let value = localstorage.getItem(vchat_opts.cookiePrefix+key);
 	
@@ -901,18 +901,18 @@ function get_localstorage(key, deffo) {
 }
 
 //Older cookie methods
-function set_cookie(key, value) {
+REMOVEDction set_cookie(key, value) {
 	let now = new Date();
 	now.setFullYear(now.getFullYear() + 1);
 	let then = now.toUTCString();
 	document.cookie = vchat_opts.cookiePrefix+key+"="+value+";expires="+then+";path=/";
 }
 
-function get_cookie(key, deffo) {
+REMOVEDction get_cookie(key, deffo) {
 	var candidates = {cookie: null, localstorage: null, indexeddb: null};
 	let cookie_array = document.cookie.split(';');
 	let cookie_object = {};
-	cookie_array.forEach( function(element) {
+	cookie_array.forEach( REMOVEDction(element) {
 		let clean = element.replace(vchat_opts.cookiePrefix,"").trim(); //Strip the prefix, trim whitespace
 		let equals = clean.search("="); //Find the equals
 		let left = decodeURIComponent(clean.substring(0,equals)); //From start to one char before equals
@@ -944,10 +944,10 @@ var SKIN_ELEMENTS = [
 	/* Rpane */ "rpane", "rpane.rpanewindow", "rpane.mediapanel",
 ];
 
-function switch_ui_mode(options) {
-	doWinset(SKIN_BUTTONS.reduce(function(params, ctl) {params[ctl + ".background-color"] = options.buttonBgColor; return params;}, {}));
-	doWinset(SKIN_BUTTONS.reduce(function(params, ctl) {params[ctl + ".text-color"] = options.buttonTextColor; return params;}, {}));
-	doWinset(SKIN_ELEMENTS.reduce(function(params, ctl) {params[ctl + ".background-color"] = options.windowBgColor; return params;}, {}));
+REMOVEDction switch_ui_mode(options) {
+	doWinset(SKIN_BUTTONS.reduce(REMOVEDction(params, ctl) {params[ctl + ".background-color"] = options.buttonBgColor; return params;}, {}));
+	doWinset(SKIN_BUTTONS.reduce(REMOVEDction(params, ctl) {params[ctl + ".text-color"] = options.buttonTextColor; return params;}, {}));
+	doWinset(SKIN_ELEMENTS.reduce(REMOVEDction(params, ctl) {params[ctl + ".background-color"] = options.windowBgColor; return params;}, {}));
 	doWinset("infowindow", {
 		"background-color": options.tabBackgroundColor,
 		"text-color": options.tabTextColor
@@ -961,7 +961,7 @@ function switch_ui_mode(options) {
 	});
 }
 
-function doWinset(control_id, params) {
+REMOVEDction doWinset(control_id, params) {
 	if (typeof params === 'undefined') {
 		params = control_id;  // Handle single-argument use case.
 		control_id = null;
@@ -970,7 +970,7 @@ function doWinset(control_id, params) {
 	if (control_id) {
 		url += ("id=" + control_id + "&");
 	}
-	url += Object.keys(params).map(function(ctl) {
+	url += Object.keys(params).map(REMOVEDction(ctl) {
 		return ctl + "=" + encodeURIComponent(params[ctl]);
 	}).join("&");
 	window.location = url;

@@ -293,7 +293,7 @@ obj/machinery/lapvend/attackby(obj/item/weapon/W as obj, mob/user as mob)
 			return 0
 
 	if(total_price > customer_account.money)
-		ping("Insufficient funds in account.")
+		ping("Insufficient REMOVEDds in account.")
 		return 0
 	else
 		customer_account.money -= total_price

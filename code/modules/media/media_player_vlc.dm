@@ -3,9 +3,9 @@
 var/const/PLAYER_VLC_HTML={"
 <object classid="clsid:9BE31822-FDAD-461B-AD51-BE1D1C159921" codebase="http://download.videolan.org/pub/videolan/vlc/last/win32/axvlc.cab" id="player"></object>
 	<script>
-function noErrorMessages () { return true; }
+REMOVEDction noErrorMessages () { return true; }
 window.onerror = noErrorMessages;
-function SetMusic(url, time, volume) {
+REMOVEDction SetMusic(url, time, volume) {
 	var vlc = document.getElementById('player');
 
 	// Stop playing

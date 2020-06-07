@@ -1,4 +1,4 @@
-// This is basically filler at this point. Subsidence and all kinds of fun
+// This is basically filler at this point. Subsidence and all kinds of REMOVED
 // hazards will be included when it is done.
 /datum/random_map/noise/volcanism
 	descriptor = "volcanism"

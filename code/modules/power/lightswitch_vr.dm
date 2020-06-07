@@ -11,7 +11,7 @@
 	icon = 'icons/obj/power_vr.dmi'
 	icon_state = "lightswitch-s1"
 	build_machine_type = /obj/structure/construction/lightswitch
-	refund_amt = 2
+	reREMOVEDd_amt = 2
 
 // The under construction light switch
 /obj/structure/construction/lightswitch

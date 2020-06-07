@@ -72,8 +72,8 @@ var/global/datum/ntnet/ntnet_global = new()
 
 	return FALSE
 
-// Checks whether NTNet operates. If parameter is passed checks whether specific function is enabled.
-/datum/ntnet/proc/check_function(var/specific_action = 0)
+// Checks whether NTNet operates. If parameter is passed checks whether specific REMOVEDction is enabled.
+/datum/ntnet/proc/check_REMOVEDction(var/specific_action = 0)
 	if(!relays || !relays.len) // No relays found. NTNet is down
 		return 0
 
@@ -157,11 +157,11 @@ var/global/datum/ntnet/ntnet_global = new()
 	setting_maxlogcount = lognumber
 	add_log("Configuration Updated. Now keeping [setting_maxlogcount] logs in system memory.")
 
-/datum/ntnet/proc/toggle_function(var/function)
-	if(!function)
+/datum/ntnet/proc/toggle_REMOVEDction(var/REMOVEDction)
+	if(!REMOVEDction)
 		return
-	function = text2num(function)
-	switch(function)
+	REMOVEDction = text2num(REMOVEDction)
+	switch(REMOVEDction)
 		if(NTNET_SOFTWAREDOWNLOAD)
 			setting_softwaredownload = !setting_softwaredownload
 			add_log("Configuration Updated. Wireless network firewall now [setting_softwaredownload ? "allows" : "disallows"] connection to software repositories.")

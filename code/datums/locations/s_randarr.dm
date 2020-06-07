@@ -70,7 +70,7 @@
 
 /datum/locations/mi_dynh_al_manq
 	name = "Mi'dynh Al'Manq"
-	desc = "a large NT-funded city, providing (cramped) housing for less-fortunate Tajaran, hospitals, schooling, job training, \
+	desc = "a large NT-REMOVEDded city, providing (cramped) housing for less-fortunate Tajaran, hospitals, schooling, job training, \
 	job certification, space ports, and more. Many humans also live here, and operate many facilities."
 
 /datum/locations/contai
@@ -121,7 +121,7 @@
 	name = "S'ranjir"
 	desc = "The larger world that Ahdomai orbits. It is often mythologically associated as S'randarr's Shield, and is informally known \
 	as Shield among the Tajaran and formally among the humans. It is uninhabitable, as it has a largely methane atmosphere and lacks water \
-	or other features necessary to life. Nonetheless, a domed, underdeveloped colony exists, called Hran'vasa, heavily funded by Osiris Atmospherics, \
+	or other features necessary to life. Nonetheless, a domed, underdeveloped colony exists, called Hran'vasa, heavily REMOVEDded by Osiris Atmospherics, \
 	practically the only non-Ahdomain official holding for the Tajaran race. It is incredibly dependant on outside support and imports for life, \
 	but has a high export of noble gasses for corporate use."
 

@@ -31,7 +31,7 @@
 		return
 	var/obj/item/weapon/computer_hardware/processor_unit/CPU = computer.processor_unit
 	var/obj/item/weapon/computer_hardware/card_slot/RFID = computer.card_slot
-	if(!istype(CPU) || !CPU.check_functionality() || !istype(RFID) || !RFID.check_functionality())
+	if(!istype(CPU) || !CPU.check_REMOVEDctionality() || !istype(RFID) || !RFID.check_REMOVEDctionality())
 		message = "A fatal hardware error has been detected."
 		return
 	if(!istype(RFID.stored_card))
@@ -61,7 +61,7 @@
 			return 1
 		var/obj/item/weapon/computer_hardware/processor_unit/CPU = computer.processor_unit
 		var/obj/item/weapon/computer_hardware/card_slot/RFID = computer.card_slot
-		if(!istype(CPU) || !CPU.check_functionality() || !istype(RFID) || !RFID.check_functionality())
+		if(!istype(CPU) || !CPU.check_REMOVEDctionality() || !istype(RFID) || !RFID.check_REMOVEDctionality())
 			message = "A fatal hardware error has been detected."
 			return
 		if(!istype(RFID.stored_card))

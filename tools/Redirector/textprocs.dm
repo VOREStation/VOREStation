@@ -2,7 +2,7 @@
 	Written by contributor Doohl for the /tg/station Open Source project, hosted on Google Code.
 	(2012)
 
-	NOTE: The below functions are part of BYOND user Deadron's "TextHandling" library.
+	NOTE: The below REMOVEDctions are part of BYOND user Deadron's "TextHandling" library.
 		[ http://www.byond.com/developer/Deadron/TextHandling ]
  */
 

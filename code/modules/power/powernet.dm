@@ -33,7 +33,7 @@
 	STOP_PROCESSING_POWERNET(src)
 	return ..()
 
-//Returns the amount of excess power (before refunding to SMESs) from last tick.
+//Returns the amount of excess power (before reREMOVEDding to SMESs) from last tick.
 //This is for machines that might adjust their power consumption using this data.
 /datum/powernet/proc/last_surplus()
 	return max(avail - load, 0)

@@ -68,9 +68,9 @@ var/list/ai_verbs_default = list(
 	var/hologram_follow = 1 //This is used for the AI eye, to determine if a holopad's hologram should follow it or not.
 	var/is_dummy = 0 //Used to prevent dummy AIs from spawning with communicators.
 	//NEWMALF VARIABLES
-	var/malfunctioning = 0						// Master var that determines if AI is malfunctioning.
+	var/malREMOVEDctioning = 0						// Master var that determines if AI is malREMOVEDctioning.
 	var/datum/malf_hardware/hardware = null		// Installed piece of hardware.
-	var/datum/malf_research/research = null		// Malfunction research datum.
+	var/datum/malf_research/research = null		// MalREMOVEDction research datum.
 	var/obj/machinery/power/apc/hack = null		// APC that is currently being hacked.
 	var/list/hacked_apcs = null					// List of all hacked APCs
 	var/APU_power = 0							// If set to 1 AI runs on APU power
@@ -256,7 +256,7 @@ var/list/ai_verbs_default = list(
 				Module: [R.modtype] | Loc: [get_area_name(R, TRUE)] | Status: [robot_status]"))
 			stat(null, text("AI shell beacons detected: [LAZYLEN(GLOB.available_ai_shells)]")) //Count of total AI shells
 		else
-			stat(null, text("Systems nonfunctional"))
+			stat(null, text("Systems nonREMOVEDctional"))
 
 
 /mob/living/silicon/ai/proc/setup_icon()

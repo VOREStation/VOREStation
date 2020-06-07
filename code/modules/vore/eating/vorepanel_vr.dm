@@ -375,7 +375,7 @@
 	if(href_list["int_help"])
 		alert("These control how your belly responds to someone using 'resist' while inside you. The percent chance to trigger each is listed below, \
 				and you can change them to whatever you see fit. Setting them to 0% will disable the possibility of that interaction. \
-				These only function as long as interactions are turned on in general. Keep in mind, the 'belly mode' interactions (digest/absorb) \
+				These only REMOVEDction as long as interactions are turned on in general. Keep in mind, the 'belly mode' interactions (digest/absorb) \
 				will affect all prey in that belly, if one resists and triggers digestion/absorption. If multiple trigger at the same time, \
 				only the first in the order of 'Escape > Transfer > Absorb > Digest' will occur.","Interactions Help")
 		return FALSE //Force update

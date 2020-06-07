@@ -1,5 +1,5 @@
 /*
-// Contains VOREStation type2type functions
+// Contains VOREStation type2type REMOVEDctions
 // list2text - takes delimiter and returns text
 // text2list - takes delimiter, and creates list
 //

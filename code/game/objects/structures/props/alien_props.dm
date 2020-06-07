@@ -65,7 +65,7 @@
 		interactions inbetween, or the distance between the true source of power and the void powered object, which  could \
 		be vast, possibly across star systems or even originating from outside the galaxy.</li>\
 	</ul>\
-	Regardless of the method, it is remarkable how the electrical systems have resisted entrophy and remained functional to this day. \
+	Regardless of the method, it is remarkable how the electrical systems have resisted entrophy and remained REMOVEDctional to this day. \
 	Unfortunately, the extreme rarity of these objects, combined with small throughput, means that humanity will not become a \
 	post-scarcity civilization from this discovery, but instead might have a few permanent flashlights."
 	unlocked_by_all = list(

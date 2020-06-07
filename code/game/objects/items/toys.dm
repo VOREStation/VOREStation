@@ -409,7 +409,7 @@
 	var/cooldown = 0
 	drop_sound = 'sound/mecha/mechstep.ogg'
 
-//all credit to skasi for toy mech fun ideas
+//all credit to skasi for toy mech REMOVED ideas
 /obj/item/toy/prize/attack_self(mob/user as mob)
 	if(cooldown < world.time - 8)
 		to_chat(user, "<span class='notice'>You play with [src].</span>")

@@ -2,7 +2,7 @@
 
 /obj/item/weapon/spell/modifier/mend_all
 	name = "mend all"
-	desc = "One function to heal them all."
+	desc = "One REMOVEDction to heal them all."
 	icon_state = "mend_all"
 	cast_methods = CAST_MELEE
 	aspect = ASPECT_BIOMED

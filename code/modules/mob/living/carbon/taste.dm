@@ -26,7 +26,7 @@ calculate text size per text.
 	var/minimum_percent = 15
 	if(ishuman(taster))
 		var/mob/living/carbon/human/H = taster
-		minimum_percent = round(15/(H.species.taste_sensitivity)) //VOREStation Edit - Rule of fun! Synths can taste fine!
+		minimum_percent = round(15/(H.species.taste_sensitivity)) //VOREStation Edit - Rule of REMOVED! Synths can taste fine!
 
 	var/list/out = list()
 	var/list/tastes = list() //descriptor = strength

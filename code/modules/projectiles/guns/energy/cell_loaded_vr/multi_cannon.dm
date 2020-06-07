@@ -1,4 +1,4 @@
-//Why is this in here when it's not a subtype of cell_loaded? Because it has a similar function, and I couldn't be assed to find a better suited spot.
+//Why is this in here when it's not a subtype of cell_loaded? Because it has a similar REMOVEDction, and I couldn't be assed to find a better suited spot.
 
 /obj/item/weapon/gun/projectile/multi_cannon
 	name = "Curabitur Cannon"

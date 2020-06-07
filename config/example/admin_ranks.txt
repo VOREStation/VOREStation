@@ -13,7 +13,7 @@
 
 # KEYWORDS:
 # +ADMIN = general admin tools, verbs etc
-# +FUN = events, other event-orientated actions. Access to the fun secrets in the secrets panel.
+# +REMOVED = events, other event-orientated actions. Access to the REMOVED secrets in the secrets panel.
 # +BAN = the ability to ban, jobban and fullban
 # +STEALTH = the ability to stealthmin (make yourself appear with a fake name to everyone but other admins
 # +POSSESS = the ability to possess objects
@@ -24,7 +24,7 @@
 # +VAREDIT = everyone may view viewvars/debugvars/whatever you call it. This keyword allows you to actually EDIT those variables.
 # +RIGHTS (or +PERMISSIONS) = allows you to promote and/or demote people.
 # +SOUND (or +SOUNDS) = allows you to upload and play sounds
-# +SPAWN (or +CREATE) = mob transformations, spawning of most atoms including mobs (high-risk atoms, e.g. blackholes, will require the +FUN flag too)
+# +SPAWN (or +CREATE) = mob transformations, spawning of most atoms including mobs (high-risk atoms, e.g. blackholes, will require the +REMOVED flag too)
 # +EVENT = a group of verbs that make it possible to run an event, or other badminnery.
 # +EVERYTHING (or +HOST or +ALL) = Simply gives you everything without having to type every flag
 
@@ -34,7 +34,7 @@ Mentor                  +MENTOR
 
 Admin Candidate	+ADMIN
 Trial Admin		+@ +SPAWN +REJUV +VAREDIT +BAN
-Badmin			+@ +POSSESS +BUILDMODE +SERVER +FUN
+Badmin			+@ +POSSESS +BUILDMODE +SERVER +REMOVED
 Game Admin		+@ +STEALTH +SOUNDS +DEBUG +PERMISSIONS
 Game Master		+EVERYTHING
 Head Admin		+EVERYTHING

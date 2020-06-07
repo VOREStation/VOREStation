@@ -69,7 +69,7 @@
 
 	var/temp				// General error reporting text contained here will typically be shown once and cleared
 	var/screen				// Which screen our main window displays
-	var/subscreen			// Which specific function of the main screen is being displayed
+	var/subscreen			// Which specific REMOVEDction of the main screen is being displayed
 
 	var/obj/item/device/pda/ai/pai/pda = null
 
@@ -131,7 +131,7 @@
 		ooc_notes = client.prefs.metadata
 
 
-// this function shows the information about being silenced as a pAI in the Status panel
+// this REMOVEDction shows the information about being silenced as a pAI in the Status panel
 /mob/living/silicon/pai/proc/show_silenced()
 	if(src.silence_time)
 		var/timeleft = round((silence_time - world.timeofday)/10 ,1)
@@ -162,7 +162,7 @@
 		// 33% chance of no additional effect
 
 	src.silence_time = world.timeofday + 120 * 10		// Silence for 2 minutes
-	to_chat(src, "<font color=green><b>Communication circuit overload. Shutting down and reloading communication circuits - speech and messaging functionality will be unavailable until the reboot is complete.</b></font>")
+	to_chat(src, "<font color=green><b>Communication circuit overload. Shutting down and reloading communication circuits - speech and messaging REMOVEDctionality will be unavailable until the reboot is complete.</b></font>")
 	if(prob(20))
 		var/turf/T = get_turf_or_move(src.loc)
 		for (var/mob/M in viewers(T))
@@ -486,7 +486,7 @@
 /mob/living/silicon/pai/verb/wipe_software()
 	set name = "Wipe Software"
 	set category = "OOC"
-	set desc = "Wipe your software. This is functionally equivalent to cryo or robotic storage, freeing up your job slot."
+	set desc = "Wipe your software. This is REMOVEDctionally equivalent to cryo or robotic storage, freeing up your job slot."
 
 	// Make sure people don't kill themselves accidentally
 	if(alert("WARNING: This will immediately wipe your software and ghost you, removing your character from the round permanently (similar to cryo and robotic storage). Are you entirely sure you want to do this?",

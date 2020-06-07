@@ -1,6 +1,6 @@
 /datum/technomancer/spell/targeting_matrix
 	name = "Targeting Matrix"
-	desc = "Automatically targets and fires a ranged weapon or function at a non-friendly target near a targeted tile.  \
+	desc = "Automatically targets and fires a ranged weapon or REMOVEDction at a non-friendly target near a targeted tile.  \
 	Each target assisted attack costs some energy and instability."
 	cost = 50
 	ability_icon_state = "tech_targetingmatrix"

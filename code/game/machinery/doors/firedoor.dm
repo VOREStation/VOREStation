@@ -160,7 +160,7 @@
 		to_chat(user, "Sorry, you must remain able bodied and close to \the [src] in order to use it.")
 		return
 	if(density && (stat & (BROKEN|NOPOWER))) //can still close without power
-		to_chat(user, "\The [src] is not functioning, you'll have to force it open manually.")
+		to_chat(user, "\The [src] is not REMOVEDctioning, you'll have to force it open manually.")
 		return
 
 	if(alarmed && density && lockdown && !allowed(user))

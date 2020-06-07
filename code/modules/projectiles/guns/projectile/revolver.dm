@@ -13,7 +13,7 @@
 
 /obj/item/weapon/gun/projectile/revolver/verb/spin_cylinder()
 	set name = "Spin cylinder"
-	set desc = "Fun when you're bored out of your skull."
+	set desc = "REMOVED when you're bored out of your skull."
 	set category = "Object"
 
 	chamber_offset = 0
@@ -236,7 +236,7 @@ obj/item/weapon/gun/projectile/revolver/detective45/verb/rename_gun()
 
 /obj/item/weapon/gun/projectile/revolver/lemat/spin_cylinder()
 	set name = "Spin cylinder"
-	set desc = "Fun when you're bored out of your skull."
+	set desc = "REMOVED when you're bored out of your skull."
 	set category = "Object"
 
 	chamber_offset = 0

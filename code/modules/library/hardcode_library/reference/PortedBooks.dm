@@ -306,7 +306,7 @@ Category: Reference
 				<ul>
 				<li><b>Stay aware of your surroundings.</b></li>
 				</ul>
-				<p class="indent">Keep track of the local atmosphere. What is the pressure? Is it rising or falling? A pressure of 101 kPA is optimal for human survival, but you can survive conditions as low as 80 kPA for extended periods. You can check the pressure on the air alarms placed throughout the station or with your PDA's atmospheric scanner function. Make sure to check the pressure several times in quick succession, so you can know whether it is rising or falling.</p>
+				<p class="indent">Keep track of the local atmosphere. What is the pressure? Is it rising or falling? A pressure of 101 kPA is optimal for human survival, but you can survive conditions as low as 80 kPA for extended periods. You can check the pressure on the air alarms placed throughout the station or with your PDA's atmospheric scanner REMOVEDction. Make sure to check the pressure several times in quick succession, so you can know whether it is rising or falling.</p>
 				<ul>
 				<li><b>Avoid opening fire locks.</b></li>
 				</ul>

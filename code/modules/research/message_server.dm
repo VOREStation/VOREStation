@@ -51,7 +51,7 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 	icon = 'icons/obj/machines/research.dmi'
 	icon_state = "server"
 	name = "Messaging Server"
-	desc = "Facilitates both PDA messages and request console functions."
+	desc = "Facilitates both PDA messages and request console REMOVEDctions."
 	density = 1
 	anchored = 1.0
 	use_power = USE_POWER_IDLE
@@ -72,7 +72,7 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 /obj/machinery/message_server/New()
 	message_servers += src
 	decryptkey = GenerateKey()
-	send_pda_message("System Administrator", "system", "This is an automated message. The messaging system is functioning correctly.")
+	send_pda_message("System Administrator", "system", "This is an automated message. The messaging system is REMOVEDctioning correctly.")
 	..()
 	return
 

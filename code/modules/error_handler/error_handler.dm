@@ -109,7 +109,7 @@ GLOBAL_VAR_INIT(total_runtimes_skipped, 0)
 		return
 
 	if(extra_info)
-		// Adding extra info adds two newlines, because parsing runtimes is funky
+		// Adding extra info adds two newlines, because parsing runtimes is REMOVEDky
 		if(islist(extra_info))
 			e.desc = "  [jointext(extra_info, "\n  ")]\n\n" + e.desc
 		else

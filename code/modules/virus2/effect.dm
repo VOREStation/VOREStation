@@ -312,7 +312,7 @@
 	if(prob(66))
 		mob.say("*giggle")
 	else
-		to_chat(mob, "<span class='notice'>What's so funny?</span>")
+		to_chat(mob, "<span class='notice'>What's so REMOVEDny?</span>")
 
 /datum/disease2/effect/confusion
 	name = "Topographical Cretinism"

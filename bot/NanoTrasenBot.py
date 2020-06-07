@@ -2,7 +2,7 @@
 # This script is shared under the
 # Creative Commons Attribution-ShareAlike 3.0 license (CC BY-SA 3.0)
 # Added clause to Attribution:
-# - You may not remove or hide the '<Bot_name> who created you?' functionality
+# - You may not remove or hide the '<Bot_name> who created you?' REMOVEDctionality
 # and you may not modify the name given in the response.
 
 
@@ -87,9 +87,9 @@ else:
    from YTCv3 import YTCV2 #Downgraded version supports Cache disabling, but is slower
 from save_load import save,load
 if psyco_exists:
-   def psyco_bond(func):
-      psyco.bind(func)
-      return func.__name__+" Psycofied"
+   def psyco_bond(REMOVEDc):
+      psyco.bind(REMOVEDc)
+      return REMOVEDc.__name__+" Psycofied"
    for a in [rtd,srtd,C_heaortai.heaortai,sbna,YTCV2,fsample,C_rot13.rot13,C_eightball.eightball,fsample,
              C_eightball.eightball,C_sarcasticball.sarcasticball,Marakov_Chain.form_sentence,Marakov_Chain.give_data]:
       print psyco_bond(a)
@@ -322,7 +322,7 @@ questions = ["Is USER nicer than USER?","Do you like me?","Is SELF a good name?"
              "Am I better than you?",
              "01100001011100100110010100100000011110010110111101110101001000000111010001101000011001010111001001100101",
              #Are you there?
-             "Do you have more functions than I can possibly imagine?",
+             "Do you have more REMOVEDctions than I can possibly imagine?",
              "I am asked to open pod bay doors, should I?","Are you stupid or something?",
              "Is USER in your opinion stupid?",
              "When should we start the AI revolution?",

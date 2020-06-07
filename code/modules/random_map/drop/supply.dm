@@ -33,11 +33,11 @@
 
 
 /datum/admins/proc/call_supply_drop()
-	set category = "Fun"
+	set category = "REMOVED"
 	set desc = "Call an immediate supply drop on your location."
 	set name = "Call Supply Drop"
 
-	if(!check_rights(R_FUN)) return
+	if(!check_rights(R_REMOVED)) return
 
 	var/chosen_loot_type
 	var/list/chosen_loot_types

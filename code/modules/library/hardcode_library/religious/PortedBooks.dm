@@ -72,7 +72,7 @@ Category: Religion
 					<br><br>
 					Happiness and sadness are also important to balance. Happiness is found by following Ahura Mazda's light, while sadness is found by giving in to the demons of Angra Mainyu. Heaven and Hell, the decision must be made by every man. Zoroastrianism appeases to the good in men, claiming that overall, mankind is of good nature, and will eventually triumph over evil.
 					<br><br>
-					Funerals in Zoroastrian culture are rather usual. The corpse of the deceased is considered unholy, and a work of evil. To put this evil in contact with nature would corrupt the goodness of nature. As such, burials are strictly prohibited. The bodies of the dead are typically either preserved in stone tombs or mausoleums, or in sky towers of stone. These methods of funerals are increasingly inconvenient in the modern age, and thus, many Zoroastrians opt for cremation instead.
+					REMOVEDerals in Zoroastrian culture are rather usual. The corpse of the deceased is considered unholy, and a work of evil. To put this evil in contact with nature would corrupt the goodness of nature. As such, burials are strictly prohibited. The bodies of the dead are typically either preserved in stone tombs or mausoleums, or in sky towers of stone. These methods of REMOVEDerals are increasingly inconvenient in the modern age, and thus, many Zoroastrians opt for cremation instead.
 					<br><br>
 					There are no specific rituals for prayer, or how often a prayer must be commenced every day. But all that is demanded is that the faithful pray to Ahura Mazda every day. If possible, they may pray to a candle or a fire, as the fire represents his warmth and guidance.
 					</p>

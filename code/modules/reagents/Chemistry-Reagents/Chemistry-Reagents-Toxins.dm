@@ -175,7 +175,7 @@
 /datum/reagent/toxin/mold
 	name = "Mold"
 	id = "mold"
-	description = "A mold is a fungus that causes biodegradation of natural materials. This variant contains mycotoxins, and is dangerous to humans."
+	description = "A mold is a REMOVEDgus that causes biodegradation of natural materials. This variant contains mycotoxins, and is dangerous to humans."
 	taste_description = "mold"
 	reagent_state = SOLID
 	strength = 5
@@ -367,7 +367,7 @@
 		if(locate(/obj/effect/overlay/wallrot) in W)
 			for(var/obj/effect/overlay/wallrot/E in W)
 				qdel(E)
-			W.visible_message("<span class='notice'>The fungi are completely dissolved by the solution!</span>")
+			W.visible_message("<span class='notice'>The REMOVEDgi are completely dissolved by the solution!</span>")
 
 /datum/reagent/toxin/plantbgone/touch_obj(var/obj/O, var/volume)
 	if(istype(O, /obj/effect/plant))
@@ -800,7 +800,7 @@
 /datum/reagent/impedrezene
 	name = "Impedrezene"
 	id = "impedrezene"
-	description = "Impedrezene is a narcotic that impedes one's ability by slowing down the higher brain cell functions."
+	description = "Impedrezene is a narcotic that impedes one's ability by slowing down the higher brain cell REMOVEDctions."
 	taste_description = "numbness"
 	reagent_state = LIQUID
 	color = "#C8A5DC"
@@ -991,7 +991,7 @@ datum/reagent/talum_quem/affect_blood(var/mob/living/carbon/M, var/alien, var/re
 /datum/reagent/shredding_nanites
 	name = "Restorative Nanites"
 	id = "shredding_nanites"
-	description = "Miniature medical robots that swiftly restore bodily damage. These ones seem to be malfunctioning."
+	description = "Miniature medical robots that swiftly restore bodily damage. These ones seem to be malREMOVEDctioning."
 	taste_description = "metal"
 	reagent_state = SOLID
 	color = "#555555"
@@ -1004,7 +1004,7 @@ datum/reagent/talum_quem/affect_blood(var/mob/living/carbon/M, var/alien, var/re
 /datum/reagent/irradiated_nanites
 	name = "Restorative Nanites"
 	id = "irradiated_nanites"
-	description = "Miniature medical robots that swiftly restore bodily damage. These ones seem to be malfunctioning."
+	description = "Miniature medical robots that swiftly restore bodily damage. These ones seem to be malREMOVEDctioning."
 	taste_description = "metal"
 	reagent_state = SOLID
 	color = "#555555"

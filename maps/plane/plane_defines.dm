@@ -13,10 +13,10 @@
 
 	station_name  = "The Plain Plane for Air Planes"
 	station_short = "The Plane"
-	dock_name     = "the Maximum Fun Chamber"
-	boss_name     = "Mister Fun"
-	boss_short    = "Mr. Fun"
-	company_name  = "Fun Inc."
+	dock_name     = "the Maximum REMOVED Chamber"
+	boss_name     = "Mister REMOVED"
+	boss_short    = "Mr. REMOVED"
+	company_name  = "REMOVED Inc."
 	company_short = "FI"
 	starsys_name  = "Not Vir"
 

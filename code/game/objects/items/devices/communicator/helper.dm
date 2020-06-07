@@ -168,7 +168,7 @@
 
 
 // Status of all secbots
-// Weaker than what PDAs appear to do, but as of 7/1/2018 PDA secbot access is nonfunctional
+// Weaker than what PDAs appear to do, but as of 7/1/2018 PDA secbot access is nonREMOVEDctional
 /obj/item/weapon/commcard/proc/get_sec_bot_access()
 	var/sec_bots[0]
 	for(var/mob/living/bot/secbot/S in mob_list)

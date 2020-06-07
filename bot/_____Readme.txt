@@ -4,7 +4,7 @@
 /// Big thanks to Skibiliano  his bot and allowing distribution, and to BS12 for sharing their code for making use of it ingame
 
 QUESTION: What does this bot do?
-ANSWER: It, in conjunction with BYOND, relays adminhelps to a designated channel, along with various extra functions that can be accessed by saying !help in the same channel/in a query with the bot.
+ANSWER: It, in conjunction with BYOND, relays adminhelps to a designated channel, along with various extra REMOVEDctions that can be accessed by saying !help in the same channel/in a query with the bot.
 
 Some basic info before you set this up:
 CC_Nanotrasen is coded in python 2.6 and requires a serverside installation of python 2.6 (obtainable at http://www.python.org/getit/releases/2.6/)

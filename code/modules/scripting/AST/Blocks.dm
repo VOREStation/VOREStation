@@ -4,14 +4,14 @@
 /*
 	Class: BlockDefinition
 	An object representing a set of actions to perform independently from the rest of the script. Blocks are basically just
-	lists of statements to execute which also contain some local variables and methods. Note that since functions are local to a block,
-	it is possible to have a function definition inside of any type of block (such as in an if statement or another function),
+	lists of statements to execute which also contain some local variables and methods. Note that since REMOVEDctions are local to a block,
+	it is possible to have a REMOVEDction definition inside of any type of block (such as in an if statement or another REMOVEDction),
 	and not just in the global scope as in many languages.
 */
 /node/BlockDefinition
 	var/list
 		statements = new
-		functions  = new
+		REMOVEDctions  = new
 		initial_variables = new
 
 	proc
@@ -41,8 +41,8 @@
 			return ..()
 
 /*
-	Class: FunctionBlock
-	A block representing a function body.
+	Class: REMOVEDctionBlock
+	A block representing a REMOVEDction body.
 */
 //
-	FunctionBlock
+	REMOVEDctionBlock

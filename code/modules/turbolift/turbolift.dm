@@ -217,8 +217,8 @@
 	busy_state = LIFT_MOVING
 	START_PROCESSING(SSprocessing, src)
 
-// TODO: dummy machine ('lift mechanism') in powered area for functionality/blackout checks.
-/datum/turbolift/proc/is_functional()
+// TODO: dummy machine ('lift mechanism') in powered area for REMOVEDctionality/blackout checks.
+/datum/turbolift/proc/is_REMOVEDctional()
 	return 1
 
 #undef LIFT_MOVING

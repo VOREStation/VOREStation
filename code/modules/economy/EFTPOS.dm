@@ -28,11 +28,11 @@
 	//Temptative new manual:
 	R.info += "<b>First EFTPOS setup:</b><br>"
 	R.info += "1. Memorise your EFTPOS command code (provided with all EFTPOS devices).<br>"
-	R.info += "2. Connect the EFTPOS to the account in which you want to receive the funds.<br><br>"
+	R.info += "2. Connect the EFTPOS to the account in which you want to receive the REMOVEDds.<br><br>"
 	R.info += "<b>When starting a new transaction:</b><br>"
 	R.info += "1. Enter the amount of money you want to charge and a purpose message for the new transaction.<br>"
 	R.info += "2. Lock the new transaction. If you want to modify or cancel the transaction, you simply have to reset your EFTPOS device.<br>"
-	R.info += "3. Give the EFTPOS device to your customer, he/she must finish the transaction by swiping their ID card or a charge card with enough funds.<br>"
+	R.info += "3. Give the EFTPOS device to your customer, he/she must finish the transaction by swiping their ID card or a charge card with enough REMOVEDds.<br>"
 	R.info += "4. If everything is done correctly, the money will be transferred. To unlock the device you will have to reset the EFTPOS device.<br>"
 
 	//stamp the paper

@@ -13,11 +13,11 @@ Every air tick:
 	Fire is processed.
 	Marked zones have their air archived.
 
-Important Functions:
+Important REMOVEDctions:
 
 air_master.mark_for_update(turf)
 	When stuff happens, call this. It works on everything. You basically don't need to worry about any other
-	functions besides CanPass().
+	REMOVEDctions besides CanPass().
 
 Notes for people who used ZAS before:
 	There is no connected_zones anymore.

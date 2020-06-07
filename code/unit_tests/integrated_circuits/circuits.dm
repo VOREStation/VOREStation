@@ -15,7 +15,7 @@
 /datum/unit_test/integrated_circuits/proc/clean_up()
 	qdel(IC)
 
-// Override this if needing special output (e.g. rounding to avoid floating point fun).
+// Override this if needing special output (e.g. rounding to avoid floating point REMOVED).
 /datum/unit_test/integrated_circuits/proc/assess()
 	var/output_wrong = FALSE
 	var/i = 1
@@ -26,7 +26,7 @@
 		i++
 	return output_wrong
 
-// Useful when doing floating point fun.
+// Useful when doing floating point REMOVED.
 /datum/unit_test/integrated_circuits/floor/assess()
 	var/output_wrong = FALSE
 	var/i = 1

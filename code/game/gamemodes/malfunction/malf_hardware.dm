@@ -19,12 +19,12 @@
 /datum/malf_hardware/apu_gen
 	name = "APU Generator"
 	desc = "Auxiliary Power Unit that will keep you operational even without external power. Has to be manually activated. When APU is operational most abilities will be unavailable, and ability research will temporarily stop."
-	driver = /datum/game_mode/malfunction/verb/ai_toggle_apu
+	driver = /datum/game_mode/malREMOVEDction/verb/ai_toggle_apu
 
 /datum/malf_hardware/apu_gen/get_examine_desc()
 	var/msg = "It seems to have some sort of power generator attached to its core."
 	if(owner.hardware_integrity() < 50)
-		msg += "<span class='warning'> It seems to be too damaged to function properly.</span>"
+		msg += "<span class='warning'> It seems to be too damaged to REMOVEDction properly.</span>"
 	else if(owner.APU_power)
 		msg += " The generator appears to be active."
 	return msg
@@ -46,7 +46,7 @@
 /datum/malf_hardware/core_bomb
 	name = "Self-Destruct Explosives"
 	desc = "High yield explosives are attached to your physical mainframe. This hardware comes with special driver that allows activation of these explosives. Timer is set to 15 seconds after manual activation. This is a doomsday device that will destroy both you and any intruders in your core."
-	driver = /datum/game_mode/malfunction/verb/ai_self_destruct
+	driver = /datum/game_mode/malREMOVEDction/verb/ai_self_destruct
 
 /datum/malf_hardware/core_bomb/get_examine_desc()
 	return "<span class='warning'>It seems to have grey blocks of unknown substance and some circuitry connected to it's core. [owner.bombing_core ? "A red light is blinking on the circuit." : ""]</span>"

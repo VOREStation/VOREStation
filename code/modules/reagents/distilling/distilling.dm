@@ -301,15 +301,15 @@
 	else if(on)
 		if(!use_atmos)
 			if(current_temp != round(target_temp))
-				// Some horrible bastardized attempt at approximating the values of a logistic function, bounded by (max_temp, target_temp, min_temp)
+				// Some horrible bastardized attempt at approximating the values of a logistic REMOVEDction, bounded by (max_temp, target_temp, min_temp)
 				// So we can attempt to estimate the change in temperature for this process() step
 
-				// Apply inverse of the logistic function to fetch our x value
+				// Apply inverse of the logistic REMOVEDction to fetch our x value
 				var/x = -1 * log((current_temp < target_temp ? (target_temp - min_temp) / (current_temp - min_temp) : (max_temp - target_temp) / (max_temp - current_temp)) - 1)
 				if(!x)
 					x = 0 // Keep null from propagating into the temp
 
-				// Apply the derivative of the logistic function to get the slope
+				// Apply the derivative of the logistic REMOVEDction to get the slope
 				var/dy = (NUM_E ** (-1 * x)) / ((1 + (NUM_E ** (-1 * x))) ** 2)
 
 				// Compute temperature diff, being farther from the target should result in larger steps

@@ -11,7 +11,7 @@
 
 /* Jensen Shades. Your vision can be augmented.
  * This, technically, no longer needs its unique organ verb, however I have chosen to leave it for posterity
- * in the event it needs to be referenced, while still remaining perfectly functional with either system.
+ * in the event it needs to be referenced, while still remaining perfectly REMOVEDctional with either system.
  */
 
 /obj/item/organ/internal/augment/bioaugment/thermalshades

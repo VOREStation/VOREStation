@@ -1,6 +1,6 @@
 /datum/technomancer/spell/apportation
 	name = "Apportation"
-	desc = "This allows you to teleport objects into your hand, or to pull people towards you.  If they're close enough, the function \
+	desc = "This allows you to teleport objects into your hand, or to pull people towards you.  If they're close enough, the REMOVEDction \
 	will grab them automatically."
 	enhancement_desc = "Range is unlimited."
 	cost = 25

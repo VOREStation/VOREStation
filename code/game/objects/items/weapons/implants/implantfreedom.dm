@@ -60,7 +60,7 @@
 <b>Important Notes:</b> <font color='red'>Illegal</font><BR>
 <HR>
 <b>Implant Details:</b> <BR>
-<b>Function:</b> Transmits a specialized cluster of signals to override handcuff locking
+<b>REMOVEDction:</b> Transmits a specialized cluster of signals to override handcuff locking
 mechanisms<BR>
 <b>Special Features:</b><BR>
 <i>Neuro-Scan</i>- Analyzes certain shadow signals in the nervous system<BR>

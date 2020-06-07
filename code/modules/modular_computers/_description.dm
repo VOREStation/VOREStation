@@ -40,7 +40,7 @@ Nano Printer: Allows the computer to scan paper contents and save them to file, 
 4. NTNet
 NTNet is stationwide network that allows users to download programs needed for their work. It will be possible to send any files to other active computers using relevant program (NTN Transfer).
 NTNet is under jurisdiction of both Engineering and Research. Engineering is responsible for any repairs if necessary and research is responsible for monitoring. It is similar to PDA messaging.
-Operation requires functional "NTNet Relay" which is by default placed on tcommsat. If the relay is damaged NTNet will be offline until it is replaced. Multiple relays bring extra redundancy,
+Operation requires REMOVEDctional "NTNet Relay" which is by default placed on tcommsat. If the relay is damaged NTNet will be offline until it is replaced. Multiple relays bring extra redundancy,
 if one is destroyed the second will take over. If all relays are gone it stops working, simple as that. NTNet may be altered via administration console available to Research Director. It is
 possible to enable/disable Software Downloading, P2P file transfers and Communication (IC version of IRC, PDA messages for more than two people)
 

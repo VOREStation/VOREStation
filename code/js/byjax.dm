@@ -1,7 +1,7 @@
-//this function places received data into element with specified id.
+//this REMOVEDction places received data into element with specified id.
 var/const/js_byjax = {"
 
-function replaceContent() {
+REMOVEDction replaceContent() {
 	var args = Array.prototype.slice.call(arguments);
 	var id = args\[0\];
 	var content = args\[1\];
@@ -29,10 +29,10 @@ receiver - mob
 control_id - window id (for windows opened with browse(), it'll be "windowname.browser")
 target_element - HTML element id
 new_content - HTML content
-callback - js function that will be called after the data is sent
-callback_args - arguments for callback function
+callback - js REMOVEDction that will be called after the data is sent
+callback_args - arguments for callback REMOVEDction
 
-Be sure to include required js functions in your page, or it'll raise an exception.
+Be sure to include required js REMOVEDctions in your page, or it'll raise an exception.
 */
 proc/send_byjax(receiver, control_id, target_element, new_content=null, callback=null, list/callback_args=null)
 	if(receiver && target_element && control_id) // && winexists(receiver, control_id))

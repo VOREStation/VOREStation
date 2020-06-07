@@ -4,41 +4,41 @@
 // T1 - Recall Shuttle - Allows the AI to recall the emergency shuttle. Replaces auto-recalling during old malf.
 // T2 - Unlock Cyborg - Allows the AI to unlock locked-down cyborg without usage of robotics console. Useful if consoles are destroyed.
 // T3 - Hack Cyborg - Hacks unlinked cyborg to slave it under the AI. The cyborg will be warned about this. Hack takes some time.
-// T4 - Hack AI - Hacks another AI to slave it under the malfunctioning AI. The AI will be warned about this. Hack takes quite a long time.
+// T4 - Hack AI - Hacks another AI to slave it under the malREMOVEDctioning AI. The AI will be warned about this. Hack takes quite a long time.
 
 
 // BEGIN RESEARCH DATUMS
 
 /datum/malf_research_ability/interdiction/recall_shuttle
-	ability = new/datum/game_mode/malfunction/verb/recall_shuttle()
+	ability = new/datum/game_mode/malREMOVEDction/verb/recall_shuttle()
 	price = 75
 	next = new/datum/malf_research_ability/interdiction/unlock_cyborg()
 	name = "Recall Shuttle"
 
 
 /datum/malf_research_ability/interdiction/unlock_cyborg
-	ability = new/datum/game_mode/malfunction/verb/unlock_cyborg()
+	ability = new/datum/game_mode/malREMOVEDction/verb/unlock_cyborg()
 	price = 1200
 	next = new/datum/malf_research_ability/interdiction/hack_cyborg()
 	name = "Unlock Cyborg"
 
 
 /datum/malf_research_ability/interdiction/hack_cyborg
-	ability = new/datum/game_mode/malfunction/verb/hack_cyborg()
+	ability = new/datum/game_mode/malREMOVEDction/verb/hack_cyborg()
 	price = 3000
 	next = new/datum/malf_research_ability/interdiction/hack_ai()
 	name = "Hack Cyborg"
 
 
 /datum/malf_research_ability/interdiction/hack_ai
-	ability = new/datum/game_mode/malfunction/verb/hack_ai()
+	ability = new/datum/game_mode/malREMOVEDction/verb/hack_ai()
 	price = 7500
 	name = "Hack AI"
 
 // END RESEARCH DATUMS
 // BEGIN ABILITY VERBS
 
-/datum/game_mode/malfunction/verb/recall_shuttle()
+/datum/game_mode/malREMOVEDction/verb/recall_shuttle()
 	set name = "Recall Shuttle"
 	set desc = "25 CPU - Sends termination signal to quantum relay aborting current shuttle call."
 	set category = "Software"
@@ -52,11 +52,11 @@
 
 	if(!ability_pay(user, price))
 		return
-	message_admins("Malfunctioning AI [user.name] recalled the shuttle.")
+	message_admins("MalREMOVEDctioning AI [user.name] recalled the shuttle.")
 	cancel_call_proc(user)
 
 
-/datum/game_mode/malfunction/verb/unlock_cyborg(var/mob/living/silicon/robot/target = null as mob in get_linked_cyborgs(usr))
+/datum/game_mode/malREMOVEDction/verb/unlock_cyborg(var/mob/living/silicon/robot/target = null as mob in get_linked_cyborgs(usr))
 	set name = "Unlock Cyborg"
 	set desc = "125 CPU - Bypasses firewalls on Cyborg lock mechanism, allowing you to override lock command from robotics control console."
 	set category = "Software"
@@ -126,7 +126,7 @@
 		user.hacking = 0
 
 
-/datum/game_mode/malfunction/verb/hack_cyborg(var/mob/living/silicon/robot/target as mob in get_unlinked_cyborgs(usr))
+/datum/game_mode/malREMOVEDction/verb/hack_cyborg(var/mob/living/silicon/robot/target as mob in get_unlinked_cyborgs(usr))
 	set name = "Hack Cyborg"
 	set desc = "350 CPU - Allows you to hack cyborgs which are not slaved to you, bringing them under your control."
 	set category = "Software"
@@ -191,7 +191,7 @@
 			user.hacking = 0
 
 
-/datum/game_mode/malfunction/verb/hack_ai(var/mob/living/silicon/ai/target as mob in get_other_ais(usr))
+/datum/game_mode/malREMOVEDction/verb/hack_ai(var/mob/living/silicon/ai/target as mob in get_other_ais(usr))
 	set name = "Hack AI"
 	set desc = "600 CPU - Allows you to hack other AIs, slaving them under you."
 	set category = "Software"
@@ -248,7 +248,7 @@
 				to_chat(target, "SYSTEM LOG: User: Admin - Connection Lost. Changes Reverted.")
 				return
 			to_chat(user, "Hack succeeded. The AI is now under your exclusive control.")
-			to_chat(target, "SYSTEM LOG: System re¡3RT5§^#COMU@(#$)TED)@$")
+			to_chat(target, "SYSTEM LOG: System reï¿½3RT5ï¿½^#COMU@(#$)TED)@$")
 			for(var/i = 0, i < 5, i++)
 				var/temptxt = pick("1101000100101001010001001001",\
 							   	   "0101000100100100000100010010",\

@@ -38,7 +38,7 @@ GLOBAL_LIST_EMPTY(shutoff_valves)
 	to_chat(user, "You [close_on_leaks ? "enable" : "disable"] the automatic shutoff circuit.")
 	return TRUE
 
-// Alt+Click now toggles the open/close function, when the autoseal is disabled
+// Alt+Click now toggles the open/close REMOVEDction, when the autoseal is disabled
 /obj/machinery/atmospherics/valve/shutoff/AltClick(var/mob/user)
 	if(isliving(user))
 		if(close_on_leaks)

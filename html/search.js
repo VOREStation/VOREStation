@@ -1,9 +1,9 @@
-function selectTextField(){
+REMOVEDction selectTextField(){
 	var filter_text = document.getElementById('filter');
 	filter_text.focus();
 	filter_text.select();
 }
-function updateSearch(){
+REMOVEDction updateSearch(){
 	var input_form = document.getElementById('filter');
 	var filter = input_form.value.toLowerCase();
 	input_form.value = filter;

@@ -50,7 +50,7 @@
 						also known as \"Bluespace Research\", has reached new heights. Of the several
 						hundred space stations now orbiting in Tau Ceti, fifteen are now specially equipped
 						to experiment with and research Bluespace effects. Rumours have it some of these
-						stations even sport functional \"travel gates\" that can instantly move a whole research
+						stations even sport REMOVEDctional \"travel gates\" that can instantly move a whole research
 						team to an alternate reality."}
 
 	random_junk
@@ -86,7 +86,7 @@
 			message = {"The newly-christened civillian transport Lotus Tree suffered two very large explosions near the
 						bridge today, and there are unconfirmed reports that the death toll has passed 50. The cause of
 						the explosions remain unknown, but there is speculation that it might have something to do with
-						the recent change of regulation in the Moore-Lee Corporation, a major funder of the ship, when M-L
+						the recent change of regulation in the Moore-Lee Corporation, a major REMOVEDder of the ship, when M-L
 						announced that they were officially acknowledging inter-species marriage and providing couples
 						with marriage tax-benefits."}
 			round_time = 60 * 30

@@ -1,4 +1,4 @@
-// These come with shuttle functionality. Need to be assigned a (unique) shuttle datum name.
+// These come with shuttle REMOVEDctionality. Need to be assigned a (unique) shuttle datum name.
 // Mapping location doesn't matter, so long as on a map loaded at the same time as the shuttle areas.
 // Multiz shuttles currently not supported. Non-autodock shuttles currently not supported.
 

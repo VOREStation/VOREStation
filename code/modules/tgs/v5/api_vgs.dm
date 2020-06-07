@@ -2,7 +2,7 @@
 // Eventually it would be good to handle all the TGS Apis properly and we can use the same.
 GLOBAL_DATUM(vgs, /datum/tgs_api)
 
-// Supply our own New functionality so we can read from config instead of world params
+// Supply our own New REMOVEDctionality so we can read from config instead of world params
 /world/proc/VgsNew(datum/tgs_event_handler/event_handler)
 	var/current_api = GLOB.vgs
 	if(current_api)

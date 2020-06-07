@@ -64,17 +64,17 @@
 		*/
 		set_ready_state(0)
 		pr_mech_sleeper.start()
-		occupant_message("<font color='blue'>[target] successfully loaded into [src]. Life support functions engaged.</font>")
+		occupant_message("<font color='blue'>[target] successfully loaded into [src]. Life support REMOVEDctions engaged.</font>")
 		chassis.visible_message("[chassis] loads [target] into [src].")
-		log_message("[target] loaded. Life support functions engaged.")
+		log_message("[target] loaded. Life support REMOVEDctions engaged.")
 	return
 
 /obj/item/mecha_parts/mecha_equipment/tool/sleeper/proc/go_out()
 	if(!occupant)
 		return
 	occupant.forceMove(get_turf(src))
-	occupant_message("[occupant] ejected. Life support functions disabled.")
-	log_message("[occupant] ejected. Life support functions disabled.")
+	occupant_message("[occupant] ejected. Life support REMOVEDctions disabled.")
+	log_message("[occupant] ejected. Life support REMOVEDctions disabled.")
 	occupant.reset_view()
 	/*
 	if(occupant.client)

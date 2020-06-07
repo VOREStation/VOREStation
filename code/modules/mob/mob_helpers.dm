@@ -1,4 +1,4 @@
-// fun if you want to typecast humans/monkeys/etc without writing long path-filled lines.
+// REMOVED if you want to typecast humans/monkeys/etc without writing long path-filled lines.
 /proc/isxenomorph(A)
 	if(istype(A, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = A

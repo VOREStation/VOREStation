@@ -8,7 +8,7 @@
 	desc = "A crude modification of the commonly seen combat drone model, usually created\
 	from the salvaged husks that litter debris fields. Capable of crude problem solving,\
 	the drone's targeting system has been repurposed for locating suitable ores, though even\
-	that is only functional in certain conditions.\
+	that is only REMOVEDctional in certain conditions.\
 	<br><br>\
 	These drones are armed with high-power mining emitters, which makes their decrepit forms\
 	just as lethal as they were in their prime. Modified thrust vectoring devices allow them\

@@ -29,7 +29,7 @@ var/global/list/light_type_cache = list()
 	layer = ABOVE_MOB_LAYER
 	var/stage = 1
 	var/fixture_type = /obj/machinery/light
-	var/sheets_refunded = 2
+	var/sheets_reREMOVEDded = 2
 	var/obj/machinery/light/newlight = null
 	var/obj/item/weapon/cell/cell = null
 
@@ -109,7 +109,7 @@ var/global/list/light_type_cache = list()
 			to_chat(usr, "You begin deconstructing [src].")
 			if (!do_after(usr, 30 * W.toolspeed))
 				return
-			new /obj/item/stack/material/steel( get_turf(src.loc), sheets_refunded )
+			new /obj/item/stack/material/steel( get_turf(src.loc), sheets_reREMOVEDded )
 			user.visible_message("[user.name] deconstructs [src].", \
 				"You deconstruct [src].", "You hear a noise.")
 			playsound(src, 'sound/items/Deconstruct.ogg', 75, 1)
@@ -169,7 +169,7 @@ var/global/list/light_type_cache = list()
 	anchored = 1
 	stage = 1
 	fixture_type = /obj/machinery/light/small
-	sheets_refunded = 1
+	sheets_reREMOVEDded = 1
 
 /obj/machinery/light_construct/small/update_icon()
 	switch(stage)
@@ -190,7 +190,7 @@ var/global/list/light_type_cache = list()
 	layer = OBJ_LAYER
 	stage = 1
 	fixture_type = /obj/machinery/light/flamp
-	sheets_refunded = 2
+	sheets_reREMOVEDded = 2
 
 /obj/machinery/light_construct/flamp/update_icon()
 	switch(stage)

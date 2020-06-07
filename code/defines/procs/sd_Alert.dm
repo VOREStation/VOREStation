@@ -113,7 +113,7 @@ sd_alert
 		if(!(flags & SD_ALERT_NOVALIDATE)) validation = buttons.Copy()
 
 		var/html = {"<head><title>[title]</title>[style]<script>\
-		function c(x) {document.location.href='BYOND://?src=\ref[src];'+x;}\
+		REMOVEDction c(x) {document.location.href='BYOND://?src=\ref[src];'+x;}\
 		</script></head><body onLoad="fcs.focus();"\
 		[(flags&SD_ALERT_SCROLL)?"":" scroll=no"]><table [table]><tr>\
 		<td>[message]</td></tr><tr><th>"}

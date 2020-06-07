@@ -6,7 +6,7 @@
 	anchored = FALSE
 	density = TRUE
 
-	// Executing a traitor caught releasing tesla was never this fun!
+	// Executing a traitor caught releasing tesla was never this REMOVED!
 	can_buckle = TRUE
 	buckle_lying = FALSE
 

@@ -49,7 +49,7 @@ authors of previous versions.
 
   Some devices are designed to deny users access to install or run
 modified versions of the software inside them, although the manufacturer
-can do so.  This is fundamentally incompatible with the aim of
+can do so.  This is REMOVEDdamentally incompatible with the aim of
 protecting users' freedom to change the software.  The systematic
 pattern of such abuse occurs in the area of products for individuals to
 use, which is precisely where it is most unacceptable.  Therefore, we
@@ -311,7 +311,7 @@ the only significant mode of use of the product.
 procedures, authorization keys, or other information required to install
 and execute modified versions of a covered work in that User Product from
 a modified version of its Corresponding Source.  The information must
-suffice to ensure that the continued functioning of the modified object
+suffice to ensure that the continued REMOVEDctioning of the modified object
 code is in no case prevented or interfered with solely because
 modification has been made.
 

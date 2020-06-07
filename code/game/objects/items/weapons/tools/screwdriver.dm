@@ -79,7 +79,7 @@
 	counter-clockwise.\
 	<br><br>\
 	The hard light tip is able to shift its shape to a degree when pressed into \
-	a solid receptacle. This allows it to be able to function on many kinds of \
+	a solid receptacle. This allows it to be able to REMOVEDction on many kinds of \
 	fastener, which includes the screws."
 	value = CATALOGUER_REWARD_EASY
 

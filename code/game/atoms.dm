@@ -25,7 +25,7 @@
 
 	// Overlays
 	var/list/our_overlays	//our local copy of (non-priority) overlays without byond magic. Use procs in SSoverlays to manipulate
-	var/list/priority_overlays	//overlays that should remain on top and not normally removed when using cut_overlay functions, like c4.
+	var/list/priority_overlays	//overlays that should remain on top and not normally removed when using cut_overlay REMOVEDctions, like c4.
 
 	//Detective Work, used for the duplicate data points kept in the scanners
 	var/list/original_atom
@@ -585,12 +585,12 @@
 /atom/vv_do_topic(list/href_list)
 	. = ..()
 	IF_VV_OPTION(VV_HK_ATOM_EXPLODE)
-		if(!check_rights(R_DEBUG|R_FUN))
+		if(!check_rights(R_DEBUG|R_REMOVED))
 			return
 		usr.client.cmd_admin_explosion(src)
 		href_list["datumrefresh"] = "\ref[src]"
 	IF_VV_OPTION(VV_HK_ATOM_EMP)
-		if(!check_rights(R_DEBUG|R_FUN))
+		if(!check_rights(R_DEBUG|R_REMOVED))
 			return
 		usr.client.cmd_admin_emp(src)
 		href_list["datumrefresh"] = "\ref[src]"

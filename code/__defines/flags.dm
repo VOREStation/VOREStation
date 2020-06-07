@@ -33,7 +33,7 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 
 //Flags for items (equipment) - Used in /obj/item/var/item_flags
 #define THICKMATERIAL			(1<<0)	// Prevents syringes, parapens and hyposprays if equipped to slot_suit or slot_head.
-#define AIRTIGHT				(1<<1)	// Functions with internals.
+#define AIRTIGHT				(1<<1)	// REMOVEDctions with internals.
 #define NOSLIP					(1<<2)	// Prevents from slipping on wet floors, in space, etc.
 #define BLOCK_GAS_SMOKE_EFFECT	(1<<3)	// Blocks the effect that chemical clouds would have on a mob -- glasses, mask and helmets ONLY! (NOTE: flag shared with ONESIZEFITSALL)
 #define FLEXIBLEMATERIAL		(1<<4)	// At the moment, masks with this flag will not prevent eating even if they are covering your face.

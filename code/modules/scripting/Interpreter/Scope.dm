@@ -7,12 +7,12 @@ scope
 		scope/parent = null
 		node/BlockDefinition/block
 		list
-			functions
+			REMOVEDctions
 			variables
 
 	New(node/BlockDefinition/B, scope/parent)
 		src.block = B
 		src.parent = parent
 		src.variables = B.initial_variables.Copy()
-		src.functions = B.functions.Copy()
+		src.REMOVEDctions = B.REMOVEDctions.Copy()
 		.=..()

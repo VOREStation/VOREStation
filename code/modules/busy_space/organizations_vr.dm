@@ -390,7 +390,7 @@
 	name = "Xion Manufacturing Group"
 	short_name = "Xion"
 	desc = "Xion, quietly, controls most of the market for industrial equipment on the frontier. Their portfolio includes mining exosuits, \
-	factory equipment, rugged positronic chassis, and other pieces of equipment vital to the function of the economy. Xion \
+	factory equipment, rugged positronic chassis, and other pieces of equipment vital to the REMOVEDction of the economy. Xion \
 	keeps its control of the market by leasing, not selling, their equipment, and through infamous and bloody patent protection \
 	lawsuits. Xion are noted to be a favorite contractor for Rim engineers, owing to their low cost and rugged design."
 	history = ""

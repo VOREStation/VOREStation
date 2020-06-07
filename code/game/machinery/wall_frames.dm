@@ -4,8 +4,8 @@
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "frame_bitem"
 	var/build_machine_type
-	var/refund_amt = 5
-	var/refund_type = /obj/item/stack/material/steel
+	var/reREMOVEDd_amt = 5
+	var/reREMOVEDd_type = /obj/item/stack/material/steel
 	var/reverse = 0 //if resulting object faces opposite its dir (like light fixtures)
 	var/list/frame_types_floor
 	var/list/frame_types_wall
@@ -18,7 +18,7 @@
 
 /obj/item/frame/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(W.is_wrench())
-		new refund_type(get_turf(src.loc), refund_amt)
+		new reREMOVEDd_type(get_turf(src.loc), reREMOVEDd_amt)
 		qdel(src)
 		return
 	..()
@@ -105,14 +105,14 @@
 	desc = "Used for building lights."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "tube-construct-item"
-	refund_amt = 2	//TFF 17/1/20 - Oversight fix for infinite steel produciton.
+	reREMOVEDd_amt = 2	//TFF 17/1/20 - Oversight fix for infinite steel produciton.
 	build_machine_type = /obj/machinery/light_construct
 	reverse = 1
 
 /obj/item/frame/light/small
 	name = "small light fixture frame"
 	icon_state = "bulb-construct-item"
-	refund_amt = 1
+	reREMOVEDd_amt = 1
 	build_machine_type = /obj/machinery/light_construct/small
 
 /obj/item/frame/extinguisher_cabinet
@@ -120,7 +120,7 @@
 	desc = "Used for building fire extinguisher cabinets."
 	icon = 'icons/obj/closet.dmi'
 	icon_state = "extinguisher_empty"
-	refund_amt = 4
+	reREMOVEDd_amt = 4
 	build_machine_type = /obj/structure/extinguisher_cabinet
 
 /obj/item/frame/noticeboard
@@ -128,8 +128,8 @@
 	desc = "Used for building noticeboards."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "nboard00"
-	refund_amt = 4
-	refund_type = /obj/item/stack/material/wood
+	reREMOVEDd_amt = 4
+	reREMOVEDd_type = /obj/item/stack/material/wood
 	build_machine_type = /obj/structure/noticeboard
 
 /obj/item/frame/mirror
@@ -137,7 +137,7 @@
 	desc = "Used for building mirrors."
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "mirror_frame"
-	refund_amt = 1
+	reREMOVEDd_amt = 1
 	build_machine_type = /obj/structure/mirror
 
 /obj/item/frame/fireaxe_cabinet
@@ -145,5 +145,5 @@
 	desc = "Used for building fire axe cabinets."
 	icon = 'icons/obj/closet.dmi'
 	icon_state = "fireaxe0101"
-	refund_amt = 4
+	reREMOVEDd_amt = 4
 	build_machine_type = /obj/structure/fireaxecabinet

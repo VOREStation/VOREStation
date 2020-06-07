@@ -3,7 +3,7 @@
  *  /datum/computer/file/embedded_program/docking/airlock
  *		- A docking controller for an airlock based docking port
  *  /datum/computer/file/embedded_program/airlock/docking
- *		- An extension to the normal airlock program allows disabling of the regular airlock functions when docking
+ *		- An extension to the normal airlock program allows disabling of the regular airlock REMOVEDctions when docking
 */
 
 //a docking port based on an airlock
@@ -142,7 +142,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 //An airlock controller to be used by the airlock-based docking port controller.
-//Same as a regular airlock controller but allows disabling of the regular airlock functions when docking
+//Same as a regular airlock controller but allows disabling of the regular airlock REMOVEDctions when docking
 //
 /datum/computer/file/embedded_program/airlock/docking
 	var/datum/computer/file/embedded_program/docking/airlock/master_prog

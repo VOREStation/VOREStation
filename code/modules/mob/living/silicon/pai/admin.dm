@@ -1,4 +1,4 @@
-// Originally a debug verb, made it a proper adminverb for ~fun~
+// Originally a debug verb, made it a proper adminverb for ~REMOVED~
 /client/proc/makePAI(turf/t in view(), name as text, pai_key as null|text)
 	set name = "Make pAI"
 	set category = "Admin"

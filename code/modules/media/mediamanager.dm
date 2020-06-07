@@ -68,7 +68,7 @@
 
 //
 // ### Media procs on mobs ###
-// These are all convenience functions, simple delegations to the media datum on mob.
+// These are all convenience REMOVEDctions, simple delegations to the media datum on mob.
 // But their presense and null checks make other coder's life much easier.
 //
 
@@ -108,7 +108,7 @@
 	var/url = ""				// URL of currently playing media
 	var/start_time = 0			// world.time when it started playing *in the source* (Not when started playing for us)
 	var/source_volume = 1		// Volume as set by source. Actual volume = "volume * source_volume"
-	var/rate = 1				// Playback speed.  For Fun(tm)
+	var/rate = 1				// Playback speed.  For REMOVED(tm)
 	var/volume = 50				// Client's volume modifier. Actual volume = "volume * source_volume"
 	var/client/owner			// Client this is actually running in
 	var/forced=0				// If true, current url overrides area media sources

@@ -141,7 +141,7 @@
 	set category = "Hardsuit"
 	set src = usr.contents
 
-	if(malfunction_check(usr))
+	if(malREMOVEDction_check(usr))
 		return
 
 	if(!check_power_cost(usr, 0, 0, 0, 0))
@@ -171,7 +171,7 @@
 	set category = "Hardsuit"
 	set src = usr.contents
 
-	if(malfunction_check(usr))
+	if(malREMOVEDction_check(usr))
 		return
 
 	if(canremove)
@@ -195,7 +195,7 @@
 	set category = "Hardsuit"
 	set src = usr.contents
 
-	if(malfunction_check(usr))
+	if(malREMOVEDction_check(usr))
 		return
 
 	if(!check_power_cost(usr, 0, 0, 0, 0))
@@ -231,7 +231,7 @@
 	set category = "Hardsuit"
 	set src = usr.contents
 
-	if(malfunction_check(usr))
+	if(malREMOVEDction_check(usr))
 		return
 
 	if(!check_power_cost(usr, 0, 0, 0, 0))
@@ -269,7 +269,7 @@
 	set category = "Hardsuit"
 	set src = usr.contents
 
-	if(malfunction_check(usr))
+	if(malREMOVEDction_check(usr))
 		return
 
 	if(canremove)

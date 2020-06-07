@@ -1,9 +1,9 @@
 // NanoBaseHelpers is where the base template helpers (common to all templates) are stored
-NanoBaseHelpers = function ()
+NanoBaseHelpers = REMOVEDction ()
 {
 	var _baseHelpers = {
             // change ui styling to "syndicate mode"
-			syndicateMode: function() {
+			syndicateMode: REMOVEDction() {
 				$('body').css("background-color","#8f1414");
 				$('body').css("background-image","url('uiBackground-Syndicate.png')");
 				$('body').css("background-position","50% 0");
@@ -16,7 +16,7 @@ NanoBaseHelpers = function ()
 				return '';
 			},
 			// Generate a Byond link
-			link: function( text, icon, parameters, status, elementClass, elementId) {
+			link: REMOVEDction( text, icon, parameters, status, elementClass, elementId) {
 
 				var iconHtml = '';
 				var iconClass = 'noIcon';
@@ -45,26 +45,26 @@ NanoBaseHelpers = function ()
 				return '<div unselectable="on" class="linkActive ' + iconClass + ' ' + elementClass + '" data-href="' + NanoUtility.generateHref(parameters) + '" ' + elementIdHtml + '>' + iconHtml + text + '</div>';
 			},
 			// Round a number to the nearest integer
-			round: function(number) {
+			round: REMOVEDction(number) {
 				return Math.round(number);
 			},
 			// Returns the number fixed to 1 decimal
-			fixed: function(number) {
+			fixed: REMOVEDction(number) {
 				return Math.round(number * 10) / 10;
 			},
 			// Round a number down to integer
-			floor: function(number) {
+			floor: REMOVEDction(number) {
 				return Math.floor(number);
 			},
 			// Round a number up to integer
-			ceil: function(number) {
+			ceil: REMOVEDction(number) {
 				return Math.ceil(number);
 			},
-			abs: function(number) {
+			abs: REMOVEDction(number) {
 				return Math.abs(number);
 			},
 			// Format a string (~string("Hello {0}, how are {1}?", 'Martin', 'you') becomes "Hello Martin, how are you?")
-			string: function() {
+			string: REMOVEDction() {
 				if (arguments.length == 0)
 				{
 					return '';
@@ -84,18 +84,18 @@ NanoBaseHelpers = function ()
 				}
 				return '';
 			},
-			formatNumber: function(x) {
+			formatNumber: REMOVEDction(x) {
 				// From http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
 				var parts = x.toString().split(".");
 				parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 				return parts.join(".");
 			},
 			// Capitalize the first letter of a string. From http://stackoverflow.com/questions/1026069/capitalize-the-first-letter-of-string-in-javascript
-			capitalizeFirstLetter: function(string) {
+			capitalizeFirstLetter: REMOVEDction(string) {
 				return string.charAt(0).toUpperCase() + string.slice(1);
 			},
 			// Display a bar. Used to show health, capacity, etc. Use difClass if the entire display bar class should be different
-			displayBar: function(value, rangeMin, rangeMax, styleClass, showText, difClass, direction) {
+			displayBar: REMOVEDction(value, rangeMin, rangeMax, styleClass, showText, difClass, direction) {
 
 				if (rangeMin < rangeMax)
                 {
@@ -149,7 +149,7 @@ NanoBaseHelpers = function ()
 				return '<div class="displayBar' + difClass + ' ' + styleClass + '"><div class="displayBar' + difClass + 'Fill ' + styleClass + '" style="' + direction + ': ' + percentage + '%;"></div><div class="displayBar' + difClass + 'Text ' + styleClass + '">' + showText + '</div></div>';
 			},
 			// Display DNA Blocks (for the DNA Modifier UI)
-			displayDNABlocks: function(dnaString, selectedBlock, selectedSubblock, blockSize, paramKey) {
+			displayDNABlocks: REMOVEDction(dnaString, selectedBlock, selectedSubblock, blockSize, paramKey) {
 			    if (!dnaString)
 				{
 					return '<div class="notice">Please place a valid subject into the DNA modifier.</div>';
@@ -205,11 +205,11 @@ NanoBaseHelpers = function ()
 		};
 		
 	return {
-        addHelpers: function ()
+        addHelpers: REMOVEDction ()
 		{
             NanoTemplate.addHelpers(_baseHelpers);
         },
-		removeHelpers: function ()
+		removeHelpers: REMOVEDction ()
 		{
 			for (var helperKey in _baseHelpers)
 			{

@@ -11,7 +11,7 @@
 //	select_query		:	'SELECT' object_selectors
 //	delete_query		:	'DELETE' object_selectors
 //	update_query		:	'UPDATE' object_selectors 'SET' assignments
-//	call_query			:	'CALL' variable 'ON' object_selectors // Note here: 'variable' does function calls. This simplifies parsing.
+//	call_query			:	'CALL' variable 'ON' object_selectors // Note here: 'variable' does REMOVEDction calls. This simplifies parsing.
 //
 //	select_item			:	'*' | object_type
 //
@@ -20,7 +20,7 @@
 //
 //	from_item			:	'world' | expression
 //
-//	call_function		:	<function name> '(' [arguments] ')'
+//	call_REMOVEDction		:	<REMOVEDction name> '(' [arguments] ')'
 //	arguments			:	expression [',' arguments]
 //
 //	object_type			:	<type path>
@@ -179,12 +179,12 @@
 	return i
 
 
-//call_query:	'CALL' call_function ['ON' object_selectors]
+//call_query:	'CALL' call_REMOVEDction ['ON' object_selectors]
 /datum/SDQL_parser/proc/call_query(i, list/node)
-	var/list/func = list()
-	i = variable(i + 1, func) // Yes technically does anything variable() matches but I don't care, if admins fuck up this badly then they shouldn't be allowed near SDQL.
+	var/list/REMOVEDc = list()
+	i = variable(i + 1, REMOVEDc) // Yes technically does anything variable() matches but I don't care, if admins fuck up this badly then they shouldn't be allowed near SDQL.
 
-	node["call"] = func
+	node["call"] = REMOVEDc
 
 	if(tokenl(i) != "on")
 		return parse_error("You need to specify what to call ON.")
@@ -251,7 +251,7 @@
 	return i
 
 
-//select_item:	'*' | select_function | object_type
+//select_item:	'*' | select_REMOVEDction | object_type
 /datum/SDQL_parser/proc/select_item(i, list/node)
 	if (token(i) == "*")
 		node += "*"
@@ -355,7 +355,7 @@
 
 	else if (token(i + 1) == "(") // OH BOY PROC
 		var/list/arguments = list()
-		i = call_function(i, null, arguments)
+		i = call_REMOVEDction(i, null, arguments)
 		L += ":"
 		L[++L.len] = arguments
 
@@ -491,8 +491,8 @@
 
 	return i + 1
 
-//call_function:	<function name> ['(' [arguments] ')']
-/datum/SDQL_parser/proc/call_function(i, list/node, list/arguments)
+//call_REMOVEDction:	<REMOVEDction name> ['(' [arguments] ')']
+/datum/SDQL_parser/proc/call_REMOVEDction(i, list/node, list/arguments)
 	if(length(tokenl(i)))
 		var/procname = ""
 		if(tokenl(i) == "global" && token(i + 1) == ".") // Global proc.
@@ -517,7 +517,7 @@
 		else
 			i++
 	else
-		parse_error("Expected a function but found nothing")
+		parse_error("Expected a REMOVEDction but found nothing")
 	return i + 1
 
 

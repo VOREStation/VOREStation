@@ -53,7 +53,7 @@ var/const/WIRE_NEXT = 1024
 		if(WIRE_NEXT)
 			A.NextTrack()
 		else
-			A.shock(usr, 10) // The nothing wires give a chance to shock just for fun
+			A.shock(usr, 10) // The nothing wires give a chance to shock just for REMOVED
 
 /datum/wires/jukebox/UpdateCut(var/index, var/mended)
 	var/obj/machinery/media/jukebox/A = holder

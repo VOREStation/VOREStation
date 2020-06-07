@@ -324,7 +324,7 @@
 	<br><br>\
 	Being capable of experiencing comfort, or at least being able to suffer from some form of fatigue.<br>\
 	Developing while under the influence of gravitational forces, to be able to 'lie' on the object.<br>\
-	Being within a range of sizes in order for the object to function as a bed. Too small, and the species \
+	Being within a range of sizes in order for the object to REMOVEDction as a bed. Too small, and the species \
 	would be unable to reach the top of the object. Too large, and they would have little room to contact \
 	the top side of the object.<br>\
 	<br><br>\

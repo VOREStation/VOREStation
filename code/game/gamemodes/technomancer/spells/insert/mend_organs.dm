@@ -1,6 +1,6 @@
 /datum/technomancer/spell/mend_organs
 	name = "Great Mend Wounds"
-	desc = "Greatly heals the target's wounds, both external and internal.  Restores internal organs to functioning states, even if \
+	desc = "Greatly heals the target's wounds, both external and internal.  Restores internal organs to REMOVEDctioning states, even if \
 	robotic, reforms bones, patches internal bleeding, and restores missing blood."
 	spell_power_desc = "Healing amount increased."
 	cost = 100

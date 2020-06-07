@@ -2,7 +2,7 @@
 //
 // Abilities in this tree allow the AI to physically manipulate systems around the station.
 // T1 - Electrical Pulse - Sends out pulse that breaks some lights and sometimes even APCs. This can actually break the AI's APC so be careful!
-// T2 - Hack Camera - Allows the AI to hack a camera. Deactivated areas may be reactivated, and functional cameras can be upgraded.
+// T2 - Hack Camera - Allows the AI to hack a camera. Deactivated areas may be reactivated, and REMOVEDctional cameras can be upgraded.
 // T3 - Emergency Forcefield - Allows the AI to project 1 tile forcefield that blocks movement and air flow. Forcefield�dissipates over time. It is also very susceptible to energetic weaponry.
 // T4 - Machine Overload - Detonates machine of choice in a minor explosion. Two of these are usually enough to kill or K/O someone.
 
@@ -10,35 +10,35 @@
 // BEGIN RESEARCH DATUMS
 
 /datum/malf_research_ability/manipulation/electrical_pulse
-	ability = new/datum/game_mode/malfunction/verb/electrical_pulse()
+	ability = new/datum/game_mode/malREMOVEDction/verb/electrical_pulse()
 	price = 50
 	next = new/datum/malf_research_ability/manipulation/hack_camera()
 	name = "Electrical Pulse"
 
 
 /datum/malf_research_ability/manipulation/hack_camera
-	ability = new/datum/game_mode/malfunction/verb/hack_camera()
+	ability = new/datum/game_mode/malREMOVEDction/verb/hack_camera()
 	price = 1200
 	next = new/datum/malf_research_ability/manipulation/emergency_forcefield()
 	name = "Hack Camera"
 
 
 /datum/malf_research_ability/manipulation/emergency_forcefield
-	ability = new/datum/game_mode/malfunction/verb/emergency_forcefield()
+	ability = new/datum/game_mode/malREMOVEDction/verb/emergency_forcefield()
 	price = 3000
 	next = new/datum/malf_research_ability/manipulation/machine_overload()
 	name = "Emergency Forcefield"
 
 
 /datum/malf_research_ability/manipulation/machine_overload
-	ability = new/datum/game_mode/malfunction/verb/machine_overload()
+	ability = new/datum/game_mode/malREMOVEDction/verb/machine_overload()
 	price = 7500
 	name = "Machine Overload"
 
 // END RESEARCH DATUMS
 // BEGIN ABILITY VERBS
 
-/datum/game_mode/malfunction/verb/electrical_pulse()
+/datum/game_mode/malREMOVEDction/verb/electrical_pulse()
 	set name = "Electrical Pulse"
 	set desc = "15 CPU - Sends feedback pulse through station's power grid, overloading some sensitive systems, such as lights."
 	set category = "Software"
@@ -54,7 +54,7 @@
 			AP.set_broken()
 
 
-/datum/game_mode/malfunction/verb/hack_camera(var/obj/machinery/camera/target in cameranet.cameras)
+/datum/game_mode/malREMOVEDction/verb/hack_camera(var/obj/machinery/camera/target in cameranet.cameras)
 	set name = "Hack Camera"
 	set desc = "100 CPU - Hacks existing camera, allowing you to add upgrade of your choice to it. Alternatively it lets you reactivate broken camera."
 	set category = "Software"
@@ -84,7 +84,7 @@
 				to_chat(user, "Camera reactivated.")
 		if("Add X-Ray")
 			if(target.isXRay())
-				to_chat(user, "Camera already has X-Ray function.")
+				to_chat(user, "Camera already has X-Ray REMOVEDction.")
 				return
 			else if(ability_pay(user, price))
 				target.upgradeXRay()
@@ -93,7 +93,7 @@
 				return
 		if("Add Motion Sensor")
 			if(target.isMotion())
-				to_chat(user, "Camera already has Motion Sensor function.")
+				to_chat(user, "Camera already has Motion Sensor REMOVEDction.")
 				return
 			else if(ability_pay(user, price))
 				target.upgradeMotion()
@@ -102,7 +102,7 @@
 				return
 		if("Add EMP Shielding")
 			if(target.isEmpProof())
-				to_chat(user, "Camera already has EMP Shielding function.")
+				to_chat(user, "Camera already has EMP Shielding REMOVEDction.")
 				return
 			else if(ability_pay(user, price))
 				target.upgradeEmpProof()
@@ -111,7 +111,7 @@
 				return
 
 
-/datum/game_mode/malfunction/verb/emergency_forcefield(var/turf/T as turf in world)
+/datum/game_mode/malREMOVEDction/verb/emergency_forcefield(var/turf/T as turf in world)
 	set name = "Emergency Forcefield"
 	set desc = "275 CPU - Uses station's emergency shielding system to create temporary barrier which lasts for few minutes, but won't resist gunfire."
 	set category = "Software"
@@ -129,7 +129,7 @@
 		user.hacking = 0
 
 
-/datum/game_mode/malfunction/verb/machine_overload(obj/machinery/M in machines)
+/datum/game_mode/malREMOVEDction/verb/machine_overload(obj/machinery/M in machines)
 	set name = "Machine Overload"
 	set desc = "400 CPU - Causes cyclic short-circuit in machine, resulting in weak explosion after some time."
 	set category = "Software"
@@ -153,7 +153,7 @@
 			if(A.cell && A.cell.charge)
 				explosion_intensity = 4 + round(A.cell.charge / 2000) // Explosion is increased by 1 for every 2k charge in cell
 			else
-				to_chat(user, "<span class='notice'>ERROR: APC Malfunction - Cell depleted or removed. Unable to overload.</span>")
+				to_chat(user, "<span class='notice'>ERROR: APC MalREMOVEDction - Cell depleted or removed. Unable to overload.</span>")
 				return
 		else if (istype(N, /obj/machinery/power/smes/buildable)) // SMES. These explode in a very very very big boom. Similar to magnetic containment failure when messing with coils.
 			var/obj/machinery/power/smes/buildable/S = N
@@ -170,8 +170,8 @@
 		if(!M.use_power) // Not using power at all
 			to_chat(user, "<span class='notice'>ERROR: No power grid connection. Unable to overload.</span>")
 			return
-		if(M.inoperable()) // Not functional
-			to_chat(user, "<span class='notice'>ERROR: Unknown error. Machine is probably damaged or power supply is nonfunctional.</span>")
+		if(M.inoperable()) // Not REMOVEDctional
+			to_chat(user, "<span class='notice'>ERROR: Unknown error. Machine is probably damaged or power supply is nonREMOVEDctional.</span>")
 			return
 	else // Not a machine at all (what the hell is this doing in Machines list anyway??)
 		to_chat(user, "<span class='notice'>ERROR: Unable to overload - target is not a machine.</span>")

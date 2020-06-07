@@ -5,7 +5,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 /obj/item/device/pda
 	name = "\improper PDA"
-	desc = "A portable microcomputer by Thinktronic Systems, LTD. Functionality determined by a preprogrammed ROM cartridge."
+	desc = "A portable microcomputer by Thinktronic Systems, LTD. REMOVEDctionality determined by a preprogrammed ROM cartridge."
 	icon = 'icons/obj/pda.dmi'
 	icon_state = "pda"
 	item_state = "electronic"
@@ -26,8 +26,8 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 	//Secondary variables
 	var/scanmode = 0 //1 is medical scanner, 2 is forensics, 3 is reagent scanner.
-	var/fon = 0 //Is the flashlight function on?
-	var/f_lum = 2 //Luminosity for the flashlight function
+	var/fon = 0 //Is the flashlight REMOVEDction on?
+	var/f_lum = 2 //Luminosity for the flashlight REMOVEDction
 	var/message_silent = 0 //To beep or not to beep, that is the question
 	var/news_silent = 1 //To beep or not to beep, that is the question.  The answer is No.
 	var/toff = 0 //If 1, messenger disabled
@@ -39,7 +39,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	var/lock_code = "" // Lockcode to unlock uplink
 	var/honkamt = 0 //How many honks left when infected with honk.exe
 	var/mimeamt = 0 //How many silence left when infected with mime.exe
-	var/note = "Congratulations, your station has chosen the Thinktronic 5230 Personal Data Assistant!" //Current note in the notepad function
+	var/note = "Congratulations, your station has chosen the Thinktronic 5230 Personal Data Assistant!" //Current note in the notepad REMOVEDction
 	var/notehtml = ""
 	var/cart = "" //A place to stick cartridge menu information
 	var/detonate = 1 // Can the PDA be blown up?
@@ -59,7 +59,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	var/list/no_auto_update = list(1, 40, 43, 44, 441, 45, 451)		     // These modes we turn off autoupdate
 	var/list/update_every_five = list(3, 41, 433, 46, 47, 48, 49)			     // These we update every 5 ticks
 
-	var/obj/item/weapon/card/id/id = null //Making it possible to slot an ID card into the PDA so it can function as both.
+	var/obj/item/weapon/card/id/id = null //Making it possible to slot an ID card into the PDA so it can REMOVEDction as both.
 	var/ownjob = null //related to above - this is assignment (potentially alt title)
 	var/ownrank = null // this one is rank, never alt title
 
@@ -338,7 +338,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	ttone = "assist"
 
 /obj/item/device/pda/ai/shell
-	spam_proof = TRUE // Since empty shells get a functional PDA.
+	spam_proof = TRUE // Since empty shells get a REMOVEDctional PDA.
 
 // Used for the PDA multicaster, which mirrors messages sent to it to a specific department,
 /obj/item/device/pda/multicaster
@@ -512,7 +512,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	data["message_silent"] = message_silent					// does the pda make noise when it receives a message?
 	data["news_silent"] = news_silent					// does the pda make noise when it receives news?
 	data["touch_silent"] = touch_silent					// does the pda make noise when it receives news?
-	data["toff"] = toff					// is the messenger function turned off?
+	data["toff"] = toff					// is the messenger REMOVEDction turned off?
 	data["active_conversation"] = active_conversation	// Which conversation are we following right now?
 
 
@@ -701,7 +701,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 	switch(href_list["choice"])
 
-//BASIC FUNCTIONS===================================
+//BASIC REMOVEDCTIONS===================================
 
 		if("Close")//Self explanatory
 			U.unset_machine()
@@ -728,7 +728,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		if("Eject")//Ejects the cart, only done from hub.
 			verb_remove_cartridge()
 
-//MENU FUNCTIONS===================================
+//MENU REMOVEDCTIONS===================================
 
 		if("0")//Hub
 			mode = 0
@@ -748,7 +748,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			mode = 41
 
 
-//MAIN FUNCTIONS===================================
+//MAIN REMOVEDCTIONS===================================
 
 		if("Light")
 			if(fon)
@@ -784,7 +784,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		if("Toggle Beeping")
 			touch_silent = !touch_silent
 
-//MESSENGER/NOTE FUNCTIONS===================================
+//MESSENGER/NOTE REMOVEDCTIONS===================================
 
 		if ("Edit")
 			var/n = input(U, "Please enter message", name, notehtml) as message
@@ -892,7 +892,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 				return 0
 
 
-//SYNDICATE FUNCTIONS===================================
+//SYNDICATE REMOVEDCTIONS===================================
 
 		if("Toggle Door")
 			if(cartridge && cartridge.access_remote_door)
@@ -951,7 +951,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 				ui.close()
 				return 0
 
-//pAI FUNCTIONS===================================
+//pAI REMOVEDCTIONS===================================
 		if("pai")
 			if(pai)
 				if(pai.loc != src)
@@ -971,7 +971,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			if(cartridge)
 				cartridge.mode = mode
 
-//EXTRA FUNCTIONS===================================
+//EXTRA REMOVEDCTIONS===================================
 
 	if (mode == 2||mode == 21)//To clear message overlays.
 		new_message = 0

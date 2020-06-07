@@ -19,7 +19,7 @@
 	var/base_print_delay = 100	// For Adminbus reasons
 	var/printing
 	var/loaded_dna //Blood sample for DNA hashing.
-	var/malfunctioning = FALSE	// May cause rejection, or the printing of some alien limb instead!
+	var/malREMOVEDctioning = FALSE	// May cause rejection, or the printing of some alien limb instead!
 
 	var/complex_organs = FALSE	// Can it print more 'complex' organs?
 
@@ -101,20 +101,20 @@
 	manip_rating = round(manip_rating / 2)
 
 	if(manip_rating >= 5)
-		malfunctioning = TRUE
+		malREMOVEDctioning = TRUE
 	else
-		malfunctioning = initial(malfunctioning)
+		malREMOVEDctioning = initial(malREMOVEDctioning)
 
 	if(manip_rating >= 3)
 		complex_organs = TRUE
 		if(manip_rating >= 4)
 			anomalous_organs = TRUE
 			if(manip_rating >= 5)
-				malfunctioning = TRUE
+				malREMOVEDctioning = TRUE
 	else
 		complex_organs = initial(complex_organs)
 		anomalous_organs = initial(anomalous_organs)
-		malfunctioning = initial(malfunctioning)
+		malREMOVEDctioning = initial(malREMOVEDctioning)
 
 	. = ..()
 
@@ -228,17 +228,17 @@
 	O.set_dna(C.dna)
 	O.species = C.species
 
-	var/malfunctioned = FALSE
+	var/malREMOVEDctioned = FALSE
 
-	if(malfunctioning && prob(30)) // Alien Tech is a hell of a drug.
-		malfunctioned = TRUE
+	if(malREMOVEDctioning && prob(30)) // Alien Tech is a hell of a drug.
+		malREMOVEDctioned = TRUE
 		var/possible_species = list(SPECIES_HUMAN, SPECIES_VOX, SPECIES_SKRELL, SPECIES_ZADDAT, SPECIES_UNATHI, SPECIES_GOLEM, SPECIES_SHADOW)
 		var/new_species = pick(possible_species)
 		if(!GLOB.all_species[new_species])
 			new_species = SPECIES_HUMAN
 		O.species = GLOB.all_species[new_species]
 
-	if(istype(O, /obj/item/organ/external) && !malfunctioned)
+	if(istype(O, /obj/item/organ/external) && !malREMOVEDctioned)
 		var/obj/item/organ/external/E = O
 		E.sync_colour_to_human(C)
 

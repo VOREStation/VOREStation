@@ -231,7 +231,7 @@ What a mess.*/
 				// New sorting order!
 					sortBy = href_list["sort"]
 					order = initial(order)
-//BASIC FUNCTIONS
+//BASIC REMOVEDCTIONS
 			if("Clear Screen")
 				temp = null
 
@@ -280,7 +280,7 @@ What a mess.*/
 						authenticated = scan.registered_name
 						rank = scan.assignment
 						screen = 1
-//RECORD FUNCTIONS
+//RECORD REMOVEDCTIONS
 			if("Search Records")
 				var/t1 = input("Search String: (Partial Name or ID or Fingerprints or Rank)", "Secure. records", null, null)  as text
 				if ((!( t1 ) || usr.stat || !( authenticated ) || usr.restrained() || !in_range(src, usr)))
@@ -419,7 +419,7 @@ What a mess.*/
 				active1 = data_core.CreateGeneralRecord()
 				active2 = null
 
-//FIELD FUNCTIONS
+//FIELD REMOVEDCTIONS
 			if ("Edit Field")
 				if (is_not_allowed(usr))
 					return
@@ -523,7 +523,7 @@ What a mess.*/
 							active1.fields["photo_side"] = photo
 
 
-//TEMPORARY MENU FUNCTIONS
+//TEMPORARY MENU REMOVEDCTIONS
 			else//To properly clear as per clear screen.
 				temp=null
 				switch(href_list["choice"])
@@ -563,7 +563,7 @@ What a mess.*/
 						if (active2)
 							qdel(active2)
 					else
-						temp = "This function does not appear to be working at the moment. Our apologies."
+						temp = "This REMOVEDction does not appear to be working at the moment. Our apologies."
 
 	add_fingerprint(usr)
 	updateUsrDialog()

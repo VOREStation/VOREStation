@@ -121,7 +121,7 @@ var/list/admin_verbs_sounds = list(
 	/client/proc/play_server_sound
 	)
 
-var/list/admin_verbs_fun = list(
+var/list/admin_verbs_REMOVED = list(
 	/client/proc/object_talk,
 	/datum/admins/proc/cmd_admin_dress,
 	/client/proc/cmd_admin_gib_self,
@@ -497,7 +497,7 @@ var/list/admin_verbs_event_manager = list(
 		if(holder.rights & R_BUILDMODE)		verbs += /client/proc/togglebuildmodeself
 		if(holder.rights & R_ADMIN)			verbs += admin_verbs_admin
 		if(holder.rights & R_BAN)			verbs += admin_verbs_ban
-		if(holder.rights & R_FUN)			verbs += admin_verbs_fun
+		if(holder.rights & R_REMOVED)			verbs += admin_verbs_REMOVED
 		if(holder.rights & R_SERVER)		verbs += admin_verbs_server
 		if(holder.rights & R_DEBUG)
 			verbs += admin_verbs_debug
@@ -518,7 +518,7 @@ var/list/admin_verbs_event_manager = list(
 		/client/proc/togglebuildmodeself,
 		admin_verbs_admin,
 		admin_verbs_ban,
-		admin_verbs_fun,
+		admin_verbs_REMOVED,
 		admin_verbs_server,
 		admin_verbs_debug,
 		admin_verbs_possess,

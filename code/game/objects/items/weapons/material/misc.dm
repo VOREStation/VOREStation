@@ -60,7 +60,7 @@
 
 /obj/item/weapon/material/snow/snowball
 	name = "loose packed snowball"
-	desc = "A fun snowball. Throw it at your friends!"
+	desc = "A REMOVED snowball. Throw it at your friends!"
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "snowball"
 	default_material = MAT_SNOW
@@ -88,7 +88,7 @@
 
 /obj/item/weapon/material/snow/snowball/reinforced
 	name = "snowball"
-	desc = "A well-formed and fun snowball. It looks kind of dangerous."
+	desc = "A well-formed and REMOVED snowball. It looks kind of dangerous."
 	//icon_state = "reinf-snowball"
 	force_divisor = 0.20
 	thrown_force_divisor = 0.25

@@ -142,7 +142,7 @@
 		*/
 		interpreter.SetProc("length", /proc/smartlength)
 
-		/* -- Clone functions, carried from default BYOND procs --- */
+		/* -- Clone REMOVEDctions, carried from default BYOND procs --- */
 
 		// vector namespace
 		interpreter.SetProc("vector", /proc/n_list)

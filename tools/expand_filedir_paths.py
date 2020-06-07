@@ -8,7 +8,7 @@ filedir_pattern = re.compile(r'^#define\s*FILE_DIR\s*"(.*?)"')
 
 # Regex pattern to extract any single quoted piece of text. This can also
 # match single quoted strings inside of double quotes, which is part of a
-# regular text string and should not be replaced. The replacement function
+# regular text string and should not be replaced. The replacement REMOVEDction
 # however will any match that doesn't appear to be a filename so these
 # extra matches should not be a problem.
 rename_pattern = re.compile(r"'(.+?)'")
@@ -54,9 +54,9 @@ def index_files(file_dirs):
 # each file, search it for any resource names in single quotes, and replace
 # them with the full path previously found by index_files()
 def rewrite_sources(resources):
-    # Create a closure for the regex replacement function to capture the
-    # resources dictionary which can't be passed directly to this function
-    def replace_func(name):
+    # Create a closure for the regex replacement REMOVEDction to capture the
+    # resources dictionary which can't be passed directly to this REMOVEDction
+    def replace_REMOVEDc(name):
         key = name.group(1).lower()
         if key in resources:
             replacement = resources[key]
@@ -76,7 +76,7 @@ def rewrite_sources(resources):
                 # single quoted resource names with the fullpath to that resource
                 # file. Write the updated text back out to a temporary file.
                 for row in source_file:
-                    row = rename_pattern.sub(replace_func, row)
+                    row = rename_pattern.sub(replace_REMOVEDc, row)
                     output_file.write(row)
 
                 output_file.close()

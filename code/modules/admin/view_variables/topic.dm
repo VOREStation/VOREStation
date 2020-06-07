@@ -70,7 +70,7 @@
 		href_list["datumrefresh"] = href_list["mob_player_panel"]
 
 	else if(href_list["give_spell"])
-		if(!check_rights(R_ADMIN|R_FUN|R_EVENT))	return
+		if(!check_rights(R_ADMIN|R_REMOVED|R_EVENT))	return
 
 		var/mob/M = locate(href_list["give_spell"])
 		if(!istype(M))
@@ -81,7 +81,7 @@
 		href_list["datumrefresh"] = href_list["give_spell"]
 
 	else if(href_list["give_modifier"])
-		if(!check_rights(R_ADMIN|R_FUN|R_DEBUG|R_EVENT))
+		if(!check_rights(R_ADMIN|R_REMOVED|R_DEBUG|R_EVENT))
 			return
 
 		var/mob/living/M = locate(href_list["give_modifier"])
@@ -93,7 +93,7 @@
 		href_list["datumrefresh"] = href_list["give_modifier"]
 
 	else if(href_list["give_disease2"])
-		if(!check_rights(R_ADMIN|R_FUN|R_EVENT))	return
+		if(!check_rights(R_ADMIN|R_REMOVED|R_EVENT))	return
 
 		var/mob/M = locate(href_list["give_disease2"])
 		if(!istype(M))
@@ -158,7 +158,7 @@
 			usr.client.cmd_assume_direct_control(M)
 
 	else if(href_list["make_skeleton"])
-		if(!check_rights(R_FUN))	return
+		if(!check_rights(R_REMOVED))	return
 
 		var/mob/living/carbon/human/H = locate(href_list["make_skeleton"])
 		if(!istype(H))
@@ -468,7 +468,7 @@
 		M.regenerate_icons()
 
 	else if(href_list["adjustDamage"] && href_list["mobToDamage"])
-		if(!check_rights(R_DEBUG|R_ADMIN|R_FUN|R_EVENT))	return
+		if(!check_rights(R_DEBUG|R_ADMIN|R_REMOVED|R_EVENT))	return
 
 		var/mob/living/L = locate(href_list["mobToDamage"])
 		if(!istype(L)) return

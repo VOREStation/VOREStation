@@ -10,7 +10,7 @@ create some constantly "looping" processes with ability to stop and restart them
 Generally, the only thing you want to play with (meaning, redefine) is the process() proc.
 It must contain all the things you want done.
 
-Control functions:
+Control REMOVEDctions:
 	new - used to create datum. First argument (optional) - var list(to use in process() proc) as list,
 	second (optional) - autostart control.
 	If autostart == TRUE, the loop will be started immediately after datum creation.
@@ -30,7 +30,7 @@ Control functions:
 
 	toggle() - toggles datum state. Returns new datum state (see active()).
 
-Misc functions:
+Misc REMOVEDctions:
 
 	get_last_exec_time() - Returns the time of last iteration.
 

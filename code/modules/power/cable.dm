@@ -141,7 +141,7 @@ var/list/possible_cable_coil_colours = list(
 		d2 = temp
 
 	//	..()	Cable sprite generation is dependent upon only d1 and d2.
-	// 			Actually changing dir will rotate the generated sprite to look wrong, but function correctly.
+	// 			Actually changing dir will rotate the generated sprite to look wrong, but REMOVEDction correctly.
 	update_icon()
 	// Add this cable back to the powernet, if it's connected to any
 	if(d1)

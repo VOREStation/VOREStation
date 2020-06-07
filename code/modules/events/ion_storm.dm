@@ -22,7 +22,7 @@
 		announceWhen = endWhen + rand(250, 400)
 
 /datum/event/ionstorm/announce()
-	command_announcement.Announce("It has come to our attention that \the [location_name()] passed through an ion storm.  Please monitor all electronic equipment for malfunctions.", "Anomaly Alert")
+	command_announcement.Announce("It has come to our attention that \the [location_name()] passed through an ion storm.  Please monitor all electronic equipment for malREMOVEDctions.", "Anomaly Alert")
 
 /datum/event/ionstorm/start()
 	for (var/mob/living/carbon/human/player in player_list)

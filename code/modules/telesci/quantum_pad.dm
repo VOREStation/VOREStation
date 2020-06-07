@@ -143,7 +143,7 @@
 			teleporting = 0
 			return
 		if(inoperable())
-			to_chat(user, "<span class='warning'>[src] is nonfunctional!</span>")
+			to_chat(user, "<span class='warning'>[src] is nonREMOVEDctional!</span>")
 			teleporting = 0
 			return
 		if(!linked_pad || QDELETED(linked_pad) || linked_pad.inoperable())

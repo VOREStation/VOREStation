@@ -188,7 +188,7 @@
 				var/t1 = href_list["assign_target"]
 				if(t1 == "Custom")
 					var/temp_t = sanitize(input("Enter a custom job assignment.","Assignment", id_card.assignment), 45)
-					//let custom jobs function as an impromptu alt title, mainly for sechuds
+					//let custom jobs REMOVEDction as an impromptu alt title, mainly for sechuds
 					if(temp_t)
 						id_card.assignment = temp_t
 				else

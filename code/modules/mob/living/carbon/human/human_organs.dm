@@ -86,8 +86,8 @@
 		var/obj/item/organ/external/E = organs_by_name[limb_tag]
 		if(!E || !E.is_usable())
 			stance_damage += 2 // let it fail even if just foot&leg
-		else if (E.is_malfunctioning() && !(lying || resting))
-			//malfunctioning only happens intermittently so treat it as a missing limb when it procs
+		else if (E.is_malREMOVEDctioning() && !(lying || resting))
+			//malREMOVEDctioning only happens intermittently so treat it as a missing limb when it procs
 			stance_damage += 2
 			if(isturf(loc) && prob(10))
 				visible_message("\The [src]'s [E.name] [pick("twitches", "shudders")] and sparks!")
@@ -129,7 +129,7 @@
 		for(var/limb_tag in list(BP_L_HAND, BP_L_ARM))
 			var/obj/item/organ/external/E = get_organ(limb_tag)
 			if(!E)
-				visible_message("<span class='danger'>Lacking a functioning left hand, \the [src] drops \the [l_hand].</span>")
+				visible_message("<span class='danger'>Lacking a REMOVEDctioning left hand, \the [src] drops \the [l_hand].</span>")
 				drop_from_inventory(l_hand)
 				break
 
@@ -137,7 +137,7 @@
 		for(var/limb_tag in list(BP_R_HAND, BP_R_ARM))
 			var/obj/item/organ/external/E = get_organ(limb_tag)
 			if(!E)
-				visible_message("<span class='danger'>Lacking a functioning right hand, \the [src] drops \the [r_hand].</span>")
+				visible_message("<span class='danger'>Lacking a REMOVEDctioning right hand, \the [src] drops \the [r_hand].</span>")
 				drop_from_inventory(r_hand)
 				break
 
@@ -163,7 +163,7 @@
 			var/emote_scream = pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
 			emote("me", 1, "[(can_feel_pain()) ? "" : emote_scream ]drops what they were holding in their [E.name]!")
 
-		else if(E.is_malfunctioning())
+		else if(E.is_malREMOVEDctioning())
 			switch(E.body_part)
 				if(HAND_LEFT, ARM_LEFT)
 					if(!l_hand)
@@ -174,7 +174,7 @@
 						continue
 					drop_from_inventory(r_hand)
 
-			emote("me", 1, "drops what they were holding, their [E.name] malfunctioning!")
+			emote("me", 1, "drops what they were holding, their [E.name] malREMOVEDctioning!")
 
 			var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 			spark_system.set_up(5, 0, src)

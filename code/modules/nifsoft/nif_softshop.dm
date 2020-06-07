@@ -44,7 +44,7 @@
 				icon_state = "[initial(icon_state)]-off"
 				entopic.hide()
 
-/obj/machinery/vending/nifsoft_shop/malfunction()
+/obj/machinery/vending/nifsoft_shop/malREMOVEDction()
 	stat |= BROKEN
 	icon_state = "[initial(icon_state)]-broken"
 	entopic.hide()
@@ -222,7 +222,7 @@
 
 //Can't throw intangible software at people.
 /obj/machinery/vending/nifsoft_shop/throw_item()
-	//TODO: Make it throw disks at people with random software? That might be fun. EVEN THE ILLEGAL ONES? ;o
+	//TODO: Make it throw disks at people with random software? That might be REMOVED. EVEN THE ILLEGAL ONES? ;o
 	return 0
 
 /datum/wires/vending/no_contraband

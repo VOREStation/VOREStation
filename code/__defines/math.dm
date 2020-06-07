@@ -132,7 +132,7 @@
 	. = inc > dec? -dec : inc
 
 //A logarithm that converts an integer to a number scaled between 0 and 1.
-//Currently, this is used for hydroponics-produce sprite transforming, but could be useful for other transform functions.
+//Currently, this is used for hydroponics-produce sprite transforming, but could be useful for other transform REMOVEDctions.
 #define TRANSFORM_USING_VARIABLE(input, max) ( sin((90*(input))/(max))**2 )
 
 //converts a uniform distributed random number into a normal distributed one

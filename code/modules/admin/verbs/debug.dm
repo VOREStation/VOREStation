@@ -94,7 +94,7 @@
 	feedback_add_details("admin_verb","ASL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_robotize(var/mob/M in mob_list)
-	set category = "Fun"
+	set category = "REMOVED"
 	set name = "Make Robot"
 
 	if(!ticker)
@@ -109,7 +109,7 @@
 		alert("Invalid mob")
 
 /client/proc/cmd_admin_animalize(var/mob/M in mob_list)
-	set category = "Fun"
+	set category = "REMOVED"
 	set name = "Make Simple Animal"
 
 	if(!ticker)
@@ -130,7 +130,7 @@
 
 
 /client/proc/makepAI(var/turf/T in mob_list)
-	set category = "Fun"
+	set category = "REMOVED"
 	set name = "Make pAI"
 	set desc = "Specify a location to spawn a pAI device, then specify a key to play that pAI"
 
@@ -157,7 +157,7 @@
 	feedback_add_details("admin_verb","MPAI") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_alienize(var/mob/M in mob_list)
-	set category = "Fun"
+	set category = "REMOVED"
 	set name = "Make Alien"
 
 	if(!ticker)
@@ -417,10 +417,10 @@
 		to_world("* [areatype]")
 
 /datum/admins/proc/cmd_admin_dress(input in getmobs())
-	set category = "Fun"
+	set category = "REMOVED"
 	set name = "Select equipment"
 
-	if(!check_rights(R_FUN))
+	if(!check_rights(R_REMOVED))
 		return
 
 	var/target = getmobs()[input]

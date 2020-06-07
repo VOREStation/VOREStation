@@ -2,7 +2,7 @@
 Tooltips v1.1 - 22/10/15
 Developed by Wire (#goonstation on irc.synirc.net)
 - Added support for screen_loc pixel offsets. Should work. Maybe.
-- Added init function to more efficiently send base vars
+- Added init REMOVEDction to more efficiently send base vars
 
 Configuration:
 - Set control to the correct skin element (remember to actually place the skin element)

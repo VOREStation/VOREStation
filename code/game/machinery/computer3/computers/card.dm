@@ -85,27 +85,27 @@
 		jobs_all += "<td weight='100'><a href='?src=\ref[src];assign=[job]'>[replacetext(job, " ", "&nbsp")]</a></td>"
 
 		dat = {"<script type="text/javascript">
-							function markRed(){
+							REMOVEDction markRed(){
 								var nameField = document.getElementById('namefield');
 								nameField.style.backgroundColor = "#FFDDDD";
 							}
-							function markGreen(){
+							REMOVEDction markGreen(){
 								var nameField = document.getElementById('namefield');
 								nameField.style.backgroundColor = "#DDFFDD";
 							}
-							function markAccountGreen(){
+							REMOVEDction markAccountGreen(){
 								var nameField = document.getElementById('accountfield');
 								nameField.style.backgroundColor = "#DDFFDD";
 							}
-							function markAccountRed(){
+							REMOVEDction markAccountRed(){
 								var nameField = document.getElementById('accountfield');
 								nameField.style.backgroundColor = "#FFDDDD";
 							}
-							function showAll(){
+							REMOVEDction showAll(){
 								var allJobsSlot = document.getElementById('alljobsslot');
 								allJobsSlot.innerHTML = "<a href='#' onclick='hideAll()'>hide</a><br>"+ "[jobs_all]";
 							}
-							function hideAll(){
+							REMOVEDction hideAll(){
 								var allJobsSlot = document.getElementById('alljobsslot');
 								allJobsSlot.innerHTML = "<a href='#' onclick='showAll()'>[(writer.assignment) ? writer.assignment : "Unassgied"]</a>";
 							}

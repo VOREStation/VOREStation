@@ -6,7 +6,7 @@
 */
 /*
 	Macros: Status Macros
-	RETURNING  - Indicates that the current function is returning a value.
+	RETURNING  - Indicates that the current REMOVEDction is returning a value.
 	BREAKING   - Indicates that the current loop is being terminated.
 	CONTINUING - Indicates that the rest of the current iteration of a loop is being skipped.
 */
@@ -20,10 +20,10 @@
 			globalScope
 		node
 			BlockDefinition/program
-			statement/FunctionDefinition/curFunction
+			statement/REMOVEDctionDefinition/curREMOVEDction
 		stack
 			scopes		= new()
-			functions	= new()
+			REMOVEDctions	= new()
 
 		datum/container // associated container for interpeter
 /*
@@ -60,8 +60,8 @@
 	Raises a runtime error.
 */
 		RaiseError(runtimeError/e)
-			e.stack=functions.Copy()
-			e.stack.Push(curFunction)
+			e.stack=REMOVEDctions.Copy()
+			e.stack.Push(curREMOVEDction)
 			src.HandleError(e)
 
 		CreateScope(node/BlockDefinition/B)
@@ -116,7 +116,7 @@
 						var/name = stmt.var_name.id_name
 						if(!stmt.object)
 							// Below we assign the variable first to null if it doesn't already exist.
-							// This is necessary for assignments like +=, and when the variable is used in a function
+							// This is necessary for assignments like +=, and when the variable is used in a REMOVEDction
 							// If the variable already exists in a different block, then AssignVariable will automatically use that one.
 							if(!IsVariableAccessible(name))
 								AssignVariable(name, null)
@@ -134,16 +134,16 @@
 							var/datum/D = Eval(GetVariable(dec.object.id_name))
 							if(!D) return
 							D.vars[dec.var_name.id_name] = null
-					else if(istype(S, /node/statement/FunctionCall))
-						RunFunction(S)
-					else if(istype(S, /node/statement/FunctionDefinition))
+					else if(istype(S, /node/statement/REMOVEDctionCall))
+						RunREMOVEDction(S)
+					else if(istype(S, /node/statement/REMOVEDctionDefinition))
 						//do nothing
 					else if(istype(S, /node/statement/WhileLoop))
 						RunWhile(S)
 					else if(istype(S, /node/statement/IfStatement))
 						RunIf(S)
 					else if(istype(S, /node/statement/ReturnStatement))
-						if(!curFunction)
+						if(!curREMOVEDction)
 							RaiseError(new/runtimeError/UnexpectedReturn())
 							continue
 						status |= RETURNING
@@ -163,22 +163,22 @@
 			curScope = scopes.Pop()
 
 /*
-	Proc: RunFunction
-	Runs a function block or a proc with the arguments specified in the script.
+	Proc: RunREMOVEDction
+	Runs a REMOVEDction block or a proc with the arguments specified in the script.
 */
-		RunFunction(node/statement/FunctionCall/stmt)
-			//Note that anywhere /node/statement/FunctionCall/stmt is used so may /node/expression/FunctionCall
+		RunREMOVEDction(node/statement/REMOVEDctionCall/stmt)
+			//Note that anywhere /node/statement/REMOVEDctionCall/stmt is used so may /node/expression/REMOVEDctionCall
 
-			// If recursion gets too high (max 50 nested functions) throw an error
+			// If recursion gets too high (max 50 nested REMOVEDctions) throw an error
 			if(cur_recursion >= max_recursion)
 				RaiseError(new/runtimeError/RecursionLimitReached())
 				return 0
 
-			var/node/statement/FunctionDefinition/def
-			if(!stmt.object)							//A scope's function is being called, stmt.object is null
-				def = GetFunction(stmt.func_name)
+			var/node/statement/REMOVEDctionDefinition/def
+			if(!stmt.object)							//A scope's REMOVEDction is being called, stmt.object is null
+				def = GetREMOVEDction(stmt.REMOVEDc_name)
 			else if(istype(stmt.object))				//A method of an object exposed as a variable is being called, stmt.object is a /node/identifier
-				var/O = GetVariable(stmt.object.id_name)	//Gets a reference to the object which is the target of the function call.
+				var/O = GetVariable(stmt.object.id_name)	//Gets a reference to the object which is the target of the REMOVEDction call.
 				if(!O) return							//Error already thrown in GetVariable()
 				def = Eval(O)
 
@@ -186,7 +186,7 @@
 
 			cur_recursion++ // add recursion
 			if(istype(def))
-				if(curFunction) functions.Push(curFunction)
+				if(curREMOVEDction) REMOVEDctions.Push(curREMOVEDction)
 				var/scope/S = CreateScope(def.block)
 				for(var/i=1 to def.parameters.len)
 					var/val
@@ -195,24 +195,24 @@
 					//else
 					//	unspecified param
 					AssignVariable(def.parameters[i], new/node/expression/value/literal(Eval(val)), S)
-				curFunction=stmt
+				curREMOVEDction=stmt
 				RunBlock(def.block, S)
 				//Handle return value
 				. = returnVal
 				status &= ~RETURNING
 				returnVal=null
-				curFunction=functions.Pop()
+				curREMOVEDction=REMOVEDctions.Pop()
 				cur_recursion--
 			else
 				cur_recursion--
 				var/list/params=new
 				for(var/node/expression/P in stmt.parameters)
 					params+=list(Eval(P))
-				if(isobject(def))	//def is an object which is the target of a function call
-					if( !hascall(def, stmt.func_name) )
-						RaiseError(new/runtimeError/UndefinedFunction("[stmt.object.id_name].[stmt.func_name]"))
+				if(isobject(def))	//def is an object which is the target of a REMOVEDction call
+					if( !hascall(def, stmt.REMOVEDc_name) )
+						RaiseError(new/runtimeError/UndefinedREMOVEDction("[stmt.object.id_name].[stmt.REMOVEDc_name]"))
 						return
-					return call(def, stmt.func_name)(arglist(params))
+					return call(def, stmt.REMOVEDc_name)(arglist(params))
 				else										//def is a path to a global proc
 					return call(def)(arglist(params))
 			//else
@@ -253,16 +253,16 @@
 			return 1
 
 /*
-	Proc: GetFunction
-	Finds a function in an accessible scope with the given name. Returns a <FunctionDefinition>.
+	Proc: GetREMOVEDction
+	Finds a REMOVEDction in an accessible scope with the given name. Returns a <REMOVEDctionDefinition>.
 */
-		GetFunction(name)
+		GetREMOVEDction(name)
 			var/scope/S = curScope
 			while(S)
-				if(S.functions.Find(name))
-					return S.functions[name]
+				if(S.REMOVEDctions.Find(name))
+					return S.REMOVEDctions[name]
 				S = S.parent
-			RaiseError(new/runtimeError/UndefinedFunction(name))
+			RaiseError(new/runtimeError/UndefinedREMOVEDction(name))
 
 /*
 	Proc: GetVariable

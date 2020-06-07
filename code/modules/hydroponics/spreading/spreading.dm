@@ -13,7 +13,7 @@
 		if(turfs.len) //Pick a turf to spawn at if we can
 			var/turf/simulated/floor/T = pick(turfs)
 			var/datum/seed/seed = plant_controller.create_random_seed(1)
-			seed.set_trait(TRAIT_SPREAD,2)             // So it will function properly as vines.
+			seed.set_trait(TRAIT_SPREAD,2)             // So it will REMOVEDction properly as vines.
 			seed.set_trait(TRAIT_POTENCY,rand(potency_min, potency_max)) // 70-100 potency will help guarantee a wide spread and powerful effects.
 			seed.set_trait(TRAIT_MATURATION,rand(maturation_min, maturation_max))
 			seed.display_name = "strange plants" //more thematic for the vine infestation event

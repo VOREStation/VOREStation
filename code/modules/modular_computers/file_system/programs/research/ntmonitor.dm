@@ -20,7 +20,7 @@
 		return
 	var/list/data = host.initial_data()
 
-	data["ntnetstatus"] = ntnet_global.check_function()
+	data["ntnetstatus"] = ntnet_global.check_REMOVEDction()
 	data["ntnetrelays"] = ntnet_global.relays.len
 	data["idsstatus"] = ntnet_global.intrusion_detection_enabled
 	data["idsalarm"] = ntnet_global.intrusion_detection_alarm
@@ -81,10 +81,10 @@
 		if(ntnet_global)
 			ntnet_global.update_max_log_count(logcount)
 		return 1
-	if(href_list["toggle_function"])
+	if(href_list["toggle_REMOVEDction"])
 		if(!ntnet_global)
 			return 1
-		ntnet_global.toggle_function(href_list["toggle_function"])
+		ntnet_global.toggle_REMOVEDction(href_list["toggle_REMOVEDction"])
 		return 1
 	if(href_list["ban_nid"])
 		if(!ntnet_global)

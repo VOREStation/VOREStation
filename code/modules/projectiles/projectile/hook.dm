@@ -1,5 +1,5 @@
 /*
- * File containing special 'hook' projectiles. Function is dictated by the launcher's intent.
+ * File containing special 'hook' projectiles. REMOVEDction is dictated by the launcher's intent.
  */
 
 /obj/item/projectile/energy/hook
@@ -31,7 +31,7 @@
 	var/expected_distance = get_dist(target, loc)
 	range = expected_distance // So the hook hits the ground if no mob is hit.
 	target_distance = expected_distance
-	if(firer)	// Needed to ensure later checks in impact and on hit function.
+	if(firer)	// Needed to ensure later checks in impact and on hit REMOVEDction.
 		launcher_intent = firer.a_intent
 		firer.Beam(src,icon_state=beam_state,icon='icons/effects/beam.dmi',time=60, maxdistance=10,beam_type=/obj/effect/ebeam,beam_sleep_time=1)
 

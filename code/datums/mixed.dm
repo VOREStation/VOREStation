@@ -5,16 +5,16 @@
 	var/size = 1.0
 
 
-/datum/data/function
-	name = "function"
+/datum/data/REMOVEDction
+	name = "REMOVEDction"
 	size = 2.0
 
 
-/datum/data/function/data_control
+/datum/data/REMOVEDction/data_control
 	name = "data control"
 
 
-/datum/data/function/id_changer
+/datum/data/REMOVEDction/id_changer
 	name = "id changer"
 
 

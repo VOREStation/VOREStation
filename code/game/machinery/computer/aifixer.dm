@@ -37,7 +37,7 @@
 	if(istype(I, /obj/item/device/aicard))
 
 		if(stat & (NOPOWER|BROKEN))
-			to_chat(user, "This terminal isn't functioning right now.")
+			to_chat(user, "This terminal isn't REMOVEDctioning right now.")
 			return
 
 		var/obj/item/device/aicard/card = I
@@ -79,9 +79,9 @@
 		dat += "Laws:<br>[laws]<br>"
 
 		if (src.occupant.stat == 2)
-			dat += "<b>AI nonfunctional</b>"
+			dat += "<b>AI nonREMOVEDctional</b>"
 		else
-			dat += "<b>AI functional</b>"
+			dat += "<b>AI REMOVEDctional</b>"
 		if (!src.active)
 			dat += {"<br><br><A href='byond://?src=\ref[src];fix=1'>Begin Reconstruction</A>"}
 		else

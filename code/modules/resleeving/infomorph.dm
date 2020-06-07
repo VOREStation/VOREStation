@@ -63,7 +63,7 @@ var/list/infomorph_emotions = list(
 
 	var/temp				// General error reporting text contained here will typically be shown once and cleared
 	var/screen				// Which screen our main window displays
-	var/subscreen			// Which specific function of the main screen is being displayed
+	var/subscreen			// Which specific REMOVEDction of the main screen is being displayed
 
 	var/arHUD = 0			// Toggles whether a civilian AR HUD is active or not
 
@@ -126,7 +126,7 @@ var/list/infomorph_emotions = list(
 	if (src.client.statpanel == "Status")
 		show_silenced()
 
-// this function shows the information about being silenced as a pAI in the Status panel
+// this REMOVEDction shows the information about being silenced as a pAI in the Status panel
 /mob/living/silicon/infomorph/proc/show_silenced()
 	if(src.silence_time)
 		var/timeleft = round((silence_time - world.timeofday)/10 ,1)
@@ -154,7 +154,7 @@ var/list/infomorph_emotions = list(
 	// 20% chance to kill
 
 	src.silence_time = world.timeofday + 120 * 10		// Silence for 2 minutes
-	to_chat(src, "<font color=green><b>Communication circuit overload. Shutting down and reloading communication circuits - speech and messaging functionality will be unavailable until the reboot is complete.</b></font>")
+	to_chat(src, "<font color=green><b>Communication circuit overload. Shutting down and reloading communication circuits - speech and messaging REMOVEDctionality will be unavailable until the reboot is complete.</b></font>")
 	if(prob(20))
 		var/turf/T = get_turf_or_move(src.loc)
 		for (var/mob/M in viewers(T))
@@ -393,7 +393,7 @@ var/list/infomorph_emotions = list(
 /mob/living/silicon/infomorph/verb/wipe_software()
 	set name = "Suspend Self"
 	set category = "OOC"
-	set desc = "Wipe yourself from your hardware. This is functionally equivalent to cryo or robotic storage, freeing up your job slot."
+	set desc = "Wipe yourself from your hardware. This is REMOVEDctionally equivalent to cryo or robotic storage, freeing up your job slot."
 
 	// Make sure people don't kill themselves accidentally
 	if(alert("WARNING: This will immediately remove you from the round, and remove your mind backups from storage, similar to cryo. Are you entirely sure you want to do this?",
@@ -592,7 +592,7 @@ var/global/list/default_infomorph_software = list()
 	if(silence_time)
 		if(world.timeofday >= silence_time)
 			silence_time = null
-			to_chat(src, "<font color=green>Communication circuit reinitialized. Speech and messaging functionality restored.</font>")
+			to_chat(src, "<font color=green>Communication circuit reinitialized. Speech and messaging REMOVEDctionality restored.</font>")
 
 	handle_statuses()
 

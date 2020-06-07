@@ -12,7 +12,7 @@ var/global/ntnet_card_uid = 1
 	var/identification_string = "" 	// Identification string, technically nickname seen in the network. Can be set by user.
 	var/long_range = 0
 	var/ethernet = 0 // Hard-wired, therefore always on, ignores NTNet wireless checks.
-	malfunction_probability = 1
+	malREMOVEDction_probability = 1
 
 /obj/item/weapon/computer_hardware/network_card/diagnostics(var/mob/user)
 	..()
@@ -55,7 +55,7 @@ var/global/ntnet_card_uid = 1
 	if(!enabled)
 		return 0
 
-	if(!check_functionality() || !ntnet_global || is_banned())
+	if(!check_REMOVEDctionality() || !ntnet_global || is_banned())
 		return 0
 
 	return 2
@@ -90,13 +90,13 @@ var/global/ntnet_card_uid = 1
 	if(!enabled)
 		return 0
 
-	if(!check_functionality() || !ntnet_global || is_banned())
+	if(!check_REMOVEDctionality() || !ntnet_global || is_banned())
 		return 0
 
 	if(ethernet) // Computer is connected via wired connection.
 		return 3
 
-	if(!ntnet_global.check_function(specific_action)) // NTNet is down and we are not connected via wired connection. No signal.
+	if(!ntnet_global.check_REMOVEDction(specific_action)) // NTNet is down and we are not connected via wired connection. No signal.
 		return 0
 
 	if(holder2)

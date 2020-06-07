@@ -11,8 +11,8 @@ with these since they should be the default version of the datums. They're actua
 refer to them since it makes it a bit easier to search through them for specific information.
 - know_tech is the companion list to possible_tech. It's the tech you can actually research and improve. Until it's added to this
 list, it can't be improved. All the tech in this list are visible to the player.
-- possible_designs is functionally identical to possbile_tech except it's for /datum/design.
-- known_designs is functionally identical to known_tech except it's for /datum/design
+- possible_designs is REMOVEDctionally identical to possbile_tech except it's for /datum/design.
+- known_designs is REMOVEDctionally identical to known_tech except it's for /datum/design
 
 Procs:
 - TechHasReqs: Used by other procs (specifically RefreshResearch) to see whether all of a tech's requirements are currently in
@@ -209,7 +209,7 @@ research holder datum.
 
 /datum/tech/arcane
 	name = "Anomalous Research"
-	desc = "Study of phenomena that disobey the fundamental laws of this universe."
+	desc = "Study of phenomena that disobey the REMOVEDdamental laws of this universe."
 	id = TECH_ARCANE
 	level = 0
 

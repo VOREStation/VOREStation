@@ -59,7 +59,7 @@
 	use_power = USE_POWER_OFF
 	circuit = /obj/item/weapon/circuitboard/machine/rtg
 
-	// You can buckle someone to RTG, then open its panel. Fun stuff.
+	// You can buckle someone to RTG, then open its panel. REMOVED stuff.
 	can_buckle = TRUE
 	buckle_lying = FALSE
 

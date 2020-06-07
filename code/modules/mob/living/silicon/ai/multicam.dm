@@ -282,7 +282,7 @@ GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
 	if(multicam_on || aiRestorePowerRoutine || !isturf(loc))
 		return
 	if(!GLOB.ai_camera_room_landmark)
-		to_chat(src, "<span class='warning'>This function is not available at this time.</span>")
+		to_chat(src, "<span class='warning'>This REMOVEDction is not available at this time.</span>")
 		return
 	multicam_on = TRUE
 	refresh_multicam()

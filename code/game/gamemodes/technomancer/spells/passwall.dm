@@ -1,6 +1,6 @@
 /datum/technomancer/spell/passwall
 	name = "Passwall"
-	desc = "An uncommon function that allows the user to phase through matter (usually walls) in order to enter or exit a room.  Be careful you don't pass into \
+	desc = "An uncommon REMOVEDction that allows the user to phase through matter (usually walls) in order to enter or exit a room.  Be careful you don't pass into \
 	somewhere dangerous."
 	enhancement_desc = "Cost per tile is halved."
 	cost = 100
@@ -46,7 +46,7 @@
 		checked_turf = get_step(checked_turf, direction) //Advance in the given direction
 		total_cost += check_for_scepter() ? 400 : 800 //Phasing through matter's expensive, you know.
 		i--
-		if(checked_turf.block_tele) // The fun ends here.
+		if(checked_turf.block_tele) // The REMOVED ends here.
 			break
 
 		if(!checked_turf.density) //If we found a destination (a non-dense turf), then we can stop.

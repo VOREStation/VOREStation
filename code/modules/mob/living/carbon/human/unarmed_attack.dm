@@ -27,7 +27,7 @@ var/global/list/sparring_attack_cache = list()
 	if(user.restrained())
 		return FALSE
 
-	// Check if they have a functioning hand.
+	// Check if they have a REMOVEDctioning hand.
 	var/obj/item/organ/external/E = user.organs_by_name["l_hand"]
 	if(E && !E.is_stump())
 		return TRUE

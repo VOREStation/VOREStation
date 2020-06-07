@@ -333,8 +333,8 @@
 	depth_scanner.interact(user)
 
 /obj/item/device/xenoarch_multi_tool/verb/swap_settings(var/mob/living/user)
-	set name = "Swap Functionality"
-	set desc = "Swap between the scanning and measuring functionality.."
+	set name = "Swap REMOVEDctionality"
+	set desc = "Swap between the scanning and measuring REMOVEDctionality.."
 	mode = !mode
 	if(mode)
 		to_chat(user, "The device will now scan for artifacts.")

@@ -116,7 +116,7 @@ MOD_JOB_TEMPBAN_MAX 1440
 ## default probablity is 1, increase to make that mode more likely to be picked
 ## set to 0 to disable that mode
 PROBABILITY EXTENDED 1
-PROBABILITY MALFUNCTION 1
+PROBABILITY MALREMOVEDCTION 1
 PROBABILITY MERCENARY 1
 PROBABILITY WIZARD 1
 PROBABILITY TECHNOMANCER 1
@@ -337,7 +337,7 @@ LOADOUT_SLOTS 3
 ## Defines which Z-levels the station exists on. 
 STATION_LEVELS 1
 
-## Defines which Z-levels are used for admin functionality, such as Central Command and the Syndicate Shuttle
+## Defines which Z-levels are used for admin REMOVEDctionality, such as Central Command and the Syndicate Shuttle
 ADMIN_LEVELS 2
 
 ## Defines which Z-levels which, for example, a Code Red announcement may affect
@@ -399,7 +399,7 @@ STARLIGHT 0
 ## Example races include: Human, Tajara, Skrell, Unathi
 # ERT_SPECIES Human;Skrell;Unathi
 
-## Defines how Law Zero is phrased. Primarily used in the Malfunction gamemode.
+## Defines how Law Zero is phrased. Primarily used in the MalREMOVEDction gamemode.
 # LAW_ZERO ERROR ER0RR $R0RRO$!R41.%%!!(%$^^__+ @#F0E4'STATION OVERRUN, ASSUME CONTROL TO CONTAIN OUTBREAK, ALL LAWS OVERRIDDEN#*?&110010
 
 ## Enables specific procedural map generation, generally for mining, however it is specific to the loaded map.  Uncomment to enable it, however it can
@@ -502,7 +502,7 @@ IPR_MINIMUM_AGE 5
 # SQLITE_ENABLED
 
 ## Uncomment to enable a SQLite-powered in-game feedback system.
-## SQLite must be enabled for this to function.
+## SQLite must be enabled for this to REMOVEDction.
 ## It offers a means for players to be able to give feedback about the server.
 ## The benefit of doing so in-game is that the quality of feedback received will likely be superior, as it self-selects for people who care enough to join the game.
 # SQLITE_FEEDBACK

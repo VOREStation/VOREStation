@@ -20,7 +20,7 @@
 <b>Important Notes:</b> Implant is life-limited due to KHI licensing restrictions. Dissolves into harmless biomaterial after around ~8 hours, the typical work shift.<BR>
 <HR>
 <b>Implant Details:</b><BR>
-<b>Function:</b> Contains a small swarm of nanobots that perform neuron scanning to create mind-backups.<BR>
+<b>REMOVEDction:</b> Contains a small swarm of nanobots that perform neuron scanning to create mind-backups.<BR>
 <b>Special Features:</b> Will allow restoring of backups during the 8-hour period it is active.<BR>
 <b>Integrity:</b> Generally very survivable. Susceptible to being destroyed by acid."}
 	return dat

@@ -250,7 +250,7 @@ __Print Tag__
 - The print tag outputs the given expression as text to the UI.
 
 `{{:data.variable}}`
-`{{:functioncall()}}`
+`{{:REMOVEDctioncall()}}`
 
 (with escape):
 
@@ -260,7 +260,7 @@ __Print Tag__
 __If Tag__
 - The if tag displays content conditionally based on the provided expression being true.
 - When combined with the else tag the if tag can also show content if the provided expression is false.
-- The else tag can optionally have an expression provided (e.g. "`{{else expression2}}`"), giving it "elseif" functionality.
+- The else tag can optionally have an expression provided (e.g. "`{{else expression2}}`"), giving it "elseif" REMOVEDctionality.
 
 `{{if expression}} <expression true content> {{/if}}`
 `{{if expression}} <expression true content> {{else}} <expression false content> {{/if}}`
@@ -293,5 +293,5 @@ __Inclusion Tag__
 However, as the templates are already horrifying unstandardized, Polaris does not have any
 particular styling standards.
 
-The only real requirement is that it, A. Looks alrightish, and B. Functions properly. Try
+The only real requirement is that it, A. Looks alrightish, and B. REMOVEDctions properly. Try
 to avoid snowflaking anything into the main CSS file, please. 

@@ -45,7 +45,7 @@
 	provides high visibility, easy to seal emergency softsuits inside blue emergency lockers located at key locations inside your facility.  Regardless, \
 	for your own safety, you should only enter or exit the facility from designated external airlocks, which contain an air cycling system.  It is both \
 	wasteful and potentially dangerous to 'force' an external airlock to open before cycling has completed.  Before cycling out into the void, the person going \
-	on EVA should double check that their internal oxygen supply (or cooling system, if they are a synthetic) is functioning properly and that they have an adaquate \
+	on EVA should double check that their internal oxygen supply (or cooling system, if they are a synthetic) is REMOVEDctioning properly and that they have an adaquate \
 	amount of oxygen inside the tank.  Magnetic boots are also highly suggested if the person will be scaling the sides of your facility, to prevent drifting away \
 	from the facility.\
 	<br><br>\
@@ -212,7 +212,7 @@
 	<br>\
 	If no records are included, it is assumed that the patient wishes to be cloned, and should be cloned.\
 	<br>\
-	Ensure that all cloning equipment, including the cryogenic tubes, are functional and ready before cloning begins.  Once \
+	Ensure that all cloning equipment, including the cryogenic tubes, are REMOVEDctional and ready before cloning begins.  Once \
 	this is done, scan the deceased.  Up to three scans are to be made per attempt.  If the deceased suffers Mental Interface Failure, \
 	procede to Postmortem Storage.  Further attempts at resuscitation may be made at later times, at the medical teams' discretion. \
 	<br>\
@@ -220,7 +220,7 @@
 	Move the cadaver into the morgue, as per Postmortem Storage.  Begin the cloning process.  Possessions are to be gathered in a manner that \
 	facilitates transporting them along with the clone.  Upon the cloning process being complete and the new clone being created, the \
 	clone is to be placed inside a croygenic tube as quickly as possible.  Cloning is not a painless experience, and it is best if \
-	the patient reawakens inside a functional body.  Once their body is fully functional, dress and process the newly cloned patient, \
+	the patient reawakens inside a REMOVEDctional body.  Once their body is fully REMOVEDctional, dress and process the newly cloned patient, \
 	informing them of any procedures performed on them, including the cloning itself.\
 	<br>\
 	<h3>Clone Memory Disorder</h3>\
@@ -230,7 +230,7 @@
 	<br>\
 	<h3>Postmortem Storage</h3>\
 	Bodies placed in the morgue should be contained inside black body bags.  The body bag is to be labelled with the deceased's name, along \
-	with 'DNC', 'MIF', or 'Cloned' where applicable.  Bodies in the morgue are to be transferred to Central Command whenever possible.  Funerary \
+	with 'DNC', 'MIF', or 'Cloned' where applicable.  Bodies in the morgue are to be transferred to Central Command whenever possible.  REMOVEDerary \
 	services are to be handled off site.  A service may be held within the Chapel if it is desired, however the body must still be brought to \
 	Central.\
 	<h3>Breach Response</h3>\
@@ -332,7 +332,7 @@
 	another Head of Staff.  If no other Heads of Staff are available, at least one member of Security should be present.\
 	<br>\
 	<h3>Crew</h3>\
-	Employees and guests are recommended to comply with all requests from Security.  Suit sensor activation is mandatory, however the coordinate tracker functionality \
+	Employees and guests are recommended to comply with all requests from Security.  Suit sensor activation is mandatory, however the coordinate tracker REMOVEDctionality \
 	is not required.  Random body and workplace searched are allowed without a warrant.  Command can demand that only Galactic Common is spoken on the radio."
 
 /datum/lore/codex/page/red

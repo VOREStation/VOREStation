@@ -57,7 +57,7 @@
 					<li>Sleeve the mind into the body, using the console.</li>
 				</ol>
 				Being resleeved can be a disorienting and painful process. It is very likely that the person will need to acclimate to their new body, and should be given a place to rest for several minutes while
-				they get used to their motor functions. Resleeving tends to remap these, so it may take a while for the person to become fully acclimated driving their new body.<br>
+				they get used to their motor REMOVEDctions. Resleeving tends to remap these, so it may take a while for the person to become fully acclimated driving their new body.<br>
 				<a href="#Contents">Contents</a>
 
 				<h1><a name="Cards">How to Utilize Sleevecards</a></h1>

@@ -355,7 +355,7 @@
 	show_station_manifest()
 
 /mob/living/silicon/robot/proc/self_diagnosis()
-	if(!is_component_functioning("diagnosis unit"))
+	if(!is_component_REMOVEDctioning("diagnosis unit"))
 		return null
 
 	var/dat = "<HEAD><TITLE>[src.name] Self-Diagnosis Report</TITLE></HEAD><BODY>\n"
@@ -378,8 +378,8 @@
 	set category = "Robot Commands"
 	set name = "Self Diagnosis"
 
-	if(!is_component_functioning("diagnosis unit"))
-		to_chat(src, "<font color='red'>Your self-diagnosis component isn't functioning.</font>")
+	if(!is_component_REMOVEDctioning("diagnosis unit"))
+		to_chat(src, "<font color='red'>Your self-diagnosis component isn't REMOVEDctioning.</font>")
 
 	var/datum/robot_component/CO = get_component("diagnosis unit")
 	if (!cell_use_power(CO.active_usage))
@@ -417,7 +417,7 @@
 	set name = "Emit Sparks"
 	spark_system.start()
 
-// this function displays jetpack pressure in the stat panel
+// this REMOVEDction displays jetpack pressure in the stat panel
 /mob/living/silicon/robot/proc/show_jetpack_pressure()
 	// if you have a jetpack, show the internal tank pressure
 	var/obj/item/weapon/tank/jetpack/current_jetpack = installed_jetpack()
@@ -426,14 +426,14 @@
 		stat("Tank Pressure", current_jetpack.air_contents.return_pressure())
 
 
-// this function returns the robots jetpack, if one is installed
+// this REMOVEDction returns the robots jetpack, if one is installed
 /mob/living/silicon/robot/proc/installed_jetpack()
 	if(module)
 		return (locate(/obj/item/weapon/tank/jetpack) in module.modules)
 	return 0
 
 
-// this function displays the cyborgs current cell charge in the stat panel
+// this REMOVEDction displays the cyborgs current cell charge in the stat panel
 /mob/living/silicon/robot/proc/show_cell_power()
 	if(cell)
 		stat(null, text("Charge Left: [round(cell.percent())]%"))
@@ -1023,7 +1023,7 @@
 	return 0
 
 /mob/living/silicon/robot/binarycheck()
-	if(is_component_functioning("comms"))
+	if(is_component_REMOVEDctioning("comms"))
 		var/datum/robot_component/RC = get_component("comms")
 		use_power(RC.active_usage)
 		return 1

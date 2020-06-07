@@ -6,7 +6,7 @@ var/const/SHIELDGEN_WIRE_POWER = 1			// Cut to disable power input into the gene
 var/const/SHIELDGEN_WIRE_HACK = 2			// Pulse to hack the generator, enabling hacked modes. Cut to unhack. Mend does nothing.
 var/const/SHIELDGEN_WIRE_CONTROL = 4		// Cut to lock most shield controls. Mend to unlock them. Pulse does nothing.
 var/const/SHIELDGEN_WIRE_AICONTROL = 8		// Cut to disable AI control. Mend to restore.
-var/const/SHIELDGEN_WIRE_NOTHING = 16		// A blank wire that doesn't have any specific function
+var/const/SHIELDGEN_WIRE_NOTHING = 16		// A blank wire that doesn't have any specific REMOVEDction
 
 /datum/wires/shield_generator/CanUse(var/mob/living/L)
 	var/obj/machinery/power/shield_generator/S = holder

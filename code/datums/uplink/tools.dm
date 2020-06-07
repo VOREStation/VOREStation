@@ -30,10 +30,10 @@
 	path = /obj/item/device/encryptionkey/syndicate
 
 /datum/uplink_item/item/tools/money
-	name = "Operations Funding"
+	name = "Operations REMOVEDding"
 	item_cost = 10
 	path = /obj/item/weapon/storage/secure/briefcase/money
-	desc = "A briefcase with 10,000 untraceable thalers for funding your sneaky activities."
+	desc = "A briefcase with 10,000 untraceable thalers for REMOVEDding your sneaky activities."
 
 /datum/uplink_item/item/tools/plastique
 	name = "C-4 (Destroys walls)"
@@ -73,7 +73,7 @@
 	name = "Door Hacking Tool"
 	item_cost = 20
 	path = /obj/item/device/multitool/hacktool
-	desc = "Appears and functions as a standard multitool until the mode is toggled by applying a screwdriver appropriately. \
+	desc = "Appears and REMOVEDctions as a standard multitool until the mode is toggled by applying a screwdriver appropriately. \
 			When in hacking mode this device will grant full access to any standard airlock within 20 to 40 seconds. \
 			This device will also be able to immediately access the last 6 to 8 hacked airlocks."
 
@@ -81,7 +81,7 @@
 	name = "Anti-Surveillance Tool"
 	item_cost = 20
 	path = /obj/item/device/multitool/ai_detector
-	desc = "This functions like a normal multitool, but includes an integrated camera network sensor that will warn the holder if they are being \
+	desc = "This REMOVEDctions like a normal multitool, but includes an integrated camera network sensor that will warn the holder if they are being \
 	watched, by changing color and beeping.  It is able to detect both AI visual surveillance and security camera utilization from terminals, and \
 	will give different warnings by beeping and changing colors based on what it detects.  Only the holder can hear the warnings."
 

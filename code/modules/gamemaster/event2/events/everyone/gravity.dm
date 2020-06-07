@@ -31,4 +31,4 @@
 		if(A.z in get_location_z_levels(space_only = TRUE))
 			A.gravitychange(TRUE)
 
-	command_announcement.Announce("Gravity generators are again functioning within normal parameters. Sorry for any inconvenience.", "Gravity Restored")
+	command_announcement.Announce("Gravity generators are again REMOVEDctioning within normal parameters. Sorry for any inconvenience.", "Gravity Restored")

@@ -1,7 +1,7 @@
-/datum/admin_secret_item/fun_secret/turn_humans_into_monkeys
+/datum/admin_secret_item/REMOVED_secret/turn_humans_into_monkeys
 	name = "Turn All Humans Into Monkeys"
 
-/datum/admin_secret_item/fun_secret/turn_humans_into_monkeys/execute(var/mob/user)
+/datum/admin_secret_item/REMOVED_secret/turn_humans_into_monkeys/execute(var/mob/user)
 	. = ..()
 	if(!.)
 		return

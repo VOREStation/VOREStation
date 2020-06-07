@@ -16,7 +16,7 @@ Class Vars:
 	active_hotspots - All processing fire objects.
 
 	active_zones - The number of zones which were archived last tick. Used in debug verbs.
-	next_id - The next UID to be applied to a zone. Mostly useful for debugging purposes as zones do not need UIDs to function.
+	next_id - The next UID to be applied to a zone. Mostly useful for debugging purposes as zones do not need UIDs to REMOVEDction.
 
 Class Procs:
 

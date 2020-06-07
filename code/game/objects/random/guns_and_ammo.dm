@@ -405,7 +405,7 @@
 // Not strictly a gun, but is used in PoIs to spawn the dropped guns of mercs, or a busted version.
 /obj/random/projectile/scrapped_gun
 	name = "broken gun spawner"
-	desc = "Spawns a random broken gun, or rarely a fully functional one."
+	desc = "Spawns a random broken gun, or rarely a fully REMOVEDctional one."
 	icon = 'icons/obj/gun.dmi'
 	icon_state = "revolver"
 

@@ -69,7 +69,7 @@
 			msg += "[key_name(C, 1, 1, highlight_special_characters)]: account is [C.player_age] days old<br>"
 
 	if(missing_ages)
-		to_chat(src, "Some accounts did not have proper ages set in their clients.  This function requires database to be present.")
+		to_chat(src, "Some accounts did not have proper ages set in their clients.  This REMOVEDction requires database to be present.")
 
 	if(msg != "")
 		src << browse(msg, "window=Player_age_check")
@@ -214,7 +214,7 @@ proc/cmd_admin_mute(mob/M as mob, mute_type, automute = 0)
 	feedback_add_details("admin_verb","MUTE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_add_random_ai_law()
-	set category = "Fun"
+	set category = "REMOVED"
 	set name = "Add Random AI Law"
 
 	if(!holder)
@@ -544,7 +544,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	return new_character
 
 /client/proc/cmd_admin_add_freeform_ai_law()
-	set category = "Fun"
+	set category = "REMOVED"
 	set name = "Add Custom AI law"
 
 	if(!holder)
@@ -648,7 +648,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set category = "Special Verbs"
 	set name = "Explosion"
 
-	if(!check_rights(R_DEBUG|R_FUN))	return //VOREStation Edit
+	if(!check_rights(R_DEBUG|R_REMOVED))	return //VOREStation Edit
 
 	var/devastation = input("Range of total devastation. -1 to none", text("Input"))  as num|null
 	if(devastation == null) return
@@ -676,7 +676,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set category = "Special Verbs"
 	set name = "EM Pulse"
 
-	if(!check_rights(R_DEBUG|R_FUN))	return //VOREStation Edit
+	if(!check_rights(R_DEBUG|R_REMOVED))	return //VOREStation Edit
 
 	var/heavy = input("Range of heavy pulse.", text("Input"))  as num|null
 	if(heavy == null) return
@@ -702,7 +702,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set category = "Special Verbs"
 	set name = "Gib"
 
-	if(!check_rights(R_ADMIN|R_FUN))	return //VOREStation Edit
+	if(!check_rights(R_ADMIN|R_REMOVED))	return //VOREStation Edit
 
 	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
 	if(confirm != "Yes") return
@@ -721,7 +721,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 /client/proc/cmd_admin_gib_self()
 	set name = "Gibself"
-	set category = "Fun"
+	set category = "REMOVED"
 
 	if(!holder)
 		return
@@ -937,11 +937,11 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 
 /client/proc/everyone_random()
-	set category = "Fun"
+	set category = "REMOVED"
 	set name = "Make Everyone Random"
 	set desc = "Make everyone have a random appearance. You can only use this before rounds!"
 
-	if(!check_rights(R_FUN))	return
+	if(!check_rights(R_REMOVED))	return
 
 	if (ticker && ticker.mode)
 		to_chat(usr, "Nope you can't do this, the game's already started. This only works before rounds!")

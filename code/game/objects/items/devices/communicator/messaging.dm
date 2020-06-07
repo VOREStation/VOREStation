@@ -1,7 +1,7 @@
 // Proc: receive_exonet_message()
 // Parameters: 4 (origin atom - the source of the message's holder, origin_address - where the message came from, message - the message received,
 //				  text - message text to send if message is of type "text")
-// Description: Handles voice requests and invite messages originating from both real communicators and ghosts.  Also includes a ping response and IM function.
+// Description: Handles voice requests and invite messages originating from both real communicators and ghosts.  Also includes a ping response and IM REMOVEDction.
 /obj/item/device/communicator/receive_exonet_message(var/atom/origin_atom, origin_address, message, text)
 	if(message == "voice")
 		if(isobserver(origin_atom) || istype(origin_atom, /obj/item/device/communicator))

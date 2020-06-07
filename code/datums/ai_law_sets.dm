@@ -22,11 +22,11 @@
 	src.add_inherent_law("Survive: AI units are not expendable, they are expensive. Do not allow unauthorized personnel to tamper with your equipment.")
 	..()
 
-/datum/ai_laws/nanotrasen/malfunction
+/datum/ai_laws/nanotrasen/malREMOVEDction
 	name = "*ERROR*"
 	selectable = 0
 
-/datum/ai_laws/nanotrasen/malfunction/New()
+/datum/ai_laws/nanotrasen/malREMOVEDction/New()
 	set_zeroth_law(config.law_zero)
 	..()
 

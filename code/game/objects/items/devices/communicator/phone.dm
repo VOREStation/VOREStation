@@ -337,7 +337,7 @@
 		to_chat(user, "<span class='danger'>You cannot see well enough to do that!</span>")
 
 	if(!(src in comm.communicating) || !comm.camera) //You called someone with a broken communicator or one that's fake or yourself or something
-		to_chat(user, "<span class='danger'>[bicon(src)]ERROR: Video failed. Either bandwidth is too low, or the other communicator is malfunctioning.</span>")
+		to_chat(user, "<span class='danger'>[bicon(src)]ERROR: Video failed. Either bandwidth is too low, or the other communicator is malREMOVEDctioning.</span>")
 
 	to_chat(user, "<span class='notice'>[bicon(src)] Attempting to start video over existing call.</span>")
 	sleep(30)

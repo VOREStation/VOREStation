@@ -276,7 +276,7 @@
 
 					//Gross pod (broke mid-cloning or something).
 					else if(spod.broken)
-						temp = "Error: SynthFab malfunction."
+						temp = "Error: SynthFab malREMOVEDction."
 
 					//Do the cloning!
 					else if(spod.print(active_br))
@@ -301,7 +301,7 @@
 
 					//Gross pod (broke mid-cloning or something).
 					else if(pod.mess)
-						temp = "Error: Growpod malfunction."
+						temp = "Error: Growpod malREMOVEDction."
 
 					//Disabled in config.
 					else if(!config.revival_cloning)

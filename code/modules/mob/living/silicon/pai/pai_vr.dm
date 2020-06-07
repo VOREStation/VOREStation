@@ -24,7 +24,7 @@
 			new_people_eaten += M.size_multiplier
 	people_eaten = min(1, new_people_eaten)
 
-/mob/living/silicon/pai/update_icon() //Some functions cause this to occur, such as resting
+/mob/living/silicon/pai/update_icon() //Some REMOVEDctions cause this to occur, such as resting
 	..()
 	update_fullness_pai()
 	if(!people_eaten && !resting)
@@ -46,7 +46,7 @@
 		pixel_x = 0
 		vis_height = 32
 
-/mob/living/silicon/pai/update_icons() //And other functions cause this to occur, such as digesting someone.
+/mob/living/silicon/pai/update_icons() //And other REMOVEDctions cause this to occur, such as digesting someone.
 	..()
 	update_fullness_pai()
 	if(!people_eaten && !resting)

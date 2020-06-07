@@ -88,7 +88,7 @@
 	if(!istype(L, /list)) return
 	return L.Insert(index, element)
 
-// --- Miscellaneous functions ---
+// --- Miscellaneous REMOVEDctions ---
 
 // Clone of sleep()
 /proc/delay(var/time)
@@ -163,7 +163,7 @@ proc/string_explode(var/string, var/separator)
 
 		return L
 
-Just found out there was already a string explode function, did some benchmarking, and that function were a bit faster, sticking to that.
+Just found out there was already a string explode REMOVEDction, did some benchmarking, and that REMOVEDction were a bit faster, sticking to that.
 */
 proc/string_explode(var/string, var/separator)
 	if(istext(string) && istext(separator))

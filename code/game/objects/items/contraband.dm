@@ -1,4 +1,4 @@
-//Let's get some REAL contraband stuff in here. Because come on, getting brigged for LIPSTICK is no fun.
+//Let's get some REAL contraband stuff in here. Because come on, getting brigged for LIPSTICK is no REMOVED.
 
 //Illicit drugs~
 /obj/item/weapon/storage/pill_bottle/happy

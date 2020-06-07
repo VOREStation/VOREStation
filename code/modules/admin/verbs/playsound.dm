@@ -1,7 +1,7 @@
 var/list/sounds_cache = list()
 
 /client/proc/play_sound(S as sound)
-	set category = "Fun"
+	set category = "REMOVED"
 	set name = "Play Global Sound"
 	if(!check_rights(R_SOUNDS))	return
 
@@ -22,7 +22,7 @@ var/list/sounds_cache = list()
 	feedback_add_details("admin_verb","PGS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/play_local_sound(S as sound)
-	set category = "Fun"
+	set category = "REMOVED"
 	set name = "Play Local Sound"
 	if(!check_rights(R_SOUNDS))	return
 
@@ -33,7 +33,7 @@ var/list/sounds_cache = list()
 
 
 /client/proc/play_server_sound()
-	set category = "Fun"
+	set category = "REMOVED"
 	set name = "Play Server Sound"
 	if(!check_rights(R_SOUNDS))	return
 
@@ -50,7 +50,7 @@ var/list/sounds_cache = list()
 
 /*
 /client/proc/cuban_pete()
-	set category = "Fun"
+	set category = "REMOVED"
 	set name = "Cuban Pete Time"
 
 	message_admins("[key_name_admin(usr)] has declared Cuban Pete Time!", 1)
@@ -66,7 +66,7 @@ var/list/sounds_cache = list()
 
 
 /client/proc/bananaphone()
-	set category = "Fun"
+	set category = "REMOVED"
 	set name = "Banana Phone"
 
 	message_admins("[key_name_admin(usr)] has activated Banana Phone!", 1)
@@ -77,7 +77,7 @@ var/list/sounds_cache = list()
 
 
 client/proc/space_asshole()
-	set category = "Fun"
+	set category = "REMOVED"
 	set name = "Space Asshole"
 
 	message_admins("[key_name_admin(usr)] has played the Space Asshole Hymn.", 1)
@@ -88,7 +88,7 @@ client/proc/space_asshole()
 
 
 client/proc/honk_theme()
-	set category = "Fun"
+	set category = "REMOVED"
 	set name = "Honk"
 
 	message_admins("[key_name_admin(usr)] has creeped everyone out with Blackest Honks.", 1)

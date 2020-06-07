@@ -37,7 +37,7 @@
 	var/to_helmet = /obj/item/clothing/head/cardborg
 	var/to_suit = /obj/item/clothing/suit/cardborg
 
-	//conversion costs. refunds all parts by default, but can be tweaked per-kit
+	//conversion costs. reREMOVEDds all parts by default, but can be tweaked per-kit
 	var/from_helmet_cost = 1
 	var/from_suit_cost = 2
 	var/to_helmet_cost = -1
@@ -886,7 +886,7 @@
 
 /mob/living/carbon/human/proc/use_reagent_implant_roiz()
 	set name = "Lay Egg"
-	set desc = "Force Roiz to lay an egg by squeezing into his lower body! This makes the lizard extremely embarrassed, and it looks funny."
+	set desc = "Force Roiz to lay an egg by squeezing into his lower body! This makes the lizard extremely embarrassed, and it looks REMOVEDny."
 	set category = "Object"
 	set src in view(1)
 
@@ -1469,7 +1469,7 @@
 
 /mob/living/carbon/human/proc/use_reagent_implant_evian()
 	set name = "Lay Egg"
-	set desc = "Force Evian to lay an egg by squeezing into his lower body! This makes the lizard extremely embarrassed, and it looks funny."
+	set desc = "Force Evian to lay an egg by squeezing into his lower body! This makes the lizard extremely embarrassed, and it looks REMOVEDny."
 	set category = "Object"
 	set src in view(1)
 
@@ -1491,7 +1491,7 @@
 			to_chat(src, "<span class='notice'>[pick(rimplant.empty_message)]</span>")
 			return
 
-		new /obj/item/weapon/reagent_containers/food/snacks/egg/roiz/evian(get_turf(src)) //Roiz/evian so it gets all the functionality
+		new /obj/item/weapon/reagent_containers/food/snacks/egg/roiz/evian(get_turf(src)) //Roiz/evian so it gets all the REMOVEDctionality
 
 		var/index = rand(0,3)
 
@@ -1737,7 +1737,7 @@
 //InterroLouis - Kai Highlands
 /obj/item/borg/upgrade/modkit/chassis_mod/kai
 	name = "kai chassis"
-	desc = "Makes your KA green. All the fun of having a more powerful KA without actually having a more powerful KA."
+	desc = "Makes your KA green. All the REMOVED of having a more powerful KA without actually having a more powerful KA."
 	cost = 0
 	denied_type = /obj/item/borg/upgrade/modkit/chassis_mod
 	chassis_icon = "kineticgun_K"

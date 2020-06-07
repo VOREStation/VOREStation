@@ -137,7 +137,7 @@
 			. += "<span class='danger'>It looks heavily damaged.</span>"
 
 	if(locate(/obj/effect/overlay/wallrot) in src)
-		. += "<span class='warning'>There is fungus growing on [src].</span>"
+		. += "<span class='warning'>There is REMOVEDgus growing on [src].</span>"
 
 //Damage
 
@@ -231,7 +231,7 @@
 		else
 			return
 
-// Wall-rot effect, a nasty fungus that destroys walls.
+// Wall-rot effect, a nasty REMOVEDgus that destroys walls.
 /turf/simulated/wall/proc/rot()
 	if(locate(/obj/effect/overlay/wallrot) in src)
 		return FALSE

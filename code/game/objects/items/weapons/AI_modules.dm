@@ -78,7 +78,7 @@ AI MODULES
 	else if(istype(AM, /mob/living/silicon/robot))
 		var/mob/living/silicon/robot/R = AM
 		if(R.stat == DEAD)
-			to_chat(user, "<span class='warning'>Law Upload Error: Unit is nonfunctional.</span>")
+			to_chat(user, "<span class='warning'>Law Upload Error: Unit is nonREMOVEDctional.</span>")
 			return
 		if(R.emagged)
 			to_chat(user, "<span class='warning'>Law Upload Error: Cannot obtain write access to laws.</span>")

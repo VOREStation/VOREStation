@@ -55,7 +55,7 @@
 		else if(istype(loc, /turf/simulated/floor/outdoors/dirt) || istype(loc, /turf/simulated/floor/outdoors/grass))
 			speed_mod = outdoors_speed_mod //Dirt and grass are the outdoors bench mark.
 		else if(istype(loc, /turf/simulated/floor/outdoors/mud))
-			speed_mod = outdoors_speed_mod * 1.5 //Gets us roughly 1. Mud may be fun, but it's not the best.
+			speed_mod = outdoors_speed_mod * 1.5 //Gets us roughly 1. Mud may be REMOVED, but it's not the best.
 		else if(istype(loc, /turf/simulated/floor/outdoors/snow))
 			speed_mod = outdoors_speed_mod * 1.7 //Roughly a 1.25. Snow is coarse and wet and gets everywhere, especially your electric motors.
 		else

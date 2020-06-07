@@ -1039,7 +1039,7 @@
 //bwoincognito:Octavious Ward
 /obj/item/clothing/shoes/black/cuffs/octavious
 	name = "silvered leg wraps"
-	desc = "Dark leather leg wraps with sliver clasps on the sides. Stylish and functional."
+	desc = "Dark leather leg wraps with sliver clasps on the sides. Stylish and REMOVEDctional."
 	icon_state = "silvergildedcuffs"
 
 //jemli:Jemli
@@ -1738,7 +1738,7 @@ Departamental Swimsuits, for general use
 
 /obj/item/clothing/head/helmet/space/void/security/hasd
 	name = "HASD EVA faceplate"
-	desc = "It's a faceplate that slots into the HASD EVA bodyplate assembly. Functionally useless alone."
+	desc = "It's a faceplate that slots into the HASD EVA bodyplate assembly. REMOVEDctionally useless alone."
 
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "hasd_helm"

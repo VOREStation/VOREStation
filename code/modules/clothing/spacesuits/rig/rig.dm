@@ -72,8 +72,8 @@
 	var/control_overridden = 0
 	var/ai_override_enabled = 0
 	var/security_check_enabled = 1
-	var/malfunctioning = 0
-	var/malfunction_delay = 0
+	var/malREMOVEDctioning = 0
+	var/malREMOVEDction_delay = 0
 	var/electrified = 0
 	var/locked_down = 0
 
@@ -283,7 +283,7 @@
 	sealing = 1
 
 	if(!seal_target && !suit_is_deployed())
-		M.visible_message("<span class='danger'>[M]'s suit flashes an error light.</span>","<span class='danger'>Your suit flashes an error light. It can't function properly without being fully deployed.</span>")
+		M.visible_message("<span class='danger'>[M]'s suit flashes an error light.</span>","<span class='danger'>Your suit flashes an error light. It can't REMOVEDction properly without being fully deployed.</span>")
 		failed_to_seal = 1
 
 	if(!failed_to_seal)
@@ -532,11 +532,11 @@
 	if(cell && cell.charge > 0 && electrified > 0)
 		electrified--
 
-	if(malfunction_delay > 0)
-		malfunction_delay--
-	else if(malfunctioning)
-		malfunctioning--
-		malfunction()
+	if(malREMOVEDction_delay > 0)
+		malREMOVEDction_delay--
+	else if(malREMOVEDctioning)
+		malREMOVEDctioning--
+		malREMOVEDction()
 
 	for(var/obj/item/rig_module/module in installed_modules)
 		cell.use(module.process()*10)
@@ -605,7 +605,7 @@
 	data["aicontrol"] =     control_overridden
 	data["aioverride"] =    ai_override_enabled
 	data["securitycheck"] = security_check_enabled
-	data["malf"] =          malfunction_delay
+	data["malf"] =          malREMOVEDction_delay
 
 
 	var/list/module_list = list()
@@ -684,7 +684,7 @@
 	if(istype(user))
 		if(!canremove)
 			return 1
-		if(malfunction_check(user))
+		if(malREMOVEDction_check(user))
 			return 0
 		if(user.back != src && user.belt != src)
 			return 0
@@ -698,7 +698,7 @@
 
 	return 1
 
-//TODO: Fix Topic vulnerabilities for malfunction and AI override.
+//TODO: Fix Topic vulnerabilities for malREMOVEDction and AI override.
 /obj/item/weapon/rig/Topic(href,href_list)
 	if(!check_suit_access(usr))
 		return 0
@@ -882,15 +882,15 @@
 	wearer = null
 
 //Todo
-/obj/item/weapon/rig/proc/malfunction()
+/obj/item/weapon/rig/proc/malREMOVEDction()
 	return 0
 
 /obj/item/weapon/rig/emp_act(severity_class)
-	//set malfunctioning
+	//set malREMOVEDctioning
 	if(emp_protection < 30) //for ninjas, really.
-		malfunctioning += 10
-		if(malfunction_delay <= 0)
-			malfunction_delay = max(malfunction_delay, round(30/severity_class))
+		malREMOVEDctioning += 10
+		if(malREMOVEDction_delay <= 0)
+			malREMOVEDction_delay = max(malREMOVEDction_delay, round(30/severity_class))
 
 	//drain some charge
 	if(cell) cell.emp_act(severity_class + 15)
@@ -951,8 +951,8 @@
 			to_chat(wearer, "<span class='warning'>The [source] has damaged your [dam_module.interface_name]!</span>")
 	dam_module.deactivate()
 
-/obj/item/weapon/rig/proc/malfunction_check(var/mob/living/carbon/human/user)
-	if(malfunction_delay)
+/obj/item/weapon/rig/proc/malREMOVEDction_check(var/mob/living/carbon/human/user)
+	if(malREMOVEDction_delay)
 		if(offline)
 			to_chat(user, "<span class='danger'>The suit is completely unresponsive.</span>")
 		else
@@ -1020,7 +1020,7 @@
 		if(!wearer.Process_Spacemove(0))
 			return 0
 
-	if(malfunctioning)
+	if(malREMOVEDctioning)
 		direction = pick(cardinal)
 
 	// Inside an object, tell it we moved.

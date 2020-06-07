@@ -376,7 +376,7 @@
 		catcher.UpdateSize()
 	return changed
 
-//the !!fun!! part
+//the !!REMOVED!! part
 /obj/effect/fusion_em_field/proc/React()
 	//loop through the reactants in random order
 	var/list/react_pool = dormant_reactant_quantities.Copy()
@@ -652,7 +652,7 @@
 	owned_core.Shutdown()
 	return
 
-/obj/effect/fusion_em_field/proc/BluespaceQuenchEvent() //!!FUN!! causes a number of explosions in an area around the core. Will likely destory or heavily damage the reactor.
+/obj/effect/fusion_em_field/proc/BluespaceQuenchEvent() //!!REMOVED!! causes a number of explosions in an area around the core. Will likely destory or heavily damage the reactor.
 	visible_message("<span class='danger'>\The [src] shudders like a dying animal before flaring to eye-searing brightness and rupturing!</span>")
 	set_light(15, 15, "#CCCCFF")
 	empulse(get_turf(src), CEILING(plasma_temperature/1000, 1), CEILING(plasma_temperature/300, 1))

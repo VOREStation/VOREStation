@@ -1,5 +1,5 @@
 // NanoStateManager handles data from the server and uses it to render templates
-NanoStateManager = function () 
+NanoStateManager = REMOVEDction () 
 {
 	// _isInitialised is set to true when all of this ui's templates have been processed/rendered
 	var _isInitialised = false;
@@ -17,9 +17,9 @@ NanoStateManager = function ()
 	
 	var _currentState = null;
 	
-	// the init function is called when the ui has loaded
-	// this function sets up the templates and base functionality
-	var init = function () 
+	// the init REMOVEDction is called when the ui has loaded
+	// this REMOVEDction sets up the templates and base REMOVEDctionality
+	var init = REMOVEDction () 
 	{
 		// We store initialData and templateData in the body tag, it's as good a place as any
 		_data = $('body').data('initialData');	
@@ -37,7 +37,7 @@ NanoStateManager = function ()
 
 		NanoStateManager.setCurrentState(stateKey);
 		
-		$(document).on('templatesLoaded', function () {
+		$(document).on('templatesLoaded', REMOVEDction () {
 			doUpdate(_data);
 			
 			_isInitialised = true;
@@ -45,7 +45,7 @@ NanoStateManager = function ()
 	};
 	
 	// Receive update data from the server
-	var receiveUpdateData = function (jsonString)
+	var receiveUpdateData = REMOVEDction (jsonString)
 	{
 		var updateData;
 		
@@ -85,8 +85,8 @@ NanoStateManager = function ()
 		}	
 	};
 
-	// This function does the update by calling the methods on the current state
-	var doUpdate = function (data)
+	// This REMOVEDction does the update by calling the methods on the current state
+	var doUpdate = REMOVEDction (data)
 	{
         if (_currentState == null)
         {
@@ -109,11 +109,11 @@ NanoStateManager = function ()
 	};
 	
 	// Execute all callbacks in the callbacks array/object provided, updateData is passed to them for processing and potential modification
-	var executeCallbacks = function (callbacks, data)
+	var executeCallbacks = REMOVEDction (callbacks, data)
 	{	
 		for (var key in callbacks)
 		{
-			if (callbacks.hasOwnProperty(key) && jQuery.isFunction(callbacks[key]))
+			if (callbacks.hasOwnProperty(key) && jQuery.isREMOVEDction(callbacks[key]))
 			{
                 data = callbacks[key].call(this, data);
 			}
@@ -123,19 +123,19 @@ NanoStateManager = function ()
 	};
 
 	return {
-        init: function () 
+        init: REMOVEDction () 
 		{
             init();
         },
-		receiveUpdateData: function (jsonString) 
+		receiveUpdateData: REMOVEDction (jsonString) 
 		{
 			receiveUpdateData(jsonString);
         },
-		addBeforeUpdateCallback: function (key, callbackFunction)
+		addBeforeUpdateCallback: REMOVEDction (key, callbackREMOVEDction)
 		{
-			_beforeUpdateCallbacks[key] = callbackFunction;
+			_beforeUpdateCallbacks[key] = callbackREMOVEDction;
 		},
-		addBeforeUpdateCallbacks: function (callbacks) {		
+		addBeforeUpdateCallbacks: REMOVEDction (callbacks) {		
 			for (var callbackKey in callbacks) {
 				if (!callbacks.hasOwnProperty(callbackKey))
 				{
@@ -144,21 +144,21 @@ NanoStateManager = function ()
 				NanoStateManager.addBeforeUpdateCallback(callbackKey, callbacks[callbackKey]);
 			}
 		},
-		removeBeforeUpdateCallback: function (key)
+		removeBeforeUpdateCallback: REMOVEDction (key)
 		{
 			if (_beforeUpdateCallbacks.hasOwnProperty(key))
 			{
 				delete _beforeUpdateCallbacks[key];
 			}
 		},
-        executeBeforeUpdateCallbacks: function (data) {
+        executeBeforeUpdateCallbacks: REMOVEDction (data) {
             return executeCallbacks(_beforeUpdateCallbacks, data);
         },
-		addAfterUpdateCallback: function (key, callbackFunction)
+		addAfterUpdateCallback: REMOVEDction (key, callbackREMOVEDction)
 		{
-			_afterUpdateCallbacks[key] = callbackFunction;
+			_afterUpdateCallbacks[key] = callbackREMOVEDction;
 		},
-		addAfterUpdateCallbacks: function (callbacks) {		
+		addAfterUpdateCallbacks: REMOVEDction (callbacks) {		
 			for (var callbackKey in callbacks) {
 				if (!callbacks.hasOwnProperty(callbackKey))
 				{
@@ -167,17 +167,17 @@ NanoStateManager = function ()
 				NanoStateManager.addAfterUpdateCallback(callbackKey, callbacks[callbackKey]);
 			}
 		},
-		removeAfterUpdateCallback: function (key)
+		removeAfterUpdateCallback: REMOVEDction (key)
 		{
 			if (_afterUpdateCallbacks.hasOwnProperty(key))
 			{
 				delete _afterUpdateCallbacks[key];
 			}
 		},
-        executeAfterUpdateCallbacks: function (data) {
+        executeAfterUpdateCallbacks: REMOVEDction (data) {
             return executeCallbacks(_afterUpdateCallbacks, data);
         },
-		addState: function (state)
+		addState: REMOVEDction (state)
 		{
 			if (!(state instanceof NanoStateClass))
 			{
@@ -191,7 +191,7 @@ NanoStateManager = function ()
 			}
 			_states[state.key] = state;
 		},
-		setCurrentState: function (stateKey)
+		setCurrentState: REMOVEDction (stateKey)
 		{
 			if (typeof stateKey == 'undefined' || !stateKey) {
 				alert('ERROR: No state key was passed!');				
@@ -215,7 +215,7 @@ NanoStateManager = function ()
 
             return true;
 		},
-		getCurrentState: function ()
+		getCurrentState: REMOVEDction ()
 		{
 			return _currentState;
 		}

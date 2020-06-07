@@ -39,11 +39,11 @@ length to avoid portals or something i guess?? Not that they're counted right no
 
 PriorityQueue
 	var/list/queue
-	var/proc/comparison_function
+	var/proc/comparison_REMOVEDction
 
 	New(compare)
 		queue = list()
-		comparison_function = compare
+		comparison_REMOVEDction = compare
 
 	proc/IsEmpty()
 		return !queue.len
@@ -53,7 +53,7 @@ PriorityQueue
 		var/index = queue.len
 
 		//From what I can tell, this automagically sorts the added data into the correct location.
-		while(index > 2 && call(comparison_function)(queue[index / 2], queue[index]) > 0)
+		while(index > 2 && call(comparison_REMOVEDction)(queue[index / 2], queue[index]) > 0)
 			queue.Swap(index, index / 2)
 			index /= 2
 
@@ -78,9 +78,9 @@ PriorityQueue
 		var/item = queue[index]
 
 		while(child <= queue.len)
-			if(child < queue.len && call(comparison_function)(queue[child], queue[child + 1]) > 0)
+			if(child < queue.len && call(comparison_REMOVEDction)(queue[child], queue[child + 1]) > 0)
 				child++
-			if(call(comparison_function)(item, queue[child]) > 0)
+			if(call(comparison_REMOVEDction)(item, queue[child]) > 0)
 				queue[index] = queue[child]
 				index = child
 			else

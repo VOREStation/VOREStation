@@ -212,7 +212,7 @@
 	var/obj/item/weapon/cell/cell = get_cell()
 	if(cell)
 		return "The power source connected to \the [src] has a charge of [cell.percent()]%."
-	return "It lacks a source of power, and cannot function."
+	return "It lacks a source of power, and cannot REMOVEDction."
 
 
 

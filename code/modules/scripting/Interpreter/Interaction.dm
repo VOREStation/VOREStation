@@ -57,31 +57,31 @@
 
 	Parameters:
 	name 		- The name of the procedure as exposed to the script.
-	path 		- The typepath of a proc to be called when the function call is read by the interpreter, or, if object is specified, a string representing the procedure's name.
-	object	- (Optional) An object which will the be target of a function call.
+	path 		- The typepath of a proc to be called when the REMOVEDction call is read by the interpreter, or, if object is specified, a string representing the procedure's name.
+	object	- (Optional) An object which will the be target of a REMOVEDction call.
 	params 	- Only required if object is not null, a list of the names of parameters the proc takes.
 */
 		SetProc(name, path, object=null, list/params=null)
 			if(!istext(name))
-				//CRASH("Invalid function name")
+				//CRASH("Invalid REMOVEDction name")
 				return
 			if(!object)
-				globalScope.functions[name] = path
+				globalScope.REMOVEDctions[name] = path
 			else
-				var/node/statement/FunctionDefinition/S = new()
-				S.func_name		= name
+				var/node/statement/REMOVEDctionDefinition/S = new()
+				S.REMOVEDc_name		= name
 				S.parameters	= params
 				S.block			= new()
 				S.block.SetVar("src", object)
-				var/node/expression/FunctionCall/C = new()
-				C.func_name	= path
+				var/node/expression/REMOVEDctionCall/C = new()
+				C.REMOVEDc_name	= path
 				C.object		= new("src")
 				for(var/p in params)
 					C.parameters += new/node/expression/value/variable(p)
 				var/node/statement/ReturnStatement/R=new()
 				R.value=C
 				S.block.statements += R
-				globalScope.functions[name] = S
+				globalScope.REMOVEDctions[name] = S
 /*
 	Proc: VarExists
 	Checks whether a global variable with the specified name exists.
@@ -91,10 +91,10 @@
 
 /*
 	Proc: ProcExists
-	Checks whether a global function with the specified name exists.
+	Checks whether a global REMOVEDction with the specified name exists.
 */
 		ProcExists(name)
-			return globalScope.functions.Find(name)
+			return globalScope.REMOVEDctions.Find(name)
 
 /*
 	Proc: GetVar
@@ -112,7 +112,7 @@
 
 /*
 	Proc: CallProc
-	Calls a global function defined in the script and, amazingly enough, returns its return value. Remember to ensure that the function
+	Calls a global REMOVEDction defined in the script and, amazingly enough, returns its return value. Remember to ensure that the REMOVEDction
 	exists before calling this procedure.
 
 	See Also:
@@ -120,17 +120,17 @@
 */
 		CallProc(name, params[]=null)
 			if(!ProcExists(name))
-				//CRASH("No function named '[name]'.")
+				//CRASH("No REMOVEDction named '[name]'.")
 				return
-			var/node/statement/FunctionDefinition/func = globalScope.functions[name]
-			if(istype(func))
-				var/node/statement/FunctionCall/stmt = new
-				stmt.func_name  = func.func_name
+			var/node/statement/REMOVEDctionDefinition/REMOVEDc = globalScope.REMOVEDctions[name]
+			if(istype(REMOVEDc))
+				var/node/statement/REMOVEDctionCall/stmt = new
+				stmt.REMOVEDc_name  = REMOVEDc.REMOVEDc_name
 				stmt.parameters = params
-				return RunFunction(stmt)
+				return RunREMOVEDction(stmt)
 			else
-				return call(func)(arglist(params))
-			//CRASH("Unknown function type '[name]'.")
+				return call(REMOVEDc)(arglist(params))
+			//CRASH("Unknown REMOVEDction type '[name]'.")
 
 /*
 	Event: HandleError

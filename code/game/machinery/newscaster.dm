@@ -288,7 +288,7 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 					if(news_network.wanted_issue)
 						wanted_already = 1
 
-					dat+="<HR><B>Feed Security functions:</B><BR>"
+					dat+="<HR><B>Feed Security REMOVEDctions:</B><BR>"
 					dat+="<BR><A href='?src=\ref[src];menu_wanted=1'>[(wanted_already) ? ("Manage") : ("Publish")] \"Wanted\" Issue</A>"
 					dat+="<BR><A href='?src=\ref[src];menu_censor_story=1'>Censor Feed Stories</A>"
 					dat+="<BR><A href='?src=\ref[src];menu_censor_channel=1'>Mark Feed Channel with [using_map.company_name] D-Notice</A>"
@@ -760,7 +760,7 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 	return
 
 /obj/machinery/newscaster/attack_ai(mob/user as mob)
-	return attack_hand(user) //or maybe it'll have some special functions? No idea.
+	return attack_hand(user) //or maybe it'll have some special REMOVEDctions? No idea.
 
 /datum/news_photo
 	var/is_synth = 0

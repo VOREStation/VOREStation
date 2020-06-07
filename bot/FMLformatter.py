@@ -3,7 +3,7 @@ def formatter(data):
   newdata = []
   data = htr(data)
   bad = ["Your nick : Categories : ","\r","Advanced search - last",
-         "FMyLife","Get the guts to spill the beans","FML: Your random funny stories",
+         "FMyLife","Get the guts to spill the beans","FML: Your random REMOVEDny stories",
          "Woman","Man","Choose","Health","Intimacy","Miscellaneous","Man or woman? ",
          "Money","Kids","Work","Love","Email notification?",
          "Moderate the FMLs","Submit your FML story",
@@ -30,7 +30,7 @@ def formatter(data):
       pass
     elif "var ga" in checkable:
       pass
-    elif "function()" in checkable:
+    elif "REMOVEDction()" in checkable:
       pass
     elif "siteanalytics" in checkable:
       pass

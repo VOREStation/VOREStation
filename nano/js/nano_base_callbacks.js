@@ -1,5 +1,5 @@
 // NanoBaseCallbacks is where the base callbacks (common to all templates) are stored
-NanoBaseCallbacks = function ()
+NanoBaseCallbacks = REMOVEDction ()
 {
 	// _canClick is used to disable clicks for a short period after each click (to avoid mis-clicks)
 	var _canClick = true;
@@ -9,7 +9,7 @@ NanoBaseCallbacks = function ()
 	var _baseAfterUpdateCallbacks = {
 		// this callback is triggered after new data is processed
 		// it updates the status/visibility icon and adds click event handling to buttons/links		
-		status: function (updateData) {
+		status: REMOVEDction (updateData) {
 			var uiStatusClass;
 			if (updateData['config']['status'] == 2)
 			{
@@ -33,18 +33,18 @@ NanoBaseCallbacks = function ()
 
 			$('.linkActive')
                 .off('click')
-			    .on('click', function (event) {
+			    .on('click', REMOVEDction (event) {
                     event.preventDefault();
                     var href = $(this).data('href');
                     if (href != null && _canClick)
                     {
                         _canClick = false;
-                        $('body').oneTime(300, 'enableClick', function () {
+                        $('body').oneTime(300, 'enableClick', REMOVEDction () {
                             _canClick = true;
                         });
                         if (updateData['config']['status'] == 2)
                         {
-                            $(this).oneTime(300, 'linkPending', function () {
+                            $(this).oneTime(300, 'linkPending', REMOVEDction () {
                                 $(this).addClass('linkPending');
                             });
                         }
@@ -54,17 +54,17 @@ NanoBaseCallbacks = function ()
 
             return updateData;
 		},
-        nanomap: function (updateData) {
+        nanomap: REMOVEDction (updateData) {
             $('.mapIcon')
                 .off('mouseenter mouseleave')
                 .on('mouseenter',
-                    function (event) {
+                    REMOVEDction (event) {
                         var self = this;
                         $('#uiMapTooltip')
                             .html($(this).children('.tooltip').html())
                             .show()
                             .stopTime()
-                            .oneTime(5000, 'hideTooltip', function () {
+                            .oneTime(5000, 'hideTooltip', REMOVEDction () {
                                 $(this).fadeOut(500);
                             });
                     }
@@ -72,7 +72,7 @@ NanoBaseCallbacks = function ()
 
             $('.zoomLink')
                 .off('click')
-                .on('click', function (event) {
+                .on('click', REMOVEDction (event) {
                     event.preventDefault();
                     var zoomLevel = $(this).data('zoomLevel');
                     var uiMapObject = $('#uiMap');
@@ -95,11 +95,11 @@ NanoBaseCallbacks = function ()
 	};
 
 	return {
-		addCallbacks: function () {
+		addCallbacks: REMOVEDction () {
 			NanoStateManager.addBeforeUpdateCallbacks(_baseBeforeUpdateCallbacks);
 			NanoStateManager.addAfterUpdateCallbacks(_baseAfterUpdateCallbacks);
 		},
-		removeCallbacks: function () {
+		removeCallbacks: REMOVEDction () {
 			for (var callbackKey in _baseBeforeUpdateCallbacks)
 			{
 				if (_baseBeforeUpdateCallbacks.hasOwnProperty(callbackKey))

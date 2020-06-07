@@ -89,7 +89,7 @@
 	a human-made energy side-arm. One possible explaination is that the creators of this \
 	weapon, in their later years, had less of a need to optimize their capability for war, \
 	and instead focused on other endeavors. Another explaination is that vast age of the weapon \
-	may have caused it to degrade, yet still remain functional at a reduced capability."
+	may have caused it to degrade, yet still remain REMOVEDctional at a reduced capability."
 	value = CATALOGUER_REWARD_MEDIUM
 
 /obj/item/weapon/gun/energy/alien
@@ -111,7 +111,7 @@
 	name = "antique laser gun"
 	icon_state = "caplaser"
 	item_state = "caplaser"
-	desc = "A rare weapon, handcrafted by a now defunct specialty manufacturer on Luna for a small fortune. It's certainly aged well."
+	desc = "A rare weapon, handcrafted by a now deREMOVEDct specialty manufacturer on Luna for a small fortune. It's certainly aged well."
 	force = 5
 	slot_flags = SLOT_BELT
 	w_class = ITEMSIZE_NORMAL

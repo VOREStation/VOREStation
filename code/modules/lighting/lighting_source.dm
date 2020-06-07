@@ -1,5 +1,5 @@
 /var/total_lighting_sources = 0
-// This is where the fun begins.
+// This is where the REMOVED begins.
 // These are the main datums that emit light.
 
 /datum/light_source

@@ -21,7 +21,7 @@
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2, TECH_MATERIAL = 2)
 	fire_delay = 10
 	charge_cost = 200	//slightly more shots than lasers
-	var/safetycatch = 0 //if 1, won't let you fire in pressurised environment, rather than malfunctioning
+	var/safetycatch = 0 //if 1, won't let you fire in pressurised environment, rather than malREMOVEDctioning
 	var/obj/item/pressurelock/attached_safety
 
 
@@ -80,12 +80,12 @@
 				return 0
 			else if (prob(min(pressure, 100))) //pressure% chance of failing
 				var/severity = rand(pressure)
-				pressuremalfunction(severity, user, T)
+				pressuremalREMOVEDction(severity, user, T)
 				return 0
 		return 1
 	return 0
 
-/obj/item/weapon/gun/energy/particle/proc/pressuremalfunction(severity, var/mob/user, var/turf/T)
+/obj/item/weapon/gun/energy/particle/proc/pressuremalREMOVEDction(severity, var/mob/user, var/turf/T)
 	if (severity <= 10) // just doesn't fire. 10% chance in 100 atmo.
 		user.visible_message("<span class='warning'>*click*</span>", "<span class='danger'>\The [src] jams.</span>")
 		playsound(src, 'sound/weapons/empty.ogg', 100, 1)
@@ -127,7 +127,7 @@
 		explosion(T, -1, 1, 2, 2)
 		qdel(src)
 
-/obj/item/weapon/gun/energy/particle/cannon/pressuremalfunction(severity, user, T)
+/obj/item/weapon/gun/energy/particle/cannon/pressuremalREMOVEDction(severity, user, T)
 	..(severity*2, user, T)
 
 

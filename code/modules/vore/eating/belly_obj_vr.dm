@@ -333,7 +333,7 @@
 		else
 			return ""
 
-// The next function gets the messages set on the belly, in human-readable format.
+// The next REMOVEDction gets the messages set on the belly, in human-readable format.
 // This is useful in customization boxes and such. The delimiter right now is \n\n so
 // in message boxes, this looks nice and is easily delimited.
 /obj/belly/proc/get_messages(type, delim = "\n\n")
@@ -355,7 +355,7 @@
 	var/messages = list2text(raw_messages, delim)
 	return messages
 
-// The next function sets the messages on the belly, from human-readable var
+// The next REMOVEDction sets the messages on the belly, from human-readable var
 // replacement strings and linebreaks as delimiters (two \n\n by default).
 // They also sanitize the messages.
 /obj/belly/proc/set_messages(raw_text, type, delim = "\n\n")

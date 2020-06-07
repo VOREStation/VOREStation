@@ -1,5 +1,5 @@
-#define MALFUNCTION_TEMPORARY 1
-#define MALFUNCTION_PERMANENT 2
+#define MALREMOVEDCTION_TEMPORARY 1
+#define MALREMOVEDCTION_PERMANENT 2
 
 
 /obj/item/weapon/implant
@@ -12,7 +12,7 @@
 	var/obj/item/organ/external/part = null
 	var/implant_color = "b"
 	var/allow_reagents = 0
-	var/malfunction = 0
+	var/malREMOVEDction = 0
 	var/initialize_loc = BP_TORSO
 	show_messages = 1
 
@@ -62,7 +62,7 @@
 	name = "melted implant"
 	desc = "Charred circuit in melted plastic case. Wonder what that used to be..."
 	icon_state = "implant_melted"
-	malfunction = MALFUNCTION_PERMANENT
+	malREMOVEDction = MALREMOVEDCTION_PERMANENT
 
 /obj/item/weapon/implant/proc/implant_loadout(var/mob/living/carbon/human/H)
 	if(H)
@@ -126,7 +126,7 @@ GLOBAL_LIST_BOILERPLATE(all_tracking_implants, /obj/item/weapon/implant/tracking
 				name = "melted implant"
 				desc = "Charred circuit in melted plastic case. Wonder what that used to be..."
 				icon_state = "implant_melted"
-				malfunction = MALFUNCTION_PERMANENT
+				malREMOVEDction = MALREMOVEDCTION_PERMANENT
 				STOP_PROCESSING(SSobj, src)
 	return 1
 
@@ -137,10 +137,10 @@ GLOBAL_LIST_BOILERPLATE(all_tracking_implants, /obj/item/weapon/implant/tracking
 <b>Important Notes:</b> None<BR>
 <HR>
 <b>Implant Details:</b> <BR>
-<b>Function:</b> Continuously transmits low power signal. Useful for tracking.<BR>
+<b>REMOVEDction:</b> Continuously transmits low power signal. Useful for tracking.<BR>
 <b>Special Features:</b><BR>
 <i>Neuro-Safe</i>- Specialized shell absorbs excess voltages self-destructing the chip if
-a malfunction occurs thereby securing safety of subject. The implant will melt and
+a malREMOVEDction occurs thereby securing safety of subject. The implant will melt and
 disintegrate into bio-safe elements.<BR>
 <b>Integrity:</b> Gradient creates slight risk of being overcharged and frying the
 circuitry. As a result neurotoxins can cause massive damage.<HR>
@@ -148,9 +148,9 @@ Implant Specifics:<BR>"}
 	return dat
 
 /obj/item/weapon/implant/tracking/emp_act(severity)
-	if (malfunction)	//no, dawg, you can't malfunction while you are malfunctioning
+	if (malREMOVEDction)	//no, dawg, you can't malREMOVEDction while you are malREMOVEDctioning
 		return
-	malfunction = MALFUNCTION_TEMPORARY
+	malREMOVEDction = MALREMOVEDCTION_TEMPORARY
 
 	var/delay = 20
 	switch(severity)
@@ -165,7 +165,7 @@ Implant Specifics:<BR>"}
 			delay = rand(0.5*60*10,1*60*10)	//from .5 to 1 minutes of free time
 
 	spawn(delay)
-		malfunction--
+		malREMOVEDction--
 
 //////////////////////////////
 //	Death Explosive Implant
@@ -183,9 +183,9 @@ Implant Specifics:<BR>"}
 <b>Important Notes:</b> Explodes<BR>
 <HR>
 <b>Implant Details:</b><BR>
-<b>Function:</b> Contains a compact, electrically detonated explosive that detonates upon receiving a specially encoded signal or upon host death.<BR>
+<b>REMOVEDction:</b> Contains a compact, electrically detonated explosive that detonates upon receiving a specially encoded signal or upon host death.<BR>
 <b>Special Features:</b> Explodes<BR>
-<b>Integrity:</b> Implant will occasionally be degraded by the body's immune system and thus will occasionally malfunction."}
+<b>Integrity:</b> Implant will occasionally be degraded by the body's immune system and thus will occasionally malREMOVEDction."}
 	return dat
 
 
@@ -222,9 +222,9 @@ Implant Specifics:<BR>"}
 <b>Important Notes:</b> Explodes<BR>
 <HR>
 <b>Implant Details:</b><BR>
-<b>Function:</b> Contains a compact, electrically detonated explosive that detonates upon receiving a specially encoded signal or upon host death.<BR>
+<b>REMOVEDction:</b> Contains a compact, electrically detonated explosive that detonates upon receiving a specially encoded signal or upon host death.<BR>
 <b>Special Features:</b> Explodes<BR>
-<b>Integrity:</b> Implant will occasionally be degraded by the body's immune system and thus will occasionally malfunction."}
+<b>Integrity:</b> Implant will occasionally be degraded by the body's immune system and thus will occasionally malREMOVEDction."}
 	return dat
 
 /obj/item/weapon/implant/explosive/hear_talk(mob/M, list/message_pieces, verb)
@@ -240,7 +240,7 @@ Implant Specifics:<BR>"}
 		qdel(src)
 
 /obj/item/weapon/implant/explosive/activate()
-	if (malfunction == MALFUNCTION_PERMANENT)
+	if (malREMOVEDction == MALREMOVEDCTION_PERMANENT)
 		return
 
 	if(istype(imp_in, /mob/))
@@ -288,9 +288,9 @@ Implant Specifics:<BR>"}
 	to_chat(usr, "The implanted explosive implant in [source] can be activated by saying something containing the phrase ''[src.phrase]'', <B>say [src.phrase]</B> to attempt to activate.")
 
 /obj/item/weapon/implant/explosive/emp_act(severity)
-	if (malfunction)
+	if (malREMOVEDction)
 		return
-	malfunction = MALFUNCTION_TEMPORARY
+	malREMOVEDction = MALREMOVEDCTION_TEMPORARY
 	switch (severity)
 		if (4)	//Weak EMP will make implant tear limbs off.
 			if (prob(25))
@@ -317,7 +317,7 @@ Implant Specifics:<BR>"}
 					else
 						meltdown()		//50% chance of implant disarming
 	spawn (20)
-		malfunction--
+		malREMOVEDction--
 
 /obj/item/weapon/implant/explosive/islegal()
 	return 0
@@ -354,11 +354,11 @@ GLOBAL_LIST_BOILERPLATE(all_chem_implants, /obj/item/weapon/implant/chem)
 <b>Implant Specifications:</b><BR>
 <b>Name:</b> Robust Corp MJ-420 Prisoner Management Implant<BR>
 <b>Life:</b> Deactivates upon death but remains within the body.<BR>
-<b>Important Notes: Due to the system functioning off of nutrients in the implanted subject's body, the subject<BR>
+<b>Important Notes: Due to the system REMOVEDctioning off of nutrients in the implanted subject's body, the subject<BR>
 will suffer from an increased appetite.</B><BR>
 <HR>
 <b>Implant Details:</b><BR>
-<b>Function:</b> Contains a small capsule that can contain various chemicals. Upon receiving a specially encoded signal<BR>
+<b>REMOVEDction:</b> Contains a small capsule that can contain various chemicals. Upon receiving a specially encoded signal<BR>
 the implant releases the chemicals directly into the blood stream.<BR>
 <b>Special Features:</b>
 <i>Micro-Capsule</i>- Can be loaded with any sort of chemical agent via the common syringe and can hold 50 units.<BR>
@@ -391,9 +391,9 @@ the implant may become unstable and either pre-maturely inject the subject or si
 	return
 
 /obj/item/weapon/implant/chem/emp_act(severity)
-	if (malfunction)
+	if (malREMOVEDction)
 		return
-	malfunction = MALFUNCTION_TEMPORARY
+	malREMOVEDction = MALREMOVEDCTION_TEMPORARY
 
 	switch(severity)
 		if(1)
@@ -410,7 +410,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 				activate(5)
 
 	spawn(20)
-		malfunction--
+		malREMOVEDction--
 
 //////////////////////////////
 //	Loyalty Implant
@@ -427,7 +427,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 <b>Important Notes:</b> Personnel injected with this device tend to be much more loyal to the company.<BR>
 <HR>
 <b>Implant Details:</b><BR>
-<b>Function:</b> Contains a small pod of nanobots that manipulate the host's mental functions.<BR>
+<b>REMOVEDction:</b> Contains a small pod of nanobots that manipulate the host's mental REMOVEDctions.<BR>
 <b>Special Features:</b> Will prevent and cure most forms of brainwashing.<BR>
 <b>Integrity:</b> Implant will last so long as the nanobots are inside the bloodstream."}
 	return dat
@@ -463,7 +463,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 <b>Important Notes:</b> <font color='red'>Illegal</font><BR>
 <HR>
 <b>Implant Details:</b> Subjects injected with implant can activate a massive injection of adrenalin.<BR>
-<b>Function:</b> Contains nanobots to stimulate body to mass-produce Adrenalin.<BR>
+<b>REMOVEDction:</b> Contains nanobots to stimulate body to mass-produce Adrenalin.<BR>
 <b>Special Features:</b> Will prevent and cure most forms of brainwashing.<BR>
 <b>Integrity:</b> Implant can only be used three times before the nanobots are depleted."}
 	return dat
@@ -501,9 +501,9 @@ the implant may become unstable and either pre-maturely inject the subject or si
 <b>Important Notes:</b> Alerts crew to crewmember death.<BR>
 <HR>
 <b>Implant Details:</b><BR>
-<b>Function:</b> Contains a compact radio signaler that triggers when the host's lifesigns cease.<BR>
+<b>REMOVEDction:</b> Contains a compact radio signaler that triggers when the host's lifesigns cease.<BR>
 <b>Special Features:</b> Alerts crew to crewmember death.<BR>
-<b>Integrity:</b> Implant will occasionally be degraded by the body's immune system and thus will occasionally malfunction."}
+<b>Integrity:</b> Implant will occasionally be degraded by the body's immune system and thus will occasionally malREMOVEDction."}
 	return dat
 
 /obj/item/weapon/implant/death_alarm/process()
@@ -548,20 +548,20 @@ the implant may become unstable and either pre-maturely inject the subject or si
 			STOP_PROCESSING(SSobj, src)
 
 /obj/item/weapon/implant/death_alarm/emp_act(severity)			//for some reason alarms stop going off in case they are emp'd, even without this
-	if (malfunction)		//so I'm just going to add a meltdown chance here
+	if (malREMOVEDction)		//so I'm just going to add a meltdown chance here
 		return
-	malfunction = MALFUNCTION_TEMPORARY
+	malREMOVEDction = MALREMOVEDCTION_TEMPORARY
 
 	activate("emp")	//let's shout that this dude is dead
 	if(severity == 1)
 		if(prob(40))	//small chance of obvious meltdown
 			meltdown()
 		else if (prob(60))	//but more likely it will just quietly die
-			malfunction = MALFUNCTION_PERMANENT
+			malREMOVEDction = MALREMOVEDCTION_PERMANENT
 		STOP_PROCESSING(SSobj, src)
 
 	spawn(20)
-		malfunction--
+		malREMOVEDction--
 
 /obj/item/weapon/implant/death_alarm/post_implant(mob/source as mob)
 	mobname = source.real_name
@@ -586,9 +586,9 @@ the implant may become unstable and either pre-maturely inject the subject or si
 <b>Important Notes:</b> Alerts crew to crewmember death.<BR>
 <HR>
 <b>Implant Details:</b><BR>
-<b>Function:</b> Contains a compact radio signaler that triggers when the host's lifesigns cease.<BR>
+<b>REMOVEDction:</b> Contains a compact radio signaler that triggers when the host's lifesigns cease.<BR>
 <b>Special Features:</b> Alerts crew to crewmember death.<BR>
-<b>Integrity:</b> Implant will occasionally be degraded by the body's immune system and thus will occasionally malfunction."}
+<b>Integrity:</b> Implant will occasionally be degraded by the body's immune system and thus will occasionally malREMOVEDction."}
 	return dat
 
 /obj/item/weapon/implant/compressed/trigger(emote, mob/source as mob)

@@ -19,7 +19,7 @@
 			//Healthy liver suffers on its own
 			if (src.damage < min_broken_damage)
 				src.damage += 0.2 * spleen_tick
-			//Damaged one shares the fun
+			//Damaged one shares the REMOVED
 			else
 				var/obj/item/organ/internal/O = pick(owner.internal_organs)
 				if(O)

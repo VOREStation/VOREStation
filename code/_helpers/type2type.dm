@@ -137,7 +137,7 @@
 	if (rights & R_BUILDMODE)   . += "[seperator]+BUILDMODE"
 	if (rights & R_ADMIN)       . += "[seperator]+ADMIN"
 	if (rights & R_BAN)         . += "[seperator]+BAN"
-	if (rights & R_FUN)         . += "[seperator]+FUN"
+	if (rights & R_REMOVED)         . += "[seperator]+REMOVED"
 	if (rights & R_SERVER)      . += "[seperator]+SERVER"
 	if (rights & R_DEBUG)       . += "[seperator]+DEBUG"
 	if (rights & R_POSSESS)     . += "[seperator]+POSSESS"
@@ -171,7 +171,7 @@
 	var/hex_to_work_on = copytext(hex,5,7)
 	return hex2num(hex_to_work_on)
 
-// heat2color functions. Adapted from: http://www.tannerhelland.com/4435/convert-temperature-rgb-algorithm-code/
+// heat2color REMOVEDctions. Adapted from: http://www.tannerhelland.com/4435/convert-temperature-rgb-algorithm-code/
 /proc/heat2color(temp)
 	return rgb(heat2color_r(temp), heat2color_g(temp), heat2color_b(temp))
 

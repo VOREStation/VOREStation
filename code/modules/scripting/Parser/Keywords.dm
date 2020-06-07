@@ -125,12 +125,12 @@ var/const/Represents a special statement in the code triggered by a keyword.
 		kwDef
 			Parse(n_Parser/nS_Parser/parser)
 				.=KW_PASS
-				var/node/statement/FunctionDefinition/def=new
+				var/node/statement/REMOVEDctionDefinition/def=new
 				parser.NextToken() //skip 'def' token
 				if(!parser.options.IsValidID(parser.curToken.value))
 					parser.errors+=new/scriptError/InvalidID(parser.curToken)
 					return KW_FAIL
-				def.func_name=parser.curToken.value
+				def.REMOVEDc_name=parser.curToken.value
 				parser.NextToken()
 				if(!parser.CheckToken("(", /token/symbol))
 					return KW_FAIL
@@ -154,12 +154,12 @@ var/const/Represents a special statement in the code triggered by a keyword.
 				if(!parser.CheckToken(")", /token/symbol))
 					return KW_FAIL
 
-				if(istype(parser.curToken, /token/end)) //Function prototype
+				if(istype(parser.curToken, /token/end)) //REMOVEDction prototype
 					parser.curBlock.statements+=def
 				else if(parser.curToken.value=="{" && istype(parser.curToken, /token/symbol))
 					def.block = new
 					parser.curBlock.statements+=def
-					parser.curBlock.functions[def.func_name]=def
+					parser.curBlock.REMOVEDctions[def.REMOVEDc_name]=def
 					parser.AddBlock(def.block)
 				else
 					parser.errors+=new/scriptError/BadToken(parser.curToken)

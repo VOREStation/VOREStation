@@ -102,7 +102,7 @@ GLOBAL_LIST_EMPTY(apcs)
 	var/lastused_charging = 0
 	var/lastused_total = 0
 	var/main_status = 0
-	var/mob/living/silicon/ai/hacker = null // Malfunction var. If set AI hacked the APC and has full control.
+	var/mob/living/silicon/ai/hacker = null // MalREMOVEDction var. If set AI hacked the APC and has full control.
 	var/wiresexposed = 0
 	powernet = 0		// set so that APCs aren't found as powernet nodes //Hackish, Horrible, was like this before I changed it :(
 	var/debug= 0
@@ -902,7 +902,7 @@ GLOBAL_LIST_EMPTY(apcs)
 		return 0
 	autoflag = 5
 	if (istype(user, /mob/living/silicon))
-		var/permit = 0 // Malfunction variable. If AI hacks APC it can control it even without AI control wire.
+		var/permit = 0 // MalREMOVEDction variable. If AI hacks APC it can control it even without AI control wire.
 		var/mob/living/silicon/ai/AI = user
 		var/mob/living/silicon/robot/robot = user
 		if(hacker)
@@ -1314,7 +1314,7 @@ obj/machinery/power/apc/proc/autoset(var/cur_state, var/on)
 	else
 		return 0
 
-// Malfunction: Transfers APC under AI's control
+// MalREMOVEDction: Transfers APC under AI's control
 /obj/machinery/power/apc/proc/ai_hack(var/mob/living/silicon/ai/A = null)
 	if(!A || !A.hacked_apcs || hacker || aidisabled || A.stat == DEAD)
 		return 0

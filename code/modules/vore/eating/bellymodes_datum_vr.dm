@@ -111,7 +111,7 @@ GLOBAL_LIST_INIT(digest_modes, list())
 
 /datum/digest_mode/heal
 	id = DM_HEAL
-	noise_chance = 50 //Wet heals! The secret is you can leave this on for gurgle noises for fun.
+	noise_chance = 50 //Wet heals! The secret is you can leave this on for gurgle noises for REMOVED.
 
 /datum/digest_mode/heal/process_mob(obj/belly/B, mob/living/L)
 	if(L.stat == DEAD)

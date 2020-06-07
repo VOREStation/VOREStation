@@ -148,11 +148,11 @@
 			drop.forceMove(T)
 
 /datum/admins/proc/call_drop_pod()
-	set category = "Fun"
+	set category = "REMOVED"
 	set desc = "Call an immediate drop pod on your location."
 	set name = "Call Drop Pod"
 
-	if(!check_rights(R_FUN)) return
+	if(!check_rights(R_REMOVED)) return
 
 	var/client/selected_player
 	var/mob/living/spawned_mob

@@ -15,7 +15,7 @@
 
 // Proc:		setup_abilities()
 // Parameters: 	None
-// Description: Sets up basic abilities for AI Malfunction gamemode.
+// Description: Sets up basic abilities for AI MalREMOVEDction gamemode.
 /datum/malf_research/proc/setup_abilities()
 	available_abilities = list()
 	unlocked_abilities = list()

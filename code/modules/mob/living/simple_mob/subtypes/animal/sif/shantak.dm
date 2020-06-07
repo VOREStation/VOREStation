@@ -15,7 +15,7 @@
 	the Shantak will rotate between several dens dug deep into the hard earth throughout the year, \
 	while deftly avoiding others of its species outwith mating season. While other wildlife makes use of these dens, \
 	the Shantak is fiercely territorial and will defend itself against any creature it perceives as a threat with reckless abandon. \
-	Their diet consists primarily of fungi and insects found just below the permafrost."
+	Their diet consists primarily of REMOVEDgi and insects found just below the permafrost."
 	value = CATALOGUER_REWARD_MEDIUM
 
 /mob/living/simple_mob/animal/sif/shantak

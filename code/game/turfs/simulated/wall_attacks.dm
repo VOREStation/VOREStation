@@ -188,7 +188,7 @@
 		if(istype(W, /obj/item/weapon/weldingtool) )
 			var/obj/item/weapon/weldingtool/WT = W
 			if( WT.remove_fuel(0,user) )
-				to_chat(user, "<span class='notice'>You burn away the fungi with \the [WT].</span>")
+				to_chat(user, "<span class='notice'>You burn away the REMOVEDgi with \the [WT].</span>")
 				playsound(src, WT.usesound, 10, 1)
 				for(var/obj/effect/overlay/wallrot/WR in src)
 					qdel(WR)

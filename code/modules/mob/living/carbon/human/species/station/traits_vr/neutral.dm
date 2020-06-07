@@ -83,7 +83,7 @@
 /datum/trait/hard_vore
 	name = "Brutal Predation"
 	desc = "Allows you to tear off limbs & tear out internal organs."
-	cost = 0 //I would make this cost a point, since it has some in game value, but there are easier, less damaging ways to perform the same functions.
+	cost = 0 //I would make this cost a point, since it has some in game value, but there are easier, less damaging ways to perform the same REMOVEDctions.
 
 /datum/trait/hard_vore/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..(S,H)

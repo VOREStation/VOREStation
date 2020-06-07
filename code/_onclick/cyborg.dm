@@ -40,10 +40,10 @@
 
 	if(aiCamera && aiCamera.in_camera_mode)
 		aiCamera.camera_mode_off()
-		if(is_component_functioning("camera"))
+		if(is_component_REMOVEDctioning("camera"))
 			aiCamera.captureimage(A, usr)
 		else
-			to_chat(src, "<span class='userdanger'>Your camera isn't functional.</span>")
+			to_chat(src, "<span class='userdanger'>Your camera isn't REMOVEDctional.</span>")
 		return
 
 	/*
@@ -155,7 +155,7 @@
 
 	If you would like to add advanced features to robot
 	clicks, you can do so here, but you will have to
-	change attack_robot() above to the proper function
+	change attack_robot() above to the proper REMOVEDction
 */
 /mob/living/silicon/robot/UnarmedAttack(atom/A)
 	A.attack_robot(src)

@@ -10,18 +10,18 @@
  **/
 
 jQuery.fn.extend({
-	everyTime: function(interval, label, fn, times) {
-		return this.each(function() {
+	everyTime: REMOVEDction(interval, label, fn, times) {
+		return this.each(REMOVEDction() {
 			jQuery.timer.add(this, interval, label, fn, times);
 		});
 	},
-	oneTime: function(interval, label, fn) {
-		return this.each(function() {
+	oneTime: REMOVEDction(interval, label, fn) {
+		return this.each(REMOVEDction() {
 			jQuery.timer.add(this, interval, label, fn, 1);
 		});
 	},
-	stopTime: function(label, fn) {
-		return this.each(function() {
+	stopTime: REMOVEDction(label, fn) {
+		return this.each(REMOVEDction() {
 			jQuery.timer.remove(this, label, fn);
 		});
 	}
@@ -43,7 +43,7 @@ jQuery.extend({
 			'hs': 100000,
 			'ks': 1000000
 		},
-		timeParse: function(value) {
+		timeParse: REMOVEDction(value) {
 			if (value == undefined || value == null)
 				return null;
 			var result = this.regex.exec(jQuery.trim(value.toString()));
@@ -55,10 +55,10 @@ jQuery.extend({
 				return value;
 			}
 		},
-		add: function(element, interval, label, fn, times) {
+		add: REMOVEDction(element, interval, label, fn, times) {
 			var counter = 0;
 			
-			if (jQuery.isFunction(label)) {
+			if (jQuery.isREMOVEDction(label)) {
 				if (!times) 
 					times = fn;
 				fn = label;
@@ -82,7 +82,7 @@ jQuery.extend({
 			
 			fn.timerID = fn.timerID || this.guid++;
 			
-			var handler = function() {
+			var handler = REMOVEDction() {
 				if ((++counter > times && times !== 0) || fn.call(element, counter) === false)
 					jQuery.timer.remove(element, label, fn);
 			};
@@ -95,7 +95,7 @@ jQuery.extend({
 			this.global.push( element );
 			
 		},
-		remove: function(element, label, fn) {
+		remove: REMOVEDction(element, label, fn) {
 			var timers = jQuery.data(element, this.dataKey), ret;
 			
 			if ( timers ) {
@@ -131,8 +131,8 @@ jQuery.extend({
 	}
 });
 
-jQuery(window).bind("unload", function() {
-	jQuery.each(jQuery.timer.global, function(index, item) {
+jQuery(window).bind("unload", REMOVEDction() {
+	jQuery.each(jQuery.timer.global, REMOVEDction(index, item) {
 		jQuery.timer.remove(item);
 	});
 });

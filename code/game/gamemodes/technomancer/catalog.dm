@@ -123,16 +123,16 @@ var/list/all_technomancer_assistance = typesof(/datum/technomancer/assistance) -
 		bind_to_owner(user)
 
 	switch(tab)
-		if(0) //Functions
+		if(0) //REMOVEDctions
 			var/dat = ""
 			user.set_machine(src)
-			dat += "<align='center'><b>Functions</b> | "
+			dat += "<align='center'><b>REMOVEDctions</b> | "
 			dat += "<a href='byond://?src=\ref[src];tab_choice=1'>Equipment</a> | "
 			dat += "<a href='byond://?src=\ref[src];tab_choice=2'>Consumables</a> | "
 			dat += "<a href='byond://?src=\ref[src];tab_choice=3'>Assistance</a> | "
 			dat += "<a href='byond://?src=\ref[src];tab_choice=4'>Info</a></align><br>"
 			dat += "You currently have a budget of <b>[budget]/[max_budget]</b>.<br><br>"
-			dat += "<a href='byond://?src=\ref[src];refund_functions=1'>Refund Functions</a><br><br>"
+			dat += "<a href='byond://?src=\ref[src];reREMOVEDd_REMOVEDctions=1'>ReREMOVEDd REMOVEDctions</a><br><br>"
 
 			dat += "[show_categories(ALL_SPELLS)] | [show_categories(OFFENSIVE_SPELLS)] | [show_categories(DEFENSIVE_SPELLS)] | \
 			[show_categories(UTILITY_SPELLS)] | [show_categories(SUPPORT_SPELLS)]<br>"
@@ -156,7 +156,7 @@ var/list/all_technomancer_assistance = typesof(/datum/technomancer/assistance) -
 		if(1) //Equipment
 			var/dat = ""
 			user.set_machine(src)
-			dat += "<align='center'><a href='byond://?src=\ref[src];tab_choice=0'>Functions</a> | "
+			dat += "<align='center'><a href='byond://?src=\ref[src];tab_choice=0'>REMOVEDctions</a> | "
 			dat += "<b>Equipment</b> | "
 			dat += "<a href='byond://?src=\ref[src];tab_choice=2'>Consumables</a> | "
 			dat += "<a href='byond://?src=\ref[src];tab_choice=3'>Assistance</a> | "
@@ -174,7 +174,7 @@ var/list/all_technomancer_assistance = typesof(/datum/technomancer/assistance) -
 		if(2) //Consumables
 			var/dat = ""
 			user.set_machine(src)
-			dat += "<align='center'><a href='byond://?src=\ref[src];tab_choice=0'>Functions</a> | "
+			dat += "<align='center'><a href='byond://?src=\ref[src];tab_choice=0'>REMOVEDctions</a> | "
 			dat += "<a href='byond://?src=\ref[src];tab_choice=1'>Equipment</a> | "
 			dat += "<b>Consumables</b> | "
 			dat += "<a href='byond://?src=\ref[src];tab_choice=3'>Assistance</a> | "
@@ -192,7 +192,7 @@ var/list/all_technomancer_assistance = typesof(/datum/technomancer/assistance) -
 		if(3) //Assistance
 			var/dat = ""
 			user.set_machine(src)
-			dat += "<align='center'><a href='byond://?src=\ref[src];tab_choice=0'>Functions</a> | "
+			dat += "<align='center'><a href='byond://?src=\ref[src];tab_choice=0'>REMOVEDctions</a> | "
 			dat += "<a href='byond://?src=\ref[src];tab_choice=1'>Equipment</a> | "
 			dat += "<a href='byond://?src=\ref[src];tab_choice=2'>Consumables</a> | "
 			dat += "<b>Assistance</b> | "
@@ -210,7 +210,7 @@ var/list/all_technomancer_assistance = typesof(/datum/technomancer/assistance) -
 		if(4) //Info
 			var/dat = ""
 			user.set_machine(src)
-			dat += "<align='center'><a href='byond://?src=\ref[src];tab_choice=0'>Functions</a> | "
+			dat += "<align='center'><a href='byond://?src=\ref[src];tab_choice=0'>REMOVEDctions</a> | "
 			dat += "<a href='byond://?src=\ref[src];tab_choice=1'>Equipment</a> | "
 			dat += "<a href='byond://?src=\ref[src];tab_choice=2'>Consumables</a> | "
 			dat += "<a href='byond://?src=\ref[src];tab_choice=3'>Assistance</a> | "
@@ -220,18 +220,18 @@ var/list/all_technomancer_assistance = typesof(/datum/technomancer/assistance) -
 			dat += "<h1>Manipulation Core Owner's Manual</h1><br>"
 			dat += "This brief entry in your catalog will try to explain what everything does.  For starters, the thing you're \
 			probably wearing on your back is known as a <b>Manipulation Core</b>, or just a 'Core'.  It allows you to do amazing \
-			things with almost no effort, depending on what <b>functions</b> you've purchased for it.  Don't lose your core!<br>"
+			things with almost no effort, depending on what <b>REMOVEDctions</b> you've purchased for it.  Don't lose your core!<br>"
 			dat += "<br>"
 			dat += "There are a few things you need to keep in mind as you use your Core to manipulate the universe.  The core \
 			requires a special type of <b>energy</b>, that is referred to as just 'Energy' in the catalog.  All cores generate \
-			their own energy, some more than others.  Most functions require energy be spent in order to work, so make sure not \
-			to run out in a critical moment.  Besides waiting for your Core to recharge, you can buy certain functions which \
+			their own energy, some more than others.  Most REMOVEDctions require energy be spent in order to work, so make sure not \
+			to run out in a critical moment.  Besides waiting for your Core to recharge, you can buy certain REMOVEDctions which \
 			do something to generate energy.<br>"
 			dat += "<br>"
 			dat += "The second thing you need to know is that awesome power over the physical world has consquences, in the form \
 			of <b>Instability</b>.  Instability is the result of your Core's energy being used to fuel it, and so little is \
 			understood about it, even among fellow Core owners, however it is almost always a bad thing to have.  Instability will \
-			'cling' to you as you use functions, with powerful functions creating lots of instability.  The effects of holding onto \
+			'cling' to you as you use REMOVEDctions, with powerful REMOVEDctions creating lots of instability.  The effects of holding onto \
 			instability are generally harmless or mildly annoying at low levels, with effects such as sparks in the air or forced \
 			blinking.  Accumulating more and more instability will lead to worse things happening, which can easily be fatal, if not \
 			managed properly.<br>"
@@ -250,9 +250,9 @@ var/list/all_technomancer_assistance = typesof(/datum/technomancer/assistance) -
 			the core detects itself being carried, with the carrier not being authorized.  It will respond by giving a \
 			massive amount of Instability to them, so be careful, or perhaps make use of that.<br>"
 			dat += "<br>"
-			dat += "<b>You can refund functions, equipment items, and assistance items, so long as you are in your base.</b>  \
-			Once you leave, you can't refund anything, however you can still buy things if you still have points remaining.  \
-			To refund functions, just click the 'Refund Functions' button on the top, when in the functions tabs.  \
+			dat += "<b>You can reREMOVEDd REMOVEDctions, equipment items, and assistance items, so long as you are in your base.</b>  \
+			Once you leave, you can't reREMOVEDd anything, however you can still buy things if you still have points remaining.  \
+			To reREMOVEDd REMOVEDctions, just click the 'ReREMOVEDd REMOVEDctions' button on the top, when in the REMOVEDctions tabs.  \
 			For equipment items, you need to hit it against the catalog.<br>"
 			dat += "<br>"
 			dat += "Your blue robes and hat are both stylish, and somewhat protective against hostile energies, which includes \
@@ -260,16 +260,16 @@ var/list/all_technomancer_assistance = typesof(/datum/technomancer/assistance) -
 			things, it's suggested you purchase or otherwise obtain armor.<br>"
 			dat += "<br>"
 			dat += "There are a few terms you may not understand in the catalog, so this will try to explain them.<br>"
-			dat += "A function can be thought of as a 'spell', that you use by holding in your hands and trying to use it on \
+			dat += "A REMOVEDction can be thought of as a 'spell', that you use by holding in your hands and trying to use it on \
 			a target of your choice.<br>"
-			dat += "Some functions can have their abilities enhanced by a special rod called the Scepter of Enhancement.  \
-			If a function is able to be boosted with it, it will be shown underneath the description of the function as \
+			dat += "Some REMOVEDctions can have their abilities enhanced by a special rod called the Scepter of Enhancement.  \
+			If a REMOVEDction is able to be boosted with it, it will be shown underneath the description of the REMOVEDction as \
 			<font color='blue'><i>'Scepter Effect:'</i></font>.  Note that you must hold the scepter for it to work, so try to avoid losing it.<br>"
-			dat += "Functions can also be boosted with the core itself.  A function that is able to benefit \
+			dat += "REMOVEDctions can also be boosted with the core itself.  A REMOVEDction that is able to benefit \
 			from this will have <font color='purple'><i>'Spell Power:'</i></font> underneath.  Different Cores have different \
 			amounts of spell power.<br>"
-			dat += "When a function refers to 'allies', it means you, your apprentices, currently controlled entities (with the \
-			Control function), and friendly simple-minded entities that you've summoned with the Scepter of Enhancement.<br>"
+			dat += "When a REMOVEDction refers to 'allies', it means you, your apprentices, currently controlled entities (with the \
+			Control REMOVEDction), and friendly simple-minded entities that you've summoned with the Scepter of Enhancement.<br>"
 			dat += "A meter is equal to one 'tile'.<br>"
 			user << browse(dat, "window=radio")
 			onclose(user, "radio")
@@ -341,10 +341,10 @@ var/list/all_technomancer_assistance = typesof(/datum/technomancer/assistance) -
 					return
 
 
-		if(href_list["refund_functions"])
+		if(href_list["reREMOVEDd_REMOVEDctions"])
 			var/turf/T = get_turf(H)
 			if(T.z in using_map.player_levels)
-				to_chat(H, "<span class='danger'>You can only refund at your base, it's too late now!</span>")
+				to_chat(H, "<span class='danger'>You can only reREMOVEDd at your base, it's too late now!</span>")
 				return
 			var/obj/item/weapon/technomancer_core/core = null
 			if(istype(H.back, /obj/item/weapon/technomancer_core))
@@ -361,28 +361,28 @@ var/list/all_technomancer_assistance = typesof(/datum/technomancer/assistance) -
 /obj/item/weapon/technomancer_catalog/attackby(var/atom/movable/AM, var/mob/user)
 	var/turf/T = get_turf(user)
 	if(T.z in using_map.player_levels)
-		to_chat(user, "<span class='danger'>You can only refund at your base, it's too late now!</span>")
+		to_chat(user, "<span class='danger'>You can only reREMOVEDd at your base, it's too late now!</span>")
 		return
 	for(var/datum/technomancer/equipment/E in equipment_instances + assistance_instances)
 		if(AM.type == E.obj_path) // We got a match.
 			if(budget + E.cost > max_budget)
-				to_chat(user, "<span class='warning'>\The [src] will not allow you to overflow your maximum budget by refunding that.</span>")
+				to_chat(user, "<span class='warning'>\The [src] will not allow you to overflow your maximum budget by reREMOVEDding that.</span>")
 				return
 			else
 				budget = budget + E.cost
-				to_chat(user, "<span class='notice'>You've refunded \the [AM].</span>")
+				to_chat(user, "<span class='notice'>You've reREMOVEDded \the [AM].</span>")
 
-				// We sadly need to do special stuff here or else people who refund cores with spells will lose points permanently.
+				// We sadly need to do special stuff here or else people who reREMOVEDd cores with spells will lose points permanently.
 				if(istype(AM, /obj/item/weapon/technomancer_core))
 					var/obj/item/weapon/technomancer_core/core = AM
 					for(var/obj/spellbutton/spell in core.spells)
 						for(var/datum/technomancer/spell/spell_datum in spell_instances)
 							if(spell_datum.obj_path == spell.spellpath)
 								budget += spell_datum.cost
-								to_chat(user, "<span class='notice'>[spell.name] was inside \the [core], and was refunded.</span>")
+								to_chat(user, "<span class='notice'>[spell.name] was inside \the [core], and was reREMOVEDded.</span>")
 								core.remove_spell(spell)
 								break
 				qdel(AM)
 				return
-	to_chat(user, "<span class='warn'>\The [src] is unable to refund \the [AM].</span>")
+	to_chat(user, "<span class='warn'>\The [src] is unable to reREMOVEDd \the [AM].</span>")
 

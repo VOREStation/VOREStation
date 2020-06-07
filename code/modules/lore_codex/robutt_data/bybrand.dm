@@ -19,11 +19,11 @@
 	name = "\"Unbranded\""
 	data = "Based on hundreds of years of open-source development, \"Unbranded\" prosthetics are a low-price powered prosthesis option available throughout human space, even in the most desolate or newly settled systems. Occasionally, a popular unbranded design will be taken down due to claims of copyright infringement, but a new one invariably springs back up within a few months. Because Unbranded designs have a very loosely structured development process, bugs inevitably crop up, leading to a reputation for unreliability.\
 	<br><br>\
-	Unbranded prosthetics are extremely inexpensive but are sought out by those seriously dedicated to the Unbranded ethos. Due to their open-sourced nature, Unbranded prosthetics run the gamut of quality and style, though it's safe to assume that they're relatively poorly made. The ones that last longest on the Exonet tend to be glitchy; those that function are often removed on claims of copyright infringement."
+	Unbranded prosthetics are extremely inexpensive but are sought out by those seriously dedicated to the Unbranded ethos. Due to their open-sourced nature, Unbranded prosthetics run the gamut of quality and style, though it's safe to assume that they're relatively poorly made. The ones that last longest on the Exonet tend to be glitchy; those that REMOVEDction are often removed on claims of copyright infringement."
 
 /datum/lore/codex/page/robo_cyber
 	name = "Cyber Solutions"
-	data = "Morpheus Cyberkinetics makes the cheapest functioning prosthetics on the market. Cyber Solutions makes the cheapest prosthetics, period. Notoriously buggy and poorly-constructed, Cyber Solutions has been the target of a number of class action lawsuits by positronics whose bodies had literally fallen apart on them. While their quality has improved slightly since their most recent lawsuit, Cyber Solutions parts remain so low-quality that the company refuses to use them for their own low-price drone lines. Some tinkerers have managed to improve the parts far beyond the factory quality, and in some Mercurial subgroups Cyber Solutions modding is considered an art form.\
+	data = "Morpheus Cyberkinetics makes the cheapest REMOVEDctioning prosthetics on the market. Cyber Solutions makes the cheapest prosthetics, period. Notoriously buggy and poorly-constructed, Cyber Solutions has been the target of a number of class action lawsuits by positronics whose bodies had literally fallen apart on them. While their quality has improved slightly since their most recent lawsuit, Cyber Solutions parts remain so low-quality that the company refuses to use them for their own low-price drone lines. Some tinkerers have managed to improve the parts far beyond the factory quality, and in some Mercurial subgroups Cyber Solutions modding is considered an art form.\
 	<br><br>\
 	Cyber Solutions prosthetics are only recommended for the truly destitute and dedicated tinkers."
 
@@ -35,7 +35,7 @@
 
 /datum/lore/codex/page/robo_wt
 	name = "Ward-Takahashi GMB"
-	data = "The manufacturing giant's prosthetic line is functionally quite similar to Nanotrasen, but is directed at the consumer market and cheaper than Nanotrasen's own product. Aesthetically, of course, they are worlds apart, trading Nanotrasen's black gunmetal for rounded white plastic. The design endeavors to avoid the \"uncanny valley\" that plagues humaniform robot designs, by abstracting away the human shape into a series of connected ovals. Artists debate whether or not it succeeds, while normal people are more concerned with WT's tendency to accrue dirt and scratches with hard use.\
+	data = "The manufacturing giant's prosthetic line is REMOVEDctionally quite similar to Nanotrasen, but is directed at the consumer market and cheaper than Nanotrasen's own product. Aesthetically, of course, they are worlds apart, trading Nanotrasen's black gunmetal for rounded white plastic. The design endeavors to avoid the \"uncanny valley\" that plagues humaniform robot designs, by abstracting away the human shape into a series of connected ovals. Artists debate whether or not it succeeds, while normal people are more concerned with WT's tendency to accrue dirt and scratches with hard use.\
 	<br><br>\
 	Ward-Takahashi is popular through all economic classes, from poor to wealthy. Though it takes more wear-and-tear from heavy labor than dedicated industrial chassis, some use it for these tasks regardless."
 

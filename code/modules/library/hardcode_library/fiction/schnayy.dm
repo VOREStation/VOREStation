@@ -49,7 +49,7 @@ CATEGORY: Fiction
 					<br><br>
 					"It's made in Germany," Larry said. After a moment he added, "Carl got it for me wholesale. He knows some guy in the clock business. Otherwise I wouldn't have-" He stopped.
 					<br><br>
-					Doris made a funny little sound.
+					Doris made a REMOVEDny little sound.
 					<br><br>
 					"I mean, otherwise I wouldn't have been able to afford it." He scowled. "What's the matter with you? You've got your clock, haven't you? Isn't that what you want?"
 					<br><br>
@@ -69,7 +69,7 @@ CATEGORY: Fiction
 					<br><br>
 					She touched her handkerchief to her eyes suddenly. Why did he have to say that, about getting it wholesale? Why did he have to spoil it all? If he felt that way he needn't have got it in the first place. She clenched her fists. He was so mean, so damn mean.
 					<br><br>
-					But she was glad of the little clock sitting there ticking to itself, with its funny grilled edges and the door. Inside the door was the cuckoo, waiting to come out. Was he listening, his head cocked on one side, listening to hear the clock strike so that he would know to come out?
+					But she was glad of the little clock sitting there ticking to itself, with its REMOVEDny grilled edges and the door. Inside the door was the cuckoo, waiting to come out. Was he listening, his head cocked on one side, listening to hear the clock strike so that he would know to come out?
 					<br><br>
 					Did he sleep between hours? Well, she would soon see him: she could ask him. And she would show the clock to Bob. He would love it; Bob loved old things, even old stamps and buttons. He liked to go with her to the stores. Of course, it was a little awkward, but Larry had been staying at the office so much, and that helped. If only Larry didn't call up sometimes to-
 					<br><br>

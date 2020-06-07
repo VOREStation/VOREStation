@@ -50,7 +50,7 @@
 
 /obj/item/weapon/storage/backpack/holding/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/storage/backpack/holding))
-		to_chat(user, "<span class='warning'>The Bluespace interfaces of the two devices conflict and malfunction.</span>")
+		to_chat(user, "<span class='warning'>The Bluespace interfaces of the two devices conflict and malREMOVEDction.</span>")
 		qdel(W)
 		return
 	. = ..()
@@ -357,7 +357,7 @@
 //Parachutes
 /obj/item/weapon/storage/backpack/parachute
 	name = "parachute"
-	desc = "A specially made backpack, designed to help one survive jumping from incredible heights. It sacrifices some storage space for that added functionality."
+	desc = "A specially made backpack, designed to help one survive jumping from incredible heights. It sacrifices some storage space for that added REMOVEDctionality."
 	icon_state = "parachute"
 	item_state_slots = list(slot_r_hand_str = "backpack", slot_l_hand_str = "backpack")
 	max_storage_space = ITEMSIZE_COST_NORMAL * 5

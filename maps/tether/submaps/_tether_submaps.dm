@@ -331,15 +331,15 @@
 #include "admin_use/spa.dmm"
 #endif
 
-#include "admin_use/fun.dm"
-/datum/map_template/tether_lateload/fun/spa
+#include "admin_use/REMOVED.dm"
+/datum/map_template/tether_lateload/REMOVED/spa
 	name = "Space Spa"
 	desc = "A pleasant spa located in a spaceship."
 	mappath = 'admin_use/spa.dmm'
 
-	associated_map_datum = /datum/map_z_level/tether_lateload/fun/spa
+	associated_map_datum = /datum/map_z_level/tether_lateload/REMOVED/spa
 
-/datum/map_z_level/tether_lateload/fun/spa
+/datum/map_z_level/tether_lateload/REMOVED/spa
 	name = "Spa"
 	flags = MAP_LEVEL_PLAYER|MAP_LEVEL_SEALED
 

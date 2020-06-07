@@ -56,7 +56,7 @@ var/list/GPS_list = list()
 	spawn(duration)
 		emped = FALSE
 		update_icon()
-		visible_message("\The [src] appears to be functional again.")
+		visible_message("\The [src] appears to be REMOVEDctional again.")
 
 /obj/item/device/gps/update_icon()
 	cut_overlays()

@@ -1,7 +1,7 @@
 // Verb: ai_select_hardware()
 // Parameters: None
 // Description: Allows AI to select it's hardware module.
-/datum/game_mode/malfunction/verb/ai_select_hardware()
+/datum/game_mode/malREMOVEDction/verb/ai_select_hardware()
 	set category = "Hardware"
 	set name = "Select Hardware"
 	set desc = "Allows you to select hardware piece to install"
@@ -59,7 +59,7 @@
 // Verb: ai_help()
 // Parameters: None
 // Descriptions: Opens help file and displays it to the AI.
-/datum/game_mode/malfunction/verb/ai_help()
+/datum/game_mode/malREMOVEDction/verb/ai_help()
 	set category = "Hardware"
 	set name = "Display Help"
 	set desc = "Opens help window with overview of available hardware, software and other important information."
@@ -75,7 +75,7 @@
 // Verb: ai_select_research()
 // Parameters: None
 // Description: Allows AI to select it's next research priority.
-/datum/game_mode/malfunction/verb/ai_select_research()
+/datum/game_mode/malREMOVEDction/verb/ai_select_research()
 	set category = "Hardware"
 	set name = "Select Research"
 	set desc = "Allows you to select your next research target."
@@ -99,10 +99,10 @@
 	if(!user)
 		return 0
 	if(!istype(user))
-		to_chat(user, "GAME ERROR: You tried to use ability that is only available for malfunctioning AIs, but you are not AI! Please report this.")
+		to_chat(user, "GAME ERROR: You tried to use ability that is only available for malREMOVEDctioning AIs, but you are not AI! Please report this.")
 		return 0
-	if(!user.malfunctioning)
-		to_chat(user, "GAME ERROR: You tried to use ability that is only available for malfunctioning AIs, but you are not malfunctioning. Please report this.")
+	if(!user.malREMOVEDctioning)
+		to_chat(user, "GAME ERROR: You tried to use ability that is only available for malREMOVEDctioning AIs, but you are not malREMOVEDctioning. Please report this.")
 		return 0
 	if(!user.research)
 		to_chat(user, "GAME ERROR: No research datum detected. Please report this.")

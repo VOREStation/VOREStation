@@ -241,7 +241,7 @@
 
 	else if (istype(W, /obj/item/weapon/camera_bug))
 		if (!src.can_use())
-			to_chat(user, "<span class='warning'>Camera non-functional.</span>")
+			to_chat(user, "<span class='warning'>Camera non-REMOVEDctional.</span>")
 			return
 		if (src.bugged)
 			to_chat(user, "<span class='notice'>Camera bug removed.</span>")
@@ -496,7 +496,7 @@
 
 	invalidateCameraCache()
 
-// Resets the camera's wires to fully operational state. Used by one of Malfunction abilities.
+// Resets the camera's wires to fully operational state. Used by one of MalREMOVEDction abilities.
 /obj/machinery/camera/proc/reset_wires()
 	if(!wires)
 		return

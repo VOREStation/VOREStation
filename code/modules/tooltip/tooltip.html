@@ -104,14 +104,14 @@
 			'text': '',
 			'theme': '',
 			'padding': 2,
-			init: function(tileSize, control) {
+			init: REMOVEDction(tileSize, control) {
 				tooltip.tileSize = parseInt(tileSize);
 				tooltip.control = control;
 			},
-			hide: function() {
+			hide: REMOVEDction() {
 				window.location = 'byond://winset?id='+tooltip.control+';is-visible=false';
 			},
-			updateCallback: function(map) {
+			updateCallback: REMOVEDction(map) {
 				if (typeof map === 'undefined' || !map) {return false;}
 
 				//alert(tooltip.params+' | '+tooltip.clientView+' | '+tooltip.text+' | '+tooltip.theme); //DEBUG
@@ -227,11 +227,11 @@
 				//Actually size, move and show the tooltip box
 				window.location = 'byond://winset?id='+tooltip.control+';size='+docWidth+'x'+docHeight+';pos='+posX+','+posY+';is-visible=true';
 
-				$content.on('mouseover', function() {
+				$content.on('mouseover', REMOVEDction() {
 					tooltip.hide();
 				});
 			},
-			update: function(params, client_vw , clien_vh , text, theme, special) {
+			update: REMOVEDction(params, client_vw , clien_vh , text, theme, special) {
 				//Assign our global object
 				tooltip.params = $.parseJSON(params);
 				tooltip.client_view_w = parseInt(client_vw);

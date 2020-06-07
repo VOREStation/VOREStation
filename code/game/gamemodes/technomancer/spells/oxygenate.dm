@@ -1,6 +1,6 @@
 /datum/technomancer/spell/oxygenate
 	name = "Oxygenate"
-	desc = "This function creates oxygen at a location of your chosing.  If used on a humanoid entity, it heals oxygen deprivation.  \
+	desc = "This REMOVEDction creates oxygen at a location of your chosing.  If used on a humanoid entity, it heals oxygen deprivation.  \
 	If casted on the envirnment, air (oxygen and nitrogen) is moved from a distant location to your target."
 	cost = 25
 	obj_path = /obj/item/weapon/spell/oxygenate

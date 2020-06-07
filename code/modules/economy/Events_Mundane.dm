@@ -140,7 +140,7 @@
 	"Pens proclaim pencils obsolete, 'lead is dead'.",\
 	"Rock and paper sues scissors for discrimination.",\
 	"Steak tell-all book reveals he never liked sitting by potato.",\
-	"Woodchuck stops counting how many times he’s chucked 'Never again'.",\
+	"Woodchuck stops counting how many times heï¿½s chucked 'Never again'.",\
 	"[affected_dest.name] clerk first person able to pronounce '@*$%!'.",\
 	"[affected_dest.name] delis serving boiled paperback dictionaries, 'Adjectives chewy' customers declare.",\
 	"[affected_dest.name] weather deemed 'boring'; meteors and rad storms to be imported.",\
@@ -156,8 +156,8 @@
 	"Skrell marries computer; wedding attended by 100 modems.",\
 	"Chef reports successfully using harmonica as cheese grater.",\
 	"[using_map.company_name] invents handkerchief that says 'Bless you' after sneeze.",\
-	"Clone accused of posing for other clones’s school photo.",\
-	"Clone accused of stealing other clones’s employee of the month award.",\
+	"Clone accused of posing for other clonesï¿½s school photo.",\
+	"Clone accused of stealing other clonesï¿½s employee of the month award.",\
 	"Woman robs station with hair dryer; crewmen love new style.",\
 	"This space for rent.",\
 	"[affected_dest.name] Baker Wins Pickled Crumpet Toss Three Years Running",\
@@ -211,7 +211,7 @@
 	"Tommy B. Saif Sez: Try To Keep Six Month's Expenses In Reserve",\
 	"Tommy B. Saif Sez: Change Not Given Without Purchase",\
 	"Tommy B. Saif Sez: If You Break It, You Buy It",\
-	"Tommy B. Saif Sez: Reservations Must Be Cancelled 48 Hours Prior To Event To Obtain Refund",\
+	"Tommy B. Saif Sez: Reservations Must Be Cancelled 48 Hours Prior To Event To Obtain ReREMOVEDd",\
 	"Doughnuts: Is There Anything They Can't Do",\
 	"If Tin Whistles Are Made Of Tin, What Do They Make Foghorns Out Of?",\
 	"Broccoli discovered to be colonies of tiny aliens with murder on their minds"\

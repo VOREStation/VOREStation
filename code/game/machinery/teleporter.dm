@@ -50,7 +50,7 @@
 /obj/machinery/computer/teleporter/attackby(I as obj, mob/living/user as mob)
 	if(istype(I, /obj/item/weapon/card/data/))
 		var/obj/item/weapon/card/data/C = I
-		if(stat & (NOPOWER|BROKEN) & (C.function != "teleporter"))
+		if(stat & (NOPOWER|BROKEN) & (C.REMOVEDction != "teleporter"))
 			attack_hand()
 
 		var/obj/L = null

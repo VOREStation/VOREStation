@@ -27,7 +27,7 @@ var/list/ai_status_emotions = list(
 	"Communist" 				= new /datum/ai_emotion("ai_redoctober"),
 	"Heart" 					= new /datum/ai_emotion("ai_heart"),
 	"Tribunal" 					= new /datum/ai_emotion("ai_tribunal", "serithi"),
-	"Tribunal Malfunctioning"	= new /datum/ai_emotion("ai_tribunal_malf", "serithi")
+	"Tribunal MalREMOVEDctioning"	= new /datum/ai_emotion("ai_tribunal_malf", "serithi")
 	)
 
 /proc/get_ai_emotions(var/ckey)

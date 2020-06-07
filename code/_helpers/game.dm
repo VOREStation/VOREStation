@@ -259,7 +259,7 @@
 	// We heard it on our own radio? We use power for that.
 	if(istype(R) && R.myborg == src)
 		var/datum/robot_component/CO = get_component("radio")
-		if(!CO || !is_component_functioning("radio") || !cell_use_power(CO.active_usage))
+		if(!CO || !is_component_REMOVEDctioning("radio") || !cell_use_power(CO.active_usage))
 			return FALSE // Sorry, couldn't hear
 	
 	return R // radio, true, false, what's the difference
@@ -471,7 +471,7 @@ datum/projectile_data
 
 	// returns the destination (Vx,y) that a projectile shot at [src_x], [src_y], with an angle of [angle],
 	// rotated at [rotation] and with the power of [power]
-	// Thanks to VistaPOWA for this function
+	// Thanks to VistaPOWA for this REMOVEDction
 
 	var/power_x = power * cos(angle)
 	var/power_y = power * sin(angle)

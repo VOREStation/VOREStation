@@ -187,7 +187,7 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 
 /datum/robolimb/cybersolutions_alt2
 	company = "Cyber Solutions - Array"
-	desc = "This limb is simple and functional; array of sensors on a featureless case."
+	desc = "This limb is simple and REMOVEDctional; array of sensors on a featureless case."
 	icon = 'icons/mob/human_races/cyberlimbs/cybersolutions/cybersolutions_alt2.dmi'
 	unavailable_to_build = 1
 	parts = list(BP_HEAD)
@@ -273,21 +273,21 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 
 /datum/robolimb/morpheus
 	company = "Morpheus"
-	desc = "This limb is simple and functional; no effort has been made to make it look human."
+	desc = "This limb is simple and REMOVEDctional; no effort has been made to make it look human."
 	icon = 'icons/mob/human_races/cyberlimbs/morpheus/morpheus_main.dmi'
 	unavailable_to_build = 1
 	monitor_styles = standard_monitor_styles
 
 /datum/robolimb/morpheus_alt1
 	company = "Morpheus - Zenith"
-	desc = "This limb is simple and functional; no effort has been made to make it look human."
+	desc = "This limb is simple and REMOVEDctional; no effort has been made to make it look human."
 	icon = 'icons/mob/human_races/cyberlimbs/morpheus/morpheus_alt1.dmi'
 	unavailable_to_build = 1
 	parts = list(BP_HEAD)
 
 /datum/robolimb/morpheus_alt2
 	company = "Morpheus - Skeleton Crew"
-	desc = "This limb is simple and functional; it's basically just a case for a brain."
+	desc = "This limb is simple and REMOVEDctional; it's basically just a case for a brain."
 	icon = 'icons/mob/human_races/cyberlimbs/morpheus/morpheus_alt2.dmi'
 	unavailable_to_build = 1
 	parts = list(BP_HEAD)

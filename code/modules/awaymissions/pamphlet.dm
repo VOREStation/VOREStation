@@ -14,7 +14,7 @@
 			<b>Gateway Operation Basics</b><br>\
 			All approved Gateways operate on the same basic principals. They operate off \
 			area equipment power as you would expect, but they also require a backup wire with at least \
-			128, 000 Watts of power running through it. Without this supply, it cannot safely function \
+			128, 000 Watts of power running through it. Without this supply, it cannot safely REMOVEDction \
 			and will reject all attempts at operation.<br><br>\
 			Once it is correctly setup, and once it has enough power to operate, the Gateway will begin \
 			searching for an output location. The amount of time this takes is variable, but the Gateway \

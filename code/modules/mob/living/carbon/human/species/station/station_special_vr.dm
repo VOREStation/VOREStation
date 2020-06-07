@@ -450,7 +450,7 @@
 	min_age = 18
 	max_age = 200
 
-	blurb = "Big buff werewolves. These are a limited functionality event species that are not balanced for regular gameplay. Adminspawn only."
+	blurb = "Big buff werewolves. These are a limited REMOVEDctionality event species that are not balanced for regular gameplay. Adminspawn only."
 
 	wikilink="N/A"
 

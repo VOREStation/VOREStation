@@ -394,7 +394,7 @@
 		return	1
 	return 0
 
-/obj/machinery/clonepod/proc/malfunction()
+/obj/machinery/clonepod/proc/malREMOVEDction()
 	if(occupant)
 		connected_message("Critical Error!")
 		mess = 1
@@ -412,7 +412,7 @@
 
 /obj/machinery/clonepod/emp_act(severity)
 	if(prob(100/severity))
-		malfunction()
+		malREMOVEDction()
 	..()
 
 /obj/machinery/clonepod/ex_act(severity)
@@ -578,5 +578,5 @@
 //SOME SCRAPS I GUESS
 /* EMP grenade/spell effect
 		if(istype(A, /obj/machinery/clonepod))
-			A:malfunction()
+			A:malREMOVEDction()
 */

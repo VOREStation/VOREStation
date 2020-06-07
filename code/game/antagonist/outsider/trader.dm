@@ -9,7 +9,7 @@ var/datum/antagonist/trader/traders
 	antag_sound = 'sound/effects/antag_notice/general_goodie_alert.ogg'
 	antag_text = "You are an <b>non-antagonist</b> visitor! Within the rules, \
 		try to provide interesting interaction for the crew. \
-		Try to make sure other players have <i>fun</i>! If you are confused or at a loss, always adminhelp, \
+		Try to make sure other players have <i>REMOVED</i>! If you are confused or at a loss, always adminhelp, \
 		and before taking extreme actions, please try to also contact the administration! \
 		Think through your actions and make the roleplay immersive! <b>Please remember all \
 		rules apply to you.</b>"

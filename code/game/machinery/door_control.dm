@@ -83,7 +83,7 @@
 	name = "remote door-control"
 	desc = "It controls doors, remotely."
 
-	var/specialfunctions = 1
+	var/specialREMOVEDctions = 1
 	/*
 	Bitflag, 	1= open
 				2= idscan,
@@ -95,7 +95,7 @@
 /obj/machinery/button/remote/airlock/trigger()
 	for(var/obj/machinery/door/airlock/D in machines)
 		if(D.id_tag == id)
-			if(specialfunctions & OPEN)
+			if(specialREMOVEDctions & OPEN)
 				if(D.density)
 					spawn(0)
 						D.open()
@@ -105,22 +105,22 @@
 						D.close()
 						return
 			if(desiredstate == 1)
-				if(specialfunctions & IDSCAN)
+				if(specialREMOVEDctions & IDSCAN)
 					D.set_idscan(0)
-				if(specialfunctions & BOLTS)
+				if(specialREMOVEDctions & BOLTS)
 					D.lock()
-				if(specialfunctions & SHOCK)
+				if(specialREMOVEDctions & SHOCK)
 					D.electrify(-1)
-				if(specialfunctions & SAFE)
+				if(specialREMOVEDctions & SAFE)
 					D.set_safeties(0)
 			else
-				if(specialfunctions & IDSCAN)
+				if(specialREMOVEDctions & IDSCAN)
 					D.set_idscan(1)
-				if(specialfunctions & BOLTS)
+				if(specialREMOVEDctions & BOLTS)
 					D.unlock()
-				if(specialfunctions & SHOCK)
+				if(specialREMOVEDctions & SHOCK)
 					D.electrify(0)
-				if(specialfunctions & SAFE)
+				if(specialREMOVEDctions & SAFE)
 					D.set_safeties(1)
 
 #undef OPEN

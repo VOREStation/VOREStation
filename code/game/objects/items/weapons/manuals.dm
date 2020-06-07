@@ -98,7 +98,7 @@
 				<br>
 				<h2>OPERATING PRINCIPLES</h2>
 				<br>
-				<li>The supermatter crystal serves as the fundamental power source of the engine. Upon being charged, it begins to emit large amounts of heat and radiation, as well and oxygen and phoron gas. As oxygen accelerates the reaction and reacts with phoron to start a fire, it must be filtered out. It's recommended to filter out all gases besides nitrogen for standard operation. </li>
+				<li>The supermatter crystal serves as the REMOVEDdamental power source of the engine. Upon being charged, it begins to emit large amounts of heat and radiation, as well and oxygen and phoron gas. As oxygen accelerates the reaction and reacts with phoron to start a fire, it must be filtered out. It's recommended to filter out all gases besides nitrogen for standard operation. </li>
 				<br>
 				<li>Gas in the reactor chamber housing the supermatter is circulated through the reactor loop, which passes through the filters and thermoelectric generators. The thermoelectric generators transfer heat from the reactor loop to the colder radiator loop, thereby generating power. Additional power is generated from internal turbines in the circulators.</li>
 				<br>
@@ -779,7 +779,7 @@
 				Dents in a cyborg's frame are rather easy to repair, all you need is to apply a welding tool to the dented area, and the high-tech cyborg frame will repair the dent under the heat of the welder.
 
 				<h3>Excessive Heat Damage</h3>
-				If a cyborg becomes damaged due to excessive heat, it is likely that the internal wires will have been damaged. You must replace those wires to ensure that the cyborg remains functioning properly.<br>To replace the internal wiring follow the steps below:
+				If a cyborg becomes damaged due to excessive heat, it is likely that the internal wires will have been damaged. You must replace those wires to ensure that the cyborg remains REMOVEDctioning properly.<br>To replace the internal wiring follow the steps below:
 				<ol>
 					<li>Unlock the Cyborg's Interface by swiping your ID</li>
 					<li>Open the Cyborg's External Panel using a crowbar</li>
@@ -1096,7 +1096,7 @@
 
 				First and foremost, DO NOT TOUCH ANYTHING UNTIL THE BOMB IS IN PLACE. Pressing any button on the compacted bomb will cause it to extend and bolt itself into place. If this is done, to unbolt it, one must completely log in, which at this time may not be possible.<br>
 
-				<h2>To make the nuclear device functional</h2>
+				<h2>To make the nuclear device REMOVEDctional</h2>
 				<ul>
 					<li>Place the nuclear device in the designated detonation zone.</li>
 					<li>Extend and anchor the nuclear device from its interface.</li>
@@ -1222,7 +1222,7 @@
 				<li><I>Pipe:</I> This is a pipe that will exchange heat with the surrounding atmosphere. Place in fire for superheating. Place in space for supercooling.</li>
 				<li><I>Bent pipe:</I> Take a wild guess.</li>
 				<li><I>Junction:</I> The point where you connect your normal pipes to heat exchange pipes. Not necessary for heat exchangers, but necessary for H/E pipes/bent pipes.</li>
-				<li><I>Heat exchanger:</I> These funky-looking bits attach to an open pipe end. Put another heat exchanger directly across from it, and you can transfer heat across two pipes without having to have the gases touch.
+				<li><I>Heat exchanger:</I> These REMOVEDky-looking bits attach to an open pipe end. Put another heat exchanger directly across from it, and you can transfer heat across two pipes without having to have the gases touch.
 				This normally shouldn't exchange with the ambient air, despite being totally exposed. Just don't ask questions.</li><BR>
 
 				That's about it for pipes. Go forth, armed with this knowledge, and try not to break, burn down, or kill anything. Please.
@@ -1315,7 +1315,7 @@
 				Putting these on is relatively simple. They come as compact packs, worn like a backpack and secured with a harness. Activating them, though, is a more complex process. The suit deploys from the module similarly to helmets deploying from voidsuits.
 				After it covers the whole body, the suit can be started. The startup sequence takes some time. The suit will automatically fit itself to your body, sealing each section individually - boots, gloves, pants, torso, and helmet - then connecting them.<BR><BR>
 
-				Operating a hardsuit is a much more complicated proposal than operating other EVA equipment. While putting them on is relatively simple, and operating basic functions like oxygen and magboots is the same as other suits, the rest is far more complex.
+				Operating a hardsuit is a much more complicated proposal than operating other EVA equipment. While putting them on is relatively simple, and operating basic REMOVEDctions like oxygen and magboots is the same as other suits, the rest is far more complex.
 				Consult the operator's manual for invidual pieces of equipment that you plan to use. Use of these for heavy work is only reccomended for people who have specialized training and extensive EVA experience.
 				The potential of a suit breach is always there, and the use of powered equipment raises it significantly.<BR><BR>
 
@@ -1336,7 +1336,7 @@
 				There's a variety of equipment that can modify hardsuits to fit species that can't fit into them, making life quite a bit easier.<BR><BR>
 
 				The first piece of equipment is a suit cycler. This is a large machine resembling the storage pods that are in place in some places. These are machines that will automatically tailor a suit to certain specifications.
-				The largest uses of them are for their cleaning functions and their ability to tailor suits for a species. Do not enter them physically. You will die from any of the functions being activated, and it will hurt the whole time you're dying.
+				The largest uses of them are for their cleaning REMOVEDctions and their ability to tailor suits for a species. Do not enter them physically. You will die from any of the REMOVEDctions being activated, and it will hurt the whole time you're dying.
 				These machines can both tailor a suit between species, and between types. This means you can convert engineering hardsuits to atmospherics, or the other way. This is useful. Use it if you can.<BR><BR>
 
 				There's also modification kits that let you modify suits yourself. These are extremely difficult to use unless you understand the actual construction of the suit. I do not reccomend using them unless no other option is available.<BR><BR>

@@ -70,7 +70,7 @@
 	say_got_target = list("Engaging!")
 	say_threaten = list("Get out of here!", "Hey! Private Property!")
 	say_stand_down = list("Good.")
-	say_escalate = list("Your funeral!", "Bring it!")
+	say_escalate = list("Your REMOVEDeral!", "Bring it!")
 
 /datum/say_list/malf_drone
 	speak = list("ALERT.","Hostile-ile-ile entities dee-twhoooo-wected.","Threat parameterszzzz- szzet.","Bring sub-sub-sub-systems uuuup to combat alert alpha-a-a.")

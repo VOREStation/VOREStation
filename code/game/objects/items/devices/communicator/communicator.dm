@@ -40,7 +40,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	var/list/im_contacts = list()
 	var/list/im_list = list()
 
-	var/note = "Thank you for choosing the T-14.2 Communicator, this is your notepad!" //Current note in the notepad function
+	var/note = "Thank you for choosing the T-14.2 Communicator, this is your notepad!" //Current note in the notepad REMOVEDction
 	var/notehtml = ""
 
 	var/obj/item/weapon/commcard/cartridge = null //current cartridge

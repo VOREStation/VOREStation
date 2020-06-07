@@ -4,7 +4,7 @@
 /datum/category_item/catalogue/technology/gygax
 	name = "Exosuit - Gygax"
 	desc = "The Gygax is a relatively modern exosuit, built to be lightweight and agile, while still being fairly durable. \
-	These traits have made them rather popular among well funded private and corporate security forces, who desire \
+	These traits have made them rather popular among well REMOVEDded private and corporate security forces, who desire \
 	the ability to rapidly respond to conflict.\
 	<br><br>\
 	One special feature of this model is that the actuators that \

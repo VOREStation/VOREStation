@@ -1,7 +1,7 @@
 /*
-While these computers can be placed anywhere, they will only function if placed on either a non-space, non-shuttle turf
+While these computers can be placed anywhere, they will only REMOVEDction if placed on either a non-space, non-shuttle turf
 with an /obj/effect/overmap/visitable/ship present elsewhere on that z level, or else placed in a shuttle area with an /obj/effect/overmap/visitable/ship
-somewhere on that shuttle. Subtypes of these can be then used to perform ship overmap movement functions.
+somewhere on that shuttle. Subtypes of these can be then used to perform ship overmap movement REMOVEDctions.
 */
 /obj/machinery/computer/ship
 	var/obj/effect/overmap/visitable/ship/linked

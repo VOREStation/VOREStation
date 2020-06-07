@@ -45,7 +45,7 @@
 			H.Confuse(15) //Be unable to walk correctly for a bit longer.
 		if(prob(1))
 			if(H.losebreath <= 1 && H.oxyloss <= 20) //Let's not suffocate them to the point that they pass out.
-				to_chat(H,"<span class='warning'>You feel a sharp stabbing pain in your chest and quickly realize that your lungs have stopped functioning!</span>") //Let's scare them a bit.
+				to_chat(H,"<span class='warning'>You feel a sharp stabbing pain in your chest and quickly realize that your lungs have stopped REMOVEDctioning!</span>") //Let's scare them a bit.
 				H.losebreath = 10
 				H.adjustOxyLoss(5)
 		if(prob(2))

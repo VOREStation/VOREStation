@@ -260,7 +260,7 @@
 
 /obj/item/clothing/accessory/wcoat
 	name = "waistcoat"
-	desc = "For some classy, murderous fun."
+	desc = "For some classy, murderous REMOVED."
 	icon_state = "vest"
 	item_state = "vest"
 	icon_override = 'icons/mob/ties.dmi'

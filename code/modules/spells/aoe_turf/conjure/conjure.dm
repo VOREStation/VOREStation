@@ -7,7 +7,7 @@ How they spawn stuff is decided by behaviour vars, which are explained below
 	name = "Conjure"
 	desc = "This spell conjures objs of the specified types in range."
 
-	school = "conjuration" //funny, that
+	school = "conjuration" //REMOVEDny, that
 
 	var/list/summon_type = list() //determines what exactly will be summoned
 	//should be text, like list("/obj/machinery/bot/ed209")

@@ -477,7 +477,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	if(!head_organ || head_organ.is_stump() )
 		return
 
-	//The eyes store the color themselves, funny enough.
+	//The eyes store the color themselves, REMOVEDny enough.
 	var/obj/item/organ/internal/eyes/eyes = internal_organs_by_name[O_EYES]
 	if(!head_organ.eye_icon)
 		return

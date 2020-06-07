@@ -324,7 +324,7 @@
 	Military officials have reported the operation as a total success, and that \"several\" high-ranking Boiling Point organizers were killed in the raid, and that thanks to the work of allied intelligence operation teams much of Boiling Point's captured data may remain intact."
 /datum/lore/codex/category/article27
 	name = "11/26/62 - Valentine's Ultimatum: All Eyes On Almach!"
-	data = "The Almach Association must adhere to the Five Points of Human Sanctity by the 14th of February next year or face war, according to a national address from the Colonial Assembly delivered by Secretary-General Mackenzie West this morning. The Icarus Front leader was at the forefront of a resolution to allow the secessionist government to remain independent of the Solar Confederate Government under the strict condition of faithfulness to Five Points laws, passing by a wide margin. Fundamental disagreement over Five Points regulation has been at the forefront of debate with the Almach provisional government, and is cited as one of the primary reasons for the systems' illegal declaration of independence early this year.\
+	data = "The Almach Association must adhere to the Five Points of Human Sanctity by the 14th of February next year or face war, according to a national address from the Colonial Assembly delivered by Secretary-General Mackenzie West this morning. The Icarus Front leader was at the forefront of a resolution to allow the secessionist government to remain independent of the Solar Confederate Government under the strict condition of faithfulness to Five Points laws, passing by a wide margin. REMOVEDdamental disagreement over Five Points regulation has been at the forefront of debate with the Almach provisional government, and is cited as one of the primary reasons for the systems' illegal declaration of independence early this year.\
 	<br><br>\
 	The internationally broadcast speech began with the much anticipated announcement that the Boiling Point terrorist group had been effectively destroyed, with over seven hundred arrests made over the course of the weekend as a result of sensitive data captured during the special forces raid in Vir on the 24th, including numerous high ranking members of the organization. West went on to praise forces involved in the months-long counter-terror operation, before highlighting the \"legacy of \[human\] togetherness\" that allowed it to happen - in a spiel that commentators suggest \"betrays the true intention of the Valentine's Ultimatum: Reunification\".\
 	<br><br>\
@@ -391,7 +391,7 @@
 	name = "01/01/63 - Sif Governor Bjorn Arielsson to Retire"
 	data = "Aging Shadow Coalition governor Bjorn Arielsson has today confirmed rumours that he will not run for re-election in the 2563 cycle. The popular governor has represented the people of Vir in the Colonial Assembly for ten years, and supporters had long hoped that he would run for a third term. Arielsson cites advancing age and a desire to spend more time with his partner of 12 years, noted Positronic entrepreneur View Arielsson.\
 	<br><br>\
-	Arielsson's governorship saw increased funding towards Sif's vererable ground-based transportation networks to the benefit of some of New Rekjavik's more remote neighbors, though opponents have criticised subsidies towards artificially heated fungal farms, arguing that the faciliies \"benefit a small minority of Skrellian residents to the detriment of already fragile local ecosystems.\"\
+	Arielsson's governorship saw increased REMOVEDding towards Sif's vererable ground-based transportation networks to the benefit of some of New Rekjavik's more remote neighbors, though opponents have criticised subsidies towards artificially heated REMOVEDgal farms, arguing that the faciliies \"benefit a small minority of Skrellian residents to the detriment of already fragile local ecosystems.\"\
 	<br><br>\
 	The Sivian Shadow Coalition has yet to announce who is to take Arielsson's place on this year's ballot."
 
@@ -520,13 +520,13 @@
 	<br><br>\
 	Mason Keldow says, 'People working in orbit say 'Don't go to the surface, Spiders are down there.''\
 	<br><br>\
-	Mason Keldow says, 'And apparently there was a big ol' purple one sitting right by a camp we had set up. A giant mother who'd - if I hadn't met that lovely mass of fur and ice instead - would have probably said its “hello” in the worst possible way.'\
+	Mason Keldow says, 'And apparently there was a big ol' purple one sitting right by a camp we had set up. A giant mother who'd - if I hadn't met that lovely mass of fur and ice instead - would have probably said its ï¿½helloï¿½ in the worst possible way.'\
 	<br><br>\
-	Mason Keldow says, 'They are a species that prevents anyone from actually working or otherwise making use of all that land. If I were in office, I'd make an effort to clear out the dangerous species that surround the outer regions of Sif – relocate them if possible - and use that territory for something productive.'\
+	Mason Keldow says, 'They are a species that prevents anyone from actually working or otherwise making use of all that land. If I were in office, I'd make an effort to clear out the dangerous species that surround the outer regions of Sif ï¿½ relocate them if possible - and use that territory for something productive.'\
 	<br><br>\
 	Mason Keldow says, 'New forms of Transit, new buildings, new jobs.'\
 	<br><br>\
-	Blip asks, 'Such implementation of infrastructure and security is not a cheap measure. How do you intend to find funds for such an endeavour?'\
+	Blip asks, 'Such implementation of infrastructure and security is not a cheap measure. How do you intend to find REMOVEDds for such an endeavour?'\
 	<br><br>\
 	Mason Keldow says, 'Now obviously Vir is in a very interesting position, But thankfully it's in a wonderful position where business and partnerships are more than happy to come in and assist. The bottom line would make sure the average Taxpayer doesn't feel a dent, only the dividends.'\
 	<br><br>\
@@ -666,7 +666,7 @@
 
 /datum/lore/codex/page/article52
 	name = "05/21/63 - NanoTrasen Station to Host Major Election Debate"
-	data = "As the Vir Gubernatorial elections approach, and with several high-profile debates lined up between the leading candidates in the polls, the NanoTrasen corporation is set to host its very own televised event live from one of its major logistical stations in Vir. The NLS Southern Cross, primarily a traffic control outpost managing shipping in Sif orbit, has been selected by the company to host the debate - funded in full by the corporation - due to a series of minor political scandals that have taken place on the platform, and the suitability of unused space onboard.\
+	data = "As the Vir Gubernatorial elections approach, and with several high-profile debates lined up between the leading candidates in the polls, the NanoTrasen corporation is set to host its very own televised event live from one of its major logistical stations in Vir. The NLS Southern Cross, primarily a traffic control outpost managing shipping in Sif orbit, has been selected by the company to host the debate - REMOVEDded in full by the corporation - due to a series of minor political scandals that have taken place on the platform, and the suitability of unused space onboard.\
 	<br><br>\
 	Early in the election cycle, NanoTrasen came under fire for its alleged 'manhandling' of Icarus Front candidate Vani Jee, and the confiscation of to-be-televised recordings taken by a party drone. While the company apologised for the incident shortly thereafter, the corporation hopes to mend ties with the potential future representatives by showing that they are capable of hosting civil discourse. More recently, the NLS Southern Cross played host to the 'breakdown' of disgraced former candidate Isak Spar - an episode which was not addressed in NanoTrasen's official statement on the planned debate event."
 
@@ -876,7 +876,7 @@
 	name = "12/20/63 - Jee Relaunches Libraries Across Vir"
 	data = "Vir's Colonial Assembly representative and long time education reformist Vani Jee has launched her long planned 'modernization' of exonet-linked library system throughout the Vir system. During her campaign early this year she brought to light the 'staggering unsuitability' of library networks in Vir, particularly those being provided for corporate employees and residents, with particular pressure placed on the NanoTrasen Corporation whose literary collection was described as 'basically smut and whatever an old drone had scraped from the bottom of the exonet barrel.' Following her subsequent election, she reaffirmed her desire for education reform, making 'post-education' providers her first target.\
 	<br><br>\
-	The new system, which she successfully acquired government funding for this October, is due to be launched this week and includes a 'personally curated' collection in addition to titles recommended by affected institutions, and a particular focus on local authors."
+	The new system, which she successfully acquired government REMOVEDding for this October, is due to be launched this week and includes a 'personally curated' collection in addition to titles recommended by affected institutions, and a particular focus on local authors."
 
 /datum/lore/codex/page/article77
 	name = "01/23/63 - 'Extreme' Environmental Alert Following Ullran Expanse Chemical Leak"
@@ -886,7 +886,7 @@
 	<br><br>\
 	A spokesperson for the Sif Environmental Agency has described this leak as 'At least regionally, perhaps the worst environmental disaster since the introduction of the invasive spider species.' and has expressed concern about similar accidents occurring in more populated areas if stricter regulations are not put in place.\
 	<br><br>\
-	The Ullran Expanse Chemical Relief Fund has been set up and is collection donations at save-ullran.xo.vr/donate"
+	The Ullran Expanse Chemical Relief REMOVEDd has been set up and is collection donations at save-ullran.xo.vr/donate"
 
 /datum/lore/codex/page/article78
 	name = "01/27/64 - NanoTrasen Implicated In Devastating Ullran Chemical Spill"

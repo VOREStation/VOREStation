@@ -41,7 +41,7 @@
 
 // Proc: Bumped()
 // Parameters: 1 (AM - Atom that tried to walk through this object)
-// Description: If we are open returns zero, otherwise returns result of parent function.
+// Description: If we are open returns zero, otherwise returns result of parent REMOVEDction.
 /obj/machinery/door/blast/Bumped(atom/AM)
 	if(!density)
 		return ..()
@@ -265,7 +265,7 @@
 		stat &= ~BROKEN
 
 /*
-// This replicates the old functionality coded into CanPass() for this object, however it appeared to have made blast doors not airtight.
+// This replicates the old REMOVEDctionality coded into CanPass() for this object, however it appeared to have made blast doors not airtight.
 // If for some reason this is actually needed for something important, uncomment this.
 /obj/machinery/door/blast/CanZASPass(turf/T, is_zone)
 	if(is_zone)

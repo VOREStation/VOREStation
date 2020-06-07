@@ -128,7 +128,7 @@
 
 	var/can_ride = 1			//whether we're real rideable taur or just in that category
 
-	//Could do nested lists but it started becoming a nightmare. It'd be more fun for lookups of a_intent and m_intent, but then subtypes need to
+	//Could do nested lists but it started becoming a nightmare. It'd be more REMOVED for lookups of a_intent and m_intent, but then subtypes need to
 	//duplicate all the messages, and it starts getting awkward. These are singletons, anyway!
 
 	//Messages to owner when stepping on/over

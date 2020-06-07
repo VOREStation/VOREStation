@@ -11,7 +11,7 @@
 		<b>Important Notes:</b> Personnel with this implant can speak almost all known languages.<BR>
 		<HR>
 		<b>Implant Details:</b> Subjects injected with implant can understand and speak almost all known languages.<BR>
-		<b>Function:</b> Contains specialized nanobots to stimulate the brain so the user can speak and understand previously unknown languages.<BR>
+		<b>REMOVEDction:</b> Contains specialized nanobots to stimulate the brain so the user can speak and understand previously unknown languages.<BR>
 		<b>Special Features:</b> Will allow the user to understand almost all languages.<BR>
 		<b>Integrity:</b> Implant can only be used once before the nanobots are depleted."}
 	return dat
@@ -57,7 +57,7 @@
 <b>Name:</b>L3-WD Size Controlling Implant<BR>
 <b>Life:</b>1-2 weeks after implanting<BR>
 <HR>
-<b>Function:</b> Resizes the host whenever specific verbal command is received<BR>"}
+<b>REMOVEDction:</b> Resizes the host whenever specific verbal command is received<BR>"}
 	return dat
 
 /obj/item/weapon/implant/sizecontrol/hear_talk(mob/M, list/message_pieces)
@@ -90,7 +90,7 @@
 
 
 /obj/item/weapon/implant/sizecontrol/hear(var/msg)
-	if (malfunction)
+	if (malREMOVEDction)
 		return
 
 	if(istype(imp_in, /mob/living))

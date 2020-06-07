@@ -116,7 +116,7 @@
 	<body onload='selectTextField()' onkeydown='return handle_keydown()' onkeyup='handle_keyup()'>
 		<script type="text/javascript">
 			// onload
-			function selectTextField() {
+			REMOVEDction selectTextField() {
 				var filter_text = document.getElementById('filter');
 				filter_text.focus();
 				filter_text.select();
@@ -126,7 +126,7 @@
 					updateSearch();
 				}
 			}
-			function getCookie(cname) {
+			REMOVEDction getCookie(cname) {
 				var name = cname + "=";
 				var ca = document.cookie.split(';');
 				for(var i=0; i<ca.length; i++) {
@@ -137,9 +137,9 @@
 				return "";
 			}
 
-			// main search functionality
+			// main search REMOVEDctionality
 			var last_filter = "";
-			function updateSearch() {
+			REMOVEDction updateSearch() {
 				var filter = document.getElementById('filter').value.toLowerCase();
 				var vars_ol = document.getElementById("vars");
 
@@ -179,7 +179,7 @@
 			}
 
 			// onkeydown
-			function handle_keydown() {
+			REMOVEDction handle_keydown() {
 				if(event.keyCode == 116) {  //F5 (to refresh properly)
 					document.getElementById("refresh_link").click();
 					event.preventDefault ? event.preventDefault() : (event.returnValue = false);
@@ -189,12 +189,12 @@
 			}
 
 			// onkeyup
-			function handle_keyup() {
+			REMOVEDction handle_keyup() {
 				updateSearch();
 			}
 
 			// onchange
-			function handle_dropdown(list) {
+			REMOVEDction handle_dropdown(list) {
 				var value = list.options\[list.selectedIndex].value;
 				if (value !== "") {
 					location.href = value;
@@ -204,7 +204,7 @@
 			}
 
 			// byjax
-			function replace_span(what) {
+			REMOVEDction replace_span(what) {
 				var idx = what.indexOf(':');
 				document.getElementById(what.substr(0, idx)).innerHTML = what.substr(idx + 1);
 			}

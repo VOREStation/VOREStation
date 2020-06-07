@@ -89,7 +89,7 @@
 
 /obj/machinery/chemical_dispenser/bar_alc
 	name = "booze dispenser"
-	desc = "A beer machine. Like a soda machine, but more fun!"
+	desc = "A beer machine. Like a soda machine, but more REMOVED!"
 	icon_state = "booze_dispenser"
 	ui_title = "Booze Dispenser"
 	accept_drinking = 1

@@ -1,7 +1,7 @@
 /client/proc/roll_dices()
-	set category = "Fun"
+	set category = "REMOVED"
 	set name = "Roll Dice"
-	if(!check_rights(R_FUN))
+	if(!check_rights(R_REMOVED))
 		return
 
 	var/sum = input("How many times should we throw?") as num

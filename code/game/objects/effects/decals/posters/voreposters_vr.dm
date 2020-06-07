@@ -57,7 +57,7 @@
 /datum/poster/vore_15
 	icon_state = "dwposter2"
 	name = "Implanter"
-	desc = "A poster explaining the benefits and function of back-up implanters."
+	desc = "A poster explaining the benefits and REMOVEDction of back-up implanters."
 /datum/poster/vore_16
 	icon_state = "dwposter3"
 	name = "Back-up implant"

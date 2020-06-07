@@ -37,14 +37,14 @@
 /obj/item/weapon/implant/neural/get_data()
 	var/dat = {"<b>Implant Specifications:</b><BR>
 <b>Name:</b> Neural Framework Implant<BR>
-<b>Life:</b> Duration of Brain Function<BR>
+<b>Life:</b> Duration of Brain REMOVEDction<BR>
 <b>Important Notes:</b> None<BR>
 <HR>
 <b>Implant Details:</b> <BR>
-<b>Function:</b> Maintains some function or structure of the target's brain.<BR>
+<b>REMOVEDction:</b> Maintains some REMOVEDction or structure of the target's brain.<BR>
 <b>Special Features:</b><BR>
 <i>Neuro-Safe</i>- Specialized shell absorbs excess voltages self-destructing the chip if
-a malfunction occurs thereby attempting to secure the safety of subject.<BR>
+a malREMOVEDction occurs thereby attempting to secure the safety of subject.<BR>
 <b>Integrity:</b> Gradient creates slight risk of being overcharged and frying the
 circuitry. Resulting faults can cause damage to the host's brain.<HR>
 Implant Specifics:<BR>"}
@@ -53,9 +53,9 @@ Implant Specifics:<BR>"}
 /obj/item/weapon/implant/neural/emp_act(severity)
 	if(!my_brain)
 		return
-	if(malfunction)	//Don't malfunction while malfunctioning.
+	if(malREMOVEDction)	//Don't malREMOVEDction while malREMOVEDctioning.
 		return
-	malfunction = MALFUNCTION_TEMPORARY
+	malREMOVEDction = MALREMOVEDCTION_TEMPORARY
 
 	var/delay = 10 //Don't let it just get emped twice in a second to kill someone.
 	var/brain_location = my_brain.owner.organs_by_name[my_brain.parent_organ]
@@ -89,7 +89,7 @@ Implant Specifics:<BR>"}
 					to_chat(L, "<span class='warning'>Your [brain_location] aches.</span>")
 
 	spawn(delay)
-		malfunction--
+		malREMOVEDction--
 
 /obj/item/weapon/implant/neural/meltdown()
 	..()

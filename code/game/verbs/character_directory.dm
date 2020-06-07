@@ -8,7 +8,7 @@
 
 	mob.next_move = world.time + 10
 
-	var/html = "<script> function togglesection(targetsection) { var targettext = document.getElementById(targetsection); if (targettext.style.display === 'none') { targettext.style.display = ''; } else { targettext.style.display = 'none'; } } </script>"
+	var/html = "<script> REMOVEDction togglesection(targetsection) { var targettext = document.getElementById(targetsection); if (targettext.style.display === 'none') { targettext.style.display = ''; } else { targettext.style.display = 'none'; } } </script>"
 
 	var/curID = 0
 	for(var/client/C in GLOB.clients)

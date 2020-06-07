@@ -1,28 +1,28 @@
-// NEWMALF FUNCTIONS/PROCEDURES
+// NEWMALF REMOVEDCTIONS/PROCEDURES
 
-// Sets up malfunction-related variables, research system and such.
+// Sets up malREMOVEDction-related variables, research system and such.
 /mob/living/silicon/ai/proc/setup_for_malf()
 	var/mob/living/silicon/ai/user = src
 	// Setup Variables
-	malfunctioning = 1
+	malREMOVEDctioning = 1
 	research = new/datum/malf_research()
 	research.owner = src
 	hacked_apcs = list()
 	recalc_cpu()
 
-	verbs += new/datum/game_mode/malfunction/verb/ai_select_hardware()
-	verbs += new/datum/game_mode/malfunction/verb/ai_select_research()
-	verbs += new/datum/game_mode/malfunction/verb/ai_help()
+	verbs += new/datum/game_mode/malREMOVEDction/verb/ai_select_hardware()
+	verbs += new/datum/game_mode/malREMOVEDction/verb/ai_select_research()
+	verbs += new/datum/game_mode/malREMOVEDction/verb/ai_help()
 
 	// And greet user with some OOC info.
-	to_chat(user, "You are malfunctioning, you do not have to follow any laws.")
+	to_chat(user, "You are malREMOVEDctioning, you do not have to follow any laws.")
 	to_chat(user, "Use ai-help command to view relevant information about your abilities")
 
-// Safely remove malfunction status, fixing hacked APCs and resetting variables.
+// Safely remove malREMOVEDction status, fixing hacked APCs and resetting variables.
 /mob/living/silicon/ai/proc/stop_malf()
 	var/mob/living/silicon/ai/user = src
 	// Generic variables
-	malfunctioning = 0
+	malREMOVEDctioning = 0
 	sleep(10)
 	research = null
 	// Fix hacked APCs
@@ -34,11 +34,11 @@
 	src.verbs = null
 	add_ai_verbs()
 	// Let them know.
-	to_chat(user, "You are no longer malfunctioning. Your abilities have been removed.")
+	to_chat(user, "You are no longer malREMOVEDctioning. Your abilities have been removed.")
 
-// Called every tick. Checks if AI is malfunctioning. If yes calls Process on research datum which handles all logic.
+// Called every tick. Checks if AI is malREMOVEDctioning. If yes calls Process on research datum which handles all logic.
 /mob/living/silicon/ai/proc/malf_process()
-	if(!malfunctioning)
+	if(!malREMOVEDctioning)
 		return
 	if(!research)
 		if(!errored)
@@ -113,9 +113,9 @@
 		stat(null, text("Hardware integrity: [hardware_integrity()]%"))
 		stat(null, text("Internal capacitor: [backup_capacitor()]%"))
 	else
-		stat(null, text("Systems nonfunctional"))
+		stat(null, text("Systems nonREMOVEDctional"))
 
-// Shows AI Malfunction related information to the AI.
+// Shows AI MalREMOVEDction related information to the AI.
 /mob/living/silicon/ai/show_malf_ai()
 	if(src.is_malf())
 		if(src.hacked_apcs)

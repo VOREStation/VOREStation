@@ -1,5 +1,5 @@
 /*
-	Pins both hold data for circuits, as well move data between them.  Some also cause circuits to do their function.  DATA_CHANNEL pins are the data holding/moving kind,
+	Pins both hold data for circuits, as well move data between them.  Some also cause circuits to do their REMOVEDction.  DATA_CHANNEL pins are the data holding/moving kind,
 where as PULSE_CHANNEL causes circuits to work() when their pulse hits them.
 
 

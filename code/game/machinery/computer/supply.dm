@@ -1,5 +1,5 @@
 // While it initially feels like the ordering console should be a subtype of the main console,
-// their function is similar enough that the ordering console emerges as the less specialized,
+// their REMOVEDction is similar enough that the ordering console emerges as the less specialized,
 // and therefore more deserving of parent-class status -- Ater
 
 // Supply requests console
@@ -19,7 +19,7 @@
 // Supply control console
 /obj/machinery/computer/supplycomp/control
 	name = "supply control console"
-	desc = "Control the cargo shuttle's functions remotely."
+	desc = "Control the cargo shuttle's REMOVEDctions remotely."
 	icon_keyboard = "tech_key"
 	icon_screen = "supply"
 	light_color = "#b88b2e"

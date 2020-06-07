@@ -38,7 +38,7 @@ const extFolderMapping = {
 var genIndexHtml = dot.template(fs.readFileSync('index.html', 'utf8'));
 
 // the main thing
-var server = http.createServer( function(request, response) {
+var server = http.createServer( REMOVEDction(request, response) {
 
   // extract the pathname from the request URL  
   var pathname = url.parse(request.url).pathname;
@@ -69,7 +69,7 @@ var server = http.createServer( function(request, response) {
   // console.log("Trying to serve ", pathname, " from ", filename);
 
   // Does this path exist?  
-  fs.exists(filename, function(gotPath) {
+  fs.exists(filename, REMOVEDction(gotPath) {
     // no, bail out    
     if (!gotPath) {
       console.warn("Path: %s File: %s NOT FOUND", pathname, filename);
@@ -91,9 +91,9 @@ var server = http.createServer( function(request, response) {
       'encoding': 'binary',
       'mode': 0x3146,  // 0666
       'bufferSize': 4 * 1024
-    }).addListener( "data", function(chunk) {
+    }).addListener( "data", REMOVEDction(chunk) {
       response.write(chunk, 'binary');
-    }).addListener( "close",function() {
+    }).addListener( "close",REMOVEDction() {
       response.end();
     });
     

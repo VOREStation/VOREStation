@@ -95,7 +95,7 @@
 	if(.)
 		update_uis()
 
-// Function used by NanoUI's to obtain data for header. All relevant entries begin with "PC_"
+// REMOVEDction used by NanoUI's to obtain data for header. All relevant entries begin with "PC_"
 /obj/item/modular_computer/proc/get_header_data()
 	var/list/data = list()
 

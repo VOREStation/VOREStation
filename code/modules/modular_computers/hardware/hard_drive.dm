@@ -69,7 +69,7 @@
 	if(!can_store_file(F.size))
 		return 0
 
-	if(!check_functionality())
+	if(!check_REMOVEDctionality())
 		return 0
 
 	if(!stored_files)
@@ -88,7 +88,7 @@
 /obj/item/weapon/computer_hardware/hard_drive/proc/install_default_programs()
 	store_file(new/datum/computer_file/program/computerconfig(src)) 		// Computer configuration utility, allows hardware control and displays more info than status bar
 	store_file(new/datum/computer_file/program/ntnetdownload(src))			// NTNet Downloader Utility, allows users to download more software from NTNet repository
-	store_file(new/datum/computer_file/program/filemanager(src))			// File manager, allows text editor functions and basic file manipulation.
+	store_file(new/datum/computer_file/program/filemanager(src))			// File manager, allows text editor REMOVEDctions and basic file manipulation.
 
 
 // Use this proc to remove file from the drive. Returns 1 on success and 0 on failure. Contains necessary sanity checks.
@@ -99,7 +99,7 @@
 	if(!stored_files)
 		return 0
 
-	if(!check_functionality())
+	if(!check_REMOVEDctionality())
 		return 0
 
 	if(F in stored_files)
@@ -142,7 +142,7 @@
 
 // Tries to find the file by filename. Returns null on failure
 /obj/item/weapon/computer_hardware/hard_drive/proc/find_file_by_name(var/filename)
-	if(!check_functionality())
+	if(!check_REMOVEDctionality())
 		return null
 
 	if(!filename)

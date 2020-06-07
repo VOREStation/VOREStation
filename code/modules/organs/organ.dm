@@ -444,7 +444,7 @@ var/list/organ_cache = list()
 
 	var/list/save_verbs = list()
 
-	if(removed && organ_verbs)	// Do we share verbs with any other organs? Are they functioning?
+	if(removed && organ_verbs)	// Do we share verbs with any other organs? Are they REMOVEDctioning?
 		var/list/all_organs = list()
 		all_organs |= owner.organs
 		all_organs |= owner.internal_organs

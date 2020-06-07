@@ -461,7 +461,7 @@
 
 
 /*
-This function completely restores a damaged organ to perfect condition.
+This REMOVEDction completely restores a damaged organ to perfect condition.
 */
 /obj/item/organ/external/rejuvenate(var/ignore_prosthetic_prefs)
 	damage_state = "00"
@@ -1177,7 +1177,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 /obj/item/organ/external/proc/is_usable()
 	return !(status & (ORGAN_MUTATED|ORGAN_DEAD))
 
-/obj/item/organ/external/proc/is_malfunctioning()
+/obj/item/organ/external/proc/is_malREMOVEDctioning()
 	return ((robotic >= ORGAN_ROBOT) && (brute_dam + burn_dam) >= min_broken_damage*0.83 && prob(brute_dam + burn_dam)) //VOREStation Edit - Makes robotic limb damage scalable
 
 /obj/item/organ/external/proc/embed(var/obj/item/weapon/W, var/silent = 0)

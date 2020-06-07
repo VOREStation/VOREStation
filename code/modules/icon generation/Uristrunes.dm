@@ -197,7 +197,7 @@ var/list/rune_animation = list(
 
 
 
-//  Testing procs and Fun procs
+//  Testing procs and REMOVED procs
 
 
 

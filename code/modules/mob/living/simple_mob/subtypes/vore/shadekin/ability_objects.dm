@@ -90,7 +90,7 @@
 	if(!..())
 		return
 	if(!my_kin.mend_other())
-		my_kin.energy += cost //Refund due to abort
+		my_kin.energy += cost //ReREMOVEDd due to abort
 /*
 /datum/modifier/shadekin/heal_boop
 	name = "Shadekin Regen"

@@ -128,7 +128,7 @@
 
 	outfit_type = /decl/hierarchy/outfit/job/cargo/cargo_tech
 	job_description = "A Cargo Technician fills and delivers cargo orders. They are encouraged to return delivered crates to the Cargo Shuttle, \
-						because Central Command gives a partial refund."
+						because Central Command gives a partial reREMOVEDd."
 
 //////////////////////////////////
 //			Shaft Miner

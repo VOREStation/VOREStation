@@ -41,7 +41,7 @@
 	<br><br>\
 	If no records are included, it is assumed that the patient wishes to be cloned, and should be cloned.\
 	<br><br>\
-	Ensure that all cloning equipment, including the cryogenic tubes, are functional and ready before cloning begins.  Once \
+	Ensure that all cloning equipment, including the cryogenic tubes, are REMOVEDctional and ready before cloning begins.  Once \
 	this is done, scan the deceased.  Up to three scans are to be made per attempt.  If the deceased suffers Mental Interface Failure, \
 	procede to Postmortem Storage.  Further attempts at resuscitation may be made at later times, at the medical teams' discretion. \
 	<br><br>\
@@ -49,7 +49,7 @@
 	Move the cadaver into the morgue, as per Postmortem Storage.  Begin the cloning process.  Possessions are to be gathered in a manner that \
 	facilitates transporting them along with the clone.  Upon the cloning process being complete and the new clone being created, the \
 	clone is to be placed inside a croygenic tube as quickly as possible.  Cloning is not a painless experience, and it is best if \
-	the patient reawakens inside a functional body.  Once their body is fully functional, dress and process the newly cloned patient, \
+	the patient reawakens inside a REMOVEDctional body.  Once their body is fully REMOVEDctional, dress and process the newly cloned patient, \
 	informing them of any procedures performed on them, including the cloning itself."
 
 /datum/lore/codex/page/sop_cmd
@@ -61,7 +61,7 @@
 /datum/lore/codex/page/sop_postmortem
 	name = "Postmortem Storage"
 	data = "Deceased persons should be kept in the morgue, and should be contained inside black body bags.  The body bag is to be labelled with the deceased's name, along \
-	with 'DNC', 'MIF', or 'Cloned' where applicable.  Bodies in the morgue are to be transferred to Central Command whenever possible.  Funerary \
+	with 'DNC', 'MIF', or 'Cloned' where applicable.  Bodies in the morgue are to be transferred to Central Command whenever possible.  REMOVEDerary \
 	services are to be handled off site.  A service may be held within the Chapel if it is desired, however the body must still be brought to \
 	Central."
 

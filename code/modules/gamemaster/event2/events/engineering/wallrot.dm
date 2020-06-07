@@ -26,7 +26,7 @@
 
 /datum/event2/event/wallrot/announce()
 	if(origin && prob(80))
-		command_announcement.Announce("Harmful fungi detected on \the [location_name()], near \the [origin.loc]. \
+		command_announcement.Announce("Harmful REMOVEDgi detected on \the [location_name()], near \the [origin.loc]. \
 		Station structural integrity may be compromised.", "Biohazard Alert")
 
 /datum/event2/event/wallrot/start()

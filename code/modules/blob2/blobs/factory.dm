@@ -5,7 +5,7 @@
 	icon_state = "blob_factory"
 	desc = "A thick spire of tendrils."
 	description_info = "A section of the blob that creates numerous hostile entities to attack enemies of the blob.  \
-	It requires a 'node' blob be nearby, or it will cease functioning."
+	It requires a 'node' blob be nearby, or it will cease REMOVEDctioning."
 	max_integrity = 40
 	health_regen = 1
 	point_return = 25

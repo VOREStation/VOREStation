@@ -12,7 +12,7 @@
 	var/obj/item/weapon/card/id/held_card
 	var/datum/money_account/detailed_account_view
 	var/creating_new_account = 0
-	var/const/fund_cap = 1000000
+	var/const/REMOVEDd_cap = 1000000
 
 /obj/machinery/account_database/proc/get_access_level()
 	if (!held_card)
@@ -126,15 +126,15 @@
 			if("create_account")
 				creating_new_account = 1
 
-			if("add_funds")
-				var/amount = input("Enter the amount you wish to add", "Silently add funds") as num
+			if("add_REMOVEDds")
+				var/amount = input("Enter the amount you wish to add", "Silently add REMOVEDds") as num
 				if(detailed_account_view)
-					detailed_account_view.money = min(detailed_account_view.money + amount, fund_cap)
+					detailed_account_view.money = min(detailed_account_view.money + amount, REMOVEDd_cap)
 
-			if("remove_funds")
-				var/amount = input("Enter the amount you wish to remove", "Silently remove funds") as num
+			if("remove_REMOVEDds")
+				var/amount = input("Enter the amount you wish to remove", "Silently remove REMOVEDds") as num
 				if(detailed_account_view)
-					detailed_account_view.money = max(detailed_account_view.money - amount, -fund_cap)
+					detailed_account_view.money = max(detailed_account_view.money - amount, -REMOVEDd_cap)
 
 			if("toggle_suspension")
 				if(detailed_account_view)
@@ -143,18 +143,18 @@
 
 			if("finalise_create_account")
 				var/account_name = href_list["holder_name"]
-				var/starting_funds = max(text2num(href_list["starting_funds"]), 0)
+				var/starting_REMOVEDds = max(text2num(href_list["starting_REMOVEDds"]), 0)
 
-				starting_funds = CLAMP(starting_funds, 0, station_account.money)	// Not authorized to put the station in debt.
-				starting_funds = min(starting_funds, fund_cap)						// Not authorized to give more than the fund cap.
+				starting_REMOVEDds = CLAMP(starting_REMOVEDds, 0, station_account.money)	// Not authorized to put the station in debt.
+				starting_REMOVEDds = min(starting_REMOVEDds, REMOVEDd_cap)						// Not authorized to give more than the REMOVEDd cap.
 
-				create_account(account_name, starting_funds, src)
-				if(starting_funds > 0)
+				create_account(account_name, starting_REMOVEDds, src)
+				if(starting_REMOVEDds > 0)
 					//subtract the money
-					station_account.money -= starting_funds
+					station_account.money -= starting_REMOVEDds
 
 					//create a transaction log entry
-					var/trx = create_transation(account_name, "New account activation", "([starting_funds])")
+					var/trx = create_transation(account_name, "New account activation", "([starting_REMOVEDds])")
 					station_account.transaction_log.Add(trx)
 
 					creating_new_account = 0
@@ -187,11 +187,11 @@
 				creating_new_account = 0
 
 			if("revoke_payroll")
-				var/funds = detailed_account_view.money
-				var/account_trx = create_transation(station_account.owner_name, "Revoke payroll", "([funds])")
-				var/station_trx = create_transation(detailed_account_view.owner_name, "Revoke payroll", funds)
+				var/REMOVEDds = detailed_account_view.money
+				var/account_trx = create_transation(station_account.owner_name, "Revoke payroll", "([REMOVEDds])")
+				var/station_trx = create_transation(detailed_account_view.owner_name, "Revoke payroll", REMOVEDds)
 
-				station_account.money += funds
+				station_account.money += REMOVEDds
 				detailed_account_view.money = 0
 
 				detailed_account_view.transaction_log.Add(account_trx)

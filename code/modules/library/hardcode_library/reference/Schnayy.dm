@@ -8,7 +8,7 @@ CATEGORY: Reference
 /obj/item/weapon/book/bundle/custom_library/reference/ThermodynamicReactionsandResearch
 	name = "Thermodynamic Reactions and Research"
 	desc = "A hardbound book titled \"Thermodynamic Reactions and Research: A Guide to Phoron Studies and Safety\" by I.R.I.S.."
-	description_info = "This book is titled \"Thermodynamic Reactions and Research: A Guide to Phoron Studies and Safety\" by I.R.I.S.. It appears to cover the fundamentals of phoron and thermodynamic research."
+	description_info = "This book is titled \"Thermodynamic Reactions and Research: A Guide to Phoron Studies and Safety\" by I.R.I.S.. It appears to cover the REMOVEDdamentals of phoron and thermodynamic research."
 
 	icon_state = "bookParticleAccelerator"
 	origkey = "Schnayy"
@@ -49,7 +49,7 @@ CATEGORY: Reference
 					<br>
 					Phoron research and study is a vital subject of research -- it has been a pillar of humanity's progress, a staple of the technology that has shaped our society. To work on expanding our knowledge and shape our future in the cosmos is a noble cause, but it should be done with caution.
 					<br><br>
-					This is not to speak on safety in your lab, but the consequences of action. Many times has man created the unthinkable, and many times we have not been prepared for such discoveries. We should not censor ourselves from advancement, but we should shape the world to be ready for what comes with it – and know that it is an invariable consequence there will be those who seek to abuse it.
+					This is not to speak on safety in your lab, but the consequences of action. Many times has man created the unthinkable, and many times we have not been prepared for such discoveries. We should not censor ourselves from advancement, but we should shape the world to be ready for what comes with it ï¿½ and know that it is an invariable consequence there will be those who seek to abuse it.
 					<br><br>
 					You cannot take back what you give to the world.
 					</div>
@@ -74,7 +74,7 @@ CATEGORY: Reference
 					<br><br>
 					To begin, your standard research lab will contain several machines: an autolathe, a protolathe, a circuit printer, a destructive analyzer, and a console of some form to access your database.
 					<br><br>
-					An autolathe and protolathe are similar machines in concept, but are operated in different ways. Both require materials to function: an autolathe is equipped to manipulate steel and glass, while a protolathe can make use of many more exotic kinds -- notably phoron. In order to operate an autolathe, you will interact with the machine directly. It is limited to a number of preset designs, some of which are more dangerous and locked behind internal safeties. A protolathe, however, is operated through your research console. Where an autolathe is limited in designs, a protolathe is intended to develop new ones. Through each item we analyze, our data grows, and as our data grows so too do potential designs in our protolathe.
+					An autolathe and protolathe are similar machines in concept, but are operated in different ways. Both require materials to REMOVEDction: an autolathe is equipped to manipulate steel and glass, while a protolathe can make use of many more exotic kinds -- notably phoron. In order to operate an autolathe, you will interact with the machine directly. It is limited to a number of preset designs, some of which are more dangerous and locked behind internal safeties. A protolathe, however, is operated through your research console. Where an autolathe is limited in designs, a protolathe is intended to develop new ones. Through each item we analyze, our data grows, and as our data grows so too do potential designs in our protolathe.
 					<br><br>
 					The circuit printer is much the same, requiring glass and sulphuric acid to operate. It, too, will expand on designs with research from analysis, and it is operated through your console.
 					<br><br>

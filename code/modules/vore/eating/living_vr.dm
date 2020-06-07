@@ -606,7 +606,7 @@
 			if(C.lit)
 				to_chat(src, "<span class='notice'>You can taste the flavor of burning ash. Spicy!</span>")
 			else
-				to_chat(src, "<span class='notice'>You can taste the flavor of aromatic rolling paper and funny looks.</span>")
+				to_chat(src, "<span class='notice'>You can taste the flavor of aromatic rolling paper and REMOVEDny looks.</span>")
 		else if(istype(I,/obj/item/weapon/paper))
 			to_chat(src, "<span class='notice'>You can taste the dry flavor of bureaucracy.</span>")
 		else if(istype(I,/obj/item/weapon/dice))

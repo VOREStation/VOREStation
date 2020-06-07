@@ -159,7 +159,7 @@
 		return 0
 
 	if(holder.wearer && holder.wearer.lying)
-		to_chat(usr, "<span class='warning'>The suit cannot function while the wearer is prone.</span>")
+		to_chat(usr, "<span class='warning'>The suit cannot REMOVEDction while the wearer is prone.</span>")
 		return 0
 
 	if(holder.security_check_enabled && !holder.check_suit_access(usr))

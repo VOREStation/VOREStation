@@ -260,7 +260,7 @@ This actually tests if they have the same entries and values.
 		return picked
 	return null
 
-//Returns the top(last) element from the list and removes it from the list (typical stack function)
+//Returns the top(last) element from the list and removes it from the list (typical stack REMOVEDction)
 /proc/pop(list/listfrom)
 	if (listfrom.len > 0)
 		var/picked = listfrom[listfrom.len]

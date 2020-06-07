@@ -32,7 +32,7 @@ Berserk is a somewhat rare modifier to obtain freely (and for good reason), howe
 - Saviks will berserk when losing a fight.
 - Changelings can evolve a 2 point ability to use a changeling-specific variant of Berserk, that replaces the text with a 'we' variant.
 Recursive Enhancement allows the changeling to instead used an improved variant that features less exhaustion time and less nutrition drain.
-- Xenoarch artifacts may have forced berserking as one of their effects. This is especially fun if an artifact that makes hostile mobs is nearby.
+- Xenoarch artifacts may have forced berserking as one of their effects. This is especially REMOVED if an artifact that makes hostile mobs is nearby.
 Will cause three brainloss in those affected due to the artifact meddling with their mind.
 - A rare alien artifact might be found on the Surface, or obtained from Xenoarch, that causes berserking when it thinks
 the wearer is in danger, however in addition to the usual drawbacks, each use causes three brainloss in the user, due to how

@@ -26,7 +26,7 @@
 
 // NEW: Use power while moving.
 /mob/living/silicon/robot/SelfMove(turf/n, direct, movetime)
-	if (!is_component_functioning("actuator"))
+	if (!is_component_REMOVEDctioning("actuator"))
 		return 0
 
 	var/datum/robot_component/actuator/A = get_component("actuator")

@@ -229,7 +229,7 @@
 			spawn()
 				empulse(get_turf(src), 6, 8, 12, 16)
 			apcs_overload(1, 10)
-			ping("Caution. Output regulator malfunction. Uncontrolled discharge detected.")
+			ping("Caution. Output regulator malREMOVEDction. Uncontrolled discharge detected.")
 
 		if (61 to INFINITY)
 			// Massive overcharge
@@ -241,7 +241,7 @@
 			spawn()
 				empulse(get_turf(src), 32, 64)
 			apcs_overload(5, 25)
-			ping("Caution. Output regulator malfunction. Significant uncontrolled discharge detected.")
+			ping("Caution. Output regulator malREMOVEDction. Significant uncontrolled discharge detected.")
 
 			if (prob(50))
 				// Added admin-notifications so they can stop it when griffed.
@@ -301,7 +301,7 @@
 		return
 	// If parent returned 1:
 	// - Hatch is open, so we can modify the SMES
-	// - No action was taken in parent function (terminal de/construction atm).
+	// - No action was taken in parent REMOVEDction (terminal de/construction atm).
 	if (..())
 
 		// Multitool - change RCON tag

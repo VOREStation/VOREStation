@@ -1,4 +1,4 @@
-function updateSearch() {
+REMOVEDction updateSearch() {
 	var filter_text = document.getElementById('filter');
 	var filter = filter_text.value.toLowerCase();
 
@@ -17,13 +17,13 @@ function updateSearch() {
 	}
 }
 
-function selectTextField() {
+REMOVEDction selectTextField() {
 	var filter_text = document.getElementById('filter');
 	filter_text.focus();
 	filter_text.select();
 }
 
-function loadPage(list) {
+REMOVEDction loadPage(list) {
 	if(list.options[list.selectedIndex].value == "") {
 		return;
 	}

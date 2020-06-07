@@ -185,8 +185,8 @@
 	components["comms"] = new/datum/robot_component/binary_communication(src)
 	components["armour"] = new/datum/robot_component/armour(src)
 
-// Checks if component is functioning
-/mob/living/silicon/robot/proc/is_component_functioning(module_name)
+// Checks if component is REMOVEDctioning
+/mob/living/silicon/robot/proc/is_component_REMOVEDctioning(module_name)
 	var/datum/robot_component/C = components[module_name]
 	return C && C.installed == 1 && C.toggled && C.is_powered()
 

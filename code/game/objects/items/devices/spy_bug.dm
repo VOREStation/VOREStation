@@ -86,7 +86,7 @@
 /obj/item/device/camerabug/examine(mob/user)
 	. = ..()
 	if(get_dist(user, src) == 0)
-		. += "It has a tiny camera inside. Needs to be both configured and brought in contact with monitor device to be fully functional."
+		. += "It has a tiny camera inside. Needs to be both configured and brought in contact with monitor device to be fully REMOVEDctional."
 
 /obj/item/device/camerabug/attackby(obj/item/W as obj, mob/living/user as mob)
 	if(istype(W, /obj/item/device/bug_monitor))
@@ -208,7 +208,7 @@
 
 /obj/item/device/bug_monitor/spy
 	name = "\improper PDA"
-	desc = "A portable microcomputer by Thinktronic Systems, LTD. Functionality determined by a preprogrammed ROM cartridge."
+	desc = "A portable microcomputer by Thinktronic Systems, LTD. REMOVEDctionality determined by a preprogrammed ROM cartridge."
 	icon = 'icons/obj/pda.dmi'
 	icon_state = "pda"
 	item_state = "electronic"

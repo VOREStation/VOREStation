@@ -16,5 +16,5 @@
 		teleatom.forceMove(B)
 		return TRUE
 
-	//No fun!
+	//No REMOVED!
 	return FALSE

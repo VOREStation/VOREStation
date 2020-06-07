@@ -5,7 +5,7 @@
 	name = "Friendly Apprentice"
 	desc = "A one-time use teleporter that sends a less powerful manipulator of space to you, who will do their best to protect \
 	and serve you.  They get their own catalog and can buy spells for themselves, however they have a smaller pool to buy with.  \
-	If you are unable to receive an apprentice, the teleporter can be refunded like most equipment by sliding it into the \
+	If you are unable to receive an apprentice, the teleporter can be reREMOVEDded like most equipment by sliding it into the \
 	catalog.  Note that apprentices cannot purchase more apprentices."
 	cost = 300
 	obj_path = /obj/item/weapon/antag_spawner/technomancer_apprentice
@@ -15,7 +15,7 @@
 /datum/technomancer/assistance/golem
 	name = "Friendly GOLEM unit"
 	desc = "Teleports a specially designed synthetic unit to you, which is very durable, has an advanced AI, and can also use \
-	functions.  It knows Shield, Targeted Blink, Beam, Mend Life, Mend Synthetic, Lightning, Repel Missiles, Corona, Ionic Bolt, Dispel, and Chain Lightning.  \
+	REMOVEDctions.  It knows Shield, Targeted Blink, Beam, Mend Life, Mend Synthetic, Lightning, Repel Missiles, Corona, Ionic Bolt, Dispel, and Chain Lightning.  \
 	It also has a large storage capacity for energy, and due to it's synthetic nature, instability is less of an issue for them."
 	cost = 350
 	obj_path = null //TODO

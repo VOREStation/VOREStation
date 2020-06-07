@@ -400,7 +400,7 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 ////////////////////////////////////////////
 
 /*
-This function restores the subjects blood to max.
+This REMOVEDction restores the subjects blood to max.
 */
 /mob/living/carbon/human/proc/restore_blood()
 	if(!should_have_organ(O_HEART))
@@ -409,7 +409,7 @@ This function restores the subjects blood to max.
 		vessel.add_reagent("blood", species.blood_volume - vessel.total_volume)
 
 /*
-This function restores all organs.
+This REMOVEDction restores all organs.
 */
 /mob/living/carbon/human/restore_all_organs(var/ignore_prosthetic_prefs)
 	for(var/obj/item/organ/external/current_organ in organs)

@@ -64,7 +64,7 @@
 		if(door.density && door.operable())
 			door.do_animate("spark")
 			sleep(6)
-			//More typechecks, because windoors can't be locked.  Fun.
+			//More typechecks, because windoors can't be locked.  REMOVED.
 			if(istype(target,/obj/machinery/door/airlock))
 				var/obj/machinery/door/airlock/airlock = target
 

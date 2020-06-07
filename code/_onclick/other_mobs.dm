@@ -16,7 +16,7 @@
 	if(!..())
 		return
 
-	// Special glove functions:
+	// Special glove REMOVEDctions:
 	// If the gloves do anything, have them return 1 to stop
 	// normal attack_hand() here.
 	var/obj/item/clothing/gloves/G = gloves // not typecast specifically enough in defines

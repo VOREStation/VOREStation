@@ -1,6 +1,6 @@
 // Makes spores that spread the blob and infest dead people.
-/datum/blob_type/fungal_bloom
-	name = "fungal bloom"
+/datum/blob_type/REMOVEDgal_bloom
+	name = "REMOVEDgal bloom"
 	desc = "A massive network of rapidly expanding mycelium.  Large spore-like particles can be seen spreading from it."
 	ai_desc = "swarming"
 	effect_desc = "Creates floating spores that attack enemies from specialized blobs, and will spread the blob if killed.  The spores can also \
@@ -18,7 +18,7 @@
 	spore_type = /mob/living/simple_mob/blob/spore/infesting
 	chunk_active_ability_cooldown = 2 MINUTES
 
-/datum/blob_type/fungal_bloom/on_spore_death(mob/living/simple_mob/blob/spore/S)
+/datum/blob_type/REMOVEDgal_bloom/on_spore_death(mob/living/simple_mob/blob/spore/S)
 	if(S.is_infesting)
 		return // Don't make blobs if they were on someone's head.
 	var/turf/T = get_turf(S)
@@ -29,7 +29,7 @@
 		B = new /obj/structure/blob/normal(T, S.overmind) // Otherwise spread it.
 		B.visible_message("<span class='danger'>\A [B] forms on \the [T] as \the [S] bursts!</span>")
 
-/datum/blob_type/fungal_bloom/on_chunk_use(obj/item/weapon/blobcore_chunk/B, mob/living/user)
+/datum/blob_type/REMOVEDgal_bloom/on_chunk_use(obj/item/weapon/blobcore_chunk/B, mob/living/user)
 	var/mob/living/simple_mob/blob/spore/S = new spore_type(get_turf(B))
 	S.faction = user.faction
 	S.blob_type = src

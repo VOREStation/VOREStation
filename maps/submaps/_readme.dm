@@ -1,6 +1,6 @@
 /*
 	This file will explain what a 'submap' is.  Basically, they are smallish maps which are loaded on top of
-the main map, using the dmm suite's map loading functionality.  Generally this will be done by the game
+the main map, using the dmm suite's map loading REMOVEDctionality.  Generally this will be done by the game
 automatically to sprinkle the play area with hidden buildings and treasure, baddies, or something along
 those lines.  Admins can also manually place these down where-ever and whenever they want, potentially
 loading it into a new Z-level, for events and such.

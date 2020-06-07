@@ -11,7 +11,7 @@
 /*
  * Rig security can be snipped to disable ID access checks on rig.
  * Rig AI override can be pulsed to toggle whether or not the AI can take control of the suit.
- * System control can be pulsed to toggle some malfunctions.
+ * System control can be pulsed to toggle some malREMOVEDctions.
  * Interface lock can be pulsed to toggle whether or not the interface can be accessed.
  */
 
@@ -38,9 +38,9 @@
 			rig.ai_override_enabled = !rig.ai_override_enabled
 			rig.visible_message("A small red light on [rig] [rig.ai_override_enabled?"goes dead":"flickers on"].")
 		if(RIG_SYSTEM_CONTROL)
-			rig.malfunctioning += 10
-			if(rig.malfunction_delay <= 0)
-				rig.malfunction_delay = 20
+			rig.malREMOVEDctioning += 10
+			if(rig.malREMOVEDction_delay <= 0)
+				rig.malREMOVEDction_delay = 20
 			rig.shock(usr,100)
 		if(RIG_INTERFACE_LOCK)
 			rig.interface_locked = !rig.interface_locked

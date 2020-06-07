@@ -175,7 +175,7 @@
 	- <http://en.wikipedia.org/wiki/Shunting-yard_algorithm>
 
 	See Also:
-	- <ParseFunctionExpression()>
+	- <ParseREMOVEDctionExpression()>
 	- <ParseParenExpression()>
 	- <ParseParamExpression()>
 */
@@ -225,10 +225,10 @@
 					opr.Push(curOperator)
 					src.expecting=VALUE
 				else if(ntok && ntok.value=="(" && istype(ntok, /token/symbol)\
-											&& istype(curToken, /token/word))								//Parse function call
+											&& istype(curToken, /token/word))								//Parse REMOVEDction call
 					var/token/preToken=curToken
 					var/old_expect=src.expecting
-					var/fex=ParseFunctionExpression()
+					var/fex=ParseREMOVEDctionExpression()
 					if(old_expect!=VALUE)
 						errors+=new/scriptError/ExpectedToken("operator", preToken)
 						NextToken()
@@ -263,23 +263,23 @@
 				return null
 
 /*
-	Proc: ParseFunctionExpression
-	Parses a function call inside of an expression.
+	Proc: ParseREMOVEDctionExpression
+	Parses a REMOVEDction call inside of an expression.
 
 	See Also:
 	- <ParseExpression()>
 */
-		ParseFunctionExpression()
-			var/node/expression/FunctionCall/exp=new
-			exp.func_name=curToken.value
-			NextToken() //skip function name
+		ParseREMOVEDctionExpression()
+			var/node/expression/REMOVEDctionCall/exp=new
+			exp.REMOVEDc_name=curToken.value
+			NextToken() //skip REMOVEDction name
 			NextToken() //skip open parenthesis, already found
 			var/loops = 0
 
 			while(TRUE)
 				loops++
 				if(loops>=1000)
-					CRASH("Something TERRIBLE has gone wrong in ParseFunctionExpression ;__;")
+					CRASH("Something TERRIBLE has gone wrong in ParseREMOVEDctionExpression ;__;")
 
 				if(istype(curToken, /token/symbol) && curToken.value==")")
 					return exp
@@ -303,7 +303,7 @@
 
 /*
 	Proc: ParseParamExpression
-	Parses an expression that ends with either a comma or close parenthesis. This is used for parsing the parameters passed to a function call.
+	Parses an expression that ends with either a comma or close parenthesis. This is used for parsing the parameters passed to a REMOVEDction call.
 
 	See Also:
 	- <ParseExpression()>

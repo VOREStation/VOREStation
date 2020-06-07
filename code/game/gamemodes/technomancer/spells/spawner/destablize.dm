@@ -8,7 +8,7 @@
 
 /obj/item/weapon/spell/spawner/destablize
 	name = "destablize"
-	desc = "Now your enemies can feel what you go through when you have too much fun."
+	desc = "Now your enemies can feel what you go through when you have too much REMOVED."
 	icon_state = "destablize"
 	cast_methods = CAST_RANGED
 	aspect = ASPECT_UNSTABLE

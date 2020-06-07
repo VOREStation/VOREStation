@@ -316,7 +316,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 // One of the more useful maint piles, contains electrical components.
 /obj/structure/loot_pile/maint/technical
 	name = "broken machine"
-	desc = "A destroyed machine with unknown purpose, and doesn't look like it can be fixed.  It might still have some functional components?"
+	desc = "A destroyed machine with unknown purpose, and doesn't look like it can be fixed.  It might still have some REMOVEDctional components?"
 	density = TRUE
 	icon_states_to_use = list("technical_pile1", "technical_pile2", "technical_pile3")
 

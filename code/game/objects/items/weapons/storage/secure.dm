@@ -1,6 +1,6 @@
 /*
  *	Absorbs /obj/item/weapon/secstorage.
- *	Reimplements it only slightly to use existing storage functionality.
+ *	Reimplements it only slightly to use existing storage REMOVEDctionality.
  *
  *	Contains:
  *		Secure Briefcase

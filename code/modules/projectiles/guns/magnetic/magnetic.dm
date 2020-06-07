@@ -81,7 +81,7 @@
 		if(capacitor)
 			newstate |= ICON_CAP
 	
-	// Functional state
+	// REMOVEDctional state
 	if(!cell || !capacitor)
 		newstate |= ICON_BAD
 	else if(capacitor.charge < power_cost)

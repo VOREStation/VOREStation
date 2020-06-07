@@ -22,7 +22,7 @@
 	keywords += list("Icarus", "IF")
 	data = "The political group with the most seats in the [quick_link("SolGov")] legislature and control over the heartworlds of humanity, the Icarus Front is a \
 	conservative body with a long history, tracing its linage back to the political unrest that created the Sol Confederate Government. Icarus calls \
-	for severe restrictions on \"transformative technologies\" any technology with the power to fundamentally alter humanity, such as advanced artificial \
+	for severe restrictions on \"transformative technologies\" any technology with the power to REMOVEDdamentally alter humanity, such as advanced artificial \
 	intelligence and human genetic augmentation. Previously an unbeatable political force, recent changes have lead to its power backsliding. It remains a \
 	popular party among those from Sol, Tau Ceti, and other heavily settled systems."
 
@@ -49,7 +49,7 @@
 /datum/lore/codex/page/mercurials/add_content()
 	name = "Mercurials"
 	keywords += list("Mercurial")
-	data = "[quick_link("Positronics")] and the rare augmented human who want to follow a different cultural path from the rest of humanity, viewing themselves as fundamentally \
+	data = "[quick_link("Positronics")] and the rare augmented human who want to follow a different cultural path from the rest of humanity, viewing themselves as REMOVEDdamentally \
 	separate from unaugmented biological humans. Previously an illegal movement, proscribed due to the preceived dangers of unfettered self-modification and the threat \
 	posed by positronics without human values in mind, self-described Mercurials still often find themselves persecuted or used by bioconservatives as scapegoats \
 	and 'boogiemen'. As a technoprogressive group, they tend to vote along with the [quick_link("Shadow Coalition")]."
@@ -67,7 +67,7 @@
 	keywords = list("Unitarian Church")
 	data = "An often-imperfect fusion of various human religions such as Christianity, Islam, and Judaism, the Unitarian Church represents the dim voice of \
 	religion in a time of increased atheism. With the threat of singularity looming once more, their power is increasing with more converts and more donations, \
-	and they use this power to protect the fundamental human soul from corruption by dangerous technologies and to spread their faith among aliens and positronics, \
+	and they use this power to protect the REMOVEDdamental human soul from corruption by dangerous technologies and to spread their faith among aliens and positronics, \
 	who they view as fellow children of God.  They tend to side with bioconservatives."
 
 /datum/lore/codex/page/friends_of_ned/add_content()

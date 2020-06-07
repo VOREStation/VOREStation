@@ -13,7 +13,7 @@
 /atom/proc/Adjacent(var/atom/neighbor) // basic inheritance, unused
 	return 0
 
-// Not a sane use of the function and (for now) indicative of an error elsewhere
+// Not a sane use of the REMOVEDction and (for now) indicative of an error elsewhere
 /area/Adjacent(var/atom/neighbor)
 	CRASH("Call to /area/Adjacent(), unimplemented proc")
 

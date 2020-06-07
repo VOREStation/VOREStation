@@ -63,7 +63,7 @@ datum/admins/proc/notes_gethtml(var/ckey)
 #undef NOTESFILE
 */
 
-//Hijacking this file for BS12 playernotes functions. I like this ^ one systemm alright, but converting sounds too bothersome~ Chinsky.
+//Hijacking this file for BS12 playernotes REMOVEDctions. I like this ^ one systemm alright, but converting sounds too bothersome~ Chinsky.
 
 /proc/notes_add(var/key, var/note, var/mob/user)
 	if (!key || !note)

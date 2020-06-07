@@ -75,7 +75,7 @@
 /datum/alt_title/anomalist
 	title = "Anomalist"
 	title_blurb = "An Anomalist is a Scientist whose expertise is analyzing alien artifacts. They are familar with the most common methods of testing artifact \
-					function. They work closely with Xenoarchaeologists, or Miners, if either role is present."
+					REMOVEDction. They work closely with Xenoarchaeologists, or Miners, if either role is present."
 
 /datum/alt_title/phoron_research
 	title = "Phoron Researcher"

@@ -72,7 +72,7 @@
 		ui = new(user, src, ui_key, "atmos_control.tmpl", src.name, 625, 625, state = state)
 		if(host.update_layout()) // This is necessary to ensure the status bar remains updated along with rest of the UI.
 			ui.auto_update_layout = 1
-		// adding a template with the key "mapContent" enables the map ui functionality
+		// adding a template with the key "mapContent" enables the map ui REMOVEDctionality
 		ui.add_template("mapContent", "atmos_control_map_content.tmpl")
 		// adding a template with the key "mapHeader" replaces the map header content
 		ui.add_template("mapHeader", "atmos_control_map_header.tmpl")

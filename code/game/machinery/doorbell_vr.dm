@@ -154,6 +154,6 @@
 	desc = "Used for building doorbell switches."
 	icon = 'icons/obj/machines/doorbell_vr.dmi'
 	icon_state = "doorbell-off"
-	refund_amt = 4
-	refund_type = /obj/item/stack/material/wood
+	reREMOVEDd_amt = 4
+	reREMOVEDd_type = /obj/item/stack/material/wood
 	build_machine_type = /obj/machinery/button/doorbell

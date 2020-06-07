@@ -1,8 +1,8 @@
 /client/proc/smite_vr(var/mob/living/carbon/human/target in player_list)
 	set name = "Smite (Vore)"
 	set desc = "Abuse a player with various 'special Vore-brand treatments' from a list."
-	set category = "Fun"
-	if(!check_rights(R_ADMIN|R_FUN))
+	set category = "REMOVED"
+	if(!check_rights(R_ADMIN|R_REMOVED))
 		return
 
 	if(!istype(target))
@@ -96,7 +96,7 @@
 			shadekin.ability_flags |= 0x1
 			shadekin.phase_shift() //Homf
 			shadekin.energy = initial(shadekin.energy)
-			//For fun
+			//For REMOVED
 			sleep(1 SECOND)
 			shadekin.dir = WEST
 			sleep(1 SECOND)

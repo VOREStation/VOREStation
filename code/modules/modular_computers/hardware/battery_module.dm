@@ -5,7 +5,7 @@
 	desc = "A standard power cell, commonly seen in high-end portable microcomputers or low-end laptops. It's rating is 750."
 	icon_state = "battery_normal"
 	critical = 1
-	malfunction_probability = 1
+	malREMOVEDction_probability = 1
 	origin_tech = list(TECH_POWER = 1, TECH_ENGINEERING = 1)
 	var/battery_rating = 750
 	var/obj/item/weapon/cell/battery = null

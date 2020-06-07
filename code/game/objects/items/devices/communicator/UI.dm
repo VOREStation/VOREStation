@@ -285,7 +285,7 @@
 	if(href_list["newsfeed"])
 		newsfeed_channel = text2num(href_list["newsfeed"])
 
-	if(href_list["cartridge_topic"] && cartridge) // Has to have a cartridge to perform these functions
+	if(href_list["cartridge_topic"] && cartridge) // Has to have a cartridge to perform these REMOVEDctions
 		cartridge.Topic(href, href_list)
 
 	SSnanoui.update_uis(src)

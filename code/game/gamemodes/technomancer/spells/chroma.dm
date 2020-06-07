@@ -1,7 +1,7 @@
 /datum/technomancer/spell/chroma
 	name = "Chroma"
 	desc = "Creates light around you, or in a location of your choosing.  You can choose what color the light is.  This could be \
-	useful to trick someone into believing you're casting a different spell, or perhaps just for fun."
+	useful to trick someone into believing you're casting a different spell, or perhaps just for REMOVED."
 	cost = 25
 	obj_path = /obj/item/weapon/spell/chroma
 	category = UTILITY_SPELLS

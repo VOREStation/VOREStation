@@ -301,7 +301,7 @@
 #define ORION_TRAIL_BREAKDOWN	"Breakdown"
 #define ORION_TRAIL_MUTINY		"Mutiny?"
 #define ORION_TRAIL_MUTINY_ATTACK "Mutinous Ambush"
-#define ORION_TRAIL_MALFUNCTION	"Malfunction"
+#define ORION_TRAIL_MALREMOVEDCTION	"MalREMOVEDction"
 #define ORION_TRAIL_COLLISION	"Collision"
 #define ORION_TRAIL_SPACEPORT	"Spaceport"
 #define ORION_TRAIL_BLACKHOLE	"BlackHole"
@@ -313,7 +313,7 @@
 
 /obj/machinery/computer/arcade/orion_trail
 	name = "The Orion Trail"
-	desc = "Learn how our ancestors got to Orion, and have fun in the process!"
+	desc = "Learn how our ancestors got to Orion, and have REMOVED in the process!"
 	icon_state = "arcade"
 	circuit = /obj/item/weapon/circuitboard/arcade/orion_trail
 	var/busy = 0 //prevent clickspam that allowed people to ~speedrun~ the game.
@@ -332,7 +332,7 @@
 						   ORION_TRAIL_ILLNESS		= 3,
 						   ORION_TRAIL_BREAKDOWN	= 2,
 						   ORION_TRAIL_MUTINY		= 3,
-						   ORION_TRAIL_MALFUNCTION	= 2,
+						   ORION_TRAIL_MALREMOVEDCTION	= 2,
 						   ORION_TRAIL_COLLISION	= 1,
 						   ORION_TRAIL_SPACEPORT	= 2
 						   )
@@ -418,7 +418,7 @@
 			emagged = 0 //removes the emagged status after you lose
 			gameStatus = ORION_STATUS_START
 			name = "The Orion Trail"
-			desc = "Learn how our ancestors got to Orion, and have fun in the process!"
+			desc = "Learn how our ancestors got to Orion, and have REMOVED in the process!"
 
 	else if(event)
 		dat = eventdat
@@ -510,7 +510,7 @@
 							src.visible_message(span("danger", "Something slams into the floor around \the [src], exposing it to space!"), "You hear something crack and break.")
 						else
 							src.visible_message("Something slams into the floor around \the [src] - luckily, it didn't get through!", "You hear something crack.")
-					if(ORION_TRAIL_MALFUNCTION)
+					if(ORION_TRAIL_MALREMOVEDCTION)
 						src.visible_message("\The [src] buzzes and the screen goes blank for a moment before returning to the game.")
 						var/oldfood = food
 						var/oldfuel = fuel
@@ -551,7 +551,7 @@
 			engine = max(0, --engine)
 			event = null
 	else if(href_list["useelec"]) //use parts
-		if(event == ORION_TRAIL_MALFUNCTION)
+		if(event == ORION_TRAIL_MALREMOVEDCTION)
 			electronics = max(0, --electronics)
 			event = null
 	else if(href_list["usehull"]) //use parts
@@ -559,7 +559,7 @@
 			hull = max(0, --hull)
 			event = null
 	else if(href_list["wait"]) //wait 3 days
-		if(event == ORION_TRAIL_BREAKDOWN || event == ORION_TRAIL_MALFUNCTION || event == ORION_TRAIL_COLLISION)
+		if(event == ORION_TRAIL_BREAKDOWN || event == ORION_TRAIL_MALREMOVEDCTION || event == ORION_TRAIL_COLLISION)
 			food -= ((alive+traitors_aboard)*2)*3
 			event = null
 	else if(href_list["keepspeed"]) //keep speed
@@ -579,7 +579,7 @@
 					to_chat(usr, span("warning", "Something draws you closer and closer to the machine."))
 					sleep(10)
 					to_chat(usr, span("danger", "This is really starting to hurt!"))
-					var i; //spawning a literal blackhole would be fun, but a bit disruptive.
+					var i; //spawning a literal blackhole would be REMOVED, but a bit disruptive.
 					for(i=0;i<4;i++)
 						var/mob/living/L = usr
 						if(istype(L))
@@ -767,8 +767,8 @@
 				eventdat += "<P ALIGN=Right><a href='byond://?src=\ref[src];wait=1'>Wait</a></P>"
 			eventdat += "<P ALIGN=Right><a href='byond://?src=\ref[src];close=1'>Close</a></P>"
 
-		if(ORION_TRAIL_MALFUNCTION)
-			eventdat += "The ship's systems are malfunctioning!"
+		if(ORION_TRAIL_MALREMOVEDCTION)
+			eventdat += "The ship's systems are malREMOVEDctioning!"
 			eventdat += "<br>You can replace the broken electronics with spares, or you can spend 3 days troubleshooting the AI."
 			if(electronics >= 1)
 				eventdat += "<P ALIGN=Right><a href='byond://?src=\ref[src];useelec=1'>Use Part</a> <a href='byond://?src=\ref[src];wait=1'>Wait</a></P>"
@@ -1000,7 +1000,7 @@
 		prizevend()
 	emagged = 0
 	name = "The Orion Trail"
-	desc = "Learn how our ancestors got to Orion, and have fun in the process!"
+	desc = "Learn how our ancestors got to Orion, and have REMOVED in the process!"
 
 /obj/machinery/computer/arcade/orion_trail/emag_act(mob/user)
 	if(!emagged)
@@ -1055,7 +1055,7 @@
 #undef ORION_TRAIL_BREAKDOWN
 #undef ORION_TRAIL_MUTINY
 #undef ORION_TRAIL_MUTINY_ATTACK
-#undef ORION_TRAIL_MALFUNCTION
+#undef ORION_TRAIL_MALREMOVEDCTION
 #undef ORION_TRAIL_COLLISION
 #undef ORION_TRAIL_SPACEPORT
 #undef ORION_TRAIL_BLACKHOLE

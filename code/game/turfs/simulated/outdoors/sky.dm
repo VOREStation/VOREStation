@@ -6,7 +6,7 @@
 	icon_state = "sky_slow"
 	outdoors = TRUE
 
-	// Assume there's a vacuum for the purposes of avoiding active edges at initialization, as well as ZAS fun if a window breaks.
+	// Assume there's a vacuum for the purposes of avoiding active edges at initialization, as well as ZAS REMOVED if a window breaks.
 	oxygen = 0
 	carbon_dioxide = 0
 	nitrogen = 0

@@ -40,7 +40,7 @@
 	var/add_req_access = 1
 	var/maint_access = 1
 	var/dna	//dna-locking the mech
-	var/list/proc_res = list() //stores proc owners, like proc_res["functionname"] = owner reference
+	var/list/proc_res = list() //stores proc owners, like proc_res["REMOVEDctionname"] = owner reference
 	var/datum/effect/effect/system/spark_spread/spark_system = new
 	var/lights = 0
 	var/lights_power = 6
@@ -1479,13 +1479,13 @@
 						<script language='javascript' type='text/javascript'>
 						[js_byjax]
 						[js_dropdowns]
-						function ticker() {
-						    setInterval(function(){
+						REMOVEDction ticker() {
+						    setInterval(REMOVEDction(){
 						        window.location='byond://?src=\ref[src]&update_content=1';
 						    }, 1000);
 						}
 
-						window.onload = function() {
+						window.onload = REMOVEDction() {
 							dropdowns();
 							ticker();
 						}
@@ -1512,7 +1512,7 @@
 	var/output = null
 	var/list/dam_reports = list(
 										"[MECHA_INT_FIRE]" = "<font color='red'><b>INTERNAL FIRE</b></font>",
-										"[MECHA_INT_TEMP_CONTROL]" = "<font color='red'><b>LIFE SUPPORT SYSTEM MALFUNCTION</b></font>",
+										"[MECHA_INT_TEMP_CONTROL]" = "<font color='red'><b>LIFE SUPPORT SYSTEM MALREMOVEDCTION</b></font>",
 										"[MECHA_INT_TANK_BREACH]" = "<font color='red'><b>GAS TANK BREACH</b></font>",
 										"[MECHA_INT_CONTROL_LOST]" = "<font color='red'><b>COORDINATION SYSTEM CALIBRATION FAILURE</b></font> - <a href='?src=\ref[src];repair_int_control_lost=1'>Recalibrate</a>",
 										"[MECHA_INT_SHORT_CIRCUIT]" = "<font color='red'><b>SHORT CIRCUIT</b></font>"

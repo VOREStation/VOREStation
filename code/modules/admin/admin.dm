@@ -326,7 +326,7 @@ proc/admin_notice(var/message, var/rights)
 
 
 /datum/admins/proc/access_news_network() //MARKER
-	set category = "Fun"
+	set category = "REMOVED"
 	set name = "Access Newscaster Network"
 	set desc = "Allows you to view, add and edit news feeds."
 
@@ -357,7 +357,7 @@ proc/admin_notice(var/message, var/rights)
 			if(news_network.wanted_issue)
 				wanted_already = 1
 
-			dat+={"<HR><B>Feed Security functions:</B><BR>
+			dat+={"<HR><B>Feed Security REMOVEDctions:</B><BR>
 				<BR><A href='?src=\ref[src];ac_menu_wanted=1'>[(wanted_already) ? ("Manage") : ("Publish")] \"Wanted\" Issue</A>
 				<BR><A href='?src=\ref[src];ac_menu_censor_story=1'>Censor Feed Stories</A>
 				<BR><A href='?src=\ref[src];ac_menu_censor_channel=1'>Mark Feed Channel with [using_map.company_name] D-Notice (disables and locks the channel.</A>
@@ -680,7 +680,7 @@ proc/admin_notice(var/message, var/rights)
 var/datum/announcement/priority/admin_pri_announcer = new
 var/datum/announcement/minor/admin_min_announcer = new
 /datum/admins/proc/intercom()
-	set category = "Fun"
+	set category = "REMOVED"
 	set name = "Intercom Msg"
 	set desc = "Send an intercom message, like an arrivals announcement."
 	if(!check_rights(0))	return
@@ -702,7 +702,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	feedback_add_details("admin_verb","IN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/intercom_convo()
-	set category = "Fun"
+	set category = "REMOVED"
 	set name = "Intercom Convo"
 	set desc = "Send an intercom conversation, like several uses of the Intercom Msg verb."
 	set waitfor = FALSE //Why bother? We have some sleeps. You can leave tho!
@@ -1434,7 +1434,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 
 	if (!istype(src,/datum/admins))
 		src = usr.client.holder
-	if (!istype(src,/datum/admins) || !check_rights(R_ADMIN|R_EVENT|R_FUN))
+	if (!istype(src,/datum/admins) || !check_rights(R_ADMIN|R_EVENT|R_REMOVED))
 		to_chat(usr, "Error: you are not an admin!")
 		return
 

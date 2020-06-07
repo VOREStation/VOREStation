@@ -2,7 +2,7 @@
 #define IC_OUTPUT "output"
 #define IC_ACTIVATOR "activator"
 
-// Pin functionality.
+// Pin REMOVEDctionality.
 #define DATA_CHANNEL "data channel"
 #define PULSE_CHANNEL "pulse channel"
 
@@ -65,5 +65,5 @@ var/list/all_integrated_circuits = list()
 	var/category_text = "NO CATEGORY THIS IS A BUG"	// To show up on circuit printer, and perhaps other places.
 	var/removable = TRUE 			// Determines if a circuit is removable from the assembly.
 	var/displayed_name = ""
-	var/allow_multitool = 1			// Allows additional multitool functionality
+	var/allow_multitool = 1			// Allows additional multitool REMOVEDctionality
 									// Used as a global var, (Do not set manually in children).

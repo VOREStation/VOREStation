@@ -21,7 +21,7 @@
 	var/vend_delay = 10 //How long does it take to vend?
 	var/categories = CAT_NORMAL // Bitmask of cats we're currently showing
 	var/datum/stored_item/vending_product/currently_vending = null // What we're requesting payment for right now
-	var/status_message = "" // Status screen messages like "insufficient funds", displayed in NanoUI
+	var/status_message = "" // Status screen messages like "insufficient REMOVEDds", displayed in NanoUI
 	var/status_error = 0 // Set to 1 if status_message is an error
 	var/vending_sound = "machines/vending/vending_drop.ogg"
 
@@ -132,7 +132,7 @@
 		if(3.0)
 			if(prob(25))
 				spawn(0)
-					malfunction()
+					malREMOVEDction()
 					return
 				return
 		else
@@ -255,7 +255,7 @@
 	visible_message("<span class='info'>\The [usr] swipes \the [wallet] through \the [src].</span>")
 	playsound(src, 'sound/machines/id_swipe.ogg', 50, 1)
 	if(currently_vending.price > wallet.worth)
-		status_message = "Insufficient funds on chargecard."
+		status_message = "Insufficient REMOVEDds on chargecard."
 		status_error = 1
 		return 0
 	else
@@ -298,7 +298,7 @@
 			return 0
 
 	if(currently_vending.price > customer_account.money)
-		status_message = "Insufficient funds in account."
+		status_message = "Insufficient REMOVEDds in account."
 		status_error = 1
 		return 0
 	else
@@ -629,8 +629,8 @@
 			spawn(rand(0, 15))
 				icon_state = "[initial(icon_state)]-off"
 
-//Oh no we're malfunctioning!  Dump out some product and break.
-/obj/machinery/vending/proc/malfunction()
+//Oh no we're malREMOVEDctioning!  Dump out some product and break.
+/obj/machinery/vending/proc/malREMOVEDction()
 	for(var/datum/stored_item/vending_product/R in product_records)
 		while(R.get_amount()>0)
 			R.get_product(loc)

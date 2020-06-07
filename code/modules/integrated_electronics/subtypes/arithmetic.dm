@@ -45,7 +45,7 @@
 	desc = "This circuit can subtract numbers."
 	extended_desc = "The order that the calculation goes is;<br>\
 	result = ((((A - B) - C) - D) ... ) and so on, until all pins have been subtracted.  \
-	Null pins are ignored.  Pin A <b>must</b> be a number or the circuit will not function."
+	Null pins are ignored.  Pin A <b>must</b> be a number or the circuit will not REMOVEDction."
 	icon_state = "subtraction"
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
@@ -73,7 +73,7 @@
 	desc = "This circuit can multiply numbers."
 	extended_desc = "The order that the calculation goes is;<br>\
 	result = ((((A * B) * C) * D) ... ) and so on, until all pins have been multiplied.  \
-	Null pins are ignored.  Pin A <b>must</b> be a number or the circuit will not function."
+	Null pins are ignored.  Pin A <b>must</b> be a number or the circuit will not REMOVEDction."
 	icon_state = "multiplication"
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
@@ -101,7 +101,7 @@
 	desc = "This circuit can divide numbers, just don't think about trying to divide by zero!"
 	extended_desc = "The order that the calculation goes is;<br>\
 	result = ((((A / B) / C) / D) ... ) and so on, until all pins have been divided.  \
-	Null pins, and pins containing 0, are ignored.  Pin A <b>must</b> be a number or the circuit will not function."
+	Null pins, and pins containing 0, are ignored.  Pin A <b>must</b> be a number or the circuit will not REMOVEDction."
 	icon_state = "division"
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 

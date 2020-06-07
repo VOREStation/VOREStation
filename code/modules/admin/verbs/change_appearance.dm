@@ -3,7 +3,7 @@
 	set desc = "Allows you to change the mob appearance"
 	set category = "Admin"
 
-	if(!check_rights(R_FUN)) return
+	if(!check_rights(R_REMOVED)) return
 
 	var/mob/living/carbon/human/H = input("Select mob.", "Change Mob Appearance - Admin") as null|anything in human_mob_list
 	if(!H) return
@@ -17,7 +17,7 @@
 	set desc = "Allows the mob to change its appearance"
 	set category = "Admin"
 
-	if(!check_rights(R_FUN)) return
+	if(!check_rights(R_REMOVED)) return
 
 	var/mob/living/carbon/human/H = input("Select mob.", "Change Mob Appearance - Self") as null|anything in human_mob_list
 	if(!H) return
@@ -37,9 +37,9 @@
 
 /client/proc/editappear()
 	set name = "Edit Appearance"
-	set category = "Fun"
+	set category = "REMOVED"
 
-	if(!check_rights(R_FUN))	return
+	if(!check_rights(R_REMOVED))	return
 
 	var/mob/living/carbon/human/M = input("Select mob.", "Edit Appearance") as null|anything in human_mob_list
 

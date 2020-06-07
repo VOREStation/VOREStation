@@ -1,7 +1,7 @@
 // To clarify:
-// For use_to_pickup and allow_quick_gather functionality,
+// For use_to_pickup and allow_quick_gather REMOVEDctionality,
 // see item/attackby() (/game/objects/items.dm)
-// Do not remove this functionality without good reason, cough reagent_containers cough.
+// Do not remove this REMOVEDctionality without good reason, cough reagent_containers cough.
 // -Sayu
 
 

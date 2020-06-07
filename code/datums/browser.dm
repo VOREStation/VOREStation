@@ -226,7 +226,7 @@
 	opentime = 0
 	close()
 
-//designed as a drop in replacement for alert(); functions the same. (outside of needing User specified)
+//designed as a drop in replacement for alert(); REMOVEDctions the same. (outside of needing User specified)
 /proc/tgalert(var/mob/User, Message, Title, Button1="Ok", Button2, Button3, StealFocus = 1, Timeout = 6000)
 	if (!User)
 		User = usr

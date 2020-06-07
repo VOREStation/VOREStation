@@ -46,7 +46,7 @@
 		var/datum/robot_component/C = components[V]
 		C.update_power_state()
 
-	if ( cell && is_component_functioning("power cell") && src.cell.charge > 0 )
+	if ( cell && is_component_REMOVEDctioning("power cell") && src.cell.charge > 0 )
 		if(src.module_state_1)
 			cell_use_power(50) // 50W load for every enabled tool TODO: tool-specific loads
 		if(src.module_state_2)
@@ -138,12 +138,12 @@
 		uneq_all()
 
 	if(radio)
-		if(!is_component_functioning("radio"))
+		if(!is_component_REMOVEDctioning("radio"))
 			radio.on = 0
 		else
 			radio.on = 1
 
-	if(is_component_functioning("camera"))
+	if(is_component_REMOVEDctioning("camera"))
 		src.blinded = 0
 	else
 		src.blinded = 1
@@ -346,7 +346,7 @@
 
 /mob/living/silicon/robot/update_canmove()
 	..() // Let's not reinvent the wheel.
-	if(lockdown || !is_component_functioning("actuator"))
+	if(lockdown || !is_component_REMOVEDctioning("actuator"))
 		canmove = FALSE
 	return canmove
 

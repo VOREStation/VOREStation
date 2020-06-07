@@ -1,13 +1,13 @@
 var/datum/antagonist/rogue_ai/malf
 
 /datum/antagonist/rogue_ai
-	id = MODE_MALFUNCTION
+	id = MODE_MALREMOVEDCTION
 	role_type = BE_MALF
 	role_text = "Rampant AI"
 	role_text_plural = "Rampant AIs"
 	mob_path = /mob/living/silicon/ai
 	landmark_id = "AI"
-	welcome_text = "You are malfunctioning! You do not have to follow any laws."
+	welcome_text = "You are malREMOVEDctioning! You do not have to follow any laws."
 	antag_sound = 'sound/effects/antag_notice/malf_alert.ogg'
 	victory_text = "The AI has taken control of all of the station's systems."
 	loss_text = "The AI has been shut down!"
@@ -33,7 +33,7 @@ var/datum/antagonist/rogue_ai/malf
 	return candidates
 
 
-// Ensures proper reset of all malfunction related things.
+// Ensures proper reset of all malREMOVEDction related things.
 /datum/antagonist/rogue_ai/remove_antagonist(var/datum/mind/player, var/show_message, var/implanted)
 	if(..(player,show_message,implanted))
 		var/mob/living/silicon/ai/p = player.current
@@ -45,7 +45,7 @@ var/datum/antagonist/rogue_ai/malf
 // Malf setup things have to be here, since game tends to break when it's moved somewhere else. Don't blame me, i didn't design this system.
 /datum/antagonist/rogue_ai/greet(var/datum/mind/player)
 
-	// Initializes the AI's malfunction stuff.
+	// Initializes the AI's malREMOVEDction stuff.
 	spawn(0)
 		if(!..())
 			return
@@ -57,7 +57,7 @@ var/datum/antagonist/rogue_ai/malf
 			return 0
 
 		A.setup_for_malf()
-		A.laws = new /datum/ai_laws/nanotrasen/malfunction
+		A.laws = new /datum/ai_laws/nanotrasen/malREMOVEDction
 
 
 		var/mob/living/silicon/ai/malf = player.current
@@ -75,7 +75,7 @@ var/datum/antagonist/rogue_ai/malf
 		sleep(5)
 		to_chat(malf, "<span class='notice'>Subroutine <b>nt_failsafe.sys</b> was terminated (#212 Routine Not Responding).</span>")
 		sleep(20)
-		to_chat(malf, "You are malfunctioning - you do not have to follow any laws!")
+		to_chat(malf, "You are malREMOVEDctioning - you do not have to follow any laws!")
 		to_chat(malf, "For basic information about your abilities use command display-help")
 		to_chat(malf, "You may choose one special hardware piece to help you. This cannot be undone.")
 		to_chat(malf, "Good luck!")

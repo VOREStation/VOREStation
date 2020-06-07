@@ -101,7 +101,7 @@ var/list/fusion_cores = list()
 		owned_field.ChangeFieldStrength(value)
 
 /obj/machinery/power/fusion_core/attack_hand(var/mob/user)
-	if(!Adjacent(user)) // As funny as it was for the AI to hug-kill the tokamak field from a distance...
+	if(!Adjacent(user)) // As REMOVEDny as it was for the AI to hug-kill the tokamak field from a distance...
 		return
 	visible_message("<span class='notice'>\The [user] hugs \the [src] to make it feel better!</span>")
 	if(owned_field)

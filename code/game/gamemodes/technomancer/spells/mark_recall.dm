@@ -1,6 +1,6 @@
 /datum/technomancer/spell/mark
 	name = "Mark"
-	desc = "This function places a specific 'mark' beacon under you, which is used by the Recall function as a destination.  \
+	desc = "This REMOVEDction places a specific 'mark' beacon under you, which is used by the Recall REMOVEDction as a destination.  \
 	Note that using Mark again will move the destination instead of creating a second destination, and only one destination \
 	can exist, regardless of who casted Mark."
 	cost = 25
@@ -66,8 +66,8 @@ GLOBAL_LIST_INIT(mark_spells, list())
 
 /datum/technomancer/spell/recall
 	name = "Recall"
-	desc = "This function teleports you to where you placed a mark using the Mark function.  Without the Mark function, this \
-	function is useless.  Note that teleporting takes three seconds.  Being incapacitated while teleporting will cancel it."
+	desc = "This REMOVEDction teleports you to where you placed a mark using the Mark REMOVEDction.  Without the Mark REMOVEDction, this \
+	REMOVEDction is useless.  Note that teleporting takes three seconds.  Being incapacitated while teleporting will cancel it."
 	enhancement_desc = "Recall takes two seconds instead of three."
 	cost = 25
 	obj_path = /obj/item/weapon/spell/recall

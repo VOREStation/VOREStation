@@ -6,7 +6,7 @@
 		verbs |= /obj/item/modular_computer/verb/eject_id
 	verbs |= /obj/item/modular_computer/verb/emergency_shutdown
 
-// Forcibly shut down the device. To be used when something bugs out and the UI is nonfunctional.
+// Forcibly shut down the device. To be used when something bugs out and the UI is nonREMOVEDctional.
 /obj/item/modular_computer/verb/emergency_shutdown()
 	set name = "Forced Shutdown"
 	set category = "Object"

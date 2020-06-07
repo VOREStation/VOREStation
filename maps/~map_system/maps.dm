@@ -28,7 +28,7 @@ var/list/all_maps = list()
 	// Automatically populated lists made static for faster lookups
 	var/static/list/zlevels = list()
 	var/static/list/station_levels = list() // Z-levels the station exists on
-	var/static/list/admin_levels = list()   // Z-levels for admin functionality (Centcom, shuttle transit, etc)
+	var/static/list/admin_levels = list()   // Z-levels for admin REMOVEDctionality (Centcom, shuttle transit, etc)
 	var/static/list/contact_levels = list() // Z-levels that can be contacted from the station, for eg announcements
 	var/static/list/player_levels = list()  // Z-levels a character can typically reach
 	var/static/list/sealed_levels = list()  // Z-levels that don't allow random transit at edge

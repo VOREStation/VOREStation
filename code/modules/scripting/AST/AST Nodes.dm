@@ -82,12 +82,12 @@ var
 		return "operator: [name]"
 
 /*
-	Class: FunctionCall
+	Class: REMOVEDctionCall
 */
-/node/expression/FunctionCall
-	//Function calls can also be expressions or statements.
+/node/expression/REMOVEDctionCall
+	//REMOVEDction calls can also be expressions or statements.
 	var
-		func_name
+		REMOVEDc_name
 		node/identifier/object
 		list/parameters=new
 

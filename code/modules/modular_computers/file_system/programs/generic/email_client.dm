@@ -239,8 +239,8 @@
 	download_progress = min(download_progress + netspeed, downloading.size)
 	if(download_progress >= downloading.size)
 		var/obj/item/modular_computer/MC = nano_host()
-		if(!istype(MC) || !MC.hard_drive || !MC.hard_drive.check_functionality())
-			error = "Error uploading file. Are you using a functional and NTOSv2-compliant device?"
+		if(!istype(MC) || !MC.hard_drive || !MC.hard_drive.check_REMOVEDctionality())
+			error = "Error uploading file. Are you using a REMOVEDctional and NTOSv2-compliant device?"
 			downloading = null
 			download_progress = 0
 			return 1
@@ -248,7 +248,7 @@
 		if(MC.hard_drive.store_file(downloading))
 			error = "File successfully downloaded to local device."
 		else
-			error = "Error saving file: I/O Error: The hard drive may be full or nonfunctional."
+			error = "Error saving file: I/O Error: The hard drive may be full or nonREMOVEDctional."
 		downloading = null
 		download_progress = 0
 	return 1
@@ -418,8 +418,8 @@
 		// Fully dependant on modular computers here.
 		var/obj/item/modular_computer/MC = nano_host()
 
-		if(!istype(MC) || !MC.hard_drive || !MC.hard_drive.check_functionality())
-			error = "Error exporting file. Are you using a functional and NTOS-compliant device?"
+		if(!istype(MC) || !MC.hard_drive || !MC.hard_drive.check_REMOVEDctionality())
+			error = "Error exporting file. Are you using a REMOVEDctional and NTOS-compliant device?"
 			return 1
 
 		var/filename = sanitize(input(user,"Please specify file name:", "Message export"), 100)
@@ -441,8 +441,8 @@
 		var/obj/item/modular_computer/MC = nano_host()
 		msg_attachment = null
 
-		if(!istype(MC) || !MC.hard_drive || !MC.hard_drive.check_functionality())
-			error = "Error uploading file. Are you using a functional and NTOSv2-compliant device?"
+		if(!istype(MC) || !MC.hard_drive || !MC.hard_drive.check_REMOVEDctionality())
+			error = "Error uploading file. Are you using a REMOVEDctional and NTOSv2-compliant device?"
 			return 1
 
 		var/list/filenames = list()
@@ -455,8 +455,8 @@
 		if(!picked_file)
 			return 1
 
-		if(!istype(MC) || !MC.hard_drive || !MC.hard_drive.check_functionality())
-			error = "Error uploading file. Are you using a functional and NTOSv2-compliant device?"
+		if(!istype(MC) || !MC.hard_drive || !MC.hard_drive.check_REMOVEDctionality())
+			error = "Error uploading file. Are you using a REMOVEDctional and NTOSv2-compliant device?"
 			return 1
 
 		for(var/datum/computer_file/CF in MC.hard_drive.stored_files)
@@ -481,8 +481,8 @@
 		if(!current_account || !current_message || !current_message.attachment)
 			return 1
 		var/obj/item/modular_computer/MC = nano_host()
-		if(!istype(MC) || !MC.hard_drive || !MC.hard_drive.check_functionality())
-			error = "Error downloading file. Are you using a functional and NTOSv2-compliant device?"
+		if(!istype(MC) || !MC.hard_drive || !MC.hard_drive.check_REMOVEDctionality())
+			error = "Error downloading file. Are you using a REMOVEDctional and NTOSv2-compliant device?"
 			return 1
 
 		downloading = current_message.attachment.clone()

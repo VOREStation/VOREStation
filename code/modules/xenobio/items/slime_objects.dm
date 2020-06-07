@@ -4,7 +4,7 @@
 	desc = "Wonder what might come out of this."
 	icon = 'icons/mob/slime2.dmi'
 	icon_state = "slime cube"
-	description_info = "Use in your hand to attempt to create a Promethean.  It functions similarly to a positronic brain, in that a ghost is needed to become the Promethean."
+	description_info = "Use in your hand to attempt to create a Promethean.  It REMOVEDctions similarly to a positronic brain, in that a ghost is needed to become the Promethean."
 	var/searching = 0
 
 /obj/item/slime_cube/attack_self(mob/user as mob)
@@ -68,7 +68,7 @@
 
 
 
-// More or less functionally identical to the telecrystal tele.
+// More or less REMOVEDctionally identical to the telecrystal tele.
 /obj/item/slime_crystal
 	name = "lesser slime cystal"
 	desc = "A small, gooy crystal."

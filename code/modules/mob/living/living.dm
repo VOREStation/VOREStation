@@ -599,7 +599,7 @@ default behaviour is:
 /mob/proc/get_contents()
 
 
-//Recursive function to find everything a mob is holding.
+//Recursive REMOVEDction to find everything a mob is holding.
 /mob/living/get_contents(var/obj/item/weapon/storage/Storage = null)
 	var/list/L = list()
 

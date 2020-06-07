@@ -1,7 +1,7 @@
 /datum/technomancer/spell/lesser_chain_lightning
 	name = "Lesser Chain Lightning"
-	desc = "This is very similar to the function Chain Lightning, however it is considerably less powerful.  As a result, it's a lot \
-	more economical in terms of energy cost, as well as instability generation.  Lightning functions cannot miss due to distance."
+	desc = "This is very similar to the REMOVEDction Chain Lightning, however it is considerably less powerful.  As a result, it's a lot \
+	more economical in terms of energy cost, as well as instability generation.  Lightning REMOVEDctions cannot miss due to distance."
 	cost = 100
 	obj_path = /obj/item/weapon/spell/projectile/chain_lightning/lesser
 	ability_icon_state = "tech_chain_lightning"

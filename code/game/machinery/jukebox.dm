@@ -197,7 +197,7 @@
 		return
 
 	if(inoperable())
-		to_chat(usr, "\The [src] doesn't appear to function.")
+		to_chat(usr, "\The [src] doesn't appear to REMOVEDction.")
 		return
 
 	if(href_list["change_track"])
@@ -241,7 +241,7 @@
 
 /obj/machinery/media/jukebox/interact(mob/user)
 	if(inoperable())
-		to_chat(usr, "\The [src] doesn't appear to function.")
+		to_chat(usr, "\The [src] doesn't appear to REMOVEDction.")
 		return
 	ui_interact(user)
 

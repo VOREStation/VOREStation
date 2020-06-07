@@ -1229,7 +1229,7 @@
 	adj_temp = -5
 
 	glass_name = "tonic water"
-	glass_desc = "Quinine tastes funny, but at least it'll keep that Space Malaria away."
+	glass_desc = "Quinine tastes REMOVEDny, but at least it'll keep that Space Malaria away."
 
 /datum/reagent/drink/soda/lemonade
 	name = "Lemonade"
@@ -2588,13 +2588,13 @@
 /datum/reagent/ethanol/coffee/irishcoffee
 	name = "Irish Coffee"
 	id = "irishcoffee"
-	description = "Coffee, and alcohol. More fun than a Mimosa to drink in the morning."
+	description = "Coffee, and alcohol. More REMOVED than a Mimosa to drink in the morning."
 	taste_description = "giving up on the day"
 	color = "#4C3100"
 	strength = 15
 
 	glass_name = "Irish coffee"
-	glass_desc = "Coffee and alcohol. More fun than a Mimosa to drink in the morning."
+	glass_desc = "Coffee and alcohol. More REMOVED than a Mimosa to drink in the morning."
 
 /datum/reagent/ethanol/irish_cream
 	name = "Irish Cream"

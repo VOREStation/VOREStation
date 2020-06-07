@@ -47,7 +47,7 @@
 	<br><br>\
 	These appear to be limited in throughput, only able to put out so much energy at a time. It is unknown \
 	if this was intentional, or was a design constraint that the creators of this object had to work around. \
-	Regardless, it will likely function inside of various devices which run off of conventional power cells.\
+	Regardless, it will likely REMOVEDction inside of various devices which run off of conventional power cells.\
 	<br><br>\
 	Scanning similar objects may yield more information."
 	value = CATALOGUER_REWARD_EASY

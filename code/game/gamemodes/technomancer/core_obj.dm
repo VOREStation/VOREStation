@@ -262,7 +262,7 @@
 	name = "bulky core"
 	desc = "A bewilderingly complex 'black box' that allows the wearer to accomplish amazing feats.  This variant is more \
 	cumbersome and bulky, due to the additional energy capacitors installed, which allows for a massive energy storage, as well \
-	as stronger function usage.  It also comes at a price of a subpar fractal \
+	as stronger REMOVEDction usage.  It also comes at a price of a subpar fractal \
 	reactor."
 	energy = 20000
 	max_energy = 20000
@@ -275,7 +275,7 @@
 /obj/item/weapon/technomancer_core/recycling
 	name = "recycling core"
 	desc = "A bewilderingly complex 'black box' that allows the wearer to accomplish amazing feats.  This type tries to recover \
-	some of the energy lost from using functions due to inefficiency."
+	some of the energy lost from using REMOVEDctions due to inefficiency."
 	energy = 12000
 	max_energy = 12000
 	regen_rate = 40 //300 seconds to full
@@ -324,7 +324,7 @@
 /obj/item/weapon/technomancer_core/overcharged
 	name = "overcharged core"
 	desc = "A bewilderingly complex 'black box' that allows the wearer to accomplish amazing feats.  This type will use as much \
-	energy as it can in order to pump up the strength of functions used to insane levels."
+	energy as it can in order to pump up the strength of REMOVEDctions used to insane levels."
 	energy = 15000
 	max_energy = 15000
 	regen_rate = 40 //375 seconds to full
@@ -357,7 +357,7 @@
 	name = "universal core"
 	desc = "A bewilderingly complex 'black box' that allows the wearer to accomplish amazing feats. \
 	This one is a copy of a 'technomancer' core, shamelessly ripped off by a Kitsuhana pattern designer \
-	for fun, so that he could perform impressive 'magic'. The pack sloshes slightly if you shake it.<br>\
+	for REMOVED, so that he could perform impressive 'magic'. The pack sloshes slightly if you shake it.<br>\
 	Under the straps, <i>'Export Edition'</i> is printed."
 	energy = 7000
 	max_energy = 7000

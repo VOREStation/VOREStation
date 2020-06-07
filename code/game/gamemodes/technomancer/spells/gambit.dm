@@ -1,9 +1,9 @@
 /datum/technomancer/spell/gambit
 	name = "Gambit"
-	desc = "This function causes you to receive a random function, including those which you haven't purchased."
-//	enhancement_desc = "Makes results less random and more biased towards what the function thinks you need in your current situation."
+	desc = "This REMOVEDction causes you to receive a random REMOVEDction, including those which you haven't purchased."
+//	enhancement_desc = "Makes results less random and more biased towards what the REMOVEDction thinks you need in your current situation."
 	enhancement_desc = "Instead of a purely random spell, it will give you a \"random\" spell."
-	spell_power_desc = "Makes certain rare functions possible to acquire via Gambit which cannot be obtained otherwise, if above 100%."
+	spell_power_desc = "Makes certain rare REMOVEDctions possible to acquire via Gambit which cannot be obtained otherwise, if above 100%."
 	ability_icon_state = "tech_gambit"
 	cost = 50
 	obj_path = /obj/item/weapon/spell/gambit

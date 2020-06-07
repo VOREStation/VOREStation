@@ -245,7 +245,7 @@
 				src.visible_message("[bicon(src)]<span class='warning'>Your account has been suspended.</span>")
 			else
 				if(transaction_amount > D.money)
-					src.visible_message("[bicon(src)]<span class='warning'>Not enough funds.</span>")
+					src.visible_message("[bicon(src)]<span class='warning'>Not enough REMOVEDds.</span>")
 				else
 					// Transfer the money
 					D.money -= transaction_amount
@@ -293,7 +293,7 @@
 	// Access account for transaction
 	if(check_account())
 		if(transaction_amount > E.worth)
-			src.visible_message("[bicon(src)]<span class='warning'>Not enough funds.</span>")
+			src.visible_message("[bicon(src)]<span class='warning'>Not enough REMOVEDds.</span>")
 		else
 			// Transfer the money
 			E.worth -= transaction_amount

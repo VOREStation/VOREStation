@@ -23,12 +23,12 @@
 	<b>Implant Specifications:</b><BR>
 	<b>Name:</b> Modular Implant<BR>
 	<b>Life:</b> 3 years.<BR>
-	<b>Important Notes: EMP can cause malfunctions in the internal electronics of this implant.</B><BR>
+	<b>Important Notes: EMP can cause malREMOVEDctions in the internal electronics of this implant.</B><BR>
 	<HR>
 	<b>Implant Details:</b><BR>
-	<b>Function:</b> Contains no innate functions until other components are added.<BR>
+	<b>REMOVEDction:</b> Contains no innate REMOVEDctions until other components are added.<BR>
 	<b>Special Features:</b>
-	<i>Modular Circuitry</i>- Can be loaded with specific modular circuitry in order to fulfill a wide possibility of functions.<BR>
+	<i>Modular Circuitry</i>- Can be loaded with specific modular circuitry in order to fulfill a wide possibility of REMOVEDctions.<BR>
 	<b>Integrity:</b> Implant is not shielded from electromagnetic interference, otherwise it is independent of subject's status."}
 	return dat
 

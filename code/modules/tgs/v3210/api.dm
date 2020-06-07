@@ -6,7 +6,7 @@
 #define SERVICE_INSTANCE_PARAM "server_instance"
 #define SERVICE_PR_TEST_JSON "prtestjob.json"
 #define SERVICE_INTERFACE_DLL "TGDreamDaemonBridge.dll"
-#define SERVICE_INTERFACE_FUNCTION "DDEntryPoint"
+#define SERVICE_INTERFACE_REMOVEDCTION "DDEntryPoint"
 
 #define SERVICE_CMD_HARD_REBOOT "hard_reboot"
 #define SERVICE_CMD_GRACEFUL_SHUTDOWN "graceful_shutdown"
@@ -92,7 +92,7 @@
 	if(skip_compat_check && !fexists(SERVICE_INTERFACE_DLL))
 		TGS_ERROR_LOG("Service parameter present but no interface DLL detected. This is symptomatic of running a service less than version 3.1! Please upgrade.")
 		return
-	call(SERVICE_INTERFACE_DLL, SERVICE_INTERFACE_FUNCTION)(instance_name, command)	//trust no retval
+	call(SERVICE_INTERFACE_DLL, SERVICE_INTERFACE_REMOVEDCTION)(instance_name, command)	//trust no retval
 	return TRUE
 
 /datum/tgs_api/v3210/OnTopic(T)
@@ -205,7 +205,7 @@
 #undef SERVICE_INSTANCE_PARAM
 #undef SERVICE_PR_TEST_JSON
 #undef SERVICE_INTERFACE_DLL
-#undef SERVICE_INTERFACE_FUNCTION
+#undef SERVICE_INTERFACE_REMOVEDCTION
 
 #undef SERVICE_CMD_HARD_REBOOT
 #undef SERVICE_CMD_GRACEFUL_SHUTDOWN

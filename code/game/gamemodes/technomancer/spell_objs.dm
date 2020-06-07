@@ -80,7 +80,7 @@
 
 // Proc: on_scepter_use_cast()
 // Parameters: 1 (user - the holder of the Scepter that clicked.)
-// Description: Override this for spell casts which have additional functionality when a Scepter is held in the offhand, and the
+// Description: Override this for spell casts which have additional REMOVEDctionality when a Scepter is held in the offhand, and the
 // scepter is being clicked by the technomancer in their hand.
 /obj/item/weapon/spell/proc/on_scepter_use_cast(mob/user)
 	return
@@ -175,7 +175,7 @@
 
 // Proc: run_checks()
 // Parameters: 0
-// Description: Ensures spells should not function if something is wrong.  If a core is missing, it will try to find one, then fail
+// Description: Ensures spells should not REMOVEDction if something is wrong.  If a core is missing, it will try to find one, then fail
 // if it still can't find one.  It will also check if the core is being worn properly, and finally checks if the owner is a technomancer.
 /obj/item/weapon/spell/proc/run_checks()
 	if(!owner)
@@ -292,7 +292,7 @@
 			if(l_spell.aspect == ASPECT_CHROMATIC) //Check the other hand too.
 				l_spell.on_combine_cast(S, src)
 		else //Welp
-			to_chat(src, "<span class='warning'>You require a free hand to use this function.</span>")
+			to_chat(src, "<span class='warning'>You require a free hand to use this REMOVEDction.</span>")
 			return 0
 
 	if(S.run_checks())

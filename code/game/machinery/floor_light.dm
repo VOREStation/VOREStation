@@ -64,7 +64,7 @@ var/list/floor_light_cache = list()
 			return
 
 		if(stat & BROKEN)
-			to_chat(user, "<span class='warning'>\The [src] is too damaged to be functional.</span>")
+			to_chat(user, "<span class='warning'>\The [src] is too damaged to be REMOVEDctional.</span>")
 			return
 
 		if(stat & NOPOWER)

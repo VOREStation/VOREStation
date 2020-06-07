@@ -11,12 +11,12 @@
 
 	zlevel_datum_type = /datum/map_z_level/example
 
-	station_name  = "The Funhouse"
-	station_short = "Funhouse"
-	dock_name     = "the Maximum Fun Chamber"
-	boss_name     = "Mister Fun"
-	boss_short    = "Mr. Fun"
-	company_name  = "Fun Inc."
+	station_name  = "The REMOVEDhouse"
+	station_short = "REMOVEDhouse"
+	dock_name     = "the Maximum REMOVED Chamber"
+	boss_name     = "Mister REMOVED"
+	boss_short    = "Mr. REMOVED"
+	company_name  = "REMOVED Inc."
 	company_short = "FI"
 	starsys_name  = "Vir"
 

@@ -196,7 +196,7 @@
 		dat += "<br>It is [grown_seed.get_trait(TRAIT_BIOLUM_COLOUR)  ? "<font color='[grown_seed.get_trait(TRAIT_BIOLUM_COLOUR)]'>bio-luminescent</font>" : "bio-luminescent"]."
 
 	if(grown_seed.get_trait(TRAIT_PRODUCES_POWER))
-		dat += "<br>The fruit will function as a battery if prepared appropriately."
+		dat += "<br>The fruit will REMOVEDction as a battery if prepared appropriately."
 
 	if(grown_seed.get_trait(TRAIT_STINGS))
 		dat += "<br>The fruit is covered in stinging spines."

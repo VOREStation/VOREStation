@@ -1,6 +1,6 @@
 // This is the base state class, it is not to be used directly
 
-function NanoStateClass() {
+REMOVEDction NanoStateClass() {
 	/*if (typeof this.key != 'string' || !this.key.length)
 	{
 		alert('ERROR: Tried to create a state with an invalid state key: ' + this.key);
@@ -17,34 +17,34 @@ NanoStateClass.prototype.layoutRendered = false;
 NanoStateClass.prototype.contentRendered = false;
 NanoStateClass.prototype.mapInitialised = false;
 
-NanoStateClass.prototype.isCurrent = function () {
+NanoStateClass.prototype.isCurrent = REMOVEDction () {
     return NanoStateManager.getCurrentState() == this;
 };
 
-NanoStateClass.prototype.onAdd = function (previousState) {
-    // Do not add code here, add it to the 'default' state (nano_state_defaut.js) or create a new state and override this function
+NanoStateClass.prototype.onAdd = REMOVEDction (previousState) {
+    // Do not add code here, add it to the 'default' state (nano_state_defaut.js) or create a new state and override this REMOVEDction
 
     NanoBaseCallbacks.addCallbacks();
     NanoBaseHelpers.addHelpers();
 };
 
-NanoStateClass.prototype.onRemove = function (nextState) {
-    // Do not add code here, add it to the 'default' state (nano_state_defaut.js) or create a new state and override this function
+NanoStateClass.prototype.onRemove = REMOVEDction (nextState) {
+    // Do not add code here, add it to the 'default' state (nano_state_defaut.js) or create a new state and override this REMOVEDction
 
     NanoBaseCallbacks.removeCallbacks();
     NanoBaseHelpers.removeHelpers();
 };
 
-NanoStateClass.prototype.onBeforeUpdate = function (data) {
-    // Do not add code here, add it to the 'default' state (nano_state_defaut.js) or create a new state and override this function
+NanoStateClass.prototype.onBeforeUpdate = REMOVEDction (data) {
+    // Do not add code here, add it to the 'default' state (nano_state_defaut.js) or create a new state and override this REMOVEDction
 
     data = NanoStateManager.executeBeforeUpdateCallbacks(data);
 
     return data; // Return data to continue, return false to prevent onUpdate and onAfterUpdate
 };
 
-NanoStateClass.prototype.onUpdate = function (data) {
-    // Do not add code here, add it to the 'default' state (nano_state_defaut.js) or create a new state and override this function
+NanoStateClass.prototype.onUpdate = REMOVEDction (data) {
+    // Do not add code here, add it to the 'default' state (nano_state_defaut.js) or create a new state and override this REMOVEDction
 
     try
     {
@@ -62,12 +62,12 @@ NanoStateClass.prototype.onUpdate = function (data) {
         {
             if (!this.mapInitialised)
             {
-                // Add drag functionality to the map ui
+                // Add drag REMOVEDctionality to the map ui
                 $('#uiMap').draggable();
 
                 $('#uiMapTooltip')
                     .off('click')
-                    .on('click', function (event) {
+                    .on('click', REMOVEDction (event) {
                         event.preventDefault();
                         $(this).fadeOut(400);
                     });
@@ -104,14 +104,14 @@ NanoStateClass.prototype.onUpdate = function (data) {
     }
 };
 
-NanoStateClass.prototype.onAfterUpdate = function (data) {
-    // Do not add code here, add it to the 'default' state (nano_state_defaut.js) or create a new state and override this function
+NanoStateClass.prototype.onAfterUpdate = REMOVEDction (data) {
+    // Do not add code here, add it to the 'default' state (nano_state_defaut.js) or create a new state and override this REMOVEDction
 
     NanoStateManager.executeAfterUpdateCallbacks(data);
 };
 
-NanoStateClass.prototype.alertText = function (text) {
-    // Do not add code here, add it to the 'default' state (nano_state_defaut.js) or create a new state and override this function
+NanoStateClass.prototype.alertText = REMOVEDction (text) {
+    // Do not add code here, add it to the 'default' state (nano_state_defaut.js) or create a new state and override this REMOVEDction
 
     alert(text);
 };

@@ -1066,7 +1066,7 @@
 
 	var/mob/living/carbon/human/H = M
 
-	if(ishuman(M) && alien == IS_SLIME) //Everything about them is treated like a targetted organism. Widespread bodily function begins to fail.
+	if(ishuman(M) && alien == IS_SLIME) //Everything about them is treated like a targetted organism. Widespread bodily REMOVEDction begins to fail.
 		if(volume <= 0.1 && data != -1)
 			data = -1
 			to_chat(M, "<span class='notice'>Your body ceases its revolt.</span>")

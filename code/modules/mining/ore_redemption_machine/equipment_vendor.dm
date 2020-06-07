@@ -238,7 +238,7 @@
 		// 	new /obj/item/twohanded/required/mining_hammer(drop_location)
 	qdel(voucher)
 
-/obj/machinery/mineral/equipment_vendor/proc/new_prize(var/name, var/path, var/cost) // Generic proc for adding new entries. Good for abusing for FUN and PROFIT.
+/obj/machinery/mineral/equipment_vendor/proc/new_prize(var/name, var/path, var/cost) // Generic proc for adding new entries. Good for abusing for REMOVED and PROFIT.
 	if(!cost)
 		cost = 100
 	if(!path)

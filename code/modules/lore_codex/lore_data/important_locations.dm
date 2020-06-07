@@ -42,13 +42,13 @@
 	name = "Firnir (Terrestrial Planet)"
 	keywords += list("Firnir")
 	data = "Firnir is the first planet of Vir, tidally locked to it, and having temperatures in excess of 570 degrees \
-	kelvin (299°C) on the day side has caused this planet to go mostly ignored."
+	kelvin (299ï¿½C) on the day side has caused this planet to go mostly ignored."
 
 /datum/lore/codex/page/tyr/add_content()
 	name = "Tyr (Terrestrial Planet)"
 	keywords += list("Tyr")
 	data = "The second closest planet to [quick_link("Vir")], this planet has a high concentration of minerals inside its crust, as well as active volcanism and plate tectonics.  \
-	The temperature on the surface can reach up to 405 degrees kelvin (132°C), which has deterred most people from the planet, except for two [quick_link("TSC", "TSCs")], \
+	The temperature on the surface can reach up to 405 degrees kelvin (132ï¿½C), which has deterred most people from the planet, except for two [quick_link("TSC", "TSCs")], \
 	Greyson Manufactories and [quick_link("Xion Manufacturing Group")].  In orbit, the two companies each have a space station, used to coordinate and \
 	control their stations on the surface without having to suffer the intense heat.  Xion's station also doubles as a control and oversight facility for their \
 	[quick_link("drones","autonomous mining drones")].\
@@ -81,7 +81,7 @@
 	data = "The Vir Interstellar Spaceport is a large facility in orbit of the planet [quick_link("Sif")] which handles the loading and \
 	unloading, refuelling, and general maintenance of large spacecraft. The main structure is owned by the \
 	[quick_link("Sif Governmental Authority")], but individual offices, docking/loading bays, and warehouses are often leased to individuals \
-	or organisations.  The position of the spaceport allows it to function not only as a key node for transport inside the Vir \
+	or organisations.  The position of the spaceport allows it to REMOVEDction not only as a key node for transport inside the Vir \
 	system, especially to and from the planet Sif, but also as a key stopping point interstellar craft travelling via Vir which need refuelling. \
 	<br><br>\
 	The station itself is mostly designed around its logistical and commercial needs, and although other strategically-placed \
@@ -98,7 +98,7 @@
 /datum/lore/codex/page/magni/add_content()
 	name = "Magni (Terrestrial Planet)"
 	keywords += list("Magni")
-	data = "Outside of the habitable zone, the barren world Magni is generally at 202 kelvin (-71°C)."
+	data = "Outside of the habitable zone, the barren world Magni is generally at 202 kelvin (-71ï¿½C)."
 
 /datum/lore/codex/page/kara/add_content()
 	name = "Kara (Gas Giant)"
@@ -107,7 +107,7 @@
 	to be the remnants of a much larger moon that was ripped apart by Kara, long ago. Curerntly, a large number of these \
 	asteroids are being used by many different businesses, and some governmental infrastructure has been built. The most prominent \
 	asteroid installation is the [quick_link("Northern Star", "NCS Northern Star")], a general purpose colony owned and operated by \
-	[quick_link("NanoTrasen")]. The mid-atmospheric temperature of the gas giant averages to around 150 kelvin (-108°C)."
+	[quick_link("NanoTrasen")]. The mid-atmospheric temperature of the gas giant averages to around 150 kelvin (-108ï¿½C)."
 
 /datum/lore/codex/page/northern_star/add_content()
 	name = "Northern Star (Artificial Satellite)"
@@ -126,4 +126,4 @@
 /datum/lore/codex/page/rota/add_content()
 	name = "Rota (Gas Giant)"
 	keywords += list("Rota")
-	data = "An ice giant, with a beautiful ring system circling it. The average temperature for it is 165 kelvin (-157°C)."
+	data = "An ice giant, with a beautiful ring system circling it. The average temperature for it is 165 kelvin (-157ï¿½C)."

@@ -12,7 +12,7 @@
 
 				var locked_tabs = new Array();
 
-				function updateSearch(){
+				REMOVEDction updateSearch(){
 
 
 					var filter_text = document.getElementById('filter');
@@ -61,7 +61,7 @@
 
 				}
 
-				function expand(id,job,name,real_name,image,key,ip,antagonist,ref){
+				REMOVEDction expand(id,job,name,real_name,image,key,ip,antagonist,ref){
 
 					clearAll();
 
@@ -91,7 +91,7 @@
 					span.innerHTML = body
 				}
 
-				function clearAll(){
+				REMOVEDction clearAll(){
 					var spans = document.getElementsByTagName('span');
 					for(var i = 0; i < spans.length; i++){
 						var span = spans\[i\];
@@ -120,7 +120,7 @@
 					}
 				}
 
-				function addToLocked(id,link_id,notice_span_id){
+				REMOVEDction addToLocked(id,link_id,notice_span_id){
 					var link = document.getElementById(link_id);
 					var decision = link.getAttribute("name");
 					if(decision == "1"){
@@ -148,11 +148,11 @@
 					//document.write("aa - "+link.getAttribute("onClick"));
 				}
 
-				function attempt(ab){
+				REMOVEDction attempt(ab){
 					return ab;
 				}
 
-				function removeFromLocked(id,link_id,notice_span_id){
+				REMOVEDction removeFromLocked(id,link_id,notice_span_id){
 					//document.write("a");
 					var index = 0;
 					var pass = 0;
@@ -172,7 +172,7 @@
 					//link.setAttribute("onClick","addToLocked('"+id+"','"+link_id+"','"+notice_span_id+"')");
 				}
 
-				function selectTextField(){
+				REMOVEDction selectTextField(){
 					var filter_text = document.getElementById('filter');
 					filter_text.focus();
 					filter_text.select();

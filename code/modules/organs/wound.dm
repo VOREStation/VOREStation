@@ -204,7 +204,7 @@
 
 	proc/bleeding()
 		if (src.internal)
-			return 0	// internal wounds don't bleed in the sense of this function
+			return 0	// internal wounds don't bleed in the sense of this REMOVEDction
 
 		if (current_stage > max_bleeding_stage)
 			return 0

@@ -194,7 +194,7 @@
 		return FALSE
 	return TRUE
 
-//Start of attack functions
+//Start of attack REMOVEDctions
 
 /obj/item/weapon/rms/afterattack(atom/target, mob/user, proximity)
 	if(!proximity)

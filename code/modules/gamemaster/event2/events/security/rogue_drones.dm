@@ -65,6 +65,6 @@
 			number_recovered++
 
 		if(number_recovered > spawned_mobs.len * 0.75)
-			command_announcement.Announce("The drones that were malfunctioning have been recovered safely.", "Rogue drone alert")
+			command_announcement.Announce("The drones that were malREMOVEDctioning have been recovered safely.", "Rogue drone alert")
 		else
 			command_announcement.Announce("We're disappointed at the loss of the drones, but the survivors have been recovered.", "Rogue drone alert")

@@ -19,7 +19,7 @@
 	if(silence_time)
 		if(world.timeofday >= silence_time)
 			silence_time = null
-			to_chat(src, "<font color=green>Communication circuit reinitialized. Speech and messaging functionality restored.</font>")
+			to_chat(src, "<font color=green>Communication circuit reinitialized. Speech and messaging REMOVEDctionality restored.</font>")
 
 	handle_statuses()
 

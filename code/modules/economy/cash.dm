@@ -149,7 +149,7 @@ proc/spawn_money(var/sum, spawnloc, mob/living/carbon/human/human_user as mob)
 
 /obj/item/weapon/spacecash/ewallet
 	name = "charge card"
-	icon_state = "efundcard"
+	icon_state = "eREMOVEDdcard"
 	desc = "A card that holds an amount of money."
 	drop_sound = 'sound/items/drop/card.ogg'
 	var/owner_name = "" //So the ATM can set it so the EFTPOS can put a valid name on transactions.

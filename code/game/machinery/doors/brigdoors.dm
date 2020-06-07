@@ -155,7 +155,7 @@
 
 	return
 
-//Allows AIs to use door_timer, see human attack_hand function below
+//Allows AIs to use door_timer, see human attack_hand REMOVEDction below
 /obj/machinery/door_timer/attack_ai(var/mob/user as mob)
 	return src.attack_hand(user)
 
@@ -219,7 +219,7 @@
 	return
 
 
-//Function for using door_timer dialog input, checks if user has permission
+//REMOVEDction for using door_timer dialog input, checks if user has permission
 // href_list to
 //  "timing" turns on timer
 //  "tp" value to modify timer
@@ -272,10 +272,10 @@
 	return
 
 
-//icon update function
+//icon update REMOVEDction
 // if NOPOWER, display blank
 // if BROKEN, display blue screen of death icon AI uses
-// if timing=true, run update display function
+// if timing=true, run update display REMOVEDction
 /obj/machinery/door_timer/update_icon()
 	if(stat & (NOPOWER))
 		icon_state = "frame"

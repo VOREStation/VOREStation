@@ -205,7 +205,7 @@
 	data = "A Positronic being, is an individual with a positronic brain, manufactured \
 	and fostered amongst organic life. Positronic brains enjoy the same legal status as a human in [quick_link("SolGov")] space, although discrimination is \
 	still prevalent, and are considered sapient on all accounts. They can be considered a \"synthetic species\". Half-developed and \
-	half-discovered in the 2280’s by a human black lab studying alien artifacts, the first positronic brain was an inch-wide cube \
+	half-discovered in the 2280ï¿½s by a human black lab studying alien artifacts, the first positronic brain was an inch-wide cube \
 	of an palladium-iridium alloy, nano-etched with billions upon billions of conduits and connections. Upon activation, \
 	hard-booted with an emitter laser, the brain issued a single sentence before the neural pathways collapsed and \
 	it became an inert lump of platinum: \"What is my purpose?\"."
@@ -239,7 +239,7 @@
 /datum/lore/codex/page/jans_fhriede
 	name = "Jans-Fhriede Test"
 	keywords = list("Jans-Fhriede", "JF", "Jans", "Fhriede", "Jans Fhriede")
-	data = "Positronics are eligible to take the \"Jans-Fhriede Test\" after a year of being created, measuring their function in a society and judging if they act \
+	data = "Positronics are eligible to take the \"Jans-Fhriede Test\" after a year of being created, measuring their REMOVEDction in a society and judging if they act \
 	socially acceptable and are capable of understanding their actions and the consequences resulting from them. If they successfully pass the test, \
 	they are considered legal adults and hold the same basis of rights as a normal human. At that point, Positronics are not allowed to be lawed, \
 	unless on a contractual basis or otherwise under their own volition."
@@ -269,7 +269,7 @@
 	keywords = list("fork")
 	data = "A \"codeline\" is a single type of drone. A codeline represents a significant degree of effort from sapient programmers to realize, as well as \
 	a substantial amount of regulatory fees levied by the government. Each copy of a codeline is called a \"fork\", whether the fork is created from the \
-	codeline’s initial state or from a fully realized individual of that codeline. The degree of similarity between forks of the same codeline varies \
+	codelineï¿½s initial state or from a fully realized individual of that codeline. The degree of similarity between forks of the same codeline varies \
 	on the intelligence of the codeline, with low-level forks being virtually identical to high-level forks being no more similar than family members."
 
 /*
@@ -287,8 +287,8 @@
 	keywords = list("SG-EIO", "SG EIO", "EIO", "Intelligence Oversight")
 	data = "SG-EIO, usually just called EIO, is the organization charged with monitoring existing AI for any threat of dangerous emergence. Their perception in the \
 	public eye is generally positive, with all but the hardest-line Mercurial humans in favor of protection from the dangers of Seed AI. Some positronic rights \
-	groups bristle at the EIO’s human-centric viewpoint, but most are glad to have a different boogeyman in the form of drone intelligences. The tiny population \
-	of A-class drones are generally frightened of the EIO’s total power over them."
+	groups bristle at the EIOï¿½s human-centric viewpoint, but most are glad to have a different boogeyman in the form of drone intelligences. The tiny population \
+	of A-class drones are generally frightened of the EIOï¿½s total power over them."
 
 /*/datum/lore/codex/category/drone_classes
 	name = "Drone Classifications"
@@ -346,7 +346,7 @@
 	name = "A Class"
 	keywords += list("AGI")
 	data = "A-class drones are also referred to as AGI. A-class drones are capable of performing in many contexts and can learn to solve problems from \
-	first principles, with an incredible potential for growth and emergent behavior. However, some abilities fall short of humans’, usually those relating \
+	first principles, with an incredible potential for growth and emergent behavior. However, some abilities fall short of humansï¿½, usually those relating \
 	to socialization, and they often act in ways that are strange or distressing. There is a small but growing lobby of support for the personhood of A-class \
 	drones. The cost of initializing an A-class drone is absolutely massive, as they will be monitored by [quick_link("EIO")] forever. The auditing cost of an A-class drone \
 	codeline is even more staggering, making development and deployment of AGI limited to research, highly difficult and high-throughput operations like habitat \
@@ -358,7 +358,7 @@
 	data = "AA-class drones <b>do not yet exist</b>. Hypothetically, they are equal to living in every respect, with psychology that would not be abnormal in a baseline \
 	human. The type of AA-class drone most frequently discussed is a hypothetical digitized consciousness of a human, a human brain that is somehow translated into \
 	software. Some argue that a small fraction of the A-class drones would more properly be considered AA, but as of yet no action has been taken. Some Mercurials \
-	will jokingly refer to themselves or other organics and positronics as AA’s. Research into brain uploading is heavily regulated and generally illegal."
+	will jokingly refer to themselves or other organics and positronics as AAï¿½s. Research into brain uploading is heavily regulated and generally illegal."
 
 /datum/lore/codex/page/class_aaa
 	name = "AAA Class"

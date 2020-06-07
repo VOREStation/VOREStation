@@ -175,7 +175,7 @@
 /obj/item/weapon/paper/listneningpost/year2559/november
 	name = "\improper November 2559 Report"
 	info = {"A clown federation owned vessel called the Calypso was discovered in the Virgo system. It was a
-			ghost ship. Allegedly everyone on board perished due to a joke so funny that everyone laughed
+			ghost ship. Allegedly everyone on board perished due to a joke so REMOVEDny that everyone laughed
 			themselves to madness, then death. NanoTrasen is trying to cover it up. No one knows why."}
 
 /obj/item/weapon/paper/listneningpost/year2559/december

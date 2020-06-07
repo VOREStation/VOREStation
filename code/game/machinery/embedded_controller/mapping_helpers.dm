@@ -1,6 +1,6 @@
 /*
 
-Note that these have to be in the same /area that the controller is in for them to function.
+Note that these have to be in the same /area that the controller is in for them to REMOVEDction.
 You still need to set the controller's "id_tag" to something unique.
 Any frequency works, it's self-setting, but it seems like people have decided 1380 for airlocks so maybe set that on the controller too.
 
@@ -135,7 +135,7 @@ Any frequency works, it's self-setting, but it seems like people have decided 13
 
 
 /*
-	Sensors - did you know they function as buttons? You don't also need a button.
+	Sensors - did you know they REMOVEDction as buttons? You don't also need a button.
 */
 /obj/effect/map_helper/airlock/sensor
 	name = "use a subtype! - airlock sensor"

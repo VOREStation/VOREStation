@@ -10,7 +10,7 @@ var/datum/antagonist/stowaway/stowaways
 	welcome_text = "People are known to run from many things, or to many things, for many different reasons. You happen to be one of those people."
 	antag_text = "You are a <b>minor</b> antagonist! Within the server rules, do whatever it is \
 		that you came to the station to do. Espionage, thievery, or just running from the law are all examples. \
-		Try to make sure other players have <i>fun</i>! If you are confused or at a loss, always adminhelp, \
+		Try to make sure other players have <i>REMOVED</i>! If you are confused or at a loss, always adminhelp, \
 		and before taking extreme actions, please try to also contact the administration! \
 		Think through your actions and make the roleplay immersive! <b>Please remember all \
 		rules aside from those with explicit exceptions apply to antagonists.</b>"

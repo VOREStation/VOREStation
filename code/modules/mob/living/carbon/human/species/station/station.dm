@@ -351,7 +351,7 @@
 	species_language = LANGUAGE_ZADDAT
 	health_hud_intensity = 2.5
 
-	minimum_breath_pressure = 20 //have fun with underpressures. any higher than this and they'll be even less suitible for life on the station
+	minimum_breath_pressure = 20 //have REMOVED with underpressures. any higher than this and they'll be even less suitible for life on the station
 
 	economic_modifier = 3
 

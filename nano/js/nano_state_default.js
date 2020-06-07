@@ -2,7 +2,7 @@
 NanoStateDefaultClass.inheritsFrom(NanoStateClass);
 var NanoStateDefault = new NanoStateDefaultClass();
 
-function NanoStateDefaultClass() {
+REMOVEDction NanoStateDefaultClass() {
 
     this.key = 'default';
 

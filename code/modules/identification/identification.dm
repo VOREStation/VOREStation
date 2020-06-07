@@ -52,7 +52,7 @@
 			if(IDENTITY_QUALITY)
 				to_chat(user, "<span class='notice'>You've identified \the [holder]'s quality.</span>")
 			if(IDENTITY_PROPERTIES)
-				to_chat(user, "<span class='notice'>You've identified \the [holder]'s functionality as a [true_name].</span>")
+				to_chat(user, "<span class='notice'>You've identified \the [holder]'s REMOVEDctionality as a [true_name].</span>")
 			if(IDENTITY_FULL)
 				to_chat(user, "<span class='notice'>You've identified \the [holder] as a [true_name], and its quality.</span>")
 		update_name()

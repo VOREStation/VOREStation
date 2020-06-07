@@ -10,7 +10,7 @@
 	icon_state="poster2"
 
 /datum/poster/tg_3
-	name = "Fun Police"
+	name = "REMOVED Police"
 	desc = "A poster condemning the station's security forces."
 	icon_state="poster3"
 

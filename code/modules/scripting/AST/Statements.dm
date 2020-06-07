@@ -7,26 +7,26 @@
 */
 /node/statement
 /*
-	Class: FunctionCall
-	Represents a call to a function.
+	Class: REMOVEDctionCall
+	Represents a call to a REMOVEDction.
 */
 //
-	FunctionCall
+	REMOVEDctionCall
 		var
-			func_name
+			REMOVEDc_name
 			node/identifier/object
 			list/parameters=new
 
 /*
-	Class: FunctionDefinition
-	Defines a function.
+	Class: REMOVEDctionDefinition
+	Defines a REMOVEDction.
 */
 //
-	FunctionDefinition
+	REMOVEDctionDefinition
 		var
-			func_name
+			REMOVEDc_name
 			list/parameters=new
-			node/BlockDefinition/FunctionBlock/block
+			node/BlockDefinition/REMOVEDctionBlock/block
 
 /*
 	Class: VariableAssignment
@@ -114,7 +114,7 @@
 
 /*
 	Class: ReturnStatement
-	Ends the function and returns a value.
+	Ends the REMOVEDction and returns a value.
 */
 //
 	ReturnStatement

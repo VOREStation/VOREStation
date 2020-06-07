@@ -53,7 +53,7 @@
 	as preferable to evacuating a ship's crew and potentially losing the entire craft and its cargo. \
 	<br><br>\
 	VifGov records indicate that the colony ship ICV Kauai declared a major onboard emergency in Sif orbit \
-	on the 14th April 2353, citing major systems malfunction following a fire in the engine compartment. \
+	on the 14th April 2353, citing major systems malREMOVEDction following a fire in the engine compartment. \
 	Due to the relatively sparse population of the planet, it was deemed safe to jettison both engine \
 	blocks, and the colonists were safely towed to port with no hands lost."
 	value = CATALOGUER_REWARD_MEDIUM

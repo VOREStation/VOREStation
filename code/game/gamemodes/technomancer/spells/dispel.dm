@@ -1,7 +1,7 @@
 /datum/technomancer/spell/dispel
 	name = "Dispel"
-	desc = "Ends most on-going effects caused by another Technomancer function on the target.  Useful if you are worried about \
-	hitting an ally with a deterimental function, if your opponent has similar capabilities to you, or if you're tired of Instability \
+	desc = "Ends most on-going effects caused by another Technomancer REMOVEDction on the target.  Useful if you are worried about \
+	hitting an ally with a deterimental REMOVEDction, if your opponent has similar capabilities to you, or if you're tired of Instability \
 	plaguing you."
 	cost = 25
 	obj_path = /obj/item/weapon/spell/dispel

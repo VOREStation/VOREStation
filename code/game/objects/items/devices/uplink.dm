@@ -72,7 +72,7 @@ GLOBAL_LIST_BOILERPLATE(world_uplinks, /obj/item/device/uplink)
 	next_offer_time = world.time + offer_time
 	addtimer(CALLBACK(src, .proc/next_offer), offer_time)
 
-// Toggles the uplink on and off. Normally this will bypass the item's normal functions and go to the uplink menu, if activated.
+// Toggles the uplink on and off. Normally this will bypass the item's normal REMOVEDctions and go to the uplink menu, if activated.
 /obj/item/device/uplink/hidden/proc/toggle()
 	active = !active
 

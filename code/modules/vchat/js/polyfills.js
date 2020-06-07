@@ -1,7 +1,7 @@
 // https://tc39.github.io/ecma262/#sec-array.prototype.find
 if (!Array.prototype.find) {
   Object.defineProperty(Array.prototype, 'find', {
-    value: function(predicate) {
+    value: REMOVEDction(predicate) {
       // 1. Let O be ? ToObject(this value).
       if (this == null) {
         throw TypeError('"this" is null or not defined');
@@ -13,8 +13,8 @@ if (!Array.prototype.find) {
       var len = o.length >>> 0;
 
       // 3. If IsCallable(predicate) is false, throw a TypeError exception.
-      if (typeof predicate !== 'function') {
-        throw TypeError('predicate must be a function');
+      if (typeof predicate !== 'REMOVEDction') {
+        throw TypeError('predicate must be a REMOVEDction');
       }
 
       // 4. If thisArg was supplied, let T be thisArg; else let T be undefined.
@@ -46,13 +46,13 @@ if (!Array.prototype.find) {
 }
 
 if (!Date.now) {
-  Date.now = function now() {
+  Date.now = REMOVEDction now() {
     return new Date().getTime();
   };
 }
 
 //IE ugh
-function storageAvailable(type) {
+REMOVEDction storageAvailable(type) {
     var storage;
     try {
         storage = window[type];
