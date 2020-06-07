@@ -658,9 +658,30 @@
 	departments = list("Pilot Blue","Pilot")
 
 /obj/machinery/suit_cycler/vintage
-	name = "Vintage suit cycler"
+	name = "Vintage Crew suit cycler"
 	model_text = "Vintage"
-	departments = list("Vintage Crew","Vintage Engineering","Vintage Marine","Vintage Medical","Vintage Officer")
+	departments = list("Vintage Crew")
+	req_access = null
+
+/obj/machinery/suit_cycler/vintage/pilot
+	name = "Vintage Pilot suit cycler"
+	model_text = "Vintage Pilot"
+	departments = list("Vintage Pilot (Bubble Helm)","Vintage Pilot (Closed Helm)")
+	
+/obj/machinery/suit_cycler/vintage/medsci
+	name = "Vintage MedSci suit cycler"
+	model_text = "Vintage MedSci"
+	departments = list("Vintage Medical (Bubble Helm)","Vintage Medical (Closed Helm)","Vintage Research (Bubble Helm)","Vintage Research (Closed Helm)")
+	
+/obj/machinery/suit_cycler/vintage/rugged
+	name = "Vintage Ruggedized suit cycler"
+	model_text = "Vintage Ruggedized"
+	departments = list("Vintage Engineering","Vintage Marine","Vintage Officer","Vintage Mercenary")
+
+/obj/machinery/suit_cycler/vintage/omni
+	name = "Vintage Master suit cycler"
+	model_text = "Vintage Master"
+	departments = list("Vintage Crew","Vintage Engineering","Vintage Pilot (Bubble Helm)","Vintage Pilot (Closed Helm)","Vintage Medical (Bubble Helm)","Vintage Medical (Closed Helm)","Vintage Research (Bubble Helm)","Vintage Research (Closed Helm)","Vintage Marine","Vintage Officer","Vintage Mercenary")
 
 /obj/machinery/suit_cycler/vintage/Initialize()
 	species -= SPECIES_TESHARI
@@ -775,7 +796,7 @@
 
 	//Clear the access reqs, disable the safeties, and open up all paintjobs.
 	to_chat(user, "<span class='danger'>You run the sequencer across the interface, corrupting the operating protocols.</span>")
-	departments = list("Engineering","Mining","Medical","Security","Atmospherics","HAZMAT","Construction","Biohazard","Crowd Control","Security EVA","Emergency Medical Response","^%###^%$", "Charring","Vintage Crew","Vintage Engineering","Vintage Marine","Vintage Medical","Vintage Officer")
+	departments = list("Engineering","Mining","Medical","Security","Atmospherics","HAZMAT","Construction","Biohazard","Crowd Control","Security EVA","Emergency Medical Response","^%###^%$", "Charring")
 	species = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_VULPKANIN) //VORESTATION EDIT
 
 	emagged = 1
@@ -1084,7 +1105,10 @@
 		if("Vintage Engineering")
 			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/engineering
 			parent_suit = /obj/item/clothing/suit/space/void/refurb/engineering
-		if("Vintage Medical")
+		if("Vintage Medical (Bubble Helm)")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/medical/alt
+			parent_suit = /obj/item/clothing/suit/space/void/refurb/medical
+		if("Vintage Medical (Closed Helm)")
 			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/medical
 			parent_suit = /obj/item/clothing/suit/space/void/refurb/medical
 		if("Vintage Marine")
@@ -1093,6 +1117,21 @@
 		if("Vintage Officer")
 			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/officer
 			parent_suit = /obj/item/clothing/suit/space/void/refurb/officer
+		if("Vintage Pilot (Bubble Helm)")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/pilot
+			parent_suit = /obj/item/clothing/suit/space/void/refurb/pilot
+		if("Vintage Pilot (Closed Helm)")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/pilot/alt
+			parent_suit = /obj/item/clothing/suit/space/void/refurb/pilot
+		if("Vintage Research (Bubble Helm)")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/research/alt
+			parent_suit = /obj/item/clothing/suit/space/void/refurb/research
+		if("Vintage Research (Closed Helm)")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/research
+			parent_suit = /obj/item/clothing/suit/space/void/refurb/research
+		if("Vintage Mercenary")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/mercenary
+			parent_suit = /obj/item/clothing/suit/space/void/refurb/mercenary
 		//BEGIN: Space for additional downstream variants
 		//VOREStation Addition Start
 		if("Director")
@@ -1107,7 +1146,10 @@
 		if("Talon Engineering")
 			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/engineering/talon
 			parent_suit = /obj/item/clothing/suit/space/void/refurb/engineering/talon
-		if("Talon Medical")
+		if("Talon Medical (Bubble Helm)")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/medical/alt/talon
+			parent_suit = /obj/item/clothing/suit/space/void/refurb/medical/talon
+		if("Talon Medical (Closed Helm)")
 			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/medical/talon
 			parent_suit = /obj/item/clothing/suit/space/void/refurb/medical/talon
 		if("Talon Marine")
@@ -1116,6 +1158,21 @@
 		if("Talon Officer")
 			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/officer/talon
 			parent_suit = /obj/item/clothing/suit/space/void/refurb/officer/talon
+		if("Talon Pilot (Bubble Helm)")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/pilot/talon
+			parent_suit = /obj/item/clothing/suit/space/void/refurb/pilot/talon
+		if("Talon Pilot (Closed Helm)")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/pilot/alt/talon
+			parent_suit = /obj/item/clothing/suit/space/void/refurb/pilot/talon
+		if("Talon Research (Bubble Helm)")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/research/alt/talon
+			parent_suit = /obj/item/clothing/suit/space/void/refurb/research/talon
+		if("Talon Research (Closed Helm)")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/research/talon
+			parent_suit = /obj/item/clothing/suit/space/void/refurb/research/talon
+		if("Talon Mercenary")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/mercenary/talon
+			parent_suit = /obj/item/clothing/suit/space/void/refurb/mercenary/talon
 		//VOREStation Addition End
 		//END: downstream variant space
 	

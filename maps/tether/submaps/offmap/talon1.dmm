@@ -554,6 +554,11 @@
 	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/talon/deckone/medical)
+"en" = (
+/obj/structure/table/rack/shelf/steel,
+/obj/item/clothing/suit/space/void/refurb/talon,
+/turf/simulated/floor/tiled/eris/dark/danger,
+/area/talon/deckone/secure_storage)
 "eo" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -1698,6 +1703,12 @@
 	},
 /turf/space,
 /area/talon/maintenance/deckone_starboard_fore_wing)
+"nS" = (
+/obj/structure/table/rack/shelf/steel,
+/obj/item/weapon/tank/jetpack/carbondioxide,
+/obj/item/weapon/tank/jetpack/carbondioxide,
+/turf/simulated/floor/tiled/eris/dark/danger,
+/area/talon/deckone/secure_storage)
 "nT" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -2068,6 +2079,11 @@
 	},
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/deckone/central_hallway)
+"sb" = (
+/obj/structure/table/rack/shelf/steel,
+/obj/item/clothing/shoes/magboots,
+/turf/simulated/floor/tiled/eris/dark/danger,
+/area/talon/deckone/secure_storage)
 "sc" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -2135,7 +2151,7 @@
 /turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/deckone_starboard)
 "sK" = (
-/obj/structure/table/rack/steel,
+/obj/machinery/suit_cycler/vintage/tcrew,
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/talon/deckone/secure_storage)
 "sL" = (
@@ -2525,6 +2541,12 @@
 	},
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/talon/deckone/workroom)
+"wj" = (
+/obj/structure/table/rack/shelf/steel,
+/obj/item/clothing/suit/space/void/refurb/talon,
+/obj/item/clothing/head/helmet/space/void/refurb/talon,
+/turf/simulated/floor/tiled/eris/dark/danger,
+/area/talon/deckone/secure_storage)
 "wk" = (
 /obj/structure/sign/warning/docking_area,
 /turf/simulated/wall,
@@ -2538,6 +2560,7 @@
 "wz" = (
 /obj/structure/table/rack/steel,
 /obj/machinery/camera/network/talon,
+/obj/item/device/suit_cooling_unit,
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/talon/deckone/secure_storage)
 "wD" = (
@@ -2870,6 +2893,7 @@
 	pixel_y = -25
 	},
 /obj/structure/table/rack/steel,
+/obj/item/weapon/tank/oxygen,
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/talon/deckone/secure_storage)
 "zx" = (
@@ -4272,6 +4296,11 @@
 	},
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/deckone/brig)
+"LO" = (
+/obj/structure/table/rack/shelf/steel,
+/obj/item/clothing/head/helmet/space/void/refurb/talon,
+/turf/simulated/floor/tiled/eris/dark/danger,
+/area/talon/deckone/secure_storage)
 "LU" = (
 /obj/structure/catwalk,
 /obj/machinery/light/small{
@@ -4601,6 +4630,7 @@
 /area/talon/deckone/bridge)
 "Ou" = (
 /obj/structure/table/rack/shelf/steel,
+/obj/item/weapon/tank/oxygen,
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/talon/deckone/secure_storage)
 "Ow" = (
@@ -14721,9 +14751,9 @@ ab
 ac
 Ou
 dQ
-Ou
+sb
 kN
-Ou
+en
 aR
 aM
 am
@@ -14861,11 +14891,11 @@ aa
 aa
 ab
 ac
-Ou
+wj
 kN
-Ou
+nS
 kN
-Ou
+LO
 aR
 aM
 JC
