@@ -381,10 +381,12 @@
 // End of sweaters
 //***
 
+//VOREStation edit (Date)
 /obj/item/clothing/accessory/cowledvest
 	name = "cowled vest"
 	desc = "A body warmer for the 24th century."
 	icon_state = "cowled_vest"
+//VSEdit end
 
 /obj/item/clothing/accessory/asymmetric
 	name = "blue asymmetrical jacket"
