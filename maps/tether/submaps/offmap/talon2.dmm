@@ -855,7 +855,7 @@
 	dir = 8;
 	pixel_x = 0
 	},
-/obj/machinery/suit_cycler/vintage/tcrew,
+/obj/machinery/suit_cycler/vintage/tpilot,
 /turf/simulated/floor/wood,
 /area/talon/decktwo/pilot_room)
 "eh" = (

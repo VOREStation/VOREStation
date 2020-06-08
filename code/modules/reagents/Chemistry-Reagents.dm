@@ -125,7 +125,7 @@
 				affect_ingest(M, alien, removed * ingest_abs_mult)
 			if(CHEM_TOUCH)
 				affect_touch(M, alien, removed)
-	if(overdose && (volume > overdose) && (active_metab.metabolism_class != CHEM_TOUCH && !can_overdose_touch))
+	if(overdose && (volume > overdose * M?.species.chemOD_threshold) && (active_metab.metabolism_class != CHEM_TOUCH && !can_overdose_touch))
 		overdose(M, alien, removed)
 	remove_self(removed)
 	return

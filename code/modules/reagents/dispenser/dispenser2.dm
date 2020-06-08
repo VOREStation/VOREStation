@@ -29,6 +29,17 @@
 	. = ..()
 	. += "It has [cartridges.len] cartridges installed, and has space for [DISPENSER_MAX_CARTRIDGES - cartridges.len] more."
 
+/obj/machinery/chemical_dispenser/verb/rotate_clockwise()
+	set name = "Rotate Dispenser Clockwise"
+	set category = "Object"
+	set src in oview(1)
+
+	if (src.anchored || usr:stat)
+		to_chat(usr, "It is fastened down!")
+		return 0
+	src.set_dir(turn(src.dir, 270))
+	return 1
+
 /obj/machinery/chemical_dispenser/proc/add_cartridge(obj/item/weapon/reagent_containers/chem_disp_cartridge/C, mob/user)
 	if(!istype(C))
 		if(user)

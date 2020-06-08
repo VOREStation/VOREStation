@@ -2,6 +2,7 @@
 var NanoTemplate = function () {
 
     var _templateData = {};
+    var _templateSources = {};
 
     var _templates = {};
     var _compiledTemplates = {};
@@ -15,59 +16,43 @@ var NanoTemplate = function () {
 		if (_templateData == null)
 		{
 			alert('Error: Template data did not load correctly.');
-		}
-
-		loadNextTemplate();
-    };
-
-    var loadNextTemplate = function () {
-        // we count the number of templates for this ui so that we know when they've all been rendered
-        var templateCount = Object.size(_templateData);
-
-        if (!templateCount)
-        {
-            $(document).trigger('templatesLoaded');
-            return;
         }
 
-        // load markup for each template and register it
-        for (var key in _templateData)
-        {
-            if (!_templateData.hasOwnProperty(key))
-            {
-                continue;
-            }
-
-            $.when($.ajax({
-                    url: _templateData[key],
+        if (('nanouiTemplateBundle' in window) && (typeof nanouiTemplateBundle === 'function')) {
+            _templateSources = nanouiTemplateBundle(); // From nanoui_templates.js
+        }
+        var templateLoadingPromises = $.map(_templateData, function(filename, key) {
+            var fetchSourcePromise;
+            if (_templateSources && _templateSources.hasOwnProperty(filename)) {
+                // Its in the bundle, just do it
+                fetchSourcePromise = $.Deferred().resolve(_templateSources[filename]).promise();
+            } else {
+                // Otherwise fetch from ze network
+                fetchSourcePromise = $.ajax({
+                    url: filename,
                     cache: false,
                     dataType: 'text'
-                }))
-                .done(function(templateMarkup) {
-
-                    templateMarkup += '<div class="clearBoth"></div>';
-
-                    try
-                    {
-                        NanoTemplate.addTemplate(key, templateMarkup);
-                    }
-                    catch(error)
-                    {
-                        alert('ERROR: An error occurred while loading the UI: ' + error.message);
-                        return;
-                    }
-
-                    delete _templateData[key];
-
-                    loadNextTemplate();
-                })
-                .fail(function () {
-                    alert('ERROR: Loading template ' + key + '(' + _templateData[key] + ') failed!');
                 });
+            }
 
-            return;
-        }
-    }
+            return fetchSourcePromise.done(function(templateMarkup) {
+                templateMarkup += '<div class="clearBoth"></div>';
+                try {
+                    NanoTemplate.addTemplate(key, templateMarkup);
+                } catch(error) {
+                    alert('ERROR: An error occurred while loading the UI: ' + error.message);
+                    return;
+                }
+            }).fail(function () {
+                alert('ERROR: Loading template ' + key + '(' + _templateData[key] + ') failed!');
+            });
+        });
+
+        // Wait for all of them to be done and then trigger the event.
+        $.when.apply(this, templateLoadingPromises).done(function() {
+            $(document).trigger('templatesLoaded');
+        });
+    };
 
     var compileTemplates = function () {
 

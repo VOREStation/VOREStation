@@ -2,7 +2,7 @@
 	name = "medicine closet"
 	desc = "Filled with medical junk."
 	req_access = list(access_medical)
-	closet_appearance = /decl/closet_appearance/secure_closet/medical
+	closet_appearance = /decl/closet_appearance/secure_closet/medical/alt
 
 	starts_with = list(
 		/obj/item/weapon/storage/box/autoinjectors,
@@ -17,6 +17,7 @@
 	name = "anesthetics closet"
 	desc = "Used to knock people out."
 	req_access = list(access_surgery)
+	closet_appearance = /decl/closet_appearance/secure_closet/medical
 
 	starts_with = list(
 		/obj/item/weapon/tank/anesthetic = 3,
@@ -26,7 +27,7 @@
 /obj/structure/closet/secure_closet/medical3
 	name = "medical doctor's locker"
 	req_access = list(access_medical_equip)
-	closet_appearance = /decl/closet_appearance/secure_closet/medical/alt
+	closet_appearance = /decl/closet_appearance/secure_closet/medical/doctor
 
 	starts_with = list(
 		/obj/item/clothing/under/rank/medical,
@@ -90,7 +91,7 @@
 	name = "paramedic locker"
 	desc = "Supplies for a first responder."
 	req_access = list(access_medical_equip)
-	closet_appearance = /decl/closet_appearance/secure_closet/medical
+	closet_appearance = /decl/closet_appearance/secure_closet/medical/paramedic
 
 	starts_with = list(
 		/obj/item/weapon/storage/backpack/dufflebag/emt,
@@ -183,7 +184,7 @@
 	name = "chemical closet"
 	desc = "Store dangerous chemicals in here."
 	req_access = list(access_chemistry)
-	closet_appearance = /decl/closet_appearance/secure_closet/medical
+	closet_appearance = /decl/closet_appearance/secure_closet/medical/chemistry
 
 	starts_with = list(
 		/obj/item/weapon/storage/box/pillbottles = 2,
@@ -197,10 +198,10 @@
 
 
 /obj/structure/closet/secure_closet/psych
-	name = "psychiatric closet"
+	name = "psychiatric cabinet"
 	desc = "Store psychology tools and medicines in here."
 	req_access = list(access_psychiatrist)
-	closet_appearance = /decl/closet_appearance/secure_closet/medical/alt
+	closet_appearance = /decl/closet_appearance/cabinet/secure
 
 	starts_with = list(
 		/obj/item/clothing/under/rank/psych,

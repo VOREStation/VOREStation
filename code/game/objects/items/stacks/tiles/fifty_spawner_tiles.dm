@@ -51,3 +51,11 @@
 /obj/fiftyspawner/linoleum
 	name = "stack of linoleum tiles"
 	type_to_spawn = /obj/item/stack/tile/linoleum
+
+/obj/fiftyspawner/wmarble
+	name = "stack of light marble tiles"
+	type_to_spawn = /obj/item/stack/tile/wmarble
+
+/obj/fiftyspawner/bmarble
+	name = "stack of dark marble tiles"
+	type_to_spawn = /obj/item/stack/tile/bmarble

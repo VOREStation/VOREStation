@@ -305,6 +305,14 @@ Class Procs:
 	CB.apply_default_parts(src)
 	RefreshParts()
 
+/obj/machinery/proc/default_use_hicell()
+	var/obj/item/weapon/cell/C = locate(/obj/item/weapon/cell) in component_parts
+	if(C)
+		component_parts -= C
+		qdel(C)
+		C = new /obj/item/weapon/cell/high(src)
+		component_parts += C
+
 /obj/machinery/proc/default_part_replacement(var/mob/user, var/obj/item/weapon/storage/part_replacer/R)
 	if(!istype(R))
 		return 0

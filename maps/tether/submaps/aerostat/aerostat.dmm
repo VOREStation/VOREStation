@@ -326,13 +326,16 @@
 /area/tether_away/aerostat/inside)
 "aP" = (
 /obj/effect/decal/cleanable/cobweb2,
-/obj/machinery/power/apc/alarms_hidden{
-	chargelevel = 0.005;
-	pixel_x = 25;
-	start_charge = 0
-	},
 /obj/structure/cable{
 	icon_state = "0-8"
+	},
+/obj/machinery/power/apc{
+	alarms_hidden = 1;
+	cell_type = /obj/item/weapon/cell/high/empty;
+	dir = 4;
+	name = "east bump";
+	pixel_x = 28;
+	req_access = list()
 	},
 /turf/simulated/floor/bluegrid/virgo2,
 /area/tether_away/aerostat/inside)
@@ -1582,15 +1585,6 @@
 /area/tether_away/aerostat/inside)
 "dZ" = (
 /obj/structure/ghost_pod/manual/lost_drone/dogborg,
-/turf/simulated/floor/plating/virgo2,
-/area/tether_away/aerostat/inside)
-"ea" = (
-/obj/effect/floor_decal/rust,
-/obj/machinery/door/airlock/external{
-	icon_state = "door_locked";
-	id_tag = "aerostat_door_outer";
-	locked = 1
-	},
 /turf/simulated/floor/plating/virgo2,
 /area/tether_away/aerostat/inside)
 "eb" = (
@@ -7431,10 +7425,10 @@ aw
 aw
 aa
 ac
-bv
+ac
 cw
 cw
-bv
+ac
 ac
 aa
 aw
@@ -7573,10 +7567,10 @@ aw
 aa
 ac
 bK
-bv
+ac
 cw
 cw
-bv
+ac
 be
 ac
 aa
@@ -7715,10 +7709,10 @@ aa
 ac
 bK
 an
-bv
+ac
 cw
 cw
-bv
+ac
 be
 be
 ac
@@ -7857,10 +7851,10 @@ ac
 bK
 bK
 bK
-bv
+ac
 cw
 cw
-bv
+ac
 be
 be
 be
@@ -7999,10 +7993,10 @@ kF
 bK
 bK
 an
-bv
+ac
 cX
 da
-bv
+ac
 be
 be
 be
@@ -8141,10 +8135,10 @@ ao
 ap
 bK
 bK
-bv
+ac
 cw
 cw
-bv
+ac
 be
 be
 be
@@ -8283,10 +8277,10 @@ be
 ao
 be
 an
-bv
+ac
 cw
 cw
-bv
+ac
 be
 ao
 be
@@ -8425,10 +8419,10 @@ be
 be
 be
 bK
-bv
+ac
 cw
 cw
-bv
+ac
 be
 be
 be
@@ -8567,10 +8561,10 @@ be
 be
 be
 an
-bv
+ac
 be
 cg
-bv
+ac
 bv
 bK
 be
@@ -14957,10 +14951,10 @@ gD
 be
 be
 be
-bv
+ac
 cO
 cO
-bv
+ac
 bv
 ao
 be
@@ -15099,10 +15093,10 @@ be
 be
 be
 be
-bv
+ac
 cw
 cw
-bv
+ac
 Ly
 be
 be
@@ -15241,10 +15235,10 @@ be
 be
 be
 be
-bv
+ac
 cw
 cw
-bv
+ac
 be
 be
 be
@@ -15383,10 +15377,10 @@ be
 be
 be
 be
-bv
+ac
 cw
 cw
-bv
+ac
 be
 be
 be
@@ -15525,10 +15519,10 @@ be
 be
 be
 be
-bv
+ac
 dY
 cw
-bv
+ac
 be
 be
 be
@@ -15667,10 +15661,10 @@ ac
 be
 be
 be
-bv
+ac
 cw
 cw
-bv
+ac
 be
 be
 be
@@ -15809,10 +15803,10 @@ aa
 ac
 be
 be
-bv
+ac
 cw
 cw
-bv
+ac
 be
 be
 ac
@@ -15951,10 +15945,10 @@ aw
 aa
 ac
 be
-bv
+ac
 dW
 dX
-bv
+ac
 Jb
 ac
 aa
@@ -16093,10 +16087,10 @@ aw
 aw
 aa
 ac
-bv
+ac
 dP
-ea
-bv
+dP
+ac
 ac
 aa
 aw

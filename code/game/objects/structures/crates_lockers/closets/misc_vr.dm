@@ -38,7 +38,7 @@
 /obj/structure/closet/secure_closet/explorer
 	name = "explorer locker"
 	req_access = list(access_explorer)
-	closet_appearance = /decl/closet_appearance/secure_closet/exploration
+	closet_appearance = /decl/closet_appearance/secure_closet/expedition/explorer
 
 	starts_with = list(
 		/obj/item/clothing/under/explorer,
@@ -76,7 +76,7 @@
 	name = "field medic locker"
 	desc = "Supplies for a wilderness first responder."
 	req_access = list(access_medical_equip)
-	closet_appearance = /decl/closet_appearance/secure_closet/medical
+	closet_appearance = /decl/closet_appearance/secure_closet/expedition/sar
 
 	starts_with = list(
 		/obj/item/weapon/storage/backpack/dufflebag/emt,
@@ -117,7 +117,7 @@
 /obj/structure/closet/secure_closet/pilot
 	name = "pilot locker"
 	req_access = list(access_pilot)
-	closet_appearance = /decl/closet_appearance/secure_closet/exploration/pilot
+	closet_appearance = /decl/closet_appearance/secure_closet/expedition/pilot
 
 	starts_with = list(
 		/obj/item/weapon/storage/backpack/parachute,
@@ -153,7 +153,7 @@
 /obj/structure/closet/secure_closet/pathfinder
 	name = "pathfinder locker"
 	req_access = list(access_gateway)
-	closet_appearance = /decl/closet_appearance/secure_closet/exploration/pathfinder
+	closet_appearance = /decl/closet_appearance/secure_closet/expedition/pathfinder
 
 	starts_with = list(
 		/obj/item/clothing/under/explorer,
