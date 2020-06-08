@@ -1166,3 +1166,88 @@
 		icon_state = "dnose"
 		color_blend_mode = ICON_MULTIPLY
 		body_parts = list(BP_HEAD)
+
+
+	//Nu Serg tailored markings
+
+	nusergpaw_socks
+		name = "Socks Coloration (Generic)"
+		icon_state = "pawsocks"
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND)
+		species_allowed = list(SPECIES_NSERGAL)
+
+	nusergpaw_socks_belly
+		name = "Socks,Belly Coloration (Generic)"
+		icon_state = "pawsocksbelly"
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO)
+		species_allowed = list(SPECIES_NSERGAL)
+
+	nusergbelly_hands_feet
+		name = "Hands,Feet,Belly Color (Minor)"
+		icon_state = "nsergal-bellyhandsfeetsmall"
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO)
+		species_allowed = list(SPECIES_NSERGAL)
+
+	nuserghands_feet_belly_full
+		name = "Hands,Feet,Belly Color (Major)"
+		icon_state = "nsergal-bellyhandsfeet"
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO)
+		species_allowed = list(SPECIES_NSERGAL)
+
+	nuserghands_feet_belly_full_female
+		name = "Hands,Feet,Belly Color (Major, Female)"
+		icon_state = "nsergal-bellyhandsfeet_female"
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO)
+		species_allowed = list(SPECIES_NSERGAL)
+
+	nusergpatches
+		name = "Color Patches"
+		icon_state = "nsergal-patches"
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN)
+		species_allowed = list(SPECIES_NSERGAL)
+
+	nusergbands
+		name = "Color Bands"
+		icon_state = "nsergal-bands"
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN)
+		species_allowed = list(SPECIES_NSERGAL)
+
+	nusergtiger_stripes
+		name = "Tiger Stripes"
+		icon_state = "nsergal-tiger"
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_TORSO,BP_GROIN)
+		species_allowed = list(SPECIES_NSERGAL)
+
+	nusergsergal
+		name = "Adapted Sergal"
+		icon_state = "nsergal-sergal"
+		body_parts = list(BP_HEAD,BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN)
+		species_allowed = list(SPECIES_NSERGAL)
+
+	nusergshepherd
+		name = "Adapted Shepherd (main)"
+		icon_state = "nsergal-shepherd_main"
+		body_parts = list(BP_HEAD,BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN)
+		species_allowed = list(SPECIES_NSERGAL)
+
+	nusergshepherd/sec
+		name = "Adapted Shepherd (sec)"
+		icon_state = "nsergal-shepherd_second"
+
+	nusergshepherd/trim
+		name = "Adapted Shepherd (trim)"
+		icon_state = "nsergal-shepherd_trim"
+
+	nusergsausage
+		name = "Adapted Otie"
+		icon_state = "nsergal-sausage"
+		body_parts = list(BP_HEAD,BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN)
+		species_allowed = list(SPECIES_NSERGAL)
+
+	nusergsausage/sec
+		name = "Adapted Otie (sec)"
+		icon_state = "nsergal-sausage_second"
+
+	nusergsausage/trim
+		name = "Adapted Otie (trim)"
+		icon_state = "nsergal-sausage_trim"
