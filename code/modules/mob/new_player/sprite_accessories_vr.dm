@@ -1227,7 +1227,7 @@
 	nusergshepherd
 		name = "Adapted Shepherd (main)"
 		icon_state = "nsergal-shepherd_main"
-		body_parts = list(BP_HEAD,BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN)
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN,BP_HEAD)
 		species_allowed = list(SPECIES_NSERGAL)
 
 	nusergshepherd/sec
@@ -1241,7 +1241,7 @@
 	nusergsausage
 		name = "Adapted Otie"
 		icon_state = "nsergal-sausage"
-		body_parts = list(BP_HEAD,BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN)
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN,BP_HEAD)
 		species_allowed = list(SPECIES_NSERGAL)
 
 	nusergsausage/sec
