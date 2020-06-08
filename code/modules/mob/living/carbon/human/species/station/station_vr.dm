@@ -67,8 +67,8 @@
 	name_plural = "Low Gee Sergals"
 	icobase = 'icons/mob/human_races/r_nsergal.dmi'
 	deform = 'icons/mob/human_races/r_def_nsergal.dmi'
-	blurb = "After decades of adaptation in all lines of work, the usual heavier set sergals have developed into a more lanky build. \
-			 Extended time in micro gravity environments have promoted more flexibility and little loss of wiry strengths. \
+	blurb = "After decades of adaptation in all lines of work, the usually heavier set sergals have developed into a more lanky build. \
+			 Extended time in micro gravity environments have promoted more flexibility and some loss of wiry strength. \
 			 However, it can be more difficult for them to spend extended periods of time on terrestrial worlds without powered assistance."
 
 /datum/species/akula
