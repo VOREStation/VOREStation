@@ -1,4 +1,5 @@
 /datum/job/ai
+	disallow_jobhop = TRUE
 	pto_type = PTO_CIVILIAN
 
 /datum/job/cyborg
