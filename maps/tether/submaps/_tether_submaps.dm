@@ -148,13 +148,11 @@
 #include "alienship/alienship.dmm"
 #include "aerostat/aerostat.dmm"
 #include "aerostat/surface.dmm"
+#include "snowplanet/array.dmm"
+#include "snowplanet/surface.dmm"
 #include "space/debrisfield.dmm"
 #include "space/fueldepot.dmm"
 #include "space/guttersite.dmm"
-#include "snowplanet/array.dmm"
-#include "snowplanet/surface.dmm"
-#include "snowplanet/array.dmm"
-#include "snowplanet/surface.dmm"
 #endif
 
 // Begin Virgo 4 Beach/Cave Info
@@ -282,7 +280,7 @@
 
 /datum/map_template/tether_lateload/away_debrisfield/on_map_loaded(z)
 	. = ..()
-	//Commented out until we actually get POIs
+	//Commented out until we actually get POIs - we've had POIs for ages, why is this comment still here???
 	seed_submaps(list(Z_LEVEL_DEBRISFIELD), 200, /area/tether_away/debrisfield/unexplored, /datum/map_template/debrisfield)
 
 /datum/map_z_level/tether_lateload/away_debrisfield
@@ -298,7 +296,6 @@
 /datum/map_z_level/tether_lateload/away_fueldepot
 	name = "Away Mission - Fuel Depot"
 	z = Z_LEVEL_FUELDEPOT
-// End Space POIs/Away Areas Info
 
 /datum/map_template/tether_lateload/away_guttersite
 	name = "Gutter Site - Z1 Space"
@@ -309,7 +306,7 @@
 /datum/map_z_level/tether_lateload/away_guttersite
 	name = "Away Mission - Gutter Site"
 	z = Z_LEVEL_GUTTERSITE
-
+// End Space POIs/Away Areas Info
 
 //////////////////////////////////////////////////////////////////////////////////////
 // Gateway submaps go here
