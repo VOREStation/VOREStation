@@ -151,8 +151,13 @@
 #include "space/debrisfield.dmm"
 #include "space/fueldepot.dmm"
 #include "space/guttersite.dmm"
+#include "snowplanet/array.dmm"
+#include "snowplanet/surface.dmm"
+#include "snowplanet/array.dmm"
+#include "snowplanet/surface.dmm"
 #endif
 
+// Begin Virgo 4 Beach/Cave Info
 #include "beach/_beach.dm"
 /datum/map_template/tether_lateload/away_beach
 	name = "Desert Planet - Z1 Beach"
@@ -187,8 +192,9 @@
 
 /obj/effect/step_trigger/zlevel_fall/beach
 	var/static/target_z
+// End Virgo 4 Beach/Cave Info
 
-
+// Begin Alienship Info
 #include "alienship/_alienship.dm"
 /datum/map_template/tether_lateload/away_alienship
 	name = "Alien Ship - Z1 Ship"
@@ -198,8 +204,9 @@
 
 /datum/map_z_level/tether_lateload/away_alienship
 	name = "Away Mission - Alien Ship"
+// End Alienship Info
 
-
+// Begin Aerostat/Virgo 2 Info
 #include "aerostat/_aerostat.dm"
 /datum/map_template/tether_lateload/away_aerostat
 	name = "Remmi Aerostat - Z1 Aerostat"
@@ -228,8 +235,40 @@
 	name = "Away Mission - Aerostat Surface"
 	z = Z_LEVEL_AEROSTAT_SURFACE
 	base_turf = /turf/simulated/mineral/floor/ignore_mapgen/virgo2
+// End Aerostat/Virgo 2 info
 
+// Begin Virgo 5/Snowplanet Info
+#include "snowplanet/_snowplanet.dm"
+/datum/map_template/tether_lateload/away_snowplanet_array
+	name = "Snow Planet - Z1 Decayed Array"
+	desc = "The Virgo 5 away mission."
+	mappath = 'snowplanet/array.dmm'
+	associated_map_datum = /datum/map_z_level/tether_lateload/away_snowplanet_array
 
+/datum/map_z_level/tether_lateload/away_snowplanet_array
+	name = "Away Mission - Array"
+	z = Z_LEVEL_SNOWPLANET_ARRAY
+	base_turf = /turf/unsimulated/floor/sky/virgo2_sky
+
+/datum/map_template/tether_lateload/away_snowplanet_surface
+	name = "Snow Planet - Z2 Surface"
+	desc = "The surface from the Virgo 5 Array."
+	mappath = 'snowplanet/surface.dmm'
+	associated_map_datum = /datum/map_z_level/tether_lateload/away_snowplanet_surface
+
+/datum/map_template/tether_lateload/away_snowplanet_surface/on_map_loaded(z)
+	. = ..()
+	seed_submaps(list(Z_LEVEL_SNOWPLANET_SURFACE), 120, /area/tether_away/snowplanet/surface/mine, /datum/map_template/virgo5)
+	new /datum/random_map/automata/cave_system/no_cracks(null, 3, 3, Z_LEVEL_SNOWPLANET_SURFACE, world.maxx - 4, world.maxy - 4)
+	new /datum/random_map/noise/ore/virgo5(null, 1, 1, Z_LEVEL_SNOWPLANET_SURFACE, 64, 64)
+
+/datum/map_z_level/tether_lateload/away_snowplanet_surface
+	name = "Away Mission - Virgo 5 Surface"
+	z = Z_LEVEL_SNOWPLANET_SURFACE
+	base_turf = /turf/simulated/mineral/floor/ignore_mapgen/virgo5
+// End Virgo 5/Snowplanet Info
+
+// Begin Space POIs/Away Areas Info
 #include "space/_debrisfield.dm"
 #include "space/_fueldepot.dm"
 #include "space/pois/_templates.dm"
@@ -259,6 +298,7 @@
 /datum/map_z_level/tether_lateload/away_fueldepot
 	name = "Away Mission - Fuel Depot"
 	z = Z_LEVEL_FUELDEPOT
+// End Space POIs/Away Areas Info
 
 /datum/map_template/tether_lateload/away_guttersite
 	name = "Gutter Site - Z1 Space"

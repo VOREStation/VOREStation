@@ -161,6 +161,7 @@
 		list("Asteroid Belt 1","Asteroid Belt 2","Asteroid Belt 3","Asteroid Belt 4"),
 		list("Desert Planet - Z1 Beach","Desert Planet - Z2 Cave"),
 		list("Remmi Aerostat - Z1 Aerostat","Remmi Aerostat - Z2 Surface"),
+		list("Snow Planet - Z1 Decayed Array", "Snow Planet - Z2 Surface"),
 		list("Debris Field - Z1 Space"),
 		list("Gutter Site - Z1 Space"),
 		list("Fuel Depot - Z1 Space")
