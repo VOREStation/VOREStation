@@ -1363,6 +1363,7 @@
 #include "code\game\objects\structures\holoplant.dm"
 #include "code\game\objects\structures\inflatable.dm"
 #include "code\game\objects\structures\janicart.dm"
+#include "code\game\objects\structures\kitchen_foodcart_vr.dm"
 #include "code\game\objects\structures\kitchen_spike.dm"
 #include "code\game\objects\structures\lattice.dm"
 #include "code\game\objects\structures\ledges.dm"
