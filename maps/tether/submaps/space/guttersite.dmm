@@ -36,7 +36,9 @@
 /turf/space,
 /area/tether_away/guttersite/unexplored)
 "al" = (
-/obj/structure/frame/computer,
+/obj/structure/frame/computer{
+	dir = 4
+	},
 /obj/structure/cable{
 	d2 = 2;
 	icon_state = "0-2"
@@ -71,6 +73,7 @@
 "ar" = (
 /obj/structure/table/rack,
 /obj/item/clothing/gloves/yellow,
+/obj/item/weapon/storage/toolbox/mechanical,
 /turf/simulated/floor/airless,
 /area/tether_away/guttersite/teleporter)
 "as" = (
@@ -236,9 +239,9 @@
 /turf/simulated/floor/tiled/eris/dark,
 /area/tether_away/guttersite/maint)
 "ba" = (
-/obj/machinery/computer/ship/engines,
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/maint)
+/obj/item/weapon/circuitboard/teleporter,
+/turf/simulated/floor/airless,
+/area/tether_away/guttersite/teleporter)
 "bb" = (
 /obj/structure/barricade,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
@@ -981,9 +984,10 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/commons)
 "cJ" = (
-/obj/structure/bed/chair/janicart,
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/storage)
+/obj/fiftyspawner/glass,
+/obj/fiftyspawner/steel,
+/turf/simulated/floor/airless,
+/area/tether_away/guttersite/teleporter)
 "cK" = (
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -2591,6 +2595,10 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
+"fW" = (
+/obj/item/weapon/storage/toolbox/lunchbox/heart/filled,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/guttersite/unexplored)
 "fX" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -2620,10 +2628,14 @@
 /turf/simulated/floor/plating,
 /area/tether_away/guttersite/security)
 "fZ" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/plating,
+/obj/structure/bed/chair/office/dark{
+	dir = 1;
+	icon_state = "officechair_dark"
+	},
+/mob/living/simple_mob/humanoid/merc/ranged/smg/poi{
+	faction = "wolfgirl"
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "ga" = (
 /obj/effect/floor_decal/industrial/warning/corner{
@@ -2912,7 +2924,9 @@
 	dir = 1;
 	icon_state = "officechair_dark"
 	},
-/mob/living/simple_mob/humanoid/merc/ranged/laser/poi,
+/mob/living/simple_mob/humanoid/merc/melee/poi{
+	faction = "wolfgirl"
+	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "gE" = (
@@ -3501,11 +3515,15 @@
 /turf/space,
 /area/space)
 "hU" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/machinery/door/firedoor/glass,
-/turf/space,
-/area/tether_away/guttersite/walkway)
+/obj/structure/bed/chair/office/dark{
+	dir = 8;
+	icon_state = "officechair_dark"
+	},
+/mob/living/simple_mob/humanoid/merc/melee/poi{
+	faction = "wolfgirl"
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/security)
 "hV" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4;
@@ -3601,21 +3619,37 @@
 /turf/simulated/floor/plating,
 /area/tether_away/guttersite/medbay)
 "id" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 8;
-	icon_state = "officechair_dark"
+/obj/machinery/door/airlock/glass_external,
+/obj/machinery/access_button{
+	command = "cycle_exterior";
+	frequency = 1380;
+	master_tag = "dock_d2a2";
+	name = "exterior access button";
+	pixel_x = -5;
+	pixel_y = -26;
+	req_one_access = list()
 	},
-/mob/living/simple_mob/humanoid/merc/ranged/laser,
+/obj/effect/map_helper/airlock/door/ext_door,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/security)
+/area/tether_away/guttersite/docking)
 "ie" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 1;
-	icon_state = "officechair_dark"
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
 	},
-/mob/living/simple_mob/humanoid/merc/melee/poi,
+/obj/machinery/access_button{
+	command = "cycle_interior";
+	frequency = 1380;
+	master_tag = "dock_d2a2";
+	name = "interior access button";
+	pixel_x = -28;
+	pixel_y = 26;
+	req_one_access = list()
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/security)
+/area/tether_away/guttersite/docking)
 "if" = (
 /obj/random/mob/mouse,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
@@ -3770,12 +3804,7 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/vault)
 "iA" = (
-/obj/random/mob/merc/all,
-/obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/mob/living/simple_mob/humanoid/merc/melee/sword/space,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/vault)
 "iB" = (
@@ -3829,7 +3858,12 @@
 /turf/simulated/mineral/floor/vacuum,
 /area/tether_away/guttersite/unexplored)
 "iK" = (
-/obj/random/mob/merc/all,
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/mob/living/simple_mob/humanoid/merc/ranged/rifle/mag/poi,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/vault)
 "iL" = (
@@ -3859,52 +3893,20 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/vault)
 "iO" = (
-/obj/machinery/door/airlock/glass_external,
-/obj/machinery/access_button{
-	command = "cycle_exterior";
-	frequency = 1380;
-	master_tag = "dock_d2a2";
-	name = "exterior access button";
-	pixel_x = -5;
-	pixel_y = -26;
-	req_one_access = list(0)
-	},
-/obj/effect/map_helper/airlock/door/ext_door,
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/docking)
-"iP" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 8
-	},
-/obj/machinery/access_button{
-	command = "cycle_interior";
-	frequency = 1380;
-	master_tag = "dock_d2a2";
-	name = "interior access button";
-	pixel_x = -28;
-	pixel_y = 26;
-	req_one_access = list(0)
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/docking)
-"iQ" = (
 /obj/machinery/access_button{
 	command = "cycle_exterior";
 	frequency = 1331;
 	master_tag = "vox_east_control";
-	req_access = list(0)
+	req_access = list()
 	},
 /turf/simulated/wall/skipjack,
 /area/tether_away/guttersite/docking)
-"iR" = (
+"iP" = (
 /obj/machinery/embedded_controller/radio/airlock/airlock_controller{
 	frequency = 1331;
 	id_tag = "guttersite_lshuttle";
 	pixel_x = -24;
-	req_access = list(0);
+	req_access = list();
 	tag_airpump = "vox_east_vent";
 	tag_chamber_sensor = "vox_east_sensor";
 	tag_exterior_door = "vox_northeast_lock";
@@ -3918,17 +3920,25 @@
 /obj/machinery/light/small,
 /turf/simulated/shuttle/plating,
 /area/tether_away/guttersite/docking)
-"iS" = (
+"iQ" = (
 /obj/machinery/access_button{
 	command = "cycle_interior";
 	frequency = 1331;
 	master_tag = "vox_east_control";
 	pixel_x = 22;
-	req_access = list(0)
+	req_access = list()
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/shuttle/plating,
 /area/tether_away/guttersite/docking)
+"iR" = (
+/mob/living/simple_mob/mechanical/hivebot/ranged_damage/basic,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/guttersite/unexplored)
+"iS" = (
+/mob/living/simple_mob/mechanical/hivebot/tank/meatshield,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/guttersite/unexplored)
 "iT" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4;
@@ -3999,17 +4009,45 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "jg" = (
-/obj/random/mob/spider/mutant,
+/mob/living/simple_mob/humanoid/merc/melee/poi{
+	desc = "A lone space clown, taking on the world.";
+	icon = 'icons/mob/clowns_vr.dmi';
+	icon_dead = "cluwne_dead";
+	icon_gib = "clown_gib";
+	icon_living = "cluwne";
+	icon_state = "cluwne";
+	name = "Green Clown"
+	},
 /turf/simulated/mineral/floor/vacuum,
 /area/tether_away/guttersite/unexplored)
 "jh" = (
-/obj/random/mob/spider,
-/turf/simulated/mineral/floor/vacuum,
-/area/tether_away/guttersite/unexplored)
+/obj/structure/bed/chair/office/dark{
+	dir = 8;
+	icon_state = "officechair_dark"
+	},
+/mob/living/simple_mob/humanoid/merc/ranged/rifle/mag/poi{
+	faction = "wolfgirl"
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/security)
 "ji" = (
-/obj/random/mob/spider/nurse,
-/turf/simulated/mineral/floor/vacuum,
-/area/tether_away/guttersite/unexplored)
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4;
+	icon_state = "intact-scrubbers"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4;
+	icon_state = "intact-supply"
+	},
+/obj/structure/bed/chair/office/dark{
+	dir = 4;
+	icon_state = "officechair_dark"
+	},
+/mob/living/simple_mob/humanoid/merc/ranged/technician/poi{
+	faction = "wolfgirl"
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/security)
 "jj" = (
 /obj/random/curseditem,
 /turf/simulated/mineral/floor/vacuum,
@@ -4019,29 +4057,8 @@
 /turf/simulated/mineral/floor/vacuum,
 /area/tether_away/guttersite/unexplored)
 "jl" = (
-/mob/living/simple_mob/humanoid/clown/clown{
-	cold_resist = 1;
-	custom_say = "Private proverty!";
-	desc = "A lone space clown.";
-	has_eye_glow = 1;
-	health = 300;
-	icon = 'icons/mob/clowns_vr.dmi';
-	icon_dead = "cluwne_dead";
-	icon_living = "cluwne";
-	icon_state = "cluwne";
-	maxHealth = 300;
-	max_co2 = 150;
-	max_n2 = 150;
-	max_tox = 120;
-	maxbodytemp = 500;
-	min_co2 = -500;
-	min_n2 = -500;
-	min_oxy = -500;
-	min_tox = -500;
-	minbodytemp = -150;
-	pressure_resistance = 350;
-	thick_armor = 1
-	},
+/obj/structure/loot_pile/surface/bones,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/bottleofnothing,
 /turf/simulated/mineral/floor/vacuum,
 /area/tether_away/guttersite/unexplored)
 "jm" = (
@@ -4114,19 +4131,21 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "jy" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 1
 	},
-/obj/structure/bed/chair/office/dark{
-	dir = 4;
-	icon_state = "officechair_dark"
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 1
 	},
-/mob/living/simple_mob/humanoid/merc/ranged/technician/poi,
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/maintenance_hatch{
+	req_one_access = list(38)
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "jz" = (
@@ -4182,24 +4201,6 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/docking)
-"jG" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 1
-	},
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_hatch{
-	req_one_access = list()
-	},
-/obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/security)
 "jH" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 1
@@ -4348,14 +4349,6 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/wall/r_wall,
-/area/tether_away/guttersite/security)
-"jZ" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 8;
-	icon_state = "officechair_dark"
-	},
-/mob/living/simple_mob/humanoid/merc/melee/sword/poi,
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "ka" = (
 /obj/structure/bed/chair/bay/comfy/black{
@@ -4961,10 +4954,6 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
-"lI" = (
-/obj/structure/grille/broken,
-/turf/simulated/mineral/floor/vacuum,
-/area/tether_away/guttersite/teleporter)
 "lJ" = (
 /obj/item/weapon/storage/toolbox/electrical{
 	pixel_x = 1;
@@ -9169,7 +9158,7 @@ aa
 aa
 aa
 ag
-aL
+jl
 ad
 ad
 ag
@@ -9884,15 +9873,15 @@ ad
 ag
 ag
 ad
-ad
+az
 ad
 ad
 fu
 fu
 fu
-fZ
+fu
 gj
-fZ
+fu
 fu
 fu
 fu
@@ -10110,7 +10099,7 @@ ac
 aB
 aE
 aN
-ba
+aE
 aE
 bu
 aE
@@ -10264,7 +10253,7 @@ aB
 ag
 hd
 jk
-jl
+jg
 aA
 ad
 ad
@@ -10742,9 +10731,9 @@ fA
 fG
 jX
 fw
-id
+hU
 ge
-jZ
+jh
 gz
 fw
 fu
@@ -11162,7 +11151,7 @@ ad
 ad
 ad
 ad
-fZ
+fu
 ly
 fw
 lH
@@ -11446,7 +11435,7 @@ ad
 ad
 ad
 ad
-fZ
+fu
 fw
 fw
 fI
@@ -11588,7 +11577,7 @@ ad
 ad
 ad
 ad
-fZ
+fu
 fw
 fw
 fw
@@ -11730,12 +11719,12 @@ aa
 ad
 ad
 ad
-fZ
+fu
 fw
 fw
 fw
 kD
-gD
+fZ
 fw
 fw
 fu
@@ -11872,12 +11861,12 @@ aa
 aa
 aa
 aa
-fZ
+fu
 fw
 fw
 fw
 kE
-ie
+gD
 fw
 fw
 fu
@@ -12009,11 +11998,11 @@ ia
 ia
 ia
 ia
-ia
-ia
-ia
-ia
-ia
+dn
+dn
+dn
+dn
+dn
 fu
 fw
 fw
@@ -12023,7 +12012,7 @@ fw
 fw
 gn
 fu
-jy
+ji
 fw
 gm
 fw
@@ -12156,7 +12145,7 @@ eS
 eS
 eS
 eS
-jG
+jy
 jH
 jH
 jI
@@ -12294,10 +12283,10 @@ ia
 ia
 ia
 dn
-hU
-hU
-hU
-hU
+dn
+dn
+dn
+dn
 fu
 fu
 fw
@@ -12466,7 +12455,7 @@ ad
 ad
 ag
 ag
-jh
+ad
 ag
 ad
 ad
@@ -13882,12 +13871,12 @@ ag
 ad
 ag
 ag
-jg
+iR
 ag
 ag
 ad
 ag
-ji
+ad
 ag
 ag
 ad
@@ -13948,7 +13937,7 @@ lk
 ll
 cY
 aD
-cJ
+aD
 ax
 ag
 ag
@@ -14029,7 +14018,7 @@ ad
 ag
 ad
 ag
-ad
+iS
 ag
 ag
 ad
@@ -18413,7 +18402,7 @@ eE
 eE
 eE
 gs
-iO
+id
 gQ
 eE
 eE
@@ -18839,7 +18828,7 @@ fr
 fr
 fr
 gv
-iP
+ie
 gS
 fr
 fr
@@ -19206,7 +19195,7 @@ aa
 aa
 ag
 ag
-ad
+fW
 aa
 aa
 aa
@@ -19618,7 +19607,7 @@ ae
 ai
 ah
 as
-ap
+au
 ah
 ah
 ai
@@ -19901,7 +19890,7 @@ ae
 ah
 ah
 ao
-ap
+ba
 ap
 ai
 kK
@@ -20043,10 +20032,10 @@ ae
 ah
 al
 ap
-au
-ai
-ai
-lI
+ap
+ap
+ap
+ap
 ap
 ah
 ae
@@ -20185,12 +20174,12 @@ ae
 ah
 am
 aq
-ae
-ai
-ae
-ae
-ai
 ap
+ap
+ap
+ap
+ai
+au
 ai
 ai
 ak
@@ -20612,7 +20601,7 @@ ai
 ah
 ah
 av
-ap
+cJ
 aw
 ah
 ah
@@ -20805,7 +20794,7 @@ em
 lD
 mT
 ff
-iA
+iB
 hr
 ed
 ac
@@ -20943,11 +20932,11 @@ ac
 ac
 ed
 gF
-iK
+em
 em
 em
 nf
-iB
+iK
 hE
 ed
 ac
@@ -21085,7 +21074,7 @@ ac
 ac
 ed
 lC
-em
+iA
 fe
 fk
 hD
@@ -22539,7 +22528,7 @@ eE
 eE
 hj
 ho
-iR
+iP
 hi
 iL
 hJ
@@ -22679,11 +22668,11 @@ eE
 eE
 eE
 eE
-iQ
+iO
 hp
 hs
 hv
-iS
+iQ
 hM
 fr
 fr
