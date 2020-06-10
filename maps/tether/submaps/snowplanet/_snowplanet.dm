@@ -1,8 +1,9 @@
 #include "submaps/virgo5.dm"
 
+// -- Overmap Sector Info -- //
 /obj/effect/overmap/visitable/sector/virgo5 // All of this info is placeholder until I get lore info to update it
 	name = "Virgo 5"
-	desc = "Includes the Decayed Orbital Array and associated winter mining complexes."
+	desc = "Virgo 5's Decayed Orbital Array and the associated winter mining complexes... not all of which are legal."
 	scanner_desc = @{"[i]Stellar Body[/i]: Virgo 5
 [i]Class[/i]: R-Class Planet
 [i]Habitability[/i]: Low (Extremely Low Temperature, Toxic Atmosphere)
@@ -54,7 +55,7 @@
 #define VIRGO5_MOL_CO2			(VIRGO5_MOL_PER_TURF * VIRGO5_PER_CO2)
 #define VIRGO5_MOL_PHORON		(VIRGO5_MOL_PER_TURF * VIRGO5_PER_PHORON)
 
-//Turfmakers
+// Turfmakers
 #define VIRGO5_SET_ATMOS	nitrogen=VIRGO5_MOL_N2;oxygen=VIRGO5_MOL_O2;carbon_dioxide=VIRGO5_MOL_CO2;phoron=VIRGO5_MOL_PHORON;temperature=VIRGO5_AVG_TEMP
 #define VIRGO5_TURF_CREATE(x)	x/virgo5/nitrogen=VIRGO5_MOL_N2;x/virgo5/oxygen=VIRGO5_MOL_O2;x/virgo5/carbon_dioxide=VIRGO5_MOL_CO2;x/virgo5/phoron=VIRGO5_MOL_PHORON;x/virgo5/temperature=VIRGO5_AVG_TEMP;x/virgo5/color="#5c4368"
 
@@ -101,7 +102,7 @@ VIRGO5_TURF_CREATE(/turf/simulated/mineral/floor/ignore_mapgen)
 /area/shuttle/snowplanet
 	name = "\improper Damaged Array Shuttle"
 
-//The array itself
+// The array itself
 /area/tether_away/snowplanet
 	name = "\improper Away Mission - Damaged Array Outside"
 	icon_state = "away"
@@ -129,9 +130,10 @@ VIRGO5_TURF_CREATE(/turf/simulated/mineral/floor/ignore_mapgen)
 	base_turf = /turf/simulated/floor/plating/virgo5
 	dynamic_lighting = TRUE
 
+// The Planet Surface + related areas.
 /area/tether_away/snowplanet/surface
 	flags = RAD_SHIELDED
-	ambience = list('sound/ambience/ambimine.ogg', 'sound/ambience/song_game.ogg')
+	forced_ambience = list('sound/ambience/snow/howling-arctic-blizzard.ogg', 'sound/ambience/song_game.ogg')
 	base_turf = /turf/simulated/floor/outdoors/snow/virgo5
 	dynamic_lighting = TRUE
 
