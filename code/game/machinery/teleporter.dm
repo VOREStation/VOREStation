@@ -18,10 +18,10 @@
 	..()
 	underlays.Cut()
 	underlays += image('icons/obj/stationobjs_vr.dmi', icon_state = "telecomp-wires")	//VOREStation Edit: different direction for wires to account for dirs
-	teleport_control = new(src)
 
 /obj/machinery/computer/teleporter/Initialize()
 	. = ..()
+	teleport_control = new(src)
 	var/obj/machinery/teleport/station/station = null
 	var/obj/machinery/teleport/hub/hub = null
 	
