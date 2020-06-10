@@ -19,15 +19,15 @@
 
 	zlevel_datum_type = /datum/map_z_level/minitest
 
-	station_name  = "NSS Adephagia" //-testing"
-	station_short = "Tether" //-testing"
-	dock_name     = "Virgo 3B Colony" //-test CC"
+	station_name  = "NSS Ade-testing"
+	station_short = "VORE-testing"
+	dock_name     = "Virgo-test CC"
 	dock_type     = "surface"
-	boss_name     = "Central Command" //-testing"
-	boss_short    = "CentCom" //-testing"
-	company_name  = "NanoTrasen" //-testing"
-	company_short = "NT" //-testing"
-	starsys_name  = "Virgo-Erigone" //-testing"
+	boss_name     = "Central Command-testing"
+	boss_short    = "CentCom-testing"
+	company_name  = "NanoTrasen-testing"
+	company_short = "NT-testing"
+	starsys_name  = "Virgo-Erigone-testing"
 
 	shuttle_docked_message = "Test Shuttle Docked"
 	shuttle_leaving_dock = "Test Shuttle Leaving"
