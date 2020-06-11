@@ -99,7 +99,7 @@
 
 /datum/supply_pack/randomised/misc/explorer_shield
 	name = "Explorer shield"
-	num_contained = 1
+	num_contained = 2
 	contains = list(
 			/obj/item/weapon/shield/riot/explorer,
 			/obj/item/weapon/shield/riot/explorer/purple
