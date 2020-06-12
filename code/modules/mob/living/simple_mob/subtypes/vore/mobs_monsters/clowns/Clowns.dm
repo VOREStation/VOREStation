@@ -6,6 +6,9 @@
 	health = 100
 	see_in_dark = 8
 
+	has_hands = TRUE
+	humanoid_hands = TRUE
+
 	melee_damage_lower = 5
 	melee_damage_upper = 30
 

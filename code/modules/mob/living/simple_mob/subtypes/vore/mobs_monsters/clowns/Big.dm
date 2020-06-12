@@ -7,7 +7,7 @@
 	see_in_dark = 8
 
 	melee_damage_lower = 15
-	melee_damage_upper = 35
+	melee_damage_upper = 25
 	attack_armor_pen = 5
 	attack_sharp = FALSE
 	attack_edge = FALSE
