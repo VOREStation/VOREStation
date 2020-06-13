@@ -87,26 +87,33 @@
 
 	planet_datums_to_make = list(/datum/planet/sif)
 
-
-// Short range computers see only the six main levels, others can see the surrounding surface levels.
-/datum/map/southern_cross/get_map_levels(var/srcz, var/long_range = TRUE)
-	if (long_range && (srcz in map_levels))
-		return map_levels
-	else if (srcz == Z_LEVEL_TRANSIT)
-		return list() // Nothing on these z-levels- sensors won't show, and GPSes won't see each other.
-	else if (srcz >= Z_LEVEL_STATION_ONE && srcz <= Z_LEVEL_STATION_THREE) // Station can see other decks.
-		return list(
+	map_levels = list(
 			Z_LEVEL_STATION_ONE,
 			Z_LEVEL_STATION_TWO,
 			Z_LEVEL_STATION_THREE,
 			Z_LEVEL_SURFACE,
 			Z_LEVEL_SURFACE_MINE,
-			Z_LEVEL_SURFACE_WILD)
+			Z_LEVEL_SURFACE_WILD
+		)
+
+// Short range computers see only the six main levels, others can see the surrounding surface levels.
+/datum/map/southern_cross/get_map_levels(var/srcz, var/long_range = TRUE)
+	if (long_range && (srcz in map_levels))
+		return map_levels
+	else if (srcz == Z_LEVEL_TRANSIT && !long_range)
+		return list() // Nothing on these z-levels- sensors won't show, and GPSes won't see each other.
+	else if (srcz >= Z_LEVEL_STATION_ONE && srcz <= Z_LEVEL_STATION_THREE) // Station can see other decks.
+		return list(
+				Z_LEVEL_STATION_ONE,
+				Z_LEVEL_STATION_TWO,
+				Z_LEVEL_STATION_THREE,
+			)
 	else if(srcz in list(Z_LEVEL_SURFACE, Z_LEVEL_SURFACE_MINE, Z_LEVEL_SURFACE_WILD)) // Being on the surface lets you see other surface Zs.
 		return list(
-			Z_LEVEL_SURFACE,
-			Z_LEVEL_SURFACE_MINE,
-			Z_LEVEL_SURFACE_WILD)
+				Z_LEVEL_SURFACE,
+				Z_LEVEL_SURFACE_MINE,
+				Z_LEVEL_SURFACE_WILD
+			)
 	else
 		return list(srcz) //prevents runtimes when using CMC. any Z-level not defined above will be 'isolated' and only show to GPSes/CMCs on that same Z (e.g. CentCom).
 
@@ -280,13 +287,6 @@
 	teleport_y = src.y + 4
 	teleport_z = src.z
 	return ..()
-
-/datum/planet/sif
-	expected_z_levels = list(
-		Z_LEVEL_SURFACE,
-		Z_LEVEL_SURFACE_MINE,
-		Z_LEVEL_SURFACE_WILD
-	)
 
 //Suit Storage Units
 
