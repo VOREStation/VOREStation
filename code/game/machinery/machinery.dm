@@ -242,7 +242,7 @@ Class Procs:
 		return 1
 	if(user.lying || user.stat)
 		return 1
-	if(!user.IsAdvancedToolUser())
+	if(!(istype(user, /mob/living/carbon/human) || istype(user, /mob/living/silicon)))
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return 1
 	if(ishuman(user))
