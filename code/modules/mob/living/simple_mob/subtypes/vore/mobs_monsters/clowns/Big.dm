@@ -12,9 +12,9 @@
 	attack_sharp = FALSE
 	attack_edge = FALSE
 	melee_attack_delay = 1 SECOND
-	attacktext = list("mauled")
+	attacktext = list("clowned")
 
-	ai_holder_type = /datum/ai_holder/simple_mob/melee/clowns
+	ai_holder_type = /datum/ai_holder/simple_mob/melee/angryclowns
 
 	loot_list = list(/obj/item/weapon/bikehorn = 100)
 
@@ -31,7 +31,7 @@
 	minbodytemp = 0
 	maxbodytemp = 700
 
-/datum/ai_holder/simple_mob/melee/clowns
+/datum/ai_holder/simple_mob/melee/angryclowns
 	can_breakthrough = TRUE
 	violent_breakthrough = FALSE
 	hostile = TRUE // The majority of simplemobs are hostile, gaslamps are nice.

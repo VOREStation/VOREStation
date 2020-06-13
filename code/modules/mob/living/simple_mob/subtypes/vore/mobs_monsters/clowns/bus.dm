@@ -1,5 +1,5 @@
 /mob/living/simple_mob/mobs_monsters/clowns/big/c_shift
-	tt_desc = "E Homo sapiens corydon xenos" //this is a redspace clown
+	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
 	faction = "clown"
 
 /mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/New()

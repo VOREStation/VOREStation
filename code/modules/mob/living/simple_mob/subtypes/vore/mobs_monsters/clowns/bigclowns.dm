@@ -1,4 +1,4 @@
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/anormal
+/mob/living/simple_mob/mobs_monsters/clowns/big/normal
 	name = "Clown"
 	desc = "A regular, every tuesday Clown."
 	tt_desc = "E Homo sapiens corydon" //this is a clown
@@ -24,7 +24,7 @@
 	emote_see = list("honks")
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/honkmunculus
+/mob/living/simple_mob/mobs_monsters/clowns/big/honkmunculus
 	name = "A Clown?"
 	desc = "That clown has some interesting proportions."
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -57,7 +57,7 @@
 
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/cluwne
+/mob/living/simple_mob/mobs_monsters/clowns/big/cluwne
 	name = "A Clown?"
 	desc = "Oh no not that thing."
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -83,7 +83,7 @@
 	emote_see = list("honks")
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/tunnelclown
+/mob/living/simple_mob/mobs_monsters/clowns/big/tunnelclown
 	name = "A Clown?"
 	desc = "Have you heard about our lord and savior, Honkus Chrust?"
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -108,7 +108,7 @@
 	speak = list("HONK", "Honk!", "Henk!")
 	emote_see = list("honks")
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/sentinel
+/mob/living/simple_mob/mobs_monsters/clowns/big/sentinel
 	name = "A Clown?"
 	desc = "This guy means business..."
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -134,7 +134,7 @@
 	emote_see = list("honks")
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/punished
+/mob/living/simple_mob/mobs_monsters/clowns/big/punished
 	name = "A Clown?"
 	desc = "A clown at peak performance."
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -166,7 +166,7 @@
 	emote_see = list("honks")
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/thicc
+/mob/living/simple_mob/mobs_monsters/clowns/big/thicc
 	name = "A Clown..."
 	desc = "I mean, you see it don't you?"
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -198,7 +198,7 @@
 	emote_see = list("honks")
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/perm
+/mob/living/simple_mob/mobs_monsters/clowns/big/perm
 	name = "A Clown?"
 	desc = "That clown really needs to get that hair under control."
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -230,7 +230,7 @@
 	emote_see = list("honks")
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/wide
+/mob/living/simple_mob/mobs_monsters/clowns/big/wide
 	name = "A Clown?"
 	desc = "He looks good from some angles!"
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -262,7 +262,7 @@
 	emote_see = list("honks")
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/thin
+/mob/living/simple_mob/mobs_monsters/clowns/big/thin
 	name = "A Clown?"
 	desc = "Is he eating enough?"
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -288,7 +288,7 @@
 	emote_see = list("honks")
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/hulk
+/mob/living/simple_mob/mobs_monsters/clowns/big/hulk
 	name = "A Clown?"
 	desc = "Just look at those muscles."
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -322,7 +322,7 @@
 	emote_see = list("honks")
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/longface
+/mob/living/simple_mob/mobs_monsters/clowns/big/longface
 	name = "A Clown?"
 	desc = "Why the long face?"
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -354,7 +354,7 @@
 	emote_see = list("honks")
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/giggles
+/mob/living/simple_mob/mobs_monsters/clowns/big/giggles
 	name = "A Giggles?"
 	desc = "Oh sweet space christ."
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -380,7 +380,7 @@
 	emote_see = list("honks")
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/destroyer
+/mob/living/simple_mob/mobs_monsters/clowns/big/destroyer
 	name = "A Clown?"
 	desc = "That clown looks like he means business."
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -435,7 +435,7 @@
 	emote_see = list("honks")
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/chlown
+/mob/living/simple_mob/mobs_monsters/clowns/big/chlown
 	name = "A Clown?"
 	desc = "No."
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -467,7 +467,7 @@
 	emote_see = list("honks")
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/scary
+/mob/living/simple_mob/mobs_monsters/clowns/big/scary
 	name = "A Clown?"
 	desc = "Hey that clown looks familiar!"
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -493,7 +493,7 @@
 	emote_see = list("honks")
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/flesh
+/mob/living/simple_mob/mobs_monsters/clowns/big/flesh
 	name = "A Clown?"
 	desc = "WOOOOO STREAKING WOOOO!"
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -519,7 +519,7 @@
 	emote_see = list("honks")
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/clowns
+/mob/living/simple_mob/mobs_monsters/clowns/big/clowns
 	name = "Definitely a singular clown"
 	desc = "Is it one clown, or many clowns in not a trenchcoat?"
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -551,7 +551,7 @@
 	emote_see = list("honks")
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/mutant
+/mob/living/simple_mob/mobs_monsters/clowns/big/mutant
 	name = "A Clown?"
 	desc = "Oh sweet space christ."
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -583,7 +583,7 @@
 	emote_see = list("honks")
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/blob
+/mob/living/simple_mob/mobs_monsters/clowns/big/blob
 	name = "A Clown?"
 	desc = "Go to a gym fatty!"
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -615,7 +615,7 @@
 	emote_see = list("honks")
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/mayor
+/mob/living/simple_mob/mobs_monsters/clowns/big/mayor
 	name = "A clown?"
 	desc = "One speaks in riddles..."
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -647,7 +647,7 @@
 	emote_see = list("honks")
 
 
-/mob/living/simple_mob/mobs_monsters/clowns/big/c_shift/honkling
+/mob/living/simple_mob/mobs_monsters/clowns/big/honkling
 	name = "A Clown?"
 	desc = "Oh sweet space christ."
 	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
@@ -671,3 +671,31 @@
 /datum/say_list/clown
 	speak = list("HONK", "Honk!", "Henk!")
 	emote_see = list("honks")
+
+
+//template
+
+///mob/living/simple_mob/mobs_monsters/clowns/big/
+//	name = "A Clown?"
+//	desc = "Oh sweet space christ."
+//	tt_desc = "E Homo sapiens corydon horrificus" //this is a redspace clown
+//	icon = 'icons/mob/mobs_monsters/tgclowns.dmi'
+//	icon_state = ""
+//	icon_living = ""
+//	icon_dead = "_dead"
+//	icon_gib = "generic_gib"
+//	vis_height = 64
+
+//	faction = "clown"
+
+//	loot_list = list(/obj/item/weapon/bikehorn = 100)
+
+//	response_help = "pokes"
+//	response_disarm = "gently pushes aside"
+//	response_harm = "hits"
+
+//	say_list_type = /datum/say_list/clown
+
+///datum/say_list/clown
+//	speak = list("HONK", "Honk!", "Henk!")
+//	emote_see = list("honks")
