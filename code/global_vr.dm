@@ -6,7 +6,7 @@
 	robot_module_types += "Pupdozer"
 	robot_module_types += "Service-Hound"
 	robot_module_types += "KMine"
-	robot_module_types += "Command-Hound"
+	robot_module_types += "Clerical-Hound"
 	return 1
 
 var/list/shell_module_types = list(
