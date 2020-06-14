@@ -37,6 +37,26 @@
 					LANGUAGE_ENOCHIAN	= 1
 					)
 
+/obj/item/weapon/robot_module/robot/chound
+	languages = list(
+					LANGUAGE_SOL_COMMON	= 1,
+					LANGUAGE_TRADEBAND	= 1,
+					LANGUAGE_UNATHI		= 1,
+					LANGUAGE_SIIK		= 1,
+					LANGUAGE_SKRELLIAN	= 1,
+					LANGUAGE_ROOTLOCAL	= 0,
+					LANGUAGE_GUTTER		= 1,
+					LANGUAGE_SCHECHI	= 1,
+					LANGUAGE_EAL		= 1,
+					LANGUAGE_SIGN		= 0,
+					LANGUAGE_BIRDSONG	= 1,
+					LANGUAGE_SAGARU		= 1,
+					LANGUAGE_CANILUNZT	= 1,
+					LANGUAGE_ECUREUILIAN= 1,
+					LANGUAGE_DAEMON		= 1,
+					LANGUAGE_ENOCHIAN	= 1
+					)
+
 /hook/startup/proc/robot_modules_vr()
 	robot_modules["Medihound"] = /obj/item/weapon/robot_module/robot/medihound
 	robot_modules["K9"] = /obj/item/weapon/robot_module/robot/knine
@@ -46,7 +66,7 @@
 	robot_modules["Pupdozer"] = /obj/item/weapon/robot_module/robot/engiedog
 	robot_modules["Service-Hound"] = /obj/item/weapon/robot_module/robot/clerical/brodog
 	robot_modules["KMine"] = /obj/item/weapon/robot_module/robot/kmine
-	robot_modules["Command-Hound"] = /obj/item/weapon/robot_module/robot/command
+	robot_modules["Clerical-Hound"] = /obj/item/weapon/robot_module/robot/chound
 	return 1
 
 //Just add a new proc with the robot_module type if you wish to run some other vore code
@@ -793,25 +813,25 @@
 	R.verbs -= /mob/living/silicon/robot/proc/rest_style
 	..()
 
-/obj/item/weapon/robot_module/robot/command
-	name = "Command Hound Module"
+/obj/item/weapon/robot_module/robot/chound
+	name = "Clerical Hound Module"
 	sprites = list(
 					"Kcom" = "kcom"
 					)
 	channels = list(
-			"Medical" = 1,
-			"Engineering" = 1,
-			"Security" = 1,
+			"Medical" = 0,
+			"Engineering" = 0,
+			"Security" = 0,
 			"Service" = 1,
-			"Supply" = 1,
-			"Science" = 1,
+			"Supply" = 0,
+			"Science" = 0,
 			"Command" = 1,
-			"Explorer" = 1
+			"Explorer" = 0
 			)
 	pto_type = PTO_CIVILIAN
 	can_be_pushed = 0
 
-/obj/item/weapon/robot_module/robot/command/New(var/mob/living/silicon/robot/R)
+/obj/item/weapon/robot_module/robot/chound/New(var/mob/living/silicon/robot/R)
 	src.modules += new /obj/item/weapon/pen/robopen(src)
 	src.modules += new /obj/item/weapon/gripper/paperwork(src)
 	src.modules += new /obj/item/weapon/hand_labeler(src)
@@ -820,7 +840,8 @@
 	src.modules += new /obj/item/weapon/folder/blue(src)
 	src.modules += new /obj/item/weapon/clipboard(src)
 	src.modules += new /obj/item/weapon/rpf(src)
-	src.emag 	 = new /obj/item/weapon/dogborg/pounce(src) //Pounce
+	src.emag = new /obj/item/weapon/stamp/chameleon(src)
+	src.emag = new /obj/item/weapon/pen/chameleon(src)
 
 	var/datum/matter_synth/water = new /datum/matter_synth(500)
 	water.name = "Water reserves"
