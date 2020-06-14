@@ -50,6 +50,29 @@
 	},
 /turf/simulated/wall/r_wall,
 /area/space)
+"aah" = (
+/obj/effect/floor_decal/steeldecal/steel_decals4,
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 10
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/alarm{
+	dir = 1;
+	icon_state = "alarm0";
+	pixel_y = -22
+	},
+/turf/simulated/floor/tiled,
+/area/engineering/gravity_lobby)
 "aai" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -93,6 +116,23 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
+"aal" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/alarm{
+	dir = 4;
+	pixel_x = -35;
+	pixel_y = 0
+	},
+/turf/simulated/floor,
+/area/maintenance/station/eng_lower)
 "aam" = (
 /obj/machinery/light/small{
 	dir = 8;
@@ -20998,24 +21038,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
-"dnX" = (
-/obj/effect/floor_decal/steeldecal/steel_decals4,
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 10
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/turf/simulated/floor/tiled,
-/area/engineering/gravity_lobby)
 "dop" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/random/cutout,
@@ -33311,7 +33333,7 @@ shi
 anD
 aoH
 apU
-apU
+aal
 apU
 atT
 avP
@@ -33450,7 +33472,7 @@ aik
 aik
 aik
 rxE
-dnX
+aah
 aik
 ioI
 ach
