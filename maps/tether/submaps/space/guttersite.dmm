@@ -865,32 +865,6 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/atmos)
-"cv" = (
-/obj/structure/table/steel,
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/atmos)
-"cw" = (
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_x = 0;
-	pixel_y = -25
-	},
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/atmos)
-"cx" = (
-/obj/machinery/alarm{
-	alarm_id = null;
-	breach_detection = 0;
-	dir = 1;
-	icon_state = "alarm0";
-	pixel_y = -22
-	},
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/atmos)
-"cy" = (
-/obj/machinery/light,
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/atmos)
 "cz" = (
 /obj/machinery/light{
 	dir = 8
@@ -5026,6 +5000,13 @@
 /obj/item/device/flashlight/lamp/green,
 /turf/simulated/floor/tiled/eris/white/monofloor,
 /area/tether_away/guttersite/office)
+"mz" = (
+/obj/machinery/atmospherics/pipe/simple/visible/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/visible/scrubbers,
+/turf/simulated/floor/plating/eris/under,
+/area/tether_away/guttersite/atmos)
 "mM" = (
 /obj/structure/table/darkglass,
 /obj/item/weapon/pen/blue,
@@ -5074,6 +5055,89 @@
 /obj/random/janusmodule,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/vault)
+"oe" = (
+/obj/machinery/atmospherics/pipe/simple/visible/supply,
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
+/obj/machinery/meter,
+/turf/simulated/floor/plating/eris/under,
+/area/tether_away/guttersite/atmos)
+"oE" = (
+/obj/machinery/atmospherics/pipe/simple/visible/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
+	dir = 8
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/tether_away/guttersite/atmos)
+"oL" = (
+/obj/machinery/meter,
+/obj/machinery/atmospherics/pipe/simple/visible/supply{
+	dir = 6
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/tether_away/guttersite/atmos)
+"oW" = (
+/obj/machinery/atmospherics/pipe/manifold/visible/supply{
+	dir = 8
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/tether_away/guttersite/atmos)
+"qW" = (
+/obj/structure/table/steel,
+/turf/simulated/floor/plating/eris/under,
+/area/tether_away/guttersite/atmos)
+"sE" = (
+/obj/machinery/atmospherics/pipe/manifold/visible/supply,
+/turf/simulated/floor/plating/eris/under,
+/area/tether_away/guttersite/atmos)
+"zV" = (
+/obj/machinery/atmospherics/pipe/simple/visible/supply,
+/obj/machinery/atmospherics/pipe/simple/visible/red{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
+	dir = 10
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/tether_away/guttersite/atmos)
+"Bl" = (
+/obj/machinery/atmospherics/pipe/simple/visible/supply{
+	dir = 4
+	},
+/obj/machinery/meter,
+/turf/simulated/floor/plating/eris/under,
+/area/tether_away/guttersite/atmos)
+"EW" = (
+/obj/machinery/atmospherics/pipe/simple/visible/supply{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
+	dir = 5
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/tether_away/guttersite/atmos)
+"FL" = (
+/obj/machinery/light,
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/supply{
+	dir = 4
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/tether_away/guttersite/atmos)
+"JQ" = (
+/obj/machinery/atmospherics/pipe/simple/visible/supply{
+	dir = 4
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/tether_away/guttersite/atmos)
+"Mc" = (
+/obj/machinery/atmospherics/pipe/simple/visible/supply,
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
+/turf/simulated/floor/plating/eris/under,
+/area/tether_away/guttersite/atmos)
 "Ob" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -5082,6 +5146,100 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/maint)
+"Oy" = (
+/obj/machinery/atmospherics/binary/pump/on{
+	dir = 1;
+	name = "Air to Ports"
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/tether_away/guttersite/atmos)
+"OS" = (
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -25
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/tether_away/guttersite/atmos)
+"PG" = (
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/supply{
+	dir = 4
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/tether_away/guttersite/atmos)
+"Tz" = (
+/obj/machinery/atmospherics/pipe/simple/visible/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
+	dir = 8
+	},
+/obj/machinery/meter,
+/turf/simulated/floor/plating/eris/under,
+/area/tether_away/guttersite/atmos)
+"UL" = (
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
+	dir = 6
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/tether_away/guttersite/atmos)
+"Vr" = (
+/obj/machinery/atmospherics/pipe/simple/visible/supply{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/blue{
+	dir = 8
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/tether_away/guttersite/atmos)
+"VF" = (
+/obj/machinery/atmospherics/binary/pump/on{
+	dir = 2;
+	name = "Waste Compresser"
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/tether_away/guttersite/atmos)
+"VI" = (
+/obj/machinery/alarm{
+	alarm_id = null;
+	breach_detection = 0;
+	dir = 1;
+	icon_state = "alarm0";
+	pixel_y = -22
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/supply{
+	dir = 4
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/tether_away/guttersite/atmos)
+"WM" = (
+/obj/machinery/atmospherics/pipe/simple/visible/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
+	dir = 9
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/tether_away/guttersite/atmos)
+"XZ" = (
+/obj/machinery/atmospherics/pipe/simple/visible/supply{
+	dir = 9
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/tether_away/guttersite/atmos)
+"Yd" = (
+/obj/machinery/atmospherics/pipe/manifold/visible/scrubbers{
+	dir = 8
+	},
+/obj/machinery/meter,
+/turf/simulated/floor/plating/eris/under,
+/area/tether_away/guttersite/atmos)
 
 (1,1,1) = {"
 aa
@@ -10806,9 +10964,9 @@ by
 bF
 bP
 cu
+bh
+bh
 aT
-ag
-ag
 ag
 ad
 ad
@@ -10947,10 +11105,10 @@ bq
 bI
 cc
 bq
-cv
+qW
+bq
+bq
 aT
-ag
-ag
 ag
 ad
 ad
@@ -11089,10 +11247,10 @@ bq
 bJ
 bJ
 bq
-cw
+bq
+bq
+OS
 aT
-ag
-ag
 ag
 ag
 az
@@ -11228,13 +11386,13 @@ cA
 aR
 bh
 bq
-bK
-cd
-bq
-bh
+Vr
+zV
+oe
+Mc
+Mc
+EW
 aT
-ag
-ag
 ag
 ag
 ad
@@ -11370,13 +11528,13 @@ cA
 aS
 bh
 bq
-bL
-ce
+bK
+cd
 bq
-cx
+bq
+bq
+VI
 aT
-ag
-ag
 ag
 ag
 ad
@@ -11511,14 +11669,14 @@ aB
 cA
 aQ
 bi
-br
-bM
-cf
-cm
-cy
+bq
+bL
+ce
+bq
+bq
+bq
+FL
 aT
-ag
-ag
 ag
 ag
 ag
@@ -11653,14 +11811,14 @@ aB
 cA
 aQ
 bh
-bs
-bN
-cg
-cn
-bh
+br
+bM
+cf
+cm
+bq
+bq
+PG
 aT
-ag
-ag
 ag
 ag
 ag
@@ -11795,14 +11953,14 @@ aB
 cA
 aQ
 bh
-bh
-bh
-bh
-bh
-bh
+bs
+bN
+cg
+cn
+bq
+bq
+PG
 aT
-ag
-ag
 ag
 ag
 ag
@@ -11940,11 +12098,11 @@ aT
 aT
 aT
 aT
+bq
+bq
+bq
+Tz
 aT
-aT
-aT
-ag
-ag
 ag
 ag
 ag
@@ -12081,12 +12239,12 @@ cE
 cE
 cE
 cV
-aP
-ag
-ag
-ag
-ag
-ag
+aQ
+UL
+Yd
+Oy
+mz
+aT
 ag
 ag
 ag
@@ -12223,12 +12381,12 @@ aE
 aE
 aE
 cA
-aP
-ag
-ag
-ag
-ag
-ag
+aQ
+cg
+cn
+bq
+oE
+aT
 ag
 ag
 ag
@@ -12365,12 +12523,12 @@ aB
 aB
 aB
 cA
-aB
-ag
-ag
-ag
-ag
-ag
+aT
+UL
+Yd
+Oy
+mz
+aT
 ag
 ag
 cF
@@ -12507,12 +12665,12 @@ ac
 ac
 aB
 cW
-aB
-ag
-ag
-ag
-ag
-ag
+aT
+cg
+cn
+bq
+oE
+aT
 ag
 ag
 cF
@@ -12649,12 +12807,12 @@ ac
 ac
 aB
 cA
-aB
-ag
-ag
-ag
-ag
-ag
+aT
+UL
+Yd
+Oy
+WM
+aT
 ag
 cF
 cF
@@ -12791,12 +12949,12 @@ ab
 ac
 aB
 cA
-aB
-ag
-ag
-ag
-ag
-ag
+aT
+cg
+cn
+bq
+Bl
+aT
 ag
 cF
 cF
@@ -12933,12 +13091,12 @@ ab
 ac
 aB
 cA
-aB
-ag
-ag
-ag
-ag
-ag
+aT
+oL
+oW
+VF
+sE
+aT
 ag
 cF
 jL
@@ -13075,12 +13233,12 @@ ab
 ac
 aB
 cA
-aB
-ag
-ag
-ag
-ag
-ag
+aT
+bs
+bN
+bq
+JQ
+aT
 ag
 cF
 cI
@@ -13217,12 +13375,12 @@ ab
 ac
 aB
 cA
-aB
-ag
-ag
-ag
-ag
-ag
+aT
+oL
+oW
+VF
+sE
+aT
 ag
 cF
 jM
@@ -13359,12 +13517,12 @@ ab
 ac
 aB
 cA
-aB
-ag
-ag
-ag
-ag
-ag
+aT
+bs
+bN
+bq
+JQ
+aT
 ag
 cF
 cF
@@ -13501,12 +13659,12 @@ ac
 ac
 aB
 cA
-aB
-ag
-ag
-ag
-ag
-ag
+aT
+oL
+oW
+VF
+XZ
+aT
 ag
 dk
 dk
@@ -13643,12 +13801,12 @@ ac
 ac
 aB
 cW
-aB
-ag
-ag
-ag
-ag
-ag
+aT
+bs
+bN
+bq
+bq
+aT
 ag
 cF
 cF
@@ -13788,9 +13946,9 @@ cX
 ax
 ax
 ax
-ag
-ag
-ag
+aT
+aT
+aT
 ag
 cF
 jN
