@@ -214,6 +214,23 @@
 
 	starts_with = list(
 		/obj/item/clothing/suit/space/void/autolok,
-		/obj/item/weapon/tank/emergency/oxygen/double,
+		/obj/item/weapon/tank/emergency/oxygen/engi,
+		/obj/item/device/suit_cooling_unit/emergency
+	)
+
+/obj/structure/closet/emergsuit_wall
+	name = "emergency suit storage"
+	desc = "It's wall-mounted storage unit for an emergency suit."
+	icon = 'icons/obj/closets/bases/wall.dmi'
+	closet_appearance = /decl/closet_appearance/wall/emergency
+	anchored = 1
+	density = 0
+	wall_mounted = 1
+	store_mobs = 0
+
+	starts_with = list(
+		/obj/item/clothing/head/helmet/space/emergency,
+		/obj/item/clothing/suit/space/emergency,
+		/obj/item/weapon/tank/emergency/oxygen/engi,
 		/obj/item/device/suit_cooling_unit/emergency
 	)

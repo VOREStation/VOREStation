@@ -1,7 +1,7 @@
 /obj/item/weapon/storage/backpack/saddlebag
 	name = "Horse Saddlebags"
 	desc = "A saddle that holds items. Seems slightly bulky."
-	icon = 'icons/obj/storage_vr.dmi'
+	icon = 'icons/obj/clothing/backpack_vr.dmi'
 	icon_override = 'icons/mob/back_vr.dmi'
 	item_state = "saddlebag"
 	icon_state = "saddlebag"
@@ -33,7 +33,7 @@
 /obj/item/weapon/storage/backpack/saddlebag_common //Shared bag for other taurs with sturdy backs
 	name = "Taur Saddlebags"
 	desc = "A saddle that holds items. Seems slightly bulky."
-	icon = 'icons/obj/storage_vr.dmi'
+	icon = 'icons/obj/clothing/backpack_vr.dmi'
 	icon_override = 'icons/mob/back_vr.dmi'
 	item_state = "saddlebag"
 	icon_state = "saddlebag"
@@ -108,7 +108,7 @@
 /obj/item/weapon/storage/backpack/saddlebag_common/robust //Shared bag for other taurs with sturdy backs
 	name = "Robust Saddlebags"
 	desc = "A saddle that holds items. Seems robust."
-	icon = 'icons/obj/storage_vr.dmi'
+	icon = 'icons/obj/clothing/backpack_vr.dmi'
 	icon_override = 'icons/mob/back_vr.dmi'
 	item_state = "robustsaddle"
 	icon_state = "robustsaddle"
@@ -117,7 +117,7 @@
 /obj/item/weapon/storage/backpack/saddlebag_common/vest //Shared bag for other taurs with sturdy backs
 	name = "Taur Duty Vest"
 	desc = "An armored vest with the armor modules replaced with various handy compartments with decent storage capacity. Useless for protection though."
-	icon = 'icons/obj/storage_vr.dmi'
+	icon = 'icons/obj/clothing/backpack_vr.dmi'
 	icon_override = 'icons/mob/back_vr.dmi'
 	item_state = "taurvest"
 	icon_state = "taurvest"
@@ -141,49 +141,49 @@
 /obj/item/weapon/storage/backpack/satchel/explorer
 	name = "explorer satchel"
 	desc = "A satchel for carrying a large number of supplies easily."
-	icon = 'icons/obj/storage_vr.dmi'
+	icon = 'icons/obj/clothing/backpack_vr.dmi'
 	icon_override = 'icons/mob/back_vr.dmi'
 	item_state = "satchel-explorer"
 	icon_state = "satchel-explorer"
 /obj/item/weapon/storage/backpack/explorer
 	name = "explorer backpack"
 	desc = "A backpack for carrying a large number of supplies easily."
-	icon = 'icons/obj/storage_vr.dmi'
+	icon = 'icons/obj/clothing/backpack_vr.dmi'
 	icon_override = 'icons/mob/back_vr.dmi'
 	item_state = "explorerpack"
 	icon_state = "explorerpack"
 /obj/item/weapon/storage/backpack/satchel/roboticist
 	name = "roboticist satchel"
 	desc = "A satchel for carrying a large number of spare parts easily."
-	icon = 'icons/obj/storage_vr.dmi'
+	icon = 'icons/obj/clothing/backpack_vr.dmi'
 	icon_override = 'icons/mob/back_vr.dmi'
 	item_state = "satchel-robo"
 	icon_state = "satchel-robo"
 /obj/item/weapon/storage/backpack/roboticist
 	name = "roboticist backpack"
 	desc = "A backpack for carrying a large number of spare parts easily."
-	icon = 'icons/obj/storage_vr.dmi'
+	icon = 'icons/obj/clothing/backpack_vr.dmi'
 	icon_override = 'icons/mob/back_vr.dmi'
 	item_state = "backpack-robo"
 	icon_state = "backpack-robo"
 /obj/item/weapon/storage/backpack/vietnam
 	name = "vietnam backpack"
 	desc = "There are tangos in the trees! We need napalm right now! Why is my gun jammed?"
-	icon = 'icons/obj/storage_vr.dmi'
+	icon = 'icons/obj/clothing/backpack_vr.dmi'
 	icon_override = 'icons/mob/back_vr.dmi'
 	item_state = "nambackpack"
 	icon_state = "nambackpack"
 /obj/item/weapon/storage/backpack/russian
 	name = "russian backpack"
 	desc = "Useful for carrying large quantities of vodka."
-	icon = 'icons/obj/storage_vr.dmi'
+	icon = 'icons/obj/clothing/backpack_vr.dmi'
 	icon_override = 'icons/mob/back_vr.dmi'
 	item_state = "ru_rucksack"
 	icon_state = "ru_rucksack"
 /obj/item/weapon/storage/backpack/korean
 	name = "korean backpack"
 	desc = "Insert witty description here."
-	icon = 'icons/obj/storage_vr.dmi'
+	icon = 'icons/obj/clothing/backpack_vr.dmi'
 	icon_override = 'icons/mob/back_vr.dmi'
 	item_state = "kr_rucksack"
 	icon_state = "kr_rucksack"
