@@ -29837,7 +29837,7 @@
 /obj/structure/bed/chair/shuttle{
 	dir = 4
 	},
-/obj/structure/closet/autolok_wall{
+/obj/structure/closet/emergsuit_wall{
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/eris/white,
@@ -30200,7 +30200,7 @@
 /turf/simulated/floor/tiled,
 /area/hallway/station/upper)
 "iPK" = (
-/obj/structure/closet/autolok_wall{
+/obj/structure/closet/emergsuit_wall{
 	pixel_x = -32
 	},
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
