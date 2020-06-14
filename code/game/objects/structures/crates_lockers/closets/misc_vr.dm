@@ -214,6 +214,6 @@
 
 	starts_with = list(
 		/obj/item/clothing/suit/space/void/autolok,
-		/obj/item/weapon/tank/emergency/oxygen/double,
+		/obj/item/weapon/tank/emergency/oxygen/engi,
 		/obj/item/device/suit_cooling_unit/emergency
 	)
