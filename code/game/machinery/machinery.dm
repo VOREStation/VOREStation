@@ -312,11 +312,8 @@ Class Procs:
 		qdel(C)
 		C = new /obj/item/weapon/cell/high(src)
 		component_parts += C
-<<<<<<< HEAD
-		RefreshParts()
-=======
 		return C
->>>>>>> edd7803... mining drill and recharger find their shiny new cells (#7290)
+		RefreshParts()
 
 /obj/machinery/proc/default_part_replacement(var/mob/user, var/obj/item/weapon/storage/part_replacer/R)
 	if(!istype(R))
