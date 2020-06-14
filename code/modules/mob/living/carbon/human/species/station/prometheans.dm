@@ -188,14 +188,16 @@ var/datum/species/shapeshifter/promethean/prometheans
 	if(istype(T))
 		if(!(H.shoes || (H.wear_suit && (H.wear_suit.body_parts_covered & FEET))))
 			for(var/obj/O in T)
-				O.clean_blood()
-				H.adjust_nutrition(rand(5, 15))
+				if(O.clean_blood())
+					H.adjust_nutrition(rand(5, 15))
 			if (istype(T, /turf/simulated))
 				var/turf/simulated/S = T
-				T.clean_blood()
-				S.dirt = 0
+				if(T.clean_blood())
+					H.adjust_nutrition(rand(10, 20))
+				if(S.dirt > 0)
+					S.dirt = 0
+					H.adjust_nutrition(rand(10, 20))
 		//VOREStation Edit Start
-				H.adjust_nutrition(H.nutrition < 500 ? rand(15, 30) : 0)
 		if(H.clean_blood(1))
 			H.adjust_nutrition(H.nutrition < 500 ? rand(15, 30) : 0)
 		if(H.r_hand)
