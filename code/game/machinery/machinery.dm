@@ -312,6 +312,7 @@ Class Procs:
 		qdel(C)
 		C = new /obj/item/weapon/cell/high(src)
 		component_parts += C
+		return C
 		RefreshParts()
 
 /obj/machinery/proc/default_part_replacement(var/mob/user, var/obj/item/weapon/storage/part_replacer/R)
