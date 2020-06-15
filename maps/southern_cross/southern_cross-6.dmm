@@ -765,7 +765,7 @@
 "oK" = (/obj/item/weapon/reagent_containers/food/drinks/cans/cola,/obj/item/weapon/reagent_containers/food/drinks/cans/cola,/obj/item/weapon/reagent_containers/food/drinks/cans/cola,/obj/structure/table/standard,/turf/unsimulated/floor{icon_state = "lino"},/area/tdome/tdomeobserve)
 "oL" = (/obj/effect/floor_decal/corner/white/diagonal,/obj/structure/table/marble,/obj/item/weapon/reagent_containers/food/snacks/spesslaw,/turf/unsimulated/floor{icon_state = "steel"},/area/centcom/bar)
 "oM" = (/obj/effect/floor_decal/corner/white/diagonal,/obj/structure/table/marble,/obj/item/weapon/reagent_containers/food/snacks/stuffing,/turf/unsimulated/floor{icon_state = "steel"},/area/centcom/bar)
-"oN" = (/obj/machinery/telecomms/hub/preset_cent,/turf/unsimulated/floor{icon_state = "vault"; dir = 5},/area/centcom/main_hall)
+"oN" = (/obj/machinery/telecomms/hub/preset/southerncross/centcomm,/turf/unsimulated/floor{icon_state = "vault"; dir = 5},/area/centcom/main_hall)
 "oO" = (/obj/machinery/computer/shuttle_control/centcom{dir = 8},/turf/simulated/shuttle/floor,/area/shuttle/transport1/centcom)
 "oP" = (/obj/structure/table/reinforced,/obj/machinery/photocopier/faxmachine,/obj/structure/window/reinforced,/turf/unsimulated/floor{icon_state = "vault"; dir = 5},/area/centcom/command)
 "oQ" = (/obj/structure/window/reinforced{dir = 1; health = 1e+006},/obj/structure/window/reinforced{dir = 8},/obj/machinery/computer/supplycomp/control{dir = 4},/turf/unsimulated/floor{icon_state = "vault"; dir = 5},/area/centcom/command)
@@ -2538,3 +2538,4 @@ aaaaRfababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 "}
+

@@ -61,6 +61,17 @@
 	item_flags = AIRTIGHT
 	body_parts_covered = EYES
 
+/obj/item/clothing/glasses/graviton/medgravpatch
+	name = "medical graviton eyepatch"
+	desc = "A graviton eyepatch with a medical overlay."
+	icon = 'icons/obj/clothing/glasses_vr.dmi'
+	icon_override = 'icons/mob/eyes_vr.dmi'
+	icon_state = "medgravpatch"
+	item_state_slots = list(slot_r_hand_str = "blindfold", slot_l_hand_str = "blindfold")
+	action_button_name = "Toggle Eyepatch"
+	off_state = "eyepatch"
+	enables_planes = list(VIS_CH_STATUS,VIS_CH_HEALTH,VIS_FULLBRIGHT,VIS_MESONS)
+
 /*---Tajaran-specific Eyewear---*/
 
 /obj/item/clothing/glasses/tajblind

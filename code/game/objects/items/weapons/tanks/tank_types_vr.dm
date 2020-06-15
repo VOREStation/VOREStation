@@ -85,6 +85,7 @@
 	icon_override = 'icons/mob/belt_vr.dmi'
 	icon_state = "emergency_phoron_vox"
 	gauge_icon = "indicator_smalltank"
+	volume = 6
 	gauge_cap = 3
 
 /obj/item/weapon/tank/nitrogen
