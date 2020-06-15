@@ -24,9 +24,22 @@ SUBSYSTEM_DEF(supply)
 	var/movetime = 1200
 	var/datum/shuttle/autodock/ferry/supply/shuttle
 	var/list/material_points_conversion = list( // Any materials not named in this list are worth 0 points
+			"silver" = 2,
+			"marble" = 2,
+			"gold" = 2,
+			"uranium" = 2,
+			"lead" = 2,
+			"platinum" = 5,
 			"phoron" = 5,
-			"platinum" = 5
-		)
+			"titanium" = 6,
+			"plasteel" = 6,
+			"osmium" = 6,
+			"mhydrogen" = 6,
+			"verdantium" = 8,
+			"diamond" = 8,
+			"durasteel" = 9,
+			"morphium" = 13
+		)//SPOOKY number!
 
 /datum/controller/subsystem/supply/Initialize()
 	ordernum = rand(1,9000)
