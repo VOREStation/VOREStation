@@ -61,3 +61,9 @@
 /datum/gear/suit/roles/medical/ems_jacket/alt
 	display_name = "first responder jacket, alt."
 	path = /obj/item/clothing/suit/storage/toggle/fr_jacket/ems
+	
+//paramedic vest
+/datum/gear/suit/roles/medical/paramedic_vest
+	display_name = "paramedic vest"
+	path = /obj/item/clothing/suit/storage/toggle/paramedic
+	allowed_roles = list("Chief Medical Officer","Paramedic","Medical Doctor")
