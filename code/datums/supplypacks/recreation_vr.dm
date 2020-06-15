@@ -25,6 +25,7 @@
 			)
 	containertype = /obj/structure/closet/crate
 	containername = "Restraints crate"
+	contraband = 1
 	cost = 30
 
 /datum/supply_pack/recreation/wolfgirl_cosplay_crate
@@ -38,6 +39,7 @@
 			)
 	cost = 50
 	containertype = /obj/structure/closet/crate
+	contraband = 1
 	containername = "wolfgirl cosplay crate"
 
 /datum/supply_pack/randomised/recreation/figures
@@ -48,6 +50,7 @@
 			)
 	cost = 200
 	containertype = /obj/structure/closet/crate
+	contraband = 1
 	containername = "Action figures crate"
 
 /datum/supply_pack/recreation/collars
@@ -63,4 +66,5 @@
 			)
 	cost = 25
 	containertype = /obj/structure/closet/crate
+	contraband = 1
 	containername = "collar crate"
