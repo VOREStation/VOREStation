@@ -4,6 +4,8 @@
 	movement_sound = 'sound/effects/clownstep2.ogg'
 	attack_sound = 'sound/effects/Whipcrack.ogg'
 
+	faction = "clown"
+
 	maxHealth = 100
 	health = 100
 	see_in_dark = 8

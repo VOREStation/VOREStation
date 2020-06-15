@@ -9,20 +9,6 @@
 	icon_gib = "generic_gib"
 	vis_height = 32
 
-	faction = "clown"
-
-	loot_list = list(/obj/item/weapon/bikehorn = 100)
-
-	response_help = "pokes"
-	response_disarm = "gently pushes aside"
-	response_harm = "hits"
-
-	say_list_type = /datum/say_list/clown
-
-/datum/say_list/clown
-	speak = list("HONK", "Honk!", "Henk!")
-	emote_see = list("honks")
-
 
 /mob/living/simple_mob/mobs_monsters/clowns/big/honkmunculus
 	name = "A Clown?"
@@ -41,21 +27,6 @@
 	pixel_x = -16
 	pixel_y = 0
 
-	faction = "clown"
-
-	loot_list = list(/obj/item/weapon/bikehorn = 100)
-
-	response_help = "pokes"
-	response_disarm = "gently pushes aside"
-	response_harm = "hits"
-
-	say_list_type = /datum/say_list/clown
-
-/datum/say_list/clown
-	speak = list("HONK", "Honk!", "Henk!")
-	emote_see = list("honks")
-
-
 
 /mob/living/simple_mob/mobs_monsters/clowns/big/cluwne
 	name = "A Clown?"
@@ -67,20 +38,6 @@
 	icon_dead = "cluwne_dead"
 	icon_gib = "generic_gib"
 	vis_height = 32
-
-	faction = "clown"
-
-	loot_list = list(/obj/item/weapon/bikehorn = 100)
-
-	response_help = "pokes"
-	response_disarm = "gently pushes aside"
-	response_harm = "hits"
-
-	say_list_type = /datum/say_list/clown
-
-/datum/say_list/clown
-	speak = list("HONK", "Honk!", "Henk!")
-	emote_see = list("honks")
 
 
 /mob/living/simple_mob/mobs_monsters/clowns/big/tunnelclown
@@ -94,19 +51,6 @@
 	icon_gib = "generic_gib"
 	vis_height = 32
 
-	faction = "clown"
-
-	loot_list = list(/obj/item/weapon/bikehorn = 100)
-
-	response_help = "pokes"
-	response_disarm = "gently pushes aside"
-	response_harm = "hits"
-
-	say_list_type = /datum/say_list/clown
-
-/datum/say_list/clown
-	speak = list("HONK", "Honk!", "Henk!")
-	emote_see = list("honks")
 
 /mob/living/simple_mob/mobs_monsters/clowns/big/sentinel
 	name = "A Clown?"
@@ -118,20 +62,6 @@
 	icon_dead = "sentinel_dead"
 	icon_gib = "generic_gib"
 	vis_height = 32
-
-	faction = "clown"
-
-	loot_list = list(/obj/item/weapon/bikehorn = 100)
-
-	response_help = "pokes"
-	response_disarm = "gently pushes aside"
-	response_harm = "hits"
-
-	say_list_type = /datum/say_list/clown
-
-/datum/say_list/clown
-	speak = list("HONK", "Honk!", "Henk!")
-	emote_see = list("honks")
 
 
 /mob/living/simple_mob/mobs_monsters/clowns/big/punished
@@ -151,20 +81,6 @@
 	pixel_x = -16
 	pixel_y = 0
 
-	faction = "clown"
-
-	loot_list = list(/obj/item/weapon/bikehorn = 100)
-
-	response_help = "pokes"
-	response_disarm = "gently pushes aside"
-	response_harm = "hits"
-
-	say_list_type = /datum/say_list/clown
-
-/datum/say_list/clown
-	speak = list("HONK", "Honk!", "Henk!")
-	emote_see = list("honks")
-
 
 /mob/living/simple_mob/mobs_monsters/clowns/big/thicc
 	name = "A Clown..."
@@ -182,20 +98,6 @@
 	default_pixel_x = -16
 	pixel_x = -16
 	pixel_y = 0
-
-	faction = "clown"
-
-	loot_list = list(/obj/item/weapon/bikehorn = 100)
-
-	response_help = "pokes"
-	response_disarm = "gently pushes aside"
-	response_harm = "hits"
-
-	say_list_type = /datum/say_list/clown
-
-/datum/say_list/clown
-	speak = list("HONK", "Honk!", "Henk!")
-	emote_see = list("honks")
 
 
 /mob/living/simple_mob/mobs_monsters/clowns/big/perm
@@ -215,20 +117,6 @@
 	pixel_x = -16
 	pixel_y = 0
 
-	faction = "clown"
-
-	loot_list = list(/obj/item/weapon/bikehorn = 100)
-
-	response_help = "pokes"
-	response_disarm = "gently pushes aside"
-	response_harm = "hits"
-
-	say_list_type = /datum/say_list/clown
-
-/datum/say_list/clown
-	speak = list("HONK", "Honk!", "Henk!")
-	emote_see = list("honks")
-
 
 /mob/living/simple_mob/mobs_monsters/clowns/big/wide
 	name = "A Clown?"
@@ -247,20 +135,6 @@
 	pixel_x = -16
 	pixel_y = 0
 
-	faction = "clown"
-
-	loot_list = list(/obj/item/weapon/bikehorn = 100)
-
-	response_help = "pokes"
-	response_disarm = "gently pushes aside"
-	response_harm = "hits"
-
-	say_list_type = /datum/say_list/clown
-
-/datum/say_list/clown
-	speak = list("HONK", "Honk!", "Henk!")
-	emote_see = list("honks")
-
 
 /mob/living/simple_mob/mobs_monsters/clowns/big/thin
 	name = "A Clown?"
@@ -272,20 +146,6 @@
 	icon_dead = "thin_dead"
 	icon_gib = "generic_gib"
 	vis_height = 32
-
-	faction = "clown"
-
-	loot_list = list(/obj/item/weapon/bikehorn = 100)
-
-	response_help = "pokes"
-	response_disarm = "gently pushes aside"
-	response_harm = "hits"
-
-	say_list_type = /datum/say_list/clown
-
-/datum/say_list/clown
-	speak = list("HONK", "Honk!", "Henk!")
-	emote_see = list("honks")
 
 
 /mob/living/simple_mob/mobs_monsters/clowns/big/hulk
@@ -307,20 +167,6 @@
 	pixel_x = -16
 	pixel_y = 0
 
-	faction = "clown"
-
-	loot_list = list(/obj/item/weapon/bikehorn = 100)
-
-	response_help = "pokes"
-	response_disarm = "gently pushes aside"
-	response_harm = "hits"
-
-	say_list_type = /datum/say_list/clown
-
-/datum/say_list/clown
-	speak = list("HONK", "Honk!", "Henk!")
-	emote_see = list("honks")
-
 
 /mob/living/simple_mob/mobs_monsters/clowns/big/longface
 	name = "A Clown?"
@@ -339,20 +185,6 @@
 	pixel_x = -16
 	pixel_y = 0
 
-	faction = "clown"
-
-	loot_list = list(/obj/item/weapon/bikehorn = 100)
-
-	response_help = "pokes"
-	response_disarm = "gently pushes aside"
-	response_harm = "hits"
-
-	say_list_type = /datum/say_list/clown
-
-/datum/say_list/clown
-	speak = list("HONK", "Honk!", "Henk!")
-	emote_see = list("honks")
-
 
 /mob/living/simple_mob/mobs_monsters/clowns/big/giggles
 	name = "A Giggles?"
@@ -364,20 +196,6 @@
 	icon_dead = "giggles_dead"
 	icon_gib = "generic_gib"
 	vis_height = 32
-
-	faction = "clown"
-
-	loot_list = list(/obj/item/weapon/bikehorn = 100)
-
-	response_help = "pokes"
-	response_disarm = "gently pushes aside"
-	response_harm = "hits"
-
-	say_list_type = /datum/say_list/clown
-
-/datum/say_list/clown
-	speak = list("HONK", "Honk!", "Henk!")
-	emote_see = list("honks")
 
 
 /mob/living/simple_mob/mobs_monsters/clowns/big/destroyer
@@ -420,20 +238,6 @@
 				"rad" = 0
 				)
 
-	faction = "clown"
-
-	loot_list = list(/obj/item/weapon/bikehorn = 100)
-
-	response_help = "pokes"
-	response_disarm = "gently pushes aside"
-	response_harm = "hits"
-
-	say_list_type = /datum/say_list/clown
-
-/datum/say_list/clown
-	speak = list("HONK", "Honk!", "Henk!")
-	emote_see = list("honks")
-
 
 /mob/living/simple_mob/mobs_monsters/clowns/big/chlown
 	name = "A Clown?"
@@ -452,20 +256,6 @@
 	pixel_x = -16
 	pixel_y = 0
 
-	faction = "clown"
-
-	loot_list = list(/obj/item/weapon/bikehorn = 100)
-
-	response_help = "pokes"
-	response_disarm = "gently pushes aside"
-	response_harm = "hits"
-
-	say_list_type = /datum/say_list/clown
-
-/datum/say_list/clown
-	speak = list("HONK", "Honk!", "Henk!")
-	emote_see = list("honks")
-
 
 /mob/living/simple_mob/mobs_monsters/clowns/big/scary
 	name = "A Clown?"
@@ -478,20 +268,6 @@
 	icon_gib = "generic_gib"
 	vis_height = 32
 
-	faction = "clown"
-
-	loot_list = list(/obj/item/weapon/bikehorn = 100)
-
-	response_help = "pokes"
-	response_disarm = "gently pushes aside"
-	response_harm = "hits"
-
-	say_list_type = /datum/say_list/clown
-
-/datum/say_list/clown
-	speak = list("HONK", "Honk!", "Henk!")
-	emote_see = list("honks")
-
 
 /mob/living/simple_mob/mobs_monsters/clowns/big/flesh
 	name = "A Clown?"
@@ -503,20 +279,6 @@
 	icon_dead = "flesh_dead"
 	icon_gib = "generic_gib"
 	vis_height = 32
-
-	faction = "clown"
-
-	loot_list = list(/obj/item/weapon/bikehorn = 100)
-
-	response_help = "pokes"
-	response_disarm = "gently pushes aside"
-	response_harm = "hits"
-
-	say_list_type = /datum/say_list/clown
-
-/datum/say_list/clown
-	speak = list("HONK", "Honk!", "Henk!")
-	emote_see = list("honks")
 
 
 /mob/living/simple_mob/mobs_monsters/clowns/big/clowns
@@ -536,20 +298,6 @@
 	pixel_x = -16
 	pixel_y = 0
 
-	faction = "clown"
-
-	loot_list = list(/obj/item/weapon/bikehorn = 100)
-
-	response_help = "pokes"
-	response_disarm = "gently pushes aside"
-	response_harm = "hits"
-
-	say_list_type = /datum/say_list/clown
-
-/datum/say_list/clown
-	speak = list("HONK", "Honk!", "Henk!")
-	emote_see = list("honks")
-
 
 /mob/living/simple_mob/mobs_monsters/clowns/big/mutant
 	name = "A Clown?"
@@ -567,20 +315,6 @@
 	default_pixel_x = -16
 	pixel_x = -16
 	pixel_y = 0
-
-	faction = "clown"
-
-	loot_list = list(/obj/item/weapon/bikehorn = 100)
-
-	response_help = "pokes"
-	response_disarm = "gently pushes aside"
-	response_harm = "hits"
-
-	say_list_type = /datum/say_list/clown
-
-/datum/say_list/clown
-	speak = list("HONK", "Honk!", "Henk!")
-	emote_see = list("honks")
 
 
 /mob/living/simple_mob/mobs_monsters/clowns/big/blob
@@ -600,20 +334,6 @@
 	pixel_x = -16
 	pixel_y = 0
 
-	faction = "clown"
-
-	loot_list = list(/obj/item/weapon/bikehorn = 100)
-
-	response_help = "pokes"
-	response_disarm = "gently pushes aside"
-	response_harm = "hits"
-
-	say_list_type = /datum/say_list/clown
-
-/datum/say_list/clown
-	speak = list("HONK", "Honk!", "Henk!")
-	emote_see = list("honks")
-
 
 /mob/living/simple_mob/mobs_monsters/clowns/big/mayor
 	name = "A clown?"
@@ -632,20 +352,6 @@
 	pixel_x = -16
 	pixel_y = 0
 
-	faction = "clown"
-
-	loot_list = list(/obj/item/weapon/bikehorn = 100)
-
-	response_help = "pokes"
-	response_disarm = "gently pushes aside"
-	response_harm = "hits"
-
-	say_list_type = /datum/say_list/clown
-
-/datum/say_list/clown
-	speak = list("HONK", "Honk!", "Henk!")
-	emote_see = list("honks")
-
 
 /mob/living/simple_mob/mobs_monsters/clowns/big/honkling
 	name = "A Clown?"
@@ -657,20 +363,6 @@
 	icon_dead = "honkling_dead"
 	icon_gib = "generic_gib"
 	vis_height = 32
-
-	faction = "clown"
-
-	loot_list = list(/obj/item/weapon/bikehorn = 100)
-
-	response_help = "pokes"
-	response_disarm = "gently pushes aside"
-	response_harm = "hits"
-
-	say_list_type = /datum/say_list/clown
-
-/datum/say_list/clown
-	speak = list("HONK", "Honk!", "Henk!")
-	emote_see = list("honks")
 
 
 //template
@@ -685,17 +377,3 @@
 //	icon_dead = "_dead"
 //	icon_gib = "generic_gib"
 //	vis_height = 64
-
-//	faction = "clown"
-
-//	loot_list = list(/obj/item/weapon/bikehorn = 100)
-
-//	response_help = "pokes"
-//	response_disarm = "gently pushes aside"
-//	response_harm = "hits"
-
-//	say_list_type = /datum/say_list/clown
-
-///datum/say_list/clown
-//	speak = list("HONK", "Honk!", "Henk!")
-//	emote_see = list("honks")
