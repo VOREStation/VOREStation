@@ -1115,6 +1115,19 @@
 	ckeywhitelist = list("xonkon")
 	character_name = list("Ali")
 
+/datum/gear/fluff/zena_suit
+	path = /obj/item/clothing/suit/space/void/engineering/zena
+	display_name = "Zena's Shroud Suit"
+	ckeywhitelist = list("xonkon")
+	character_name = list("Zena Aviv")
+
+/datum/gear/fluff/zena_helmet
+	path = /obj/item/clothing/head/helmet/space/void/engineering/zena
+	display_name = "Zena's Shroud Helmet"
+	ckeywhitelist = list("xonkon")
+	character_name = list("Zena Aviv")
+
+
 //  Y CKEYS
 
 //  Z CKEYS
