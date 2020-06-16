@@ -3379,6 +3379,7 @@
 #include "code\modules\rogueminer_vr\wrappers.dm"
 #include "code\modules\rogueminer_vr\zone_console.dm"
 #include "code\modules\rogueminer_vr\zonemaster.dm"
+#include "code\modules\rykka_puzzle_wips\reactor_defense.dm"
 #include "code\modules\scripting\Errors.dm"
 #include "code\modules\scripting\IDE.dm"
 #include "code\modules\scripting\Options.dm"

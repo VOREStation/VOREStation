@@ -1,0 +1,89 @@
+<!-- 
+Reactor UI, uses some javascript to change nanoUI up a bit.
+Used In File(s): \code\modules\rykka_puzzle_wips\reactor_defense.dm
+ -->
+<!-- helper industrialUI Commenting this out until we have an industrial UI helper. - HTML comments don't work in DoT so yeah.
+-->
+
+ <style>
+ body {
+	  background-color: #ffffff;
+	  background-image: url('uiBackground-industrial.png');
+	  background-position: 50% 0;
+	  background-repeat: repeat-x;
+ }
+
+ .fixedLengthLink .link {
+	 float: left;
+	 width: 270px;
+	 height: auto;
+	 white-space: normal;
+	 background-color: #d1a442;
+	 border: none;
+	 text-align: center;
+ }
+ 
+ .link {
+	 background-color: #d1a442;
+	 border: none;
+	 white-space: normal;
+	 height: auto;
+	 text-align: left;
+ }
+ 
+ .fixedLengthLink .link:hover {
+	 border: none;
+ }
+ 
+ a:hover, .zoomLink:hover, .linkActive:hover {
+	 cursor: pointer;
+	 background-color: #8b6b24;
+ }
+ 
+ .category {
+	 width: 150px;
+	 margin-left: 20px;
+ }
+ 
+ .category .uiIcon16 {
+	 margin-left: -20px;
+ }
+ 
+ .categoryActive {
+	 background-color: #d1a442;
+ }
+ 
+ .scroll {
+	 overflow-y: auto;
+	 overflow-x: hidden;
+	 scrollbar-base-color: #d1a442;
+	 scrollbar-arrow-color: #ffffff;
+	 height: 374px;
+ }
+ 
+ .statusDisplay {
+	 border: 1px solid #d1a442;
+ }
+ </style>
+
+<div class="item">
+	<center><h1 style="color:#d1a442"; style="font-size:300%">Tairos Industrial Power Systems</h1></center>
+</div>
+
+<div class="item">
+	<div class="itemLabel">
+		Reactor Status
+	</div>
+	<div class="itemContent">
+		{{:helper.displayBar(data.health, 0, 2000, (data.health > 2000) ? 'good' : (data.health > 1500) ? 'average' : (data.health > 1000) ? 'bad' : (data.health > 500))}}
+	</div>
+</div>
+
+<div class="item">
+	<div class="itemLabel">
+		STARTUP MESSAGE TBD
+	</div>
+	<div class="itemContent">
+		{{:helper.link('Engage Reactor', null, {'Engage Reactor' : 1}, null)}}
+	</div>
+</div>
