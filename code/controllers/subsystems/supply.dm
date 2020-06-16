@@ -187,6 +187,8 @@ SUBSYSTEM_DEF(supply)
 
 	var/list/clear_turfs = get_clear_turfs()
 
+	var/shopping_log = "SUPPLY_BUY: "
+
 	for(var/datum/supply_order/SO in shoppinglist)
 		if(!clear_turfs.len)
 			break
@@ -197,6 +199,7 @@ SUBSYSTEM_DEF(supply)
 
 		SO.status = SUP_ORDER_SHIPPED
 		var/datum/supply_pack/SP = SO.object
+		shopping_log += "[SP.name];"
 
 		var/obj/A = new SP.containertype(pickedloc)
 		A.name = "[SP.containername] [SO.comment ? "([SO.comment])":"" ]"
@@ -251,6 +254,7 @@ SUBSYSTEM_DEF(supply)
 			slip.info += "</ul><br>"
 			slip.info += "CHECK CONTENTS AND STAMP BELOW THE LINE TO CONFIRM RECEIPT OF GOODS<hr>"
 
+	log_game(shopping_log)
 	return
 
 // Will attempt to purchase the specified order, returning TRUE on success, FALSE on failure
