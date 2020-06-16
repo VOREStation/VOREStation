@@ -17,7 +17,11 @@
 	id = "[rand(1000, 9999)]"
 	..()
 	underlays.Cut()
+<<<<<<< HEAD
 	underlays += image('icons/obj/stationobjs_vr.dmi', icon_state = "telecomp-wires")	//VOREStation Edit: different direction for wires to account for dirs
+=======
+	underlays += image('icons/obj/stationobjs.dmi', icon_state = "telecomp-wires")
+>>>>>>> 39c4ca8... Merge pull request #7288 from VOREStation/Arokha/telefix
 
 /obj/machinery/computer/teleporter/Initialize()
 	. = ..()
