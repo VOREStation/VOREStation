@@ -23,23 +23,6 @@ SUBSYSTEM_DEF(supply)
 	//shuttle movement
 	var/movetime = 1200
 	var/datum/shuttle/autodock/ferry/supply/shuttle
-	var/list/material_points_conversion = list( // Any materials not named in this list are worth 0 points
-			"silver" = 2,
-			"marble" = 2,
-			"gold" = 2,
-			"uranium" = 2,
-			"lead" = 2,
-			"platinum" = 5,
-			"phoron" = 5,
-			"titanium" = 6,
-			"plasteel" = 6,
-			"osmium" = 6,
-			"mhydrogen" = 6,
-			"verdantium" = 8,
-			"diamond" = 8,
-			"durasteel" = 9,
-			"morphium" = 13
-		)//SPOOKY number!
 
 /datum/controller/subsystem/supply/Initialize()
 	ordernum = rand(1,9000)
@@ -52,7 +35,6 @@ SUBSYSTEM_DEF(supply)
 		else
 			qdel(P)
 
-	// TODO - Auto-build material_points_conversion from material datums
 	. = ..()
 
 // Supply shuttle ticker - handles supply point regeneration. Just add points over time.
@@ -123,8 +105,9 @@ SUBSYSTEM_DEF(supply)
 					// Sell phoron and platinum
 					if(istype(A, /obj/item/stack))
 						var/obj/item/stack/P = A
-						if(material_points_conversion[P.get_material_name()])
-							EC.contents[EC.contents.len]["value"] = P.get_amount() * material_points_conversion[P.get_material_name()]
+						var/material/mat = P.get_material()
+						if(mat?.supply_conversion_value)
+							EC.contents[EC.contents.len]["value"] = P.get_amount() * mat.supply_conversion_value
 						EC.contents[EC.contents.len]["quantity"] = P.get_amount()
 						EC.value += EC.contents[EC.contents.len]["value"]
 
