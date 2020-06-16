@@ -3253,19 +3253,6 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
-"hj" = (
-/obj/machinery/access_button{
-	command = "cycle_exterior";
-	frequency = 1380;
-	master_tag = "guttersite_sshuttle";
-	name = "exterior access button";
-	pixel_x = -5;
-	pixel_y = -26;
-	req_one_access = list();
-	step_x = 0
-	},
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/docking)
 "hk" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4;
@@ -4076,18 +4063,6 @@
 /obj/item/trash/cheesie,
 /turf/simulated/mineral/floor/vacuum,
 /area/tether_away/guttersite/unexplored)
-"jh" = (
-/obj/machinery/access_button{
-	command = "cycle_exterior";
-	frequency = 1276;
-	master_tag = "guttersite_lshuttle";
-	name = "exterior access button";
-	pixel_x = 26;
-	pixel_y = -26;
-	req_one_access = list()
-	},
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/docking)
 "ji" = (
 /obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/simple/visible/red{
@@ -5649,6 +5624,34 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/maint)
+"QN" = (
+/turf/simulated/floor/plating/eris/under/airless,
+/area/tether_away/guttersite/docking)
+"Uv" = (
+/obj/machinery/access_button{
+	command = "cycle_exterior";
+	frequency = 1276;
+	master_tag = "guttersite_lshuttle";
+	name = "exterior access button";
+	pixel_x = 26;
+	pixel_y = -26;
+	req_one_access = list()
+	},
+/turf/simulated/floor/plating/eris/under/airless,
+/area/tether_away/guttersite/docking)
+"Yg" = (
+/obj/machinery/access_button{
+	command = "cycle_exterior";
+	frequency = 1380;
+	master_tag = "guttersite_sshuttle";
+	name = "exterior access button";
+	pixel_x = -5;
+	pixel_y = -26;
+	req_one_access = list();
+	step_x = 0
+	},
+/turf/simulated/floor/plating/eris/under/airless,
+/area/tether_away/guttersite/docking)
 
 (1,1,1) = {"
 aa
@@ -18818,7 +18821,7 @@ eE
 eE
 eE
 gQ
-hj
+Yg
 ho
 eE
 eE
@@ -23083,7 +23086,7 @@ eE
 eE
 eE
 eE
-jh
+Uv
 hv
 iQ
 mI
@@ -23225,7 +23228,7 @@ eE
 eE
 eE
 eE
-fr
+QN
 iL
 fr
 mJ
