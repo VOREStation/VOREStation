@@ -95,6 +95,8 @@ SUBSYSTEM_DEF(skybox)
 	return skybox_cache["[z]"]
 
 /datum/controller/subsystem/skybox/proc/generate_skybox(z)
+	to_world("generating skybox for z[z]")
+
 	var/datum/skybox_settings/settings = global.using_map.get_skybox_datum(z)
 
 	var/image/res = image(settings.icon)
@@ -113,10 +115,12 @@ SUBSYSTEM_DEF(skybox)
 	if(global.using_map.use_overmap && settings.use_overmap_details)
 		var/obj/effect/overmap/visitable/O = get_overmap_sector(z)
 		if(istype(O))
+			to_world("found sector [O] \ref[O] for z[z]")
 			var/image/overmap = image(settings.icon)
 			overmap.overlays += O.generate_skybox()
 			for(var/obj/effect/overmap/visitable/other in O.loc)
 				if(other != O)
+					to_world("found secondary sector [other] \ref[other]")
 					overmap.overlays += other.get_skybox_representation()
 			overmap.appearance_flags = RESET_COLOR
 			res.overlays += overmap
@@ -145,7 +149,7 @@ SUBSYSTEM_DEF(skybox)
 	var/icon_state = "dyable"
 	var/color
 	var/random_color = FALSE
-	
+
 	var/use_stars = TRUE
 	var/star_icon = 'icons/skybox/skybox.dmi'
 	var/star_state = "stars"
