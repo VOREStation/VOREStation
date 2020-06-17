@@ -67,9 +67,10 @@ Used In File(s): \code\modules\rykka_puzzle_wips\reactor_defense.dm
  </style>
 
 <div class="item">
-	<center><h1 style="color:#d1a442"; style="font-size:300%">Tairos Industrial Power Systems</h1></center>
+	<center><h1 style="color:#d1a442"; style="font-size:600%">Tairos Industrial Power Systems</h1></center>
 </div>
 
+{{if data.currentTab == 1}}
 <div class="item">
 	<div class="itemLabel">
 		Reactor Status
@@ -80,10 +81,44 @@ Used In File(s): \code\modules\rykka_puzzle_wips\reactor_defense.dm
 </div>
 
 <div class="item">
+	<center>
 	<div class="itemLabel">
 		STARTUP MESSAGE TBD
 	</div>
 	<div class="itemContent">
-		{{:helper.link('Engage Reactor', null, {'Engage Reactor' : 1}, null)}}
+		{{:helper.link('Startup Reactor', null, {'Engage Reactor' : 1}, null)}}
 	</div>
+	</center>
+</div>
+
+{{else if data.currentTab == 2 && data.warmup == 1}}
+<div class="item">
+	<center>
+	<div class="itemLabelWide">
+		REACTOR WARMING UP
+	</div>
+	<div class="itemContent">
+		{{:helper.displayBar(null, 0, 20, null)}}
+	</div>
+	</center>
+</div>
+
+{{else if data.currentTab == 3}
+<div class="item">
+	<center>
+	<div class="itemLabel">
+		Reactor Status
+	</div>
+	<div class="itemContent">
+		{{:helper.displayBar(data.health, 0, 2000, (data.health > 2000) ? 'good' : (data.health > 1500) ? 'average' : (data.health > 1000) ? 'bad' : (data.health > 500))}}
+	</div>
+	</center>
+</div>
+
+{{else data.currentTab == 4}}
+<div class="item">
+	<center>
+	<h1 style="color:#d1a442"; style="font-size:300%">Reactor Fully Operational</h1>
+	<h2>Currently producing 5 MW of power.</h2>
+	</center>
 </div>

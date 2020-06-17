@@ -10,11 +10,11 @@
 
 GLOBAL_LIST_INIT(reactor_mob_spawners, list()) // Define our global list here. This is used for the spawners.
 
-// List of tabs used for NanoUI Displays
-#define REACTOR_IDLE 1
-#define REACTOR_WARMUP 2
-#define REACTOR_ENGAGED 3
-#define REACTOR_FINISHED 4
+// List of tabs used for NanoUI Displays. If you're not sure how defines work, refer to the .dm reference docs.
+#define IDLE 1
+#define WARMUP 2
+#define ENGAGED 3
+#define FINISHED 4
 
 /obj/structure/damaged_reactor // Damaged Reactor object used as the "thing" we interact with
 	name = "damaged reactor"
@@ -25,36 +25,93 @@ GLOBAL_LIST_INIT(reactor_mob_spawners, list()) // Define our global list here. T
 	anchored = TRUE
 	climbable = FALSE
 	breakable = FALSE
-	var/icon_state_warmup = null		// Icon to use when the reactor is engaged/warming up
-	var/icon_state_severe_damage = null	// Icon to use when the reactor has taken severe damage.
-	var/icon_state_powered = null		// Icon to use once the reactor is at full power
-	var/active_defense = 0				// Are we actively in "defense" mode? (IE has someone engaged the defense gamemode?)
-	var/health = 2000					// The Reactor's health value
-	var/maxhealth = 2000				// The maximum health this object can have.
-	var/list/spawners = list()			// The list of wave spawners we have (Defined at init.)
-	var/reactor_id = null				// Our ID, used to link the reactor + the spawners specific to it, as well as the control console.
-	var/current_wave = 1				// The wave we're on currently. (Needed if # of waves is > 1)
-	var/waves = 1						// How many waves we'll have. TODO - figure out a method of spawning all at once on wave start vs continuous spawns.
-	var/warmup = TRUE					// Does the reactor require a "warmup"/prep time before the waves start?
-	var/warmup_time = 15 SECONDS		// How long is our warmup period?
+	var/icon_state_warmup = null					// Icon to use when the reactor is engaged/warming up
+	var/icon_state_severe_damage = null				// Icon to use when the reactor has taken severe damage.
+	var/icon_state_powered = null					// Icon to use once the reactor is at full power
+	var/active_defense = 0							// Are we actively in "defense" mode? (IE has someone engaged the defense gamemode?)
+	var/health = 2000								// The Reactor's health value
+	var/maxhealth = 2000							// The maximum health this object can have.
+	var/list/spawners = list()						// The list of wave spawners we have (Defined at init.)
+	var/reactor_id = null							// Our ID, used to link the reactor + the spawners specific to it, as well as the control console.
+	
+	// Customization Options. Use these to customize how you want the mode to play out.
+	var/current_wave = 1							// The wave we're on currently. (Needed if # of waves is > 1)
+	var/waves = 1									// Total amount of waves we'll have. TODO - figure out a method of spawning all at once on wave start vs continuous spawns.
+	var/warmup = TRUE								// Does the reactor require a "warmup"/prep time before the waves start?
+	var/warmup_time = 30 SECONDS					// How long is our warmup period?
+	var/warmup_complete = world.time + warmup_time 	// When is our warmup complete?
+	var/wave_length = 90 SECONDS					// How long are our waves?
+	var/wave_complete = world.time + wave_length	// When is the wave complete?
+	var/state = IDLE								// What state are we in currently? (This is used for tracking the spawns and such)
+	var/area_defense = FALSE						// Are we using area defense as well as object defense? (IE, you must stay inside /area/ during the waves.)
 	
 	// Nano UI Variables, don't fuck with these unless you know what you're changing.
-	var/current_tab = REACTOR_IDLE
+	var/current_tab = IDLE
+	
+	/* 	== Spawning Variables. == */
+	// Change these on the subtype of the reactor, for custom mob lists.
+	// Weighted with values (not %chance, but relative weight)
+	// Can be left value-less for all equally likely
+	var/list/mobs_to_pick = list()
+	
+	// Settings to help mappers/coders have their mobs do what they want in this case
+	var/faction				// To prevent infighting if it spawns various mobs, set a faction
+	var/atmos_comp = FALSE	// TRUE will set all their survivability to be within 20% of the current air
+	
+	// Internal Use Only
+	var/mob/living/simple_mob/my_mob
 	
 /obj/structure/damaged_reactor/Initialize()
 	. = ..()
 	
-	if(GLOB.reactor_mob_spawners[reactor_id])
+	if(GLOB.reactor_mob_spawners[reactor_id]) // Does the list exist? Great, then we set the spawners var = to that list.
 		spawners = GLOB.reactor_mob_spawners[reactor_id]
-	else
-		CRASH("Reactor [reactor_id] couldn't find any spawners!")
+	else // Otherwise, we CRASH (create a runtime) so that debugging is aware there is a problem.
+		CRASH("Reactor [reactor_id] at [x],[y],[z] ([get_area(src)]) couldn't find any spawners!")
+		
+	if(!LAZYLEN(mobs_to_pick)) // We CRASH (create a runtime) so that debugging is aware there is a problem. An empty list means nothing will happen when time comes for waves.
+		CRASH("Reactor [reactor_id] at [x],[y],[z] ([get_area(src)]) had no mobs_to_pick set on it!")
 			
 	START_PROCESSING(SSobj, src)
 	
-/obj/structure/damaged_reactor/process()
-	if(!active_defense) // Don't do anything unless we're actively in defense mode.
-		return
+/obj/structure/damaged_reactor/process() // This runs every 2 seconds/MC tick of the SSobj subsystem. I think.
+	// Commenting out in favor of states. Leaving this just-in-case.
+	// if(!active_defense) // Don't do anything unless we're actively in defense mode.
+	//	return
 	
+	if(state == WARMUP)
+		if(world.time >= warmup_complete)
+			state = ENGAGED
+			return
+		warmup()
+	
+	else if(state == ENGAGED)
+		defense_mode()
+		
+	/* Commenting out the my_mob stuff until I get a better handle on if it's needed or not.
+	if(my_mob && my_mob.stat != DEAD) // Is our spawned mob alive still?
+		return // No need to spawn
+	*/
+	
+	if(faction) // Is there a faction var set? Set the spawned mobs faction to this.
+		my_mob.faction = faction
+	
+	if(atmos_comp) // Are we actively setting the atmos survivability? Do so now.
+		var/turf/T = get_turf(src)
+		var/datum/gas_mixture/env = T.return_air()
+		if(env)
+			my_mob.minbodytemp = env.temperature * 0.8
+			my_mob.maxbodytemp = env.temperature * 1.2
+
+			var/list/gaslist = env.gas
+			my_mob.min_oxy = gaslist["oxygen"] * 0.8
+			my_mob.min_tox = gaslist["phoron"] * 0.8
+			my_mob.min_n2 = gaslist["nitrogen"] * 0.8
+			my_mob.min_co2 = gaslist["carbon_dioxide"] * 0.8
+			my_mob.max_oxy = gaslist["oxygen"] * 1.2
+			my_mob.max_tox = gaslist["phoron"] * 1.2
+			my_mob.max_n2 = gaslist["nitrogen"] * 1.2
+			my_mob.max_co2 = gaslist["carbon_dioxide"] * 1.2
 	
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -122,11 +179,7 @@ GLOBAL_LIST_INIT(reactor_mob_spawners, list()) // Define our global list here. T
 		return
 	
 	// We'll make data a list of options, to make it easier to add things later.
-	var/list/data = list(
-		"health" = health,
-		"wave" = current_wave,
-		"warmup_enabled" = warmup
-	)
+	var/list/data = get_ui_data()
 
 	// Footer
 	// Update the UI if it exists, returns null if no ui is passed/found
@@ -137,13 +190,34 @@ GLOBAL_LIST_INIT(reactor_mob_spawners, list()) // Define our global list here. T
 		ui.open() // Open the new UI window
 		ui.set_auto_update(1) // Auto-update every Master Controller tick (every 2 seconds)
 
+/* IF you're making a subtype and want to ADD data to this list, to add more things to NanoUI and such, do:
+ *	/obj/structure/damaged_reactor/SUBTYPE/get_ui_data()
+ *		var/list/data = ..() 
+ *		data['thing'] = "Nope like this" 
+ *		return data 
+ *	This allows you to add more data to the get_ui_data proc or change the information in certain fields without overriding the main data list.
+ */ 
+
+/obj/structure/damaged_reactor/proc/get_ui_data()
+	data["health"] = health
+	data["wave"] = current_wave
+	data["warmup_enabled"] = warmup
+	data["currentTab"] = current_tab
+	data["warmup_time_left"] = (warmup_complete - world.time) / 10 // We want to take the TOTAL time and subtract the CURRENT time, then divide it, to get our fancy UI percentage/time.
+
 /obj/structure/damaged_reactor/Topic(href, href_list)
 	if(..())
 		return 1
 		
 	if(href_list["Engage Reactor"])
-		defense_mode()
-		to_world("<span class='danger'><big>DEBUG: DEFENSE MODE ENGAGED.</big></span>")
+		if(!warmup) // If we do not have warmup set to TRUE, then we go right to starting the waves.
+			current_tab = ENGAGED
+			state = ENGAGED
+			to_world("<span class='danger'><big>DEBUG: DEFENSE MODE ENGAGED.</big></span>")
+		else
+			current_tab = WARMUP
+			state = WARMUP
+			to_world("<span class='danger'><big>DEBUG: WARMUP STARTED.</big></span>")
 		
 
 //////////////////////////////////////////////////////////////////
@@ -285,14 +359,21 @@ GLOBAL_LIST_INIT(reactor_mob_spawners, list()) // Define our global list here. T
 //////////////////////////////////////////////////////////////
 
 //////////////////////////////////////////////////////////////
-/*		=====		Defense Mode Code			=====		//
+/*		=====		Defense Mode, Warmup Code		=====	//
  *			We'll handle engaging defense mode here.		//
  *////////////////////////////////////////////////////////////
 
 /obj/structure/damaged_reactor/proc/defense_mode()
+	active_defense = 1
+	
+	if(waves > 1)
+		
+
+/obj/structure/damaged_reactor/proc/warmup()
+	
 
 //////////////////////////////////////////////////////////////
-/*		=====		End Defense Mode Code		=====		*/
+/*		=====		End Defense Mode, Warmup Code	=====	*/
 //////////////////////////////////////////////////////////////
 
 //////////////////////////////////////////////////////////////
@@ -301,8 +382,8 @@ GLOBAL_LIST_INIT(reactor_mob_spawners, list()) // Define our global list here. T
  *////////////////////////////////////////////////////////////
 
 /obj/effect/spawner/wave_spawner/
-	name = "RENAME ME!"
-	desc = "IF YOU CAN SEE THIS, USE A SUBTYPE, NOT THE PARENT OBJECT!"
+	name = "Wave Spawner"
+	desc = "This is the location of our wave spawns!"
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x"
 	invisibility = 101
@@ -310,19 +391,8 @@ GLOBAL_LIST_INIT(reactor_mob_spawners, list()) // Define our global list here. T
 	density = 0
 	anchored = 1
 	
-	// Weighted with values (not %chance, but relative weight)
-	// Can be left value-less for all equally likely
-	var/list/mobs_to_pick
-	
-	// Settings to help mappers/coders have their mobs do what they want in this case
-	var/faction				// To prevent infighting if it spawns various mobs, set a faction
-	var/atmos_comp = FALSE	// TRUE will set all their survivability to be within 20% of the current air
-	
 	// Our Reactor ID - used in linking the parts together.
 	var/reactor_id = null
-	
-	// Internal Use Only
-	var/mob/living/simple_mob/my_mob
 	
 /obj/effect/spawner/wave_spawner/Initialize() // When our object is loaded for the first time.
 	. = ..()
@@ -331,51 +401,15 @@ GLOBAL_LIST_INIT(reactor_mob_spawners, list()) // Define our global list here. T
 		GLOB.reactor_mob_spawners[reactor_id] += src
 	else
 		GLOB.reactor_mob_spawners[reactor_id] = list(src) // No list yet for this reactor? Cool, we're starting one.
-	
-	if(!LAZYLEN(mobs_to_pick))
-		error("Wave Spawner at [x],[y],[z] ([get_area(src)]) had no mobs_to_pick set on it!")
-		initialized = TRUE
-		return INITIALIZE_HINT_QDEL
 
-/*	Comment out processing code for now.
-/obj/effect/spawner/wave_spawner/process() // When we're called by the object processing system, do these things.
-	if(my_mob && my_mob.stat != DEAD) // Is our spawned mob alive still?
-		return // No need to spawn
-		
-	// if(!active_defense) // TODO: figure out how to check on the reactor if we're actively defending - but not ALL reactors, JUST the one near us.
-		// return
-	
-	var/picked_type = pickweight(mobs_to_pick)
-	my_mob = new picked_type(get_turf(src))
-	my_mob.low_priority = TRUE
-	
-	if(faction)
-		my_mob.faction = faction
-		
-	if(atmos_comp)
-		var/turf/T = get_turf(src)
-		var/datum/gas_mixture/env = T.return_air()
-		if(env)
-			my_mob.minbodytemp = env.temperature * 0.8
-			my_mob.maxbodytemp = env.temperature * 1.2
 
-			var/list/gaslist = env.gas
-			my_mob.min_oxy = gaslist["oxygen"] * 0.8
-			my_mob.min_tox = gaslist["phoron"] * 0.8
-			my_mob.min_n2 = gaslist["nitrogen"] * 0.8
-			my_mob.min_co2 = gaslist["carbon_dioxide"] * 0.8
-			my_mob.max_oxy = gaslist["oxygen"] * 1.2
-			my_mob.max_tox = gaslist["phoron"] * 1.2
-			my_mob.max_n2 = gaslist["nitrogen"] * 1.2
-			my_mob.max_co2 = gaslist["carbon_dioxide"] * 1.2
-	
-	/*		
-	else
-		STOP_PROCESSING(SSobj, src)
-		return
-	*/
-*/
 
 //////////////////////////////////////////////////////////////
 /*		=====		End Spawner Code			=====		*/
 //////////////////////////////////////////////////////////////
+
+// We're done using these, undefine them.
+#undef IDLE
+#undef WARMUP
+#undef ENGAGED
+#undef FINISHED
