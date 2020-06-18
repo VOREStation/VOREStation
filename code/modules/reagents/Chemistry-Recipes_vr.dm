@@ -161,7 +161,7 @@
 	name = "Space Bulldog"
 	id = "bulldog"
 	result = "bulldog"
-	required_reagents = list("vodka" = 1, "cola" =1, "cream" =1, "kahlua" =1)
+	required_reagents = list("whiterussian" = 4, "cola" =1)
 	result_amount = 4
 
 /datum/chemical_reaction/drinks/sbagliato
