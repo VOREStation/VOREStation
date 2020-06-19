@@ -15,13 +15,18 @@
 
 /obj/item/clothing/head/helmet/space/void/merc/prototype
 	name = "\improper prototype voidsuit helmet"
-	desc = "A special helmet designed for work in a hazardous, low pressure environment. This is an advanced model commonly used by militaries and emergency response."
+	desc = "A special helmet designed for work in a hazardous, low pressure environment. It's a little ostentatious, but it gets the job done."
 	icon_state = "hosproto"
+	armor = list(melee = 50, bullet = 25, laser = 25, energy = 5, bomb = 45, bio = 100, rad = 10)
+	siemens_coefficient = 0.7
 
 /obj/item/clothing/suit/space/void/merc/prototype
 	name = "\improper prototype voidsuit"
-	desc = "A special suit that protects against hazardous, low pressure environments. This is an advanced model commonly used by militaries and emergency response."
+	desc = "A special suit that protects against hazardous, low pressure environments. It's a little ostentatious, but it gets the job done."
 	icon_state = "hosproto_void"
+	armor = list(melee = 50, bullet = 25, laser = 25, energy = 5, bomb = 45, bio = 100, rad = 10)
+	allowed = list(/obj/item/weapon/gun,/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/melee/baton)
+	siemens_coefficient = 0.7
 
 /obj/item/clothing/head/helmet/space/void/merc/odst
 	name = "\improper ODST Helmet"
