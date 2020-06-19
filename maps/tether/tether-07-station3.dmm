@@ -29527,10 +29527,6 @@
 /obj/structure/filingcabinet,
 /turf/simulated/floor/wood,
 /area/crew_quarters/heads/hos)
-"fyi" = (
-/obj/machinery/suit_cycler/prototype,
-/turf/simulated/floor/wood,
-/area/crew_quarters/heads/hos)
 "fyN" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
@@ -30464,29 +30460,6 @@
 /obj/machinery/atmospherics/binary/pump/fuel,
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/shuttle/securiship/engines)
-"kuU" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/table/rack,
-/obj/item/clothing/shoes/magboots,
-/obj/item/device/suit_cooling_unit,
-/obj/item/weapon/tank/oxygen,
-/obj/machinery/door/window/brigdoor/eastleft{
-	name = "Protosuit Storage";
-	req_access = list(58)
-	},
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/suit/space/void/merc/prototype,
-/obj/item/clothing/head/helmet/space/void/merc/prototype,
-/turf/simulated/floor/wood,
-/area/crew_quarters/heads/hos)
 "kAC" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/security{
@@ -31482,6 +31455,29 @@
 	},
 /turf/simulated/wall/rshull,
 /area/shuttle/securiship/engines)
+"prO" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/table/rack,
+/obj/item/clothing/shoes/magboots,
+/obj/item/device/suit_cooling_unit,
+/obj/item/weapon/tank/oxygen,
+/obj/machinery/door/window/brigdoor/eastleft{
+	name = "Protosuit Storage";
+	req_access = list(58)
+	},
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/suit/space/void/security/prototype,
+/obj/item/clothing/head/helmet/space/void/security/prototype,
+/turf/simulated/floor/wood,
+/area/crew_quarters/heads/hos)
 "psg" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
@@ -32513,6 +32509,10 @@
 	},
 /turf/simulated/floor/tiled/eris/steel/gray_perforated,
 /area/shuttle/securiship/general)
+"vxy" = (
+/obj/machinery/suit_cycler/prototype,
+/turf/simulated/floor/wood,
+/area/crew_quarters/heads/hos)
 "vAP" = (
 /obj/item/device/flashlight/lamp,
 /obj/structure/table/steel,
@@ -37142,8 +37142,8 @@ aje
 aLS
 aWH
 aUk
-fyi
-kuU
+vxy
+prO
 anD
 anW
 aTO
