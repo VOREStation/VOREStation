@@ -57,7 +57,7 @@
 	if(ispath(cell))
 		cell = new cell(src)
 	default_apply_parts()
-	default_use_hicell()
+	cell = default_use_hicell()
 
 /obj/machinery/mining/drill/loaded
 	cell = /obj/item/weapon/cell/high

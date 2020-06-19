@@ -242,7 +242,7 @@ Class Procs:
 		return 1
 	if(user.lying || user.stat)
 		return 1
-	if(!(istype(user, /mob/living/carbon/human) || istype(user, /mob/living/silicon)))
+	if(!user.IsAdvancedToolUser())  //Vorestation edit
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return 1
 	if(ishuman(user))
@@ -312,6 +312,7 @@ Class Procs:
 		qdel(C)
 		C = new /obj/item/weapon/cell/high(src)
 		component_parts += C
+		return C
 		RefreshParts()
 
 /obj/machinery/proc/default_part_replacement(var/mob/user, var/obj/item/weapon/storage/part_replacer/R)

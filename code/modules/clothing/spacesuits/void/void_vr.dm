@@ -140,7 +140,7 @@
 	icon_state = "autoloksuit"
 	item_state = "autoloksuit"
 	armor = list(melee = 15, bullet = 5, laser = 5,energy = 5, bomb = 5, bio = 100, rad = 80)
-	slowdown = 0
+	slowdown = 0.5
 	siemens_coefficient = 1
 	species_restricted = list("exclude",SPECIES_DIONA,SPECIES_VOX)	//this thing can autoadapt
 	icon = 'icons/obj/clothing/suits_vr.dmi'

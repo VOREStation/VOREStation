@@ -223,34 +223,6 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 	return "<span class='[name] [icon_state]-[dir2text(dir)]'></span>"
 
 //DEFINITIONS FOR ASSET DATUMS START HERE.
-/datum/asset/simple/pda
-	assets = list(
-		"pda_atmos.png" = 'icons/pda_icons/pda_atmos.png',
-		"pda_back.png" = 'icons/pda_icons/pda_back.png',
-		"pda_bell.png" = 'icons/pda_icons/pda_bell.png',
-		"pda_blank.png" = 'icons/pda_icons/pda_blank.png',
-		"pda_boom.png" = 'icons/pda_icons/pda_boom.png',
-		"pda_bucket.png" = 'icons/pda_icons/pda_bucket.png',
-		"pda_crate.png" = 'icons/pda_icons/pda_crate.png',
-		"pda_cuffs.png" = 'icons/pda_icons/pda_cuffs.png',
-		"pda_eject.png" = 'icons/pda_icons/pda_eject.png',
-		"pda_exit.png" = 'icons/pda_icons/pda_exit.png',
-		"pda_flashlight.png" = 'icons/pda_icons/pda_flashlight.png',
-		"pda_honk.png" = 'icons/pda_icons/pda_honk.png',
-		"pda_mail.png" = 'icons/pda_icons/pda_mail.png',
-		"pda_medical.png" = 'icons/pda_icons/pda_medical.png',
-		"pda_menu.png" = 'icons/pda_icons/pda_menu.png',
-		"pda_mule.png" = 'icons/pda_icons/pda_mule.png',
-		"pda_notes.png" = 'icons/pda_icons/pda_notes.png',
-		"pda_power.png" = 'icons/pda_icons/pda_power.png',
-		"pda_rdoor.png" = 'icons/pda_icons/pda_rdoor.png',
-		"pda_reagent.png" = 'icons/pda_icons/pda_reagent.png',
-		"pda_refresh.png" = 'icons/pda_icons/pda_refresh.png',
-		"pda_scanner.png" = 'icons/pda_icons/pda_scanner.png',
-		"pda_signaler.png" = 'icons/pda_icons/pda_signaler.png',
-		"pda_status.png" = 'icons/pda_icons/pda_status.png'
-	)
-
 /datum/asset/simple/generic
 	assets = list(
 		"search.js" = 'html/search.js',
@@ -261,20 +233,6 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 		"talisman.png" = 'html/images/talisman.png',
 		"paper_bg.png" = 'html/images/paper_bg.png',
 		"no_image32.png" = 'html/images/no_image32.png',
-		"sos_1.png" = 'icons/spideros_icons/sos_1.png',
-		"sos_2.png" = 'icons/spideros_icons/sos_2.png',
-		"sos_3.png" = 'icons/spideros_icons/sos_3.png',
-		"sos_4.png" = 'icons/spideros_icons/sos_4.png',
-		"sos_5.png" = 'icons/spideros_icons/sos_5.png',
-		"sos_6.png" = 'icons/spideros_icons/sos_6.png',
-		"sos_7.png" = 'icons/spideros_icons/sos_7.png',
-		"sos_8.png" = 'icons/spideros_icons/sos_8.png',
-		"sos_9.png" = 'icons/spideros_icons/sos_9.png',
-		"sos_10.png" = 'icons/spideros_icons/sos_10.png',
-		"sos_11.png" = 'icons/spideros_icons/sos_11.png',
-		"sos_12.png" = 'icons/spideros_icons/sos_12.png',
-		"sos_13.png" = 'icons/spideros_icons/sos_13.png',
-		"sos_14.png" = 'icons/spideros_icons/sos_14.png'
 	)
 	
 /datum/asset/simple/changelog

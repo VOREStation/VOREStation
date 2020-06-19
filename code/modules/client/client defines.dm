@@ -53,8 +53,8 @@
 	var/related_accounts_cid = "(Requires database)"	//So admins know why it isn't working - Used to determine what other accounts previously logged in from this computer id
 	var/account_join_date = "(Requires database)"
 	var/account_age = "(Requires database)"
-	var/list/department_hours	// VOREStation Edit - Track hours of leave accured for each department.
-	var/list/play_hours	// VOREStation Edit - Tracks total playtime hours for each departments.
+	var/list/department_hours = list()	// VOREStation Edit - Track hours of leave accured for each department.
+	var/list/play_hours	= list() // VOREStation Edit - Tracks total playtime hours for each departments.
 
 	preload_rsc = PRELOAD_RSC
 

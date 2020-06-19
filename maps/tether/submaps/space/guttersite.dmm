@@ -36,18 +36,20 @@
 /turf/space,
 /area/tether_away/guttersite/unexplored)
 "al" = (
-/obj/structure/frame/computer,
+/obj/structure/frame/computer{
+	dir = 4
+	},
 /obj/structure/cable{
-	icon_state = "0-2";
-	d2 = 2
+	d2 = 2;
+	icon_state = "0-2"
 	},
 /turf/simulated/floor/airless,
 /area/tether_away/guttersite/teleporter)
 "am" = (
 /obj/machinery/teleport/station,
 /obj/structure/cable{
-	icon_state = "0-2";
-	d2 = 2
+	d2 = 2;
+	icon_state = "0-2"
 	},
 /turf/simulated/floor/airless,
 /area/tether_away/guttersite/teleporter)
@@ -71,6 +73,7 @@
 "ar" = (
 /obj/structure/table/rack,
 /obj/item/clothing/gloves/yellow,
+/obj/item/weapon/storage/toolbox/mechanical,
 /turf/simulated/floor/airless,
 /area/tether_away/guttersite/teleporter)
 "as" = (
@@ -113,8 +116,8 @@
 /area/tether_away/guttersite/maint)
 "aC" = (
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 1
+	dir = 1;
+	icon_state = "tube1"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/storage)
@@ -193,6 +196,21 @@
 /obj/fiftyspawner/steel,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/engines)
+"aV" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4;
+	icon_state = "intact-supply"
+	},
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/maint)
 "aW" = (
 /obj/structure/cable/cyan{
 	d1 = 2;
@@ -221,9 +239,9 @@
 /turf/simulated/floor/tiled/eris/dark,
 /area/tether_away/guttersite/maint)
 "ba" = (
-/obj/machinery/computer/ship/engines,
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/maint)
+/obj/item/weapon/circuitboard/teleporter,
+/turf/simulated/floor/airless,
+/area/tether_away/guttersite/teleporter)
 "bb" = (
 /obj/structure/barricade,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
@@ -275,6 +293,14 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/atmos)
+"bj" = (
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/storage)
 "bk" = (
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -290,10 +316,10 @@
 	icon_state = "4-8"
 	},
 /obj/structure/cable/cyan{
-	icon_state = "2-8";
-	dir = 4;
 	d1 = 1;
-	d2 = 4
+	d2 = 4;
+	dir = 4;
+	icon_state = "2-8"
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/tether_away/guttersite/engines)
@@ -345,17 +371,17 @@
 /area/tether_away/guttersite/atmos)
 "br" = (
 /obj/machinery/atmospherics/pipe/simple/visible/blue{
-	dir = 6
+	dir = 4;
+	icon_state = "intact"
 	},
-/obj/machinery/meter,
 /turf/simulated/floor/plating/eris/under,
 /area/tether_away/guttersite/atmos)
 "bs" = (
-/obj/machinery/atmospherics/portables_connector{
-	dir = 8
+/obj/machinery/meter,
+/obj/machinery/atmospherics/pipe/simple/visible/blue{
+	dir = 4;
+	icon_state = "intact"
 	},
-/obj/effect/floor_decal/industrial/outline/red,
-/obj/machinery/portable_atmospherics/canister/air,
 /turf/simulated/floor/plating/eris/under,
 /area/tether_away/guttersite/atmos)
 "bt" = (
@@ -448,18 +474,32 @@
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/tether_away/guttersite/engines)
+"bA" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1;
+	icon_state = "map-supply"
+	},
+/obj/structure/table/darkglass,
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/commons)
 "bB" = (
 /obj/structure/cable/cyan{
-	icon_state = "1-2";
-	dir = 1;
 	d1 = 1;
-	d2 = 4
+	d2 = 4;
+	dir = 1;
+	icon_state = "1-2"
 	},
 /obj/structure/cable/cyan{
-	icon_state = "1-4";
-	dir = 4;
 	d1 = 1;
-	d2 = 4
+	d2 = 4;
+	dir = 4;
+	icon_state = "1-4"
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/tether_away/guttersite/engines)
@@ -528,9 +568,8 @@
 /area/tether_away/guttersite/atmos)
 "bK" = (
 /obj/machinery/atmospherics/pipe/simple/visible/blue{
-	dir = 8
+	dir = 10
 	},
-/obj/machinery/meter,
 /turf/simulated/floor/plating/eris/under,
 /area/tether_away/guttersite/atmos)
 "bL" = (
@@ -540,15 +579,18 @@
 /turf/simulated/floor/plating/eris/under,
 /area/tether_away/guttersite/atmos)
 "bM" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/blue,
+/obj/machinery/atmospherics/pipe/simple/visible/red{
+	dir = 4;
+	icon_state = "intact"
+	},
 /turf/simulated/floor/plating/eris/under,
 /area/tether_away/guttersite/atmos)
 "bN" = (
-/obj/machinery/atmospherics/portables_connector{
-	dir = 8
+/obj/machinery/meter,
+/obj/machinery/atmospherics/pipe/simple/visible/red{
+	dir = 4;
+	icon_state = "intact"
 	},
-/obj/effect/floor_decal/industrial/outline,
-/obj/machinery/portable_atmospherics/canister/air,
 /turf/simulated/floor/plating/eris/under,
 /area/tether_away/guttersite/atmos)
 "bO" = (
@@ -576,10 +618,10 @@
 /area/tether_away/guttersite/atmos)
 "bQ" = (
 /obj/structure/cable/cyan{
-	icon_state = "1-4";
-	dir = 4;
 	d1 = 1;
-	d2 = 4
+	d2 = 4;
+	dir = 4;
+	icon_state = "1-4"
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/tether_away/guttersite/engines)
@@ -646,12 +688,46 @@
 /obj/structure/cable/cyan,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/maint)
+"bZ" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/structure/bed/chair/bay/comfy/black,
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/commons)
 "ca" = (
 /obj/machinery/door/airlock/multi_tile/glass{
 	dir = 2
 	},
 /turf/simulated/floor/tiled/eris/techmaint_panels,
 /area/tether_away/guttersite/maint)
+"cb" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6;
+	icon_state = "intact-supply"
+	},
+/obj/structure/bed/chair/bay/comfy/black{
+	dir = 1;
+	icon_state = "bay_comfychair_preview"
+	},
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/tiled/eris/steel/bar_dance,
+/area/tether_away/guttersite/commons)
 "cc" = (
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
 	dir = 5
@@ -660,9 +736,9 @@
 /area/tether_away/guttersite/atmos)
 "cd" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red{
-	dir = 8
+	dir = 10;
+	icon_state = "intact"
 	},
-/obj/machinery/meter,
 /turf/simulated/floor/plating/eris/under,
 /area/tether_away/guttersite/atmos)
 "ce" = (
@@ -672,52 +748,101 @@
 /turf/simulated/floor/plating/eris/under,
 /area/tether_away/guttersite/atmos)
 "cf" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/red{
-	dir = 1
-	},
+/obj/machinery/atmospherics/pipe/simple/visible/blue,
 /turf/simulated/floor/plating/eris/under,
 /area/tether_away/guttersite/atmos)
 "cg" = (
-/obj/machinery/atmospherics/portables_connector{
-	dir = 8
-	},
-/obj/effect/floor_decal/industrial/outline/blue,
-/obj/machinery/portable_atmospherics/canister/empty,
+/obj/machinery/atmospherics/pipe/simple/visible/red,
 /turf/simulated/floor/plating/eris/under,
 /area/tether_away/guttersite/atmos)
 "ch" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
-	icon_state = "map_vent_out";
-	dir = 1
+	dir = 1;
+	icon_state = "map_vent_out"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/storage)
+"ci" = (
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/office)
 "cj" = (
 /obj/machinery/light,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/storage)
-"cm" = (
-/obj/machinery/atmospherics/pipe/simple/visible/red{
-	dir = 5
+"ck" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
 	},
-/obj/machinery/meter,
-/turf/simulated/floor/plating/eris/under,
-/area/tether_away/guttersite/atmos)
-"cn" = (
-/obj/machinery/atmospherics/portables_connector{
-	dir = 8
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1;
+	icon_state = "map-supply"
 	},
-/obj/effect/floor_decal/industrial/outline/yellow,
-/obj/machinery/portable_atmospherics/canister/empty,
-/turf/simulated/floor/plating/eris/under,
-/area/tether_away/guttersite/atmos)
-"cp" = (
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/structure/window/basic,
 /obj/structure/window/basic{
-	icon_state = "window";
-	dir = 8
+	dir = 4;
+	icon_state = "window"
+	},
+/obj/structure/table/darkglass,
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/eris/white/monofloor,
 /area/tether_away/guttersite/office)
+"cl" = (
+/obj/item/weapon/hand_tele,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/guttersite/unexplored)
+"cm" = (
+/obj/machinery/atmospherics/pipe/simple/visible/blue{
+	dir = 5
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/tether_away/guttersite/atmos)
+"cn" = (
+/obj/machinery/light{
+	dir = 1;
+	icon_state = "tube1"
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/blue{
+	dir = 4;
+	icon_state = "intact"
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/tether_away/guttersite/atmos)
+"co" = (
+/obj/structure/loot_pile/surface/bones,
+/obj/random/gun/random,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/guttersite/unexplored)
+"cp" = (
+/obj/structure/window/basic{
+	dir = 8;
+	icon_state = "window"
+	},
+/turf/simulated/floor/tiled/eris/white/monofloor,
+/area/tether_away/guttersite/office)
+"cq" = (
+/obj/item/device/bluespaceradio/tether_prelinked,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/guttersite/unexplored)
+"cr" = (
+/obj/structure/table/darkglass,
+/obj/item/key,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/storage)
 "cs" = (
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/unexplored)
@@ -726,8 +851,8 @@
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 6
+	dir = 6;
+	icon_state = "intact-supply"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/maint)
@@ -739,30 +864,35 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/atmos)
 "cv" = (
-/obj/structure/table/steel,
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/obj/machinery/atmospherics/pipe/manifold/visible/blue{
+	dir = 1
+	},
+/turf/simulated/floor/plating/eris/under,
 /area/tether_away/guttersite/atmos)
 "cw" = (
-/obj/machinery/firealarm{
+/obj/machinery/light{
 	dir = 1;
-	pixel_x = 0;
-	pixel_y = -25
+	icon_state = "tube1"
 	},
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/obj/machinery/atmospherics/pipe/simple/visible/blue{
+	dir = 10
+	},
+/turf/simulated/floor/plating/eris/under,
 /area/tether_away/guttersite/atmos)
 "cx" = (
-/obj/machinery/alarm{
-	alarm_id = null;
-	breach_detection = 0;
-	dir = 1;
-	icon_state = "alarm0";
-	pixel_y = -22
+/obj/machinery/atmospherics/pipe/simple/visible/red{
+	dir = 5;
+	icon_state = "intact"
 	},
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/turf/simulated/floor/plating/eris/under,
 /area/tether_away/guttersite/atmos)
 "cy" = (
-/obj/machinery/light,
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/obj/machinery/meter,
+/obj/machinery/atmospherics/pipe/manifold/visible/red{
+	dir = 1;
+	icon_state = "map"
+	},
+/turf/simulated/floor/plating/eris/under,
 /area/tether_away/guttersite/atmos)
 "cz" = (
 /obj/machinery/light{
@@ -775,8 +905,8 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-supply"
 	},
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -787,12 +917,12 @@
 /area/tether_away/guttersite/maint)
 "cB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
-	dir = 10
+	dir = 10;
+	icon_state = "intact-scrubbers"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 10
+	dir = 10;
+	icon_state = "intact-supply"
 	},
 /obj/structure/cable/cyan{
 	d1 = 2;
@@ -851,20 +981,16 @@
 /area/tether_away/guttersite/commons)
 "cI" = (
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 1
+	dir = 1;
+	icon_state = "tube1"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/commons)
 "cJ" = (
-/obj/structure/cable/cyan{
-	icon_state = "2-8";
-	dir = 4;
-	d1 = 1;
-	d2 = 4
-	},
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/storage)
+/obj/fiftyspawner/glass,
+/obj/fiftyspawner/steel,
+/turf/simulated/floor/airless,
+/area/tether_away/guttersite/teleporter)
 "cK" = (
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -917,8 +1043,8 @@
 /area/tether_away/guttersite/commons)
 "cS" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
-	icon_state = "map_vent_out";
-	dir = 1
+	dir = 1;
+	icon_state = "map_vent_out"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/commons)
@@ -932,8 +1058,8 @@
 /area/tether_away/guttersite/commons)
 "cV" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
-	dir = 5
+	dir = 5;
+	icon_state = "intact-scrubbers"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
@@ -950,8 +1076,8 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-supply"
 	},
 /obj/machinery/light,
 /obj/structure/cable/cyan{
@@ -966,8 +1092,8 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-supply"
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/maintenance_hatch{
@@ -986,8 +1112,8 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-supply"
 	},
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -1011,8 +1137,8 @@
 /area/tether_away/guttersite/commons)
 "dc" = (
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 1
+	dir = 1;
+	icon_state = "tube1"
 	},
 /obj/structure/table/darkglass,
 /obj/machinery/chemical_dispenser/bar_alc/full,
@@ -1033,8 +1159,8 @@
 /area/tether_away/guttersite/commons)
 "dg" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	icon_state = "map-supply";
-	dir = 1
+	dir = 1;
+	icon_state = "map-supply"
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/structure/cable/cyan{
@@ -1063,12 +1189,12 @@
 /area/tether_away/guttersite/commons)
 "dl" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
-	dir = 10
+	dir = 10;
+	icon_state = "intact-scrubbers"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 10
+	dir = 10;
+	icon_state = "intact-supply"
 	},
 /obj/structure/cable/cyan{
 	d1 = 2;
@@ -1184,31 +1310,41 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/commons)
 "dv" = (
-/turf/simulated/wall/skipjack,
-/area/tether_away/guttersite/office)
-"dw" = (
-/obj/machinery/door/airlock/hatch{
-	frequency = 1331;
-	icon_state = "door_closed";
-	id_tag = "vox_northeast_lock";
-	locked = 0;
-	req_access = list(150)
-	},
-/turf/simulated/shuttle/plating,
-/area/tether_away/guttersite/office)
-"dx" = (
 /obj/machinery/access_button{
 	command = "cycle_exterior";
-	frequency = 1331;
-	master_tag = "vox_east_control";
-	req_access = list(150)
+	frequency = 448;
+	master_tag = "guttersite_northlock";
+	name = "exterior access button";
+	pixel_x = -5;
+	pixel_y = -26;
+	req_one_access = list()
 	},
-/turf/simulated/wall/skipjack,
+/turf/simulated/mineral/floor/vacuum,
+/area/space)
+"dw" = (
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 8;
+	icon_state = "rwindow"
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/office)
+"dx" = (
+/obj/machinery/door/airlock/glass_external{
+	req_one_access = list(15)
+	},
+/obj/effect/map_helper/airlock/door/ext_door,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/office)
 "dy" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	icon_state = "map-scrubbers";
-	dir = 8
+	dir = 8;
+	icon_state = "map-scrubbers"
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 8
@@ -1230,24 +1366,34 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/medbay)
 "dA" = (
-/obj/machinery/airlock_sensor{
-	frequency = 1331;
-	id_tag = "vox_east_sensor";
-	pixel_x = -25
-	},
-/turf/simulated/shuttle/plating,
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/office)
 "dB" = (
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	frequency = 1331;
-	id_tag = "vox_east_vent"
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
 	},
-/turf/simulated/shuttle/plating,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/sign/securearea{
+	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
+	icon_state = "space";
+	layer = 4;
+	name = "EXTERNAL AIRLOCK";
+	pixel_x = 0
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/office)
 "dC" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
-	icon_state = "map_vent_out";
-	dir = 4
+	dir = 4;
+	icon_state = "map_vent_out"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/medbay)
@@ -1257,12 +1403,12 @@
 /area/tether_away/guttersite/medbay)
 "dE" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 10
+	dir = 10;
+	icon_state = "intact-supply"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
-	dir = 10
+	dir = 10;
+	icon_state = "intact-scrubbers"
 	},
 /obj/structure/cable/cyan{
 	d1 = 2;
@@ -1272,56 +1418,36 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/commons)
 "dF" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 6
+/obj/structure/dogbed,
+/mob/living/simple_mob/vore/redpanda/fae{
+	name = "Rhythm"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 6
-	},
-/obj/structure/bed/chair/bay/comfy/black{
-	icon_state = "bay_comfychair_preview";
-	dir = 1
-	},
-/obj/structure/cable/cyan{
-	icon_state = "2-8";
-	dir = 4;
-	d1 = 1;
-	d2 = 4
-	},
-/turf/simulated/floor/tiled/eris/steel/bar_dance,
-/area/tether_away/guttersite/commons)
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/office)
 "dG" = (
 /obj/structure/bed/padded,
 /obj/item/weapon/bedsheet/medical,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/medbay)
 "dH" = (
-/obj/machinery/embedded_controller/radio/airlock/airlock_controller{
-	frequency = 1331;
-	id_tag = "";
-	pixel_x = -24;
-	req_access = list(150);
-	tag_airpump = "vox_east_vent";
-	tag_chamber_sensor = "vox_east_sensor";
-	tag_exterior_door = "vox_northeast_lock";
-	tag_interior_door = "vox_southeast_lock"
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 8;
+	icon_state = "rwindow"
 	},
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 4;
-	frequency = 1331;
-	id_tag = "vox_east_vent"
-	},
-/obj/machinery/light/small,
-/turf/simulated/shuttle/plating,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/office)
 "dI" = (
-/obj/machinery/meter,
-/obj/machinery/atmospherics/pipe/manifold/hidden{
-	dir = 4;
-	icon_state = "map"
+/obj/machinery/embedded_controller/radio/airlock/docking_port{
+	frequency = 448;
+	id_tag = "guttersite_northlock";
+	name = "Airlock controller";
+	pixel_x = -25;
+	pixel_y = 0
 	},
-/turf/simulated/shuttle/plating,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/office)
 "dJ" = (
 /obj/machinery/alarm{
@@ -1333,15 +1459,13 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/medbay)
 "dK" = (
-/obj/machinery/door/airlock/hatch{
-	frequency = 1331;
-	icon_state = "door_closed";
-	id_tag = "vox_southeast_lock";
-	locked = 0;
-	req_access = list(150)
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden,
-/turf/simulated/shuttle/plating,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/office)
 "dL" = (
 /obj/structure/window/basic{
@@ -1364,32 +1488,41 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
 /turf/simulated/floor/plating,
-/area/tether_away/guttersite/office)
+/area/tether_away/guttersite/commons)
 "dP" = (
-/obj/structure/table/rack,
-/obj/item/weapon/tank/oxygen,
-/obj/random/multiple/voidsuit,
-/turf/simulated/shuttle/plating,
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 4;
+	frequency = 448;
+	id_tag = "guttersite_northlock_pump"
+	},
+/obj/machinery/airlock_sensor{
+	frequency = 448;
+	id_tag = "guttersite_northlock_sensor";
+	pixel_x = 0;
+	pixel_y = -25
+	},
+/obj/effect/map_helper/airlock/sensor/chamber_sensor,
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/office)
 "dQ" = (
-/obj/machinery/access_button{
-	command = "cycle_interior";
-	frequency = 1331;
-	master_tag = "vox_east_control";
-	pixel_x = 22;
-	req_access = list(150)
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 10;
+	icon_state = "intact"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden,
-/turf/simulated/shuttle/plating,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/office)
 "dR" = (
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/office)
 "dS" = (
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 1
+	dir = 1;
+	icon_state = "tube1"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/office)
@@ -1414,12 +1547,12 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-supply"
 	},
 /obj/structure/bed/chair/bay/comfy/black{
-	icon_state = "bay_comfychair_preview";
-	dir = 1
+	dir = 1;
+	icon_state = "bay_comfychair_preview"
 	},
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -1433,8 +1566,8 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-supply"
 	},
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -1448,8 +1581,8 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-supply"
 	},
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -1463,8 +1596,8 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-supply"
 	},
 /obj/structure/closet/cabinet,
 /obj/structure/cable/cyan{
@@ -1476,8 +1609,8 @@
 /area/tether_away/guttersite/commons)
 "ea" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	icon_state = "map-supply";
-	dir = 1
+	dir = 1;
+	icon_state = "map-supply"
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/structure/cable/cyan{
@@ -1502,8 +1635,8 @@
 /area/tether_away/guttersite/walkway)
 "ef" = (
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 1
+	dir = 1;
+	icon_state = "tube1"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/walkway)
@@ -1512,8 +1645,8 @@
 /area/tether_away/guttersite/bridge)
 "eh" = (
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 1
+	dir = 1;
+	icon_state = "tube1"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/bridge)
@@ -1526,8 +1659,8 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-supply"
 	},
 /obj/machinery/washing_machine,
 /obj/structure/cable/cyan{
@@ -1539,8 +1672,8 @@
 /area/tether_away/guttersite/commons)
 "ek" = (
 /obj/structure/window/basic{
-	icon_state = "window";
-	dir = 8
+	dir = 8;
+	icon_state = "window"
 	},
 /obj/structure/filingcabinet/filingcabinet,
 /turf/simulated/floor/tiled/eris/white/monofloor,
@@ -1565,8 +1698,8 @@
 	pixel_y = 0
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 1
+	dir = 1;
+	icon_state = "tube1"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/walkway)
@@ -1575,8 +1708,8 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-supply"
 	},
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -1610,8 +1743,8 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-supply"
 	},
 /obj/structure/curtain/open/shower,
 /obj/machinery/shower,
@@ -1627,8 +1760,8 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-supply"
 	},
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -1642,8 +1775,8 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-supply"
 	},
 /obj/structure/table/darkglass,
 /obj/structure/cable/cyan{
@@ -1658,12 +1791,12 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-supply"
 	},
 /obj/structure/bed/chair/bay/comfy/black{
-	icon_state = "bay_comfychair_preview";
-	dir = 8
+	dir = 8;
+	icon_state = "bay_comfychair_preview"
 	},
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -1674,12 +1807,12 @@
 /area/tether_away/guttersite/commons)
 "ex" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
-	dir = 9
+	dir = 9;
+	icon_state = "intact-scrubbers"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 9
+	dir = 9;
+	icon_state = "intact-supply"
 	},
 /obj/structure/cable/cyan{
 	icon_state = "1-8"
@@ -1715,8 +1848,8 @@
 /area/tether_away/guttersite/commons)
 "eA" = (
 /obj/structure/bed/chair/bay/comfy/black{
-	icon_state = "bay_comfychair_preview";
-	dir = 4
+	dir = 4;
+	icon_state = "bay_comfychair_preview"
 	},
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -1742,8 +1875,8 @@
 	dir = 1
 	},
 /obj/structure/bed/chair/bay/comfy/black{
-	icon_state = "bay_comfychair_preview";
-	dir = 8
+	dir = 8;
+	icon_state = "bay_comfychair_preview"
 	},
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -1782,8 +1915,8 @@
 	dir = 1
 	},
 /obj/structure/bed/chair/bay/comfy/black{
-	icon_state = "bay_comfychair_preview";
-	dir = 8
+	dir = 8;
+	icon_state = "bay_comfychair_preview"
 	},
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -1815,8 +1948,8 @@
 /area/tether_away/guttersite/medbay)
 "eI" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
-	icon_state = "map_vent_out";
-	dir = 1
+	dir = 1;
+	icon_state = "map_vent_out"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/walkway)
@@ -1844,22 +1977,22 @@
 /area/tether_away/guttersite/commons)
 "eL" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
-	icon_state = "map_vent_out";
-	dir = 1
+	dir = 1;
+	icon_state = "map_vent_out"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/bridge)
 "eM" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
-	icon_state = "map_vent_out";
-	dir = 4
+	dir = 4;
+	icon_state = "map_vent_out"
 	},
 /turf/simulated/floor/tiled/eris/white/monofloor,
 /area/tether_away/guttersite/office)
 "eN" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	icon_state = "intact";
-	dir = 9
+	dir = 9;
+	icon_state = "intact"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/office)
@@ -1963,12 +2096,12 @@
 /area/tether_away/guttersite/medbay)
 "eV" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
-	dir = 5
+	dir = 5;
+	icon_state = "intact-scrubbers"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 9
+	dir = 9;
+	icon_state = "intact-supply"
 	},
 /obj/structure/window/basic{
 	dir = 1
@@ -1982,8 +2115,8 @@
 /area/tether_away/guttersite/medbay)
 "eW" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	icon_state = "map_scrubber_on";
-	dir = 8
+	dir = 8;
+	icon_state = "map_scrubber_on"
 	},
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -2007,8 +2140,8 @@
 	pixel_x = 24
 	},
 /obj/structure/bed/chair/bay/comfy/black{
-	icon_state = "bay_comfychair_preview";
-	dir = 8
+	dir = 8;
+	icon_state = "bay_comfychair_preview"
 	},
 /obj/structure/cable/cyan{
 	d2 = 8;
@@ -2017,29 +2150,24 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/medbay)
 "eZ" = (
-/obj/structure/cable/cyan{
-	icon_state = "2-8";
-	dir = 4;
-	d1 = 1;
-	d2 = 4
-	},
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/office)
+/obj/item/weapon/cell/super,
+/turf/simulated/floor/airless,
+/area/tether_away/guttersite/teleporter)
 "fa" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 10
+	dir = 10;
+	icon_state = "intact-supply"
 	},
 /obj/structure/filingcabinet/filingcabinet,
 /turf/simulated/floor/tiled/eris/white/monofloor,
 /area/tether_away/guttersite/office)
 "fb" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	icon_state = "map_scrubber_on";
-	dir = 8
+	dir = 8;
+	icon_state = "map_scrubber_on"
 	},
 /turf/simulated/floor/tiled/eris/white/monofloor,
 /area/tether_away/guttersite/office)
@@ -2082,8 +2210,8 @@
 /area/tether_away/guttersite/vault)
 "ff" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
-	icon_state = "map_vent_out";
-	dir = 1
+	dir = 1;
+	icon_state = "map_vent_out"
 	},
 /obj/structure/table/rack,
 /obj/random/firstaid,
@@ -2103,8 +2231,8 @@
 /area/tether_away/guttersite/office)
 "fh" = (
 /obj/structure/bed/chair/bay/comfy/black{
-	icon_state = "bay_comfychair_preview";
-	dir = 8
+	dir = 8;
+	icon_state = "bay_comfychair_preview"
 	},
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -2155,13 +2283,15 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/bridge)
 "fn" = (
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_x = 0;
-	pixel_y = -25
+/obj/structure/bed/chair/bay/comfy/black{
+	dir = 4;
+	icon_state = "bay_comfychair_preview"
 	},
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/vault)
+/mob/living/simple_mob/vore/catgirl{
+	name = "Lucy"
+	},
+/turf/simulated/floor/tiled/eris/white/techfloor_grid,
+/area/tether_away/guttersite/office)
 "fo" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/maintenance_hatch{
@@ -2185,8 +2315,8 @@
 /area/tether_away/guttersite/docking)
 "fs" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	icon_state = "map-scrubbers";
-	dir = 8
+	dir = 8;
+	icon_state = "map-scrubbers"
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 8
@@ -2217,8 +2347,8 @@
 /area/tether_away/guttersite/security)
 "fv" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	icon_state = "map-supply";
-	dir = 1
+	dir = 1;
+	icon_state = "map-supply"
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/structure/cable/cyan{
@@ -2233,15 +2363,15 @@
 /area/tether_away/guttersite/security)
 "fx" = (
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 1
+	dir = 1;
+	icon_state = "tube1"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "fy" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-supply"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -2273,8 +2403,8 @@
 /area/tether_away/guttersite/security)
 "fC" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	icon_state = "intact";
-	dir = 6
+	dir = 6;
+	icon_state = "intact"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
@@ -2315,8 +2445,8 @@
 /area/tether_away/guttersite/security)
 "fJ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-supply"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -2334,8 +2464,8 @@
 /area/tether_away/guttersite/walkway)
 "fK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-supply"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -2349,8 +2479,8 @@
 /area/tether_away/guttersite/bridge)
 "fL" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-supply"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -2368,8 +2498,8 @@
 /area/tether_away/guttersite/bridge)
 "fM" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-supply"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -2391,8 +2521,8 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	icon_state = "map-supply";
-	dir = 1
+	dir = 1;
+	icon_state = "map-supply"
 	},
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -2403,12 +2533,12 @@
 /area/tether_away/guttersite/bridge)
 "fO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 10
+	dir = 10;
+	icon_state = "intact-supply"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
-	dir = 9
+	dir = 9;
+	icon_state = "intact-scrubbers"
 	},
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -2447,8 +2577,8 @@
 /area/tether_away/guttersite/bridge)
 "fS" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 6
+	dir = 6;
+	icon_state = "intact-supply"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
@@ -2462,18 +2592,24 @@
 /area/tether_away/guttersite/office)
 "fT" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-supply"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/vault/bolted,
 /obj/structure/cable/cyan{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/hatch{
+	frequency = 12341;
+	icon_state = "door_closed";
+	id_tag = "gutter vault";
+	locked = 0;
+	req_access = list(150)
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/office)
@@ -2485,17 +2621,15 @@
 /area/tether_away/guttersite/security)
 "fV" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
-	icon_state = "map_vent_out";
-	dir = 1
+	dir = 1;
+	icon_state = "map_vent_out"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "fW" = (
-/mob/living/simple_mob/vore/redpanda/fae{
-	name = "Rhythm"
-	},
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/office)
+/obj/item/weapon/storage/toolbox/lunchbox/heart/filled,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/guttersite/unexplored)
 "fX" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -2509,10 +2643,11 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
 /obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced{
+	dir = 8;
+	icon_state = "rwindow"
+	},
 /turf/simulated/floor/plating,
 /area/tether_away/guttersite/security)
 "fY" = (
@@ -2525,10 +2660,14 @@
 /turf/simulated/floor/plating,
 /area/tether_away/guttersite/security)
 "fZ" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/plating,
+/obj/structure/bed/chair/office/dark{
+	dir = 1;
+	icon_state = "officechair_dark"
+	},
+/mob/living/simple_mob/humanoid/merc/ranged/smg/poi{
+	faction = "wolfgirl"
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "ga" = (
 /obj/effect/floor_decal/industrial/warning/corner{
@@ -2561,8 +2700,8 @@
 /area/tether_away/guttersite/security)
 "ge" = (
 /obj/structure/bed/chair/office/dark{
-	icon_state = "officechair_dark";
-	dir = 8
+	dir = 8;
+	icon_state = "officechair_dark"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
@@ -2581,12 +2720,12 @@
 /obj/machinery/door/airlock/glass_external,
 /obj/machinery/access_button{
 	command = "cycle_exterior";
-	frequency = 1380;
-	master_tag = "dock_d2a2";
+	frequency = 1999;
+	master_tag = "westlock";
 	name = "exterior access button";
 	pixel_x = -5;
 	pixel_y = -26;
-	req_one_access = list(13)
+	req_one_access = list()
 	},
 /obj/effect/map_helper/airlock/door/ext_door,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
@@ -2594,18 +2733,18 @@
 "gi" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
-	frequency = 1380;
-	id_tag = "dock_d2a2_pump"
+	frequency = 1999;
+	id_tag = "westlock_pump"
 	},
 /obj/machinery/light/small,
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
-	frequency = 1380;
-	id_tag = "";
+	frequency = 1999;
+	id_tag = "westlock";
 	pixel_y = 28
 	},
 /obj/machinery/airlock_sensor{
-	frequency = 1380;
-	id_tag = "dock_d2a2_sensor";
+	frequency = 1999;
+	id_tag = "westlock_sensor";
 	pixel_x = 0;
 	pixel_y = -25
 	},
@@ -2627,12 +2766,12 @@
 	},
 /obj/machinery/access_button{
 	command = "cycle_interior";
-	frequency = 1380;
-	master_tag = "dock_d2a2";
+	frequency = 1999;
+	master_tag = "westlock";
 	name = "interior access button";
 	pixel_x = -28;
 	pixel_y = 26;
-	req_one_access = list(13)
+	req_one_access = list()
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
@@ -2653,8 +2792,8 @@
 /area/tether_away/guttersite/security)
 "gm" = (
 /obj/structure/bed/chair/office/dark{
-	icon_state = "officechair_dark";
-	dir = 4
+	dir = 4;
+	icon_state = "officechair_dark"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
@@ -2665,13 +2804,13 @@
 "go" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor/glass,
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
-	dir = 8
+	dir = 4
 	},
-/obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/plating,
-/area/tether_away/guttersite/security)
+/area/tether_away/guttersite/commons)
 "gp" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -2687,30 +2826,21 @@
 /area/tether_away/guttersite/security)
 "gr" = (
 /obj/structure/fence/door/locked{
-	icon_state = "door_closed";
-	dir = 8
+	dir = 8;
+	icon_state = "door_closed"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "gs" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/sign/securearea{
-	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
-	icon_state = "space";
-	layer = 4;
-	name = "EXTERNAL AIRLOCK";
-	pixel_x = 0
+/obj/structure/bed/chair/office/dark{
+	dir = 8;
+	icon_state = "officechair_dark"
 	},
-/obj/structure/window/reinforced{
-	dir = 1
+/mob/living/simple_mob/humanoid/merc/ranged/poi{
+	faction = "wolfgirl"
 	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/plating,
-/area/tether_away/guttersite/docking)
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/security)
 "gt" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -2737,8 +2867,8 @@
 /area/tether_away/guttersite/docking)
 "gw" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-supply"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -2758,8 +2888,8 @@
 /area/tether_away/guttersite/docking)
 "gy" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
-	dir = 5
+	dir = 5;
+	icon_state = "intact-scrubbers"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
@@ -2768,23 +2898,23 @@
 /area/tether_away/guttersite/security)
 "gz" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-scrubbers"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-supply"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "gA" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-scrubbers"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-supply"
 	},
 /obj/machinery/door/airlock/maintenance_hatch{
 	req_one_access = list(38)
@@ -2796,38 +2926,40 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	icon_state = "map-supply";
-	dir = 1
+	dir = 1;
+	icon_state = "map-supply"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "gC" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-scrubbers"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-supply"
 	},
 /turf/simulated/wall/r_wall,
 /area/tether_away/guttersite/security)
 "gD" = (
 /obj/structure/bed/chair/office/dark{
-	icon_state = "officechair_dark";
-	dir = 1
+	dir = 1;
+	icon_state = "officechair_dark"
 	},
-/mob/living/simple_mob/humanoid/merc/ranged/laser/poi,
+/mob/living/simple_mob/humanoid/merc/melee/poi{
+	faction = "wolfgirl"
+	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "gE" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
-	dir = 10
+	dir = 10;
+	icon_state = "intact-scrubbers"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 10
+	dir = 10;
+	icon_state = "intact-supply"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
@@ -2860,7 +2992,9 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/docking)
 "gH" = (
-/obj/machinery/door/airlock/glass_external,
+/obj/machinery/door/airlock/glass_external{
+	req_one_access = list()
+	},
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
@@ -2875,8 +3009,8 @@
 /area/tether_away/guttersite/medbay)
 "gJ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-supply"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -2923,27 +3057,35 @@
 /area/tether_away/guttersite/security)
 "gO" = (
 /obj/structure/fence/end{
-	icon_state = "end";
-	dir = 4
+	dir = 4;
+	icon_state = "end"
 	},
 /obj/structure/fence,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "gP" = (
 /obj/structure/fence{
-	icon_state = "straight";
-	dir = 8
+	dir = 8;
+	icon_state = "straight"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "gQ" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
-	dir = 8
+	dir = 1
 	},
 /obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced{
+	dir = 8;
+	health = 1e+006
+	},
+/obj/structure/window/reinforced{
+	dir = 8;
+	health = 1e+006
+	},
+/obj/structure/window/reinforced,
 /turf/simulated/floor/plating,
 /area/tether_away/guttersite/docking)
 "gR" = (
@@ -2961,8 +3103,8 @@
 /area/tether_away/guttersite/docking)
 "gT" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-supply"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -2994,8 +3136,8 @@
 /area/tether_away/guttersite/bridge)
 "gW" = (
 /obj/structure/fence/door/opened{
-	icon_state = "door_opened";
-	dir = 8
+	dir = 8;
+	icon_state = "door_opened"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
@@ -3004,34 +3146,33 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "gY" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	icon_state = "map_vent_out";
-	dir = 4
+/obj/machinery/light{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "gZ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
-	dir = 5
+	dir = 5;
+	icon_state = "intact-scrubbers"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 9
+	dir = 9;
+	icon_state = "intact-supply"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "ha" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	icon_state = "map_scrubber_on";
-	dir = 8
+	dir = 8;
+	icon_state = "map_scrubber_on"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "hb" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
-	dir = 5
+	dir = 5;
+	icon_state = "intact-scrubbers"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
@@ -3045,15 +3186,15 @@
 /area/tether_away/guttersite/bridge)
 "hc" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-supply"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 1
+	dir = 1;
+	icon_state = "tube1"
 	},
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -3077,8 +3218,8 @@
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
-	dir = 9
+	dir = 9;
+	icon_state = "intact-scrubbers"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
@@ -3095,22 +3236,31 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/docking)
 "hi" = (
-/turf/simulated/wall/skipjack,
-/area/tether_away/guttersite/docking)
-"hj" = (
-/obj/machinery/door/airlock/hatch{
-	frequency = 1331;
-	icon_state = "door_closed";
-	id_tag = "vox_northeast_lock";
-	locked = 0;
-	req_access = list(150)
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4;
+	icon_state = "intact-scrubbers"
 	},
-/turf/simulated/shuttle/plating,
-/area/tether_away/guttersite/docking)
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4;
+	icon_state = "intact-supply"
+	},
+/obj/structure/bed/chair/office/dark{
+	dir = 4;
+	icon_state = "officechair_dark"
+	},
+/mob/living/simple_mob/humanoid/merc/ranged/laser{
+	faction = "wolfgirl"
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/security)
+"hj" = (
+/mob/living/simple_mob/mobs_monsters/clowns/big/cluwne,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/guttersite/unexplored)
 "hk" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-supply"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -3132,42 +3282,54 @@
 /area/tether_away/guttersite/security)
 "hm" = (
 /obj/structure/fence/end{
-	icon_state = "end";
-	dir = 8
+	dir = 8;
+	icon_state = "end"
 	},
 /obj/structure/fence/end{
-	icon_state = "end";
-	dir = 4
+	dir = 4;
+	icon_state = "end"
 	},
 /obj/structure/fence,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "hn" = (
 /obj/structure/fence/end{
-	icon_state = "end";
-	dir = 8
+	dir = 8;
+	icon_state = "end"
 	},
 /obj/structure/fence,
 /obj/structure/fence/end{
-	icon_state = "end";
-	dir = 1
+	dir = 1;
+	icon_state = "end"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "ho" = (
-/obj/machinery/airlock_sensor{
-	frequency = 1331;
-	id_tag = "vox_east_sensor";
-	pixel_x = -25
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced{
+	dir = 8;
+	health = 1e+006
 	},
-/turf/simulated/shuttle/plating,
+/turf/simulated/floor/plating,
 /area/tether_away/guttersite/docking)
 "hp" = (
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	frequency = 1331;
-	id_tag = "vox_east_vent"
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 8;
+	icon_state = "rwindow"
 	},
-/turf/simulated/shuttle/plating,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/docking)
 "hq" = (
 /obj/machinery/alarm{
@@ -3188,12 +3350,21 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/vault)
 "hs" = (
-/obj/machinery/meter,
-/obj/machinery/atmospherics/pipe/manifold/hidden{
-	dir = 4;
-	icon_state = "map"
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 8;
+	icon_state = "rwindow"
 	},
-/turf/simulated/shuttle/plating,
+/obj/structure/sign/securearea{
+	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
+	icon_state = "space";
+	layer = 4;
+	name = "EXTERNAL AIRLOCK";
+	pixel_x = 0
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/docking)
 "ht" = (
 /obj/machinery/atmospherics/pipe/simple/visible/blue{
@@ -3211,15 +3382,11 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/docking)
 "hv" = (
-/obj/machinery/door/airlock/hatch{
-	frequency = 1331;
-	icon_state = "door_closed";
-	id_tag = "vox_southeast_lock";
-	locked = 0;
-	req_access = list(150)
+/obj/machinery/door/airlock/glass_external{
+	req_one_access = list(15)
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden,
-/turf/simulated/shuttle/plating,
+/obj/effect/map_helper/airlock/door/ext_door,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/docking)
 "hw" = (
 /obj/structure/table/rack/steel,
@@ -3234,8 +3401,8 @@
 /area/tether_away/guttersite/unexplored)
 "hx" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	icon_state = "intact";
-	dir = 6
+	dir = 6;
+	icon_state = "intact"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/docking)
@@ -3292,8 +3459,8 @@
 /area/tether_away/guttersite/vault)
 "hF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	icon_state = "intact";
-	dir = 5
+	dir = 5;
+	icon_state = "intact"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -3310,8 +3477,8 @@
 	dir = 4
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 1
+	dir = 1;
+	icon_state = "tube1"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/docking)
@@ -3321,41 +3488,41 @@
 /area/tether_away/guttersite/docking)
 "hJ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	icon_state = "intact";
-	dir = 8
+	dir = 8;
+	icon_state = "intact"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/docking)
 "hK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	icon_state = "intact";
-	dir = 8
+	dir = 8;
+	icon_state = "intact"
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 1
+	dir = 1;
+	icon_state = "tube1"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/docking)
 "hL" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	icon_state = "intact";
-	dir = 8
+	dir = 8;
+	icon_state = "intact"
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/docking)
 "hM" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	icon_state = "intact";
-	dir = 9
+	dir = 9;
+	icon_state = "intact"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/docking)
 "hN" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
-	dir = 5
+	dir = 5;
+	icon_state = "intact-scrubbers"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
@@ -3364,8 +3531,8 @@
 /area/tether_away/guttersite/docking)
 "hO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-scrubbers"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 8
@@ -3374,12 +3541,12 @@
 /area/tether_away/guttersite/docking)
 "hP" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
-	dir = 10
+	dir = 10;
+	icon_state = "intact-scrubbers"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 9
+	dir = 9;
+	icon_state = "intact-supply"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/docking)
@@ -3406,15 +3573,19 @@
 /turf/space,
 /area/space)
 "hU" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/machinery/door/firedoor/glass,
-/turf/space,
-/area/tether_away/guttersite/walkway)
+/obj/structure/bed/chair/office/dark{
+	dir = 8;
+	icon_state = "officechair_dark"
+	},
+/mob/living/simple_mob/humanoid/merc/melee/poi{
+	faction = "wolfgirl"
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/security)
 "hV" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-supply"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -3433,8 +3604,8 @@
 	pixel_y = -25
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-supply"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -3448,15 +3619,15 @@
 /area/tether_away/guttersite/office)
 "hX" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-supply"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
 /obj/structure/window/basic{
-	icon_state = "window";
-	dir = 8
+	dir = 8;
+	icon_state = "window"
 	},
 /obj/structure/window/basic,
 /obj/structure/table/darkglass,
@@ -3469,8 +3640,8 @@
 /area/tether_away/guttersite/office)
 "hY" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-supply"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -3487,14 +3658,18 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced,
 /turf/simulated/floor/plating,
-/area/tether_away/guttersite/bridge)
+/area/tether_away/guttersite/commons)
 "ia" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/simulated/floor/plating,
-/area/tether_away/guttersite/walkway)
+/area/tether_away/guttersite/medbay)
 "ib" = (
 /obj/machinery/vending/cola/soft,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
@@ -3503,24 +3678,38 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
 /turf/simulated/floor/plating,
 /area/tether_away/guttersite/medbay)
 "id" = (
-/obj/structure/bed/chair/office/dark{
-	icon_state = "officechair_dark";
+/obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
-/mob/living/simple_mob/humanoid/merc/ranged/laser,
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/security)
-"ie" = (
-/obj/structure/bed/chair/office/dark{
-	icon_state = "officechair_dark";
-	dir = 1
+/obj/machinery/access_button{
+	command = "cycle_interior";
+	frequency = 1380;
+	master_tag = "guttersite_sshuttle";
+	name = "interior access button";
+	pixel_x = -28;
+	pixel_y = 26;
+	req_one_access = list()
 	},
-/mob/living/simple_mob/humanoid/merc/melee/poi,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/security)
+/area/tether_away/guttersite/docking)
+"ie" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/tether_away/guttersite/walkway)
 "if" = (
 /obj/random/mob/mouse,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
@@ -3539,8 +3728,8 @@
 /area/tether_away/guttersite/unexplored)
 "ij" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-supply"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -3592,37 +3781,13 @@
 /turf/simulated/floor/tiled/eris/white/panels,
 /area/tether_away/guttersite/office)
 "ir" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	icon_state = "map-supply";
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden,
-/obj/structure/window/basic,
-/obj/structure/window/basic{
-	icon_state = "window";
-	dir = 4
-	},
-/obj/structure/table/darkglass,
-/obj/structure/cable/cyan{
-	icon_state = "2-8";
-	dir = 4;
-	d1 = 1;
-	d2 = 4
-	},
-/obj/structure/cable/cyan{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/turf/simulated/floor/tiled/eris/white/monofloor,
-/area/tether_away/guttersite/office)
+/obj/item/weapon/card/id/assistant,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/guttersite/unexplored)
 "is" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-supply"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -3639,8 +3804,8 @@
 /area/tether_away/guttersite/office)
 "it" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-supply"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -3656,8 +3821,8 @@
 /area/tether_away/guttersite/office)
 "iv" = (
 /obj/structure/window/basic{
-	icon_state = "window";
-	dir = 8
+	dir = 8;
+	icon_state = "window"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/office)
@@ -3684,8 +3849,8 @@
 /area/tether_away/guttersite/office)
 "iy" = (
 /obj/structure/window/basic{
-	icon_state = "window";
-	dir = 8
+	dir = 8;
+	icon_state = "window"
 	},
 /obj/machinery/papershredder,
 /turf/simulated/floor/tiled/eris/white/monofloor,
@@ -3699,12 +3864,7 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/vault)
 "iA" = (
-/obj/random/mob/merc/all,
-/obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/mob/living/simple_mob/humanoid/merc/melee/sword/space,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/vault)
 "iB" = (
@@ -3729,8 +3889,8 @@
 /area/tether_away/guttersite/office)
 "iF" = (
 /obj/structure/bed/chair/bay/comfy/black{
-	icon_state = "bay_comfychair_preview";
-	dir = 4
+	dir = 4;
+	icon_state = "bay_comfychair_preview"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/office)
@@ -3740,32 +3900,40 @@
 /area/tether_away/guttersite/office)
 "iH" = (
 /obj/structure/bed/chair/bay/comfy/black{
-	icon_state = "bay_comfychair_preview";
-	dir = 8
+	dir = 8;
+	icon_state = "bay_comfychair_preview"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/office)
 "iI" = (
-/obj/structure/bed/chair/bay/comfy/black{
-	icon_state = "bay_comfychair_preview";
-	dir = 4
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -25
 	},
-/mob/living/simple_mob/vore/catgirl,
-/turf/simulated/floor/tiled/eris/white/techfloor_grid,
-/area/tether_away/guttersite/office)
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/vault)
 "iJ" = (
 /mob/living/simple_mob/vore/aggressive/mimic,
 /turf/simulated/mineral/floor/vacuum,
 /area/tether_away/guttersite/unexplored)
 "iK" = (
-/obj/random/mob/merc/all,
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/mob/living/simple_mob/humanoid/merc/ranged/grenadier,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/vault)
 "iL" = (
-/obj/structure/table/rack,
-/obj/item/weapon/tank/oxygen,
-/obj/random/multiple/voidsuit,
-/turf/simulated/shuttle/plating,
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/docking)
 "iM" = (
 /obj/machinery/power/apc{
@@ -3788,80 +3956,46 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/vault)
 "iO" = (
-/obj/machinery/door/airlock/glass_external,
-/obj/machinery/access_button{
-	command = "cycle_exterior";
-	frequency = 1380;
-	master_tag = "dock_d2a2";
-	name = "exterior access button";
-	pixel_x = -5;
-	pixel_y = -26;
-	req_one_access = list(0)
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
 	},
-/obj/effect/map_helper/airlock/door/ext_door,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/docking)
 "iP" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 8
-	},
-/obj/machinery/access_button{
-	command = "cycle_interior";
-	frequency = 1380;
-	master_tag = "dock_d2a2";
-	name = "interior access button";
-	pixel_x = -28;
-	pixel_y = 26;
-	req_one_access = list(0)
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 4
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 8;
+	icon_state = "rwindow"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/docking)
 "iQ" = (
-/obj/machinery/access_button{
-	command = "cycle_exterior";
-	frequency = 1331;
-	master_tag = "vox_east_control";
-	req_access = list(0)
+/obj/machinery/embedded_controller/radio/airlock/docking_port{
+	frequency = 1276;
+	id_tag = "guttersite_lshuttle";
+	name = "Airlock controller";
+	pixel_x = -25;
+	pixel_y = 0
 	},
-/turf/simulated/wall/skipjack,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/docking)
 "iR" = (
-/obj/machinery/embedded_controller/radio/airlock/airlock_controller{
-	frequency = 1331;
-	id_tag = "guttersite_lshuttle";
-	pixel_x = -24;
-	req_access = list(0);
-	tag_airpump = "vox_east_vent";
-	tag_chamber_sensor = "vox_east_sensor";
-	tag_exterior_door = "vox_northeast_lock";
-	tag_interior_door = "vox_southeast_lock"
-	},
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 4;
-	frequency = 1331;
-	id_tag = "vox_east_vent"
-	},
-/obj/machinery/light/small,
-/turf/simulated/shuttle/plating,
-/area/tether_away/guttersite/docking)
+/mob/living/simple_mob/mechanical/hivebot/ranged_damage/basic,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/guttersite/unexplored)
 "iS" = (
-/obj/machinery/access_button{
-	command = "cycle_interior";
-	frequency = 1331;
-	master_tag = "vox_east_control";
-	pixel_x = 22;
-	req_access = list(0)
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden,
-/turf/simulated/shuttle/plating,
-/area/tether_away/guttersite/docking)
+/mob/living/simple_mob/mechanical/hivebot/tank/meatshield,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/guttersite/unexplored)
 "iT" = (
 /obj/structure/bed/chair/office/dark{
-	icon_state = "officechair_dark";
-	dir = 4
+	dir = 4;
+	icon_state = "officechair_dark"
 	},
 /obj/effect/landmark/corpse/clown,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
@@ -3873,6 +4007,10 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/vault)
+"iV" = (
+/obj/item/clothing/under/assistantformal,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/guttersite/unexplored)
 "iW" = (
 /obj/item/weapon/reagent_containers/food/snacks/clownburger,
 /turf/simulated/mineral/floor/vacuum,
@@ -3892,8 +4030,8 @@
 /area/tether_away/guttersite/walkway)
 "ja" = (
 /obj/structure/bed/chair/bay/comfy/black{
-	icon_state = "bay_comfychair_preview";
-	dir = 4
+	dir = 4;
+	icon_state = "bay_comfychair_preview"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/bridge)
@@ -3903,8 +4041,8 @@
 /area/tether_away/guttersite/bridge)
 "jc" = (
 /obj/structure/bed/chair/bay/comfy/black{
-	icon_state = "bay_comfychair_preview";
-	dir = 8
+	dir = 8;
+	icon_state = "bay_comfychair_preview"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/bridge)
@@ -3924,17 +4062,23 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "jg" = (
-/obj/random/mob/spider/mutant,
+/obj/item/trash/liquidfood,
+/obj/item/trash/liquidprotein,
+/obj/item/trash/cheesie,
 /turf/simulated/mineral/floor/vacuum,
 /area/tether_away/guttersite/unexplored)
 "jh" = (
-/obj/random/mob/spider,
+/mob/living/simple_mob/mobs_monsters/clowns/big/sentinel,
 /turf/simulated/mineral/floor/vacuum,
 /area/tether_away/guttersite/unexplored)
 "ji" = (
-/obj/random/mob/spider/nurse,
-/turf/simulated/mineral/floor/vacuum,
-/area/tether_away/guttersite/unexplored)
+/obj/machinery/meter,
+/obj/machinery/atmospherics/pipe/simple/visible/red{
+	dir = 10;
+	icon_state = "intact"
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/tether_away/guttersite/atmos)
 "jj" = (
 /obj/random/curseditem,
 /turf/simulated/mineral/floor/vacuum,
@@ -3944,29 +4088,8 @@
 /turf/simulated/mineral/floor/vacuum,
 /area/tether_away/guttersite/unexplored)
 "jl" = (
-/mob/living/simple_mob/humanoid/clown/clown{
-	cold_resist = 1;
-	custom_say = "Private proverty!";
-	desc = "A lone space clown.";
-	has_eye_glow = 1;
-	health = 300;
-	icon = 'icons/mob/clowns_vr.dmi';
-	icon_dead = "cluwne_dead";
-	icon_living = "cluwne";
-	icon_state = "cluwne";
-	max_co2 = 150;
-	max_n2 = 150;
-	max_tox = 120;
-	maxbodytemp = 500;
-	maxHealth = 300;
-	min_co2 = -500;
-	min_n2 = -500;
-	min_oxy = -500;
-	min_tox = -500;
-	minbodytemp = -150;
-	pressure_resistance = 350;
-	thick_armor = 1
-	},
+/obj/structure/loot_pile/surface/bones,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/bottleofnothing,
 /turf/simulated/mineral/floor/vacuum,
 /area/tether_away/guttersite/unexplored)
 "jm" = (
@@ -4039,19 +4162,21 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "jy" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 4
+	dir = 1
 	},
-/obj/structure/bed/chair/office/dark{
-	icon_state = "officechair_dark";
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 1
 	},
-/mob/living/simple_mob/humanoid/merc/ranged/technician/poi,
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/maintenance_hatch{
+	req_one_access = list(38)
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "jz" = (
@@ -4108,23 +4233,10 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/docking)
 "jG" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 1
-	},
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_hatch{
-	req_one_access = list()
-	},
-/obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/security)
+/obj/machinery/meter,
+/obj/machinery/atmospherics/pipe/simple/visible/blue,
+/turf/simulated/floor/plating/eris/under,
+/area/tether_away/guttersite/atmos)
 "jH" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 1
@@ -4170,8 +4282,8 @@
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 6
+	dir = 6;
+	icon_state = "intact-supply"
 	},
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -4249,8 +4361,8 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-supply"
 	},
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -4264,8 +4376,8 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-supply"
 	},
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -4275,24 +4387,24 @@
 /turf/simulated/wall/r_wall,
 /area/tether_away/guttersite/security)
 "jZ" = (
-/obj/structure/bed/chair/office/dark{
-	icon_state = "officechair_dark";
-	dir = 8
+/obj/machinery/meter,
+/obj/machinery/atmospherics/pipe/simple/visible/red{
+	dir = 6;
+	icon_state = "intact"
 	},
-/mob/living/simple_mob/humanoid/merc/melee/sword/poi,
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/security)
+/turf/simulated/floor/plating/eris/under,
+/area/tether_away/guttersite/atmos)
 "ka" = (
 /obj/structure/bed/chair/bay/comfy/black{
-	icon_state = "bay_comfychair_preview";
-	dir = 4
+	dir = 4;
+	icon_state = "bay_comfychair_preview"
 	},
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/tether_away/guttersite/commons)
 "kb" = (
 /obj/structure/bed/chair/bay/comfy/black{
-	icon_state = "bay_comfychair_preview";
-	dir = 8
+	dir = 8;
+	icon_state = "bay_comfychair_preview"
 	},
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/tether_away/guttersite/commons)
@@ -4301,8 +4413,8 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-supply"
 	},
 /obj/structure/table/steel,
 /obj/structure/cable/cyan{
@@ -4323,14 +4435,9 @@
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/tether_away/guttersite/commons)
 "kf" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	icon_state = "map-supply";
-	dir = 1
-	},
-/obj/structure/table/darkglass,
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/commons)
+/obj/item/device/flashlight/lamp/green,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/guttersite/unexplored)
 "kg" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
@@ -4338,15 +4445,13 @@
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/tether_away/guttersite/commons)
 "kh" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 8
+/obj/item/weapon/book{
+	author = "Urist McHopefulsoul";
+	desc = "It contains fourty blank pages followed by the entire screenplay of a movie called 'Requiem for a Dream'";
+	name = "A Comprehensive Guide to Assisting"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
-	},
-/obj/structure/bed/chair/bay/comfy/black,
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/commons)
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/guttersite/unexplored)
 "ki" = (
 /obj/structure/reagent_dispensers/water_cooler/full{
 	icon_state = "water_cooler-vend"
@@ -4381,8 +4486,8 @@
 /area/tether_away/guttersite/commons)
 "kn" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	icon_state = "map-supply";
-	dir = 1
+	dir = 1;
+	icon_state = "map-supply"
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/structure/table/steel,
@@ -4398,8 +4503,8 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-supply"
 	},
 /obj/structure/table/steel,
 /obj/item/device/flashlight/lamp,
@@ -4485,8 +4590,8 @@
 /area/tether_away/guttersite/commons)
 "kB" = (
 /obj/structure/bed/chair/bay/comfy/black{
-	icon_state = "bay_comfychair_preview";
-	dir = 4
+	dir = 4;
+	icon_state = "bay_comfychair_preview"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/commons)
@@ -4501,8 +4606,8 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-supply"
 	},
 /obj/structure/table/steel,
 /obj/item/weapon/pen/fountain,
@@ -4518,8 +4623,8 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 4
+	dir = 4;
+	icon_state = "intact-supply"
 	},
 /obj/structure/table/steel,
 /obj/item/weapon/paper_bin,
@@ -4540,12 +4645,12 @@
 /area/tether_away/guttersite/commons)
 "kG" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
-	dir = 9
+	dir = 9;
+	icon_state = "intact-scrubbers"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 9
+	dir = 9;
+	icon_state = "intact-supply"
 	},
 /obj/structure/table/steel,
 /obj/structure/cable/cyan{
@@ -4595,8 +4700,8 @@
 /area/tether_away/guttersite/docking)
 "kK" = (
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /obj/machinery/power/apc{
 	cell_type = /obj/item/weapon/cell/super;
@@ -4608,8 +4713,8 @@
 /area/tether_away/guttersite/teleporter)
 "kL" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
-	icon_state = "map_vent_out";
-	dir = 1
+	dir = 1;
+	icon_state = "map_vent_out"
 	},
 /obj/structure/table/darkglass,
 /obj/structure/window/basic,
@@ -4731,8 +4836,8 @@
 /area/tether_away/guttersite/medbay)
 "lb" = (
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 1
+	dir = 1;
+	icon_state = "tube1"
 	},
 /obj/machinery/vending/engivend,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
@@ -4769,10 +4874,9 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/storage)
 "li" = (
-/obj/structure/table/darkglass,
-/obj/item/weapon/storage/toolbox/emergency,
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/storage)
+/obj/item/toy/figure/assistant,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/guttersite/unexplored)
 "lj" = (
 /obj/structure/closet/walllocker/emerglocker/east,
 /obj/structure/closet/firecloset/full,
@@ -4856,8 +4960,8 @@
 	},
 /obj/structure/window/basic,
 /obj/structure/bed/chair/bay/comfy/black{
-	icon_state = "bay_comfychair_preview";
-	dir = 8
+	dir = 8;
+	icon_state = "bay_comfychair_preview"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/storage)
@@ -4877,18 +4981,20 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/vault)
 "lE" = (
-/obj/structure/loot_pile/surface/bones,
-/obj/item/weapon/gun/magnetic/railgun/flechette/sif,
-/turf/simulated/mineral/floor/vacuum,
-/area/tether_away/guttersite/unexplored)
+/obj/machinery/atmospherics/pipe/manifold/visible/red{
+	dir = 4;
+	icon_state = "map"
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/tether_away/guttersite/atmos)
 "lF" = (
 /obj/machinery/light,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/office)
 "lG" = (
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 1
+	dir = 1;
+	icon_state = "tube1"
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/tether_away/guttersite/security)
@@ -4900,9 +5006,11 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "lI" = (
-/obj/structure/grille/broken,
-/turf/simulated/mineral/floor/vacuum,
-/area/tether_away/guttersite/teleporter)
+/obj/machinery/atmospherics/pipe/manifold/visible/blue{
+	dir = 8
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/tether_away/guttersite/atmos)
 "lJ" = (
 /obj/item/weapon/storage/toolbox/electrical{
 	pixel_x = 1;
@@ -4927,19 +5035,377 @@
 /obj/random/weapon/guarenteed,
 /turf/simulated/mineral/floor/vacuum,
 /area/tether_away/guttersite/unexplored)
+"lM" = (
+/obj/item/toy/plushie/carp,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/guttersite/unexplored)
+"lN" = (
+/obj/structure/loot_pile/surface/bones,
+/turf/simulated/mineral/floor/vacuum,
+/area/space)
+"lO" = (
+/obj/structure/bonfire,
+/turf/simulated/mineral/floor/vacuum,
+/area/space)
+"lP" = (
+/obj/item/weapon/card/emag,
+/turf/simulated/mineral/floor/vacuum,
+/area/space)
+"lQ" = (
+/obj/item/weapon/card/emag_broken,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/guttersite/unexplored)
+"lR" = (
+/obj/item/toy/plushie/carp,
+/turf/simulated/mineral/floor/vacuum,
+/area/space)
+"lS" = (
+/obj/structure/inflatable/door,
+/turf/simulated/mineral/floor/vacuum,
+/area/space)
+"lT" = (
+/obj/item/pizzavoucher,
+/turf/simulated/mineral/floor/vacuum,
+/area/space)
+"lU" = (
+/mob/living/simple_mob/animal/space/carp/large/huge,
+/turf/simulated/mineral/floor/vacuum,
+/area/space)
+"lV" = (
+/obj/item/clothing/suit/storage/hooded/carp_costume,
+/turf/simulated/mineral/floor/vacuum,
+/area/space)
+"lW" = (
+/obj/item/clothing/suit/storage/hooded/techpriest,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/guttersite/unexplored)
+"lX" = (
+/obj/machinery/meter,
+/obj/machinery/atmospherics/pipe/simple/visible/blue{
+	dir = 10
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/tether_away/guttersite/atmos)
+"lY" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/docking)
+"lZ" = (
+/obj/machinery/light,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/docking)
+"ma" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/docking)
+"mb" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/docking)
+"mc" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/docking)
+"md" = (
+/obj/structure/outcrop/phoron,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/guttersite/teleporter)
+"me" = (
+/obj/structure/cable,
+/obj/machinery/power/port_gen/pacman,
+/turf/simulated/floor/airless,
+/area/tether_away/guttersite/teleporter)
+"mf" = (
+/obj/item/stack/material/phoron,
+/obj/item/stack/material/phoron,
+/turf/simulated/floor/airless,
+/area/tether_away/guttersite/teleporter)
+"mg" = (
+/obj/machinery/door/airlock/glass_external{
+	req_one_access = list(15)
+	},
+/obj/effect/map_helper/airlock/door/int_door,
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/office)
+"mh" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced{
+	dir = 8;
+	health = 1e+006
+	},
+/turf/simulated/floor/plating,
+/area/tether_away/guttersite/walkway)
+"mi" = (
+/obj/machinery/atmospherics/binary/pump/on,
+/turf/simulated/floor/plating/eris/under,
+/area/tether_away/guttersite/atmos)
+"mj" = (
+/obj/machinery/atmospherics/binary/pump/on{
+	dir = 1;
+	target_pressure = 200
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/tether_away/guttersite/atmos)
+"mk" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/tether_away/guttersite/office)
+"ml" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/tether_away/guttersite/office)
+"mm" = (
+/obj/structure/table/rack,
+/obj/item/weapon/tank/oxygen,
+/obj/random/multiple/voidsuit,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/office)
+"mn" = (
+/obj/machinery/access_button{
+	command = "cycle_interior";
+	frequency = 448;
+	master_tag = "guttersite_northlock";
+	name = "interior access button";
+	pixel_x = -28;
+	pixel_y = 26;
+	req_one_access = list()
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/office)
+"mo" = (
+/obj/machinery/atmospherics/portables_connector{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/machinery/portable_atmospherics/canister/empty,
+/turf/simulated/floor/plating/eris/under,
+/area/tether_away/guttersite/atmos)
+"mp" = (
+/obj/machinery/atmospherics/portables_connector{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/outline/blue,
+/obj/machinery/portable_atmospherics/canister/empty,
+/turf/simulated/floor/plating/eris/under,
+/area/tether_away/guttersite/atmos)
+"mq" = (
+/obj/machinery/atmospherics/portables_connector{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/outline,
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/simulated/floor/plating/eris/under,
+/area/tether_away/guttersite/atmos)
+"mr" = (
+/obj/machinery/atmospherics/portables_connector{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/outline/red,
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/simulated/floor/plating/eris/under,
+/area/tether_away/guttersite/atmos)
+"ms" = (
+/obj/structure/table/steel,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/atmos)
+"mt" = (
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -25
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/tether_away/guttersite/atmos)
 "mu" = (
 /obj/structure/window/basic{
-	icon_state = "window";
-	dir = 4
+	dir = 4;
+	icon_state = "window"
 	},
 /obj/structure/table/darkglass,
 /turf/simulated/floor/tiled/eris/white/monofloor,
 /area/tether_away/guttersite/office)
+"mv" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/tether_away/guttersite/bridge)
 "mw" = (
 /obj/structure/table/darkglass,
 /obj/item/device/flashlight/lamp/green,
 /turf/simulated/floor/tiled/eris/white/monofloor,
 /area/tether_away/guttersite/office)
+"mx" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced,
+/turf/simulated/floor/plating,
+/area/tether_away/guttersite/bridge)
+"my" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced{
+	dir = 8;
+	health = 1e+006
+	},
+/turf/simulated/floor/plating,
+/area/tether_away/guttersite/docking)
+"mz" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/tether_away/guttersite/docking)
+"mA" = (
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8;
+	health = 1e+006
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/docking)
+"mB" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/tether_away/guttersite/docking)
+"mC" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/tether_away/guttersite/docking)
+"mD" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/tether_away/guttersite/docking)
+"mE" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/tether_away/guttersite/docking)
+"mF" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/wall/r_wall,
+/area/tether_away/guttersite/docking)
+"mG" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced,
+/turf/simulated/floor/plating,
+/area/tether_away/guttersite/docking)
+"mH" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced,
+/turf/simulated/floor/plating,
+/area/tether_away/guttersite/docking)
+"mI" = (
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 4;
+	frequency = 1276;
+	id_tag = "guttersite_lshuttle_pump"
+	},
+/obj/machinery/airlock_sensor{
+	frequency = 1276;
+	id_tag = "guttersite_lshuttle_sensor";
+	pixel_x = 0;
+	pixel_y = -25
+	},
+/obj/effect/map_helper/airlock/sensor/chamber_sensor,
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/docking)
+"mJ" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 10;
+	icon_state = "intact"
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/docking)
+"mK" = (
+/obj/machinery/door/airlock/glass_external{
+	req_one_access = list(15)
+	},
+/obj/effect/map_helper/airlock/door/int_door,
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/docking)
+"mL" = (
+/obj/structure/table/rack,
+/obj/item/weapon/tank/oxygen,
+/obj/random/multiple/voidsuit,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/docking)
 "mM" = (
 /obj/structure/table/darkglass,
 /obj/item/weapon/pen/blue,
@@ -4954,32 +5420,110 @@
 /area/tether_away/guttersite/bridge)
 "mO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	icon_state = "intact";
-	dir = 6
+	dir = 6;
+	icon_state = "intact"
 	},
 /obj/structure/table/darkglass,
 /obj/item/weapon/paper_bin,
 /turf/simulated/floor/tiled/eris/white/monofloor,
 /area/tether_away/guttersite/office)
+"mP" = (
+/obj/machinery/access_button{
+	command = "cycle_interior";
+	frequency = 1276;
+	master_tag = "guttersite_lshuttle";
+	name = "interior access button";
+	pixel_x = -28;
+	pixel_y = 26;
+	req_one_access = list()
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/docking)
+"mQ" = (
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/docking)
+"mR" = (
+/obj/machinery/door/airlock/glass_external{
+	req_one_access = list()
+	},
+/obj/effect/map_helper/airlock/door/ext_door,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/docking)
+"mS" = (
+/obj/structure/flora/pumpkin/carved/owo,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/guttersite/unexplored)
 "mT" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 10
+	dir = 10;
+	icon_state = "intact-supply"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
-	dir = 9
+	dir = 9;
+	icon_state = "intact-scrubbers"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/vault)
+"mU" = (
+/turf/simulated/floor/carpet/gaycarpet,
+/area/tether_away/guttersite/unexplored)
+"mV" = (
+/obj/item/device/radio/headset/nanotrasen/alt{
+	desc = "The headset of an Eltorro employee.";
+	name = "Weird Headset"
+	},
+/turf/simulated/floor/carpet/gaycarpet,
+/area/tether_away/guttersite/unexplored)
+"mW" = (
+/obj/item/weapon/reagent_containers/food/drinks/cans/cola,
+/turf/simulated/floor/carpet/gaycarpet,
+/area/tether_away/guttersite/unexplored)
+"mX" = (
+/obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn,
+/turf/simulated/floor/carpet/gaycarpet,
+/area/tether_away/guttersite/unexplored)
+"mY" = (
+/obj/item/weapon/material/twohanded/baseballbat/metal,
+/turf/simulated/floor/carpet/gaycarpet,
+/area/tether_away/guttersite/unexplored)
+"mZ" = (
+/obj/item/weapon/light/bulb,
+/turf/simulated/floor/carpet/gaycarpet,
+/area/tether_away/guttersite/unexplored)
+"na" = (
+/obj/item/clothing/mask/gas/wwii,
+/turf/simulated/floor/carpet/gaycarpet,
+/area/tether_away/guttersite/unexplored)
+"nb" = (
+/obj/machinery/floodlight,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/guttersite/unexplored)
+"nc" = (
+/obj/effect/landmark/corpse/syndicatecommando,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/guttersite/unexplored)
+"nd" = (
+/obj/effect/landmark/corpse/syndicatesoldier,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/guttersite/unexplored)
 "ne" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 9
+	dir = 9;
+	icon_state = "intact-supply"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
-	dir = 9
+	dir = 9;
+	icon_state = "intact-scrubbers"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/office)
@@ -4988,22 +5532,102 @@
 /obj/random/janusmodule,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/vault)
-"xC" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 4
-	},
-/obj/structure/cable/cyan{
-	icon_state = "2-8";
-	dir = 4;
-	d1 = 1;
-	d2 = 4
+"ng" = (
+/obj/effect/landmark/corpse/engineer/rig,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/guttersite/unexplored)
+"nh" = (
+/obj/item/mecha_parts/mecha_equipment/tool/drill,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/guttersite/unexplored)
+"ni" = (
+/obj/structure/loot_pile/mecha/ripley,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/guttersite/unexplored)
+"nj" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/guttersite/unexplored)
+"nk" = (
+/obj/item/clothing/head/helmet/space/syndicate/black,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/guttersite/unexplored)
+"nl" = (
+/obj/structure/bonfire,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/guttersite/unexplored)
+"nm" = (
+/obj/item/clothing/suit/space/syndicate/black,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/guttersite/unexplored)
+"nn" = (
+/obj/item/weapon/tank/air,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/guttersite/unexplored)
+"no" = (
+/obj/item/weapon/bedsheet/pirate,
+/obj/structure/bed,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/guttersite/unexplored)
+"np" = (
+/obj/structure/trash_pile,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/guttersite/unexplored)
+"nq" = (
+/obj/item/trash/liquidprotein,
+/obj/item/trash/cheesie,
+/obj/item/trash/candy,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/guttersite/unexplored)
+"nr" = (
+/obj/item/trash/liquidfood,
+/obj/item/trash/liquidprotein,
+/obj/item/trash/cheesie,
+/obj/item/trash/candy,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/guttersite/unexplored)
+"ns" = (
+/obj/item/trash/liquidprotein,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/guttersite/unexplored)
+"nt" = (
+/obj/structure/signpost,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/guttersite/unexplored)
+"nu" = (
+/obj/random/outcrop,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/guttersite/unexplored)
+"nv" = (
+/mob/living/simple_mob/mechanical/hivebot/tank/armored,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/guttersite/unexplored)
+"nw" = (
+/obj/machinery/light{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/maint)
+/area/tether_away/guttersite/security)
+"nx" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4;
+	icon_state = "map_vent_out"
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/security)
+"ny" = (
+/mob/living/simple_mob/vore/catgirl{
+	name = "Blaire"
+	},
+/turf/simulated/floor/tiled/eris/steel/bar_light,
+/area/tether_away/guttersite/commons)
+"nz" = (
+/mob/living/simple_mob/mobs_monsters/clowns/big/tunnelclown,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/guttersite/unexplored)
 "Ob" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -5012,6 +5636,34 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/maint)
+"QN" = (
+/turf/simulated/floor/plating/eris/under/airless,
+/area/tether_away/guttersite/docking)
+"Uv" = (
+/obj/machinery/access_button{
+	command = "cycle_exterior";
+	frequency = 1276;
+	master_tag = "guttersite_lshuttle";
+	name = "exterior access button";
+	pixel_x = 26;
+	pixel_y = -26;
+	req_one_access = list()
+	},
+/turf/simulated/floor/plating/eris/under/airless,
+/area/tether_away/guttersite/docking)
+"Yg" = (
+/obj/machinery/access_button{
+	command = "cycle_exterior";
+	frequency = 1380;
+	master_tag = "guttersite_sshuttle";
+	name = "exterior access button";
+	pixel_x = -5;
+	pixel_y = -26;
+	req_one_access = list();
+	step_x = 0
+	},
+/turf/simulated/floor/plating/eris/under/airless,
+/area/tether_away/guttersite/docking)
 
 (1,1,1) = {"
 aa
@@ -5618,17 +6270,17 @@ aa
 aa
 aa
 aa
+ag
+ag
+ag
+ag
 aa
 aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
+ag
+ag
 aa
 aa
 aa
@@ -5731,6 +6383,11 @@ aa
 aa
 aa
 aa
+ag
+ag
+ag
+ag
+ag
 aa
 aa
 aa
@@ -5745,6 +6402,8 @@ aa
 aa
 aa
 aa
+ad
+ad
 aa
 aa
 aa
@@ -5753,11 +6412,19 @@ aa
 aa
 aa
 aa
+ag
+ag
+ag
+ag
 aa
 aa
 aa
 aa
 aa
+ag
+ag
+ag
+ag
 aa
 aa
 aa
@@ -5778,23 +6445,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+nu
+nu
 aa
 aa
 aa
@@ -5872,6 +6524,13 @@ aa
 aa
 aa
 aa
+ag
+ag
+cl
+ad
+ad
+ag
+ag
 aa
 aa
 aa
@@ -5885,17 +6544,30 @@ aa
 aa
 aa
 aa
+ad
+ag
+ag
+ag
 aa
 aa
 aa
 aa
 aa
 aa
+ad
+ad
+ad
+ad
 aa
 aa
 aa
 aa
 aa
+ag
+ag
+ag
+ag
+ag
 aa
 aa
 aa
@@ -5915,29 +6587,9 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ad
+ag
+nu
 aa
 aa
 aa
@@ -6014,6 +6666,13 @@ aa
 aa
 aa
 aa
+ag
+ad
+cq
+aL
+ad
+ag
+ag
 aa
 aa
 aa
@@ -6027,16 +6686,30 @@ aa
 aa
 aa
 aa
+ad
+ag
+ag
+ag
 aa
 aa
 aa
 aa
 aa
 aa
+ad
+ad
+ad
+ad
 aa
 aa
 aa
 aa
+ad
+ad
+ad
+ad
+ag
+ag
 aa
 aa
 aa
@@ -6044,6 +6717,9 @@ aa
 aa
 aa
 aa
+ag
+ag
+ag
 aa
 aa
 aa
@@ -6053,34 +6729,10 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ad
+ag
+ag
+ag
 aa
 aa
 aa
@@ -6156,27 +6808,50 @@ aa
 aa
 aa
 aa
+ag
+ag
+ad
+ad
+ad
+ad
 aa
 aa
 aa
 aa
 aa
+ag
+ag
+ag
+ag
 aa
 aa
 aa
 aa
 aa
+ad
+ad
+ag
+ad
+ad
 aa
 aa
 aa
 aa
 aa
+ad
+ad
 aa
 aa
 aa
 aa
 aa
 aa
+ad
+ad
+ad
+ad
+nu
+ag
 aa
 aa
 aa
@@ -6184,6 +6859,9 @@ aa
 aa
 aa
 aa
+ag
+ag
+ag
 aa
 aa
 aa
@@ -6194,6 +6872,9 @@ aa
 aa
 aa
 aa
+ag
+ag
+ag
 aa
 aa
 aa
@@ -6204,40 +6885,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ag
+ag
+ag
+ag
+ag
 aa
 aa
 aa
@@ -6299,15 +6951,30 @@ aa
 aa
 aa
 aa
+ag
+ag
+ag
+ad
 aa
 aa
 aa
 aa
 aa
 aa
+ag
+ag
+ag
+ag
+ag
+ag
 aa
 aa
 aa
+ad
+ad
+ad
+ad
+ad
 aa
 aa
 aa
@@ -6321,6 +6988,12 @@ aa
 aa
 aa
 aa
+ad
+ad
+ad
+ad
+ad
+ad
 aa
 aa
 aa
@@ -6328,6 +7001,10 @@ aa
 aa
 aa
 aa
+ag
+ag
+nu
+ad
 aa
 aa
 aa
@@ -6336,6 +7013,10 @@ aa
 aa
 aa
 aa
+ad
+ad
+ag
+ag
 aa
 aa
 aa
@@ -6347,39 +7028,10 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ad
+nu
+ag
+ag
 aa
 aa
 aa
@@ -6443,12 +7095,20 @@ aa
 aa
 aa
 aa
+ag
+ag
 aa
 aa
 aa
 aa
 aa
 aa
+ag
+ag
+ag
+ad
+nu
+ag
 aa
 aa
 aa
@@ -6473,6 +7133,9 @@ aa
 aa
 aa
 aa
+ad
+ad
+ad
 aa
 aa
 aa
@@ -6480,6 +7143,11 @@ aa
 aa
 aa
 aa
+ag
+nu
+ad
+ad
+ad
 aa
 aa
 aa
@@ -6487,6 +7155,10 @@ aa
 aa
 aa
 aa
+ad
+ad
+ad
+ad
 aa
 aa
 aa
@@ -6499,6 +7171,9 @@ aa
 aa
 aa
 aa
+ad
+ad
+ad
 aa
 aa
 aa
@@ -6510,32 +7185,9 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ag
+ag
+ag
 aa
 aa
 aa
@@ -6593,6 +7245,12 @@ aa
 aa
 aa
 aa
+ad
+ag
+ad
+ad
+ag
+ag
 aa
 aa
 aa
@@ -6617,6 +7275,9 @@ aa
 aa
 aa
 aa
+ad
+ad
+ad
 aa
 aa
 aa
@@ -6626,6 +7287,9 @@ aa
 aa
 aa
 aa
+ad
+ad
+ad
 aa
 aa
 aa
@@ -6650,34 +7314,22 @@ aa
 aa
 aa
 aa
+ad
+ad
 aa
 aa
 aa
 aa
 aa
 aa
+ad
+ad
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ad
+ad
+ag
 aa
 aa
 aa
@@ -6730,9 +7382,16 @@ aa
 aa
 aa
 aa
+ad
+ag
+ag
 aa
 aa
 aa
+ad
+ad
+ag
+ag
 aa
 aa
 aa
@@ -6770,6 +7429,9 @@ aa
 aa
 aa
 aa
+ad
+ad
+ag
 aa
 aa
 aa
@@ -6802,24 +7464,14 @@ aa
 aa
 aa
 aa
+ad
+ad
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ad
+ad
+ad
 aa
 aa
 aa
@@ -6872,9 +7524,16 @@ aa
 aa
 aa
 aa
+ad
+lM
+ag
 aa
 aa
 aa
+ad
+ad
+ad
+ad
 aa
 aa
 aa
@@ -6912,6 +7571,9 @@ aa
 aa
 aa
 aa
+ad
+ad
+ag
 aa
 aa
 aa
@@ -6944,26 +7606,16 @@ aa
 aa
 aa
 aa
+nu
+ad
+ag
 aa
 aa
 aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ag
 aa
 aa
 aa
@@ -7015,11 +7667,14 @@ aa
 aa
 aa
 aa
+ad
 aa
 aa
 aa
 aa
 aa
+ad
+ad
 aa
 aa
 aa
@@ -7052,9 +7707,15 @@ aa
 aa
 aa
 aa
+ad
+ad
+ad
 aa
 aa
 aa
+ad
+ad
+ad
 aa
 aa
 aa
@@ -7087,25 +7748,16 @@ aa
 aa
 aa
 aa
+ag
+ag
+ag
+ag
 aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ad
+ag
 aa
 aa
 aa
@@ -7185,6 +7837,21 @@ aa
 aa
 aa
 aa
+ad
+ad
+ad
+ad
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ad
+ad
+ad
+ad
 aa
 aa
 aa
@@ -7203,6 +7870,10 @@ aa
 aa
 aa
 aa
+ad
+ag
+ag
+ag
 aa
 aa
 aa
@@ -7219,29 +7890,10 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ag
+ag
+ag
+ag
 aa
 aa
 aa
@@ -7314,6 +7966,34 @@ aa
 aa
 aa
 aa
+ag
+ag
+ag
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ag
+ag
+ag
+ad
+ad
+aa
+aa
+aa
+aa
+aa
+ad
+ad
+ad
+ad
+ad
 aa
 aa
 aa
@@ -7332,39 +8012,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ad
+nu
+ag
+ag
+ag
 aa
 aa
 aa
@@ -7454,6 +8106,37 @@ aa
 aa
 aa
 aa
+ag
+ag
+ag
+ag
+ag
+ag
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ag
+ag
+ag
+ag
+ad
+aa
+aa
+aa
+aa
+aa
+ad
+ad
+ad
+ad
+ag
+ag
 aa
 aa
 aa
@@ -7471,42 +8154,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ad
+ad
+ad
+ag
+ag
 aa
 aa
 aa
@@ -7578,7 +8230,14 @@ aa
 aa
 aa
 aa
+ad
+ag
+ag
+ag
 aa
+ad
+ad
+ad
 aa
 aa
 aa
@@ -7588,6 +8247,13 @@ aa
 aa
 aa
 aa
+ad
+ag
+ag
+ir
+kf
+ag
+ag
 aa
 aa
 aa
@@ -7607,6 +8273,12 @@ aa
 aa
 aa
 aa
+ad
+ad
+ad
+ad
+ag
+ag
 aa
 aa
 aa
@@ -7617,12 +8289,17 @@ aa
 aa
 aa
 aa
+ad
+ad
 aa
 aa
 aa
 aa
 aa
 aa
+ad
+ad
+ad
 aa
 aa
 aa
@@ -7649,32 +8326,7 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ag
 aa
 aa
 aa
@@ -7720,6 +8372,14 @@ aa
 aa
 aa
 aa
+ag
+ag
+ag
+ag
+ag
+ag
+ad
+ad
 aa
 aa
 aa
@@ -7730,6 +8390,12 @@ aa
 aa
 aa
 aa
+ad
+ad
+iV
+kh
+ag
+ag
 aa
 aa
 aa
@@ -7749,6 +8415,12 @@ aa
 aa
 aa
 aa
+ad
+ad
+ag
+ag
+ag
+ag
 aa
 aa
 aa
@@ -7757,6 +8429,10 @@ aa
 aa
 aa
 aa
+ad
+ad
+ad
+ad
 aa
 aa
 aa
@@ -7764,6 +8440,8 @@ aa
 aa
 aa
 aa
+ad
+ad
 aa
 aa
 aa
@@ -7771,6 +8449,11 @@ aa
 aa
 aa
 aa
+ad
+ad
+ad
+ag
+ag
 aa
 aa
 aa
@@ -7783,38 +8466,7 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ad
 aa
 aa
 aa
@@ -7863,6 +8515,14 @@ aa
 aa
 aa
 aa
+ag
+ag
+ag
+ag
+ag
+ag
+ad
+ad
 aa
 aa
 aa
@@ -7872,6 +8532,12 @@ aa
 aa
 aa
 aa
+ad
+ad
+ad
+li
+ag
+ag
 aa
 aa
 aa
@@ -7892,6 +8558,10 @@ aa
 aa
 aa
 aa
+ag
+ag
+ag
+ag
 aa
 aa
 aa
@@ -7901,6 +8571,11 @@ aa
 aa
 aa
 aa
+ad
+ad
+ad
+ag
+ag
 aa
 aa
 aa
@@ -7916,34 +8591,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ad
+ad
+ad
+ag
+ag
 aa
 aa
 aa
@@ -8006,6 +8658,14 @@ aa
 aa
 aa
 aa
+ag
+ag
+ag
+ag
+lM
+ad
+ad
+ad
 aa
 aa
 aa
@@ -8014,6 +8674,13 @@ aa
 aa
 aa
 aa
+ad
+ad
+ad
+ag
+ag
+ag
+ag
 aa
 aa
 aa
@@ -8046,6 +8713,11 @@ aa
 aa
 aa
 aa
+ad
+ad
+ad
+ag
+ag
 aa
 aa
 aa
@@ -8061,30 +8733,10 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ad
+nu
+ad
+ag
 aa
 aa
 aa
@@ -8150,6 +8802,10 @@ aa
 aa
 aa
 aa
+ad
+ad
+ad
+ad
 aa
 aa
 aa
@@ -8162,6 +8818,11 @@ aa
 aa
 aa
 aa
+ad
+ag
+ag
+ag
+ag
 aa
 aa
 aa
@@ -8194,6 +8855,11 @@ aa
 aa
 aa
 aa
+ad
+ad
+ad
+ag
+ag
 aa
 aa
 aa
@@ -8209,23 +8875,9 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ad
+ag
+ad
 aa
 aa
 aa
@@ -8308,6 +8960,10 @@ aa
 aa
 aa
 aa
+ad
+ag
+ag
+ag
 aa
 aa
 aa
@@ -8340,6 +8996,11 @@ aa
 aa
 aa
 aa
+ad
+ad
+ad
+ag
+ag
 aa
 aa
 aa
@@ -8358,16 +9019,7 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ad
 aa
 aa
 aa
@@ -8451,6 +9103,8 @@ aa
 aa
 aa
 aa
+ag
+ag
 aa
 aa
 aa
@@ -8483,13 +9137,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ad
+ad
+ad
+nu
+ag
 aa
 aa
 aa
@@ -8570,8 +9222,8 @@ aa
 aa
 aa
 aa
-aa
-aa
+ad
+ad
 aa
 aa
 aa
@@ -8627,11 +9279,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+ad
+ad
+ag
+ag
+ag
 aa
 aa
 aa
@@ -8712,6 +9364,10 @@ aa
 aa
 aa
 aa
+ad
+ad
+ad
+ad
 aa
 aa
 aa
@@ -8721,12 +9377,8 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
+ad
+ad
 aa
 aa
 aa
@@ -8771,8 +9423,8 @@ aa
 aa
 aa
 aa
-aa
-aa
+ag
+ag
 aa
 aa
 aa
@@ -8806,7 +9458,7 @@ ag
 ag
 ag
 ag
-ad
+nu
 ad
 ad
 ad
@@ -8854,6 +9506,11 @@ aa
 aa
 aa
 aa
+ad
+ad
+lM
+ad
+ad
 aa
 aa
 aa
@@ -8862,15 +9519,10 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ad
+ag
+ag
+ag
 aa
 aa
 aa
@@ -8947,7 +9599,7 @@ ag
 ag
 ag
 ag
-ad
+nu
 ad
 ad
 ad
@@ -8996,6 +9648,10 @@ aa
 aa
 aa
 aa
+ad
+ad
+ad
+ad
 aa
 aa
 aa
@@ -9005,14 +9661,10 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ad
+lM
+ag
+ag
 aa
 aa
 aa
@@ -9079,9 +9731,9 @@ aa
 aa
 aa
 ag
-aL
+jl
 ad
-ad
+nu
 ag
 ag
 ag
@@ -9151,11 +9803,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+ad
+ad
+ag
+ag
+ag
 aa
 aa
 aa
@@ -9241,7 +9893,7 @@ ad
 ad
 ad
 aL
-ad
+nu
 ag
 ag
 ag
@@ -9294,9 +9946,9 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
+ad
+ag
+ag
 aa
 aa
 aa
@@ -9518,7 +10170,7 @@ ag
 ad
 fX
 gh
-go
+gp
 aL
 ag
 ag
@@ -9571,9 +10223,9 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
+ag
+ag
+ag
 aa
 aa
 aa
@@ -9713,9 +10365,9 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
+ad
+ag
+ad
 aa
 aa
 aa
@@ -9790,19 +10442,19 @@ aa
 ad
 ad
 ad
-ad
+nu
 ag
 ag
 ad
-ad
+az
 ad
 ad
 fu
 fu
 fu
-fZ
+fu
 gj
-fZ
+fu
 fu
 fu
 fu
@@ -9856,8 +10508,8 @@ aa
 aa
 aa
 aa
-aa
-aa
+ad
+ad
 aa
 aa
 aa
@@ -9891,7 +10543,7 @@ ag
 hd
 iW
 ad
-ad
+jh
 ad
 ad
 aL
@@ -9932,8 +10584,8 @@ aa
 ad
 ad
 ad
-ad
-ad
+nu
+nu
 ag
 ag
 ag
@@ -9941,7 +10593,7 @@ ag
 fu
 fu
 jJ
-fw
+gY
 ga
 gk
 gq
@@ -10020,7 +10672,7 @@ ac
 aB
 aE
 aN
-ba
+aE
 aE
 bu
 aE
@@ -10075,8 +10727,8 @@ ad
 ad
 ad
 ad
-ad
-ad
+nu
+nu
 ag
 ag
 fu
@@ -10174,7 +10826,7 @@ aB
 ag
 hd
 jk
-jl
+hj
 aA
 ad
 ad
@@ -10218,9 +10870,9 @@ ad
 ad
 ad
 ad
-ad
-ad
-ad
+nu
+ag
+ag
 fu
 fz
 fD
@@ -10302,7 +10954,7 @@ ac
 ac
 ac
 aB
-xC
+aV
 Ob
 Ob
 bE
@@ -10328,8 +10980,8 @@ ag
 ag
 ad
 ad
-aa
-aa
+ad
+ad
 aa
 aa
 aa
@@ -10360,9 +11012,9 @@ ad
 ad
 ad
 ad
-ad
-ad
-ad
+nu
+nu
+ag
 fu
 fz
 fE
@@ -10439,7 +11091,7 @@ aa
 aa
 aa
 aa
-aa
+ad
 ac
 ac
 ac
@@ -10459,7 +11111,7 @@ ag
 ad
 ad
 ad
-ad
+nz
 ad
 ad
 ad
@@ -10503,8 +11155,8 @@ ad
 ad
 ad
 ad
-ad
-ad
+nu
+ag
 fu
 lG
 fF
@@ -10514,7 +11166,7 @@ gd
 gd
 gd
 gz
-fw
+gX
 fu
 fw
 gX
@@ -10574,13 +11226,13 @@ aa
 aa
 aa
 aa
+ad
+ad
 aa
 aa
 aa
 aa
-aa
-aa
-aa
+ad
 ac
 ac
 ac
@@ -10645,16 +11297,16 @@ ad
 ad
 ad
 ad
-ad
-ad
+nu
+ag
 fu
 fA
 fG
 jX
 fw
-id
+hU
 ge
-jZ
+gs
 gz
 fw
 fu
@@ -10715,16 +11367,16 @@ aa
 aa
 aa
 aa
+ag
+ad
+ad
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+ad
 ab
-ac
-ac
+ab
+ab
 ac
 ac
 aB
@@ -10736,9 +11388,9 @@ by
 bF
 bP
 cu
+ms
+ms
 aT
-ag
-ag
 ag
 ad
 ad
@@ -10787,8 +11439,8 @@ ad
 ad
 ad
 ad
-ad
-ad
+nu
+ag
 fu
 fB
 fH
@@ -10804,7 +11456,7 @@ fx
 if
 fw
 jp
-fw
+gY
 fu
 fu
 ag
@@ -10857,16 +11509,16 @@ aa
 aa
 aa
 aa
+ag
+ag
+ad
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+ad
 ac
 ac
-ac
+lS
 ac
 ac
 aB
@@ -10877,10 +11529,10 @@ bq
 bI
 cc
 bq
-cv
+bq
+bq
+bq
 aT
-ag
-ag
 ag
 ad
 ad
@@ -11000,15 +11652,15 @@ aa
 aa
 aa
 aa
+ag
+ag
 aa
 aa
 aa
-aa
-aa
-aa
+ad
 ac
 ac
-ac
+lS
 ac
 ac
 aB
@@ -11019,10 +11671,10 @@ bq
 bJ
 bJ
 bq
-cw
+bq
+bq
+mt
 aT
-ag
-ag
 ag
 ag
 az
@@ -11072,7 +11724,7 @@ ad
 ad
 ad
 ad
-fZ
+fu
 ly
 fw
 lH
@@ -11143,14 +11795,14 @@ aa
 aa
 aa
 aa
-aa
+ag
 aa
 aa
 aa
 ab
 ac
 ac
-ac
+ab
 ac
 ac
 aB
@@ -11158,13 +11810,13 @@ cA
 aR
 bh
 bq
-bK
-cd
+br
+bM
 bq
-bh
+bq
+bq
+bq
 aT
-ag
-ag
 ag
 ag
 ad
@@ -11292,7 +11944,7 @@ aa
 ab
 ac
 ac
-ac
+ab
 ac
 ac
 aB
@@ -11303,12 +11955,12 @@ bq
 bL
 ce
 bq
-cx
+bq
+bq
+bq
 aT
 ag
 ag
-ag
-ag
 ad
 ad
 ad
@@ -11356,7 +12008,7 @@ ad
 ad
 ad
 ad
-fZ
+fu
 fw
 fw
 fI
@@ -11434,18 +12086,20 @@ aa
 ab
 ac
 ac
-ac
+ab
 ac
 ac
 aB
 cA
 aQ
 bi
-br
-bM
-cf
-cm
-cy
+bq
+bs
+bN
+bq
+bq
+bq
+bq
 aT
 ag
 ag
@@ -11454,8 +12108,6 @@ ag
 ag
 ag
 ag
-ag
-ag
 cF
 cF
 cF
@@ -11498,7 +12150,7 @@ ad
 ad
 ad
 ad
-fZ
+fu
 fw
 fw
 fw
@@ -11576,21 +12228,21 @@ aa
 ab
 ac
 ac
-ac
+ab
 ac
 ac
 aB
 cA
 aQ
 bh
-bs
-bN
+bq
+br
+cd
 cg
-cn
-bh
+cx
+bq
+bq
 aT
-ag
-ag
 ag
 ag
 ag
@@ -11640,12 +12292,12 @@ aa
 ad
 ad
 ad
-fZ
+fu
 fw
 fw
 fw
 kD
-gD
+fZ
 fw
 fw
 fu
@@ -11718,21 +12370,21 @@ aa
 ac
 ac
 ac
-ac
+ab
 ac
 ac
 aB
 cA
 aQ
 bh
-bh
-bh
-bh
-bh
-bh
+bq
+bK
+cf
+cm
+bM
+bq
+bq
 aT
-ag
-ag
 ag
 ag
 ag
@@ -11782,14 +12434,14 @@ aa
 aa
 aa
 aa
-fZ
+fu
 fw
 fw
 fw
 kE
-ie
+gD
 fw
-fw
+gX
 fu
 gC
 fu
@@ -11860,7 +12512,7 @@ ac
 ac
 ac
 ac
-ac
+ab
 ac
 ac
 aB
@@ -11870,12 +12522,12 @@ aT
 aT
 aT
 aT
+br
+bM
+bq
+bq
 aT
 aT
-aT
-ag
-ag
-ag
 ag
 ag
 ag
@@ -11897,14 +12549,14 @@ dn
 dn
 dn
 dn
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
+mh
+mh
+mh
+mh
+mh
+mh
+mh
+mh
 dn
 ib
 ee
@@ -11912,18 +12564,18 @@ fp
 ee
 ee
 dn
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
-ia
+mh
+mh
+mh
+mh
+mh
+mh
+mh
+dn
+dn
+dn
+dn
+dn
 fu
 fw
 fw
@@ -11933,11 +12585,11 @@ fw
 fw
 gn
 fu
-jy
+hi
 fw
 gm
 fw
-gY
+nx
 fw
 fw
 gP
@@ -12002,7 +12654,7 @@ ac
 ac
 ac
 ac
-ac
+ab
 ac
 ac
 aB
@@ -12011,13 +12663,13 @@ cE
 cE
 cE
 cV
-aP
-ag
-ag
-ag
-ag
-ag
-ag
+aQ
+cn
+bM
+bq
+jZ
+mo
+aT
 ag
 ag
 ag
@@ -12025,7 +12677,7 @@ cF
 cF
 cZ
 di
-dF
+cb
 ey
 eC
 ey
@@ -12066,7 +12718,7 @@ eS
 eS
 eS
 eS
-jG
+jy
 jH
 jH
 jI
@@ -12144,7 +12796,7 @@ ac
 ac
 ac
 ac
-ac
+ab
 ac
 ac
 aB
@@ -12153,13 +12805,13 @@ aE
 aE
 aE
 cA
-aP
-ag
-ag
-ag
-ag
-ag
-ag
+aQ
+br
+cy
+mi
+lE
+mp
+aT
 ag
 ag
 cF
@@ -12178,17 +12830,17 @@ jD
 cF
 dn
 dn
-ia
-ia
-ia
-ia
+ie
+ie
+ie
+ie
 dn
-ia
-ia
-ia
-ia
-ia
-ia
+ie
+ie
+ie
+ie
+ie
+ie
 dn
 ef
 ep
@@ -12196,18 +12848,18 @@ fv
 eI
 ee
 dn
-ia
-ia
-ia
-ia
-ia
-ia
-ia
+ie
+ie
+ie
+ie
+ie
+ie
+ie
 dn
-hU
-hU
-hU
-hU
+dn
+dn
+dn
+dn
 fu
 fu
 fw
@@ -12286,7 +12938,7 @@ ac
 ac
 ac
 ac
-ac
+lS
 ac
 ac
 aB
@@ -12295,19 +12947,19 @@ aB
 aB
 aB
 cA
-aB
-ag
-ag
-ag
-ag
-ag
-ag
+aT
+br
+bM
+bq
+jZ
+mo
+aT
 ag
 cF
 cF
 cZ
 jv
-cZ
+ny
 dh
 dW
 jD
@@ -12376,7 +13028,7 @@ ad
 ad
 ag
 ag
-jh
+ad
 ag
 ad
 ad
@@ -12428,7 +13080,7 @@ ac
 ac
 ac
 ac
-ac
+lS
 ac
 ac
 ac
@@ -12437,13 +13089,13 @@ ac
 ac
 aB
 cW
-aB
-ag
-ag
-ag
-ag
-ag
-ag
+aT
+br
+cy
+mi
+lE
+mp
+aT
 ag
 cF
 cU
@@ -12569,23 +13221,23 @@ aa
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
+ab
+ab
+ab
+ab
+ab
+ab
 ac
 ac
 aB
 cA
-aB
-ag
-ag
-ag
-ag
-ag
-ag
+aT
+br
+bM
+bq
+jZ
+mo
+aT
 cF
 cF
 db
@@ -12617,9 +13269,9 @@ aa
 aa
 aa
 aa
-hZ
+mv
 fK
-hZ
+mx
 aa
 aa
 aa
@@ -12710,24 +13362,24 @@ aa
 aa
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+ab
+lR
+ab
+lT
+ab
+ab
+lR
+ab
 ac
 aB
 cA
-aB
-ag
-ag
-ag
-ag
-ag
-ag
+aT
+br
+ji
+mi
+lE
+mp
+aT
 cF
 cF
 cF
@@ -12759,9 +13411,9 @@ aa
 aa
 aa
 aa
-hZ
+mv
 fK
-hZ
+mx
 aa
 aa
 aa
@@ -12793,7 +13445,7 @@ fw
 gP
 jx
 fw
-fw
+gX
 fu
 ag
 ag
@@ -12852,24 +13504,24 @@ aa
 aa
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
 ac
 aB
 cA
-aB
-ag
-ag
-ag
-ag
-ag
-ag
+aT
+cv
+jG
+mj
+lI
+mq
+aT
 cF
 jL
 jP
@@ -12901,9 +13553,9 @@ aa
 aa
 aa
 aa
-hZ
+mv
 fK
-hZ
+mx
 aa
 aa
 aa
@@ -12994,24 +13646,24 @@ aa
 aa
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+ab
+ab
+ab
+lU
+ab
+lP
+ab
+ab
 ac
 aB
 cA
-aB
-ag
-ag
-ag
-ag
-ag
-ag
+aT
+br
+bq
+bq
+lX
+mr
+aT
 cF
 cI
 cH
@@ -13067,7 +13719,7 @@ aa
 aa
 aa
 fu
-fw
+nw
 fw
 jx
 gP
@@ -13136,24 +13788,24 @@ aa
 aa
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+ab
+ab
+lR
+ab
+ab
+ab
+ab
+ab
 ac
 aB
 cA
-aB
-ag
-ag
-ag
-ag
-ag
-ag
+aT
+cv
+jG
+mj
+lI
+mq
+aT
 cF
 jM
 jQ
@@ -13275,27 +13927,27 @@ aa
 aa
 aa
 aa
-aa
+ad
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+ab
+ab
+lV
+ab
+lR
+ab
+ab
 ac
 aB
 cA
-aB
-ag
-ag
-ag
-ag
-ag
-ag
+aT
+br
+bq
+bq
+lX
+mr
+aT
 cF
 cF
 cF
@@ -13325,7 +13977,7 @@ aa
 aa
 aa
 aa
-hZ
+mv
 ih
 eg
 fK
@@ -13417,27 +14069,27 @@ aa
 aa
 aa
 aa
-aa
+ad
 ab
 ac
 ac
 ac
-ac
-ac
-ac
-ac
-ac
+ab
+ab
+ab
+ab
+ab
 ac
 ac
 aB
 cA
-aB
-ag
-ag
-ag
-ag
-ag
-ag
+aT
+cw
+jG
+mj
+lI
+mq
+aT
 dk
 dk
 dk
@@ -13467,7 +14119,7 @@ aa
 aa
 aa
 aa
-hZ
+mv
 iX
 eg
 fN
@@ -13499,9 +14151,9 @@ ag
 ag
 ag
 bb
-ag
-ag
-ag
+cs
+cs
+cs
 ag
 ag
 ag
@@ -13559,13 +14211,13 @@ aa
 aa
 aa
 aa
-aa
-aa
+ad
+ad
 ac
 ac
 ac
-ac
-ac
+ab
+lN
 ac
 ac
 ac
@@ -13573,13 +14225,13 @@ ac
 ac
 aB
 cW
-aB
-ag
-ag
-ag
-ag
-ag
-ag
+aT
+bq
+bq
+bq
+lX
+mr
+aT
 cF
 cF
 cF
@@ -13609,7 +14261,7 @@ aa
 aa
 aa
 aa
-hZ
+mv
 lw
 eg
 fK
@@ -13617,7 +14269,7 @@ eg
 fK
 eg
 kw
-hZ
+mx
 aa
 aa
 aa
@@ -13637,6 +14289,9 @@ aa
 aa
 aa
 aa
+ag
+ag
+ag
 ag
 ag
 ag
@@ -13644,13 +14299,10 @@ cs
 ag
 ag
 ag
-ag
-ag
-ag
 ad
 ag
 ag
-lE
+co
 ag
 ag
 ad
@@ -13701,13 +14353,13 @@ aa
 aa
 aa
 aa
-aa
-aa
+ad
+ad
 ab
 ac
 ac
-ac
-ac
+ab
+lO
 ac
 ac
 ac
@@ -13718,10 +14370,10 @@ cX
 ax
 ax
 ax
-ag
-ag
-ag
-ag
+aT
+aT
+aT
+aT
 cF
 jN
 jR
@@ -13759,7 +14411,7 @@ eL
 fK
 ja
 eg
-hZ
+mx
 aa
 aa
 aa
@@ -13779,6 +14431,9 @@ aa
 aa
 aa
 aa
+ag
+ag
+ag
 ag
 ag
 ag
@@ -13786,18 +14441,15 @@ cs
 ag
 ag
 ag
+ad
 ag
+ag
+iR
 ag
 ag
 ad
 ag
-ag
-jg
-ag
-ag
 ad
-ag
-ji
 ag
 ag
 ad
@@ -13843,13 +14495,13 @@ aa
 aa
 aa
 aa
-aa
-aa
+ad
+ad
 ab
 ac
 ac
-ac
-ac
+ab
+ab
 ac
 ac
 ax
@@ -13893,7 +14545,7 @@ aa
 aa
 aa
 aa
-hZ
+mv
 iY
 eg
 fP
@@ -13901,7 +14553,7 @@ eg
 fK
 jb
 eg
-hZ
+mx
 aa
 aa
 aa
@@ -13921,6 +14573,9 @@ aa
 aa
 aa
 aa
+ag
+ag
+ag
 ag
 ag
 ag
@@ -13928,9 +14583,6 @@ cs
 ag
 ag
 ag
-ag
-ag
-ag
 ad
 ag
 ag
@@ -13939,7 +14591,7 @@ ad
 ag
 ad
 ag
-ad
+iS
 ag
 ag
 ad
@@ -13986,11 +14638,11 @@ aa
 aa
 aa
 aa
-aa
-aa
+ad
+ad
 ac
 ac
-ac
+lS
 ac
 ac
 ax
@@ -14066,11 +14718,11 @@ aa
 aa
 ag
 ag
-cs
-cs
-cs
 ag
 ag
+ag
+cs
+cs
 ag
 ag
 ig
@@ -14128,11 +14780,11 @@ aa
 aa
 aa
 aa
-aa
-aa
+ag
+ag
 ac
 ac
-ac
+lS
 ac
 ac
 ax
@@ -14210,9 +14862,9 @@ ag
 ag
 ag
 ag
-jz
 ag
 ag
+cs
 ag
 ag
 ag
@@ -14270,11 +14922,11 @@ aa
 aa
 aa
 aa
-aa
-aa
+ag
+ag
 ac
 ac
-ac
+ab
 ac
 ac
 ax
@@ -14300,32 +14952,32 @@ kN
 ev
 kA
 lu
-df
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-de
-de
-de
-de
-de
-de
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 hZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+de
+de
+de
+de
+de
+de
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+mv
 fK
-hZ
+mx
 aa
 aa
 aa
@@ -14352,9 +15004,9 @@ aa
 ag
 ag
 ag
-cs
 ag
 ag
+jz
 ag
 ag
 ag
@@ -14412,11 +15064,11 @@ aa
 aa
 aa
 aa
-aa
-aa
+ad
+ag
 ac
 ac
-ac
+ab
 ac
 ax
 ax
@@ -14442,7 +15094,7 @@ kO
 ew
 cH
 cH
-df
+hZ
 aa
 aa
 aa
@@ -14465,9 +15117,9 @@ aa
 aa
 aa
 aa
-hZ
+mv
 fK
-hZ
+mx
 aa
 aa
 aa
@@ -14554,16 +15206,16 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
+ad
+ag
+ag
 ac
-ac
+ab
 ac
 ax
 lb
 aD
-li
+cr
 ln
 lB
 cY
@@ -14584,32 +15236,32 @@ cH
 eo
 cH
 cH
-df
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-de
-de
-dp
-dD
-dp
-dD
-dp
-de
-aa
-aa
-aa
-aa
-aa
-aa
 hZ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+de
+de
+dp
+dD
+dp
+dD
+dp
+de
+aa
+aa
+aa
+aa
+aa
+aa
+mv
 fK
-hZ
+mx
 aa
 aa
 aa
@@ -14696,18 +15348,18 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
+ad
+ag
+ag
 ac
-ac
+ab
 ac
 ax
 lc
 aD
 aD
 aD
-cJ
+bj
 dl
 do
 dq
@@ -14749,9 +15401,9 @@ aa
 aa
 aa
 aa
-hZ
+mv
 fK
-hZ
+mx
 aa
 aa
 aa
@@ -14838,11 +15490,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
+ad
+ag
+ag
 ac
-ac
+ab
 ac
 ax
 ld
@@ -14862,13 +15514,13 @@ cF
 kC
 kC
 kF
-kf
+bA
 kL
 cH
 cH
 cH
 cH
-df
+hZ
 aa
 aa
 aa
@@ -14891,9 +15543,9 @@ aa
 aa
 aa
 aa
-hZ
+mv
 fK
-hZ
+mx
 aa
 aa
 aa
@@ -14980,11 +15632,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-ab
+ad
+ag
+ag
 ac
+ab
 ac
 ax
 lc
@@ -15004,21 +15656,21 @@ cF
 cP
 cH
 cH
-kh
+bZ
 kM
 cH
 cH
 cH
 cH
 de
-ic
-ic
-ic
-ic
-ic
-ic
-ic
-ic
+ia
+ia
+ia
+ia
+ia
+ia
+ia
+ia
 de
 dp
 dp
@@ -15033,9 +15685,9 @@ aa
 aa
 aa
 aa
-hZ
+mv
 fK
-hZ
+mx
 aa
 aa
 aa
@@ -15122,11 +15774,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-ac
+ad
+ag
+ag
+ag
+ab
 ac
 ax
 ax
@@ -15175,9 +15827,9 @@ aa
 aa
 aa
 aa
-hZ
+mv
 fK
-hZ
+mx
 aa
 aa
 aa
@@ -15264,11 +15916,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+ad
+ag
+ag
+ag
+ad
 ac
 ac
 ax
@@ -15317,9 +15969,9 @@ aa
 aa
 aa
 aa
-hZ
+mv
 fK
-hZ
+mx
 aa
 aa
 aa
@@ -15407,10 +16059,10 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+ag
+ag
+ag
+ad
 ac
 ac
 ac
@@ -15434,8 +16086,8 @@ cH
 cH
 cH
 df
-df
-df
+dO
+go
 aa
 aa
 aa
@@ -15459,9 +16111,9 @@ aa
 aa
 aa
 aa
-hZ
+mv
 fK
-hZ
+mx
 aa
 aa
 aa
@@ -15549,12 +16201,12 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-ac
-ac
+ag
+ag
+ag
+ad
+ab
+ab
 ac
 ac
 ac
@@ -15575,7 +16227,7 @@ kA
 cR
 cH
 df
-df
+go
 aa
 aa
 aa
@@ -15601,9 +16253,9 @@ aa
 aa
 aa
 aa
-hZ
+mv
 fK
-hZ
+mx
 aa
 aa
 aa
@@ -15692,12 +16344,12 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-ac
-ac
+ag
+ag
+ag
+ag
+ab
+ab
 ac
 ac
 ac
@@ -15715,8 +16367,8 @@ cF
 cF
 cF
 cF
-df
-df
+dO
+go
 aa
 aa
 aa
@@ -15745,7 +16397,7 @@ aa
 aa
 eb
 hc
-hZ
+mx
 aa
 aa
 aa
@@ -15834,10 +16486,13 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+ag
+ag
+ag
+ag
+ac
+ab
+ab
 ac
 ac
 ac
@@ -15854,9 +16509,6 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
 aa
 aa
 aa
@@ -15885,9 +16537,9 @@ aa
 aa
 aa
 aa
-hZ
+mv
 fK
-hZ
+mx
 aa
 aa
 aa
@@ -15976,10 +16628,14 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+ad
+ag
+ag
+ag
+ac
+ac
+ab
+ab
 ac
 ac
 ac
@@ -15994,10 +16650,6 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
 aa
 aa
 aa
@@ -16027,9 +16679,9 @@ aa
 aa
 aa
 aa
-hZ
+mv
 fK
-hZ
+mx
 aa
 aa
 aa
@@ -16118,10 +16770,14 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+ad
+ag
+ag
+ag
+ac
+ac
+ac
+ab
 ac
 ac
 ac
@@ -16135,10 +16791,6 @@ ac
 ac
 ac
 ac
-ac
-ac
-ac
-ac
 aa
 aa
 aa
@@ -16169,9 +16821,9 @@ aa
 aa
 aa
 aa
-hZ
+mv
 fK
-hZ
+mx
 aa
 aa
 aa
@@ -16261,18 +16913,18 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+ag
+ag
+ag
+ag
 ac
 ac
-ac
-ac
-ac
-ac
-ac
-ac
+ab
+ab
+ab
+lS
+lS
+ab
 ac
 ac
 ac
@@ -16311,9 +16963,9 @@ ab
 ab
 ab
 ab
-hZ
+mv
 fK
-hZ
+mx
 aa
 aa
 aa
@@ -16403,10 +17055,10 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+ad
+ad
+ag
+ag
 ac
 ac
 ac
@@ -16414,8 +17066,8 @@ ac
 ac
 ac
 ac
-ac
-ac
+ab
+ab
 ac
 ac
 ac
@@ -16453,7 +17105,7 @@ ab
 ab
 ab
 ab
-hZ
+mv
 fK
 eb
 ac
@@ -16547,8 +17199,8 @@ aa
 aa
 aa
 aa
-aa
-aa
+ag
+ag
 ac
 ac
 ac
@@ -16557,7 +17209,7 @@ ac
 ac
 ac
 ac
-ac
+ab
 ac
 ac
 ac
@@ -16691,7 +17343,7 @@ aa
 aa
 aa
 aa
-aa
+ag
 ac
 ac
 ac
@@ -16699,7 +17351,7 @@ ac
 ac
 ac
 ac
-aa
+ad
 ac
 ac
 aa
@@ -16835,10 +17487,10 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+ag
+ag
+ag
+ag
 aa
 aa
 aa
@@ -17163,7 +17815,7 @@ ab
 ab
 ab
 ab
-hZ
+mv
 fK
 eb
 ac
@@ -17305,7 +17957,7 @@ ab
 ab
 ab
 ab
-hZ
+mv
 fK
 eb
 ac
@@ -17447,7 +18099,7 @@ ab
 ab
 ab
 ab
-hZ
+mv
 fK
 eb
 ac
@@ -17551,10 +18203,10 @@ aa
 aa
 aa
 aa
+ad
+ad
 ag
 ag
-ag
-aa
 aa
 aa
 aa
@@ -17585,10 +18237,10 @@ ab
 ab
 ab
 dN
-dO
-dO
+ml
+ml
 dN
-dO
+ml
 dN
 hk
 dN
@@ -17693,10 +18345,10 @@ aa
 aa
 aa
 aa
-ag
-ag
 ad
-aa
+ad
+lQ
+ag
 aa
 aa
 aa
@@ -17724,8 +18376,8 @@ aa
 ab
 ab
 dN
-dO
-dO
+ml
+ml
 dN
 kv
 dR
@@ -17865,7 +18517,7 @@ aa
 ab
 ab
 ab
-dO
+mk
 dR
 iF
 dV
@@ -17897,7 +18549,7 @@ eE
 eE
 eE
 eE
-eE
+hS
 eE
 eE
 eE
@@ -18007,7 +18659,7 @@ aa
 ab
 ab
 ab
-dO
+mk
 dR
 iG
 dR
@@ -18039,7 +18691,7 @@ eE
 eE
 eE
 eE
-hS
+eE
 eE
 eE
 eE
@@ -18149,7 +18801,7 @@ ab
 ab
 ab
 ab
-dO
+mk
 dR
 iH
 dR
@@ -18180,9 +18832,9 @@ eE
 eE
 eE
 eE
-eE
-eE
-eE
+gQ
+Yg
+ho
 eE
 eE
 eE
@@ -18271,7 +18923,7 @@ aa
 ad
 aa
 ad
-ad
+lW
 ag
 aa
 aa
@@ -18291,7 +18943,7 @@ ab
 ab
 ab
 ab
-dO
+mk
 dR
 dR
 dR
@@ -18322,9 +18974,9 @@ eE
 eE
 eE
 eE
-gs
-iO
-gQ
+gt
+mR
+gR
 eE
 eE
 eE
@@ -18433,7 +19085,7 @@ ab
 ab
 ab
 ab
-dO
+mk
 dR
 iF
 dR
@@ -18575,7 +19227,7 @@ ab
 ab
 ab
 ab
-dO
+mk
 dR
 iG
 dR
@@ -18592,35 +19244,35 @@ fq
 fq
 fq
 fq
-gu
-gu
-gu
-gu
-gu
-gu
-gu
-gu
-gu
-gu
-gu
-gu
-gu
-gu
+my
+my
+my
+my
+my
+my
+my
+my
+my
+my
+my
+my
+my
+my
 gu
 gH
 gu
-gu
-gu
-gu
-gu
-gu
-gu
+my
+my
+my
+my
+my
+my
 fq
-gu
-gu
-gu
-gu
-gu
+my
+my
+my
+my
+my
 fq
 eE
 eE
@@ -18713,29 +19365,29 @@ aa
 ab
 ab
 ab
-dv
-dv
-dv
-dv
-dv
+dw
+dH
+dH
+dH
+dA
 dS
 iH
 dR
 ec
 fb
 ik
-iI
+fn
 ik
 hY
 dR
 dR
 fo
 fr
+lY
 fr
 fr
 fr
-fr
-fr
+ma
 fr
 fr
 fr
@@ -18749,7 +19401,7 @@ fr
 fr
 fr
 gv
-iP
+id
 gS
 fr
 fr
@@ -18760,7 +19412,7 @@ fr
 hq
 fr
 fr
-fr
+lY
 fr
 hQ
 fq
@@ -18855,11 +19507,11 @@ aa
 ab
 ab
 ab
-dw
-dA
-dH
-dv
+dx
+dI
 dP
+dA
+mm
 dR
 dR
 dR
@@ -18868,7 +19520,7 @@ mu
 mw
 mM
 mO
-ir
+ck
 ix
 ix
 jE
@@ -18877,7 +19529,7 @@ jF
 jF
 jF
 jF
-jF
+kH
 jF
 jF
 jF
@@ -18905,7 +19557,7 @@ hh
 hF
 hN
 fr
-gu
+mG
 eE
 eE
 eE
@@ -18996,12 +19648,12 @@ aa
 ab
 ab
 ab
-ab
-dx
-dB
-dI
-dK
+dv
+dA
+dR
 dQ
+mg
+mn
 dT
 dT
 dT
@@ -19019,7 +19671,7 @@ fr
 ft
 fr
 fr
-fr
+gx
 fr
 fr
 fr
@@ -19047,7 +19699,7 @@ fr
 hG
 hO
 fr
-gu
+mG
 eE
 eE
 eE
@@ -19116,7 +19768,7 @@ aa
 aa
 ag
 ag
-ad
+fW
 aa
 aa
 aa
@@ -19139,11 +19791,11 @@ ab
 ab
 ab
 ab
-dv
-dv
-dv
-dv
-dv
+dB
+dK
+dK
+dK
+dA
 dR
 dR
 dR
@@ -19161,35 +19813,35 @@ fq
 fq
 fq
 fq
-gu
-gu
-gu
-gu
-gu
+mz
+mz
+mz
+mz
+mz
 fq
-gu
-gu
-gu
-gu
-gu
-gu
-gu
-gu
-gu
-gu
-gu
-gu
-gu
+mz
+mz
+mz
+mz
+mz
+mz
+mz
+mz
+mz
+mz
+mz
+mz
+mz
 fq
-gu
-gu
-gu
-gu
+mz
+mz
+mz
+mz
 gu
 hG
 hO
 fr
-gu
+mG
 eE
 eE
 eE
@@ -19245,7 +19897,7 @@ aa
 af
 ae
 aa
-ae
+md
 ai
 aa
 aa
@@ -19285,7 +19937,7 @@ ab
 ab
 ab
 ab
-dO
+mk
 ip
 dR
 dR
@@ -19298,11 +19950,11 @@ hV
 dR
 dR
 dN
-ac
-ac
-ac
-ac
-ac
+ag
+ag
+ag
+ag
+ag
 eE
 eE
 eE
@@ -19327,11 +19979,11 @@ eE
 eE
 eE
 eE
-gu
+mC
 hG
 hO
 fr
-gu
+mG
 eE
 eE
 eE
@@ -19385,9 +20037,9 @@ aa
 aa
 ai
 ai
+md
 ae
-ae
-ae
+md
 ai
 ai
 ae
@@ -19427,7 +20079,7 @@ ab
 ab
 ab
 ab
-dO
+mk
 iC
 dR
 dR
@@ -19438,13 +20090,13 @@ iG
 dR
 hV
 dR
-fW
+dF
 dN
-ac
-ac
-ac
-ac
-ac
+ag
+ag
+ag
+ag
+ag
 eE
 eE
 eE
@@ -19469,11 +20121,11 @@ eE
 eE
 eE
 eE
-gu
+mC
 hG
 hO
 fr
-gu
+mG
 eE
 eE
 eE
@@ -19528,7 +20180,7 @@ ae
 ai
 ah
 as
-ap
+au
 ah
 ah
 ai
@@ -19569,10 +20221,10 @@ ab
 ab
 ab
 ab
-dO
+mk
 iD
 dR
-eZ
+ci
 fg
 fh
 fg
@@ -19582,11 +20234,11 @@ is
 dR
 dN
 dN
-ac
-ac
-ac
-ac
-ac
+ag
+ag
+ag
+ag
+ag
 eE
 eE
 eE
@@ -19611,11 +20263,11 @@ eE
 eE
 eE
 eE
-gu
-hG
-hO
-fr
-gu
+mC
+mb
+mc
+hR
+mG
 eE
 eE
 eE
@@ -19665,13 +20317,13 @@ aa
 aa
 aa
 aa
-ae
-ae
+ah
+ah
 ah
 ah
 at
 ap
-ap
+ar
 ah
 ah
 ae
@@ -19701,16 +20353,16 @@ aa
 aa
 aa
 aa
-aa
+ad
 ab
 ab
 ab
-ac
-ac
-ac
-ac
-ac
-ac
+ag
+ag
+ag
+ag
+ag
+ag
 dN
 iE
 dU
@@ -19719,16 +20371,16 @@ dR
 dR
 dR
 dR
-eZ
+ci
 it
 dR
 dN
-ac
-ac
-ac
-ac
-ac
-ac
+ag
+ag
+ag
+ag
+ag
+ag
 eE
 eE
 eE
@@ -19753,11 +20405,11 @@ eE
 eE
 eE
 eE
-gu
+mC
 hG
 hO
 fr
-gu
+mG
 eE
 eE
 eE
@@ -19807,11 +20459,11 @@ aa
 aa
 aa
 aa
-ae
 ah
-ah
-ao
 ap
+ap
+ao
+ba
 ap
 ai
 kK
@@ -19843,16 +20495,16 @@ aa
 aa
 aa
 aa
-aa
+ad
 ab
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
 dN
 dN
 dN
@@ -19865,12 +20517,12 @@ fS
 ne
 lx
 dN
-ac
-ac
-ac
-ac
-ac
-ac
+ag
+ag
+ag
+ag
+ag
+ag
 eE
 eE
 eE
@@ -19895,11 +20547,11 @@ eE
 eE
 eE
 eE
-fq
+mF
 hH
 hO
 fr
-gu
+mG
 eE
 eE
 eE
@@ -19949,15 +20601,15 @@ aa
 aa
 aa
 aa
-ae
 ah
+ap
 al
 ap
-au
-ai
-ai
-lI
 ap
+ap
+ap
+ap
+me
 ah
 ae
 ai
@@ -19985,19 +20637,19 @@ aa
 aa
 aa
 aa
-aa
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+ad
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
 dN
 dN
 dN
@@ -20007,11 +20659,11 @@ fT
 dN
 dN
 dN
-ac
-ac
-ac
-ac
-ac
+ag
+ag
+ag
+ag
+ag
 eE
 eE
 eE
@@ -20037,11 +20689,11 @@ eE
 eE
 eE
 eE
-gu
+mC
 hG
 hO
 fr
-gu
+mG
 eE
 eE
 eE
@@ -20091,16 +20743,16 @@ aa
 aa
 aa
 aa
-ae
 ah
+ap
 am
 aq
-ae
-ai
-ae
-ae
-ai
 ap
+ap
+ap
+ap
+ai
+au
 ai
 ai
 ak
@@ -20127,33 +20779,33 @@ aa
 aa
 aa
 aa
-aa
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+ad
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
 ed
 gw
 ed
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+ag
+ag
+ag
+ag
+ag
+ag
+ag
 eE
 eE
 eE
@@ -20179,11 +20831,11 @@ eE
 eE
 eE
 eE
-gu
+mC
 hG
 hO
 fr
-gu
+mG
 eE
 eE
 eE
@@ -20233,15 +20885,15 @@ aa
 aa
 aa
 aa
-ae
 ah
+ap
 an
 ap
-ap
+eZ
 ai
 ai
 ai
-ap
+mf
 ah
 ae
 ai
@@ -20269,33 +20921,33 @@ aa
 aa
 aa
 aa
-aa
-aa
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+ad
+ag
+ag
+ag
+nb
+ad
+nt
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
 ed
 gw
 ed
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+ag
+ag
+ag
+ag
+ag
+ag
+ag
 eE
 eE
 eE
@@ -20321,11 +20973,11 @@ eE
 eE
 eE
 eE
-gu
+mC
 hG
 hO
 fr
-gu
+mG
 eE
 eE
 eE
@@ -20375,13 +21027,13 @@ aa
 aa
 aa
 aa
-ae
 ah
-ah
-ar
 ap
 ap
-ae
+ap
+ap
+ap
+ap
 lJ
 ah
 ah
@@ -20410,21 +21062,21 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+ad
+ad
+ag
+ag
+ad
+ad
+ad
+ad
+ag
+ag
+ag
+ag
+ag
+ag
+ag
 ed
 ed
 ed
@@ -20434,10 +21086,10 @@ ed
 ed
 ed
 ed
-ac
-ac
-ac
-ac
+ag
+ag
+ag
+ag
 eE
 eE
 eE
@@ -20461,13 +21113,13 @@ eE
 eE
 eE
 eE
-gu
-gu
+mB
+mE
 gu
 hG
 hO
 fr
-gu
+mG
 eE
 eE
 eE
@@ -20517,12 +21169,12 @@ aa
 aa
 aa
 aa
-ae
-ai
+ah
+ah
 ah
 ah
 av
-ap
+cJ
 aw
 ah
 ah
@@ -20552,21 +21204,21 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+ad
+ag
+ag
+ag
+ad
+ad
+ad
+ad
+ag
+ag
+ag
+ag
+ag
+ag
+ad
 ed
 el
 iU
@@ -20574,11 +21226,12 @@ em
 gT
 iw
 iz
-fn
+iI
 ed
-ac
-ac
-ac
+ag
+ag
+ag
+ag
 eE
 eE
 eE
@@ -20602,14 +21255,13 @@ eE
 eE
 eE
 eE
-eE
-gu
+mC
 lz
 hx
 hI
 hO
 fr
-gu
+mG
 eE
 eE
 eE
@@ -20694,33 +21346,34 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+ad
+ag
+ag
+ad
+ad
+ag
+ag
+az
+ag
+ag
+ag
+ag
+ag
+ad
+ad
 ed
 eP
 em
 lD
 mT
 ff
-iA
+iB
 hr
 ed
-ac
-ac
-ac
+ag
+ag
+ag
+ag
 eE
 eE
 eE
@@ -20744,14 +21397,13 @@ eE
 eE
 eE
 eE
-eE
-gu
+mC
 fr
 hy
 hJ
 hO
 fr
-gu
+mG
 eE
 eE
 eE
@@ -20836,33 +21488,34 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+ad
+ag
+ad
+ad
+ad
+ag
+ag
+ad
+ag
+ag
+ag
+ag
+ag
+ad
+ad
 ed
 gF
-iK
+em
 em
 em
 nf
-iB
+iK
 hE
 ed
-ac
-ac
-ac
+ag
+ag
+ag
+ag
 eE
 eE
 eE
@@ -20886,14 +21539,13 @@ eE
 eE
 eE
 eE
-eE
-gu
+mC
 fr
 hz
 hJ
 hO
 fr
-gu
+mG
 eE
 eE
 eE
@@ -20978,32 +21630,34 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+ad
+ag
+ad
+ag
+ag
+ag
+ag
+ad
+ag
+ag
+ag
+ag
+ag
+ad
+ad
 ed
 lC
-em
+iA
 fe
 fk
 hD
 iM
 iN
 ed
-ac
-ac
+ag
+ag
+ag
+ag
 eE
 eE
 eE
@@ -21027,15 +21681,13 @@ eE
 eE
 eE
 eE
-eE
-eE
-gu
+mC
 fr
 hA
 hJ
 hO
 fr
-gu
+mG
 eE
 eE
 eE
@@ -21120,21 +21772,21 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-ac
-ac
-ac
+ad
+ad
+ad
+ag
+ag
+ag
+ag
+ad
+ag
+ag
+ag
+ag
+ag
+ad
+ad
 ed
 ed
 ed
@@ -21144,8 +21796,10 @@ ed
 ed
 ed
 ed
-ac
-ac
+ag
+ag
+ag
+ag
 eE
 eE
 eE
@@ -21169,15 +21823,13 @@ eE
 eE
 eE
 eE
-eE
-eE
-gu
+mC
 ht
 hB
 hJ
 hO
 fr
-gu
+mG
 eE
 eE
 eE
@@ -21262,32 +21914,33 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-aa
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+az
+ag
+ag
+ag
+ag
+ag
+ad
+ad
+nh
+ni
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
 eE
 eE
 eE
@@ -21312,14 +21965,13 @@ eE
 eE
 eE
 eE
-eE
-gu
+mC
 hu
 hC
 hJ
 hO
 fr
-gu
+mG
 eE
 eE
 eE
@@ -21404,32 +22056,33 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-aa
-aa
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ad
+ad
+ad
+ad
+ag
+ag
+nb
+ad
+ad
+ad
+ag
+ag
+ag
+ag
+ag
+ag
+ad
+nk
+nm
+ag
 eE
 eE
 eE
@@ -21454,14 +22107,13 @@ eE
 eE
 eE
 eE
-eE
-gu
-gu
+mD
+mz
 gu
 hJ
 hO
 fr
-gu
+mG
 eE
 eE
 eE
@@ -21546,32 +22198,33 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-ac
-ac
-ac
-ac
-ac
-aa
-aa
-aa
-aa
+ag
+ag
+ag
+ad
+np
+ag
+ag
+ad
+ag
+ag
+ad
+ag
+ag
+ag
+ad
+iR
+ad
+ad
+ad
+ag
+ag
+nb
+ad
+ad
+ad
+nn
+ag
 eE
 eE
 eE
@@ -21598,12 +22251,11 @@ eE
 eE
 eE
 eE
-eE
-gu
+mC
 hJ
 hO
 fr
-gu
+mG
 eE
 eE
 eE
@@ -21688,33 +22340,33 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-eE
+ag
+ag
+ag
+nb
+nq
+ad
+ad
+ad
+ag
+ag
+ad
+ad
+ag
+ag
+ad
+ad
+ad
+ad
+ad
+ag
+ag
+ad
+nv
+ad
+nl
+ad
+ag
 eE
 eE
 eE
@@ -21745,7 +22397,7 @@ fq
 hK
 hO
 fr
-gu
+mG
 eE
 eE
 eE
@@ -21830,32 +22482,33 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ag
+ag
+ag
+jg
+nr
+ns
+ag
+ad
+ag
+ag
+ag
+ad
+ag
+ag
+ag
+ag
+ag
+ad
+ad
+ag
+ag
+ad
+ad
+ad
+ad
+ad
+ag
 eE
 eE
 eE
@@ -21882,12 +22535,11 @@ eE
 eE
 eE
 eE
-eE
-gu
+mC
 hJ
 hO
 fr
-gu
+mG
 eE
 eE
 eE
@@ -21972,32 +22624,33 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ag
+ag
+ag
+np
+np
+np
+ag
+ad
+ag
+ag
+ag
+ad
+ag
+ag
+ag
+ag
+ag
+ad
+ad
+ag
+ag
+nj
+ad
+ad
+ad
+no
+ag
 eE
 eE
 eE
@@ -22024,12 +22677,11 @@ eE
 eE
 eE
 eE
-eE
-gu
+mC
 hL
 hP
 hR
-gu
+mG
 eE
 eE
 eE
@@ -22115,31 +22767,32 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ag
+ag
+ag
+ag
+ag
+ag
+ad
+ag
+ag
+ag
+ad
+az
+ad
+ad
+ad
+ag
+ad
+ag
+ag
+ag
+ag
+ag
+ag
+az
+ag
+ag
 eE
 eE
 eE
@@ -22166,12 +22819,11 @@ eE
 eE
 eE
 eE
-eE
-gu
+mC
 hJ
 fr
 fr
-gu
+mG
 eE
 eE
 eE
@@ -22257,31 +22909,31 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ag
+ag
+ag
+ag
+ag
+ag
+ad
+ad
+ag
+ag
+ag
+ag
+ag
+ag
+ad
+az
+ad
+ag
+ag
+ag
+ag
+ag
+ad
+ad
+ag
 eE
 eE
 eE
@@ -22304,16 +22956,16 @@ eE
 eE
 eE
 eE
-eE
-hi
-hi
-hi
-hi
-hi
+hp
+hs
+iP
+iP
+iP
+iL
 hJ
 fr
 fr
-gu
+mG
 eE
 eE
 eE
@@ -22400,30 +23052,30 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ag
+ag
+ag
+ag
+ag
+ag
+ad
+ad
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ad
+ag
+ag
+ag
+ag
+ag
+ad
+ag
+ag
 eE
 eE
 eE
@@ -22446,16 +23098,16 @@ eE
 eE
 eE
 eE
-eE
-hj
-ho
-iR
-hi
+Uv
+hv
+iQ
+mI
 iL
+mL
 hJ
 fr
 fr
-gu
+mG
 eE
 eE
 eE
@@ -22542,29 +23194,29 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ad
+ag
+ad
+ad
+nd
+ag
+ag
+ag
+ad
+ag
+ag
+ag
+ag
+ag
+ad
+ag
 aa
 eE
 eE
@@ -22588,16 +23240,16 @@ eE
 eE
 eE
 eE
-eE
-iQ
-hp
-hs
-hv
-iS
+QN
+iL
+fr
+mJ
+mK
+mP
 hM
 fr
 fr
-gu
+mG
 eE
 eE
 eE
@@ -22684,29 +23336,29 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ad
+ad
+ad
+nc
+ad
+ad
+ag
+ag
+ad
+az
+ad
+ad
+ad
+az
+ad
+ag
 aa
 eE
 eE
@@ -22730,16 +23382,16 @@ eE
 eE
 eE
 eE
-eE
-hi
-hi
-hi
-hi
-hi
+mA
+iO
+iO
+iO
+iO
+iL
 fr
 fr
-fr
-gu
+lZ
+mG
 eE
 eE
 eE
@@ -22827,29 +23479,29 @@ aa
 aa
 aa
 aa
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ad
+ad
+ad
+ad
+nd
+ag
+ag
+ad
+ag
+ag
+ag
+ag
+ag
+ag
+ag
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 eE
 eE
 eE
@@ -22877,11 +23529,11 @@ eE
 eE
 eE
 eE
-fq
-gu
-gu
-gu
-gu
+mQ
+mz
+mz
+mz
+mH
 eE
 eE
 eE
@@ -22909,6 +23561,11 @@ eE
 aa
 aa
 aa
+ag
+ag
+ag
+ag
+ag
 aa
 aa
 aa
@@ -22964,31 +23621,26 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+cM
+ad
+ng
+ad
+ag
+ag
+ad
+ag
+ag
+ag
+ag
+ag
 aa
 aa
 aa
@@ -23050,6 +23702,13 @@ eE
 (128,1,1) = {"
 aa
 aa
+ag
+ag
+ad
+ad
+ad
+ag
+ag
 aa
 aa
 aa
@@ -23106,35 +23765,27 @@ aa
 aa
 aa
 aa
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ad
+ag
+ag
+ag
 aa
 aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-eE
 eE
 eE
 eE
@@ -23188,9 +23839,19 @@ eE
 eE
 eE
 eE
+eE
 "}
 (129,1,1) = {"
 aa
+ag
+ag
+mS
+ad
+ad
+ad
+mS
+ag
+ag
 aa
 aa
 aa
@@ -23249,26 +23910,17 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+az
+ag
 aa
 aa
 aa
@@ -23333,6 +23985,15 @@ eE
 "}
 (130,1,1) = {"
 aa
+ag
+ad
+ad
+mU
+mU
+mU
+ad
+ad
+ag
 aa
 aa
 aa
@@ -23393,22 +24054,13 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ag
+ag
+ag
+ag
+ag
+ag
+ag
 aa
 aa
 aa
@@ -23475,15 +24127,15 @@ eE
 "}
 (131,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ag
+ad
+mU
+mU
+mW
+mU
+mU
+ad
+ag
 aa
 aa
 aa
@@ -23617,15 +24269,15 @@ eE
 "}
 (132,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ag
+ad
+mU
+mZ
+mX
+mU
+mU
+ad
+ag
 aa
 aa
 aa
@@ -23759,15 +24411,15 @@ eE
 "}
 (133,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ag
+ad
+mU
+na
+mU
+mU
+mU
+ad
+ag
 aa
 aa
 aa
@@ -23901,15 +24553,15 @@ eE
 "}
 (134,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ag
+ad
+mU
+mV
+mY
+mU
+mU
+ad
+ag
 aa
 aa
 aa
@@ -24043,15 +24695,15 @@ eE
 "}
 (135,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ag
+ad
+mU
+mU
+mU
+mU
+mU
+ad
+ag
 aa
 aa
 aa
@@ -24185,15 +24837,15 @@ eE
 "}
 (136,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ag
+ad
+ad
+mU
+mU
+mU
+ad
+ad
+ag
 aa
 aa
 aa
@@ -24327,15 +24979,15 @@ eE
 "}
 (137,1,1) = {"
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ag
+ag
+mS
+ad
+ad
+ad
+mS
+ag
+ag
 aa
 aa
 aa
@@ -24470,13 +25122,13 @@ eE
 (138,1,1) = {"
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+ag
+ag
+ad
+ad
+ad
+ag
+ag
 aa
 aa
 aa
@@ -24613,11 +25265,11 @@ eE
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+ag
+ag
+ag
+ag
+ag
 aa
 aa
 aa

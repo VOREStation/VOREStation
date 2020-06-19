@@ -177,6 +177,7 @@
 		/obj/item/weapon/material/knife/machete/deluxe,
 		/obj/item/weapon/gun/energy/locked/frontier/carbine,
 		/obj/item/clothing/accessory/holster/machete,
+		/obj/random/explorer_shield,
 		/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
 		/obj/item/weapon/reagent_containers/food/snacks/liquidprotein,
 		/obj/item/device/cataloguer/compact/pathfinder)
@@ -214,6 +215,23 @@
 
 	starts_with = list(
 		/obj/item/clothing/suit/space/void/autolok,
-		/obj/item/weapon/tank/emergency/oxygen/double,
+		/obj/item/weapon/tank/emergency/oxygen/engi,
+		/obj/item/device/suit_cooling_unit/emergency
+	)
+
+/obj/structure/closet/emergsuit_wall
+	name = "emergency suit storage"
+	desc = "It's wall-mounted storage unit for an emergency suit."
+	icon = 'icons/obj/closets/bases/wall.dmi'
+	closet_appearance = /decl/closet_appearance/wall/emergency
+	anchored = 1
+	density = 0
+	wall_mounted = 1
+	store_mobs = 0
+
+	starts_with = list(
+		/obj/item/clothing/head/helmet/space/emergency,
+		/obj/item/clothing/suit/space/emergency,
+		/obj/item/weapon/tank/emergency/oxygen/engi,
 		/obj/item/device/suit_cooling_unit/emergency
 	)

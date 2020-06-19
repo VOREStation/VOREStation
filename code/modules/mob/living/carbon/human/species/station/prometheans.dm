@@ -110,9 +110,6 @@ var/datum/species/shapeshifter/promethean/prometheans
 		/mob/living/carbon/human/proc/shapeshifter_select_eye_colour,
 		/mob/living/carbon/human/proc/shapeshifter_select_hair_colors,
 		/mob/living/carbon/human/proc/shapeshifter_select_gender,
-		/mob/living/carbon/human/proc/shapeshifter_select_wings, //VOREStation Add,
-		/mob/living/carbon/human/proc/shapeshifter_select_tail, //VOREStation Add,
-		/mob/living/carbon/human/proc/shapeshifter_select_ears, //VOREStation Add,
 		/mob/living/carbon/human/proc/regenerate
 		)
 
@@ -188,35 +185,35 @@ var/datum/species/shapeshifter/promethean/prometheans
 	if(istype(T))
 		if(!(H.shoes || (H.wear_suit && (H.wear_suit.body_parts_covered & FEET))))
 			for(var/obj/O in T)
-				O.clean_blood()
-				H.adjust_nutrition(rand(5, 15))
+				if(O.clean_blood())
+					H.adjust_nutrition(rand(5, 15))
 			if (istype(T, /turf/simulated))
 				var/turf/simulated/S = T
-				T.clean_blood()
-				S.dirt = 0
-		//VOREStation Edit Start
-				H.adjust_nutrition(H.nutrition < 500 ? rand(15, 30) : 0)
+				if(T.clean_blood())
+					H.adjust_nutrition(rand(10, 20))
+				if(S.dirt > 50)
+					S.dirt = 0
+					H.adjust_nutrition(rand(10, 20))
 		if(H.clean_blood(1))
-			H.adjust_nutrition(H.nutrition < 500 ? rand(15, 30) : 0)
+			H.adjust_nutrition(rand(5, 15))
 		if(H.r_hand)
 			if(H.r_hand.clean_blood())
-				H.adjust_nutrition(H.nutrition < 500 ? rand(15, 30) : 0)
+				H.adjust_nutrition(rand(5, 15))
 		if(H.l_hand)
 			if(H.l_hand.clean_blood())
-				H.adjust_nutrition(H.nutrition < 500 ? rand(15, 30) : 0)
+				H.adjust_nutrition(rand(5, 15))
 		if(H.head)
 			if(H.head.clean_blood())
 				H.update_inv_head(0)
-				H.adjust_nutrition(H.nutrition < 500 ? rand(15, 30) : 0)
+				H.adjust_nutrition(rand(5, 15))
 		if(H.wear_suit)
 			if(H.wear_suit.clean_blood())
 				H.update_inv_wear_suit(0)
-				H.adjust_nutrition(H.nutrition < 500 ? rand(15, 30) : 0)
+				H.adjust_nutrition(rand(5, 15))
 		if(H.w_uniform)
 			if(H.w_uniform.clean_blood())
 				H.update_inv_w_uniform(0)
-				H.adjust_nutrition(H.nutrition < 500 ? rand(15, 30) : 0)
-		//VOREStation Edit End
+				H.adjust_nutrition(rand(5, 15))
 		//End cleaning code.
 
 		var/datum/gas_mixture/environment = T.return_air()

@@ -30200,7 +30200,7 @@
 /turf/simulated/floor/tiled,
 /area/hallway/station/upper)
 "iPK" = (
-/obj/structure/closet/walllocker/emerglocker{
+/obj/structure/closet/emergsuit_wall{
 	pixel_x = -32
 	},
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
@@ -31583,9 +31583,6 @@
 /turf/simulated/floor/plating,
 /area/shuttle/securiship/general)
 "qcm" = (
-/obj/structure/closet/walllocker/emerglocker{
-	pixel_x = 32
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden,
@@ -31593,6 +31590,9 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/structure/closet/emergsuit_wall{
+	pixel_x = 32
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/shuttle/excursion/cargo)

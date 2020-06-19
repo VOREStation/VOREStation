@@ -134,6 +134,8 @@
 	// This is distinct from the hitscan's "impact_type" var.
 	var/impact_effect_type = null
 
+	var/list/impacted_mobs
+
 /obj/item/projectile/proc/Range()
 	range--
 	if(range <= 0 && loc)
@@ -439,6 +441,12 @@
 	setAngle(Get_Angle(source, target))
 
 /obj/item/projectile/Destroy()
+
+	if(impacted_mobs)
+		if(LAZYLEN(impacted_mobs))
+			impacted_mobs.Cut()
+		impacted_mobs = null
+
 	if(hitscan)
 		finalize_hitscan_and_generate_tracers()
 	STOP_PROCESSING(SSprojectiles, src)
@@ -634,6 +642,12 @@
 	if(!istype(target_mob))
 		return
 
+	if(!LAZYLEN(impacted_mobs))
+		impacted_mobs = list()
+
+	if(target_mob in impacted_mobs)
+		return
+
 	//roll to-hit
 	miss_modifier = max(15*(distance-2) - accuracy + miss_modifier + target_mob.get_evasion(), 0)
 	var/hit_zone = get_zone_with_miss_chance(def_zone, target_mob, miss_modifier, ranged_attack=(distance > 1 || original != target_mob)) //if the projectile hits a target we weren't originally aiming at then retain the chance to miss
@@ -645,6 +659,9 @@
 
 	if(!istype(target_mob))
 		return FALSE // Mob deleted itself or something.
+
+	// Safe to add the target to the list that is soon to be poofed. No double jeopardy, pixel projectiles.
+	impacted_mobs |= target_mob
 
 	if(result == PROJECTILE_FORCE_MISS)
 		if(!silenced)
