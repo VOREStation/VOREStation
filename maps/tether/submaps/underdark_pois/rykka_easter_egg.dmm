@@ -9,7 +9,7 @@
 /obj/structure/dogbed,
 /mob/living/simple_mob/animal/wolf/direwolf/rykka{
 	attacktext = list("attacked, bites, gnaws");
-	friendly = list("nuzzles, cuddles, rubs against");
+	friendly = list("nuzzles, cuddles, rubs against")
 	},
 /turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
 /area/mine/explored/underdark)
