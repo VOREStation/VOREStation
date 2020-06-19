@@ -126,6 +126,17 @@
 	faction = "underdark"
 	has_eye_glow = TRUE
 
+	min_oxy = 0
+	max_oxy = 0
+	min_tox = 0
+	max_tox = 0
+	min_co2 = 0
+	max_co2 = 0
+	min_n2 = 0
+	max_n2 = 0
+	minbodytemp = 0
+	maxbodytemp = 700
+
 	vore_bump_chance = 100
 	vore_bump_emote = "clamps down on with iron jaws"
 	vore_default_contamination_color = "purple"
