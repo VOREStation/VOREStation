@@ -1505,6 +1505,8 @@
 	pixel_x = 30;
 	req_access = list(160)
 	},
+/obj/structure/table/rack,
+/obj/item/clothing/suit/space/void/responseteam/command,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
 "dc" = (
@@ -2077,12 +2079,19 @@
 	},
 /turf/unsimulated/floor/steel,
 /area/centcom/specops)
-"CF" = (
-/obj/structure/table/rack,
-/obj/item/clothing/suit/space/void/responseteam/command,
+"mI" = (
+/obj/structure/table/rack/steel,
+/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/shoes/magboots,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
-"DA" = (
+"pn" = (
 /obj/structure/closet/walllocker/emerglocker{
 	pixel_y = 32
 	},
@@ -2093,15 +2102,7 @@
 /obj/item/clothing/suit/space/void/responseteam/engineer,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
-"Hx" = (
-/obj/structure/table/rack/steel,
-/obj/item/clothing/suit/space/void/responseteam/security,
-/obj/item/clothing/suit/space/void/responseteam/security,
-/obj/item/clothing/suit/space/void/responseteam/security,
-/obj/item/clothing/suit/space/void/responseteam/security,
-/turf/simulated/shuttle/floor/black,
-/area/shuttle/specops/centcom)
-"NZ" = (
+"rB" = (
 /obj/structure/table/rack/steel,
 /obj/item/device/suit_cooling_unit,
 /obj/item/device/suit_cooling_unit,
@@ -2113,7 +2114,7 @@
 /obj/item/device/suit_cooling_unit,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
-"TJ" = (
+"HG" = (
 /obj/structure/closet/walllocker/emerglocker{
 	pixel_y = -32
 	},
@@ -2124,16 +2125,12 @@
 /obj/item/clothing/suit/space/void/responseteam/medical,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
-"WE" = (
+"TT" = (
 /obj/structure/table/rack/steel,
-/obj/item/clothing/shoes/magboots,
-/obj/item/clothing/shoes/magboots,
-/obj/item/clothing/shoes/magboots,
-/obj/item/clothing/shoes/magboots,
-/obj/item/clothing/shoes/magboots,
-/obj/item/clothing/shoes/magboots,
-/obj/item/clothing/shoes/magboots,
-/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/suit/space/void/responseteam/security,
+/obj/item/clothing/suit/space/void/responseteam/security,
+/obj/item/clothing/suit/space/void/responseteam/security,
+/obj/item/clothing/suit/space/void/responseteam/security,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
 
@@ -2885,7 +2882,7 @@ ap
 cX
 aH
 aH
-CF
+aH
 ap
 aj
 aj
@@ -2989,12 +2986,12 @@ aJ
 aV
 bi
 ap
-Hx
+TT
 bd
 cb
 cs
 bd
-NZ
+rB
 ap
 db
 du
@@ -3032,7 +3029,7 @@ bd
 cc
 ct
 bd
-WE
+mI
 am
 ap
 ap
@@ -3406,14 +3403,14 @@ am
 aN
 aH
 aH
-TJ
+HG
 am
 bd
 bd
 bd
 bd
 am
-DA
+pn
 aH
 aH
 dN
