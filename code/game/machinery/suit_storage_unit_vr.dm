@@ -23,7 +23,7 @@
 /obj/machinery/suit_cycler/prototype
 	name = "Prototype suit cycler"
 	model_text = "Prototype"
-	req_access = list(access_cent_specops)
+	req_access = list(access_hos)
 	departments = list("Prototype")
 
 /obj/machinery/suit_cycler/prototype/Initialize() //No Teshari Sprites
