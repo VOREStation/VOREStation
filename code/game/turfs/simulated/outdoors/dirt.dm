@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /turf/simulated/floor/outdoors/dirt
 	name = "dirt"
 	desc = "Quite dirty!"
@@ -5,3 +6,12 @@
 	edge_blending_priority = 2
 	turf_layers = list(/turf/simulated/floor/outdoors/rocks)
 	initial_flooring = /decl/flooring/asteroid
+=======
+/turf/simulated/floor/outdoors/dirt
+	name = "dirt"
+	desc = "Quite dirty!"
+	icon_state = "dirt-dark"
+	edge_blending_priority = 2
+	turf_layers = list(/turf/simulated/floor/outdoors/rocks)
+	initial_flooring = /decl/flooring/dirt
+>>>>>>> 3723433... Merge pull request #7295 from Darlantanis/DirtFix
