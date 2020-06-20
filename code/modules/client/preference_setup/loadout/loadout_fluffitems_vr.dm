@@ -661,6 +661,12 @@
 	ckeywhitelist = list("nickcrazy")
 	character_name = list("Damon Bones Xrim")
 
+/datum/gear/fluff/NDF_Medical_jacket
+	path = /obj/item/clothing/under/solgov/utility/sifguard/medical
+	display_name = "Ridge's Medical Jacket"
+	ckeywhitelist = list("nickcrazy")
+	character_name = list("Ridge")
+
 /datum/gear/fluff/damon_jacket
 	path = /obj/item/clothing/suit/storage/toggle/bomber/bombersec
 	display_name = "Damon's Bomber Jacket"
