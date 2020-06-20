@@ -51,8 +51,8 @@
 		SPECIES_SKRELL 			= 'icons/mob/species/skrell/suit_vr.dmi',
 		SPECIES_UNATHI 			= 'icons/mob/species/unathi/suit_vr.dmi',
 		SPECIES_XENOHYBRID 		= 'icons/mob/species/unathi/suit_vr.dmi',
-		SPECIES_AKULA			= 'icons/mob/species/unathi/suit_vr.dmi',
-		SPECIES_SERGAL			= 'icons/mob/species/unathi/suit_vr.dmi',
+		SPECIES_AKULA			= 'icons/mob/species/akula/suit_vr.dmi',
+		SPECIES_SERGAL			= 'icons/mob/species/sergal/suit_vr.dmi',
 		SPECIES_VULPKANIN		= 'icons/mob/species/vulpkanin/suit_vr.dmi',
 		SPECIES_ZORREN_HIGH		= 'icons/mob/species/vulpkanin/suit_vr.dmi',
 		SPECIES_FENNEC			= 'icons/mob/species/vulpkanin/suit_vr.dmi'
