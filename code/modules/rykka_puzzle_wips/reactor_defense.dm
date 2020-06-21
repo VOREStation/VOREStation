@@ -25,38 +25,50 @@ GLOBAL_LIST_INIT(reactor_mob_spawners, list()) // Define our global list here. T
 	anchored = TRUE
 	climbable = FALSE
 	breakable = FALSE
-	var/icon_state_warmup = null					// Icon to use when the reactor is engaged/warming up
-	var/icon_state_severe_damage = null				// Icon to use when the reactor has taken severe damage.
-	var/icon_state_powered = null					// Icon to use once the reactor is at full power
+	var/icon_state_warmup = null					// Icon to use when the reactor is engaged/warming up. TODO: when I get sprites.
+	var/icon_state_severe_damage = null				// Icon to use when the reactor has taken severe damage. TODO: when I get sprites.
+	var/icon_state_powered = null					// Icon to use once the reactor is at full power. TODO: when I get sprites.
 	var/active_defense = 0							// Are we actively in "defense" mode? (IE has someone engaged the defense gamemode?)
-	var/health = 2000								// The Reactor's health value
-	var/maxhealth = 2000							// The maximum health this object can have.
 	var/list/spawners = list()						// The list of wave spawners we have (Defined at init.)
 	var/reactor_id = null							// Our ID, used to link the reactor + the spawners specific to it, as well as the control console.
+	var/state = IDLE								// What state are we in currently? (This is used for tracking the spawns and such)
 	
 	// Customization Options. Use these to customize how you want the mode to play out.
-	var/current_wave = 1							// The wave we're on currently. (Needed if # of waves is > 1)
-	var/waves = 1									// Total amount of waves we'll have. TODO - figure out a method of spawning all at once on wave start vs continuous spawns.
+	var/health = 2000								// The reactor's health value (Set this to be what maxhealth is, the code will handle the rest).
+	var/maxhealth = 2000							// The maximum health this object can have.
+	var/list/waves = list(1)						// Total amount of waves we'll have, and what mob lists we'll use PER wave. Add more entries to the list to increase the # of waves.
+													// The # (for instance, 1) NEEDS to match with the # of lists in wave_mobs. For instance, if list(1,2,3), we need to have wave_mobs with 3 list(/mob/blah) in it. Ask for help if you're not sure. 
+													// TODO - figure out a method of spawning all at once on wave start vs continuous spawns.
+	var/current_wave = 0							// The wave we're on currently. (Needed if # of waves is > 1). We start at 0 to allow ticking up and counting correctly.
 	var/warmup = TRUE								// Does the reactor require a "warmup"/prep time before the waves start?
 	var/warmup_time = 30 SECONDS					// How long is our warmup period?
-	var/warmup_complete = world.time + warmup_time 	// When is our warmup complete?
+	var/warmup_complete = null						// When is warmup complete? This is set in start_warmup()
 	var/wave_length = 90 SECONDS					// How long are our waves?
-	var/wave_complete = world.time + wave_length	// When is the wave complete?
-	var/state = IDLE								// What state are we in currently? (This is used for tracking the spawns and such)
+	var/wave_complete = null						// When is the wave complete? This is set in start_wave()
 	var/area_defense = FALSE						// Are we using area defense as well as object defense? (IE, you must stay inside /area/ during the waves.)
+	var/threshold_enabled = FALSE					// Is the requirement to keep the reactor above x hp enabled?
+	var/damage_threshold = 0						// This is configurable, allowing you to choose if you want players to keep the reactor above x amount of HP.
+	
 	
 	// Nano UI Variables, don't fuck with these unless you know what you're changing.
 	var/current_tab = IDLE
 	
 	/* 	== Spawning Variables. == */
+
 	// Change these on the subtype of the reactor, for custom mob lists.
 	// Weighted with values (not %chance, but relative weight)
 	// Can be left value-less for all equally likely
-	var/list/mobs_to_pick = list()
+	var/list/wave_mobs = list(
+//		list(/mob/living/wave1mob, /mob/living/otherwave1mob, etc),
+//		list(/mob/living/wave2mob, /mob/living/otherwave2mob, etc)
+	)
+
 	
-	// Settings to help mappers/coders have their mobs do what they want in this case
-	var/faction				// To prevent infighting if it spawns various mobs, set a faction
-	var/atmos_comp = FALSE	// TRUE will set all their survivability to be within 20% of the current air
+	// Settings to help mappers/coders have their mobs do what they want in this case, and control the # of mobs.
+	var/faction					// To prevent infighting if it spawns various mobs, set a faction
+	var/atmos_comp = FALSE		// TRUE will set all their survivability to be within 20% of the current air
+	var/total_spawns = -1 		// Total mob spawns, over all time, -1 for no limit
+	var/simultaneous_spawns = 6 // Max spawned mobs active (from one landmark) at one time
 	
 	// Internal Use Only
 	var/mob/living/simple_mob/my_mob
@@ -66,27 +78,41 @@ GLOBAL_LIST_INIT(reactor_mob_spawners, list()) // Define our global list here. T
 	
 	if(GLOB.reactor_mob_spawners[reactor_id]) // Does the list exist? Great, then we set the spawners var = to that list.
 		spawners = GLOB.reactor_mob_spawners[reactor_id]
-	else // Otherwise, we CRASH (create a runtime) so that debugging is aware there is a problem.
-		CRASH("Reactor [reactor_id] at [x],[y],[z] ([get_area(src)]) couldn't find any spawners!")
+	else // Otherwise, we create a runtime so that debugging is aware there is a problem.
+		log_runtime(EXCEPTION("Reactor [reactor_id] at [x],[y],[z] ([get_area(src)]) couldn't find any spawners!"))
+		return
 		
-	if(!LAZYLEN(mobs_to_pick)) // We CRASH (create a runtime) so that debugging is aware there is a problem. An empty list means nothing will happen when time comes for waves.
-		CRASH("Reactor [reactor_id] at [x],[y],[z] ([get_area(src)]) had no mobs_to_pick set on it!")
+	if(!LAZYLEN(wave_mobs)) // We create a runtime so that debugging is aware there is a problem. An empty list means nothing will happen when time comes for waves.
+		log_runtime(EXCEPTION("Reactor [reactor_id] at [x],[y],[z] ([get_area(src)]) had no wave_mobs set on it!"))
+		return
+		
+	if(max(waves) > LAZYLEN(wave_mobs)) // We create a runtime so that debugging is aware there is a problem. A list out of index error will appear in addition to this.
+		log_runtime(EXCEPTION("Reactor [reactor_id] at [x],[y],[z] ([get_area(src)]) had more wave mob lists chosen than were defined (Check how many wave_mobs lists you have!)!"))
+		return
 			
 	START_PROCESSING(SSobj, src)
 	
-/obj/structure/damaged_reactor/process() // This runs every 2 seconds/MC tick of the SSobj subsystem. I think.
-	// Commenting out in favor of states. Leaving this just-in-case.
-	// if(!active_defense) // Don't do anything unless we're actively in defense mode.
-	//	return
-	
-	if(state == WARMUP)
-		if(world.time >= warmup_complete)
-			state = ENGAGED
+/obj/structure/damaged_reactor/process() // This runs every 2 seconds/MC tick of the SSobj subsystem. I think. DON'T ADD STUFF DIRECTLY INTO PROCESS, USE THE PROCS.
+	switch(state)
+		if(IDLE)
 			return
-		warmup()
-	
-	else if(state == ENGAGED)
-		defense_mode()
+
+		if(WARMUP) // All of the warmup stuff is handled by procs. Go down to PROCS section to modify this behavior.
+			if(!warmup_complete)
+				start_warmup()
+			if(world.time >= warmup_complete)
+				complete_warmup()
+			warmup()
+		
+		if(ENGAGED) // All of the wave stuff is handled by procs. Go down to PROCS section to modify this behavior.
+			if(!wave_complete)
+				start_wave()
+			if(world.time >= wave_complete)
+				end_wave()
+			defense_mode()
+		
+		if(FINISHED)
+			STOP_PROCESSING(SSobj, src)
 		
 	/* Commenting out the my_mob stuff until I get a better handle on if it's needed or not.
 	if(my_mob && my_mob.stat != DEAD) // Is our spawned mob alive still?
@@ -99,7 +125,21 @@ GLOBAL_LIST_INIT(reactor_mob_spawners, list()) // Define our global list here. T
 	if(atmos_comp) // Are we actively setting the atmos survivability? Do so now.
 		var/turf/T = get_turf(src)
 		var/datum/gas_mixture/env = T.return_air()
-		if(env)
+		
+		if(!env || env.return_pressure() < 0.01) // Is there no gas environment, or is the ambient pressure less than 0.01 (Basically space?) Then set our mobs min/max to 0.
+			my_mob.minbodytemp = env.temperature * 0.8
+			my_mob.maxbodytemp = env.temperature * 1.2
+			
+			my_mob.min_oxy = 0
+			my_mob.min_tox = 0
+			my_mob.min_n2 = 0
+			my_mob.min_co2 = 0
+			my_mob.max_oxy = 0
+			my_mob.max_tox = 0
+			my_mob.max_n2 = 0
+			my_mob.max_co2 = 0
+		
+		else
 			my_mob.minbodytemp = env.temperature * 0.8
 			my_mob.maxbodytemp = env.temperature * 1.2
 
@@ -112,6 +152,7 @@ GLOBAL_LIST_INIT(reactor_mob_spawners, list()) // Define our global list here. T
 			my_mob.max_tox = gaslist["phoron"] * 1.2
 			my_mob.max_n2 = gaslist["nitrogen"] * 1.2
 			my_mob.max_co2 = gaslist["carbon_dioxide"] * 1.2
+			
 	
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -199,13 +240,16 @@ GLOBAL_LIST_INIT(reactor_mob_spawners, list()) // Define our global list here. T
  */ 
 
 /obj/structure/damaged_reactor/proc/get_ui_data()
+	var/data[0]
 	data["health"] = health
 	data["wave"] = current_wave
 	data["warmup_enabled"] = warmup
 	data["currentTab"] = current_tab
 	data["warmup_time_left"] = (warmup_complete - world.time) / 10 // We want to take the TOTAL time and subtract the CURRENT time, then divide it, to get our fancy UI percentage/time.
+	data["wave_time_left"] = (wave_complete - world.time) / 10 // Same as above method, but for wave time.
+	return data
 
-/obj/structure/damaged_reactor/Topic(href, href_list)
+/obj/structure/damaged_reactor/Topic(href, href_list) // Someone hit a button or wants to do things~
 	if(..())
 		return 1
 		
@@ -245,13 +289,13 @@ GLOBAL_LIST_INIT(reactor_mob_spawners, list()) // Define our global list here. T
 			playsound(src, 'sound/effects/grillehit.ogg', 100, 1) // Sound placeholder until I get something better
 		if(health < maxhealth * 0.25 && initialhealth >= maxhealth * 0.25) // 25% or below
 			visible_message("<span class='danger'><big>\The [src] groans under the strain, the motor thrumming in an off-pitch tone as safety parameters threaten to shut it down and the turbine oscillates inside!</big></span>")
-			update_icon()
+			// update_icon() Commenting out update_icon() for now, I want players to use the menu to view health. TBD based on feedback.
 		else if(health < maxhealth * 0.5 && initialhealth >= maxhealth * 0.5) // 50% or below
 			visible_message("<span class='danger'>\The [src] whines dangerously as the turbine struggles to maintain RPMs with the sustained damage!</span>")
-			update_icon()
+			// update_icon() Commenting out update_icon() for now, I want players to use the menu to view health. TBD based on feedback.
 		else if(health < maxhealth * 0.75 && initialhealth >= maxhealth * 0.75) // 75% or below
 			visible_message("<span class='notice'>\The [src] begins to shift out of alignment as the motor works harder to maintain speed!</span>")
-			update_icon()
+			// update_icon() Commenting out update_icon() for now, I want players to use the menu to view health. TBD based on feedback.
 	return
 
 /obj/structure/damaged_reactor/bullet_act(var/obj/item/projectile/Proj) // A bullet hit us
@@ -338,13 +382,29 @@ GLOBAL_LIST_INIT(reactor_mob_spawners, list()) // Define our global list here. T
 	take_damage(damage)
 	return
 
+/* Commenting out update_icon() for now, I want players to use the menu to view health. TBD based on feedback.
+/obj/structure/damaged_reactor/update_icon()
+	overlays.Cut()
+	
+	// Damage overlays.
+	var/ratio = health / maxhealth
+	ratio = CEILING(ratio * 4, 1) * 25
+
+	if(ratio > 75)
+		return
+	var/image/I = image(icon, "damage[ratio]", layer = layer + 0.1)
+	overlays += I
+
+	return
+*/
+
 //////////////////////////////////////////////////////////////////
 /*			=====		End Damage Code			=====			*/
 //////////////////////////////////////////////////////////////////
 
 //////////////////////////////////////////////////////////////////
-/*	//		=====		State Handling Code		=====			//
- *	//			Handle success and failure states here.			//
+/*	//		=====			Proc Code			=====			//
+ *	//		Handle all code pertaining to reactor procs here.	//
  *////////////////////////////////////////////////////////////////
 
 /obj/structure/damaged_reactor/proc/failure_state() // Did the reactor take too much damage? Did the users leave the area? Trigger this and you "fail" the mode
@@ -353,27 +413,39 @@ GLOBAL_LIST_INIT(reactor_mob_spawners, list()) // Define our global list here. T
 	
 /obj/structure/damaged_reactor/proc/success_state() // Did we win? Is it finally over?
 	active_defense = 0 // We're no longer actively defending, because we won.
+	state = FINISHED
 
-//////////////////////////////////////////////////////////////
-/*		=====		End State Handling Code		=====		*/
-//////////////////////////////////////////////////////////////
-
-//////////////////////////////////////////////////////////////
-/*		=====		Defense Mode, Warmup Code		=====	//
- *			We'll handle engaging defense mode here.		//
- *////////////////////////////////////////////////////////////
-
-/obj/structure/damaged_reactor/proc/defense_mode()
-	active_defense = 1
+/obj/structure/damaged_reactor/proc/defense_mode() // Do these things EVERY tick of SSProcess - if you need it to run once, put it in an if statement.
+	if(active_defense == 0) // Just to keep from constantly forcing defense active.
+		active_defense = 1 // We're actively defending
 	
-	if(waves > 1)
-		
-
-/obj/structure/damaged_reactor/proc/warmup()
+/obj/structure/damaged_reactor/proc/start_wave()
+	wave_complete = world.time + wave_length
 	
+/obj/structure/damaged_reactor/proc/end_wave()
+	if(current_wave >= waves.len)
+		success_state()
+	else
+		state = IDLE
+		active_defense = 0
+
+/obj/structure/damaged_reactor/proc/change_wave(var/wavenumber)
+	for(var/obj/effect/spawner/wave_spawner/spawner in spawners)
+		spawner.spawn_types = wave_mobs[wavenumber]
+		spawner.faction = faction
+		spawner.atmos = atmos_comp
+
+/obj/structure/damaged_reactor/proc/warmup() // Do these things EVERY tick of SSProcess - if you need it to run once, put it in an if statement.
+
+/obj/structure/damaged_reactor/proc/start_warmup()
+	warmup_complete = world.time + warmup_time 	// When is our warmup complete?
+
+/obj/structure/damaged_reactor/proc/complete_warmup()
+	state = ENGAGED
+	warmup_complete = null // Set this to null to "clear" the countdown for reuse.
 
 //////////////////////////////////////////////////////////////
-/*		=====		End Defense Mode, Warmup Code	=====	*/
+/*		=====			End Proc Code			=====		*/
 //////////////////////////////////////////////////////////////
 
 //////////////////////////////////////////////////////////////
@@ -394,6 +466,11 @@ GLOBAL_LIST_INIT(reactor_mob_spawners, list()) // Define our global list here. T
 	// Our Reactor ID - used in linking the parts together.
 	var/reactor_id = null
 	
+	// Spawning/mob variables, set on the reactor.
+	var/faction = null
+	var/atmos = null
+	var/spawn_types = null
+	
 /obj/effect/spawner/wave_spawner/Initialize() // When our object is loaded for the first time.
 	. = ..()
 	
@@ -402,7 +479,10 @@ GLOBAL_LIST_INIT(reactor_mob_spawners, list()) // Define our global list here. T
 	else
 		GLOB.reactor_mob_spawners[reactor_id] = list(src) // No list yet for this reactor? Cool, we're starting one.
 
-
+	START_PROCESSING(SSobj, src)
+	
+/obj/effect/spawner/wave_spawner/process()
+	
 
 //////////////////////////////////////////////////////////////
 /*		=====		End Spawner Code			=====		*/

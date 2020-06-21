@@ -91,19 +91,19 @@ Used In File(s): \code\modules\rykka_puzzle_wips\reactor_defense.dm
 	</center>
 </div>
 
-{{else if data.currentTab == 2 && data.warmup == 1}}
+{{else data.currentTab == 2 && data.warmup == 1}}
 <div class="item">
 	<center>
 	<div class="itemLabelWide">
 		REACTOR WARMING UP
 	</div>
 	<div class="itemContent">
-		{{:helper.displayBar(null, 0, 20, null)}}
+		
 	</div>
 	</center>
 </div>
 
-{{else if data.currentTab == 3}
+{{else data.currentTab == 3}}
 <div class="item">
 	<center>
 	<div class="itemLabel">
@@ -122,3 +122,4 @@ Used In File(s): \code\modules\rykka_puzzle_wips\reactor_defense.dm
 	<h2>Currently producing 5 MW of power.</h2>
 	</center>
 </div>
+{{/if}}
