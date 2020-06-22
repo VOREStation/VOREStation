@@ -1050,8 +1050,10 @@
 
 	if(target_species)
 		if(helmet) helmet.refit_for_species(target_species)
-		if(suit) suit.refit_for_species(target_species)
-		if(suit.helmet) suit.helmet.refit_for_species(target_species)
+		if(suit) 
+			suit.refit_for_species(target_species)
+			if(suit.helmet)
+				suit.helmet.refit_for_species(target_species)
 
 	//Now "Complete" with most departmental and variant suits, and sorted by department. These aren't available in the standard or emagged cycler lists because they're incomplete for most species.
 	switch(target_department)
