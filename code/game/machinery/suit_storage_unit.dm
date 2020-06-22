@@ -586,7 +586,7 @@
 	var/electrified = 0
 
 	//Departments that the cycler can paint suits to look like.
-	var/list/departments = list("Engineering","Mining","Medical","Security","Atmospherics","HAZMAT","Construction","Biohazard","Emergency Medical Response","Crowd Control","Security EVA","No Change")
+	var/list/departments = list("Engineering","Mining","Medical","Security","Atmospherics","HAZMAT","Construction","Biohazard","Emergency Medical Response","Crowd Control","Security EVA")
 	//Species that the suits can be configured to fit.
 	var/list/species = list(SPECIES_HUMAN,SPECIES_SKRELL,SPECIES_UNATHI,SPECIES_TAJ, SPECIES_TESHARI)
 
@@ -623,37 +623,37 @@
 	name = "Engineering suit cycler"
 	model_text = "Engineering"
 	req_access = list(access_construction)
-	departments = list("Engineering","Atmospherics","HAZMAT","Construction","No Change")
+	departments = list("Engineering","Atmospherics","HAZMAT","Construction")
 
 /obj/machinery/suit_cycler/mining
 	name = "Mining suit cycler"
 	model_text = "Mining"
 	req_access = list(access_mining)
-	departments = list("Mining","No Change")
+	departments = list("Mining")
 
 /obj/machinery/suit_cycler/security
 	name = "Security suit cycler"
 	model_text = "Security"
 	req_access = list(access_security)
-	departments = list("Security","Crowd Control","Security EVA","No Change")
+	departments = list("Security","Crowd Control","Security EVA")
 
 /obj/machinery/suit_cycler/medical
 	name = "Medical suit cycler"
 	model_text = "Medical"
 	req_access = list(access_medical)
-	departments = list("Medical","Biohazard","Emergency Medical Response","No Change")
+	departments = list("Medical","Biohazard","Emergency Medical Response")
 
 /obj/machinery/suit_cycler/syndicate
 	name = "Nonstandard suit cycler"
 	model_text = "Nonstandard"
 	req_access = list(access_syndicate)
-	departments = list("Mercenary", "Charring","No Change")
+	departments = list("Mercenary", "Charring")
 	can_repair = 1
 
 /obj/machinery/suit_cycler/exploration
 	name = "Explorer suit cycler"
 	model_text = "Exploration"
-	departments = list("Exploration","Old Exploration","No Change")
+	departments = list("Exploration","Old Exploration")
 
 /obj/machinery/suit_cycler/exploration/Initialize()
 	species -= SPECIES_TESHARI
@@ -662,33 +662,33 @@
 /obj/machinery/suit_cycler/pilot
 	name = "Pilot suit cycler"
 	model_text = "Pilot"
-	departments = list("Pilot Blue","Pilot","No Change")
+	departments = list("Pilot Blue","Pilot")
 
 /obj/machinery/suit_cycler/vintage
 	name = "Vintage Crew suit cycler"
 	model_text = "Vintage"
-	departments = list("Vintage Crew","No Change")
+	departments = list("Vintage Crew")
 	req_access = null
 
 /obj/machinery/suit_cycler/vintage/pilot
 	name = "Vintage Pilot suit cycler"
 	model_text = "Vintage Pilot"
-	departments = list("Vintage Pilot (Bubble Helm)","Vintage Pilot (Closed Helm)","No Change")
+	departments = list("Vintage Pilot (Bubble Helm)","Vintage Pilot (Closed Helm)")
 	
 /obj/machinery/suit_cycler/vintage/medsci
 	name = "Vintage MedSci suit cycler"
 	model_text = "Vintage MedSci"
-	departments = list("Vintage Medical (Bubble Helm)","Vintage Medical (Closed Helm)","Vintage Research (Bubble Helm)","Vintage Research (Closed Helm)","No Change")
+	departments = list("Vintage Medical (Bubble Helm)","Vintage Medical (Closed Helm)","Vintage Research (Bubble Helm)","Vintage Research (Closed Helm)")
 	
 /obj/machinery/suit_cycler/vintage/rugged
 	name = "Vintage Ruggedized suit cycler"
 	model_text = "Vintage Ruggedized"
-	departments = list("Vintage Engineering","Vintage Marine","Vintage Officer","Vintage Mercenary","No Change")
+	departments = list("Vintage Engineering","Vintage Marine","Vintage Officer","Vintage Mercenary")
 
 /obj/machinery/suit_cycler/vintage/omni
 	name = "Vintage Master suit cycler"
 	model_text = "Vintage Master"
-	departments = list("Vintage Crew","Vintage Engineering","Vintage Pilot (Bubble Helm)","Vintage Pilot (Closed Helm)","Vintage Medical (Bubble Helm)","Vintage Medical (Closed Helm)","Vintage Research (Bubble Helm)","Vintage Research (Closed Helm)","Vintage Marine","Vintage Officer","Vintage Mercenary","No Change")
+	departments = list("Vintage Crew","Vintage Engineering","Vintage Pilot (Bubble Helm)","Vintage Pilot (Closed Helm)","Vintage Medical (Bubble Helm)","Vintage Medical (Closed Helm)","Vintage Research (Bubble Helm)","Vintage Research (Closed Helm)","Vintage Marine","Vintage Officer","Vintage Mercenary")
 
 /obj/machinery/suit_cycler/vintage/Initialize()
 	species -= SPECIES_TESHARI
@@ -827,7 +827,7 @@
 
 	//Clear the access reqs, disable the safeties, and open up all paintjobs.
 	to_chat(user, "<span class='danger'>You run the sequencer across the interface, corrupting the operating protocols.</span>")
-	departments = list("Engineering","Mining","Medical","Security","Atmospherics","HAZMAT","Construction","Biohazard","Crowd Control","Security EVA","Emergency Medical Response","^%###^%$", "Charring","No Change")
+	departments = list("Engineering","Mining","Medical","Security","Atmospherics","HAZMAT","Construction","Biohazard","Crowd Control","Security EVA","Emergency Medical Response","^%###^%$", "Charring")
 	species = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_VULPKANIN) //VORESTATION EDIT
 
 	emagged = 1
