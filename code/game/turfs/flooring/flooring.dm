@@ -205,14 +205,18 @@ var/list/flooring_types
 	desc = "Gritty and unpleasant, just like dirt."
 	icon = 'icons/turf/outdoors.dmi'
 	icon_base = "dirt-dark"
-	flags = TURF_HAS_EDGES | TURF_REMOVE_SHOVEL
+	flags = TURF_REMOVE_SHOVEL
 	build_type = null
 	footstep_sounds = list("human" = list(
 		'sound/effects/footstep/asteroid1.ogg',
 		'sound/effects/footstep/asteroid2.ogg',
 		'sound/effects/footstep/asteroid3.ogg',
 		'sound/effects/footstep/asteroid4.ogg',
-		'sound/effects/footstep/asteroid5.ogg'))
+		'sound/effects/footstep/asteroid5.ogg',
+		'sound/effects/footstep/MedDirt1.ogg',
+		'sound/effects/footstep/MedDirt2.ogg',
+		'sound/effects/footstep/MedDirt3.ogg',
+		'sound/effects/footstep/MedDirt4.ogg',))
 
 /decl/flooring/snow
 	name = "snow"
