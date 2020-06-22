@@ -36,6 +36,20 @@ GLOBAL_DATUM(vgs, /datum/tgs_api)
 		if(result != TGS_UNIMPLEMENTED)
 			return result
 
+/world/TgsReboot()
+	var/datum/tgs_api/api = GLOB.vgs
+	if(api)
+		api.OnReboot()
+	else
+		return ..()
+
+/world/TgsInitializationComplete()
+	var/datum/tgs_api/api = GLOB.vgs
+	if(api)
+		api.OnInitializationComplete()
+	else
+		return ..()
+
 /world/proc/VgsAddMemberRole(chat_user_id)
 	var/datum/tgs_api/v5/vgs1/api = GLOB.vgs
 	if(api)
