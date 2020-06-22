@@ -586,7 +586,7 @@
 	var/electrified = 0
 
 	//Departments that the cycler can paint suits to look like.
-	var/list/departments = list("Engineering","Mining","Medical","Security","Atmospherics","HAZMAT","Construction","Biohazard","Emergency Medical Response","Crowd Control","Security EVA")
+	var/list/departments = list("Engineering","Mining","Medical","Security","Atmospherics","HAZMAT","Construction","Biohazard","Emergency Medical Response","Crowd Control","Security EVA","No Change")
 	//Species that the suits can be configured to fit.
 	var/list/species = list(SPECIES_HUMAN,SPECIES_SKRELL,SPECIES_UNATHI,SPECIES_TAJ, SPECIES_TESHARI)
 
@@ -612,41 +612,48 @@
 	wires = null
 	return ..()
 
+/obj/machinery/suit_cycler/refit_only
+	name = "Suit cycler"
+	desc = "A dedicated industrial machine that can refit voidsuits for different species, but not change the suit's overall appearance or departmental scheme."
+	model_text = "General Access"
+	req_access = null
+	departments = list("No Change")
+
 /obj/machinery/suit_cycler/engineering
 	name = "Engineering suit cycler"
 	model_text = "Engineering"
 	req_access = list(access_construction)
-	departments = list("Engineering","Atmospherics","HAZMAT","Construction")
+	departments = list("Engineering","Atmospherics","HAZMAT","Construction","No Change")
 
 /obj/machinery/suit_cycler/mining
 	name = "Mining suit cycler"
 	model_text = "Mining"
 	req_access = list(access_mining)
-	departments = list("Mining")
+	departments = list("Mining","No Change")
 
 /obj/machinery/suit_cycler/security
 	name = "Security suit cycler"
 	model_text = "Security"
 	req_access = list(access_security)
-	departments = list("Security","Crowd Control","Security EVA")
+	departments = list("Security","Crowd Control","Security EVA","No Change")
 
 /obj/machinery/suit_cycler/medical
 	name = "Medical suit cycler"
 	model_text = "Medical"
 	req_access = list(access_medical)
-	departments = list("Medical","Biohazard","Emergency Medical Response")
+	departments = list("Medical","Biohazard","Emergency Medical Response","No Change")
 
 /obj/machinery/suit_cycler/syndicate
 	name = "Nonstandard suit cycler"
 	model_text = "Nonstandard"
 	req_access = list(access_syndicate)
-	departments = list("Mercenary", "Charring")
+	departments = list("Mercenary", "Charring","No Change")
 	can_repair = 1
 
 /obj/machinery/suit_cycler/exploration
 	name = "Explorer suit cycler"
 	model_text = "Exploration"
-	departments = list("Exploration","Old Exploration")
+	departments = list("Exploration","Old Exploration","No Change")
 
 /obj/machinery/suit_cycler/exploration/Initialize()
 	species -= SPECIES_TESHARI
@@ -655,33 +662,33 @@
 /obj/machinery/suit_cycler/pilot
 	name = "Pilot suit cycler"
 	model_text = "Pilot"
-	departments = list("Pilot Blue","Pilot")
+	departments = list("Pilot Blue","Pilot","No Change")
 
 /obj/machinery/suit_cycler/vintage
 	name = "Vintage Crew suit cycler"
 	model_text = "Vintage"
-	departments = list("Vintage Crew")
+	departments = list("Vintage Crew","No Change")
 	req_access = null
 
 /obj/machinery/suit_cycler/vintage/pilot
 	name = "Vintage Pilot suit cycler"
 	model_text = "Vintage Pilot"
-	departments = list("Vintage Pilot (Bubble Helm)","Vintage Pilot (Closed Helm)")
+	departments = list("Vintage Pilot (Bubble Helm)","Vintage Pilot (Closed Helm)","No Change")
 	
 /obj/machinery/suit_cycler/vintage/medsci
 	name = "Vintage MedSci suit cycler"
 	model_text = "Vintage MedSci"
-	departments = list("Vintage Medical (Bubble Helm)","Vintage Medical (Closed Helm)","Vintage Research (Bubble Helm)","Vintage Research (Closed Helm)")
+	departments = list("Vintage Medical (Bubble Helm)","Vintage Medical (Closed Helm)","Vintage Research (Bubble Helm)","Vintage Research (Closed Helm)","No Change")
 	
 /obj/machinery/suit_cycler/vintage/rugged
 	name = "Vintage Ruggedized suit cycler"
 	model_text = "Vintage Ruggedized"
-	departments = list("Vintage Engineering","Vintage Marine","Vintage Officer","Vintage Mercenary")
+	departments = list("Vintage Engineering","Vintage Marine","Vintage Officer","Vintage Mercenary","No Change")
 
 /obj/machinery/suit_cycler/vintage/omni
 	name = "Vintage Master suit cycler"
 	model_text = "Vintage Master"
-	departments = list("Vintage Crew","Vintage Engineering","Vintage Pilot (Bubble Helm)","Vintage Pilot (Closed Helm)","Vintage Medical (Bubble Helm)","Vintage Medical (Closed Helm)","Vintage Research (Bubble Helm)","Vintage Research (Closed Helm)","Vintage Marine","Vintage Officer","Vintage Mercenary")
+	departments = list("Vintage Crew","Vintage Engineering","Vintage Pilot (Bubble Helm)","Vintage Pilot (Closed Helm)","Vintage Medical (Bubble Helm)","Vintage Medical (Closed Helm)","Vintage Research (Bubble Helm)","Vintage Research (Closed Helm)","Vintage Marine","Vintage Officer","Vintage Mercenary","No Change")
 
 /obj/machinery/suit_cycler/vintage/Initialize()
 	species -= SPECIES_TESHARI
@@ -820,7 +827,7 @@
 
 	//Clear the access reqs, disable the safeties, and open up all paintjobs.
 	to_chat(user, "<span class='danger'>You run the sequencer across the interface, corrupting the operating protocols.</span>")
-	departments = list("Engineering","Mining","Medical","Security","Atmospherics","HAZMAT","Construction","Biohazard","Crowd Control","Security EVA","Emergency Medical Response","^%###^%$", "Charring")
+	departments = list("Engineering","Mining","Medical","Security","Atmospherics","HAZMAT","Construction","Biohazard","Crowd Control","Security EVA","Emergency Medical Response","^%###^%$", "Charring","No Change")
 	species = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_VULPKANIN) //VORESTATION EDIT
 
 	emagged = 1
@@ -1044,9 +1051,13 @@
 	if(target_species)
 		if(helmet) helmet.refit_for_species(target_species)
 		if(suit) suit.refit_for_species(target_species)
+		if(suit.helmet) suit.helmet.refit_for_species(target_species)
 
 	//Now "Complete" with most departmental and variant suits, and sorted by department. These aren't available in the standard or emagged cycler lists because they're incomplete for most species.
 	switch(target_department)
+		if("No Change")
+			parent_helmet = helmet
+			parent_suit = suit
 		//Engineering and Engineering Variants
 		if("Engineering")
 			parent_helmet = /obj/item/clothing/head/helmet/space/void/engineering
@@ -1201,7 +1212,7 @@
 		//END: downstream variant space
 	
 	//look at this! isn't it beautiful? -KK (well ok not beautiful but it's a lot cleaner)
-	if(helmet)
+	if(helmet && target_department != "No Change")
 		var/obj/item/clothing/H = new parent_helmet
 		helmet.name = "refitted [initial(parent_helmet.name)]"
 		helmet.desc = initial(parent_helmet.desc)
@@ -1211,7 +1222,7 @@
 		helmet.item_state_slots = H.item_state_slots
 		qdel(H)
 
-	if(suit)
+	if(suit && target_department != "No Change")
 		var/obj/item/clothing/S = new parent_suit
 		suit.name = "refitted [initial(parent_suit.name)]"
 		suit.desc = initial(parent_suit.desc)
@@ -1219,3 +1230,14 @@
 		suit.item_state = initial(parent_suit.item_state)
 		suit.item_state_slots = S.item_state_slots
 		qdel(S)
+
+		//can't believe I forgot to fix this- now helmets will properly cycle if they're attached to a suit -KK
+		if(suit.helmet && target_department != "No Change")
+			var/obj/item/clothing/AH = new parent_helmet
+			suit.helmet.name = "refitted [initial(parent_helmet.name)]"
+			suit.helmet.desc = initial(parent_helmet.desc)
+			suit.helmet.icon_state = initial(parent_helmet.icon_state)
+			suit.helmet.item_state = initial(parent_helmet.item_state)
+			suit.helmet.light_overlay = initial(parent_helmet.light_overlay)
+			suit.helmet.item_state_slots = AH.item_state_slots
+			qdel(AH)
