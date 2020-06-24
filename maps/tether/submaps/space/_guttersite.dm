@@ -9,7 +9,7 @@
 	icon_state = "guttersite"
 	known = FALSE
 	color = "#ee3333" //Redish, so it stands out against the other debris-like icons
-	initial_generic_waypoints = list("guttersite_lshuttle", "guttersite_sshuttle")
+	initial_generic_waypoints = list("guttersite_lshuttle", "guttersite_sshuttle", "guttersite_mshuttle")
 
 // -- Objs -- //
 /obj/effect/shuttle_landmark/premade/guttersite/sshuttle
@@ -20,6 +20,9 @@
 	name = "Gutter - Large Shuttle"
 	landmark_tag = "guttersite_lshuttle"
 
+/obj/effect/shuttle_landmark/premade/guttersite/mshuttle
+	name = "Gutter - Medi Shuttle"
+	landmark_tag = "guttersite_mshuttle"
 
 //This does nothing right now, but is framework if we do POIs for this place
 /obj/away_mission_init/guttersite
