@@ -33,7 +33,7 @@
 	base_block_chance = 40
 	slot_flags = SLOT_BACK
 	var/brightness_on
-	brightness_on = 4
+	brightness_on = 6
 	var/on = 0
 	var/light_applied
 	//var/light_overlay
