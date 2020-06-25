@@ -3253,6 +3253,10 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
+"hj" = (
+/mob/living/simple_mob/mobs_monsters/clowns/big/cluwne,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/guttersite/unexplored)
 "hk" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4;
@@ -4061,6 +4065,10 @@
 /obj/item/trash/liquidfood,
 /obj/item/trash/liquidprotein,
 /obj/item/trash/cheesie,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/guttersite/unexplored)
+"jh" = (
+/mob/living/simple_mob/mobs_monsters/clowns/big/sentinel,
 /turf/simulated/mineral/floor/vacuum,
 /area/tether_away/guttersite/unexplored)
 "ji" = (
@@ -5471,7 +5479,7 @@
 /area/tether_away/guttersite/unexplored)
 "mV" = (
 /obj/item/device/radio/headset/nanotrasen/alt{
-	desc = "The headset of am Eltorro employee.";
+	desc = "The headset of an Eltorro employee.";
 	name = "Weird Headset"
 	},
 /turf/simulated/floor/carpet/gaycarpet,
@@ -5616,6 +5624,10 @@
 	},
 /turf/simulated/floor/tiled/eris/steel/bar_light,
 /area/tether_away/guttersite/commons)
+"nz" = (
+/mob/living/simple_mob/mobs_monsters/clowns/big/tunnelclown,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/guttersite/unexplored)
 "Ob" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -10531,7 +10543,7 @@ ag
 hd
 iW
 ad
-ad
+jh
 ad
 ad
 aL
@@ -10814,7 +10826,7 @@ aB
 ag
 hd
 jk
-ad
+hj
 aA
 ad
 ad
@@ -11099,7 +11111,7 @@ ag
 ad
 ad
 ad
-ad
+nz
 ad
 ad
 ad

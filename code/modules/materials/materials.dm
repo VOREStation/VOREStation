@@ -114,6 +114,7 @@ var/list/name_to_material
 	var/list/composite_material  // If set, object matter var will be a list containing these values.
 	var/luminescence
 	var/radiation_resistance = 0 // Radiation resistance, which is added on top of a material's weight for blocking radiation. Needed to make lead special without superrobust weapons.
+	var/supply_conversion_value  // Supply points per sheet that this material sells for.
 
 	// Placeholder vars for the time being, todo properly integrate windows/light tiles/rods.
 	var/created_window
@@ -256,6 +257,7 @@ var/list/name_to_material
 	weight = 22
 	stack_origin_tech = list(TECH_MATERIAL = 5)
 	door_icon_base = "stone"
+	supply_conversion_value = 2
 
 /material/diamond
 	name = "diamond"
@@ -271,6 +273,7 @@ var/list/name_to_material
 	tableslam_noise = 'sound/effects/Glasshit.ogg'
 	hardness = 100
 	stack_origin_tech = list(TECH_MATERIAL = 6)
+	supply_conversion_value = 8
 
 /material/gold
 	name = "gold"
@@ -282,6 +285,7 @@ var/list/name_to_material
 	stack_origin_tech = list(TECH_MATERIAL = 4)
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
+	supply_conversion_value = 2
 
 /material/gold/bronze //placeholder for ashtrays
 	name = "bronze"
@@ -297,6 +301,7 @@ var/list/name_to_material
 	stack_origin_tech = list(TECH_MATERIAL = 3)
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
+	supply_conversion_value = 2
 
 //R-UST port
 /material/supermatter
@@ -329,6 +334,7 @@ var/list/name_to_material
 	door_icon_base = "stone"
 	sheet_singular_name = "crystal"
 	sheet_plural_name = "crystals"
+	supply_conversion_value = 5
 
 /*
 // Commenting this out while fires are so spectacularly lethal, as I can't seem to get this balanced appropriately.
@@ -370,6 +376,7 @@ var/list/name_to_material
 	hardness = 30 //VOREStation Edit - Please.
 	integrity = 201 //hack to stop kitchen benches being flippable, todo: refactor into weight system
 	stack_type = /obj/item/stack/material/marble
+	supply_conversion_value = 2
 
 /material/steel
 	name = DEFAULT_WALL_MATERIAL
@@ -428,6 +435,7 @@ var/list/name_to_material
 	conductivity = 13 // For the purposes of balance.
 	stack_origin_tech = list(TECH_MATERIAL = 2)
 	composite_material = list(DEFAULT_WALL_MATERIAL = SHEET_MATERIAL_AMOUNT, "platinum" = SHEET_MATERIAL_AMOUNT) //todo
+	supply_conversion_value = 6
 
 /material/plasteel/hull
 	name = MAT_PLASTEELHULL
@@ -457,6 +465,7 @@ var/list/name_to_material
 	reflectivity = 0.7 // Not a perfect mirror, but close.
 	stack_origin_tech = list(TECH_MATERIAL = 8)
 	composite_material = list("plasteel" = SHEET_MATERIAL_AMOUNT, "diamond" = SHEET_MATERIAL_AMOUNT) //shrug
+	supply_conversion_value = 9
 
 /material/durasteel/hull //The 'Hardball' of starship hulls.
 	name = MAT_DURASTEELHULL
@@ -676,6 +685,7 @@ var/list/name_to_material
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
 	conductivity = 100
+	supply_conversion_value = 6
 
 /material/tritium
 	name = "tritium"
@@ -704,6 +714,7 @@ var/list/name_to_material
 	stack_origin_tech = list(TECH_MATERIAL = 6, TECH_POWER = 6, TECH_MAGNET = 5)
 	conductivity = 100
 	is_fusion_fuel = 1
+	supply_conversion_value = 6
 
 /material/platinum
 	name = "platinum"
@@ -714,6 +725,7 @@ var/list/name_to_material
 	stack_origin_tech = list(TECH_MATERIAL = 2)
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
+	supply_conversion_value = 5
 
 /material/iron
 	name = "iron"
@@ -733,6 +745,7 @@ var/list/name_to_material
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
 	radiation_resistance = 25 // Lead is Special and so gets to block more radiation than it normally would with just weight, totalling in 48 protection.
+	supply_conversion_value = 2
 
 // Particle Smasher and other exotic materials.
 
@@ -755,6 +768,7 @@ var/list/name_to_material
 	stack_origin_tech = list(TECH_MATERIAL = 6, TECH_POWER = 5, TECH_BIO = 4)
 	sheet_singular_name = "sheet"
 	sheet_plural_name = "sheets"
+	supply_conversion_value = 8
 
 /material/morphium
 	name = MAT_MORPHIUM
@@ -775,6 +789,7 @@ var/list/name_to_material
 	reflectivity = 0.2
 	radiation_resistance = 10
 	stack_origin_tech = list(TECH_MATERIAL = 8, TECH_ILLEGAL = 1, TECH_PHORON = 4, TECH_BLUESPACE = 4, TECH_ARCANE = 1)
+	supply_conversion_value = 13
 
 /material/morphium/hull
 	name = MAT_MORPHIUMHULL

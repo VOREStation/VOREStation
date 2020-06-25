@@ -48,6 +48,13 @@
 	cached_rad_resistance = (density ? (material.weight + material.radiation_resistance) / config.radiation_material_resistance_divisor : 0)
 	return
 
+/turf/simulated/mineral/calc_rad_resistance()
+	if(!density)
+		return ..()
+	SSradiation.resistance_cache[src] = (length(contents) + 1)
+	cached_rad_resistance = 60 //Three times that of a steel wall. Rock is less dense than steel, but this is assuming that a normal wall isn't just solid steel all the way through like rock turfs are.
+	return
+
 /obj
 	var/rad_resistance = 0  // Allow overriding rad resistance
 

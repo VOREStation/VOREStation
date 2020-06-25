@@ -755,6 +755,18 @@
 			to_chat(user, "You cannot refit a customised voidsuit.")
 			return
 
+		//VOREStation Edit BEGINS
+		//Make it so autolok suits can't be refitted in a cycler
+		if(istype(I,/obj/item/clothing/head/helmet/space/void/autolok))
+			to_chat(user, "You cannot refit an autolok helmet. In fact you shouldn't even be able to remove it in the first place. Inform an admin!")
+			return
+			
+		//Ditto the Mk7
+		if(istype(I,/obj/item/clothing/head/helmet/space/void/responseteam))
+			to_chat(user, "The cycler indicates that the Mark VII Emergency Response Helmet is not compatible with the refitting system. How did you manage to detach it anyway? Inform an admin!")
+			return
+		//VOREStation Edit ENDS
+
 		to_chat(user, "You fit \the [I] into the suit cycler.")
 		user.drop_item()
 		I.loc = src
@@ -778,6 +790,18 @@
 			to_chat(user, "You cannot refit a customised voidsuit.")
 			return
 
+		//VOREStation Edit BEGINS
+		//Make it so autolok suits can't be refitted in a cycler
+		if(istype(I,/obj/item/clothing/suit/space/void/autolok))
+			to_chat(user, "You cannot refit an autolok suit.")
+			return
+			
+		//Ditto the Mk7
+		if(istype(I,/obj/item/clothing/suit/space/void/responseteam))
+			to_chat(user, "The cycler indicates that the Mark VII Emergency Response Suit is not compatible with the refitting system.")
+			return
+		//VOREStation Edit ENDS
+		
 		to_chat(user, "You fit \the [I] into the suit cycler.")
 		user.drop_item()
 		I.loc = src
@@ -1138,8 +1162,8 @@
 			parent_helmet = /obj/item/clothing/head/helmet/space/void/captain
 			parent_suit = /obj/item/clothing/suit/space/void/captain
 		if("Prototype")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/merc/prototype
-			parent_suit = /obj/item/clothing/suit/space/void/merc/prototype
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/security/prototype
+			parent_suit = /obj/item/clothing/suit/space/void/security/prototype
 		if("Talon Crew")
 			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/talon
 			parent_suit = /obj/item/clothing/suit/space/void/refurb/talon
