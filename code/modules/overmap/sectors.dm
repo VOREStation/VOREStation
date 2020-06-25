@@ -6,7 +6,7 @@
 	scannable = TRUE
 	scanner_desc = "!! No Data Available !!"
 
-	var/list/map_z = null
+	var/list/map_z = list()
 	var/list/extra_z_levels //if you need to manually insist that these z-levels are part of this sector, for things like edge-of-map step trigger transitions rather than multi-z complexes
 
 	var/list/initial_generic_waypoints //store landmark_tag of landmarks that should be added to the actual lists below on init.
@@ -31,8 +31,7 @@
 	if(. == INITIALIZE_HINT_QDEL)
 		return
 
-	if(!map_z)			// If map_z is already defined, we don't need to find where we are
-		find_z_levels() // This populates map_z and assigns z levels to the ship.
+	find_z_levels() // This populates map_z and assigns z levels to the ship.
 	register_z_levels() // This makes external calls to update global z level information.
 
 	if(!global.using_map.overmap_z)
@@ -60,7 +59,8 @@
 			. += A
 
 /obj/effect/overmap/visitable/proc/find_z_levels()
-	map_z = GetConnectedZlevels(z)
+	if(!LAZYLEN(map_z)) // If map_z is already populated use it as-is, otherwise start with connected z-levels.
+		map_z = GetConnectedZlevels(z)
 	if(LAZYLEN(extra_z_levels))
 		map_z |= extra_z_levels
 
