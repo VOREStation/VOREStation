@@ -1,15 +1,16 @@
 // Species flags.
-#define NO_MINOR_CUT      0x1    // Can step on broken glass with no ill-effects. Either thick skin (diona), cut resistant (slimes) or incorporeal (shadows)
-#define IS_PLANT          0x2    // Is a treeperson.
-#define NO_SCAN           0x4    // Cannot be scanned in a DNA machine/genome-stolen.
-#define NO_PAIN           0x8    // Cannot suffer halloss/recieves deceptive health indicator.
-#define NO_SLIP           0x10   // Cannot fall over.
-#define NO_POISON         0x20   // Cannot not suffer toxloss.
-#define NO_EMBED		  0x40	 // Can step on broken glass with no ill-effects and cannot have shrapnel embedded in it.
-#define NO_HALLUCINATION  0x80	 // Don't hallucinate, ever
-#define NO_BLOOD		  0x100  // Never bleed, never show blood amount
-#define UNDEAD			  0x200	 // Various things that living things don't do, mostly for skeletons
-#define NO_INFECT		  0x400  // Don't allow infections in limbs or organs, similar to IS_PLANT, without other strings.
+#define NO_MINOR_CUT      	0x1	// Can step on broken glass with no ill-effects. Either thick skin (diona), cut resistant (slimes) or incorporeal (shadows)
+#define IS_PLANT          	0x2	// Is a treeperson.
+#define NO_SCAN           	0x4	// Cannot be scanned in a DNA machine/genome-stolen.
+#define NO_PAIN           	0x8	// Cannot suffer halloss/recieves deceptive health indicator.
+#define NO_SLIP           	0x10	// Cannot fall over.
+#define NO_POISON         	0x20	// Cannot not suffer toxloss.
+#define NO_EMBED		0x40	// Can step on broken glass with no ill-effects and cannot have shrapnel embedded in it.
+#define NO_HALLUCINATION  	0x80	// Don't hallucinate, ever
+#define NO_BLOOD		0x100	// Never bleed, never show blood amount
+#define UNDEAD			0x200	// Various things that living things don't do, mostly for skeletons
+#define NO_INFECT		0x400	// Don't allow infections in limbs or organs, similar to IS_PLANT, without other strings.
+#define NO_DEFIB		0x800	// Don't allow them to be defibbed
 // unused: 0x8000 - higher than this will overflow
 
 // Species EMP vuln for carbons
