@@ -748,7 +748,8 @@
 		updateUsrDialog()
 		return
 
-	else if(istype(I,/obj/item/clothing/head/helmet/space) && !istype(I, /obj/item/clothing/head/helmet/space/rig))
+	else if(istype(I,/obj/item/clothing/head/helmet/space/void) && !istype(I, /obj/item/clothing/head/helmet/space/rig))
+		var/obj/item/clothing/head/helmet/space/void/IH = I
 
 		if(locked)
 			to_chat(user, "<span class='danger'>The suit cycler is locked.</span>")
@@ -756,6 +757,10 @@
 
 		if(helmet)
 			to_chat(user, "<span class='danger'>The cycler already contains a helmet.</span>")
+			return
+
+		if(IH.no_cycle)
+			to_chat(user, "<span class='danger'>That item is not compatible with the cycler's protocols.</span>")
 			return
 
 		if(I.icon_override == CUSTOM_ITEM_MOB)
@@ -784,6 +789,7 @@
 		return
 
 	else if(istype(I,/obj/item/clothing/suit/space/void))
+		var/obj/item/clothing/suit/space/void/IS = I
 
 		if(locked)
 			to_chat(user, "<span class='danger'>The suit cycler is locked.</span>")
@@ -791,6 +797,10 @@
 
 		if(suit)
 			to_chat(user, "<span class='danger'>The cycler already contains a voidsuit.</span>")
+			return
+
+		if(IS.no_cycle)
+			to_chat(user, "<span class='danger'>That item is not compatible with the cycler's protocols.</span>")
 			return
 
 		if(I.icon_override == CUSTOM_ITEM_MOB)
