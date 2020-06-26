@@ -311,3 +311,5 @@
 	overlay_state = "democracy"
 	icon = 'icons/obj/clothing/ties_vr.dmi'
 	icon_override = 'icons/mob/ties_vr.dmi'
+	slot = ACCESSORY_SLOT_ARMBAND
+	on_rolled = list("down" = "none")
