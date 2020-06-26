@@ -303,9 +303,11 @@
 	overlay_state = "silverthree"
 	desc = "A silver medal awarded to a group which has demonstrated exceptional teamwork to achieve a notable feat. This one has two bronze service stars, denoting that it has been awarded three times."
 
-/obj/item/clothing/accessory/armband/democracy
+/obj/item/clothing/accessory/armband_vr/democracy
 	name = "democracy armband"
-	desc = "A red armband worn on the lower left arm. Worn by members of anti-monarchy Red Armband Movement in An-Takh-Et "
-	icon_state = "armband_democracy"
-	item_state = "armband_democracy"
-	overlay_state = "armband_democracy"
+	desc = "A red armband worn on the lower left arm. Worn by members of anti-monarchy Red Armband Movement in An-Takh-Et."
+	icon_state = "democracy"
+	item_state = "democracy"
+	overlay_state = "democracy"
+	icon = 'icons/obj/clothing/ties_vr.dmi'
+	icon_override = 'icons/mob/ties_vr.dmi'
