@@ -30,10 +30,6 @@
 	icon_state = "sbsposter9"
 	name = "Shitty Tim"
 	desc = "A Shitty Tim concert poster."
-/datum/poster/vore_10
-	icon_state = "sbsposter10"
-	name = "Kitty Kisuke"
-	desc = "A poster of famous redspace researcher, Kisuke Gema."
 /datum/poster/vore_11
 	icon_state = "sbsposter11"
 	name = "Fear"
