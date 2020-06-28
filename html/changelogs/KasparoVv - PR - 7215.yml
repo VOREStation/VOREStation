@@ -1,7 +1,0 @@
-author: KasparoVv
-delete-after: True
-changes:
-  - rscadd: "You can now quickly cycle hrough previous or next hair/facial styles at character creation."
-  - rscadd: "Use the -mv- button to pick a marking and place it above of another on your character. Saves you from pressing up or down a bunch."
-  - tweak: "Ports color_square() from Paradise for colour previews, cleaning up pref. code & correct alignment issue w/ nested tables."
-  - tweak: "Markings are now properly aligned within a table."
