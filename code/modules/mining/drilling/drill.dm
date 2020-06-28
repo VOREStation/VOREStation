@@ -59,12 +59,21 @@
 	default_apply_parts()
 	cell = default_use_hicell()
 
+<<<<<<< HEAD
 /obj/machinery/mining/drill/loaded
 	cell = /obj/item/weapon/cell/high
 
 /obj/machinery/mining/drill/get_cell()
 	return cell	
 
+=======
+/obj/machinery/mining/drill/get_cell()
+	return cell	
+
+/obj/machinery/mining/drill/loaded
+	cell = /obj/item/weapon/cell/high
+
+>>>>>>> 9d5f32d... Adds get_cell to drill heads so you can use an inducer on them (#7274)
 /obj/machinery/mining/drill/process()
 
 	if(need_player_check)
