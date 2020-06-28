@@ -715,6 +715,54 @@ var/list/floor_decals = list()
 /obj/effect/floor_decal/sign/p
 	icon_state = "white_p"
 
+/obj/effect/floor_decal/sign/small_a
+	icon_state = "small_a"
+
+/obj/effect/floor_decal/sign/small_b
+	icon_state = "small_b"
+
+/obj/effect/floor_decal/sign/small_c
+	icon_state = "small_c"
+
+/obj/effect/floor_decal/sign/small_d
+	icon_state = "small_d"
+
+/obj/effect/floor_decal/sign/small_e
+	icon_state = "small_e"
+
+/obj/effect/floor_decal/sign/small_f
+	icon_state = "small_f"
+
+/obj/effect/floor_decal/sign/small_g
+	icon_state = "small_g"
+
+/obj/effect/floor_decal/sign/small_h
+	icon_state = "small_h"
+
+/obj/effect/floor_decal/sign/small_1
+	icon_state = "small_1"
+
+/obj/effect/floor_decal/sign/small_2
+	icon_state = "small_2"
+
+/obj/effect/floor_decal/sign/small_3
+	icon_state = "small_3"
+
+/obj/effect/floor_decal/sign/small_4
+	icon_state = "small_4"
+
+/obj/effect/floor_decal/sign/small_5
+	icon_state = "small_5"
+
+/obj/effect/floor_decal/sign/small_6
+	icon_state = "small_6"
+
+/obj/effect/floor_decal/sign/small_7
+	icon_state = "small_7"
+
+/obj/effect/floor_decal/sign/small_8
+	icon_state = "small_8"
+
 /obj/effect/floor_decal/sign/dock
 	icon_state = "white_d"
 
