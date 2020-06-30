@@ -100,12 +100,9 @@
 	var/static/image/radial_image_lighttoggle = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_light")
 	var/static/image/radial_image_statpanel = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_examine2")
 
-<<<<<<< HEAD
 	var/datum/mini_hud/mech/minihud
 
-=======
 	var/strafing = 0
->>>>>>> cdbf339... Add straffing to mechs. This took my entire morning goddamnit. (#7306)
 
 /obj/mecha/drain_power(var/drain_check)
 
@@ -677,7 +674,7 @@
 	if(user == occupant)
 		show_radial_occupant(user)
 		return
-	
+
 	user.setClickCooldown(user.get_attack_speed())
 	src.log_message("Attack by hand/paw. Attacker - [user].",1)
 
@@ -1187,13 +1184,13 @@
 	set category = "Exosuit Interface"
 	set src = usr.loc
 	set popup_menu = 0
-	
+
 	if(!occupant)
 		return
-	
+
 	if(usr != occupant)
 		return
-	
+
 	for(var/turf/T in locs)
 		var/obj/machinery/atmospherics/portables_connector/possible_port = locate(/obj/machinery/atmospherics/portables_connector) in T
 		if(possible_port)
@@ -1214,13 +1211,13 @@
 	set category = "Exosuit Interface"
 	set src = usr.loc
 	set popup_menu = 0
-	
+
 	if(!occupant)
 		return
-	
+
 	if(usr != occupant)
 		return
-	
+
 	if(disconnect())
 		occupant_message("<span class='notice'>[name] disconnects from the port.</span>")
 		verbs -= /obj/mecha/verb/disconnect_from_port
