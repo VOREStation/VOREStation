@@ -100,12 +100,8 @@
 	var/static/image/radial_image_lighttoggle = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_light")
 	var/static/image/radial_image_statpanel = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_examine2")
 
-<<<<<<< HEAD
-	var/datum/mini_hud/mech/minihud
-
-=======
+	var/datum/mini_hud/mech/minihud //VOREStation Edit
 	var/strafing = 0
->>>>>>> cdbf339... Add straffing to mechs. This took my entire morning goddamnit. (#7306)
 
 /obj/mecha/drain_power(var/drain_check)
 
