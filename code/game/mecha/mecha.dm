@@ -100,8 +100,8 @@
 	var/static/image/radial_image_lighttoggle = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_light")
 	var/static/image/radial_image_statpanel = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_examine2")
 
-	var/datum/mini_hud/mech/minihud
-
+	var/datum/mini_hud/mech/minihud //VOREStation Edit
+	var/strafing = 0
 
 /obj/mecha/drain_power(var/drain_check)
 
@@ -511,9 +511,16 @@
 				break
 		if(result)
 			move_result = mechstep(direction)
+
 	//Turning
+
 	else if(src.dir != direction)
-		move_result = mechturn(direction)
+
+		if(strafing)
+			move_result = mechstep(direction)
+		else
+			move_result = mechturn(direction)
+
 	//Stepping
 	else
 		move_result	= mechstep(direction)
@@ -544,11 +551,14 @@
 	return 1
 
 /obj/mecha/proc/mechstep(direction)
+	var/current_dir = dir	//For strafing
 	var/result = get_step(src,direction)
 	if(result && Move(result))
 		if(stomp_sound)
 			playsound(src,stomp_sound,40,1)
 		handle_equipment_movement()
+	if(strafing)	//Also for strafing
+		set_dir(current_dir)
 	return result
 
 
@@ -1230,7 +1240,7 @@
 
 
 /obj/mecha/verb/toggle_internal_tank()
-	set name = "Toggle internal airtank usage."
+	set name = "Toggle internal airtank usage"
 	set category = "Exosuit Interface"
 	set src = usr.loc
 	set popup_menu = 0
@@ -1241,6 +1251,17 @@
 	src.log_message("Now taking air from [use_internal_tank?"internal airtank":"environment"].")
 	return
 
+/obj/mecha/verb/toggle_strafing()
+	set name = "Toggle strafing"
+	set category = "Exosuit Interface"
+	set src = usr.loc
+	set popup_menu = 0
+	if(usr!=src.occupant)
+		return
+	strafing = !strafing
+	src.occupant_message("Toggled strafing mode [strafing?"on":"off"].")
+	src.log_message("Toggled strafing mode [strafing?"on":"off"].")
+	return
 
 /obj/mecha/MouseDrop_T(mob/O, mob/user as mob)
 	//Humans can pilot mechs.
@@ -1388,7 +1409,7 @@
 	return
 
 
-/obj/mecha/proc/go_out()
+/obj/mecha/proc/go_out() //Eject/Exit the mech. Yes this is for easier searching.
 	if(!src.occupant) return
 	var/atom/movable/mob_container
 	QDEL_NULL(minihud)
@@ -1417,6 +1438,7 @@
 		icon_state = src.reset_icon()+"-open"
 		set_dir(dir_in)
 		verbs -= /obj/mecha/verb/eject
+		strafing = 0
 	return
 
 /////////////////////////
