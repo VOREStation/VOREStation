@@ -275,7 +275,7 @@
 	
 	add_fingerprint(usr)
 
-	if(usr.stat || usr.restrained() || flushing)
+	if(flushing)
 		return
 	
 	if(isturf(loc))
