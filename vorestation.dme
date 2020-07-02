@@ -2447,11 +2447,8 @@
 #include "code\modules\mob\living\carbon\human\emote.dm"
 #include "code\modules\mob\living\carbon\human\emote_vr.dm"
 #include "code\modules\mob\living\carbon\human\examine.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\modules\mob\living\carbon\human\examine_vr.dm"
-=======
 #include "code\modules\mob\living\carbon\human\gradient.dm"
->>>>>>> 4d70bd7... ice cream (#7313):polaris.dme
 #include "code\modules\mob\living\carbon\human\human.dm"
 #include "code\modules\mob\living\carbon\human\human_attackhand.dm"
 #include "code\modules\mob\living\carbon\human\human_attackhand_vr.dm"
