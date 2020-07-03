@@ -8,7 +8,10 @@
 	closet_appearance = /decl/closet_appearance/wall
 	density = 0
 	anchored = 1
+<<<<<<< HEAD
 	store_mobs = 0
+=======
+>>>>>>> 8b3bdd0... Merge pull request #7268 from VOREStation/Arokha/baylockers
 
 //spawns endless (3 sets) amounts of breathmask, emergency oxy tank and crowbar
 

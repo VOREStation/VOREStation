@@ -210,4 +210,7 @@
 	anchored = 1
 	density = 0
 	wall_mounted = 1
+<<<<<<< HEAD
 	store_mobs = 0
+=======
+>>>>>>> 8b3bdd0... Merge pull request #7268 from VOREStation/Arokha/baylockers

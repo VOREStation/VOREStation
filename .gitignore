@@ -10,8 +10,11 @@ vchat.db*
 *.backup
 *.before
 *.pyc
+<<<<<<< HEAD
 *.pid
 data
+=======
+>>>>>>> 8b3bdd0... Merge pull request #7268 from VOREStation/Arokha/baylockers
 data/
 cfg/
 

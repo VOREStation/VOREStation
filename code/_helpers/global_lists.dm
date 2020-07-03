@@ -22,9 +22,12 @@ var/global/list/joblist = list()					//list of all jobstypes, minus borg and AI
 
 var/list/mannequins_
 
+<<<<<<< HEAD
 // Times that players are allowed to respawn ("ckey" = world.time)
 GLOBAL_LIST_EMPTY(respawn_timers)
 
+=======
+>>>>>>> 8b3bdd0... Merge pull request #7268 from VOREStation/Arokha/baylockers
 // Closets have magic appearances
 GLOBAL_LIST_EMPTY(closet_appearances)
 
@@ -213,6 +216,7 @@ var/global/list/string_slot_flags = list(
 		var/decl/closet_appearance/app = new T()
 		GLOB.closet_appearances[T] = app
 
+<<<<<<< HEAD
 	// VOREStation Add - Vore Modes!
 	paths = typesof(/datum/digest_mode) - /datum/digest_mode/transform
 	for(var/T in paths)
@@ -220,6 +224,8 @@ var/global/list/string_slot_flags = list(
 		GLOB.digest_modes[DM.id] = DM
 	// VOREStation Add End
 
+=======
+>>>>>>> 8b3bdd0... Merge pull request #7268 from VOREStation/Arokha/baylockers
 	return 1
 
 /* // Uncomment to debug chemical reaction list.

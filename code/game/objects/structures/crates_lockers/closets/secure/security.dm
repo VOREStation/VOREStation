@@ -64,7 +64,10 @@
 
 /obj/structure/closet/secure_closet/hos
 	name = "head of security's locker"
+<<<<<<< HEAD
 	req_access = list(access_hos)
+=======
+>>>>>>> 8b3bdd0... Merge pull request #7268 from VOREStation/Arokha/baylockers
 	req_access = list(access_hos)
 	storage_capacity = 2.5 * MOB_MEDIUM
 	closet_appearance = /decl/closet_appearance/secure_closet/security/hos

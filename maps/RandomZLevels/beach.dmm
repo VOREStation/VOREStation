@@ -243,6 +243,7 @@
 /area/awaymission/beach)
 
 (1,1,1) = {"
+<<<<<<< HEAD
 a
 a
 a
@@ -1321,4 +1322,31 @@ R
 R
 R
 R
+=======
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+abcdeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeefea
+aghieeeejeeeeeeeeeeeeeeeeeeeeeeeeeeeeeea
+aklmeeeeeeeenoooooooooopeeqrqrqrqrqrqrqa
+aeeeeeeeeeeestuvwxyzABCseeeeeeeeeeeeeeea
+aeeeeeeeeeeeDEEEEEEEEEEseeeeeeeeeeeeeeea
+aeeeeeeeeeeeFEEEEEEEEEEseeeeeeeeeGeeeeea
+aefeeeeeeeeeHxIxxxxxxxxDeeeGeeJeeeeeeeea
+aeeeeeeeeeeeeKKKKKKKKKKeeeeeeeeeeeeeeeea
+aeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeea
+aeeLeeeeeeeeeeeeeeeeeeeeeeeeeeefeeeeeeea
+aeeeeeGMeeeeeeeeeeeeeeGeeeeeNeeeMeeeeefa
+aeeJeeeeeeLeeOeOeOeOeOeOeeeeeeeeeeOeOeea
+aeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeea
+PQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQP
+RSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSR
+RSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSR
+RSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSR
+RSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSR
+RSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSR
+RSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSR
+RSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSR
+RSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSR
+RSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSR
+RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+>>>>>>> 8b3bdd0... Merge pull request #7268 from VOREStation/Arokha/baylockers
 "}

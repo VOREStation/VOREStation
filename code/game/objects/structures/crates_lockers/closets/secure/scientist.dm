@@ -43,8 +43,12 @@
 		/obj/item/clothing/mask/gas,
 		/obj/item/device/flash,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/science,
+<<<<<<< HEAD
 		/obj/item/clothing/shoes/boots/winter/science,
 		/obj/item/weapon/bluespace_harpoon) //VOREStation Add
+=======
+		/obj/item/clothing/shoes/boots/winter/science)
+>>>>>>> 8b3bdd0... Merge pull request #7268 from VOREStation/Arokha/baylockers
 
 /obj/structure/closet/secure_closet/xenoarchaeologist
 	name = "Xenoarchaeologist Locker"
