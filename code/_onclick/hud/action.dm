@@ -223,3 +223,7 @@
 #undef AB_WEST_OFFSET
 #undef AB_NORTH_OFFSET
 #undef AB_MAX_COLUMNS
+
+
+/datum/action/innate/
+	action_type = AB_INNATE

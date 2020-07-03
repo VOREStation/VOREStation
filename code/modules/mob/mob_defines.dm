@@ -224,4 +224,8 @@
 
 	var/registered_z
 
+<<<<<<< HEAD
 	var/list/progressbars = null //for stacking do_after bars
+=======
+	var/in_enclosed_vehicle = 0	//For mechs and fighters ambiance. Can be used in other cases.
+>>>>>>> ce9ceb4... Add clickable action buttons from /TG/, rework a lot of backend and other improvements. (#7315)
