@@ -6,6 +6,8 @@ $color-background: rgba(0, 0, 0, 0.33) !default;
   bottom: 0;
   left: 524px;
   right: 0;
+  padding: 0px;
+  margin: 0px;
   background-color: $color-background;
   overflow-y: scroll;
 }
@@ -20,4 +22,6 @@ $color-background: rgba(0, 0, 0, 0.33) !default;
 
 .NanoMap__marker {
   z-index: 10;
+  padding: 0px;
+  margin: 0px;
 }

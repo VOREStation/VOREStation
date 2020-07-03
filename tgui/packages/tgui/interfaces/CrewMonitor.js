@@ -21,21 +21,30 @@ export const CrewMonitor = (props, context) => {
               "mapZLevel": level,
             })} />
         ))}
-        {crew
-          .filter(x => 
-            (x.sensor_type === 3 && ~~x.realZ === ~~config.mapZLevel)
-          )
-          .map(crewmember => (
-            <NanoMap.Marker
-              key={crewmember.ref}
-              x={crewmember.x}
-              y={crewmember.y}
-              icon="circle"
-              tooltip={crewmember.name}
-              color={crewmember.dead ? 'red' : 'green'}
-            />
-          ))}
-        <NanoMap />
+        {data.zoomLevels.map(zoomLevel => (
+          <Button
+            key={zoomLevel}
+            selected={Number(data.mapZoom) === Number(zoomLevel)}
+            content={zoomLevel}
+            onClick={() => act("changeZoom", { "newZoom": zoomLevel })} />
+        ))}
+        <NanoMap zoom={data.mapZoom}>
+          {crew
+            .filter(x => 
+              (x.sensor_type === 3 && ~~x.realZ === ~~config.mapZLevel)
+            )
+            .map(crewmember => (
+              <NanoMap.Marker
+                key={crewmember.ref}
+                x={crewmember.x}
+                y={crewmember.y}
+                zoom={data.mapZoom}
+                icon="circle"
+                tooltip={crewmember.name}
+                color={crewmember.dead ? 'red' : 'green'}
+              />
+            ))}
+        </NanoMap>
         <Box className="NanoMap__contentOffset">
           <Box bold m={2}>
             <Table>
