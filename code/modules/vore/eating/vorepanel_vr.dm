@@ -935,8 +935,6 @@
 			if("Prevent Digestion")
 				user.digestable = FALSE
 
-		message_admins("[key_name(user)] toggled their digestability to [user.digestable] [ADMIN_COORDJMP(user)]")
-
 		if(user.client.prefs_vr)
 			user.client.prefs_vr.digestable = user.digestable
 
@@ -1001,8 +999,6 @@
 				user.allowmobvore = TRUE
 			if("Prevent Mob Predation")
 				user.allowmobvore = FALSE
-
-		message_admins("[key_name(user)] toggled their mob vore preference to [user.allowmobvore] [ADMIN_COORDJMP(user)]")
 
 		if(user.client.prefs_vr)
 			user.client.prefs_vr.allowmobvore = user.allowmobvore
