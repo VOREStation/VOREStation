@@ -9,7 +9,6 @@ export class NanoMap extends Component {
     this.state = {
       offsetX: 0,
       offsetY: 0,
-      transform: 'none',
       dragging: false,
       originX: null,
       originY: null,
@@ -64,8 +63,17 @@ export class NanoMap extends Component {
 
   render() {
     const { config } = useBackend(this.context);
-    const { offsetX, offsetY } = this.state;
-    const { children, zoom } = this.props;
+    let { offsetX, offsetY } = this.state;
+    const { children, zoom, reset } = this.props;
+    
+    if (reset) {
+      this.setState({
+        offsetX: 0,
+        offsetY: 0,
+      });
+      offsetX = 0;
+      offsetY = 0;
+    }
 
     const newStyle = {
       width: 508 * zoom + 'px',
@@ -106,7 +114,7 @@ const NanoMapMarker = props => {
       position="absolute"
       className="NanoMap__marker"
       top={((255 - y) * 2 * zoom) - 8 + 'px'}
-      left={((x * 2 * zoom)) - 8 + 'px'} >
+      left={(((x - 1) * 2 * zoom)) - 6 + 'px'} >
       <Icon
         name={icon}
         color={color}

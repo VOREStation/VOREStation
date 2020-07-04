@@ -1,6 +1,5 @@
 /datum/tgui_module/crew_monitor
 	name = "Crew monitor"
-	var/mapZoom = 1
 
 /datum/tgui_module/crew_monitor/tgui_act(action, params)
 	if(..())
@@ -19,11 +18,6 @@
 				if(hassensorlevel(H, SUIT_SENSOR_TRACKING))
 					AI.ai_actual_track(H)
 			return TRUE
-		if("changeZoom")
-			var/newZoom = params["newZoom"]
-			mapZoom = newZoom
-			return TRUE
-
 
 /datum/tgui_module/crew_monitor/tgui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/tgui_state/state = GLOB.tgui_default_state)
 	var/z = get_z(tgui_host())
@@ -55,9 +49,5 @@
 	data["crewmembers"] = list()
 	for(var/zlevel in map_levels)
 		data["crewmembers"] += crew_repository.health_data(zlevel)
-
-	data["zoomLevels"] = list(1, 1.25, 1.5, 1.75, 2)
-
-	data["mapZoom"] = mapZoom
 
 	return data
