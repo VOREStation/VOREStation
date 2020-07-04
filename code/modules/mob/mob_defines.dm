@@ -225,3 +225,5 @@
 	var/registered_z
 
 	var/in_enclosed_vehicle = 0	//For mechs and fighters ambiance. Can be used in other cases.
+
+	var/list/progressbars = null //VOREStation Edit
