@@ -812,6 +812,7 @@
 	name = "SweatMAX"
 	desc = "Fueled by your inner inadequacy!"
 	icon_state = "fitness"
+	//VOREStation Edit Start
 	products = list(/obj/item/weapon/reagent_containers/food/drinks/smallmilk = 16,
 					/obj/item/weapon/reagent_containers/food/drinks/smallchocmilk = 16,
 					/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake = 8,
@@ -820,9 +821,9 @@
 					/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 8,
 					/obj/item/weapon/reagent_containers/pill/diet = 8,
 					///obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/glucose = 5,	//VOREStation Removal,
-					/obj/item/weapon/towel/random = 8)
+					/obj/item/weapon/towel/random = 8,
+					/obj/item/toy/tennis = 4)
 
-	//VOREStation Edit Start
 	prices = list(/obj/item/weapon/reagent_containers/food/drinks/smallmilk = 3,
 					/obj/item/weapon/reagent_containers/food/drinks/smallchocmilk = 3,
 					/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake = 15,
@@ -831,7 +832,8 @@
 					/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 5,
 					/obj/item/weapon/reagent_containers/pill/diet = 25,
 					///obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/glucose = 5,
-					/obj/item/weapon/towel/random = 20)
+					/obj/item/weapon/towel/random = 20,
+					/obj/item/toy/tennis = 15)
 	//VOREStation Edit End
 
 	contraband = list(/obj/item/weapon/reagent_containers/syringe/steroid = 4, /obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask/proteanshake = 2) // VOREStation Add - Slurpable blobs.
