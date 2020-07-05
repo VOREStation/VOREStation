@@ -102,13 +102,8 @@
 	var/static/image/radial_image_lighttoggle = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_light")
 	var/static/image/radial_image_statpanel = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_examine2")
 
-<<<<<<< HEAD
-	var/datum/mini_hud/mech/minihud //VOREStation Edit
-	var/strafing = 0
-=======
-
 //Mech actions
-
+	var/datum/mini_hud/mech/minihud //VOREStation Edit
 	var/strafing = 0 				//Are we strafing or not?
 
 	var/defence_mode_possible = 0 	//Can we even use defence mode? This is used to assign it to mechs and check for verbs.
@@ -156,8 +151,6 @@
 	var/datum/action/innate/mecha/mech_toggle_phasing/phasing_action = new
 
 
-
->>>>>>> ce9ceb4... Add clickable action buttons from /TG/, rework a lot of backend and other improvements. (#7315)
 
 /obj/mecha/drain_power(var/drain_check)
 
