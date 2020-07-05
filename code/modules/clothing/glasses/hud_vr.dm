@@ -48,18 +48,14 @@
 /obj/item/clothing/glasses/omnihud/prescribe(var/mob/user)
 	prescription = !prescription
 	playsound(src,'sound/items/screwdriver.ogg', 50, 1)
-	if(prescription && icon_state == "glasses")
-		name = "[initial(name)] (pr)"
-		user.visible_message("[user] uploads new prescription data to the [src.name].")
-		icon_state = "glasses"
-	else if(prescription && icon_state == "sun")
-		name = "[initial(name)] (shaded, pr)"
-		user.visible_message("[user] uploads new prescription data to the [src.name].")
-		icon_state = "sun"
+	if(prescription)
+		user.visible_message("[user] uploads new prescription data to the [src.name] and resets the lenses.")
+		name = "[initial(name)] (pr)" //change the name *after* the text so the message above is accurate
+		icon_state = "[initial(icon_state)]" //reset the icon state just to be safe
 	else
-		name = "[initial(name)]"
 		user.visible_message("[user] deletes the prescription data on the [src.name] and resets the lenses.")
-		icon_state = "glasses"
+		name = "[initial(name)]"
+		icon_state = "[initial(icon_state)]"
 
 /obj/item/clothing/glasses/omnihud/attack_self(mob/user)
 	if(!ishuman(user))
@@ -86,7 +82,7 @@
 			name = "[initial(name)] (pr)"
 		else
 			name = "[initial(name)]"
-		icon_state = "glasses"
+		icon_state = "[initial(icon_state)]"
 	else if(prescription)
 		if(icon_state == "glasses")
 			to_chat(usr, "You darken the electrochromic lenses of \the [src] to one-way transparency.")
@@ -96,6 +92,8 @@
 			to_chat(usr, "You restore the electrochromic lenses of \the [src] to standard two-way transparency.")
 			name = "[initial(name)] (pr)"
 			icon_state = "glasses"
+		else
+			to_chat(usr, "The [src] don't seem to support this functionality.")
 	else if(!prescription)
 		if(icon_state == "glasses")
 			to_chat(usr, "You darken the electrochromic lenses of \the [src] to one-way transparency.")
@@ -105,6 +103,8 @@
 			to_chat(usr, "You restore the electrochromic lenses of \the [src] to standard two-way transparency.")
 			name = "[initial(name)]"
 			icon_state = "glasses"
+		else
+			to_chat(usr, "The [src] don't seem to support this functionality.")
 	update_clothing_icon()
 
 /obj/item/clothing/glasses/omnihud/proc/ar_interact(var/mob/living/carbon/human/user)
