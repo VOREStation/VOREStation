@@ -26,8 +26,4 @@
 		quick_create_object_html = file2text('html/create_object.html')
 		quick_create_object_html = replacetext(quick_create_object_html, "null /* object types */", "\"[objectjs]\"")
 
-<<<<<<< HEAD
-	user << browse(replacetext(quick_create_object_html, "/* ref src */", "\ref[src]"), "window=quick_create_object;size=425x475")
-=======
 	user << browse(replacetext(quick_create_object_html, "/* ref src */", "\ref[src]"), "window=quick_create_object;size=680x600")
->>>>>>> 65a0d26... Merge pull request #7307 from Verkister/patch-40
