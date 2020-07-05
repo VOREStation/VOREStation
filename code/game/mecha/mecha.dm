@@ -1468,10 +1468,10 @@
 		src.verbs += /obj/mecha/verb/eject
 		src.log_append_to_last("[H] moved in as pilot.")
 		src.icon_state = src.reset_icon()
-<<<<<<< HEAD
+		//VOREStation Edit Add
 		if(occupant.hud_used)
 			minihud = new (occupant.hud_used, src)
-=======
+		//VOREStation Edit Add End
 
 //This part removes all the verbs if you don't have them the _possible on your mech. This is a little clunky, but it lets you just add that to any mech.
 //And it's not like this 10yo code wasn't clunky before.
@@ -1492,7 +1492,6 @@
 			verbs -= /obj/mecha/verb/switch_damtype
 
 		occupant.in_enclosed_vehicle = 1	//Useful for when you need to know if someone is in a mecho.
->>>>>>> ce9ceb4... Add clickable action buttons from /TG/, rework a lot of backend and other improvements. (#7315)
 		update_cell_alerts()
 		update_damage_alerts()
 		set_dir(dir_in)
