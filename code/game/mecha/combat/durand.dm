@@ -12,8 +12,6 @@
 	max_temperature = 30000
 	infra_luminosity = 8
 	force = 40
-	var/defence = 0
-	var/defence_deflect = 35
 	wreckage = /obj/effect/decal/mecha_wreckage/durand
 
 	max_hull_equip = 2
@@ -21,6 +19,8 @@
 	max_utility_equip = 2
 	max_universal_equip = 1
 	max_special_equip = 1
+
+	defence_mode_possible = 1
 
 /*
 /obj/mecha/combat/durand/New()
@@ -31,40 +31,9 @@
 	return
 */
 
-/obj/mecha/combat/durand/relaymove(mob/user,direction)
-	if(defence)
-		if(world.time - last_message > 20)
-			src.occupant_message("<font color='red'>Unable to move while in defence mode</font>")
-			last_message = world.time
-		return 0
-	. = ..()
-	return
 
 
-/obj/mecha/combat/durand/verb/defence_mode()
-	set category = "Exosuit Interface"
-	set name = "Toggle defence mode"
-	set src = usr.loc
-	set popup_menu = 0
-	if(usr!=src.occupant)
-		return
-	playsound(src, 'sound/mecha/duranddefencemode.ogg', 50, 1)
-	defence = !defence
-	if(defence)
-		deflect_chance = defence_deflect
-		src.occupant_message("<font color='blue'>You enable [src] defence mode.</font>")
-	else
-		deflect_chance = initial(deflect_chance)
-		src.occupant_message("<font color='red'>You disable [src] defence mode.</font>")
-	src.log_message("Toggled defence mode.")
-	return
-
-
-/obj/mecha/combat/durand/get_stats_part()
-	var/output = ..()
-	output += "<b>Defence mode: [defence?"on":"off"]</b>"
-	return output
-
+//This is for the Mech stats / Menu system. To be moved later on.
 /obj/mecha/combat/durand/get_commands()
 	var/output = {"<div class='wr'>
 						<div class='header'>Special</div>
@@ -76,8 +45,20 @@
 	output += ..()
 	return output
 
+
+//Not needed anymore but left for reference.
+/*
+/obj/mecha/combat/durand/get_stats_part()
+	var/output = ..()
+	output += "<b>Defence mode: [defence?"on":"off"]</b>"
+	return output
+*/
+
+/*
+
 /obj/mecha/combat/durand/Topic(href, href_list)
 	..()
 	if (href_list["toggle_defence_mode"])
 		src.defence_mode()
 	return
+*/
