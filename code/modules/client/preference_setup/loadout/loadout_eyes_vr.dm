@@ -47,6 +47,10 @@
 	display_name = "science goggles (no overlay)"
 	path = /obj/item/clothing/glasses/fluff/science_proper
 
+/datum/gear/eyes/meson/retinal
+	display_name = "retinal projector, meson (Eng, Sci, Mining)"
+	path = /obj/item/clothing/glasses/omnihud/eng/meson
+
 /datum/gear/eyes/security/secpatch
 	display_name = "Security HUDpatch"
 	path = /obj/item/clothing/glasses/hud/security/eyepatch

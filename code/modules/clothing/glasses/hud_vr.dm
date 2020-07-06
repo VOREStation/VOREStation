@@ -2,7 +2,8 @@
 	name = "\improper AR glasses"
 	desc = "The ARG-62 AR Glasses are capable of displaying information on individuals. \
 	Commonly used to allow non-augmented crew to interact with virtual interfaces. \
-	<br>They are also fitted with toggleable electrochromic lenses."
+	<br>They are also fitted with toggleable cosmetic electrochromic lenses. \
+	The lenses will not protect against sudden bright flashes or welding."
 	origin_tech = list(TECH_MAGNET = 3, TECH_BIO = 3)
 	var/obj/item/clothing/glasses/hud/omni/hud = null
 	var/mode = "civ"
@@ -135,7 +136,7 @@
 	These have been upgraded with security records integration and flash protection. \
 	They also have access to security alerts such as camera and motion sensor alarms."
 	mode = "sec"
-	flash_protection = FLASH_PROTECTION_MAJOR
+	flash_protection = FLASH_PROTECTION_MODERATE //weld protection is a little too widespread
 	action_button_name = "AR Console (Security Alerts)"
 	arscreen_path = /datum/nano_module/alarm_monitor/security
 	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_WANTED,VIS_AUGMENTED)
@@ -168,7 +169,7 @@
 
 /obj/item/clothing/glasses/omnihud/eng/meson
 	name = "meson scanner HUD"
-	desc = "A headset equipped with a scanning lens and mounted retinal projector. They don't provide any eye protection, but they're less obtrusive than goggles."
+	desc = "A headset equipped with a scanning lens and mounted retinal projector. It doesn't provide any eye protection, but it's less obtrusive than goggles."
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "projector"
@@ -176,6 +177,7 @@
 	body_parts_covered = 0
 	toggleable = 1
 	vision_flags = SEE_TURFS //but they can spot breaches. Due to the way HUDs work, they don't provide darkvision up-close the way mesons do.
+	flash_protection = 0 //it's an open, single-eye retinal projector. there's no way it protects your eyes from flashes or welders.
 
 /obj/item/clothing/glasses/omnihud/eng/meson/attack_self(mob/user)
 	if(!active)
@@ -206,7 +208,8 @@
 /obj/item/clothing/glasses/omnihud/all
 	name = "\improper AR-B glasses"
 	desc = "The ARG-62-B AR Glasses are capable of displaying information on individuals. \
-	These have been upgraded with every feature the lesser models have. Now we're talkin'."
+	These have been upgraded with (almost) every feature the lesser models have. Now we're talkin'. \
+	<br>Offers full protection against bright flashes/welders and full access to system alarm monitoring."
 	mode = "best"
 	flash_protection = FLASH_PROTECTION_MAJOR
 	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_STATUS_R,VIS_CH_BACKUP,VIS_CH_WANTED)
@@ -264,4 +267,3 @@
 	else
 		icon_state = initial(icon_state)
 	update_clothing_icon()
-
