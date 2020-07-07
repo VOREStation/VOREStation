@@ -327,7 +327,6 @@
 /datum/reagent/tricorlidaze/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien != IS_DIONA)
 		M.adjustToxLoss(3 * removed)
-		affect_blood(M, alien, removed * 0.4)
 
 /datum/reagent/tricorlidaze/touch_obj(var/obj/O)
 	if(istype(O, /obj/item/stack/medical/bruise_pack) && round(volume) >= 5)

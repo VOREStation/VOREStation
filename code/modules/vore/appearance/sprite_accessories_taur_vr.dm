@@ -422,8 +422,30 @@
 	icon_state = "frog_s"
 
 /datum/sprite_accessory/tail/taur/thicktentacles
-	name = "Tentacles(Thick)"
-	icon_state = "tentacles_s"
+	name = "Thick Tentacles (Taur)"
+	icon_state = "tentacle_s"
+	can_ride = 0
+
+	msg_prey_stepunder = "You run between %prey's tentacles."
+	msg_owner_stepunder = "%owner runs between your tentacles."
+
+	msg_owner_disarm_run = "You quickly push %prey to the ground with some of your tentacles!"
+	msg_prey_disarm_run = "%owner pushes you down to the ground with some of their tentacles!"
+
+	msg_owner_disarm_walk = "You push down on %prey with some of your tentacles, pinning them down firmly under you!"
+	msg_prey_disarm_walk = "%owner pushes down on you with some of their tentacles, pinning you down firmly below them!"
+
+	msg_owner_harm_run = "Your tentacles carelessly slide past %prey, crushing them!"
+	msg_prey_harm_run = "%owner quickly goes over your body, carelessly crushing you with their tentacles!"
+
+	msg_owner_harm_walk = "Your tentacles methodically apply pressure on %prey's body, crushing them against the floor below!"
+	msg_prey_harm_walk = "%owner's thick tentacles methodically apply pressure on your body, crushing you into the floor below!"
+
+	msg_owner_grab_success = "You slide over %prey with your tentacles, smushing them against the ground before wrapping one up around them, trapping them within the tight confines of your tentacles!"
+	msg_prey_grab_success = "%owner slides over you with their tentacles, smushing you against the ground before wrapping one up around you, trapping you within the tight confines of their tentacles!"
+
+	msg_owner_grab_fail = "You step down onto %prey with one of your tentacles, forcing them onto the ground!"
+	msg_prey_grab_fail = "%owner steps down onto you with one of their tentacles, squishing you and forcing you onto the ground!"
 
 /datum/sprite_accessory/tail/taur/drake //Enabling on request, no suit compatibility but then again see 2 above.
 	name = "Drake (Taur)"

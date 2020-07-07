@@ -25,7 +25,7 @@
 /obj/machinery/recharge_station/Initialize()
 	. = ..()
 	default_apply_parts()
-	default_use_hicell()
+	cell = default_use_hicell()
 	update_icon()
 
 /obj/machinery/recharge_station/proc/has_cell_power()

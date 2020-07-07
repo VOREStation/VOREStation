@@ -57,13 +57,13 @@
 	if(ispath(cell))
 		cell = new cell(src)
 	default_apply_parts()
-	default_use_hicell()
-
-/obj/machinery/mining/drill/loaded
-	cell = /obj/item/weapon/cell/high
+	cell = default_use_hicell()
 
 /obj/machinery/mining/drill/get_cell()
 	return cell	
+
+/obj/machinery/mining/drill/loaded
+	cell = /obj/item/weapon/cell/high
 
 /obj/machinery/mining/drill/process()
 

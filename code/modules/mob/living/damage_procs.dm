@@ -18,6 +18,9 @@
 			damage -= round(damage*0.8)
 		else
 			damage -= soaked
+
+	var/initial_blocked = blocked
+
 	blocked = (100-blocked)/100
 	switch(damagetype)
 		if(BRUTE)
@@ -27,8 +30,8 @@
 				damage = 0
 			adjustFireLoss(damage * blocked)
 		if(SEARING)
-			apply_damage(damage / 3, BURN, def_zone, blocked, soaked, used_weapon, sharp, edge)
-			apply_damage(damage / 3 * 2, BRUTE, def_zone, blocked, soaked, used_weapon, sharp, edge)
+			apply_damage(round(damage / 3), BURN, def_zone, initial_blocked, soaked, used_weapon, sharp, edge)
+			apply_damage(round(damage / 3 * 2), BRUTE, def_zone, initial_blocked, soaked, used_weapon, sharp, edge)
 		if(TOX)
 			adjustToxLoss(damage * blocked)
 		if(OXY)
@@ -41,7 +44,7 @@
 			electrocute_act(damage, used_weapon, 1.0, def_zone)
 		if(BIOACID)
 			if(isSynthetic())
-				adjustFireLoss(damage * blocked)
+				apply_damage(damage, BURN, def_zone, initial_blocked, soaked, used_weapon, sharp, edge)	// Handle it as normal burn.
 			else
 				adjustToxLoss(damage * blocked)
 	flash_weak_pain()

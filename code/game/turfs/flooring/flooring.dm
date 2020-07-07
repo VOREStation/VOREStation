@@ -28,7 +28,7 @@ var/list/flooring_types
 	var/icon
 	var/icon_base // initial base icon_state without edges or corners.
 
-	var/has_base_range // This will pick between a range of 0 - x. Number icon_states accordingly. 
+	var/has_base_range // This will pick between a range of 0 - x. Number icon_states accordingly.
 					   // Note that this will append a 0 - x number automatically to icon_base, but NOT the dmi. Do icon_base = "grass", but name grass0 inside the dmi. etc etc.
 	var/has_damage_range
 	var/has_burn_range
@@ -43,7 +43,7 @@ var/list/flooring_types
 	var/descriptor = "tiles"
 	var/flags
 	var/can_paint
-	var/list/footstep_sounds = list() // key=species name, value = list of sounds, 
+	var/list/footstep_sounds = list() // key=species name, value = list of sounds,
 									  // For instance, footstep_sounds = list("key" = list(sound.ogg))
 	var/is_plating = FALSE
 	var/list/flooring_cache = list() // Cached overlays for our edges and corners and junk
@@ -205,14 +205,18 @@ var/list/flooring_types
 	desc = "Gritty and unpleasant, just like dirt."
 	icon = 'icons/turf/outdoors.dmi'
 	icon_base = "dirt-dark"
-	flags = TURF_HAS_EDGES | TURF_REMOVE_SHOVEL
+	flags = TURF_REMOVE_SHOVEL
 	build_type = null
 	footstep_sounds = list("human" = list(
 		'sound/effects/footstep/asteroid1.ogg',
 		'sound/effects/footstep/asteroid2.ogg',
 		'sound/effects/footstep/asteroid3.ogg',
 		'sound/effects/footstep/asteroid4.ogg',
-		'sound/effects/footstep/asteroid5.ogg'))
+		'sound/effects/footstep/asteroid5.ogg',
+		'sound/effects/footstep/MedDirt1.ogg',
+		'sound/effects/footstep/MedDirt2.ogg',
+		'sound/effects/footstep/MedDirt3.ogg',
+		'sound/effects/footstep/MedDirt4.ogg',))
 
 /decl/flooring/snow
 	name = "snow"
@@ -427,6 +431,22 @@ var/list/flooring_types
 	desc = "Don't slip."
 	icon_base = "freezer"
 	build_type = /obj/item/stack/tile/floor/freezer
+
+/decl/flooring/wmarble
+	name = "marble floor"
+	desc = "Very regal white marble flooring."
+	icon = 'icons/turf/flooring/misc.dmi'
+	icon_base = "lightmarble"
+	build_type = /obj/item/stack/tile/wmarble
+	flags = TURF_REMOVE_CROWBAR
+
+/decl/flooring/bmarble
+	name = "marble floor"
+	desc = "Very regal black marble flooring."
+	icon = 'icons/turf/flooring/misc.dmi'
+	icon_base = "darkmarble"
+	build_type = /obj/item/stack/tile/bmarble
+	flags = TURF_REMOVE_CROWBAR
 
 /decl/flooring/wood
 	name = "wooden floor"

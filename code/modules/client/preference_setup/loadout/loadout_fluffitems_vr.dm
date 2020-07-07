@@ -661,6 +661,12 @@
 	ckeywhitelist = list("nickcrazy")
 	character_name = list("Damon Bones Xrim")
 
+/datum/gear/fluff/NDF_Medical_jacket
+	path = /obj/item/clothing/under/solgov/utility/sifguard/medical
+	display_name = "Ridge's Medical Jacket"
+	ckeywhitelist = list("nickcrazy")
+	character_name = list("Ridge")
+
 /datum/gear/fluff/damon_jacket
 	path = /obj/item/clothing/suit/storage/toggle/bomber/bombersec
 	display_name = "Damon's Bomber Jacket"
@@ -1114,6 +1120,19 @@
 	display_name = "Ali's Unity Medal"
 	ckeywhitelist = list("xonkon")
 	character_name = list("Ali")
+
+/datum/gear/fluff/zena_suit
+	path = /obj/item/clothing/suit/space/void/engineering/zena
+	display_name = "Zena's Shroud Suit"
+	ckeywhitelist = list("xonkon")
+	character_name = list("Zena Aviv")
+
+/datum/gear/fluff/zena_helmet
+	path = /obj/item/clothing/head/helmet/space/void/engineering/zena
+	display_name = "Zena's Shroud Helmet"
+	ckeywhitelist = list("xonkon")
+	character_name = list("Zena Aviv")
+
 
 //  Y CKEYS
 

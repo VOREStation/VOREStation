@@ -38,7 +38,7 @@
 /obj/structure/closet/secure_closet/explorer
 	name = "explorer locker"
 	req_access = list(access_explorer)
-	closet_appearance = /decl/closet_appearance/secure_closet/exploration
+	closet_appearance = /decl/closet_appearance/secure_closet/expedition/explorer
 
 	starts_with = list(
 		/obj/item/clothing/under/explorer,
@@ -76,7 +76,7 @@
 	name = "field medic locker"
 	desc = "Supplies for a wilderness first responder."
 	req_access = list(access_medical_equip)
-	closet_appearance = /decl/closet_appearance/secure_closet/medical
+	closet_appearance = /decl/closet_appearance/secure_closet/expedition/sar
 
 	starts_with = list(
 		/obj/item/weapon/storage/backpack/dufflebag/emt,
@@ -117,7 +117,7 @@
 /obj/structure/closet/secure_closet/pilot
 	name = "pilot locker"
 	req_access = list(access_pilot)
-	closet_appearance = /decl/closet_appearance/secure_closet/exploration/pilot
+	closet_appearance = /decl/closet_appearance/secure_closet/expedition/pilot
 
 	starts_with = list(
 		/obj/item/weapon/storage/backpack/parachute,
@@ -153,7 +153,7 @@
 /obj/structure/closet/secure_closet/pathfinder
 	name = "pathfinder locker"
 	req_access = list(access_gateway)
-	closet_appearance = /decl/closet_appearance/secure_closet/exploration/pathfinder
+	closet_appearance = /decl/closet_appearance/secure_closet/expedition/pathfinder
 
 	starts_with = list(
 		/obj/item/clothing/under/explorer,
@@ -177,6 +177,7 @@
 		/obj/item/weapon/material/knife/machete/deluxe,
 		/obj/item/weapon/gun/energy/locked/frontier/carbine,
 		/obj/item/clothing/accessory/holster/machete,
+		/obj/random/explorer_shield,
 		/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
 		/obj/item/weapon/reagent_containers/food/snacks/liquidprotein,
 		/obj/item/device/cataloguer/compact/pathfinder)
@@ -214,6 +215,23 @@
 
 	starts_with = list(
 		/obj/item/clothing/suit/space/void/autolok,
-		/obj/item/weapon/tank/emergency/oxygen/double,
+		/obj/item/weapon/tank/emergency/oxygen/engi,
+		/obj/item/device/suit_cooling_unit/emergency
+	)
+
+/obj/structure/closet/emergsuit_wall
+	name = "emergency suit storage"
+	desc = "It's wall-mounted storage unit for an emergency suit."
+	icon = 'icons/obj/closets/bases/wall.dmi'
+	closet_appearance = /decl/closet_appearance/wall/emergency
+	anchored = 1
+	density = 0
+	wall_mounted = 1
+	store_mobs = 0
+
+	starts_with = list(
+		/obj/item/clothing/head/helmet/space/emergency,
+		/obj/item/clothing/suit/space/emergency,
+		/obj/item/weapon/tank/emergency/oxygen/engi,
 		/obj/item/device/suit_cooling_unit/emergency
 	)

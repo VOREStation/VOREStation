@@ -159,6 +159,6 @@
 	..()
 
 /obj/machinery/atmospherics/unary/heater/examine(mob/user)
-	..()
+	. = ..()
 	if(panel_open)
 		. += "The maintenance hatch is open."

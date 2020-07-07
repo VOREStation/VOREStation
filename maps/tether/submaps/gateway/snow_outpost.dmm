@@ -2608,7 +2608,7 @@
 /area/awaymission/snow_outpost/dark)
 "iP" = (
 /obj/machinery/atmospherics/unary/vent_pump,
-/obj/item/weapon/cell/infinite,
+/obj/item/weapon/cell/slime,
 /turf/simulated/floor/tiled/white,
 /area/awaymission/snow_outpost/powered)
 "iQ" = (

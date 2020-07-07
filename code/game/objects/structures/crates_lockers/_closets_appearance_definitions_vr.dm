@@ -36,3 +36,63 @@
 	extra_decals = list(
 		"stripes_horizontal" = COLOR_GOLD
 	)
+
+/decl/closet_appearance/secure_closet/nanotrasen
+	color = COLOR_BOTTLE_GREEN
+	decals = list(
+		"lower_holes"
+	)
+
+/decl/closet_appearance/secure_closet/nanotrasen/security
+	extra_decals = list(
+		"stripe_vertical_mid_full" = COLOR_NAVY_BLUE,
+		"nanotrasen" = COLOR_GOLD
+	)
+
+/decl/closet_appearance/secure_closet/nanotrasen/warden
+	extra_decals = list(
+		"stripe_vertical_left_full" = COLOR_NAVY_BLUE,
+		"stripe_vertical_right_full" = COLOR_NAVY_BLUE,
+		"nanotrasen" = COLOR_GOLD
+	)
+
+/decl/closet_appearance/secure_closet/nanotrasen/commander
+	extra_decals = list(
+		"stripe_vertical_left_full" = COLOR_NAVY_BLUE,
+		"stripe_vertical_mid_full" = COLOR_GOLD,
+		"stripe_vertical_right_full" = COLOR_NAVY_BLUE,
+		"nanotrasen" = COLOR_GOLD
+	)
+
+/decl/closet_appearance/secure_closet/expedition
+	color = COLOR_LIGHT_VIOLET
+	decals = list(
+		"lower_side_vent"
+	)
+
+/decl/closet_appearance/secure_closet/expedition/pilot
+	extra_decals = list(
+		"stripe_vertical_mid_full" = COLOR_DARK_ORANGE,
+		"exped" = COLOR_DARK_ORANGE
+	)
+
+/decl/closet_appearance/secure_closet/expedition/sar
+	extra_decals = list(
+		"stripe_vertical_mid_full" = COLOR_SAN_MARINO_BLUE,
+		"exped" = COLOR_SAN_MARINO_BLUE
+	)
+
+/decl/closet_appearance/secure_closet/expedition/explorer
+	extra_decals = list(
+		"stripe_vertical_left_full" = COLOR_PURPLE,
+		"stripe_vertical_right_full" = COLOR_PURPLE,
+		"exped" = COLOR_PURPLE
+	)
+
+/decl/closet_appearance/secure_closet/expedition/pathfinder
+	extra_decals = list(
+		"stripe_vertical_left_full" = COLOR_PURPLE,
+		"stripe_vertical_mid_full" = COLOR_GRAY40,
+		"stripe_vertical_right_full" = COLOR_PURPLE,
+		"exped" = COLOR_GRAY40
+	)

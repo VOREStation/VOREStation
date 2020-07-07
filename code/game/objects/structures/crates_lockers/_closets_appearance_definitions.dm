@@ -100,6 +100,12 @@
 		"inset" = COLOR_GRAY
 	)
 
+/decl/closet_appearance/thunderdomered
+	color = COLOR_LIGHT_RED
+
+/decl/closet_appearance/thunderdomegreen
+	color = COLOR_LIGHT_GREEN
+
 /decl/closet_appearance/tactical/alt
 	color = COLOR_PALE_BTL_GREEN
 
@@ -109,22 +115,34 @@
 		"stripe_w" = COLOR_GRAY
 	)
 
+/decl/closet_appearance/wardrobe/blue
+	extra_decals = list(
+		"stripe_horizontal" = COLOR_TEAL,
+		"stripe_w" = COLOR_OFF_WHITE
+	)
+
+/decl/closet_appearance/wardrobe/purple
+	extra_decals = list(
+		"stripe_horizontal" = COLOR_VIOLET,
+		"stripe_w" = COLOR_OFF_WHITE
+	)
+
 /decl/closet_appearance/wardrobe/mixed
 	extra_decals = list(
-		"stripe_horizontal_upper" = COLOR_PURPLE_GRAY,
-		"stripe_horizontal_lower" = COLOR_PALE_RED_GRAY,
+		"stripe_horizontal_upper" = COLOR_VIOLET,
+		"stripe_horizontal_lower" = COLOR_PALE_PINK,
 		"stripe_w" = COLOR_OFF_WHITE
 	)
 
 /decl/closet_appearance/wardrobe/orange
 	extra_decals = list(
-		"stripe_horizontal" = COLOR_PALE_ORANGE,
+		"stripe_horizontal" = COLOR_ORANGE,
 		"stripe_w" = COLOR_OFF_WHITE
 	)
 
 /decl/closet_appearance/wardrobe/green
 	extra_decals = list(
-		"stripe_horizontal" = COLOR_GREEN_GRAY,
+		"stripe_horizontal" = COLOR_GREEN,
 		"stripe_w" = COLOR_OFF_WHITE
 	)
 
@@ -136,7 +154,7 @@
 
 /decl/closet_appearance/wardrobe/pink
 	extra_decals = list(
-		"stripe_horizontal" = COLOR_PALE_PINK,
+		"stripe_horizontal" = COLOR_LIGHT_PINK,
 		"stripe_w" = COLOR_OFF_WHITE
 	)
 
@@ -148,13 +166,13 @@
 
 /decl/closet_appearance/wardrobe/yellow
 	extra_decals = list(
-		"stripe_horizontal" = COLOR_PALE_YELLOW,
+		"stripe_horizontal" = COLOR_YELLOW,
 		"stripe_w" = COLOR_OFF_WHITE
 	)
 
 /decl/closet_appearance/wardrobe/red
 	extra_decals = list(
-		"stripe_horizontal" = COLOR_RED_GRAY,
+		"stripe_horizontal" = COLOR_LIGHT_RED,
 		"stripe_w" = COLOR_OFF_WHITE
 	)
 
@@ -163,6 +181,111 @@
 		"stripe_horizontal" = COLOR_GRAY,
 		"stripe_w" = COLOR_OFF_WHITE,
 	)
+
+/decl/closet_appearance/wardrobe/suit
+	extra_decals = list(
+		"stripe_horizontal_upper" = COLOR_OFF_WHITE,
+		"stripe_horizontal_lower" = COLOR_GRAY,
+		"stripe_w" = COLOR_OFF_WHITE
+	)
+
+/decl/closet_appearance/wardrobe/janitor
+	extra_decals = list(
+		"stripe_horizontal" = COLOR_PURPLE,
+		"stripe_w" = COLOR_OFF_WHITE
+	)
+
+/decl/closet_appearance/wardrobe/medical
+	color = COLOR_OFF_WHITE
+
+/decl/closet_appearance/wardrobe/medical/patient
+	extra_decals = list(
+		"stripe_horizontal" = COLOR_GRAY,
+		"stripe_w" = COLOR_OFF_WHITE,
+	)
+
+/decl/closet_appearance/wardrobe/medical/white
+	extra_decals = list(
+		"stripe_horizontal" = COLOR_OFF_WHITE,
+		"stripe_w" = COLOR_OFF_WHITE,
+	)
+
+/decl/closet_appearance/wardrobe/medical/chemistry
+	extra_decals = list(
+		"stripe_horizontal_upper" = COLOR_OFF_WHITE,
+		"stripe_horizontal_lower" = COLOR_ORANGE,
+		"stripe_w" = COLOR_OFF_WHITE,
+	)
+
+/decl/closet_appearance/wardrobe/medical/genetics
+	extra_decals = list(
+		"stripe_horizontal_upper" = COLOR_OFF_WHITE,
+		"stripe_horizontal_lower" = COLOR_BABY_BLUE,
+		"stripe_w" = COLOR_OFF_WHITE,
+	)
+
+/decl/closet_appearance/wardrobe/medical/virology
+	extra_decals = list(
+		"stripe_horizontal_upper" = COLOR_OFF_WHITE,
+		"stripe_horizontal_lower" = COLOR_LIME,
+		"stripe_w" = COLOR_OFF_WHITE,
+	)
+
+/decl/closet_appearance/wardrobe/robotics
+	color = COLOR_OFF_WHITE
+	extra_decals = list(
+		"stripe_horizontal_upper" = COLOR_GRAY20,
+		"stripe_horizontal_lower" = COLOR_PALE_MAROON,
+		"stripe_w" = COLOR_OFF_WHITE
+	)
+
+/decl/closet_appearance/wardrobe/science
+	color = COLOR_OFF_WHITE
+	extra_decals = list(
+		"stripe_horizontal" = COLOR_PURPLE,
+		"stripe_w" = COLOR_OFF_WHITE
+	)
+
+/decl/closet_appearance/wardrobe/pjs
+	extra_decals = list(
+		"stripe_horizontal" = COLOR_OFF_WHITE,
+	)
+
+/decl/closet_appearance/wardrobe/white
+	extra_decals = list(
+		"stripe_horizontal" = COLOR_OFF_WHITE,
+		"stripe_w" = COLOR_OFF_WHITE,
+	)
+
+/decl/closet_appearance/wardrobe/engineer
+	extra_decals = list(
+		"stripe_horizontal" = COLOR_PALE_ORANGE,
+		"stripe_w" = COLOR_OFF_WHITE,
+	)
+
+/decl/closet_appearance/wardrobe/engineer/atmos
+	extra_decals = list(
+		"stripe_horizontal_upper" = COLOR_PALE_ORANGE,
+		"stripe_horizontal_lower" = COLOR_TEAL,
+		"stripe_w" = COLOR_OFF_WHITE,
+	)
+
+/decl/closet_appearance/wardrobe/chapel
+	extra_decals = list(
+		"stripe_horizontal_upper" = COLOR_PALE_YELLOW,
+		"stripe_horizontal_lower" = COLOR_GRAY20,
+		"stripe_w" = COLOR_OFF_WHITE,
+	)
+
+/decl/closet_appearance/wardrobe/xenos
+	extra_decals = list(
+		"stripe_horizontal_upper" = COLOR_GREEN,
+		"stripe_horizontal_lower" = COLOR_GOLD,
+		"stripe_w" = COLOR_OFF_WHITE
+	)
+
+/decl/closet_appearance/ert
+	color = COLOR_RED_GRAY
 
 /decl/closet_appearance/bio
 	color = COLOR_PALE_ORANGE
@@ -180,9 +303,15 @@
 		"biohazard" = COLOR_OFF_WHITE
 	)
 
+/decl/closet_appearance/bio/medical
+	extra_decals = list(
+		"lower_half_solid" = COLOR_PALE_BLUE_GRAY,
+		"biohazard" = COLOR_OFF_WHITE
+	)
+
 /decl/closet_appearance/bio/science
 	extra_decals = list(
-		"lower_half_solid" = COLOR_PALE_YELLOW,
+		"lower_half_solid" = COLOR_PALE_PINK,
 		"biohazard" = COLOR_OFF_WHITE
 	)
 
@@ -211,6 +340,9 @@
 /decl/closet_appearance/secure_closet
 	can_lock = TRUE
 
+/decl/closet_appearance/secure_closet/patient
+	color = COLOR_OFF_WHITE
+
 /decl/closet_appearance/secure_closet/engineering
 	can_lock = TRUE
 	color = COLOR_YELLOW_GRAY
@@ -235,9 +367,9 @@
 
 /decl/closet_appearance/secure_closet/engineering/atmos
 	extra_decals = list(
-		"stripe_vertical_right_partial" = COLOR_CYAN_BLUE,
-		"stripe_vertical_mid_partial" = COLOR_CYAN_BLUE,
-		"atmos" = COLOR_CYAN_BLUE
+		"stripe_vertical_right_partial" = COLOR_DARK_TEAL,
+		"stripe_vertical_mid_partial" = COLOR_DARK_TEAL,
+		"atmos" = COLOR_DARK_TEAL
 	)
 
 /decl/closet_appearance/secure_closet/engineering/welding
@@ -259,6 +391,12 @@
 		"vertical_stripe_simple" = COLOR_BEASTY_BROWN
 	)
 
+/decl/closet_appearance/secure_closet/engineering/tools/xenoarch
+	extra_decals = list(
+		"pick" = COLOR_BEASTY_BROWN,
+		"vertical_stripe_simple" = COLOR_BEASTY_BROWN
+	)
+
 /decl/closet_appearance/secure_closet/engineering/tools/radiation
 	extra_decals = list(
 		"l2" = COLOR_BEASTY_BROWN,
@@ -268,9 +406,9 @@
 /decl/closet_appearance/secure_closet/engineering/ce
 	color = COLOR_OFF_WHITE
 	extra_decals = list(
-		"stripe_vertical_right_partial" = COLOR_CLOSET_GOLD,
-		"stripe_vertical_mid_partial" = COLOR_CLOSET_GOLD,
-		"eng_narrow" = COLOR_CLOSET_GOLD
+		"stripe_vertical_right_partial" = COLOR_DARK_GOLD,
+		"stripe_vertical_mid_partial" = COLOR_DARK_GOLD,
+		"eng_narrow" = COLOR_DARK_GOLD
 	)
 
 /decl/closet_appearance/secure_closet/mining
@@ -299,16 +437,16 @@
 		"upper_holes"
 	)
 	extra_decals = list(
-		"stripe_vertical_left_partial" = COLOR_CLOSET_GOLD,
-		"stripe_vertical_right_partial" = COLOR_CLOSET_GOLD,
-		"captain" = COLOR_CLOSET_GOLD
+		"stripe_vertical_left_partial" = COLOR_GOLD,
+		"stripe_vertical_right_partial" = COLOR_GOLD,
+		"captain" = COLOR_GOLD
 	)
 
 /decl/closet_appearance/secure_closet/command/hop
 	color = COLOR_PALE_BLUE_GRAY
 	extra_decals = list(
-		"stripe_vertical_mid_partial" = COLOR_CLOSET_GOLD,
-		"hop" = COLOR_CLOSET_GOLD
+		"stripe_vertical_mid_partial" = COLOR_GOLD,
+		"hop" = COLOR_GOLD
 	)
 
 /decl/closet_appearance/secure_closet/cmo
@@ -318,9 +456,9 @@
 		"lower_side_vent"
 	)
 	extra_decals = list(
-		"medcircle" = COLOR_CLOSET_GOLD,
-		"stripe_vertical_right_partial" = COLOR_CLOSET_GOLD,
-		"stripe_vertical_mid_partial" = COLOR_CLOSET_GOLD
+		"medcircle" = COLOR_GOLD,
+		"stripe_vertical_right_partial" = COLOR_GOLD,
+		"stripe_vertical_mid_partial" = COLOR_GOLD
 	)
 
 /decl/closet_appearance/secure_closet/medical
@@ -349,6 +487,32 @@
 		"stripe_vertical_mid_partial" = COLOR_BLUE_GRAY
 	)
 
+/decl/closet_appearance/secure_closet/medical/chemistry
+	extra_decals = list(
+		"medcircle" = COLOR_ORANGE,
+		"stripe_vertical_right_partial" = COLOR_ORANGE,
+		"stripe_vertical_mid_partial" = COLOR_ORANGE
+	)
+
+/decl/closet_appearance/secure_closet/medical/paramedic
+	decals = list(
+		"lower_side_vent"
+	)
+	extra_decals = list(
+		"medical" = COLOR_BLUE_GRAY,
+		"stripe_vertical_mid_full" = COLOR_BLUE_GRAY
+	)
+
+/decl/closet_appearance/secure_closet/medical/doctor
+	decals = list(
+		"lower_side_vent"
+	)
+	extra_decals = list(
+		"medical" = COLOR_BLUE_GRAY,
+		"stripe_vertical_right_full" = COLOR_BLUE_GRAY,
+		"stripe_vertical_left_full" = COLOR_BLUE_GRAY
+	)
+
 /decl/closet_appearance/secure_closet/cargo
 	color = COLOR_WARM_YELLOW
 	decals = list(
@@ -356,16 +520,28 @@
 		"lower_side_vent"
 	)
 	extra_decals = list(
-		"cargo" = COLOR_GRAY40,
-		"stripe_vertical_left_partial" = COLOR_GRAY40,
-		"stripe_vertical_mid_partial" = COLOR_GRAY40
+		"cargo" = COLOR_BEASTY_BROWN,
+		"stripe_vertical_left_partial" = COLOR_BEASTY_BROWN,
+		"stripe_vertical_mid_partial" = COLOR_BEASTY_BROWN
 	)
 
 /decl/closet_appearance/secure_closet/cargo/qm
 	extra_decals = list(
-		"cargo" = COLOR_BEASTY_BROWN,
-		"stripe_vertical_left_partial" = COLOR_BEASTY_BROWN,
-		"stripe_vertical_mid_partial" = COLOR_BEASTY_BROWN
+		"cargo" = COLOR_SILVER,
+		"stripe_vertical_left_partial" = COLOR_SILVER,
+		"stripe_vertical_mid_partial" = COLOR_SILVER
+	)
+
+/decl/closet_appearance/secure_closet/courtroom
+	decals = list(
+		"lower_holes",
+		"upper_holes"
+	)
+
+/decl/closet_appearance/secure_closet/brig
+	color = COLOR_DARK_ORANGE
+	extra_decals = list(
+		"inset" = COLOR_GRAY40
 	)
 
 /decl/closet_appearance/secure_closet/security
@@ -389,8 +565,8 @@
 	extra_decals = list(
 		"stripe_vertical_left_full" =  COLOR_WARM_YELLOW,
 		"stripe_vertical_right_full" = COLOR_WARM_YELLOW,
-		"stripe_vertical_mid_full" =  COLOR_CLOSET_GOLD,
-		"security" = COLOR_CLOSET_GOLD
+		"stripe_vertical_mid_full" =  COLOR_GOLD,
+		"security" = COLOR_GOLD
 	)
 
 /decl/closet_appearance/bomb
@@ -399,12 +575,12 @@
 		"l4" = COLOR_OFF_WHITE
 	)
 	extra_decals = list(
-		"lower_half_solid" = COLOR_GREEN_GRAY
+		"lower_half_solid" = COLOR_PALE_PINK
 	)
 
 /decl/closet_appearance/bomb/security
 	extra_decals = list(
-		"lower_half_solid" = COLOR_WARM_YELLOW
+		"lower_half_solid" = COLOR_RED_GRAY
 	)
 
 /decl/closet_appearance/oxygen
@@ -417,7 +593,7 @@
 	)
 
 /decl/closet_appearance/oxygen/fire
-	color = COLOR_RED_GRAY
+	color = COLOR_RED_LIGHT
 	extra_decals = list(
 		"extinguisher" = COLOR_OFF_WHITE,
 		"vertical_stripe_simple" = COLOR_OFF_WHITE,
@@ -444,22 +620,29 @@
 		"security" = COLOR_CLOSET_GOLD
 	)
 
-/decl/closet_appearance/secure_closet/expedition/science
+/decl/closet_appearance/secure_closet/science
+	color = COLOR_OFF_WHITE
+	decals = list(
+		"lower_holes"
+	)
 	extra_decals = list(
 		"stripe_vertical_mid_full" = COLOR_PURPLE,
 		"research" = COLOR_PURPLE
 	)
 
-/decl/closet_appearance/secure_closet/rd
-	color = COLOR_BOTTLE_GREEN
-	decals = list(
-		"lower_holes"
+/decl/closet_appearance/secure_closet/science/xenoarch
+	extra_decals = list(
+		"stripe_vertical_left_full" = COLOR_PURPLE,
+		"stripe_vertical_right_full" = COLOR_PURPLE,
+		"research" = COLOR_PURPLE
 	)
+
+/decl/closet_appearance/secure_closet/science/rd
 	extra_decals = list(
 		"stripe_vertical_mid_full" = COLOR_GOLD,
 		"stripe_vertical_left_full" = COLOR_PURPLE,
 		"stripe_vertical_right_full" = COLOR_PURPLE,
-		"research" = COLOR_GOLD
+		"research" = COLOR_PURPLE
 	)
 
 /decl/closet_appearance/secure_closet/corporate
@@ -473,15 +656,22 @@
 	)
 
 /decl/closet_appearance/secure_closet/hydroponics
-	color = COLOR_GREEN_GRAY
+	color = COLOR_SALAD_GREEN
 	decals = list(
 		"lower_side_vent",
 		"upper_side_vent"
 	)
 	extra_decals = list(
-		"stripe_vertical_right_partial" = COLOR_DARK_GREEN_GRAY,
-		"stripe_vertical_mid_partial" = COLOR_DARK_GREEN_GRAY,
-		"hydro" = COLOR_DARK_GREEN_GRAY
+		"stripe_vertical_right_partial" = COLOR_GREEN,
+		"stripe_vertical_mid_partial" = COLOR_GREEN,
+		"hydro" = COLOR_GREEN
+	)
+
+/decl/closet_appearance/secure_closet/hydroponics/xenoflora
+	extra_decals = list(
+		"stripe_vertical_right_partial" = COLOR_PURPLE,
+		"stripe_vertical_mid_partial" = COLOR_PURPLE,
+		"hydro" = COLOR_PURPLE
 	)
 
 /decl/closet_appearance/secure_closet/chaplain
@@ -666,6 +856,7 @@
 	extra_decals = null
 
 /decl/closet_appearance/wall/emergency
+	color = COLOR_LIGHT_CYAN
 	decals = null
 	extra_decals = list(
 		"glass" = COLOR_WHITE
@@ -689,7 +880,7 @@
 	)
 
 /decl/closet_appearance/wall/hydrant
-	color = COLOR_NT_RED
+	color = COLOR_RED_LIGHT
 	decals = null
 	extra_decals = list(
 		"stripes" = COLOR_OFF_WHITE,

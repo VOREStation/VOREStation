@@ -314,6 +314,8 @@
 /obj/structure/closet/crate/bin
 	name = "large bin"
 	desc = "A large bin."
+	closet_appearance = null
+	icon = 'icons/obj/closets/largebin.dmi'
 
 
 /obj/structure/closet/crate/radiation

@@ -1505,6 +1505,8 @@
 	pixel_x = 30;
 	req_access = list(160)
 	},
+/obj/structure/table/rack,
+/obj/item/clothing/suit/space/void/responseteam/command,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
 "dc" = (
@@ -2077,6 +2079,60 @@
 	},
 /turf/unsimulated/floor/steel,
 /area/centcom/specops)
+"mI" = (
+/obj/structure/table/rack/steel,
+/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/shoes/magboots,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/specops/centcom)
+"pn" = (
+/obj/structure/closet/walllocker/emerglocker{
+	pixel_y = 32
+	},
+/obj/structure/table/rack/steel,
+/obj/item/clothing/suit/space/void/responseteam/engineer,
+/obj/item/clothing/suit/space/void/responseteam/engineer,
+/obj/item/clothing/suit/space/void/responseteam/engineer,
+/obj/item/clothing/suit/space/void/responseteam/engineer,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/specops/centcom)
+"rB" = (
+/obj/structure/table/rack/steel,
+/obj/item/device/suit_cooling_unit,
+/obj/item/device/suit_cooling_unit,
+/obj/item/device/suit_cooling_unit,
+/obj/item/device/suit_cooling_unit,
+/obj/item/device/suit_cooling_unit,
+/obj/item/device/suit_cooling_unit,
+/obj/item/device/suit_cooling_unit,
+/obj/item/device/suit_cooling_unit,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/specops/centcom)
+"HG" = (
+/obj/structure/closet/walllocker/emerglocker{
+	pixel_y = -32
+	},
+/obj/structure/table/rack/steel,
+/obj/item/clothing/suit/space/void/responseteam/medical,
+/obj/item/clothing/suit/space/void/responseteam/medical,
+/obj/item/clothing/suit/space/void/responseteam/medical,
+/obj/item/clothing/suit/space/void/responseteam/medical,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/specops/centcom)
+"TT" = (
+/obj/structure/table/rack/steel,
+/obj/item/clothing/suit/space/void/responseteam/security,
+/obj/item/clothing/suit/space/void/responseteam/security,
+/obj/item/clothing/suit/space/void/responseteam/security,
+/obj/item/clothing/suit/space/void/responseteam/security,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/specops/centcom)
 
 (1,1,1) = {"
 aa
@@ -2930,12 +2986,12 @@ aJ
 aV
 bi
 ap
-aH
+TT
 bd
 cb
 cs
 bd
-aH
+rB
 ap
 db
 du
@@ -2973,7 +3029,7 @@ bd
 cc
 ct
 bd
-aH
+mI
 am
 ap
 ap
@@ -3347,14 +3403,14 @@ am
 aN
 aH
 aH
-bh
+HG
 am
 bd
 bd
 bd
 bd
 am
-cX
+pn
 aH
 aH
 dN
