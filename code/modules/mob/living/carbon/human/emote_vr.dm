@@ -164,7 +164,7 @@
 				message = "does a flip!"
 				m_type = 1
 		if("vhelp") //Help for Virgo-specific emotes.
-			to_chat(src, "vwag, vflap, mlem, blep, awoo, awoo2, growl, nya, peep, chirp, hoot, weh, merp, myarp, bark, bork, mrow, hypno, hiss, rattle, squeak, geck, baa, baa2, mar, wurble, snort, meow, moo, croak, nsay, nme, flip")
+			to_chat(src, "vwag, vflap, mlem, blep, awoo, awoo2, growl, nya, peep, chirp, hoot, weh, merp, myarp, bark, bork, mrow, mrowl, hypno, hiss, rattle, squeak, geck, baa, baa2, mar, wurble, snort, meow, moo, croak, nsay, nme, flip")
 			return TRUE
 
 	if(message)
