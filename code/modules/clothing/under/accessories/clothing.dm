@@ -381,7 +381,7 @@
 // End of sweaters
 //***
 
-//VOREStation edit (Date)
+//VOREStation edit 7/7/20
 /obj/item/clothing/accessory/cowledvest
 	name = "cowled vest"
 	desc = "A body warmer for the 24th century."
