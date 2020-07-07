@@ -1,6 +1,6 @@
 /obj/item/toy/tennis
 	name = "tennis ball"
-	desc = "A classic tennis ball. It looks a bit worn... are those teeth marks?"
+	desc = "A classic tennis ball; a hollow rubber sphere covered in felt. This one has seen better days, and seems to have lost most of its bounce."
 	icon = 'icons/obj/balls.dmi'
 	icon_state = "tennis_classic"
 	item_icons = list(
