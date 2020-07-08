@@ -51,7 +51,8 @@ var/global/datum/repository/crew/crew_repository = new()
 					crewmemberData["area"] = sanitize(A.get_name())
 					crewmemberData["x"] = pos.x
 					crewmemberData["y"] = pos.y
-					crewmemberData["z"] = using_map.get_zlevel_name(pos.z)
+					crewmemberData["z"] = pos.z
+					crewmemberData["zlevel"] = using_map.get_zlevel_name(pos.z)
 
 				crewmembers[++crewmembers.len] = crewmemberData
 
