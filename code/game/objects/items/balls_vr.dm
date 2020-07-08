@@ -1,12 +1,12 @@
 /obj/item/toy/tennis
 	name = "tennis ball"
 	desc = "A classic tennis ball; a hollow rubber sphere covered in felt. This one has seen better days, and seems to have lost most of its bounce."
-	icon = 'icons/obj/balls.dmi'
+	icon = 'icons/obj/balls_vr.dmi'
 	icon_state = "tennis_classic"
 	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items/righthand_balls.dmi',
-		slot_r_hand_str = 'icons/mob/items/lefthand_balls.dmi',
-		slot_wear_mask_str = 'icons/mob/mouthball.dmi',
+		slot_l_hand_str = 'icons/mob/items/righthand_balls_vr.dmi',
+		slot_r_hand_str = 'icons/mob/items/lefthand_balls_vr.dmi',
+		slot_wear_mask_str = 'icons/mob/mouthball_vr.dmi',
 		)
 	item_state = "tennis_classic"
 	slot_flags = SLOT_MASK
