@@ -6,7 +6,7 @@
 	step_in = 3
 	dir_in = 1 //Facing North.
 	health = 300
-	maxhealth = 300
+	maxhealth = 300			//Don't forget to update the /old variant if  you change this number.
 	deflect_chance = 15
 	damage_absorption = list("brute"=0.75,"fire"=1,"bullet"=0.8,"laser"=0.7,"energy"=0.85,"bomb"=1)
 	max_temperature = 25000
@@ -127,3 +127,13 @@
 			H.recalculate_vis()
 	..()
 	return
+
+//Meant for random spawns.
+/obj/mecha/combat/gygax/old
+	desc = "A lightweight, security exosuit. Popular among private and corporate security. This one is particularly worn looking and likely isn't as sturdy."
+
+/obj/mecha/combat/gygax/old/New()
+	..()
+	health = 25
+	maxhealth = 250	//Just slightly worse.
+	cell.charge = rand(0, (cell.charge/2))

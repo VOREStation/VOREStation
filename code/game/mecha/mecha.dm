@@ -76,7 +76,7 @@
 
 	var/wreckage
 
-	var/list/equipment = new
+	var/list/equipment = new		//This lists holds what stuff you bolted onto your baby ride
 	var/obj/item/mecha_parts/mecha_equipment/selected
 	var/max_equip = 2
 	var/datum/events/events

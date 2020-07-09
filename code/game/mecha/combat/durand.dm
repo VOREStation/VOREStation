@@ -6,7 +6,7 @@
 	step_in = 4
 	dir_in = 1 //Facing North.
 	health = 400
-	maxhealth = 400
+	maxhealth = 400			//Don't forget to update the /old variant if  you change this number.
 	deflect_chance = 20
 	damage_absorption = list("brute"=0.5,"fire"=1.1,"bullet"=0.65,"laser"=0.85,"energy"=0.9,"bomb"=0.8)
 	max_temperature = 30000
@@ -62,3 +62,13 @@
 		src.defence_mode()
 	return
 */
+
+//Meant for random spawns.
+/obj/mecha/combat/durand/old
+	desc = "An aging combat exosuit utilized by many corporations. Originally developed to combat hostile alien lifeforms. This one is particularly worn looking and likely isn't as sturdy."
+
+/obj/mecha/combat/durand/old/New()
+	..()
+	health = 25
+	maxhealth = 350	//Just slightly worse.
+	cell.charge = rand(0, (cell.charge/2))

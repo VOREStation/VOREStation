@@ -131,3 +131,13 @@
 	ME.attach(src)
 	ME = new /obj/item/mecha_parts/mecha_equipment/tool/syringe_gun
 	ME.attach(src)
+
+//Meant for random spawns.
+/obj/mecha/medical/odysseus/old
+	desc = "An aging combat exosuit utilized by many corporations. Originally developed to combat hostile alien lifeforms. This one is particularly worn looking and likely isn't as sturdy."
+
+/obj/mecha/medical/odysseus/old/New()
+	..()
+	health = 25
+	maxhealth = 100	//Just slightly worse.
+	cell.charge = rand(0, (cell.charge/2))
