@@ -12,6 +12,8 @@
 	cargo_capacity = 10
 	var/obj/item/weapon/mining_scanner/orescanner // vorestation addition
 
+	minimum_penetration = 10
+
 /obj/mecha/working/ripley/Destroy()
 	for(var/atom/movable/A in src.cargo)
 		A.loc = loc
