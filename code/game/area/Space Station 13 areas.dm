@@ -1351,6 +1351,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	has_gravity = 0
 	sound_env = SPACE
 
+/area/holodeck/source_chess
+	name = "\improper Holodeck - Chessboard"
+
+
 //Engineering
 
 /area/engineering/

@@ -22,10 +22,6 @@
 	icon_state = "sbsposter6"
 	name = "Mawletta"
 	desc = "The best view in the system."
-/datum/poster/vore_7
-	icon_state = "sbsposter7"
-	name = "Sam FEAR"
-	desc = "A poster of the most dangerous cat working for NT."
 /datum/poster/vore_8
 	icon_state = "sbsposter8"
 	name = "Shitty Timbs"
@@ -34,10 +30,6 @@
 	icon_state = "sbsposter9"
 	name = "Shitty Tim"
 	desc = "A Shitty Tim concert poster."
-/datum/poster/vore_10
-	icon_state = "sbsposter10"
-	name = "Kitty Kisuke"
-	desc = "A poster of famous redspace researcher, Kisuke Gema."
 /datum/poster/vore_11
 	icon_state = "sbsposter11"
 	name = "Fear"

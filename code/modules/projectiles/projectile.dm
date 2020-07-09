@@ -441,15 +441,15 @@
 	setAngle(Get_Angle(source, target))
 
 /obj/item/projectile/Destroy()
+	if(hitscan)
+		finalize_hitscan_and_generate_tracers()
+	STOP_PROCESSING(SSprojectiles, src)
 
 	if(impacted_mobs)
 		if(LAZYLEN(impacted_mobs))
 			impacted_mobs.Cut()
 		impacted_mobs = null
 
-	if(hitscan)
-		finalize_hitscan_and_generate_tracers()
-	STOP_PROCESSING(SSprojectiles, src)
 	qdel(trajectory)
 	return ..()
 

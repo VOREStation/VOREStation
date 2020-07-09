@@ -748,7 +748,8 @@
 		updateUsrDialog()
 		return
 
-	else if(istype(I,/obj/item/clothing/head/helmet/space) && !istype(I, /obj/item/clothing/head/helmet/space/rig))
+	else if(istype(I,/obj/item/clothing/head/helmet/space/void) && !istype(I, /obj/item/clothing/head/helmet/space/rig))
+		var/obj/item/clothing/head/helmet/space/void/IH = I
 
 		if(locked)
 			to_chat(user, "<span class='danger'>The suit cycler is locked.</span>")
@@ -756,6 +757,10 @@
 
 		if(helmet)
 			to_chat(user, "<span class='danger'>The cycler already contains a helmet.</span>")
+			return
+
+		if(IH.no_cycle)
+			to_chat(user, "<span class='danger'>That item is not compatible with the cycler's protocols.</span>")
 			return
 
 		if(I.icon_override == CUSTOM_ITEM_MOB)
@@ -784,6 +789,7 @@
 		return
 
 	else if(istype(I,/obj/item/clothing/suit/space/void))
+		var/obj/item/clothing/suit/space/void/IS = I
 
 		if(locked)
 			to_chat(user, "<span class='danger'>The suit cycler is locked.</span>")
@@ -791,6 +797,10 @@
 
 		if(suit)
 			to_chat(user, "<span class='danger'>The cycler already contains a voidsuit.</span>")
+			return
+
+		if(IS.no_cycle)
+			to_chat(user, "<span class='danger'>That item is not compatible with the cycler's protocols.</span>")
 			return
 
 		if(I.icon_override == CUSTOM_ITEM_MOB)
@@ -827,7 +837,7 @@
 
 	//Clear the access reqs, disable the safeties, and open up all paintjobs.
 	to_chat(user, "<span class='danger'>You run the sequencer across the interface, corrupting the operating protocols.</span>")
-	departments = list("Engineering","Mining","Medical","Security","Atmospherics","HAZMAT","Construction","Biohazard","Crowd Control","Security EVA","Emergency Medical Response","^%###^%$", "Charring")
+	departments = list("Engineering","Mining","Medical","Security","Atmospherics","HAZMAT","Construction","Biohazard","Crowd Control","Security EVA","Emergency Medical Response","^%###^%$", "Charring","No Change")
 	species = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_VULPKANIN) //VORESTATION EDIT
 
 	emagged = 1
@@ -1230,9 +1240,9 @@
 		suit.desc = initial(parent_suit.desc)
 		suit.icon_state = initial(parent_suit.icon_state)
 		suit.item_state = initial(parent_suit.item_state)
-		suit.item_state_slots = S.item_state_slots
+		suit.item_state_slots = S.item_state_slots		
 		qdel(S)
-
+		
 		//can't believe I forgot to fix this- now helmets will properly cycle if they're attached to a suit -KK
 		if(suit.helmet && target_department != "No Change")
 			var/obj/item/clothing/AH = new parent_helmet

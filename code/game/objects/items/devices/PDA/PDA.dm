@@ -452,6 +452,20 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		if(3) icon = 'icons/obj/pda_old.dmi'
 		if(4) icon = 'icons/obj/pda_rugged.dmi'
 		if(5) icon = 'icons/obj/pda_holo.dmi'
+		if(6)
+			icon = 'icons/obj/pda_wrist.dmi'
+			item_state = icon_state
+			item_icons = list(
+				slot_belt_str = 'icons/mob/pda_wrist.dmi',
+				slot_wear_id_str = 'icons/mob/pda_wrist.dmi',
+				slot_gloves_str = 'icons/mob/pda_wrist.dmi'
+			)
+			desc = "A portable microcomputer by Thinktronic Systems, LTD. This model is a wrist-bound version."
+			slot_flags = SLOT_ID | SLOT_BELT | SLOT_GLOVES
+			sprite_sheets = list(
+				SPECIES_TESHARI = 'icons/mob/species/seromi/pda_wrist.dmi',
+				SPECIES_VR_TESHARI = 'icons/mob/species/seromi/pda_wrist.dmi',
+			)
 		else
 			icon = 'icons/obj/pda_old.dmi'
 			log_debug("Invalid switch for PDA, defaulting to old PDA icons. [pdachoice] chosen.")

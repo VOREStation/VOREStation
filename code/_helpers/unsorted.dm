@@ -453,29 +453,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 //Returns a list of all mobs with their name
 /proc/getmobs()
-
-	var/list/mobs = sortmobs()
-	var/list/names = list()
-	var/list/creatures = list()
-	var/list/namecounts = list()
-	for(var/mob/M in mobs)
-		var/name = M.name
-		if (name in names)
-			namecounts[name]++
-			name = "[name] ([namecounts[name]])"
-		else
-			names.Add(name)
-			namecounts[name] = 1
-		if (M.real_name && M.real_name != M.name)
-			name += " \[[M.real_name]\]"
-		if (M.stat == 2)
-			if(istype(M, /mob/observer/dead/))
-				name += " \[ghost\]"
-			else
-				name += " \[dead\]"
-		creatures[name] = M
-
-	return creatures
+	return observe_list_format(sortmobs())
 
 //Orders mobs by type then by name
 /proc/sortmobs()
@@ -508,6 +486,34 @@ Turf and target are seperate in case you want to teleport some distance from a t
 //	for(var/mob/living/silicon/hive_mainframe/M in sortmob)
 //		mob_list.Add(M)
 	return moblist
+
+/proc/observe_list_format(input_list)
+	if(!islist(input_list))
+		return
+	var/list/names = list()
+	var/list/output_list = list()
+	var/list/namecounts = list()
+	var/name
+	for(var/atom/A in input_list)
+		name = A.name
+		if(name in names)
+			namecounts[name]++
+			name = "[name] ([namecounts[name]])"
+		else
+			names.Add(name)
+			namecounts[name] = 1
+		if(ismob(A))
+			var/mob/M = A
+			if(M.real_name && M.real_name != M.name)
+				name += " \[[M.real_name]\]"
+			if(M.stat == DEAD)
+				if(istype(M, /mob/observer/dead/))
+					name += " \[ghost\]"
+				else
+					name += " \[dead\]"
+		output_list[name] = A
+
+	return output_list
 
 // Format a power value in W, kW, MW, or GW.
 /proc/DisplayPower(powerused)

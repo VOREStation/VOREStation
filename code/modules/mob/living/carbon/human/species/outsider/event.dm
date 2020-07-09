@@ -199,6 +199,9 @@ Variables you may want to make use of are:
 
 /datum/species/event1/proc/toggle_cloning()
 	flags ^= NO_SCAN
+	
+/datum/species/event1/proc/toggle_defibbing()
+	flags ^= NO_DEFIB
 
 /datum/species/event1/proc/toggle_pain()
 	flags ^= NO_PAIN
