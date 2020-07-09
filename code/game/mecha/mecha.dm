@@ -1396,11 +1396,13 @@
 
 	move_inside()
 
-/obj/mecha/verb/move_inside()
+/obj/mecha/verb/enter()
 	set category = "Object"
 	set name = "Enter Exosuit"
 	set src in oview(1)
+	move_inside()
 
+/obj/mecha/proc/move_inside()
 	if (usr.stat || !ishuman(usr))
 		return
 
