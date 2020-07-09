@@ -41,13 +41,13 @@
 				set_current(null)
 			else // Don't reset counter until we find a UAV that's actually in range we can stay connected to
 				signal_test_counter = 20
-	
+
 	data["current_uav"] = null
 	if(current_uav)
 		data["current_uav"] = list("status" = current_uav.get_status_string(), "power" = current_uav.state == 1 ? 1 : null)
 	data["signal_strength"] = signal_strength ? signal_strength >= 2 ? "High" : "Low" : "None"
 	data["in_use"] = LAZYLEN(viewers)
-	
+
 	var/list/paired_map = list()
 	var/obj/item/modular_computer/mc_host = nano_host()
 	if(istype(mc_host))
@@ -55,7 +55,7 @@
 			var/weakref/wr = puav
 			var/obj/item/device/uav/U = wr.resolve()
 			paired_map[++paired_map.len] = list("name" = "[U ? U.nickname : "!!Missing!!"]", "uavref" = "\ref[U]")
-	
+
 	data["paired_uavs"] = paired_map
 
 	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
@@ -102,7 +102,7 @@
 	else if(href_list["view_uav"])
 		if(!current_uav)
 			return TOPIC_NOACTION
-		
+
 		if(current_uav.check_eye(user) < 0)
 			to_chat(usr,"<span class='warning'>The screen freezes for a moment, before returning to the UAV selection menu. It's not able to connect to that UAV.</span>")
 		else
@@ -139,7 +139,7 @@
 
 	signal_strength = 0
 	current_uav = U
-	
+
 	if(LAZYLEN(viewers))
 		for(var/weakref/W in viewers)
 			var/M = W.resolve()
@@ -172,7 +172,7 @@
 			return 0
 
 	var/list/zlevels_in_range = using_map.get_map_levels(their_z, FALSE)
-	var/list/zlevels_in_long_range = using_map.get_map_levels(their_z, TRUE) - zlevels_in_range
+	var/list/zlevels_in_long_range = using_map.get_map_levels(their_z, TRUE, om_range = DEFAULT_OVERMAP_RANGE) - zlevels_in_range
 	var/their_signal = 0
 	for(var/relay in ntnet_global.relays)
 		var/obj/machinery/ntnet_relay/R = relay
@@ -209,7 +209,7 @@
 
 	if(!current_uav)
 		return
-	
+
 	user.set_machine(nano_host())
 	user.reset_view(current_uav)
 	current_uav.add_master(user)
@@ -250,7 +250,7 @@
 	if(weakref(M) in viewers)
 		M.overlay_fullscreen("fishbed",/obj/screen/fullscreen/fishbed)
 		M.overlay_fullscreen("scanlines",/obj/screen/fullscreen/scanline)
-		
+
 		if(signal_strength <= 1)
 			M.overlay_fullscreen("whitenoise",/obj/screen/fullscreen/noise)
 		else

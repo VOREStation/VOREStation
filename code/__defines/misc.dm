@@ -349,3 +349,5 @@ var/global/list/##LIST_NAME = list();\
 #define JOB_SILICON_ROBOT	0x2
 #define JOB_SILICON_AI		0x4
 #define JOB_SILICON			0x6 // 2|4, probably don't set jobs to this, but good for checking
+
+#define DEFAULT_OVERMAP_RANGE 0 // Makes general computers and devices be able to connect to other overmap z-levels on the same tile.
