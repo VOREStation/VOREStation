@@ -81,8 +81,7 @@
 		qdel (B)
 
 
-<<<<<<< HEAD
-// VORESTATION EDIT BEGIN
+//Vorestation Edit Start
 
 /obj/mecha/working/ripley/New()
 	..()
@@ -96,9 +95,8 @@
 
 	orescanner.attack_self(usr)
 
-// VORESTATION EDIT END
+//Vorestation Edit End
 
-=======
 //Meant for random spawns.
 /obj/mecha/working/ripley/mining/old
 	desc = "An old, dusty mining ripley."
@@ -108,4 +106,3 @@
 	health = 25
 	maxhealth = 190	//Just slightly worse.
 	cell.charge = rand(0, cell.charge)
->>>>>>> 5d10e60... Add a random mech spawner (Not mapped in yet) (#7324)
