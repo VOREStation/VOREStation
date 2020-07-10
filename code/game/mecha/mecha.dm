@@ -16,38 +16,52 @@
 	name = "Mecha"
 	desc = "Exosuit"
 	icon = 'icons/mecha/mecha.dmi'
-	density = 1 //Dense. To raise the heat.
-	opacity = 1 ///opaque. Menacing.
-	anchored = 1 //no pulling around.
-	unacidable = 1 //and no deleting hoomans inside
-	layer = MOB_LAYER //icon draw layer
-	infra_luminosity = 15 //byond implementation is bugged.
-	var/initial_icon = null //Mech type for resetting icon. Only used for reskinning kits (see custom items)
+	density = 1							//Dense. To raise the heat.
+	opacity = 1							///opaque. Menacing.
+	anchored = 1						//no pulling around.
+	unacidable = 1						//and no deleting hoomans inside
+	layer = MOB_LAYER					//icon draw layer
+	infra_luminosity = 15				//byond implementation is bugged.
+	var/initial_icon = null				//Mech type for resetting icon. Only used for reskinning kits (see custom items)
 	var/can_move = 1
 	var/mob/living/carbon/occupant = null
-	var/step_in = 10 //make a step in step_in/10 sec.
-	var/dir_in = 2//What direction will the mech face when entered/powered on? Defaults to South.
+	var/step_in = 10					//make a step in step_in/10 sec.
+	var/dir_in = 2						//What direction will the mech face when entered/powered on? Defaults to South.
 	var/step_energy_drain = 10
-	var/health = 300 //health is health
-	var/maxhealth = 300 //maxhealth is maxhealth.
-	var/deflect_chance = 10 //chance to deflect the incoming projectiles, hits, or lesser the effect of ex_act.
+	var/health = 300 					//health is health
+	var/maxhealth = 300 				//maxhealth is maxhealth.
+	var/deflect_chance = 10 			//chance to deflect the incoming projectiles, hits, or lesser the effect of ex_act.
 	//the values in this list show how much damage will pass through, not how much will be absorbed.
-	var/list/damage_absorption = list("brute"=0.8,"fire"=1.2,"bullet"=0.9,"laser"=1,"energy"=1,"bomb"=1)
+	var/list/damage_absorption = list(
+									"brute"=0.8,
+									"fire"=1.2,
+									"bullet"=0.9,
+									"laser"=1,
+									"energy"=1,
+									"bomb"=1,
+									"bio"=1,
+									"rad"=1
+									)
+
+	var/damage_minimum = 10				//Incoming damage lower than this won't actually deal damage. Scrapes shouldn't be a real thing.
+	var/minimum_penetration = 20		//Incoming damage won't be fully applied if you don't have at least 20. Almost all AP clears this.
+	var/fail_penetration_value = 0.66	//By how much failing to penetrate reduces your shit. 66% by default.
+
 	var/obj/item/weapon/cell/cell
 	var/state = 0
 	var/list/log = new
 	var/last_message = 0
 	var/add_req_access = 1
 	var/maint_access = 1
-	var/dna	//dna-locking the mech
-	var/list/proc_res = list() //stores proc owners, like proc_res["functionname"] = owner reference
+	var/dna								//dna-locking the mech
+	var/list/proc_res = list() 			//stores proc owners, like proc_res["functionname"] = owner reference
 	var/datum/effect/effect/system/spark_spread/spark_system = new
 	var/lights = 0
 	var/lights_power = 6
 	var/force = 0
 
 	var/mech_faction = null
-	var/firstactivation = 0 //It's simple. If it's 0, no one entered it yet. Otherwise someone entered it at least once.
+	var/firstactivation = 0 			//It's simple. If it's 0, no one entered it yet. Otherwise someone entered it at least once.
 
 	var/stomp_sound = 'sound/mecha/mechstep.ogg'
 	var/swivel_sound = 'sound/mecha/mechturn.ogg'
@@ -62,24 +76,25 @@
 	var/obj/item/device/radio/radio = null
 
 	var/max_temperature = 25000
-	var/internal_damage_threshold = 50 //health percentage below which internal damage is possible
-	var/internal_damage = 0 //contains bitflags
+	var/internal_damage_threshold = 50	//health percentage below which internal damage is possible
+	var/internal_damage = 0 			//contains bitflags
 
 	var/list/operation_req_access = list()//required access level for mecha operation
 	var/list/internals_req_access = list(access_engine,access_robotics)//required access level to open cell compartment
 
-	var/datum/global_iterator/pr_int_temp_processor //normalizes internal air mixture temperature
-	var/datum/global_iterator/pr_inertial_movement //controls intertial movement in spesss
-	var/datum/global_iterator/pr_give_air //moves air from tank to cabin
-	var/datum/global_iterator/pr_internal_damage //processes internal damage
+	var/datum/global_iterator/pr_int_temp_processor 	//normalizes internal air mixture temperature
+	var/datum/global_iterator/pr_inertial_movement 		//controls intertial movement in spesss
+	var/datum/global_iterator/pr_give_air 				//moves air from tank to cabin
+	var/datum/global_iterator/pr_internal_damage		//processes internal damage
 
 
 	var/wreckage
 
-	var/list/equipment = new
+	var/list/equipment = new		//This lists holds what stuff you bolted onto your baby ride
 	var/obj/item/mecha_parts/mecha_equipment/selected
 	var/max_equip = 2
 	var/datum/events/events
+
 //mechaequipt2 stuffs
 	var/list/hull_equipment = new
 	var/list/weapon_equipment = new
@@ -91,6 +106,7 @@
 	var/max_utility_equip = 2
 	var/max_universal_equip = 2
 	var/max_special_equip = 1
+
 //Working exosuit vars
 	var/list/cargo = list()
 	var/cargo_capacity = 3
@@ -100,7 +116,54 @@
 	var/static/image/radial_image_lighttoggle = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_light")
 	var/static/image/radial_image_statpanel = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_examine2")
 
-	var/datum/mini_hud/mech/minihud
+//Mech actions
+	var/datum/mini_hud/mech/minihud //VOREStation Edit
+	var/strafing = 0 				//Are we strafing or not?
+
+	var/defence_mode_possible = 0 	//Can we even use defence mode? This is used to assign it to mechs and check for verbs.
+	var/defence_mode = 0 			//Are we in defence mode
+	var/defence_deflect = 35		//How much it deflect
+
+	var/overload_possible = 0 		//Same as above. Don't forget to GRANT the verb&actions if you want everything to work proper.
+	var/overload = 0 				//Are our legs overloaded
+	var/overload_coeff = 1			//How much extra energy you use when use the L E G
+
+	var/zoom = 0
+	var/zoom_possible = 0
+
+	var/thrusters = 0
+	var/thrusters_possible = 0
+
+	var/phasing = 0					//Are we currently phasing
+	var/phasing_possible = 0		//This is to allow phasing.
+	var/can_phase = TRUE			//This is an internal check during the relevant procs.
+	var/phasing_energy_drain = 200
+	
+	var/switch_dmg_type_possible = 0	//Can you switch damage type? It is mostly for the Phazon and its children.
+
+	var/smoke_possible = 0
+	var/smoke_reserve = 5			//How many shots you have. Might make a reload later on. MIGHT.
+	var/smoke_ready = 1				//This is a check for the whether or not the cooldown is ongoing.
+	var/smoke_cooldown = 100		//How long you have between uses.
+	var/datum/effect/effect/system/smoke_spread/smoke_system = new
+
+////All of those are for the HUD buttons in the top left. See Grant and Remove procs in mecha_actions.
+
+	var/datum/action/innate/mecha/mech_eject/eject_action = new
+	var/datum/action/innate/mecha/mech_toggle_internals/internals_action = new
+	var/datum/action/innate/mecha/mech_toggle_lights/lights_action = new
+	var/datum/action/innate/mecha/mech_view_stats/stats_action = new
+	var/datum/action/innate/mecha/strafe/strafing_action = new
+
+	var/datum/action/innate/mecha/mech_defence_mode/defence_action = new
+	var/datum/action/innate/mecha/mech_overload_mode/overload_action = new
+	var/datum/action/innate/mecha/mech_smoke/smoke_action = new
+	var/datum/action/innate/mecha/mech_zoom/zoom_action = new
+	var/datum/action/innate/mecha/mech_toggle_thrusters/thrusters_action = new
+	var/datum/action/innate/mecha/mech_cycle_equip/cycle_action = new
+	var/datum/action/innate/mecha/mech_switch_damtype/switch_damtype_action = new
+	var/datum/action/innate/mecha/mech_toggle_phasing/phasing_action = new
+
 
 
 /obj/mecha/drain_power(var/drain_check)
@@ -123,8 +186,14 @@
 	if(!add_airtank()) //we check this here in case mecha does not have an internal tank available by default - WIP
 		removeVerb(/obj/mecha/verb/connect_to_port)
 		removeVerb(/obj/mecha/verb/toggle_internal_tank)
+
 	spark_system.set_up(2, 0, src)
 	spark_system.attach(src)
+
+	if(smoke_possible)//I am pretty sure that's needed here.
+		src.smoke_system.set_up(3, 0, src)
+		src.smoke_system.attach(src)
+
 	add_cell()
 	add_iterators()
 	removeVerb(/obj/mecha/verb/disconnect_from_port)
@@ -191,6 +260,9 @@
 	equipment.Cut()
 	cell = null
 	internal_tank = null
+
+	if(smoke_possible)	//Just making sure nothing is running.
+		qdel(smoke_system)
 
 	QDEL_NULL(pr_int_temp_processor)
 	QDEL_NULL(pr_inertial_movement)
@@ -283,11 +355,11 @@
 		if(65 to 85)
 			. += "It's slightly damaged."
 		if(45 to 65)
-			. += "It's badly damaged."
+			. += "<span class='notice'>It's badly damaged.</span>"
 		if(25 to 45)
-			. += "It's heavily damaged."
+			. += "<span class='warning'>It's heavily damaged.</span>"
 		else
-			. += "It's falling apart."
+			. += "<span class='warning'><b> It's falling apart.</b> </span>"
 	if(equipment?.len)
 		. += "It's equipped with:"
 		for(var/obj/item/mecha_parts/mecha_equipment/ME in equipment)
@@ -319,6 +391,7 @@
 		"Toggle Light" = radial_image_lighttoggle,
 		"View Stats" = radial_image_statpanel
 	)
+
 	var/choice = show_radial_menu(user, src, choices, custom_check = CALLBACK(src, .proc/check_occupant_radial, user), require_near = TRUE, tooltips = TRUE)
 	if(!check_occupant_radial(user))
 		return
@@ -380,6 +453,11 @@
 	if(state)
 		occupant_message("<font color='red'>Maintenance protocols in effect</font>")
 		return
+
+	if(phasing)//Phazon and other mechs with phasing.
+		src.occupant_message("Unable to interact with objects while phasing")//Haha dumbass.
+		return
+
 	if(!get_charge()) return
 	if(src == target) return
 	var/dir_to_target = get_dir(src,target)
@@ -463,6 +541,13 @@
 	if(state)
 		occupant_message("<span class='warning'>Maintenance protocols in effect</span>")
 		return
+/*
+	if(zoom)
+		if(world.time - last_message > 20)
+			src.occupant_message("Unable to move while in zoom mode.")
+			last_message = world.time
+		return 0
+*/
 	return domove(direction)
 
 /obj/mecha/proc/can_ztravel()
@@ -481,6 +566,32 @@
 		return 0
 	if(!has_charge(step_energy_drain))
 		return 0
+
+	//Can we even move, below is if yes.
+
+	if(defence_mode)//Check if we are currently locked down
+		if(world.time - last_message > 20)
+			src.occupant_message("<font color='red'>Unable to move while in defence mode</font>")
+			last_message = world.time
+		return 0
+
+	if(zoom)//:eyes:
+		if(world.time - last_message > 20)
+			src.occupant_message("Unable to move while in zoom mode.")
+			last_message = world.time
+		return 0
+
+	if(!thrusters && src.pr_inertial_movement.active()) //I think this mean 'if you try to move in space without thruster, u no move'
+		return 0
+
+	if(overload)//Check if you have leg overload
+		health--
+		if(health < initial(health) - initial(health)/3)
+			overload = 0
+			step_in = initial(step_in)
+			step_energy_drain = initial(step_energy_drain)
+			src.occupant_message("<font color='red'>Leg actuators damage threshold exceded. Disabling overload.</font>")
+
 
 	var/move_result = 0
 
@@ -511,9 +622,16 @@
 				break
 		if(result)
 			move_result = mechstep(direction)
+
 	//Turning
+
 	else if(src.dir != direction)
-		move_result = mechturn(direction)
+
+		if(strafing)
+			move_result = mechstep(direction)
+		else
+			move_result = mechturn(direction)
+
 	//Stepping
 	else
 		move_result	= mechstep(direction)
@@ -544,11 +662,14 @@
 	return 1
 
 /obj/mecha/proc/mechstep(direction)
+	var/current_dir = dir	//For strafing
 	var/result = get_step(src,direction)
 	if(result && Move(result))
 		if(stomp_sound)
 			playsound(src,stomp_sound,40,1)
 		handle_equipment_movement()
+	if(strafing)	//Also for strafing
+		set_dir(current_dir)
 	return result
 
 
@@ -562,21 +683,35 @@
 
 /obj/mecha/Bump(var/atom/obstacle)
 //	src.inertia_dir = null
-	if(istype(obstacle, /obj))
+	if(istype(obstacle, /mob))//First we check if it is a mob. Mechs mostly shouln't go through them, even while phasing.
+		var/mob/M = obstacle
+		M.Move(get_step(obstacle,src.dir))
+	else if(istype(obstacle, /obj))//Then we check for regular obstacles.
 		var/obj/O = obstacle
-		if(istype(O, /obj/effect/portal)) //derpfix
-			src.anchored = 0
+
+		if(phasing && get_charge()>=phasing_energy_drain)//Phazon check. This could use an improvement elsewhere.
+			spawn()
+				if(can_phase)
+					can_phase = FALSE
+					flick("[initial_icon]-phase", src)
+					src.loc = get_step(src,src.dir)
+					src.use_power(phasing_energy_drain)
+					sleep(step_in*3)
+					can_phase = TRUE
+					occupant_message("Phazed.")
+			. = ..(obstacle)
+			return
+		if(istype(O, /obj/effect/portal))	//derpfix
+			src.anchored = 0				//I have no idea what this really fix.
 			O.Crossed(src)
 			spawn(0)//countering portal teleport spawn(0), hurr
 				src.anchored = 1
-		else if(!O.anchored)
-			step(obstacle,src.dir)
-		else //I have no idea why I disabled this
+		else if(O.anchored)
 			obstacle.Bumped(src)
-	else if(istype(obstacle, /mob))
-		var/mob/M = obstacle
-		M.Move(get_step(obstacle,src.dir))
-	else
+		else
+			step(obstacle,src.dir)
+
+	else//No idea when this triggers, so i won't touch it.
 		. = ..(obstacle)
 	return
 
@@ -701,6 +836,7 @@
 	call((proc_res["dynhitby"]||src), "dynhitby")(A)
 	return
 
+//I think this is relative to throws.
 /obj/mecha/proc/dynhitby(atom/movable/A)
 	if(istype(A, /obj/item/mecha_parts/mecha_tracking))
 		A.forceMove(src)
@@ -718,9 +854,27 @@
 		if(O.throwforce)
 
 			var/pass_damage = O.throwforce
+			var/pass_damage_reduc_mod
+			if(pass_damage <= damage_minimum)//Too little to go through.
+				src.occupant_message("<span class='notice'>\The [A] bounces off the armor.</span>")
+				src.visible_message("\The [A] bounces off \the [src] armor")
+				return
+
+			else if(O.armor_penetration < minimum_penetration)	//If you don't have enough pen, you won't do full damage
+				src.occupant_message("<span class='notice'>\The [A] struggles to bypass \the [src] armor.</span>")
+				src.visible_message("\The [A] struggles to bypass \the [src] armor")
+				pass_damage_reduc_mod = fail_penetration_value	//This will apply to reduce damage to 2/3 or 66% by default
+			else
+				src.occupant_message("<span class='notice'>\The [A] manages to pierces \the [src] armor.</span>")
+				src.visible_message("\The [A] manages to pierces \the [src] armor")
+				pass_damage_reduc_mod = 1
+
+
+
 			for(var/obj/item/mecha_parts/mecha_equipment/ME in equipment)
 				pass_damage = ME.handle_ranged_contact(A, pass_damage)
 
+			pass_damage = (pass_damage*pass_damage_reduc_mod)//Applying damage reduction
 			src.take_damage(pass_damage)
 			src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
 	return
@@ -753,9 +907,25 @@
 			ignore_threshold = 1
 
 		var/pass_damage = Proj.damage
+		var/pass_damage_reduc_mod
 		for(var/obj/item/mecha_parts/mecha_equipment/ME in equipment)
 			pass_damage = ME.handle_projectile_contact(Proj, pass_damage)
 
+		if(pass_damage < damage_minimum)//too pathetic to really damage you.
+			src.occupant_message("<span class='notice'>The armor deflects incoming projectile.</span>")
+			src.visible_message("The [src.name] armor deflects\the [Proj]")
+			return
+
+		else if(Proj.armor_penetration < minimum_penetration)	//If you don't have enough pen, you won't do full damage
+			src.occupant_message("<span class='notice'>\The [Proj] struggles to pierce \the [src] armor.</span>")
+			src.visible_message("\The [Proj] struggles to pierce \the [src] armor")
+			pass_damage_reduc_mod = fail_penetration_value	//This will apply to reduce damage to 2/3 or 66% by default
+		else
+			src.occupant_message("<span class='notice'>\The [Proj] manages to pierce \the [src] armor.</span>")
+			src.visible_message("\The [Proj] manages to pierce \the [src] armor")
+			pass_damage_reduc_mod = 1
+
+		pass_damage = (pass_damage_reduc_mod*pass_damage)//Apply damage reduction before usage.
 		src.take_damage(pass_damage, Proj.check_armour)
 		if(prob(25)) spark_system.start()
 		src.check_for_internal_damage(list(MECHA_INT_FIRE,MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST,MECHA_INT_SHORT_CIRCUIT),ignore_threshold)
@@ -779,6 +949,7 @@
 	Proj.on_hit(src) //on_hit just returns if it's argument is not a living mob so does this actually do anything?
 	return
 
+//This refer to whenever you are caught in an explosion.
 /obj/mecha/ex_act(severity)
 	src.log_message("Affected by explosion of severity: [severity].",1)
 	if(prob(src.deflect_chance))
@@ -841,19 +1012,30 @@
 /obj/mecha/proc/dynattackby(obj/item/weapon/W as obj, mob/user as mob)
 	user.setClickCooldown(user.get_attack_speed(W))
 	src.log_message("Attacked by [W]. Attacker - [user]")
-	if(prob(src.deflect_chance))
+	var/pass_damage_reduc_mod			//Modifer for failing to bring AP.
+
+	if(prob(src.deflect_chance))		//Does your attack get deflected outright.
+		src.occupant_message("<span class='notice'>\The [W] bounces off [src.name].</span>")
 		to_chat(user, "<span class='danger'>\The [W] bounces off [src.name].</span>")
 		src.log_append_to_last("Armor saved.")
-/*
-		for (var/mob/V in viewers(src))
-			if(V.client && !(V.blinded))
-				V.show_message("The [W] bounces off [src.name] armor.", 1)
-*/
+
+	else if(W.force < damage_minimum)	//Is your attack too PATHETIC to do anything. 3 damage to a person shouldn't do anything to a mech.
+		src.occupant_message("<span class='notice'>\The [W] bounces off the armor.</span>")
+		src.visible_message("\The [W] bounces off \the [src] armor")
+		return
+
+	else if(W.armor_penetration < minimum_penetration)	//If you don't have enough pen, you won't do full damage
+		src.occupant_message("<span class='notice'>\The [W] struggles to bypass \the [src] armor.</span>")
+		src.visible_message("\The [W] struggles to bypass \the [src] armor")
+		pass_damage_reduc_mod = fail_penetration_value	//This will apply to reduce damage to 2/3 or 66% by default
+
 	else
+		pass_damage_reduc_mod = 1		//Just making sure.
 		src.occupant_message("<font color='red'><b>[user] hits [src] with [W].</b></font>")
 		user.visible_message("<font color='red'><b>[user] hits [src] with [W].</b></font>", "<font color='red'><b>You hit [src] with [W].</b></font>")
 
 		var/pass_damage = W.force
+		pass_damage = (pass_damage*pass_damage_reduc_mod)	//Apply the reduction of damage from not having enough armor penetration.
 		for(var/obj/item/mecha_parts/mecha_equipment/ME in equipment)
 			pass_damage = ME.handle_projectile_contact(W, pass_damage)
 		src.take_damage(pass_damage,W.damtype)
@@ -1219,6 +1401,9 @@
 	set category = "Exosuit Interface"
 	set src = usr.loc
 	set popup_menu = 0
+	lights()
+
+/obj/mecha/verb/lights()
 	if(usr!=occupant)	return
 	lights = !lights
 	if(lights)	set_light(light_range + lights_power)
@@ -1230,17 +1415,36 @@
 
 
 /obj/mecha/verb/toggle_internal_tank()
-	set name = "Toggle internal airtank usage."
+	set name = "Toggle internal airtank usage"
 	set category = "Exosuit Interface"
 	set src = usr.loc
 	set popup_menu = 0
+	internal_tank()
+
+/obj/mecha/proc/internal_tank()
 	if(usr!=src.occupant)
 		return
 	use_internal_tank = !use_internal_tank
 	src.occupant_message("Now taking air from [use_internal_tank?"internal airtank":"environment"].")
 	src.log_message("Now taking air from [use_internal_tank?"internal airtank":"environment"].")
+	playsound(src, 'sound/mecha/gasdisconnected.ogg', 30, 1)
 	return
 
+
+/obj/mecha/verb/toggle_strafing()
+	set name = "Toggle strafing"
+	set category = "Exosuit Interface"
+	set src = usr.loc
+	set popup_menu = 0
+	strafing()
+
+/obj/mecha/proc/strafing()
+	if(usr!=src.occupant)
+		return
+	strafing = !strafing
+	src.occupant_message("Toggled strafing mode [strafing?"on":"off"].")
+	src.log_message("Toggled strafing mode [strafing?"on":"off"].")
+	return
 
 /obj/mecha/MouseDrop_T(mob/O, mob/user as mob)
 	//Humans can pilot mechs.
@@ -1253,11 +1457,13 @@
 
 	move_inside()
 
-/obj/mecha/verb/move_inside()
+/obj/mecha/verb/enter()
 	set category = "Object"
 	set name = "Enter Exosuit"
 	set src in oview(1)
+	move_inside()
 
+/obj/mecha/proc/move_inside()
 	if (usr.stat || !ishuman(usr))
 		return
 
@@ -1303,6 +1509,8 @@
 	if(enter_after(40,usr))
 		if(!src.occupant)
 			moved_inside(usr)
+			if(ishuman(occupant)) //Aeiou
+				GrantActions(occupant, 1)
 		else if(src.occupant!=usr)
 			to_chat(usr, "[src.occupant] was faster. Try better next time, loser.")
 	else
@@ -1324,8 +1532,30 @@
 		src.verbs += /obj/mecha/verb/eject
 		src.log_append_to_last("[H] moved in as pilot.")
 		src.icon_state = src.reset_icon()
+		//VOREStation Edit Add
 		if(occupant.hud_used)
 			minihud = new (occupant.hud_used, src)
+		//VOREStation Edit Add End
+
+//This part removes all the verbs if you don't have them the _possible on your mech. This is a little clunky, but it lets you just add that to any mech.
+//And it's not like this 10yo code wasn't clunky before.
+
+		if(!smoke_possible)			//Can't use smoke? No verb for you.
+			verbs -= /obj/mecha/verb/toggle_smoke
+		if(!thrusters_possible)		//Can't use thrusters? No verb for you.
+			verbs -= /obj/mecha/verb/toggle_thrusters
+		if(!defence_mode_possible)	//Do i need to explain everything?
+			verbs -= /obj/mecha/verb/toggle_defence_mode
+		if(!overload_possible)
+			verbs -= /obj/mecha/verb/toggle_overload
+		if(!zoom_possible)
+			verbs -= /obj/mecha/verb/toggle_zoom
+		if(!phasing_possible)
+			verbs -= /obj/mecha/verb/toggle_phasing
+		if(!switch_dmg_type_possible)
+			verbs -= /obj/mecha/verb/switch_damtype
+
+		occupant.in_enclosed_vehicle = 1	//Useful for when you need to know if someone is in a mecho.
 		update_cell_alerts()
 		update_damage_alerts()
 		set_dir(dir_in)
@@ -1388,12 +1618,13 @@
 	return
 
 
-/obj/mecha/proc/go_out()
+/obj/mecha/proc/go_out() //Eject/Exit the mech. Yes this is for easier searching.
 	if(!src.occupant) return
 	var/atom/movable/mob_container
 	QDEL_NULL(minihud)
 	if(ishuman(occupant))
 		mob_container = src.occupant
+		RemoveActions(occupant, human_occupant=1)//AEIOU
 	else if(istype(occupant, /mob/living/carbon/brain))
 		var/mob/living/carbon/brain/brain = occupant
 		mob_container = brain.container
@@ -1413,10 +1644,20 @@
 			occupant.canmove = 0
 		occupant.clear_alert("charge")
 		occupant.clear_alert("mech damage")
+		occupant.in_enclosed_vehicle = 0
 		occupant = null
 		icon_state = src.reset_icon()+"-open"
 		set_dir(dir_in)
 		verbs -= /obj/mecha/verb/eject
+
+		//src.zoom = 0
+
+		// Doesn't seem needed.
+		if(src.occupant && src.occupant.client)
+			src.occupant.client.view = world.view
+			src.zoom = 0
+
+		strafing = 0
 	return
 
 /////////////////////////
@@ -1545,7 +1786,18 @@
 						<b>Lights: </b>[lights?"on":"off"]<br>
 						[src.dna?"<b>DNA-locked:</b><br> <span style='font-size:10px;letter-spacing:-1px;'>[src.dna]</span> \[<a href='?src=\ref[src];reset_dna=1'>Reset</a>\]<br>":null]
 					"}
-//Cargo components.
+
+
+	if(defence_mode_possible)
+		output += "<b>Defence mode: [defence_mode?"on":"off"]</b><br>"
+	if(overload_possible)
+		output += "<b>Leg actuators overload: [overload?"on":"off"]</b><br>"
+	if(smoke_possible)
+		output += "<b>Smoke:</b> [smoke_reserve]<br>"
+	if(thrusters_possible)
+		output += "<b>Thrusters:</b> [thrusters?"on":"off"]<br>"
+
+//Cargo components. Keep this last otherwise it does weird alignment issues.
 	output += "<b>Cargo Compartment Contents:</b><div style=\"margin-left: 15px;\">"
 	if(src.cargo.len)
 		for(var/obj/O in src.cargo)
@@ -1747,12 +1999,31 @@
 		return
 	if(href_list["toggle_lights"])
 		if(usr != src.occupant)	return
-		src.toggle_lights()
+		src.lights()
 		return
+/*
+	if(href_list["toggle_strafing"])
+		if(usr != src.occupant)	return
+		src.strafing()
+		return*/
+
 	if(href_list["toggle_airtank"])
 		if(usr != src.occupant)	return
-		src.toggle_internal_tank()
+		src.internal_tank()
 		return
+	if (href_list["toggle_thrusters"])
+		src.toggle_thrusters()
+	if (href_list["smoke"])
+		src.smoke()
+	if (href_list["toggle_zoom"])
+		src.zoom()
+	if(href_list["toggle_defence_mode"])
+		src.defence_mode()
+	if(href_list["switch_damtype"])
+		src.switch_damtype()
+	if(href_list["phasing"])
+		src.phasing()
+
 	if(href_list["rmictoggle"])
 		if(usr != src.occupant)	return
 		radio.broadcasting = !radio.broadcasting
@@ -2007,6 +2278,7 @@
 		icon_state = initial(icon_state)
 	return icon_state
 
+//This is for mobs mostly.
 /obj/mecha/attack_generic(var/mob/user, var/damage, var/attack_message)
 
 	user.setClickCooldown(user.get_attack_speed())
@@ -2014,19 +2286,38 @@
 		return 0
 
 	src.log_message("Attacked. Attacker - [user].",1)
-
 	user.do_attack_animation(src)
-	if(!prob(src.deflect_chance))
-		src.take_damage(damage)
-		src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
-		visible_message("<span class='danger'>[user] [attack_message] [src]!</span>")
-		user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name]</font>")
-	else
+
+	//var/pass_damage	//See the comment in the larger greyed out block below.
+	//var/pass_damage_reduc_mod
+	if(prob(src.deflect_chance))//Deflected
 		src.log_append_to_last("Armor saved.")
-		playsound(src, 'sound/weapons/slash.ogg', 50, 1, -1)
 		src.occupant_message("<span class='notice'>\The [user]'s attack is stopped by the armor.</span>")
 		visible_message("<span class='notice'>\The [user] rebounds off [src.name]'s armor!</span>")
 		user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name]</font>")
+		playsound(src, 'sound/weapons/slash.ogg', 50, 1, -1)
+
+	else if(damage < damage_minimum)//Pathetic damage levels just don't harm MECH.
+		src.occupant_message("<span class='notice'>\The [user]'s doesn't dent \the [src] paint.</span>")
+		src.visible_message("\The [user]'s attack doesn't dent \the [src] armor")
+		src.log_append_to_last("Armor saved.")
+		playsound(src, 'sound/effects/Glasshit.ogg', 50, 1)
+		return
+
+/*//Commented out for not playing well with penetration questions.
+	else if(user.mob.attack_armor_pen < minimum_penetration)//Not enough armor penetration
+		src.occupant_message("<span class='notice'>\The [user] struggles to pierce \the [src] armor.</span>")
+		src.visible_message("\The [user] struggles to pierce \the [src] armor")
+		pass_damage_reduc_mod = fail_penetration_value	//This will apply to reduce damage to 2/3 or 66% by default.
+*/
+
+	else
+		//pass_damage = (pass_damage_reduc_mod*damage)
+		src.take_damage(damage)//apply damage
+		src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
+		visible_message("<span class='danger'>[user] [attack_message] [src]!</span>")
+		user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name]</font>")
+
 	return 1
 
 

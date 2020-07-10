@@ -10,6 +10,8 @@ vchat.db*
 *.backup
 *.before
 *.pyc
+*.pid
+data
 data/
 cfg/
 

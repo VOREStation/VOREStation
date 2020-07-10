@@ -134,7 +134,7 @@
 	access = access_medical_equip
 
 /datum/supply_pack/voidsuits/medical/alt
-	name = "Vey-Med Medical voidsuits"
+	name = "Vey-Med Autoadaptive voidsuits (humanoid)"
 	contains = list(
 			/obj/item/clothing/suit/space/void/medical/alt = 2,
 			/obj/item/clothing/head/helmet/space/void/medical/alt = 2,
@@ -144,8 +144,19 @@
 			)
 	cost = 60
 	containertype = /obj/structure/closet/crate/secure
-	containername = "Vey-Med Medical voidsuit crate"
+	containername = "Vey-Med Autoadaptive voidsuit (humanoid) crate"
 	access = access_medical_equip
+
+/datum/supply_pack/voidsuits/medical/alt/tesh
+	name = "Vey-Med Autoadaptive voidsuits (teshari)"
+	contains = list(
+			/obj/item/clothing/suit/space/void/medical/alt/tesh = 2,
+			/obj/item/clothing/head/helmet/space/void/medical/alt/tesh = 2,
+			/obj/item/clothing/mask/breath = 2,
+			/obj/item/clothing/shoes/magboots = 2,
+			/obj/item/weapon/tank/oxygen = 2
+			)
+	containername = "Vey-Med Autoadaptive voidsuit (teshari) crate"
 
 /datum/supply_pack/voidsuits/security
 	name = "Security voidsuits"

@@ -25,8 +25,6 @@
 	damage_absorption = list("brute"=0.75,"fire"=1,"bullet"=0.8,"laser"=0.7,"energy"=0.85,"bomb"=1)
 	max_temperature = 15000
 	infra_luminosity = 6
-	var/overload = 0
-	var/overload_coeff = 2
 	wreckage = /obj/effect/decal/mecha_wreckage/micro/sec/polecat
 	internal_damage_threshold = 35
 	max_equip = 3
@@ -48,9 +46,6 @@
 	deflect_chance = 5
 	damage_absorption = list("brute"=1,"fire"=1,"bullet"=0.9,"laser"=0.8,"energy"=0.85,"bomb"=1)
 	max_temperature = 5000
-	infra_luminosity = 6
-	var/overload = 0
-	var/overload_coeff = 2
 	wreckage = /obj/effect/decal/mecha_wreckage/micro/sec/weasel
 	internal_damage_threshold = 20
 	max_equip = 2

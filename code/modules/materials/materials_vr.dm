@@ -63,6 +63,7 @@
 	conductivity = 7
 	stack_origin_tech = list(TECH_MATERIAL = 5)
 	composite_material = list(MAT_TITANIUM = SHEET_MATERIAL_AMOUNT, MAT_PLASTEEL = SHEET_MATERIAL_AMOUNT)
+	supply_conversion_value = 8
 
 /material/glass/plastaniumglass
 	name = MAT_PLASTITANIUMGLASS

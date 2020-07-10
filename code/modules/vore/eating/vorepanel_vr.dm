@@ -926,7 +926,7 @@
 				user.can_be_drop_prey = FALSE
 
 	if(href_list["toggledg"])
-		var/choice = alert(user, "This button is for those who don't like being digested. It can make you undigestable. Messages admins when changed, so don't try to use it for mechanical benefit. Set it once and save it. Digesting you is currently: [user.digestable ? "Allowed" : "Prevented"]", "", "Allow Digestion", "Cancel", "Prevent Digestion")
+		var/choice = alert(user, "This button is for those who don't like being digested. It can make you undigestable. Digesting you is currently: [user.digestable ? "Allowed" : "Prevented"]", "", "Allow Digestion", "Cancel", "Prevent Digestion")
 		switch(choice)
 			if("Cancel")
 				return FALSE
@@ -934,8 +934,6 @@
 				user.digestable = TRUE
 			if("Prevent Digestion")
 				user.digestable = FALSE
-
-		message_admins("[key_name(user)] toggled their digestability to [user.digestable] [ADMIN_COORDJMP(user)]")
 
 		if(user.client.prefs_vr)
 			user.client.prefs_vr.digestable = user.digestable
@@ -993,7 +991,7 @@
 			user.client.prefs_vr.digest_leave_remains = user.digest_leave_remains
 
 	if(href_list["togglemv"])
-		var/choice = alert(user, "This button is for those who don't like being eaten by mobs. Messages admins when changed, so don't try to use it for mechanical benefit. Set it once and save it. Mobs are currently: [user.allowmobvore ? "Allowed to eat" : "Prevented from eating"] you.", "", "Allow Mob Predation", "Cancel", "Prevent Mob Predation")
+		var/choice = alert(user, "This button is for those who don't like being eaten by mobs. Mobs are currently: [user.allowmobvore ? "Allowed to eat" : "Prevented from eating"] you.", "", "Allow Mob Predation", "Cancel", "Prevent Mob Predation")
 		switch(choice)
 			if("Cancel")
 				return FALSE
@@ -1001,8 +999,6 @@
 				user.allowmobvore = TRUE
 			if("Prevent Mob Predation")
 				user.allowmobvore = FALSE
-
-		message_admins("[key_name(user)] toggled their mob vore preference to [user.allowmobvore] [ADMIN_COORDJMP(user)]")
 
 		if(user.client.prefs_vr)
 			user.client.prefs_vr.allowmobvore = user.allowmobvore

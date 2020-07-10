@@ -28,6 +28,7 @@
 		)
 
 	light_overlay = "helmet_light"
+	var/no_cycle = FALSE	//stop this item from being put in a cycler
 
 /obj/item/clothing/suit/space/void
 	name = "voidsuit"
@@ -66,6 +67,9 @@
 	var/obj/item/clothing/head/helmet/helmet = null   // Deployable helmet, if any.
 	var/obj/item/weapon/tank/tank = null              // Deployable tank, if any.
 	var/obj/item/device/suit_cooling_unit/cooler = null// Cooling unit, for FBPs.  Cannot be installed alongside a tank.
+	
+	//Cycler settings
+	var/no_cycle = FALSE	//stop this item from being put in a cycler
 
 /obj/item/clothing/suit/space/void/examine(user)
 	. = ..()
