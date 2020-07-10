@@ -134,7 +134,7 @@
 	// This is distinct from the hitscan's "impact_type" var.
 	var/impact_effect_type = null
 
-	var/list/impacted_mobs
+	var/list/impacted_mobs = list()
 
 /obj/item/projectile/proc/Range()
 	range--
@@ -642,9 +642,6 @@
 	if(!istype(target_mob))
 		return
 
-	if(!LAZYLEN(impacted_mobs))
-		impacted_mobs = list()
-
 	if(target_mob in impacted_mobs)
 		return
 
@@ -661,7 +658,8 @@
 		return FALSE // Mob deleted itself or something.
 
 	// Safe to add the target to the list that is soon to be poofed. No double jeopardy, pixel projectiles.
-	impacted_mobs |= target_mob
+	if(islist(impacted_mobs))
+		impacted_mobs |= target_mob
 
 	if(result == PROJECTILE_FORCE_MISS)
 		if(!silenced)
