@@ -43,10 +43,10 @@
 	data["current_camera"] = current_camera ? current_camera.nano_structure() : null
 	data["current_network"] = current_network
 	data["networks"] = network ? network : list()
-	
-	var/map_levels = using_map.get_map_levels(src.z, TRUE)
+
+	var/map_levels = using_map.get_map_levels(src.z, TRUE, om_range = DEFAULT_OVERMAP_RANGE)
 	data["map_levels"] = map_levels
-	
+
 	if(current_network)
 		data["cameras"] = camera_repository.cameras_in_network(current_network, map_levels)
 	if(current_camera)

@@ -708,4 +708,4 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	if(ad_hoc && src_z == dst_z)
 		return TRUE
 
-	return src_z in using_map.get_map_levels(dst_z)
+	return src_z in using_map.get_map_levels(dst_z, TRUE, om_range = DEFAULT_OVERMAP_RANGE)
