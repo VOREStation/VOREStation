@@ -6,7 +6,7 @@
 	initial_icon = "marauder"
 	step_in = 5
 	health = 500
-	maxhealth = 500
+	maxhealth = 500		//Don't forget to update the /old variant if  you change this number.
 	deflect_chance = 25
 	damage_absorption = list("brute"=0.5,"fire"=0.7,"bullet"=0.45,"laser"=0.6,"energy"=0.7,"bomb"=0.7)
 	max_temperature = 60000
@@ -145,3 +145,22 @@
 						"}
 	output += ..()
 	return output
+
+//Meant for random spawns.
+/obj/mecha/combat/marauder/old
+	desc = "Heavy-duty, combat exosuit, developed after the Durand model. Rarely found among civilian populations. This one is particularly worn looking and likely isn't as sturdy."
+
+/obj/mecha/combat/marauder/old/New()
+	..()
+	health = 25
+	maxhealth = 400	//Just slightly worse.
+	cell.charge = rand(0, (cell.charge/2))
+
+/obj/mecha/combat/marauder/old/Initialize()
+	..()
+	var/obj/item/mecha_parts/mecha_equipment/ME
+	if(equipment.len)
+		for(ME in equipment)
+			ME.detach()
+			qdel(ME)
+			return
