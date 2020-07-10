@@ -2,6 +2,11 @@
 	name = "bible"
 	desc = "Apply to head repeatedly."
 	icon_state ="bible"
+	item_state = "bible"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items/lefthand_books.dmi',
+		slot_r_hand_str = 'icons/mob/items/righthand_books.dmi'
+		)
 	throw_speed = 1
 	throw_range = 5
 	w_class = ITEMSIZE_NORMAL
