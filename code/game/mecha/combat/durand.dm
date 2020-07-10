@@ -14,6 +14,9 @@
 	force = 40
 	wreckage = /obj/effect/decal/mecha_wreckage/durand
 
+	damage_minimum = 15			//Big stompy
+	minimum_penetration = 25
+
 	max_hull_equip = 2
 	max_weapon_equip = 1
 	max_utility_equip = 2

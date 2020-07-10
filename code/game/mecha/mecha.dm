@@ -16,38 +16,52 @@
 	name = "Mecha"
 	desc = "Exosuit"
 	icon = 'icons/mecha/mecha.dmi'
-	density = 1 //Dense. To raise the heat.
-	opacity = 1 ///opaque. Menacing.
-	anchored = 1 //no pulling around.
-	unacidable = 1 //and no deleting hoomans inside
-	layer = MOB_LAYER //icon draw layer
-	infra_luminosity = 15 //byond implementation is bugged.
-	var/initial_icon = null //Mech type for resetting icon. Only used for reskinning kits (see custom items)
+	density = 1							//Dense. To raise the heat.
+	opacity = 1							///opaque. Menacing.
+	anchored = 1						//no pulling around.
+	unacidable = 1						//and no deleting hoomans inside
+	layer = MOB_LAYER					//icon draw layer
+	infra_luminosity = 15				//byond implementation is bugged.
+	var/initial_icon = null				//Mech type for resetting icon. Only used for reskinning kits (see custom items)
 	var/can_move = 1
 	var/mob/living/carbon/occupant = null
-	var/step_in = 10 //make a step in step_in/10 sec.
-	var/dir_in = 2//What direction will the mech face when entered/powered on? Defaults to South.
+	var/step_in = 10					//make a step in step_in/10 sec.
+	var/dir_in = 2						//What direction will the mech face when entered/powered on? Defaults to South.
 	var/step_energy_drain = 10
-	var/health = 300 //health is health
-	var/maxhealth = 300 //maxhealth is maxhealth.
-	var/deflect_chance = 10 //chance to deflect the incoming projectiles, hits, or lesser the effect of ex_act.
+	var/health = 300 					//health is health
+	var/maxhealth = 300 				//maxhealth is maxhealth.
+	var/deflect_chance = 10 			//chance to deflect the incoming projectiles, hits, or lesser the effect of ex_act.
 	//the values in this list show how much damage will pass through, not how much will be absorbed.
-	var/list/damage_absorption = list("brute"=0.8,"fire"=1.2,"bullet"=0.9,"laser"=1,"energy"=1,"bomb"=1)
+	var/list/damage_absorption = list(
+									"brute"=0.8,
+									"fire"=1.2,
+									"bullet"=0.9,
+									"laser"=1,
+									"energy"=1,
+									"bomb"=1,
+									"bio"=1,
+									"rad"=1
+									)
+
+	var/damage_minimum = 10				//Incoming damage lower than this won't actually deal damage. Scrapes shouldn't be a real thing.
+	var/minimum_penetration = 20		//Incoming damage won't be fully applied if you don't have at least 20. Almost all AP clears this.
+	var/fail_penetration_value = 0.66	//By how much failing to penetrate reduces your shit. 66% by default.
+
 	var/obj/item/weapon/cell/cell
 	var/state = 0
 	var/list/log = new
 	var/last_message = 0
 	var/add_req_access = 1
 	var/maint_access = 1
-	var/dna	//dna-locking the mech
-	var/list/proc_res = list() //stores proc owners, like proc_res["functionname"] = owner reference
+	var/dna								//dna-locking the mech
+	var/list/proc_res = list() 			//stores proc owners, like proc_res["functionname"] = owner reference
 	var/datum/effect/effect/system/spark_spread/spark_system = new
 	var/lights = 0
 	var/lights_power = 6
 	var/force = 0
 
 	var/mech_faction = null
-	var/firstactivation = 0 //It's simple. If it's 0, no one entered it yet. Otherwise someone entered it at least once.
+	var/firstactivation = 0 			//It's simple. If it's 0, no one entered it yet. Otherwise someone entered it at least once.
 
 	var/stomp_sound = 'sound/mecha/mechstep.ogg'
 	var/swivel_sound = 'sound/mecha/mechturn.ogg'
@@ -62,16 +76,16 @@
 	var/obj/item/device/radio/radio = null
 
 	var/max_temperature = 25000
-	var/internal_damage_threshold = 50 //health percentage below which internal damage is possible
-	var/internal_damage = 0 //contains bitflags
+	var/internal_damage_threshold = 50	//health percentage below which internal damage is possible
+	var/internal_damage = 0 			//contains bitflags
 
 	var/list/operation_req_access = list()//required access level for mecha operation
 	var/list/internals_req_access = list(access_engine,access_robotics)//required access level to open cell compartment
 
-	var/datum/global_iterator/pr_int_temp_processor //normalizes internal air mixture temperature
-	var/datum/global_iterator/pr_inertial_movement //controls intertial movement in spesss
-	var/datum/global_iterator/pr_give_air //moves air from tank to cabin
-	var/datum/global_iterator/pr_internal_damage //processes internal damage
+	var/datum/global_iterator/pr_int_temp_processor 	//normalizes internal air mixture temperature
+	var/datum/global_iterator/pr_inertial_movement 		//controls intertial movement in spesss
+	var/datum/global_iterator/pr_give_air 				//moves air from tank to cabin
+	var/datum/global_iterator/pr_internal_damage		//processes internal damage
 
 
 	var/wreckage
@@ -822,6 +836,7 @@
 	call((proc_res["dynhitby"]||src), "dynhitby")(A)
 	return
 
+//I think this is relative to throws.
 /obj/mecha/proc/dynhitby(atom/movable/A)
 	if(istype(A, /obj/item/mecha_parts/mecha_tracking))
 		A.forceMove(src)
@@ -839,9 +854,27 @@
 		if(O.throwforce)
 
 			var/pass_damage = O.throwforce
+			var/pass_damage_reduc_mod
+			if(pass_damage <= damage_minimum)//Too little to go through.
+				src.occupant_message("<span class='notice'>\The [A] bounces off the armor.</span>")
+				src.visible_message("\The [A] bounces off \the [src] armor")
+				return
+
+			else if(O.armor_penetration < minimum_penetration)	//If you don't have enough pen, you won't do full damage
+				src.occupant_message("<span class='notice'>\The [A] struggles to bypass \the [src] armor.</span>")
+				src.visible_message("\The [A] struggles to bypass \the [src] armor")
+				pass_damage_reduc_mod = fail_penetration_value	//This will apply to reduce damage to 2/3 or 66% by default
+			else
+				src.occupant_message("<span class='notice'>\The [A] manages to pierces \the [src] armor.</span>")
+				src.visible_message("\The [A] manages to pierces \the [src] armor")
+				pass_damage_reduc_mod = 1
+
+
+
 			for(var/obj/item/mecha_parts/mecha_equipment/ME in equipment)
 				pass_damage = ME.handle_ranged_contact(A, pass_damage)
 
+			pass_damage = (pass_damage*pass_damage_reduc_mod)//Applying damage reduction
 			src.take_damage(pass_damage)
 			src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
 	return
@@ -874,9 +907,25 @@
 			ignore_threshold = 1
 
 		var/pass_damage = Proj.damage
+		var/pass_damage_reduc_mod
 		for(var/obj/item/mecha_parts/mecha_equipment/ME in equipment)
 			pass_damage = ME.handle_projectile_contact(Proj, pass_damage)
 
+		if(pass_damage < damage_minimum)//too pathetic to really damage you.
+			src.occupant_message("<span class='notice'>The armor deflects incoming projectile.</span>")
+			src.visible_message("The [src.name] armor deflects\the [Proj]")
+			return
+
+		else if(Proj.armor_penetration < minimum_penetration)	//If you don't have enough pen, you won't do full damage
+			src.occupant_message("<span class='notice'>\The [Proj] struggles to pierce \the [src] armor.</span>")
+			src.visible_message("\The [Proj] struggles to pierce \the [src] armor")
+			pass_damage_reduc_mod = fail_penetration_value	//This will apply to reduce damage to 2/3 or 66% by default
+		else
+			src.occupant_message("<span class='notice'>\The [Proj] manages to pierce \the [src] armor.</span>")
+			src.visible_message("\The [Proj] manages to pierce \the [src] armor")
+			pass_damage_reduc_mod = 1
+
+		pass_damage = (pass_damage_reduc_mod*pass_damage)//Apply damage reduction before usage.
 		src.take_damage(pass_damage, Proj.check_armour)
 		if(prob(25)) spark_system.start()
 		src.check_for_internal_damage(list(MECHA_INT_FIRE,MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST,MECHA_INT_SHORT_CIRCUIT),ignore_threshold)
@@ -900,6 +949,7 @@
 	Proj.on_hit(src) //on_hit just returns if it's argument is not a living mob so does this actually do anything?
 	return
 
+//This refer to whenever you are caught in an explosion.
 /obj/mecha/ex_act(severity)
 	src.log_message("Affected by explosion of severity: [severity].",1)
 	if(prob(src.deflect_chance))
@@ -962,19 +1012,30 @@
 /obj/mecha/proc/dynattackby(obj/item/weapon/W as obj, mob/user as mob)
 	user.setClickCooldown(user.get_attack_speed(W))
 	src.log_message("Attacked by [W]. Attacker - [user]")
-	if(prob(src.deflect_chance))
+	var/pass_damage_reduc_mod			//Modifer for failing to bring AP.
+
+	if(prob(src.deflect_chance))		//Does your attack get deflected outright.
+		src.occupant_message("<span class='notice'>\The [W] bounces off [src.name].</span>")
 		to_chat(user, "<span class='danger'>\The [W] bounces off [src.name].</span>")
 		src.log_append_to_last("Armor saved.")
-/*
-		for (var/mob/V in viewers(src))
-			if(V.client && !(V.blinded))
-				V.show_message("The [W] bounces off [src.name] armor.", 1)
-*/
+
+	else if(W.force < damage_minimum)	//Is your attack too PATHETIC to do anything. 3 damage to a person shouldn't do anything to a mech.
+		src.occupant_message("<span class='notice'>\The [W] bounces off the armor.</span>")
+		src.visible_message("\The [W] bounces off \the [src] armor")
+		return
+
+	else if(W.armor_penetration < minimum_penetration)	//If you don't have enough pen, you won't do full damage
+		src.occupant_message("<span class='notice'>\The [W] struggles to bypass \the [src] armor.</span>")
+		src.visible_message("\The [W] struggles to bypass \the [src] armor")
+		pass_damage_reduc_mod = fail_penetration_value	//This will apply to reduce damage to 2/3 or 66% by default
+
 	else
+		pass_damage_reduc_mod = 1		//Just making sure.
 		src.occupant_message("<font color='red'><b>[user] hits [src] with [W].</b></font>")
 		user.visible_message("<font color='red'><b>[user] hits [src] with [W].</b></font>", "<font color='red'><b>You hit [src] with [W].</b></font>")
 
 		var/pass_damage = W.force
+		pass_damage = (pass_damage*pass_damage_reduc_mod)	//Apply the reduction of damage from not having enough armor penetration.
 		for(var/obj/item/mecha_parts/mecha_equipment/ME in equipment)
 			pass_damage = ME.handle_projectile_contact(W, pass_damage)
 		src.take_damage(pass_damage,W.damtype)
@@ -2217,6 +2278,7 @@
 		icon_state = initial(icon_state)
 	return icon_state
 
+//This is for mobs mostly.
 /obj/mecha/attack_generic(var/mob/user, var/damage, var/attack_message)
 
 	user.setClickCooldown(user.get_attack_speed())
@@ -2224,19 +2286,38 @@
 		return 0
 
 	src.log_message("Attacked. Attacker - [user].",1)
-
 	user.do_attack_animation(src)
-	if(!prob(src.deflect_chance))
-		src.take_damage(damage)
-		src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
-		visible_message("<span class='danger'>[user] [attack_message] [src]!</span>")
-		user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name]</font>")
-	else
+
+	//var/pass_damage	//See the comment in the larger greyed out block below.
+	//var/pass_damage_reduc_mod
+	if(prob(src.deflect_chance))//Deflected
 		src.log_append_to_last("Armor saved.")
-		playsound(src, 'sound/weapons/slash.ogg', 50, 1, -1)
 		src.occupant_message("<span class='notice'>\The [user]'s attack is stopped by the armor.</span>")
 		visible_message("<span class='notice'>\The [user] rebounds off [src.name]'s armor!</span>")
 		user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name]</font>")
+		playsound(src, 'sound/weapons/slash.ogg', 50, 1, -1)
+
+	else if(damage < damage_minimum)//Pathetic damage levels just don't harm MECH.
+		src.occupant_message("<span class='notice'>\The [user]'s doesn't dent \the [src] paint.</span>")
+		src.visible_message("\The [user]'s attack doesn't dent \the [src] armor")
+		src.log_append_to_last("Armor saved.")
+		playsound(src, 'sound/effects/Glasshit.ogg', 50, 1)
+		return
+
+/*//Commented out for not playing well with penetration questions.
+	else if(user.mob.attack_armor_pen < minimum_penetration)//Not enough armor penetration
+		src.occupant_message("<span class='notice'>\The [user] struggles to pierce \the [src] armor.</span>")
+		src.visible_message("\The [user] struggles to pierce \the [src] armor")
+		pass_damage_reduc_mod = fail_penetration_value	//This will apply to reduce damage to 2/3 or 66% by default.
+*/
+
+	else
+		//pass_damage = (pass_damage_reduc_mod*damage)
+		src.take_damage(damage)//apply damage
+		src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
+		visible_message("<span class='danger'>[user] [attack_message] [src]!</span>")
+		user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name]</font>")
+
 	return 1
 
 
