@@ -6,9 +6,13 @@ export class NanoMap extends Component {
   constructor(props) {
     super(props);
 
+    // Auto center based on window size
+    const Xcenter = (window.innerWidth / 2) - 256;
+
     this.state = {
-      offsetX: 0,
+      offsetX: Xcenter,
       offsetY: 0,
+      transform: 'none',
       dragging: false,
       originX: null,
       originY: null,
@@ -33,7 +37,7 @@ export class NanoMap extends Component {
 
     this.handleDragMove = e => {
       this.setState(prevState => {
-        const state = { ... prevState };
+        const state = { ...prevState };
         const newOffsetX = e.screenX - state.originX;
         const newOffsetY = e.screenY - state.originY;
         if (prevState.dragging) {
@@ -63,21 +67,12 @@ export class NanoMap extends Component {
 
   render() {
     const { config } = useBackend(this.context);
-    let { offsetX, offsetY } = this.state;
+    const { offsetX, offsetY } = this.state;
     const { children, zoom, reset } = this.props;
     
-    if (reset) {
-      this.setState({
-        offsetX: 0,
-        offsetY: 0,
-      });
-      offsetX = 0;
-      offsetY = 0;
-    }
-
     const newStyle = {
-      width: 508 * zoom + 'px',
-      height: 508 * zoom + 'px',
+      width: '512px',
+      height: '512px',
       "margin-top": offsetY + 'px',
       "margin-left": offsetX + 'px',
       "overflow": "hidden",
@@ -86,21 +81,27 @@ export class NanoMap extends Component {
       "background-image":
         "url("+config.map+"_nanomap_z"+config.mapZLevel+".png)",
       "background-size": "cover",
+      "text-align": "center",
+      "transform-origin": "center center",
+      "transform": "scale(" + zoom + ")",
     };
 
     return (
       <Box className="NanoMap__container">
         <Box
           style={newStyle}
+          textAlign="center"
           onMouseDown={this.handleDragStart}>
-          { children }
+          <Box>
+            {children}
+          </Box>
         </Box>
       </Box>
     );
   }
 }
 
-const NanoMapMarker = props => {
+const NanoMapMarker = (props, context) => {
   const {
     x,
     y,
@@ -109,19 +110,24 @@ const NanoMapMarker = props => {
     tooltip,
     color,
   } = props;
+  const rx = -256 * (zoom - 1) + x * (2 * zoom) - 1.5 * zoom - 3;
+  const ry = 512 * zoom - (y * 2 * zoom) + zoom - 1.5;
   return (
-    <Box
-      position="absolute"
-      className="NanoMap__marker"
-      top={((255 - y) * 2 * zoom) - 8 + 'px'}
-      left={(((x - 1) * 2 * zoom)) - 6 + 'px'} >
-      <Icon
-        name={icon}
-        color={color}
-        size={0.5}
-      />
-      <Tooltip content={tooltip} />
-    </Box>
+    <div style={"transform: scale(" + 1 / zoom + ")"}>
+      <Box
+        position="absolute"
+        className="NanoMap__marker"
+        lineHeight="0"
+        top={ry + 'px'}
+        left={rx + 'px'} >
+        <Icon
+          name={icon}
+          color={color}
+          fontSize="6px"
+        />
+        <Tooltip content={tooltip} />
+      </Box>
+    </div>
   );
 };
 

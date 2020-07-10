@@ -1,17 +1,7 @@
-$color-background: rgba(0, 0, 0, 0.33) !default;
-
-.NanoMap__contentOffset {
-  background-color: $color-background;
-  height: 100%;
-  overflow-y: scroll;
-}
-
 .NanoMap__container {
   overflow: hidden;
-  min-width: 500px;
-  min-height: 500px;
-  max-width: 500px;
-  max-height: 500px;
+  width: 100%;
+  height: 100vh;
   z-index: 1;
 }
 
