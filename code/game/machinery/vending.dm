@@ -1,6 +1,11 @@
-/**
- *  A vending machine
- */
+///
+///		A vending machine
+///
+
+//
+//	ALL THE VENDING MACHINES ARE IN vending_machines.dm now!
+//
+
 /obj/machinery/vending
 	name = "Vendomat"
 	desc = "A generic vending machine."
@@ -659,6 +664,7 @@
 	visible_message("<span class='warning'>\The [src] launches \a [throw_item] at \the [target]!</span>")
 	return 1
 
+<<<<<<< HEAD
 /*
  * Vending machine types
  */
@@ -1217,3 +1223,6 @@
 					/obj/item/stack/cable_coil/random = 4)
 	premium = list(/obj/item/weapon/storage/box/wormcan/deluxe = 1)
 	contraband = list(/obj/item/weapon/storage/box/wormcan/deluxe = 1)
+=======
+//Actual machines are in vending_machines.dm
+>>>>>>> 5943f5c... Merge pull request #7328 from lbnesquik/Kot_Vending_tweak

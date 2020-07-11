@@ -824,8 +824,12 @@
 #include "code\game\machinery\transportpod.dm"
 #include "code\game\machinery\turret_control.dm"
 #include "code\game\machinery\vending.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\game\machinery\vending_vr.dm"
 #include "code\game\machinery\vitals_monitor.dm"
+=======
+#include "code\game\machinery\vending_machines.dm"
+>>>>>>> 5943f5c... Merge pull request #7328 from lbnesquik/Kot_Vending_tweak:polaris.dme
 #include "code\game\machinery\wall_frames.dm"
 #include "code\game\machinery\washing_machine.dm"
 #include "code\game\machinery\wishgranter.dm"
