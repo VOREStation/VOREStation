@@ -28,7 +28,7 @@ GLOBAL_LIST_INIT(reactor_mob_spawners, list()) // Define our global list here. T
 	var/icon_state_warmup = null					// Icon to use when the reactor is engaged/warming up. TODO: when I get sprites.
 	var/icon_state_severe_damage = null				// Icon to use when the reactor has taken severe damage. TODO: when I get sprites.
 	var/icon_state_powered = null					// Icon to use once the reactor is at full power. TODO: when I get sprites.
-	var/active_defense = 0							// Are we actively in "defense" mode? (IE has someone engaged the defense gamemode?)
+	var/active_defense = TRUE						// Are we actively in "defense" mode? (IE has someone engaged the defense gamemode?) This variable governs if the reactor can take damage or not (FALSE = immune!)
 	var/list/spawners = list()						// The list of wave spawners we have (Defined at init.)
 	var/reactor_id = null							// Our ID, used to link the reactor + the spawners specific to it, as well as the control console.
 	var/state = IDLE								// What state are we in currently? (This is used for tracking the spawns and such)
@@ -75,21 +75,25 @@ GLOBAL_LIST_INIT(reactor_mob_spawners, list()) // Define our global list here. T
 	
 /obj/structure/damaged_reactor/Initialize()
 	. = ..()
-	
-	if(GLOB.reactor_mob_spawners[reactor_id]) // Does the list exist? Great, then we set the spawners var = to that list.
-		spawners = GLOB.reactor_mob_spawners[reactor_id]
-	else // Otherwise, we create a runtime so that debugging is aware there is a problem.
-		log_runtime(EXCEPTION("Reactor [reactor_id] at [x],[y],[z] ([get_area(src)]) couldn't find any spawners!"))
-		return
 		
 	if(!LAZYLEN(wave_mobs)) // We create a runtime so that debugging is aware there is a problem. An empty list means nothing will happen when time comes for waves.
-		log_runtime(EXCEPTION("Reactor [reactor_id] at [x],[y],[z] ([get_area(src)]) had no wave_mobs set on it!"))
-		return
+		log_runtime(EXCEPTION("Reactor ["[reactor_id]"] at [x],[y],[z] ([get_area(src)]) had no wave_mobs set on it!"))
 		
 	if(max(waves) > LAZYLEN(wave_mobs)) // We create a runtime so that debugging is aware there is a problem. A list out of index error will appear in addition to this.
-		log_runtime(EXCEPTION("Reactor [reactor_id] at [x],[y],[z] ([get_area(src)]) had more wave mob lists chosen than were defined (Check how many wave_mobs lists you have!)!"))
-		return
+		log_runtime(EXCEPTION("Reactor ["[reactor_id]"] at [x],[y],[z] ([get_area(src)]) had more wave mob lists chosen than were defined (Check how many wave_mobs lists you have!)!"))
 			
+	return INITIALIZE_HINT_LATELOAD // We want to initialize AFTER everything else and grab our list of spawners.
+	// START_PROCESSING(SSobj, src) Moved this to lateload
+	
+/obj/structure/damaged_reactor/LateInitialize() // We initialize after the spawners do by way of INITIALIZE_HINT_LATELOAD
+	. = ..()
+	
+	if(GLOB.reactor_mob_spawners["[reactor_id]"]) // Does the list exist? Great, then we set the spawners var = to that list.
+		spawners = GLOB.reactor_mob_spawners["[reactor_id]"]
+	else // Otherwise, we create a runtime so that debugging is aware there is a problem.
+		log_runtime(EXCEPTION("Reactor ["[reactor_id]"] at [x],[y],[z] ([get_area(src)]) couldn't find any spawners!"))
+		return
+	
 	START_PROCESSING(SSobj, src)
 	
 /obj/structure/damaged_reactor/process() // This runs every 2 seconds/MC tick of the SSobj subsystem. I think. DON'T ADD STUFF DIRECTLY INTO PROCESS, USE THE PROCS.
@@ -100,15 +104,19 @@ GLOBAL_LIST_INIT(reactor_mob_spawners, list()) // Define our global list here. T
 		if(WARMUP) // All of the warmup stuff is handled by procs. Go down to PROCS section to modify this behavior.
 			if(!warmup_complete)
 				start_warmup()
+				return // We return so that the second if isn't checked before warmup_complete is set - if this is removed, warmup_complete will be null/0 when the second if is run, returning true and running complete_warmup()
 			if(world.time >= warmup_complete)
 				complete_warmup()
+				return
 			warmup()
 		
 		if(ENGAGED) // All of the wave stuff is handled by procs. Go down to PROCS section to modify this behavior.
 			if(!wave_complete)
 				start_wave()
+				return // We return so that the second if isn't checked before wave_complete is set - if this is removed, wave_complete will be null/0 when the second if is run, returning true and running end_wave()
 			if(world.time >= wave_complete)
 				end_wave()
+				return
 			defense_mode()
 		
 		if(FINISHED)
@@ -277,7 +285,7 @@ GLOBAL_LIST_INIT(reactor_mob_spawners, list()) // Define our global list here. T
 /obj/structure/damaged_reactor/take_damage(var/damage = 0, var/sound_effect = 1)
 	var/initialhealth = health // ...do we even need the initialhealth check?
 	
-	if(active_defense == 0) // Are we actively in a "defense" mode? If no, skip taking damage.
+	if(active_defense == FALSE) // Are we actively in a "defense" mode? If no, skip taking damage.
 		return
 	
 	health = max(0, health - damage)
@@ -407,27 +415,39 @@ GLOBAL_LIST_INIT(reactor_mob_spawners, list()) // Define our global list here. T
  *	//		Handle all code pertaining to reactor procs here.	//
  *////////////////////////////////////////////////////////////////
 
-/obj/structure/damaged_reactor/proc/failure_state() // Did the reactor take too much damage? Did the users leave the area? Trigger this and you "fail" the mode
+/obj/structure/damaged_reactor/proc/failure_state() // Trigger this and you "fail" the current wave. If you want special stuff done here that ONLY affects failing a wave, do it here, NOT in end_wave().
 	health = maxhealth // Reset our health to maximum
-	active_defense = 0 // We're no longer actively defending, because we failed.
+	active_defense = FALSE // We're no longer actively defending, because we failed. Make the reactor invulnerable again.
+	
+	if(current_wave - 1 < 0) // Failsafe in case we accidentally try to set the current_wave to a negative number.
+		current_wave = 0
+	else // Decrease the wave to what it was before the start of the wave.
+		current_wave--
+		
+	end_wave() // Call this proc here to conclude everything with the current wave. This also allows for preventing the edge case of "Someone set the current_wave to 20 but there's only 5 'waves'", as end_wave will call success_state() in that case.
 	
 /obj/structure/damaged_reactor/proc/success_state() // Did we win? Is it finally over?
-	active_defense = 0 // We're no longer actively defending, because we won.
-	state = FINISHED
+	active_defense = FALSE // We're no longer actively defending, because we won. Make the reactor invulnerable again.
+	state = FINISHED // We're done, we won, let's set our state to Finished and lock the reactor until it's reset!
 
 /obj/structure/damaged_reactor/proc/defense_mode() // Do these things EVERY tick of SSProcess - if you need it to run once, put it in an if statement.
-	if(active_defense == 0) // Just to keep from constantly forcing defense active.
-		active_defense = 1 // We're actively defending
+	if(active_defense == FALSE) // Just to keep from constantly forcing defense active.
+		active_defense = TRUE // We're actively defending, enable this so the reactor takes damage.
 	
 /obj/structure/damaged_reactor/proc/start_wave()
 	wave_complete = world.time + wave_length
+	
+	if(current_wave <= 0)
+		++curent_wave
+		
+	active_defense = TRUE // We set this here just in case to allow the reactor to start taking damage.
 	
 /obj/structure/damaged_reactor/proc/end_wave()
 	if(current_wave >= waves.len)
 		success_state()
 	else
 		state = IDLE
-		active_defense = 0
+		active_defense = FALSE
 
 /obj/structure/damaged_reactor/proc/change_wave(var/wavenumber)
 	for(var/obj/effect/spawner/wave_spawner/spawner in spawners)
@@ -436,6 +456,7 @@ GLOBAL_LIST_INIT(reactor_mob_spawners, list()) // Define our global list here. T
 		spawner.atmos = atmos_comp
 
 /obj/structure/damaged_reactor/proc/warmup() // Do these things EVERY tick of SSProcess - if you need it to run once, put it in an if statement.
+	
 
 /obj/structure/damaged_reactor/proc/start_warmup()
 	warmup_complete = world.time + warmup_time 	// When is our warmup complete?
@@ -474,10 +495,10 @@ GLOBAL_LIST_INIT(reactor_mob_spawners, list()) // Define our global list here. T
 /obj/effect/spawner/wave_spawner/Initialize() // When our object is loaded for the first time.
 	. = ..()
 	
-	if(GLOB.reactor_mob_spawners[reactor_id]) // If our list already exists, just add ourselves to it.
-		GLOB.reactor_mob_spawners[reactor_id] += src
+	if(GLOB.reactor_mob_spawners["[reactor_id]"]) // If our list already exists, just add ourselves to it.
+		GLOB.reactor_mob_spawners["[reactor_id]"] += src
 	else
-		GLOB.reactor_mob_spawners[reactor_id] = list(src) // No list yet for this reactor? Cool, we're starting one.
+		GLOB.reactor_mob_spawners["[reactor_id]"] = list(src) // No list yet for this reactor? Cool, we're starting one.
 
 	START_PROCESSING(SSobj, src)
 	
