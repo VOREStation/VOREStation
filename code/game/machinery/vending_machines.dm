@@ -48,6 +48,8 @@
 					/obj/item/weapon/reagent_containers/food/drinks/glass2/pint = 10,
 					/obj/item/weapon/reagent_containers/food/drinks/glass2/mug = 10,
 					/obj/item/weapon/reagent_containers/food/drinks/glass2/wine = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/glass2/carafe = 2, 	//VOREStation Add - Carafes and Pitchers
+					/obj/item/weapon/reagent_containers/food/drinks/glass2/pitcher = 2, //VOREStation Add - Carafes and Pitchers
 					/obj/item/weapon/reagent_containers/food/drinks/metaglass = 10,
 					/obj/item/weapon/reagent_containers/food/drinks/metaglass/metapint = 10,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/gin = 5,
@@ -117,7 +119,7 @@
 	vend_power_usage = 85000 //85 kJ to heat a 250 mL cup of coffee
 	products = list(/obj/item/weapon/reagent_containers/food/drinks/coffee = 25,/obj/item/weapon/reagent_containers/food/drinks/tea = 25,/obj/item/weapon/reagent_containers/food/drinks/h_chocolate = 25)
 	contraband = list(/obj/item/weapon/reagent_containers/food/drinks/ice = 10)
-	prices = list(/obj/item/weapon/reagent_containers/food/drinks/coffee = 3, /obj/item/weapon/reagent_containers/food/drinks/tea = 3, /obj/item/weapon/reagent_containers/food/drinks/h_chocolate = 3)
+	prices = list(/obj/item/weapon/reagent_containers/food/drinks/coffee = 2, /obj/item/weapon/reagent_containers/food/drinks/tea = 2, /obj/item/weapon/reagent_containers/food/drinks/h_chocolate = 2) // VOREStation Edit
 	vending_sound = "machines/vending/vending_coffee.ogg"
 
 /obj/machinery/vending/snack
@@ -132,7 +134,7 @@
 	contraband = list(/obj/item/weapon/reagent_containers/food/snacks/syndicake = 6,/obj/item/weapon/reagent_containers/food/snacks/unajerky = 12,)
 	prices = list(/obj/item/weapon/reagent_containers/food/snacks/candy = 1,/obj/item/weapon/reagent_containers/food/drinks/dry_ramen = 5,/obj/item/weapon/reagent_containers/food/snacks/chips = 1,
 					/obj/item/weapon/reagent_containers/food/snacks/sosjerky = 2,/obj/item/weapon/reagent_containers/food/snacks/no_raisin = 1,/obj/item/weapon/reagent_containers/food/snacks/spacetwinkie = 1,
-					/obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers = 1, /obj/item/weapon/reagent_containers/food/snacks/tastybread = 2, /obj/item/weapon/reagent_containers/food/snacks/skrellsnacks = 4)
+					/obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers = 1, /obj/item/weapon/reagent_containers/food/snacks/tastybread = 2, /obj/item/weapon/reagent_containers/food/snacks/skrellsnacks = 2) // VOREStation Edit
 
 /obj/machinery/vending/cola
 	name = "Robust Softdrinks"
@@ -158,6 +160,7 @@
 	name = "SweatMAX"
 	desc = "Fueled by your inner inadequacy!"
 	icon_state = "fitness"
+// VOREStation Edit Start
 	products = list(/obj/item/weapon/reagent_containers/food/drinks/smallmilk = 16,
 					/obj/item/weapon/reagent_containers/food/drinks/smallchocmilk = 16,
 					/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake = 8,
@@ -165,20 +168,23 @@
 					/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar = 16,
 					/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 8,
 					/obj/item/weapon/reagent_containers/pill/diet = 8,
-					/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/glucose = 5,
-					/obj/item/weapon/towel/random = 8)
+					// /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/glucose = 5, // VOREStation Removal
+					/obj/item/weapon/towel/random = 8,
+					/obj/iten/toy/tennis = 4)
 
 	prices = list(/obj/item/weapon/reagent_containers/food/drinks/smallmilk = 3,
 					/obj/item/weapon/reagent_containers/food/drinks/smallchocmilk = 3,
-					/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake = 20,
-					/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask = 5,
+					/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake = 15,
+					/obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask = 1,
 					/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar = 5,
 					/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 5,
 					/obj/item/weapon/reagent_containers/pill/diet = 25,
-					/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/glucose = 5,
-					/obj/item/weapon/towel/random = 40)
+					// /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/glucose = 5, // VOREStation Removal
+					/obj/item/weapon/towel/random = 20,
+					/obj/item/toy/tennis = 15)
+// VOREStation Edit End
 
-	contraband = list(/obj/item/weapon/reagent_containers/syringe/steroid = 4)
+	contraband = list(/obj/item/weapon/reagent_containers/syringe/steroid = 4, /obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask/proteanshake = 2) // VOREStation Add - Slurpable blobs.
 
 /obj/machinery/vending/cart
 	name = "PTech"
@@ -401,7 +407,8 @@
 	/obj/item/weapon/storage/toolbox/lunchbox/mars = 3,
 	/obj/item/weapon/storage/toolbox/lunchbox/cti = 3,
 	/obj/item/weapon/storage/toolbox/lunchbox/nymph = 3,
-	/obj/item/weapon/storage/toolbox/lunchbox/syndicate = 3)
+	/obj/item/weapon/storage/toolbox/lunchbox/syndicate = 3,
+	/obj/item/trash/bowl = 10) // VOREStation Add
 	contraband = list(/obj/item/weapon/material/knife/butch = 2)
 
 /obj/machinery/vending/sovietsoda
@@ -511,7 +518,18 @@
 					/obj/item/toy/plushie/carp = 1,
 					/obj/item/toy/plushie/deer = 1,
 					/obj/item/toy/plushie/tabby_cat = 1,
-					/obj/item/device/threadneedle = 3)
+					/obj/item/device/threadneedle = 3,
+					// VOREStation Add Start
+					/obj/item/toy/plushie/lizardplushie/kobold = 1,
+					/obj/item/toy/plushie/slimeplushie = 1,
+					/obj/item/toy/plushie/box = 1,
+					/obj/item/toy/plushie/borgplushie = 1,
+					/obj/item/toy/plushie/borgplushie/medihound = 1,
+					/obj/item/toy/plushie/borgplushie/scrubpuppy = 1,
+					/obj/item/toy/plushie/foxbear = 1,
+					/obj/item/toy/plushie/nukeplushie = 1,
+					/obj/item/toy/plushie/otter = 1)
+					// VOREStation Add End
 	premium = list(/obj/item/weapon/reagent_containers/food/drinks/bottle/champagne = 1,
 					/obj/item/weapon/storage/trinketbox = 2)
 	prices = list(/obj/item/weapon/storage/fancy/heartbox = 15,
@@ -540,7 +558,18 @@
 					/obj/item/toy/plushie/carp = 50,
 					/obj/item/toy/plushie/deer = 50,
 					/obj/item/toy/plushie/tabby_cat = 50,
-					/obj/item/device/threadneedle = 2)
+					/obj/item/device/threadneedle = 2,
+					// VOREStation Add Start
+					/obj/item/toy/plushie/lizardplushie/kobold = 50,
+					/obj/item/toy/plushie/slimeplushie = 50,
+					/obj/item/toy/plushie/box = 50,
+					/obj/item/toy/plushie/borgplushie = 50,
+					/obj/item/toy/plushie/borgplushie/medihound = 50,
+					/obj/item/toy/plushie/borgplushie/scrubpuppy = 50,
+					/obj/item/toy/plushie/foxbear = 50,
+					/obj/item/toy/plushie/nukeplushie = 50,
+					/obj/item/toy/plushie/otter = 50)
+					// VOREStation Add End
 
 
 /obj/machinery/vending/fishing
