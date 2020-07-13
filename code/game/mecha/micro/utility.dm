@@ -12,8 +12,6 @@
 	damage_absorption = list("brute"=0.9,"fire"=1,"bullet"=1,"laser"=1,"energy"=1,"bomb"=1)
 	max_temperature = 15000
 	infra_luminosity = 6
-	var/overload = 0
-	var/overload_coeff = 2
 	wreckage = /obj/effect/decal/mecha_wreckage/micro/utility/gopher
 	internal_damage_threshold = 35
 	max_micro_utility_equip = 2

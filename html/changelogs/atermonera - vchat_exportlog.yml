@@ -1,5 +1,0 @@
-author: Atermonera
-delete-after: True
-changes: 
-  - rscadd: "Added verb to export vchat logs, found in OOC tab when vchat has successfully loaded."
-  - tweak: "Vchat only sends you enough messages to fill your buffer on reconnect, instead of all of them."

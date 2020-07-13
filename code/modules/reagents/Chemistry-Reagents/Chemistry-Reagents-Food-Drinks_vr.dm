@@ -283,7 +283,7 @@
 	id = "scsatw"
 	description = "The screwdriver's bigger cousin."
 	taste_description = "smooth, savory booze and tangy orange juice."
-	strength = 0
+	strength = 30
 	druggy = 0
 	halluci = 0
 	var/adj_dizzy = 0

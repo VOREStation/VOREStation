@@ -783,6 +783,10 @@
 /turf/space,
 /turf/space/transit/north,
 /area/space)
+"cm" = (
+/obj/item/toy/chess/pawn_white,
+/turf/simulated/floor/holofloor/wmarble,
+/area/holodeck/source_chess)
 "cs" = (
 /obj/machinery/door/airlock/glass_external{
 	frequency = 1380;
@@ -1301,6 +1305,10 @@
 /obj/effect/overlay/coconut,
 /turf/simulated/floor/holofloor/beach/sand,
 /area/holodeck/source_beach)
+"eD" = (
+/obj/effect/floor_decal/sign/small_4,
+/turf/simulated/floor/holofloor/wood,
+/area/holodeck/source_chess)
 "eJ" = (
 /obj/structure/flora/tree/dead,
 /turf/simulated/floor/holofloor/snow,
@@ -1892,6 +1900,10 @@
 /obj/machinery/telecomms/server/presets/centcomm,
 /turf/unsimulated/floor/steel,
 /area/centcom/control)
+"kw" = (
+/obj/effect/floor_decal/sign/small_5,
+/turf/simulated/floor/holofloor/wood,
+/area/holodeck/source_chess)
 "le" = (
 /obj/effect/floor_decal/transit/orange{
 	dir = 4
@@ -1916,14 +1928,33 @@
 	icon_state = "techfloor_grid"
 	},
 /area/space)
+"nj" = (
+/obj/item/toy/chess/rook_white,
+/turf/simulated/floor/holofloor/wmarble,
+/area/holodeck/source_chess)
+"nV" = (
+/obj/item/toy/chess/rook_black,
+/turf/simulated/floor/holofloor/wmarble,
+/area/holodeck/source_chess)
+"nW" = (
+/turf/simulated/floor/holofloor/wood,
+/area/holodeck/source_chess)
 "oI" = (
 /obj/effect/step_trigger/teleporter/planetary_fall/virgo3b,
 /turf/space/transit/east,
 /area/space)
+"oT" = (
+/obj/item/toy/chess/pawn_black,
+/turf/simulated/floor/holofloor/wmarble,
+/area/holodeck/source_chess)
 "pb" = (
 /obj/machinery/telecomms/processor/preset_cent,
 /turf/unsimulated/floor/steel,
 /area/centcom/control)
+"pf" = (
+/obj/effect/floor_decal/sign/small_8,
+/turf/simulated/floor/holofloor/wood,
+/area/holodeck/source_chess)
 "pu" = (
 /obj/effect/floor_decal/transit/orange{
 	dir = 4
@@ -1946,9 +1977,16 @@
 	},
 /turf/space/transit/east,
 /area/space)
+"pT" = (
+/turf/simulated/floor/holofloor/bmarble,
+/area/holodeck/source_chess)
 "qn" = (
 /turf/space/transit/east,
 /area/space)
+"qv" = (
+/obj/effect/floor_decal/sign/small_h,
+/turf/simulated/floor/holofloor/wood,
+/area/holodeck/source_chess)
 "qz" = (
 /turf/space,
 /turf/space/internal_edge/bottomright,
@@ -1963,10 +2001,22 @@
 	icon_state = "techfloor_grid"
 	},
 /area/space)
+"qV" = (
+/obj/effect/floor_decal/sign/small_6,
+/turf/simulated/floor/holofloor/wood,
+/area/holodeck/source_chess)
+"ru" = (
+/obj/item/toy/chess/pawn_black,
+/turf/simulated/floor/holofloor/bmarble,
+/area/holodeck/source_chess)
 "rE" = (
 /obj/machinery/telecomms/bus/preset_cent,
 /turf/unsimulated/floor/steel,
 /area/centcom/control)
+"sb" = (
+/obj/item/toy/chess/knight_white,
+/turf/simulated/floor/holofloor/wmarble,
+/area/holodeck/source_chess)
 "sl" = (
 /turf/space/internal_edge/top,
 /area/space)
@@ -2040,6 +2090,10 @@
 	icon_state = "dark"
 	},
 /area/centcom/suppy)
+"uM" = (
+/obj/item/toy/chess/knight_black,
+/turf/simulated/floor/holofloor/wmarble,
+/area/holodeck/source_chess)
 "vi" = (
 /obj/effect/step_trigger/thrower{
 	affect_ghosts = 1;
@@ -2074,10 +2128,22 @@
 	icon_state = "techfloor_grid"
 	},
 /area/space)
+"vW" = (
+/obj/effect/floor_decal/sign/small_a,
+/turf/simulated/floor/holofloor/wood,
+/area/holodeck/source_chess)
+"wa" = (
+/obj/effect/floor_decal/sign/small_3,
+/turf/simulated/floor/holofloor/wood,
+/area/holodeck/source_chess)
 "wd" = (
 /obj/structure/sign/warning/nosmoking_2,
 /turf/unsimulated/wall,
 /area/centcom/simulated/terminal)
+"wh" = (
+/obj/item/toy/chess/knight_black,
+/turf/simulated/floor/holofloor/bmarble,
+/area/holodeck/source_chess)
 "wj" = (
 /turf/space/internal_edge/left,
 /area/space)
@@ -2215,6 +2281,10 @@
 "Az" = (
 /turf/unsimulated/beach/coastline,
 /area/beach)
+"Bm" = (
+/obj/item/toy/chess/bishop_black,
+/turf/simulated/floor/holofloor/bmarble,
+/area/holodeck/source_chess)
 "Bw" = (
 /turf/unsimulated/beach/water,
 /area/beach)
@@ -2222,6 +2292,10 @@
 /obj/effect/overlay/palmtree_r,
 /turf/unsimulated/beach/sand,
 /area/beach)
+"BG" = (
+/obj/item/toy/chess/king_black,
+/turf/simulated/floor/holofloor/wmarble,
+/area/holodeck/source_chess)
 "BK" = (
 /turf/space,
 /turf/space/internal_edge/bottomleft,
@@ -2243,6 +2317,17 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/centcom/simulated/main_hall)
+"CJ" = (
+/obj/item/toy/chess/pawn_white,
+/turf/simulated/floor/holofloor/bmarble,
+/area/holodeck/source_chess)
+"CK" = (
+/turf/simulated/floor/holofloor/wmarble,
+/area/holodeck/source_chess)
+"Di" = (
+/obj/effect/floor_decal/sign/small_2,
+/turf/simulated/floor/holofloor/wood,
+/area/holodeck/source_chess)
 "Dk" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
@@ -2258,12 +2343,24 @@
 /turf/space,
 /turf/space/internal_edge/topright,
 /area/space)
+"DL" = (
+/obj/effect/floor_decal/sign/small_b,
+/turf/simulated/floor/holofloor/wood,
+/area/holodeck/source_chess)
 "El" = (
 /turf/space/transit/west,
 /area/space)
+"Eo" = (
+/obj/effect/floor_decal/sign/small_g,
+/turf/simulated/floor/holofloor/wood,
+/area/holodeck/source_chess)
 "ET" = (
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/centcom/simulated/terminal)
+"EX" = (
+/obj/item/toy/chess/bishop_black,
+/turf/simulated/floor/holofloor/wmarble,
+/area/holodeck/source_chess)
 "Fa" = (
 /obj/structure/table/standard,
 /turf/unsimulated/beach/sand,
@@ -2328,6 +2425,10 @@
 /obj/effect/overlay/palmtree_l,
 /turf/unsimulated/beach/sand,
 /area/beach)
+"GW" = (
+/obj/item/toy/chess/king_white,
+/turf/simulated/floor/holofloor/bmarble,
+/area/holodeck/source_chess)
 "Hf" = (
 /obj/effect/shuttle_landmark/transit{
 	base_area = /area/space;
@@ -2337,12 +2438,24 @@
 	},
 /turf/space/transit/north,
 /area/space)
+"Hk" = (
+/obj/effect/floor_decal/sign/small_7,
+/turf/simulated/floor/holofloor/wood,
+/area/holodeck/source_chess)
+"Hr" = (
+/obj/item/toy/chess/rook_black,
+/turf/simulated/floor/holofloor/bmarble,
+/area/holodeck/source_chess)
 "Hy" = (
 /turf/unsimulated/mineral{
 	icon = 'icons/turf/transit_vr.dmi';
 	icon_state = "rock"
 	},
 /area/space)
+"HL" = (
+/obj/effect/floor_decal/sign/small_1,
+/turf/simulated/floor/holofloor/wood,
+/area/holodeck/source_chess)
 "HQ" = (
 /obj/machinery/telecomms/broadcaster/preset_cent,
 /turf/unsimulated/floor/steel,
@@ -2398,6 +2511,10 @@
 	},
 /turf/simulated/sky/virgo3b/south,
 /area/space)
+"Jc" = (
+/obj/item/toy/chess/bishop_white,
+/turf/simulated/floor/holofloor/bmarble,
+/area/holodeck/source_chess)
 "Jx" = (
 /obj/effect/floor_decal/corner_steel_grid/diagonal,
 /obj/effect/floor_decal/corner_steel_grid/diagonal{
@@ -2421,6 +2538,10 @@
 	},
 /turf/space/transit/north,
 /area/space)
+"JI" = (
+/obj/item/toy/chess/rook_white,
+/turf/simulated/floor/holofloor/bmarble,
+/area/holodeck/source_chess)
 "JL" = (
 /obj/effect/step_trigger/thrower{
 	affect_ghosts = 1;
@@ -2465,6 +2586,14 @@
 	},
 /turf/simulated/sky/virgo3b/south,
 /area/space)
+"Kn" = (
+/obj/effect/floor_decal/sign/small_d,
+/turf/simulated/floor/holofloor/wood,
+/area/holodeck/source_chess)
+"KQ" = (
+/obj/effect/floor_decal/sign/small_f,
+/turf/simulated/floor/holofloor/wood,
+/area/holodeck/source_chess)
 "Lg" = (
 /obj/effect/floor_decal/industrial/warning{
 	icon_state = "warning";
@@ -2485,6 +2614,10 @@
 	icon_state = "rock"
 	},
 /area/space)
+"Mi" = (
+/obj/item/toy/chess/bishop_white,
+/turf/simulated/floor/holofloor/wmarble,
+/area/holodeck/source_chess)
 "ME" = (
 /obj/machinery/computer/rdservercontrol{
 	name = "Master R&amp;D Server Controller";
@@ -2543,6 +2676,10 @@
 	},
 /turf/simulated/sky/virgo3b/south,
 /area/space)
+"Or" = (
+/obj/item/toy/chess/knight_white,
+/turf/simulated/floor/holofloor/bmarble,
+/area/holodeck/source_chess)
 "OR" = (
 /turf/simulated/shuttle/wall,
 /area/shuttle/escape)
@@ -2599,6 +2736,10 @@
 	color = "#cccccc"
 	},
 /area/shuttle/escape)
+"Qs" = (
+/obj/item/toy/chess/queen_black,
+/turf/simulated/floor/holofloor/bmarble,
+/area/holodeck/source_chess)
 "QW" = (
 /turf/simulated/shuttle/floor/white{
 	color = "#cccccc"
@@ -3835,6 +3976,10 @@
 /obj/item/weapon/reagent_containers/food/snacks/fries,
 /turf/simulated/floor/wood,
 /area/centcom/simulated/restaurant)
+"Wf" = (
+/obj/item/toy/chess/queen_white,
+/turf/simulated/floor/holofloor/wmarble,
+/area/holodeck/source_chess)
 "Wh" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 1
@@ -4624,6 +4769,10 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/centcom/simulated/medical)
+"YX" = (
+/obj/effect/floor_decal/sign/small_e,
+/turf/simulated/floor/holofloor/wood,
+/area/holodeck/source_chess)
 "YY" = (
 /obj/machinery/bodyscanner{
 	dir = 8
@@ -4831,6 +4980,10 @@
 /obj/machinery/light,
 /turf/simulated/floor/wood,
 /area/centcom/simulated/restaurant)
+"ZQ" = (
+/obj/effect/floor_decal/sign/small_c,
+/turf/simulated/floor/holofloor/wood,
+/area/holodeck/source_chess)
 
 (1,1,1) = {"
 ap
@@ -12075,18 +12228,18 @@ ap
 ap
 "}
 (52,1,1) = {"
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
+ar
+aI
+aI
+aI
+aI
+aI
+aI
+aI
+aI
+aI
+aI
+ar
 ap
 ap
 ap
@@ -12217,18 +12370,18 @@ ap
 ap
 "}
 (53,1,1) = {"
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
+as
+nW
+pf
+Hk
+qV
+kw
+eD
+wa
+Di
+HL
+nW
+fZ
 ap
 ap
 ap
@@ -12359,18 +12512,18 @@ ap
 ap
 "}
 (54,1,1) = {"
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
+as
+nW
+nV
+ru
+CK
+pT
+CK
+pT
+cm
+JI
+vW
+fZ
 ap
 ap
 ap
@@ -12501,18 +12654,18 @@ iO
 iO
 "}
 (55,1,1) = {"
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
+as
+nW
+wh
+oT
+pT
+CK
+pT
+CK
+CJ
+sb
+DL
+fZ
 ap
 ap
 ap
@@ -12643,18 +12796,18 @@ El
 iO
 "}
 (56,1,1) = {"
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
+as
+nW
+EX
+ru
+CK
+pT
+CK
+pT
+cm
+Jc
+ZQ
+fZ
 ap
 ap
 ap
@@ -12785,18 +12938,18 @@ El
 iO
 "}
 (57,1,1) = {"
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
+as
+nW
+Qs
+oT
+pT
+CK
+pT
+CK
+CJ
+Wf
+Kn
+fZ
 ap
 ap
 ap
@@ -12927,18 +13080,18 @@ El
 iO
 "}
 (58,1,1) = {"
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
+as
+nW
+BG
+ru
+CK
+pT
+CK
+pT
+cm
+GW
+YX
+fZ
 ap
 ap
 ap
@@ -13069,18 +13222,18 @@ El
 iO
 "}
 (59,1,1) = {"
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
+as
+nW
+Bm
+oT
+pT
+CK
+pT
+CK
+CJ
+Mi
+KQ
+fZ
 ap
 ap
 ap
@@ -13211,18 +13364,18 @@ El
 iO
 "}
 (60,1,1) = {"
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
+as
+nW
+uM
+ru
+CK
+pT
+CK
+pT
+cm
+Or
+Eo
+fZ
 ap
 ap
 ap
@@ -13353,18 +13506,18 @@ El
 iO
 "}
 (61,1,1) = {"
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
+as
+nW
+Hr
+oT
+pT
+CK
+pT
+CK
+CJ
+nj
+qv
+fZ
 ap
 ap
 ap
@@ -13495,18 +13648,18 @@ El
 iO
 "}
 (62,1,1) = {"
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
-ap
+as
+nW
+nW
+nW
+nW
+nW
+nW
+nW
+nW
+nW
+nW
+fZ
 ap
 ap
 ap
@@ -13638,16 +13791,16 @@ iO
 "}
 (63,1,1) = {"
 ar
-aI
-aI
-aI
-aI
-aI
-aI
-aI
-aI
-aI
-aI
+aL
+aL
+aL
+aL
+aL
+aL
+aL
+aL
+aL
+aL
 ar
 aI
 aI

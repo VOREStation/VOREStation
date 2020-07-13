@@ -8,6 +8,35 @@
 "ac" = (
 /turf/simulated/wall,
 /area/talon/deckone/bridge)
+"ad" = (
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 6
+	},
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 9
+	},
+/obj/structure/cable/green{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/pointdefense{
+	id_tag = "talon_pd"
+	},
+/turf/simulated/floor/hull/airless,
+/area/space)
+"af" = (
+/obj/structure/lattice,
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/turf/space,
+/area/space)
+"ag" = (
+/obj/structure/lattice,
+/obj/structure/cable/green{
+	icon_state = "2-8"
+	},
+/turf/space,
+/area/space)
 "ah" = (
 /obj/effect/floor_decal/industrial/outline/grey,
 /obj/machinery/atmospherics/portables_connector/aux{
@@ -17,6 +46,19 @@
 /obj/machinery/portable_atmospherics/canister/air/airlock,
 /turf/simulated/floor/tiled/eris/steel/gray_perforated,
 /area/talon/deckone/port_eng)
+"ai" = (
+/obj/machinery/door/blast/regular/open{
+	dir = 4;
+	id = "talon_windows"
+	},
+/obj/structure/lattice,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/space,
+/area/space)
 "aj" = (
 /obj/machinery/light{
 	dir = 8;
@@ -25,9 +67,60 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/brown_perforated,
 /area/talon/deckone/port_eng)
+"ak" = (
+/obj/machinery/door/blast/regular/open{
+	dir = 4;
+	id = "talon_windows"
+	},
+/obj/structure/lattice,
+/turf/space,
+/area/space)
+"al" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/glass/talon,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/talon/deckone/bridge)
 "am" = (
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/eris/under,
+/area/talon/maintenance/deckone_port)
+"an" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4;
+	icon_state = "intact-scrubbers"
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/eris/white/golden,
+/area/talon/deckone/bridge)
+"ao" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/eris/white/golden,
+/area/talon/deckone/bridge)
+"ap" = (
+/obj/machinery/door/blast/regular/open{
+	dir = 4;
+	id = "talon_sensor"
+	},
+/obj/structure/lattice,
+/turf/space,
 /area/talon/maintenance/deckone_port)
 "aq" = (
 /obj/machinery/camera/network/talon{
@@ -46,7 +139,7 @@
 	},
 /turf/simulated/floor/tiled/eris/white/orangecorner,
 /area/talon/deckone/armory)
-"aA" = (
+"as" = (
 /obj/structure/cable/green{
 	d1 = 4;
 	d2 = 8;
@@ -59,6 +152,11 @@
 	dir = 1;
 	pixel_x = 8;
 	pixel_y = -26
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled/eris/white/golden,
 /area/talon/deckone/bridge)
@@ -1666,13 +1764,6 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/talon/deckone/central_hallway)
-"nv" = (
-/obj/machinery/door/blast/regular/open{
-	dir = 4;
-	id = "talon_sensor"
-	},
-/turf/space,
-/area/talon/maintenance/deckone_port)
 "nz" = (
 /obj/effect/floor_decal/industrial/warning/dust/corner{
 	dir = 4
@@ -4772,13 +4863,6 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/brown_perforated,
 /area/talon/deckone/starboard_eng)
-"Qi" = (
-/obj/machinery/door/blast/regular/open{
-	dir = 4;
-	id = "talon_windows"
-	},
-/turf/space,
-/area/talon/deckone/bridge)
 "Qx" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4;
@@ -14461,7 +14545,7 @@ aa
 aa
 aa
 aa
-nv
+ap
 Mm
 ey
 am
@@ -15165,7 +15249,7 @@ aa
 aa
 aa
 aa
-aa
+ad
 ab
 ac
 ac
@@ -15307,7 +15391,7 @@ aa
 aa
 aa
 aa
-aa
+af
 ab
 ac
 lS
@@ -15449,7 +15533,7 @@ aa
 aa
 aa
 aa
-aa
+af
 ab
 ac
 FR
@@ -15591,15 +15675,15 @@ aa
 aa
 aa
 aa
-aa
-Qi
-IM
-zy
-LH
-LH
-LH
-LH
-aA
+ag
+ai
+al
+an
+ao
+ao
+ao
+ao
+as
 ac
 KP
 Vj
@@ -15734,7 +15818,7 @@ aa
 aa
 aa
 aa
-Qi
+ak
 IM
 RS
 on
@@ -15876,7 +15960,7 @@ aa
 aa
 aa
 aa
-Qi
+ak
 IM
 wm
 LH

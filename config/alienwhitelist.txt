@@ -50,6 +50,7 @@ zalvine - Shadekin Empathy
 zammyman215 - Vox
 bricker98 - Protean
 cgr - Protean
+khanivore - Protean
 storesund97 - Protean
 tastypred - Protean
 vitoras - Protean
@@ -58,3 +59,4 @@ nerdass - Protean
 xonkon - Protean
 phoenixx0 - Vox
 rubyflamewing - Protean
+radiantaurora - Protean

@@ -167,6 +167,11 @@ Book Cart End
 	name = "book"
 	icon = 'icons/obj/library.dmi'
 	icon_state ="book"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items/lefthand_books.dmi',
+		slot_r_hand_str = 'icons/mob/items/righthand_books.dmi'
+		)
+	item_state = "book"
 	throw_speed = 1
 	throw_range = 5
 	flags = NOCONDUCT

@@ -224,4 +224,6 @@
 
 	var/registered_z
 
-	var/list/progressbars = null //for stacking do_after bars
+	var/in_enclosed_vehicle = 0	//For mechs and fighters ambiance. Can be used in other cases.
+
+	var/list/progressbars = null //VOREStation Edit
