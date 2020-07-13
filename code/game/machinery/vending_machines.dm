@@ -170,7 +170,7 @@
 					/obj/item/weapon/reagent_containers/pill/diet = 8,
 					// /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/glucose = 5, // VOREStation Removal
 					/obj/item/weapon/towel/random = 8,
-					/obj/iten/toy/tennis = 4)
+					/obj/item/toy/tennis = 4)
 
 	prices = list(/obj/item/weapon/reagent_containers/food/drinks/smallmilk = 3,
 					/obj/item/weapon/reagent_containers/food/drinks/smallchocmilk = 3,
