@@ -16,6 +16,7 @@
 
 /obj/random/energy/item_to_spawn()
 	return pick(prob(3);/obj/item/weapon/gun/energy/laser,
+				prob(3);/obj/item/weapon/gun/energy/laser/sleek,
 				prob(4);/obj/item/weapon/gun/energy/gun,
 				prob(3);/obj/item/weapon/gun/energy/gun/burst,
 				prob(1);/obj/item/weapon/gun/energy/gun/nuclear,
@@ -29,7 +30,8 @@
 				prob(3);/obj/item/weapon/gun/energy/toxgun,
 				prob(4);/obj/item/weapon/gun/energy/taser,
 				prob(2);/obj/item/weapon/gun/energy/crossbow/largecrossbow,
-				prob(4);/obj/item/weapon/gun/energy/stunrevolver)
+				prob(4);/obj/item/weapon/gun/energy/stunrevolver,
+				prob(3);/obj/item/weapon/gun/energy/gun/compact)
 
 /obj/random/energy/sec
 	name = "Random Security Energy Weapon"
@@ -54,6 +56,7 @@
 				prob(2);/obj/item/weapon/gun/projectile/automatic/c20r,
 				prob(2);/obj/item/weapon/gun/projectile/automatic/sts35,
 				prob(2);/obj/item/weapon/gun/projectile/automatic/z8,
+				prob(2);/obj/item/weapon/gun/projectile/automatic/combatsmg,
 				prob(4);/obj/item/weapon/gun/projectile/colt,
 				prob(2);/obj/item/weapon/gun/projectile/deagle,
 				prob(1);/obj/item/weapon/gun/projectile/deagle/camo,
@@ -193,6 +196,11 @@
 			prob(1);list(
 				/obj/item/weapon/gun/projectile/automatic/p90,
 				/obj/item/ammo_magazine/m9mmp90
+			),
+			prob(3);list(
+				/obj/item/weapon/gun/projectile/automatic/combatsmg,
+				/obj/item/ammo_magazine/m9mmt,
+				/obj/item/ammo_magazine/m9mmt
 			)
 		)
 
@@ -232,9 +240,19 @@
 				/obj/item/ammo_magazine/m762garand
 			),
 			prob(1);list(
+				/obj/item/weapon/gun/projectile/revolvingrifle,
+				/obj/item/ammo_magazine/s44/rifle,
+				/obj/item/ammo_magazine/s44/rifle
+			),
+			prob(1);list(
 				/obj/item/weapon/gun/projectile/automatic/bullpup,
 				/obj/item/ammo_magazine/m762,
 				/obj/item/ammo_magazine/m762
+			),
+			prob(1);list(
+				/obj/item/weapon/gun/projectile/caseless/prototype,
+				/obj/item/ammo_magazine/m5mmcaseless,
+				/obj/item/ammo_magazine/m5mmcaseless
 			)
 		)
 

@@ -20,15 +20,20 @@
 			/obj/item/weapon/storage/box/flashbangs = 2
 			)
 	cost = 40
-	containertype = /obj/structure/closet/crate/secure/gear
+	containertype = /obj/structure/closet/crate/secure/lawson
 	containername = "Security equipment crate"
 	access = access_security*/
 
 /datum/supply_pack/munitions/egunpistol
 	name = "Weapons - Energy sidearms"
 	contains = list(/obj/item/weapon/gun/energy/gun = 2)
+<<<<<<< HEAD
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure/weapon
+=======
+	cost = 40
+	containertype = /obj/structure/closet/crate/secure/lawson
+>>>>>>> 4474f3f... Flavour Enhancement: Guns (#7333)
 	containername = "Energy sidearms crate"
 	access = access_armory //VOREStation Edit - Guns are for the armory.
 
@@ -59,7 +64,7 @@
 	name = "Weapons - Laser rifle crate"
 	contains = list(/obj/item/weapon/gun/energy/laser = 2) //VOREStation Edit - Made to be consistent with the energy guns crate.
 	cost = 50
-	containertype = /obj/structure/closet/crate/secure/weapon
+	containertype = /obj/structure/closet/crate/secure/heph
 	containername = "Energy weapons crate"
 	access = access_armory
 
@@ -79,7 +84,7 @@
 	name = "Weapons - Energy marksman"
 	contains = list(/obj/item/weapon/gun/energy/sniperrifle = 2)
 	cost = 100
-	containertype = /obj/structure/closet/crate/secure/weapon
+	containertype = /obj/structure/closet/crate/secure/heph
 	containername = "Energy marksman crate"
 	access = access_armory
 
@@ -87,7 +92,7 @@
 	name = "Weapons - Burst laser"
 	contains = list(/obj/item/weapon/gun/energy/gun/burst = 2)
 	cost = 50
-	containertype = /obj/structure/closet/crate/secure/weapon
+	containertype = /obj/structure/closet/crate/secure/lawson
 	containername = "Burst laser crate"
 	access = access_armory
 */
@@ -98,7 +103,7 @@
 			/obj/item/weapon/storage/box/empslite
 			)
 	cost = 50
-	containertype = /obj/structure/closet/crate/secure/weapon
+	containertype = /obj/structure/closet/crate/secure/ward
 	containername = "Electromagnetic weapons crate"
 	access = access_armory
 
@@ -109,7 +114,7 @@
 			/obj/item/weapon/storage/box/empslite
 			)
 	cost = 30
-	containertype = /obj/structure/closet/crate/secure/weapon
+	containertype = /obj/structure/closet/crate/secure/ward
 	containername = "Electromagnetic weapons crate"
 	access = access_armory
 
@@ -117,7 +122,7 @@
 	name = "Weapons - Ballistic SMGs"
 	contains = list(/obj/item/weapon/gun/projectile/automatic/wt550 = 2)
 	cost = 50
-	containertype = /obj/structure/closet/crate/secure/weapon
+	containertype = /obj/structure/closet/crate/secure/ward
 	containername = "Ballistic weapon crate"
 	access = access_armory
 
@@ -144,11 +149,22 @@
  	containername = "Ballistic Weapons crate"
  	access = access_armory //VOREStation Edit - Guns are for the armory.
 
+/datum/supply_pack/munitions/caseless
+	name = "Weapons - Prototype Caseless Rifle"
+	contains = list(
+			/obj/item/weapon/gun/projectile/caseless/prototype,
+			/obj/item/ammo_magazine/m5mmcaseless = 3
+			)
+	cost = 60
+	containertype = /obj/structure/closet/crate/secure/gilthari
+	containername = "Caseless rifle crate"
+	access = access_security
+
 /datum/supply_pack/munitions/mrifle
 	name = "Weapons - Magnetic Rifles"
 	contains = list(/obj/item/weapon/gun/magnetic/railgun/heater = 2)
 	cost = 120
-	containertype = /obj/structure/closet/crate/secure/weapon
+	containertype = /obj/structure/closet/crate/secure/heph
 	containername = "Magnetic weapon crate"
 	access = access_armory
 
@@ -156,7 +172,7 @@
 	name = "Weapons - Magnetic Pistols"
 	contains = list(/obj/item/weapon/gun/magnetic/railgun/heater/pistol = 2)
 	cost = 200
-	containertype = /obj/structure/closet/crate/secure/weapon
+	containertype = /obj/structure/closet/crate/secure/heph
 	containername = "Magnetic weapon crate"
 	access = access_armory
 
@@ -164,7 +180,7 @@
 	name = "Weapons - Magnetic Carbines"
 	contains = list(/obj/item/weapon/gun/magnetic/railgun/flechette/sif = 2)
 	cost = 130
-	containertype = /obj/structure/closet/crate/secure/weapon
+	containertype = /obj/structure/closet/crate/secure/lawson
 	containername = "Magnetic weapon crate"
 	access = access_security
 
@@ -183,7 +199,7 @@
 			/obj/item/weapon/storage/box/shotgunshells = 2
 			)
 	cost = 25
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "Ballistic ammunition crate"
 	access = access_armory
 
@@ -199,7 +215,7 @@
 	name = "Ammunition - 9mm top mounted lethal"
 	contains = list(/obj/item/ammo_magazine/m9mmt = 6)
 	cost = 25
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "Ballistic ammunition crate"
 	access = access_armory
 
@@ -207,7 +223,7 @@
 	name = "Ammunition - 9mm top mounted rubber"
 	contains = list(/obj/item/ammo_magazine/m9mmt/rubber = 6)
 	cost = 25
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "Ballistic ammunition crate"
 	access = access_security
 
@@ -215,7 +231,7 @@
 	name = "Ammunition - 7.62mm lethal"
 	contains = list(/obj/item/ammo_magazine/m762 = 6)
 	cost = 25
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "Ballistic ammunition crate"
 	access = access_armory
 
@@ -223,6 +239,6 @@
 	name = "Ammunition - Power cell"
 	contains = list(/obj/item/weapon/cell/device/weapon = 3)
 	cost = 50
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "Energy ammunition crate"
 	access = access_security

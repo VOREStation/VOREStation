@@ -789,6 +789,66 @@
 		"hazard" = COLOR_OFF_WHITE
 	)
 
+/decl/closet_appearance/crate/secure/heph
+	color = COLOR_GRAY20
+	decals = list(
+		"crate_bracing"
+	)
+	extra_decals = list(
+		"crate_stripe_left" = COLOR_NT_RED,
+		"crate_stripe_right" = COLOR_NT_RED,
+		"hazard" = COLOR_OFF_WHITE,
+		"heph" = COLOR_OFF_WHITE
+	)
+
+/decl/closet_appearance/crate/secure/gilthari
+	color = COLOR_GRAY20
+	decals = list(
+		"crate_bracing"
+	)
+	extra_decals = list(
+		"crate_stripe_left" = COLOR_GOLD,
+		"crate_stripe_right" = COLOR_GOLD,
+		"hazard" = COLOR_OFF_WHITE,
+		"gilthari" = COLOR_OFF_WHITE
+	)
+
+/decl/closet_appearance/crate/secure/ward
+	color = COLOR_OFF_WHITE
+	decals = list(
+		"crate_bracing"
+	)
+	extra_decals = list(
+		"crate_stripe_left" = COLOR_COMMAND_BLUE,
+		"crate_stripe_right" = COLOR_COMMAND_BLUE,
+		"hazard" = COLOR_OFF_WHITE,
+		"wt" = COLOR_OFF_WHITE
+	)
+
+/decl/closet_appearance/crate/secure/hedberg
+	color = COLOR_GREEN_GRAY
+	decals = list(
+		"crate_bracing"
+	)
+	extra_decals = list(
+		"crate_stripe_left" = COLOR_OFF_WHITE,
+		"crate_stripe_right" = COLOR_OFF_WHITE,
+		"hazard" = COLOR_OFF_WHITE,
+		"hedberg" = COLOR_OFF_WHITE
+	)
+
+/decl/closet_appearance/crate/secure/lawson
+	color = COLOR_SAN_MARINO_BLUE
+	decals = list(
+		"crate_bracing"
+	)
+	extra_decals = list(
+		"crate_stripe_left" = COLOR_OFF_WHITE,
+		"crate_stripe_right" = COLOR_OFF_WHITE,
+		"hazard" = COLOR_OFF_WHITE,
+		"lawson" = COLOR_OFF_WHITE
+	)
+
 /decl/closet_appearance/crate/secure/hydroponics
 	extra_decals = list(
 		"crate_stripe_left" = COLOR_GREEN_GRAY,
