@@ -2098,6 +2098,7 @@
 #include "code\modules\food\kitchen\microwave.dm"
 #include "code\modules\food\kitchen\smartfridge.dm"
 #include "code\modules\food\kitchen\smartfridge_vr.dm"
+#include "code\modules\food\kitchen\cooking_machines\_appliance.dm"
 #include "code\modules\food\kitchen\cooking_machines\_cooker.dm"
 #include "code\modules\food\kitchen\cooking_machines\_cooker_output.dm"
 #include "code\modules\food\kitchen\cooking_machines\candy.dm"

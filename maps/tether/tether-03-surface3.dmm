@@ -10132,7 +10132,7 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
 "asP" = (
-/obj/machinery/cooker/grill,
+/obj/machinery/appliance/cooker/grill,
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 9
 	},
@@ -10236,7 +10236,7 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
 "atc" = (
-/obj/machinery/cooker/candy,
+/obj/machinery/appliance/cooker/candy,
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 8
 	},
@@ -10328,7 +10328,7 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
 "ato" = (
-/obj/machinery/cooker/cereal,
+/obj/machinery/appliance/cooker/cereal,
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 8
 	},
@@ -10395,7 +10395,7 @@
 /turf/simulated/wall,
 /area/crew_quarters/kitchen)
 "atA" = (
-/obj/machinery/cooker/fryer,
+/obj/machinery/appliance/cooker/fryer,
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 8
 	},
@@ -10555,7 +10555,7 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
 "atS" = (
-/obj/machinery/cooker/oven,
+/obj/machinery/appliance/cooker/oven,
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 10
 	},

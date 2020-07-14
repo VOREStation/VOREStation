@@ -1,4 +1,4 @@
-/obj/machinery/cooker/grill
+/obj/machinery/appliance/cooker/grill
 	name = "grill"
 	desc = "Backyard grilling, IN SPACE."
 	icon_state = "grill_off"
