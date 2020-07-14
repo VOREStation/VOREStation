@@ -333,12 +333,35 @@
 	desc = "A secure weapons crate."
 	closet_appearance = /decl/closet_appearance/crate/secure/weapon
 
+/obj/structure/closet/crate/secure/hedberg
+	name = "weapons crate"
+	desc = "A secure weapons crate stamped with the logo of Hedberg-Hammarstrom."
+	closet_appearance = /decl/closet_appearance/crate/secure/hedberg
+
+/obj/structure/closet/crate/secure/gilthari
+	name = "weapons crate"
+	desc = "A secure weapons crate embossed with the logo of Gilthari Exports."
+	closet_appearance = /decl/closet_appearance/crate/secure/gilthari
+
+/obj/structure/closet/crate/secure/ward
+	name = "weapons crate"
+	desc = "A secure weapons crate decaled with the logo of Ward-Takahashi."
+	closet_appearance = /decl/closet_appearance/crate/secure/ward
+
+/obj/structure/closet/crate/secure/heph
+	name = "weapons crate"
+	desc = "A secure weapons crate marked with the logo of Hephaestus Industries."
+	closet_appearance = /decl/closet_appearance/crate/secure/heph
+
+/obj/structure/closet/crate/secure/lawson
+	name = "weapons crate"
+	desc = "A secure weapons crate marked with the logo of Lawson Arms."
+	closet_appearance = /decl/closet_appearance/crate/secure/lawson
 
 /obj/structure/closet/crate/secure/phoron
 	name = "phoron crate"
 	desc = "A secure phoron crate."
 	closet_appearance = /decl/closet_appearance/crate/secure/hazard
-
 
 /obj/structure/closet/crate/secure/gear
 	name = "gear crate"

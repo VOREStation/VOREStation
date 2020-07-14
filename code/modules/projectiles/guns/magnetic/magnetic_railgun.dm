@@ -1,6 +1,8 @@
 /obj/item/weapon/gun/magnetic/railgun
 	name = "railgun"
 	desc = "The Mars Military Industries MI-76 Thunderclap. A man-portable mass driver for squad support anti-armour and destruction of fortifications and emplacements."
+	description_fluff = "Mars Military Industries is a Hephaestus Industries subsidiary focused on the development of new energy-ballistic hybrid weapons for use against heavy targets. \
+	The distribution of MMI weapons is understandably tightly tracked and controlled."
 	gun_unreliable = 0
 	icon_state = "railgun"
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 4, TECH_MAGNET = 4)
@@ -17,7 +19,7 @@
 	capacitor = /obj/item/weapon/stock_parts/capacitor/adv
 	loaded = /obj/item/weapon/rcd_ammo/large
 	removable_components = FALSE
-	
+
 	var/slowdown_held = 2
 	var/slowdown_worn = 1
 	var/empty_sound = 'sound/machines/twobeep.ogg'
@@ -106,6 +108,8 @@
 /obj/item/weapon/gun/magnetic/railgun/flechette/pistol
 	name = "flechette pistol"
 	desc = "The MI-6a Ullr is a small-form-factor railgun that fires flechette rounds at high velocity. Deadly against armour, but much less effective against soft targets."
+	description_fluff = "Mars Military Industries is a Hephaestus Industries subsidiary focused on the development of new energy-ballistic hybrid weapons for use against heavy targets. \
+	The distribution of MMI weapons is understandably tightly tracked and controlled."
 	icon_state = "railpistol"
 	item_state = "combatrevolver"
 	w_class = ITEMSIZE_SMALL
@@ -136,7 +140,7 @@
 /obj/item/weapon/gun/magnetic/railgun/heater
 	name = "coil rifle"
 	desc = "A large rifle designed and produced after the Grey Hour."
-	description_info = "The MI-51B is a Martian weapon designed in the days after the Grey Hour, in preparation for the need for updated equipment by Solar forces.<br>\
+	description_fluff = "The Hephaestus MI-51B is a weapon designed by Mars Military Industries - a Hephaestus subsidiary - in the days after the Grey Hour, in preparation for the need for updated equipment by Solar forces.<br>\
 		The design is based upon a larger rail-type weapon design."
 	icon_state = "railgun_sec"
 	item_state = "cshotgun"
@@ -167,7 +171,7 @@
 /obj/item/weapon/gun/magnetic/railgun/heater/pistol
 	name = "coil pistol"
 	desc = "A large pistol designed and produced after the Grey Hour."
-	description_info = "The MI-60D `Peacemaker` is a Martian weapon designed in the days after the Grey Hour, in preparation for the need for updated equipment by Solar forces.<br>\
+	description_fluff = "The MI-60D `Peacemaker` is a weapon designed by Mars Military Industries - a Hephaestus subsidiary - in the days after the Grey Hour, in preparation for the need for updated equipment by Solar forces.<br>\
 		The design is based upon a larger rail-type hybrid weapon design, though much smaller in scale."
 	icon_state = "peacemaker"
 	item_state = "revolver"
@@ -201,7 +205,7 @@
 /obj/item/weapon/gun/magnetic/railgun/flechette/sif
 	name = "shredder rifle"
 	desc = "The MI-12B Kaldr is a burst fire capable coilgun that fires modified slugs intended for damaging soft targets."
-	description_fluff = "The Kaldr is a weapon recently deployed to various outposts on Sif, as well as local hunting guilds for the rapid dispatching of invasive wildlife."
+	description_fluff = "The Lawson Kaldr is a weapon recently deployed to various outposts on Sif, as well as local hunting guilds for the rapid dispatching of invasive wildlife."
 	icon_state = "railgun_sifguard"
 	item_state = "z8carbine"
 

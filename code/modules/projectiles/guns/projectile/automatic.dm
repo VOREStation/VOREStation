@@ -41,7 +41,8 @@
 
 /obj/item/weapon/gun/projectile/automatic/c20r
 	name = "submachine gun"
-	desc = "The C-20r is a lightweight and rapid firing SMG, for when you REALLY need someone dead. It has 'Scarborough Arms - Per falcis, per pravitas' inscribed on the stock. Uses 10mm rounds."
+	desc = "The C-20r is a lightweight and rapid firing SMG, for when you REALLY need someone dead. It has 'Scarborough Arms - Per falcis, per pravitas', inscribed on the stock. Uses 10mm rounds."
+	description_fluff = "The C-20r is produced by Scarborough Arms, a specialist high-end weapons manufacturer based out of Titan, Sol. Scarborough has resisted numerous efforts by Trans-Stellars to acquire the brand since its founding in 2511, and has gained a dedicated following among a certain flavor of private operative."
 	icon_state = "c20r"
 	item_state = "c20r"
 	w_class = ITEMSIZE_NORMAL
@@ -71,7 +72,11 @@
 
 /obj/item/weapon/gun/projectile/automatic/sts35
 	name = "assault rifle"
-	desc = "The rugged STS-35 is a durable automatic weapon of a make popular on the frontier worlds. Uses 5.45mm rounds."
+	desc = "The rugged Jindal Arms STS-35 is a durable automatic weapon of a make popular on the frontier worlds. Uses 5.45mm rounds."
+	description_fluff = "A subsidiary of Hephaestus Industries, While Jindal’s rugged, affordable weapons intended for the colonial sector are a major export of Tau Ceti, \
+	the Jindal Arms company is perhaps best known for its liberal sale of production licenses to just about any fledgling rimworld venture who asks, and has cash to spare. \
+	While Jindal’s 'authentic' Binma-built weapons are renowned for their reliability, the same cannot be said for the hundreds of low-grade (But technically legal) \
+	copies circulating the squalid habitats and smoke-filled junk ships of the frontier."
 	icon_state = "arifle"
 	item_state = "arifle"
 	wielded_item_state = "arifle-wielded"
@@ -126,8 +131,11 @@
 	return
 
 /obj/item/weapon/gun/projectile/automatic/z8
-	name = "designated marksman rifle"
-	desc = "The Z8 Bulldog is an older model designated marksman rifle, made by the now defunct Zendai Foundries. Makes you feel like a space marine when you hold it, even though it can only hold 10 round magazines. Uses 7.62mm rounds and has an under barrel grenade launcher."
+	name = "battle rifle"
+	desc = "The Z8 Bulldog is an older model battle rifle, made by the now defunct Zendai Foundries. Makes you feel like an old-school badass when you hold it, even though it can only hold 10 round magazines. Uses 7.62mm rounds and has an under barrel grenade launcher."
+	description_fluff = "Zendai Foundries was a well-respected mid-sized arms company that operated until 2508, when it was acquired by Hephaestus Industries. \
+	Plans to integrate the brand into wider corporate operations were brought to an abrupt halt by the SolGov-Hegemony war, and the company was left by the wayside. \
+	Hephaestus still produces replacement parts for many of Zendai's most popular weapons, including the Z8 Bulldog, and a great detail remain in service."
 	icon_state = "carbine" // This isn't a carbine. :T
 	item_state = "z8carbine"
 	wielded_item_state = "z8carbine-wielded"
@@ -200,7 +208,8 @@
 
 /obj/item/weapon/gun/projectile/automatic/l6_saw
 	name = "light machine gun"
-	desc = "A rather traditionally made L6 SAW with a pleasantly lacquered wooden pistol grip. 'Aussec Armoury-2531' is engraved on the reciever. Uses 5.45mm rounds. It's also compatible with magazines from STS-35 assault rifles."
+	desc = "A rather sturdily made L6 SAW with a reassuringly ergonomic pistol grip. 'Hephaestus Industries' is engraved on the reciever. Uses 5.45mm rounds. It's also compatible with magazines from STS-35 assault rifles."
+	description_fluff = "The leading arms producer in the SCG, Hephaestus typically only uses its 'top level' branding for its military-grade equipment used by professional armed forces across human space."
 	icon_state = "l6closed100"
 	item_state = "l6closed"
 	wielded_item_state = "genericLMG-wielded"
@@ -282,7 +291,8 @@
 
 /obj/item/weapon/gun/projectile/automatic/as24
 	name = "automatic shotgun"
-	desc = "The AS-24 is a rugged looking automatic shotgun produced for the military by Gurov Projectile Weapons LLC. For very obvious reasons, it's illegal to own in many juristictions. Uses 12g rounds."
+	desc = "The AS-24 is a rugged looking automatic shotgun produced exclusively for the SCG Fleet by Hephaestus Industries. For very obvious reasons, it's illegal to own in many juristictions. Uses 12g rounds."
+	description_fluff = "The leading arms producer in the SCG, Hephaestus typically only uses its 'top level' branding for its military-grade equipment used by professional armed forces across human space."
 	icon_state = "ashot"
 	item_state = null
 	wielded_item_state = "woodarifle-wielded" //Placeholder
@@ -313,8 +323,11 @@
 	return
 
 /obj/item/weapon/gun/projectile/automatic/mini_uzi
-	name = "\improper Uzi"
-	desc = "The iconic Uzi is a lightweight, compact, fast firing machine pistol. Cybersun Industries famously still produces these designs, which have changed little since the 20th century. Uses .45 rounds."
+	name = "micro-smg"
+	desc = "The infamous ProTek Spitz is a lightweight, compact, fast firing machine pistol. Cheaply produced under the ProTek consumer brand, the Spitz seems to find its way into every corner of the galaxy. Uses .45 rounds."
+	description_fluff = "Budget-grade weapons for the budget-grade consumer! Hephaestus’ low-end brand of cheaply made, low-maintenance personal defense weapons for those who just need a handgun with absolutely no frills. \
+	Early ProTek weapons were notoriously unsafe and unreliable, though more recent designs have improved somewhat - they still aren’t very good. \
+	Though sold for a pittance, the profit margin is too irresistible for Hephaestus to discontinue the brand."
 	icon_state = "mini-uzi"
 	w_class = ITEMSIZE_NORMAL
 	load_method = MAGAZINE
@@ -337,7 +350,8 @@
 
 /obj/item/weapon/gun/projectile/automatic/p90
 	name = "personal defense weapon"
-	desc = "The H90K is a compact, large capacity submachine gun produced by Hephaestus Industries. Despite its fierce reputation, it still manages to feel like a toy. Uses 9mm rounds."
+	desc = "The H90K is a compact, large capacity submachine gun produced by MarsTech. Despite its fierce reputation, it still manages to feel like a toy. Uses 9mm rounds."
+	description_fluff = "The leading civilian-sector high-quality small arms brand of Hephaestus Industries, MarsTech has been the provider of choice for law enforcement and security forces for over 300 years."
 	icon_state = "p90smg"
 	item_state = "p90"
 	w_class = ITEMSIZE_NORMAL
@@ -359,6 +373,7 @@
 /obj/item/weapon/gun/projectile/automatic/tommygun
 	name = "\improper Tommy Gun"
 	desc = "This weapon was made famous by gangsters in the 20th century. Cybersun Industries is currently reproducing these for a target market of historic gun collectors and classy criminals. Uses .45 rounds."
+	description_fluff = "Cybersun Industries is a minor arms manufacturer specialising in replica firearms from eras past. Though they offer a wide selection of made-to-order models, their products are seen as little more than novelty items to most serious collectors."
 	icon_state = "tommygun"
 	w_class = ITEMSIZE_NORMAL
 	caliber = ".45"
@@ -411,3 +426,30 @@
 		item_state = "bullpup-empty"
 	if(!ignore_inhands)
 		update_held_icon()
+
+//Functionally a mini-uzi with slightly less terrible burst spread.
+/obj/item/weapon/gun/projectile/automatic/combatsmg
+	name = "\improper PP3 Ten"
+	desc = "The Bishamonten PP3 Ten personal defense weapon is a rare design much sought after - though more for its looks than its functionality. Uses 9mm rounds."
+	description_fluff = "The Bishamonten Company operated from roughly 2150-2280 - the height of the first extrasolar colonisation boom - before filing for bankruptcy and selling off its assets to various companies that would go on to become today’s TSCs. \
+	Focused on sleek ‘futurist’ designs which have largely fallen out of fashion but remain popular with collectors and people hoping to make some quick thalers from replica weapons. \
+	Bishamonten weapons tended to be form over function - despite their flashy looks, most were completely unremarkable one way or another as weapons and used very standard firing mechanisms."
+	icon_state = "combatsmg"
+	w_class = ITEMSIZE_NORMAL
+	load_method = MAGAZINE
+	caliber = "9mm"
+	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 4)
+	magazine_type = /obj/item/ammo_magazine/m9mmt
+	allowed_magazines = list(/obj/item/ammo_magazine/m9mmt)
+
+	firemodes = list(
+		list(mode_name="semiauto", burst=1, fire_delay=0),
+		list(mode_name="3-round bursts", burst=3, burst_delay=1, fire_delay=4, move_delay=4, burst_accuracy=list(0,-15,-30), dispersion=list(0.0, 0.6, 0.6))
+		)
+
+/obj/item/weapon/gun/projectile/automatic/combatsmg/update_icon()
+	..()
+	if(ammo_magazine)
+		icon_state = "combatsmg"
+	else
+		icon_state = "combatsmg-empty"
