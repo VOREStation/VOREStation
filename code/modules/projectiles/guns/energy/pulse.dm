@@ -28,12 +28,22 @@
 /obj/item/weapon/gun/energy/pulse_rifle/destroyer/attack_self(mob/living/user as mob)
 	to_chat(user, "<span class='warning'>[src.name] has three settings, and they are all DESTROY.</span>")
 
-//WHY?
-/obj/item/weapon/gun/energy/pulse_rifle/M1911
-	name = "\improper M1911-P"
-	desc = "It's not the size of the gun, it's the size of the hole it puts through people."
+
+//non-bus version because it looks adorable.
+/obj/item/weapon/gun/energy/pulse_rifle/compact
+	name = "\improper LP2 Grasshopper Compact"
+	desc = "You feel like you're going to break the damn thing. The Bishamonten LP2 is a rare collectors item from the early 23rd century."
+	description_fluff = "The Bishamonten Company operated from roughly 2150-2280 - the height of the first extrasolar colonisation boom - before filing for bankruptcy and selling off its assets to various companies that would go on to become today’s TSCs. \
+	Focused on sleek ‘futurist’ designs which have largely fallen out of fashion but remain popular with collectors and people hoping to make some quick thalers from replica weapons. \
+	Bishamonten weapons tended to be form over function - despite their flashy looks, most were completely unremarkable one way or another as weapons and used very standard firing mechanisms.\
+	The Grasshopper remains one of the smallest production laser pistols ever produced that is still capable of causing significant damage to organic tissue."
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
-	icon_state = "m1911-p"
+	icon_state = "lpistol"
+	charge_cost = 480
+
+/obj/item/weapon/gun/energy/pulse_rifle/compact/admin
+	name = "\improper LP2 Grasshopper Deluxe"
+	desc = "It's not the size of the gun, it's the size of the hole it puts through people."
 	charge_cost = 240
 
 	firemodes = list(

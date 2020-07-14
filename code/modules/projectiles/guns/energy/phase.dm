@@ -2,7 +2,8 @@
 
 /obj/item/weapon/gun/energy/phasegun
 	name = "phase carbine"
-	desc = "The NT EW26 Artemis is a downsized energy weapon, specifically designed for use against wildlife."
+	desc = "The RayZar EW26 Artemis is a downsized energy weapon, specifically designed for use against wildlife."
+	description_fluff = "RayZar is Ward-Takahashi’s main consumer weapons brand, known for producing and licensing a wide variety of specialist energy weapons of various types and quality primarily for the civilian market."
 	icon_state = "phasecarbine"
 	item_state = "phasecarbine"
 	wielded_item_state = "phasecarbine-wielded"
@@ -13,7 +14,7 @@
 
 /obj/item/weapon/gun/energy/phasegun/pistol
 	name = "phase pistol"
-	desc = "The NT  EW15 Apollo is an energy handgun, specifically designed for self-defense against aggressive wildlife."
+	desc = "The RayZar EW15 Apollo is an energy handgun, specifically designed for self-defense against aggressive wildlife."
 	icon_state = "phase"
 	item_state = "taser"	//I don't have an in-hand sprite, taser will be fine
 	w_class = ITEMSIZE_NORMAL
@@ -33,7 +34,7 @@
 
 obj/item/weapon/gun/energy/phasegun/rifle
 	name = "phase rifle"
-	desc = "The NT EW31 Orion is a specialist energy weapon, intended for use against hostile wildlife."
+	desc = "The RayZar EW31 Orion is a specialist energy weapon, intended for use against hostile wildlife."
 	icon_state = "phaserifle"
 	item_state = "phaserifle"
 	wielded_item_state = "phaserifle-wielded"
@@ -46,7 +47,7 @@ obj/item/weapon/gun/energy/phasegun/rifle
 
 /obj/item/weapon/gun/energy/phasegun/cannon
 	name = "phase cannon"
-	desc = "The NT EW50 Gaia is a massive energy weapon, purpose-built for clearing land. You feel dirty just looking at it."
+	desc = "The RayZar EW50 Gaia is a massive energy weapon, purpose-built for clearing land. You feel dirty just looking at it."
 	icon_state = "phasecannon"
 	item_state = "phasecannon"
 	wielded_item_state = "phasecannon-wielded"	//TODO: New Sprites

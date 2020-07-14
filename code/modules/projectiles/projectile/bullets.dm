@@ -226,6 +226,10 @@
 	penetrating = 15
 	armor_penetration = 90
 
+/obj/item/projectile/bullet/rifle/a44rifle
+	fire_sound = 'sound/weapons/gunshot4.ogg'
+	damage = 50
+
 /* Miscellaneous */
 
 /obj/item/projectile/bullet/suffocationbullet//How does this even work?
