@@ -68,10 +68,10 @@
 
 	data["networks"] = all_networks
 
-	var/list/map_levels = using_map.get_map_levels(get_z(nano_host()), TRUE, om_range = DEFAULT_OVERMAP_RANGE)
+	// var/list/map_levels = using_map.get_map_levels(get_z(nano_host()), TRUE, om_range = DEFAULT_OVERMAP_RANGE)
 
-	if(current_network)
-		data["cameras"] = camera_repository.cameras_in_network(current_network, map_levels)
+	// if(current_network) // TODO: Fix
+		// data["cameras"] = camera_repository.cameras_in_network(current_network, map_levels)
 
 	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)

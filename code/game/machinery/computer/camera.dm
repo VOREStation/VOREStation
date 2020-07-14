@@ -3,201 +3,206 @@
 /obj/machinery/computer/security
 	name = "security camera monitor"
 	desc = "Used to access the various cameras on the station."
+
 	icon_keyboard = "security_key"
 	icon_screen = "cameras"
 	light_color = "#a91515"
-	var/current_network = null
-	var/obj/machinery/camera/current_camera = null
-	var/last_pic = 1.0
-	var/list/network
-	var/mapping = 0//For the overview file, interesting bit of code.
-	var/cache_id = 0
 	circuit = /obj/item/weapon/circuitboard/security
 
-/obj/machinery/computer/security/New()
-	if(!network)
+	var/mapping = 0//For the overview file, interesting bit of code.
+
+	var/list/network = list()
+	var/obj/machinery/camera/active_camera
+	var/list/concurrent_users = list()
+
+	// Stuff needed to render the map
+	var/map_name
+	var/const/default_map_size = 15
+	var/obj/screen/map_view/cam_screen
+	/// All the plane masters that need to be applied.
+	var/list/cam_plane_masters
+	var/obj/screen/background/cam_background
+	var/obj/screen/background/cam_foreground
+	var/obj/screen/skybox/local_skybox
+
+/obj/machinery/computer/security/Initialize()
+	. = ..()
+	if(!LAZYLEN(network))
 		network = using_map.station_networks.Copy()
-	..()
-	if(network.len)
-		current_network = network[1]
+	map_name = "camera_console_[REF(src)]_map"
+	// Initialize map objects
+	cam_screen = new
+	cam_screen.name = "screen"
+	cam_screen.assigned_map = map_name
+	cam_screen.del_on_map_removal = FALSE
+	cam_screen.screen_loc = "[map_name]:1,1"
+	cam_plane_masters = list()
+	
+	for(var/plane in subtypesof(/obj/screen/plane_master))
+		var/obj/screen/instance = new plane()
+		instance.assigned_map = map_name
+		instance.del_on_map_removal = FALSE
+		instance.screen_loc = "[map_name]:CENTER"
+		cam_plane_masters += instance
 
-/obj/machinery/computer/security/attack_ai(var/mob/user as mob)
-	return attack_hand(user)
+	local_skybox = new()
+	local_skybox.assigned_map = map_name
+	local_skybox.del_on_map_removal = FALSE
+	local_skybox.screen_loc = "[map_name]:CENTER,CENTER"
+	cam_plane_masters += local_skybox
 
-/obj/machinery/computer/security/check_eye(var/mob/user as mob)
-	if (user.stat || ((get_dist(user, src) > 1 || !( user.canmove ) || user.blinded) && !istype(user, /mob/living/silicon))) //user can't see - not sure why canmove is here.
-		return -1
-	if(!current_camera)
-		return 0
-	var/viewflag = current_camera.check_eye(user)
-	if ( viewflag < 0 ) //camera doesn't work
-		reset_current()
-	return viewflag
+	cam_background = new
+	cam_background.assigned_map = map_name
+	cam_background.del_on_map_removal = FALSE
 
-/obj/machinery/computer/security/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1)
-	if(stat & (NOPOWER|BROKEN)) return
-	if(user.stat) return
+	var/mutable_appearance/scanlines = mutable_appearance('icons/effects/static.dmi', "scanlines")
+	scanlines.alpha = 50
+	scanlines.layer = FULLSCREEN_LAYER
 
-	var/data[0]
+	var/mutable_appearance/noise = mutable_appearance('icons/effects/static.dmi', "1 light")
+	noise.layer = FULLSCREEN_LAYER
 
-	data["current_camera"] = current_camera ? current_camera.nano_structure() : null
-	data["current_network"] = current_network
-	data["networks"] = network ? network : list()
+	cam_foreground = new
+	cam_foreground.assigned_map = map_name
+	cam_foreground.del_on_map_removal = FALSE
+	cam_foreground.plane = PLANE_FULLSCREEN
+	cam_foreground.add_overlay(scanlines)
+	cam_foreground.add_overlay(noise)
 
-	var/map_levels = using_map.get_map_levels(src.z, TRUE, om_range = DEFAULT_OVERMAP_RANGE)
-	data["map_levels"] = map_levels
+/obj/machinery/computer/security/Destroy()
+	qdel(cam_screen)
+	QDEL_LIST(cam_plane_masters)
+	qdel(cam_background)
+	qdel(cam_foreground)
+	return ..()
 
-	if(current_network)
-		data["cameras"] = camera_repository.cameras_in_network(current_network, map_levels)
-	if(current_camera)
-		switch_to_camera(user, current_camera)
-
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "sec_camera.tmpl", "Camera Console", 900, 800)
-
-		// adding a template with the key "mapContent" enables the map ui functionality
-		ui.add_template("mapContent", "sec_camera_map_content.tmpl")
-		// adding a template with the key "mapHeader" replaces the map header content
-		ui.add_template("mapHeader", "sec_camera_map_header.tmpl")
-
-		ui.set_initial_data(data)
+/obj/machinery/computer/security/tgui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/tgui_state/state = GLOB.tgui_default_state)
+	// Update UI
+	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+	// Show static if can't use the camera
+	if(!active_camera?.can_use())
+		show_camera_static()
+	if(!ui)
+		var/user_ref = REF(user)
+		var/is_living = isliving(user)
+		// Ghosts shouldn't count towards concurrent users, which produces
+		// an audible terminal_on click.
+		if(is_living)
+			concurrent_users += user_ref
+		// Turn on the console
+		if(length(concurrent_users) == 1 && is_living)
+			playsound(src, 'sound/machines/terminal_on.ogg', 25, FALSE)
+			use_power(active_power_usage)
+		// Register map objects
+		user.client.register_map_obj(cam_screen)
+		for(var/plane in cam_plane_masters)
+			user.client.register_map_obj(plane)
+		user.client.register_map_obj(cam_background)
+		user.client.register_map_obj(cam_foreground)
+		// Open UI
+		ui = new(user, src, ui_key, "CameraConsole", name, 870, 708, master_ui, state)
 		ui.open()
 
-/obj/machinery/computer/security/Topic(href, href_list)
+/obj/machinery/computer/security/tgui_data()
+	var/list/data = list()
+	data["network"] = network
+	data["activeCamera"] = null
+	if(active_camera)
+		data["activeCamera"] = list(
+			name = active_camera.c_tag,
+			status = active_camera.status,
+		)
+	return data
+
+/obj/machinery/computer/security/tgui_static_data()
+	var/list/data = list()
+	data["mapRef"] = map_name
+	var/list/cameras = get_available_cameras()
+	data["cameras"] = list()
+	for(var/i in cameras)
+		var/obj/machinery/camera/C = cameras[i]
+		data["cameras"] += list(list(
+			name = C.c_tag,
+		))
+	return data
+
+/obj/machinery/computer/security/tgui_act(action, params)
 	if(..())
-		return 1
-	if(href_list["switch_camera"])
-		if(stat&(NOPOWER|BROKEN)) return //VOREStation Edit - Removed zlevel check
-		if(usr.stat || ((get_dist(usr, src) > 1 || !( usr.canmove ) || usr.blinded) && !istype(usr, /mob/living/silicon))) return
-		var/obj/machinery/camera/C = locate(href_list["switch_camera"]) in cameranet.cameras
-		if(!C)
-			return
-		if(!(current_network in C.network))
-			return
-
-		switch_to_camera(usr, C)
-		return 1
-	else if(href_list["switch_network"])
-		if(stat&(NOPOWER|BROKEN)) return //VOREStation Edit - Removed zlevel check
-		if(usr.stat || ((get_dist(usr, src) > 1 || !( usr.canmove ) || usr.blinded) && !istype(usr, /mob/living/silicon))) return
-		if(href_list["switch_network"] in network)
-			current_network = href_list["switch_network"]
-		return 1
-	else if(href_list["reset"])
-		if(stat&(NOPOWER|BROKEN)) return //VOREStation Edit - Removed zlevel check
-		if(usr.stat || ((get_dist(usr, src) > 1 || !( usr.canmove ) || usr.blinded) && !istype(usr, /mob/living/silicon))) return
-		reset_current()
-		usr.reset_view(current_camera)
-		return 1
-	else
-		. = ..()
-
-/obj/machinery/computer/security/attack_hand(var/mob/user as mob)
-	if(stat & (NOPOWER|BROKEN))	return
-
-	if(!isAI(user))
-		user.set_machine(src)
-	ui_interact(user)
-
-/obj/machinery/computer/security/proc/switch_to_camera(var/mob/user, var/obj/machinery/camera/C)
-	//don't need to check if the camera works for AI because the AI jumps to the camera location and doesn't actually look through cameras.
-	if(isAI(user))
-		var/mob/living/silicon/ai/A = user
-		// Only allow non-carded AIs to view because the interaction with the eye gets all wonky otherwise.
-		if(!A.is_in_chassis())
-			return 0
-
-		A.eyeobj.setLoc(get_turf(C))
-		A.client.eye = A.eyeobj
-		return 1
-
-	if (!C.can_use() || user.stat || (get_dist(user, src) > 1 || user.machine != src || user.blinded || !( user.canmove ) && !istype(user, /mob/living/silicon)))
-		return 0
-	set_current(C)
-	user.reset_view(current_camera)
-	check_eye(user)
-	return 1
-
-/obj/machinery/computer/security/relaymove(mob/user,direct)
-	var/turf/T = get_turf(current_camera)
-	for(var/i; i < 10; i++)
-		T = get_step(T, direct)
-	jump_on_click(user, T)
-
-//Camera control: moving.
-/obj/machinery/computer/security/proc/jump_on_click(var/mob/user,var/A)
-	if(user.machine != src)
-		return
-	var/obj/machinery/camera/jump_to
-	if(istype(A,/obj/machinery/camera))
-		jump_to = A
-	else if(ismob(A))
-		if(ishuman(A))
-			jump_to = locate() in A:head
-		else if(isrobot(A))
-			jump_to = A:camera
-	else if(isobj(A))
-		jump_to = locate() in A
-	else if(isturf(A))
-		var/best_dist = INFINITY
-		for(var/obj/machinery/camera/camera in get_area(A))
-			if(!camera.can_use())
-				continue
-			if(!can_access_camera(camera))
-				continue
-			var/dist = get_dist(camera,A)
-			if(dist < best_dist)
-				best_dist = dist
-				jump_to = camera
-	if(isnull(jump_to))
-		return
-	if(can_access_camera(jump_to))
-		switch_to_camera(user,jump_to)
-
-/obj/machinery/computer/security/process()
-	if(cache_id != camera_repository.camera_cache_id)
-		cache_id = camera_repository.camera_cache_id
-		SSnanoui.update_uis(src)
-
-/obj/machinery/computer/security/proc/can_access_camera(var/obj/machinery/camera/C)
-	var/list/shared_networks = src.network & C.network
-	if(shared_networks.len)
-		return 1
-	return 0
-
-/obj/machinery/computer/security/proc/set_current(var/obj/machinery/camera/C)
-	if(current_camera == C)
 		return
 
-	if(current_camera)
-		reset_current()
+	if(action == "switch_camera")
+		var/c_tag = params["name"]
+		var/list/cameras = get_available_cameras()
+		var/obj/machinery/camera/C = cameras[c_tag]
+		active_camera = C
+		playsound(src, get_sfx("terminal_type"), 25, FALSE)
 
-	src.current_camera = C
-	if(current_camera)
-		current_camera.camera_computers_using_this.Add(src)
-		update_use_power(USE_POWER_ACTIVE)
-		var/mob/living/L = current_camera.loc
-		if(istype(L))
-			L.tracking_initiated()
+		// Show static if can't use the camera
+		if(!active_camera?.can_use())
+			show_camera_static()
+			return TRUE
 
-/obj/machinery/computer/security/proc/reset_current()
-	if(current_camera)
-		current_camera.camera_computers_using_this.Remove(src)
-		var/mob/living/L = current_camera.loc
-		if(istype(L))
-			L.tracking_cancelled()
-	current_camera = null
-	update_use_power(USE_POWER_IDLE)
+		var/list/visible_turfs = list()
+		for(var/turf/T in (C.isXRay() \
+				? range(C.view_range, C) \
+				: view(C.view_range, C)))
+			visible_turfs += T
 
-//Camera control: mouse.
-/* Oh my god
-/atom/DblClick()
-	..()
-	if(istype(usr.machine,/obj/machinery/computer/security))
-		var/obj/machinery/computer/security/console = usr.machine
-		console.jump_on_click(usr,src)
-*/
+		var/list/bbox = get_bbox_of_atoms(visible_turfs)
+		var/size_x = bbox[3] - bbox[1] + 1
+		var/size_y = bbox[4] - bbox[2] + 1
+
+		cam_screen.vis_contents = visible_turfs
+		cam_background.icon_state = "clear"
+		cam_background.fill_rect(1, 1, size_x, size_y)
+
+		cam_foreground.fill_rect(1, 1, size_x, size_y)
+
+		local_skybox.cut_overlays()
+		local_skybox.add_overlay(SSskybox.get_skybox(get_z(C)))
+		local_skybox.scale_to_view(size_x)
+		local_skybox.set_position("CENTER", "CENTER", (world.maxx>>1) - C.x, (world.maxy>>1) - C.y)
+
+		return TRUE
+
+// Returns the list of cameras accessible from this computer
+/obj/machinery/computer/security/proc/get_available_cameras()
+	if(z > 6) // Weird holdover from the old camera console code, not sure why this restriction was in place-- related to is_away_level not existing?
+		return list()
+	var/list/L = list()
+	for(var/obj/machinery/camera/C in cameranet.cameras)
+		// if((is_away_level(z) || is_away_level(C.z)) && (C.z != z))//if on away mission, can only receive feed from same z_level cameras
+			// continue
+		L.Add(C)
+	var/list/D = list()
+	for(var/obj/machinery/camera/C in L)
+		if(!C.network)
+			stack_trace("Camera in a cameranet has no camera network")
+			continue
+		if(!(islist(C.network)))
+			stack_trace("Camera in a cameranet has a non-list camera network")
+			continue
+		var/list/tempnetwork = C.network & network
+		if(tempnetwork.len)
+			D["[C.c_tag]"] = C
+	return D
+
+/obj/machinery/computer/security/attack_hand(mob/user)
+	if(stat || ..())
+		user.unset_machine()
+		return
+
+	tgui_interact(user)
+
+/obj/machinery/computer/security/attack_ai(mob/user)
+	to_chat(user, "<span class='notice'>You realise its kind of stupid to access a camera console when you have the entire camera network at your metaphorical fingertips</span>")
+	return
+
+/obj/machinery/computer/security/proc/show_camera_static()
+	cam_screen.vis_contents.Cut()
+	cam_background.icon_state = "scanline2"
+	cam_background.fill_rect(1, 1, default_map_size, default_map_size)
+	local_skybox.cut_overlays()
 
 //Camera control: arrow keys.
 /obj/machinery/computer/security/telescreen
