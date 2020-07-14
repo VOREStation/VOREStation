@@ -27,13 +27,8 @@
 /datum/supply_pack/munitions/egunpistol
 	name = "Weapons - Energy sidearms"
 	contains = list(/obj/item/weapon/gun/energy/gun = 2)
-<<<<<<< HEAD
-	cost = 50
-	containertype = /obj/structure/closet/crate/secure/weapon
-=======
 	cost = 40
 	containertype = /obj/structure/closet/crate/secure/lawson
->>>>>>> 4474f3f... Flavour Enhancement: Guns (#7333)
 	containername = "Energy sidearms crate"
 	access = access_armory //VOREStation Edit - Guns are for the armory.
 
