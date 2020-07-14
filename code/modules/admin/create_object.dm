@@ -15,7 +15,24 @@
 	var/quick_create_object_html = null
 	var/pathtext = null
 
+<<<<<<< HEAD
 	pathtext = input("Select the path of the object you wish to create.", "Path", "/obj") as null|anything in list("/obj","/obj/structure","/obj/item","/obj/item/device","/obj/item/weapon","/obj/item/weapon/gun","/obj/item/weapon/reagent_containers","/obj/item/weapon/reagent_containers/food","/obj/item/clothing","/obj/machinery","/obj/mecha","/obj/item/mecha_parts/part","/obj/mecha_parts/mecha_equipement","/obj/item/weapon/storage/box/fluff") //VOREStation Edit - Added fluff boxes
+=======
+	pathtext = input("Select the path of the object you wish to create.", "Path", "/obj") as null|anything in list("/obj",
+	"/obj/structure",
+	"/obj/item",
+	"/obj/item/device",
+	"/obj/item/weapon",
+	"/obj/item/weapon/gun",
+	"/obj/item/weapon/reagent_containers",
+	"/obj/item/weapon/reagent_containers/food",
+	"/obj/item/clothing",
+	"/obj/machinery",
+	"/obj/mecha",
+	"/obj/item/mecha_parts",
+	"/obj/item/mecha_parts/mecha_equipment")
+
+>>>>>>> 124ac24... Make the quick create less less ugly & re-add proper mecha after their last item path change. (#7327)
 	if(!pathtext)
 		return
 	var path = text2path(pathtext)
