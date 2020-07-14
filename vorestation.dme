@@ -3452,6 +3452,7 @@
 #include "code\modules\tgui\states.dm"
 #include "code\modules\tgui\tgui.dm"
 #include "code\modules\tgui\modules\_base.dm"
+#include "code\modules\tgui\modules\camera.dm"
 #include "code\modules\tgui\modules\crew_monitor.dm"
 #include "code\modules\tgui\states\admin.dm"
 #include "code\modules\tgui\states\always.dm"

@@ -42,6 +42,14 @@ const selectCameras = (cameras, searchText = '') => {
 };
 
 export const CameraConsole = (props, context) => {
+  return (
+    <Window resizable>
+      <CameraConsoleContent />
+    </Window>
+  );
+};
+
+export const CameraConsoleContent = (props, context) => {
   const { act, data, config } = useBackend(context);
   const { mapRef, activeCamera } = data;
   const cameras = selectCameras(data.cameras);
@@ -50,10 +58,10 @@ export const CameraConsole = (props, context) => {
     nextCameraName,
   ] = prevNextCamera(cameras, activeCamera);
   return (
-    <Window resizable>
+    <Fragment>
       <div className="CameraConsole__left">
         <Window.Content scrollable>
-          <CameraConsoleContent />
+          <CameraConsoleSearch />
         </Window.Content>
       </div>
       <div className="CameraConsole__right">
@@ -85,11 +93,11 @@ export const CameraConsole = (props, context) => {
             type: 'map',
           }} />
       </div>
-    </Window>
+    </Fragment>
   );
 };
 
-export const CameraConsoleContent = (props, context) => {
+export const CameraConsoleSearch = (props, context) => {
   const { act, data } = useBackend(context);
   const [
     searchText,
