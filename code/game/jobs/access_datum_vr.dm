@@ -16,4 +16,9 @@ var/const/access_pilot = 67
 	id = access_talon
 	desc = "Talon"
 	access_type = ACCESS_TYPE_PRIVATE
-	
+
+/var/const/access_xenobotany = 77
+/datum/access/xenobotany
+	id = access_xenobotany
+	desc = "Xenobotany Garden"
+	region = ACCESS_REGION_RESEARCH
