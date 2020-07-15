@@ -26,7 +26,7 @@ var/const/PSYCHIATRIST		=(1<<7)
 var/const/ROBOTICIST		=(1<<8)
 var/const/XENOBIOLOGIST		=(1<<9)
 var/const/PARAMEDIC			=(1<<10)
-var/const/XENOBOTANIST		=(1<<11) //VOREStation Add
+var/const/XENOBOTANIST		=(1<<15) //VOREStation Add
 
 var/const/CIVILIAN			=(1<<2)
 
