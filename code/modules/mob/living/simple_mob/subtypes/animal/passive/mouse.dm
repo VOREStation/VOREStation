@@ -11,6 +11,8 @@
 	maxHealth = 5
 	health = 5
 
+	movement_cooldown = 1.5
+
 	mob_size = MOB_MINISCULE
 	pass_flags = PASSTABLE
 //	can_pull_size = ITEMSIZE_TINY
@@ -101,14 +103,12 @@
 
 /mob/living/simple_mob/animal/passive/mouse/rat
 	name = "rat"
+	body_color = "rat"
+	icon_state = "mouse_rat"
 	maxHealth = 20
 	health = 20
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive
-
-/mob/living/simple_mob/animal/passive/mouse/rat/Initialize()
-	..()
-	adjust_scale(1.2)
 
 //TOM IS ALIVE! SQUEEEEEEEE~K :)
 /mob/living/simple_mob/animal/passive/mouse/brown/Tom
