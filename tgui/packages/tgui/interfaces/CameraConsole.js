@@ -4,7 +4,7 @@ import { classes } from 'common/react';
 import { createSearch } from 'common/string';
 import { Fragment } from 'inferno';
 import { useBackend, useLocalState } from '../backend';
-import { Button, ByondUi, Input, Section } from '../components';
+import { Button, ByondUi, Input, Section, Dropdown } from '../components';
 import { refocusLayout, Window } from '../layouts';
 
 /**
@@ -29,16 +29,19 @@ const prevNextCamera = (cameras, activeCamera) => {
  *
  * Filters cameras, applies search terms and sorts the alphabetically.
  */
-const selectCameras = (cameras, searchText = '') => {
+const selectCameras = (cameras, searchText = '', networkFilter = '') => {
   const testSearch = createSearch(searchText, camera => camera.name);
-  return flow([
+  let fl = flow([
     // Null camera filter
     filter(camera => camera?.name),
     // Optional search term
     searchText && filter(testSearch),
+    // Optional network filter
+    networkFilter && filter(camera => camera.networks.includes(networkFilter)),
     // Slightly expensive, but way better than sorting in BYOND
     sortBy(camera => camera.name),
   ])(cameras);
+  return fl;
 };
 
 export const CameraConsole = (props, context) => {
@@ -103,8 +106,13 @@ export const CameraConsoleSearch = (props, context) => {
     searchText,
     setSearchText,
   ] = useLocalState(context, 'searchText', '');
-  const { activeCamera } = data;
-  const cameras = selectCameras(data.cameras, searchText);
+  const [
+    networkFilter,
+    setNetworkFilter,
+  ] = useLocalState(context, 'networkFilter', '');
+  const { activeCamera, allNetworks } = data;
+  allNetworks.sort();
+  const cameras = selectCameras(data.cameras, searchText, networkFilter);
   return (
     <Fragment>
       <Input
@@ -112,6 +120,12 @@ export const CameraConsoleSearch = (props, context) => {
         mb={1}
         placeholder="Search for a camera"
         onInput={(e, value) => setSearchText(value)} />
+      <Dropdown
+        mb={1}
+        width="189px"
+        options={allNetworks}
+        placeholder="No Filter"
+        onSelected={value => setNetworkFilter(value)} />
       <Section>
         {cameras.map(camera => (
           // We're not using the component here because performance

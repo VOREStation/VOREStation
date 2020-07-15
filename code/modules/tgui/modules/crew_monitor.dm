@@ -36,7 +36,7 @@
 		ui.open()
 
 
-/datum/tgui_module/crew_monitor/tgui_data(mob/user, ui_key = "main", datum/topic_state/state = GLOB.tgui_default_state)
+/datum/tgui_module/crew_monitor/tgui_data(mob/user, ui_key = "main", datum/tgui_state/state = GLOB.tgui_default_state)
 	var/data[0]
 
 	data["isAI"] = isAI(user)

@@ -1,10 +1,12 @@
 import { NtosWindow } from '../layouts';
 import { CameraConsoleContent } from './CameraConsole';
 
-export const NtosPowerMonitor = () => {
+export const NtosCameraConsole = () => {
   return (
     <NtosWindow resizable>
-      <CameraConsoleContent />
+      <NtosWindow.Content>
+        <CameraConsoleContent />
+      </NtosWindow.Content>
     </NtosWindow>
   );
 };

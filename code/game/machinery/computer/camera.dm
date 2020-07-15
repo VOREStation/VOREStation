@@ -16,10 +16,9 @@
 
 /obj/machinery/computer/security/Initialize()
 	. = ..()
-	// if(!LAZYLEN(network))
-		// network = using_map.station_networks.Copy()
-	// camera = new(src, network)
-	camera = new(src)
+	if(!LAZYLEN(network))
+		network = using_map.station_networks.Copy()
+	camera = new(src, network)
 
 /obj/machinery/computer/security/Destroy()
 	QDEL_NULL(camera)
@@ -37,6 +36,11 @@
 /obj/machinery/computer/security/attack_ai(mob/user)
 	to_chat(user, "<span class='notice'>You realise its kind of stupid to access a camera console when you have the entire camera network at your metaphorical fingertips</span>")
 	return
+
+/obj/machinery/computer/security/proc/set_network(list/new_network)
+	network = new_network
+	camera.network = network
+	camera.access_based = FALSE
 
 //Camera control: arrow keys.
 /obj/machinery/computer/security/telescreen

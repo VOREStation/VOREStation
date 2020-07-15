@@ -1,8 +1,10 @@
 /datum/tgui_module/camera
 	name = "Security Cameras"
+	tgui_id = "CameraConsole"
 
 	var/access_based = FALSE
 	var/list/network = list()
+	var/list/additional_networks = list()
 
 	var/obj/machinery/camera/active_camera
 	var/list/concurrent_users = list()
@@ -97,7 +99,7 @@
 		user.client.register_map_obj(cam_background)
 		user.client.register_map_obj(cam_foreground)
 		// Open UI
-		ui = new(user, src, ui_key, "CameraConsole", name, 870, 708, master_ui, state)
+		ui = new(user, src, ui_key, tgui_id, name, 870, 708, master_ui, state)
 		ui.open()
 
 /datum/tgui_module/camera/tgui_data()
@@ -116,11 +118,14 @@
 	data["mapRef"] = map_name
 	var/list/cameras = get_available_cameras(user)
 	data["cameras"] = list()
+	data["allNetworks"] = list()
 	for(var/i in cameras)
 		var/obj/machinery/camera/C = cameras[i]
 		data["cameras"] += list(list(
 			name = C.c_tag,
+			networks = C.network
 		))
+		data["allNetworks"] |= C.network
 	return data
 
 /datum/tgui_module/camera/tgui_act(action, params)
@@ -198,11 +203,11 @@
 	else
 		all_networks = network.Copy()
 
-	var/list/L = list()
-	for(var/obj/machinery/camera/C in cameranet.cameras)
-		L.Add(C)
+	if(additional_networks)
+		all_networks += additional_networks
+
 	var/list/D = list()
-	for(var/obj/machinery/camera/C in L)
+	for(var/obj/machinery/camera/C in cameranet.cameras)
 		if(!C.network)
 			stack_trace("Camera in a cameranet has no camera network")
 			continue
@@ -243,3 +248,48 @@
 	if(length(concurrent_users) == 0 && is_living)
 		active_camera = null
 		playsound(tgui_host(), 'sound/machines/terminal_off.ogg', 25, FALSE)
+
+// NTOS Version
+// Please note, this isn't a very good replacement for converting modular computers 100% to TGUI
+// If/when that is done, just move all the PC_ specific data and stuff to the modular computers themselves
+// instead of copying this approach here.
+/datum/tgui_module/camera/ntos
+	tgui_id = "NtosCameraConsole"
+
+/datum/tgui_module/camera/ntos/tgui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/tgui_state/state = GLOB.tgui_ntos_state)
+	. = ..(user, ui_key, ui, force_open, master_ui, GLOB.tgui_ntos_state)
+
+/datum/tgui_module/camera/ntos/tgui_static_data()
+	. = ..()
+	
+	var/datum/computer_file/program/host = tgui_host()
+	if(istype(host) && host.computer)
+		. += host.computer.get_header_data()
+
+/datum/tgui_module/camera/ntos/tgui_act(action, params)
+	if(..())
+		return
+
+	var/datum/computer_file/program/host = tgui_host()
+	if(istype(host) && host.computer)
+		if(action == "PC_exit")
+			host.computer.kill_program()
+			return TRUE
+		if(action == "PC_shutdown")
+			host.computer.shutdown_computer()
+			return TRUE
+		if(action == "PC_minimize")
+			host.computer.minimize_program(usr)
+			return TRUE
+
+// ERT Version provides some additional networks.
+/datum/tgui_module/camera/ntos/ert
+	additional_networks = list(NETWORK_ERT, NETWORK_CRESCENT)
+
+// Hacked version also provides some additional networks,
+// but we want it to show *all* the networks 24/7, so we convert it into a non-access-based UI.
+/datum/tgui_module/camera/ntos/hacked
+	additional_networks = list(NETWORK_MERCENARY, NETWORK_ERT, NETWORK_CRESCENT)
+
+/datum/tgui_module/camera/ntos/hacked/New(host)
+	. = ..(host, using_map.station_networks.Copy())

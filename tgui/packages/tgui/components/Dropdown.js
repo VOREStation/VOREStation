@@ -41,7 +41,7 @@ export class Dropdown extends Component {
   }
 
   buildMenu() {
-    const { options = [] } = this.props;
+    const { options = [], placeholder } = this.props;
     const ops = options.map(option => (
       <div
         key={option}
@@ -52,7 +52,17 @@ export class Dropdown extends Component {
         {option}
       </div>
     ));
-    return ops.length ? ops : 'No Options Found';
+    ops.unshift((
+      <div
+        key={placeholder}
+        className="Dropdown__menuentry"
+        onClick={() => {
+          this.setSelected(null);
+        }}>
+        -- {placeholder} --
+      </div>
+    ));
+    return ops;
   }
 
   render() {
@@ -66,6 +76,7 @@ export class Dropdown extends Component {
       onClick,
       selected,
       disabled,
+      placeholder,
       ...boxProps
     } = props;
     const {
@@ -109,7 +120,7 @@ export class Dropdown extends Component {
             this.setOpen(!this.state.open);
           }}>
           <span className="Dropdown__selected-text">
-            {this.state.selected}
+            {this.state.selected || placeholder}
           </span>
           {!!nochevron || (
             <span className="Dropdown__arrow-button">
