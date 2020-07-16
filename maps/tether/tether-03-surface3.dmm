@@ -10236,7 +10236,7 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
 "atc" = (
-/obj/machinery/appliance/cooker/candy,
+/obj/machinery/appliance/mixer/candy,
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 8
 	},
@@ -10328,7 +10328,7 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
 "ato" = (
-/obj/machinery/appliance/cooker/cereal,
+/obj/machinery/appliance/mixer/cereal,
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 8
 	},

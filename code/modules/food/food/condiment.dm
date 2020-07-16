@@ -118,7 +118,7 @@
 			if("spacespice")
 				name = "bottle of space spice"
 				desc = "An exotic blend of spices for cooking. Definitely not worms."
-				icon = 'modular_citadel/icons/obj/food_syn.dmi'
+				icon = 'icons/obj/food_syn.dmi'
 				icon_state = "spacespicebottle"
 				center_of_mass = list("x"=16, "y"=6)
 			if("barbecue")
@@ -441,6 +441,6 @@
 /obj/item/weapon/reagent_containers/food/condiment/spacespice/on_reagent_change()
 	return
 
-/obj/item/weapon/reagent_containers/food/condiment/spacespice/initialize()
-	..()
+/obj/item/weapon/reagent_containers/food/condiment/spacespice/Initialize()
+	. = ..()
 	reagents.add_reagent("spacespice", 40)

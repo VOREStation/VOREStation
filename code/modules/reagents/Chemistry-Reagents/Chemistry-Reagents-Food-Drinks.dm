@@ -71,7 +71,7 @@
 	//We'll assume that the batter isnt going to be regurgitated and eaten by someone else. Only show this once
 	if (data["cooked"] != 1)
 		if (!messaged)
-			M << "Ugh, this raw [name] tastes disgusting."
+			to_chat(M, "Ugh, this raw [name] tastes disgusting.")
 			nutriment_factor *= 0.5
 			messaged = 1
 
@@ -677,8 +677,7 @@
 		return
 	if(alien == IS_ALRAUNE) // VOREStation Edit: It wouldn't affect plants that much.
 		if(prob(5))
-			M << "<span class='rose'>You feel a pleasant sensation in your mouth.</span>"
-			to_chat(M, span("rose","You feel a pleasant sensation in your mouth."))
+			to_chat(M, "<span class='rose'>You feel a pleasant sensation in your mouth.</span>")
 		M.bodytemperature += rand(10, 25)
 		return
 	if(ishuman(M))

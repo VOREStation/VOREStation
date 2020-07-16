@@ -12,6 +12,8 @@
 	appliancetype = FRYER
 	active_power_usage = 12 KILOWATTS
 	
+	min_temp = 140 + T0C	// Same as above, increasing this to just under 2x to make the % increase on efficiency not quite so painful as it would be at 80.
+	optimal_temp = 400 + T0C // Increasing this to be 2x Oven to allow for a much higher/realistic frying temperatures. Doesn't really do anything but make heating the fryer take a bit longer.
 	optimal_power = 0.35
 	
 	idle_power_usage = 3.6 KILOWATTS
@@ -43,10 +45,12 @@
 
 /obj/machinery/appliance/cooker/fryer/Destroy()
 	QDEL_NULL(fry_loop)
+	QDEL_NULL(oil)
 	return ..()
 	
 /obj/machinery/appliance/cooker/fryer/examine(var/mob/user)
-	if (..())//no need to duplicate adjacency check
+	. = ..()
+	if(Adjacent(user))
 		to_chat(user, "Oil Level: [oil.total_volume]/[optimal_oil]")
 		
 /obj/machinery/appliance/cooker/fryer/heat_up()
@@ -83,12 +87,20 @@
 	cooking_power *= oil_efficiency
 	
 /obj/machinery/appliance/cooker/fryer/update_icon()
-	if(cooking)
-		icon_state = on_icon
-		fry_loop.start()
+	if(!stat)
+		..()
+		if(cooking == TRUE)
+			icon_state = on_icon
+			if(fry_loop)
+				fry_loop.start(src)
+		else
+			icon_state = off_icon
+			if(fry_loop)
+				fry_loop.stop(src)
 	else
 		icon_state = off_icon
-		fry_loop.stop(src)
+		if(fry_loop)
+			fry_loop.stop(src)
 	..()
 	
 //Fryer gradually infuses any cooked food with oil. Moar calories
@@ -155,19 +167,19 @@
 	//Cooldown ensures it can't be spammed to instakill someone
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*3)
 	
-	fry_loop.start()
+	fry_loop.start(src)
 
 	if(!do_mob(user, victim, 20))
-		cooking = 0
+		cooking = FALSE
 		icon_state = off_icon
-		fry_loop.stop()
+		fry_loop.stop(src)
 		return
 
 	if(!victim || !victim.Adjacent(user))
 		to_chat(user, "<span class='danger'>Your victim slipped free!</span>")
-		cooking = 0
+		cooking = FALSE
 		icon_state = off_icon
-		fry_loop.stop()
+		fry_loop.stop(src)
 		return
 
 	var/damage = rand(7,13) // Though this damage seems reduced, some hot oil is transferred to the victim and will burn them for a while after
@@ -199,10 +211,10 @@
 			victim.apply_damage(damage, BURN, user.zone_sel.selecting)
 
 		if(!nopain)
-			victim << "<span class='danger'>Agony consumes you as searing hot oil scorches your [E ? E.name : "flesh"] horribly!</span>"
+			to_chat(victim, "<span class='danger'>Agony consumes you as searing hot oil scorches your [E ? E.name : "flesh"] horribly!</span>")
 			victim.emote("scream")
 		else
-			victim << "<span class='danger'>Searing hot oil scorches your [E ? E.name : "flesh"]!</span>"
+			to_chat(victim, "<span class='danger'>Searing hot oil scorches your [E ? E.name : "flesh"]!</span>")
 
 		user.attack_log += text("\[[time_stamp()]\] <font color='red'>Has [cook_type] \the [victim] ([victim.ckey]) in \a [src]</font>")
 		victim.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been [cook_type] in \a [src] by [user.name] ([user.ckey])</font>")

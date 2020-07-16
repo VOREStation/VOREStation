@@ -3607,7 +3607,7 @@
 /obj/effect/floor_decal/corner/grey/diagonal{
 	dir = 4
 	},
-/obj/machinery/appliance/cooker/cereal,
+/obj/machinery/appliance/mixer/cereal,
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
 	},
@@ -14562,7 +14562,7 @@
 /obj/effect/floor_decal/corner/grey/diagonal{
 	dir = 4
 	},
-/obj/machinery/appliance/cooker/cereal,
+/obj/machinery/appliance/mixer/cereal,
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
 	},

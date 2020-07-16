@@ -23,7 +23,7 @@
 	var/max_contents = 1			// Maximum number of things this appliance can simultaneously cook
 	var/on_icon						// Icon state used when cooking.
 	var/off_icon					// Icon state used when not cooking.
-	var/cooking						// Whether or not the machine is currently operating.
+	var/cooking = FALSE				// Whether or not the machine is currently operating.
 	var/cook_type					// A string value used to track what kind of food this machine makes.
 	var/can_cook_mobs				// Whether or not this machine accepts grabbed mobs.
 	var/mobdamagetype = BRUTE		// Burn damage for cooking appliances, brute for cereal/candy
@@ -74,10 +74,9 @@
 	return ..()
 
 /obj/machinery/appliance/examine(var/mob/user)
-	..()
-	if(Adjacent(usr))
-		list_contents(user)
-		return 1
+	. = ..()
+	if(Adjacent(user))
+		. += list_contents(user)
 
 /obj/machinery/appliance/proc/list_contents(var/mob/user)
 	if (cooking_objs.len)
@@ -85,9 +84,9 @@
 		for (var/a in cooking_objs)
 			var/datum/cooking_item/CI = a
 			string += "-\a [CI.container.label(null, CI.combine_target)], [report_progress(CI)]</br>"
-		usr << string
+		to_chat(user, string)
 	else
-		usr << span("notice","It is empty.")
+		to_chat(user, "<span class='notice>'It is empty.</span>")
 
 /obj/machinery/appliance/proc/report_progress(var/datum/cooking_item/CI)
 	if (!CI || !CI.max_cookwork)
@@ -100,17 +99,17 @@
 	if (progress < 0.25)
 		return "It's barely started cooking."
 	if (progress < 0.75)
-		return span("notice","It's cooking away nicely.")
+		return "<span class='notice'>It's cooking away nicely.</span>"
 	if (progress < 1)
-		return span("notice", "<b>It's almost ready!</b>")
+		return "<span class='notice'><b>It's almost ready!</b></span>"
 
 	var/half_overcook = (CI.overcook_mult - 1)*0.5
 	if (progress < 1+half_overcook)
-		return span("soghun","<b>It is done !</b>")
+		return "<span class='soghun'><b>It is done !</b></span>"
 	if (progress < CI.overcook_mult)
-		return span("warning","It looks overcooked, get it out!")
+		return "<span class='warning'>It looks overcooked, get it out!</span>"
 	else
-		return span("danger","It is burning!!")
+		return "<span class='danger'>It is burning!</span>"
 
 /obj/machinery/appliance/update_icon()
 	if (!stat && cooking_objs.len)
@@ -131,14 +130,14 @@
 		return
 
 	if (!user.IsAdvancedToolUser())
-		user << "You lack the dexterity to do that!"
+		to_chat(user, "You lack the dexterity to do that!")
 		return
 
 	if (user.stat || user.restrained() || user.incapacitated())
 		return
 
 	if (!Adjacent(user) && !issilicon(user))
-		user << "You can't reach [src] from here."
+		to_chat(user, "You can't reach [src] from here.")
 		return
 
 	if (stat & POWEROFF)//Its turned off
@@ -150,6 +149,7 @@
 		stat |= POWEROFF
 		use_power = 0
 		user.visible_message("[user] turns [src] off.", "You turn off [src].")
+		cooking = FALSE // Stop cooking here, too, just in case.
 
 	playsound(src, 'sound/machines/click.ogg', 40, 1)
 	update_icon()
@@ -166,14 +166,14 @@
 		return
 
 	if (!usr.IsAdvancedToolUser())
-		usr << "You lack the dexterity to do that!"
+		to_chat(usr, "You lack the dexterity to do that!")
 		return
 
 	if (usr.stat || usr.restrained() || usr.incapacitated())
 		return
 
 	if (!Adjacent(usr) && !issilicon(usr))
-		usr << "You can't adjust the [src] from this distance, get closer!"
+		to_chat(usr, "You can't adjust the [src] from this distance, get closer!")
 		return
 
 	if(output_options.len)
@@ -182,10 +182,10 @@
 			return
 		if(choice == "Default")
 			selected_option = null
-			usr << "<span class='notice'>You decide not to make anything specific with \the [src].</span>"
+			to_chat(usr, "<span class='notice'>You decide not to make anything specific with \the [src].</span>")
 		else
 			selected_option = choice
-			usr << "<span class='notice'>You prepare \the [src] to make \a [selected_option] with the next thing you put in. Try putting several ingredients in a container!</span>"
+			to_chat(usr, "<span class='notice'>You prepare \the [src] to make \a [selected_option] with the next thing you put in. Try putting several ingredients in a container!</span>")
 
 //Handles all validity checking and error messages for inserting things
 /obj/machinery/appliance/proc/can_insert(var/obj/item/I, var/mob/user)
@@ -199,18 +199,18 @@
 	if(istype(G))
 
 		if(!can_cook_mobs)
-			user << "<span class='warning'>That's not going to fit.</span>"
+			to_chat(user, "<span class='warning'>That's not going to fit.</span>")
 			return 0
 
 		if(!isliving(G.affecting))
-			user << "<span class='warning'>You can't cook that.</span>"
+			to_chat(user, "<span class='warning'>You can't cook that.</span>")
 			return 0
 
 		return 2
 
 
 	if (!has_space(I))
-		user << "<span class='warning'>There's no room in [src] for that!</span>"
+		to_chat(user, "<span class='warning'>There's no room in [src] for that!</span>")
 		return 0
 
 
@@ -220,16 +220,18 @@
 	// We're trying to cook something else. Check if it's valid.
 	var/obj/item/weapon/reagent_containers/food/snacks/check = I
 	if(istype(check) && islist(check.cooked) && (cook_type in check.cooked))
-		user << "<span class='warning'>\The [check] has already been [cook_type].</span>"
+		to_chat(user, "<span class='warning'>\The [check] has already been [cook_type].</span>")
 		return 0
 	else if(istype(check, /obj/item/weapon/reagent_containers/glass))
-		user << "<span class='warning'>That would probably break [src].</span>"
+		to_chat(user, "<span class='warning'>That would probably break [src].</span>")
 		return 0
 	else if(istype(check, /obj/item/weapon/disk/nuclear))
-		user << "<span class='warning'>You can't cook that.</span>"
+		to_chat(user, "<span class='warning'>You can't cook that.</span>")
+		return 0
+	else if(I.is_crowbar() || I.is_screwdriver()) // You can't cook tools, dummy.
 		return 0
 	else if(!istype(check) && !istype(check, /obj/item/weapon/holder))
-		user << "<span class='warning'>That's not edible.</span>"
+		to_chat(user, "<span class='warning'>That's not edible.</span>")
 		return 0
 
 	return 1
@@ -238,13 +240,13 @@
 //This function is overridden by cookers that do stuff with containers
 /obj/machinery/appliance/proc/has_space(var/obj/item/I)
 	if (cooking_objs.len >= max_contents)
-		return 0
+		return FALSE
 
-	else return 1
+	else return TRUE
 
 /obj/machinery/appliance/attackby(var/obj/item/I, var/mob/user)
 	if(!cook_type || (stat & (BROKEN)))
-		user << "<span class='warning'>\The [src] is not working.</span>"
+		to_chat(user, "<span class='warning'>\The [src] is not working.</span>")
 		return
 
 	var/result = can_insert(I, user)
@@ -294,7 +296,7 @@
 	user.visible_message("<span class='notice'>\The [user] puts \the [I] into \the [src].</span>")
 
 	get_cooking_work(CI)
-	cooking = 1
+	cooking = TRUE
 	return CI
 
 /obj/machinery/appliance/proc/get_cooking_work(var/datum/cooking_item/CI)
@@ -354,11 +356,11 @@
 //Called every tick while we're cooking something
 /obj/machinery/appliance/proc/do_cooking_tick(var/datum/cooking_item/CI)
 	if (!istype(CI) || !CI.max_cookwork)
-		return 0
+		return FALSE
 
-	var/was_done = 0
+	var/was_done = FALSE
 	if (CI.cookwork >= CI.max_cookwork)
-		was_done = 1
+		was_done = TRUE
 
 	CI.cookwork += cooking_power
 
@@ -375,7 +377,7 @@
 		if (M)
 			M.apply_damage(rand(1,3), mobdamagetype, "chest")
 
-	return 1
+	return TRUE
 
 /obj/machinery/appliance/process()
 	if (cooking_power > 0 && cooking)
@@ -436,7 +438,7 @@
 	//Final step. Cook function just cooks batter for now.
 	for (var/obj/item/weapon/reagent_containers/food/snacks/S in CI.container)
 		S.cook()
-
+		
 
 //Combination cooking involves combining the names and reagents of ingredients into a predefined output object
 //The ingredients represent flavours or fillings. EG: donut pizza, cheese bread
@@ -620,10 +622,10 @@
 					if(istype(H.species, /datum/species/diona))
 						src.composition_reagent = "nutriment"
 
-	//if the mob is a simple animal with a defined meat quantity
-	if (istype(src, /mob/living/simple_animal))
-		var/mob/living/simple_animal/SA = src
-		if (SA.meat_amount)
+	//if the mob is a simple animal - MOB NOT ANIMAL - with a defined meat quantity
+	if (istype(src, /mob/living/simple_mob))
+		var/mob/living/simple_mob/SA = src
+		if(SA.meat_amount)
 			src.composition_reagent_quantity = SA.meat_amount*2*9
 
 		//The quantity of protein is based on the meat_amount, but multiplied by 2
@@ -651,7 +653,7 @@
 		victim.reagents.trans_to_holder(result.reagents, victim.reagents.total_volume)
 
 	if (isanimal(victim))
-		var/mob/living/simple_animal/SA = victim
+		var/mob/living/simple_mob/SA = victim
 		result.kitchen_tag = SA.kitchen_tag
 
 	result.appearance = victim

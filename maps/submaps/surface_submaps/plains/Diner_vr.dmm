@@ -109,7 +109,7 @@
 /turf/simulated/floor/tiled/white,
 /area/submap/Diner)
 "aw" = (
-/obj/machinery/appliance/cooker/cereal,
+/obj/machinery/appliance/mixer/cereal,
 /obj/machinery/light{
 	icon_state = "tube1";
 	dir = 4

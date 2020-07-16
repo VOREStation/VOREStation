@@ -3,7 +3,7 @@
 //which can be checked against recipe requirements in order to cook recipes that require several things
 
 /obj/item/weapon/reagent_containers/cooking_container
-	icon = 'modular_citadel/icons/obj/cooking_machines.dmi'
+	icon = 'icons/obj/cooking_machines.dmi'
 	var/shortname
 	var/max_space = 20//Maximum sum of w-classes of foods in this container at once
 	var/max_reagents = 80//Maximum units of reagents
@@ -14,21 +14,21 @@
 		/obj/item/weapon/paper
 	)
 
-/obj/item/weapon/reagent_containers/cooking_container/initialize()
+/obj/item/weapon/reagent_containers/cooking_container/Initialize()
 	. = ..()
 	create_reagents(max_reagents)
 	flags |= OPENCONTAINER | NOREACT
 
 
 /obj/item/weapon/reagent_containers/cooking_container/examine(var/mob/user)
-	..()
+	. = ..()
 	if (contents.len)
 		var/string = "It contains....</br>"
 		for (var/atom/movable/A in contents)
 			string += "[A.name] </br>"
-		user << span("notice", string)
+		. += "<span class='notice'>string</span>"
 	if (reagents.total_volume)
-		user << span("notice", "It contains [reagents.total_volume]u of reagents.")
+		. += "<span class='notice'>It contains [reagents.total_volume]u of reagents.</span>"
 
 
 /obj/item/weapon/reagent_containers/cooking_container/attackby(var/obj/item/I as obj, var/mob/user as mob)
@@ -145,7 +145,7 @@
 /obj/item/weapon/reagent_containers/cooking_container/oven
 	name = "oven dish"
 	shortname = "shelf"
-	desc = "Put ingredients in this; designed for use with an oven. Warranty void if used."
+	desc = "Put ingredients in this; designed for use with an oven. Warranty void if used incorrectly."
 	icon_state = "ovendish"
 	max_space = 30
 	max_reagents = 120
@@ -153,5 +153,11 @@
 /obj/item/weapon/reagent_containers/cooking_container/fryer
 	name = "fryer basket"
 	shortname = "basket"
-	desc = "Put ingredients in this; designed for use with a deep fryer. Warranty void if used."
+	desc = "Put ingredients in this; designed for use with a deep fryer. Warranty void if used incorrectly."
 	icon_state = "basket"
+	
+/obj/item/weapon/reagent_containers/cooking_container/grill
+	name = "grill rack"
+	shortname = "rack"
+	desc = "Put ingredients 'in'/on this; designed for use with a grill. Warranty void if used incorrectly."
+	icon_state = "grillrack"

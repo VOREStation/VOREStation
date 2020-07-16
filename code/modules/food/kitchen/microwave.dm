@@ -260,7 +260,7 @@
 		return
 	start()
 	if(reagents.total_volume==0 && !(locate(/obj) in ((contents - component_parts) - circuit))) //dry run
-		if(!wzhzhzh(5)) //VOREStation Edit - Quicker Microwaves
+		if(!wzhzhzh(16)) //VOREStation Edit - Quicker Microwaves (Undone during Auroraport, left note in case of reversion, was 5)
 			abort()
 			return
 		abort()
@@ -271,17 +271,17 @@
 	if(!recipe)
 		dirty += 1
 		if(prob(max(10,dirty*5)))
-			if(!wzhzhzh(2)) //VOREStation Edit - Quicker Microwaves
+			if(!wzhzhzh(16)) //VOREStation Edit - Quicker Microwaves (Undone during Auroraport, left note in case of reversion, was 2)
 				abort()
 				return
 			muck_start()
-			wzhzhzh(2) //VOREStation Edit - Quicker Microwaves
+			wzhzhzh(2) //VOREStation Edit - Quicker Microwaves (Undone during Auroraport, left note in case of reversion, was 2)
 			muck_finish()
 			cooked = fail()
 			cooked.forceMove(src.loc)
 			return
 		else if(has_extra_item())
-			if(!wzhzhzh(2)) //VOREStation Edit - Quicker Microwaves
+			if(!wzhzhzh(16)) //VOREStation Edit - Quicker Microwaves (Undone during Auroraport, left note in case of reversion, was 2)
 				abort()
 				return
 			broke()
@@ -289,15 +289,15 @@
 			cooked.forceMove(src.loc)
 			return
 		else
-			if(!wzhzhzh(5)) //VOREStation Edit - Quicker Microwaves
+			if(!wzhzhzh(40)) //VOREStation Edit - Quicker Microwaves (Undone during Auroraport, left note in case of reversion, was 5)
 				abort()
 				return
-			abort()
+			stop()
 			cooked = fail()
 			cooked.forceMove(src.loc)
 			return
 	else
-		var/halftime = round(recipe.time/20/2) //VOREStation Edit - Quicker Microwaves
+		var/halftime = round(recipe.time*4/10/2) //VOREStation Edit - Quicker Microwaves (Undone during Auroraport, left note in case of reversion, was round(recipe.time/20/2))
 		if(!wzhzhzh(halftime))
 			abort()
 			return
@@ -387,6 +387,13 @@
 	src.updateUsrDialog()
 
 /obj/machinery/microwave/proc/abort()
+	operating = FALSE // Turn it off again aferwards
+	icon_state = "mw"
+	updateUsrDialog()
+	soundloop.stop()
+	
+/obj/machinery/microwave/proc/stop()
+	playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
 	operating = FALSE // Turn it off again aferwards
 	icon_state = "mw"
 	updateUsrDialog()

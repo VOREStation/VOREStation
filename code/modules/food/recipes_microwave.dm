@@ -898,7 +898,7 @@ I said no!
 		/obj/item/weapon/reagent_containers/food/snacks/cutlet,
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sausage
-	resut_quantity = 2
+	result_quantity = 2
 
 /datum/recipe/fishfingers
 	reagents = list("flour" = 10, "egg" = 3)

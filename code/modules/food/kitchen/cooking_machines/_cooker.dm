@@ -40,21 +40,23 @@
 	//RefreshParts()
 	return (cooking_power / optimal_power) * 100
 
-/obj/machinery/appliance/cooker/New()
+/obj/machinery/appliance/cooker/Initialize()
 	. = ..()
 	loss = (active_power_usage / resistance)*0.5
 	cooking_objs = list()
 	for (var/i = 0, i < max_contents, i++)
 		cooking_objs.Add(new /datum/cooking_item/(new container_type(src)))
-	cooking = 0
+	cooking = FALSE
 
 	update_icon() // this probably won't cause issues, but Aurora used SSIcons and queue_icon_update() instead
 
 /obj/machinery/appliance/cooker/update_icon()
 	cut_overlays()
 	var/image/light
-	if (use_power == 2 && !stat)
-		light = image(icon, "light_on")
+	if(use_power == 1 && !stat)
+		light = image(icon, "light_idle")
+	else if(use_power == 2 && !stat)
+		light = image(icon, "light_preheating")
 	else
 		light = image(icon, "light_off")
 	light.pixel_x = light_x

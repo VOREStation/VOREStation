@@ -199,7 +199,7 @@
 // to decide what to do. They may be used again to make another recipe or discarded, or merged into the results,
 // thats no longer the concern of this proc
 	var/obj/temp = new /obj(src)
-	temp.create_reagents(9999999999)
+	temp.create_reagents(999999999)
 
 	// Find items we need
 	if(items && items.len)
@@ -244,7 +244,7 @@
 	the single-result's reagents
 	*/
 	var/obj/tempholder = new(src)
-	tempholder.create_reagents(9999999999)
+	tempholder.create_reagents(999999999)
 	var/list/results = list()
 	while (tally < result_quantity)
 		var/obj/result_obj = new result(container)
@@ -252,14 +252,14 @@
 
 		if(!result_obj.reagents)//This shouldn't happen
 			//If the result somehow has no reagents defined, then create a new holder
-			world << "[result_obj] had no reagents!"
+			to_chat(world, "<span class='danger'>[result_obj] had no reagents!</span>")
 			result_obj.create_reagents(temp.reagents.total_volume*1.5)
 
 		if(result_quantity == 1)
 			qdel(tempholder.reagents)
 			tempholder.reagents = result_obj.reagents
 		else
-			world << result_obj
+			to_chat(world, result_obj)
 			result_obj.reagents.trans_to(tempholder.reagents, result_obj.reagents.total_volume)
 		tally++
 

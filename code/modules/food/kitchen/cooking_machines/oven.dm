@@ -71,10 +71,12 @@
 	if(open)
 		open = FALSE
 		loss = (active_power_usage / resistance)*0.5
+		cooking = TRUE
 	else
 		open = TRUE
 		loss = (active_power_usage / resistance)*4
-		//When the oven door is opened, heat is lost MUCH faster
+		//When the oven door is opened, heat is lost MUCH faster and you stop cooking (because the door is open)
+		cooking = FALSE
 
 	playsound(src, 'sound/machines/hatch_open.ogg', 20, 1)
 	update_icon()

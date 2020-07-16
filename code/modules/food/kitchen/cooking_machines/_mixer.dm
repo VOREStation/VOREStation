@@ -15,13 +15,14 @@ fundamental differences
 	idle_power_usage = 50
 
 /obj/machinery/appliance/mixer/examine(var/mob/user)
-	..()
-	to_chat(user, "<span class='notice'>It is currently set to make a [selected_option]</span>")
+	. = ..()
+	if(Adjacent(user))
+		to_chat(user, "<span class='notice'>It is currently set to make a [selected_option]</span>")
 
-/obj/machinery/appliance/mixer/New()
+/obj/machinery/appliance/mixer/Initialize()
 	. = ..()
 	cooking_objs += new /datum/cooking_item(new /obj/item/weapon/reagent_containers/cooking_container(src))
-	cooking = 0
+	cooking = FALSE
 	selected_option = pick(output_options)
 
 //Mixers cannot-not do combining mode. So the default option is removed from this. A combine target must be chosen
@@ -34,7 +35,7 @@ fundamental differences
 		return
 
 	if (!usr.IsAdvancedToolUser())
-		to_chat(user, "<span class='notice'>You can't operate [src].</span>")
+		to_chat(usr, "<span class='notice'>You can't operate [src].</span>")
 		return
 
 	if(output_options.len)
@@ -43,7 +44,7 @@ fundamental differences
 			return
 		else
 			selected_option = choice
-			to_chat(user, "<span class='notice'>You prepare \the [src] to make \a [selected_option].</span>")
+			to_chat(usr, "<span class='notice'>You prepare \the [src] to make \a [selected_option].</span>")
 			var/datum/cooking_item/CI = cooking_objs[1]
 			CI.combine_target = selected_option
 

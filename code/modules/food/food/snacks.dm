@@ -157,7 +157,7 @@
 	. = ..()
 	if(Adjacent(user))
 		if(coating)
-		to_chat(user, "<span class='notice'>It's coated in [coating.name]!</span>")
+			to_chat(user, "<span class='notice'>It's coated in [coating.name]!</span>")
 		if(bitecount==0)
 			return .
 		else if (bitecount==1)
@@ -282,7 +282,7 @@
 //	desc = "Smells caustic. Tastes like heresy."						//Duh
 //	icon_state = "xburger"												//Refers to an icon in food.dmi
 //	Initialize()														//Don't mess with this. (We use Initialize now instead of New())
-//		..()															//Same here.
+//		. = ..()														//Same here.
 //		reagents.add_reagent("xenomicrobes", 10)						//This is what is in the food item. you may copy/paste
 //		reagents.add_reagent("nutriment", 2)							//	this line of code for all the contents.
 //		bitesize = 3													//This is the amount each bite consumes.
@@ -3445,7 +3445,7 @@
 
 		update_icon()
 		return
-	..()
+	. = ..()
 
 /obj/item/pizzabox/margherita/Initialize()
 	pizza = new /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/margherita(src)
@@ -3584,7 +3584,7 @@
 		qdel(src)
 		return
 	else
-		..()
+		. = ..()
 
 // Human Burger + cheese wedge = cheeseburger
 /obj/item/weapon/reagent_containers/food/snacks/human/burger/attackby(obj/item/weapon/reagent_containers/food/snacks/cheesewedge/W as obj, mob/user as mob)
@@ -3595,7 +3595,7 @@
 		qdel(src)
 		return
 	else
-		..()
+		. = ..()
 
 /obj/item/weapon/reagent_containers/food/snacks/bunbun
 	name = "\improper Bun Bun"
@@ -3701,7 +3701,7 @@
 		to_chat(user, "<span class='notice'>You remove the seeds from the flower, slightly damaging them.</span>")
 		qdel(src)
 	else
-		..()
+		. = ..()
 
 /obj/item/weapon/reagent_containers/food/snacks/rawsticks
 	name = "raw potato sticks"
@@ -3775,7 +3775,7 @@
 	center_of_mass = list("x"=16, "y"=15)
 
 /obj/item/weapon/reagent_containers/food/snacks/liquidprotein/Initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("protein", 30)
 	reagents.add_reagent("iron", 3)
 	bitesize = 4
@@ -3790,7 +3790,7 @@
 	center_of_mass = list("x"=16, "y"=15)
 
 /obj/item/weapon/reagent_containers/food/snacks/liquidvitamin/Initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("flour", 20)
 	reagents.add_reagent("tricordrazine", 5)
 	reagents.add_reagent("paracetamol", 5)
@@ -3846,10 +3846,10 @@
 	center_of_mass = list("x"=15, "y"=9)
 
 /obj/item/weapon/reagent_containers/food/snacks/unajerky/Initialize()
-		..()
-		reagents.add_reagent("protein", 8)
-		reagents.add_reagent("capsaicin", 2)
-		bitesize = 2
+	. =..()
+	reagents.add_reagent("protein", 8)
+	reagents.add_reagent("capsaicin", 2)
+	bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/croissant
 	name = "croissant"
@@ -4353,7 +4353,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/macncheese
 	name = "macaroni and cheese"
 	desc = "The perfect combination of noodles and dairy."
-	icon = 'modular_citadel/icons/obj/food_cit.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "macncheese"
 	trash = /obj/item/trash/snack_bowl
 	center_of_mass = list("x"=16, "y"=16)
@@ -4379,7 +4379,7 @@
 //This proc handles drawing coatings out of a container when this food is dipped into it
 /obj/item/weapon/reagent_containers/food/snacks/proc/apply_coating(var/datum/reagent/nutriment/coating/C, var/mob/user)
 	if (coating)
-		user << "The [src] is already coated in [coating.name]!"
+		to_chat(user, "The [src] is already coated in [coating.name]!")
 		return 0
 
 	//Calculate the reagents of the coating needed
@@ -4398,7 +4398,7 @@
 		return 0
 
 	if (C.volume < req)
-		user << span("warning", "There's not enough [C.name] to coat the [src]!")
+		to_chat("<span class='warning'>There's not enough [C.name] to coat the [src]!</span>")
 		return 0
 
 	var/id = C.id
@@ -4499,7 +4499,7 @@
 	var/composition_reagent
 	var/composition_reagent_quantity
 
-/mob/living/simple_animal/adultslime
+/mob/living/simple_mob/adultslime
 	composition_reagent = "slimejelly"
 
 /mob/living/carbon/slime
@@ -4508,13 +4508,13 @@
 /mob/living/carbon/alien/diona
 	composition_reagent = "nutriment"//Dionae are plants, so eating them doesn't give animal protein
 
-/mob/living/simple_animal/slime
+/mob/living/simple_mob/slime
 	composition_reagent = "slimejelly"
 
-/mob/living/simple_animal
+/mob/living/simple_mob
 	var/kitchen_tag = "animal" //Used for cooking with animals
 
-/mob/living/simple_animal/mouse
+/mob/living/simple_mob/mouse
 	kitchen_tag = "rodent"
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/cheesewheel
@@ -4548,7 +4548,7 @@
 	bitesize = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/jalapeno_poppers/Initialize()
-	. = . = ..()
+	. = ..()
 	reagents.add_reagent("batter", 2)
 	reagents.add_reagent("oil", 2)
 
@@ -4690,7 +4690,7 @@
 	nutriment_amt = 0
 
 /obj/item/weapon/reagent_containers/food/snacks/spreads/Initialize()
-	. = . = ..()
+	. = ..()
 	reagents.add_reagent("triglyceride", 20)
 	reagents.add_reagent("sodiumchloride",1)
 
@@ -4712,7 +4712,7 @@
 	center_of_mass = list("x"=16, "y"=16)
 
 /obj/item/weapon/reagent_containers/food/snacks/rawbacon/Initialize()
-	. = . = ..()
+	. = ..()
 	reagents.add_reagent("protein", 0.33)
 
 /obj/item/weapon/reagent_containers/food/snacks/bacon
@@ -4740,7 +4740,7 @@
 	center_of_mass = list("x"=16, "y"=16)
 
 /obj/item/weapon/reagent_containers/food/snacks/bacon/Initialize()
-	. = . = ..()
+	. = ..()
 	reagents.add_reagent("protein", 0.33)
 	reagents.add_reagent("triglyceride", 1)
 
@@ -4751,7 +4751,7 @@
 	icon_state = "bacon_stick"
 
 /obj/item/weapon/reagent_containers/food/snacks/bacon_stick/Initialize()
-	. = . = ..()
+	. = ..()
 	reagents.add_reagent("protein", 3)
 	reagents.add_reagent("egg", 1)
 
@@ -4762,7 +4762,7 @@
 	trash = /obj/item/trash/snack_bowl
 
 /obj/item/weapon/reagent_containers/food/snacks/chilied_eggs/Initialize()
-	. = . = ..()
+	. = ..()
 	reagents.add_reagent("egg", 6)
 	reagents.add_reagent("protein", 2)
 
@@ -4783,7 +4783,7 @@
 	trash = /obj/item/trash/plate
 
 /obj/item/weapon/reagent_containers/food/snacks/bacon_and_eggs/Initialize()
-	. = . = ..()
+	. = ..()
 	reagents.add_reagent("protein", 3)
 	reagents.add_reagent("egg", 1)
 
@@ -4797,7 +4797,7 @@
 	trash = /obj/item/trash/plate
 
 /obj/item/weapon/reagent_containers/food/snacks/sweet_and_sour/Initialize()
-	. = . = ..()
+	. = ..()
 	reagents.add_reagent("protein", 3)
 
 /obj/item/weapon/reagent_containers/food/snacks/corn_dog
@@ -4809,7 +4809,7 @@
 	nutriment_amt = 4
 
 /obj/item/weapon/reagent_containers/food/snacks/corn_dog/Initialize()
-	. = . = ..()
+	. = ..()
 	reagents.add_reagent("protein", 3)
 
 /obj/item/weapon/reagent_containers/food/snacks/truffle
@@ -4821,7 +4821,7 @@
 	bitesize = 4
 
 /obj/item/weapon/reagent_containers/food/snacks/truffle/Initialize()
-	. = . = ..()
+	. = ..()
 	reagents.add_reagent("coco", 6)
 
 /obj/item/weapon/reagent_containers/food/snacks/truffle/random
@@ -4829,7 +4829,7 @@
 	desc = "Rich bite-sized chocolate with a mystery filling!"
 
 /obj/item/weapon/reagent_containers/food/snacks/truffle/random/Initialize()
-	. = . = ..()
+	. = ..()
 	var/reagent_string = pick(list("cream","cherryjelly","mint","frostoil","capsaicin","cream","coffee","milkshake"))
 	reagents.add_reagent(reagent_string, 4)
 
@@ -4842,7 +4842,7 @@
 	nutriment_amt = 5
 
 /obj/item/weapon/reagent_containers/food/snacks/bacon_flatbread/Initialize()
-	. = . = ..()
+	. = ..()
 	reagents.add_reagent("protein", 5)
 
 /obj/item/weapon/reagent_containers/food/snacks/meat_pocket
@@ -4854,7 +4854,7 @@
 	nutriment_amt = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/meat_pocket/Initialize()
-	. = . = ..()
+	. = ..()
 	reagents.add_reagent("protein", 3)
 
 /obj/item/weapon/reagent_containers/food/snacks/fish_taco
@@ -4866,7 +4866,7 @@
 	nutriment_amt = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/fish_taco/Initialize()
-	. = . = ..()
+	. = ..()
 	reagents.add_reagent("seafood",3)
 
 /obj/item/weapon/reagent_containers/food/snacks/nt_muffin
@@ -4878,7 +4878,7 @@
 	nutriment_amt = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/nt_muffin/Initialize()
-	. = . = ..()
+	. = ..()
 	reagents.add_reagent("protein",5)
 
 /obj/item/weapon/reagent_containers/food/snacks/pineapple_ring
@@ -4890,7 +4890,7 @@
 	nutriment_amt = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/pineapple_ring/Initialize()
-	. = . = ..()
+	. = ..()
 	reagents.add_reagent("pineapplejuice",3)
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/pineapple
@@ -4906,7 +4906,7 @@
 	bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/pineapple/Initialize()
-	. = . = ..()
+	. = ..()
 	reagents.add_reagent("protein", 4)
 	reagents.add_reagent("cheese", 5)
 	reagents.add_reagent("tomatojuice", 6)
@@ -4936,7 +4936,7 @@
 	bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/burger/bacon/Initialize()
-	. = . = ..()
+	. = ..()
 	reagents.add_reagent("protein", 4)
 
 /obj/item/weapon/reagent_containers/food/snacks/blt
@@ -4951,7 +4951,7 @@
 	bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/blt/Initialize()
-	. = . = ..()
+	. = ..()
 	reagents.add_reagent("protein", 4)
 
 /obj/item/weapon/reagent_containers/food/snacks/onionrings
@@ -5033,7 +5033,7 @@
 	bitesize = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/crabmeat/Initialize()
-	. = . = ..()
+	. = ..()
 	reagents.add_reagent("seafood", 2)
 
 /obj/item/weapon/reagent_containers/food/snacks/crab_legs
@@ -5047,7 +5047,7 @@
 	trash = /obj/item/trash/plate
 
 /obj/item/weapon/reagent_containers/food/snacks/crab_legs/Initialize()
-	. = . = ..()
+	. = ..()
 	reagents.add_reagent("seafood", 6)
 	reagents.add_reagent("sodiumchloride", 1)
 
@@ -5069,7 +5069,7 @@
 	bitesize = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/nugget/Initialize()
-	. = . = ..()
+	. = ..()
 	var/shape = pick("lump", "star", "lizard", "corgi")
 	desc = "A chicken nugget vaguely shaped like a [shape]."
 	icon_state = "nugget_[shape]"
@@ -5095,7 +5095,7 @@
 	bitesize = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/honeybun/Initialize()
-	. = . = ..()
+	. = ..()
 	reagents.add_reagent("honey", 3)
 
 // Moved /bun/attackby() from /code/modules/food/food/snacks.dm
@@ -5170,7 +5170,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/chip/on_consume(mob/M as mob)
 	if(reagents && reagents.total_volume)
 		icon_state = bitten_state
-	. = . = ..()
+	. = ..()
 
 /obj/item/weapon/reagent_containers/food/snacks/chip/salsa
 	name = "salsa chip"
@@ -5246,7 +5246,7 @@
 		user.put_in_active_hand(src)
 		src.pickup(user)
 		return
-	. = . = ..()
+	. = ..()
 
 /obj/item/weapon/reagent_containers/food/snacks/chipplate/nachos
 	name = "plate of nachos"
@@ -5273,7 +5273,7 @@
 	nutriment_amt = 20
 
 /obj/item/weapon/reagent_containers/food/snacks/dip/attackby(obj/item/weapon/reagent_containers/food/snacks/item as obj, mob/user as mob)
-	. = . = ..()
+	. = ..()
 	var/obj/item/weapon/reagent_containers/food/snacks/returningitem
 	if(istype(item,/obj/item/weapon/reagent_containers/food/snacks/chip/nacho) && item.icon_state == "chip_nacho")
 		returningitem = new nachotrans(src)
@@ -5285,24 +5285,24 @@
 		item.reagents.trans_to(returningitem, item.reagents.total_volume) //Old chip to new chip
 		if(item.icon_state == "chip_half")
 			returningitem.icon_state = "[returningitem.icon_state]_half"
-			returningitem.bitesize = Clamp(returningitem.reagents.total_volume,1,10)
+			returningitem.bitesize = clamp(returningitem.reagents.total_volume,1,10)
 		else if(prob(1))
 			memed = 1
-			user << "You scoop up some dip with the chip, but mid-scop, the chip breaks off into the dreadful abyss of dip, never to be seen again..."
+			to_chat(user, "You scoop up some dip with the chip, but mid-scop, the chip breaks off into the dreadful abyss of dip, never to be seen again...")
 			returningitem.icon_state = "[returningitem.icon_state]_half"
-			returningitem.bitesize = Clamp(returningitem.reagents.total_volume,1,10)
+			returningitem.bitesize = clamp(returningitem.reagents.total_volume,1,10)
 		else
-			returningitem.bitesize = Clamp(returningitem.reagents.total_volume*0.5,1,10)
+			returningitem.bitesize = clamp(returningitem.reagents.total_volume*0.5,1,10)
 		qdel(item)
 		reagents.trans_to(returningitem, bitesize) //Dip to new chip
 		user.put_in_hands(returningitem)
 
 		if (reagents && reagents.total_volume)
 			if(!memed)
-				user << "You scoop up some dip with the chip."
+				to_chat(user, "You scoop up some dip with the chip.")
 		else
 			if(!memed)
-				user << "You scoop up the remaining dip with the chip."
+				to_chat(user, "You scoop up the remaining dip with the chip.")
 			var/obj/waste = new trash(loc)
 			if (loc == user)
 				user.put_in_hands(waste)
@@ -5338,7 +5338,7 @@
 	nutriment_amt = 6
 
 /obj/item/weapon/reagent_containers/food/snacks/burrito/Initialize()
-	. = . = ..()
+	. = ..()
 	reagents.add_reagent("protein", 4)
 
 
@@ -5353,7 +5353,7 @@
 	nutriment_amt = 6
 
 /obj/item/weapon/reagent_containers/food/snacks/burrito_vegan/Initialize()
-	. = . = ..()
+	. = ..()
 	reagents.add_reagent("tofu", 6)
 
 /obj/item/weapon/reagent_containers/food/snacks/burrito_spicy
@@ -5367,7 +5367,7 @@
 	nutriment_amt = 6
 
 /obj/item/weapon/reagent_containers/food/snacks/burrito_spicy/Initialize()
-	. = . = ..()
+	. = ..()
 	reagents.add_reagent("protein", 6)
 
 /obj/item/weapon/reagent_containers/food/snacks/burrito_cheese
@@ -5381,7 +5381,7 @@
 	nutriment_amt = 6
 
 /obj/item/weapon/reagent_containers/food/snacks/burrito_cheese/Initialize()
-	. = . = ..()
+	. = ..()
 	reagents.add_reagent("protein", 6)
 
 /obj/item/weapon/reagent_containers/food/snacks/burrito_cheese_spicy
@@ -5394,7 +5394,7 @@
 	nutriment_amt = 6
 
 /obj/item/weapon/reagent_containers/food/snacks/burrito_cheese_spicy/Initialize()
-	. = . = ..()
+	. = ..()
 	reagents.add_reagent("protein", 6)
 
 /obj/item/weapon/reagent_containers/food/snacks/burrito_hell
@@ -5418,7 +5418,7 @@
 	nutriment_amt = 6
 
 /obj/item/weapon/reagent_containers/food/snacks/burrito_hell/Initialize()
-	. = . = ..()
+	. = ..()
 	reagents.add_reagent("protein", 9)
 	reagents.add_reagent("condensedcapsaicin", 20) //what could possibly go wrong
 
@@ -5440,7 +5440,7 @@
 	trash = /obj/item/trash/snack_bowl
 
 /obj/item/weapon/reagent_containers/food/snacks/hatchling_suprise/Initialize()
-	. = . = ..()
+	. = ..()
 	reagents.add_reagent("egg", 2)
 	reagents.add_reagent("protein", 4)
 
@@ -5452,7 +5452,7 @@
 	trash = /obj/item/trash/plate
 
 /obj/item/weapon/reagent_containers/food/snacks/red_sun_special/Initialize()
-	. = . = ..()
+	. = ..()
 	reagents.add_reagent("protein", 2)
 
 /obj/item/weapon/reagent_containers/food/snacks/riztizkzi_sea
@@ -5463,7 +5463,7 @@
 	trash = /obj/item/trash/snack_bowl
 
 /obj/item/weapon/reagent_containers/food/snacks/riztizkzi_sea/Initialize()
-	. = . = ..()
+	. = ..()
 	reagents.add_reagent("egg", 4)
 
 /obj/item/weapon/reagent_containers/food/snacks/father_breakfast
@@ -5474,7 +5474,7 @@
 	trash = /obj/item/trash/plate
 
 /obj/item/weapon/reagent_containers/food/snacks/father_breakfast/Initialize()
-	. = . = ..()
+	. = ..()
 	reagents.add_reagent("egg", 4)
 	reagents.add_reagent("protein", 6)
 
@@ -5485,7 +5485,7 @@
 	icon_state = "stuffed_meatball"
 
 /obj/item/weapon/reagent_containers/food/snacks/stuffed_meatball/Initialize()
-	. = . = ..()
+	. = ..()
 	reagents.add_reagent("protein", 4)
 
 /obj/item/weapon/reagent_containers/food/snacks/egg_pancake
@@ -5496,7 +5496,7 @@
 	trash = /obj/item/trash/plate
 
 /obj/item/weapon/reagent_containers/food/snacks/egg_pancake/Initialize()
-	. = . = ..()
+	. = ..()
 	reagents.add_reagent("protein", 6)
 	reagents.add_reagent("egg", 2)
 
@@ -5510,7 +5510,7 @@
 	trash = /obj/item/trash/snacktray
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/grilled_carp/Initialize()
-	. = . = ..()
+	. = ..()
 	reagents.add_reagent("seafood", 12)
 
 /obj/item/weapon/reagent_containers/food/snacks/grilled_carp_slice
