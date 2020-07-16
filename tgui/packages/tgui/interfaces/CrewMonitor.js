@@ -102,15 +102,17 @@ export const CrewMonitor = (props, context) => {
           maxValue={8}
           onChange={(e, value) => setZoom(value)} />
         Z-Level:
-        {data.map_levels.map(level => (
-          <Button
-            key={level}
-            selected={~~level === ~~config.mapZLevel}
-            content={level}
-            onClick={() => {
-              act("tgui:setZLevel", { "mapZLevel": level });
-            }} />
-        ))}
+        {data.map_levels
+          .sort((a, b) => Number(a) - Number(b))
+          .map(level => (
+            <Button
+              key={level}
+              selected={~~level === ~~config.mapZLevel}
+              content={level}
+              onClick={() => {
+                act("tgui:setZLevel", { "mapZLevel": level });
+              }} />
+          ))}
         <NanoMap zoom={mapZoom}>
           {crew
             .filter(x => 

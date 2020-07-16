@@ -110,8 +110,15 @@ const NanoMapMarker = (props, context) => {
     tooltip,
     color,
   } = props;
-  const rx = -256 * (zoom - 1) + x * (2 * zoom) - 1.5 * zoom - 3;
-  const ry = 512 * zoom - (y * 2 * zoom) + zoom - 1.5;
+  // Please note, the horrifying `3.65714285714` is just the ratio of the
+  // width/height of the minimap *element* (not image)
+  // to the actual turf size of the map
+  const rx = (-256 * (zoom - 1) 
+    + (x * (3.65714285714 * zoom)) 
+    - 1.5 * zoom - 3);
+  const ry = (512 * zoom 
+    - (y * (3.65714285714 * zoom))
+    + zoom - 1.5);
   return (
     <div style={"transform: scale(" + 1 / zoom + ")"}>
       <Box
