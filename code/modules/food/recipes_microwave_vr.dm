@@ -8,7 +8,7 @@
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/path_to_some_food
 */
-
+// All of this shit needs to be gone through and reorganized into different recipes per machine - Rykka 7/16/2020
 /datum/recipe/microwave/jellydonut
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/doughslice)

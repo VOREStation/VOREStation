@@ -63,13 +63,6 @@
 		if (OL && istype(OL))
 			OL.data["temperature"] = temperature
 
-/obj/machinery/appliance/cooker/fryer/set_cooking(new_setting)
-	..()
-	if(new_setting)
-		fry_loop.start()
-	else
-		fry_loop.stop()
-		
 /obj/machinery/appliance/cooker/fryer/update_cooking_power()
 	..()//In addition to parent temperature calculation
 	//Fryer efficiency also drops when oil levels arent optimal
@@ -92,8 +85,10 @@
 /obj/machinery/appliance/cooker/fryer/update_icon()
 	if(cooking)
 		icon_state = on_icon
+		fry_loop.start()
 	else
 		icon_state = off_icon
+		fry_loop.stop(src)
 	..()
 	
 //Fryer gradually infuses any cooked food with oil. Moar calories
