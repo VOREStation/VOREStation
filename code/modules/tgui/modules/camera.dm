@@ -135,7 +135,7 @@
 	if(action == "switch_camera")
 		var/c_tag = params["name"]
 		var/list/cameras = get_available_cameras(usr)
-		var/obj/machinery/camera/C = cameras[c_tag]
+		var/obj/machinery/camera/C = cameras["[ckey(c_tag)]"]
 		active_camera = C
 		playsound(tgui_host(), get_sfx("terminal_type"), 25, FALSE)
 
@@ -216,7 +216,7 @@
 			continue
 		var/list/tempnetwork = C.network & all_networks
 		if(tempnetwork.len)
-			D["[C.c_tag]"] = C
+			D["[ckey(C.c_tag)]"] = C
 	return D
 
 /datum/tgui_module/camera/proc/can_access_network(mob/user, network_access, station_network = 0)
