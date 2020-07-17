@@ -65,7 +65,6 @@
 	if(!ishuman(user))
 		return
 
-	log_world("omnihud attack self [src] with [user]")
 	var/mob/living/carbon/human/H = user
 	if(!H.glasses || !(H.glasses == src))
 		to_chat(user, "<span class='warning'>You must be wearing the [src] to see the display.</span>")
