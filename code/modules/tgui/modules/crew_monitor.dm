@@ -1,11 +1,12 @@
 /datum/tgui_module/crew_monitor
 	name = "Crew monitor"
+	tgui_id = "CrewMonitor"
 
 /datum/tgui_module/crew_monitor/tgui_act(action, params)
 	if(..())
 		return TRUE
 
-	var/turf/T = get_turf(tgui_host())
+	var/turf/T = get_turf(usr)
 	if(!T || !(T.z in using_map.player_levels))
 		to_chat(usr, "<span class='warning'><b>Unable to establish a connection</b>: You're too far away from the station!</span>")
 		return FALSE
@@ -20,7 +21,7 @@
 			return TRUE
 
 /datum/tgui_module/crew_monitor/tgui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/tgui_state/state = GLOB.tgui_default_state)
-	var/z = get_z(tgui_host())
+	var/z = get_z(user)
 	var/list/map_levels = using_map.get_map_levels(z, TRUE, om_range = DEFAULT_OVERMAP_RANGE)
 	
 	if(!map_levels.len)
@@ -31,7 +32,7 @@
 
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "CrewMonitor", name, 800, 600, master_ui, state)
+		ui = new(user, src, ui_key, tgui_id, name, 800, 600, master_ui, state)
 		ui.autoupdate = TRUE
 		ui.open()
 
@@ -41,7 +42,7 @@
 
 	data["isAI"] = isAI(user)
 
-	var/z = get_z(tgui_host())
+	var/z = get_z(user)
 	var/list/map_levels = uniquelist(using_map.get_map_levels(z, TRUE, om_range = DEFAULT_OVERMAP_RANGE))
 	data["map_levels"] = map_levels
 
@@ -50,3 +51,32 @@
 		data["crewmembers"] += crew_repository.health_data(zlevel)
 
 	return data
+
+/datum/tgui_module/crew_monitor/ntos
+	tgui_id = "NtosCrewMonitor"
+
+/datum/tgui_module/crew_monitor/ntos/tgui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/tgui_state/state = GLOB.tgui_ntos_state)
+	. = ..(user, ui_key, ui, force_open, master_ui, GLOB.tgui_ntos_state)
+
+/datum/tgui_module/crew_monitor/ntos/tgui_static_data()
+	. = ..()
+	
+	var/datum/computer_file/program/host = tgui_host()
+	if(istype(host) && host.computer)
+		. += host.computer.get_header_data()
+
+/datum/tgui_module/crew_monitor/ntos/tgui_act(action, params)
+	if(..())
+		return
+
+	var/datum/computer_file/program/host = tgui_host()
+	if(istype(host) && host.computer)
+		if(action == "PC_exit")
+			host.computer.kill_program()
+			return TRUE
+		if(action == "PC_shutdown")
+			host.computer.shutdown_computer()
+			return TRUE
+		if(action == "PC_minimize")
+			host.computer.minimize_program(usr)
+			return TRUE
