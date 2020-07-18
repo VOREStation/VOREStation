@@ -17,6 +17,7 @@
 		SPECIES_SERGAL				= 'icons/mob/species/sergal/helmet_vr.dmi',
 		SPECIES_NEVREAN				= 'icons/mob/species/sergal/helmet_vr.dmi',
 		SPECIES_VULPKANIN			= 'icons/mob/species/vulpkanin/helmet.dmi',
+		SPECIES_CANIDAELA			= 'icons/mob/species/vulpkanin/helmet.dmi',
 		SPECIES_ZORREN_HIGH			= 'icons/mob/species/vulpkanin/helmet.dmi',
 		SPECIES_FENNEC				= 'icons/mob/species/vulpkanin/helmet.dmi'
 		)
@@ -30,6 +31,7 @@
 		SPECIES_SERGAL			= 'icons/obj/clothing/species/sergal/hats.dmi',
 		SPECIES_NEVREAN			= 'icons/obj/clothing/species/sergal/hats.dmi',
 		SPECIES_VULPKANIN		= 'icons/obj/clothing/species/vulpkanin/hats.dmi',
+		SPECIES_CANIDAELA		= 'icons/obj/clothing/species/vulpkanin/hats.dmi',
 		SPECIES_ZORREN_HIGH		= 'icons/obj/clothing/species/vulpkanin/hats.dmi',
 		SPECIES_FENNEC			= 'icons/obj/clothing/species/vulpkanin/hats.dmi'
 		)
@@ -46,6 +48,7 @@
 		SPECIES_SERGAL				= 'icons/mob/species/sergal/suit_vr.dmi',
 		SPECIES_NEVREAN				= 'icons/mob/species/sergal/suit_vr.dmi',
 		SPECIES_VULPKANIN			= 'icons/mob/species/vulpkanin/suit.dmi',
+		SPECIES_CANIDAELA			= 'icons/mob/species/vulpkanin/suit.dmi',
 		SPECIES_ZORREN_HIGH			= 'icons/mob/species/vulpkanin/suit.dmi',
 		SPECIES_FENNEC				= 'icons/mob/species/vulpkanin/suit.dmi'
 		)
@@ -59,6 +62,7 @@
 		SPECIES_SERGAL			= 'icons/obj/clothing/species/sergal/suits.dmi',
 		SPECIES_NEVREAN			= 'icons/obj/clothing/species/sergal/suits.dmi',
 		SPECIES_VULPKANIN		= 'icons/obj/clothing/species/vulpkanin/suits.dmi',
+		SPECIES_CANIDAELA		= 'icons/obj/clothing/species/vulpkanin/suits.dmi',
 		SPECIES_ZORREN_HIGH		= 'icons/obj/clothing/species/vulpkanin/suits.dmi',
 		SPECIES_FENNEC			= 'icons/obj/clothing/species/vulpkanin/suits.dmi'
 		)
@@ -161,6 +165,7 @@
 		SPECIES_AKULA			= 'icons/mob/species/unathi/suit_vr.dmi',
 		SPECIES_SERGAL			= 'icons/mob/species/unathi/suit_vr.dmi',
 		SPECIES_VULPKANIN		= 'icons/mob/species/vulpkanin/suit_vr.dmi',
+		SPECIES_CANIDAELA		= 'icons/mob/species/vulpkanin/suit_vr.dmi',
 		SPECIES_ZORREN_HIGH		= 'icons/mob/species/vulpkanin/suit_vr.dmi',
 		SPECIES_FENNEC			= 'icons/mob/species/vulpkanin/suit_vr.dmi',
 		SPECIES_TESHARI			= 'icons/mob/species/seromi/suit_vr.dmi'
@@ -173,6 +178,7 @@
 		SPECIES_AKULA			= 'icons/obj/clothing/suits_vr.dmi',
 		SPECIES_SERGAL			= 'icons/obj/clothing/suits_vr.dmi',
 		SPECIES_VULPKANIN		= 'icons/obj/clothing/suits_vr.dmi',
+		SPECIES_CANIDAELA		= 'icons/obj/clothing/suits_vr.dmi',
 		SPECIES_ZORREN_HIGH		= 'icons/obj/clothing/suits_vr.dmi',
 		SPECIES_FENNEC			= 'icons/obj/clothing/suits_vr.dmi',
 		SPECIES_TESHARI			= 'icons/obj/clothing/suits_vr.dmi'
@@ -240,6 +246,7 @@
 		SPECIES_AKULA			= 'icons/mob/species/unathi/helmet_vr.dmi',
 		SPECIES_SERGAL			= 'icons/mob/species/unathi/helmet_vr.dmi',
 		SPECIES_VULPKANIN		= 'icons/mob/species/vulpkanin/helmet_vr.dmi',
+		SPECIES_CANIDAELA		= 'icons/mob/species/vulpkanin/helmet_vr.dmi',
 		SPECIES_ZORREN_HIGH		= 'icons/mob/species/vulpkanin/helmet_vr.dmi',
 		SPECIES_FENNEC			= 'icons/mob/species/vulpkanin/helmet_vr.dmi',
 		SPECIES_TESHARI			= 'icons/mob/species/seromi/helmet_vr.dmi'
@@ -252,6 +259,7 @@
 		SPECIES_AKULA			= 'icons/obj/clothing/hats_vr.dmi',
 		SPECIES_SERGAL			= 'icons/obj/clothing/hats_vr.dmi',
 		SPECIES_VULPKANIN		= 'icons/obj/clothing/hats_vr.dmi',
+		SPECIES_CANIDAELA		= 'icons/obj/clothing/hats_vr.dmi',
 		SPECIES_ZORREN_HIGH		= 'icons/obj/clothing/hats_vr.dmi',
 		SPECIES_FENNEC			= 'icons/obj/clothing/hats_vr.dmi',
 		SPECIES_TESHARI			= 'icons/obj/clothing/hats_vr.dmi'

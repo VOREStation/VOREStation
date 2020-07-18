@@ -289,6 +289,8 @@
 				temp_img = icon('icons/obj/butts_vr.dmi', "slime")
 			if(SPECIES_VULPKANIN)
 				temp_img = icon('icons/obj/butts_vr.dmi', "vulp")
+			if(SPECIES_CANIDAELA)
+				temp_img = icon('icons/obj/butts_vr.dmi', "vulp")
 			if(SPECIES_PROTEAN)
 				temp_img = icon('icons/obj/butts_vr.dmi', "machine")
 			if(SPECIES_WEREBEAST)

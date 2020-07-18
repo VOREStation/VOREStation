@@ -14,6 +14,8 @@
 	skull_type = /obj/item/weapon/digestion_remains/skull/rapala
 /datum/species/vulpkanin
 	skull_type = /obj/item/weapon/digestion_remains/skull/vulpkanin
+/datum/species/canidaela
+	skull_type = /obj/item/weapon/digestion_remains/skull/canidaela
 /datum/species/sergal
 	skull_type = /obj/item/weapon/digestion_remains/skull/sergal
 /datum/species/hi_zorren
@@ -117,6 +119,10 @@
 
 /obj/item/weapon/digestion_remains/skull/vulpkanin
 	desc = "A bleached skull. It looks very weakened. Seems like it belonged to a vulpkanin."
+	icon_state = "skull_taj"
+	
+/obj/item/weapon/digestion_remains/skull/canidaela
+	desc = "A bleached skull. It looks very weakened. Seems like it belonged to a canidaela."
 	icon_state = "skull_taj"
 
 /obj/item/weapon/digestion_remains/skull/sergal

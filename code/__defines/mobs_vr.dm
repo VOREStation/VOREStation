@@ -42,3 +42,4 @@
 //custom species base sprites
 #define SPECIES_FENNEC				"Fennec"
 #define SPECIES_XENOHYBRID			"Xenohybrid"
+#define SPECIES_CANIDAELA			"Canidaela"

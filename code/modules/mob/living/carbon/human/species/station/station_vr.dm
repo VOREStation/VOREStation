@@ -563,3 +563,64 @@ datum/species/harpy
 		"Your chitin feels hot."
 		)
 	inherent_verbs = list(/mob/living/proc/shred_limb)
+
+/datum/species/canidaela
+	name = SPECIES_CANIDAELA
+	name_plural = "Canidaela"
+	icobase = 'icons/mob/human_races/r_vulpkanin.dmi'
+	deform = 'icons/mob/human_races/r_vulpkanin.dmi'
+//	path = /mob/living/carbon/human/vulpkanin
+//	default_language = "Sol Common"
+	secondary_langs = list(LANGUAGE_CANILUNZT)
+	name_language = LANGUAGE_CANILUNZT
+	primitive_form = "Wolpin"
+	tail = "vulptail"
+	tail_animation = 'icons/mob/species/vulpkanin/tail.dmi' // probably need more than just one of each, but w/e
+	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
+	darksight = 10  //Base species are pretty much all able to see in the dark
+	burn_mod = 1.25 //Floofy
+//	gluttonous = 1
+	num_alternate_languages = 3
+	color_mult = 1
+	inherent_verbs = list(/mob/living/proc/shred_limb, /mob/living/carbon/human/proc/lick_wounds)
+	snow_movement = -2 //All of these are related to the snowy, frigid environment in which Canidaela were born.
+	cold_level_1 = 200	//Default 260
+	cold_level_2 = 150	//Default 200
+	cold_level_3 = 90	//Default 120
+
+	breath_cold_level_1 = 180	//Default 240 - Lower is better
+	breath_cold_level_2 = 120	//Default 180
+	breath_cold_level_3 = 90	//Default 100
+
+	heat_level_1 = 310	//Default 360
+	heat_level_2 = 360	//Default 400
+	heat_level_3 = 590	//Default 1000
+
+	breath_heat_level_1 = 340	//Default 380 - Higher is better
+	breath_heat_level_2 = 390	//Default 450
+	breath_heat_level_3 = 790	//Default 1250
+
+	heat_discomfort_level = 293.15
+	heat_discomfort_strings = list(
+		"Your feathers prickle in the heat.",
+		"You feel uncomfortably warm.",
+		)
+	cold_discomfort_level = 220
+	blurb = "Canidaela are an artificially created species of bipedal Canidae members, which are sometimes hybridized. They share most \
+	their traits often vary, but always include tendency towards cold temperatures, and similar impressive digestive systems. They speak \
+	Canilunzt natively, and almost all of them have also learned galactic common. They are a very rare species, with less than 200 of their \
+	kind existing throughout the galaxy. They were created as part of a research experiment on Gliese 581d which was shut down becuase of \
+	many ethical concerns and backlash from the public."
+
+	catalogue_data = list(/datum/category_item/catalogue/fauna/canidaela)
+
+	primitive_form = "Wolpin"
+
+	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
+	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
+
+	flesh_color = "#966464"
+	base_color = "#B43214"
+
+	min_age = 18
+	max_age = 80
