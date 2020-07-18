@@ -20,7 +20,9 @@ export const DisposalBin = (props, context) => {
     stateText = "Idle";
   }
   return (
-    <Window>
+    <Window
+      width={300}
+      height={250}>
       <Window.Content>
         <Section>
           <Box bold m={1}>

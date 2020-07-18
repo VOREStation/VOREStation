@@ -5,10 +5,10 @@
 Basic tgui backend code consists of the following vars and procs:
 
 ```
-tgui_interact(mob/user, ui_key, datum/tgui/ui, force_open,
-  datum/tgui/master_ui, datum/tgui_state/state)
+tgui_interact(mob/user, ui_key)
 tgui_data(mob/user)
 tgui_act(action, params)
+tgui_state()
 ```
 
 - `src_object` - The atom, which UI corresponds to in the game world.
@@ -19,9 +19,9 @@ or set up a new instance of UI by calling the `SStgui` subsystem.
 has into an associative list, which will then be sent to UI as a JSON string.
 - `tgui_act` - This proc receives user actions and reacts to them by changing
 the state of the game.
-- `tgui_state` (set in `tgui_interact`) - This var dictates under what conditions
-a UI may be interacted with. This may be the standard checks that check if
-you are in range and conscious, or more.
+- `tgui_state` - This proc dictates under what conditions a UI may be interacted
+with. This may be the standard checks that check if you are in range and
+conscious, or more.
 
 Once backend is complete, you create an new interface component on the
 frontend, which will receive this JSON data and render it on screen.
@@ -37,10 +37,10 @@ powerful interactions for embedded objects or remote access.
 Let's start with a very basic hello world.
 
 ```dm
-/obj/machinery/my_machine/tgui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/tgui_state/state = GLOB.tgui_default_state)
-  ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/my_machine/tgui_interact(mob/user, datum/tgui/ui = null)
+  ui = SStgui.try_update_ui(user, src, ui)
   if(!ui)
-    ui = new(user, src, ui_key, "my_machine", name, 300, 300, master_ui, state)
+    ui = new(user, src, "MyMachine", name)
     ui.open()
 ```
 
@@ -48,9 +48,7 @@ This is the proc that defines our interface. There's a bit going on here, so
 let's break it down. First, we override the tgui_interact proc on our object. This
 will be called by `interact` for you, which is in turn called by `attack_hand`
 (or `attack_self` for items). `tgui_interact` is also called to update a UI (hence
-the `try_update_ui`), so we accept an existing UI to update. The `state` is a
-default argument so that a caller can overload it with named arguments
-(`tgui_interact(state = overloaded_state)`) if needed.
+the `try_update_ui`), so we accept an existing UI to update.
 
 Inside the `if(!ui)` block (which means we are creating a new UI), we choose our
 template, title, and size; we can also set various options like `style` (for
@@ -294,10 +292,10 @@ here's what you need (note that you'll probably be forced to clean your shit up
 upon code review):
 
 ```dm
-/obj/copypasta/tgui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/tgui_state/state = GLOB.tgui_default_state) // Remember to use the appropriate state.
-  ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/copypasta/tgui_interact(mob/user, datum/tgui/ui = null)
+  ui = SStgui.try_update_ui(user, src, ui)
   if(!ui)
-    ui = new(user, src, ui_key, "copypasta", name, 300, 300, master_ui, state)
+    ui = new(user, src, "CopyPasta")
     ui.open()
 
 /obj/copypasta/tgui_data(mob/user)

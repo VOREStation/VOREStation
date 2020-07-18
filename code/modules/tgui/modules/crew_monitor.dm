@@ -2,7 +2,7 @@
 	name = "Crew monitor"
 	tgui_id = "CrewMonitor"
 
-/datum/tgui_module/crew_monitor/tgui_act(action, params)
+/datum/tgui_module/crew_monitor/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -19,8 +19,11 @@
 				if(hassensorlevel(H, SUIT_SENSOR_TRACKING))
 					AI.ai_actual_track(H)
 			return TRUE
+		if("setZLevel")
+			ui.set_map_z_level(params["mapZLevel"])
+			SStgui.update_uis(src)
 
-/datum/tgui_module/crew_monitor/tgui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/tgui_state/state = GLOB.tgui_default_state)
+/datum/tgui_module/crew_monitor/tgui_interact(mob/user, datum/tgui/ui = null)
 	var/z = get_z(user)
 	var/list/map_levels = using_map.get_map_levels(z, TRUE, om_range = DEFAULT_OVERMAP_RANGE)
 	
@@ -30,9 +33,9 @@
 			ui.close()
 		return null
 
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, tgui_id, name, 800, 600, master_ui, state)
+		ui = new(user, src, tgui_id)
 		ui.autoupdate = TRUE
 		ui.open()
 
@@ -55,8 +58,8 @@
 /datum/tgui_module/crew_monitor/ntos
 	tgui_id = "NtosCrewMonitor"
 
-/datum/tgui_module/crew_monitor/ntos/tgui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/tgui_state/state = GLOB.tgui_ntos_state)
-	. = ..(user, ui_key, ui, force_open, master_ui, GLOB.tgui_ntos_state)
+/datum/tgui_module/crew_monitor/ntos/tgui_state(mob/user)
+	return GLOB.tgui_ntos_state
 
 /datum/tgui_module/crew_monitor/ntos/tgui_static_data()
 	. = ..()
@@ -80,3 +83,18 @@
 		if(action == "PC_minimize")
 			host.computer.minimize_program(usr)
 			return TRUE
+
+// Subtype for glasses_state
+/datum/tgui_module/crew_monitor/glasses
+/datum/tgui_module/crew_monitor/glasses/tgui_state(mob/user)
+	return GLOB.tgui_glasses_state
+
+// Subtype for self_state
+/datum/tgui_module/crew_monitor/robot
+/datum/tgui_module/crew_monitor/robot/tgui_state(mob/user)
+	return GLOB.tgui_self_state
+
+// Subtype for nif_state
+/datum/tgui_module/crew_monitor/nif
+/datum/tgui_module/crew_monitor/nif/tgui_state(mob/user)
+	return GLOB.tgui_nif_state

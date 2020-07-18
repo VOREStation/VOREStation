@@ -8,7 +8,10 @@ import { Fragment } from 'inferno';
 
 export const CrewMonitor = () => {
   return (
-    <Window resizable>
+    <Window 
+      width={800}
+      height={600}
+      resizable>
       <Window.Content>
         <CrewMonitorContent />
       </Window.Content>
@@ -121,7 +124,7 @@ export const CrewMonitorContent = (props, context) => {
               selected={~~level === ~~config.mapZLevel}
               content={level}
               onClick={() => {
-                act("tgui:setZLevel", { "mapZLevel": level });
+                act("setZLevel", { "mapZLevel": level });
               }} />
           ))}
         <NanoMap zoom={mapZoom}>

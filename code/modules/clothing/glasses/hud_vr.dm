@@ -85,12 +85,12 @@
 	These have been upgraded with medical records access and virus database integration."
 	mode = "med"
 	action_button_name = "AR Console (Crew Monitor)"
-	tgarscreen_path = /datum/tgui_module/crew_monitor
+	tgarscreen_path = /datum/tgui_module/crew_monitor/glasses
 	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_STATUS_R,VIS_CH_BACKUP,VIS_AUGMENTED)
 
 	ar_interact(var/mob/living/carbon/human/user)
 		if(tgarscreen)
-			tgarscreen.tgui_interact(user, state = GLOB.tgui_glasses_state)
+			tgarscreen.tgui_interact(user)
 		return 1
 
 /obj/item/clothing/glasses/omnihud/sec

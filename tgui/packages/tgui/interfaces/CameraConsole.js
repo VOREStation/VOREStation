@@ -46,7 +46,10 @@ const selectCameras = (cameras, searchText = '', networkFilter = '') => {
 
 export const CameraConsole = (props, context) => {
   return (
-    <Window resizable>
+    <Window
+      width={870}
+      height={708}
+      resizable>
       <CameraConsoleContent />
     </Window>
   );
@@ -92,7 +95,6 @@ export const CameraConsoleContent = (props, context) => {
           className="CameraConsole__map"
           params={{
             id: mapRef,
-            parent: config.window,
             type: 'map',
           }} />
       </div>

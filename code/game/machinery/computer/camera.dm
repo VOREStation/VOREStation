@@ -24,8 +24,8 @@
 	QDEL_NULL(camera)
 	return ..()
 
-/obj/machinery/computer/security/tgui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/tgui_state/state = GLOB.tgui_default_state)
-	camera.tgui_interact(user, ui_key, ui, force_open, master_ui, state)
+/obj/machinery/computer/security/tgui_interact(mob/user, datum/tgui/ui = null)
+	camera.tgui_interact(user, ui)
 
 /obj/machinery/computer/security/attack_hand(mob/user)
 	add_fingerprint(user)

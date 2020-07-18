@@ -1,3 +1,9 @@
+/**
+ * @file
+ * @copyright 2020 Aleksej Komarov
+ * @license MIT
+ */
+
 import { useBackend } from '../backend';
 import { Box, Button } from '../components';
 import { refocusLayout } from './Layout';
@@ -5,12 +11,16 @@ import { Window } from './Window';
 
 export const NtosWindow = (props, context) => {
   const {
+    title,
+    width = 575,
+    height = 700,
     resizable,
     theme = 'ntos',
     children,
   } = props;
   const { act, data } = useBackend(context);
   const {
+    PC_device_theme,
     PC_batteryicon,
     PC_showbatteryicon,
     PC_batterypercent,
@@ -22,6 +32,9 @@ export const NtosWindow = (props, context) => {
   } = data;
   return (
     <Window
+      title={title}
+      width={width}
+      height={height}
       theme={theme}
       resizable={resizable}>
       <div className="NtosWindow">
@@ -35,7 +48,8 @@ export const NtosWindow = (props, context) => {
               {PC_stationtime}
             </Box>
             <Box inline italic mr={2} opacity={0.33}>
-              NtOS
+              {PC_device_theme === 'ntos' && 'NtOS'}
+              {PC_device_theme === 'syndicate' && 'Syndix'}
             </Box>
           </div>
           <div className="NtosHeader__right">

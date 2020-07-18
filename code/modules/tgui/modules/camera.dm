@@ -76,9 +76,9 @@
 	qdel(cam_foreground)
 	return ..()
 
-/datum/tgui_module/camera/tgui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/tgui_state/state = GLOB.tgui_default_state)
+/datum/tgui_module/camera/tgui_interact(mob/user, datum/tgui/ui = null)
 	// Update UI
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+	ui = SStgui.try_update_ui(user, src, ui)
 	// Show static if can't use the camera
 	if(!active_camera?.can_use())
 		show_camera_static()
@@ -99,7 +99,7 @@
 		user.client.register_map_obj(cam_background)
 		user.client.register_map_obj(cam_foreground)
 		// Open UI
-		ui = new(user, src, ui_key, tgui_id, name, 870, 708, master_ui, state)
+		ui = new(user, src, tgui_id, name)
 		ui.open()
 
 /datum/tgui_module/camera/tgui_data()
@@ -256,8 +256,8 @@
 /datum/tgui_module/camera/ntos
 	tgui_id = "NtosCameraConsole"
 
-/datum/tgui_module/camera/ntos/tgui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/tgui_state/state = GLOB.tgui_ntos_state)
-	. = ..(user, ui_key, ui, force_open, master_ui, GLOB.tgui_ntos_state)
+/datum/tgui_module/camera/ntos/tgui_state()
+	return GLOB.tgui_ntos_state
 
 /datum/tgui_module/camera/ntos/tgui_static_data()
 	. = ..()
