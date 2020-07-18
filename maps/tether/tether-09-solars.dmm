@@ -402,7 +402,7 @@
 	cur_coils = 3;
 	output_attempt = 0;
 	outputting = 0;
-	RCon_tag = "Solar Farm - SMES 1"
+	RCon_tag = "Power - Solar Array"
 	},
 /obj/structure/cable/heavyduty,
 /turf/simulated/floor/virgo3b_indoors,
