@@ -203,8 +203,8 @@
 		"window" = list(
 			"key" = window_key,
 			"size" = window_size,
-			"fancy" = FALSE, // user.client.prefs.tgui_fancy,
-			"locked" = FALSE, // user.client.prefs.tgui_lock,
+			"fancy" = user.client.prefs.tgui_fancy,
+			"locked" = user.client.prefs.tgui_lock,
 		),
 		"user" = list(
 			"name" = "[user]",
@@ -290,8 +290,14 @@
 			SStgui.update_uis(src_object)
 		return FALSE
 	switch(type)
-		if("ready", "pingReady")
+		if("ready")
 			initialized = TRUE
+		if("pingReply")
+			initialized = TRUE
+		if("suspend")
+			close(can_be_suspended = TRUE)
+		if("close")
+			close(can_be_suspended = FALSE)
 		if("log")
 			if(href_list["fatal"])
 				close(can_be_suspended = FALSE)

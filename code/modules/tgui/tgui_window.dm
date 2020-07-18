@@ -47,10 +47,10 @@
 	// Build window options
 	var/options = "file=[id].html;can_minimize=0;auto_format=0;"
 	// Remove titlebar and resize handles for a fancy window
-	// if(client.prefs.tgui_fancy)
-		// options += "titlebar=0;can_resize=0;"
-	// else
-	options += "titlebar=1;can_resize=1;"
+	if(client.prefs.tgui_fancy)
+		options += "titlebar=0;can_resize=0;"
+	else
+		options += "titlebar=1;can_resize=1;"
 	// Generate page html
 	// TODO: Make this static
 	var/html = SStgui.basehtml
