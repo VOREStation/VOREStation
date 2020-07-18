@@ -230,7 +230,7 @@
 		return 0
 	else if(I.is_crowbar() || I.is_screwdriver()) // You can't cook tools, dummy.
 		return 0
-	else if(!istype(check) && !istype(check, /obj/item/weapon/holder))
+	else if(!istype(check) &&  !istype(check, /obj/item/weapon/holder))
 		to_chat(user, "<span class='warning'>That's not edible.</span>")
 		return 0
 
@@ -349,7 +349,7 @@
 	else if(istype(I, /obj/item/weapon/holder))
 		var/obj/item/weapon/holder/H = I
 		if (H.held_mob)
-			work += (H.held_mob.mob_size * H.held_mob.mob_size * 2)+2
+			work += ((H.held_mob.mob_size * H.held_mob.size_multiplier) * (H.held_mob.mob_size * H.held_mob.size_multiplier) * 2)+2
 
 	CI.max_cookwork += work
 
@@ -368,21 +368,27 @@
 		//If cookwork has gone from above to below 0, then this item finished cooking
 		finish_cooking(CI)
 
-	else if (!CI.burned && CI.cookwork > CI.max_cookwork * CI.overcook_mult)
+	else if (!CI.burned && CI.cookwork > min(CI.max_cookwork * CI.overcook_mult, CI.max_cookwork + 30))
 		burn_food(CI)
 
 	// Gotta hurt.
 	for(var/obj/item/weapon/holder/H in CI.container.contents)
 		var/mob/living/M = H.held_mob
-		if (M)
-			M.apply_damage(rand(1,3), mobdamagetype, "chest")
+		if(M)
+			M.apply_damage(rand(1,3) * (1/M.size_multiplier), mobdamagetype, pick(BP_ALL))
 
 	return TRUE
 
 /obj/machinery/appliance/process()
-	if (cooking_power > 0 && cooking)
-		for (var/i in cooking_objs)
-			do_cooking_tick(i)
+	if(cooking_power > 0 && cooking)
+		var/all_done_cooking = TRUE
+		for(var/datum/cooking_item/CI in cooking_objs)
+			do_cooking_tick(CI)
+			if(CI.max_cookwork > 0)
+				all_done_cooking = FALSE
+		if(all_done_cooking)
+			cooking = FALSE
+			update_icon()
 
 
 /obj/machinery/appliance/proc/finish_cooking(var/datum/cooking_item/CI)
@@ -540,10 +546,16 @@
 
 	// Produce nasty smoke.
 	visible_message("<span class='danger'>\The [src] vomits a gout of rancid smoke!</span>")
-	var/datum/effect/effect/system/smoke_spread/bad/smoke = new /datum/effect/effect/system/smoke_spread/bad
+	var/datum/effect/effect/system/smoke_spread/bad/burntfood/smoke = new /datum/effect/effect/system/smoke_spread/bad/burntfood
+	playsound(src, 'sound/effects/smoke.ogg', 20, 1)
 	smoke.attach(src)
 	smoke.set_up(10, 0, get_turf(src), 300)
 	smoke.start()
+	
+	// Set off fire alarms!
+	var/obj/machinery/firealarm/FA = locate() in get_area(src)
+	if(FA)
+		FA.alarm()
 
 /obj/machinery/appliance/attack_hand(var/mob/user)
 	if (cooking_objs.len)
@@ -675,7 +687,7 @@
 /datum/cooking_item
 	var/max_cookwork
 	var/cookwork
-	var/overcook_mult = 5
+	var/overcook_mult = 3 // How long it takes to overcook. This is max_cookwork x overcook mult. If you're changing this, mind that at 3x, a max_cookwork of 30 becomes 90 ticks for the purpose of burning, and a max_cookwork of 4 only has 12 before burning!
 	var/result_type = 0
 	var/obj/item/weapon/reagent_containers/cooking_container/container = null
 	var/combine_target = null

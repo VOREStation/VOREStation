@@ -319,3 +319,10 @@
 	else //okay, let's select the most complicated recipe
 		sortTim(possible_recipes, /proc/cmp_recipe_complexity_dsc)
 		return possible_recipes[1]
+
+// Both of these are just placeholders to allow special behavior for mob holders, but you can do other things in here later if you feel like it.
+/datum/recipe/proc/before_cook(obj/container) // Called Before the Microwave starts delays and cooking stuff
+
+
+/datum/recipe/proc/after_cook(obj/container) // Called When the Microwave is finished.
+

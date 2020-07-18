@@ -39,6 +39,10 @@
 	if(!open)
 		if(!stat)
 			icon_state = "ovenclosed_on"
+			if(cooking == TRUE)
+				icon_state = "ovenclosed_cooking"
+			else
+				icon_state = "ovenclosed_on"
 		else
 			icon_state = "ovenclosed_off"
 	else

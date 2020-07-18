@@ -19,7 +19,7 @@
 	var/circuit_item_capacity = 1 //how many items does the circuit add to max number of items
 	var/item_level = 0 // items microwave can handle, 0 foodstuff, 1 materials
 	var/global/list/acceptable_items // List of the items you can put in
-	var/global/list/datum/recipe/microwave/available_recipes // List of the recipes you can use
+	var/global/list/available_recipes // List of the recipes you can use
 	var/global/list/acceptable_reagents // List of the reagents you can put in
 	
 	var/global/max_n_of_items = 20
@@ -42,15 +42,14 @@
 
 	if(!available_recipes)
 		available_recipes = new
-		for (var/type in (typesof(/datum/recipe/microwave)-/datum/recipe/microwave))
-			var/datum/recipe/test = new type
-			if((test.appliance & appliancetype))
-				available_recipes += test
-			else
-				qdel(test)
+		for(var/T in (typesof(/datum/recipe)-/datum/recipe))
+			var/datum/recipe/type = T
+			if((initial(type.appliance) & appliancetype))
+				available_recipes += new type
+		
 		acceptable_items = new
 		acceptable_reagents = new
-		for (var/datum/recipe/microwave/recipe in available_recipes)
+		for (var/datum/recipe/recipe in available_recipes)
 			for (var/item in recipe.items)
 				acceptable_items |= item
 			for (var/reagent in recipe.reagents)
@@ -266,7 +265,7 @@
 		abort()
 		return
 
-	var/datum/recipe/microwave/recipe = select_recipe(available_recipes,src)
+	var/datum/recipe/recipe = select_recipe(available_recipes,src)
 	var/obj/cooked
 	if(!recipe)
 		dirty += 1
@@ -279,7 +278,6 @@
 			muck_finish()
 			cooked = fail()
 			cooked.forceMove(src.loc)
-			return
 		else if(has_extra_item())
 			if(!wzhzhzh(16)) //VOREStation Edit - Quicker Microwaves (Undone during Auroraport, left note in case of reversion, was 2)
 				abort()
@@ -287,7 +285,6 @@
 			broke()
 			cooked = fail()
 			cooked.forceMove(src.loc)
-			return
 		else
 			if(!wzhzhzh(40)) //VOREStation Edit - Quicker Microwaves (Undone during Auroraport, left note in case of reversion, was 5)
 				abort()
@@ -295,24 +292,21 @@
 			stop()
 			cooked = fail()
 			cooked.forceMove(src.loc)
-			return
-	else
-		var/halftime = round(recipe.time*4/10/2) //VOREStation Edit - Quicker Microwaves (Undone during Auroraport, left note in case of reversion, was round(recipe.time/20/2))
-		if(!wzhzhzh(halftime))
-			abort()
-			return
-		if(!wzhzhzh(halftime))
-			abort()
-			cooked = fail()
-			cooked.forceMove(src.loc)
-			return
-		cooked = recipe.make_food(src)
-		abort()
-		if(cooked)
-			cooked.forceMove(src.loc)
 		return
 		
 	//Making multiple copies of a recipe
+	var/halftime = round(recipe.time*4/10/2) // VOREStation Edit - Quicker Microwaves (Undone during Auroraport, left note in case of reversion, was round(recipe.time/20/2))
+	if(!wzhzhzh(halftime))
+		abort()
+		return
+	recipe.before_cook(src)
+	if(!wzhzhzh(halftime))
+		abort()
+		cooked = fail()
+		cooked.forceMove(loc)
+		recipe.after_cook(src)
+		return
+
 	var/result = recipe.result
 	var/valid = 1
 	var/list/cooked_items = list()
@@ -326,10 +320,12 @@
 			AM.forceMove(temp)
 
 		valid = 0
+		recipe.after_cook(src)
 		recipe = select_recipe(available_recipes,src)
 		if(recipe && recipe.result == result)
-			sleep(2)
+			to_chat(world, "multicook [recipe] [recipe?.result], our contents are [json_encode(contents)]")
 			valid = 1
+			sleep(2)
 
 	for(var/r in cooked_items)
 		var/atom/movable/R = r
@@ -347,7 +343,7 @@
 
 	dispose(0) //clear out anything left
 	stop()
-	
+
 	return
 
 /obj/machinery/microwave/proc/wzhzhzh(var/seconds as num) // Whoever named this proc is fucking literally Satan. ~ Z
@@ -388,14 +384,16 @@
 
 /obj/machinery/microwave/proc/abort()
 	operating = FALSE // Turn it off again aferwards
-	icon_state = "mw"
+	if(icon_state == "mw1")
+		icon_state = "mw"
 	updateUsrDialog()
 	soundloop.stop()
 	
 /obj/machinery/microwave/proc/stop()
 	playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
 	operating = FALSE // Turn it off again aferwards
-	icon_state = "mw"
+	if(icon_state == "mw1")
+		icon_state = "mw"
 	updateUsrDialog()
 	soundloop.stop()
 
@@ -440,10 +438,14 @@
 	var/amount = 0
 	for (var/obj/O in (((contents - ffuu) - component_parts) - circuit))
 		amount++
-		if (O.reagents)
+		if(O.reagents)
 			var/id = O.reagents.get_master_reagent_id()
-			if (id)
+			if(id)
 				amount+=O.reagents.get_reagent_amount(id)
+		if(istype(O, /obj/item/weapon/holder))
+			var/obj/item/weapon/holder/H = O
+			if(H.held_mob)
+				qdel(H.held_mob)
 		qdel(O)
 	src.reagents.clear_reagents()
 	ffuu.reagents.add_reagent("carbon", amount)
@@ -478,10 +480,14 @@
 
 	if(!do_after(usr, 1 SECONDS, target = src))
 		return
+	
+	if(operating)
+		to_chat(usr, "<span class='warning'>You can't do that, [src] door is locked!</span>")
+		return
 
 	usr.visible_message(
-	"<span class='notice'>[usr] opened [src] and has taken out [english_list(contents)].</span>" ,
-	"<span class='notice'>You have opened [src] and taken out [english_list(contents)].</span>"
+	"<span class='notice'>[usr] opened [src] and has taken out [english_list(((contents-component_parts)-circuit))].</span>" ,
+	"<span class='notice'>You have opened [src] and taken out [english_list(((contents-component_parts)-circuit))].</span>"
 	)
 	dispose()
 
@@ -504,3 +510,32 @@
 /obj/machinery/microwave/advanced/Initialize()
 	..()
 	reagents.maximum_volume = 1000
+
+/datum/recipe/splat // We use this to handle cooking micros (or mice, etc) in a microwave. Janky but it works better than snowflake code to handle the same thing.
+	items = list(
+		/obj/item/weapon/holder
+	)
+	result = /obj/effect/decal/cleanable/blood/gibs
+	
+/datum/recipe/splat/before_cook(obj/container)
+	if(istype(container, /obj/machinery/microwave))
+		var/obj/machinery/microwave/M = container
+		M.muck_start()
+		playsound(container.loc, 'sound/items/drop/flesh.ogg', 100, 1)
+	. = ..()
+
+/datum/recipe/splat/make_food(obj/container)
+	for(var/obj/item/weapon/holder/H in container)
+		if(H.held_mob)
+			to_chat(H.held_mob, "<span class='danger'>You hear an earsplitting humming and your head aches!</span>")
+			qdel(H.held_mob)
+			H.held_mob = null
+			qdel(H)
+
+	. = ..()
+
+/datum/recipe/splat/after_cook(obj/container)
+	if(istype(container, /obj/machinery/microwave))
+		var/obj/machinery/microwave/M = container
+		M.muck_finish()
+	.  = ..()

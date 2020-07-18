@@ -10,6 +10,7 @@
 	var/light_x = 0
 	var/light_y = 0
 	cooking_power = 0
+	mobdamagetype = BURN
 
 /obj/machinery/appliance/cooker/examine(var/mob/user)
 	. = ..()
