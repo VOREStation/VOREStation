@@ -673,7 +673,7 @@
 	name = "Digestive Analyzer"
 	desc = "A mounted destructive analyzer unit with fuel processor."
 	icon_state = "analyzer"
-	max_item_count = 1
+	max_item_count = 10
 	startdrain = 100
 	analyzer = TRUE
 
@@ -691,7 +691,7 @@
 	icon_state = "decompiler"
 	max_item_count = 20
 	delivery = TRUE
-	
+
 /obj/item/device/dogborg/sleeper/compactor/supply //Miner borg belly
 	name = "Supply Satchel"
 	desc = "A mounted survival unit with fuel processor."
