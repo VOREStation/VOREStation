@@ -130,14 +130,14 @@
 	desc = "You are able to withstand much colder temperatures than other species, and can even be comfortable in extremely cold environments."
 	cost = 1
 	var_changes = list("cold_level_1" = 200, "cold_level_2" = 150, "cold_level_3" = 90, "breath_cold_level_1" = 180, "breath_cold_level_2" = 100, "breath_cold_level_3" = 60, "cold_discomfort_level" = 210)
-	excludes = list(/datum/trait/coldprone, /datum/traits/cold_discomfort, /datum/traits/hot_discomfort)
+	excludes = list(/datum/trait/coldprone, /datum/trait/cold_discomfort, /datum/trait/hot_discomfort)
 	
 /datum/trait/hotresist
 	name = "Heat resistant"
 	desc = "You are able to withstand much hotter temperatures than other species, and can even be comfortable in extremely hot environments."
 	cost = 1
 	var_changes = list("heat_level_1" = 420, "heat_level_2" = 460, "heat_level_3" = 1100, "breath_heat_level_1" = 440, "breath_heat_level_2" = 510, "breath_heat_level_3" = 1500, "heat_discomfort_level" = 390)
-	excludes = list(/datum/trait/hotprone, /datum/traits/cold_discomfort, /datum/traits/hot_discomfort)
+	excludes = list(/datum/trait/hotprone, /datum/trait/cold_discomfort, /datum/trait/hot_discomfort)
 
 /datum/trait/snowwalker
 	name = "Snow walker"
