@@ -136,14 +136,14 @@
 
 /datum/trait/coldprone
 	name = "Cold prone"
-	desc = "You are much more prone to colder temperatures than other species, and become uncomfortable much more easier in cold environments."
+	desc = "You are much more prone to colder temperatures than other species, and become uncomfortable much more easily in cold environments."
 	cost = -2
 	var_changes = list("cold_level_1" = 280, "cold_level_2" = 220, "cold_level_3" = 140, "breath_cold_level_1" = 260, "breath_cold_level_2" = 240, "breath_cold_level_3" = 120, "cold_discomfort_level" = 280)
 	excludes = list(/datum/trait/coldresist)
 	
 /datum/trait/hotprone
-	name = "Heat resistant"
-	desc = "You are much more prone to hotter temperatures than other species, and become uncomfortable much more easier in hot environments."
+	name = "Heat prone"
+	desc = "You are much more prone to hotter temperatures than other species, and become uncomfortable much more easily in hot environments."
 	cost = -2
 	var_changes = list("heat_level_1" = 305, "heat_level_2" = 360, "heat_level_3" = 700, "breath_heat_level_1" = 345, "breath_heat_level_2" = 380, "breath_heat_level_3" = 780, "heat_discomfort_level" = 295)
 	excludes = list(/datum/trait/hotresist)
