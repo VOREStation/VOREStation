@@ -89,7 +89,6 @@ export const NtosWindow = (props, context) => {
             {!!PC_showexitprogram && (
               <Button
                 width="26px"
-                lineHeight="22px"
                 textAlign="center"
                 color="transparent"
                 icon="window-minimize-o"
@@ -101,7 +100,6 @@ export const NtosWindow = (props, context) => {
               <Button
                 mr="-3px"
                 width="26px"
-                lineHeight="22px"
                 textAlign="center"
                 color="transparent"
                 icon="window-close-o"
