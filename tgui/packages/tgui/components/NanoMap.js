@@ -1,6 +1,7 @@
 import { Box, Icon, Tooltip } from '.';
 import { Component } from 'inferno';
 import { useBackend } from "../backend";
+import { resolveAsset } from '../assets';
 
 export class NanoMap extends Component {
   constructor(props) {
