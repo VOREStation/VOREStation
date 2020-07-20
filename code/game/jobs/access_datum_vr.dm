@@ -22,3 +22,9 @@ var/const/access_pilot = 67
 	id = access_xenobotany
 	desc = "Xenobotany Garden"
 	region = ACCESS_REGION_RESEARCH
+
+/var/const/access_entertainment = 72
+/datum/access/entertainment
+	id = access_entertainment
+	desc = "Entertainment Backstage"
+	region = ACCESS_REGION_GENERAL

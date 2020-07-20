@@ -45,6 +45,7 @@ var/const/ASSISTANT			=(1<<11)
 var/const/BRIDGE			=(1<<12)
 var/const/CLOWN				=(1<<13) //VOREStation Add
 var/const/MIME				=(1<<14) //VOREStation Add
+var/const/ENTERTAINER		=(1<<15) //VOREStation Add
 
 //VOREStation Add
 var/const/TALON				=(1<<3)
