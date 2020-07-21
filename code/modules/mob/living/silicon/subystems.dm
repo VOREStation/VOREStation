@@ -2,7 +2,7 @@
 	var/register_alarms = 1
 	var/datum/nano_module/alarm_monitor/all/alarm_monitor
 	var/datum/nano_module/atmos_control/atmos_control
-	var/datum/nano_module/program/crew_monitor/crew_monitor
+	var/datum/tgui_module/crew_monitor/robot/crew_monitor
 	var/datum/nano_module/law_manager/law_manager
 	var/datum/nano_module/power_monitor/power_monitor
 	var/datum/nano_module/rcon/rcon
@@ -67,7 +67,7 @@
 	set category = "Subystems"
 	set name = "Crew Monitor"
 
-	crew_monitor.ui_interact(usr, state = self_state)
+	crew_monitor.tgui_interact(usr)
 
 /****************
 *	Law Manager	*

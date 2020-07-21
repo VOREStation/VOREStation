@@ -173,7 +173,6 @@ var/global/list/engineering_networks = list(
 	var/number = my_area.len
 	
 	c_tag = "[A.name] #[number]"
-	invalidateCameraCache()
 	
 /obj/machinery/camera/autoname/Destroy()
 	var/area/A = get_area(src)
