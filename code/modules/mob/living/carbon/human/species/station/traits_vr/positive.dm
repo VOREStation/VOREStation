@@ -124,3 +124,9 @@
 	desc = "You're capable of parkour and can *flip over low objects (most of the time)."
 	cost = 2
 	var_changes = list("agility" = 90)
+
+/datum/trait/snowwalker
+	name = "Snow Walker"
+	desc = "You are able to move unhindered on snow."
+	cost = 1
+	var_changes = list("snow_movement" = -2)
