@@ -21,7 +21,7 @@
 
 	stat = POWEROFF	//Starts turned off
 
-	var/open = TRUE
+	var/open = FALSE // Start closed just so people don't try to preheat with it open, lol.
 
 	output_options = list(
 		"Pizza" = /obj/item/weapon/reagent_containers/food/snacks/variable/pizza,
