@@ -433,6 +433,7 @@
 /obj/item/weapon/reagent_containers/food/condiment/spacespice
 	name = "space spices"
 	desc = "An exotic blend of spices for cooking. Definitely not worms."
+	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "spacespicebottle"
 	possible_transfer_amounts = list(1,40) //for clown turning the lid off
 	amount_per_transfer_from_this = 1

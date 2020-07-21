@@ -9,6 +9,16 @@
 	can_burn_food = 1
 	stat = POWEROFF
 	
+	appliancetype = GRILL
+
+	active_power_usage = 4 KILOWATTS
+	idle_power_usage = 2 KILOWATTS
+
+	// Grill is faster to heat and setup than the rest.
+	optimal_temp = 120 + T0C
+	min_temp = 60 + T0C
+	resistance = 8 KILOWATTS // Very fast to heat up.
+	
 	container_type = /obj/item/weapon/reagent_containers/cooking_container/grill
 
 /obj/machinery/appliance/grill/toggle_power()

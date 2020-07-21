@@ -323,7 +323,6 @@
 		recipe.after_cook(src)
 		recipe = select_recipe(available_recipes,src)
 		if(recipe && recipe.result == result)
-			to_chat(world, "multicook [recipe] [recipe?.result], our contents are [json_encode(contents)]")
 			valid = 1
 			sleep(2)
 

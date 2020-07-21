@@ -26,7 +26,7 @@
 		var/string = "It contains....</br>"
 		for (var/atom/movable/A in contents)
 			string += "[A.name] </br>"
-		. += "<span class='notice'>string</span>"
+		. += "<span class='notice'>[string]</span>"
 	if (reagents.total_volume)
 		. += "<span class='notice'>It contains [reagents.total_volume]u of reagents.</span>"
 
@@ -41,7 +41,7 @@
 			if(!user.unEquip(I))
 				return
 			I.forceMove(src)
-			to_chat(user, "<span class='notice'>You put the [I] into the [src]</span>")
+			to_chat(user, "<span class='notice'>You put the [I] into the [src].</span>")
 			return
 
 /obj/item/weapon/reagent_containers/cooking_container/verb/empty()
