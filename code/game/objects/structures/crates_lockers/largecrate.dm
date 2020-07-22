@@ -83,13 +83,6 @@
 	starts_with = list(/obj/structure/vehiclecage/quadtrailer)
 
 /obj/structure/largecrate/animal
-<<<<<<< HEAD
-	icon_state = "lisacrate"	//VOREStation Edit
-
-/obj/structure/largecrate/animal/mulebot
-	name = "Mulebot crate"
-	icon_state = "mulecrate"	//VOREStation Edit
-=======
 	icon_state = "crittercrate"
 	desc = "A hefty wooden crate with air holes. It is marked with the logo of NanoTrasen Pastures and the slogan, '90% less cloning defects* than competing brands**, or your money back***!'"
 
@@ -97,7 +90,6 @@
 	name = "Mulebot crate"
 	desc = "A hefty wooden crate labelled 'Proud Product of the Xion Manufacturing Group'"
 	icon_state = "mulecrate"
->>>>>>> d7f25c3... Flavour Enhancement: Crates (#7342)
 	starts_with = list(/mob/living/bot/mulebot)
 
 /obj/structure/largecrate/animal/corgi
