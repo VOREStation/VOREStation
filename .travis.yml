@@ -4,13 +4,10 @@ language: c
 env:
   global:
     - BASENAME="vorestation" # $BASENAME.dmb, $BASENAME.dme, etc.
-    - BYOND_MAJOR="513"
-    - BYOND_MINOR="1520"
-    - MACRO_COUNT=4
 
 cache:
   directories:
-    - $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}
+    - $HOME/BYOND
 
 addons:
   apt:
@@ -37,13 +34,17 @@ jobs:
   include:
     - stage: "File Tests" #This is the odd man out, with specific installs and stuff.
       name: "Validate Files"
-      install: #Need python for some of the tag matching stuff
-        - pip install --user PyYaml -q
-        - pip install --user beautifulsoup4 -q
-      script: ./tools/travis/validate_files.sh
       addons:
         apt: 
-          packages: ~ # Don't need any packages for this
+          packages:
+            - python3
+            - python3-pip
+            - python3-setuptools
+      install: #Need python for some of the tag matching stuff
+        - tools/travis/install_build_deps.sh
+      script:
+        - tools/travis/validate_files.sh
+        - tools/travis/build_tgui.sh
     - stage: "Unit Tests"
       env: TEST_DEFINE="UNIT_TEST" TEST_FILE="code/_unit_tests.dm" RUN="1"
       name: "Compile normally (unit tests)"
