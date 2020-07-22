@@ -136,10 +136,10 @@ HALOGEN COUNTER	- Radcount on mobs
 			for(var/A in C.reagents.reagent_list)
 				var/datum/reagent/R = A
 				if(R.scannable)
-					reagentdata["[R.id]"] = "<span class='notice'>\t[round(C.reagents.get_reagent_amount(R.id), 1)]u [R.name]</span><br>"
+					reagentdata["[R.id]"] = "<span class='notice'>\t[round(C.reagents.get_reagent_amount(R.id), 1)]u [R.name][(R.overdose && R.volume > R.overdose) ? " - <span class='danger'>Overdose</span>" : ""]</span><br>"
 				else
 					unknown++
-					unknownreagents["[R.id]"] = "<span class='notice'>\t[round(C.reagents.get_reagent_amount(R.id), 1)]u [R.name]</span><br>"
+					unknownreagents["[R.id]"] = "<span class='notice'>\t[round(C.reagents.get_reagent_amount(R.id), 1)]u [R.name][(R.overdose && R.volume > R.overdose) ? " - <span class='danger'>Overdose</span>" : ""]</span><br>"
 			if(reagentdata.len)
 				dat += "<span class='notice'>Beneficial reagents detected in subject's blood:</span><br>"
 				for(var/d in reagentdata)
@@ -156,14 +156,14 @@ HALOGEN COUNTER	- Radcount on mobs
 			var/stomachreagentdata[0]
 			var/stomachunknownreagents[0]
 			for(var/B in C.ingested.reagent_list)
-				var/datum/reagent/T = B
-				if(T.scannable)
-					stomachreagentdata["[T.id]"] = "<span class='notice'>\t[round(C.ingested.get_reagent_amount(T.id), 1)]u [T.name]</span><br>"
+				var/datum/reagent/R = B
+				if(R.scannable)
+					stomachreagentdata["[R.id]"] = "<span class='notice'>\t[round(C.ingested.get_reagent_amount(R.id), 1)]u [R.name][(R.overdose && R.volume > R.overdose) ? " - <span class='danger'>Overdose</span>" : ""]</span><br>"
 					if (advscan == 0 || showadvscan == 0)
-						dat += "<span class='notice'>[T.name] found in subject's stomach.</span><br>"
+						dat += "<span class='notice'>[R.name] found in subject's stomach.</span><br>"
 				else
 					++unknown
-					stomachunknownreagents["[T.id]"] = "<span class='notice'>\t[round(C.ingested.get_reagent_amount(T.id), 1)]u [T.name]</span><br>"
+					stomachunknownreagents["[R.id]"] = "<span class='notice'>\t[round(C.ingested.get_reagent_amount(R.id), 1)]u [R.name][(R.overdose && R.volume > R.overdose) ? " - <span class='danger'>Overdose</span>" : ""]</span><br>"
 			if(advscan >= 1 && showadvscan == 1)
 				dat += "<span class='notice'>Beneficial reagents detected in subject's stomach:</span><br>"
 				for(var/d in stomachreagentdata)
@@ -180,14 +180,14 @@ HALOGEN COUNTER	- Radcount on mobs
 			var/touchreagentdata[0]
 			var/touchunknownreagents[0]
 			for(var/B in C.touching.reagent_list)
-				var/datum/reagent/T = B
-				if(T.scannable)
-					touchreagentdata["[T.id]"] = "<span class='notice'>\t[round(C.touching.get_reagent_amount(T.id), 1)]u [T.name]</span><br>"
+				var/datum/reagent/R = B
+				if(R.scannable)
+					touchreagentdata["[R.id]"] = "<span class='notice'>\t[round(C.touching.get_reagent_amount(R.id), 1)]u [R.name][(R.overdose && R.can_overdose_touch && R.volume > R.overdose) ? " - <span class='danger'>Overdose</span>" : ""]</span><br>"
 					if (advscan == 0 || showadvscan == 0)
-						dat += "<span class='notice'>[T.name] found in subject's dermis.</span><br>"
+						dat += "<span class='notice'>[R.name] found in subject's dermis.</span><br>"
 				else
 					++unknown
-					touchunknownreagents["[T.id]"] = "<span class='notice'>\t[round(C.ingested.get_reagent_amount(T.id), 1)]u [T.name]</span><br>"
+					touchunknownreagents["[R.id]"] = "<span class='notice'>\t[round(C.ingested.get_reagent_amount(R.id), 1)]u [R.name][(R.overdose && R.can_overdose_touch && R.volume > R.overdose) ? " - <span class='danger'>Overdose</span>" : ""]</span><br>"
 			if(advscan >= 1 && showadvscan == 1)
 				dat += "<span class='notice'>Beneficial reagents detected in subject's dermis:</span><br>"
 				for(var/d in touchreagentdata)

@@ -260,7 +260,7 @@
 			step(M, pick(cardinal))
 		if(prob(5))
 			M.emote(pick("twitch", "drool", "moan"))
-		M.adjustBrainLoss(0.1)
+		M.adjustBrainLoss(0.5 * removed)
 
 /datum/reagent/nitrogen
 	name = "Nitrogen"
