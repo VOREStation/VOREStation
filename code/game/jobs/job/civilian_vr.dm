@@ -63,7 +63,7 @@
 //			Entertainer
 //////////////////////////////////
 
-/datum/job/Entertainer
+/datum/job/entertainer
 	title = "Entertainer"
 	flag = ENTERTAINER
 	departments = list(DEPARTMENT_CIVILIAN)

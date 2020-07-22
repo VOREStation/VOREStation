@@ -224,8 +224,8 @@
 /area/tether/surfacebase/servicebackroom
 	name = "\improper Service Block Backroom"
 	icon_state = "red"
-/area/tether/surfacebase/maintdice
-	name = "\improper Bar Back Maint"
+/area/tether/surfacebase/barbackmaintenance
+	name = "\improper Bar Back Maintenance"
 	icon_state = "red"
 
 /area/tether/surfacebase/public_garden_lg
