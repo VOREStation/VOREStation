@@ -134,10 +134,5 @@
 	name = "Cargo Train Trolley"
 	contains = list(/obj/vehicle/train/trolley)
 	cost = 15
-<<<<<<< HEAD
-	containertype = /obj/structure/largecrate
-	containername = "Cargo Train Trolley Crate"
-=======
 	containertype = /obj/structure/closet/crate/large/xion
 	containername = "Cargo Train Trolley Crate"
->>>>>>> d7f25c3... Flavour Enhancement: Crates (#7342)
