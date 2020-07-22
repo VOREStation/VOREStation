@@ -59,7 +59,7 @@
  * For example: `colors["red"] = WIRE_ELECTRIFY`. This will look like `list("red" = WIRE_ELECTRIFY)` internally.
  */
 /datum/wires/proc/randomize()
-	var/static/list/possible_colors = list("red", "blue", "green", "darkred", "orange", "brown", "gold", "grey", "cyan", "navy", "purple", "pink", "darkslategrey", "yellow")
+	var/static/list/possible_colors = list("red", "blue", "green", "darkmagenta", "orange", "brown", "gold", "grey", "cyan", "white", "purple", "pink", "darkslategrey", "yellow")
 	var/list/my_possible_colors = possible_colors.Copy()
 
 	for(var/wire in shuffle(wires))
@@ -120,6 +120,9 @@
 				color_name = LIST_COLOR_RENAME[replaced_color]
 			else
 				color_name = replaced_color // Else just keep the normal color name
+
+		if(color in LIST_COLOR_RENAME)
+			color_name = LIST_COLOR_RENAME[color]
 
 		wires_list += list(list(
 			"seen_color" = replaced_color, // The color of the wire that the mob will see. This will be the same as `color` if the user is NOT colorblind.
@@ -212,19 +215,16 @@
  *
  * If the user is an admin, or has a multitool which reveals wire information in their active hand, the proc returns TRUE.
  *
- * TODO: Reimplement this if we ever get Advanced Admin Interaction or want alien multitools to do more neat things.
- *		 For now, it always returns false.
  * Arguments:
  * * user - the mob who is interacting with the wires.
  */
 /datum/wires/proc/can_see_wire_info(mob/user)
+ 	// TODO: Reimplement this if we ever get Advanced Admin Interaction.
 	// if(user.can_admin_interact())
 		// return TRUE
-	// var/obj/item/I = user.get_active_hand()
-	// if(istype(I) && I.is_multitool())
-	// 	var/obj/item/multitool/M = user.get_active_hand()
-	// 	if(M.shows_wire_information)
-	// 		return TRUE
+	var/obj/item/I = user.get_active_hand()
+	if(istype(I, /obj/item/device/multitool/alien))
+		return TRUE
 	return FALSE
 
 /**

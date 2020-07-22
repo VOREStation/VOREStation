@@ -368,6 +368,7 @@ var/global/list/##LIST_NAME = list();\
 		"midnightblue" 	= "blue",		\
 		"lightgrey" 	= "light grey",	\
 		"darkgrey" 		= "dark grey",	\
+		"darkmagenta"	= "dark magenta",\
 		"steelblue" 	= "blue",		\
 		"goldenrod"	 	= "gold"		\
 	)
@@ -413,6 +414,7 @@ var/global/list/##LIST_NAME = list();\
 		"brown"			= "saddlebrown",\
 		"cyan"			= "lavender",	\
 		"magenta"		= "blue",		\
+		"darkmagenta"	= "darkslateblue",	\
 		"purple"		= "slateblue",	\
 		"pink"			= "thistle"		\
 	)
