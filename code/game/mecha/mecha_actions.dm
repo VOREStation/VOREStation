@@ -185,12 +185,15 @@
 	var/list/available_equipment = list()
 	available_equipment = chassis.equipment
 
+	if(chassis.weapons_only_cycle)
+		available_equipment = chassis.weapon_equipment
+
 	if(available_equipment.len == 0)
 		chassis.occupant_message("No equipment available.")
 		return
 	if(!chassis.selected)
 		chassis.selected = available_equipment[1]
-		chassis.occupant_message("You select [chassis.selected]")
+		chassis.occupant_message("You select [chassis.selected]") 
 		send_byjax(chassis.occupant,"exosuit.browser","eq_list",chassis.get_equipment_list())
 		button_icon_state = "mech_cycle_equip_on"
 		button.UpdateIcon()
@@ -418,4 +421,18 @@
 	src.occupant_message("<font color=\"[phasing?"#00f\">En":"#f00\">Dis"]abled phasing.</font>")
 	return
 
+
+/obj/mecha/verb/toggle_weapons_only_cycle()
+	set category = "Exosuit Interface"
+	set name = "Toggle weapons only cycling"
+	set src = usr.loc
+	set popup_menu = 0
+	set_weapons_only_cycle()
+
+/obj/mecha/proc/set_weapons_only_cycle()
+	if(usr!=src.occupant)
+		return
+	weapons_only_cycle = !weapons_only_cycle
+	src.occupant_message("<font color=\"[weapons_only_cycle?"#00f\">En":"#f00\">Dis"]abled weapons only cycling.</font>")
+	return
 
