@@ -191,7 +191,7 @@
 // This proc is called under the assumption that the container has already been checked and found to contain the necessary ingredients
 /datum/recipe/proc/make_food(var/obj/container as obj)
 	if(!result)
-		to_world("<span class='danger'>Recipe [type] is defined without a result, please bug report this.</span>")
+		log_runtime(EXCEPTION("<span class='danger'>Recipe [type] is defined without a result, please bug report this.</span>"))
 		return
 	
 
@@ -253,14 +253,14 @@
 
 		if(!result_obj.reagents)//This shouldn't happen
 			//If the result somehow has no reagents defined, then create a new holder
-			to_chat(world, "<span class='danger'>[result_obj] had no reagents!</span>")
+			log_runtime(EXCEPTION("<span class='danger'>[result_obj] had no reagents!</span>"))
 			result_obj.create_reagents(temp.reagents.total_volume*1.5)
 
 		if(result_quantity == 1)
 			qdel(tempholder.reagents)
 			tempholder.reagents = result_obj.reagents
 		else
-			to_chat(world, result_obj)
+			log_runtime(EXCEPTION("<span class='danger'>[result_quantity] was greater than 1! Check [result_obj]!</span>"))
 			result_obj.reagents.trans_to(tempholder.reagents, result_obj.reagents.total_volume)
 		tally++
 
