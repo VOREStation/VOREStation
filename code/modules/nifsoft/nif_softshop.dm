@@ -227,11 +227,9 @@
 
 /datum/wires/vending/no_contraband
 
-/datum/wires/vending/no_contraband/UpdatePulsed(index) //Can't hack for contraband, need emag.
-	if(index != VENDING_WIRE_CONTRABAND)
+/datum/wires/vending/no_contraband/on_pulse(index) //Can't hack for contraband, need emag.
+	if(index != WIRE_CONTRABAND)
 		..(index)
-	else
-		return
 
 /obj/machinery/vending/nifsoft_shop/emag_act(remaining_charges, mob/user) //Yeees, YEEES! Give me that black market tech.
 	if(!emagged || !(categories & CAT_HIDDEN))

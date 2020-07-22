@@ -88,6 +88,7 @@
 #include "code\__defines\unit_tests.dm"
 #include "code\__defines\vote.dm"
 #include "code\__defines\vv.dm"
+#include "code\__defines\wires.dm"
 #include "code\__defines\xenoarcheaology.dm"
 #include "code\__defines\ZAS.dm"
 #include "code\_compatibility\509\_JSON.dm"

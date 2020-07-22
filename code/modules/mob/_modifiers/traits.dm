@@ -127,33 +127,39 @@
 	desc = "You have a form of red-green colorblindness. You cannot see reds, and have trouble distinguishing them from yellows and greens."
 
 	client_color = MATRIX_Protanopia
+	wire_colors_replace = PROTANOPIA_COLOR_REPLACE
 
 /datum/modifier/trait/colorblind_deuteranopia
 	name = "Deuteranopia"
 	desc = "You have a form of red-green colorblindness. You cannot see greens, and have trouble distinguishing them from yellows and reds."
 
 	client_color = MATRIX_Deuteranopia
+	wire_colors_replace = DEUTERANOPIA_COLOR_REPLACE
 
 /datum/modifier/trait/colorblind_tritanopia
 	name = "Tritanopia"
 	desc = "You have a form of blue-yellow colorblindness. You have trouble distinguishing between blues, greens, and yellows, and see blues and violets as dim."
 
 	client_color = MATRIX_Tritanopia
+	wire_colors_replace = TRITANOPIA_COLOR_REPLACE
 
 /datum/modifier/trait/colorblind_taj
 	name = "Colorblind - Blue-red"
 	desc = "You are colorblind. You have a minor issue with blue colors and have difficulty recognizing them from red colors."
 
 	client_color = MATRIX_Taj_Colorblind
+	wire_colors_replace = TRITANOPIA_COLOR_REPLACE
 
 /datum/modifier/trait/colorblind_vulp
 	name = "Colorblind - Red-green"
 	desc = "You are colorblind. You have a severe issue with green colors and have difficulty recognizing them from red colors."
 
 	client_color = MATRIX_Vulp_Colorblind
+	wire_colors_replace = PROTANOPIA_COLOR_REPLACE
 
 /datum/modifier/trait/colorblind_monochrome
 	name = "Monochromacy"
 	desc = "You are fully colorblind. Your condition is rare, but you can see no colors at all."
 
 	client_color = MATRIX_Monochromia
+	wire_colors_replace = GREYSCALE_COLOR_REPLACE

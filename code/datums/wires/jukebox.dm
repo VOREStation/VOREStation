@@ -1,42 +1,39 @@
 /datum/wires/jukebox
-	random = 1
+	randomize = TRUE
 	holder_type = /obj/machinery/media/jukebox
 	wire_count = 11
+	proper_name = "Jukebox"
 
-var/const/WIRE_POWER = 1
-var/const/WIRE_HACK = 2
-var/const/WIRE_SPEEDUP = 4
-var/const/WIRE_SPEEDDOWN = 8
-var/const/WIRE_REVERSE = 16
-var/const/WIRE_NOTHING1 = 32
-var/const/WIRE_NOTHING2 = 64
-var/const/WIRE_START = 128
-var/const/WIRE_STOP = 256
-var/const/WIRE_PREV = 512
-var/const/WIRE_NEXT = 1024
+/datum/wires/jukebox/New(atom/_holder)
+	wires = list(
+		WIRE_MAIN_POWER1, WIRE_JUKEBOX_HACK,
+		WIRE_SPEEDUP, WIRE_SPEEDDOWN, WIRE_REVERSE,
+		WIRE_START, WIRE_STOP, WIRE_PREV, WIRE_NEXT
+	)
+	return ..()
 
-/datum/wires/jukebox/CanUse(var/mob/living/L)
+/datum/wires/jukebox/interactable(mob/user)
 	var/obj/machinery/media/jukebox/A = holder
 	if(A.panel_open)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 // Show the status of lights as a hint to the current state
-/datum/wires/jukebox/GetInteractWindow()
+/datum/wires/jukebox/get_status()
 	var/obj/machinery/media/jukebox/A = holder
-	. += ..()
-	. += show_hint(0x1, A.stat & (BROKEN|NOPOWER), "The power light is off.", "The power light is on.")
-	. += show_hint(0x2, A.hacked, "The parental guidance light is off.", "The parental guidance light is on.")
-	. += show_hint(0x4, IsIndexCut(WIRE_REVERSE), "The data light is hauntingly dark.", "The data light is glowing softly.")
+	. = ..()
+	. += "The power light is [A.stat & (BROKEN|NOPOWER) ? "off." : "on."]"
+	. += "The parental guidance light is [A.hacked ? "off." : "on."]"
+	. += "The data light is [is_cut(WIRE_REVERSE) ? "hauntingly dark." : "glowing softly."]"
 
 // Give a hint as to what each wire does
-/datum/wires/jukebox/UpdatePulsed(var/index)
+/datum/wires/jukebox/on_pulse(wire)
 	var/obj/machinery/media/jukebox/A = holder
-	switch(index)
-		if(WIRE_POWER)
+	switch(wire)
+		if(WIRE_MAIN_POWER1)
 			holder.visible_message("<span class='notice'>[bicon(holder)] The power light flickers.</span>")
 			A.shock(usr, 90)
-		if(WIRE_HACK)
+		if(WIRE_JUKEBOX_HACK)
 			holder.visible_message("<span class='notice'>[bicon(holder)] The parental guidance light flickers.</span>")
 		if(WIRE_REVERSE)
 			holder.visible_message("<span class='notice'>[bicon(holder)] The data light blinks ominously.</span>")
@@ -55,24 +52,21 @@ var/const/WIRE_NEXT = 1024
 		else
 			A.shock(usr, 10) // The nothing wires give a chance to shock just for fun
 
-/datum/wires/jukebox/UpdateCut(var/index, var/mended)
+/datum/wires/jukebox/on_cut(wire, mend)
 	var/obj/machinery/media/jukebox/A = holder
 
-	switch(index)
-		if(WIRE_POWER)
+	switch(wire)
+		if(WIRE_MAIN_POWER1)
 			// TODO - Actually make machine electrified or something.
 			A.shock(usr, 90)
 
-		if(WIRE_HACK)
-			if(mended)
-				A.set_hacked(0)
-			else
-				A.set_hacked(1)
+		if(WIRE_JUKEBOX_HACK)
+			A.set_hacked(!mend)
 
 		if(WIRE_SPEEDUP, WIRE_SPEEDDOWN, WIRE_REVERSE)
-			var/newfreq = IsIndexCut(WIRE_REVERSE) ? -1 : 1;
-			if (IsIndexCut(WIRE_SPEEDUP))
+			var/newfreq = is_cut(WIRE_REVERSE) ? -1 : 1;
+			if(is_cut(WIRE_SPEEDUP))
 				newfreq *= 2
-			if (IsIndexCut(WIRE_SPEEDDOWN))
+			if(is_cut(WIRE_SPEEDDOWN))
 				newfreq *= 0.5
 			A.freq = newfreq

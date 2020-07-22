@@ -1,61 +1,54 @@
 /datum/wires/autolathe
-
 	holder_type = /obj/machinery/autolathe
 	wire_count = 6
+	proper_name = "Autolathe"
 
-var/const/AUTOLATHE_HACK_WIRE = 1
-var/const/AUTOLATHE_SHOCK_WIRE = 2
-var/const/AUTOLATHE_DISABLE_WIRE = 4
+/datum/wires/autolathe/New(atom/_holder)
+	wires = list(WIRE_AUTOLATHE_HACK, WIRE_ELECTRIFY, WIRE_AUTOLATHE_DISABLE)
+	return ..()
 
-/datum/wires/autolathe/GetInteractWindow()
+/datum/wires/autolathe/get_status()
+	. = ..()
 	var/obj/machinery/autolathe/A = holder
-	. += ..()
-	. += show_hint(0x1, A.disabled,	"The red light is off.", "The red light is on.")
-	. += show_hint(0x2, A.shocked,	"The green light is off.", "The green light is on.")
-	. += show_hint(0x4, A.hacked,	"The blue light is off.", "The blue light is on.")
+	. += "The red light is [A.disabled ? "off" : "on"]."
+	. += "The green light is [A.shocked ? "off" : "on"]."
+	. += "The blue light is [A.hacked ? "off" : "on"]."
 
-/datum/wires/autolathe/CanUse()
+/datum/wires/autolathe/interactable(mob/user)
 	var/obj/machinery/autolathe/A = holder
 	if(A.panel_open)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
-/datum/wires/autolathe/proc/update_autolathe_ui(mob/living/user)
-	if(CanUse(user))
-		var/obj/machinery/autolathe/A = holder
-		A.interact(user)
-
-/datum/wires/autolathe/UpdateCut(index, mended)
+/datum/wires/autolathe/on_cut(wire, mend)
 	var/obj/machinery/autolathe/A = holder
-	switch(index)
-		if(AUTOLATHE_HACK_WIRE)
-			A.hacked = !mended
-		if(AUTOLATHE_SHOCK_WIRE)
-			A.shocked = !mended
-		if(AUTOLATHE_DISABLE_WIRE)
-			A.disabled = !mended
-	update_autolathe_ui(usr)
+	switch(wire)
+		if(WIRE_AUTOLATHE_HACK)
+			A.hacked = !mend
+		if(WIRE_ELECTRIFY)
+			A.shocked = !mend
+		if(WIRE_AUTOLATHE_DISABLE)
+			A.disabled = !mend
+	..()
 
-/datum/wires/autolathe/UpdatePulsed(index)
-	if(IsIndexCut(index))
+/datum/wires/autolathe/on_pulse(wire)
+	if(is_cut(wire))
 		return
 	var/obj/machinery/autolathe/A = holder
-	switch(index)
-		if(AUTOLATHE_HACK_WIRE)
+	switch(wire)
+		if(WIRE_AUTOLATHE_HACK)
 			A.hacked = !A.hacked
 			spawn(50)
-				if(A && !IsIndexCut(index))
+				if(A && !is_cut(wire))
 					A.hacked = 0
-					update_autolathe_ui(usr)
-		if(AUTOLATHE_SHOCK_WIRE)
+		if(WIRE_ELECTRIFY)
 			A.shocked = !A.shocked
 			spawn(50)
-				if(A && !IsIndexCut(index))
+				if(A && !is_cut(wire))
 					A.shocked = 0
-		if(AUTOLATHE_DISABLE_WIRE)
+		if(WIRE_AUTOLATHE_DISABLE)
 			A.disabled = !A.disabled
 			spawn(50)
-				if(A && !IsIndexCut(index))
+				if(A && !is_cut(wire))
 					A.disabled = 0
-					update_autolathe_ui(usr)
-	update_autolathe_ui(usr)
+	..()
