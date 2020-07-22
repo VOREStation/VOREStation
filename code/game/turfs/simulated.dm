@@ -69,7 +69,7 @@
 
 /turf/simulated/proc/update_dirt()
 	if(can_dirty)
-		dirt = min(dirt+1, 101)
+		dirt = min(dirt+2, 101) // VOREstation edit
 		var/obj/effect/decal/cleanable/dirt/dirtoverlay = locate(/obj/effect/decal/cleanable/dirt, src)
 		if (dirt > 50)
 			if (!dirtoverlay)
