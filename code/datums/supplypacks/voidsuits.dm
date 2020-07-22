@@ -17,7 +17,7 @@
 			/obj/item/weapon/tank/oxygen = 2,
 			)
 	cost = 40
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/aether
 	containername = "Atmospheric voidsuit crate"
 	access = access_atmospherics
 
@@ -31,7 +31,7 @@
 			/obj/item/weapon/tank/oxygen = 2,
 			)
 	cost = 50
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/aether
 	containername = "Heavy Duty Atmospheric voidsuit crate"
 	access = access_atmospherics
 
@@ -45,7 +45,7 @@
 			/obj/item/weapon/tank/oxygen = 2
 			)
 	cost = 40
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/xion
 	containername = "Engineering voidsuit crate"
 	access = access_engine_equip
 
@@ -59,7 +59,7 @@
 			/obj/item/weapon/tank/oxygen = 2
 			)
 	cost = 40
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/xion
 	containername = "Engineering Construction voidsuit crate"
 	access = access_engine_equip
 
@@ -73,7 +73,7 @@
 			/obj/item/weapon/tank/oxygen = 2
 			)
 	cost = 45
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/xion
 	containername = "Engineering Hazmat voidsuit crate"
 	access = access_engine_equip
 
@@ -87,7 +87,7 @@
 			/obj/item/weapon/tank/oxygen = 2
 			)
 	cost = 50
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/xion
 	containername = "Reinforced Engineering voidsuit crate"
 	access = access_engine_equip
 
@@ -101,7 +101,7 @@
 			/obj/item/weapon/tank/oxygen = 2
 			)
 	cost = 40
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/veymed
 	containername = "Medical voidsuit crate"
 	access = access_medical_equip
 
@@ -115,7 +115,7 @@
 			/obj/item/weapon/tank/oxygen = 2
 			)
 	cost = 40
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/veymed
 	containername = "Medical EMT voidsuit crate"
 	access = access_medical_equip
 
@@ -129,7 +129,7 @@
 			/obj/item/weapon/tank/oxygen = 2
 			)
 	cost = 45
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/nanocare
 	containername = "Medical Biohazard voidsuit crate"
 	access = access_medical_equip
 
@@ -143,7 +143,7 @@
 			/obj/item/weapon/tank/oxygen = 2
 			)
 	cost = 60
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/veymed
 	containername = "Vey-Med Autoadaptive voidsuit (humanoid) crate"
 	access = access_medical_equip
 
@@ -168,7 +168,7 @@
 			/obj/item/weapon/tank/oxygen = 2
 			)
 	cost = 40
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/heph
 	containername = "Security voidsuit crate"
 
 /datum/supply_pack/voidsuits/security/crowd
@@ -181,7 +181,7 @@
 			/obj/item/weapon/tank/oxygen = 2
 			)
 	cost = 60
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/heph
 	containername = "Security Crowd Control voidsuit crate"
 	access = access_armory
 
@@ -195,7 +195,7 @@
 			/obj/item/weapon/tank/oxygen = 2
 			)
 	cost = 60
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/heph
 	containername = "Security EVA voidsuit crate"
 	access = access_armory
 
@@ -208,7 +208,7 @@
 			/obj/item/weapon/tank/oxygen = 2
 			)
 	cost = 40
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/xion
 	containername = "Mining voidsuit crate"
 	access = access_mining
 
@@ -221,7 +221,7 @@
 			/obj/item/weapon/tank/oxygen = 2
 			)
 	cost = 50
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/grayson
 	containername = "Frontier Mining voidsuit crate"
 	access = access_mining
 
@@ -232,6 +232,6 @@
 		/obj/item/clothing/mask/gas/zaddat = 1
 		)
 	cost = 30
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/nanotrasen
 	containername = "Zaddat Shroud crate"
 	access = null

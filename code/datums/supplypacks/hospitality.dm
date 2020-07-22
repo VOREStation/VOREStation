@@ -23,7 +23,7 @@
 			/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer = 4,
 			)
 	cost = 10
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/gilthari
 	containername = "Party equipment"
 
 /datum/supply_pack/hospitality/barsupplies
@@ -43,7 +43,7 @@
 			/obj/item/weapon/storage/box/glass_extras/sticks
 			)
 	cost = 10
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/gilthari
 	containername = "crate of bar supplies"
 
 /datum/supply_pack/randomised/hospitality/
@@ -60,7 +60,7 @@
 			)
 	name = "Surprise pack of five pizzas"
 	cost = 15
-	containertype = /obj/structure/closet/crate/freezer
+	containertype = /obj/structure/closet/crate/freezer/centauri
 	containername = "Pizza crate"
 
 /datum/supply_pack/hospitality/gifts
@@ -74,5 +74,5 @@
 		/obj/item/weapon/paper/card/flower
 		)
 	cost = 10
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/allico
 	containername = "crate of gifts"

@@ -1,6 +1,6 @@
 /*
 *	Here is where any supply packs
-*	related to weapons live.
+*	related to costumes live.
 */
 
 
@@ -19,7 +19,7 @@
 			/obj/item/clothing/head/wizard/fake
 			)
 	cost = 20
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/nanothreads
 	containername = "Wizard costume crate"
 
 /datum/supply_pack/randomised/costumes/hats
@@ -48,8 +48,8 @@
 			)
 	name = "Collectable hat crate!"
 	cost = 200
-	containertype = /obj/structure/closet/crate
-	containername = "Collectable hats crate! Brought to you by Bass.inc!"
+	containertype = /obj/structure/closet/crate/nanothreads
+	containername = "Collectable hats crate"
 
 /datum/supply_pack/randomised/costumes/costume
 	num_contained = 3
@@ -84,7 +84,7 @@
 			)
 	name = "Costumes crate"
 	cost = 10
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/nanothreads
 	containername = "Actor Costumes"
 
 /datum/supply_pack/costumes/formal_wear
@@ -104,15 +104,15 @@
 			/obj/item/clothing/shoes/leather,
 			/obj/item/clothing/accessory/wcoat
 			)
-	name = "Formalwear closet"
+	name = "Formalwear (Suits)"
 	cost = 30
-	containertype = /obj/structure/closet
-	containername = "Formalwear for the best occasions."
+	containertype = /obj/structure/closet/crate/gilthari
+	containername = "Formal suit crate"
 
 datum/supply_pack/costumes/witch
 	name = "Witch costume"
 	containername = "Witch costume"
-	containertype = /obj/structure/closet
+	containertype = /obj/structure/closet/crate/nanothreads
 	cost = 20
 	contains = list(
 			/obj/item/clothing/suit/wizrobe/marisa/fake,
@@ -124,7 +124,7 @@ datum/supply_pack/costumes/witch
 /datum/supply_pack/randomised/costumes/costume_hats
 	name = "Costume hats"
 	containername = "Actor hats crate"
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/nanothreads
 	cost = 10
 	num_contained = 3
 	contains = list(
@@ -147,9 +147,9 @@ datum/supply_pack/costumes/witch
 			)
 
 /datum/supply_pack/randomised/costumes/dresses
-	name = "Womens formal dress locker"
-	containername = "Pretty dress locker"
-	containertype = /obj/structure/closet
+	name = "Formalwear (Dresses)"
+	containername = "Formal dress crate"
+	containertype = /obj/structure/closet/crate/gilthari
 	cost = 15
 	num_contained = 3
 	contains = list(
