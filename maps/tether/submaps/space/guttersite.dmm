@@ -5047,10 +5047,6 @@
 /obj/structure/bonfire,
 /turf/simulated/mineral/floor/vacuum,
 /area/space)
-"lP" = (
-/obj/item/weapon/card/emag,
-/turf/simulated/mineral/floor/vacuum,
-/area/space)
 "lQ" = (
 /obj/item/weapon/card/emag_broken,
 /turf/simulated/mineral/floor/vacuum,
@@ -5477,13 +5473,6 @@
 "mU" = (
 /turf/simulated/floor/carpet/gaycarpet,
 /area/tether_away/guttersite/unexplored)
-"mV" = (
-/obj/item/device/radio/headset/nanotrasen/alt{
-	desc = "The headset of an Eltorro employee.";
-	name = "Weird Headset"
-	},
-/turf/simulated/floor/carpet/gaycarpet,
-/area/tether_away/guttersite/unexplored)
 "mW" = (
 /obj/item/weapon/reagent_containers/food/drinks/cans/cola,
 /turf/simulated/floor/carpet/gaycarpet,
@@ -5506,10 +5495,6 @@
 /area/tether_away/guttersite/unexplored)
 "nb" = (
 /obj/machinery/floodlight,
-/turf/simulated/mineral/floor/vacuum,
-/area/tether_away/guttersite/unexplored)
-"nc" = (
-/obj/effect/landmark/corpse/syndicatecommando,
 /turf/simulated/mineral/floor/vacuum,
 /area/tether_away/guttersite/unexplored)
 "nd" = (
@@ -5771,6 +5756,10 @@
 /obj/effect/shuttle_landmark/premade/guttersite/mshuttle,
 /turf/space,
 /area/space)
+"Bh" = (
+/obj/item/device/radio/headset/heads/captain,
+/turf/simulated/floor/carpet/gaycarpet,
+/area/tether_away/guttersite/unexplored)
 "Ob" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -13794,7 +13783,7 @@ ab
 ab
 lU
 ab
-lP
+ab
 ab
 ab
 ac
@@ -23489,7 +23478,7 @@ ag
 ad
 ad
 ad
-nc
+ad
 ad
 ad
 ag
@@ -24558,7 +24547,7 @@ ag
 ad
 mU
 na
-mU
+Bh
 mU
 mU
 ad
@@ -24699,7 +24688,7 @@ aa
 ag
 ad
 mU
-mV
+mU
 mY
 mU
 mU
