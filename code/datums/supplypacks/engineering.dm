@@ -35,8 +35,6 @@
 	containertype = /obj/structure/closet/crate/focalpoint
 	containername = "Superconducting Transmission Coil crate"
 
-<<<<<<< HEAD
-=======
 /datum/supply_pack/eng/shield_capacitor
 	name = "Shield Capacitor"
 	contains = list(/obj/machinery/shield_capacitor)
@@ -79,7 +77,6 @@
 	containertype = /obj/structure/closet/crate/focalpoint
 	containername = "advanced hull shield generator crate"
 
->>>>>>> d7f25c3... Flavour Enhancement: Crates (#7342)
 /datum/supply_pack/eng/electrical
 	name = "Electrical maintenance crate"
 	contains = list(
@@ -176,21 +173,6 @@
 	containername = "Particle Accelerator crate"
 	access = access_ce
 
-<<<<<<< HEAD
-/datum/supply_pack/eng/shield_generator
-	name = "Shield Generator Construction Kit"
-	contains = list(
-		/obj/item/weapon/circuitboard/shield_generator,
-		/obj/item/weapon/stock_parts/capacitor,
-		/obj/item/weapon/stock_parts/micro_laser,
-		/obj/item/weapon/smes_coil,
-		/obj/item/weapon/stock_parts/console_screen,
-		/obj/item/weapon/stock_parts/subspace/amplifier
-		)
-	cost = 80
-	containertype = /obj/structure/closet/crate/engineering
-	containername = "shield generator construction kit crate"
-=======
 /datum/supply_pack/eng/shield_gen
 	contains = list(/obj/item/weapon/circuitboard/shield_gen)
 	name = "Bubble shield generator circuitry"
@@ -214,7 +196,6 @@
 	containertype = /obj/structure/closet/crate/secure/focalpoint
 	containername = "shield capacitor circuitry crate"
 	access = access_ce
->>>>>>> d7f25c3... Flavour Enhancement: Crates (#7342)
 
 /datum/supply_pack/eng/smbig
 	name = "Supermatter Core"
