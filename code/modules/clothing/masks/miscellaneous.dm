@@ -288,3 +288,10 @@
 	desc = "A fine black bandana with nanotech lining and a skull emblem. Can be worn on the head or face."
 	icon_state = "bandskull"
 	item_state_slots = list(slot_r_hand_str = "bandskull", slot_l_hand_str = "bandskull")
+
+/obj/item/clothing/mask/veil
+	name = "black veil"
+	desc = "A black veil, typically worn at funerals or by goths."
+	w_class = ITEMSIZE_TINY
+	body_parts_covered = FACE
+	icon_state = "veil"
