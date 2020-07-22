@@ -1,6 +1,5 @@
 #pretending we're C because otherwise ruby will initialize, even with "language: dm".
 language: c
-dist: xenial
 
 env:
   global:
