@@ -9853,12 +9853,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/rnd/breakroom)
-"aup" = (
-/obj/structure/bed/chair/comfy{
-	dir = 8
-	},
-/turf/simulated/floor/wood,
-/area/rnd/breakroom)
 "auq" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable/green{
@@ -10192,19 +10186,6 @@
 /obj/structure/stairs/south,
 /turf/simulated/floor/tiled,
 /area/rnd/staircase/secondfloor)
-"auW" = (
-/obj/structure/bed/chair/comfy{
-	dir = 1
-	},
-/obj/machinery/requests_console{
-	department = "Science";
-	departmentType = 2;
-	name = "Science Requests Console";
-	pixel_x = -30;
-	pixel_y = 0
-	},
-/turf/simulated/floor/wood,
-/area/rnd/breakroom)
 "auX" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable/green{
@@ -12121,10 +12102,6 @@
 /obj/effect/floor_decal/corner/yellow/bordercorner2,
 /turf/simulated/floor/tiled/monotile,
 /area/engineering/atmos)
-"aya" = (
-/obj/structure/bed/chair/comfy,
-/turf/simulated/floor/wood,
-/area/rnd/breakroom)
 "ayb" = (
 /obj/machinery/light_switch{
 	pixel_y = -28
@@ -28393,6 +28370,10 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/surface_two_hall)
+"dgA" = (
+/obj/structure/bed/chair/comfy/brown,
+/turf/simulated/floor/wood,
+/area/rnd/breakroom)
 "drH" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -28412,6 +28393,12 @@
 /obj/structure/railing,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/rnd)
+"dEl" = (
+/obj/structure/bed/chair/comfy/brown{
+	dir = 8
+	},
+/turf/simulated/floor/wood,
+/area/rnd/breakroom)
 "dQd" = (
 /obj/structure/catwalk,
 /obj/machinery/atmospherics/pipe/simple/visible/supply{
@@ -29193,6 +29180,19 @@
 /obj/structure/disposalpipe/up,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/rnd)
+"qXI" = (
+/obj/machinery/requests_console{
+	department = "Science";
+	departmentType = 2;
+	name = "Science Requests Console";
+	pixel_x = -30;
+	pixel_y = 0
+	},
+/obj/structure/bed/chair/comfy/brown{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/rnd/breakroom)
 "rim" = (
 /obj/machinery/alarm{
 	dir = 1;
@@ -37719,9 +37719,9 @@ aqU
 arA
 ass
 aqk
-aya
+dgA
 auo
-auW
+qXI
 avu
 awj
 aAi
@@ -37862,7 +37862,7 @@ arB
 ast
 aqk
 atD
-aup
+dEl
 atJ
 atJ
 awk

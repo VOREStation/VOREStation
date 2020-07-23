@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source _build_dependencies.sh
+
 RED='\033[0;31m'
 NC='\033[0m'
 FAILED=0
