@@ -58,6 +58,8 @@
 	flesh_color = "#9ee02c"
 	blood_color = "#edf4d0" //sap!
 	base_color = "#1a5600"
+	
+	reagent_tag = IS_ALRAUNE
 
 	blurb = "Alraunes are a rare sight in space. Their bodies are reminiscent of that of plants, and yet they share many\
 	traits with other humanoid beings.\
