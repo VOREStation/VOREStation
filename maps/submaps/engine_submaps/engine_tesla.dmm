@@ -288,14 +288,8 @@
 	dir = 1
 	},
 /obj/structure/table/standard,
-/obj/item/weapon/circuitboard/grounding_rod{
-	pixel_x = 2;
-	pixel_y = 2
-	},
-/obj/item/weapon/circuitboard/grounding_rod{
-	pixel_x = -2;
-	pixel_y = -2
-	},
+/obj/item/weapon/circuitboard/tesla_coil,
+/obj/item/weapon/circuitboard/tesla_coil,
 /turf/simulated/floor,
 /area/engineering/engine_gas)
 "aB" = (
@@ -700,15 +694,15 @@
 /turf/simulated/wall/r_wall,
 /area/submap/pa_room)
 "bj" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/power/tesla_coil,
 /obj/structure/cable/yellow{
 	d2 = 4;
 	icon_state = "0-4"
+	},
+/obj/structure/cable/yellow{
+	d1 = 0;
+	d2 = 8;
+	icon_state = "0-8"
 	},
 /turf/simulated/floor/airless,
 /area/space)
@@ -1138,15 +1132,11 @@
 /area/submap/pa_room)
 "bZ" = (
 /obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/cable/yellow{
 	d2 = 2;
 	icon_state = "0-2"
 	},
 /obj/machinery/power/tesla_coil,
+/obj/structure/cable/yellow,
 /turf/simulated/floor/airless,
 /area/space)
 "ca" = (
@@ -1584,13 +1574,12 @@
 /turf/simulated/floor,
 /area/engineering/engine_room)
 "cF" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/structure/cable/yellow,
 /obj/machinery/power/tesla_coil,
+/obj/structure/cable/yellow{
+	d2 = 2;
+	icon_state = "0-2"
+	},
 /turf/simulated/floor/airless,
 /area/space)
 "cG" = (

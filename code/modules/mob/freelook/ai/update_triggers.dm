@@ -37,7 +37,6 @@
 
 /obj/machinery/camera/deactivate(user as mob, var/choice = 1)
 	..(user, choice)
-	invalidateCameraCache()
 	if(src.can_use())
 		cameranet.addCamera(src)
 	else

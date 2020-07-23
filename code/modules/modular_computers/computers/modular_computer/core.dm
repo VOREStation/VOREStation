@@ -163,6 +163,7 @@
 	idle_threads.Add(active_program)
 	active_program.program_state = PROGRAM_STATE_BACKGROUND // Should close any existing UIs
 	SSnanoui.close_uis(active_program.NM ? active_program.NM : active_program)
+	SStgui.close_uis(active_program.TM ? active_program.TM : active_program)
 	active_program = null
 	update_icon()
 	if(istype(user))
@@ -202,7 +203,6 @@
 		minimize_program(user)
 
 	if(P.run_program(user))
-		active_program = P
 		update_icon()
 	return 1
 

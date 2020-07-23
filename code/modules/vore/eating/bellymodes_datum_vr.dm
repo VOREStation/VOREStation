@@ -165,12 +165,16 @@ GLOBAL_LIST_INIT(digest_modes, list())
 			B.change_tail_nocolor(H)
 			B.change_wing_nocolor(H)
 			B.change_species(H, 1, 1) // ,1) preserves coloring
+			H.species.create_organs(H)
+			H.sync_organ_dna()
 			return null
 		if(changes_ears_tail_wing_color && (B.check_ears(H) || B.check_tail(H) || B.check_wing(H) || B.check_species(H)))
 			B.change_ears(H)
 			B.change_tail(H)
 			B.change_wing(H)
 			B.change_species(H, 1, 2) // ,2) does not preserve coloring.
+			H.species.create_organs(H)
+			H.sync_organ_dna()
 			return null
 	if(changes_gender && B.check_gender(H, changes_gender_to))
 		B.change_gender(H, changes_gender_to, 1)

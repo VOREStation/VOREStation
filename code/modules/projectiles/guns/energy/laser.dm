@@ -2,6 +2,7 @@
 	name = "laser rifle"
 	desc = "A Hephaestus Industries G40E rifle, designed to kill with concentrated energy blasts.  This variant has the ability to \
 	switch between standard fire and a more efficent but weaker 'suppressive' fire."
+	description_fluff = "The leading arms producer in the SCG, Hephaestus typically only uses its 'top level' branding for its military-grade equipment used by armed forces across human space."
 	icon_state = "laser"
 	item_state = "laser"
 	wielded_item_state = "laser-wielded"
@@ -45,11 +46,22 @@
 		list(mode_name="suppressive", projectile_type=/obj/item/projectile/beam/practice, charge_cost = 12),
 		)
 
+//Functionally identical, but slightly higher tech due to rarer.
+/obj/item/weapon/gun/energy/laser/sleek
+	name = "\improper LR1 Shishi"
+	desc = "A Bishamonten Company LR1 Shishi rifle, a rare early 23rd century futurist design with a nonetheless timeless ability to kill."
+	description_fluff = "Bisamonten was arms company that operated from roughly 2150-2280 - the height of the first extrasolar colonisation boom - before filing for bankruptcy and selling off its assets to various companies that would go on to become today’s TSCs. \
+	Focused on sleek ‘futurist’ designs which have largely fallen out of fashion but remain popular with collectors and people hoping to make some quick thalers from replica weapons. \
+	Their weapons tended to be form over function - despite their flashy looks, most were completely unremarkable one way or another as weapons and used very standard firing mechanisms."
+	icon_state = "lrifle"
+	item_state = "lrifle"
+	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 3)
+
 /obj/item/weapon/gun/energy/retro
 	name = "retro laser"
 	icon_state = "retro"
 	item_state = "retro"
-	desc = "An older model of the basic lasergun. Nevertheless, it is still quite deadly and easy to maintain, making it a favorite amongst pirates and other outlaws."
+	desc = "A 23rd century model of the basic lasergun. Nevertheless, it is still quite deadly and easy to maintain, making it a favorite amongst pirates and other outlaws."
 	slot_flags = SLOT_BELT
 	w_class = ITEMSIZE_NORMAL
 	projectile_type = /obj/item/projectile/beam
@@ -111,7 +123,10 @@
 	name = "antique laser gun"
 	icon_state = "caplaser"
 	item_state = "caplaser"
-	desc = "A rare weapon, handcrafted by a now defunct specialty manufacturer on Luna for a small fortune. It's certainly aged well."
+	desc = "A rare weapon, produced by the Lunar Arms Company around 2105 - one of humanity's first wholly extra-terrestrial weapon designs. It's certainly aged well."
+	description_fluff = "The Lunar Arms Company was founded to provide home-grown arms to the Selene Federation from 2101-2108 during the Second Cold War, the conflict that sparked the \
+	formation of the SCG. The LAC produced the first weapons wholly designed and produced outside of Earth. Post-war, the company relocated and rebranded as MarsTech, which survives \
+	to this day as a major subsidiary of Hephaestus Industries."
 	force = 5
 	slot_flags = SLOT_BELT
 	w_class = ITEMSIZE_NORMAL
@@ -164,6 +179,7 @@
 	name = "marksman energy rifle"
 	desc = "The HI DMR 9E is an older design of Hephaestus Industries. A designated marksman rifle capable of shooting powerful \
 	ionized beams, this is a weapon to kill from a distance."
+	description_fluff = "The leading arms producer in the SCG, Hephaestus typically only uses its 'top level' branding for its military-grade equipment used by armed forces across human space."
 	icon_state = "sniper"
 	item_state = "sniper"
 	item_state_slots = list(slot_r_hand_str = "lsniper", slot_l_hand_str = "lsniper")
@@ -224,7 +240,7 @@
 /obj/item/weapon/gun/energy/monorifle/combat
 	name = "combat mono-rifle"
 	desc = "A modernized version of the mono-rifle. This one can fire twice before requiring recharging."
-	description_fluff = "A modern design produced by a company once working from Saint Columbia, based on the antique mono-rifle 'Rainy Day Special' design."
+	description_fluff = "A modern design produced by a small company operating out of Saint Columbia, based on the antique mono-rifle 'Rainy Day Special' design."
 	icon_state = "cmono"
 	item_state = "cshotgun"
 	charge_cost = 1000

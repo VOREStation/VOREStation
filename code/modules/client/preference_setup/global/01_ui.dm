@@ -9,6 +9,8 @@
 	S["ooccolor"]		>> pref.ooccolor
 	S["tooltipstyle"]	>> pref.tooltipstyle
 	S["client_fps"]		>> pref.client_fps
+	S["tgui_fancy"]		>> pref.tgui_fancy
+	S["tgui_lock"]		>> pref.tgui_lock
 
 /datum/category_item/player_setup_item/player_global/ui/save_preferences(var/savefile/S)
 	S["UI_style"]		<< pref.UI_style
@@ -17,6 +19,8 @@
 	S["ooccolor"]		<< pref.ooccolor
 	S["tooltipstyle"]	<< pref.tooltipstyle
 	S["client_fps"]		<< pref.client_fps
+	S["tgui_fancy"]		<< pref.tgui_fancy
+	S["tgui_lock"]		<< pref.tgui_lock
 
 /datum/category_item/player_setup_item/player_global/ui/sanitize_preferences()
 	pref.UI_style		= sanitize_inlist(pref.UI_style, all_ui_styles, initial(pref.UI_style))
@@ -25,20 +29,24 @@
 	pref.ooccolor		= sanitize_hexcolor(pref.ooccolor, initial(pref.ooccolor))
 	pref.tooltipstyle	= sanitize_inlist(pref.tooltipstyle, all_tooltip_styles, initial(pref.tooltipstyle))
 	pref.client_fps		= sanitize_integer(pref.client_fps, 0, MAX_CLIENT_FPS, initial(pref.client_fps))
+	pref.tgui_fancy		= sanitize_integer(pref.tgui_fancy, 0, 1, initial(pref.tgui_fancy))
+	pref.tgui_lock		= sanitize_integer(pref.tgui_lock, 0, 1, initial(pref.tgui_lock))
 
 /datum/category_item/player_setup_item/player_global/ui/content(var/mob/user)
 	. = "<b>UI Style:</b> <a href='?src=\ref[src];select_style=1'><b>[pref.UI_style]</b></a><br>"
 	. += "<b>Custom UI</b> (recommended for White UI):<br>"
-	. += "-Color: <a href='?src=\ref[src];select_color=1'><b>[pref.UI_style_color]</b></a> [color_square(hex = pref.UI_style_color)] <a href='?src=\ref[src];reset=ui'>reset</a><br>"
-	. += "-Alpha(transparency): <a href='?src=\ref[src];select_alpha=1'><b>[pref.UI_style_alpha]</b></a> <a href='?src=\ref[src];reset=alpha'>reset</a><br>"
+	. += "-Color: <a href='?src=\ref[src];select_color=1'><b>[pref.UI_style_color]</b></a>ï¿½[color_square(hex = pref.UI_style_color)]ï¿½<a href='?src=\ref[src];reset=ui'>reset</a><br>"
+	. += "-Alpha(transparency): <a href='?src=\ref[src];select_alpha=1'><b>[pref.UI_style_alpha]</b></a>ï¿½<a href='?src=\ref[src];reset=alpha'>reset</a><br>"
 	. += "<b>Tooltip Style:</b> <a href='?src=\ref[src];select_tooltip_style=1'><b>[pref.tooltipstyle]</b></a><br>"
 	. += "<b>Client FPS:</b> <a href='?src=\ref[src];select_client_fps=1'><b>[pref.client_fps]</b></a><br>"
+	. += "<b>tgui Window Mode:</b> <a href='?src=\ref[src];tgui_fancy=1'><b>[(pref.tgui_fancy) ? "Fancy (default)" : "Compatible (slower)"]</b></a><br>"
+	. += "<b>tgui Window Placement:</b> <a href='?src=\ref[src];tgui_lock=1'><b>[(pref.tgui_lock) ? "Primary Monitor" : "Free (default)"]</b></a><br>"
 	if(can_select_ooc_color(user))
-		. += "<b>OOC Color:</b> "
+		. += "<b>OOC Color:</b>ï¿½"
 		if(pref.ooccolor == initial(pref.ooccolor))
 			. += "<a href='?src=\ref[src];select_ooc_color=1'><b>Using Default</b></a><br>"
 		else
-			. += "<a href='?src=\ref[src];select_ooc_color=1'><b>[pref.ooccolor]</b></a> [color_square(hex = pref.ooccolor)] <a href='?src=\ref[src];reset=ooc'>reset</a><br>"
+			. += "<a href='?src=\ref[src];select_ooc_color=1'><b>[pref.ooccolor]</b></a> [color_square(hex = pref.ooccolor)]ï¿½<a href='?src=\ref[src];reset=ooc'>reset</a><br>"
 
 /datum/category_item/player_setup_item/player_global/ui/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(href_list["select_style"])
@@ -78,6 +86,14 @@
 		pref.client_fps = fps_new
 		if(pref.client)
 			pref.client.fps = fps_new
+		return TOPIC_REFRESH
+
+	else if(href_list["tgui_fancy"])
+		pref.tgui_fancy = !pref.tgui_fancy
+		return TOPIC_REFRESH
+		
+	else if(href_list["tgui_lock"])
+		pref.tgui_lock = !pref.tgui_lock
 		return TOPIC_REFRESH
 
 	else if(href_list["reset"])

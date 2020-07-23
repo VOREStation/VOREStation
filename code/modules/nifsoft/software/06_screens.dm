@@ -5,7 +5,7 @@
 	access = access_medical
 	cost = 625
 	p_drain = 0.025
-	var/datum/nano_module/program/crew_monitor/arscreen
+	var/datum/tgui_module/crew_monitor/nif/arscreen
 
 	New()
 		..()
@@ -17,7 +17,7 @@
 
 	activate()
 		if((. = ..()))
-			arscreen.ui_interact(nif.human,"main",null,1,nif_state)
+			arscreen.tgui_interact(nif.human)
 			return TRUE
 
 	deactivate()

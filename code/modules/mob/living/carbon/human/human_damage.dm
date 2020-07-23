@@ -288,6 +288,20 @@
 		oxyloss = 0
 	else
 		..()
+		
+/mob/living/carbon/human/adjustHalLoss(var/amount)
+	if(species.flags & NO_PAIN)
+		halloss = 0
+	else
+		if(amount > 0)	//only multiply it by the mod if it's positive, or else it takes longer to fade too!
+			amount = amount*species.pain_mod
+		..(amount)
+
+/mob/living/carbon/human/setHalLoss(var/amount)
+	if(species.flags & NO_PAIN)
+		halloss = 0
+	else
+		..()
 
 /mob/living/carbon/human/getToxLoss()
 	if(species.flags & NO_POISON)

@@ -534,6 +534,11 @@
 	icon_state = "R44"
 	ammo_type = /obj/item/ammo_casing/a44/rubber
 
+/obj/item/ammo_magazine/s44/rifle
+	name = "speedloader (.44 rifle)"
+	icon_state = "RI44"
+	ammo_type = /obj/item/ammo_casing/a44/rifle
+
 ///////// 7.62mm /////////
 
 /obj/item/ammo_magazine/m762

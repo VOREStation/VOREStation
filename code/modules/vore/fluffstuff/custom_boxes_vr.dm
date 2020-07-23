@@ -281,35 +281,19 @@ Swimsuits, for general use, to avoid arriving to work with your swimsuit.
 /obj/item/weapon/storage/box/monkeycubes/sobakacubes
 	name = "sobaka cube box"
 	desc = "Drymate brand sobaka cubes. Just add water!"
-
-/obj/item/weapon/storage/box/monkeycubes/sobakacubes/New()
-	..()
-	for(var/i = 1 to 4)
-		new /obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/sobakacube(src)
+	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/sobakacube = 4)
 
 /obj/item/weapon/storage/box/monkeycubes/sarucubes
 	name = "saru cube box"
 	desc = "Drymate brand saru cubes. Just add water!"
-
-/obj/item/weapon/storage/box/monkeycubes/sarucubes/New()
-	..()
-	for(var/i = 1 to 4)
-		new /obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/sarucube(src)
+	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/sarucube = 4)
 
 /obj/item/weapon/storage/box/monkeycubes/sparracubes
 	name = "sparra cube box"
 	desc = "Drymate brand sparra cubes. Just add water!"
-
-/obj/item/weapon/storage/box/monkeycubes/sparracubes/New()
-	..()
-	for(var/i = 1 to 4)
-		new /obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/sparracube(src)
+	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/sparracube = 4)
 
 /obj/item/weapon/storage/box/monkeycubes/wolpincubes
 	name = "wolpin cube box"
 	desc = "Drymate brand wolpin cubes. Just add water!"
-
-/obj/item/weapon/storage/box/monkeycubes/wolpincubes/New()
-	..()
-	for(var/i = 1 to 4)
-		new /obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/wolpincube(src)
+	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/wolpincube = 4)

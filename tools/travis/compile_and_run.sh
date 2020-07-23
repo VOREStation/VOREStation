@@ -3,7 +3,7 @@
 RED='\033[0;31m'
 NC='\033[0m'
 
-source $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}/byond/bin/byondsetup
+source $HOME/BYOND/byond/bin/byondsetup
 
 # Copy example configs
 cp config/example/* config/

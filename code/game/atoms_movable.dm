@@ -1,6 +1,6 @@
 /atom/movable
 	layer = OBJ_LAYER
-	appearance_flags = TILE_BOUND|PIXEL_SCALE
+	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER
 	glide_size = 8
 	var/last_move = null //The direction the atom last moved
 	var/anchored = 0
@@ -24,7 +24,7 @@
 	var/datum/riding/riding_datum = null
 	var/does_spin = TRUE // Does the atom spin when thrown (of course it does :P)
 	var/movement_type = NONE
-	
+
 	var/cloaked = FALSE //If we're cloaked or not
 	var/image/cloaked_selfimage //The image we use for our client to let them see where we are
 
@@ -107,7 +107,7 @@
 				glide_for(movetime)
 				loc = newloc
 				. = TRUE
-				
+
 				// So objects can be informed of z-level changes
 				if (old_z != dest_z)
 					onTransitZ(old_z, dest_z)
@@ -133,7 +133,7 @@
 					var/atom/movable/thing = i
 					// We don't call parent so we are calling this for byond
 					thing.Crossed(src)
-			
+
 			// We're a multi-tile object (multiple locs)
 			else if(. && newloc)
 				. = doMove(newloc)
@@ -282,7 +282,7 @@
 		glide_for(movetime)
 		last_move = isnull(direction) ? 0 : direction
 		loc = destination
-		
+
 		// Unset this in case it was set in some other proc. We're no longer moving diagonally for sure.
 		moving_diagonally = 0
 
@@ -294,27 +294,27 @@
 				// If it's not the same area, Exited() it
 				if(old_area && old_area != destarea)
 					old_area.Exited(src, destination)
-			
+
 			// Uncross everything where we left
 			for(var/i in oldloc)
 				var/atom/movable/AM = i
 				if(AM == src)
 					continue
 				AM.Uncrossed(src)
-			
+
 			// Information about turf and z-levels for source and dest collected
 			var/turf/oldturf = get_turf(oldloc)
 			var/turf/destturf = get_turf(destination)
 			var/old_z = (oldturf ? oldturf.z : null)
 			var/dest_z = (destturf ? destturf.z : null)
-			
+
 			// So objects can be informed of z-level changes
 			if (old_z != dest_z)
 				onTransitZ(old_z, dest_z)
-			
+
 			// Destination atom Entered
 			destination.Entered(src, oldloc)
-			
+
 			// Entered() the new area if it's not the same area
 			if(destarea && old_area != destarea)
 				destarea.Entered(src, oldloc)
@@ -366,7 +366,7 @@
 			glide_size = initial(glide_size)
 	else
 		glide_size = initial(glide_size)
-		
+
 /////////////////////////////////////////////////////////////////
 
 //called when src is thrown into hit_atom
@@ -623,7 +623,7 @@
 /atom/movable/proc/cloak_animation(var/length = 1 SECOND)
 	//Save these
 	var/initial_alpha = alpha
-	
+
 	//Animate alpha fade
 	animate(src, alpha = 0, time = length)
 

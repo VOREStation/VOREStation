@@ -616,12 +616,12 @@
 /turf/simulated/floor/tiled/white,
 /area/ship/aro/recreation)
 "bp" = (
-/obj/machinery/cooker/oven,
+/obj/machinery/appliance/cooker/oven,
 /obj/effect/floor_decal/borderfloorwhite/corner2,
 /turf/simulated/floor/tiled/white,
 /area/ship/aro/recreation)
 "bq" = (
-/obj/machinery/cooker/grill,
+/obj/machinery/appliance/cooker/grill,
 /obj/effect/floor_decal/borderfloorwhite,
 /turf/simulated/floor/tiled/white,
 /area/ship/aro/recreation)

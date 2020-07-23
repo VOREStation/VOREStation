@@ -326,7 +326,7 @@
 	var/televored = FALSE
 	if(isbelly(real_dest))
 		var/obj/belly/B = real_dest
-		if(!target.can_be_drop_prey && B.owner != user)
+		if(!(target.can_be_drop_prey) && B.owner != user)
 			to_chat(target,"<span class='warning'>\The [src] narrowly avoids teleporting you right into \a [lowertext(real_dest.name)]!</span>")
 			real_dest = dT //Nevermind!
 		else

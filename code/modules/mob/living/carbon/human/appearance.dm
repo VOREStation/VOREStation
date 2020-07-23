@@ -48,6 +48,21 @@
 
 	update_hair()
 	return 1
+	
+/mob/living/carbon/human/proc/change_hair_gradient(var/hair_gradient)
+	if(!hair_gradient)
+		return
+
+	if(grad_style == hair_gradient)
+		return
+
+	if(!(hair_gradient in GLOB.hair_gradients))
+		return
+
+	grad_style = hair_gradient
+
+	update_hair()
+	return 1
 
 /mob/living/carbon/human/proc/change_facial_hair(var/facial_hair_style)
 	if(!facial_hair_style)
@@ -101,6 +116,17 @@
 	r_hair = red
 	g_hair = green
 	b_hair = blue
+
+	update_hair()
+	return 1
+	
+/mob/living/carbon/human/proc/change_grad_color(var/red, var/green, var/blue)
+	if(red == r_grad && green == g_grad && blue == b_grad)
+		return
+
+	r_grad = red
+	g_grad = green
+	b_grad = blue
 
 	update_hair()
 	return 1

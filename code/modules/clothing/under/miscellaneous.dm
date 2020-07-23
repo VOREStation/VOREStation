@@ -535,6 +535,37 @@
 	desc = "A red and white dress themed after some winter holidays. Tastefully festive!"
 	icon_state = "festivedress"
 
+/obj/item/clothing/under/dress/revealingdress
+	name = "revealing dress"
+	desc = "A very revealing black and blue dress. Is this work appropriate?"
+	icon_state = "revealingdress"
+	index = 1
+
+/obj/item/clothing/under/dress/gothic
+	name = "gothic dress"
+	desc = "A black dress with a sheer mesh over it, tastefully old school goth."
+	icon_state = "gothic"
+	index = 1
+
+/obj/item/clothing/under/dress/formalred
+	name = "formal red dress"
+	desc = "A very formal red dress, for those fancy galas."
+	icon_state = "formalred"
+	flags_inv = HIDESHOES
+	index = 1
+
+/obj/item/clothing/under/dress/pentagram
+	name = "pentagram dress"
+	desc = "A black dress with straps over the chest in the shape of a pentagram."
+	icon_state = "pentagram"
+	index = 1
+
+obj/item/clothing/under/dress/yellowswoop
+	name = "yellow swooped dress"
+	desc = "A yellow dress that swoops to the side."
+	icon_state = "yellowswoop"
+	index = 1
+
 /*
  * wedding stuff
  */
@@ -766,6 +797,12 @@ Uniforms and such
 	name = "halter top"
 	desc = "Jean shorts and a black halter top. Perfect for casual Fridays!"
 	icon_state = "haltertop"
+
+/obj/item/clothing/under/rippedpunk
+	name = "ripped punk jeans"
+	desc = "Black ripped jeans and a fishnet top. How punk."
+	icon_state = "rippedpunk"
+	index = 1
 
 /*
  * swimsuit
