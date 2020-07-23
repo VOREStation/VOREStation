@@ -23,6 +23,19 @@
 	},
 /turf/simulated/floor/hull/airless,
 /area/space)
+"ae" = (
+/obj/machinery/door/blast/regular/open{
+	dir = 4;
+	id = "talon_windows"
+	},
+/obj/structure/lattice,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/space,
+/area/talon/deckone/bridge)
 "af" = (
 /obj/structure/lattice,
 /obj/structure/cable/green{
@@ -52,13 +65,8 @@
 	id = "talon_windows"
 	},
 /obj/structure/lattice,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /turf/space,
-/area/space)
+/area/talon/deckone/bridge)
 "aj" = (
 /obj/machinery/light{
 	dir = 8;
@@ -67,14 +75,6 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/brown_perforated,
 /area/talon/deckone/port_eng)
-"ak" = (
-/obj/machinery/door/blast/regular/open{
-	dir = 4;
-	id = "talon_windows"
-	},
-/obj/structure/lattice,
-/turf/space,
-/area/space)
 "al" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -15676,7 +15676,7 @@ aa
 aa
 aa
 ag
-ai
+ae
 al
 an
 ao
@@ -15818,7 +15818,7 @@ aa
 aa
 aa
 aa
-ak
+ai
 IM
 RS
 on
@@ -15960,7 +15960,7 @@ aa
 aa
 aa
 aa
-ak
+ai
 IM
 wm
 LH

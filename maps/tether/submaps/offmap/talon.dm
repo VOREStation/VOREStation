@@ -386,7 +386,7 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 	filedesc = "Helmet Camera Monitoring (Talon)"
 	extended_desc = "This program allows remote access to Talon helmet camera systems."
 	size = 4 //Smaller because limited scope
-	nanomodule_path = /datum/nano_module/camera_monitor/talon_helmet
+	tguimodule_path = /datum/tgui_module/camera/ntos/talon_helmet
 	required_access = access_talon
 
 // Talon ship cameras
@@ -395,23 +395,18 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 	filedesc = "Ship Camera Monitoring (Talon)"
 	extended_desc = "This program allows remote access to the Talon's camera system."
 	size = 10 //Smaller because limited scope
-	nanomodule_path = /datum/nano_module/camera_monitor/talon_ship
+	tguimodule_path = /datum/tgui_module/camera/ntos/talon_ship
 	required_access = access_talon
 
-/datum/nano_module/camera_monitor/talon_ship
+/datum/tgui_module/camera/ntos/talon_ship
 	name = "Talon Ship Camera Monitor"
-/datum/nano_module/camera_monitor/talon_ship/modify_networks_list(var/list/networks)
-	networks.Cut()
-	networks.Add(list(list("tag" = NETWORK_TALON_SHIP, "has_access" = 1)))
-	networks.Add(list(list("tag" = NETWORK_THUNDER, "has_access" = 1))) //THUNDERRRRR
-	return networks
+/datum/nano_module/camera_monitor/talon_ship/New(host)
+	. = ..(host, list(NETWORK_TALON_SHIP, NETWORK_THUNDER))
 
-/datum/nano_module/camera_monitor/talon_helmet
+/datum/tgui_module/camera/ntos/talon_helmet
 	name = "Talon Helmet Camera Monitor"
-/datum/nano_module/camera_monitor/talon_helmet/modify_networks_list(var/list/networks)
-	networks.Cut()
-	networks.Add(list(list("tag" = NETWORK_TALON_HELMETS, "has_access" = 1)))
-	return networks
+/datum/tgui_module/camera/ntos/talon_helmet/New(host)
+	. = ..(host, list(NETWORK_TALON_HELMETS))
 
 /datum/computer_file/program/power_monitor/talon
 	filename = "tpowermonitor"
