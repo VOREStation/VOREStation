@@ -65,7 +65,7 @@
 	department_flag = CIVILIAN
 	faction = "Station"
 	total_positions = 2
-	spawn_positions = 1
+	spawn_positions = 2
 	supervisors = "the Head of Personnel"
 	selection_color = "#515151"
 	access = list(access_hydroponics, access_bar, access_kitchen)
