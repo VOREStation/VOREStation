@@ -4366,7 +4366,7 @@
 
 //Code for dipping food in batter
 /obj/item/weapon/reagent_containers/food/snacks/afterattack(obj/O as obj, mob/user as mob, proximity)
-	if(O.is_open_container() && O.reagents && !(istype(O, /obj/item/weapon/reagent_containers/food)))
+	if(O.is_open_container() && O.reagents && !(istype(O, /obj/item/weapon/reagent_containers/food)) && proximity)
 		for (var/r in O.reagents.reagent_list)
 
 			var/datum/reagent/R = r

@@ -150,6 +150,15 @@
 	max_space = 30
 	max_reagents = 120
 
+/obj/item/weapon/reagent_containers/cooking_container/oven/Initialize()
+	. = ..()
+	
+	// We add to the insertable list specifically for the oven trays, to allow specialty cakes.
+	insertable += list(
+		/obj/item/clothing/head/cakehat, // This is because we want to allow birthday cakes to be makeable.
+		/obj/item/organ/internal/brain // As before, needed for braincake
+	)
+
 /obj/item/weapon/reagent_containers/cooking_container/fryer
 	name = "fryer basket"
 	shortname = "basket"

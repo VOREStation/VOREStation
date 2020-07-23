@@ -16,10 +16,10 @@
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 5			// Power used when turned on, but not processing anything
 	active_power_usage = 1000		// Power used when turned on and actively cooking something
-	var/initial_active_power_usage = 1000
-
-	var/cooking_power  = 1
-	var/initial_cooking_power = 1
+	
+	var/cooking_power = 0			// Effectiveness/speed at cooking
+	var/cooking_coeff = 0			// Optimal power * proximity to optimal temp; used to calc. cooking power.
+	var/heating_power = 1000		// Effectiveness at heating up; not used for mixers, should be equal to active_power_usage
 	var/max_contents = 1			// Maximum number of things this appliance can simultaneously cook
 	var/on_icon						// Icon state used when cooking.
 	var/off_icon					// Icon state used when not cooking.
@@ -29,7 +29,7 @@
 	var/mobdamagetype = BRUTE		// Burn damage for cooking appliances, brute for cereal/candy
 	var/food_color					// Colour of resulting food item.
 	var/cooked_sound = 'sound/machines/ding.ogg'				// Sound played when cooking completes.
-	var/can_burn_food				// Can the object burn food that is left inside?
+	var/can_burn_food = FALSE		// Can the object burn food that is left inside?
 	var/burn_chance = 10			// How likely is the food to burn?
 	var/list/cooking_objs = list()	// List of things being cooked
 
@@ -40,18 +40,13 @@
 
 	var/container_type = null
 
-	var/combine_first = 0//If 1, this appliance will do combinaiton cooking before checking recipes
+	var/combine_first = FALSE // If TRUE, this appliance will do combination cooking before checking recipes
 
 /obj/machinery/appliance/Initialize()
 	. = ..()
-	component_parts = list()
-	component_parts += /obj/item/weapon/circuitboard/cooking
-	component_parts += /obj/item/weapon/stock_parts/capacitor
-	component_parts += /obj/item/weapon/stock_parts/capacitor
-	component_parts += /obj/item/weapon/stock_parts/capacitor
-	component_parts += /obj/item/weapon/stock_parts/scanning_module
-	component_parts += /obj/item/weapon/stock_parts/matter_bin
-	component_parts += /obj/item/weapon/stock_parts/matter_bin
+	
+	default_apply_parts()
+	
 	if(output_options.len)
 		verbs += /obj/machinery/appliance/proc/choose_output
 
@@ -228,7 +223,7 @@
 	else if(istype(check, /obj/item/weapon/disk/nuclear))
 		to_chat(user, "<span class='warning'>You can't cook that.</span>")
 		return 0
-	else if(I.is_crowbar() || I.is_screwdriver()) // You can't cook tools, dummy.
+	else if(I.is_crowbar() || I.is_screwdriver() || istype(I, /obj/item/weapon/storage/part_replacer)) // You can't cook tools, dummy.
 		return 0
 	else if(!istype(check) &&  !istype(check, /obj/item/weapon/holder))
 		to_chat(user, "<span class='warning'>That's not edible.</span>")
@@ -301,7 +296,7 @@
 
 /obj/machinery/appliance/proc/get_cooking_work(var/datum/cooking_item/CI)
 	for (var/obj/item/J in CI.container)
-		oilwork(J, CI)
+		cookwork_by_item(J, CI)
 
 	for (var/r in CI.container.reagents.reagent_list)
 		var/datum/reagent/R = r
@@ -328,7 +323,7 @@
 	CI.max_cookwork += buffer*multiplier
 
 //Just a helper to save code duplication in the above
-/obj/machinery/appliance/proc/oilwork(var/obj/item/I, var/datum/cooking_item/CI)
+/obj/machinery/appliance/proc/cookwork_by_item(var/obj/item/I, var/datum/cooking_item/CI)
 	var/obj/item/weapon/reagent_containers/food/snacks/S = I
 	var/work = 0
 	if (istype(S))
@@ -725,18 +720,13 @@
 
 	for(var/obj/item/weapon/stock_parts/P in src.component_parts)
 		if(istype(P, /obj/item/weapon/stock_parts/scanning_module))
-			scan_rating += P.rating
+			scan_rating += P.rating - 1 // Default parts shouldn't mess with stats
+			// to_world("RefreshParts returned scan rating of [scan_rating] during this step.") // Debug lines, uncomment if you need to test.
 		else if(istype(P, /obj/item/weapon/stock_parts/capacitor))
-			cap_rating += P.rating
+			cap_rating += P.rating - 1 // Default parts shouldn't mess with stats
+			// to_world("RefreshParts returned cap rating of [cap_rating] during this step.") // Debug lines, uncomment if you need to test.
 
-	active_power_usage = initial(active_power_usage) - scan_rating*10
-	cooking_power = initial(cooking_power) + (scan_rating+cap_rating)/10
-
-/obj/item/weapon/circuitboard/cooking
-	name = "kitchen appliance circuitry"
-	desc = "The circuitboard for many kitchen appliances. Not of much use."
-	origin_tech = list(TECH_MAGNET = 2, TECH_ENGINEERING = 2)
-	req_components = list(
-							/obj/item/weapon/stock_parts/capacitor = 3,
-							/obj/item/weapon/stock_parts/scanning_module = 1,
-							/obj/item/weapon/stock_parts/matter_bin = 2)
+	active_power_usage = initial(active_power_usage) - scan_rating * 25
+	heating_power = initial(heating_power) + cap_rating * 25
+	cooking_power = cooking_coeff * (1 + (scan_rating + cap_rating) / 20) // 100% eff. becomes 120%, 140%, 160% w/ better parts, thus rewarding upgrading the appliances during your shift.
+	// to_world("RefreshParts returned cooking power of [cooking_power] during this step.") // Debug lines, uncomment if you need to test.

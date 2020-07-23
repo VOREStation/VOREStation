@@ -6,14 +6,16 @@
 	cook_type = "baked"
 	appliancetype = OVEN
 	food_color = "#A34719"
-	can_burn_food = 1
+	can_burn_food = TRUE
+	circuit = /obj/item/weapon/circuitboard/oven
 	active_power_usage = 6 KILOWATTS
+	heating_power = 6000
 	//Based on a double deck electric convection oven
 
-	resistance = 16000
+	resistance = 30000 // Approx. 12 minutes to heat up.
 	idle_power_usage = 2 KILOWATTS
 	//uses ~30% power to stay warm
-	optimal_power = 0.2
+	optimal_power = 0.8 // Oven cooks .2 faster than the default speed.
 
 	light_x = 2
 	max_contents = 5
@@ -74,19 +76,27 @@
 
 	if(open)
 		open = FALSE
-		loss = (active_power_usage / resistance)*0.5
+		loss = (heating_power / resistance) * 0.5
 		cooking = TRUE
 	else
 		open = TRUE
-		loss = (active_power_usage / resistance)*4
+		loss = (heating_power / resistance) * 4
 		//When the oven door is opened, heat is lost MUCH faster and you stop cooking (because the door is open)
 		cooking = FALSE
 
 	playsound(src, 'sound/machines/hatch_open.ogg', 20, 1)
 	update_icon()
+	
+/obj/machinery/appliance/cooker/oven/proc/manip(var/obj/item/I)
+	// check if someone's trying to manipulate the machine
+
+	if(I.is_crowbar() || I.is_screwdriver() || istype(I, /obj/item/weapon/storage/part_replacer))
+		return TRUE
+	else
+		return FALSE
 
 /obj/machinery/appliance/cooker/oven/can_insert(var/obj/item/I, var/mob/user)
-	if(!open)
+	if(!open && !manip(I))
 		to_chat(user, "<span class='warning'>You can't put anything in while the door is closed!</span>")
 		return 0
 
@@ -117,6 +127,7 @@
 /obj/machinery/appliance/cooker/oven/finish_cooking(var/datum/cooking_item/CI)
 	if(CI.combine_target)
 		CI.result_type = 3//Combination type. We're making something out of our ingredients
+		visible_message("<span class='notice'>\The [src] pings!</span>")
 		combination_cook(CI)
 		return
 	else

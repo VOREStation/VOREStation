@@ -77,28 +77,36 @@
 
 //Sweet Recipes.
 //==================
+// All donuts were given reagents of 5 to equal old recipes and make for faster cook times.
 /datum/recipe/jellydonut
 	appliance = FRYER
-	reagents = list("berryjuice" = 10, "sugar" = 10)
+	reagents = list("berryjuice" = 5, "sugar" = 5)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/doughslice
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/donut/jelly
 	result_quantity = 2
+	
+/datum/recipe/jellydonut/poisonberry
+	reagents = list("poisonberryjuice" = 5, "sugar" = 5)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/dough
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/donut/poisonberry
 
 /datum/recipe/jellydonut/slime
 	appliance = FRYER
-	reagents = list("slimejelly" = 10, "sugar" = 10)
+	reagents = list("slimejelly" = 5, "sugar" = 5)
 	result = /obj/item/weapon/reagent_containers/food/snacks/donut/slimejelly
 
 /datum/recipe/jellydonut/cherry
 	appliance = FRYER
-	reagents = list("cherryjelly" = 10, "sugar" = 10)
+	reagents = list("cherryjelly" = 5, "sugar" = 5)
 	result = /obj/item/weapon/reagent_containers/food/snacks/donut/cherryjelly
 
 /datum/recipe/donut
 	appliance = FRYER
-	reagents = list("sugar" = 10)
+	reagents = list("sugar" = 5)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/doughslice
 	)

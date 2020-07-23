@@ -3,24 +3,29 @@
 	desc = "Backyard grilling, IN SPACE."
 	icon_state = "grill_off"
 	cook_type = "grilled"
+	appliancetype = GRILL
 	food_color = "#A34719"
 	on_icon = "grill_on"
 	off_icon = "grill_off"
-	can_burn_food = 1
-	stat = POWEROFF
-	
-	appliancetype = GRILL
-
+	can_burn_food = TRUE
+	circuit = /obj/item/weapon/circuitboard/grill
 	active_power_usage = 4 KILOWATTS
+	heating_power = 4000
 	idle_power_usage = 2 KILOWATTS
+	
+	optimal_power = 1.2 // Things on the grill cook .6 faster - this is now the fastest appliance to heat and to cook on. BURGERS GO SIZZLE.
+
+	stat = POWEROFF // Starts turned off.
 
 	// Grill is faster to heat and setup than the rest.
 	optimal_temp = 120 + T0C
 	min_temp = 60 + T0C
 	resistance = 8 KILOWATTS // Very fast to heat up.
 	
+	max_contents = 3 // Arbitrary number, 3 grill 'racks'
 	container_type = /obj/item/weapon/reagent_containers/cooking_container/grill
 
+/* // Test Comment this out too, /cooker does this for us, and this path '/obj/machinery/appliance/grill' is invalid anyways, meaning it does jack shit. - Updated the paths, but I'm basically commenting all this shit out and if the grill works as-normal, none of this stuff is needed.
 /obj/machinery/appliance/grill/toggle_power()
 	set src in view()
 	set name = "Toggle Power"
@@ -42,12 +47,13 @@
 	playsound(src, 'sound/machines/click.ogg', 40, 1)
 	update_icon()
 
-/obj/machinery/appliance/grill/Initialize()
+
+/obj/machinery/appliance/cooker/grill/Initialize()
 	. = ..()
 	// cooking_objs += new /datum/cooking_item(new /obj/item/weapon/reagent_containers/cooking_container(src))
 	cooking = FALSE
 
-/obj/machinery/appliance/grill/has_space(var/obj/item/I)
+/obj/machinery/appliance/cooker/grill/has_space(var/obj/item/I)
 	var/datum/cooking_item/CI = cooking_objs[1]
 	if (!CI || !CI.container)
 		return 0
@@ -56,7 +62,8 @@
 		return CI
 
 	return 0
-
+*/
+/* // Test comment this out, I don't think this is doing shit anyways.
 //Container is not removable
 /obj/machinery/appliance/grill/removal_menu(var/mob/user)
 	if (can_remove_items(user))
@@ -79,14 +86,17 @@
 			update_icon()
 		return 1
 	return 0
+*/
 
-/obj/machinery/appliance/grill/update_icon()
+/obj/machinery/appliance/grill/update_icon() // TODO: Cooking icon
 	if(!stat)
 		icon_state = on_icon
 	else
 		icon_state = off_icon
 
+/* // Test remove this too.
 /obj/machinery/appliance/grill/process()
 	if (!stat)
 		for (var/i in cooking_objs)
 			do_cooking_tick(i)
+*/

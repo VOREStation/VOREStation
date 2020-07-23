@@ -45,6 +45,13 @@
 	cost = 10
 	containertype = /obj/structure/closet/crate
 	containername = "crate of bar supplies"
+	
+/datum/supply_pack/hospitality/cookingoil
+	name = "Cooking oil tank crate"
+	contains = list(/obj/structure/reagent_dispensers/cookingoil)
+	cost = 10
+	containertype = /obj/structure/largecrate
+	containername = "cooking oil tank crate"
 
 /datum/supply_pack/randomised/hospitality/
 	group = "Hospitality"

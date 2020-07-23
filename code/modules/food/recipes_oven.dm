@@ -421,27 +421,34 @@
 //============
 /datum/recipe/cake
 	appliance = OVEN
-	reagents = list("milk" = 5, "flour" = 15, "sugar" = 15, "egg" = 9)
+	reagents = list("milk" = 5, "flour" = 15, "sugar" = 15, "egg" = 9, "vanilla" = 1)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/plaincake
 	reagent_mix = RECIPE_REAGENT_REPLACE
 
 /datum/recipe/cake/carrot
 	appliance = OVEN
 	fruit = list("carrot" = 3)
+	reagents = list("milk" = 5, "flour" = 15, "egg" = 9,"sugar" = 5)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/carrotcake
 
 /datum/recipe/cake/cheese
 	appliance = OVEN
+	reagents = list("milk" = 5, "flour" = 15, "sugar" = 15, "egg" = 9)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/cheesewedge,
 		/obj/item/weapon/reagent_containers/food/snacks/cheesewedge
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/cheesecake
+	
+/datum/recipe/cake/peanut
+	fruit = list("peanut" = 3)
+	reagents = list("milk" = 5, "flour" = 10, "sugar" = 5, "egg" = 6, "peanutbutter" = 5)
+	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/peanutcake
 
 /datum/recipe/cake/orange
 	appliance = OVEN
 	fruit = list("orange" = 1)
-	reagents = list("milk" = 5, "flour" = 15, "egg" = 9, "orangejuice" = 3, "sugar" = 5)
+	reagents = list("milk" = 5, "flour" = 15, "egg" = 9, "sugar" = 5)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/orangecake
 
 /datum/recipe/cake/lime
@@ -464,16 +471,19 @@
 
 /datum/recipe/cake/birthday
 	appliance = OVEN
+	reagents = list("milk" = 5, "flour" = 15, "sugar" = 15, "egg" = 9)
 	items = list(/obj/item/clothing/head/cakehat)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/birthdaycake
 
 /datum/recipe/cake/apple
 	appliance = OVEN
 	fruit = list("apple" = 2)
+	reagents = list("milk" = 5, "flour" = 15, "egg" = 9,"sugar" = 5)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/applecake
 
 /datum/recipe/cake/brain
 	appliance = OVEN
+	reagents = list("milk" = 5, "flour" = 15, "sugar" = 15, "egg" = 9)
 	items = list(/obj/item/organ/internal/brain)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/braincake
 

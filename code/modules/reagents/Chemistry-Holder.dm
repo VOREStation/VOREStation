@@ -282,6 +282,34 @@
 
 	trans_to(target, amount, multiplier, copy)
 
+/datum/reagents/proc/trans_type_to(var/target, var/rtype, var/amount = 1)
+	if (!target)
+		return
+
+	var/datum/reagent/transfering_reagent = get_reagent(rtype)
+
+	if (istype(target, /atom))
+		var/atom/A = target
+		if (!A.reagents || !A.simulated)
+			return
+
+	amount = min(amount, transfering_reagent.volume)
+
+	if(!amount)
+		return
+
+
+	var/datum/reagents/F = new /datum/reagents(amount)
+	var/tmpdata = get_data(rtype)
+	F.add_reagent(rtype, amount, tmpdata)
+	remove_reagent(rtype, amount)
+
+
+	if (istype(target, /atom))
+		return F.trans_to(target, amount) // Let this proc check the atom's type
+	else if (istype(target, /datum/reagents))
+		return F.trans_to_holder(target, amount)
+
 /datum/reagents/proc/trans_id_to(var/atom/target, var/id, var/amount = 1)
 	if (!target || !target.reagents)
 		return

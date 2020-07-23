@@ -193,25 +193,25 @@
 	if(!result)
 		log_runtime(EXCEPTION("<span class='danger'>Recipe [type] is defined without a result, please bug report this.</span>"))
 		return
-	
 
-// We will subtract all the ingredients from the container, and transfer their reagents into a holder
-// We will not touch things which are not required for this recipe. They will be left behind for the caller
-// to decide what to do. They may be used again to make another recipe or discarded, or merged into the results,
-// thats no longer the concern of this proc
-	var/obj/temp = new /obj(src)
-	temp.create_reagents(999999999)
 
-	// Find items we need
-	if(items && items.len)
+//We will subtract all the ingredients from the container, and transfer their reagents into a holder
+//We will not touch things which are not required for this recipe. They will be left behind for the caller
+//to decide what to do. They may be used again to make another recipe or discarded, or merged into the results,
+//thats no longer the concern of this proc
+	var/datum/reagents/buffer = new /datum/reagents(10000000000, null)//
+
+
+	//Find items we need
+	if (items && items.len)
 		for (var/i in items)
 			var/obj/item/I = locate(i) in container
 			if (I && I.reagents)
-				I.reagents.trans_to_holder(temp.reagents,I.reagents.total_volume)
+				I.reagents.trans_to_holder(buffer,I.reagents.total_volume)
 				qdel(I)
 
-	// Find fruits
-	if(fruit && fruit.len)
+	//Find fruits
+	if (fruit && fruit.len)
 		var/list/checklist = list()
 		checklist = fruit.Copy()
 
@@ -219,18 +219,18 @@
 			if(!G.seed || !G.seed.kitchen_tag || isnull(checklist[G.seed.kitchen_tag]))
 				continue
 
-			if(checklist[G.seed.kitchen_tag] > 0)
+			if (checklist[G.seed.kitchen_tag] > 0)
 				//We found a thing we need
 				checklist[G.seed.kitchen_tag]--
-				if(G && G.reagents)
-					G.reagents.trans_to_holder(temp.reagents,G.reagents.total_volume)
+				if (G && G.reagents)
+					G.reagents.trans_to_holder(buffer,G.reagents.total_volume)
 				qdel(G)
 
-	// And lastly deduct necessary quantities of reagents
-	if(reagents && reagents.len)
+	//And lastly deduct necessary quantities of reagents
+	if (reagents && reagents.len)
 		for (var/r in reagents)
-			// Doesnt matter whether or not there's enough, we assume that check is done before
-			container.reagents.trans_id_to(temp, r, reagents[r])
+			//Doesnt matter whether or not there's enough, we assume that check is done before
+			container.reagents.trans_type_to(buffer, r, reagents[r])
 
 	/*
 	Now we've removed all the ingredients that were used and we have the buffer containing the total of
@@ -244,64 +244,62 @@
 	If, as in the most common case, there is only a single result, then it will just be a reference to
 	the single-result's reagents
 	*/
-	var/obj/tempholder = new(src)
-	tempholder.create_reagents(999999999)
+	var/datum/reagents/holder = new/datum/reagents(10000000000)
 	var/list/results = list()
 	while (tally < result_quantity)
 		var/obj/result_obj = new result(container)
 		results.Add(result_obj)
 
-		if(!result_obj.reagents)//This shouldn't happen
+		if (!result_obj.reagents)//This shouldn't happen
 			//If the result somehow has no reagents defined, then create a new holder
-			log_runtime(EXCEPTION("<span class='danger'>[result_obj] had no reagents!</span>"))
-			result_obj.create_reagents(temp.reagents.total_volume*1.5)
+			result_obj.reagents = new /datum/reagents(buffer.total_volume*1.5, result_obj)
 
-		if(result_quantity == 1)
-			qdel(tempholder.reagents)
-			tempholder.reagents = result_obj.reagents
+		if (result_quantity == 1)
+			qdel(holder)
+			holder = result_obj.reagents
 		else
-			log_runtime(EXCEPTION("<span class='danger'>[result_quantity] was greater than 1! Check [result_obj]!</span>"))
-			result_obj.reagents.trans_to(tempholder.reagents, result_obj.reagents.total_volume)
+			result_obj.reagents.trans_to(holder, result_obj.reagents.total_volume)
 		tally++
 
 
 	switch(reagent_mix)
-		if(RECIPE_REAGENT_REPLACE)
+		if (RECIPE_REAGENT_REPLACE)
 			//We do no transferring
-		if(RECIPE_REAGENT_SUM)
+		if (RECIPE_REAGENT_SUM)
 			//Sum is easy, just shove the entire buffer into the result
-			temp.reagents.trans_to_holder(tempholder.reagents, temp.reagents.total_volume)
-		if(RECIPE_REAGENT_MAX)
+			buffer.trans_to_holder(holder, buffer.total_volume)
+		if (RECIPE_REAGENT_MAX)
 			//We want the highest of each.
 			//Iterate through everything in buffer. If the target has less than the buffer, then top it up
-			for (var/datum/reagent/R in temp.reagents.reagent_list)
-				var/rvol = tempholder.reagents.get_reagent_amount(R.id)
+			for (var/datum/reagent/R in buffer.reagent_list)
+				var/rvol = holder.get_reagent_amount(R.type)
 				if (rvol < R.volume)
 					//Transfer the difference
-					temp.reagents.trans_id_to(tempholder, R.id, R.volume-rvol)
+					buffer.trans_type_to(holder, R.type, R.volume-rvol)
 
-		if(RECIPE_REAGENT_MIN)
+		if (RECIPE_REAGENT_MIN)
 			//Min is slightly more complex. We want the result to have the lowest from each side
 			//But zero will not count. Where a side has zero its ignored and the side with a nonzero value is used
-			for (var/datum/reagent/R in temp.reagents.reagent_list)
-				var/rvol = tempholder.reagents.get_reagent_amount(R.id)
-				if(rvol == 0) //If the target has zero of this reagent
-					temp.reagents.trans_id_to(tempholder, R.id, R.volume)
+			for (var/datum/reagent/R in buffer.reagent_list)
+				var/rvol = holder.get_reagent_amount(R.type)
+				if (rvol == 0) //If the target has zero of this reagent
+					buffer.trans_type_to(holder, R.type, R.volume)
 					//Then transfer all of ours
 
-				else if(rvol > R.volume)
+				else if (rvol > R.volume)
 					//if the target has more than ours
 					//Remove the difference
-					tempholder.reagents.remove_reagent(R.id, rvol-R.volume)
+					holder.remove_reagent(R.type, rvol-R.volume)
 
 
-	if(results.len > 1)
+	if (results.len > 1)
 		//If we're here, then holder is a buffer containing the total reagents for all the results.
 		//So now we redistribute it among them
-		var/total = tempholder.reagents.total_volume
+		var/total = holder.total_volume
 		for (var/i in results)
 			var/atom/a = i //optimisation
-			tempholder.reagents.trans_to(a, total / results.len)
+			holder.trans_to(a, total / results.len)
+
 	return results
 
 // When exact is false, extraneous ingredients are ignored
