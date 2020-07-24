@@ -1,5 +1,6 @@
 /mob/Logout()
 	SSnanoui.user_logout(src) // this is used to clean up (remove) this user's Nano UIs
+	SStgui.on_logout(src) // Cleanup any TGUIs the user has open
 	player_list -= src
 	disconnect_time = world.realtime	//VOREStation Addition: logging when we disappear.
 	update_client_z(null)

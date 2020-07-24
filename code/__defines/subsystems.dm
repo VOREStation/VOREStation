@@ -77,6 +77,7 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 #define INIT_ORDER_AI			-22
 #define INIT_ORDER_AI_FAST		-23
 #define INIT_ORDER_GAME_MASTER	-24
+#define INIT_ORDER_PERSISTENCE	-25
 #define INIT_ORDER_TICKER		-50
 #define INIT_ORDER_CHAT			-100 //Should be last to ensure chat remains smooth during init.
 
@@ -100,6 +101,7 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 #define FIRE_PRIORITY_TICKER		60
 #define FIRE_PRIORITY_PLANETS		75
 #define FIRE_PRIORITY_MACHINES		100
+#define FIRE_PRIORITY_TGUI			110
 #define FIRE_PRIORITY_PROJECTILES	150
 #define FIRE_PRIORITY_CHAT			400
 #define FIRE_PRIORITY_OVERLAYS		500

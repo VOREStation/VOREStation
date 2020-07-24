@@ -1,4 +1,4 @@
-/turf/simulated/floor/attackby(obj/item/C as obj, mob/user as mob)
+/turf/simulated/floor/attackby(var/obj/item/C, var/mob/user)
 
 	if(!C || !user)
 		return 0
@@ -8,6 +8,9 @@
 		if(L.a_intent != I_HELP)
 			attack_tile(C, L) // Be on help intent if you want to decon something.
 			return
+
+	if(!(C.is_screwdriver() && flooring && (flooring.flags & TURF_REMOVE_SCREWDRIVER)) && try_graffiti(user, C))
+		return
 
 	if(istype(C, /obj/item/stack/tile/roofing))
 		var/expended_tile = FALSE // To track the case. If a ceiling is built in a multiz zlevel, it also necessarily roofs it against weather

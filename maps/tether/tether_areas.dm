@@ -221,6 +221,12 @@
 	name = "\improper Bar Backroom"
 	icon_state = "red"
 	sound_env = SMALL_SOFTFLOOR
+/area/tether/surfacebase/servicebackroom
+	name = "\improper Service Block Backroom"
+	icon_state = "red"
+/area/tether/surfacebase/barbackmaintenance
+	name = "\improper Bar Back Maintenance"
+	icon_state = "red"
 
 /area/tether/surfacebase/public_garden_lg
 	name = "\improper Public Garden Looking Glass"
@@ -377,6 +383,23 @@
 	name = "\improper Library Private Study"
 	lightswitch = 0
 	icon_state = "library"
+
+/area/tether/surfacebase/entertainment
+	name = "\improper Entertainment Auditorium"
+	icon_state = "library"
+
+/area/tether/surfacebase/entertainment/stage
+	name = "\improper Entertainment Stage"
+	icon_state = "library"
+
+/area/tether/surfacebase/entertainment/backstage
+	name = "\improper Entertainment Backstage"
+	icon_state = "library"
+
+/area/tether/surfacebase/botanystorage
+	name = "\improper Botany Storage"
+	icon_state = "library"
+
 
 /area/tether/surfacebase/security
 	icon_state = "security"
@@ -536,6 +559,15 @@
 	icon_state = "research"
 /area/rnd/breakroom/bathroom
 	name = "\improper Research Bathroom"
+	icon_state = "research"
+/area/rnd/testingroom
+	name = "\improper Research Testing Room"
+	icon_state = "research"
+/area/rnd/hardstorage
+	name = "\improper Research Hard Storage"
+	icon_state = "research"
+/area/rnd/tankstorage
+	name = "\improper Research Tank Storage"
 	icon_state = "research"
 
 //TFF 28/8/19 - cleanup of areas placement

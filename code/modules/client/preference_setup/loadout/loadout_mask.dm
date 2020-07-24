@@ -21,3 +21,7 @@
 	display_name = "sterile mask"
 	path = /obj/item/clothing/mask/surgical
 	cost = 2
+
+/datum/gear/mask/veil
+	display_name = "black veil"
+	path = /obj/item/clothing/mask/veil

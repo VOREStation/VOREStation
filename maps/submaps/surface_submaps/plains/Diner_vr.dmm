@@ -109,7 +109,7 @@
 /turf/simulated/floor/tiled/white,
 /area/submap/Diner)
 "aw" = (
-/obj/machinery/cooker/cereal,
+/obj/machinery/appliance/mixer/cereal,
 /obj/machinery/light{
 	icon_state = "tube1";
 	dir = 4
@@ -286,7 +286,7 @@
 /turf/simulated/floor/tiled/white,
 /area/submap/Diner)
 "aX" = (
-/obj/machinery/cooker/fryer,
+/obj/machinery/appliance/cooker/fryer,
 /turf/simulated/floor/tiled/white,
 /area/submap/Diner)
 "aY" = (
@@ -310,7 +310,7 @@
 /area/submap/Diner)
 "bb" = (
 /obj/effect/floor_decal/corner/red/diagonal,
-/obj/machinery/cooker/grill,
+/obj/machinery/appliance/cooker/grill,
 /turf/simulated/floor/tiled/white,
 /area/submap/Diner)
 "bc" = (

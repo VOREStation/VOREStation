@@ -153,7 +153,9 @@
 		/obj/item/weapon/reagent_containers/glass,
 		/obj/item/weapon/reagent_containers/food,
 		/obj/item/seeds,
-		/obj/item/weapon/grown
+		/obj/item/weapon/grown,
+		/obj/item/trash,
+		/obj/item/weapon/reagent_containers/cooking_container
 		)
 
 /obj/item/weapon/gripper/gravekeeper	//Used for handling grave things, flowers, etc.
@@ -467,7 +469,7 @@
 
 	for(var/obj/W in T)
 		//Different classes of items give different commodities.
-		if(istype(W,/obj/item/weapon/cigbutt))
+		if(istype(W,/obj/item/trash/cigbutt))
 			if(plastic)
 				plastic.add_charge(500)
 		else if(istype(W,/obj/effect/spider/spiderling))

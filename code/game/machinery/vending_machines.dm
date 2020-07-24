@@ -365,7 +365,7 @@
 	/obj/item/weapon/reagent_containers/food/condiment/cornoil = 5,
 	/obj/item/weapon/tray = 8,
 	/obj/item/weapon/material/kitchen/utensil/fork = 6,
-	/obj/item/weapon/material/knife = 6,
+	/obj/item/weapon/material/knife/plastic = 6,
 	/obj/item/weapon/material/kitchen/utensil/spoon = 6,
 	/obj/item/weapon/material/knife = 3,
 	/obj/item/weapon/material/kitchen/rollingpin = 2,
@@ -383,6 +383,8 @@
 	/obj/item/weapon/storage/toolbox/lunchbox/cti = 3,
 	/obj/item/weapon/storage/toolbox/lunchbox/nymph = 3,
 	/obj/item/weapon/storage/toolbox/lunchbox/syndicate = 3,
+	/obj/item/weapon/reagent_containers/cooking_container/oven = 5,
+	/obj/item/weapon/reagent_containers/cooking_container/fryer = 4,
 	/obj/item/trash/bowl = 10) //VOREStation Add
 	contraband = list(/obj/item/weapon/material/knife/butch = 2)
 

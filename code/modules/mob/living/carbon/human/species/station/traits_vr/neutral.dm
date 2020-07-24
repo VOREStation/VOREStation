@@ -19,19 +19,19 @@
 	var_changes = list("metabolic_rate" = 1.4, "hunger_factor" = 0.4, "metabolism" = 0.012) // +40% rate and 8x hunger (Double Teshari)
 	excludes = list(/datum/trait/metabolism_up, /datum/trait/metabolism_down)
 
-/datum/trait/cold_discomfort
-	name = "Hot-Blooded"
-	desc = "You are too hot at the standard 20C. 18C is more suitable. Rolling down your jumpsuit or being unclothed helps."
+/datum/trait/coldadapt
+	name = "Cold-Adapted"
+	desc = "You are able to withstand much colder temperatures than other species, and can even be comfortable in extremely cold environments. You are also more vulnerable to hot environments as a consequence of these adaptations."
 	cost = 0
-	var_changes = list("heat_discomfort_level" = T0C+19)
-	excludes = list(/datum/trait/hot_discomfort)
-
-/datum/trait/hot_discomfort
-	name = "Cold-Blooded"
-	desc = "You are too cold at the standard 20C. 22C is more suitable. Wearing clothing that covers your legs and torso helps."
+	var_changes = list("cold_level_1" = 200,  "cold_level_2" = 150, "cold_level_3" = 90, "breath_cold_level_1" = 180, "breath_cold_level_2" = 100, "breath_cold_level_3" = 60, "cold_discomfort_level" = 210, "heat_level_1" = 305, "heat_level_2" = 360, "heat_level_3" = 700, "breath_heat_level_1" = 345, "breath_heat_level_2" = 380, "breath_heat_level_3" = 780, "heat_discomfort_level" = 295)
+	excludes = list(/datum/trait/hotadapt)
+	
+/datum/trait/hotadapt
+	name = "Heat-Adapted"
+	desc = "You are able to withstand much hotter temperatures than other species, and can even be comfortable in extremely hot environments. You are also more vulnerable to cold environments as a consequence of these adaptations."
 	cost = 0
-	var_changes = list("cold_discomfort_level" = T0C+21)
-	excludes = list(/datum/trait/cold_discomfort)
+	var_changes = list("heat_level_1" = 420, "heat_level_2" = 460, "heat_level_3" = 1100, "breath_heat_level_1" = 440, "breath_heat_level_2" = 510, "breath_heat_level_3" = 1500, "heat_discomfort_level" = 390, "cold_level_1" = 280, "cold_level_2" = 220, "cold_level_3" = 140, "breath_cold_level_1" = 260, "breath_cold_level_2" = 240, "breath_cold_level_3" = 120, "cold_discomfort_level" = 280)
+	excludes = list(/datum/trait/coldadapt)
 
 /datum/trait/autohiss_unathi
 	name = "Autohiss (Unathi)"

@@ -126,7 +126,7 @@
 			return 1
 
 /obj/item/weapon/tape_roll/proc/stick(var/obj/item/weapon/W, mob/user)
-	if(!istype(W, /obj/item/weapon/paper))
+	if(!istype(W, /obj/item/weapon/paper) || istype(W, /obj/item/weapon/paper/sticky) || !user.unEquip(W))
 		return
 	user.drop_from_inventory(W)
 	var/obj/item/weapon/ducttape/tape = new(get_turf(src))

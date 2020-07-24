@@ -761,8 +761,210 @@
 		"lid_stripes" = COLOR_NT_RED
 	)
 
+// Freezers
+
 /decl/closet_appearance/crate/freezer
+	color = COLOR_OFF_WHITE
+
+/decl/closet_appearance/crate/freezer/centauri
 	color = COLOR_BABY_BLUE
+	extra_decals = list(
+		"centauri" = COLOR_OFF_WHITE
+	)
+
+/decl/closet_appearance/crate/freezer/nanotrasen
+	color = COLOR_BABY_BLUE
+	extra_decals = list(
+		"nano" = COLOR_OFF_WHITE
+	)
+
+// Corporate Branding
+
+/decl/closet_appearance/crate/aether
+	color = COLOR_YELLOW_GRAY
+	decals = list(
+		"crate_stripes" = COLOR_BLUE_LIGHT,
+		"aether" = COLOR_OFF_WHITE
+	)
+
+/decl/closet_appearance/crate/allico
+	color = COLOR_LIGHT_VIOLET
+	decals = list(
+		"crate_stripe" = COLOR_AMBER
+	)
+
+/decl/closet_appearance/crate/carp
+	color = COLOR_PURPLE
+	decals = list(
+		"toptext" = COLOR_OFF_WHITE,
+		"crate_reticle" = COLOR_OFF_WHITE
+	)
+
+/decl/closet_appearance/crate/centauri
+	color = COLOR_BABY_BLUE
+	decals = list(
+		"crate_stripe" = COLOR_LUMINOL
+	)
+	extra_decals = list(
+		"centauri" = COLOR_OFF_WHITE
+	)
+
+/decl/closet_appearance/crate/cybersolutions
+	color = COLOR_ALUMINIUM
+	extra_decals = list(
+		"hazard" = COLOR_DARK_GOLD,
+		"toptext" = COLOR_DARK_GOLD
+	)
+
+/decl/closet_appearance/crate/einstein
+	color = COLOR_DARK_BLUE_GRAY
+	extra_decals = list(
+		"crate_stripe_left" = COLOR_BEIGE,
+		"crate_stripe_right" = COLOR_BEIGE,
+		"einstein" = COLOR_OFF_WHITE,
+		"hazard" = COLOR_OFF_WHITE
+	)
+
+/decl/closet_appearance/crate/focalpoint
+	color = COLOR_GOLD
+	extra_decals = list(
+		"crate_stripe_left" = COLOR_NAVY_BLUE,
+		"crate_stripe_right" = COLOR_NAVY_BLUE,
+		"focal" = COLOR_OFF_WHITE,
+		"hazard" = COLOR_NAVY_BLUE
+	)
+
+/decl/closet_appearance/crate/galaksi
+	color = COLOR_OFF_WHITE
+	decals = list(
+		"lid_stripes" = COLOR_HULL,
+		"galaksi" = COLOR_OFF_WHITE
+	)
+
+/decl/closet_appearance/crate/gilthari
+	color = COLOR_GRAY20
+	extra_decals = list(
+		"crate_stripe_left" = COLOR_GOLD,
+		"crate_stripe_right" = COLOR_GOLD,
+		"gilthari" = COLOR_OFF_WHITE
+	)
+
+/decl/closet_appearance/crate/grayson
+	color = COLOR_STEEL
+	extra_decals = list(
+		"crate_stripe_left" = COLOR_MAROON,
+		"crate_stripe_right" = COLOR_MAROON,
+		"grayson" = COLOR_OFF_WHITE
+	)
+
+/decl/closet_appearance/crate/heph
+	color = COLOR_GRAY20
+	extra_decals = list(
+		"crate_stripe_left" = COLOR_NT_RED,
+		"crate_stripe_right" = COLOR_NT_RED,
+		"heph" = COLOR_OFF_WHITE
+	)
+
+/decl/closet_appearance/crate/morpheus
+	color = COLOR_ALUMINIUM
+	extra_decals = list(
+		"hazard" = COLOR_GUNMETAL,
+		"toptext" = COLOR_GUNMETAL
+	)
+
+/decl/closet_appearance/crate/nanotrasen
+	color = COLOR_NT_RED
+	extra_decals = list(
+		"crate_stripe_left" = COLOR_OFF_WHITE,
+		"crate_stripe_right" = COLOR_OFF_WHITE,
+		"nano" = COLOR_OFF_WHITE
+	)
+
+/decl/closet_appearance/crate/nanotrasenclothing
+	color = COLOR_NT_RED
+	extra_decals = list(
+		"crate_stripe_left" = COLOR_SEDONA,
+		"crate_stripe_right" = COLOR_SEDONA,
+		"nano" = COLOR_OFF_WHITE
+	)
+
+/decl/closet_appearance/crate/nanotrasenmedical
+	color = COLOR_OFF_WHITE
+	extra_decals = list(
+		"crate_stripe" = COLOR_NT_RED,
+		"nano" = COLOR_OFF_WHITE
+	)
+
+/decl/closet_appearance/crate/oculum
+	color = COLOR_SURGERY_BLUE
+	decals = list(
+		"crate_stripe_left" = COLOR_OFF_WHITE,
+		"crate_stripe_right" = COLOR_OFF_WHITE,
+		"oculum" = COLOR_OFF_WHITE
+	)
+
+/decl/closet_appearance/crate/secure/saare
+	color = COLOR_ALUMINIUM
+	extra_decals = list(
+		"hazard" = COLOR_RED,
+		"xion" = COLOR_GRAY40
+	)
+
+/decl/closet_appearance/crate/thinktronic
+	color = COLOR_PALE_PURPLE_GRAY
+	decals = list(
+		"toptext" = COLOR_OFF_WHITE
+	)
+
+/decl/closet_appearance/crate/ummarcar
+	color = COLOR_BEIGE
+	decals = list(
+		"crate_stripes" = COLOR_OFF_WHITE,
+		"toptext" = COLOR_GRAY20
+	)
+
+/decl/closet_appearance/crate/unathiimport
+	color = COLOR_SILVER
+	decals = list(
+		"crate_stripe" = COLOR_RED,
+		"crate_reticle" = COLOR_RED_GRAY
+	)
+
+/decl/closet_appearance/crate/veymed
+	color = COLOR_OFF_WHITE
+	decals = list(
+		"crate_stripe" = COLOR_PALE_BTL_GREEN
+	)
+	extra_decals = list(
+		"lid_stripes" = COLOR_RED,
+		"crate_cross" = COLOR_GREEN
+	)
+
+/decl/closet_appearance/crate/ward
+	color = COLOR_OFF_WHITE
+	extra_decals = list(
+		"crate_stripe_left" = COLOR_COMMAND_BLUE,
+		"crate_stripe_right" = COLOR_COMMAND_BLUE,
+		"hazard" = COLOR_OFF_WHITE,
+		"wt" = COLOR_OFF_WHITE
+	)
+
+/decl/closet_appearance/crate/xion
+	color = COLOR_ORANGE
+	extra_decals = list(
+		"crate_stripes" = COLOR_OFF_WHITE,
+		"xion" = COLOR_OFF_WHITE,
+		"hazard" = COLOR_OFF_WHITE
+	)
+
+/decl/closet_appearance/crate/zenghu
+	color = COLOR_OFF_WHITE
+	extra_decals = list(
+		"crate_stripes" = COLOR_RED,
+		"zenghu" = COLOR_OFF_WHITE
+	)
+
+// Secure Crates
 
 /decl/closet_appearance/crate/secure
 	can_lock = TRUE
@@ -775,7 +977,8 @@
 	extra_decals = list(
 		"crate_stripe_left" = COLOR_OFF_WHITE,
 		"crate_stripe_right" = COLOR_OFF_WHITE,
-		"toxin" = COLOR_OFF_WHITE
+		"toxin" = COLOR_OFF_WHITE,
+		"nano" = COLOR_OFF_WHITE
 	)
 
 /decl/closet_appearance/crate/secure/weapon
@@ -789,16 +992,61 @@
 		"hazard" = COLOR_OFF_WHITE
 	)
 
-/decl/closet_appearance/crate/secure/heph
-	color = COLOR_GRAY20
+// Secure corporate branding
+
+/decl/closet_appearance/crate/secure/aether
+	color = COLOR_YELLOW_GRAY
 	decals = list(
 		"crate_bracing"
 	)
 	extra_decals = list(
-		"crate_stripe_left" = COLOR_NT_RED,
-		"crate_stripe_right" = COLOR_NT_RED,
-		"hazard" = COLOR_OFF_WHITE,
-		"heph" = COLOR_OFF_WHITE
+		"crate_stripes" = COLOR_BLUE_LIGHT,
+		"aether" = COLOR_OFF_WHITE
+	)
+
+/decl/closet_appearance/crate/secure/bishop
+	color = COLOR_OFF_WHITE
+	decals = list(
+		"crate_bracing"
+	)
+	extra_decals = list(
+		"crate_stripe_left" = COLOR_SKY_BLUE,
+		"crate_stripe_right" = COLOR_SKY_BLUE,
+		"bishop" = COLOR_OFF_WHITE
+	)
+
+/decl/closet_appearance/crate/secure/cybersolutions
+	color = COLOR_ALUMINIUM
+	decals = list(
+		"crate_bracing"
+	)
+	extra_decals = list(
+		"hazard" = COLOR_DARK_GOLD,
+		"toptext" = COLOR_DARK_GOLD
+	)
+
+/decl/closet_appearance/crate/secure/einstein
+	color = COLOR_DARK_BLUE_GRAY
+	decals = list(
+		"crate_bracing"
+	)
+	extra_decals = list(
+		"crate_stripe_left" = COLOR_BEIGE,
+		"crate_stripe_right" = COLOR_BEIGE,
+		"einstein" = COLOR_OFF_WHITE,
+		"hazard" = COLOR_OFF_WHITE
+	)
+
+/decl/closet_appearance/crate/secure/focalpoint
+	color = COLOR_GOLD
+	decals = list(
+		"crate_bracing"
+	)
+	extra_decals = list(
+		"crate_stripe_left" = COLOR_NAVY_BLUE,
+		"crate_stripe_right" = COLOR_NAVY_BLUE,
+		"focal" = COLOR_OFF_WHITE,
+		"hazard" = COLOR_NAVY_BLUE
 	)
 
 /decl/closet_appearance/crate/secure/gilthari
@@ -813,16 +1061,15 @@
 		"gilthari" = COLOR_OFF_WHITE
 	)
 
-/decl/closet_appearance/crate/secure/ward
-	color = COLOR_OFF_WHITE
+/decl/closet_appearance/crate/secure/grayson
+	color = COLOR_STEEL
 	decals = list(
 		"crate_bracing"
 	)
 	extra_decals = list(
-		"crate_stripe_left" = COLOR_COMMAND_BLUE,
-		"crate_stripe_right" = COLOR_COMMAND_BLUE,
-		"hazard" = COLOR_OFF_WHITE,
-		"wt" = COLOR_OFF_WHITE
+		"crate_stripe_left" = COLOR_MAROON,
+		"crate_stripe_right" = COLOR_MAROON,
+		"grayson" = COLOR_OFF_WHITE
 	)
 
 /decl/closet_appearance/crate/secure/hedberg
@@ -837,6 +1084,18 @@
 		"hedberg" = COLOR_OFF_WHITE
 	)
 
+/decl/closet_appearance/crate/secure/heph
+	color = COLOR_GRAY20
+	decals = list(
+		"crate_bracing"
+	)
+	extra_decals = list(
+		"crate_stripe_left" = COLOR_NT_RED,
+		"crate_stripe_right" = COLOR_NT_RED,
+		"hazard" = COLOR_OFF_WHITE,
+		"heph" = COLOR_OFF_WHITE
+	)
+
 /decl/closet_appearance/crate/secure/lawson
 	color = COLOR_SAN_MARINO_BLUE
 	decals = list(
@@ -847,6 +1106,103 @@
 		"crate_stripe_right" = COLOR_OFF_WHITE,
 		"hazard" = COLOR_OFF_WHITE,
 		"lawson" = COLOR_OFF_WHITE
+	)
+
+/decl/closet_appearance/crate/secure/morpheus
+	color = COLOR_ALUMINIUM
+	decals = list(
+		"crate_bracing"
+	)
+	extra_decals = list(
+		"hazard" = COLOR_GUNMETAL,
+		"toptext" = COLOR_GUNMETAL
+	)
+
+/decl/closet_appearance/crate/secure/nanotrasen
+	color = COLOR_NT_RED
+	decals = list(
+		"crate_bracing"
+	)
+	extra_decals = list(
+		"crate_stripe_left" = COLOR_OFF_WHITE,
+		"crate_stripe_right" = COLOR_OFF_WHITE,
+		"nano" = COLOR_OFF_WHITE
+	)
+
+/decl/closet_appearance/crate/secure/nanotrasenmedical
+	color = COLOR_OFF_WHITE
+	decals = list(
+		"crate_bracing"
+	)
+	extra_decals = list(
+		"crate_stripe" = COLOR_NT_RED,
+		"nano" = COLOR_OFF_WHITE
+	)
+
+/decl/closet_appearance/crate/secure/saare
+	color = COLOR_ALUMINIUM
+	decals = list(
+		"crate_bracing"
+	)
+	extra_decals = list(
+		"hazard" = COLOR_RED,
+		"xion" = COLOR_GRAY40
+	)
+
+/decl/closet_appearance/crate/secure/solgov
+	color = COLOR_SAN_MARINO_BLUE
+	decals = list(
+		"crate_bracing"
+	)
+	extra_decals = list(
+		"crate_stripe_left" = COLOR_OFF_WHITE,
+		"crate_stripes" = COLOR_OFF_WHITE,
+		"hazard" = COLOR_OFF_WHITE,
+		"scg" = COLOR_OFF_WHITE
+	)
+
+/decl/closet_appearance/crate/secure/veymed
+	color = COLOR_OFF_WHITE
+	decals = list(
+		"crate_bracing",
+		"crate_stripe" = COLOR_PALE_BTL_GREEN
+	)
+	extra_decals = list(
+		"lid_stripes" = COLOR_RED,
+		"crate_cross" = COLOR_GREEN
+	)
+
+/decl/closet_appearance/crate/secure/ward
+	color = COLOR_OFF_WHITE
+	decals = list(
+		"crate_bracing"
+	)
+	extra_decals = list(
+		"crate_stripe_left" = COLOR_COMMAND_BLUE,
+		"crate_stripe_right" = COLOR_COMMAND_BLUE,
+		"hazard" = COLOR_OFF_WHITE,
+		"wt" = COLOR_OFF_WHITE
+	)
+
+/decl/closet_appearance/crate/secure/xion
+	color = COLOR_ORANGE
+	decals = list(
+		"crate_bracing"
+	)
+	extra_decals = list(
+		"crate_stripes" = COLOR_OFF_WHITE,
+		"xion" = COLOR_OFF_WHITE,
+		"hazard" = COLOR_OFF_WHITE
+	)
+
+/decl/closet_appearance/crate/secure/zenghu
+	color = COLOR_OFF_WHITE
+	decals = list(
+		"crate_bracing"
+	)
+	extra_decals = list(
+		"crate_stripes" = COLOR_RED,
+		"zenghu" = COLOR_OFF_WHITE
 	)
 
 /decl/closet_appearance/crate/secure/hydroponics
@@ -869,6 +1225,7 @@
 	extra_decals = null
 
 /decl/closet_appearance/large_crate/critter
+	color = COLOR_BEIGE
 	decals = list(
 		"airholes"
 	)
@@ -882,11 +1239,87 @@
 		"text" = COLOR_GREEN_GRAY
 	)
 
+/decl/closet_appearance/large_crate/aether
+	color = COLOR_YELLOW_GRAY
+	decals = list(
+		"crate_bracing"
+	 )
+	extra_decals = list(
+		"text" = COLOR_BLUE_LIGHT
+	)
+
+/decl/closet_appearance/large_crate/einstein
+	color = COLOR_DARK_BLUE_GRAY
+	decals = list(
+		"crate_bracing"
+	 )
+	extra_decals = list(
+		"text" = COLOR_BEIGE
+	)
+
+/decl/closet_appearance/large_crate/nanotrasen
+	color = COLOR_NT_RED
+	decals = list(
+		"crate_bracing"
+	 )
+	extra_decals = list(
+		"text" = COLOR_OFF_WHITE
+	)
+
+/decl/closet_appearance/large_crate/xion
+	color = COLOR_ORANGE
+	decals = list(
+		"crate_bracing"
+	 )
+	extra_decals = list(
+		"text" = COLOR_OFF_WHITE
+	)
+
 /decl/closet_appearance/large_crate/secure
 	can_lock = TRUE
 
 /decl/closet_appearance/large_crate/secure/hazard
 	color = COLOR_NT_RED
+	decals = list(
+		"crate_bracing"
+	 )
+	extra_decals = list(
+		"marking" = COLOR_OFF_WHITE,
+		"text_upper" = COLOR_OFF_WHITE
+	)
+
+/decl/closet_appearance/large_crate/secure/aether
+	color = COLOR_YELLOW_GRAY
+	decals = list(
+		"crate_bracing"
+	 )
+	extra_decals = list(
+		"marking" = COLOR_OFF_WHITE,
+		"text_upper" = COLOR_BLUE_LIGHT
+	)
+
+/decl/closet_appearance/large_crate/secure/einstein
+	color = COLOR_DARK_BLUE_GRAY
+	decals = list(
+		"crate_bracing"
+	 )
+	extra_decals = list(
+		"marking" = COLOR_OFF_WHITE,
+		"text_upper" = COLOR_BEIGE
+	)
+
+/decl/closet_appearance/large_crate/secure/heph
+	color = COLOR_GRAY20
+	decals = list(
+		"crate_bracing"
+	 )
+	extra_decals = list(
+		"marking" = COLOR_NT_RED,
+		"text_upper" = COLOR_NT_RED
+	)
+
+/decl/closet_appearance/large_crate/secure/xion
+	color = COLOR_ORANGE
 	decals = list(
 		"crate_bracing"
 	 )

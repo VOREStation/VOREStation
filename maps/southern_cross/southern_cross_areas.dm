@@ -60,6 +60,7 @@
 /area/surface/outside
 	ambience = AMBIENCE_SIF
 	always_unpowered = TRUE
+	flags = AREA_FLAG_IS_NOT_PERSISTENT
 
 // The area near the outpost, so POIs don't show up right next to the outpost.
 /area/surface/outside/plains/outpost
@@ -123,7 +124,7 @@
 
 
 /area/surface/cave
-	flags = RAD_SHIELDED
+	flags = RAD_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT
 	always_unpowered = TRUE
 
 /area/surface/cave
@@ -398,7 +399,7 @@
 	icon_state = "shuttle"
 	requires_power = 0
 	dynamic_lighting = 1
-	flags = RAD_SHIELDED
+	flags = RAD_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT
 
 /area/turbolift/start
 	name = "\improper Turbolift Start"
@@ -753,11 +754,13 @@
 	name = "\improper Command - HoP's Office"
 	icon_state = "head_quarters"
 	holomap_color = HOLOMAP_AREACOLOR_COMMAND
+	flags = AREA_FLAG_IS_NOT_PERSISTENT
 
 /area/crew_quarters/heads/sc/hor
 	name = "\improper Research - RD's Office"
 	icon_state = "head_quarters"
 	holomap_color = HOLOMAP_AREACOLOR_SCIENCE
+	flags = AREA_FLAG_IS_NOT_PERSISTENT
 
 /area/crew_quarters/heads/sc/chief
 	name = "\improper Engineering - CE's Office"
@@ -773,6 +776,7 @@
 	name = "\improper Medbay - CMO's Office"
 	icon_state = "head_quarters"
 	holomap_color = HOLOMAP_AREACOLOR_MEDICAL
+	flags = AREA_FLAG_IS_NOT_PERSISTENT
 
 /area/engineering/engineer_eva
 	name = "\improper Engineering EVA"
@@ -1052,6 +1056,7 @@ area/crew_quarters/heads/sc/hop/quarters
 	name = "\improper Third Deck Plating"
 	dynamic_lighting = 0
 	ambience = AMBIENCE_SPACE
+	flags = AREA_FLAG_IS_NOT_PERSISTENT
 
 // Shuttles
 

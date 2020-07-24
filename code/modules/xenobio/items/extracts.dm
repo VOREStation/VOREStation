@@ -616,7 +616,7 @@
 /obj/item/slime_extract/pink
 	name = "pink slime extract"
 	icon_state = "pink slime extract"
-	description_info = "This extract will create 20u of blood clotting agent if injected with blood.  It can also create 20u of bone binding agent if injected \
+	description_info = "This extract will create 30u of blood clotting agent if injected with blood.  It can also create 30u of bone binding agent if injected \
 	with phoron.  When injected with water, it will create an organ-mending agent.  The slime medications have a very low threshold for overdosage, however."
 
 

@@ -236,6 +236,8 @@ var/list/gamemode_cache = list()
 	var/static/dooc_allowed = 1
 	var/static/dsay_allowed = 1
 
+	var/persistence_enabled = 1
+
 	var/allow_byond_links = 0
 	var/allow_discord_links = 0
 	var/allow_url_links = 0					// honestly if I were you i'd leave this one off, only use in dire situations
@@ -434,15 +436,15 @@ var/list/gamemode_cache = list()
 
 				if ("allow_admin_spawning")
 					config.allow_admin_spawning = 1
-					
+
 				if ("allow_byond_links")
 					allow_byond_links = 1
 
 				if ("allow_discord_links")
-					allow_discord_links = 1	
+					allow_discord_links = 1
 
 				if ("allow_url_links")
-					allow_url_links = 1					
+					allow_url_links = 1
 
 				if ("no_dead_vote")
 					config.vote_no_dead = 1
@@ -576,6 +578,9 @@ var/list/gamemode_cache = list()
 
 				if("protect_roles_from_antagonist")
 					config.protect_roles_from_antagonist = 1
+
+				if ("persistence_enabled")
+					config.persistence_enabled = 1
 
 				if ("probability")
 					var/prob_pos = findtext(value, " ")
