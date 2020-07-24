@@ -5344,7 +5344,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/burrito_vegan
 	name = "vegan burrito"
-	desc = "Tofu wrapped in a flour tortilla. Those seen with this food object are Valid."
+	desc = "Tofu wrapped in a flour tortilla."
 	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "burrito_vegan"
 	bitesize = 4

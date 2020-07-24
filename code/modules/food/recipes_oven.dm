@@ -36,12 +36,12 @@
 		/obj/item/weapon/reagent_containers/food/snacks/dough,
 		/obj/item/weapon/reagent_containers/food/snacks/dough
 	)
-	reagents = list("sodiumchloride" = 1)
+	reagents = list("sodiumchloride" = 1, "yeast" = 5)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/bread
 
 /datum/recipe/baguette
 	appliance = OVEN
-	reagents = list("sodiumchloride" = 1, "blackpepper" = 1)
+	reagents = list("sodiumchloride" = 1, "blackpepper" = 1,  "yeast" = 5)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/dough,
 		/obj/item/weapon/reagent_containers/food/snacks/dough
@@ -245,7 +245,7 @@
 	result_quantity = 4
 	reagent_mix = RECIPE_REAGENT_REPLACE
 
-/datum/recipe/fortunecookie
+/datum/recipe/ovenfortunecookie
 	appliance = OVEN
 	reagents = list("sugar" = 5)
 	items = list(
@@ -253,45 +253,6 @@
 		/obj/item/weapon/paper
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/fortunecookie
-	make_food(var/obj/container as obj)
-
-		var/obj/item/weapon/paper/paper
-
-		//Fuck fortune cookies. This is a quick hack
-		//Duplicate the item searching code with a special case for paper
-		for (var/i in items)
-			var/obj/item/I = locate(i) in container
-			if (!paper  && istype(I, /obj/item/weapon/paper))
-				paper = I
-				continue
-
-			if (I)
-				qdel(I)
-
-		//Then store and null out the items list so it wont delete any paper
-		var/list/L = items.Copy()
-		items = null
-		. = ..(container)
-
-		//Restore items list, so that making fortune cookies once doesnt break the oven
-		items = L
-
-
-		for (var/obj/item/weapon/reagent_containers/food/snacks/fortunecookie/being_cooked in .)
-			paper.forceMove(being_cooked)
-			being_cooked.trash = paper //so the paper is left behind as trash without special-snowflake(TM Nodrak) code ~carn
-			return
-
-
-	check_items(var/obj/container as obj)
-		. = ..()
-		if (.)
-			var/obj/item/weapon/paper/paper = locate() in container
-			if (!paper || !istype(paper))
-				return 0
-			if (!paper.info)
-				return 0
-		return .
 
 /datum/recipe/poppypretzel
 	appliance = OVEN
@@ -513,7 +474,7 @@
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/dough
 	)
-	reagents = list("honey" = 5)
+	reagents = list("milk" = 5, "egg" = 3,"honey" = 5)
 	result = /obj/item/weapon/reagent_containers/food/snacks/honeybun
 
 /datum/recipe/enchiladas_new
@@ -575,7 +536,7 @@
 
 /datum/recipe/croissant
 	appliance = OVEN
-	reagents = list("sodiumchloride" = 1, "water" = 5, "milk" = 5)
+	reagents = list("sodiumchloride" = 1, "water" = 5, "milk" = 5, "yeast" = 5)
 	reagent_mix = RECIPE_REAGENT_REPLACE
 	items = list(/obj/item/weapon/reagent_containers/food/snacks/dough)
 	result = /obj/item/weapon/reagent_containers/food/snacks/croissant

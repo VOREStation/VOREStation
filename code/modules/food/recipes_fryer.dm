@@ -5,6 +5,12 @@
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/fries
 
+/datum/recipe/cheesyfries
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/fries,
+		/obj/item/weapon/reagent_containers/food/snacks/cheesewedge,
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/cheesyfries
 
 /datum/recipe/jpoppers
 	appliance = FRYER

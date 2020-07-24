@@ -272,24 +272,24 @@
 			//We want the highest of each.
 			//Iterate through everything in buffer. If the target has less than the buffer, then top it up
 			for (var/datum/reagent/R in buffer.reagent_list)
-				var/rvol = holder.get_reagent_amount(R.type)
+				var/rvol = holder.get_reagent_amount(R.id)
 				if (rvol < R.volume)
 					//Transfer the difference
-					buffer.trans_type_to(holder, R.type, R.volume-rvol)
+					buffer.trans_type_to(holder, R.id, R.volume-rvol)
 
 		if (RECIPE_REAGENT_MIN)
 			//Min is slightly more complex. We want the result to have the lowest from each side
 			//But zero will not count. Where a side has zero its ignored and the side with a nonzero value is used
 			for (var/datum/reagent/R in buffer.reagent_list)
-				var/rvol = holder.get_reagent_amount(R.type)
+				var/rvol = holder.get_reagent_amount(R.id)
 				if (rvol == 0) //If the target has zero of this reagent
-					buffer.trans_type_to(holder, R.type, R.volume)
+					buffer.trans_type_to(holder, R.id, R.volume)
 					//Then transfer all of ours
 
 				else if (rvol > R.volume)
 					//if the target has more than ours
 					//Remove the difference
-					holder.remove_reagent(R.type, rvol-R.volume)
+					holder.remove_reagent(R.id, rvol-R.volume)
 
 
 	if (results.len > 1)

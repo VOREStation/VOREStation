@@ -20,34 +20,6 @@
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/sushi
 
-/datum/recipe/lasagna
-	fruit = list("tomato" = 2, "eggplant" = 1)
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/cutlet,
-		/obj/item/weapon/reagent_containers/food/snacks/cutlet,
-		/obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough,
-		/obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/lasagna
-
-/datum/recipe/chickenwings
-	reagents = list("capsaicin" = 5, "flour" = 10)
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/meat,
-		/obj/item/weapon/reagent_containers/food/snacks/meat,
-		/obj/item/weapon/reagent_containers/food/snacks/meat,
-		/obj/item/weapon/reagent_containers/food/snacks/meat
-	)
-	result = /obj/item/weapon/storage/box/wings //This is kinda like the donut box.
-
-/datum/recipe/generalschicken
-	reagents = list("capsaicin" = 2, "sugar" = 2, "flour" = 10)
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/meat,
-		/obj/item/weapon/reagent_containers/food/snacks/meat
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/generalschicken
-
 /datum/recipe/chocroizegg
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/chocolatebar,
@@ -112,46 +84,9 @@
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sharkmeatcubes
 
-/*
-/datum/recipe/margheritapizzacargo
-	reagents = list()
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/pizza/margfrozen
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/margcargo
-
-/datum/recipe/mushroompizzacargo
-	reagents = list()
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/pizza/mushfrozen
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/mushcargo
-
-/datum/recipe/meatpizzacargo
-	reagents = list()
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/pizza/meatfrozen
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/meatcargo
-
-/datum/recipe/vegtablepizzacargo
-	reagents = list()
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/pizza/vegfrozen
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/vegcargo
-*/
-
 //// food cubes
 
 /datum/recipe/foodcubes
 	reagents = list("enzyme" = 20, "virusfood" = 5, "nutriment" = 15, "protein" = 15) // labor intensive
 	items = list()
 	result = /obj/item/weapon/storage/box/wings/tray
-
-/datum/recipe/honeybun
-	reagents = list("milk" = 5, "egg" = 3,"honey" = 5)
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/dough
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/honeybun
