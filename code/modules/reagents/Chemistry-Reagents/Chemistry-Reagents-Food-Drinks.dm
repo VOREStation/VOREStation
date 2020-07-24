@@ -152,6 +152,14 @@
 /datum/reagent/nutriment/triglyceride/oil/touch_turf(var/turf/simulated/T)
 	if(!istype(T))
 		return
+	
+	var/hotspot = (locate(/obj/fire) in T)
+	if(hotspot && !istype(T, /turf/space))
+		var/datum/gas_mixture/lowertemp = T.remove_air(T:air:total_moles)
+		lowertemp.temperature = max(min(lowertemp.temperature-2000, lowertemp.temperature / 2), 0)
+		lowertemp.react()
+		T.assume_air(lowertemp)
+		qdel(hotspot)
 
 	if(volume >= 3)
 		T.wet_floor(2)
@@ -206,13 +214,25 @@
 		M.take_organ_damage(0, removed * 1.5 * dfactor)
 		data["temperature"] -= (6 * removed) / (1 + volume*0.1)//Cools off as it burns you
 		if (lastburnmessage+100 < world.time	)
-			M << span("danger", "Searing hot oil burns you, wash it off quick!")
+			to_chat(M, "<span class='danger'>Searing hot oil burns you, wash it off quick!</span>")
 			lastburnmessage = world.time
 
 /datum/reagent/nutriment/triglyceride/oil/corn
 	name = "Corn Oil"
 	id = "cornoil"
 	description = "An oil derived from various types of corn."
+	taste_description = "oil"
+	taste_mult = 0.1
+	reagent_state = LIQUID
+	
+/datum/reagent/nutriment/triglyceride/oil/peanut
+	name = "Peanut Oil"
+	id = "peanutoil"
+	description = "An oil derived from various types of nuts."
+	taste_description = "nuts"
+	taste_mult = 0.3
+	nutriment_factor = 15
+	color = "#4F3500"
 
 // Aurora Cooking Port Insertion End
 
@@ -440,57 +460,7 @@
 	reagent_state = LIQUID
 	nutriment_factor = 1
 	color = "#801E28"
-/* TEMPORARY REMOVAL DUE TO AURORA COOKING PORT - WILL REVISIT LATER 7/16/2020
-/datum/reagent/nutriment/cornoil
-	name = "Corn Oil"
-	id = "cornoil"
-	description = "An oil derived from various types of corn."
-	taste_description = "slime"
-	taste_mult = 0.1
-	reagent_state = LIQUID
-	nutriment_factor = 20
-	color = "#302000"
 
-/datum/reagent/nutriment/cornoil/touch_turf(var/turf/simulated/T)
-	if(!istype(T))
-		return
-
-	var/hotspot = (locate(/obj/fire) in T)
-	if(hotspot && !istype(T, /turf/space))
-		var/datum/gas_mixture/lowertemp = T.remove_air(T:air:total_moles)
-		lowertemp.temperature = max(min(lowertemp.temperature-2000, lowertemp.temperature / 2), 0)
-		lowertemp.react()
-		T.assume_air(lowertemp)
-		qdel(hotspot)
-
-	if(volume >= 3)
-		T.wet_floor()
-
-/datum/reagent/nutriment/peanutoil
-	name = "Peanut Oil"
-	id = "peanutoil"
-	description = "An oil derived from various types of nuts."
-	taste_description = "nuts"
-	taste_mult = 0.3
-	reagent_state = LIQUID
-	nutriment_factor = 15
-	color = "#4F3500"
-
-/datum/reagent/nutriment/peanutoil/touch_turf(var/turf/simulated/T)
-	if(!istype(T))
-		return
-
-	var/hotspot = (locate(/obj/fire) in T)
-	if(hotspot && !istype(T, /turf/space))
-		var/datum/gas_mixture/lowertemp = T.remove_air(T:air:total_moles)
-		lowertemp.temperature = max(min(lowertemp.temperature-2000, lowertemp.temperature / 2), 0)
-		lowertemp.react()
-		T.assume_air(lowertemp)
-		qdel(hotspot)
-
-	if(volume >= 5)
-		T.wet_floor()
-*/
 /datum/reagent/nutriment/peanutbutter
 	name = "Peanut Butter"
 	id = "peanutbutter"
