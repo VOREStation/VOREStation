@@ -32,6 +32,8 @@
 	var/list/offset_y[0] //usage by the photocopier
 	var/rigged = 0
 	var/spam_flag = 0
+	var/age = 0
+	var/last_modified_ckey
 
 	var/const/deffont = "Verdana"
 	var/const/signfont = "Times New Roman"
@@ -230,6 +232,15 @@
 										 "<span class='notice'>You wipe off [H]'s lipstick.</span>")
 					H.lip_style = null
 					H.update_icons_body()
+
+/obj/item/weapon/paper/proc/set_content(text,title)
+	if(title)
+		name = title
+	info = html_encode(text)
+	info = parsepencode(text)
+	update_icon()
+	update_space(info)
+	updateinfolinks()
 
 /obj/item/weapon/paper/proc/addtofield(var/id, var/text, var/links = 0)
 	var/locid = 0
@@ -464,6 +475,8 @@
 		else
 			info += t // Oh, he wants to edit to the end of the file, let him.
 			updateinfolinks()
+
+		last_modified_ckey = usr.ckey
 
 		update_space(t)
 

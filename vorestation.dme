@@ -256,7 +256,11 @@
 #include "code\controllers\subsystems\open_space.dm"
 #include "code\controllers\subsystems\orbits.dm"
 #include "code\controllers\subsystems\overlays.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\controllers\subsystems\persist_vr.dm"
+=======
+#include "code\controllers\subsystems\persistence.dm"
+>>>>>>> 03b7a0e... Persistent Trash/Dirt/Graffiti/Notices (#7337):polaris.dme
 #include "code\controllers\subsystems\planets.dm"
 #include "code\controllers\subsystems\radiation.dm"
 #include "code\controllers\subsystems\shuttles.dm"
@@ -1388,7 +1392,6 @@
 #include "code\game\objects\structures\morgue.dm"
 #include "code\game\objects\structures\morgue_vr.dm"
 #include "code\game\objects\structures\musician.dm"
-#include "code\game\objects\structures\noticeboard.dm"
 #include "code\game\objects\structures\plasticflaps.dm"
 #include "code\game\objects\structures\railing.dm"
 #include "code\game\objects\structures\safe.dm"
@@ -1551,6 +1554,7 @@
 #include "code\modules\admin\map_capture.dm"
 #include "code\modules\admin\NewBan.dm"
 #include "code\modules\admin\news.dm"
+#include "code\modules\admin\persistence.dm"
 #include "code\modules\admin\player_notes.dm"
 #include "code\modules\admin\player_panel.dm"
 #include "code\modules\admin\topic.dm"
@@ -3027,6 +3031,7 @@
 #include "code\modules\paperwork\handlabeler.dm"
 #include "code\modules\paperwork\paper.dm"
 #include "code\modules\paperwork\paper_bundle.dm"
+#include "code\modules\paperwork\paper_sticky.dm"
 #include "code\modules\paperwork\paperbin.dm"
 #include "code\modules\paperwork\paperplane.dm"
 #include "code\modules\paperwork\papershredder.dm"
@@ -3035,7 +3040,19 @@
 #include "code\modules\paperwork\photography.dm"
 #include "code\modules\paperwork\silicon_photography.dm"
 #include "code\modules\paperwork\stamps.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\modules\persistence\persistence.dm"
+=======
+#include "code\modules\persistence\filth.dm"
+#include "code\modules\persistence\graffiti.dm"
+#include "code\modules\persistence\noticeboard.dm"
+#include "code\modules\persistence\datum\datum_filth.dm"
+#include "code\modules\persistence\datum\datum_graffiti.dm"
+#include "code\modules\persistence\datum\datum_paper.dm"
+#include "code\modules\persistence\datum\datum_paper_sticky.dm"
+#include "code\modules\persistence\datum\datum_trash.dm"
+#include "code\modules\persistence\datum\persistence_datum.dm"
+>>>>>>> 03b7a0e... Persistent Trash/Dirt/Graffiti/Notices (#7337):polaris.dme
 #include "code\modules\planet\planet.dm"
 #include "code\modules\planet\time.dm"
 #include "code\modules\planet\virgo3b_vr.dm"
