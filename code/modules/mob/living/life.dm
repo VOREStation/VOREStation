@@ -45,7 +45,10 @@
 
 	//Check if we're on fire
 	handle_fire()
-
+	
+	// Handle re-running ambience to mobs if they've remained in an area.
+	handle_ambience()
+	
 	//stuff in the stomach
 	//handle_stomach() //VOREStation Code
 
@@ -88,6 +91,12 @@
 
 /mob/living/proc/handle_stomach()
 	return
+
+/mob/living/proc/handle_ambience() // If you're in an ambient area and have not moved out of it for x time, we're going to play ambience again to you, to help break up the silence.
+	if(world.time >= (lastareachange + 30 SECONDS)) // Every 30 seconds, we're going to run a 35% chance to play ambience.
+		var/area/A = get_area(src)
+		if(A)
+			A.play_ambience(src)
 
 /mob/living/proc/update_pulling()
 	if(pulling)
