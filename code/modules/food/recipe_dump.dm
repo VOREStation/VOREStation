@@ -98,16 +98,18 @@
 			if(4)
 				food_recipes[Rp]["Appliance"] = "Oven"
 			if(8)
-				food_recipes[Rp]["Appliance"] = "Candy Maker"
+				food_recipes[Rp]["Appliance"] = "Grill"
 			if(16)
+				food_recipes[Rp]["Appliance"] = "Candy Maker"
+			if(32)
 				food_recipes[Rp]["Appliance"] = "Cereal Maker"
 
 	//////////////////////// SORTING
 	var/list/foods_to_paths = list()
 	var/list/drinks_to_paths = list()
 
-	for(var/Rp in food_recipes)
-		foods_to_paths["[food_recipes[Rp]["Result"]] [Rp]"] = Rp //Append recipe datum path to keep uniqueness
+	for(var/Rp in food_recipes) // "Appliance" will sort the list by APPLIANCES first. Items without an appliance will append to the top of the list. The old method was "Result", which sorts the list by the name of the result.
+		foods_to_paths["[food_recipes[Rp]["Appliance"]] [Rp]"] = Rp //Append recipe datum path to keep uniqueness
 	for(var/Rp in drink_recipes)
 		drinks_to_paths["[drink_recipes[Rp]["Result"]] [Rp]"] = Rp
 
