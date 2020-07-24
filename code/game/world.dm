@@ -108,6 +108,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		s["version"] = game_version
 		s["mode"] = master_mode
 		s["respawn"] = config.abandon_allowed
+		s["persistance"] = config.persistence_enabled
 		s["enter"] = config.enter_allowed
 		s["vote"] = config.allow_vote_mode
 		s["ai"] = config.allow_ai
@@ -183,12 +184,12 @@ var/world_topic_spam_protect_time = world.timeofday
 				if(!positions["misc"])
 					positions["misc"] = list()
 				positions["misc"][name] = rank
-		
+
 		for(var/datum/data/record/t in data_core.hidden_general)
 			var/name = t.fields["name"]
 			var/rank = t.fields["rank"]
 			var/real_rank = make_list_rank(t.fields["real_rank"])
-			
+
 			var/datum/job/J = SSjob.get_job(real_rank)
 			if(J?.offmap_spawn)
 				if(!positions["off"])
@@ -410,6 +411,7 @@ var/world_topic_spam_protect_time = world.timeofday
 			to_world("<span class='boldannounce'>Rebooting world immediately due to host request</span>")
 	else
 		Master.Shutdown()	//run SS shutdowns
+		//processScheduler.stop() //VOREStation Removal
 		for(var/client/C in GLOB.clients)
 			if(config.server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
 				C << link("byond://[config.server]")
@@ -526,6 +528,8 @@ var/world_topic_spam_protect_time = world.timeofday
 		features += "closed"
 
 	features += config.abandon_allowed ? "respawn" : "no respawn"
+
+	features += config.persistence_enabled ? "persistence enabled" : "persistence disabled"
 
 	if (config && config.allow_vote_mode)
 		features += "vote"

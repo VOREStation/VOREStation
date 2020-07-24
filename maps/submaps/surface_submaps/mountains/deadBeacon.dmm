@@ -27,7 +27,7 @@
 "A" = (/obj/item/weapon/circuitboard/broken,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/deadBeacon)
 "B" = (/obj/structure/grille/broken,/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor/plating,/area/submap/cave/deadBeacon)
 "C" = (/obj/structure/loot_pile/maint/junk,/turf/simulated/floor/plating,/area/submap/cave/deadBeacon)
-"D" = (/obj/item/weapon/cigbutt,/obj/item/weapon/tool/wrench,/obj/machinery/light,/turf/simulated/floor/tiled/asteroid_steel,/area/submap/cave/deadBeacon)
+"D" = (/obj/item/trash/cigbutt,/obj/item/weapon/tool/wrench,/obj/machinery/light,/turf/simulated/floor/tiled/asteroid_steel,/area/submap/cave/deadBeacon)
 "E" = (/obj/item/weapon/material/shard,/turf/simulated/floor/tiled/asteroid_steel,/area/submap/cave/deadBeacon)
 "F" = (/obj/machinery/recharge_station,/turf/simulated/floor/tiled/asteroid_steel,/area/submap/cave/deadBeacon)
 "G" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced,/turf/simulated/floor/plating,/area/submap/cave/deadBeacon)

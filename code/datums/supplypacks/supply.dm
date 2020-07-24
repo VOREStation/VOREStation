@@ -85,6 +85,12 @@
 	containertype = /obj/structure/closet/crate/ummarcar
 	containername = "Office supplies crate"
 
+/datum/supply_pack/supply/sticky_notes
+	name = "Stationery - sticky notes (50)"
+	contains = list(/obj/item/sticky_pad/random)
+	cost = 10
+	containername = "\improper Sticky notes crate"
+
 /datum/supply_pack/supply/spare_pda
 	name = "Spare PDAs"
 	cost = 10
