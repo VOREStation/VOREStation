@@ -100,6 +100,7 @@ const WindowContent = props => {
   const {
     className,
     fitted,
+    scrollable,
     children,
     ...rest
   } = props;
@@ -107,6 +108,7 @@ const WindowContent = props => {
   // so we simply include a Box with margins.
   return (
     <Layout.Content
+      scrollable={scrollable}
       className={classes([
         'Window__content',
         className,

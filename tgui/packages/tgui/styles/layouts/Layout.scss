@@ -38,11 +38,20 @@
   bottom: 0;
   left: 0;
   right: 0;
-  overflow-x: hidden;
-  overflow-y: hidden;
+  overflow: hidden;
+  margin: base.em(6px);
+}
+
+.Layout__content--flexRow {
+  display: flex;
+  flex-flow: row;
+}
+
+.Layout__content--flexColumn {
+  display: flex;
+  flex-flow: column;
 }
 
 .Layout__content--scrollable {
-  overflow-y: scroll;
-  margin-bottom: 0;
+  overflow-y: auto;
 }
