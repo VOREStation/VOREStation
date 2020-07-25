@@ -773,7 +773,7 @@
 		to_chat(user, "It does nothing.")
 		return
 	else
-		if(allowed(usr) && !wires.IsIndexCut(AALARM_WIRE_IDSCAN))
+		if(allowed(usr) && !wires.is_cut(WIRE_IDSCAN))
 			locked = !locked
 			to_chat(user, "<span class='notice'>You [locked ? "lock" : "unlock"] the Air Alarm interface.</span>")
 		else

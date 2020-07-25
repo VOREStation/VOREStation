@@ -20,6 +20,7 @@
 	var/light_intensity = null			// Ditto. Not implemented yet.
 	var/mob_overlay_state = null		// Icon_state for an overlay to apply to a (human) mob while this exists.  This is actually implemented.
 	var/client_color = null				// If set, the client will have the world be shown in this color, from their perspective.
+	var/wire_colors_replace = null		// If set, the client will have wires replaced by the given replacement list. For colorblindness.
 
 	// Now for all the different effects.
 	// Percentage modifiers are expressed as a multipler. (e.g. +25% damage should be written as 1.25)
