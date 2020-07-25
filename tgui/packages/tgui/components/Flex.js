@@ -13,9 +13,11 @@ export const computeFlexProps = props => {
     direction,
     wrap,
     align,
+    alignContent,
     justify,
     inline,
     spacing = 0,
+    spacingPrecise = 0,
     ...rest
   } = props;
   return {
@@ -28,6 +30,7 @@ export const computeFlexProps = props => {
       ),
       inline && 'Flex--inline',
       spacing > 0 && 'Flex--spacing--' + spacing,
+      spacingPrecise > 0 && 'Flex--spacingPrecise--' + spacingPrecise,
       className,
     ]),
     style: {
@@ -35,6 +38,7 @@ export const computeFlexProps = props => {
       'flex-direction': direction,
       'flex-wrap': wrap,
       'align-items': align,
+      'align-content': alignContent,
       'justify-content': justify,
     },
     ...rest,

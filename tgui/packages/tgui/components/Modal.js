@@ -6,10 +6,21 @@ export const Modal = props => {
   const {
     className,
     children,
+    onEnter,
     ...rest
   } = props;
+  let handleKeyDown;
+  if (onEnter) {
+    handleKeyDown = e => {
+      let key = e.which || e.keyCode;
+      if (key === 13) {
+        onEnter(e);
+      }
+    };
+  }
   return (
-    <Dimmer>
+    <Dimmer
+      onKeyDown={handleKeyDown}>
       <div
         className={classes([
           'Modal',
