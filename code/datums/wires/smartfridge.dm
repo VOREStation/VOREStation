@@ -1,47 +1,52 @@
 /datum/wires/smartfridge
 	holder_type = /obj/machinery/smartfridge
 	wire_count = 3
+	proper_name = "Smartfridge"
+
+/datum/wires/smartfridge/New(atom/_holder)
+	wires = list(WIRE_ELECTRIFY, WIRE_IDSCAN, WIRE_THROW_ITEM)
+	return ..()
 
 /datum/wires/smartfridge/secure
-	random = 1
-	wire_count = 4
+	randomize = TRUE
+	wire_count = 4 // 3 actual, 1 dud.
 
-var/const/SMARTFRIDGE_WIRE_ELECTRIFY	= 1
-var/const/SMARTFRIDGE_WIRE_THROW		= 2
-var/const/SMARTFRIDGE_WIRE_IDSCAN		= 4
-
-/datum/wires/smartfridge/CanUse(var/mob/living/L)
+/datum/wires/smartfridge/interactable(mob/user)
 	var/obj/machinery/smartfridge/S = holder
+	if(iscarbon(user) && S.Adjacent(user) && S.seconds_electrified && S.shock(user, 100))
+		return FALSE
 	if(S.panel_open)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
-/datum/wires/smartfridge/GetInteractWindow()
+/datum/wires/smartfridge/get_status()
+	. = ..()
 	var/obj/machinery/smartfridge/S = holder
-	. += ..()
-	. += show_hint(0x1, S.seconds_electrified,	"The orange light is off.",	"The orange light is on.")
-	. += show_hint(0x2, S.shoot_inventory,		"The red light is off.",	"The red light is blinking.")
-	. += show_hint(0x4, S.scan_id,				"A purple light is on.",	"A yellow light is on.")
+	. += "The orange light is [S.seconds_electrified ? "off" : "on"]."
+	. += "The red light is [S.shoot_inventory ? "off" : "blinking"]."
+	. += "A [S.scan_id ? "purple" : "yellow"] light is on."
 
-/datum/wires/smartfridge/UpdatePulsed(var/index)
+/datum/wires/smartfridge/on_pulse(wire)
 	var/obj/machinery/smartfridge/S = holder
-	switch(index)
-		if(SMARTFRIDGE_WIRE_THROW)
+	switch(wire)
+		if(WIRE_THROW_ITEM)
 			S.shoot_inventory = !S.shoot_inventory
-		if(SMARTFRIDGE_WIRE_ELECTRIFY)
+		if(WIRE_ELECTRIFY)
 			S.seconds_electrified = 30
-		if(SMARTFRIDGE_WIRE_IDSCAN)
+		if(WIRE_IDSCAN)
 			S.scan_id = !S.scan_id
+	..()
 
-/datum/wires/smartfridge/UpdateCut(var/index, var/mended)
+/datum/wires/smartfridge/on_cut(wire, mend)
 	var/obj/machinery/smartfridge/S = holder
-	switch(index)
-		if(SMARTFRIDGE_WIRE_THROW)
-			S.shoot_inventory = !mended
-		if(SMARTFRIDGE_WIRE_ELECTRIFY)
-			if(mended)
+	switch(wire)
+		if(WIRE_THROW_ITEM)
+			S.shoot_inventory = !mend
+		if(WIRE_ELECTRIFY)
+			if(mend)
 				S.seconds_electrified = 0
 			else
 				S.seconds_electrified = -1
-		if(SMARTFRIDGE_WIRE_IDSCAN)
-			S.scan_id = 1
+		if(WIRE_IDSCAN)
+			S.scan_id = TRUE
+	..()
