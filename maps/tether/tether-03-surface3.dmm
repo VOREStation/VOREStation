@@ -22054,17 +22054,6 @@
 	},
 /turf/simulated/floor/bluegrid,
 /area/assembly/chargebay)
-"aLz" = (
-/obj/structure/cable/green{
-	icon_state = "0-8"
-	},
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "east bump";
-	pixel_x = 28
-	},
-/turf/simulated/floor/bluegrid,
-/area/assembly/chargebay)
 "aLA" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/glass_external/public,
@@ -33741,6 +33730,18 @@
 /obj/effect/floor_decal/industrial/outline/red,
 /turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/shuttle_pad)
+"bOS" = (
+/obj/structure/cable/green{
+	icon_state = "0-8"
+	},
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	pixel_x = 28
+	},
+/obj/random/mech/weaker,
+/turf/simulated/floor/bluegrid,
+/area/assembly/chargebay)
 "bSe" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -47181,7 +47182,7 @@ aAs
 aJm
 aJY
 aKS
-aLz
+bOS
 aKS
 aMz
 azD
