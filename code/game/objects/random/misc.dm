@@ -542,8 +542,8 @@
 				/obj/item/device/assembly/mousetrap/armed,
 				/obj/effect/decal/cleanable/spiderling_remains,
 				/obj/effect/decal/cleanable/ash,
-				/obj/item/weapon/cigbutt,
-				/obj/item/weapon/cigbutt/cigarbutt,
+				/obj/item/trash/cigbutt,
+				/obj/item/trash/cigbutt/cigarbutt,
 				/obj/effect/decal/remains/mouse)
 
 /obj/random/janusmodule

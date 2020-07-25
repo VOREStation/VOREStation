@@ -77,10 +77,10 @@
 	supervisors = "the spirit of laughter"
 	selection_color = "#515151"
 	economic_modifier = 1
-	access = list()
-	minimal_access = list()
+	access = list(access_entertainment)
+	minimal_access = list(access_entertainment)
 	job_description = "A Clown is there to entertain the crew and keep high morale using various harmless pranks and ridiculous jokes!"
-	alt_titles = list("Clown" = /datum/alt_title/clown, "Comedian" = /datum/alt_title/comedian, "Jester" = /datum/alt_title/jester)
+	alt_titles = list("Clown" = /datum/alt_title/clown, "Jester" = /datum/alt_title/jester)
 	whitelist_only = 1
 	latejoin_only = 1
 	outfit_type = /decl/hierarchy/outfit/job/clown
@@ -88,9 +88,6 @@
 
 /datum/alt_title/clown
 	title = "Clown"
-
-/datum/alt_title/comedian
-	title = "Comedian"
 
 /datum/alt_title/jester
 	title = "Jester"
@@ -112,10 +109,10 @@
 	supervisors = "the spirit of performance"
 	selection_color = "#515151"
 	economic_modifier = 1
-	access = list()
-	minimal_access = list()
+	access = list(access_entertainment)
+	minimal_access = list(access_entertainment)
 	job_description = "A Mime is there to entertain the crew and keep high morale using unbelievable performances and acting skills!"
-	alt_titles = list("Mime" = /datum/alt_title/mime, "Performer" = /datum/alt_title/performer, "Interpretive Dancer" = /datum/alt_title/interpretive_dancer)
+	alt_titles = list("Mime" = /datum/alt_title/mime, "Interpretive Dancer" = /datum/alt_title/interpretive_dancer)
 	whitelist_only = 1
 	latejoin_only = 1
 	outfit_type = /decl/hierarchy/outfit/job/mime
@@ -123,9 +120,6 @@
 
 /datum/alt_title/mime
 	title = "Mime"
-
-/datum/alt_title/performer
-	title = "Performer"
 
 /datum/alt_title/interpretive_dancer
 	title = "Interpretive Dancer"
