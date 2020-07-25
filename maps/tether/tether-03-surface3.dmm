@@ -2969,12 +2969,12 @@
 /turf/simulated/floor/tiled,
 /area/rnd/xenobiology/xenoflora_storage)
 "afr" = (
-/obj/machinery/appliance/mixer/candy,
 /obj/effect/floor_decal/industrial/warning/dust,
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 1;
 	icon_state = "warning_dust"
 	},
+/obj/machinery/appliance/cooker/fryer,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
 "afs" = (
@@ -8807,12 +8807,17 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/barbackmaintenance)
 "api" = (
-/obj/machinery/appliance/cooker/fryer,
 /obj/effect/floor_decal/industrial/warning/dust,
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 1;
 	icon_state = "warning_dust"
 	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/appliance/cooker/oven,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
 "apj" = (
@@ -9987,15 +9992,12 @@
 /turf/simulated/floor/tiled,
 /area/rnd/xenobiology/xenoflora)
 "aqY" = (
-/obj/machinery/appliance/cooker/oven,
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 6;
-	icon_state = "warning_dust"
-	},
+/obj/effect/floor_decal/industrial/warning/dust,
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 1;
 	icon_state = "warning_dust"
 	},
+/obj/machinery/appliance/mixer/cereal,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
 "aqZ" = (
@@ -21841,17 +21843,15 @@
 /turf/simulated/floor/tiled/white,
 /area/hydroponics)
 "aLg" = (
-/obj/machinery/appliance/mixer/cereal,
-/obj/effect/floor_decal/industrial/warning/dust,
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 6;
+	icon_state = "warning_dust"
+	},
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 1;
 	icon_state = "warning_dust"
 	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/machinery/appliance/mixer/candy,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
 "aLh" = (
@@ -51420,7 +51420,7 @@ aru
 bet
 beF
 atM
-atL
+atA
 afp
 awc
 awc
@@ -51561,7 +51561,7 @@ aZJ
 aKc
 beu
 beF
-atd
+atL
 anj
 afr
 awc
@@ -51705,7 +51705,7 @@ bev
 beG
 aLc
 atw
-aLg
+api
 bfd
 awc
 avm
@@ -51847,7 +51847,7 @@ bew
 beH
 atJ
 baq
-api
+aqY
 bfn
 awc
 avo
@@ -51987,9 +51987,9 @@ bbI
 aru
 bex
 beH
-atA
+atd
 baq
-aqY
+aLg
 bfn
 awc
 avo
