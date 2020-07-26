@@ -33,7 +33,7 @@
 	var/treatment_virus = "spaceacillin"
 	var/treatment_emag = "toxin"
 	var/declare_treatment = 0 //When attempting to treat a patient, should it notify everyone wearing medhuds?
-	
+
 	// Are we tipped over?
 	var/is_tipped = FALSE
 	//How panicked we are about being tipped over (why would you do this?)
@@ -71,7 +71,7 @@
 /mob/living/bot/medbot/handleAdjacentTarget()
 	if(is_tipped) // Don't handle targets if we're incapacitated!
 		return
-	
+
 	UnarmedAttack(target)
 
 /mob/living/bot/medbot/handlePanic()	// Speed modification based on alert level.
@@ -211,6 +211,7 @@
 	else
 		interact(H)
 	
+
 /mob/living/bot/medbot/proc/interact(mob/user)
 	var/dat
 	dat += "<TT><B>Automatic Medical Unit v1.0</B></TT><BR><BR>"
@@ -349,14 +350,14 @@
 	s.start()
 	qdel(src)
 	return
-	
+
 /mob/living/bot/medbot/handleRegular()
 	. = ..()
-	
+
 	if(is_tipped)
 		handle_panic()
 		return
-	
+
 /mob/living/bot/medbot/proc/tip_over(mob/user)
 	playsound(src, 'sound/machines/warning-buzzer.ogg', 50)
 	user.visible_message("<span class='danger'>[user] tips over [src]!</span>", "<span class='danger'>You tip [src] over!</span>")
@@ -562,7 +563,7 @@
 					S.name = created_name
 					user.drop_from_inventory(src)
 					qdel(src)
-					
+
 // Undefine these.
 #undef MEDBOT_PANIC_NONE
 #undef MEDBOT_PANIC_LOW
