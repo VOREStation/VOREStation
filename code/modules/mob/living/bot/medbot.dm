@@ -210,11 +210,8 @@
 			set_right(H)
 	else
 		interact(H)
-<<<<<<< HEAD
 	
-=======
 
->>>>>>> 21f765b... Merge pull request #7375 from Mechoid/FixScrubbers
 /mob/living/bot/medbot/proc/interact(mob/user)
 	var/dat
 	dat += "<TT><B>Automatic Medical Unit v1.0</B></TT><BR><BR>"
