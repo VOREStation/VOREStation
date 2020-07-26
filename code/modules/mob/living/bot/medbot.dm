@@ -209,7 +209,7 @@
 		if(do_after(H, 3 SECONDS, target=src))
 			set_right(H)
 	else
-		interact()
+		interact(H)
 	
 /mob/living/bot/medbot/proc/interact(mob/user)
 	var/dat
