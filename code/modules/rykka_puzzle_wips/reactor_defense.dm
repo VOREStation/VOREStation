@@ -8,7 +8,7 @@
 /*												Object Definition, Initialize, Process															*/
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-GLOBAL_LIST_INIT(reactor_mob_spawners, list()) // Define our global list here. This is used for the spawners.
+GLOBAL_LIST_EMPTY(reactor_mob_spawners) // Define our global list here. This is used for the spawners.
 
 // List of tabs used for NanoUI Displays. If you're not sure how defines work, refer to the .dm reference docs.
 #define IDLE 1
@@ -51,6 +51,7 @@ GLOBAL_LIST_INIT(reactor_mob_spawners, list()) // Define our global list here. T
 	
 	
 	// Nano UI Variables, don't fuck with these unless you know what you're changing.
+	// This is the current tab we're on, used for the UI/Menu.
 	var/current_tab = IDLE
 	
 	/* 	== Spawning Variables. == */
@@ -58,9 +59,14 @@ GLOBAL_LIST_INIT(reactor_mob_spawners, list()) // Define our global list here. T
 	// Change these on the subtype of the reactor, for custom mob lists.
 	// Weighted with values (not %chance, but relative weight)
 	// Can be left value-less for all equally likely
+	// Simply uncomment each additional list per wave you want to use. If you want to add more to the list, just copy the previous wave, and make sure to remove the comma at the end of the entry.
 	var/list/wave_mobs = list(
-//		list(/mob/living/wave1mob, /mob/living/otherwave1mob, etc),
-//		list(/mob/living/wave2mob, /mob/living/otherwave2mob, etc)
+		list(/mob/living/simple_mob/animal/wolf, /mob/living/simple_mob/mechanical/hivebot),
+//		list(/mob/living/wave2mob, /mob/living/otherwave2mob, etc),
+//		list(/mob/living/wave3mob, /mob/living/otherwave3mob, etc),
+//		list(/mob/living/wave4mob, /mob/living/otherwave4mob, etc),
+//		list(/mob/living/wave5mob, /mob/living/otherwave5mob, etc),
+//		list(/mob/living/wave6mob, /mob/living/otherwave6mob, etc)
 	)
 
 	
@@ -70,7 +76,7 @@ GLOBAL_LIST_INIT(reactor_mob_spawners, list()) // Define our global list here. T
 	var/total_spawns = -1 		// Total mob spawns, over all time, -1 for no limit
 	var/simultaneous_spawns = 6 // Max spawned mobs active (from one landmark) at one time
 	
-	// Internal Use Only
+	// Internal Use Only. (For those looking as to what this does, this is a typecast. We use this to handle setting up our mobs. If you're not sure what a typecast is, look it up or ask for help in #dev)
 	var/mob/living/simple_mob/my_mob
 	
 /obj/structure/damaged_reactor/Initialize()
@@ -135,8 +141,10 @@ GLOBAL_LIST_INIT(reactor_mob_spawners, list()) // Define our global list here. T
 		var/datum/gas_mixture/env = T.return_air()
 		
 		if(!env || env.return_pressure() < 0.01) // Is there no gas environment, or is the ambient pressure less than 0.01 (Basically space?) Then set our mobs min/max to 0.
-			my_mob.minbodytemp = env.temperature * 0.8
-			my_mob.maxbodytemp = env.temperature * 1.2
+			if(my_mob.minbodytemp > env.temperature)
+				my_mob.minbodytemp = env.temperature * 0.8
+			else if(my_mob.maxbodytemp < env.temperature)
+				my_mob.maxbodytemp = env.temperature * 1.2
 			
 			my_mob.min_oxy = 0
 			my_mob.min_tox = 0
@@ -147,18 +155,27 @@ GLOBAL_LIST_INIT(reactor_mob_spawners, list()) // Define our global list here. T
 			my_mob.max_n2 = 0
 			my_mob.max_co2 = 0
 		
-		else
+		else if(my_mob.minbodytemp > env.temperature)
 			my_mob.minbodytemp = env.temperature * 0.8
+		else if(my_mob.maxbodytemp < env.temperature)
 			my_mob.maxbodytemp = env.temperature * 1.2
 
-			var/list/gaslist = env.gas
+		var/list/gaslist = env.gas
+		if(my_mob.min_oxy)
 			my_mob.min_oxy = gaslist["oxygen"] * 0.8
+		if(my_mob.min_tox)
 			my_mob.min_tox = gaslist["phoron"] * 0.8
+		if(my_mob.min_n2)
 			my_mob.min_n2 = gaslist["nitrogen"] * 0.8
+		if(my_mob.min_co2)
 			my_mob.min_co2 = gaslist["carbon_dioxide"] * 0.8
+		if(my_mob.max_oxy)
 			my_mob.max_oxy = gaslist["oxygen"] * 1.2
+		if(my_mob.max_tox)
 			my_mob.max_tox = gaslist["phoron"] * 1.2
+		if(my_mob.max_n2)
 			my_mob.max_n2 = gaslist["nitrogen"] * 1.2
+		if(my_mob.max_co2)
 			my_mob.max_co2 = gaslist["carbon_dioxide"] * 1.2
 			
 	
@@ -224,7 +241,7 @@ GLOBAL_LIST_INIT(reactor_mob_spawners, list()) // Define our global list here. T
 /obj/structure/damaged_reactor/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, force_open = 1)
 	// End Header
 	
-	if(!user) // For some reason the user is null?
+	if(!user) // If for some reason the user is null, stop interaction.
 		return
 	
 	// We'll make data a list of options, to make it easier to add things later.
@@ -234,9 +251,9 @@ GLOBAL_LIST_INIT(reactor_mob_spawners, list()) // Define our global list here. T
 	// Update the UI if it exists, returns null if no ui is passed/found
 	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui) // The UI does not exist, so we'll create a new() one. For a list of parameters and their descriptions see the code docs in nano\README.md
-		ui = new(user, src, ui_key, "damaged_reactor.tmpl", "Reactor Interface v2.52", 600, 600)
-		ui.set_initial_data(data) // When the UI is first opened this is the data it will use
-		ui.open() // Open the new UI window
+		ui = new(user, src, ui_key, "damaged_reactor.tmpl", "Reactor Interface v2.52", 600, 600) // This is the template (.tmpl) it uses, the 'name' of the UI, and the width/height of the window it opens by default at.
+		ui.set_initial_data(data) // When the UI is first opened this is the data it will use.
+		ui.open() // Open the new UI window.
 		ui.set_auto_update(1) // Auto-update every Master Controller tick (every 2 seconds)
 
 /* IF you're making a subtype and want to ADD data to this list, to add more things to NanoUI and such, do:
@@ -429,6 +446,10 @@ GLOBAL_LIST_INIT(reactor_mob_spawners, list()) // Define our global list here. T
 /obj/structure/damaged_reactor/proc/success_state() // Did we win? Is it finally over?
 	active_defense = FALSE // We're no longer actively defending, because we won. Make the reactor invulnerable again.
 	state = FINISHED // We're done, we won, let's set our state to Finished and lock the reactor until it's reset!
+	
+	reactor_finished() // Call this, does nothing for now but subtypes can use it for specialty things.
+	
+/obj/structure/damaged_reactor/proc/reactor_finished() // Holder Proc, subtypes modify this to add special behavior onto success_state (such as opening doors once you 'end' the mode.)
 
 /obj/structure/damaged_reactor/proc/defense_mode() // Do these things EVERY tick of SSProcess - if you need it to run once, put it in an if statement.
 	if(active_defense == FALSE) // Just to keep from constantly forcing defense active.
@@ -437,10 +458,29 @@ GLOBAL_LIST_INIT(reactor_mob_spawners, list()) // Define our global list here. T
 /obj/structure/damaged_reactor/proc/start_wave()
 	wave_complete = world.time + wave_length
 	
-	if(current_wave <= 0)
-		++curent_wave
+	++current_wave // Increment the wave counter by 1 each time we call start_wave(). If an admin calls this improperly, it wil be handled in end_wave or failure_state.
 		
 	active_defense = TRUE // We set this here just in case to allow the reactor to start taking damage.
+	
+	change_wave(current_wave) // We're starting a new wave, so change the wave over. We feed current_wave in as the argument because it's converted to a #, and change_wave will read it as change_wave(1) and use the list from 1, then 2, etc.
+	
+	to_world("Wave started!")
+	
+	var/area/area = get_area(src)
+	if(!area)
+		log_runtime(EXCEPTION("Reactor [reactor_id] was in nullspace. [area] was returned from get_area check!"))
+		return // Don't run the next step because if we're in nullspace, everything the for loop does will return null.
+	area.requires_power = 0 // We're pretending like the reactor powers up the area, and now disabling the special functionality of power. (Until I can untangle how to make the reactor actually generate power.)
+	area.power_change() // Update the power in the area!
+	
+	for(var/obj/machinery/light/light in area) // We're going to turn the lights on now.
+		if(!(light.status == LIGHT_OK)) // We're going to skip any broken, burned, or destroyed/unuseable lights.
+			continue
+		
+		light.brightness_color = "#913a08" // Setting the lights to bright yellow.
+		light.brightness_power = 100 // Very high-powered lights.
+		// light.on = 1 // Turn the lights on.
+		light.update()
 	
 /obj/structure/damaged_reactor/proc/end_wave()
 	if(current_wave >= waves.len)
@@ -448,22 +488,56 @@ GLOBAL_LIST_INIT(reactor_mob_spawners, list()) // Define our global list here. T
 	else
 		state = IDLE
 		active_defense = FALSE
+		
+	to_world("Wave ended!")
+		
+	var/area/area = get_area(src)
+	if(!area)
+		log_runtime(EXCEPTION("Reactor [reactor_id] was in nullspace. [area] was returned from get_area check!"))
+		return // Don't run the next step because if we're in nullspace, everything the for loop does will return null.
+	// area.requires_power = 1 // We're pretending like the reactor powers up the area, and now disabling the special functionality of power. (Until I can untangle how to make the reactor actually generate power.)
+	
+	for(var/obj/machinery/light/light in area) // We're going to turn the lights off now.
+		light.brightness_color = initial(light.brightness_color) || "" // Set them to their original color.
+		light.on = 0 // Turn the lights off.
+		light.brightness_power = initial(light.brightness_power) // Reset lights to what they were before.
+		light.update()
 
-/obj/structure/damaged_reactor/proc/change_wave(var/wavenumber)
+/obj/structure/damaged_reactor/proc/change_wave(var/wavenumber) // This proc is called when we're swapping over from one wave to the next - this 'preps' the mobs in the spawners.
 	for(var/obj/effect/spawner/wave_spawner/spawner in spawners)
 		spawner.spawn_types = wave_mobs[wavenumber]
-		spawner.faction = faction
-		spawner.atmos = atmos_comp
+		spawner.faction = faction 	// May as well update this here at the same time, just in case it was changed between waves.
+		spawner.atmos = atmos_comp 	// May as well update this here at the same time, just in case it was changed between waves.
 
 /obj/structure/damaged_reactor/proc/warmup() // Do these things EVERY tick of SSProcess - if you need it to run once, put it in an if statement.
 	
 
 /obj/structure/damaged_reactor/proc/start_warmup()
 	warmup_complete = world.time + warmup_time 	// When is our warmup complete?
+	
+	to_world("Warmup started!")
+	
+	var/area/area = get_area(src)
+	if(!area)
+		log_runtime(EXCEPTION("Reactor [reactor_id] was in nullspace. [area] was returned from get_area check!"))
+		return // Don't run the next step because if we're in nullspace, everything the for loop does will return null.
+	area.requires_power = 0 // We're pretending like the reactor powers up the area. (Until I can untangle how to make the reactor actually generate power.)
+	area.power_change() // Update the power in the area!
+	
+	for(var/obj/machinery/light/light in area) // We're going to setup the lights in our area and turn them on.
+		if(!(light.status == LIGHT_OK)) // We're going to skip any broken, burned, or destroyed/unuseable lights.
+			continue
+		
+		light.brightness_color = "#916508" // Setting the lights to bright yellow.
+		light.brightness_power = 100 // Very high-powered lights.
+		light.on = 1 // Turn the lights on.
+		light.update()
 
 /obj/structure/damaged_reactor/proc/complete_warmup()
 	state = ENGAGED
 	warmup_complete = null // Set this to null to "clear" the countdown for reuse.
+	
+	to_world("Warmup ended!")
 
 //////////////////////////////////////////////////////////////
 /*		=====			End Proc Code			=====		*/
@@ -474,7 +548,7 @@ GLOBAL_LIST_INIT(reactor_mob_spawners, list()) // Define our global list here. T
  *		We'll handle mob spawning, spawners, etc here.		//
  *////////////////////////////////////////////////////////////
 
-/obj/effect/spawner/wave_spawner/
+/obj/effect/spawner/wave_spawner
 	name = "Wave Spawner"
 	desc = "This is the location of our wave spawns!"
 	icon = 'icons/mob/screen1.dmi'
