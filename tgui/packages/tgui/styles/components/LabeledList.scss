@@ -43,3 +43,8 @@
   padding-top: base.em(1px);
   padding-bottom: 0;
 }
+
+.LabeledList__breakContents {
+  word-break: break-all;
+  word-wrap: break-word;
+}

@@ -445,6 +445,8 @@ var/global/list/PDA_Manifest = list()
 	G.fields["religion"]	= "Unknown"
 	G.fields["photo_front"]	= front
 	G.fields["photo_side"]	= side
+	G.fields["photo-south"] = "'data:image/png;base64,[icon2base64(front)]'"
+	G.fields["photo-west"] = "'data:image/png;base64,[icon2base64(side)]'"
 	G.fields["notes"] = "No notes found."
 	if(hidden)
 		hidden_general += G
