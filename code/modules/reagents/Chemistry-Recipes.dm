@@ -1331,6 +1331,7 @@
 	id = "dough"
 	result = null
 	required_reagents = list("egg" = 3, "flour" = 10)
+	inhibitors = list("water" = 1, "beer" = 1) //To prevent it messing with batter recipes
 	result_amount = 1
 
 /datum/chemical_reaction/food/dough/on_reaction(var/datum/reagents/holder, var/created_volume)
@@ -2625,8 +2626,6 @@
 	Aurora Food
 ====================
 */
-/datum/chemical_reaction/dough
-	inhibitors = list("water" = 1, "beer" = 1) //To prevent it messing with batter recipes
 
 /datum/chemical_reaction/coating/batter
 	name = "Batter"
