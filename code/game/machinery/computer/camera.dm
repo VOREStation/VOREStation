@@ -17,8 +17,11 @@
 /obj/machinery/computer/security/Initialize()
 	. = ..()
 	if(!LAZYLEN(network))
-		network = using_map.station_networks.Copy()
+		network = get_default_networks()
 	camera = new(src, network)
+
+/obj/machinery/computer/security/proc/get_default_networks()
+	. = using_map.station_networks.Copy()
 
 /obj/machinery/computer/security/Destroy()
 	QDEL_NULL(camera)
@@ -34,7 +37,7 @@
 	tgui_interact(user)
 
 /obj/machinery/computer/security/attack_ai(mob/user)
-	to_chat(user, "<span class='notice'>You realise its kind of stupid to access a camera console when you have the entire camera network at your metaphorical fingertips</span>")
+	to_chat(user, "<span class='notice'>You realise its kind of stupid to access a camera console when you have the entire camera network at your metaphorical fingertips.</span>")
 	return
 
 /obj/machinery/computer/security/proc/set_network(list/new_network)
@@ -111,10 +114,8 @@
 	circuit = /obj/item/weapon/circuitboard/security/engineering
 	light_color = "#FAC54B"
 
-/obj/machinery/computer/security/engineering/New()
-	if(!network)
-		network = engineering_networks.Copy()
-	..()
+/obj/machinery/computer/security/engineering/get_default_networks()
+	. = engineering_networks.Copy()
 
 /obj/machinery/computer/security/nuclear
 	name = "head mounted camera monitor"
@@ -122,7 +123,4 @@
 	icon_state = "syndicam"
 	network = list(NETWORK_MERCENARY)
 	circuit = null
-
-/obj/machinery/computer/security/nuclear/New()
-	..()
 	req_access = list(150)

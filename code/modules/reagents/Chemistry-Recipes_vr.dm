@@ -206,10 +206,10 @@
 	required_reagents = list("whiterussian" = 5, "iron" = 1)
 	result_amount = 6
 
-/datum/chemical_reaction/drinks/lovepotion
-	name = "Love Potion"
-	id = "lovepotion"
-	result = "lovepotion"
+/datum/chemical_reaction/drinks/lovemaker
+	name = "The Love Maker"
+	id = "lovemaker"
+	result = "lovemaker"
 	required_reagents = list("honey" = 1, "sexonthebeach" = 5)
 	result_amount = 6
 
