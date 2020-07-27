@@ -11084,22 +11084,15 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
 "atg" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/table/standard,
-/obj/machinery/microwave,
-/turf/simulated/floor/tiled/white,
-/area/crew_quarters/kitchen)
-"ath" = (
 /obj/structure/sink{
-	dir = 4;
+	dir = 8;
 	icon_state = "sink";
-	pixel_x = 11;
-	pixel_y = 0
+	pixel_x = -12;
+	pixel_y = 2
 	},
+/turf/simulated/floor/grass,
+/area/hydroponics)
+"ath" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/vending/hydronutrients{
@@ -15089,20 +15082,12 @@
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/botanystorage)
 "azZ" = (
-/obj/effect/floor_decal/corner/beige{
-	dir = 10
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/obj/effect/floor_decal/corner/beige{
-	dir = 9
-	},
-/obj/effect/floor_decal/spline/plain{
-	dir = 10
-	},
-/obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
-	},
+/obj/structure/table/standard,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
 "aAa" = (
@@ -16130,10 +16115,16 @@
 /turf/simulated/floor/tiled,
 /area/rnd/staircase/thirdfloor)
 "aBx" = (
-/obj/machinery/disposal,
-/obj/structure/disposalpipe/trunk,
-/turf/simulated/floor/wood,
-/area/crew_quarters/bar)
+/obj/structure/table/standard,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/machinery/microwave,
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/kitchen)
 "aBy" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -19789,9 +19780,24 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/servicebackroom)
 "aHy" = (
-/obj/machinery/computer/arcade,
-/turf/simulated/floor/wood,
-/area/crew_quarters/bar)
+/obj/effect/floor_decal/corner/beige{
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/beige{
+	dir = 9
+	},
+/obj/effect/floor_decal/spline/plain{
+	dir = 10
+	},
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1";
+	pixel_y = 0
+	},
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk,
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/kitchen)
 "aHz" = (
 /obj/structure/device/piano,
 /obj/effect/floor_decal/spline/plain{
@@ -32693,11 +32699,10 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/barbackmaintenance)
 "bee" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6
-	},
-/turf/simulated/floor/tiled/eris/steel/bar_dance,
-/area/tether/surfacebase/barbackmaintenance)
+/obj/structure/disposalpipe/segment,
+/obj/machinery/computer/arcade/orion_trail,
+/turf/simulated/floor/wood,
+/area/crew_quarters/bar)
 "bef" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -33721,23 +33726,9 @@
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/tether/surfacebase/barbackmaintenance)
 "bfR" = (
-/obj/structure/bed/chair/comfy/beige{
-	dir = 8;
-	icon_state = "comfychair"
-	},
-/obj/machinery/button/windowtint{
-	id = "secreet";
-	name = "Window Tint Control";
-	pixel_x = -32;
-	range = 9
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/tiled/eris/steel/bar_light,
-/area/tether/surfacebase/barbackmaintenance)
+/obj/machinery/computer/arcade/battle,
+/turf/simulated/floor/wood,
+/area/crew_quarters/bar)
 "bfS" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -33913,15 +33904,39 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/servicebackroom)
 "bgj" = (
-/turf/simulated/floor/reinforced,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/obj/machinery/button/windowtint{
+	id = "secreet";
+	name = "Window Tint Control";
+	pixel_x = -32;
+	range = 9
+	},
+/turf/simulated/floor/tiled/eris/steel/bar_dance,
+/area/tether/surfacebase/barbackmaintenance)
+"bgk" = (
 /obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
 /turf/simulated/shuttle/plating/carry,
 /area/shuttle/tether)
-"bgk" = (
-/turf/simulated/floor/reinforced,
+"bgl" = (
+/obj/structure/bed/chair/comfy/beige{
+	dir = 8;
+	icon_state = "comfychair"
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/eris/steel/bar_light,
+/area/tether/surfacebase/barbackmaintenance)
+"bgm" = (
 /obj/machinery/atmospherics/unary/engine{
 	dir = 1
 	},
+/turf/simulated/floor/reinforced,
 /turf/simulated/shuttle/plating/carry,
 /area/shuttle/tourbus/engines)
 "bgn" = (
@@ -33933,16 +33948,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5;
 	icon_state = "intact-supply"
-	},
-/turf/simulated/floor/tiled/white,
-/area/crew_quarters/kitchen)
-"bgo" = (
-/obj/structure/table/standard,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
@@ -48285,7 +48290,7 @@ jML
 jHw
 jpB
 qWU
-bgk
+bgm
 aKU
 aOI
 aPb
@@ -49137,7 +49142,7 @@ caw
 jHw
 gHh
 qWU
-bgk
+bgm
 aKU
 aOI
 aPb
@@ -51122,7 +51127,7 @@ aNk
 uSA
 aNJ
 aNP
-bgj
+bgk
 aKU
 abg
 aOk
@@ -51264,7 +51269,7 @@ aNl
 aNl
 aNK
 aNP
-bgj
+bgk
 aKU
 abg
 aOk
@@ -51406,7 +51411,7 @@ aNm
 aNl
 aNK
 aNP
-bgj
+bgk
 aKU
 abg
 aOk
@@ -51667,8 +51672,8 @@ avD
 awc
 avi
 aCX
-azZ
-aBx
+aHy
+bee
 aCT
 aIl
 aHs
@@ -51972,7 +51977,7 @@ aAl
 aId
 bdA
 ayM
-bee
+bgj
 bek
 bfo
 bfN
@@ -52086,7 +52091,7 @@ bgc
 asD
 bev
 beG
-atg
+azZ
 atJ
 atQ
 bfd
@@ -52372,7 +52377,7 @@ aCq
 beH
 atM
 atL
-bgo
+aBx
 bfn
 aLc
 avo
@@ -52387,7 +52392,7 @@ aLd
 bbT
 bcm
 aAG
-aHy
+bfR
 aGK
 ayc
 bdZ
@@ -52685,7 +52690,7 @@ ayM
 bef
 beo
 bfD
-bfR
+bgl
 bfK
 bfU
 aac
@@ -53631,7 +53636,7 @@ acV
 axs
 ayK
 ash
-aop
+atg
 aSy
 aop
 aop
