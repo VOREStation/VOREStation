@@ -383,7 +383,7 @@
 
 /obj/item/clothing/accessory/cowledvest
 	name = "cowled vest"
-	desc = "A body warmer for the 26th century."
+	desc = "A body warmer for the 24th century." //VOREStation Edit
 	icon_state = "cowled_vest"
 
 /obj/item/clothing/accessory/asymmetric
