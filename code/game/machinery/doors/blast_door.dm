@@ -10,6 +10,9 @@
 // UPDATE 06.04.2018
 // The emag thing wasn't working as intended, manually overwrote it.
 
+#define BLAST_DOOR_CRUSH_DAMAGE 40
+#define SHUTTER_CRUSH_DAMAGE 10
+
 /obj/machinery/door/blast
 	name = "Blast Door"
 	desc = "That looks like it doesn't open easily."
@@ -24,6 +27,7 @@
 	var/icon_state_closing = null
 	var/open_sound = 'sound/machines/blastdooropen.ogg'
 	var/close_sound = 'sound/machines/blastdoorclose.ogg'
+	var/damage = BLAST_DOOR_CRUSH_DAMAGE
 
 	closed_layer = ON_WINDOW_LAYER // Above airlocks when closed
 	var/id = 1.0
@@ -98,6 +102,12 @@
 	src.set_opacity(1)
 	sleep(15)
 	src.operating = 0
+	
+	// Blast door crushing.
+	for(var/turf/turf in locs)
+		for(var/atom/movable/AM in turf)
+			if(AM.airlock_crush(damage))
+				take_damage(damage*0.2)
 
 // Proc: force_toggle()
 // Parameters: None
@@ -300,3 +310,7 @@ obj/machinery/door/blast/regular/open
 	icon_state_closed = "shutter1"
 	icon_state_closing = "shutterc1"
 	icon_state = "shutter1"
+	damage = SHUTTER_CRUSH_DAMAGE
+
+#undef BLAST_DOOR_CRUSH_DAMAGE
+#undef SHUTTER_CRUSH_DAMAGE
