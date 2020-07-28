@@ -10555,14 +10555,19 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
 "asd" = (
-/obj/machinery/light{
-	dir = 1
+/obj/structure/sign/biohazard{
+	pixel_y = 32
 	},
+/obj/structure/flora/pottedplant/crystal,
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/machinery/camera/network/research/xenobio,
 /turf/simulated/floor/tiled,
-/area/rnd/outpost/xenobiology/outpost_north_airlock)
+/area/rnd/outpost/xenobiology/outpost_hallway)
 "ase" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8;
@@ -13803,16 +13808,15 @@
 /turf/simulated/open,
 /area/rnd/staircase/thirdfloor)
 "axP" = (
-/obj/machinery/holoplant,
+/obj/machinery/light{
+	dir = 1
+	},
 /obj/effect/floor_decal/borderfloorblack{
-	dir = 8
+	dir = 1
 	},
-/obj/machinery/camera/network/research{
-	dir = 5;
-	icon_state = "camera"
-	},
+/obj/machinery/camera/network/research/xenobio,
 /turf/simulated/floor/tiled,
-/area/rnd/outpost/xenobiology/outpost_hallway)
+/area/rnd/outpost/xenobiology/outpost_north_airlock)
 "axQ" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -15355,11 +15359,12 @@
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
 "aAt" = (
-/obj/structure/table/wooden_reinforced,
-/obj/item/weapon/paperplane,
-/obj/machinery/camera/network/research,
-/turf/simulated/floor/wood,
-/area/rnd/outpost/xenobiology/outpost_office)
+/obj/structure/flora/pottedplant/subterranean,
+/obj/effect/floor_decal/borderfloorblack{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/outpost/xenobiology/outpost_hallway)
 "aAu" = (
 /obj/machinery/alarm{
 	dir = 8;
@@ -15569,10 +15574,15 @@
 /turf/simulated/open,
 /area/hallway/lower/third_south)
 "aAO" = (
-/obj/machinery/recharge_station,
-/obj/machinery/camera/network/research,
+/obj/effect/floor_decal/borderfloorblack{
+	dir = 4
+	},
+/obj/machinery/camera/network/research/xenobio{
+	icon_state = "camera";
+	dir = 9
+	},
 /turf/simulated/floor/tiled,
-/area/rnd/outpost/xenobiology/outpost_breakroom)
+/area/rnd/outpost/xenobiology/outpost_hallway)
 "aAP" = (
 /obj/effect/floor_decal/corner/lime/border{
 	dir = 1
@@ -16105,12 +16115,16 @@
 /turf/simulated/floor/wood,
 /area/library)
 "aBu" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
+/obj/machinery/holoplant,
+/obj/effect/floor_decal/borderfloorblack{
+	dir = 8
 	},
-/obj/machinery/camera/network/research,
-/turf/simulated/floor/tiled/white,
-/area/rnd/outpost/xenobiology/outpost_autopsy)
+/obj/machinery/camera/network/research/xenobio{
+	icon_state = "camera";
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/outpost/xenobiology/outpost_hallway)
 "aBv" = (
 /obj/structure/bed/chair/office/dark,
 /turf/simulated/floor/wood,
@@ -16275,19 +16289,10 @@
 /turf/simulated/floor/tiled,
 /area/rnd/research/testingrange)
 "aBJ" = (
-/obj/machinery/shower{
-	dir = 4;
-	icon_state = "shower";
-	pixel_x = 5;
-	pixel_y = 0
-	},
-/obj/structure/curtain/open/shower,
-/obj/machinery/camera/network/research{
-	dir = 1;
-	icon_state = "camera"
-	},
-/turf/simulated/floor/tiled/dark,
-/area/rnd/outpost/xenobiology/outpost_south_airlock)
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tether)
 "aBK" = (
 /obj/machinery/door/firedoor/glass,
 /obj/effect/floor_decal/borderfloorblack,
@@ -16328,13 +16333,12 @@
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
 "aBM" = (
-/obj/machinery/hologram/holopad,
-/obj/machinery/camera/network/research{
-	dir = 8;
-	icon_state = "camera"
+/obj/machinery/atmospherics/unary/engine{
+	dir = 1
 	},
-/turf/simulated/floor/tiled/white,
-/area/rnd/outpost/xenobiology/outpost_first_aid)
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tourbus/engines)
 "aBN" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -17232,15 +17236,19 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
 "aDo" = (
-/obj/structure/table/standard,
-/obj/item/device/slime_scanner,
-/obj/item/device/slime_scanner,
-/obj/item/device/multitool,
-/obj/machinery/camera/network/research{
-	dir = 1
+/obj/machinery/shower{
+	dir = 4;
+	icon_state = "shower";
+	pixel_x = 5;
+	pixel_y = 0
 	},
-/turf/simulated/floor/tiled/techmaint,
-/area/rnd/outpost/xenobiology/outpost_storage)
+/obj/structure/curtain/open/shower,
+/obj/machinery/camera/network/research/xenobio{
+	icon_state = "camera";
+	dir = 10
+	},
+/turf/simulated/floor/tiled/dark,
+/area/rnd/outpost/xenobiology/outpost_south_airlock)
 "aDp" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
@@ -17576,14 +17584,11 @@
 /turf/simulated/floor/grass,
 /area/tether/surfacebase/public_garden_three)
 "aDU" = (
-/obj/structure/bed/chair/wood{
-	dir = 1
-	},
-/obj/machinery/camera/network/research{
-	dir = 1
-	},
-/turf/simulated/floor/tiled,
-/area/rnd/outpost/xenobiology/outpost_breakroom)
+/obj/structure/table/wooden_reinforced,
+/obj/item/weapon/paperplane,
+/obj/machinery/camera/network/research/xenobio,
+/turf/simulated/floor/wood,
+/area/rnd/outpost/xenobiology/outpost_office)
 "aDV" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -17698,12 +17703,10 @@
 /turf/simulated/floor/tiled/dark,
 /area/bridge)
 "aEf" = (
-/obj/machinery/camera/network/research{
-	dir = 5;
-	icon_state = "camera"
-	},
-/turf/simulated/floor/tiled/dark,
-/area/rnd/outpost/xenobiology/outpost_main)
+/obj/machinery/recharge_station,
+/obj/machinery/camera/network/research/xenobio,
+/turf/simulated/floor/tiled,
+/area/rnd/outpost/xenobiology/outpost_breakroom)
 "aEg" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1;
@@ -17886,16 +17889,12 @@
 /turf/simulated/floor/plating,
 /area/maintenance/commandmaint)
 "aEw" = (
-/obj/structure/flora/pottedplant/subterranean,
-/obj/effect/floor_decal/borderfloorblack{
+/obj/machinery/camera/network/research/xenobio{
+	icon_state = "camera";
 	dir = 4
 	},
-/obj/machinery/camera/network/research{
-	dir = 8;
-	icon_state = "camera"
-	},
-/turf/simulated/floor/tiled,
-/area/rnd/outpost/xenobiology/outpost_hallway)
+/turf/simulated/floor/tiled/dark,
+/area/rnd/outpost/xenobiology/outpost_main)
 "aEx" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -18586,26 +18585,15 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/botanystorage)
 "aFF" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/cable/green{
-	icon_state = "1-2"
-	},
-/obj/structure/cable/green{
-	icon_state = "1-4"
-	},
-/obj/structure/cable/green{
-	icon_state = "1-8"
-	},
-/obj/structure/disposalpipe/junction{
-	dir = 1;
-	icon_state = "pipe-j2"
-	},
-/obj/machinery/camera/network/research{
+/obj/structure/bed/chair/wood{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark,
-/area/rnd/outpost/xenobiology/outpost_main)
+/obj/machinery/camera/network/research/xenobio{
+	icon_state = "camera";
+	dir = 10
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/outpost/xenobiology/outpost_breakroom)
 "aFG" = (
 /obj/effect/floor_decal/corner/lime/bordercorner{
 	dir = 8
@@ -34393,10 +34381,12 @@
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/barbackmaintenance)
 "bgX" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tether)
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/machinery/camera/network/research/xenobio,
+/turf/simulated/floor/tiled/white,
+/area/rnd/outpost/xenobiology/outpost_autopsy)
 "bgY" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/polarized/full{
@@ -34426,12 +34416,27 @@
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/tether/surfacebase/barbackmaintenance)
 "bha" = (
-/obj/machinery/atmospherics/unary/engine{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/cable/green{
+	icon_state = "1-2"
 	},
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tourbus/engines)
+/obj/structure/cable/green{
+	icon_state = "1-4"
+	},
+/obj/structure/cable/green{
+	icon_state = "1-8"
+	},
+/obj/structure/disposalpipe/junction{
+	dir = 1;
+	icon_state = "pipe-j2"
+	},
+/obj/machinery/camera/network/research/xenobio{
+	icon_state = "camera";
+	dir = 10
+	},
+/turf/simulated/floor/tiled/dark,
+/area/rnd/outpost/xenobiology/outpost_main)
 "bhb" = (
 /obj/structure/grille,
 /obj/structure/cable/green{
@@ -34490,6 +34495,25 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/barbackmaintenance)
+"bhe" = (
+/obj/machinery/hologram/holopad,
+/obj/machinery/camera/network/research/xenobio{
+	icon_state = "camera";
+	dir = 9
+	},
+/turf/simulated/floor/tiled/white,
+/area/rnd/outpost/xenobiology/outpost_first_aid)
+"bhf" = (
+/obj/structure/table/standard,
+/obj/item/device/slime_scanner,
+/obj/item/device/slime_scanner,
+/obj/item/device/multitool,
+/obj/machinery/camera/network/research/xenobio{
+	icon_state = "camera";
+	dir = 10
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/outpost/xenobiology/outpost_storage)
 "bhu" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/lightgrey/border,
@@ -37191,19 +37215,6 @@
 /obj/structure/table/steel,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/processing)
-"tZw" = (
-/obj/structure/sign/biohazard{
-	pixel_y = 32
-	},
-/obj/structure/flora/pottedplant/crystal,
-/obj/effect/floor_decal/borderfloorblack{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
-	},
-/turf/simulated/floor/tiled,
-/area/rnd/outpost/xenobiology/outpost_hallway)
 "uaN" = (
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 9
@@ -42372,7 +42383,7 @@ aab
 aOm
 adG
 aOR
-aAt
+aDU
 aPw
 aPN
 aQb
@@ -42523,7 +42534,7 @@ aQy
 aQI
 aQS
 aRa
-aBu
+bgX
 aRu
 aRI
 aRO
@@ -42957,7 +42968,7 @@ aMK
 aMq
 aSB
 aPV
-aBM
+bhe
 aXA
 aSA
 aCO
@@ -43081,7 +43092,7 @@ aNZ
 aOf
 aOo
 aHM
-aBJ
+aDo
 aOf
 aOR
 aPP
@@ -43217,7 +43228,7 @@ aCc
 aMi
 aCc
 aCc
-axP
+aBu
 aNS
 aEt
 aGo
@@ -43231,7 +43242,7 @@ aQe
 aQA
 aQB
 aQM
-aEf
+aEw
 aMo
 aQM
 aRz
@@ -43342,7 +43353,7 @@ aac
 aac
 aac
 acj
-tZw
+asd
 dVE
 cWe
 hgf
@@ -43380,7 +43391,7 @@ aRo
 aQC
 aRS
 aSe
-aFF
+bha
 aSr
 aBf
 aMl
@@ -43489,10 +43500,10 @@ aCm
 awh
 aGM
 aNn
-aEw
+aAt
 aJB
 aNn
-aNn
+aAO
 asf
 aNn
 aNn
@@ -43934,14 +43945,14 @@ adG
 aRh
 adG
 aOW
-aAO
+aEf
 aPG
 aJb
 aQh
 aQu
 aQE
 aQO
-aDU
+aFF
 aRe
 aMJ
 aRD
@@ -44236,7 +44247,7 @@ bKS
 aSJ
 aSY
 aTk
-aDo
+bhf
 aSI
 adG
 aOi
@@ -44336,7 +44347,7 @@ aac
 aac
 aac
 aiE
-asd
+axP
 aBQ
 aGn
 aiE
@@ -48758,7 +48769,7 @@ jML
 jHw
 jpB
 qWU
-bha
+aBM
 aKU
 aOI
 aPb
@@ -49610,7 +49621,7 @@ caw
 jHw
 gHh
 qWU
-bha
+aBM
 aKU
 aOI
 aPb
@@ -51595,7 +51606,7 @@ aNk
 uSA
 aNJ
 aNP
-bgX
+aBJ
 aKU
 abg
 aOk
@@ -51737,7 +51748,7 @@ aNl
 aNl
 aNK
 aNP
-bgX
+aBJ
 aKU
 abg
 aOk
@@ -51879,7 +51890,7 @@ aNm
 aNl
 aNK
 aNP
-bgX
+aBJ
 aKU
 abg
 aOk
