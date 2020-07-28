@@ -33885,8 +33885,8 @@
 /turf/simulated/floor/tiled/eris/cafe,
 /area/hydroponics)
 "bgd" = (
-/obj/effect/landmark/start{
-	name = "Observer"
+/obj/effect/landmark{
+	name = "Observer-Start"
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
@@ -34101,15 +34101,15 @@
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/bar_backroom)
 "bgz" = (
-/turf/simulated/floor/reinforced,
 /obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
 /turf/simulated/shuttle/plating/carry,
 /area/shuttle/tether)
 "bgA" = (
-/turf/simulated/floor/reinforced,
 /obj/machinery/atmospherics/unary/engine{
 	dir = 1
 	},
+/turf/simulated/floor/reinforced,
 /turf/simulated/shuttle/plating/carry,
 /area/shuttle/tourbus/engines)
 "bhu" = (
