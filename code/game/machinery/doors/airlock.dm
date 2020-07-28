@@ -1127,6 +1127,7 @@ About the new airlock wires panel:
 	SetWeakened(5)
 	var/turf/T = get_turf(src)
 	T.add_blood(src)
+	return 1
 
 /mob/living/carbon/airlock_crush(var/crush_damage)
 	. = ..()
