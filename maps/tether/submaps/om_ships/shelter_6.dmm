@@ -144,14 +144,6 @@
 /obj/item/weapon/storage/box/metalfoam,
 /obj/item/weapon/storage/box/metalfoam,
 /obj/item/weapon/storage/box/metalfoam,
-/obj/item/clothing/suit/space/void/merc/prototype,
-/obj/item/clothing/suit/space/void/merc/prototype,
-/obj/item/clothing/suit/space/void/merc/prototype,
-/obj/item/clothing/suit/space/void/merc/prototype,
-/obj/item/clothing/head/helmet/space/void/merc/prototype,
-/obj/item/clothing/head/helmet/space/void/merc/prototype,
-/obj/item/clothing/head/helmet/space/void/merc/prototype,
-/obj/item/clothing/head/helmet/space/void/merc/prototype,
 /obj/item/clothing/shoes/magboots/adv,
 /obj/item/clothing/shoes/magboots/adv,
 /obj/item/clothing/shoes/magboots/adv,
@@ -189,6 +181,15 @@
 /obj/item/weapon/storage/briefcase/inflatable,
 /obj/item/weapon/storage/briefcase/inflatable,
 /obj/item/weapon/storage/belt/utility/full,
+/obj/item/clothing/suit/space/void/responseteam/command,
+/obj/item/clothing/suit/space/void/responseteam/engineer,
+/obj/item/clothing/suit/space/void/responseteam/engineer,
+/obj/item/clothing/suit/space/void/responseteam/medical,
+/obj/item/clothing/suit/space/void/responseteam/medical,
+/obj/item/clothing/suit/space/void/responseteam/security,
+/obj/item/clothing/suit/space/void/responseteam/security,
+/obj/item/clothing/suit/space/void/responseteam/security,
+/obj/item/clothing/suit/space/void/responseteam/security,
 /turf/simulated/floor/reinforced,
 /area/shuttle/tabiranth)
 "af" = (
@@ -877,6 +878,7 @@
 /obj/item/weapon/tank/emergency/oxygen/double,
 /obj/item/weapon/tank/emergency/oxygen/double,
 /obj/item/weapon/tank/emergency/oxygen/double,
+/obj/item/clothing/suit/space/void/refurb/officer,
 /turf/simulated/floor/tiled/white,
 /area/shuttle/tabiranth)
 "aP" = (
