@@ -305,6 +305,16 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/security/brig)
+"aH" = (
+/obj/effect/floor_decal/industrial/warning/corner,
+/obj/machinery/cryopod{
+	dir = 4
+	},
+/obj/machinery/computer/cryopod{
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled,
+/area/security/brig)
 "aI" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
@@ -427,6 +437,14 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled,
 /area/security/brig/visitation)
+"aW" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_l"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1)
 "aX" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -761,6 +779,13 @@
 /obj/effect/floor_decal/borderfloor/shifted,
 /turf/simulated/floor/tiled,
 /area/security/brig)
+"bs" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1)
 "bt" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -860,6 +885,14 @@
 	},
 /turf/simulated/floor/tiled/steel_dirty,
 /area/security/brig)
+"bC" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_r"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1)
 "bD" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 4
@@ -3684,13 +3717,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/exploration/staircase)
-"fD" = (
-/obj/effect/floor_decal/industrial/warning/corner,
-/obj/machinery/cryopod{
-	dir = 4
-	},
-/turf/simulated/floor/tiled,
-/area/security/brig)
 "fE" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 8
@@ -9407,21 +9433,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor,
 /area/maintenance/station/exploration)
-"ot" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1)
-"ou" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1)
 "ov" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/lattice,
@@ -10145,14 +10156,6 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/engineering/foyer_mezzenine)
-"pM" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_r"
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1)
 "pN" = (
 /obj/machinery/requests_console{
 	department = "Tech storage";
@@ -29948,7 +29951,7 @@ bI
 Hx
 VU
 eS
-fD
+aH
 Pm
 aS
 sg
@@ -37490,11 +37493,11 @@ hl
 DI
 RX
 DL
-ot
-ou
-ou
-ou
-pM
+aW
+bs
+bs
+bs
+bC
 oY
 sW
 ef

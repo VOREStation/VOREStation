@@ -688,10 +688,13 @@
 			if(bodytemperature >= species.heat_level_2)
 				if(bodytemperature >= species.heat_level_3)
 					burn_dam = HEAT_DAMAGE_LEVEL_3
+					throw_alert("temp", /obj/screen/alert/hot, 3)
 				else
 					burn_dam = HEAT_DAMAGE_LEVEL_2
+					throw_alert("temp", /obj/screen/alert/hot, 2)
 			else
 				burn_dam = HEAT_DAMAGE_LEVEL_1
+				throw_alert("temp", /obj/screen/alert/hot, 1)
 
 		take_overall_damage(burn=burn_dam, used_weapon = "High Body Temperature")
 
@@ -714,6 +717,8 @@
 					cold_dam = COLD_DAMAGE_LEVEL_1
 
 			take_overall_damage(burn=cold_dam, used_weapon = "Low Body Temperature")
+			
+	else clear_alert("temp")
 
 	// Account for massive pressure differences.  Done by Polymorph
 	// Made it possible to actually have something that can protect against high pressure... Done by Errorage. Polymorph now has an axe sticking from his head for his previous hardcoded nonsense!
