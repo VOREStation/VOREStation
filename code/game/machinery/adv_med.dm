@@ -500,7 +500,7 @@
 	else
 		dat += "\The [src] is empty."
 
-	printing_text = dat
+	return dat
 
 //Body Scan Console
 /obj/machinery/body_scanconsole
