@@ -238,7 +238,9 @@
 	},
 /area/awaymission/snow_outpost/powered)
 "aR" = (
-/obj/mecha/combat/marauder/mauler,
+/obj/mecha/combat/marauder/mauler{
+	operation_req_access = newlist()
+	},
 /turf/simulated/floor/bluegrid{
 	name = "Mainframe Base";
 	nitrogen = 100;

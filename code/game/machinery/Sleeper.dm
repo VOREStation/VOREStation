@@ -100,7 +100,7 @@
 	// Currently never changes. On Paradise, max_chem and min_health are based on the matter bins in the sleeper.
 	var/max_chem = 20
 	var/initial_bin_rating = 1
-	var/min_health = -25
+	var/min_health = -101
 	var/obj/machinery/sleep_console/console
 	var/stasis_level = 0 //Every 'this' life ticks are applied to the mob (when life_ticks%stasis_level == 1)
 	var/stasis_choices = list("Complete (1%)" = 100, "Deep (10%)" = 10, "Moderate (20%)" = 5, "Light (50%)" = 2, "None (100%)" = 0)

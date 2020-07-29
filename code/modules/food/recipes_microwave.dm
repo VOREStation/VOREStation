@@ -738,7 +738,8 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/porkbowl
 
-/datum/recipe/tortilla
+/datum/recipe/microwavetortilla
+	reagents = list("flour" = 5, "water" = 5)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough
 	)
