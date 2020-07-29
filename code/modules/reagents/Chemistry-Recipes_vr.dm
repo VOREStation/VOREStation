@@ -47,6 +47,9 @@
 	s.start()
 	holder.clear_reagents()
 
+///////////////////////////////////////////////////////////////////////////////////
+/// Miscellaneous Reactions
+
 /datum/chemical_reaction/xenolazarus
 	name = "Discount Lazarus"
 	id = "discountlazarus"
@@ -71,6 +74,9 @@
 			else
 				H.visible_message("<span class='info'>[H] twitches for a moment, but remains still.</span>") // no nutriment
 
+
+/datum/chemical_reaction/foam/softdrink
+	required_reagents = list("cola" = 1, "mint" = 1)
 
 ///////////////////////////////////////////////////////////////////////////////////
 /// Vore Drugs

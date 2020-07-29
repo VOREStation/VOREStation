@@ -908,9 +908,6 @@
 	//VOREStation Edit End
 	return
 
-/datum/chemical_reaction/foam/softdrink //vorestation add
-	required_reagents = list("cola" = 1, "mint" = 1) //vorestation add
-
 /datum/chemical_reaction/metalfoam
 	name = "Metal Foam"
 	id = "metalfoam"
