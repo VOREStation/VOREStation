@@ -1200,7 +1200,7 @@
 	//VOREstation edit. Floor polishing.
 	if(istype(T, /turf/simulated))
 		var/turf/simulated/S = T
-		S.dirt = -150 
+		S.dirt = -50 
 	//VOREstation edit end	
 
 /datum/reagent/sterilizine/touch_mob(var/mob/living/L, var/amount)
