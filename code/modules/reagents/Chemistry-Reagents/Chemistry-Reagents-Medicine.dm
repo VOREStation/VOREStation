@@ -1197,6 +1197,12 @@
 	for(var/obj/effect/decal/cleanable/blood/B in T)
 		qdel(B)
 
+	//VOREstation edit. Floor polishing.
+	if(istype(T, /turf/simulated))
+		var/turf/simulated/S = T
+		S.dirt = -50 
+	//VOREstation edit end	
+
 /datum/reagent/sterilizine/touch_mob(var/mob/living/L, var/amount)
 	if(istype(L))
 		if(istype(L, /mob/living/simple_mob/slime))
