@@ -266,6 +266,18 @@ var/list/_client_preferences_by_type
 	enabled_description =  "Enabled"
 	disabled_description = "Disabled"
 
+/datum/client_preference/status_indicators
+	description = "Status Indicators"
+	key = "SHOW_STATUS"
+	enabled_description = "Show"
+	disabled_description = "Hide"
+
+/datum/client_preference/status_indicators/toggled(mob/preference_mob, enabled)
+	. = ..()
+	if(preference_mob && preference_mob.plane_holder)
+		var/datum/plane_holder/PH = preference_mob.plane_holder
+		PH.set_vis(VIS_STATUS, enabled)
+
 /********************
 * Staff Preferences *
 ********************/

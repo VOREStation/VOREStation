@@ -26,7 +26,7 @@
 				return
 		to_chat(M, "<span class='warning'>Your ears feel like they're bleeding!</span>")
 		playsound(M, 'sound/effects/bang.ogg', 70, 1, 30)
-		M.sleeping = 0
+		M.SetSleeping(0)
 		M.ear_deaf += 30
 		M.ear_damage += rand(5, 20)
 		M.Weaken(3)

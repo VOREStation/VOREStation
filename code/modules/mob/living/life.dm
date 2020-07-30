@@ -126,7 +126,7 @@
 
 /mob/living/proc/handle_weakened()
 	if(weakened)
-		weakened = max(weakened-1,0)
+		AdjustWeakened(-1)
 		throw_alert("weakened", /obj/screen/alert/weakened)
 	else
 		clear_alert("weakened")
@@ -181,7 +181,7 @@
 		throw_alert("blind", /obj/screen/alert/blind)
 	else
 		clear_alert("blind")
-	
+
 	if(eye_blurry)			//blurry eyes heal slowly
 		eye_blurry = max(eye_blurry-1, 0)
 

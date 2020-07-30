@@ -2419,6 +2419,7 @@
 #include "code\modules\mob\living\login.dm"
 #include "code\modules\mob\living\logout.dm"
 #include "code\modules\mob\living\say.dm"
+#include "code\modules\mob\living\status_indicators.dm"
 #include "code\modules\mob\living\bot\bot.dm"
 #include "code\modules\mob\living\bot\bot_vr.dm"
 #include "code\modules\mob\living\bot\cleanbot.dm"
