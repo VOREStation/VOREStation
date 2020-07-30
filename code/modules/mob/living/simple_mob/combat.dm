@@ -143,7 +143,7 @@
 
 	if(do_after(src, reload_time))
 		if(reload_sound)
-			playsound(src, reload_sound, 50, 1)
+			playsound(src, reload_sound, 70, 1)
 		reload_count = 0
 		. = TRUE
 	else
