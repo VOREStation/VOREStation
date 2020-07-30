@@ -625,10 +625,7 @@ CIRCUITS BELOW
 	req_tech = list(TECH_DATA = 5, TECH_ENGINEERING = 5, TECH_BLUESPACE = 4)
 	build_path = /obj/item/weapon/circuitboard/microwave/advanced
 	sort_string = "HACAA"
-<<<<<<< HEAD
-=======
 
->>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking
 
 /datum/design/circuit/shield_generator
 	name = "shield generator"
