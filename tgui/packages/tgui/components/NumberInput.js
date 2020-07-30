@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /**
  * @file
  * @copyright 2020 Aleksej Komarov
@@ -7,6 +8,12 @@
 import { clamp } from 'common/math';
 import { classes, pureComponentHooks } from 'common/react';
 import { Component, createRef } from 'inferno';
+=======
+import { clamp } from 'common/math';
+import { classes, pureComponentHooks } from 'common/react';
+import { Component, createRef } from 'inferno';
+import { IS_IE8 } from '../byond';
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 import { AnimatedNumber } from './AnimatedNumber';
 import { Box } from './Box';
 
@@ -167,7 +174,11 @@ export class NumberInput extends Component {
     const renderContentElement = value => (
       <div
         className="NumberInput__content"
+<<<<<<< HEAD
         unselectable={Byond.IS_LTE_IE8}>
+=======
+        unselectable={IS_IE8}>
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
         {value + (unit ? ' ' + unit : '')}
       </div>
     );

@@ -5,9 +5,15 @@ $color-default: colors.fg(colors.$label) !default;
 
 .BlockQuote {
   color: $color-default;
+<<<<<<< HEAD
   border-left: base.em(2px) solid $color-default;
   padding-left: 0.5em;
   margin-bottom: 0.5em;
+=======
+  border-left: 2px solid $color-default;
+  padding-left: 6px;
+  margin-bottom: 6px;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 
   &:last-child {
     margin-bottom: 0;

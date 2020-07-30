@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /**
  * @file
  * @copyright 2020 Aleksej Komarov
@@ -6,20 +7,32 @@
 
 import { storage } from 'common/storage';
 import { vecAdd, vecInverse, vecMultiply, vecScale } from 'common/vector';
+=======
+import { vecAdd, vecInverse, vecMultiply } from 'common/vector';
+import { winget, winset } from './byond';
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 import { createLogger } from './logging';
 
 const logger = createLogger('drag');
 
+<<<<<<< HEAD
 let windowKey = window.__windowId__;
 let dragging = false;
 let resizing = false;
 let screenOffset = [0, 0];
 let screenOffsetPromise;
+=======
+let ref;
+let dragging = false;
+let resizing = false;
+let screenOffset = [0, 0];
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 let dragPointOffset;
 let resizeMatrix;
 let initialSize;
 let size;
 
+<<<<<<< HEAD
 export const setWindowKey = key => {
   windowKey = key;
 };
@@ -145,12 +158,42 @@ export const setupDrag = async () => {
     ]);
   screenOffset = await screenOffsetPromise;
   logger.debug('screen offset', screenOffset);
+=======
+const getWindowPosition = ref => {
+  return winget(ref, 'pos').then(pos => [pos.x, pos.y]);
+};
+
+const setWindowPosition = (ref, vec) => {
+  return winset(ref, 'pos', vec[0] + ',' + vec[1]);
+};
+
+const setWindowSize = (ref, vec) => {
+  return winset(ref, 'size', vec[0] + ',' + vec[1]);
+};
+
+export const setupDrag = async state => {
+  logger.log('setting up');
+  ref = state.config.window;
+  // Calculate offset caused by windows taskbar
+  const realPosition = await getWindowPosition(ref);
+  screenOffset = [
+    realPosition[0] - window.screenLeft,
+    realPosition[1] - window.screenTop,
+  ];
+  // Constraint window position
+  const [relocated, safePosition] = constraintPosition(realPosition);
+  if (relocated) {
+    setWindowPosition(ref, safePosition);
+  }
+  logger.debug('current state', { ref, screenOffset });
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 };
 
 /**
  * Constraints window position to safe screen area, accounting for safe
  * margins which could be a system taskbar.
  */
+<<<<<<< HEAD
 const constraintPosition = (pos, size) => {
   const screenPos = getScreenPosition();
   const screenSize = getScreenSize();
@@ -169,6 +212,33 @@ const constraintPosition = (pos, size) => {
     }
   }
   return [relocated, nextPos];
+=======
+const constraintPosition = position => {
+  let x = position[0];
+  let y = position[1];
+  let relocated = false;
+  // Left
+  if (x < 0) {
+    x = 0;
+    relocated = true;
+  }
+  // Right
+  else if (x + window.innerWidth > window.screen.availWidth) {
+    x = window.screen.availWidth - window.innerWidth;
+    relocated = true;
+  }
+  // Top
+  if (y < 0) {
+    y = 0;
+    relocated = true;
+  }
+  // Bottom
+  else if (y + window.innerHeight > window.screen.availHeight) {
+    y = window.screen.availHeight - window.innerHeight;
+    relocated = true;
+  }
+  return [relocated, [x, y]];
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 };
 
 export const dragStartHandler = event => {
@@ -189,7 +259,10 @@ const dragEndHandler = event => {
   document.removeEventListener('mousemove', dragMoveHandler);
   document.removeEventListener('mouseup', dragEndHandler);
   dragging = false;
+<<<<<<< HEAD
   storeWindowGeometry(windowKey);
+=======
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 };
 
 const dragMoveHandler = event => {
@@ -197,8 +270,14 @@ const dragMoveHandler = event => {
     return;
   }
   event.preventDefault();
+<<<<<<< HEAD
   setWindowPosition(vecAdd(
     [event.screenX, event.screenY],
+=======
+  setWindowPosition(ref, vecAdd(
+    [event.screenX, event.screenY],
+    screenOffset,
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
     dragPointOffset));
 };
 
@@ -225,7 +304,10 @@ const resizeEndHandler = event => {
   document.removeEventListener('mousemove', resizeMoveHandler);
   document.removeEventListener('mouseup', resizeEndHandler);
   resizing = false;
+<<<<<<< HEAD
   storeWindowGeometry(windowKey);
+=======
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 };
 
 const resizeMoveHandler = event => {
@@ -239,7 +321,13 @@ const resizeMoveHandler = event => {
     dragPointOffset,
     [1, 1])));
   // Sane window size values
+<<<<<<< HEAD
   size[0] = Math.max(size[0], 150);
   size[1] = Math.max(size[1], 50);
   setWindowSize(size);
+=======
+  size[0] = Math.max(size[0], 250);
+  size[1] = Math.max(size[1], 120);
+  setWindowSize(ref, size);
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 };

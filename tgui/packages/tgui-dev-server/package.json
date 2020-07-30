@@ -1,7 +1,11 @@
 {
   "private": true,
   "name": "tgui-dev-server",
+<<<<<<< HEAD
   "version": "4.1.0",
+=======
+  "version": "3.0.0",
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
   "type": "module",
   "dependencies": {
     "glob": "^7.1.4",

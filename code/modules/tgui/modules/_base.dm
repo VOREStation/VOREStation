@@ -9,9 +9,12 @@ Code is pretty much ripped verbatim from nano modules, but with un-needed stuff 
 /datum/tgui_module
 	var/name
 	var/datum/host
+<<<<<<< HEAD
 	var/list/using_access
 
 	var/tgui_id
+=======
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 
 /datum/tgui_module/New(var/host)
 	src.host = host
@@ -22,6 +25,7 @@ Code is pretty much ripped verbatim from nano modules, but with un-needed stuff 
 /datum/tgui_module/tgui_close(mob/user)
 	if(host)
 		host.tgui_close(user)
+<<<<<<< HEAD
 
 /datum/tgui_module/proc/check_access(mob/user, access)
 	if(!access)
@@ -44,3 +48,5 @@ Code is pretty much ripped verbatim from nano modules, but with un-needed stuff 
 		return 1
 
 	return 0
+=======
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui

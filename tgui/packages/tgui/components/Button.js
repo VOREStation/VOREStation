@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /**
  * @file
  * @copyright 2020 Aleksej Komarov
@@ -6,6 +7,11 @@
 
 import { classes, pureComponentHooks } from 'common/react';
 import { Component, createRef } from 'inferno';
+=======
+import { classes, pureComponentHooks } from 'common/react';
+import { Component, createRef } from 'inferno';
+import { IS_IE8 } from '../byond';
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 import { KEY_ENTER, KEY_ESCAPE, KEY_SPACE } from '../hotkeys';
 import { refocusLayout } from '../layouts';
 import { createLogger } from '../logging';
@@ -60,7 +66,11 @@ export const Button = props => {
         className,
       ])}
       tabIndex={!disabled && '0'}
+<<<<<<< HEAD
       unselectable={Byond.IS_LTE_IE8}
+=======
+      unselectable={IS_IE8}
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
       onclick={e => {
         refocusLayout();
         if (!disabled && onClick) {
@@ -86,10 +96,14 @@ export const Button = props => {
       }}
       {...rest}>
       {icon && (
+<<<<<<< HEAD
         <Icon
           name={icon}
           rotation={iconRotation}
           spin={iconSpin} />
+=======
+        <Icon name={icon} rotation={iconRotation} spin={iconSpin} />
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
       )}
       {content}
       {children}

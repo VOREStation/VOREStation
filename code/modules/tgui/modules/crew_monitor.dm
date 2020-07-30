@@ -1,5 +1,6 @@
 /datum/tgui_module/crew_monitor
 	name = "Crew monitor"
+<<<<<<< HEAD
 	tgui_id = "CrewMonitor"
 
 /datum/tgui_module/crew_monitor/tgui_act(action, params, datum/tgui/ui)
@@ -7,6 +8,14 @@
 		return TRUE
 
 	var/turf/T = get_turf(usr)
+=======
+
+/datum/tgui_module/crew_monitor/tgui_act(action, params)
+	if(..())
+		return TRUE
+
+	var/turf/T = get_turf(tgui_host())
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 	if(!T || !(T.z in using_map.player_levels))
 		to_chat(usr, "<span class='warning'><b>Unable to establish a connection</b>: You're too far away from the station!</span>")
 		return FALSE
@@ -19,12 +28,18 @@
 				if(hassensorlevel(H, SUIT_SENSOR_TRACKING))
 					AI.ai_actual_track(H)
 			return TRUE
+<<<<<<< HEAD
 		if("setZLevel")
 			ui.set_map_z_level(params["mapZLevel"])
 			SStgui.update_uis(src)
 
 /datum/tgui_module/crew_monitor/tgui_interact(mob/user, datum/tgui/ui = null)
 	var/z = get_z(user)
+=======
+
+/datum/tgui_module/crew_monitor/tgui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/tgui_state/state = GLOB.tgui_default_state)
+	var/z = get_z(tgui_host())
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 	var/list/map_levels = using_map.get_map_levels(z, TRUE, om_range = DEFAULT_OVERMAP_RANGE)
 	
 	if(!map_levels.len)
@@ -33,19 +48,33 @@
 			ui.close()
 		return null
 
+<<<<<<< HEAD
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, tgui_id, name)
+=======
+	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+	if(!ui)
+		ui = new(user, src, ui_key, "CrewMonitor", name, 800, 600, master_ui, state)
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 		ui.autoupdate = TRUE
 		ui.open()
 
 
+<<<<<<< HEAD
 /datum/tgui_module/crew_monitor/tgui_data(mob/user, ui_key = "main", datum/tgui_state/state = GLOB.tgui_default_state)
+=======
+/datum/tgui_module/crew_monitor/tgui_data(mob/user, ui_key = "main", datum/topic_state/state = GLOB.tgui_default_state)
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 	var/data[0]
 
 	data["isAI"] = isAI(user)
 
+<<<<<<< HEAD
 	var/z = get_z(user)
+=======
+	var/z = get_z(tgui_host())
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 	var/list/map_levels = uniquelist(using_map.get_map_levels(z, TRUE, om_range = DEFAULT_OVERMAP_RANGE))
 	data["map_levels"] = map_levels
 
@@ -54,6 +83,7 @@
 		data["crewmembers"] += crew_repository.health_data(zlevel)
 
 	return data
+<<<<<<< HEAD
 
 /datum/tgui_module/crew_monitor/ntos
 	tgui_id = "NtosCrewMonitor"
@@ -98,3 +128,5 @@
 /datum/tgui_module/crew_monitor/nif
 /datum/tgui_module/crew_monitor/nif/tgui_state(mob/user)
 	return GLOB.tgui_nif_state
+=======
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui

@@ -9,6 +9,10 @@
 @use '../base.scss' with (
   $color-bg: #550202,
   $color-bg-grad-spread: 6%,
+<<<<<<< HEAD
+=======
+  $border-radius: 2px,
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 );
 
 .theme-syndicate {

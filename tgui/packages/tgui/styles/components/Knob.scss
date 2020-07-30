@@ -59,7 +59,11 @@ $inner-padding: 0.1em;
   background-color: rgba(255, 255, 255, 0.9);
 }
 
+<<<<<<< HEAD
 .Knob__popupValue, .Knob__popupValue--right {
+=======
+.Knob__popupValue {
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
   position: absolute;
   top: -2rem;
   right: 50%;
@@ -71,11 +75,14 @@ $inner-padding: 0.1em;
   white-space: nowrap;
 }
 
+<<<<<<< HEAD
 .Knob__popupValue--right {
   top: 0.25rem;
   right: -50%;
 }
 
+=======
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 .Knob__ring {
   position: absolute;
   top: 0;
@@ -124,3 +131,44 @@ $pi: 3.1416;
     }
   }
 }
+<<<<<<< HEAD
+=======
+
+// .Slider__cursorOffset {
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   bottom: 0;
+//   transition: none !important;
+// }
+
+// .Slider__cursor {
+//   position: absolute;
+//   top: 0;
+//   right: -1px;
+//   bottom: 0;
+//   width: 0;
+//   border-left: 2px solid #fff;
+// }
+
+// .Slider__pointer {
+//   position: absolute;
+//   right: -5px;
+//   bottom: -4px;
+//   width: 0;
+//   height: 0;
+//   border-left: 5px solid transparent;
+//   border-right: 5px solid transparent;
+//   border-bottom: 5px solid #fff;
+// }
+
+// .Slider__popupValue {
+//   position: absolute;
+//   right: 0;
+//   top: -22px;
+//   padding: 2px 4px;
+//   background-color: #000;
+//   transform: translateX(50%);
+//   white-space: nowrap;
+// }
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui

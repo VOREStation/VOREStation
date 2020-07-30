@@ -7,16 +7,28 @@ $border-radius: base.$border-radius !default;
 .Input {
   position: relative;
   display: inline-block;
+<<<<<<< HEAD
   width: base.em(120px);
   border: base.em(1px) solid $border-color;
   border: base.em(1px) solid rgba($border-color, 0.75);
+=======
+  width: 120px;
+  border: 1px solid $border-color;
+  border: 1px solid rgba($border-color, 0.75);
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
   border-radius: $border-radius;
   color: #fff;
   background-color: #000;
   background-color: rgba(0, 0, 0, 0.75);
+<<<<<<< HEAD
   padding: 0 base.em(4px);
   margin-right: base.em(2px);
   line-height: base.em(17px);
+=======
+  padding: 0 4px;
+  margin-right: 2px;
+  line-height: 17px;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
   overflow: visible;
 }
 
@@ -40,11 +52,19 @@ $border-radius: base.$border-radius !default;
   border: 0;
   outline: 0;
   width: 100%;
+<<<<<<< HEAD
   font-size: base.em(12px);
   line-height: base.em(17px);
   height: base.em(17px);
   margin: 0;
   padding: 0 0.5em;
+=======
+  font-size: 12px;
+  line-height: 17px;
+  height: 17px;
+  margin: 0;
+  padding: 0 6px;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
   font-family: Verdana, sans-serif;
   background-color: transparent;
   color: #fff;

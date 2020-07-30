@@ -176,6 +176,7 @@
 /proc/log_unit_test(text)
 	to_world_log("## UNIT_TEST: [text]")
 
+<<<<<<< HEAD
 /proc/log_tgui(user_or_client, text)
 	var/entry = ""
 	if(!user_or_client)
@@ -191,6 +192,10 @@
 
 /proc/log_asset(text)
 	WRITE_LOG(diary, "ASSET: [text]")
+=======
+/proc/log_tgui(text)
+	diary << "\[[time_stamp()]]TGUI: [text][log_end]"
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 
 /proc/report_progress(var/progress_message)
 	admin_notice("<span class='boldannounce'>[progress_message]</span>", R_DEBUG)

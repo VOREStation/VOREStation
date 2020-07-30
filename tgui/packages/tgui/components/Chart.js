@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /**
  * @file
  * @copyright 2020 Aleksej Komarov
@@ -7,6 +8,12 @@
 import { map, zipWith } from 'common/collections';
 import { pureComponentHooks } from 'common/react';
 import { Component, createRef } from 'inferno';
+=======
+import { map, zipWith } from 'common/collections';
+import { pureComponentHooks } from 'common/react';
+import { Component, createRef } from 'inferno';
+import { IS_IE8 } from '../byond';
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 import { Box } from './Box';
 
 const normalizeData = (data, scale, rangeX, rangeY) => {
@@ -122,5 +129,9 @@ const Stub = props => null;
 
 // IE8: No inline svg support
 export const Chart = {
+<<<<<<< HEAD
   Line: Byond.IS_LTE_IE8 ? Stub : LineChart,
+=======
+  Line: IS_IE8 ? Stub : LineChart,
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 };

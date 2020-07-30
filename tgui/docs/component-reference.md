@@ -279,7 +279,11 @@ Example (button):
 <ByondUi
   params={{
     id: 'test_button', // optional, can be auto-generated
+<<<<<<< HEAD
     parent: 'some_container', // optional, defaults to the current window
+=======
+    parent: config.window,
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
     type: 'button',
     text: 'Hello, world!',
   }} />
@@ -291,6 +295,10 @@ Example (map):
 <ByondUi
   params={{
     id: 'test_map',
+<<<<<<< HEAD
+=======
+    parent: config.window,
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
     type: 'map',
   }} />
 ```
@@ -981,7 +989,10 @@ Example:
 - `className: string` - Applies a CSS class to the element.
 - `theme: string` - A name of the theme.
   - For a list of themes, see `packages/tgui/styles/themes`.
+<<<<<<< HEAD
 - `title: string` - Window title.
+=======
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 - `resizable: boolean` - Controls resizability of the window.
 - `children: any` - Child elements, which are rendered directly inside the
 window. If you use a [Dimmer](#dimmer) or [Modal](#modal) in your UI,

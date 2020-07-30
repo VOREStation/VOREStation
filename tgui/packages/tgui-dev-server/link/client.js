@@ -92,8 +92,13 @@ const sendRawMessage = msg => {
         socket.send(json);
       }
       else {
+<<<<<<< HEAD
         // Keep only 100 latest messages in the queue
         if (queue.length > 100) {
+=======
+        // Keep only 10 latest messages in the queue
+        if (queue.length > 10) {
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
           queue.shift();
         }
         queue.push(json);

@@ -1,9 +1,12 @@
+<<<<<<< HEAD
 /**
  * @file
  * @copyright 2020 Aleksej Komarov
  * @license MIT
  */
 
+=======
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 // Polyfills
 import 'core-js/es';
 import 'core-js/web/immediate';
@@ -18,6 +21,7 @@ import './polyfills/inferno';
 
 // Themes
 import './styles/main.scss';
+<<<<<<< HEAD
 import './styles/themes/abductor.scss';
 import './styles/themes/cardtable.scss';
 import './styles/themes/hackerman.scss';
@@ -31,18 +35,37 @@ import { perf } from 'common/perf';
 import { render } from 'inferno';
 import { setupHotReloading } from 'tgui-dev-server/link/client';
 import { backendUpdate, backendSuspendSuccess, selectBackend, sendMessage } from './backend';
+=======
+import './styles/themes/cardtable.scss';
+import './styles/themes/malfunction.scss';
+import './styles/themes/ntos.scss';
+import './styles/themes/hackerman.scss';
+import './styles/themes/retro.scss';
+import './styles/themes/syndicate.scss';
+
+import { loadCSS } from 'fg-loadcss';
+import { render } from 'inferno';
+import { setupHotReloading } from 'tgui-dev-server/link/client';
+import { backendUpdate } from './backend';
+import { IS_IE8 } from './byond';
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 import { setupDrag } from './drag';
 import { logger } from './logging';
 import { createStore, StoreProvider } from './store';
 
+<<<<<<< HEAD
 perf.mark('inception', window.__inception__);
 perf.mark('init');
 
+=======
+const enteredBundleAt = Date.now();
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 const store = createStore();
 let reactRoot;
 let initialRender = true;
 
 const renderLayout = () => {
+<<<<<<< HEAD
   perf.mark('render/start');
   const state = store.getState();
   const { suspended, assets } = selectBackend(state);
@@ -90,6 +113,54 @@ const renderLayout = () => {
     else {
       logger.debug('rendered in',
         perf.measure('render/start', 'render/finish'));
+=======
+  // Mark the beginning of the render
+  let startedAt;
+  if (process.env.NODE_ENV !== 'production') {
+    startedAt = Date.now();
+  }
+  try {
+    const state = store.getState();
+    // Initial render setup
+    if (initialRender) {
+      logger.log('initial render', state);
+      // Setup dragging
+      setupDrag(state);
+    }
+    // Start rendering
+    const { getRoutedComponent } = require('./routes');
+    const Component = getRoutedComponent(state);
+    const element = (
+      <StoreProvider store={store}>
+        <Component />
+      </StoreProvider>
+    );
+    if (!reactRoot) {
+      reactRoot = document.getElementById('react-root');
+    }
+    render(element, reactRoot);
+  }
+  catch (err) {
+    logger.error('rendering error', err);
+    throw err;
+  }
+  // Report rendering time
+  if (process.env.NODE_ENV !== 'production') {
+    const finishedAt = Date.now();
+    if (initialRender) {
+      logger.debug('serving from:', location.href);
+      logger.debug('bundle entered in', timeDiff(
+        window.__inception__, enteredBundleAt));
+      logger.debug('initialized in', timeDiff(
+        enteredBundleAt, startedAt));
+      logger.log('rendered in', timeDiff(
+        startedAt, finishedAt));
+      logger.log('fully loaded in', timeDiff(
+        window.__inception__, finishedAt));
+    }
+    else {
+      logger.debug('rendered in', timeDiff(startedAt, finishedAt));
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
     }
   }
   if (initialRender) {
@@ -97,6 +168,15 @@ const renderLayout = () => {
   }
 };
 
+<<<<<<< HEAD
+=======
+const timeDiff = (startedAt, finishedAt) => {
+  const diff = finishedAt - startedAt;
+  const diffFrames = (diff / 16.6667).toFixed(2);
+  return `${diff}ms (${diffFrames} frames)`;
+};
+
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 // Parse JSON and report all abnormal JSON strings coming from BYOND
 const parseStateJson = json => {
   let reviver = (key, value) => {
@@ -109,7 +189,11 @@ const parseStateJson = json => {
   };
   // IE8: No reviver for you!
   // See: https://stackoverflow.com/questions/1288962
+<<<<<<< HEAD
   if (Byond.IS_LTE_IE8) {
+=======
+  if (IS_IE8) {
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
     reviver = undefined;
   }
   try {
@@ -130,6 +214,7 @@ const setupApp = () => {
   });
 
   // Subscribe for bankend updates
+<<<<<<< HEAD
   window.update = messageJson => {
     const { suspended } = selectBackend(store.getState());
     // NOTE: messageJson can be an object only if called manually from console.
@@ -161,6 +246,16 @@ const setupApp = () => {
     }
     // Pass the message directly to the store
     store.dispatch(message);
+=======
+  window.update = stateJson => {
+    // NOTE: stateJson can be an object only if called manually from console.
+    // This is useful for debugging tgui in external browsers, like Chrome.
+    const state = typeof stateJson === 'string'
+      ? parseStateJson(stateJson)
+      : stateJson;
+    // Backend update dispatches a store action
+    store.dispatch(backendUpdate(state));
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
   };
 
   // Enable hot module reloading
@@ -183,6 +278,7 @@ const setupApp = () => {
     }
     window.update(stateJson);
   }
+<<<<<<< HEAD
 };
 
 // Setup a fatal error reporter
@@ -203,6 +299,11 @@ window.__logger__ = {
     // Return an updated stack
     return stack;
   },
+=======
+
+  // Dynamically load font-awesome from browser's cache
+  loadCSS('font-awesome.css');
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 };
 
 if (document.readyState === 'loading') {

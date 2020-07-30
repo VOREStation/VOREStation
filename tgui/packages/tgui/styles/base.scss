@@ -7,6 +7,7 @@ $color-bg-start: color.adjust(
   $color-bg, $lightness: $color-bg-grad-spread) !default;
 $color-bg-end: color.adjust(
   $color-bg, $lightness: -$color-bg-grad-spread) !default;
+<<<<<<< HEAD
 
 $unit: 12px;
 $font-size: 1 * $unit !default;
@@ -19,3 +20,6 @@ $border-radius: 0.16em !default;
 @function rem($px) {
   @return 1rem * ($px / $unit);
 }
+=======
+$border-radius: 2px !default;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui

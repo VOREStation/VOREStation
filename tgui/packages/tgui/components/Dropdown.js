@@ -41,7 +41,11 @@ export class Dropdown extends Component {
   }
 
   buildMenu() {
+<<<<<<< HEAD
     const { options = [], placeholder } = this.props;
+=======
+    const { options = [] } = this.props;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
     const ops = options.map(option => (
       <div
         key={option}
@@ -52,6 +56,7 @@ export class Dropdown extends Component {
         {option}
       </div>
     ));
+<<<<<<< HEAD
     ops.unshift((
       <div
         key={placeholder}
@@ -63,6 +68,9 @@ export class Dropdown extends Component {
       </div>
     ));
     return ops;
+=======
+    return ops.length ? ops : 'No Options Found';
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
   }
 
   render() {
@@ -76,7 +84,10 @@ export class Dropdown extends Component {
       onClick,
       selected,
       disabled,
+<<<<<<< HEAD
       placeholder,
+=======
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
       ...boxProps
     } = props;
     const {
@@ -120,7 +131,11 @@ export class Dropdown extends Component {
             this.setOpen(!this.state.open);
           }}>
           <span className="Dropdown__selected-text">
+<<<<<<< HEAD
             {this.state.selected || placeholder}
+=======
+            {this.state.selected}
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
           </span>
           {!!nochevron || (
             <span className="Dropdown__arrow-button">

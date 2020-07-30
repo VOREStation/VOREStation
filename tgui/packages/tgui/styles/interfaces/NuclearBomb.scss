@@ -9,6 +9,7 @@ $background-beige: #E8E4C9;
 
 .NuclearBomb__displayBox {
   background-color: #002003;
+<<<<<<< HEAD
   border: 0.167em inset $background-beige;
   color: #03e017;
   font-size: 2em;
@@ -21,6 +22,13 @@ $background-beige: #E8E4C9;
   border-width: 0.65rem !important;
   padding-left: 0 !important;
   padding-right: 0 !important;
+=======
+  border: 4px inset $background-beige;
+  color: #03e017;
+  font-size: 24px;
+  font-family: monospace;
+  padding: 6px;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 }
 
 .NuclearBomb__Button--keypad {

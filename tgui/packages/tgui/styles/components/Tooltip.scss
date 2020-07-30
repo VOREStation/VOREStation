@@ -18,7 +18,11 @@ $border-radius: base.$border-radius !default;
     display: block;
     white-space: nowrap;
     z-index: 2;
+<<<<<<< HEAD
     padding: 0.5em 0.75em;
+=======
+    padding: 6px 10px;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
     transform: translateX(-50%);
     pointer-events: none;
     visibility: hidden;
@@ -27,7 +31,11 @@ $border-radius: base.$border-radius !default;
     content: attr(data-tooltip);
     transition: all 150ms;
     background-color: $color-background;
+<<<<<<< HEAD
     box-shadow: 0.1em 0.1em 1.25em -0.1em rgba(0, 0, 0, 0.5);
+=======
+    box-shadow: 1px 1px 15px -1px rgba(0, 0, 0, 0.5);
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
     border-radius: $border-radius;
   }
 
@@ -41,7 +49,11 @@ $border-radius: base.$border-radius !default;
 
 .Tooltip--long {
   &::after {
+<<<<<<< HEAD
     width: base.em(250px);
+=======
+    width: 250px;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
     white-space: normal;
   }
 }
@@ -49,6 +61,7 @@ $border-radius: base.$border-radius !default;
 .Tooltip--top::after {
   bottom: 100%;
   left: 50%;
+<<<<<<< HEAD
   transform: translateX(-50%) translateY(0.5em);
 }
 
@@ -74,54 +87,101 @@ $border-radius: base.$border-radius !default;
 
 .Tooltip--top-right:hover::after {
   transform: translateX(-12px) translateY(8px);
+=======
+  transform: translateX(-50%) translateY(8px);
+}
+
+.Tooltip--top:hover::after {
+  transform: translateX(-50%) translateY(-8px);
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 }
 
 .Tooltip--bottom::after {
   top: 100%;
   left: 50%;
+<<<<<<< HEAD
   transform: translateX(-50%) translateY(-0.5em);
 }
 
 .Tooltip--bottom:hover::after {
   transform: translateX(-50%) translateY(0.5em);
+=======
+  transform: translateX(-50%) translateY(-8px);
+}
+
+.Tooltip--bottom:hover::after {
+  transform: translateX(-50%) translateY(8px);
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 }
 
 .Tooltip--bottom-left::after {
   top: 100%;
   right: 50%;
+<<<<<<< HEAD
   transform: translateX(12px) translateY(-0.5em);
 }
 
 .Tooltip--bottom-left:hover::after {
   transform: translateX(12px) translateY(0.5em);
+=======
+  transform: translateX(12px) translateY(-8px);
+}
+
+.Tooltip--bottom-left:hover::after {
+  transform: translateX(12px) translateY(8px);
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 }
 
 .Tooltip--bottom-right::after {
   top: 100%;
   left: 50%;
+<<<<<<< HEAD
   transform: translateX(-12px) translateY(-0.5em);
 }
 
 .Tooltip--bottom-right:hover::after {
   transform: translateX(-12px) translateY(0.5em);
+=======
+  transform: translateX(-12px) translateY(-8px);
+}
+
+.Tooltip--bottom-right:hover::after {
+  transform: translateX(-12px) translateY(8px);
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 }
 
 .Tooltip--left::after {
   top: 50%;
   right: 100%;
+<<<<<<< HEAD
   transform: translateX(0.5em) translateY(-50%);
 }
 
 .Tooltip--left:hover::after {
   transform: translateX(-0.5em) translateY(-50%);
+=======
+  transform: translateX(8px) translateY(-50%);
+}
+
+.Tooltip--left:hover::after {
+  transform: translateX(-8px) translateY(-50%);
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 }
 
 .Tooltip--right::after {
   top: 50%;
   left: 100%;
+<<<<<<< HEAD
   transform: translateX(-0.5em) translateY(-50%);
 }
 
 .Tooltip--right:hover::after {
   transform: translateX(0.5em) translateY(-50%);
+=======
+  transform: translateX(-8px) translateY(-50%);
+}
+
+.Tooltip--right:hover::after {
+  transform: translateX(8px) translateY(-50%);
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 }

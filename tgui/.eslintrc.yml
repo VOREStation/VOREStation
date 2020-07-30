@@ -8,8 +8,11 @@ env:
   es6: true
   browser: true
   node: true
+<<<<<<< HEAD
 globals:
   Byond: readonly
+=======
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 plugins:
   - react
 settings:
@@ -390,7 +393,11 @@ rules:
   ## Enforce a particular style for multiline comments
   # multiline-comment-style: error
   ## Enforce newlines between operands of ternary expressions
+<<<<<<< HEAD
   # multiline-ternary: [error, always-multiline]
+=======
+  multiline-ternary: [error, always-multiline]
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
   ## Require constructor names to begin with a capital letter
   # new-cap: error
   ## Enforce or disallow parentheses when invoking a constructor with no

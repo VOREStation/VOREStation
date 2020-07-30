@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /**
  * Copyright (c) 2020 Aleksej Komarov
  * SPDX-License-Identifier: MIT
@@ -6,6 +7,9 @@
 @use 'sass:color';
 @use '../base.scss';
 @use '../colors.scss';
+=======
+@use 'sass:color';
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 
 $color-text: rgba(255, 255, 255, 0.75) !default;
 $color-background: #363636 !default;
@@ -16,7 +20,10 @@ $color-shadow: rgba(0, 0, 0, 0.1) !default;
   background-color: $color-background;
   border-bottom: 1px solid $color-shadow-core;
   box-shadow: 0 2px 2px $color-shadow;
+<<<<<<< HEAD
   box-shadow: 0 base.rem(2px) base.rem(2px) $color-shadow;
+=======
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
   user-select: none;
   -ms-user-select: none;
 }
@@ -37,12 +44,18 @@ $color-shadow: rgba(0, 0, 0, 0.1) !default;
   position: absolute;
   top: 0;
   left: 46px;
+<<<<<<< HEAD
   left: base.rem(46px);
   color: $color-text;
   font-size: 14px;
   font-size: base.rem(14px);
   line-height: 31px;
   line-height: base.rem(31px);
+=======
+  color: $color-text;
+  font-size: 14px;
+  line-height: 31px;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
   white-space: nowrap;
 }
 
@@ -52,19 +65,34 @@ $color-shadow: rgba(0, 0, 0, 0.1) !default;
   left: 0;
   right: 0;
   height: 32px;
+<<<<<<< HEAD
   height: base.rem(32px);
+=======
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 }
 
 .TitleBar__statusIcon {
   position: absolute;
   top: 0;
   left: 12px;
+<<<<<<< HEAD
   left: base.rem(12px);
   transition: color 0.5s;
   font-size: 20px;
   font-size: base.rem(20px);
   line-height: 32px !important;
   line-height: base.rem(32px) !important;
+=======
+  transition: color 0.5s;
+  font-size: 20px;
+  line-height: 32px !important;
+}
+
+.TitleBar__minimize {
+  position: absolute;
+  top: 6px;
+  right: 46px;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 }
 
 .TitleBar__close {
@@ -72,6 +100,7 @@ $color-shadow: rgba(0, 0, 0, 0.1) !default;
   top: -1px;
   right: 0;
   width: 45px;
+<<<<<<< HEAD
   width: base.rem(45px);
   height: 32px;
   height: base.rem(32px);
@@ -94,5 +123,10 @@ $color-shadow: rgba(0, 0, 0, 0.1) !default;
   padding: base.rem(2px) base.rem(4px);
   background-color: rgba(colors.$good, 0.75);
   color: #fff;
+=======
+  height: 32px;
+  font-size: 20px;
+  line-height: 31px;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
   text-align: center;
 }

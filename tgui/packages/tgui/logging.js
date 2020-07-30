@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /**
  * @file
  * @copyright 2020 Aleksej Komarov
@@ -5,6 +6,10 @@
  */
 
 import { sendLogEntry } from 'tgui-dev-server/link/client';
+=======
+import { sendLogEntry } from 'tgui-dev-server/link/client';
+import { callByond } from './byond';
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 
 const LEVEL_DEBUG = 0;
 const LEVEL_LOG = 1;
@@ -32,11 +37,18 @@ const log = (level, ns, ...args) => {
       .filter(value => value)
       .join(' ')
       + '\nUser Agent: ' + navigator.userAgent;
+<<<<<<< HEAD
     Byond.topic({
       tgui: 1,
       window_id: window.__windowId__,
       type: 'log',
       message: logEntry,
+=======
+    callByond('', {
+      src: window.__ref__,
+      action: 'tgui:log',
+      log: logEntry,
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
     });
   }
 };

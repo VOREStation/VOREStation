@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /**
  * @file
  * @copyright 2020 Aleksej Komarov
@@ -5,6 +6,10 @@
  */
 
 import { classes, pureComponentHooks } from 'common/react';
+=======
+import { classes, pureComponentHooks } from 'common/react';
+import { IS_IE8 } from '../byond';
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 import { Box, unit } from './Box';
 
 export const computeFlexProps = props => {
@@ -13,16 +18,23 @@ export const computeFlexProps = props => {
     direction,
     wrap,
     align,
+<<<<<<< HEAD
     alignContent,
     justify,
     inline,
     spacing = 0,
     spacingPrecise = 0,
+=======
+    justify,
+    inline,
+    spacing = 0,
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
     ...rest
   } = props;
   return {
     className: classes([
       'Flex',
+<<<<<<< HEAD
       Byond.IS_LTE_IE10 && (
         direction === 'column'
           ? 'Flex--iefix--column'
@@ -31,6 +43,15 @@ export const computeFlexProps = props => {
       inline && 'Flex--inline',
       spacing > 0 && 'Flex--spacing--' + spacing,
       spacingPrecise > 0 && 'Flex--spacingPrecise--' + spacingPrecise,
+=======
+      IS_IE8 && (
+        direction === 'column'
+          ? 'Flex--ie8--column'
+          : 'Flex--ie8'
+      ),
+      inline && 'Flex--inline',
+      spacing > 0 && 'Flex--spacing--' + spacing,
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
       className,
     ]),
     style: {
@@ -38,7 +59,10 @@ export const computeFlexProps = props => {
       'flex-direction': direction,
       'flex-wrap': wrap,
       'align-items': align,
+<<<<<<< HEAD
       'align-content': alignContent,
+=======
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
       'justify-content': justify,
     },
     ...rest,
@@ -66,7 +90,11 @@ export const computeFlexItemProps = props => {
   return {
     className: classes([
       'Flex__item',
+<<<<<<< HEAD
       Byond.IS_LTE_IE10 && 'Flex__item--iefix',
+=======
+      IS_IE8 && 'Flex__item--ie8',
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
       className,
     ]),
     style: {

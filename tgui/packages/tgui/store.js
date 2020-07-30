@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /**
  * @file
  * @copyright 2020 Aleksej Komarov
@@ -14,11 +15,19 @@ import { createLogger } from './logging';
 import { assetMiddleware } from './assets';
 
 const logger = createLogger('store');
+=======
+import { flow } from 'common/fp';
+import { applyMiddleware, createStore as createReduxStore } from 'common/redux';
+import { Component } from 'inferno';
+import { backendReducer } from './backend';
+import { hotKeyMiddleware, hotKeyReducer } from './hotkeys';
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 
 export const createStore = () => {
   const reducer = flow([
     // State initializer
     (state = {}, action) => state,
+<<<<<<< HEAD
     combineReducers({
       debug: debugReducer,
       backend: backendReducer,
@@ -43,6 +52,17 @@ const loggingMiddleware = store => next => action => {
     logger.debug('action', action);
   }
   return next(action);
+=======
+    // Global state reducers
+    backendReducer,
+    hotKeyReducer,
+  ]);
+  const middleware = [
+    // loggingMiddleware,
+    hotKeyMiddleware,
+  ];
+  return createReduxStore(reducer, applyMiddleware(...middleware));
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 };
 
 export class StoreProvider extends Component {

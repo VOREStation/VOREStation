@@ -1,7 +1,11 @@
 {
   "private": true,
   "name": "tgui",
+<<<<<<< HEAD
   "version": "4.1.0",
+=======
+  "version": "3.0.0",
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
   "dependencies": {
     "@babel/core": "^7.6.2",
     "@babel/plugin-transform-jscript": "^7.2.0",
@@ -12,11 +16,15 @@
     "core-js": "^3.2.1",
     "css-loader": "^3.2.0",
     "cssnano": "^4.1.10",
+<<<<<<< HEAD
     "dompurify": "^2.0.11",
+=======
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
     "extract-css-chunks-webpack-plugin": "^4.6.0",
     "fg-loadcss": "^2.1.0",
     "file-loader": "^6.0.0",
     "inferno": "^7.3.2",
+<<<<<<< HEAD
     "marked": "^1.1.0",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "regenerator-runtime": "^0.13.3",
@@ -24,6 +32,14 @@
     "sass-loader": "^9.0.2",
     "style-loader": "^1.0.0",
     "terser-webpack-plugin": "^3.0.6",
+=======
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "regenerator-runtime": "^0.13.3",
+    "sass": "^1.22.12",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.0.0",
+    "terser-webpack-plugin": "^2.1.0",
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
     "url-loader": "^4.1.0",
     "webpack": "^4.40.2",
     "webpack-build-notifier": "^2.0.0",

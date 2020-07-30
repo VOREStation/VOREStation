@@ -3,8 +3,13 @@
 $border-radius: base.$border-radius !default;
 
 .Tabs--horizontal {
+<<<<<<< HEAD
   border-bottom: base.em(2px) solid rgba(255, 255, 255, 0.1);
   margin-bottom: 0.5em;
+=======
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 6px;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 
   .Tabs__tab--altSelection::after {
     content: '';
@@ -12,7 +17,11 @@ $border-radius: base.$border-radius !default;
     bottom: 0;
     right: 0;
     left: 0;
+<<<<<<< HEAD
     height: base.em(2px);
+=======
+    height: 2px;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
     width: 100%;
     background-color: #fff;
     border-radius: $border-radius;
@@ -20,11 +29,19 @@ $border-radius: base.$border-radius !default;
 }
 
 .Tabs--vertical {
+<<<<<<< HEAD
   margin-right: 0.75em;
 
   .Tabs__tabBox {
     // padding-right: 2px;
     border-right: base.em(2px) solid rgba(255, 255, 255, 0.1);
+=======
+  margin-right: 9px;
+
+  .Tabs__tabBox {
+    // padding-right: 2px;
+    border-right: 2px solid rgba(255, 255, 255, 0.1);
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
     // Disable baseline alignment when doing vertical tabs
     vertical-align: top;
   }
@@ -35,8 +52,13 @@ $border-radius: base.$border-radius !default;
     // Override to stop themed buttons from taking priority over it.
     margin-right: 0 !important;
     margin-bottom: 0;
+<<<<<<< HEAD
     padding: base.em(1px) base.em(9px) 0px 0.5em;
     border-bottom: base.em(2px) solid rgba(255, 255, 255, 0.1);
+=======
+    padding: 1px 9px 0px 6px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 
     &:last-child {
       border-bottom: 0;
@@ -50,7 +72,11 @@ $border-radius: base.$border-radius !default;
     bottom: 0;
     right: 0;
     height: 100%;
+<<<<<<< HEAD
     width: 0.25em;
+=======
+    width: 3px;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
     background-color: #fff;
     border-radius: $border-radius;
   }

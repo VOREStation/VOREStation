@@ -9,6 +9,10 @@ $nanotrasen: #384e68;
 );
 @use '../base.scss' with (
   $color-bg: color.scale($nanotrasen, $lightness: -45%),
+<<<<<<< HEAD
+=======
+  $border-radius: 2px,
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 );
 
 .theme-ntos {

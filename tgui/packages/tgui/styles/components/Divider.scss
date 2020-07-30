@@ -1,8 +1,14 @@
+<<<<<<< HEAD
 @use '../base.scss';
 
 $color: rgba(255, 255, 255, 0.1) !default;
 $thickness: base.em(2px) !default;
 $spacing: 0.5px;
+=======
+$color: rgba(255, 255, 255, 0.1) !default;
+$thickness: 2px !default;
+$spacing: 6px;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 
 .Divider--horizontal {
   margin: $spacing 0;

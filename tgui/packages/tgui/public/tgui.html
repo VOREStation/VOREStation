@@ -5,12 +5,17 @@
 <meta charset="utf-8">
 
 <!-- Inlined data -->
+<<<<<<< HEAD
 <meta id="tgui:windowId" content="[tgui:windowId]">
+=======
+<meta id="tgui:ref" content="[tgui:ref]">
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 
 <!-- Early setup -->
 <script type="text/javascript">
 // Mark the beginning of initialization
 window.__inception__ = new Date().getTime();
+<<<<<<< HEAD
 // Read window id into a global
 window.__windowId__ = document
   .getElementById('tgui:windowId')
@@ -19,11 +24,22 @@ if (window.__windowId__ === '[' + 'tgui:windowId' + ']') {
   window.__windowId__ = null;
 }
 
+=======
+// Read tgui object ref into a global
+window.__ref__ = document
+  .getElementById('tgui:ref')
+  .getAttribute('content');
+// Null if template marker was not replaced
+if (window.__ref__ === '[' + 'tgui:ref' + ']') {
+  window.__ref__ = null;
+}
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 // BYOND API object
 window.Byond = (function () {
   var Byond = {};
   // Utility functions
   var hasOwn = Object.prototype.hasOwnProperty;
+<<<<<<< HEAD
   var assign = function (target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i];
@@ -58,6 +74,12 @@ window.Byond = (function () {
   // Callbacks for asynchronous calls
   Byond.__callbacks__ = [];
 
+=======
+  // Basic checks to detect whether this page runs in BYOND
+  var isByond = !!navigator.userAgent.match(/Trident\/(\d+).+?;/i)
+    && location.hostname === '127.0.0.1'
+    && location.pathname.indexOf('/tmp') === 0;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
   // Makes a BYOND call.
   // See: https://secure.byond.com/docs/ref/skinparams.html
   Byond.call = function (path, params) {
@@ -94,6 +116,7 @@ window.Byond = (function () {
     xhr.open('GET', url);
     xhr.send();
   };
+<<<<<<< HEAD
 
   Byond.callAsync = function (path, params) {
     if (!window.Promise) {
@@ -149,6 +172,10 @@ window.Byond = (function () {
   return Byond;
 })();
 
+=======
+  return Byond;
+})();
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 // Global error handling
 window.onerror = function (msg, url, line, col, error) {
   // Proper stacktrace
@@ -161,7 +188,11 @@ window.onerror = function (msg, url, line, col, error) {
     }
   }
   // Append user agent info
+<<<<<<< HEAD
   stack += '\nUser Agent: ' + navigator.userAgent;
+=======
+  stack += '\n\nUser Agent: ' + navigator.userAgent;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
   // Print error to the page
   var errorRoot = document.getElementById('FatalError');
   var errorStack = document.getElementById('FatalError__stack');
@@ -174,6 +205,7 @@ window.onerror = function (msg, url, line, col, error) {
       errorStack.textContent = stack;
     }
   }
+<<<<<<< HEAD
   // Set window geometry
   var setFatalErrorGeometry = function () {
     Byond.winset(window.__windowId__, {
@@ -197,6 +229,14 @@ window.onerror = function (msg, url, line, col, error) {
     type: 'log',
     fatal: 1,
     message: stack,
+=======
+  // Send logs to the server
+  Byond.call('', {
+    src: window.__ref__,
+    action: 'tgui:log',
+    fatal: '1',
+    log: stack,
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
   });
   // Short-circuit further updates
   window.__updateQueue__ = [];
@@ -204,6 +244,7 @@ window.onerror = function (msg, url, line, col, error) {
   // Prevent default action
   return true;
 };
+<<<<<<< HEAD
 
 // Early initialization
 window.__updateQueue__ = [];
@@ -214,14 +255,35 @@ Byond.topic({
   tgui: 1,
   window_id: window.__windowId__,
   type: 'ready',
+=======
+// Early initialization
+window.__updateQueue__ = [];
+window.update = function (stateJson) {
+  window.__updateQueue__.push(stateJson);
+};
+Byond.call('', {
+  src: window.__ref__,
+  action: 'tgui:initialize',
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 });
 </script>
 
 <!-- Styles -->
+<<<<<<< HEAD
 <!-- tgui:styles -->
 
 <!-- Scripts -->
 <!-- tgui:scripts -->
+=======
+<link rel="stylesheet" type="text/css" href="tgui.bundle.css">
+
+<!-- This is processed in byond, so interfaces can override the
+  html head if needed, for custom sheets of style etc. -->
+<!--customheadhtml-->
+
+<!-- Scripts -->
+<script type="text/javascript" defer src="tgui.bundle.js"></script>
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 
 </head>
 <body>
@@ -259,7 +321,11 @@ A fatal exception has occurred at 002B:C562F1B7 in TGUI.
 The current application will be terminated.
 Please remain calm. Get to the nearest NTNet workstation
 and send the copy of the following stack trace to:
+<<<<<<< HEAD
 www.github.com/tgstation/tgstation. Thank you for your cooperation.
+=======
+<a target="_blank" style="color: white;" href="https://github.com/ParadiseSS13/Paradise">https://github.com/ParadiseSS13/Paradise</a>. Thank you for your cooperation.
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 </marquee>
 <div id="FatalError__stack" class="FatalError__stack"></div>
 <div class="FatalError__footer">

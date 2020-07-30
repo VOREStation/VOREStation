@@ -9,6 +9,10 @@
 @use '../base.scss' with (
   $color-bg: #121b12,
   $color-bg-grad-spread: 0%,
+<<<<<<< HEAD
+=======
+  $border-radius: 2px,
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 );
 
 .theme-hackerman {
@@ -40,10 +44,17 @@
 
   .Button {
     font-family: monospace;
+<<<<<<< HEAD
     border-width: base.em(2px);
     border-style: outset;
     border-color: #00AA00;
     outline: base.em(1px) solid rgb(0, 122, 0);
+=======
+    border-width: 2px;
+    border-style: outset;
+    border-color: #00AA00;
+    outline: 1px solid rgb(0, 122, 0);
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
   }
 
   .candystripe:nth-child(odd) {

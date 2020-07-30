@@ -16,7 +16,11 @@
 
 .Table__cell {
   display: table-cell;
+<<<<<<< HEAD
   padding: 0 0.25em;
+=======
+  padding: 0 3px;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 
   &:first-child {
     padding-left: 0;
@@ -30,7 +34,11 @@
 .Table__row--header .Table__cell,
 .Table__cell--header {
   font-weight: bold;
+<<<<<<< HEAD
   padding-bottom: 0.5em;
+=======
+  padding-bottom: 6px;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 }
 
 .Table__cell--collapsing {

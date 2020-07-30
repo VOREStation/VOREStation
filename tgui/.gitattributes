@@ -2,6 +2,7 @@
 
 ## Enforce text mode and LF line breaks
 *.js text eol=lf
+<<<<<<< HEAD
 *.jsx text eol=lf
 *.ts text eol=lf
 *.tsx text eol=lf
@@ -14,6 +15,11 @@
 *.bat text eol=lf
 yarn.lock text eol=lf
 bin/tgui text eol=lf
+=======
+*.css text eol=lf
+*.html text eol=lf
+*.json text eol=lf
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 
 ## Treat bundles as binary and ignore them during conflicts
 *.bundle.* binary merge=tgui-merge-bundle

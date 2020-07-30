@@ -52,7 +52,10 @@ task-dev-server() {
 task-eslint() {
   cd "${base_dir}"
   eslint ./packages "${@}"
+<<<<<<< HEAD
   echo "tgui: eslint check passed"
+=======
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 }
 
 ## Mr. Proper
@@ -154,6 +157,7 @@ if [[ ${1} == '--lint-harder' ]]; then
   exit 0
 fi
 
+<<<<<<< HEAD
 if [[ ${1} == '--fix' ]]; then
   shift 1
   task-install
@@ -161,6 +165,8 @@ if [[ ${1} == '--fix' ]]; then
   exit 0
 fi
 
+=======
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 ## Analyze the bundle
 if [[ ${1} == '--analyze' ]]; then
   task-install

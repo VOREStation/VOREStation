@@ -67,9 +67,14 @@ Run one of the following:
   game as you code it. Very useful, highly recommended.
   - In order to use it, you should start the game server first, connect to it
   and wait until the world has been properly loaded and you are no longer
+<<<<<<< HEAD
   in the lobby. Start tgui dev server, and once it has finished building,
   press F5 on any tgui window. You'll know that it's hooked correctly if
   you see a green bug icon in titlebar and data gets dumped to the console.
+=======
+  in the lobby. Start tgui dev server. You'll know that it's hooked correctly
+  if data gets dumped to the log when tgui windows are opened.
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 - `bin/tgui --dev --reload` - reload byond cache once.
 - `bin/tgui --dev --debug` - run server with debug logging enabled.
 - `bin/tgui --dev --no-hot` - disable hot module replacement (helps when
@@ -135,11 +140,19 @@ logs and time spent on rendering. Use this information to optimize your
 code, and try to keep re-renders below 16ms.
 
 **Kitchen Sink.**
+<<<<<<< HEAD
 Press `F12` to open the KitchenSink interface. This interface is a
 playground to test various tgui components.
 
 **Layout Debugger.**
 Press `F11` to toggle the *layout debugger*. It will show outlines of
+=======
+Press `Ctrl+Alt+=` to open the KitchenSink interface. This interface is a
+playground to test various tgui components.
+
+**Layout Debugger.**
+Press `Ctrl+Alt+-` to toggle the *layout debugger*. It will show outlines of
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 all tgui elements, which makes it easy to understand how everything comes
 together, and can reveal certain layout bugs which are not normally visible.
 

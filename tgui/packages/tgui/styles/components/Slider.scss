@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 @use '../base.scss';
 
+=======
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 .Slider {
   cursor: e-resize;
 }
@@ -15,14 +18,22 @@
 .Slider__cursor {
   position: absolute;
   top: 0;
+<<<<<<< HEAD
   right: base.em(-1px);
   bottom: 0;
   width: 0;
   border-left: base.em(2px) solid #fff;
+=======
+  right: -1px;
+  bottom: 0;
+  width: 0;
+  border-left: 2px solid #fff;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 }
 
 .Slider__pointer {
   position: absolute;
+<<<<<<< HEAD
   right: base.em(-5px);
   bottom: base.em(-4px);
   width: 0;
@@ -30,14 +41,28 @@
   border-left: base.em(5px) solid transparent;
   border-right: base.em(5px) solid transparent;
   border-bottom: base.em(5px) solid #fff;
+=======
+  right: -5px;
+  bottom: -4px;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #fff;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 }
 
 .Slider__popupValue {
   position: absolute;
   right: 0;
+<<<<<<< HEAD
   top: -2rem;
   font-size: 1rem;
   padding: 0.25rem 0.5rem;
+=======
+  top: -22px;
+  padding: 2px 4px;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
   background-color: #000;
   transform: translateX(50%);
   white-space: nowrap;

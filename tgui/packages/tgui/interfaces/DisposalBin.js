@@ -20,9 +20,13 @@ export const DisposalBin = (props, context) => {
     stateText = "Idle";
   }
   return (
+<<<<<<< HEAD
     <Window
       width={300}
       height={250}>
+=======
+    <Window>
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
       <Window.Content>
         <Section>
           <Box bold m={1}>

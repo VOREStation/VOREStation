@@ -1,7 +1,10 @@
 import { Box, Icon, Tooltip } from '.';
 import { Component } from 'inferno';
 import { useBackend } from "../backend";
+<<<<<<< HEAD
 import { resolveAsset } from '../assets';
+=======
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 
 export class NanoMap extends Component {
   constructor(props) {
@@ -111,6 +114,7 @@ const NanoMapMarker = (props, context) => {
     tooltip,
     color,
   } = props;
+<<<<<<< HEAD
   // Please note, the horrifying `3.65714285714` is just the ratio of the
   // width/height of the minimap *element* (not image)
   // to the actual turf size of the map
@@ -120,6 +124,10 @@ const NanoMapMarker = (props, context) => {
   const ry = (512 * zoom 
     - (y * (3.65714285714 * zoom))
     + zoom - 1.5);
+=======
+  const rx = -256 * (zoom - 1) + x * (2 * zoom) - 1.5 * zoom - 3;
+  const ry = 512 * zoom - (y * 2 * zoom) + zoom - 1.5;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
   return (
     <div style={"transform: scale(" + 1 / zoom + ")"}>
       <Box

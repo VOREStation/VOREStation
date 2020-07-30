@@ -2,34 +2,66 @@
 
 .outline-dotted {
   outline-style: dotted !important;
+<<<<<<< HEAD
+=======
+  outline-width: 2px !important;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 }
 
 .outline-dashed {
   outline-style: dashed !important;
+<<<<<<< HEAD
+=======
+  outline-width: 2px !important;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 }
 
 .outline-solid {
   outline-style: solid !important;
+<<<<<<< HEAD
+=======
+  outline-width: 2px !important;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 }
 
 .outline-double {
   outline-style: double !important;
+<<<<<<< HEAD
+=======
+  outline-width: 2px !important;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 }
 
 .outline-groove {
   outline-style: groove !important;
+<<<<<<< HEAD
+=======
+  outline-width: 2px !important;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 }
 
 .outline-ridge {
   outline-style: ridge !important;
+<<<<<<< HEAD
+=======
+  outline-width: 2px !important;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 }
 
 .outline-inset {
   outline-style: inset !important;
+<<<<<<< HEAD
+=======
+  outline-width: 2px !important;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 }
 
 .outline-outset {
   outline-style: outset !important;
+<<<<<<< HEAD
+=======
+  outline-width: 2px !important;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 }
 
 $fg-map: colors.$fg-map !default;
@@ -37,6 +69,10 @@ $bg-map: colors.$bg-map !default;
 
 @each $color-name, $color-value in $fg-map {
   .outline-color-#{$color-name} {
+<<<<<<< HEAD
     outline: 0.167rem solid $color-value !important;
+=======
+    outline-color: $color-value !important;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
   }
 }

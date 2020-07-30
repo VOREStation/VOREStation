@@ -2,7 +2,11 @@
 	var/register_alarms = 1
 	var/datum/nano_module/alarm_monitor/all/alarm_monitor
 	var/datum/nano_module/atmos_control/atmos_control
+<<<<<<< HEAD
 	var/datum/tgui_module/crew_monitor/robot/crew_monitor
+=======
+	var/datum/tgui_module/crew_monitor/crew_monitor
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 	var/datum/nano_module/law_manager/law_manager
 	var/datum/nano_module/power_monitor/power_monitor
 	var/datum/nano_module/rcon/rcon
@@ -67,7 +71,11 @@
 	set category = "Subystems"
 	set name = "Crew Monitor"
 
+<<<<<<< HEAD
 	crew_monitor.tgui_interact(usr)
+=======
+	crew_monitor.tgui_interact(usr, state = GLOB.tgui_self_state)
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 
 /****************
 *	Law Manager	*

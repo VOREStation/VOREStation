@@ -1,21 +1,39 @@
+<<<<<<< HEAD
 @use '../base.scss';
 
+=======
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 .NtosWindow__header {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
+<<<<<<< HEAD
   height: 2em;
   line-height: 1.928em;
   background-color: rgba(0, 0, 0, 0.5);
   font-family: Consolas, monospace;
   font-size: base.em(14px);
+=======
+  height: 28px;
+  line-height: 27px;
+  background-color: rgba(0, 0, 0, 0.5);
+  font-family: Consolas, monospace;
+  font-size: 14px;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
   user-select: none;
   -ms-user-select: none;
 }
 
+<<<<<<< HEAD
 .NtosWindow__content > .Layout__content {
   margin-top: 2em;
   font-family: Consolas, monospace;
   font-size: base.em(14px);
+=======
+.NtosWindow__content .Layout__content {
+  margin-top: 28px;
+  font-family: Consolas, monospace;
+  font-size: 14px;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 }

@@ -5,6 +5,7 @@
  * Sometimes backend can response without a "data" field, but our final
  * state will still contain previous "data" because we are merging
  * the response with already existing state.
+<<<<<<< HEAD
  *
  * @file
  * @copyright 2020 Aleksej Komarov
@@ -17,6 +18,12 @@ import { releaseHeldKeys } from './hotkeys';
 import { createLogger } from './logging';
 
 const logger = createLogger('backend');
+=======
+ */
+
+import { UI_DISABLED, UI_INTERACTIVE } from './constants';
+import { callByond } from './byond';
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 
 export const backendUpdate = state => ({
   type: 'backend/update',
@@ -28,6 +35,7 @@ export const backendSetSharedState = (key, nextState) => ({
   payload: { key, nextState },
 });
 
+<<<<<<< HEAD
 export const backendSuspendStart = () => ({
   type: 'backend/suspendStart',
 });
@@ -45,6 +53,9 @@ const initialState = {
 };
 
 export const backendReducer = (state = initialState, action) => {
+=======
+export const backendReducer = (state, action) => {
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
   const { type, payload } = action;
 
   if (type === 'backend/update') {
@@ -83,7 +94,10 @@ export const backendReducer = (state = initialState, action) => {
       shared,
       visible,
       interactive,
+<<<<<<< HEAD
       suspended: false,
+=======
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
     };
   }
 
@@ -98,6 +112,7 @@ export const backendReducer = (state = initialState, action) => {
     };
   }
 
+<<<<<<< HEAD
   if (type === 'backend/suspendStart') {
     return {
       ...state,
@@ -232,12 +247,18 @@ export const sendAct = (action, payload = {}) => {
   });
 };
 
+=======
+  return state;
+};
+
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 /**
  * @typedef BackendState
  * @type {{
  *   config: {
  *     title: string,
  *     status: number,
+<<<<<<< HEAD
  *     interface: string,
  *     user: {
  *       name: string,
@@ -257,10 +278,24 @@ export const sendAct = (action, payload = {}) => {
  *   interactive: boolean,
  *   suspending: boolean,
  *   suspended: boolean,
+=======
+ *     screen: string,
+ *     style: string,
+ *     interface: string,
+ *     fancy: number,
+ *     observer: number,
+ *     window: string,
+ *     ref: string,
+ *   },
+ *   data: any,
+ *   visible: boolean,
+ *   interactive: boolean,
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
  * }}
  */
 
 /**
+<<<<<<< HEAD
  * Selects a backend-related slice of Redux state
  *
  * @return {BackendState}
@@ -268,22 +303,41 @@ export const sendAct = (action, payload = {}) => {
 export const selectBackend = state => state.backend || {};
 
 /**
+=======
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
  * A React hook (sort of) for getting tgui state and related functions.
  *
  * This is supposed to be replaced with a real React Hook, which can only
  * be used in functional components.
  *
  * @return {BackendState & {
+<<<<<<< HEAD
  *   act: sendAct,
+=======
+ *   act: (action: string, params?: object) => void,
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
  * }}
  */
 export const useBackend = context => {
   const { store } = context;
+<<<<<<< HEAD
   const state = selectBackend(store.getState());
   return {
     ...state,
     act: sendAct,
   };
+=======
+  const state = store.getState();
+  const ref = state.config.ref;
+  const act = (action, params = {}) => {
+    callByond('', {
+      src: ref,
+      action,
+      ...params,
+    });
+  };
+  return { ...state, act };
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 };
 
 /**
@@ -301,7 +355,11 @@ export const useBackend = context => {
  */
 export const useLocalState = (context, key, initialState) => {
   const { store } = context;
+<<<<<<< HEAD
   const state = selectBackend(store.getState());
+=======
+  const state = store.getState();
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
   const sharedStates = state.shared ?? {};
   const sharedState = (key in sharedStates)
     ? sharedStates[key]
@@ -309,11 +367,15 @@ export const useLocalState = (context, key, initialState) => {
   return [
     sharedState,
     nextState => {
+<<<<<<< HEAD
       store.dispatch(backendSetSharedState(key, (
         typeof nextState === 'function'
           ? nextState(sharedState)
           : nextState
       )));
+=======
+      store.dispatch(backendSetSharedState(key, nextState));
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
     },
   ];
 };
@@ -334,7 +396,12 @@ export const useLocalState = (context, key, initialState) => {
  */
 export const useSharedState = (context, key, initialState) => {
   const { store } = context;
+<<<<<<< HEAD
   const state = selectBackend(store.getState());
+=======
+  const state = store.getState();
+  const ref = state.config.ref;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
   const sharedStates = state.shared ?? {};
   const sharedState = (key in sharedStates)
     ? sharedStates[key]
@@ -342,6 +409,7 @@ export const useSharedState = (context, key, initialState) => {
   return [
     sharedState,
     nextState => {
+<<<<<<< HEAD
       sendMessage({
         type: 'setSharedState',
         key,
@@ -350,6 +418,13 @@ export const useSharedState = (context, key, initialState) => {
             ? nextState(sharedState)
             : nextState
         ) || '',
+=======
+      callByond('', {
+        src: ref,
+        action: 'tgui:setSharedState',
+        key,
+        value: JSON.stringify(nextState) || '',
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
       });
     },
   ];

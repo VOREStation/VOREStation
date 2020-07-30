@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /**
  * N-dimensional vector manipulation functions.
  *
@@ -9,6 +10,19 @@
  */
 
 import { map, reduce, zipWith } from './collections';
+=======
+import { map, reduce, zipWith } from './collections';
+
+/**
+ * Creates a vector, with as many dimensions are there are arguments.
+ */
+export const vecCreate = (...components) => {
+  if (Array.isArray(components[0])) {
+    return [...components[0]];
+  }
+  return components;
+};
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 
 const ADD = (a, b) => a + b;
 const SUB = (a, b) => a - b;

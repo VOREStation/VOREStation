@@ -1,6 +1,10 @@
 {
   "private": true,
   "name": "common",
+<<<<<<< HEAD
   "version": "4.1.0",
+=======
+  "version": "3.0.0",
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
   "type": "module"
 }

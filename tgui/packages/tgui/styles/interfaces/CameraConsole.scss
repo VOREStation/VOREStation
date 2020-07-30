@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 @use '../base.scss';
 
+=======
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 $color-background: rgba(0, 0, 0, 0.33) !default;
 
 .CameraConsole__left {
@@ -7,14 +10,22 @@ $color-background: rgba(0, 0, 0, 0.33) !default;
   top: 0;
   bottom: 0;
   left: 0;
+<<<<<<< HEAD
   width: base.em(220px);
+=======
+  width: 220px;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 }
 
 .CameraConsole__right {
   position: absolute;
   top: 0;
   bottom: 0;
+<<<<<<< HEAD
   left: base.em(220px);
+=======
+  left: 220px;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
   right: 0;
   background-color: $color-background;
 }
@@ -24,22 +35,37 @@ $color-background: rgba(0, 0, 0, 0.33) !default;
   top: 0;
   left: 0;
   right: 0;
+<<<<<<< HEAD
   height: 2em;
   line-height: 2em;
   margin: 0.25em 1em 0;
+=======
+  height: 24px;
+  line-height: 24px;
+  margin: 3px 12px 0;
+  // background-color: #0a0;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 }
 
 .CameraConsole__toolbarRight {
   position: absolute;
   top: 0;
   right: 0;
+<<<<<<< HEAD
   height: 2em;
   line-height: 2em;
   margin: 0.33em 0.5em 0;
+=======
+  height: 24px;
+  line-height: 24px;
+  margin: 4px 6px 0;
+  // background-color: #aa0;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 }
 
 .CameraConsole__map {
   position: absolute;
+<<<<<<< HEAD
   top: base.em(26px);
   bottom: 0;
   left: 0;
@@ -49,5 +75,17 @@ $color-background: rgba(0, 0, 0, 0.33) !default;
 
   .NoticeBox {
     margin-top: calc(50% - 2em);
+=======
+  top: 26px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  // background-color: #00a;
+  margin: 6px;
+  text-align: center;
+
+  .NoticeBox {
+    margin-top: calc(50% - 24px);
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
   }
 }

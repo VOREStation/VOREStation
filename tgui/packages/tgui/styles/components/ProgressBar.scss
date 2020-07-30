@@ -11,7 +11,11 @@ $bg-map: colors.$bg-map !default;
   display: inline-block;
   position: relative;
   width: 100%;
+<<<<<<< HEAD
   padding: 0 0.5em;
+=======
+  padding: 0 6px;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
   border-radius: $border-radius;
   background-color: $color-background;
   transition: border-color 500ms;
@@ -19,9 +23,15 @@ $bg-map: colors.$bg-map !default;
 
 .ProgressBar__fill {
   position: absolute;
+<<<<<<< HEAD
   top: -0.5px;
   left: 0px;
   bottom: -0.5px;
+=======
+  top: 0;
+  left: 0;
+  bottom: 0;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 }
 
 .ProgressBar__fill--animated {
@@ -30,13 +40,21 @@ $bg-map: colors.$bg-map !default;
 
 .ProgressBar__content {
   position: relative;
+<<<<<<< HEAD
   line-height: base.em(17px);
+=======
+  line-height: 17px;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
   width: 100%;
   text-align: right;
 }
 
 .ProgressBar--color--default {
+<<<<<<< HEAD
   border: base.em(1px) solid $color-default;
+=======
+  border: 1px solid $color-default;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 
   .ProgressBar__fill {
     background-color: $color-default;
@@ -45,7 +63,11 @@ $bg-map: colors.$bg-map !default;
 
 @each $color-name, $color-value in $bg-map {
   .ProgressBar--color--#{$color-name} {
+<<<<<<< HEAD
     border: base.em(1px) solid $color-value !important;
+=======
+    border: 1px solid $color-value !important;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 
     .ProgressBar__fill {
       background-color: $color-value;

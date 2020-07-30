@@ -1,9 +1,12 @@
+<<<<<<< HEAD
 /**
  * @file
  * @copyright 2020 Aleksej Komarov
  * @license MIT
  */
 
+=======
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 import { compose } from './fp';
 
 /**
@@ -69,6 +72,7 @@ export const applyMiddleware = (...middlewares) => {
     };
   };
 };
+<<<<<<< HEAD
 
 /**
  * Combines reducers by running them in their own object namespaces as
@@ -97,3 +101,5 @@ export const combineReducers = reducersObj => {
       : prevState;
   };
 };
+=======
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui

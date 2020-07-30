@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 @use '../base.scss';
 
+=======
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 .Dropdown {
   position: relative;
 }
@@ -8,27 +11,46 @@
   position: relative;
   display: inline-block;
   font-family: Verdana, sans-serif;
+<<<<<<< HEAD
   font-size: base.em(12px);
   width: base.em(100px);
   line-height: base.em(17px);
+=======
+  font-size: 12px;
+  width: 100px;
+  line-height: 17px;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
   user-select: none;
 }
 
 .Dropdown__arrow-button {
   float: right;
+<<<<<<< HEAD
   padding-left: 0.5em;
   border-left: base.em(1px) solid #000;
   border-left: base.em(1px) solid rgba(0, 0, 0, 0.25);
+=======
+  padding-left: 6px;
+  border-left: 1px solid #000;
+  border-left: 1px solid rgba(0, 0, 0, 0.25);
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 }
 
 .Dropdown__menu {
   position: absolute;
   overflow-y: auto;
   z-index: 5;
+<<<<<<< HEAD
   width: base.em(100px);
   max-height: base.em(200px);
   overflow-y: scroll;
   border-radius: 0 0 base.em(2px) base.em(2px);
+=======
+  width: 100px;
+  max-height: 200px;
+  overflow-y: scroll;
+  border-radius: 0 0 2px 2px;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
   background-color: #000;
   background-color: rgba(0, 0, 0, 0.75);
 }
@@ -37,18 +59,31 @@
   position: absolute;
   overflow-y: auto;
   z-index: 5;
+<<<<<<< HEAD
   width: base.em(100px);
   max-height: base.em(200px);
   border-radius: 0 0 base.em(2px) base.em(2px);
+=======
+  width: 100px;
+  max-height: 200px;
+  border-radius: 0 0 2px 2px;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
   background-color: #000;
   background-color: rgba(0, 0, 0, 0.75);
 }
 
 .Dropdown__menuentry {
+<<<<<<< HEAD
   padding: base.em(2px) base.em(4px);
   font-family: Verdana, sans-serif;
   font-size: base.em(12px);
   line-height: base.em(17px);
+=======
+  padding: 2px 4px;
+  font-family: Verdana, sans-serif;
+  font-size: 12px;
+  line-height: 17px;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
   transition: background-color 100ms;
   &:hover {
     background-color: #444;

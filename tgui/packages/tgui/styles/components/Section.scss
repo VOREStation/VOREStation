@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /**
  * Copyright (c) 2020 Aleksej Komarov
  * SPDX-License-Identifier: MIT
@@ -5,6 +6,9 @@
 
 @use 'sass:color';
 @use '../base.scss';
+=======
+@use 'sass:color';
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 @use '../colors.scss';
 
 $color-title: #ffffff !default;
@@ -14,7 +18,11 @@ $color-separator: colors.$primary !default;
 
 .Section {
   position: relative;
+<<<<<<< HEAD
   margin-bottom: 0.5em;
+=======
+  margin-bottom: 6px;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
   // IE8: Does not support rgba colors
   background-color: color.adjust(
     $color-background,
@@ -29,6 +37,7 @@ $color-separator: colors.$primary !default;
   }
 }
 
+<<<<<<< HEAD
 .Section--flex {
   display: flex;
   flex-flow: column;
@@ -46,12 +55,23 @@ $color-separator: colors.$primary !default;
 
 .Section__titleText {
   font-size: base.em(14px);
+=======
+.Section__title {
+  position: relative;
+  padding: 6px;
+  border-bottom: 2px solid $color-separator;
+}
+
+.Section__titleText {
+  font-size: 14px;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
   font-weight: bold;
 }
 
 .Section__buttons {
   position: absolute;
   display: inline-block;
+<<<<<<< HEAD
   right: 0.5em;
   margin-top: base.em(-1px);
 }
@@ -88,12 +108,37 @@ $color-separator: colors.$primary !default;
 
 .Section--level--3 .Section__titleText {
   font-size: base.em(12px);
+=======
+  right: 6px;
+  margin-top: -1px;
+}
+
+.Section__content {
+  padding: 8px 6px;
+}
+
+.Section--level--1 .Section__titleText {
+  font-size: 14px;
+}
+
+.Section--level--2 .Section__titleText {
+  font-size: 13px;
+}
+
+.Section--level--3 .Section__titleText {
+  font-size: 12px;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 }
 
 .Section--level--2,
 .Section--level--3 {
   background-color: transparent;
   box-shadow: none;
+<<<<<<< HEAD
   margin-left: -0.5em;
   margin-right: -0.5em;
+=======
+  margin-left: -6px;
+  margin-right: -6px;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 }

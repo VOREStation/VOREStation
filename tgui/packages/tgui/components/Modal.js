@@ -6,6 +6,7 @@ export const Modal = props => {
   const {
     className,
     children,
+<<<<<<< HEAD
     onEnter,
     ...rest
   } = props;
@@ -21,6 +22,12 @@ export const Modal = props => {
   return (
     <Dimmer
       onKeyDown={handleKeyDown}>
+=======
+    ...rest
+  } = props;
+  return (
+    <Dimmer>
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
       <div
         className={classes([
           'Modal',

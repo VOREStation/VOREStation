@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /**
  * @file
  * @copyright 2020 Aleksej Komarov
@@ -6,6 +7,11 @@
 
 import { keyOfMatchingRange, scale } from 'common/math';
 import { classes } from 'common/react';
+=======
+import { keyOfMatchingRange, scale } from 'common/math';
+import { classes } from 'common/react';
+import { IS_IE8 } from '../byond';
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 import { computeBoxClassName, computeBoxProps } from './Box';
 import { DraggableControl } from './DraggableControl';
 import { NumberInput } from './NumberInput';
@@ -13,7 +19,11 @@ import { NumberInput } from './NumberInput';
 export const Knob = props => {
   // IE8: I don't want to support a yet another component on IE8.
   // IE8: It also can't handle SVG.
+<<<<<<< HEAD
   if (Byond.IS_LTE_IE8) {
+=======
+  if (IS_IE8) {
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
     return (
       <NumberInput {...props} />
     );
@@ -40,7 +50,10 @@ export const Knob = props => {
     size,
     bipolar,
     children,
+<<<<<<< HEAD
     popUpPosition,
+=======
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
     ...rest
   } = props;
   return (
@@ -108,10 +121,14 @@ export const Knob = props => {
               </div>
             </div>
             {dragging && (
+<<<<<<< HEAD
               <div className={classes([
                 'Knob__popupValue',
                 popUpPosition && 'Knob__popupValue--' + popUpPosition,
               ])}>
+=======
+              <div className="Knob__popupValue">
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
                 {displayElement}
               </div>
             )}

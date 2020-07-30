@@ -4,6 +4,7 @@ import { Window } from "../layouts";
 import { NanoMap, Box, Table, Button, Tabs, Icon, NumberInput } from "../components";
 import { TableCell } from '../components/Table';
 import { COLORS } from '../constants.js';
+<<<<<<< HEAD
 import { Fragment } from 'inferno';
 
 export const CrewMonitor = () => {
@@ -20,6 +21,10 @@ export const CrewMonitor = () => {
 };
 
 export const CrewMonitorContent = (props, context) => {
+=======
+
+export const CrewMonitor = (props, context) => {
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
   const { act, data, config } = useBackend(context);
   const [tabIndex, setTabIndex] = useLocalState(context, 'tabIndex', 0);
   const crew = sortBy(
@@ -116,6 +121,7 @@ export const CrewMonitorContent = (props, context) => {
           maxValue={8}
           onChange={(e, value) => setZoom(value)} />
         Z-Level:
+<<<<<<< HEAD
         {data.map_levels
           .sort((a, b) => Number(a) - Number(b))
           .map(level => (
@@ -127,6 +133,17 @@ export const CrewMonitorContent = (props, context) => {
                 act("setZLevel", { "mapZLevel": level });
               }} />
           ))}
+=======
+        {data.map_levels.map(level => (
+          <Button
+            key={level}
+            selected={~~level === ~~config.mapZLevel}
+            content={level}
+            onClick={() => {
+              act("tgui:setZLevel", { "mapZLevel": level });
+            }} />
+        ))}
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
         <NanoMap zoom={mapZoom}>
           {crew
             .filter(x => 
@@ -150,6 +167,7 @@ export const CrewMonitorContent = (props, context) => {
   }
 
   return (
+<<<<<<< HEAD
     <Fragment>
       <Tabs>
         <Tabs.Tab
@@ -169,5 +187,28 @@ export const CrewMonitorContent = (props, context) => {
         {body}
       </Box>
     </Fragment>
+=======
+    <Window resizable>
+      <Window.Content>
+        <Tabs>
+          <Tabs.Tab
+            key="DataView"
+            selected={0 === tabIndex}
+            onClick={() => setTabIndex(0)}>
+            <Icon name="table" /> Data View
+          </Tabs.Tab>
+          <Tabs.Tab
+            key="MapView"
+            selected={1 === tabIndex}
+            onClick={() => setTabIndex(1)}>
+            <Icon name="map-marked-alt" /> Map View
+          </Tabs.Tab>
+        </Tabs>
+        <Box m={2}>
+          {body}
+        </Box>
+      </Window.Content>
+    </Window>
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
   );
 };

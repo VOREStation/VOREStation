@@ -20,7 +20,10 @@ export const LabeledListItem = props => {
     labelColor = 'label',
     color,
     textAlign,
+<<<<<<< HEAD
     verticalAlign,
+=======
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
     buttons,
     content,
     children,
@@ -34,7 +37,10 @@ export const LabeledListItem = props => {
       <Box
         as="td"
         color={labelColor}
+<<<<<<< HEAD
         verticalAlign={verticalAlign}
+=======
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
         className={classes([
           'LabeledList__cell',
           'LabeledList__label',
@@ -45,7 +51,10 @@ export const LabeledListItem = props => {
         as="td"
         color={color}
         textAlign={textAlign}
+<<<<<<< HEAD
         verticalAlign={verticalAlign}
+=======
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
         className={classes([
           'LabeledList__cell',
           'LabeledList__content',

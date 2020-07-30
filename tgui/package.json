@@ -1,7 +1,11 @@
 {
   "private": true,
   "name": "tgui",
+<<<<<<< HEAD
   "version": "4.1.0",
+=======
+  "version": "3.0.0",
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
   "workspaces": [
     "packages/*"
   ],
@@ -13,7 +17,11 @@
   },
   "dependencies": {
     "babel-eslint": "^10.0.3",
+<<<<<<< HEAD
     "eslint": "^7.4.0",
+=======
+    "eslint": "^6.7.2",
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
     "eslint-plugin-react": "^7.17.0"
   }
 }

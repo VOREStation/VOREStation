@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /**
  * @file
  * @copyright 2020 Aleksej Komarov
@@ -6,6 +7,8 @@
 
 import { selectBackend } from './backend';
 import { selectDebug } from './debug';
+=======
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 import { Window } from './layouts';
 
 const requireInterface = require.context('./interfaces', false, /\.js$/);
@@ -25,6 +28,7 @@ const routingError = (type, name) => () => {
   );
 };
 
+<<<<<<< HEAD
 const SuspendedWindow = () => {
   return (
     <Window resizable>
@@ -46,6 +50,16 @@ export const getRoutedComponent = state => {
     }
   }
   const name = config?.interface;
+=======
+export const getRoutedComponent = state => {
+  if (process.env.NODE_ENV !== 'production') {
+    // Show a kitchen sink
+    if (state.showKitchenSink) {
+      return require('./interfaces/manually-routed/KitchenSink').KitchenSink;
+    }
+  }
+  const name = state.config?.interface;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
   let esModule;
   try {
     esModule = requireInterface(`./${name}.js`);

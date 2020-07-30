@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /**
  * @file
  * @copyright 2020 Aleksej Komarov
@@ -14,10 +15,23 @@ import { toggleKitchenSink, useDebug } from '../debug';
 import { dragStartHandler, recallWindowGeometry, resizeStartHandler, setWindowKey } from '../drag';
 import { createLogger } from '../logging';
 import { useDispatch } from '../store';
+=======
+import { classes } from 'common/react';
+import { decodeHtmlEntities, toTitleCase } from 'common/string';
+import { Component, Fragment } from 'inferno';
+import { useBackend } from '../backend';
+import { IS_IE8, runCommand, winset } from '../byond';
+import { Box, Icon } from '../components';
+import { UI_DISABLED, UI_INTERACTIVE, UI_UPDATE } from '../constants';
+import { dragStartHandler, resizeStartHandler } from '../drag';
+import { releaseHeldKeys } from '../hotkeys';
+import { createLogger } from '../logging';
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 import { Layout, refocusLayout } from './Layout';
 
 const logger = createLogger('Window');
 
+<<<<<<< HEAD
 const DEFAULT_SIZE = [400, 600];
 
 export class Window extends Component {
@@ -36,6 +50,10 @@ export class Window extends Component {
     }
     setWindowKey(config.window.key);
     recallWindowGeometry(config.window.key, options);
+=======
+export class Window extends Component {
+  componentDidMount() {
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
     refocusLayout();
   }
 
@@ -43,11 +61,15 @@ export class Window extends Component {
     const {
       resizable,
       theme,
+<<<<<<< HEAD
       title,
+=======
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
       children,
     } = this.props;
     const {
       config,
+<<<<<<< HEAD
       suspended,
     } = useBackend(this.context);
     const { debugLayout } = useDebug(this.context);
@@ -55,6 +77,12 @@ export class Window extends Component {
     const fancy = config.window?.fancy;
     // Determine when to show dimmer
     const showDimmer = config.user.observer
+=======
+      debugLayout,
+    } = useBackend(this.context);
+    // Determine when to show dimmer
+    const showDimmer = config.observer
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
       ? config.status < UI_DISABLED
       : config.status < UI_INTERACTIVE;
     return (
@@ -63,6 +91,7 @@ export class Window extends Component {
         theme={theme}>
         <TitleBar
           className="Window__titleBar"
+<<<<<<< HEAD
           title={!suspended && (title || decodeHtmlEntities(config.title))}
           status={config.status}
           fancy={fancy}
@@ -70,18 +99,37 @@ export class Window extends Component {
           onClose={() => {
             logger.log('pressed close');
             dispatch(backendSuspendStart());
+=======
+          title={decodeHtmlEntities(config.title)}
+          status={config.status}
+          fancy={config.fancy}
+          onDragStart={dragStartHandler}
+          onClose={() => {
+            logger.log('pressed close');
+            releaseHeldKeys();
+            winset(config.window, 'is-visible', false);
+            runCommand(`uiclose ${config.ref}`);
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
           }} />
         <div
           className={classes([
             'Window__rest',
             debugLayout && 'debug-layout',
           ])}>
+<<<<<<< HEAD
           {!suspended && children}
+=======
+          {children}
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
           {showDimmer && (
             <div className="Window__dimmer" />
           )}
         </div>
+<<<<<<< HEAD
         {fancy && resizable && (
+=======
+        {config.fancy && resizable && (
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
           <Fragment>
             <div className="Window__resizeHandle__e"
               onMousedown={resizeStartHandler(1, 0)} />
@@ -97,6 +145,7 @@ export class Window extends Component {
 }
 
 const WindowContent = props => {
+<<<<<<< HEAD
   const {
     className,
     fitted,
@@ -104,10 +153,14 @@ const WindowContent = props => {
     children,
     ...rest
   } = props;
+=======
+  const { scrollable, children } = props;
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
   // A bit lazy to actually write styles for it,
   // so we simply include a Box with margins.
   return (
     <Layout.Content
+<<<<<<< HEAD
       scrollable={scrollable}
       className={classes([
         'Window__content',
@@ -119,6 +172,12 @@ const WindowContent = props => {
           {children}
         </div>
       )}
+=======
+      scrollable={scrollable}>
+      <Box m={1}>
+        {children}
+      </Box>
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
     </Layout.Content>
   );
 };
@@ -137,7 +196,11 @@ const statusToColor = status => {
   }
 };
 
+<<<<<<< HEAD
 const TitleBar = (props, context) => {
+=======
+const TitleBar = props => {
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
   const {
     className,
     title,
@@ -146,7 +209,10 @@ const TitleBar = (props, context) => {
     onDragStart,
     onClose,
   } = props;
+<<<<<<< HEAD
   const dispatch = useDispatch(context);
+=======
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
   return (
     <div
       className={classes([
@@ -158,14 +224,21 @@ const TitleBar = (props, context) => {
         color={statusToColor(status)}
         name="eye" />
       <div className="TitleBar__title">
+<<<<<<< HEAD
         {typeof title === 'string'
           && title === title.toLowerCase()
           && toTitleCase(title)
           || title}
+=======
+        {title === title.toLowerCase()
+          ? toTitleCase(title)
+          : title}
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
       </div>
       <div
         className="TitleBar__dragZone"
         onMousedown={e => fancy && onDragStart(e)} />
+<<<<<<< HEAD
       {process.env.NODE_ENV !== 'production' && (
         <div
           className="TitleBar__devBuildIndicator"
@@ -173,6 +246,8 @@ const TitleBar = (props, context) => {
           <Icon name="bug" />
         </div>
       )}
+=======
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
       {!!fancy && (
         <div
           className="TitleBar__close TitleBar__clickable"
@@ -180,7 +255,11 @@ const TitleBar = (props, context) => {
           // IE8: Use a plain character instead of a unicode symbol.
           // eslint-disable-next-line react/no-unknown-property
           onclick={onClose}>
+<<<<<<< HEAD
           {Byond.IS_LTE_IE8 ? 'x' : '×'}
+=======
+          {IS_IE8 ? 'x' : '×'}
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
         </div>
       )}
     </div>

@@ -1,6 +1,12 @@
 /**
+<<<<<<< HEAD
  * Base state and helpers for states. Just does some sanity checks,
  * implement a proper state for in-depth checks.
+=======
+ * tgui states
+ *
+ * Base state and helpers for states. Just does some sanity checks, implement a state for in-depth checks.
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
  */
 
 /**
@@ -25,10 +31,16 @@
 		// 	. = max(., STATUS_INTERACTIVE)
 
 		// Regular ghosts can always at least view if in range.
+<<<<<<< HEAD
 		if(user.client)
 			var/clientviewlist = getviewsize(user.client.view)
 			if(get_dist(src_object, user) < max(clientviewlist[1], clientviewlist[2]))
 				. = max(., STATUS_UPDATE)
+=======
+		var/clientviewlist = getviewsize(user.client.view)
+		if(get_dist(src_object, user) < max(clientviewlist[1],clientviewlist[2]))
+			. = max(., STATUS_UPDATE)
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 
 	// Check if the state allows interaction
 	var/result = state.can_use_topic(src_object, user)
@@ -46,8 +58,12 @@
  * return UI_state The state of the UI.
  */
 /datum/tgui_state/proc/can_use_topic(src_object, mob/user)
+<<<<<<< HEAD
 	// Don't allow interaction by default.
 	return STATUS_CLOSE
+=======
+	return STATUS_CLOSE // Don't allow interaction by default.
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 
 /**
  * public
@@ -57,6 +73,7 @@
  * return UI_state The state of the UI.
  */
 /mob/proc/shared_tgui_interaction(src_object)
+<<<<<<< HEAD
 	// Close UIs if mindless.
 	if(!client)
 		return STATUS_CLOSE
@@ -65,18 +82,33 @@
 		return STATUS_DISABLED
 	// Update UIs if incapicitated but concious.
 	else if(incapacitated())
+=======
+	if(!client) // Close UIs if mindless.
+		return STATUS_CLOSE
+	else if(stat) // Disable UIs if unconcious.
+		return STATUS_DISABLED
+	else if(incapacitated()) // Update UIs if incapicitated but concious.
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 		return STATUS_UPDATE
 	return STATUS_INTERACTIVE
 
 /mob/living/silicon/ai/shared_tgui_interaction(src_object)
+<<<<<<< HEAD
 	// Disable UIs if the AI is unpowered.
 	if(lacks_power())
+=======
+	if(lacks_power()) // Disable UIs if the AI is unpowered.
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 		return STATUS_DISABLED
 	return ..()
 
 /mob/living/silicon/robot/shared_tgui_interaction(src_object)
+<<<<<<< HEAD
 	// Disable UIs if the Borg is unpowered or locked.
 	if(!cell || cell.charge <= 0 || lockcharge)
+=======
+	if(!cell || cell.charge <= 0 || lockcharge) // Disable UIs if the Borg is unpowered or locked.
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 		return STATUS_DISABLED
 	return ..()
 
@@ -93,8 +125,12 @@
  * return UI_state The state of the UI.
  */
 /atom/proc/contents_tgui_distance(src_object, mob/living/user)
+<<<<<<< HEAD
 	// Just call this mob's check.
 	return user.shared_living_tgui_distance(src_object)
+=======
+	return user.shared_living_tgui_distance(src_object) // Just call this mob's check.
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 
 /**
  * public
@@ -106,8 +142,12 @@
  * return UI_state The state of the UI.
  */
 /mob/living/proc/shared_living_tgui_distance(atom/movable/src_object, viewcheck = TRUE)
+<<<<<<< HEAD
 	// If the object is obscured, close it.
 	if(viewcheck && !(src_object in view(src)))
+=======
+	if(viewcheck && !(src_object in view(src))) // If the object is obscured, close it.
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 		return STATUS_CLOSE
 
 	var/dist = get_dist(src_object, src)

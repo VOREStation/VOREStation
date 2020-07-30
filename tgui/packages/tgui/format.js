@@ -1,9 +1,12 @@
+<<<<<<< HEAD
 /**
  * @file
  * @copyright 2020 Aleksej Komarov
  * @license MIT
  */
 
+=======
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
 import { clamp, round, toFixed } from 'common/math';
 
 const SI_SYMBOLS = [
@@ -39,9 +42,12 @@ export const formatSiUnit = (
   minBase1000 = -SI_BASE_INDEX,
   unit = ''
 ) => {
+<<<<<<< HEAD
   if (typeof value !== 'number' || !Number.isFinite(value)) {
     return value;
   }
+=======
+>>>>>>> f1eb479... Merge pull request #7317 from ShadowLarkens/tgui
   const realBase10 = Math.floor(Math.log10(value));
   const base10 = Math.floor(Math.max(minBase1000 * 3, realBase10));
   const realBase1000 = Math.floor(realBase10 / 3);
