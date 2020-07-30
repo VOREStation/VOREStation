@@ -240,7 +240,11 @@
 			message = "faints."
 			if(sleeping)
 				return //Can't faint while asleep
+<<<<<<< HEAD
 			sleeping += 10 //Short-short nap
+=======
+			Sleeping(10)
+>>>>>>> 55b2c8d... Merge pull request #7354 from Neerti/status_indicators
 			m_type = 1
 
 		if("cough", "coughs")

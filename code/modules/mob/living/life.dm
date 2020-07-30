@@ -126,10 +126,14 @@
 
 /mob/living/proc/handle_weakened()
 	if(weakened)
+<<<<<<< HEAD
 		weakened = max(weakened-1,0)
 		throw_alert("weakened", /obj/screen/alert/weakened)
 	else
 		clear_alert("weakened")
+=======
+		AdjustWeakened(-1)
+>>>>>>> 55b2c8d... Merge pull request #7354 from Neerti/status_indicators
 	return weakened
 
 /mob/living/proc/handle_stuttering()
@@ -181,7 +185,7 @@
 		throw_alert("blind", /obj/screen/alert/blind)
 	else
 		clear_alert("blind")
-	
+
 	if(eye_blurry)			//blurry eyes heal slowly
 		eye_blurry = max(eye_blurry-1, 0)
 

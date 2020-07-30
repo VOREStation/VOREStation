@@ -136,7 +136,7 @@
 				to_chat(src, "<span class='danger'>Oh god, everything's spinning!</span>")
 			Confuse(max(0,confuse_dur))
 		if(species.emp_sensitivity & EMP_WEAKEN)
-			if(weaken_dur >= 1) 
+			if(weaken_dur >= 1)
 				to_chat(src, "<span class='danger'>Your limbs go slack!</span>")
 			Weaken(max(0,weaken_dur))
 		//physical damage block, deals (minor-4) 5-15, 10-20, 15-25, 20-30 (extreme-1) of *each* type
@@ -287,7 +287,7 @@
 				M.visible_message("<span class='notice'>[M] shakes [src] trying to wake [T.him] up!</span>", \
 				"<span class='notice'>You shake [src], but [T.he] [T.does] not respond... Maybe [T.he] [T.has] S.S.D?</span>")
 			else if(lying || src.sleeping)
-				src.sleeping = max(0,src.sleeping-5)
+				AdjustSleeping(-5)
 				if(src.sleeping == 0)
 					src.resting = 0
 				if(H) H.in_stasis = 0 //VOREStation Add - Just In Case
@@ -403,7 +403,7 @@
 		to_chat(usr, "<font color='red'>You are already sleeping</font>")
 		return
 	if(alert(src,"You sure you want to sleep for a while?","Sleep","Yes","No") == "Yes")
-		usr.sleeping = 20 //Short nap
+		usr.AdjustSleeping(20)
 
 /mob/living/carbon/Bump(atom/A)
 	if(now_pushing)

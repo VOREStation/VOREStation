@@ -32,7 +32,7 @@
 //	SetStunned(min(stunned, 30))
 	SetParalysis(min(paralysis, 30))
 //	SetWeakened(min(weakened, 20))
-	sleeping = 0
+	SetSleeping(0)
 	adjustBruteLoss(0)
 	adjustToxLoss(0)
 	adjustOxyLoss(0)
@@ -78,7 +78,7 @@
 
 	if(src.sleeping)
 		Paralyse(3)
-		src.sleeping--
+		AdjustSleeping(-1)
 
 	//if(src.resting) // VOREStation edit. Our borgos would rather not.
 	//	Weaken(5)
