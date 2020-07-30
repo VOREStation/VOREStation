@@ -337,6 +337,7 @@ var/list/table_icon_cache = list()
 		return TRUE
 	..()
 
+<<<<<<< HEAD
 /proc/get_table_image(var/icon/ticon,var/ticonstate,var/tdir,var/tcolor,var/talpha)
 	var/icon_cache_key = "\ref[ticon]-[ticonstate]-[tdir]-[tcolor]-[talpha]"
 	var/image/I = table_icon_cache[icon_cache_key]
@@ -350,6 +351,8 @@ var/list/table_icon_cache = list()
 
 	return I
 
+=======
+>>>>>>> f4accf2... Merge pull request #7363 from Verkister/patch-41
 /obj/structure/table/update_icon()
 	if(flipped != 1)
 		icon_state = "blank"
