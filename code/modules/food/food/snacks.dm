@@ -157,7 +157,11 @@
 	. = ..()
 	if(Adjacent(user))
 		if(coating)
+<<<<<<< HEAD
 			to_chat(user, "<span class='notice'>It's coated in [coating.name]!</span>")
+=======
+			. += "<span class='notice'>It's coated in [coating.name]!</span>"
+>>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking
 		if(bitecount==0)
 			return .
 		else if (bitecount==1)
@@ -4528,12 +4532,23 @@
 	filling_color = "#DB0000"
 	center_of_mass = list("x"=16, "y"=16)
 	do_coating_prefix = 0
+<<<<<<< HEAD
 	New()
 		. = ..()
 		reagents.add_reagent("protein", 6)
 		reagents.add_reagent("batter", 1.7)
 		reagents.add_reagent("oil", 1.5)
 		bitesize = 2
+=======
+	bitesize = 2
+	
+	
+/obj/item/weapon/reagent_containers/food/snacks/sausage/battered/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 6)
+	reagents.add_reagent("batter", 1.7)
+	reagents.add_reagent("oil", 1.5)
+>>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking
 
 /obj/item/weapon/reagent_containers/food/snacks/jalapeno_poppers
 	name = "jalapeno popper"
@@ -4558,10 +4573,18 @@
 	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "ratburger"
 	center_of_mass = list("x"=16, "y"=11)
+<<<<<<< HEAD
 	New()
 		. = ..()
 		reagents.add_reagent("protein", 4)
 		bitesize = 2
+=======
+	bitesize = 2
+	
+/obj/item/weapon/reagent_containers/food/snacks/mouseburger/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 4)
+>>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking
 
 /obj/item/weapon/reagent_containers/food/snacks/chickenkatsu
 	name = "chicken katsu"
@@ -4637,6 +4660,7 @@
 	nutriment_amt = 25
 	nutriment_desc = list("fried pizza" = 25)
 	center_of_mass = list("x"=16, "y"=11)
+<<<<<<< HEAD
 
 	New()
 		. = ..()
@@ -4644,6 +4668,15 @@
 		coating = reagents.get_reagent("batter")
 		reagents.add_reagent("oil", 4)
 		bitesize = 2
+=======
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/crunch/Initialize()
+	. = ..()
+	reagents.add_reagent("batter", 6.5)
+	coating = reagents.get_reagent("batter")
+	reagents.add_reagent("oil", 4)
+>>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking
 
 /obj/item/weapon/reagent_containers/food/snacks/pizzacrunchslice
 	name = "pizza crunch"
@@ -6032,4 +6065,20 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/cosmicbrowniesslice/filled/Initialize()
 	. = ..()
+<<<<<<< HEAD
 	reagents.add_reagent("protein", 1)
+=======
+	reagents.add_reagent("protein", 1)
+	
+/obj/item/weapon/reagent_containers/food/snacks/lasagna
+	name = "lasagna"
+	desc = "Meaty, tomato-y, and ready to eat-y. Favorite of cats."
+	icon = 'icons/obj/food.dmi'
+	icon_state = "lasagna"
+	nutriment_amt = 5
+	nutriment_desc = list("tomato" = 4, "meat" = 2)
+
+/obj/item/weapon/reagent_containers/food/snacks/lasagna/Initialize()
+	..()
+	reagents.add_reagent("protein", 2) //For meaty things.
+>>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking

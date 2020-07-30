@@ -17,7 +17,11 @@ fundamental differences
 /obj/machinery/appliance/mixer/examine(var/mob/user)
 	. = ..()
 	if(Adjacent(user))
+<<<<<<< HEAD
 		to_chat(user, "<span class='notice'>It is currently set to make a [selected_option]</span>")
+=======
+		. += "<span class='notice'>It is currently set to make a [selected_option]</span>"
+>>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking
 
 /obj/machinery/appliance/mixer/Initialize()
 	. = ..()
@@ -27,7 +31,11 @@ fundamental differences
 
 //Mixers cannot-not do combining mode. So the default option is removed from this. A combine target must be chosen
 /obj/machinery/appliance/mixer/choose_output()
+<<<<<<< HEAD
 	set src in oview(1)
+=======
+	set src in view(1)
+>>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking
 	set name = "Choose output"
 	set category = "Object"
 
@@ -91,7 +99,11 @@ fundamental differences
 
 
 /obj/machinery/appliance/mixer/toggle_power()
+<<<<<<< HEAD
 	set src in view()
+=======
+	set src in view(1)
+>>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking
 	set name = "Toggle Power"
 	set category = "Object"
 

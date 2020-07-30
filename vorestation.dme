@@ -2077,7 +2077,10 @@
 #include "code\modules\food\recipes_fryer.dm"
 #include "code\modules\food\recipes_grill.dm"
 #include "code\modules\food\recipes_microwave.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\modules\food\recipes_microwave_vr.dm"
+=======
+>>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking:polaris.dme
 #include "code\modules\food\recipes_oven.dm"
 #include "code\modules\food\drinkingglass\drinkingglass.dm"
 #include "code\modules\food\drinkingglass\extras.dm"
@@ -2110,7 +2113,10 @@
 #include "code\modules\food\kitchen\icecream.dm"
 #include "code\modules\food\kitchen\microwave.dm"
 #include "code\modules\food\kitchen\smartfridge.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\modules\food\kitchen\smartfridge_vr.dm"
+=======
+>>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking:polaris.dme
 #include "code\modules\food\kitchen\cooking_machines\_appliance.dm"
 #include "code\modules\food\kitchen\cooking_machines\_cooker.dm"
 #include "code\modules\food\kitchen\cooking_machines\_cooker_output.dm"

@@ -71,6 +71,7 @@
 	// This is a bitfield, more than one type can be used
 	// Grill is presently unused and not listed
 
+<<<<<<< HEAD
 /datum/recipe/proc/check_reagents(var/datum/reagents/avail_reagents)
 	if(!reagents || !reagents.len)
 		return 1
@@ -96,6 +97,33 @@
 		return 1
 
 	. = 1
+=======
+/datum/recipe/proc/check_reagents(var/datum/reagents/avail_reagents, var/exact = 0)
+	if(!reagents || !reagents.len)
+		return TRUE
+	
+	if(!avail_reagents)
+		return FALSE
+
+	. = TRUE
+	for(var/r_r in reagents)
+		var/aval_r_amnt = avail_reagents.get_reagent_amount(r_r)
+		if(aval_r_amnt - reagents[r_r] >= 0)
+			if(aval_r_amnt>(reagents[r_r] && exact))
+				. = FALSE
+		else
+			return FALSE
+	
+	if((reagents?(reagents.len):(0)) < avail_reagents.reagent_list.len)
+		return FALSE
+	return .
+
+/datum/recipe/proc/check_fruit(var/obj/container, var/exact = 0)
+	if (!fruit || !fruit.len)
+		return TRUE
+
+	. = TRUE
+>>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking
 	if(fruit && fruit.len)
 		var/list/checklist = list()
 		 // You should trust Copy().
@@ -107,6 +135,7 @@
 				checklist[G.seed.kitchen_tag]--
 		for(var/ktag in checklist)
 			if(!isnull(checklist[ktag]))
+<<<<<<< HEAD
 				if(checklist[ktag] < 0)
 					. = 0
 				else if(checklist[ktag] > 0)
@@ -119,6 +148,20 @@
 		return 1
 	
 	. = 1
+=======
+				if(checklist[ktag] < 0 && exact)
+					. = FALSE
+				else if(checklist[ktag] > 0)
+					. = FALSE
+					break
+	return .
+
+/datum/recipe/proc/check_items(var/obj/container as obj, var/exact = 0)
+	if(!items || !items.len)
+		return TRUE
+	
+	. = TRUE
+>>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking
 	if(items && items.len)
 		var/list/checklist = list()
 		checklist = items.Copy() // You should really trust Copy
@@ -127,25 +170,41 @@
 			for(var/obj/O in ((machine.contents - machine.component_parts) - machine.circuit))
 				if(istype(O,/obj/item/weapon/reagent_containers/food/snacks/grown))
 					continue // Fruit is handled in check_fruit().
+<<<<<<< HEAD
 				var/found = 0
+=======
+				var/found = FALSE
+>>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking
 				for(var/i = 1; i < checklist.len+1; i++)
 					var/item_type = checklist[i]
 					if (istype(O,item_type))
 						checklist.Cut(i, i+1)
+<<<<<<< HEAD
 						found = 1
 						break
 				if(!found)
 					. = 0
+=======
+						found = TRUE
+						break
+				if(!found && exact)
+					return FALSE
+>>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking
 		else
 			for(var/obj/O in container.contents)
 				if(istype(O,/obj/item/weapon/reagent_containers/food/snacks/grown))
 					continue // Fruit is handled in check_fruit().
+<<<<<<< HEAD
 				var/found = 0
+=======
+				var/found = FALSE
+>>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking
 				for(var/i = 1; i < checklist.len+1; i++)
 					var/item_type = checklist[i]
 					if (istype(O,item_type))
 						if(check_coating(O))
 							checklist.Cut(i, i+1)
+<<<<<<< HEAD
 							found = 1
 							break
 				if (!found)
@@ -161,16 +220,42 @@
 
 	if (coating == -1)
 		return 1 //-1 value doesnt care
+=======
+							found = TRUE
+							break
+				if (!found && exact)
+					return FALSE
+		if(checklist.len)
+			return FALSE
+	return .
+
+//This is called on individual items within the container.
+/datum/recipe/proc/check_coating(var/obj/O, var/exact = FALSE)
+	if(!istype(O,/obj/item/weapon/reagent_containers/food/snacks))
+		return TRUE //Only snacks can be battered
+
+	if (coating == -1)
+		return TRUE //-1 value doesnt care
+>>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking
 
 	var/obj/item/weapon/reagent_containers/food/snacks/S = O
 	if (!S.coating)
 		if (!coating)
+<<<<<<< HEAD
 			return 1
 		return 0
 	else if (S.coating.type == coating)
 		return 1
 
 	return 0
+=======
+			return TRUE
+		return FALSE
+	else if (S.coating.type == coating)
+		return TRUE
+
+	return FALSE
+>>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking
 
 //general version
 /datum/recipe/proc/make(var/obj/container as obj)
@@ -308,7 +393,11 @@
 /proc/select_recipe(var/list/datum/recipe/available_recipes, var/obj/obj as obj, var/exact)
 	var/list/datum/recipe/possible_recipes = list()
 	for (var/datum/recipe/recipe in available_recipes)
+<<<<<<< HEAD
 		if((recipe.check_reagents(obj.reagents) < exact) || (recipe.check_items(obj) < exact) || (recipe.check_fruit(obj) < exact))
+=======
+		if(!recipe.check_reagents(obj.reagents, exact) || !recipe.check_items(obj, exact)  || !recipe.check_fruit(obj, exact))
+>>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking
 			continue
 		possible_recipes |= recipe
 	if (!possible_recipes.len)

@@ -6,6 +6,10 @@
 	result = /obj/item/weapon/reagent_containers/food/snacks/fries
 
 /datum/recipe/cheesyfries
+<<<<<<< HEAD
+=======
+	appliance = FRYER
+>>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/fries,
 		/obj/item/weapon/reagent_containers/food/snacks/cheesewedge,
@@ -100,6 +104,7 @@
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/donut/poisonberry
 
+<<<<<<< HEAD
 /datum/recipe/jellydonut/slime
 	appliance = FRYER
 	reagents = list("slimejelly" = 5, "sugar" = 5)
@@ -107,6 +112,13 @@
 
 /datum/recipe/jellydonut/cherry
 	appliance = FRYER
+=======
+/datum/recipe/jellydonut/slime // Subtypes of jellydonut, appliance inheritance applies.
+	reagents = list("slimejelly" = 5, "sugar" = 5)
+	result = /obj/item/weapon/reagent_containers/food/snacks/donut/slimejelly
+
+/datum/recipe/jellydonut/cherry // Subtypes of jellydonut, appliance inheritance applies.
+>>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking
 	reagents = list("cherryjelly" = 5, "sugar" = 5)
 	result = /obj/item/weapon/reagent_containers/food/snacks/donut/cherryjelly
 
@@ -158,6 +170,7 @@
 	)
 	reagents = list("soysauce" = 5, "batter" = 10)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sweet_and_sour
+<<<<<<< HEAD
 
 /datum/recipe/generalschicken
 	appliance = FRYER
@@ -178,3 +191,5 @@
 		/obj/item/weapon/reagent_containers/food/snacks/meat
 	)
 	result = /obj/item/weapon/storage/box/wings //This is kinda like the donut box.
+=======
+>>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking
