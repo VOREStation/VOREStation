@@ -16289,10 +16289,14 @@
 /turf/simulated/floor/tiled,
 /area/rnd/research/testingrange)
 "aBJ" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tether)
+/obj/structure/kitchenspike,
+/obj/machinery/alarm/freezer{
+	dir = 1;
+	icon_state = "alarm0";
+	pixel_y = -25
+	},
+/turf/simulated/floor/tiled/freezer,
+/area/crew_quarters/freezer)
 "aBK" = (
 /obj/machinery/door/firedoor/glass,
 /obj/effect/floor_decal/borderfloorblack,
@@ -16333,12 +16337,10 @@
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
 "aBM" = (
-/obj/machinery/atmospherics/unary/engine{
-	dir = 1
-	},
+/obj/structure/shuttle/engine/propulsion,
 /turf/simulated/floor/reinforced,
 /turf/simulated/shuttle/plating/carry,
-/area/shuttle/tourbus/engines)
+/area/shuttle/tether)
 "aBN" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -32858,14 +32860,12 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
 "bet" = (
-/obj/structure/kitchenspike,
-/obj/machinery/alarm{
-	dir = 1;
-	pixel_y = -25;
-	target_temperature = 270
+/obj/machinery/atmospherics/unary/engine{
+	dir = 1
 	},
-/turf/simulated/floor/tiled/freezer,
-/area/crew_quarters/freezer)
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tourbus/engines)
 "beu" = (
 /obj/effect/floor_decal/corner/grey/diagonal,
 /obj/structure/cable/green{
@@ -48769,7 +48769,7 @@ jML
 jHw
 jpB
 qWU
-aBM
+bet
 aKU
 aOI
 aPb
@@ -49621,7 +49621,7 @@ caw
 jHw
 gHh
 qWU
-aBM
+bet
 aKU
 aOI
 aPb
@@ -51606,7 +51606,7 @@ aNk
 uSA
 aNJ
 aNP
-aBJ
+aBM
 aKU
 abg
 aOk
@@ -51748,7 +51748,7 @@ aNl
 aNl
 aNK
 aNP
-aBJ
+aBM
 aKU
 abg
 aOk
@@ -51890,7 +51890,7 @@ aNm
 aNl
 aNK
 aNP
-aBJ
+aBM
 aKU
 abg
 aOk
@@ -54702,7 +54702,7 @@ bdI
 aoJ
 beP
 bdR
-bet
+aBJ
 aoJ
 bbr
 bcB
