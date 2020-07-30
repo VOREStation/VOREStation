@@ -39,7 +39,7 @@ const damages = [
   ['Respiratory', 'oxyLoss'],
   ['Brain', 'brainLoss'],
   ['Toxin', 'toxLoss'],
-  ['Radioactive', 'radLoss'],
+  ['Radiation', 'radLoss'],
   ['Brute', 'bruteLoss'],
   ['Genetic', 'cloneLoss'],
   ['Burn', 'fireLoss'],
@@ -67,10 +67,9 @@ const reduceOrganStatus = A => {
           <Fragment>
             {a}
             {!!s && (
-              <Fragment>
+              <Box>
                 {s}
-                {s.length > 0 && <br />}
-              </Fragment>
+              </Box>
             )}
           </Fragment>
         ))
@@ -121,6 +120,7 @@ const BodyScannerMain = props => {
   return (
     <Box>
       <BodyScannerMainOccupant occupant={occupant} />
+      <BodyScannerMainReagents occupant={occupant} />
       <BodyScannerMainAbnormalities occupant={occupant} />
       <BodyScannerMainDamage occupant={occupant} />
       <BodyScannerMainOrgansExternal organs={occupant.extOrgan} />
@@ -178,6 +178,14 @@ const BodyScannerMainOccupant = (props, context) => {
             value={round(occupant.bodyTempF, 0)}
           />&deg;F
         </LabeledList.Item>
+        <LabeledList.Item label="Blood Volume">
+          <AnimatedNumber
+            value={round(occupant.blood.volume, 0)}
+          /> units&nbsp;(
+          <AnimatedNumber
+            value={round(occupant.blood.percent, 0)}
+          />%)
+        </LabeledList.Item>
         {/* VOREStation Add */}
         <LabeledList.Item label="Weight">
           {round(data.occupant.weight) + "lbs, "
@@ -186,6 +194,61 @@ const BodyScannerMainOccupant = (props, context) => {
         {/* VOREStation Add End */}
       </LabeledList>
     </Section>
+  );
+};
+
+const BodyScannerMainReagents = props => {
+  const {
+    occupant,
+  } = props;
+
+  return (
+    <Fragment>
+      <Section title="Blood Reagents">
+        {occupant.reagents ? (
+          <Table>
+            <Table.Row header>
+              <Table.Cell>
+                Reagent
+              </Table.Cell>
+              <Table.Cell textAlign="right">
+                Amount
+              </Table.Cell>
+            </Table.Row>
+            {occupant.reagents.map(reagent => (
+              <Table.Row key={reagent.name}>
+                <Table.Cell>{reagent.name}</Table.Cell>
+                <Table.Cell textAlign="right">
+                  {reagent.amount} Units
+                </Table.Cell>
+              </Table.Row>
+            ))}
+          </Table>
+        ) : <Box color="good">No Blood Reagents Detected</Box>}
+      </Section>
+      <Section title="Stomach Reagents">
+        {occupant.ingested ? (
+          <Table>
+            <Table.Row header>
+              <Table.Cell>
+                Reagent
+              </Table.Cell>
+              <Table.Cell textAlign="right">
+                Amount
+              </Table.Cell>
+            </Table.Row>
+            {occupant.ingested.map(reagent => (
+              <Table.Row key={reagent.name}>
+                <Table.Cell>{reagent.name}</Table.Cell>
+                <Table.Cell textAlign="right">
+                  {reagent.amount} Units
+                </Table.Cell>
+              </Table.Row>
+            ))}
+          </Table>
+        ) : <Box color="good">No Stomach Reagents Detected</Box>}
+      </Section>
+    </Fragment>
   );
 };
 
@@ -351,6 +414,7 @@ const BodyScannerMainOrgansExternal = props => {
               <Box color="average" display="inline">
                 {reduceOrganStatus([
                   o.internalBleeding && "Internal bleeding",
+                  !!o.status.bleeding && "External bleeding",
                   o.lungRuptured && "Ruptured lung",
                   o.destroyed && "Destroyed",
                   !!o.status.broken && o.status.broken,

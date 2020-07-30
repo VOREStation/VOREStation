@@ -162,6 +162,11 @@
 		else
 	return
 
+/obj/machinery/bodyscanner/tgui_host(mob/user)
+	if(user == occupant)
+		return src
+	return console ? console : src
+
 /obj/machinery/bodyscanner/tgui_interact(mob/user, datum/tgui/ui = null)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
