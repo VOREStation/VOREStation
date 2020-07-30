@@ -20,13 +20,10 @@
 	var/light_intensity = null			// Ditto. Not implemented yet.
 	var/mob_overlay_state = null		// Icon_state for an overlay to apply to a (human) mob while this exists.  This is actually implemented.
 	var/client_color = null				// If set, the client will have the world be shown in this color, from their perspective.
-<<<<<<< HEAD
-	var/wire_colors_replace = null		// If set, the client will have wires replaced by the given replacement list. For colorblindness.
-=======
+	var/wire_colors_replace = null		// If set, the client will have wires replaced by the given replacement list. For colorblindness. //VOREStation Add
 	var/list/filter_parameters = null	// If set, will add a filter to the holder with the parameters in this var. Must be a list.
 	var/filter_priority = 1				// Used to make filters be applied in a specific order, if that is important.
 	var/filter_instance = null			// Instance of a filter created with the `filter_parameters` list. This exists to make `animate()` calls easier. Don't set manually.
->>>>>>> a255ca0... Merge pull request #7358 from Neerti/filter_stuff
 
 	// Now for all the different effects.
 	// Percentage modifiers are expressed as a multipler. (e.g. +25% damage should be written as 1.25)
