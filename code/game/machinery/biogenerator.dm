@@ -129,10 +129,7 @@
 					dat += "<A href='?src=\ref[src];action=create;item=leathercoat;cost=500'>Leather Coat</A> <FONT COLOR=brown>([round(500/build_eff)])</FONT><BR>"
 					dat += "<A href='?src=\ref[src];action=create;item=leatherjacket;cost=500'>Leather Jacket</A> <FONT COLOR=brown>([round(500/build_eff)])</FONT><BR>"
 					dat += "<A href='?src=\ref[src];action=create;item=wintercoat;cost=500'>Winter Coat</A> <FONT COLOR=brown>([round(500/build_eff)])</FONT><BR>"
-<<<<<<< HEAD
 					dat += "<A href='?src=\ref[src];action=create;item=algae;cost=400'>4 Algae Sheets</A> <FONT COLOR=green>([round(400/build_eff)])</FONT><BR>" //VOREStation Edit - Algae for oxygen generator
-=======
->>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking
 					//dat += "Other<BR>"
 					//dat += "<A href='?src=\ref[src];action=create;item=monkey;cost=500'>Monkey</A> <FONT COLOR=blue>(500)</FONT><BR>"
 				else
