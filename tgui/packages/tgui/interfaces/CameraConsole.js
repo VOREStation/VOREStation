@@ -124,7 +124,7 @@ export const CameraConsoleSearch = (props, context) => {
         onInput={(e, value) => setSearchText(value)} />
       <Dropdown
         mb={1}
-        width="189px"
+        width="177px"
         options={allNetworks}
         placeholder="No Filter"
         onSelected={value => setNetworkFilter(value)} />
