@@ -1223,16 +1223,8 @@ default behaviour is:
 /mob/living/proc/is_sentient()
 	return TRUE
 
-<<<<<<< HEAD
-
-/mob/living/update_transform()
-	// First, get the correct size.
-	var/desired_scale_x = size_multiplier //VOREStation edit
-	var/desired_scale_y = size_multiplier //VOREStation edit
-=======
 /mob/living/get_icon_scale_x()
 	. = ..()
->>>>>>> 55b2c8d... Merge pull request #7354 from Neerti/status_indicators
 	for(var/datum/modifier/M in modifiers)
 		if(!isnull(M.icon_scale_x_percent))
 			. *= M.icon_scale_x_percent
@@ -1245,20 +1237,15 @@ default behaviour is:
 
 /mob/living/update_transform()
 	// First, get the correct size.
-	var/desired_scale_x = get_icon_scale_x()
-	var/desired_scale_y = get_icon_scale_y()
+	var/desired_scale_x = size_multiplier //VOREStation edit
+	var/desired_scale_y = size_multiplier //VOREStation edit
 
 	// Now for the regular stuff.
 	var/matrix/M = matrix()
 	M.Scale(desired_scale_x, desired_scale_y)
-<<<<<<< HEAD
 	M.Translate(0, (vis_height/2)*(desired_scale_y-1)) //VOREStation edit
 	src.transform = M //VOREStation edit
-=======
-	M.Translate(0, 16*(desired_scale_y-1))
-	animate(src, transform = M, time = 10)
 	handle_status_indicators()
->>>>>>> 55b2c8d... Merge pull request #7354 from Neerti/status_indicators
 
 // This handles setting the client's color variable, which makes everything look a specific color.
 // This proc is here so it can be called without needing to check if the client exists, or if the client relogs.
