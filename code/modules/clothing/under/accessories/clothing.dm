@@ -400,11 +400,8 @@
 	name = "green asymmetrical jacket"
 	desc = "Insultingly avant-garde in aqua."
 	icon_state = "asym_green"
-<<<<<<< HEAD
-=======
 
 /obj/item/clothing/accessory/asymovercoat
 	name = "orange asymmetrical overcoat"
 	desc = "An asymmetrical orange overcoat in a 2560's fashion."
 	icon_state = "asymovercoat"
->>>>>>> 7a84236... Adds 2 uniforms, 1 accessory, and flower crowns to loadout (#7385)
