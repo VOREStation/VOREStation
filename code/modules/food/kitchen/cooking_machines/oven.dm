@@ -17,7 +17,8 @@
 	//uses ~30% power to stay warm
 	optimal_power = 0.8 // Oven cooks .2 faster than the default speed.
 
-	light_x = 2
+	light_x = 3
+	light_y = 4
 	max_contents = 5
 	container_type = /obj/item/weapon/reagent_containers/cooking_container/oven
 
