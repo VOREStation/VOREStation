@@ -53,19 +53,10 @@
 	if (!available_recipes)
 		available_recipes = new
 
-<<<<<<< HEAD
-	for (var/type in subtypesof(/datum/recipe))
-		var/datum/recipe/test = new type
-		if ((appliancetype & test.appliance))
-			available_recipes += test
-		else
-			qdel(test)
-=======
 	for(var/type in subtypesof(/datum/recipe))
-	var/datum/recipe/test = type
-	if((appliancetype & initial(test.appliance)))
-		available_recipes += new test
->>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking
+		var/datum/recipe/test = type
+		if((appliancetype & initial(test.appliance)))
+			available_recipes += new test
 
 /obj/machinery/appliance/Destroy()
 	for (var/a in cooking_objs)
@@ -86,11 +77,7 @@
 		for (var/a in cooking_objs)
 			var/datum/cooking_item/CI = a
 			string += "-\a [CI.container.label(null, CI.combine_target)], [report_progress(CI)]</br>"
-<<<<<<< HEAD
-		to_chat(user, string)
-=======
 		return string
->>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking
 	else
 		to_chat(user, "<span class='notice>'It is empty.</span>")
 
@@ -136,22 +123,14 @@
 		return
 
 	if (!user.IsAdvancedToolUser())
-<<<<<<< HEAD
-		to_chat(user, "You lack the dexterity to do that!")
-=======
 		to_chat(user, "<span class='warning'>You lack the dexterity to do that!</span>")
->>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking
 		return
 
 	if (user.stat || user.restrained() || user.incapacitated())
 		return
 
 	if (!Adjacent(user) && !issilicon(user))
-<<<<<<< HEAD
-		to_chat(user, "You can't reach [src] from here.")
-=======
 		to_chat(user, "<span class='warning'>You can't reach [src] from here!</span>")
->>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking
 		return
 
 	if (stat & POWEROFF)//Its turned off
@@ -253,17 +232,10 @@
 
 //This function is overridden by cookers that do stuff with containers
 /obj/machinery/appliance/proc/has_space(var/obj/item/I)
-<<<<<<< HEAD
-	if (cooking_objs.len >= max_contents)
-		return FALSE
-
-	else return TRUE
-=======
 	if(cooking_objs.len >= max_contents)
 		return FALSE
 
 	return TRUE
->>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking
 
 /obj/machinery/appliance/attackby(var/obj/item/I, var/mob/user)
 	if(!cook_type || (stat & (BROKEN)))
@@ -272,18 +244,9 @@
 
 	var/result = can_insert(I, user)
 	if(!result)
-<<<<<<< HEAD
-		if(default_deconstruction_screwdriver(user, I))
-			return
-		else if(default_part_replacement(user, I))
-			return
-		else
-			return
-=======
 		if(!(default_deconstruction_screwdriver(user, I)))
 			default_part_replacement(user, I)
 		return
->>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking
 
 	if(result == 2)
 		var/obj/item/weapon/grab/G = I
@@ -376,11 +339,7 @@
 	else if(istype(I, /obj/item/weapon/holder))
 		var/obj/item/weapon/holder/H = I
 		if (H.held_mob)
-<<<<<<< HEAD
 			work += ((H.held_mob.mob_size * H.held_mob.size_multiplier) * (H.held_mob.mob_size * H.held_mob.size_multiplier) * 2)+2
-=======
-			work += (H.held_mob.mob_size * H.held_mob.mob_size * 2)+2
->>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking
 
 	CI.max_cookwork += work
 
@@ -406,11 +365,7 @@
 	for(var/obj/item/weapon/holder/H in CI.container.contents)
 		var/mob/living/M = H.held_mob
 		if(M)
-<<<<<<< HEAD
 			M.apply_damage(rand(1,3) * (1/M.size_multiplier), mobdamagetype, pick(BP_ALL))
-=======
-			M.apply_damage(rand(1,3) * (1/M.mob_size), mobdamagetype, pick(BP_ALL)) // Allows special handling for mice/smaller mobs.
->>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking
 
 	return TRUE
 
@@ -612,19 +567,6 @@
 			var/datum/cooking_item/CI = menuoptions[selection]
 			eject(CI, user)
 			update_icon()
-<<<<<<< HEAD
-		return 1
-	return 0
-
-/obj/machinery/appliance/proc/can_remove_items(var/mob/user)
-	if (!Adjacent(user))
-		return 0
-
-	if (isanimal(user))
-		return 0
-
-	return 1
-=======
 		return TRUE
 	return FALSE
 
@@ -636,7 +578,6 @@
 		return FALSE
 
 	return TRUE
->>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking
 
 /obj/machinery/appliance/proc/eject(var/datum/cooking_item/CI, var/mob/user = null)
 	var/obj/item/thing

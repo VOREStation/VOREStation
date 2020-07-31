@@ -83,10 +83,7 @@
 	result = /obj/item/weapon/reagent_containers/food/snacks/flatbread
 	
 /datum/recipe/tortilla
-<<<<<<< HEAD
-=======
 	appliance = OVEN
->>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking
 	reagents = list("flour" = 5)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough

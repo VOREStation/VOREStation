@@ -384,12 +384,8 @@
 	/obj/item/weapon/storage/toolbox/lunchbox/nymph = 3,
 	/obj/item/weapon/storage/toolbox/lunchbox/syndicate = 3,
 	/obj/item/weapon/reagent_containers/cooking_container/oven = 5,
-<<<<<<< HEAD
 	/obj/item/weapon/reagent_containers/cooking_container/fryer = 4,
 	/obj/item/trash/bowl = 10) //VOREStation Add
-=======
-	/obj/item/weapon/reagent_containers/cooking_container/fryer = 4)
->>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking
 	contraband = list(/obj/item/weapon/material/knife/butch = 2)
 
 /obj/machinery/vending/sovietsoda
