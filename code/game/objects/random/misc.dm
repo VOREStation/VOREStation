@@ -473,6 +473,7 @@
 				//VOREStation Add Start
 				/obj/item/toy/plushie/lizardplushie,
 				/obj/item/toy/plushie/lizardplushie/kobold,
+				/obj/item/toy/plushie/lizardplushie/resh,
 				/obj/item/toy/plushie/slimeplushie,
 				/obj/item/toy/plushie/box,
 				/obj/item/toy/plushie/borgplushie,

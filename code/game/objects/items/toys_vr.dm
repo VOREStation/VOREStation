@@ -14,6 +14,14 @@
 	drop_sound = 'sound/voice/weh.ogg'
 	attack_verb = list("raided", "kobolded", "weh'd")
 
+/obj/item/toy/plushie/lizardplushie/resh
+	name = "security unathi plushie"
+	desc = "An adorable stuffed toy that resembles an unathi wearing a head of security uniform. Perfect example of a monitor lizard."
+	icon = 'icons/obj/toy_vr.dmi'
+	icon_state = "marketable_resh"
+	pokephrase = "Halt! Sssecurity!"		//"Butts!" would be too obvious
+	attack_verb = list("valided", "justiced", "batoned")
+
 /obj/item/toy/plushie/slimeplushie
 	name = "slime plushie"
 	desc = "An adorable stuffed toy that resembles a slime. It is practically just a hacky sack."
