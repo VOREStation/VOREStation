@@ -78,3 +78,18 @@
 	containertype = /obj/structure/closet/crate/secure/xion
 	containername = "Xenoarchaeology Tech crate"
 	access = access_research
+
+/datum/supply_pack/science/flamps
+	num_contained = 3
+	contains = list(/obj/item/device/flashlight/lamp/floodlamp,
+					/obj/item/device/flashlight/lamp/floodlamp/green)
+	name = "Equipment - Flood lamps"
+	cost = 20
+	containername = "flood lamp crate"
+	supply_method = /decl/supply_method/randomized
+
+/datum/supply_pack/science/illuminate
+	name = "Gear - Illumination grenades"
+	contains = list(/obj/item/weapon/grenade/light = 8)
+	cost = 20
+	containername = "illumination grenade crate"

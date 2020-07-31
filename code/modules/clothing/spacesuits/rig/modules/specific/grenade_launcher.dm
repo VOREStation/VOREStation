@@ -84,6 +84,15 @@
 		list("smoke bomb",  "smoke bomb",  /obj/item/weapon/grenade/smokebomb,  6)
 		)
 
+/obj/item/rig_module/grenade_launcher/light
+	name = "mounted illumination grenade launcher"
+	interface_name = "illumination grenade launcher"
+	desc = "A shoulder-mounted micro-explosive dispenser designed only to accept standard illumination grenades."
+
+	charges = list(
+		list("illumination grenade",   "illumination grenade",   /obj/item/weapon/grenade/light,  6),
+		)
+
 /obj/item/rig_module/grenade_launcher/flash
 	name = "mounted flashbang launcher"
 	desc = "A shoulder-mounted flashbang dispenser."
