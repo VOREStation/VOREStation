@@ -366,4 +366,24 @@
 
 /datum/gear/head/jingasa
 	display_name = "jingasa"
+<<<<<<< HEAD
 	path = /obj/item/clothing/head/jingasa
+=======
+	path = /obj/item/clothing/head/jingasa
+
+/datum/gear/head/sunflower_crown
+	display_name = "sunflower crown"
+	path = /obj/item/clothing/head/sunflower_crown
+
+/datum/gear/head/lavender_crown
+	display_name = "lavender crown"
+	path = /obj/item/clothing/head/lavender_crown
+
+/datum/gear/head/poppy_crown
+	display_name = "poppy crown"
+	path = /obj/item/clothing/head/poppy_crown
+
+/datum/gear/head/rose_crown
+	display_name = "rose crown"
+	path = /obj/item/clothing/head/rose_crown
+>>>>>>> 7a84236... Adds 2 uniforms, 1 accessory, and flower crowns to loadout (#7385)

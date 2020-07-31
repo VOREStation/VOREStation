@@ -804,6 +804,18 @@ Uniforms and such
 	icon_state = "rippedpunk"
 	index = 1
 
+/obj/item/clothing/under/greenasym
+	name = "green asymmetrical jumpsuit"
+	desc = "A green futuristic uniform with asymmetrical pants. Trendy!"
+	icon_state = "greenasym"
+	index = 1
+
+/obj/item/clothing/under/cyberpunkharness
+	name = "cyberpunk strapped harness"
+	desc = "A cyberpunk styled harness and pants. Perfect for your dystopian future."
+	icon_state = "cyberhell"
+	index = 1
+
 /*
  * swimsuit
  */
