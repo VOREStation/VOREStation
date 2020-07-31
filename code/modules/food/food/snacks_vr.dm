@@ -42,20 +42,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/slice/sushi/filled/filled
 	filled = TRUE
 
-
-/obj/item/weapon/reagent_containers/food/snacks/lasagna
-	name = "lasagna"
-	desc = "Meaty, tomato-y, and ready to eat-y. Favorite of cats."
-	icon = 'icons/obj/food_vr.dmi'
-	icon_state = "lasagna"
-	nutriment_amt = 5
-	nutriment_desc = list("tomato" = 4, "meat" = 2)
-
-/obj/item/weapon/reagent_containers/food/snacks/lasagna/Initialize()
-	..()
-	reagents.add_reagent("protein", 2) //For meaty things.
-
-
 /obj/item/weapon/reagent_containers/food/snacks/goulash
 	name = "goulash"
 	desc = "Paprika put to good use, finally, in a soup of meat and vegetables."

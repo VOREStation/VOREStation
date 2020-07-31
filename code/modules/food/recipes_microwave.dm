@@ -208,18 +208,11 @@ I said no!
 /datum/recipe/amanitajelly
 	reagents = list("water" = 5, "vodka" = 5, "amatoxin" = 5)
 	result = /obj/item/weapon/reagent_containers/food/snacks/amanitajelly
-<<<<<<< HEAD
-	make_food(var/obj/container as obj)
-		. = ..(container)
-		for(var/obj/item/weapon/reagent_containers/food/snacks/amanitajelly/being_cooked in .)
-			being_cooked.reagents.del_reagent("amatoxin")
-=======
 	
 /datum/recipe/amanitajelly/make_food(var/obj/container as obj)
 	. = ..(container)
 	for(var/obj/item/weapon/reagent_containers/food/snacks/amanitajelly/being_cooked in .)
 		being_cooked.reagents.del_reagent("amatoxin")
->>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking
 
 /datum/recipe/meatballsoup
 	fruit = list("carrot" = 1, "potato" = 1)
@@ -539,21 +532,12 @@ I said no!
 	fruit = list("potato" = 1, "ambrosia" = 3)
 	items = list(/obj/item/weapon/reagent_containers/food/snacks/meatball)
 	result = /obj/item/weapon/reagent_containers/food/snacks/validsalad
-<<<<<<< HEAD
-	make_food(var/obj/container as obj)
-
-		. = ..(container)
-		for (var/obj/item/weapon/reagent_containers/food/snacks/validsalad/being_cooked in .)
-			being_cooked.reagents.del_reagent("toxin")
-
-=======
 	
 /datum/recipe/validsalad/make_food(var/obj/container as obj)
 	. = ..(container)
 	for (var/obj/item/weapon/reagent_containers/food/snacks/validsalad/being_cooked in .)
 		being_cooked.reagents.del_reagent("toxin")
 
->>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking
 /datum/recipe/stuffing
 	reagents = list("water" = 5, "sodiumchloride" = 1, "blackpepper" = 1)
 	items = list(
@@ -1027,7 +1011,6 @@ I said no!
 	reagent_mix = RECIPE_REAGENT_REPLACE //Simplify end product
 	result = /obj/item/weapon/reagent_containers/food/snacks/honeytoast
 
-<<<<<<< HEAD
 
 /datum/recipe/donerkebab
 	fruit = list("tomato" = 1, "cabbage" = 1)
@@ -1039,8 +1022,6 @@ I said no!
 	result = /obj/item/weapon/reagent_containers/food/snacks/donerkebab
 
 
-=======
->>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking
 /datum/recipe/sashimi
 	reagents = list("soysauce" = 5)
 	items = list(
@@ -1048,10 +1029,6 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sashimi
 
-<<<<<<< HEAD
-
-=======
->>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking
 /datum/recipe/nugget
 	reagents = list("flour" = 5)
 	items = list(
@@ -1335,7 +1312,6 @@ I said no!
 		/obj/item/weapon/reagent_containers/food/snacks/bacon
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/porkbowl
-<<<<<<< HEAD
 
 /datum/recipe/sushi
 	fruit = list("cabbage" = 1)
@@ -1416,5 +1392,3 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/makaroni
 
-=======
->>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking

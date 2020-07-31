@@ -268,11 +268,7 @@
 		return
 	start()
 	if(reagents.total_volume==0 && !(locate(/obj) in ((contents - component_parts) - circuit))) //dry run
-<<<<<<< HEAD
 		if(!wzhzhzh(16)) //VOREStation Edit - Quicker Microwaves (Undone during Auroraport, left note in case of reversion, was 5)
-=======
-		if(!wzhzhzh(16))
->>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking
 			abort()
 			return
 		abort()
@@ -283,39 +279,23 @@
 	if(!recipe)
 		dirty += 1
 		if(prob(max(10,dirty*5)))
-<<<<<<< HEAD
 			if(!wzhzhzh(16)) //VOREStation Edit - Quicker Microwaves (Undone during Auroraport, left note in case of reversion, was 2)
 				abort()
 				return
 			muck_start()
 			wzhzhzh(2) //VOREStation Edit - Quicker Microwaves (Undone during Auroraport, left note in case of reversion, was 2)
-=======
-			if(!wzhzhzh(16))
-				abort()
-				return
-			muck_start()
-			wzhzhzh(2)
->>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking
 			muck_finish()
 			cooked = fail()
 			cooked.forceMove(src.loc)
 		else if(has_extra_item())
-<<<<<<< HEAD
 			if(!wzhzhzh(16)) //VOREStation Edit - Quicker Microwaves (Undone during Auroraport, left note in case of reversion, was 2)
-=======
-			if(!wzhzhzh(16))
->>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking
 				abort()
 				return
 			broke()
 			cooked = fail()
 			cooked.forceMove(src.loc)
 		else
-<<<<<<< HEAD
 			if(!wzhzhzh(40)) //VOREStation Edit - Quicker Microwaves (Undone during Auroraport, left note in case of reversion, was 5)
-=======
-			if(!wzhzhzh(40))
->>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking
 				abort()
 				return
 			stop()
@@ -324,11 +304,7 @@
 		return
 		
 	//Making multiple copies of a recipe
-<<<<<<< HEAD
 	var/halftime = round(recipe.time*4/10/2) // VOREStation Edit - Quicker Microwaves (Undone during Auroraport, left note in case of reversion, was round(recipe.time/20/2))
-=======
-	var/halftime = round(recipe.time*4/10/2)
->>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking
 	if(!wzhzhzh(halftime))
 		abort()
 		return
@@ -383,11 +359,7 @@
 		if (stat & (NOPOWER|BROKEN))
 			return 0
 		use_power(active_power_usage)
-<<<<<<< HEAD
 		sleep(5) //VOREStation Edit - Quicker Microwaves
-=======
-		sleep(10)
->>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking
 	return 1
 
 /obj/machinery/microwave/proc/has_extra_item() //- coded to have different microwaves be able to handle different items
@@ -547,11 +519,7 @@
 	..()
 	reagents.maximum_volume = 1000
 
-<<<<<<< HEAD
 /datum/recipe/splat // We use this to handle cooking micros (or mice, etc) in a microwave. Janky but it works better than snowflake code to handle the same thing.
-=======
-/datum/recipe/splat // We use this to handle cooking mice or other smaller/similar-size mobs in a microwave. Janky but it works better than snowflake code to handle the same thing.
->>>>>>> d003767... Merge pull request #7344 from Rykka-Stormheart/shep-dev-aurora-cooking
 	items = list(
 		/obj/item/weapon/holder
 	)
