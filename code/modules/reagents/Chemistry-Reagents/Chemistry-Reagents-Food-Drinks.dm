@@ -69,14 +69,14 @@
 /datum/reagent/nutriment/coating/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 
 	//We'll assume that the batter isnt going to be regurgitated and eaten by someone else. Only show this once
-	if (data["cooked"] != 1)
+	if(data["cooked"] != 1)
 		if (!messaged)
-			to_chat(M, "Ugh, this raw [name] tastes disgusting.")
+			to_chat(M, "<span class='warning'>Ugh, this raw [name] tastes disgusting.</span>")
 			nutriment_factor *= 0.5
 			messaged = 1
 
-		//Raw coatings will sometimes cause vomiting
-		if (prob(1))
+		//Raw coatings will sometimes cause vomiting. 75% chance of this happening.
+		if(prob(75))
 			M.vomit()
 	..()
 

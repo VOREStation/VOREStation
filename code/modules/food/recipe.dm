@@ -71,31 +71,31 @@
 	// This is a bitfield, more than one type can be used
 	// Grill is presently unused and not listed
 
-/datum/recipe/proc/check_reagents(var/datum/reagents/avail_reagents)
+/datum/recipe/proc/check_reagents(var/datum/reagents/avail_reagents, var/exact = FALSE)
 	if(!reagents || !reagents.len)
-		return 1
+		return TRUE
 	
 	if(!avail_reagents)
-		return 0
+		return FALSE
 
-	. = 1
+	. = TRUE
 	for(var/r_r in reagents)
 		var/aval_r_amnt = avail_reagents.get_reagent_amount(r_r)
 		if(aval_r_amnt - reagents[r_r] >= 0)
-			if(aval_r_amnt>reagents[r_r])
-				. = 0
+			if(aval_r_amnt>(reagents[r_r] && exact))
+				. = FALSE
 		else
-			return -1
+			return FALSE
 	
 	if((reagents?(reagents.len):(0)) < avail_reagents.reagent_list.len)
-		return 0
+		return FALSE
 	return .
 
-/datum/recipe/proc/check_fruit(var/obj/container)
+/datum/recipe/proc/check_fruit(var/obj/container, var/exact = FALSE)
 	if (!fruit || !fruit.len)
-		return 1
+		return TRUE
 
-	. = 1
+	. = TRUE
 	if(fruit && fruit.len)
 		var/list/checklist = list()
 		 // You should trust Copy().
@@ -107,18 +107,18 @@
 				checklist[G.seed.kitchen_tag]--
 		for(var/ktag in checklist)
 			if(!isnull(checklist[ktag]))
-				if(checklist[ktag] < 0)
-					. = 0
+				if(checklist[ktag] < 0 && exact)
+					. = FALSE
 				else if(checklist[ktag] > 0)
-					. = -1
+					. = FALSE
 					break
 	return .
 
-/datum/recipe/proc/check_items(var/obj/container as obj)
+/datum/recipe/proc/check_items(var/obj/container as obj, var/exact = FALSE)
 	if(!items || !items.len)
-		return 1
+		return TRUE
 	
-	. = 1
+	. = TRUE
 	if(items && items.len)
 		var/list/checklist = list()
 		checklist = items.Copy() // You should really trust Copy
@@ -127,50 +127,50 @@
 			for(var/obj/O in ((machine.contents - machine.component_parts) - machine.circuit))
 				if(istype(O,/obj/item/weapon/reagent_containers/food/snacks/grown))
 					continue // Fruit is handled in check_fruit().
-				var/found = 0
+				var/found = FALSE
 				for(var/i = 1; i < checklist.len+1; i++)
 					var/item_type = checklist[i]
 					if (istype(O,item_type))
 						checklist.Cut(i, i+1)
-						found = 1
+						found = TRUE
 						break
-				if(!found)
-					. = 0
+				if(!found && exact)
+					return FALSE
 		else
 			for(var/obj/O in container.contents)
 				if(istype(O,/obj/item/weapon/reagent_containers/food/snacks/grown))
 					continue // Fruit is handled in check_fruit().
-				var/found = 0
+				var/found = FALSE
 				for(var/i = 1; i < checklist.len+1; i++)
 					var/item_type = checklist[i]
 					if (istype(O,item_type))
 						if(check_coating(O))
 							checklist.Cut(i, i+1)
-							found = 1
+							found = TRUE
 							break
-				if (!found)
-					. = 0
+				if (!found && exact)
+					return FALSE
 		if(checklist.len)
-			. = -1
+			return FALSE
 	return .
 
 //This is called on individual items within the container.
-/datum/recipe/proc/check_coating(var/obj/O)
+/datum/recipe/proc/check_coating(var/obj/O, var/exact = FALSE)
 	if(!istype(O,/obj/item/weapon/reagent_containers/food/snacks))
-		return 1//Only snacks can be battered
+		return TRUE //Only snacks can be battered
 
 	if (coating == -1)
-		return 1 //-1 value doesnt care
+		return TRUE //-1 value doesnt care
 
 	var/obj/item/weapon/reagent_containers/food/snacks/S = O
 	if (!S.coating)
 		if (!coating)
-			return 1
-		return 0
+			return TRUE
+		return FALSE
 	else if (S.coating.type == coating)
-		return 1
+		return TRUE
 
-	return 0
+	return FALSE
 
 //general version
 /datum/recipe/proc/make(var/obj/container as obj)
@@ -308,7 +308,7 @@
 /proc/select_recipe(var/list/datum/recipe/available_recipes, var/obj/obj as obj, var/exact)
 	var/list/datum/recipe/possible_recipes = list()
 	for (var/datum/recipe/recipe in available_recipes)
-		if((recipe.check_reagents(obj.reagents) < exact) || (recipe.check_items(obj) < exact) || (recipe.check_fruit(obj) < exact))
+		if(!recipe.check_reagents(obj.reagents, exact) || !recipe.check_items(obj, exact)  || !recipe.check_fruit(obj, exact))
 			continue
 		possible_recipes |= recipe
 	if (!possible_recipes.len)

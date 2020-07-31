@@ -208,10 +208,11 @@ I said no!
 /datum/recipe/amanitajelly
 	reagents = list("water" = 5, "vodka" = 5, "amatoxin" = 5)
 	result = /obj/item/weapon/reagent_containers/food/snacks/amanitajelly
-	make_food(var/obj/container as obj)
-		. = ..(container)
-		for(var/obj/item/weapon/reagent_containers/food/snacks/amanitajelly/being_cooked in .)
-			being_cooked.reagents.del_reagent("amatoxin")
+	
+/datum/recipe/amanitajelly/make_food(var/obj/container as obj)
+	. = ..(container)
+	for(var/obj/item/weapon/reagent_containers/food/snacks/amanitajelly/being_cooked in .)
+		being_cooked.reagents.del_reagent("amatoxin")
 
 /datum/recipe/meatballsoup
 	fruit = list("carrot" = 1, "potato" = 1)
@@ -531,11 +532,11 @@ I said no!
 	fruit = list("potato" = 1, "ambrosia" = 3)
 	items = list(/obj/item/weapon/reagent_containers/food/snacks/meatball)
 	result = /obj/item/weapon/reagent_containers/food/snacks/validsalad
-	make_food(var/obj/container as obj)
-
-		. = ..(container)
-		for (var/obj/item/weapon/reagent_containers/food/snacks/validsalad/being_cooked in .)
-			being_cooked.reagents.del_reagent("toxin")
+	
+/datum/recipe/validsalad/make_food(var/obj/container as obj)
+	. = ..(container)
+	for (var/obj/item/weapon/reagent_containers/food/snacks/validsalad/being_cooked in .)
+		being_cooked.reagents.del_reagent("toxin")
 
 /datum/recipe/stuffing
 	reagents = list("water" = 5, "sodiumchloride" = 1, "blackpepper" = 1)
@@ -1027,7 +1028,6 @@ I said no!
 		/obj/item/weapon/reagent_containers/food/snacks/carpmeat
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sashimi
-
 
 /datum/recipe/nugget
 	reagents = list("flour" = 5)

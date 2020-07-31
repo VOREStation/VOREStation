@@ -127,7 +127,6 @@
 #include "code\_helpers\time.dm"
 #include "code\_helpers\turfs.dm"
 #include "code\_helpers\type2type.dm"
-#include "code\_helpers\type2type_vr.dm"
 #include "code\_helpers\unsorted.dm"
 #include "code\_helpers\unsorted_vr.dm"
 #include "code\_helpers\view.dm"
