@@ -1676,8 +1676,8 @@
 		if(species?.flags & NO_BLOOD)
 			bloodtrail = 0
 		else
-			var/blood_volume = round((vessel.get_reagent_amount("blood")/species.blood_volume)*100)
-			if(blood_volume < BLOOD_VOLUME_SURVIVE)
+			var/blood_volume = vessel.get_reagent_amount("blood")
+			if(blood_volume < species?.blood_volume*species?.blood_level_fatal)
 				bloodtrail = 0	//Most of it's gone already, just leave it be
 			else
 				vessel.remove_reagent("blood", 1)
