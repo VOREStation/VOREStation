@@ -53,12 +53,19 @@
 	if (!available_recipes)
 		available_recipes = new
 
+<<<<<<< HEAD
 	for (var/type in subtypesof(/datum/recipe))
 		var/datum/recipe/test = new type
 		if ((appliancetype & test.appliance))
 			available_recipes += test
 		else
 			qdel(test)
+=======
+	for(var/type in subtypesof(/datum/recipe))
+		var/datum/recipe/test = type
+		if((appliancetype & initial(test.appliance)))
+			available_recipes += new test
+>>>>>>> 5ecd6d9... Critical Priority Fix for Cooking! (#7399)
 
 /obj/machinery/appliance/Destroy()
 	for (var/a in cooking_objs)
