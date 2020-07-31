@@ -581,3 +581,11 @@
 /datum/gear/uniform/yellowswoop
 	display_name = "yellow swooped dress"
 	path = /obj/item/clothing/under/dress/yellowswoop
+
+/datum/gear/uniform/greenasym
+	display_name = "green asymmetrical jumpsuit"
+	path = /obj/item/clothing/under/greenasym
+
+/datum/gear/uniform/cyberpunkharness
+	display_name = "cyberpunk strapped harness"
+	path = /obj/item/clothing/under/cyberpunkharness
