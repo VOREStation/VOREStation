@@ -14,6 +14,8 @@
 	active_power_usage = 12 KILOWATTS
 	heating_power = 12000
 	
+	light_y = 15
+	
 	min_temp = 140 + T0C	// Same as above, increasing this to just under 2x to make the % increase on efficiency not quite so painful as it would be at 80.
 	optimal_temp = 400 + T0C // Increasing this to be 2x Oven to allow for a much higher/realistic frying temperatures. Doesn't really do anything but make heating the fryer take a bit longer.
 	optimal_power = 0.95 // .35 higher than the default to give fryers faster cooking speed.
@@ -54,6 +56,19 @@
 	. = ..()
 	if(Adjacent(user))
 		to_chat(user, "Oil Level: [oil.total_volume]/[optimal_oil]")
+		
+/obj/machinery/appliance/cooker/fryer/update_icon() // We add our own version of the proc to use the special fryer double-lights.
+	cut_overlays()
+	var/image/light
+	if(use_power == 1 && !stat)
+		light = image(icon, "fryer_light_idle")
+	else if(use_power == 2 && !stat)
+		light = image(icon, "fryer_light_preheating")
+	else
+		light = image(icon, "fryer_light_off")
+	light.pixel_x = light_x
+	light.pixel_y = light_y
+	add_overlay(light)
 		
 /obj/machinery/appliance/cooker/fryer/heat_up()
 	if (..())
