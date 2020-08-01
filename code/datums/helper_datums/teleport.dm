@@ -204,7 +204,7 @@
 		if(istype(telenommer))
 			if(istype(teleatom, /obj/machinery) || istype(teleatom, /obj/structure))
 				return 0
-			elseif(!isliving(teleatom))
+			else if(!isliving(teleatom))
 				return 1
 			else
 				var/mob/living/telemob = teleatom
