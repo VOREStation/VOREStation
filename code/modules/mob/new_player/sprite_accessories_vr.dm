@@ -647,18 +647,6 @@
 		color_blend_mode = ICON_MULTIPLY
 		body_parts = list(BP_HEAD)
 
-	vulp_earsface
-		name = "ears and face (Vulp)"
-		icon_state = "vulp_earsface"
-		color_blend_mode = ICON_MULTIPLY
-		body_parts = list(BP_HEAD)
-
-	vulp_all
-		name = "all head highlights (Vulp)"
-		icon_state = "vulp_all"
-		color_blend_mode = ICON_MULTIPLY
-		body_parts = list(BP_HEAD)
-
 	sergal_full
 		name = "Sergal Markings"
 		icon_state = "sergal_full"
