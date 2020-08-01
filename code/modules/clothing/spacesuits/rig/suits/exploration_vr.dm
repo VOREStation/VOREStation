@@ -2,7 +2,7 @@
 	name = "heavy exploration HCM"
 	suit_type = "heavy exploration hardsuit"
 	desc = "Exoplanet Exploration Armored Unit, A-Unit for short. This advanced, heavy-duty hardsuit is built for more hostile (and hungry) environments. It features additional armor and a powered exoskeleton for easier movement than other hardsuits." //VOREStation Edit
-	icon_state = "exploration_rig" //VOREStation Edit
+	icon_state = "exploration_rig"
 	armor = list(
 		melee = 50, 
 		bullet = 25, 
@@ -28,9 +28,9 @@
 	offline_vision_restriction = TINT_BLIND
 
 /obj/item/clothing/head/helmet/space/rig/exploration
-	light_overlay = "hardhat_light_dual" //VOREStation Edit
-	camera_networks = list(NETWORK_EXPLORATION) //VOREStation Edit
-	icon_state = "exploration_rig" //VOREStation Edit
+	light_overlay = "hardhat_light_dual"
+	camera_networks = list(NETWORK_EXPLORATION)
+	icon_state = "exploration_rig"
 	brightness_on = 5
 
 /obj/item/weapon/rig/exploration/equipped
