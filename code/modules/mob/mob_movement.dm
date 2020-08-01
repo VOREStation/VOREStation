@@ -197,7 +197,7 @@
 			return result
 
 	// Can't control ourselves when drifting
-	if(isspace(loc) || my_mob.lastarea?.has_gravity == 0)
+	if((isspace(loc) || my_mob.lastarea?.has_gravity == 0) && !my_mob.in_enclosed_vehicle)	//If(In space or last area had no gravity) or(you in vehicle)
 		if(!my_mob.Process_Spacemove(0))
 			return 0
 
