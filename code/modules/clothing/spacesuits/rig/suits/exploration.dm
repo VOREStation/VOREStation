@@ -29,7 +29,6 @@
 
 /obj/item/clothing/head/helmet/space/rig/exploration
 	light_overlay = "hardhat_light_dual" //VOREStation Edit
-	camera = /obj/machinery/camera/network/exploration
 	camera_networks = list(NETWORK_EXPLORATION) //VOREStation Edit
 	icon_state = "exploration_rig" //VOREStation Edit
 	brightness_on = 5
