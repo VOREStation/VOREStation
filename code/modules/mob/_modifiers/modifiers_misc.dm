@@ -388,3 +388,13 @@ the artifact triggers the rage.
 	if(holder.stat != DEAD)
 		holder.visible_message("<span class='alien'>\The [holder] collapses, the life draining from their body.</span>")
 		holder.death()
+
+/datum/modifier/outline_test
+	name = "Outline Test"
+	desc = "This only exists to prove filter effects work and gives an example of how to animate() the resulting filter object."
+
+	filter_parameters = list(type = "outline", size = 1, color = "#FFFFFF", flags = OUTLINE_SHARP)
+
+/datum/modifier/outline_test/tick()
+	animate(filter_instance, size = 3, time = 0.25 SECONDS)
+	animate(size = 1, 0.25 SECONDS)

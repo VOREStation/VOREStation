@@ -8,6 +8,17 @@
 "ac" = (
 /turf/simulated/wall,
 /area/talon/decktwo/bridge_upper)
+"ad" = (
+/obj/effect/landmark/start{
+	name = "Talon Engineer"
+	},
+/obj/machinery/alarm/talon{
+	dir = 8;
+	pixel_x = 22;
+	pixel_y = 0
+	},
+/turf/simulated/floor/carpet,
+/area/talon/decktwo/eng_room)
 "ae" = (
 /turf/simulated/open,
 /area/talon/decktwo/bridge_upper)
@@ -22,6 +33,17 @@
 /obj/structure/railing,
 /turf/simulated/open,
 /area/talon/decktwo/bridge_upper)
+"ah" = (
+/obj/effect/landmark/start{
+	name = "Talon Doctor"
+	},
+/obj/machinery/alarm/talon{
+	dir = 8;
+	pixel_x = 22;
+	pixel_y = 0
+	},
+/turf/simulated/floor/carpet,
+/area/talon/decktwo/med_room)
 "ai" = (
 /obj/structure/railing{
 	dir = 8
@@ -45,6 +67,31 @@
 	},
 /turf/simulated/open,
 /area/talon/decktwo/bridge_upper)
+"al" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/obj/machinery/portable_atmospherics/powered/scrubber,
+/obj/machinery/alarm/talon{
+	dir = 8;
+	pixel_x = 22;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/talon/decktwo/lifeboat)
+"am" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/alarm/talon{
+	dir = 8;
+	pixel_x = 22;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/eris/steel,
+/area/talon/decktwo/central_hallway)
 "an" = (
 /obj/machinery/light{
 	dir = 4
@@ -756,17 +803,6 @@
 "dM" = (
 /turf/simulated/floor/carpet,
 /area/talon/decktwo/eng_room)
-"dN" = (
-/obj/machinery/alarm/talon{
-	dir = 8;
-	pixel_x = 22;
-	pixel_y = 0
-	},
-/obj/effect/landmark/start{
-	name = "Talon Engineer"
-	},
-/turf/simulated/floor/carpet,
-/area/talon/decktwo/eng_room)
 "dQ" = (
 /obj/structure/table/steel,
 /obj/machinery/button/remote/blast_door{
@@ -1093,17 +1129,6 @@
 /turf/simulated/floor/carpet,
 /area/talon/decktwo/med_room)
 "fm" = (
-/turf/simulated/floor/carpet,
-/area/talon/decktwo/med_room)
-"fn" = (
-/obj/machinery/alarm/talon{
-	dir = 8;
-	pixel_x = 22;
-	pixel_y = 0
-	},
-/obj/effect/landmark/start{
-	name = "Talon Doctor"
-	},
 /turf/simulated/floor/carpet,
 /area/talon/decktwo/med_room)
 "fp" = (
@@ -1934,23 +1959,6 @@
 /obj/structure/window/reinforced,
 /turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/decktwo_aft)
-"mN" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/alarm/talon{
-	alarm_id = "anomaly_testing";
-	breach_detection = 0;
-	dir = 8;
-	frequency = 1439;
-	pixel_x = 22;
-	pixel_y = 0;
-	report_danger_level = 0
-	},
-/turf/simulated/floor/tiled/eris/steel,
-/area/talon/decktwo/central_hallway)
 "mR" = (
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
 	dir = 4;
@@ -4018,22 +4026,6 @@
 	},
 /turf/simulated/floor/plating/eris/under/airless,
 /area/talon/maintenance/decktwo_solars)
-"QM" = (
-/obj/machinery/alarm/talon{
-	alarm_id = "anomaly_testing";
-	breach_detection = 0;
-	dir = 8;
-	frequency = 1439;
-	pixel_x = 22;
-	pixel_y = 0;
-	report_danger_level = 0
-	},
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
-	},
-/obj/machinery/portable_atmospherics/powered/scrubber,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/talon/decktwo/lifeboat)
 "Rm" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -13974,13 +13966,13 @@ NT
 qi
 dr
 dA
-dN
+ad
 ea
 ep
 eF
 dr
 eW
-fn
+ah
 fB
 fO
 gb
@@ -14690,7 +14682,7 @@ lI
 ds
 eN
 Lh
-QM
+al
 Np
 CN
 eN
@@ -15832,7 +15824,7 @@ AB
 Nb
 Vg
 Tg
-mN
+am
 PS
 Zm
 cF

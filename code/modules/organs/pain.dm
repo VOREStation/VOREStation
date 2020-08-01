@@ -42,7 +42,7 @@ mob/living/carbon/human/proc/handle_pain()
 			maxdam = dam
 	if(damaged_organ && chem_effects[CE_PAINKILLER] < maxdam)
 		if(maxdam > 10 && paralysis)
-			paralysis = max(0, paralysis - round(maxdam/10))
+			AdjustParalysis(-round(maxdam/10))
 		if(maxdam > 50 && prob(maxdam / 5))
 			drop_item()
 		var/burning = damaged_organ.burn_dam > damaged_organ.brute_dam

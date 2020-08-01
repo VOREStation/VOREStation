@@ -44,7 +44,7 @@
 									)
 
 	var/damage_minimum = 10				//Incoming damage lower than this won't actually deal damage. Scrapes shouldn't be a real thing.
-	var/minimum_penetration = 20		//Incoming damage won't be fully applied if you don't have at least 20. Almost all AP clears this.
+	var/minimum_penetration = 15		//Incoming damage won't be fully applied if you don't have at least 20. Almost all AP clears this.
 	var/fail_penetration_value = 0.66	//By how much failing to penetrate reduces your shit. 66% by default.
 
 	var/obj/item/weapon/cell/cell
@@ -75,8 +75,9 @@
 
 	var/obj/item/device/radio/radio = null
 
-	var/max_temperature = 25000
-	var/internal_damage_threshold = 50	//health percentage below which internal damage is possible
+	var/max_temperature = 25000			//Kelvin values.
+	var/internal_damage_threshold = 33	//health percentage below which internal damage is possible
+	var/internal_damage_minimum = 15	//At least this much damage to trigger some real bad hurt.
 	var/internal_damage = 0 			//contains bitflags
 
 	var/list/operation_req_access = list()//required access level for mecha operation
@@ -721,18 +722,21 @@
 ////////  Internal damage  ////////
 ///////////////////////////////////
 
+//ATM, the ignore_threshold is literally only used for the pulse rifles beams used mostly by deathsquads.
 /obj/mecha/proc/check_for_internal_damage(var/list/possible_int_damage,var/ignore_threshold=null)
 	if(!islist(possible_int_damage) || isemptylist(possible_int_damage)) return
-	if(prob(20))
-		if(ignore_threshold || src.health*100/initial(src.health)<src.internal_damage_threshold)
+	if(prob(30))
+		if(ignore_threshold || src.health*100/initial(src.health) < src.internal_damage_threshold)
 			for(var/T in possible_int_damage)
 				if(internal_damage & T)
 					possible_int_damage -= T
 			var/int_dam_flag = safepick(possible_int_damage)
 			if(int_dam_flag)
 				setInternalDamage(int_dam_flag)
-	if(prob(5))
-		if(ignore_threshold || src.health*100/initial(src.health)<src.internal_damage_threshold)
+			return	//It already hurts to get some, lets not get both.
+
+	if(prob(10))
+		if(ignore_threshold || src.health*100/initial(src.health) < src.internal_damage_threshold)
 			var/obj/item/mecha_parts/mecha_equipment/destr = safepick(equipment)
 			if(destr)
 				destr.destroy()
@@ -786,7 +790,8 @@
 /obj/mecha/airlock_crush(var/crush_damage)
 	..()
 	take_damage(crush_damage)
-	check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
+	if(prob(50))	//Try to avoid that.
+		check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
 	return 1
 
 /obj/mecha/proc/update_health()
@@ -808,8 +813,9 @@
 		var/mob/living/carbon/human/H = user
 		if(H.species.can_shred(user))
 			if(!prob(src.deflect_chance))
-				src.take_damage(15)
-				src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
+				src.take_damage(15)	//The take_damage() proc handles armor values
+				if(prob(25))	//Why would they get free internal damage. At least make it a bit RNG.
+					src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
 				playsound(src, 'sound/weapons/slash.ogg', 50, 1, -1)
 				to_chat(user, "<span class='danger'>You slash at the armored suit!</span>")
 				visible_message("<span class='danger'>\The [user] slashes at [src.name]'s armor!</span>")
@@ -824,8 +830,9 @@
 			src.log_append_to_last("Armor saved.")
 		return
 	else if ((HULK in user.mutations) && !prob(src.deflect_chance))
-		src.take_damage(15)
-		src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
+		src.take_damage(15)	//The take_damage() proc handles armor values
+		if(prob(25))	//Hulks punch hard but lets not give them consistent internal damage.
+			src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
 		user.visible_message("<font color='red'><b>[user] hits [src.name], doing some damage.</b></font>", "<font color='red'><b>You hit [src.name] with all your might. The metal creaks and bends.</b></font>")
 	else
 		user.visible_message("<font color='red'><b>[user] hits [src.name]. Nothing happens.</b></font>","<font color='red'><b>You hit [src.name] with no visible effect.</b></font>")
@@ -877,8 +884,9 @@
 				pass_damage = ME.handle_ranged_contact(A, pass_damage)
 
 			pass_damage = (pass_damage*pass_damage_reduc_mod)//Applying damage reduction
-			src.take_damage(pass_damage)
-			src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
+			src.take_damage(pass_damage)	//The take_damage() proc handles armor values
+			if(pass_damage > internal_damage_minimum)	//Only decently painful attacks trigger a chance of mech damage.
+				src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
 	return
 
 
@@ -905,7 +913,7 @@
 
 	if(!(Proj.nodamage))
 		var/ignore_threshold
-		if(istype(Proj, /obj/item/projectile/beam/pulse))
+		if(istype(Proj, /obj/item/projectile/beam/pulse))	//ATM, this is literally only for the pulse rifles used mostly by deathsquads.
 			ignore_threshold = 1
 
 		var/pass_damage = Proj.damage
@@ -922,15 +930,18 @@
 			src.occupant_message("<span class='notice'>\The [Proj] struggles to pierce \the [src] armor.</span>")
 			src.visible_message("\The [Proj] struggles to pierce \the [src] armor")
 			pass_damage_reduc_mod = fail_penetration_value	//This will apply to reduce damage to 2/3 or 66% by default
-		else
+
+		else	//You go through completely because you use AP. Nice.
 			src.occupant_message("<span class='notice'>\The [Proj] manages to pierce \the [src] armor.</span>")
 			src.visible_message("\The [Proj] manages to pierce \the [src] armor")
 			pass_damage_reduc_mod = 1
 
 		pass_damage = (pass_damage_reduc_mod*pass_damage)//Apply damage reduction before usage.
-		src.take_damage(pass_damage, Proj.check_armour)
-		if(prob(25)) spark_system.start()
-		src.check_for_internal_damage(list(MECHA_INT_FIRE,MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST,MECHA_INT_SHORT_CIRCUIT),ignore_threshold)
+		src.take_damage(pass_damage, Proj.check_armour)	//The take_damage() proc handles armor values
+		if(prob(25))
+			spark_system.start()
+		if(pass_damage > internal_damage_minimum)	//Only decently painful attacks trigger a chance of mech damage.
+			src.check_for_internal_damage(list(MECHA_INT_FIRE,MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST,MECHA_INT_SHORT_CIRCUIT),ignore_threshold)
 
 		//AP projectiles have a chance to cause additional damage
 		if(Proj.penetrating)
@@ -941,7 +952,8 @@
 					Proj.attack_mob(src.occupant, distance)
 					hit_occupant = 0
 				else
-					src.check_for_internal_damage(list(MECHA_INT_FIRE,MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST,MECHA_INT_SHORT_CIRCUIT), 1)
+					if(pass_damage > internal_damage_minimum)	//Only decently painful attacks trigger a chance of mech damage.					
+						src.check_for_internal_damage(list(MECHA_INT_FIRE,MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST,MECHA_INT_SHORT_CIRCUIT), 1)
 
 				Proj.penetrating--
 
@@ -964,13 +976,13 @@
 			if (prob(30))
 				qdel(src)
 			else
-				src.take_damage(initial(src.health)/2)
+				src.take_damage(initial(src.health)/2)	//The take_damage() proc handles armor values
 				src.check_for_internal_damage(list(MECHA_INT_FIRE,MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST,MECHA_INT_SHORT_CIRCUIT),1)
 		if(3.0)
 			if (prob(5))
 				qdel(src)
 			else
-				src.take_damage(initial(src.health)/5)
+				src.take_damage(initial(src.health)/5)	//The take_damage() proc handles armor values
 				src.check_for_internal_damage(list(MECHA_INT_FIRE,MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST,MECHA_INT_SHORT_CIRCUIT),1)
 	return
 
@@ -1001,13 +1013,14 @@
 		use_power((cell.charge/2)/severity)
 		take_damage(50 / severity,"energy")
 	src.log_message("EMP detected",1)
-	check_for_internal_damage(list(MECHA_INT_FIRE,MECHA_INT_TEMP_CONTROL,MECHA_INT_CONTROL_LOST,MECHA_INT_SHORT_CIRCUIT),1)
+	if(prob(80))
+		check_for_internal_damage(list(MECHA_INT_FIRE,MECHA_INT_TEMP_CONTROL,MECHA_INT_CONTROL_LOST,MECHA_INT_SHORT_CIRCUIT),1)
 	return
 
 /obj/mecha/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(exposed_temperature>src.max_temperature)
 		src.log_message("Exposed to dangerous temperature.",1)
-		src.take_damage(5,"fire")
+		src.take_damage(5,"fire")	//The take_damage() proc handles armor values
 		src.check_for_internal_damage(list(MECHA_INT_FIRE, MECHA_INT_TEMP_CONTROL))
 	return
 
@@ -1037,11 +1050,12 @@
 		user.visible_message("<font color='red'><b>[user] hits [src] with [W].</b></font>", "<font color='red'><b>You hit [src] with [W].</b></font>")
 
 		var/pass_damage = W.force
-		pass_damage = (pass_damage*pass_damage_reduc_mod)	//Apply the reduction of damage from not having enough armor penetration.
+		pass_damage = (pass_damage*pass_damage_reduc_mod)	//Apply the reduction of damage from not having enough armor penetration. This is not regular armor values at play.
 		for(var/obj/item/mecha_parts/mecha_equipment/ME in equipment)
-			pass_damage = ME.handle_projectile_contact(W, pass_damage)
-		src.take_damage(pass_damage,W.damtype)
-		src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
+			pass_damage = ME.handle_projectile_contact(W, user, pass_damage)
+		src.take_damage(pass_damage,W.damtype)	//The take_damage() proc handles armor values
+		if(pass_damage > internal_damage_minimum)	//Only decently painful attacks trigger a chance of mech damage.
+			src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
 	return
 
 //////////////////////
@@ -2290,8 +2304,6 @@
 	src.log_message("Attacked. Attacker - [user].",1)
 	user.do_attack_animation(src)
 
-	//var/pass_damage	//See the comment in the larger greyed out block below.
-	//var/pass_damage_reduc_mod
 	if(prob(src.deflect_chance))//Deflected
 		src.log_append_to_last("Armor saved.")
 		src.occupant_message("<span class='notice'>\The [user]'s attack is stopped by the armor.</span>")
@@ -2306,17 +2318,10 @@
 		playsound(src, 'sound/effects/Glasshit.ogg', 50, 1)
 		return
 
-/*//Commented out for not playing well with penetration questions.
-	else if(user.mob.attack_armor_pen < minimum_penetration)//Not enough armor penetration
-		src.occupant_message("<span class='notice'>\The [user] struggles to pierce \the [src] armor.</span>")
-		src.visible_message("\The [user] struggles to pierce \the [src] armor")
-		pass_damage_reduc_mod = fail_penetration_value	//This will apply to reduce damage to 2/3 or 66% by default.
-*/
-
 	else
-		//pass_damage = (pass_damage_reduc_mod*damage)
-		src.take_damage(damage)//apply damage
-		src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
+		src.take_damage(damage)	//Apply damage - The take_damage() proc handles armor values
+		if(damage > internal_damage_minimum)	//Only decently painful attacks trigger a chance of mech damage.
+			src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
 		visible_message("<span class='danger'>[user] [attack_message] [src]!</span>")
 		user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name]</font>")
 
@@ -2399,7 +2404,7 @@
 		if(mecha.cabin_air && mecha.cabin_air.volume>0)
 			mecha.cabin_air.temperature = min(6000+T0C, mecha.cabin_air.temperature+rand(10,15))
 			if(mecha.cabin_air.temperature>mecha.max_temperature/2)
-				mecha.take_damage(4/round(mecha.max_temperature/mecha.cabin_air.temperature,0.1),"fire")
+				mecha.take_damage(4/round(mecha.max_temperature/mecha.cabin_air.temperature,0.1),"fire")	//The take_damage() proc handles armor values
 	if(mecha.hasInternalDamage(MECHA_INT_TEMP_CONTROL)) //stop the mecha_preserve_temp loop datum
 		mecha.pr_int_temp_processor.stop()
 	if(mecha.hasInternalDamage(MECHA_INT_TANK_BREACH)) //remove some air from internal tank

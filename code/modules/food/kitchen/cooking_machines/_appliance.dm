@@ -53,12 +53,10 @@
 	if (!available_recipes)
 		available_recipes = new
 
-	for (var/type in subtypesof(/datum/recipe))
-		var/datum/recipe/test = new type
-		if ((appliancetype & test.appliance))
-			available_recipes += test
-		else
-			qdel(test)
+	for(var/type in subtypesof(/datum/recipe))
+		var/datum/recipe/test = type
+		if((appliancetype & initial(test.appliance)))
+			available_recipes += new test
 
 /obj/machinery/appliance/Destroy()
 	for (var/a in cooking_objs)
@@ -79,7 +77,7 @@
 		for (var/a in cooking_objs)
 			var/datum/cooking_item/CI = a
 			string += "-\a [CI.container.label(null, CI.combine_target)], [report_progress(CI)]</br>"
-		to_chat(user, string)
+		return string
 	else
 		to_chat(user, "<span class='notice>'It is empty.</span>")
 
@@ -125,14 +123,14 @@
 		return
 
 	if (!user.IsAdvancedToolUser())
-		to_chat(user, "You lack the dexterity to do that!")
+		to_chat(user, "<span class='warning'>You lack the dexterity to do that!</span>")
 		return
 
 	if (user.stat || user.restrained() || user.incapacitated())
 		return
 
 	if (!Adjacent(user) && !issilicon(user))
-		to_chat(user, "You can't reach [src] from here.")
+		to_chat(user, "<span class='warning'>You can't reach [src] from here!</span>")
 		return
 
 	if (stat & POWEROFF)//Its turned off
@@ -234,10 +232,10 @@
 
 //This function is overridden by cookers that do stuff with containers
 /obj/machinery/appliance/proc/has_space(var/obj/item/I)
-	if (cooking_objs.len >= max_contents)
+	if(cooking_objs.len >= max_contents)
 		return FALSE
 
-	else return TRUE
+	return TRUE
 
 /obj/machinery/appliance/attackby(var/obj/item/I, var/mob/user)
 	if(!cook_type || (stat & (BROKEN)))
@@ -246,12 +244,9 @@
 
 	var/result = can_insert(I, user)
 	if(!result)
-		if(default_deconstruction_screwdriver(user, I))
-			return
-		else if(default_part_replacement(user, I))
-			return
-		else
-			return
+		if(!(default_deconstruction_screwdriver(user, I)))
+			default_part_replacement(user, I)
+		return
 
 	if(result == 2)
 		var/obj/item/weapon/grab/G = I
@@ -572,17 +567,17 @@
 			var/datum/cooking_item/CI = menuoptions[selection]
 			eject(CI, user)
 			update_icon()
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/machinery/appliance/proc/can_remove_items(var/mob/user)
 	if (!Adjacent(user))
-		return 0
+		return FALSE
 
 	if (isanimal(user))
-		return 0
+		return FALSE
 
-	return 1
+	return TRUE
 
 /obj/machinery/appliance/proc/eject(var/datum/cooking_item/CI, var/mob/user = null)
 	var/obj/item/thing

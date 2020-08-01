@@ -216,7 +216,7 @@
 		occupant.set_stat(UNCONSCIOUS)
 		occupant.dir = SOUTH
 		if(occupant.bodytemperature < T0C)
-			occupant.sleeping = max(5, (1/occupant.bodytemperature)*2000)
+			occupant.Sleeping(max(5, (1/occupant.bodytemperature)*2000))
 			occupant.Paralyse(max(5, (1/occupant.bodytemperature)*3000))
 			if(air_contents.gas["oxygen"] > 2)
 				if(occupant.getOxyLoss()) occupant.adjustOxyLoss(-1)

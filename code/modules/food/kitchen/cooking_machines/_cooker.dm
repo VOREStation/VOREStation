@@ -19,12 +19,12 @@
 	if(.)	//no need to duplicate adjacency check
 		if(!stat)
 			if (temperature < min_temp)
-				to_chat(user, "<span class='warning'>\The [src] is still heating up and is too cold to cook anything yet.</span>")
+				. += "<span class='warning'>\The [src] is still heating up and is too cold to cook anything yet.</span>"
 			else
-				to_chat(user, "<span class='notice'>It is running at [round(get_efficiency(), 0.1)]% efficiency!</span>")
-			to_chat(user, "Temperature: [round(temperature - T0C, 0.1)]C / [round(optimal_temp - T0C, 0.1)]C")
+				. += "<span class='notice'>It is running at [round(get_efficiency(), 0.1)]% efficiency!</span>"
+			. += "Temperature: [round(temperature - T0C, 0.1)]C / [round(optimal_temp - T0C, 0.1)]C"
 		else
-			to_chat(user, "<span class='warning'>It is switched off.</span>")
+			. += "<span class='warning'>It is switched off.</span>"
 			
 /obj/machinery/appliance/cooker/list_contents(var/mob/user)
 	if (cooking_objs.len)

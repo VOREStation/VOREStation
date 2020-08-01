@@ -1305,6 +1305,18 @@
 /obj/machinery/light,
 /obj/structure/table/standard,
 /obj/item/weapon/soap,
+/obj/item/weapon/soap,
+/obj/item/weapon/soap,
+/obj/item/weapon/soap,
+/obj/item/weapon/towel{
+	color = "#0000FF"
+	},
+/obj/item/weapon/towel{
+	color = "#0000FF"
+	},
+/obj/item/weapon/towel{
+	color = "#0000FF"
+	},
 /obj/item/weapon/towel{
 	color = "#0000FF"
 	},
@@ -1315,16 +1327,22 @@
 	name = "custodial"
 	},
 /obj/item/weapon/reagent_containers/spray/cleaner,
+/obj/item/weapon/reagent_containers/spray/cleaner,
+/obj/item/weapon/reagent_containers/spray/cleaner,
+/obj/item/weapon/reagent_containers/spray/cleaner,
+/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/item/weapon/reagent_containers/glass/bucket,
 /obj/item/weapon/reagent_containers/glass/bucket,
 /obj/item/weapon/mop,
+/obj/item/weapon/mop,
+/obj/item/weapon/mop,
+/obj/item/weapon/mop,
 /obj/item/weapon/rig/ert/janitor,
-/turf/simulated/shuttle/floor/black,
-/area/shuttle/specops/centcom)
-"cG" = (
-/obj/machinery/door/airlock/multi_tile/glass{
-	dir = 2;
-	req_access = list(103)
-	},
+/obj/item/device/lightreplacer,
+/obj/item/device/lightreplacer,
+/obj/item/weapon/storage/box/lights/mixed,
+/obj/item/weapon/storage/box/lights/mixed,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
 "cH" = (
@@ -2114,6 +2132,12 @@
 /obj/item/device/suit_cooling_unit,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
+"zV" = (
+/obj/machinery/door/airlock/glass_command{
+	req_one_access = list(103)
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/specops/centcom)
 "HG" = (
 /obj/structure/closet/walllocker/emerglocker{
 	pixel_y = -32
@@ -2131,6 +2155,18 @@
 /obj/item/clothing/suit/space/void/responseteam/security,
 /obj/item/clothing/suit/space/void/responseteam/security,
 /obj/item/clothing/suit/space/void/responseteam/security,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/specops/centcom)
+"WJ" = (
+/obj/structure/table/rack/steel,
+/obj/item/clothing/suit/space/void/responseteam/janitor,
+/obj/item/clothing/suit/space/void/responseteam/janitor,
+/obj/item/clothing/suit/space/void/responseteam/janitor,
+/obj/item/clothing/suit/space/void/responseteam/janitor,
+/obj/item/weapon/storage/belt/janitor,
+/obj/item/weapon/storage/belt/janitor,
+/obj/item/weapon/storage/belt/janitor,
+/obj/item/weapon/storage/belt/janitor,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/specops/centcom)
 
@@ -2800,7 +2836,7 @@ ap
 am
 bZ
 aH
-aH
+WJ
 ap
 ap
 ap
@@ -2837,8 +2873,8 @@ ap
 ap
 ap
 ap
-aH
-cG
+zV
+ap
 am
 ap
 da
