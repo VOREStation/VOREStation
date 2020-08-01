@@ -85,9 +85,9 @@
 		)
 
 /obj/item/rig_module/grenade_launcher/light
-	name = "mounted illumination grenade launcher"
-	interface_name = "illumination grenade launcher"
-	desc = "A shoulder-mounted micro-explosive dispenser designed only to accept standard illumination grenades."
+	name = "mounted photon capsule launcher" //VOREStation Edit
+	interface_name = "photon capsule launcher" //VOREStation Edit
+	desc = "A shoulder-mounted micro-explosive dispenser designed only to accept photon capsules." //VOREStation Edit
 
 	charges = list(
 		list("illumination grenade",   "illumination grenade",   /obj/item/weapon/grenade/light,  6),

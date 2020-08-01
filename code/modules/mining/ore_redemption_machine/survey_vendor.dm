@@ -13,6 +13,8 @@
 		new /datum/data/mining_equipment("1 Marker Beacon",				/obj/item/stack/marker_beacon,										1),
 		new /datum/data/mining_equipment("10 Marker Beacons",			/obj/item/stack/marker_beacon/ten,									10),
 		new /datum/data/mining_equipment("30 Marker Beacons",			/obj/item/stack/marker_beacon/thirty,								30),
+		new /datum/data/mining_equipment("Exploration Armor - Heavy Exploration Hardsuit",/obj/item/weapon/rig/exploration/equipped,		400),
+		new /datum/data/mining_equipment("Box of 7 Photon Capsules",	/obj/item/weapon/storage/box/photon_grenades,						50),
 		new /datum/data/mining_equipment("GPS Device",					/obj/item/device/gps/explorer,										10),
 		new /datum/data/mining_equipment("Whiskey",						/obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey,		10),
 		new /datum/data/mining_equipment("Absinthe",					/obj/item/weapon/reagent_containers/food/drinks/bottle/absinthe,	10),
