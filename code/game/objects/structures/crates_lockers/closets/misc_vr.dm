@@ -178,6 +178,7 @@
 		/obj/item/weapon/gun/energy/locked/frontier/carbine,
 		/obj/item/clothing/accessory/holster/machete,
 		/obj/random/explorer_shield,
+		/obj/item/weapon/storage/box/photon_grenades,
 		/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
 		/obj/item/weapon/reagent_containers/food/snacks/liquidprotein,
 		/obj/item/device/cataloguer/compact/pathfinder)
