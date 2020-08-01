@@ -84,15 +84,6 @@
 		list("smoke bomb",  "smoke bomb",  /obj/item/weapon/grenade/smokebomb,  6)
 		)
 
-/obj/item/rig_module/grenade_launcher/light
-	name = "mounted photon capsule launcher" //VOREStation Edit
-	interface_name = "photon capsule launcher" //VOREStation Edit
-	desc = "A shoulder-mounted micro-explosive dispenser designed only to accept photon capsules." //VOREStation Edit
-
-	charges = list(
-		list("illumination grenade",   "illumination grenade",   /obj/item/weapon/grenade/light,  6),
-		)
-
 /obj/item/rig_module/grenade_launcher/flash
 	name = "mounted flashbang launcher"
 	desc = "A shoulder-mounted flashbang dispenser."
