@@ -22,6 +22,13 @@
 	containername = "EXTREMELY Dangerous Predator crate"
 	access = access_xenobiology
 	contraband = 1
+
+/datum/supply_pack/sci/illuminate
+	name = "Illumination grenades crate"
+	contains = list(/obj/item/weapon/grenade/light = 8)
+	cost = 20
+	containername = "illumination grenade crate"
+
 /*
 /datum/supply_pack/sci/otie
 	name = "VARMAcorp adoptable reject (Dangerous!)"

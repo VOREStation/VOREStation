@@ -215,12 +215,6 @@
 	icon_state = "flashbang"
 	starts_with = list(/obj/item/weapon/grenade/flashbang = 7)
 
-/obj/item/weapon/storage/box/photon_grenades
-	name = "box of photon capsules"
-	desc = "A box containing 7 photon capsules, for when you want somewhere <B>extremely</B> lit up."
-	icon_state = "photoncapsule"
-	starts_with = list(/obj/item/weapon/grenade/light = 7)
-
 /obj/item/weapon/storage/box/emps
 	name = "box of emp grenades"
 	desc = "A box containing 5 military grade EMP grenades.<br> WARNING: Do not use near unshielded electronics or biomechanical augmentations, death or permanent paralysis may occur."

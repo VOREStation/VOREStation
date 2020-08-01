@@ -79,9 +79,3 @@
 	containername = "Xenoarchaeology Tech crate"
 	access = access_research
 
-
-/datum/supply_pack/sci/illuminate
-	name = "Illumination grenades crate"
-	contains = list(/obj/item/weapon/grenade/light = 8)
-	cost = 20
-	containername = "illumination grenade crate"
