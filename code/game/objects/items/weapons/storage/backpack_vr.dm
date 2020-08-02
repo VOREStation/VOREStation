@@ -12,7 +12,7 @@
 
 	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
 		if(..())
-			if(istype(H) && istype(H.tail_style, taurtype))
+			if(istype(H) && H.is_taur())
 				if(H.size_multiplier >= RESIZE_BIG) //Are they a macro?
 					slowdown = 0
 				else

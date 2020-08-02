@@ -27,6 +27,8 @@
 	preserve_item = 1
 
 	var/suit_state //The string used for the suit's icon_state.
+	var/onmob_back_icon //VOREStation Edit: The mob icon used for the rig's back sprite, if the default onmob icon file isn't what will be used. see rig/update_icon().
+	var/taur_back_icon //VOREStation Edit: Same as above, but specifically for taur versions, if any.
 
 	var/interface_path = "hardsuit.tmpl"
 	var/ai_interface_path = "hardsuit.tmpl"
@@ -656,12 +658,20 @@
 	//TODO: Maybe consider a cache for this (use mob_icon as blank canvas, use suit icon overlay).
 	overlays.Cut()
 	if(!mob_icon || update_mob_icon)
-		var/species_icon = 'icons/mob/rig_back.dmi'
 		// Since setting mob_icon will override the species checks in
 		// update_inv_wear_suit(), handle species checks here.
-		if(wearer && sprite_sheets && sprite_sheets[wearer.species.get_bodytype(wearer)])
+		// VOREStation Edit Begin
+		var/species_icon
+		if (wearer && wearer.is_taur() && taur_back_icon)
+			species_icon = taur_back_icon
+		else if(onmob_back_icon)
+			species_icon = onmob_back_icon
+		else if(wearer && sprite_sheets && sprite_sheets[wearer.species.get_bodytype(wearer)])
 			species_icon =  sprite_sheets[wearer.species.get_bodytype(wearer)]
+		else
+			species_icon = 'icons/mob/rig_back.dmi'
 		mob_icon = icon(icon = species_icon, icon_state = "[icon_state]")
+		// VOREStation Edit End
 
 	if(installed_modules.len)
 		for(var/obj/item/rig_module/module in installed_modules)
@@ -766,7 +776,7 @@
 		M.visible_message("<span class='notice'><b>[M] struggles into \the [src].</b></span>", "<span class='notice'><b>You struggle into \the [src].</b></span>")
 		wearer = M
 		wearer.wearing_rig = src
-		update_icon()
+		update_icon(1) // VOREStation Edit
 
 /obj/item/weapon/rig/proc/toggle_piece(var/piece, var/mob/living/carbon/human/H, var/deploy_mode, var/forced = FALSE)
 
