@@ -181,6 +181,7 @@
 	var/status_flags = CANSTUN|CANWEAKEN|CANPARALYSE|CANPUSH	//bitflags defining which status effects can be inflicted (replaces canweaken, canstun, etc)
 
 	var/area/lastarea = null
+	var/lastareachange = null
 
 	var/digitalcamo = 0 // Can they be tracked by the AI?
 

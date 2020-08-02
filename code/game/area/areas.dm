@@ -367,6 +367,7 @@ var/list/mob/living/forced_ambiance_list = new
 		L.update_floating( L.Check_Dense_Object() )
 
 	L.lastarea = newarea
+	L.lastareachange = world.time
 	play_ambience(L)
 
 /area/proc/play_ambience(var/mob/living/L)
