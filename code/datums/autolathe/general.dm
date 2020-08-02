@@ -54,6 +54,10 @@
 	name = "jar"
 	path =/obj/item/glass_jar
 
+/datum/category_item/autolathe/general/fishtank
+	name = "fish tank"
+	path =/obj/item/glass_jar
+
 /datum/category_item/autolathe/general/radio_headset
 	name = "radio headset"
 	path =/obj/item/device/radio/headset

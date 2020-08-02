@@ -161,7 +161,10 @@
 /datum/tgui_module/camera/tgui_act(action, params)
 	if(..())
 		return
-
+	
+	if(action && !issilicon(usr))
+		playsound(tgui_host(), "terminal_type", 50, 1)
+	
 	if(action == "switch_camera")
 		var/c_tag = params["name"]
 		var/list/cameras = get_available_cameras(usr)

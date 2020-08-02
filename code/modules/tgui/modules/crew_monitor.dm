@@ -5,6 +5,9 @@
 /datum/tgui_module/crew_monitor/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return TRUE
+		
+	if(action && !issilicon(usr))
+		playsound(tgui_host(), "terminal_type", 50, 1)
 
 	var/turf/T = get_turf(usr)
 	if(!T || !(T.z in using_map.player_levels))

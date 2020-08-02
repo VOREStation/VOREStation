@@ -584,6 +584,15 @@
 			last_message = world.time
 		return 0
 
+
+/*
+//A first draft of a check to stop mechs from moving fully. TBD when all thrusters modules are unified.
+	if(!thrusters && !src.pr_inertial_movement.active() && isspace(src.loc))//No thrsters, not drifting, in space
+		src.occupant_message("Error 543")//debug
+		return 0
+*/
+
+
 	if(!thrusters && src.pr_inertial_movement.active()) //I think this mean 'if you try to move in space without thruster, u no move'
 		return 0
 
