@@ -1676,8 +1676,8 @@
 		if(species?.flags & NO_BLOOD)
 			bloodtrail = 0
 		else
-			var/blood_volume = round((vessel.get_reagent_amount("blood")/species.blood_volume)*100)
-			if(blood_volume < BLOOD_VOLUME_SURVIVE)
+			var/blood_volume = vessel.get_reagent_amount("blood")
+			if(blood_volume < species?.blood_volume*species?.blood_level_fatal)
 				bloodtrail = 0	//Most of it's gone already, just leave it be
 			else
 				vessel.remove_reagent("blood", 1)
@@ -1686,6 +1686,26 @@
 				var/turf/T = loc
 				T.add_blood(src)
 	. = ..()
+
+// Tries to turn off item-based things that let you see through walls, like mesons.
+// Certain stuff like genetic xray vision is allowed to be kept on.
+/mob/living/carbon/human/disable_spoiler_vision()
+	// Glasses.
+	if(istype(glasses, /obj/item/clothing/glasses))
+		var/obj/item/clothing/glasses/goggles = glasses
+		if(goggles.active && (goggles.vision_flags & (SEE_TURFS|SEE_OBJS)))
+			goggles.toggle_active(src)
+			to_chat(src, span("warning", "Your [goggles.name] have suddenly turned off!"))
+
+	// RIGs.
+	var/obj/item/weapon/rig/rig = get_rig()
+	if(istype(rig) && rig.visor?.active && rig.visor.vision?.glasses)
+		var/obj/item/clothing/glasses/rig_goggles = rig.visor.vision.glasses
+		if(rig_goggles.vision_flags & (SEE_TURFS|SEE_OBJS))
+			rig.visor.deactivate()
+			to_chat(src, span("warning", "\The [rig]'s visor has shuddenly deactivated!"))
+
+	..()
 
 /mob/living/carbon/human/reduce_cuff_time()
 	if(istype(gloves, /obj/item/clothing/gloves/gauntlets/rig))

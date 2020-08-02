@@ -279,3 +279,7 @@
 /datum/gear/accessory/cowledvest
 	display_name = "cowled vest"
 	path = /obj/item/clothing/accessory/cowledvest
+
+/datum/gear/accessory/asymovercoat
+	display_name = "orange asymmetrical overcoat"
+	path = /obj/item/clothing/accessory/asymovercoat

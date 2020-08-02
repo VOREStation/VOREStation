@@ -400,3 +400,8 @@
 	name = "green asymmetrical jacket"
 	desc = "Insultingly avant-garde in aqua."
 	icon_state = "asym_green"
+
+/obj/item/clothing/accessory/asymovercoat
+	name = "orange asymmetrical overcoat"
+	desc = "An asymmetrical orange overcoat in a 2560's fashion."
+	icon_state = "asymovercoat"

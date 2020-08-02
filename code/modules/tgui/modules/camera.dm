@@ -36,14 +36,44 @@
 	cam_screen.assigned_map = map_name
 	cam_screen.del_on_map_removal = FALSE
 	cam_screen.screen_loc = "[map_name]:1,1"
-	cam_plane_masters = list()
 	
-	for(var/plane in subtypesof(/obj/screen/plane_master))
-		var/obj/screen/instance = new plane()
+	cam_plane_masters = list()
+
+	// 'Utility' planes
+	cam_plane_masters += new /obj/screen/plane_master/fullbright						//Lighting system (lighting_overlay objects)
+	cam_plane_masters += new /obj/screen/plane_master/lighting							//Lighting system (but different!)
+	cam_plane_masters += new /obj/screen/plane_master/ghosts							//Ghosts!
+	cam_plane_masters += new /obj/screen/plane_master{plane = PLANE_AI_EYE}			//AI Eye!
+
+	cam_plane_masters += new /obj/screen/plane_master{plane = PLANE_CH_STATUS}			//Status is the synth/human icon left side of medhuds
+	cam_plane_masters += new /obj/screen/plane_master{plane = PLANE_CH_HEALTH}			//Health bar
+	cam_plane_masters += new /obj/screen/plane_master{plane = PLANE_CH_LIFE}			//Alive-or-not icon
+	cam_plane_masters += new /obj/screen/plane_master{plane = PLANE_CH_ID}				//Job ID icon
+	cam_plane_masters += new /obj/screen/plane_master{plane = PLANE_CH_WANTED}			//Wanted status
+	cam_plane_masters += new /obj/screen/plane_master{plane = PLANE_CH_IMPLOYAL}		//Loyalty implants
+	cam_plane_masters += new /obj/screen/plane_master{plane = PLANE_CH_IMPTRACK}		//Tracking implants
+	cam_plane_masters += new /obj/screen/plane_master{plane = PLANE_CH_IMPCHEM}		//Chemical implants
+	cam_plane_masters += new /obj/screen/plane_master{plane = PLANE_CH_SPECIAL}		//"Special" role stuff
+	cam_plane_masters += new /obj/screen/plane_master{plane = PLANE_CH_STATUS_OOC}		//OOC status HUD
+
+	cam_plane_masters += new /obj/screen/plane_master{plane = PLANE_ADMIN1}			//For admin use
+	cam_plane_masters += new /obj/screen/plane_master{plane = PLANE_ADMIN2}			//For admin use
+	cam_plane_masters += new /obj/screen/plane_master{plane = PLANE_ADMIN3}			//For admin use
+
+	cam_plane_masters += new /obj/screen/plane_master{plane = PLANE_MESONS} 			//Meson-specific things like open ceilings.
+	cam_plane_masters += new /obj/screen/plane_master{plane = PLANE_BUILDMODE}			//Things that only show up while in build mode
+
+	// Real tangible stuff planes
+	cam_plane_masters += new /obj/screen/plane_master/main{plane = TURF_PLANE}
+	cam_plane_masters += new /obj/screen/plane_master/main{plane = OBJ_PLANE}
+	cam_plane_masters += new /obj/screen/plane_master/main{plane = MOB_PLANE}
+	cam_plane_masters += new /obj/screen/plane_master/cloaked								//Cloaked atoms!
+
+	for(var/plane in cam_plane_masters)
+		var/obj/screen/instance = plane
 		instance.assigned_map = map_name
 		instance.del_on_map_removal = FALSE
 		instance.screen_loc = "[map_name]:CENTER"
-		cam_plane_masters += instance
 
 	local_skybox = new()
 	local_skybox.assigned_map = map_name
@@ -131,7 +161,10 @@
 /datum/tgui_module/camera/tgui_act(action, params)
 	if(..())
 		return
-
+	
+	if(action && !issilicon(usr))
+		playsound(tgui_host(), "terminal_type", 50, 1)
+	
 	if(action == "switch_camera")
 		var/c_tag = params["name"]
 		var/list/cameras = get_available_cameras(usr)

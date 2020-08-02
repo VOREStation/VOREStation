@@ -44,6 +44,18 @@
 	..()
 	helmet = new /obj/item/clothing/head/helmet/space/void/responseteam/security //autoinstall the helmet
 
+/obj/item/clothing/suit/space/void/responseteam/janitor
+	name = "Mark VII-J Emergency Cleanup Response Suit"
+	icon_state = "ertsuit_j"
+	item_state = "ertsuit_j"
+	armor = list(melee = 30, bullet = 20, laser = 20, energy = 20, bomb = 20, bio = 100, rad = 100) //awful armor
+	slowdown = 0 //light armor means no slowdown
+	item_flags = NOSLIP //INBUILT NANOGALOSHES
+
+/obj/item/clothing/suit/space/void/responseteam/janitor/Initialize()
+	..()
+	helmet = new /obj/item/clothing/head/helmet/space/void/responseteam/janitor //autoinstall the helmet
+
 /obj/item/clothing/suit/space/void/responseteam
 	sprite_sheets = list(
 		SPECIES_HUMAN			= 'icons/mob/spacesuit_vr.dmi',
@@ -136,6 +148,11 @@
 	name = "Mark VII-S Emergency Security Response Helmet"
 	icon_state = "erthelmet_s"
 	item_state = "erthelmet_s"
+
+/obj/item/clothing/head/helmet/space/void/responseteam/janitor
+	name = "Mark VII-J Emergency Cleanup Response Helmet"
+	icon_state = "erthelmet_j"
+	item_state = "erthelmet_j"
 
 /obj/item/clothing/head/helmet/space/void/responseteam
 	sprite_sheets = list(

@@ -240,7 +240,7 @@
 			message = "faints."
 			if(sleeping)
 				return //Can't faint while asleep
-			sleeping += 10 //Short-short nap
+			Sleeping(10)
 			m_type = 1
 
 		if("cough", "coughs")

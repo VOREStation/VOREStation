@@ -39,28 +39,49 @@ BLIND     // can't see anything
 		var/mob/M = src.loc
 		M.update_inv_glasses()
 
+/obj/item/clothing/glasses/proc/can_toggle(mob/living/user)
+	if(!toggleable)
+		return FALSE
+
+	// Prevent people from just turning their goggles back on.
+	if(!active && (vision_flags & (SEE_TURFS|SEE_OBJS)))
+		var/area/A = get_area(src)
+		if(A.no_spoilers)
+			return FALSE
+
+	return TRUE
+
+/obj/item/clothing/glasses/proc/toggle_active(mob/living/user)
+	if(active)
+		active = FALSE
+		icon_state = off_state
+		user.update_inv_glasses()
+		flash_protection = FLASH_PROTECTION_NONE
+		tint = TINT_NONE
+		away_planes = enables_planes
+		enables_planes = null
+
+	else
+		active = TRUE
+		icon_state = initial(icon_state)
+		user.update_inv_glasses()
+		flash_protection = initial(flash_protection)
+		tint = initial(tint)
+		enables_planes = away_planes
+		away_planes = null
+	user.update_action_buttons()
+	user.recalculate_vis()
+
 /obj/item/clothing/glasses/attack_self(mob/user)
 	if(toggleable)
-		if(active)
-			active = 0
-			icon_state = off_state
-			user.update_inv_glasses()
-			flash_protection = FLASH_PROTECTION_NONE
-			tint = TINT_NONE
-			away_planes = enables_planes
-			enables_planes = null
-			to_chat(usr, "You deactivate the optical matrix on the [src].")
+		if(!can_toggle(user))
+			to_chat(user, span("warning", "You don't seem to be able to toggle \the [src] here."))
 		else
-			active = 1
-			icon_state = initial(icon_state)
-			user.update_inv_glasses()
-			flash_protection = initial(flash_protection)
-			tint = initial(tint)
-			enables_planes = away_planes
-			away_planes = null
-			to_chat(usr, "You activate the optical matrix on the [src].")
-		user.update_action_buttons()
-		user.recalculate_vis()
+			toggle_active(user)
+			if(active)
+				to_chat(user, span("notice", "You activate the optical matrix on the [src]."))
+			else
+				to_chat(user, span("notice", "You deactivate the optical matrix on the [src]."))
 	..()
 
 /obj/item/clothing/glasses/meson

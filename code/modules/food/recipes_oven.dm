@@ -83,6 +83,7 @@
 	result = /obj/item/weapon/reagent_containers/food/snacks/flatbread
 	
 /datum/recipe/tortilla
+	appliance = OVEN
 	reagents = list("flour" = 5)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough

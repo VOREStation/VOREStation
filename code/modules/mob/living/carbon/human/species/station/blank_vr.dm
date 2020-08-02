@@ -93,6 +93,8 @@
 
 	//Set up a mob
 	H.species = new_copy
+	H.maxHealth = new_copy.total_health
+	H.hunger_rate = new_copy.hunger_factor
 
 	if(new_copy.holder_type)
 		H.holder_type = new_copy.holder_type

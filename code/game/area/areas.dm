@@ -49,6 +49,7 @@
 	var/sound_env = STANDARD_STATION
 	var/turf/base_turf //The base turf type of the area, which can be used to override the z-level's base turf
 	var/forbid_events = FALSE // If true, random events will not start inside this area.
+	var/no_spoilers = FALSE // If true, makes it much more difficult to see what is inside an area with things like mesons.
 
 /area/Initialize()
 	. = ..()
@@ -64,6 +65,8 @@
 		power_equip = 0
 		power_environ = 0
 	power_change()		// all machines set to current power level, also updates lighting icon
+	if(no_spoilers)
+		set_spoiler_obfuscation(TRUE)
 	return INITIALIZE_HINT_LATELOAD
 
 // Changes the area of T to A. Do not do this manually.
@@ -367,7 +370,10 @@ var/list/mob/living/forced_ambiance_list = new
 		L.update_floating( L.Check_Dense_Object() )
 
 	L.lastarea = newarea
+	L.lastareachange = world.time
 	play_ambience(L)
+	if(no_spoilers)
+		L.disable_spoiler_vision()
 
 /area/proc/play_ambience(var/mob/living/L)
 	// Ambience goes down here -- make sure to list each area seperately for ease of adding things in later, thanks! Note: areas adjacent to each other should have the same sounds to prevent cutoff when possible.- LastyScratch
@@ -501,3 +507,15 @@ var/list/ghostteleportlocs = list()
 	if(secret_name)
 		return "Unknown Area"
 	return name
+
+GLOBAL_DATUM(spoiler_obfuscation_image, /image)
+
+/area/proc/set_spoiler_obfuscation(should_obfuscate)
+	if(!GLOB.spoiler_obfuscation_image)
+		GLOB.spoiler_obfuscation_image = image(icon = 'icons/misc/static.dmi')
+		GLOB.spoiler_obfuscation_image.plane = PLANE_MESONS
+
+	if(should_obfuscate)
+		add_overlay(GLOB.spoiler_obfuscation_image)
+	else
+		cut_overlay(GLOB.spoiler_obfuscation_image)

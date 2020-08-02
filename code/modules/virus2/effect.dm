@@ -404,7 +404,7 @@
 	stage = 2
 
 /datum/disease2/effect/blind/activate(var/mob/living/carbon/mob,var/multiplier)
-	mob.eye_blind = max(mob.eye_blind, 4)
+	mob.SetBlinded(4)
 
 /datum/disease2/effect/cough
 	name = "Severe Cough"

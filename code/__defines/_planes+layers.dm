@@ -138,6 +138,8 @@ What is the naming convention for planes or layers?
 
 #define PLANE_MESONS			30 //Stuff seen with mesons, like open ceilings. This is 30 for downstreams.
 
+#define PLANE_STATUS			31 //Status Indicators that show over mobs' heads when certain things like stuns affect them.
+
 #define PLANE_ADMIN2			33 //Purely for shenanigans (above lighting)
 
 #define PLANE_BUILDMODE			39 //Things that only show up when you have buildmode on

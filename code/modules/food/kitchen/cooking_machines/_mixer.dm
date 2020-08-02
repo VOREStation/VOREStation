@@ -17,7 +17,7 @@ fundamental differences
 /obj/machinery/appliance/mixer/examine(var/mob/user)
 	. = ..()
 	if(Adjacent(user))
-		to_chat(user, "<span class='notice'>It is currently set to make a [selected_option]</span>")
+		. += "<span class='notice'>It is currently set to make a [selected_option]</span>"
 
 /obj/machinery/appliance/mixer/Initialize()
 	. = ..()
@@ -27,7 +27,7 @@ fundamental differences
 
 //Mixers cannot-not do combining mode. So the default option is removed from this. A combine target must be chosen
 /obj/machinery/appliance/mixer/choose_output()
-	set src in oview(1)
+	set src in view(1)
 	set name = "Choose output"
 	set category = "Object"
 
@@ -91,7 +91,7 @@ fundamental differences
 
 
 /obj/machinery/appliance/mixer/toggle_power()
-	set src in view()
+	set src in view(1)
 	set name = "Toggle Power"
 	set category = "Object"
 
