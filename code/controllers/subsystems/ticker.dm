@@ -261,6 +261,8 @@ var/global/datum/controller/subsystem/ticker/ticker
 				to_world("<span class='notice'><b>An admin has delayed the round end.</b></span>")
 				end_game_state = END_GAME_DELAYED
 			else if(restart_timeleft <= 0)
+				to_world("<span class='warning'><b>Restarting world!</b></span>")
+				sleep(5)
 				world.Reboot()
 			else if (world.time - last_restart_notify >= 1 MINUTE)
 				to_world("<span class='notice'><b>Restarting in [round(restart_timeleft/600, 1)] minute\s.</b></span>")
