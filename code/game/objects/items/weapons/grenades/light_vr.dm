@@ -1,6 +1,7 @@
 /obj/item/weapon/grenade/light
 	name = "photon capsule"
 	desc = "A capsule that functions like a grenade. Designed to illuminate an area without the use of a flame or electronics, regardless of the atmosphere."
+	icon = 'icons/obj/grenade_vr.dmi'
 	icon_state = "photoncapsule"
 	item_state = "flashbang"
 	det_time = 20
