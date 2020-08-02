@@ -13,10 +13,6 @@
 	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
 		if(..())
 			if(istype(H) && istype(H.tail_style, taurtype))
-				if(H.size_multiplier >= RESIZE_BIG) //Are they a macro?
-					slowdown = 0
-				else
-					slowdown = initial(slowdown)
 				return 1
 			else
 				to_chat(H, "<span class='warning'>[no_message]</span>")
@@ -44,66 +40,20 @@
 
 	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
 		if(..())
-			var/datum/sprite_accessory/tail/taur/TT = H.tail_style
-			if(istype(H) && istype(TT, /datum/sprite_accessory/tail/taur/horse))
-				item_state = "[icon_base]_Horse"
-				if(H.size_multiplier >= RESIZE_BIG) //Are they a macro?
-					slowdown = 0
-				else
-					slowdown = initial(slowdown)
-				return 1
-			if(istype(H) && istype(TT, /datum/sprite_accessory/tail/taur/wolf))
-				item_state = "[icon_base]_Wolf"
-				if(H.size_multiplier >= RESIZE_BIG) //Are they a macro?
-					slowdown = 0
-				else
-					slowdown = initial(slowdown)
-				return 1
-			if(istype(H) && istype(TT, /datum/sprite_accessory/tail/taur/cow))
-				item_state = "[icon_base]_Cow"
-				if(H.size_multiplier >= RESIZE_BIG) //Are they a macro?
-					slowdown = 0
-				else
-					slowdown = initial(slowdown)
-				return 1
-			if(istype(H) && istype(TT, /datum/sprite_accessory/tail/taur/lizard))
-				item_state = "[icon_base]_Lizard"
-				if(H.size_multiplier >= RESIZE_BIG) //Are they a macro?
-					slowdown = 0
-				else
-					slowdown = initial(slowdown)
-				return 1
-			if(istype(H) && istype(TT, /datum/sprite_accessory/tail/taur/feline))
-				item_state = "[icon_base]_Feline"
-				if(H.size_multiplier >= RESIZE_BIG) //Are they a macro?
-					slowdown = 0
-				else
-					slowdown = initial(slowdown)
-				return 1
-			if(istype(H) && istype(TT, /datum/sprite_accessory/tail/taur/drake))
-				item_state = "[icon_base]_Drake"
-				if(H.size_multiplier >= RESIZE_BIG) //Are they a macro?
-					slowdown = 0
-				else
-					slowdown = initial(slowdown)
-				return 1
-			if(istype(H) && istype(TT, /datum/sprite_accessory/tail/taur/otie))
-				item_state = "[icon_base]_Otie"
-				if(H.size_multiplier >= RESIZE_BIG) //Are they a macro?
-					slowdown = 0
-				else
-					slowdown = initial(slowdown)
-				return 1
-			if(istype(H) && istype(TT, /datum/sprite_accessory/tail/taur/deer))
-				item_state = "[icon_base]_Deer"
-				if(H.size_multiplier >= RESIZE_BIG) //Are they a macro?
-					slowdown = 0
-				else
-					slowdown = initial(slowdown)
-				return 1
+			if(!istype(H))//Error, non HUMAN.
+				log_runtime("[H] was not a valid human!")
+				return
+
+			if(H.size_multiplier >= RESIZE_BIG) //Are they a macro? If yes, they get no slowdown.
+				slowdown = 0
 			else
-				to_chat(H, "<span class='warning'>[no_message]</span>")
-				return 0
+				slowdown = initial(slowdown)
+
+			var/datum/sprite_accessory/tail/taur/TT = H.tail_style
+			item_state = "[icon_base]_[TT.icon_sprite_tag]"	//icon_sprite_tag is something like "deer"
+			return 1
+
+
 
 /obj/item/weapon/storage/backpack/saddlebag_common/robust //Shared bag for other taurs with sturdy backs
 	name = "Robust Saddlebags"
@@ -116,7 +66,7 @@
 
 /obj/item/weapon/storage/backpack/saddlebag_common/vest //Shared bag for other taurs with sturdy backs
 	name = "Taur Duty Vest"
-	desc = "An armored vest with the armor modules replaced with various handy compartments with decent storage capacity. Useless for protection though."
+	desc = "An armored vest with the armor modules replaced with various handy compartments with decent storage capacity. Useless for protection though. Holds less than a saddle."
 	icon = 'icons/obj/clothing/backpack_vr.dmi'
 	icon_override = 'icons/mob/back_vr.dmi'
 	item_state = "taurvest"
@@ -145,6 +95,7 @@
 	icon_override = 'icons/mob/back_vr.dmi'
 	item_state = "satchel-explorer"
 	icon_state = "satchel-explorer"
+
 /obj/item/weapon/storage/backpack/explorer
 	name = "explorer backpack"
 	desc = "A backpack for carrying a large number of supplies easily."
@@ -152,6 +103,7 @@
 	icon_override = 'icons/mob/back_vr.dmi'
 	item_state = "explorerpack"
 	icon_state = "explorerpack"
+
 /obj/item/weapon/storage/backpack/satchel/roboticist
 	name = "roboticist satchel"
 	desc = "A satchel for carrying a large number of spare parts easily."
@@ -159,6 +111,7 @@
 	icon_override = 'icons/mob/back_vr.dmi'
 	item_state = "satchel-robo"
 	icon_state = "satchel-robo"
+
 /obj/item/weapon/storage/backpack/roboticist
 	name = "roboticist backpack"
 	desc = "A backpack for carrying a large number of spare parts easily."
@@ -166,6 +119,7 @@
 	icon_override = 'icons/mob/back_vr.dmi'
 	item_state = "backpack-robo"
 	icon_state = "backpack-robo"
+
 /obj/item/weapon/storage/backpack/vietnam
 	name = "vietnam backpack"
 	desc = "There are tangos in the trees! We need napalm right now! Why is my gun jammed?"
@@ -173,6 +127,7 @@
 	icon_override = 'icons/mob/back_vr.dmi'
 	item_state = "nambackpack"
 	icon_state = "nambackpack"
+
 /obj/item/weapon/storage/backpack/russian
 	name = "russian backpack"
 	desc = "Useful for carrying large quantities of vodka."
@@ -180,6 +135,7 @@
 	icon_override = 'icons/mob/back_vr.dmi'
 	item_state = "ru_rucksack"
 	icon_state = "ru_rucksack"
+
 /obj/item/weapon/storage/backpack/korean
 	name = "korean backpack"
 	desc = "Insert witty description here."
