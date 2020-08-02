@@ -1687,7 +1687,29 @@
 				T.add_blood(src)
 	. = ..()
 
+<<<<<<< HEAD
 /mob/living/carbon/human/reduce_cuff_time()
 	if(istype(gloves, /obj/item/clothing/gloves/gauntlets/rig))
 		return 2
 	return ..()
+=======
+// Tries to turn off item-based things that let you see through walls, like mesons.
+// Certain stuff like genetic xray vision is allowed to be kept on.
+/mob/living/carbon/human/disable_spoiler_vision()
+	// Glasses.
+	if(istype(glasses, /obj/item/clothing/glasses))
+		var/obj/item/clothing/glasses/goggles = glasses
+		if(goggles.active && (goggles.vision_flags & (SEE_TURFS|SEE_OBJS)))
+			goggles.toggle_active(src)
+			to_chat(src, span("warning", "Your [goggles.name] have suddenly turned off!"))
+
+	// RIGs.
+	var/obj/item/weapon/rig/rig = get_rig()
+	if(istype(rig) && rig.visor?.active && rig.visor.vision?.glasses)
+		var/obj/item/clothing/glasses/rig_goggles = rig.visor.vision.glasses
+		if(rig_goggles.vision_flags & (SEE_TURFS|SEE_OBJS))
+			rig.visor.deactivate()
+			to_chat(src, span("warning", "\The [rig]'s visor has shuddenly deactivated!"))
+
+	..()
+>>>>>>> bef865b... Merge pull request #7383 from Neerti/meson_obfuscation

@@ -1328,6 +1328,11 @@
 		sight &= ~(SEE_TURFS|SEE_MOBS|SEE_OBJS)
 		see_invisible = see_in_dark>2 ? SEE_INVISIBLE_LEVEL_ONE : see_invisible_default
 
+		// Do this early so certain stuff gets turned off before vision is assigned.
+		var/area/A = get_area(src)
+		if(A?.no_spoilers)
+			disable_spoiler_vision()
+
 		if(XRAY in mutations)
 			sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS
 			see_in_dark = 8
