@@ -5,6 +5,8 @@
 	plane = DIRTY_PLANE
 	anchored = 1
 	var/amount = 1
+	generic_filth = TRUE
+	persistent = FALSE
 
 /obj/effect/decal/cleanable/liquid_fuel/New(turf/newLoc,amt=1,nologs=1)
 	if(!nologs)
