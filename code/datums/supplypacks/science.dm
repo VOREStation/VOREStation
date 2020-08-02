@@ -78,4 +78,3 @@
 	containertype = /obj/structure/closet/crate/secure/xion
 	containername = "Xenoarchaeology Tech crate"
 	access = access_research
-
