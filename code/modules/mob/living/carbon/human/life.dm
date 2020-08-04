@@ -73,6 +73,8 @@
 		handle_shock()
 
 		handle_pain()
+		
+		handle_ambience() // Handle re-running ambience to mobs if they've remained in an area.
 
 		handle_medical_side_effects()
 
@@ -1836,6 +1838,13 @@
 		return // Still no brain.
 
 	brain.tick_defib_timer()
+	
+/mob/living/carbon/human/proc/handle_ambience() // If you're in an ambient area and have not moved out of it for x time, we're going to play ambience again to you, to help break up the silence.
+	if(life_tick % 5) // Every 5 seconds, we're going to do the check, to help slow down the number of checks.
+		if(world.time >= (lastareachange + 30 SECONDS)) // Every 30 seconds, we're going to run a 35% chance to play ambience.
+			var/area/A = get_area(src)
+			if(A)
+				A.play_ambience(src)
 
 #undef HUMAN_MAX_OXYLOSS
 #undef HUMAN_CRIT_MAX_OXYLOSS
