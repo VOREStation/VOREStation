@@ -3,7 +3,7 @@
 //THIS FILE CONTAINS THE CODE TO ADD THE HUD BUTTONS AND THE MECH ACTIONS THEMSELVES.
 //
 //
-// I better get some free food for this..	
+// I better get some free food for this..
 
 
 
@@ -35,7 +35,9 @@
 		phasing_action.Grant(user, src)
 	if(switch_dmg_type_possible)
 		switch_damtype_action.Grant(user, src)
-	
+	if(cloak_possible)
+		cloak_action.Grant(user, src)
+
 /obj/mecha/proc/RemoveActions(mob/living/user, human_occupant = 0)
 	if(human_occupant)
 		eject_action.Remove(user, src)
@@ -51,8 +53,8 @@
 	thrusters_action.Remove(user, src)
 	phasing_action.Remove(user, src)
 	switch_damtype_action.Remove(user, src)
-	overload_action.Remove(user, src) 
-
+	overload_action.Remove(user, src)
+	cloak_action.Remove(user, src)
 
 
 //
@@ -242,6 +244,15 @@
 
 
 
+/datum/action/innate/mecha/mech_toggle_cloaking
+	name = "Toggle Mech phasing"
+	button_icon_state = "mech_phasing_off"
+
+/datum/action/innate/mecha/mech_toggle_cloaking/Activate()
+	button_icon_state = "mech_phasing_[chassis.cloaked ? "off" : "on"]"
+	button.UpdateIcon()
+	chassis.toggle_cloaking()
+
 
 
 /////
@@ -293,12 +304,10 @@
 		return
 	if(overload)
 		overload = 0
-		step_in = initial(step_in)
 		step_energy_drain = initial(step_energy_drain)
 		src.occupant_message("<font color='blue'>You disable leg actuators overload.</font>")
 	else
 		overload = 1
-		step_in = min(1, round(step_in/2))
 		step_energy_drain = step_energy_drain*overload_coeff
 		src.occupant_message("<font color='red'>You enable leg actuators overload.</font>")
 	src.log_message("Toggled leg actuators overload.")
@@ -324,7 +333,7 @@
 	if(smoke_ready)
 		smoke_reserve--	//Remove ammo
 		src.occupant_message("<font color='red'>Smoke fired. [smoke_reserve] usages left.</font>")
-		
+
 		var/datum/effect/effect/system/smoke_spread/smoke = new /datum/effect/effect/system/smoke_spread()
 		smoke.attach(src)
 		smoke.set_up(10, 0, usr.loc)
@@ -422,6 +431,25 @@
 	return
 
 
+/obj/mecha/verb/toggle_cloak()
+	set category = "Exosuit Interface"
+	set name = "Toggle cloaking"
+	set src = usr.loc
+	set popup_menu = 0
+	toggle_cloaking()
+
+/obj/mecha/proc/toggle_cloaking()
+	if(usr!=src.occupant)
+		return
+
+	if(cloaked)
+		uncloak()
+	else
+		cloak()
+
+	src.occupant_message("<font color=\"[cloaked?"#00f\">En":"#f00\">Dis"]abled cloaking.</font>")
+	return
+
 /obj/mecha/verb/toggle_weapons_only_cycle()
 	set category = "Exosuit Interface"
 	set name = "Toggle weapons only cycling"
@@ -435,4 +463,3 @@
 	weapons_only_cycle = !weapons_only_cycle
 	src.occupant_message("<font color=\"[weapons_only_cycle?"#00f\">En":"#f00\">Dis"]abled weapons only cycling.</font>")
 	return
-

@@ -5,8 +5,8 @@
 	initial_icon = "durand"
 	step_in = 4
 	dir_in = 1 //Facing North.
-	health = 400
-	maxhealth = 400			//Don't forget to update the /old variant if  you change this number.
+	health = 300
+	maxhealth = 300			//Don't forget to update the /old variant if  you change this number.
 	deflect_chance = 20
 	damage_absorption = list("brute"=0.5,"fire"=1.1,"bullet"=0.65,"laser"=0.85,"energy"=0.9,"bomb"=0.8)
 	max_temperature = 30000
@@ -22,6 +22,14 @@
 	max_utility_equip = 2
 	max_universal_equip = 1
 	max_special_equip = 1
+
+	starting_components = list(
+		/obj/item/mecha_parts/component/hull/durable,
+		/obj/item/mecha_parts/component/actuator,
+		/obj/item/mecha_parts/component/armor/military,
+		/obj/item/mecha_parts/component/gas,
+		/obj/item/mecha_parts/component/electrical
+		)
 
 	defence_mode_possible = 1
 
@@ -73,5 +81,5 @@
 /obj/mecha/combat/durand/old/New()
 	..()
 	health = 25
-	maxhealth = 350	//Just slightly worse.
+	maxhealth = 250	//Just slightly worse.
 	cell.charge = rand(0, (cell.charge/2))
