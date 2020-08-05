@@ -82,7 +82,7 @@
 	for(var/r_r in reagents)
 		var/aval_r_amnt = avail_reagents.get_reagent_amount(r_r)
 		if(aval_r_amnt - reagents[r_r] >= 0)
-			if(aval_r_amnt>(reagents[r_r] && exact))
+			if(aval_r_amnt>(reagents[r_r]) && exact)
 				. = FALSE
 		else
 			return FALSE
