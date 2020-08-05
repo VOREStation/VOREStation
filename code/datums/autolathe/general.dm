@@ -145,8 +145,6 @@
 	name = "maglight"
 	path =/obj/item/device/flashlight/maglight
 
-<<<<<<< HEAD
-=======
 /datum/category_item/autolathe/general/ecigcartridge
 	name = "ecigarette cartridge"
 	path = /obj/item/weapon/reagent_containers/ecig_cartridge/blank
@@ -157,7 +155,6 @@
 	resources = list(DEFAULT_WALL_MATERIAL = 100, MAT_GLASS = 100, MAT_PLASTIC = 300)
 	man_rating = 2
 
->>>>>>> 282b42d... Exosuit Modular Internals, The Squeakening (#7329)
 /datum/category_item/autolathe/general/handcuffs
 	name = "handcuffs"
 	path =/obj/item/weapon/handcuffs
