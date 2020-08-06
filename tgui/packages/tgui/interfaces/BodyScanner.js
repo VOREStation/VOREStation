@@ -219,7 +219,11 @@ const BodyScannerMainReagents = props => {
               <Table.Row key={reagent.name}>
                 <Table.Cell>{reagent.name}</Table.Cell>
                 <Table.Cell textAlign="right">
-                  {reagent.amount} Units
+                  {reagent.amount} Units {
+                    reagent.overdose
+                      ? <Box color="bad">OVERDOSING</Box>
+                      : null
+                  }
                 </Table.Cell>
               </Table.Row>
             ))}
@@ -241,7 +245,11 @@ const BodyScannerMainReagents = props => {
               <Table.Row key={reagent.name}>
                 <Table.Cell>{reagent.name}</Table.Cell>
                 <Table.Cell textAlign="right">
-                  {reagent.amount} Units
+                  {reagent.amount} Units {
+                    reagent.overdose
+                      ? <Box color="bad">OVERDOSING</Box>
+                      : null
+                  }
                 </Table.Cell>
               </Table.Row>
             ))}
