@@ -610,10 +610,7 @@
 		return
 
 	if(scanner)
-<<<<<<< HEAD
 		return scanner.tgui_interact(user)
-=======
-		return ui_interact(user)
 
 /obj/machinery/body_scanconsole/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	var/data[0]
@@ -948,4 +945,3 @@
 		dat = "<font color='red'> Error: No Body Scanner connected.</font>"
 
 	printing_text = dat
->>>>>>> c820021... Merge pull request #7361 from ExabyteDiscord/Upstream-Dog-ChemistryThing
