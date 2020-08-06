@@ -27,6 +27,10 @@
 		/obj/item/projectile/bullet/pellet/shotgun/flak = 3
 		)
 
+/*
+ * Energy
+ */
+
 /obj/item/projectile/scatter/laser
 	damage = 40
 
@@ -61,6 +65,12 @@
 		/obj/item/projectile/bullet/shotgun/ion = 3
 		)
 
+
+/*
+ * Flame
+ */
+
+
 /obj/item/projectile/scatter/flamethrower
 	damage = 5
 	submunition_spread_max = 100
@@ -69,4 +79,20 @@
 
 	submunitions = list(
 		/obj/item/projectile/bullet/incendiary/flamethrower/tiny = 7
+		)
+
+
+/*
+ * Ballistic
+ */
+
+
+/obj/item/projectile/scatter/flechette
+	damage = 60
+
+	submunition_spread_max = 40
+	submunition_spread_min = 10
+
+	submunitions = list(
+		/obj/item/projectile/bullet/magnetic/flechette/small = 4
 		)
