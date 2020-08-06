@@ -145,10 +145,6 @@
 	name = "maglight"
 	path =/obj/item/device/flashlight/maglight
 
-/datum/category_item/autolathe/general/ecigcartridge
-	name = "ecigarette cartridge"
-	path = /obj/item/weapon/reagent_containers/ecig_cartridge/blank
-
 /datum/category_item/autolathe/general/idcard
 	name = "ID Card"
 	path = /obj/item/weapon/card/id
