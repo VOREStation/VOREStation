@@ -244,6 +244,19 @@ default behaviour is:
 		return TRUE
 	return ..()
 
+// Called when something steps onto us. This allows for mulebots and vehicles to run things over. <3
+/mob/living/Crossed(var/atom/movable/AM) // Transplanting this from /mob/living/carbon/human/Crossed()
+	if(AM.is_incorporeal())
+		return
+	
+	if(istype(AM, /mob/living/bot/mulebot))
+		var/mob/living/bot/mulebot/MB = AM
+		MB.runOver(src)
+
+	if(istype(AM, /obj/vehicle))
+		var/obj/vehicle/V = AM
+		V.RunOver(src)
+
 /mob/living/verb/succumb()
 	set hidden = 1
 	if ((src.health < 0 && src.health > (5-src.getMaxHealth()))) // Health below Zero but above 5-away-from-death, as before, but variable

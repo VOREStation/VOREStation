@@ -218,6 +218,12 @@
 /mob/living/bot/mulebot/confirmTarget()
 	return 1
 
+/mob/living/bot/mulebot/handle_micro_bump_helping() // VOREStation EDIT: Can't drive over micros or macros regardless of intent.
+	return 0
+
+/mob/living/bot/mulebot/handle_micro_bump_other() // VOREStation EDIT: Can't drive over micros or macros regardless of intent.
+	return 0
+
 /mob/living/bot/mulebot/calcTargetPath()
 	..()
 	if(!target_path.len && target != home) // I presume that target is not null
@@ -241,20 +247,34 @@
 		M.Weaken(5)
 	..()
 
-/mob/living/bot/mulebot/proc/runOver(var/mob/living/carbon/human/H)
-	if(istype(H)) // No safety checks - WILL run over lying humans. Stop ERPing in the maint!
-		visible_message("<span class='warning'>[src] drives over [H]!</span>")
+/mob/living/bot/mulebot/proc/runOver(var/mob/living/M)
+	if(istype(M) && M.lying) // Screw the original implementation, of "runs over everything, no checks". We're going to check if you're lying down.
+		visible_message("<span class='warning'>[src] drives over [M]!</span>")
 		playsound(src, 'sound/effects/splat.ogg', 50, 1)
 
 		var/damage = rand(5, 7)
-		H.apply_damage(2 * damage, BRUTE, BP_HEAD)
-		H.apply_damage(2 * damage, BRUTE, BP_TORSO)
-		H.apply_damage(0.5 * damage, BRUTE, BP_L_LEG)
-		H.apply_damage(0.5 * damage, BRUTE, BP_R_LEG)
-		H.apply_damage(0.5 * damage, BRUTE, BP_L_ARM)
-		H.apply_damage(0.5 * damage, BRUTE, BP_R_ARM)
+		M.apply_damage(2 * damage, BRUTE, BP_HEAD)
+		M.apply_damage(2 * damage, BRUTE, BP_TORSO)
+		M.apply_damage(0.5 * damage, BRUTE, BP_L_LEG)
+		M.apply_damage(0.5 * damage, BRUTE, BP_R_LEG)
+		M.apply_damage(0.5 * damage, BRUTE, BP_L_ARM)
+		M.apply_damage(0.5 * damage, BRUTE, BP_R_ARM)
 
-		blood_splatter(src, H, 1)
+		blood_splatter(src, M, 1)
+
+	else if(istype(M) && !safety) // Are safeties disabled? Gonna FUCK you up.
+		visible_message("<span class='warning'>[src] drives over [M]!</span>")
+		playsound(src, 'sound/effects/splat.ogg', 50, 1)
+
+		var/damage = rand(10, 25) // Really fuck you up, this thing is big as fucc.
+		M.apply_damage(2 * damage, BRUTE, BP_HEAD)
+		M.apply_damage(2 * damage, BRUTE, BP_TORSO)
+		M.apply_damage(0.5 * damage, BRUTE, BP_L_LEG)
+		M.apply_damage(0.5 * damage, BRUTE, BP_R_LEG)
+		M.apply_damage(0.5 * damage, BRUTE, BP_L_ARM)
+		M.apply_damage(0.5 * damage, BRUTE, BP_R_ARM)
+
+		blood_splatter(src, M, 1)
 	..()
 
 /mob/living/bot/mulebot/relaymove(var/mob/user, var/direction)

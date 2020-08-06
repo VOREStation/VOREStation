@@ -253,18 +253,10 @@
 	return
 
 // called when something steps onto a human
-// this handles mulebots and vehicles
-// and now mobs on fire
+// this handles mobs on fire - mulebot and vehicle code has been relocated to /mob/living/Crossed()
 /mob/living/carbon/human/Crossed(var/atom/movable/AM)
 	if(AM.is_incorporeal())
 		return
-	if(istype(AM, /mob/living/bot/mulebot))
-		var/mob/living/bot/mulebot/MB = AM
-		MB.runOver(src)
-
-	if(istype(AM, /obj/vehicle))
-		var/obj/vehicle/V = AM
-		V.RunOver(src)
 
 	spread_fire(AM)
 
