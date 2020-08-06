@@ -233,3 +233,13 @@
 	real_name = "Spice"	//Intended to hold the name without altering it.
 	gender = FEMALE
 	desc = "It's a tamaskan, the name Spice can be found on its collar."
+
+// Brittany Spaniel
+
+/mob/living/simple_mob/animal/passive/dog/brittany
+	name = "brittany"
+	real_name = "brittany"
+	desc = "It's a brittany spaniel."
+	icon_state = "brittany"
+	icon_living = "brittany"
+	icon_dead = "brittany_dead"
