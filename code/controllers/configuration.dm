@@ -1,10 +1,17 @@
 var/list/gamemode_cache = list()
 
 /datum/configuration
+<<<<<<< HEAD
 	var/static/server_name = null				// server name (for world name / status)
 	var/static/server_suffix = 0				// generate numeric suffix based on server port
 
 	var/static/nudge_script_path = "nudge.py"  // where the nudge.py script is located
+=======
+	var/server_name = null				// server name (for world name / status)
+	var/server_suffix = 0				// generate numeric suffix based on server port
+
+	var/nudge_script_path = "nudge.py"  // where the nudge.py script is located
+>>>>>>> 1fc6477... Merge pull request #7393 from Rykka-Stormheart/shep-dev-tg-alerts-updoot
 
 	var/static/log_ooc = 0						// log OOC channel
 	var/static/log_access = 0					// log login/logout
@@ -88,6 +95,7 @@ var/list/gamemode_cache = list()
 	var/static/automute_on = 0					//enables automuting/spam prevention
 	var/static/jobs_have_minimal_access = 0	//determines whether jobs use minimal access or expanded access.
 
+<<<<<<< HEAD
 	var/static/cult_ghostwriter = 1               //Allows ghosts to write in blood in cult rounds...
 	var/static/cult_ghostwriter_req_cultists = 10 //...so long as this many cultists are active.
 
@@ -126,6 +134,46 @@ var/list/gamemode_cache = list()
 	var/static/githuburl
 	var/static/rulesurl
 	var/static/mapurl
+=======
+	var/cult_ghostwriter = 1               //Allows ghosts to write in blood in cult rounds...
+	var/cult_ghostwriter_req_cultists = 10 //...so long as this many cultists are active.
+
+	var/character_slots = 10				// The number of available character slots
+	var/loadout_slots = 3					// The number of loadout slots per character
+
+	var/max_maint_drones = 5				//This many drones can spawn,
+	var/allow_drone_spawn = 1				//assuming the admin allow them to.
+	var/drone_build_time = 1200				//A drone will become available every X ticks since last drone spawn. Default is 2 minutes.
+
+	var/disable_player_mice = 0
+	var/uneducated_mice = 0 //Set to 1 to prevent newly-spawned mice from understanding human speech
+
+	var/usealienwhitelist = 0
+	var/limitalienplayers = 0
+	var/alien_to_human_ratio = 0.5
+	var/allow_extra_antags = 0
+	var/guests_allowed = 1
+	var/debugparanoid = 0
+	var/panic_bunker = 0
+	var/paranoia_logging = 0
+
+	var/ip_reputation = FALSE		//Should we query IPs to get scores? Generates HTTP traffic to an API service.
+	var/ipr_email					//Left null because you MUST specify one otherwise you're making the internet worse.
+	var/ipr_block_bad_ips = FALSE	//Should we block anyone who meets the minimum score below? Otherwise we just log it (If paranoia logging is on, visibly in chat).
+	var/ipr_bad_score = 1			//The API returns a value between 0 and 1 (inclusive), with 1 being 'definitely VPN/Tor/Proxy'. Values equal/above this var are considered bad.
+	var/ipr_allow_existing = FALSE 	//Should we allow known players to use VPNs/Proxies? If the player is already banned then obviously they still can't connect.
+	var/ipr_minimum_age = 5			//How many days before a player is considered 'fine' for the purposes of allowing them to use VPNs.
+
+	var/serverurl
+	var/server
+	var/banappeals
+	var/wikiurl
+	var/wikisearchurl
+	var/forumurl
+	var/githuburl
+	var/rulesurl
+	var/mapurl
+>>>>>>> 1fc6477... Merge pull request #7393 from Rykka-Stormheart/shep-dev-tg-alerts-updoot
 
 	//Alert level description
 	var/static/alert_desc_green = "All threats to the station have passed. Security may not have weapons visible, privacy laws are once again fully enforced."

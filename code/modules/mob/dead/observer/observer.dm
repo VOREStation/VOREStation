@@ -866,7 +866,10 @@ mob/observer/dead/MayRespawn(var/feedback = 0)
 			var/obj/item/device/paicard/PP = p
 			if(PP.pai == null)
 				count++
+<<<<<<< HEAD
 				PP.icon = 'icons/obj/pda_vr.dmi' // VOREStation Edit
+=======
+>>>>>>> 1fc6477... Merge pull request #7393 from Rykka-Stormheart/shep-dev-tg-alerts-updoot
 				PP.overlays += "pai-ghostalert"
 				spawn(54)
 					PP.overlays.Cut()

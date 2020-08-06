@@ -257,6 +257,7 @@
 		healths.screen_loc = ui_health
 		hud_elements |= healths
 
+<<<<<<< HEAD
 	//VOREStation Addition begin
 	shadekin_dark_display = new /obj/screen/shadekin/darkness()
 	shadekin_dark_display.screen_loc = ui_shadekin_dark_display
@@ -274,6 +275,8 @@
 	hud_elements |= xenochimera_danger_display
 	//VOREStation Addition end
 
+=======
+>>>>>>> 1fc6477... Merge pull request #7393 from Rykka-Stormheart/shep-dev-tg-alerts-updoot
 	ling_chem_display = new /obj/screen/ling/chems()
 	ling_chem_display.screen_loc = ui_ling_chemical_display
 	ling_chem_display.icon_state = "ling_chems"

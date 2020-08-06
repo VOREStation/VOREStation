@@ -425,7 +425,10 @@ so as to remain in compliance with the most up-to-date laws."
 		
 		if(alert.icon_state in cached_icon_states(ui_style))
 			alert.icon = ui_style
+<<<<<<< HEAD
 		
+=======
+>>>>>>> 1fc6477... Merge pull request #7393 from Rykka-Stormheart/shep-dev-tg-alerts-updoot
 		else if(!alert.no_underlay)
 			var/image/I = image(icon = ui_style, icon_state = "template")
 			I.color = ui_color

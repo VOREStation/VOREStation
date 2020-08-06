@@ -158,8 +158,6 @@
 	healths.screen_loc = ui_health
 	hud_elements |= healths
 
-
-
 	pain = new /obj/screen( null )
 
 	zone_sel = new /obj/screen/zone_sel( null )

@@ -164,13 +164,17 @@
 		if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
 			to_chat(usr, "<font color='red'>The round is either not ready, or has already finished...</font>")
 			return
+<<<<<<< HEAD
 		
+=======
+>>>>>>> 1fc6477... Merge pull request #7393 from Rykka-Stormheart/shep-dev-tg-alerts-updoot
 		var/time_till_respawn = time_till_respawn()
 		if(time_till_respawn == -1) // Special case, never allowed to respawn
 			to_chat(usr, "<span class='warning'>Respawning is not allowed!</span>")
 		else if(time_till_respawn) // Nonzero time to respawn
 			to_chat(usr, "<span class='warning'>You can't respawn yet! You need to wait another [round(time_till_respawn/10/60, 0.1)] minutes.</span>")
 			return
+<<<<<<< HEAD
 /*
 		if(client.prefs.species != "Human" && !check_rights(R_ADMIN, 0)) //VORESTATION EDITS: THE COMMENTED OUT AREAS FROM LINE 154 TO 178
 			if (config.usealienwhitelist)
@@ -178,6 +182,8 @@
 					alert(src, "You are currently not whitelisted to Play [client.prefs.species].")
 					return 0
 */
+=======
+>>>>>>> 1fc6477... Merge pull request #7393 from Rykka-Stormheart/shep-dev-tg-alerts-updoot
 		LateChoices()
 
 	if(href_list["manifest"])

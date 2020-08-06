@@ -140,6 +140,11 @@
 	var/static/image/radial_image_lighttoggle = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_light")
 	var/static/image/radial_image_statpanel = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_examine2")
 
+<<<<<<< HEAD
+=======
+	var/datum/mini_hud/mech/minihud
+
+>>>>>>> 1fc6477... Merge pull request #7393 from Rykka-Stormheart/shep-dev-tg-alerts-updoot
 //Mech actions
 	var/datum/mini_hud/mech/minihud //VOREStation Edit
 	var/strafing = 0 				//Are we strafing or not?
@@ -1887,6 +1892,8 @@
 			verbs -= /obj/mecha/verb/toggle_cloak
 
 		occupant.in_enclosed_vehicle = 1	//Useful for when you need to know if someone is in a mecho.
+		if(occupant.hud_used)
+			minihud = new (occupant.hud_used, src)
 		update_cell_alerts()
 		update_damage_alerts()
 		set_dir(dir_in)

@@ -28,6 +28,9 @@ GLOBAL_LIST_EMPTY(respawn_timers)
 // Closets have magic appearances
 GLOBAL_LIST_EMPTY(closet_appearances)
 
+// Times that players are allowed to respawn ("ckey" = world.time)
+GLOBAL_LIST_EMPTY(respawn_timers)
+
 // Posters
 var/global/list/poster_designs = list()
 var/global/list/NT_poster_designs = list()
