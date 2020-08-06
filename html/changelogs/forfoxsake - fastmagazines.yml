@@ -1,0 +1,6 @@
+author: ForFoxSake
+
+delete-after: True
+
+changes: 
+  - rscadd: "Ported tgstation styled magazine restocking. Hit a bullet on a table or floor with a partially empty magazine to start restocking."
