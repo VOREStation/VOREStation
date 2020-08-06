@@ -180,6 +180,16 @@
 			L.ExtinguishMob()
 		L.water_act(amount / 25) // Div by 25, as water_act multiplies it by 5 in order to calculate firestack modification.
 		remove_self(needed)
+		// Put out cigarettes if splashed.
+		if(istype(L, /mob/living/carbon/human))
+			var/mob/living/carbon/human/H = L
+			if(H.wear_mask)
+				if(istype(H.wear_mask, /obj/item/clothing/mask/smokable))
+					var/obj/item/clothing/mask/smokable/S = H.wear_mask
+					if(S.lit)
+						S.quench()
+						H.visible_message("<span class='notice'>[H]\'s [S.name] is put out.</span>")
+
 /*  //VOREStation Edit Start. Stops slimes from dying from water. Fixes fuel affect_ingest, too.
 /datum/reagent/water/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_SLIME)
