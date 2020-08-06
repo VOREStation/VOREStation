@@ -19,7 +19,7 @@
 	var/dose = 0
 	var/max_dose = 0
 	var/overdose = 0		//Amount at which overdose starts
-	var/overdose_mod = 2	//Modifier to overdose damage
+	var/overdose_mod = 1	//Modifier to overdose damage
 	var/can_overdose_touch = FALSE	// Can the chemical OD when processing on touch?
 	var/scannable = 0 // Shows up on health analyzers.
 	var/affects_dead = 0
@@ -146,7 +146,10 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		overdose_mod *= H.species.chemOD_mod
-	M.adjustToxLoss(removed * overdose_mod)
+	// 6 damage per unit at minimum, scales with excessive reagents. Rounding should help keep damage consistent between ingest / inject, but isn't perfect.
+	// Hardcapped at 3.6 damage per tick, or 18 damage per unit at 0.2 metabolic rate so that you can't instakill people with overdoses by feeding them infinite periadaxon.
+	// Overall, max damage is slightly less effective than hydrophoron, and 1/5 as effective as cyanide.
+	M.adjustToxLoss(min(removed * overdose_mod * round(3 + 3 * volume / overdose), 3.6))
 
 /datum/reagent/proc/initialize_data(var/newdata) // Called when the reagent is created.
 	if(!isnull(newdata))

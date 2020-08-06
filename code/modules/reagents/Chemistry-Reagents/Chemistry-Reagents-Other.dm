@@ -423,6 +423,16 @@
 		if(prob(5))
 			M.vomit()
 
+/datum/reagent/space_cleaner/touch_mob(var/mob/living/L, var/amount)
+	if(istype(L, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = L
+		if(H.wear_mask)
+			if(istype(H.wear_mask, /obj/item/clothing/mask/smokable))
+				var/obj/item/clothing/mask/smokable/S = H.wear_mask
+				if(S.lit)
+					S.quench() // No smoking in my medbay!
+					H.visible_message("<span class='notice'>[H]\'s [S.name] is put out.</span>")
+
 /datum/reagent/lube // TODO: spraying on borgs speeds them up
 	name = "Space Lube"
 	id = "lube"
