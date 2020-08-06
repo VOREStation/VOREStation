@@ -66,21 +66,21 @@
 
 /obj/item/device/perfect_tele/proc/rebuild_radial_images()
 	radial_images.Cut()
-	
+
 	var/index = 1
 	for(var/bcn in beacons) //Grumble
 		var/image/I = image(icon = 'icons/mob/radial_vr.dmi', icon_state = "tl_[index]")
-		
+
 		var/obj/item/device/perfect_tele_beacon/beacon = beacons[bcn]
 		if(destination == beacon)
 			I.overlays += radial_seton
 		else
 			I.overlays += radial_set
-		
+
 		radial_images[bcn] = I
-		
+
 		index++
-	
+
 	if(beacons_left)
 		var/image/I = image(icon = 'icons/mob/radial_vr.dmi', icon_state = "tl_[index]")
 		I.overlays += radial_plus
@@ -124,12 +124,12 @@
 		and tele-vore. Make sure you carefully examine someone's OOC prefs before teleporting them if you are \
 		going to use this device for ERP purposes. This device records all warnings given and teleport events for \
 		admin review in case of pref-breaking, so just don't do it.","OOC WARNING")
-	
+
 	var/choice = show_radial_menu(user, src, radial_images, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = TRUE)
-	
+
 	if(!choice)
 		return
-	
+
 	else if(choice == "New Beacon")
 		if(beacons_left <= 0)
 			to_chat(user, "<span class='warning'>The translocator can't support any more beacons!</span>")
@@ -288,6 +288,16 @@
 
 	if(!teleport_checks(target,user))
 		return //The checks proc can send them a message if it wants.
+
+	if(istype(target, /mob/living))
+		var/mob/living/L = target
+		if(!L.stat)
+			if(L != user)
+				if(L.a_intent != I_HELP || L.has_AI())
+					to_chat(user, "<span class='notice'>[L] is resisting your attempt to teleport them with \the [src].</span>")
+					to_chat(L, "<span class='danger'> [user] is trying to teleport you with \the [src]!</span>")
+					if(!do_after(user, 30, L))
+						return
 
 	//Bzzt.
 	ready = 0
@@ -492,7 +502,7 @@ GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/device/perfect_tele_beac
 	battery_lock = 1
 	unacidable = 1
 	failure_chance = 0 //Percent
-	
+
 	var/phase_power = 75
 	var/recharging = 0
 
