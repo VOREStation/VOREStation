@@ -9,10 +9,10 @@
 	can_burn_food = TRUE
 	circuit = /obj/item/weapon/circuitboard/oven
 	active_power_usage = 6 KILOWATTS
-	heating_power = 6000
+	heating_power = 6 KILOWATTS
 	//Based on a double deck electric convection oven
 
-	resistance = 30000 // Approx. 12 minutes to heat up.
+	resistance = 12 KILOWATTS // Approx. 12 minutes to heat up.
 	idle_power_usage = 2 KILOWATTS
 	//uses ~30% power to stay warm
 	optimal_power = 0.8 // Oven cooks .2 faster than the default speed.
