@@ -425,6 +425,15 @@
 			return
 	..()
 
+/obj/random/mech_toy
+	name = "Random Mech Toy"
+	desc = "This is a random mech toy."
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "ripleytoy"
+
+/obj/random/mech_toy/item_to_spawn()
+	return pick(typesof(/obj/item/toy/prize))
+
 /obj/item/toy/prize/ripley
 	name = "toy ripley"
 	desc = "Mini-Mecha action figure! Collect them all! 1/11."
