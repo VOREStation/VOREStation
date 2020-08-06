@@ -291,6 +291,31 @@
 	teleport_z = src.z
 	return ..()
 
+/obj/effect/map_effect/portal/master/side_a/plains_to_caves
+	portal_id = "plains_caves-normal"
+
+/obj/effect/map_effect/portal/master/side_b/caves_to_plains
+	portal_id = "plains_caves-normal"
+
+/obj/effect/map_effect/portal/master/side_a/plains_to_caves/river
+	portal_id = "plains_caves-river"
+
+/obj/effect/map_effect/portal/master/side_b/caves_to_plains/river
+	portal_id = "plains_caves-river"
+
+
+/obj/effect/map_effect/portal/master/side_a/caves_to_wilderness
+	portal_id = "caves_wilderness-normal"
+
+/obj/effect/map_effect/portal/master/side_b/wilderness_to_caves
+	portal_id = "caves_wilderness-normal"
+
+/obj/effect/map_effect/portal/master/side_a/caves_to_wilderness/river
+	portal_id = "caves_wilderness-river"
+
+/obj/effect/map_effect/portal/master/side_b/wilderness_to_caves/river
+	portal_id = "caves_wilderness-river"
+
 //Suit Storage Units
 
 /obj/machinery/suit_cycler/exploration
