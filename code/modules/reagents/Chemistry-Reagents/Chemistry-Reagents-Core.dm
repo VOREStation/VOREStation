@@ -180,10 +180,6 @@
 			L.ExtinguishMob()
 		L.water_act(amount / 25) // Div by 25, as water_act multiplies it by 5 in order to calculate firestack modification.
 		remove_self(needed)
-<<<<<<< HEAD
-/*  //VOREStation Edit Start. Stops slimes from dying from water. Fixes fuel affect_ingest, too.
-=======
-
 		// Put out cigarettes if splashed.
 		if(istype(L, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = L
@@ -194,7 +190,7 @@
 						S.quench()
 						H.visible_message("<span class='notice'>[H]\'s [S.name] is put out.</span>")
 
->>>>>>> c820021... Merge pull request #7361 from ExabyteDiscord/Upstream-Dog-ChemistryThing
+/*  //VOREStation Edit Start. Stops slimes from dying from water. Fixes fuel affect_ingest, too.
 /datum/reagent/water/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_SLIME)
 		M.adjustToxLoss(6 * removed)
