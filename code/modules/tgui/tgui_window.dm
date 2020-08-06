@@ -140,6 +140,7 @@
 		log_tgui(client, "[id]/close: suspending")
 		status = TGUI_WINDOW_READY
 		send_message("suspend")
+		winset(client, null, "mapwindow.map.focus=true")
 		return
 	log_tgui(client, "[id]/close")
 	release_lock()
@@ -149,7 +150,7 @@
 	// to read the error message.
 	if(!fatally_errored)
 		client << browse(null, "window=[id]")
-
+		winset(client, null, "mapwindow.map.focus=true")
 /**
  * public
  *

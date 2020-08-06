@@ -2543,14 +2543,14 @@
 /obj/machinery/door/window/brigdoor/southright{
 	dir = 4;
 	icon_state = "rightsecure";
-	req_access = list(55);
-	req_one_access = list(47)
+	req_access = list(77);
+	req_one_access = newlist()
 	},
 /obj/machinery/door/window/brigdoor/southright{
 	dir = 8;
 	icon_state = "rightsecure";
-	req_access = list(55);
-	req_one_access = list(47)
+	req_access = list(77);
+	req_one_access = newlist()
 	},
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled,
@@ -3347,9 +3347,10 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/lower/medsec_maintenance)
 "afX" = (
-/obj/structure/railing,
-/turf/simulated/floor/outdoors/grass/sif/virgo3b,
-/area/tether/surfacebase/outside/outside3)
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tether)
 "afY" = (
 /obj/machinery/atmospherics/pipe/manifold/visible,
 /obj/machinery/meter,
@@ -3598,8 +3599,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/door/airlock/glass_research{
 	name = "Xenoflora Research";
-	req_access = newlist();
-	req_one_access = list(77,30)
+	req_one_access = list(77)
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/xenobiology/xenoflora_storage)
@@ -4271,9 +4271,12 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/frontdesk)
 "ahz" = (
-/obj/structure/catwalk,
-/turf/simulated/floor/outdoors/grass/sif/virgo3b,
-/area/tether/surfacebase/outside/outside3)
+/obj/machinery/atmospherics/unary/engine{
+	dir = 1
+	},
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tourbus/engines)
 "ahA" = (
 /obj/structure/cable/green{
 	d1 = 2;
@@ -5288,8 +5291,8 @@
 /area/maintenance/lower/medsec_maintenance)
 "aiZ" = (
 /obj/machinery/door/window/brigdoor/southright{
-	req_access = list(55);
-	req_one_access = list(47)
+	req_access = list(77);
+	req_one_access = newlist()
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/xenobiology/xenoflora_storage)
@@ -6800,8 +6803,7 @@
 	},
 /obj/machinery/door/airlock/glass_research{
 	name = "Xenoflora Research";
-	req_access = newlist();
-	req_one_access = list(77,30)
+	req_one_access = list(77)
 	},
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled/steel_grid,
@@ -7830,16 +7832,10 @@
 /turf/simulated/floor/tiled,
 /area/crew_quarters/pool)
 "anC" = (
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 8
-	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 8
+	icon_state = "map-scrubbers";
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/xenobiology/xenoflora_storage)
@@ -10003,8 +9999,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/door/airlock/glass_research{
 	name = "Xenoflora Research";
-	req_access = newlist();
-	req_one_access = list(77,30)
+	req_one_access = list(77)
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/xenobiology/xenoflora_storage)
@@ -10262,8 +10257,7 @@
 	},
 /obj/machinery/door/airlock/glass_research{
 	name = "Xenoflora Research";
-	req_access = newlist();
-	req_one_access = list(77,30)
+	req_one_access = list(77)
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/xenobiology/xenoflora)
@@ -12220,7 +12214,6 @@
 	name = "Xenoflora Waste Buffer";
 	start_pressure = 0
 	},
-/obj/structure/catwalk,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/tether/surfacebase/outside/outside3)
 "avl" = (
@@ -14279,8 +14272,7 @@
 "ayK" = (
 /obj/machinery/door/airlock/glass_research{
 	name = "Xenoflora Research";
-	req_access = newlist();
-	req_one_access = list(77,30)
+	req_one_access = list(77)
 	},
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled,
@@ -16337,10 +16329,17 @@
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
 "aBM" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tether)
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
+/turf/simulated/floor/tiled,
+/area/rnd/xenobiology/xenoflora_storage)
 "aBN" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -18847,9 +18846,6 @@
 /turf/simulated/floor/lino,
 /area/tether/surfacebase/entertainment/backstage)
 "aFZ" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
@@ -18861,9 +18857,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
-	dir = 5;
-	icon_state = "intact"
+/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
+	dir = 5
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/xenobiology/xenoflora_storage)
@@ -32860,12 +32855,12 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
 "bet" = (
-/obj/machinery/atmospherics/unary/engine{
-	dir = 1
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 8
 	},
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tourbus/engines)
+/turf/simulated/floor/tiled,
+/area/rnd/xenobiology/xenoflora_storage)
 "beu" = (
 /obj/effect/floor_decal/corner/grey/diagonal,
 /obj/structure/cable/green{
@@ -48769,7 +48764,7 @@ jML
 jHw
 jpB
 qWU
-bet
+ahz
 aKU
 aOI
 aPb
@@ -49621,7 +49616,7 @@ caw
 jHw
 gHh
 qWU
-bet
+ahz
 aKU
 aOI
 aPb
@@ -50819,8 +50814,8 @@ aab
 aab
 aab
 aab
-aab
-aab
+aOm
+adG
 aag
 aag
 aaD
@@ -50961,8 +50956,8 @@ aab
 aab
 aab
 aab
-aab
-aab
+aOm
+adG
 aac
 aag
 aaL
@@ -51104,7 +51099,7 @@ aab
 aab
 aab
 aab
-aab
+aNM
 aQW
 aag
 aag
@@ -51606,7 +51601,7 @@ aNk
 uSA
 aNJ
 aNP
-aBM
+afX
 aKU
 abg
 aOk
@@ -51748,7 +51743,7 @@ aNl
 aNl
 aNK
 aNP
-aBM
+afX
 aKU
 abg
 aOk
@@ -51890,7 +51885,7 @@ aNm
 aNl
 aNK
 aNP
-aBM
+afX
 aKU
 abg
 aOk
@@ -52098,7 +52093,7 @@ aab
 aab
 aab
 aab
-aac
+aab
 aac
 aac
 aac
@@ -52240,7 +52235,7 @@ aab
 aab
 aab
 aab
-aac
+aab
 aac
 aac
 aac
@@ -52382,7 +52377,7 @@ aab
 aab
 aab
 aab
-aac
+aab
 aaq
 aac
 aac
@@ -52524,7 +52519,7 @@ aab
 aab
 aab
 aab
-aac
+aab
 aaq
 aac
 aac
@@ -52666,7 +52661,7 @@ aab
 aab
 aab
 aab
-aac
+aab
 aaq
 aac
 aac
@@ -52808,7 +52803,7 @@ aab
 aab
 aab
 aab
-aac
+aab
 aac
 aac
 aac
@@ -52950,7 +52945,7 @@ aab
 aab
 aab
 aab
-aac
+aab
 aac
 aac
 aac
@@ -53092,7 +53087,7 @@ aab
 aab
 aab
 aab
-aac
+aab
 aaq
 aaq
 aac
@@ -53234,8 +53229,8 @@ aab
 aab
 aab
 aab
-aac
-aac
+aab
+aab
 aaq
 aaq
 aac
@@ -53376,8 +53371,8 @@ aab
 aab
 aab
 aab
-aac
-aac
+aab
+aab
 aaq
 aaq
 aac
@@ -53518,12 +53513,12 @@ aab
 aab
 aab
 aab
-aac
-aac
+aab
+aab
 aaq
 aaq
-afX
-ahz
+aac
+aac
 afS
 afr
 acn
@@ -53660,12 +53655,12 @@ aab
 aab
 aab
 aab
-aac
-aac
-aac
+aab
+aab
 aaq
-afX
-ahz
+aaq
+aac
+aac
 afS
 aby
 acZ
@@ -53802,12 +53797,12 @@ aab
 aab
 aab
 aab
+aab
+aab
+aaq
 aac
 aac
 aac
-aac
-afX
-ahz
 afS
 ait
 aeE
@@ -53815,8 +53810,8 @@ afI
 ags
 agB
 agB
-agB
 anC
+aBM
 amU
 aoD
 arb
@@ -53948,8 +53943,8 @@ aab
 aac
 aac
 aac
-afX
-ahz
+aac
+aac
 afS
 ack
 aeF
@@ -54090,12 +54085,12 @@ aab
 aac
 aac
 aac
-afX
-ahz
+aac
+aac
 afS
-afq
-afq
-afq
+bet
+bet
+bet
 afS
 agF
 adK
@@ -54228,12 +54223,12 @@ aab
 aab
 aab
 aab
-aab
 aac
 aac
 aac
-afX
-ahz
+aac
+aac
+aac
 afS
 bay
 afq
@@ -54370,12 +54365,12 @@ aab
 aab
 aab
 aab
-aab
-aab
 aac
 aac
-afX
-ahz
+aac
+aac
+aac
+aac
 afS
 afq
 afq
@@ -54512,12 +54507,12 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
 aac
-afX
-ahz
+aac
+aac
+aac
+aac
+aac
 afS
 afq
 afq
@@ -54654,12 +54649,12 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-afX
-ahz
+aac
+aac
+aac
+aac
+aac
+aac
 afS
 aby
 afq
@@ -54797,11 +54792,11 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aOm
-adG
+aac
+aac
+aac
+aac
+aac
 afS
 afp
 afq
@@ -54941,9 +54936,9 @@ aab
 aab
 aab
 aab
-aab
-aOm
-adG
+aac
+aac
+aac
 afS
 afS
 afS
@@ -55515,9 +55510,9 @@ aab
 aab
 aab
 aab
+aNM
+aNM
 aNW
-ajG
-ajG
 amt
 anO
 aoR
@@ -55658,8 +55653,8 @@ aab
 aab
 aab
 aab
-aNM
-aNW
+aab
+aOm
 ajG
 ajG
 ajG

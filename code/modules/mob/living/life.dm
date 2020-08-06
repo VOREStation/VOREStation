@@ -46,8 +46,8 @@
 	//Check if we're on fire
 	handle_fire()
 	
-	// Handle re-running ambience to mobs if they've remained in an area.
-	handle_ambience()
+	if(client)	// Handle re-running ambience to mobs if they've remained in an area, AND have an active client assigned to them.
+		handle_ambience()
 	
 	//stuff in the stomach
 	//handle_stomach() //VOREStation Code

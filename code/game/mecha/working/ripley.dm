@@ -14,6 +14,14 @@
 
 	minimum_penetration = 10
 
+	starting_components = list(
+		/obj/item/mecha_parts/component/hull/durable,
+		/obj/item/mecha_parts/component/actuator,
+		/obj/item/mecha_parts/component/armor/mining,
+		/obj/item/mecha_parts/component/gas,
+		/obj/item/mecha_parts/component/electrical
+		)
+
 /obj/mecha/working/ripley/Destroy()
 	for(var/atom/movable/A in src.cargo)
 		A.loc = loc

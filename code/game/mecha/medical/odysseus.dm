@@ -1,4 +1,4 @@
-/obj/mecha/medical/odysseus/
+/obj/mecha/medical/odysseus
 	desc = "These exosuits are developed and produced by Vey-Med. (&copy; All rights reserved)."
 	name = "Odysseus"
 	catalogue_data = list(
@@ -9,8 +9,8 @@
 	initial_icon = "odysseus"
 	step_in = 2
 	max_temperature = 15000
-	health = 120
-	maxhealth = 120
+	health = 70
+	maxhealth = 70
 	wreckage = /obj/effect/decal/mecha_wreckage/odysseus
 	internal_damage_threshold = 35
 	deflect_chance = 15
@@ -139,5 +139,5 @@
 /obj/mecha/medical/odysseus/old/New()
 	..()
 	health = 25
-	maxhealth = 100	//Just slightly worse.
+	maxhealth = 50	//Just slightly worse.
 	cell.charge = rand(0, (cell.charge/2))

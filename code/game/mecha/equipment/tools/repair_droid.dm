@@ -11,6 +11,8 @@
 	var/icon/droid_overlay
 	var/list/repairable_damage = list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH)
 
+	step_delay = 1
+
 	equip_type = EQUIP_HULL
 
 /obj/item/mecha_parts/mecha_equipment/repair_droid/New()
@@ -79,8 +81,23 @@
 				RD.chassis.clearInternalDamage(int_dam_flag)
 				repaired = 1
 				break
-	if(health_boost<0 || RD.chassis.health < initial(RD.chassis.health))
+
+	var/obj/item/mecha_parts/component/AC = RD.chassis.internal_components[MECH_ARMOR]
+	var/obj/item/mecha_parts/component/HC = RD.chassis.internal_components[MECH_HULL]
+
+	var/damaged_armor = AC.integrity < AC.max_integrity
+
+	var/damaged_hull = HC.integrity < HC.max_integrity
+
+	if(health_boost<0 || RD.chassis.health < initial(RD.chassis.health) || damaged_armor || damaged_hull)
 		RD.chassis.health += min(health_boost, initial(RD.chassis.health)-RD.chassis.health)
+
+		if(AC)
+			AC.adjust_integrity(round(health_boost * 0.5, 0.5))
+
+		if(HC)
+			HC.adjust_integrity(round(health_boost * 0.5, 0.5))
+
 		repaired = 1
 	if(repaired)
 		if(RD.chassis.use_power(RD.energy_drain))

@@ -88,6 +88,10 @@
 	name = "magazine (.45 AP)"
 	ammo_type = /obj/item/ammo_casing/a45/ap
 
+/obj/item/ammo_magazine/m45/hp
+	name = "magazine (.45 HP)"
+	ammo_type = /obj/item/ammo_casing/a45/hp
+
 /obj/item/ammo_magazine/box/emp/b45
 	name = "ammunition box (.45 haywire)"
 	ammo_type = /obj/item/ammo_casing/a45/emp
@@ -292,6 +296,11 @@
 /obj/item/ammo_magazine/m9mmt/practice
 	name = "top mounted magazine (9mm practice)"
 	ammo_type = /obj/item/ammo_casing/a9mm/practice
+
+/obj/item/ammo_magazine/m9mmt/ap
+	name = "top mounted magazine (9mm armor piercing)"
+	ammo_type = /obj/item/ammo_casing/a9mm/ap
+	matter = list(DEFAULT_WALL_MATERIAL = 1000, MAT_PLASTEEL = 2000)
 
 /obj/item/ammo_magazine/m9mmp90
 	name = "large capacity top mounted magazine (9mm armor-piercing)"
