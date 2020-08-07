@@ -11,7 +11,7 @@
 // The emag thing wasn't working as intended, manually overwrote it.
 
 #define BLAST_DOOR_CRUSH_DAMAGE 40
-#define SHUTTER_CRUSH_DAMAGE 10
+#define SHUTTER_CRUSH_DAMAGE 0 // VOREStation Edit - Shutter damage 0.
 
 /obj/machinery/door/blast
 	name = "Blast Door"
