@@ -2435,6 +2435,7 @@
 #include "code\modules\mob\living\bot\floorbot.dm"
 #include "code\modules\mob\living\bot\medbot.dm"
 #include "code\modules\mob\living\bot\mulebot.dm"
+#include "code\modules\mob\living\bot\mulebot_vr.dm"
 #include "code\modules\mob\living\bot\secbot.dm"
 #include "code\modules\mob\living\bot\SLed209bot.dm"
 #include "code\modules\mob\living\carbon\breathe.dm"
