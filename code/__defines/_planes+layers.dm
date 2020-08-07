@@ -116,6 +116,8 @@ What is the naming convention for planes or layers?
 	#define HUD_LAYER				20	// Above lighting, but below obfuscation. For in-game HUD effects (whereas SCREEN_LAYER is for abstract/OOC things like inventory slots)
 	#define SCREEN_LAYER			22	// Mob HUD/effects layer
 
+#define PLANE_STATUS			2 //Status Indicators that show over mobs' heads when certain things like stuns affect them.
+
 #define PLANE_ADMIN1			3 //Purely for shenanigans (below lighting)
 #define PLANE_PLANETLIGHTING	4 //Lighting on planets
 #define PLANE_LIGHTING			5 //Where the lighting (and darkness) lives
@@ -137,8 +139,6 @@ What is the naming convention for planes or layers?
 #define PLANE_CH_STATUS_OOC		24 //OOC status hud for spooks
 
 #define PLANE_MESONS			30 //Stuff seen with mesons, like open ceilings. This is 30 for downstreams.
-
-#define PLANE_STATUS			31 //Status Indicators that show over mobs' heads when certain things like stuns affect them.
 
 #define PLANE_ADMIN2			33 //Purely for shenanigans (above lighting)
 
