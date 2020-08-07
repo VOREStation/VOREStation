@@ -108,7 +108,7 @@
  *
  * Close the UI, and all its children.
  */
-/datum/tgui/proc/close(can_be_suspended = TRUE)
+/datum/tgui/proc/close(can_be_suspended = TRUE, logout = FALSE)
 	if(closing)
 		return
 	closing = TRUE
@@ -122,7 +122,7 @@
 		// and we want to keep them around, to allow user to read
 		// the error message properly.
 		window.release_lock()
-		window.close(can_be_suspended)
+		window.close(can_be_suspended, logout)
 		src_object.tgui_close(user)
 		SStgui.on_close(src)
 	state = null
