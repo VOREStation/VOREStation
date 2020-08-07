@@ -289,6 +289,11 @@ Turf and target are seperate in case you want to teleport some distance from a t
 /proc/format_frequency(var/f)
 	return "[round(f / 10)].[f % 10]"
 
+//Opposite of format, returns as a number
+/proc/unformat_frequency(frequency)
+	frequency = text2num(frequency)
+	return frequency * 10
+
 
 
 //This will update a mob's name, real_name, mind.name, data_core records, pda and id

@@ -195,7 +195,7 @@
 
 /obj/machinery/computer/transhuman/resleeving/tgui_act(action, params)
 	if(..())
-		return
+		return TRUE
 
 	. = TRUE
 	switch(tgui_modal_act(src, action, params))

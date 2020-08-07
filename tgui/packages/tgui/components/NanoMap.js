@@ -2,16 +2,15 @@ import { Box, Icon, Tooltip } from '.';
 import { Component } from 'inferno';
 import { useBackend } from "../backend";
 import { resolveAsset } from '../assets';
+import { logger } from '../logging';
 
 export class NanoMap extends Component {
   constructor(props) {
     super(props);
 
     // Auto center based on window size
-    const Xcenter = (window.innerWidth / 2) - 256;
-
     this.state = {
-      offsetX: Xcenter,
+      offsetX: 0,
       offsetY: 0,
       transform: 'none',
       dragging: false,
@@ -42,8 +41,8 @@ export class NanoMap extends Component {
         const newOffsetX = e.screenX - state.originX;
         const newOffsetY = e.screenY - state.originY;
         if (prevState.dragging) {
-          state.offsetX += newOffsetX;
-          state.offsetY += newOffsetY;
+          state.offsetX += (newOffsetX / this.props.zoom);
+          state.offsetY += (newOffsetY / this.props.zoom);
           state.originX = e.screenX;
           state.originY = e.screenY;
         } else {
@@ -71,11 +70,12 @@ export class NanoMap extends Component {
     const { offsetX, offsetY } = this.state;
     const { children, zoom, reset } = this.props;
     
+    let matrix 
+      = `matrix(${zoom}, 0, 0, ${zoom}, ${offsetX * zoom}, ${offsetY * zoom})`;
+
     const newStyle = {
-      width: '512px',
-      height: '512px',
-      "margin-top": offsetY + 'px',
-      "margin-left": offsetX + 'px',
+      width: '560px',
+      height: '560px',
       "overflow": "hidden",
       "position": "relative",
       "padding": "0px",
@@ -83,8 +83,7 @@ export class NanoMap extends Component {
         "url("+config.map+"_nanomap_z"+config.mapZLevel+".png)",
       "background-size": "cover",
       "text-align": "center",
-      "transform-origin": "center center",
-      "transform": "scale(" + zoom + ")",
+      "transform": matrix,
     };
 
     return (
@@ -110,32 +109,26 @@ const NanoMapMarker = (props, context) => {
     icon,
     tooltip,
     color,
+    onClick,
   } = props;
-  // Please note, the horrifying `3.65714285714` is just the ratio of the
-  // width/height of the minimap *element* (not image)
-  // to the actual turf size of the map
-  const rx = (-256 * (zoom - 1) 
-    + (x * (3.65714285714 * zoom)) 
-    - 1.5 * zoom - 3);
-  const ry = (512 * zoom 
-    - (y * (3.65714285714 * zoom))
-    + zoom - 1.5);
+  const rx = (x * 4) - 5;
+  const ry = (y * 4) - 4;
+
   return (
-    <div style={"transform: scale(" + 1 / zoom + ")"}>
-      <Box
-        position="absolute"
-        className="NanoMap__marker"
-        lineHeight="0"
-        top={ry + 'px'}
-        left={rx + 'px'} >
-        <Icon
-          name={icon}
-          color={color}
-          fontSize="6px"
-        />
-        <Tooltip content={tooltip} />
-      </Box>
-    </div>
+    <Box
+      position="absolute"
+      className="NanoMap__marker"
+      lineHeight="0"
+      bottom={ry + 'px'}
+      left={rx + 'px'}
+      onMouseDown={onClick} >
+      <Icon
+        name={icon}
+        color={color}
+        fontSize="4px"
+      />
+      <Tooltip content={tooltip} scale={zoom} />
+    </Box>
   );
 };
 

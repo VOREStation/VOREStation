@@ -323,7 +323,7 @@
 
 /obj/machinery/bodyscanner/tgui_act(action, params)
 	if(..())
-		return
+		return TRUE
 
 	. = TRUE
 	switch(action)

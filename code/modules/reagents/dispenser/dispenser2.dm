@@ -156,7 +156,7 @@
 
 /obj/machinery/chemical_dispenser/tgui_act(action, params)
 	if(..())
-		return
+		return TRUE
 
 	. = TRUE
 	switch(action)

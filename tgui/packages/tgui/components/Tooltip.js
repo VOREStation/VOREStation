@@ -4,6 +4,7 @@ export const Tooltip = props => {
   const {
     content,
     position = 'bottom',
+    scale,
   } = props;
   // Empirically calculated length of the string,
   // at which tooltip text starts to overflow.
@@ -14,6 +15,7 @@ export const Tooltip = props => {
         'Tooltip',
         long && 'Tooltip--long',
         position && 'Tooltip--' + position,
+        scale && 'Tooltip--scale--' + Math.floor(scale),
       ])}
       data-tooltip={content} />
   );

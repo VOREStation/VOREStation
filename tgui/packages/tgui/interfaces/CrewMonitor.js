@@ -103,6 +103,9 @@ export const CrewMonitorContent = (props, context) => {
       </Table>
     );
   } else if (tabIndex === 1) {
+    // Please note, if you ever change the zoom values,
+    // you MUST update styles/components/Tooltip.scss
+    // and change the @for scss to match.
     body = (
       <Box textAlign="center">
         Zoom Level:
@@ -113,7 +116,7 @@ export const CrewMonitorContent = (props, context) => {
           stepPixelSize="5"
           value={mapZoom}
           minValue={1}
-          maxValue={8}
+          maxValue={8} 
           onChange={(e, value) => setZoom(value)} />
         Z-Level:
         {data.map_levels
