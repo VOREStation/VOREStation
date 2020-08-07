@@ -26,6 +26,7 @@
 	var/vend_delay = 10 //How long does it take to vend?
 	var/categories = CAT_NORMAL // Bitmask of cats we're currently showing
 	var/datum/stored_item/vending_product/currently_vending = null // What we're requesting payment for right now
+	var/tmp/actively_vending = null // Used to allow TGUI to display normal items in-progress being vended
 	var/status_message = "" // Status screen messages like "insufficient funds", displayed in NanoUI
 	var/status_error = 0 // Set to 1 if status_message is an error
 	var/vending_sound = "machines/vending/vending_drop.ogg"
@@ -173,7 +174,7 @@
 			vend(currently_vending, usr)
 			return
 		else if(handled)
-			SSnanoui.update_uis(src)
+			SStgui.update_uis(src)
 			return // don't smack that machine with your 2 thalers
 
 	if(I || istype(W, /obj/item/weapon/spacecash))
@@ -184,11 +185,12 @@
 		to_chat(user, "You [panel_open ? "open" : "close"] the maintenance panel.")
 		playsound(src, W.usesound, 50, 1)
 		if(panel_open)
+			wires.Interact(user)
 			add_overlay("[initial(icon_state)]-panel")
 		else
 			cut_overlay("[initial(icon_state)]-panel")
 
-		SSnanoui.update_uis(src)  // Speaker switch is on the main UI, not wires UI
+		SStgui.update_uis(src)  // Speaker switch is on the main UI, not wires UI
 		return
 	else if(istype(W, /obj/item/device/multitool) || W.is_wirecutter())
 		if(panel_open)
@@ -200,7 +202,7 @@
 		coin = W
 		categories |= CAT_COIN
 		to_chat(user, "<span class='notice'>You insert \the [W] into \the [src].</span>")
-		SSnanoui.update_uis(src)
+		SStgui.update_uis(src)
 		return
 	else if(W.is_wrench())
 		playsound(src, W.usesound, 100, 1)
@@ -348,6 +350,9 @@
 	T.time = stationtime2text()
 	vendor_account.transaction_log.Add(T)
 
+/obj/machinery/vending/attack_ghost(mob/user)
+	return attack_hand(user)
+
 /obj/machinery/vending/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
@@ -360,24 +365,23 @@
 			return
 
 	wires.Interact(user)
-	ui_interact(user)
+	tgui_interact(user)
 
-/**
- *  Display the NanoUI window for the vending machine.
- *
- *  See NanoUI documentation for details.
- */
-/obj/machinery/vending/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	user.set_machine(src)
+/obj/machinery/vending/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Vending", name)
+		ui.open()
 
+/obj/machinery/vending/tgui_data(mob/user)
 	var/list/data = list()
 	if(currently_vending)
 		data["mode"] = 1
 		data["product"] = currently_vending.item_name
 		data["price"] = currently_vending.price
-		data["message_err"] = 0
 		data["message"] = status_message
 		data["message_err"] = status_error
+		data["products"] = null
 	else
 		data["mode"] = 0
 		var/list/listed_products = list()
@@ -399,6 +403,13 @@
 
 	if(coin)
 		data["coin"] = coin.name
+	else
+		data["coin"] = FALSE
+
+	if(actively_vending)
+		data["actively_vending"] = actively_vending
+	else
+		data["actively_vending"] = null
 
 	if(panel_open)
 		data["panel"] = 1
@@ -406,19 +417,20 @@
 	else
 		data["panel"] = 0
 
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if(!ui)
-		ui = new(user, src, ui_key, "vending_machine.tmpl", name, 440, 600)
-		ui.set_initial_data(data)
-		ui.open()
+	return data
 
-/obj/machinery/vending/Topic(href, href_list)
+/obj/machinery/vending/tgui_act(action, params)
 	if(stat & (BROKEN|NOPOWER))
 		return
 	if(usr.stat || usr.restrained())
 		return
+	if(..())
+		return TRUE
 
-	if(href_list["remove_coin"] && !istype(usr,/mob/living/silicon))
+	if(action == "remove_coin")
+		if(issilicon(usr))
+			return FALSE
+
 		if(!coin)
 			to_chat(usr, "There is no coin in this machine.")
 			return
@@ -426,19 +438,27 @@
 		coin.forceMove(src.loc)
 		if(!usr.get_active_hand())
 			usr.put_in_hands(coin)
-		to_chat(usr, "<span class='notice'>You remove \the [coin] from \the [src]</span>")
+
+		to_chat(usr, "<span class='notice'>You remove \the [coin] from \the [src].</span>")
 		coin = null
 		categories &= ~CAT_COIN
+		return TRUE
 
-	if((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))))
-		if((href_list["vend"]) && (vend_ready) && (!currently_vending))
-			if((!allowed(usr)) && !emagged && scan_id)	//For SECURE VENDING MACHINES YEAH
+	if(!usr.contents.Find(src) && (!in_range(src, usr) && isturf(loc)))
+		return FALSE
+
+	. = TRUE
+	switch(action)
+		if("vend")
+			if(!vend_ready || currently_vending)
+				return
+			if(!allowed(usr) && !emagged && scan_id)
 				to_chat(usr, "<span class='warning'>Access denied.</span>")	//Unless emagged of course
 				flick("[icon_state]-deny",src)
 				playsound(src, 'sound/machines/deniedbeep.ogg', 50, 0)
 				return
 
-			var/key = text2num(href_list["vend"])
+			var/key = text2num(params["vend"])
 			var/datum/stored_item/vending_product/R = product_records[key]
 
 			// This should not happen unless the request from NanoUI was bad
@@ -447,7 +467,7 @@
 
 			if(R.price <= 0)
 				vend(R, usr)
-			else if(istype(usr,/mob/living/silicon)) //If the item is not free, provide feedback if a synth is trying to buy something.
+			else if(issilicon(usr)) //If the item is not free, provide feedback if a synth is trying to buy something.
 				to_chat(usr, "<span class='danger'>Lawed unit recognized.  Lawed units cannot complete this transaction.  Purchase canceled.</span>")
 				return
 			else
@@ -459,14 +479,13 @@
 					status_message = "Please swipe a card or insert cash to pay for the item."
 					status_error = 0
 
-		else if(href_list["cancelpurchase"])
+		if("cancelpurchase")
 			currently_vending = null
 
-		else if((href_list["togglevoice"]) && (panel_open))
+		if("togglevoice")
+			if(!panel_open)
+				return FALSE
 			shut_up = !shut_up
-
-		add_fingerprint(usr)
-		SSnanoui.update_uis(src)
 
 /obj/machinery/vending/proc/vend(datum/stored_item/vending_product/R, mob/user)
 	if((!allowed(usr)) && !emagged && scan_id)	//For SECURE VENDING MACHINES YEAH
@@ -475,9 +494,10 @@
 		playsound(src, 'sound/machines/deniedbeep.ogg', 50, 0)
 		return
 	vend_ready = 0 //One thing at a time!!
+	actively_vending = R.item_name
 	status_message = "Vending..."
 	status_error = 0
-	SSnanoui.update_uis(src)
+	SStgui.update_uis(src)
 
 	if(R.category & CAT_COIN)
 		if(!coin)
@@ -516,8 +536,9 @@
 		status_message = ""
 		status_error = 0
 		vend_ready = 1
+		actively_vending = null
 		currently_vending = null
-		SSnanoui.update_uis(src)
+		SStgui.update_uis(src)
 
 	return 1
 
@@ -589,7 +610,7 @@
 	if(has_logs)
 		do_logging(R, user)
 
-	SSnanoui.update_uis(src)
+	SStgui.update_uis(src)
 
 /obj/machinery/vending/process()
 	if(stat & (BROKEN|NOPOWER))
