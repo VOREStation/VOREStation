@@ -250,7 +250,6 @@ const ChemMasterProduction = (props, context) => {
     return (
       <Section
         title="Production"
-        height="100%"
         flexGrow="1">
         <Flex height="100%">
           <Flex.Item
@@ -260,6 +259,7 @@ const ChemMasterProduction = (props, context) => {
             color="label">
             <Icon
               name="tint-slash"
+              mt="0.5rem"
               mb="0.5rem"
               size="5"
             /><br />
@@ -271,7 +271,7 @@ const ChemMasterProduction = (props, context) => {
   }
 
   return (
-    <Section title="Production" height="100%" flexGrow="1">
+    <Section title="Production" flexGrow="1">
       {!props.isCondiment ? (
         <ChemMasterProductionChemical />
       ) : (
@@ -390,11 +390,18 @@ const ChemMasterCustomization = (props, context) => {
         disabled={!data.loaded_pill_bottle}
         icon="eject"
         content={data.loaded_pill_bottle
-          ? data.loaded_pill_bottle_name
+          ? (
+            data.loaded_pill_bottle_name
+              + " ("
+              + data.loaded_pill_bottle_contents_len
+              + "/"
+              + data.loaded_pill_bottle_storage_slots
+              + ")"
+          )
           : "None loaded"}
         mb="0.5rem"
         onClick={() => act('ejectp')}
-      /><br />
+      />
     </Section>
   );
 };
