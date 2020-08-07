@@ -379,7 +379,7 @@
 
 /obj/machinery/chem_master/tgui_act(action, params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
-		return
+		return TRUE
 
 	if(tgui_act_modal(action, params, ui, state))
 		return TRUE

@@ -52,16 +52,18 @@ export class Dropdown extends Component {
         {option}
       </div>
     ));
-    ops.unshift((
-      <div
-        key={placeholder}
-        className="Dropdown__menuentry"
-        onClick={() => {
-          this.setSelected(null);
-        }}>
-        -- {placeholder} --
-      </div>
-    ));
+    if (placeholder) {
+      ops.unshift((
+        <div
+          key={placeholder}
+          className="Dropdown__menuentry"
+          onClick={() => {
+            this.setSelected(null);
+          }}>
+          -- {placeholder} --
+        </div>
+      ));
+    }
     return ops;
   }
 
@@ -73,6 +75,7 @@ export class Dropdown extends Component {
       noscroll,
       nochevron,
       width,
+      maxHeight,
       onClick,
       selected,
       disabled,
@@ -92,6 +95,7 @@ export class Dropdown extends Component {
         tabIndex="-1"
         style={{
           'width': width,
+          'max-height': maxHeight,
         }}
         className={classes([
           noscroll && 'Dropdown__menu-noscroll' || 'Dropdown__menu',

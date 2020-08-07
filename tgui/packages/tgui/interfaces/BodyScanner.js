@@ -4,10 +4,6 @@ import { useBackend } from "../backend";
 import { AnimatedNumber, Box, Button, Flex, Icon, LabeledList, ProgressBar, Section, Table, Tooltip } from "../components";
 import { Window } from "../layouts";
 
-import { createLogger } from '../logging';
-
-const debugBodyScannerLogger = createLogger('debugBodyScanner');
-
 const stats = [
   ['good', 'Alive'],
   ['average', 'Unconscious'],

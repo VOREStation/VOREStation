@@ -190,9 +190,9 @@
 /datum/tgui_window/proc/send_asset(datum/asset/asset)
 	if(!client || !asset)
 		return
-	// if(istype(asset, /datum/asset/spritesheet))
-	// 	var/datum/asset/spritesheet/spritesheet = asset
-	// 	send_message("asset/stylesheet", spritesheet.css_filename())
+	if(istype(asset, /datum/asset/spritesheet))
+		var/datum/asset/spritesheet/spritesheet = asset
+		send_message("asset/stylesheet", spritesheet.css_filename())
 	send_message("asset/mappings", asset.get_url_mappings())
 	sent_assets += list(asset)
 	asset.send(client)

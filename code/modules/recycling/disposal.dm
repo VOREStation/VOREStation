@@ -260,18 +260,18 @@
 
 /obj/machinery/disposal/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
-		return
+		return TRUE
 	
 	if(usr.loc == src)
 		to_chat(usr, "<span class='warning'>You cannot reach the controls from inside.</span>")
-		return
+		return TRUE
 
 	if(mode==-1 && action != "eject") // If the mode is -1, only allow ejection
 		to_chat(usr, "<span class='warning'>The disposal units power is disabled.</span>")
-		return
+		return TRUE 
 	
 	if(stat & BROKEN)
-		return
+		return TRUE
 	
 	add_fingerprint(usr)
 

@@ -198,7 +198,7 @@
 
 /obj/machinery/computer/med_data/tgui_act(action, params)
 	if(..())
-		return
+		return TRUE
 
 	if(!data_core.general.Find(active1))
 		active1 = null
@@ -508,3 +508,6 @@
 	icon_screen = "medlaptop"
 	circuit = /obj/item/weapon/circuitboard/med_data/laptop
 	density = 0
+
+#undef FIELD
+#undef MED_FIELD
