@@ -40,7 +40,7 @@
 		"Fennec" = "pai-fen",
 		"Type Zero" = "pai-typezero",
 		"Raccoon" = "pai-raccoon",
-		"Raptor" = "pai-raptor"
+		"Raptor" = "pai-raptor",
 		"Rat" = "rat",
 		"Panther" = "panther"
 		//VOREStation Addition End
