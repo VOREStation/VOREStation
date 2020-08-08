@@ -17,12 +17,15 @@
 
 	for(var/obj/machinery/portable_atmospherics/powered/scrubber/huge/scrubber in world)
 		if(scrubber.scrub_id == src.scrub_id)
-			connectedscrubbers += scrubber
+			connectedscrubbers["[scrubber.id]"] = scrubber
 
-	src.updateUsrDialog()
+	SStgui.update_uis(src)
 
 /obj/machinery/computer/area_atmos/tag/validscrubber(var/obj/machinery/portable_atmospherics/powered/scrubber/huge/scrubber)
+	if(!istype(scrubber))
+		return FALSE
+	
 	if(scrubber.scrub_id == src.scrub_id)
-		return 1
+		return TRUE
 
-	return 0
+	return FALSE

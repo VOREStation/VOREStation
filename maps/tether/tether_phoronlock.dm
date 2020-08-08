@@ -126,48 +126,17 @@ obj/machinery/airlock_sensor/phoron/airlock_exterior
 //Advanced airlock controller for when you want a more versatile airlock controller - useful for turning simple access control rooms into airlocks
 /obj/machinery/embedded_controller/radio/airlock/phoron
 	name = "Phoron Lock Controller"
+	valid_actions = list("cycle_ext", "cycle_int", "force_ext", "force_int", "abort", "secure")
 
-/obj/machinery/embedded_controller/radio/airlock/phoron/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	var/data[0]
-
-	data = list(
+/obj/machinery/embedded_controller/radio/airlock/phoron/tgui_data(mob/user)
+	. = list(
 		"chamber_pressure" = program.memory["chamber_sensor_pressure"],
 		"chamber_phoron" = program.memory["chamber_sensor_phoron"],
 		"exterior_status" = program.memory["exterior_status"],
 		"interior_status" = program.memory["interior_status"],
-		"processing" = program.memory["processing"]
+		"processing" = program.memory["processing"],
+		"internalTemplateName" = "AirlockConsolePhoron",
 	)
-
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "phoron_airlock_console.tmpl", name, 470, 290)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(1)
-
-/obj/machinery/embedded_controller/radio/airlock/phoron/Topic(href, href_list)
-	if((. = ..()))
-		return
-
-	var/clean = 0
-	switch(href_list["command"])	//anti-HTML-hacking checks
-		if("cycle_ext")
-			clean = 1
-		if("cycle_int")
-			clean = 1
-		if("force_ext")
-			clean = 1
-		if("force_int")
-			clean = 1
-		if("abort")
-			clean = 1
-		if("secure")
-			clean = 1
-
-	if(clean)
-		program.receive_user_command(href_list["command"])
-
-	return 1
 
 //
 // PHORON LOCK CONTROLLER PROGRAM

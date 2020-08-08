@@ -140,7 +140,7 @@
 /obj/machinery/atmospherics/binary/algae_farm/attack_hand(mob/user)
 	if(..())
 		return 1
-	ui_interact(user)
+	tgui_interact(user)
 
 /obj/machinery/atmospherics/binary/algae_farm/RefreshParts()
 	..()
@@ -165,7 +165,13 @@
 
 	moles_per_tick = initial(moles_per_tick) + (manip_rating**2 - 1)
 
-/obj/machinery/atmospherics/binary/algae_farm/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/nano_ui/master_ui = null, var/datum/topic_state/state = default_state)
+/obj/machinery/atmospherics/binary/algae_farm/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "AlgaeFarm", name)
+		ui.open()
+
+/obj/machinery/atmospherics/binary/algae_farm/tgui_data(mob/user)
 	var/data[0]
 	data["panelOpen"] = panel_open
 
@@ -198,41 +204,28 @@
 			"percent" = air2.total_moles ? round((air2.gas[output_gas] / air2.total_moles) * 100) : 0,
 			"moles" = round(air2.gas[output_gas], 0.01))
 
-	// update the ui if it exists, returns null if no ui is passed/found
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "algae_farm_vr.tmpl", "Algae Farm Control Panel", 500, 600)
-		ui.set_initial_data(data)
-		ui.set_auto_update(TRUE)
-		ui.open()
+	return data
 
-/obj/machinery/atmospherics/binary/algae_farm/Topic(href, href_list)
+/obj/machinery/atmospherics/binary/algae_farm/tgui_act(action, params)
 	if(..())
-		return 1
-	usr.set_machine(src)
+		return TRUE
 	add_fingerprint(usr)
 
-	// Queue management can be done even while busy
-	if(href_list["activate"])
-		update_use_power(USE_POWER_ACTIVE)
-		update_icon()
-		updateUsrDialog()
-		return
+	switch(action)
+		if("toggle")
+			if(use_power == USE_POWER_IDLE)
+				update_use_power(USE_POWER_ACTIVE)
+			else
+				update_use_power(USE_POWER_IDLE)
+			update_icon()
+			. = TRUE
 
-	if(href_list["deactivate"])
-		update_use_power(USE_POWER_IDLE)
-		update_icon()
-		updateUsrDialog()
-		return
-
-	if(href_list["ejectMaterial"])
-		var/matName = href_list["ejectMaterial"]
-		if(!(matName in stored_material))
-			return
-		eject_materials(matName, 0)
-		updateUsrDialog()
-		return
-
+		if("ejectMaterial")
+			var/matName = params["mat"]
+			if(!(matName in stored_material))
+				return
+			eject_materials(matName, 0)
+			. = TRUE
 
 // TODO - These should be replaced with materials datum.
 
