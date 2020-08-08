@@ -239,7 +239,6 @@
 	icon_state = "bordercolorcorner2"
 	},
 /obj/structure/table/standard,
-/obj/item/stack/nanopaste,
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 30
@@ -35114,9 +35113,9 @@ aab
 aab
 aab
 aab
-acD
-acD
-acD
+aaS
+aaS
+aaS
 aab
 aab
 aab
@@ -35256,9 +35255,9 @@ aab
 aab
 aab
 aab
-acD
-acD
-acD
+aaS
+aaS
+aaS
 aab
 aab
 aab
@@ -35398,9 +35397,9 @@ aab
 aab
 aab
 aab
-acD
-acD
-acD
+aaS
+aaS
+aaS
 aab
 aab
 aab
