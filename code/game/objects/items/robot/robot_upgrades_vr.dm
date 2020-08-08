@@ -29,3 +29,39 @@
 
 	R.verbs += /mob/living/proc/set_size
 	return 1
+
+/obj/item/borg/upgrade/bellysizeupgrade
+	name = "robotic Hound process capacity upgrade Module"
+	desc = "Used to upgrade a hound belly capacity. This only affects total volume and such, you won't be able to support more than one patient. Usable once."
+	icon_state = "cyborg_upgrade2"
+	item_state = "cyborg_upgrade"
+	require_module = 1
+
+/obj/item/borg/upgrade/bellysizeupgrade/action(var/mob/living/silicon/robot/R)
+	if(..()) return 0
+
+	if(!R.module || R.dogborg == FALSE)//can work
+		to_chat(R, "Upgrade mounting error!  No suitable hardpoint detected!")
+		to_chat(usr, "There's no mounting point for the module! Try upgrading another model.")
+		return 0
+
+	var/obj/item/device/dogborg/sleeper/T = locate() in R.module
+	if(!T)
+		T = locate() in R.module.contents
+	if(!T)
+		T = locate() in R.module.modules
+	if(!T)
+		to_chat(usr, "<span class='warning'>This robot has had its processor removed!</span>")
+		return 0
+
+	if(T.upgraded_capacity)// == TRUE
+		to_chat(R, "Maximum capacity achieved for this hardpoint!")
+		to_chat(usr, "There's no room for another capacity upgrade!")
+		return 0
+	else
+		var/X = T.max_item_count*2
+		T.max_item_count = X	//I couldn't do T = maxitem*2 for some reason.
+		to_chat(R, "Internal capacity doubled.")
+		to_chat(usr, "Internal capacity doubled.")
+		T.upgraded_capacity = TRUE
+	return 1
