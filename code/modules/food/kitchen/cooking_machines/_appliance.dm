@@ -583,6 +583,7 @@
 	var/obj/item/thing
 	var/delete = 1
 	var/status = CI.container.check_contents()
+
 	if (status == 1)//If theres only one object in a container then we extract that
 		thing = locate(/obj/item) in CI.container
 		delete = 0
@@ -596,6 +597,7 @@
 		qdel(CI)
 	else
 		CI.reset()//reset instead of deleting if the container is left inside
+	user.visible_message("<span class='notice'>\The [user] remove \the [thing] from \the [src].</span>")
 
 /obj/machinery/appliance/proc/cook_mob(var/mob/living/victim, var/mob/user)
 	return
