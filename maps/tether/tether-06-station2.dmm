@@ -438,13 +438,19 @@
 /turf/simulated/floor/tiled,
 /area/security/brig/visitation)
 "aW" = (
-/obj/structure/shuttle/engine/propulsion{
+/obj/structure/table/rack{
 	dir = 8;
-	icon_state = "propulsion_l"
+	layer = 2.9
 	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1)
+/obj/item/weapon/stock_parts/matter_bin,
+/obj/item/weapon/stock_parts/matter_bin,
+/obj/item/weapon/stock_parts/manipulator,
+/obj/item/weapon/stock_parts/manipulator,
+/obj/item/weapon/stock_parts/console_screen,
+/obj/item/weapon/circuitboard/autolathe,
+/obj/item/weapon/circuitboard/partslathe,
+/turf/simulated/floor,
+/area/storage/tech)
 "aX" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -781,7 +787,8 @@
 /area/security/brig)
 "bs" = (
 /obj/structure/shuttle/engine/propulsion{
-	dir = 8
+	dir = 8;
+	icon_state = "propulsion_l"
 	},
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
@@ -887,8 +894,7 @@
 /area/security/brig)
 "bC" = (
 /obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_r"
+	dir = 8
 	},
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
@@ -2509,6 +2515,14 @@
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled,
 /area/tether/exploration/crew)
+"dI" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_r"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1)
 "dJ" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -2991,6 +3005,18 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/port)
+"ev" = (
+/obj/structure/table/standard,
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 6
+	},
+/obj/effect/floor_decal/corner/white/border{
+	dir = 6
+	},
+/obj/effect/floor_decal/borderfloorwhite/corner2,
+/obj/effect/floor_decal/corner/white/bordercorner2,
+/turf/simulated/floor/tiled/white,
+/area/medical/surgery2)
 "ew" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -3126,6 +3152,40 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/exploration/crew)
+"eE" = (
+/obj/structure/table/standard,
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/white/border{
+	dir = 9
+	},
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/white/bordercorner2{
+	dir = 1;
+	icon_state = "bordercolorcorner2"
+	},
+/obj/machinery/status_display{
+	density = 0;
+	layer = 4;
+	pixel_x = -32;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/white,
+/area/medical/surgery)
+"eF" = (
+/obj/structure/table/standard,
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/white/border{
+	dir = 10;
+	icon_state = "bordercolor"
+	},
+/turf/simulated/floor/tiled/white,
+/area/medical/surgery)
 "eG" = (
 /turf/simulated/floor/tiled,
 /area/tether/exploration/crew)
@@ -3329,6 +3389,15 @@
 "eT" = (
 /turf/simulated/floor,
 /area/maintenance/station/micro)
+"eU" = (
+/obj/structure/table/standard,
+/obj/item/device/radio/intercom/department/medbay{
+	pixel_y = -24
+	},
+/obj/effect/floor_decal/borderfloorwhite,
+/obj/effect/floor_decal/corner/white/border,
+/turf/simulated/floor/tiled/white,
+/area/medical/surgery)
 "eV" = (
 /obj/structure/table/wooden_reinforced,
 /obj/item/weapon/paper_bin{
@@ -3360,6 +3429,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/exploration/staircase)
+"eX" = (
+/obj/structure/table/standard,
+/obj/effect/floor_decal/borderfloorwhite,
+/obj/effect/floor_decal/corner/white/border,
+/turf/simulated/floor/tiled/white,
+/area/medical/surgery)
 "eY" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -3717,6 +3792,22 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/exploration/staircase)
+"fD" = (
+/obj/structure/table/standard,
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 6
+	},
+/obj/effect/floor_decal/corner/white/border{
+	dir = 6
+	},
+/obj/item/weapon/reagent_containers/spray/cleaner{
+	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
+	name = "Surgery Cleaner";
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/turf/simulated/floor/tiled/white,
+/area/medical/surgery2)
 "fE" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 8
@@ -4517,6 +4608,29 @@
 /obj/random/maintenance/research,
 /turf/simulated/floor,
 /area/maintenance/station/exploration)
+"gS" = (
+/obj/structure/table/standard,
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/white/border{
+	dir = 5
+	},
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/white/bordercorner2{
+	dir = 4;
+	icon_state = "bordercolorcorner2"
+	},
+/obj/machinery/status_display{
+	density = 0;
+	layer = 4;
+	pixel_x = 32;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/white,
+/area/medical/surgery2)
 "gV" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/red/border,
@@ -7050,19 +7164,6 @@
 /obj/item/device/analyzer,
 /obj/item/device/analyzer,
 /turf/simulated/floor/plating,
-/area/storage/tech)
-"kN" = (
-/obj/structure/table/rack{
-	dir = 8;
-	layer = 2.9
-	},
-/obj/item/weapon/stock_parts/matter_bin,
-/obj/item/weapon/stock_parts/matter_bin,
-/obj/item/weapon/stock_parts/manipulator,
-/obj/item/weapon/stock_parts/console_screen,
-/obj/item/weapon/circuitboard/autolathe,
-/obj/item/weapon/circuitboard/partslathe,
-/turf/simulated/floor,
 /area/storage/tech)
 "kO" = (
 /obj/structure/table/rack{
@@ -15377,18 +15478,6 @@
 /obj/effect/floor_decal/industrial/loading,
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery2)
-"yx" = (
-/obj/structure/table/standard,
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 6
-	},
-/obj/effect/floor_decal/corner/white/border{
-	dir = 6
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2,
-/obj/effect/floor_decal/corner/white/bordercorner2,
-/turf/simulated/floor/tiled/white,
-/area/medical/surgery2)
 "yy" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -15910,32 +15999,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/medical/patient_a)
-"zH" = (
-/obj/structure/table/standard,
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 10
-	},
-/obj/effect/floor_decal/corner/white/border{
-	dir = 10;
-	icon_state = "bordercolor"
-	},
-/turf/simulated/floor/tiled/white,
-/area/medical/surgery)
-"zI" = (
-/obj/structure/table/standard,
-/obj/item/device/radio/intercom/department/medbay{
-	pixel_y = -24
-	},
-/obj/effect/floor_decal/borderfloorwhite,
-/obj/effect/floor_decal/corner/white/border,
-/turf/simulated/floor/tiled/white,
-/area/medical/surgery)
-"zJ" = (
-/obj/structure/table/standard,
-/obj/effect/floor_decal/borderfloorwhite,
-/obj/effect/floor_decal/corner/white/border,
-/turf/simulated/floor/tiled/white,
-/area/medical/surgery)
 "zK" = (
 /obj/structure/closet/crate/freezer,
 /obj/item/weapon/reagent_containers/blood/OMinus,
@@ -16024,16 +16087,6 @@
 	},
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/white/border,
-/turf/simulated/floor/tiled/white,
-/area/medical/surgery2)
-"zQ" = (
-/obj/structure/table/standard,
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 6
-	},
-/obj/effect/floor_decal/corner/white/border{
-	dir = 6
-	},
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery2)
 "zR" = (
@@ -16304,29 +16357,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery_hallway)
-"An" = (
-/obj/structure/table/standard,
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 9
-	},
-/obj/effect/floor_decal/corner/white/border{
-	dir = 9
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/white/bordercorner2{
-	dir = 1;
-	icon_state = "bordercolorcorner2"
-	},
-/obj/machinery/status_display{
-	density = 0;
-	layer = 4;
-	pixel_x = -32;
-	pixel_y = 0
-	},
-/turf/simulated/floor/tiled/white,
-/area/medical/surgery)
 "Ao" = (
 /obj/structure/filingcabinet/chestdrawer{
 	name = "Scan Records"
@@ -19235,29 +19265,6 @@
 	},
 /turf/simulated/floor/airless,
 /area/maintenance/station/sec_lower)
-"Fg" = (
-/obj/structure/table/standard,
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 5
-	},
-/obj/effect/floor_decal/corner/white/border{
-	dir = 5
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/white/bordercorner2{
-	dir = 4;
-	icon_state = "bordercolorcorner2"
-	},
-/obj/machinery/status_display{
-	density = 0;
-	layer = 4;
-	pixel_x = 32;
-	pixel_y = 0
-	},
-/turf/simulated/floor/tiled/white,
-/area/medical/surgery2)
 "Fh" = (
 /obj/structure/bed/roller,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
@@ -28399,13 +28406,13 @@ fX
 fX
 fX
 fX
-kJ
+lw
 lw
 lw
 mF
 lw
 lw
-kJ
+lw
 kJ
 pG
 pG
@@ -28967,7 +28974,7 @@ is
 jb
 jC
 fX
-kN
+aW
 kK
 mj
 mJ
@@ -31976,8 +31983,8 @@ xb
 ya
 xZ
 yY
-An
-zH
+eE
+eF
 xb
 Ah
 Aw
@@ -32119,7 +32126,7 @@ xp
 yb
 yZ
 zq
-zI
+eU
 xb
 Ai
 Ax
@@ -32261,7 +32268,7 @@ xq
 yc
 za
 zr
-zJ
+eX
 xb
 Aj
 Ax
@@ -33962,10 +33969,10 @@ wi
 wI
 xf
 ys
-yx
+ev
 zm
-Fg
-zQ
+gS
+fD
 xf
 pp
 pp
@@ -37493,11 +37500,11 @@ hl
 DI
 RX
 DL
-aW
-bs
-bs
 bs
 bC
+bC
+bC
+dI
 oY
 sW
 ef
