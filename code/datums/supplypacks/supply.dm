@@ -89,6 +89,7 @@
 	name = "Stationery - sticky notes (50)"
 	contains = list(/obj/item/sticky_pad/random)
 	cost = 10
+	containertype = /obj/structure/closet/crate/ummarcar
 	containername = "\improper Sticky notes crate"
 
 /datum/supply_pack/supply/spare_pda
