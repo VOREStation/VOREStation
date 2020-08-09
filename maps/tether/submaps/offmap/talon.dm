@@ -28,6 +28,10 @@ var/global/list/latejoin_talon = list()
 	on_store_visible_message_1 = "hums and hisses as it moves"
 	on_store_visible_message_2 = "into cryogenic storage."
 
+/obj/machinery/cryopod/robot/talon
+	announce_channel = "Talon"
+	on_store_name = "ITV Talon Robotic Storage"
+
 /obj/effect/landmark/map_data/talon
     height = 2
 
