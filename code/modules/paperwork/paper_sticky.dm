@@ -1,6 +1,7 @@
 /obj/item/sticky_pad
 	name = "sticky note pad"
 	desc = "A pad of densely packed sticky notes."
+	description_info = "Click to remove a sticky note from the pile. Click-drag to yourself to pick up the stack. Sticky notes stuck to surfaces/objects will persist for 50 rounds."
 	color = COLOR_YELLOW
 	icon = 'icons/obj/stickynotes.dmi'
 	icon_state = "pad_full"
@@ -50,24 +51,38 @@
 	. = ..()
 	if(.)
 		to_chat(user, SPAN_NOTICE("It has [papers] sticky note\s left."))
-		to_chat(user, SPAN_NOTICE("You can click it on grab intent to pick it up."))
 
 /obj/item/sticky_pad/attack_hand(var/mob/user)
-	if(user.a_intent == I_GRAB)
-		..()
+	var/obj/item/weapon/paper/paper = new paper_type(get_turf(src))
+	paper.set_content(written_text, "sticky note")
+	paper.last_modified_ckey = written_by
+	paper.color = color
+	written_text = null
+	user.put_in_hands(paper)
+	to_chat(user, SPAN_NOTICE("You pull \the [paper] off \the [src]."))
+	papers--
+	if(papers <= 0)
+		qdel(src)
 	else
-		var/obj/item/weapon/paper/paper = new paper_type(get_turf(src))
-		paper.set_content(written_text, "sticky note")
-		paper.last_modified_ckey = written_by
-		paper.color = color
-		written_text = null
-		user.put_in_hands(paper)
-		to_chat(user, SPAN_NOTICE("You pull \the [paper] off \the [src]."))
-		papers--
-		if(papers <= 0)
-			qdel(src)
-		else
-			update_icon()
+		update_icon()
+
+/obj/item/sticky_pad/MouseDrop(mob/user as mob)
+	if(user == usr && !(usr.restrained() || usr.stat) && (usr.contents.Find(src) || in_range(src, usr)))
+		if(!istype(usr, /mob/living/simple_mob))
+			if( !usr.get_active_hand() )		//if active hand is empty
+				var/mob/living/carbon/human/H = user
+				var/obj/item/organ/external/temp = H.organs_by_name["r_hand"]
+
+				if (H.hand)
+					temp = H.organs_by_name["l_hand"]
+				if(temp && !temp.is_usable())
+					to_chat(user, "<span class='notice'>You try to move your [temp.name], but cannot!</span>")
+					return
+
+				to_chat(user, "<span class='notice'>You pick up the [src].</span>")
+				user.put_in_hands(src)
+
+	return
 
 /obj/item/sticky_pad/random/Initialize()
 	. = ..()
