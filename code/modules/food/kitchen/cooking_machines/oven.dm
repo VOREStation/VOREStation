@@ -86,6 +86,7 @@
 		cooking = FALSE
 
 	playsound(src, 'sound/machines/hatch_open.ogg', 20, 1)
+	to_chat(user, "<span class='notice'>You [open? "close":"open"] the oven door</span>")
 	update_icon()
 	
 /obj/machinery/appliance/cooker/oven/proc/manip(var/obj/item/I)

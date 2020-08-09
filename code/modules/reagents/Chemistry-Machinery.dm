@@ -663,9 +663,20 @@
 			return
 		options["examine"] = radial_examine
 
+<<<<<<< HEAD
 	// if there is no power or it's broken, the procs will fail but the buttons will still show
 	if(length(holdingitems))
 		options["grind"] = radial_grind
+=======
+	if (usr.stat != 0)
+		return
+	if (!beaker)
+		return
+	beaker.loc = src.loc
+	beaker = null
+	visible_message("<span class='notice'>\The [usr] remove the container from \the [src].</span>")
+	update_icon()
+>>>>>>> 864135b... Merge pull request #7425 from lbnesquik/Kot-Cooking-tweak
 
 	var/choice
 
