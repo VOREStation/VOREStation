@@ -2,7 +2,7 @@ import { round } from 'common/math';
 import { capitalize } from 'common/string';
 import { Fragment } from 'inferno';
 import { useBackend, useLocalState } from "../backend";
-import { Box, Button, Flex, Collapsible, Icon, LabeledList, ProgressBar, Section, Tabs } from "../components";
+import { Box, Button, Flex, Collapsible, Icon, LabeledList, NoticeBox, Section, Tabs } from "../components";
 import { Window } from "../layouts";
 
 const stats = [
@@ -68,9 +68,25 @@ const digestModeToPreyMode = {
  *  - User Preferences, where you can adjust all of your vore preferences on the fly.
  */
 export const VorePanel = (props, context) => {
+  const { act, data } = useBackend(context);
   return (
     <Window width={700} height={660} resizable>
       <Window.Content scrollable>
+        {data.unsaved_changes && (
+          <NoticeBox danger>
+            <Flex>
+              <Flex.Item basis="90%">
+                Warning: Unsaved Changes!
+              </Flex.Item>
+              <Flex.Item>
+                <Button
+                  content="Save Prefs"
+                  icon="save"
+                  onClick={() => act("saveprefs")} />
+              </Flex.Item>
+            </Flex>
+          </NoticeBox>
+        ) || null}
         <VoreInsidePanel />
         <VoreBellySelectionAndCustomization />
         <VoreUserPreferences />
@@ -264,26 +280,20 @@ const VoreSelectedBelly = (props, context) => {
         <Flex wrap="wrap">
           <Flex.Item basis="49%" grow={1}>
             <LabeledList>
-              <LabeledList.Item label="Fleshy Belly">
+              <LabeledList.Item label="Digest Brute Damage">
                 <Button
-                  onClick={() => act("set_attribute", { attribute: "b_wetness" })}
-                  icon={is_wet ? "toggle-on" : "toggle-off"}
-                  selected={is_wet}
-                  content={is_wet ? "Yes" : "No"} />
+                  onClick={() => act("set_attribute", { attribute: "b_brute_dmg" })}
+                  content={digest_brute} />
               </LabeledList.Item>
-              <LabeledList.Item label="Internal Loop">
+              <LabeledList.Item label="Digest Burn Damage">
                 <Button
-                  onClick={() => act("set_attribute", { attribute: "b_wetloop" })}
-                  icon={wet_loop ? "toggle-on" : "toggle-off"}
-                  selected={wet_loop}
-                  content={wet_loop ? "Yes" : "No"} />
+                  onClick={() => act("set_attribute", { attribute: "b_burn_dmg" })}
+                  content={digest_burn} />
               </LabeledList.Item>
-              <LabeledList.Item label="Use Fancy Sounds">
+              <LabeledList.Item label="Nutritional Gain">
                 <Button
-                  onClick={() => act("set_attribute", { attribute: "b_fancy_sound" })}
-                  icon={fancy ? "toggle-on" : "toggle-off"}
-                  selected={fancy}
-                  content={fancy ? "Yes" : "No"} />
+                  onClick={() => act("set_attribute", { attribute: "b_nutritionpercent" })}
+                  content={nutrition_percent + "%"} />
               </LabeledList.Item>
               <LabeledList.Item label="Contaminates">
                 <Button
@@ -319,6 +329,27 @@ const VoreSelectedBelly = (props, context) => {
           </Flex.Item>
           <Flex.Item basis="49%" grow={1}>
             <LabeledList>
+              <LabeledList.Item label="Fleshy Belly">
+                <Button
+                  onClick={() => act("set_attribute", { attribute: "b_wetness" })}
+                  icon={is_wet ? "toggle-on" : "toggle-off"}
+                  selected={is_wet}
+                  content={is_wet ? "Yes" : "No"} />
+              </LabeledList.Item>
+              <LabeledList.Item label="Internal Loop">
+                <Button
+                  onClick={() => act("set_attribute", { attribute: "b_wetloop" })}
+                  icon={wet_loop ? "toggle-on" : "toggle-off"}
+                  selected={wet_loop}
+                  content={wet_loop ? "Yes" : "No"} />
+              </LabeledList.Item>
+              <LabeledList.Item label="Use Fancy Sounds">
+                <Button
+                  onClick={() => act("set_attribute", { attribute: "b_fancy_sound" })}
+                  icon={fancy ? "toggle-on" : "toggle-off"}
+                  selected={fancy}
+                  content={fancy ? "Yes" : "No"} />
+              </LabeledList.Item>
               <LabeledList.Item label="Vore Sound">
                 <Button
                   onClick={() => act("set_attribute", { attribute: "b_sound" })}
@@ -334,21 +365,6 @@ const VoreSelectedBelly = (props, context) => {
                 <Button
                   onClick={() => act("set_attribute", { attribute: "b_releasesoundtest" })}
                   icon="volume-up" />
-              </LabeledList.Item>
-              <LabeledList.Item label="Nutritional Gain">
-                <Button
-                  onClick={() => act("set_attribute", { attribute: "b_nutritionpercent" })}
-                  content={nutrition_percent + "%"} />
-              </LabeledList.Item>
-              <LabeledList.Item label="Digest Brute">
-                <Button
-                  onClick={() => act("set_attribute", { attribute: "b_brute_dmg" })}
-                  content={digest_brute} />
-              </LabeledList.Item>
-              <LabeledList.Item label="Digest Burn">
-                <Button
-                  onClick={() => act("set_attribute", { attribute: "b_burn_dmg" })}
-                  content={digest_burn} />
               </LabeledList.Item>
               <LabeledList.Item label="Required Examine Size">
                 <Button
@@ -488,7 +504,9 @@ const VoreUserPreferences = (props, context) => {
             icon={digestable ? "toggle-on" : "toggle-off"}
             selected={digestable}
             fluid
-            content={digestable ? "Digestable" : "Indigestable"} />
+            tooltip={"This button is for those who don't like being digested. It can make you undigestable."
+            + (digestable ? " Click here to prevent digestion." : " Click here to allow digestion.")}
+            content={digestable ? "Digestion Allowed" : "No Digestion"} />
         </Flex.Item>
         <Flex.Item basis="32%" grow={1}>
           <Button
@@ -496,6 +514,8 @@ const VoreUserPreferences = (props, context) => {
             icon={absorbable ? "toggle-on" : "toggle-off"}
             selected={absorbable}
             fluid
+            tooltip={"This button allows preds to know whether you prefer or don't prefer to be absorbed. "
+            + (absorbable ? "Click here to disallow being absorbed." : "Click here to allow being absorbed.")}
             content={absorbable ? "Absorption Allowed" : "No Absorption"} />
         </Flex.Item>
         <Flex.Item basis="32%">
@@ -504,7 +524,9 @@ const VoreUserPreferences = (props, context) => {
             icon={devourable ? "toggle-on" : "toggle-off"}
             selected={devourable}
             fluid
-            content={devourable ? "Devourable" : "Undevourable"} />
+            tooltip={"This button is to toggle your ability to be devoured by others. "
+            + (devourable ? "Click here to prevent being devoured." : "Click here to allow being devoured.")}
+            content={devourable ? "Devouring Allowed" : "No Devouring"} />
         </Flex.Item>
         <Flex.Item basis="32%">
           <Button
@@ -512,7 +534,11 @@ const VoreUserPreferences = (props, context) => {
             icon={allowmobvore ? "toggle-on" : "toggle-off"}
             selected={allowmobvore}
             fluid
-            content={allowmobvore ? "Mobs able to eat" : "Mobs cannot eat"} />
+            tooltip={"This button is for those who don't like being eaten by mobs. "
+            + (allowmobvore
+              ? "Click here to prevent being eaten by mobs."
+              : "Click here to allow being eaten by mobs.")}
+            content={allowmobvore ? "Mobs eating you allowed" : "No Mobs eating you"} />
         </Flex.Item>
         <Flex.Item basis="32%" grow={1}>
           <Button
@@ -520,7 +546,11 @@ const VoreUserPreferences = (props, context) => {
             icon={feeding ? "toggle-on" : "toggle-off"}
             selected={feeding}
             fluid
-            content={feeding ? "Feedable" : "Unfeedable"} />
+            tooltip={"This button is to toggle your ability to be fed to or by others vorishly. "
+            + (feeding
+              ? "Click here to prevent being fed to/by other people."
+              : "Click here to allow being fed to/by other people.")}
+            content={feeding ? "Feeding Allowed" : "No Feeding"} />
         </Flex.Item>
         <Flex.Item basis="32%">
           <Button
@@ -528,7 +558,13 @@ const VoreUserPreferences = (props, context) => {
             icon={permit_healbelly ? "toggle-on" : "toggle-off"}
             selected={permit_healbelly}
             fluid
-            content={permit_healbelly ? "Heal-bellies on" : "Unable to be heal-bellied"} />
+            tooltipPosition="top"
+            tooltip={"This button is for those who don't like healbelly used on them as a mechanic."
+              + " It does not affect anything, but is displayed under mechanical prefs for ease of quick checks. "
+              + (permit_healbelly
+                ? "Click here to prevent being heal-bellied."
+                : "Click here to allow being heal-bellied.")}
+            content={permit_healbelly ? "Heal-bellies Allowed" : "No Heal-bellies"} />
         </Flex.Item>
         <Flex.Item basis="32%">
           <Button
@@ -536,7 +572,12 @@ const VoreUserPreferences = (props, context) => {
             icon={can_be_drop_prey ? "toggle-on" : "toggle-off"}
             selected={can_be_drop_prey}
             fluid
-            content={can_be_drop_prey ? "Drop Prey Enabled" : "Drop Prey Disabled"} />
+            tooltip={"This toggle is for spontaneous, environment related vore"
+            + " as prey, including drop-noms, teleporters, etc. "
+            + (can_be_drop_prey
+              ? "Click here to allow being spontaneous prey."
+              : "Click here to disable being spontaneous prey.")}
+            content={can_be_drop_prey ? "Spontaneous Prey Enabled" : "Spontaneous Prey Disabled"} />
         </Flex.Item>
         <Flex.Item basis="32%" grow={1}>
           <Button
@@ -544,7 +585,12 @@ const VoreUserPreferences = (props, context) => {
             icon={can_be_drop_pred ? "toggle-on" : "toggle-off"}
             selected={can_be_drop_pred}
             fluid
-            content={can_be_drop_pred ? "Drop Pred Enabled" : "Drop Pred Disabled"} />
+            tooltip={"This toggle is for spontaneous, environment related vore"
+            + " as a predator, including drop-noms, teleporters, etc. "
+            + (can_be_drop_pred
+              ? "Click here to allow being spontaneous pred."
+              : "Click here to disable being spontaneous pred.")}
+            content={can_be_drop_pred ? "Spontaneous Pred Enabled" : "Spontaneous Pred Disabled"} />
         </Flex.Item>
         <Flex.Item basis="32%">
           <Button
@@ -552,6 +598,10 @@ const VoreUserPreferences = (props, context) => {
             icon={noisy ? "toggle-on" : "toggle-off"}
             selected={noisy}
             fluid
+            tooltip={"Toggle audible hunger noises. "
+            + (noisy
+              ? "Click here to turn off hunger noises."
+              : "Click here to turn on hunger noises.")}
             content={noisy ? "Hunger Noises Enabled" : "Hunger Noises Disabled"} />
         </Flex.Item>
         <Flex.Item basis="100%">
@@ -560,7 +610,13 @@ const VoreUserPreferences = (props, context) => {
             icon={digest_leave_remains ? "toggle-on" : "toggle-off"}
             selected={digest_leave_remains}
             fluid
-            content={digest_leave_remains ? "Remains will be left if pred has enabled it." : "Remains disabled"} />
+            tooltipPosition="top"
+            tooltip={digest_leave_remains 
+              ? "Your Predator must have this setting enabled in their belly modes to allow remains to show up,"
+              + "if they do not, they will not leave your remains behind, even with this on. Click to disable remains"
+              : ("Regardless of Predator Setting, you will not leave remains behind."
+                + " Click this to allow leaving remains.")}
+            content={digest_leave_remains ? "Allow Leaving Remains Behind" : "Do Not Allow Leaving Remains Behind"} />
         </Flex.Item>
         <Flex.Item basis="49%">
           <Button

@@ -29,6 +29,7 @@
 //
 /datum/vore_look
 	var/mob/living/host // Note, we do this in case we ever want to allow people to view others vore panels
+	var/unsaved_changes = FALSE
 
 /datum/vore_look/New(mob/living/new_host)
 	if(istype(new_host))
@@ -77,6 +78,8 @@
 
 	if(!host)
 		return data
+
+	data["unsaved_changes"] = unsaved_changes
 
 	data["inside"] = list()
 	var/atom/hostloc = host.loc
@@ -246,6 +249,7 @@
 			var/obj/belly/NB = new(host)
 			NB.name = new_name
 			host.vore_selected = NB
+			unsaved_changes = TRUE
 			return TRUE
 		
 		if("bellypick")
@@ -260,6 +264,7 @@
 				alert("ERROR: Virgo-specific preferences failed to save!","Error")
 			else
 				to_chat(usr, "<span class='notice'>Virgo-specific preferences saved!</span>")
+				unsaved_changes = FALSE
 			return TRUE
 		if("reloadprefs")
 			var/alert = alert("Are you sure you want to reload character slot preferences? This will remove your current vore organs and eject their contents.","Confirmation","Reload","Cancel")
@@ -269,6 +274,7 @@
 				alert("ERROR: Virgo-specific preferences failed to apply!","Error")
 			else
 				to_chat(usr,"<span class='notice'>Virgo-specific preferences applied from active slot!</span>")
+				unsaved_changes = FALSE
 			return TRUE
 		if("setflavor")
 			var/new_flavor = html_encode(input(usr,"What your character tastes like (40ch limit). This text will be printed to the pred after 'X tastes of...' so just put something like 'strawberries and cream':","Character Flavor",host.vore_taste) as text|null)
@@ -280,6 +286,7 @@
 				alert("Entered flavor/taste text too long. [FLAVOR_MAX] character limit.","Error!")
 				return FALSE
 			host.vore_taste = new_flavor
+			unsaved_changes = TRUE
 			return TRUE
 		if("setsmell")
 			var/new_smell = html_encode(input(usr,"What your character smells like (40ch limit). This text will be printed to the pred after 'X smells of...' so just put something like 'strawberries and cream':","Character Smell",host.vore_smell) as text|null)
@@ -291,127 +298,65 @@
 				alert("Entered perfume/smell text too long. [FLAVOR_MAX] character limit.","Error!")
 				return FALSE
 			host.vore_smell = new_smell
+			unsaved_changes = TRUE
 			return TRUE
 		if("toggle_dropnom_pred")
-			var/choice = alert(usr, "This toggle is for spontaneous, environment related vore as a predator, including drop-noms, teleporters, etc. You are currently [host.can_be_drop_pred ? " able to eat prey that you encounter by environmental actions." : "avoiding eating prey encountered in the environment."]", "", "Be Pred", "Cancel", "Don't be Pred")
-			switch(choice)
-				if("Cancel")
-					return FALSE
-				if("Be Pred")
-					host.can_be_drop_pred = TRUE
-				if("Don't be Pred")
-					host.can_be_drop_pred = FALSE
+			host.can_be_drop_pred = !host.can_be_drop_pred
+			if(host.client.prefs_vr)
+				host.client.prefs_vr.can_be_drop_pred = host.can_be_drop_pred
+			unsaved_changes = TRUE
 			return TRUE
 		if("toggle_dropnom_prey")
-			var/choice = alert(usr, "This toggle is for spontaneous, environment related vore as a prey, including drop-noms, teleporters, etc. You are currently [host.can_be_drop_prey ? "able to be eaten by environmental actions." : "not able to be eaten by environmental actions."]", "", "Be Prey", "Cancel", "Don't Be Prey")
-			switch(choice)
-				if("Cancel")
-					return FALSE
-				if("Be Prey")
-					host.can_be_drop_prey = TRUE
-				if("Don't Be Prey")
-					host.can_be_drop_prey = FALSE
+			host.can_be_drop_prey = !host.can_be_drop_prey
+			if(host.client.prefs_vr)
+				host.client.prefs_vr.can_be_drop_prey = host.can_be_drop_prey
+			unsaved_changes = TRUE
 			return TRUE
 		if("toggle_digest")
-			var/choice = alert(usr, "This button is for those who don't like being digested. It can make you undigestable. Digesting you is currently: [host.digestable ? "Allowed" : "Prevented"]", "", "Allow Digestion", "Cancel", "Prevent Digestion")
-			switch(choice)
-				if("Cancel")
-					return FALSE
-				if("Allow Digestion")
-					host.digestable = TRUE
-				if("Prevent Digestion")
-					host.digestable = FALSE
-
+			host.digestable = !host.digestable
 			if(host.client.prefs_vr)
 				host.client.prefs_vr.digestable = host.digestable
+			unsaved_changes = TRUE
 			return TRUE
 		if("toggle_devour")
-			var/choice = alert(usr, "This button is to toggle your ability to be devoured by others. Devouring is currently: [host.devourable ? "Allowed" : "Prevented"]", "", "Be Devourable", "Cancel", "Prevent being Devoured")
-			switch(choice)
-				if("Cancel")
-					return FALSE
-				if("Be Devourable")
-					host.devourable = TRUE
-				if("Prevent being Devoured")
-					host.devourable = FALSE
-
+			host.devourable = !host.devourable
 			if(host.client.prefs_vr)
 				host.client.prefs_vr.devourable = host.devourable
+			unsaved_changes = TRUE
 			return TRUE
 		if("toggle_feed")
-			var/choice = alert(usr, "This button is to toggle your ability to be fed to or by others vorishly. Force Feeding is currently: [host.feeding ? "Allowed" : "Prevented"]", "", "Allow Feeding", "Cancel", "Prevent Feeding")
-			switch(choice)
-				if("Cancel")
-					return FALSE
-				if("Allow Feeding")
-					host.feeding = TRUE
-				if("Prevent Feeding")
-					host.feeding = FALSE
-
+			host.feeding = !host.feeding
 			if(host.client.prefs_vr)
 				host.client.prefs_vr.feeding = host.feeding
+			unsaved_changes = TRUE
 			return TRUE
 		if("toggle_absorbable")
-			var/choice = alert(usr, "This button allows preds to know whether you prefer or don't prefer to be absorbed. Currently you are [host.absorbable? "" : "not"] giving permission.", "", "Allow absorption", "Cancel", "Disallow absorption")
-			switch(choice)
-				if("Cancel")
-					return FALSE
-				if("Allow absorption")
-					host.absorbable = TRUE
-				if("Disallow absorption")
-					host.absorbable = FALSE
-
+			host.absorbable = !host.absorbable
 			if(host.client.prefs_vr)
 				host.client.prefs_vr.absorbable = host.absorbable
+			unsaved_changes = TRUE
 			return TRUE
 		if("toggle_leaveremains")
-			var/choice = alert(usr, "This button allows preds to have your remains be left in their belly after you are digested. This will only happen if pred sets their belly to do so. Remains consist of skeletal parts. Currently you are [host.digest_leave_remains? "" : "not"] leaving remains.", "", "Allow Post-digestion Remains", "Cancel", "Disallow Post-digestion Remains")
-			switch(choice)
-				if("Cancel")
-					return FALSE
-				if("Allow Post-digestion Remains")
-					host.digest_leave_remains = TRUE
-				if("Disallow Post-digestion Remains")
-					host.digest_leave_remains = FALSE
-
+			host.digest_leave_remains = !host.digest_leave_remains
 			if(host.client.prefs_vr)
 				host.client.prefs_vr.digest_leave_remains = host.digest_leave_remains
+			unsaved_changes = TRUE
 			return TRUE
 		if("toggle_mobvore")
-			var/choice = alert(usr, "This button is for those who don't like being eaten by mobs. Mobs are currently: [host.allowmobvore ? "Allowed to eat" : "Prevented from eating"] you.", "", "Allow Mob Predation", "Cancel", "Prevent Mob Predation")
-			switch(choice)
-				if("Cancel")
-					return FALSE
-				if("Allow Mob Predation")
-					host.allowmobvore = TRUE
-				if("Prevent Mob Predation")
-					host.allowmobvore = FALSE
-
+			host.allowmobvore = !host.allowmobvore
 			if(host.client.prefs_vr)
 				host.client.prefs_vr.allowmobvore = host.allowmobvore
+			unsaved_changes = TRUE
 			return TRUE
 		if("toggle_healbelly")
-			var/choice = alert(usr, "This button is for those who don't like healbelly used on them as a mechanic. It does not affect anything, but is displayed under mechanical prefs for ease of quick checks. You are currently: [host.allowmobvore ? "Okay" : "Not Okay"] with players using healbelly on you.", "", "Allow Healing Belly", "Cancel", "Disallow Healing Belly")
-			switch(choice)
-				if("Cancel")
-					return FALSE
-				if("Allow Healing Belly")
-					host.permit_healbelly = TRUE
-				if("Disallow Healing Belly")
-					host.permit_healbelly = FALSE
-
+			host.permit_healbelly = !host.permit_healbelly
 			if(host.client.prefs_vr)
 				host.client.prefs_vr.permit_healbelly = host.permit_healbelly
+			unsaved_changes = TRUE
 			return TRUE
 		if("toggle_noisy")
-			var/choice = alert(usr, "Toggle audible hunger noises. Currently: [host.noisy ? "Enabled" : "Disabled"]", "", "Enable audible hunger", "Cancel", "Disable audible hunger")
-			switch(choice)
-				if("Cancel")
-					return FALSE
-				if("Enable audible hunger")
-					host.noisy = TRUE
-				if("Disable audible hunger")
-					host.noisy = FALSE
+			host.noisy = !host.noisy
+			unsaved_changes = TRUE
 			return TRUE
 
 /datum/vore_look/proc/pick_from_inside(mob/user, params)
@@ -581,13 +526,13 @@
 				return FALSE
 
 			host.vore_selected.name = new_name
-			return TRUE
+			. = TRUE
 		if("b_wetness")
 			host.vore_selected.is_wet = !host.vore_selected.is_wet
-			return TRUE
+			. = TRUE
 		if("b_wetloop")
 			host.vore_selected.wet_loop = !host.vore_selected.wet_loop
-			return TRUE
+			. = TRUE
 		if("b_mode")
 			var/list/menu_list = host.vore_selected.digest_modes.Copy()
 			if(istype(usr,/mob/living/carbon/human))
@@ -606,7 +551,7 @@
 				return
 
 			host.vore_selected.digest_mode = new_mode
-			return TRUE
+			. = TRUE
 		if("b_addons")
 			var/list/menu_list = host.vore_selected.mode_flag_list.Copy()
 			var/toggle_addon = input("Toggle Addon") as null|anything in menu_list
@@ -614,7 +559,7 @@
 				return FALSE
 			host.vore_selected.mode_flags ^= host.vore_selected.mode_flag_list[toggle_addon]
 			host.vore_selected.items_preserved.Cut() //Re-evaltuate all items in belly on 
-			return TRUE
+			. = TRUE
 		if("b_item_mode")
 			var/list/menu_list = host.vore_selected.item_digest_modes.Copy()
 
@@ -624,17 +569,17 @@
 
 			host.vore_selected.item_digest_mode = new_mode
 			host.vore_selected.items_preserved.Cut() //Re-evaltuate all items in belly on belly-mode change
-			return TRUE
+			. = TRUE
 		if("b_contaminates")
 			host.vore_selected.contaminates = !host.vore_selected.contaminates
-			return TRUE
+			. = TRUE
 		if("b_contamination_flavor")
 			var/list/menu_list = contamination_flavors.Copy()
 			var/new_flavor = input("Choose Contamination Flavor Text Type (currently [host.vore_selected.contamination_flavor])") as null|anything in menu_list
 			if(!new_flavor)
 				return FALSE
 			host.vore_selected.contamination_flavor = new_flavor
-			return TRUE
+			. = TRUE
 		if("b_contamination_color")
 			var/list/menu_list = contamination_colors.Copy()
 			var/new_color = input("Choose Contamination Color (currently [host.vore_selected.contamination_color])") as null|anything in menu_list
@@ -642,7 +587,7 @@
 				return FALSE
 			host.vore_selected.contamination_color = new_color
 			host.vore_selected.items_preserved.Cut() //To re-contaminate for new color
-			return TRUE
+			. = TRUE
 		if("b_desc")		
 			var/new_desc = html_encode(input(usr,"Belly Description ([BELLIES_DESC_MAX] char limit):","New Description",host.vore_selected.desc) as message|null)
 
@@ -652,7 +597,7 @@
 					alert("Entered belly desc too long. [BELLIES_DESC_MAX] character limit.","Error")
 					return FALSE
 				host.vore_selected.desc = new_desc
-				return TRUE
+				. = TRUE
 		if("b_msgs")
 			alert(user,"Setting abusive or deceptive messages will result in a ban. Consider this your warning. Max 150 characters per message, max 10 messages per topic.","Really, don't.")
 			var/help = " Press enter twice to separate messages. '%pred' will be replaced with your name. '%prey' will be replaced with the prey's name. '%belly' will be replaced with your belly's name."
@@ -689,7 +634,7 @@
 						host.vore_selected.digest_messages_owner = initial(host.vore_selected.digest_messages_owner)
 						host.vore_selected.struggle_messages_outside = initial(host.vore_selected.struggle_messages_outside)
 						host.vore_selected.struggle_messages_inside = initial(host.vore_selected.struggle_messages_inside)
-			return TRUE
+			. = TRUE
 		if("b_verb")
 			var/new_verb = html_encode(input(usr,"New verb when eating (infinitive tense, e.g. nom or swallow):","New Verb") as text|null)
 
@@ -698,13 +643,13 @@
 				return FALSE
 
 			host.vore_selected.vore_verb = new_verb
-			return TRUE
+			. = TRUE
 		if("b_fancy_sound")
 			host.vore_selected.fancy_vore = !host.vore_selected.fancy_vore
 			host.vore_selected.vore_sound = "Gulp"
 			host.vore_selected.release_sound = "Splatter"
 			// defaults as to avoid potential bugs
-			return TRUE
+			. = TRUE
 		if("b_release")
 			var/choice
 			if(host.vore_selected.fancy_vore)
@@ -716,7 +661,7 @@
 				return FALSE
 
 			host.vore_selected.release_sound = choice
-			return TRUE
+			. = TRUE
 		if("b_releasesoundtest")
 			var/sound/releasetest
 			if(host.vore_selected.fancy_vore)
@@ -726,7 +671,7 @@
 
 			if(releasetest)
 				SEND_SOUND(user, releasetest)
-			return TRUE
+			. = TRUE
 		if("b_sound")
 			var/choice
 			if(host.vore_selected.fancy_vore)
@@ -738,7 +683,7 @@
 				return FALSE
 
 			host.vore_selected.vore_sound = choice
-			return TRUE
+			. = TRUE
 		if("b_soundtest")
 			var/sound/voretest
 			if(host.vore_selected.fancy_vore)
@@ -747,10 +692,10 @@
 				voretest = classic_vore_sounds[host.vore_selected.vore_sound]
 			if(voretest)
 				SEND_SOUND(user, voretest)
-			return TRUE
+			. = TRUE
 		if("b_tastes")
 			host.vore_selected.can_taste = !host.vore_selected.can_taste
-			return TRUE
+			. = TRUE
 		if("b_bulge_size")
 			var/new_bulge = input(user, "Choose the required size prey must be to show up on examine, ranging from 25% to 200% Set this to 0 for no text on examine.", "Set Belly Examine Size.") as num|null
 			if(new_bulge == null)
@@ -763,7 +708,7 @@
 				to_chat(user,"<span class='notice'>Invalid size.</span>")
 			else if(new_bulge)
 				host.vore_selected.bulge_size = (new_bulge/100)
-			return TRUE
+			. = TRUE
 		if("b_grow_shrink")
 			var/new_grow = input(user, "Choose the size that prey will be grown/shrunk to, ranging from 25% to 200%", "Set Growth Shrink Size.", host.vore_selected.shrink_grow_size) as num|null
 			if (new_grow == null)
@@ -773,28 +718,28 @@
 				to_chat(user,"<span class='notice'>Invalid size.</span>")
 			else if(new_grow)
 				host.vore_selected.shrink_grow_size = (new_grow*0.01)
-			return TRUE
+			. = TRUE
 		if("b_nutritionpercent")
 			var/new_nutrition = input(user, "Choose the nutrition gain percentage you will recieve per tick from prey. Ranges from 0.01 to 100.", "Set Nutrition Gain Percentage.", host.vore_selected.nutrition_percent) as num|null
 			if(new_nutrition == null)
 				return FALSE
 			var/new_new_nutrition = CLAMP(new_nutrition, 0.01, 100)
 			host.vore_selected.nutrition_percent = new_new_nutrition
-			return TRUE
+			. = TRUE
 		if("b_burn_dmg")
 			var/new_damage = input(user, "Choose the amount of burn damage prey will take per tick. Ranges from 0 to 6.", "Set Belly Burn Damage.", host.vore_selected.digest_burn) as num|null
 			if(new_damage == null)
 				return FALSE
 			var/new_new_damage = CLAMP(new_damage, 0, 6)
 			host.vore_selected.digest_burn = new_new_damage
-			return TRUE
+			. = TRUE
 		if("b_brute_dmg")
 			var/new_damage = input(user, "Choose the amount of brute damage prey will take per tick. Ranges from 0 to 6", "Set Belly Brute Damage.", host.vore_selected.digest_brute) as num|null
 			if(new_damage == null)
 				return FALSE
 			var/new_new_damage = CLAMP(new_damage, 0, 6)
 			host.vore_selected.digest_brute = new_new_damage
-			return TRUE
+			. = TRUE
 		if("b_escapable")
 			if(host.vore_selected.escapable == 0) //Possibly escapable and special interactions.
 				host.vore_selected.escapable = 1
@@ -805,22 +750,22 @@
 			else
 				alert("Something went wrong. Your stomach will now not have special interactions. Press the button enable them again and tell a dev.","Error") //If they somehow have a varable that's not 0 or 1
 				host.vore_selected.escapable = 0
-			return TRUE
+			. = TRUE
 		if("b_escapechance")
 			var/escape_chance_input = input(user, "Set prey escape chance on resist (as %)", "Prey Escape Chance") as num|null
 			if(!isnull(escape_chance_input)) //These have to be 'null' because both cancel and 0 are valid, separate options
 				host.vore_selected.escapechance = sanitize_integer(escape_chance_input, 0, 100, initial(host.vore_selected.escapechance))
-			return TRUE
+			. = TRUE
 		if("b_escapetime")
 			var/escape_time_input = input(user, "Set number of seconds for prey to escape on resist (1-60)", "Prey Escape Time") as num|null
 			if(!isnull(escape_time_input))
 				host.vore_selected.escapetime = sanitize_integer(escape_time_input*10, 10, 600, initial(host.vore_selected.escapetime))
-			return TRUE
+			. = TRUE
 		if("b_transferchance")
 			var/transfer_chance_input = input(user, "Set belly transfer chance on resist (as %). You must also set the location for this to have any effect.", "Prey Escape Time") as num|null
 			if(!isnull(transfer_chance_input))
 				host.vore_selected.transferchance = sanitize_integer(transfer_chance_input, 0, 100, initial(host.vore_selected.transferchance))
-			return TRUE
+			. = TRUE
 		if("b_transferlocation")
 			var/obj/belly/choice = input("Where do you want your [lowertext(host.vore_selected.name)] to lead if prey resists?","Select Belly") as null|anything in (host.vore_organs + "None - Remove" - host.vore_selected)
 
@@ -830,17 +775,17 @@
 				host.vore_selected.transferlocation = null
 			else
 				host.vore_selected.transferlocation = choice.name
-			return TRUE
+			. = TRUE
 		if("b_absorbchance")
 			var/absorb_chance_input = input(user, "Set belly absorb mode chance on resist (as %)", "Prey Absorb Chance") as num|null
 			if(!isnull(absorb_chance_input))
 				host.vore_selected.absorbchance = sanitize_integer(absorb_chance_input, 0, 100, initial(host.vore_selected.absorbchance))
-			return TRUE
+			. = TRUE
 		if("b_digestchance")
 			var/digest_chance_input = input(user, "Set belly digest mode chance on resist (as %)", "Prey Digest Chance") as num|null
 			if(!isnull(digest_chance_input))
 				host.vore_selected.digestchance = sanitize_integer(digest_chance_input, 0, 100, initial(host.vore_selected.digestchance))
-			return TRUE
+			. = TRUE
 		if("b_del")
 			var/alert = alert("Are you sure you want to delete your [lowertext(host.vore_selected.name)]?","Confirmation","Delete","Cancel")
 			if(!(alert == "Delete"))
@@ -869,5 +814,7 @@
 
 			qdel(host.vore_selected)
 			host.vore_selected = host.vore_organs[1]
-			return TRUE
-	return FALSE
+			. = TRUE
+	
+	if(.)
+		unsaved_changes = TRUE
