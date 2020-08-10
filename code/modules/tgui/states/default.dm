@@ -36,13 +36,29 @@ GLOBAL_DATUM_INIT(tgui_default_state, /datum/tgui_state/default, new)
 	return STATUS_DISABLED // Otherwise they can keep the UI open.
 
 /mob/living/silicon/ai/default_can_use_tgui_topic(src_object)
-	. = shared_tgui_interaction(src_object)
-	if(. < STATUS_INTERACTIVE)
+	. = shared_tgui_interaction()
+	if(. != STATUS_INTERACTIVE)
 		return
 
-	// The AI can interact with anything it can see nearby, or with cameras while wireless control is enabled.
-	if(!control_disabled && can_see(src_object))
+	// Prevents the AI from using Topic on admin levels (by for example viewing through the court/thunderdome cameras)
+	// unless it's on the same level as the object it's interacting with.
+	var/turf/T = get_turf(src_object)
+	if(!T || !(z == T.z || (T.z in using_map.player_levels)))
+		return STATUS_CLOSE
+
+	// If an object is in view then we can interact with it
+	if(src_object in view(client.view, src))
 		return STATUS_INTERACTIVE
+
+	// If we're installed in a chassi, rather than transfered to an inteliCard or other container, then check if we have camera view
+	if(is_in_chassis())
+		//stop AIs from leaving windows open and using then after they lose vision
+		if(cameranet && !cameranet.checkTurfVis(get_turf(src_object)))
+			return STATUS_CLOSE
+		return STATUS_INTERACTIVE
+	else if(get_dist(src_object, src) <= client.view)	// View does not return what one would expect while installed in an inteliCard
+		return STATUS_INTERACTIVE
+
 	return STATUS_CLOSE
 
 /mob/living/simple_animal/default_can_use_tgui_topic(src_object)

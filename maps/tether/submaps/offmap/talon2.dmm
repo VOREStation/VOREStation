@@ -3856,6 +3856,10 @@
 	},
 /turf/simulated/floor/hull/airless,
 /area/talon/maintenance/decktwo_solars)
+"Os" = (
+/obj/machinery/cryopod/robot/talon,
+/turf/simulated/floor/tiled/eris/white/gray_platform,
+/area/talon/decktwo/central_hallway)
 "Ou" = (
 /obj/structure/cable/heavyduty{
 	dir = 2;
@@ -15544,7 +15548,7 @@ at
 at
 at
 cc
-jy
+Os
 jy
 hu
 yd

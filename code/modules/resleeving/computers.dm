@@ -97,6 +97,7 @@
 		active_br = new /datum/transhuman/body_record(brDisk.stored) // Loads a COPY!
 		to_chat(user, "<span class='notice'>\The [src] loads the body record from \the [W] before ejecting it.</span>")
 		attack_hand(user)
+		view_b_rec("view_b_rec", list("ref" = "\ref[active_br]"))
 	else
 		..()
 	return
@@ -195,7 +196,7 @@
 
 /obj/machinery/computer/transhuman/resleeving/tgui_act(action, params)
 	if(..())
-		return
+		return TRUE
 
 	. = TRUE
 	switch(tgui_modal_act(src, action, params))
@@ -216,42 +217,7 @@
 
 	switch(action)
 		if("view_b_rec")
-			var/ref = params["ref"]
-			if(!length(ref))
-				return
-			active_br = locate(ref)
-			if(istype(active_br))
-				if(isnull(active_br.ckey))
-					qdel(active_br)
-					set_temp("Error: Record corrupt.", "danger")
-				else
-					var/can_grow_active = 1
-					if(!synthetic_capable && active_br.synthetic) //Disqualified due to being synthetic in an organic only.
-						can_grow_active = 0
-						set_temp("Error: Cannot grow [active_br.mydna.name] due to lack of synthfabs.", "danger")
-					else if(!organic_capable && !active_br.synthetic) //Disqualified for the opposite.
-						can_grow_active = 0
-						set_temp("Error: Cannot grow [active_br.mydna.name] due to lack of cloners.", "danger")
-					else if(!synthetic_capable && !organic_capable) //What have you done??
-						can_grow_active = 0
-						set_temp("Error: Cannot grow [active_br.mydna.name] due to lack of synthfabs and cloners.", "danger")
-					else if(active_br.toocomplex)
-						can_grow_active = 0
-						set_temp("Error: Cannot grow [active_br.mydna.name] due to species complexity.", "danger")
-					var/list/payload = list(
-						activerecord = "\ref[active_br]",
-						realname = sanitize(active_br.mydna.name),
-						species = active_br.speciesname ? active_br.speciesname : active_br.mydna.dna.species,
-						sex = active_br.bodygender,
-						mind_compat = active_br.locked ? "Low" : "High",
-						synthetic = active_br.synthetic,
-						oocnotes = active_br.body_oocnotes ? active_br.body_oocnotes : "None",
-						can_grow_active = can_grow_active,
-					)
-					tgui_modal_message(src, action, "", null, payload)
-			else
-				active_br = null
-				set_temp("Error: Record missing.", "danger")
+			view_b_rec(action, params)
 		if("view_m_rec")
 			var/ref = params["ref"]
 			if(!length(ref))
@@ -266,15 +232,12 @@
 					if(!LAZYLEN(sleevers))
 						can_sleeve_active = 0
 						set_temp("Error: Cannot sleeve due to no sleevers.", "danger")
-						return
 					if(!selected_sleever)
 						can_sleeve_active = 0
 						set_temp("Error: Cannot sleeve due to no selected sleever.", "danger")
-						return
 					if(selected_sleever && !selected_sleever.occupant)
 						can_sleeve_active = 0
 						set_temp("Error: Cannot sleeve due to lack of sleever occupant.", "danger")
-						return
 					var/list/payload = list(
 						activerecord = "\ref[active_mr]",
 						realname = sanitize(active_mr.mindname),
@@ -519,6 +482,40 @@
 	temp = list(text = text, style = style)
 	if(update_now)
 		SStgui.update_uis(src)
+
+/obj/machinery/computer/transhuman/resleeving/proc/view_b_rec(action, params)
+	var/ref = params["ref"]
+	if(!length(ref))
+		return
+	active_br = locate(ref)
+	if(istype(active_br))
+		var/can_grow_active = 1
+		if(!synthetic_capable && active_br.synthetic) //Disqualified due to being synthetic in an organic only.
+			can_grow_active = 0
+			set_temp("Error: Cannot grow [active_br.mydna.name] due to lack of synthfabs.", "danger")
+		else if(!organic_capable && !active_br.synthetic) //Disqualified for the opposite.
+			can_grow_active = 0
+			set_temp("Error: Cannot grow [active_br.mydna.name] due to lack of cloners.", "danger")
+		else if(!synthetic_capable && !organic_capable) //What have you done??
+			can_grow_active = 0
+			set_temp("Error: Cannot grow [active_br.mydna.name] due to lack of synthfabs and cloners.", "danger")
+		else if(active_br.toocomplex)
+			can_grow_active = 0
+			set_temp("Error: Cannot grow [active_br.mydna.name] due to species complexity.", "danger")
+		var/list/payload = list(
+			activerecord = "\ref[active_br]",
+			realname = sanitize(active_br.mydna.name),
+			species = active_br.speciesname ? active_br.speciesname : active_br.mydna.dna.species,
+			sex = active_br.bodygender,
+			mind_compat = active_br.locked ? "Low" : "High",
+			synthetic = active_br.synthetic,
+			oocnotes = active_br.body_oocnotes ? active_br.body_oocnotes : "None",
+			can_grow_active = can_grow_active,
+		)
+		tgui_modal_message(src, action, "", null, payload)
+	else
+		active_br = null
+		set_temp("Error: Record missing.", "danger")
 
 #undef MENU_MAIN
 #undef MENU_BODY

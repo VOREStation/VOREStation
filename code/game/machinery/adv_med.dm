@@ -216,7 +216,11 @@
 		var/reagentData[0]
 		if(H.reagents.reagent_list.len >= 1)
 			for(var/datum/reagent/R in H.reagents.reagent_list)
-				reagentData[++reagentData.len] = list("name" = R.name, "amount" = R.volume)
+				reagentData[++reagentData.len] = list(
+					"name" = R.name, 
+					"amount" = R.volume,
+					"overdose" = (R.overdose && R.volume > R.overdose) ? TRUE : FALSE,
+				)
 		else
 			reagentData = null
 
@@ -225,7 +229,11 @@
 		var/ingestedData[0]
 		if(H.ingested.reagent_list.len >= 1)
 			for(var/datum/reagent/R in H.ingested.reagent_list)
-				ingestedData[++ingestedData.len] = list("name" = R.name, "amount" = R.volume)
+				ingestedData[++ingestedData.len] = list(
+					"name" = R.name,
+					"amount" = R.volume,
+					"overdose" = (R.overdose && R.volume > R.overdose) ? TRUE : FALSE,
+				)
 		else
 			ingestedData = null
 
@@ -315,7 +323,7 @@
 
 /obj/machinery/bodyscanner/tgui_act(action, params)
 	if(..())
-		return
+		return TRUE
 
 	. = TRUE
 	switch(action)

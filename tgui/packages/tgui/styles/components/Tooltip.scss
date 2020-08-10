@@ -125,3 +125,15 @@ $border-radius: base.$border-radius !default;
 .Tooltip--right:hover::after {
   transform: translateX(0.5em) translateY(-50%);
 }
+
+@for $i from 1 through 8 {
+  .Tooltip--scale--#{$i}::after {
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%) scale(1 / $i);
+  }
+
+  .Tooltip--scale--#{$i}:hover::after {
+    transform: translateX(-50%) scale(1 / $i);
+  }
+}

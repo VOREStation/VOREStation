@@ -2,6 +2,8 @@
 	var/missile_speed = 2
 	var/missile_range = 30
 
+	step_delay = 2
+
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/Fire(atom/movable/AM, atom/target, turf/aimloc)
 	AM.throw_at(target,missile_range, missile_speed, chassis)
 
@@ -18,6 +20,8 @@
 	missile_speed = 1
 	missile_range = 15
 	required_type = /obj/mecha  //Why restrict it to just mining or combat mechs?
+
+	step_delay = 0
 
 	equip_type = EQUIP_UTILITY
 

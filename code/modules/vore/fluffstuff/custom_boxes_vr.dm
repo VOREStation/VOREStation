@@ -93,7 +93,6 @@
 	desc = "A small box containing Yonra's personal effects"
 	has_items = list(
 		/obj/item/weapon/melee/fluff/holochain/mass,
-		/obj/item/weapon/implanter/reagent_generator/yonra,
 		/obj/item/clothing/accessory/medal/silver/unity)
 
 //ivymoomoo:Ivy Baladeva

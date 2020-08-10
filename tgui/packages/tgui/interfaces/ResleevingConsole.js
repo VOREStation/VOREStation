@@ -24,7 +24,13 @@ const viewMindRecordModalBodyOverride = (modal, context) => {
       level={2}
       m="-1rem"
       pb="1rem"
-      title={"Mind Record (" + realname + ")"}>
+      title={"Mind Record (" + realname + ")"}
+      buttons={
+        <Button
+          icon="times"
+          color="red"
+          onClick={() => act('modal_close')} />
+      }>
       <LabeledList>
         <LabeledList.Item label="Name">
           {realname}
@@ -52,7 +58,9 @@ const viewMindRecordModalBodyOverride = (modal, context) => {
           />
         </LabeledList.Item>
         <LabeledList.Item label="OOC Notes">
-          {oocnotes}
+          <Section style={{ 'word-break': 'break-all', 'height': '100px' }} scrollable>
+            {oocnotes}
+          </Section>
         </LabeledList.Item>
       </LabeledList>
     </Section>
@@ -76,7 +84,13 @@ const viewBodyRecordModalBodyOverride = (modal, context) => {
       level={2}
       m="-1rem"
       pb="1rem"
-      title={"Body Record (" + realname + ")"}>
+      title={"Body Record (" + realname + ")"}
+      buttons={
+        <Button
+          icon="times"
+          color="red"
+          onClick={() => act('modal_close')} />
+      }>
       <LabeledList>
         <LabeledList.Item label="Name">
           {realname}
@@ -94,7 +108,9 @@ const viewBodyRecordModalBodyOverride = (modal, context) => {
           {synthetic ? "Yes" : "No"}
         </LabeledList.Item>
         <LabeledList.Item label="OOC Notes">
-          {oocnotes}
+          <Section style={{ 'word-break': 'break-all', 'height': '100px' }} scrollable>
+            {oocnotes}
+          </Section>
         </LabeledList.Item>
         <LabeledList.Item label="Actions">
           <Button
@@ -371,29 +387,6 @@ const ResleevingConsolePodSleevers = (props, context) => {
 
   if (sleevers && sleevers.length) {
     return sleevers.map((pod, i) => {
-      let podAction;
-      if (!pod.occupied) {
-        podAction = (
-          <Box
-            mt={(spods && spods.length) ? "2rem" : "0.5rem"}
-            color="bad">
-            Sleever Empty.
-          </Box>
-        );
-      } else {
-        podAction = (
-          <Button
-            selected={selected_sleever === pod.sleever}
-            icon={selected_sleever === pod.sleever && "check"}
-            content="Select"
-            mt={(spods && spods.length) ? "3rem" : "1.5rem"}
-            onClick={() => act('selectsleever', {
-              ref: pod.sleever,
-            })}
-          />
-        );
-      }
-
       return (
         <Box
           key={i}
@@ -408,10 +401,18 @@ const ResleevingConsolePodSleevers = (props, context) => {
               "-ms-interpolation-mode": "nearest-neighbor",
             }}
           />
-          <Box color="label">
+          <Box color={pod.occupied ? "label" : "bad"}>
             {pod.name}
           </Box>
-          {podAction}
+          <Button
+            selected={selected_sleever === pod.sleever}
+            icon={selected_sleever === pod.sleever && "check"}
+            content="Select"
+            mt={(spods && spods.length) ? "3rem" : "1.5rem"}
+            onClick={() => act('selectsleever', {
+              ref: pod.sleever,
+            })}
+          />
         </Box>
       );
     });
@@ -519,7 +520,7 @@ const ResleevingConsoleRecords = (props, context) => {
   } = props;
   if (!records.length) {
     return (
-      <Flex height="100%">
+      <Flex height="100%" mt="0.5rem">
         <Flex.Item
           grow="1"
           align="center"

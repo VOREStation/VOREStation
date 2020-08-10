@@ -96,7 +96,7 @@
 	if(world.time >= (lastareachange + 30 SECONDS)) // Every 30 seconds, we're going to run a 35% chance to play ambience.
 		var/area/A = get_area(src)
 		if(A)
-			A.play_ambience(src)
+			A.play_ambience(src, initial = FALSE)
 
 /mob/living/proc/update_pulling()
 	if(pulling)

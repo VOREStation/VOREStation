@@ -325,7 +325,7 @@
 
 	for(var/mob/living/M in mobs_in_area(linkedholodeck))
 		if(M.mind)
-			linkedholodeck.play_ambience(M)
+			linkedholodeck.play_ambience(M, initial = TRUE)
 
 	linkedholodeck.sound_env = A.sound_env
 

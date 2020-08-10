@@ -77,7 +77,7 @@ input. The input's `action` and `params` are passed to the proc.
 ```dm
 /obj/machinery/my_machine/tgui_act(action, params)
   if(..())
-    return
+    return TRUE
   if(action == "change_color")
     var/new_color = params["color"]
     if(!(color in allowed_coors))
@@ -305,7 +305,7 @@ upon code review):
 
 /obj/copypasta/tgui_act(action, params)
   if(..())
-    return
+    return TRUE
   switch(action)
     if("copypasta")
       var/newvar = params["var"]

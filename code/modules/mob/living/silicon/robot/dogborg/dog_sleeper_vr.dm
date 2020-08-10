@@ -30,6 +30,7 @@
 	var/synced = FALSE
 	var/startdrain = 500
 	var/max_item_count = 1
+	var/upgraded_capacity = FALSE
 	var/gulpsound = 'sound/vore/gulp.ogg'
 	var/datum/matter_synth/metal = null
 	var/datum/matter_synth/glass = null

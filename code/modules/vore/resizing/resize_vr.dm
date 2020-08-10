@@ -251,7 +251,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 	now_pushing = 0
 	forceMove(tmob.loc)
 	if(a_intent == I_GRAB || a_intent == I_DISARM)
-		if(tmob.a_intent = I_HELP)
+		if(tmob.a_intent == I_HELP)
 			tmob.resting = 1
 		else
 			tmob.Weaken(1)

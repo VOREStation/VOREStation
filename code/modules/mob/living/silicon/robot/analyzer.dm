@@ -34,6 +34,8 @@
 		scan_type = "robot"
 	else if(istype(M, /mob/living/carbon/human))
 		scan_type = "prosthetics"
+	else if(istype(M, /obj/mecha))
+		scan_type = "mecha"
 	else
 		to_chat(user, "<font color='red'>You can't analyze non-robotic things!</font>")
 		return
@@ -94,6 +96,38 @@
 					to_chat(user, "[O.name]: <font color='red'>[O.damage]</font>")
 			if(!organ_found)
 				to_chat(user, "No prosthetics located.")
+
+		if("mecha")
+
+			var/obj/mecha/Mecha = M
+
+			var/integrity = Mecha.health/initial(Mecha.health)*100
+			var/cell_charge = Mecha.get_charge()
+			var/tank_pressure = Mecha.internal_tank ? round(Mecha.internal_tank.return_pressure(),0.01) : "None"
+			var/tank_temperature = Mecha.internal_tank ? Mecha.internal_tank.return_temperature() : "Unknown"
+			var/cabin_pressure = round(Mecha.return_pressure(),0.01)
+
+			var/output = {"<span class='notice'>Analyzing Results for \the [Mecha]:</span><br>
+				<b>Chassis Integrity: </b> [integrity]%<br>
+				<b>Powercell charge: </b>[isnull(cell_charge)?"No powercell installed":"[Mecha.cell.percent()]%"]<br>
+				<b>Air source: </b>[Mecha.use_internal_tank?"Internal Airtank":"Environment"]<br>
+				<b>Airtank pressure: </b>[tank_pressure]kPa<br>
+				<b>Airtank temperature: </b>[tank_temperature]K|[tank_temperature - T0C]&deg;C<br>
+				<b>Cabin pressure: </b>[cabin_pressure>WARNING_HIGH_PRESSURE ? "<font color='red'>[cabin_pressure]</font>": cabin_pressure]kPa<br>
+				<b>Cabin temperature: </b> [Mecha.return_temperature()]K|[Mecha.return_temperature() - T0C]&deg;C<br>
+				<b>DNA Lock: </b> [Mecha.dna?"Mecha.dna":"Not Found"]<br>
+				"}
+
+			to_chat(user, output)
+			to_chat(user, "<hr>")
+			to_chat(user, "<span class='notice'>Internal Diagnostics:</span>")
+			for(var/slot in Mecha.internal_components)
+				var/obj/item/mecha_parts/component/MC = Mecha.internal_components[slot]
+				to_chat(user, "[MC?"[slot]: [MC] <span class='notice'>[round((MC.integrity / MC.max_integrity) * 100, 0.1)]%</span> integrity. [MC.get_efficiency() * 100] Operational capacity.":"<span class='warning'>[slot]: Component Not Found</span>"]")
+
+			to_chat(user, "<hr>")
+			to_chat(user, "<span class='notice'>General Statistics:</span>")
+			to_chat(user, "<span class='notice'>Movement Weight: [Mecha.get_step_delay()]</span><br>")
 
 	src.add_fingerprint(user)
 	return

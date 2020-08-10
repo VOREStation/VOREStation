@@ -379,7 +379,7 @@
 
 /obj/machinery/chem_master/tgui_act(action, params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
-		return
+		return TRUE
 
 	if(tgui_act_modal(action, params, ui, state))
 		return TRUE
@@ -666,6 +666,15 @@
 	// if there is no power or it's broken, the procs will fail but the buttons will still show
 	if(length(holdingitems))
 		options["grind"] = radial_grind
+
+	if (usr.stat != 0)
+		return
+	if (!beaker)
+		return
+	beaker.loc = src.loc
+	beaker = null
+	visible_message("<span class='notice'>\The [usr] remove the container from \the [src].</span>")
+	update_icon()
 
 	var/choice
 

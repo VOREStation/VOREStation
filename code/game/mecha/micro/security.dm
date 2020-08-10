@@ -30,6 +30,7 @@
 	max_equip = 3
 	max_micro_utility_equip = 0
 	max_micro_weapon_equip = 3
+	damage_minimum = 5		//A teeny bit of armor
 
 /obj/effect/decal/mecha_wreckage/micro/sec/polecat
 	name = "Polecat wreckage"
