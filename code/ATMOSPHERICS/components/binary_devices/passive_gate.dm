@@ -217,7 +217,7 @@
 
 /obj/machinery/atmospherics/binary/passive_gate/tgui_interact(mob/user, datum/tgui/ui)
 	if(stat & (BROKEN|NOPOWER))
-		return
+		return FALSE
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "PressureRegulator", name)
