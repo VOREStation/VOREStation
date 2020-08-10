@@ -3,7 +3,6 @@
 
 /mob/living
 	var/ooc_notes = null
-	var/obj/structure/mob_spawner/source_spawner = null
 	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER
 	var/hunger_rate = DEFAULT_HUNGER_FACTOR
 
