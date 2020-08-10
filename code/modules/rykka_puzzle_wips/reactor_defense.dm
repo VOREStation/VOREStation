@@ -10,11 +10,12 @@
 
 GLOBAL_LIST_EMPTY(reactor_mob_spawners) // Define our global list here. This is used for the spawners.
 
-// List of tabs used for NanoUI Displays and Reactor Stage Processing. If you're not sure how defines work, refer to the .dm reference docs.
+// List of tabs used for TGUI Displays and Reactor Stage Processing. If you're not sure how defines work, refer to the .dm reference docs.
 #define IDLE 1
 #define WARMUP 2
 #define ENGAGED 3
 #define FINISHED 4
+#define VERIFYING 5
 
 /obj/structure/damaged_reactor // Damaged Reactor object used as the "thing" we interact with
 	name = "damaged reactor"
@@ -32,6 +33,7 @@ GLOBAL_LIST_EMPTY(reactor_mob_spawners) // Define our global list here. This is 
 	var/list/spawners = list()						// The list of wave spawners we have (Defined at init.)
 	var/reactor_id = null							// Our ID, used to link the reactor + the spawners specific to it, as well as the control console. This MUST be a WORD, not a NUMBER.
 	var/state = IDLE								// What state are we in currently? (This is used for tracking what step we're on.)
+	var/verification_successful = FALSE				// This is false by default, do NOT change it to true manually. Procs will handle this.
 	
 	// Customization Options. Use these to customize how you want the mode to play out.
 	var/health = 2000								// The reactor's health value (Set this to be what maxhealth is, the code will handle the rest).
@@ -47,11 +49,16 @@ GLOBAL_LIST_EMPTY(reactor_mob_spawners) // Define our global list here. This is 
 	var/wave_complete = null						// When is the wave complete? This is set in start_wave()
 	// var/area_defense = FALSE						// Are we using area defense as well as object defense? (IE, you must stay inside /area/ during the waves.) Currently nonfunctional, will re-evaluate after core functions complete.
 	var/verification_required = TRUE				// Are users required to verify by hitting a button or typing in a phrase? (This is an AFK/cheese anti-measure, DO NOT DISABLE without a counter in place.)
+	var/verification_time = 90 SECONDS				// How long are we allowing users to have during the verification step?
+	var/verification_timeout = null					// When does verification timeout/fail? This is set in start_verification()
+	var/key_difficulty = 2							// How hard of a word/phrase do we require users to type in. Ranges from 1 (very easy) to 5 (very hard).
+	var/warmup_dangerous = FALSE					// Are our warmups dangerous (IE, do we spawn mobs during warmup phases?) FALSE by default.
 	var/threshold_enabled = FALSE					// Is the requirement to keep the reactor above x hp enabled?
-	var/damage_threshold = 0						// This is configurable, allowing you to choose if you want players to keep the reactor above x amount of HP.
+	var/damage_threshold = 0						// This is configurable, allowing you to choose if you want players to keep the reactor above x amount of HP. Formula checks health < damage_threshold, so 1500 threshold means once reactor hits 1499 HP you fail.
+	var/continuous_defense = FALSE					// Are we immediately going to start the next warmup/wave without giving explorers a break? If FALSE, this will kick the reactor back to IDLE and require explorers to hit the button to start the next wave.
 	
 	
-	// Nano UI Variables, don't fuck with these unless you know what you're changing.
+	// TGUI Variables, don't fuck with these unless you know what you're changing.
 	// This is the current tab we're on, used for the UI/Menu.
 	var/current_tab = IDLE
 	
@@ -72,10 +79,12 @@ GLOBAL_LIST_EMPTY(reactor_mob_spawners) // Define our global list here. This is 
 
 	
 	// Settings to help mappers/coders have their mobs do what they want in this case, and control the # of mobs.
-	var/faction					// To prevent infighting if it spawns various mobs, set a faction
-	var/atmos_comp = FALSE		// TRUE will set all their survivability to be within 20% of the current air
-	var/total_spawns = -1 		// Total mob spawns, over all time, -1 for no limit
-	var/simultaneous_spawns = 6 // Max spawned mobs active (from one landmark) at one time
+	var/faction						// To prevent infighting if it spawns various mobs, set a faction
+	var/atmos_comp = FALSE			// TRUE will set all their survivability to be within 20% of the current air
+	var/total_spawns = -1 			// Total mob spawns, over all time, -1 for no limit
+	var/simultaneous_spawns = 6 	// Max spawned mobs active (from one landmark) at one time
+	var/delayed_spawns = FALSE		// Are we delaying our spawns?
+	var/spawn_delay = 0.5 SECONDS 	// How long is our delay?
 	
 	// Internal Use Only. (For those looking as to what this does, this is a typecast. We use this to handle setting up our mobs. If you're not sure what a typecast is, look it up or ask for help in #dev)
 	var/mob/living/simple_mob/my_mob
@@ -125,16 +134,21 @@ GLOBAL_LIST_EMPTY(reactor_mob_spawners) // Define our global list here. This is 
 				end_wave()
 				return
 			defense_mode()
+			
+		if(VERIFYING) // All of the verification stuff is handled by procs. Go down to PROCS section to modify this behavior.
+			if(!verification_timeout)
+				start_verification()
+				return // We return so that the second if isn't checked immediately before verification_timeout is set.
+			if(world.time >= verification_timeout && !(verification_successful)) // Did we run out of time?
+				rollback_wave()
+				return
+			else if(verification_successful)
+				complete_verification()
+				return
+			verifying()
 		
 		if(FINISHED)
 			STOP_PROCESSING(SSobj, src)
-		
-	/* Commenting out the my_mob stuff until I get a better handle on if it's needed or not.
-	if(my_mob && my_mob.stat != DEAD) // Is our spawned mob alive still?
-		return // No need to spawn
-	*/
-			
-	
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /*													End Object Definition																		*/
@@ -223,12 +237,16 @@ GLOBAL_LIST_EMPTY(reactor_mob_spawners) // Define our global list here. This is 
 	data["currentTab"] = current_tab
 	data["warmup_time_left"] = (warmup_complete - world.time) / 10 // We want to take the TOTAL time and subtract the CURRENT time, then divide it, to get our fancy UI percentage/time.
 	data["wave_time_left"] = (wave_complete - world.time) / 10 // Same as above method, but for wave time.
+	data["verification_time_left"] = (verification_timeout - world.time) / 10 // Same as above 2, for our verification timeout parameter.
 	var/warmup_min = (warmup_complete - warmup_time)
 	var/warmup_max = warmup_complete
 	data["warmupcompletePercent"] = ((world.time - warmup_min) / (warmup_max - warmup_min))
 	var/wave_min = (wave_complete - wave_length)
 	var/wave_max = wave_complete
 	data["wavecompletePercent"] = ((world.time - wave_min) / (wave_max - wave_min))
+	var/timeout_min = (verification_timeout - verification_time)
+	var/timeout_max = verification_timeout
+	data["verificationcompletePercent"] = ((world.time - timeout_min) / (timeout_max - timeout_min))
 	return data
 
 /obj/structure/damaged_reactor/tgui_act(action) // Someone hit a button or wants to do things~
@@ -244,7 +262,11 @@ GLOBAL_LIST_EMPTY(reactor_mob_spawners) // Define our global list here. This is 
 			current_tab = WARMUP
 			state = WARMUP
 			to_world("<span class='danger'><big>DEBUG: WARMUP STARTED.</big></span>")
-		
+	if(action == "submit_verification" && state == VERIFYING)
+		if(string_verification_wants == params["string"])
+			verification_successful = TRUE
+		else
+			
 
 //////////////////////////////////////////////////////////////////
 /*		=====		TGUI Menu Stuff Ends Here		=====		*/
@@ -389,6 +411,7 @@ GLOBAL_LIST_EMPTY(reactor_mob_spawners) // Define our global list here. This is 
  *	//		Handle all code pertaining to reactor procs here.	//
  *////////////////////////////////////////////////////////////////
 
+// Primary System Loop Procs Here:
 /obj/structure/damaged_reactor/proc/failure_state() // Trigger this and you "fail" the current wave. If you want special stuff done here that ONLY affects failing a wave, do it here, NOT in end_wave().
 	health = maxhealth // Reset our health to maximum
 	active_defense = FALSE // We're no longer actively defending, because we failed. Make the reactor invulnerable again.
@@ -402,17 +425,22 @@ GLOBAL_LIST_EMPTY(reactor_mob_spawners) // Define our global list here. This is 
 	
 /obj/structure/damaged_reactor/proc/success_state() // Did we win? Is it finally over?
 	active_defense = FALSE // We're no longer actively defending, because we won. Make the reactor invulnerable again.
+	health = maxhealth // Reset our health to maximum!
 	state = FINISHED // We're done, we won, let's set our state to Finished and lock the reactor until it's reset!
 	
 	reactor_finished() // Call this, does nothing for now but subtypes can use it for specialty things. - Such as opening doors, or enabling power.
 	
 /obj/structure/damaged_reactor/proc/reactor_finished() // Holder Proc, subtypes modify this to add special behavior onto success_state (such as opening doors once you 'end' the mode.)
 
-/obj/structure/damaged_reactor/proc/defense_mode() // Do these things EVERY tick of SSProcess - if you need it to run once, put it in an if statement.
+/obj/structure/damaged_reactor/proc/defense_mode() // Do these things EVERY tick of SSProcess - if you need it to run once, put it in an if statement, or put it in the start/complete procs.
 	if(active_defense == FALSE) // Just to keep from constantly forcing defense active.
 		active_defense = TRUE // We're actively defending, enable this so the reactor takes damage.
 		
 	check_clearance()
+	
+	if(threshold_enabled) // We check for our damage threshold handling.
+		if(health < damage_threshold)
+			failure_state()
 	
 /obj/structure/damaged_reactor/proc/start_wave()
 	wave_complete = world.time + wave_length
@@ -421,28 +449,54 @@ GLOBAL_LIST_EMPTY(reactor_mob_spawners) // Define our global list here. This is 
 		
 	active_defense = TRUE // We set this here just in case to allow the reactor to start taking damage.
 	
-	setup_spawner(current_wave) // We're starting a new wave, so we need to setup the spawners. We feed current_wave in as the argument because it's converted to a #, and setup_spawner will read it as setup_spawner(1) and use the list from 1, then 2, etc.
+	setup_spawner(current_wave, 6) 	// We're starting a new wave, so we need to setup the spawners. We feed current_wave in as the argument because it's converted to a #, and setup_spawner will read it as setup_spawner(1) and use the list from 1, then 2, etc. 
+									// We use 6 for simultaneous spawns to counter if warmup_dangerous is enabled, because our spawners will have 4 set by the call from that proc.
 	
 	to_world("Wave started!")
 	
-	set_lights(#913a08) // Set our mood lighting!
+	set_lights("#913a08") // Set our mood lighting!
 	
 	start_spawning() // Send in the troops!
 	
 /obj/structure/damaged_reactor/proc/end_wave()
-	if(current_wave >= waves.len)
-		success_state()
-	else
-		state = IDLE
+	if(verification_required && state == ENGAGED) // If we're required to verify, and we just concluded a wave (to prevent failure_state sending us here somehow), progress to verification and let that handle ending the gamemode if it's over x amount.
+		current_tab = VERIFYING
+		state = VERIFYING
 		active_defense = FALSE
-		
+	else if(state == ENGAGED) // Else, if we don't require verifying, and just concluded a wave, then we can end the mode if we're over our waves list, or reset the reactor back to idle before the next wave if continous_defense is false.
+		if(current_wave >= waves.len) // If we're over or at our list length (IE we completed 2 waves and our list has 2 waves, we've won.)
+			success_state()
+		else if(continuous_defense) // Are we continuing waves without giving explorers a break?
+			if(warmup) // Go to warmup phase.
+				state = WARMUP
+				active_defense = FALSE
+			else // Else, we're going to reset everything and then call start_wave() to allow it to setup stuff again.
+				state = ENGAGED
+				reset_lights() // Restoring lights to defaults!
+				stop_spawning() // We're done, stop sending mobs at us!
+				wave_complete = null // Reset our wave complete time
+				start_wave() // Finally, we're going to start a new wave.
+				return // Don't execute the code underneath us.
+		else // If we're not continuing waves, then we need to reset.
+			state = IDLE
+			active_defense = FALSE
+	else // Somehow, we're not actually finishing up with a wave, but this got called somehow. Don't give a flying fuck about anything else, send us back to IDLE if we're not over our list length.
+		log_runtime(EXCEPTION("Reactor ["[reactor_id]"] at [x],[y],[z] ([get_area(src)]) had end_wave() called while not actively in a wave!"))
+		if(current_wave >= waves.len) // If we're over or at our list length (IE we completed 2 waves and our list has 2 waves, we've won.)
+			success_state()
+		else
+			state = IDLE
+			active_defense = FALSE
+	
 	to_world("Wave ended!")
+	
+	wave_complete = null
 		
 	reset_lights() // Restoring lights to defaults!
 	
 	stop_spawning() // We're done, stop sending mobs at us!
 
-/obj/structure/damaged_reactor/proc/warmup() // Do these things EVERY tick of SSProcess - if you need it to run once, put it in an if statement.
+/obj/structure/damaged_reactor/proc/warmup() // Do these things EVERY tick of SSProcess - if you need it to run once, put it in an if statement, or put it in the start/complete procs.
 	check_clearance() // Check if we're clear and we have space around us.
 
 /obj/structure/damaged_reactor/proc/start_warmup()
@@ -450,7 +504,11 @@ GLOBAL_LIST_EMPTY(reactor_mob_spawners) // Define our global list here. This is 
 	
 	to_world("Warmup started!")
 	
-	set_lights(#916508) // Set our mood lighting!
+	set_lights("#916508") // Set our mood lighting!
+	
+	if(warmup_dangerous) // Are our warmups intended to be dangerous? Setup on the reactor itself.
+		setup_spawner(current_wave, 4) // We use current_wave for the list of mobs, and the total number of spawns allowed PER spawner to 4 - down from 6. Warmups are not scot-free!
+		start_spawning()
 
 /obj/structure/damaged_reactor/proc/complete_warmup()
 	state = ENGAGED
@@ -459,6 +517,63 @@ GLOBAL_LIST_EMPTY(reactor_mob_spawners) // Define our global list here. This is 
 	to_world("Warmup ended!")
 	
 	reset_lights() // Restoring lights to defaults!
+	
+/obj/structure/damaged_reactor/proc/start_verification()
+	verification_timeout = world.time + verification_time // When is verification complete?
+	
+	to_world("Verification Phase Started!")
+	
+	choose_phrase(key_difficulty)
+
+/obj/structure/damaged_reactor/proc/rollback_wave()
+	health = maxhealth // Reset our health to maximum
+	active_defense = FALSE // We're no longer actively defending, because we failed. Make the reactor invulnerable again.
+	
+	if(current_wave - 1 < 0) // Failsafe in case we accidentally try to set the current_wave to a negative number.
+		current_wave = 0
+	else // Decrease the wave to what it was before the start of the wave.
+		current_wave--
+	
+	if(continuous_defense) // Are we continuing waves without a break? If TRUE, then we go right to things.
+		if(warmup) // Go to warmup phase.
+			state = WARMUP
+			active_defense = FALSE
+		else // Else, we're going to go right to starting waves. Tick our state over.
+			state = ENGAGED
+			active_defense = TRUE
+	else // Otherwise, return the reactor to it's initial menu.
+		state = IDLE
+		active_defense = FALSE
+	
+	to_world("Verification Phase Timed Out!")
+	
+	verification_timeout = null // Set this to null to clear the timer for re-use.
+
+/obj/structure/damaged_reactor/proc/verifying() // Do these things EVERY tick of SSProcess - if you need it to run once, put it in an if statement, or put it in the start/complete procs.
+	check_clearance() // Check if we're clear and have space around us.
+
+/obj/structure/damaged_reactor/proc/complete_verification()
+	if(current_wave >= waves.len) // If we're over our max number of waves, then we win.
+		success_state()
+	else if(continuous_defense) // Are we continuing waves without a break? If TRUE, then we skip right to the next step.
+		if(warmup) // Go to warmup phase.
+			state = WARMUP
+			active_defense = FALSE
+		else // Else, we're going to go right to starting waves. Tick our state over.
+			state = ENGAGED
+			active_defense = TRUE
+	else // If we're not continuing waves, and we're not over our max # of waves, then we need to reset.
+		state = IDLE
+		active_defense = FALSE
+		
+	to_world("Verification Phase Ended!")
+	
+	verification_timeout = null // Set this to null to clear the timer for re-use.
+	
+// Start Utility Procs Here:
+	
+/obj/structure/damaged_reactor/proc/choose_phrase(var/difficulty)
+	
 	
 /obj/structure/damaged_reactor/proc/set_lights(var/color) // Call this with color as the argument (the item inside parenthesis) to set your lights at the start of wave/warmup.
 	var/area/area = get_area(src)
@@ -472,7 +587,7 @@ GLOBAL_LIST_EMPTY(reactor_mob_spawners) // Define our global list here. This is 
 		if(!(light.status == LIGHT_OK)) // We're going to skip any broken, burned, or destroyed/unuseable lights.
 			continue
 		
-		light.brightness_color = "color" // Setting the lights to bright yellow.
+		light.brightness_color = color // Setting the lights to bright yellow.
 		light.brightness_power = 100 // Very high-powered lights.
 		light.on = 1 // Turn the lights on.
 		light.update()
@@ -491,24 +606,29 @@ GLOBAL_LIST_EMPTY(reactor_mob_spawners) // Define our global list here. This is 
 		light.brightness_power = initial(light.brightness_power) // Reset lights to what they were before.
 		light.update()
 		
-/obj/structure/damaged_reactor/proc/reset_reactor(var/waves = waves.len, var/warmup = TRUE) // Called to reset our reactor to initial state, and re-add us to object processing. Primarily intended for the training reactor, or for admins/GM's to be able to reset the reactor easily for events.
+/obj/structure/damaged_reactor/proc/reset_reactor(var/waves, var/warmup = TRUE) // Called to reset our reactor to initial state, and re-add us to object processing. Primarily intended for the training reactor, or for admins/GM's to be able to reset the reactor easily for events.
 	state = IDLE // Do this first, so SSobj doesn't immediately force us right back out of processing.
 	current_wave = 0 // Reset our current wave to 0.
 	
 	reset_lights() // Reset the lights in our area to default.
 	
-	setup_spawner(1) // We're going to call this to set our wave mob list back to where it should be. We hardcode 1 because if you tell a list to return to 0, you've effectively said "look at 0 for our wave" and it won't find anything. 1 is the first entry in a list.
+	stop_spawning() // Just in case we're somehow still active, turn our spawners off.
+	
+	setup_spawner(1, 6) // We're going to call this to set our wave mob list back to where it should be, as well as setting the spawner back to it's default "6" mobs. We hardcode 1 because if you tell a list to return to 0, you've effectively said "look at 0 for our wave" and it won't find anything. 1 is the first entry in a list.
 	
 	START_PROCESSING(SSobj, src) // We're immediately going to flip over to processing. This comes LAST so all variables can safely be reset first.
 	
 /obj/structure/damaged_reactor/proc/check_clearance(var/tiles) // This proc is called by the defense_mode() and warmup() procs - what this does is check if we've got space around us, in x amount of tiles. This is to prevent explorers from walling us in and getting a 'free' win.
 	
 
-/obj/structure/damaged_reactor/proc/setup_spawner(var/wavenumber) // This proc is called when we're swapping over from one wave to the next - this 'preps' the mobs in the spawners.
+/obj/structure/damaged_reactor/proc/setup_spawner(var/wavenumber, var/simultaneous_spawns = 6) // This proc is called when we're swapping over from one wave to the next - this 'preps' the mobs in the spawners.
 	for(var/obj/effect/spawner/wave_spawner/spawner in spawners)
-		spawner.spawn_types = wave_mobs[wavenumber]
-		spawner.faction = faction 	// May as well update this here at the same time, just in case it was changed between waves.
-		spawner.atmos = atmos_comp 	// May as well update this here at the same time, just in case it was changed between waves.
+		spawner.spawn_types = wave_mobs[wavenumber] // Switch our mobs to the entry in this list!
+		spawner.delayed_spawns = delayed_spawns
+		spawner.spawn_delay = spawn_delay
+		spawner.simultaneous_spawns = simultaneous_spawns
+		spawner.faction = faction 			// May as well update this here at the same time, just in case it was changed between waves.
+		spawner.atmos_comp = atmos_comp 	// May as well update this here at the same time, just in case it was changed between waves.
 		
 /obj/structure/damaged_reactor/proc/start_spawning()
 	for(var/obj/effect/spawner/wave_spawner/spawner in spawners)
@@ -540,11 +660,16 @@ GLOBAL_LIST_EMPTY(reactor_mob_spawners) // Define our global list here. This is 
 	// Our Reactor ID - used in linking the parts together.
 	var/reactor_id = null
 	
+	// Internal Use Variables (For Diagnosis/Timing/etc)
+	var/last_spawn = null
+	
 	// Spawning/mob variables, set on the reactor.
-	var/faction = null // What faction are we?
-	var/atmos = null // What's our atmos comp?
-	var/atmos_comp = FALSE		// TRUE will set all their survivability to be within 20% of the current air
-	var/list/spawn_types = list() // Empty list, this is sent to us by the reactor.
+	var/faction = null 				// What faction are we?
+	var/atmos_comp = FALSE			// TRUE will set all their survivability to be within 20% of the current air
+	var/delayed_spawns = FALSE		// Are we delaying our spawns, or spawning every mob as fast as we can?
+	var/spawn_delay = 0.5 SECONDS	// How long before we can spawn our next mob?
+	var/simultaneous_spawns = 6		// How many mobs can we have spawned at once from this spawner?
+	var/list/spawn_types = list() 	// Empty list, this is sent to us by the reactor.
 	
 	// The AI Holder we're going to assign our mobs.
 	var/ai_holder = null
@@ -569,51 +694,84 @@ GLOBAL_LIST_EMPTY(reactor_mob_spawners) // Define our global list here. This is 
 	if(!enabled) // Are we off? No need to process anything.
 		return
 	
-	if(faction) // Is there a faction var set? Set the spawned mobs faction to this.
-		my_mob.faction = faction
+	if(!can_spawn()) // Safety checks for if we can or can't spawn go here.
+		return
 	
-	if(atmos_comp) // Are we actively setting the atmos survivability? Do so now.
-		var/turf/T = get_turf(src)
-		var/datum/gas_mixture/env = T.return_air()
-		
-		if(!env || env.return_pressure() < 0.01) // Is there no gas environment, or is the ambient pressure less than 0.01 (Basically space?) Then set our mobs min/max to 0.
-			if(my_mob.minbodytemp > env.temperature)
-				my_mob.minbodytemp = env.temperature * 0.8
-			else if(my_mob.maxbodytemp < env.temperature)
-				my_mob.maxbodytemp = env.temperature * 1.2
-			
-			my_mob.min_oxy = 0
-			my_mob.min_tox = 0
-			my_mob.min_n2 = 0
-			my_mob.min_co2 = 0
-			my_mob.max_oxy = 0
-			my_mob.max_tox = 0
-			my_mob.max_n2 = 0
-			my_mob.max_co2 = 0
-		
-		else if(my_mob.minbodytemp > env.temperature)
-			my_mob.minbodytemp = env.temperature * 0.8
-		else if(my_mob.maxbodytemp < env.temperature)
-			my_mob.maxbodytemp = env.temperature * 1.2
+	var/chosen_mob = choose_spawn()
+	if(chosen_mob)
+		do_spawn(chosen_mob)
 
-		var/list/gaslist = env.gas
-		if(my_mob.min_oxy)
-			my_mob.min_oxy = gaslist["oxygen"] * 0.8
-		if(my_mob.min_tox)
-			my_mob.min_tox = gaslist["phoron"] * 0.8
-		if(my_mob.min_n2)
-			my_mob.min_n2 = gaslist["nitrogen"] * 0.8
-		if(my_mob.min_co2)
-			my_mob.min_co2 = gaslist["carbon_dioxide"] * 0.8
-		if(my_mob.max_oxy)
-			my_mob.max_oxy = gaslist["oxygen"] * 1.2
-		if(my_mob.max_tox)
-			my_mob.max_tox = gaslist["phoron"] * 1.2
-		if(my_mob.max_n2)
-			my_mob.max_n2 = gaslist["nitrogen"] * 1.2
-		if(my_mob.max_co2)
-			my_mob.max_co2 = gaslist["carbon_dioxide"] * 1.2
+/obj/effect/spawner/wave_spawner/proc/can_spawn()
+	if(spawned_mobs.len >= simultaneous_spawns)
+		return FALSE
+	if(delayed_spawns) // Are we delaying our spawns?
+		if(world.time < last_spawn + spawn_delay) // If yes, then we check when our last spawn was, and if we're still on cooldown.
+			return FALSE
+	return TRUE
+
+/obj/effect/spawner/wave_spawner/proc/choose_spawn()
+	return pickweight(spawn_types)
 	
+/obj/effect/spawner/wave_spawner/proc/do_spawn(var/mob_path)
+	if(!ispath(mob_path))
+		return 0
+	var/mob/living/M = new mob_path(get_turf(src))
+	M.nest = src
+	spawned_mobs.Add(M)
+	last_spawn = world.time
+	if(faction) // Is there a faction var set? Set the spawned mobs faction to this.
+		M.faction = faction
+	if(atmos_comp && istype(M, /mob/living/simple_mob))
+		set_atmos(M)
+	return M
+
+/obj/effect/spawner/wave_spawner/proc/set_atmos(var/mob)
+	var/mob/living/simple_mob/M = mob
+	var/turf/T = get_turf(src)
+	var/datum/gas_mixture/env = T.return_air()
+	
+	if(!env || env.return_pressure() < 0.01) // Is there no gas environment, or is the ambient pressure less than 0.01 (Basically space?) Then set our mobs min/max to 0.
+		if(M.minbodytemp > env.temperature)
+			M.minbodytemp = env.temperature * 0.8
+		else if(M.maxbodytemp < env.temperature)
+			M.maxbodytemp = env.temperature * 1.2
+		
+		M.min_oxy = 0
+		M.min_tox = 0
+		M.min_n2 = 0
+		M.min_co2 = 0
+		M.max_oxy = 0
+		M.max_tox = 0
+		M.max_n2 = 0
+		M.max_co2 = 0
+	
+	else if(M.minbodytemp > env.temperature)
+		M.minbodytemp = env.temperature * 0.8
+	else if(M.maxbodytemp < env.temperature)
+		M.maxbodytemp = env.temperature * 1.2
+
+	var/list/gaslist = env.gas
+	if(M.min_oxy)
+		M.min_oxy = gaslist["oxygen"] * 0.8
+	if(M.min_tox)
+		M.min_tox = gaslist["phoron"] * 0.8
+	if(M.min_n2)
+		M.min_n2 = gaslist["nitrogen"] * 0.8
+	if(M.min_co2)
+		M.min_co2 = gaslist["carbon_dioxide"] * 0.8
+	if(M.max_oxy)
+		M.max_oxy = gaslist["oxygen"] * 1.2
+	if(M.max_tox)
+		M.max_tox = gaslist["phoron"] * 1.2
+	if(M.max_n2)
+		M.max_n2 = gaslist["nitrogen"] * 1.2
+	if(M.max_co2)
+		M.max_co2 = gaslist["carbon_dioxide"] * 1.2
+
+/obj/effect/spawner/wave_spawner/proc/get_death_report(var/mob/living/M)
+	if(M in spawned_mobs)
+		spawned_mobs.Remove(M)
+
 
 //////////////////////////////////////////////////////////////
 /*		=====		End Spawner Code			=====		*/
