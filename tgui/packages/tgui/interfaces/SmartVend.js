@@ -13,11 +13,11 @@ export const SmartVend = (props, context) => {
       <Window.Content scrollable>
         <Section title="Storage">
           {data.secure && (
-            <NoticeBox>
+            <NoticeBox danger={data.locked === -1} info={data.locked !== -1}>
               {data.locked === -1 ? (
-                <Box color="bad">Sec.re ACC_** //):securi_nt.diag=&gt;##&apos;or 1=1&apos;%($...</Box>
+                <Box>Sec.re ACC_** //):securi_nt.diag=&gt;##&apos;or 1=1&apos;%($...</Box>
               ) : (
-                <Box color="average">Secure Access: Please have your identification ready.</Box>
+                <Box>Secure Access: Please have your identification ready.</Box>
               )}
             </NoticeBox>
           ) || null}

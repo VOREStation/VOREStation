@@ -1,8 +1,3 @@
-// UI menu navigation
-#define HOME "home"
-#define LIST "list"
-#define ENTRY "entry"
-
 /obj/machinery/disease2/isolator/
 	name = "pathogenic isolator"
 	desc = "Used to isolate and identify diseases, allowing for comparison with a remote database."
@@ -11,9 +6,7 @@
 	icon = 'icons/obj/virology_vr.dmi' //VOREStation Edit
 	icon_state = "isolator"
 	var/isolating = 0
-	var/state = HOME
 	var/datum/disease2/disease/virus2 = null
-	var/datum/data/record/entry = null
 	var/obj/item/weapon/reagent_containers/syringe/sample = null
 
 /obj/machinery/disease2/isolator/update_icon()
@@ -44,71 +37,57 @@
 	S.loc = src
 
 	user.visible_message("[user] adds \a [O] to \the [src]!", "You add \a [O] to \the [src]!")
-	SSnanoui.update_uis(src)
+	SStgui.update_uis(src)
 	update_icon()
 
 	src.attack_hand(user)
 
 /obj/machinery/disease2/isolator/attack_hand(mob/user as mob)
-	if(stat & (NOPOWER|BROKEN)) return
-	ui_interact(user)
+	if(stat & (NOPOWER|BROKEN))
+		return
+	tgui_interact(user)
 
-/obj/machinery/disease2/isolator/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	user.set_machine(src)
+/obj/machinery/disease2/isolator/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "PathogenicIsolator", name)
+		ui.open()
 
-	var/data[0]
+
+/obj/machinery/disease2/isolator/tgui_data(mob/user)
+	var/list/data = list()
 	data["syringe_inserted"] = !!sample
 	data["isolating"] = isolating
 	data["pathogen_pool"] = null
-	data["state"] = state
-	data["entry"] = entry
-	data["can_print"] = (state != HOME || sample) && !isolating
+	data["can_print"] = !isolating
 
-	switch (state)
-		if (HOME)
-			if (sample)
-				var/list/pathogen_pool[0]
-				for(var/datum/reagent/blood/B in sample.reagents.reagent_list)
-					var/list/virus = B.data["virus2"]
-					for (var/ID in virus)
-						var/datum/disease2/disease/V = virus[ID]
-						var/datum/data/record/R = null
-						if (ID in virusDB)
-							R = virusDB[ID]
+	var/list/pathogen_pool = list()
+	if(sample)
+		for(var/datum/reagent/blood/B in sample.reagents.reagent_list)
+			var/list/virus = B.data["virus2"]
+			for (var/ID in virus)
+				var/datum/disease2/disease/V = virus[ID]
+				var/datum/data/record/R = null
+				if (ID in virusDB)
+					R = virusDB[ID]
 
-						var/mob/living/carbon/human/D = B.data["donor"]
-						pathogen_pool.Add(list(list(\
-							"name" = "[D.get_species()] [B.name]", \
-							"dna" = B.data["blood_DNA"], \
-							"unique_id" = V.uniqueID, \
-							"reference" = "\ref[V]", \
-							"is_in_database" = !!R, \
-							"record" = "\ref[R]")))
+				var/mob/living/carbon/human/D = B.data["donor"]
+				pathogen_pool.Add(list(list(\
+					"name" = "[D.get_species()] [B.name]", \
+					"dna" = B.data["blood_DNA"], \
+					"unique_id" = V.uniqueID, \
+					"reference" = "\ref[V]", \
+					"is_in_database" = !!R, \
+					"record" = "\ref[R]")))
+	data["pathogen_pool"] = pathogen_pool
 
-				if (pathogen_pool.len > 0)
-					data["pathogen_pool"] = pathogen_pool
-
-		if (LIST)
-			var/list/db[0]
-			for (var/ID in virusDB)
-				var/datum/data/record/r = virusDB[ID]
-				db.Add(list(list("name" = r.fields["name"], "record" = "\ref[r]")))
-
-			if (db.len > 0)
-				data["database"] = db
-
-		if (ENTRY)
-			if (entry)
-				var/desc = entry.fields["description"]
-				data["entry"] = list(\
-					"name" = entry.fields["name"], \
-					"description" = replacetext(desc, "\n", ""))
-
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "pathogenic_isolator.tmpl", src.name, 400, 500)
-		ui.set_initial_data(data)
-		ui.open()
+	var/list/db = list()
+	for(var/ID in virusDB)
+		var/datum/data/record/r = virusDB[ID]
+		db.Add(list(list("name" = r.fields["name"], "record" = "\ref[r]")))
+	data["database"] = db
+	data["modal"] = tgui_modal_data(src)
+	return data
 
 /obj/machinery/disease2/isolator/process()
 	if (isolating > 0)
@@ -120,62 +99,54 @@
 				virus2 = null
 				ping("\The [src] pings, \"Viral strain isolated.\"")
 
-			SSnanoui.update_uis(src)
+			SStgui.update_uis(src)
 			update_icon()
 
-/obj/machinery/disease2/isolator/Topic(href, href_list)
-	if (..()) return 1
+/obj/machinery/disease2/isolator/tgui_act(action, list/params)
+	if(..())
+		return TRUE
 
 	var/mob/user = usr
-	var/datum/nanoui/ui = SSnanoui.get_open_ui(user, src, "main")
+	add_fingerprint(user)
+	
+	. = TRUE
+	switch(tgui_modal_act(src, action, params))
+		if(TGUI_MODAL_ANSWER)
+			return
 
-	src.add_fingerprint(user)
+	switch(action)
+		if("view_entry")
+			var/datum/data/record/v = locate(params["vir"])
+			if(!istype(v))
+				return FALSE
+			tgui_modal_message(src, "virus", "", null, v.fields["tgui_description"])
+			return TRUE
 
-	if (href_list["close"])
-		user.unset_machine()
-		ui.close()
-		return 0
+		if("print")
+			print(user, params)
+			return TRUE
 
-	if (href_list[HOME])
-		state = HOME
-		return 1
+		if("isolate")
+			var/datum/disease2/disease/V = locate(params["isolate"])
+			if (V)
+				virus2 = V
+				isolating = 20
+				update_icon()
+			return TRUE
 
-	if (href_list[LIST])
-		state = LIST
-		return 1
-
-	if (href_list[ENTRY])
-		if (istype(locate(href_list["view"]), /datum/data/record))
-			entry = locate(href_list["view"])
-
-		state = ENTRY
-		return 1
-
-	if (href_list["print"])
-		print(user)
-		return 1
-
-	if(!sample) return 1
-
-	if (href_list["isolate"])
-		var/datum/disease2/disease/V = locate(href_list["isolate"])
-		if (V)
-			virus2 = V
-			isolating = 20
+		if("eject")
+			if(!sample)
+				return FALSE
+			sample.forceMove(loc)
+			sample = null
 			update_icon()
-		return 1
+			return TRUE
 
-	if (href_list["eject"])
-		sample.loc = src.loc
-		sample = null
-		update_icon()
-		return 1
-
-/obj/machinery/disease2/isolator/proc/print(var/mob/user)
+/obj/machinery/disease2/isolator/proc/print(mob/user, list/params)
 	var/obj/item/weapon/paper/P = new /obj/item/weapon/paper(loc)
 
-	switch (state)
-		if (HOME)
+	switch(params["type"])
+		if("patient_diagnosis")
 			if (!sample) return
 			P.name = "paper - Patient Diagnostic Report"
 			P.info = {"
@@ -207,7 +178,7 @@
 			<u>Additional Notes:</u>&nbsp;
 "}
 
-		if (LIST)
+		if("virus_list")
 			P.name = "paper - Virus List"
 			P.info = {"
 				[virology_letterhead("Virus List")]
@@ -225,11 +196,14 @@
 			<u>Additional Notes:</u>&nbsp;
 "}
 
-		if (ENTRY)
+		if("virus_record")
+			var/datum/data/record/v = locate(params["vir"])
+			if(!istype(v))
+				return FALSE
 			P.name = "paper - Viral Profile"
 			P.info = {"
 				[virology_letterhead("Viral Profile")]
-				[entry.fields["description"]]
+				[v.fields["description"]]
 				<hr>
 				<u>Additional Notes:</u>&nbsp;
 "}
