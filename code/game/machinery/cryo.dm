@@ -141,7 +141,7 @@
 
 /obj/machinery/atmospherics/unary/cryo_cell/tgui_act(action, params)
 	if(..() || usr == occupant)
-		return
+		return TRUE
 
 	. = TRUE
 	switch(action)

@@ -9,10 +9,10 @@
 	can_burn_food = TRUE
 	circuit = /obj/item/weapon/circuitboard/oven
 	active_power_usage = 6 KILOWATTS
-	heating_power = 6000
+	heating_power = 6 KILOWATTS
 	//Based on a double deck electric convection oven
 
-	resistance = 30000 // Approx. 12 minutes to heat up.
+	resistance = 12 KILOWATTS // Approx. 12 minutes to heat up.
 	idle_power_usage = 2 KILOWATTS
 	//uses ~30% power to stay warm
 	optimal_power = 0.8 // Oven cooks .2 faster than the default speed.
@@ -86,6 +86,7 @@
 		cooking = FALSE
 
 	playsound(src, 'sound/machines/hatch_open.ogg', 20, 1)
+	to_chat(user, "<span class='notice'>You [open? "close":"open"] the oven door</span>")
 	update_icon()
 	
 /obj/machinery/appliance/cooker/oven/proc/manip(var/obj/item/I)

@@ -6,3 +6,10 @@
 	req_tech = list(TECH_BLUESPACE = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
 	materials = list(DEFAULT_WALL_MATERIAL = 4000, "glass" = 4000)
 	build_path = /obj/item/borg/upgrade/sizeshift
+
+/datum/design/item/prosfab/robot_upgrade/bellysizeupgrade
+	name = "Size Alteration Module"
+	id = "borg_hound_capacity_module"
+	req_tech = list(TECH_BLUESPACE = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 4000, "glass" = 4000)
+	build_path = /obj/item/borg/upgrade/bellysizeupgrade

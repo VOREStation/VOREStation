@@ -493,6 +493,8 @@ CIRCUITS BELOW
 	name = "'Durand' central control"
 	id = "durand_main"
 	req_tech = list(TECH_DATA = 4)
+	materials = list("glass" = 2000, MAT_GRAPHITE = 1250)
+	chemicals = list("pacid" = 20)
 	build_path = /obj/item/weapon/circuitboard/mecha/durand/main
 	sort_string = "NAADA"
 
@@ -500,6 +502,8 @@ CIRCUITS BELOW
 	name = "'Durand' peripherals control"
 	id = "durand_peri"
 	req_tech = list(TECH_DATA = 4)
+	materials = list("glass" = 2000, MAT_GRAPHITE = 1250)
+	chemicals = list("pacid" = 20)
 	build_path = /obj/item/weapon/circuitboard/mecha/durand/peripherals
 	sort_string = "NAADB"
 
@@ -507,6 +511,8 @@ CIRCUITS BELOW
 	name = "'Durand' weapon control and targeting"
 	id = "durand_targ"
 	req_tech = list(TECH_DATA = 4, TECH_COMBAT = 2)
+	materials = list("glass" = 2000, MAT_GRAPHITE = 1250)
+	chemicals = list("pacid" = 20)
 	build_path = /obj/item/weapon/circuitboard/mecha/durand/targeting
 	sort_string = "NAADC"
 

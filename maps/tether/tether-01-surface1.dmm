@@ -5441,6 +5441,36 @@
 	dir = 1
 	},
 /area/tether/surfacebase/surface_one_hall)
+"ajb" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/cyan,
+/obj/structure/catwalk,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/maintenance/common{
+	name = "Mining Maintenance Access";
+	req_one_access = list(48)
+	},
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/cargo/mining)
+"ajc" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/visible/supply{
+	dir = 8
+	},
+/obj/machinery/door/airlock/maintenance/common{
+	req_one_access = newlist()
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/mining_eva)
 "ajd" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -5556,6 +5586,9 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/atmos)
+"ajl" = (
+/turf/simulated/wall/r_wall,
+/area/crew_quarters/sleep/Dorm_7)
 "ajm" = (
 /obj/machinery/vending/tool{
 	dir = 1;
@@ -7969,6 +8002,15 @@
 	},
 /turf/simulated/floor/tiled,
 /area/storage/primary)
+"anm" = (
+/turf/simulated/wall/r_wall,
+/area/crew_quarters/sleep/Dorm_5)
+"ann" = (
+/turf/simulated/wall/r_wall,
+/area/crew_quarters/sleep/Dorm_3)
+"ano" = (
+/turf/simulated/wall/r_wall,
+/area/tether/surfacebase/outside/outside1)
 "anp" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -8160,6 +8202,9 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_one_hall)
+"anE" = (
+/turf/simulated/wall/r_wall,
+/area/crew_quarters/sleep/Dorm_1)
 "anF" = (
 /obj/machinery/door/airlock/maintenance/cargo{
 	name = "Mining Maintenance Access";
@@ -28229,17 +28274,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_one_hall)
-"crC" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
-	dir = 4
-	},
-/obj/machinery/door/airlock/maintenance/common,
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/atmospherics/pipe/simple/visible/supply{
-	dir = 8
-	},
-/turf/simulated/floor/plating,
-/area/maintenance/lower/mining_eva)
 "csb" = (
 /obj/structure/railing{
 	dir = 4
@@ -29975,22 +30009,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_one_hall)
-"qIr" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan,
-/obj/structure/catwalk,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/door/airlock/maintenance/common{
-	name = "Mining Maintenance Access"
-	},
-/turf/simulated/floor/plating,
-/area/tether/surfacebase/cargo/mining)
 "qKn" = (
 /obj/effect/floor_decal/steeldecal/steel_decals_central1{
 	dir = 8
@@ -36400,33 +36418,33 @@ aad
 aad
 aad
 aad
-adK
-adK
-adK
+ano
+ano
+ano
 aad
 aad
 aad
-adK
-adK
-adK
+ano
+ano
+ano
 aad
 aad
 aad
-adK
-adK
-adK
+ano
+ano
+ano
 aad
 aad
 aad
-adK
-adK
-adK
+ano
+ano
+ano
 aad
 aad
 aad
-adK
-adK
-adK
+ano
+ano
+ano
 aad
 aad
 aad
@@ -36542,33 +36560,33 @@ aad
 aad
 aad
 aad
-adK
-adK
-adK
+ano
+ano
+ano
 aad
 aad
 aad
-adK
-adK
-adK
+ano
+ano
+ano
 aad
 aad
 aad
-adK
-adK
-adK
+ano
+ano
+ano
 aad
 aad
 aad
-adK
-adK
-adK
+ano
+ano
+ano
 aad
 aad
 aad
-adK
-adK
-adK
+ano
+ano
+ano
 aad
 aad
 aad
@@ -36684,33 +36702,33 @@ aad
 aad
 aad
 aad
-adK
-adK
-adK
+ano
+ano
+ano
 aad
 aad
 aad
-adK
-adK
-adK
+ano
+ano
+ano
 aad
 aad
 aad
-adK
-adK
-adK
+ano
+ano
+ano
 aad
 aad
 aad
-adK
-adK
-adK
+ano
+ano
+ano
 aad
 aad
 aad
-adK
-adK
-adK
+ano
+ano
+ano
 aad
 aad
 aad
@@ -41592,7 +41610,7 @@ aar
 aar
 aar
 abT
-crC
+ajc
 abT
 agd
 acC
@@ -41732,7 +41750,7 @@ aaG
 aaM
 aaP
 aaY
-qIr
+ajb
 ecq
 nDD
 jPk
@@ -43915,21 +43933,21 @@ aJc
 agM
 agM
 aLg
-aLg
-aLg
-aLg
-aLg
-aOj
-aOj
-aOj
-aOj
-aQb
-aQb
-aQb
-aQb
-aSi
-aSi
-aSi
+ajl
+ajl
+ajl
+ajl
+anm
+anm
+anm
+anm
+ann
+ann
+ann
+ann
+anE
+anE
+anE
 aSi
 aUe
 aUH
@@ -46266,7 +46284,7 @@ aad
 aad
 aad
 aad
-aad
+aah
 aah
 aah
 aah
@@ -46408,8 +46426,8 @@ aad
 aad
 aad
 aad
-aad
-aad
+aah
+aah
 aah
 aah
 aah
@@ -46550,8 +46568,8 @@ aad
 aad
 aad
 aad
-aad
-aad
+aah
+aah
 aah
 aah
 aah
@@ -46692,7 +46710,7 @@ aad
 aad
 aad
 aad
-aad
+aah
 aah
 aah
 aah
@@ -46834,7 +46852,7 @@ aad
 aad
 aad
 aad
-aad
+aah
 aah
 aah
 aah
@@ -47258,7 +47276,6 @@ aad
 aad
 aad
 aad
-aad
 aah
 aah
 aah
@@ -47273,12 +47290,13 @@ aah
 aah
 aah
 aah
-aad
-aad
-aad
-aad
-aad
-aad
+aah
+aah
+aah
+aah
+aah
+aah
+aah
 aah
 aah
 aah
@@ -47400,8 +47418,6 @@ aad
 aad
 aad
 aad
-aad
-aad
 aah
 aah
 aah
@@ -47415,20 +47431,22 @@ aah
 aah
 aah
 aah
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
+aah
+aah
+aah
+aah
+aah
+aah
+aah
+aah
+aah
+aah
+aah
+aah
+aah
+aah
+aah
+aah
 aah
 aah
 aah
@@ -47542,8 +47560,6 @@ aad
 aad
 aad
 aad
-aad
-aad
 aah
 aah
 aah
@@ -47557,20 +47573,17 @@ aah
 aah
 aah
 aah
+aah
+aah
+aah
+aah
+aah
+aah
+aah
+aah
 aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
+aah
+aah
 aad
 aad
 aah
@@ -47579,7 +47592,12 @@ aah
 aah
 aah
 aah
-aad
+aah
+aah
+aah
+aah
+aah
+baU
 aty
 aub
 aub
@@ -47684,8 +47702,20 @@ aad
 aad
 aad
 aad
-aad
-aad
+aah
+aah
+aah
+aah
+aah
+aah
+aah
+aah
+aah
+aah
+aah
+aah
+aah
+aah
 aah
 aah
 aah
@@ -47699,29 +47729,17 @@ aad
 aad
 aad
 aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
 aah
 aah
 aah
 aah
 aah
 aah
-aad
+aah
+aah
+aah
+aah
+baU
 atz
 auc
 auc
@@ -47826,6 +47844,22 @@ aad
 aad
 aad
 aad
+aah
+aah
+aah
+aah
+aah
+aah
+aah
+aah
+aah
+aah
+aah
+aah
+aah
+aah
+aah
+aah
 aad
 aad
 aad
@@ -47839,29 +47873,13 @@ aad
 aad
 aad
 aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
+aah
+aah
+aah
+aah
+aah
+aah
+aah
 aad
 aad
 atz
@@ -47969,6 +47987,20 @@ ajK
 aad
 aad
 aad
+aah
+aah
+aah
+aah
+aah
+aah
+aah
+aah
+aah
+aah
+aah
+aah
+aah
+aah
 aad
 aad
 aad
@@ -47985,23 +48017,9 @@ aad
 aad
 aad
 aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
+aah
+aah
+aah
 aad
 aad
 aad
@@ -48113,16 +48131,16 @@ aad
 aad
 aad
 aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
+aah
+aah
+aah
+aah
+aah
+aah
+aah
+aah
+aah
+aah
 aad
 aad
 aad
@@ -48256,12 +48274,12 @@ aad
 aad
 aad
 aad
-aad
-aad
-aad
-aad
-aad
-aad
+aah
+aah
+aah
+aah
+aah
+aah
 aad
 aad
 aad

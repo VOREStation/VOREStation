@@ -1,3 +1,10 @@
+/*
+USAGE NOTE
+For decals, the var Persistent = 'has already been saved', and is primarily used to prevent duplicate savings of generic filth (filth.dm).
+This also means 'TRUE' can be used to define a decal as "Do not save at all, even as a generic replacement." if a dirt decal is considered 'too common' to save.
+generic_filth = TRUE means when the decal is saved, it will be switched out for a generic green 'filth' decal.
+*/
+
 /obj/effect/decal/cleanable
 	plane = DIRTY_PLANE
 	var/persistent = FALSE

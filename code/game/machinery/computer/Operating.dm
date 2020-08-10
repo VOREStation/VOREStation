@@ -129,7 +129,7 @@
 
 /obj/machinery/computer/operating/tgui_act(action, params)
 	if(..())
-		return
+		return TRUE
 	if((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon)))
 		usr.set_machine(src)
 

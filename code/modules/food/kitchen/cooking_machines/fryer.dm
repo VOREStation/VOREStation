@@ -12,7 +12,7 @@
 	circuit = /obj/item/weapon/circuitboard/fryer
 	appliancetype = FRYER
 	active_power_usage = 12 KILOWATTS
-	heating_power = 12000
+	heating_power = 12 KILOWATTS
 	
 	light_y = 15
 	
@@ -24,7 +24,7 @@
 	// Power used to maintain temperature once it's heated.
 	// Going with 25% of the active power. This is a somewhat arbitrary value.
 
-	resistance = 60000	// Approx. 10 minutes to heat up.
+	resistance = 10 KILOWATTS	// Approx. 10 minutes to heat up.
 
 	max_contents = 2
 	container_type = /obj/item/weapon/reagent_containers/cooking_container/fryer

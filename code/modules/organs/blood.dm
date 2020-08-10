@@ -360,7 +360,7 @@ proc/blood_splatter(var/target,var/datum/reagent/blood/source,var/large)
 		drop.drips |= drips
 
 	// If there's no data to copy, call it quits here.
-	if(!source)
+	if(!istype(source))
 		return B
 
 	// Update appearance.

@@ -100,13 +100,22 @@
 	sort_string = "MABBA"
 
 /datum/design/item/weapon/ballistic/ammo/stunshell
-	name = "stun shell"
+	name = "stun shells"
 	desc = "A stunning shell for a shotgun."
 	id = "stunshell"
 	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3)
 	materials = list(DEFAULT_WALL_MATERIAL = 4000)
-	build_path = /obj/item/ammo_casing/a12g/stunshell
+	build_path = /obj/item/weapon/storage/box/stunshells
 	sort_string = "MABBB"
+
+/datum/design/item/weapon/ballistic/ammo/empshell
+	name = "emp shells"
+	desc = "An electromagnetic shell for a shotgun."
+	id = "empshell"
+	req_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 3)
+	materials = list(DEFAULT_WALL_MATERIAL = 4000, MAT_URANIUM = 1000)
+	build_path = /obj/item/weapon/storage/box/empshells
+	sort_string = "MABBC"
 
 // Phase weapons
 
