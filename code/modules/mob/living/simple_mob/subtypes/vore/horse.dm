@@ -1,5 +1,5 @@
 /mob/living/simple_mob/vore/horse
-	name = "horse"
+	name = "small horse"
 	desc = "Don't look it in the mouth."
 	tt_desc = "Equus ferus caballus"
 
@@ -12,7 +12,7 @@
 	maxHealth = 60
 	health = 60
 
-	movement_cooldown = 4 //horses are fast mkay.
+	movement_cooldown = 1.5 //horses are fast mkay.
 	see_in_dark = 6
 
 	response_help  = "pets"
@@ -35,10 +35,36 @@
 	say_list_type = /datum/say_list/horse
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
 
+/mob/living/simple_mob/vore/horse/big
+	name = "horse"
+	icon_state = "horse"
+	icon_living = "horse"
+	icon_dead = "horse-dead"
+	icon = 'icons/mob/vore64x64.dmi'
+
+	maxHealth = 120
+	health = 120
+
+	melee_damage_lower = 5
+	melee_damage_upper = 15
+	attacktext = list("kicked")
+
+	meat_amount = 6
+
+	old_x = -16
+	old_y = 0
+	default_pixel_x = -16
+	pixel_x = -16
+	pixel_y = 0
+	mount_offset_y = 22
+
 // Activate Noms!
 /mob/living/simple_mob/vore/horse
 	vore_active = 1
 	vore_icons = SA_ICON_LIVING
+
+/mob/living/simple_mob/vore/horse/big
+	vore_capacity = 2
 
 /mob/living/simple_mob/vore/horse/Login()
 	. = ..()
@@ -46,7 +72,7 @@
 		riding_datum = new /datum/riding/simple_mob(src)
 	verbs |= /mob/living/simple_mob/proc/animal_mount
 	verbs |= /mob/living/proc/toggle_rider_reins
-	movement_cooldown = 3
+	movement_cooldown = 1.5
 
 /mob/living/simple_mob/vore/horse/MouseDrop_T(mob/living/M, mob/living/user)
 	return

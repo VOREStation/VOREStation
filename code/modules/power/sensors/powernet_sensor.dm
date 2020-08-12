@@ -19,12 +19,22 @@
 	var/name_tag = "#UNKN#" // ID tag displayed in list of powernet sensors. Each sensor should have it's own tag!
 	var/long_range = 0		// If 1, sensor reading will show on all computers, regardless of Zlevel
 
+	var/list/history = list()
+	var/record_size = 60
+	var/record_interval = 50
+	var/next_record = 0
+	var/is_secret_monitor = FALSE
+
 // Proc: New()
 // Parameters: None
 // Description: Automatically assigns name according to ID tag.
 /obj/machinery/power/sensor/New()
 	..()
 	auto_set_name()
+/obj/machinery/power/sensor/Initialize()
+	. = ..()
+	history["supply"] = list()
+	history["demand"] = list()
 
 // Proc: auto_set_name()
 // Parameters: None
@@ -38,6 +48,8 @@
 	for(var/obj/machinery/computer/power_monitor/PM in machines)
 		if(PM.power_monitor)
 			PM.power_monitor.refresh_sensors()
+	history.Cut()
+	history = null
 
 // Proc: check_grid_warning()
 // Parameters: None
@@ -51,9 +63,66 @@
 
 // Proc: process()
 // Parameters: None
-// Description: This has to be here because we need sensors to remain in Machines list.
+// Description: This tracks historical usage, for TGUI power monitors
 /obj/machinery/power/sensor/process()
+	if(!powernet)
+		use_power = USE_POWER_IDLE
+		connect_to_network()
+	else
+		use_power = USE_POWER_ACTIVE
+		record()
 	return 1
+
+// This tracks historical usage, for TGUI power monitors
+/obj/machinery/power/sensor/proc/record()
+	if(world.time >= next_record)
+		next_record = world.time + record_interval
+
+		var/datum/powernet/connected_powernet = powernet
+
+		var/list/supply = history["supply"]
+		if(connected_powernet)
+			supply += connected_powernet.viewavail
+		if(supply.len > record_size)
+			supply.Cut(1, 2)
+
+		var/list/demand = history["demand"]
+		if(connected_powernet)
+			demand += connected_powernet.viewload
+		if(demand.len > record_size)
+			demand.Cut(1, 2)
+
+/obj/machinery/power/sensor/tgui_data()
+	var/list/data = list()
+
+	data["name"] = name_tag
+	data["stored"] = record_size
+	data["interval"] = record_interval / 10
+	data["attached"] = !!powernet
+	data["history"] = history
+
+	data["areas"] = list()
+	if(powernet)
+		for(var/obj/machinery/power/terminal/term in powernet.nodes)
+			if(istype(term.master, /obj/machinery/power/apc))
+				var/obj/machinery/power/apc/A = term.master
+				if(istype(A))
+					var/cell_charge
+					if(!A.cell)
+						cell_charge = 0
+					else
+						cell_charge = A.cell.percent()
+					data["areas"] += list(list(
+						"name" = A.area.name,
+						"charge" = cell_charge,
+						"load" = DisplayPower(A.lastused_total),
+						"charging" = A.charging,
+						"eqp" = A.equipment,
+						"lgt" = A.lighting,
+						"env" = A.environ,
+					))
+
+	return data
 
 // Proc: reading_to_text()
 // Parameters: 1 (amount - Power in Watts to be converted to W, kW or MW)
@@ -178,7 +247,7 @@
 			APC_entry["total_load"] = reading_to_text(A.lastused_total)
 			// Hopefully removes those goddamn \improper s which are screwing up the UI
 			var/N = A.area.name
-			if(findtext(N, "ÿ"))
+			if(findtext(N, "ï¿½"))
 				N = copytext(N, 3)
 			APC_entry["name"] = N
 			// Add data into main list of APC data.

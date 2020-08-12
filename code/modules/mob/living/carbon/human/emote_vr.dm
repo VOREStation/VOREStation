@@ -150,6 +150,10 @@
 			message = "lets out a gao."
 			m_type = 2
 			playsound(src, 'sound/voice/gao.ogg', 50, 0, preference = /datum/client_preference/emote_noises)
+		if("cackle")
+			message = "cackles hysterically!"
+			m_type = 2
+			playsound(src, 'sound/voice/YeenCackle.ogg', 50, 0, preference = /datum/client_preference/emote_noises)
 		if("nsay")
 			nsay()
 			return TRUE
