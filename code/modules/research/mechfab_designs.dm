@@ -569,9 +569,9 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 7500, "gold" = 750, "silver" = 1500, "glass" = 3750)
 	build_path = /obj/item/mecha_parts/mecha_equipment/repair_droid
 
-/datum/design/item/mecha/shield_drone
-	name = "Shield Drone"
-	desc = "Manual shield drone. Deploys a large, familiar, and rectangular shield in one direction at a time."
+/datum/design/item/mecha/combat_shield
+	name = "linear combat shield"
+	desc = "Linear shield projector. Deploys a large, familiar, and rectangular shield in one direction at a time."
 	id = "mech_shield_droid"
 	req_tech = list(TECH_PHORON = 3, TECH_MAGNET = 6, TECH_ILLEGAL = 4)
 	materials = list(DEFAULT_WALL_MATERIAL = 8000, "gold" = 2000, "silver" = 3000, "phoron" = 5000, "glass" = 3750)
