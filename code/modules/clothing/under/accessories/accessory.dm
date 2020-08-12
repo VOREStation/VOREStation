@@ -325,6 +325,12 @@
 	name = "striped blue scarf"
 	icon_state = "stripedbluescarf"
 
+/obj/item/clothing/accessory/scarf/teshari/neckscarf
+	name = "small neckscarf"
+	desc = "a neckscarf that is too small for a human's neck"
+	icon_state = "tesh_neckscarf"
+	species_restricted = list(SPECIES_TESHARI)
+
 //bracelets
 
 /obj/item/clothing/accessory/bracelet

@@ -115,6 +115,15 @@
 		scarfs[initial(scarf_type.name)] = scarf_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(scarfs))
 
+/datum/gear/accessory/scarfcolor
+	display_name = "scarf (recolorable)"
+	path = /obj/item/clothing/accessory/scarf/white
+	cost = 1
+
+/datum/gear/accessory/scarfcolor/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
+
 /datum/gear/accessory/jacket
 	display_name = "suit jacket selection"
 	path = /obj/item/clothing/accessory/jacket
