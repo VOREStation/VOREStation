@@ -160,6 +160,12 @@
 		I = getFlatIcon(src, defdir = SOUTH, no_anim = TRUE)
 		set_cached_examine_icon(src, I, 200 SECONDS)
 	return I
+	
+/mob/observer/dead/examine(mob/user)
+	. = ..()
+	
+	if(is_admin(user))
+		. += "\t><span class='admin'>[ADMIN_FULLMONTY(src)]</span>"
 
 /*
 Transfer_mind is there to check if mob is being deleted/not going to have a body.
