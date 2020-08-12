@@ -400,6 +400,49 @@
 		M.heal_organ_damage(30 * removed, 30 * removed * chem_effective)
 		M.adjustToxLoss(-30 * removed * chem_effective)
 
+/datum/reagent/mortiferin
+	name = "Mortiferin"
+	id = "mortiferin"
+	description = "A liquid compound based upon those used in cloning. Utilized in cases of toxic shock. May cause liver damage."
+	taste_description = "meat"
+	reagent_state = LIQUID
+	color = "#6b4de3"
+	metabolism = REM * 0.5
+	mrate_static = TRUE
+	scannable = 1
+
+/datum/reagent/mortiferin/on_mob_life(var/mob/living/carbon/M, var/alien, var/datum/reagents/metabolism/location)
+	if(M.stat == DEAD && M.has_modifier_of_type(/datum/modifier/bloodpump_corpse))
+		affects_dead = TRUE
+	else
+		affects_dead = FALSE
+
+	. = ..(M, alien, location)
+
+/datum/reagent/mortiferin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(M.bodytemperature < (T0C - 10) || (M.stat == DEAD && M.has_modifier_of_type(/datum/modifier/bloodpump_corpse)))
+		var/chem_effective = 1 * M.species.chem_strength_heal
+		if(alien == IS_SLIME)
+			if(prob(10))
+				to_chat(M, "<span class='danger'>It's so cold. Something causes your cellular mass to solidify sporadically, resulting in uncontrollable twitching.</span>")
+			chem_effective = 0.5
+			M.Weaken(10)
+			M.silent = max(M.silent, 10)
+			M.make_jittery(4)
+		if(M.stat != DEAD)
+			M.adjustCloneLoss(-5 * removed * chem_effective)
+		M.adjustOxyLoss(-10 * removed * chem_effective)
+		M.adjustToxLoss(-20 * removed * chem_effective)
+
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			var/obj/item/organ/internal/liver/L = H.internal_organs_by_name[O_LIVER]
+			if(istype(L) && prob(5))
+				if(L.robotic >= ORGAN_ROBOT)
+					return
+
+				L.take_damage(rand(1,3) * removed)
+
 /datum/reagent/necroxadone
 	name = "Necroxadone"
 	id = "necroxadone"
@@ -410,18 +453,11 @@
 	metabolism = REM * 0.5
 	mrate_static = TRUE
 	scannable = 1
-
-/datum/reagent/necroxadone/on_mob_life(var/mob/living/carbon/M, var/alien, var/datum/reagents/metabolism/location)
-	if(M.stat == DEAD && M.has_modifier_of_type(/datum/modifier/bloodpump_corpse))
-		affects_dead = TRUE
-	else
-		affects_dead = FALSE
-
-	. = ..(M, alien, location)
+	affects_dead = TRUE
 
 /datum/reagent/necroxadone/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	var/chem_effective = 1 * M.species.chem_strength_heal
 	if(M.bodytemperature < 170 || (M.stat == DEAD && M.has_modifier_of_type(/datum/modifier/bloodpump_corpse)))
-		var/chem_effective = 1 * M.species.chem_strength_heal
 		if(alien == IS_SLIME)
 			if(prob(10))
 				to_chat(M, "<span class='danger'>It's so cold. Something causes your cellular mass to harden sporadically, resulting in seizure-like twitching.</span>")
@@ -433,6 +469,12 @@
 			M.adjustCloneLoss(-5 * removed * chem_effective)
 		M.adjustOxyLoss(-20 * removed * chem_effective)
 		M.adjustToxLoss(-40 * removed * chem_effective)
+		M.adjustCloneLoss(-15 * removed * chem_effective)
+
+	else
+		M.adjustToxLoss(-25 * removed * chem_effective)
+		M.adjustOxyLoss(-10 * removed * chem_effective)
+		M.adjustCloneLoss(-7 * removed * chem_effective)
 
 /* Painkillers */
 
