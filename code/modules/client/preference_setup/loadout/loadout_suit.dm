@@ -77,7 +77,7 @@
 /datum/gear/suit/mil
 	display_name = "military jacket selection"
 	path = /obj/item/clothing/suit/storage/miljacket
-	
+
 /datum/gear/suit/mil/New()
 	..()
 	var/list/mil_jackets = list()

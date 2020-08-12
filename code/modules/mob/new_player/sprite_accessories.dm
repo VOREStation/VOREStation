@@ -1304,6 +1304,35 @@
 		icon_state = "teshari_mushroom"
 		species_allowed = list(SPECIES_TESHARI)
 
+//Tesh things ported from Ark Station
+
+	teshari_twies
+		name = "Teshari Twies"
+		icon_state = "teshari_twies"
+		species_allowed = list(SPECIES_TESHARI)
+
+	teshari_backstrafe
+		name = "Teshari Backstrafe"
+		icon_state = "teshari_backstrafe"
+		species_allowed = list(SPECIES_TESHARI)
+
+	teshari_longway
+		name = "Teshari Long way"
+		icon_state = "teshari_longway"
+		species_allowed = list(SPECIES_TESHARI)
+
+	teshari_tree
+		name = "Teshari Tree"
+		icon_state = "teshari_tree"
+		species_allowed = list(SPECIES_TESHARI)
+
+	teshari_fluffymohawk
+		name = "Teshari Fluffy Mohawk"
+		icon_state = "teshari_fluffymohawk"
+		species_allowed = list(SPECIES_TESHARI)
+
+//bald tesh hair for FBP use
+
 	teshari_bald
 		name = "Bald (use with FBP)"
 		icon_state = "bald"
