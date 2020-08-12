@@ -23,7 +23,7 @@
 			icon = R.glass_icon_file
 		else
 			icon = initial(icon)
-		
+
 		if(R.glass_icon_state)
 			icon_state = R.glass_icon_state
 		else
