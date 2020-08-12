@@ -1875,11 +1875,6 @@
 /turf/simulated/floor/tiled,
 /area/security/hallwayaux)
 "acZ" = (
-/obj/item/device/radio/intercom{
-	dir = 1;
-	pixel_y = 24;
-	req_access = list()
-	},
 /turf/simulated/floor/tiled/white,
 /area/security/forensics)
 "ada" = (
