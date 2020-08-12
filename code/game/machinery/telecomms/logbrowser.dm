@@ -8,187 +8,138 @@
 	desc = "View communication logs here. Translation not guaranteed."
 	icon_screen = "comm_logs"
 
-	var/screen = 0				// the screen number:
 	var/list/servers = list()	// the servers located by the computer
 	var/obj/machinery/telecomms/server/SelectedServer
 	circuit = /obj/item/weapon/circuitboard/comm_server
 
 	var/network = "NULL"		// the network to probe
-	var/temp = ""				// temporary feedback messages
+	var/list/temp = null				// temporary feedback messages
 
 	var/universal_translate = 0 // set to 1 if it can translate nonhuman speech
 
 	req_access = list(access_tcomsat)
 
-	attack_hand(mob/user as mob)
-		if(stat & (BROKEN|NOPOWER))
-			return
-		user.set_machine(src)
-		var/dat = "<TITLE>Telecommunication Server Monitor</TITLE><center><b>Telecommunications Server Monitor</b></center>"
+/obj/machinery/computer/telecomms/server/tgui_data(mob/user)
+	var/list/data = list()
 
-		switch(screen)
+	data["universal_translate"] = universal_translate
+	data["network"] = network
+	data["temp"] = temp
 
+	data["servers"] = list()
+	for(var/obj/machinery/telecomms/T in servers)
+		data["servers"].Add(list(list(
+			"id" = T.id,
+			"name" = T.name,
+		)))
 
-		  // --- Main Menu ---
+	data["selectedServer"] = null
+	if(SelectedServer)
+		data["selectedServer"] = list(
+			"id" = SelectedServer.id,
+			"totalTraffic" = SelectedServer.totaltraffic,
+			"logs" = list()
+		)
 
-			if(0)
-				dat += "<br>[temp]<br>"
-				dat += "<br>Current Network: <a href='?src=\ref[src];network=1'>[network]</a><br>"
-				if(servers.len)
-					dat += "<br>Detected Telecommunication Servers:<ul>"
-					for(var/obj/machinery/telecomms/T in servers)
-						dat += "<li><a href='?src=\ref[src];viewserver=[T.id]'>\ref[T] [T.name]</a> ([T.id])</li>"
-					dat += "</ul>"
-					dat += "<br><a href='?src=\ref[src];operation=release'>\[Flush Buffer\]</a>"
+		var/i = 0
+		for(var/c in SelectedServer.log_entries)
+			i++
+			var/datum/comm_log_entry/C = c
+			
+			// This is necessary to prevent leaking information to the clientside
+			var/static/list/acceptable_params = list("uspeech", "intelligible", "message", "name", "race", "job", "timecode")
+			var/list/parameters = list()
+			for(var/log_param in acceptable_params)
+				parameters["[log_param]"] = C.parameters["[log_param]"]
 
-				else
-					dat += "<br>No servers detected. Scan for servers: <a href='?src=\ref[src];operation=scan'>\[Scan\]</a>"
+			data["selectedServer"]["logs"].Add(list(list(
+				"name" = C.name,
+				"input_type" = C.input_type,
+				"id" = i,
+				"parameters" = parameters,
+			)))
 
+	return data
 
-		  // --- Viewing Server ---
-
-			if(1)
-				dat += "<br>[temp]<br>"
-				dat += "<center><a href='?src=\ref[src];operation=mainmenu'>\[Main Menu\]</a>     <a href='?src=\ref[src];operation=refresh'>\[Refresh\]</a></center>"
-				dat += "<br>Current Network: [network]"
-				dat += "<br>Selected Server: [SelectedServer.id]"
-
-				if(SelectedServer.totaltraffic >= 1024)
-					dat += "<br>Total recorded traffic: [round(SelectedServer.totaltraffic / 1024)] Terrabytes<br><br>"
-				else
-					dat += "<br>Total recorded traffic: [SelectedServer.totaltraffic] Gigabytes<br><br>"
-
-				dat += "Stored Logs: <ol>"
-
-				var/i = 0
-				for(var/datum/comm_log_entry/C in SelectedServer.log_entries)
-					i++
-
-
-					// If the log is a speech file
-					if(C.input_type == "Speech File")
-
-						dat += "<li><font color = #008F00>[C.name]</font>  <font color = #FF0000><a href='?src=\ref[src];delete=[i]'>\[X\]</a></font><br>"
-
-						// -- Determine race of orator --
-
-						var/race = C.parameters["race"]			   // The actual race of the mob
-						var/language = C.parameters["language"] // The language spoken, or null/""
-
-						// -- If the orator is a human, or universal translate is active, OR mob has universal speech on --
-
-						if(universal_translate || C.parameters["uspeech"] || C.parameters["intelligible"])
-							dat += "<u><font color = #18743E>Data type</font></u>: [C.input_type]<br>"
-							dat += "<u><font color = #18743E>Source</font></u>: [C.parameters["name"]] (Job: [C.parameters["job"]])<br>"
-							dat += "<u><font color = #18743E>Class</font></u>: [race]<br>"
-							dat += "<u><font color = #18743E>Contents</font></u>: \"[C.parameters["message"]]\"<br>"
-							if(language)
-								dat += "<u><font color = #18743E>Language</font></u>: [language]<br/>"
-
-						// -- Orator is not human and universal translate not active --
-
-						else
-							dat += "<u><font color = #18743E>Data type</font></u>: Audio File<br>"
-							dat += "<u><font color = #18743E>Source</font></u>: <i>Unidentifiable</i><br>"
-							dat += "<u><font color = #18743E>Class</font></u>: [race]<br>"
-							dat += "<u><font color = #18743E>Contents</font></u>: <i>Unintelligble</i><br>"
-
-						dat += "</li><br>"
-
-					else if(C.input_type == "Execution Error")
-
-						dat += "<li><font color = #990000>[C.name]</font>  <font color = #FF0000><a href='?src=\ref[src];delete=[i]'>\[X\]</a></font><br>"
-						dat += "<u><font color = #787700>Output</font></u>: \"[C.parameters["message"]]\"<br>"
-						dat += "</li><br>"
-
-
-				dat += "</ol>"
-
-
-
-		user << browse(dat, "window=comm_monitor;size=575x400")
-		onclose(user, "server_control")
-
-		temp = ""
+/obj/machinery/computer/telecomms/server/attack_hand(mob/user)
+	if(stat & (BROKEN|NOPOWER))
 		return
+	tgui_interact(user)
 
+/obj/machinery/computer/telecomms/server/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "TelecommsLogBrowser", name)
+		ui.open()
+	
+/obj/machinery/computer/telecomms/server/tgui_act(action, params)
+	if(..())
+		return TRUE
 
-	Topic(href, href_list)
-		if(..())
-			return
+	add_fingerprint(usr)
 
-
-		add_fingerprint(usr)
-		usr.set_machine(src)
-
-		if(href_list["viewserver"])
-			screen = 1
+	switch(action)
+		if("view")
 			for(var/obj/machinery/telecomms/T in servers)
-				if(T.id == href_list["viewserver"])
+				if(T.id == params["id"])
 					SelectedServer = T
 					break
+			. = TRUE
 
-		if(href_list["operation"])
-			switch(href_list["operation"])
+		if("mainmenu")
+			SelectedServer = null
+			. = TRUE
 
-				if("release")
-					servers = list()
-					screen = 0
+		if("release")
+			servers = list()
+			SelectedServer = null
+			. = TRUE
 
-				if("mainmenu")
-					screen = 0
+		if("scan")
+			if(servers.len > 0)
+				set_temp("FAILED: CANNOT PROBE WHEN BUFFER FULL", "bad")
+				return TRUE
 
-				if("scan")
-					if(servers.len > 0)
-						temp = "<font color = #D70B00>- FAILED: CANNOT PROBE WHEN BUFFER FULL -</font>"
+			for(var/obj/machinery/telecomms/server/T in range(25, src))
+				if(T.network == network)
+					servers.Add(T)
 
-					else
-						for(var/obj/machinery/telecomms/server/T in range(25, src))
-							if(T.network == network)
-								servers.Add(T)
+			if(!servers.len)
+				set_temp("FAILED: UNABLE TO LOCATE SERVERS IN \[[network]\]", "bad")
+			else
+				set_temp("[servers.len] SERVERS PROBED & BUFFERED", "good")
+			. = TRUE
 
-						if(!servers.len)
-							temp = "<font color = #D70B00>- FAILED: UNABLE TO LOCATE SERVERS IN \[[network]\] -</font>"
-						else
-							temp = "<font color = #336699>- [servers.len] SERVERS PROBED & BUFFERED -</font>"
-
-						screen = 0
-
-		if(href_list["delete"])
-
-			if(!src.allowed(usr) && !emagged)
+		if("delete")
+			if(!allowed(usr) && !emagged)
 				to_chat(usr, "<span class='warning'>ACCESS DENIED.</span>")
 				return
 
 			if(SelectedServer)
-
-				var/datum/comm_log_entry/D = SelectedServer.log_entries[text2num(href_list["delete"])]
-
-				temp = "<font color = #336699>- DELETED ENTRY: [D.name] -</font>"
-
+				var/datum/comm_log_entry/D = SelectedServer.log_entries[text2num(params["id"])]
+				set_temp("DELETED ENTRY: [D.name]", "bad")
 				SelectedServer.log_entries.Remove(D)
 				qdel(D)
-
 			else
-				temp = "<font color = #D70B00>- FAILED: NO SELECTED MACHINE -</font>"
+				set_temp("FAILED: NO SELECTED MACHINE", "bad")
+			. = TRUE
 
-		if(href_list["network"])
-
+		if("network")
 			var/newnet = input(usr, "Which network do you want to view?", "Comm Monitor", network) as null|text
 
 			if(newnet && ((usr in range(1, src) || issilicon(usr))))
 				if(length(newnet) > 15)
-					temp = "<font color = #D70B00>- FAILED: NETWORK TAG STRING TOO LENGHTLY -</font>"
+					set_temp("FAILED: NETWORK TAG STRING TOO LENGTHY", "bad")
+					return TRUE
+				network = newnet
+				servers = list()
+				set_temp("NEW NETWORK TAG SET IN ADDRESS \[[network]\]", "good")
 
-				else
-
-					network = newnet
-					screen = 0
-					servers = list()
-					temp = "<font color = #336699>- NEW NETWORK TAG SET IN ADDRESS \[[network]\] -</font>"
-
-		updateUsrDialog()
-		return
+			. = TRUE
+		
+		if("cleartemp")
+			temp = null
+			. = TRUE
 
 /obj/machinery/computer/telecomms/server/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
@@ -197,3 +148,6 @@
 		to_chat(user, "<span class='notice'>You you disable the security protocols</span>")
 		src.updateUsrDialog()
 		return 1
+
+/obj/machinery/computer/telecomms/server/proc/set_temp(var/text, var/color = "average")
+	temp = list("color" = color, "text" = text)

@@ -7,7 +7,7 @@
 	set src = usr.contents
 
 	if(wearer && (wearer.back == src || wearer.belt == src))
-		ui_interact(usr)
+		tgui_interact(usr)
 
 /obj/item/weapon/rig/verb/toggle_vision()
 

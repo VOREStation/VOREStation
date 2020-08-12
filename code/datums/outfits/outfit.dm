@@ -101,6 +101,7 @@ var/list/outfits_decls_by_type_
 			H.equip_to_slot_or_del(new path(H), slot_in_backpack)
 
 	post_equip(H)
+
 	if(W) // We set ID info last to ensure the ID photo is as correct as possible.
 		H.set_id_info(W)
 	return 1

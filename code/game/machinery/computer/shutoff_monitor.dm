@@ -5,23 +5,19 @@
 	icon_screen = "power_monitor"
 	light_color = "#a97faa"
 	circuit = /obj/item/weapon/circuitboard/shutoff_monitor
-	var/datum/nano_module/shutoff_monitor/monitor
+	var/datum/tgui_module/shutoff_monitor/monitor
 
 /obj/machinery/computer/shutoff_monitor/New()
 	..()
 	monitor = new(src)
 
 /obj/machinery/computer/shutoff_monitor/Destroy()
-	qdel(monitor)
-	monitor = null
+	QDEL_NULL(monitor)
 	..()
 
 /obj/machinery/computer/shutoff_monitor/attack_hand(var/mob/user as mob)
 	..()
-	ui_interact(user)
-
-/obj/machinery/computer/shutoff_monitor/ui_interact(mob/user, ui_key = "shutoff_monitor", var/datum/nanoui/ui = null, var/force_open = 1)
-	monitor.ui_interact(user, ui_key, ui, force_open)
+	monitor.tgui_interact(user)
 
 /obj/machinery/computer/shutoff_monitor/update_icon()
 	..()
