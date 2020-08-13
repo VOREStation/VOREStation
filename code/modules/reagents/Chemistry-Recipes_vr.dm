@@ -275,6 +275,13 @@
 	required_reagents = list("monstertamer" = 2, "nutriment" = 1)
 	result_amount = 3
 
+/datum/chemical_reaction/drinks/pink_moo
+	name = "Pink Moo"
+	id = "pinkmoo"
+	result = "pinkmoo"
+	required_reagents = list("blackrussian" = 2, "berryshake" = 1)
+	result_amount = 3
+
 ///////////////////////////////////////////////////////////////////////////////////
 /// Reagent colonies.
 /datum/chemical_reaction/meatcolony

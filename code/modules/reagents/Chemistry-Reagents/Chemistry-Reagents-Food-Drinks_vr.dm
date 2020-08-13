@@ -67,6 +67,17 @@
 	glass_name = "Monster Tamer"
 	glass_desc = "This looks like a vaguely-alcoholic slurry of meat. Gross."
 
+/datum/reagent/ethanol/pink_moo
+	name = "Pink Moo"
+	id = "pinkmoo"
+	description = "Like a White Russian but with 100% more pink!"
+	taste_description = "strawberry icecream, with a coffee kick"
+	color = "#d789bd"
+	strength = 15
+
+	glass_name = "Pink Moo"
+	glass_desc = "A very familiar looking drink. ...moo?"
+
 /datum/reagent/ethanol/monstertamer/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 
