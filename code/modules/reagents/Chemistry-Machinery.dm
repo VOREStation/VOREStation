@@ -693,17 +693,7 @@
 	if(length(holdingitems))
 		options["grind"] = radial_grind
 
-	if (usr.stat != 0)
-		return
-	if (!beaker)
-		return
-	beaker.loc = src.loc
-	beaker = null
-	visible_message("<span class='notice'>\The [usr] remove the container from \the [src].</span>")
-	update_icon()
-
 	var/choice
-
 	if(length(options) < 1)
 		return
 	if(length(options) == 1)
