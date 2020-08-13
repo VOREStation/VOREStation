@@ -145,7 +145,7 @@ SUBSYSTEM_DEF(skybox)
 	var/icon_state = "dyable"
 	var/color
 	var/random_color = FALSE
-	
+
 	var/use_stars = TRUE
 	var/star_icon = 'icons/skybox/skybox.dmi'
 	var/star_state = "stars"

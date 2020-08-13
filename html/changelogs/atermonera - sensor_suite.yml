@@ -1,0 +1,5 @@
+author: Atermonera
+delete-after: True
+changes: 
+  - rscadd: "Mapped Overmap sensors onto the Southern Cross. Deck 2, central ring, starboard side. Departmental sensor installations and dedicated rooms may be added in the future."
+  - rscadd: "Enabled overmap event generation. This doesn't really do anything yet because the shuttles haven't been upgraded, but it's very pretty!"
