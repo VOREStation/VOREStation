@@ -520,17 +520,17 @@
 				/obj/item/weapon/reagent_containers/spray/waterflower,
 				/obj/item/toy/eight_ball,
 				/obj/item/toy/eight_ball/conch,
-				/obj/item/toy/mech/ripley,
-				/obj/item/toy/mech/fireripley,
-				/obj/item/toy/mech/deathripley,
-				/obj/item/toy/mech/gygax,
-				/obj/item/toy/mech/durand,
-				/obj/item/toy/mech/honk,
-				/obj/item/toy/mech/marauder,
-				/obj/item/toy/mech/seraph,
-				/obj/item/toy/mech/mauler,
-				/obj/item/toy/mech/odysseus,
-				/obj/item/toy/mech/phazon)
+				/obj/item/toy/mecha/ripley,
+				/obj/item/toy/mecha/fireripley,
+				/obj/item/toy/mecha/deathripley,
+				/obj/item/toy/mecha/gygax,
+				/obj/item/toy/mecha/durand,
+				/obj/item/toy/mecha/honk,
+				/obj/item/toy/mecha/marauder,
+				/obj/item/toy/mecha/seraph,
+				/obj/item/toy/mecha/mauler,
+				/obj/item/toy/mecha/odysseus,
+				/obj/item/toy/mecha/phazon)
 
 /obj/random/mouseremains
 	name = "random mouseremains"
