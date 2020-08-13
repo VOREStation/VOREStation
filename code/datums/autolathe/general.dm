@@ -103,12 +103,14 @@
 	path =/obj/item/stack/material/plasteel
 	is_stack = TRUE
 	no_scale = TRUE //prevents material duplication exploits
+	resources = list(MAT_PLASTEEL = 2000)
 
 /datum/category_item/autolathe/general/plastic
 	name = "plastic sheets"
 	path =/obj/item/stack/material/plastic
 	is_stack = TRUE
 	no_scale = TRUE //prevents material duplication exploits
+	resources = list(MAT_PLASTIC = 2000)
 
 //TFF 24/12/19 - Let people print more spray bottles if needed.
 /datum/category_item/autolathe/general/spraybottle

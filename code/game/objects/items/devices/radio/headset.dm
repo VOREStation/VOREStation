@@ -382,7 +382,7 @@
 	return
 
 
-/obj/item/device/radio/headset/proc/recalculateChannels(var/setDescription = 0)
+/obj/item/device/radio/headset/recalculateChannels(var/setDescription = 0)
 	src.channels = list()
 	src.translate_binary = 0
 	src.translate_hive = 0

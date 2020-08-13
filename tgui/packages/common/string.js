@@ -120,7 +120,7 @@ export const decodeHtmlEntities = str => {
   if (!str) {
     return str;
   }
-  const translate_re = /&(nbsp|amp|quot|lt|gt|apos);/g;
+  const translate_re = /&(nbsp|amp|quot|lt|gt|apos|trade);/g;
   const translate = {
     nbsp: ' ',
     amp: '&',
@@ -128,6 +128,7 @@ export const decodeHtmlEntities = str => {
     lt: '<',
     gt: '>',
     apos: '\'',
+    trade: '™',
   };
   return str
     // Newline tags

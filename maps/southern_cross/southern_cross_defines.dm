@@ -250,8 +250,7 @@
 	expected_z_levels = list(
 		Z_LEVEL_SURFACE,
 		Z_LEVEL_SURFACE_MINE,
-		Z_LEVEL_SURFACE_WILD,
-		Z_LEVEL_TRANSIT
+		Z_LEVEL_SURFACE_WILD
 	)
 
 /obj/effect/step_trigger/teleporter/bridge/east_to_west/Initialize()

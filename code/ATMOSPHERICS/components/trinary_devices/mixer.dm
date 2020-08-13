@@ -77,59 +77,88 @@
 
 	return 1
 
+/obj/machinery/atmospherics/trinary/mixer/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "AtmosMixer", name)
+		ui.open()
+
+/obj/machinery/atmospherics/trinary/mixer/tgui_data(mob/user)
+	var/list/data = list()
+	data["on"] = use_power
+	data["set_pressure"] = round(set_flow_rate)
+	data["max_pressure"] = min(air1.volume, air2.volume)
+	data["node1_concentration"] = round(mixing_inputs[air1]*100, 1)
+	data["node2_concentration"] = round(mixing_inputs[air2]*100, 1)
+	var/list/node_connects = get_node_connect_dirs()
+	data["node1_dir"] = dir_name(node_connects[1],TRUE)
+	data["node2_dir"] = dir_name(node_connects[2],TRUE)
+	return data
+
 /obj/machinery/atmospherics/trinary/mixer/attack_hand(user as mob)
 	if(..())
 		return
-	src.add_fingerprint(usr)
-	if(!src.allowed(user))
-		to_chat(user, "<span class='warning'>Access denied.</span>")
-		return
-	usr.set_machine(src)
-	var/list/node_connects = get_node_connect_dirs()
-	var/dat = {"<b>Power: </b><a href='?src=\ref[src];power=1'>[use_power?"On":"Off"]</a><br>
-				<b>Set Flow Rate Limit: </b>
-				[set_flow_rate]L/s | <a href='?src=\ref[src];set_press=1'>Change</a>
-				<br>
-				<b>Flow Rate: </b>[round(last_flow_rate, 0.1)]L/s
-				<br><hr>
-				<b>Node 1 ([dir_name(node_connects[1],TRUE)]) Concentration:</b>
-				<a href='?src=\ref[src];node1_c=-0.1'><b>-</b></a>
-				<a href='?src=\ref[src];node1_c=-0.01'>-</a>
-				[mixing_inputs[air1]]([mixing_inputs[air1]*100]%)
-				<a href='?src=\ref[src];node1_c=0.01'><b>+</b></a>
-				<a href='?src=\ref[src];node1_c=0.1'>+</a>
-				<br>
-				<b>Node 2 ([dir_name(node_connects[2],TRUE)]) Concentration:</b>
-				<a href='?src=\ref[src];node2_c=-0.1'><b>-</b></a>
-				<a href='?src=\ref[src];node2_c=-0.01'>-</a>
-				[mixing_inputs[air2]]([mixing_inputs[air2]*100]%)
-				<a href='?src=\ref[src];node2_c=0.01'><b>+</b></a>
-				<a href='?src=\ref[src];node2_c=0.1'>+</a>
-				"}
+	tgui_interact(user)
+	// src.add_fingerprint(usr)
+	// if(!src.allowed(user))
+	// 	to_chat(user, "<span class='warning'>Access denied.</span>")
+	// 	return
+	// usr.set_machine(src)
+	// var/list/node_connects = get_node_connect_dirs()
+	// var/dat = {"<b>Power: </b><a href='?src=\ref[src];power=1'>[use_power?"On":"Off"]</a><br>
+	// 			<b>Set Flow Rate Limit: </b>
+	// 			[set_flow_rate]L/s | <a href='?src=\ref[src];set_press=1'>Change</a>
+	// 			<br>
+	// 			<b>Flow Rate: </b>[round(last_flow_rate, 0.1)]L/s
+	// 			<br><hr>
+	// 			<b>Node 1 ([dir_name(node_connects[1],TRUE)]) Concentration:</b>
+	// 			<a href='?src=\ref[src];node1_c=-0.1'><b>-</b></a>
+	// 			<a href='?src=\ref[src];node1_c=-0.01'>-</a>
+	// 			[mixing_inputs[air1]]([mixing_inputs[air1]*100]%)
+	// 			<a href='?src=\ref[src];node1_c=0.01'><b>+</b></a>
+	// 			<a href='?src=\ref[src];node1_c=0.1'>+</a>
+	// 			<br>
+	// 			<b>Node 2 ([dir_name(node_connects[2],TRUE)]) Concentration:</b>
+	// 			<a href='?src=\ref[src];node2_c=-0.1'><b>-</b></a>
+	// 			<a href='?src=\ref[src];node2_c=-0.01'>-</a>
+	// 			[mixing_inputs[air2]]([mixing_inputs[air2]*100]%)
+	// 			<a href='?src=\ref[src];node2_c=0.01'><b>+</b></a>
+	// 			<a href='?src=\ref[src];node2_c=0.1'>+</a>
+	// 			"}
 
-	user << browse("<HEAD><TITLE>[src.name] control</TITLE></HEAD><TT>[dat]</TT>", "window=atmo_mixer")
-	onclose(user, "atmo_mixer")
-	return
+	// user << browse("<HEAD><TITLE>[src.name] control</TITLE></HEAD><TT>[dat]</TT>", "window=atmo_mixer")
+	// onclose(user, "atmo_mixer")
+	// return
 
-/obj/machinery/atmospherics/trinary/mixer/Topic(href,href_list)
-	if(..()) return 1
-	if(href_list["power"])
-		update_use_power(!use_power)
-	if(href_list["set_press"])
-		var/max_flow_rate = min(air1.volume, air2.volume)
-		var/new_flow_rate = input(usr,"Enter new flow rate limit (0-[max_flow_rate]L/s)","Flow Rate Control",src.set_flow_rate) as num
-		src.set_flow_rate = max(0, min(max_flow_rate, new_flow_rate))
-	if(href_list["node1_c"])
-		var/value = text2num(href_list["node1_c"])
-		src.mixing_inputs[air1] = max(0, min(1, src.mixing_inputs[air1] + value))
-		src.mixing_inputs[air2] = 1.0 - mixing_inputs[air1]
-	if(href_list["node2_c"])
-		var/value = text2num(href_list["node2_c"])
-		src.mixing_inputs[air2] = max(0, min(1, src.mixing_inputs[air2] + value))
-		src.mixing_inputs[air1] = 1.0 - mixing_inputs[air2]
-	src.update_icon()
-	src.updateUsrDialog()
-	return
+/obj/machinery/atmospherics/trinary/mixer/tgui_act(action, params)
+	if(..())
+		return TRUE
+
+	switch(action)
+		if("power")
+			update_use_power(!use_power)
+			. = TRUE
+		if("pressure")
+			var/pressure = params["pressure"]
+			if(pressure == "max")
+				pressure = min(air1.volume, air2.volume)
+				. = TRUE
+			else if(text2num(pressure) != null)
+				pressure = text2num(pressure)
+				. = TRUE
+			if(.)
+				set_flow_rate = clamp(pressure, 0, min(air1.volume, air2.volume))
+		if("node1")
+			var/value = text2num(params["concentration"])
+			mixing_inputs[air1] = max(0, min(1, value / 100))
+			mixing_inputs[air2] = 1.0 - mixing_inputs[air1]
+			. = TRUE
+		if("node2")
+			var/value = text2num(params["concentration"])
+			mixing_inputs[air2] = max(0, min(1, value / 100))
+			mixing_inputs[air1] = 1.0 - mixing_inputs[air2]
+			. = TRUE
+	update_icon()
 
 //
 // "T" Orientation - Inputs are on oposite sides instead of adjacent

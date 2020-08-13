@@ -29,6 +29,13 @@
 	},
 /turf/simulated/floor/tiled,
 /area/security/eva)
+"aah" = (
+/obj/machinery/atmospherics/unary/engine{
+	dir = 1
+	},
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/excursion/cargo)
 "aai" = (
 /turf/simulated/wall/r_wall,
 /area/security/armory/red)
@@ -637,6 +644,17 @@
 "abc" = (
 /turf/simulated/wall,
 /area/security/eva)
+"abd" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/red/border,
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 9
+	},
+/turf/simulated/floor/tiled,
+/area/security/hallway)
 "abe" = (
 /turf/simulated/wall/r_wall,
 /area/tether/exploration)
@@ -714,6 +732,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/security/eva)
+"abl" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/security/hallway)
 "abm" = (
 /turf/simulated/wall,
 /area/maintenance/substation/security)
@@ -1236,6 +1260,14 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/tether/exploration)
+"abZ" = (
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/red/border,
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 2
+	},
+/turf/simulated/floor/tiled,
+/area/security/hallway)
 "aca" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -1349,6 +1381,12 @@
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor,
 /area/security/hallwayaux)
+"ach" = (
+/obj/machinery/door/airlock/glass_security{
+	name = "Forensics Lab"
+	},
+/turf/simulated/floor/tiled,
+/area/security/forensics)
 "aci" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1;
@@ -1423,6 +1461,34 @@
 /obj/structure/cable/green,
 /turf/simulated/floor,
 /area/maintenance/substation/security)
+"acm" = (
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/red/border{
+	dir = 9
+	},
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/red/bordercorner2{
+	dir = 10
+	},
+/obj/structure/cable/green{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/structure/closet{
+	name = "Evidence Closet"
+	},
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/red/bordercorner2{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white,
+/area/security/forensics)
 "acn" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Security Substation";
@@ -1809,13 +1875,8 @@
 /turf/simulated/floor/tiled,
 /area/security/hallwayaux)
 "acZ" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
-	},
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/corner/red/border,
-/turf/simulated/floor/tiled,
-/area/security/hallway)
+/turf/simulated/floor/tiled/white,
+/area/security/forensics)
 "ada" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -1901,6 +1962,29 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/tether/exploration)
+"adi" = (
+/obj/machinery/disposal,
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/red/border{
+	dir = 5
+	},
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/red/bordercorner2{
+	dir = 5
+	},
+/obj/structure/disposalpipe/trunk,
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/red/bordercorner2{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/security/forensics)
 "adj" = (
 /turf/simulated/wall/rshull,
 /area/shuttle/excursion/general)
@@ -2048,6 +2132,14 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor,
 /area/maintenance/station/ai)
+"ady" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_l"
+	},
+/turf/simulated/floor/tiled/asteroid_steel/airless,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/mining_outpost/shuttle)
 "adz" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -2063,6 +2155,21 @@
 /obj/structure/catwalk,
 /turf/simulated/floor,
 /area/maintenance/station/sec_upper)
+"adB" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/asteroid_steel/airless,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/mining_outpost/shuttle)
+"adC" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_r"
+	},
+/turf/simulated/floor/tiled/asteroid_steel/airless,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/mining_outpost/shuttle)
 "adF" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -2966,13 +3073,6 @@
 /obj/structure/cable/green,
 /turf/simulated/floor/wood,
 /area/crew_quarters/heads/hos)
-"afs" = (
-/obj/machinery/atmospherics/unary/engine{
-	dir = 1
-	},
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/excursion/cargo)
 "aft" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/red/border,
@@ -9403,62 +9503,6 @@
 	dir = 1
 	},
 /obj/machinery/dnaforensics,
-/turf/simulated/floor/tiled/white,
-/area/security/forensics)
-"aqz" = (
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 9
-	},
-/obj/effect/floor_decal/corner/red/border{
-	dir = 9
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 10
-	},
-/obj/effect/floor_decal/corner/red/bordercorner2{
-	dir = 10
-	},
-/obj/structure/cable/green{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/obj/structure/closet{
-	name = "Evidence Closet"
-	},
-/turf/simulated/floor/tiled/white,
-/area/security/forensics)
-"aqA" = (
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/red/border{
-	dir = 1
-	},
-/obj/structure/closet{
-	name = "Evidence Closet"
-	},
-/obj/item/device/radio/intercom{
-	dir = 1;
-	pixel_y = 24;
-	req_access = list()
-	},
-/turf/simulated/floor/tiled/white,
-/area/security/forensics)
-"aqB" = (
-/obj/machinery/disposal,
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 5
-	},
-/obj/effect/floor_decal/corner/red/border{
-	dir = 5
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 5
-	},
-/obj/effect/floor_decal/corner/red/bordercorner2{
-	dir = 5
-	},
-/obj/structure/disposalpipe/trunk,
 /turf/simulated/floor/tiled/white,
 /area/security/forensics)
 "aqC" = (
@@ -23172,14 +23216,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
-"aNf" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
-	},
-/turf/simulated/floor/tiled/asteroid_steel/airless,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/mining_outpost/shuttle)
 "aNg" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -25903,14 +25939,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/storage)
-"aSz" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 1
-	},
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/corner/red/border,
-/turf/simulated/floor/tiled,
-/area/security/hallway)
 "aSA" = (
 /obj/machinery/door/airlock/maintenance/cargo{
 	name = "Belter Shuttle Access";
@@ -27856,13 +27884,6 @@
 /obj/effect/floor_decal/corner/brown/border,
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock/gear)
-"aYo" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/asteroid_steel/airless,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/mining_outpost/shuttle)
 "aYp" = (
 /turf/simulated/wall{
 	can_open = 0
@@ -27897,14 +27918,6 @@
 	},
 /turf/simulated/floor/carpet,
 /area/crew_quarters/heads/hos)
-"aYy" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_r"
-	},
-/turf/simulated/floor/tiled/asteroid_steel/airless,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/mining_outpost/shuttle)
 "aYz" = (
 /obj/structure/window/reinforced,
 /obj/structure/grille,
@@ -37719,9 +37732,9 @@ rlz
 rgV
 jxg
 aUn
-acZ
+abd
 amb
-aqz
+acm
 ari
 asd
 asP
@@ -37861,9 +37874,9 @@ jnQ
 iUO
 xaA
 apa
-aSz
-amb
-aqA
+abl
+ach
+acZ
 arj
 ase
 asM
@@ -38003,9 +38016,9 @@ amy
 aoa
 xmG
 aff
-atT
+abZ
 amb
-aqB
+adi
 ark
 asf
 asQ
@@ -44098,7 +44111,7 @@ aUJ
 aXb
 aWp
 iJT
-afs
+aah
 ams
 aXq
 abe
@@ -44240,7 +44253,7 @@ wRt
 eug
 aWp
 cQa
-afs
+aah
 ams
 aXq
 abe
@@ -45376,7 +45389,7 @@ pPy
 efQ
 aWp
 cQa
-afs
+aah
 ams
 amq
 abe
@@ -45518,7 +45531,7 @@ iEV
 tEV
 aWp
 rUl
-afs
+aah
 ams
 aQL
 abe
@@ -47555,11 +47568,11 @@ avt
 avt
 aVc
 aZS
-aNf
-aYo
-aYo
-aYo
-aYy
+ady
+adB
+adB
+adB
+adC
 baB
 aVc
 avt
