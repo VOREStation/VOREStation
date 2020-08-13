@@ -38,6 +38,10 @@
 	drop_item()
 	return
 
+/obj/item/weapon/gripper/AltClick(mob/user)
+	drop_item()
+	return
+
 /obj/item/weapon/gripper/omni
 	name = "omni gripper"
 	desc = "A strange grasping tool that can hold anything a human can, but still maintains the limitations of application its more limited cousins have."
@@ -252,12 +256,15 @@
 		return resolved
 	return ..()
 
-/obj/item/weapon/gripper/verb/drop_item()
+/obj/item/weapon/gripper/verb/drop_gripper_item()
 
 	set name = "Drop Item"
 	set desc = "Release an item from your magnetic gripper."
 	set category = "Robot Commands"
 
+	drop_item()
+
+obj/item/weapon/gripper/proc/drop_item()
 	if(!wrapped)
 		//There's some weirdness with items being lost inside the arm. Trying to fix all cases. ~Z
 		for(var/obj/item/thing in src.contents)
@@ -268,7 +275,7 @@
 		wrapped = null
 		return
 
-	to_chat(src.loc, "<span class='danger'>You drop \the [wrapped].</span>")
+	to_chat(src.loc, "<span class='notice'>You drop \the [wrapped].</span>")
 	wrapped.loc = get_turf(src)
 	wrapped = null
 	//update_icon()

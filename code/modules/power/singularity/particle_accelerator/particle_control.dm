@@ -36,7 +36,7 @@
 
 /obj/machinery/particle_accelerator/control_box/attack_hand(mob/user as mob)
 	if(construction_state >= 3)
-		interact(user)
+		tgui_interact(user)
 	else if(construction_state == 2) // Wires exposed
 		wires.Interact(user)
 
@@ -76,36 +76,6 @@
 					icon_state = "[reference]w"
 				else
 					icon_state = "[reference]c"
-
-/obj/machinery/particle_accelerator/control_box/Topic(href, href_list)
-	..()
-	//Ignore input if we are broken, !silicon guy cant touch us, or nonai controlling from super far away
-	if(stat & (BROKEN|NOPOWER) || (get_dist(src, usr) > 1 && !istype(usr, /mob/living/silicon)) || (get_dist(src, usr) > 8 && !istype(usr, /mob/living/silicon/ai)))
-		usr.unset_machine()
-		usr << browse(null, "window=pacontrol")
-		return
-
-	if( href_list["close"] )
-		usr << browse(null, "window=pacontrol")
-		usr.unset_machine()
-		return
-
-	if(href_list["togglep"])
-		if(!wires.is_cut(WIRE_PARTICLE_POWER))
-			toggle_power()
-	else if(href_list["scan"])
-		part_scan()
-
-	else if(href_list["strengthup"])
-		if(!wires.is_cut(WIRE_PARTICLE_STRENGTH))
-			add_strength()
-
-	else if(href_list["strengthdown"])
-		if(!wires.is_cut(WIRE_PARTICLE_STRENGTH))
-			remove_strength()
-
-	updateDialog()
-	update_icon()
 
 /obj/machinery/particle_accelerator/control_box/proc/strength_change()
 	for(var/obj/structure/particle_accelerator/part in connected_parts)
@@ -230,33 +200,54 @@
 			part.update_icon()
 	return 1
 
+/obj/machinery/particle_accelerator/control_box/proc/is_interactive(mob/user)
+	if(!interface_control)
+		to_chat(user, "<span class='alert'>ERROR: Request timed out. Check wire contacts.</span>")
+		return FALSE
+	if(construction_state != 3)
+		return FALSE
+	return TRUE
 
-/obj/machinery/particle_accelerator/control_box/interact(mob/user)
-	if((get_dist(src, user) > 1) || (stat & (BROKEN|NOPOWER)))
-		if(!istype(user, /mob/living/silicon))
-			user.unset_machine()
-			user << browse(null, "window=pacontrol")
-			return
-	user.set_machine(src)
+/obj/machinery/particle_accelerator/control_box/tgui_status(mob/user)
+	if(is_interactive(user))
+		return ..()
+	return STATUS_CLOSE
 
-	var/dat = ""
-	dat += "Particle Accelerator Control Panel<BR>"
-	dat += "<A href='?src=\ref[src];close=1'>Close</A><BR><BR>"
-	dat += "Status:<BR>"
-	if(!assembled)
-		dat += "Unable to detect all parts!<BR>"
-		dat += "<A href='?src=\ref[src];scan=1'>Run Scan</A><BR><BR>"
-	else
-		dat += "All parts in place.<BR><BR>"
-		dat += "Power:"
-		if(active)
-			dat += "On<BR>"
-		else
-			dat += "Off <BR>"
-		dat += "<A href='?src=\ref[src];togglep=1'>Toggle Power</A><BR><BR>"
-		dat += "Particle Strength: [src.strength] "
-		dat += "<A href='?src=\ref[src];strengthdown=1'>--</A>|<A href='?src=\ref[src];strengthup=1'>++</A><BR><BR>"
+/obj/machinery/particle_accelerator/control_box/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "ParticleAccelerator", name)
+		ui.open()
 
-	user << browse(dat, "window=pacontrol;size=420x500")
-	onclose(user, "pacontrol")
-	return
+/obj/machinery/particle_accelerator/control_box/tgui_data(mob/user)
+	var/list/data = list()
+	data["assembled"] = assembled
+	data["power"] = active
+	data["strength"] = strength
+	return data
+
+/obj/machinery/particle_accelerator/control_box/tgui_act(action, params)
+	if(..())
+		return
+
+	switch(action)
+		if("power")
+			if(wires.is_cut(WIRE_POWER))
+				return
+			toggle_power()
+			. = TRUE
+		if("scan")
+			part_scan()
+			. = TRUE
+		if("add_strength")
+			if(wires.is_cut(WIRE_PARTICLE_STRENGTH))
+				return
+			add_strength()
+			. = TRUE
+		if("remove_strength")
+			if(wires.is_cut(WIRE_PARTICLE_STRENGTH))
+				return
+			remove_strength()
+			. = TRUE
+
+	update_icon()

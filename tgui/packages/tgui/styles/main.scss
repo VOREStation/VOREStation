@@ -36,8 +36,10 @@
 
 // Interfaces
 @include meta.load-css('./interfaces/CameraConsole.scss');
+@include meta.load-css('./interfaces/IDCard.scss');
 @include meta.load-css('./interfaces/NuclearBomb.scss');
 @include meta.load-css('./interfaces/Roulette.scss');
+@include meta.load-css('./interfaces/Turbolift.scss');
 
 // Layouts
 @include meta.load-css('./layouts/Layout.scss');

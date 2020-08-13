@@ -4,7 +4,7 @@ import { Box, Button, Flex, LabeledList, ProgressBar, Slider, Section } from "..
 import { BeakerContents } from "../interfaces/common/BeakerContents";
 import { Window } from "../layouts";
 
-const dispenseAmounts = [5, 10, 20, 30, 40];
+const dispenseAmounts = [5, 10, 20, 30, 40, 60];
 const removeAmounts = [1, 5, 10];
 
 export const ChemDispenser = (props, context) => {
@@ -35,11 +35,11 @@ const ChemDispenserSettings = (properties, context) => {
             {dispenseAmounts.map((a, i) => (
               <Flex.Item key={i} grow="1">
                 <Button
-                  icon="cog"
+                  textAlign="center"
                   selected={amount === a}
-                  content={a}
+                  content={a + "u"}
                   m="0"
-                  width="100%"
+                  fluid
                   onClick={() => act('amount', {
                     amount: a,
                   })}

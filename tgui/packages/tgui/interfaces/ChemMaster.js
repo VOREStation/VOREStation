@@ -5,7 +5,7 @@ import { Window } from "../layouts";
 import { BeakerContents } from './common/BeakerContents';
 import { ComplexModal, modalOpen, modalRegisterBodyOverride } from './common/ComplexModal';
 
-const transferAmounts = [1, 5, 10];
+const transferAmounts = [1, 5, 10, 30, 60];
 const bottleStyles = [
   "bottle.png",
   "small_bottle.png",
@@ -91,14 +91,14 @@ export const ChemMaster = (props, context) => {
           isCondiment={condi}
           bufferNonEmpty={buffer_reagents.length > 0}
         />
-        <ChemMasterCustomization />
+        {/* <ChemMasterCustomization /> */}
       </Window.Content>
     </Window>
   );
 };
 
 const ChemMasterBeaker = (props, context) => {
-  const { act } = useBackend(context);
+  const { act, data } = useBackend(context);
   const {
     beaker,
     beakerReagents,
@@ -245,12 +245,30 @@ const ChemMasterBuffer = (props, context) => {
 };
 
 const ChemMasterProduction = (props, context) => {
-  const { act } = useBackend(context);
+  const { act, data } = useBackend(context);
   if (!props.bufferNonEmpty) {
     return (
       <Section
         title="Production"
-        flexGrow="1">
+        flexGrow="1"
+        buttons={
+          <Button
+            disabled={!data.loaded_pill_bottle}
+            icon="eject"
+            content={data.loaded_pill_bottle
+              ? (
+                data.loaded_pill_bottle_name
+                  + " ("
+                  + data.loaded_pill_bottle_contents_len
+                  + "/"
+                  + data.loaded_pill_bottle_storage_slots
+                  + ")"
+              )
+              : "No pill bottle loaded"}
+            mb="0.5rem"
+            onClick={() => act('ejectp')}
+          />
+        }>
         <Flex height="100%">
           <Flex.Item
             grow="1"
@@ -271,7 +289,27 @@ const ChemMasterProduction = (props, context) => {
   }
 
   return (
-    <Section title="Production" flexGrow="1">
+    <Section
+      title="Production"
+      flexGrow="1"
+      buttons={
+        <Button
+          disabled={!data.loaded_pill_bottle}
+          icon="eject"
+          content={data.loaded_pill_bottle
+            ? (
+              data.loaded_pill_bottle_name
+                + " ("
+                + data.loaded_pill_bottle_contents_len
+                + "/"
+                + data.loaded_pill_bottle_storage_slots
+                + ")"
+            )
+            : "No pill bottle loaded"}
+          mb="0.5rem"
+          onClick={() => act('ejectp')}
+        />
+      }>
       {!props.isCondiment ? (
         <ChemMasterProductionChemical />
       ) : (
@@ -332,6 +370,11 @@ const ChemMasterProductionChemical = (props, context) => {
           mr="0.5rem"
           mb="0.5rem"
           onClick={() => modalOpen(context, 'create_bottle')}
+        />
+        <Button
+          icon="plus-square"
+          content="Multiple"
+          onClick={() => modalOpen(context, 'create_bottle_multiple')}
         /><br />
         <Button
           mb="0.5rem"
@@ -372,38 +415,38 @@ const ChemMasterProductionCondiment = (props, context) => {
   );
 };
 
-const ChemMasterCustomization = (props, context) => {
-  const { act, data } = useBackend(context);
-  if (!data.loaded_pill_bottle) {
-    return (
-      <Section title="Pill Bottle Customization">
-        <Box color="label">
-          None loaded.
-        </Box>
-      </Section>
-    );
-  }
+// const ChemMasterCustomization = (props, context) => {
+//   const { act, data } = useBackend(context);
+//   if (!data.loaded_pill_bottle) {
+//     return (
+//       <Section title="Pill Bottle Customization">
+//         <Box color="label">
+//           None loaded.
+//         </Box>
+//       </Section>
+//     );
+//   }
 
-  return (
-    <Section title="Pill Bottle Customization">
-      <Button
-        disabled={!data.loaded_pill_bottle}
-        icon="eject"
-        content={data.loaded_pill_bottle
-          ? (
-            data.loaded_pill_bottle_name
-              + " ("
-              + data.loaded_pill_bottle_contents_len
-              + "/"
-              + data.loaded_pill_bottle_storage_slots
-              + ")"
-          )
-          : "None loaded"}
-        mb="0.5rem"
-        onClick={() => act('ejectp')}
-      />
-    </Section>
-  );
-};
+//   return (
+//     <Section title="Pill Bottle Customization">
+//       <Button
+//         disabled={!data.loaded_pill_bottle}
+//         icon="eject"
+//         content={data.loaded_pill_bottle
+//           ? (
+//             data.loaded_pill_bottle_name
+//               + " ("
+//               + data.loaded_pill_bottle_contents_len
+//               + "/"
+//               + data.loaded_pill_bottle_storage_slots
+//               + ")"
+//           )
+//           : "None loaded"}
+//         mb="0.5rem"
+//         onClick={() => act('ejectp')}
+//       />
+//     </Section>
+//   );
+// };
 
 modalRegisterBodyOverride('analyze', analyzeModalBodyOverride);

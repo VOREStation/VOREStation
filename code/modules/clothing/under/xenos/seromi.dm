@@ -45,6 +45,22 @@
 	name = "small formal uniform"
 	icon_state = "seromi_captain_formal"
 
+/obj/item/clothing/under/seromi/smock/blackutilitysmock
+	name = "black utility smock"
+	icon_state = "teshari_blackutility_com"
+
+/obj/item/clothing/under/seromi/smock/greydress
+	name = "small grey dress"
+	icon_state = "teshari_greydress"
+
+/obj/item/clothing/under/seromi/smock/blackutility
+	name = "Teshari utility uniform"
+	icon_state = "teshari_blackutility"
+
+/obj/item/clothing/under/seromi/smock/bluegreydress
+	name = "small blue and grey dress"
+	icon_state = "teshari_bluegreydress"
+
 /obj/item/clothing/under/seromi/undercoat
 	name = "Undercoat"
 	desc =  "A Teshari traditional garb, with a modern twist! Made of micro and nanofibres to make it light and billowy, perfect for going fast and stylishly!"
@@ -178,6 +194,66 @@
 	name = "brown and grey undercoat"
 	icon_state = "tesh_uniform_brg"
 	item_state = "tesh_uniform_brg"
+
+/obj/item/clothing/under/seromi/undercoat/standard/blackredworksuit
+	name = "small black and red worksuit"
+	icon_state = "teshari_black_red_worksuit"
+	item_state = "teshari_black_red_worksuit"
+	desc = "A small worksuit designed for a Teshari"
+
+/obj/item/clothing/under/seromi/undercoat/standard/blackpurpleworksuit
+	name = "small black and purple worksuit"
+	icon_state = "teshari_black_purple_worksuit"
+	item_state = "teshari_black_purple_worksuit"
+	desc = "A small worksuit designed for a Teshari"
+
+/obj/item/clothing/under/seromi/undercoat/standard/blackpurpleworksuit
+	name = "small black and orange worksuit"
+	icon_state = "teshari_black_orange_worksuit"
+	item_state = "teshari_black_orange_worksuit"
+	desc = "A small worksuit designed for a Teshari"
+
+/obj/item/clothing/under/seromi/undercoat/standard/blackblueworksuit
+	name = "small black and blue worksuit"
+	icon_state = "teshari_black_blue_worksuit"
+	item_state = "teshari_black_blue_worksuit"
+	desc = "A small worksuit designed for a Teshari"
+
+/obj/item/clothing/under/seromi/undercoat/standard/blackgreenworksuit
+	name = "small black and greeen worksuit"
+	icon_state = "teshari_black_green_worksuit"
+	item_state = "teshari_black_green_worksuit"
+	desc = "A small worksuit designed for a Teshari"
+
+/obj/item/clothing/under/seromi/undercoat/standard/whiteredworksuit
+	name = "small white and red worksuit"
+	icon_state = "teshari_white_red_worksuit"
+	item_state = "teshari_white_red_worksuit"
+	desc = "A small worksuit designed for a Teshari"
+
+/obj/item/clothing/under/seromi/undercoat/standard/whitepurpleworksuit
+	name = "small white and purple worksuit"
+	icon_state = "teshari_white_purple_worksuit"
+	item_state = "teshari_white_purple_worksuit"
+	desc = "A small worksuit designed for a Teshari"
+
+/obj/item/clothing/under/seromi/undercoat/standard/whiteorangeworksuit
+	name = "small white and orange worksuit"
+	icon_state = "teshari_white_orange_worksuit"
+	item_state = "teshari_white_orange_worksuit"
+	desc = "A small worksuit designed for a Teshari"
+
+/obj/item/clothing/under/seromi/undercoat/standard/whiteblueworksuit
+	name = "small white and blue worksuit"
+	icon_state = "teshari_white_blue_worksuit"
+	item_state = "teshari_white_blue_worksuit"
+	desc = "A small worksuit designed for a Teshari"
+
+/obj/item/clothing/under/seromi/undercoat/standard/whitegreenworksuit
+	name = "small white and green worksuit"
+	icon_state = "teshari_white_green_worksuit"
+	item_state = "teshari_white_green_worksuit"
+	desc = "A small worksuit designed for a Teshari"
 
 /obj/item/clothing/under/seromi/undercoat/jobs
 	icon = 'icons/mob/species/seromi/deptjacket.dmi'

@@ -428,6 +428,14 @@
 	catalysts = list("phoron" = 5)
 	result_amount = 2
 
+/datum/chemical_reaction/mortiferin
+	name = "Mortiferin"
+	id = "mortiferin"
+	result = "mortiferin"
+	required_reagents = list("cryptobiolin" = 1, "clonexadone" = 1, "corophizine" = 1)
+	result_amount = 2
+	catalysts = list("phoron" = 5)
+
 /datum/chemical_reaction/spaceacillin
 	name = "Spaceacillin"
 	id = "spaceacillin"

@@ -254,6 +254,7 @@ var/global/list/virusDB = list()
 		"resistance" = resistance,
 		"species" = jointext(affected_species, ", "),
 		"symptoms" = list(),
+		"ref" = "\ref[src]",
 	)
 
 	for(var/datum/disease2/effectholder/E in effects)
@@ -272,6 +273,7 @@ var/global/list/virusDB = list()
 	v.fields["name"] = name()
 	v.fields["description"] = get_info()
 	v.fields["tgui_description"] = get_tgui_info()
+	v.fields["tgui_description"]["record"] = "\ref[v]"
 	v.fields["antigen"] = antigens2string(antigen)
 	v.fields["spread type"] = spreadtype
 	virusDB["[uniqueID]"] = v

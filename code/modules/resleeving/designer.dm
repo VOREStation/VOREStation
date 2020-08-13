@@ -1,6 +1,12 @@
 // Little define makes it cleaner to read the tripple color values out of mobs.
 #define MOB_HEX_COLOR(M, V) "#[num2hex(M.r_##V, 2)][num2hex(M.g_##V, 2)][num2hex(M.b_##V, 2)]"
 
+#define MENU_MAIN "Main"
+#define MENU_BODYRECORDS "Body Records"
+#define MENU_STOCKRECORDS "Stock Records"
+#define MENU_SPECIFICRECORD "Specific Record"
+#define MENU_OOCNOTES "OOC Notes"
+
 /obj/machinery/computer/transhuman/designer
 	name = "body design console"
 	catalogue_data = list(/datum/category_item/catalogue/information/organization/khi,
@@ -12,16 +18,41 @@
 	circuit = /obj/item/weapon/circuitboard/body_designer
 	req_access = list(access_medical) // Used for loading people's designs
 	var/temp = ""
-	var/menu = 1 //Which menu screen to display
+	var/menu = MENU_MAIN //Which menu screen to display
 	var/datum/transhuman/body_record/active_br = null
-	var/icon/preview_icon = null
+	//Mob preview
+	var/map_name
+	var/obj/screen/south_preview = null
+	var/obj/screen/east_preview = null
+	var/obj/screen/west_preview = null
 	// Mannequins are somewhat expensive to create, so cache it
 	var/mob/living/carbon/human/dummy/mannequin/mannequin = null
 	var/obj/item/weapon/disk/body_record/disk = null
 
+/obj/machinery/computer/transhuman/designer/Initialize()
+	. = ..()
+	map_name = "transhuman_designer_[REF(src)]_map"
+
+	south_preview = new
+	south_preview.name = ""
+	south_preview.assigned_map = map_name
+	south_preview.del_on_map_removal = FALSE
+	south_preview.screen_loc = "[map_name]:1,1"
+
+	east_preview = new
+	east_preview.name = ""
+	east_preview.assigned_map = map_name
+	east_preview.del_on_map_removal = FALSE
+	east_preview.screen_loc = "[map_name]:2,1"
+
+	west_preview = new
+	west_preview.name = ""
+	west_preview.assigned_map = map_name
+	west_preview.del_on_map_removal = FALSE
+	west_preview.screen_loc = "[map_name]:0,1"
+
 /obj/machinery/computer/transhuman/designer/Destroy()
 	active_br = null
-	preview_icon = null
 	mannequin = null
 	disk = null
 	return ..()
@@ -50,15 +81,24 @@
 	add_fingerprint(user)
 	if(inoperable())
 		return
-	ui_interact(user)
+	tgui_interact(user)
 
-/obj/machinery/computer/transhuman/designer/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	// log_debug("designer.ui_interact([user], force_open = [force_open])")
-	user.set_machine(src)
+/obj/machinery/computer/transhuman/designer/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		give_client_previews(user.client)
+		ui = new(user, src, "BodyDesigner", name)
+		ui.open()
 
-	var/data[0]
+/obj/machinery/computer/transhuman/designer/tgui_static_data(mob/user)
+	var/list/data = ..()
+	data["mapRef"] = map_name
+	return data
 
-	if(menu == "2")
+/obj/machinery/computer/transhuman/designer/tgui_data(mob/user)
+	var/list/data = list()
+
+	if(menu == MENU_BODYRECORDS)
 		var/bodyrecords_list_ui[0]
 		for(var/N in SStranscore.body_scans)
 			var/datum/transhuman/body_record/BR = SStranscore.body_scans[N]
@@ -66,7 +106,7 @@
 		if(bodyrecords_list_ui.len)
 			data["bodyrecords"] = bodyrecords_list_ui
 
-	if(menu == "3")
+	if(menu == MENU_STOCKRECORDS)
 		var/stock_bodyrecords_list_ui[0]
 		for (var/N in GLOB.all_species)
 			var/datum/species/S = GLOB.all_species[N]
@@ -86,11 +126,6 @@
 			"booc" = active_br.body_oocnotes,
 			"styles" = list()
 		)
-		if(!preview_icon)
-			update_preview_icon()
-			force_open = 1 // Force a refresh to send the new image
-		data["previewIconUrl"] = "body_preview_icon.png"
-		user << browse_rsc(preview_icon, "body_preview_icon.png")
 
 		var/list/styles = data["activeBodyRecord"]["styles"]
 		var/list/temp
@@ -98,6 +133,12 @@
 		temp = list("styleHref" = "ear_style", "style" = "Normal")
 		if(mannequin.ear_style)
 			temp["style"] = mannequin.ear_style.name
+			if(mannequin.ear_style.do_colouration)
+				temp["color"] = MOB_HEX_COLOR(mannequin, ears)
+				temp["colorHref"] = "ear_color"
+			if(mannequin.ear_style.extra_overlay)
+				temp["color2"] = MOB_HEX_COLOR(mannequin, ears2)
+				temp["colorHref2"] = "ear_color2"
 		styles["Ears"] = temp
 
 		temp = list("styleHref" = "tail_style", "style" = "Normal")
@@ -106,6 +147,9 @@
 			if(mannequin.tail_style.do_colouration)
 				temp["color"] = MOB_HEX_COLOR(mannequin, tail)
 				temp["colorHref"] = "tail_color"
+			if(mannequin.tail_style.extra_overlay)
+				temp["color2"] = MOB_HEX_COLOR(mannequin, tail2)
+				temp["colorHref2"] = "tail_color2"
 		styles["Tail"] = temp
 
 		temp = list("styleHref" = "wing_style", "style" = "Normal")
@@ -114,6 +158,9 @@
 			if(mannequin.wing_style.do_colouration)
 				temp["color"] = MOB_HEX_COLOR(mannequin, wing)
 				temp["colorHref"] = "wing_color"
+			if(mannequin.wing_style.extra_overlay)
+				temp["color2"] = MOB_HEX_COLOR(mannequin, wing2)
+				temp["colorHref2"] = "wing_color2"
 		styles["Wing"] = temp
 
 		temp = list("styleHref" = "hair_style", "style" = mannequin.h_style)
@@ -143,74 +190,74 @@
 	data["disk"] = disk ? 1 : 0
 	data["diskStored"] = disk && disk.stored ? 1 : 0
 
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "body_designer.tmpl", "Body Design Console", 400, 600)
-		ui.set_initial_data(data)
-		ui.open()
+	return data
 
-/obj/machinery/computer/transhuman/designer/Topic(href, href_list)
+/obj/machinery/computer/transhuman/designer/tgui_act(action, params)
 	if(..())
-		return 1
+		return TRUE
 
-	else if(href_list["debug_load_my_body"])
-		active_br = new /datum/transhuman/body_record(usr, FALSE, FALSE)
-		preview_icon = null
+	switch(action)
+		if("debug_load_my_body")
+			active_br = new /datum/transhuman/body_record(usr, FALSE, FALSE)
+			update_preview_icon()
+			menu = MENU_SPECIFICRECORD
 
-	else if (href_list["view_brec"])
-		var/datum/transhuman/body_record/BR = locate(href_list["view_brec"])
-		if(BR && istype(BR.mydna))
-			if(allowed(usr) || BR.ckey == usr.ckey)
-				active_br = new /datum/transhuman/body_record(BR) // Load a COPY!
-				preview_icon = null
-				menu = 4
+		if("view_brec")
+			var/datum/transhuman/body_record/BR = locate(params["view_brec"])
+			if(BR && istype(BR.mydna))
+				if(allowed(usr) || BR.ckey == usr.ckey)
+					active_br = new /datum/transhuman/body_record(BR) // Load a COPY!
+					update_preview_icon()
+					menu = MENU_SPECIFICRECORD
+				else
+					active_br = null
+					temp = "Access denied: Body records are confidential."
 			else
 				active_br = null
-				temp = "Access denied: Body records are confidential."
-		else
-			active_br = null
-			temp = "ERROR: Record missing."
+				temp = "ERROR: Record missing."
 
-	else if(href_list["view_stock_brec"])
-		var/datum/species/S = GLOB.all_species[href_list["view_stock_brec"]]
-		if(S && (S.spawn_flags & (SPECIES_IS_WHITELISTED|SPECIES_CAN_JOIN)) == SPECIES_CAN_JOIN)
-			// Generate body record from species!
-			mannequin = new(null, S.name)
-			mannequin.real_name = "Stock [S.name] Body"
-			mannequin.name = mannequin.real_name
-			mannequin.dna.real_name = mannequin.real_name
-			active_br = new(mannequin, FALSE, FALSE)
-			active_br.speciesname = "Custom Sleeve"
-			preview_icon = null
-			menu = 4
-		else
-			active_br = null
-			temp = "ERROR: Stock Record missing."
+		if("view_stock_brec")
+			var/datum/species/S = GLOB.all_species[params["view_stock_brec"]]
+			if(S && (S.spawn_flags & (SPECIES_IS_WHITELISTED|SPECIES_CAN_JOIN)) == SPECIES_CAN_JOIN)
+				// Generate body record from species!
+				mannequin = new(null, S.name)
+				mannequin.real_name = "Stock [S.name] Body"
+				mannequin.name = mannequin.real_name
+				mannequin.dna.real_name = mannequin.real_name
+				active_br = new(mannequin, FALSE, FALSE)
+				active_br.speciesname = "Custom Sleeve"
+				update_preview_icon()
+				menu = MENU_SPECIFICRECORD
+			else
+				active_br = null
+				temp = "ERROR: Stock Record missing."
 
-	else if (href_list["boocnotes"])
-		menu = 6
+		if("boocnotes")
+			menu = MENU_OOCNOTES
 
-	else if (href_list["loadfromdisk"])
-		if(disk && disk.stored)
-			active_br = new /datum/transhuman/body_record(disk.stored) // Loads a COPY!
-			preview_icon = null
+		if("loadfromdisk")
+			if(disk && disk.stored)
+				active_br = new /datum/transhuman/body_record(disk.stored) // Loads a COPY!
+				update_preview_icon()
+				menu = MENU_SPECIFICRECORD
 
-	else if (href_list["savetodisk"])
-		if(disk && active_br)
-			disk.stored = new /datum/transhuman/body_record(active_br) // Saves a COPY!
-			disk.name = "[initial(disk.name)] ([active_br.mydna.name])"
+		if("savetodisk")
+			if(disk && active_br)
+				disk.stored = new /datum/transhuman/body_record(active_br) // Saves a COPY!
+				disk.name = "[initial(disk.name)] ([active_br.mydna.name])"
+				disk.forceMove(get_turf(src))
+				disk = null
+
+		if("ejectdisk")
 			disk.forceMove(get_turf(src))
 			disk = null
 
-	else if (href_list["ejectdisk"])
-		disk.forceMove(get_turf(src))
-		disk = null
-
-	else if (href_list["menu"])
-		menu = href_list["menu"]
-		temp = ""
-	else
-		OnTopic(href, href_list, usr)
+		if("menu")
+			menu = params["menu"]
+			temp = ""
+		
+		if("href_conversion")
+			PrefHrefMiddleware(params, usr)
 
 	add_fingerprint(usr)
 	return 1 // Return 1 to refresh UI
@@ -226,24 +273,27 @@
 
 	mannequin.delete_inventory(TRUE)
 	update_preview_mob(mannequin)
+	COMPILE_OVERLAYS(mannequin)
+	
+	var/mutable_appearance/MA = new(mannequin)
+	south_preview.appearance = MA
+	south_preview.dir = SOUTH
+	south_preview.screen_loc = "[map_name]:1,1"
+	south_preview.name = ""
+	east_preview.appearance = MA
+	east_preview.dir = EAST
+	east_preview.screen_loc = "[map_name]:2,1"
+	east_preview.name = ""
+	west_preview.appearance = MA
+	west_preview.dir = WEST
+	west_preview.screen_loc = "[map_name]:0,1"
+	west_preview.name = ""
 
-	preview_icon = icon('icons/effects/effects.dmi', "nothing")
-	preview_icon.Scale(48+32, 16+32)
+/obj/machinery/computer/transhuman/designer/proc/give_client_previews(client/C)
+	C.register_map_obj(south_preview)
+	C.register_map_obj(east_preview)
+	C.register_map_obj(west_preview)
 
-	mannequin.dir = NORTH
-	var/icon/stamp = getFlatIcon(mannequin)
-	preview_icon.Blend(stamp, ICON_OVERLAY, 25, 17)
-
-	mannequin.dir = WEST
-	stamp = getFlatIcon(mannequin)
-	preview_icon.Blend(stamp, ICON_OVERLAY, 1, 9)
-
-	mannequin.dir = SOUTH
-	stamp = getFlatIcon(mannequin)
-	preview_icon.Blend(stamp, ICON_OVERLAY, 49, 1)
-
-	preview_icon.Scale(preview_icon.Width() * 2, preview_icon.Height() * 2) // Scaling here to prevent blurring in the browser.
-	return preview_icon
 
 /obj/machinery/computer/transhuman/designer/proc/update_preview_mob(var/mob/living/carbon/human/H)
 	ASSERT(!QDELETED(H))
@@ -306,15 +356,15 @@
 // Problem is, those procs save their data to /datum/preferences, not a body_record.
 // Luckily the procs to convert from body_record to /datum/preferences and back already exist.
 // Its ugly, but I think its still better than duplicating and maintaining all that code.
-/obj/machinery/computer/transhuman/designer/proc/OnTopic(var/href,var/list/href_list, var/mob/user)
-	if(!mannequin || !preview_icon || !active_br)
+/obj/machinery/computer/transhuman/designer/proc/PrefHrefMiddleware(list/params, var/mob/user)
+	if(!mannequin || !active_br)
 		return
 
-	if(href_list["size_multiplier"])
+	if(params["target_href"] == "size_multiplier")
 		var/new_size = input(user, "Choose your character's size, ranging from 25% to 200%", "Character Preference") as num|null
 		if(new_size && ISINRANGE(new_size,25,200))
 			active_br.sizemult = (new_size/100)
-			preview_icon = null
+			update_preview_icon()
 		return 1
 
 	// The black magic horror show begins
@@ -338,26 +388,30 @@
 	var/datum/category_item/player_setup_item/vore/ears/E = CG.items_by_name["Appearance"]
 	ASSERT(istype(E))
 
-	if(href_list["bio_gender"])
+	if(params["target_href"] == "bio_gender")
 		var/new_gender = input(user, "Choose your character's biological gender:", "Character Preference", active_br.bodygender) as null|anything in G.get_genders()
 		if(new_gender)
 			active_br.bodygender = new_gender
 			active_br.mydna.dna.SetUIState(DNA_UI_GENDER, new_gender!=MALE, 1)
-		preview_icon = null
+		update_preview_icon()
 		return 1
 
+	var/href_list = list()
+	href_list["src"] = "\ref[src]"
+	href_list["[params["target_href"]]"] = params["target_value"]
+
 	var/action = 0
-	action = B.OnTopic(href, href_list, user)
+	action = B.OnTopic(list2params(href_list), href_list, user)
 	if(action & TOPIC_UPDATE_PREVIEW && mannequin && active_br)
 		B.copy_to_mob(mannequin)
 		active_br.mydna.dna.ResetUIFrom(mannequin)
-		preview_icon = null
+		update_preview_icon()
 		return 1
-	action = E.OnTopic(href, href_list, user)
+	action = E.OnTopic(list2params(href_list), href_list, user)
 	if(action & TOPIC_UPDATE_PREVIEW && mannequin && active_br)
 		E.copy_to_mob(mannequin)
 		active_br.mydna.dna.ResetUIFrom(mannequin)
-		preview_icon = null
+		update_preview_icon()
 		return 1
 
 // Fake subtype of preferences we can use to steal code from player_setup

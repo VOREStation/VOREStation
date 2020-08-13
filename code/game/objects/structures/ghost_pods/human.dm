@@ -121,7 +121,7 @@
 		H.adjustBruteLoss(rand(1,20))
 
 	if(allow_appearance_change)
-		H.change_appearance(APPEARANCE_ALL, H.loc, check_species_whitelist = 1)
+		H.change_appearance(APPEARANCE_ALL, H, check_species_whitelist = 1)
 
 	visible_message("<span class='aliem'>\The [src] [pick("gurgles", "seizes", "clangs")] before releasing \the [H]!</span>")
 
@@ -241,6 +241,6 @@
 		H.adjustBruteLoss(rand(1,20))
 
 	if(allow_appearance_change)
-		H.change_appearance(APPEARANCE_ALL, H.loc, check_species_whitelist = 1)
+		H.change_appearance(APPEARANCE_ALL, H, check_species_whitelist = 1)
 
 	visible_message("<span class='aliem'>\The [src] [pick("gurgles", "seizes", "clangs")] before releasing \the [H]!</span>")

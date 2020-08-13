@@ -124,22 +124,13 @@
 
 	return 1
 
-/obj/machinery/atmospherics/omni/mixer/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	usr.set_machine(src)
-
-	var/list/data = new()
-
-	data = build_uidata()
-
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-
-	if (!ui)
-		ui = new(user, src, ui_key, "omni_mixer.tmpl", "Omni Mixer Control", 360, 330)
-		ui.set_initial_data(data)
-
+/obj/machinery/atmospherics/omni/mixer/tgui_interact(mob/user,datum/tgui/ui = null)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "OmniMixer", name)
 		ui.open()
 
-/obj/machinery/atmospherics/omni/mixer/proc/build_uidata()
+/obj/machinery/atmospherics/omni/mixer/tgui_data(mob/user)
 	var/list/data = new()
 
 	data["power"] = use_power
@@ -172,36 +163,45 @@
 
 	return data
 
-/obj/machinery/atmospherics/omni/mixer/Topic(href, href_list)
-	if(..()) return 1
+/obj/machinery/atmospherics/omni/mixer/tgui_act(action, params)
+	if(..())
+		return TRUE
 
-	switch(href_list["command"])
+	switch(action)
 		if("power")
+			. = TRUE
 			if(!configuring)
 				update_use_power(!use_power)
 			else
 				update_use_power(USE_POWER_OFF)
 		if("configure")
+			. = TRUE
 			configuring = !configuring
 			if(configuring)
 				update_use_power(USE_POWER_OFF)
-
-	//only allows config changes when in configuring mode ~otherwise you'll get weird pressure stuff going on
-	if(configuring && !use_power)
-		switch(href_list["command"])
-			if("set_flow_rate")
-				var/new_flow_rate = input(usr,"Enter new flow rate limit (0-[max_flow_rate]L/s)","Flow Rate Control",set_flow_rate) as num
-				set_flow_rate = between(0, new_flow_rate, max_flow_rate)
-			if("switch_mode")
-				switch_mode(dir_flag(href_list["dir"]), href_list["mode"])
-			if("switch_con")
-				change_concentration(dir_flag(href_list["dir"]))
-			if("switch_conlock")
-				con_lock(dir_flag(href_list["dir"]))
+		if("set_flow_rate")
+			. = TRUE
+			if(!configuring || use_power)
+				return
+			var/new_flow_rate = input(usr,"Enter new flow rate limit (0-[max_flow_rate]L/s)","Flow Rate Control",set_flow_rate) as num
+			set_flow_rate = between(0, new_flow_rate, max_flow_rate)
+		if("switch_mode")
+			. = TRUE
+			if(!configuring || use_power)
+				return
+			switch_mode(dir_flag(params["dir"]), params["mode"])
+		if("switch_con")
+			. = TRUE
+			if(!configuring || use_power)
+				return
+			change_concentration(dir_flag(params["dir"]))
+		if("switch_conlock")
+			. = TRUE
+			if(!configuring || use_power)
+				return
+			con_lock(dir_flag(params["dir"]))
 
 	update_icon()
-	SSnanoui.update_uis(src)
-	return
 
 /obj/machinery/atmospherics/omni/mixer/proc/switch_mode(var/port = NORTH, var/mode = ATM_NONE)
 	if(mode != ATM_INPUT && mode != ATM_OUTPUT)
