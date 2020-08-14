@@ -172,6 +172,7 @@
 	data["on"] = use_power
 	data["rate"] = set_flow_rate
 	data["max_rate"] = air1.volume
+	data["last_flow_rate"] = round(last_flow_rate, 0.1)
 
 	data["filter_types"] = list()
 	data["filter_types"] += list(list("name" = "Nothing", "f_type" = -1, "selected" = filter_type == -1))
