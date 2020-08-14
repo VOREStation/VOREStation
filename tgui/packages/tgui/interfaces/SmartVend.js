@@ -28,33 +28,42 @@ export const SmartVend = (props, context) => {
           ) || (
             <Table>
               <Table.Row header>
-                <Table.Cell>
+                <Table.Cell collapsing>
                   Item
                 </Table.Cell>
-                <Table.Cell collapsing />
+                <Table.Cell collapsing textAlign="center">
+                  Amount
+                </Table.Cell>
                 <Table.Cell collapsing textAlign="center">
                   Dispense
                 </Table.Cell>
               </Table.Row>
               {map((value, key) => (
                 <Table.Row key={key}>
-                  <Table.Cell>
+                  <Table.Cell collapsing>
                     {value.name}
                   </Table.Cell>
-                  <Table.Cell collapsing textAlign="right">
-                    {value.amount}
+                  <Table.Cell collapsing textAlign="center">
+                    {value.amount} in stock
                   </Table.Cell>
                   <Table.Cell collapsing>
                     <Button
-                      content="One"
+                      content="1"
                       disabled={value.amount < 1}
                       onClick={() => act('Release', {
                         index: value.index,
                         amount: 1,
                       })} />
                     <Button
-                      content="Many"
-                      disabled={value.amount <= 1}
+                      content="5"
+                      disabled={value.amount < 5}
+                      onClick={() => act('Release', {
+                        index: value.index,
+                        amount: 5,
+                      })} />
+                    <Button
+                      content="Custom"
+                      disabled={value.amount < 1}
                       onClick={() => act('Release', {
                         index: value.index,
                       })} />

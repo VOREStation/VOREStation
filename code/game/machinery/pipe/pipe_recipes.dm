@@ -79,10 +79,6 @@ GLOBAL_LIST_INIT(disposal_pipe_recipes, list(
 	var/dirtype							// If using an RPD, this tells more about what previews to show.
 	var/pipe_type
 
-// Render an HTML link to select this pipe type. Returns text.
-/datum/pipe_recipe/proc/Render(dispenser)
-	return "<A href='?src=\ref[dispenser]&[Params()]'>[name]</A><BR>"
-
 // Get preview for UIs
 /datum/pipe_recipe/proc/get_preview(selected_dir)
 	var/list/dirs
@@ -123,10 +119,6 @@ GLOBAL_LIST_INIT(disposal_pipe_recipes, list(
 
 	return rows
 
-// Parameters for the Topic link returned by Render().  Returns text.
-/datum/pipe_recipe/proc/Params()
-	return ""
-
 //
 // Subtype for actual pipes
 //
@@ -144,18 +136,6 @@ GLOBAL_LIST_INIT(disposal_pipe_recipes, list(
 		icon_state_m = "[icon_state]m"
 	paintable = ispath(path, /obj/machinery/atmospherics/pipe) && !(ispath(path, /obj/machinery/atmospherics/pipe/vent))	// VOREStation Add
 
-// Render an HTML link to select this pipe type
-/datum/pipe_recipe/pipe/Render(dispenser)
-	var/dat = ..(dispenser)
-	// Stationary pipe dispensers don't allow you to pre-select pipe directions.
-	// This makes it impossble to spawn bent versions of bendable pipes.
-	// We add a "Bent" pipe type with a preset diagonal direction to work around it.
-	if(istype(dispenser, /obj/machinery/pipedispenser) && (dirtype == PIPE_BENDABLE))
-		dat += "<A href='?src=\ref[dispenser]&[Params()]&dir=[NORTHEAST]'>Bent [name]</A><BR>"
-	return dat
-
-/datum/pipe_recipe/pipe/Params()
-	return "makepipe=[pipe_type]"
 
 //
 // Subtype for meters
@@ -167,9 +147,6 @@ GLOBAL_LIST_INIT(disposal_pipe_recipes, list(
 
 /datum/pipe_recipe/meter/New(label)
 	name = label
-
-/datum/pipe_recipe/meter/Params()
-	return "makemeter=1"
 
 //
 // Subtype for disposal pipes
@@ -185,9 +162,3 @@ GLOBAL_LIST_INIT(disposal_pipe_recipes, list(
 	subtype = sort
 	if (dirtype == PIPE_TRIN_M)
 		icon_state_m = replacetext(state, "j1", "j2")
-
-/datum/pipe_recipe/disposal/Params()
-	var/param = "dmake=[pipe_type]"
-	if (subtype)
-		param += "&sort=[subtype]"
-	return param

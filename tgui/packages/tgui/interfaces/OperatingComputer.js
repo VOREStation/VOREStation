@@ -225,6 +225,7 @@ const OperatingComputerOptions = (props, context) => {
           value={healthAlarm}
           stepPixelSize="5"
           ml="0"
+          format={val => val + "%"}
           onChange={(e, val) => act('health_adj', {
             new: val,
           })}
