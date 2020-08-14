@@ -15,7 +15,8 @@ import { Window } from "../layouts";
 export const DamagedReactor = (props, context) => {
   const { act, data } = useBackend(context);
   const {
-    health,
+	health,
+	maxhealth,
     wave,
     warmup_enabled,
     currentTab,
@@ -27,9 +28,25 @@ export const DamagedReactor = (props, context) => {
   if (currentTab === 2 && warmup === 1) { body = <DamagedReactorTab2 />; }
   if (currentTab === 3) { body = <DamagedReactorTab3 />; }
   if (currentTab === 4) { body = <DamagedReactorTab4 />; }
+  if (currentTab === 5) { body = <DamagedReactorTab5 />; }
   return (
     <Window width={600} height={600} resizable>
       <Window.Content>
+        <Section>
+          <Box textAlign="center">
+            Reactor Status
+          </Box>
+          <Box textAlign="center">
+            <ProgressBar
+                animated
+                ranges={{
+                  'good': [1500, Infinity],
+                  'average': [500, 1500],
+                  'bad': [-Infinity, 500],
+                }}
+                value={health} minValue={0} maxValue={maxhealth} />
+          </Box>
+        </Section>
         {body}
       </Window.Content>
     </Window>
@@ -37,21 +54,19 @@ export const DamagedReactor = (props, context) => {
 };
 
 const DamagedReactorTab1 = (props, context) => {
+	const { act, data } = useBackend(context);
+  const {
+	health,
+	maxhealth,
+  wave,
+  warmup_enabled,
+  currentTab,
+  warmup_time_left,
+  wave_time_left
+  } = data;
   return (
     <Section>
       <LabeledList>
-        <LabeledList.Item label="Reactor Status">
-          <ProgressBar
-            animated
-            ranges={{
-              'good': [1500, Infinity],
-              'average': [500, 1500],
-              'bad': [-Infinity, 500],
-            }}
-            {health}>
-            
-          </ProgressBar>
-        </LabeledList.Item>
         <LabeledList.Item label="STARTUP MESSAGE TBD">
           
         </LabeledList.Item>
