@@ -103,6 +103,7 @@ export const formatCommaNumber = value => {
   let parts = value.toString().split(".");
   parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   return parts.join(".");
+};
 
 // Function from https://stackoverflow.com/a/34841026. CC BY-SA 4.0.
 export const formatTime = seconds => {

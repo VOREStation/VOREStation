@@ -4,6 +4,7 @@ import { useBackend, useLocalState } from "../backend";
 import { Box, Button, Collapsible, Dropdown, Flex, Input, NoticeBox, Section } from '../components';
 import { Window } from "../layouts";
 import { refocusLayout } from '../layouts';
+import { MiningUser } from './common/Mining';
 
 const sortTypes = {
   'Alphabetical': (a, b) => a - b,
@@ -11,11 +12,11 @@ const sortTypes = {
   'By price': (a, b) => a.price - b.price,
 };
 
-export const MiningVendor = (_properties, _context) => {
+export const MiningVendor = (props, context) => {
   return (
     <Window width={400} height={450} resizable>
       <Window.Content className="Layout__content--flexColumn" scrollable>
-        <MiningVendorUser />
+        <MiningUser insertIdText="Please insert an ID in order to make purchases." />
         <MiningVendorSearch />
         <MiningVendorItems />
       </Window.Content>
@@ -23,47 +24,8 @@ export const MiningVendor = (_properties, _context) => {
   );
 };
 
-const MiningVendorUser = (_properties, context) => {
-  const { act, data } = useBackend(context);
-  const {
-    has_id,
-    id,
-  } = data;
-  return (
-    <NoticeBox success={has_id}>
-      {has_id ? (
-        <Fragment>
-          <Box
-            display="inline-block"
-            verticalAlign="middle"
-            style={{
-              float: 'left',
-            }}>
-            Logged in as {id.name}.<br />
-            You have {id.points.toLocaleString('en-US')} points.
-          </Box>
-          <Button
-            icon="eject"
-            content="Eject ID"
-            style={{
-              float: 'right',
-            }}
-            onClick={() => act('logoff')}
-          />
-          <Box
-            style={{
-              clear: "both",
-            }}
-          />
-        </Fragment>
-      ) : (
-        "Please insert an ID in order to make purchases."
-      )}
-    </NoticeBox>
-  );
-};
 
-const MiningVendorItems = (_properties, context) => {
+const MiningVendorItems = (props, context) => {
   const { act, data } = useBackend(context);
   const {
     has_id,
@@ -126,7 +88,7 @@ const MiningVendorItems = (_properties, context) => {
   );
 };
 
-const MiningVendorSearch = (_properties, context) => {
+const MiningVendorSearch = (props, context) => {
   const [
     _searchText,
     setSearchText,
