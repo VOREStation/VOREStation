@@ -691,6 +691,7 @@
 					TLV[env][name] = -1
 				else
 					TLV[env][name] = round(value, 0.01)
+				clamp_tlv_values(env, name)
 				// investigate_log(" treshold value for [env]:[name] was set to [value] by [key_name(usr)]",INVESTIGATE_ATMOS)
 				. = TRUE
 		if("mode")
@@ -706,6 +707,43 @@
 			atmos_reset()
 			. = TRUE
 	update_icon()
+
+// This big ol' mess just ensures that TLV always makes sense. If you set the max value below the min value,
+// it'll automatically update all the other values to keep it sane.
+/obj/machinery/alarm/proc/clamp_tlv_values(env, changed_threshold)
+	var/list/selected = TLV[env]
+	switch(changed_threshold)
+		if(1)
+			if(selected[1] > selected[2])
+				selected[2] = selected[1]
+			if(selected[1] > selected[3])
+				selected[3] = selected[1]
+			if(selected[1] > selected[4])
+				selected[4] = selected[1]
+		if(2)
+			if(selected[1] > selected[2])
+				selected[1] = selected[2]
+			if(selected[2] > selected[3])
+				selected[3] = selected[2]
+			if(selected[2] > selected[4])
+				selected[4] = selected[2]
+		if(3)
+			if(selected[1] > selected[3])
+				selected[1] = selected[3]
+			if(selected[2] > selected[3])
+				selected[2] = selected[3]
+			if(selected[3] > selected[4])
+				selected[4] = selected[3]
+		if(4)
+			if(selected[1] > selected[4])
+				selected[1] = selected[4]
+			if(selected[2] > selected[4])
+				selected[2] = selected[4]
+			if(selected[3] > selected[4])
+				selected[3] = selected[4]
+
+
+
 
 /obj/machinery/alarm/proc/atmos_reset()
 	if(alarm_area.atmosalert(0, src))
