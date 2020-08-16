@@ -21,7 +21,7 @@
 	if(!isnull(author))
 		author = _author
 
-/obj/effect/decal/writing/Initialize()
+/obj/effect/decal/writing/Initialize(mapload)
 	var/list/random_icon_states = icon_states(icon)
 	for(var/obj/effect/decal/writing/W in loc)
 		random_icon_states.Remove(W.icon_state)
