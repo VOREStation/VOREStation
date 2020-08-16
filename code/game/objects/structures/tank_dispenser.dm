@@ -107,7 +107,7 @@
 				usr.put_in_hands(tank)
 				phorontanks--
 			. = TRUE
-			playsound(src, 'sound/machines/vending/vending_drop.ogg', 100, 1, 1)
+			playsound(src, 'sound/items/drop/gascan.ogg', 100, 1, 1)
 		if("oxygen")
 			var/obj/item/weapon/tank/tank = null
 			for(var/obj/item/weapon/tank/T in src)
@@ -118,5 +118,5 @@
 				usr.put_in_hands(tank)
 				oxygentanks--
 			. = TRUE
-			playsound(src, 'sound/machines/vending/vending_drop.ogg', 100, 1, 1)
+			playsound(src, 'sound/items/drop/gascan.ogg', 100, 1, 1)
 	update_icon()
