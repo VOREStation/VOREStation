@@ -383,7 +383,7 @@
 	},
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/glass_security{
-	req_one_access = list(1,38)
+	req_one_access = list(38,63)
 	},
 /turf/simulated/floor/tiled,
 /area/security/hallway)
@@ -409,7 +409,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/glass_security{
-	req_one_access = list(1,38)
+	req_one_access = list(38,63)
 	},
 /turf/simulated/floor/tiled,
 /area/security/hallway)
@@ -427,8 +427,7 @@
 	id_tag = "BrigFoyer";
 	layer = 2.8;
 	name = "Security";
-	req_access = newlist();
-	req_one_access = list(1,38)
+	req_one_access = list(38,63)
 	},
 /turf/simulated/floor/tiled,
 /area/security/hallway)
@@ -448,8 +447,7 @@
 	id_tag = "BrigFoyer";
 	layer = 2.8;
 	name = "Security";
-	req_access = newlist();
-	req_one_access = list(1,38)
+	req_one_access = list(38,63)
 	},
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled,
@@ -2133,13 +2131,12 @@
 /turf/simulated/floor,
 /area/maintenance/station/ai)
 "ady" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
+/obj/structure/barricade/cutout/ntsec{
+	fake_desc = "You have to be closer to examine the Silent Tether Guard.";
+	fake_name = "Silent Tether Guard"
 	},
-/turf/simulated/floor/tiled/asteroid_steel/airless,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/mining_outpost/shuttle)
+/turf/simulated/floor/tiled/dark,
+/area/security/nuke_storage)
 "adz" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -2157,12 +2154,20 @@
 /area/maintenance/station/sec_upper)
 "adB" = (
 /obj/structure/shuttle/engine/propulsion{
-	dir = 8
+	dir = 8;
+	icon_state = "propulsion_l"
 	},
 /turf/simulated/floor/tiled/asteroid_steel/airless,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/mining_outpost/shuttle)
 "adC" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/asteroid_steel/airless,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/mining_outpost/shuttle)
+"adD" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8;
 	icon_state = "propulsion_r"
@@ -28423,14 +28428,6 @@
 /obj/structure/window/reinforced,
 /turf/simulated/shuttle/floor/yellow/airless,
 /area/shuttle/belter)
-"baw" = (
-/obj/structure/bed/chair/shuttle,
-/obj/structure/shuttle/engine/heater{
-	dir = 1
-	},
-/obj/structure/window/reinforced,
-/turf/simulated/shuttle/floor/yellow/airless,
-/area/shuttle/belter)
 "bax" = (
 /obj/structure/bed/chair/shuttle,
 /turf/simulated/shuttle/floor/yellow,
@@ -32260,10 +32257,6 @@
 	},
 /turf/simulated/floor/tiled/eris/white,
 /area/shuttle/medivac/general)
-"ufq" = (
-/obj/structure/barricade/cutout/ntsec,
-/turf/simulated/floor/tiled/dark,
-/area/security/nuke_storage)
 "uiP" = (
 /obj/structure/cable/green{
 	d1 = 2;
@@ -37602,7 +37595,7 @@ axw
 axw
 azf
 azT
-ufq
+ady
 azT
 aCU
 axw
@@ -46433,7 +46426,7 @@ apC
 aQG
 aVb
 baq
-baw
+bav
 baz
 baE
 aVG
@@ -47565,11 +47558,11 @@ avt
 avt
 aVc
 aZS
-ady
-adB
-adB
 adB
 adC
+adC
+adC
+adD
 baB
 aVc
 avt
