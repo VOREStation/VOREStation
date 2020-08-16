@@ -8223,10 +8223,7 @@
 	pixel_x = -24
 	},
 /obj/structure/bed/chair/office/dark,
-/obj/structure/barricade/cutout/ntsec{
-	fake_desc = "You have to be closer to examine the Silent Tether Guard.";
-	fake_name = "Silent Tether Guard"
-	},
+/obj/structure/barricade/cutout/ntsec,
 /turf/simulated/floor/tiled,
 /area/security/checkpoint)
 "anI" = (
