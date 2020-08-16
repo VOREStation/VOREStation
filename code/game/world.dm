@@ -108,7 +108,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		s["version"] = game_version
 		s["mode"] = master_mode
 		s["respawn"] = config.abandon_allowed
-		s["persistance"] = config.persistence_enabled
+		s["persistance"] = config.persistence_disabled
 		s["enter"] = config.enter_allowed
 		s["vote"] = config.allow_vote_mode
 		s["ai"] = config.allow_ai
@@ -529,7 +529,9 @@ var/world_topic_spam_protect_time = world.timeofday
 
 	features += config.abandon_allowed ? "respawn" : "no respawn"
 
-	features += config.persistence_enabled ? "persistence enabled" : "persistence disabled"
+	features += config.persistence_disabled ? "persistence disabled" : "persistence enabled"
+	
+	features += config.persistence_ignore_mapload ? "persistence mapload disabled" : "persistence mapload enabled"
 
 	if (config && config.allow_vote_mode)
 		features += "vote"

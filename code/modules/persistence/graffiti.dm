@@ -27,7 +27,8 @@
 		random_icon_states.Remove(W.icon_state)
 	if(random_icon_states.len)
 		icon_state = pick(random_icon_states)
-	SSpersistence.track_value(src, /datum/persistent/graffiti)
+	if(!mapload || !config.persistence_ignore_mapload)
+		SSpersistence.track_value(src, /datum/persistent/graffiti)
 	. = ..()
 
 /obj/effect/decal/writing/Destroy()
