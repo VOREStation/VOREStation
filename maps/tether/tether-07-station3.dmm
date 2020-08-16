@@ -10921,9 +10921,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/security/forensics)
-"asN" = (
-/turf/simulated/floor/tiled/white,
-/area/security/forensics)
 "asO" = (
 /obj/machinery/door/window/eastright,
 /turf/simulated/floor/tiled/white,
@@ -37453,7 +37450,7 @@ amb
 aqy
 arg
 asc
-asN
+acZ
 agc
 aqc
 avs
