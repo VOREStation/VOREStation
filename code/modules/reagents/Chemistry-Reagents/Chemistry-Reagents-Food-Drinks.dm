@@ -636,7 +636,7 @@
 		to_chat(M, "<span class='danger'>Your insides suddenly feel a spreading chill!</span>")
 	if(effective_dose >= 5)
 		M.apply_effect(2 * M.species.spice_mod, AGONY, 0)
-		M.bodytemperature -= rand(1, 5) * spice_mod // Really fucks you up, cause it makes you cold.
+		M.bodytemperature -= rand(1, 5) * M.species.spice_mod // Really fucks you up, cause it makes you cold.
 		if(prob(5))
 			M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>", pick("<span class='danger'>You feel like your insides are freezing!</span>", "<span class='danger'>Your insides feel like they're turning to ice!</span>"))
 	holder.remove_reagent("capsaicin", 5)
@@ -682,7 +682,7 @@
 		to_chat(M, "<span class='danger'>Your insides feel uncomfortably hot!</span>")
 	if(effective_dose >= 5)
 		M.apply_effect(2 * M.species.spice_mod, AGONY, 0)
-		M.bodytemperature += rand(1, 5) * spice_mod // Really fucks you up, cause it makes you overheat, too.
+		M.bodytemperature += rand(1, 5) * M.species.spice_mod // Really fucks you up, cause it makes you overheat, too.
 		if(prob(5))
 			M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>", pick("<span class='danger'>You feel like your insides are burning!</span>", "<span class='danger'>You feel like your insides are on fire!</span>", "<span class='danger'>You feel like your belly is full of lava!</span>"))
 	holder.remove_reagent("frostoil", 5)
