@@ -639,7 +639,7 @@
 		M.bodytemperature -= rand(1, 5) * M.species.spice_mod // Really fucks you up, cause it makes you cold.
 		if(prob(5))
 			M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>", pick("<span class='danger'>You feel like your insides are freezing!</span>", "<span class='danger'>Your insides feel like they're turning to ice!</span>"))
-	holder.remove_reagent("capsaicin", 5)
+	// holder.remove_reagent("capsaicin", 5) // VOREStation Edit: Nop, we don't instadelete spices for free. 
 
 /datum/reagent/frostoil/cryotoxin //A longer lasting version of frost oil.
 	name = "Cryotoxin"
@@ -685,7 +685,7 @@
 		M.bodytemperature += rand(1, 5) * M.species.spice_mod // Really fucks you up, cause it makes you overheat, too.
 		if(prob(5))
 			M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>", pick("<span class='danger'>You feel like your insides are burning!</span>", "<span class='danger'>You feel like your insides are on fire!</span>", "<span class='danger'>You feel like your belly is full of lava!</span>"))
-	holder.remove_reagent("frostoil", 5)
+	// holder.remove_reagent("frostoil", 5)  // VOREStation Edit: Nop, we don't instadelete spices for free. 
 
 /datum/reagent/condensedcapsaicin
 	name = "Condensed Capsaicin"
@@ -829,7 +829,7 @@
 		M.apply_effect(4, AGONY, 0)
 		if(prob(5))
 			M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>", "<span class='danger'>You feel like your insides are burning!</span>")
-	holder.remove_reagent("frostoil", 5)
+	// holder.remove_reagent("frostoil", 5) // VOREStation Edit: Nop, we don't instadelete spices for free. 
 
 /* Drinks */
 
