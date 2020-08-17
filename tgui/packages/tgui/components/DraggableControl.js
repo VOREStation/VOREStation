@@ -170,6 +170,7 @@ export class DraggableControl extends Component {
       onDrag,
       children,
       // Input props
+      forcedInputWidth,
       height,
       lineHeight,
       fontSize,
@@ -206,6 +207,7 @@ export class DraggableControl extends Component {
         style={{
           display: !editing ? 'none' : undefined,
           height: height,
+          width: forcedInputWidth,
           'line-height': lineHeight,
           'font-size': fontSize,
         }}

@@ -1333,7 +1333,7 @@
 "acE" = (
 /obj/machinery/door/airlock/glass_security{
 	name = "Break Room";
-	req_access = list(1)
+	req_access = list(63)
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -2085,7 +2085,7 @@
 	id_tag = "SurfaceBrigAccess";
 	layer = 2.8;
 	name = "Security";
-	req_access = list(1)
+	req_access = list(63)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -2097,7 +2097,7 @@
 	id_tag = "SurfaceBrigAccess";
 	layer = 2.8;
 	name = "Security";
-	req_access = list(1)
+	req_access = list(63)
 	},
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable/green{
@@ -3313,7 +3313,7 @@
 "afU" = (
 /obj/machinery/door/airlock/security{
 	name = "Security Processing";
-	req_access = list(1)
+	req_access = list(63)
 	},
 /obj/structure/cable/green{
 	d1 = 4;
@@ -4260,7 +4260,7 @@
 "ahy" = (
 /obj/machinery/door/airlock/glass_security{
 	name = "Front Desk";
-	req_access = list(1)
+	req_access = list(63)
 	},
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -13056,7 +13056,7 @@
 	id_tag = "SurfaceFoyer";
 	layer = 2.8;
 	name = "Security";
-	req_access = list(1)
+	req_access = list(63)
 	},
 /obj/machinery/door/blast/regular{
 	density = 0;
@@ -26405,10 +26405,9 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
 "aTP" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tether)
+/obj/item/weapon/card/id/gold/captain/spare/fakespare,
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/surface_three_hall)
 "aTQ" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8;
@@ -34515,6 +34514,11 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/rnd/outpost/xenobiology/outpost_storage)
 "bhg" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tether)
+"bhh" = (
 /obj/machinery/atmospherics/unary/engine{
 	dir = 1
 	},
@@ -48776,7 +48780,7 @@ jML
 jHw
 jpB
 qWU
-bhg
+bhh
 aKU
 aOI
 aPb
@@ -49628,7 +49632,7 @@ caw
 jHw
 gHh
 qWU
-bhg
+bhh
 aKU
 aOI
 aPb
@@ -51292,7 +51296,7 @@ aZR
 bbi
 ayx
 aqO
-aqO
+aTP
 asT
 aPp
 asT
@@ -51613,7 +51617,7 @@ aNk
 uSA
 aNJ
 aNP
-aTP
+bhg
 aKU
 abg
 aOk
@@ -51755,7 +51759,7 @@ aNl
 aNl
 aNK
 aNP
-aTP
+bhg
 aKU
 abg
 aOk
@@ -51897,7 +51901,7 @@ aNm
 aNl
 aNK
 aNP
-aTP
+bhg
 aKU
 abg
 aOk

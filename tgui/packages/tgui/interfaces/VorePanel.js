@@ -390,7 +390,7 @@ const VoreSelectedBelly = (props, context) => {
           </Flex.Item>
         </Flex>
       ) || tabIndex === 2 && (
-        <VoreContentsPanel contents={contents} />
+        <VoreContentsPanel outside contents={contents} />
       ) || tabIndex === 3 && (
         <Section title="Belly Interactions" buttons={
           <Button
@@ -445,37 +445,48 @@ const VoreContentsPanel = (props, context) => {
   const {
     contents,
     belly,
+    outside = false,
   } = props;
 
   return (
-    <Flex wrap="wrap" justify="center" align="center">
-      {contents.map(thing => (
-        <Flex.Item key={thing.name} basis="33%">
-          <Button
-            width="64px"
-            color={thing.absorbed ? "purple" : stats[thing.stat]}
-            style={{
-              'vertical-align': 'middle',
-              'margin-right': '5px',
-              'border-radius': '20px',
-            }}
-            onClick={() => act(thing.outside ? "pick_from_outside" : "pick_from_inside", {
-              "pick": thing.ref,
-              "belly": belly,
-            })}>
-            <img
-              src={"data:image/jpeg;base64, " + thing.icon}
+    <Fragment>
+      {outside && (
+        <Button
+          textAlign="center"
+          fluid
+          onClick={() => act("pick_from_outside", { "pickall": true })}>
+          All
+        </Button>
+      ) || null}
+      <Flex wrap="wrap" justify="center" align="center">
+        {contents.map(thing => (
+          <Flex.Item key={thing.name} basis="33%">
+            <Button
               width="64px"
-              height="64px"
+              color={thing.absorbed ? "purple" : stats[thing.stat]}
               style={{
-                '-ms-interpolation-mode': 'nearest-neighbor',
-                'margin-left': '-5px',
-              }} />
-          </Button>
-          {thing.name}
-        </Flex.Item>
-      ))}
-    </Flex>
+                'vertical-align': 'middle',
+                'margin-right': '5px',
+                'border-radius': '20px',
+              }}
+              onClick={() => act(thing.outside ? "pick_from_outside" : "pick_from_inside", {
+                "pick": thing.ref,
+                "belly": belly,
+              })}>
+              <img
+                src={"data:image/jpeg;base64, " + thing.icon}
+                width="64px"
+                height="64px"
+                style={{
+                  '-ms-interpolation-mode': 'nearest-neighbor',
+                  'margin-left': '-5px',
+                }} />
+            </Button>
+            {thing.name}
+          </Flex.Item>
+        ))}
+      </Flex>
+    </Fragment>
   );
 };
 

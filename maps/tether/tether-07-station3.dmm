@@ -168,7 +168,7 @@
 "aas" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/glass_security{
-	req_one_access = list(1,38)
+	req_one_access = list(38,63)
 	},
 /turf/simulated/floor/tiled,
 /area/security/hallway)
@@ -266,7 +266,7 @@
 /obj/machinery/door/firedoor/glass,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/airlock/glass_security{
-	req_one_access = list(1,38)
+	req_one_access = list(38,63)
 	},
 /turf/simulated/floor/tiled,
 /area/security/hallway)
@@ -352,7 +352,7 @@
 	},
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/glass_security{
-	req_one_access = list(1,38)
+	req_one_access = list(38,63)
 	},
 /turf/simulated/floor/tiled,
 /area/security/hallway)
@@ -383,7 +383,7 @@
 	},
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/glass_security{
-	req_one_access = list(1,38)
+	req_one_access = list(38,63)
 	},
 /turf/simulated/floor/tiled,
 /area/security/hallway)
@@ -409,29 +409,36 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/glass_security{
-	req_one_access = list(1,38)
+	req_one_access = list(38,63)
 	},
 /turf/simulated/floor/tiled,
 /area/security/hallway)
 "aaM" = (
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "security_lockdown";
-	name = "Security Blast Doors";
-	opacity = 0
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/glass_security{
-	id_tag = "BrigFoyer";
-	layer = 2.8;
-	name = "Security";
-	req_access = newlist();
-	req_one_access = list(1,38)
+	name = "Front Desk";
+	req_access = list(63);
+	req_one_access = list(63)
 	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled,
-/area/security/hallway)
+/area/security/lobby)
 "aaN" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -2133,13 +2140,23 @@
 /turf/simulated/floor,
 /area/maintenance/station/ai)
 "ady" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "security_lockdown";
+	name = "Security Blast Doors";
+	opacity = 0
 	},
-/turf/simulated/floor/tiled/asteroid_steel/airless,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/mining_outpost/shuttle)
+/obj/machinery/door/airlock/glass_security{
+	id_tag = "BrigFoyer";
+	layer = 2.8;
+	name = "Security";
+	req_one_access = list(38,63)
+	},
+/turf/simulated/floor/tiled,
+/area/security/hallway)
 "adz" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -2156,16 +2173,25 @@
 /turf/simulated/floor,
 /area/maintenance/station/sec_upper)
 "adB" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/asteroid_steel/airless,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/mining_outpost/shuttle)
+/turf/simulated/wall/r_wall,
+/area/quartermaster/belterdock)
 "adC" = (
+/obj/structure/sign/securearea{
+	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
+	icon_state = "space";
+	layer = 4;
+	name = "EXTERNAL AIRLOCK";
+	pixel_x = 0
+	},
+/turf/simulated/wall/r_wall,
+/area/quartermaster/belterdock)
+"adD" = (
+/turf/simulated/wall/r_wall,
+/area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
+"adE" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8;
-	icon_state = "propulsion_r"
+	icon_state = "propulsion_l"
 	},
 /turf/simulated/floor/tiled/asteroid_steel/airless,
 /turf/simulated/shuttle/plating/airless/carry,
@@ -2179,6 +2205,13 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/tether/exploration)
+"adG" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/asteroid_steel/airless,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/mining_outpost/shuttle)
 "adH" = (
 /obj/machinery/light{
 	dir = 4
@@ -2190,6 +2223,14 @@
 "adI" = (
 /turf/simulated/wall/r_wall,
 /area/security/warden)
+"adJ" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_r"
+	},
+/turf/simulated/floor/tiled/asteroid_steel/airless,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/mining_outpost/shuttle)
 "adM" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
@@ -10921,9 +10962,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/security/forensics)
-"asN" = (
-/turf/simulated/floor/tiled/white,
-/area/security/forensics)
 "asO" = (
 /obj/machinery/door/window/eastright,
 /turf/simulated/floor/tiled/white,
@@ -12146,31 +12184,6 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor,
-/area/security/lobby)
-"auR" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/door/airlock/glass_security{
-	name = "Front Desk";
-	req_access = list(1)
-	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/obj/structure/disposalpipe/segment,
-/turf/simulated/floor/tiled,
 /area/security/lobby)
 "auS" = (
 /obj/machinery/door/firedoor/glass,
@@ -26232,16 +26245,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock/gear)
-"aTk" = (
-/obj/structure/sign/securearea{
-	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
-	icon_state = "space";
-	layer = 4;
-	name = "EXTERNAL AIRLOCK";
-	pixel_x = 0
-	},
-/turf/simulated/wall,
-/area/quartermaster/belterdock)
 "aTm" = (
 /obj/machinery/airlock_sensor{
 	pixel_y = 28
@@ -26943,9 +26946,6 @@
 /obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor/airless,
 /area/quartermaster/belterdock)
-"aVc" = (
-/turf/simulated/wall,
-/area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
 "aVe" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -28420,14 +28420,6 @@
 /turf/simulated/shuttle/floor/yellow,
 /area/shuttle/mining_outpost/shuttle)
 "bav" = (
-/obj/structure/shuttle/engine/heater{
-	dir = 1
-	},
-/obj/structure/window/reinforced,
-/turf/simulated/shuttle/floor/yellow/airless,
-/area/shuttle/belter)
-"baw" = (
-/obj/structure/bed/chair/shuttle,
 /obj/structure/shuttle/engine/heater{
 	dir = 1
 	},
@@ -37453,7 +37445,7 @@ amb
 aqy
 arg
 asc
-asN
+acZ
 agc
 aqc
 avs
@@ -40295,7 +40287,7 @@ arv
 alw
 aqP
 atX
-auR
+aaM
 avF
 awk
 awP
@@ -41147,7 +41139,7 @@ alE
 aaK
 ath
 auc
-aaM
+ady
 avK
 awp
 awn
@@ -45860,12 +45852,12 @@ aTa
 aTr
 aTE
 aQG
-aQG
-aQG
-aQG
-aQG
-aQG
-aQG
+adB
+adB
+adB
+adB
+adB
+adB
 aVa
 bap
 bap
@@ -46007,7 +45999,7 @@ aUh
 aUr
 aTZ
 aUg
-aQG
+adB
 aVb
 baq
 aVo
@@ -46433,10 +46425,10 @@ aTV
 aUF
 aOL
 apC
-aQG
+adB
 aVb
 baq
-baw
+bav
 baz
 baE
 aVG
@@ -46569,13 +46561,13 @@ aSV
 aSV
 aWP
 aMN
-aQG
-aTk
+adB
+adC
 aTw
-aQG
-aQG
-aQG
-aQG
+adB
+adB
+adB
+adB
 bak
 baq
 aVo
@@ -46711,11 +46703,11 @@ aSW
 aXY
 aWQ
 aYn
-aQG
+adB
 aTm
 aTx
 aTK
-aQG
+adB
 aVh
 bag
 bal
@@ -46853,7 +46845,7 @@ aTg
 aUX
 aWQ
 amK
-aQG
+adB
 aTn
 aOO
 aTA
@@ -46995,11 +46987,11 @@ aTg
 aVk
 aWU
 aYt
-aQG
-aQG
-aQG
-aQG
-aQG
+adB
+adB
+adB
+adB
+adB
 aUI
 aUI
 aWi
@@ -47282,15 +47274,15 @@ aTM
 aMN
 avt
 avt
-aVc
-aVc
+adD
+adD
 aWc
 aWc
 aWc
 aWc
 aWc
-aVc
-aVc
+adD
+adD
 avt
 avt
 avt
@@ -47424,7 +47416,7 @@ aZA
 aMN
 avt
 avt
-aVc
+adD
 aZJ
 baf
 baf
@@ -47432,7 +47424,7 @@ baf
 baf
 baf
 baP
-aVc
+adD
 avt
 avt
 aaa
@@ -47566,15 +47558,15 @@ aZB
 aMN
 avt
 avt
-aVc
+adD
 aZS
-ady
-adB
-adB
-adB
-adC
+adE
+adG
+adG
+adG
+adJ
 baB
-aVc
+adD
 avt
 avt
 aaa
@@ -47708,7 +47700,7 @@ aVx
 aMN
 avt
 avt
-aVc
+adD
 aZS
 bai
 bao
@@ -47716,7 +47708,7 @@ bao
 bao
 bai
 baB
-aVc
+adD
 aaa
 aaa
 aaa
@@ -47849,8 +47841,8 @@ aXm
 aVt
 aMD
 aMD
-aVc
-aVc
+adD
+adD
 baL
 bai
 bat
@@ -47858,7 +47850,7 @@ bau
 baM
 bai
 baW
-aVc
+adD
 aaa
 aaa
 aaa
@@ -47991,7 +47983,7 @@ aXn
 aWI
 aWf
 aYJ
-aVc
+adD
 aYZ
 aZS
 bai
@@ -48000,7 +47992,7 @@ bau
 bau
 bai
 baB
-aVc
+adD
 aaa
 aaa
 aaa
@@ -48142,7 +48134,7 @@ bau
 baN
 bai
 baB
-aVc
+adD
 aaa
 aaa
 aaa
@@ -48275,7 +48267,7 @@ aXu
 aWI
 aYP
 aZf
-aVc
+adD
 aZZ
 ban
 bai
@@ -48284,7 +48276,7 @@ bau
 baN
 bai
 baC
-aVc
+adD
 aaa
 aaa
 aaa
@@ -48417,7 +48409,7 @@ aXz
 aYE
 aUe
 aZq
-aVc
+adD
 aYL
 baR
 bai
@@ -48426,7 +48418,7 @@ bau
 baN
 bai
 baB
-aVc
+adD
 aaa
 aaa
 aaa
@@ -48559,7 +48551,7 @@ aXA
 aYF
 aUe
 aZH
-aVc
+adD
 aZb
 bab
 bai
@@ -48568,7 +48560,7 @@ baJ
 baA
 bai
 baB
-aVc
+adD
 aaa
 aaa
 aaa
@@ -48701,7 +48693,7 @@ aXI
 aYI
 aYR
 aZI
-aVc
+adD
 aVz
 bab
 bai
@@ -48710,7 +48702,7 @@ baK
 baD
 bai
 baW
-aVc
+adD
 aaa
 aaa
 aaa
@@ -48843,7 +48835,7 @@ aXJ
 aUe
 aUe
 aZj
-aVc
+adD
 baa
 bad
 aVs
@@ -48852,7 +48844,7 @@ baT
 bai
 aVs
 baB
-aVc
+adD
 aaa
 aaa
 aaa
@@ -48985,7 +48977,7 @@ aXV
 aZh
 aWO
 aZC
-aVc
+adD
 aVJ
 bae
 bam
@@ -48994,7 +48986,7 @@ bam
 bam
 bam
 baQ
-aVc
+adD
 aaa
 aaa
 aaa
@@ -49120,23 +49112,23 @@ aaa
 aaa
 aaa
 baS
-aMD
-aMD
-aMD
-aMD
-aMD
-aMD
-aMD
-aVc
-aVc
-aVc
+baS
+baS
+baS
+baS
+baS
+baS
+baS
+adD
+adD
+adD
 aWc
 aWc
 aWc
 aWc
 aWc
-aVc
-aVc
+adD
+adD
 aaa
 aaa
 aaa

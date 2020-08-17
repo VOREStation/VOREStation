@@ -63,7 +63,8 @@ export const PipeDispenser = (props, context) => {
               content={recipe.pipe_name}
               title={recipe.pipe_name}
               onClick={() => act('dispense_pipe', {
-                pipe_type: recipe.pipe_index,
+                ref: recipe.ref,
+                bent: recipe.bent,
                 category: shownCategory.cat_name,
               })} />
           ))}

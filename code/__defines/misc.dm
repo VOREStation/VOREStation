@@ -115,7 +115,7 @@
 #define CUSTOM_ITEM_MOB 'icons/mob/custom_items_mob.dmi'
 #endif
 #ifndef CUSTOM_ITEM_SYNTH
-#define CUSTOM_ITEM_SYNTH 'icons/mob/custom_synthetic.dmi'
+#define CUSTOM_ITEM_SYNTH 'icons/mob/custom_synthetic_vr.dmi' //Vorestation edit
 #endif
 
 #define WALL_CAN_OPEN 1

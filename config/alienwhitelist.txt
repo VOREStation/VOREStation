@@ -14,6 +14,7 @@ bricker98 - Protean
 crossexonar - Protean
 chillyfang - Black-Eyed Shadekin
 cgr - Protean
+draycu - Vox
 flaktual - Vox
 funnyman2003 - Xenochimera
 flurriee - Protean
@@ -24,6 +25,7 @@ jademanique - Xenochimera
 jemli - Gutter
 ktccd - Diona
 khanivore - Protean
+lunarfleet - Gutter
 mewchild - Diona
 mewchild - Vox
 mrsebbi - Xenochimera
@@ -31,6 +33,7 @@ natje - Xenochimera
 nerdass - Protean
 oreganovulgaris - Xenochimera
 paradoxspace - Xenochimera
+pearlprophet - Protean
 phoenixx0 - Vox
 rapidvalj - Vox
 rapidvalj - Common Skrellian
@@ -41,6 +44,7 @@ rixunie - Gutter
 rykkastormheart - Xenochimera
 rubyflamewing - Protean
 radiantaurora - Protean
+ryumi - Protean
 seiga - Vox
 sepulchre - Vox
 silvertalismen - Diona

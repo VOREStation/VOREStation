@@ -118,6 +118,11 @@
 	glass_center_of_mass = list("x"=16, "y"=8)
 	glass_icon_file = 'icons/obj/drinks_vr.dmi'
 
+/datum/reagent/ethanol/pink_moo
+	glass_icon_state = "pinkmooglass"
+	glass_center_of_mass = list("x"=16, "y"=9)
+	glass_icon_file = 'icons/obj/drinks_vr.dmi'
+
 /datum/reagent/drink/soda/kiraspecial
 	glass_icon_file = 'icons/obj/drinks_vr.dmi'
 
