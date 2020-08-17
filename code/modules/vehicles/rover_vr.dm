@@ -164,28 +164,28 @@
 	else
 		verbs += /obj/vehicle/train/rover/engine/verb/stop_engine
 
-/obj/vehicle/train/rover/RunOver(var/mob/living/carbon/human/H)
+/obj/vehicle/train/rover/RunOver(var/mob/living/M)
 	var/list/parts = list(BP_HEAD, BP_TORSO, BP_L_LEG, BP_R_LEG, BP_L_ARM, BP_R_ARM)
 
-	H.apply_effects(5, 5)
+	M.apply_effects(5, 5)
 	for(var/i = 0, i < rand(1,3), i++)
-		H.apply_damage(rand(1,5), BRUTE, pick(parts))
+		M.apply_damage(rand(1,5), BRUTE, pick(parts))
 
-/obj/vehicle/train/rover/trolley/RunOver(var/mob/living/carbon/human/H)
+/obj/vehicle/train/rover/trolley/RunOver(var/mob/living/M)
 	..()
-	attack_log += text("\[[time_stamp()]\] <font color='red'>ran over [H.name] ([H.ckey])</font>")
+	attack_log += text("\[[time_stamp()]\] <font color='red'>ran over [M.name] ([M.ckey])</font>")
 
-/obj/vehicle/train/rover/engine/RunOver(var/mob/living/carbon/human/H)
+/obj/vehicle/train/rover/engine/RunOver(var/mob/living/M)
 	..()
 
 	if(is_train_head() && istype(load, /mob/living/carbon/human))
 		var/mob/living/carbon/human/D = load
-		to_chat(D, "<span class='danger'>You ran over \the [H]!</span>")
-		visible_message("<span class='danger'>\The [src] ran over \the [H]!</span>")
-		add_attack_logs(D,H,"Ran over with [src.name]")
-		attack_log += text("\[[time_stamp()]\] <font color='red'>ran over [H.name] ([H.ckey]), driven by [D.name] ([D.ckey])</font>")
+		to_chat(D, "<span class='danger'>You ran over \the [M]!</span>")
+		visible_message("<span class='danger'>\The [src] ran over \the [M]!</span>")
+		add_attack_logs(D,M,"Ran over with [src.name]")
+		attack_log += text("\[[time_stamp()]\] <font color='red'>ran over [M.name] ([M.ckey]), driven by [D.name] ([D.ckey])</font>")
 	else
-		attack_log += text("\[[time_stamp()]\] <font color='red'>ran over [H.name] ([H.ckey])</font>")
+		attack_log += text("\[[time_stamp()]\] <font color='red'>ran over [M.name] ([M.ckey])</font>")
 
 
 //-------------------------------------------

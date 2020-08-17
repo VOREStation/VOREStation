@@ -51,6 +51,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	var/allowmobvore = TRUE
 	var/list/belly_prefs = list()
 	var/vore_taste = "nothing in particular"
+	var/vore_smell = "nothing in particular"
 	var/permit_healbelly = TRUE
 	var/can_be_drop_prey = FALSE
 	var/can_be_drop_pred = FALSE
@@ -123,6 +124,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	digest_leave_remains = json_from_file["digest_leave_remains"]
 	allowmobvore = json_from_file["allowmobvore"]
 	vore_taste = json_from_file["vore_taste"]
+	vore_smell = json_from_file["vore_smell"]
 	permit_healbelly = json_from_file["permit_healbelly"]
 	can_be_drop_prey = json_from_file["can_be_drop_prey"]
 	can_be_drop_pred = json_from_file["can_be_drop_pred"]
@@ -166,6 +168,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 			"digest_leave_remains"	= digest_leave_remains,
 			"allowmobvore"			= allowmobvore,
 			"vore_taste"			= vore_taste,
+			"vore_smell"			= vore_smell,
 			"permit_healbelly"		= permit_healbelly,
 			"can_be_drop_prey"		= can_be_drop_prey,
 			"can_be_drop_pred"		= can_be_drop_pred,

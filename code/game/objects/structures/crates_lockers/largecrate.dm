@@ -1,7 +1,7 @@
 /obj/structure/largecrate
 	name = "large crate"
 	desc = "A hefty wooden crate."
-	icon = 'icons/obj/storage_vr.dmi'	//VOREStation Edit
+	icon = 'icons/obj/storage.dmi'
 	icon_state = "densecrate"
 	density = 1
 	var/list/starts_with
@@ -44,8 +44,8 @@
 
 /obj/structure/largecrate/hoverpod
 	name = "\improper Hoverpod assembly crate"
-	desc = "It comes in a box for the fabricator's sake. Where does the wood come from? ... And why is it lighter?"
-	icon_state = "mulecrate"
+	desc = "You aren't sure how this crate is so light, but the Wulf Aeronautics logo might be a hint."
+	icon_state = "vehiclecrate"
 
 /obj/structure/largecrate/hoverpod/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(W.is_crowbar())
@@ -60,7 +60,7 @@
 
 /obj/structure/largecrate/vehicle
 	name = "vehicle crate"
-	desc = "It comes in a box for the consumer's sake. ..How is this lighter?"
+	desc = "Wulf Aeronautics says it comes in a box for the consumer's sake... How is this so light?"
 	icon_state = "vehiclecrate"
 
 /obj/structure/largecrate/vehicle/Initialize()
@@ -74,18 +74,22 @@
 
 /obj/structure/largecrate/vehicle/quadbike
 	name = "\improper ATV crate"
+	desc = "A hefty wooden crate proudly displaying the logo of Ward-Takahashi's automotive division."
 	starts_with = list(/obj/structure/vehiclecage/quadbike)
 
 /obj/structure/largecrate/vehicle/quadtrailer
 	name = "\improper ATV trailer crate"
+	desc = "A hefty wooden crate proudly displaying the logo of Ward-Takahashi's automotive division."
 	starts_with = list(/obj/structure/vehiclecage/quadtrailer)
 
 /obj/structure/largecrate/animal
-	icon_state = "lisacrate"	//VOREStation Edit
+	icon_state = "crittercrate"
+	desc = "A hefty wooden crate with air holes. It is marked with the logo of NanoTrasen Pastures and the slogan, '90% less cloning defects* than competing brands**, or your money back***!'"
 
 /obj/structure/largecrate/animal/mulebot
 	name = "Mulebot crate"
-	icon_state = "mulecrate"	//VOREStation Edit
+	desc = "A hefty wooden crate labelled 'Proud Product of the Xion Manufacturing Group'"
+	icon_state = "mulecrate"
 	starts_with = list(/mob/living/bot/mulebot)
 
 /obj/structure/largecrate/animal/corgi

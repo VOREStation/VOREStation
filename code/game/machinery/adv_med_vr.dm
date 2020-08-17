@@ -7,7 +7,7 @@
 	icon_state = "scanner_terminal_off"
 	density = 1
 
-/obj/machinery/bodyscanner/proc/get_occupant_data_vr(list/incoming,mob/living/carbon/human/H)
+/obj/machinery/bodyscanner/proc/get_occupant_data_vr(list/incoming, mob/living/carbon/human/H)
 	var/humanprey = 0
 	var/livingprey = 0
 	var/objectprey = 0

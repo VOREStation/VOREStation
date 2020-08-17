@@ -365,7 +365,7 @@
 	/obj/item/weapon/reagent_containers/food/condiment/cornoil = 5,
 	/obj/item/weapon/tray = 8,
 	/obj/item/weapon/material/kitchen/utensil/fork = 6,
-	/obj/item/weapon/material/knife = 6,
+	/obj/item/weapon/material/knife/plastic = 6,
 	/obj/item/weapon/material/kitchen/utensil/spoon = 6,
 	/obj/item/weapon/material/knife = 3,
 	/obj/item/weapon/material/kitchen/rollingpin = 2,
@@ -383,6 +383,8 @@
 	/obj/item/weapon/storage/toolbox/lunchbox/cti = 3,
 	/obj/item/weapon/storage/toolbox/lunchbox/nymph = 3,
 	/obj/item/weapon/storage/toolbox/lunchbox/syndicate = 3,
+	/obj/item/weapon/reagent_containers/cooking_container/oven = 5,
+	/obj/item/weapon/reagent_containers/cooking_container/fryer = 4,
 	/obj/item/trash/bowl = 10) //VOREStation Add
 	contraband = list(/obj/item/weapon/material/knife/butch = 2)
 
@@ -556,11 +558,13 @@
 					/obj/item/weapon/storage/box/wormcan = 4,
 					/obj/item/weapon/storage/box/wormcan/sickly = 10,
 					/obj/item/weapon/material/fishing_net = 2,
+					/obj/item/glass_jar/fish = 4,
 					/obj/item/stack/cable_coil/random = 6)
 	prices = list(/obj/item/weapon/material/fishing_rod/modern/cheap = 50,
 					/obj/item/weapon/storage/box/wormcan = 12,
 					/obj/item/weapon/storage/box/wormcan/sickly = 6,
 					/obj/item/weapon/material/fishing_net = 40,
+					/obj/item/glass_jar/fish = 10,
 					/obj/item/stack/cable_coil/random = 4)
 	premium = list(/obj/item/weapon/storage/box/wormcan/deluxe = 1)
 	contraband = list(/obj/item/weapon/storage/box/wormcan/deluxe = 1)

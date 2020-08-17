@@ -197,7 +197,7 @@
 			return result
 
 	// Can't control ourselves when drifting
-	if(isspace(loc) || my_mob.lastarea?.has_gravity == 0)
+	if((isspace(loc) || my_mob.lastarea?.has_gravity == 0) && !my_mob.in_enclosed_vehicle)	//If(In space or last area had no gravity) or(you in vehicle)
 		if(!my_mob.Process_Spacemove(0))
 			return 0
 
@@ -295,7 +295,7 @@
 		// It's just us and another person
 		if(grablist.len == 1)
 			var/mob/M = grablist[1]
-			if(!my_mob.Adjacent(M)) //Oh no, we moved away
+			if(M && !my_mob.Adjacent(M)) //Oh no, we moved away
 				M.Move(pre_move_loc, get_dir(M, pre_move_loc), total_delay) //Have them step towards where we were
 
 		// It's a grab chain

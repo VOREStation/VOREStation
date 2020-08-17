@@ -334,6 +334,19 @@
 		You will have to reload VChat and/or reconnect to the server for these changes to take place. \
 		VChat message persistence is not guaranteed if you change this again before the start of the next round.")
 
+/client/verb/toggle_status_indicators()
+	set name = "Toggle Status Indicators"
+	set category = "Preferences"
+	set desc = "Enable/Disable seeing status indicators over peoples' heads."
+
+	var/pref_path = /datum/client_preference/status_indicators
+	toggle_preference(pref_path)
+	SScharacter_setup.queue_preferences_save(prefs)
+
+	to_chat(src, "You will now [(is_preference_enabled(/datum/client_preference/status_indicators)) ? "see" : "not see"] status indicators.")
+
+	feedback_add_details("admin_verb","TStatusIndicators")
+
 
 // Not attached to a pref datum because those are strict binary toggles
 /client/verb/toggle_examine_mode()

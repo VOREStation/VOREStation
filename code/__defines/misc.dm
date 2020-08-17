@@ -46,6 +46,10 @@
 
 #define CLIENT_FROM_VAR(I) (ismob(I) ? I:client : (isclient(I) ? I : null))
 
+
+//Persistence
+#define AREA_FLAG_IS_NOT_PERSISTENT 8 // SSpersistence will not track values from this area.
+
 //	Shuttles.
 
 // These define the time taken for the shuttle to get to the space station, and the time before it leaves again.
@@ -351,3 +355,110 @@ var/global/list/##LIST_NAME = list();\
 #define JOB_SILICON			0x6 // 2|4, probably don't set jobs to this, but good for checking
 
 #define DEFAULT_OVERMAP_RANGE 0 // Makes general computers and devices be able to connect to other overmap z-levels on the same tile.
+
+/*
+	Used for wire name appearances. Replaces the color name on the left with the one on the right.
+	The color on the left is the one used as the actual color of the wire, but it doesn't look good when written.
+	So, we need to replace the name to something that looks better.
+*/
+#define LIST_COLOR_RENAME 				\
+	list(								\
+		"rebeccapurple" = "dark purple",\
+		"darkslategrey" = "dark grey",	\
+		"darkolivegreen"= "dark green",	\
+		"darkslateblue" = "dark blue",	\
+		"darkkhaki" 	= "khaki",		\
+		"darkseagreen" 	= "light green",\
+		"midnightblue" 	= "blue",		\
+		"lightgrey" 	= "light grey",	\
+		"darkgrey" 		= "dark grey",	\
+		"darkmagenta"	= "dark magenta",\
+		"steelblue" 	= "blue",		\
+		"goldenrod"	 	= "gold"		\
+	)
+
+/// Pure Black and white colorblindness. Every species except Vulpkanins and Tajarans will have this.
+#define GREYSCALE_COLOR_REPLACE		\
+	list(							\
+		"red"		= "grey",		\
+		"blue"		= "grey",		\
+		"green"		= "grey",		\
+		"orange"	= "light grey",	\
+		"brown"		= "grey",		\
+		"gold"		= "light grey",	\
+		"cyan"		= "silver",		\
+		"magenta"	= "grey",		\
+		"purple"	= "grey",		\
+		"pink"		= "light grey"	\
+	)
+
+/// Red colorblindness. Vulpkanins/Wolpins have this.
+#define PROTANOPIA_COLOR_REPLACE		\
+	list(								\
+		"red"		= "darkolivegreen",	\
+		"darkred"	= "darkolivegreen",	\
+		"green"		= "yellow",			\
+		"orange"	= "goldenrod",		\
+		"gold"		= "goldenrod", 		\
+		"brown"		= "darkolivegreen",	\
+		"cyan"		= "steelblue",		\
+		"magenta"	= "blue",			\
+		"purple"	= "darkslategrey",	\
+		"pink"		= "beige"			\
+	)
+
+/// Green colorblindness.
+#define DEUTERANOPIA_COLOR_REPLACE		\
+	list(								\
+		"red"			= "goldenrod",	\
+		"green"			= "tan",		\
+		"yellow"		= "tan",		\
+		"orange"		= "goldenrod",	\
+		"gold"			= "burlywood",	\
+		"brown"			= "saddlebrown",\
+		"cyan"			= "lavender",	\
+		"magenta"		= "blue",		\
+		"darkmagenta"	= "darkslateblue",	\
+		"purple"		= "slateblue",	\
+		"pink"			= "thistle"		\
+	)
+
+/// Yellow-Blue colorblindness. Tajarans/Farwas have this.
+#define TRITANOPIA_COLOR_REPLACE		\
+	list(								\
+		"red"		= "rebeccapurple",	\
+		"blue"		= "darkslateblue",	\
+		"green"		= "darkolivegreen",	\
+		"orange"	= "darkkhaki",		\
+		"gold"		= "darkkhaki",		\
+		"brown"		= "rebeccapurple",	\
+		"cyan"		= "darkseagreen",	\
+		"magenta"	= "darkslateblue",	\
+		"navy"		= "darkslateblue",	\
+		"purple"	= "darkslateblue",	\
+		"pink"		= "lightgrey"		\
+	)
+
+//Various stuff used in Persistence
+
+#define send_output(target, msg, control) target << output(msg, control)
+
+#define send_link(target, url) target << link(url)
+
+#define SPAN_NOTICE(X) "<span class='notice'>[X]</span>"
+
+#define SPAN_WARNING(X) "<span class='warning'>[X]</span>"
+
+#define SPAN_DANGER(X) "<span class='danger'>[X]</span>"
+
+#define SPAN_OCCULT(X) "<span class='cult'>[X]</span>"
+
+#define FONT_SMALL(X) "<font size='1'>[X]</font>"
+
+#define FONT_NORMAL(X) "<font size='2'>[X]</font>"
+
+#define FONT_LARGE(X) "<font size='3'>[X]</font>"
+
+#define FONT_HUGE(X) "<font size='4'>[X]</font>"
+
+#define FONT_GIANT(X) "<font size='5'>[X]</font>"

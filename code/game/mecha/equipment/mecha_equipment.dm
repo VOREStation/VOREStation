@@ -28,6 +28,8 @@
 	var/ready_sound = 'sound/mecha/mech_reload_default.ogg' //Sound to play once the fire delay passed.
 	var/enable_special = FALSE	// Will the tool do its special?
 
+	var/step_delay = 0	// Does the component slow/speed up the suit?
+
 /obj/item/mecha_parts/mecha_equipment/proc/do_after_cooldown(target=1)
 	sleep(equip_cooldown)
 	set_ready_state(1)
@@ -273,3 +275,6 @@
 
 /obj/item/mecha_parts/mecha_equipment/proc/MoveAction() //Allows mech equipment to do an action upon the mech moving
 	return
+
+/obj/item/mecha_parts/mecha_equipment/proc/get_step_delay() // Equipment returns its slowdown or speedboost.
+	return step_delay

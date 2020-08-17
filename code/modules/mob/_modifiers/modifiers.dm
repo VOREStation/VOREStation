@@ -20,6 +20,10 @@
 	var/light_intensity = null			// Ditto. Not implemented yet.
 	var/mob_overlay_state = null		// Icon_state for an overlay to apply to a (human) mob while this exists.  This is actually implemented.
 	var/client_color = null				// If set, the client will have the world be shown in this color, from their perspective.
+	var/wire_colors_replace = null		// If set, the client will have wires replaced by the given replacement list. For colorblindness. //VOREStation Add
+	var/list/filter_parameters = null	// If set, will add a filter to the holder with the parameters in this var. Must be a list.
+	var/filter_priority = 1				// Used to make filters be applied in a specific order, if that is important.
+	var/filter_instance = null			// Instance of a filter created with the `filter_parameters` list. This exists to make `animate()` calls easier. Don't set manually.
 
 	// Now for all the different effects.
 	// Percentage modifiers are expressed as a multipler. (e.g. +25% damage should be written as 1.25)
@@ -50,6 +54,14 @@
 	var/pulse_set_level					// Positive number. If this is non-null, it will hard-set the pulse level to this. Pulse ranges from 0 to 5 normally.
 	var/emp_modifier					// Added to the EMP strength, which is an inverse scale from 1 to 4, with 1 being the strongest EMP. 5 is a nullification.
 	var/explosion_modifier				// Added to the bomb strength, which is an inverse scale from 1 to 3, with 1 being gibstrength. 4 is a nullification.
+
+	// Note that these are combined with the mob's real armor values additatively. You can also omit specific armor types.
+	var/list/armor_percent = null		// List of armor values to add to the holder when doing armor calculations. This is for percentage based armor. E.g. 50 = half damage.
+	var/list/armor_flat = null			// Same as above but only for flat armor calculations. E.g. 5 = 5 less damage (this comes after percentage).
+	// Unlike armor, this is multiplicative. Two 50% protection modifiers will be combined into 75% protection (assuming no base protection on the mob).
+	var/heat_protection = null			// Modifies how 'heat' protection is calculated, like wearing a firesuit. 1 = full protection.
+	var/cold_protection = null			// Ditto, but for cold, like wearing a winter coat.
+	var/siemens_coefficient = null		// Similar to above two vars but 0 = full protection, to be consistant with siemens numbers everywhere else.
 
 	var/vision_flags					// Vision flags to add to the mob. SEE_MOB, SEE_OBJ, etc.
 
@@ -82,6 +94,8 @@
 		holder.update_transform()
 	if(client_color)
 		holder.update_client_color()
+	if(LAZYLEN(filter_parameters))
+		holder.remove_filter(REF(src))
 	qdel(src)
 
 // Override this for special effects when it gets added to the mob.
@@ -150,6 +164,9 @@
 		update_transform()
 	if(mod.client_color)
 		update_client_color()
+	if(LAZYLEN(mod.filter_parameters))
+		add_filter(REF(mod), mod.filter_priority, mod.filter_parameters)
+		mod.filter_instance = get_filter(REF(mod))
 
 	return mod
 
@@ -177,10 +194,14 @@
 
 // Checks if the mob has a modifier type.
 /mob/living/proc/has_modifier_of_type(var/modifier_type)
+	return get_modifier_of_type(modifier_type) ? TRUE : FALSE
+
+// Gets the first instance of a specific modifier type or subtype.
+/mob/living/proc/get_modifier_of_type(var/modifier_type)
 	for(var/datum/modifier/M in modifiers)
 		if(istype(M, modifier_type))
-			return TRUE
-	return FALSE
+			return M
+	return null
 
 // This displays the actual 'numbers' that a modifier is doing.  Should only be shown in OOC contexts.
 // When adding new effects, be sure to update this as well.

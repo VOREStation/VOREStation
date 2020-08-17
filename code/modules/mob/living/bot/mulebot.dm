@@ -241,20 +241,20 @@
 		M.Weaken(5)
 	..()
 
-/mob/living/bot/mulebot/proc/runOver(var/mob/living/carbon/human/H)
-	if(istype(H)) // No safety checks - WILL run over lying humans. Stop ERPing in the maint!
-		visible_message("<span class='warning'>[src] drives over [H]!</span>")
+/mob/living/bot/mulebot/proc/runOver(var/mob/living/M)
+	if(istype(M)) // At this point, MULEBot has somehow crossed over onto your tile with you still on it. CRRRNCH.
+		visible_message("<span class='warning'>[src] drives over [M]!</span>")
 		playsound(src, 'sound/effects/splat.ogg', 50, 1)
 
 		var/damage = rand(5, 7)
-		H.apply_damage(2 * damage, BRUTE, BP_HEAD)
-		H.apply_damage(2 * damage, BRUTE, BP_TORSO)
-		H.apply_damage(0.5 * damage, BRUTE, BP_L_LEG)
-		H.apply_damage(0.5 * damage, BRUTE, BP_R_LEG)
-		H.apply_damage(0.5 * damage, BRUTE, BP_L_ARM)
-		H.apply_damage(0.5 * damage, BRUTE, BP_R_ARM)
+		M.apply_damage(2 * damage, BRUTE, BP_HEAD)
+		M.apply_damage(2 * damage, BRUTE, BP_TORSO)
+		M.apply_damage(0.5 * damage, BRUTE, BP_L_LEG)
+		M.apply_damage(0.5 * damage, BRUTE, BP_R_LEG)
+		M.apply_damage(0.5 * damage, BRUTE, BP_L_ARM)
+		M.apply_damage(0.5 * damage, BRUTE, BP_R_ARM)
 
-		blood_splatter(src, H, 1)
+		blood_splatter(src, M, 1)
 	..()
 
 /mob/living/bot/mulebot/relaymove(var/mob/user, var/direction)
