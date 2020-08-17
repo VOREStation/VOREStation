@@ -40,6 +40,10 @@
 	host = null
 	. = ..()
 
+/datum/vore_look/ui_assets(mob/user)
+	. = ..()
+	. += get_asset_datum(/datum/asset/spritesheet/vore)
+
 /datum/vore_look/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -148,6 +152,8 @@
 			"digest_burn" = selected.digest_burn,
 			"bulge_size" = selected.bulge_size,
 			"shrink_grow_size" = selected.shrink_grow_size,
+			"belly_fullscreen" = selected.belly_fullscreen,
+			"possible_fullscreens" = icon_states('icons/mob/screen_full_vore.dmi'),
 		)
 
 		data["selected"]["addons"] = list()
@@ -171,6 +177,8 @@
 			data["selected"]["interacts"]["transferlocation"] = selected.transferlocation
 			data["selected"]["interacts"]["absorbchance"] = selected.absorbchance
 			data["selected"]["interacts"]["digestchance"] = selected.digestchance
+
+		data["selected"]["disable_hud"] = selected.disable_hud
 
 		data["selected"]["contents"] = list()
 		for(var/O in selected)
@@ -197,6 +205,7 @@
 		"digest_leave_remains" = host.digest_leave_remains,
 		"allowmobvore" = host.allowmobvore,
 		"permit_healbelly" = host.permit_healbelly,
+		"show_vore_fx" = host.show_vore_fx,
 		"can_be_drop_prey" = host.can_be_drop_prey,
 		"can_be_drop_pred" = host.can_be_drop_pred,
 		"noisy" = host.noisy,
@@ -352,6 +361,16 @@
 			host.permit_healbelly = !host.permit_healbelly
 			if(host.client.prefs_vr)
 				host.client.prefs_vr.permit_healbelly = host.permit_healbelly
+			unsaved_changes = TRUE
+			return TRUE
+		if("toggle_fx")
+			host.show_vore_fx = !host.show_vore_fx
+			if(host.client.prefs_vr)
+				host.client.prefs_vr.show_vore_fx = host.show_vore_fx
+			if(!host.show_vore_fx)
+				host.clear_fullscreen("belly")
+				if(!host.hud_used.hud_shown)
+					host.toggle_hud_vis()
 			unsaved_changes = TRUE
 			return TRUE
 		if("toggle_noisy")
@@ -785,6 +804,12 @@
 			var/digest_chance_input = input(user, "Set belly digest mode chance on resist (as %)", "Prey Digest Chance") as num|null
 			if(!isnull(digest_chance_input))
 				host.vore_selected.digestchance = sanitize_integer(digest_chance_input, 0, 100, initial(host.vore_selected.digestchance))
+			. = TRUE
+		if("b_fullscreen")
+			host.vore_selected.belly_fullscreen = params["val"]
+			. = TRUE
+		if("b_disable_hud")
+			host.vore_selected.disable_hud = !host.vore_selected.disable_hud
 			. = TRUE
 		if("b_del")
 			var/alert = alert("Are you sure you want to delete your [lowertext(host.vore_selected.name)]?","Confirmation","Delete","Cancel")

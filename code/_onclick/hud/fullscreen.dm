@@ -12,7 +12,7 @@
             clear_fullscreen(category, FALSE)
             screen = null
         else if(!severity || severity == screen.severity)
-            return null
+            return screen
 
     if(!screen)
         screen = new type()

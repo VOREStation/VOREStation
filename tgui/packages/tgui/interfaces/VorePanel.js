@@ -4,6 +4,7 @@ import { Fragment } from 'inferno';
 import { useBackend, useLocalState } from "../backend";
 import { Box, Button, Flex, Collapsible, Icon, LabeledList, NoticeBox, Section, Tabs } from "../components";
 import { Window } from "../layouts";
+import { classes } from 'common/react';
 
 const stats = [
   null,
@@ -197,6 +198,9 @@ const VoreSelectedBelly = (props, context) => {
     escapable,
     interacts,
     contents,
+    belly_fullscreen,
+    possible_fullscreens,
+    disable_hud,
   } = belly;
 
   const [tabIndex, setTabIndex] = useLocalState(context, 'tabIndex', 0);
@@ -215,6 +219,9 @@ const VoreSelectedBelly = (props, context) => {
         </Tabs.Tab>
         <Tabs.Tab selected={tabIndex === 3} onClick={() => setTabIndex(3)}>
           Interactions
+        </Tabs.Tab>
+        <Tabs.Tab selected={tabIndex === 4} onClick={() => setTabIndex(4)}>
+          Belly Styles
         </Tabs.Tab>
       </Tabs>
       {tabIndex === 0 && (
@@ -436,10 +443,50 @@ const VoreSelectedBelly = (props, context) => {
             </LabeledList>
           ) : "These options only display while interactions are turned on."}
         </Section>
-      ) || "Error."}
+      ) || tabIndex === 4 && (
+        <Fragment>
+          <Section title="Vore FX">
+            <LabeledList>
+              <LabeledList.Item label="Disable Prey HUD">
+                <Button
+                  onClick={() => act("set_attribute", { attribute: "b_disable_hud" })}
+                  icon={disable_hud ? "toggle-on" : "toggle-off"}
+                  selected={disable_hud}
+                  content={disable_hud ? "Yes" : "No"} />
+              </LabeledList.Item>
+            </LabeledList>
+          </Section>
+          <Section title="Belly Fullscreens">
+            <Button
+              fluid
+              selected={belly_fullscreen === "" || belly_fullscreen === null}
+              onClick={() => act("set_attribute", { attribute: "b_fullscreen", val: null })}>
+              Disabled
+            </Button>
+            {Object.keys(possible_fullscreens).map(key => (
+              <Button
+                key={key}
+                width="256px"
+                height="256px"
+                selected={key === belly_fullscreen}
+                onClick={() => act("set_attribute", { attribute: "b_fullscreen", val: key })}>
+                <Box
+                  className={classes([
+                    'vore240x240',
+                    key,
+                  ])}
+                  style={{
+                    transform: 'translate(0%, 4%)',
+                  }} />
+              </Button>
+            ))}
+          </Section>
+        </Fragment>
+      ) || "Error"}
     </Fragment>
   );
 };
+
 const VoreContentsPanel = (props, context) => {
   const { act } = useBackend(context);
   const {
@@ -501,6 +548,7 @@ const VoreUserPreferences = (props, context) => {
     digest_leave_remains,
     allowmobvore,
     permit_healbelly,
+    show_vore_fx,
     can_be_drop_prey,
     can_be_drop_pred,
     noisy,
@@ -615,7 +663,7 @@ const VoreUserPreferences = (props, context) => {
               : "Click here to turn on hunger noises.")}
             content={noisy ? "Hunger Noises Enabled" : "Hunger Noises Disabled"} />
         </Flex.Item>
-        <Flex.Item basis="100%">
+        <Flex.Item basis="49%">
           <Button
             onClick={() => act("toggle_leaveremains")}
             icon={digest_leave_remains ? "toggle-on" : "toggle-off"}
@@ -628,6 +676,20 @@ const VoreUserPreferences = (props, context) => {
               : ("Regardless of Predator Setting, you will not leave remains behind."
                 + " Click this to allow leaving remains.")}
             content={digest_leave_remains ? "Allow Leaving Remains Behind" : "Do Not Allow Leaving Remains Behind"} />
+        </Flex.Item>
+        <Flex.Item basis="49%">
+          <Button
+            onClick={() => act("toggle_fx")}
+            icon={show_vore_fx ? "toggle-on" : "toggle-off"}
+            selected={show_vore_fx}
+            fluid
+            tooltipPosition="top"
+            tooltip={show_vore_fx 
+              ? "This setting controls whether or not a pred is allowed to mess with your HUD and fullscreen overlays."
+              + "Click to disable all FX."
+              : ("Regardless of Predator Setting, you will not see their FX settings."
+                + " Click this to enable showing FX.")}
+            content={show_vore_fx ? "Show Vore FX" : "Do Not Show Vore FX"} />
         </Flex.Item>
         <Flex.Item basis="49%">
           <Button
