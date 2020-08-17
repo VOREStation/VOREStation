@@ -1992,6 +1992,7 @@ Departamental Swimsuits, for general use
 /obj/item/clothing/suit/storage/flintlock
 	name = "green jacket"
 	desc = "Flintlock's green jacket. It seems to be made of rather high quality leather."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "flintlock"
 	item_state_slots = list(slot_r_hand_str = "item_greensuit", slot_l_hand_str = "item_greensuit")
 	blood_overlay_type = "coat"
