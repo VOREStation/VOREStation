@@ -216,8 +216,9 @@
 	if(isliving(thing) && !isbelly(thing.loc))
 		var/mob/living/L = thing
 		L.clear_fullscreen("belly")
-		if(!L.hud_used.hud_shown)
-			L.toggle_hud_vis()
+		if(L.hud_used)
+			if(!L.hud_used.hud_shown)
+				L.toggle_hud_vis()
 		if((L.stat != DEAD) && L.ai_holder)
 			L.ai_holder.go_wake()
 
@@ -236,7 +237,7 @@
 		L.clear_fullscreen("belly")
 
 	if(disable_hud)
-		if(L.hud_used.hud_shown)
+		if(L?.hud_used?.hud_shown)
 			to_chat(L, "<span class='notice'>((Your pred has disabled huds in their belly. Turn off vore FX and hit F12 to get it back; or relax, and enjoy the serenity.))</span>")
 			L.toggle_hud_vis(TRUE)
 
