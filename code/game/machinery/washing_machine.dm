@@ -1,15 +1,8 @@
 /obj/machinery/washing_machine
 	name = "Washing Machine"
-<<<<<<< HEAD
-	desc = "Not a hiding place."
+	desc = "Not a hiding place. Unfit for pets."
 	icon = 'icons/obj/machines/washing_machine_vr.dmi' //VOREStation Edit
 	icon_state = "wm_1" //VOREStation Edit
-=======
-	desc = "Not a hiding place. Unfit for pets."
-	description_info = "Alt click to start."
-	icon = 'icons/obj/machines/washing_machine.dmi'
-	icon_state = "wm_10"
->>>>>>> 5d8b41f... Merge pull request #7451 from lbnesquik/Kot-Washing-Tweak
 	density = 1
 	anchored = 1.0
 	clicksound = "button"
