@@ -1,6 +1,6 @@
 "aa" = (/turf/template_noop,/area/template_noop)
 "ab" = (/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
-"ac" = (/obj/item/weapon/caution/cone,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
+"ac" = (/obj/item/clothing/head/cone,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
 "ad" = (/turf/simulated/shuttle/wall,/area/submap/cave/qShuttle)
 "ae" = (/obj/structure/inflatable,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
 "af" = (/obj/structure/inflatable/door,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
