@@ -342,7 +342,7 @@
 						piece.armor["bio"] = 100
 					else
 						piece.armor["bio"] = src.armor["bio"]
-					playsound(src, "[!seal_target ? 'sound/machines/boltsdown.ogg' : 'sound/machines/boltsup.ogg']", 10, FALSE)
+					playsound(src,'sound/machines/rig/rigservo.ogg', 10, FALSE)
 
 				else
 					failed_to_seal = 1
@@ -707,7 +707,7 @@
 				if(istype(holder))
 					if(use_obj && check_slot == use_obj)
 						to_chat(H, "<span class='notice'><b>Your [use_obj.name] [use_obj.gender == PLURAL ? "retract" : "retracts"] swiftly.</b></span>")
-						playsound(src, 'sound/machines/boltsup.ogg', 10, FALSE)
+						playsound(src, 'sound/machines/rig/rigservo.ogg', 10, FALSE)
 						use_obj.canremove = 1
 						holder.drop_from_inventory(use_obj)
 						use_obj.forceMove(get_turf(src))
@@ -726,7 +726,7 @@
 					return
 			else
 				to_chat(H, "<span class='notice'>Your [use_obj.name] [use_obj.gender == PLURAL ? "deploy" : "deploys"] swiftly.</span>")
-				playsound(src, 'sound/machines/boltsdown.ogg', 10, FALSE)
+				playsound(src, 'sound/machines/rig/rigservo.ogg', 10, FALSE)
 
 	if(piece == "helmet" && helmet)
 		helmet.update_light(H)
