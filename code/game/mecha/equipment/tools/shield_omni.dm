@@ -9,7 +9,7 @@
 	energy_drain = OMNI_SHIELD_DRAIN
 	range = 0
 
-	step_delay = 1
+	step_delay = 0.2
 
 	var/obj/item/shield_projector/shields = null
 	var/shield_type = /obj/item/shield_projector/rectangle/mecha
@@ -48,7 +48,7 @@
 			log_message("Activated.")
 		else
 			set_ready_state(1)
-			step_delay = 1
+			step_delay = initial(step_delay)
 			log_message("Deactivated.")
 
 /obj/item/mecha_parts/mecha_equipment/omni_shield/Topic(href, href_list)
