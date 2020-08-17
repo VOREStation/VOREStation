@@ -442,7 +442,7 @@
 		<br>\n
 		<center><b>Comments/Log</b></center><br>"}
 		for(var/c in active2.fields["comments"])
-			P.info += "[c]<br>"
+			P.info += "[c["header"]]<br>[c["text"]]<br>"
 	else
 		P.info += "<b>Medical Record Lost!</b><br>"
 	P.info += "</tt>"

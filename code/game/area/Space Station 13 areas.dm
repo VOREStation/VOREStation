@@ -1736,7 +1736,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 		temp_closet.locked = 0
 		temp_closet.icon_state = "closed_unlocked"
 	for(var/obj/machinery/door_timer/temp_timer in src)
-		temp_timer.releasetime = 1
+		temp_timer.timer_duration = 1
 	..()
 
 /area/security/prison
@@ -1748,7 +1748,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 		temp_closet.locked = 0
 		temp_closet.icon_state = "closed_unlocked"
 	for(var/obj/machinery/door_timer/temp_timer in src)
-		temp_timer.releasetime = 1
+		temp_timer.timer_duration = 1
 	..()
 
 /area/security/warden
