@@ -619,6 +619,28 @@
 		M.emote("shiver")
 	holder.remove_reagent("capsaicin", 5)
 
+/datum/reagent/frostoil/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed) // Eating frostoil now acts like capsaicin. Wee!
+	if(alien == IS_DIONA)
+		return
+	if(alien == IS_ALRAUNE) // VOREStation Edit: It wouldn't affect plants that much.
+		if(prob(5))
+			to_chat(M, "<span class='rose'>You feel a chilly, tingling sensation in your mouth.</span>")
+		M.bodytemperature -= rand(10, 25)
+		return
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(!H.can_feel_pain())
+			return
+	var/effective_dose = (dose * M.species.spice_mod)
+	if((effective_dose < 5) && (dose == metabolism || prob(5)))
+		to_chat(M, "<span class='danger'>Your insides suddenly feel a spreading chill!</span>")
+	if(effective_dose >= 5)
+		M.apply_effect(2 * M.species.spice_mod, AGONY, 0)
+		M.bodytemperature -= rand(1, 5) * spice_mod // Really fucks you up, cause it makes you cold.
+		if(prob(5))
+			M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>", pick("<span class='danger'>You feel like your insides are freezing!</span>", "<span class='danger'>Your insides feel like they're turning to ice!</span>"))
+	holder.remove_reagent("capsaicin", 5)
+
 /datum/reagent/frostoil/cryotoxin //A longer lasting version of frost oil.
 	name = "Cryotoxin"
 	id = "cryotoxin"
@@ -654,13 +676,15 @@
 		var/mob/living/carbon/human/H = M
 		if(!H.can_feel_pain())
 			return
-
-	if(dose < 5 && (dose == metabolism || prob(5)))
+	
+	var/effective_dose = (dose * M.species.spice_mod)
+	if((effective_dose < 5) && (dose == metabolism || prob(5)))
 		to_chat(M, "<span class='danger'>Your insides feel uncomfortably hot!</span>")
-	if(dose >= 5)
-		M.apply_effect(2, AGONY, 0)
+	if(effective_dose >= 5)
+		M.apply_effect(2 * M.species.spice_mod, AGONY, 0)
+		M.bodytemperature += rand(1, 5) * spice_mod // Really fucks you up, cause it makes you overheat, too.
 		if(prob(5))
-			M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>", "<span class='danger'>You feel like your insides are burning!</span>")
+			M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>", pick("<span class='danger'>You feel like your insides are burning!</span>", "<span class='danger'>You feel like your insides are on fire!</span>", "<span class='danger'>You feel like your belly is full of lava!</span>"))
 	holder.remove_reagent("frostoil", 5)
 
 /datum/reagent/condensedcapsaicin
