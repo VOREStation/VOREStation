@@ -4,9 +4,9 @@
 #define FONT_STYLE "Small Fonts"
 #define MAX_TIMER 36000
 
-#define PRESET_SHORT 1200
-#define PRESET_MEDIUM 3000
-#define PRESET_LONG 6000
+#define PRESET_SHORT 5 MINUTES
+#define PRESET_MEDIUM 15 MINUTES
+#define PRESET_LONG 30 MINUTES
 
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 
