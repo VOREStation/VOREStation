@@ -157,14 +157,21 @@
 	// ID
 	if(inserted_id)
 		data["has_id"] = TRUE
-		data["id"] = list(
-			"name" = inserted_id.registered_name,
-			"points" = inserted_id.mining_points,
-		)
+		data["id"] = list()
+		data["id"]["name"] = inserted_id.registered_name
+		data["id"]["points"] = get_points(inserted_id)
 	else
 		data["has_id"] = FALSE
 
 	return data
+
+/obj/machinery/mineral/equipment_vendor/proc/get_points(obj/item/weapon/card/id/target)
+	if(!istype(target))
+		return 0
+	return target.mining_points
+
+/obj/machinery/mineral/equipment_vendor/proc/remove_points(obj/item/weapon/card/id/target, amt)
+	target.mining_points -= amt
 
 /obj/machinery/mineral/equipment_vendor/tgui_static_data(mob/user)
 	var/list/static_data[0]
@@ -213,19 +220,24 @@
 			inserted_id = null
 		if("purchase")
 			if(!inserted_id)
+				flick(icon_deny, src) //VOREStation Add
 				return
 			var/category = params["cat"] // meow
 			var/name = params["name"]
 			if(!(category in prize_list) || !(name in prize_list[category])) // Not trying something that's not in the list, are you?
+				flick(icon_deny, src) //VOREStation Add
 				return
 			var/datum/data/mining_equipment/prize = prize_list[category][name]
-			if(prize.cost > inserted_id.mining_points) // shouldn't be able to access this since the button is greyed out, but..
+			if(prize.cost > get_points(inserted_id)) // shouldn't be able to access this since the button is greyed out, but..
 				to_chat(usr, "<span class='danger'>You have insufficient points.</span>")
+				flick(icon_deny, src) //VOREStation Add
 				return
 
-			inserted_id.mining_points -= prize.cost
+			remove_points(inserted_id, prize.cost)
 			new prize.equipment_path(loc)
+			flick(icon_vend, src) //VOREStation Add
 		else
+			flick(icon_deny, src) //VOREStation Add
 			return FALSE
 	add_fingerprint()
 
