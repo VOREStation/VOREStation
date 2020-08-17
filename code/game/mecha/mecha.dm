@@ -20,6 +20,7 @@
 /obj/mecha
 	name = "Mecha"
 	desc = "Exosuit"
+	description_info = "Alt click to strafe."
 	icon = 'icons/mecha/mecha.dmi'
 	density = 1							//Dense. To raise the heat.
 	opacity = 1							///opaque. Menacing.
@@ -1916,6 +1917,9 @@
 			else//Everyone else gets the normal noise
 				who << sound('sound/mecha/nominal.ogg',volume=50)
 
+/obj/mecha/AltClick(mob/living/user)
+	if(user == occupant)
+		strafing()
 
 /obj/mecha/verb/view_stats()
 	set name = "View Stats"
