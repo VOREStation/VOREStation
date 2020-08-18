@@ -37,22 +37,31 @@ somewhere on that shuttle. Subtypes of these can be then used to perform ship ov
 	popup.set_content("<center><strong><font color = 'red'>Error</strong></font><br>Unable to connect to [flavor].<br><a href='?src=\ref[src];sync=1'>Reconnect</a></center>")
 	popup.open()
 
+/obj/machinery/computer/ship/Topic(href, href_list)
+	if(..())
+		return TRUE
+	if(href_list["sync"])
+		if(sync_linked(usr))
+			interface_interact(usr)
+		return TRUE
+
 // In computer_shims for now - we had to define it.
 // /obj/machinery/computer/ship/interface_interact(var/mob/user)
 // 	ui_interact(user)
 // 	return TRUE
 
-/obj/machinery/computer/ship/OnTopic(var/mob/user, var/list/href_list)
+/obj/machinery/computer/ship/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
-		return TOPIC_HANDLED
-	if(href_list["sync"])
-		sync_linked(user)
-		return TOPIC_REFRESH
-	if(href_list["close"])
-		unlook(user)
-		user.unset_machine()
-		return TOPIC_HANDLED
-	return TOPIC_NOACTION
+		return TRUE
+	switch(action)
+		if("sync")
+			sync_linked(usr)
+			return TRUE
+		if("close")
+			unlook(usr)
+			usr.unset_machine()
+			return TRUE
+	return FALSE
 
 // Management of mob view displacement. look to shift view to the ship on the overmap; unlook to shift back.
 
@@ -60,6 +69,7 @@ somewhere on that shuttle. Subtypes of these can be then used to perform ship ov
 	if(linked)
 		apply_visual(user)
 		user.reset_view(linked)
+	user.set_machine(src)
 	user.set_viewsize(world.view + extra_view)
 	GLOB.moved_event.register(user, src, /obj/machinery/computer/ship/proc/unlook)
 	// TODO GLOB.stat_set_event.register(user, src, /obj/machinery/computer/ship/proc/unlook)
@@ -75,17 +85,21 @@ somewhere on that shuttle. Subtypes of these can be then used to perform ship ov
 /obj/machinery/computer/ship/proc/viewing_overmap(mob/user)
 	return (weakref(user) in viewers)
 
-/obj/machinery/computer/ship/CouldNotUseTopic(mob/user)
+/obj/machinery/computer/ship/tgui_status(mob/user)
 	. = ..()
+	if(. > STATUS_DISABLED)
+		if(viewing_overmap(user))
+			look(user)
+		return
 	unlook(user)
 
-/obj/machinery/computer/ship/CouldUseTopic(mob/user)
+/obj/machinery/computer/ship/tgui_close(mob/user)
 	. = ..()
-	if(viewing_overmap(user))
-		look(user)
+	user.unset_machine()
+	unlook(user)
 
 /obj/machinery/computer/ship/check_eye(var/mob/user)
-	if (!get_dist(user, src) > 1 || user.blinded || !linked )
+	if(!get_dist(user, src) > 1 || user.blinded || !linked)
 		unlook(user)
 		return -1
 	else

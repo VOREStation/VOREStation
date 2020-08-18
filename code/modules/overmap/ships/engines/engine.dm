@@ -19,7 +19,7 @@ var/list/ship_engines = list()
 
 //Returns status string for this engine
 /datum/ship_engine/proc/get_status()
-	return "All systems nominal"
+	return list("All systems nominal")
 
 /datum/ship_engine/proc/get_thrust()
 	return 1
