@@ -56,7 +56,9 @@
 	dir = 4;
 	icon_state = "map_connector-aux"
 	},
-/obj/machinery/portable_atmospherics/canister/air/airlock,
+/obj/machinery/portable_atmospherics/canister/air/airlock{
+	start_pressure = 4559.63
+	},
 /turf/simulated/floor/tiled/eris/steel/gray_perforated,
 /area/talon/deckone/port_eng)
 "ai" = (
@@ -190,6 +192,30 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/brown_perforated,
 /area/talon/deckone/port_eng)
+"au" = (
+/obj/effect/floor_decal/industrial/outline/grey,
+/obj/machinery/atmospherics/portables_connector/aux{
+	dir = 8;
+	icon_state = "map_connector-aux"
+	},
+/obj/machinery/portable_atmospherics/canister/air/airlock{
+	start_pressure = 4559.63
+	},
+/turf/simulated/floor/tiled/eris/steel/gray_perforated,
+/area/talon/deckone/starboard_eng)
+"av" = (
+/obj/structure/table/standard,
+/obj/machinery/reagentgrinder,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
+/area/talon/deckone/medical)
+"aw" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/structure/table/standard,
+/obj/machinery/chemical_dispenser/full,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
+/area/talon/deckone/medical)
 "aC" = (
 /turf/simulated/wall/rshull,
 /area/talon/maintenance/deckone_port)
@@ -884,11 +910,6 @@
 /obj/structure/catwalk,
 /turf/space,
 /area/talon/maintenance/deckone_starboard)
-"fZ" = (
-/obj/structure/table/standard,
-/obj/machinery/chemical_dispenser/full,
-/turf/simulated/floor/tiled/eris/white/bluecorner,
-/area/talon/deckone/medical)
 "ga" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -2453,15 +2474,6 @@
 	},
 /turf/simulated/floor/hull/airless,
 /area/talon/maintenance/deckone_starboard_aft_wing)
-"up" = (
-/obj/effect/floor_decal/industrial/outline/grey,
-/obj/machinery/atmospherics/portables_connector/aux{
-	dir = 8;
-	icon_state = "map_connector-aux"
-	},
-/obj/machinery/portable_atmospherics/canister/air/airlock,
-/turf/simulated/floor/tiled/eris/steel/gray_perforated,
-/area/talon/deckone/starboard_eng)
 "ur" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -4100,14 +4112,6 @@
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/talon/deckone/port_eng)
-"JM" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
-	},
-/obj/structure/table/standard,
-/obj/machinery/reagentgrinder,
-/turf/simulated/floor/tiled/eris/white/bluecorner,
-/area/talon/deckone/medical)
 "JP" = (
 /obj/machinery/power/apc/talon{
 	dir = 4;
@@ -16829,7 +16833,7 @@ co
 co
 Nm
 dO
-fZ
+av
 FA
 Gb
 Gb
@@ -16972,7 +16976,7 @@ co
 qA
 dO
 xH
-JM
+aw
 Xd
 vc
 eV
@@ -17416,7 +17420,7 @@ gY
 NP
 ho
 iF
-up
+au
 yB
 Mi
 Bm
