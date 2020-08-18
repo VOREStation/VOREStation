@@ -16,7 +16,7 @@
 		qdel(CR)
 
 	//////////////////////// FOOD
-	var/list/food_recipes = typesof(/datum/recipe/microwave) - /datum/recipe/microwave
+	var/list/food_recipes = typesof(/datum/recipe) - /datum/recipe
 	//Build a useful list
 	for(var/Rp in food_recipes)
 		//Lists don't work with datum-stealing no-instance initial() so we have to.
@@ -32,6 +32,7 @@
 						"Reagents" = R.reagents,
 						"Fruit" = R.fruit,
 						"Ingredients" = R.items,
+						"Appliance" = R.appliance,
 						"Image" = result_icon
 						)
 
@@ -69,6 +70,9 @@
 	for(var/Rp in food_recipes)
 		for(var/rid in food_recipes[Rp]["Reagents"])
 			var/datum/reagent/Rd = SSchemistry.chemical_reagents[rid]
+			if(!Rd) // Leaving this here in the event that if rd is ever invalid or there's a recipe issue, it'll be skipped and recipe dumps can still be ran.
+				log_runtime(EXCEPTION("Food \"[Rp]\" had an invalid RID: \"[rid]\"! Check your reagents list for a missing or mistyped reagent!"))
+				continue // This allows the dump to still continue, and it will skip the invalid recipes.
 			var/R_name = Rd.name
 			var/amt = food_recipes[Rp]["Reagents"][rid]
 			food_recipes[Rp]["Reagents"] -= rid
@@ -76,17 +80,36 @@
 	for(var/Rp in drink_recipes)
 		for(var/rid in drink_recipes[Rp]["Reagents"])
 			var/datum/reagent/Rd = SSchemistry.chemical_reagents[rid]
+			if(!Rd) // Leaving this here in the event that if rd is ever invalid or there's a recipe issue, it'll be skipped and recipe dumps can still be ran.
+				log_runtime(EXCEPTION("Food \"[Rp]\" had an invalid RID: \"[rid]\"! Check your reagents list for a missing or mistyped reagent!"))
+				continue // This allows the dump to still continue, and it will skip the invalid recipes.
 			var/R_name = Rd.name
 			var/amt = drink_recipes[Rp]["Reagents"][rid]
 			drink_recipes[Rp]["Reagents"] -= rid
 			drink_recipes[Rp]["Reagents"][R_name] = amt
+			
+	//We can also change the appliance to its proper name.
+	for(var/Rp in food_recipes)
+		switch(food_recipes[Rp]["Appliance"])
+			if(1)
+				food_recipes[Rp]["Appliance"] = "Microwave"
+			if(2)
+				food_recipes[Rp]["Appliance"] = "Fryer"
+			if(4)
+				food_recipes[Rp]["Appliance"] = "Oven"
+			if(8)
+				food_recipes[Rp]["Appliance"] = "Grill"
+			if(16)
+				food_recipes[Rp]["Appliance"] = "Candy Maker"
+			if(32)
+				food_recipes[Rp]["Appliance"] = "Cereal Maker"
 
 	//////////////////////// SORTING
 	var/list/foods_to_paths = list()
 	var/list/drinks_to_paths = list()
 
-	for(var/Rp in food_recipes)
-		foods_to_paths["[food_recipes[Rp]["Result"]] [Rp]"] = Rp //Append recipe datum path to keep uniqueness
+	for(var/Rp in food_recipes) // "Appliance" will sort the list by APPLIANCES first. Items without an appliance will append to the top of the list. The old method was "Result", which sorts the list by the name of the result.
+		foods_to_paths["[food_recipes[Rp]["Appliance"]] [Rp]"] = Rp //Append recipe datum path to keep uniqueness
 	for(var/Rp in drink_recipes)
 		drinks_to_paths["[drink_recipes[Rp]["Result"]] [Rp]"] = Rp
 
@@ -119,7 +142,7 @@
 
 	html += "<html><body><h3>Food Recipes (as of [time2text(world.realtime,"MMM DD, YYYY")])</h3><br>"
 	html += "<table class='recipes'>"
-	html += "<tr><th>Icon</th><th>Name</th><th>Ingredients</th></tr>"
+	html += "<tr><th>Icon</th><th>Name</th><th>Appliance</th><th>Ingredients</th></tr>"
 	for(var/Rp in food_recipes)
 		//Open this row
 		html += "<tr>"
@@ -135,6 +158,9 @@
 
 		//Name
 		html += "<td><b>[food_recipes[Rp]["Result"]]</b></td>"
+		
+		//Appliance
+		html += "<td><b>[food_recipes[Rp]["Appliance"]]</b></td>"
 
 		//Ingredients
 		html += "<td><ul>"

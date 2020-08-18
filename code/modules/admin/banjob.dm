@@ -26,14 +26,18 @@ var/jobban_keylist[0]		//to store the keys & ranks
 			if(config.usewhitelist && !check_whitelist(M))
 				return "Whitelisted Job"
 
-		for (var/s in jobban_keylist)
-			if( findtext(s,"[M.ckey] - [rank]") == 1 )
-				var/startpos = findtext(s, "## ")+3
-				if(startpos && startpos<length(s))
-					var/text = copytext(s, startpos, 0)
-					if(text)
-						return text
-				return "Reason Unspecified"
+		return ckey_is_jobbanned(M.ckey, rank)
+	return 0
+
+/proc/ckey_is_jobbanned(var/check_key, var/rank)
+	for(var/s in jobban_keylist)
+		if(findtext(s,"[check_key] - [rank]") == 1 )
+			var/startpos = findtext(s, "## ")+3
+			if(startpos && startpos<length(s))
+				var/text = copytext(s, startpos, 0)
+				if(text)
+					return text
+			return "Reason Unspecified"
 	return 0
 
 /*

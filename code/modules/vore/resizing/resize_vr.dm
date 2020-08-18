@@ -243,10 +243,18 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 	if(a_intent == I_HELP) // Theoretically not possible, but just in case.
 		return FALSE
 
+	if(tmob.a_intent != I_HELP && prob(35))
+		to_chat(pred, "<span class='danger'>[prey] dodges out from under your foot!</span>")
+		to_chat(prey, "<span class='danger'>You narrowly avoid [pred]'s foot!</span>")
+		return FALSE
+
 	now_pushing = 0
 	forceMove(tmob.loc)
 	if(a_intent == I_GRAB || a_intent == I_DISARM)
-		tmob.resting = 1
+		if(tmob.a_intent == I_HELP)
+			tmob.resting = 1
+		else
+			tmob.Weaken(1)
 
 	var/size_damage_multiplier = size_multiplier - tmob.size_multiplier
 	// This technically means that I_GRAB will set this value to the same as I_HARM, but
@@ -311,7 +319,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 					message_pred = STEP_TEXT_OWNER(tail.msg_owner_disarm_walk)
 					message_prey = STEP_TEXT_PREY(tail.msg_prey_disarm_walk)
 				add_attack_logs(pred, prey, "Pinned underfoot (walk, about [damage] halloss)")
-				tmob.apply_damage(damage, HALLOSS)
+				tmob.Weaken(2) //Removed halloss because it was being abused
 			if(I_HURT)
 				message_pred = "You methodically place your foot down upon [prey]'s body, slowly applying pressure, crushing them against the floor below!"
 				message_prey = "[pred] methodically places their foot upon your body, slowly applying pressure, crushing you against the floor below!"

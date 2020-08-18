@@ -20,7 +20,7 @@
 			)
 	name = "Trading Card Crate"
 	cost = 10
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/oculum
 	containername = "cards crate"
 
 /datum/supply_pack/randomised/misc/dnd
@@ -36,7 +36,7 @@
 			)
 	name = "Miniatures Crate"
 	cost = 200
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/oculum
 	containername = "Miniature Crate"
 
 /datum/supply_pack/randomised/misc/plushies
@@ -88,14 +88,14 @@
 			//VOREStation Add End
 	name = "Plushies Crate"
 	cost = 15
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/allico
 	containername = "Plushies Crate"
 
 /datum/supply_pack/misc/eftpos
 	contains = list(/obj/item/device/eftpos)
 	name = "EFTPOS scanner"
 	cost = 10
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/nanotrasen
 	containername = "EFTPOS crate"
 
 /datum/supply_pack/misc/chaplaingear
@@ -113,7 +113,7 @@
 			/obj/item/weapon/storage/fancy/candle_box = 3
 			)
 	cost = 10
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/gilthari
 	containername = "Chaplain equipment crate"
 
 /datum/supply_pack/misc/hoverpod
@@ -136,14 +136,14 @@
 			/obj/item/clothing/accessory/storage/webbing
 			)
 	cost = 10
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/nanothreads
 	containername = "Webbing crate"
 
 /datum/supply_pack/misc/holoplant
 	name = "Holoplant Pot"
 	contains = list(/obj/machinery/holoplant/shipped)
 	cost = 15
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/thinktronic
 	containername = "Holoplant crate"
 
 /datum/supply_pack/misc/glucose_hypos
@@ -152,7 +152,7 @@
 			/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/glucose = 5
 			)
 	cost = 25
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/zenghu
 	containername = "Glucose Hypo Crate"
 
 /datum/supply_pack/misc/mre_rations
@@ -169,7 +169,7 @@
 					/obj/item/weapon/storage/mre/menu9,
 					/obj/item/weapon/storage/mre/menu10)
 	cost = 50
-	containertype = /obj/structure/closet/crate/freezer
+	containertype = /obj/structure/closet/crate/centauri
 	containername = "ready to eat rations"
 
 /datum/supply_pack/misc/paste_rations
@@ -178,7 +178,7 @@
 			/obj/item/weapon/storage/mre/menu11 = 2
 			)
 	cost = 25
-	containertype = /obj/structure/closet/crate/freezer
+	containertype = /obj/structure/closet/crate/freezer/centauri
 	containername = "emergency rations"
 
 /datum/supply_pack/misc/medical_rations
@@ -187,5 +187,5 @@
 			/obj/item/weapon/storage/mre/menu13 = 2
 			)
 	cost = 40
-	containertype = /obj/structure/closet/crate/freezer
+	containertype = /obj/structure/closet/crate/zenghu
 	containername = "emergency rations"

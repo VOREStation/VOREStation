@@ -10,6 +10,8 @@
 	icon_state = "glasses"
 	var/datum/nano_module/arscreen
 	var/arscreen_path
+	var/datum/tgui_module/tgarscreen
+	var/tgarscreen_path
 	var/flash_prot = 0 //0 for none, 1 for flash weapon protection, 2 for welder protection
 	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_AUGMENTED)
 	plane_slots = list(slot_glasses)
@@ -18,21 +20,33 @@
 	..()
 	if(arscreen_path)
 		arscreen = new arscreen_path(src)
+	if(tgarscreen_path)
+		tgarscreen = new tgarscreen_path(src)
 
 /obj/item/clothing/glasses/omnihud/Destroy()
 	QDEL_NULL(arscreen)
+	QDEL_NULL(tgarscreen)
 	. = ..()
 
 /obj/item/clothing/glasses/omnihud/dropped()
 	if(arscreen)
 		SSnanoui.close_uis(src)
+	if(tgarscreen)
+		SStgui.close_uis(src)
 	..()
 
 /obj/item/clothing/glasses/omnihud/emp_act(var/severity)
+	if(arscreen)
+		SSnanoui.close_uis(src)
+	if(tgarscreen)
+		SStgui.close_uis(src)
 	var/disconnect_ar = arscreen
+	var/disconnect_tgar = tgarscreen
 	arscreen = null
+	tgarscreen = null
 	spawn(20 SECONDS)
 		arscreen = disconnect_ar
+		tgarscreen = disconnect_tgar
 	
 	//extra fun for non-sci variants; a small chance flip the state to the dumb 3d glasses when EMP'd
 	if(icon_state == "glasses" || icon_state == "sun")
@@ -122,12 +136,12 @@
 	They can also read data from active suit sensors using the crew monitoring system."
 	mode = "med"
 	action_button_name = "AR Console (Crew Monitor)"
-	arscreen_path = /datum/nano_module/program/crew_monitor
+	tgarscreen_path = /datum/tgui_module/crew_monitor/glasses
 	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_STATUS_R,VIS_CH_BACKUP,VIS_AUGMENTED)
 
 	ar_interact(var/mob/living/carbon/human/user)
-		if(arscreen)
-			arscreen.ui_interact(user,"main",null,1,glasses_state)
+		if(tgarscreen)
+			tgarscreen.tgui_interact(user)
 		return 1
 
 /obj/item/clothing/glasses/omnihud/sec
@@ -138,12 +152,12 @@
 	mode = "sec"
 	flash_protection = FLASH_PROTECTION_MODERATE //weld protection is a little too widespread
 	action_button_name = "AR Console (Security Alerts)"
-	arscreen_path = /datum/nano_module/alarm_monitor/security
+	tgarscreen_path = /datum/tgui_module/alarm_monitor/security/glasses
 	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_WANTED,VIS_AUGMENTED)
 
 	ar_interact(var/mob/living/carbon/human/user)
-		if(arscreen)
-			arscreen.ui_interact(user,"main",null,1,glasses_state)
+		if(tgarscreen)
+			tgarscreen.tgui_interact(user)
 		return 1
 
 /obj/item/clothing/glasses/omnihud/eng
@@ -154,11 +168,11 @@
 	mode = "eng"
 	flash_protection = FLASH_PROTECTION_MAJOR
 	action_button_name = "AR Console (Station Alerts)"
-	arscreen_path = /datum/nano_module/alarm_monitor/engineering
+	tgarscreen_path = /datum/tgui_module/alarm_monitor/engineering/glasses
 
 	ar_interact(var/mob/living/carbon/human/user)
-		if(arscreen)
-			arscreen.ui_interact(user,"main",null,1,glasses_state)
+		if(tgarscreen)
+			tgarscreen.tgui_interact(user)
 		return 1
 
 /obj/item/clothing/glasses/omnihud/rnd

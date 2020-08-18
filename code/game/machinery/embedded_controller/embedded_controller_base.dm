@@ -4,6 +4,7 @@
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
 	var/datum/computer/file/embedded_program/program	//the currently executing program
+	var/list/valid_actions = list()
 	var/on = 1
 
 /obj/machinery/embedded_controller/Initialize()
@@ -24,18 +25,19 @@
 
 	if(program)
 		program.receive_signal(signal, receive_method, receive_param)
-			//spawn(5) program.process() //no, program.process sends some signals and machines respond and we here again and we lag -rastaf0
 
-/obj/machinery/embedded_controller/Topic(href, href_list)
-	if((. = ..()))
-		return
+/obj/machinery/embedded_controller/Topic()
+	. = ..()
+	stack_trace("WARNING: Embedded controller [src] ([type]) had Topic() called unexpectedly. Please report this.")
+
+/obj/machinery/embedded_controller/tgui_act(action, params)
+	if(..())
+		return TRUE
+	if(LAZYLEN(valid_actions))
+		if(action in valid_actions)
+			program.receive_user_command(action)
 	if(usr)
-		usr.set_machine(src)
-		src.add_fingerprint(usr)
-	// We would now pass it to the program, except that some of our embedded controller types want to block certain commands.
-	// Until/unless that is refactored differently, we rely on subtypes to pass it on.
-	//if(program)
-	//	return program.receive_user_command(href_list["command"])
+		add_fingerprint(usr)
 
 /obj/machinery/embedded_controller/process()
 	if(program)
@@ -44,19 +46,23 @@
 	update_icon()
 
 /obj/machinery/embedded_controller/attack_ai(mob/user as mob)
-	src.ui_interact(user)
+	tgui_interact(user)
 
 /obj/machinery/embedded_controller/attack_hand(mob/user as mob)
-
 	if(!user.IsAdvancedToolUser())
 		return 0
 
-	src.ui_interact(user)
+	tgui_interact(user)
+
+/obj/machinery/embedded_controller/tgui_interact(mob/user, datum/tgui/ui = null)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "EmbeddedController", src)
+		ui.open()
 
 //
 // Embedded controller with a radio! (Most things (All things?) use this)
 //
-
 /obj/machinery/embedded_controller/radio
 	icon = 'icons/obj/airlock_machines.dmi'
 	icon_state = "airlock_control_standby"

@@ -46,6 +46,11 @@
 	color = "#792300"
 	strength = 10
 
+/datum/reagent/toxin/amatoxin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	// Trojan horse. Waits until most of the toxin has gone through the body before dealing the bulk of it in one big strike.
+	if(volume < max_dose * 0.2)
+		M.adjustToxLoss(max_dose * strength * removed / (max_dose * 0.2))
+
 /datum/reagent/toxin/carpotoxin
 	name = "Carpotoxin"
 	id = "carpotoxin"
@@ -54,6 +59,10 @@
 	reagent_state = LIQUID
 	color = "#003333"
 	strength = 10
+
+/datum/reagent/toxin/carpotoxin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	M.adjustBrainLoss(strength / 4 * removed)
 
 /datum/reagent/toxin/neurotoxic_protein
 	name = "toxic protein"
@@ -170,7 +179,7 @@
 /datum/reagent/toxin/cyanide/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 	M.adjustOxyLoss(20 * removed)
-	M.sleeping += 1
+	M.Sleeping(1)
 
 /datum/reagent/toxin/mold
 	name = "Mold"
@@ -212,6 +221,7 @@
 	color = "#d0583a"
 	metabolism = REM * 3
 	overdose = 10
+	overdose_mod = 0.5
 	strength = 3
 
 /datum/reagent/toxin/stimm/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -224,6 +234,13 @@
 		M.visible_message("[M] shudders violently.", "You shudder uncontrollably, it hurts.")
 		M.take_organ_damage(6 * removed, 0)
 	M.add_chemical_effect(CE_SPEEDBOOST, 1)
+
+/datum/reagent/toxin/stimm/overdose(var/mob/living/carbon/M, var/alient, var/removed)
+	..()
+	if(prob(10)) // 1 in 10. This thing's made with welder fuel and fertilizer, what do you expect?
+		var/mob/living/carbon/human/H = M
+		H.internal_organs_by_name[O_HEART].take_damage(1)
+		to_chat(M, "<span class='warning'>Huh... Is this what a heart attack feels like?</span>")
 
 /datum/reagent/toxin/potassium_chloride
 	name = "Potassium Chloride"
@@ -645,7 +662,7 @@
 			else
 				M.Weaken(2)
 		else
-			M.sleeping = max(M.sleeping, 20)
+			M.Sleeping(20)
 		M.drowsyness = max(M.drowsyness, 60)
 
 /datum/reagent/chloralhydrate
@@ -658,7 +675,7 @@
 	metabolism = REM * 0.5
 	ingest_met = REM * 1.5
 	overdose = REAGENTS_OVERDOSE * 0.5
-	overdose_mod = 5	//For that good, lethal feeling
+	overdose_mod = 2	//For that good, lethal feeling // Reduced with overdose changes. Slightly stronger than before
 
 /datum/reagent/chloralhydrate/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
@@ -689,7 +706,7 @@
 			M.Weaken(30)
 			M.Confuse(40)
 		else
-			M.sleeping = max(M.sleeping, 30)
+			M.Sleeping(30)
 
 	if(effective_dose > 1 * threshold)
 		M.adjustToxLoss(removed)

@@ -36,6 +36,7 @@
 	start_x =  10
 	start_y =  10
 	map_z = list(Z_LEVEL_STATION_ONE, Z_LEVEL_STATION_TWO, Z_LEVEL_STATION_THREE)
+	extra_z_levels = list(Z_LEVEL_TRANSIT) // Hopefully temporary, so arrivals announcements work.
 
 /obj/effect/overmap/visitable/planet/Sif/Initialize()
 	. = ..()

@@ -87,23 +87,14 @@
 
 	return 1
 
-/obj/machinery/atmospherics/omni/atmos_filter/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	user.set_machine(src)
-
-	var/list/data = new()
-
-	data = build_uidata()
-
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-
-	if (!ui)
-		ui = new(user, src, ui_key, "omni_filter.tmpl", "Omni Filter Control", 330, 330)
-		ui.set_initial_data(data)
-
+/obj/machinery/atmospherics/omni/atmos_filter/tgui_interact(mob/user,datum/tgui/ui = null)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "OmniFilter", name)
 		ui.open()
 
-/obj/machinery/atmospherics/omni/atmos_filter/proc/build_uidata()
-	var/list/data = new()
+/obj/machinery/atmospherics/omni/atmos_filter/tgui_data(mob/user)
+	var/list/data = list()
 
 	data["power"] = use_power
 	data["config"] = configuring
@@ -156,34 +147,41 @@
 		else
 			return null
 
-/obj/machinery/atmospherics/omni/atmos_filter/Topic(href, href_list)
-	if(..()) return 1
-	switch(href_list["command"])
+/obj/machinery/atmospherics/omni/atmos_filter/tgui_act(action, params)
+	if(..())
+		return TRUE
+	
+	switch(action)
 		if("power")
 			if(!configuring)
 				update_use_power(!use_power)
 			else
 				update_use_power(USE_POWER_OFF)
+			. = TRUE
 		if("configure")
 			configuring = !configuring
 			if(configuring)
 				update_use_power(USE_POWER_OFF)
-
-	//only allows config changes when in configuring mode ~otherwise you'll get weird pressure stuff going on
-	if(configuring && !use_power)
-		switch(href_list["command"])
-			if("set_flow_rate")
-				var/new_flow_rate = input(usr,"Enter new flow rate limit (0-[max_flow_rate]L/s)","Flow Rate Control",set_flow_rate) as num
-				set_flow_rate = between(0, new_flow_rate, max_flow_rate)
-			if("switch_mode")
-				switch_mode(dir_flag(href_list["dir"]), mode_return_switch(href_list["mode"]))
-			if("switch_filter")
-				var/new_filter = input(usr,"Select filter mode:","Change filter",href_list["mode"]) in list("None", "Oxygen", "Nitrogen", "Carbon Dioxide", "Phoron", "Nitrous Oxide")
-				switch_filter(dir_flag(href_list["dir"]), mode_return_switch(new_filter))
+			. = TRUE
+		if("set_flow_rate")
+			if(!configuring || use_power)
+				return
+			var/new_flow_rate = input(usr,"Enter new flow rate limit (0-[max_flow_rate]L/s)","Flow Rate Control",set_flow_rate) as num
+			set_flow_rate = between(0, new_flow_rate, max_flow_rate)
+			. = TRUE
+		if("switch_mode")
+			if(!configuring || use_power)
+				return
+			switch_mode(dir_flag(params["dir"]), mode_return_switch(params["mode"]))
+			. = TRUE
+		if("switch_filter")
+			if(!configuring || use_power)
+				return
+			var/new_filter = input(usr,"Select filter mode:","Change filter",params["mode"]) in list("None", "Oxygen", "Nitrogen", "Carbon Dioxide", "Phoron", "Nitrous Oxide")
+			switch_filter(dir_flag(params["dir"]), mode_return_switch(new_filter))
+			. = TRUE
 
 	update_icon()
-	SSnanoui.update_uis(src)
-	return
 
 /obj/machinery/atmospherics/omni/atmos_filter/proc/mode_return_switch(var/mode)
 	switch(mode)

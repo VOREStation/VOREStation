@@ -338,14 +338,14 @@
 	if(!heart)
 		return TRUE
 
-	var/blood_volume = round((H.vessel.get_reagent_amount("blood")/H.species.blood_volume)*100)
+	var/blood_volume = H.vessel.get_reagent_amount("blood")
 	if(!heart || heart.is_broken())
 		blood_volume *= 0.3
 	else if(heart.is_bruised())
 		blood_volume *= 0.7
 	else if(heart.damage > 1)
 		blood_volume *= 0.8
-	return blood_volume < BLOOD_VOLUME_SURVIVE
+	return blood_volume < H.species.blood_volume*H.species.blood_level_fatal
 
 /obj/item/weapon/shockpaddles/proc/check_charge(var/charge_amt)
 	return 0

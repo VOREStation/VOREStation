@@ -594,16 +594,12 @@
 /turf/simulated/floor/plating/eris/under,
 /area/tether_away/guttersite/atmos)
 "bO" = (
-/obj/structure/table/steel,
-/obj/structure/cable/cyan,
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "east bump";
-	pixel_x = 24
+/obj/structure/closet/toolcloset,
+/obj/machinery/alarm/alarms_hidden{
+	pixel_y = 25
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/engines)
+/area/tether_away/guttersite/storage)
 "bP" = (
 /obj/structure/table/steel,
 /obj/structure/cable/cyan,
@@ -650,20 +646,24 @@
 /area/tether_away/guttersite/engines)
 "bU" = (
 /obj/machinery/alarm{
-	alarm_id = null;
-	breach_detection = 0;
-	dir = 1;
+	alarms_hidden = 1;
+	dir = 4;
 	icon_state = "alarm0";
-	pixel_y = -22
+	pixel_x = -22;
+	pixel_y = 0
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/engines)
+/area/tether_away/guttersite/maint)
 "bV" = (
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_x = 0;
-	pixel_y = -25
+/obj/structure/table/steel,
+/obj/structure/cable/cyan,
+/obj/machinery/power/apc{
+	alarms_hidden = 1;
+	dir = 4;
+	name = "east bump";
+	pixel_x = 24
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/engines)
 "bW" = (
@@ -711,23 +711,25 @@
 /area/tether_away/guttersite/maint)
 "cb" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 6
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6;
+	dir = 4;
 	icon_state = "intact-supply"
 	},
-/obj/structure/bed/chair/bay/comfy/black{
-	dir = 1;
-	icon_state = "bay_comfychair_preview"
-	},
 /obj/structure/cable/cyan{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/eris/steel/bar_dance,
-/area/tether_away/guttersite/commons)
+/obj/machinery/firealarm{
+	alarms_hidden = 1;
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -25
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/maint)
 "cc" = (
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
 	dir = 5
@@ -942,14 +944,15 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/maint)
 "cD" = (
-/obj/machinery/alarm{
-	dir = 4;
-	icon_state = "alarm0";
-	pixel_x = -22;
-	pixel_y = 0
+/obj/structure/closet/crate/engineering,
+/obj/machinery/firealarm{
+	alarms_hidden = 1;
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -25
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/maint)
+/area/tether_away/guttersite/storage)
 "cE" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 1
@@ -1000,9 +1003,16 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/storage)
 "cL" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/structure/table/steel,
+/obj/machinery/alarm{
+	alarms_hidden = 1;
+	dir = 4;
+	icon_state = "alarm0";
+	pixel_x = -22;
+	pixel_y = 0
+	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/commons)
+/area/tether_away/guttersite/atmos)
 "cM" = (
 /obj/effect/landmark/corpse/clown,
 /turf/simulated/mineral/floor/vacuum,
@@ -1126,11 +1136,14 @@
 /turf/simulated/floor/tiled/eris/steel/bar_light,
 /area/tether_away/guttersite/commons)
 "da" = (
-/obj/structure/window/basic{
-	dir = 1
+/obj/machinery/firealarm{
+	alarms_hidden = 1;
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -25
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/commons)
+/area/tether_away/guttersite/engines)
 "db" = (
 /obj/machinery/vending/food,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
@@ -1145,9 +1158,14 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/commons)
 "dd" = (
-/obj/machinery/light,
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/commons)
+/obj/machinery/firealarm{
+	alarms_hidden = 1;
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -25
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/tether_away/guttersite/atmos)
 "de" = (
 /turf/simulated/wall/r_wall,
 /area/tether_away/guttersite/medbay)
@@ -1175,9 +1193,18 @@
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/tether_away/guttersite/commons)
 "di" = (
-/obj/structure/table/darkglass,
-/obj/item/weapon/storage/box/glasses/meta,
-/turf/simulated/floor/tiled/eris/steel/bar_dance,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/tiled/eris/steel/bar_light,
 /area/tether_away/guttersite/commons)
 "dj" = (
 /obj/structure/table/darkglass,
@@ -1342,22 +1369,21 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/office)
 "dy" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 8;
-	icon_state = "map-scrubbers"
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/maintenance_hatch{
+	req_one_access = list()
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4;
+	icon_state = "intact-supply"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
 	},
 /obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/commons)
@@ -1450,14 +1476,23 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/office)
 "dJ" = (
-/obj/machinery/alarm{
+/obj/structure/window/basic{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4;
-	icon_state = "alarm0";
-	pixel_x = -22;
-	pixel_y = 0
+	icon_state = "intact-supply"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/medbay)
+/area/tether_away/guttersite/commons)
 "dK" = (
 /obj/structure/grille,
 /obj/machinery/door/firedoor/glass,
@@ -1474,13 +1509,16 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/medbay)
 "dM" = (
-/obj/machinery/firealarm{
+/obj/machinery/alarm{
+	alarm_id = null;
+	alarms_hidden = 1;
+	breach_detection = 0;
 	dir = 1;
-	pixel_x = 0;
-	pixel_y = -25
+	icon_state = "alarm0";
+	pixel_y = -22
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/medbay)
+/area/tether_away/guttersite/engines)
 "dN" = (
 /turf/simulated/wall/r_wall,
 /area/tether_away/guttersite/office)
@@ -1543,82 +1581,78 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/office)
 "dW" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4;
 	icon_state = "intact-supply"
-	},
-/obj/structure/bed/chair/bay/comfy/black{
-	dir = 1;
-	icon_state = "bay_comfychair_preview"
 	},
 /obj/structure/cable/cyan{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/eris/steel/bar_dance,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/commons)
 "dX" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
-	},
 /obj/structure/cable/cyan{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/eris/steel/bar_dance,
-/area/tether_away/guttersite/commons)
-"dY" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
-	},
-/obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/wall/r_wall,
-/area/tether_away/guttersite/commons)
-"dZ" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
-	},
-/obj/structure/closet/cabinet,
-/obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/commons)
-"ea" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1;
 	icon_state = "map-supply"
 	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/commons)
+"dY" = (
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+/obj/structure/cable/cyan{
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/commons)
+"dZ" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
 /obj/structure/cable/cyan{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/turf/simulated/floor/tiled/eris/steel/bar_light,
+/area/tether_away/guttersite/commons)
+"ea" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/mob/living/simple_mob/vore/catgirl{
+	name = "Blaire"
+	},
+/turf/simulated/floor/tiled/eris/steel/bar_light,
 /area/tether_away/guttersite/commons)
 "eb" = (
 /turf/simulated/wall/r_wall,
@@ -1655,20 +1689,17 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/office)
 "ej" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 9;
+	pixel_y = 0
 	},
-/obj/machinery/washing_machine,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
 /obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	icon_state = "1-8"
 	},
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/turf/simulated/floor/tiled/eris/steel/bar_light,
 /area/tether_away/guttersite/commons)
 "ek" = (
 /obj/structure/window/basic{
@@ -1679,30 +1710,28 @@
 /turf/simulated/floor/tiled/eris/white/monofloor,
 /area/tether_away/guttersite/office)
 "el" = (
+/obj/machinery/holoplant,
+/obj/machinery/holoplant{
+	icon_state = "plant-10"
+	},
 /obj/machinery/alarm{
+	alarms_hidden = 1;
 	dir = 4;
 	icon_state = "alarm0";
 	pixel_x = -22;
 	pixel_y = 0
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/vault)
+/area/tether_away/guttersite/commons)
 "em" = (
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/vault)
 "en" = (
-/obj/machinery/alarm{
-	dir = 4;
-	icon_state = "alarm0";
-	pixel_x = -22;
-	pixel_y = 0
-	},
-/obj/machinery/light{
-	dir = 1;
-	icon_state = "tube1"
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/walkway)
+/area/tether_away/guttersite/commons)
 "eo" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -1727,97 +1756,72 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/bridge)
 "er" = (
+/obj/structure/table/darkglass,
+/obj/item/weapon/storage/box/glasses/meta,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 1
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 4;
+	dir = 1;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/eris/steel/bar_dance,
+/area/tether_away/guttersite/commons)
+"es" = (
+/turf/simulated/floor/tiled/eris/white/monofloor,
+/area/tether_away/guttersite/office)
+"et" = (
+/obj/structure/bed/chair/bay/comfy/black{
+	dir = 1;
+	icon_state = "bay_comfychair_preview"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 1
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 4;
+	dir = 1;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/eris/steel/bar_dance,
+/area/tether_away/guttersite/commons)
+"eu" = (
+/obj/structure/bed/chair/bay/comfy/black{
+	dir = 1;
+	icon_state = "bay_comfychair_preview"
+	},
+/turf/simulated/floor/tiled/eris/steel/bar_dance,
+/area/tether_away/guttersite/commons)
+"ev" = (
+/obj/structure/curtain/open/shower,
+/obj/machinery/shower,
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/tether_away/guttersite/commons)
+"ew" = (
+/obj/structure/bed/chair/bay/comfy/black{
+	dir = 8;
+	icon_state = "bay_comfychair_preview"
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/commons)
+"ex" = (
 /obj/machinery/alarm{
+	alarms_hidden = 1;
 	dir = 4;
 	icon_state = "alarm0";
 	pixel_x = -22;
 	pixel_y = 0
 	},
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/office)
-"es" = (
-/turf/simulated/floor/tiled/eris/white/monofloor,
-/area/tether_away/guttersite/office)
-"et" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
-	},
-/obj/structure/curtain/open/shower,
-/obj/machinery/shower,
-/obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
-/area/tether_away/guttersite/commons)
-"eu" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
-	},
-/obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
-/area/tether_away/guttersite/commons)
-"ev" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
-	},
-/obj/structure/table/darkglass,
-/obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/commons)
-"ew" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
-	},
-/obj/structure/bed/chair/bay/comfy/black{
-	dir = 8;
-	icon_state = "bay_comfychair_preview"
-	},
-/obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/commons)
-"ex" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9;
-	icon_state = "intact-scrubbers"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9;
-	icon_state = "intact-supply"
-	},
-/obj/structure/cable/cyan{
-	icon_state = "1-8"
-	},
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/tether_away/guttersite/commons)
 "ey" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -1954,13 +1958,15 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/walkway)
 "eJ" = (
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_x = 0;
-	pixel_y = -25
+/obj/machinery/alarm{
+	alarms_hidden = 1;
+	dir = 4;
+	icon_state = "alarm0";
+	pixel_x = -22;
+	pixel_y = 0
 	},
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/walkway)
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/tether_away/guttersite/commons)
 "eK" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 8
@@ -2275,13 +2281,12 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/bridge)
 "fm" = (
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_x = 0;
-	pixel_y = -25
+/obj/machinery/door/airlock/maintenance_hatch{
+	req_one_access = list()
 	},
+/obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/bridge)
+/area/tether_away/guttersite/commons)
 "fn" = (
 /obj/structure/bed/chair/bay/comfy/black{
 	dir = 4;
@@ -2679,15 +2684,16 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "gb" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 8
+/obj/structure/table/darkglass,
+/obj/machinery/alarm{
+	alarms_hidden = 1;
+	dir = 4;
+	icon_state = "alarm0";
+	pixel_x = -22;
+	pixel_y = 0
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/security)
+/area/tether_away/guttersite/commons)
 "gc" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
@@ -2932,16 +2938,15 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "gC" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
+/obj/machinery/light,
+/obj/machinery/firealarm{
+	alarms_hidden = 1;
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -25
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
-	},
-/turf/simulated/wall/r_wall,
-/area/tether_away/guttersite/security)
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/commons)
 "gD" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1;
@@ -2953,16 +2958,16 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "gE" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10;
-	icon_state = "intact-scrubbers"
+/obj/machinery/firealarm{
+	alarms_hidden = 1;
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -25
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10;
-	icon_state = "intact-supply"
-	},
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/security)
+/obj/structure/table/darkglass,
+/obj/machinery/microwave,
+/turf/simulated/floor/tiled/eris/steel/bar_dance,
+/area/tether_away/guttersite/commons)
 "gF" = (
 /obj/structure/table/rack/shelf/steel,
 /obj/random/mre,
@@ -3025,22 +3030,36 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/vault)
 "gK" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 1
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /obj/machinery/alarm{
+	alarms_hidden = 1;
 	dir = 4;
 	icon_state = "alarm0";
 	pixel_x = -22;
 	pixel_y = 0
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/security)
+/area/tether_away/guttersite/walkway)
 "gL" = (
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_x = 0;
-	pixel_y = -25
+/obj/machinery/alarm{
+	alarms_hidden = 1;
+	dir = 4;
+	icon_state = "alarm0";
+	pixel_x = -22;
+	pixel_y = 0
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/security)
+/area/tether_away/guttersite/medbay)
 "gM" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 1
@@ -3051,10 +3070,14 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "gN" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/firealarm{
+	alarms_hidden = 1;
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -25
+	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/security)
+/area/tether_away/guttersite/medbay)
 "gO" = (
 /obj/structure/fence/end{
 	dir = 4;
@@ -3122,18 +3145,14 @@
 /area/tether_away/guttersite/security)
 "gV" = (
 /obj/machinery/alarm{
+	alarms_hidden = 1;
 	dir = 4;
 	icon_state = "alarm0";
 	pixel_x = -22;
 	pixel_y = 0
 	},
-/obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/bridge)
+/area/tether_away/guttersite/vault)
 "gW" = (
 /obj/structure/fence/door/opened{
 	dir = 8;
@@ -3152,16 +3171,15 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "gZ" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5;
-	icon_state = "intact-scrubbers"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9;
-	icon_state = "intact-supply"
+/obj/machinery/alarm{
+	alarms_hidden = 1;
+	dir = 4;
+	icon_state = "alarm0";
+	pixel_x = -22;
+	pixel_y = 0
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/security)
+/area/tether_away/guttersite/office)
 "ha" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8;
@@ -3236,23 +3254,14 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/docking)
 "hi" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
-	},
-/obj/structure/bed/chair/office/dark{
-	dir = 4;
-	icon_state = "officechair_dark"
-	},
-/mob/living/simple_mob/humanoid/merc/ranged/laser{
-	faction = "wolfgirl"
+/obj/machinery/firealarm{
+	alarms_hidden = 1;
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -25
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/security)
+/area/tether_away/guttersite/walkway)
 "hj" = (
 /mob/living/simple_mob/mobs_monsters/clowns/big/cluwne,
 /turf/simulated/mineral/floor/vacuum,
@@ -3333,13 +3342,19 @@
 /area/tether_away/guttersite/docking)
 "hq" = (
 /obj/machinery/alarm{
+	alarms_hidden = 1;
 	dir = 4;
 	icon_state = "alarm0";
 	pixel_x = -22;
 	pixel_y = 0
 	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/docking)
+/area/tether_away/guttersite/bridge)
 "hr" = (
 /obj/structure/table/rack/shelf/steel,
 /obj/random/cash,
@@ -3473,15 +3488,24 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/docking)
 "hH" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
 	},
-/obj/machinery/light{
-	dir = 1;
-	icon_state = "tube1"
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 1
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/firealarm{
+	alarms_hidden = 1;
+	dir = 4;
+	pixel_x = 26
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/docking)
+/area/tether_away/guttersite/walkway)
 "hI" = (
 /obj/machinery/atmospherics/pipe/manifold4w/hidden,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
@@ -3494,16 +3518,26 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/docking)
 "hK" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 8;
-	icon_state = "intact"
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4;
+	icon_state = "intact-supply"
 	},
-/obj/machinery/light{
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/firealarm{
+	alarms_hidden = 1;
 	dir = 1;
-	icon_state = "tube1"
+	pixel_x = 0;
+	pixel_y = -25
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/docking)
+/area/tether_away/guttersite/bridge)
 "hL" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 8;
@@ -3551,13 +3585,26 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/docking)
 "hQ" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4;
+	icon_state = "intact-supply"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /obj/machinery/firealarm{
+	alarms_hidden = 1;
 	dir = 1;
 	pixel_x = 0;
 	pixel_y = -25
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/docking)
+/area/tether_away/guttersite/office)
 "hR" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
@@ -3573,15 +3620,14 @@
 /turf/space,
 /area/space)
 "hU" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 8;
-	icon_state = "officechair_dark"
-	},
-/mob/living/simple_mob/humanoid/merc/melee/poi{
-	faction = "wolfgirl"
+/obj/machinery/firealarm{
+	alarms_hidden = 1;
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -25
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/security)
+/area/tether_away/guttersite/bridge)
 "hV" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4;
@@ -3598,25 +3644,17 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/office)
 "hW" = (
+/obj/machinery/light{
+	dir = 8
+	},
 /obj/machinery/firealarm{
+	alarms_hidden = 1;
 	dir = 1;
 	pixel_x = 0;
 	pixel_y = -25
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
-	},
-/obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/office)
+/area/tether_away/guttersite/vault)
 "hX" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4;
@@ -3907,15 +3945,13 @@
 /area/tether_away/guttersite/office)
 "iI" = (
 /obj/machinery/firealarm{
-	dir = 1;
-	pixel_x = 0;
-	pixel_y = -25
-	},
-/obj/machinery/light{
-	dir = 8
+	alarms_hidden = 1;
+	dir = 8;
+	pixel_x = -24;
+	pixel_y = 0
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/vault)
+/area/tether_away/guttersite/docking)
 "iJ" = (
 /mob/living/simple_mob/vore/aggressive/mimic,
 /turf/simulated/mineral/floor/vacuum,
@@ -4194,11 +4230,19 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/commons)
 "jC" = (
-/obj/machinery/door/airlock/maintenance_hatch{
-	req_one_access = list()
+/obj/machinery/alarm{
+	alarms_hidden = 1;
+	dir = 4;
+	icon_state = "alarm0";
+	pixel_x = -22;
+	pixel_y = 0
+	},
+/obj/machinery/light{
+	dir = 1;
+	icon_state = "tube1"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/commons)
+/area/tether_away/guttersite/walkway)
 "jD" = (
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/tether_away/guttersite/commons)
@@ -4277,21 +4321,14 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "jK" = (
-/obj/machinery/atmospherics/pipe/simple/hidden,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6;
-	icon_state = "intact-supply"
-	},
-/obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+/obj/machinery/alarm{
+	alarms_hidden = 1;
+	dir = 8;
+	pixel_x = 25;
+	pixel_y = 0
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/security)
+/area/tether_away/guttersite/docking)
 "jL" = (
 /obj/structure/bed/padded,
 /obj/item/weapon/bedsheet/ian,
@@ -4372,20 +4409,11 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "jY" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
+/obj/machinery/door/firedoor/glass/hidden/steel{
+	dir = 2
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
-	},
-/obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/wall/r_wall,
-/area/tether_away/guttersite/security)
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/docking)
 "jZ" = (
 /obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/simple/visible/red{
@@ -4409,21 +4437,21 @@
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/tether_away/guttersite/commons)
 "kc" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
-	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 1
 	},
-/obj/structure/table/steel,
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/door/firedoor/glass/hidden/steel{
+	dir = 2
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/security)
+/area/tether_away/guttersite/docking)
 "kd" = (
 /obj/machinery/light,
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
@@ -4459,15 +4487,14 @@
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/tether_away/guttersite/commons)
 "kj" = (
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_x = 0;
-	pixel_y = -25
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
 	},
-/obj/structure/table/darkglass,
-/obj/machinery/microwave,
-/turf/simulated/floor/tiled/eris/steel/bar_dance,
-/area/tether_away/guttersite/commons)
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/security)
 "kk" = (
 /obj/structure/table/darkglass,
 /obj/item/weapon/storage/box/cups,
@@ -4485,34 +4512,13 @@
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/tether_away/guttersite/commons)
 "kn" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 1;
-	icon_state = "map-supply"
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/structure/table/steel,
-/obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/item/device/flashlight/lamp,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "ko" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
-	},
 /obj/structure/table/steel,
-/obj/item/device/flashlight/lamp,
-/obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/item/weapon/pen/fountain,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "kp" = (
@@ -4541,12 +4547,10 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/commons)
 "kt" = (
-/obj/machinery/holoplant,
-/obj/machinery/holoplant{
-	icon_state = "plant-10"
-	},
+/obj/structure/table/steel,
+/obj/item/weapon/paper_bin,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/commons)
+/area/tether_away/guttersite/security)
 "ku" = (
 /obj/machinery/holoplant,
 /obj/machinery/holoplant{
@@ -4602,36 +4606,26 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/commons)
 "kD" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
-	},
 /obj/structure/table/steel,
-/obj/item/weapon/pen/fountain,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 1
+	},
 /obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d1 = 1;
+	d2 = 4;
+	dir = 1;
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "kE" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/obj/machinery/light{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4;
-	icon_state = "intact-supply"
-	},
-/obj/structure/table/steel,
-/obj/item/weapon/paper_bin,
-/obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	icon_state = "map_vent_out"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
@@ -4644,18 +4638,16 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/commons)
 "kG" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9;
-	icon_state = "intact-scrubbers"
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 4;
+	dir = 1;
+	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9;
-	icon_state = "intact-supply"
+	dir = 10
 	},
-/obj/structure/table/steel,
-/obj/structure/cable/cyan{
-	icon_state = "1-8"
-	},
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "kH" = (
@@ -5048,9 +5040,18 @@
 /turf/simulated/mineral/floor/vacuum,
 /area/space)
 "lP" = (
-/obj/item/weapon/card/emag,
-/turf/simulated/mineral/floor/vacuum,
-/area/space)
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 1
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 4;
+	dir = 1;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/security)
 "lQ" = (
 /obj/item/weapon/card/emag_broken,
 /turf/simulated/mineral/floor/vacuum,
@@ -5233,13 +5234,28 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/atmos)
 "mt" = (
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_x = 0;
-	pixel_y = -25
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4;
+	icon_state = "intact-supply"
 	},
-/turf/simulated/floor/plating/eris/under,
-/area/tether_away/guttersite/atmos)
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1;
+	icon_state = "tube1"
+	},
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/alarm{
+	alarms_hidden = 1;
+	pixel_y = 25
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/bridge)
 "mu" = (
 /obj/structure/window/basic{
 	dir = 4;
@@ -5478,12 +5494,20 @@
 /turf/simulated/floor/carpet/gaycarpet,
 /area/tether_away/guttersite/unexplored)
 "mV" = (
-/obj/item/device/radio/headset/nanotrasen/alt{
-	desc = "The headset of an Eltorro employee.";
-	name = "Weird Headset"
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
 	},
-/turf/simulated/floor/carpet/gaycarpet,
-/area/tether_away/guttersite/unexplored)
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/security)
 "mW" = (
 /obj/item/weapon/reagent_containers/food/drinks/cans/cola,
 /turf/simulated/floor/carpet/gaycarpet,
@@ -5509,9 +5533,21 @@
 /turf/simulated/mineral/floor/vacuum,
 /area/tether_away/guttersite/unexplored)
 "nc" = (
-/obj/effect/landmark/corpse/syndicatecommando,
-/turf/simulated/mineral/floor/vacuum,
-/area/tether_away/guttersite/unexplored)
+/obj/structure/table/steel,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4;
+	icon_state = "intact-supply"
+	},
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/security)
 "nd" = (
 /obj/effect/landmark/corpse/syndicatesoldier,
 /turf/simulated/mineral/floor/vacuum,
@@ -5619,11 +5655,27 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "ny" = (
-/mob/living/simple_mob/vore/catgirl{
-	name = "Blaire"
+/obj/structure/bed/chair/office/dark{
+	dir = 8;
+	icon_state = "officechair_dark"
 	},
-/turf/simulated/floor/tiled/eris/steel/bar_light,
-/area/tether_away/guttersite/commons)
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4;
+	icon_state = "intact-supply"
+	},
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/mob/living/simple_mob/humanoid/merc/melee/poi{
+	faction = "wolfgirl"
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/security)
 "nz" = (
 /mob/living/simple_mob/mobs_monsters/clowns/big/tunnelclown,
 /turf/simulated/mineral/floor/vacuum,
@@ -5771,6 +5823,329 @@
 /obj/effect/shuttle_landmark/premade/guttersite/mshuttle,
 /turf/space,
 /area/space)
+"nO" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/maintenance_hatch{
+	req_one_access = list(38)
+	},
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4;
+	icon_state = "intact-supply"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/security)
+"nP" = (
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1;
+	icon_state = "map-supply"
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/security)
+"nQ" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/alarm{
+	alarms_hidden = 1;
+	dir = 4;
+	icon_state = "alarm0";
+	pixel_x = -22;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/walkway)
+"nR" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/alarm{
+	alarms_hidden = 1;
+	dir = 8;
+	pixel_x = 25;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/docking)
+"nS" = (
+/obj/machinery/alarm/alarms_hidden{
+	pixel_y = 25
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/security)
+"nT" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9;
+	icon_state = "intact-scrubbers"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9;
+	icon_state = "intact-supply"
+	},
+/obj/structure/cable/cyan{
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/security)
+"nU" = (
+/obj/machinery/firealarm{
+	alarms_hidden = 1;
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -25
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/security)
+"nV" = (
+/obj/machinery/alarm/alarms_hidden{
+	dir = 4;
+	icon_state = "alarm0";
+	pixel_x = -25
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/security)
+"nW" = (
+/obj/machinery/alarm/alarms_hidden{
+	dir = 4;
+	icon_state = "alarm0";
+	pixel_x = -25
+	},
+/obj/machinery/firealarm{
+	alarms_hidden = 1;
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -25
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/security)
+"nX" = (
+/obj/machinery/firealarm{
+	alarms_hidden = 1;
+	dir = 8;
+	pixel_x = -24;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/security)
+"nY" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10;
+	icon_state = "intact-scrubbers"
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/security)
+"nZ" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1;
+	icon_state = "tube1"
+	},
+/obj/machinery/alarm{
+	alarms_hidden = 1;
+	pixel_y = 25
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/docking)
+"oa" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 8;
+	icon_state = "intact"
+	},
+/obj/machinery/light{
+	dir = 1;
+	icon_state = "tube1"
+	},
+/obj/machinery/alarm{
+	alarms_hidden = 1;
+	pixel_y = 25
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/docking)
+"ob" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 4;
+	icon_state = "officechair_dark"
+	},
+/mob/living/simple_mob/humanoid/merc/ranged/laser{
+	faction = "wolfgirl"
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/security)
+"oc" = (
+/obj/machinery/alarm{
+	alarms_hidden = 1;
+	dir = 4;
+	icon_state = "alarm0";
+	pixel_x = -22;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/security)
+"od" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/security)
+"oe" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/security)
+"of" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/security)
+"og" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/maintenance_hatch{
+	req_one_access = list(38)
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/security)
+"oh" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/security)
+"oi" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9;
+	pixel_y = 0
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/security)
+"oj" = (
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/door/firedoor/glass/hidden/steel{
+	dir = 2
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/docking)
+"ok" = (
+/obj/machinery/alarm{
+	alarms_hidden = 1;
+	dir = 4;
+	icon_state = "alarm0";
+	pixel_x = -22;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/docking)
+"ol" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/glass/hidden/steel{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/docking)
+"om" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/glass/hidden/steel,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/docking)
+"on" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4;
+	icon_state = "intact-scrubbers"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/glass/hidden/steel{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/docking)
+"oo" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4;
+	icon_state = "intact-scrubbers"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/glass/hidden/steel,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/docking)
+"op" = (
+/obj/machinery/firealarm{
+	alarms_hidden = 1;
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -25
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/docking)
+"oq" = (
+/obj/machinery/door/firedoor/glass/hidden/steel{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/docking)
+"or" = (
+/obj/machinery/door/firedoor/glass/hidden/steel,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/docking)
+"Bh" = (
+/obj/item/device/radio/headset/heads/captain,
+/turf/simulated/floor/carpet/gaycarpet,
+/area/tether_away/guttersite/unexplored)
 "Ob" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -9961,7 +10336,7 @@ aa
 aa
 aa
 aB
-aE
+bU
 aH
 aJ
 aX
@@ -9970,7 +10345,7 @@ cQ
 aX
 cQ
 aX
-bU
+dM
 aF
 ag
 ag
@@ -10254,7 +10629,7 @@ bB
 bH
 bQ
 aX
-bV
+da
 aF
 ag
 ag
@@ -10535,7 +10910,7 @@ aU
 aY
 bm
 bC
-bO
+bV
 aJ
 aJ
 bX
@@ -10736,12 +11111,12 @@ ag
 fu
 fu
 jJ
-gY
+kE
 ga
 gk
 gq
 fw
-gK
+oc
 fu
 ag
 ag
@@ -10822,7 +11197,7 @@ aE
 aE
 aE
 cz
-cD
+bU
 aB
 ag
 hd
@@ -10877,13 +11252,13 @@ ag
 fu
 fu
 fC
-jK
-fU
-gb
+kj
+kG
+mV
 gl
 fU
 gy
-gL
+nU
 fu
 ag
 ag
@@ -11019,9 +11394,9 @@ ag
 fu
 fz
 fD
-jX
 fw
-gc
+fw
+jX
 iT
 fw
 gz
@@ -11161,15 +11536,15 @@ ag
 fu
 fz
 fE
-jX
 fw
-gd
+fw
+nc
 gd
 gd
 gz
 fw
 fu
-fw
+nW
 fu
 fu
 ag
@@ -11303,9 +11678,9 @@ ag
 fu
 lG
 fF
-jX
 fw
-gd
+fw
+nc
 gd
 gd
 gz
@@ -11445,9 +11820,9 @@ ag
 fu
 fA
 fG
-jX
 fw
-hU
+fw
+ny
 ge
 gs
 gz
@@ -11531,7 +11906,7 @@ by
 bF
 bP
 cu
-ms
+cL
 ms
 aT
 ag
@@ -11587,9 +11962,9 @@ ag
 fu
 fB
 fH
+fw
+fw
 jX
-fw
-fw
 fw
 fw
 gz
@@ -11729,9 +12104,9 @@ fu
 fu
 fu
 fu
-jY
 fu
-gf
+fu
+nO
 fu
 fu
 gA
@@ -11816,7 +12191,7 @@ bJ
 bq
 bq
 bq
-mt
+dd
 aT
 ag
 ag
@@ -11871,9 +12246,9 @@ fu
 ly
 fw
 lH
+fw
+fw
 jX
-fw
-fw
 fw
 fu
 gz
@@ -12013,9 +12388,9 @@ fu
 fx
 fw
 fw
-kc
+gd
 fw
-fw
+jX
 fw
 fu
 gB
@@ -12154,11 +12529,11 @@ ad
 fu
 fw
 fw
+fw
+gd
 fI
-kn
+nP
 fV
-fw
-fw
 fu
 gz
 fw
@@ -12294,13 +12669,13 @@ ad
 ad
 ad
 fu
+nS
 fw
 fw
+kn
 fw
-ko
-fw
-fw
-fw
+jX
+nU
 fu
 gz
 fw
@@ -12395,7 +12770,7 @@ ag
 cF
 cF
 dh
-jD
+ex
 ez
 jD
 jD
@@ -12439,18 +12814,18 @@ fu
 fw
 fw
 fw
-kD
+ko
 fZ
-fw
+jX
 fw
 fu
-gz
-hg
-fw
-fw
-fw
-fw
-fw
+nY
+od
+oe
+oe
+oe
+oe
+gy
 fw
 hg
 fw
@@ -12560,7 +12935,7 @@ aa
 aa
 dn
 dn
-en
+jC
 fj
 iZ
 dn
@@ -12581,18 +12956,18 @@ fu
 fw
 fw
 fw
-kE
+kt
 gD
-fw
+jX
 gX
 fu
-gC
 fu
 fu
 fu
 fu
 fu
-gf
+fu
+og
 fu
 fu
 fu
@@ -12723,18 +13098,18 @@ fu
 fw
 fw
 fw
-kc
+gd
 fw
-fw
+jX
 gn
 fu
-hi
-fw
+ob
+nV
 gm
-fw
+nX
 nx
 fw
-fw
+oh
 gP
 fw
 fw
@@ -12818,9 +13193,9 @@ ag
 ag
 cF
 cF
-cZ
 di
-cb
+er
+et
 ey
 eC
 ey
@@ -12830,9 +13205,9 @@ ey
 eO
 eR
 eS
+hH
 eS
-eS
-eS
+gK
 eS
 eS
 eT
@@ -12856,8 +13231,8 @@ eS
 eS
 eS
 eS
-eT
-eS
+nQ
+hH
 eS
 eS
 eS
@@ -12865,18 +13240,18 @@ jy
 jH
 jH
 jI
-kG
-fw
-fw
+kD
+lP
+nT
 gn
 fu
-gE
-gN
-gN
-gN
-gZ
 fw
 fw
+fw
+fw
+of
+oe
+oi
 hl
 fw
 jx
@@ -12960,9 +13335,9 @@ ag
 cF
 cF
 dc
-cZ
+dZ
 dh
-dW
+eu
 jD
 jD
 jD
@@ -13102,9 +13477,9 @@ cF
 cF
 cZ
 jv
-ny
+ea
 dh
-dW
+eu
 jD
 ka
 jD
@@ -13130,7 +13505,7 @@ dn
 dn
 ee
 fy
-eJ
+hi
 dn
 dn
 aa
@@ -13244,9 +13619,9 @@ cF
 cU
 cZ
 cZ
-cZ
+dZ
 dh
-dW
+eu
 jD
 dh
 jD
@@ -13385,17 +13760,17 @@ cF
 cF
 db
 cZ
-cZ
-cZ
+di
+ej
 dj
-dW
+eu
 jD
 kb
 jD
 kb
 jD
 jD
-kj
+gE
 cF
 ac
 ab
@@ -13515,7 +13890,7 @@ lR
 ab
 ac
 aB
-cA
+cb
 aT
 br
 ji
@@ -13527,10 +13902,10 @@ cF
 cF
 cF
 cF
-dm
+dy
 cF
 cF
-dX
+jD
 jD
 jD
 jD
@@ -13669,10 +14044,10 @@ cF
 jL
 jP
 jT
-da
-kt
+dJ
+el
 cF
-dY
+cF
 cF
 cF
 jD
@@ -13794,7 +14169,7 @@ ab
 ab
 lU
 ab
-lP
+ab
 ab
 ab
 ac
@@ -13811,10 +14186,10 @@ cF
 cI
 cH
 cH
-cH
+eo
 cH
 jA
-dZ
+jA
 eG
 cF
 cF
@@ -13953,11 +14328,11 @@ cF
 jM
 jQ
 jU
-da
+dJ
 cH
-cL
-ea
-cS
+cH
+cH
+cH
 cH
 cF
 jD
@@ -13983,7 +14358,7 @@ eb
 eh
 fM
 fR
-gV
+hq
 ja
 eb
 eb
@@ -14095,10 +14470,10 @@ cF
 cF
 cF
 cF
-cH
-cH
+dW
+en
 jB
-ej
+jB
 jB
 cH
 cF
@@ -14237,10 +14612,10 @@ dk
 dk
 dk
 cF
+dX
+cS
 cH
 cH
-cH
-eo
 cH
 cH
 dm
@@ -14269,7 +14644,7 @@ fN
 mN
 hb
 jc
-fm
+hU
 eb
 aa
 aa
@@ -14379,10 +14754,10 @@ cF
 cF
 cF
 cF
-cH
+eo
 cH
 cF
-dY
+cF
 cF
 cF
 cF
@@ -14521,11 +14896,11 @@ cF
 jN
 jR
 jV
-da
+dJ
 cH
 cF
-et
-kp
+ev
+eJ
 kq
 cF
 jD
@@ -14663,10 +15038,10 @@ cF
 cI
 cH
 cH
-cH
+eo
 cH
 cF
-eu
+kp
 kp
 kp
 cF
@@ -14805,10 +15180,10 @@ cF
 jO
 jS
 jW
-da
+dJ
 cH
-jC
-eu
+fm
+kp
 kp
 kr
 cF
@@ -14931,7 +15306,7 @@ lS
 ac
 ac
 ax
-le
+bO
 aD
 aD
 aD
@@ -14947,10 +15322,10 @@ cF
 cF
 cF
 cF
-dm
+dy
 cF
 cF
-dY
+cF
 cF
 cF
 cF
@@ -15089,11 +15464,11 @@ cF
 ks
 kB
 kB
-cH
+eo
 cH
 kN
-ev
 kA
+gb
 lu
 hZ
 aa
@@ -15231,7 +15606,7 @@ cF
 cO
 cH
 cH
-cH
+eo
 cH
 kO
 ew
@@ -15251,7 +15626,7 @@ de
 la
 dp
 dp
-dJ
+gL
 de
 de
 aa
@@ -15373,10 +15748,10 @@ cF
 cO
 cH
 cH
-cH
-cH
-cH
 eo
+cH
+cH
+cH
 cH
 cH
 hZ
@@ -15515,12 +15890,12 @@ ds
 dt
 dt
 du
-dy
-du
-du
-ex
+dY
 cH
-dd
+cH
+cH
+cH
+gC
 cF
 aa
 aa
@@ -15790,7 +16165,7 @@ cK
 aD
 aD
 lp
-lp
+cD
 ax
 ac
 ac
@@ -16104,7 +16479,7 @@ dp
 dL
 eW
 dL
-dM
+gN
 de
 aa
 aa
@@ -16539,7 +16914,7 @@ aa
 aa
 aa
 eb
-hc
+mt
 mx
 aa
 aa
@@ -17391,7 +17766,7 @@ ab
 ab
 ac
 eb
-fK
+hK
 eb
 ac
 ac
@@ -18524,7 +18899,7 @@ ml
 dN
 kv
 dR
-er
+gZ
 dR
 dR
 hV
@@ -18669,7 +19044,7 @@ dR
 dR
 dR
 dR
-hW
+hQ
 dN
 dN
 dN
@@ -19527,9 +19902,9 @@ dR
 fo
 fr
 lY
+iI
 fr
-fr
-fr
+jY
 ma
 fr
 fr
@@ -19550,14 +19925,14 @@ fr
 fr
 fr
 fr
+jY
 fr
-fr
-hq
+ok
 fr
 fr
 lY
 fr
-hQ
+op
 fq
 eE
 eE
@@ -19671,7 +20046,7 @@ jF
 jF
 jF
 jF
-jF
+kc
 kH
 jF
 jF
@@ -19692,7 +20067,7 @@ kU
 kU
 kU
 kV
-hh
+oj
 hh
 hh
 hh
@@ -19812,14 +20187,14 @@ fo
 fr
 fr
 ft
-fr
-fr
+jK
+jY
 gx
 fr
 fr
 fr
 fr
-ft
+nR
 fr
 fr
 fr
@@ -19834,7 +20209,7 @@ ft
 fr
 fr
 lK
-fr
+jY
 fr
 fr
 fr
@@ -19981,9 +20356,9 @@ mz
 mz
 mz
 gu
-hG
-hO
-fr
+ol
+on
+oq
 mG
 eE
 eE
@@ -20691,7 +21066,7 @@ eE
 eE
 eE
 mF
-hH
+nZ
 hO
 fr
 mG
@@ -21259,9 +21634,9 @@ eE
 mB
 mE
 gu
-hG
-hO
-fr
+om
+oo
+or
 mG
 eE
 eE
@@ -21363,13 +21738,13 @@ ag
 ag
 ad
 ed
-el
+gV
 iU
 em
 gT
 iw
 iz
-iI
+hW
 ed
 ag
 ag
@@ -22537,7 +22912,7 @@ eE
 eE
 eE
 fq
-hK
+oa
 hO
 fr
 mG
@@ -23489,7 +23864,7 @@ ag
 ad
 ad
 ad
-nc
+ad
 ad
 ad
 ag
@@ -24558,7 +24933,7 @@ ag
 ad
 mU
 na
-mU
+Bh
 mU
 mU
 ad
@@ -24699,7 +25074,7 @@ aa
 ag
 ad
 mU
-mV
+mU
 mY
 mU
 mU

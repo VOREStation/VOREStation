@@ -139,3 +139,7 @@
 /area/submap/Excavation
 	name = "POI - Excavation Site"
 	ambience = AMBIENCE_FOREBODING
+
+/area/submap/spatial_anomaly
+	name = "POI - Spatial Anomaly"
+	ambience = AMBIENCE_FOREBODING

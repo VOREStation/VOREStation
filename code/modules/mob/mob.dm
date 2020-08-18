@@ -343,7 +343,7 @@
 
 /mob/proc/set_respawn_timer(var/time)
 	// Try to figure out what time to use
-	
+
 	// Special cases, can never respawn
 	if(ticker?.mode?.deny_respawn)
 		time = -1
@@ -351,22 +351,22 @@
 		time = -1
 	else if(!config.respawn)
 		time = -1
-	
+
 	// Special case for observing before game start
 	else if(ticker?.current_state <= GAME_STATE_SETTING_UP)
 		time = 1 MINUTE
-	
+
 	// Wasn't given a time, use the config time
 	else if(!time)
 		time = config.respawn_time
-	
+
 	var/keytouse = ckey
 	// Try harder to find a key to use
 	if(!keytouse && key)
 		keytouse = ckey(key)
 	else if(!keytouse && mind?.key)
 		keytouse = ckey(mind.key)
-	
+
 	GLOB.respawn_timers[keytouse] = world.time + time
 
 /mob/observer/dead/set_respawn_timer()
@@ -388,7 +388,7 @@
 		var/choice = alert(usr, "Returning to the menu will prevent your character from being revived in-round. Are you sure?", "Confirmation", "No, wait", "Yes, leave")
 		if(choice == "No, wait")
 			return
-	
+
 	// Beyond this point, you're going to respawn
 	to_chat(usr, config.respawn_message)
 
@@ -505,6 +505,11 @@
 	set category = "IC"
 
 	if(pulling)
+		if(ishuman(pulling))
+			var/mob/living/carbon/human/H = pulling
+			visible_message(SPAN_WARNING("\The [src] lets go of \the [H]."), SPAN_NOTICE("You let go of \the [H]."), exclude_mobs = list(H))
+			if(!H.stat)
+				to_chat(H, SPAN_WARNING("\The [src] lets go of you."))
 		pulling.pulledby = null
 		pulling = null
 		if(pullin)
@@ -576,6 +581,16 @@
 
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
+		if(H.lying) // If they're on the ground we're probably dragging their arms to move them
+			visible_message(SPAN_WARNING("\The [src] leans down and grips \the [H]'s arms."), SPAN_NOTICE("You lean down and grip \the [H]'s arms."), exclude_mobs = list(H))
+			if(!H.stat)
+				to_chat(H, SPAN_WARNING("\The [src] leans down and grips your arms."))
+		else //Otherwise we're probably just holding their arm to lead them somewhere
+			visible_message(SPAN_WARNING("\The [src] grips \the [H]'s arm."), SPAN_NOTICE("You grip \the [H]'s arm."), exclude_mobs = list(H))
+			if(!H.stat)
+				to_chat(H, SPAN_WARNING("\The [src] grips your arm."))
+		playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25) //Quieter than hugging/grabbing but we still want some audio feedback
+
 		if(H.pull_damage())
 			to_chat(src, "<font color='red'><B>Pulling \the [H] in their current condition would probably be a bad idea.</B></font>")
 

@@ -144,7 +144,7 @@
 				playsound(src, 'sound/voice/bark2.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
 				m_type = 2
 			else
-				src << "You're not a dog!"
+				to_chat(src, "You're not a dog!")
 		//Vorestation addition end
 
 

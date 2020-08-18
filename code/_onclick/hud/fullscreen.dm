@@ -123,8 +123,3 @@
 
 /obj/screen/fullscreen/fishbed
 	icon_state = "fishbed" 
-
-#undef FULLSCREEN_LAYER
-#undef BLIND_LAYER
-#undef DAMAGE_LAYER
-#undef CRIT_LAYER

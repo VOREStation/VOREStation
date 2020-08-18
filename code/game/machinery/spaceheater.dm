@@ -11,6 +11,7 @@
 	var/set_temperature = T0C + 20	//K
 	var/heating_power = 40000
 	clicksound = "switch"
+	interact_offline = TRUE
 
 /obj/machinery/space_heater/New()
 	..()
@@ -88,75 +89,74 @@
 	interact(user)
 
 /obj/machinery/space_heater/interact(mob/user as mob)
-
 	if(panel_open)
-
-		var/dat
-		dat = "Power cell: "
-		if(cell)
-			dat += "<A href='byond://?src=\ref[src];op=cellremove'>Installed</A><BR>"
-		else
-			dat += "<A href='byond://?src=\ref[src];op=cellinstall'>Removed</A><BR>"
-
-		dat += "Power Level: [cell ? round(cell.percent(),1) : 0]%<BR><BR>"
-
-		dat += "Set Temperature: "
-
-		dat += "<A href='?src=\ref[src];op=temp;val=-5'>-</A>"
-
-		dat += " [set_temperature]K ([set_temperature-T0C]&deg;C)"
-		dat += "<A href='?src=\ref[src];op=temp;val=5'>+</A><BR>"
-
-		user.set_machine(src)
-		user << browse("<HEAD><TITLE>Space Heater Control Panel</TITLE></HEAD><TT>[dat]</TT>", "window=spaceheater")
-		onclose(user, "spaceheater")
+		tgui_interact(user)
 	else
 		on = !on
 		user.visible_message("<span class='notice'>[user] switches [on ? "on" : "off"] the [src].</span>","<span class='notice'>You switch [on ? "on" : "off"] the [src].</span>")
 		update_icon()
 	return
 
+/obj/machinery/space_heater/tgui_state(mob/user)
+	return GLOB.tgui_physical_state
 
-/obj/machinery/space_heater/Topic(href, href_list)
-	if(usr.stat)
-		return
-	if((in_range(src, usr) && istype(src.loc, /turf)) || (istype(usr, /mob/living/silicon)))
-		usr.set_machine(src)
+/obj/machinery/space_heater/tgui_status(mob/user)
+	if(!panel_open)
+		return STATUS_CLOSE
+	return ..()
 
-		switch(href_list["op"])
+/obj/machinery/space_heater/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "SpaceHeater", name)
+		ui.open()
 
-			if("temp")
-				var/value = text2num(href_list["val"])
+/obj/machinery/space_heater/tgui_data(mob/user)
+	var/list/data = list()
 
-				// limit to 0-90 degC
-				set_temperature = dd_range(T0C, T0C + 90, set_temperature + value)
+	data["cell"] = !!cell
+	data["power"] = round(cell?.percent(), 1)
+	data["temp"] = set_temperature
+	data["minTemp"] = T0C
+	data["maxTemp"] = T0C + 90
 
-			if("cellremove")
-				if(panel_open && cell && !usr.get_active_hand())
-					usr.visible_message("<span class='notice'>\The [usr] removes \the [cell] from \the [src].</span>", "<span class='notice'>You remove \the [cell] from \the [src].</span>")
-					cell.update_icon()
-					usr.put_in_hands(cell)
-					cell.add_fingerprint(usr)
-					cell = null
+	return data
+
+/obj/machinery/space_heater/tgui_act(action, params)
+	if(..())
+		return TRUE
+
+	if(!panel_open)
+		return FALSE
+
+	switch(action)
+		if("temp")
+			// limit to 0-90 degC
+			set_temperature = clamp(text2num(params["newtemp"]), T0C, T0C + 90)
+			. = TRUE
+
+		if("cellremove")
+			if(cell && !usr.get_active_hand())
+				usr.visible_message("<span class='notice'>[usr] removes [cell] from [src].</span>", "<span class='notice'>You remove [cell] from [src].</span>")
+				cell.update_icon()
+				usr.put_in_hands(cell)
+				cell.add_fingerprint(usr)
+				cell = null
+				power_change()
+				. = TRUE
+
+
+		if("cellinstall")
+			if(!cell)
+				var/obj/item/weapon/cell/C = usr.get_active_hand()
+				if(istype(C))
+					usr.drop_item()
+					cell = C
+					C.loc = src
+					C.add_fingerprint(usr)
 					power_change()
-
-
-			if("cellinstall")
-				if(panel_open && !cell)
-					var/obj/item/weapon/cell/C = usr.get_active_hand()
-					if(istype(C))
-						usr.drop_item()
-						cell = C
-						C.loc = src
-						C.add_fingerprint(usr)
-						power_change()
-						usr.visible_message("<span class='notice'>[usr] inserts \the [C] into \the [src].</span>", "<span class='notice'>You insert \the [C] into \the [src].</span>")
-
-		updateDialog()
-	else
-		usr << browse(null, "window=spaceheater")
-		usr.unset_machine()
-	return
+					usr.visible_message("<span class='notice'>[usr] inserts \the [C] into \the [src].</span>", "<span class='notice'>You insert \the [C] into \the [src].</span>")
+				. = TRUE
 
 /obj/machinery/space_heater/process()
 	if(on)

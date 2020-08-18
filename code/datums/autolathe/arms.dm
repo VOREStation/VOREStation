@@ -33,6 +33,12 @@
 	path =/obj/item/ammo_casing/a12g/stunshell
 	hidden = 1
 
+/datum/category_item/autolathe/arms/flechetteshell
+	name = "ammunition (flechette cartridge, shotgun)"
+	path =/obj/item/ammo_casing/a12g/flechette
+	hidden = 1
+	man_rating = 2
+
 //////////////////
 /*Ammo magazines*/
 //////////////////
@@ -63,6 +69,18 @@
 /datum/category_item/autolathe/arms/pistol_45f
 	name = "pistol magazine (.45 flash)"
 	path =/obj/item/ammo_magazine/m45/flash
+
+/datum/category_item/autolathe/arms/pistol_45ap
+	name = "pistol magazine (.45 armor piercing)"
+	path =/obj/item/ammo_magazine/m45/ap
+	hidden = 1
+	resources = list(DEFAULT_WALL_MATERIAL = 500, MAT_PLASTEEL = 300)
+
+/datum/category_item/autolathe/arms/pistol_45hp
+	name = "pistol magazine (.45 hollowpoint)"
+	path =/obj/item/ammo_magazine/m45/hp
+	hidden = 1
+	resources = list(DEFAULT_WALL_MATERIAL = 500, MAT_PLASTIC = 200)
 
 /datum/category_item/autolathe/arms/pistol_45uzi
 	name = "uzi magazine (.45)"
@@ -137,6 +155,12 @@
 /datum/category_item/autolathe/arms/smg_9mmf
 	name = "top-mounted SMG magazine (9mm flash)"
 	path =/obj/item/ammo_magazine/m9mmt/flash
+
+/datum/category_item/autolathe/arms/smg_9mmap
+	name = "top-mounted SMG magazine (9mm armor piercing)"
+	path =/obj/item/ammo_magazine/m9mmt/ap
+	hidden = 1
+	man_rating = 2
 
 /////// 10mm
 /datum/category_item/autolathe/arms/smg_10mm

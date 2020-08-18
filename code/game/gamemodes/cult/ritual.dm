@@ -180,7 +180,12 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 /obj/item/weapon/book/tome
 	name = "arcane tome"
 	icon = 'icons/obj/weapons.dmi'
+	item_icons = list(
+		icon_l_hand = 'icons/mob/items/lefthand_books.dmi',
+		icon_r_hand = 'icons/mob/items/righthand_books.dmi',
+		)
 	icon_state ="tome"
+	item_state = "tome"
 	throw_speed = 1
 	throw_range = 5
 	w_class = ITEMSIZE_SMALL

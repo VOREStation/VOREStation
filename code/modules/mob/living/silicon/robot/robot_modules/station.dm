@@ -815,6 +815,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/tool/wrench/cyborg(src)
 	src.modules += new /obj/item/weapon/tool/crowbar/cyborg(src)
 	src.modules += new /obj/item/weapon/tool/wirecutters/cyborg(src)
+	src.modules += new /obj/item/device/t_scanner(src)
 	src.modules += new /obj/item/device/multitool(src)
 	src.modules += new /obj/item/device/lightreplacer(src)
 	src.modules += new /obj/item/weapon/gripper(src)

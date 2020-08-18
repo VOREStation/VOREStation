@@ -1,3 +1,17 @@
+/datum/supply_pack/eng/modern_shield
+	name = "Modern Shield Construction Kit"
+	contains = list(
+		/obj/item/weapon/circuitboard/shield_generator,
+		/obj/item/weapon/stock_parts/capacitor,
+		/obj/item/weapon/stock_parts/micro_laser,
+		/obj/item/weapon/smes_coil,
+		/obj/item/weapon/stock_parts/console_screen,
+		/obj/item/weapon/stock_parts/subspace/amplifier
+		)
+	cost = 80
+	containertype = /obj/structure/closet/crate/focalpoint
+	containername = "shield generator construction kit crate"
+
 /datum/supply_pack/eng/thermoregulator
 	contains = list(/obj/machinery/power/thermoregulator)
 	name = "Thermal Regulator"

@@ -3,6 +3,7 @@
 /obj/item/weapon/gun/projectile/heavysniper
 	name = "anti-materiel rifle"
 	desc = "A portable anti-armour rifle fitted with a scope, the HI PTR-7 Rifle was originally designed to used against armoured exosuits. It is capable of punching through windows and non-reinforced walls with ease. Fires armor piercing 14.5mm shells."
+	description_fluff = "The leading arms producer in the SCG, Hephaestus typically only uses its 'top level' branding for its military-grade equipment used by professional armed forces across human space."
 	icon_state = "heavysniper"
 	wielded_item_state = "heavysniper-wielded"
 	w_class = ITEMSIZE_HUGE // So it can't fit in a backpack.
@@ -75,8 +76,8 @@
 ////////////// Dragunov Sniper Rifle //////////////
 
 /obj/item/weapon/gun/projectile/SVD
-	name = "\improper Dragunov"
-	desc = "The SVD, also known as the Dragunov, is mass produced with an Optical Sniper Sight so simple that even Ivan can use it. Too bad for you that the inscriptions are written in Russian. Uses 7.62mm rounds."
+	name = "sniper rifle"
+	desc = "The PCA S19 Jalgarr, also known by its translated name the 'Dragon', is mass produced with an Optical Sniper Sight so simple that even a Tajaran can use it. Too bad for you that the inscriptions are written in Siik. Uses 7.62mm rounds."
 	icon_state = "SVD"
 	item_state = "SVD"
 	wielded_item_state = "heavysniper-wielded" //Placeholder

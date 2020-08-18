@@ -1,3 +1,13 @@
+// Medbot Info
+
+#define MEDBOT_PANIC_NONE	0
+#define MEDBOT_PANIC_LOW	15
+#define MEDBOT_PANIC_MED	35
+#define MEDBOT_PANIC_HIGH	55
+#define MEDBOT_PANIC_FUCK	70
+#define MEDBOT_PANIC_ENDING	90
+#define MEDBOT_PANIC_END	100
+
 /mob/living/bot/medbot
 	name = "Medibot"
 	desc = "A little medical robot. He looks somewhat underwhelmed."
@@ -24,6 +34,15 @@
 	var/treatment_emag = "toxin"
 	var/declare_treatment = 0 //When attempting to treat a patient, should it notify everyone wearing medhuds?
 
+	// Are we tipped over?
+	var/is_tipped = FALSE
+	//How panicked we are about being tipped over (why would you do this?)
+	var/tipped_status = MEDBOT_PANIC_NONE
+	//The name we got when we were tipped
+	var/tipper_name
+	//The last time we were tipped/righted and said a voice line, to avoid spam
+	var/last_tipping_action_voice = 0
+
 /mob/living/bot/medbot/mysterious
 	name = "\improper Mysterious Medibot"
 	desc = "International Medibot of mystery."
@@ -34,6 +53,9 @@
 	treatment_tox		= "anti_toxin"
 
 /mob/living/bot/medbot/handleIdle()
+	if(is_tipped) // Don't handle idle things if we're incapacitated!
+		return
+
 	if(vocal && prob(1))
 		var/message_options = list(
 			"Radar, put a mask on!" = 'sound/voice/medbot/mradar.ogg',
@@ -47,6 +69,9 @@
 		playsound(src, message_options[message], 50, 0)
 
 /mob/living/bot/medbot/handleAdjacentTarget()
+	if(is_tipped) // Don't handle targets if we're incapacitated!
+		return
+
 	UnarmedAttack(target)
 
 /mob/living/bot/medbot/handlePanic()	// Speed modification based on alert level.
@@ -76,6 +101,9 @@
 	return .
 
 /mob/living/bot/medbot/lookForTargets()
+	if(is_tipped) // Don't look for targets if we're incapacitated!
+		return
+
 	for(var/mob/living/carbon/human/H in view(7, src)) // Time to find a patient!
 		if(confirmTarget(H))
 			target = H
@@ -162,7 +190,29 @@
 	else
 		icon_state = "medibot[on]"
 
-/mob/living/bot/medbot/attack_hand(var/mob/user)
+/mob/living/bot/medbot/attack_hand(mob/living/carbon/human/H)
+	if(H.a_intent == I_DISARM && !is_tipped)
+		H.visible_message("<span class='danger'>[H] begins tipping over [src].</span>", "<span class='warning'>You begin tipping over [src]...</span>")
+
+		if(world.time > last_tipping_action_voice + 15 SECONDS)
+			last_tipping_action_voice = world.time // message for tipping happens when we start interacting, message for righting comes after finishing
+			var/list/messagevoice = list("Hey, wait..." = 'sound/voice/medbot/hey_wait.ogg',"Please don't..." = 'sound/voice/medbot/please_dont.ogg',"I trusted you..." = 'sound/voice/medbot/i_trusted_you.ogg', "Nooo..." = 'sound/voice/medbot/nooo.ogg', "Oh fuck-" = 'sound/voice/medbot/oh_fuck.ogg')
+			var/message = pick(messagevoice)
+			say(message)
+			playsound(src, messagevoice[message], 70, FALSE)
+
+		if(do_after(H, 3 SECONDS, target=src))
+			tip_over(H)
+
+	else if(H.a_intent == I_HELP && is_tipped)
+		H.visible_message("<span class='notice'>[H] begins righting [src].</span>", "<span class='notice'>You begin righting [src]...</span>")
+		if(do_after(H, 3 SECONDS, target=src))
+			set_right(H)
+	else
+		interact(H)
+	
+
+/mob/living/bot/medbot/proc/interact(mob/user)
 	var/dat
 	dat += "<TT><B>Automatic Medical Unit v1.0</B></TT><BR><BR>"
 	dat += "Status: <A href='?src=\ref[src];power=1'>[on ? "On" : "Off"]</A><BR>"
@@ -301,6 +351,89 @@
 	qdel(src)
 	return
 
+/mob/living/bot/medbot/handleRegular()
+	. = ..()
+
+	if(is_tipped)
+		handle_panic()
+		return
+
+/mob/living/bot/medbot/proc/tip_over(mob/user)
+	playsound(src, 'sound/machines/warning-buzzer.ogg', 50)
+	user.visible_message("<span class='danger'>[user] tips over [src]!</span>", "<span class='danger'>You tip [src] over!</span>")
+	is_tipped = TRUE
+	tipper_name = user.name
+	var/matrix/mat = transform
+	transform = mat.Turn(180)
+
+/mob/living/bot/medbot/proc/set_right(mob/user)
+	var/list/messagevoice
+	if(user)
+		user.visible_message("<span class='notice'>[user] sets [src] right-side up!</span>", "<span class='green'>You set [src] right-side up!</span>")
+		if(user.name == tipper_name)
+			messagevoice = list("I forgive you." = 'sound/voice/medbot/forgive.ogg')
+		else
+			messagevoice = list("Thank you!" = 'sound/voice/medbot/thank_you.ogg', "You are a good person." = 'sound/voice/medbot/youre_good.ogg')
+	else
+		visible_message("<span class='notice'>[src] manages to [pick("writhe", "wriggle", "wiggle")] enough to right itself.</span>")
+		messagevoice = list("Fuck you." = 'sound/voice/medbot/fuck_you.ogg', "Your behavior has been reported, have a nice day." = 'sound/voice/medbot/reported.ogg')
+
+	tipper_name = null
+	if(world.time > last_tipping_action_voice + 15 SECONDS)
+		last_tipping_action_voice = world.time
+		var/message = pick(messagevoice)
+		say(message)
+		playsound(src, messagevoice[message], 70)
+	tipped_status = MEDBOT_PANIC_NONE
+	is_tipped = FALSE
+	transform = matrix()
+
+// if someone tipped us over, check whether we should ask for help or just right ourselves eventually
+/mob/living/bot/medbot/proc/handle_panic()
+	tipped_status++
+	var/list/messagevoice
+	switch(tipped_status)
+		if(MEDBOT_PANIC_LOW)
+			messagevoice = list("I require assistance." = 'sound/voice/medbot/i_require_asst.ogg')
+		if(MEDBOT_PANIC_MED)
+			messagevoice = list("Please put me back." = 'sound/voice/medbot/please_put_me_back.ogg')
+		if(MEDBOT_PANIC_HIGH)
+			messagevoice = list("Please, I am scared!" = 'sound/voice/medbot/please_im_scared.ogg')
+		if(MEDBOT_PANIC_FUCK)
+			messagevoice = list("I don't like this, I need help!" = 'sound/voice/medbot/dont_like.ogg', "This hurts, my pain is real!" = 'sound/voice/medbot/pain_is_real.ogg')
+		if(MEDBOT_PANIC_ENDING)
+			messagevoice = list("Is this the end?" = 'sound/voice/medbot/is_this_the_end.ogg', "Nooo!" = 'sound/voice/medbot/nooo.ogg')
+		if(MEDBOT_PANIC_END)
+			global_announcer.autosay("PSYCH ALERT: Crewmember [tipper_name] recorded displaying antisocial tendencies torturing bots in [get_area(src)]. Please schedule psych evaluation.", "[src]", "Medical")
+			set_right() // strong independent medbot
+
+	// if(prob(tipped_status)) // Commented out pending introduction of jitter stuff from /tg/
+		// do_jitter_animation(tipped_status * 0.1)
+
+	if(messagevoice)
+		var/message = pick(messagevoice)
+		say(message)
+		playsound(src, messagevoice[message], 70)
+	else if(prob(tipped_status * 0.2))
+		playsound(src, 'sound/machines/warning-buzzer.ogg', 30, extrarange=-2)
+
+/mob/living/bot/medbot/examine(mob/user)
+	. = ..()
+	if(tipped_status == MEDBOT_PANIC_NONE)
+		return
+
+	switch(tipped_status)
+		if(MEDBOT_PANIC_NONE to MEDBOT_PANIC_LOW)
+			. += "It appears to be tipped over, and is quietly waiting for someone to set it right."
+		if(MEDBOT_PANIC_LOW to MEDBOT_PANIC_MED)
+			. += "It is tipped over and requesting help."
+		if(MEDBOT_PANIC_MED to MEDBOT_PANIC_HIGH)
+			. += "They are tipped over and appear visibly distressed." // now we humanize the medbot as a they, not an it
+		if(MEDBOT_PANIC_HIGH to MEDBOT_PANIC_FUCK)
+			. += "<span class='warning'>They are tipped over and visibly panicking!</span>"
+		if(MEDBOT_PANIC_FUCK to INFINITY)
+			. += "<span class='warning'><b>They are freaking out from being tipped over!</b></span>"
+
 /mob/living/bot/medbot/confirmTarget(var/mob/living/carbon/human/H)
 	if(!..())
 		return 0
@@ -430,3 +563,12 @@
 					S.name = created_name
 					user.drop_from_inventory(src)
 					qdel(src)
+
+// Undefine these.
+#undef MEDBOT_PANIC_NONE
+#undef MEDBOT_PANIC_LOW
+#undef MEDBOT_PANIC_MED
+#undef MEDBOT_PANIC_HIGH
+#undef MEDBOT_PANIC_FUCK
+#undef MEDBOT_PANIC_ENDING
+#undef MEDBOT_PANIC_END
