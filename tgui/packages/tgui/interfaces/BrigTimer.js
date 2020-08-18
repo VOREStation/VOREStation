@@ -44,21 +44,21 @@ export const BrigTimer = (props, context) => {
               <Button
                 fluid
                 icon="hourglass-start"
-                content="Short"
+                content={"Add " + formatTime(data.preset_short / 10)}
                 onClick={() => act('preset', { preset: 'short' })} />
             </Flex.Item>
             <Flex.Item grow={1}>
               <Button
                 fluid
                 icon="hourglass-start"
-                content="Medium"
+                content={"Add " + formatTime(data.preset_medium / 10)}
                 onClick={() => act('preset', { preset: 'medium' })} />
             </Flex.Item>
             <Flex.Item grow={1}>
               <Button
                 fluid
                 icon="hourglass-start"
-                content="Long"
+                content={"Add " + formatTime(data.preset_long / 10)}
                 onClick={() => act('preset', { preset: 'long' })} />
             </Flex.Item>
           </Flex>

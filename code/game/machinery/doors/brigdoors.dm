@@ -4,9 +4,9 @@
 #define FONT_STYLE "Small Fonts"
 #define MAX_TIMER 36000
 
-#define PRESET_SHORT 5 MINUTES
-#define PRESET_MEDIUM 15 MINUTES
-#define PRESET_LONG 30 MINUTES
+#define PRESET_SHORT 1 MINUTES
+#define PRESET_MEDIUM 5 MINUTES
+#define PRESET_LONG 10 MINUTES
 
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 
@@ -162,6 +162,9 @@
 	data["timing"] = timing
 	data["flash_found"] = FALSE
 	data["flash_charging"] = FALSE
+	data["preset_short"] = PRESET_SHORT
+	data["preset_medium"] = PRESET_MEDIUM
+	data["preset_long"] = PRESET_LONG
 	for(var/obj/machinery/flasher/F in targets)
 		data["flash_found"] = TRUE
 		if(F.last_flash && (F.last_flash + 150) > world.time)
@@ -207,7 +210,7 @@
 					preset_time = PRESET_MEDIUM
 				if("long")
 					preset_time = PRESET_LONG
-			set_timer(preset_time)
+			set_timer(timer_duration + preset_time)
 			if(timing)
 				activation_time = world.time
 		else
