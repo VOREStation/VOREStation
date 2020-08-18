@@ -292,8 +292,6 @@
 /obj/structure/table/standard,
 /obj/item/weapon/circuitboard/tesla_coil,
 /obj/item/weapon/circuitboard/tesla_coil,
-/obj/item/weapon/stock_parts/capacitor/super,
-/obj/item/weapon/stock_parts/capacitor/super,
 /turf/simulated/floor,
 /area/engineering/engine_gas)
 "aB" = (
