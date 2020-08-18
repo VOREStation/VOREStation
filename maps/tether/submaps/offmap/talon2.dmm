@@ -109,6 +109,16 @@
 "ap" = (
 /turf/simulated/wall/rshull,
 /area/talon/decktwo/cap_room)
+"aq" = (
+/obj/machinery/atmospherics/portables_connector/aux{
+	dir = 1;
+	icon_state = "map_connector-aux"
+	},
+/obj/machinery/portable_atmospherics/canister/air/airlock{
+	start_pressure = 4559.63
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/talon/maintenance/decktwo_aft)
 "at" = (
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/decktwo/central_hallway)
@@ -2075,14 +2085,6 @@
 	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/talon/decktwo/bar)
-"oA" = (
-/obj/machinery/atmospherics/portables_connector/aux{
-	dir = 1;
-	icon_state = "map_connector-aux"
-	},
-/obj/machinery/portable_atmospherics/canister/air/airlock,
-/turf/simulated/floor/plating/eris/under,
-/area/talon/maintenance/decktwo_aft)
 "oJ" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -13560,7 +13562,7 @@ PG
 aH
 hu
 RD
-oA
+aq
 ht
 ao
 zs
