@@ -119,6 +119,18 @@
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/decktwo_aft)
+"ar" = (
+/obj/structure/closet/secure_closet/personal/cabinet{
+	locked = 0
+	},
+/turf/simulated/floor/wood,
+/area/talon/decktwo/eng_room)
+"as" = (
+/obj/structure/closet/secure_closet/personal/cabinet{
+	locked = 0
+	},
+/turf/simulated/floor/wood,
+/area/talon/decktwo/pilot_room)
 "at" = (
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/decktwo/central_hallway)
@@ -185,6 +197,18 @@
 "aC" = (
 /turf/simulated/wall,
 /area/talon/decktwo/cap_room)
+"aD" = (
+/obj/structure/closet/secure_closet/personal/cabinet{
+	locked = 0
+	},
+/turf/simulated/floor/wood,
+/area/talon/decktwo/med_room)
+"aE" = (
+/obj/structure/closet/secure_closet/personal/cabinet{
+	locked = 0
+	},
+/turf/simulated/floor/wood,
+/area/talon/decktwo/sec_room)
 "aF" = (
 /obj/structure/bed/chair/bay/chair,
 /turf/simulated/floor/wood,
@@ -203,6 +227,29 @@
 	},
 /turf/simulated/floor/tiled/eris/white,
 /area/talon/decktwo/central_hallway)
+"aI" = (
+/obj/structure/catwalk,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/light/small{
+	dir = 4;
+	pixel_y = 0
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/talon/maintenance/decktwo_port)
+"aJ" = (
+/obj/machinery/atmospherics/pipe/simple/visible/supply{
+	dir = 4
+	},
+/obj/structure/catwalk,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/talon/maintenance/decktwo_aft)
 "aK" = (
 /turf/simulated/floor/carpet/blucarpet,
 /area/talon/decktwo/cap_room)
@@ -991,10 +1038,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/talon/decktwo/eng_room)
-"eE" = (
-/obj/structure/closet/secure_closet/personal/cabinet,
-/turf/simulated/floor/wood,
-/area/talon/decktwo/eng_room)
 "eF" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
@@ -1020,10 +1063,6 @@
 	dir = 1
 	},
 /obj/structure/closet/secure_closet/talon_pilot,
-/turf/simulated/floor/wood,
-/area/talon/decktwo/pilot_room)
-"eJ" = (
-/obj/structure/closet/secure_closet/personal/cabinet,
 /turf/simulated/floor/wood,
 /area/talon/decktwo/pilot_room)
 "eK" = (
@@ -1346,10 +1385,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/talon/decktwo/med_room)
-"ga" = (
-/obj/structure/closet/secure_closet/personal/cabinet,
-/turf/simulated/floor/wood,
-/area/talon/decktwo/med_room)
 "gb" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
@@ -1362,10 +1397,6 @@
 	dir = 1
 	},
 /obj/structure/closet/secure_closet/talon_guard,
-/turf/simulated/floor/wood,
-/area/talon/decktwo/sec_room)
-"gd" = (
-/obj/structure/closet/secure_closet/personal/cabinet,
 /turf/simulated/floor/wood,
 /area/talon/decktwo/sec_room)
 "ge" = (
@@ -12986,7 +13017,7 @@ Qt
 lx
 lx
 lx
-lx
+aI
 lx
 lx
 lx
@@ -13277,7 +13308,7 @@ cc
 gZ
 gZ
 hu
-WG
+aJ
 mm
 ht
 ao
@@ -13829,13 +13860,13 @@ dz
 dM
 ea
 eo
-eE
+ar
 dr
 eV
 fm
 fA
 fN
-ga
+aD
 eT
 gn
 gn
@@ -15249,13 +15280,13 @@ dH
 dU
 eh
 ew
-eJ
+as
 du
 fb
 fs
 fG
 fT
-gd
+aE
 eZ
 gn
 gn
@@ -16110,7 +16141,7 @@ Az
 QA
 QA
 QA
-QA
+AX
 QA
 QA
 QA

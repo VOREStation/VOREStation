@@ -216,9 +216,76 @@
 /obj/machinery/chemical_dispenser/full,
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/talon/deckone/medical)
+"ax" = (
+/obj/machinery/camera/network/talon,
+/obj/structure/closet/wardrobe/black{
+	starts_with = list(/obj/item/clothing/head/helmet/combat = 4, /obj/item/clothing/mask/gas/commando = 4, /obj/item/clothing/mask/balaclava = 4, /obj/item/clothing/under/syndicate/combat = 4, /obj/item/clothing/accessory/storage/black_vest = 4, /obj/item/clothing/accessory/storage/black_drop_pouches = 4, /obj/item/clothing/gloves/combat = 4, /obj/item/clothing/suit/armor/combat = 4, /obj/item/clothing/shoes/boots/combat = 4)
+	},
+/turf/simulated/floor/tiled/eris/white/danger,
+/area/talon/deckone/armory)
+"ay" = (
+/obj/structure/catwalk,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/light/small{
+	dir = 4;
+	pixel_y = 0
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/talon/maintenance/deckone_port)
+"az" = (
+/obj/structure/catwalk,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/light/small{
+	dir = 8;
+	pixel_x = 0
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/talon/maintenance/deckone_starboard)
+"aA" = (
+/obj/structure/catwalk,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/light/small,
+/turf/simulated/floor/plating/eris/under,
+/area/talon/maintenance/deckone_port)
+"aB" = (
+/obj/structure/catwalk,
+/obj/structure/cable/green{
+	icon_state = "1-8"
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/light/small,
+/turf/simulated/floor/plating/eris/under,
+/area/talon/maintenance/deckone_starboard)
 "aC" = (
 /turf/simulated/wall/rshull,
 /area/talon/maintenance/deckone_port)
+"aD" = (
+/obj/structure/closet/wardrobe/black{
+	starts_with = list(/obj/item/clothing/head/helmet/space/syndicate/black = 4, /obj/item/clothing/suit/space/syndicate/black = 4, /obj/item/clothing/shoes/magboots = 4)
+	},
+/turf/simulated/floor/tiled/eris/white/danger,
+/area/talon/deckone/armory)
 "aK" = (
 /turf/simulated/wall/rshull,
 /area/talon/maintenance/deckone_starboard)
@@ -1165,20 +1232,6 @@
 /obj/machinery/optable,
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/talon/deckone/medical)
-"iw" = (
-/obj/structure/catwalk,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/plating/eris/under,
-/area/talon/maintenance/deckone_port)
 "ix" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -4333,14 +4386,6 @@
 	},
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/deckone/central_hallway)
-"Lm" = (
-/obj/structure/table/rack/steel,
-/obj/item/clothing/suit/armor/combat,
-/obj/item/clothing/head/helmet/combat,
-/obj/item/clothing/under/syndicate/combat,
-/obj/machinery/camera/network/talon,
-/turf/simulated/floor/tiled/eris/white/danger,
-/area/talon/deckone/armory)
 "Lt" = (
 /obj/structure/catwalk,
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction{
@@ -4549,18 +4594,6 @@
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/deckone_port)
-"MJ" = (
-/obj/structure/catwalk,
-/obj/structure/cable/green{
-	icon_state = "1-8"
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/plating/eris/under,
-/area/talon/maintenance/deckone_starboard)
 "ML" = (
 /obj/structure/catwalk,
 /obj/structure/cable/green{
@@ -5225,13 +5258,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/deckone/central_hallway)
-"TN" = (
-/obj/structure/table/rack/steel,
-/obj/item/clothing/suit/space/syndicate/black,
-/obj/item/clothing/head/helmet/space/syndicate/black,
-/obj/item/clothing/shoes/magboots,
-/turf/simulated/floor/tiled/eris/white/danger,
-/area/talon/deckone/armory)
 "TO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/aux,
 /obj/machinery/alarm/talon{
@@ -14548,12 +14574,12 @@ am
 am
 am
 yC
-GH
+ay
 GH
 GH
 VY
 GH
-iw
+aA
 cl
 Se
 FQ
@@ -16533,9 +16559,9 @@ ab
 ab
 ab
 ac
-Lm
+ax
 Fl
-TN
+aD
 Fl
 xd
 aY
@@ -17104,12 +17130,12 @@ sI
 Of
 qA
 mN
-sL
+az
 sL
 sL
 BD
 sL
-MJ
+aB
 co
 yN
 kz
