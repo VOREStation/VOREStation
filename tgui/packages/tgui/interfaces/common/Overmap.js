@@ -96,7 +96,7 @@ export const OvermapPanControls = (props, context) => {
       <Box>
         <Button
           disabled={disabled}
-          selected={selected(1)}
+          selected={selected(10)}
           onClick={() => act(actToDo, { dir: 10 })}
           icon="arrow-down"
           iconRotation={45} />
