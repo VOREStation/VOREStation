@@ -158,6 +158,9 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
+/obj/structure/closet/wardrobe/black{
+	starts_with = list(/obj/item/clothing/under/color/black = 4, /obj/item/clothing/shoes/black = 4, /obj/item/clothing/head/soft/black = 4, /obj/item/clothing/mask/bandana = 4, /obj/item/weapon/storage/backpack/messenger/black = 4, /obj/item/weapon/storage/backpack/dufflebag = 4)
+	},
 /turf/simulated/floor/tiled/eris/white/orangecorner,
 /area/talon/deckone/armory)
 "as" = (
