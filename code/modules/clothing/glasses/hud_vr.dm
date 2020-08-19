@@ -228,11 +228,11 @@
 	flash_protection = FLASH_PROTECTION_MAJOR
 	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_STATUS_R,VIS_CH_BACKUP,VIS_CH_WANTED)
 	action_button_name = "AR Console (All Alerts)"
-	arscreen_path = /datum/nano_module/alarm_monitor/all
+	tgarscreen_path = /datum/tgui_module/alarm_monitor/all/glasses
 
 	ar_interact(var/mob/living/carbon/human/user)
-		if(arscreen)
-			arscreen.ui_interact(user,"main",null,1,glasses_state)
+		if(tgarscreen)
+			tgarscreen.tgui_interact(user)
 		return 1
 
 /obj/item/clothing/glasses/hud/security/eyepatch
