@@ -90,6 +90,13 @@
 	cost = -2
 	var_changes = list("siemens_coefficient" = 2.0) //This makes you extremely weak to tasers.
 
+/datum/trait/haemophilia
+	name = "Haemophilia - Organics only"
+	desc = "When you bleed, you bleed a LOT. This trait is only for organics, buggy with synths!"
+	cost = -2
+	var_changes = list("bloodloss_rate" = 2)
+	not_for_synths = 1
+
 /datum/trait/hollow
 	name = "Hollow Bones/Aluminum Alloy"
 	desc = "Your bones and robot limbs are much easier to break."

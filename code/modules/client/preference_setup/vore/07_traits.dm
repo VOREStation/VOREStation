@@ -14,6 +14,7 @@
 	var/traits_cheating = 0 //Varedit by admins allows saving new maximums on people who apply/etc
 	var/starting_trait_points = STARTING_SPECIES_POINTS
 	var/max_traits = MAX_SPECIES_TRAITS
+	var/dirty_synth = 0		//Are you a synth
 
 // Definition of the stuff for Ears
 /datum/category_item/player_setup_item/vore/traits
@@ -82,6 +83,10 @@
 /datum/category_item/player_setup_item/vore/traits/copy_to_mob(var/mob/living/carbon/human/character)
 	character.custom_species	= pref.custom_species
 	var/datum/species/selected_species = GLOB.all_species[pref.species]
+
+	if(character.isSynthetic())	//Checking if we have a synth on our hands, boys.
+		pref.dirty_synth = 1
+
 	if(selected_species.selects_bodytype)
 		var/datum/species/custom/CS = character.species
 		var/S = pref.custom_base ? pref.custom_base : "Human"
@@ -254,6 +259,14 @@
 			var/datum/trait/instance = all_traits[path]
 
 			var/conflict = FALSE
+
+			user.isSynthetic()	//Recheck just to be sure
+			if(pref.dirty_synth && instance.not_for_synths)//if you are a synth you can't take this trait.
+				alert("You cannot take this trait as a SYNTH.\
+				Please remove that trait, or pick another trait to add.","Error")
+				pref.dirty_synth = 0	//Just to be sure
+				return TOPIC_REFRESH
+
 
 			if(trait_choice in pref.pos_traits + pref.neu_traits + pref.neg_traits)
 				conflict = instance.name
