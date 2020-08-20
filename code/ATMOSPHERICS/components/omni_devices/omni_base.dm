@@ -110,7 +110,7 @@
 		return
 
 	src.add_fingerprint(usr)
-	ui_interact(user)
+	tgui_interact(user)
 	return
 
 /obj/machinery/atmospherics/omni/proc/build_icons()

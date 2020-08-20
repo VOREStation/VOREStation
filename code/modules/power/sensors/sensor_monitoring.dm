@@ -18,7 +18,7 @@
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 300
 	active_power_usage = 300
-	var/datum/nano_module/power_monitor/power_monitor
+	var/datum/tgui_module/power_monitor/power_monitor
 
 // Checks the sensors for alerts. If change (alerts cleared or detected) occurs, calls for icon update.
 /obj/machinery/computer/power_monitor/process()
@@ -47,12 +47,11 @@
 
 	if(stat & (BROKEN|NOPOWER))
 		return
-	ui_interact(user)
+	tgui_interact(user)
 
 // Uses dark magic to operate the NanoUI of this computer.
-/obj/machinery/computer/power_monitor/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	power_monitor.ui_interact(user, ui_key, ui, force_open)
-
+/obj/machinery/computer/power_monitor/tgui_interact(mob/user, var/datum/tgui/ui = null)
+	power_monitor.tgui_interact(user, ui)
 
 // Verifies if any warnings were registered by connected sensors.
 /obj/machinery/computer/power_monitor/proc/check_warnings()

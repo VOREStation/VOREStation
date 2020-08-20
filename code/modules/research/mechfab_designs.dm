@@ -184,49 +184,49 @@
 	name = "Durand Torso"
 	id = "durand_torso"
 	build_path = /obj/item/mecha_parts/part/durand_torso
-	time = 60
+	time = 30
 	materials = list(DEFAULT_WALL_MATERIAL = 41250, MAT_PLASTEEL = 15000, "silver" = 7500)
 
 /datum/design/item/mechfab/durand/head
 	name = "Durand Head"
 	id = "durand_head"
 	build_path = /obj/item/mecha_parts/part/durand_head
-	time = 40
+	time = 20
 	materials = list(DEFAULT_WALL_MATERIAL = 18750, "glass" = 7500, "silver" = 2250)
 
 /datum/design/item/mechfab/durand/left_arm
 	name = "Durand Left Arm"
 	id = "durand_left_arm"
 	build_path = /obj/item/mecha_parts/part/durand_left_arm
-	time = 40
+	time = 20
 	materials = list(DEFAULT_WALL_MATERIAL = 26250, "silver" = 2250)
 
 /datum/design/item/mechfab/durand/right_arm
 	name = "Durand Right Arm"
 	id = "durand_right_arm"
 	build_path = /obj/item/mecha_parts/part/durand_right_arm
-	time = 40
+	time = 20
 	materials = list(DEFAULT_WALL_MATERIAL = 26250, "silver" = 2250)
 
 /datum/design/item/mechfab/durand/left_leg
 	name = "Durand Left Leg"
 	id = "durand_left_leg"
 	build_path = /obj/item/mecha_parts/part/durand_left_leg
-	time = 40
+	time = 20
 	materials = list(DEFAULT_WALL_MATERIAL = 30000, "silver" = 2250)
 
 /datum/design/item/mechfab/durand/right_leg
 	name = "Durand Right Leg"
 	id = "durand_right_leg"
 	build_path = /obj/item/mecha_parts/part/durand_right_leg
-	time = 40
+	time = 20
 	materials = list(DEFAULT_WALL_MATERIAL = 30000, "silver" = 2250)
 
 /datum/design/item/mechfab/durand/armour
 	name = "Durand Armour Plates"
 	id = "durand_armour"
 	build_path = /obj/item/mecha_parts/part/durand_armour
-	time = 90
+	time = 60
 	materials = list(DEFAULT_WALL_MATERIAL = 27500, MAT_PLASTEEL = 10000, "uranium" = 7500)
 
 /datum/design/item/mechfab/janus
@@ -569,9 +569,9 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 7500, "gold" = 750, "silver" = 1500, "glass" = 3750)
 	build_path = /obj/item/mecha_parts/mecha_equipment/repair_droid
 
-/datum/design/item/mecha/shield_drone
-	name = "Shield Drone"
-	desc = "Manual shield drone. Deploys a large, familiar, and rectangular shield in one direction at a time."
+/datum/design/item/mecha/combat_shield
+	name = "linear combat shield"
+	desc = "Linear shield projector. Deploys a large, familiar, and rectangular shield in one direction at a time."
 	id = "mech_shield_droid"
 	req_tech = list(TECH_PHORON = 3, TECH_MAGNET = 6, TECH_ILLEGAL = 4)
 	materials = list(DEFAULT_WALL_MATERIAL = 8000, "gold" = 2000, "silver" = 3000, "phoron" = 5000, "glass" = 3750)
@@ -1043,7 +1043,7 @@
 
 /datum/design/item/mechfab/exointernal
 	category = "Exosuit Internals"
-	time = 120
+	time = 30
 	req_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 3)
 
 /datum/design/item/mechfab/exointernal/stan_armor

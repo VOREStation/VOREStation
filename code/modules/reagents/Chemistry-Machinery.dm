@@ -7,6 +7,7 @@
 #define MAX_MULTI_AMOUNT 20 // Max number of pills/patches that can be made at once
 #define MAX_UNITS_PER_PILL 60 // Max amount of units in a pill
 #define MAX_UNITS_PER_PATCH 60 // Max amount of units in a patch
+#define MAX_UNITS_PER_BOTTLE 60 // Max amount of units in a bottle (it's volume)
 #define MAX_CUSTOM_NAME_LEN 64 // Max length of a custom pill/condiment/whatever
 
 
@@ -245,7 +246,18 @@
 				if("create_bottle")
 					if(condi || !reagents.total_volume)
 						return
-					tgui_modal_input(src, id, "Please name your bottle:", null, arguments, reagents.get_master_reagent_name(), MAX_CUSTOM_NAME_LEN)
+					var/num = round(text2num(arguments["num"] || 1))
+					if(!num)
+						return
+					arguments["num"] = num
+					var/amount_per_bottle = CLAMP(reagents.total_volume / num, 0, MAX_UNITS_PER_BOTTLE)
+					var/default_name = "[reagents.get_master_reagent_name()]"
+					var/bottles_text = num == 1 ? "new bottle" : "[num] new bottles"
+					tgui_modal_input(src, id, "Please name your [bottles_text] ([amount_per_bottle]u in bottle):", null, arguments, default_name, MAX_CUSTOM_NAME_LEN)
+				if("create_bottle_multiple")
+					if(condi || !reagents.total_volume)
+						return
+					tgui_modal_input(src, id, "Please enter the amount of bottles to make (max [MAX_MULTI_AMOUNT] at a time):", null, arguments, pillamount, 5)
 				if("change_bottle_style")
 					var/list/choices = list()
 					for(var/i = 1 to MAX_BOTTLE_SPRITE)
@@ -357,16 +369,28 @@
 				if("create_bottle")
 					if(condi || !reagents.total_volume)
 						return
+					var/count = CLAMP(round(text2num(arguments["num"]) || 0), 0, MAX_MULTI_AMOUNT)
+					if(!count)
+						return
 
 					if(!length(answer))
 						answer = reagents.get_master_reagent_name()
-					var/obj/item/weapon/reagent_containers/glass/bottle/P = new(loc)
-					P.name = "[answer] bottle"
-					P.pixel_x = rand(-7, 7) // random position
-					P.pixel_y = rand(-7, 7)
-					P.icon_state = "bottle-[bottlesprite]" || "bottle-1"
-					reagents.trans_to_obj(P, 60)
-					P.update_icon()
+					var/amount_per_bottle = CLAMP(reagents.total_volume / count, 0, MAX_UNITS_PER_BOTTLE)
+					while(count--)
+						if(reagents.total_volume <= 0)
+							to_chat(usr, "<span class='notice'>Not enough reagents to create these bottles!</span>")
+							return
+						var/obj/item/weapon/reagent_containers/glass/bottle/P = new(loc)
+						P.name = "[answer] bottle"
+						P.pixel_x = rand(-7, 7) // random position
+						P.pixel_y = rand(-7, 7)
+						P.icon_state = "bottle-[bottlesprite]" || "bottle-1"
+						reagents.trans_to_obj(P, amount_per_bottle)
+						P.update_icon()
+				if("create_bottle_multiple")
+					if(condi || !reagents.total_volume)
+						return
+					tgui_act("modal_open", list("id" = "create_bottle", "arguments" = list("num" = answer)), ui, state)
 				if("change_bottle_style")
 					var/new_style = CLAMP(text2num(answer) || 0, 0, MAX_BOTTLE_SPRITE)
 					if(!new_style)
@@ -393,7 +417,9 @@
 			mode = !mode
 		if("ejectp")
 			if(loaded_pill_bottle)
-				loaded_pill_bottle.forceMove(loc)
+				loaded_pill_bottle.forceMove(get_turf(src))
+				if(Adjacent(usr) && !issilicon(usr))
+					usr.put_in_hands(loaded_pill_bottle)
 				loaded_pill_bottle = null
 		if("print")
 			if(printing || condi)
@@ -667,17 +693,7 @@
 	if(length(holdingitems))
 		options["grind"] = radial_grind
 
-	if (usr.stat != 0)
-		return
-	if (!beaker)
-		return
-	beaker.loc = src.loc
-	beaker = null
-	visible_message("<span class='notice'>\The [usr] remove the container from \the [src].</span>")
-	update_icon()
-
 	var/choice
-
 	if(length(options) < 1)
 		return
 	if(length(options) == 1)
@@ -842,4 +858,5 @@
 #undef MAX_MULTI_AMOUNT
 #undef MAX_UNITS_PER_PILL
 #undef MAX_UNITS_PER_PATCH
+#undef MAX_UNITS_PER_BOTTLE
 #undef MAX_CUSTOM_NAME_LEN

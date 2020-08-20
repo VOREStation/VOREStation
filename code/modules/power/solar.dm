@@ -399,38 +399,32 @@ GLOBAL_LIST_EMPTY(solars_list)
 	return
 
 /obj/machinery/power/solar_control/attack_hand(mob/user)
-	if(!..())
-		interact(user)
+	if(..())
+		return TRUE
+	tgui_interact(user)
 
-/obj/machinery/power/solar_control/interact(mob/user)
+/obj/machinery/power/solar_control/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "SolarControl", name)
+		ui.open()
 
-	var/t = "<B><span class='highlight'>Generated power</span></B> : [round(lastgen)] W<BR>"
-	t += "<B><span class='highlight'>Star Orientation</span></B>: [SSsun.sun.angle]&deg ([angle2text(SSsun.sun.angle)])<BR>"
-	t += "<B><span class='highlight'>Array Orientation</span></B>: [rate_control(src,"cdir","[cdir]&deg",1,15)] ([angle2text(cdir)])<BR>"
-	t += "<B><span class='highlight'>Tracking:</span></B><div class='statusDisplay'>"
-	switch(track)
-		if(0)
-			t += "<span class='linkOn'>Off</span> <A href='?src=\ref[src];track=1'>Timed</A> <A href='?src=\ref[src];track=2'>Auto</A><BR>"
-		if(1)
-			t += "<A href='?src=\ref[src];track=0'>Off</A> <span class='linkOn'>Timed</span> <A href='?src=\ref[src];track=2'>Auto</A><BR>"
-		if(2)
-			t += "<A href='?src=\ref[src];track=0'>Off</A> <A href='?src=\ref[src];track=1'>Timed</A> <span class='linkOn'>Auto</span><BR>"
+/obj/machinery/power/solar_control/tgui_data()
+	var/data = list()
 
-	t += "Tracking Rate: [rate_control(src,"tdir","[trackrate] deg/h ([trackrate<0 ? "CCW" : "CW"])",1,30,180)]</div><BR>"
+	data["generated"] = round(lastgen)
+	data["generated_ratio"] = data["generated"] / round(max(connected_panels.len, 1) * GLOB.solar_gen_rate)
 
-	t += "<B><span class='highlight'>Connected devices:</span></B><div class='statusDisplay'>"
+	data["sun_angle"] = SSsun.sun.angle
+	data["array_angle"] = cdir
+	data["rotation_rate"] = trackrate
+	data["max_rotation_rate"] = 7200
+	data["tracking_state"] = track
 
-	t += "<A href='?src=\ref[src];search_connected=1'>Search for devices</A><BR>"
-	t += "Solar panels : [connected_panels.len] connected<BR>"
-	t += "Solar tracker : [connected_tracker ? "<span class='good'>Found</span>" : "<span class='bad'>Not found</span>"]</div><BR>"
+	data["connected_panels"] = connected_panels.len
+	data["connected_tracker"] = (connected_tracker ? TRUE : FALSE)
 
-	t += "<A href='?src=\ref[src];close=1'>Close</A>"
-
-	var/datum/browser/popup = new(user, "solar", name)
-	popup.set_content(t)
-	popup.open()
-
-	return
+	return data
 
 /obj/machinery/power/solar_control/attackby(obj/item/I, user as mob)
 	if(I.is_screwdriver())
@@ -481,51 +475,52 @@ GLOBAL_LIST_EMPTY(solars_list)
 
 	updateDialog()
 
-/obj/machinery/power/solar_control/Topic(href, href_list)
+/obj/machinery/power/solar_control/tgui_act(action, params)
 	if(..())
-		usr << browse(null, "window=solcon")
-		usr.unset_machine()
-		return 0
-	if(href_list["close"] )
-		usr << browse(null, "window=solcon")
-		usr.unset_machine()
-		return 0
+		return TRUE
 
-	if(href_list["rate control"])
-		if(href_list["cdir"])
-			src.cdir = dd_range(0,359,(360+src.cdir+text2num(href_list["cdir"]))%360)
-			src.targetdir = src.cdir
-			if(track == 2) //manual update, so losing auto-tracking
-				track = 0
-			spawn(1)
+	switch(action)
+		if("azimuth")
+			var/adjust = text2num(params["adjust"])
+			var/value = text2num(params["value"])
+			if(adjust)
+				value = cdir + adjust
+			if(value != null)
+				cdir = value
 				set_panels(cdir)
-		if(href_list["tdir"])
-			src.trackrate = dd_range(-7200,7200,src.trackrate+text2num(href_list["tdir"]))
-			if(src.trackrate) nexttime = world.time + 36000/abs(trackrate)
+				return TRUE
+			return FALSE
+		if("azimuth_rate")
+			var/adjust = text2num(params["adjust"])
+			var/value = text2num(params["value"])
+			if(adjust)
+				value = trackrate + adjust
+			if(value != null)
+				trackrate = round(clamp(value, -7200, 7200), 0.01)
+				if(trackrate)
+					nexttime = world.time + 36000 / abs(trackrate)
+				return TRUE
+			return TRUE
+		if("tracking")
+			var/mode = text2num(params["mode"])
+			track = mode
+			if(track == 2)
+				if(connected_tracker)
+					connected_tracker.set_angle(SSsun.sun.angle)
+					set_panels(cdir)
+			else if(track == 1) //begin manual tracking
+				targetdir = cdir
+				if(trackrate)
+					nexttime = world.time + 36000/abs(trackrate)
+				set_panels(targetdir)
+			return TRUE
 
-	if(href_list["track"])
-		track = text2num(href_list["track"])
-		if(track == 2)
-			if(connected_tracker)
-				connected_tracker.set_angle(SSsun.sun.angle)
-				set_panels(cdir)
-		else if (track == 1) //begin manual tracking
-			src.targetdir = src.cdir
-			if(src.trackrate) nexttime = world.time + 36000/abs(trackrate)
-			set_panels(targetdir)
-
-	if(href_list["search_connected"])
-		src.search_for_connected()
-		if(connected_tracker && track == 2)
-			connected_tracker.set_angle(SSsun.sun.angle)
-		src.set_panels(cdir)
-
-	interact(usr)
-	return 1
+		if("refresh")
+			search_for_connected()
+			return TRUE
 
 //rotates the panel to the passed angle
 /obj/machinery/power/solar_control/proc/set_panels(var/cdir)
-
 	for(var/obj/machinery/power/solar/S in connected_panels)
 		S.adir = cdir //instantly rotates the panel
 		S.occlusion()//and
@@ -547,7 +542,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 /obj/machinery/power/solar_control/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			//SN src = null
+			//SN = null
 			qdel(src)
 			return
 		if(2.0)
@@ -565,9 +560,3 @@ GLOBAL_LIST_EMPTY(solars_list)
 /obj/item/weapon/paper/solar
 	name = "paper- 'Going green! Setup your own solar array instructions.'"
 	info = "<h1>Welcome</h1><p>At greencorps we love the environment, and space. With this package you are able to help mother nature and produce energy without any usage of fossil fuel or phoron! Singularity energy is dangerous while solar energy is safe, which is why it's better. Now here is how you setup your own solar array.</p><p>You can make a solar panel by wrenching the solar assembly onto a cable node. Adding a glass panel, reinforced or regular glass will do, will finish the construction of your solar panel. It is that easy!</p><p>Now after setting up 19 more of these solar panels you will want to create a solar tracker to keep track of our mother nature's gift, the SSsun.sun. These are the same steps as before except you insert the tracker equipment circuit into the assembly before performing the final step of adding the glass. You now have a tracker! Now the last step is to add a computer to calculate the SSsun.sun's movements and to send commands to the solar panels to change direction with the SSsun.sun. Setting up the solar computer is the same as setting up any computer, so you should have no trouble in doing that. You do need to put a wire node under the computer, and the wire needs to be connected to the tracker.</p><p>Congratulations, you should have a working solar array. If you are having trouble, here are some tips. Make sure all solar equipment are on a cable node, even the computer. You can always deconstruct your creations if you make a mistake.</p><p>That's all to it, be safe, be green!</p>"
-
-/proc/rate_control(var/S, var/V, var/C, var/Min=1, var/Max=5, var/Limit=null) //How not to name vars
-	var/href = "<A href='?src=\ref[S];rate control=1;[V]"
-	var/rate = "[href]=-[Max]'>-</A>[href]=-[Min]'>-</A> [(C?C : 0)] [href]=[Min]'>+</A>[href]=[Max]'>+</A>"
-	if(Limit) return "[href]=-[Limit]'>-</A>"+rate+"[href]=[Limit]'>+</A>"
-	return rate

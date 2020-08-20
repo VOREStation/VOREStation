@@ -150,6 +150,10 @@
 			message = "lets out a gao."
 			m_type = 2
 			playsound(src, 'sound/voice/gao.ogg', 50, 0, preference = /datum/client_preference/emote_noises)
+		if("cackle")
+			message = "cackles hysterically!"
+			m_type = 2
+			playsound(src, 'sound/voice/YeenCackle.ogg', 50, 0, preference = /datum/client_preference/emote_noises)
 		if("nsay")
 			nsay()
 			return TRUE
@@ -168,7 +172,7 @@
 				message = "does a flip!"
 				m_type = 1
 		if("vhelp") //Help for Virgo-specific emotes.
-			to_chat(src, "vwag, vflap, mlem, blep, awoo, awoo2, growl, nya, peep, chirp, hoot, weh, merp, myarp, bark, bork, mrow, mrowl, hypno, hiss, rattle, squeak, geck, baa, baa2, mar, wurble, snort, meow, moo, croak, nsay, nme, flip")
+			to_chat(src, "vwag, vflap, mlem, blep, awoo, awoo2, growl, nya, peep, chirp, hoot, weh, merp, myarp, bark, bork, mrow, mrowl, hypno, hiss, rattle, squeak, geck, baa, baa2, mar, wurble, snort, meow, moo, croak, gao, cackle, nsay, nme, flip")
 			return TRUE
 
 	if(message)

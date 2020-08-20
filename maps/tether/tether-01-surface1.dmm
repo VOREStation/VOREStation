@@ -596,24 +596,9 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/cargo/mining)
 "aaY" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 10
-	},
-/obj/effect/floor_decal/corner/brown/border{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 6
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/cable{
-	icon_state = "2-4"
+/obj/item/device/radio/intercom{
+	dir = 8;
+	pixel_x = -24
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/cargo/mining)
@@ -2078,8 +2063,8 @@
 /obj/machinery/door/airlock/glass_mining{
 	id_tag = "cargodoor";
 	name = "Cargo Office";
-	req_access = list(31);
-	req_one_access = list()
+	req_access = list();
+	req_one_access = list(48,50)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -5442,17 +5427,7 @@
 	},
 /area/tether/surfacebase/surface_one_hall)
 "ajb" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan,
-/obj/structure/catwalk,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/door/airlock/maintenance/common{
+/obj/machinery/door/airlock/maintenance/cargo{
 	name = "Mining Maintenance Access";
 	req_one_access = list(48)
 	},
@@ -8208,10 +8183,49 @@
 "anF" = (
 /obj/machinery/door/airlock/maintenance/cargo{
 	name = "Mining Maintenance Access";
-	req_one_access = list(48)
+	req_one_access = list(48,50)
 	},
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/cargo/office)
+"anG" = (
+/obj/machinery/door/airlock/maintenance/rnd{
+	req_one_access = list(47,24)
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/plating,
+/area/rnd/hallway)
+"anH" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/red/border{
+	dir = 10
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/red/bordercorner2{
+	dir = 8
+	},
+/obj/item/device/radio/intercom{
+	dir = 8;
+	pixel_x = -24
+	},
+/obj/structure/bed/chair/office/dark,
+/obj/structure/barricade/cutout/ntsec,
+/turf/simulated/floor/tiled,
+/area/security/checkpoint)
 "anI" = (
 /obj/structure/cable{
 	d2 = 2;
@@ -8235,6 +8249,12 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/emergency_storage/atrium)
+"anK" = (
+/obj/structure/symbol/lo,
+/turf/simulated/wall{
+	can_open = 1
+	},
+/area/maintenance/lower/atmos)
 "anL" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/floor_decal/industrial/outline/blue,
@@ -8589,6 +8609,16 @@
 /obj/random/maintenance/cargo,
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/emergency_storage/atrium)
+"aop" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/random/action_figure,
+/obj/random/action_figure,
+/obj/random/action_figure,
+/obj/structure/closet/wardrobe/grey{
+	starts_with = list(/obj/structure/barricade/cutout/viva, /obj/item/clothing/under/color/grey = 3, /obj/item/clothing/shoes/black = 3, /obj/item/clothing/head/soft/grey = 3, /obj/item/clothing/mask/gas/wwii = 3, /obj/item/weapon/storage/toolbox/mechanical = 3, /obj/item/clothing/gloves/fyellow = 3, /obj/item/weapon/card/id/gold/captain/spare/fakespare = 3, /obj/item/weapon/soap/syndie = 3, /obj/item/weapon/storage/box/mousetraps = 3)
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/atmos)
 "aoq" = (
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/tether/surfacebase/outside/outside1)
@@ -12978,26 +13008,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_one_hall)
-"avY" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 10
-	},
-/obj/effect/floor_decal/corner/red/border{
-	dir = 10
-	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 8
-	},
-/obj/effect/floor_decal/corner/red/bordercorner2{
-	dir = 8
-	},
-/obj/item/device/radio/intercom{
-	dir = 8;
-	pixel_x = -24
-	},
-/obj/structure/bed/chair/office/dark,
-/turf/simulated/floor/tiled,
-/area/security/checkpoint)
 "avZ" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/red/border,
@@ -17829,22 +17839,6 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /turf/simulated/floor/tiled,
-/area/rnd/hallway)
-"aJt" = (
-/obj/machinery/door/airlock/maintenance/rnd,
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/plating,
 /area/rnd/hallway)
 "aJu" = (
 /obj/effect/decal/cleanable/dirt,
@@ -25447,13 +25441,6 @@
 "aXP" = (
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel_dirty,
-/area/maintenance/lower/atmos)
-"aXQ" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/random/action_figure,
-/obj/random/action_figure,
-/obj/random/action_figure,
-/turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
 "aXR" = (
 /obj/structure/window/reinforced,
@@ -36972,7 +36959,7 @@ aGX
 awn
 awn
 awn
-aJt
+anG
 awn
 aKL
 aLr
@@ -44905,7 +44892,7 @@ evF
 ast
 auR
 avq
-avY
+anH
 awM
 axs
 awN
@@ -45804,7 +45791,7 @@ aWo
 aWM
 aWV
 aVn
-aXQ
+aop
 aYi
 aYE
 aZd
@@ -45946,7 +45933,7 @@ aUP
 aUP
 bcT
 aVn
-aVn
+anK
 aYi
 aYi
 aYi
