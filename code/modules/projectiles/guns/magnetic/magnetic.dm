@@ -1,3 +1,10 @@
+#define ICON_CELL 1
+#define ICON_CAP 2
+#define ICON_BAD 4
+#define ICON_CHARGE 8
+#define ICON_READY 16
+#define ICON_LOADED 32
+
 /obj/item/weapon/gun/magnetic
 	name = "improvised coilgun"
 	desc = "A coilgun hastily thrown together out of a basic frame and advanced power storage components. Is it safe for it to be duct-taped together like that?"
@@ -9,8 +16,8 @@
 	w_class = ITEMSIZE_LARGE
 
 	var/obj/item/weapon/cell/cell                              // Currently installed powercell.
-	var/obj/item/weapon/stock_parts/capacitor/capacitor        // Installed capacitor. Higher rating == faster charge between shots.
-	var/obj/item/weapon/stock_parts/manipulator/manipulator    // Installed manipulator. Mostly for Phoron Bore, higher rating == less mats consumed upon firing
+	var/obj/item/weapon/stock_parts/capacitor/capacitor        // Installed capacitor. Higher rating == faster charge between shots. Set to a path to spawn with one of that type.
+	var/obj/item/weapon/stock_parts/manipulator/manipulator    // Installed manipulator. Mostly for Phoron Bore, higher rating == less mats consumed upon firing. Set to a path to spawn with one of that type.
 	var/removable_components = TRUE                            // Whether or not the gun can be dismantled.
 	var/gun_unreliable = 15                                    // Percentage chance of detonating in your hands.
 
@@ -21,18 +28,34 @@
 	var/power_cost = 950                                       // Cost per fire, should consume almost an entire basic cell.
 	var/power_per_tick                                         // Capacitor charge per process(). Updated based on capacitor rating.
 
-/obj/item/weapon/gun/magnetic/New()
+	var/state = 0
+
+/obj/item/weapon/gun/magnetic/Initialize()
+	. = ..()
+	// So you can have some spawn with components
+	if(ispath(cell))
+		cell = new cell(src)
+	if(ispath(capacitor))
+		capacitor = new capacitor(src)
+		capacitor.charge = capacitor.max_charge
+	if(ispath(manipulator))
+		manipulator = new manipulator(src)
+	if(ispath(loaded))
+		loaded = new loaded(src)
+	
 	START_PROCESSING(SSobj, src)
+	
 	if(capacitor)
 		power_per_tick = (power_cost*0.15) * capacitor.rating
+	
 	update_icon()
-	. = ..()
 
 /obj/item/weapon/gun/magnetic/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	QDEL_NULL(cell)
 	QDEL_NULL(loaded)
 	QDEL_NULL(capacitor)
+	QDEL_NULL(manipulator)
 	. = ..()
 
 /obj/item/weapon/gun/magnetic/get_cell()
@@ -45,25 +68,56 @@
 				capacitor.charge(power_per_tick)
 		else
 			capacitor.use(capacitor.charge * 0.05)
-	update_icon()
+	
+	update_state() // May update icon, only if things changed.
 
-/obj/item/weapon/gun/magnetic/update_icon()
-	var/list/overlays_to_add = list()
+/obj/item/weapon/gun/magnetic/proc/update_state()
+	var/newstate = 0
+
+	// Parts or lack thereof
 	if(removable_components)
 		if(cell)
-			overlays_to_add += image(icon, "[icon_state]_cell")
+			newstate |= ICON_CELL
 		if(capacitor)
-			overlays_to_add += image(icon, "[icon_state]_capacitor")
+			newstate |= ICON_CAP
+	
+	// Functional state
 	if(!cell || !capacitor)
-		overlays_to_add += image(icon, "[icon_state]_red")
+		newstate |= ICON_BAD
 	else if(capacitor.charge < power_cost)
-		overlays_to_add += image(icon, "[icon_state]_amber")
+		newstate |= ICON_CHARGE
 	else
-		overlays_to_add += image(icon, "[icon_state]_green")
+		newstate |= ICON_READY
+	
+	// Ammo indicator
 	if(loaded)
-		overlays_to_add += image(icon, "[icon_state]_loaded")
+		newstate |= ICON_LOADED
 
-	overlays = overlays_to_add
+	// Only update if the state has changed
+	var/needs_update = FALSE
+	if(state != newstate)
+		needs_update = TRUE
+
+	state = newstate
+	
+	if(needs_update)
+		update_icon()
+
+/obj/item/weapon/gun/magnetic/update_icon()
+	cut_overlays()
+	if(state & ICON_CELL)
+		add_overlay("[icon_state]_cell")
+	if(state & ICON_CAP)
+		add_overlay("[icon_state]_capacitor")
+	if(state & ICON_BAD)
+		add_overlay("[icon_state]_red")
+	if(state & ICON_CHARGE)
+		add_overlay("[icon_state]_amber")
+	if(state & ICON_READY)
+		add_overlay("[icon_state]_green")
+	if(state & ICON_LOADED)
+		add_overlay("[icon_state]_loaded")
+
 	..()
 
 /obj/item/weapon/gun/magnetic/proc/show_ammo()
@@ -83,10 +137,10 @@
 		if(capacitor)
 			. += "<span class='notice'>The installed [capacitor.name] has a charge level of [round((capacitor.charge/capacitor.max_charge)*100)]%.</span>"
 
-		if(!cell || !capacitor)
+		if(state & ICON_BAD)
 			. += "<span class='notice'>The capacitor charge indicator is blinking <font color ='[COLOR_RED]'>red</font>. Maybe you should check the cell or capacitor.</span>"
 		else
-			if(capacitor.charge < power_cost)
+			if(state & ICON_CHARGE)
 				. += "<span class='notice'>The capacitor charge indicator is <font color ='[COLOR_ORANGE]'>amber</font>.</span>"
 			else
 				. += "<span class='notice'>The capacitor charge indicator is <font color ='[COLOR_GREEN]'>green</font>.</span>"
@@ -260,3 +314,10 @@
 	cell = new /obj/item/weapon/cell/high
 	capacitor = new /obj/item/weapon/stock_parts/capacitor
 	. = ..()
+
+#undef ICON_CELL
+#undef ICON_CAP
+#undef ICON_BAD
+#undef ICON_CHARGE
+#undef ICON_READY
+#undef ICON_LOADED

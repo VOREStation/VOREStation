@@ -11,6 +11,8 @@
 	projectile = /obj/item/projectile/arc/fragmentation/mortar
 	projectile_energy_cost = 600
 
+	step_delay = 2
+
 	origin_tech = list(TECH_MATERIAL = 4, TECH_COMBAT = 5, TECH_ILLEGAL = 3)
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/mortar/action_checks(atom/target)

@@ -1,4 +1,5 @@
 // Provides remote access to a controller (since they must be unique).
+// TGUITODO: Actually make these weird things work... well, as much as possible.
 /obj/machinery/dummy_airlock_controller
 	name = "airlock control terminal"
 	icon = 'icons/obj/airlock_machines.dmi'

@@ -213,6 +213,7 @@
 		user.visible_message("[user] begins to lap up water from [target.name].", "<span class='notice'>You begin to lap up water from [target.name].</span>")
 		if(do_after (user, 50))
 			water.add_charge(50)
+			to_chat(src, "You refill some of your water reserves.")
 	else if(water.energy < 5)
 		to_chat(user, "<span class='notice'>Your mouth feels dry. You should drink up some water .</span>")
 		return

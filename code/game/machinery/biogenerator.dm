@@ -101,30 +101,35 @@
 				if(beaker)
 					dat += "<A href='?src=\ref[src];action=activate'>Activate Biogenerator!</A><BR>"
 					dat += "<A href='?src=\ref[src];action=detach'>Detach Container</A><BR><BR>"
-					dat += "Food:<BR>"
+					dat += "Food Items:<BR>"
 					dat += "<A href='?src=\ref[src];action=create;item=milk;cost=20'>10 milk</A> <FONT COLOR=blue>([round(20/build_eff)])</FONT> | <A href='?src=\ref[src];action=create;item=milk5;cost=95'>x5</A><BR>"
 					dat += "<A href='?src=\ref[src];action=create;item=cream;cost=30'>10 cream</A> <FONT COLOR=blue>([round(20/build_eff)])</FONT> | <A href='?src=\ref[src];action=create;item=cream5;cost=120'>x5</A><BR>"
 					dat += "<A href='?src=\ref[src];action=create;item=meat;cost=50'>Slab of meat</A> <FONT COLOR=blue>([round(50/build_eff)])</FONT> | <A href='?src=\ref[src];action=create;item=meat5;cost=250'>x5</A><BR>"
-					dat += "Nutrient:<BR>"
-					dat += "<A href='?src=\ref[src];action=create;item=ez;cost=60'>E-Z-Nutrient</A> <FONT COLOR=blue>([round(60/build_eff)])</FONT> | <A href='?src=\ref[src];action=create;item=ez5;cost=300'>x5</A><BR>"
-					dat += "<A href='?src=\ref[src];action=create;item=l4z;cost=120'>Left 4 Zed</A> <FONT COLOR=blue>([round(120/build_eff)])</FONT> | <A href='?src=\ref[src];action=create;item=l4z5;cost=600'>x5</A><BR>"
-					dat += "<A href='?src=\ref[src];action=create;item=rh;cost=150'>Robust Harvest</A> <FONT COLOR=blue>([round(150/build_eff)])</FONT> | <A href='?src=\ref[src];action=create;item=rh5;cost=750'>x5</A><BR>"
-					dat += "Leather:<BR>"
-					dat += "<A href='?src=\ref[src];action=create;item=wallet;cost=100'>Wallet</A> <FONT COLOR=blue>([round(100/build_eff)])</FONT><BR>"
-					dat += "<A href='?src=\ref[src];action=create;item=gloves;cost=250'>Botanical gloves</A> <FONT COLOR=blue>([round(250/build_eff)])</FONT><BR>"
-					dat += "<A href='?src=\ref[src];action=create;item=plantbag;cost=320'>Plant bag</A> <FONT COLOR=blue>([round(250/build_eff)])</FONT><BR>"
-					dat += "<A href='?src=\ref[src];action=create;item=plantbaglarge;cost=640'>Large plant bag</A> <FONT COLOR=blue>([round(250/build_eff)])</FONT><BR>"
-					dat += "<A href='?src=\ref[src];action=create;item=tbelt;cost=300'>Utility belt</A> <FONT COLOR=blue>([round(300/build_eff)])</FONT><BR>"
-					dat += "<A href='?src=\ref[src];action=create;item=satchel;cost=400'>Leather Satchel</A> <FONT COLOR=blue>([round(400/build_eff)])</FONT><BR>"
-					dat += "<A href='?src=\ref[src];action=create;item=cashbag;cost=400'>Cash Bag</A> <FONT COLOR=blue>([round(400/build_eff)])</FONT><BR>"
-					dat += "<A href='?src=\ref[src];action=create;item=chembag;cost=400'>Chemistry Bag</A> <FONT COLOR=blue>([round(400/build_eff)])</FONT><BR>"
-					dat += "<A href='?src=\ref[src];action=create;item=workboots;cost=400'>Workboots</A> <FONT COLOR=blue>([round(400/build_eff)])</FONT><BR>"
-					dat += "<A href='?src=\ref[src];action=create;item=leathershoes;cost=400'>Leather Shoes</A> <FONT COLOR=blue>([round(400/build_eff)])</FONT><BR>"
-					dat += "<A href='?src=\ref[src];action=create;item=leatherchaps;cost=400'>Leather Chaps</A> <FONT COLOR=blue>([round(400/build_eff)])</FONT><BR>"
-					dat += "<A href='?src=\ref[src];action=create;item=leathercoat;cost=500'>Leather Coat</A> <FONT COLOR=blue>([round(500/build_eff)])</FONT><BR>"
-					dat += "<A href='?src=\ref[src];action=create;item=leatherjacket;cost=500'>Leather Jacket</A> <FONT COLOR=blue>([round(500/build_eff)])</FONT><BR>"
-					dat += "<A href='?src=\ref[src];action=create;item=wintercoat;cost=500'>Winter Coat</A> <FONT COLOR=blue>([round(500/build_eff)])</FONT><BR>"
-					dat += "<A href='?src=\ref[src];action=create;item=algae;cost=400'>4 Algae Sheets</A> <FONT COLOR=blue>([round(400/build_eff)])</FONT><BR>" //VOREStation Edit - Algae for oxygen generator
+					dat += "Cooking Ingredient:<BR>"
+					dat += "<A href='?src=\ref[src];action=create;item=unizyme;cost=30'>Universal Enzyme</A> <FONT COLOR=yellow>([round(30/build_eff)])</FONT> | <A href='?src=\ref[src];action=create;item=unizyme50;cost=120'>x5</A><BR>"
+					dat += "<A href='?src=\ref[src];action=create;item=nutrispread;cost=30'>Nutri-Spread</A> <FONT COLOR=yellow>([round(30/build_eff)])</FONT> | <A href='?src=\ref[src];action=create;item=nutrispread5;cost=120'>x5</A><BR>"
+					// dat += "<A href='?src=\ref[src];action=create;item=unizyme;cost=50'>Universal Enzyme</A> <FONT COLOR=yellow>([round(30/build_eff)])</FONT> | <A href='?src=\ref[src];action=create;item=unizyme;cost=180'>x5</A><BR>"
+					// dat += "<A href='?src=\ref[src];action=create;item=unizyme;cost=50'>Universal Enzyme</A> <FONT COLOR=yellow>([round(30/build_eff)])</FONT> | <A href='?src=\ref[src];action=create;item=unizyme;cost=180'>x5</A><BR>"
+					dat += "Gardening Nutrients:<BR>"
+					dat += "<A href='?src=\ref[src];action=create;item=ez;cost=60'>E-Z-Nutrient</A> <FONT COLOR=green>([round(60/build_eff)])</FONT> | <A href='?src=\ref[src];action=create;item=ez5;cost=300'>x5</A><BR>"
+					dat += "<A href='?src=\ref[src];action=create;item=l4z;cost=120'>Left 4 Zed</A> <FONT COLOR=green>([round(120/build_eff)])</FONT> | <A href='?src=\ref[src];action=create;item=l4z5;cost=600'>x5</A><BR>"
+					dat += "<A href='?src=\ref[src];action=create;item=rh;cost=150'>Robust Harvest</A> <FONT COLOR=green>([round(150/build_eff)])</FONT> | <A href='?src=\ref[src];action=create;item=rh5;cost=750'>x5</A><BR>"
+					dat += "Leather Products:<BR>"
+					dat += "<A href='?src=\ref[src];action=create;item=wallet;cost=100'>Wallet</A> <FONT COLOR=brown>([round(100/build_eff)])</FONT><BR>"
+					dat += "<A href='?src=\ref[src];action=create;item=gloves;cost=250'>Botanical gloves</A> <FONT COLOR=green>([round(250/build_eff)])</FONT><BR>"
+					dat += "<A href='?src=\ref[src];action=create;item=plantbag;cost=320'>Plant bag</A> <FONT COLOR=green>([round(250/build_eff)])</FONT><BR>"
+					dat += "<A href='?src=\ref[src];action=create;item=plantbaglarge;cost=640'>Large plant bag</A> <FONT COLOR=green>([round(250/build_eff)])</FONT><BR>"
+					dat += "<A href='?src=\ref[src];action=create;item=tbelt;cost=300'>Utility belt</A> <FONT COLOR=brown>([round(300/build_eff)])</FONT><BR>"
+					dat += "<A href='?src=\ref[src];action=create;item=satchel;cost=400'>Leather Satchel</A> <FONT COLOR=brown>([round(400/build_eff)])</FONT><BR>"
+					dat += "<A href='?src=\ref[src];action=create;item=cashbag;cost=400'>Cash Bag</A> <FONT COLOR=brown>([round(400/build_eff)])</FONT><BR>"
+					dat += "<A href='?src=\ref[src];action=create;item=chembag;cost=400'>Chemistry Bag</A> <FONT COLOR=green>([round(400/build_eff)])</FONT><BR>"
+					dat += "<A href='?src=\ref[src];action=create;item=workboots;cost=400'>Workboots</A> <FONT COLOR=brown>([round(400/build_eff)])</FONT><BR>"
+					dat += "<A href='?src=\ref[src];action=create;item=leathershoes;cost=400'>Leather Shoes</A> <FONT COLOR=brown>([round(400/build_eff)])</FONT><BR>"
+					dat += "<A href='?src=\ref[src];action=create;item=leatherchaps;cost=400'>Leather Chaps</A> <FONT COLOR=brown>([round(400/build_eff)])</FONT><BR>"
+					dat += "<A href='?src=\ref[src];action=create;item=leathercoat;cost=500'>Leather Coat</A> <FONT COLOR=brown>([round(500/build_eff)])</FONT><BR>"
+					dat += "<A href='?src=\ref[src];action=create;item=leatherjacket;cost=500'>Leather Jacket</A> <FONT COLOR=brown>([round(500/build_eff)])</FONT><BR>"
+					dat += "<A href='?src=\ref[src];action=create;item=wintercoat;cost=500'>Winter Coat</A> <FONT COLOR=brown>([round(500/build_eff)])</FONT><BR>"
+					dat += "<A href='?src=\ref[src];action=create;item=algae;cost=400'>4 Algae Sheets</A> <FONT COLOR=green>([round(400/build_eff)])</FONT><BR>" //VOREStation Edit - Algae for oxygen generator
 					//dat += "Other<BR>"
 					//dat += "<A href='?src=\ref[src];action=create;item=monkey;cost=500'>Monkey</A> <FONT COLOR=blue>(500)</FONT><BR>"
 				else
@@ -201,6 +206,18 @@
 			new/obj/item/weapon/reagent_containers/food/snacks/meat(loc)
 			new/obj/item/weapon/reagent_containers/food/snacks/meat(loc)
 			new/obj/item/weapon/reagent_containers/food/snacks/meat(loc)
+		if("unizyme")
+			beaker.reagents.add_reagent("enzyme", 10)
+		if("unizyme50")
+			beaker.reagents.add_reagent("enzyme", 50)
+		if("nutrispread")
+			new/obj/item/weapon/reagent_containers/food/snacks/spreads(loc)
+		if("nutrispread5")
+			new/obj/item/weapon/reagent_containers/food/snacks/spreads(loc)
+			new/obj/item/weapon/reagent_containers/food/snacks/spreads(loc)
+			new/obj/item/weapon/reagent_containers/food/snacks/spreads(loc)
+			new/obj/item/weapon/reagent_containers/food/snacks/spreads(loc)
+			new/obj/item/weapon/reagent_containers/food/snacks/spreads(loc)
 		if("ez")
 			new/obj/item/weapon/reagent_containers/glass/bottle/eznutrient(loc)
 		if("l4z")

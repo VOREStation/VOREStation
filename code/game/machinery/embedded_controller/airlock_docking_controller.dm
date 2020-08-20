@@ -13,6 +13,7 @@
 	var/datum/computer/file/embedded_program/docking/airlock/docking_program
 	var/display_name		// For mappers to override docking_program.display_name (how would it show up on docking monitoring program)
 	tag_secure = 1
+	valid_actions = list("cycle_ext", "cycle_int", "force_ext", "force_int", "abort", "toggle_override")
 
 /obj/machinery/embedded_controller/radio/airlock/docking_port/Initialize()
 	. = ..()
@@ -34,12 +35,11 @@
 	else
 		..()
 
-/obj/machinery/embedded_controller/radio/airlock/docking_port/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	var/data[0]
+/obj/machinery/embedded_controller/radio/airlock/docking_port/tgui_data(mob/user)
 	var/datum/computer/file/embedded_program/docking/airlock/docking_program = program
 	var/datum/computer/file/embedded_program/airlock/docking/airlock_program = docking_program.airlock_program
 
-	data = list(
+	. = list(
 		"chamber_pressure" = round(airlock_program.memory["chamber_sensor_pressure"]),
 		"exterior_status" = airlock_program.memory["exterior_status"],
 		"interior_status" = airlock_program.memory["interior_status"],
@@ -48,48 +48,15 @@
 		"airlock_disabled" = !(docking_program.undocked() || docking_program.override_enabled),
 		"override_enabled" = docking_program.override_enabled,
 		"docking_codes" = docking_program.docking_codes,
-		"name" = docking_program.get_name()
+		"name" = docking_program.get_name(),
+		"internalTemplateName" = "AirlockConsoleDocking",
 	)
-
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-
-	if (!ui)
-		ui = new(user, src, ui_key, "docking_airlock_console.tmpl", name, 470, 290)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(1)
-
-/obj/machinery/embedded_controller/radio/airlock/docking_port/Topic(href, href_list)
-	if((. = ..()))
-		return
-
-	var/clean = 0
-	switch(href_list["command"])	//anti-HTML-hacking checks
-		if("cycle_ext")
-			clean = 1
-		if("cycle_int")
-			clean = 1
-		if("force_ext")
-			clean = 1
-		if("force_int")
-			clean = 1
-		if("abort")
-			clean = 1
-		if("toggle_override")
-			clean = 1
-
-	if(clean)
-		program.receive_user_command(href_list["command"])
-
-	return 1
-
 
 ///////////////////////////////////////////////////////////////////////////////
 //A docking controller for an airlock based docking port
 //
 /datum/computer/file/embedded_program/docking/airlock
 	var/datum/computer/file/embedded_program/airlock/docking/airlock_program
-
 
 /datum/computer/file/embedded_program/docking/airlock/New(var/obj/machinery/embedded_controller/M, var/datum/computer/file/embedded_program/airlock/docking/A)
 	..(M)

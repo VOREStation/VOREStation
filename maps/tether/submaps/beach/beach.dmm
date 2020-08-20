@@ -76,11 +76,8 @@
 /turf/simulated/floor/wood,
 /area/tether_away/beach)
 "at" = (
-/obj/structure/closet{
+/obj/structure/closet/cabinet{
 	density = 0;
-	icon_closed = "cabinet_closed";
-	icon_opened = "cabinet_open";
-	icon_state = "cabinet_closed";
 	pixel_y = 20;
 	wall_mounted = 1
 	},
@@ -193,8 +190,6 @@
 /area/tether_away/beach)
 "aK" = (
 /obj/structure/closet/gmcloset{
-	icon_closed = "black";
-	icon_state = "black";
 	name = "formal wardrobe"
 	},
 /turf/simulated/floor/wood,

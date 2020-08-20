@@ -26,7 +26,7 @@
 "z" = (/obj/structure/table/bench/steel,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/CaveTrench)
 "A" = (/obj/effect/decal/remains,/obj/item/clothing/under/rank/miner,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/CaveTrench)
 "B" = (/turf/simulated/shuttle/plating,/area/submap/CaveTrench)
-"C" = (/obj/structure/closet{icon_closed = "cabinet_closed"; icon_opened = "cabinet_open"; icon_state = "cabinet_closed"},/obj/item/clothing/suit/storage/hooded/wintercoat/miner,/obj/item/clothing/suit/storage/hooded/wintercoat/miner,/turf/simulated/floor/holofloor/wood,/area/submap/CaveTrench)
+"C" = (/obj/structure/closet/cabinet,/obj/item/clothing/suit/storage/hooded/wintercoat/miner,/obj/item/clothing/suit/storage/hooded/wintercoat/miner,/turf/simulated/floor/holofloor/wood,/area/submap/CaveTrench)
 "D" = (/obj/structure/coatrack,/turf/simulated/floor/holofloor/wood,/area/submap/CaveTrench)
 "E" = (/obj/structure/closet/secure_closet/miner,/turf/simulated/floor/holofloor/wood,/area/submap/CaveTrench)
 "F" = (/obj/item/weapon/storage/box/shotgunammo,/turf/simulated/floor/holofloor/wood,/area/submap/CaveTrench)

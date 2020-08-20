@@ -31,7 +31,7 @@
 	if(. == INITIALIZE_HINT_QDEL)
 		return
 
-	find_z_levels()     // This populates map_z and assigns z levels to the ship.
+	find_z_levels() // This populates map_z and assigns z levels to the ship.
 	register_z_levels() // This makes external calls to update global z level information.
 
 	if(!global.using_map.overmap_z)
@@ -59,7 +59,8 @@
 			. += A
 
 /obj/effect/overmap/visitable/proc/find_z_levels()
-	map_z = GetConnectedZlevels(z)
+	if(!LAZYLEN(map_z)) // If map_z is already populated use it as-is, otherwise start with connected z-levels.
+		map_z = GetConnectedZlevels(z)
 	if(LAZYLEN(extra_z_levels))
 		map_z |= extra_z_levels
 

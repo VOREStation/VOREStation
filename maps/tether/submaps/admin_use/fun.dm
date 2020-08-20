@@ -120,6 +120,42 @@
 	power_environ = FALSE
 	power_light = FALSE
 
+/area/submap/admin_upload/AU13
+	name = "\improper Unknown Area L"
+	requires_power = 1
+	dynamic_lighting = 1
+	power_equip = FALSE
+	power_environ = FALSE
+	power_light = FALSE
+
+/area/submap/admin_upload/AU14
+	name = "\improper Unknown Area M"
+	requires_power = 1
+	dynamic_lighting = 1
+	power_equip = FALSE
+	power_environ = FALSE
+	power_light = FALSE
+
+/area/submap/admin_upload/AU15
+	name = "\improper Unknown Area N"
+	requires_power = 1
+	dynamic_lighting = 1
+	power_equip = FALSE
+	power_environ = FALSE
+	power_light = FALSE
+
+/area/submap/admin_upload/AU16
+	name = "\improper Unknown Area O"
+	requires_power = 1
+	dynamic_lighting = 1
+	power_equip = FALSE
+	power_environ = FALSE
+	power_light = FALSE
+
+
+
+
+
 // Adminbuse things for overmap sectors
 
 // This is a stationary overmap sector, you can spawn it in any zlevel and it will pop onto the overmap to represent those zlevels. It always moves to 2,2 on the overmap and you can move it elsewhere.

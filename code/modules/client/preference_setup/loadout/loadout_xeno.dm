@@ -413,3 +413,13 @@
 /datum/gear/suit/teshcoatwhite/New()
 	..()
 	gear_tweaks = list(gear_tweak_free_color_choice)
+
+/datum/gear/accessory/teshneckscarf
+	display_name = "neckscarf, recolorable (Teshari)"
+	path = /obj/item/clothing/accessory/scarf/teshari/neckscarf
+	whitelisted = SPECIES_TESHARI
+	sort_category = "Xenowear"
+
+/datum/gear/accessory/teshneckscarf/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)

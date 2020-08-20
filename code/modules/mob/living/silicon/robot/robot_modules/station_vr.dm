@@ -12,7 +12,8 @@
 					LANGUAGE_CANILUNZT	= 0,
 					LANGUAGE_ECUREUILIAN= 0,
 					LANGUAGE_DAEMON		= 0,
-					LANGUAGE_ENOCHIAN	= 0
+					LANGUAGE_ENOCHIAN	= 0,
+					LANGUAGE_DRUDAKAR	= 0
 					)
 	var/vr_sprites = list()
 	var/pto_type = null
@@ -34,7 +35,8 @@
 					LANGUAGE_CANILUNZT	= 1,
 					LANGUAGE_ECUREUILIAN= 1,
 					LANGUAGE_DAEMON		= 1,
-					LANGUAGE_ENOCHIAN	= 1
+					LANGUAGE_ENOCHIAN	= 1,
+					LANGUAGE_DRUDAKAR	= 1
 					)
 
 /hook/startup/proc/robot_modules_vr()
@@ -163,7 +165,8 @@
 					"K9 hound" = "k9",
 					"K9 Alternative" = "k92",
 					"Secborg model V-2" = "secborg",
-					"Borgi" = "borgi-sec"
+					"Borgi" = "borgi-sec",
+					"Otieborg" = "oties"
 					)
 	channels = list("Security" = 1)
 	networks = list(NETWORK_SECURITY)
@@ -252,6 +255,15 @@
 	src.modules += new /obj/item/weapon/shockpaddles/robot/hound(src) //Paws of life
 	src.emag 	 = new /obj/item/weapon/dogborg/pounce(src) //Pounce
 
+	var/datum/matter_synth/medicine = new /datum/matter_synth/medicine(2000)
+	synths += medicine
+
+	var/obj/item/stack/medical/advanced/clotting/C = new (src)
+	C.uses_charge = 1
+	C.charge_costs = list(1000)
+	C.synths = list(medicine)
+	src.modules += C
+
 	var/datum/matter_synth/water = new /datum/matter_synth(500)
 	water.name = "Water reserves"
 	water.recharge_rate = 0
@@ -338,7 +350,8 @@
 	name = "Custodial Hound module"
 	sprites = list(
 					"Custodial Hound" = "scrubpup",
-					"Borgi" = "borgi-jani"
+					"Borgi" = "borgi-jani",
+					"Otieborg" = "otiej"
 					)
 	channels = list("Service" = 1)
 	pto_type = PTO_CIVILIAN
@@ -526,6 +539,7 @@
 	src.modules += new /obj/item/weapon/gripper/circuit(src)
 	src.modules += new /obj/item/device/pipe_painter(src)
 	src.modules += new /obj/item/device/floor_painter(src)
+	src.modules += new /obj/item/weapon/rms(src)
 	src.emag 	 = new /obj/item/weapon/dogborg/pounce(src)
 
 	//Painfully slow charger regen but high capacity. Also starts with low amount.

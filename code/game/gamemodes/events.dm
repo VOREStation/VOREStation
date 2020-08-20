@@ -187,7 +187,7 @@ var/hadevent    = 0
 
 			for (var/obj/structure/closet/secure_closet/brig/temp_closet in A)
 				temp_closet.locked = 0
-				temp_closet.icon_state = temp_closet.icon_closed
+				temp_closet.icon_state = "closed_unlocked"
 
 			for (var/obj/machinery/door/airlock/security/temp_airlock in A)
 				spawn(0) temp_airlock.prison_open()
@@ -196,7 +196,7 @@ var/hadevent    = 0
 				spawn(0) temp_glassairlock.prison_open()
 
 			for (var/obj/machinery/door_timer/temp_timer in A)
-				temp_timer.releasetime = 1
+				temp_timer.timer_duration = 1
 
 		sleep(150)
 		command_announcement.Announce("Gr3y.T1d3 virus detected in [station_name()] imprisonment subroutines. Recommend station AI involvement.", "Security Alert")

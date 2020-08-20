@@ -407,6 +407,7 @@ var/to_chat_src
 	// Write the messages to the log
 	for(var/list/result in results)
 		o_file << "[result["message"]]<br>"
+		CHECK_TICK
 
 	o_file << "</body></html>"
 

@@ -162,6 +162,11 @@
 
 	return
 
+/obj/machinery/clonepod/transhuman/get_completion()
+	if(occupant)
+		return 100 * ((occupant.health + abs(config.health_threshold_dead)) / (occupant.maxHealth + abs(config.health_threshold_dead)))
+	return 0
+
 //Synthetic version
 /obj/machinery/transhuman/synthprinter
 	name = "SynthFab 3000"
@@ -437,28 +442,40 @@
 	sickness_duration = (45 - (total_rating-4)*1.875) MINUTES		// 45 minutes default, 30 minutes with max non-anomaly upgrades, 15 minutes with max anomaly ones
 
 /obj/machinery/transhuman/resleever/attack_hand(mob/user as mob)
-	user.set_machine(src)
-	var/health_text = ""
-	var/mind_text = ""
-	if(src.occupant)
-		if(src.occupant.stat >= DEAD)
-			health_text = "<FONT color=red>DEAD</FONT>"
-		else if(src.occupant.health < 0)
-			health_text = "<FONT color=red>[round(src.occupant.health,0.1)]</FONT>"
-		else
-			health_text = "[round(src.occupant.health,0.1)]"
+	tgui_interact(user)
 
-		if(src.occupant.mind)
-			mind_text = "Mind present: [occupant.mind.name]"
-		else
-			mind_text = "Mind absent."
+/obj/machinery/transhuman/resleever/tgui_interact(mob/user, datum/tgui/ui = null)
+	if(stat & (NOPOWER|BROKEN))
+		return
 
-	var/dat ="<B>Resleever Status</B><BR>"
-	dat +="<B>Current occupant:</B> [src.occupant ? "<BR>Name: [src.occupant]<BR>Health: [health_text]<BR>" : "<FONT color=red>None</FONT>"]<BR>"
-	dat +="<B>Mind status:</B> [mind_text]<BR>"
-	user.set_machine(src)
-	user << browse(dat, "window=resleever")
-	onclose(user, "resleever")
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "ResleevingPod", "Resleever")
+		ui.open()
+
+/obj/machinery/transhuman/resleever/tgui_data(mob/user)
+	var/list/data = list()
+
+	data["occupied"] = !!occupant
+	if(occupant)
+		data["name"] = occupant.name
+		data["health"] = occupant.health
+		data["maxHealth"] = occupant.maxHealth
+		data["stat"] = occupant.stat
+		data["mindStatus"] = !!occupant.mind
+		data["mindName"] = occupant.mind?.name
+
+		if(occupant.has_modifier_of_type(/datum/modifier/resleeving_sickness) || occupant.has_modifier_of_type(/datum/modifier/faux_resleeving_sickness))
+			data["resleeveSick"] = TRUE
+		else
+			data["resleeveSick"] = FALSE
+
+		if(occupant.confused || occupant.eye_blurry)
+			data["initialSick"] = TRUE
+		else
+			data["initialSick"] = FALSE
+
+	return data
 
 /obj/machinery/transhuman/resleever/attackby(obj/item/W as obj, mob/user as mob)
 	src.add_fingerprint(user)

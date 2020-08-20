@@ -163,3 +163,8 @@ if (!(DATUM.datum_flags & DF_ISPROCESSING)) {\
 
 #define START_PROCESSING_POWER_OBJECT(Datum) START_PROCESSING_IN_LIST(Datum, global.processing_power_items)
 #define STOP_PROCESSING_POWER_OBJECT(Datum) STOP_PROCESSING_IN_LIST(Datum, global.processing_power_items)
+
+// Computer login types
+#define LOGIN_TYPE_NORMAL 1
+#define LOGIN_TYPE_AI 2
+#define LOGIN_TYPE_ROBOT 3

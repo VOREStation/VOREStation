@@ -1,12 +1,7 @@
 /obj/structure/closet/secure_closet/cargotech
 	name = "cargo technician's locker"
 	req_access = list(access_cargo)
-	icon_state = "securecargo1"
-	icon_closed = "securecargo"
-	icon_locked = "securecargo1"
-	icon_opened = "securecargoopen"
-	icon_broken = "securecargobroken"
-	icon_off = "securecargooff"
+	closet_appearance = /decl/closet_appearance/secure_closet/cargo
 
 	starts_with = list(
 		/obj/item/clothing/under/rank/cargotech,
@@ -34,12 +29,7 @@
 /obj/structure/closet/secure_closet/quartermaster
 	name = "quartermaster's locker"
 	req_access = list(access_qm)
-	icon_state = "secureqm1"
-	icon_closed = "secureqm"
-	icon_locked = "secureqm1"
-	icon_opened = "secureqmopen"
-	icon_broken = "secureqmbroken"
-	icon_off = "secureqmoff"
+	closet_appearance = /decl/closet_appearance/secure_closet/cargo/qm
 
 	starts_with = list(
 		/obj/item/clothing/under/rank/cargo,
@@ -70,13 +60,8 @@
 
 /obj/structure/closet/secure_closet/miner
 	name = "miner's equipment"
-	icon_state = "miningsec1"
-	icon_closed = "miningsec"
-	icon_locked = "miningsec1"
-	icon_opened = "miningsecopen"
-	icon_broken = "miningsecbroken"
-	icon_off = "miningsecoff"
 	req_access = list(access_mining)
+	closet_appearance = /decl/closet_appearance/secure_closet/mining
 
 	starts_with = list(
 		/obj/item/device/radio/headset/headset_mine,

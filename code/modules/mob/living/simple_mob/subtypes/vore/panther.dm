@@ -5,6 +5,7 @@
 
 	icon_state = "panther"
 	icon_living = "panther"
+	icon_rest = "panther-rest"
 	icon_dead = "panther-dead"
 	icon = 'icons/mob/vore64x64.dmi'
 	vis_height = 64

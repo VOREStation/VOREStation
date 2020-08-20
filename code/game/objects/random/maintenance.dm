@@ -107,7 +107,17 @@ something, make sure it's not in one of the other lists.*/
 				prob(2);/obj/item/device/camera,
 				prob(3);/obj/item/device/pda,
 				prob(3);/obj/item/device/radio/headset,
-				prob(1);/obj/item/pizzavoucher)
+				/* VOREStation Edit Start */
+				prob(2);/obj/item/toy/tennis,
+				prob(2);/obj/item/toy/tennis/red,
+				prob(2);/obj/item/toy/tennis/yellow,
+				prob(2);/obj/item/toy/tennis/green,
+				prob(2);/obj/item/toy/tennis/cyan,
+				prob(2);/obj/item/toy/tennis/blue,
+				prob(2);/obj/item/toy/tennis/purple,
+				prob(1);/obj/item/pizzavoucher
+				/* VOREStation Edit End */
+				)
 
 /obj/random/maintenance/security
 /*Maintenance loot list. This one is for around security areas*/

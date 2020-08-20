@@ -28,7 +28,8 @@
 	//operation_req_access = list(access_hos)
 	damage_absorption = list("brute"=1,"fire"=1,"bullet"=1,"laser"=1,"energy"=1,"bomb"=1)
 	var/am = "d3c2fbcadca903a41161ccc9df9cf948"
-
+	damage_minimum = 0				//Incoming damage lower than this won't actually deal damage. Scrapes shouldn't be a real thing.
+	minimum_penetration = 0		//Incoming damage won't be fully applied if you don't have at least 20. Almost all AP clears this.
 
 /obj/mecha/micro/melee_action(target as obj|mob|turf)
 	if(internal_damage&MECHA_INT_CONTROL_LOST)

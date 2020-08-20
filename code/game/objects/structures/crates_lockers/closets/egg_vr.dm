@@ -4,14 +4,24 @@
 	icon = 'icons/obj/egg_vr.dmi'
 	icon_state = "egg"
 	density = 0 //Just in case there's a lot of eggs, so it doesn't block hallways/areas.
-	icon_closed = "egg"
-	icon_opened = "egg_open"
-	icon_locked = "egg"
+	var/icon_closed = "egg"
+	var/icon_opened = "egg_open"
+	var/icon_locked = "egg"
+	closet_appearance = null
 	open_sound = 'sound/vore/schlorp.ogg'
 	close_sound = 'sound/vore/schlorp.ogg'
 	opened = 0
 	sealed = 0 //Don't touch this.
 	health = 100
+
+/obj/structure/closet/secure_closet/egg/update_icon()
+	if(opened)
+		icon_state = icon_opened
+	else
+		if(sealed)
+			icon_state = icon_locked
+		else
+			icon_state = icon_closed
 
 /obj/structure/closet/secure_closet/egg/attackby(obj/item/weapon/W, mob/user as mob) //This also prevents crew from welding the eggs and making them unable to be opened.
 	if(istype(W, /obj/item/weapon/weldingtool))

@@ -15,9 +15,7 @@
 /obj/structure/closet/emcloset
 	name = "emergency closet"
 	desc = "It's a storage unit for emergency breathmasks and O2 tanks."
-	icon_state = "emergency"
-	icon_closed = "emergency"
-	icon_opened = "emergencyopen"
+	closet_appearance = /decl/closet_appearance/oxygen
 
 /obj/structure/closet/emcloset/Initialize()
 	switch (pickweight(list("small" = 55, "aid" = 25, "tank" = 10, "both" = 10)))
@@ -64,9 +62,7 @@
 /obj/structure/closet/firecloset
 	name = "fire-safety closet"
 	desc = "It's a storage unit for fire-fighting supplies."
-	icon_state = "firecloset"
-	icon_closed = "firecloset"
-	icon_opened = "fireclosetopen"
+	closet_appearance = /decl/closet_appearance/oxygen/fire
 
 	starts_with = list(
 		/obj/item/clothing/suit/fire/firefighter,
@@ -93,21 +89,13 @@
 		/obj/item/weapon/extinguisher = 2,
 		/obj/item/clothing/head/hardhat/red = 2)
 
-/obj/structure/closet/firecloset/update_icon()
-	if(!opened)
-		icon_state = icon_closed
-	else
-		icon_state = icon_opened
-
 /*
  * Tool Closet
  */
 /obj/structure/closet/toolcloset
 	name = "tool closet"
 	desc = "It's a storage unit for tools."
-	icon_state = "toolcloset"
-	icon_closed = "toolcloset"
-	icon_opened = "toolclosetopen"
+	closet_appearance = /decl/closet_appearance/secure_closet/engineering/tools
 
 /obj/structure/closet/toolcloset/Initialize()
 	starts_with = list()
@@ -151,9 +139,7 @@
 /obj/structure/closet/radiation
 	name = "radiation suit closet"
 	desc = "It's a storage unit for rad-protective suits."
-	icon_state = "radsuitcloset"
-	icon_opened = "toolclosetopen"
-	icon_closed = "radsuitcloset"
+	closet_appearance = /decl/closet_appearance/secure_closet/engineering/tools/radiation
 
 	starts_with = list(
 		/obj/item/clothing/suit/radiation = 2,
@@ -166,9 +152,7 @@
 /obj/structure/closet/bombcloset
 	name = "\improper EOD closet"
 	desc = "It's a storage unit for explosion-protective suits."
-	icon_state = "bombsuit"
-	icon_closed = "bombsuit"
-	icon_opened = "bombsuitopen"
+	closet_appearance = /decl/closet_appearance/bomb
 
 	starts_with = list(
 		/obj/item/clothing/suit/bomb_suit,
@@ -186,9 +170,7 @@
 /obj/structure/closet/bombclosetsecurity
 	name = "\improper EOD closet"
 	desc = "It's a storage unit for explosion-protective suits."
-	icon_state = "bombsuitsec"
-	icon_closed = "bombsuitsec"
-	icon_opened = "bombsuitsecopen"
+	closet_appearance = /decl/closet_appearance/bomb/security
 
 	starts_with = list(
 		/obj/item/clothing/suit/bomb_suit/security,
@@ -202,14 +184,13 @@
 /obj/structure/closet/hydrant //wall mounted fire closet
 	name = "fire-safety closet"
 	desc = "It's a storage unit for fire-fighting supplies."
-	icon_state = "hydrant"
-	icon_closed = "hydrant"
-	icon_opened = "hydrant_open"
+	closet_appearance = /decl/closet_appearance/wall/hydrant
 	plane = TURF_PLANE
 	layer = ABOVE_TURF_LAYER
 	anchored = 1
 	density = 0
 	wall_mounted = 1
+	store_mobs = 0
 
 	starts_with = list(
 		/obj/item/clothing/suit/fire/firefighter,
@@ -225,15 +206,8 @@
 /obj/structure/closet/medical_wall //wall mounted medical closet
 	name = "first-aid closet"
 	desc = "It's wall-mounted storage unit for first aid supplies."
-	icon_state = "medical_wall"
-	icon_closed = "medical_wall"
-	icon_opened = "medical_wall_open"
+	closet_appearance = /decl/closet_appearance/wall/medical
 	anchored = 1
 	density = 0
 	wall_mounted = 1
-
-/obj/structure/closet/medical_wall/update_icon()
-	if(!opened)
-		icon_state = icon_closed
-	else
-		icon_state = icon_opened
+	store_mobs = 0

@@ -1,9 +1,7 @@
 /obj/structure/closet/crate/secure/loot
 	name = "abandoned crate"
 	desc = "What could be inside?"
-	icon_state = "securecrate"
-	icon_opened = "securecrateopen"
-	icon_closed = "securecrate"
+	closet_appearance = /decl/closet_appearance/crate/secure
 	var/list/code = list()
 	var/list/lastattempt = list()
 	var/attempts = 10
@@ -65,7 +63,7 @@
 		if(57 to 58)
 			new/obj/item/toy/syndicateballoon(src)
 		if(59 to 60)
-			new/obj/item/weapon/rig(src)
+			new/obj/item/weapon/rig/industrial(src)
 		if(61 to 62)
 			for(var/i = 0, i < 12, ++i)
 				new/obj/item/clothing/head/kitty(src)

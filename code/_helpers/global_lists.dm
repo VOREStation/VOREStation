@@ -25,6 +25,9 @@ var/list/mannequins_
 // Times that players are allowed to respawn ("ckey" = world.time)
 GLOBAL_LIST_EMPTY(respawn_timers)
 
+// Closets have magic appearances
+GLOBAL_LIST_EMPTY(closet_appearances)
+
 // Posters
 var/global/list/poster_designs = list()
 var/global/list/NT_poster_designs = list()
@@ -44,7 +47,7 @@ var/datum/category_collection/underwear/global_underwear = new()
 
 	//Backpacks
 var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel", "Satchel Alt", "Messenger Bag")
-var/global/list/pdachoicelist = list("Default", "Slim", "Old", "Rugged", "Holographic")
+var/global/list/pdachoicelist = list("Default", "Slim", "Old", "Rugged", "Holographic", "Wrist-Bound")
 var/global/list/exclude_jobs = list(/datum/job/ai,/datum/job/cyborg)
 
 // Visual nets
@@ -203,6 +206,12 @@ var/global/list/string_slot_flags = list(
 	for(var/T in paths)
 		var/datum/poster/P = new T
 		NT_poster_designs += P
+
+	//Closet appearances
+	paths = typesof(/decl/closet_appearance)
+	for(var/T in paths)
+		var/decl/closet_appearance/app = new T()
+		GLOB.closet_appearances[T] = app
 
 	// VOREStation Add - Vore Modes!
 	paths = typesof(/datum/digest_mode) - /datum/digest_mode/transform

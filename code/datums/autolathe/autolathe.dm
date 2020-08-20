@@ -71,6 +71,7 @@ var/datum/category_collection/autolathe/autolathe_recipes
 	var/is_stack // Creates multiple of an item if applied to non-stack items
 	var/max_stack
 	var/no_scale
+	var/man_rating = 0
 
 /datum/category_item/autolathe/dd_SortValue()
 	return name

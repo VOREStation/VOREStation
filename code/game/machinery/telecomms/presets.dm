@@ -69,7 +69,7 @@
 	network = "tcommsat"
 	produces_heat = 0
 	autolinkers = list("receiverCent")
-	freq_listening = list(ERT_FREQ, DTH_FREQ)
+	freq_listening = list(ERT_FREQ, DTH_FREQ, SYND_FREQ)
 
 
 //Buses
@@ -108,7 +108,7 @@
 /obj/machinery/telecomms/bus/preset_cent
 	id = "CentCom Bus"
 	network = "tcommsat"
-	freq_listening = list(ERT_FREQ, DTH_FREQ)
+	freq_listening = list(ERT_FREQ, DTH_FREQ, SYND_FREQ)
 	produces_heat = 0
 	autolinkers = list("processorCent", "centcom")
 
@@ -201,7 +201,7 @@
 
 /obj/machinery/telecomms/server/presets/centcomm
 	id = "CentCom Server"
-	freq_listening = list(ERT_FREQ, DTH_FREQ)
+	freq_listening = list(ERT_FREQ, DTH_FREQ, SYND_FREQ)
 	produces_heat = 0
 	autolinkers = list("centcom")
 

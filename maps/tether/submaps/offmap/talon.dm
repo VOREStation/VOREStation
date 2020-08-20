@@ -28,6 +28,10 @@ var/global/list/latejoin_talon = list()
 	on_store_visible_message_1 = "hums and hisses as it moves"
 	on_store_visible_message_2 = "into cryogenic storage."
 
+/obj/machinery/cryopod/robot/talon
+	announce_channel = "Talon"
+	on_store_name = "ITV Talon Robotic Storage"
+
 /obj/effect/landmark/map_data/talon
     height = 2
 
@@ -249,13 +253,8 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 
 /obj/structure/closet/secure_closet/talon_captain
 	name = "talon captain's locker"
-	icon_state = "capsecure1"
-	icon_closed = "capsecure"
-	icon_locked = "capsecure1"
-	icon_opened = "capsecureopen"
-	icon_broken = "capsecurebroken"
-	icon_off = "capsecureoff"
 	req_access = list(access_talon)
+	closet_appearance = /decl/closet_appearance/secure_closet/talon/captain
 
 	starts_with = list(
 		/obj/item/weapon/storage/backpack/dufflebag/captain,
@@ -272,14 +271,8 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 
 /obj/structure/closet/secure_closet/talon_guard
 	name = "talon guard's locker"
-	req_access = list(access_hos)
-	icon_state = "hossecure1"
-	icon_closed = "hossecure"
-	icon_locked = "hossecure1"
-	icon_opened = "hossecureopen"
-	icon_broken = "hossecurebroken"
-	icon_off = "hossecureoff"
 	req_access = list(access_talon)
+	closet_appearance = /decl/closet_appearance/secure_closet/talon/guard
 
 	starts_with = list(
 		/obj/item/clothing/suit/armor/pcarrier/light,
@@ -304,13 +297,8 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 
 /obj/structure/closet/secure_closet/talon_doctor
 	name = "talon doctor's locker"
-	icon_state = "cmosecure1"
-	icon_closed = "cmosecure"
-	icon_locked = "cmosecure1"
-	icon_opened = "cmosecureopen"
-	icon_broken = "cmosecurebroken"
-	icon_off = "cmosecureoff"
 	req_access = list(access_talon)
+	closet_appearance = /decl/closet_appearance/secure_closet/talon/doctor
 
 	starts_with = list(
 		/obj/item/clothing/under/rank/medical,
@@ -320,7 +308,7 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 		/obj/item/clothing/suit/storage/toggle/fr_jacket,
 		/obj/item/clothing/shoes/white,
 		/obj/item/device/radio/headset/talon,
-		/obj/item/clothing/head/helmet/space/void/refurb/medical/talon,
+		/obj/item/clothing/head/helmet/space/void/refurb/medical/alt/talon,
 		/obj/item/clothing/suit/space/void/refurb/medical/talon,
 		/obj/item/weapon/tank/oxygen,
 		/obj/item/device/suit_cooling_unit,
@@ -329,13 +317,8 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 
 /obj/structure/closet/secure_closet/talon_engineer
 	name = "talon engineer's locker"
-	icon_state = "securece1"
-	icon_closed = "securece"
-	icon_locked = "securece1"
-	icon_opened = "secureceopen"
-	icon_broken = "securecebroken"
-	icon_off = "secureceoff"
 	req_access = list(access_talon)
+	closet_appearance = /decl/closet_appearance/secure_closet/talon/engineer
 
 	starts_with = list(
 		/obj/item/clothing/accessory/storage/brown_vest,
@@ -357,6 +340,7 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 /obj/structure/closet/secure_closet/talon_pilot
 	name = "talon pilot's locker"
 	req_access = list(access_talon)
+	closet_appearance = /decl/closet_appearance/secure_closet/talon/pilot
 
 	starts_with = list(
 		/obj/item/weapon/material/knife/tacknife/survival,
@@ -373,8 +357,8 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 		/obj/item/clothing/shoes/boots/jackboots/toeless,
 		/obj/item/device/radio/headset/talon,
 		/obj/item/device/flashlight/color/orange,
-		/obj/item/clothing/head/helmet/space/void/refurb/talon,
-		/obj/item/clothing/suit/space/void/refurb/talon,
+		/obj/item/clothing/head/helmet/space/void/refurb/pilot/talon,
+		/obj/item/clothing/suit/space/void/refurb/pilot/talon,
 		/obj/item/weapon/tank/oxygen,
 		/obj/item/device/suit_cooling_unit,
 		/obj/item/device/gps/explorer/talonpilot
@@ -406,7 +390,7 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 	filedesc = "Helmet Camera Monitoring (Talon)"
 	extended_desc = "This program allows remote access to Talon helmet camera systems."
 	size = 4 //Smaller because limited scope
-	nanomodule_path = /datum/nano_module/camera_monitor/talon_helmet
+	tguimodule_path = /datum/tgui_module/camera/ntos/talon_helmet
 	required_access = access_talon
 
 // Talon ship cameras
@@ -415,23 +399,18 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 	filedesc = "Ship Camera Monitoring (Talon)"
 	extended_desc = "This program allows remote access to the Talon's camera system."
 	size = 10 //Smaller because limited scope
-	nanomodule_path = /datum/nano_module/camera_monitor/talon_ship
+	tguimodule_path = /datum/tgui_module/camera/ntos/talon_ship
 	required_access = access_talon
 
-/datum/nano_module/camera_monitor/talon_ship
+/datum/tgui_module/camera/ntos/talon_ship
 	name = "Talon Ship Camera Monitor"
-/datum/nano_module/camera_monitor/talon_ship/modify_networks_list(var/list/networks)
-	networks.Cut()
-	networks.Add(list(list("tag" = NETWORK_TALON_SHIP, "has_access" = 1)))
-	networks.Add(list(list("tag" = NETWORK_THUNDER, "has_access" = 1))) //THUNDERRRRR
-	return networks
+/datum/nano_module/camera_monitor/talon_ship/New(host)
+	. = ..(host, list(NETWORK_TALON_SHIP, NETWORK_THUNDER))
 
-/datum/nano_module/camera_monitor/talon_helmet
+/datum/tgui_module/camera/ntos/talon_helmet
 	name = "Talon Helmet Camera Monitor"
-/datum/nano_module/camera_monitor/talon_helmet/modify_networks_list(var/list/networks)
-	networks.Cut()
-	networks.Add(list(list("tag" = NETWORK_TALON_HELMETS, "has_access" = 1)))
-	return networks
+/datum/tgui_module/camera/ntos/talon_helmet/New(host)
+	. = ..(host, list(NETWORK_TALON_HELMETS))
 
 /datum/computer_file/program/power_monitor/talon
 	filename = "tpowermonitor"

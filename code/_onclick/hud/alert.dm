@@ -52,11 +52,13 @@
 	animate(alert, transform = matrix(), time = 2.5, easing = CUBIC_EASING)
 
 	if(alert.timeout)
-		spawn(alert.timeout)
-			if(alert.timeout && alerts[category] == alert && world.time >= alert.timeout)
-				clear_alert(category)
+		addtimer(CALLBACK(src, .proc/alert_timeout, alert, category), alert.timeout)
 		alert.timeout = world.time + alert.timeout - world.tick_lag
 	return alert
+
+/mob/proc/alert_timeout(obj/screen/alert/alert, category)
+	if(alert.timeout && alerts[category] == alert && world.time >= alert.timeout)
+		clear_alert(category)
 
 // Proc to clear an existing alert.
 /mob/proc/clear_alert(category)
@@ -455,7 +457,7 @@ so as to remain in compliance with the most up-to-date laws."
 		return
 	var/paramslist = params2list(params)
 	if(paramslist["shift"]) // screen objects don't do the normal Click() stuff so we'll cheat
-		usr << "<span class='boldnotice'>[name]</span> - <span class='info'>[desc]</span>"
+		to_chat(usr,"<span class='boldnotice'>[name]</span> - <span class='info'>[desc]</span>")
 		return
 	if(master)
 		return usr.client.Click(master, location, control, params)

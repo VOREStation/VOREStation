@@ -20,11 +20,11 @@
 	var/nonhuman_prey_swallow_time = 30		// Time in deciseconds to swallow anything else
 	var/emote_time = 60 SECONDS				// How long between stomach emotes at prey
 	var/nutrition_percent = 100				// Nutritional percentage per tick in digestion mode
-	var/digest_brute = 2					// Brute damage per tick in digestion mode
-	var/digest_burn = 2						// Burn damage per tick in digestion mode
+	var/digest_brute = 0.5					// Brute damage per tick in digestion mode
+	var/digest_burn = 0.5					// Burn damage per tick in digestion mode
 	var/immutable = FALSE					// Prevents this belly from being deleted
 	var/escapable = FALSE					// Belly can be resisted out of at any time
-	var/escapetime = 60 SECONDS				// Deciseconds, how long to escape this belly
+	var/escapetime = 20 SECONDS				// Deciseconds, how long to escape this belly
 	var/digestchance = 0					// % Chance of stomach beginning to digest if prey struggles
 	var/absorbchance = 0					// % Chance of stomach beginning to absorb if prey struggles
 	var/escapechance = 0 					// % Chance of prey beginning to escape if prey struggles.
@@ -329,7 +329,7 @@
 			if(!P.absorbed) //This is required first, in case there's a person absorbed and not absorbed in a stomach.
 				total_bulge += P.size_multiplier
 		if(total_bulge >= bulge_size && bulge_size != 0)
-			return("<span class='warning'>[formatted_message]</span><BR>")
+			return("<span class='warning'>[formatted_message]</span>")
 		else
 			return ""
 

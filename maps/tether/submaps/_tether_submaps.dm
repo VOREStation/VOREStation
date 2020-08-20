@@ -150,6 +150,7 @@
 #include "aerostat/surface.dmm"
 #include "space/debrisfield.dmm"
 #include "space/fueldepot.dmm"
+#include "space/guttersite.dmm"
 #endif
 
 #include "beach/_beach.dm"
@@ -233,6 +234,7 @@
 #include "space/_fueldepot.dm"
 #include "space/pois/_templates.dm"
 #include "space/pois/debrisfield_things.dm"
+#include "space/_guttersite.dm"
 /datum/map_template/tether_lateload/away_debrisfield
 	name = "Debris Field - Z1 Space"
 	desc = "The Virgo 3 Debris Field away mission."
@@ -257,6 +259,16 @@
 /datum/map_z_level/tether_lateload/away_fueldepot
 	name = "Away Mission - Fuel Depot"
 	z = Z_LEVEL_FUELDEPOT
+
+/datum/map_template/tether_lateload/away_guttersite
+	name = "Gutter Site - Z1 Space"
+	desc = "The Virgo Erigone Space Away Site."
+	mappath = 'space/guttersite.dmm'
+	associated_map_datum = /datum/map_z_level/tether_lateload/away_guttersite
+
+/datum/map_z_level/tether_lateload/away_guttersite
+	name = "Away Mission - Gutter Site"
+	z = Z_LEVEL_GUTTERSITE
 
 
 //////////////////////////////////////////////////////////////////////////////////////
@@ -448,18 +460,28 @@
 			var/turf/T = get_turf(src)
 			var/datum/gas_mixture/env = T.return_air()
 			if(env)
-				my_mob.minbodytemp = env.temperature * 0.8
-				my_mob.maxbodytemp = env.temperature * 1.2
+				if(my_mob.minbodytemp > env.temperature)
+					my_mob.minbodytemp = env.temperature * 0.8
+				if(my_mob.maxbodytemp < env.temperature)
+					my_mob.maxbodytemp = env.temperature * 1.2
 
 				var/list/gaslist = env.gas
-				my_mob.min_oxy = gaslist["oxygen"] * 0.8
-				my_mob.min_tox = gaslist["phoron"] * 0.8
-				my_mob.min_n2 = gaslist["nitrogen"] * 0.8
-				my_mob.min_co2 = gaslist["carbon_dioxide"] * 0.8
-				my_mob.max_oxy = gaslist["oxygen"] * 1.2
-				my_mob.max_tox = gaslist["phoron"] * 1.2
-				my_mob.max_n2 = gaslist["nitrogen"] * 1.2
-				my_mob.max_co2 = gaslist["carbon_dioxide"] * 1.2
+				if(my_mob.min_oxy)
+					my_mob.min_oxy = gaslist["oxygen"] * 0.8
+				if(my_mob.min_tox)
+					my_mob.min_tox = gaslist["phoron"] * 0.8
+				if(my_mob.min_n2)
+					my_mob.min_n2 = gaslist["nitrogen"] * 0.8
+				if(my_mob.min_co2)
+					my_mob.min_co2 = gaslist["carbon_dioxide"] * 0.8
+				if(my_mob.max_oxy)
+					my_mob.max_oxy = gaslist["oxygen"] * 1.2
+				if(my_mob.max_tox)
+					my_mob.max_tox = gaslist["phoron"] * 1.2
+				if(my_mob.max_n2)
+					my_mob.max_n2 = gaslist["nitrogen"] * 1.2
+				if(my_mob.max_co2)
+					my_mob.max_co2 = gaslist["carbon_dioxide"] * 1.2
 /* //VORESTATION AI TEMPORARY REMOVAL
 		if(guard)
 			my_mob.returns_home = TRUE

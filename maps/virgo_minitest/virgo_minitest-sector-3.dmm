@@ -29,11 +29,7 @@
 /turf/simulated/wall/wood,
 /area/awaymission/wwmines)
 "aj" = (
-/obj/structure/closet{
-	icon_closed = "cabinet_closed";
-	icon_opened = "cabinet_open";
-	icon_state = "cabinet_closed"
-	},
+/obj/structure/closet/cabinet,
 /obj/item/clothing/accessory/jacket,
 /obj/item/clothing/accessory/jacket,
 /obj/item/clothing/head/beanie,
@@ -43,11 +39,7 @@
 /turf/simulated/floor/wood,
 /area/awaymission/wwmines)
 "al" = (
-/obj/structure/closet{
-	icon_closed = "cabinet_closed";
-	icon_opened = "cabinet_open";
-	icon_state = "cabinet_closed"
-	},
+/obj/structure/closet/cabinet,
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel,
 /obj/item/weapon/storage/box/beanbags,
 /turf/simulated/floor/wood,
