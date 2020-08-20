@@ -1,76 +1,63 @@
 /datum/wires/robot
-	random = 1
+	randomize = TRUE
 	holder_type = /mob/living/silicon/robot
 	wire_count = 5
+	proper_name = "Cyborg"
 
-var/const/BORG_WIRE_LAWCHECK = 1
-var/const/BORG_WIRE_MAIN_POWER = 2 // The power wires do nothing whyyyyyyyyyyyyy
-var/const/BORG_WIRE_LOCKED_DOWN = 4
-var/const/BORG_WIRE_AI_CONTROL = 8
-var/const/BORG_WIRE_CAMERA = 16
+/datum/wires/robot/New(atom/_holder)
+	wires = list(WIRE_AI_CONTROL, WIRE_BORG_CAMERA, WIRE_BORG_LAWCHECK, WIRE_BORG_LOCKED)
+	return ..()
 
-/datum/wires/robot/GetInteractWindow()
+/datum/wires/robot/get_status()
 	. = ..()
 	var/mob/living/silicon/robot/R = holder
-	. += show_hint(0x1, R.lawupdate, "The LawSync light is on.", "The LawSync light is off.")
-	. += show_hint(0x2, R.connected_ai, "The AI link light is on.", "The AI link light is off.")
-	. += show_hint(0x4, (!isnull(R.camera) && R.camera.status == 1), "The camera light is on.", "The camera light is off.")
-	. += show_hint(0x8, R.lockdown, "The lockdown light is on.", "The lockdown light is off.")
-	return .
+	. += "The LawSync light is [R.lawupdate ? "on" : "off"]."
+	. += "The AI link light is [R.connected_ai ? "on" : "off"]."
+	. += "The Camera light is [(R.camera && R.camera.status == 1) ? "on" : "off"]."
+	. += "The lockdown light is [R.lockcharge ? "on" : "off"]."
 
-/datum/wires/robot/UpdateCut(var/index, var/mended)
-
+/datum/wires/robot/on_cut(wire, mend)
 	var/mob/living/silicon/robot/R = holder
-	switch(index)
-		if(BORG_WIRE_LAWCHECK) //Cut the law wire, and the borg will no longer receive law updates from its AI
-			if(!mended)
-				if (R.lawupdate == 1)
+	switch(wire)
+		if(WIRE_BORG_LAWCHECK) //Cut the law wire, and the borg will no longer receive law updates from its AI
+			if(!mend)
+				if(R.lawupdate)
 					to_chat(R, "LawSync protocol engaged.")
+					R.lawsync()
 					R.show_laws()
 			else
-				if (R.lawupdate == 0 && !R.emagged)
-					R.lawupdate = 1
+				if(!R.lawupdate && !R.emagged)
+					R.lawupdate = TRUE
 
-		if (BORG_WIRE_AI_CONTROL) //Cut the AI wire to reset AI control
-			if(!mended)
+		if(WIRE_AI_CONTROL) //Cut the AI wire to reset AI control
+			if(!mend)
 				R.disconnect_from_ai()
 
-		if (BORG_WIRE_CAMERA)
+		if(WIRE_BORG_CAMERA)
 			if(!isnull(R.camera) && !R.scrambledcodes)
-				R.camera.status = mended
+				R.camera.status = mend
 
-		if(BORG_WIRE_LAWCHECK)	//Forces a law update if the borg is set to receive them. Since an update would happen when the borg checks its laws anyway, not much use, but eh
-			if (R.lawupdate)
-				R.lawsync()
+		if(WIRE_BORG_LOCKED)
+			R.SetLockdown(!mend)
+	..()
 
-		if(BORG_WIRE_LOCKED_DOWN)
-			R.SetLockdown(!mended)
-
-
-/datum/wires/robot/UpdatePulsed(var/index)
+/datum/wires/robot/on_pulse(wire)
 	var/mob/living/silicon/robot/R = holder
-	switch(index)
-		if (BORG_WIRE_AI_CONTROL) //pulse the AI wire to make the borg reselect an AI
+	switch(wire)
+		if(WIRE_AI_CONTROL) //pulse the AI wire to make the borg reselect an AI
 			if(!R.emagged)
-				var/mob/living/silicon/ai/new_ai = select_active_ai(R)
-				R.connect_to_ai(new_ai)
+				R.connect_to_ai(select_active_ai(R))
 
-		if (BORG_WIRE_CAMERA)
+		if(WIRE_BORG_CAMERA)
 			if(!isnull(R.camera) && R.camera.can_use() && !R.scrambledcodes)
 				R.visible_message("[R]'s camera lense focuses loudly.")
 				to_chat(R, "Your camera lense focuses loudly.")
 
-		if(BORG_WIRE_LOCKED_DOWN)
+		if(WIRE_BORG_LOCKED)
 			R.SetLockdown(!R.lockdown) // Toggle
 
-/datum/wires/robot/CanUse(var/mob/living/L)
+/datum/wires/robot/interactable(mob/user)
 	var/mob/living/silicon/robot/R = holder
 	if(R.wiresexposed)
-		return 1
-	return 0
-
-/datum/wires/robot/proc/IsCameraCut()
-	return wires_status & BORG_WIRE_CAMERA
-
-/datum/wires/robot/proc/LockedCut()
-	return wires_status & BORG_WIRE_LOCKED_DOWN
+		return TRUE
+	return FALSE

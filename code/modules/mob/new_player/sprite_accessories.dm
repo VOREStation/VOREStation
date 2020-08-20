@@ -1126,23 +1126,23 @@
 
 //Skrell 'hairstyles'
 	skr_tentacle_veryshort
-		name = "Skrell Very Short Tentacles"
-		icon_state = "skrell_hair_veryshort"
+		name = "Skrell Short Tentacles"
+		icon_state = "skrell_hair_short"
 		species_allowed = list(SPECIES_SKRELL)
 		gender = MALE
 
 	skr_tentacle_short
-		name = "Skrell Short Tentacles"
-		icon_state = "skrell_hair_short"
-		species_allowed = list(SPECIES_SKRELL)
-
-	skr_tentacle_average
 		name = "Skrell Average Tentacles"
 		icon_state = "skrell_hair_average"
 		species_allowed = list(SPECIES_SKRELL)
 
-	skr_tentacle_verylong
+	skr_tentacle_average
 		name = "Skrell Long Tentacles"
+		icon_state = "skrell_hair_long"
+		species_allowed = list(SPECIES_SKRELL)
+
+	skr_tentacle_verylong
+		name = "Skrell Very Long Tentacles"
 		icon_state = "skrell_hair_verylong"
 		species_allowed = list(SPECIES_SKRELL)
 		gender = FEMALE
@@ -1303,6 +1303,35 @@
 		name = "Teshari Mushroom"
 		icon_state = "teshari_mushroom"
 		species_allowed = list(SPECIES_TESHARI)
+
+//Tesh things ported from Ark Station
+
+	teshari_twies
+		name = "Teshari Twies"
+		icon_state = "teshari_twies"
+		species_allowed = list(SPECIES_TESHARI)
+
+	teshari_backstrafe
+		name = "Teshari Backstrafe"
+		icon_state = "teshari_backstrafe"
+		species_allowed = list(SPECIES_TESHARI)
+
+	teshari_longway
+		name = "Teshari Long way"
+		icon_state = "teshari_longway"
+		species_allowed = list(SPECIES_TESHARI)
+
+	teshari_tree
+		name = "Teshari Tree"
+		icon_state = "teshari_tree"
+		species_allowed = list(SPECIES_TESHARI)
+
+	teshari_fluffymohawk
+		name = "Teshari Fluffy Mohawk"
+		icon_state = "teshari_fluffymohawk"
+		species_allowed = list(SPECIES_TESHARI)
+
+//bald tesh hair for FBP use
 
 	teshari_bald
 		name = "Bald (use with FBP)"

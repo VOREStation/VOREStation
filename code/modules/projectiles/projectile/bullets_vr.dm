@@ -19,3 +19,11 @@
 	damage = 10
 	taser_effect = 1
 	agony = 100
+
+/obj/item/projectile/bullet/magnetic/flechette/small/khi
+	name = "small carbyne flechette"
+	icon_state = "flechette"
+	fire_sound = 'sound/weapons/rapidslice.ogg'
+	damage = 18
+	armor_penetration = 100
+	penetrating = 10

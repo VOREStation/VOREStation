@@ -34,6 +34,36 @@
 				/obj/effect/decal/cleanable/dirt,
 				/obj/effect/decal/remains/robot)
 
+/obj/random/crate //Random 'standard' crates for variety in maintenance spawns.
+	name = "random crate"
+	desc = "This is a random crate"
+	icon = 'icons/obj/closets/bases/crate.dmi'
+	icon_state = "base"
+
+/obj/random/crate/item_to_spawn() //General crates, excludes some more high-grade and medical brands
+	return pick (/obj/structure/closet/crate/plastic,
+				/obj/structure/closet/crate/aether,
+				/obj/structure/closet/crate/centauri,
+				/obj/structure/closet/crate/einstein,
+				/obj/structure/closet/crate/focalpoint,
+				/obj/structure/closet/crate/gilthari,
+				/obj/structure/closet/crate/grayson,
+				/obj/structure/closet/crate/nanotrasen,
+				/obj/structure/closet/crate/nanothreads,
+				/obj/structure/closet/crate/oculum,
+				/obj/structure/closet/crate/ward,
+				/obj/structure/closet/crate/xion,
+				/obj/structure/closet/crate/zenghu,
+				/obj/structure/closet/crate/allico,
+				/obj/structure/closet/crate/carp,
+				/obj/structure/closet/crate/galaksi,
+				/obj/structure/closet/crate/thinktronic,
+				/obj/structure/closet/crate/ummarcar,
+				/obj/structure/closet/crate/unathi,
+				/obj/structure/closet/crate/hydroponics,
+				/obj/structure/closet/crate/engineering,
+				/obj/structure/closet/crate)
+
 /obj/random/obstruction //Large objects to block things off in maintenance
 	name = "random obstruction"
 	desc = "This is a random obstruction."

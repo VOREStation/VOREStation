@@ -64,6 +64,8 @@
 
 	pixel_x = -16
 	old_x = -16
+	icon_expected_width = 64
+	icon_expected_height = 64
 	meat_amount = 5
 
 /mob/living/simple_mob/animal/space/alien/queen
@@ -95,6 +97,8 @@
 
 	pixel_x = -16
 	old_x = -16
+	icon_expected_width = 64
+	icon_expected_height = 64
 
 /mob/living/simple_mob/animal/space/alien/queen/empress/mother
 	name = "alien mother"
@@ -111,6 +115,8 @@
 
 	pixel_x = -32
 	old_x = -32
+	icon_expected_width = 96
+	icon_expected_height = 96
 
 /mob/living/simple_mob/animal/space/alien/death()
 	..()

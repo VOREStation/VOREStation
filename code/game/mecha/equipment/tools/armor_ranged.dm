@@ -9,6 +9,8 @@
 	var/deflect_coeff = 1.15
 	var/damage_coeff = 0.8
 
+	step_delay = 1
+
 	equip_type = EQUIP_HULL
 
 /obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster/handle_projectile_contact(var/obj/item/projectile/Proj, var/inc_damage)

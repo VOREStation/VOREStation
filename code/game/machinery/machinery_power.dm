@@ -42,8 +42,7 @@
 		stat &= ~NOPOWER
 	else
 		stat |= NOPOWER
-	. = (stat != oldstat)
-	return
+	return (stat != oldstat)
 
 // Get the amount of power this machine will consume each cycle.  Override by experts only!
 /obj/machinery/proc/get_power_usage()

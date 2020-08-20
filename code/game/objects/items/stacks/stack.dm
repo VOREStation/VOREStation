@@ -364,10 +364,7 @@
 		return ..()
 
 /obj/item/stack/proc/combine_in_loc()
-	for(var/obj/item/stack/S in loc)
-		if(S == src)
-			continue
-		S.transfer_to(src) // them to us, so if we're being pulled, we can keep being pulled
+	return //STUBBED for now, as it seems to randomly delete stacks
 
 /obj/item/stack/dropped(atom/old_loc)
 	. = ..()

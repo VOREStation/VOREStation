@@ -64,6 +64,8 @@ What is the naming convention for planes or layers?
 	#define ABOVE_UTILITY		2.5 // Above stuff like pipes and wires
 #define TURF_PLANE				-45 // Turfs themselves, most flooring
 	#define WATER_FLOOR_LAYER	2.0 // The 'bottom' of water tiles.
+	#define BUILTIN_DECAL_LAYER 2.01 // For floors that automatically add decal overlays
+	#define MAPPER_DECAL_LAYER	2.02 // For intentionally placed floor decal overlays
 	#define UNDERWATER_LAYER	2.5 // Anything on this layer will render under the water layer.
 	#define WATER_LAYER			3.0 // Layer for water overlays.
 	#define ABOVE_TURF_LAYER	3.1	// Snow and wallmounted/floormounted equipment
@@ -113,6 +115,8 @@ What is the naming convention for planes or layers?
 
 	#define HUD_LAYER				20	// Above lighting, but below obfuscation. For in-game HUD effects (whereas SCREEN_LAYER is for abstract/OOC things like inventory slots)
 	#define SCREEN_LAYER			22	// Mob HUD/effects layer
+
+#define PLANE_STATUS			2 //Status Indicators that show over mobs' heads when certain things like stuns affect them.
 
 #define PLANE_ADMIN1			3 //Purely for shenanigans (below lighting)
 #define PLANE_PLANETLIGHTING	4 //Lighting on planets

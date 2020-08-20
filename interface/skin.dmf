@@ -880,6 +880,31 @@ menu "menu"
 		category = "&Icons"
 		can-check = true
 		saved-params = "is-checked"
+	elem
+		name = "&Scaling"
+		command = ""
+		saved-params = "is-checked"
+	elem "nearest-neighbor"
+		name = "&Nearest Neighbor"
+		command = ".winset \"mapwindow.map.zoom-mode=distort\""
+		category = "&Scaling"
+		can-check = true
+		group = "scale"
+		saved-params = "is-checked"
+	elem "point-sample"
+		name = "&Point Sampling"
+		command = ".winset \"mapwindow.map.zoom-mode=normal\""
+		category = "&Scaling"
+		can-check = true
+		group = "scale"
+		saved-params = "is-checked"
+	elem "blur"
+		name = "&Blur"
+		command = ".winset \"mapwindow.map.zoom-mode=blur\""
+		category = "&Scaling"
+		can-check = true
+		group = "scale"
+		saved-params = "is-checked"
 	elem 
 		name = "&Help"
 		command = ""
@@ -1120,6 +1145,7 @@ window "mainwindow"
 		anchor1 = none
 		anchor2 = none
 		is-visible = false
+		auto-format = false
 		saved-params = ""
 	elem "hotkey_toggle"
 		type = BUTTON

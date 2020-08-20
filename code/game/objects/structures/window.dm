@@ -424,6 +424,11 @@
 /obj/structure/window/proc/is_fulltile()
 	return fulltile
 
+/obj/structure/window/is_between_turfs(var/turf/origin, var/turf/target)
+	if(fulltile)
+		return TRUE
+	return ..()
+
 //This proc is used to update the icons of nearby windows. It should not be confused with update_nearby_tiles(), which is an atmos proc!
 /obj/structure/window/proc/update_nearby_icons()
 	update_icon()

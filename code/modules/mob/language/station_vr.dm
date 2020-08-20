@@ -110,6 +110,21 @@
 		"ver", "stv", "pro", "ski"
 	)
 
+/datum/language/drudakar
+	name = LANGUAGE_DRUDAKAR
+	desc = "The native language of the D'Rudak'Ar, a loosely tied together community of dragons and demi-dragons based in the Diul system. Features include many hard consonants and rolling 'r's."
+	speech_verb = "gaos"
+	ask_verb = "gaos"
+	exclaim_verb = "GAOS"
+	whisper_verb = "gaos"
+	colour = "drudakar"
+	key = "K"
+	syllables = list(
+		"gok", "rha", "rou", "gao", "do", "ra", "bo", "lah", "draz", "khi", "zah", "lah", "ora", "ille",
+		"ghlas", "ghlai", "tyur", "vah", "bao", "raag", "drag", "zhi", "dahl", "tiyr", "vahl", "nyem",
+		"roar", "hyaa", "ma", "ha", "ya", "shi", "yo", "go"
+	)
+
 /datum/language/unathi
 	flags = 0
 /datum/language/tajaran

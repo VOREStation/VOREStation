@@ -111,6 +111,18 @@
 	if(prob(10))
 		add_overlay("asteroid[rand(0,9)]")
 
+/turf/simulated/floor/holofloor/bmarble
+	name = "marble"
+	icon = 'icons/turf/flooring/misc.dmi'
+	icon_state = "darkmarble"
+	initial_flooring = /decl/flooring/bmarble
+
+/turf/simulated/floor/holofloor/wmarble
+	name = "marble"
+	icon = 'icons/turf/flooring/misc.dmi'
+	icon_state = "lightmarble"
+	initial_flooring = /decl/flooring/wmarble
+
 /obj/structure/holostool
 	name = "stool"
 	desc = "Apply butt."

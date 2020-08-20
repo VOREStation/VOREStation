@@ -202,7 +202,9 @@
 		var/obj/belly/destination_belly = destination.loc
 		var/mob/living/telenommer = destination_belly.owner
 		if(istype(telenommer))
-			if(!isliving(teleatom))
+			if(istype(teleatom, /obj/machinery) || istype(teleatom, /obj/structure))
+				return 0
+			else if(!isliving(teleatom))
 				return 1
 			else
 				var/mob/living/telemob = teleatom

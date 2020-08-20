@@ -8,8 +8,8 @@
 	var/shuttle_tag  // Used to coordinate data in shuttle controller.
 	var/hacked = 0   // Has been emagged, no access restrictions.
 
-	var/ui_template = "shuttle_control_console.tmpl"
-
+	var/skip_act = FALSE
+	var/tgui_subtemplate = "ShuttleControlConsoleDefault"
 
 /obj/machinery/computer/shuttle_control/attack_hand(user as mob)
 	if(..(user))
@@ -19,9 +19,9 @@
 		to_chat(user, "<span class='warning'>Access Denied.</span>")
 		return 1
 
-	ui_interact(user)
+	tgui_interact(user)
 
-/obj/machinery/computer/shuttle_control/proc/get_ui_data(var/datum/shuttle/autodock/shuttle)
+/obj/machinery/computer/shuttle_control/proc/shuttlerich_tgui_data(var/datum/shuttle/autodock/shuttle)
 	var/shuttle_state
 	switch(shuttle.moving_status)
 		if(SHUTTLE_IDLE) shuttle_state = "idle"
@@ -29,7 +29,7 @@
 		if(SHUTTLE_INTRANSIT) shuttle_state = "in_transit"
 
 	var/shuttle_status
-	switch (shuttle.process_state)
+	switch(shuttle.process_state)
 		if(IDLE_STATE)
 			var/cannot_depart = shuttle.current_location.cannot_depart(shuttle)
 			if (shuttle.in_use)
@@ -55,7 +55,8 @@
 		"can_launch" = shuttle.can_launch(),
 		"can_cancel" = shuttle.can_cancel(),
 		"can_force" = shuttle.can_force(),
-		"docking_codes" = shuttle.docking_codes
+		"docking_codes" = shuttle.docking_codes,
+		"subtemplate" = tgui_subtemplate,
 	)
 
 // This is a subset of the actual checks; contains those that give messages to the user.
@@ -74,59 +75,54 @@
 		return FALSE
 	return TRUE
 
-/obj/machinery/computer/shuttle_control/Topic(href, href_list)
-	if((. = ..()))
+/obj/machinery/computer/shuttle_control/tgui_act(action, list/params)
+	if(..())
+		return TRUE
+	if(skip_act)
 		return
 
-	usr.set_machine(src)
-	src.add_fingerprint(usr)
+	add_fingerprint(usr)
 
 	var/datum/shuttle/autodock/shuttle = SSshuttles.shuttles[shuttle_tag]
-	if(!shuttle)
-		to_chat(usr, "<span class='warning'>Unable to establish link with the shuttle.</span>")
-	return handle_topic_href(shuttle, href_list, usr)
-
-/obj/machinery/computer/shuttle_control/proc/handle_topic_href(var/datum/shuttle/autodock/shuttle, var/list/href_list, var/user)
 	if(!istype(shuttle))
-		return TOPIC_NOACTION
+		to_chat(usr, "<span class='warning'>Unable to establish link with the shuttle.</span>")
+		return TRUE
 
-	if(href_list["move"])
-		if(can_move(shuttle, user))
-			shuttle.launch(src)
-			return TOPIC_REFRESH
-		return TOPIC_HANDLED
+	switch(action)
+		if("move")
+			if(can_move(shuttle, usr))
+				shuttle.launch(src)
+			return TRUE
 
-	if(href_list["force"])
-		if(can_move(shuttle, user))
-			shuttle.force_launch(src)
-			return TOPIC_REFRESH
-		return TOPIC_HANDLED
+		if("force")
+			if(can_move(shuttle, usr))
+				shuttle.force_launch(src)
+			return TRUE
 
-	if(href_list["cancel"])
-		shuttle.cancel_launch(src)
-		return TOPIC_REFRESH
+		if("cancel")
+			shuttle.cancel_launch(src)
+			return TRUE
 
-	if(href_list["set_codes"])
-		var/newcode = input("Input new docking codes", "Docking codes", shuttle.docking_codes) as text|null
-		if (newcode && CanInteract(usr, global.default_state))
-			shuttle.set_docking_codes(uppertext(newcode))
-		return TOPIC_REFRESH
+		if("set_codes")
+			var/newcode = input("Input new docking codes", "Docking codes", shuttle.docking_codes) as text|null
+			if(newcode && !..())
+				shuttle.set_docking_codes(uppertext(newcode))
+			return TRUE
+
+/obj/machinery/computer/shuttle_control/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "ShuttleControl", "[shuttle_tag] Shuttle Control") // 470, 360
+		ui.open()
 
 // We delegate populating data to another proc to make it easier for overriding types to add their data.
-/obj/machinery/computer/shuttle_control/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/computer/shuttle_control/tgui_data(mob/user)
 	var/datum/shuttle/autodock/shuttle = SSshuttles.shuttles[shuttle_tag]
-	if (!istype(shuttle))
+	if(!istype(shuttle))
 		to_chat(user, "<span class='warning'>Unable to establish link with the shuttle.</span>")
 		return
 
-	var/list/data = get_ui_data(shuttle)
-
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, ui_template, "[shuttle_tag] Shuttle Control", 470, 360)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(1)
+	return shuttlerich_tgui_data(shuttle)
 
 // Call to set the linked shuttle tag; override to add behaviour to shuttle tag changes
 /obj/machinery/computer/shuttle_control/proc/set_shuttle_tag(var/new_shuttle_tag)

@@ -44,6 +44,20 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 
 
 /obj/item/device/sleevemate/attack(mob/living/M, mob/living/user)
+	// Gather potential subtargets
+	var/list/choices = list(M)
+	if(istype(M))
+		for(var/belly in M.vore_organs)
+			var/obj/belly/B = belly
+			for(var/mob/living/carbon/human/H in B) // I do want an istype
+				choices += H
+	// Subtargets
+	if(choices.len > 1)
+		var/mob/living/new_M = input(user, "Ambiguous target. Please validate target:", "Target Validation", M) as null|anything in choices
+		if(!new_M || !M.Adjacent(user))
+			return
+		M = new_M
+
 	if(ishuman(M))
 		scan_mob(M, user)
 	else

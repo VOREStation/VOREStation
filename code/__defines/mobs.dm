@@ -399,7 +399,9 @@
 
 #define VIS_CLOAKED			23
 
-#define VIS_COUNT			23 //Must be highest number from above.
+#define VIS_STATUS			24
+
+#define VIS_COUNT			24 //Must be highest number from above.
 
 //Some mob icon layering defines
 #define BODY_LAYER		-100
@@ -430,3 +432,5 @@
 #define EXAMINE_SKIPFEET			0x0100
 
 #define MAX_NUTRITION	5000 //VOREStation Edit
+
+#define FAKE_INVIS_ALPHA_THRESHOLD 127 // If something's alpha var is at or below this number, certain things will pretend it is invisible.

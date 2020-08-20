@@ -140,7 +140,18 @@
 
 // Cold stuff.
 /mob/living/simple_mob/get_cold_protection()
-	return cold_resist
+	. = cold_resist
+	. = 1 - . // Invert from 1 = immunity to 0 = immunity.
+
+	// Doing it this way makes multiplicative stacking not get out of hand, so two modifiers that give 0.5 protection will be combined to 0.75 in the end.
+	for(var/thing in modifiers)
+		var/datum/modifier/M = thing
+		if(!isnull(M.cold_protection))
+			. *= 1 - M.cold_protection
+
+	// Code that calls this expects 1 = immunity so we need to invert again.
+	. = 1 - .
+	. = min(., 1.0)
 
 
 // Fire stuff. Not really exciting at the moment.
@@ -154,7 +165,18 @@
 	return
 
 /mob/living/simple_mob/get_heat_protection()
-	return heat_resist
+	. = heat_resist
+	. = 1 - . // Invert from 1 = immunity to 0 = immunity.
+
+	// Doing it this way makes multiplicative stacking not get out of hand, so two modifiers that give 0.5 protection will be combined to 0.75 in the end.
+	for(var/thing in modifiers)
+		var/datum/modifier/M = thing
+		if(!isnull(M.heat_protection))
+			. *= 1 - M.heat_protection
+
+	// Code that calls this expects 1 = immunity so we need to invert again.
+	. = 1 - .
+	. = min(., 1.0)
 
 // Electricity
 /mob/living/simple_mob/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0, var/def_zone = null)
@@ -170,7 +192,18 @@
 	s.start()
 
 /mob/living/simple_mob/get_shock_protection()
-	return shock_resist
+	. = shock_resist
+	. = 1 - . // Invert from 1 = immunity to 0 = immunity.
+
+	// Doing it this way makes multiplicative stacking not get out of hand, so two modifiers that give 0.5 protection will be combined to 0.75 in the end.
+	for(var/thing in modifiers)
+		var/datum/modifier/M = thing
+		if(!isnull(M.siemens_coefficient))
+			. *= M.siemens_coefficient
+
+	// Code that calls this expects 1 = immunity so we need to invert again.
+	. = 1 - .
+	. = min(., 1.0)
 
 // Shot with taser/stunvolver
 /mob/living/simple_mob/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone, var/used_weapon=null)
@@ -218,17 +251,29 @@
 // Armor
 /mob/living/simple_mob/getarmor(def_zone, attack_flag)
 	var/armorval = armor[attack_flag]
-	if(!armorval)
-		return 0
-	else
-		return armorval
+	if(isnull(armorval))
+		armorval = 0
+
+	for(var/thing in modifiers)
+		var/datum/modifier/M = thing
+		var/modifier_armor = LAZYACCESS(M.armor_percent, attack_flag)
+		if(modifier_armor)
+			armorval += modifier_armor
+
+	return armorval
 
 /mob/living/simple_mob/getsoak(def_zone, attack_flag)
 	var/armorval = armor_soak[attack_flag]
-	if(!armorval)
-		return 0
-	else
-		return armorval
+	if(isnull(armorval))
+		armorval = 0
+
+	for(var/thing in modifiers)
+		var/datum/modifier/M = thing
+		var/modifier_armor = LAZYACCESS(M.armor_flat, attack_flag)
+		if(modifier_armor)
+			armorval += modifier_armor
+
+	return armorval
 
 // Lightning
 /mob/living/simple_mob/lightning_act()

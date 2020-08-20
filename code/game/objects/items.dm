@@ -609,7 +609,7 @@ GLOBAL_LIST_EMPTY(blood_overlays_by_type)
 	// Already got one
 	if(blood_overlay)
 		return
-	
+
 	// Already cached
 	if(GLOB.blood_overlays_by_type[type])
 		blood_overlay = GLOB.blood_overlays_by_type[type]
@@ -619,7 +619,7 @@ GLOBAL_LIST_EMPTY(blood_overlays_by_type)
 	var/image/blood = image(icon = 'icons/effects/blood.dmi', icon_state = "itemblood") // Needs to be a new one each time since we're slicing it up with filters.
 	blood.filters += filter(type = "alpha", icon = icon(icon, icon_state)) // Same, this filter is unique for each blood overlay per type
 	GLOB.blood_overlays_by_type[type] = blood
-	
+
 	// And finally
 	blood_overlay = blood
 

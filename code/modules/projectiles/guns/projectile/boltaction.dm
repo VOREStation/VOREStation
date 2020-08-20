@@ -2,7 +2,9 @@
 
 /obj/item/weapon/gun/projectile/shotgun/pump/rifle
 	name = "bolt action rifle"
-	desc = "A reproduction of an almost ancient weapon design from the early 20th century. It's still popular among hunters and collectors due to its reliability. Uses 7.62mm rounds."
+	desc = "The Hedberg-Hammarstrom Volsung is a modern interpretation of an almost ancient weapon design. The model is popular among hunters and collectors due to its reliability. Uses 7.62mm rounds."
+	description_fluff = "Sif’s largest home-grown firearms manufacturer, the Hedberg-Hammarstrom company offers a range of high-quality, high-cost hunting rifles and shotguns designed with the Sivian wilderness - and its wildlife - in mind. \
+	The company operates just one production plant in Kalmar, but their weapons have found popularity on garden worlds as far afield as the Tajaran homeworld due to their excellent build quality, precision, and stopping power."
 	item_state = "boltaction"
 	icon_state = "boltaction"
 	fire_sound = 'sound/weapons/Gunshot_generic_rifle.ogg'
@@ -50,7 +52,9 @@
 //Lever actions are the same thing, but bigger.
 /obj/item/weapon/gun/projectile/shotgun/pump/rifle/lever
 	name = "lever-action rifle"
-	desc = "A reproduction of an almost ancient weapon design from the 19th century. This one uses a lever-action to move new rounds into the chamber. Uses 7.62mm rounds."
+	desc = "The Hedberg-Hammarstrom Edda is the latest version of an almost ancient weapon design from the 19th century, popular with some due to its simplistic design. This one uses a lever-action to move new rounds into the chamber. Uses 7.62mm rounds."
+	description_fluff = "Sif’s largest home-grown firearms manufacturer, the Hedberg-Hammarstrom company offers a range of high-quality, high-cost hunting rifles and shotguns designed with the Sivian wilderness - and its wildlife - in mind. \
+	The company operates just one production plant in Kalmar, but their weapons have found popularity on garden worlds as far afield as the Tajaran homeworld due to their excellent build quality, precision, and stopping power."
 	item_state = "leveraction"
 	icon_state = "leveraction"
 	max_shells = 5

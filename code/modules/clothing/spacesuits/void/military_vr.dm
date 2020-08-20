@@ -13,14 +13,14 @@
 	slowdown = 1.5
 	armor = list(melee = 60, bullet = 35, laser = 35, energy = 15, bomb = 55, bio = 100, rad = 20)
 
-/obj/item/clothing/head/helmet/space/void/merc/prototype
-	name = "\improper prototype voidsuit helmet"
-	desc = "A special helmet designed for work in a hazardous, low pressure environment. This is an advanced model commonly used by militaries and emergency response."
+/obj/item/clothing/head/helmet/space/void/security/prototype
+	name = "\improper security prototype voidsuit helmet"
+	desc = "A special helmet designed for work in a hazardous, low pressure environment. It's a little ostentatious, but it gets the job done."
 	icon_state = "hosproto"
 
-/obj/item/clothing/suit/space/void/merc/prototype
-	name = "\improper prototype voidsuit"
-	desc = "A special suit that protects against hazardous, low pressure environments. This is an advanced model commonly used by militaries and emergency response."
+/obj/item/clothing/suit/space/void/security/prototype
+	name = "\improper security prototype voidsuit"
+	desc = "A special suit that protects against hazardous, low pressure environments. It's a little ostentatious, but it gets the job done."
 	icon_state = "hosproto_void"
 
 /obj/item/clothing/head/helmet/space/void/merc/odst

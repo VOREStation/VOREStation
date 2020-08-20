@@ -10,6 +10,9 @@
 // UPDATE 06.04.2018
 // The emag thing wasn't working as intended, manually overwrote it.
 
+#define BLAST_DOOR_CRUSH_DAMAGE 40
+#define SHUTTER_CRUSH_DAMAGE 0 // VOREStation Edit - Shutter damage 0.
+
 /obj/machinery/door/blast
 	name = "Blast Door"
 	desc = "That looks like it doesn't open easily."
@@ -22,6 +25,10 @@
 	var/icon_state_opening = null
 	var/icon_state_closed = null
 	var/icon_state_closing = null
+	var/open_sound = 'sound/machines/blastdooropen.ogg'
+	var/close_sound = 'sound/machines/blastdoorclose.ogg'
+	var/damage = BLAST_DOOR_CRUSH_DAMAGE
+	var/multiplier = 1 // The multiplier for how powerful our YEET is.
 
 	closed_layer = ON_WINDOW_LAYER // Above airlocks when closed
 	var/id = 1.0
@@ -59,9 +66,13 @@
 	SSradiation.resistance_cache.Remove(get_turf(src))
 	return
 
-// Has to be in here, comment at the top is older than the emag_act code on doors proper
+// Proc: emag_act()
+// Description: Emag action to allow blast doors to double their yeet distance and speed.
 /obj/machinery/door/blast/emag_act()
-	return -1
+	if(!emagged)
+		emagged = 1
+		multiplier = 2 // Haha emag go yeet
+		return 1
 
 // Blast doors are triggered remotely, so nobody is allowed to physically influence it.
 /obj/machinery/door/blast/allowed(mob/M)
@@ -72,6 +83,7 @@
 // Description: Opens the door. No checks are done inside this proc.
 /obj/machinery/door/blast/proc/force_open()
 	src.operating = 1
+	playsound(src, open_sound, 100, 1)
 	flick(icon_state_opening, src)
 	src.density = 0
 	update_nearby_tiles()
@@ -85,7 +97,12 @@
 // Parameters: None
 // Description: Closes the door. No checks are done inside this proc.
 /obj/machinery/door/blast/proc/force_close()
+	// Blast door turf checks. We do this before the door closes to prevent it from failing after the door is closed, because obv a closed door will block any adjacency checks.
+	var/turf/T = get_turf(src)
+	var/list/yeet_turfs = T.CardinalTurfs(TRUE)
+
 	src.operating = 1
+	playsound(src, close_sound, 100, 1)
 	src.layer = closed_layer
 	flick(icon_state_closing, src)
 	src.density = 1
@@ -94,6 +111,14 @@
 	src.set_opacity(1)
 	sleep(15)
 	src.operating = 0
+	
+	// Blast door crushing.
+	for(var/turf/turf in locs)
+		for(var/atom/movable/AM in turf)
+			if(AM.airlock_crush(damage))
+				if(LAZYLEN(yeet_turfs))
+					AM.throw_at(get_edge_target_turf(src, get_dir(src, pick(yeet_turfs))), (rand(1,3) * multiplier), (rand(2,4) * multiplier)) // YEET.
+				take_damage(damage*0.2)
 
 // Proc: force_toggle()
 // Parameters: None
@@ -296,3 +321,7 @@ obj/machinery/door/blast/regular/open
 	icon_state_closed = "shutter1"
 	icon_state_closing = "shutterc1"
 	icon_state = "shutter1"
+	damage = SHUTTER_CRUSH_DAMAGE
+
+#undef BLAST_DOOR_CRUSH_DAMAGE
+#undef SHUTTER_CRUSH_DAMAGE

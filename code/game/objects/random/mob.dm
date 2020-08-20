@@ -33,7 +33,9 @@
 				prob(10);/mob/living/simple_mob/animal/passive/mouse,
 				prob(10);/mob/living/simple_mob/animal/passive/yithian,
 				prob(10);/mob/living/simple_mob/animal/passive/tindalos,
+				prob(10);/mob/living/simple_mob/animal/passive/pillbug,
 				prob(10);/mob/living/simple_mob/animal/passive/dog/tamaskan,
+				prob(10);/mob/living/simple_mob/animal/passive/dog/brittany,
 				prob(3);/mob/living/simple_mob/animal/passive/bird/parrot,
 				prob(1);/mob/living/simple_mob/animal/passive/crab)
 
@@ -69,10 +71,12 @@
 
 /obj/random/mob/sif/item_to_spawn()
 	return pick(prob(30);/mob/living/simple_mob/animal/sif/diyaab,
+				prob(20);/mob/living/simple_mob/animal/passive/hare,
 				prob(15);/mob/living/simple_mob/animal/passive/crab,
 				prob(15);/mob/living/simple_mob/animal/passive/penguin,
 				prob(15);/mob/living/simple_mob/animal/passive/mouse,
 				prob(15);/mob/living/simple_mob/animal/passive/dog/tamaskan,
+				prob(10);/mob/living/simple_mob/animal/sif/siffet,
 				prob(2);/mob/living/simple_mob/animal/giant_spider/frost,
 				prob(1);/mob/living/simple_mob/animal/space/goose,
 				prob(20);/mob/living/simple_mob/animal/passive/crab)
@@ -88,6 +92,7 @@
 
 /obj/random/mob/sif/peaceful/item_to_spawn()
 	return pick(prob(30);/mob/living/simple_mob/animal/sif/diyaab,
+				prob(20);/mob/living/simple_mob/animal/passive/hare,
 				prob(15);/mob/living/simple_mob/animal/passive/crab,
 				prob(15);/mob/living/simple_mob/animal/passive/penguin,
 				prob(15);/mob/living/simple_mob/animal/passive/mouse,
@@ -102,6 +107,8 @@
 /obj/random/mob/sif/hostile/item_to_spawn()
 	return pick(prob(22);/mob/living/simple_mob/animal/sif/savik,
 				prob(33);/mob/living/simple_mob/animal/giant_spider/frost,
+				prob(20);/mob/living/simple_mob/animal/sif/frostfly,
+				prob(10);/mob/living/simple_mob/animal/sif/tymisian,
 				prob(45);/mob/living/simple_mob/animal/sif/shantak)
 
 /obj/random/mob/sif/kururak
@@ -328,6 +335,12 @@
 				/mob/living/simple_mob/animal/sif/duck,
 				/mob/living/simple_mob/animal/sif/duck,
 				/mob/living/simple_mob/animal/sif/duck
+			),
+			prob(15);list(
+				/mob/living/simple_mob/animal/passive/hare,
+				/mob/living/simple_mob/animal/passive/hare,
+				/mob/living/simple_mob/animal/passive/hare,
+				/mob/living/simple_mob/animal/passive/hare
 			),
 			prob(10);list(
 				/mob/living/simple_mob/animal/sif/shantak/retaliate,

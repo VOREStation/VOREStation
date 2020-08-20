@@ -39,7 +39,7 @@
 // Research Director Alt Titles
 /datum/alt_title/research_supervisor
 	title = "Research Supervisor"
-	
+
 //////////////////////////////////
 //			Scientist
 //////////////////////////////////
@@ -105,13 +105,15 @@
 	outfit_type = /decl/hierarchy/outfit/job/science/xenobiologist
 	job_description = "A Xenobiologist studies esoteric lifeforms, usually in the relative safety of their lab. They attempt to find ways to benefit \
 						from the byproducts of these lifeforms, and their main subject at present is the Giant Slime."
+/*VR edit start
 	alt_titles = list("Xenobotanist" = /datum/alt_title/xenobot)
 
-// Xenibiologist Alt Titles
+ Xenibiologist Alt Titles
 /datum/alt_title/xenobot
 	title = "Xenobotanist"
 	title_blurb = "A Xenobotanist grows and cares for a variety of abnormal, custom made, and frequently dangerous plant life. When the products of these plants \
 					is both safe and beneficial to the station, they may choose to introduce it to the rest of the crew."
+VR edit end*/
 
 //////////////////////////////////
 //			Roboticist

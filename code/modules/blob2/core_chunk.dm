@@ -61,11 +61,12 @@
 
 /obj/item/weapon/blobcore_chunk/proc/get_carrier(var/atom/target)
 	var/atom/A = target ? target.loc : src
-	if(!istype(A, /mob/living))
-		A = get_carrier(A)
 
 	if(isturf(A) || isarea(A))	// Something has gone horribly wrong if the second is true.
 		return FALSE	// No mob is carrying us.
+
+	if(!istype(A, /mob/living))
+		A = get_carrier(A)
 
 	return A
 

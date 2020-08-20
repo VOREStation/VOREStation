@@ -8,7 +8,10 @@ vchat.db*
 *.dmb
 *.lk
 *.backup
+*.before
 *.pyc
+*.pid
+data
 data/
 cfg/
 

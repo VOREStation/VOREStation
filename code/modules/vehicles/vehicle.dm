@@ -292,7 +292,7 @@
 	cell = null
 	powercheck()
 
-/obj/vehicle/proc/RunOver(var/mob/living/carbon/human/H)
+/obj/vehicle/proc/RunOver(var/mob/living/M)
 	return		//write specifics for different vehicles
 
 //-------------------------------------------

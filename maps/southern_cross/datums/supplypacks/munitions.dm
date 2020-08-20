@@ -10,7 +10,7 @@
  			/obj/item/ammo_magazine/clip/c762/hunter = 6
  			)
  	cost = 50
- 	containertype = /obj/structure/closet/crate/secure/weapon
+ 	containertype = /obj/structure/closet/crate/secure/hedberg
  	containername = "Hunting Rifle crate"
  	access = access_explorer
 
@@ -20,7 +20,7 @@
  			/obj/item/weapon/gun/energy/phasegun = 2,
  			)
  	cost = 25
- 	containertype = /obj/structure/closet/crate/secure/weapon
+ 	containertype = /obj/structure/closet/crate/secure/ward
  	containername = "Phase Carbine crate"
  	access = access_explorer
 
@@ -30,6 +30,6 @@
  			/obj/item/weapon/gun/energy/phasegun/rifle = 2,
  			)
  	cost = 50
- 	containertype = /obj/structure/closet/crate/secure/weapon
+ 	containertype = /obj/structure/closet/crate/secure/ward
  	containername = "Phase Rifle crate"
  	access = access_explorer

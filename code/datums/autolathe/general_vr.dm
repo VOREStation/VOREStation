@@ -30,6 +30,11 @@
 	name = "metamorphic glass"
 	path =/obj/item/weapon/reagent_containers/food/drinks/metaglass
 	is_stack = TRUE
+	
+/datum/category_item/autolathe/general/metaglass_pint
+	name = "metamorphic pint glass"
+	path =/obj/item/weapon/reagent_containers/food/drinks/metaglass/metapint
+	is_stack = TRUE
 
 /datum/category_item/autolathe/general/drinkingglass_carafe
 	name = "glass carafe"

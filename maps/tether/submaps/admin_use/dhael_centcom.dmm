@@ -3607,7 +3607,7 @@
 /obj/effect/floor_decal/corner/grey/diagonal{
 	dir = 4
 	},
-/obj/machinery/cooker/cereal,
+/obj/machinery/appliance/mixer/cereal,
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
 	},
@@ -3635,7 +3635,7 @@
 /obj/effect/floor_decal/corner/grey/diagonal{
 	dir = 4
 	},
-/obj/machinery/cooker/oven,
+/obj/machinery/appliance/cooker/oven,
 /obj/machinery/camera/network/crescent{
 	dir = 10
 	},
@@ -3647,7 +3647,7 @@
 /obj/effect/floor_decal/corner/grey/diagonal{
 	dir = 4
 	},
-/obj/machinery/cooker/grill,
+/obj/machinery/appliance/cooker/grill,
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
 	},
@@ -3656,7 +3656,7 @@
 /obj/effect/floor_decal/corner/grey/diagonal{
 	dir = 4
 	},
-/obj/machinery/cooker/fryer,
+/obj/machinery/appliance/cooker/fryer,
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
 	},
@@ -4499,9 +4499,6 @@
 /obj/item/weapon/storage/belt/security/tactical,
 /obj/structure/closet{
 	desc = "It's a storage unit for standard-issue attire.";
-	icon_closed = "syndicate1";
-	icon_opened = "syndicate1open";
-	icon_state = "syndicate1";
 	name = "tactical equipment"
 	},
 /obj/effect/floor_decal/industrial/outline/grey,
@@ -4523,9 +4520,6 @@
 /obj/item/weapon/storage/belt/security/tactical,
 /obj/structure/closet{
 	desc = "It's a storage unit for standard-issue attire.";
-	icon_closed = "syndicate1";
-	icon_opened = "syndicate1open";
-	icon_state = "syndicate1";
 	name = "tactical equipment"
 	},
 /obj/effect/floor_decal/industrial/outline/grey,
@@ -14568,7 +14562,7 @@
 /obj/effect/floor_decal/corner/grey/diagonal{
 	dir = 4
 	},
-/obj/machinery/cooker/cereal,
+/obj/machinery/appliance/mixer/cereal,
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
 	},
@@ -14577,7 +14571,7 @@
 /obj/effect/floor_decal/corner/grey/diagonal{
 	dir = 4
 	},
-/obj/machinery/cooker/oven,
+/obj/machinery/appliance/cooker/oven,
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
 	},
@@ -14586,7 +14580,7 @@
 /obj/effect/floor_decal/corner/grey/diagonal{
 	dir = 4
 	},
-/obj/machinery/cooker/grill,
+/obj/machinery/appliance/cooker/grill,
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
 	},
@@ -14595,7 +14589,7 @@
 /obj/effect/floor_decal/corner/grey/diagonal{
 	dir = 4
 	},
-/obj/machinery/cooker/fryer,
+/obj/machinery/appliance/cooker/fryer,
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
 	},

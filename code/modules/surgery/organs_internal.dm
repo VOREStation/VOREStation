@@ -164,6 +164,9 @@
 	if (!..())
 		return 0
 
+	if(!istype(tool))
+		return 0
+
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
 	if(!(affected && !(affected.robotic >= ORGAN_ROBOT)))
@@ -227,6 +230,9 @@
 	if (!..())
 		return 0
 
+	if(!istype(tool))
+		return 0
+
 	target.op_stage.current_organ = null
 
 	var/list/removable_organs = list()
@@ -281,7 +287,7 @@
 	var/obj/item/organ/internal/O = tool
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
-	if(!affected)
+	if(!affected || !istype(O))
 		return
 
 	var/organ_compatible
@@ -361,6 +367,9 @@
 	if (!..())
 		return 0
 
+	if(!istype(tool))
+		return 0
+
 	target.op_stage.current_organ = null
 
 	var/list/removable_organs = list()
@@ -415,6 +424,9 @@
 
 /datum/surgery_step/internal/rip_organ/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if (!..())
+		return 0
+
+	if(!istype(tool))
 		return 0
 
 	target.op_stage.current_organ = null

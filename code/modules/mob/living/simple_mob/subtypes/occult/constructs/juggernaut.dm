@@ -45,7 +45,7 @@
 				"rad" = 100)
 
 /mob/living/simple_mob/construct/juggernaut/Life()
-	weakened = 0
+	SetWeakened(0)
 	..()
 
 /mob/living/simple_mob/construct/juggernaut/bullet_act(var/obj/item/projectile/P)

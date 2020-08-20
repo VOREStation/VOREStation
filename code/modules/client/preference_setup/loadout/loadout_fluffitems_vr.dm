@@ -75,7 +75,7 @@
 	character_name = list("Aronai Sieyes")
 
 /datum/gear/fluff/aronai_ccmedjacket
-	path = /obj/item/clothing/suit/storage/service/sifguard/medical/command
+	path = /obj/item/clothing/suit/storage/solgov/service/sifguard/medical/command
 	display_name  = "centcom medical jacket"
 	description = "A medical jacket straight from Central Command."
 	slot = slot_wear_suit
@@ -182,12 +182,6 @@
 	display_name = "James' Disk"
 	ckeywhitelist = list("cockatricexl")
 	character_name = list("James Holder")
-
-/datum/gear/fluff/jasmine_implant
-	path = /obj/item/weapon/implanter/reagent_generator/jasmine
-	display_name = "Jasmine's Implant"
-	ckeywhitelist = list("cameron653")
-	character_name = list("Jasmine Lizden")
 
 /datum/gear/fluff/diana_robe
 	path = /obj/item/clothing/suit/fluff/purp_robes
@@ -310,11 +304,6 @@
 	allowed_roles = list("Explorer")
 
 //  G CKEYS
-/datum/gear/fluff/eldi_implant
-	path = /obj/item/weapon/implanter/reagent_generator/eldi
-	display_name = "Eldi's Implant"
-	ckeywhitelist = list("gowst")
-	character_name = list("Eldi Moljir")
 
 //  H CKEYS
 /datum/gear/fluff/lauren_medal
@@ -332,12 +321,6 @@
 /datum/gear/fluff/belle_sizegun
 	path = /obj/item/weapon/gun/energy/sizegun
 	display_name = "Belle's Sizegun"
-	ckeywhitelist = list("hottokeeki")
-	character_name = list("Belle Day")
-
-/datum/gear/fluff/belle_implant
-	path = /obj/item/weapon/implanter/reagent_generator/belle
-	display_name = "Belle's Implant"
 	ckeywhitelist = list("hottokeeki")
 	character_name = list("Belle Day")
 
@@ -553,12 +536,6 @@
 	ckeywhitelist = list("kiwidaninja")
 	character_name = list("Chakat Taiga")
 
-/datum/gear/fluff/rischi_implant
-	path = /obj/item/weapon/implanter/reagent_generator/rischi
-	display_name = "Rischi's Implant"
-	ckeywhitelist = list("konabird")
-	character_name = list("Rischi")
-
 /datum/gear/fluff/ashley_medal
 	path = /obj/item/clothing/accessory/medal/nobel_science/fluff/ashley
 	display_name = "Ashley's Medal"
@@ -579,12 +556,6 @@
 	slot = slot_back
 	ckeywhitelist = list("luminescentring")
 	character_name = list("Briana Moore")
-
-/datum/gear/fluff/savannah_implant
-	path = /obj/item/weapon/implanter/reagent_generator/savannah
-	display_name = "Savannah's Implant"
-	ckeywhitelist = list("lycanthorph")
-	character_name = list("Savannah Dixon")
 
 //  M CKEYS
 /datum/gear/fluff/phi_box
@@ -660,6 +631,12 @@
 	display_name = "Damon's Unity Medal"
 	ckeywhitelist = list("nickcrazy")
 	character_name = list("Damon Bones Xrim")
+
+/datum/gear/fluff/NDF_Medical_jacket
+	path = /obj/item/clothing/under/solgov/utility/sifguard/medical
+	display_name = "Ridge's Medical Jacket"
+	ckeywhitelist = list("nickcrazy")
+	character_name = list("Ridge")
 
 /datum/gear/fluff/damon_jacket
 	path = /obj/item/clothing/suit/storage/toggle/bomber/bombersec
@@ -836,12 +813,6 @@
 	ckeywhitelist = list("silvertalismen")
 	character_name = list("Tasy Ruffles")
 
-/datum/gear/fluff/evian_implant
-	path = /obj/item/weapon/implanter/reagent_generator/evian
-	display_name = "Evian's Implant"
-	ckeywhitelist = list("silvertalismen")
-	character_name = list("Evian")
-
 /datum/gear/fluff/fortune_backpack
 	path = /obj/item/weapon/storage/backpack/satchel/fluff/swat43bag
 	display_name = "Fortune's Backpack"
@@ -854,12 +825,6 @@
 	display_name = "Alexis' Cane"
 	ckeywhitelist = list("stobarico")
 	character_name = list("Alexis Bloise")
-
-/datum/gear/fluff/roiz_implant
-	path = /obj/item/weapon/implanter/reagent_generator/roiz
-	display_name = "Roiz's Implant"
-	ckeywhitelist = list("spoopylizz")
-	character_name = list("Roiz Lizden")
 
 /datum/gear/fluff/roiz_coat
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/roiz
@@ -1014,12 +979,6 @@
 	ckeywhitelist = list("vorrarkul")
 	character_name = list("Theodora Lindt")
 
-/datum/gear/fluff/theodora_implant
-	path = /obj/item/weapon/implanter/reagent_generator/vorrarkul
-	display_name = "Theodora's Implant"
-	ckeywhitelist = list("vorrarkul")
-	character_name = list("Theodora Lindt")
-
 /datum/gear/fluff/kaitlyn_plush
 	path = /obj/item/toy/plushie/mouse/fluff
 	display_name = "Kaitlyn's Mouse Plush"
@@ -1096,12 +1055,6 @@
 	ckeywhitelist = list("wickedtemp")
 	character_name = list("Chakat Tempest Venosare")
 
-/datum/gear/fluff/tempest_implant
-	path = /obj/item/weapon/implanter/reagent_generator/tempest
-	display_name = "Tempest's Implant"
-	ckeywhitelist = list("wickedtemp")
-	character_name = list("Chakat Tempest Venosare")
-
 //  X CKEYS
 /datum/gear/fluff/penelope_box
 	path = /obj/item/weapon/storage/box/fluff/penelope
@@ -1114,6 +1067,19 @@
 	display_name = "Ali's Unity Medal"
 	ckeywhitelist = list("xonkon")
 	character_name = list("Ali")
+
+/datum/gear/fluff/zena_suit
+	path = /obj/item/clothing/suit/space/void/engineering/zena
+	display_name = "Zena's Shroud Suit"
+	ckeywhitelist = list("xonkon")
+	character_name = list("Zena Aviv")
+
+/datum/gear/fluff/zena_helmet
+	path = /obj/item/clothing/head/helmet/space/void/engineering/zena
+	display_name = "Zena's Shroud Helmet"
+	ckeywhitelist = list("xonkon")
+	character_name = list("Zena Aviv")
+
 
 //  Y CKEYS
 

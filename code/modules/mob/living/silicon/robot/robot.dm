@@ -124,7 +124,7 @@
 		camera = new /obj/machinery/camera(src)
 		camera.c_tag = real_name
 		camera.replace_networks(list(NETWORK_DEFAULT,NETWORK_ROBOTS))
-		if(wires.IsIndexCut(BORG_WIRE_CAMERA))
+		if(wires.is_cut(WIRE_BORG_CAMERA))
 			camera.status = 0
 
 	init()
@@ -536,7 +536,7 @@
 				to_chat(user, "You close the cover.")
 				opened = 0
 				updateicon()
-			else if(wiresexposed && wires.IsAllCut())
+			else if(wiresexposed && wires.is_all_cut())
 				//Cell is out, wires are exposed, remove MMI, produce damaged chassis, baleet original mob.
 				if(!mmi)
 					to_chat(user, "\The [src] has no brain to remove.")
@@ -932,7 +932,7 @@
 
 /mob/living/silicon/robot/proc/SetLockdown(var/state = 1)
 	// They stay locked down if their wire is cut.
-	if(wires.LockedCut())
+	if(wires.is_cut(WIRE_BORG_LOCKED))
 		state = 1
 	if(state)
 		throw_alert("locked", /obj/screen/alert/locked)
@@ -1140,3 +1140,19 @@
 	if(module_active && istype(module_active,/obj/item/weapon/gripper))
 		var/obj/item/weapon/gripper/G = module_active
 		G.drop_item_nm()
+
+/mob/living/silicon/robot/disable_spoiler_vision()
+	if(sight_mode & (BORGMESON|BORGMATERIAL|BORGXRAY)) // Whyyyyyyyy have seperate defines.
+		var/i = 0
+		// Borg inventory code is very . . interesting and as such, unequiping a specific item requires jumping through some (for) loops.
+		var/current_selection_index = get_selected_module() // Will be 0 if nothing is selected.
+		for(var/thing in list(module_state_1, module_state_2, module_state_3))
+			i++
+			if(istype(thing, /obj/item/borg/sight))
+				var/obj/item/borg/sight/S = thing
+				if(S.sight_mode & (BORGMESON|BORGMATERIAL|BORGXRAY))
+					select_module(i)
+					uneq_active()
+
+		if(current_selection_index) // Select what the player had before if possible.
+			select_module(current_selection_index)
