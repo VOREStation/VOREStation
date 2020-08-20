@@ -264,6 +264,39 @@
 "aM" = (
 /turf/simulated/floor/wood,
 /area/talon/decktwo/cap_room)
+"aN" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atm{
+	pixel_x = 32;
+	step_x = 0
+	},
+/turf/simulated/floor/tiled/eris/steel,
+/area/talon/decktwo/central_hallway)
+"aO" = (
+/obj/machinery/airlock_sensor{
+	dir = 4;
+	pixel_x = -28;
+	req_one_access = list(301)
+	},
+/obj/machinery/embedded_controller/radio/airlock/airlock_controller{
+	dir = 8;
+	id_tag = "talon_aft_solar";
+	pixel_x = 28;
+	req_one_access = list(301)
+	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/effect/map_helper/airlock/sensor/chamber_sensor,
+/obj/machinery/atmospherics/unary/vent_pump/high_volume/aux{
+	dir = 1
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/talon/maintenance/decktwo_aft)
 "aP" = (
 /obj/machinery/alarm/talon{
 	dir = 4;
@@ -277,9 +310,35 @@
 "aQ" = (
 /turf/simulated/floor/wood,
 /area/talon/decktwo/bar)
-"aV" = (
+"aR" = (
+/obj/structure/handrail{
+	dir = 1
+	},
+/turf/simulated/floor/hull/airless,
+/area/talon/maintenance/decktwo_solars)
+"aS" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9;
+	pixel_y = 0
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/obj/machinery/vending/food{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/eris/steel/gray_perforated,
+/area/talon/decktwo/bar)
+"aT" = (
 /obj/machinery/vending/coffee{
 	dir = 1
+	},
+/turf/simulated/floor/tiled/eris/steel/gray_perforated,
+/area/talon/decktwo/bar)
+"aU" = (
+/obj/machinery/vending/dinnerware{
+	dir = 1;
+	icon_state = "dinnerware"
 	},
 /turf/simulated/floor/tiled/eris/steel/gray_perforated,
 /area/talon/decktwo/bar)
@@ -607,13 +666,6 @@
 	},
 /turf/simulated/open,
 /area/talon/decktwo/central_hallway)
-"cn" = (
-/obj/machinery/vending/dinnerware{
-	dir = 1;
-	icon_state = "dinnerware"
-	},
-/turf/simulated/floor/tiled/eris/steel/gray_perforated,
-/area/talon/decktwo/bar)
 "cp" = (
 /obj/structure/lattice,
 /obj/structure/cable/green{
@@ -2296,19 +2348,6 @@
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/decktwo_aft)
-"rz" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9;
-	pixel_y = 0
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
-	},
-/obj/machinery/vending/food{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/eris/steel/gray_perforated,
-/area/talon/decktwo/bar)
 "rA" = (
 /obj/structure/cable/yellow{
 	d1 = 2;
@@ -2340,26 +2379,6 @@
 	},
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/decktwo/central_hallway)
-"rJ" = (
-/obj/machinery/airlock_sensor{
-	dir = 4;
-	pixel_x = -28;
-	req_one_access = list(301)
-	},
-/obj/machinery/atmospherics/unary/vent_pump/aux{
-	dir = 1;
-	icon_state = "map_vent_aux"
-	},
-/obj/machinery/embedded_controller/radio/airlock/airlock_controller{
-	dir = 8;
-	id_tag = "talon_aft_solar";
-	pixel_x = 28;
-	req_one_access = list(301)
-	},
-/obj/effect/map_helper/airlock/atmos/chamber_pump,
-/obj/effect/map_helper/airlock/sensor/chamber_sensor,
-/turf/simulated/floor/plating/eris/under,
-/area/talon/maintenance/decktwo_aft)
 "rQ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -13412,7 +13431,7 @@ aa
 aa
 aa
 pi
-pi
+aR
 ap
 ap
 ap
@@ -14552,7 +14571,7 @@ As
 dX
 ay
 Rm
-Gq
+aN
 Gq
 Af
 Gq
@@ -14588,7 +14607,7 @@ gC
 gT
 gS
 nj
-rJ
+aO
 pt
 DT
 pi
@@ -15127,7 +15146,7 @@ WS
 VZ
 bI
 Uf
-rz
+aS
 aw
 cl
 cz
@@ -15269,7 +15288,7 @@ Zn
 UY
 aQ
 vB
-aV
+aT
 aw
 cl
 cz
@@ -15411,7 +15430,7 @@ UY
 ZF
 bJ
 bP
-cn
+aU
 aw
 ck
 cy
@@ -15683,8 +15702,8 @@ aa
 aa
 aa
 aa
-aa
-aa
+pi
+aR
 ax
 ax
 ax
@@ -15825,8 +15844,8 @@ aa
 aa
 aa
 aa
-aa
-aa
+pi
+pi
 pi
 pi
 pi
@@ -15967,8 +15986,8 @@ aa
 aa
 aa
 aa
-aa
-aa
+pi
+pi
 pi
 pi
 pi
