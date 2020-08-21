@@ -102,7 +102,11 @@
 	var/obj/item/organ/external/T = organs_by_name[BP_TORSO]
 	if(T && T.robotic >= ORGAN_ROBOT)
 		src.verbs += /mob/living/carbon/human/proc/self_diagnostics
+<<<<<<< HEAD
 		src.verbs += /mob/living/carbon/human/proc/reagent_purge //VOREStation Add
+=======
+		src.verbs += /mob/living/carbon/human/proc/setmonitor_state
+>>>>>>> 42e2305... Gives FBP's a proc to change their monitor display without using a mask item. (#7452)
 		var/datum/robolimb/R = all_robolimbs[T.model]
 		synthetic = R
 		return synthetic

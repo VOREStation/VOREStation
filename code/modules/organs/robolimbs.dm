@@ -45,6 +45,7 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	var/company = "Unbranded"                            // Shown when selecting the limb.
 	var/desc = "A generic unbranded robotic prosthesis." // Seen when examining a limb.
 	var/icon = 'icons/mob/human_races/robotic.dmi'       // Icon base to draw from.
+	var/monitor_icon = 'icons/mob/monitor_icons.dmi'     // Where it draws the monitor icon from.
 	var/unavailable_at_chargen                           // If set, not available at chargen.
 	var/unavailable_to_build							 // If set, can't be constructed.
 	var/lifelike										 // If set, appears organic.

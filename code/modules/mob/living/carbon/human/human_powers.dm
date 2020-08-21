@@ -347,3 +347,28 @@
 		to_chat(src, "<span class='critical'>Your regeneration is interrupted!</span>")
 		adjust_nutrition(-75)
 		active_regen = FALSE
+
+/mob/living/carbon/human/proc/setmonitor_state()
+	set name = "Set monitor display"
+	set desc = "Set your monitor display"
+	set category = "IC"
+	if(stat)
+		to_chat(src,"<span class='warning'>You must be awake and standing to perform this action!</span>")
+		return
+	var/obj/item/organ/external/head/E = organs_by_name[BP_HEAD]
+	if(!E)
+		to_chat(src,"<span class='warning'>You don't seem to have a head!</span>")
+		return
+	var/datum/robolimb/robohead = all_robolimbs[E.model]
+	if(!robohead.monitor_styles || !robohead.monitor_icon)
+		to_chat(src,"<span class='warning'>Your head doesn't have a monitor or it doens't support to be changed!</span>")
+		return
+	var/list/states
+	if(!states)
+		states = params2list(robohead.monitor_styles)
+	var/choice = input("Select a screen icon.") as null|anything in states
+	if(choice)
+		E.eye_icon_location = robohead.monitor_icon
+		E.eye_icon = states[choice]
+		to_chat(src,"<span class='warning'>You set your monitor to display [choice]!</span>")
+		update_icons_body()
