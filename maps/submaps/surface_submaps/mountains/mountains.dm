@@ -254,12 +254,14 @@
 	cost = 40
 	discard_prob = 50
 
+/*
 /datum/map_template/surface/mountains/normal/crashed_ufo_frigate //VOREStation Edit
 	name = "Crashed UFO Frigate"
 	desc = "A (formerly) flying saucer that is now embedded into the mountain, yet the combat protocols still seem to be running..."
 	mappath = 'maps/submaps/surface_submaps/mountains/crashed_ufo_frigate.dmm'
 	cost = 60
 	discard_prob = 50
+*/		//VOREStation Removal
 
 /datum/map_template/surface/mountains/normal/Scave1 //VOREStation Edit
 	name = "Spider Cave 1"
@@ -343,7 +345,7 @@
 	cost = 20
 	fixed_orientation = TRUE
 
-/datum/map_template/surface/mountains/deep/excavation1
+/datum/map_template/surface/mountains/normal/excavation1 //VOREStation Edit
 	name = "Excavation Site"
 	desc = "An abandoned mining site."
 	mappath = 'maps/submaps/surface_submaps/mountains/excavation1.dmm'
