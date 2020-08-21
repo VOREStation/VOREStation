@@ -1192,11 +1192,8 @@
 #include "code\game\objects\items\weapons\bones.dm"
 #include "code\game\objects\items\weapons\candle.dm"
 #include "code\game\objects\items\weapons\canes.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\game\objects\items\weapons\cards_ids_vr.dm"
-=======
 #include "code\game\objects\items\weapons\chewables.dm"
->>>>>>> 4a56ad2... Merge pull request #7449 from Cerebulon/vendEnhance:polaris.dme
 #include "code\game\objects\items\weapons\cigs_lighters.dm"
 #include "code\game\objects\items\weapons\clown_items.dm"
 #include "code\game\objects\items\weapons\cosmetics.dm"
