@@ -784,19 +784,13 @@
 	if (species.body_temperature == null)
 		return //this species doesn't have metabolic thermoregulation
 
-<<<<<<< HEAD
-	// FBPs will overheat, prosthetic limbs are fine.
-	if(robobody_count)
-		if(!nif || !nif.flag_check(NIF_O_HEATSINKS,NIF_FLAGS_OTHER)) //VOREStation Edit - NIF heatsinks
-			bodytemperature += round(robobody_count*1.75)
-=======
 	// FBPs will overheat when alive, prosthetic limbs are fine.
 	if(stat != DEAD && robobody_count)
-		bodytemperature += round(robobody_count*1.15)
+		if(!nif || !nif.flag_check(NIF_O_HEATSINKS,NIF_FLAGS_OTHER)) //VOREStation Edit - NIF heatsinks prevent the base heat increase per tick if installed.
+			bodytemperature += round(robobody_count*1.15)
 		var/obj/item/organ/internal/robotic/heatsink/HS = internal_organs_by_name[O_HEATSINK]
-		if(!HS || HS.is_broken())
+		if(!HS || HS.is_broken()) // However, NIF Heatsinks will not compensate for a core FBP component (your heatsink) being lost.
 			bodytemperature += round(robobody_count*0.5)
->>>>>>> 85d1338... FBP Internal Components (#7445)
 
 	var/body_temperature_difference = species.body_temperature - bodytemperature
 

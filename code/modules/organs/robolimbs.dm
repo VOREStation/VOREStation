@@ -51,12 +51,8 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	var/skin_tone										 // If set, applies skin tone rather than part color Overrides color.
 	var/skin_color										 // If set, applies skin color rather than part color.
 	var/blood_color = "#030303"
-<<<<<<< HEAD
-	var/list/species_cannot_use = list(SPECIES_TESHARI, SPECIES_PROMETHEAN, SPECIES_DIONA, SPECIES_XENOCHIMERA)	 //VOREStation Edit
-=======
 	var/blood_name = "oil"
-	var/list/species_cannot_use = list(SPECIES_TESHARI, SPECIES_PROMETHEAN, SPECIES_DIONA)
->>>>>>> 85d1338... FBP Internal Components (#7445)
+	var/list/species_cannot_use = list(SPECIES_TESHARI, SPECIES_PROMETHEAN, SPECIES_DIONA, SPECIES_XENOCHIMERA)  //VOREStation Edit
 	var/list/species_alternates = list(SPECIES_TAJ = "Unbranded - Tajaran", SPECIES_UNATHI = "Unbranded - Unathi")				 //"Species Name" = "Robolimb Company" , List, when initialized, will become "Species Name" = RobolimbDatum, used for alternate species sprites.
 	var/list/monitor_styles			 		 			 //If empty, the model of limbs offers a head compatible with monitors.
 	var/parts = BP_ALL						 			 //Defines what parts said brand can replace on a body.
