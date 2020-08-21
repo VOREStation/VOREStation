@@ -47,5 +47,12 @@
 		/obj/item/weapon/tank/emergency/oxygen/double
 	)
 
+/obj/item/weapon/storage/box/photon_capsules
+	name = "box of photon capsules"
+	desc = "A box containing 7 photon capsules, for when you want somewhere <B>extremely</B> lit up."
+	icon = 'icons/obj/storage_vr.dmi'
+	icon_state = "photoncapsule"
+	starts_with = list(/obj/item/weapon/grenade/light = 7)
+
 /obj/item/weapon/storage/secure/briefcase/trashmoney
 	starts_with = list(/obj/item/weapon/spacecash/c200 = 10)

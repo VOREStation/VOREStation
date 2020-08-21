@@ -18,6 +18,8 @@
 		EQUIPMENT("Defense Equipment - Razor Drone Deployer",	/obj/item/weapon/grenade/spawnergrenade/manhacks/station/locked,	1000),
 		EQUIPMENT("Defense Equipment - Sentry Drone Deployer",	/obj/item/weapon/grenade/spawnergrenade/ward,						1500),
 		EQUIPMENT("Defense Equipment - Smoke Bomb",				/obj/item/weapon/grenade/smokebomb,									100),
+		new /datum/data/mining_equipment("Exploration Armor - Heavy Exploration Hardsuit",/obj/item/weapon/rig/exploration/equipped,		400),
+		new /datum/data/mining_equipment("Box of 7 Photon Capsules",	/obj/item/weapon/storage/box/photon_capsules,						50),
 		EQUIPMENT("Durasteel Fishing Rod",						/obj/item/weapon/material/fishing_rod/modern/strong,				7500),
 		EQUIPMENT("Fishing Net",								/obj/item/weapon/material/fishing_net,								500),
 		EQUIPMENT("Titanium Fishing Rod",						/obj/item/weapon/material/fishing_rod/modern,						1000),

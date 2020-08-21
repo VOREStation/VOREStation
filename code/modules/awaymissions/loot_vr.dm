@@ -303,6 +303,7 @@
 					/obj/item/device/flashlight/flare, \
 					/obj/item/weapon/flame/candle, \
 					/obj/item/weapon/storage/box/matches, \
+					/obj/item/weapon/grenade/light, \
 					/obj/item/device/flashlight/glowstick, \
 					/obj/item/device/flashlight/glowstick/red, \
 					/obj/item/device/flashlight/glowstick/blue, \

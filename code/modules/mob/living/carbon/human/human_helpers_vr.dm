@@ -7,3 +7,10 @@ var/static/icon/ingame_hud_med_vr = icon('icons/mob/hud_med_vr.dmi')
 	hud_list[STATUS_R_HUD]    = gen_hud_image(ingame_hud_vr, src, plane = PLANE_CH_STATUS_R)
 	hud_list[BACKUP_HUD]      = gen_hud_image(ingame_hud_vr, src, plane = PLANE_CH_BACKUP)
 	hud_list[VANTAG_HUD]      = gen_hud_image(ingame_hud_vr, src, plane = PLANE_CH_VANTAG)
+
+// This checks to see if the person has a taur body.
+/mob/living/carbon/human/proc/is_taur()
+	if (istype(src, /mob/living/carbon/human) && src.tail_style && istype(src.tail_style, /datum/sprite_accessory/tail/taur))
+		return src.tail_style
+	else
+		return 0
