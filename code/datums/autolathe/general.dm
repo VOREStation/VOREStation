@@ -6,37 +6,48 @@
 	name = "water-cooler bottle"
 	path =/obj/item/weapon/reagent_containers/glass/cooler_bottle
 
-/datum/category_item/autolathe/general/drinkingglass_square
+/datum/category_item/autolathe/general/drinkingglass
+	is_stack = TRUE
+
+/datum/category_item/autolathe/general/drinkingglass/square
 	name = "half-pint glass"
 	path =/obj/item/weapon/reagent_containers/food/drinks/glass2/square
 
-/datum/category_item/autolathe/general/drinkingglass_rocks
+/datum/category_item/autolathe/general/drinkingglass/rocks
 	name = "rocks glass"
 	path =/obj/item/weapon/reagent_containers/food/drinks/glass2/rocks
 
-/datum/category_item/autolathe/general/drinkingglass_shake
+/datum/category_item/autolathe/general/drinkingglass/shake
 	name = "milkshake glass"
 	path =/obj/item/weapon/reagent_containers/food/drinks/glass2/shake
 
-/datum/category_item/autolathe/general/drinkingglass_cocktail
+/datum/category_item/autolathe/general/drinkingglass/cocktail
 	name = "cocktail glass"
 	path =/obj/item/weapon/reagent_containers/food/drinks/glass2/cocktail
 
-/datum/category_item/autolathe/general/drinkingglass_shot
+/datum/category_item/autolathe/general/drinkingglass/shot
 	name = "shot glass"
 	path =/obj/item/weapon/reagent_containers/food/drinks/glass2/shot
 
-/datum/category_item/autolathe/general/drinkingglass_pint
+/datum/category_item/autolathe/general/drinkingglass/pint
 	name = "pint glass"
 	path =/obj/item/weapon/reagent_containers/food/drinks/glass2/pint
 
-/datum/category_item/autolathe/general/drinkingglass_mug
+/datum/category_item/autolathe/general/drinkingglass/mug
 	name = "glass mug"
 	path =/obj/item/weapon/reagent_containers/food/drinks/glass2/mug
 
-/datum/category_item/autolathe/general/drinkingglass_wine
+/datum/category_item/autolathe/general/drinkingglass/wine
 	name = "wine glass"
 	path =/obj/item/weapon/reagent_containers/food/drinks/glass2/wine
+
+/datum/category_item/autolathe/general/drinkingglass/metaglass
+	name = "metamorphic glass"
+	path =/obj/item/weapon/reagent_containers/food/drinks/metaglass
+
+/datum/category_item/autolathe/general/drinkingglass/metaglass/metapint
+	name = "metamorphic pint glass"
+	path =/obj/item/weapon/reagent_containers/food/drinks/metaglass/metapint
 
 /datum/category_item/autolathe/general/flashlight
 	name = "flashlight"

@@ -1,7 +1,7 @@
 /datum/persistent/filth
 	name = "filth"
 	tokens_per_line = 5
-	entries_expire_at = 5
+	entries_expire_at = 4 // 4 rounds, 24 hours.
 
 /datum/persistent/filth/LabelTokens(var/list/tokens)
 	var/list/labelled_tokens = ..()

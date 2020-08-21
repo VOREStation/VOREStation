@@ -9,7 +9,7 @@
 /mob/living/silicon/robot/ClickOn(var/atom/A, var/params)
 	if(!checkClickCooldown())
 		return
-	
+
 	setClickCooldown(1)
 
 	if(client.buildmode) // comes after object.Click to allow buildmode gui objects to be clicked
@@ -19,6 +19,9 @@
 	var/list/modifiers = params2list(params)
 	if(modifiers["shift"] && modifiers["ctrl"])
 		CtrlShiftClickOn(A)
+		return
+	if(modifiers["shift"] && modifiers["middle"])
+		ShiftMiddleClickOn(A)
 		return
 	if(modifiers["middle"])
 		MiddleClickOn(A)
