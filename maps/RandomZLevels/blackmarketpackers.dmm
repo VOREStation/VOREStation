@@ -3272,7 +3272,7 @@
 	},
 /area/awaymission/BMPship1)
 "iw" = (
-/obj/item/weapon/caution,
+/obj/item/clothing/suit/caution,
 /turf/simulated/floor/plating/airless,
 /area/awaymission)
 "ix" = (

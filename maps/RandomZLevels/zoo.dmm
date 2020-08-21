@@ -353,7 +353,7 @@
 "gO" = (/obj/structure/bed/chair{dir = 1},/turf/simulated/shuttle/floor/darkred,/area/awaymission/zoo/syndieship)
 "gP" = (/turf/simulated/wall,/area/awaymission/zoo)
 "gQ" = (/obj/machinery/door/airlock/external,/turf/simulated/floor/plating,/area/awaymission/zoo)
-"gR" = (/obj/item/weapon/caution,/turf/simulated/floor/plating,/area/awaymission/zoo/pirateship)
+"gR" = (/obj/item/clothing/suit/caution,/turf/simulated/floor/plating,/area/awaymission/zoo/pirateship)
 "gS" = (/obj/machinery/portable_atmospherics/canister/air,/turf/simulated/floor/plating,/area/awaymission/zoo/pirateship)
 "gT" = (/obj/structure/closet/crate,/obj/item/weapon/spacecash/c10,/obj/item/weapon/spacecash/c200,/turf/simulated/floor/tiled/steel,/area/awaymission/zoo/pirateship)
 "gU" = (/obj/structure/closet/crate,/obj/item/weapon/spacecash/c10,/turf/simulated/floor/tiled/steel,/area/awaymission/zoo/pirateship)

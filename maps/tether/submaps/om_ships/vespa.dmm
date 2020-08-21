@@ -353,7 +353,7 @@
 /turf/simulated/floor,
 /area/ship/expe/atmospherics)
 "bb" = (
-/obj/item/weapon/caution/cone,
+/obj/item/clothing/head/cone,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/maintenancerim)
 "bc" = (

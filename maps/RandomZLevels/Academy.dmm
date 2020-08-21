@@ -2975,7 +2975,7 @@
 	icon_state = "4-8";
 	pixel_y = 0
 	},
-/obj/item/weapon/caution,
+/obj/item/clothing/suit/caution,
 /turf/simulated/floor{
 	 icon_state = "green";
 	dir = 4
