@@ -56,9 +56,7 @@
 	dir = 4;
 	icon_state = "map_connector-aux"
 	},
-/obj/machinery/portable_atmospherics/canister/air/airlock{
-	start_pressure = 4559.63
-	},
+/obj/machinery/portable_atmospherics/canister/air/airlock,
 /turf/simulated/floor/tiled/eris/steel/gray_perforated,
 /area/talon/deckone/port_eng)
 "ai" = (
@@ -202,9 +200,7 @@
 	dir = 8;
 	icon_state = "map_connector-aux"
 	},
-/obj/machinery/portable_atmospherics/canister/air/airlock{
-	start_pressure = 4559.63
-	},
+/obj/machinery/portable_atmospherics/canister/air/airlock,
 /turf/simulated/floor/tiled/eris/steel/gray_perforated,
 /area/talon/deckone/starboard_eng)
 "av" = (

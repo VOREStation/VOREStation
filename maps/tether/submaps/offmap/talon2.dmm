@@ -114,9 +114,7 @@
 	dir = 1;
 	icon_state = "map_connector-aux"
 	},
-/obj/machinery/portable_atmospherics/canister/air/airlock{
-	start_pressure = 4559.63
-	},
+/obj/machinery/portable_atmospherics/canister/air/airlock,
 /turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/decktwo_aft)
 "ar" = (
