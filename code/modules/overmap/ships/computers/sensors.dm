@@ -93,6 +93,7 @@
 			var/obj/effect/overmap/O = locate(params["scan"])
 			if(istype(O) && !QDELETED(O) && (O in view(7,linked)))
 				new/obj/item/weapon/paper/(get_turf(src), O.get_scan_data(usr), "paper (Sensor Scan - [O])")
+				playsound(src, "sound/machines/printer.ogg", 30, 1)
 			. = TRUE
 
 	if(sensors)

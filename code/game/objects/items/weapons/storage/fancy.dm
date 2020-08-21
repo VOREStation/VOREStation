@@ -19,6 +19,8 @@
 	icon_state = "donutbox6"
 	name = "donut box"
 	var/icon_type = "donut"
+	drop_sound = 'sound/items/drop/cardboardbox.ogg'
+	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
 /obj/item/weapon/storage/fancy/update_icon(var/itemremoved = 0)
 	var/total_contents = contents.len - itemremoved

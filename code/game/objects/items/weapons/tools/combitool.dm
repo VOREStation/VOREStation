@@ -10,6 +10,8 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "combitool"
 	w_class = ITEMSIZE_SMALL
+	drop_sound = 'sound/items/drop/multitool.ogg'
+	pickup_sound = 'sound/items/pickup/multitool.ogg'
 
 	var/list/spawn_tools = list(
 		/obj/item/weapon/tool/screwdriver,

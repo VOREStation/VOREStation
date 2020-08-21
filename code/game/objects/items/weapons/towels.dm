@@ -8,7 +8,8 @@
 	attack_verb = list("whipped")
 	hitsound = 'sound/weapons/towelwhip.ogg'
 	desc = "A soft cotton towel."
-	drop_sound = 'sound/items/drop/clothing.ogg'
+	drop_sound = 'sound/items/drop/cloth.ogg'
+	pickup_sound = 'sound/items/pickup/cloth.ogg'
 
 /obj/item/weapon/towel/equipped(var/M, var/slot)
 	..()

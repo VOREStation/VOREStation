@@ -279,6 +279,8 @@
 	sharp = 1
 	edge = 1
 	colorable = TRUE
+	drop_sound = 'sound/items/drop/sword.ogg'
+	pickup_sound = 'sound/items/pickup/sword.ogg'
 
 
 	projectile_parry_chance = 65

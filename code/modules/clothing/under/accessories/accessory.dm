@@ -16,6 +16,8 @@
 	var/mob/living/carbon/human/wearer = null 	// To check if the wearer changes, so species spritesheets change properly.
 	var/list/on_rolled = list()					// Used when jumpsuit sleevels are rolled ("rolled" entry) or it's rolled down ("down"). Set to "none" to hide in those states.
 	sprite_sheets = list(SPECIES_TESHARI = 'icons/mob/species/seromi/ties.dmi') //Teshari can into webbing, too!
+	drop_sound = 'sound/items/drop/accessory.ogg'
+	pickup_sound = 'sound/items/pickup/accessory.ogg'
 
 /obj/item/clothing/accessory/Destroy()
 	on_removed()
@@ -222,6 +224,8 @@
 	desc = "A bronze medal."
 	icon_state = "bronze"
 	slot = ACCESSORY_SLOT_MEDAL
+	drop_sound = 'sound/items/drop/accessory.ogg'
+	pickup_sound = 'sound/items/pickup/accessory.ogg'
 
 /obj/item/clothing/accessory/medal/conduct
 	name = "distinguished conduct medal"

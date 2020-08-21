@@ -7,6 +7,7 @@
 	w_class = ITEMSIZE_SMALL
 	desc = "This is rubbish."
 	drop_sound = 'sound/items/drop/wrapper.ogg'
+	pickup_sound = 'sound/items/pickup/wrapper.ogg'
 	var/age = 0
 
 /obj/item/trash/New(var/newloc, var/_age)
@@ -75,6 +76,7 @@
 	name = "Moghes Imported Sissalik Jerky tin"
 	icon_state = "unathitinred"
 	drop_sound = 'sound/items/drop/soda.ogg'
+	pickup_sound = 'sound/items/pickup/soda.ogg'
 
 /obj/item/trash/syndi_cakes
 	name = "syndi cakes box"

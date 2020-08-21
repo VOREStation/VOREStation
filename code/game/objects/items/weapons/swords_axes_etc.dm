@@ -26,6 +26,8 @@
 	item_state = "classic_baton"
 	slot_flags = SLOT_BELT
 	force = 10
+	drop_sound = 'sound/items/drop/crowbar.ogg'
+	pickup_sound = 'sound/items/pickup/crowbar.ogg'
 
 /obj/item/weapon/melee/classic_baton/attack(mob/M as mob, mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
@@ -49,6 +51,8 @@
 	slot_flags = SLOT_BELT
 	w_class = ITEMSIZE_SMALL
 	force = 3
+	drop_sound = 'sound/items/drop/crowbar.ogg'
+	pickup_sound = 'sound/items/pickup/crowbar.ogg'
 	var/on = 0
 
 /obj/item/weapon/melee/telebaton/attack_self(mob/user as mob)

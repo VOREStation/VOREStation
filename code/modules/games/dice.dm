@@ -80,6 +80,8 @@
 	desc = "It's a small bag with dice inside."
 	icon = 'icons/obj/dice.dmi'
 	icon_state = "dicebag"
+	drop_sound = 'sound/items/drop/hat.ogg'
+	pickup_sound = 'sound/items/pickup/hat.ogg'
 
 /obj/item/weapon/storage/pill_bottle/dice/New()
 	..()
@@ -91,6 +93,8 @@
 	desc = "It's a small bag with gaming dice inside."
 	icon = 'icons/obj/dice.dmi'
 	icon_state = "magicdicebag"
+	drop_sound = 'sound/items/drop/hat.ogg'
+	pickup_sound = 'sound/items/pickup/hat.ogg'
 
 /obj/item/weapon/storage/pill_bottle/dice_nerd/New()
 	..()

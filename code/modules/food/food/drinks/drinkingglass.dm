@@ -8,6 +8,8 @@
 	volume = 30
 	unacidable = 1 //glass
 	center_of_mass = list("x"=16, "y"=10)
+	drop_sound = 'sound/items/drop/drinkglass.ogg'
+	pickup_sound =  'sound/items/pickup/drinkglass.ogg'
 	matter = list("glass" = 500)
 
 	on_reagent_change()

@@ -13,6 +13,7 @@
 	var/string_attached
 	var/sides = 2
 	drop_sound = 'sound/items/drop/ring.ogg'
+	pickup_sound = 'sound/items/pickup/ring.ogg'
 
 /obj/item/weapon/coin/New()
 	randpixel_xy()

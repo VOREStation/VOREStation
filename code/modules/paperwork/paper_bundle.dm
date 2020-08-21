@@ -13,6 +13,7 @@
 	pressure_resistance = 1
 	attack_verb = list("bapped")
 	drop_sound = 'sound/items/drop/paper.ogg'
+	pickup_sound = 'sound/items/pickup/paper.ogg'
 	var/page = 1    // current page
 	var/list/pages = list()  // Ordered list of pages as they are to be displayed. Can be different order than src.contents.
 

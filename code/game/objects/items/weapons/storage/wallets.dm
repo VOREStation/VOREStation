@@ -42,6 +42,9 @@
 	slot_flags = SLOT_ID
 
 	var/obj/item/weapon/card/id/front_id = null
+	
+	drop_sound = 'sound/items/drop/cloth.ogg'
+	pickup_sound = 'sound/items/pickup/cloth.ogg'
 
 /obj/item/weapon/storage/wallet/remove_from_storage(obj/item/W as obj, atom/new_location)
 	. = ..(W, new_location)

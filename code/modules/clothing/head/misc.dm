@@ -18,6 +18,7 @@
 	slot_flags = SLOT_HEAD | SLOT_EARS
 	body_parts_covered = 0
 	drop_sound = 'sound/items/drop/ring.ogg'
+	pickup_sound = 'sound/items/pickup/ring.ogg'
 
 /obj/item/clothing/head/pin/pink
 	icon_state = "pinkpin"
@@ -169,7 +170,8 @@
 	icon_state = "cardborg_h"
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE
 	body_parts_covered = HEAD|FACE|EYES
-	drop_sound = 'sound/items/drop/box.ogg'
+	drop_sound = 'sound/items/drop/cardboardbox.ogg'
+	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
 /obj/item/clothing/head/justice
 	name = "justice hat"

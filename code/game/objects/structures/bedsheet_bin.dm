@@ -16,7 +16,8 @@ LINEN BINS
 	throw_speed = 1
 	throw_range = 2
 	w_class = ITEMSIZE_SMALL
-	drop_sound = 'sound/items/drop/clothing.ogg'
+	drop_sound = 'sound/items/drop/cloth.ogg'
+	pickup_sound = 'sound/items/pickup/cloth.ogg'
 
 /obj/item/weapon/bedsheet/attack_self(mob/user as mob)
 	user.drop_item()
