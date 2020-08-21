@@ -2,7 +2,10 @@ import { Box, Icon, Tooltip } from '.';
 import { Component } from 'inferno';
 import { useBackend } from "../backend";
 import { resolveAsset } from '../assets';
+<<<<<<< HEAD
 import { logger } from '../logging';
+=======
+>>>>>>> af81780... Merge pull request #7397 from ShadowLarkens/tgui4.0-and-camera-console
 
 export class NanoMap extends Component {
   constructor(props) {

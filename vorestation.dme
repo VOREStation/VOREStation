@@ -80,8 +80,11 @@
 #include "code\__defines\subsystems_vr.dm"
 #include "code\__defines\supply.dm"
 #include "code\__defines\targeting.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\__defines\tgs.config.dm"
 #include "code\__defines\tgs.dm"
+=======
+>>>>>>> af81780... Merge pull request #7397 from ShadowLarkens/tgui4.0-and-camera-console:polaris.dme
 #include "code\__defines\tgui.dm"
 #include "code\__defines\turfs.dm"
 #include "code\__defines\typeids.dm"
@@ -1745,7 +1748,10 @@
 #include "code\modules\catalogue\catalogue_data_vr.dm"
 #include "code\modules\catalogue\cataloguer.dm"
 #include "code\modules\catalogue\cataloguer_visuals.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\modules\catalogue\cataloguer_vr.dm"
+=======
+>>>>>>> af81780... Merge pull request #7397 from ShadowLarkens/tgui4.0-and-camera-console:polaris.dme
 #include "code\modules\client\client defines.dm"
 #include "code\modules\client\client procs.dm"
 #include "code\modules\client\client procs_vr.dm"
@@ -3491,9 +3497,12 @@
 #include "code\modules\tgui\tgui.dm"
 #include "code\modules\tgui\tgui_window.dm"
 #include "code\modules\tgui\modules\_base.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\modules\tgui\modules\alarm.dm"
 #include "code\modules\tgui\modules\appearance_changer.dm"
 #include "code\modules\tgui\modules\atmos_control.dm"
+=======
+>>>>>>> af81780... Merge pull request #7397 from ShadowLarkens/tgui4.0-and-camera-console:polaris.dme
 #include "code\modules\tgui\modules\camera.dm"
 #include "code\modules\tgui\modules\crew_monitor.dm"
 #include "code\modules\tgui\modules\overmap.dm"
@@ -3513,6 +3522,7 @@
 #include "code\modules\tgui\states\inventory_vr.dm"
 #include "code\modules\tgui\states\not_incapacitated.dm"
 #include "code\modules\tgui\states\notcontained.dm"
+#include "code\modules\tgui\states\ntos.dm"
 #include "code\modules\tgui\states\observer.dm"
 #include "code\modules\tgui\states\physical.dm"
 #include "code\modules\tgui\states\self.dm"

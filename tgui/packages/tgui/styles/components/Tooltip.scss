@@ -54,6 +54,7 @@ $border-radius: base.$border-radius !default;
 
 .Tooltip--top:hover::after {
   transform: translateX(-50%) translateY(-0.5em);
+<<<<<<< HEAD
 }
 
 .Tooltip--top-left::after {
@@ -74,6 +75,8 @@ $border-radius: base.$border-radius !default;
 
 .Tooltip--top-right:hover::after {
   transform: translateX(-12px) translateY(8px);
+=======
+>>>>>>> af81780... Merge pull request #7397 from ShadowLarkens/tgui4.0-and-camera-console
 }
 
 .Tooltip--bottom::after {
@@ -124,6 +127,7 @@ $border-radius: base.$border-radius !default;
 
 .Tooltip--right:hover::after {
   transform: translateX(0.5em) translateY(-50%);
+<<<<<<< HEAD
 }
 
 @for $i from 1 through 8 {
@@ -136,4 +140,6 @@ $border-radius: base.$border-radius !default;
   .Tooltip--scale--#{$i}:hover::after {
     transform: translateX(-50%) scale(1 / $i);
   }
+=======
+>>>>>>> af81780... Merge pull request #7397 from ShadowLarkens/tgui4.0-and-camera-console
 }

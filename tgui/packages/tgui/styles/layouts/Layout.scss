@@ -38,6 +38,7 @@
   bottom: 0;
   left: 0;
   right: 0;
+<<<<<<< HEAD
   overflow: hidden;
 }
 
@@ -49,6 +50,10 @@
 .Layout__content--flexColumn {
   display: flex;
   flex-flow: column;
+=======
+  overflow-x: hidden;
+  overflow-y: hidden;
+>>>>>>> af81780... Merge pull request #7397 from ShadowLarkens/tgui4.0-and-camera-console
 }
 
 .Layout__content--scrollable {

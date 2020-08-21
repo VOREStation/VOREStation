@@ -187,10 +187,17 @@
 		var/client/client = user_or_client
 		entry += "[client.ckey]"
 	entry += ":\n[text]"
+<<<<<<< HEAD
 	WRITE_LOG(diary, entry)
 
 /proc/log_asset(text)
 	WRITE_LOG(diary, "ASSET: [text]")
+=======
+	diary << "\[[time_stamp()]]TGUI: [entry][log_end]"
+
+/proc/log_asset(text)
+	diary << "\[time_stamp()]] ASSET: [text]"
+>>>>>>> af81780... Merge pull request #7397 from ShadowLarkens/tgui4.0-and-camera-console
 
 /proc/report_progress(var/progress_message)
 	admin_notice("<span class='boldannounce'>[progress_message]</span>", R_DEBUG)

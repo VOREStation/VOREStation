@@ -213,6 +213,7 @@
 					'sound/weapons/mine/pickaxe2.ogg',
 					'sound/weapons/mine/pickaxe3.ogg',
 					'sound/weapons/mine/pickaxe4.ogg')
+<<<<<<< HEAD
 			//VORESTATION EDIT - vore sounds for better performance
 			if ("hunger_sounds") soundin = pick('sound/vore/growl1.ogg','sound/vore/growl2.ogg','sound/vore/growl3.ogg','sound/vore/growl4.ogg','sound/vore/growl5.ogg')
 
@@ -254,6 +255,9 @@
 					'sound/vore/sunesound/prey/death_10.ogg')
 			//END VORESTATION EDIT
 			if ("terminal_type")
+=======
+			if("terminal_type")
+>>>>>>> af81780... Merge pull request #7397 from ShadowLarkens/tgui4.0-and-camera-console
 				soundin = pick('sound/machines/terminal_button01.ogg', 'sound/machines/terminal_button02.ogg', 'sound/machines/terminal_button03.ogg', \
 								'sound/machines/terminal_button04.ogg', 'sound/machines/terminal_button05.ogg', 'sound/machines/terminal_button06.ogg', \
 								'sound/machines/terminal_button07.ogg', 'sound/machines/terminal_button08.ogg')

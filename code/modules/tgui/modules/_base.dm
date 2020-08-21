@@ -12,7 +12,10 @@ Code is pretty much ripped verbatim from nano modules, but with un-needed stuff 
 	var/list/using_access
 
 	var/tgui_id
+<<<<<<< HEAD
 	var/ntos = FALSE
+=======
+>>>>>>> af81780... Merge pull request #7397 from ShadowLarkens/tgui4.0-and-camera-console
 
 /datum/tgui_module/New(var/host)
 	src.host = host
@@ -26,12 +29,15 @@ Code is pretty much ripped verbatim from nano modules, but with un-needed stuff 
 	if(host)
 		host.tgui_close(user)
 
+<<<<<<< HEAD
 /datum/tgui_module/proc/check_eye(mob/user)
 	return -1
 
 /datum/tgui_module/proc/can_still_topic(mob/user, datum/tgui_state/state)
 	return (tgui_status(user, state) == STATUS_INTERACTIVE)
 
+=======
+>>>>>>> af81780... Merge pull request #7397 from ShadowLarkens/tgui4.0-and-camera-console
 /datum/tgui_module/proc/check_access(mob/user, access)
 	if(!access)
 		return 1
@@ -52,6 +58,7 @@ Code is pretty much ripped verbatim from nano modules, but with un-needed stuff 
 	if(access in I.access)
 		return 1
 
+<<<<<<< HEAD
 	return 0
 
 /datum/tgui_module/tgui_static_data()
@@ -124,3 +131,6 @@ Code is pretty much ripped verbatim from nano modules, but with un-needed stuff 
 	. += new /obj/screen/plane_master{plane = PLANE_CH_VANTAG}				//Vore Antags
 	. += new /obj/screen/plane_master{plane = PLANE_AUGMENTED}				//Augmented reality
 	//VOREStation Add End
+=======
+	return 0
+>>>>>>> af81780... Merge pull request #7397 from ShadowLarkens/tgui4.0-and-camera-console

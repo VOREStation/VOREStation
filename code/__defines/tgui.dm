@@ -16,6 +16,7 @@
 /// Get a window id based on the provided pool index
 #define TGUI_WINDOW_ID(index) "tgui-window-[index]"
 /// Get a pool index of the provided window id
+<<<<<<< HEAD
 #define TGUI_WINDOW_INDEX(window_id) text2num(copytext(window_id, 13))
 
 /// Max length for Modal Input
@@ -27,3 +28,6 @@
 #define TGUI_MODAL_DELEGATE 2
 #define TGUI_MODAL_ANSWER 3
 #define TGUI_MODAL_CLOSE 4
+=======
+#define TGUI_WINDOW_INDEX(window_id) text2num(copytext(window_id, 13))
+>>>>>>> af81780... Merge pull request #7397 from ShadowLarkens/tgui4.0-and-camera-console

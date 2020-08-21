@@ -133,19 +133,26 @@
  *
  * optional can_be_suspended bool
  */
+<<<<<<< HEAD
 /datum/tgui_window/proc/close(can_be_suspended = TRUE, logout = FALSE)
+=======
+/datum/tgui_window/proc/close(can_be_suspended = TRUE)
+>>>>>>> af81780... Merge pull request #7397 from ShadowLarkens/tgui4.0-and-camera-console
 	if(!client)
 		return
 	if(can_be_suspended && can_be_suspended())
 		log_tgui(client, "[id]/close: suspending")
 		status = TGUI_WINDOW_READY
 		send_message("suspend")
+<<<<<<< HEAD
 		// You would think that BYOND would null out client or make it stop passing istypes or, y'know, ANYTHING during
 		// logout, but nope! It appears to be perfectly valid to call winset by every means we can measure in Logout,
 		// and yet it causes a bad client runtime. To avoid that happening, we just have to know if we're in Logout or
 		// not.
 		if(!logout && client)
 			winset(client, null, "mapwindow.map.focus=true")
+=======
+>>>>>>> af81780... Merge pull request #7397 from ShadowLarkens/tgui4.0-and-camera-console
 		return
 	log_tgui(client, "[id]/close")
 	release_lock()
@@ -155,8 +162,12 @@
 	// to read the error message.
 	if(!fatally_errored)
 		client << browse(null, "window=[id]")
+<<<<<<< HEAD
 		if(!logout && client)
 			winset(client, null, "mapwindow.map.focus=true")
+=======
+
+>>>>>>> af81780... Merge pull request #7397 from ShadowLarkens/tgui4.0-and-camera-console
 /**
  * public
  *
@@ -196,9 +207,15 @@
 /datum/tgui_window/proc/send_asset(datum/asset/asset)
 	if(!client || !asset)
 		return
+<<<<<<< HEAD
 	if(istype(asset, /datum/asset/spritesheet))
 		var/datum/asset/spritesheet/spritesheet = asset
 		send_message("asset/stylesheet", spritesheet.css_filename())
+=======
+	// if(istype(asset, /datum/asset/spritesheet))
+	// 	var/datum/asset/spritesheet/spritesheet = asset
+	// 	send_message("asset/stylesheet", spritesheet.css_filename())
+>>>>>>> af81780... Merge pull request #7397 from ShadowLarkens/tgui4.0-and-camera-console
 	send_message("asset/mappings", asset.get_url_mappings())
 	sent_assets += list(asset)
 	asset.send(client)

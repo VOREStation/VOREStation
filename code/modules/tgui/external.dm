@@ -12,10 +12,16 @@
  *
  * required user mob The mob who opened/is using the UI.
  * optional ui datum/tgui The UI to be updated, if it exists.
+<<<<<<< HEAD
  * optional parent_ui datum/tgui A parent UI that, when closed, closes this UI as well.
  */
 
 /datum/proc/tgui_interact(mob/user, datum/tgui/ui = null, datum/tgui/parent_ui = null)
+=======
+ */
+
+/datum/proc/tgui_interact(mob/user, datum/tgui/ui = null)
+>>>>>>> af81780... Merge pull request #7397 from ShadowLarkens/tgui4.0-and-camera-console
 	return FALSE // Not implemented.
 
 /**

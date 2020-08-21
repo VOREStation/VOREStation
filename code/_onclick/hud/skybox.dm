@@ -48,7 +48,11 @@
 	client.update_skybox(TRUE)
 
 /mob/onTransitZ(old_z, new_z)
+<<<<<<< HEAD
 	..()
+=======
+	. = ..()
+>>>>>>> af81780... Merge pull request #7397 from ShadowLarkens/tgui4.0-and-camera-console
 	if(old_z != new_z)
 		client?.update_skybox(TRUE)
 

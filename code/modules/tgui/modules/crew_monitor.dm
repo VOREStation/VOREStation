@@ -24,7 +24,11 @@
 			return TRUE
 		if("setZLevel")
 			ui.set_map_z_level(params["mapZLevel"])
+<<<<<<< HEAD
 			return TRUE
+=======
+			SStgui.update_uis(src)
+>>>>>>> af81780... Merge pull request #7397 from ShadowLarkens/tgui4.0-and-camera-console
 
 /datum/tgui_module/crew_monitor/tgui_interact(mob/user, datum/tgui/ui = null)
 	var/z = get_z(user)
@@ -43,7 +47,11 @@
 		ui.open()
 
 
+<<<<<<< HEAD
 /datum/tgui_module/crew_monitor/tgui_data(mob/user)
+=======
+/datum/tgui_module/crew_monitor/tgui_data(mob/user, ui_key = "main", datum/tgui_state/state = GLOB.tgui_default_state)
+>>>>>>> af81780... Merge pull request #7397 from ShadowLarkens/tgui4.0-and-camera-console
 	var/data[0]
 
 	data["isAI"] = isAI(user)
@@ -59,19 +67,52 @@
 	return data
 
 /datum/tgui_module/crew_monitor/ntos
+<<<<<<< HEAD
 	ntos = TRUE
 
 // Subtype for glasses_state
 /datum/tgui_module/crew_monitor/glasses
 /datum/tgui_module/crew_monitor/glasses/tgui_state(mob/user)
 	return GLOB.tgui_glasses_state
+=======
+	tgui_id = "NtosCrewMonitor"
+
+/datum/tgui_module/crew_monitor/ntos/tgui_state(mob/user)
+	return GLOB.tgui_ntos_state
+
+/datum/tgui_module/crew_monitor/ntos/tgui_static_data()
+	. = ..()
+	
+	var/datum/computer_file/program/host = tgui_host()
+	if(istype(host) && host.computer)
+		. += host.computer.get_header_data()
+
+/datum/tgui_module/crew_monitor/ntos/tgui_act(action, params)
+	if(..())
+		return
+
+	var/datum/computer_file/program/host = tgui_host()
+	if(istype(host) && host.computer)
+		if(action == "PC_exit")
+			host.computer.kill_program()
+			return TRUE
+		if(action == "PC_shutdown")
+			host.computer.shutdown_computer()
+			return TRUE
+		if(action == "PC_minimize")
+			host.computer.minimize_program(usr)
+			return TRUE
+>>>>>>> af81780... Merge pull request #7397 from ShadowLarkens/tgui4.0-and-camera-console
 
 // Subtype for self_state
 /datum/tgui_module/crew_monitor/robot
 /datum/tgui_module/crew_monitor/robot/tgui_state(mob/user)
 	return GLOB.tgui_self_state
+<<<<<<< HEAD
 
 // Subtype for nif_state
 /datum/tgui_module/crew_monitor/nif
 /datum/tgui_module/crew_monitor/nif/tgui_state(mob/user)
 	return GLOB.tgui_nif_state
+=======
+>>>>>>> af81780... Merge pull request #7397 from ShadowLarkens/tgui4.0-and-camera-console

@@ -414,7 +414,11 @@
 		"nano/images/modular_computers/",
 		"nano/js/"
 	)
+<<<<<<< HEAD
 	var/list/template_dirs = list(
+=======
+	var/list/uncommon_dirs = list(
+>>>>>>> af81780... Merge pull request #7397 from ShadowLarkens/tgui4.0-and-camera-console
 		"nano/templates/"
 	)
 
@@ -427,6 +431,7 @@
 				if(fexists(path + filename))
 					common[filename] = fcopy_rsc(path + filename)
 					register_asset(filename, common[filename])
+<<<<<<< HEAD
 	// Combine all templates into a single bundle.
 	var/list/template_data = list()
 	for(var/path in template_dirs)
@@ -488,3 +493,14 @@
 	for(var/asset_name in assets)
 		register_asset(asset_name, assets[asset_name])
 // VOREStation Add End
+=======
+	for(var/path in uncommon_dirs)
+		var/list/filenames = flist(path)
+		for(var/filename in filenames)
+			if(copytext(filename, length(filename)) != "/") // Ignore directories.
+				if(fexists(path + filename))
+					register_asset(filename, fcopy_rsc(path + filename))
+
+/datum/asset/nanoui/send(client)
+	send_asset_list(client, common)
+>>>>>>> af81780... Merge pull request #7397 from ShadowLarkens/tgui4.0-and-camera-console

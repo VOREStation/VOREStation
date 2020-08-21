@@ -14,8 +14,11 @@ export const Section = props => {
     level = 1,
     buttons,
     fill,
+<<<<<<< HEAD
     stretchContents,
     noTopPadding,
+=======
+>>>>>>> af81780... Merge pull request #7397 from ShadowLarkens/tgui4.0-and-camera-console
     children,
     scrollable,
     flexGrow,
@@ -29,8 +32,11 @@ export const Section = props => {
         'Section',
         'Section--level--' + level,
         fill && 'Section--fill',
+<<<<<<< HEAD
         scrollable && 'Section--scrollable',
         flexGrow && 'Section--flex',
+=======
+>>>>>>> af81780... Merge pull request #7397 from ShadowLarkens/tgui4.0-and-camera-console
         className,
         ...computeBoxClassName(rest),
       ])}
@@ -46,11 +52,15 @@ export const Section = props => {
         </div>
       )}
       {hasContent && (
+<<<<<<< HEAD
         <div className={classes([
           "Section__content",
           !!stretchContents && "Section__content--stretchContents",
           !!noTopPadding && "Section__content--noTopPadding",
         ])}>
+=======
+        <div className="Section__content">
+>>>>>>> af81780... Merge pull request #7397 from ShadowLarkens/tgui4.0-and-camera-console
           {children}
         </div>
       )}

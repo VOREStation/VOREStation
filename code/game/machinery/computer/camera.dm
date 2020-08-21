@@ -11,6 +11,7 @@
 
 	var/mapping = 0//For the overview file, interesting bit of code.
 	var/list/network = list()
+<<<<<<< HEAD
 
 	var/datum/tgui_module/camera/camera
 
@@ -42,6 +43,37 @@
 		return
 	attack_hand(user)
 
+=======
+
+	var/datum/tgui_module/camera/camera
+
+/obj/machinery/computer/security/Initialize()
+	. = ..()
+	if(!LAZYLEN(network))
+		network = get_default_networks()
+	camera = new(src, network)
+
+/obj/machinery/computer/security/proc/get_default_networks()
+	. = using_map.station_networks.Copy()
+
+/obj/machinery/computer/security/Destroy()
+	QDEL_NULL(camera)
+	return ..()
+
+/obj/machinery/computer/security/tgui_interact(mob/user, datum/tgui/ui = null)
+	camera.tgui_interact(user, ui)
+
+/obj/machinery/computer/security/attack_hand(mob/user)
+	add_fingerprint(user)
+	if(stat & (BROKEN|NOPOWER))
+		return
+	tgui_interact(user)
+
+/obj/machinery/computer/security/attack_ai(mob/user)
+	to_chat(user, "<span class='notice'>You realise its kind of stupid to access a camera console when you have the entire camera network at your metaphorical fingertips.</span>")
+	return
+
+>>>>>>> af81780... Merge pull request #7397 from ShadowLarkens/tgui4.0-and-camera-console
 /obj/machinery/computer/security/proc/set_network(list/new_network)
 	network = new_network
 	camera.network = network

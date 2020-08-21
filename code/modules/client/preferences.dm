@@ -29,6 +29,9 @@ datum/preferences
 	var/tgui_fancy = TRUE
 	var/tgui_lock = FALSE
 
+	var/tgui_fancy = TRUE
+	var/tgui_lock = FALSE
+
 	//character preferences
 	var/real_name						//our character's name
 	var/be_random_name = 0				//whether we are a random name every round

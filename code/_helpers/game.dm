@@ -636,6 +636,7 @@ datum/projectile_data
 		min(list_x),
 		min(list_y),
 		max(list_x),
+<<<<<<< HEAD
 		max(list_y))
 
 // Will recursively loop through an atom's contents and check for mobs, then it will loop through every atom in that atom's contents.
@@ -695,3 +696,6 @@ datum/projectile_data
 			hear |= recursive_mob_check(A, hear, 3, 1, 0, 1)
 
 	return hear
+=======
+		max(list_y))
+>>>>>>> af81780... Merge pull request #7397 from ShadowLarkens/tgui4.0-and-camera-console

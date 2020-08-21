@@ -1,7 +1,12 @@
 /mob/living/silicon
 	var/register_alarms = 1
+<<<<<<< HEAD
 	var/datum/tgui_module/alarm_monitor/all/robot/alarm_monitor
 	var/datum/tgui_module/atmos_control/robot/atmos_control
+=======
+	var/datum/nano_module/alarm_monitor/all/alarm_monitor
+	var/datum/nano_module/atmos_control/atmos_control
+>>>>>>> af81780... Merge pull request #7397 from ShadowLarkens/tgui4.0-and-camera-console
 	var/datum/tgui_module/crew_monitor/robot/crew_monitor
 	var/datum/nano_module/law_manager/law_manager
 	var/datum/tgui_module/power_monitor/robot/power_monitor

@@ -52,6 +52,7 @@ export class Dropdown extends Component {
         {option}
       </div>
     ));
+<<<<<<< HEAD
     if (placeholder) {
       ops.unshift((
         <div
@@ -64,6 +65,18 @@ export class Dropdown extends Component {
         </div>
       ));
     }
+=======
+    ops.unshift((
+      <div
+        key={placeholder}
+        className="Dropdown__menuentry"
+        onClick={() => {
+          this.setSelected(null);
+        }}>
+        -- {placeholder} --
+      </div>
+    ));
+>>>>>>> af81780... Merge pull request #7397 from ShadowLarkens/tgui4.0-and-camera-console
     return ops;
   }
 

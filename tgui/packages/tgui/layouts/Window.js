@@ -100,7 +100,10 @@ const WindowContent = props => {
   const {
     className,
     fitted,
+<<<<<<< HEAD
     scrollable,
+=======
+>>>>>>> af81780... Merge pull request #7397 from ShadowLarkens/tgui4.0-and-camera-console
     children,
     ...rest
   } = props;
@@ -108,7 +111,10 @@ const WindowContent = props => {
   // so we simply include a Box with margins.
   return (
     <Layout.Content
+<<<<<<< HEAD
       scrollable={scrollable}
+=======
+>>>>>>> af81780... Merge pull request #7397 from ShadowLarkens/tgui4.0-and-camera-console
       className={classes([
         'Window__content',
         className,

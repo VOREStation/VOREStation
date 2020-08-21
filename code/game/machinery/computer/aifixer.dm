@@ -82,6 +82,7 @@
 
 /obj/machinery/computer/aifixer/tgui_act(action, params)
 	if(..())
+<<<<<<< HEAD
 		return TRUE
 	if(!occupier)
 		restoring = FALSE
@@ -89,6 +90,12 @@
 	if(action)
 		playsound(src, "terminal_type", 50, 1)
 	
+=======
+		return
+	if(!occupier)
+		restoring = FALSE
+
+>>>>>>> af81780... Merge pull request #7397 from ShadowLarkens/tgui4.0-and-camera-console
 	switch(action)
 		if("PRG_beginReconstruction")
 			if(occupier?.health < 100)

@@ -255,13 +255,21 @@ SUBSYSTEM_DEF(tgui)
   *
   * return int The number of UIs closed.
  **/
+<<<<<<< HEAD
 /datum/controller/subsystem/tgui/proc/close_user_uis(mob/user, datum/src_object, logout = FALSE)
+=======
+/datum/controller/subsystem/tgui/proc/close_user_uis(mob/user, datum/src_object)
+>>>>>>> af81780... Merge pull request #7397 from ShadowLarkens/tgui4.0-and-camera-console
 	var/count = 0
 	if(length(user?.tgui_open_uis) == 0)
 		return count
 	for(var/datum/tgui/ui in user.tgui_open_uis)
 		if(isnull(src_object) || ui.src_object == src_object)
+<<<<<<< HEAD
 			ui.close(logout = logout)
+=======
+			ui.close()
+>>>>>>> af81780... Merge pull request #7397 from ShadowLarkens/tgui4.0-and-camera-console
 			count++
 	return count
 

@@ -33,6 +33,7 @@
 @for $i from 1 through 2 {
   .Flex--spacing--#{$i} {
     margin: 0 -0.25em * $i;
+<<<<<<< HEAD
 
     & > .Flex__item {
       margin: 0 0.25em * $i;
@@ -43,6 +44,11 @@
 
     & > .Flex__item {
       margin: 1px * $i 1px * $i;
+=======
+
+    & > .Flex__item {
+      margin: 0 0.25em * $i;
+>>>>>>> af81780... Merge pull request #7397 from ShadowLarkens/tgui4.0-and-camera-console
     }
   }
 }

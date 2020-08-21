@@ -3,7 +3,11 @@ language: c
 
 env:
   global:
+<<<<<<< HEAD
     - BASENAME="vorestation" # $BASENAME.dmb, $BASENAME.dme, etc.
+=======
+    - BASENAME="polaris" # $BASENAME.dmb, $BASENAME.dme, etc.
+>>>>>>> af81780... Merge pull request #7397 from ShadowLarkens/tgui4.0-and-camera-console
 
 cache:
   directories:

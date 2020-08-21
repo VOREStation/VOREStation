@@ -57,7 +57,10 @@ export const CameraConsole = (props, context) => {
 
 export const CameraConsoleContent = (props, context) => {
   const { act, data, config } = useBackend(context);
+<<<<<<< HEAD
 
+=======
+>>>>>>> af81780... Merge pull request #7397 from ShadowLarkens/tgui4.0-and-camera-console
   const { mapRef, activeCamera } = data;
   const cameras = selectCameras(data.cameras);
   const [
@@ -81,6 +84,7 @@ export const CameraConsoleContent = (props, context) => {
         <div className="CameraConsole__toolbarRight">
           <Button
             icon="chevron-left"
+<<<<<<< HEAD
             onClick={() => act('pan', { dir: 8 })} />
           <Button
             icon="chevron-up"
@@ -91,6 +95,18 @@ export const CameraConsoleContent = (props, context) => {
           <Button
             icon="chevron-down"
             onClick={() => act('pan', { dir: 2 })} />
+=======
+            disabled={!prevCameraName}
+            onClick={() => act('switch_camera', {
+              name: prevCameraName,
+            })} />
+          <Button
+            icon="chevron-right"
+            disabled={!nextCameraName}
+            onClick={() => act('switch_camera', {
+              name: nextCameraName,
+            })} />
+>>>>>>> af81780... Merge pull request #7397 from ShadowLarkens/tgui4.0-and-camera-console
         </div>
         <ByondUi
           className="CameraConsole__map"
