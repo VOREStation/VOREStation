@@ -811,7 +811,7 @@
 "apE" = (/obj/structure/frame/computer,/turf/simulated/floor/tiled,/area/hangar/onecontrol)
 "apF" = (/obj/machinery/atmospherics/unary/vent_pump/on,/obj/machinery/firealarm{dir = 4; pixel_x = 24},/turf/simulated/floor/tiled,/area/hangar/onecontrol)
 "apG" = (/obj/structure/disposalpipe/up,/obj/machinery/atmospherics/pipe/zpipe/up/scrubbers,/obj/machinery/atmospherics/pipe/zpipe/up/supply,/obj/structure/cable{d2 = 2; icon_state = "0-2"; pixel_y = 0},/obj/structure/cable{d1 = 16; d2 = 0; icon_state = "16-0"},/turf/simulated/floor/plating,/area/maintenance/firstdeck/foreport)
-"apH" = (/obj/item/weapon/caution/cone,/turf/simulated/floor,/area/maintenance/firstdeck/foreport)
+"apH" = (/obj/item/clothing/head/cone,/turf/simulated/floor,/area/maintenance/firstdeck/foreport)
 "apI" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/structure/catwalk,/turf/simulated/floor/plating,/area/maintenance/firstdeck/foreport)
 "apJ" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/alarm{dir = 8; pixel_x = 22; pixel_y = 0},/obj/structure/catwalk,/turf/simulated/floor/plating,/area/maintenance/firstdeck/foreport)
 "apK" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/effect/floor_decal/borderfloor{dir = 8},/obj/effect/floor_decal/corner/green/border{dir = 8},/obj/effect/floor_decal/borderfloor/corner2{dir = 10},/obj/effect/floor_decal/corner/green/bordercorner2{dir = 10},/turf/simulated/floor/tiled,/area/hallway/primary/firstdeck/fpcenter)
