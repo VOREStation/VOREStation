@@ -33,6 +33,15 @@
 		return
 	if(!checkClickCooldown()) return
 	setClickCooldown(4)
+	var/list/modifiers = params2list(params)
+	if(modifiers["shift"])
+		examinate(A)
+		return
+	if(modifiers["alt"]) // alt and alt-gr (rightalt)
+		var/turf/T = get_turf(A)
+		if(T && TurfAdjacent(T))
+			ToggleTurfTab(T)
+			return
 	// You are responsible for checking config.ghost_interaction when you override this function
 	// Not all of them require checking, see below
 	A.attack_ghost(src)
