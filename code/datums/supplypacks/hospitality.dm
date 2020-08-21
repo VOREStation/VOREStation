@@ -57,13 +57,13 @@
 	group = "Hospitality"
 
 /datum/supply_pack/randomised/hospitality/pizza
-	num_contained = 5
 	contains = list(
-			/obj/item/pizzabox/margherita,
-			/obj/item/pizzabox/mushroom,
-			/obj/item/pizzabox/meat,
-			/obj/item/pizzabox/vegetable,
-			/obj/item/pizzabox/pineapple
+			/obj/random/pizzabox,
+			/obj/random/pizzabox,
+			/obj/random/pizzabox,
+			/obj/random/pizzabox,
+			/obj/random/pizzabox,
+			/obj/item/weapon/material/knife/plastic
 			)
 	name = "Surprise pack of five pizzas"
 	cost = 15
