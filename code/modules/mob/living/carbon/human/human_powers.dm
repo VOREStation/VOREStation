@@ -218,25 +218,17 @@
 		if(isSynthetic())
 			output += "Current Battery Charge: [nutrition]\n"
 
-<<<<<<< HEAD
-	for(var/obj/item/organ/external/EO in organs)
-		if(EO.brute_dam || EO.burn_dam)
-			output += "[EO.name] - <span class='warning'>[EO.burn_dam + EO.brute_dam > EO.min_broken_damage ? "Heavy Damage" : "Light Damage"]</span>\n" //VOREStation Edit - Makes robotic limb damage scalable
-		else
-			output += "[EO.name] - <span style='color:green;'>OK</span>\n"
-=======
 		if(isSynthetic())
 			var/toxDam = getToxLoss()
 			if(toxDam)
 				output += "System Instability: <span class='warning'>[toxDam > 25 ? "Severe" : "Moderate"]</span>. Seek charging station for cleanup.\n"
 			else
 				output += "System Instability: <span style='color:green;'>OK</span>\n"
->>>>>>> 85d1338... FBP Internal Components (#7445)
 
 		for(var/obj/item/organ/external/EO in organs)
 			if(EO.robotic >= ORGAN_ASSISTED)
 				if(EO.brute_dam || EO.burn_dam)
-					output += "[EO.name] - <span class='warning'>[EO.burn_dam + EO.brute_dam > ROBOLIMB_REPAIR_CAP ? "Heavy Damage" : "Light Damage"]</span>\n"
+					output += "[EO.name] - <span class='warning'>[EO.burn_dam + EO.brute_dam > EO.min_broken_damage ? "Heavy Damage" : "Light Damage"]</span>\n" //VOREStation Edit - Makes robotic limb damage scalable
 				else
 					output += "[EO.name] - <span style='color:green;'>OK</span>\n"
 
