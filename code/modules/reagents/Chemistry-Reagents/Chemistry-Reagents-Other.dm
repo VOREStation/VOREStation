@@ -524,6 +524,14 @@
 	reagent_state = LIQUID
 	color = "#DF9FBF"
 
+/datum/reagent/mineralfluid
+	name = "Mineral-Rich Fluid"
+	id = "mineralizedfluid"
+	description = "A warm, mineral-rich fluid."
+	taste_description = "salt"
+	reagent_state = LIQUID
+	color = "#ff205255"
+
 // The opposite to healing nanites, exists to make unidentified hypos implied to have nanites not be 100% safe.
 /datum/reagent/defective_nanites
 	name = "Defective Nanites"
