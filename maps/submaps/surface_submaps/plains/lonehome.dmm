@@ -27,7 +27,7 @@
 "jH" = (/obj/item/weapon/material/kitchen/utensil/spoon{pixel_x = 2},/turf/simulated/floor/wood,/area/submap/lonehome)
 "jK" = (/obj/structure/bed/chair/wood,/turf/simulated/floor/wood,/area/submap/lonehome)
 "kg" = (/obj/structure/table/marble,/obj/item/weapon/material/kitchen/utensil/spoon,/turf/simulated/floor/tiled/white,/area/submap/lonehome)
-"kn" = (/obj/structure/bed/chair/wood,/obj/machinery/button/windowtint{id = "h_kitchen"},/obj/structure/window/reinforced/polarized{dir = 4; id = h-kitchen},/turf/simulated/floor/wood,/area/submap/lonehome)
+"kn" = (/obj/structure/bed/chair/wood,/obj/machinery/button/windowtint{id = "h_kitchen"},/obj/structure/window/reinforced/polarized{dir = 4; id = "h_kitchen"},/turf/simulated/floor/wood,/area/submap/lonehome)
 "ks" = (/obj/item/weapon/photo,/obj/item/weapon/photo{pixel_x = 4},/obj/structure/table/bench/wooden,/turf/simulated/floor/wood,/area/submap/lonehome)
 "kT" = (/obj/machinery/light/small{dir = 1},/obj/structure/bed/padded,/obj/item/weapon/book/custom_library/fiction/truelovehathmyheart,/obj/item/weapon/bedsheet/clown,/turf/simulated/floor/wood,/area/submap/lonehome)
 "kU" = (/obj/item/weapon/chainsaw,/obj/item/weapon/storage/box/lights/mixed,/obj/item/weapon/extinguisher,/obj/item/weapon/storage/toolbox/mechanical,/obj/structure/table/rack,/turf/simulated/floor,/area/submap/lonehome)
