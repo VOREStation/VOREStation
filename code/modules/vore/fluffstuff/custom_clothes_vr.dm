@@ -1988,3 +1988,7 @@ Departamental Swimsuits, for general use
 	item_state = "zenasuit_mob"
 
 	species_restricted = null
+
+//Victor Zisthus: KA-BOOM
+/obj/item/weapon/storage/belt/utility/full/fluffsynth
+	color = "#1c1c1c"
