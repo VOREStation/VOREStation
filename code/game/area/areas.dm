@@ -377,8 +377,11 @@ var/list/mob/living/forced_ambiance_list = new
 
 /area/proc/play_ambience(var/mob/living/L, initial = TRUE)
 	// Ambience goes down here -- make sure to list each area seperately for ease of adding things in later, thanks! Note: areas adjacent to each other should have the same sounds to prevent cutoff when possible.- LastyScratch
-	if(!(L && L.is_preference_enabled(/datum/client_preference/play_ambiance)))	return
-
+	if(!(L && L.is_preference_enabled(/datum/client_preference/play_ambiance)))
+		return
+	
+	var/volume_mod = L.get_preference_volume_channel(VOLUME_CHANNEL_AMBIENCE)
+	
 	// If we previously were in an area with force-played ambiance, stop it.
 	if((L in forced_ambiance_list) && initial)
 		L << sound(null, channel = CHANNEL_AMBIENCE_FORCED)
@@ -392,6 +395,7 @@ var/list/mob/living/forced_ambiance_list = new
 			var/sound/chosen_ambiance = pick(forced_ambience)
 			if(!istype(chosen_ambiance))
 				chosen_ambiance = sound(chosen_ambiance, repeat = 1, wait = 0, volume = 25, channel = CHANNEL_AMBIENCE_FORCED)
+			chosen_ambiance.volume *= volume_mod
 			L << chosen_ambiance
 		else
 			L << sound(null, channel = CHANNEL_AMBIENCE_FORCED)
@@ -399,7 +403,7 @@ var/list/mob/living/forced_ambiance_list = new
 		var/ambience_odds = L?.client.prefs.ambience_chance
 		if(prob(ambience_odds) && (world.time >= L.client.time_last_ambience_played + 1 MINUTE))
 			var/sound = pick(ambience)
-			L << sound(sound, repeat = 0, wait = 0, volume = 50, channel = CHANNEL_AMBIENCE)
+			L << sound(sound, repeat = 0, wait = 0, volume = 50 * volume_mod, channel = CHANNEL_AMBIENCE)
 			L.client.time_last_ambience_played = world.time
 
 /area/proc/gravitychange(var/gravitystate = 0)
