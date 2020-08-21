@@ -120,6 +120,13 @@
 			spawn(rand(30, 60))
 				M.IgniteMob()
 
+/datum/reagent/toxin/lead
+	name = "lead"
+	id = "lead"
+	description = "Elemental Lead."
+	color = "#273956"
+	strength = 4
+
 /datum/reagent/toxin/spidertoxin
 	name = "Spidertoxin"
 	id = "spidertoxin"
