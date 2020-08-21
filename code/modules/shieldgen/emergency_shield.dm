@@ -1,5 +1,5 @@
 /obj/machinery/shield
-	name = "Emergency energy shield"
+	name = "emergency energy shield"
 	desc = "An energy shield used to contain hull breaches."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shield-old"
