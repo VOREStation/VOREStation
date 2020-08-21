@@ -38,6 +38,7 @@
 			/obj/item/weapon/storage/box/glasses/shot,
 			/obj/item/weapon/storage/box/glasses/mug,
 			/obj/item/weapon/storage/box/glasses/meta,
+			/obj/item/weapon/storage/box/glasses/meta/metapint,
 			/obj/item/weapon/reagent_containers/food/drinks/shaker,
 			/obj/item/weapon/storage/box/glass_extras/straws,
 			/obj/item/weapon/storage/box/glass_extras/sticks
