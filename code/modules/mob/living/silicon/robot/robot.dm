@@ -336,6 +336,7 @@
 /mob/living/silicon/robot/verb/Namepick()
 	set category = "Robot Commands"
 	if(custom_name)
+		to_chat(usr, "You can't pick another custom name. Go ask for a name change.")
 		return 0
 
 	spawn(0)
@@ -415,6 +416,7 @@
 /mob/living/silicon/robot/verb/spark_plug() //So you can still sparkle on demand without violence.
 	set category = "Robot Commands"
 	set name = "Emit Sparks"
+	to_chat(src, "You harmlessly spark.")
 	spark_system.start()
 
 // this function displays jetpack pressure in the stat panel

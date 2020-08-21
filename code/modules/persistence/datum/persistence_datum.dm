@@ -6,8 +6,8 @@
 	var/name
 	var/filename
 	var/tokens_per_line
-	var/entries_expire_at
-	var/entries_decay_at
+	var/entries_expire_at						// Set in rounds, this controls when the item is finally removed permanently regardless if cleaned or not.
+	var/entries_decay_at						// Set in rounds. This controls when item messages start getting scrambled.
 	var/entry_decay_weight = 0.5
 	var/file_entry_split_character = "\t"
 	var/file_entry_substitute_character = " "

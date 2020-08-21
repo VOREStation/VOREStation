@@ -178,7 +178,7 @@ var/list/slot_equipment_priority = list( \
 	if(!I) //If there's nothing to drop, the drop is automatically successful.
 		return 1
 	var/slot = get_inventory_slot(I)
-	return slot && I.mob_can_unequip(src, slot)
+	return I.mob_can_unequip(src, slot)
 
 /mob/proc/get_inventory_slot(obj/item/I)
 	var/slot = 0

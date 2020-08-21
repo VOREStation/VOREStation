@@ -52,7 +52,7 @@
 				if(distancetonode > world.view)
 					to_chat(user, "<span class='notice'>\The [src] would probably burst if it were this long.</span>")
 				else if(distancetonode <= amount)
-					to_chat(user, "<span class='notice'>You join \the [remembered] to \the [AC]")
+					to_chat(user, "<span class='notice'>You join \the [remembered] to \the [AC]</span>")
 					remembered.setup_hoses(AC)
 					use(distancetonode)
 					remembered = null
@@ -74,7 +74,8 @@
 						if(distancetonode > world.view)
 							to_chat(user, "<span class='notice'>\The [src] would probably burst if it were this long.</span>")
 						else if(distancetonode <= amount)
-							to_chat(user, "<span class='notice'>You join \the [remembered] to \the [CC]")
+							to_chat(user, "<span class='notice'>You join \the [remembered] to \the [CC]</span>")
+
 							remembered.setup_hoses(CC)
 							use(distancetonode)
 							remembered = null
