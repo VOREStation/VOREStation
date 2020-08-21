@@ -28,6 +28,10 @@
 		// Give them fancy new organs.
 		owner.internal_organs_by_name[O_CELL] = new /obj/item/organ/internal/cell(owner,1)
 		owner.internal_organs_by_name[O_VOICE] = new /obj/item/organ/internal/voicebox/robot(owner, 1)
+		owner.internal_organs_by_name[O_PUMP] = new /obj/item/organ/internal/heart/machine(owner,1)
+		owner.internal_organs_by_name[O_CYCLER] = new /obj/item/organ/internal/stomach/machine(owner,1)
+		owner.internal_organs_by_name[O_HEATSINK] = new /obj/item/organ/internal/robotic/heatsink(owner,1)
+		owner.internal_organs_by_name[O_DIAGNOSTIC] = new /obj/item/organ/internal/robotic/diagnostic(owner,1)
 
 /obj/item/organ/external/chest/handle_germ_effects()
 	. = ..() //Should return an infection level
