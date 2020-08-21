@@ -209,32 +209,37 @@
 	if(stat == DEAD) return
 
 	to_chat(src, "<span class='notice'>Performing self-diagnostic, please wait...</span>")
-	sleep(50)
-	var/output = "<span class='notice'>Self-Diagnostic Results:\n</span>"
 
-	output += "Internal Temperature: [convert_k2c(bodytemperature)] Degrees Celsius\n"
+	spawn(50)
+		var/output = "<span class='notice'>Self-Diagnostic Results:\n</span>"
 
-	output += "Current Battery Charge: [nutrition]\n"
+		output += "Internal Temperature: [convert_k2c(bodytemperature)] Degrees Celsius\n"
 
-	var/toxDam = getToxLoss()
-	if(toxDam)
-		output += "System Instability: <span class='warning'>[toxDam > 25 ? "Severe" : "Moderate"]</span>. Seek charging station for cleanup.\n"
-	else
-		output += "System Instability: <span style='color:green;'>OK</span>\n"
+		if(isSynthetic())
+			output += "Current Battery Charge: [nutrition]\n"
 
-	for(var/obj/item/organ/external/EO in organs)
-		if(EO.brute_dam || EO.burn_dam)
-			output += "[EO.name] - <span class='warning'>[EO.burn_dam + EO.brute_dam > EO.min_broken_damage ? "Heavy Damage" : "Light Damage"]</span>\n" //VOREStation Edit - Makes robotic limb damage scalable
-		else
-			output += "[EO.name] - <span style='color:green;'>OK</span>\n"
+		if(isSynthetic())
+			var/toxDam = getToxLoss()
+			if(toxDam)
+				output += "System Instability: <span class='warning'>[toxDam > 25 ? "Severe" : "Moderate"]</span>. Seek charging station for cleanup.\n"
+			else
+				output += "System Instability: <span style='color:green;'>OK</span>\n"
 
-	for(var/obj/item/organ/IO in internal_organs)
-		if(IO.damage)
-			output += "[IO.name] - <span class='warning'>[IO.damage > 10 ? "Heavy Damage" : "Light Damage"]</span>\n"
-		else
-			output += "[IO.name] - <span style='color:green;'>OK</span>\n"
+		for(var/obj/item/organ/external/EO in organs)
+			if(EO.robotic >= ORGAN_ASSISTED)
+				if(EO.brute_dam || EO.burn_dam)
+					output += "[EO.name] - <span class='warning'>[EO.burn_dam + EO.brute_dam > EO.min_broken_damage ? "Heavy Damage" : "Light Damage"]</span>\n" //VOREStation Edit - Makes robotic limb damage scalable
+				else
+					output += "[EO.name] - <span style='color:green;'>OK</span>\n"
 
-	to_chat(src,output)
+		for(var/obj/item/organ/IO in internal_organs)
+			if(IO.robotic >= ORGAN_ASSISTED)
+				if(IO.damage)
+					output += "[IO.name] - <span class='warning'>[IO.damage > 10 ? "Heavy Damage" : "Light Damage"]</span>\n"
+				else
+					output += "[IO.name] - <span style='color:green;'>OK</span>\n"
+
+		to_chat(src,output)
 
 /mob/living/carbon/human
 	var/next_sonar_ping = 0

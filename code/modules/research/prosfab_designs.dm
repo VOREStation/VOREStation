@@ -193,6 +193,34 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 5625, "glass" = 5625)
 //	req_tech = list(TECH_ENGINEERING = 2, TECH_MATERIAL = 2)
 
+/datum/design/item/prosfab/pros/internal/hydraulic
+	name = "Hydraulic Hub"
+	id = "pros_hydraulic"
+	build_path = /obj/item/organ/internal/heart/machine
+	time = 15
+	materials = list(DEFAULT_WALL_MATERIAL = 7500, MAT_PLASTIC = 3000)
+
+/datum/design/item/prosfab/pros/internal/reagcycler
+	name = "Reagent Cycler"
+	id = "pros_reagcycler"
+	build_path = /obj/item/organ/internal/stomach/machine
+	time = 15
+	materials = list(DEFAULT_WALL_MATERIAL = 7500, MAT_PLASTIC = 3000)
+
+/datum/design/item/prosfab/pros/internal/heatsink
+	name = "Heatsink"
+	id = "pros_heatsink"
+	build_path = /obj/item/organ/internal/robotic/heatsink
+	time = 15
+	materials = list(DEFAULT_WALL_MATERIAL = 7500, MAT_PLASTIC = 3000)
+
+/datum/design/item/prosfab/pros/internal/diagnostic
+	name = "Diagnostic Controller"
+	id = "pros_diagnostic"
+	build_path = /obj/item/organ/internal/robotic/diagnostic
+	time = 15
+	materials = list(DEFAULT_WALL_MATERIAL = 7500, MAT_PLASTIC = 3000)
+
 /datum/design/item/prosfab/pros/internal/heart
 	name = "Prosthetic Heart"
 	id = "pros_heart"

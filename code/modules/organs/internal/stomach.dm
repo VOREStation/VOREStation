@@ -48,3 +48,20 @@
 
 /obj/item/organ/internal/stomach/xeno
 	color = "#555555"
+	acidtype = "pacid"
+
+/obj/item/organ/internal/stomach/machine
+	name = "reagent cycler"
+	icon_state = "cycler"
+	organ_tag = O_CYCLER
+
+	robotic = ORGAN_ROBOT
+
+	acidtype = "sacid"
+
+/obj/item/organ/internal/stomach/machine/handle_organ_proc_special()
+	..()
+	if(owner && owner.stat != DEAD)
+		owner.bodytemperature += round(owner.robobody_count * 0.25, 0.1)
+
+	return
