@@ -24,11 +24,13 @@
 	if(requires_noticeboard && LAZYLEN(board.notices) >= board.max_notices)
 		return
 	var/obj/item/weapon/paper/paper = new paper_type(creating)
-	paper.set_content(tokens["message"], tokens["title"])
+	paper.info = tokens["message"]
+	paper.name = tokens["title"]
 	paper.last_modified_ckey = tokens["author"]
 	if(requires_noticeboard)
 		board.add_paper(paper)
-	SSpersistence.track_value(paper, type)
+	if(!paper.was_maploaded) // If we were created/loaded when the map was made, skip us!
+		SSpersistence.track_value(paper, type)
 	return paper
 
 /datum/persistent/paper/GetEntryAge(var/atom/entry)

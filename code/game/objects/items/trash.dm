@@ -14,8 +14,9 @@
 	if(!isnull(_age))
 		age = _age
 
-/obj/item/trash/Initialize()
-	SSpersistence.track_value(src, /datum/persistent/filth/trash)
+/obj/item/trash/Initialize(mapload)
+	if(!mapload || !config.persistence_ignore_mapload)
+		SSpersistence.track_value(src, /datum/persistent/filth/trash)
 	. = ..()
 
 /obj/item/trash/Destroy()
