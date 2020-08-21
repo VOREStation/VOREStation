@@ -133,16 +133,12 @@
 					/obj/item/weapon/reagent_containers/food/drinks/greentea = 15,
 					/obj/item/weapon/reagent_containers/food/drinks/chaitea = 15)
 	contraband = list(/obj/item/weapon/reagent_containers/food/drinks/ice = 10)
-<<<<<<< HEAD
-	prices = list(/obj/item/weapon/reagent_containers/food/drinks/coffee = 2, /obj/item/weapon/reagent_containers/food/drinks/tea = 2, /obj/item/weapon/reagent_containers/food/drinks/h_chocolate = 2) //VOREStation Edit
-=======
-	prices = list(/obj/item/weapon/reagent_containers/food/drinks/coffee = 3,
+	prices = list(/obj/item/weapon/reagent_containers/food/drinks/coffee = 2,
 					/obj/item/weapon/reagent_containers/food/drinks/decaf = 3,
-					/obj/item/weapon/reagent_containers/food/drinks/tea = 3,
-					/obj/item/weapon/reagent_containers/food/drinks/h_chocolate = 3,
+					/obj/item/weapon/reagent_containers/food/drinks/tea = 2,
+					/obj/item/weapon/reagent_containers/food/drinks/h_chocolate = 2,
 					/obj/item/weapon/reagent_containers/food/drinks/greentea = 10,
-					/obj/item/weapon/reagent_containers/food/drinks/chaitea = 5)
->>>>>>> 4a56ad2... Merge pull request #7449 from Cerebulon/vendEnhance
+					/obj/item/weapon/reagent_containers/food/drinks/chaitea = 5) // VOREStation Edit - Lowers Coffee/Hot Chocolate/Tea Prices from 3 -> 2.
 	vending_sound = "machines/vending/vending_coffee.ogg"
 
 /obj/machinery/vending/snack
@@ -152,15 +148,6 @@
 	product_slogans = "Try our new nougat bar!;Twice the calories for half the price!"
 	product_ads = "The healthiest!;Award-winning chocolate bars!;Mmm! So good!;Oh my god it's so juicy!;Have a snack.;Snacks are good for you!;Get More with Getmore!;Best quality snacks from Centauri Provisions.;We love chocolate!;Try our new jerky!"
 	icon_state = "snack"
-<<<<<<< HEAD
-	products = list(/obj/item/weapon/reagent_containers/food/snacks/candy = 12,/obj/item/weapon/reagent_containers/food/drinks/dry_ramen = 12,/obj/item/weapon/reagent_containers/food/snacks/chips =12,
-					/obj/item/weapon/reagent_containers/food/snacks/sosjerky = 12,/obj/item/weapon/reagent_containers/food/snacks/no_raisin = 12,/obj/item/weapon/reagent_containers/food/snacks/spacetwinkie = 12,
-					/obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers = 12, /obj/item/weapon/reagent_containers/food/snacks/tastybread = 12, /obj/item/weapon/reagent_containers/food/snacks/skrellsnacks = 6)
-	contraband = list(/obj/item/weapon/reagent_containers/food/snacks/syndicake = 6,/obj/item/weapon/reagent_containers/food/snacks/unajerky = 12,)
-	prices = list(/obj/item/weapon/reagent_containers/food/snacks/candy = 1,/obj/item/weapon/reagent_containers/food/drinks/dry_ramen = 5,/obj/item/weapon/reagent_containers/food/snacks/chips = 1,
-					/obj/item/weapon/reagent_containers/food/snacks/sosjerky = 2,/obj/item/weapon/reagent_containers/food/snacks/no_raisin = 1,/obj/item/weapon/reagent_containers/food/snacks/spacetwinkie = 1,
-					/obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers = 1, /obj/item/weapon/reagent_containers/food/snacks/tastybread = 2, /obj/item/weapon/reagent_containers/food/snacks/skrellsnacks = 2)
-=======
 	products = list(/obj/item/weapon/reagent_containers/food/snacks/candy = 12,
 					/obj/item/weapon/reagent_containers/food/snacks/candy/gummy = 12,
 					/obj/item/weapon/reagent_containers/food/drinks/dry_ramen = 12,
@@ -219,7 +206,6 @@
 				/obj/item/weapon/reagent_containers/food/snacks/cb09 = 10,
 				/obj/item/weapon/reagent_containers/food/snacks/cb10 = 8,
 				/obj/item/weapon/reagent_containers/food/snacks/tuna = 23)
->>>>>>> 4a56ad2... Merge pull request #7449 from Cerebulon/vendEnhance
 
 /obj/machinery/vending/cola
 	name = "Robust Softdrinks"
@@ -319,9 +305,6 @@
 					/obj/item/weapon/storage/chewables/tobacco = 5,
 					/obj/item/weapon/storage/chewables/tobacco/fine = 5,
 					/obj/item/weapon/storage/box/matches = 10,
-<<<<<<< HEAD
-					/obj/item/weapon/flame/lighter/random = 4)
-=======
 					/obj/item/weapon/flame/lighter/random = 4,
 					/obj/item/clothing/mask/smokable/ecig/util = 2,
 					///obj/item/clothing/mask/smokable/ecig/deluxe = 2,
@@ -336,7 +319,6 @@
 					/obj/item/weapon/reagent_containers/ecig_cartridge/coffee = 5,
 					/obj/item/weapon/reagent_containers/ecig_cartridge/blanknico = 2,
 					/obj/item/weapon/storage/box/fancy/chewables/tobacco/nico = 5)
->>>>>>> 4a56ad2... Merge pull request #7449 from Cerebulon/vendEnhance
 	contraband = list(/obj/item/weapon/flame/lighter/zippo = 4)
 	premium = list(/obj/item/weapon/storage/fancy/cigar = 5,
 					/obj/item/weapon/storage/fancy/cigarettes/carcinomas = 5,
@@ -351,9 +333,6 @@
 					/obj/item/weapon/storage/chewables/tobacco = 10,
 					/obj/item/weapon/storage/chewables/tobacco/fine = 20,
 					/obj/item/weapon/storage/box/matches = 1,
-<<<<<<< HEAD
-					/obj/item/weapon/flame/lighter/random = 2)
-=======
 					/obj/item/weapon/flame/lighter/random = 2,
 					/obj/item/clothing/mask/smokable/ecig/util = 100,
 					///obj/item/clothing/mask/smokable/ecig/deluxe = 300,
@@ -369,7 +348,6 @@
 					/obj/item/weapon/reagent_containers/ecig_cartridge/blanknico = 15,
 					/obj/item/weapon/storage/box/fancy/chewables/tobacco/nico = 15)
 
->>>>>>> 4a56ad2... Merge pull request #7449 from Cerebulon/vendEnhance
 
 /obj/machinery/vending/medical
 	name = "NanoMed Plus"
