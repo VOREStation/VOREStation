@@ -155,9 +155,13 @@ FIRE ALARM
 	for(var/obj/machinery/firealarm/FA in area)
 		fire_alarm.triggerAlarm(loc, FA, duration, hidden = alarms_hidden)
 	update_icon()
+<<<<<<< HEAD
 	playsound(src, 'sound/machines/airalarm.ogg', 25, 0, 4)
 	if(user)
 		log_game("[user] triggered a fire alarm at [COORD(src)]")
+=======
+	playsound(src, 'sound/machines/airalarm.ogg', 25, 0, 4, volume_channel = VOLUME_CHANNEL_ALARMS)
+>>>>>>> 167761e... Merge pull request #7504 from ShadowLarkens/volume
 
 /obj/machinery/firealarm/proc/set_security_level(var/newlevel)
 	if(seclevel != newlevel)

@@ -1806,6 +1806,7 @@
 #include "code\modules\client\preference_setup\loadout\loadout_xeno_vr.dm"
 #include "code\modules\client\preference_setup\occupation\occupation.dm"
 #include "code\modules\client\preference_setup\skills\skills.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\modules\client\preference_setup\vore\01_ears.dm"
 #include "code\modules\client\preference_setup\vore\02_size.dm"
 #include "code\modules\client\preference_setup\vore\03_egg.dm"
@@ -1815,6 +1816,11 @@
 #include "code\modules\client\preference_setup\vore\07_traits.dm"
 #include "code\modules\client\preference_setup\vore\08_nif.dm"
 #include "code\modules\client\preference_setup\vore\09_misc.dm"
+=======
+#include "code\modules\client\preference_setup\traits\trait_defines.dm"
+#include "code\modules\client\preference_setup\traits\traits.dm"
+#include "code\modules\client\preference_setup\volume_sliders\01_volume.dm"
+>>>>>>> 167761e... Merge pull request #7504 from ShadowLarkens/volume:polaris.dme
 #include "code\modules\clothing\chameleon.dm"
 #include "code\modules\clothing\clothing.dm"
 #include "code\modules\clothing\clothing_accessories.dm"
