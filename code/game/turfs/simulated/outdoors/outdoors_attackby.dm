@@ -8,5 +8,8 @@
 			new /obj/item/weapon/reagent_containers/food/snacks/worm(src)
 		else
 			to_chat(user, "<span class='notice'>You decide to not finish digging in \the [src].</span>")
+	else if(istype(S, /obj/item/stack/tile/floor))
+		ChangeTurf(/turf/simulated/floor, preserve_outdoors = TRUE)
+		return
 	else
 		..()

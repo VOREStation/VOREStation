@@ -51,6 +51,9 @@
 	if(modifiers["shift"] && modifiers["ctrl"])
 		CtrlShiftClickOn(A)
 		return 1
+	if(modifiers["shift"] && modifiers["middle"])
+		ShiftMiddleClickOn(A)
+		return 1
 	if(modifiers["middle"])
 		MiddleClickOn(A)
 		return 1
@@ -228,6 +231,15 @@
 /atom/proc/MiddleClick(var/mob/M as mob)
 	return
 */
+
+/*
+	Shift middle click
+	Used for pointing.
+*/
+
+/mob/proc/ShiftMiddleClickOn(atom/A)
+	pointed(A)
+	return
 
 /*
 	Shift click

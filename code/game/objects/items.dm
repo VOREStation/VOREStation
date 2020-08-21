@@ -430,11 +430,16 @@ var/list/global/slot_flags_enumeration = list(
 	return 1
 
 /obj/item/proc/mob_can_unequip(mob/M, slot, disable_warning = 0)
-	if(!slot) return 0
 	if(!M) return 0
 
 	if(!canremove)
 		return 0
+	
+	if(!slot)
+		if(issilicon(M))
+			return 1 // for stuff in grippers
+		return 0
+	
 	if(!M.slot_is_accessible(slot, src, disable_warning? null : M))
 		return 0
 	return 1
