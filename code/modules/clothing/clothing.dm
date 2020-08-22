@@ -111,7 +111,7 @@
 	. = FALSE
 	if(LAZYLEN(accessories))
 		for(var/obj/item/clothing/C in accessories)
-			if(C.handle_low_temperature(tempcheck))
+			if(C.handle_high_temperature(tempcheck))
 				. = TRUE
 
 	if(max_heat_protection_temperature && max_heat_protection_temperature >= tempcheck)
