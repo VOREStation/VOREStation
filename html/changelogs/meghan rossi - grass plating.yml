@@ -1,5 +1,0 @@
-author: Meghan Rossi
-delete-after: True
-changes: 
-  - bugfix: "You can now build plating on grass with floor tiles."
-  - rscadd: "Improved descriptions for some floors."
