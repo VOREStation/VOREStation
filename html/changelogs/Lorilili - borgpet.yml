@@ -1,0 +1,5 @@
+author: Lorilili
+delete-after: True
+changes: 
+  - rscadd: "You can now pet borgs on help intent and punch on hurt intent. Old behavior is now grab intent."
+
