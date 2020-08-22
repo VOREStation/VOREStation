@@ -688,15 +688,11 @@
 
 	if(istype(user,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user
-<<<<<<< HEAD
 		//VOREStation Removal
 		//if(H.species.can_shred(H))
 		//	attack_generic(H, rand(30,50), "slashed")
 		//	return
-		//VOREStation Edit: Adding borg petting.  Help intent pets, Disarm intent taps, Grab should remove the battery for replacement, and Harm is punching(no damage)
-=======
 		//Adding borg petting.  Help intent pets, Disarm intent taps, Grab should remove the battery for replacement, and Harm is punching(no damage)
->>>>>>> 1e53bf1... Merge pull request #7478 from listerla/borgpet
 		switch(H.a_intent)
 			if(I_HELP)
 				visible_message("<span class='notice'>[H] pets [src].</span>")
@@ -707,27 +703,15 @@
 					attack_generic(H, rand(30,50), "slashed")
 					return
 				else
-<<<<<<< HEAD
-					playsound(src, 'sound/effects/bang.ogg', 10, 1)
-=======
 					playsound(src.loc, 'sound/effects/bang.ogg', 10, 1)
->>>>>>> 1e53bf1... Merge pull request #7478 from listerla/borgpet
 					visible_message("<span class='warning'>[H] punches [src], but doesn't leave a dent.</span>")
 					return
 			if(I_DISARM)
 				H.do_attack_animation(src)
-<<<<<<< HEAD
-				playsound(src, 'sound/effects/clang1.ogg', 10, 1)
-				visible_message("<span class='warning'>[H] taps [src].</span>")
-				return
-		//VOREStation Edit: Addition of borg petting end
-=======
 				playsound(src.loc, 'sound/effects/clang2.ogg', 10, 1)
 				visible_message("<span class='warning'>[H] taps [src].</span>")
 				return
-		//Addition of borg petting end
 
->>>>>>> 1e53bf1... Merge pull request #7478 from listerla/borgpet
 	if(opened && !wiresexposed && (!istype(user, /mob/living/silicon)))
 		var/datum/robot_component/cell_component = components["power cell"]
 		if(cell)
