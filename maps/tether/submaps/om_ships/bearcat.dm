@@ -9,38 +9,71 @@
 	desc = "An old salvage or exploration ship, abandoned but possibly repairable."
 	mappath = 'bearcat.dmm'
 
-/obj/effect/overmap/visitable/ship/bearcat
-	name = "Abandoned Salvage Ship"
-	desc = "An old and abandoned salvage ship."
+// The 'shuttle'
+/datum/shuttle/autodock/overmap/bearcat
+	name = "Bearcat"
+	current_location = "omship_spawn_bearcat"
+	docking_controller_tag = "bearcatdocking"
+	shuttle_area = list(
+						/area/ship/scrap/,
+						/area/ship/scrap/cargo,
+						/area/ship/scrap/command,
+						/area/ship/scrap/command/captain,
+						/area/ship/scrap/comms,
+						/area/ship/scrap/crew,
+						/area/ship/scrap/crew/dorms,
+						/area/ship/scrap/crew/kitchen,
+						/area/ship/scrap/crew/medbay,
+						/area/ship/scrap/crew/saloon,
+						/area/ship/scrap/crew/toilets,
+						/area/ship/scrap/crew/wash,
+						/area/ship/scrap/dock,
+						/area/ship/scrap/dock/port,
+						/area/ship/scrap/dock/starboard,
+						/area/ship/scrap/maintenance,
+						/area/ship/scrap/maintenance/atmos,
+						/area/ship/scrap/maintenance/engine,
+						/area/ship/scrap/maintenance/power,
+						/area/ship/scrap/maintenance/storage,
+						/area/ship/scrap/shuttle,
+						/area/ship/scrap/shuttle/ingoing,
+						/area/ship/scrap/shuttle/outgoing,
+						/area/ship/scrap/unused1,
+						/area/ship/scrap/unused2,
+						/area/ship/scrap/unused3
+						) //oof. the shuttle subarea is unused, but it's here for... well, it's here.
+	defer_initialisation = TRUE //We're not loaded until an admin does it
+	fuel_consumption = 3
+
+// A shuttle lateloader landmark
+/obj/effect/shuttle_landmark/shuttle_initializer/bearcat
+	name = "IRV Bearcat"
+	base_area = /area/space
+	base_turf = /turf/space
+	landmark_tag = "omship_spawn_bearcat"
+	shuttle_type = /datum/shuttle/autodock/overmap/bearcat
+
+/obj/effect/overmap/visitable/ship/landable/bearcat
+	name = "IRV Bearcat"
+	desc = "An old and seemingly abandoned salvage ship."
 	scanner_desc = @{"[i]Registration[/i]: IRV Bearcat
 [i]Class:[/i] Corvette
 [i]Transponder[/i]: Transmitting \'Keep-Away\' Signal
-[b]Notice[/b]: May be salvagable."}
+[b]Notice[/b]: May be salvagable. No life signs."}
 	known = FALSE
 	color = "#ee3333" //Redish, so it stands out against the other debris-like icons
-	initial_generic_waypoints = list("bearcat_se", "bearcat_sw", "bearcat_nw", "bearcat_ne", "bearcat_dock_w", "bearcat_dock_e")
+	initial_generic_waypoints = list("bearcat_dock_w", "bearcat_dock_e")
 	vessel_mass = 4000
 	vessel_size = SHIP_SIZE_LARGE
+	shuttle = "Bearcat"
+
+// The shuttle's 'shuttle' computer
+/obj/machinery/computer/shuttle_control/explore/bearcat
+	name = "short jump console"
+	shuttle_tag = "Bearcat"
+	req_one_access = list()
 
 // -- Objs -- //
-
-
-/obj/effect/shuttle_landmark/premade/bearcat/ne
-	name = "IRV Bearcat - North East"
-	landmark_tag = "bearcat_ne"
-
-/obj/effect/shuttle_landmark/premade/bearcat/se
-	name = "IRV Bearcat - South East"
-	landmark_tag = "bearcat_se"
-
-/obj/effect/shuttle_landmark/premade/bearcat/nw
-	name = "IRV Bearcat - North West"
-	landmark_tag = "bearcat_nw"
-
-/obj/effect/shuttle_landmark/premade/bearcat/sw
-	name = "IRV Bearcat - South West"
-	landmark_tag = "bearcat_sw"
-
 /obj/effect/shuttle_landmark/premade/bearcat/dock_w
 	name = "IRV Bearcat - Port Docking Ring"
 	landmark_tag = "bearcat_dock_w"
