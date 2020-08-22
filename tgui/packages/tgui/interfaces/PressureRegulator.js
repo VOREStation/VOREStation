@@ -69,7 +69,7 @@ export const PressureRegulator = (props, context) => {
                 </Fragment>
               } />
             <LabeledList.Item
-              label="Desired Output Pressure"
+              label="Pressure Threshold"
               buttons={
                 <Fragment>
                   <Button
