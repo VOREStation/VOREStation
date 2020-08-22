@@ -129,7 +129,7 @@
 			/obj/item/weapon/tank/oxygen = 2
 			)
 	cost = 45
-	containertype = /obj/structure/closet/crate/secure/nanocare
+	containertype = /obj/structure/closet/crate/secure/nanomed
 	containername = "Medical Biohazard voidsuit crate"
 	access = access_medical_equip
 

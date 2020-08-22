@@ -10,11 +10,20 @@
 	anchored = 0
 	pressure_resistance = 2*ONE_ATMOSPHERE
 
+	var/obj/item/hose_connector/input/active/InputSocket
+	var/obj/item/hose_connector/output/active/OutputSocket
+
 	var/amount_per_transfer_from_this = 10
 	var/possible_transfer_amounts = list(10,25,50,100)
 
-	attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/reagent_dispensers/attackby(obj/item/weapon/W as obj, mob/user as mob)
 		return
+
+/obj/structure/reagent_dispensers/Destroy()
+	QDEL_NULL(InputSocket)
+	QDEL_NULL(OutputSocket)
+
+	..()
 
 /obj/structure/reagent_dispensers/Initialize()
 	var/datum/reagents/R = new/datum/reagents(5000)
@@ -22,6 +31,12 @@
 	R.my_atom = src
 	if (!possible_transfer_amounts)
 		src.verbs -= /obj/structure/reagent_dispensers/verb/set_APTFT
+
+	InputSocket = new(src)
+	InputSocket.carrier = src
+	OutputSocket = new(src)
+	OutputSocket.carrier = src
+
 	. = ..()
 
 /obj/structure/reagent_dispensers/examine(mob/user)

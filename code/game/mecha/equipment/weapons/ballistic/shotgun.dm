@@ -11,7 +11,7 @@
 	deviation = 0.7
 	projectile_energy_cost = 25
 
-	step_delay = 2
+	step_delay = 0.5
 
 	origin_tech = list(TECH_MATERIAL = 3, TECH_COMBAT = 4)
 

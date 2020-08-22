@@ -158,14 +158,18 @@ export const IDCard = (props, context) => {
                   overflow: "hidden",
                   outline: "2px solid #4972a1",
                 }}>
-                <img
-                  src={photo_front.substr(1, photo_front.length - 1)}
-                  style={{
-                    width: '300px',
-                    'margin-left': '-94px',
-                    '-ms-interpolation-mode': 'nearest-neighbor',
-                  }}
-                />
+                {photo_front && (
+                  <img
+                    src={photo_front.substr(1, photo_front.length - 1)}
+                    style={{
+                      width: '300px',
+                      'margin-left': '-94px',
+                      '-ms-interpolation-mode': 'nearest-neighbor',
+                    }}
+                  />
+                ) || (
+                  <Icon name="user" size={8} ml={1.5} mt={2.5} />
+                )}
               </Box>
             </Flex.Item>
             <Flex.Item basis={0} grow={1}>

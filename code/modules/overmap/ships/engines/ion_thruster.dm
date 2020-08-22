@@ -61,9 +61,7 @@
 	. = list()
 	.+= "Location: [get_area(src)]."
 	if(!powered())
-		.+= "Insufficient power to operate."
-
-	. = jointext(.,"<br>")
+		.+= list(list("Insufficient power to operate.", "bad"))
 
 /obj/machinery/ion_engine/proc/burn()
 	if(!on && !powered())

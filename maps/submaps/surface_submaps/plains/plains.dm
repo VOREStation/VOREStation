@@ -32,6 +32,11 @@
 #include "BuriedTreasure.dmm"
 #include "BuriedTreasure2.dmm"
 #include "BuriedTreasure3.dmm"
+#include "methlab.dmm"
+#include "hotspring.dmm"
+#include "lonehome.dmm"
+#include "priderock.dmm"
+#include "oldhotel.dmm"
 #endif
 
 
@@ -246,3 +251,33 @@
 	mappath = 'maps/submaps/surface_submaps/plains/BuriedTreasure3.dmm'
 	cost = 10
 	template_group = "Shallow Grave"
+
+/datum/map_template/surface/plains/oldhotel
+	name = "Old Hotel"
+	desc = "A abandoned hotel of sort, wonder why it was left behind."
+	mappath = 'maps/submaps/surface_submaps/plains/oldhotel.dmm'
+	cost = 15
+
+/datum/map_template/surface/plains/priderock
+	name = "Pride Rock"
+	desc = "A quite steep petruding rock from the earth, looks like a good hike."
+	mappath = 'maps/submaps/surface_submaps/plains/priderock.dmm'
+	cost = 10
+
+/datum/map_template/surface/plains/lonehome
+	name = "Lone Home"
+	desc = "A quite inoffensive looking home, damaged but still holding up."
+	mappath = 'maps/submaps/surface_submaps/plains/lonehome.dmm'
+	cost = 15
+
+/datum/map_template/surface/plains/hotspring
+	name = "Hot Spring"
+	desc = "Wait what, a hotspring in a frost planet?"
+	mappath = 'maps/submaps/surface_submaps/plains/hotspring.dmm'
+	cost = 5
+
+/datum/map_template/surface/plains/methlab
+	name = "Meth Lab"
+	desc = "A broken down greenhouse lab?, this does not look safe."
+	mappath = 'maps/submaps/surface_submaps/plains/methlab.dmm'
+	cost = 15

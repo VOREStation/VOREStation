@@ -57,6 +57,7 @@ export const CameraConsole = (props, context) => {
 
 export const CameraConsoleContent = (props, context) => {
   const { act, data, config } = useBackend(context);
+
   const { mapRef, activeCamera } = data;
   const cameras = selectCameras(data.cameras);
   const [
@@ -80,16 +81,16 @@ export const CameraConsoleContent = (props, context) => {
         <div className="CameraConsole__toolbarRight">
           <Button
             icon="chevron-left"
-            disabled={!prevCameraName}
-            onClick={() => act('switch_camera', {
-              name: prevCameraName,
-            })} />
+            onClick={() => act('pan', { dir: 8 })} />
+          <Button
+            icon="chevron-up"
+            onClick={() => act('pan', { dir: 1 })} />
           <Button
             icon="chevron-right"
-            disabled={!nextCameraName}
-            onClick={() => act('switch_camera', {
-              name: nextCameraName,
-            })} />
+            onClick={() => act('pan', { dir: 4 })} />
+          <Button
+            icon="chevron-down"
+            onClick={() => act('pan', { dir: 2 })} />
         </div>
         <ByondUi
           className="CameraConsole__map"

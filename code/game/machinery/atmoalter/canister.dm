@@ -281,7 +281,7 @@ update_flag
 
 /obj/machinery/portable_atmospherics/canister/tgui_data(mob/user)
 	var/list/data = list()
-	data["canLabel"] = can_label ? 1 : 0
+	data["can_relabel"] = can_label ? 1 : 0
 	data["connected"] = connected_port ? 1 : 0
 	data["pressure"] = round(air_contents.return_pressure() ? air_contents.return_pressure() : 0)
 	data["releasePressure"] = round(release_pressure ? release_pressure : 0)
