@@ -622,11 +622,14 @@
 /datum/reagent/frostoil/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed) // Eating frostoil now acts like capsaicin. Wee!
 	if(alien == IS_DIONA)
 		return
+<<<<<<< HEAD
 	if(alien == IS_ALRAUNE) // VOREStation Edit: It wouldn't affect plants that much.
 		if(prob(5))
 			to_chat(M, "<span class='rose'>You feel a chilly, tingling sensation in your mouth.</span>")
 		M.bodytemperature -= rand(10, 25)
 		return
+=======
+>>>>>>> 301662b... Adds Spice Mod to species.dm, Makes Frost Oil COLD (#7516)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(!H.can_feel_pain())
@@ -639,7 +642,11 @@
 		M.bodytemperature -= rand(1, 5) * M.species.spice_mod // Really fucks you up, cause it makes you cold.
 		if(prob(5))
 			M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>", pick("<span class='danger'>You feel like your insides are freezing!</span>", "<span class='danger'>Your insides feel like they're turning to ice!</span>"))
+<<<<<<< HEAD
 	// holder.remove_reagent("capsaicin", 5) // VOREStation Edit: Nop, we don't instadelete spices for free. 
+=======
+	holder.remove_reagent("capsaicin", 5)
+>>>>>>> 301662b... Adds Spice Mod to species.dm, Makes Frost Oil COLD (#7516)
 
 /datum/reagent/frostoil/cryotoxin //A longer lasting version of frost oil.
 	name = "Cryotoxin"
@@ -685,7 +692,11 @@
 		M.bodytemperature += rand(1, 5) * M.species.spice_mod // Really fucks you up, cause it makes you overheat, too.
 		if(prob(5))
 			M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>", pick("<span class='danger'>You feel like your insides are burning!</span>", "<span class='danger'>You feel like your insides are on fire!</span>", "<span class='danger'>You feel like your belly is full of lava!</span>"))
+<<<<<<< HEAD
 	// holder.remove_reagent("frostoil", 5)  // VOREStation Edit: Nop, we don't instadelete spices for free. 
+=======
+	holder.remove_reagent("frostoil", 5)
+>>>>>>> 301662b... Adds Spice Mod to species.dm, Makes Frost Oil COLD (#7516)
 
 /datum/reagent/condensedcapsaicin
 	name = "Condensed Capsaicin"
