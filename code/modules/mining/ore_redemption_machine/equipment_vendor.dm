@@ -49,7 +49,7 @@
 		EQUIPMENT("GPS Device",									/obj/item/device/gps/mining,										100),
 		// EQUIPMENT("Mining Conscription Kit",					/obj/item/storage/backpack/duffelbag/mining_conscript,				1000),
 		EQUIPMENT("Jump Boots",									/obj/item/clothing/shoes/bhop,										2500),
-		EQUIPMENT("Mini-Translocator",							/obj/item/device/perfect_tele/one_beacon,							120),
+		EQUIPMENT("Mini-Translocator",							/obj/item/device/perfect_tele/one_beacon,							1200),
 		EQUIPMENT("Survival Equipment - Insulated Poncho",		/obj/random/thermalponcho,											750),
 
 	)
