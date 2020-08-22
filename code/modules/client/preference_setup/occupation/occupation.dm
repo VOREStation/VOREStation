@@ -316,28 +316,8 @@
 
 // Level is equal to the desired new level of the job. So for a value of 4, we want to disable the job.
 /datum/category_item/player_setup_item/occupation/proc/SetJobDepartment(var/datum/job/job, var/level)
-<<<<<<< HEAD
-	if(!job || !level)	return 0
-	switch(level)
-		if(1)//Only one of these should ever be active at once so clear them all here
-			pref.job_civilian_high = 0
-			pref.job_medsci_high = 0
-			pref.job_engsec_high = 0
-			pref.job_talon_high = 0 //VOREStation Add
-			return 1
-		if(2)//Set current highs to med, then reset them
-			pref.job_civilian_med |= pref.job_civilian_high
-			pref.job_medsci_med |= pref.job_medsci_high
-			pref.job_engsec_med |= pref.job_engsec_high
-			pref.job_talon_med |= pref.job_talon_high //VOREStation Add
-			pref.job_civilian_high = 0
-			pref.job_medsci_high = 0
-			pref.job_engsec_high = 0
-			pref.job_talon_high = 0 //VOREStation Add
-=======
 	if(!job || !level)
 		return 0
->>>>>>> d7df9f1... Merge pull request #7500 from ShadowLarkens/preferences_rightclick_to_lower
 
 	switch(job.department_flag)
 		if(CIVILIAN)
@@ -378,14 +358,16 @@
 					pref.job_engsec_low |= job.flag
 		//VOREStation Add
 		if(TALON)
+			pref.job_talon_low &= ~job.flag
+			pref.job_talon_med &= ~job.flag
+			pref.job_talon_high &= ~job.flag
 			switch(level)
-				if(2)
+				if(1)
+					reset_jobhigh()
 					pref.job_talon_high = job.flag
-					pref.job_talon_med &= ~job.flag
-				if(3)
+				if(2)
 					pref.job_talon_med |= job.flag
-					pref.job_talon_low &= ~job.flag
-				else
+				if(3)
 					pref.job_talon_low |= job.flag
 		//VOREStation Add End
 
