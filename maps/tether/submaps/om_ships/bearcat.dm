@@ -24,8 +24,33 @@
 
 // -- Objs -- //
 
+
+/obj/effect/shuttle_landmark/premade/bearcat/ne
+	name = "IRV Bearcat - North East"
+	landmark_tag = "bearcat_ne"
+
+/obj/effect/shuttle_landmark/premade/bearcat/se
+	name = "IRV Bearcat - South East"
+	landmark_tag = "bearcat_se"
+
+/obj/effect/shuttle_landmark/premade/bearcat/nw
+	name = "IRV Bearcat - North West"
+	landmark_tag = "bearcat_nw"
+
+/obj/effect/shuttle_landmark/premade/bearcat/sw
+	name = "IRV Bearcat - South West"
+	landmark_tag = "bearcat_sw"
+
+/obj/effect/shuttle_landmark/premade/bearcat/dock_w
+	name = "IRV Bearcat - Port Docking Ring"
+	landmark_tag = "bearcat_dock_w"
+
+/obj/effect/shuttle_landmark/premade/bearcat/dock_e
+	name = "IRV Bearcat - Starboard Docking Ring"
+	landmark_tag = "bearcat_dock_e"
+
 /area/ship/scrap
-	name = "\improper Generic Ship"
+	name = "\improper Bearcat Ship"
 	has_gravity = 0		//predates artificial gravity - won't matter much due to all the walls to push off of!
 
 /area/ship/scrap/crew
@@ -63,6 +88,14 @@
 /area/ship/scrap/dock
 	name = "\improper Docking Bay"
 	icon_state = "entry"
+
+/area/ship/scrap/dock/port
+	name = "\improper Docking Bay Port"
+	icon_state = "west"
+
+/area/ship/scrap/dock/starboard
+	name = "\improper Docking Bay Starboard"
+	icon_state = "east"
 
 /area/ship/scrap/unused1
 	name = "\improper Unused Compartment #1"
