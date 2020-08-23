@@ -209,29 +209,28 @@
 	updateUsrDialog()
 
 /obj/machinery/bomb_tester/proc/start_simulating()
+	if(!tank1 || (sim_mode == MODE_DOUBLE && !tank2) || (sim_mode == MODE_CANISTER && !test_canister))
+		simulation_results = "Error"
+		simulation_finish()
+		return
+	if(tank1?.integrity < tank1?.maxintegrity || tank2?.integrity < tank2?.maxintegrity)
+		simulation_results = "Unstable"
+		simulation_finish()
+		return
 	simulating = 1
 	update_use_power(USE_POWER_ACTIVE)
 	simulation_started = world.time
 	update_icon()
 	switch(sim_mode)
 		if(MODE_SINGLE)
-			if(!tank1)
-				simulation_results = "Error"
-				return
 			spawn()
 				single_tank_sim()
 
 		if(MODE_DOUBLE)
-			if(!tank1 || !tank2)
-				simulation_results = "Error"
-				return
 			spawn()
 				ttv_sim()
 
 		if(MODE_CANISTER)
-			if(!tank1 || !test_canister)
-				simulation_results = "Error"
-				return
 			spawn()
 				canister_sim()
 
@@ -361,6 +360,9 @@
 	if(simulation_results == "Error")
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 0)
 		state("Invalid parameters.")
+	else if(simulation_results == "Unstable")
+		playsound(src, 'sound/machines/buzz-two.ogg', 50, 0)
+		state("Tank instability detected. Please step away from the device.")
 	else
 		ping("Simulation complete!")
 		playsound(src, "sound/effects/printer.ogg", 50, 1)
