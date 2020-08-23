@@ -1286,16 +1286,8 @@
 		if(blinded)
 			overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
 			throw_alert("blind", /obj/screen/alert/blind)
-
 		else
-			clear_fullscreens()
-			clear_alert("blind")
-
-		if(blinded)
-			overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
-
-		else if(!machine)
-			clear_fullscreens()
+			clear_fullscreen("blind")
 			clear_alert("blind")
 
 		if(disabilities & NEARSIGHTED)	//this looks meh but saves a lot of memory by not requiring to add var/prescription
@@ -1312,6 +1304,8 @@
 			throw_alert("high", /obj/screen/alert/high)
 		else
 			clear_alert("high")
+
+		if(!isbelly(loc)) clear_fullscreen("belly") //VOREStation Add - Belly fullscreens safety
 
 		if(config.welder_vision)
 			var/found_welder
