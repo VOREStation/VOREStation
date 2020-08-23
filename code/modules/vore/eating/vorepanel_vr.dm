@@ -30,6 +30,7 @@
 /datum/vore_look
 	var/mob/living/host // Note, we do this in case we ever want to allow people to view others vore panels
 	var/unsaved_changes = FALSE
+	var/show_pictures = TRUE
 
 /datum/vore_look/New(mob/living/new_host)
 	if(istype(new_host))
@@ -84,6 +85,7 @@
 		return data
 
 	data["unsaved_changes"] = unsaved_changes
+	data["show_pictures"] = show_pictures
 
 	data["inside"] = list()
 	var/atom/hostloc = host.loc
@@ -107,12 +109,13 @@
 
 			var/list/info = list(
 				"name" = "[O]",
-				"icon" = cached_nom_icon(O),
 				"absorbed" = FALSE,
 				"stat" = 0,
 				"ref" = "\ref[O]",
 				"outside" = FALSE,
 			)
+			if(show_pictures)
+				info["icon"] = cached_nom_icon(O)
 			if(isliving(O))
 				var/mob/living/M = O
 				info["stat"] = M.stat
@@ -184,12 +187,13 @@
 		for(var/O in selected)
 			var/list/info = list(
 				"name" = "[O]",
-				"icon" = cached_nom_icon(O),
 				"absorbed" = FALSE,
 				"stat" = 0,
 				"ref" = "\ref[O]",
 				"outside" = TRUE,
 			)
+			if(show_pictures)
+				info["icon"] = cached_nom_icon(O)
 			if(isliving(O))
 				var/mob/living/M = O
 				info["stat"] = M.stat
@@ -218,6 +222,9 @@
 		return TRUE
 
 	switch(action)
+		if("show_pictures")
+			show_pictures = !show_pictures
+			return TRUE
 		if("int_help")
 			alert("These control how your belly responds to someone using 'resist' while inside you. The percent chance to trigger each is listed below, \
 					and you can change them to whatever you see fit. Setting them to 0% will disable the possibility of that interaction. \

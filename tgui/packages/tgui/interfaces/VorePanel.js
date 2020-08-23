@@ -488,7 +488,10 @@ const VoreSelectedBelly = (props, context) => {
 };
 
 const VoreContentsPanel = (props, context) => {
-  const { act } = useBackend(context);
+  const { act, data } = useBackend(context);
+  const {
+    show_pictures,
+  } = data;
   const {
     contents,
     belly,
@@ -501,38 +504,59 @@ const VoreContentsPanel = (props, context) => {
         <Button
           textAlign="center"
           fluid
+          mb={1}
           onClick={() => act("pick_from_outside", { "pickall": true })}>
           All
         </Button>
       ) || null}
-      <Flex wrap="wrap" justify="center" align="center">
-        {contents.map(thing => (
-          <Flex.Item key={thing.name} basis="33%">
-            <Button
-              width="64px"
-              color={thing.absorbed ? "purple" : stats[thing.stat]}
-              style={{
-                'vertical-align': 'middle',
-                'margin-right': '5px',
-                'border-radius': '20px',
-              }}
-              onClick={() => act(thing.outside ? "pick_from_outside" : "pick_from_inside", {
-                "pick": thing.ref,
-                "belly": belly,
-              })}>
-              <img
-                src={"data:image/jpeg;base64, " + thing.icon}
+      {show_pictures && (
+        <Flex wrap="wrap" justify="center" align="center">
+          {contents.map(thing => (
+            <Flex.Item key={thing.name} basis="33%">
+              <Button
                 width="64px"
-                height="64px"
+                color={thing.absorbed ? "purple" : stats[thing.stat]}
                 style={{
-                  '-ms-interpolation-mode': 'nearest-neighbor',
-                  'margin-left': '-5px',
-                }} />
-            </Button>
-            {thing.name}
-          </Flex.Item>
-        ))}
-      </Flex>
+                  'vertical-align': 'middle',
+                  'margin-right': '5px',
+                  'border-radius': '20px',
+                }}
+                onClick={() => act(thing.outside ? "pick_from_outside" : "pick_from_inside", {
+                  "pick": thing.ref,
+                  "belly": belly,
+                })}>
+                <img
+                  src={"data:image/jpeg;base64, " + thing.icon}
+                  width="64px"
+                  height="64px"
+                  style={{
+                    '-ms-interpolation-mode': 'nearest-neighbor',
+                    'margin-left': '-5px',
+                  }} />
+              </Button>
+              {thing.name}
+            </Flex.Item>
+          ))}
+        </Flex>
+      ) || (
+        <LabeledList>
+          {contents.map(thing => (
+            <LabeledList.Item key={thing.ref} label={thing.name}>
+              <Button
+                fluid
+                mt={-1}
+                mb={-1}
+                color={thing.absorbed ? "purple" : stats[thing.stat]}
+                onClick={() => act(thing.outside ? "pick_from_outside" : "pick_from_inside", {
+                  "pick": thing.ref,
+                  "belly": belly,
+                })}>
+                Interact
+              </Button>
+            </LabeledList.Item>
+          ))}
+        </LabeledList>
+      )}
     </Fragment>
   );
 };
@@ -554,8 +578,16 @@ const VoreUserPreferences = (props, context) => {
     noisy,
   } = data.prefs;
 
+  const {
+    show_pictures,
+  } = data;
+
   return (
-    <Section title="Preferences">
+    <Section title="Preferences" buttons={
+      <Button icon="eye" selected={show_pictures} onClick={() => act("show_pictures")}>
+        Contents Preference: {show_pictures ? "Show Pictures" : "Show List"}
+      </Button>
+    }>
       <Flex spacing={1} wrap="wrap" justify="center">
         <Flex.Item basis="32%">
           <Button
