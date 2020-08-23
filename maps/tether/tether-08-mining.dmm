@@ -952,6 +952,13 @@
 /obj/machinery/mining/brace,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/outpost/mining_main/drill_equipment)
+"cb" = (
+/obj/effect/map_effect/portal/master/side_b{
+	dir = 1;
+	portal_id = "surfacemine"
+	},
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/outpost/mining_main/passage)
 "cc" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 5
@@ -1032,11 +1039,8 @@
 /area/mine/explored)
 "cm" = (
 /obj/effect/floor_decal/rust,
-/turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/outpost/mining_main/passage)
-"cn" = (
-/turf/simulated/floor/outdoors/grass/sif/virgo3b,
-/area/outpost/mining_main/passage)
+/turf/unsimulated/wall/planetary/virgo3b,
+/area/mine/explored)
 "co" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -1059,7 +1063,9 @@
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/outpost/mining_main/passage)
 "cq" = (
-/obj/effect/step_trigger/teleporter/from_mining,
+/obj/effect/map_effect/portal/line/side_b{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/outpost/mining_main/passage)
 "cr" = (
@@ -12409,7 +12415,7 @@ ab
 ab
 ab
 ab
-cn
+ab
 aa
 "}
 (74,1,1) = {"
@@ -12548,10 +12554,10 @@ af
 ab
 ab
 ab
-ab
-ab
+aa
+aa
 cm
-cp
+aa
 aa
 "}
 (75,1,1) = {"
@@ -12691,10 +12697,10 @@ af
 ab
 ab
 ab
-ab
-cn
 cp
-cq
+cp
+cp
+cb
 "}
 (76,1,1) = {"
 aa
@@ -12833,8 +12839,8 @@ ab
 ab
 af
 ab
-ab
-cn
+cp
+cp
 cp
 cq
 "}
@@ -12974,9 +12980,9 @@ ab
 af
 ab
 ab
-ab
 af
-cn
+cp
+cp
 cp
 cq
 "}
@@ -13117,8 +13123,8 @@ ab
 ab
 ab
 af
-ab
-cn
+cp
+cp
 cp
 cq
 "}
@@ -13259,8 +13265,8 @@ ab
 ab
 ab
 ab
-ab
-cn
+cp
+cp
 cp
 cq
 "}
@@ -13400,9 +13406,9 @@ ab
 ab
 ab
 ab
-ab
-ab
-cn
+af
+cp
+cp
 cp
 cq
 "}
@@ -13543,8 +13549,8 @@ ab
 ab
 ab
 ab
-ab
-cn
+cp
+cp
 cp
 cq
 "}
@@ -13684,9 +13690,9 @@ ab
 ab
 ab
 ab
-ab
-ab
-cn
+af
+cp
+cp
 cp
 cq
 "}
@@ -13827,8 +13833,8 @@ ab
 ab
 ab
 ab
-ab
-cn
+cp
+cp
 cp
 cq
 "}
@@ -13969,8 +13975,8 @@ ab
 ab
 ab
 ab
-ab
-cn
+cp
+cp
 cp
 cq
 "}
@@ -14110,10 +14116,10 @@ ab
 ab
 ab
 ab
-ab
-ab
-cn
-cp
+aa
+aa
+aa
+aa
 aa
 "}
 (86,1,1) = {"
@@ -14255,7 +14261,7 @@ ab
 ab
 ab
 ab
-cn
+ab
 aa
 "}
 (87,1,1) = {"
