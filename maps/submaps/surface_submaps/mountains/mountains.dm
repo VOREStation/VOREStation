@@ -343,7 +343,7 @@
 	cost = 20
 	fixed_orientation = TRUE
 
-/datum/map_template/surface/mountains/deep/excavation1
+/datum/map_template/surface/mountains/normal/excavation1 //VOREStation Edit
 	name = "Excavation Site"
 	desc = "An abandoned mining site."
 	mappath = 'maps/submaps/surface_submaps/mountains/excavation1.dmm'
