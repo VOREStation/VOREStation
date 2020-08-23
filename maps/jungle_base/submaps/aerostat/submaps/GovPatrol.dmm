@@ -1,0 +1,244 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/turf/template_noop,
+/area/submap/virgo2/GovPatrol)
+"c" = (
+/obj/tether_away_spawner/aerostat_surface,
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/submap/virgo2/GovPatrol)
+"d" = (
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/submap/virgo2/GovPatrol)
+"e" = (
+/obj/item/device/radio/off,
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/submap/virgo2/GovPatrol)
+"f" = (
+/obj/item/weapon/storage/box/flare,
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/submap/virgo2/GovPatrol)
+"g" = (
+/obj/item/ammo_casing,
+/turf/template_noop,
+/area/submap/virgo2/GovPatrol)
+"h" = (
+/obj/item/ammo_casing,
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/submap/virgo2/GovPatrol)
+"i" = (
+/obj/item/clothing/under/solgov/utility/sifguard,
+/obj/item/clothing/shoes/boots/jackboots,
+/obj/effect/decal/remains,
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/submap/virgo2/GovPatrol)
+"k" = (
+/obj/item/weapon/gun/projectile/shotgun/pump/rifle/lever,
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/submap/virgo2/GovPatrol)
+"m" = (
+/obj/effect/decal/remains,
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/submap/virgo2/GovPatrol)
+"v" = (
+/obj/random/multiple/voidsuit,
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/submap/virgo2/GovPatrol)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(3,1,1) = {"
+a
+b
+b
+d
+d
+d
+d
+d
+d
+d
+d
+d
+a
+"}
+(4,1,1) = {"
+a
+b
+b
+d
+d
+d
+d
+d
+h
+d
+d
+g
+a
+"}
+(5,1,1) = {"
+a
+b
+b
+d
+d
+d
+d
+d
+d
+d
+k
+d
+a
+"}
+(6,1,1) = {"
+a
+b
+b
+d
+d
+d
+e
+v
+i
+d
+d
+d
+a
+"}
+(7,1,1) = {"
+a
+b
+b
+d
+d
+d
+c
+d
+d
+d
+d
+d
+a
+"}
+(8,1,1) = {"
+a
+b
+d
+d
+d
+d
+d
+f
+d
+d
+d
+d
+a
+"}
+(9,1,1) = {"
+a
+b
+d
+d
+d
+d
+d
+h
+d
+d
+d
+d
+a
+"}
+(10,1,1) = {"
+a
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+m
+a
+"}
+(11,1,1) = {"
+a
+b
+d
+d
+d
+d
+b
+b
+b
+d
+h
+g
+a
+"}
+(12,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(13,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}

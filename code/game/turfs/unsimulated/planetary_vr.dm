@@ -1,6 +1,8 @@
+// Virgo 3b (Tether) Defines here.
+
 //Atmosphere properties
 #define VIRGO3B_ONE_ATMOSPHERE	82.4 //kPa
-#define VIRGO3B_AVG_TEMP	234 //kelvin
+#define VIRGO3B_AVG_TEMP	234 // -39.15C in Kelvin
 
 #define VIRGO3B_PER_N2		0.16 //percent
 #define VIRGO3B_PER_O2		0.00
@@ -51,9 +53,44 @@
 	desc = "An eight-meter tall carbyne wall. For when the wildlife on your planet is mostly militant megacorps."
 	alpha = 0xFF
 	VIRGO3B_SET_ATMOS
+	
+// End Virgo 3b Defines.
 
 /turf/unsimulated/wall/planetary/virgo3b_better
 	name = "facility wall"
 	desc = "An eight-meter tall carbyne wall. For when the wildlife on your planet is mostly militant megacorps."
 	alpha = 0xFF
 	VIRGO3BB_SET_ATMOS
+
+// Start Torris (Jungle Base) Defines here.
+// Atmosphere properties
+#define TORRIS_ONE_ATMOSPHERE	101.3 // kPa
+#define TORRIS_AVG_TEMP	299.15 // 26C converted to Kelvin
+
+// Following Values are in percent
+#define TORRIS_PER_N2		0.40 
+#define TORRIS_PER_O2		0.60
+#define TORRIS_PER_N2O		0.00 //Currently no capacity to 'start' a turf with this. See turf.dm
+#define TORRIS_PER_CO2		0.00
+#define TORRIS_PER_PHORON	0.00
+
+//Math only beyond this point
+#define TORRIS_MOL_PER_TURF	(TORRIS_ONE_ATMOSPHERE*CELL_VOLUME/(TORRIS_AVG_TEMP*R_IDEAL_GAS_EQUATION))
+#define TORRIS_MOL_N2			(TORRIS_MOL_PER_TURF * TORRIS_PER_N2)
+#define TORRIS_MOL_O2			(TORRIS_MOL_PER_TURF * TORRIS_PER_O2)
+#define TORRIS_MOL_N2O			(TORRIS_MOL_PER_TURF * TORRIS_PER_N2O)
+#define TORRIS_MOL_CO2			(TORRIS_MOL_PER_TURF * TORRIS_PER_CO2)
+#define TORRIS_MOL_PHORON		(TORRIS_MOL_PER_TURF * TORRIS_PER_PHORON)
+
+//Turfmakers
+#define TORRIS_SET_ATMOS	nitrogen=TORRIS_MOL_N2;oxygen=TORRIS_MOL_O2;carbon_dioxide=TORRIS_MOL_CO2;phoron=TORRIS_MOL_PHORON;temperature=TORRIS_AVG_TEMP
+#define TORRIS_TURF_CREATE(x)	x/torris/nitrogen=TORRIS_MOL_N2;x/torris/oxygen=TORRIS_MOL_O2;x/torris/carbon_dioxide=TORRIS_MOL_CO2;x/torris/phoron=TORRIS_MOL_PHORON;x/torris/temperature=TORRIS_AVG_TEMP;x/torris/outdoors=TRUE;x/torris/update_graphic(list/graphic_add = null, list/graphic_remove = null) return 0
+#define TORRIS_TURF_CREATE_UN(x)	x/torris/nitrogen=TORRIS_MOL_N2;x/torris/oxygen=TORRIS_MOL_O2;x/torris/carbon_dioxide=TORRIS_MOL_CO2;x/torris/phoron=TORRIS_MOL_PHORON;x/torris/temperature=TORRIS_AVG_TEMP
+
+// This is a wall you surround the area of your "planet" with, that makes the atmosphere inside stay within bounds, even if canisters
+// are opened or other strange things occur.
+/turf/unsimulated/wall/planetary/torris
+	name = "facility wall"
+	desc = "An eight-meter tall carbyne wall. For when the wildlife on your planet is voracious panthers. It probably doesn't actually prevent them from getting over it."
+	alpha = 0xFF
+	TORRIS_SET_ATMOS

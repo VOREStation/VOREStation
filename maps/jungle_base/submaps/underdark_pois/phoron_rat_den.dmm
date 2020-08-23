@@ -1,0 +1,309 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/effect/decal/cleanable/cobweb,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/mine/explored/underdark)
+"b" = (
+/turf/template_noop,
+/area/mine/explored/underdark)
+"c" = (
+/turf/simulated/mineral/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"d" = (
+/obj/effect/decal/cleanable/blood/tracks/paw,
+/obj/effect/decal/cleanable/blood/drip,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/mine/explored/underdark)
+"f" = (
+/obj/structure/barricade,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/mine/explored/underdark)
+"g" = (
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/mine/explored/underdark)
+"h" = (
+/obj/effect/decal/cleanable/blood/drip,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/mine/explored/underdark)
+"i" = (
+/obj/effect/decal/cleanable/blood/tracks/paw,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/mine/explored/underdark)
+"j" = (
+/obj/effect/decal/remains/mouse,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/mine/explored/underdark)
+"k" = (
+/mob/living/simple_mob/vore/aggressive/rat/phoron,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/mine/explored/underdark)
+"l" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/mine/explored/underdark)
+"m" = (
+/obj/effect/decal/remains/deer,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/mine/explored/underdark)
+"n" = (
+/obj/structure/frame,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/mine/explored/underdark)
+"o" = (
+/obj/structure/bonfire/permanent,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/mine/explored/underdark)
+"p" = (
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/mine/explored/underdark)
+"q" = (
+/obj/effect/decal/remains/tajaran,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/mine/explored/underdark)
+"r" = (
+/obj/effect/decal/cleanable/blood/drip,
+/obj/structure/barricade,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/mine/explored/underdark)
+"s" = (
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/mine/explored/underdark)
+"t" = (
+/obj/structure/girder,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/mine/explored/underdark)
+"u" = (
+/obj/structure/outcrop/diamond,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/mine/explored/underdark)
+
+(1,1,1) = {"
+b
+b
+b
+c
+c
+c
+c
+c
+c
+c
+c
+c
+"}
+(2,1,1) = {"
+b
+b
+b
+c
+a
+g
+g
+g
+g
+p
+m
+c
+"}
+(3,1,1) = {"
+b
+b
+b
+c
+g
+k
+g
+g
+k
+g
+p
+c
+"}
+(4,1,1) = {"
+c
+c
+c
+c
+g
+g
+g
+g
+g
+g
+q
+c
+"}
+(5,1,1) = {"
+a
+g
+g
+g
+g
+g
+g
+g
+g
+g
+g
+c
+"}
+(6,1,1) = {"
+d
+d
+d
+i
+j
+g
+g
+n
+g
+g
+g
+c
+"}
+(7,1,1) = {"
+c
+g
+h
+i
+g
+g
+g
+g
+g
+g
+g
+c
+"}
+(8,1,1) = {"
+c
+g
+h
+d
+d
+l
+m
+o
+g
+g
+q
+c
+"}
+(9,1,1) = {"
+c
+g
+g
+g
+g
+g
+h
+h
+g
+g
+g
+c
+"}
+(10,1,1) = {"
+c
+g
+g
+u
+g
+m
+g
+h
+g
+g
+s
+c
+"}
+(11,1,1) = {"
+f
+g
+g
+g
+g
+g
+g
+h
+g
+g
+g
+c
+"}
+(12,1,1) = {"
+f
+g
+g
+g
+g
+g
+g
+h
+g
+g
+g
+c
+"}
+(13,1,1) = {"
+c
+c
+c
+c
+g
+k
+g
+h
+g
+g
+g
+c
+"}
+(14,1,1) = {"
+b
+b
+b
+c
+g
+g
+g
+h
+g
+g
+m
+c
+"}
+(15,1,1) = {"
+b
+b
+b
+c
+t
+g
+g
+h
+g
+p
+m
+c
+"}
+(16,1,1) = {"
+b
+b
+b
+c
+c
+c
+c
+r
+c
+c
+c
+c
+"}

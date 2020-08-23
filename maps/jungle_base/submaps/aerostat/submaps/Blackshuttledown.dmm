@@ -1,0 +1,1732 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/turf/template_noop,
+/area/template_noop)
+"ab" = (
+/turf/template_noop,
+/area/submap/virgo2/Blackshuttledown)
+"ac" = (
+/obj/effect/decal/remains/human,
+/turf/template_noop,
+/area/submap/virgo2/Blackshuttledown)
+"ad" = (
+/turf/simulated/mineral/ignore_mapgen/virgo2,
+/area/submap/virgo2/Blackshuttledown)
+"ae" = (
+/obj/effect/decal/cleanable/blood,
+/turf/template_noop,
+/area/submap/virgo2/Blackshuttledown)
+"af" = (
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/submap/virgo2/Blackshuttledown)
+"ag" = (
+/obj/effect/decal/remains/human,
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/submap/virgo2/Blackshuttledown)
+"ah" = (
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/submap/virgo2/Blackshuttledown)
+"ai" = (
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/turf/simulated/shuttle/wall/dark{
+	icon_state = "dark6";
+	name = "Unknown Shuttle"
+	},
+/area/submap/virgo2/Blackshuttledown)
+"aj" = (
+/turf/simulated/shuttle/wall/dark{
+	icon_state = "dark0";
+	name = "Unknown Shuttle"
+	},
+/area/submap/virgo2/Blackshuttledown)
+"ak" = (
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/turf/simulated/shuttle/wall/dark{
+	icon_state = "dark10";
+	name = "Unknown Shuttle"
+	},
+/area/submap/virgo2/Blackshuttledown)
+"al" = (
+/obj/machinery/door/airlock/external{
+	density = 1;
+	frequency = 1331;
+	id_tag = "merc_shuttle_outer";
+	name = "Ship External Access";
+	req_access = list(150)
+	},
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"am" = (
+/obj/structure/shuttle/engine/heater{
+	icon_state = "heater";
+	dir = 4
+	},
+/turf/simulated/shuttle/wall/dark{
+	icon_state = "dark0";
+	name = "Unknown Shuttle"
+	},
+/area/submap/virgo2/Blackshuttledown)
+"an" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 4;
+	icon_state = "propulsion_l"
+	},
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/submap/virgo2/Blackshuttledown)
+"ao" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/table/rack,
+/obj/item/clothing/head/helmet/space,
+/obj/item/clothing/head/helmet/space,
+/obj/item/clothing/head/helmet/space,
+/obj/item/clothing/head/helmet/space,
+/obj/item/clothing/suit/space,
+/obj/item/clothing/suit/space,
+/obj/item/clothing/suit/space,
+/obj/item/clothing/suit/space,
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"ap" = (
+/obj/structure/dispenser/oxygen,
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"aq" = (
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"ar" = (
+/obj/machinery/light/small{
+	dir = 4;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"as" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"at" = (
+/obj/machinery/organ_printer/flesh,
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"au" = (
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/turf/simulated/shuttle/wall/dark{
+	icon_state = "dark5";
+	name = "Unknown Shuttle"
+	},
+/area/submap/virgo2/Blackshuttledown)
+"av" = (
+/obj/structure/table/steel,
+/obj/item/weapon/gun/projectile/automatic/wt550,
+/obj/item/weapon/gun/projectile/automatic/p90,
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"aw" = (
+/obj/machinery/door/airlock/external,
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"ax" = (
+/obj/machinery/optable,
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"ay" = (
+/obj/machinery/bodyscanner{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"az" = (
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/turf/simulated/shuttle/wall/dark{
+	icon_state = "dark9";
+	name = "Unknown Shuttle"
+	},
+/area/submap/virgo2/Blackshuttledown)
+"aA" = (
+/obj/machinery/computer/communications{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"aB" = (
+/mob/living/simple_mob/mechanical/viscerator,
+/mob/living/simple_mob/mechanical/viscerator,
+/mob/living/simple_mob/mechanical/viscerator,
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"aC" = (
+/obj/structure/table/steel,
+/obj/item/weapon/gun/projectile/automatic/c20r,
+/obj/machinery/light/small{
+	dir = 4;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"aD" = (
+/mob/living/simple_mob/humanoid/merc/ranged/space,
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"aE" = (
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1";
+	pixel_x = 0
+	},
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"aF" = (
+/obj/structure/table/steel,
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"aG" = (
+/obj/structure/table/standard,
+/obj/item/weapon/storage/firstaid/surgery,
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"aH" = (
+/obj/structure/table/standard,
+/obj/item/weapon/tank/anesthetic,
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"aI" = (
+/obj/structure/table/standard,
+/obj/item/clothing/gloves/sterile,
+/obj/item/clothing/gloves/sterile,
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"aJ" = (
+/obj/structure/table/standard,
+/obj/item/weapon/reagent_containers/spray/sterilizine,
+/obj/item/weapon/reagent_containers/spray/sterilizine,
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"aK" = (
+/obj/structure/table/standard,
+/obj/item/weapon/storage/box/masks,
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"aL" = (
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"aM" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"aN" = (
+/obj/machinery/door/airlock/security{
+	locked = 1
+	},
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"aO" = (
+/obj/machinery/door/airlock/glass,
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"aP" = (
+/obj/machinery/power/apc{
+	cell_type = /obj/item/weapon/cell/hyper;
+	dir = 4;
+	name = "Unknown APC";
+	pixel_x = -24
+	},
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"aQ" = (
+/obj/machinery/computer/area_atmos{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"aR" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"aS" = (
+/obj/structure/table/steel,
+/obj/item/weapon/material/knife,
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"aU" = (
+/obj/structure/table/steel,
+/obj/random/toolbox,
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"aV" = (
+/obj/structure/table/steel,
+/obj/machinery/light/small{
+	dir = 4;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"aW" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/submap/virgo2/Blackshuttledown)
+"aX" = (
+/obj/item/weapon/stool,
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"aY" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/submap/virgo2/Blackshuttledown)
+"aZ" = (
+/obj/structure/table/steel,
+/obj/item/pizzabox,
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"ba" = (
+/obj/machinery/door/airlock,
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"bb" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/submap/virgo2/Blackshuttledown)
+"be" = (
+/obj/structure/table/steel,
+/obj/item/weapon/paper{
+	info = "We need to take a short stop. The engine's are in need of minor repairs due to turbulence, should be a week's time. We've got reserve food supplies but pleanty of locale fauna to subsist on too if need be. PCRC is keeping most of there assets near New Reykjavik and locale authorities are more mindful then most to travel in this kind of weather. Our outfit should be at the rendezvous point in less then ten days assuming the upper ecehelon hasn't dropped ties with us yet.";
+	name = "Operation Progress/M-53"
+	},
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"bf" = (
+/obj/structure/table/steel,
+/obj/item/weapon/paper_bin,
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"bg" = (
+/obj/machinery/light,
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"bh" = (
+/obj/structure/closet/toolcloset,
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"bi" = (
+/obj/machinery/portable_atmospherics/canister/empty/oxygen,
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"bj" = (
+/obj/machinery/atmospherics/pipe/tank/oxygen,
+/obj/machinery/light/small{
+	dir = 4;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"bk" = (
+/obj/structure/bed/chair/office/dark,
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"bl" = (
+/obj/structure/table/steel,
+/obj/item/weapon/gun/projectile/automatic/c20r,
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"bm" = (
+/obj/structure/bed,
+/obj/item/weapon/bedsheet,
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"bn" = (
+/mob/living/simple_mob/mechanical/viscerator,
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"bo" = (
+/obj/structure/table/steel,
+/obj/item/weapon/gun/projectile/pistol,
+/obj/machinery/light/small{
+	dir = 4;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"bp" = (
+/obj/structure/bed,
+/obj/item/weapon/bedsheet,
+/obj/structure/bed,
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"bq" = (
+/mob/living/simple_mob/mechanical/viscerator,
+/mob/living/simple_mob/mechanical/viscerator,
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"br" = (
+/obj/structure/table/steel,
+/obj/item/weapon/gun/projectile/pistol,
+/obj/item/weapon/gun/projectile/shotgun/pump,
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"bs" = (
+/obj/structure/toilet{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"bt" = (
+/obj/machinery/light,
+/obj/structure/table/rack,
+/obj/item/clothing/head/helmet/space,
+/obj/item/clothing/head/helmet/space,
+/obj/item/clothing/head/helmet/space,
+/obj/item/clothing/head/helmet/space,
+/obj/item/clothing/suit/space,
+/obj/item/clothing/suit/space,
+/obj/item/clothing/suit/space,
+/obj/item/clothing/suit/space,
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"bu" = (
+/obj/structure/bed,
+/obj/item/weapon/bedsheet,
+/obj/machinery/light,
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"bv" = (
+/obj/structure/bed,
+/obj/item/weapon/bedsheet,
+/obj/item/toy/plushie/spider,
+/turf/simulated/floor/tiled/steel,
+/area/submap/virgo2/Blackshuttledown)
+"by" = (
+/obj/structure/table/steel,
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/submap/virgo2/Blackshuttledown)
+"bz" = (
+/mob/living/simple_mob/humanoid/merc/ranged/space,
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/submap/virgo2/Blackshuttledown)
+
+(1,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(2,1,1) = {"
+aa
+af
+af
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+aa
+"}
+(3,1,1) = {"
+aa
+af
+af
+af
+af
+af
+af
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+ad
+af
+af
+af
+af
+aa
+"}
+(4,1,1) = {"
+aa
+af
+af
+af
+af
+af
+af
+af
+af
+ab
+ab
+ab
+ab
+ab
+ab
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+ad
+ad
+ad
+af
+af
+af
+aa
+"}
+(5,1,1) = {"
+aa
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+ad
+ad
+ad
+ad
+af
+af
+af
+aa
+"}
+(6,1,1) = {"
+aa
+af
+af
+af
+ad
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+aa
+"}
+(7,1,1) = {"
+aa
+ag
+af
+af
+ad
+af
+af
+af
+af
+af
+af
+af
+af
+ai
+aj
+aW
+aY
+aY
+bb
+aj
+au
+af
+af
+af
+af
+af
+af
+af
+ag
+af
+af
+af
+af
+af
+aa
+"}
+(8,1,1) = {"
+aa
+af
+ah
+af
+ad
+ad
+ad
+af
+af
+af
+af
+af
+ai
+aj
+aA
+aF
+aF
+aF
+aF
+aQ
+aj
+au
+af
+af
+af
+af
+af
+af
+af
+af
+ag
+af
+ad
+af
+aa
+"}
+(9,1,1) = {"
+aa
+af
+af
+af
+af
+ad
+ad
+ai
+aj
+aj
+au
+ai
+aj
+aL
+aq
+aq
+aq
+aq
+aq
+aq
+aL
+aj
+au
+ai
+aj
+aj
+au
+af
+af
+ab
+ab
+ad
+ad
+ad
+aa
+"}
+(10,1,1) = {"
+aa
+af
+af
+af
+af
+af
+af
+aj
+aj
+aj
+aj
+aj
+aF
+aM
+aq
+aq
+aq
+aq
+aq
+aD
+bk
+aF
+aj
+aj
+aj
+aj
+aj
+af
+af
+ab
+ad
+ad
+ad
+ad
+aa
+"}
+(11,1,1) = {"
+aa
+af
+af
+af
+af
+ag
+af
+aj
+aj
+aj
+aj
+aj
+aj
+aj
+aj
+aj
+aO
+aO
+aj
+aj
+aj
+aj
+aj
+aj
+aj
+aj
+aj
+af
+af
+ab
+ab
+ab
+ab
+ab
+aa
+"}
+(12,1,1) = {"
+aa
+af
+af
+af
+af
+af
+af
+aj
+aj
+aj
+aq
+aB
+aq
+aN
+aq
+aL
+aq
+aq
+aL
+aq
+aN
+aq
+bn
+bq
+aj
+aj
+aj
+af
+af
+ab
+ab
+ab
+ab
+ac
+aa
+"}
+(13,1,1) = {"
+aa
+af
+af
+af
+af
+af
+af
+ak
+aj
+aj
+av
+aC
+aF
+aj
+aq
+aq
+aq
+aq
+aq
+aq
+aj
+bl
+bo
+br
+aj
+aj
+az
+af
+af
+ae
+ab
+ab
+ab
+ab
+aa
+"}
+(14,1,1) = {"
+aa
+af
+af
+af
+af
+af
+af
+af
+aj
+aj
+aj
+aj
+aj
+aj
+aq
+aq
+aq
+aq
+aq
+aq
+aj
+aj
+aj
+aj
+aj
+aj
+af
+af
+af
+ab
+ab
+ab
+ab
+ab
+aa
+"}
+(15,1,1) = {"
+aa
+af
+af
+ad
+af
+af
+af
+af
+aj
+ao
+aq
+aq
+aq
+aq
+aq
+aq
+aq
+aq
+aq
+aq
+aq
+aq
+aq
+aq
+bt
+aj
+af
+af
+af
+ab
+ab
+ab
+ab
+ab
+aa
+"}
+(16,1,1) = {"
+aa
+ad
+ad
+ad
+af
+by
+by
+by
+aj
+ap
+aq
+aq
+aq
+aq
+aq
+aE
+aq
+aq
+aE
+aq
+aq
+aq
+aq
+aD
+ap
+aj
+by
+by
+by
+ab
+ab
+ab
+ab
+ab
+aa
+"}
+(17,1,1) = {"
+aa
+ad
+ad
+af
+af
+by
+bz
+af
+aj
+aj
+aj
+aq
+aq
+aj
+aj
+aj
+aO
+aO
+aj
+aj
+aj
+aq
+aq
+aj
+aj
+aj
+bz
+af
+by
+ab
+ab
+ab
+ab
+ab
+aa
+"}
+(18,1,1) = {"
+aa
+af
+af
+af
+af
+by
+af
+af
+al
+aq
+aw
+aq
+aq
+aj
+aR
+aq
+aq
+aq
+aq
+be
+aj
+aq
+aq
+aw
+aq
+al
+af
+af
+by
+ab
+ab
+ab
+ab
+ab
+aa
+"}
+(19,1,1) = {"
+aa
+ag
+af
+af
+af
+by
+af
+af
+al
+ar
+aw
+aq
+aE
+aj
+aS
+aq
+aq
+aq
+aq
+bf
+aj
+aE
+aq
+aw
+ar
+al
+af
+af
+by
+ab
+ab
+ab
+ab
+ab
+aa
+"}
+(20,1,1) = {"
+aa
+af
+af
+af
+af
+by
+af
+bz
+aj
+aj
+aj
+aj
+aj
+aj
+aq
+aX
+aZ
+aF
+aX
+aq
+aj
+aj
+aj
+aj
+aj
+aj
+af
+bz
+by
+ab
+ab
+ac
+ab
+ab
+aa
+"}
+(21,1,1) = {"
+aa
+af
+af
+af
+af
+by
+by
+by
+aj
+aq
+aq
+aq
+aG
+aj
+as
+aX
+aF
+aF
+aX
+bg
+aj
+bm
+bp
+bm
+bm
+aj
+by
+by
+by
+ab
+ab
+ab
+ad
+ab
+aa
+"}
+(22,1,1) = {"
+aa
+af
+af
+af
+af
+af
+af
+af
+aj
+aq
+ax
+aq
+aH
+aj
+aq
+aX
+aF
+aF
+aX
+aD
+aj
+aq
+aq
+aq
+aq
+aj
+af
+af
+af
+ab
+ab
+ad
+ad
+ab
+aa
+"}
+(23,1,1) = {"
+aa
+af
+af
+af
+af
+af
+af
+af
+aj
+as
+aq
+aq
+aq
+aO
+aD
+aq
+aq
+aq
+aq
+aq
+aO
+aq
+bm
+bm
+bu
+aj
+af
+af
+af
+ab
+ad
+ad
+ad
+ab
+aa
+"}
+(24,1,1) = {"
+aa
+af
+af
+af
+af
+af
+af
+af
+aj
+aq
+aq
+aq
+aq
+aj
+aq
+aq
+aq
+aq
+aq
+aq
+aj
+aq
+aq
+aq
+aq
+aj
+af
+af
+af
+ad
+ad
+ad
+ad
+ad
+aa
+"}
+(25,1,1) = {"
+aa
+ag
+af
+af
+af
+af
+af
+af
+aj
+at
+aq
+aD
+aI
+aj
+aj
+aj
+ba
+ba
+aj
+aj
+aj
+aq
+bm
+bm
+bv
+aj
+au
+af
+af
+ad
+ad
+af
+af
+ah
+aa
+"}
+(26,1,1) = {"
+aa
+af
+af
+af
+af
+af
+af
+ai
+aj
+aj
+aq
+aq
+aJ
+aj
+aU
+aF
+aq
+aq
+aP
+bh
+aj
+ba
+aj
+aj
+aj
+aj
+aj
+af
+ag
+af
+af
+af
+af
+af
+aa
+"}
+(27,1,1) = {"
+aa
+af
+af
+ah
+af
+ag
+af
+aj
+aj
+aj
+ay
+aE
+aK
+aj
+aU
+aq
+aq
+aq
+aq
+bi
+aj
+aq
+ar
+bs
+aj
+aj
+aj
+af
+af
+af
+af
+af
+af
+ag
+aa
+"}
+(28,1,1) = {"
+aa
+af
+af
+af
+af
+af
+af
+aj
+aj
+aj
+aj
+aj
+aj
+aj
+aV
+aq
+aq
+aq
+aq
+bj
+aj
+aj
+aj
+aj
+aj
+aj
+aj
+af
+af
+af
+af
+af
+af
+af
+aa
+"}
+(29,1,1) = {"
+aa
+af
+af
+af
+af
+af
+af
+aj
+aj
+aj
+aj
+az
+af
+ak
+aj
+aq
+aq
+aq
+aD
+aj
+az
+af
+ak
+aj
+aj
+aj
+aj
+af
+ad
+ad
+af
+af
+af
+af
+aa
+"}
+(30,1,1) = {"
+aa
+af
+ad
+ad
+ad
+af
+af
+aj
+aj
+aj
+az
+af
+af
+af
+ak
+am
+am
+am
+am
+az
+af
+af
+af
+ak
+am
+am
+az
+ad
+ad
+ad
+ad
+af
+af
+af
+aa
+"}
+(31,1,1) = {"
+aa
+af
+af
+ad
+ad
+ad
+af
+ak
+am
+am
+af
+af
+af
+af
+af
+an
+an
+an
+an
+af
+af
+af
+af
+af
+an
+an
+af
+ad
+ad
+ad
+ad
+af
+af
+af
+aa
+"}
+(32,1,1) = {"
+aa
+af
+af
+af
+af
+af
+af
+af
+an
+an
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+ad
+ad
+ad
+af
+af
+af
+af
+aa
+"}
+(33,1,1) = {"
+aa
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+aa
+"}
+(34,1,1) = {"
+aa
+ab
+ac
+af
+af
+ab
+ab
+af
+af
+af
+af
+af
+ab
+ab
+ab
+ab
+af
+af
+af
+af
+af
+af
+af
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+af
+af
+af
+ab
+aa
+"}
+(35,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}

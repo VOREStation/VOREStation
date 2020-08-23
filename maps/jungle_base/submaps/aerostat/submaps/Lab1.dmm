@@ -1,0 +1,732 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/template_noop)
+"c" = (
+/turf/simulated/wall/virgo2,
+/area/submap/virgo2/Lab1)
+"d" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/obj/machinery/door/firedoor/border_only,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/floor/plating/virgo2,
+/area/submap/virgo2/Lab1)
+"e" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/obj/machinery/door/firedoor/border_only,
+/turf/simulated/floor/plating/virgo2,
+/area/submap/virgo2/Lab1)
+"f" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/border_only,
+/turf/simulated/floor/plating/virgo2,
+/area/submap/virgo2/Lab1)
+"g" = (
+/obj/machinery/space_heater,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/virgo2/Lab1)
+"h" = (
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/virgo2/Lab1)
+"i" = (
+/obj/machinery/door/airlock,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/virgo2/Lab1)
+"j" = (
+/obj/machinery/light/small,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/virgo2/Lab1)
+"k" = (
+/obj/structure/table/standard,
+/obj/item/weapon/storage/toolbox,
+/obj/random/tool,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/virgo2/Lab1)
+"l" = (
+/obj/machinery/door/airlock/external,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/virgo2/Lab1)
+"m" = (
+/obj/structure/table/standard,
+/obj/random/tool,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/virgo2/Lab1)
+"n" = (
+/obj/machinery/vending/tool,
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/virgo2/Lab1)
+"o" = (
+/obj/structure/table/rack,
+/obj/item/clothing/suit/storage/hooded/wintercoat,
+/obj/item/clothing/shoes/boots/winter,
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/virgo2/Lab1)
+"p" = (
+/obj/structure/table/rack,
+/obj/item/clothing/suit/storage/hooded/wintercoat,
+/obj/item/clothing/shoes/boots/winter,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/virgo2/Lab1)
+"q" = (
+/obj/structure/table/standard,
+/obj/random/toolbox,
+/obj/item/weapon/cell/super,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/virgo2/Lab1)
+"r" = (
+/obj/structure/closet/toolcloset,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/virgo2/Lab1)
+"s" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/virgo2/Lab1)
+"t" = (
+/obj/structure/bed,
+/obj/item/weapon/bedsheet,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/virgo2/Lab1)
+"u" = (
+/obj/machinery/power/apc{
+	cell_type = /obj/item/weapon/cell/hyper;
+	dir = 8;
+	name = "Unknown APC";
+	operating = 0;
+	pixel_x = -24
+	},
+/obj/structure/cable{
+	icon_state = "0-4";
+	d2 = 4
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/virgo2/Lab1)
+"v" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8";
+	pixel_x = 0
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/virgo2/Lab1)
+"w" = (
+/obj/machinery/power/smes/buildable/point_of_interest,
+/obj/structure/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/virgo2/Lab1)
+"x" = (
+/obj/structure/table/standard,
+/obj/item/weapon/paper{
+	desc = "Gladstone for the last fucking time, We have crowbars for a REASON. Stop breaking in through the goddamn windows! We big red shiny doors for god's sakes!"
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/virgo2/Lab1)
+"y" = (
+/obj/structure/table/standard,
+/obj/item/device/flashlight/lamp,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/virgo2/Lab1)
+"z" = (
+/obj/machinery/vending/hydronutrients,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/virgo2/Lab1)
+"A" = (
+/obj/machinery/vending/hydroseeds,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/virgo2/Lab1)
+"B" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/virgo2/Lab1)
+"C" = (
+/obj/structure/table/standard,
+/obj/item/weapon/storage/toolbox/mechanical,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/virgo2/Lab1)
+"D" = (
+/obj/structure/table/standard,
+/obj/fiftyspawner/steel,
+/obj/fiftyspawner/glass,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/virgo2/Lab1)
+"E" = (
+/obj/structure/table/standard,
+/obj/item/device/multitool,
+/obj/item/clothing/glasses/welding,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/virgo2/Lab1)
+"F" = (
+/obj/machinery/portable_atmospherics/hydroponics,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/virgo2/Lab1)
+"G" = (
+/obj/structure/sink{
+	dir = 4;
+	icon_state = "sink";
+	pixel_x = 11;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/virgo2/Lab1)
+"H" = (
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/virgo2/Lab1)
+"I" = (
+/obj/item/weapon/cell/super,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/virgo2/Lab1)
+"J" = (
+/obj/machinery/pros_fabricator,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/virgo2/Lab1)
+"K" = (
+/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/virgo2/Lab1)
+"L" = (
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/virgo2/Lab1)
+"M" = (
+/obj/item/weapon/storage/bag/circuits,
+/obj/structure/table/standard,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/virgo2/Lab1)
+"N" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/virgo2/Lab1)
+"O" = (
+/obj/item/robot_parts/chest,
+/obj/item/robot_parts/l_arm,
+/obj/item/robot_parts/r_arm,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/virgo2/Lab1)
+"P" = (
+/obj/structure/closet/crate/hydroponics,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/virgo2/Lab1)
+"Q" = (
+/obj/structure/closet/secure_closet/hydroponics,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/virgo2/Lab1)
+"R" = (
+/obj/structure/table/standard,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/virgo2/Lab1)
+"S" = (
+/obj/machinery/vending/robotics,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/virgo2/Lab1)
+"T" = (
+/obj/structure/table/standard,
+/obj/machinery/cell_charger,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/virgo2/Lab1)
+"U" = (
+/obj/machinery/optable,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/virgo2/Lab1)
+"V" = (
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/submap/virgo2/Lab1)
+"W" = (
+/turf/simulated/floor/plating/virgo2,
+/area/submap/virgo2/Lab1)
+"X" = (
+/obj/structure/ghost_pod/manual/lost_drone/dogborg,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/virgo2/Lab1)
+"Z" = (
+/obj/structure/salvageable/data,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/virgo2/Lab1)
+
+(1,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(2,1,1) = {"
+a
+V
+c
+c
+c
+c
+c
+c
+c
+V
+V
+c
+c
+c
+c
+c
+c
+c
+V
+a
+"}
+(3,1,1) = {"
+a
+V
+d
+g
+k
+m
+q
+u
+d
+V
+V
+d
+Z
+F
+K
+F
+P
+d
+V
+a
+"}
+(4,1,1) = {"
+a
+V
+e
+h
+h
+h
+h
+v
+e
+V
+V
+e
+z
+h
+h
+h
+Q
+e
+V
+a
+"}
+(5,1,1) = {"
+a
+V
+f
+h
+g
+n
+r
+w
+f
+V
+V
+f
+A
+G
+L
+h
+R
+f
+V
+a
+"}
+(6,1,1) = {"
+a
+V
+c
+i
+c
+c
+c
+c
+c
+V
+V
+c
+c
+c
+c
+i
+c
+c
+V
+a
+"}
+(7,1,1) = {"
+a
+V
+d
+h
+d
+V
+V
+V
+V
+V
+V
+V
+V
+V
+d
+h
+d
+V
+V
+a
+"}
+(8,1,1) = {"
+a
+V
+e
+h
+f
+V
+V
+V
+V
+V
+V
+V
+V
+V
+f
+h
+e
+V
+V
+a
+"}
+(9,1,1) = {"
+b
+V
+e
+j
+c
+c
+c
+c
+c
+W
+W
+c
+c
+c
+c
+N
+e
+V
+V
+b
+"}
+(10,1,1) = {"
+b
+V
+e
+h
+l
+h
+s
+h
+l
+W
+W
+l
+h
+h
+l
+h
+e
+V
+V
+b
+"}
+(11,1,1) = {"
+b
+V
+e
+h
+l
+h
+h
+h
+l
+W
+W
+l
+B
+h
+l
+h
+e
+V
+V
+b
+"}
+(12,1,1) = {"
+b
+V
+e
+j
+c
+c
+c
+c
+c
+W
+W
+c
+c
+c
+c
+N
+e
+V
+V
+b
+"}
+(13,1,1) = {"
+a
+V
+e
+h
+d
+V
+V
+V
+V
+V
+V
+V
+V
+V
+d
+h
+e
+V
+V
+a
+"}
+(14,1,1) = {"
+a
+V
+f
+h
+f
+V
+V
+V
+V
+V
+V
+V
+V
+V
+f
+h
+f
+V
+V
+a
+"}
+(15,1,1) = {"
+a
+V
+c
+i
+c
+c
+c
+c
+c
+V
+V
+c
+c
+c
+c
+i
+c
+c
+V
+a
+"}
+(16,1,1) = {"
+a
+V
+d
+h
+h
+o
+t
+x
+d
+V
+V
+d
+C
+H
+Z
+h
+S
+d
+V
+a
+"}
+(17,1,1) = {"
+a
+V
+e
+h
+h
+h
+h
+h
+e
+V
+V
+e
+D
+I
+h
+h
+T
+e
+V
+a
+"}
+(18,1,1) = {"
+a
+V
+f
+X
+h
+p
+t
+y
+f
+V
+V
+f
+E
+J
+M
+O
+U
+f
+V
+a
+"}
+(19,1,1) = {"
+a
+V
+c
+c
+c
+c
+c
+c
+c
+V
+V
+c
+c
+c
+c
+c
+c
+c
+V
+a
+"}
+(20,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}

@@ -1,0 +1,1032 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/turf/template_noop,
+/area/mine/explored/underdark)
+"ab" = (
+/turf/simulated/wall,
+/area/mine/explored/underdark)
+"ac" = (
+/turf/template_noop,
+/area/space)
+"ad" = (
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"ae" = (
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"af" = (
+/obj/machinery/door/airlock/uranium,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"ag" = (
+/obj/machinery/door/airlock/multi_tile/glass{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"ah" = (
+/obj/machinery/floodlight,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"aj" = (
+/obj/machinery/crystal,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"ak" = (
+/obj/machinery/light/flicker,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"al" = (
+/obj/machinery/mech_recharger,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"am" = (
+/obj/machinery/gravity_generator,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"an" = (
+/obj/machinery/implantchair,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"ao" = (
+/obj/machinery/particle_smasher,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"ap" = (
+/obj/machinery/particle_smasher,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"aq" = (
+/obj/machinery/particle_accelerator/control_box,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"ar" = (
+/obj/structure/old_roboprinter,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"as" = (
+/obj/tether_away_spawner/underdark_drone_swarm,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"at" = (
+/obj/tether_away_spawner/underdark_hard,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"au" = (
+/obj/tether_away_spawner/underdark_normal,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"av" = (
+/obj/structure/ore_box,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"aw" = (
+/obj/structure/dogbed,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"ax" = (
+/obj/structure/cult/forge,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"ay" = (
+/obj/structure/cult/tome,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"az" = (
+/obj/structure/bed,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"aA" = (
+/obj/structure/barricade,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"aB" = (
+/obj/structure/barricade,
+/obj/structure/boulder,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"aC" = (
+/obj/structure/table/steel,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"aD" = (
+/obj/structure/sink,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"aE" = (
+/obj/structure/sign/ironhammer,
+/turf/simulated/wall,
+/area/mine/explored/underdark)
+"aF" = (
+/obj/machinery/iv_drip,
+/obj/effect/decal/cleanable/cobweb2,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"aG" = (
+/obj/structure/table/steel,
+/obj/machinery/reagentgrinder,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"aH" = (
+/obj/machinery/smartfridge,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"aI" = (
+/obj/structure/filingcabinet,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"aJ" = (
+/obj/machinery/vending/cola,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"aK" = (
+/obj/machinery/vending/coffee,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"aL" = (
+/obj/machinery/vending/fitness,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"aM" = (
+/obj/machinery/replicator,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"aN" = (
+/obj/machinery/vending/snack,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"aO" = (
+/obj/machinery/porta_turret/stationary/syndie{
+	faction = "underdark"
+	},
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"aP" = (
+/obj/structure/table/steel,
+/obj/machinery/recharger,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"aQ" = (
+/obj/machinery/recharger/wallcharger,
+/turf/simulated/wall,
+/area/mine/explored/underdark)
+"aR" = (
+/obj/item/frame/apc,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"aS" = (
+/obj/structure/table/steel,
+/obj/machinery/light_construct{
+	icon_state = "tube-construct-stage1";
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"aT" = (
+/obj/machinery/light_construct{
+	icon_state = "tube-construct-stage1";
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"aU" = (
+/obj/machinery/light_construct{
+	icon_state = "tube-construct-stage1";
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"aV" = (
+/obj/machinery/light_construct{
+	icon_state = "tube-construct-stage1";
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"aW" = (
+/obj/machinery/light_construct,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"aX" = (
+/obj/machinery/light/flamp/flicker,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"aY" = (
+/obj/effect/decal/cleanable/cobweb,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"aZ" = (
+/obj/machinery/clonepod/transhuman,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"ba" = (
+/obj/effect/decal/mecha_wreckage/gygax/adv,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"bb" = (
+/obj/effect/decal/mecha_wreckage/ripley,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"bc" = (
+/obj/effect/decal/remains/deer,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"bd" = (
+/obj/effect/decal/cleanable/blood/drip,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"be" = (
+/obj/effect/decal/remains/deer,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"bf" = (
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/blood/drip,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"bg" = (
+/obj/machinery/door/airlock/uranium,
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"bh" = (
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"bi" = (
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"bj" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"bk" = (
+/obj/machinery/light_construct,
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"bl" = (
+/obj/effect/decal/cleanable/cobweb2,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"bm" = (
+/obj/structure/table/steel,
+/obj/machinery/microwave,
+/obj/effect/decal/cleanable/cobweb,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"bn" = (
+/obj/structure/table/steel,
+/obj/machinery/microwave,
+/obj/effect/decal/cleanable/cobweb2,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"bo" = (
+/obj/structure/bed,
+/obj/effect/decal/cleanable/cobweb2,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"bp" = (
+/obj/tether_away_spawner/underdark_normal,
+/obj/effect/decal/cleanable/cobweb,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"bq" = (
+/obj/tether_away_spawner/underdark_normal,
+/obj/effect/decal/cleanable/cobweb2,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"br" = (
+/obj/effect/decal/cleanable/vomit,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"bs" = (
+/obj/machinery/door/airlock/uranium,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"bt" = (
+/obj/effect/decal/remains/tajaran,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"bu" = (
+/obj/effect/decal/cleanable/spiderling_remains,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"bv" = (
+/obj/item/device/assembly/prox_sensor,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"bw" = (
+/obj/item/device/electronic_assembly/drone/genbot,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"bx" = (
+/obj/structure/table/steel,
+/obj/item/device/assembly/electronic_assembly,
+/obj/item/weapon/circuitboard/aicore,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"by" = (
+/obj/item/device/assembly/signaler,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"bz" = (
+/obj/machinery/door/airlock/uranium{
+	hasShocked = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"bA" = (
+/obj/machinery/door/airlock/uranium{
+	hasShocked = 1
+	},
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"bB" = (
+/mob/living/simple_mob/mechanical/infectionbot{
+	faction = "underdark"
+	},
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"bC" = (
+/obj/random/underdark,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"bD" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/random/underdark,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"bE" = (
+/obj/item/device/geiger,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"DS" = (
+/obj/structure/salvageable/autolathe,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+"Vo" = (
+/obj/structure/salvageable/computer,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored/underdark)
+
+(1,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+ad
+ad
+ad
+bc
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+aj
+ad
+ad
+ad
+aj
+ad
+ac
+"}
+(2,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+ad
+ad
+ad
+ad
+ad
+ad
+aj
+ad
+ad
+bE
+ad
+ad
+ad
+aj
+ad
+ad
+ad
+ac
+"}
+(3,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+ad
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ad
+ac
+"}
+(4,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+ad
+ab
+aw
+ae
+aU
+au
+ab
+al
+aP
+bx
+aP
+al
+ab
+bp
+ae
+ab
+ad
+ac
+"}
+(5,1,1) = {"
+aj
+ad
+ad
+ad
+ah
+ad
+ad
+af
+ae
+ae
+ae
+ae
+ab
+ae
+ae
+ae
+by
+ae
+ab
+ae
+ae
+ab
+ad
+ac
+"}
+(6,1,1) = {"
+aj
+ad
+ad
+ad
+ad
+ad
+ad
+ab
+aF
+ae
+aZ
+aM
+ab
+bv
+ae
+ae
+ae
+bC
+ab
+bi
+ae
+ab
+ad
+ac
+"}
+(7,1,1) = {"
+ad
+ad
+aj
+ad
+ad
+ad
+ad
+ab
+ab
+af
+ab
+ab
+ab
+aD
+bB
+ba
+bB
+ae
+bA
+br
+ae
+ab
+ad
+ac
+"}
+(8,1,1) = {"
+ad
+ad
+ad
+ad
+ad
+am
+ad
+ab
+DS
+ae
+ae
+av
+ab
+aT
+ae
+ae
+ae
+aI
+ab
+bj
+bj
+ab
+ad
+ac
+"}
+(9,1,1) = {"
+aA
+ad
+aX
+ad
+ad
+ad
+ad
+af
+ae
+ae
+ae
+ae
+ab
+bw
+ae
+ae
+ae
+bC
+ab
+bj
+bj
+ab
+bc
+ac
+"}
+(10,1,1) = {"
+ad
+ad
+ad
+at
+ad
+bc
+ad
+ab
+av
+ae
+ae
+aV
+ab
+ax
+ae
+bj
+ae
+ay
+ab
+bj
+bD
+ab
+ad
+ac
+"}
+(11,1,1) = {"
+aA
+ad
+ad
+ad
+ad
+ad
+ak
+ab
+ab
+ae
+ag
+ab
+ab
+ab
+aQ
+bz
+ab
+ab
+ab
+ae
+bC
+ab
+ad
+ac
+"}
+(12,1,1) = {"
+aB
+aA
+aj
+ad
+ad
+ad
+aj
+ab
+aY
+ae
+ae
+aN
+ab
+aR
+aU
+bj
+ae
+ae
+aU
+ae
+aJ
+ab
+ad
+ac
+"}
+(13,1,1) = {"
+aA
+aA
+ad
+ad
+bd
+bd
+bf
+bg
+bh
+bh
+bh
+bh
+bg
+bh
+bj
+bj
+bt
+ae
+ae
+ae
+aK
+ab
+ad
+ac
+"}
+(14,1,1) = {"
+aA
+aA
+ad
+ad
+be
+ad
+bE
+ab
+bl
+ae
+ae
+ae
+ab
+bi
+ae
+bj
+ae
+ae
+ae
+ae
+aL
+ab
+bc
+ac
+"}
+(15,1,1) = {"
+aA
+bu
+ad
+ad
+ad
+ad
+ak
+ab
+ab
+ae
+ag
+ab
+ab
+ab
+aE
+bs
+aE
+ab
+ab
+ae
+bC
+ab
+ad
+ac
+"}
+(16,1,1) = {"
+ad
+ad
+aX
+ad
+ad
+ad
+ad
+ab
+bm
+ae
+ae
+aG
+ab
+ar
+ae
+bj
+ae
+ar
+ab
+ae
+bC
+ab
+ad
+ac
+"}
+(17,1,1) = {"
+aA
+bu
+ad
+ad
+ad
+ad
+ad
+ab
+aS
+ae
+ae
+aC
+ab
+ae
+ae
+ae
+ae
+ae
+ab
+ae
+ae
+ab
+ad
+ac
+"}
+(18,1,1) = {"
+bu
+ad
+ad
+aj
+ad
+aj
+ad
+ab
+aC
+au
+ae
+aC
+ab
+as
+ae
+Vo
+ae
+as
+aE
+ae
+ae
+ab
+ad
+ac
+"}
+(19,1,1) = {"
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ab
+bn
+ae
+ae
+aH
+ab
+ae
+ae
+Vo
+ae
+ae
+af
+ae
+bk
+ab
+ad
+ac
+"}
+(20,1,1) = {"
+aj
+ad
+ad
+ad
+ad
+ad
+ad
+ab
+ab
+ab
+af
+ab
+ab
+aT
+bb
+ae
+ae
+aW
+aE
+ae
+ae
+ab
+ad
+ac
+"}
+(21,1,1) = {"
+aj
+ad
+ad
+ao
+ad
+ah
+ad
+ab
+aT
+ae
+ae
+ae
+ab
+ae
+ae
+ae
+ae
+ae
+ab
+ae
+ae
+ab
+ad
+ac
+"}
+(22,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+bo
+az
+az
+an
+ab
+ap
+ae
+aO
+ae
+aq
+ab
+bq
+ae
+ab
+ad
+ac
+"}
+(23,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ad
+ac
+"}
+(24,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+aj
+ad
+ad
+ac
+"}
+(25,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ad
+bE
+ad
+ad
+ad
+ad
+aj
+ad
+ad
+ad
+bc
+ad
+ad
+ad
+ad
+ad
+ac
+"}

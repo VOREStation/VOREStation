@@ -1,0 +1,300 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 8
+	},
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/shuttle/deployable/escapepod)
+"b" = (
+/turf/simulated/wall/rpshull,
+/area/shuttle/deployable/escapepod)
+"c" = (
+/obj/structure/sign/mining/survival{
+	dir = 1
+	},
+/turf/simulated/wall/rpshull,
+/area/shuttle/deployable/escapepod)
+"d" = (
+/obj/structure/fans,
+/obj/effect/floor_decal/techfloor{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/deployable/escapepod)
+"e" = (
+/obj/machinery/smartfridge/survival_pod,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/menu11,
+/obj/item/weapon/storage/mre/menu11,
+/obj/item/weapon/storage/mre/menu13,
+/obj/item/device/fbp_backup_cell,
+/obj/item/device/fbp_backup_cell,
+/obj/item/device/fbp_backup_cell,
+/obj/item/device/fbp_backup_cell,
+/obj/item/device/fbp_backup_cell,
+/obj/item/weapon/storage/pill_bottle/dice,
+/obj/effect/floor_decal/techfloor{
+	dir = 1
+	},
+/obj/item/weapon/storage/box/survival/space,
+/obj/item/weapon/storage/box/survival/space,
+/obj/item/weapon/storage/box/survival/space,
+/obj/item/weapon/storage/box/survival/space,
+/obj/item/device/gps,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/weapon/storage/toolbox/emergency,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/deployable/escapepod)
+"f" = (
+/obj/machinery/sleeper/survival_pod,
+/obj/effect/floor_decal/techfloor{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/deployable/escapepod)
+"g" = (
+/obj/effect/floor_decal/techfloor{
+	dir = 5
+	},
+/obj/structure/handrail,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/deployable/escapepod)
+"h" = (
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	frequency = 1380
+	},
+/obj/machinery/embedded_controller/radio/airlock/docking_port{
+	frequency = 1380;
+	id_tag = "escapepod_shuttle_docker";
+	pixel_y = 28
+	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/structure/handrail{
+	dir = 8
+	},
+/obj/machinery/airlock_sensor{
+	frequency = 1380;
+	pixel_y = 22
+	},
+/obj/effect/map_helper/airlock/sensor/chamber_sensor,
+/obj/machinery/light/small{
+	dir = 8;
+	pixel_x = 0
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/shuttle/deployable/escapepod)
+"i" = (
+/obj/machinery/computer/shuttle_control/explore/escapepod{
+	dir = 4
+	},
+/obj/effect/floor_decal/techfloor,
+/obj/effect/floor_decal/techfloor{
+	dir = 1
+	},
+/obj/machinery/light/small{
+	dir = 8;
+	pixel_x = 0
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/deployable/escapepod)
+"j" = (
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/deployable/escapepod)
+"k" = (
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/deployable/escapepod)
+"m" = (
+/obj/effect/floor_decal/techfloor{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/deployable/escapepod)
+"n" = (
+/obj/machinery/door/airlock/external,
+/obj/machinery/access_button{
+	command = "cycle_interior";
+	frequency = 1380;
+	master_tag = "escapepod_shuttle_docker";
+	pixel_x = -5;
+	pixel_y = 26
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/effect/map_helper/airlock/door/int_door,
+/turf/simulated/floor/tiled/steel_ridged,
+/area/shuttle/deployable/escapepod)
+"o" = (
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/effect/shuttle_landmark/shuttle_initializer/escapepod,
+/obj/effect/overmap/visitable/ship/landable/escapepod,
+/turf/simulated/floor/tiled/steel_grid,
+/area/shuttle/deployable/escapepod)
+"p" = (
+/obj/machinery/door/airlock/external,
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 8
+	},
+/obj/effect/map_helper/airlock/door/ext_door,
+/obj/machinery/access_button{
+	command = "cycle_exterior";
+	frequency = 1380;
+	master_tag = "escapepod_shuttle_docker";
+	name = "exterior access button";
+	pixel_x = 5;
+	pixel_y = -26
+	},
+/turf/simulated/floor/tiled/steel_ridged,
+/area/shuttle/deployable/escapepod)
+"q" = (
+/obj/structure/table/survival_pod,
+/obj/effect/floor_decal/techfloor{
+	dir = 10
+	},
+/obj/machinery/recharger,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/deployable/escapepod)
+"r" = (
+/obj/structure/cable/cyan{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/rtg/advanced,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/deployable/escapepod)
+"s" = (
+/obj/effect/floor_decal/techfloor,
+/obj/structure/bed/chair/shuttle{
+	dir = 1
+	},
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/deployable/escapepod)
+"t" = (
+/obj/machinery/power/apc{
+	dir = 2;
+	name = "south bump";
+	pixel_y = -28
+	},
+/obj/structure/cable/cyan{
+	icon_state = "0-8"
+	},
+/obj/effect/floor_decal/techfloor{
+	icon_state = "techfloor_edges";
+	dir = 6
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/deployable/escapepod)
+"u" = (
+/obj/machinery/atmospherics/portables_connector{
+	dir = 1
+	},
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/simulated/floor/tiled/steel_grid,
+/area/shuttle/deployable/escapepod)
+"v" = (
+/obj/structure/sign/mining/survival,
+/turf/simulated/wall/rpshull,
+/area/shuttle/deployable/escapepod)
+"L" = (
+/obj/effect/floor_decal/techfloor,
+/obj/structure/bed/chair/shuttle{
+	dir = 1
+	},
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/light/small,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/shuttle/deployable/escapepod)
+
+(1,1,1) = {"
+a
+b
+b
+b
+a
+"}
+(2,1,1) = {"
+b
+b
+i
+b
+b
+"}
+(3,1,1) = {"
+c
+d
+j
+q
+v
+"}
+(4,1,1) = {"
+b
+e
+k
+r
+b
+"}
+(5,1,1) = {"
+c
+f
+k
+s
+v
+"}
+(6,1,1) = {"
+b
+f
+k
+L
+b
+"}
+(7,1,1) = {"
+c
+g
+m
+t
+v
+"}
+(8,1,1) = {"
+b
+b
+n
+b
+b
+"}
+(9,1,1) = {"
+c
+h
+o
+u
+v
+"}
+(10,1,1) = {"
+b
+b
+p
+b
+b
+"}

@@ -1,0 +1,879 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/turf/space,
+/area/tether_away/debrisfield/explored)
+"ab" = (
+/obj/item/weapon/material/twohanded/spear,
+/turf/space,
+/area/tether_away/debrisfield/explored)
+"ac" = (
+/turf/simulated/shuttle/wall/voidcraft,
+/area/tether_away/debrisfield/explored)
+"ad" = (
+/turf/simulated/shuttle/floor/black/airless,
+/area/tether_away/debrisfield/explored)
+"ae" = (
+/obj/structure/table/steel,
+/obj/item/clothing/head/pilot,
+/turf/simulated/shuttle/floor/black/airless,
+/area/tether_away/debrisfield/explored)
+"af" = (
+/turf/simulated/shuttle/wall/voidcraft/hard_corner,
+/area/tether_away/debrisfield/explored)
+"ag" = (
+/obj/structure/frame/computer,
+/turf/simulated/shuttle/floor/black/airless,
+/area/tether_away/debrisfield/explored)
+"ah" = (
+/obj/structure/bed/chair/comfy/blue{
+	icon_state = "comfychair_preview";
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/black/airless,
+/area/tether_away/debrisfield/explored)
+"ai" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/shuttle/plating/airless,
+/area/tether_away/debrisfield/explored)
+"aj" = (
+/obj/item/weapon/material/shard,
+/obj/item/weapon/material/shard,
+/obj/structure/grille/broken,
+/turf/simulated/shuttle/plating/airless,
+/area/tether_away/debrisfield/explored)
+"ak" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/table/rack/shelf,
+/obj/item/device/suit_cooling_unit,
+/turf/simulated/shuttle/floor/black/airless,
+/area/tether_away/debrisfield/explored)
+"al" = (
+/obj/structure/lattice,
+/turf/space,
+/area/tether_away/debrisfield/explored)
+"am" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/table/rack/shelf,
+/obj/item/weapon/tank/oxygen,
+/obj/item/device/suit_cooling_unit,
+/obj/item/clothing/head/helmet/space/void/pilot,
+/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/suit/space/void/pilot,
+/obj/item/clothing/head/helmet/space/void/pilot,
+/turf/simulated/shuttle/floor/black/airless,
+/area/tether_away/debrisfield/explored)
+"an" = (
+/obj/machinery/door/airlock/voidcraft,
+/turf/simulated/shuttle/floor/black/airless,
+/area/tether_away/debrisfield/explored)
+"ao" = (
+/obj/effect/floor_decal/industrial/outline/blue,
+/turf/simulated/shuttle/floor/darkred/airless,
+/area/tether_away/debrisfield/explored)
+"ap" = (
+/obj/structure/table/rack/shelf,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/weapon/tank/emergency/oxygen/engi,
+/turf/simulated/shuttle/floor/black/airless,
+/area/tether_away/debrisfield/explored)
+"aq" = (
+/obj/structure/bed/chair/shuttle,
+/turf/simulated/shuttle/floor/black/airless,
+/area/tether_away/debrisfield/explored)
+"ar" = (
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 8
+	},
+/obj/structure/closet/walllocker/emerglocker{
+	pixel_x = -32
+	},
+/turf/simulated/shuttle/floor/black/airless,
+/area/tether_away/debrisfield/explored)
+"as" = (
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 4
+	},
+/obj/structure/closet/walllocker/emerglocker{
+	pixel_x = 32
+	},
+/turf/simulated/shuttle/floor/black/airless,
+/area/tether_away/debrisfield/explored)
+"at" = (
+/obj/machinery/sleeper{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/black/airless,
+/area/tether_away/debrisfield/explored)
+"au" = (
+/obj/machinery/sleep_console,
+/turf/simulated/shuttle/floor/black/airless,
+/area/tether_away/debrisfield/explored)
+"av" = (
+/obj/structure/bed/chair/shuttle{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/black/airless,
+/area/tether_away/debrisfield/explored)
+"aw" = (
+/obj/effect/floor_decal/industrial/outline/red,
+/turf/simulated/shuttle/floor/darkred/airless,
+/area/tether_away/debrisfield/explored)
+"ax" = (
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/machinery/space_heater,
+/turf/simulated/shuttle/floor/darkred/airless,
+/area/tether_away/debrisfield/explored)
+"ay" = (
+/obj/structure/table/steel,
+/obj/item/clothing/head/pilot,
+/obj/random/unidentified_medicine/drug_den,
+/turf/simulated/shuttle/floor/black/airless,
+/area/tether_away/debrisfield/explored)
+"az" = (
+/obj/structure/closet/crate/medical,
+/obj/random/unidentified_medicine/old_medicine,
+/obj/random/unidentified_medicine/old_medicine,
+/obj/random/unidentified_medicine/old_medicine,
+/obj/random/unidentified_medicine/fresh_medicine,
+/obj/random/unidentified_medicine/fresh_medicine,
+/obj/random/unidentified_medicine/combat_medicine,
+/turf/simulated/shuttle/floor/darkred/airless,
+/area/tether_away/debrisfield/explored)
+"aA" = (
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 9
+	},
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 8;
+	frequency = 1380;
+	id_tag = "expshuttle_docker_pump_out_internal"
+	},
+/turf/simulated/shuttle/floor/black/airless,
+/area/tether_away/debrisfield/explored)
+"aB" = (
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/black/airless,
+/area/tether_away/debrisfield/explored)
+"aC" = (
+/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+	dir = 10
+	},
+/turf/simulated/shuttle/wall/voidcraft,
+/area/tether_away/debrisfield/explored)
+"aD" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 5
+	},
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 4;
+	frequency = 1380;
+	id_tag = "expshuttle_vent"
+	},
+/turf/simulated/shuttle/floor/black/airless,
+/area/tether_away/debrisfield/explored)
+"aE" = (
+/obj/machinery/atmospherics/pipe/manifold/visible/yellow{
+	dir = 8
+	},
+/obj/machinery/door/airlock/voidcraft/vertical,
+/turf/simulated/shuttle/floor/black/airless,
+/area/tether_away/debrisfield/explored)
+"aF" = (
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 8
+	},
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 8;
+	frequency = 1380;
+	id_tag = "expshuttle_docker_pump_out_internal"
+	},
+/turf/simulated/shuttle/floor/black/airless,
+/area/tether_away/debrisfield/explored)
+"aG" = (
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 4
+	},
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 4;
+	frequency = 1380;
+	id_tag = "expshuttle_vent"
+	},
+/turf/simulated/shuttle/floor/black/airless,
+/area/tether_away/debrisfield/explored)
+"aH" = (
+/obj/machinery/atmospherics/pipe/manifold/visible/cyan{
+	dir = 4
+	},
+/obj/machinery/door/airlock/voidcraft/vertical,
+/turf/simulated/shuttle/floor/black/airless,
+/area/tether_away/debrisfield/explored)
+"aI" = (
+/obj/machinery/atmospherics/pipe/manifold/visible/yellow{
+	dir = 8
+	},
+/turf/simulated/shuttle/wall/voidcraft,
+/area/tether_away/debrisfield/explored)
+"aJ" = (
+/obj/effect/floor_decal/industrial/warning{
+	icon_state = "warning";
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/black/airless,
+/area/tether_away/debrisfield/explored)
+"aK" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 10
+	},
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 8;
+	frequency = 1380;
+	id_tag = "expshuttle_docker_pump_out_internal"
+	},
+/turf/simulated/shuttle/floor/black/airless,
+/area/tether_away/debrisfield/explored)
+"aL" = (
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/shuttle/floor/black/airless,
+/area/tether_away/debrisfield/explored)
+"aM" = (
+/obj/machinery/atmospherics/pipe/manifold/visible/cyan{
+	dir = 4
+	},
+/turf/simulated/shuttle/wall/voidcraft,
+/area/tether_away/debrisfield/explored)
+"aN" = (
+/obj/machinery/door/airlock/voidcraft/vertical,
+/turf/simulated/shuttle/floor/black,
+/area/tether_away/debrisfield/explored)
+"aO" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 6
+	},
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 4
+	},
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 4;
+	frequency = 1380;
+	id_tag = "expshuttle_vent"
+	},
+/turf/simulated/shuttle/floor/black/airless,
+/area/tether_away/debrisfield/explored)
+"aP" = (
+/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+	dir = 10
+	},
+/turf/simulated/shuttle/wall/voidcraft/hard_corner,
+/area/tether_away/debrisfield/explored)
+"aQ" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	icon_state = "warningcorner";
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/black/airless,
+/area/tether_away/debrisfield/explored)
+"aR" = (
+/obj/machinery/atmospherics/pipe/tank/air{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/darkred/airless,
+/area/tether_away/debrisfield/explored)
+"aS" = (
+/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+	dir = 9
+	},
+/turf/simulated/shuttle/wall/voidcraft,
+/area/tether_away/debrisfield/explored)
+"aT" = (
+/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/darkred/airless,
+/area/tether_away/debrisfield/explored)
+"aU" = (
+/obj/machinery/atmospherics/unary/vent_pump/high_volume/wall_mounted{
+	dir = 1;
+	frequency = 1380;
+	id_tag = "expshuttle_docker_pump_out_external";
+	power_rating = 20000
+	},
+/turf/simulated/shuttle/wall/voidcraft,
+/area/tether_away/debrisfield/explored)
+"aV" = (
+/obj/machinery/light,
+/obj/effect/floor_decal/industrial/warning/corner,
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/black/airless,
+/area/tether_away/debrisfield/explored)
+"aW" = (
+/obj/tether_away_spawner/debrisfield/carp/hard,
+/turf/space,
+/area/tether_away/debrisfield/explored)
+"aX" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/shuttle/plating/airless,
+/area/tether_away/debrisfield/explored)
+"aY" = (
+/obj/machinery/door/airlock/multi_tile/metal,
+/turf/simulated/shuttle/floor/black/airless,
+/area/tether_away/debrisfield/explored)
+"aZ" = (
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/debrisfield/explored)
+"ba" = (
+/obj/effect/immovablerod,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/debrisfield/explored)
+"bb" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/shuttle/plating/airless,
+/area/tether_away/debrisfield/explored)
+"bc" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/shuttle/plating/airless,
+/area/tether_away/debrisfield/explored)
+"bd" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/turf/simulated/shuttle/plating/airless,
+/area/tether_away/debrisfield/explored)
+"be" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+	dir = 6
+	},
+/turf/simulated/shuttle/plating/airless,
+/area/tether_away/debrisfield/explored)
+"bg" = (
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/structure/closet/crate,
+/turf/simulated/shuttle/floor/darkred/airless,
+/area/tether_away/debrisfield/explored)
+"bh" = (
+/obj/tether_away_spawner/debrisfield/carp,
+/turf/space,
+/area/tether_away/debrisfield/explored)
+"bi" = (
+/obj/structure/loot_pile/mecha/durand,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/debrisfield/explored)
+
+(1,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(2,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ac
+ac
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(3,1,1) = {"
+aa
+ab
+aa
+ac
+bc
+ac
+bc
+ac
+ac
+ac
+aw
+aa
+al
+aN
+ac
+ac
+af
+aX
+aa
+aa
+aa
+aa
+"}
+(4,1,1) = {"
+aa
+aa
+ac
+af
+am
+ac
+ad
+ar
+at
+ac
+ax
+aa
+aa
+aB
+aL
+az
+ac
+aX
+aa
+aa
+aa
+aa
+"}
+(5,1,1) = {"
+aa
+aa
+ai
+ae
+ad
+ac
+ap
+ad
+au
+ac
+ao
+al
+al
+aB
+aL
+bg
+ac
+aX
+aa
+aa
+aa
+aa
+"}
+(6,1,1) = {"
+aa
+aa
+ai
+ag
+ah
+bd
+aq
+ad
+av
+aa
+aa
+al
+aa
+aB
+aV
+af
+ac
+aa
+aa
+aa
+aa
+aa
+"}
+(7,1,1) = {"
+aa
+aa
+aj
+ad
+ad
+an
+ad
+ad
+ad
+aa
+aa
+bd
+aJ
+aQ
+aL
+aY
+aa
+aa
+bh
+aa
+aa
+aa
+"}
+(8,1,1) = {"
+aa
+aa
+al
+aa
+aa
+al
+aa
+al
+al
+aa
+aa
+an
+ad
+ad
+aL
+ad
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(9,1,1) = {"
+aa
+aa
+aa
+aW
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+al
+aa
+aa
+al
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(10,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+al
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(11,1,1) = {"
+aa
+aa
+al
+al
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aZ
+ba
+aa
+aa
+"}
+(12,1,1) = {"
+aa
+ai
+ad
+ah
+bd
+aa
+ad
+ad
+aa
+aa
+aa
+aa
+al
+aa
+aa
+aa
+aa
+aa
+aa
+bi
+aa
+aa
+"}
+(13,1,1) = {"
+aa
+ai
+ay
+ad
+ac
+aa
+aq
+al
+al
+al
+aa
+al
+al
+aa
+al
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(14,1,1) = {"
+aa
+ac
+af
+ak
+ac
+aa
+al
+al
+av
+ac
+be
+aE
+aI
+aI
+aU
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(15,1,1) = {"
+aa
+aa
+ac
+bb
+ac
+aa
+aa
+ad
+av
+ac
+aA
+aF
+aK
+aP
+aU
+aa
+bh
+aa
+aa
+aa
+aa
+aa
+"}
+(16,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aq
+as
+av
+ac
+aB
+ad
+aL
+aR
+ac
+aX
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(17,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+bb
+ac
+ac
+ac
+aD
+aG
+aO
+aT
+ac
+aX
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(18,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ac
+aC
+aH
+aM
+aS
+af
+aX
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(19,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(20,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}

@@ -1,0 +1,1120 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/turf/space,
+/area/space)
+"ab" = (
+/turf/simulated/wall/shull,
+/area/shuttle/screebarge/fore)
+"ac" = (
+/turf/simulated/floor/reinforced,
+/area/shuttle/screebarge/fore)
+"ad" = (
+/obj/machinery/door/airlock/external,
+/turf/simulated/floor/reinforced,
+/area/shuttle/screebarge/fore)
+"ae" = (
+/obj/structure/disposaloutlet{
+	icon_state = "outlet";
+	dir = 1
+	},
+/obj/structure/disposalpipe/trunk,
+/turf/simulated/floor/plating,
+/area/shuttle/screebarge/fore)
+"af" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	icon_state = "rwindow";
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/screebarge/fore)
+"ag" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	icon_state = "rwindow";
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	icon_state = "pipe-s";
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/screebarge/fore)
+"ah" = (
+/obj/machinery/power/emitter{
+	icon_state = "emitter";
+	dir = 1
+	},
+/obj/structure/cable/cyan{
+	icon_state = "0-2"
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/simulated/floor/reinforced,
+/area/shuttle/screebarge/fore)
+"ai" = (
+/obj/machinery/computer/ship/helm,
+/obj/structure/disposalpipe/segment{
+	icon_state = "pipe-s";
+	dir = 1
+	},
+/turf/simulated/floor/reinforced,
+/area/shuttle/screebarge/fore)
+"aj" = (
+/obj/machinery/computer/ship/engines,
+/turf/simulated/floor/reinforced,
+/area/shuttle/screebarge/fore)
+"ak" = (
+/obj/machinery/computer/ship/sensors,
+/turf/simulated/floor/reinforced,
+/area/shuttle/screebarge/fore)
+"al" = (
+/obj/structure/disposalpipe/segment{
+	icon_state = "pipe-s";
+	dir = 1
+	},
+/obj/machinery/computer/shuttle_control/explore/screebarge,
+/turf/simulated/floor/reinforced,
+/area/shuttle/screebarge/fore)
+"am" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	icon_state = "rwindow";
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/screebarge/fore)
+"an" = (
+/obj/structure/cable/cyan{
+	icon_state = "1-4"
+	},
+/obj/structure/cable/cyan{
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/reinforced,
+/area/shuttle/screebarge/fore)
+"ao" = (
+/obj/structure/bed/chair/bay/chair{
+	icon_state = "bay_chair_preview";
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	icon_state = "pipe-s";
+	dir = 1
+	},
+/obj/structure/cable/cyan{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/reinforced,
+/area/shuttle/screebarge/fore)
+"ap" = (
+/obj/structure/bed/chair/bay/chair{
+	icon_state = "bay_chair_preview";
+	dir = 1
+	},
+/obj/structure/cable/cyan{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/reinforced,
+/area/shuttle/screebarge/fore)
+"aq" = (
+/obj/structure/cable/cyan{
+	icon_state = "2-4"
+	},
+/obj/structure/cable/cyan{
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/reinforced,
+/area/shuttle/screebarge/fore)
+"ar" = (
+/obj/structure/cable/cyan{
+	icon_state = "1-8"
+	},
+/obj/structure/cable/cyan{
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/reinforced,
+/area/shuttle/screebarge/fore)
+"as" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	icon_state = "rwindow";
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/screebarge/fore)
+"at" = (
+/obj/structure/cable/cyan{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/reinforced,
+/area/shuttle/screebarge/fore)
+"au" = (
+/obj/structure/disposalpipe/segment{
+	icon_state = "pipe-s";
+	dir = 1
+	},
+/turf/simulated/floor/reinforced,
+/area/shuttle/screebarge/fore)
+"av" = (
+/obj/machinery/power/smes/buildable{
+	charge = 5e+006
+	},
+/obj/structure/cable/cyan,
+/turf/simulated/floor/reinforced,
+/area/shuttle/screebarge/fore)
+"aw" = (
+/obj/machinery/power/apc{
+	pixel_x = -28
+	},
+/turf/simulated/floor/reinforced,
+/area/shuttle/screebarge/fore)
+"ax" = (
+/obj/structure/disposalpipe/segment{
+	icon_state = "pipe-c";
+	dir = 1
+	},
+/turf/simulated/floor/reinforced,
+/area/shuttle/screebarge/fore)
+"ay" = (
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk{
+	icon_state = "pipe-t";
+	dir = 8
+	},
+/turf/simulated/floor/reinforced,
+/area/shuttle/screebarge/fore)
+"az" = (
+/obj/structure/table/standard,
+/obj/machinery/power/terminal{
+	icon_state = "term";
+	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/turf/simulated/floor/reinforced,
+/area/shuttle/screebarge/fore)
+"aA" = (
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk{
+	icon_state = "pipe-t";
+	dir = 4
+	},
+/turf/simulated/floor/reinforced,
+/area/shuttle/screebarge/fore)
+"aB" = (
+/obj/structure/disposalpipe/segment{
+	icon_state = "conpipe-c";
+	dir = 8
+	},
+/turf/simulated/floor/reinforced,
+/area/shuttle/screebarge/fore)
+"aC" = (
+/obj/structure/bed/chair/bay/chair{
+	icon_state = "bay_chair_preview";
+	dir = 8
+	},
+/obj/structure/cable/cyan{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/reinforced,
+/area/shuttle/screebarge/fore)
+"aD" = (
+/obj/structure/bed/chair/bay/chair{
+	icon_state = "bay_chair_preview";
+	dir = 4
+	},
+/obj/machinery/embedded_controller/radio/simple_docking_controller{
+	frequency = 1380;
+	id_tag = "battlebarge_docker";
+	pixel_x = -26;
+	pixel_y = -7;
+	tag_door = "battlebarge_foredoor"
+	},
+/turf/simulated/floor/reinforced,
+/area/shuttle/screebarge/fore)
+"aE" = (
+/obj/machinery/autolathe,
+/turf/simulated/floor/reinforced,
+/area/shuttle/screebarge/fore)
+"aF" = (
+/obj/structure/bed/chair/bay/chair{
+	icon_state = "bay_chair_preview";
+	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/reinforced,
+/area/shuttle/screebarge/fore)
+"aG" = (
+/obj/structure/table/standard,
+/obj/machinery/chemical_dispenser/full,
+/turf/simulated/floor/reinforced,
+/area/shuttle/screebarge/fore)
+"aH" = (
+/obj/machinery/door/airlock/external{
+	icon_state = "door_locked";
+	id_tag = "battlebarge_frontdoor";
+	locked = 1
+	},
+/turf/simulated/floor/reinforced,
+/area/shuttle/screebarge/fore)
+"aI" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/reinforced,
+/area/shuttle/screebarge/fore)
+"aJ" = (
+/obj/machinery/power/emitter{
+	icon_state = "emitter";
+	dir = 1
+	},
+/obj/structure/cable/cyan{
+	icon_state = "0-2"
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/floor/reinforced,
+/area/shuttle/screebarge/fore)
+"aK" = (
+/turf/simulated/wall/shull,
+/area/shuttle/screebarge/mid)
+"aL" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor/plating,
+/area/shuttle/screebarge/mid)
+"aM" = (
+/obj/machinery/door/airlock/maintenance/command,
+/turf/simulated/floor/tiled/steel_ridged,
+/area/shuttle/screebarge/mid)
+"aN" = (
+/obj/machinery/door/airlock/maintenance/command,
+/obj/structure/cable/cyan{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/steel_ridged,
+/area/shuttle/screebarge/mid)
+"aO" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	icon_state = "rwindow";
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/screebarge/mid)
+"aP" = (
+/obj/structure/bed/chair/bay/chair{
+	icon_state = "bay_chair_preview";
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/shuttle/screebarge/mid)
+"aQ" = (
+/turf/simulated/floor/tiled/steel_dirty,
+/area/shuttle/screebarge/mid)
+"aR" = (
+/obj/structure/bed/chair/bay/chair{
+	icon_state = "bay_chair_preview";
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/shuttle/screebarge/mid)
+"aS" = (
+/obj/machinery/sleeper{
+	icon_state = "sleeper_0";
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/shuttle/screebarge/mid)
+"aT" = (
+/obj/machinery/sleep_console,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/shuttle/screebarge/mid)
+"aU" = (
+/obj/structure/cable/cyan{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/shuttle/screebarge/mid)
+"aV" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	icon_state = "rwindow";
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/screebarge/mid)
+"aW" = (
+/obj/structure/bed/roller,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/shuttle/screebarge/mid)
+"aX" = (
+/obj/structure/cable/cyan{
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/shuttle/screebarge/mid)
+"aY" = (
+/obj/structure/cable/cyan{
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/shuttle/screebarge/mid)
+"aZ" = (
+/obj/structure/cable/cyan{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/shuttle/screebarge/mid)
+"ba" = (
+/obj/machinery/door/airlock/maintenance/medical,
+/obj/structure/cable/cyan{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/steel_ridged,
+/area/shuttle/screebarge/mid)
+"bb" = (
+/obj/structure/cable/cyan{
+	icon_state = "1-8"
+	},
+/obj/structure/cable/cyan{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/shuttle/screebarge/mid)
+"bc" = (
+/obj/structure/table/standard,
+/obj/item/weapon/storage/firstaid/o2{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/weapon/storage/firstaid/regular{
+	pixel_x = -2;
+	pixel_y = -2
+	},
+/obj/item/bodybag/cryobag,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/shuttle/screebarge/mid)
+"bd" = (
+/obj/structure/closet/crate,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/shuttle/screebarge/mid)
+"be" = (
+/obj/structure/cable/cyan{
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/shuttle/screebarge/mid)
+"bf" = (
+/obj/structure/cable/cyan{
+	icon_state = "0-8"
+	},
+/obj/machinery/power/apc{
+	pixel_x = 28
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/shuttle/screebarge/mid)
+"bg" = (
+/obj/machinery/door/airlock/external{
+	frequency = 1380;
+	icon_state = "door_locked";
+	id_tag = "battlebarge_foredoor";
+	locked = 1
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/steel_ridged,
+/area/shuttle/screebarge/fore)
+"bh" = (
+/turf/simulated/wall/shull,
+/area/shuttle/screebarge/aft)
+"bi" = (
+/obj/machinery/door/airlock/maintenance/engi,
+/obj/structure/cable/cyan{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/steel_ridged,
+/area/shuttle/screebarge/aft)
+"bj" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor/plating,
+/area/shuttle/screebarge/aft)
+"bk" = (
+/obj/machinery/atmospherics/portables_connector{
+	icon_state = "map_connector";
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/outline/red,
+/obj/machinery/portable_atmospherics/canister/phoron,
+/turf/simulated/floor/plating,
+/area/shuttle/screebarge/aft)
+"bl" = (
+/obj/machinery/atmospherics/pipe/manifold/visible/yellow{
+	icon_state = "map";
+	dir = 1
+	},
+/obj/structure/cable/cyan{
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/screebarge/aft)
+"bm" = (
+/obj/machinery/atmospherics/binary/pump{
+	icon_state = "map_off";
+	dir = 4
+	},
+/obj/structure/cable/cyan{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/screebarge/aft)
+"bn" = (
+/obj/machinery/atmospherics/pipe/manifold/visible/yellow{
+	icon_state = "map";
+	dir = 1
+	},
+/obj/structure/cable/cyan{
+	icon_state = "0-8"
+	},
+/obj/machinery/power/apc{
+	pixel_x = 0;
+	pixel_y = 28
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/screebarge/aft)
+"bo" = (
+/obj/machinery/atmospherics/binary/pump{
+	icon_state = "map_off";
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/screebarge/aft)
+"bp" = (
+/obj/machinery/atmospherics/pipe/manifold/visible/yellow{
+	icon_state = "map";
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/screebarge/aft)
+"bq" = (
+/obj/machinery/atmospherics/portables_connector{
+	icon_state = "map_connector";
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/outline/red,
+/obj/machinery/portable_atmospherics/canister/phoron,
+/turf/simulated/floor/plating,
+/area/shuttle/screebarge/aft)
+"br" = (
+/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+	icon_state = "intact";
+	dir = 9
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/screebarge/aft)
+"bs" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/machinery/light/small,
+/turf/simulated/floor/reinforced,
+/area/shuttle/screebarge/fore)
+"bt" = (
+/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+	icon_state = "intact";
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/screebarge/aft)
+"bu" = (
+/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+	icon_state = "intact";
+	dir = 5
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/screebarge/aft)
+"bv" = (
+/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+	icon_state = "intact";
+	dir = 6
+	},
+/turf/simulated/wall/shull,
+/area/shuttle/screebarge/aft)
+"bw" = (
+/obj/machinery/atmospherics/pipe/manifold/visible/yellow{
+	icon_state = "map";
+	dir = 1
+	},
+/turf/simulated/wall/shull,
+/area/shuttle/screebarge/aft)
+"bx" = (
+/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+	icon_state = "intact";
+	dir = 4
+	},
+/turf/simulated/wall/shull,
+/area/shuttle/screebarge/aft)
+"by" = (
+/obj/machinery/atmospherics/pipe/manifold4w/visible/yellow,
+/turf/simulated/wall/shull,
+/area/shuttle/screebarge/aft)
+"bz" = (
+/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+	icon_state = "intact";
+	dir = 10
+	},
+/turf/simulated/wall/shull,
+/area/shuttle/screebarge/aft)
+"bA" = (
+/obj/machinery/atmospherics/unary/engine{
+	dir = 1
+	},
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/screebarge/aft)
+"bB" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/shuttle_landmark/shuttle_initializer/screebarge,
+/obj/effect/overmap/visitable/ship/landable/screebarge,
+/turf/simulated/floor/reinforced,
+/area/shuttle/screebarge/fore)
+"bC" = (
+/obj/machinery/door/airlock/external{
+	icon_state = "door_locked";
+	id_tag = "battlebarge_aftdoor";
+	locked = 1
+	},
+/obj/machinery/button/remote/airlock{
+	desiredstate = 1;
+	id = "battlebarge_aftdoor";
+	pixel_y = 26;
+	specialfunctions = 4
+	},
+/turf/simulated/floor/tiled/steel_ridged,
+/area/shuttle/screebarge/mid)
+"bD" = (
+/obj/machinery/button/remote/airlock{
+	pixel_x = 26;
+	pixel_y = 5;
+	id = "battlebarge_frontdoor";
+	desiredstate = 1;
+	specialfunctions = 4
+	},
+/turf/simulated/floor/reinforced,
+/area/shuttle/screebarge/fore)
+"bE" = (
+/obj/structure/bed/chair/bay/chair{
+	icon_state = "bay_chair_preview";
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/shuttle/screebarge/mid)
+"bF" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/shuttle/screebarge/mid)
+"bG" = (
+/obj/machinery/light/small,
+/turf/simulated/floor/plating,
+/area/shuttle/screebarge/aft)
+
+(1,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(2,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(3,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(4,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+am
+am
+ab
+ab
+bg
+aK
+aO
+aO
+aO
+aK
+bC
+bh
+bh
+bh
+bh
+bh
+aa
+aa
+aa
+"}
+(5,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+af
+ah
+an
+at
+aw
+aD
+bB
+aL
+aP
+aP
+aP
+bE
+aQ
+bh
+bk
+bk
+bv
+bA
+aa
+aa
+aa
+"}
+(6,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ae
+ag
+ai
+ao
+au
+ax
+ac
+aI
+aM
+aQ
+aQ
+aX
+aU
+aU
+bi
+bl
+br
+bw
+bA
+aa
+aa
+aa
+"}
+(7,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+aj
+ap
+ac
+ay
+aE
+aI
+aL
+aR
+aR
+aZ
+bd
+bd
+bj
+bm
+bG
+bx
+bh
+aa
+aa
+aa
+"}
+(8,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+ac
+aH
+bD
+ad
+ac
+aq
+av
+az
+aF
+bs
+aL
+aL
+aL
+ba
+aL
+aL
+bh
+bn
+bt
+by
+bA
+aa
+aa
+aa
+"}
+(9,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ak
+ap
+ac
+aA
+aG
+ac
+aL
+aS
+aW
+aZ
+aW
+aS
+bj
+bo
+bG
+bx
+bh
+aa
+aa
+aa
+"}
+(10,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ae
+ag
+al
+ao
+au
+aB
+ac
+ac
+aL
+aT
+aX
+bb
+be
+aT
+bj
+bp
+bu
+bw
+bA
+aa
+aa
+aa
+"}
+(11,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+af
+aJ
+ar
+at
+aC
+aC
+at
+aN
+aU
+aY
+bc
+bf
+bF
+bh
+bq
+bq
+bz
+bA
+aa
+aa
+aa
+"}
+(12,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+as
+as
+ab
+ab
+ab
+aK
+aV
+aV
+aV
+aK
+aK
+bh
+bh
+bh
+bh
+bh
+aa
+aa
+aa
+"}
+(13,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(14,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(15,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
