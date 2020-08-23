@@ -5,7 +5,7 @@
 
 // -- Datums -- //
 /datum/map_template/om_ships/bearcat
-	name = "OM Ship - Bearcat"
+	name = "OM Ship - Bearcat (New Z)"
 	desc = "An old salvage or exploration ship, abandoned but possibly repairable."
 	mappath = 'bearcat.dmm'
 
@@ -13,7 +13,7 @@
 /datum/shuttle/autodock/overmap/bearcat
 	name = "Bearcat"
 	current_location = "omship_spawn_bearcat"
-	docking_controller_tag = "bearcatdocking"
+	docking_controller_tag = "bearcat_starboard" //technically we have two ports, but the starboard is used as the default as it allows us to hook up to most sites
 	shuttle_area = list(
 						/area/ship/scrap/,
 						/area/ship/scrap/cargo,
@@ -21,6 +21,7 @@
 						/area/ship/scrap/command/captain,
 						/area/ship/scrap/comms,
 						/area/ship/scrap/crew,
+						/area/ship/scrap/crew/corridors,
 						/area/ship/scrap/crew/dorms,
 						/area/ship/scrap/crew/kitchen,
 						/area/ship/scrap/crew/medbay,
@@ -33,6 +34,7 @@
 						/area/ship/scrap/maintenance,
 						/area/ship/scrap/maintenance/atmos,
 						/area/ship/scrap/maintenance/engine,
+						/area/ship/scrap/maintenance/enginecontrol,
 						/area/ship/scrap/maintenance/power,
 						/area/ship/scrap/maintenance/storage,
 						/area/ship/scrap/shuttle,
@@ -43,7 +45,8 @@
 						/area/ship/scrap/unused3
 						) //oof. the shuttle subarea is unused, but it's here for... well, it's here.
 	defer_initialisation = TRUE //We're not loaded until an admin does it
-	fuel_consumption = 3
+	fuel_consumption = 5 //chonker uses more fuel
+	move_direction = NORTH
 
 // A shuttle lateloader landmark
 /obj/effect/shuttle_landmark/shuttle_initializer/bearcat
@@ -61,8 +64,8 @@
 [i]Transponder[/i]: Transmitting \'Keep-Away\' Signal
 [b]Notice[/b]: May be salvagable. No life signs."}
 	known = FALSE
-	color = "#ee3333" //Redish, so it stands out against the other debris-like icons
-	initial_generic_waypoints = list("bearcat_dock_w", "bearcat_dock_e")
+	color = "#ee3333" //Reddish, so it looks kinda rusty and beat up
+//	initial_generic_waypoints = list("bearcat_dock_w", "bearcat_dock_e")
 	vessel_mass = 4000
 	vessel_size = SHIP_SIZE_LARGE
 	shuttle = "Bearcat"
@@ -89,6 +92,10 @@
 /area/ship/scrap/crew
 	name = "\improper Crew Compartemnts"
 	icon_state = "hallC"
+
+/area/ship/scrap/crew/corridors
+	name = "\improper Corridors"
+	icon_state = "hallC1"
 
 /area/ship/scrap/crew/kitchen
 	name = "\improper Galley"
@@ -120,7 +127,7 @@
 
 /area/ship/scrap/dock
 	name = "\improper Docking Bay"
-	icon_state = "entry"
+	icon_state = "start"
 
 /area/ship/scrap/dock/port
 	name = "\improper Docking Bay Port"
@@ -162,6 +169,11 @@
 /area/ship/scrap/maintenance/engine
 	name = "\improper Engine Compartments"
 	icon_state = "engine"
+	music = list('sound/ambience/ambisin1.ogg','sound/ambience/ambisin2.ogg','sound/ambience/ambisin3.ogg')
+
+/area/ship/scrap/maintenance/enginecontrol
+	name = "\improper Engine Control Room"
+	icon_state = "engine_monitoring"
 	music = list('sound/ambience/ambisin1.ogg','sound/ambience/ambisin2.ogg','sound/ambience/ambisin3.ogg')
 
 /area/ship/scrap/command
