@@ -1,6 +1,0 @@
-author: Meghan Rossi
-delete-after: True
-changes: 
-  - rscadd: "Ghosts now have a toggleable security HUD.  Use the "Toggle Security HUD" verb in the ghost tab to enable it"
-  - rscadd: "Ghosts can now shift-click things to examine them."
-  - rscadd: "Ghosts can now alt-click adjacent things to open the turf tab."

@@ -1,4 +1,0 @@
-author: Meghan Rossi
-delete-after: True
-changes: 
-  - tweak: "Bots that are idle in doorways (including firedoors and blastdoors) will move out of the way."

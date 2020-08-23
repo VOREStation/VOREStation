@@ -1,5 +1,0 @@
-author: Meghan Rossi
-delete-after: True
-changes: 
-  - rscadd: "Multiple cleanbots will no longer attempt to clean the same tile at the same time."
-  - rscadd: "Cleanbots will now clean tiles closer to them first."
