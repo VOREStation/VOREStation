@@ -322,6 +322,13 @@
 /mob/living/simple_mob/animal/passive/fish/measelshark,
 /turf/simulated/floor/water/deep/ocean,
 /area/tether_away/beach/water)
+"bo" = (
+/obj/effect/map_effect/portal/master/side_a{
+	name = "V4_Cave_Entrance";
+	portal_id = "V4_cave_step"
+	},
+/turf/simulated/floor/beach/sand,
+/area/tether_away/beach/jungle)
 "bp" = (
 /turf/simulated/floor/beach/sand,
 /area/tether_away/beach/jungle)
@@ -329,7 +336,7 @@
 /turf/simulated/mineral/ignore_mapgen,
 /area/tether_away/beach/jungle)
 "br" = (
-/obj/effect/step_trigger/teleporter/away_beach_tocave,
+/obj/effect/map_effect/portal/line/side_a,
 /turf/simulated/floor/beach/sand,
 /area/tether_away/beach/jungle)
 "bs" = (
@@ -14991,7 +14998,7 @@ am
 bi
 "}
 (103,1,1) = {"
-br
+bo
 bp
 bp
 bp
