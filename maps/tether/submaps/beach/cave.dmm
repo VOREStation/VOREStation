@@ -8,7 +8,9 @@
 /turf/simulated/mineral/floor/ignore_mapgen/cave,
 /area/tether_away/cave/explored/normal)
 "b" = (
-/obj/effect/map_effect/portal/line/side_b,
+/obj/effect/map_effect/portal/line/side_b{
+	dir = 1
+	},
 /turf/simulated/mineral/floor/ignore_mapgen/cave,
 /area/tether_away/cave/explored/normal)
 "c" = (
