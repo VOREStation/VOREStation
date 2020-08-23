@@ -13,6 +13,11 @@
 	..()
 	alarm_handlers = SSalarm.all_handlers
 
+// Subtype for glasses_state
+/datum/tgui_module/alarm_monitor/all/glasses
+/datum/tgui_module/alarm_monitor/all/glasses/tgui_state(mob/user)
+	return GLOB.tgui_glasses_state
+
 /datum/tgui_module/alarm_monitor/all/robot
 /datum/tgui_module/alarm_monitor/all/robot/tgui_state(mob/user)
 	return GLOB.tgui_self_state

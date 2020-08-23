@@ -189,6 +189,8 @@
 /datum/computer_file/program/proc/check_eye(var/mob/user)
 	if(NM)
 		return NM.check_eye(user)
+	if(TM)
+		return TM.check_eye(user)
 	else
 		return -1
 

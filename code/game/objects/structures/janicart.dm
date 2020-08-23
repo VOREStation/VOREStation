@@ -93,7 +93,7 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 		to_chat(user, "<span class='notice'>You put [I] into [src].</span>")
 		return 1
 
-	else if(istype(I, /obj/item/weapon/caution))
+	else if(istype(I, /obj/item/clothing/suit/caution))
 		if(signs < 4)
 			user.unEquip(I, 0, src)
 			signs++
@@ -192,7 +192,7 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 					myreplacer = null
 			if("sign")
 				if(signs)
-					var/obj/item/weapon/caution/Sign = locate() in src
+					var/obj/item/clothing/suit/caution/Sign = locate() in src
 					if(Sign)
 						user.put_in_hands(Sign)
 						to_chat(user, "<span class='notice'>You take \a [Sign] from [src].</span>")
@@ -258,7 +258,7 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 		mybucket = null
 
 	if (signs)
-		for (var/obj/item/weapon/caution/Sign in src)
+		for (var/obj/item/clothing/suit/caution/Sign in src)
 			if (prob(min((chance*2),100)))
 				signs--
 				Sign.forceMove(dropspot)

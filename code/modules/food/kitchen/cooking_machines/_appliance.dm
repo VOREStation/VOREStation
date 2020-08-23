@@ -182,7 +182,7 @@
 
 //Handles all validity checking and error messages for inserting things
 /obj/machinery/appliance/proc/can_insert(var/obj/item/I, var/mob/user)
-	if (istype(I.loc, /mob/living/silicon))
+	if (istype(I, /obj/item/weapon/gripper))
 		return 0
 	else if (istype(I.loc, /obj/item/rig_module))
 		return 0

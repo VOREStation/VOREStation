@@ -39,7 +39,7 @@
 			/obj/item/clothing/head/soft/purple,
 			/obj/item/weapon/storage/belt/janitor,
 			/obj/item/clothing/shoes/galoshes,
-			/obj/item/weapon/caution = 4,
+			/obj/item/clothing/suit/caution = 4,
 			/obj/item/weapon/storage/bag/trash,
 			/obj/item/device/lightreplacer,
 			/obj/item/weapon/reagent_containers/spray/cleaner,

@@ -115,7 +115,7 @@
 #define CUSTOM_ITEM_MOB 'icons/mob/custom_items_mob.dmi'
 #endif
 #ifndef CUSTOM_ITEM_SYNTH
-#define CUSTOM_ITEM_SYNTH 'icons/mob/custom_synthetic.dmi'
+#define CUSTOM_ITEM_SYNTH 'icons/mob/custom_synthetic_vr.dmi' //Vorestation edit
 #endif
 
 #define WALL_CAN_OPEN 1
@@ -462,3 +462,16 @@ var/global/list/##LIST_NAME = list();\
 #define FONT_HUGE(X) "<font size='4'>[X]</font>"
 
 #define FONT_GIANT(X) "<font size='5'>[X]</font>"
+
+#define VOLUME_CHANNEL_MASTER "Master"
+#define VOLUME_CHANNEL_AMBIENCE "Ambience"
+#define VOLUME_CHANNEL_ALARMS "Alarms"
+#define VOLUME_CHANNEL_VORE "Vore"
+
+// Make sure you update this or clients won't be able to adjust the channel
+GLOBAL_LIST_INIT(all_volume_channels, list(
+	VOLUME_CHANNEL_MASTER,
+	VOLUME_CHANNEL_AMBIENCE,
+	VOLUME_CHANNEL_ALARMS,
+	VOLUME_CHANNEL_VORE,
+))

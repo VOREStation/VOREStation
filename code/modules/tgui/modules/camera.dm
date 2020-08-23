@@ -141,10 +141,32 @@
 		var/obj/machinery/camera/C = cameras["[ckey(c_tag)]"]
 		active_camera = C
 		playsound(tgui_host(), get_sfx("terminal_type"), 25, FALSE)
-
 		reload_cameraview()
-
 		return TRUE
+
+	if(action == "pan")
+		var/dir = params["dir"]
+		var/turf/T = get_turf(active_camera)
+		for(var/i in 1 to 10)
+			T = get_step(T, dir)
+		if(T)
+			var/obj/machinery/camera/target
+			var/best_dist = INFINITY
+
+			var/list/possible_cameras = get_available_cameras(usr)
+			for(var/obj/machinery/camera/C in get_area(T))
+				if(!possible_cameras["[ckey(C.c_tag)]"])
+					continue
+				var/dist = get_dist(C, T)
+				if(dist < best_dist)
+					best_dist = dist
+					target = C
+
+			if(target)
+				active_camera = target
+				playsound(tgui_host(), get_sfx("terminal_type"), 25, FALSE)
+				reload_cameraview()
+				. = TRUE
 
 /datum/tgui_module/camera/proc/differential_check()
 	var/turf/T = get_turf(active_camera)

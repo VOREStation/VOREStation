@@ -937,15 +937,29 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set category = "Server"
 	set desc="Whether persistent data will be saved from now on."
 	set name="Toggle Persistent Data"
-	config.persistence_enabled = !(config.persistence_enabled)
-	if(config.persistence_enabled)
+	config.persistence_disabled = !(config.persistence_disabled)
+	if(!config.persistence_disabled)
 		to_world("<B>Persistence is now enabled..</B>")
 	else
 		to_world("<B>Persistence is no longer enabled.</B>")
-	message_admins("<font color='blue'>[key_name_admin(usr)] toggled persistence to [config.persistence_enabled ? "On" : "Off"].</font>", 1)
-	log_admin("[key_name(usr)] toggled persistence to [config.persistence_enabled ? "On" : "Off"].")
+	message_admins("<font color='blue'>[key_name_admin(usr)] toggled persistence to [config.persistence_disabled ? "Off" : "On"].</font>", 1)
+	log_admin("[key_name(usr)] toggled persistence to [config.persistence_disabled ? "Off" : "On"].")
 	world.update_status()
 	feedback_add_details("admin_verb","TPD") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	
+/datum/admins/proc/togglemaploadpersistence()
+	set category = "Server"
+	set desc="Whether mapload persistent data will be saved from now on."
+	set name="Toggle Mapload Persistent Data"
+	config.persistence_ignore_mapload = !(config.persistence_ignore_mapload)
+	if(!config.persistence_ignore_mapload)
+		to_world("<B>Persistence is now enabled..</B>")
+	else
+		to_world("<B>Persistence is no longer enabled.</B>")
+	message_admins("<font color='blue'>[key_name_admin(usr)] toggled persistence to [config.persistence_ignore_mapload ? "Off" : "On"].</font>", 1)
+	log_admin("[key_name(usr)] toggled persistence to [config.persistence_ignore_mapload ? "Off" : "On"].")
+	world.update_status()
+	feedback_add_details("admin_verb","TMPD") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/toggle_aliens()
 	set category = "Server"

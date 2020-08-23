@@ -24,7 +24,9 @@
 /obj/machinery/atmospherics/portables_connector{
 	dir = 4
 	},
-/obj/machinery/portable_atmospherics/canister/air/airlock,
+/obj/machinery/portable_atmospherics/canister/air/airlock{
+	start_pressure = 4559.63
+	},
 /turf/simulated/floor,
 /area/engineering/engine_gas)
 "ah" = (

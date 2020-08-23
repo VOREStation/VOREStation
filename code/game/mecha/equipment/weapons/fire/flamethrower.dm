@@ -7,7 +7,7 @@
 
 	energy_drain = 30
 
-	step_delay = 2
+	step_delay = 0.5
 
 	projectile = /obj/item/projectile/bullet/incendiary/flamethrower/large
 	fire_sound = 'sound/weapons/towelwipe.ogg'

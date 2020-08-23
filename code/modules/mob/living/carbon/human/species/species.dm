@@ -41,6 +41,7 @@
 	var/show_ssd = "fast asleep"
 	var/virus_immune
 	var/short_sighted										// Permanent weldervision.
+	var/blood_name = "blood"								// Name for the species' blood.
 	var/blood_volume = 560									// Initial blood volume.
 	var/bloodloss_rate = 1									// Multiplier for how fast a species bleeds out. Higher = Faster
 	var/blood_level_safe = 0.85								//"Safe" blood level; above this, you're OK
@@ -100,6 +101,7 @@
 	var/chemOD_mod =		1						// Damage modifier for overdose; higher = more damage from ODs
 	var/alcohol_mod =		1						// Multiplier to alcohol strength; 0.5 = half, 0 = no effect at all, 2 = double, etc.
 	var/pain_mod =			1						// Multiplier to pain effects; 0.5 = half, 0 = no effect (equal to NO_PAIN, really), 2 = double, etc.
+	var/spice_mod =			1						// Multiplier to spice/capsaicin/frostoil effects; 0.5 = half, 0 = no effect (immunity), 2 = double, etc.
 	// set below is EMP interactivity for nonsynth carbons
 	var/emp_sensitivity =		0			// bitflag. valid flags are: EMP_PAIN, EMP_BLIND, EMP_DEAFEN, EMP_CONFUSE, EMP_STUN, and EMP_(BRUTE/BURN/TOX/OXY)_DMG
 	var/emp_dmg_mod =		1			// Multiplier to all EMP damage sustained by the mob, if it's EMP-sensitive

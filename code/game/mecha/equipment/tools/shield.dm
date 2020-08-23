@@ -7,7 +7,7 @@
 	energy_drain = 20
 	range = 0
 
-	step_delay = 1
+	step_delay = 0.2
 
 	var/obj/item/shield_projector/line/exosuit/my_shield = null
 	var/my_shield_type = /obj/item/shield_projector/line/exosuit

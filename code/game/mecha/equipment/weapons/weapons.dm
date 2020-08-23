@@ -12,7 +12,7 @@
 	var/auto_rearm = 0 //Does the weapon reload itself after each shot?
 	required_type = list(/obj/mecha/combat, /obj/mecha/working/hoverpod/combatpod)
 
-	step_delay = 1
+	step_delay = 0.1
 
 	equip_type = EQUIP_WEAPON
 

@@ -600,6 +600,23 @@
 	dir = 8;
 	pixel_x = -24
 	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/cyan,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/cargo/mining)
 "aaZ" = (
@@ -5431,6 +5448,14 @@
 	name = "Mining Maintenance Access";
 	req_one_access = list(48)
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/cyan,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/cargo/mining)
 "ajc" = (

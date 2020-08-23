@@ -29,21 +29,21 @@
 	name = "BloodPack crate"
 	contains = list(/obj/item/weapon/storage/box/bloodpacks = 3)
 	cost = 10
-	containertype = /obj/structure/closet/crate/nanocare
+	containertype = /obj/structure/closet/crate/nanomed
 	containername = "BloodPack crate"
 
 /datum/supply_pack/med/bodybag
 	name = "Body bag crate"
 	contains = list(/obj/item/weapon/storage/box/bodybags = 3)
 	cost = 10
-	containertype = /obj/structure/closet/crate/nanocare
+	containertype = /obj/structure/closet/crate/nanomed
 	containername = "Body bag crate"
 
 /datum/supply_pack/med/cryobag
 	name = "Stasis bag crate"
 	contains = list(/obj/item/bodybag/cryobag = 3)
 	cost = 40
-	containertype = /obj/structure/closet/crate/nanocare
+	containertype = /obj/structure/closet/crate/nanomed
 	containername = "Stasis bag crate"
 
 /datum/supply_pack/med/surgery
@@ -109,7 +109,7 @@
 			/obj/item/clothing/suit/storage/hooded/wintercoat/medical = 3
 			)
 	cost = 10
-	containertype = /obj/structure/closet/crate/secure/nanocare
+	containertype = /obj/structure/closet/crate/secure/nanomed
 	containername = "Medical surplus equipment"
 	access = access_medical
 
@@ -133,7 +133,7 @@
 			/obj/item/weapon/reagent_containers/syringe
 			)
 	cost = 50
-	containertype = /obj/structure/closet/crate/secure/nanocare
+	containertype = /obj/structure/closet/crate/secure/nanomed
 	containername = "Chief medical officer equipment"
 	access = access_cmo
 
@@ -156,7 +156,7 @@
 			/obj/item/weapon/reagent_containers/syringe
 			)
 	cost = 20
-	containertype = /obj/structure/closet/crate/secure/nanocare
+	containertype = /obj/structure/closet/crate/secure/nanomed
 	containername = "Medical Doctor equipment"
 	access = access_medical_equip
 
@@ -179,7 +179,7 @@
 			/obj/item/weapon/reagent_containers/syringe
 			)
 	cost = 20
-	containertype = /obj/structure/closet/crate/secure/nanocare
+	containertype = /obj/structure/closet/crate/secure/nanomed
 	containername = "Chemist equipment"
 	access = access_chemistry
 
@@ -207,7 +207,7 @@
 			/obj/item/clothing/accessory/storage/white_vest
 			)
 	cost = 20
-	containertype = /obj/structure/closet/crate/secure/nanocare
+	containertype = /obj/structure/closet/crate/secure/nanomed
 	containername = "Paramedic equipment"
 	access = access_medical_equip
 
@@ -226,7 +226,7 @@
 			/obj/item/weapon/cartridge/medical
 			)
 	cost = 20
-	containertype = /obj/structure/closet/crate/secure/nanocare
+	containertype = /obj/structure/closet/crate/secure/nanomed
 	containername = "Psychiatrist equipment"
 	access = access_psychiatrist
 
@@ -247,7 +247,7 @@
 			/obj/item/weapon/storage/box/gloves
 			)
 	cost = 10
-	containertype = /obj/structure/closet/crate/secure/nanocare
+	containertype = /obj/structure/closet/crate/secure/nanomed
 	containername = "Medical scrubs crate"
 	access = access_medical_equip
 
@@ -291,7 +291,7 @@
 			/obj/item/weapon/storage/box/gloves
 			)
 	cost = 10
-	containertype = /obj/structure/closet/crate/secure/nanocare
+	containertype = /obj/structure/closet/crate/secure/nanomed
 	containername = "Medical uniform crate"
 	access = access_medical_equip
 
@@ -309,7 +309,7 @@
 			/obj/item/weapon/storage/box/gloves
 			)
 	cost = 50
-	containertype = /obj/structure/closet/crate/secure/nanocare
+	containertype = /obj/structure/closet/crate/secure/nanomed
 	containername = "Medical biohazard equipment"
 	access = access_medical_equip
 

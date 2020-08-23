@@ -92,7 +92,7 @@
 /obj/item/mecha_parts/component/armor/military
 	name = "military grade mecha plating"
 
-	step_delay = 6
+	step_delay = 4
 
 	max_integrity = 100
 
@@ -121,14 +121,14 @@
 				typepass = TRUE
 
 		if(typepass)
-			step_delay = 3
+			step_delay = 0
 		else
 			step_delay = initial(step_delay)
 
 /obj/item/mecha_parts/component/armor/marshal
 	name = "marshal mecha plating"
 
-	step_delay = 5
+	step_delay = 3
 
 	max_integrity = 100
 
@@ -215,7 +215,7 @@
 
 /obj/item/mecha_parts/component/armor/alien
 	name = "strange mecha plating"
-	step_delay = 3
+	step_delay = 2
 	damage_absorption = list(
 		"brute"=0.7,
 		"fire"=0.7,

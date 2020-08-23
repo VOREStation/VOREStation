@@ -34,6 +34,8 @@
 	var/spam_flag = 0
 	var/age = 0
 	var/last_modified_ckey
+	
+	var/was_maploaded = FALSE // This tracks if the paper was created on mapload.
 
 	var/const/deffont = "Verdana"
 	var/const/signfont = "Times New Roman"
@@ -102,6 +104,12 @@
 	return
 
 //lipstick wiping is in code/game/objects/items/weapons/cosmetics.dm!
+
+/obj/item/weapon/paper/Initialize(mapload)
+	. = ..()
+	
+	if(mapload) // Jank, but we do this to prevent maploaded papers from somehow stacking across rounds if re-added to the board by a player.
+		was_maploaded = TRUE
 
 /obj/item/weapon/paper/New(var/newloc, var/text, var/title)
 	..()
@@ -444,8 +452,12 @@
 
 
 		// if paper is not in usr, then it must be near them, or in a clipboard or folder, which must be in or near usr
-		if(src.loc != usr && !src.Adjacent(usr) && !((istype(src.loc, /obj/item/weapon/clipboard) || istype(src.loc, /obj/item/weapon/folder)) && (src.loc.loc == usr || src.loc.Adjacent(usr)) ) )
+		if(istype(loc, /obj/item/weapon/clipboard) || istype(loc, /obj/structure/noticeboard) || istype(loc, /obj/item/weapon/folder))
+			if(loc.loc != usr && !in_range(loc, usr))
+				return
+		else if(loc != usr && !Adjacent(usr))
 			return
+
 /*
 		t = checkhtml(t)
 
@@ -463,6 +475,7 @@
 		//t = html_encode(t)
 		t = replacetext(t, "\n", "<BR>")
 		t = parsepencode(t, i, usr, iscrayon) // Encode everything from pencode to html
+		was_maploaded = FALSE // Set this to FALSE because a user has written on us. This is for persistence purposes.
 
 
 		if(fields > 50)//large amount of fields creates a heavy load on the server, see updateinfolinks() and addtofield()

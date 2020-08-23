@@ -20737,7 +20737,7 @@
 /area/engineering/workshop)
 "bZk" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/weapon/caution/cone,
+/obj/item/clothing/head/cone,
 /turf/simulated/floor,
 /area/vacant/vacant_restaurant_lower)
 "bZm" = (
