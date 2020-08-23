@@ -310,9 +310,11 @@
 	pref.job_civilian_med |= pref.job_civilian_high
 	pref.job_medsci_med |= pref.job_medsci_high
 	pref.job_engsec_med |= pref.job_engsec_high
+	pref.job_talon_med |= pref.job_talon_high //VOREStation Add
 	pref.job_civilian_high = 0
 	pref.job_medsci_high = 0
 	pref.job_engsec_high = 0
+	pref.job_talon_high = 0 //VOREStation Add
 
 // Level is equal to the desired new level of the job. So for a value of 4, we want to disable the job.
 /datum/category_item/player_setup_item/occupation/proc/SetJobDepartment(var/datum/job/job, var/level)
