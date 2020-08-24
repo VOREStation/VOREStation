@@ -121,6 +121,9 @@
 			if(L.absorbed)
 				L.Weaken(5)
 
+			// Fullscreen overlays
+			vore_fx(L)
+
 			//Handle 'human'
 			if(ishuman(L))
 				var/mob/living/carbon/human/H = L

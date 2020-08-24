@@ -33,6 +33,9 @@ var/list/ventcrawl_machinery = list(
 	if(incapacitated())
 		to_chat(src, "<span class='warning'>You cannot ventcrawl in your current state!</span>")
 		return FALSE
+	if(buckled)
+		to_chat(src, "<span class='warning'>You cannot ventcrawl while buckled!</span>")
+		return FALSE
 	return ventcrawl_carry()
 
 /mob/living/Login()

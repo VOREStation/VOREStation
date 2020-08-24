@@ -303,6 +303,14 @@
 	character_name = list("Yikatihaki")
 	allowed_roles = list("Explorer")
 
+/datum/gear/fluff/suit/storage/flintlock
+	path = /obj/item/clothing/suit/storage/flintlock
+	display_name = "Flintlock's jacket"
+	slot = slot_wear_suit
+	ckeywhitelist = list("flintlockdafox")
+	character_name = list("Flintlock Sharpsman")
+
+
 //  G CKEYS
 
 //  H CKEYS

@@ -1,7 +1,7 @@
 /datum/persistent/graffiti
 	name = "graffiti"
 	tokens_per_line = 6
-	entries_expire_at = 50
+	entries_expire_at = 4 // This previously was at 50 rounds??? Over 10 days.
 	has_admin_data = TRUE
 
 /datum/persistent/graffiti/LabelTokens(var/list/tokens)

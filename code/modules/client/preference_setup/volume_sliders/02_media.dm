@@ -2,23 +2,23 @@
 	var/media_volume = 1
 	var/media_player = 2	// 0 = VLC, 1 = WMP, 2 = HTML5, 3+ = unassigned
 
-/datum/category_item/player_setup_item/player_global/media
+/datum/category_item/player_setup_item/volume_sliders/media
 	name = "Media"
-	sort_order = 5
+	sort_order = 2
 
-/datum/category_item/player_setup_item/player_global/media/load_preferences(var/savefile/S)
+/datum/category_item/player_setup_item/volume_sliders/media/load_preferences(var/savefile/S)
 	S["media_volume"]	>> pref.media_volume
 	S["media_player"]	>> pref.media_player
 
-/datum/category_item/player_setup_item/player_global/media/save_preferences(var/savefile/S)
+/datum/category_item/player_setup_item/volume_sliders/media/save_preferences(var/savefile/S)
 	S["media_volume"]	<< pref.media_volume
 	S["media_player"]	<< pref.media_player
 
-/datum/category_item/player_setup_item/player_global/media/sanitize_preferences()
+/datum/category_item/player_setup_item/volume_sliders/media/sanitize_preferences()
 	pref.media_volume = isnum(pref.media_volume) ? CLAMP(pref.media_volume, 0, 1) : initial(pref.media_volume)
 	pref.media_player = sanitize_inlist(pref.media_player, list(0, 1, 2), initial(pref.media_player))
 
-/datum/category_item/player_setup_item/player_global/media/content(var/mob/user)
+/datum/category_item/player_setup_item/volume_sliders/media/content(var/mob/user)
 	. += "<b>Jukebox Volume:</b>"
 	. += "<a href='?src=\ref[src];change_media_volume=1'><b>[round(pref.media_volume * 100)]%</b></a><br>"
 	. += "<b>Media Player Type:</b> Depending on you operating system, one of these might work better. "
@@ -30,7 +30,7 @@
 	. += (pref.media_player == 0) ? "<span class='linkOn'><b>VLC</b></span> " : "<a href='?src=\ref[src];set_media_player=0'>VLC</a> "
 	. += "<br>"
 
-/datum/category_item/player_setup_item/player_global/media/OnTopic(var/href, var/list/href_list, var/mob/user)
+/datum/category_item/player_setup_item/volume_sliders/media/OnTopic(var/href, var/list/href_list, var/mob/user)
 	if(href_list["change_media_volume"])
 		if(CanUseTopic(user))
 			var/value = input("Choose your Jukebox volume (0-100%)", "Jukebox volume", round(pref.media_volume * 100))

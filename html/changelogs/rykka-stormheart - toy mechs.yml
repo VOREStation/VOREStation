@@ -22,7 +22,7 @@
 #################################
 
 # Your name.  
-author: Mechoid
+author: Rykka Stormheart
 
 # Optional: Remove this file after generating master changelog.  Useful for PR changelogs that won't get used again.
 delete-after: True
@@ -33,5 +33,6 @@ delete-after: True
 # Also, all entries are changed into a single [] after a master changelog generation. Just remove the brackets when you add new entries.
 # Please surround your changes in  double quotes ("), as certain characters otherwise screws up compiling. The quotes will not show up in the changelog.
 changes: 
-  - rscadd: "Mortiferin added in place of old Necroxadone as a normal chem recipe."
-  - tweak: "Necroxadone changed to a more powerful alternative to Mortiferin which works even on corpses without bloodflow."
+  - rscadd: "Adds a mech vs mech combat system for the toy mechs earned from arcades and found around the station."
+  - rscadd: "You can initiate combat with yourself by hitting a toy mech with another toy mech, or fight another player if you attack a player holding a mech with a mech."
+  - rscadd: "Each mech has its own health stat and special ability that they'll use in combat against each other."

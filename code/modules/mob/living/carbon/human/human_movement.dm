@@ -162,6 +162,9 @@
 			. += turf_move_cost
 
 	// Wind makes it easier or harder to move, depending on if you're with or against the wind.
+	// I don't like that so I'm commenting it out :)
+	// VOREstation Edit Start 
+/*
 	if(T.outdoors && (T.z <= SSplanets.z_to_planet.len))
 		var/datum/planet/P = SSplanets.z_to_planet[z]
 		if(P)
@@ -174,6 +177,8 @@
 				else if(direct & reverse_dir[WH.wind_dir])
 					. += WH.wind_speed
 
+*/
+// VOREstation Edit End.
 #undef HUMAN_LOWEST_SLOWDOWN
 
 /mob/living/carbon/human/Process_Spacemove(var/check_drift = 0)

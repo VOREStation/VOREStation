@@ -17,6 +17,10 @@
 		CRASH("invalid asset_cache_preload_data, no jsonendmarker")*/
 	//var/json = html_decode(copytext(data, 1, jsonend))
 	var/json = data
+	
+	// This is a stupid workaround to BYOND injecting this pngfix mess into IE7 clients browse()
+	json = replacetext(json, "<!--\[if lt IE 7.]>\n<script defer type=text/javascript src=pngfix.js></script>\n<!\[endif]-->", "")
+
 	var/list/preloaded_assets = json_decode(json)
 
 	for (var/preloaded_asset in preloaded_assets)

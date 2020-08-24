@@ -824,6 +824,7 @@ var/list/name_to_material
 	name = "alienalloy"
 	display_name = "durable alloy"
 	stack_type = null
+	flags = MATERIAL_UNMELTABLE
 	icon_colour = "#6C7364"
 	integrity = 1200
 	melting_point = 6000       // Hull plating.

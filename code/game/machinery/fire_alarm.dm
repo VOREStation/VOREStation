@@ -155,7 +155,7 @@ FIRE ALARM
 	for(var/obj/machinery/firealarm/FA in area)
 		fire_alarm.triggerAlarm(loc, FA, duration, hidden = alarms_hidden)
 	update_icon()
-	playsound(src, 'sound/machines/airalarm.ogg', 25, 0, 4)
+	playsound(src, 'sound/machines/airalarm.ogg', 25, 0, 4, volume_channel = VOLUME_CHANNEL_ALARMS)
 	if(user)
 		log_game("[user] triggered a fire alarm at [COORD(src)]")
 

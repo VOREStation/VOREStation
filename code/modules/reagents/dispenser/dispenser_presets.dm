@@ -139,5 +139,6 @@
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/lemon,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/lime,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/berry,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/greentea,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/decaf
 		)

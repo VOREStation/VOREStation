@@ -50,3 +50,13 @@
 	evasion = -5
 	attack_speed_percent = 1.1
 	disable_duration_percent = 1.05
+
+/datum/modifier/clone_stabilizer
+	name = "clone stabilized"
+	desc = "Your body's regeneration is highly restricted."
+
+	on_created_text = "<span class='danger'>You feel nauseous.</span>"
+	on_expired_text = "<span class='warning'>You feel healthier.</span>"
+	stacks = MODIFIER_STACK_EXTEND
+
+	incoming_healing_percent = 0.1

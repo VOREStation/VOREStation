@@ -38,6 +38,7 @@
 			/obj/item/weapon/storage/box/glasses/shot,
 			/obj/item/weapon/storage/box/glasses/mug,
 			/obj/item/weapon/storage/box/glasses/meta,
+			/obj/item/weapon/storage/box/glasses/meta/metapint,
 			/obj/item/weapon/reagent_containers/food/drinks/shaker,
 			/obj/item/weapon/storage/box/glass_extras/straws,
 			/obj/item/weapon/storage/box/glass_extras/sticks
@@ -57,13 +58,13 @@
 	group = "Hospitality"
 
 /datum/supply_pack/randomised/hospitality/pizza
-	num_contained = 5
 	contains = list(
-			/obj/item/pizzabox/margherita,
-			/obj/item/pizzabox/mushroom,
-			/obj/item/pizzabox/meat,
-			/obj/item/pizzabox/vegetable,
-			/obj/item/pizzabox/pineapple
+			/obj/random/pizzabox,
+			/obj/random/pizzabox,
+			/obj/random/pizzabox,
+			/obj/random/pizzabox,
+			/obj/random/pizzabox,
+			/obj/item/weapon/material/knife/plastic
 			)
 	name = "Surprise pack of five pizzas"
 	cost = 15
