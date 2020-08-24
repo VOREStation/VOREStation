@@ -1012,6 +1012,12 @@
 	ckeywhitelist = list("vitoras")
 	character_name = list("Roanna Ti'Rox")
 
+/datum/gear/fluff/kaboombelt
+	path = /obj/item/weapon/storage/belt/utility/full/fluffsynth
+	display_name = "KA-BOOM's Utility Belt"
+	ckeywhitelist = list("victorzisthus")
+	character_name = list("KA-BOOM")
+
 //  W CKEYS
 /datum/gear/fluff/sthasha_bracer
 	path = /obj/item/clothing/accessory/bracer/fluff/xander_sthasha
