@@ -68,6 +68,9 @@
 		var/flash_time = strength
 		if(istype(O, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = O
+			if(H.nif && H.nif.flag_check(NIF_V_FLASHPROT,NIF_FLAGS_VISION))
+				H.nif.notify("High intensity light detected, and blocked!",TRUE)
+				continue
 			if(!H.eyecheck() <= 0)
 				continue
 			flash_time *= H.species.flash_mod
