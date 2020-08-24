@@ -483,9 +483,9 @@
 		var/mob/living/carbon/human/Prey = M
 		var/mob/living/carbon/human/Pred = owner
 		//Reagent sharing for absorbed with pred - Copy so both pred and prey have these reagents.
-		Prey.bloodstr.trans_to_holder(Pred.bloodstr, Prey.bloodstr.total_volume, copy = TRUE)
+		Prey.bloodstr.trans_to_holder(Pred.ingested, Prey.bloodstr.total_volume, copy = TRUE)
 		Prey.ingested.trans_to_holder(Pred.ingested, Prey.ingested.total_volume, copy = TRUE)
-		Prey.touching.trans_to_holder(Pred.bloodstr, Prey.touching.total_volume, copy = TRUE)
+		Prey.touching.trans_to_holder(Pred.ingested, Prey.touching.total_volume, copy = TRUE)
 		// TODO - Find a way to make the absorbed prey share the effects with the pred.
 		// Currently this is infeasible because reagent containers are designed to have a single my_atom, and we get
 		// problems when A absorbs B, and then C absorbs A,  resulting in B holding onto an invalid reagent container.
