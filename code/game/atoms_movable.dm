@@ -19,6 +19,8 @@
 	var/icon_scale_x = 1 // Used to scale icons up or down horizonally in update_transform().
 	var/icon_scale_y = 1 // Used to scale icons up or down vertically in update_transform().
 	var/icon_rotation = 0 // Used to rotate icons in update_transform()
+	var/icon_expected_height = 32
+	var/icon_expected_width = 32
 	var/old_x = 0
 	var/old_y = 0
 	var/datum/riding/riding_datum = null
@@ -560,6 +562,14 @@
 	if(!candidates.len)
 		return null
 	return text2num(pickweight(candidates))
+
+// Returns the current scaling of the sprite.
+// Note this DOES NOT measure the height or width of the icon, but returns what number is being multiplied with to scale the icons, if any.
+/atom/movable/proc/get_icon_scale_x()
+	return icon_scale_x
+
+/atom/movable/proc/get_icon_scale_y()
+	return icon_scale_y
 
 /atom/movable/proc/update_transform()
 	var/matrix/M = matrix()

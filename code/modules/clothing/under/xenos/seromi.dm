@@ -37,6 +37,22 @@
 	name = "small command dress"
 	icon_state = "seromi_dress_cap"
 
+/obj/item/clothing/under/seromi/smock/dress/science
+	name = "small research dress"
+	icon_state = "seromi_dress_science"
+
+/obj/item/clothing/under/seromi/smock/dress/security
+	name = "small security dress"
+	icon_state = "seromi_dress_security"
+
+/obj/item/clothing/under/seromi/smock/dress/engine
+	name = "small engineering dress"
+	icon_state = "seromi_dress_engine"
+
+/obj/item/clothing/under/seromi/smock/dress/medical
+	name = "small medical dress"
+	icon_state = "seromi_dress_medical"
+
 /obj/item/clothing/under/seromi/smock/uniform
 	name = "small command uniform"
 	icon_state = "seromi_captain"
@@ -44,6 +60,22 @@
 /obj/item/clothing/under/seromi/smock/formal
 	name = "small formal uniform"
 	icon_state = "seromi_captain_formal"
+
+/obj/item/clothing/under/seromi/smock/blackutilitysmock
+	name = "black utility smock"
+	icon_state = "teshari_blackutility_com"
+
+/obj/item/clothing/under/seromi/smock/greydress
+	name = "small grey dress"
+	icon_state = "teshari_greydress"
+
+/obj/item/clothing/under/seromi/smock/blackutility
+	name = "Teshari utility uniform"
+	icon_state = "teshari_blackutility"
+
+/obj/item/clothing/under/seromi/smock/bluegreydress
+	name = "small blue and grey dress"
+	icon_state = "teshari_bluegreydress"
 
 /obj/item/clothing/under/seromi/undercoat
 	name = "Undercoat"
@@ -178,6 +210,66 @@
 	name = "brown and grey undercoat"
 	icon_state = "tesh_uniform_brg"
 	item_state = "tesh_uniform_brg"
+
+/obj/item/clothing/under/seromi/undercoat/standard/blackredworksuit
+	name = "small black and red worksuit"
+	icon_state = "teshari_black_red_worksuit"
+	item_state = "teshari_black_red_worksuit"
+	desc = "A small worksuit designed for a Teshari"
+
+/obj/item/clothing/under/seromi/undercoat/standard/blackpurpleworksuit
+	name = "small black and purple worksuit"
+	icon_state = "teshari_black_purple_worksuit"
+	item_state = "teshari_black_purple_worksuit"
+	desc = "A small worksuit designed for a Teshari"
+
+/obj/item/clothing/under/seromi/undercoat/standard/blackpurpleworksuit
+	name = "small black and orange worksuit"
+	icon_state = "teshari_black_orange_worksuit"
+	item_state = "teshari_black_orange_worksuit"
+	desc = "A small worksuit designed for a Teshari"
+
+/obj/item/clothing/under/seromi/undercoat/standard/blackblueworksuit
+	name = "small black and blue worksuit"
+	icon_state = "teshari_black_blue_worksuit"
+	item_state = "teshari_black_blue_worksuit"
+	desc = "A small worksuit designed for a Teshari"
+
+/obj/item/clothing/under/seromi/undercoat/standard/blackgreenworksuit
+	name = "small black and greeen worksuit"
+	icon_state = "teshari_black_green_worksuit"
+	item_state = "teshari_black_green_worksuit"
+	desc = "A small worksuit designed for a Teshari"
+
+/obj/item/clothing/under/seromi/undercoat/standard/whiteredworksuit
+	name = "small white and red worksuit"
+	icon_state = "teshari_white_red_worksuit"
+	item_state = "teshari_white_red_worksuit"
+	desc = "A small worksuit designed for a Teshari"
+
+/obj/item/clothing/under/seromi/undercoat/standard/whitepurpleworksuit
+	name = "small white and purple worksuit"
+	icon_state = "teshari_white_purple_worksuit"
+	item_state = "teshari_white_purple_worksuit"
+	desc = "A small worksuit designed for a Teshari"
+
+/obj/item/clothing/under/seromi/undercoat/standard/whiteorangeworksuit
+	name = "small white and orange worksuit"
+	icon_state = "teshari_white_orange_worksuit"
+	item_state = "teshari_white_orange_worksuit"
+	desc = "A small worksuit designed for a Teshari"
+
+/obj/item/clothing/under/seromi/undercoat/standard/whiteblueworksuit
+	name = "small white and blue worksuit"
+	icon_state = "teshari_white_blue_worksuit"
+	item_state = "teshari_white_blue_worksuit"
+	desc = "A small worksuit designed for a Teshari"
+
+/obj/item/clothing/under/seromi/undercoat/standard/whitegreenworksuit
+	name = "small white and green worksuit"
+	icon_state = "teshari_white_green_worksuit"
+	item_state = "teshari_white_green_worksuit"
+	desc = "A small worksuit designed for a Teshari"
 
 /obj/item/clothing/under/seromi/undercoat/jobs
 	icon = 'icons/mob/species/seromi/deptjacket.dmi'

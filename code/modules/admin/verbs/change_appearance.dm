@@ -9,7 +9,7 @@
 	if(!H) return
 
 	log_and_message_admins("is altering the appearance of [H].")
-	H.change_appearance(APPEARANCE_ALL, usr, usr, check_species_whitelist = 0, state = admin_state)
+	H.change_appearance(APPEARANCE_ALL, usr, check_species_whitelist = 0, state = GLOB.tgui_admin_state)
 	feedback_add_details("admin_verb","CHAA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/change_human_appearance_self()
@@ -29,10 +29,10 @@
 	switch(alert("Do you wish for [H] to be allowed to select non-whitelisted races?","Alter Mob Appearance","Yes","No","Cancel"))
 		if("Yes")
 			log_and_message_admins("has allowed [H] to change [T.his] appearance, without whitelisting of races.")
-			H.change_appearance(APPEARANCE_ALL, H.loc, check_species_whitelist = 0)
+			H.change_appearance(APPEARANCE_ALL, H, check_species_whitelist = 0)
 		if("No")
 			log_and_message_admins("has allowed [H] to change [T.his] appearance, with whitelisting of races.")
-			H.change_appearance(APPEARANCE_ALL, H.loc, check_species_whitelist = 1)
+			H.change_appearance(APPEARANCE_ALL, H, check_species_whitelist = 1)
 	feedback_add_details("admin_verb","CMAS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/editappear()

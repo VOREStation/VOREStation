@@ -7,10 +7,11 @@
 	density = 0
 	anchored = 1
 	var/shattered = 0
-	var/list/ui_users = list()
 	var/glass = 1
+	var/datum/tgui_module/appearance_changer/mirror/M
 
 /obj/structure/mirror/New(var/loc, var/dir, var/building = 0, mob/user as mob)
+	M = new(src, null)
 	if(building)
 		glass = 0
 		icon_state = "mirror_frame"
@@ -18,17 +19,16 @@
 		pixel_y = (dir & 3)? (dir == 1 ? -30 : 30) : 0
 	return
 
+/obj/structure/mirror/Destroy()
+	QDEL_NULL(M)
+	. = ..()
+
 /obj/structure/mirror/attack_hand(mob/user as mob)
 	if(!glass) return
 	if(shattered)	return
 
 	if(ishuman(user))
-		var/datum/nano_module/appearance_changer/AC = ui_users[user]
-		if(!AC)
-			AC = new(src, user)
-			AC.name = "SalonPro Nano-Mirror&trade;"
-			ui_users[user] = AC
-		AC.ui_interact(user)
+		M.tgui_interact(user)
 
 /obj/structure/mirror/proc/shatter()
 	if(!glass) return

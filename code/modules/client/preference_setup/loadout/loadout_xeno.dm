@@ -134,11 +134,6 @@
 		cloaks[initial(cloak_type.name)] = cloak_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(cloaks))
 
-/datum/gear/mask/ipc_monitor
-	display_name = "display monitor (Full Body Prosthetic)"
-	path = /obj/item/clothing/mask/monitor
-	sort_category = "Xenowear"
-
 /datum/gear/uniform/harness
 	display_name = "gear harness (Full Body Prosthetic, Diona)"
 	path = /obj/item/clothing/under/harness
@@ -411,5 +406,15 @@
 	sort_category = "Xenowear"
 
 /datum/gear/suit/teshcoatwhite/New()
+	..()
+	gear_tweaks = list(gear_tweak_free_color_choice)
+
+/datum/gear/accessory/teshneckscarf
+	display_name = "neckscarf, recolorable (Teshari)"
+	path = /obj/item/clothing/accessory/scarf/teshari/neckscarf
+	whitelisted = SPECIES_TESHARI
+	sort_category = "Xenowear"
+
+/datum/gear/accessory/teshneckscarf/New()
 	..()
 	gear_tweaks = list(gear_tweak_free_color_choice)

@@ -151,6 +151,12 @@ TRAITOR_SCALING
 ## If security is prohibited from being most antagonists
 #PROTECT_ROLES_FROM_ANTAGONIST
 
+## Uncomment this to DISABLE persistence
+#PERSISTENCE_DISABLED
+
+## Uncomment this to DISABLE maploaded trash/paper/etc from being saved by the persistence system.
+#PERSISTENCE_IGNORE_MAPLOAD
+
 ## Comment this out to stop admins being able to choose their personal ooccolor
 ALLOW_ADMIN_OOCCOLOR
 

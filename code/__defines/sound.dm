@@ -124,8 +124,7 @@
 	'sound/ambience/maintenance/maintenance2.ogg',\
 	'sound/ambience/maintenance/maintenance3.ogg',\
 	'sound/ambience/maintenance/maintenance4.ogg',\
-	'sound/ambience/maintenance/maintenance5.ogg',\
-	'sound/ambience/maintenance/maintenance6.ogg'\
+	'sound/ambience/maintenance/maintenance5.ogg'\
 	)
 
 // Life support machinery at work, keeping everyone breathing.
@@ -155,7 +154,11 @@
 // Concerning sounds, for when one discovers something horrible happened in a PoI.
 #define AMBIENCE_FOREBODING list(\
 	'sound/ambience/foreboding/foreboding1.ogg',\
-	'sound/ambience/foreboding/foreboding2.ogg'\
+	'sound/ambience/foreboding/foreboding2.ogg',\
+	'sound/ambience/foreboding/foreboding3.ogg',\
+	'sound/ambience/foreboding/foreboding4.ogg',\
+	'sound/ambience/foreboding/foreboding5.ogg',\
+	'sound/ambience/foreboding/foreboding6.ogg'\
 	)
 
 // Ambience heard when aboveground on Sif and not in a Point of Interest.

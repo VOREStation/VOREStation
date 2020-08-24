@@ -1,4 +1,4 @@
-/proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff, is_global, frequency = null, channel = 0, pressure_affected = TRUE, ignore_walls = TRUE, preference = null)
+/proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff, is_global, frequency = null, channel = 0, pressure_affected = TRUE, ignore_walls = TRUE, preference = null, volume_channel = null)
 	if(isarea(source))
 		throw EXCEPTION("playsound(): source is an area")
 		return
@@ -23,9 +23,9 @@
 
 		if(distance <= maxdistance)
 			if(T && T.z == turf_source.z)
-				M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, pressure_affected, S, preference)
+				M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, pressure_affected, S, preference, volume_channel)
 
-/mob/proc/playsound_local(turf/turf_source, soundin, vol as num, vary, frequency, falloff, is_global, channel = 0, pressure_affected = TRUE, sound/S, preference)
+/mob/proc/playsound_local(turf/turf_source, soundin, vol as num, vary, frequency, falloff, is_global, channel = 0, pressure_affected = TRUE, sound/S, preference, volume_channel = null)
 	if(!client || ear_deaf > 0)
 		return
 	if(preference && !client.is_preference_enabled(preference))
@@ -36,6 +36,11 @@
 
 	S.wait = 0 //No queue
 	S.channel = channel || open_sound_channel()
+
+	// I'm not sure if you can modify S.volume, but I'd rather not try to find out what
+	// horrible things lurk in BYOND's internals, so we're just gonna do vol *=
+	vol *= client.get_preference_volume_channel(volume_channel)
+	vol *= client.get_preference_volume_channel(VOLUME_CHANNEL_MASTER)
 	S.volume = vol
 
 	if(vary)
@@ -253,6 +258,10 @@
 					'sound/vore/sunesound/prey/death_07.ogg','sound/vore/sunesound/prey/death_08.ogg','sound/vore/sunesound/prey/death_09.ogg',
 					'sound/vore/sunesound/prey/death_10.ogg')
 			//END VORESTATION EDIT
+			if ("terminal_type")
+				soundin = pick('sound/machines/terminal_button01.ogg', 'sound/machines/terminal_button02.ogg', 'sound/machines/terminal_button03.ogg', \
+								'sound/machines/terminal_button04.ogg', 'sound/machines/terminal_button05.ogg', 'sound/machines/terminal_button06.ogg', \
+								'sound/machines/terminal_button07.ogg', 'sound/machines/terminal_button08.ogg')
 	return soundin
 
 //Are these even used?

@@ -400,8 +400,14 @@
 		spinup_counter = round(spinup_delay / idle_multiplier)
 	update_icon()
 
-/obj/machinery/power/shield_generator/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	var/data[0]
+/obj/machinery/power/shield_generator/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "OvermapShieldGenerator", name) // 500, 800
+		ui.open()
+
+/obj/machinery/power/shield_generator/tgui_data(mob/user)
+	var/list/data = list()
 
 	data["running"] = running
 	data["modes"] = get_flag_descriptions()
@@ -427,12 +433,7 @@
 	data["idle_valid_values"] = idle_valid_values
 	data["spinup_counter"] = spinup_counter
 
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "shield_generator.tmpl", src.name, 500, 800)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(1)
+	return data
 
 /obj/machinery/power/shield_generator/attack_hand(mob/user)
 	if((. = ..()))
@@ -440,99 +441,99 @@
 	if(panel_open && Adjacent(user))
 		wires.Interact(user)
 		return
-	if(CanUseTopic(user, global.default_state) > STATUS_CLOSE)
-		ui_interact(user)
-		return TRUE
+	tgui_interact(user)
 
-/obj/machinery/power/shield_generator/CanUseTopic(var/mob/user)
+/obj/machinery/power/shield_generator/tgui_status(mob/user)
 	if(issilicon(user) && !Adjacent(user) && ai_control_disabled)
 		return STATUS_UPDATE
 	if(panel_open)
 		return min(..(), STATUS_DISABLED)
 	return ..()
 
-/obj/machinery/power/shield_generator/Topic(href, href_list, datum/topic_state/state = default_state)
-	if((. = ..()))
-		return
+/obj/machinery/power/shield_generator/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	if(..())
+		return TRUE
 
-	if(href_list["begin_shutdown"])
-		if(running < SHIELD_RUNNING) // Discharging or off
-			return
-		var/alert = alert(usr, "Are you sure you wish to do this? It will drain the power inside the internal storage rapidly.", "Are you sure?", "Yes", "No")
-		if(!CanInteract(usr, state))
-			return
-		if(running < SHIELD_RUNNING)
-			return
-		if(alert == "Yes")
-			set_idle(TRUE) // do this first to clear the field
-			running = SHIELD_DISCHARGING
-		return TOPIC_REFRESH
+	switch(action)
+		if("begin_shutdown")
+			if(running < SHIELD_RUNNING) // Discharging or off
+				return
+			var/alert = alert(usr, "Are you sure you wish to do this? It will drain the power inside the internal storage rapidly.", "Are you sure?", "Yes", "No")
+			if(tgui_status(usr, state) != STATUS_INTERACTIVE)
+				return
+			if(running < SHIELD_RUNNING)
+				return
+			if(alert == "Yes")
+				set_idle(TRUE) // do this first to clear the field
+				running = SHIELD_DISCHARGING
+			return TRUE
 
-	if(href_list["start_generator"])
-		if(offline_for)
-			return
-		set_idle(TRUE)
-		return TOPIC_REFRESH
+		if("start_generator")
+			if(offline_for)
+				return
+			set_idle(TRUE)
+			return TRUE
 
-	if(href_list["toggle_idle"])
-		if(running < SHIELD_RUNNING)
-			return TOPIC_HANDLED
-		set_idle(text2num(href_list["toggle_idle"]))
-		return TOPIC_REFRESH
+		if("toggle_idle")
+			if(running < SHIELD_RUNNING)
+				return TRUE
+			set_idle(text2num(params["toggle_idle"]))
+			return TRUE
 
-	// Instantly drops the shield, but causes a cooldown before it may be started again. Also carries a risk of EMP at high charge.
-	if(href_list["emergency_shutdown"])
-		if(!running)
-			return TOPIC_HANDLED
+		// Instantly drops the shield, but causes a cooldown before it may be started again. Also carries a risk of EMP at high charge.
+		if("emergency_shutdown")
+			if(!running)
+				return TRUE
 
-		var/choice = input(usr, "Are you sure that you want to initiate an emergency shield shutdown? This will instantly drop the shield, and may result in unstable release of stored electromagnetic energy. Proceed at your own risk.") in list("Yes", "No")
-		if((choice != "Yes") || !running)
-			return TOPIC_HANDLED
+			var/choice = input(usr, "Are you sure that you want to initiate an emergency shield shutdown? This will instantly drop the shield, and may result in unstable release of stored electromagnetic energy. Proceed at your own risk.") in list("Yes", "No")
+			if((choice != "Yes") || !running)
+				return TRUE
 
-		// If the shield would take 5 minutes to disperse and shut down using regular methods, it will take x1.5 (7 minutes and 30 seconds) of this time to cool down after emergency shutdown
-		offline_for = round(current_energy / (SHIELD_SHUTDOWN_DISPERSION_RATE / 1.5))
-		var/old_energy = current_energy
-		shutdown_field()
-		log_and_message_admins("has triggered \the [src]'s emergency shutdown!", usr)
-		spawn()
-			empulse(src, old_energy / 60000000, old_energy / 32000000, 1) // If shields are charged at 450 MJ, the EMP will be 7.5, 14.0625. 90 MJ, 1.5, 2.8125
-		old_energy = 0
+			// If the shield would take 5 minutes to disperse and shut down using regular methods, it will take x1.5 (7 minutes and 30 seconds) of this time to cool down after emergency shutdown
+			offline_for = round(current_energy / (SHIELD_SHUTDOWN_DISPERSION_RATE / 1.5))
+			var/old_energy = current_energy
+			shutdown_field()
+			log_and_message_admins("has triggered \the [src]'s emergency shutdown!", usr)
+			spawn()
+				empulse(src, old_energy / 60000000, old_energy / 32000000, 1) // If shields are charged at 450 MJ, the EMP will be 7.5, 14.0625. 90 MJ, 1.5, 2.8125
+			old_energy = 0
 
-		return TOPIC_REFRESH
+			return TRUE
 
 	if(mode_changes_locked)
-		return TOPIC_REFRESH
+		return TRUE
 
-	if(href_list["set_range"])
-		var/new_range = input(usr, "Enter new field range (1-[world.maxx]). Leave blank to cancel.", "Field Radius Control", field_radius) as num
-		if(!new_range)
-			return TOPIC_HANDLED
-		target_radius = between(1, new_range, world.maxx)
-		return TOPIC_REFRESH
+	switch(action)
+		if("set_range")
+			var/new_range = input(usr, "Enter new field range (1-[world.maxx]). Leave blank to cancel.", "Field Radius Control", field_radius) as num
+			if(!new_range)
+				return TRUE
+			target_radius = between(1, new_range, world.maxx)
+			return TRUE
 
-	if(href_list["set_input_cap"])
-		var/new_cap = round(input(usr, "Enter new input cap (in kW). Enter 0 or nothing to disable input cap.", "Generator Power Control", round(input_cap / 1000)) as num)
-		if(!new_cap)
-			input_cap = 0
-			return
-		input_cap = max(0, new_cap) * 1000
-		return TOPIC_REFRESH
+		if("set_input_cap")
+			var/new_cap = round(input(usr, "Enter new input cap (in kW). Enter 0 or nothing to disable input cap.", "Generator Power Control", round(input_cap / 1000)) as num)
+			if(!new_cap)
+				input_cap = 0
+				return
+			input_cap = max(0, new_cap) * 1000
+			return TRUE
 
-	if(href_list["toggle_mode"])
-		// Toggling hacked-only modes requires the hacked var to be set to 1
-		if((text2num(href_list["toggle_mode"]) & (MODEFLAG_BYPASS | MODEFLAG_OVERCHARGE)) && !hacked)
-			return TOPIC_HANDLED
+		if("toggle_mode")
+			// Toggling hacked-only modes requires the hacked var to be set to 1
+			if((text2num(params["toggle_mode"]) & (MODEFLAG_BYPASS | MODEFLAG_OVERCHARGE)) && !hacked)
+				return TRUE
 
-		toggle_flag(text2num(href_list["toggle_mode"]))
-		return TOPIC_REFRESH
+			toggle_flag(text2num(params["toggle_mode"]))
+			return TRUE
 
-	if(href_list["switch_idle"])
-		if(running == SHIELD_SPINNING_UP)
-			return TOPIC_REFRESH
-		var/new_idle = text2num(href_list["switch_idle"])
-		if(new_idle in idle_valid_values)
-			idle_multiplier = new_idle
-		return TOPIC_REFRESH
+		if("switch_idle")
+			if(running == SHIELD_SPINNING_UP)
+				return TRUE
+			var/new_idle = text2num(params["switch_idle"])
+			if(new_idle in idle_valid_values)
+				idle_multiplier = new_idle
+			return TRUE
 
 /obj/machinery/power/shield_generator/proc/field_integrity()
 	if(full_shield_strength)

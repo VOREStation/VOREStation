@@ -24,6 +24,7 @@
 	var/time_died_as_mouse = null //when the client last died as a mouse
 	var/datum/tooltip/tooltips 	= null
 	var/datum/chatOutput/chatOutput
+	var/datum/volume_panel/volume_panel = null // Initialized by /client/verb/volume_panel()
 	var/chatOutputLoadedAt
 
 	var/adminhelped = 0
@@ -59,3 +60,18 @@
 	preload_rsc = PRELOAD_RSC
 
 	var/global/obj/screen/click_catcher/void
+
+	// List of all asset filenames sent to this client by the asset cache, along with their assoicated md5s
+	var/list/sent_assets = list()
+	/// List of all completed blocking send jobs awaiting acknowledgement by send_asset
+	var/list/completed_asset_jobs = list()
+	/// Last asset send job id.
+	var/last_asset_job = 0
+	var/last_completed_asset_job = 0
+
+ 	///world.time they connected
+	var/connection_time
+ 	///world.realtime they connected
+	var/connection_realtime
+ 	///world.timeofday they connected
+	var/connection_timeofday

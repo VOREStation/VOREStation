@@ -1,8 +1,0 @@
-# Your name.  
-author: KasparoVy
-
-# Optional: Remove this file after generating master changelog.  Useful for PR changelogs that won't get used again.
-delete-after: True
-
-changes: 
-  - tweak: Removes a pixel from the south-facing dir of the eyepatch's strap which unintentionally blocked your 'good' eye.

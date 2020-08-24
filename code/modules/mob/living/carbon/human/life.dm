@@ -688,10 +688,13 @@
 			if(bodytemperature >= species.heat_level_2)
 				if(bodytemperature >= species.heat_level_3)
 					burn_dam = HEAT_DAMAGE_LEVEL_3
+					throw_alert("temp", /obj/screen/alert/hot, 3)
 				else
 					burn_dam = HEAT_DAMAGE_LEVEL_2
+					throw_alert("temp", /obj/screen/alert/hot, 2)
 			else
 				burn_dam = HEAT_DAMAGE_LEVEL_1
+				throw_alert("temp", /obj/screen/alert/hot, 1)
 
 		take_overall_damage(burn=burn_dam, used_weapon = "High Body Temperature")
 
@@ -714,6 +717,8 @@
 					cold_dam = COLD_DAMAGE_LEVEL_1
 
 			take_overall_damage(burn=cold_dam, used_weapon = "Low Body Temperature")
+
+	else clear_alert("temp")
 
 	// Account for massive pressure differences.  Done by Polymorph
 	// Made it possible to actually have something that can protect against high pressure... Done by Errorage. Polymorph now has an axe sticking from his head for his previous hardcoded nonsense!
@@ -779,10 +784,13 @@
 	if (species.body_temperature == null)
 		return //this species doesn't have metabolic thermoregulation
 
-	// FBPs will overheat, prosthetic limbs are fine.
-	if(robobody_count)
-		if(!nif || !nif.flag_check(NIF_O_HEATSINKS,NIF_FLAGS_OTHER)) //VOREStation Edit - NIF heatsinks
-			bodytemperature += round(robobody_count*1.75)
+	// FBPs will overheat when alive, prosthetic limbs are fine.
+	if(stat != DEAD && robobody_count)
+		if(!nif || !nif.flag_check(NIF_O_HEATSINKS,NIF_FLAGS_OTHER)) //VOREStation Edit - NIF heatsinks prevent the base heat increase per tick if installed.
+			bodytemperature += round(robobody_count*1.15)
+		var/obj/item/organ/internal/robotic/heatsink/HS = internal_organs_by_name[O_HEATSINK]
+		if(!HS || HS.is_broken()) // However, NIF Heatsinks will not compensate for a core FBP component (your heatsink) being lost.
+			bodytemperature += round(robobody_count*0.5)
 
 	var/body_temperature_difference = species.body_temperature - bodytemperature
 
@@ -831,7 +839,19 @@
 
 /mob/living/carbon/human/get_heat_protection(temperature) //Temperature is the temperature you're being exposed to.
 	var/thermal_protection_flags = get_heat_protection_flags(temperature)
-	return get_thermal_protection(thermal_protection_flags)
+
+	. = get_thermal_protection(thermal_protection_flags)
+	. = 1 - . // Invert from 1 = immunity to 0 = immunity.
+
+	// Doing it this way makes multiplicative stacking not get out of hand, so two modifiers that give 0.5 protection will be combined to 0.75 in the end.
+	for(var/thing in modifiers)
+		var/datum/modifier/M = thing
+		if(!isnull(M.heat_protection))
+			. *= 1 - M.heat_protection
+
+	// Code that calls this expects 1 = immunity so we need to invert again.
+	. = 1 - .
+	. = min(., 1.0)
 
 /mob/living/carbon/human/get_cold_protection(temperature)
 	if(COLD_RESISTANCE in mutations)
@@ -839,7 +859,20 @@
 
 	temperature = max(temperature, 2.7) //There is an occasional bug where the temperature is miscalculated in ares with a small amount of gas on them, so this is necessary to ensure that that bug does not affect this calculation. Space's temperature is 2.7K and most suits that are intended to protect against any cold, protect down to 2.0K.
 	var/thermal_protection_flags = get_cold_protection_flags(temperature)
-	return get_thermal_protection(thermal_protection_flags)
+
+	. = get_thermal_protection(thermal_protection_flags)
+	. = 1 - . // Invert from 1 = immunity to 0 = immunity.
+
+	// Doing it this way makes multiplicative stacking not get out of hand, so two modifiers that give 0.5 protection will be combined to 0.75 in the end.
+	for(var/thing in modifiers)
+		var/datum/modifier/M = thing
+		if(!isnull(M.cold_protection))
+			// Invert the modifier values so they align with the current working value.
+			. *= 1 - M.cold_protection
+
+	// Code that calls this expects 1 = immunity so we need to invert again.
+	. = 1 - .
+	. = min(., 1.0)
 
 /mob/living/carbon/human/proc/get_thermal_protection(var/flags)
 	.=0
@@ -876,14 +909,14 @@
 	if(reagents)
 		chem_effects.Cut()
 
-		if(!isSynthetic())
+		if(touching)
+			touching.metabolize()
+		if(ingested)
+			ingested.metabolize()
+		if(bloodstr)
+			bloodstr.metabolize()
 
-			if(touching)
-				touching.metabolize()
-			if(ingested)
-				ingested.metabolize()
-			if(bloodstr)
-				bloodstr.metabolize()
+		if(!isSynthetic())
 
 			var/total_phoronloss = 0
 			for(var/obj/item/I in src)
@@ -1098,7 +1131,7 @@
 			drowsyness = max(0, drowsyness - 1)
 			eye_blurry = max(2, eye_blurry)
 			if (prob(5))
-				sleeping += 1
+				Sleeping(1)
 				Paralyse(5)
 
 		// If you're dirty, your gloves will become dirty, too.
@@ -1253,9 +1286,8 @@
 		if(blinded)
 			overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
 			throw_alert("blind", /obj/screen/alert/blind)
-		
-		else if(!machine)
-			clear_fullscreens()
+		else
+			clear_fullscreen("blind")
 			clear_alert("blind")
 
 		if(disabilities & NEARSIGHTED)	//this looks meh but saves a lot of memory by not requiring to add var/prescription
@@ -1272,6 +1304,8 @@
 			throw_alert("high", /obj/screen/alert/high)
 		else
 			clear_alert("high")
+
+		if(!isbelly(loc)) clear_fullscreen("belly") //VOREStation Add - Belly fullscreens safety
 
 		if(config.welder_vision)
 			var/found_welder
@@ -1315,6 +1349,11 @@
 	else //We aren't dead
 		sight &= ~(SEE_TURFS|SEE_MOBS|SEE_OBJS)
 		see_invisible = see_in_dark>2 ? SEE_INVISIBLE_LEVEL_ONE : see_invisible_default
+
+		// Do this early so certain stuff gets turned off before vision is assigned.
+		var/area/A = get_area(src)
+		if(A?.no_spoilers)
+			disable_spoiler_vision()
 
 		if(XRAY in mutations)
 			sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS
@@ -1412,7 +1451,7 @@
 				if(prob(5))
 					to_chat(src, "<span class='danger'>You lose directional control!</span>")
 					Confuse(10)
-		if (getToxLoss() >= 45)
+		if (getToxLoss() >= 45 && !isSynthetic())
 			spawn vomit()
 
 
@@ -1586,7 +1625,7 @@
 	if(Pump)
 		temp += Pump.standard_pulse_level - PULSE_NORM
 
-	if(round(vessel.get_reagent_amount("blood")) <= BLOOD_VOLUME_BAD)	//how much blood do we have
+	if(round(vessel.get_reagent_amount("blood")) <= species.blood_volume*species.blood_level_danger)	//how much blood do we have
 		temp = temp + 3	//not enough :(
 
 	if(status_flags & FAKEDEATH)

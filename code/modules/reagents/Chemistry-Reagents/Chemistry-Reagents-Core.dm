@@ -18,6 +18,7 @@
 	..()
 	if(data && data["blood_colour"])
 		color = data["blood_colour"]
+
 	return
 
 /datum/reagent/blood/get_data() // Just in case you have a reagent that handles data differently.
@@ -49,6 +50,11 @@
 			H.adjust_nutrition(removed)
 			is_vampire = 1 //VOREStation Edit END
 	if(alien == IS_SLIME)	// Treat it like nutriment for the jello, but not equivalent.
+		if(data["species"] == M.species.name)	// Unless it's Promethean goo, then refill this one's goo.
+			M.inject_blood(src, volume * volume_mod)
+			remove_self(volume)
+			return
+
 		M.heal_organ_damage(0.2 * removed * volume_mod, 0)	// More 'effective' blood means more usable material.
 		M.adjust_nutrition(20 * removed * volume_mod)
 		M.add_chemical_effect(CE_BLOODRESTORE, 4 * removed)
@@ -91,6 +97,23 @@
 	if(alien == IS_SLIME)	//They don't have blood, so it seems weird that they would instantly 'process' the chemical like another species does.
 		affect_ingest(M, alien, removed)
 		return
+
+	if(M.isSynthetic())
+		return
+
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+
+		var/datum/reagent/blood/recipient = H.get_blood(H.vessel)
+
+		if(recipient && blood_incompatible(data["blood_type"], recipient.data["blood_type"], data["species"], recipient.data["species"]))
+			H.inject_blood(src, removed * volume_mod)
+
+			if(!H.isSynthetic() && data["species"] == "synthetic")	// Remember not to inject oil into your veins, it's bad for you.
+				H.reagents.add_reagent("toxin", removed * 1.5)
+
+			return
+
 	M.inject_blood(src, volume * volume_mod)
 	remove_self(volume)
 
@@ -180,6 +203,16 @@
 			L.ExtinguishMob()
 		L.water_act(amount / 25) // Div by 25, as water_act multiplies it by 5 in order to calculate firestack modification.
 		remove_self(needed)
+		// Put out cigarettes if splashed.
+		if(istype(L, /mob/living/carbon/human))
+			var/mob/living/carbon/human/H = L
+			if(H.wear_mask)
+				if(istype(H.wear_mask, /obj/item/clothing/mask/smokable))
+					var/obj/item/clothing/mask/smokable/S = H.wear_mask
+					if(S.lit)
+						S.quench()
+						H.visible_message("<span class='notice'>[H]\'s [S.name] is put out.</span>")
+
 /*  //VOREStation Edit Start. Stops slimes from dying from water. Fixes fuel affect_ingest, too.
 /datum/reagent/water/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_SLIME)

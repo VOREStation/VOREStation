@@ -150,7 +150,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/clothing/mask/smokable/examine(mob/user)
 	. = ..()
-	
+
 	if(!is_pipe)
 		var/smoke_percent = round((smoketime / max_smoketime) * 100)
 		switch(smoke_percent)
@@ -283,7 +283,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_EARS | SLOT_MASK
 	attack_verb = list("burnt", "singed")
-	type_butt = /obj/item/weapon/cigbutt
+	type_butt = /obj/item/trash/cigbutt
 	chem_volume = 15
 	max_smoketime = 300
 	smoketime = 300
@@ -341,7 +341,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	name = "premium cigar"
 	desc = "A brown roll of tobacco and... well, you're not quite sure. This thing's huge!"
 	icon_state = "cigar2"
-	type_butt = /obj/item/weapon/cigbutt/cigarbutt
+	type_butt = /obj/item/trash/cigbutt/cigarbutt
 	throw_speed = 0.5
 	item_state = "cigar"
 	max_smoketime = 1500
@@ -369,7 +369,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	chem_volume = 30
 	nicotine_amt = 10
 
-/obj/item/weapon/cigbutt
+/obj/item/trash/cigbutt
 	name = "cigarette butt"
 	desc = "A manky old cigarette butt."
 	icon = 'icons/obj/clothing/masks.dmi'
@@ -379,12 +379,12 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	slot_flags = SLOT_EARS
 	throwforce = 1
 
-/obj/item/weapon/cigbutt/Initialize()
+/obj/item/trash/cigbutt/Initialize()
 	. = ..()
 	randpixel_xy()
 	transform = turn(transform,rand(0,360))
 
-/obj/item/weapon/cigbutt/cigarbutt
+/obj/item/trash/cigbutt/cigarbutt
 	name = "cigar butt"
 	desc = "A manky old cigar butt."
 	icon_state = "cigarbutt"
@@ -488,6 +488,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/weapon/rollingpaper
 	name = "rolling paper"
 	desc = "A small, thin piece of easily flammable paper, commonly used for rolling and smoking various dried plants."
+	description_fluff = "The legalization of certain substances propelled the sale of rolling papers through the roof. Now almost every Trans-stellar produces a variety, often of questionable quality."
 	icon = 'icons/obj/cigarettes.dmi'
 	icon_state = "cig paper"
 
@@ -513,6 +514,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/weapon/flame/lighter
 	name = "cheap lighter"
 	desc = "A cheap-as-free lighter."
+	description_fluff = "The 'hand-made in Altair' sticker underneath is a charming way of saying 'Made with prison labour'. It's no wonder the company can sell these things so cheap."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "lighter-g"
 	item_state = "lighter-g"
@@ -527,6 +529,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/weapon/flame/lighter/zippo
 	name = "\improper Zippo lighter"
 	desc = "The zippo."
+	description_fluff = "Still going after all these years."
 	icon = 'icons/obj/zippo.dmi'
 	icon_state = "zippo"
 	item_state = "zippo"

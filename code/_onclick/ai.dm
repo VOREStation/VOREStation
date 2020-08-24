@@ -122,25 +122,22 @@
 /atom/proc/AIShiftClick()
 	return
 
-/obj/machinery/door/airlock/AIShiftClick()  // Opens and closes doors!
-	if(density)
-		Topic(src, list("command"="open", "activate" = "1"))
-	else
-		Topic(src, list("command"="open", "activate" = "0"))
+/obj/machinery/door/airlock/AIShiftClick(mob/user)  // Opens and closes doors!
+	add_fingerprint(user)
+	user_toggle_open(user)
 	return 1
 
-/atom/proc/AICtrlClick()
+/atom/proc/AICtrlClick(mob/user)
 	return
 
-/obj/machinery/door/airlock/AICtrlClick() // Bolts doors
-	if(locked)
-		Topic(src, list("command"="bolts", "activate" = "0"))
-	else
-		Topic(src, list("command"="bolts", "activate" = "1"))
+/obj/machinery/door/airlock/AICtrlClick(mob/user) // Bolts doors
+	add_fingerprint(user)
+	toggle_bolt(user)
 	return 1
 
-/obj/machinery/power/apc/AICtrlClick() // turns off/on APCs.
-	Topic(src, list("breaker"="1"))
+/obj/machinery/power/apc/AICtrlClick(mob/user) // turns off/on APCs.
+	add_fingerprint(user)
+	toggle_breaker()
 	return 1
 
 /obj/machinery/turretid/AICtrlClick() //turns off/on Turrets
@@ -150,13 +147,12 @@
 /atom/proc/AIAltClick(var/atom/A)
 	return AltClick(A)
 
-/obj/machinery/door/airlock/AIAltClick() // Electrifies doors.
-	if(!electrified_until)
-		// permanent shock
-		Topic(src, list("command"="electrify_permanently", "activate" = "1"))
+/obj/machinery/door/airlock/AIAltClick(mob/user) // Electrifies doors.
+	add_fingerprint(user)
+	if(electrified_until)
+		electrify(0, 1)
 	else
-		// disable/6 is not in Topic; disable/5 disables both temporary and permanent shock
-		Topic(src, list("command"="electrify_permanently", "activate" = "0"))
+		electrify(-1, 1)
 	return 1
 
 /obj/machinery/turretid/AIAltClick() //toggles lethal on turrets
@@ -166,16 +162,17 @@
 /atom/proc/AIMiddleClick(var/mob/living/silicon/user)
 	return 0
 
-/obj/machinery/door/airlock/AIMiddleClick() // Toggles door bolt lights.
-
+/obj/machinery/door/airlock/AIMiddleClick(mob/user) // Toggles door bolt lights.
 	if(..())
 		return
-
-	if(!src.lights)
-		Topic(src, list("command"="lights", "activate" = "1"))
-	else
-		Topic(src, list("command"="lights", "activate" = "0"))
-	return 1
+	add_fingerprint(user)
+	if(wires.is_cut(WIRE_BOLT_LIGHT))
+		to_chat(user, "The bolt lights wire is cut - The door bolt lights are permanently disabled.")
+		return
+	lights = !lights
+	to_chat(user, "<span class='notice'>Lights are now [lights ? "on." : "off."]</span>")
+	update_icon()
+	return TRUE
 
 //
 // Override AdjacentQuick for AltClicking

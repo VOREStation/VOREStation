@@ -1,6 +1,6 @@
 // Chaos cake
 
-/datum/recipe/microwave/chaoscake_layerone
+/datum/recipe/chaoscake_layerone
 	reagents = list("flour" = 300,"milk" = 200, "sugar" = 100, "egg" = 30)
 	fruit = list("poisonberries" = 15, "cherries" =  15)
 	items = list(
@@ -11,7 +11,7 @@
 		)
 	result = /obj/structure/chaoscake
 
-/datum/recipe/microwave/chaoscake_layertwo
+/datum/recipe/chaoscake_layertwo
 	reagents = list("flour" = 300, "milk" = 200, "sugar" = 100, "egg" = 30, )
 	fruit = list("vanilla" =  15, "banana" = 15)
 	items = list(
@@ -22,7 +22,7 @@
 		)
 	result = /obj/item/weapon/chaoscake_layer
 
-/datum/recipe/microwave/chaoscake_layerthree
+/datum/recipe/chaoscake_layerthree
 	reagents = list("flour" = 240, "milk" = 150, "sugar" = 80, "egg" = 24, "deathbell" = 100)
 	fruit = list("grapes" = 30)
 	items = list(
@@ -32,7 +32,7 @@
 		)
 	result = /obj/item/weapon/chaoscake_layer/three
 
-/datum/recipe/microwave/chaoscake_layerfour
+/datum/recipe/chaoscake_layerfour
 	reagents = list("flour" = 240, "milk" = 150, "sugar" = 80, "egg" = 24, "milkshake" = 300)
 	fruit = list("rice" = 30)
 	items = list(
@@ -42,13 +42,13 @@
 		)
 	result = /obj/item/weapon/chaoscake_layer/four
 
-/datum/recipe/microwave/chaoscake_layerfive
+/datum/recipe/chaoscake_layerfive
 	reagents = list("flour" = 180, "milk" = 100, "sugar" = 60, "egg" = 18, "blood" = 300)
 	fruit = list("tomato" = 20)
 	items = list() //supposed to be made with lobster, still has to be ported.
 	result = /obj/item/weapon/chaoscake_layer/five
 
-/datum/recipe/microwave/chaoscake_layersix
+/datum/recipe/chaoscake_layersix
 	reagents = list("flour" = 180, "milk" = 100, "sugar" = 60, "egg" = 18, "sprinkles" = 10)
 	fruit = list("apple" = 30)
 	items = list(
@@ -61,7 +61,7 @@
 		)
 	result = /obj/item/weapon/chaoscake_layer/six
 
-/datum/recipe/microwave/chaoscake_layerseven
+/datum/recipe/chaoscake_layerseven
 	reagents = list("flour" = 120, "milk" = 50, "sugar" = 40, "egg" = 12, "devilskiss" = 200)
 	fruit = list("potato" = 10)
 	items = list(
@@ -71,7 +71,7 @@
 		)
 	result = /obj/item/weapon/chaoscake_layer/seven
 
-/datum/recipe/microwave/chaoscake_layereight
+/datum/recipe/chaoscake_layereight
 	reagents = list("flour" = 120, "milk" = 50, "sugar" = 40, "egg" = 12, "cream" = 200)
 	fruit = list("lemon" = 10)
 	items = list(
@@ -81,7 +81,7 @@
 		)
 	result = /obj/item/weapon/chaoscake_layer/eight
 
-/datum/recipe/microwave/chaoscake_layernine
+/datum/recipe/chaoscake_layernine
 	reagents = list("water" = 100, "blood" = 100)
 	fruit = list("goldapple" = 50)
 	items = list()

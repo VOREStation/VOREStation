@@ -109,29 +109,37 @@
 					T.clean(src, user) //VOREStation Edit End
 
 /obj/item/weapon/reagent_containers/glass/rag/attack(atom/target as obj|turf|area, mob/user as mob , flag)
-	if(isliving(target))
+	if(isliving(target)) //Leaving this as isliving.
 		var/mob/living/M = target
-		if(on_fire)
+		if(on_fire) //Check if rag is on fire, if so igniting them and stopping.
 			user.visible_message("<span class='danger'>\The [user] hits [target] with [src]!</span>",)
 			user.do_attack_animation(src)
 			M.IgniteMob()
-		else if(reagents.total_volume)
-			if(user.zone_sel.selecting == O_MOUTH)
-				user.do_attack_animation(src)
-				user.visible_message(
-					"<span class='danger'>\The [user] smothers [target] with [src]!</span>",
-					"<span class='warning'>You smother [target] with [src]!</span>",
-					"You hear some struggling and muffled cries of surprise"
-					)
-
-				//it's inhaled, so... maybe CHEM_BLOOD doesn't make a whole lot of sense but it's the best we can do for now
-				reagents.trans_to_mob(target, amount_per_transfer_from_this, CHEM_BLOOD)
-				update_name()
+		else if(user.zone_sel.selecting == O_MOUTH) //Check player target location, provided the rag is not on fire. Then check if mouth is exposed.
+			if(ishuman(target)) //Added this since player species process reagents in majority of cases.
+				var/mob/living/carbon/human/H = target
+				if(H.head && (H.head.body_parts_covered & FACE)) //Check human head coverage.
+					to_chat(user, "<span class='warning'>Remove their [H.head] first.</span>")
+					return        
+				else if(reagents.total_volume) //Final check. If the rag is not on fire and their face is uncovered, smother target.
+					user.do_attack_animation(src)
+					user.visible_message(
+						"<span class='danger'>\The [user] smothers [target] with [src]!</span>",
+						"<span class='warning'>You smother [target] with [src]!</span>",
+						"You hear some struggling and muffled cries of surprise"
+						)
+					//it's inhaled, so... maybe CHEM_BLOOD doesn't make a whole lot of sense but it's the best we can do for now
+					reagents.trans_to_mob(target, amount_per_transfer_from_this, CHEM_BLOOD)
+					update_name()
+				else
+					to_chat(user, "<span class='warning'>You can't smother this creature.</span>")
 			else
-				wipe_down(target, user)
-		return
-
-	return ..()
+				to_chat(user, "<span class='warning'>You can't smother this creature.</span>")
+		else
+			wipe_down(target, user)
+	else
+		wipe_down(target, user)
+	return
 
 /obj/item/weapon/reagent_containers/glass/rag/afterattack(atom/A as obj|turf|area, mob/user as mob, proximity)
 	if(!proximity)

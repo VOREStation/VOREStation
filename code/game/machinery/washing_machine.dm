@@ -1,6 +1,6 @@
 /obj/machinery/washing_machine
 	name = "Washing Machine"
-	desc = "Not a hiding place."
+	desc = "Not a hiding place. Unfit for pets."
 	icon = 'icons/obj/machines/washing_machine_vr.dmi' //VOREStation Edit
 	icon_state = "wm_1" //VOREStation Edit
 	density = 1
@@ -33,10 +33,16 @@
 	. = ..()
 	default_apply_parts()
 	
-/obj/machinery/washing_machine/verb/start()
+/obj/machinery/washing_machine/AltClick()
+	start()
+
+/obj/machinery/washing_machine/verb/start_washing()
 	set name = "Start Washing"
 	set category = "Object"
 	set src in oview(1)
+	start()
+
+/obj/machinery/washing_machine/proc/start()
 
 	if(!istype(usr, /mob/living)) //ew ew ew usr, but it's the only way to check.
 		return
@@ -50,6 +56,7 @@
 	else
 		state = 5
 	update_icon()
+	to_chat(usr, "The washing machine starts a cycle.")
 	playsound(src, 'sound/items/washingmachine.ogg', 50, 1, 1)
 	sleep(200)
 	for(var/atom/A in washing)

@@ -383,7 +383,7 @@
 
 /obj/item/clothing/accessory/cowledvest
 	name = "cowled vest"
-	desc = "A body warmer for the 26th century."
+	desc = "A body warmer for the 24th century." //VOREStation Edit
 	icon_state = "cowled_vest"
 
 /obj/item/clothing/accessory/asymmetric
@@ -400,3 +400,8 @@
 	name = "green asymmetrical jacket"
 	desc = "Insultingly avant-garde in aqua."
 	icon_state = "asym_green"
+
+/obj/item/clothing/accessory/asymovercoat
+	name = "orange asymmetrical overcoat"
+	desc = "An asymmetrical orange overcoat in a 2560's fashion."
+	icon_state = "asymovercoat"

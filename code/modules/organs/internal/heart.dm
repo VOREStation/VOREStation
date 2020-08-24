@@ -37,3 +37,19 @@
 		if(ishuman(owner))
 			H = owner
 			color = H.species.blood_color
+
+/obj/item/organ/internal/heart/machine
+	name = "hydraulic hub"
+	icon_state = "pump-on"
+	organ_tag = O_PUMP
+	dead_icon = "pump-off"
+	robotic = ORGAN_ROBOT
+
+	standard_pulse_level = PULSE_NONE
+
+/obj/item/organ/internal/stomach/machine/handle_organ_proc_special()
+	..()
+	if(owner && owner.stat != DEAD)
+		owner.bodytemperature += round(owner.robobody_count * 0.25, 0.1)
+
+	return

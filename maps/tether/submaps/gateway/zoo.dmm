@@ -2323,7 +2323,7 @@
 /turf/simulated/floor/plating,
 /area/awaymission/zoo)
 "gR" = (
-/obj/item/weapon/caution,
+/obj/item/clothing/suit/caution,
 /turf/simulated/floor/plating,
 /area/awaymission/zoo/pirateship)
 "gS" = (

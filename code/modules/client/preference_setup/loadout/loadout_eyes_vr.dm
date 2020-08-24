@@ -17,6 +17,11 @@
 	display_name = "AR-S glasses (Sec)"
 	path = /obj/item/clothing/glasses/omnihud/sec
 	allowed_roles = list("Security Officer","Head of Security","Warden","Detective")
+	
+/datum/gear/eyes/arglasses/sci
+	display_name = "AR-R glasses (Sci)"
+	path = /obj/item/clothing/glasses/omnihud/rnd
+	allowed_roles = list("Research Director","Scientist","Xenobiologist","Roboticist")
 
 /datum/gear/eyes/arglasses/eng
 	display_name = "AR-E glasses (Eng)"
@@ -41,6 +46,10 @@
 /datum/gear/eyes/science_proper
 	display_name = "science goggles (no overlay)"
 	path = /obj/item/clothing/glasses/fluff/science_proper
+
+/datum/gear/eyes/meson/retinal
+	display_name = "retinal projector, meson (Eng, Sci, Mining)"
+	path = /obj/item/clothing/glasses/omnihud/eng/meson
 
 /datum/gear/eyes/security/secpatch
 	display_name = "Security HUDpatch"

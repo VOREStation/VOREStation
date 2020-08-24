@@ -70,11 +70,13 @@
 		set_light(0)
 		if(icon_keyboard)
 			add_overlay("[icon_keyboard]_off")
+		playsound(src, 'sound/machines/terminal_off.ogg', 50, 1)
 	// Yes power
 	else
 		if(icon_keyboard)
 			add_overlay(icon_keyboard)
 		set_light(light_range_on, light_power_on)
+		playsound(src, 'sound/machines/terminal_on.ogg', 50, 1)
 
 		// Broken
 		if(stat & BROKEN)

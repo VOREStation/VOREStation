@@ -1,4 +1,12 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/obj/effect/floor_decal/rust,
+/obj/effect/map_effect/portal/master/side_b{
+	name = "from_tether_to_wild";
+	portal_id = "wilderness_step"
+	},
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/tether/outpost/exploration_shed)
 "ab" = (
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/tether/outpost/exploration_plains)
@@ -13,7 +21,7 @@
 /area/mine/explored)
 "af" = (
 /obj/effect/floor_decal/rust,
-/obj/effect/step_trigger/teleporter/from_plains,
+/obj/effect/map_effect/portal/line/side_b,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/tether/outpost/exploration_shed)
 "ag" = (
@@ -9355,7 +9363,7 @@ ae
 ac
 "}
 (66,1,1) = {"
-af
+aa
 bj
 aj
 bj

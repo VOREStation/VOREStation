@@ -26,6 +26,7 @@
 	item_state = "syringe_kit"
 	center_of_mass = list("x" = 13,"y" = 10)
 	var/foldable = /obj/item/stack/material/cardboard	// BubbleWrap - if set, can be folded (when empty) into a sheet of cardboard
+	var/trash = null  // if set, can be crushed into a trash item when empty
 	max_w_class = ITEMSIZE_SMALL
 	max_storage_space = INVENTORY_BOX_SPACE
 	use_sound = 'sound/items/storage/box.ogg'
@@ -35,26 +36,37 @@
 /obj/item/weapon/storage/box/attack_self(mob/user as mob)
 	if(..()) return
 
-	//try to fold it.
-	if ( contents.len )
-		return
+	//try to fold it
+	if(ispath(foldable))
+		if (contents.len)
+			return
+		var/found = 0
+		// Close any open UI windows first
+		for(var/mob/M in range(1))
+			if (M.s_active == src)
+				close(M)
+			if (M == user)
+				found = 1
+		if (!found)	// User is too far away
+			return
+		// Now make the cardboard
+		to_chat(user, "<span class='notice'>You fold [src] flat.</span>")
+		playsound(src, 'sound/items/storage/boxfold.ogg', 30, 1)
+		new foldable(get_turf(src))
+		qdel(src)
 
-	if ( !ispath(foldable) )
-		return
-	var/found = 0
-	// Close any open UI windows first
-	for(var/mob/M in range(1))
-		if (M.s_active == src)
-			close(M)
-		if ( M == user )
-			found = 1
-	if ( !found )	// User is too far away
-		return
-	// Now make the cardboard
-	to_chat(user, "<span class='notice'>You fold [src] flat.</span>")
-	playsound(src, 'sound/items/storage/boxfold.ogg', 30, 1)
-	new foldable(get_turf(src))
-	qdel(src)
+	//try to crush it
+	if(ispath(trash))
+		if(contents.len &&  user.a_intent == I_HURT)  // only crumple with things inside on harmintent.
+			user.visible_message(SPAN_DANGER("You crush \the [src], spilling its contents everywhere!"), SPAN_DANGER("[user] crushes \the [src], spilling its contents everywhere!"))
+			spill()
+		else
+			to_chat(user, SPAN_NOTICE("You crumple up \the [src].")) //make trash
+		playsound(src.loc, 'sound/items/drop/wrapper.ogg', 30, 1)
+		var/obj/item/trash = new src.trash()
+		qdel(src)
+		user.put_in_hands(trash)
+
 
 /obj/item/weapon/storage/box/survival
 	name = "emergency supply box"
@@ -198,6 +210,16 @@
 
 /obj/item/weapon/storage/box/empshells/large
 	starts_with = list(/obj/item/ammo_casing/a12g/emp = 16)
+
+/obj/item/weapon/storage/box/flechetteshells
+	name = "box of shotgun flechettes"
+	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
+	icon_state = "lethalslug_box"
+	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
+	starts_with = list(/obj/item/ammo_casing/a12g/flechette = 8)
+
+/obj/item/weapon/storage/box/flechetteshells/large
+	starts_with = list(/obj/item/ammo_casing/a12g/flechette = 16)
 
 /obj/item/weapon/storage/box/sniperammo
 	name = "box of 14.5mm shells"
