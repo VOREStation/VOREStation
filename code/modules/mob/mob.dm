@@ -77,6 +77,7 @@
 // message is the message output to anyone who can see e.g. "[src] does something!"
 // self_message (optional) is what the src mob sees  e.g. "You do something!"
 // blind_message (optional) is what blind people will hear e.g. "You hear something!"
+<<<<<<< HEAD
 /mob/visible_message(var/message, var/self_message, var/blind_message)
 
 	//VOREStation Edit
@@ -102,6 +103,16 @@
 			M.show_message(message, 1, blind_message, 2)
 		else if(blind_message)
 			M.show_message(blind_message, 2)
+=======
+/mob/visible_message(var/message, var/self_message, var/blind_message, var/list/exclude_mobs = null)
+	if(self_message)
+		if(LAZYLEN(exclude_mobs))
+			exclude_mobs |= src
+		else
+			exclude_mobs = list(src)
+		src.show_message(self_message, 1, blind_message, 2)
+	. = ..()
+>>>>>>> 5714d64... Actually adds (and TESTS) exclude_mobs parameter to visible_message (#7555)
 
 // Returns an amount of power drawn from the object (-1 if it's not viable).
 // If drain_check is set it will not actually drain power, just return a value.

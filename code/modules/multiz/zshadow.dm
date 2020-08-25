@@ -114,10 +114,10 @@
 		shadow.set_dir(new_dir)
 
 // Transfer messages about what we are doing to upstairs
-/mob/visible_message(var/message, var/self_message, var/blind_message)
+/mob/visible_message(var/message, var/self_message, var/blind_message, var/list/exclude_mobs = null)
 	. = ..()
 	if(shadow)
-		shadow.visible_message(message, self_message, blind_message)
+		shadow.visible_message(message, self_message, blind_message, exclude_mobs)
 
 /mob/zshadow/set_typing_indicator(var/state)
 	if(!typing_indicator)
