@@ -796,20 +796,21 @@
 			bodytemperature += round(robobody_count*0.5)
 
 	var/body_temperature_difference = species.body_temperature - bodytemperature
-
-	//VOREStation Edit Begin
-	if(bodytemperature < species.cold_level_1 + 10)
-		add_hypothermia((species.cold_level_1 + 10 - bodytemperature)/25) //VOREStation edit
+	
+	
+	hypotemp = min(species.cold_level_1+17.5,T0C+10) //People going into hypothermia in 20C might be a bit overboard.
+	if(bodytemperature < hypotemp)
+		add_hypothermia((hypotemp - bodytemperature)/60)
 	else 
-		var/hypotemp = species.cold_level_1 + 10
+		//If we're above the hypothermia temperature, start recovering.
 		var/intermediate = (bodytemperature-hypotemp)/(species.body_temperature - hypotemp)
 		var/subhypo = 0
 		if(intermediate >= 1)
-			subhypo = 6.1
+			subhypo = 2.1
 		else
-			subhypo = intermediate*intermediate*intermediate*(6*intermediate*intermediate - 15*intermediate + 10)*6 + 0.1
+			subhypo = intermediate*intermediate*intermediate*(6*intermediate*intermediate - 15*intermediate + 10)*2 + 0.1
+			//Smoothstep function of the fifth degree for only the smoothest transitions.
 		add_hypothermia(-subhypo)
-	//VOREStation Edit End
 
 	if (abs(body_temperature_difference) < 0.5)
 		return //fuck this precision
