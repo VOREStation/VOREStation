@@ -369,7 +369,7 @@
 	name = "rocket shell"
 	desc = "A high explosive designed to be fired from a launcher."
 	icon_state = "rocketshell"
-	projectile_type = /obj/item/missile
+	projectile_type = /obj/item/projectile/bullet/srmrocket
 	caliber = "rocket"
 	matter = list(DEFAULT_WALL_MATERIAL = 10000)
 
