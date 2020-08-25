@@ -1,4 +1,4 @@
-#include "submaps/virgo2.dm"
+#include "../../submaps/pois_vr/aerostat/virgo2.dm"
 
 /obj/effect/overmap/visitable/sector/virgo2
 	name = "Virgo 2"
