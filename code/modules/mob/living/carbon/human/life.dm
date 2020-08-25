@@ -799,7 +799,7 @@
 	
 	var/hypotemp = min(species.cold_level_1+17.5,T0C+10) //People going into hypothermia in 20C might be a bit overboard.
 	if(bodytemperature < hypotemp)
-		throw_alert("temp", /obj/screen/alert/hot, 1)
+		throw_alert("temp", /obj/screen/alert/cold, 1)
 		add_hypothermia((hypotemp - bodytemperature)/60)
 	else 
 		//If we're above the hypothermia temperature, start recovering.
