@@ -798,7 +798,7 @@
 	var/body_temperature_difference = species.body_temperature - bodytemperature
 	
 	
-	hypotemp = min(species.cold_level_1+17.5,T0C+10) //People going into hypothermia in 20C might be a bit overboard.
+	var/hypotemp = min(species.cold_level_1+17.5,T0C+10) //People going into hypothermia in 20C might be a bit overboard.
 	if(bodytemperature < hypotemp)
 		add_hypothermia((hypotemp - bodytemperature)/60)
 	else 
