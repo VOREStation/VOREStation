@@ -348,7 +348,7 @@
 		/obj/item/clothing/shoes/green,
 		/obj/item/clothing/shoes/purple,
 		/obj/item/clothing/shoes/red,
-		/obj/item/clothing/shoes/leather,
+		/obj/item/clothing/shoes/laceup/brown,
 		/obj/item/clothing/under/pants/classicjeans,
 		/obj/item/clothing/under/pants/mustangjeans,
 		/obj/item/clothing/under/pants/blackjeans,
