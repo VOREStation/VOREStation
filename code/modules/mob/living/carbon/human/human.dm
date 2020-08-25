@@ -15,6 +15,8 @@
 	var/spit_projectile = null			//Projectile type.
 	var/spit_name = null 				//String
 	var/last_spit = 0 					//Timestamp.
+	
+	var/hypothermia = 0 
 
 	var/can_defib = 1					//Horrible damage (like beheadings) will prevent defibbing organics.
 	var/active_regen = FALSE //Used for the regenerate proc in human_powers.dm

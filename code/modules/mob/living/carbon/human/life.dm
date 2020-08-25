@@ -698,27 +698,30 @@
 
 		take_overall_damage(burn=burn_dam, used_weapon = "High Body Temperature")
 
-	else if(bodytemperature <= species.cold_level_1)
+	else if(bodytemperature <= species.cold_level_1 + 10)
 		//Body temperature is too cold.
 
 		if(status_flags & GODMODE)
 			return 1	//godmode
-
-
+			
 		if(!istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
 			var/cold_dam = 0
 			if(bodytemperature <= species.cold_level_1)
 				if(bodytemperature <= species.cold_level_2)
 					if(bodytemperature <= species.cold_level_3)
 						cold_dam = COLD_DAMAGE_LEVEL_3
+						throw_alert("temp", /obj/screen/alert/cold, 3) //VOREStation edit
 					else
 						cold_dam = COLD_DAMAGE_LEVEL_2
+						throw_alert("temp", /obj/screen/alert/cold, 2) //VOREStation edit
 				else
 					cold_dam = COLD_DAMAGE_LEVEL_1
-
+					throw_alert("temp", /obj/screen/alert/cold, 1) //VOREStation edit
+			else //VOREStation edit
+				throw_alert("temp", /obj/screen/alert/cold, 1) //VOREStation edit
 			take_overall_damage(burn=cold_dam, used_weapon = "Low Body Temperature")
-
-	else clear_alert("temp")
+	else
+		clear_alert("temp")
 
 	// Account for massive pressure differences.  Done by Polymorph
 	// Made it possible to actually have something that can protect against high pressure... Done by Errorage. Polymorph now has an axe sticking from his head for his previous hardcoded nonsense!
@@ -794,12 +797,28 @@
 
 	var/body_temperature_difference = species.body_temperature - bodytemperature
 
+	//VOREStation Edit Begin
+	if(bodytemperature < species.cold_level_1 + 10)
+		add_hypothermia((species.cold_level_1 + 10 - bodytemperature)/25) //VOREStation edit
+	else 
+		var/hypotemp = species.cold_level_1 + 10
+		var/intermediate = (bodytemperature-hypotemp)/(species.body_temperature - hypotemp)
+		var/subhypo = 0
+		if(intermediate >= 1)
+			subhypo = 6.1
+		else
+			subhypo = intermediate*intermediate*intermediate*(6*intermediate*intermediate - 15*intermediate + 10)*6 + 0.1
+		add_hypothermia(-subhypo)
+	//VOREStation Edit End
+
 	if (abs(body_temperature_difference) < 0.5)
 		return //fuck this precision
 
 	if (on_fire)
 		return //too busy for pesky metabolic regulation
-
+	
+	
+		
 	if(bodytemperature < species.cold_level_1) //260.15 is 310.15 - 50, the temperature where you start to feel effects.
 		if(nutrition >= 2) //If we are very, very cold we'll use up quite a bit of nutriment to heat us up.
 			adjust_nutrition(-2)
@@ -820,6 +839,36 @@
 		bodytemperature += recovery_amt
 
 	//This proc returns a number made up of the flags for body parts which you are protected on. (such as HEAD, UPPER_TORSO, LOWER_TORSO, etc. See setup.dm for the full list)
+/mob/living/carbon/human/proc/add_hypothermia(var/amount)
+	if(hypothermia+amount<=0)
+		hypothermia=0
+	else
+		if(hypothermia+amount>100)
+			hypothermia=100
+		hypothermia+=amount
+		if(hypothermia>5 && hypothermia<75)
+			if(prob(10))
+				say("*shiver")
+		if(hypothermia>30)
+			if(prob(50))
+				stuttering = hypothermia-25
+			if(hypothermia>50)
+				if(prob(40))
+					apply_effect(hypothermia-45,EYE_BLUR)
+				if(hypothermia>70)
+					if(prob(30))
+						Confuse(hypothermia-65)
+					if(hypothermia>80)
+						if(prob(15))
+							apply_effect(hypothermia-79,WEAKEN)
+						if(hypothermia>90)
+							if(prob(40))
+								apply_effect(50,DROWSY)
+							if(hypothermia>95)
+								if(prob(25))
+									apply_damage(3,BURN)
+		
+
 /mob/living/carbon/human/proc/get_heat_protection_flags(temperature) //Temperature is the temperature you're being exposed to.
 	. = 0
 	//Handle normal clothing
@@ -1635,7 +1684,8 @@
 		temp = modifier_set
 
 	temp = max(0, temp + modifier_shift)	// No negative pulses.
-
+	if(hypothermia>40) //VOREStation Edit
+		temp-=round((hypothermia-40)/10) //VOREStation Edit
 	if(Pump)
 		for(var/datum/reagent/R in reagents.reagent_list)
 			if(R.id in bradycardics)
