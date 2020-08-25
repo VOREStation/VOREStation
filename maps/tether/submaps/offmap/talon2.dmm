@@ -257,6 +257,7 @@
 	icon_state = "bulb1"
 	},
 /obj/structure/closet/secure_closet/talon_captain,
+/obj/item/device/radio/off,
 /turf/simulated/floor/wood,
 /area/talon/decktwo/cap_room)
 "aM" = (
@@ -341,28 +342,16 @@
 /turf/simulated/floor/tiled/eris/steel/gray_perforated,
 /area/talon/decktwo/bar)
 "aV" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 4
+/obj/machinery/computer/guestpass{
+	pixel_x = -32
 	},
-/obj/machinery/alarm/talon{
-	dir = 4;
-	icon_state = "alarm0";
-	pixel_x = -22;
-	pixel_y = 0
-	},
-/obj/structure/table/standard,
-/obj/item/weapon/paper/talon_shields,
-/obj/structure/fireaxecabinet{
-	pixel_y = 30
-	},
-/turf/simulated/floor/tiled/eris/dark/violetcorener,
-/area/talon/decktwo/tech)
+/turf/simulated/floor/tiled/eris/steel,
+/area/talon/decktwo/central_hallway)
 "aW" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
 /obj/structure/table/woodentable,
-/obj/item/device/radio/off,
 /turf/simulated/floor/carpet/blucarpet,
 /area/talon/decktwo/cap_room)
 "aX" = (
@@ -380,6 +369,25 @@
 /turf/simulated/floor/carpet,
 /area/talon/decktwo/pilot_room)
 "aZ" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/obj/machinery/alarm/talon{
+	dir = 4;
+	icon_state = "alarm0";
+	pixel_x = -22;
+	pixel_y = 0
+	},
+/obj/structure/table/standard,
+/obj/item/weapon/paper/talon_shields,
+/obj/structure/closet/hydrant{
+	pixel_x = 0;
+	pixel_y = 32;
+	starts_with = list(/obj/item/clothing/suit/fire/firefighter = 2, /obj/item/clothing/mask/gas = 2, /obj/item/device/flashlight = 2, /obj/item/weapon/tank/oxygen/red = 2, /obj/item/weapon/extinguisher = 2, /obj/item/clothing/head/hardhat/red = 2)
+	},
+/turf/simulated/floor/tiled/eris/dark/violetcorener,
+/area/talon/decktwo/tech)
+"ba" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
@@ -391,24 +399,8 @@
 	pixel_x = -28;
 	specialfunctions = 4
 	},
-/obj/item/device/radio/off,
 /turf/simulated/floor/wood,
 /area/talon/decktwo/eng_room)
-"ba" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 1
-	},
-/obj/structure/table/standard,
-/obj/machinery/button/remote/airlock{
-	dir = 4;
-	id = "talon_pilotdoor";
-	name = "Door Bolts";
-	pixel_x = 28;
-	specialfunctions = 4
-	},
-/obj/item/device/radio/off,
-/turf/simulated/floor/wood,
-/area/talon/decktwo/pilot_room)
 "bb" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
@@ -458,35 +450,21 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/talon/decktwo/lifeboat)
 "bf" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
+/obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
-/obj/structure/table/standard,
-/obj/machinery/button/remote/airlock{
-	dir = 8;
-	id = "talon_meddoor";
-	name = "Door Bolts";
-	pixel_x = -28;
-	specialfunctions = 4
-	},
+/obj/structure/closet/secure_closet/talon_engineer,
 /obj/item/device/radio/off,
 /turf/simulated/floor/wood,
-/area/talon/decktwo/med_room)
+/area/talon/decktwo/eng_room)
 "bg" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
+/obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
-/obj/structure/table/standard,
-/obj/machinery/button/remote/airlock{
-	dir = 4;
-	id = "talon_secdoor";
-	name = "Door Bolts";
-	pixel_x = 28;
-	specialfunctions = 4
-	},
+/obj/structure/closet/secure_closet/talon_pilot,
 /obj/item/device/radio/off,
 /turf/simulated/floor/wood,
-/area/talon/decktwo/sec_room)
+/area/talon/decktwo/pilot_room)
 "bh" = (
 /obj/machinery/door/firedoor/glass/talon,
 /obj/machinery/door/airlock/command{
@@ -599,6 +577,34 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/talon/maintenance/decktwo_aft)
+"bs" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/obj/structure/table/standard,
+/obj/machinery/button/remote/airlock{
+	dir = 4;
+	id = "talon_pilotdoor";
+	name = "Door Bolts";
+	pixel_x = 28;
+	specialfunctions = 4
+	},
+/turf/simulated/floor/wood,
+/area/talon/decktwo/pilot_room)
+"bt" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/obj/structure/table/standard,
+/obj/machinery/button/remote/airlock{
+	dir = 8;
+	id = "talon_meddoor";
+	name = "Door Bolts";
+	pixel_x = -28;
+	specialfunctions = 4
+	},
+/turf/simulated/floor/wood,
+/area/talon/decktwo/med_room)
 "bu" = (
 /obj/machinery/light/small{
 	dir = 8;
@@ -615,6 +621,14 @@
 	},
 /turf/simulated/floor/wood,
 /area/talon/decktwo/cap_room)
+"bw" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/obj/structure/closet/secure_closet/talon_doctor,
+/obj/item/device/radio/off,
+/turf/simulated/floor/wood,
+/area/talon/decktwo/med_room)
 "bx" = (
 /obj/structure/cable/green{
 	icon_state = "0-2"
@@ -631,6 +645,28 @@
 	},
 /turf/simulated/floor/wood,
 /area/talon/decktwo/bar)
+"by" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/obj/structure/closet/secure_closet/talon_guard,
+/obj/item/device/radio/off,
+/turf/simulated/floor/wood,
+/area/talon/decktwo/sec_room)
+"bz" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/obj/structure/table/standard,
+/obj/machinery/button/remote/airlock{
+	dir = 4;
+	id = "talon_secdoor";
+	name = "Door Bolts";
+	pixel_x = 28;
+	specialfunctions = 4
+	},
+/turf/simulated/floor/wood,
+/area/talon/decktwo/sec_room)
 "bB" = (
 /obj/machinery/alarm/talon{
 	dir = 4;
@@ -1232,20 +1268,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/talon/decktwo/pilot_room)
-"eF" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
-	},
-/obj/structure/closet/secure_closet/talon_engineer,
-/turf/simulated/floor/wood,
-/area/talon/decktwo/eng_room)
-"eI" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
-	},
-/obj/structure/closet/secure_closet/talon_pilot,
-/turf/simulated/floor/wood,
-/area/talon/decktwo/pilot_room)
 "eN" = (
 /turf/simulated/wall/rpshull,
 /area/talon/decktwo/lifeboat)
@@ -1515,20 +1537,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
 	},
-/turf/simulated/floor/wood,
-/area/talon/decktwo/sec_room)
-"gb" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
-	},
-/obj/structure/closet/secure_closet/talon_doctor,
-/turf/simulated/floor/wood,
-/area/talon/decktwo/med_room)
-"gc" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
-	},
-/obj/structure/closet/secure_closet/talon_guard,
 /turf/simulated/floor/wood,
 /area/talon/decktwo/sec_room)
 "gn" = (
@@ -13749,13 +13757,13 @@ dy
 dL
 dZ
 en
-aZ
+ba
 dr
 eU
 fl
 fz
 fM
-bf
+bt
 eT
 cc
 cc
@@ -14033,13 +14041,13 @@ dA
 ad
 ea
 ep
-eF
+bf
 dr
 eW
 ah
 fB
 fO
-gb
+bw
 eT
 gn
 gn
@@ -14313,7 +14321,7 @@ cA
 NT
 bF
 ds
-aV
+aZ
 pp
 Db
 iV
@@ -14441,7 +14449,7 @@ tN
 Bd
 ac
 bj
-at
+aV
 at
 vQ
 Pp
@@ -15169,13 +15177,13 @@ dG
 dT
 eg
 ev
-eI
+bg
 du
 fa
 fr
 fF
 fS
-gc
+by
 eZ
 gn
 gn
@@ -15453,13 +15461,13 @@ dI
 dV
 ei
 ex
-ba
+bs
 du
 fc
 ft
 fH
 fU
-bg
+bz
 eZ
 cc
 cc

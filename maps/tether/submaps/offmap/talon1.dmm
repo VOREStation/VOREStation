@@ -752,8 +752,8 @@
 /obj/item/weapon/storage/toolbox/electrical,
 /obj/item/stack/marker_beacon/thirty,
 /obj/item/weapon/pipe_dispenser,
-/obj/structure/fireaxecabinet{
-	pixel_y = 30
+/obj/structure/closet/hydrant{
+	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/eris/dark/brown_platform,
 /area/talon/deckone/port_eng_store)
