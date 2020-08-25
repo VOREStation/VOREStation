@@ -26,47 +26,194 @@
 			user.drop_item()
 			I.loc = src
 			src.inserted_battery = I
-			updateDialog()
+			SStgui.update_uis(src)
 		else
 			to_chat(user, "<font color='red'>There is already a battery in [src].</font>")
 	else
 		return..()
 
 /obj/machinery/artifact_harvester/attack_hand(var/mob/user as mob)
-	src.add_fingerprint(user)
-	interact(user)
-
-/obj/machinery/artifact_harvester/interact(var/mob/user as mob)
+	add_fingerprint(user)
 	if(stat & (NOPOWER|BROKEN))
 		return
-	user.set_machine(src)
-	var/dat = "<B>Artifact Power Harvester</B><BR>"
-	dat += "<HR><BR>"
-	//
-	if(owned_scanner)
-		if(harvesting)
-			if(harvesting > 0)
-				dat += "Please wait. Harvesting in progress ([round((inserted_battery.stored_charge/inserted_battery.capacity)*100)]%).<br>"
-			else
-				dat += "Please wait. Energy dump in progress ([round((inserted_battery.stored_charge/inserted_battery.capacity)*100)]%).<br>"
-			dat += "<A href='?src=\ref[src];stopharvest=1'>Halt early</A><BR>"
-		else
-			if(inserted_battery)
-				dat += "<b>[inserted_battery.name]</b> inserted, charge level: [inserted_battery.stored_charge]/[inserted_battery.capacity] ([(inserted_battery.stored_charge/inserted_battery.capacity)*100]%)<BR>"
-				dat += "<b>Energy signature ID:</b>[inserted_battery.battery_effect ? (inserted_battery.battery_effect.artifact_id == "" ? "???" : "[inserted_battery.battery_effect.artifact_id]") : "NA"]<BR>"
-				dat += "<A href='?src=\ref[src];ejectbattery=1'>Eject battery</a><BR>"
-				dat += "<A href='?src=\ref[src];drainbattery=1'>Drain battery of all charge</a><BR>"
-				dat += "<A href='?src=\ref[src];harvest=1'>Begin harvesting</a><BR>"
+	tgui_interact(user)
 
+/obj/machinery/artifact_harvester/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "XenoarchArtifactHarvester", name)
+		ui.open()
+
+/obj/machinery/artifact_harvester/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
+
+	data["info"] = list(
+		"no_scanner" = TRUE,
+	)
+	if(owned_scanner)
+		data["info"] = list(
+			"no_scanner" = FALSE,
+			"harvesting" = harvesting,
+			"inserted_battery" = list(),
+		)
+		if(inserted_battery)
+			data["info"]["inserted_battery"] = list(
+				"name" = inserted_battery.name,
+				"stored_charge" = inserted_battery.stored_charge,
+				"capacity" = inserted_battery.capacity,
+				"artifact_id" = null
+			)
+			if(inserted_battery.battery_effect)
+				data["info"]["inserted_battery"]["artifact_id"] = inserted_battery.battery_effect.artifact_id || "???"
 			else
-				dat += "No battery inserted.<BR>"
-	else
-		dat += "<B><font color=red>Unable to locate analysis pad.</font><BR></b>"
-	//
-	dat += "<HR>"
-	dat += "<A href='?src=\ref[src];refresh=1'>Refresh</A> <A href='?src=\ref[src];close=1'>Close<BR>"
-	user << browse(dat, "window=artharvester;size=450x500")
-	onclose(user, "artharvester")
+				data["info"]["inserted_battery"]["artifact_id"] = "N/A"
+	return data
+
+/obj/machinery/artifact_harvester/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	if(..())
+		return TRUE
+
+	add_fingerprint(usr)
+
+	switch(action)
+		if("harvest")
+			harvest()
+			return TRUE
+
+		if("stopharvest")
+			if(harvesting)
+				if(harvesting < 0 && inserted_battery.battery_effect && inserted_battery.battery_effect.activated)
+					inserted_battery.battery_effect.ToggleActivate()
+				harvesting = 0
+				cur_artifact.anchored = 0
+				cur_artifact.being_used = 0
+				cur_artifact = null
+				atom_say("Energy harvesting interrupted.")
+				icon_state = "incubator"
+			return TRUE
+
+		if("ejectbattery")
+			if(inserted_battery)
+				inserted_battery.forceMove(loc)
+				inserted_battery = null
+			return TRUE
+
+		if("drainbattery")
+			if(inserted_battery)
+				if(inserted_battery.battery_effect && inserted_battery.stored_charge > 0)
+					if(alert("This action will dump all charge, safety gear is recommended before proceeding","Warning","Continue","Cancel"))
+						if(!inserted_battery.battery_effect.activated)
+							inserted_battery.battery_effect.ToggleActivate(1)
+						last_process = world.time
+						harvesting = -1
+						update_use_power(USE_POWER_ACTIVE)
+						icon_state = "incubator_on"
+						atom_say("Warning, battery charge dump commencing.")
+				else
+					atom_say("Cannot dump energy. Battery is drained of charge already.")
+			else
+				atom_say("Cannot dump energy. No battery inserted.")
+			return TRUE
+
+
+/obj/machinery/artifact_harvester/proc/harvest()
+	if(!inserted_battery)
+		atom_say("Cannot harvest. No battery inserted.")
+		return
+	if(inserted_battery.stored_charge >= inserted_battery.capacity)
+		atom_say("Cannot harvest. Battery is full.")
+		return
+
+	//locate artifact on analysis pad
+	cur_artifact = null
+	var/articount = 0
+	var/obj/machinery/artifact/analysed
+	for(var/obj/machinery/artifact/A in get_turf(owned_scanner))
+		analysed = A
+		articount++
+
+	if(articount <= 0)
+		atom_say("Cannot harvest. No noteworthy energy signature isolated.")
+		return
+
+	if(analysed && analysed.being_used)
+		atom_say("Cannot harvest. Source already being harvested.")
+		return
+
+	if(articount > 1)
+		atom_say("Cannot harvest. Too many artifacts on the pad.")
+		return
+
+	if(analysed)
+		cur_artifact = analysed
+
+		//if both effects are active, we can't harvest either
+		if(cur_artifact.my_effect && cur_artifact.my_effect.activated && cur_artifact.secondary_effect && cur_artifact.secondary_effect.activated)
+			atom_say("Cannot harvest. Source is emitting conflicting energy signatures.")
+			return
+		if(!cur_artifact.my_effect.activated && !(cur_artifact.secondary_effect && cur_artifact.secondary_effect.activated))
+			atom_say("Cannot harvest. No energy emitting from source.")
+			return
+
+		//see if we can clear out an old effect
+		//delete it when the ids match to account for duplicate ids having different effects
+		if(inserted_battery.battery_effect && inserted_battery.stored_charge <= 0)
+			qdel(inserted_battery.battery_effect)
+			inserted_battery.battery_effect = null
+
+		//
+		var/datum/artifact_effect/source_effect
+
+		//if we already have charge in the battery, we can only recharge it from the source artifact
+		if(inserted_battery.stored_charge > 0)
+			var/battery_matches_primary_id = 0
+			if(inserted_battery.battery_effect && inserted_battery.battery_effect.artifact_id == cur_artifact.my_effect.artifact_id)
+				battery_matches_primary_id = 1
+			if(battery_matches_primary_id && cur_artifact.my_effect.activated)
+				//we're good to recharge the primary effect!
+				source_effect = cur_artifact.my_effect
+
+			var/battery_matches_secondary_id = 0
+			if(inserted_battery.battery_effect && inserted_battery.battery_effect.artifact_id == cur_artifact.secondary_effect.artifact_id)
+				battery_matches_secondary_id = 1
+			if(battery_matches_secondary_id && cur_artifact.secondary_effect.activated)
+				//we're good to recharge the secondary effect!
+				source_effect = cur_artifact.secondary_effect
+
+			if(!source_effect)
+				atom_say("Cannot harvest. Battery is charged with a different energy signature.")
+		else
+			//we're good to charge either
+			if(cur_artifact.my_effect.activated)
+				//charge the primary effect
+				source_effect = cur_artifact.my_effect
+
+			else if(cur_artifact.secondary_effect.activated)
+				//charge the secondary effect
+				source_effect = cur_artifact.secondary_effect
+
+
+		if(source_effect)
+			harvesting = 1
+			update_use_power(USE_POWER_ACTIVE)
+			cur_artifact.anchored = 1
+			cur_artifact.being_used = 1
+			icon_state = "incubator_on"
+			atom_say("Beginning energy harvesting.")
+			last_process = world.time
+
+			//duplicate the artifact's effect datum
+			if(!inserted_battery.battery_effect)
+				var/effecttype = source_effect.type
+				var/datum/artifact_effect/E = new effecttype(inserted_battery)
+
+				//duplicate it's unique settings
+				for(var/varname in list("chargelevelmax","artifact_id","effect","effectrange","trigger"))
+					E.vars[varname] = source_effect.vars[varname]
+
+				//copy the new datum into the battery
+				inserted_battery.battery_effect = E
+				inserted_battery.stored_charge = 0
 
 /obj/machinery/artifact_harvester/process()
 	if(stat & (NOPOWER|BROKEN))
@@ -111,143 +258,3 @@
 				inserted_battery.battery_effect.ToggleActivate()
 			src.visible_message("<b>[name]</b> states, \"Battery dump completed.\"")
 			icon_state = "incubator"
-
-/obj/machinery/artifact_harvester/Topic(href, href_list)
-
-	if (href_list["harvest"])
-		if(!inserted_battery)
-			src.visible_message("<b>[src]</b> states, \"Cannot harvest. No battery inserted.\"")
-
-		else if(inserted_battery.stored_charge >= inserted_battery.capacity)
-			src.visible_message("<b>[src]</b> states, \"Cannot harvest. battery is full.\"")
-
-		else
-
-			//locate artifact on analysis pad
-			cur_artifact = null
-			var/articount = 0
-			var/obj/machinery/artifact/analysed
-			for(var/obj/machinery/artifact/A in get_turf(owned_scanner))
-				analysed = A
-				articount++
-
-			if(articount <= 0)
-				var/message = "<b>[src]</b> states, \"Cannot harvest. No noteworthy energy signature isolated.\""
-				src.visible_message(message)
-
-			else if(analysed && analysed.being_used)
-				src.visible_message("<b>[src]</b> states, \"Cannot harvest. Source already being harvested.\"")
-
-			else
-				if(articount > 1)
-					state("Cannot harvest. Too many artifacts on the pad.")
-				else if(analysed)
-					cur_artifact = analysed
-
-					//if both effects are active, we can't harvest either
-					if(cur_artifact.my_effect && cur_artifact.my_effect.activated && cur_artifact.secondary_effect && cur_artifact.secondary_effect.activated)
-						src.visible_message("<b>[src]</b> states, \"Cannot harvest. Source is emitting conflicting energy signatures.\"")
-					else if(!cur_artifact.my_effect.activated && !(cur_artifact.secondary_effect && cur_artifact.secondary_effect.activated))
-						src.visible_message("<b>[src]</b> states, \"Cannot harvest. No energy emitting from source.\"")
-
-					else
-						//see if we can clear out an old effect
-						//delete it when the ids match to account for duplicate ids having different effects
-						if(inserted_battery.battery_effect && inserted_battery.stored_charge <= 0)
-							qdel(inserted_battery.battery_effect)
-							inserted_battery.battery_effect = null
-
-						//
-						var/datum/artifact_effect/source_effect
-
-						//if we already have charge in the battery, we can only recharge it from the source artifact
-						if(inserted_battery.stored_charge > 0)
-							var/battery_matches_primary_id = 0
-							if(inserted_battery.battery_effect && inserted_battery.battery_effect.artifact_id == cur_artifact.my_effect.artifact_id)
-								battery_matches_primary_id = 1
-							if(battery_matches_primary_id && cur_artifact.my_effect.activated)
-								//we're good to recharge the primary effect!
-								source_effect = cur_artifact.my_effect
-
-							var/battery_matches_secondary_id = 0
-							if(inserted_battery.battery_effect && inserted_battery.battery_effect.artifact_id == cur_artifact.secondary_effect.artifact_id)
-								battery_matches_secondary_id = 1
-							if(battery_matches_secondary_id && cur_artifact.secondary_effect.activated)
-								//we're good to recharge the secondary effect!
-								source_effect = cur_artifact.secondary_effect
-
-							if(!source_effect)
-								src.visible_message("<b>[src]</b> states, \"Cannot harvest. Battery is charged with a different energy signature.\"")
-						else
-							//we're good to charge either
-							if(cur_artifact.my_effect.activated)
-								//charge the primary effect
-								source_effect = cur_artifact.my_effect
-
-							else if(cur_artifact.secondary_effect.activated)
-								//charge the secondary effect
-								source_effect = cur_artifact.secondary_effect
-
-
-						if(source_effect)
-							harvesting = 1
-							update_use_power(USE_POWER_ACTIVE)
-							cur_artifact.anchored = 1
-							cur_artifact.being_used = 1
-							icon_state = "incubator_on"
-							var/message = "<b>[src]</b> states, \"Beginning energy harvesting.\""
-							src.visible_message(message)
-							last_process = world.time
-
-							//duplicate the artifact's effect datum
-							if(!inserted_battery.battery_effect)
-								var/effecttype = source_effect.type
-								var/datum/artifact_effect/E = new effecttype(inserted_battery)
-
-								//duplicate it's unique settings
-								for(var/varname in list("chargelevelmax","artifact_id","effect","effectrange","trigger"))
-									E.vars[varname] = source_effect.vars[varname]
-
-								//copy the new datum into the battery
-								inserted_battery.battery_effect = E
-								inserted_battery.stored_charge = 0
-
-	if (href_list["stopharvest"])
-		if(harvesting)
-			if(harvesting < 0 && inserted_battery.battery_effect && inserted_battery.battery_effect.activated)
-				inserted_battery.battery_effect.ToggleActivate()
-			harvesting = 0
-			cur_artifact.anchored = 0
-			cur_artifact.being_used = 0
-			cur_artifact = null
-			src.visible_message("<b>[name]</b> states, \"Energy harvesting interrupted.\"")
-			icon_state = "incubator"
-
-	if (href_list["ejectbattery"])
-		src.inserted_battery.loc = src.loc
-		src.inserted_battery = null
-
-	if (href_list["drainbattery"])
-		if(inserted_battery)
-			if(inserted_battery.battery_effect && inserted_battery.stored_charge > 0)
-				if(alert("This action will dump all charge, safety gear is recommended before proceeding","Warning","Continue","Cancel"))
-					if(!inserted_battery.battery_effect.activated)
-						inserted_battery.battery_effect.ToggleActivate(1)
-					last_process = world.time
-					harvesting = -1
-					update_use_power(USE_POWER_ACTIVE)
-					icon_state = "incubator_on"
-					var/message = "<b>[src]</b> states, \"Warning, battery charge dump commencing.\""
-					src.visible_message(message)
-			else
-				var/message = "<b>[src]</b> states, \"Cannot dump energy. Battery is drained of charge already.\""
-				src.visible_message(message)
-		else
-			var/message = "<b>[src]</b> states, \"Cannot dump energy. No battery inserted.\""
-			src.visible_message(message)
-
-	if(href_list["close"])
-		usr << browse(null, "window=artharvester")
-		usr.unset_machine(src)
-
-	updateDialog()

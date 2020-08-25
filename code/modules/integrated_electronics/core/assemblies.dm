@@ -47,87 +47,125 @@
 				IC.power_fail()
 
 
-
-
-/obj/item/device/electronic_assembly/proc/resolve_nano_host()
-	return src
-
 /obj/item/device/electronic_assembly/proc/check_interactivity(mob/user)
-	if(!CanInteract(user, physical_state))
-		return 0
-	return 1
+	return tgui_status(user, GLOB.tgui_physical_state) == STATUS_INTERACTIVE
 
 /obj/item/device/electronic_assembly/get_cell()
 	return battery
 
-/obj/item/device/electronic_assembly/interact(mob/user)
-	if(!check_interactivity(user))
-		return
+// TGUI
+/obj/item/device/electronic_assembly/tgui_state(mob/user)
+	return GLOB.tgui_physical_state
+
+/obj/item/device/electronic_assembly/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "ICAssembly", name, parent_ui)
+		ui.open()
+
+/obj/item/device/electronic_assembly/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
 
 	var/total_parts = 0
 	var/total_complexity = 0
 	for(var/obj/item/integrated_circuit/part in contents)
 		total_parts += part.size
 		total_complexity = total_complexity + part.complexity
-	var/HTML = list()
 
-	HTML += "<html><head><title>[src.name]</title></head><body>"
-	HTML += "<br><a href='?src=\ref[src]'>\[Refresh\]</a>  |  "
-	HTML += "<a href='?src=\ref[src];rename=1'>\[Rename\]</a><br>"
-	HTML += "[total_parts]/[max_components] ([round((total_parts / max_components) * 100, 0.1)]%) space taken up in the assembly.<br>"
-	HTML += "[total_complexity]/[max_complexity] ([round((total_complexity / max_complexity) * 100, 0.1)]%) maximum complexity.<br>"
-	if(battery)
-		HTML += "[round(battery.charge, 0.1)]/[battery.maxcharge] ([round(battery.percent(), 0.1)]%) cell charge. <a href='?src=\ref[src];remove_cell=1'>\[Remove\]</a><br>"
-		HTML += "Net energy: [format_SI(net_power / CELLRATE, "W")]."
-	else
-		HTML += "<span class='danger'>No powercell detected!</span>"
-	HTML += "<br><br>"
-	HTML += "Components:<hr>"
-	HTML += "Built in:<br>"
+	data["total_parts"] = total_parts
+	data["max_components"] = max_components
+	data["total_complexity"] = total_complexity
+	data["max_complexity"] = max_complexity
 
+	data["battery_charge"] = round(battery?.charge, 0.1)
+	data["battery_max"] = round(battery?.maxcharge, 0.1)
+	data["net_power"] = net_power / CELLRATE
 
-//Put removable circuits in separate categories from non-removable
+	// This works because lists are always passed by reference in BYOND, so modifying unremovable_circuits
+	// after setting data["unremovable_circuits"] = unremovable_circuits also modifies data["unremovable_circuits"]
+	// Same for the removable one
+	var/list/unremovable_circuits = list()
+	data["unremovable_circuits"] = unremovable_circuits
+	var/list/removable_circuits = list()
+	data["removable_circuits"] = removable_circuits
 	for(var/obj/item/integrated_circuit/circuit in contents)
-		if(!circuit.removable)
-			HTML += "<a href=?src=\ref[circuit];examine=1;from_assembly=1>[circuit.displayed_name]</a> | "
-			HTML += "<a href=?src=\ref[circuit];rename=1;from_assembly=1>\[Rename\]</a> | "
-			HTML += "<a href=?src=\ref[circuit];scan=1;from_assembly=1>\[Scan with Debugger\]</a> | "
-			HTML += "<a href=?src=\ref[circuit];bottom=\ref[circuit];from_assembly=1>\[Move to Bottom\]</a>"
-			HTML += "<br>"
+		var/list/target = circuit.removable ? removable_circuits : unremovable_circuits
+		target.Add(list(list(
+			"name" = circuit.displayed_name,
+			"ref" = REF(circuit),
+		)))
 
-	HTML += "<hr>"
-	HTML += "Removable:<br>"
+	return data
 
-	for(var/obj/item/integrated_circuit/circuit in contents)
-		if(circuit.removable)
-			HTML += "<a href=?src=\ref[circuit];examine=1;from_assembly=1>[circuit.displayed_name]</a> | "
-			HTML += "<a href=?src=\ref[circuit];rename=1;from_assembly=1>\[Rename\]</a> | "
-			HTML += "<a href=?src=\ref[circuit];scan=1;from_assembly=1>\[Scan with Debugger\]</a> | "
-			HTML += "<a href=?src=\ref[circuit];remove=1;from_assembly=1>\[Remove\]</a> | "
-			HTML += "<a href=?src=\ref[circuit];bottom=\ref[circuit];from_assembly=1>\[Move to Bottom\]</a>"
-			HTML += "<br>"
-
-	HTML += "</body></html>"
-	user << browse(jointext(HTML,null), "window=assembly-\ref[src];size=600x350;border=1;can_resize=1;can_close=1;can_minimize=1")
-
-/obj/item/device/electronic_assembly/Topic(href, href_list[])
+/obj/item/device/electronic_assembly/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
-		return 1
+		return TRUE
 
-	if(href_list["rename"])
-		rename(usr)
+	var/obj/held_item = usr.get_active_hand()
 
-	if(href_list["remove_cell"])
-		if(!battery)
-			to_chat(usr, "<span class='warning'>There's no power cell to remove from \the [src].</span>")
-		else
+	switch(action)
+		// Actual assembly actions
+		if("rename")
+			rename(usr)
+			return TRUE
+
+		if("remove_cell")
+			if(!battery)
+				to_chat(usr, "<span class='warning'>There's no power cell to remove from \the [src].</span>")
+				return FALSE
 			var/turf/T = get_turf(src)
 			battery.forceMove(T)
 			playsound(T, 'sound/items/Crowbar.ogg', 50, 1)
 			to_chat(usr, "<span class='notice'>You pull \the [battery] out of \the [src]'s power supplier.</span>")
 			battery = null
+			return TRUE
 
-	interact(usr) // To refresh the UI.
+		// Circuit actions
+		if("open_circuit")
+			var/obj/item/integrated_circuit/C = locate(params["ref"]) in contents
+			if(!istype(C))
+				return
+			C.tgui_interact(usr, null, ui)
+			return TRUE
+
+		if("rename_circuit")
+			var/obj/item/integrated_circuit/C = locate(params["ref"]) in contents
+			if(!istype(C))
+				return
+			C.rename_component(usr)
+			return TRUE
+
+		if("scan_circuit")
+			var/obj/item/integrated_circuit/C = locate(params["ref"]) in contents
+			if(!istype(C))
+				return
+			if(istype(held_item, /obj/item/device/integrated_electronics/debugger))
+				var/obj/item/device/integrated_electronics/debugger/D = held_item
+				if(D.accepting_refs)
+					D.afterattack(C, usr, TRUE)
+				else
+					to_chat(usr, "<span class='warning'>The Debugger's 'ref scanner' needs to be on.</span>")
+			else
+				to_chat(usr, "<span class='warning'>You need a multitool/debugger set to 'ref' mode to do that.</span>")
+			return TRUE
+
+		if("remove_circuit")
+			var/obj/item/integrated_circuit/C = locate(params["ref"]) in contents
+			if(!istype(C))
+				return
+			C.remove(usr)
+			return TRUE
+
+		if("bottom_circuit")
+			var/obj/item/integrated_circuit/C = locate(params["ref"]) in contents
+			if(!istype(C))
+				return
+			// Puts it at the bottom of our contents
+			// Note, this intentionally does *not* use forceMove, because forceMove will stop if it detects the same loc
+			C.loc = null
+			C.loc = src
+	return FALSE
+// End TGUI
 
 /obj/item/device/electronic_assembly/verb/rename()
 	set name = "Rename Circuit"
@@ -177,7 +215,7 @@
 		for(var/obj/item/integrated_circuit/IC in contents)
 			. += IC.external_examine(user)
 		if(opened)
-			interact(user)
+			tgui_interact(user)
 
 /obj/item/device/electronic_assembly/proc/get_part_complexity()
 	. = 0
@@ -249,7 +287,7 @@
 		if(add_circuit(I, user))
 			to_chat(user, "<span class='notice'>You slide \the [I] inside \the [src].</span>")
 			playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
-			interact(user)
+			tgui_interact(user)
 			return TRUE
 
 	else if(I.is_crowbar())
@@ -261,7 +299,7 @@
 
 	else if(istype(I, /obj/item/device/integrated_electronics/wirer) || istype(I, /obj/item/device/integrated_electronics/debugger) || I.is_screwdriver())
 		if(opened)
-			interact(user)
+			tgui_interact(user)
 			return TRUE
 		else
 			to_chat(user, "<span class='warning'>\The [src] isn't opened, so you can't fiddle with the internal components.  \
@@ -286,7 +324,7 @@
 		battery = cell
 		playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 		to_chat(user, "<span class='notice'>You slot \the [cell] inside \the [src]'s power supplier.</span>")
-		interact(user)
+		tgui_interact(user)
 		return TRUE
 
 	else
@@ -296,7 +334,7 @@
 	if(!check_interactivity(user))
 		return
 	if(opened)
-		interact(user)
+		tgui_interact(user)
 
 	var/list/input_selection = list()
 	var/list/available_inputs = list()

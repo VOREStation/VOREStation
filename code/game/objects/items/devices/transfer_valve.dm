@@ -5,7 +5,7 @@
 	icon_state = "valve_1"
 	var/obj/item/weapon/tank/tank_one
 	var/obj/item/weapon/tank/tank_two
-	var/obj/item/device/attached_device
+	var/obj/item/device/assembly/attached_device
 	var/mob/attacher = null
 	var/valve_open = 0
 	var/toggle = 1
@@ -20,18 +20,18 @@
 		if(!tank_one)
 			tank_one = item
 			user.drop_item()
-			item.loc = src
+			item.forceMove(src)
 			to_chat(user, "<span class='notice'>You attach the tank to the transfer valve.</span>")
 		else if(!tank_two)
 			tank_two = item
 			user.drop_item()
-			item.loc = src
+			item.forceMove(src)
 			to_chat(user, "<span class='notice'>You attach the tank to the transfer valve.</span>")
 			message_admins("[key_name_admin(user)] attached both tanks to a transfer valve. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)")
 			log_game("[key_name_admin(user)] attached both tanks to a transfer valve.")
 
 		update_icon()
-		SSnanoui.update_uis(src) // update all UIs attached to src
+		SStgui.update_uis(src) // update all UIs attached to src
 //TODO: Have this take an assemblyholder
 	else if(isassembly(item))
 		var/obj/item/device/assembly/A = item
@@ -43,7 +43,7 @@
 			return
 		user.remove_from_mob(item)
 		attached_device = A
-		A.loc = src
+		A.forceMove(src)
 		to_chat(user, "<span class='notice'>You attach the [item] to the valve controls and secure it.</span>")
 		A.holder = src
 		A.toggle_secure()	//this calls update_icon(), which calls update_icon() on the holder (i.e. the bomb).
@@ -52,7 +52,7 @@
 		message_admins("[key_name_admin(user)] attached a [item] to a transfer valve. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)")
 		log_game("[key_name_admin(user)] attached a [item] to a transfer valve.")
 		attacher = user
-		SSnanoui.update_uis(src) // update all UIs attached to src
+		SStgui.update_uis(src) // update all UIs attached to src
 	return
 
 
@@ -66,53 +66,51 @@
 	if(isturf(loc))
 		sense_proximity(callback = .HasProximity)
 
-/obj/item/device/transfer_valve/attack_self(mob/user as mob)
-	ui_interact(user)
+/obj/item/device/transfer_valve/attack_self(mob/user)
+	tgui_interact(user)
 
-/obj/item/device/transfer_valve/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/item/device/transfer_valve/tgui_state(mob/user)
+	return GLOB.tgui_inventory_state
 
-	// this is the data which will be sent to the ui
-	var/data[0]
-	data["attachmentOne"] = tank_one ? tank_one.name : null
-	data["attachmentTwo"] = tank_two ? tank_two.name : null
-	data["valveAttachment"] = attached_device ? attached_device.name : null
-	data["valveOpen"] = valve_open ? 1 : 0
-
-	// update the ui if it exists, returns null if no ui is passed/found
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		// the ui does not exist, so we'll create a new() one
-        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "transfer_valve.tmpl", "Tank Transfer Valve", 460, 280)
-		// when the ui is first opened this is the data it will use
-		ui.set_initial_data(data)
-		// open the new ui window
+/obj/item/device/transfer_valve/tgui_interact(mob/user, datum/tgui/ui = null)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "TransferValve", name) // 460, 320
 		ui.open()
-		// auto update every Master Controller tick
-		//ui.set_auto_update(1)
 
-/obj/item/device/transfer_valve/Topic(href, href_list)
-	..()
-	if ( usr.stat || usr.restrained() )
-		return 0
-	if (src.loc != usr)
-		return 0
-	if(tank_one && href_list["tankone"])
-		remove_tank(tank_one)
-	else if(tank_two && href_list["tanktwo"])
-		remove_tank(tank_two)
-	else if(href_list["open"])
-		toggle_valve()
-	else if(attached_device)
-		if(href_list["rem_device"])
-			attached_device.loc = get_turf(src)
-			attached_device:holder = null
-			attached_device = null
-			update_icon()
-		if(href_list["device"])
-			attached_device.attack_self(usr)
-	src.add_fingerprint(usr)
-	return 1 // Returning 1 sends an update to attached UIs
+/obj/item/device/transfer_valve/tgui_data(mob/user)
+	var/list/data = list()
+	data["tank_one"] = tank_one ? tank_one.name : null
+	data["tank_two"] = tank_two ? tank_two.name : null
+	data["attached_device"] = attached_device ? attached_device.name : null
+	data["valve"] = valve_open
+	return data
+
+/obj/item/device/transfer_valve/tgui_act(action, params)
+	if(..())
+		return
+	. = TRUE
+	switch(action)
+		if("tankone")
+			remove_tank(tank_one)
+		if("tanktwo")
+			remove_tank(tank_two)
+		if("toggle")
+			toggle_valve()
+		if("device")
+			if(attached_device)
+				attached_device.attack_self(usr)
+		if("remove_device")
+			if(attached_device)
+				attached_device.forceMove(get_turf(src))
+				attached_device.holder = null
+				attached_device = null
+				update_icon()
+		else
+			. = FALSE
+	if(.)
+		update_icon()
+		add_fingerprint(usr)
 
 /obj/item/device/transfer_valve/proc/process_activation(var/obj/item/device/D)
 	if(toggle)
@@ -148,7 +146,7 @@
 	else
 		return
 
-	T.loc = get_turf(src)
+	T.forceMove(get_turf(src))
 	update_icon()
 
 /obj/item/device/transfer_valve/proc/merge_gases()

@@ -338,6 +338,9 @@
 	item_state = "electronic"
 	slot_flags = SLOT_BELT
 
+/obj/item/device/destTagger/tgui_state(mob/user)
+	return GLOB.tgui_inventory_state
+
 /obj/item/device/destTagger/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)

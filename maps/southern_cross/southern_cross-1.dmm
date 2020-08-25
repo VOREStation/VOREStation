@@ -5242,7 +5242,7 @@
 "bWP" = (/obj/effect/floor_decal/industrial/warning{dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/power/apc{dir = 8; name = "west bump"; pixel_x = -24},/obj/machinery/light_switch{pixel_x = -36},/obj/structure/cable/green,/turf/simulated/floor/tiled/white,/area/assembly/robotics)
 "bWQ" = (/obj/machinery/mecha_part_fabricator,/obj/effect/floor_decal/industrial/outline/yellow,/turf/simulated/floor/tiled,/area/assembly/robotics)
 "bWR" = (/obj/effect/floor_decal/industrial/outline/yellow,/obj/structure/table/steel_reinforced,/obj/item/device/robotanalyzer,/obj/item/device/robotanalyzer,/obj/item/device/mmi/digital/robot,/turf/simulated/floor/tiled,/area/assembly/robotics)
-"bWS" = (/obj/machinery/pros_fabricator,/obj/effect/floor_decal/industrial/outline/yellow,/turf/simulated/floor/tiled,/area/assembly/robotics)
+"bWS" = (/obj/machinery/mecha_part_fabricator/pros,/obj/effect/floor_decal/industrial/outline/yellow,/turf/simulated/floor/tiled,/area/assembly/robotics)
 "bWT" = (/obj/machinery/camera/network/research{c_tag = "SCI - Robotics"; dir = 1},/turf/simulated/floor/tiled/white,/area/assembly/robotics)
 "bWU" = (/obj/effect/floor_decal/industrial/warning{dir = 8},/obj/machinery/firealarm{dir = 1; pixel_x = 0; pixel_y = -24},/turf/simulated/floor/tiled/techfloor,/area/assembly/robotics)
 "bWV" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/structure/cable/green{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/tiled/techfloor,/area/assembly/robotics)

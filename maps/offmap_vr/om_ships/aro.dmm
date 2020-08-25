@@ -1080,7 +1080,7 @@
 /turf/simulated/floor/tiled/white,
 /area/ship/aro/centralarea)
 "cr" = (
-/obj/machinery/pros_fabricator{
+/obj/machinery/mecha_part_fabricator/pros{
 	req_access = list()
 	},
 /turf/simulated/floor/tiled/techmaint,
