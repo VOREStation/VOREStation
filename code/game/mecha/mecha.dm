@@ -2243,6 +2243,16 @@
 	output += "</body></html>"
 	return output
 
+/obj/mecha/proc/get_log_tgui()
+	var/list/data = list()
+	for(var/list/entry in log)
+		data.Add(list(list(
+			"time" = time2text(entry["time"], "DDD MMM DD hh:mm:ss"),
+			"year" = game_year,
+			"message" = entry["message"],
+		)))
+	return data
+
 
 /obj/mecha/proc/output_access_dialog(obj/item/weapon/card/id/id_card, mob/user)
 	if(!id_card || !user) return

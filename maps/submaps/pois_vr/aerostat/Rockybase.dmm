@@ -586,7 +586,7 @@
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/submap/virgo2/Rockybase)
 "cb" = (
-/obj/machinery/pros_fabricator,
+/obj/machinery/mecha_part_fabricator/pros,
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/submap/virgo2/Rockybase)
 "cc" = (

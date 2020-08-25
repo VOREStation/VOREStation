@@ -19,8 +19,8 @@ GLOBAL_LIST_BOILERPLATE(all_seed_packs, /obj/item/seeds)
 
 //Grabs the appropriate seed datum from the global list.
 /obj/item/seeds/proc/update_seed()
-	if(!seed && seed_type && !isnull(plant_controller.seeds) && plant_controller.seeds[seed_type])
-		seed = plant_controller.seeds[seed_type]
+	if(!seed && seed_type && !isnull(SSplants.seeds) && SSplants.seeds[seed_type])
+		seed = SSplants.seeds[seed_type]
 	update_appearance()
 
 //Updates strings and icon appropriately based on seed datum.
@@ -76,7 +76,7 @@ GLOBAL_LIST_BOILERPLATE(all_seed_packs, /obj/item/seeds)
 	seed_type = null
 
 /obj/item/seeds/random/Initialize()
-	seed = plant_controller.create_random_seed()
+	seed = SSplants.create_random_seed()
 	seed_type = seed.name
 	. = ..()
 

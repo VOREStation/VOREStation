@@ -6,6 +6,8 @@
 	desc = "Protected by FRM."
 	icon = 'icons/obj/module.dmi'
 	icon_state = "cyborg_upgrade"
+	///	Bitflags listing module compatibility. Used in the exosuit fabricator for creating sub-categories.
+	var/list/module_flags = NONE
 	var/locked = 0
 	var/require_module = 0
 	var/installed = 0
@@ -95,6 +97,7 @@
 	desc = "Used to cool a mounted taser, increasing the potential current in it and thus its recharge rate."
 	icon_state = "cyborg_upgrade3"
 	item_state = "cyborg_upgrade"
+	module_flags = BORG_MODULE_SECURITY
 	require_module = 1
 
 

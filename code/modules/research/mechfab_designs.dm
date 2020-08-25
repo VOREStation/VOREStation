@@ -1,10 +1,10 @@
 /datum/design/item/mechfab
 	build_type = MECHFAB
-	category = "Other"
+	category = list("Other")
 	req_tech = list(TECH_MATERIAL = 1)
 
 /datum/design/item/mechfab/ripley
-	category = "Ripley"
+	category = list("Ripley")
 
 /datum/design/item/mechfab/ripley/chassis
 	name = "Ripley Chassis"
@@ -54,7 +54,7 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 22500)
 
 /datum/design/item/mechfab/odysseus
-	category = "Odysseus"
+	category = list("Odysseus")
 
 /datum/design/item/mechfab/odysseus/chassis
 	name = "Odysseus Chassis"
@@ -106,7 +106,7 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 11250)
 
 /datum/design/item/mechfab/gygax
-	category = "Gygax"
+	category = list("Gygax")
 
 /datum/design/item/mechfab/gygax/chassis/serenity
 	name = "Serenity Chassis"
@@ -171,7 +171,7 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 37500, "diamond" = 7500)
 
 /datum/design/item/mechfab/durand
-	category = "Durand"
+	category = list("Durand")
 
 /datum/design/item/mechfab/durand/chassis
 	name = "Durand Chassis"
@@ -230,7 +230,7 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 27500, MAT_PLASTEEL = 10000, "uranium" = 7500)
 
 /datum/design/item/mechfab/janus
-	category = "Janus"
+	category = list("Janus")
 	req_tech = list(TECH_MATERIAL = 7, TECH_BLUESPACE = 5, TECH_MAGNET = 6, TECH_PHORON = 3, TECH_ARCANE = 1, TECH_PRECURSOR = 2)
 
 /datum/design/item/mechfab/janus/chassis
@@ -292,7 +292,7 @@
 
 /datum/design/item/mecha
 	build_type = MECHFAB
-	category = "Exosuit Equipment"
+	category = list("Exosuit Equipment")
 	time = 10
 	materials = list(DEFAULT_WALL_MATERIAL = 7500)
 
@@ -758,7 +758,7 @@
 	build_type = MECHFAB
 	materials = list(DEFAULT_WALL_MATERIAL = 562, "glass" = 562)
 	build_path = /obj/item/device/flash/synthetic
-	category = "Misc"
+	category = list("Misc")
 
 /*
  * Non-Mech Vehicles
@@ -766,7 +766,7 @@
 
 /datum/design/item/mechfab/vehicle
 	build_type = MECHFAB
-	category = "Vehicle"
+	category = list("Vehicle")
 	req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 6)
 
 /datum/design/item/mechfab/vehicle/spacebike_chassis
@@ -790,7 +790,7 @@
  */
 
 /datum/design/item/mechfab/rigsuit
-	category = "Rigsuit"
+	category = list("Rigsuit")
 	req_tech = list(TECH_MATERIAL = 6, TECH_ENGINEERING = 5, TECH_PHORON = 3, TECH_MAGNET = 4, TECH_POWER = 6)
 
 /datum/design/item/mechfab/rigsuit/basic_belt
@@ -1042,13 +1042,13 @@
 // Exosuit Internals
 
 /datum/design/item/mechfab/exointernal
-	category = "Exosuit Internals"
+	category = list("Exosuit Internals")
 	time = 30
 	req_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 3)
 
 /datum/design/item/mechfab/exointernal/stan_armor
 	name = "Armor Plate (Standard)"
-	category = "Exosuit Internals"
+	category = list("Exosuit Internals")
 	id = "exo_int_armor_standard"
 	req_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
 	materials = list(DEFAULT_WALL_MATERIAL = 10000)
@@ -1056,7 +1056,7 @@
 
 /datum/design/item/mechfab/exointernal/light_armor
 	name = "Armor Plate (Lightweight)"
-	category = "Exosuit Internals"
+	category = list("Exosuit Internals")
 	id = "exo_int_armor_lightweight"
 	req_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 3)
 	materials = list(DEFAULT_WALL_MATERIAL = 5000, MAT_PLASTIC = 3000)
@@ -1064,7 +1064,7 @@
 
 /datum/design/item/mechfab/exointernal/reinf_armor
 	name = "Armor Plate (Reinforced)"
-	category = "Exosuit Internals"
+	category = list("Exosuit Internals")
 	id = "exo_int_armor_reinforced"
 	req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 4)
 	materials = list(DEFAULT_WALL_MATERIAL = 20000, MAT_PLASTEEL = 10000)
@@ -1072,7 +1072,7 @@
 
 /datum/design/item/mechfab/exointernal/mining_armor
 	name = "Armor Plate (Blast)"
-	category = "Exosuit Internals"
+	category = list("Exosuit Internals")
 	id = "exo_int_armor_blast"
 	req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 4)
 	materials = list(DEFAULT_WALL_MATERIAL = 20000, MAT_PLASTEEL = 10000)
@@ -1080,7 +1080,7 @@
 
 /datum/design/item/mechfab/exointernal/gygax_armor
 	name = "Armor Plate (Marshal)"
-	category = "Exosuit Internals"
+	category = list("Exosuit Internals")
 	id = "exo_int_armor_gygax"
 	req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 4, TECH_COMBAT = 2)
 	materials = list(DEFAULT_WALL_MATERIAL = 40000, MAT_DIAMOND = 8000)
@@ -1088,7 +1088,7 @@
 
 /datum/design/item/mechfab/exointernal/darkgygax_armor
 	name = "Armor Plate (Blackops)"
-	category = "Exosuit Internals"
+	category = list("Exosuit Internals")
 	id = "exo_int_armor_dgygax"
 	req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 5, TECH_COMBAT = 4, TECH_ILLEGAL = 2)
 	materials = list(MAT_PLASTEEL = 20000, MAT_DIAMOND = 10000, MAT_GRAPHITE = 20000)
@@ -1117,7 +1117,7 @@
 
 /datum/design/item/mechfab/exointernal/stan_hull
 	name = "Hull (Standard)"
-	category = "Exosuit Internals"
+	category = list("Exosuit Internals")
 	id = "exo_int_hull_standard"
 	req_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
 	materials = list(DEFAULT_WALL_MATERIAL = 10000)
@@ -1125,7 +1125,7 @@
 
 /datum/design/item/mechfab/exointernal/durable_hull
 	name = "Hull (Durable)"
-	category = "Exosuit Internals"
+	category = list("Exosuit Internals")
 	id = "exo_int_hull_durable"
 	req_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
 	materials = list(DEFAULT_WALL_MATERIAL = 8000, MAT_PLASTEEL = 5000)
@@ -1133,7 +1133,7 @@
 
 /datum/design/item/mechfab/exointernal/light_hull
 	name = "Hull (Lightweight)"
-	category = "Exosuit Internals"
+	category = list("Exosuit Internals")
 	id = "exo_int_hull_light"
 	req_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 4)
 	materials = list(DEFAULT_WALL_MATERIAL = 5000, MAT_PLASTIC = 3000)
@@ -1141,7 +1141,7 @@
 
 /datum/design/item/mechfab/exointernal/stan_gas
 	name = "Life-Support (Standard)"
-	category = "Exosuit Internals"
+	category = list("Exosuit Internals")
 	id = "exo_int_lifesup_standard"
 	req_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
 	materials = list(DEFAULT_WALL_MATERIAL = 10000)
@@ -1149,7 +1149,7 @@
 
 /datum/design/item/mechfab/exointernal/reinf_gas
 	name = "Life-Support (Reinforced)"
-	category = "Exosuit Internals"
+	category = list("Exosuit Internals")
 	id = "exo_int_lifesup_reinforced"
 	req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 4)
 	materials = list(DEFAULT_WALL_MATERIAL = 8000, MAT_PLASTEEL = 8000, MAT_GRAPHITE = 1000)
@@ -1157,7 +1157,7 @@
 
 /datum/design/item/mechfab/exointernal/stan_electric
 	name = "Electrical Harness (Standard)"
-	category = "Exosuit Internals"
+	category = list("Exosuit Internals")
 	id = "exo_int_electric_standard"
 	req_tech = list(TECH_POWER = 2, TECH_ENGINEERING = 2)
 	materials = list(DEFAULT_WALL_MATERIAL = 5000, MAT_PLASTIC = 1000)
@@ -1165,7 +1165,7 @@
 
 /datum/design/item/mechfab/exointernal/efficient_electric
 	name = "Electrical Harness (High)"
-	category = "Exosuit Internals"
+	category = list("Exosuit Internals")
 	id = "exo_int_electric_efficient"
 	req_tech = list(TECH_POWER = 4, TECH_ENGINEERING = 4, TECH_DATA = 2)
 	materials = list(DEFAULT_WALL_MATERIAL = 5000, MAT_PLASTIC = 3000, MAT_SILVER = 3000)
@@ -1173,7 +1173,7 @@
 
 /datum/design/item/mechfab/exointernal/stan_actuator
 	name = "Actuator Lattice (Standard)"
-	category = "Exosuit Internals"
+	category = list("Exosuit Internals")
 	id = "exo_int_actuator_standard"
 	req_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
 	materials = list(DEFAULT_WALL_MATERIAL = 10000)
@@ -1181,7 +1181,7 @@
 
 /datum/design/item/mechfab/exointernal/hispeed_actuator
 	name = "Actuator Lattice (Overclocked)"
-	category = "Exosuit Internals"
+	category = list("Exosuit Internals")
 	id = "exo_int_actuator_overclock"
 	req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 4, TECH_POWER = 4)
 	materials = list(MAT_PLASTEEL = 10000, MAT_OSMIUM = 3000, MAT_GOLD = 5000)

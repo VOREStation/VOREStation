@@ -6192,7 +6192,7 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/rnd)
 "mm" = (
-/obj/machinery/pros_fabricator,
+/obj/machinery/mecha_part_fabricator/pros,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/rnd)
 "mn" = (

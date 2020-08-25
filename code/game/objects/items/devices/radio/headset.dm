@@ -77,6 +77,9 @@
 
 	return "[..()][append]"
 
+/obj/item/device/radio/headset/tgui_state(mob/user)
+	return GLOB.tgui_inventory_state
+
 /obj/item/device/radio/headset/syndicate
 	origin_tech = list(TECH_ILLEGAL = 3)
 	syndie = 1
