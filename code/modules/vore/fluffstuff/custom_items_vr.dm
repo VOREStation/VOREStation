@@ -1298,7 +1298,3 @@
 		/obj/item/weapon/tool/wirecutters,
 		/obj/item/stack/cable_coil/black
 	)
-	
-	
-/obj/item/weapon/storage/belt/utility/full/fluffsynth
-
