@@ -2,17 +2,7 @@
 	sprite_sheets = list(
 		SPECIES_TESHARI = 'icons/mob/species/seromi/belt.dmi',
 		SPECIES_WEREBEAST = 'icons/mob/species/werebeast/belt.dmi')
-
-/obj/item/weapon/storage/belt/utility/full/fluffsynth
-	starts_with = list(
-		/obj/item/weapon/tool/screwdriver/hybrid/lowtech,
-		/obj/item/weapon/tool/wrench,
-		/obj/item/weapon/weldingtool,
-		/obj/item/weapon/tool/crowbar,
-		/obj/item/weapon/tool/wirecutters,
-		/obj/item/stack/cable_coil/black
-	)
-		
+	
 /obj/item/weapon/storage/belt/explorer
 	name = "explorer's belt"
 	desc = "A versatile belt with several pouches. It can hold a very wide variety of items, but less items overall than a dedicated belt. Still, it's useful for any explorer who wants to be prepared for anything they might find."

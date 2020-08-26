@@ -2001,7 +2001,3 @@ Departamental Swimsuits, for general use
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "flintlock_mob"
-
-//Victor Zisthus: KA-BOOM
-/obj/item/weapon/storage/belt/utility/full/fluffsynth
-	color = "#1c1c1c"

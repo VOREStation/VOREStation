@@ -1278,3 +1278,27 @@
 /obj/item/clothing/accessory/solgov/department/security/aurora
 	name = "Old security insignia"
 	desc = "Insignia denoting assignment to the security department. These fit Expeditionary Corps uniforms. This one seems to be from the 2100s..."
+	
+//Victor Zisthus - KA-BOOM
+/obj/item/weapon/tool/screwdriver/fluff/lowtech
+	name = "hardlight screwdriver"
+	desc = "A strange screwdriver utilizing a hard-light projector instead of a steel shaft. Needlessly overcomplicated and no better than a regular screwdiver."
+	icon_state = "hybscrewdriver"
+	item_state = "screwdriver_black"
+	usesound = 'sound/effects/uncloak.ogg'
+	random_color = FALSE
+	matter = null
+	
+/obj/item/weapon/storage/belt/utility/full/fluffsynth
+	starts_with = list(
+		/obj/item/weapon/tool/screwdriver/fluff/lowtech,
+		/obj/item/weapon/tool/wrench,
+		/obj/item/weapon/weldingtool,
+		/obj/item/weapon/tool/crowbar,
+		/obj/item/weapon/tool/wirecutters,
+		/obj/item/stack/cable_coil/black
+	)
+	
+	
+/obj/item/weapon/storage/belt/utility/full/fluffsynth
+
