@@ -67,11 +67,10 @@ research holder datum.
 //Checks to see if design has all the required pre-reqs.
 //Input: datum/design; Output: 0/1 (false/true)
 /datum/research/proc/DesignHasReqs(var/datum/design/D)
-	if(D.req_tech.len == 0)
-		return 1
+	if(!LAZYLEN(D.req_tech))
+		return TRUE
 
 	var/list/k_tech = list()
-
 	for(var/datum/tech/known in known_tech)
 		k_tech[known.id] = known.level
 
@@ -79,7 +78,7 @@ research holder datum.
 		if(isnull(k_tech[req]) || k_tech[req] < D.req_tech[req])
 			return 0
 
-	return 1
+	return TRUE
 
 //Adds a tech to known_tech list. Checks to make sure there aren't duplicates and updates existing tech's levels if needed.
 //Input: datum/tech; Output: Null
@@ -92,18 +91,7 @@ research holder datum.
 	return
 
 /datum/research/proc/AddDesign2Known(var/datum/design/D)
-	if(!known_designs.len) // Special case
-		known_designs.Add(D)
-		return
-	for(var/i = 1 to known_designs.len)
-		var/datum/design/A = known_designs[i]
-		if(A.id == D.id) // We are guaranteed to reach this if the ids are the same, because sort_string will also be the same
-			return
-		if(A.sort_string > D.sort_string)
-			known_designs.Insert(i, D)
-			return
-	known_designs.Add(D)
-	return
+	LAZYDISTINCTADD(known_designs, D)
 
 //Refreshes known_tech and known_designs list
 //Input/Output: n/a
@@ -112,7 +100,7 @@ research holder datum.
 		if(DesignHasReqs(PD))
 			AddDesign2Known(PD)
 	for(var/datum/tech/T in known_tech)
-		T = between(0, T.level, 20)
+		T.level = between(0, T.level, 20)
 	return
 
 //Refreshes the levels of a given tech.

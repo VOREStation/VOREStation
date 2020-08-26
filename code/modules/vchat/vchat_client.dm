@@ -82,7 +82,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 		become_broken()
 		return FALSE
 
-	if(!owner.is_preference_enabled(/datum/client_preference/vchat_enable))
+	if(!owner?.is_preference_enabled(/datum/client_preference/vchat_enable))
 		become_broken()
 		return FALSE
 
@@ -298,12 +298,12 @@ GLOBAL_LIST_EMPTY(bicon_cache) // Cache of the <img> tag results, not the icons
 	var/atom/A = obj
 	var/key
 	var/changes_often = ishuman(A) || isobserver(A) // If this ends up with more, move it into a proc or var on atom.
-	
+
 	if(changes_often)
 		key = "\ref[A]"
 	else
 		key = "[istype(A.icon, /icon) ? "\ref[A.icon]" : A.icon]:[A.icon_state]"
-	
+
 	var/base64 = GLOB.bicon_cache[key]
 	// Non-human atom, no cache
 	if(!base64) // Doesn't exist, make it.

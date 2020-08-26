@@ -223,6 +223,8 @@ var/list/global/tank_gauge_cache = list()
 	if (src.proxyassembly.assembly)
 		src.proxyassembly.assembly.attack_self(user)
 
+/obj/item/weapon/tank/tgui_state(mob/user)
+	return GLOB.tgui_deep_inventory_state
 
 /obj/item/weapon/tank/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)

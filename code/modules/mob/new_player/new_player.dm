@@ -418,6 +418,9 @@
 	var/mob/living/character = create_character(T)	//creates the human and transfers vars and mind
 	character = job_master.EquipRank(character, rank, 1)					//equips the human
 	UpdateFactionList(character)
+	if(character && character.client)
+		var/obj/screen/splash/Spl = new(character.client, TRUE)
+		Spl.Fade(TRUE)
 
 	var/datum/job/J = SSjob.get_job(rank)
 

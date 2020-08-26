@@ -12,11 +12,8 @@
 	max_complexity = IC_COMPLEXITY_BASE
 	var/obj/item/clothing/clothing = null
 
-/obj/item/device/electronic_assembly/clothing/nano_host()
-	return clothing
-
-/obj/item/device/electronic_assembly/clothing/resolve_nano_host()
-	return clothing
+/obj/item/device/electronic_assembly/clothing/tgui_host()
+	return clothing.tgui_host()
 
 /obj/item/device/electronic_assembly/clothing/update_icon()
 	..()

@@ -88,15 +88,19 @@
 			. += "\The [src] can be attached!"
 
 /obj/item/device/assembly/attack_self(mob/user as mob)
-	if(!user)	return 0
+	if(!user)
+		return 0
 	user.set_machine(src)
-	interact(user)
+	tgui_interact(user)
 	return 1
 
-/obj/item/device/assembly/interact(mob/user as mob)
-	return //HTML MENU FOR WIRES GOES HERE
+/obj/item/device/assembly/tgui_state(mob/user)
+	return GLOB.tgui_deep_inventory_state
 
-/obj/item/device/assembly/nano_host()
-    if(istype(loc, /obj/item/device/assembly_holder))
-        return loc.nano_host()
-    return ..()
+/obj/item/device/assembly/tgui_interact(mob/user, datum/tgui/ui)
+	return // tgui goes here
+
+/obj/item/device/assembly/tgui_host()
+	if(istype(loc, /obj/item/device/assembly_holder))
+		return loc.tgui_host()
+	return ..()

@@ -43,6 +43,10 @@ let reactRoot;
 let initialRender = true;
 
 const renderLayout = () => {
+  let loadingRoot = document.getElementById('tgui-loading');
+  if (loadingRoot) {
+    loadingRoot.style.display = 'none';
+  }
   perf.mark('render/start');
   const state = store.getState();
   const { suspended, assets } = selectBackend(state);

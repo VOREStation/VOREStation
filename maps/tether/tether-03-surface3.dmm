@@ -16760,7 +16760,7 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/assembly/robotics)
 "aCv" = (
-/obj/machinery/pros_fabricator{
+/obj/machinery/mecha_part_fabricator/pros{
 	dir = 1
 	},
 /obj/structure/reagent_dispensers/acid{
