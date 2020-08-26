@@ -5,6 +5,7 @@
 #include "engine_rust.dmm"
 #include "engine_singulo.dmm"
 #include "engine_sme.dmm"
+#include "engine_tesla.dmm"
 #endif
 
 /datum/map_template/engine
