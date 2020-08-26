@@ -211,10 +211,6 @@
 				client.eye = loc
 		return TRUE
 
-
-/mob/proc/show_inv(mob/user as mob)
-	return
-
 //mob verbs are faster than object verbs. See http://www.byond.com/forum/?post=1326139&page=2#comment8198716 for why this isn't atom/verb/examine()
 /mob/verb/examinate(atom/A as mob|obj|turf in view())
 	set name = "Examine"
@@ -488,16 +484,6 @@
 
 /mob/proc/pull_damage()
 	return 0
-
-/mob/MouseDrop(mob/M as mob)
-	..()
-	if(M != usr) return
-	if(usr == src) return
-	if(!Adjacent(usr)) return
-	if(usr.incapacitated(INCAPACITATION_STUNNED | INCAPACITATION_FORCELYING | INCAPACITATION_KNOCKOUT | INCAPACITATION_RESTRAINED)) return //Incapacitated.
-	if(istype(M,/mob/living/silicon/ai)) return
-	show_inv(usr)
-
 
 /mob/verb/stop_pulling()
 
