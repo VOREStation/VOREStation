@@ -446,7 +446,7 @@
 	icon_state = "fruitbar"
 	trash = /obj/item/trash/candy/fruitbar
 	nutriment_amt = 9
-	nutriment_desc = list("apricot" = 2, "sugar" = 2, "dates" = 2, "cranberry" = 2, "apple = 2")
+	nutriment_desc = list("apricot" = 2, "sugar" = 2, "dates" = 2, "cranberry" = 2, "apple" = 2)
 
 /obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar/Initialize()
 	. = ..()
