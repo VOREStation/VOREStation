@@ -293,27 +293,6 @@
 		to_chat(usr, "<span class='warning'>Error: No growns inside. Please insert growns.</span>")
 	return
 
-/obj/machinery/biogenerator/Topic(href, href_list)
-	if(stat & BROKEN) return
-	if(usr.stat || usr.restrained()) return
-	if(!in_range(src, usr)) return
-
-	usr.set_machine(src)
-
-	switch(href_list["action"])
-		if("activate")
-			activate()
-		if("detach")
-			if(beaker)
-				beaker.loc = src.loc
-				beaker = null
-				update_icon()
-		if("create")
-			create_product(href_list["item"], text2num(href_list["cost"]))
-		if("menu")
-			menustat = "menu"
-	updateUsrDialog()
-
 /obj/machinery/biogenerator/RefreshParts()
 	..()
 	var/man_rating = 0
