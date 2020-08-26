@@ -7,6 +7,7 @@
 	energy_drain = 20
 	range = MELEE
 	equip_cooldown = 30
+	mech_flags = EXOSUIT_MODULE_MEDICAL
 	var/mob/living/carbon/human/occupant = null
 	var/datum/global_iterator/pr_mech_sleeper
 	var/inject_amount = 5

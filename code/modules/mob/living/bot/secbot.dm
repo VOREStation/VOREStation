@@ -88,53 +88,78 @@
 	else
 		set_light(0)
 
-/mob/living/bot/secbot/attack_hand(var/mob/user)
-	user.set_machine(src)
-	var/list/dat = list()
-	dat += "<TT><B>Automatic Security Unit</B></TT><BR><BR>"
-	dat += "Status: <A href='?src=\ref[src];power=1'>[on ? "On" : "Off"]</A><BR>"
-	dat += "Behaviour controls are [locked ? "locked" : "unlocked"]<BR>"
-	dat += "Maintenance panel is [open ? "opened" : "closed"]"
-	if(!locked || issilicon(user))
-		dat += "<BR>Check for Weapon Authorization: <A href='?src=\ref[src];operation=idcheck'>[idcheck ? "Yes" : "No"]</A><BR>"
-		dat += "Check Security Records: <A href='?src=\ref[src];operation=ignorerec'>[check_records ? "Yes" : "No"]</A><BR>"
-		dat += "Check Arrest Status: <A href='?src=\ref[src];operation=ignorearr'>[check_arrest ? "Yes" : "No"]</A><BR>"
-		dat += "Operating Mode: <A href='?src=\ref[src];operation=switchmode'>[arrest_type ? "Detain" : "Arrest"]</A><BR>"
-		dat += "Report Arrests: <A href='?src=\ref[src];operation=declarearrests'>[declare_arrests ? "Yes" : "No"]</A><BR>"
-		if(using_map.bot_patrolling)
-			dat += "Auto Patrol: <A href='?src=\ref[src];operation=patrol'>[will_patrol ? "On" : "Off"]</A>"
-	var/datum/browser/popup = new(user, "autosec", "Securitron controls")
-	popup.set_content(jointext(dat,null))
-	popup.open()
+/mob/living/bot/secbot/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Secbot", name)
+		ui.open()
 
-/mob/living/bot/secbot/Topic(href, href_list)
+/mob/living/bot/secbot/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
+
+	data["on"] = on
+	data["open"] = open
+	data["locked"] = locked
+
+	data["idcheck"] = null
+	data["check_records"] = null
+	data["check_arrest"] = null
+	data["arrest_type"] = null
+	data["declare_arrests"] = null
+	data["will_patrol"] = null
+
+	if(!locked || issilicon(user))
+		data["idcheck"] = idcheck
+		data["check_records"] = check_records
+		data["check_arrest"] = check_arrest
+		data["arrest_type"] = arrest_type
+		data["declare_arrests"] = declare_arrests
+		if(using_map.bot_patrolling)
+			data["will_patrol"] = will_patrol
+
+	return data
+
+/mob/living/bot/secbot/attack_hand(var/mob/user)
+	tgui_interact(user)
+
+/mob/living/bot/secbot/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return
 
-	usr.set_machine(src)
 	add_fingerprint(usr)
 
-	if((href_list["power"]) && (access_scanner.allowed(usr)))
-		if(on)
-			turn_off()
-		else
-			turn_on()
-		return
+	switch(action)
+		if("power")
+			if(!access_scanner.allowed(usr))
+				return FALSE
+			if(on)
+				turn_off()
+			else
+				turn_on()
+			. = TRUE
 
-	switch(href_list["operation"])
+	if(locked && !issilicon(usr))
+		return TRUE
+
+	switch(action)
 		if("idcheck")
 			idcheck = !idcheck
+			. = TRUE
 		if("ignorerec")
 			check_records = !check_records
+			. = TRUE
 		if("ignorearr")
 			check_arrest = !check_arrest
+			. = TRUE
 		if("switchmode")
 			arrest_type = !arrest_type
+			. = TRUE
 		if("patrol")
 			will_patrol = !will_patrol
+			. = TRUE
 		if("declarearrests")
 			declare_arrests = !declare_arrests
-	attack_hand(usr)
+			. = TRUE
 
 /mob/living/bot/secbot/emag_act(var/remaining_uses, var/mob/user)
 	. = ..()

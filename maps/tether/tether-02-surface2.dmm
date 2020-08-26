@@ -17687,15 +17687,15 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
 "aId" = (
-/obj/machinery/pros_fabricator{
+/obj/machinery/mecha_part_fabricator/pros{
 	desc = "A machine used for construction of legit prosthetics. You weren't sure if cardboard was considered an engineering material until now.";
 	dir = 4;
 	emagged = 0;
-	mat_efficiency = 0.9;
+	component_coeff = 0.9;
 	name = "Legitimate Prosthetics Fabricator";
 	req_access = list();
 	res_max_amount = 150000;
-	speed = 0.2
+	time_coeff = 0.2
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)

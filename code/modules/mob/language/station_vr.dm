@@ -138,8 +138,9 @@
 /datum/language/human
 	flags = 0
 /datum/language/gutter
-	flags = WHITELISTED
 	machine_understands = FALSE
+	desc = "A dialect of Tradeband not uncommon amongst traders in the Free Trade Union. The language is often difficult to translate due to changing frequently and being highly colloquial."
+	partial_understanding = list(LANGUAGE_TRADEBAND = 30, LANGUAGE_SOL_COMMON = 10)
 /datum/language/human/monkey
 	flags = RESTRICTED
 /datum/language/skrell/monkey

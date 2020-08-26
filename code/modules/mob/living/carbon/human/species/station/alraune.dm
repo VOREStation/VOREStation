@@ -430,7 +430,7 @@
 			to_chat(src, "<span class='notice'>[pick(fruit_gland.empty_message)]</span>")
 			return
 
-		var/datum/seed/S = plant_controller.seeds["[fruit_gland.fruit_type]"]
+		var/datum/seed/S = SSplants.seeds["[fruit_gland.fruit_type]"]
 		S.harvest(usr,0,0,1)
 
 		var/index = rand(0,2)
