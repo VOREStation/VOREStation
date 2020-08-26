@@ -3716,6 +3716,7 @@
 #include "maps\submaps\_readme.dm"
 #include "maps\submaps\engine_submaps_vr\engine.dm"
 #include "maps\submaps\engine_submaps_vr\engine_areas.dm"
+#include "maps\submaps\engine_submaps_vr\tether\_engine_submaps.dm"
 #include "maps\submaps\space_submaps\space.dm"
 #include "maps\submaps\space_submaps\debrisfield\debrisfield.dm"
 #include "maps\submaps\surface_submaps\mountains\mountains.dm"
