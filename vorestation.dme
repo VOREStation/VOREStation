@@ -3230,11 +3230,8 @@
 #include "code\modules\projectiles\projectile\bullets_vr.dm"
 #include "code\modules\projectiles\projectile\change.dm"
 #include "code\modules\projectiles\projectile\energy.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\modules\projectiles\projectile\energy_vr.dm"
-=======
 #include "code\modules\projectiles\projectile\explosive.dm"
->>>>>>> 7595e09... Merge pull request #7474 from lbnesquik/Kot-Mecha-missile-tweak:polaris.dme
 #include "code\modules\projectiles\projectile\force.dm"
 #include "code\modules\projectiles\projectile\hook.dm"
 #include "code\modules\projectiles\projectile\magnetic.dm"
