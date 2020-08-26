@@ -836,31 +836,31 @@
 
 	//This proc returns a number made up of the flags for body parts which you are protected on. (such as HEAD, UPPER_TORSO, LOWER_TORSO, etc. See setup.dm for the full list)
 /mob/living/carbon/human/proc/add_hypothermia(var/amount)
-	if(hypothermia+amount<=0)
+	if(hypothermia + amount <= 0)
 		hypothermia=0
 	else
-		if(hypothermia+amount>100)
+		if(hypothermia + amount > 100)
 			hypothermia=100
 		hypothermia+=amount
-		if(hypothermia>5 && hypothermia<75)
+		if(hypothermia > 5 && hypothermia < 75)
 			if(prob(10))
 				say("*shiver")
-		if(hypothermia>30)
+		if(hypothermia > 30)
 			if(prob(50))
-				stuttering = hypothermia-25
-			if(hypothermia>50)
+				stuttering = hypothermia - 25
+			if(hypothermia > 50)
 				if(prob(40))
-					apply_effect(hypothermia-45,EYE_BLUR)
-				if(hypothermia>70)
+					apply_effect(hypothermia-45, EYE_BLUR)
+				if(hypothermia > 70)
 					if(prob(30))
 						Confuse(hypothermia-65)
-					if(hypothermia>80)
+					if(hypothermia > 80)
 						if(prob(15))
 							apply_effect(hypothermia-79,WEAKEN)
-						if(hypothermia>90)
+						if(hypothermia > 90)
 							if(prob(40))
 								apply_effect(50,DROWSY)
-							if(hypothermia>95)
+							if(hypothermia > 95)
 								if(prob(25))
 									apply_damage(3,BURN)
 									
