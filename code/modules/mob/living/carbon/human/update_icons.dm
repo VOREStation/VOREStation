@@ -500,6 +500,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 	var/image/eyes_image = image(eyes_icon)
 	eyes_image.plane = PLANE_LIGHTING_ABOVE
+	eyes_image.appearance_flags = appearance_flags
 
 	overlays_standing[EYES_LAYER] = eyes_image
 	apply_layer(EYES_LAYER)
