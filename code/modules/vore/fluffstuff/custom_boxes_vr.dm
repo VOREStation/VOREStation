@@ -221,9 +221,9 @@
 /obj/item/weapon/storage/box/fluff/kaboom
 	name = "KA-BOOM's Stuff"
 	desc = "A box filled with some starting equipment for the android."
-	has_items = list(/obj/item/weapon/spacecash/c1000 = 3,
-	/obj/item/weapon/spacecash/c500,
-	/obj/item/weapon/spacecash/c200,
+	has_items = list(/obj/item/weapon/spacecash/c500,
+	/obj/item/weapon/spacecash/c200 = 2,
+	/obj/item/weapon/storage/belt/utility/full/fluffsynth,
 	/obj/item/clothing/mask/gas/commando,
 	/obj/item/clothing/mask/balaclava,
 	/obj/item/clothing/accessory/storage/black_vest,

@@ -5,7 +5,7 @@
 
 /obj/item/weapon/storage/belt/utility/full/fluffsynth
 	starts_with = list(
-		/obj/item/weapon/tool/screwdriver/hybrid,
+		/obj/item/weapon/tool/screwdriver/hybrid/lowtech,
 		/obj/item/weapon/tool/wrench,
 		/obj/item/weapon/weldingtool,
 		/obj/item/weapon/tool/crowbar,
