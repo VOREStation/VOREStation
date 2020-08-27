@@ -23,8 +23,8 @@
 "ae" = (
 /obj/structure/window/plastitanium/full,
 /obj/structure/window/plastitanium{
-	icon_state = "window";
-	dir = 1
+	dir = 1;
+	icon_state = "window"
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/door/blast/regular{
@@ -41,8 +41,8 @@
 "af" = (
 /obj/structure/window/plastitanium/full,
 /obj/structure/window/plastitanium{
-	icon_state = "window";
-	dir = 1
+	dir = 1;
+	icon_state = "window"
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/door/blast/regular{
@@ -58,6 +58,7 @@
 /area/shuttle/curabitur/curashuttle/cockpit)
 "ag" = (
 /obj/structure/sign/redcross,
+/obj/machinery/vending/nifsoft_shop,
 /turf/simulated/wall/rdshull,
 /area/shuttle/curabitur/curashuttle/med)
 "ah" = (
@@ -96,8 +97,8 @@
 /area/shuttle/curabitur/curashuttle/cockpit)
 "an" = (
 /obj/machinery/computer/shuttle_control/explore/curashuttle{
-	icon_state = "computer";
-	dir = 4
+	dir = 4;
+	icon_state = "computer"
 	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/shuttle/curabitur/curashuttle/cockpit)
@@ -122,13 +123,13 @@
 	},
 /obj/structure/table/darkglass,
 /obj/item/weapon/paper_bin{
-	pixel_y = -2;
-	pixel_x = 8
+	pixel_x = 8;
+	pixel_y = -2
 	},
 /obj/item/weapon/pen/fountain,
 /obj/machinery/photocopier/faxmachine{
 	department = "Curabitur Rescue Service";
-	name = "Curabitur fax machine";
+	name = "curabitur fax machine";
 	pixel_y = 6
 	},
 /turf/simulated/floor/carpet/bcarpet,
@@ -151,47 +152,35 @@
 /turf/simulated/floor/tiled/white,
 /area/shuttle/curabitur/curashuttle/med)
 "at" = (
-/obj/structure/closet/crate,
-/obj/item/weapon/gun/projectile/cell_loaded/medical/cmo,
-/obj/item/ammo_casing/microbattery/medical/stabilize2,
-/obj/item/ammo_casing/microbattery/medical/stabilize2,
-/obj/item/ammo_casing/microbattery/medical/haste,
-/obj/item/ammo_casing/microbattery/medical/haste,
-/obj/item/ammo_casing/microbattery/medical/antirad,
-/obj/item/ammo_casing/microbattery/medical/resist,
-/obj/item/ammo_magazine/cell_mag/medical/advanced,
-/obj/item/ammo_magazine/cell_mag/medical/advanced,
-/obj/item/clothing/accessory/holster/hip,
-/obj/item/clothing/suit/storage/toggle/labcoat/cmoalt{
-	name = "Curabitur medical officer labcoat"
-	},
-/obj/item/clothing/under/shorts/jeans/classic/female,
-/obj/item/clothing/gloves/fluff/siren,
-/obj/item/clothing/shoes/boots/fluff/siren,
-/obj/item/device/radio/headset/volunteer,
-/obj/item/clothing/accessory/storage/white_drop_pouches,
-/obj/item/weapon/storage/backpack/dufflebag/syndie/med,
-/obj/item/ammo_casing/microbattery/medical/brute3,
-/obj/item/ammo_casing/microbattery/medical/brute3,
-/obj/item/ammo_casing/microbattery/medical/burn3,
-/obj/item/ammo_casing/microbattery/medical/burn3,
-/obj/item/ammo_casing/microbattery/medical/toxin3,
-/obj/item/weapon/card/id/syndicate{
-	access = list(616);
-	assignment = "Curabitur Contractor";
-	origin_tech = newlist()
-	},
+/obj/structure/closet/crate/large,
+/obj/item/weapon/gun/projectile/multi_cannon,
+/obj/item/weapon/gun/projectile/multi_cannon,
+/obj/item/ammo_casing/macrobattery/buff,
+/obj/item/ammo_casing/macrobattery/buff,
+/obj/item/ammo_casing/macrobattery/detox,
+/obj/item/ammo_casing/macrobattery/detox,
+/obj/item/ammo_casing/macrobattery/healie,
+/obj/item/ammo_casing/macrobattery/healie,
+/obj/item/ammo_casing/macrobattery/ouchie,
+/obj/item/ammo_casing/macrobattery/ouchie,
+/obj/item/ammo_casing/macrobattery/stabilize,
+/obj/item/ammo_casing/macrobattery/stabilize,
 /turf/simulated/floor/carpet/bcarpet,
 /area/shuttle/curabitur/curashuttle/cockpit)
 "au" = (
 /obj/structure/medical_stand,
+/obj/machinery/vending/nifsoft_shop{
+	categories = 3;
+	emagged = 1;
+	pixel_x = 23;
+	pixel_y = -5
+	},
 /turf/simulated/floor/tiled/white,
 /area/shuttle/curabitur/curashuttle/med)
 "av" = (
 /obj/machinery/computer/ship/helm{
 	dir = 4;
-	icon_state = "computer";
-	req_one_access = newlist()
+	req_one_access = null
 	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/shuttle/curabitur/curashuttle/cockpit)
@@ -200,19 +189,19 @@
 	icon_state = "1-2"
 	},
 /obj/structure/bed/chair/bay/comfy{
-	icon_state = "bay_comfychair_preview";
-	dir = 1
+	dir = 1;
+	icon_state = "bay_comfychair_preview"
 	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/shuttle/curabitur/curashuttle/cockpit)
 "ax" = (
 /obj/machinery/computer/ship/engines{
-	icon_state = "computer";
-	dir = 8
+	dir = 8;
+	icon_state = "computer"
 	},
 /obj/structure/window/plastitanium{
-	icon_state = "window";
-	dir = 4
+	dir = 4;
+	icon_state = "window"
 	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/shuttle/curabitur/curashuttle/cockpit)
@@ -247,14 +236,13 @@
 /obj/item/weapon/surgical/FixOVein/alien,
 /obj/item/weapon/surgical/surgicaldrill/alien,
 /obj/structure/table/standard,
-/obj/item/ammo_casing/microbattery/medical/corpse_mend,
 /obj/machinery/recharger{
-	pixel_y = 8;
-	pixel_x = -8
+	pixel_x = -8;
+	pixel_y = 8
 	},
 /obj/machinery/recharger{
-	pixel_y = 8;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = 8
 	},
 /turf/simulated/floor/tiled/white,
 /area/shuttle/curabitur/curashuttle/med)
@@ -268,12 +256,13 @@
 /obj/item/weapon/storage/belt/medical,
 /obj/item/weapon/storage/belt/medical,
 /obj/structure/table/rack,
+/obj/item/weapon/storage/backpack/dufflebag/syndie/med,
 /turf/simulated/floor/tiled/white,
 /area/shuttle/curabitur/curashuttle/med)
 "aE" = (
 /obj/machinery/computer/ship/sensors{
-	icon_state = "computer";
-	dir = 4
+	dir = 4;
+	icon_state = "computer"
 	},
 /obj/machinery/firealarm{
 	dir = 8;
@@ -295,11 +284,11 @@
 /area/shuttle/curabitur/curashuttle/cockpit)
 "aG" = (
 /obj/machinery/button/remote/blast_door{
+	id = "medihangar";
 	name = "Hangar blast door control";
-	plane = 0;
-	pixel_y = 8;
 	pixel_x = 8;
-	id = "medihangar"
+	pixel_y = 8;
+	plane = 0
 	},
 /obj/structure/table/darkglass,
 /obj/machinery/button/remote/blast_door{
@@ -310,8 +299,8 @@
 	},
 /obj/machinery/atmospherics/pipe/vent,
 /obj/structure/window/plastitanium{
-	icon_state = "window";
-	dir = 4
+	dir = 4;
+	icon_state = "window"
 	},
 /obj/machinery/button/remote/airlock/survival_pod{
 	id = "curadocking";
@@ -341,6 +330,16 @@
 /obj/item/weapon/spacecash/c1000,
 /obj/item/weapon/spacecash/c1000,
 /obj/item/weapon/spacecash/c1000,
+/obj/item/weapon/spacecash/c1000,
+/obj/item/weapon/spacecash/c1000,
+/obj/item/weapon/spacecash/c1000,
+/obj/item/weapon/spacecash/c1000,
+/obj/item/weapon/spacecash/c1000,
+/obj/item/weapon/spacecash/c1000,
+/obj/item/weapon/spacecash/c1000,
+/obj/item/weapon/spacecash/c1000,
+/obj/item/weapon/spacecash/c1000,
+/obj/item/weapon/spacecash/c1000,
 /turf/simulated/floor/carpet/bcarpet,
 /area/shuttle/curabitur/curashuttle/cockpit)
 "aI" = (
@@ -348,8 +347,8 @@
 /area/shuttle/curabitur/curashuttle/cockpit)
 "aJ" = (
 /obj/machinery/sleep_console{
-	icon_state = "sleeperconsole";
 	dir = 2;
+	icon_state = "sleeperconsole";
 	pixel_x = -1
 	},
 /obj/machinery/light{
@@ -390,8 +389,8 @@
 	req_access = newlist()
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 4
+	dir = 4;
+	icon_state = "tube1"
 	},
 /turf/simulated/floor/tiled/white,
 /area/shuttle/curabitur/curashuttle/med)
@@ -412,6 +411,8 @@
 /obj/item/clothing/accessory/holster/machete,
 /obj/item/clothing/accessory/holster/hip,
 /obj/item/weapon/material/knife/machete,
+/obj/item/clothing/accessory/storage/white_drop_pouches,
+/obj/item/clothing/accessory/storage/white_drop_pouches,
 /turf/simulated/floor/carpet/bcarpet,
 /area/shuttle/curabitur/curashuttle/cockpit)
 "aO" = (
@@ -431,16 +432,16 @@
 /area/shuttle/curabitur/curashuttle/cockpit)
 "aQ" = (
 /obj/machinery/recharger/wallcharger{
-	pixel_y = -10;
-	pixel_x = 31
+	pixel_x = 31;
+	pixel_y = -10
 	},
 /obj/machinery/recharger/wallcharger{
-	pixel_y = -2;
-	pixel_x = 31
+	pixel_x = 31;
+	pixel_y = -2
 	},
 /obj/machinery/recharger/wallcharger{
-	pixel_y = 7;
-	pixel_x = 31
+	pixel_x = 31;
+	pixel_y = 7
 	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/shuttle/curabitur/curashuttle/cockpit)
@@ -515,8 +516,8 @@
 /area/shuttle/curabitur/curashuttle/cockpit)
 "aY" = (
 /obj/machinery/atmospherics/pipe/simple/visible/blue{
-	icon_state = "intact";
-	dir = 6
+	dir = 6;
+	icon_state = "intact"
 	},
 /obj/structure/table/standard,
 /obj/fiftyspawner/steel,
@@ -535,6 +536,7 @@
 "aZ" = (
 /obj/machinery/vending/medical{
 	dir = 4;
+	pixel_x = -14;
 	req_access = newlist()
 	},
 /turf/simulated/floor/tiled/white,
@@ -547,16 +549,16 @@
 	pixel_y = 0
 	},
 /obj/machinery/recharger/wallcharger{
-	pixel_y = 6;
-	pixel_x = 31
+	pixel_x = 31;
+	pixel_y = 6
 	},
 /turf/simulated/floor/tiled/white,
 /area/shuttle/curabitur/curashuttle/med)
 "bb" = (
 /obj/structure/window/plastitanium,
 /obj/structure/window/plastitanium{
-	icon_state = "window";
-	dir = 1
+	dir = 1;
+	icon_state = "window"
 	},
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor/tiled,
@@ -584,13 +586,14 @@
 "bf" = (
 /obj/structure/table/darkglass,
 /obj/machinery/recharger{
-	pixel_y = 8;
-	pixel_x = -8
+	pixel_x = -8;
+	pixel_y = 8
 	},
 /obj/machinery/recharger{
-	pixel_y = 8;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = 8
 	},
+/obj/item/device/gps/medical,
 /turf/simulated/floor/tiled,
 /area/shuttle/curabitur/curashuttle/med)
 "bg" = (
@@ -666,8 +669,8 @@
 /area/shuttle/curabitur/curashuttle/med)
 "bk" = (
 /obj/machinery/smartfridge/chemistry{
-	icon_state = "fridge_food";
-	dir = 4
+	dir = 4;
+	icon_state = "fridge_food"
 	},
 /turf/simulated/floor/tiled/white,
 /area/shuttle/curabitur/curashuttle/med)
@@ -681,8 +684,8 @@
 "bn" = (
 /obj/structure/window/plastitanium/full,
 /obj/structure/window/plastitanium{
-	icon_state = "window";
-	dir = 4
+	dir = 4;
+	icon_state = "window"
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/door/blast/regular{
@@ -712,8 +715,8 @@
 /area/shuttle/curabitur/curashuttle/med)
 "bs" = (
 /obj/structure/bed/chair/bay/comfy{
-	icon_state = "bay_comfychair_preview";
-	dir = 8
+	dir = 8;
+	icon_state = "bay_comfychair_preview"
 	},
 /turf/simulated/floor/tiled/white,
 /area/shuttle/curabitur/curashuttle/med)
@@ -727,19 +730,25 @@
 "bu" = (
 /obj/structure/table/darkglass,
 /obj/machinery/atmospherics/pipe/vent,
+/obj/item/weapon/reagent_containers/food/snacks/bagelsunflower,
 /obj/item/weapon/reagent_containers/food/snacks/applepie,
-/obj/item/weapon/reagent_containers/food/snacks/boiledspagetti,
+/obj/item/weapon/reagent_containers/food/snacks/carrotfries,
+/obj/item/weapon/reagent_containers/food/snacks/cube/nutriment,
+/obj/item/weapon/reagent_containers/food/snacks/cube/protein,
+/obj/item/weapon/reagent_containers/food/snacks/cube/protein,
+/obj/item/weapon/reagent_containers/food/snacks/cube/protein,
+/obj/item/weapon/reagent_containers/food/snacks/cracker,
 /turf/simulated/floor/carpet/sblucarpet,
 /area/shuttle/curabitur/curashuttle/med)
 "bv" = (
 /obj/structure/table/darkglass,
-/obj/item/weapon/reagent_containers/food/snacks/aesirsalad,
-/obj/item/weapon/reagent_containers/food/snacks/carrotfries,
-/obj/item/weapon/reagent_containers/food/snacks/carrotfries,
-/obj/item/weapon/reagent_containers/food/snacks/carrotfries,
+/obj/item/weapon/reagent_containers/food/snacks/bangersandmash,
+/obj/item/weapon/reagent_containers/food/snacks/candiedapple,
+/obj/item/weapon/reagent_containers/food/snacks/chickenwing,
 /turf/simulated/floor/carpet/sblucarpet,
 /area/shuttle/curabitur/curashuttle/med)
 "bw" = (
+/obj/structure/closet/crate/bin,
 /turf/simulated/floor/carpet/sblucarpet,
 /area/shuttle/curabitur/curashuttle/med)
 "bx" = (
@@ -783,15 +792,15 @@
 	pixel_y = 0
 	},
 /obj/machinery/power/terminal{
-	icon_state = "term";
-	dir = 8
+	dir = 8;
+	icon_state = "term"
 	},
 /turf/simulated/floor/tiled/white,
 /area/shuttle/curabitur/curashuttle/med)
 "bC" = (
 /obj/structure/sign/department/eng{
-	pixel_y = -31;
-	pixel_x = 0
+	pixel_x = 0;
+	pixel_y = -31
 	},
 /obj/structure/table/standard,
 /obj/item/weapon/reagent_containers/glass/beaker/bluespace,
@@ -830,8 +839,8 @@
 /area/shuttle/curabitur/curashuttle/med)
 "bE" = (
 /obj/structure/bed/chair/sofa/teal/left{
-	icon_state = "sofaend_left";
-	dir = 1
+	dir = 1;
+	icon_state = "sofaend_left"
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -856,13 +865,13 @@
 /area/shuttle/curabitur/curashuttle/med)
 "bF" = (
 /obj/machinery/vending/wallmed1/public{
-	icon_state = "wallmed";
 	dir = 1;
+	icon_state = "wallmed";
 	pixel_y = -28
 	},
 /obj/structure/bed/chair/sofa/teal{
-	icon_state = "sofamiddle";
-	dir = 1
+	dir = 1;
+	icon_state = "sofamiddle"
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -886,8 +895,8 @@
 	pixel_y = -32
 	},
 /obj/structure/bed/chair/sofa/teal{
-	icon_state = "sofamiddle";
-	dir = 1
+	dir = 1;
+	icon_state = "sofamiddle"
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -908,13 +917,13 @@
 /area/shuttle/curabitur/curashuttle/med)
 "bH" = (
 /obj/machinery/vending/wallmed1/public{
-	icon_state = "wallmed";
 	dir = 1;
+	icon_state = "wallmed";
 	pixel_y = -29
 	},
 /obj/structure/bed/chair/sofa/teal/right{
-	icon_state = "sofaend_right";
-	dir = 1
+	dir = 1;
+	icon_state = "sofaend_right"
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -944,8 +953,8 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	icon_state = "map-scrubbers";
-	dir = 4
+	dir = 4;
+	icon_state = "map-scrubbers"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow{
 	dir = 4
@@ -954,8 +963,8 @@
 /area/shuttle/curabitur/curashuttle/med)
 "bJ" = (
 /obj/machinery/recharger/wallcharger{
-	pixel_y = -26;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = -26
 	},
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -986,8 +995,8 @@
 	pixel_y = 0
 	},
 /obj/machinery/atmospherics/binary/pump/fuel{
-	icon_state = "map_off-fuel";
-	dir = 8
+	dir = 8;
+	icon_state = "map_off-fuel"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/curabitur/curashuttle/med)
@@ -1004,8 +1013,8 @@
 	pixel_y = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
-	icon_state = "intact-fuel";
-	dir = 8
+	dir = 8;
+	icon_state = "intact-fuel"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/curabitur/curashuttle/med)
@@ -1022,8 +1031,8 @@
 	pixel_y = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
-	icon_state = "intact-fuel";
-	dir = 8
+	dir = 8;
+	icon_state = "intact-fuel"
 	},
 /turf/simulated/floor/plating,
 /area/shuttle/curabitur/curashuttle/med)
@@ -1063,13 +1072,22 @@
 /turf/simulated/wall/rpshull,
 /area/shuttle/curabitur/curashuttle/hangar)
 "bT" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8";
-	pixel_y = 0
-	},
 /obj/structure/handrail,
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_x = 0;
+	pixel_y = 28
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/structure/cable{
+	icon_state = "0-6"
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/curabitur/curashuttle/eng)
 "bU" = (
@@ -1087,20 +1105,24 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/supply{
-	icon_state = "intact-supply";
-	dir = 9
+	dir = 9;
+	icon_state = "intact-supply"
 	},
-/obj/machinery/atmospherics/pipe/simple/visible/yellow,
+/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+	dir = 5
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/curabitur/curashuttle/eng)
 "bX" = (
-/obj/machinery/power/port_gen/pacman/mrs{
-	anchored = 1
+/obj/machinery/atmospherics/portables_connector{
+	dir = 8
 	},
-/obj/structure/cable{
-	icon_state = "0-8"
+/obj/machinery/portable_atmospherics/canister/phoron{
+	start_pressure = 8000.25
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/tiled/monofloor{
+	dir = 8
+	},
 /area/shuttle/curabitur/curashuttle/eng)
 "bY" = (
 /obj/structure/window/plastitanium{
@@ -1108,8 +1130,8 @@
 	icon_state = "window"
 	},
 /obj/structure/window/plastitanium{
-	icon_state = "window";
-	dir = 4
+	dir = 4;
+	icon_state = "window"
 	},
 /obj/structure/curtain/black,
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -1186,38 +1208,33 @@
 /area/shuttle/curabitur/curashuttle/eng)
 "cf" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/scrubbers{
-	icon_state = "map-scrubbers";
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
-	dir = 5
+	dir = 4;
+	icon_state = "map-scrubbers"
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/curabitur/curashuttle/eng)
 "cg" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
-	dir = 4
-	},
+/obj/fiftyspawner/tritium,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/curabitur/curashuttle/eng)
 "ch" = (
 /obj/structure/cable{
-	icon_state = "1-2"
+	icon_state = "6-9"
 	},
 /obj/machinery/atmospherics/pipe/manifold/visible/yellow{
-	dir = 1
+	dir = 8
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/curabitur/curashuttle/eng)
 "cj" = (
 /obj/machinery/mech_recharger,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 5
+	dir = 5;
+	icon_state = "intact-supply"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
-	dir = 5
+	dir = 5;
+	icon_state = "intact-scrubbers"
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/curabitur/curashuttle/hangar)
@@ -1275,7 +1292,9 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/curabitur/curashuttle/eng)
 "cq" = (
-/obj/machinery/portable_atmospherics/canister/phoron,
+/obj/machinery/portable_atmospherics/canister/phoron{
+	start_pressure = 8000.25
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/curabitur/curashuttle/eng)
 "cr" = (
@@ -1335,16 +1354,8 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/curabitur/curashuttle/eng)
 "cy" = (
-/obj/machinery/atmospherics/binary/pump,
-/obj/machinery/power/terminal{
-	dir = 4
-	},
-/obj/structure/cable,
 /obj/machinery/light/small,
-/obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
-	},
+/obj/machinery/atmospherics/binary/pump,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/curabitur/curashuttle/eng)
 "cz" = (
@@ -1394,10 +1405,10 @@
 /area/shuttle/curabitur/curashuttle/eng)
 "cF" = (
 /obj/machinery/button/remote/blast_door{
+	id = "medihangar";
 	name = "Hangar blast door control";
-	pixel_y = 24;
 	pixel_x = -7;
-	id = "medihangar"
+	pixel_y = 24
 	},
 /obj/structure/cable{
 	d1 = 2;
@@ -1409,8 +1420,8 @@
 /obj/item/device/flashlight/flare,
 /obj/item/device/flashlight/flare,
 /obj/machinery/cell_charger{
-	pixel_y = 13;
-	pixel_x = -3
+	pixel_x = -3;
+	pixel_y = 13
 	},
 /obj/item/weapon/cell/high,
 /obj/item/weapon/cell/high,
@@ -1474,41 +1485,27 @@
 /area/shuttle/curabitur/curashuttle/eng)
 "cP" = (
 /obj/machinery/ion_engine{
-	icon_state = "nozzle";
-	dir = 1
+	dir = 1;
+	icon_state = "nozzle"
 	},
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/curabitur/curashuttle/eng)
 "dF" = (
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "north bump";
-	pixel_x = 0;
-	pixel_y = 28
-	},
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/structure/handrail,
-/obj/fiftyspawner/tritium,
+/obj/machinery/atmospherics/pipe/manifold/visible/yellow{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/curabitur/curashuttle/eng)
 "ic" = (
+/obj/machinery/power/terminal{
+	dir = 4
+	},
 /obj/structure/cable{
-	icon_state = "1-2"
+	icon_state = "0-6"
 	},
-/obj/machinery/atmospherics/pipe/manifold/visible/yellow{
-	dir = 8
-	},
+/obj/machinery/atmospherics/pipe/simple/visible/yellow,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/curabitur/curashuttle/eng)
 "qN" = (
@@ -1518,25 +1515,34 @@
 /turf/simulated/wall/rpshull,
 /area/shuttle/curabitur/curashuttle/eng)
 "tI" = (
-/obj/machinery/atmospherics/portables_connector{
-	dir = 8
+/obj/machinery/power/smes/buildable/point_of_interest,
+/obj/structure/cable{
+	icon_state = "0-9"
 	},
-/obj/machinery/portable_atmospherics/canister/phoron,
-/turf/simulated/floor/tiled/monofloor,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/curabitur/curashuttle/eng)
 "MI" = (
-/obj/machinery/power/smes/buildable/point_of_interest,
+/obj/machinery/power/port_gen/pacman/mrs{
+	anchored = 1
+	},
+/obj/structure/cable{
+	icon_state = "0-9"
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/curabitur/curashuttle/eng)
 "OD" = (
-/obj/machinery/atmospherics/portables_connector{
-	dir = 8
-	},
-/obj/machinery/portable_atmospherics/canister/phoron,
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/monofloor,
+/obj/machinery/atmospherics/portables_connector{
+	dir = 8
+	},
+/obj/machinery/portable_atmospherics/canister/phoron{
+	start_pressure = 8000.25
+	},
+/turf/simulated/floor/tiled/monofloor{
+	dir = 8
+	},
 /area/shuttle/curabitur/curashuttle/eng)
 
 (1,1,1) = {"
