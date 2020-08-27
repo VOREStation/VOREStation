@@ -18,7 +18,7 @@
 /obj/structure/window/phoronbasic{
 	dir = 8
 	},
-/turf/simulated/floor/plating/external,
+/turf/simulated/floor/airless,
 /area/submap/debrisfield/old_sat)
 "e" = (
 /obj/structure/window/phoronbasic{
@@ -35,7 +35,7 @@
 	dir = 4
 	},
 /obj/random/tech_supply/component,
-/turf/simulated/floor/plating/external,
+/turf/simulated/floor/airless,
 /area/submap/debrisfield/old_sat)
 "g" = (
 /obj/item/weapon/material/shard,
@@ -49,7 +49,7 @@
 /obj/machinery/power/solar/fake{
 	adir = 315
 	},
-/turf/simulated/floor/plating/external,
+/turf/simulated/floor/airless,
 /area/submap/debrisfield/old_sat)
 "i" = (
 /obj/structure/cable{
@@ -62,7 +62,7 @@
 /obj/machinery/power/solar/fake{
 	adir = 315
 	},
-/turf/simulated/floor/plating/external,
+/turf/simulated/floor/airless,
 /area/submap/debrisfield/old_sat)
 "j" = (
 /obj/structure/window/phoronbasic{
@@ -72,7 +72,7 @@
 	icon_state = "4-8"
 	},
 /obj/random/tech_supply/component,
-/turf/simulated/floor/plating/external,
+/turf/simulated/floor/airless,
 /area/submap/debrisfield/old_sat)
 "k" = (
 /obj/structure/AIcore{
@@ -94,7 +94,7 @@
 	icon_state = "4-8"
 	},
 /obj/random/tech_supply/component,
-/turf/simulated/floor/plating/external,
+/turf/simulated/floor/airless,
 /area/submap/debrisfield/old_sat)
 "m" = (
 /obj/structure/cable{
@@ -103,14 +103,14 @@
 /obj/machinery/power/solar/fake{
 	stat = 1
 	},
-/turf/simulated/floor/plating/external,
+/turf/simulated/floor/airless,
 /area/submap/debrisfield/old_sat)
 "n" = (
 /obj/structure/window/phoronbasic{
 	dir = 8
 	},
 /obj/structure/window/phoronbasic,
-/turf/simulated/floor/plating/external,
+/turf/simulated/floor/airless,
 /area/submap/debrisfield/old_sat)
 "o" = (
 /obj/structure/lattice,
@@ -126,10 +126,7 @@
 /obj/item/weapon/material/shard/phoron,
 /obj/item/weapon/ore/iron,
 /obj/random/tech_supply/component,
-/turf/simulated/floor/plating/external{
-	broken = 2;
-	icon_state = "dmg2"
-	},
+/turf/simulated/floor/airless,
 /area/submap/debrisfield/old_sat)
 "r" = (
 /obj/item/weapon/ore/iron,
