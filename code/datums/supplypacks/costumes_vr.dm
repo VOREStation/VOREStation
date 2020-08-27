@@ -275,7 +275,9 @@
 			/obj/item/clothing/head/helmet/combat/crusader_costume,
 			/obj/item/clothing/head/helmet/combat/bedevere_costume,
 			/obj/item/clothing/gloves/combat/knight_costume,
-			/obj/item/clothing/gloves/combat/knight_costume/brown
+			/obj/item/clothing/gloves/combat/knight_costume/brown,
+			/obj/item/clothing/shoes/knight_costume,
+			/obj/item/clothing/shoes/knight_costume/black
 			)
 	cost = 10
 	containertype = /obj/structure/closet/crate
