@@ -99,18 +99,27 @@
 	icon_living = "rabbit_black"
 	icon_dead = "rabbit_black_dead"
 	icon_rest = "rabbit_black_rest"
+	body_color = "black"
 	
 /mob/living/simple_mob/vore/rabbit/white
 	icon_state = "rabbit_white"
 	icon_living = "rabbit_white"
 	icon_dead = "rabbit_white_dead"
 	icon_rest = "rabbit_white_rest"
+	body_color = "white"
+	
+/mob/living/simple_mob/vore/rabbit/brown
+	icon_state = "rabbit_brown"
+	icon_living = "rabbit_brown"
+	icon_dead = "rabbit_brown_dead"
+	icon_rest = "rabbit_brown_rest"
+	body_color = "brown"
 	
 /mob/living/simple_mob/vore/rabbit/white/lennie
 	name = "Lennie"
 	desc = "A large but somewhat dumb-looking rabbit. Has a little collar that says 'Lennie'!"
 	
-/mob/living/simple_mob/vore/rabbit/george
+/mob/living/simple_mob/vore/rabbit/brown/george
 	name = "George"
 	desc = "A small and quick bunny with a restless expression in its eyes. Has a little collar that says 'George'!"
 	

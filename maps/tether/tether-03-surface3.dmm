@@ -10242,7 +10242,7 @@
 /turf/simulated/floor/tiled,
 /area/rnd/xenobiology/xenoflora)
 "arZ" = (
-/mob/living/simple_mob/vore/rabbit/george,
+/mob/living/simple_mob/vore/rabbit/brown/george,
 /turf/simulated/floor/grass,
 /area/hydroponics)
 "asa" = (
