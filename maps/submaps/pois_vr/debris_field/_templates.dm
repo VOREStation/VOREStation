@@ -18,6 +18,21 @@
 	mappath = 'asteroids3.dmm'
 	cost = 2
 
+/datum/map_template/debrisfield/asteroids4
+	name = "Asteroids 4"
+	mappath = 'asteroids4.dmm'
+	cost = 2
+
+/datum/map_template/debrisfield/asteroids5
+	name = "Asteroids 5"
+	mappath = 'asteroids5.dmm'
+	cost = 2
+
+/datum/map_template/debrisfield/asteroids6
+	name = "Asteroids 6"
+	mappath = 'asteroids6.dmm'
+	cost = 2
+
 /datum/map_template/debrisfield/carp_asteroids1
 	name = "Carp Asteroids 1"
 	mappath = 'carp_asteroids1.dmm'
@@ -36,6 +51,16 @@
 /datum/map_template/debrisfield/carp_asteroids4
 	name = "Carp Asteroids 4"
 	mappath = 'carp_asteroids4.dmm'
+	cost = 5
+
+/datum/map_template/debrisfield/carp_asteroids5
+	name = "Carp Asteroids 5"
+	mappath = 'carp_asteroids5.dmm'
+	cost = 5
+
+/datum/map_template/debrisfield/carp_asteroids6
+	name = "Carp Asteroids 6"
+	mappath = 'carp_asteroids6.dmm'
 	cost = 5
 
 /datum/map_template/debrisfield/foodstand
@@ -73,6 +98,40 @@
 	name = "Debris 6"
 	mappath = 'debris6.dmm'
 	cost = 2
+
+/datum/map_template/debrisfield/debris7
+	name = "Debris 7"
+	mappath = 'debris7.dmm'
+	cost = 2
+
+/datum/map_template/debrisfield/debris8
+	name = "Debris 8"
+	mappath = 'debris8.dmm'
+	cost = 2
+
+/datum/map_template/debrisfield/escape_pod
+	name = "Ancient Escape Pod"
+	mappath = 'escape_pod.dmm'
+	cost = 5
+	allow_duplicates = FALSE
+
+/datum/map_template/debrisfield/old_satellite
+	name = "Old Satellite"
+	mappath = 'old_satellite.dmm'
+	cost = 10
+	allow_duplicates = FALSE
+
+/datum/map_template/debrisfield/old_teleporter
+	name = "Old Teleporter"
+	mappath = 'old_teleporter.dmm'
+	cost = 10
+	allow_duplicates = FALSE
+
+/datum/map_template/debrisfield/ship_mining_drone
+	name = "Disabled Mining Drone Ship"
+	mappath = 'ship_mining_drone.dmm'
+	cost = 35
+	allow_duplicates = FALSE
 
 /datum/map_template/debrisfield/ship_sup_exploded
 	name = "Exploded Cargo Ship"

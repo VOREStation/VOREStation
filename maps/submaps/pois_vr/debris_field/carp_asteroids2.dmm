@@ -6,9 +6,12 @@
 /turf/template_noop,
 /area/space)
 "c" = (
+/turf/template_noop,
+/area/submap/debrisfield/misc_debris)
+"d" = (
 /obj/tether_away_spawner/debrisfield/carp,
 /turf/template_noop,
-/area/space)
+/area/submap/debrisfield/misc_debris)
 
 (1,1,1) = {"
 a
@@ -34,26 +37,26 @@ a
 a
 b
 b
-b
-b
+c
+c
 "}
 (4,1,1) = {"
 b
 b
 b
 b
-b
 c
-b
+d
+c
 "}
 (5,1,1) = {"
 b
 b
 a
 a
-b
-b
-b
+c
+c
+c
 "}
 (6,1,1) = {"
 b
@@ -61,11 +64,11 @@ a
 a
 a
 a
-b
-b
+c
+c
 "}
 (7,1,1) = {"
-b
+c
 a
 a
 a
@@ -74,8 +77,8 @@ b
 b
 "}
 (8,1,1) = {"
-b
 c
+d
 a
 a
 b
@@ -83,8 +86,8 @@ b
 b
 "}
 (9,1,1) = {"
-b
-b
+c
+c
 a
 b
 b
@@ -92,8 +95,8 @@ b
 b
 "}
 (10,1,1) = {"
-b
-b
+c
+c
 b
 b
 b

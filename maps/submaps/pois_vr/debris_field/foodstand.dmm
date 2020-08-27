@@ -19,8 +19,12 @@
 /turf/simulated/floor/wood,
 /area/submap/debrisfield/foodstand)
 "f" = (
-/obj/machinery/light/small,
-/turf/simulated/mineral/floor/vacuum,
+/obj/structure/table/woodentable,
+/obj/item/weapon/reagent_containers/food/condiment/coldsauce,
+/obj/item/weapon/reagent_containers/food/condiment/ketchup,
+/obj/item/weapon/reagent_containers/food/condiment/hotsauce,
+/obj/item/weapon/reagent_containers/food/condiment/soysauce,
+/turf/simulated/floor/wood,
 /area/submap/debrisfield/foodstand)
 "g" = (
 /obj/structure/table/woodentable,
@@ -60,50 +64,6 @@
 "m" = (
 /obj/structure/table/woodentable,
 /turf/simulated/floor/wood,
-/area/submap/debrisfield/foodstand)
-"n" = (
-/obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/condiment/coldsauce,
-/obj/item/weapon/reagent_containers/food/condiment/ketchup,
-/obj/item/weapon/reagent_containers/food/condiment/hotsauce,
-/obj/item/weapon/reagent_containers/food/condiment/soysauce,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/simulated/floor/wood,
-/area/submap/debrisfield/foodstand)
-"o" = (
-/obj/structure/grille,
-/turf/simulated/mineral/floor/vacuum,
-/area/submap/debrisfield/foodstand)
-"p" = (
-/obj/machinery/power/apc{
-	pixel_y = -24
-	},
-/obj/structure/cable/yellow{
-	icon_state = "0-4"
-	},
-/turf/simulated/mineral/floor/vacuum,
-/area/submap/debrisfield/foodstand)
-"q" = (
-/obj/structure/grille,
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/turf/simulated/mineral/floor/vacuum,
-/area/submap/debrisfield/foodstand)
-"r" = (
-/obj/machinery/power/rtg,
-/obj/structure/cable/yellow{
-	icon_state = "0-8"
-	},
-/turf/simulated/mineral/floor/vacuum,
-/area/submap/debrisfield/foodstand)
-"s" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/simulated/mineral/floor/vacuum,
 /area/submap/debrisfield/foodstand)
 
 (1,1,1) = {"
@@ -162,12 +122,12 @@ a
 b
 b
 c
-f
+c
 d
 d
 h
 d
-s
+c
 c
 a
 "}
@@ -175,7 +135,7 @@ a
 b
 c
 c
-p
+c
 d
 e
 i
@@ -187,10 +147,10 @@ c
 (7,1,1) = {"
 b
 c
-o
-q
+c
+c
 d
-n
+f
 i
 l
 c
@@ -200,8 +160,8 @@ c
 (8,1,1) = {"
 a
 c
-o
-r
+c
+c
 d
 g
 j
@@ -213,13 +173,13 @@ c
 (9,1,1) = {"
 a
 c
-o
-o
+c
+c
 d
 d
 d
 d
-s
+c
 c
 c
 "}

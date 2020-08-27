@@ -1,0 +1,718 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/space)
+"b" = (
+/turf/simulated/wall/rthull,
+/area/submap/debrisfield/mining_drone_ship)
+"c" = (
+/obj/structure/window/plastitanium/full,
+/obj/structure/window/plastitanium{
+	dir = 1
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"d" = (
+/obj/machinery/power/emitter/gyrotron/anchored{
+	active = 1;
+	desc = "A heavy beam emitter modified for use in breaking apart ore-rich asteroids.";
+	dir = 1;
+	locked = 1;
+	mega_energy = 0.2;
+	name = "modified emitter";
+	rate = 5;
+	req_access = list(-1)
+	},
+/obj/structure/cable/yellow{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"e" = (
+/turf/simulated/mineral/vacuum,
+/area/submap/debrisfield/mining_drone_ship)
+"f" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"g" = (
+/obj/structure/girder/reinforced,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"h" = (
+/obj/structure/prop{
+	desc = "An array of conventional power storage units, for when the added charge longivity and cost of a SMES unit is unneded or impractical.";
+	icon = 'icons/obj/power.dmi';
+	icon_state = "gridchecker_off";
+	name = "capacitor bank"
+	},
+/obj/structure/cable/yellow{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"i" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"j" = (
+/obj/machinery/door/blast/regular/open{
+	dir = 4;
+	id = "drone_toggle"
+	},
+/obj/machinery/conveyor{
+	operating = 1
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"k" = (
+/obj/structure/prop{
+	desc = "There are a number of what seem to be error messages on these screens, none intelligible.";
+	icon = 'icons/obj/mainframe.dmi';
+	icon_state = "leftb";
+	name = "console"
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"l" = (
+/obj/structure/prop{
+	desc = "This isn't going to be fixable.";
+	icon = 'icons/obj/mainframe.dmi';
+	icon_state = "aimainframeb";
+	name = "broken console"
+	},
+/obj/effect/map_effect/interval/effect_emitter/sparks,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"m" = (
+/turf/simulated/mineral/vacuum,
+/area/space)
+"n" = (
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"o" = (
+/obj/machinery/conveyor{
+	operating = 1
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"p" = (
+/obj/structure/cable/yellow{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"q" = (
+/mob/living/simple_mob/mechanical/hivebot/swarm,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"r" = (
+/obj/machinery/power/rtg/fake_gen{
+	desc = "An array of conventional power storage units, for when the added charge longivity and cost of a SMES unit is unneded or impractical.";
+	icon = 'icons/obj/power.dmi';
+	icon_state = "gridchecker_off";
+	name = "capacitor bank";
+	power_gen = 12000
+	},
+/obj/structure/cable/yellow{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"s" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"t" = (
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"u" = (
+/obj/machinery/door/blast/regular{
+	id = "miner_poi_toggle"
+	},
+/obj/structure/catwalk,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"v" = (
+/obj/machinery/conveyor{
+	operating = 1
+	},
+/obj/structure/catwalk,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8";
+	plane = -45
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"w" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"x" = (
+/obj/machinery/button/remote/blast_door{
+	id = "miner_poi_toggle";
+	name = "Power Compartment Access";
+	pixel_y = -24
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"y" = (
+/obj/machinery/door/airlock/maintenance_hatch,
+/turf/simulated/wall/rthull,
+/area/submap/debrisfield/mining_drone_ship)
+"z" = (
+/obj/machinery/door/blast/regular/open{
+	dir = 4;
+	id = "miner_poi_toggle"
+	},
+/obj/machinery/conveyor{
+	operating = 1
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"A" = (
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/gold,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"B" = (
+/obj/item/weapon/ore,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"C" = (
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/diamond,
+/obj/machinery/artifact,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"D" = (
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/silver,
+/obj/item/weapon/ore/silver,
+/obj/item/weapon/ore/phoron,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"E" = (
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/silver,
+/obj/item/weapon/ore/silver,
+/obj/item/weapon/ore/iron,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"F" = (
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/silver,
+/obj/item/weapon/ore/coal,
+/obj/item/weapon/ore/phoron,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"G" = (
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/silver,
+/obj/item/weapon/ore/silver,
+/obj/item/weapon/ore/coal,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/gold,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"H" = (
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/silver,
+/obj/item/weapon/ore/silver,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/phoron,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"I" = (
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/iron,
+/mob/living/simple_mob/mechanical/hivebot/support/commander,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"J" = (
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/silver,
+/obj/item/weapon/ore/silver,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/phoron,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"K" = (
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/silver,
+/obj/item/weapon/ore/silver,
+/obj/item/weapon/ore/silver,
+/obj/item/weapon/ore/coal,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/phoron,
+/obj/item/weapon/ore/phoron,
+/obj/item/weapon/ore/phoron,
+/obj/item/weapon/ore/phoron,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"L" = (
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/silver,
+/obj/item/weapon/ore/silver,
+/obj/item/weapon/ore/silver,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/phoron,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"M" = (
+/obj/item/weapon/ore,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/silver,
+/obj/item/weapon/ore/silver,
+/obj/item/weapon/ore/coal,
+/obj/item/weapon/ore/coal,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/phoron,
+/obj/item/weapon/ore/phoron,
+/obj/item/weapon/ore,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"N" = (
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/silver,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/phoron,
+/obj/item/weapon/ore/phoron,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"O" = (
+/obj/item/weapon/ore,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/silver,
+/obj/item/weapon/ore/silver,
+/obj/item/weapon/ore/silver,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/phoron,
+/obj/item/weapon/ore/phoron,
+/obj/item/weapon/ore/phoron,
+/obj/item/weapon/ore/phoron,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"P" = (
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/silver,
+/obj/item/weapon/ore/silver,
+/obj/item/weapon/ore/silver,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"Q" = (
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/iron,
+/obj/structure/mob_spawner{
+	density = 1;
+	desc = "A bizarre mess of robotic limbs, glowing microrefineries, and nanoassemblers gradually converting the pile of raw materials into active hivebots.";
+	destructible = 1;
+	icon = 'icons/obj/recycling.dmi';
+	icon_state = "grinder-b1";
+	name = "hivebot assembler";
+	simultaneous_spawns = 6;
+	spawn_delay = 300;
+	spawn_types = list(/mob/living/simple_mob/mechanical/hivebot/swarm = 200, /mob/living/simple_mob/mechanical/hivebot/ranged_damage/basic = 50, /mob/living/simple_mob/mechanical/hivebot/ranged_damage/laser = 25, /mob/living/simple_mob/mechanical/hivebot/ranged_damage/ion = 10, /mob/living/simple_mob/mechanical/hivebot/tank/meatshield = 10)
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"R" = (
+/obj/structure/shuttle/engine/heater{
+	pixel_y = -16
+	},
+/turf/simulated/wall/rthull,
+/area/submap/debrisfield/mining_drone_ship)
+"S" = (
+/obj/item/weapon/ore/gold,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"T" = (
+/obj/item/weapon/ore,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/iron,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"U" = (
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/coal,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"V" = (
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/phoron,
+/obj/item/weapon/ore/phoron,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"W" = (
+/obj/item/weapon/ore,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/silver,
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/phoron,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"X" = (
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/gold,
+/obj/item/weapon/ore/silver,
+/obj/item/weapon/ore/iron,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"Y" = (
+/obj/item/weapon/ore/diamond,
+/obj/item/weapon/ore/iron,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"Z" = (
+/obj/structure/shuttle/engine/propulsion{
+	pixel_y = -16
+	},
+/turf/space,
+/area/submap/debrisfield/mining_drone_ship)
+
+(1,1,1) = {"
+a
+a
+a
+b
+b
+b
+b
+b
+b
+b
+R
+Z
+"}
+(2,1,1) = {"
+a
+b
+b
+b
+h
+h
+r
+b
+A
+A
+b
+b
+"}
+(3,1,1) = {"
+a
+c
+d
+f
+i
+i
+s
+b
+B
+J
+S
+b
+"}
+(4,1,1) = {"
+a
+b
+b
+b
+b
+n
+t
+b
+C
+K
+T
+b
+"}
+(5,1,1) = {"
+a
+a
+a
+a
+b
+b
+u
+b
+D
+L
+U
+b
+"}
+(6,1,1) = {"
+a
+a
+a
+a
+j
+o
+v
+z
+E
+M
+V
+b
+"}
+(7,1,1) = {"
+a
+m
+a
+a
+b
+b
+u
+b
+F
+N
+W
+b
+"}
+(8,1,1) = {"
+m
+m
+m
+b
+b
+p
+w
+b
+G
+O
+X
+b
+"}
+(9,1,1) = {"
+m
+m
+e
+g
+k
+q
+x
+b
+H
+P
+Y
+b
+"}
+(10,1,1) = {"
+m
+m
+e
+e
+l
+n
+n
+b
+I
+Q
+b
+b
+"}
+(11,1,1) = {"
+a
+m
+m
+b
+b
+b
+y
+b
+b
+b
+R
+Z
+"}

@@ -1,0 +1,92 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/space)
+"b" = (
+/turf/simulated/wall/dshull,
+/area/space)
+"c" = (
+/obj/structure/lattice,
+/obj/item/stack/cable_coil/cut,
+/turf/template_noop,
+/area/space)
+"d" = (
+/turf/simulated/floor/airless,
+/area/space)
+"f" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/airless,
+/area/space)
+"g" = (
+/obj/structure/lattice,
+/turf/template_noop,
+/area/space)
+
+(1,1,1) = {"
+a
+a
+a
+a
+b
+b
+b
+b
+b
+"}
+(2,1,1) = {"
+b
+b
+b
+b
+b
+d
+d
+d
+a
+"}
+(3,1,1) = {"
+a
+c
+d
+d
+d
+d
+d
+a
+a
+"}
+(4,1,1) = {"
+a
+a
+g
+f
+f
+c
+a
+a
+a
+"}
+(5,1,1) = {"
+a
+a
+g
+g
+g
+a
+a
+a
+a
+"}
+(6,1,1) = {"
+a
+a
+a
+g
+a
+a
+a
+a
+a
+"}

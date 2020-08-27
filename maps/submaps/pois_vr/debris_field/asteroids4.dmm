@@ -5,20 +5,15 @@
 "b" = (
 /turf/simulated/mineral/vacuum,
 /area/space)
-"c" = (
-/turf/template_noop,
-/area/submap/debrisfield/misc_debris)
-"d" = (
-/obj/tether_away_spawner/debrisfield/carp/hard,
-/turf/template_noop,
-/area/submap/debrisfield/misc_debris)
 
 (1,1,1) = {"
 a
 a
+a
 b
 a
-c
+a
+a
 a
 a
 a
@@ -28,76 +23,92 @@ a
 b
 b
 b
-c
-b
-b
-b
+a
+a
+a
+a
+a
+a
 "}
 (3,1,1) = {"
 b
 b
 b
 b
-c
 b
-b
-b
+a
+a
+a
+a
+a
 "}
 (4,1,1) = {"
+a
+b
+b
 b
 b
 b
 a
-c
 a
-b
-b
+a
+a
 "}
 (5,1,1) = {"
 a
+a
+a
+a
 b
-c
-c
-d
-c
+b
+b
+a
 a
 a
 "}
 (6,1,1) = {"
-c
-c
-c
-c
-c
-c
-c
-c
+a
+a
+a
+a
+a
+b
+a
+a
+a
+a
 "}
 (7,1,1) = {"
-c
+a
+a
+a
 a
 b
 b
+a
+b
 b
 a
-c
-c
 "}
 (8,1,1) = {"
 a
-b
-b
-b
-b
-b
-b
 a
+a
+a
+a
+b
+b
+b
+b
+b
 "}
 (9,1,1) = {"
 a
-b
-b
-b
+a
+a
+a
+a
+a
 b
 b
 b
@@ -106,20 +117,12 @@ a
 (10,1,1) = {"
 a
 a
-b
-b
-b
-b
 a
 a
-"}
-(11,1,1) = {"
 a
 a
 a
 b
-b
-a
 a
 a
 "}
