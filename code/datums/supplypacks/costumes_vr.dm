@@ -262,3 +262,21 @@
 	cost = 60
 	containertype = /obj/structure/closet/crate
 	containername = "Saddlebags crate"
+	
+/datum/supply_pack/costumes/knights_gear
+	name = "Knights Gear"
+	contains = list(
+			/obj/item/clothing/suit/storage/hooded/knight_costume,
+			/obj/item/clothing/suit/storage/hooded/knight_costume/galahad,
+			/obj/item/clothing/suit/storage/hooded/knight_costume/lancelot,
+			/obj/item/clothing/suit/storage/hooded/knight_costume/robin,
+			/obj/item/clothing/suit/armor/combat/crusader_costume,
+			/obj/item/clothing/suit/armor/combat/crusader_costume/bedevere,
+			/obj/item/clothing/head/helmet/combat/crusader_costume,
+			/obj/item/clothing/head/helmet/combat/bedevere_costume,
+			/obj/item/clothing/gloves/combat/knight_costume,
+			/obj/item/clothing/gloves/combat/knight_costume/brown
+			)
+	cost = 10
+	containertype = /obj/structure/closet/crate
+	containername = "Knights Gear Crate"
