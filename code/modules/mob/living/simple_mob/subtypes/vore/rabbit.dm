@@ -129,8 +129,8 @@
 	icon_dead = "rabbit_killer_dead"
 	icon_rest = "rabbit_killer_rest"
 	
-	maxHealth = 200
-	health = 200
+	maxHealth = 2000
+	health = 2000
 	harm_intent_damage = 5
 	melee_damage_lower = 1
 	melee_damage_upper = 3
