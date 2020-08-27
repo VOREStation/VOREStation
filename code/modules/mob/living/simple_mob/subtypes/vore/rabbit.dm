@@ -43,7 +43,7 @@
 	
 	var/body_color 				//brown, black and white, leave blank for random
 	
-	var/grumpiness 				// This determines how grumpy we are. Pet us to increase it, leave us alone to decrease.
+	var/grumpiness = 0 			// This determines how grumpy we are. Pet us to increase it, leave us alone to decrease.
 	var/last_pet				// This tracks the last time someone patted us.
 	var/grump_decay = 5 SECONDS // This is how quickly our grumpiness decays.
 	
@@ -69,13 +69,13 @@
 	
 	switch(grumpiness)
 		if(-INFINITY to 25)
-			desc += "They appear calm."
+			. += "They appear calm."
 		if(26 to 50)
-			desc += "They seem slightly annoyed."
+			. += "They seem slightly annoyed."
 		if(51 to 75)
-			desc += "They seem very annoyed, perhaps you should stop petting them."
+			. += "They seem very annoyed, perhaps you should stop petting them."
 		if(75 to INFINITY)
-			desc += "They are very angry. Petting them will likely result in unpleasant things."
+			. += "They are very angry. Petting them will likely result in unpleasant things."
 		
 /mob/living/simple_mob/vore/rabbit/attack_hand(mob/user)
 	. = ..()
