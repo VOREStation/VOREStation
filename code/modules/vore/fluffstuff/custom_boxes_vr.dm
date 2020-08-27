@@ -217,19 +217,6 @@
 		/obj/item/weapon/melee/fluffstuff/wolfgirlsword,
 		/obj/item/weapon/shield/fluff/wolfgirlshield)
 
-// Victor Zisthus: KA-BOOM
-/obj/item/weapon/storage/box/fluff/kaboom
-	name = "KA-BOOM's Stuff"
-	desc = "A box filled with some starting equipment for the android."
-	has_items = list(/obj/item/weapon/spacecash/c500,
-	/obj/item/weapon/spacecash/c200 = 2,
-	/obj/item/weapon/storage/belt/utility/full/fluffsynth,
-	/obj/item/clothing/mask/gas/commando,
-	/obj/item/clothing/mask/balaclava,
-	/obj/item/clothing/accessory/storage/black_vest,
-	/obj/item/weapon/storage/backpack/messenger/black)
-
-
 /*
 Swimsuits, for general use, to avoid arriving to work with your swimsuit.
 */

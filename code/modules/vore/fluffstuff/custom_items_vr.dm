@@ -1289,12 +1289,15 @@
 	random_color = FALSE
 	matter = null
 	
-/obj/item/weapon/storage/belt/utility/full/fluffsynth
+/obj/item/weapon/storage/belt/utility/fluff/kaboom
+	color = "#1c1c1c"
 	starts_with = list(
-		/obj/item/weapon/tool/screwdriver/fluff/lowtech,
-		/obj/item/weapon/tool/wrench,
-		/obj/item/weapon/weldingtool,
-		/obj/item/weapon/tool/crowbar,
-		/obj/item/weapon/tool/wirecutters,
-		/obj/item/stack/cable_coil/black
-	)
+		/obj/item/weapon/tool/screwdriver/fluff/lowtech)
+
+/obj/item/weapon/storage/backpack/messenger/black/fluff/kaboom
+	name = "KA-BOOM's Messenger Bag"
+	desc = "A sturdy backpack worn over one shoulder."
+	icon_state = "courierbagblk"
+	item_state_slots = list(slot_r_hand_str = "backpack", slot_l_hand_str = "backpack")
+	starts_with = list(/obj/item/weapon/storage/belt/utility/fluff/kaboom)
+

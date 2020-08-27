@@ -1020,8 +1020,8 @@
 	ckeywhitelist = list("vitoras")
 	character_name = list("Roanna Ti'Rox")
 
-/datum/gear/fluff/kaboombox
-	path = /obj/item/weapon/storage/box/fluff/kaboom
+/datum/gear/fluff/kaboombag
+	path = /obj/item/weapon/storage/backpack/messenger/black/fluff/kaboom
 	display_name = "KA-BOOM's Stuff"
 	ckeywhitelist = list("victorzisthus")
 	character_name = list("KA-BOOM")
