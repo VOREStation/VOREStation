@@ -48,8 +48,11 @@
 			var/obj/item/clothing/accessory/tie = new T(src)
 			src.attach_accessory(null, tie)
 	set_clothing_index()
+
+	//VOREStation edit start
 	if(polychromic)
 		verbs |= /obj/item/clothing/proc/change_color
+	//VOREStation edit start
 
 /obj/item/clothing/equipped(var/mob/user,var/slot)
 	..()
