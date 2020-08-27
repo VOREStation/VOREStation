@@ -72,6 +72,8 @@
 
 		W.attack_self(src)
 		return
+	if(A.type==/obj/structure/flora/pottedplant || A.parent_type==/obj/structure/flora/pottedplant)
+		return
 
 	// cyborgs are prohibited from using storage items so we can I think safely remove (A.loc in contents)
 	if(A == loc || (A in loc) || (A in contents))
