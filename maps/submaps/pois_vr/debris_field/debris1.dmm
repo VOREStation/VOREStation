@@ -2,17 +2,17 @@
 "a" = (
 /obj/structure/lattice,
 /turf/space,
-/area/tether_away/debrisfield/explored)
+/area/space)
 "b" = (
 /turf/template_noop,
-/area/tether_away/debrisfield/explored)
+/area/space)
 "c" = (
 /turf/simulated/floor/airless,
-/area/tether_away/debrisfield/explored)
+/area/space)
 "d" = (
 /obj/structure/girder,
 /turf/simulated/floor/airless,
-/area/tether_away/debrisfield/explored)
+/area/space)
 
 (1,1,1) = {"
 a
