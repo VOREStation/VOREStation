@@ -56,7 +56,12 @@
 			return
 		M.forceMove(src)
 		occupant = M
+<<<<<<< HEAD
 		update_icon() //icon_state = "body_scanner_1" //VOREStation Edit - Health display for consoles with light and such.
+=======
+		icon_state = "body_scanner_1"
+		playsound(src, 'sound/machines/medbayscanner1.ogg', 50) // Beepboop you're being scanned. <3
+>>>>>>> 4bf64e6... Merge pull request #7459 from Rykka-Stormheart/shep-dev-sound-overhaul
 		add_fingerprint(user)
 		qdel(G)
 		SStgui.update_uis(src)
@@ -100,7 +105,12 @@
 
 	O.forceMove(src)
 	occupant = O
+<<<<<<< HEAD
 	update_icon() //icon_state = "body_scanner_1" //VOREStation Edit - Health display for consoles with light and such.
+=======
+	icon_state = "body_scanner_1"
+	playsound(src, 'sound/machines/medbayscanner1.ogg', 50) // Beepboop you're being scanned. <3
+>>>>>>> 4bf64e6... Merge pull request #7459 from Rykka-Stormheart/shep-dev-sound-overhaul
 	add_fingerprint(user)
 	SStgui.update_uis(src)
 

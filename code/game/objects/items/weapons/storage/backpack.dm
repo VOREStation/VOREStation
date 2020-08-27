@@ -17,6 +17,7 @@
 	var/flippable = 0
 	var/side = 0 //0 = right, 1 = left
 	drop_sound = 'sound/items/drop/backpack.ogg'
+	pickup_sound = 'sound/items/pickup/backpack.ogg'
 
 
 /obj/item/weapon/storage/backpack/equipped(var/mob/user, var/slot)

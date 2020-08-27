@@ -13,6 +13,8 @@
 	desc = "This shouldn't be here, ahelp it."
 	icon = 'icons/obj/surgery.dmi'
 	w_class = ITEMSIZE_SMALL
+	drop_sound = 'sound/items/drop/weldingtool.ogg'
+	pickup_sound = 'sound/items/pickup/weldingtool.ogg'
 	var/helpforce = 0	//For help intent things
 
 /obj/item/weapon/surgical/attack(mob/M, mob/user)

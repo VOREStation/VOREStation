@@ -43,6 +43,9 @@
 
 #define WARNING_DELAY 20			//seconds between warnings.
 
+// Keeps Accent sounds from layering, increase or decrease as preferred.
+#define SUPERMATTER_ACCENT_SOUND_COOLDOWN 2 SECONDS
+
 /obj/machinery/power/supermatter
 	name = "Supermatter"
 	desc = "A strangely translucent and iridescent crystal. <font color='red'>You get headaches just from looking at it.</font>"
@@ -98,6 +101,9 @@
 	var/config_hallucination_power = 0.1
 
 	var/debug = 0
+	
+	/// Cooldown tracker for accent sounds, 
+	var/last_accent_sound = 0
 
 	var/datum/looping_sound/supermatter/soundloop
 
@@ -290,11 +296,29 @@
 		shift_light(4,initial(light_color))
 	if(grav_pulling)
 		supermatter_pull(src)
-
+	
+	// Vary volume by power produced.
 	if(power)
 		// Volume will be 1 at no power, ~12.5 at ENERGY_NITROGEN, and 20+ at ENERGY_PHORON.
 		// Capped to 20 volume since higher volumes get annoying and it sounds worse.
-		soundloop.volume = min(round(power/10)+1, 20)
+		// Formula previously was min(round(power/10)+1, 20)
+		soundloop.volume = CLAMP((50 + (power / 50)), 50, 100)
+
+	// Swap loops between calm and delamming.
+	if(damage >= 300)
+		soundloop.mid_sounds = list('sound/machines/sm/loops/delamming.ogg' = 1)
+	else
+		soundloop.mid_sounds = list('sound/machines/sm/loops/calm.ogg' = 1)
+	
+	// Play Delam/Neutral sounds at rate determined by power and damage.
+	if(last_accent_sound < world.time && prob(20))
+		var/aggression = min(((damage / 800) * (power / 2500)), 1.0) * 100
+		if(damage >= 300)
+			playsound(src, "smdelam", max(50, aggression), FALSE, 10)
+		else
+			playsound(src, "smcalm", max(50, aggression), FALSE, 10)
+		var/next_sound = round((100 - aggression) * 5)
+		last_accent_sound = world.time + max(SUPERMATTER_ACCENT_SOUND_COOLDOWN, next_sound)
 
 	//Ok, get the air from the turf
 	var/datum/gas_mixture/removed = null

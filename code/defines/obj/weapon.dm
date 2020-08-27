@@ -78,7 +78,13 @@
 
 /obj/item/weapon/disk
 	name = "disk"
+<<<<<<< HEAD
 	icon = 'icons/obj/discs_vr.dmi' //VOREStation Edit
+=======
+	icon = 'icons/obj/items.dmi'
+	drop_sound = 'sound/items/drop/disk.ogg'
+	pickup_sound =  'sound/items/pickup/disk.ogg'
+>>>>>>> 4bf64e6... Merge pull request #7459 from Rykka-Stormheart/shep-dev-sound-overhaul
 
 /obj/item/weapon/disk/nuclear
 	name = "nuclear authentication disk"

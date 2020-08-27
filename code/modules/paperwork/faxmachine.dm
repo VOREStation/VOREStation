@@ -156,7 +156,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 		return 0	//You can't send faxes to "Unknown"
 
 	flick("faxreceive", src)
-	playsound(src, "sound/effects/printer.ogg", 50, 1)
+	playsound(src, "sound/machines/printer.ogg", 50, 1)
 
 
 	// give the sprite some time to flick
@@ -219,9 +219,13 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	for(var/client/C in GLOB.admins)
 		if(check_rights((R_ADMIN|R_MOD|R_EVENT),0,C))
 			to_chat(C,msg)
+<<<<<<< HEAD
 			C << 'sound/effects/printer.ogg'
 
 	// VoreStation Edit Start
 	var/faxid = export_fax(sent)
 	message_chat_admins(sender, faxname, sent, faxid, font_colour)
 	// VoreStation Edit End
+=======
+			C << 'sound/machines/printer.ogg'
+>>>>>>> 4bf64e6... Merge pull request #7459 from Rykka-Stormheart/shep-dev-sound-overhaul
