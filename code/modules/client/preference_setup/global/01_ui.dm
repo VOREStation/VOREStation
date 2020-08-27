@@ -22,7 +22,7 @@
 	S["tooltipstyle"]	<< pref.tooltipstyle
 	S["client_fps"]		<< pref.client_fps
 	S["ambience_freq"]	<< pref.ambience_freq
-	S["ambience_chance"] << pref.ambience_freq
+	S["ambience_chance"] << pref.ambience_chance
 	S["tgui_fancy"]		<< pref.tgui_fancy
 	S["tgui_lock"]		<< pref.tgui_lock
 
