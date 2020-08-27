@@ -127,6 +127,7 @@
 	var/body_temperature = 310.15							// Species will try to stabilize at this temperature. (also affects temperature processing)
 
 	// Cold
+	var/hypothermia_difference = 17.5						// Hypothermia effects below cold_level_1 + this. 
 	var/cold_level_1 = 260									// Cold damage level 1 below this point.
 	var/cold_level_2 = 200									// Cold damage level 2 below this point.
 	var/cold_level_3 = 120									// Cold damage level 3 below this point.
