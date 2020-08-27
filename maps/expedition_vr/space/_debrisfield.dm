@@ -98,7 +98,6 @@
 /area/submap/debrisfield/misc_debris //for random bits of debris that should use dynamic lights
 	requires_power = 1
 	always_unpowered = 1
-	dynamic_lighting = 0
 	has_gravity = 0
 	power_light = 0
 	power_equip = 0
