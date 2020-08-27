@@ -151,14 +151,16 @@
 				if(feet.water_speed)
 					turf_move_cost = CLAMP(turf_move_cost + feet.water_speed, HUMAN_LOWEST_SLOWDOWN, 15)
 			. += turf_move_cost
-
-		if(istype(T, /turf/simulated/floor/outdoors/snow))
+		else if(istype(T, /turf/simulated/floor/outdoors/snow))
 			if(species.snow_movement)
 				turf_move_cost = CLAMP(turf_move_cost + species.snow_movement, HUMAN_LOWEST_SLOWDOWN, 15)
 			if(shoes)
 				var/obj/item/clothing/shoes/feet = shoes
 				if(feet.water_speed)
 					turf_move_cost = CLAMP(turf_move_cost + feet.snow_speed, HUMAN_LOWEST_SLOWDOWN, 15)
+			. += turf_move_cost
+		else
+			turf_move_cost = CLAMP(turf_move_cost, HUMAN_LOWEST_SLOWDOWN, 15)
 			. += turf_move_cost
 
 	// Wind makes it easier or harder to move, depending on if you're with or against the wind.
