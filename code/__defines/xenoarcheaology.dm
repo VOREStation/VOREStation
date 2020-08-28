@@ -49,6 +49,7 @@
 #define DIGSITE_TECHNICAL 4
 #define DIGSITE_TEMPLE 5
 #define DIGSITE_WAR 6
+#define DIGSITE_MIDDEN 7
 
 #define EFFECT_TOUCH 0
 #define EFFECT_AURA 1

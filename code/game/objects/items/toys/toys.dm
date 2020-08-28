@@ -458,8 +458,8 @@
 	toysay = "Dude, I see colors..."
 
 /obj/item/toy/figure/captain
-	name = "Colony Director action figure"
-	desc = "A \"Space Life\" brand Colony Director action figure."
+	name = "Site Manager action figure"
+	desc = "A \"Space Life\" brand Site Manager action figure."
 	icon_state = "captain"
 	toysay = "How do I open this display case?"
 

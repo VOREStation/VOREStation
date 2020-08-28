@@ -189,7 +189,7 @@ mob/living/carbon/proc/handle_hallucinations()
 
 		var/possible_txt = list("Launch Escape Pods","Self-Destruct Sequence","\[Swipe ID\]","De-Monkify",\
 		"Reticulate Splines","Plasma","Open Valve","Lockdown","Nerf Airflow","Kill Traitor","Nihilism",\
-		"OBJECTION!","Arrest Stephen Bowman","Engage Anti-Trenna Defenses","Increase Colony Director IQ","Retrieve Arms",\
+		"OBJECTION!","Arrest Stephen Bowman","Engage Anti-Trenna Defenses","Increase Site Manager IQ","Retrieve Arms",\
 		"Play Charades","Oxygen","Inject BeAcOs","Ninja Lizards","Limit Break","Build Sentry")
 
 		if(mid_txts)

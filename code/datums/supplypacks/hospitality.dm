@@ -54,19 +54,12 @@
 	containertype = /obj/structure/largecrate
 	containername = "cooking oil tank crate"
 
-/datum/supply_pack/randomised/hospitality/
-	group = "Hospitality"
-
-/datum/supply_pack/randomised/hospitality/pizza
+/datum/supply_pack/hospitality/pizza
+	name = "Surprise pack of five pizzas"
 	contains = list(
-			/obj/random/pizzabox,
-			/obj/random/pizzabox,
-			/obj/random/pizzabox,
-			/obj/random/pizzabox,
-			/obj/random/pizzabox,
+			/obj/random/pizzabox = 5,
 			/obj/item/weapon/material/knife/plastic
 			)
-	name = "Surprise pack of five pizzas"
 	cost = 15
 	containertype = /obj/structure/closet/crate/freezer/centauri
 	containername = "Pizza crate"
@@ -84,3 +77,7 @@
 	cost = 10
 	containertype = /obj/structure/closet/crate/allico
 	containername = "crate of gifts"
+
+/datum/supply_pack/randomised/hospitality/
+	group = "Hospitality"
+

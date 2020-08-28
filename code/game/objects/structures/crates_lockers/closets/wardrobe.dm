@@ -348,7 +348,7 @@
 		/obj/item/clothing/shoes/green,
 		/obj/item/clothing/shoes/purple,
 		/obj/item/clothing/shoes/red,
-		/obj/item/clothing/shoes/leather,
+		/obj/item/clothing/shoes/laceup/brown,
 		/obj/item/clothing/under/pants/classicjeans,
 		/obj/item/clothing/under/pants/mustangjeans,
 		/obj/item/clothing/under/pants/blackjeans,
@@ -438,7 +438,7 @@
 		/obj/item/weapon/storage/backpack/satchel = 2)
 
 /obj/structure/closet/wardrobe/captain
-	name = "colony director's wardrobe"
+	name = "site manager's wardrobe"
 	closet_appearance = /decl/closet_appearance/cabinet
 
 	starts_with = list(

@@ -342,6 +342,7 @@
 						cloneresult = pod.growclone(C)
 						if(cloneresult)
 							set_temp("Initiating cloning cycle...", "success")
+							playsound(src, 'sound/machines/medbayscanner1.ogg', 100, 1)
 							records.Remove(C)
 							qdel(C)
 							menu = MENU_MAIN

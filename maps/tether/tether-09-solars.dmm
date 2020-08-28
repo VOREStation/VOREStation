@@ -4478,7 +4478,7 @@
 /turf/simulated/floor,
 /area/rnd/outpost/atmos)
 "im" = (
-/obj/machinery/portable_atmospherics/canister/empty/sleeping_agent,
+/obj/machinery/portable_atmospherics/canister/empty/nitrous_oxide,
 /obj/machinery/atmospherics/pipe/simple/visible/black,
 /obj/machinery/atmospherics/portables_connector{
 	dir = 8
@@ -4488,7 +4488,7 @@
 "in" = (
 /obj/machinery/atmospherics/trinary/atmos_filter/m_filter{
 	filter_type = 4;
-	filtered_out = list("sleeping_agent")
+	filtered_out = list("nitrous_oxide")
 	},
 /turf/simulated/floor,
 /area/rnd/outpost/atmos)
@@ -5190,7 +5190,7 @@
 /obj/machinery/door/window/brigdoor/westleft{
 	req_access = list()
 	},
-/obj/machinery/portable_atmospherics/canister/sleeping_agent,
+/obj/machinery/portable_atmospherics/canister/nitrous_oxide,
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/rnd/outpost/storage)
@@ -5204,7 +5204,7 @@
 	id = "outpost_canisters";
 	operating = 1
 	},
-/obj/machinery/portable_atmospherics/canister/sleeping_agent,
+/obj/machinery/portable_atmospherics/canister/nitrous_oxide,
 /turf/simulated/floor,
 /area/rnd/outpost/storage)
 "jL" = (
@@ -5220,7 +5220,7 @@
 	id = "outpost_canisters";
 	operating = 1
 	},
-/obj/machinery/portable_atmospherics/canister/sleeping_agent,
+/obj/machinery/portable_atmospherics/canister/nitrous_oxide,
 /turf/simulated/floor,
 /area/rnd/outpost/storage)
 "jM" = (

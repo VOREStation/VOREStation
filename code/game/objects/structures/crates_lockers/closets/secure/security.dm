@@ -1,5 +1,5 @@
 /obj/structure/closet/secure_closet/captains
-	name = "colony director's locker"
+	name = "site manager's locker"
 	req_access = list(access_captain)
 	closet_appearance = /decl/closet_appearance/secure_closet/command
 
@@ -53,7 +53,8 @@
 		/obj/item/clothing/under/lawyer/oldman,
 		/obj/item/clothing/shoes/brown,
 		/obj/item/clothing/shoes/black,
-		/obj/item/clothing/shoes/leather,
+		/obj/item/clothing/shoes/laceup,
+		/obj/item/clothing/shoes/laceup/brown,
 		/obj/item/clothing/shoes/white,
 		/obj/item/clothing/under/rank/head_of_personnel_whimsy,
 		/obj/item/clothing/head/caphat/hop,

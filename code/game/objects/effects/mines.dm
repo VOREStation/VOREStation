@@ -113,7 +113,7 @@
 	triggered = 1
 	for (var/turf/simulated/floor/target in range(1,src))
 		if(!target.blocks_air)
-			target.assume_gas("sleeping_agent", 30)
+			target.assume_gas("nitrous_oxide", 30)
 	visible_message("\The [src.name] detonates!")
 	spawn(0)
 		qdel(src)
