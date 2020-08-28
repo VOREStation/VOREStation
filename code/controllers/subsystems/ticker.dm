@@ -78,6 +78,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 /datum/controller/subsystem/ticker/proc/pregame_welcome()
 	to_world("<span class='boldannounce notice'><em>Welcome to the pregame lobby!</em></span>")
 	to_world("<span class='boldannounce notice'>Please set up your character and select ready. The round will start in [pregame_timeleft] seconds.</span>")
+	world << sound('sound/misc/server-ready.ogg', volume = 100)
 
 // Called during GAME_STATE_PREGAME (RUNLEVEL_LOBBY)
 /datum/controller/subsystem/ticker/proc/pregame_tick()
@@ -402,20 +403,23 @@ var/global/datum/controller/subsystem/ticker/ticker
 	for(var/mob/new_player/player in player_list)
 		if(player && player.ready && player.mind?.assigned_role)
 			var/datum/job/J = SSjob.get_job(player.mind.assigned_role)
-			
+
 			// Snowflakey AI treatment
 			if(J?.mob_type & JOB_SILICON_AI)
 				player.close_spawn_windows()
 				player.AIize(move = TRUE)
 				continue
-			
+
 			// Ask their new_player mob to spawn them
 			if(!player.spawn_checks_vr(player.mind.assigned_role)) continue //VOREStation Add
 			var/mob/living/carbon/human/new_char = player.create_character()
-			
+
 			// Created their playable character, delete their /mob/new_player
 			if(new_char)
 				qdel(player)
+				if(new_char.client)
+					var/obj/screen/splash/S = new(new_char.client, TRUE)
+					S.Fade(TRUE)
 
 			// If they're a carbon, they can get manifested
 			if(J?.mob_type & JOB_CARBON)
@@ -431,7 +435,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 	var/captainless=1
 	for(var/mob/living/carbon/human/player in player_list)
 		if(player && player.mind && player.mind.assigned_role)
-			if(player.mind.assigned_role == "Colony Director")
+			if(player.mind.assigned_role == "Site Manager")
 				captainless=0
 			if(!player_is_antag(player.mind, only_offstation_roles = 1))
 				job_master.EquipRank(player, player.mind.assigned_role, 0)
@@ -441,7 +445,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 	if(captainless)
 		for(var/mob/M in player_list)
 			if(!istype(M,/mob/new_player))
-				to_chat(M, "<span class='notice'>Colony Directorship not forced on anyone.</span>")
+				to_chat(M, "<span class='notice'>Site Management is not forced on anyone.</span>")
 
 
 /datum/controller/subsystem/ticker/proc/declare_completion()

@@ -9,6 +9,7 @@
 	w_class = ITEMSIZE_TINY
 	preserve_item = 1
 	drop_sound = 'sound/items/drop/ring.ogg'
+	pickup_sound = 'sound/items/pickup/ring.ogg'
 
 	var/leaves_residue = 1
 	var/caliber = ""					//Which kind of guns it can be loaded into

@@ -446,7 +446,7 @@
 	icon_state = "fruitbar"
 	trash = /obj/item/trash/candy/fruitbar
 	nutriment_amt = 9
-	nutriment_desc = list("apricot" = 2, "sugar" = 2, "dates" = 2, "cranberry" = 2, "apple = 2")
+	nutriment_desc = list("apricot" = 2, "sugar" = 2, "dates" = 2, "cranberry" = 2, "apple" = 2)
 
 /obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar/Initialize()
 	. = ..()
@@ -2400,6 +2400,8 @@
 	center_of_mass = list("x"=16, "y"=5)
 	nutriment_amt = 6
 	nutriment_desc = list("tomato" = 2, "potato" = 2, "carrot" = 2, "eggplant" = 2, "mushroom" = 2)
+	drop_sound = 'sound/items/drop/shovel.ogg'
+	pickup_sound = 'sound/items/pickup/shovel.ogg'
 
 /obj/item/weapon/reagent_containers/food/snacks/stew/Initialize()
 	. = ..()

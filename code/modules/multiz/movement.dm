@@ -37,6 +37,11 @@
 		forceMove(destination)
 		return 1
 
+	var/obj/structure/ladder/ladder = locate() in start.contents
+	if((direction == UP ? ladder?.target_up : ladder?.target_down) && (ladder?.allowed_directions & direction))
+		if(src.may_climb_ladders(ladder))
+			return ladder.climbLadder(src, (direction == UP ? ladder.target_up : ladder.target_down))
+
 	if(!start.CanZPass(src, direction))
 		to_chat(src, "<span class='warning'>\The [start] is in the way.</span>")
 		return 0
@@ -46,54 +51,59 @@
 		return 0
 
 	var/area/area = get_area(src)
-	if(direction == UP && area.has_gravity() && !can_overcome_gravity())
-		var/obj/structure/lattice/lattice = locate() in destination.contents
-		var/obj/structure/catwalk/catwalk = locate() in destination.contents
-		if(lattice)
-			var/pull_up_time = max(5 SECONDS + (src.movement_delay() * 10), 1)
-			to_chat(src, "<span class='notice'>You grab \the [lattice] and start pulling yourself upward...</span>")
-			destination.audible_message("<span class='notice'>You hear something climbing up \the [lattice].</span>")
-			if(do_after(src, pull_up_time))
-				to_chat(src, "<span class='notice'>You pull yourself up.</span>")
-			else
-				to_chat(src, "<span class='warning'>You gave up on pulling yourself up.</span>")
-				return 0
-		else if(catwalk?.hatch_open)
-			var/pull_up_time = max(5 SECONDS + (src.movement_delay() * 10), 1)
-			to_chat(src, "<span class='notice'>You grab the edge of \the [catwalk] and start pulling yourself upward...</span>")
-			var/old_dest = destination
-			destination = get_step(destination, dir) // mob's dir
-			if(!destination?.Enter(src, old_dest))
-				to_chat(src, "<span class='notice'>There's something in the way up above in that direction, try another.</span>")
-				return 0
-			destination.audible_message("<span class='notice'>You hear something climbing up \the [catwalk].</span>")
-			if(do_after(src, pull_up_time))
-				to_chat(src, "<span class='notice'>You pull yourself up.</span>")
-			else
-				to_chat(src, "<span class='warning'>You gave up on pulling yourself up.</span>")
-				return 0
-		else if(ismob(src)) //VOREStation Edit Start. Are they a mob, and are they currently flying??
-			var/mob/H = src
-			if(H.flying)
-				if(H.incapacitated(INCAPACITATION_ALL))
-					to_chat(src, "<span class='notice'>You can't fly in your current state.</span>")
-					H.stop_flying() //Should already be done, but just in case.
-					return 0
-				var/fly_time = max(7 SECONDS + (H.movement_delay() * 10), 1) //So it's not too useful for combat. Could make this variable somehow, but that's down the road.
-				to_chat(src, "<span class='notice'>You begin to fly upwards...</span>")
-				destination.audible_message("<span class='notice'>You hear the flapping of wings.</span>")
-				H.audible_message("<span class='notice'>[H] begins to flap \his wings, preparing to move upwards!</span>")
-				if(do_after(H, fly_time) && H.flying)
-					to_chat(src, "<span class='notice'>You fly upwards.</span>")
+	if(area.has_gravity() && !can_overcome_gravity())
+		if(direction == UP)
+			var/obj/structure/lattice/lattice = locate() in destination.contents
+			var/obj/structure/catwalk/catwalk = locate() in destination.contents
+
+			if(lattice)
+				var/pull_up_time = max(5 SECONDS + (src.movement_delay() * 10), 1)
+				to_chat(src, "<span class='notice'>You grab \the [lattice] and start pulling yourself upward...</span>")
+				destination.audible_message("<span class='notice'>You hear something climbing up \the [lattice].</span>")
+				if(do_after(src, pull_up_time))
+					to_chat(src, "<span class='notice'>You pull yourself up.</span>")
 				else
-					to_chat(src, "<span class='warning'>You stopped flying upwards.</span>")
+					to_chat(src, "<span class='warning'>You gave up on pulling yourself up.</span>")
 					return 0
+
+			else if(catwalk?.hatch_open)
+				var/pull_up_time = max(5 SECONDS + (src.movement_delay() * 10), 1)
+				to_chat(src, "<span class='notice'>You grab the edge of \the [catwalk] and start pulling yourself upward...</span>")
+				var/old_dest = destination
+				destination = get_step(destination, dir) // mob's dir
+				if(!destination?.Enter(src, old_dest))
+					to_chat(src, "<span class='notice'>There's something in the way up above in that direction, try another.</span>")
+					return 0
+				destination.audible_message("<span class='notice'>You hear something climbing up \the [catwalk].</span>")
+				if(do_after(src, pull_up_time))
+					to_chat(src, "<span class='notice'>You pull yourself up.</span>")
+				else
+					to_chat(src, "<span class='warning'>You gave up on pulling yourself up.</span>")
+					return 0
+
+			else if(ismob(src)) //VOREStation Edit Start. Are they a mob, and are they currently flying??
+				var/mob/H = src
+				if(H.flying)
+					if(H.incapacitated(INCAPACITATION_ALL))
+						to_chat(src, "<span class='notice'>You can't fly in your current state.</span>")
+						H.stop_flying() //Should already be done, but just in case.
+						return 0
+					var/fly_time = max(7 SECONDS + (H.movement_delay() * 10), 1) //So it's not too useful for combat. Could make this variable somehow, but that's down the road.
+					to_chat(src, "<span class='notice'>You begin to fly upwards...</span>")
+					destination.audible_message("<span class='notice'>You hear the flapping of wings.</span>")
+					H.audible_message("<span class='notice'>[H] begins to flap \his wings, preparing to move upwards!</span>")
+					if(do_after(H, fly_time) && H.flying)
+						to_chat(src, "<span class='notice'>You fly upwards.</span>")
+					else
+						to_chat(src, "<span class='warning'>You stopped flying upwards.</span>")
+						return 0
+				else
+					to_chat(src, "<span class='warning'>Gravity stops you from moving upward.</span>")
+					return 0 //VOREStation Edit End.
+
 			else
 				to_chat(src, "<span class='warning'>Gravity stops you from moving upward.</span>")
-				return 0 //VOREStation Edit End.
-		else
-			to_chat(src, "<span class='warning'>Gravity stops you from moving upward.</span>")
-			return 0
+				return 0
 
 	for(var/atom/A in destination)
 		if(!A.CanPass(src, start, 1.5, 0))

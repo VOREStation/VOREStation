@@ -21,6 +21,8 @@
 	var/energy_drain = 0
 	var/obj/mecha/chassis = null
 	var/range = MELEE //bitflags
+	/// Bitflag. Used by exosuit fabricator to assign sub-categories based on which exosuits can equip this.
+	var/mech_flags = NONE
 	var/salvageable = 1
 	var/required_type = /obj/mecha //may be either a type or a list of allowed types
 	var/equip_type = null //mechaequip2

@@ -488,7 +488,7 @@
 // Use for objects performing visible actions
 // message is output to anyone who can see, e.g. "The [src] does something!"
 // blind_message (optional) is what blind people will hear e.g. "You hear something!"
-/atom/proc/visible_message(var/message, var/blind_message)
+/atom/proc/visible_message(var/message, var/blind_message, var/list/exclude_mobs = null)
 
 	//VOREStation Edit
 	var/list/see
@@ -501,6 +501,8 @@
 
 	var/list/seeing_mobs = see["mobs"]
 	var/list/seeing_objs = see["objs"]
+	if(LAZYLEN(exclude_mobs))
+		seeing_mobs -= exclude_mobs
 
 	for(var/obj in seeing_objs)
 		var/obj/O = obj

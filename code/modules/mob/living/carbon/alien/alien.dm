@@ -8,6 +8,8 @@
 	maxHealth = 100
 	mob_size = 4
 
+	inventory_panel_type = null // Disable inventory
+
 	var/adult_form
 	var/dead_icon
 	var/amount_grown = 0
@@ -46,9 +48,6 @@
 
 /mob/living/carbon/alien/restrained()
 	return 0
-
-/mob/living/carbon/alien/show_inv(mob/user as mob)
-	return //Consider adding cuffs and hats to this, for the sake of fun.
 
 /mob/living/carbon/alien/cannot_use_vents()
 	return

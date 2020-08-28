@@ -100,41 +100,38 @@
 	if(!holder)
 		visible_message("[bicon(src)] *beep* *beep*")
 
-/obj/item/device/assembly/infra/interact(mob/user as mob)//TODO: change this this to the wire control panel
+/obj/item/device/assembly/infra/tgui_interact(mob/user, datum/tgui/ui)
 	if(!secured)
-		return
-	user.set_machine(src)
-	var/dat = text("<TT><B>Infrared Laser</B>\n<B>Status</B>: []<BR>\n<B>Visibility</B>: []<BR>\n</TT>", (on ? text("<A href='?src=\ref[];state=0'>On</A>", src) : text("<A href='?src=\ref[];state=1'>Off</A>", src)), (src.visible ? text("<A href='?src=\ref[];visible=0'>Visible</A>", src) : text("<A href='?src=\ref[];visible=1'>Invisible</A>", src)))
-	dat += "<BR><BR><A href='?src=\ref[src];refresh=1'>Refresh</A>"
-	dat += "<BR><BR><A href='?src=\ref[src];close=1'>Close</A>"
-	user << browse(dat, "window=infra")
-	onclose(user, "infra")
+		to_chat(user, "<span class='warning'>[src] is unsecured!</span>")
+		return FALSE
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "AssemblyInfrared", name)
+		ui.open()
 
-/obj/item/device/assembly/infra/Topic(href, href_list, state = deep_inventory_state)
+/obj/item/device/assembly/infra/tgui_data(mob/user)
+	var/list/data = ..()
+
+	data["on"] = on
+	data["visible"] = visible
+
+	return data
+
+/obj/item/device/assembly/infra/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
-		return 1
-	
-	if(!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
-		usr << browse(null, "window=infra")
-		onclose(usr, "infra")
-		return
+		return TRUE
 
-	if(href_list["state"])
-		toggle_state()
-
-	if(href_list["visible"])
-		visible = !(visible)
-		for(var/ibeam in i_beams)
-			var/obj/effect/beam/i_beam/I = ibeam
-			I.visible = visible
-			CHECK_TICK
-
-	if(href_list["close"])
-		usr << browse(null, "window=infra")
-		return
-
-	if(usr)
-		attack_self(usr)
+	switch(action)
+		if("state")
+			toggle_state()
+			return TRUE
+		if("visible")
+			visible = !visible
+			for(var/ibeam in i_beams)
+				var/obj/effect/beam/i_beam/I = ibeam
+				I.visible = visible
+				CHECK_TICK
+			return TRUE
 
 /obj/item/device/assembly/infra/verb/rotate_clockwise()
 	set name = "Rotate Infrared Laser Clockwise"

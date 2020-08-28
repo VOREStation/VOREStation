@@ -116,3 +116,5 @@
 	var/mob/living/carbon/human/vr_link = null
 
 	var/obj/machinery/machine_visual //machine that is currently applying visual effects to this mob. Only used for camera monitors currently.
+
+	inventory_panel_type = /datum/inventory_panel/human

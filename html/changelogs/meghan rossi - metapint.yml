@@ -1,7 +1,0 @@
-author: Meghan Rossi
-delete-after: True
-changes: 
-  - rscadd: "The rapid service fabricator (found on service borgs) can now produce metamorphic pint glasses."
-  - rscadd: "The party supplies and bar supplies crates orderable from cargo now contain metamorphic pint glasses."
-  - rscadd: "The autolathe can now produce metamorphic pint and half-pint glasses."
-  - rscadd: "The autolathe can now produce all drinking glasses in batches of 5 or 10."

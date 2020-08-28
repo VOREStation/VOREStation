@@ -10,6 +10,7 @@
 	var/nozzle_type = /obj/item/weapon/weldingtool/tubefed
 	var/nozzle_attached = 0
 	drop_sound = 'sound/items/drop/backpack.ogg'
+	pickup_sound = 'sound/items/pickup/backpack.ogg'
 
 /obj/item/weapon/weldpack/Initialize()
 	. = ..()

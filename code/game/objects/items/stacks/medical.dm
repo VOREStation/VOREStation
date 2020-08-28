@@ -10,7 +10,8 @@
 	var/heal_brute = 0
 	var/heal_burn = 0
 	var/apply_sounds
-	drop_sound = 'sound/items/drop/box.ogg'
+	drop_sound = 'sound/items/drop/cardboardbox.ogg'
+	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
 	var/upgrade_to	// The type path this stack can be upgraded to.
 
@@ -155,6 +156,7 @@
 	no_variants = FALSE
 	apply_sounds = list('sound/effects/rip1.ogg','sound/effects/rip2.ogg')
 	drop_sound = 'sound/items/drop/gloves.ogg'
+	pickup_sound = 'sound/items/pickup/gloves.ogg'
 
 	upgrade_to = /obj/item/stack/medical/advanced/bruise_pack
 
@@ -230,6 +232,7 @@
 	no_variants = FALSE
 	apply_sounds = list('sound/effects/ointment.ogg')
 	drop_sound = 'sound/items/drop/herb.ogg'
+	pickup_sound = 'sound/items/pickup/herb.ogg'
 
 /obj/item/stack/medical/ointment/attack(mob/living/carbon/M as mob, mob/user as mob)
 	if(..())
@@ -379,6 +382,7 @@
 	amount = 5
 	max_amount = 5
 	drop_sound = 'sound/items/drop/hat.ogg'
+	pickup_sound = 'sound/items/pickup/hat.ogg'
 
 	var/list/splintable_organs = list(BP_HEAD, BP_L_HAND, BP_R_HAND, BP_L_ARM, BP_R_ARM, BP_L_FOOT, BP_R_FOOT, BP_L_LEG, BP_R_LEG, BP_GROIN, BP_TORSO)	//List of organs you can splint, natch.
 

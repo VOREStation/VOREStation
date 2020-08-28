@@ -10,6 +10,7 @@
 	max_storage_space = ITEMSIZE_COST_NORMAL * 4
 	use_sound = 'sound/items/storage/briefcase.ogg'
 	drop_sound = 'sound/items/drop/backpack.ogg'
+	pickup_sound = 'sound/items/pickup/backpack.ogg'
 
 /obj/item/weapon/storage/briefcase/clutch
 	name = "clutch purse"

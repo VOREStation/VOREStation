@@ -7,12 +7,23 @@
 	on_icon = "cereal_on"
 	off_icon = "cereal_off"
 	appliancetype = CEREALMAKER
+	var/datum/looping_sound/cerealmaker/cerealmaker_loop
 	circuit = /obj/item/weapon/circuitboard/cerealmaker
 
 	output_options = list(
 		"Cereal" = /obj/item/weapon/reagent_containers/food/snacks/variable/cereal
 	)
+
+/obj/machinery/appliance/mixer/cereal/Initialize()
+	. = ..()
 	
+	cerealmaker_loop = new(list(src), FALSE)
+	
+/obj/machinery/appliance/mixer/cereal/Destroy()
+	. = ..()
+	
+	QDEL_NULL(cerealmaker_loop)
+
 /*
 /obj/machinery/appliance/mixer/cereal/change_product_strings(var/obj/item/weapon/reagent_containers/food/snacks/product, var/datum/cooking_item/CI)
 	. = ..()
@@ -30,6 +41,18 @@
 
 	product.overlays += food_image
 */
+
+/obj/machinery/appliance/mixer/cereal/update_icon()
+	. = ..()
+
+	if(!stat)
+		icon_state = on_icon
+		if(cerealmaker_loop)
+			cerealmaker_loop.start(src)
+	else
+		icon_state = off_icon
+		if(cerealmaker_loop)
+			cerealmaker_loop.stop(src)
 
 /obj/machinery/appliance/mixer/cereal/combination_cook(var/datum/cooking_item/CI)
 

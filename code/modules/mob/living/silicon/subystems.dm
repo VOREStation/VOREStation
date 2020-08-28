@@ -3,7 +3,7 @@
 	var/datum/tgui_module/alarm_monitor/all/robot/alarm_monitor
 	var/datum/tgui_module/atmos_control/robot/atmos_control
 	var/datum/tgui_module/crew_monitor/robot/crew_monitor
-	var/datum/nano_module/law_manager/law_manager
+	var/datum/tgui_module/law_manager/robot/law_manager
 	var/datum/tgui_module/power_monitor/robot/power_monitor
 	var/datum/tgui_module/rcon/robot/rcon
 
@@ -76,7 +76,7 @@
 	set name = "Law Manager"
 	set category = "Subystems"
 
-	law_manager.ui_interact(usr, state = conscious_state)
+	law_manager.tgui_interact(usr)
 
 /********************
 *	Power Monitor	*

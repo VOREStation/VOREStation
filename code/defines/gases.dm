@@ -43,12 +43,12 @@
 
 	flags = XGM_GAS_FUEL
 
-/decl/xgm_gas/sleeping_agent
-	id = "sleeping_agent"
-	name = "Sleeping Agent"
+/decl/xgm_gas/nitrous_oxide
+	id = "nitrous_oxide"
+	name = "Nitrous Oxide"
 	specific_heat = 40	// J/(mol*K)
 	molar_mass = 0.044	// kg/mol. N2O
 
-	tile_overlay = "sleeping_agent"
+	tile_overlay = "nitrous_oxide"
 	overlay_limit = 1
 	flags = XGM_GAS_OXIDIZER

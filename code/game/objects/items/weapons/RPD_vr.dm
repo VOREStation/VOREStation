@@ -77,6 +77,9 @@
 		get_asset_datum(/datum/asset/spritesheet/pipes),
 	)
 
+/obj/item/weapon/pipe_dispenser/tgui_state(mob/user)
+	return GLOB.tgui_inventory_state
+
 /obj/item/weapon/pipe_dispenser/tgui_interact(mob/user, datum/tgui/ui)
 	SetupPipes()
 	ui = SStgui.try_update_ui(user, src, ui)

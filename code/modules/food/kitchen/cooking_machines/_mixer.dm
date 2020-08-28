@@ -13,6 +13,7 @@ fundamental differences
 	cooking_coeff = 0.75 // Original value 0.4
 	active_power_usage = 3000
 	idle_power_usage = 50
+	var/datum/looping_sound/mixer/mixer_loop
 
 /obj/machinery/appliance/mixer/examine(var/mob/user)
 	. = ..()
@@ -24,6 +25,13 @@ fundamental differences
 	cooking_objs += new /datum/cooking_item(new /obj/item/weapon/reagent_containers/cooking_container(src))
 	cooking = FALSE
 	selected_option = pick(output_options)
+	
+	mixer_loop = new(list(src), FALSE)
+	
+/obj/machinery/appliance/mixer/Destroy()
+	. = ..()
+	
+	QDEL_NULL(mixer_loop)
 
 //Mixers cannot-not do combining mode. So the default option is removed from this. A combine target must be chosen
 /obj/machinery/appliance/mixer/choose_output()
@@ -132,8 +140,12 @@ fundamental differences
 /obj/machinery/appliance/mixer/update_icon()
 	if (!stat)
 		icon_state = on_icon
+		if(mixer_loop)
+			mixer_loop.start(src)
 	else
 		icon_state = off_icon
+		if(mixer_loop)
+			mixer_loop.stop(src)
 
 
 /obj/machinery/appliance/mixer/process()

@@ -142,7 +142,7 @@
 "cL" = (/mob/living/simple_mob/mechanical/mecha/combat/gygax/dark/advanced{faction = "malf_drone"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "cM" = (/obj/machinery/drone_fabricator{fabricator_tag = "Unknown"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "cN" = (/obj/machinery/mecha_part_fabricator,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"cO" = (/obj/machinery/pros_fabricator,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"cO" = (/obj/machinery/mecha_part_fabricator/pros,/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "cP" = (/obj/structure/table/standard,/obj/item/mecha_parts/mecha_equipment/repair_droid,/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/explosive,/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "cQ" = (/obj/machinery/light{dir = 8},/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "cR" = (/obj/effect/decal/cleanable/dirt,/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; pixel_y = 0},/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"},/mob/living/simple_mob/mechanical/combat_drone/lesser,/turf/simulated/floor/tiled,/area/submap/Rockybase)

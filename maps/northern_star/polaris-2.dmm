@@ -1954,7 +1954,7 @@
 "LD" = (/obj/machinery/atmospherics/valve,/turf/unsimulated/floor{icon_state = "lino"},/area/tdome/tdomeadmin)
 "LE" = (/obj/structure/bed/chair{dir = 1},/obj/structure/disposalpipe/segment,/obj/effect/landmark{name = "tdomeadmin"},/turf/unsimulated/floor{icon_state = "lino"},/area/tdome/tdomeadmin)
 "LF" = (/obj/machinery/computer/security/telescreen,/turf/unsimulated/floor{icon_state = "lino"},/area/tdome/tdomeadmin)
-"LG" = (/obj/machinery/atmospherics/portables_connector{dir = 1},/obj/machinery/portable_atmospherics/canister/sleeping_agent{pixel_x = 1},/turf/unsimulated/floor{icon_state = "lino"},/area/tdome/tdomeadmin)
+"LG" = (/obj/machinery/atmospherics/portables_connector{dir = 1},/obj/machinery/portable_atmospherics/canister/nitrous_oxide{pixel_x = 1},/turf/unsimulated/floor{icon_state = "lino"},/area/tdome/tdomeadmin)
 "LH" = (/obj/item/weapon/tool/wrench,/turf/unsimulated/floor{icon_state = "lino"},/area/tdome/tdomeadmin)
 "LI" = (/obj/structure/disposalpipe/trunk{dir = 1},/obj/machinery/disposal,/turf/unsimulated/floor{icon_state = "lino"},/area/tdome/tdomeadmin)
 "LJ" = (/obj/machinery/door/airlock/centcom{name = "General Access"; opacity = 1; req_access = list(101)},/turf/unsimulated/floor{icon_state = "lino"},/area/tdome)

@@ -101,137 +101,128 @@
 			else
 				tank2 = I
 			update_icon()
-			updateUsrDialog()
+			SStgui.update_uis(src)
 			to_chat(user, "<span class='notice'>You connect \the [I] to \the [src]'s [I==tank1 ? "primary" : "secondary"] slot.</span>")
 			return
 	..()
 
 /obj/machinery/bomb_tester/attack_hand(var/mob/user)
 	add_fingerprint(user)
-	interact(user)
+	tgui_interact(user)
 
-/obj/machinery/bomb_tester/interact(var/mob/user)
-	if(stat & NOPOWER)
-		return
+/obj/machinery/bomb_tester/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "BombTester", name)
+		ui.open()
 
-	var/dat = "<HEAD><TITLE>Bomb Tester</TITLE></HEAD>"
+/obj/machinery/bomb_tester/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
 
+	data["simulating"] = simulating
+	if(!simulating)
+		data["mode"] = sim_mode
+		data["tank1"] = tank1
+		data["tank1ref"] = REF(tank1)
+		data["tank2"] = tank2
+		data["tank2ref"] = REF(tank2)
+		data["canister"] = test_canister
+		data["sim_canister_output"] = sim_canister_output
+	
+	return data
 
-	dat += "<font face='terminal' size ='3'>Virtual Explosive Simulator v1.03</font>"
-	dat += "<br>"
-
-	if(simulating)
-		dat += "<br><center>Simulation in progress! Please wait for results.</center>"
-
-	else
-		dat += "<br><center>Mode: [sim_mode==MODE_SINGLE?"Single Tank":"<A href='?src=\ref[src];set_mode=1'>Single Tank</a>"] -- [sim_mode==MODE_DOUBLE?"Transfer Valve":"<A href='?src=\ref[src];set_mode=2'>Transfer Valve</a>"] -- [sim_mode==MODE_CANISTER?"Canister":"<A href='?src=\ref[src];set_mode=3'>Canister</a>"]</center>"
-		dat += "<br>"
-		dat += "<br><center><u>Gas Sources</u></center>"
-		dat += "<br><center><A href='?src=\ref[src];tank=1'>[tank1?"\[[tank1.name]\]":"\[Primary Slot\]"]</a> -- <A href='?src=\ref[src];tank=2'>[tank2?"\[[tank2.name]\]":"\[Secondary Slot\]"]</a></center>"
-		dat += "<br><center>Connected Canister: [test_canister?"[test_canister.name] -- ":"None -- "]<A href='?src=\ref[src];canister_scan=1'>[test_canister?"\[Rescan\]":"\[Scan for canister\]"]</a></center>"
-		if(test_canister)
-			dat += "<br><center>Canister Release Pressure: [sim_canister_output] Kilopascals</center>"
-
-			dat += "<br><center>"
-			dat += "<A href='?src=\ref[src];set_can_pressure=-1000'>-1000</a>|"
-			dat += "<A href='?src=\ref[src];set_can_pressure=-100'>-100</a>|"
-			dat += "<A href='?src=\ref[src];set_can_pressure=-10'>-10</a>|"
-			dat += "<A href='?src=\ref[src];set_can_pressure=-1'>-1</a> ||| "
-
-			dat += "<A href='?src=\ref[src];set_can_pressure=1'>+1</a>|"
-			dat += "<A href='?src=\ref[src];set_can_pressure=10'>+10</a>|"
-			dat += "<A href='?src=\ref[src];set_can_pressure=100'>+100</a>|"
-			dat += "<A href='?src=\ref[src];set_can_pressure=1000'>+1000</a>"
-			dat += "</center>"
-
-		dat += "<br><br>"
-		dat += "<br><center><font size='6'><b><A href='?src=\ref[src];start_sim=1'>BEGIN SIMULATION</a></b></font></center>"
-
-	user.set_machine(src)
-	user << browse(dat, "window=bomb_tester")
-	onclose(user, "bomb_tester")
-
-/obj/machinery/bomb_tester/Topic(href, href_list)
+/obj/machinery/bomb_tester/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
-		return
-	if(stat & NOPOWER)
-		return
-	if(!usr.Adjacent(src))
-		usr << browse(null, "window=bomb_tester")
-		usr.unset_machine()
-		return
+		return TRUE
+
 	if(simulating)
 		return
 
-	if(href_list["set_mode"])
-		sim_mode = text2num(href_list["set_mode"])
-		var/text_mode
-		switch(sim_mode)
-			if(MODE_SINGLE)
-				text_mode = "single gas tank detonation"
-			if(MODE_DOUBLE)
-				text_mode = "tank transfer valve detonation"
-			if(MODE_CANISTER)
-				text_mode = "canister-assisted single gas tank detonation"
-		to_chat(usr, "<span class='notice'>[src] set to simulate a [text_mode].</span>")
-
-	if(href_list["tank"])
-		var/tankvar = "tank[href_list["tank"]]"
-		var/obj/item/weapon/tank/T
-		if(vars[tankvar])
-			T = vars[tankvar]
-			T.forceMove(get_turf(src))
-			vars[tankvar] = null
-		else if(istype(usr.get_active_hand(),/obj/item/weapon/tank))
-			T = usr.get_active_hand()
-			usr.drop_item(T)
-			T.forceMove(src)
-			vars[tankvar] = T
-		update_icon()
-
-	if(href_list["canister_scan"])
-		for(var/obj/machinery/portable_atmospherics/canister/C in orange(1,src))
-			if(C && C == test_canister)
-				continue
-			else if(C)
-				test_canister = C
-				break
+	switch(action)
+		if("set_mode")
+			sim_mode = clamp(text2num(params["mode"]), MODE_SINGLE, MODE_CANISTER)
+			var/text_mode
+			switch(sim_mode)
+				if(MODE_SINGLE)
+					text_mode = "single gas tank detonation"
+				if(MODE_DOUBLE)
+					text_mode = "tank transfer valve detonation"
+				if(MODE_CANISTER)
+					text_mode = "canister-assisted single gas tank detonation"
+			to_chat(usr, "<span class='notice'>[src] set to simulate a [text_mode].</span>")
+			return TRUE
+		
+		if("add_tank")
+			if(istype(usr.get_active_hand(), /obj/item/weapon/tank))
+				var/obj/item/weapon/tank/T = usr.get_active_hand()
+				var/slot = params["slot"]
+				if(slot == 1 && !tank1)
+					tank1 = T
+				else if(slot == 2 && !tank2)
+					tank2 = T
+				else
+					to_chat(usr, "<span class='warning'>Slot [slot] is full.</span>")
+					return
+				
+				usr.drop_item(T)
+				T.forceMove(src)
+				return TRUE
 			else
-				test_canister = null
+				to_chat(usr, "<span class='warning'>You must be wielding a tank to insert it!</span>")
 
-	if(href_list["set_can_pressure"])
-		var/change = text2num(href_list["set_can_pressure"])
-		sim_canister_output = CLAMP(sim_canister_output+change, ONE_ATMOSPHERE/10, ONE_ATMOSPHERE*10)
+		if("remove_tank")
+			var/obj/item/weapon/tank/T = locate(params["ref"]) in list(tank1, tank2)
+			if(istype(T))
+				if(T == tank1)
+					tank1 = null
+				if(T == tank2)
+					tank2 = null
+				T.forceMove(get_turf(src))
+				update_icon()
+			return TRUE
 
-	if(href_list["start_sim"])
-		start_simulating()
+		if("canister_scan")
+			for(var/obj/machinery/portable_atmospherics/canister/C in orange(1,src))
+				if(C && C == test_canister)
+					continue
+				else if(C)
+					test_canister = C
+					break
+				else
+					test_canister = null
+			return TRUE
 
-	updateUsrDialog()
+		if("set_can_pressure")
+			sim_canister_output = CLAMP(text2num(params["pressure"]), ONE_ATMOSPHERE/10, ONE_ATMOSPHERE*10)
+			return TRUE
+
+		if("start_sim")
+			start_simulating()
+			return TRUE
 
 /obj/machinery/bomb_tester/proc/start_simulating()
+	if(!tank1 || (sim_mode == MODE_DOUBLE && !tank2) || (sim_mode == MODE_CANISTER && !test_canister))
+		simulation_results = "Error"
+		simulation_finish()
+		return
+	if((tank1?.air_contents.return_pressure() > TANK_RUPTURE_PRESSURE) || (tank2?.air_contents.return_pressure() > TANK_RUPTURE_PRESSURE))
+		simulation_results = "Unstable"
+		simulation_finish()
+		return
 	simulating = 1
 	update_use_power(USE_POWER_ACTIVE)
 	simulation_started = world.time
 	update_icon()
 	switch(sim_mode)
 		if(MODE_SINGLE)
-			if(!tank1)
-				simulation_results = "Error"
-				return
 			spawn()
 				single_tank_sim()
 
 		if(MODE_DOUBLE)
-			if(!tank1 || !tank2)
-				simulation_results = "Error"
-				return
 			spawn()
 				ttv_sim()
 
 		if(MODE_CANISTER)
-			if(!tank1 || !test_canister)
-				simulation_results = "Error"
-				return
 			spawn()
 				canister_sim()
 
@@ -361,9 +352,12 @@
 	if(simulation_results == "Error")
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 0)
 		state("Invalid parameters.")
+	else if(simulation_results == "Unstable")
+		playsound(src, 'sound/machines/buzz-two.ogg', 50, 0)
+		state("Tank instability detected. Please step away from the device.")
 	else
 		ping("Simulation complete!")
-		playsound(src, "sound/effects/printer.ogg", 50, 1)
+		playsound(src, "sound/machines/printer.ogg", 50, 1)
 		var/obj/item/weapon/paper/P = new(get_turf(src))
 		P.name = "Explosive Simulator printout"
 		P.info = simulation_results

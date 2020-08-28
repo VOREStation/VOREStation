@@ -9,7 +9,10 @@
 /turf/unsimulated/wall/planetary/virgo3b,
 /area/tether/surfacebase/outside/outside1)
 "aac" = (
-/obj/effect/step_trigger/teleporter/to_mining,
+/obj/effect/map_effect/portal/master/side_a{
+	dir = 2;
+	portal_id = "surfacemine"
+	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/tether/surfacebase/mining_main/external)
 "aad" = (
@@ -7648,7 +7651,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/mining_eva)
 "amN" = (
-/obj/machinery/portable_atmospherics/canister/sleeping_agent,
+/obj/machinery/portable_atmospherics/canister/nitrous_oxide,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/rnd/tankstorage)
 "amO" = (
@@ -10171,6 +10174,12 @@
 /obj/random/junk,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/vacant_site)
+"aqR" = (
+/obj/effect/map_effect/portal/line/side_a{
+	dir = 2
+	},
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/tether/surfacebase/mining_main/external)
 "aqS" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -11234,6 +11243,14 @@
 /obj/random/maintenance/medical,
 /turf/simulated/floor/plating,
 /area/vacant/vacant_site)
+"asG" = (
+/obj/effect/map_effect/portal/master/side_a{
+	dir = 1;
+	name = "to_wilderness";
+	portal_id = "wilderness_step"
+	},
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/tether/surfacebase/outside/outside1)
 "asH" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -11318,6 +11335,34 @@
 /obj/structure/flora/ausbushes/ywflowers,
 /turf/simulated/floor/grass,
 /area/tether/surfacebase/surface_one_hall)
+"asP" = (
+/obj/effect/floor_decal/rust,
+/obj/effect/map_effect/portal/master/side_a{
+	dir = 4;
+	name = "to_solars";
+	portal_id = "solarstep"
+	},
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/tether/surfacebase/outside/outside1)
+"asQ" = (
+/obj/effect/floor_decal/rust,
+/obj/effect/map_effect/portal/line/side_a{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/tether/surfacebase/outside/outside1)
+"asR" = (
+/obj/effect/map_effect/portal/line/side_a{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/tether/surfacebase/outside/outside1)
+"asS" = (
+/obj/effect/map_effect/portal/line/side_a{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/tether/surfacebase/outside/outside1)
 "asU" = (
 /turf/simulated/floor/tiled,
 /area/crew_quarters/locker)
@@ -17033,11 +17078,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/crew_quarters/visitor_dining)
-"aHK" = (
-/obj/effect/floor_decal/rust,
-/obj/effect/step_trigger/teleporter/to_solars,
-/turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/surfacebase/outside/outside1)
 "aHL" = (
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
@@ -19875,7 +19915,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/atmos/gas_storage)
 "aNA" = (
-/obj/machinery/portable_atmospherics/canister/sleeping_agent,
+/obj/machinery/portable_atmospherics/canister/nitrous_oxide,
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/atmos/gas_storage)
@@ -20339,7 +20379,7 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/sleep/Dorm_6)
 "aOw" = (
-/obj/machinery/portable_atmospherics/canister/sleeping_agent,
+/obj/machinery/portable_atmospherics/canister/nitrous_oxide,
 /obj/machinery/light/small,
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/techmaint,
@@ -26785,10 +26825,6 @@
 	},
 /turf/unsimulated/wall/planetary/virgo3b,
 /area/tether/surfacebase/outside/outside1)
-"baX" = (
-/obj/effect/step_trigger/teleporter/to_plains,
-/turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/tether/surfacebase/outside/outside1)
 "baZ" = (
 /obj/machinery/alarm{
 	dir = 4;
@@ -31017,19 +31053,19 @@ aaa
 aaa
 aaa
 aaa
-aHo
-aHK
-aHK
-aHK
-aHK
-aHK
-aHK
-aHK
-aHK
-aHK
-aHK
-aHK
-aHo
+aaa
+asP
+asQ
+asQ
+asQ
+asQ
+asQ
+asR
+asQ
+asQ
+asR
+asQ
+aaa
 aaa
 aaa
 aaa
@@ -31159,19 +31195,19 @@ aad
 aad
 aad
 aGD
-aad
+aaa
 aHL
 aHL
 aHL
 aHL
 aHL
 aHL
-aad
 aHL
 aHL
-aad
 aHL
-aad
+aHL
+aHL
+aaa
 aad
 aad
 aad
@@ -31301,19 +31337,19 @@ aad
 aad
 aad
 aGE
-aad
-aad
-aad
-aad
-aad
-aad
-aad
-aad
+aaa
 aHL
 aHL
-aad
-aad
-aad
+aHL
+aHL
+aHL
+aHL
+aHL
+aHL
+aHL
+aHL
+aHL
+aaa
 aad
 aad
 aad
@@ -31443,7 +31479,7 @@ aad
 aad
 aad
 aGE
-aad
+aHo
 aad
 aad
 aad
@@ -31455,7 +31491,7 @@ aad
 aHL
 aad
 aad
-aad
+aHo
 aad
 aad
 aad
@@ -31736,8 +31772,8 @@ aad
 aad
 aad
 aad
-aad
 aHL
+aad
 aad
 aad
 aad
@@ -32305,7 +32341,7 @@ aad
 aad
 aad
 aad
-aad
+aHL
 aad
 aad
 aad
@@ -40164,10 +40200,10 @@ aad
 aad
 aad
 aad
-aad
-baV
-baV
 baW
+aaa
+aaa
+aaa
 "}
 (66,1,1) = {"
 aaa
@@ -40307,9 +40343,9 @@ aad
 aad
 aad
 aad
-baV
-baV
-baX
+aoq
+aoq
+asG
 "}
 (67,1,1) = {"
 aaa
@@ -40449,9 +40485,9 @@ aad
 aad
 aad
 baV
-baV
-baV
-baX
+aoq
+aoq
+asS
 "}
 (68,1,1) = {"
 aaa
@@ -40591,9 +40627,9 @@ aad
 aad
 aad
 baV
-baV
-baV
-baX
+aoq
+aoq
+asS
 "}
 (69,1,1) = {"
 aaa
@@ -40733,9 +40769,9 @@ aad
 aad
 baV
 baV
-baV
-baV
-baX
+aoq
+aoq
+asS
 "}
 (70,1,1) = {"
 aaa
@@ -40875,9 +40911,9 @@ aad
 aad
 baV
 baV
-baV
-baV
-baX
+aoq
+aoq
+asS
 "}
 (71,1,1) = {"
 aaa
@@ -41017,9 +41053,9 @@ aad
 aad
 baV
 baV
-baV
-baV
-baX
+aoq
+aoq
+asS
 "}
 (72,1,1) = {"
 aaa
@@ -41159,9 +41195,9 @@ aad
 aad
 baV
 baV
-baV
-baV
-baX
+aoq
+aoq
+asS
 "}
 (73,1,1) = {"
 aaa
@@ -41301,16 +41337,16 @@ aad
 aad
 aad
 baV
-baV
-baV
-baX
+aoq
+aoq
+asS
 "}
 (74,1,1) = {"
+aaa
+aaa
+aaa
+aaa
 aab
-aad
-aad
-aad
-aad
 aad
 aad
 aad
@@ -41443,14 +41479,14 @@ aad
 aad
 aad
 baV
-baV
-baV
-baX
+aoq
+aoq
+asS
 "}
 (75,1,1) = {"
 aac
-aae
-aae
+aaf
+aaf
 aae
 aae
 aae
@@ -41584,15 +41620,15 @@ aad
 aad
 aad
 aad
-aad
-baV
-baV
 baW
+aaa
+aaa
+aaa
 "}
 (76,1,1) = {"
-aac
+aqR
 aaf
-aae
+aaf
 aae
 aae
 aae
@@ -41732,7 +41768,7 @@ baV
 aaa
 "}
 (77,1,1) = {"
-aac
+aqR
 aaf
 aaf
 aaf
@@ -41874,7 +41910,7 @@ aad
 aaa
 "}
 (78,1,1) = {"
-aac
+aqR
 aaf
 aaf
 aaf
@@ -42016,7 +42052,7 @@ aad
 aaa
 "}
 (79,1,1) = {"
-aac
+aqR
 aaf
 aaf
 aaf
@@ -42158,7 +42194,7 @@ aad
 aaa
 "}
 (80,1,1) = {"
-aac
+aqR
 aaf
 aaf
 aaf
@@ -42300,7 +42336,7 @@ aad
 aaa
 "}
 (81,1,1) = {"
-aac
+aqR
 aaf
 aaf
 aaf
@@ -42442,7 +42478,7 @@ aad
 aaa
 "}
 (82,1,1) = {"
-aac
+aqR
 aaf
 aaf
 aaf
@@ -42584,9 +42620,9 @@ aad
 aaa
 "}
 (83,1,1) = {"
-aac
+aqR
 aaf
-aae
+aaf
 aae
 aae
 aae
@@ -42726,9 +42762,9 @@ aad
 aaa
 "}
 (84,1,1) = {"
-aac
-aae
-aae
+aqR
+aaf
+aaf
 aae
 aae
 aae
@@ -42868,11 +42904,11 @@ aad
 aaa
 "}
 (85,1,1) = {"
+aaa
+aaa
+aaa
+aaa
 aab
-aad
-aad
-aad
-aad
 aad
 aad
 aad

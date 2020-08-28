@@ -457,6 +457,14 @@
 	},
 /turf/simulated/floor/virgo3b_indoors,
 /area/tether/outpost/solars_shed)
+"aU" = (
+/obj/effect/map_effect/portal/master/side_b{
+	dir = 8;
+	name = "from_tether_to_solars";
+	portal_id = "solarstep"
+	},
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/mine/explored)
 "aV" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/power/terminal{
@@ -527,6 +535,13 @@
 /obj/machinery/door/airlock/multi_tile/metal/mait,
 /turf/simulated/floor/virgo3b_indoors,
 /area/tether/outpost/solars_shed)
+"bd" = (
+/obj/effect/floor_decal/rust,
+/obj/effect/map_effect/portal/line/side_b{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored)
 "be" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 8
@@ -631,6 +646,12 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/virgo3b,
+/area/mine/explored)
+"bq" = (
+/obj/effect/map_effect/portal/line/side_b{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/mine/explored)
 "br" = (
 /mob/living/simple_mob/animal/passive/gaslamp,
@@ -824,8 +845,6 @@
 /turf/simulated/floor/virgo3b,
 /area/mine/explored)
 "bL" = (
-/obj/effect/floor_decal/rust,
-/obj/effect/step_trigger/teleporter/from_solars,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/mine/explored)
 "bM" = (
@@ -4459,7 +4478,7 @@
 /turf/simulated/floor,
 /area/rnd/outpost/atmos)
 "im" = (
-/obj/machinery/portable_atmospherics/canister/empty/sleeping_agent,
+/obj/machinery/portable_atmospherics/canister/empty/nitrous_oxide,
 /obj/machinery/atmospherics/pipe/simple/visible/black,
 /obj/machinery/atmospherics/portables_connector{
 	dir = 8
@@ -4469,7 +4488,7 @@
 "in" = (
 /obj/machinery/atmospherics/trinary/atmos_filter/m_filter{
 	filter_type = 4;
-	filtered_out = list("sleeping_agent")
+	filtered_out = list("nitrous_oxide")
 	},
 /turf/simulated/floor,
 /area/rnd/outpost/atmos)
@@ -5171,7 +5190,7 @@
 /obj/machinery/door/window/brigdoor/westleft{
 	req_access = list()
 	},
-/obj/machinery/portable_atmospherics/canister/sleeping_agent,
+/obj/machinery/portable_atmospherics/canister/nitrous_oxide,
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/rnd/outpost/storage)
@@ -5185,7 +5204,7 @@
 	id = "outpost_canisters";
 	operating = 1
 	},
-/obj/machinery/portable_atmospherics/canister/sleeping_agent,
+/obj/machinery/portable_atmospherics/canister/nitrous_oxide,
 /turf/simulated/floor,
 /area/rnd/outpost/storage)
 "jL" = (
@@ -5201,7 +5220,7 @@
 	id = "outpost_canisters";
 	operating = 1
 	},
-/obj/machinery/portable_atmospherics/canister/sleeping_agent,
+/obj/machinery/portable_atmospherics/canister/nitrous_oxide,
 /turf/simulated/floor,
 /area/rnd/outpost/storage)
 "jM" = (
@@ -27551,7 +27570,7 @@ ab
 ab
 ab
 bQ
-ab
+aa
 ab
 bj
 ab
@@ -27563,7 +27582,7 @@ ab
 ab
 ab
 ab
-ab
+aa
 ab
 ab
 ab
@@ -27693,19 +27712,19 @@ ab
 ab
 ab
 dd
-ab
+aa
 bj
 bj
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
+bj
+bj
+bj
+bj
+bL
+bj
+bj
+bj
+bj
+aa
 ab
 ab
 ab
@@ -27835,19 +27854,19 @@ ab
 ab
 ab
 cm
-ab
-ab
-bj
-ab
-ab
+aa
 bj
 bj
 bj
-ab
 bj
-ab
 bj
-ab
+bj
+bL
+bj
+bj
+bj
+bj
+aa
 ab
 ab
 ab
@@ -27978,17 +27997,17 @@ aa
 aa
 aa
 aa
-bL
-bL
-bL
-bL
-bL
-bL
-bL
-bL
-bL
-bL
-bL
+aU
+bd
+bq
+bq
+bd
+bd
+bd
+bq
+bd
+bq
+bd
 aa
 aa
 aa
