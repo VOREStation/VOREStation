@@ -1,6 +1,4 @@
-// Landmark for where to load in the engine on permament map. 
-// Map-specific engine subtypes are in maps/submaps/engine_submaps_vr/mapfolder/engine.dmm
-// If you're adding a new map, add your folder as mapname, and then copy the _engine_submaps.dm from one of the other folders to the new one, and make your submaps!
+// Landmark for where to load in the engine on permament map
 /obj/effect/landmark/engine_loader
 	name = "Engine Loader"
 	var/clean_turfs // A list of lists, where each list is (x, )
@@ -29,4 +27,3 @@
 					++deleted_atoms
 					qdel(AM)
 	admin_notice("<span class='danger'>Annihilated [deleted_atoms] objects.</span>", R_DEBUG)
-
