@@ -1,0 +1,146 @@
+"ag" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor,/area/submap/DemonPool)
+"aj" = (/obj/structure/sign/warning/fire,/turf/simulated/wall/cult,/area/submap/DemonPool)
+"au" = (/obj/effect/decal/cleanable/blood/gibs/body,/obj/fire,/obj/fire,/obj/fire,/obj/fire,/obj/fire,/turf/simulated/floor/cult,/area/submap/DemonPool)
+"ay" = (/obj/structure/girder/cult,/obj/item/weapon/material/twohanded/fireaxe/scythe,/turf/simulated/floor/cult,/area/submap/DemonPool)
+"bb" = (/obj/item/weapon/melee/cursedblade,/turf/simulated/floor/cult,/area/submap/DemonPool)
+"bh" = (/obj/structure/simple_door,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/DemonPool)
+"bw" = (/obj/structure/flora/tree/sif,/turf/template_noop,/area/template_noop)
+"cn" = (/obj/effect/decal/cleanable/blood/gibs/limb,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/DemonPool)
+"de" = (/obj/fire,/turf/simulated/floor,/area/submap/DemonPool)
+"dG" = (/obj/structure/simple_door,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/DemonPool)
+"es" = (/obj/effect/decal/cleanable/blood/gibs/body,/obj/structure/loot_pile/surface/bones,/mob/living/simple_mob/faithless/cult/strong,/turf/simulated/floor/cult,/area/submap/DemonPool)
+"eM" = (/obj/structure/table/woodentable,/obj/item/weapon/book,/obj/item/weapon/spellbook/oneuse/forcewall,/turf/simulated/floor,/area/submap/DemonPool)
+"eR" = (/turf/simulated/wall/cult,/area/submap/DemonPool)
+"eV" = (/obj/structure/bonfire/permanent,/obj/structure/grille/cult,/turf/simulated/floor/cult,/area/submap/DemonPool)
+"eW" = (/turf/template_noop,/area/template_noop)
+"fW" = (/obj/structure/grille/cult,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/DemonPool)
+"gt" = (/obj/structure/grille/broken/cult,/mob/living/simple_mob/creature/cult/strong,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/DemonPool)
+"gF" = (/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/template_noop)
+"hr" = (/obj/fire,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/outdoors/dirt,/area/submap/DemonPool)
+"hF" = (/obj/effect/gibspawner/human,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/DemonPool)
+"hO" = (/obj/fire,/obj/fire,/obj/fire,/turf/simulated/floor/cult,/area/submap/DemonPool)
+"hQ" = (/mob/living/simple_mob/faithless/cult/strong,/turf/simulated/floor/cult,/area/submap/DemonPool)
+"hW" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/DemonPool)
+"hZ" = (/obj/random/junk,/turf/template_noop,/area/submap/DemonPool)
+"jt" = (/obj/structure/loot_pile/surface/bones,/obj/item/clothing/head/culthood/alt,/obj/item/stack/material/silver{amount = 15},/turf/simulated/floor/cult,/area/submap/DemonPool)
+"jv" = (/turf/simulated/floor/outdoors/dirt,/area/template_noop)
+"jG" = (/obj/effect/gibspawner/human,/obj/effect/rune,/turf/simulated/floor/cult,/area/submap/DemonPool)
+"jK" = (/obj/fire,/obj/fire,/turf/simulated/floor/cult,/area/submap/DemonPool)
+"jS" = (/obj/structure/grille/cult,/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/DemonPool)
+"jX" = (/obj/structure/loot_pile/maint/trash,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/DemonPool)
+"lo" = (/obj/item/clothing/suit/cultrobes/alt,/turf/simulated/floor/cult,/area/submap/DemonPool)
+"lr" = (/obj/effect/decal/cleanable/dirt,/turf/template_noop,/area/submap/DemonPool)
+"lG" = (/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/DemonPool)
+"lV" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/DemonPool)
+"md" = (/mob/living/simple_mob/animal/space/bats/cult/strong{faction = "demon"},/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/DemonPool)
+"mp" = (/obj/fire,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/DemonPool)
+"mO" = (/obj/effect/gibspawner/human,/obj/item/clothing/head/culthood/alt,/turf/simulated/floor/cult,/area/submap/DemonPool)
+"mU" = (/mob/living/simple_mob/animal/space/bats/cult/strong{faction = "demon"},/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/DemonPool)
+"oi" = (/turf/simulated/floor/cult,/area/submap/DemonPool)
+"on" = (/obj/effect/decal/cleanable/blood/gibs/body,/turf/simulated/floor/cult,/area/submap/DemonPool)
+"pb" = (/obj/fire,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor,/area/submap/DemonPool)
+"pH" = (/obj/structure/grille/cult,/turf/simulated/floor/cult,/area/submap/DemonPool)
+"pX" = (/obj/random/junk,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/DemonPool)
+"qa" = (/mob/living/simple_mob/animal/space/bats/cult/strong{faction = "demon"},/obj/effect/decal/cleanable/dirt,/turf/simulated/floor,/area/submap/DemonPool)
+"qb" = (/mob/living/simple_mob/creature/cult/strong,/turf/simulated/floor,/area/submap/DemonPool)
+"qc" = (/obj/fire,/obj/random/curseditem,/turf/simulated/floor/cult,/area/submap/DemonPool)
+"qQ" = (/obj/fire,/turf/simulated/floor/cult,/area/submap/DemonPool)
+"sb" = (/obj/item/clothing/shoes/cult,/obj/item/weapon/melee/energy/sword/red,/turf/simulated/floor/cult,/area/submap/DemonPool)
+"si" = (/obj/effect/decal/cleanable/blood/gibs/limb,/turf/simulated/floor/cult,/area/submap/DemonPool)
+"sM" = (/obj/effect/gateway,/turf/simulated/floor/cult,/area/submap/DemonPool)
+"tq" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/DemonPool)
+"tC" = (/mob/living/simple_mob/creature/cult/strong,/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/DemonPool)
+"vv" = (/obj/effect/decal/cleanable/blood/gibs/body,/obj/fire,/mob/living/simple_mob/faithless/cult/strong,/turf/simulated/floor/cult,/area/submap/DemonPool)
+"vw" = (/turf/simulated/floor,/area/submap/DemonPool)
+"vJ" = (/turf/simulated/floor/outdoors/dirt,/area/submap/DemonPool)
+"vW" = (/obj/effect/decal/cleanable/blood/gibs/limb,/mob/living/simple_mob/faithless/cult/strong{health = 250; melee_damage_lower = 20; melee_damage_upper = 30; name = "Recursive faithless"},/turf/simulated/floor/cult,/area/submap/DemonPool)
+"xl" = (/obj/random/junk,/turf/simulated/mineral/ignore_mapgen,/area/template_noop)
+"yS" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor,/area/submap/DemonPool)
+"yW" = (/obj/structure/cult/pylon,/turf/simulated/floor/cult,/area/submap/DemonPool)
+"zi" = (/mob/living/simple_mob/animal/space/bats/cult/strong{faction = "demon"},/turf/simulated/floor/cult,/area/submap/DemonPool)
+"zj" = (/obj/effect/decal/cleanable/blood/gibs/limb,/mob/living/simple_mob/animal/space/bats/cult/strong{faction = "demon"},/turf/simulated/floor/cult,/area/submap/DemonPool)
+"zI" = (/obj/structure/grille/broken/cult,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/DemonPool)
+"zU" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/DemonPool)
+"zZ" = (/obj/random/junk,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/DemonPool)
+"Ag" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/outdoors/dirt,/area/submap/DemonPool)
+"Ah" = (/obj/effect/decal/cleanable/blood/gibs/body,/obj/item/weapon/stool,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/DemonPool)
+"Ax" = (/obj/structure/loot_pile/surface/bones,/turf/simulated/floor,/area/submap/DemonPool)
+"AF" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/DemonPool)
+"AH" = (/obj/structure/cult/tome,/turf/simulated/floor/cult,/area/submap/DemonPool)
+"Bb" = (/obj/fire,/obj/fire,/obj/fire,/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/DemonPool)
+"CV" = (/obj/random/junk,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/DemonPool)
+"CY" = (/obj/effect/gibspawner/human,/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/DemonPool)
+"DZ" = (/obj/effect/decal/cleanable/blood/gibs/body,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/DemonPool)
+"EQ" = (/obj/structure/loot_pile/surface,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/DemonPool)
+"Fq" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/mineral/ignore_mapgen,/area/submap/DemonPool)
+"Hb" = (/turf/template_noop,/area/submap/DemonPool)
+"Hl" = (/obj/effect/decal/cleanable/blood/gibs/body,/obj/random/curseditem,/turf/simulated/floor/cult,/area/submap/DemonPool)
+"HW" = (/obj/effect/decal/cleanable/blood/gibs/limb,/obj/structure/grille/broken/cult,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/DemonPool)
+"IP" = (/obj/effect/spawner/lootdrop,/turf/simulated/floor,/area/submap/DemonPool)
+"Jo" = (/turf/simulated/mineral/ignore_mapgen,/area/submap/DemonPool)
+"JK" = (/obj/structure/girder/cult,/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/DemonPool)
+"JM" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/outdoors/dirt,/area/submap/DemonPool)
+"JN" = (/obj/structure/flora/tree/sif,/turf/simulated/floor/outdoors/dirt,/area/template_noop)
+"JP" = (/obj/effect/decal/cleanable/blood/gibs/limb,/obj/fire,/turf/simulated/floor/cult,/area/submap/DemonPool)
+"JV" = (/obj/structure/loot_pile/maint/trash,/turf/simulated/floor/outdoors/dirt,/area/submap/DemonPool)
+"KM" = (/obj/fire,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/DemonPool)
+"KR" = (/obj/effect/gibspawner/human,/turf/simulated/floor/cult,/area/submap/DemonPool)
+"Lh" = (/mob/living/simple_mob/animal/space/bats/cult/strong{faction = "demon"},/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/DemonPool)
+"Lu" = (/obj/fire,/turf/simulated/floor/outdoors/dirt,/area/submap/DemonPool)
+"Lx" = (/obj/effect/decal/cleanable/blood/gibs/body,/obj/structure/loot_pile/surface,/turf/simulated/floor/cult,/area/submap/DemonPool)
+"LD" = (/obj/structure/bonfire/permanent,/obj/structure/grille/cult,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/DemonPool)
+"MB" = (/obj/effect/gateway,/obj/fire,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/DemonPool)
+"NI" = (/obj/effect/gibspawner/human,/obj/fire,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/cult,/area/submap/DemonPool)
+"Oo" = (/obj/structure/grille/broken/cult,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor,/area/submap/DemonPool)
+"OK" = (/obj/structure/simple_door/cult,/obj/fire,/obj/fire,/obj/fire,/obj/fire,/turf/simulated/floor,/area/submap/DemonPool)
+"Pu" = (/obj/structure/grille/cult,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/DemonPool)
+"Qq" = (/obj/item/weapon/beartrap/hunting{anchored = 1; deployed = 1},/obj/effect/decal/cleanable/blood/gibs/limb,/obj/effect/decal/cleanable/blood/gibs/limb,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/DemonPool)
+"Qr" = (/obj/structure/closet/crate/secure/loot,/obj/item/weapon/spellbook/oneuse/fireball,/turf/simulated/floor/cult,/area/submap/DemonPool)
+"Qv" = (/obj/effect/rune,/turf/simulated/floor/cult,/area/submap/DemonPool)
+"Qz" = (/obj/effect/spawner/lootdrop,/turf/simulated/floor/cult,/area/submap/DemonPool)
+"Ro" = (/obj/structure/simple_door,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/DemonPool)
+"RL" = (/obj/structure/grille/broken/cult,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/DemonPool)
+"RP" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/DemonPool)
+"Vf" = (/mob/living/simple_mob/animal/space/bats/cult/strong{faction = "demon"},/turf/simulated/floor/outdoors/dirt,/area/submap/DemonPool)
+"Vk" = (/obj/effect/decal/cleanable/blood/gibs/body,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/DemonPool)
+"VK" = (/turf/simulated/mineral/ignore_mapgen,/area/template_noop)
+"WV" = (/obj/structure/loot_pile/surface,/turf/simulated/floor/cult,/area/submap/DemonPool)
+"WZ" = (/obj/structure/loot_pile/surface,/turf/simulated/floor,/area/submap/DemonPool)
+"Xe" = (/obj/structure/grille/broken/cult,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/DemonPool)
+"XB" = (/obj/effect/decal/cleanable/blood/gibs/body,/obj/fire,/turf/simulated/floor/cult,/area/submap/DemonPool)
+"XJ" = (/obj/effect/decal/cleanable/blood/gibs/limb,/obj/effect/decal/cleanable/dirt,/mob/living/simple_mob/creature/cult/strong,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/DemonPool)
+"XP" = (/obj/structure/constructshell/cult,/turf/simulated/floor/cult,/area/submap/DemonPool)
+"Yk" = (/obj/item/clothing/shoes/cult,/turf/simulated/floor/cult,/area/submap/DemonPool)
+"YF" = (/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/DemonPool)
+"YK" = (/obj/structure/table/woodentable,/obj/item/weapon/pen/fountain,/turf/simulated/floor,/area/submap/DemonPool)
+"Zc" = (/obj/effect/gibspawner/human,/obj/item/weapon/beartrap/hunting{anchored = 1; deployed = 1},/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/DemonPool)
+"Zj" = (/mob/living/simple_mob/animal/space/bats/cult/strong{faction = "demon"},/turf/simulated/floor,/area/submap/DemonPool)
+"ZU" = (/obj/effect/decal/cleanable/blood/gibs/limb,/obj/effect/spawner/lootdrop,/turf/simulated/floor/cult,/area/submap/DemonPool)
+
+(1,1,1) = {"
+eWeWeWeWeWeWjvjveWeWeWeWjveWeWbwjveWeWjvjvjveWeWeW
+eWbweWeWvJJMJMjveWVKVKVKeWeWjvjvJMvJJMjvjvjveWeWeW
+eWeWeWAgLhAFCVVKVKVKVKVKVKVKVKRPAgAFmdvJxlVKgFeWeW
+eWJovJvJJodGJoVKVKVKVKVKVKVKVKJodGJoYFJoJoYFeWeWeW
+eWJovJJoJoYFYFXeVKVKVKVKVKXeYFYFYFJoJoJoJoYFYFeWeW
+eWJoJoJoJoYFgtmpYFYFVKVKYFmpPuYFYFJoJoJojXYFHbeWeW
+jvYFJoJoJoPuYFmpqQYFmpmpqQYFmpgtJoJoJoJoYFYFCVeWeW
+eWLuYFJoJoJoEQoiYFjKhOjKjKoiYFJoJoJoJoJoJoJoJoVKeW
+jvmUKMJoJoJoJoJojKyWMByWqcJoJoJoeRJoeRJoJoJoJoLueW
+eWhZzURPJoJoJoJoJoJoJoJoJoJoJoqaySXJvwJoJoYFhrYFeW
+jvmpzZZcYFJoJoeReRJoeReRLDeRQzNIJoOojSJoJohFzUmdgF
+eWJoJoRLfWJoJoeMAhAxlGqbqQvwpbqQJoJKagDZJopXRPmpeW
+eWJoJoYFtqRPJoYKIPJKZjKRZjjKjKdeJoJoJolVJoQqVKVKjv
+eWJoJoJoRPzIJoeRcnlGWZJoJoajOKauajeRJohWbhHWVKjveW
+eWJoJoJoJoRoFqcntCJoJoJoeReRJPZUqQeRJoJoJoJoVKeWjv
+eWeWJoJoJolGVklGeRJoeReReRqQXBqQpHeReRJoJoJovJeWeW
+eWeWJoJoJoJoJoJoJoeReRAHesloqQoipHCYeRJoHbvJvJVKeW
+eWeWJoJoJVJoJoJoeReRXPsbmOqQXBvvpHBbeRJoJVVfVKVKVK
+eWjvJoHbvJHbJoJoeRyWjGyWvWsisizjpHCYeRJoJovJeWVKVK
+eWeWHbvJJMJVJoJoeReVsMQvonayjtHlpHeReRJoVKeWjveWeW
+eWjvvJVfJMHbJoJoeRyWjGyWziKRhQloLxeRJoJoeWeWjveWeW
+eWVKVKHbJMvJHbJoeReRbbQrHlWVYkeReReRJoJoeWeWeWeWeW
+eWVKVKVKlrJMHbJoJoeReReReReReReRJoJoJoeWeWeWeWbweW
+eWVKVKeWJNeWjveWJoJoJoJoJoJoJoJoJoeWeWeWeWeWeWeWeW
+eWeWeWeWeWeWeWeWeWeWVKVKVKVKeWeWeWeWeWeWeWeWeWeWeW
+"}
