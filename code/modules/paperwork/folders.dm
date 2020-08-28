@@ -6,6 +6,7 @@
 	w_class = ITEMSIZE_SMALL
 	pressure_resistance = 2
 	drop_sound = 'sound/items/drop/paper.ogg'
+	pickup_sound = 'sound/items/pickup/paper.ogg'
 
 /obj/item/weapon/folder/blue
 	desc = "A blue folder."

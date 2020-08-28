@@ -51,6 +51,8 @@ var/list/civilian_cartridges = list(
 	icon_state = "cart"
 	item_state = "electronic"
 	w_class = ITEMSIZE_TINY
+	drop_sound = 'sound/items/drop/component.ogg'
+	pickup_sound = 'sound/items/pickup/component.ogg'
 
 	var/obj/item/radio/integrated/radio = null
 	var/access_security = 0

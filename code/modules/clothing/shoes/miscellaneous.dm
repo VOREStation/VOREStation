@@ -9,6 +9,8 @@
 	siemens_coefficient = 0.8
 	species_restricted = null
 	step_volume_mod = 0.5
+	drop_sound = 'sound/items/drop/rubber.ogg'
+	pickup_sound = 'sound/items/pickup/rubber.ogg'
 
 /obj/item/clothing/shoes/mime
 	name = "mime shoes"
@@ -25,6 +27,7 @@
 	slowdown = SHOES_SLOWDOWN+1
 	species_restricted = null
 	drop_sound = 'sound/items/drop/rubber.ogg'
+	pickup_sound = 'sound/items/pickup/rubber.ogg'
 
 /obj/item/clothing/shoes/dress
 	name = "dress shoes"
@@ -100,6 +103,7 @@
 	species_restricted = null
 	w_class = ITEMSIZE_SMALL
 	drop_sound = 'sound/items/drop/clothing.ogg'
+	pickup_sound = 'sound/items/pickup/cloth.ogg'
 
 /obj/item/clothing/shoes/slippers_worn
 	name = "worn bunny slippers"
@@ -158,6 +162,7 @@
 	w_class = ITEMSIZE_SMALL
 	species_restricted = null
 	drop_sound = 'sound/items/drop/clothing.ogg'
+	pickup_sound = 'sound/items/pickup/cloth.ogg'
 
 /obj/item/clothing/shoes/boots/ranger
 	var/bootcolor = "white"

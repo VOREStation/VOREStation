@@ -12,6 +12,7 @@
 	slot_flags = SLOT_EARS
 	volume = 5
 	drop_sound = 'sound/items/drop/glass.ogg'
+	pickup_sound = 'sound/items/pickup/glass.ogg'
 
 /obj/item/weapon/reagent_containers/dropper/examine(var/mob/user)
 	. = ..()

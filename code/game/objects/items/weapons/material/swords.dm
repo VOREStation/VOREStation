@@ -10,6 +10,7 @@
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	drop_sound = 'sound/items/drop/sword.ogg'
+	pickup_sound = 'sound/items/pickup/sword.ogg'
 
 /obj/item/weapon/material/sword/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(unique_parry_check(user, attacker, damage_source) && prob(50))
