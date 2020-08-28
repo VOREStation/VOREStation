@@ -253,7 +253,6 @@
 #include "code\controllers\subsystems\job.dm"
 #include "code\controllers\subsystems\lighting.dm"
 #include "code\controllers\subsystems\machines.dm"
-#include "code\controllers\subsystems\mapping_vr.dm"
 #include "code\controllers\subsystems\mobs.dm"
 #include "code\controllers\subsystems\nanoui.dm"
 #include "code\controllers\subsystems\nightshift.dm"
@@ -3714,16 +3713,10 @@
 #include "maps\southern_cross\loadout\loadout_suit.dm"
 #include "maps\southern_cross\loadout\loadout_uniform.dm"
 #include "maps\submaps\_helpers.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "maps\submaps\_readme.dm"
-#include "maps\submaps\engine_submaps_vr\engine.dm"
-#include "maps\submaps\engine_submaps_vr\engine_areas.dm"
-#include "maps\submaps\engine_submaps_vr\tether\_engine_submaps.dm"
-=======
 #include "maps\submaps\engine_submaps\engine.dm"
 #include "maps\submaps\engine_submaps\engine_areas.dm"
-#include "maps\submaps\engine_submaps\southern_cross\_engine_submaps.dm"
->>>>>>> 3e4bf4a... Merge pull request #7574 from Rykka-Stormheart/shep-dev-engine-randomization:polaris.dme
+#include "maps\submaps\engine_submaps_vr\tether\_engine_submaps.dm"
 #include "maps\submaps\space_submaps\space.dm"
 #include "maps\submaps\space_submaps\debrisfield\debrisfield.dm"
 #include "maps\submaps\surface_submaps\mountains\mountains.dm"
