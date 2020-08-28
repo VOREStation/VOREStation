@@ -81,7 +81,7 @@
 				if(do_after(user,5 SECONDS,src))
 					visible_message("<span class='danger'>\The [user] forces \the [src] open, sparks flying from its electronics!</span>")
 					src.do_animate("spark")
-					playsound(src, 'sound/machines/airlock_creaking.ogg', 100, 1)
+					playsound(src, 'sound/machines/airlock_creaking.ogg', 100, 1, volume_channel = VOLUME_CHANNEL_DOORS)
 					src.locked = 0
 					src.welded = 0
 					update_icon()
@@ -90,7 +90,7 @@
 			else if(src.density)
 				visible_message("<span class='alium'>\The [user] begins forcing \the [src] open!</span>")
 				if(do_after(user, 5 SECONDS,src))
-					playsound(src, 'sound/machines/airlock_creaking.ogg', 100, 1)
+					playsound(src, 'sound/machines/airlock_creaking.ogg', 100, 1, volume_channel = VOLUME_CHANNEL_DOORS)
 					visible_message("<span class='danger'>\The [user] forces \the [src] open!</span>")
 					open(1)
 			else
@@ -1173,9 +1173,9 @@ About the new airlock wires panel:
 
 	//if the door is unpowered then it doesn't make sense to hear the woosh of a pneumatic actuator
 	if(arePowerSystemsOn())
-		playsound(src, open_sound_powered, 50, 1)
+		playsound(src, open_sound_powered, 50, 1, volume_channel = VOLUME_CHANNEL_DOORS)
 	else
-		playsound(src, open_sound_unpowered, 75, 1)
+		playsound(src, open_sound_unpowered, 75, 1, volume_channel = VOLUME_CHANNEL_DOORS)
 
 	if(src.closeOther != null && istype(src.closeOther, /obj/machinery/door/airlock/) && !src.closeOther.density)
 		src.closeOther.close()
@@ -1271,9 +1271,9 @@ About the new airlock wires panel:
 	use_power(360)	//360 W seems much more appropriate for an actuator moving an industrial door capable of crushing people
 	has_beeped = 0
 	if(arePowerSystemsOn())
-		playsound(src, close_sound_powered, 50, 1)
+		playsound(src, close_sound_powered, 50, 1, volume_channel = VOLUME_CHANNEL_DOORS)
 	else
-		playsound(src, open_sound_unpowered, 75, 1)
+		playsound(src, open_sound_unpowered, 75, 1, volume_channel = VOLUME_CHANNEL_DOORS)
 	for(var/turf/turf in locs)
 		var/obj/structure/window/killthis = (locate(/obj/structure/window) in turf)
 		if(killthis)
@@ -1287,7 +1287,7 @@ About the new airlock wires panel:
 	if (operating && !forced) return 0
 
 	src.locked = 1
-	playsound(src, bolt_down_sound, 30, 0, 3)
+	playsound(src, bolt_down_sound, 30, 0, 3, volume_channel = VOLUME_CHANNEL_DOORS)
 	for(var/mob/M in range(1,src))
 		M.show_message("You hear a click from the bottom of the door.", 2)
 	update_icon()
@@ -1301,7 +1301,7 @@ About the new airlock wires panel:
 		if(operating || !src.arePowerSystemsOn() || wires.is_cut(WIRE_DOOR_BOLTS)) return
 
 	src.locked = 0
-	playsound(src, bolt_up_sound, 30, 0, 3)
+	playsound(src, bolt_up_sound, 30, 0, 3, volume_channel = VOLUME_CHANNEL_DOORS)
 	for(var/mob/M in range(1,src))
 		M.show_message("You hear a click from the bottom of the door.", 2)
 	update_icon()
