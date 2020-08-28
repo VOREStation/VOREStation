@@ -617,6 +617,7 @@
 	if(parent)
 		parent.component_click(src, params)
 
+<<<<<<< HEAD
 // Character setup stuff
 /obj/screen/setup_preview
 	
@@ -634,6 +635,8 @@
 	pref?.bgstate = next_in_list(pref.bgstate, pref.bgstate_options)
 	pref?.update_preview_icon()
 
+=======
+>>>>>>> ffea09e... Merge pull request #7570 from ShadowLarkens/fading_titlescreen
 /obj/screen/splash
 	screen_loc = "1,1"
 	layer = LAYER_HUD_ABOVE
