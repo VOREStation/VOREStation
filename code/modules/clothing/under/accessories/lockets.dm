@@ -2,6 +2,8 @@
 	name = "silver locket"
 	desc = "A small locket of high-quality metal."
 	icon_state = "locket"
+	drop_sound = 'sound/items/drop/ring.ogg'
+	pickup_sound = 'sound/items/pickup/ring.ogg'
 	w_class = ITEMSIZE_SMALL
 	slot_flags = SLOT_MASK | SLOT_TIE
 	slot = ACCESSORY_SLOT_DECOR

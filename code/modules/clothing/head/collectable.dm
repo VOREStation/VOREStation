@@ -38,6 +38,7 @@
 	icon_state = "paper"
 	body_parts_covered = 0
 	drop_sound = 'sound/items/drop/paper.ogg'
+	pickup_sound = 'sound/items/pickup/paper.ogg'
 
 /obj/item/clothing/head/collectable/tophat
 	name = "collectable top hat"
