@@ -49,13 +49,10 @@ proc/get_deepspace(x,y)
 			return FALSE
 	if(has_buckled_mobs())
 		for(var/mob/M in buckled_mobs)
-			if(!M.lost_in_space)
+			if(!M.lost_in_space())
 				return FALSE
 
 	return TRUE
-
-/obj/item/weapon/disk/nuclear/lost_in_space()
-	return FALSE
 
 /obj/item/device/uav/lost_in_space()
 	if(state == 1)
