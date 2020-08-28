@@ -11,7 +11,9 @@ Portals do have some specific requirements when mapping them in;
 	- Each side must face opposite directions, e.g. if side A faces SOUTH, side B must face NORTH.
 	- Clarification on the above - you will be moved in the direction that the portal faces.
 	  If Side A faces south, you will be moved south. Dirs are 1/2/4/8, 1: NORTH, 2: SOUTH, 4: EAST, 8: WEST.
-	- You must have 1 tile of 'buffer' space between turfs or you may see odd visual distortions. If things look weird, move your 'portals' back by one tile.
+	  To further explain: If your cave entrance is on the NORTH side of the map on ENTRY side, and SOUTH side on EXIT side:
+	  You will need to set the ENTRY side's dir to 2, IE SOUTH, as that's the direction you will moving coming FROM the EXIT side.
+	  IE: Directions should be set based on the direction of travel.
 	- Each side must have the same orientation, e.g. horizontal on both sides, or vertical on both sides.
 	- Portals can be made to be longer than 1x1 with `/obj/effect/map_effect/portal/line`s,
 	  but both sides must have the same length.
