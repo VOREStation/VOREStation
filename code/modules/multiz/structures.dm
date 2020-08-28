@@ -96,15 +96,6 @@
 /mob/observer/ghost/may_climb_ladders(var/ladder)
 	return TRUE
 
-<<<<<<< HEAD
-/obj/structure/ladder/proc/climbLadder(var/mob/M, var/target_ladder)
-	var/turf/T = get_turf(target_ladder)
-	for(var/atom/A in T)
-		if(!A.CanPass(M, M.loc, 1.5, 0))
-			to_chat(M, "<span class='notice'>\The [A] is blocking \the [src].</span>")
-			return FALSE
-	return M.forceMove(T) //VOREStation Edit - Fixes adminspawned ladders
-=======
 /obj/structure/ladder/proc/climbLadder(var/mob/M, var/obj/target_ladder)
 	var/direction = (target_ladder == target_up ? "up" : "down")
 	M.visible_message("<span class='notice'>\The [M] begins climbing [direction] \the [src]!</span>",
@@ -119,8 +110,7 @@
 			if(!A.CanPass(M, M.loc, 1.5, 0))
 				to_chat(M, "<span class='notice'>\The [A] is blocking \the [src].</span>")
 				return FALSE
-		return M.Move(T)
->>>>>>> 8dc9ba1... Ladders respect Move Up/Down paradigm (#7559)
+		return M.forceMove(T) //VOREStation Edit - Fixes adminspawned ladders
 
 /obj/structure/ladder/CanPass(obj/mover, turf/source, height, airflow)
 	return airflow || !density
