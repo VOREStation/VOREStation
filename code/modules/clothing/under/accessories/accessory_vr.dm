@@ -29,6 +29,7 @@
 	slot_flags = SLOT_TIE | SLOT_OCLOTHING
 	icon = 'icons/obj/clothing/ties_vr.dmi'
 	icon_override = 'icons/mob/ties_vr.dmi'
+	icon_state = "collar_blk"
 	var/writtenon = 0
 
 /obj/item/clothing/accessory/collar/silver

@@ -1027,7 +1027,7 @@ Uniforms and such
 	desc = "Made from a space-proof fibre and tight fitting, this uniform usually gives the agile Rangers all kinds of protection while not inhibiting their movement. \
 	This costume is instead made from genuine cotton fibre and is based on the season three uniform."
 	icon = 'icons/obj/clothing/ranger.dmi'
-	icon_state = "ranger_uniform"
+	icon_state = "white_ranger_uniform"
 	rolled_down = 0
 	rolled_sleeves = 0
 
