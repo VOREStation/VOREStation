@@ -147,3 +147,35 @@
 /area/submap/FrostflyNest
 	name = "POI - Frostfly Nest"
 	ambience = AMBIENCE_SIF
+
+/area/submap/DerelictEngine
+	name = "POI - Derelict Engine"
+	ambience = AMBIENCE_OTHERWORLDLY
+
+/area/submap/WolfDen
+	name = "POI - Wolf Den"
+	ambience = AMBIENCE_SIF
+
+/area/submap/DemonPool
+	name = "POI - Demon Pool"
+	ambience = AMBIENCE_GHOSTLY
+
+/area/submap/FrostOasis
+	name = "POI - Frost Oasis"
+	ambience = AMBIENCE_SIF
+
+/area/submap/XenoHive
+	name = "POI - Xeno Hive"
+	ambience = AMBIENCE_RUINS
+
+/area/submap/BorgLab
+	name = "POI - Borg Lab"
+	ambience = AMBIENCE_HIGHSEC
+
+/area/submap/Chasm
+	name = "POI - Chasm"
+	ambience = AMBIENCE_SPACE
+
+/area/submap/DeathDen
+	name = "POI - Death Den"
+	ambience = AMBIENCE_FOREBODING
