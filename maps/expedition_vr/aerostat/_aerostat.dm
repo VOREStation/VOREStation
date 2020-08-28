@@ -12,7 +12,7 @@
 	in_space = 0
 	initial_generic_waypoints = list("aerostat_west","aerostat_east","aerostat_south","aerostat_northwest","aerostat_northeast")
 	extra_z_levels = list(Z_LEVEL_AEROSTAT_SURFACE)
-	
+
 // -- Datums -- //
 
 /datum/shuttle/autodock/ferry/aerostat
