@@ -1,5 +1,6 @@
 /obj/effect/overmap/visitable/sector/tether_gateway/snowfield
 	initial_generic_waypoints = list("tether_excursion_snowfield")
+	in_space = 0
 	scanner_name = "Snowy Field"
 	scanner_desc = @{"[i]Stellar Body[/i]: UNKNOWN
 [i]Class[/i]: M-Class Planetoid

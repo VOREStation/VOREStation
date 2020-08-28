@@ -25,7 +25,7 @@
 
 /datum/map_z_level/tether_lateload/underdark
 	name = "Underdark"
-	flags = MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER
+	flags = MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_SEALED
 	base_turf = /turf/simulated/mineral/floor/virgo3b
 	z = Z_LEVEL_UNDERDARK
 
@@ -44,7 +44,7 @@
 
 /datum/map_z_level/tether_lateload/tether_plains
 	name = "Away Mission - Plains"
-	flags = MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER
+	flags = MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_SEALED
 	base_turf = /turf/simulated/mineral/floor/virgo3b
 	z = Z_LEVEL_PLAINS
 
@@ -358,7 +358,6 @@
 
 /datum/map_z_level/tether_lateload
 	z = 0
-	flags = MAP_LEVEL_SEALED
 
 /datum/map_z_level/tether_lateload/New(var/datum/map/map, mapZ)
 	if(mapZ && !z)
