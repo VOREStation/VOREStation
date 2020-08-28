@@ -39,9 +39,9 @@
 	var/secured_wires = 0
 	var/datum/wires/airlock/wires = null
 
-	var/open_sound_powered = 'sound/machines/door/airlock.ogg'
+	var/open_sound_powered = 'sound/machines/airlock.ogg'
 	var/open_sound_unpowered = 'sound/machines/airlockforced.ogg'
-	var/close_sound_powered = 'sound/machines/door/airlockclose.ogg'
+	var/close_sound_powered = 'sound/machines/airlockclose.ogg'
 	var/denied_sound = 'sound/machines/deniedbeep.ogg'
 	var/bolt_up_sound = 'sound/machines/boltsup.ogg'
 	var/bolt_down_sound = 'sound/machines/boltsdown.ogg'
