@@ -228,7 +228,6 @@
 				if(!index || !istype(active1, /datum/data/record))
 					return
 
-<<<<<<< HEAD
 				var/list/comments = active1.fields["comments"]
 				index = clamp(index, 1, length(comments))
 				if(comments[index])
@@ -241,71 +240,6 @@
 					addtimer(CALLBACK(src, .proc/print_finish), 5 SECONDS)
 			else
 				return FALSE
-=======
-//FIELD FUNCTIONS
-			if ("Edit Field")
-				var/a1 = active1
-				switch(href_list["field"])
-					if("name")
-						if (istype(active1, /datum/data/record))
-							var/t1 = sanitizeName(input("Please input name:", "Secure. records", active1.fields["name"], null)  as text)
-							if ((!( t1 ) || !length(trim(t1)) || !( authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!istype(usr, /mob/living/silicon)))) || active1 != a1)
-								return
-							active1.fields["name"] = t1
-					if("id")
-						if (istype(active1, /datum/data/record))
-							var/t1 = sanitize(input("Please input id:", "Secure. records", active1.fields["id"], null)  as text)
-							if ((!( t1 ) || !( authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!istype(usr, /mob/living/silicon))) || active1 != a1))
-								return
-							active1.fields["id"] = t1
-					if("fingerprint")
-						if (istype(active1, /datum/data/record))
-							var/t1 = sanitize(input("Please input fingerprint hash:", "Secure. records", active1.fields["fingerprint"], null)  as text)
-							if ((!( t1 ) || !( authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!istype(usr, /mob/living/silicon))) || active1 != a1))
-								return
-							active1.fields["fingerprint"] = t1
-					if("sex")
-						if (istype(active1, /datum/data/record))
-							if (active1.fields["sex"] == "Male")
-								active1.fields["sex"] = "Female"
-							else
-								active1.fields["sex"] = "Male"
-					if("age")
-						if (istype(active1, /datum/data/record))
-							var/t1 = input("Please input age:", "Secure. records", active1.fields["age"], null)  as num
-							if ((!( t1 ) || !( authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!istype(usr, /mob/living/silicon))) || active1 != a1))
-								return
-							active1.fields["age"] = t1
-					if("rank")
-						var/list/L = list( "Head of Personnel", "Site Manager", "AI" )
-						//This was so silly before the change. Now it actually works without beating your head against the keyboard. /N
-						if ((istype(active1, /datum/data/record) && L.Find(rank)))
-							temp = "<h5>Rank:</h5>"
-							temp += "<ul>"
-							for(var/rank in joblist)
-								temp += "<li><a href='?src=\ref[src];choice=Change Rank;rank=[rank]'>[rank]</a></li>"
-							temp += "</ul>"
-						else
-							alert(usr, "You do not have the required rank to do this!")
-					if("species")
-						if (istype(active1, /datum/data/record))
-							var/t1 = sanitize(input("Please enter race:", "General records", active1.fields["species"], null)  as message)
-							if ((!( t1 ) || !( authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!istype(usr, /mob/living/silicon))) || active1 != a1))
-								return
-							active1.fields["species"] = t1
-
-//TEMPORARY MENU FUNCTIONS
-			else//To properly clear as per clear screen.
-				temp=null
-				switch(href_list["choice"])
-					if ("Change Rank")
-						if (active1)
-							if(PDA_Manifest.len)
-								PDA_Manifest.Cut()
-							active1.fields["rank"] = href_list["rank"]
-							if(href_list["rank"] in joblist)
-								active1.fields["real_rank"] = href_list["real_rank"]
->>>>>>> 6d4d5d6... Merge pull request #7571 from listerla/nomoresitemanager
 
 /**
   * Called in tgui_act() to process modal actions
