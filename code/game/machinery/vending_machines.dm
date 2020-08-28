@@ -535,6 +535,7 @@
 			product.category = category
 
 			product_records.Add(product)
+			GLOB.vending_products[entry] = 1
 
 /obj/machinery/vending/magivend
 	name = "MagiVend"

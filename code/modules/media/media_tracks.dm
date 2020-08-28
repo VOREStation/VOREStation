@@ -25,7 +25,7 @@
 		str += " by [artist]"
 	return str
 
-/datum/track/proc/toNanoList()
+/datum/track/proc/toTguiList()
 	return list("ref" = "\ref[src]", "title" = title, "artist" = artist, "duration" = duration)
 
 
