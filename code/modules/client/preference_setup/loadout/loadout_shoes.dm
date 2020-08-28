@@ -177,9 +177,9 @@
 	path = /obj/item/clothing/shoes/boots/winter/science
 
 /datum/gear/shoes/boots/winter/command
-	display_name = "colony director's winter boots"
+	display_name = "site manager's winter boots"
 	path = /obj/item/clothing/shoes/boots/winter/command
-	allowed_roles = list("Colony Director")
+	allowed_roles = list("Site Manager")
 
 /datum/gear/shoes/boots/winter/engineering
 	display_name = "engineering winter boots"

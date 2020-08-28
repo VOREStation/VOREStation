@@ -5,7 +5,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 //////////////////////////////////
 
 /datum/job/captain
-	title = "Colony Director"
+	title = "Site Manager"
 	flag = CAPTAIN
 	departments = list(DEPARTMENT_COMMAND)
 	sorting_order = 3 // Above everyone.
@@ -26,11 +26,10 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	ideal_character_age = 70 // Old geezer captains ftw
 
 	outfit_type = /decl/hierarchy/outfit/job/captain
-	job_description = "The Colony Director manages the other Command Staff, and through them the rest of the station. Though they have access to everything, \
-						they do not understand everything, and are expected to delegate tasks to the appropriate crew member. The Colony Director is expected to \
+	job_description = "The Site Manager manages the other Command Staff, and through them the rest of the station. Though they have access to everything, \
+						they do not understand everything, and are expected to delegate tasks to the appropriate crew member. The Site Manager is expected to \
 						have an understanding of Standard Operating Procedure, and is subject to it, and legal action, in the same way as every other crew member."
-	alt_titles = list("Site Manager" = /datum/alt_title/site_manager,
-						"Overseer" = /datum/alt_title/overseer)
+	alt_titles = list("Overseer"= /datum/alt_title/overseer)
 
 /*
 /datum/job/captain/equip(var/mob/living/carbon/human/H)
@@ -44,9 +43,6 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 
 
 // Captain Alt Titles
-/datum/alt_title/site_manager
-	title = "Site Manager"
-
 /datum/alt_title/overseer
 	title = "Overseer"
 
@@ -63,7 +59,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the Colony Director"
+	supervisors = "the Site Manager"
 	selection_color = "#1D1D4F"
 	req_admin_notify = 1
 	minimal_player_age = 10
