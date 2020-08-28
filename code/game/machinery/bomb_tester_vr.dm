@@ -205,7 +205,7 @@
 		simulation_results = "Error"
 		simulation_finish()
 		return
-	if((tank1 && (tank1.return_pressure() > TANK_RUPTURE_PRESSURE)) || (tank2 && (tank2.return_pressure() > TANK_RUPTURE_PRESSURE)))
+	if((tank?.air_contents.return_pressure() > TANK_RUPTURE_PRESSURE)) || tank2?.air_contents.return_pressure() > TANK_RUPTURE_PRESSURE)))
 		simulation_results = "Unstable"
 		simulation_finish()
 		return
