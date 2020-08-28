@@ -178,45 +178,6 @@ var/list/gamemode_cache = list()
 	var/static/walk_speed = 0
 
 	//Mob specific modifiers. NOTE: These will affect different mob types in different ways
-<<<<<<< HEAD
-	var/static/human_delay = 0
-	var/static/robot_delay = 0
-	var/static/monkey_delay = 0
-	var/static/alien_delay = 0
-	var/static/slime_delay = 0
-	var/static/animal_delay = 0
-
-	var/static/footstep_volume = 0
-
-	var/static/admin_legacy_system = 0	//Defines whether the server uses the legacy admin system with admins.txt or the SQL system. Config option in config.txt
-	var/static/ban_legacy_system = 0	//Defines whether the server uses the legacy banning system with the files in /data or the SQL system. Config option in config.txt
-	var/static/use_age_restriction_for_jobs = 0 //Do jobs use account age restrictions? --requires database
-	var/static/use_age_restriction_for_antags = 0 //Do antags use account age restrictions? --requires database
-
-	var/static/simultaneous_pm_warning_timeout = 100
-
-	var/static/use_recursive_explosions //Defines whether the server uses recursive or circular explosions.
-	var/static/multi_z_explosion_scalar = 0.5 //Multiplier for how much weaker explosions are on neighboring z levels.
-
-	var/static/assistant_maint = 0 //Do assistants get maint access?
-	var/static/gateway_delay = 18000 //How long the gateway takes before it activates. Default is half an hour.
-	var/static/ghost_interaction = 0
-
-	var/static/comms_password = ""
-
-	var/static/enter_allowed = 1
-
-	var/static/use_irc_bot = 0
-	var/static/use_node_bot = 0
-	var/static/irc_bot_port = 0
-	var/static/irc_bot_host = ""
-	var/static/irc_bot_export = 0 // whether the IRC bot in use is a Bot32 (or similar) instance; Bot32 uses world.Export() instead of nudge.py/libnudge
-	var/static/main_irc = ""
-	var/static/admin_irc = ""
-	var/static/python_path = "" //Path to the python executable.  Defaults to "python" on windows and "/usr/bin/env python2" on unix
-	var/static/use_lib_nudge = 0 //Use the C library nudge instead of the python nudge.
-	var/static/use_overmap = 0
-=======
 	var/human_delay = 0
 	var/robot_delay = 0
 	var/monkey_delay = 0
@@ -256,7 +217,6 @@ var/list/gamemode_cache = list()
 	var/use_overmap = 0
 
 	var/static/list/engine_map = list("Supermatter Engine", "Edison's Bane")	// Comma separated list of engines to choose from.  Blank means fully random.
->>>>>>> 1d80ba3... Merge pull request #7586 from Atermonera/master
 
 	// Event settings
 	var/static/expected_round_length = 3 * 60 * 60 * 10 // 3 hours
@@ -829,12 +789,9 @@ var/list/gamemode_cache = list()
 
 				if("use_overmap")
 					config.use_overmap = 1
-<<<<<<< HEAD
-=======
 
 				if("engine_map")
 					config.engine_map = splittext(value, ",")
->>>>>>> 1d80ba3... Merge pull request #7586 from Atermonera/master
 /*
 				if("station_levels")
 					using_map.station_levels = text2numlist(value, ";")
