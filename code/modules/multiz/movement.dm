@@ -81,34 +81,29 @@
 					to_chat(src, "<span class='warning'>You gave up on pulling yourself up.</span>")
 					return 0
 
+			else if(ismob(src)) //VOREStation Edit Start. Are they a mob, and are they currently flying??
+				var/mob/H = src
+				if(H.flying)
+					if(H.incapacitated(INCAPACITATION_ALL))
+						to_chat(src, "<span class='notice'>You can't fly in your current state.</span>")
+						H.stop_flying() //Should already be done, but just in case.
+						return 0
+					var/fly_time = max(7 SECONDS + (H.movement_delay() * 10), 1) //So it's not too useful for combat. Could make this variable somehow, but that's down the road.
+					to_chat(src, "<span class='notice'>You begin to fly upwards...</span>")
+					destination.audible_message("<span class='notice'>You hear the flapping of wings.</span>")
+					H.audible_message("<span class='notice'>[H] begins to flap \his wings, preparing to move upwards!</span>")
+					if(do_after(H, fly_time) && H.flying)
+						to_chat(src, "<span class='notice'>You fly upwards.</span>")
+					else
+						to_chat(src, "<span class='warning'>You stopped flying upwards.</span>")
+						return 0
+				else
+					to_chat(src, "<span class='warning'>Gravity stops you from moving upward.</span>")
+					return 0 //VOREStation Edit End.
+
 			else
 				to_chat(src, "<span class='warning'>Gravity stops you from moving upward.</span>")
 				return 0
-<<<<<<< HEAD
-		else if(ismob(src)) //VOREStation Edit Start. Are they a mob, and are they currently flying??
-			var/mob/H = src
-			if(H.flying)
-				if(H.incapacitated(INCAPACITATION_ALL))
-					to_chat(src, "<span class='notice'>You can't fly in your current state.</span>")
-					H.stop_flying() //Should already be done, but just in case.
-					return 0
-				var/fly_time = max(7 SECONDS + (H.movement_delay() * 10), 1) //So it's not too useful for combat. Could make this variable somehow, but that's down the road.
-				to_chat(src, "<span class='notice'>You begin to fly upwards...</span>")
-				destination.audible_message("<span class='notice'>You hear the flapping of wings.</span>")
-				H.audible_message("<span class='notice'>[H] begins to flap \his wings, preparing to move upwards!</span>")
-				if(do_after(H, fly_time) && H.flying)
-					to_chat(src, "<span class='notice'>You fly upwards.</span>")
-				else
-					to_chat(src, "<span class='warning'>You stopped flying upwards.</span>")
-					return 0
-			else
-				to_chat(src, "<span class='warning'>Gravity stops you from moving upward.</span>")
-				return 0 //VOREStation Edit End.
-		else
-			to_chat(src, "<span class='warning'>Gravity stops you from moving upward.</span>")
-			return 0
-=======
->>>>>>> 8dc9ba1... Ladders respect Move Up/Down paradigm (#7559)
 
 	for(var/atom/A in destination)
 		if(!A.CanPass(src, start, 1.5, 0))
