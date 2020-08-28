@@ -431,17 +431,21 @@
 					linked_destroy.loaded_item = null
 					for(var/obj/I in linked_destroy.contents)
 						for(var/mob/M in I.contents)
+							playsound(linked_destroy, 'sound/machines/destructive_analyzer.ogg', 50, 1)
 							M.death()
 						if(istype(I,/obj/item/stack/material))//Only deconsturcts one sheet at a time instead of the entire stack
 							var/obj/item/stack/material/S = I
 							if(S.get_amount() > 1)
+								playsound(linked_destroy, 'sound/machines/destructive_analyzer.ogg', 50, 1)
 								S.use(1)
 								linked_destroy.loaded_item = S
 							else
+								playsound(linked_destroy, 'sound/machines/destructive_analyzer.ogg', 50, 1)
 								qdel(S)
 								linked_destroy.icon_state = "d_analyzer"
 						else
 							if(I != linked_destroy.circuit && !(I in linked_destroy.component_parts))
+								playsound(linked_destroy, 'sound/machines/destructive_analyzer.ogg', 50, 1)
 								qdel(I)
 								linked_destroy.icon_state = "d_analyzer"
 
