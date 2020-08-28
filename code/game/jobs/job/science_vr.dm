@@ -18,6 +18,11 @@
 	alt_titles = list("Xenoarchaeologist" = /datum/alt_title/xenoarch, "Anomalist" = /datum/alt_title/anomalist, \
 						"Phoron Researcher" = /datum/alt_title/phoron_research, "Circuit Designer" = /datum/alt_title/circuit_designer)
 
+
+	access = list(access_robotics, access_tox, access_tox_storage, access_research, access_xenobiology, access_xenoarch, access_xenobotany)
+	minimal_access = list(access_tox, access_tox_storage, access_research, access_xenoarch)					// Unchanged (for now?), mostly here for reference
+
+
 /datum/alt_title/circuit_designer
 	title = "Circuit Designer"
 	title_blurb = "A Circuit Designer is a Scientist whose expertise is working with integrated circuits. They are familar with the workings and programming of those devices. \
