@@ -26,6 +26,9 @@ Code is pretty much ripped verbatim from nano modules, but with un-needed stuff 
 	if(host)
 		host.tgui_close(user)
 
+/datum/tgui_module/proc/check_eye(mob/user)
+	return -1
+
 /datum/tgui_module/proc/can_still_topic(mob/user, datum/tgui_state/state)
 	return (tgui_status(user, state) == STATUS_INTERACTIVE)
 
@@ -113,3 +116,11 @@ Code is pretty much ripped verbatim from nano modules, but with un-needed stuff 
 	. += new /obj/screen/plane_master/main{plane = OBJ_PLANE}
 	. += new /obj/screen/plane_master/main{plane = MOB_PLANE}
 	. += new /obj/screen/plane_master/cloaked								//Cloaked atoms!
+
+	//VOREStation Add - Random other plane masters
+	. += new /obj/screen/plane_master{plane = PLANE_CH_STATUS_R}			//Right-side status icon
+	. += new /obj/screen/plane_master{plane = PLANE_CH_HEALTH_VR}			//Health bar but transparent at 100
+	. += new /obj/screen/plane_master{plane = PLANE_CH_BACKUP}				//Backup implant status
+	. += new /obj/screen/plane_master{plane = PLANE_CH_VANTAG}				//Vore Antags
+	. += new /obj/screen/plane_master{plane = PLANE_AUGMENTED}				//Augmented reality
+	//VOREStation Add End

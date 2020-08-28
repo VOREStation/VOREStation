@@ -83,7 +83,7 @@
 
 	if (istype(A,/mob/living))
 		var/mob/living/M = A
-		if(M.lying)
+		if(M.lying || M.flying) //VOREStation Edit
 			return ..()
 
 		if(M.dirties_floor())

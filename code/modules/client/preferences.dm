@@ -23,6 +23,8 @@ datum/preferences
 	var/UI_style_alpha = 255
 	var/tooltipstyle = "Midnight"		//Style for popup tooltips
 	var/client_fps = 0
+	var/ambience_freq = 5				// How often we're playing repeating ambience to a client.
+	var/ambience_chance = 35			// What's the % chance we'll play ambience (in conjunction with the above frequency)
 
 	var/tgui_fancy = TRUE
 	var/tgui_lock = FALSE
@@ -147,6 +149,8 @@ datum/preferences
 
 	var/examine_text_mode = 0 // Just examine text, include usage (description_info), switch to examine panel.
 	var/multilingual_mode = 0 // Default behaviour, delimiter-key-space, delimiter-key-delimiter, off
+
+	var/list/volume_channels = list()
 
 
 /datum/preferences/New(client/C)

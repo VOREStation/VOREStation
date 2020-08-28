@@ -34,7 +34,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	origin_tech = list(TECH_MATERIAL = 1)
 	slot_flags = SLOT_EARS
 	attack_verb = list("burnt", "singed")
-	drop_sound = null
+	drop_sound = 'sound/items/drop/food.ogg'
+	pickup_sound = 'sound/items/pickup/food.ogg'
 
 /obj/item/weapon/flame/match/process()
 	if(isliving(loc))
@@ -488,6 +489,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/weapon/rollingpaper
 	name = "rolling paper"
 	desc = "A small, thin piece of easily flammable paper, commonly used for rolling and smoking various dried plants."
+	description_fluff = "The legalization of certain substances propelled the sale of rolling papers through the roof. Now almost every Trans-stellar produces a variety, often of questionable quality."
 	icon = 'icons/obj/cigarettes.dmi'
 	icon_state = "cig paper"
 
@@ -513,6 +515,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/weapon/flame/lighter
 	name = "cheap lighter"
 	desc = "A cheap-as-free lighter."
+	description_fluff = "The 'hand-made in Altair' sticker underneath is a charming way of saying 'Made with prison labour'. It's no wonder the company can sell these things so cheap."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "lighter-g"
 	item_state = "lighter-g"
@@ -527,6 +530,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/weapon/flame/lighter/zippo
 	name = "\improper Zippo lighter"
 	desc = "The zippo."
+	description_fluff = "Still going after all these years."
 	icon = 'icons/obj/zippo.dmi'
 	icon_state = "zippo"
 	item_state = "zippo"

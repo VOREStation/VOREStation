@@ -236,7 +236,8 @@ var/list/gamemode_cache = list()
 	var/static/dooc_allowed = 1
 	var/static/dsay_allowed = 1
 
-	var/persistence_enabled = 1
+	var/persistence_disabled = FALSE
+	var/persistence_ignore_mapload = FALSE
 
 	var/allow_byond_links = 0
 	var/allow_discord_links = 0
@@ -579,8 +580,11 @@ var/list/gamemode_cache = list()
 				if("protect_roles_from_antagonist")
 					config.protect_roles_from_antagonist = 1
 
-				if ("persistence_enabled")
-					config.persistence_enabled = 1
+				if("persistence_disabled")
+					config.persistence_disabled = TRUE // Previously this forcibly set persistence enabled in the saves.
+					
+				if("persistence_ignore_mapload")
+					config.persistence_ignore_mapload = TRUE
 
 				if ("probability")
 					var/prob_pos = findtext(value, " ")

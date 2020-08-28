@@ -168,7 +168,7 @@ var/global/list/default_medbay_channels = list(
 /obj/item/device/radio/tgui_data(mob/user)
 	var/data[0]
 
-	data["rawfreq"] = num2text(frequency)
+	data["rawfreq"] = frequency
 	data["listening"] = listening
 	data["broadcasting"] = broadcasting
 	data["subspace"] = subspace_transmission

@@ -40,6 +40,9 @@
 /obj/item/weapon/card/id/proc/prevent_tracking()
 	return 0
 
+/obj/item/weapon/card/id/tgui_state(mob/user)
+	return GLOB.tgui_deep_inventory_state
+
 /obj/item/weapon/card/id/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)

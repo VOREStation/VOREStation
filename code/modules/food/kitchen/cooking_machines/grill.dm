@@ -8,6 +8,7 @@
 	on_icon = "grill_on"
 	off_icon = "grill_off"
 	can_burn_food = TRUE
+	var/datum/looping_sound/grill/grill_loop
 	circuit = /obj/item/weapon/circuitboard/grill
 	active_power_usage = 4 KILOWATTS
 	heating_power = 4000
@@ -24,6 +25,28 @@
 	
 	max_contents = 3 // Arbitrary number, 3 grill 'racks'
 	container_type = /obj/item/weapon/reagent_containers/cooking_container/grill
+	
+/obj/machinery/appliance/cooker/grill/Initialize()
+	. = ..()
+	grill_loop = new(list(src), FALSE)
+	
+/obj/machinery/appliance/cooker/grill/Destroy()
+	QDEL_NULL(grill_loop)
+	return ..()
+	
+/obj/machinery/appliance/cooker/grill/update_icon() // TODO: Cooking icon
+	if(!stat)
+		icon_state = on_icon
+		if(cooking == TRUE)
+			if(grill_loop)
+				grill_loop.start(src)
+		else
+			if(grill_loop)
+				grill_loop.stop(src)
+	else
+		icon_state = off_icon
+		if(grill_loop)
+			grill_loop.stop(src)
 
 /* // Test Comment this out too, /cooker does this for us, and this path '/obj/machinery/appliance/grill' is invalid anyways, meaning it does jack shit. - Updated the paths, but I'm basically commenting all this shit out and if the grill works as-normal, none of this stuff is needed.
 /obj/machinery/appliance/grill/toggle_power()
@@ -87,12 +110,6 @@
 		return 1
 	return 0
 */
-
-/obj/machinery/appliance/grill/update_icon() // TODO: Cooking icon
-	if(!stat)
-		icon_state = on_icon
-	else
-		icon_state = off_icon
 
 /* // Test remove this too.
 /obj/machinery/appliance/grill/process()

@@ -1,9 +1,16 @@
 /datum/lore/codex/category/main_news // The top-level categories for the news thing
 	name = "Index"
-	data = "Below you'll find a list of articles relevant to the current (as of 2562) political climate, especially concerning the Almach Rim \
+	data = "Below you'll find a list of articles relevant to the current (as of 2564) political climate, especially concerning the Almach Rim \
 	region. Each is labeled by date of publication and title. This list is self-updating, and from time to time the publisher will push new \
 	articles. You are encouraged to check back frequently."
 	children = list(
+		/datum/lore/codex/page/article88,
+		/datum/lore/codex/page/article87,
+		/datum/lore/codex/page/article86,
+		/datum/lore/codex/page/article85,
+		/datum/lore/codex/page/article84,
+		/datum/lore/codex/page/article83,
+		/datum/lore/codex/page/article82,
 		/datum/lore/codex/page/article81,
 		/datum/lore/codex/page/article80,
 		/datum/lore/codex/page/article79,
@@ -921,3 +928,81 @@
 	Current analysis of the bluespace anomaly detected prior to Shelf's unexpected departure indicate that the same technology as employed by the Whythe Superweapon may have been used by Shelf to create 'a bluespace portal thus far inconceivable by modern science'. The revelation has sparked concerns that 'extreme mercurial elements' within Shelf may have been responsible for the hardware behind the Assocation's 'system eating' weapon.\
 	<br><br>\
 	Sifat Unar of the EIO has expressed particular concern that 'Such improbable technology relying on concepts deemed so staggeringly arcane that our very understanding of the laws of the universe had written them off as impossible - and to be applied in such callous ways without regard for life or perhaps even the fabric of reality, could only have been developed by machine minds that could threaten our very being.' Shelf has dismissed these claims as 'Scaremongering' and 'Just jealous that somebody else thought of it first', though they would not confirm nor deny their involvement in the development of the new bluespace portals."
+
+/datum/lore/codex/page/article82
+	name = "04/11/64 - Whythe Breached - An End In Sight?"
+	data = "According to latest reports from the Almach front, Sol vessels have established a foothold in the debris fields of the desolate Whythe system, home to the enemy's controversial 'Superweapon'. Admiral Barka has confirmed that bombardment of the weapon has begun, but that 'shields are holding at present', owing to the vast construction's immense power generation capabilities, but remains confident that the 'siege' will come to an end within a few months, and that the Almachi now hold only 'minimal retaliatory capacity'.\
+	<br><br>\
+	Fleet sources have been quick to address a flurry of activity on the exonet which proposed that the superweapon might be deployed against Sol's core systems in a last-ditch effort to inflict damage on their former government. According to a statement posted just hours after the initial invasion press release, 'the Fleet is aware of all risk factors regarding the Whythe Superweapon, and following two long months of analysis are certain that constant, substantial pressure placed on the weapon's shield systems will render the offensive component of the weapon dormant until the hull can be breached.'\
+	<br><br>\
+	The general mood in the Colonial Assembly today is one of relief, as all signs point to a total collapse or surrender of Association forces in their home systems once their trump card has been captured or destroyed by SCG forces. Secretary West has already expressed congratulations to the troops, 'despite the lack of assistance from our allies, as the Shadow Coalition would have had us believe was necessary.'"
+
+/datum/lore/codex/page/article83
+	name = "04/13/64 - Skrell Ultimatum Shocks Sol!"
+	data = "After three months of diplomatic iciness, the Skrellian Far Kingdoms have contacted both the SCG and Almach Association with one demand: Sign an armistice or prepare for war. Supported by an immense fleet movement through the recently quashed Xe'qua region, the Far Kingdoms have demanded an immediate end to hostilities, and 'incorporation of Almachi holdings as a Skrellian protectorate, under strict oversight and regulation of their research and activities.' By Skrell demands, the Fleet has two weeks to fully withdraw from the Almach region and any vessels on either side continuing to engage will be 'disabled, boarded, and have its crew arrested pending a formal peace agreement.'\
+	<br><br>\
+	A wave of outrage has swept the Colonial Assembly, with heated debate as to Sol's response defying all party lines. While Speaker ISA-5 has been widely criticized by political opponents for their 'overzealous trust in the Skrell', they have remained acquiescent to the Skrell's demands, stating that it may be the best way to avoid any further bloodshed and maintain good relationships with the Skrell. Conversely, a small group of hardliners from across the major parties headed by SEO Representative Colin Zula of Alpha Centauri, have formed a political coalition opposing any form of 'Surrender or appeasement in the face of foreign aggression', demanding Sol keep its forces in place and 'Finish off the Association before they can be allowed to wreak havoc unsupervised and uncontrolled.'\
+	<br><br>\
+	Surprising some, long-time supporter of the Almach War, MacKenzie West has established themselves as a figure of moderation in the Assembly, promising that the Icarus Front would pursue 'aggressive negotiations' with the Far Kingdoms in order to better understand their motivations and, if territory is to be ceded,  'ensure the Almachi are placed under a firm hand'. He notes that the Skrell have never adhered to Five Points policy, but that careful diplomacy has always ensured their 'less savoury tendencies' have never spilled over to Sol space."
+
+/datum/lore/codex/page/article84
+	name = "04/16/64 - Assembly Shaken By Reshuffle"
+	data = "Following the shock announcement of the Skrellian demands on Monday, sixteen planetary representatives under the SEO's Colin Zula have announced the formation of a new political party named the 'Solar Sovereignty Party' under the banner of 'Independence from foreign demands'. The party consists of defectors from all three major parties; 9 Sol Economic Organization, 4 Icarus Front and 3 Shadow Coalition representatives have 'jumped ship' and will back Zula's demands to resume war with the Association, even if it means butting heads with the Skrell.\
+	<br><br>\
+	Rewi Kerehoma, chair of the SEO has expressed 'regret' that Mr. Zula and his supporters had chosen to splinter from the party, rather than work with 'More moderate, but like-minded' individuals across the SEO and wider Assembly. The SEO's official stance on the Skrellian demands are to demand close Solar oversight of any 'protectorate' to ensure that the region is 'policed to the highest standard, but that current Almachi citizens are afforded all the sapient rights they would be under the SCG.'\
+	<br><br>\
+	In the Shadow Coalition, a formal motion has been put forth by a small minority of representatives calling for the resignation of Speaker ISA-5, citing 'Total blindness to the political situation,' in the leadup to this week's events.\
+	<br><br>\
+	Meanwhile as Skrell vessels enter the Whythe system, the Solar Fleet has ceased bombardment of the Whythe Superweapon, handing off 'suppression' of the weapon to Skrell forces."
+
+/datum/lore/codex/page/article85
+	name = "04/20/64 - Sol To Submit - Almach Subsumed Under Treaty of Whythe"
+	data = "Following 'intense' deliberations between the Far Kingdoms and representatives from the SCG, a decision has been reached to cede the secessionist Almach Association territory to the Skrell, and withdraw all forces from the region. The newly established Almach Protectorate will be subject to 'extremely stringent' oversight by Skrellian authorities, and international exchange of 'research and technologies' from the region will be banned 'in both directions', pending more a more exacting deal with the SCG. Sol is to be allowed 'regular inspections' of the territory on a schedule established by the Kingdoms.\
+	<br><br>\
+	The Solar envoy included the chairs of each of the major parties, senior ambassadors to major Skrell systems, and representatives from the Solar Fleet. The newly founded SSF were extended an invitation, but reportedly turned it down. A dejected looking MacKenzie West announced the terms of the treaty late this afternoon, stating that they had 'fought tooth and nail' for a fair deal for all parties involved, including civilians of all species now living under Skrellian occupation, and that 'those not directly involved in the corruption of humanity's sanctity should not be made to suffer for the actions of their superiors.'\
+	<br><br>\
+	Notably absent from deliberations were many key members of the Association's upper echelons, with 'lesser' diplomats taking the place of both Angessa Martei and Vounna's Naomi Harper. Almachi and Skrell sources were reluctant to explain these absenses, and it remains unclear as to whether they have been taken into Skrellian custody or remain at large.\
+	<br><br>\
+	Selma Jorg, Representative for Vir, has decried the treaty as a 'Sapientarian disaster in the making'. The former career diplomat has cited the 'general mistreatment of species deemed 'lesser'' as a recurring concern with the Skrell, and the complete occupation of majority human and positronic space, which unprecedented, could lead to 'conditions not much better than slavery' for those still living in the area. She has refrained from any direct accusations, pending the results of Sol's first permitted inspection."
+
+/datum/lore/codex/page/article85
+	name = "04/22/64 - Skrell Impose New Regime in Relan"
+	data = "As agreed upon in the Treaty of Whythe, the Far Kingdoms have occupied the Relan system, putting an end to the Free Relan Federation. How the system will be organized is not entirely clear at this point. Despite the effective abolition of the Relanian government, Skrell presence in the system appears relatively light, and many of the scattered stations have no Skrell presence at all.\
+	<br><br>\
+	Former President Nia Fischer gave the following statement to a crowd gathered outside the Capitol Section of Carter: 'This is a dark time for all of us. I promise to you that, in my continued service to you, I will work with the Far Kingdoms to ensure that all of our people are treated well and our rights respected, and that we will arrive at a form of government that is acceptable to you.' The gathered crowd began to shout questions and accusations, and Fischer was quickly escorted back into the capitol by Skrellian guards without answering questions from the press or others. The crowd was quickly dispersed by Skrellian military police and Carter’s own police force.\
+	<br><br>\
+	In the meantime, the governing of the system remains in the hands of the sparse occupation forces, aided by parts of the former Federation government.\
+	<br><br>\
+	In other news from the system, the Republic of Taron has negotiated a preliminary navigation and trade agreement with the Far Kingdoms, officially maintaining their neutrality despite the occupation of the majority of the system."
+
+/datum/lore/codex/page/article86
+	name = "04/27/64 - Chaos in Relan"
+	data = "Simmering tensions in the Relan system have boiled over, with riots erupting on Carter, Abhayaranya, and New Busan. Since former President Fischer’s brief address, small demonstrations against both the Skrell occupation and the collaborating elements of the former Federation government have taken place on many stations, but within the last day full-blown riots have broken out. While accurate information on the situation within the stations is rare, it is currently believed that the deaths of two protesters on Abhayaranya were the catalyst.\
+	<br><br>\
+	Damage to the three stations has been relatively light, with one major exception. A large fire broke out in the Capitol Section of Carter, killing at least 22, including former President Fischer, and wounding at least 74 more. Other casualties among rioters, police, and the populations of the stations are unknown at this point.\
+	<br><br>\
+	Other stations with significant permanent populations have been paralyzed by local inaction and the disloyalty of local police and security forces to the Far Kindgoms Skrell, and several with no Skrell presence have issued statements that they will not be accepting any military presence from the Far Kingdoms. It is unclear at this point if this represents the beginning of another major conflict within the system."
+
+/datum/lore/codex/page/article87
+	name = "04/30/64 - Meralar Correspondent: Triumphant Return!"
+	data = "Celebrations have erupted throughout Tajaran space with the return of the PCMV Raniira's Grace, which has spent the last several months providing joint assistance with Solar military forces during the now-ceased hostilities with the Almach Association.\
+	<br><br>\
+	Khama Suketa enai-Lutiir, representative of the Tajaran Pearlshield Coalition, has provided the following statement:\
+	<br><br>\
+	'It is great honour that we welcome the crew of the Raniira's Grace back to their homes at Mesomori. We have all seen the battle reports, and loathe as we are to celebrate bloodshed, sometimes it is a necessary evil in the pursuit of a greater peace, and the Grace pursued that peace with fervour and tenacity as befitting our kind, and exemplified what we can do when put to the test. She is but one ship, and yet one ship can make all the difference. Lives have been saved, and the crew has returned alive and well. This is merely the beginning of what we can accomplish in the cosmos.'\
+	<br><br>\
+	When asked for comment on the Treaty of Whythe, Suketa had this to say:\
+	<br><br>\
+	'Indeed, the bittersweetness behind all of this. I will say, it is a... complicated and nuanced situation, as is so often the case with politics. We have our views on the matter, for sure, but now is not the time to formally engage with them. The Pearlshield is watching carefully, and when the dust settles and the terms of the treaty are exercised and accepted, we can take clearer view and action as possible and necessary. We still stand by the ideals we entered the war with, and we trust our allies to share them as ever. That will suffice for the moment.'"
+
+/datum/lore/codex/page/article88
+	name = "05/13/64 - Agreement Signed at Ithaca Station, New Government In Place"
+	data = "In an effort to end the ongoing violence in the Relan system and regain the cooperation of 'insubordinate' stations, the Far Kingdoms Skrell have negotiated an agreement with community leaders and former Assemblypersons from a number of stations, including insubordinates, meeting at the largest of the insubordinates, Ithaca. Under these agreements, the Skrell will vacate most stations in the system, but will maintain a fleet base in Relan’s Outer Belt for mutual defence, first at Carter and later at a dedicated station. Relan will have harsh restrictions placed on its military and will agree to formal diplomatic neutrality, but will be free to organize its own government under supervision and military occupation will end.\
+	<br><br>\
+	The mood on Ithaca has been tense as negotiations have gone on, but with the announcement of the results, crowds have packed the main thoroughfares and public spaces of the station in celebration. Francis Harp Yong, governor of Ithaca and a leading figure in the talks, addressed a crowd outside the Administration Section of Ithaca today. \
+	<br><br>\
+	'The agreement we have signed with the Skrell today has given our people a new chance, free from the mistakes of the war and the baggage of the former Association. The war was not brought on us by our choice, nor the occupation we have recently faced. We want peace, and that is obvious even to those who were fighting against us weeks or days ago.\
+	<br><br>\
+	Make no mistake, that is what our agreement today symbolizes. A new era of peace for us, where we no longer have to worry about the threat of piracy or invasion. We can return to our homes, rebuild our stations, and forge a new future for ourselves and our children'\
+	<br><br>\
+	It was also announced that though the work of restoring order to the system is ongoing, they expect elections will be held for a new Assembly and President within the next few months, with the exact date announced once violence on the major stations has ceased and cooperation from the insubordinate stations is secured. Yong will head an interim government in the meantime."

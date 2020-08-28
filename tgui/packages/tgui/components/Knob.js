@@ -21,6 +21,7 @@ export const Knob = props => {
   const {
     // Draggable props (passthrough)
     animated,
+    forcedInputWidth,
     format,
     maxValue,
     minValue,
@@ -48,6 +49,7 @@ export const Knob = props => {
       dragMatrix={[0, -1]}
       {...{
         animated,
+        forcedInputWidth,
         format,
         maxValue,
         minValue,

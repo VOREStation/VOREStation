@@ -36,17 +36,19 @@
 	add_fingerprint(user)
 	if(stat & (BROKEN|NOPOWER))
 		return
-	user.set_machine(src)
-	ui_interact(user)
+	tgui_interact(user)
 
-/obj/machinery/computer/roguezones/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	user.set_machine(src)
+/obj/machinery/computer/roguezones/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "RogueZones", name)
+		ui.open()
 
-
+/obj/machinery/computer/roguezones/tgui_data(mob/user)
 	var/chargePercent = min(100, ((((world.time - rm_controller.last_scan) / 10) / 60) / rm_controller.scan_wait) * 100)
 	var/curZoneOccupied = rm_controller.current_zone ? rm_controller.current_zone.is_occupied() : 0
 
-	var/list/data = list()
+	var/list/data = ..()
 	data["timeout_percent"] = chargePercent
 	data["diffstep"] = rm_controller.diffstep
 	data["difficulty"] = rm_controller.diffstep_strs[rm_controller.diffstep]
@@ -80,32 +82,24 @@
 
 	// Permit emergency recall of the shuttle if its stranded in a zone with just dead people.
 	data["can_recall_shuttle"] = (shuttle_control && (shuttle_control.z in using_map.belter_belt_z) && !curZoneOccupied)
+	return data
 
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "zone_console.tmpl", src.name, 600, 400)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(5)
-
-/obj/machinery/computer/roguezones/Topic(href, href_list)
+/obj/machinery/computer/roguezones/tgui_act(action, list/params)
 	if(..())
-		return 1
-	usr.set_machine(src)
-	if (href_list["action"])
-		switch(href_list["action"])
-			if ("scan_for_new")
-				scan_for_new_zone()
-			if ("point_at_old")
-				point_at_old_zone()
-			if ("recall_shuttle")
-				failsafe_shuttle_recall()
+		return TRUE
+	switch(action)
+		if("scan_for_new")
+			scan_for_new_zone()
+			. = TRUE
+		if("recall_shuttle")
+			failsafe_shuttle_recall()
+			. = TRUE
 
-	src.add_fingerprint(usr)
-	SSnanoui.update_uis(src)
+	add_fingerprint(usr)
 
 /obj/machinery/computer/roguezones/proc/scan_for_new_zone()
-	if(scanning) return
+	if(scanning)
+		return
 
 	//Set some kinda scanning var to pause UI input on console
 	rm_controller.last_scan = world.time
@@ -137,9 +131,6 @@
 
 	return
 
-/obj/machinery/computer/roguezones/proc/point_at_old_zone()
-
-	return
 
 /obj/machinery/computer/roguezones/proc/failsafe_shuttle_recall()
 	if(!shuttle_control)

@@ -14,6 +14,7 @@
 	var/last_process_time = 0
 
 	var/list/construction = list()
+	var/list/tgui_construction = list()
 	var/list/spawning_types = list()
 	var/list/stored_materials = list()
 
@@ -42,8 +43,8 @@
 	/obj/item/weapon/bikehorn,
 	/obj/item/weapon/surgical/bonesetter,
 	/obj/item/weapon/material/knife/butch,
-	/obj/item/weapon/caution,
-	/obj/item/weapon/caution/cone,
+	/obj/item/clothing/suit/caution,
+	/obj/item/clothing/head/cone,
 	/obj/item/weapon/tool/crowbar,
 	/obj/item/weapon/clipboard,
 	/obj/item/weapon/cell,
@@ -67,12 +68,35 @@
 //	/mob/living/simple_mob/mimic/crate,	// Vorestation edit //VORESTATION AI TEMPORARY REMOVAL, REPLACE BACK IN LIST WHEN FIXED
 	var/quantity = rand(5, 15)
 	for(var/i=0, i<quantity, i++)
-		var/button_desc = "a [pick("yellow","purple","green","blue","red","orange","white")], "
-		button_desc += "[pick("round","square","diamond","heart","dog","human")] shaped "
-		button_desc += "[pick("toggle","switch","lever","button","pad","hole")]"
+		var/background = pick("yellow","purple","green","blue","red","orange","white")
+		var/list/icons = list(
+			"round" = "circle",
+			"square" = "square",
+			"diamond" = "gem",
+			"heart" = "heart",
+			"dog" = "dog",
+			"human" = "user",
+		)
+		var/icon = pick(icons)
+		var/list/colors = list(
+			"toggle" = "pink",
+			"switch" = "yellow",
+			"lever" = "red",
+			"button" = "black",
+			"pad" = "white",
+			"hole" = "black",
+		)
+		var/color = pick(colors)
+		var/button_desc = "a [background], [icon] shaped [color]"
 		var/type = pick(viables)
 		viables.Remove(type)
 		construction[button_desc] = type
+		tgui_construction.Add(list(list(
+			"key" = button_desc,
+			"background" = background,
+			"icon" = icons[icon],
+			"foreground" = colors[color],
+		)))
 
 	fail_message = "<font color='blue'>[bicon(src)] a [pick("loud","soft","sinister","eery","triumphant","depressing","cheerful","angry")] \
 		[pick("horn","beep","bing","bleep","blat","honk","hrumph","ding")] sounds and a \
@@ -114,15 +138,38 @@
 	last_process_time = world.time
 
 /obj/machinery/replicator/attack_hand(mob/user as mob)
-	interact(user)
+	tgui_interact(user)
 
-/obj/machinery/replicator/interact(mob/user)
-	var/dat = "The control panel displays an incomprehensible selection of controls, many with unusual markings or text around them.<br>"
-	dat += "<br>"
-	for(var/index=1, index<=construction.len, index++)
-		dat += "<A href='?src=\ref[src];activate=[index]'>\[[construction[index]]\]</a><br>"
+/obj/machinery/replicator/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "XenoarchReplicator", name)
+		ui.open()
 
-	user << browse(dat, "window=alien_replicator")
+/obj/machinery/replicator/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
+	data["tgui_construction"] = tgui_construction
+	return data
+
+/obj/machinery/replicator/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	if(..())
+		return TRUE
+
+	switch(action)
+		if("construct")
+			var/key = params["key"]
+			if(key in construction)
+				if(LAZYLEN(stored_materials) > LAZYLEN(spawning_types))
+					if(LAZYLEN(spawning_types))
+						visible_message("<span class='notice'>[bicon(src)] a [pick("light","dial","display","meter","pad")] on [src]'s front [pick("blinks","flashes")] [pick("red","yellow","blue","orange","purple","green","white")].</span>")
+					else
+						visible_message("<span class='notice'>[bicon(src)] [src]'s front compartment slides shut.</span>")
+					spawning_types.Add(construction[key])
+					spawn_progress_time = 0
+					update_use_power(USE_POWER_ACTIVE)
+					icon_state = "borgcharger1(old)"
+				else
+					visible_message(fail_message)
 
 /obj/machinery/replicator/attackby(obj/item/weapon/W as obj, mob/living/user as mob)
 	if(!W.canremove || !user.canUnEquip(W)) //No armblades, no grabs. No other-thing-I-didn't-think-of.
@@ -132,21 +179,3 @@
 	W.loc = src
 	stored_materials.Add(W)
 	src.visible_message("<span class='notice'>\The [user] inserts \the [W] into \the [src].</span>")
-
-/obj/machinery/replicator/Topic(href, href_list)
-
-	if(href_list["activate"])
-		var/index = text2num(href_list["activate"])
-		if(index > 0 && index <= construction.len)
-			if(stored_materials.len > spawning_types.len)
-				if(spawning_types.len)
-					src.visible_message("<span class='notice'>[bicon(src)] a [pick("light","dial","display","meter","pad")] on [src]'s front [pick("blinks","flashes")] [pick("red","yellow","blue","orange","purple","green","white")].</span>")
-				else
-					src.visible_message("<span class='notice'>[bicon(src)] [src]'s front compartment slides shut.</span>")
-
-				spawning_types.Add(construction[construction[index]])
-				spawn_progress_time = 0
-				update_use_power(USE_POWER_ACTIVE)
-				icon_state = "borgcharger1(old)"
-			else
-				src.visible_message(fail_message)

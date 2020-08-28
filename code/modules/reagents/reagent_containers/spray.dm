@@ -156,6 +156,8 @@
 	amount_per_transfer_from_this = 1
 	possible_transfer_amounts = null
 	volume = 10
+	drop_sound = 'sound/items/drop/herb.ogg'
+	pickup_sound = 'sound/items/pickup/herb.ogg'
 
 /obj/item/weapon/reagent_containers/spray/waterflower/Initialize()
 	. = ..()
@@ -205,3 +207,96 @@
 /obj/item/weapon/reagent_containers/spray/plantbgone/Initialize()
 	. = ..()
 	reagents.add_reagent("plantbgone", 100)
+
+/obj/item/weapon/reagent_containers/spray/chemsprayer/hosed
+	name = "hose nozzle"
+	desc = "A heavy spray nozzle that must be attached to a hose."
+	icon = 'icons/obj/janitor.dmi'
+	icon_state = "cleaner-industrial"
+	item_state = "cleaner"
+	center_of_mass = list("x" = 16,"y" = 10)
+
+	possible_transfer_amounts = list(5,10,20)
+
+	var/heavy_spray = FALSE
+	var/spray_particles = 3
+
+	var/icon/hose_overlay
+
+	var/obj/item/hose_connector/input/active/InputSocket
+
+/obj/item/weapon/reagent_containers/spray/chemsprayer/hosed/Initialize()
+	..()
+
+	InputSocket = new(src)
+
+/obj/item/weapon/reagent_containers/spray/chemsprayer/hosed/update_icon()
+	..()
+
+	overlays.Cut()
+
+	if(!hose_overlay)
+		hose_overlay = new icon(icon, "[icon_state]+hose")
+
+	if(InputSocket.get_pairing())
+		add_overlay(hose_overlay)
+
+/obj/item/weapon/reagent_containers/spray/chemsprayer/hosed/AltClick(mob/living/carbon/user)
+	if(++spray_particles > 3) spray_particles = 1
+
+	to_chat(user, "<span class='notice'>You turn the dial on \the [src] to [spray_particles].</span>")
+	return
+
+/obj/item/weapon/reagent_containers/spray/chemsprayer/hosed/CtrlClick(var/mob/user)
+	if(loc != get_turf(src))
+		heavy_spray = !heavy_spray
+	else
+		. = ..()
+
+/obj/item/weapon/reagent_containers/spray/chemsprayer/hosed/Spray_at(atom/A as mob|obj)
+	update_icon()
+
+	var/direction = get_dir(src, A)
+	var/turf/T = get_turf(A)
+	var/turf/T1 = get_step(T,turn(direction, 90))
+	var/turf/T2 = get_step(T,turn(direction, -90))
+	var/list/the_targets = list(T, T1, T2)
+
+	if(src.reagents.total_volume < 1)
+		to_chat(usr, "<span class='notice'>\The [src] is empty.</span>")
+		return
+
+	if(!heavy_spray)
+		for(var/a = 1 to 3)
+			spawn(0)
+				if(reagents.total_volume < 1) break
+				playsound(src, 'sound/effects/spray2.ogg', 50, 1, -6)
+				var/obj/effect/effect/water/chempuff/D = new/obj/effect/effect/water/chempuff(get_turf(src))
+				var/turf/my_target = the_targets[a]
+				D.create_reagents(amount_per_transfer_from_this)
+				if(!src)
+					return
+				reagents.trans_to_obj(D, amount_per_transfer_from_this)
+				D.set_color()
+				D.set_up(my_target, rand(6, 8), 2)
+		return
+
+	else
+		playsound(src, 'sound/effects/extinguish.ogg', 75, 1, -3)
+
+		for(var/a = 1 to spray_particles)
+			spawn(0)
+				if(!src || !reagents.total_volume) return
+
+				var/obj/effect/effect/water/W = new /obj/effect/effect/water(get_turf(src))
+				var/turf/my_target
+				if(a <= the_targets.len)
+					my_target = the_targets[a]
+				else
+					my_target = pick(the_targets)
+				W.create_reagents(amount_per_transfer_from_this)
+				reagents.trans_to_obj(W, amount_per_transfer_from_this)
+				W.set_color()
+				W.set_up(my_target)
+
+		return

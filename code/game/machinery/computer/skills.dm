@@ -315,7 +315,7 @@
 		<br>\n
 		<center><b>Comments/Log</b></center><br>"}
 		for(var/c in active1.fields["comments"])
-			P.info += "[c]<br>"
+			P.info += "[c["header"]]<br>[c["text"]]<br>"
 	else
 		P.info += "<b>General Record Lost!</b><br>"
 	P.info += "</tt>"

@@ -810,6 +810,7 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 	var/scribble=""
 	var/scribble_page = null
 	drop_sound = 'sound/items/drop/wrapper.ogg'
+	pickup_sound = 'sound/items/pickup/wrapper.ogg'
 
 obj/item/weapon/newspaper/attack_self(mob/user as mob)
 	if(ishuman(user))

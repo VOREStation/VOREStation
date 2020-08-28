@@ -78,6 +78,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 /datum/controller/subsystem/ticker/proc/pregame_welcome()
 	to_world("<span class='boldannounce notice'><em>Welcome to the pregame lobby!</em></span>")
 	to_world("<span class='boldannounce notice'>Please set up your character and select ready. The round will start in [pregame_timeleft] seconds.</span>")
+	world << sound('sound/misc/server-ready.ogg', volume = 100)
 
 // Called during GAME_STATE_PREGAME (RUNLEVEL_LOBBY)
 /datum/controller/subsystem/ticker/proc/pregame_tick()
@@ -416,6 +417,9 @@ var/global/datum/controller/subsystem/ticker/ticker
 			// Created their playable character, delete their /mob/new_player
 			if(new_char)
 				qdel(player)
+				if(new_char.client)
+					var/obj/screen/splash/S = new(new_char.client, TRUE)
+					S.Fade(TRUE)
 
 			// If they're a carbon, they can get manifested
 			if(J?.mob_type & JOB_CARBON)

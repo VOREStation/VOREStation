@@ -285,6 +285,17 @@
 		InsertAll("", each, global.alldirs)
 	..()
 
+//VOREStation Add
+/datum/asset/spritesheet/vore
+	name = "vore"
+
+/datum/asset/spritesheet/vore/register()
+	var/icon/downscaled = icon('icons/mob/screen_full_vore.dmi')
+	downscaled.Scale(240, 240)
+	InsertAll("", downscaled)
+	..()
+//VOREStation Add End
+
 // // Representative icons for each research design
 // /datum/asset/spritesheet/research_designs
 // 	name = "design"
@@ -488,3 +499,10 @@
 	for(var/asset_name in assets)
 		register_asset(asset_name, assets[asset_name])
 // VOREStation Add End
+
+/datum/asset/spritesheet/sheetmaterials
+	name = "sheetmaterials"
+
+/datum/asset/spritesheet/sheetmaterials/register()
+	InsertAll("", 'icons/obj/stacks.dmi')
+	..()

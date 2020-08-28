@@ -214,6 +214,13 @@
 #define O_AUG_SPINE "spinal augment"
 #define O_AUG_PELVIC "pelvic augment"
 
+// FBP components.
+
+#define O_PUMP     "hydraulic hub"
+#define O_CYCLER   "reagent cycler"
+#define O_HEATSINK "thermal regulator"
+#define O_DIAGNOSTIC "diagnostic controller"
+
 // Non-Standard organs
 #define O_MOUTH    "mouth"
 #define O_CELL     "cell"

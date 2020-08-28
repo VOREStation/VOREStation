@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Button, LabeledList, NumberInput, Section } from '../components';
+import { Button, LabeledList, NumberInput, Section, AnimatedNumber, Box } from '../components';
 import { getGasLabel } from '../constants';
 import { Window } from '../layouts';
 
@@ -22,6 +22,11 @@ export const AtmosFilter = (props, context) => {
                 onClick={() => act('power')} />
             </LabeledList.Item>
             <LabeledList.Item label="Transfer Rate">
+              <Box inline mr={1}>
+                <AnimatedNumber
+                  value={data.last_flow_rate}
+                  format={val => val + " L/s"} />
+              </Box>
               <NumberInput
                 animated
                 value={parseFloat(data.rate)}

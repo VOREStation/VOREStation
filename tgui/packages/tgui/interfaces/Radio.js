@@ -4,8 +4,6 @@ import { useBackend } from '../backend';
 import { Box, Button, LabeledList, NumberInput, Section, ColorBox } from '../components';
 import { RADIO_CHANNELS } from '../constants';
 import { Window } from '../layouts';
-import { createLogger } from '../logging';
-const logger = createLogger("fuck");
 
 export const Radio = (props, context) => {
   const { act, data } = useBackend(context);
@@ -49,7 +47,7 @@ export const Radio = (props, context) => {
           <LabeledList>
             <LabeledList.Item label="Frequency">
               <NumberInput
-                animate
+                animated
                 unit="kHz"
                 step={0.2}
                 stepPixelSize={10}

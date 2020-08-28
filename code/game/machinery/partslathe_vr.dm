@@ -234,116 +234,123 @@
 	if(..())
 		return
 	ui_interact(user)
+	tgui_interact(user)
 
-/obj/machinery/partslathe/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	user.set_machine(src)
+/obj/machinery/partslathe/ui_assets(mob/user)
+	return list(
+		get_asset_datum(/datum/asset/spritesheet/sheetmaterials)
+	)
 
-	var/data[0]
+/obj/machinery/partslathe/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "PartsLathe", name)
+		ui.open()
+
+/obj/machinery/partslathe/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
 	data["panelOpen"] = panel_open
 
-	var/materials_ui[0]
+	var/list/materials_ui = list()
 	for(var/M in materials)
-		materials_ui[++materials_ui.len] = list(
-				"name" = M,
-				"display" = material_display_name(M),
-				"qty" = materials[M],
-				"max" = storage_capacity[M],
-				"percent" = (materials[M] / storage_capacity[M] * 100))
+		materials_ui.Add(list(list(
+			"name" = M,
+			"amount" = materials[M],
+			"sheets" = round(materials[M] / SHEET_MATERIAL_AMOUNT),
+			"removable" = materials[M] >= SHEET_MATERIAL_AMOUNT,
+		)))
 	data["materials"] = materials_ui
 
+	data["copyBoard"] = null
+	data["copyBoardReqComponents"] = null
 	if(istype(copy_board))
 		data["copyBoard"] = copy_board.name
-		var/req_components_ui[0]
+		var/list/req_components_ui = list()
 		for(var/CP in (copy_board.req_components || list()))
 			var/obj/comp_path = CP
 			var/comp_amt = copy_board.req_components[comp_path]
 			if(comp_amt && (comp_path in partslathe_recipies))
-				req_components_ui[++req_components_ui.len] = list("name" = initial(comp_path.name), "qty" = comp_amt)
+				req_components_ui.Add(list(list("name" = initial(comp_path.name), "qty" = comp_amt)))
 		data["copyBoardReqComponents"] = req_components_ui
 
 	data["queue"] = list()
 	for(var/datum/category_item/partslathe/Q in queue)
 		data["queue"] += Q.name
 
+	data["building"] = null
+	data["buildPercent"] = null
 	if(busy && queue.len > 0)
 		var/datum/category_item/partslathe/current = queue[1]
 		data["building"] = current.name
-		data["buildProgress"] = progress
-		data["buildTime"] = current.time
 		data["buildPercent"] = (progress / current.time * 100)
+	
+	data["error"] = null
 	if(queue.len > 0 && !canBuild(queue[1]))
 		data["error"] = getLackingMaterials(queue[1])
 
-	var/recipies_ui[0]
+	var/list/recipies_ui = list()
 	for(var/T in partslathe_recipies)
 		var/datum/category_item/partslathe/R = partslathe_recipies[T]
-		recipies_ui[++recipies_ui.len] = list("name" = R.name, "type" = "[T]")
+		recipies_ui.Add(list(list("name" = R.name, "type" = "[T]")))
 	data["recipies"] = recipies_ui
 
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "partslathe.tmpl", "Parts Lathe UI", 500, 450)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(5)
+	return data
 
-/obj/machinery/partslathe/Topic(href, href_list)
+/obj/machinery/partslathe/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
-		return 1
-	usr.set_machine(src)
+		return TRUE
+
 	add_fingerprint(usr)
-
-	// Queue management can be done even while busy
-	if(href_list["queue"])
-		var/type_to_build = text2path(href_list["queue"])
-		var/datum/category_item/partslathe/to_build = partslathe_recipies[type_to_build]
-		if(to_build)
-			addToQueue(to_build)
-		updateUsrDialog()
-		return
-
-	if(href_list["queueBoard"])
-		if(!istype(copy_board) || !copy_board.req_components)
-			return
-		for(var/comp_path in copy_board.req_components)
-			var/comp_amt = copy_board.req_components[comp_path]
-			if(!comp_amt)
-				continue
-			var/datum/category_item/partslathe/to_build = partslathe_recipies[comp_path]
-			if(!to_build)
-				continue // We don't support building whatever this is
-			for(var/i in 1 to comp_amt)
+	switch(action)
+		// Queue management can be done even while busy
+		if("queue")
+			var/type_to_build = text2path(params["queue"])
+			var/datum/category_item/partslathe/to_build = partslathe_recipies[type_to_build]
+			if(to_build)
 				addToQueue(to_build)
-		return
+			return TRUE
 
-	if(href_list["cancel"])
-		var/index = text2num(href_list["cancel"])
-		if(index < 1 || index > queue.len)
-			return
-		if(busy && index == 1)
-			return
-		removeFromQueue(index)
-		return
+		if("queueBoard")
+			if(!istype(copy_board) || !copy_board.req_components)
+				return
+			for(var/comp_path in copy_board.req_components)
+				var/comp_amt = copy_board.req_components[comp_path]
+				if(!comp_amt)
+					continue
+				var/datum/category_item/partslathe/to_build = partslathe_recipies[comp_path]
+				if(!to_build)
+					continue // We don't support building whatever this is
+				for(var/i in 1 to comp_amt)
+					addToQueue(to_build)
+			return TRUE
+
+		if("cancel")
+			var/index = text2num(params["cancel"])
+			if(index < 1 || index > queue.len)
+				return
+			if(busy && index == 1)
+				return
+			removeFromQueue(index)
+			return TRUE
 
 	if(busy)
-		to_chat(usr, "<span class='notice'>\The [src]is busy. Please wait for completion of previous operation.</span>")
+		to_chat(usr, "<span class='notice'>[src] is busy. Please wait for completion of previous operation.</span>")
 		return
 
-	if(href_list["ejectBoard"])
-		if(copy_board)
-			visible_message("<span class='notice'>\The [copy_board] is ejected from \the [src]'s circuit reader</span>.")
-			copy_board.forceMove(src.loc)
-			copy_board = null
-		updateUsrDialog()
-		return
+	switch(action)
+		if("ejectBoard")
+			if(copy_board)
+				visible_message("<span class='notice'>[copy_board] is ejected from [src]'s circuit reader</span>.")
+				copy_board.forceMove(src.loc)
+				copy_board = null
+			return TRUE
 
-	if(href_list["ejectMaterial"])
-		var/matName = href_list["ejectMaterial"]
-		if(!(matName in materials))
+		if("remove_mat")
+			// Remove a material from the fab
+			var/mat_id = params["id"]
+			var/amount = text2num(params["amount"])
+			eject_materials(mat_id, amount)
 			return
-		eject_materials(matName, 0)
-		updateUsrDialog()
-		return
 
 /** Build list of recipies to include all tech level 1 stock parts. */
 /obj/machinery/partslathe/proc/update_recipe_list()

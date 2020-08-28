@@ -189,3 +189,12 @@
 	cost = 40
 	containertype = /obj/structure/closet/crate/zenghu
 	containername = "emergency rations"
+
+/datum/supply_pack/misc/reagentpump
+	name = "Machine - Pump"
+	contains = list(
+			/obj/machinery/pump = 1
+			)
+	cost = 60
+	containertype = /obj/structure/closet/crate/large/xion
+	containername = "pump crate"

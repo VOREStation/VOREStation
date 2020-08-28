@@ -16,6 +16,8 @@
 	w_class = ITEMSIZE_SMALL
 	flags = OPENCONTAINER | NOCONDUCT
 	unacidable = 1 //glass doesn't dissolve in acid
+	drop_sound = 'sound/items/drop/bottle.ogg'
+	pickup_sound = 'sound/items/pickup/bottle.ogg'
 
 	var/label_text = ""
 
@@ -155,6 +157,8 @@
 	item_state = "beaker"
 	center_of_mass = list("x" = 15,"y" = 11)
 	matter = list("glass" = 500)
+	drop_sound = 'sound/items/drop/glass.ogg'
+	pickup_sound = 'sound/items/pickup/glass.ogg'
 
 /obj/item/weapon/reagent_containers/glass/beaker/Initialize()
 	. = ..()
@@ -263,6 +267,8 @@
 	volume = 120
 	flags = OPENCONTAINER
 	unacidable = 0
+	drop_sound = 'sound/items/drop/helm.ogg'
+	pickup_sound = 'sound/items/pickup/helm.ogg'
 
 /obj/item/weapon/reagent_containers/glass/bucket/attackby(var/obj/item/D, mob/user as mob)
 	if(isprox(D))
@@ -320,6 +326,8 @@ obj/item/weapon/reagent_containers/glass/bucket/wood
 	volume = 120
 	flags = OPENCONTAINER
 	unacidable = 0
+	drop_sound = 'sound/items/drop/wooden.ogg'
+	pickup_sound = 'sound/items/pickup/wooden.ogg'
 
 /obj/item/weapon/reagent_containers/glass/bucket/wood/attackby(var/obj/D, mob/user as mob)
 	if(isprox(D))

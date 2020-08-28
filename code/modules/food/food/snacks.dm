@@ -307,8 +307,10 @@
 	bitesize = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/candy
-	name = "candy"
-	desc = "Nougat, love it or hate it."
+	name = "\improper Grandma Ellen's Hard Candy"
+	desc = "Now without nuts!"
+	description_fluff = "Hard candies were banned from many early human colony ships due to the tendency for brittle, sticky chunks to find their way inside vital equipment in zero-G conditions. This only made them all the more popular to new arrivees, and the Grandma Ellen's brand was Tau Ceti's answer to that demand."
+	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "candy"
 	trash = /obj/item/trash/candy
 	filling_color = "#7D5F46"
@@ -322,8 +324,10 @@
 	bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar
-	name = "protein bar"
-	desc = "SwoleMAX brand protein bars, guaranteed to get you feeling perfectly overconfident."
+	name = "\improper SwoleMAX protein bar"
+	desc = "Guaranteed to get you feeling perfectly overconfident."
+	description_fluff = "NanoMed's SwoleMAX boasts the highest density of protein mush per square inch among leading protein bar brands. While formulated for strength training, this high nutrient density in a mostly-solid form makes SwoleMAX a popular alternative for spacers looking to mix up their usual diet of pastes and gooes."
+	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "proteinbar"
 	trash = /obj/item/trash/candy/proteinbar
 	nutriment_amt = 9
@@ -334,6 +338,21 @@
 	reagents.add_reagent("protein", 4)
 	reagents.add_reagent("sugar", 4)
 	bitesize = 6
+
+/obj/item/weapon/reagent_containers/food/snacks/candy/gummy
+	name = "\improper AlliCo Gummies"
+	desc = "Somehow, there's never enough cola bottles."
+	description_fluff = "AlliCo's grab-bags of gummy candies come in over a thousand novelty shapes and dozens of flavours. Shoes, astronauts, bunny rabbits and singularities all made an appearance."
+	icon = 'icons/obj/food_snacks.dmi'
+	icon_state = "candy_gums"
+	trash = /obj/item/trash/candy/gums
+	nutriment_amt = 5
+	nutriment_desc = list("sugar" = 1, "artificial fruit flavour" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/candy/gummy/Initialize()
+	. = ..()
+	reagents.add_reagent("sugar", 5)
+	bitesize = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/candy/donor
 	name = "Donor Candy"
@@ -362,14 +381,30 @@
 	bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/chips
-	name = "chips"
-	desc = "Commander Riker's What-The-Crisps"
+	name = "\improper What-The-Crisps"
+	desc = "Commander Riker's What-The-Crisps, lightly salted."
+	description_fluff = "What-The-Crisps' retro-styled starship commander has been a marketing staple for almost 200 years."
+	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "chips"
 	trash = /obj/item/trash/chips
 	filling_color = "#E8C31E"
 	center_of_mass = list("x"=15, "y"=15)
 	nutriment_amt = 3
 	nutriment_desc = list("salt" = 1, "chips" = 2)
+
+/obj/item/weapon/reagent_containers/food/snacks/chips/Initialize()
+	. = ..()
+	bitesize = 1
+
+/obj/item/weapon/reagent_containers/food/snacks/chips/bbq
+	name = "\improper Legendary BBQ Chips"
+	desc = "You know I can't grab your ghost chips!"
+	description_fluff = "A local brand, Legendary Chips have proudly sponsored Vir's anti-drink-piloting campaign since 2558."
+	icon = 'icons/obj/food_snacks.dmi'
+	icon_state = "chips_bbq"
+	trash = /obj/item/trash/chips/bbq
+	nutriment_amt = 3
+	nutriment_desc = list("salt" = 1, "barbeque sauce" = 2)
 
 /obj/item/weapon/reagent_containers/food/snacks/chips/Initialize()
 	. = ..()
@@ -387,6 +422,37 @@
 /obj/item/weapon/reagent_containers/food/snacks/cookie/Initialize()
 	. = ..()
 	bitesize = 1
+
+/obj/item/weapon/reagent_containers/food/snacks/cookiesnack
+	name = "Carps Ahoy! miniature cookies"
+	desc = "Now 100% carpotoxin free!"
+	description_fluff = "Carps Ahoy! cookies are required to sell under the 'Cap'n Choco' name in certain markets, out of concerns that children will become desensitized to the very real dangers of Space Carp."
+	icon = 'icons/obj/food_snacks.dmi'
+	icon_state = "cookiesnack"
+	trash = /obj/item/trash/cookiesnack
+	filling_color = "#DBC94F"
+	nutriment_amt = 3
+	nutriment_desc = list("sweetness" = 1, "stale cookie" = 2)
+
+/obj/item/weapon/reagent_containers/food/snacks/cookiesnack/Initialize()
+	. = ..()
+	bitesize = 1
+
+/obj/item/weapon/reagent_containers/food/snacks/fruitbar
+	name = "\improper ChewMAX fruit bar"
+	desc = "Guaranteed to get you feeling comfortably superior."
+	description_fluff = "NanoMed's ChewMAX is the low-carb alternative to the SwoleMAX range! Want short-term energy but not really interested in sustaining it? Hate fat but don't entirely understand nutrition? Just really like fruit? ChewMAX is for you!"
+	icon = 'icons/obj/food_snacks.dmi'
+	icon_state = "fruitbar"
+	trash = /obj/item/trash/candy/fruitbar
+	nutriment_amt = 9
+	nutriment_desc = list("apricot" = 2, "sugar" = 2, "dates" = 2, "cranberry" = 2, "apple" = 2)
+
+/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 4)
+	reagents.add_reagent("sugar", 4)
+	bitesize = 6
 
 /obj/item/weapon/reagent_containers/food/snacks/chocolatebar
 	name = "Chocolate Bar"
@@ -582,6 +648,210 @@
 		src.overlay_state = "box-donut2"
 		src.name = "Frosted Jelly Donut"
 		reagents.add_reagent("sprinkles", 2)
+
+
+/obj/item/weapon/reagent_containers/food/snacks/tuna
+	name = "\improper Tuna Snax"
+	desc = "A packaged dried fish snack, guaranteed to do not contain space carp. Actual fish content may vary."
+	description_fluff = "Launched by Centuari Provisions to target the Tajaran immigrant market, Tuna Snax also found a surprising niche among Vir's sizable Scandinavian population. Elsewhere, the dried fish flakes are widely considered disgusting."
+	icon = 'icons/obj/food_snacks.dmi'
+	icon_state = "tuna"
+	filling_color = "#FFDEFE"
+	center_of_mass = list("x"=17, "y"=13)
+	nutriment_amt = 3
+	nutriment_desc = list("smoked fish" = 5)
+	trash = /obj/item/trash/tuna
+
+/obj/item/weapon/reagent_containers/food/snacks/tuna/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 4)
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/pistachios
+	name = "pistachios"
+	icon = 'icons/obj/food_snacks.dmi'
+	icon_state = "pistachios"
+	desc = "Pistachios. There is absolutely nothing remarkable about these."
+	filling_color = "#825D26"
+	center_of_mass = list("x"=17, "y"=13)
+	nutriment_desc = list("nuts" = 1)
+	nutriment_amt = 3
+	bitesize = 1
+	trash = /obj/item/trash/pistachios
+
+/obj/item/weapon/reagent_containers/food/snacks/semki
+	name = "\improper Semki"
+	icon = 'icons/obj/food_snacks.dmi'
+	icon_state = "semki"
+	desc = "Sunflower seeds. A favorite among both birds and gopniks."
+	filling_color = "#68645D"
+	center_of_mass = list("x"=17, "y"=13)
+	nutriment_desc = list("sunflower seeds" = 1)
+	nutriment_amt = 6
+	bitesize = 1
+	trash = /obj/item/trash/semki
+
+/obj/item/weapon/reagent_containers/food/snacks/cb01
+	name = "\improper Tau Ceti Bar"
+	desc = "A dark chocolate caramel and nougat bar made famous on Binma."
+	description_fluff = "Binma's signature chocolate bar, the Tau Ceti Bar was originally made with cheap, heavily preserved ingredients available to Sol's first colonists. The modern recipe attempts to recreate this, baffling many not accustomed to its slightly stale taste."
+	filling_color = "#552200"
+	icon = 'icons/obj/food_snacks.dmi'
+	icon_state = "cb01"
+	nutriment_amt = 4
+	nutriment_desc = list("stale chocolate" = 2, "nougat" = 1, "caramel" = 1)
+	w_class = 1
+
+/obj/item/weapon/reagent_containers/food/snacks/cb01/Initialize()
+	. = ..()
+	reagents.add_reagent("sugar", 1)
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/cb02
+	name = "\improper Hundred-Thousand Thaler Bar"
+	desc = "An ironically cheap puffed rice caramel milk chocolate bar."
+	description_fluff = "The Hundred-Thousand Thaler bar has been the focal point of dozens of exonet and radio giveaway pranks over its long history. In 2500 the company got in on the action, offering a prize of one-hundred thousand one-hundred thousand thaler bars to one lucky entrant, who reportedly turned down the prize in favour of a 250 Thaler cash prize."
+	filling_color = "#552200"
+	icon = 'icons/obj/food_snacks.dmi'
+	icon_state = "cb02"
+	nutriment_amt = 4
+	nutriment_desc = list("chocolate" = 2, "caramel" = 1, "puffed rice" = 1)
+	w_class = 1
+
+/obj/item/weapon/reagent_containers/food/snacks/cb02/Initialize()
+	. = ..()
+	reagents.add_reagent("sugar", 1)
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/cb03
+	name = "\improper Aerostat Bar"
+	desc = "Bubbly milk chocolate."
+	description_fluff = "An early slogan claimed the chocolate's bubbles where made with 'real Venusian gases', which is thought to have seriously harmed sales. The claim remains true, since the main production plant remains on Venus, but the company tries to avoid association with toxic air."
+	filling_color = "#552200"
+	icon = 'icons/obj/food_snacks.dmi'
+	icon_state = "cb03"
+	nutriment_amt = 4
+	nutriment_desc = list("chocolate" = 4)
+	w_class = 1
+
+/obj/item/weapon/reagent_containers/food/snacks/cb03/Initialize()
+	. = ..()
+	reagents.add_reagent("sugar", 1)
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/cb04
+	name = "\improper Lars' Saltlakris"
+	desc = "Milk chocolate embedded with chunks of salty licorice."
+	description_fluff = "Produced exclusively in Kalmar for sale in Vir, Lars' Saltlakris is one of the system's most popular home-grown confectionaries."
+	filling_color = "#552200"
+	icon = 'icons/obj/food_snacks.dmi'
+	icon_state = "cb04"
+	nutriment_amt = 4
+	nutriment_desc = list("chocolate" = 2, "salt = 1", "licorice" = 1)
+	w_class = 1
+
+/obj/item/weapon/reagent_containers/food/snacks/cb04/Initialize()
+	. = ..()
+	reagents.add_reagent("sugar", 1)
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/cb05
+	name = "\improper Andromeda Bar"
+	desc = "A cheap milk chocolate bar loaded with sugar."
+	description_fluff = "The galaxy's top-selling chocolate brand for almost 400 years. Also comes in dozens of varieties, including caramel, cookie, fruit and nut, and almond. This is just the basic stuff, though."
+	filling_color = "#552200"
+	icon = 'icons/obj/food_snacks.dmi'
+	icon_state = "cb05"
+	nutriment_amt = 3
+	nutriment_desc = list("milk chocolate" = 2)
+	w_class = 1
+
+/obj/item/weapon/reagent_containers/food/snacks/cb05/Initialize()
+	. = ..()
+	reagents.add_reagent("sugar", 3)
+	bitesize = 3
+
+/obj/item/weapon/reagent_containers/food/snacks/cb06
+	name = "\improper Mocha Crunch"
+	desc = "A large latte flavored wafer chocolate bar."
+	description_fluff = "Lightly caffeinated, the Mocha Crunch is often considered to be more of an authentic coffee taste than most vending machine coffees."
+	filling_color = "#552200"
+	icon = 'icons/obj/food_snacks.dmi'
+	icon_state = "cb06"
+	nutriment_amt = 4
+	nutriment_desc = list("chocolate" = 2, "coffee" = 1, "vanilla wafer" = 1)
+	w_class = 1
+
+/obj/item/weapon/reagent_containers/food/snacks/cb06/Initialize()
+	. = ..()
+	reagents.add_reagent("sugar", 1)
+	bitesize = 3
+
+/obj/item/weapon/reagent_containers/food/snacks/cb07
+	name = "\improper TaroMilk Bar"
+	desc = "A light milk chocolate shell with a Taro paste filling. Chewy!"
+	description_fluff = "The best-selling Kishari snack finally made its way to the galactic stage in 2562. Whether it is here to stay remains to be seen, though it has found some popularity with the Skrell.."
+	filling_color = "#552200"
+	icon = 'icons/obj/food_snacks.dmi'
+	icon_state = "cb07"
+	nutriment_amt = 4
+	nutriment_desc = list("chocolate" = 2, "taro" = 2)
+	w_class = 1
+
+/obj/item/weapon/reagent_containers/food/snacks/cb07/Initialize()
+	. = ..()
+	reagents.add_reagent("sugar", 1)
+	bitesize = 3
+
+/obj/item/weapon/reagent_containers/food/snacks/cb08
+	name = "\improper Cronk Bar"
+	desc = "A large puffed malt milk chocolate bar."
+	description_fluff = "The Cronk Bar proudly 'Comes in one flavour, so you'll never pick the wrong one!'. Its enduring popularity may be in part due to a longstanding deal with the SCG Fleet to include Cronk in standard military rations."
+	filling_color = "#552200"
+	icon = 'icons/obj/food_snacks.dmi'
+	icon_state = "cb08"
+	nutriment_amt = 3
+	nutriment_desc = list("chocolate" = 2, "malt puffs" = 1)
+	w_class = 1
+
+/obj/item/weapon/reagent_containers/food/snacks/cb08/Initialize()
+	. = ..()
+	reagents.add_reagent("sugar", 2)
+	bitesize = 3
+
+/obj/item/weapon/reagent_containers/food/snacks/cb09
+	name = "\improper Kaju Mamma! Bar"
+	desc = "A massive cluster of cashews and peanuts covered in a condensed milk solid."
+	description_fluff = "Based on traditional South Asian desserts, the Kaju Mamma! is a deceptively soft, sweet bar voted 'Most allergenic candy' nineteen years running."
+	filling_color = "#552200"
+	icon = 'icons/obj/food_snacks.dmi'
+	icon_state = "cb09"
+	nutriment_amt = 6
+	nutriment_desc = list("peanuts" = 3, "condensed milk" = 1, "cashews" = 2)
+	w_class = 1
+
+/obj/item/weapon/reagent_containers/food/snacks/cb09/Initialize()
+	. = ..()
+	reagents.add_reagent("sugar", 1)
+	reagents.add_reagent("milk", 1)
+	bitesize = 3
+
+/obj/item/weapon/reagent_containers/food/snacks/cb10
+	name = "\improper Shantak Bar"
+	desc = "Nuts, nougat, peanuts, and caramel covered in chocolate."
+	description_fluff = "Despite being often mistaken for a regional favourite, the Shantak Bar is sold under different 'localized' names in almost every human system in the galaxy, and adds up to being the third best selling confection produced by Centauri Provisions."
+	filling_color = "#552200"
+	icon = 'icons/obj/food_snacks.dmi'
+	icon_state = "cb10"
+	nutriment_amt = 5
+	nutriment_desc = list("chocolate" = 2, "caramel" = 1, "peanuts" = 1, "nougat" = 1)
+	w_class = 1
+
+/obj/item/weapon/reagent_containers/food/snacks/cb10/Initialize()
+	. = ..()
+	bitesize = 3
+	reagents.add_reagent("sugar", 1)
+	reagents.add_reagent("protein", 1)
 
 /obj/item/weapon/reagent_containers/food/snacks/egg
 	name = "egg"
@@ -1375,8 +1645,10 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/sosjerky
 	name = "Scaredy's Private Reserve Beef Jerky"
+	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "sosjerky"
-	desc = "Beef jerky made from the finest space cows."
+	desc = "Beef jerky made from the finest space-reared cows."
+	description_fluff = "Raising cows in low-gravity environments has the natural result of particularly tender meat. The jerking process largely undoes this apparent benefit, but it's just too damn efficient to ship not to."
 	trash = /obj/item/trash/sosjerky
 	filling_color = "#631212"
 	center_of_mass = list("x"=15, "y"=9)
@@ -1388,8 +1660,10 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/no_raisin
 	name = "4no Raisins"
+	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "4no_raisins"
 	desc = "Best raisins in the universe. Not sure why."
+	description_fluff = "The popularity of dried foods across the galaxy is either a direct result of ease of shipping, or a clever marketing ploy by corporations trying to cut back costs. Whatever it is, there must be SOME reason?"
 	trash = /obj/item/trash/raisins
 	filling_color = "#343834"
 	center_of_mass = list("x"=15, "y"=4)
@@ -1401,9 +1675,11 @@
 	reagents.add_reagent("nutriment", 6)
 
 /obj/item/weapon/reagent_containers/food/snacks/spacetwinkie
-	name = "Space Twinkie"
+	name = "Spacer Snack Cake"
+	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "space_twinkie"
-	desc = "Guaranteed to survive longer then you will."
+	desc = "Guaranteed to survive longer than you will."
+	description_fluff = "Despite Spacer advertisements consistently portraying their snack cakes as life-saving, tear-jerking survival food for spacers in all kinds of dramatic scenarios, the Spacer Snack Cake has been statistically proven to lower survival rates on all missions where it is present."
 	filling_color = "#FFE591"
 	center_of_mass = list("x"=15, "y"=11)
 
@@ -1414,8 +1690,10 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers
 	name = "Cheesie Honkers"
+	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "cheesie_honkers"
-	desc = "Bite sized cheesie snacks that will honk all over your mouth"
+	desc = "Bite sized cheesie snacks that will honk all over your mouth."
+	description_fluff = "The origins of the flourescent orange dust produced by Cheesie Honkers is considered a trade secret, despite having been leaked on the exonet decades ago. It's the cheese."
 	trash = /obj/item/trash/cheesie
 	filling_color = "#FFA305"
 	center_of_mass = list("x"=15, "y"=9)
@@ -1428,8 +1706,10 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/syndicake
 	name = "Syndi-Cakes"
+	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "syndi_cakes"
 	desc = "An extremely moist snack cake that tastes just as good after being nuked."
+	description_fluff = "Spacer Snack Cakes' meaner, tastier cousin. The Syndi-Cakes brand was at risk of dissolution in 2429 when it was revealed that the entire production chain was a Nos Amis joint. The brand was quickly aquired by Centauri Provisions and some mild hallucinogenic 'add-ins' were axed from the recipe."
 	filling_color = "#FF5D05"
 	center_of_mass = list("x"=16, "y"=10)
 	trash = /obj/item/trash/syndi_cakes
@@ -2120,6 +2400,8 @@
 	center_of_mass = list("x"=16, "y"=5)
 	nutriment_amt = 6
 	nutriment_desc = list("tomato" = 2, "potato" = 2, "carrot" = 2, "eggplant" = 2, "mushroom" = 2)
+	drop_sound = 'sound/items/drop/shovel.ogg'
+	pickup_sound = 'sound/items/pickup/shovel.ogg'
 
 /obj/item/weapon/reagent_containers/food/snacks/stew/Initialize()
 	. = ..()
@@ -2432,6 +2714,28 @@
 	. = ..()
 	reagents.add_reagent("mint", 1)
 	bitesize = 1
+
+/obj/item/weapon/reagent_containers/food/snacks/mint/admints
+	desc = "Spearmint, peppermint's non-festive cousin."
+	icon = 'icons/obj/food_snacks.dmi'
+	icon_state = "admint"
+
+/obj/item/weapon/storage/box/admints
+	name = "Ad-mints"
+	desc = "A pack of air fresheners for your mouth."
+	description_fluff = "Ad-mints earned their name, and reputation when a Major Bill's senior executive attended a meeting at a large a marketing firm and was so astounded by the quality of their complimentary mints, that he immediately bought the company - the mints company, not the ad agency - and began providing 'Ad-mints' on every MBT flight."
+	icon = 'icons/obj/food_snacks.dmi'
+	icon_state = "admint_pack"
+	item_state = "candy"
+	slot_flags = SLOT_EARS
+	w_class = 1
+	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/mint/admints = 6)
+	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/mint/admints)
+	use_sound = 'sound/items/drop/paper.ogg'
+	drop_sound = 'sound/items/drop/wrapper.ogg'
+	max_storage_space = 6
+	foldable = null
+	trash = /obj/item/trash/admints
 
 /obj/item/weapon/reagent_containers/food/snacks/mushroomsoup
 	name = "chantrelle soup"
@@ -3813,6 +4117,8 @@
 /obj/item/weapon/reagent_containers/food/snacks/tastybread
 	name = "bread tube"
 	desc = "Bread in a tube. Chewy...and surprisingly tasty."
+	description_fluff = "Due to the high-fructose corn syrup content of NanoTrasen's own-brand bread tubes, many jurisdictions classify them as a confectionary."
+	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "tastybread"
 	trash = /obj/item/trash/tastybread
 	filling_color = "#A66829"
@@ -3827,6 +4133,8 @@
 /obj/item/weapon/reagent_containers/food/snacks/skrellsnacks
 	name = "\improper SkrellSnax"
 	desc = "Cured fungus shipped all the way from Qerr'balak, almost like jerky! Almost."
+	description_fluff = "Despite the packaging, most SkrellSnax sold in Vir are produced using locally-grown fungi in controversial Skrell-owned biodomes on the suface of Sif."
+	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "skrellsnacks"
 	filling_color = "#A66829"
 	center_of_mass = list("x"=15, "y"=12)
@@ -3839,8 +4147,10 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/unajerky
 	name = "Moghes Imported Sissalik Jerky"
+	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "unathitinred"
 	desc = "An incredibly well made jerky, shipped in all the way from Moghes."
+	description_fluff = "The exact meat and spices used in the curing of Sissalik Jerky are a well-kept secret, and thought to not exist at all outside of Hegemony space. Many have tried to replicate the flavour, but none have come close, so the brand remains a highly prized import."
 	trash = /obj/item/trash/unajerky
 	filling_color = "#631212"
 	center_of_mass = list("x"=15, "y"=9)
@@ -4529,8 +4839,8 @@
 	center_of_mass = list("x"=16, "y"=16)
 	do_coating_prefix = 0
 	bitesize = 2
-	
-	
+
+
 /obj/item/weapon/reagent_containers/food/snacks/sausage/battered/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 6)
@@ -4561,7 +4871,7 @@
 	icon_state = "ratburger"
 	center_of_mass = list("x"=16, "y"=11)
 	bitesize = 2
-	
+
 /obj/item/weapon/reagent_containers/food/snacks/mouseburger/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 4)
@@ -6036,7 +6346,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/cosmicbrowniesslice/filled/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 1)
-	
+
 /obj/item/weapon/reagent_containers/food/snacks/lasagna
 	name = "lasagna"
 	desc = "Meaty, tomato-y, and ready to eat-y. Favorite of cats."

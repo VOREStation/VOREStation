@@ -251,9 +251,9 @@
 						return
 					arguments["num"] = num
 					var/amount_per_bottle = CLAMP(reagents.total_volume / num, 0, MAX_UNITS_PER_BOTTLE)
-					var/default_name = "[reagents.get_master_reagent_name()] ([amount_per_bottle]u)"
+					var/default_name = "[reagents.get_master_reagent_name()]"
 					var/bottles_text = num == 1 ? "new bottle" : "[num] new bottles"
-					tgui_modal_input(src, id, "Please name your [bottles_text]:", null, arguments, default_name, MAX_CUSTOM_NAME_LEN)
+					tgui_modal_input(src, id, "Please name your [bottles_text] ([amount_per_bottle]u in bottle):", null, arguments, default_name, MAX_CUSTOM_NAME_LEN)
 				if("create_bottle_multiple")
 					if(condi || !reagents.total_volume)
 						return
@@ -693,17 +693,7 @@
 	if(length(holdingitems))
 		options["grind"] = radial_grind
 
-	if (usr.stat != 0)
-		return
-	if (!beaker)
-		return
-	beaker.loc = src.loc
-	beaker = null
-	visible_message("<span class='notice'>\The [usr] remove the container from \the [src].</span>")
-	update_icon()
-
 	var/choice
-
 	if(length(options) < 1)
 		return
 	if(length(options) == 1)

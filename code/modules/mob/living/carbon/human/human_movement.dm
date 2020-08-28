@@ -151,8 +151,7 @@
 				if(feet.water_speed)
 					turf_move_cost = CLAMP(turf_move_cost + feet.water_speed, HUMAN_LOWEST_SLOWDOWN, 15)
 			. += turf_move_cost
-
-		if(istype(T, /turf/simulated/floor/outdoors/snow))
+		else if(istype(T, /turf/simulated/floor/outdoors/snow))
 			if(species.snow_movement)
 				turf_move_cost = CLAMP(turf_move_cost + species.snow_movement, HUMAN_LOWEST_SLOWDOWN, 15)
 			if(shoes)
@@ -160,8 +159,14 @@
 				if(feet.water_speed)
 					turf_move_cost = CLAMP(turf_move_cost + feet.snow_speed, HUMAN_LOWEST_SLOWDOWN, 15)
 			. += turf_move_cost
+		else
+			turf_move_cost = CLAMP(turf_move_cost, HUMAN_LOWEST_SLOWDOWN, 15)
+			. += turf_move_cost
 
 	// Wind makes it easier or harder to move, depending on if you're with or against the wind.
+	// I don't like that so I'm commenting it out :)
+	// VOREstation Edit Start 
+/*
 	if(T.outdoors && (T.z <= SSplanets.z_to_planet.len))
 		var/datum/planet/P = SSplanets.z_to_planet[z]
 		if(P)
@@ -174,6 +179,8 @@
 				else if(direct & reverse_dir[WH.wind_dir])
 					. += WH.wind_speed
 
+*/
+// VOREstation Edit End.
 #undef HUMAN_LOWEST_SLOWDOWN
 
 /mob/living/carbon/human/Process_Spacemove(var/check_drift = 0)

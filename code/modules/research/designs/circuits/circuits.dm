@@ -494,7 +494,7 @@ CIRCUITS BELOW
 	id = "durand_main"
 	req_tech = list(TECH_DATA = 4)
 	materials = list("glass" = 2000, MAT_GRAPHITE = 1250)
-	chemicals = list("pacid" = 20)
+	chemicals = list("sacid" = 20)
 	build_path = /obj/item/weapon/circuitboard/mecha/durand/main
 	sort_string = "NAADA"
 
@@ -503,7 +503,7 @@ CIRCUITS BELOW
 	id = "durand_peri"
 	req_tech = list(TECH_DATA = 4)
 	materials = list("glass" = 2000, MAT_GRAPHITE = 1250)
-	chemicals = list("pacid" = 20)
+	chemicals = list("sacid" = 20)
 	build_path = /obj/item/weapon/circuitboard/mecha/durand/peripherals
 	sort_string = "NAADB"
 
@@ -512,7 +512,7 @@ CIRCUITS BELOW
 	id = "durand_targ"
 	req_tech = list(TECH_DATA = 4, TECH_COMBAT = 2)
 	materials = list("glass" = 2000, MAT_GRAPHITE = 1250)
-	chemicals = list("pacid" = 20)
+	chemicals = list("sacid" = 20)
 	build_path = /obj/item/weapon/circuitboard/mecha/durand/targeting
 	sort_string = "NAADC"
 
@@ -655,7 +655,7 @@ CIRCUITS BELOW
 	sort_string = "OAABA"
 
 /datum/design/circuit/pointdefense_control
-	name = "deluxe microwave"
+	name = "point defense control"
 	id = "pointdefense_control"
 	req_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 3, TECH_COMBAT = 2)
 	build_path = /obj/item/weapon/circuitboard/pointdefense_control

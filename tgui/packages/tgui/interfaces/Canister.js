@@ -51,13 +51,13 @@ export const Canister = (props, context) => {
                 position="relative"
                 left="-8px">
                 <Knob
+                  forcedInputWidth="60px"
                   size={1.25}
                   color={!!valveOpen && 'yellow'}
                   value={releasePressure}
                   unit="kPa"
                   minValue={minReleasePressure}
                   maxValue={maxReleasePressure}
-                  step={5}
                   stepPixelSize={1}
                   onDrag={(e, value) => act('pressure', {
                     pressure: value,

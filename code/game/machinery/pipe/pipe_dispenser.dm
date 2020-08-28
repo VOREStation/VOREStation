@@ -52,7 +52,16 @@
 		var/list/r = list()
 		for(var/i in 1 to cat.len)
 			var/datum/pipe_recipe/info = cat[i]
-			r += list(list("pipe_name" = info.name, "pipe_index" = i))
+			r += list(list("pipe_name" = info.name, "ref" = "\ref[info]"))
+			// Stationary pipe dispensers don't allow you to pre-select pipe directions.
+			// This makes it impossble to spawn bent versions of bendable pipes.
+			// We add a "Bent" pipe type with a special param to work around it.
+			if(info.dirtype == PIPE_BENDABLE)
+				r += list(list(
+					"pipe_name" = ("Bent " + info.name),
+					"ref" = "\ref[info]",
+					"bent" = TRUE
+				))
 		data["categories"] += list(list("cat_name" = c, "recipes" = r))
 
 	return data
@@ -68,24 +77,24 @@
 		if("p_layer")
 			p_layer = text2num(params["p_layer"])
 		if("dispense_pipe")
-			if(!wait)
-				var/list/recipes
-				if(disposals)
-					recipes = GLOB.disposal_pipe_recipes
-				else
-					recipes = GLOB.atmos_pipe_recipes
+			if(!wait)				
+				var/datum/pipe_recipe/recipe = locate(params["ref"])
+				if(!istype(recipe))
+					return
 				
-				var/datum/pipe_recipe/recipe = recipes[params["category"]][text2num(params["pipe_type"])]
+				var/target_dir = NORTH
+				if(params["bent"])
+					target_dir = NORTHEAST
 
 				var/obj/created_object = null
 				if(istype(recipe, /datum/pipe_recipe/pipe))
 					var/datum/pipe_recipe/pipe/R = recipe
-					created_object = new R.construction_type(loc, recipe.pipe_type, NORTH)
+					created_object = new R.construction_type(loc, recipe.pipe_type, target_dir)
 					var/obj/item/pipe/P = created_object
 					P.setPipingLayer(p_layer)
 				else if(istype(recipe, /datum/pipe_recipe/disposal))
 					var/datum/pipe_recipe/disposal/D = recipe
-					var/obj/structure/disposalconstruct/C = new(loc, D.pipe_type, NORTH, 0, D.subtype ? D.subtype : 0)
+					var/obj/structure/disposalconstruct/C = new(loc, D.pipe_type, target_dir, 0, D.subtype ? D.subtype : 0)
 					C.update()
 					created_object = C
 				else if(istype(recipe, /datum/pipe_recipe/meter))

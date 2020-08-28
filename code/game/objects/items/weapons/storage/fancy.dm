@@ -19,6 +19,8 @@
 	icon_state = "donutbox6"
 	name = "donut box"
 	var/icon_type = "donut"
+	drop_sound = 'sound/items/drop/cardboardbox.ogg'
+	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
 /obj/item/weapon/storage/fancy/update_icon(var/itemremoved = 0)
 	var/total_contents = contents.len - itemremoved
@@ -265,14 +267,16 @@
 
 /obj/item/weapon/storage/fancy/cigarettes/dromedaryco
 	name = "\improper DromedaryCo packet"
-	desc = "A packet of six imported DromedaryCo cancer sticks. A label on the packaging reads, \"Wouldn't a slow death make a change?\""
+	desc = "A packet of six Earth-export DromedaryCo cancer sticks. A label on the packaging reads, \"Wouldn't a slow death make a change?\""
+	description_fluff = "DromedaryCo is one of Sol's oldest cigarette brands, and takes pride in having sourced tobcacco from the same Indian plantations since 2044. Popular with those willing to pay extra for a little nostalgia."
 	icon_state = "Dpacket"
 	brand = "\improper Dromedary Co. cigarette"
 
 /obj/item/weapon/storage/fancy/cigarettes/killthroat
 	name = "\improper AcmeCo packet"
-	desc = "A packet of six AcmeCo cigarettes. For those who somehow want to obtain the record for the most amount of cancerous tumors."
-	icon_state = "Bpacket"
+	desc = "A packet of six AcmeCo cigarettes. For those who want to obtain a record for the most cancerous tumors on a budget."
+	description_fluff = "Available anywhere people breathe and want to breathe less, AcmeCo is the cheapest, most widespread cigarette brand in the galaxy. They taste like trash, but when you're keeping them inside your jumpsuit on a 16 hour shift, you're probably not too concerned with flavour."
+	icon_state = "Apacket"
 	brand = "\improper Acme Co. cigarette"
 
 // New exciting ways to kill your lungs! - Earthcrusher //
@@ -280,36 +284,41 @@
 /obj/item/weapon/storage/fancy/cigarettes/luckystars
 	name = "\improper pack of Lucky Stars"
 	desc = "A mellow blend made from synthetic, pod-grown tobacco. The commercial jingle is guaranteed to get stuck in your head."
+	description_fluff = "Lucky Stars are some of the most prolific advertisers in the business, with Gilthari Exports plastering the name and slogan on everything from workplace safety videos to racing bikes. 'Feel the gentle warmth of your Lucky Star'."
 	icon_state = "LSpacket"
 	brand = "\improper Lucky Star"
 
 /obj/item/weapon/storage/fancy/cigarettes/jerichos
 	name = "\improper pack of Jerichos"
-	desc = "Typically seen dangling from the lips of Martian soldiers and border world hustlers. Tastes like hickory smoke, feels like warm liquid death down your lungs."
+	desc = "Typically seen dangling from the lips of Fleet veterans and border world hustlers. Tastes like hickory smoke, feels like warm liquid death down your lungs."
+	description_fluff = "The Jericho brand has carefully cultivated its 'rugged' image ever since its completely accidental association with the SolGov-Hegemony war due to their sizable corporate presence in the region. Prior to the war, Jerichos were considered the realm of drunks and sad divorcees."
 	icon_state = "Jpacket"
 	brand = "\improper Jericho"
 
 /obj/item/weapon/storage/fancy/cigarettes/menthols
 	name = "\improper pack of Temperamento Menthols"
-	desc = "With a sharp and natural organic menthol flavor, these Temperamentos are a favorite of NDV crews. Hardly anyone knows they make 'em in non-menthol!"
+	desc = "With a sharp and natural organic menthol flavor, these Temperamentos are a favorite of science vessel crews. Hardly anyone knows they make 'em in non-menthol!"
+	description_fluff = "Temperamento Menthols are a product of the Aether Atmospherics and Recycling company, and the 'smooth' menthol taste is rumoured to be the chemical by-product of some far more profitable industrial synthesis."
 	icon_state = "TMpacket"
 	brand = "\improper Temperamento Menthol"
 
 /obj/item/weapon/storage/fancy/cigarettes/carcinomas
 	name = "\improper pack of Carcinoma Angels"
-	desc = "This unknown brand was slated for the chopping block, until they were publicly endorsed by an old Earthling gonzo journalist. The rest is history. They sell a variety for cats, too."
-	icon_state = "CApacket"
+	desc = "This previously unknown brand was slated for the chopping block, until they were publicly endorsed by an old Earthling gonzo journalist. The rest is history. They sell a variety for cats, too."
+	description_fluff = "The bitter taste of a Carcinoma Angel is considered desirable by many equally bitter wash-ups who consider themselves to be 'hard-boiled'. The smell is practically inseparable from urban security offices, and old men with exonet radio shows."
 	brand = "\improper Carcinoma Angel"
 
 /obj/item/weapon/storage/fancy/cigarettes/professionals
 	name = "\improper pack of Professional 120s"
 	desc = "Let's face it - if you're smoking these, you're either trying to look upper-class or you're 80 years old. That's the only excuse. They are, however, very good quality."
+	description_fluff = "Grown and rolled in a meticulously maintained biosphere orbitting Love, P120 tobacco is marketed as 'probably the best in the galaxy'. The premium price point, and the fact that the vast majority of consumers couldn't really tell the difference between this and the next leading brand."
 	icon_state = "P100packet"
 	brand = "\improper Professional 120"
 
 /obj/item/weapon/storage/fancy/cigar
 	name = "cigar case"
 	desc = "A case for holding your cigars when you are not smoking them."
+	description_fluff = "The tastefully engraved palm tree tells you that these 'Corona Grande' premium cigars are only sold on the luxury cruises and resorts of Oasis, though ten separate companies produce them for that purpose galaxy-wide. The standard is however very high."
 	icon_state = "cigarcase"
 	icon = 'icons/obj/cigarettes.dmi'
 	w_class = ITEMSIZE_TINY

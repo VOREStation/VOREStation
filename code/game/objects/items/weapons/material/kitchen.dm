@@ -5,6 +5,8 @@
  * Utensils
  */
 /obj/item/weapon/material/kitchen/utensil
+	drop_sound = 'sound/items/drop/knife.ogg'
+	pickup_sound = 'sound/items/pickup/knife.ogg'
 	w_class = ITEMSIZE_TINY
 	thrown_force_divisor = 1
 	origin_tech = list(TECH_MATERIAL = 1)
@@ -104,6 +106,7 @@
 	dulled_divisor = 0.75	// Still a club
 	thrown_force_divisor = 1 // as above
 	drop_sound = 'sound/items/drop/wooden.ogg'
+	pickup_sound = 'sound/items/pickup/wooden.ogg'
 
 /obj/item/weapon/material/kitchen/rollingpin/attack(mob/living/M as mob, mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))

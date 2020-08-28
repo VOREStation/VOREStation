@@ -110,17 +110,10 @@ var/list/possible_cable_coil_colours = list(
 	cable_list -= src							//remove it from global cable list
 	return ..()									// then go ahead and delete the cable
 
-// Ghost examining the cable -> tells him the power
-/obj/structure/cable/attack_ghost(mob/user)
-	if(user.client && user.client.inquisitive_ghost)
-		user.examinate(src)
-		// following code taken from attackby (multitool)
-		if(powernet && (powernet.avail > 0))
-			to_chat(user, "<span class='warning'>[DisplayPower(powernet.avail)] in power network.</span>")
-		else
-			to_chat(user, "<span class='warning'>The cable is not powered.</span>")
-	return
-
+/obj/structure/cable/examine(mob/user)
+	. = ..()
+	if(isobserver(user))
+		. += "<span class='warning'>[powernet?.avail > 0 ? "[DisplayPower(powernet.avail)] in power network." : "The cable is not powered."]</span>"
 
 // Rotating cables requires d1 and d2 to be rotated
 /obj/structure/cable/set_dir(new_dir)
@@ -516,6 +509,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	attack_verb = list("whipped", "lashed", "disciplined", "flogged")
 	stacktype = /obj/item/stack/cable_coil
 	drop_sound = 'sound/items/drop/accessory.ogg'
+	pickup_sound = 'sound/items/pickup/accessory.ogg'
 
 /obj/item/stack/cable_coil/cyborg
 	name = "cable coil synthesizer"

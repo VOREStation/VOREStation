@@ -9,7 +9,7 @@
 	var/deflect_coeff = 1.15
 	var/damage_coeff = 0.8
 
-	step_delay = 1
+	step_delay = 0.5
 
 	equip_type = EQUIP_HULL
 

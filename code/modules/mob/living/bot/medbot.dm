@@ -8,6 +8,11 @@
 #define MEDBOT_PANIC_ENDING	90
 #define MEDBOT_PANIC_END	100
 
+#define MEDBOT_MIN_INJECTION 5
+#define MEDBOT_MAX_INJECTION 15
+#define MEDBOT_MIN_HEAL 0.1
+#define MEDBOT_MAX_HEAL 75
+
 /mob/living/bot/medbot
 	name = "Medibot"
 	desc = "A little medical robot. He looks somewhat underwhelmed."
@@ -209,45 +214,39 @@
 		if(do_after(H, 3 SECONDS, target=src))
 			set_right(H)
 	else
-		interact(H)
-	
+		tgui_interact(H)
 
-/mob/living/bot/medbot/proc/interact(mob/user)
-	var/dat
-	dat += "<TT><B>Automatic Medical Unit v1.0</B></TT><BR><BR>"
-	dat += "Status: <A href='?src=\ref[src];power=1'>[on ? "On" : "Off"]</A><BR>"
-	dat += "Maintenance panel is [open ? "opened" : "closed"]<BR>"
-	dat += "Beaker: "
-	if (reagent_glass)
-		dat += "<A href='?src=\ref[src];eject=1'>Loaded \[[reagent_glass.reagents.total_volume]/[reagent_glass.reagents.maximum_volume]\]</a>"
-	else
-		dat += "None Loaded"
-	dat += "<br>Behaviour controls are [locked ? "locked" : "unlocked"]<hr>"
+/mob/living/bot/medbot/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
+	data["on"] = on
+	data["open"] = open
+	data["beaker"] = FALSE
+	if(reagent_glass)
+		data["beaker"] = TRUE
+		data["beaker_total"] = reagent_glass.reagents.total_volume
+		data["beaker_max"] = reagent_glass.reagents.maximum_volume
+	data["locked"] = locked
+	data["heal_threshold"] = null
+	data["heal_threshold_max"] = MEDBOT_MAX_HEAL
+	data["injection_amount_min"] = MEDBOT_MIN_INJECTION
+	data["injection_amount"] = null
+	data["injection_amount_max"] = MEDBOT_MAX_INJECTION
+	data["use_beaker"] = null
+	data["declare_treatment"] = null
+	data["vocal"] = null
 	if(!locked || issilicon(user))
-		dat += "<TT>Healing Threshold: "
-		dat += "<a href='?src=\ref[src];adj_threshold=-10'>--</a> "
-		dat += "<a href='?src=\ref[src];adj_threshold=-5'>-</a> "
-		dat += "[heal_threshold] "
-		dat += "<a href='?src=\ref[src];adj_threshold=5'>+</a> "
-		dat += "<a href='?src=\ref[src];adj_threshold=10'>++</a>"
-		dat += "</TT><br>"
+		data["heal_threshold"] = heal_threshold
+		data["injection_amount"] = injection_amount
+		data["use_beaker"] = use_beaker
+		data["declare_treatment"] = declare_treatment
+		data["vocal"] = vocal
+	return data
 
-		dat += "<TT>Injection Level: "
-		dat += "<a href='?src=\ref[src];adj_inject=-5'>-</a> "
-		dat += "[injection_amount] "
-		dat += "<a href='?src=\ref[src];adj_inject=5'>+</a> "
-		dat += "</TT><br>"
-
-		dat += "Reagent Source: "
-		dat += "<a href='?src=\ref[src];use_beaker=1'>[use_beaker ? "Loaded Beaker (When available)" : "Internal Synthesizer"]</a><br>"
-
-		dat += "Treatment report is [declare_treatment ? "on" : "off"]. <a href='?src=\ref[src];declaretreatment=[1]'>Toggle</a><br>"
-
-		dat += "The speaker switch is [vocal ? "on" : "off"]. <a href='?src=\ref[src];togglevoice=[1]'>Toggle</a><br>"
-
-	user << browse("<HEAD><TITLE>Medibot v1.0 controls</TITLE></HEAD>[dat]", "window=automed")
-	onclose(user, "automed")
-	return
+/mob/living/bot/medbot/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Medbot", name)
+		ui.open()
 
 /mob/living/bot/medbot/attackby(var/obj/item/O, var/mob/user)
 	if(istype(O, /obj/item/weapon/reagent_containers/glass))
@@ -266,51 +265,53 @@
 	else
 		..()
 
-/mob/living/bot/medbot/Topic(href, href_list)
+/mob/living/bot/medbot/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
-		return
+		return TRUE
+	
 	usr.set_machine(src)
 	add_fingerprint(usr)
-	if ((href_list["power"]) && access_scanner.allowed(usr))
-		if (on)
-			turn_off()
-		else
-			turn_on()
+	
+	. = TRUE
+	switch(action)
+		if("power")
+			if(!access_scanner.allowed(usr))
+				return FALSE
+			if(on)
+				turn_off()
+			else
+				turn_on()
 
-	else if((href_list["adj_threshold"]) && (!locked || issilicon(usr)))
-		var/adjust_num = text2num(href_list["adj_threshold"])
-		heal_threshold += adjust_num
-		if(heal_threshold <= 0)
-			heal_threshold = 0.1
-		if(heal_threshold > 75)
-			heal_threshold = 75
+	if(locked && !issilicon(usr))
+		return TRUE
 
-	else if((href_list["adj_inject"]) && (!locked || issilicon(usr)))
-		var/adjust_num = text2num(href_list["adj_inject"])
-		injection_amount += adjust_num
-		if(injection_amount < 5)
-			injection_amount = 5
-		if(injection_amount > 15)
-			injection_amount = 15
+	switch(action)
+		if("adj_threshold")
+			heal_threshold = clamp(text2num(params["val"]), MEDBOT_MIN_HEAL, MEDBOT_MAX_HEAL)
+			. = TRUE
 
-	else if((href_list["use_beaker"]) && (!locked || issilicon(usr)))
-		use_beaker = !use_beaker
+		if("adj_inject")
+			injection_amount = clamp(text2num(params["val"]), MEDBOT_MIN_INJECTION, MEDBOT_MAX_INJECTION)
+			. = TRUE
 
-	else if (href_list["eject"] && (!isnull(reagent_glass)))
-		if(!locked)
-			reagent_glass.loc = get_turf(src)
-			reagent_glass = null
-		else
-			to_chat(usr, "<span class='notice'>You cannot eject the beaker because the panel is locked.</span>")
+		if("use_beaker")
+			use_beaker = !use_beaker
+			. = TRUE
 
-	else if ((href_list["togglevoice"]) && (!locked || issilicon(usr)))
-		vocal = !vocal
+		if("eject")
+			if(reagent_glass)
+				reagent_glass.forceMove(get_turf(src))
+				reagent_glass = null
+			. = TRUE
 
-	else if ((href_list["declaretreatment"]) && (!locked || issilicon(usr)))
-		declare_treatment = !declare_treatment
+		if("togglevoice")
+			vocal = !vocal
+			. = TRUE
 
-	attack_hand(usr)
-	return
+		if("declaretreatment")
+			declare_treatment = !declare_treatment
+			. = TRUE
+
 
 /mob/living/bot/medbot/emag_act(var/remaining_uses, var/mob/user)
 	. = ..()

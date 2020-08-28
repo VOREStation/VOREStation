@@ -16,6 +16,9 @@
 	var/obj/item/device/encryptionkey/keyslot2 = null
 	var/ks1type = null
 	var/ks2type = null
+	
+	drop_sound = 'sound/items/drop/component.ogg'
+	pickup_sound = 'sound/items/pickup/component.ogg'
 
 /obj/item/device/radio/headset/New()
 	..()
@@ -76,6 +79,9 @@
 				append = "_r"
 
 	return "[..()][append]"
+
+/obj/item/device/radio/headset/tgui_state(mob/user)
+	return GLOB.tgui_inventory_state
 
 /obj/item/device/radio/headset/syndicate
 	origin_tech = list(TECH_ILLEGAL = 3)

@@ -901,6 +901,8 @@ var/global/list/light_type_cache = list()
 	var/nightshift_range = 8
 	var/nightshift_power = 1
 	var/nightshift_color = LIGHT_COLOR_NIGHTSHIFT
+	drop_sound = 'sound/items/drop/glass.ogg'
+	pickup_sound = 'sound/items/pickup/glass.ogg'
 
 /obj/item/weapon/light/tube
 	name = "light tube"
