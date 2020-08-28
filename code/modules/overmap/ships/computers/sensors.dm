@@ -34,6 +34,7 @@
 	var/list/data = list()
 
 	data["viewing"] = viewing_overmap(user)
+<<<<<<< HEAD
 	data["on"] = 0
 	data["range"] = "N/A"
 	data["health"] = 0
@@ -44,6 +45,9 @@
 	data["contacts"] = list()
 
 	if(sensors)
+=======
+	if(sensors || find_sensors())
+>>>>>>> 60aec77... Station overmap sensors should connect automatically now (#7547)
 		data["on"] = sensors.use_power
 		data["range"] = sensors.range
 		data["health"] = sensors.health
@@ -72,6 +76,7 @@
 
 	return data
 
+<<<<<<< HEAD
 /obj/machinery/computer/ship/sensors/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return TRUE
@@ -84,6 +89,16 @@
 			if(usr && !isAI(usr))
 				viewing_overmap(usr) ? unlook(usr) : look(usr)
 			. = TRUE
+=======
+/obj/machinery/computer/ship/sensors/OnTopic(var/mob/user, var/list/href_list, state)
+	if((. = ..()))
+		return
+
+	if (!linked)
+		var/obj/effect/overmap/visitable/sector = get_overmap_sector(src.z)
+		if(!istype(sector) || !attempt_hook_up_recursive(sector))
+			return TOPIC_NOACTION
+>>>>>>> 60aec77... Station overmap sensors should connect automatically now (#7547)
 
 		if("link")
 			find_sensors()

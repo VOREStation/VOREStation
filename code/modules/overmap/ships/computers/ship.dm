@@ -8,16 +8,31 @@ somewhere on that shuttle. Subtypes of these can be then used to perform ship ov
 	var/list/viewers // Weakrefs to mobs in direct-view mode.
 	var/extra_view = 0 // how much the view is increased by when the mob is in overmap mode.
 
+/obj/machinery/computer/ship/New()
+	. = ..()
+	var/list/L = list()
+	for(var/type in whitelisted_types)
+		L |= typesof(type)
+	for(var/type in blacklisted_types)
+		L -= typesof(type)
+	whitelisted_types = L
+
 // A late init operation called in SSshuttles, used to attach the thing to the right ship.
+<<<<<<< HEAD
 /obj/machinery/computer/ship/proc/attempt_hook_up(obj/effect/overmap/visitable/ship/sector)
 	if(!istype(sector))
 		return
+=======
+/obj/machinery/computer/ship/proc/attempt_hook_up(obj/effect/overmap/visitable/sector)
+	if(!sector || !(sector.type in whitelisted_types))
+		return FALSE
+>>>>>>> 60aec77... Station overmap sensors should connect automatically now (#7547)
 	if(sector.check_ownership(src))
 		linked = sector
-		return 1
+		return TRUE
 
 /obj/machinery/computer/ship/proc/sync_linked(var/user = null)
-	var/obj/effect/overmap/visitable/ship/sector = get_overmap_sector(z)
+	var/obj/effect/overmap/visitable/sector = get_overmap_sector(z)
 	if(!sector)
 		return
 	. = attempt_hook_up_recursive(sector)
@@ -25,10 +40,10 @@ somewhere on that shuttle. Subtypes of these can be then used to perform ship ov
 		to_chat(user, "<span class='notice'>[src] reconnected to [linked]</span>")
 		user << browse(null, "window=[src]") // close reconnect dialog
 
-/obj/machinery/computer/ship/proc/attempt_hook_up_recursive(obj/effect/overmap/visitable/ship/sector)
+/obj/machinery/computer/ship/proc/attempt_hook_up_recursive(obj/effect/overmap/visitable/sector)
 	if(attempt_hook_up(sector))
 		return sector
-	for(var/obj/effect/overmap/visitable/ship/candidate in sector)
+	for(var/obj/effect/overmap/visitable/candidate in sector)
 		if((. = .(candidate)))
 			return
 

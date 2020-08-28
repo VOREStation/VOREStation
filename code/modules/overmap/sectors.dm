@@ -51,6 +51,8 @@
 
 //This is called later in the init order by SSshuttles to populate sector objects. Importantly for subtypes, shuttles will be created by then.
 /obj/effect/overmap/visitable/proc/populate_sector_objects()
+	for(var/obj/machinery/computer/ship/S in global.machines)
+		S.attempt_hook_up(src)
 
 /obj/effect/overmap/visitable/proc/get_areas()
 	. = list()
