@@ -205,6 +205,7 @@ var/list/gamemode_cache = list()
 
 	var/static/enter_allowed = 1
 
+<<<<<<< HEAD
 	var/static/use_irc_bot = 0
 	var/static/use_node_bot = 0
 	var/static/irc_bot_port = 0
@@ -215,6 +216,20 @@ var/list/gamemode_cache = list()
 	var/static/python_path = "" //Path to the python executable.  Defaults to "python" on windows and "/usr/bin/env python2" on unix
 	var/static/use_lib_nudge = 0 //Use the C library nudge instead of the python nudge.
 	var/static/use_overmap = 0
+=======
+	var/use_irc_bot = 0
+	var/use_node_bot = 0
+	var/irc_bot_port = 0
+	var/irc_bot_host = ""
+	var/irc_bot_export = 0 // whether the IRC bot in use is a Bot32 (or similar) instance; Bot32 uses world.Export() instead of nudge.py/libnudge
+	var/main_irc = ""
+	var/admin_irc = ""
+	var/python_path = "" //Path to the python executable.  Defaults to "python" on windows and "/usr/bin/env python2" on unix
+	var/use_lib_nudge = 0 //Use the C library nudge instead of the python nudge.
+	var/use_overmap = 0
+	
+	var/static/list/engine_map	// Comma separated list of engines to choose from.  Blank means fully random.
+>>>>>>> 3e4bf4a... Merge pull request #7574 from Rykka-Stormheart/shep-dev-engine-randomization
 
 	// Event settings
 	var/static/expected_round_length = 3 * 60 * 60 * 10 // 3 hours
@@ -787,6 +802,9 @@ var/list/gamemode_cache = list()
 
 				if("use_overmap")
 					config.use_overmap = 1
+					
+				if("engine_map")
+					config.engine_map = splittext(value, ",")
 /*
 				if("station_levels")
 					using_map.station_levels = text2numlist(value, ";")
