@@ -1,5 +1,5 @@
 /datum/gear/shoes/boots/winter/science
-	allowed_roles = list("Research Director","Scientist", "Roboticist", "Xenobiologist", "Explorer", "Pathfinder")
+	allowed_roles = list("Research Director","Scientist", "Roboticist", "Xenobiologist", "Xenobotanist", "Explorer", "Pathfinder")
 
 /datum/gear/shoes/boots/winter/medical
 	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist", "Field Medic")
