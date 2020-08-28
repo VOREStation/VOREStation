@@ -459,12 +459,6 @@
 "iM" = (/obj/effect/map_effect/portal/master/side_b/caves_to_plains/river{icon_state = "portal_side_b"; dir = 1},/turf/simulated/floor/water{outdoors = 0},/area/surface/cave/explored/normal)
 "iN" = (/turf/unsimulated/wall/planetary/sif,/area/surface/cave/explored/normal)
 "iO" = (/obj/effect/map_effect/perma_light/concentrated,/turf/simulated/floor/tiled/asteroid_steel,/area/surface/outpost/mining_main/cave)
-<<<<<<< HEAD
-
->>>>>>> 0abf36f... Merge pull request #7378 from Neerti/portals
-=======
-
->>>>>>> ee5190f... Merge pull request #7576 from Rykka-Stormheart/shep-dev-gas-overlay-updoot
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacxcwcwcwcxaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacydsdsdsabaaaaaaaaaaaaaaaa
 aaababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababcxczehehcxababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababexijieieababababababababaa
