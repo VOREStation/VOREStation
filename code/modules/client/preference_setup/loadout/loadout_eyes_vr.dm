@@ -17,11 +17,11 @@
 	display_name = "AR-S glasses (Sec)"
 	path = /obj/item/clothing/glasses/omnihud/sec
 	allowed_roles = list("Security Officer","Head of Security","Warden","Detective")
-	
+
 /datum/gear/eyes/arglasses/sci
 	display_name = "AR-R glasses (Sci)"
 	path = /obj/item/clothing/glasses/omnihud/rnd
-	allowed_roles = list("Research Director","Scientist","Xenobiologist","Roboticist")
+	allowed_roles = list("Research Director","Scientist","Xenobiologist","Xenobotanist","Roboticist")
 
 /datum/gear/eyes/arglasses/eng
 	display_name = "AR-E glasses (Eng)"
