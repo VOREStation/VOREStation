@@ -68,11 +68,11 @@ var/list/gamemode_cache = list()
 	var/static/allow_ai_shells = FALSE			// allow AIs to enter and leave special borg shells at will, and for those shells to be buildable.
 	var/static/give_free_ai_shell = FALSE		// allows a specific spawner object to instantiate a premade AI Shell
 	var/static/hostedby = null
-	
+
 	var/static/respawn = 1
 	var/static/respawn_time = 3000			// time before a dead player is allowed to respawn (in ds, though the config file asks for minutes, and it's converted below)
 	var/static/respawn_message = "<span class='notice'><B>Make sure to play a different character, and please roleplay correctly!</B></span>"
-	
+
 	var/static/guest_jobban = 1
 	var/static/usewhitelist = 0
 	var/static/kick_inactive = 0				//force disconnect for inactive players after this many minutes, if non-0
@@ -178,6 +178,7 @@ var/list/gamemode_cache = list()
 	var/static/walk_speed = 0
 
 	//Mob specific modifiers. NOTE: These will affect different mob types in different ways
+<<<<<<< HEAD
 	var/static/human_delay = 0
 	var/static/robot_delay = 0
 	var/static/monkey_delay = 0
@@ -215,6 +216,47 @@ var/list/gamemode_cache = list()
 	var/static/python_path = "" //Path to the python executable.  Defaults to "python" on windows and "/usr/bin/env python2" on unix
 	var/static/use_lib_nudge = 0 //Use the C library nudge instead of the python nudge.
 	var/static/use_overmap = 0
+=======
+	var/human_delay = 0
+	var/robot_delay = 0
+	var/monkey_delay = 0
+	var/alien_delay = 0
+	var/slime_delay = 0
+	var/animal_delay = 0
+
+	var/footstep_volume = 0
+
+	var/admin_legacy_system = 0	//Defines whether the server uses the legacy admin system with admins.txt or the SQL system. Config option in config.txt
+	var/ban_legacy_system = 0	//Defines whether the server uses the legacy banning system with the files in /data or the SQL system. Config option in config.txt
+	var/use_age_restriction_for_jobs = 0 //Do jobs use account age restrictions? --requires database
+	var/use_age_restriction_for_antags = 0 //Do antags use account age restrictions? --requires database
+
+	var/simultaneous_pm_warning_timeout = 100
+
+	var/use_recursive_explosions //Defines whether the server uses recursive or circular explosions.
+	var/multi_z_explosion_scalar = 0.5 //Multiplier for how much weaker explosions are on neighboring z levels.
+
+	var/assistant_maint = 0 //Do assistants get maint access?
+	var/gateway_delay = 18000 //How long the gateway takes before it activates. Default is half an hour.
+	var/ghost_interaction = 0
+
+	var/comms_password = ""
+
+	var/enter_allowed = 1
+
+	var/use_irc_bot = 0
+	var/use_node_bot = 0
+	var/irc_bot_port = 0
+	var/irc_bot_host = ""
+	var/irc_bot_export = 0 // whether the IRC bot in use is a Bot32 (or similar) instance; Bot32 uses world.Export() instead of nudge.py/libnudge
+	var/main_irc = ""
+	var/admin_irc = ""
+	var/python_path = "" //Path to the python executable.  Defaults to "python" on windows and "/usr/bin/env python2" on unix
+	var/use_lib_nudge = 0 //Use the C library nudge instead of the python nudge.
+	var/use_overmap = 0
+
+	var/static/list/engine_map = list("Supermatter Engine", "Edison's Bane")	// Comma separated list of engines to choose from.  Blank means fully random.
+>>>>>>> 1d80ba3... Merge pull request #7586 from Atermonera/master
 
 	// Event settings
 	var/static/expected_round_length = 3 * 60 * 60 * 10 // 3 hours
@@ -492,7 +534,7 @@ var/list/gamemode_cache = list()
 				if ("respawn_time")
 					var/raw_minutes = text2num(value)
 					config.respawn_time = raw_minutes MINUTES
-				
+
 				if ("respawn_message")
 					config.respawn_message = value
 
@@ -582,7 +624,7 @@ var/list/gamemode_cache = list()
 
 				if("persistence_disabled")
 					config.persistence_disabled = TRUE // Previously this forcibly set persistence enabled in the saves.
-					
+
 				if("persistence_ignore_mapload")
 					config.persistence_ignore_mapload = TRUE
 
@@ -787,6 +829,12 @@ var/list/gamemode_cache = list()
 
 				if("use_overmap")
 					config.use_overmap = 1
+<<<<<<< HEAD
+=======
+
+				if("engine_map")
+					config.engine_map = splittext(value, ",")
+>>>>>>> 1d80ba3... Merge pull request #7586 from Atermonera/master
 /*
 				if("station_levels")
 					using_map.station_levels = text2numlist(value, ";")
