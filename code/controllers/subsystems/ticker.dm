@@ -403,17 +403,17 @@ var/global/datum/controller/subsystem/ticker/ticker
 	for(var/mob/new_player/player in player_list)
 		if(player && player.ready && player.mind?.assigned_role)
 			var/datum/job/J = SSjob.get_job(player.mind.assigned_role)
-			
+
 			// Snowflakey AI treatment
 			if(J?.mob_type & JOB_SILICON_AI)
 				player.close_spawn_windows()
 				player.AIize(move = TRUE)
 				continue
-			
+
 			// Ask their new_player mob to spawn them
 			if(!player.spawn_checks_vr(player.mind.assigned_role)) continue //VOREStation Add
 			var/mob/living/carbon/human/new_char = player.create_character()
-			
+
 			// Created their playable character, delete their /mob/new_player
 			if(new_char)
 				qdel(player)
@@ -445,7 +445,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 	if(captainless)
 		for(var/mob/M in player_list)
 			if(!istype(M,/mob/new_player))
-				to_chat(M, "<span class='notice'>Colony Directorship not forced on anyone.</span>")
+				to_chat(M, "<span class='notice'>Site Management is not forced on anyone.</span>")
 
 
 /datum/controller/subsystem/ticker/proc/declare_completion()

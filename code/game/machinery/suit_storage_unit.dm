@@ -139,7 +139,7 @@
 		if("door")
 			toggle_open(usr)
 			. = TRUE
-		if("dispense")	
+		if("dispense")
 			switch(params["item"])
 				if("helmet")
 					dispense_helmet(usr)
@@ -653,12 +653,12 @@
 	name = "Vintage Pilot suit cycler"
 	model_text = "Vintage Pilot"
 	departments = list("Vintage Pilot (Bubble Helm)","Vintage Pilot (Closed Helm)")
-	
+
 /obj/machinery/suit_cycler/vintage/medsci
 	name = "Vintage MedSci suit cycler"
 	model_text = "Vintage MedSci"
 	departments = list("Vintage Medical (Bubble Helm)","Vintage Medical (Closed Helm)","Vintage Research (Bubble Helm)","Vintage Research (Closed Helm)")
-	
+
 /obj/machinery/suit_cycler/vintage/rugged
 	name = "Vintage Ruggedized suit cycler"
 	model_text = "Vintage Ruggedized"
@@ -751,7 +751,7 @@
 		if(istype(I,/obj/item/clothing/head/helmet/space/void/autolok))
 			to_chat(user, "You cannot refit an autolok helmet. In fact you shouldn't even be able to remove it in the first place. Inform an admin!")
 			return
-			
+
 		//Ditto the Mk7
 		if(istype(I,/obj/item/clothing/head/helmet/space/void/responseteam))
 			to_chat(user, "The cycler indicates that the Mark VII Emergency Response Helmet is not compatible with the refitting system. How did you manage to detach it anyway? Inform an admin!")
@@ -791,13 +791,13 @@
 		if(istype(I,/obj/item/clothing/suit/space/void/autolok))
 			to_chat(user, "You cannot refit an autolok suit.")
 			return
-			
+
 		//Ditto the Mk7
 		if(istype(I,/obj/item/clothing/suit/space/void/responseteam))
 			to_chat(user, "The cycler indicates that the Mark VII Emergency Response Suit is not compatible with the refitting system.")
 			return
 		//VOREStation Edit ENDS
-		
+
 		to_chat(user, "You fit \the [I] into the suit cycler.")
 		user.drop_item()
 		I.loc = src
@@ -886,7 +886,7 @@
 		return TRUE
 
 	switch(action)
-		if("dispense")	
+		if("dispense")
 			switch(params["item"])
 				if("helmet")
 					helmet.forceMove(get_turf(src))
@@ -895,23 +895,23 @@
 					suit.forceMove(get_turf(src))
 					suit = null
 			. = TRUE
-		
+
 		if("department")
 			var/choice = params["department"]
 			if(choice in departments)
 				target_department = choice
 				. = TRUE
-		
+
 		if("species")
 			var/choice = params["species"]
 			if(choice in species)
 				target_species = choice
 				. = TRUE
-		
+
 		if("radlevel")
 			radiation_level = clamp(params["radlevel"], 1, emagged ? 5 : 3)
 			. = TRUE
-		
+
 		if("repair_suit")
 			if(!suit || !can_repair)
 				return
@@ -1055,7 +1055,7 @@
 
 	if(target_species)
 		if(helmet) helmet.refit_for_species(target_species)
-		if(suit) 
+		if(suit)
 			suit.refit_for_species(target_species)
 			if(suit.helmet)
 				suit.helmet.refit_for_species(target_species)
@@ -1176,7 +1176,7 @@
 			parent_suit = /obj/item/clothing/suit/space/void/refurb/mercenary
 		//BEGIN: Space for additional downstream variants
 		//VOREStation Addition Start
-		if("Director")
+		if("Manager")
 			parent_helmet = /obj/item/clothing/head/helmet/space/void/captain
 			parent_suit = /obj/item/clothing/suit/space/void/captain
 		if("Prototype")
@@ -1217,7 +1217,7 @@
 			parent_suit = /obj/item/clothing/suit/space/void/refurb/mercenary/talon
 		//VOREStation Addition End
 		//END: downstream variant space
-	
+
 	//look at this! isn't it beautiful? -KK (well ok not beautiful but it's a lot cleaner)
 	if(helmet && target_department != "No Change")
 		var/obj/item/clothing/H = new parent_helmet
@@ -1235,9 +1235,9 @@
 		suit.desc = initial(parent_suit.desc)
 		suit.icon_state = initial(parent_suit.icon_state)
 		suit.item_state = initial(parent_suit.item_state)
-		suit.item_state_slots = S.item_state_slots		
+		suit.item_state_slots = S.item_state_slots
 		qdel(S)
-		
+
 		//can't believe I forgot to fix this- now helmets will properly cycle if they're attached to a suit -KK
 		if(suit.helmet && target_department != "No Change")
 			var/obj/item/clothing/AH = new parent_helmet
