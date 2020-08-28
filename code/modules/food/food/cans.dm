@@ -3,6 +3,7 @@
 	amount_per_transfer_from_this = 5
 	flags = 0 //starts closed
 	drop_sound = 'sound/items/drop/soda.ogg'
+	pickup_sound = 'sound/items/pickup/soda.ogg'
 
 //DRINKS
 
@@ -22,7 +23,8 @@
 	desc = "Ice cold and utterly tasteless, this 'all-natural' mineral water comes 'fresh' from one of NanoTrasen's heavy-duty bottling plants in the Sivian poles."
 	icon_state = "waterbottle"
 	center_of_mass = list("x"=16, "y"=8)
-	drop_sound = 'sound/items/drop/food.ogg'
+	drop_sound = 'sound/items/drop/disk.ogg'
+	pickup_sound = 'sound/items/pickup/disk.ogg'
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle/Initialize()
 	. = ..()

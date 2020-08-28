@@ -57,6 +57,7 @@
 		M.forceMove(src)
 		occupant = M
 		update_icon() //icon_state = "body_scanner_1" //VOREStation Edit - Health display for consoles with light and such.
+		playsound(src, 'sound/machines/medbayscanner1.ogg', 50) // Beepboop you're being scanned. <3
 		add_fingerprint(user)
 		qdel(G)
 		SStgui.update_uis(src)
@@ -101,6 +102,7 @@
 	O.forceMove(src)
 	occupant = O
 	update_icon() //icon_state = "body_scanner_1" //VOREStation Edit - Health display for consoles with light and such.
+	playsound(src, 'sound/machines/medbayscanner1.ogg', 50) // Beepboop you're being scanned. <3
 	add_fingerprint(user)
 	SStgui.update_uis(src)
 
@@ -332,6 +334,7 @@
 		if("print_p")
 			var/atom/target = console ? console : src
 			visible_message("<span class='notice'>[target] rattles and prints out a sheet of paper.</span>")
+			playsound(src, 'sound/machines/printer.ogg', 50, 1)
 			var/obj/item/weapon/paper/P = new /obj/item/weapon/paper(get_turf(target))
 			var/name = occupant ? occupant.name : "Unknown"
 			P.info = "<CENTER><B>Body Scan - [name]</B></CENTER><BR>"

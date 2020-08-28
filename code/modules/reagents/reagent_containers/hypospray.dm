@@ -14,6 +14,8 @@
 	possible_transfer_amounts = null
 	flags = OPENCONTAINER
 	slot_flags = SLOT_BELT
+	drop_sound = 'sound/items/drop/gun.ogg'
+	pickup_sound = 'sound/items/pickup/gun.ogg'
 	preserve_item = 1
 	var/filled = 0
 	var/list/filled_reagents = list()

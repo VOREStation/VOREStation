@@ -9,6 +9,7 @@
 	icon = 'icons/obj/card.dmi'
 	icon_state = "guest"
 	body_parts_covered = 0
+	equip_sound = null
 
 	sprite_sheets = list()
 

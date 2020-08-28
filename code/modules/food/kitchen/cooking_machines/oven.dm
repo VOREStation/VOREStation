@@ -7,6 +7,7 @@
 	appliancetype = OVEN
 	food_color = "#A34719"
 	can_burn_food = TRUE
+	var/datum/looping_sound/oven/oven_loop
 	circuit = /obj/item/weapon/circuitboard/oven
 	active_power_usage = 6 KILOWATTS
 	heating_power = 6 KILOWATTS
@@ -37,6 +38,15 @@
 		"Cookie" = /obj/item/weapon/reagent_containers/food/snacks/variable/cookie,
 		"Donut" = /obj/item/weapon/reagent_containers/food/snacks/variable/donut,
 		)
+		
+/obj/machinery/appliance/cooker/oven/Initialize()
+	. = ..()
+	
+	oven_loop = new(list(src), FALSE)
+	
+/obj/machinery/appliance/cooker/oven/Destroy()
+	QDEL_NULL(oven_loop)
+	return ..()
 
 /obj/machinery/appliance/cooker/oven/update_icon()
 	if(!open)
@@ -44,12 +54,20 @@
 			icon_state = "ovenclosed_on"
 			if(cooking == TRUE)
 				icon_state = "ovenclosed_cooking"
+				if(oven_loop)
+					oven_loop.start(src)
 			else
 				icon_state = "ovenclosed_on"
+				if(oven_loop)
+					oven_loop.stop(src)
 		else
 			icon_state = "ovenclosed_off"
+			if(oven_loop)
+				oven_loop.stop(src)
 	else
 		icon_state = "ovenopen"
+		if(oven_loop)
+			oven_loop.stop(src)
 	..()
 
 /obj/machinery/appliance/cooker/oven/AltClick(var/mob/user)
