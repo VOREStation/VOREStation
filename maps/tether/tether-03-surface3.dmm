@@ -15622,21 +15622,14 @@
 /area/assembly/robotics)
 "aBo" = (
 /obj/machinery/door/airlock/command{
-	id_tag = "captaindoor";
-	name = "Colony Director's Office";
+	name = "Site Manager's Quarters";
 	req_access = list(20)
 	},
 /obj/machinery/door/firedoor/glass,
-/obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/tiled/dark,
-/area/bridge)
+/turf/simulated/floor/wood,
+/area/crew_quarters/captain)
 "aBp" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/lime/border,
@@ -22489,6 +22482,20 @@
 	},
 /turf/simulated/open/virgo3b,
 /area/tether/surfacebase/outside/outside3)
+"aNC" = (
+/obj/structure/table/woodentable,
+/obj/machinery/recharger{
+	pixel_y = 4
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/obj/item/device/perfect_tele{
+	desc = "Seems absurd, doesn't it? Yet, here we are. Generally considered dangerous contraband unless the user has permission from Central Command. This one is the Site Manager's, and they are authorized to use it.";
+	name = "manager's translocator"
+	},
+/turf/simulated/floor/wood,
+/area/crew_quarters/captain)
 "aND" = (
 /obj/structure/railing{
 	dir = 4
@@ -29277,6 +29284,23 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
+"aZT" = (
+/obj/machinery/door/airlock/command{
+	id_tag = "captaindoor";
+	name = "Site Manager's Office";
+	req_access = list(20)
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/bridge)
 "aZU" = (
 /obj/structure/table/woodentable,
 /obj/machinery/computer/skills{
@@ -29300,15 +29324,10 @@
 /turf/simulated/floor/wood,
 /area/crew_quarters/captain)
 "aZW" = (
-/obj/machinery/door/airlock/command{
-	name = "Colony Director's Quarters";
-	req_access = list(20)
-	},
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/wood,
-/area/crew_quarters/captain)
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tether)
 "aZX" = (
 /obj/effect/floor_decal/corner/grey/diagonal,
 /obj/structure/foodcart,
@@ -29847,19 +29866,12 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
 "baM" = (
-/obj/structure/table/woodentable,
-/obj/machinery/recharger{
-	pixel_y = 4
+/obj/machinery/atmospherics/unary/engine{
+	dir = 1
 	},
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 8
-	},
-/obj/item/device/perfect_tele{
-	desc = "Seems absurd, doesn't it? Yet, here we are. Generally considered dangerous contraband unless the user has permission from Central Command. This one is the Colony Director's, and they are authorized to use it.";
-	name = "director's translocator"
-	},
-/turf/simulated/floor/wood,
-/area/crew_quarters/captain)
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tourbus/engines)
 "baN" = (
 /obj/machinery/papershredder,
 /obj/machinery/alarm{
@@ -33510,18 +33522,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/rnd/outpost/xenobiology/outpost_storage)
-"bhg" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tether)
-"bhh" = (
-/obj/machinery/atmospherics/unary/engine{
-	dir = 1
-	},
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tourbus/engines)
 "bhu" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/lightgrey/border,
@@ -47696,7 +47696,7 @@ jML
 jHw
 jpB
 qWU
-bhh
+baM
 aKU
 aOI
 aPb
@@ -48359,7 +48359,7 @@ axf
 aZl
 aZx
 aZL
-aZW
+aBo
 bag
 bas
 aZU
@@ -48548,7 +48548,7 @@ caw
 jHw
 gHh
 qWU
-bhh
+baM
 aKU
 aOI
 aPb
@@ -48788,10 +48788,10 @@ aYT
 alj
 baj
 bau
-baM
+aNC
 bbb
 aZr
-aBo
+aZT
 aEg
 aYb
 aYb
@@ -50533,7 +50533,7 @@ aNk
 uSA
 aNJ
 aNP
-bhg
+aZW
 aKU
 abg
 aOk
@@ -50675,7 +50675,7 @@ aNl
 aNl
 aNK
 aNP
-bhg
+aZW
 aKU
 abg
 aOk
@@ -50817,7 +50817,7 @@ aNm
 aNl
 aNK
 aNP
-bhg
+aZW
 aKU
 abg
 aOk

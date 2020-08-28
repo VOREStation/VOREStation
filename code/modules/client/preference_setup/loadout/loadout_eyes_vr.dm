@@ -17,7 +17,7 @@
 	display_name = "AR-S glasses (Sec)"
 	path = /obj/item/clothing/glasses/omnihud/sec
 	allowed_roles = list("Security Officer","Head of Security","Warden","Detective")
-	
+
 /datum/gear/eyes/arglasses/sci
 	display_name = "AR-R glasses (Sci)"
 	path = /obj/item/clothing/glasses/omnihud/rnd
@@ -34,10 +34,10 @@
 	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist", "Field Medic")
 
 /datum/gear/eyes/arglasses/all
-	display_name = "AR-B glasses (CD, HoP)"
+	display_name = "AR-B glasses (SM, HoP)"
 	path = /obj/item/clothing/glasses/omnihud/all
 	cost = 2
-	allowed_roles = list("Colony Director","Head of Personnel")
+	allowed_roles = list("Site Manager","Head of Personnel")
 
 /datum/gear/eyes/spiffygogs
 	display_name = "slick orange goggles"
