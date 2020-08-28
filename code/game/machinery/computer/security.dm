@@ -324,6 +324,7 @@
 				if(!active2)
 					set_temp("Security record not found. You must enter the person's exact name, ID or DNA.", "danger")
 					return
+<<<<<<< HEAD
 				for(var/datum/data/record/E in data_core.general)
 					if(E.fields["name"] == active2.fields["name"] && E.fields["id"] == active2.fields["id"])
 						active1 = E
@@ -370,6 +371,147 @@
 					var/choices = field_edit_choices[field]
 					if(length(choices))
 						tgui_modal_choice(src, id, question, arguments = arguments, value = arguments["value"], choices = choices)
+=======
+				var/a1 = active1
+				var/a2 = active2
+				switch(href_list["field"])
+					if("name")
+						if (istype(active1, /datum/data/record))
+							var/t1 = sanitizeName(input("Please input name:", "Secure. records", active1.fields["name"], null)  as text)
+							if (!t1 || active1 != a1)
+								return
+							active1.fields["name"] = t1
+					if("id")
+						if (istype(active2, /datum/data/record))
+							var/t1 = sanitize(input("Please input id:", "Secure. records", active1.fields["id"], null)  as text)
+							if (!t1 || active1 != a1)
+								return
+							active1.fields["id"] = t1
+					if("fingerprint")
+						if (istype(active1, /datum/data/record))
+							var/t1 = sanitize(input("Please input fingerprint hash:", "Secure. records", active1.fields["fingerprint"], null)  as text)
+							if (!t1 || active1 != a1)
+								return
+							active1.fields["fingerprint"] = t1
+					if("sex")
+						if (istype(active1, /datum/data/record))
+							if (active1.fields["sex"] == "Male")
+								active1.fields["sex"] = "Female"
+							else
+								active1.fields["sex"] = "Male"
+					if("age")
+						if (istype(active1, /datum/data/record))
+							var/t1 = input("Please input age:", "Secure. records", active1.fields["age"], null)  as num
+							if (!t1 || active1 != a1)
+								return
+							active1.fields["age"] = t1
+					if("mi_crim")
+						if (istype(active2, /datum/data/record))
+							var/t1 = sanitize(input("Please input minor disabilities list:", "Secure. records", active2.fields["mi_crim"], null)  as text)
+							if (!t1 || active2 != a2)
+								return
+							active2.fields["mi_crim"] = t1
+					if("mi_crim_d")
+						if (istype(active2, /datum/data/record))
+							var/t1 = sanitize(input("Please summarize minor dis.:", "Secure. records", active2.fields["mi_crim_d"], null)  as message)
+							if (!t1 || active2 != a2)
+								return
+							active2.fields["mi_crim_d"] = t1
+					if("ma_crim")
+						if (istype(active2, /datum/data/record))
+							var/t1 = sanitize(input("Please input major diabilities list:", "Secure. records", active2.fields["ma_crim"], null)  as text)
+							if (!t1 || active2 != a2)
+								return
+							active2.fields["ma_crim"] = t1
+					if("ma_crim_d")
+						if (istype(active2, /datum/data/record))
+							var/t1 = sanitize(input("Please summarize major dis.:", "Secure. records", active2.fields["ma_crim_d"], null)  as message)
+							if (!t1 || active2 != a2)
+								return
+							active2.fields["ma_crim_d"] = t1
+					if("notes")
+						if (istype(active2, /datum/data/record))
+							var/t1 = sanitize(input("Please summarize notes:", "Secure. records", html_decode(active2.fields["notes"]), null)  as message, extra = 0, max_length = MAX_RECORD_LENGTH)
+							if (!t1 || active2 != a2)
+								return
+							active2.fields["notes"] = t1
+					if("criminal")
+						if (istype(active2, /datum/data/record))
+							temp = "<h5>Criminal Status:</h5>"
+							temp += "<ul>"
+							temp += "<li><a href='?src=\ref[src];choice=Change Criminal Status;criminal2=none'>None</a></li>"
+							temp += "<li><a href='?src=\ref[src];choice=Change Criminal Status;criminal2=arrest'>*Arrest*</a></li>"
+							temp += "<li><a href='?src=\ref[src];choice=Change Criminal Status;criminal2=incarcerated'>Incarcerated</a></li>"
+							temp += "<li><a href='?src=\ref[src];choice=Change Criminal Status;criminal2=parolled'>Parolled</a></li>"
+							temp += "<li><a href='?src=\ref[src];choice=Change Criminal Status;criminal2=released'>Released</a></li>"
+							temp += "</ul>"
+					if("rank")
+						var/list/L = list( "Head of Personnel", "Site Manager", "AI" )
+						//This was so silly before the change. Now it actually works without beating your head against the keyboard. /N
+						if ((istype(active1, /datum/data/record) && L.Find(rank)))
+							temp = "<h5>Rank:</h5>"
+							temp += "<ul>"
+							for(var/rank in joblist)
+								temp += "<li><a href='?src=\ref[src];choice=Change Rank;rank=[rank]'>[rank]</a></li>"
+							temp += "</ul>"
+						else
+							alert(usr, "You do not have the required rank to do this!")
+					if("species")
+						if (istype(active1, /datum/data/record))
+							var/t1 = sanitize(input("Please enter race:", "General records", active1.fields["species"], null)  as message)
+							if (!t1 || active1 != a1)
+								return
+							active1.fields["species"] = t1
+					if("photo front")
+						var/icon/photo = get_photo(usr)
+						if(photo)
+							active1.fields["photo_front"] = photo
+					if("photo side")
+						var/icon/photo = get_photo(usr)
+						if(photo)
+							active1.fields["photo_side"] = photo
+
+
+//TEMPORARY MENU FUNCTIONS
+			else//To properly clear as per clear screen.
+				temp=null
+				switch(href_list["choice"])
+					if ("Change Rank")
+						if (active1)
+							active1.fields["rank"] = href_list["rank"]
+							if(href_list["rank"] in joblist)
+								active1.fields["real_rank"] = href_list["real_rank"]
+
+					if ("Change Criminal Status")
+						if (active2)
+							for(var/mob/living/carbon/human/H in player_list)
+								BITSET(H.hud_updateflag, WANTED_HUD)
+							switch(href_list["criminal2"])
+								if("none")
+									active2.fields["criminal"] = "None"
+								if("arrest")
+									active2.fields["criminal"] = "*Arrest*"
+								if("incarcerated")
+									active2.fields["criminal"] = "Incarcerated"
+								if("parolled")
+									active2.fields["criminal"] = "Parolled"
+								if("released")
+									active2.fields["criminal"] = "Released"
+
+					if ("Delete Record (Security) Execute")
+						if (active2)
+							qdel(active2)
+
+					if ("Delete Record (ALL) Execute")
+						if (active1)
+							for(var/datum/data/record/R in data_core.medical)
+								if ((R.fields["name"] == active1.fields["name"] || R.fields["id"] == active1.fields["id"]))
+									qdel(R)
+								else
+							qdel(active1)
+						if (active2)
+							qdel(active2)
+>>>>>>> 6d4d5d6... Merge pull request #7571 from listerla/nomoresitemanager
 					else
 						tgui_modal_input(src, id, question, arguments = arguments, value = arguments["value"])
 				if("add_c")

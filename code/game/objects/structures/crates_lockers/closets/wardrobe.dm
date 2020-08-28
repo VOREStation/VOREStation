@@ -438,7 +438,7 @@
 		/obj/item/weapon/storage/backpack/satchel = 2)
 
 /obj/structure/closet/wardrobe/captain
-	name = "colony director's wardrobe"
+	name = "site manager's wardrobe"
 	closet_appearance = /decl/closet_appearance/cabinet
 
 	starts_with = list(
