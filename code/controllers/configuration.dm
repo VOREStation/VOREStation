@@ -177,45 +177,43 @@ var/list/gamemode_cache = list()
 	var/static/run_speed = 0
 	var/static/walk_speed = 0
 
-	//Mob specific modifiers. NOTE: These will affect different mob types in different ways
-	var/human_delay = 0
-	var/robot_delay = 0
-	var/monkey_delay = 0
-	var/alien_delay = 0
-	var/slime_delay = 0
-	var/animal_delay = 0
+	//Mob specific modifiers. NOTE: These will affect different mob types in different ways	var/static/human_delay = 0
+	var/static/robot_delay = 0
+	var/static/monkey_delay = 0
+	var/static/alien_delay = 0
+	var/static/slime_delay = 0
+	var/static/animal_delay = 0
 
-	var/footstep_volume = 0
+	var/static/footstep_volume = 0
 
-	var/admin_legacy_system = 0	//Defines whether the server uses the legacy admin system with admins.txt or the SQL system. Config option in config.txt
-	var/ban_legacy_system = 0	//Defines whether the server uses the legacy banning system with the files in /data or the SQL system. Config option in config.txt
-	var/use_age_restriction_for_jobs = 0 //Do jobs use account age restrictions? --requires database
-	var/use_age_restriction_for_antags = 0 //Do antags use account age restrictions? --requires database
+	var/static/admin_legacy_system = 0	//Defines whether the server uses the legacy admin system with admins.txt or the SQL system. Config option in config.txt
+	var/static/ban_legacy_system = 0	//Defines whether the server uses the legacy banning system with the files in /data or the SQL system. Config option in config.txt
+	var/static/use_age_restriction_for_jobs = 0 //Do jobs use account age restrictions? --requires database
+	var/static/use_age_restriction_for_antags = 0 //Do antags use account age restrictions? --requires database
 
-	var/simultaneous_pm_warning_timeout = 100
+	var/static/simultaneous_pm_warning_timeout = 100
 
-	var/use_recursive_explosions //Defines whether the server uses recursive or circular explosions.
-	var/multi_z_explosion_scalar = 0.5 //Multiplier for how much weaker explosions are on neighboring z levels.
+	var/static/use_recursive_explosions //Defines whether the server uses recursive or circular explosions.
+	var/static/multi_z_explosion_scalar = 0.5 //Multiplier for how much weaker explosions are on neighboring z levels.
 
-	var/assistant_maint = 0 //Do assistants get maint access?
-	var/gateway_delay = 18000 //How long the gateway takes before it activates. Default is half an hour.
-	var/ghost_interaction = 0
+	var/static/assistant_maint = 0 //Do assistants get maint access?
+	var/static/gateway_delay = 18000 //How long the gateway takes before it activates. Default is half an hour.
+	var/static/ghost_interaction = 0
 
-	var/comms_password = ""
+	var/static/comms_password = ""
 
-	var/enter_allowed = 1
+	var/static/enter_allowed = 1
 
-	var/use_irc_bot = 0
-	var/use_node_bot = 0
-	var/irc_bot_port = 0
-	var/irc_bot_host = ""
-	var/irc_bot_export = 0 // whether the IRC bot in use is a Bot32 (or similar) instance; Bot32 uses world.Export() instead of nudge.py/libnudge
-	var/main_irc = ""
-	var/admin_irc = ""
-	var/python_path = "" //Path to the python executable.  Defaults to "python" on windows and "/usr/bin/env python2" on unix
-	var/use_lib_nudge = 0 //Use the C library nudge instead of the python nudge.
-	var/use_overmap = 0
-
+	var/static/use_irc_bot = 0
+	var/static/use_node_bot = 0
+	var/static/irc_bot_port = 0
+	var/static/irc_bot_host = ""
+	var/static/irc_bot_export = 0 // whether the IRC bot in use is a Bot32 (or similar) instance; Bot32 uses world.Export() instead of nudge.py/libnudge
+	var/static/main_irc = ""
+	var/static/admin_irc = ""
+	var/static/python_path = "" //Path to the python executable.  Defaults to "python" on windows and "/usr/bin/env python2" on unix
+	var/static/use_lib_nudge = 0 //Use the C library nudge instead of the python nudge.
+	var/static/use_overmap = 0
 	var/static/list/engine_map = list("Supermatter Engine", "Edison's Bane")	// Comma separated list of engines to choose from.  Blank means fully random.
 
 	// Event settings
