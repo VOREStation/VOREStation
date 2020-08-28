@@ -24,7 +24,7 @@
 	 1: Oxygen: Oxygen ONLY
 	 2: Nitrogen: Nitrogen ONLY
 	 3: Carbon Dioxide: Carbon Dioxide ONLY
-	 4: Sleeping Agent (N2O)
+	 4: Nitrous Oxide (Formerly called Sleeping Agent) (N2O)
 	*/
 	var/filter_type = -1
 	var/list/filtered_out = list()
@@ -51,7 +51,7 @@
 		if(3) //removing CO2
 			filtered_out = list("carbon_dioxide")
 		if(4)//removing N2O
-			filtered_out = list("sleeping_agent")
+			filtered_out = list("nitrous_oxide")
 
 	air1.volume = ATMOS_DEFAULT_VOLUME_FILTER
 	air2.volume = ATMOS_DEFAULT_VOLUME_FILTER
@@ -186,6 +186,7 @@
 
 /obj/machinery/atmospherics/trinary/atmos_filter/tgui_act(action, params)
 	if(..())
+<<<<<<< HEAD
 		return TRUE
 
 	switch(action)
@@ -220,6 +221,43 @@
 
 	add_fingerprint(usr)
 	update_icon()
+=======
+		return 1
+	usr.set_machine(src)
+	src.add_fingerprint(usr)
+	if(href_list["filterset"])
+		filter_type = text2num(href_list["filterset"])
+
+		filtered_out.Cut()	//no need to create new lists unnecessarily
+		switch(filter_type)
+			if(0) //removing hydrocarbons
+				filtered_out += "phoron"
+				filtered_out += "oxygen_agent_b"
+			if(1) //removing O2
+				filtered_out += "oxygen"
+			if(2) //removing N2
+				filtered_out += "nitrogen"
+			if(3) //removing CO2
+				filtered_out += "carbon_dioxide"
+			if(4)//removing N2O
+				filtered_out += "nitrous_oxide"
+
+	if (href_list["temp"])
+		src.temp = null
+	if(href_list["set_flow_rate"])
+		var/new_flow_rate = input(usr,"Enter new flow rate (0-[air1.volume]L/s)","Flow Rate Control",src.set_flow_rate) as num
+		src.set_flow_rate = max(0, min(air1.volume, new_flow_rate))
+	if(href_list["power"])
+		update_use_power(!use_power)
+	src.update_icon()
+	src.updateUsrDialog()
+/*
+	for(var/mob/M in viewers(1, src))
+		if ((M.client && M.machine == src))
+			src.attack_hand(M)
+*/
+	return
+>>>>>>> ee5190f... Merge pull request #7576 from Rykka-Stormheart/shep-dev-gas-overlay-updoot
 
 //
 // Mirrored Orientation - Flips the output dir to opposite side from normal.
