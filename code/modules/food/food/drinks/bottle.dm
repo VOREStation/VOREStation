@@ -522,7 +522,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer/Initialize()
 	. = ..()
-	reagents.add_reagent("beer", 30)
+	reagents.add_reagent("beer", 50)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer/silverdragon
 	name = "Silver Dragon pilsner"
@@ -544,7 +544,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/small/litebeer/Initialize()
 	. = ..()
-	reagents.add_reagent("litebeer", 30)
+	reagents.add_reagent("litebeer", 50)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/small/cider
 	name = "Crisp's Cider"
@@ -554,7 +554,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/small/cider/Initialize()
 	. = ..()
-	reagents.add_reagent("cider", 30)
+	reagents.add_reagent("cider", 50)
 
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/small/ale
@@ -566,7 +566,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/small/ale/Initialize()
 	. = ..()
-	reagents.add_reagent("ale", 30)
+	reagents.add_reagent("ale", 50)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/small/ale/hushedwhisper
 	name = "Hushed Whisper IPA"
@@ -576,7 +576,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/small/ale/hushedwhisper/Initialize()
 	. = ..()
-	reagents.add_reagent("ale", 30)
+	reagents.add_reagent("ale", 50)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/sake
 	name = "Mono-No-Aware Luxury Sake"

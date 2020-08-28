@@ -479,7 +479,7 @@
 		if("crack")
 			if(!restrained())
 				message = "cracks [T.his] knuckles."
-				playsound(src, 'sound/voice/knuckles.ogg', 50, 1)
+				playsound(src, 'sound/voice/knuckles.ogg', 50, 1, preference = /datum/client_preference/emote_noises)
 				m_type = 1
 
 		if("raise")

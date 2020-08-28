@@ -357,7 +357,7 @@
 		state("Tank instability detected. Please step away from the device.")
 	else
 		ping("Simulation complete!")
-		playsound(src, "sound/effects/printer.ogg", 50, 1)
+		playsound(src, "sound/machines/printer.ogg", 50, 1)
 		var/obj/item/weapon/paper/P = new(get_turf(src))
 		P.name = "Explosive Simulator printout"
 		P.info = simulation_results

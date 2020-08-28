@@ -35,7 +35,7 @@
 "aI" = (/obj/machinery/conveyor{dir = 2; id = "anolongstorage"},/turf/simulated/floor/plating,/area/surface/outpost/research/xenoarcheology/anomaly)
 "aJ" = (/obj/effect/floor_decal/industrial/warning{dir = 4},/obj/effect/floor_decal/industrial/warning{icon_state = "warning"; dir = 8},/obj/machinery/conveyor_switch{id = "anolongstorage"; name = "conveyor switch"; pixel_x = 0; pixel_y = 0; req_access = list(65)},/turf/simulated/floor/tiled/dark,/area/surface/outpost/research/xenoarcheology/anomaly)
 "aK" = (/obj/machinery/portable_atmospherics/canister/oxygen,/obj/effect/floor_decal/industrial/outline/yellow,/turf/simulated/floor/tiled,/area/surface/outpost/research/xenoarcheology/anomaly)
-"aL" = (/obj/machinery/portable_atmospherics/canister/sleeping_agent,/obj/effect/floor_decal/industrial/outline/yellow,/turf/simulated/floor/tiled,/area/surface/outpost/research/xenoarcheology/anomaly)
+"aL" = (/obj/machinery/portable_atmospherics/canister/nitrous_oxide,/obj/effect/floor_decal/industrial/outline/yellow,/turf/simulated/floor/tiled,/area/surface/outpost/research/xenoarcheology/anomaly)
 "aM" = (/obj/machinery/portable_atmospherics/canister/phoron,/obj/effect/floor_decal/industrial/outline/yellow,/turf/simulated/floor/tiled,/area/surface/outpost/research/xenoarcheology/anomaly)
 "aN" = (/turf/simulated/wall,/area/surface/outpost/research/xenoarcheology/longtermstorage)
 "aO" = (/obj/structure/disposaloutlet{dir = 4},/obj/effect/floor_decal/industrial/hatch/yellow,/obj/structure/disposalpipe/trunk,/turf/simulated/floor/tiled,/area/surface/outpost/research/xenoarcheology/longtermstorage)
@@ -459,8 +459,6 @@
 "iM" = (/obj/effect/map_effect/portal/master/side_b/caves_to_plains/river{icon_state = "portal_side_b"; dir = 1},/turf/simulated/floor/water{outdoors = 0},/area/surface/cave/explored/normal)
 "iN" = (/turf/unsimulated/wall/planetary/sif,/area/surface/cave/explored/normal)
 "iO" = (/obj/effect/map_effect/perma_light/concentrated,/turf/simulated/floor/tiled/asteroid_steel,/area/surface/outpost/mining_main/cave)
-
->>>>>>> 0abf36f... Merge pull request #7378 from Neerti/portals
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacxcwcwcwcxaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacydsdsdsabaaaaaaaaaaaaaaaa
 aaababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababcxczehehcxababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababexijieieababababababababaa

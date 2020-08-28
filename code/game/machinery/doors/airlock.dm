@@ -212,10 +212,8 @@
 	glass = 1
 <<<<<<< HEAD
 	req_one_access = list(access_external_airlocks)
-=======
 	open_sound_powered = 'sound/machines/door/space1o.ogg'
 	close_sound_powered = 'sound/machines/door/space1c.ogg'
->>>>>>> 4bf64e6... Merge pull request #7459 from Rykka-Stormheart/shep-dev-sound-overhaul
 
 /obj/machinery/door/airlock/glass
 	name = "Glass Airlock"
@@ -253,10 +251,8 @@
 	assembly_type = /obj/structure/door_assembly/door_assembly_highsecurity //Until somebody makes better sprites.
 <<<<<<< HEAD
 	req_one_access = list(access_heads_vault)
-=======
 	open_sound_powered = 'sound/machines/door/vault1o.ogg'
 	close_sound_powered = 'sound/machines/door/vault1c.ogg'
->>>>>>> 4bf64e6... Merge pull request #7459 from Rykka-Stormheart/shep-dev-sound-overhaul
 
 /obj/machinery/door/airlock/vault/bolted
 	icon_state = "door_locked"
@@ -276,11 +272,9 @@
 	assembly_type = /obj/structure/door_assembly/door_assembly_hatch
 <<<<<<< HEAD
 	req_one_access = list(access_maint_tunnels)
-=======
 	open_sound_powered = 'sound/machines/door/hatchopen.ogg'
 	close_sound_powered = 'sound/machines/door/hatchclose.ogg'
 	open_sound_unpowered = 'sound/machines/door/hatchforced.ogg'
->>>>>>> 4bf64e6... Merge pull request #7459 from Rykka-Stormheart/shep-dev-sound-overhaul
 
 /obj/machinery/door/airlock/maintenance_hatch
 	name = "Maintenance Hatch"
@@ -290,11 +284,9 @@
 	assembly_type = /obj/structure/door_assembly/door_assembly_mhatch
 <<<<<<< HEAD
 	req_one_access = list(access_maint_tunnels)
-=======
 	open_sound_powered = 'sound/machines/door/hatchopen.ogg'
 	close_sound_powered = 'sound/machines/door/hatchclose.ogg'
 	open_sound_unpowered = 'sound/machines/door/hatchforced.ogg'
->>>>>>> 4bf64e6... Merge pull request #7459 from Rykka-Stormheart/shep-dev-sound-overhaul
 
 /obj/machinery/door/airlock/glass_command
 	name = "Command Airlock"
@@ -307,10 +299,8 @@
 	glass = 1
 <<<<<<< HEAD
 	req_one_access = list(access_heads)
-=======
 	open_sound_powered = 'sound/machines/door/cmd1o.ogg'
 	close_sound_powered = 'sound/machines/door/cmd1c.ogg'
->>>>>>> 4bf64e6... Merge pull request #7459 from Rykka-Stormheart/shep-dev-sound-overhaul
 
 /obj/machinery/door/airlock/glass_engineering
 	name = "Engineering Airlock"
@@ -323,10 +313,8 @@
 	glass = 1
 <<<<<<< HEAD
 	req_one_access = list(access_engine)
-=======
 	open_sound_powered = 'sound/machines/door/eng1o.ogg'
 	close_sound_powered = 'sound/machines/door/eng1c.ogg'
->>>>>>> 4bf64e6... Merge pull request #7459 from Rykka-Stormheart/shep-dev-sound-overhaul
 
 /obj/machinery/door/airlock/glass_engineeringatmos
 	name = "Atmospherics Airlock"
@@ -339,10 +327,8 @@
 	glass = 1
 <<<<<<< HEAD
 	req_one_access = list(access_atmospherics)
-=======
 	open_sound_powered = 'sound/machines/door/eng1o.ogg'
 	close_sound_powered = 'sound/machines/door/eng1c.ogg'
->>>>>>> 4bf64e6... Merge pull request #7459 from Rykka-Stormheart/shep-dev-sound-overhaul
 
 /obj/machinery/door/airlock/glass_security
 	name = "Security Airlock"
@@ -355,10 +341,8 @@
 	glass = 1
 <<<<<<< HEAD
 	req_one_access = list(access_security)
-=======
 	open_sound_powered = 'sound/machines/door/sec1o.ogg'
 	close_sound_powered = 'sound/machines/door/sec1c.ogg'
->>>>>>> 4bf64e6... Merge pull request #7459 from Rykka-Stormheart/shep-dev-sound-overhaul
 
 /obj/machinery/door/airlock/glass_medical
 	name = "Medical Airlock"
@@ -371,10 +355,8 @@
 	glass = 1
 <<<<<<< HEAD
 	req_one_access = list(access_medical)
-=======
 	open_sound_powered = 'sound/machines/door/med1o.ogg'
 	close_sound_powered = 'sound/machines/door/med1c.ogg'
->>>>>>> 4bf64e6... Merge pull request #7459 from Rykka-Stormheart/shep-dev-sound-overhaul
 
 /obj/machinery/door/airlock/mining
 	name = "Mining Airlock"
@@ -382,10 +364,8 @@
 	assembly_type = /obj/structure/door_assembly/door_assembly_min
 <<<<<<< HEAD
 	req_one_access = list(access_mining)
-=======
 	open_sound_powered = 'sound/machines/door/cgo1o.ogg'
 	close_sound_powered = 'sound/machines/door/cgo1c.ogg'
->>>>>>> 4bf64e6... Merge pull request #7459 from Rykka-Stormheart/shep-dev-sound-overhaul
 
 /obj/machinery/door/airlock/atmos
 	name = "Atmospherics Airlock"
@@ -393,10 +373,8 @@
 	assembly_type = /obj/structure/door_assembly/door_assembly_atmo
 <<<<<<< HEAD
 	req_one_access = list(access_atmospherics)
-=======
 	open_sound_powered = 'sound/machines/door/eng1o.ogg'
 	close_sound_powered = 'sound/machines/door/eng1c.ogg'
->>>>>>> 4bf64e6... Merge pull request #7459 from Rykka-Stormheart/shep-dev-sound-overhaul
 
 /obj/machinery/door/airlock/research
 	name = "Research Airlock"
@@ -416,10 +394,8 @@
 	glass = 1
 <<<<<<< HEAD
 	req_one_access = list(access_research)
-=======
 	open_sound_powered = 'sound/machines/door/sci1o.ogg'
 	close_sound_powered = 'sound/machines/door/sci1c.ogg'
->>>>>>> 4bf64e6... Merge pull request #7459 from Rykka-Stormheart/shep-dev-sound-overhaul
 
 /obj/machinery/door/airlock/glass_mining
 	name = "Mining Airlock"
@@ -432,10 +408,8 @@
 	glass = 1
 <<<<<<< HEAD
 	req_one_access = list(access_mining)
-=======
 	open_sound_powered = 'sound/machines/door/cgo1o.ogg'
 	close_sound_powered = 'sound/machines/door/cgo1c.ogg'
->>>>>>> 4bf64e6... Merge pull request #7459 from Rykka-Stormheart/shep-dev-sound-overhaul
 
 /obj/machinery/door/airlock/glass_atmos
 	name = "Atmospherics Airlock"
@@ -448,10 +422,8 @@
 	glass = 1
 <<<<<<< HEAD
 	req_one_access = list(access_atmospherics)
-=======
 	open_sound_powered = 'sound/machines/door/eng1o.ogg'
 	close_sound_powered = 'sound/machines/door/eng1c.ogg'
->>>>>>> 4bf64e6... Merge pull request #7459 from Rykka-Stormheart/shep-dev-sound-overhaul
 
 /obj/machinery/door/airlock/gold
 	name = "Gold Airlock"
@@ -533,10 +505,8 @@
 	assembly_type = /obj/structure/door_assembly/door_assembly_science
 <<<<<<< HEAD
 	req_one_access = list(access_research)
-=======
 	open_sound_powered = 'sound/machines/door/sci1o.ogg'
 	close_sound_powered = 'sound/machines/door/sci1c.ogg'
->>>>>>> 4bf64e6... Merge pull request #7459 from Rykka-Stormheart/shep-dev-sound-overhaul
 
 /obj/machinery/door/airlock/glass_science
 	name = "Glass Airlocks"
@@ -546,10 +516,8 @@
 	glass = 1
 <<<<<<< HEAD
 	req_one_access = list(access_research)
-=======
 	open_sound_powered = 'sound/machines/door/sci1o.ogg'
 	close_sound_powered = 'sound/machines/door/sci1c.ogg'
->>>>>>> 4bf64e6... Merge pull request #7459 from Rykka-Stormheart/shep-dev-sound-overhaul
 
 /obj/machinery/door/airlock/highsecurity
 	name = "Secure Airlock"
@@ -559,10 +527,8 @@
 	assembly_type = /obj/structure/door_assembly/door_assembly_highsecurity
 <<<<<<< HEAD
 	req_one_access = list(access_heads_vault)
-=======
 	open_sound_powered = 'sound/machines/door/secure1o.ogg'
 	close_sound_powered = 'sound/machines/door/secure1c.ogg'
->>>>>>> 4bf64e6... Merge pull request #7459 from Rykka-Stormheart/shep-dev-sound-overhaul
 
 /obj/machinery/door/airlock/voidcraft
 	name = "voidcraft hatch"
