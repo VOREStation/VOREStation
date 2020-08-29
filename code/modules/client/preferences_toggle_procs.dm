@@ -253,6 +253,36 @@
 	SScharacter_setup.queue_preferences_save(prefs)
 
 	feedback_add_details("admin_verb","TAirPumpNoise")
+	
+/client/verb/toggle_old_door_sounds()
+	set name = "Toggle Old Door Sounds"
+	set category = "Preferences"
+	set desc = "Toggles New/Old Door Sounds"
+
+	var/pref_path = /datum/client_preference/old_door_sounds
+
+	toggle_preference(pref_path)
+
+	to_chat(src, "You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear the legacy door sounds.")
+
+	SScharacter_setup.queue_preferences_save(prefs)
+
+	feedback_add_details("admin_verb","TOldDoorSounds")
+	
+/client/verb/toggle_department_door_sounds()
+	set name = "Toggle Department Door Sounds"
+	set category = "Preferences"
+	set desc = "Toggles Department-Specific Door Sounds"
+
+	var/pref_path = /datum/client_preference/department_door_sounds
+
+	toggle_preference(pref_path)
+
+	to_chat(src, "You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear per-department door sounds.")
+
+	SScharacter_setup.queue_preferences_save(prefs)
+
+	feedback_add_details("admin_verb","TDepartmentDoorSounds")
 
 /client/verb/toggle_pickup_sounds()
 	set name = "Toggle Picked Up Item Sounds"

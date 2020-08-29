@@ -115,7 +115,7 @@
 	if (!operating) //in case of emag
 		operating = 1
 	flick(text("[src.base_state]opening"), src)
-	playsound(src, 'sound/machines/windowdoor.ogg', 100, 1)
+	playsound(src, 'sound/machines/door/windowdoor.ogg', 100, 1)
 	sleep(10)
 
 	explosion_resistance = 0
@@ -132,7 +132,7 @@
 		return FALSE
 	operating = TRUE
 	flick(text("[]closing", src.base_state), src)
-	playsound(src, 'sound/machines/windowdoor.ogg', 100, 1)
+	playsound(src, 'sound/machines/door/windowdoor.ogg', 100, 1)
 
 	density = TRUE
 	update_icon()
