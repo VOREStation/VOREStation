@@ -116,8 +116,7 @@
 /area/tether_away/guttersite/maint)
 "aC" = (
 /obj/machinery/light{
-	dir = 1;
-	icon_state = "tube1"
+	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/storage)
@@ -201,8 +200,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 4
 	},
 /obj/structure/cable/cyan{
 	d1 = 2;
@@ -371,16 +369,14 @@
 /area/tether_away/guttersite/atmos)
 "br" = (
 /obj/machinery/atmospherics/pipe/simple/visible/blue{
-	dir = 4;
-	icon_state = "intact"
+	dir = 4
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/tether_away/guttersite/atmos)
 "bs" = (
 /obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/simple/visible/blue{
-	dir = 4;
-	icon_state = "intact"
+	dir = 4
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/tether_away/guttersite/atmos)
@@ -477,8 +473,7 @@
 "bA" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 1;
-	icon_state = "map-supply"
+	dir = 1
 	},
 /obj/structure/table/darkglass,
 /obj/structure/cable/cyan{
@@ -580,16 +575,14 @@
 /area/tether_away/guttersite/atmos)
 "bM" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red{
-	dir = 4;
-	icon_state = "intact"
+	dir = 4
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/tether_away/guttersite/atmos)
 "bN" = (
 /obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/simple/visible/red{
-	dir = 4;
-	icon_state = "intact"
+	dir = 4
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/tether_away/guttersite/atmos)
@@ -653,7 +646,6 @@
 	alarm_id = null;
 	breach_detection = 0;
 	dir = 1;
-	icon_state = "alarm0";
 	pixel_y = -22
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
@@ -661,7 +653,6 @@
 "bV" = (
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -25
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
@@ -714,12 +705,10 @@
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6;
-	icon_state = "intact-supply"
+	dir = 6
 	},
 /obj/structure/bed/chair/bay/comfy/black{
-	dir = 1;
-	icon_state = "bay_comfychair_preview"
+	dir = 1
 	},
 /obj/structure/cable/cyan{
 	d1 = 2;
@@ -736,8 +725,7 @@
 /area/tether_away/guttersite/atmos)
 "cd" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red{
-	dir = 10;
-	icon_state = "intact"
+	dir = 10
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/tether_away/guttersite/atmos)
@@ -757,8 +745,7 @@
 /area/tether_away/guttersite/atmos)
 "ch" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1;
-	icon_state = "map_vent_out"
+	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/storage)
@@ -779,14 +766,12 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 1;
-	icon_state = "map-supply"
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /obj/structure/window/basic,
 /obj/structure/window/basic{
-	dir = 4;
-	icon_state = "window"
+	dir = 4
 	},
 /obj/structure/table/darkglass,
 /obj/structure/cable/cyan{
@@ -813,12 +798,10 @@
 /area/tether_away/guttersite/atmos)
 "cn" = (
 /obj/machinery/light{
-	dir = 1;
-	icon_state = "tube1"
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/blue{
-	dir = 4;
-	icon_state = "intact"
+	dir = 4
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/tether_away/guttersite/atmos)
@@ -829,8 +812,7 @@
 /area/tether_away/guttersite/unexplored)
 "cp" = (
 /obj/structure/window/basic{
-	dir = 8;
-	icon_state = "window"
+	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/white/monofloor,
 /area/tether_away/guttersite/office)
@@ -847,8 +829,7 @@
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6;
-	icon_state = "intact-supply"
+	dir = 6
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/maint)
@@ -867,8 +848,7 @@
 /area/tether_away/guttersite/atmos)
 "cw" = (
 /obj/machinery/light{
-	dir = 1;
-	icon_state = "tube1"
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/blue{
 	dir = 10
@@ -877,16 +857,14 @@
 /area/tether_away/guttersite/atmos)
 "cx" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red{
-	dir = 5;
-	icon_state = "intact"
+	dir = 5
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/tether_away/guttersite/atmos)
 "cy" = (
 /obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/manifold/visible/red{
-	dir = 1;
-	icon_state = "map"
+	dir = 1
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/tether_away/guttersite/atmos)
@@ -901,8 +879,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 4
 	},
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -913,12 +890,10 @@
 /area/tether_away/guttersite/maint)
 "cB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10;
-	icon_state = "intact-scrubbers"
+	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10;
-	icon_state = "intact-supply"
+	dir = 10
 	},
 /obj/structure/cable/cyan{
 	d1 = 2;
@@ -940,9 +915,7 @@
 "cD" = (
 /obj/machinery/alarm{
 	dir = 4;
-	icon_state = "alarm0";
-	pixel_x = -22;
-	pixel_y = 0
+	pixel_x = -22
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/maint)
@@ -977,8 +950,7 @@
 /area/tether_away/guttersite/commons)
 "cI" = (
 /obj/machinery/light{
-	dir = 1;
-	icon_state = "tube1"
+	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/commons)
@@ -1039,8 +1011,7 @@
 /area/tether_away/guttersite/commons)
 "cS" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1;
-	icon_state = "map_vent_out"
+	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/commons)
@@ -1054,8 +1025,7 @@
 /area/tether_away/guttersite/commons)
 "cV" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5;
-	icon_state = "intact-scrubbers"
+	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
@@ -1072,8 +1042,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 4
 	},
 /obj/machinery/light,
 /obj/structure/cable/cyan{
@@ -1088,8 +1057,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 4
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/maintenance_hatch{
@@ -1108,8 +1076,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 4
 	},
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -1133,8 +1100,7 @@
 /area/tether_away/guttersite/commons)
 "dc" = (
 /obj/machinery/light{
-	dir = 1;
-	icon_state = "tube1"
+	dir = 1
 	},
 /obj/structure/table/darkglass,
 /obj/machinery/chemical_dispenser/bar_alc/full,
@@ -1155,8 +1121,7 @@
 /area/tether_away/guttersite/commons)
 "dg" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 1;
-	icon_state = "map-supply"
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/structure/cable/cyan{
@@ -1185,12 +1150,10 @@
 /area/tether_away/guttersite/commons)
 "dl" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10;
-	icon_state = "intact-scrubbers"
+	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10;
-	icon_state = "intact-supply"
+	dir = 10
 	},
 /obj/structure/cable/cyan{
 	d1 = 2;
@@ -1277,6 +1240,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/item/tape/engineering,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/commons)
 "dt" = (
@@ -1312,8 +1276,7 @@
 	master_tag = "guttersite_northlock";
 	name = "exterior access button";
 	pixel_x = -5;
-	pixel_y = -26;
-	req_one_access = list()
+	pixel_y = -26
 	},
 /turf/simulated/mineral/floor/vacuum,
 /area/space)
@@ -1322,8 +1285,7 @@
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
-	dir = 8;
-	icon_state = "rwindow"
+	dir = 8
 	},
 /obj/structure/window/reinforced{
 	dir = 1
@@ -1339,8 +1301,7 @@
 /area/tether_away/guttersite/office)
 "dy" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 8;
-	icon_state = "map-scrubbers"
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 8
@@ -1381,15 +1342,13 @@
 	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
 	icon_state = "space";
 	layer = 4;
-	name = "EXTERNAL AIRLOCK";
-	pixel_x = 0
+	name = "EXTERNAL AIRLOCK"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/office)
 "dC" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 4;
-	icon_state = "map_vent_out"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/medbay)
@@ -1399,12 +1358,10 @@
 /area/tether_away/guttersite/medbay)
 "dE" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10;
-	icon_state = "intact-supply"
+	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10;
-	icon_state = "intact-scrubbers"
+	dir = 10
 	},
 /obj/structure/cable/cyan{
 	d1 = 2;
@@ -1423,6 +1380,7 @@
 "dG" = (
 /obj/structure/bed/padded,
 /obj/item/weapon/bedsheet/medical,
+/obj/effect/decal/cleanable/blood,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/medbay)
 "dH" = (
@@ -1430,8 +1388,7 @@
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
-	dir = 8;
-	icon_state = "rwindow"
+	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/office)
@@ -1440,17 +1397,14 @@
 	frequency = 448;
 	id_tag = "guttersite_northlock";
 	name = "Airlock controller";
-	pixel_x = -25;
-	pixel_y = 0
+	pixel_x = -25
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/office)
 "dJ" = (
 /obj/machinery/alarm{
 	dir = 4;
-	icon_state = "alarm0";
-	pixel_x = -22;
-	pixel_y = 0
+	pixel_x = -22
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/medbay)
@@ -1472,7 +1426,6 @@
 "dM" = (
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -25
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
@@ -1498,7 +1451,6 @@
 /obj/machinery/airlock_sensor{
 	frequency = 448;
 	id_tag = "guttersite_northlock_sensor";
-	pixel_x = 0;
 	pixel_y = -25
 	},
 /obj/effect/map_helper/airlock/sensor/chamber_sensor,
@@ -1507,8 +1459,7 @@
 /area/tether_away/guttersite/office)
 "dQ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 10;
-	icon_state = "intact"
+	dir = 10
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/office)
@@ -1517,8 +1468,7 @@
 /area/tether_away/guttersite/office)
 "dS" = (
 /obj/machinery/light{
-	dir = 1;
-	icon_state = "tube1"
+	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/office)
@@ -1543,12 +1493,10 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 4
 	},
 /obj/structure/bed/chair/bay/comfy/black{
-	dir = 1;
-	icon_state = "bay_comfychair_preview"
+	dir = 1
 	},
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -1562,8 +1510,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 4
 	},
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -1577,8 +1524,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 4
 	},
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -1592,8 +1538,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 4
 	},
 /obj/structure/closet/cabinet,
 /obj/structure/cable/cyan{
@@ -1605,8 +1550,7 @@
 /area/tether_away/guttersite/commons)
 "ea" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 1;
-	icon_state = "map-supply"
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/structure/cable/cyan{
@@ -1631,8 +1575,7 @@
 /area/tether_away/guttersite/walkway)
 "ef" = (
 /obj/machinery/light{
-	dir = 1;
-	icon_state = "tube1"
+	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/walkway)
@@ -1641,8 +1584,7 @@
 /area/tether_away/guttersite/bridge)
 "eh" = (
 /obj/machinery/light{
-	dir = 1;
-	icon_state = "tube1"
+	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/bridge)
@@ -1655,8 +1597,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 4
 	},
 /obj/machinery/washing_machine,
 /obj/structure/cable/cyan{
@@ -1668,8 +1609,7 @@
 /area/tether_away/guttersite/commons)
 "ek" = (
 /obj/structure/window/basic{
-	dir = 8;
-	icon_state = "window"
+	dir = 8
 	},
 /obj/structure/filingcabinet/filingcabinet,
 /turf/simulated/floor/tiled/eris/white/monofloor,
@@ -1677,9 +1617,7 @@
 "el" = (
 /obj/machinery/alarm{
 	dir = 4;
-	icon_state = "alarm0";
-	pixel_x = -22;
-	pixel_y = 0
+	pixel_x = -22
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/vault)
@@ -1689,13 +1627,10 @@
 "en" = (
 /obj/machinery/alarm{
 	dir = 4;
-	icon_state = "alarm0";
-	pixel_x = -22;
-	pixel_y = 0
+	pixel_x = -22
 	},
 /obj/machinery/light{
-	dir = 1;
-	icon_state = "tube1"
+	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/walkway)
@@ -1704,8 +1639,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 4
 	},
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -1725,9 +1659,7 @@
 "er" = (
 /obj/machinery/alarm{
 	dir = 4;
-	icon_state = "alarm0";
-	pixel_x = -22;
-	pixel_y = 0
+	pixel_x = -22
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/office)
@@ -1739,8 +1671,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 4
 	},
 /obj/structure/curtain/open/shower,
 /obj/machinery/shower,
@@ -1756,8 +1687,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 4
 	},
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -1771,8 +1701,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 4
 	},
 /obj/structure/table/darkglass,
 /obj/structure/cable/cyan{
@@ -1787,12 +1716,10 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 4
 	},
 /obj/structure/bed/chair/bay/comfy/black{
-	dir = 8;
-	icon_state = "bay_comfychair_preview"
+	dir = 8
 	},
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -1803,12 +1730,10 @@
 /area/tether_away/guttersite/commons)
 "ex" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9;
-	icon_state = "intact-scrubbers"
+	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9;
-	icon_state = "intact-supply"
+	dir = 9
 	},
 /obj/structure/cable/cyan{
 	icon_state = "1-8"
@@ -1844,8 +1769,7 @@
 /area/tether_away/guttersite/commons)
 "eA" = (
 /obj/structure/bed/chair/bay/comfy/black{
-	dir = 4;
-	icon_state = "bay_comfychair_preview"
+	dir = 4
 	},
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -1871,8 +1795,7 @@
 	dir = 1
 	},
 /obj/structure/bed/chair/bay/comfy/black{
-	dir = 8;
-	icon_state = "bay_comfychair_preview"
+	dir = 8
 	},
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -1898,6 +1821,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/item/tape/engineering,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/medbay)
 "eE" = (
@@ -1911,8 +1835,7 @@
 	dir = 1
 	},
 /obj/structure/bed/chair/bay/comfy/black{
-	dir = 8;
-	icon_state = "bay_comfychair_preview"
+	dir = 8
 	},
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -1944,15 +1867,13 @@
 /area/tether_away/guttersite/medbay)
 "eI" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1;
-	icon_state = "map_vent_out"
+	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/walkway)
 "eJ" = (
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -25
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
@@ -1973,22 +1894,19 @@
 /area/tether_away/guttersite/commons)
 "eL" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1;
-	icon_state = "map_vent_out"
+	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/bridge)
 "eM" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 4;
-	icon_state = "map_vent_out"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/white/monofloor,
 /area/tether_away/guttersite/office)
 "eN" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 9;
-	icon_state = "intact"
+	dir = 9
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/office)
@@ -2089,16 +2007,15 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/effect/decal/cleanable/blood,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/medbay)
 "eV" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5;
-	icon_state = "intact-scrubbers"
+	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9;
-	icon_state = "intact-supply"
+	dir = 9
 	},
 /obj/structure/window/basic{
 	dir = 1
@@ -2112,8 +2029,7 @@
 /area/tether_away/guttersite/medbay)
 "eW" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8;
-	icon_state = "map_scrubber_on"
+	dir = 8
 	},
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -2137,8 +2053,7 @@
 	pixel_x = 24
 	},
 /obj/structure/bed/chair/bay/comfy/black{
-	dir = 8;
-	icon_state = "bay_comfychair_preview"
+	dir = 8
 	},
 /obj/structure/cable/cyan{
 	d2 = 8;
@@ -2155,16 +2070,14 @@
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10;
-	icon_state = "intact-supply"
+	dir = 10
 	},
 /obj/structure/filingcabinet/filingcabinet,
 /turf/simulated/floor/tiled/eris/white/monofloor,
 /area/tether_away/guttersite/office)
 "fb" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8;
-	icon_state = "map_scrubber_on"
+	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/white/monofloor,
 /area/tether_away/guttersite/office)
@@ -2217,8 +2130,7 @@
 /area/tether_away/guttersite/office)
 "fh" = (
 /obj/structure/bed/chair/bay/comfy/black{
-	dir = 8;
-	icon_state = "bay_comfychair_preview"
+	dir = 8
 	},
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -2263,15 +2175,13 @@
 "fm" = (
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -25
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/bridge)
 "fn" = (
 /obj/structure/bed/chair/bay/comfy/black{
-	dir = 4;
-	icon_state = "bay_comfychair_preview"
+	dir = 4
 	},
 /mob/living/simple_mob/vore/catgirl{
 	name = "Lucy"
@@ -2283,6 +2193,7 @@
 /obj/machinery/door/airlock/maintenance_hatch{
 	req_one_access = list()
 	},
+/obj/item/tape/engineering,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/office)
 "fp" = (
@@ -2301,8 +2212,7 @@
 /area/tether_away/guttersite/docking)
 "fs" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 8;
-	icon_state = "map-scrubbers"
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 8
@@ -2333,8 +2243,7 @@
 /area/tether_away/guttersite/security)
 "fv" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 1;
-	icon_state = "map-supply"
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/structure/cable/cyan{
@@ -2348,16 +2257,23 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "fx" = (
-/obj/machinery/light{
-	dir = 1;
-	icon_state = "tube1"
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 1
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/item/tape/engineering,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/security)
+/area/tether_away/guttersite/commons)
 "fy" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -2389,8 +2305,7 @@
 /area/tether_away/guttersite/security)
 "fC" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 6;
-	icon_state = "intact"
+	dir = 6
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
@@ -2431,8 +2346,7 @@
 /area/tether_away/guttersite/security)
 "fJ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -2450,8 +2364,7 @@
 /area/tether_away/guttersite/walkway)
 "fK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -2465,8 +2378,7 @@
 /area/tether_away/guttersite/bridge)
 "fL" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -2480,12 +2392,12 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/item/tape/engineering,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/bridge)
 "fM" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -2507,8 +2419,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 1;
-	icon_state = "map-supply"
+	dir = 1
 	},
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -2519,12 +2430,10 @@
 /area/tether_away/guttersite/bridge)
 "fO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10;
-	icon_state = "intact-supply"
+	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9;
-	icon_state = "intact-scrubbers"
+	dir = 9
 	},
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -2563,8 +2472,7 @@
 /area/tether_away/guttersite/bridge)
 "fS" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6;
-	icon_state = "intact-supply"
+	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
@@ -2574,12 +2482,12 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/item/tape/engineering,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/office)
 "fT" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -2592,9 +2500,7 @@
 	},
 /obj/machinery/door/airlock/hatch{
 	frequency = 12341;
-	icon_state = "door_closed";
 	id_tag = "gutter vault";
-	locked = 0;
 	req_access = list(150)
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
@@ -2607,8 +2513,7 @@
 /area/tether_away/guttersite/security)
 "fV" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1;
-	icon_state = "map_vent_out"
+	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
@@ -2623,16 +2528,14 @@
 	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
 	icon_state = "space";
 	layer = 4;
-	name = "EXTERNAL AIRLOCK";
-	pixel_x = 0
+	name = "EXTERNAL AIRLOCK"
 	},
 /obj/structure/window/reinforced{
 	dir = 1
 	},
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/reinforced{
-	dir = 8;
-	icon_state = "rwindow"
+	dir = 8
 	},
 /turf/simulated/floor/plating,
 /area/tether_away/guttersite/security)
@@ -2681,8 +2584,7 @@
 /area/tether_away/guttersite/security)
 "ge" = (
 /obj/structure/bed/chair/office/dark{
-	dir = 8;
-	icon_state = "officechair_dark"
+	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
@@ -2705,8 +2607,7 @@
 	master_tag = "westlock";
 	name = "exterior access button";
 	pixel_x = -5;
-	pixel_y = -26;
-	req_one_access = list()
+	pixel_y = -26
 	},
 /obj/effect/map_helper/airlock/door/ext_door,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
@@ -2726,7 +2627,6 @@
 /obj/machinery/airlock_sensor{
 	frequency = 1999;
 	id_tag = "westlock_sensor";
-	pixel_x = 0;
 	pixel_y = -25
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
@@ -2751,8 +2651,7 @@
 	master_tag = "westlock";
 	name = "interior access button";
 	pixel_x = -28;
-	pixel_y = 26;
-	req_one_access = list()
+	pixel_y = 26
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
@@ -2766,15 +2665,13 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold/hidden{
-	dir = 4;
-	icon_state = "map"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "gm" = (
 /obj/structure/bed/chair/office/dark{
-	dir = 4;
-	icon_state = "officechair_dark"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
@@ -2807,8 +2704,7 @@
 /area/tether_away/guttersite/security)
 "gr" = (
 /obj/structure/fence/door/locked{
-	dir = 8;
-	icon_state = "door_closed"
+	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
@@ -2843,8 +2739,7 @@
 /area/tether_away/guttersite/docking)
 "gw" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -2854,6 +2749,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/effect/decal/cleanable/blood/oil,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/vault)
 "gx" = (
@@ -2864,8 +2760,7 @@
 /area/tether_away/guttersite/docking)
 "gy" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5;
-	icon_state = "intact-scrubbers"
+	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
@@ -2874,23 +2769,19 @@
 /area/tether_away/guttersite/security)
 "gz" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "gA" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 4
 	},
 /obj/machinery/door/airlock/maintenance_hatch{
 	req_one_access = list(38)
@@ -2902,19 +2793,16 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 1;
-	icon_state = "map-supply"
+	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "gC" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 4
 	},
 /turf/simulated/wall/r_wall,
 /area/tether_away/guttersite/security)
@@ -2924,12 +2812,10 @@
 /area/tether_away/guttersite/vault)
 "gE" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10;
-	icon_state = "intact-scrubbers"
+	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10;
-	icon_state = "intact-supply"
+	dir = 10
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
@@ -2952,7 +2838,6 @@
 /obj/machinery/airlock_sensor{
 	frequency = 1380;
 	id_tag = "dock_d2a2_sensor";
-	pixel_x = 0;
 	pixel_y = -25
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
@@ -2977,8 +2862,7 @@
 /area/tether_away/guttersite/medbay)
 "gJ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -2990,21 +2874,19 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/item/tape/engineering,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/vault)
 "gK" = (
 /obj/machinery/alarm{
 	dir = 4;
-	icon_state = "alarm0";
-	pixel_x = -22;
-	pixel_y = 0
+	pixel_x = -22
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "gL" = (
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -25
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
@@ -3025,16 +2907,14 @@
 /area/tether_away/guttersite/security)
 "gO" = (
 /obj/structure/fence/end{
-	dir = 4;
-	icon_state = "end"
+	dir = 4
 	},
 /obj/structure/fence,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "gP" = (
 /obj/structure/fence{
-	dir = 8;
-	icon_state = "straight"
+	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
@@ -3071,8 +2951,7 @@
 /area/tether_away/guttersite/docking)
 "gT" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -3082,6 +2961,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
+/obj/item/tape/engineering,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/vault)
 "gU" = (
@@ -3091,9 +2971,7 @@
 "gV" = (
 /obj/machinery/alarm{
 	dir = 4;
-	icon_state = "alarm0";
-	pixel_x = -22;
-	pixel_y = 0
+	pixel_x = -22
 	},
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -3104,8 +2982,7 @@
 /area/tether_away/guttersite/bridge)
 "gW" = (
 /obj/structure/fence/door/opened{
-	dir = 8;
-	icon_state = "door_opened"
+	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
@@ -3121,26 +2998,22 @@
 /area/tether_away/guttersite/security)
 "gZ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5;
-	icon_state = "intact-scrubbers"
+	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9;
-	icon_state = "intact-supply"
+	dir = 9
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "ha" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8;
-	icon_state = "map_scrubber_on"
+	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "hb" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5;
-	icon_state = "intact-scrubbers"
+	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
@@ -3154,15 +3027,13 @@
 /area/tether_away/guttersite/bridge)
 "hc" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
 /obj/machinery/light{
-	dir = 1;
-	icon_state = "tube1"
+	dir = 1
 	},
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -3186,8 +3057,7 @@
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9;
-	icon_state = "intact-scrubbers"
+	dir = 9
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
@@ -3205,16 +3075,13 @@
 /area/tether_away/guttersite/docking)
 "hi" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 4
 	},
 /obj/structure/bed/chair/office/dark{
-	dir = 4;
-	icon_state = "officechair_dark"
+	dir = 4
 	},
 /mob/living/simple_mob/humanoid/merc/ranged/laser{
 	faction = "wolfgirl"
@@ -3227,8 +3094,7 @@
 /area/tether_away/guttersite/unexplored)
 "hk" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -3242,6 +3108,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/item/tape/engineering,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/office)
 "hl" = (
@@ -3250,25 +3117,21 @@
 /area/tether_away/guttersite/security)
 "hm" = (
 /obj/structure/fence/end{
-	dir = 8;
-	icon_state = "end"
+	dir = 8
 	},
 /obj/structure/fence/end{
-	dir = 4;
-	icon_state = "end"
+	dir = 4
 	},
 /obj/structure/fence,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "hn" = (
 /obj/structure/fence/end{
-	dir = 8;
-	icon_state = "end"
+	dir = 8
 	},
 /obj/structure/fence,
 /obj/structure/fence/end{
-	dir = 1;
-	icon_state = "end"
+	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
@@ -3288,8 +3151,7 @@
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
-	dir = 8;
-	icon_state = "rwindow"
+	dir = 8
 	},
 /obj/structure/window/reinforced{
 	dir = 1
@@ -3302,16 +3164,13 @@
 "hq" = (
 /obj/machinery/alarm{
 	dir = 4;
-	icon_state = "alarm0";
-	pixel_x = -22;
-	pixel_y = 0
+	pixel_x = -22
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/docking)
 "hr" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1;
-	icon_state = "map_vent_out"
+	dir = 1
 	},
 /obj/structure/table/rack,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
@@ -3321,15 +3180,13 @@
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
-	dir = 8;
-	icon_state = "rwindow"
+	dir = 8
 	},
 /obj/structure/sign/securearea{
 	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
 	icon_state = "space";
 	layer = 4;
-	name = "EXTERNAL AIRLOCK";
-	pixel_x = 0
+	name = "EXTERNAL AIRLOCK"
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/docking)
@@ -3364,8 +3221,7 @@
 /area/tether_away/guttersite/vault)
 "hx" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 6;
-	icon_state = "intact"
+	dir = 6
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/docking)
@@ -3402,8 +3258,7 @@
 /area/tether_away/guttersite/docking)
 "hD" = (
 /obj/structure/bed/chair/office/dark{
-	dir = 1;
-	icon_state = "officechair_dark"
+	dir = 1
 	},
 /mob/living/simple_mob/humanoid/merc/ranged/smg/poi{
 	faction = "wolfgirl"
@@ -3413,8 +3268,7 @@
 /area/tether_away/guttersite/security)
 "hE" = (
 /obj/structure/bed/chair/office/dark{
-	dir = 1;
-	icon_state = "officechair_dark"
+	dir = 1
 	},
 /mob/living/simple_mob/humanoid/merc/melee/poi{
 	faction = "wolfgirl"
@@ -3424,8 +3278,7 @@
 /area/tether_away/guttersite/security)
 "hF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 5;
-	icon_state = "intact"
+	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -3442,8 +3295,7 @@
 	dir = 4
 	},
 /obj/machinery/light{
-	dir = 1;
-	icon_state = "tube1"
+	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/docking)
@@ -3453,41 +3305,35 @@
 /area/tether_away/guttersite/docking)
 "hJ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 8;
-	icon_state = "intact"
+	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/docking)
 "hK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 8;
-	icon_state = "intact"
+	dir = 8
 	},
 /obj/machinery/light{
-	dir = 1;
-	icon_state = "tube1"
+	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/docking)
 "hL" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 8;
-	icon_state = "intact"
+	dir = 8
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/docking)
 "hM" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 9;
-	icon_state = "intact"
+	dir = 9
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/docking)
 "hN" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5;
-	icon_state = "intact-scrubbers"
+	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
@@ -3496,8 +3342,7 @@
 /area/tether_away/guttersite/docking)
 "hO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 8
@@ -3506,19 +3351,16 @@
 /area/tether_away/guttersite/docking)
 "hP" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10;
-	icon_state = "intact-scrubbers"
+	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9;
-	icon_state = "intact-supply"
+	dir = 9
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/docking)
 "hQ" = (
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -25
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
@@ -3548,8 +3390,7 @@
 /area/tether_away/guttersite/unexplored)
 "hV" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -3564,12 +3405,10 @@
 "hW" = (
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -25
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -3583,15 +3422,13 @@
 /area/tether_away/guttersite/office)
 "hX" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
 /obj/structure/window/basic{
-	dir = 8;
-	icon_state = "window"
+	dir = 8
 	},
 /obj/structure/window/basic,
 /obj/structure/table/darkglass,
@@ -3604,8 +3441,7 @@
 /area/tether_away/guttersite/office)
 "hY" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -3657,8 +3493,7 @@
 	master_tag = "guttersite_sshuttle";
 	name = "interior access button";
 	pixel_x = -28;
-	pixel_y = 26;
-	req_one_access = list()
+	pixel_y = 26
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
@@ -3692,8 +3527,7 @@
 /area/tether_away/guttersite/unexplored)
 "ij" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -3750,8 +3584,7 @@
 /area/tether_away/guttersite/unexplored)
 "is" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -3768,8 +3601,7 @@
 /area/tether_away/guttersite/office)
 "it" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -3785,8 +3617,7 @@
 /area/tether_away/guttersite/office)
 "iv" = (
 /obj/structure/window/basic{
-	dir = 8;
-	icon_state = "window"
+	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/office)
@@ -3796,6 +3627,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/item/tape/engineering,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/vault)
 "ix" = (
@@ -3813,8 +3645,7 @@
 /area/tether_away/guttersite/office)
 "iy" = (
 /obj/structure/window/basic{
-	dir = 8;
-	icon_state = "window"
+	dir = 8
 	},
 /obj/machinery/papershredder,
 /turf/simulated/floor/tiled/eris/white/monofloor,
@@ -3853,8 +3684,7 @@
 /area/tether_away/guttersite/office)
 "iF" = (
 /obj/structure/bed/chair/bay/comfy/black{
-	dir = 4;
-	icon_state = "bay_comfychair_preview"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/office)
@@ -3864,15 +3694,13 @@
 /area/tether_away/guttersite/office)
 "iH" = (
 /obj/structure/bed/chair/bay/comfy/black{
-	dir = 8;
-	icon_state = "bay_comfychair_preview"
+	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/office)
 "iI" = (
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -25
 	},
 /obj/machinery/light{
@@ -3926,8 +3754,7 @@
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
-	dir = 8;
-	icon_state = "rwindow"
+	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/docking)
@@ -3936,8 +3763,7 @@
 	frequency = 1276;
 	id_tag = "guttersite_lshuttle";
 	name = "Airlock controller";
-	pixel_x = -25;
-	pixel_y = 0
+	pixel_x = -25
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/docking)
@@ -3951,8 +3777,7 @@
 /area/tether_away/guttersite/unexplored)
 "iU" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/vault)
@@ -3979,8 +3804,7 @@
 /area/tether_away/guttersite/walkway)
 "ja" = (
 /obj/structure/bed/chair/bay/comfy/black{
-	dir = 4;
-	icon_state = "bay_comfychair_preview"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/bridge)
@@ -3990,8 +3814,7 @@
 /area/tether_away/guttersite/bridge)
 "jc" = (
 /obj/structure/bed/chair/bay/comfy/black{
-	dir = 8;
-	icon_state = "bay_comfychair_preview"
+	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/bridge)
@@ -4013,8 +3836,7 @@
 "ji" = (
 /obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/simple/visible/red{
-	dir = 10;
-	icon_state = "intact"
+	dir = 10
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/tether_away/guttersite/atmos)
@@ -4133,6 +3955,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/item/tape/engineering,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/office)
 "jF" = (
@@ -4198,8 +4021,7 @@
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6;
-	icon_state = "intact-supply"
+	dir = 6
 	},
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -4277,8 +4099,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 4
 	},
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -4292,8 +4113,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 4
 	},
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -4305,22 +4125,19 @@
 "jZ" = (
 /obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/simple/visible/red{
-	dir = 6;
-	icon_state = "intact"
+	dir = 6
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/tether_away/guttersite/atmos)
 "ka" = (
 /obj/structure/bed/chair/bay/comfy/black{
-	dir = 4;
-	icon_state = "bay_comfychair_preview"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/tether_away/guttersite/commons)
 "kb" = (
 /obj/structure/bed/chair/bay/comfy/black{
-	dir = 8;
-	icon_state = "bay_comfychair_preview"
+	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/tether_away/guttersite/commons)
@@ -4329,8 +4146,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 4
 	},
 /obj/structure/table/steel,
 /obj/structure/cable/cyan{
@@ -4377,7 +4193,6 @@
 "kj" = (
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -25
 	},
 /obj/structure/table/darkglass,
@@ -4402,8 +4217,7 @@
 /area/tether_away/guttersite/commons)
 "kn" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 1;
-	icon_state = "map-supply"
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/structure/table/steel,
@@ -4419,8 +4233,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 4
 	},
 /obj/structure/table/steel,
 /obj/item/device/flashlight/lamp,
@@ -4437,7 +4250,6 @@
 "kq" = (
 /obj/structure/sink{
 	dir = 8;
-	icon_state = "sink";
 	pixel_x = -12;
 	pixel_y = 8
 	},
@@ -4506,8 +4318,7 @@
 /area/tether_away/guttersite/commons)
 "kB" = (
 /obj/structure/bed/chair/bay/comfy/black{
-	dir = 4;
-	icon_state = "bay_comfychair_preview"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/commons)
@@ -4522,8 +4333,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 4
 	},
 /obj/structure/table/steel,
 /obj/item/weapon/pen/fountain,
@@ -4539,8 +4349,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4;
-	icon_state = "intact-supply"
+	dir = 4
 	},
 /obj/structure/table/steel,
 /obj/item/weapon/paper_bin,
@@ -4561,12 +4370,10 @@
 /area/tether_away/guttersite/commons)
 "kG" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9;
-	icon_state = "intact-scrubbers"
+	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9;
-	icon_state = "intact-supply"
+	dir = 9
 	},
 /obj/structure/table/steel,
 /obj/structure/cable/cyan{
@@ -4600,12 +4407,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold/hidden{
-	dir = 4;
-	icon_state = "map"
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden{
-	dir = 4;
-	icon_state = "map"
+	dir = 4
 	},
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -4629,8 +4434,7 @@
 /area/tether_away/guttersite/teleporter)
 "kL" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1;
-	icon_state = "map_vent_out"
+	dir = 1
 	},
 /obj/structure/table/darkglass,
 /obj/structure/window/basic,
@@ -4744,7 +4548,6 @@
 "la" = (
 /obj/structure/sink{
 	dir = 8;
-	icon_state = "sink";
 	pixel_x = -12;
 	pixel_y = 8
 	},
@@ -4752,8 +4555,7 @@
 /area/tether_away/guttersite/medbay)
 "lb" = (
 /obj/machinery/light{
-	dir = 1;
-	icon_state = "tube1"
+	dir = 1
 	},
 /obj/machinery/vending/engivend,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
@@ -4876,8 +4678,7 @@
 	},
 /obj/structure/window/basic,
 /obj/structure/bed/chair/bay/comfy/black{
-	dir = 8;
-	icon_state = "bay_comfychair_preview"
+	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/storage)
@@ -4892,8 +4693,7 @@
 /area/tether_away/guttersite/vault)
 "lE" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/red{
-	dir = 4;
-	icon_state = "map"
+	dir = 4
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/tether_away/guttersite/atmos)
@@ -4903,18 +4703,18 @@
 /area/tether_away/guttersite/office)
 "lG" = (
 /obj/machinery/light{
-	dir = 1;
-	icon_state = "tube1"
+	dir = 1
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/tether_away/guttersite/security)
 "lH" = (
-/obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/maintenance_hatch{
+	req_one_access = list()
 	},
+/obj/item/tape/engineering,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/security)
+/area/tether_away/guttersite/commons)
 "lI" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/blue{
 	dir = 8
@@ -4958,9 +4758,9 @@
 /turf/simulated/mineral/floor/vacuum,
 /area/space)
 "lP" = (
-/obj/item/weapon/card/emag,
-/turf/simulated/mineral/floor/vacuum,
-/area/space)
+/obj/item/tape/engineering,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/commons)
 "lQ" = (
 /obj/item/weapon/card/emag_broken,
 /turf/simulated/mineral/floor/vacuum,
@@ -5046,6 +4846,7 @@
 	},
 /obj/effect/map_helper/airlock/door/int_door,
 /obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/item/tape/engineering,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/office)
 "mh" = (
@@ -5100,8 +4901,7 @@
 	master_tag = "guttersite_northlock";
 	name = "interior access button";
 	pixel_x = -28;
-	pixel_y = 26;
-	req_one_access = list()
+	pixel_y = 26
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
@@ -5145,15 +4945,13 @@
 "mt" = (
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -25
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/tether_away/guttersite/atmos)
 "mu" = (
 /obj/structure/window/basic{
-	dir = 4;
-	icon_state = "window"
+	dir = 4
 	},
 /obj/structure/table/darkglass,
 /turf/simulated/floor/tiled/eris/white/monofloor,
@@ -5288,7 +5086,6 @@
 /obj/machinery/airlock_sensor{
 	frequency = 1276;
 	id_tag = "guttersite_lshuttle_sensor";
-	pixel_x = 0;
 	pixel_y = -25
 	},
 /obj/effect/map_helper/airlock/sensor/chamber_sensor,
@@ -5297,8 +5094,7 @@
 /area/tether_away/guttersite/docking)
 "mJ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 10;
-	icon_state = "intact"
+	dir = 10
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/docking)
@@ -5330,8 +5126,7 @@
 /area/tether_away/guttersite/bridge)
 "mO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 6;
-	icon_state = "intact"
+	dir = 6
 	},
 /obj/structure/table/darkglass,
 /obj/item/weapon/paper_bin,
@@ -5344,8 +5139,7 @@
 	master_tag = "guttersite_lshuttle";
 	name = "interior access button";
 	pixel_x = -28;
-	pixel_y = 26;
-	req_one_access = list()
+	pixel_y = 26
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
@@ -5375,12 +5169,10 @@
 /area/tether_away/guttersite/unexplored)
 "mT" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10;
-	icon_state = "intact-supply"
+	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9;
-	icon_state = "intact-scrubbers"
+	dir = 9
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/vault)
@@ -5413,13 +5205,12 @@
 /area/tether_away/guttersite/unexplored)
 "ne" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9;
-	icon_state = "intact-supply"
+	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9;
-	icon_state = "intact-scrubbers"
+	dir = 9
 	},
+/obj/item/tape/engineering,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/office)
 "nf" = (
@@ -5492,8 +5283,7 @@
 /area/tether_away/guttersite/security)
 "nx" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 4;
-	icon_state = "map_vent_out"
+	dir = 4
 	},
 /obj/machinery/light{
 	dir = 8
@@ -5516,15 +5306,13 @@
 /area/tether_away/guttersite/docking)
 "nB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 5;
-	icon_state = "intact"
+	dir = 5
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/docking)
@@ -5543,20 +5331,17 @@
 	master_tag = "guttersite_mshuttle";
 	name = "interior access button";
 	pixel_x = -28;
-	pixel_y = -26;
-	req_one_access = list()
+	pixel_y = -26
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/docking)
 "nE" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 8
@@ -5571,22 +5356,19 @@
 	frequency = 1990;
 	id_tag = "guttersite_mshuttle";
 	name = "Airlock controller";
-	pixel_x = -25;
-	pixel_y = 0
+	pixel_x = -25
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/docking)
 "nG" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 10;
-	icon_state = "intact"
+	dir = 10
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/docking)
@@ -5610,7 +5392,6 @@
 /obj/machinery/airlock_sensor{
 	frequency = 1990;
 	id_tag = "guttersite_mshuttle_sensor";
-	pixel_x = 0;
 	pixel_y = -25
 	},
 /obj/effect/map_helper/airlock/sensor/chamber_sensor,
@@ -5628,8 +5409,7 @@
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
-	dir = 8;
-	icon_state = "rwindow"
+	dir = 8
 	},
 /obj/structure/window/reinforced{
 	dir = 4
@@ -5644,8 +5424,7 @@
 	master_tag = "guttersite_mshuttle";
 	name = "exterior access button";
 	pixel_x = 26;
-	pixel_y = 26;
-	req_one_access = list()
+	pixel_y = 26
 	},
 /turf/simulated/floor/plating/eris/under/airless,
 /area/tether_away/guttersite/docking)
@@ -5653,6 +5432,91 @@
 /obj/effect/shuttle_landmark/premade/guttersite/mshuttle,
 /turf/space,
 /area/space)
+"oY" = (
+/obj/item/tape/engineering,
+/turf/simulated/floor/tiled/eris/steel/bar_dance,
+/area/tether_away/guttersite/commons)
+"pl" = (
+/obj/item/stack/material/steel,
+/obj/item/stack/material/steel,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/medbay)
+"uO" = (
+/obj/structure/medical_stand,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/medbay)
+"ve" = (
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/medbay)
+"vK" = (
+/obj/item/stack/material/wood,
+/obj/item/stack/material/wood,
+/obj/item/stack/material/wood,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/medbay)
+"wl" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/item/tape/engineering,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/commons)
+"Ax" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood/oil,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/docking)
+"Cn" = (
+/obj/item/tape/engineering,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/vault)
+"EB" = (
+/obj/effect/decal/cleanable/blood/oil,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/medbay)
+"EO" = (
+/obj/item/stack/material/steel,
+/obj/item/stack/material/steel,
+/obj/item/stack/material/steel,
+/obj/item/stack/material/steel,
+/obj/effect/decal/cleanable/blood/oil,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/medbay)
+"FA" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/maintenance_hatch{
+	req_one_access = list()
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/item/tape/medical,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/medbay)
+"GP" = (
+/obj/item/tape/engineering,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/office)
+"La" = (
+/obj/structure/barricade,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/medbay)
 "Ob" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -5661,9 +5525,52 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/maint)
+"OO" = (
+/obj/item/stack/material/steel,
+/obj/item/stack/material/steel,
+/obj/item/stack/material/steel,
+/obj/item/stack/material/steel,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/medbay)
+"PF" = (
+/obj/effect/decal/cleanable/blood/oil,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/docking)
+"Qq" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood/oil,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/medbay)
 "QN" = (
 /turf/simulated/floor/plating/eris/under/airless,
 /area/tether_away/guttersite/docking)
+"SX" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/effect/decal/cleanable/blood/oil,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/docking)
+"TZ" = (
+/obj/item/stack/material/steel,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/medbay)
 "Uv" = (
 /obj/machinery/access_button{
 	command = "cycle_exterior";
@@ -5671,11 +5578,14 @@
 	master_tag = "guttersite_lshuttle";
 	name = "exterior access button";
 	pixel_x = 26;
-	pixel_y = -26;
-	req_one_access = list()
+	pixel_y = -26
 	},
 /turf/simulated/floor/plating/eris/under/airless,
 /area/tether_away/guttersite/docking)
+"UU" = (
+/obj/item/stack/material/wood,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/tether_away/guttersite/medbay)
 "Yg" = (
 /obj/machinery/access_button{
 	command = "cycle_exterior";
@@ -5683,9 +5593,7 @@
 	master_tag = "guttersite_sshuttle";
 	name = "exterior access button";
 	pixel_x = -5;
-	pixel_y = -26;
-	req_one_access = list();
-	step_x = 0
+	pixel_y = -26
 	},
 /turf/simulated/floor/plating/eris/under/airless,
 /area/tether_away/guttersite/docking)
@@ -11477,7 +11385,7 @@ fw
 gz
 jx
 fu
-fx
+nw
 if
 fw
 jp
@@ -11752,7 +11660,7 @@ ad
 fu
 ly
 fw
-lH
+gY
 jX
 fw
 fw
@@ -11892,7 +11800,7 @@ ad
 ad
 ad
 fu
-fx
+nw
 fw
 fw
 kc
@@ -13034,7 +12942,7 @@ fw
 fu
 fw
 fw
-lH
+gY
 fw
 jx
 fw
@@ -13174,7 +13082,7 @@ aa
 fu
 fu
 fu
-fx
+nw
 fw
 fw
 fw
@@ -13676,7 +13584,7 @@ ab
 ab
 lU
 ab
-lP
+ab
 ab
 ab
 ac
@@ -13984,7 +13892,7 @@ ej
 jB
 cH
 cF
-jD
+oY
 jD
 kd
 cF
@@ -14125,8 +14033,8 @@ cH
 eo
 cH
 cH
-dm
-jD
+lH
+oY
 jD
 ku
 cF
@@ -14268,7 +14176,7 @@ dY
 cF
 cF
 cF
-jD
+oY
 jD
 cF
 cF
@@ -14829,7 +14737,7 @@ cF
 cF
 cF
 cF
-dm
+lH
 cF
 cF
 dY
@@ -14971,7 +14879,7 @@ cF
 ks
 kB
 kB
-cH
+lP
 cH
 kN
 ev
@@ -15132,7 +15040,7 @@ aa
 de
 la
 dp
-dp
+UU
 dJ
 de
 de
@@ -15273,7 +15181,7 @@ aa
 de
 de
 dp
-dD
+uO
 dp
 dD
 dp
@@ -15394,7 +15302,7 @@ dq
 dq
 dq
 ds
-dt
+fx
 dt
 du
 dy
@@ -15556,11 +15464,11 @@ aa
 aa
 kX
 kZ
-dp
+vK
 dL
-dp
+TZ
 dL
-dp
+OO
 de
 aa
 aa
@@ -15686,7 +15594,7 @@ kM
 cH
 cH
 cH
-cH
+lP
 de
 ia
 ia
@@ -15697,12 +15605,12 @@ ia
 ia
 ia
 de
-dp
+ve
 dp
 dD
 dC
 dD
-dp
+pl
 de
 aa
 aa
@@ -15828,7 +15736,7 @@ du
 du
 du
 du
-du
+wl
 eD
 eH
 eH
@@ -15838,8 +15746,8 @@ eH
 eH
 eH
 eH
-eD
-eH
+FA
+Qq
 eH
 eU
 eV
@@ -15981,8 +15889,8 @@ ic
 ic
 ic
 de
-dp
-dp
+EO
+EB
 dL
 eW
 dL
@@ -16123,8 +16031,8 @@ aa
 aa
 aa
 de
-dp
-dp
+La
+OO
 dp
 eX
 dp
@@ -19407,7 +19315,7 @@ hY
 dR
 dR
 fo
-fr
+PF
 lY
 fr
 fr
@@ -19549,7 +19457,7 @@ ck
 ix
 ix
 jE
-jF
+SX
 jF
 jF
 jF
@@ -19691,12 +19599,12 @@ hV
 dR
 dR
 fo
-fr
+PF
 fr
 ft
 fr
 fr
-gx
+Ax
 fr
 fr
 fr
@@ -20537,7 +20445,7 @@ dN
 dR
 dR
 dU
-dR
+GP
 fS
 ne
 lx
@@ -21247,7 +21155,7 @@ ff
 ed
 el
 iU
-em
+Cn
 gT
 iw
 iz
