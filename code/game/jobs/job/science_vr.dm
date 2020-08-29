@@ -36,11 +36,6 @@
 	title_blurb = "A Xenopaleontologist enters digsites in search of fossils and other ancient remants of alien life. These digsites are frequently in vacuum or other inhospitable \
 					locations, and as such a Xenopaleontologist should be prepared to handle hostile evironmental conditions."
 
-/datum/alt_title/xenopaleontologist
-	title = "Xenopaleontologist"
-	title_blurb = "A Xenopaleontologist enters digsites in search of fossils and other ancient remants of alien life. These digsites are frequently in vacuum or other inhospitable \
-					locations, and as such a Xenopaleontologist should be prepared to handle hostile evironmental conditions."
-
 /datum/alt_title/gas_physicist
 	title = "Gas Physicist"
 	title_blurb = "A Gas Physicist is a specialist in various practical applications of gasses, but currently focuses their attention on phoron, and has knowledge of its practical uses and dangers. \
