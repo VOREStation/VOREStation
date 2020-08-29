@@ -43,7 +43,6 @@ research holder datum.
 **						Master Types						  **
 **	Includes all the helper procs and basic tech processing.  **
 ***************************************************************/
-GLOBAL_LIST_INIT(tech_levels, list())
 GLOBAL_LIST_INIT(design_datums, list())
 
 /datum/research								//Holder for all the existing, archived, and known tech. Individual to console.
@@ -52,15 +51,14 @@ GLOBAL_LIST_INIT(design_datums, list())
 	var/list/known_designs = list()			//List of available designs.
 
 /datum/research/New()		//Insert techs into possible_tech here. Known_tech automatically updated.
-	if(!LAZYLEN(GLOB.tech_levels))
-		for(var/T in typesof(/datum/tech) - /datum/tech)
-			GLOB.tech_levels += new T
 	if(!LAZYLEN(GLOB.design_datums))
 		for(var/T in typesof(/datum/design) - /datum/design)
 			GLOB.design_datums += new T
-
-	known_tech = GLOB.tech_levels
 	possible_designs = GLOB.design_datums
+
+	if(!LAZYLEN(known_tech))
+		for(var/T in typesof(/datum/tech) - /datum/tech)
+			known_tech += new T
 	RefreshResearch()
 
 /datum/research/techonly
