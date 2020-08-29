@@ -105,14 +105,14 @@
 	selection_color = "#515151"
 	economic_modifier = 1
 	job_description = "A Mime is there to entertain the crew and keep high morale using unbelievable performances and acting skills!"
-	alt_titles = list("Interpretive Dancer" = /datum/alt_title/interpretive_dancer)
+	alt_titles = list("Poseur" = /datum/alt_title/poseur)
 	whitelist_only = 1
 	latejoin_only = 1
 	outfit_type = /decl/hierarchy/outfit/job/mime
 	pto_type = PTO_CIVILIAN
 
-/datum/alt_title/interpretive_dancer
-	title = "Interpretive Dancer"
+/datum/alt_title/poseur
+	title = "Poseur"
 
 /datum/job/mime/get_access()
 	if(config.assistant_maint)

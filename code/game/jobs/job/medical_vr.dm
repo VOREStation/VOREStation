@@ -10,26 +10,30 @@
 	minimal_access = list(access_medical, access_medical_equip, access_morgue, access_genetics, access_heads,
 			access_chemistry, access_virology, access_cmo, access_surgery, access_RC_announce,
 			access_keycard_auth, access_psychiatrist, access_eva, access_external_airlocks, access_maint_tunnels)
-	alt_titles = list("Chief Physician" = /datum/alt_title/chief_physician, "Medbay Manager" = /datum/alt_title/medbay_manager)
+	alt_titles = list("Chief Physician" = /datum/alt_title/chief_physician, "Medical Director" = /datum/alt_title/medical_director, "Healthcare Manager" = /datum/alt_title/healthcare_manager)
 
 /datum/alt_title/chief_physician
 	title = "Chief Physician"
 
-/datum/alt_title/medbay_manager
-	title = "Medbay Manager"
+/datum/alt_title/medical_director
+	title = "Medical Director"
+
+/datum/alt_title/healthcare_manager
+	title = "Healthcare Manager"
 
 
 /datum/job/doctor
 	spawn_positions = 5
 	pto_type = PTO_MEDICAL
-	alt_titles = list("Surgeon" = /datum/alt_title/surgeon, "Emergency Physician" = /datum/alt_title/emergency_physician, "Nurse" = /datum/alt_title/nurse, "Virologist" = /datum/alt_title/virologist,
-						"Physician" = /datum/alt_title/physician)
+	alt_titles = list("Physician" = /datum/alt_title/physician, "Medical Practitioner" = /datum/alt_title/medical_practitioner, "Surgeon" = /datum/alt_title/surgeon,
+						"Emergency Physician" = /datum/alt_title/emergency_physician, "Nurse" = /datum/alt_title/nurse, "Virologist" = /datum/alt_title/virologist)
+
 
 /datum/alt_title/physician
 	title = "Physician"
 
-/datum/alt_title/therapist
-	title = "Therapist"
+/datum/alt_title/medical_practitioner
+	title = "Medical Practitioner"
 
 
 /datum/job/chemist

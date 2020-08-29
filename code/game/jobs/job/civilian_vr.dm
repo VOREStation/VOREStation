@@ -13,7 +13,10 @@
 	total_positions = 2 //IT TAKES A LOT TO MAKE A STEW
 	spawn_positions = 2 //A PINCH OF SALT AND LAUGHTER, TOO
 	pto_type = PTO_CIVILIAN
-	alt_titles = list("Cook" = /datum/alt_title/cook, "Kitchen Worker" = /datum/alt_title/kitchen_worker)
+	alt_titles = list("Sous-chef" = /datum/alt_title/souschef,"Cook" = /datum/alt_title/cook, "Kitchen Worker" = /datum/alt_title/kitchen_worker)
+
+/datum/alt_title/souschef
+	title = "Sous-chef"
 
 /datum/alt_title/kitchen_worker
 	title = "Kitchen Worker"
@@ -23,10 +26,13 @@
 /datum/job/hydro
 	spawn_positions = 2
 	pto_type = PTO_CIVILIAN
-	alt_titles = list("Gardener" = /datum/alt_title/gardener, "Hydroponicist" = /datum/alt_title/hydroponicist, "Farmer" = /datum/alt_title/farmer)
+	alt_titles = list("Gardener" = /datum/alt_title/gardener, "Hydroponicist" = /datum/alt_title/hydroponicist, "Cultivator" = /datum/alt_title/cultivator, "Farmer" = /datum/alt_title/farmer)
 
 /datum/alt_title/hydroponicist
 	title = "Hydroponicist"
+
+/datum/alt_title/cultivator
+	title = "Cultivator"
 
 /datum/alt_title/farmer
 	title = "Farmer"
@@ -64,7 +70,7 @@
 	total_positions = 4
 	spawn_positions = 4
 	pto_type = PTO_CARGO
-	alt_titles = list("Drill Technician" = /datum/alt_title/drill_tech, "Deep Space Miner" = /datum/alt_title/deep_space_miner, "Prospector" = /datum/alt_title/prospector)
+	alt_titles = list("Deep Space Miner" = /datum/alt_title/deep_space_miner, "Drill Technician" = /datum/alt_title/drill_tech, "Prospector" = /datum/alt_title/prospector)
 
 /datum/alt_title/deep_space_miner
 	title = "Deep Space Miner"
@@ -77,8 +83,9 @@
 /datum/job/janitor //Lots of janitor substations on station.
 	total_positions = 3
 	spawn_positions = 3
-	alt_titles = list("Custodian" = /datum/alt_title/custodian, "Sanitation Technician" = /datum/alt_title/sanitation_tech, "Maid" = /datum/alt_title/maid)
 	pto_type = PTO_CIVILIAN
+	alt_titles = list("Custodian" = /datum/alt_title/custodian, "Sanitation Technician" = /datum/alt_title/sanitation_tech,
+					"Maid" = /datum/alt_title/maid, "Garbage Collector" = /datum/alt_title/garbage_collector)
 
 /datum/alt_title/sanitation_tech
 	title = "Sanitation Technician"
@@ -86,16 +93,29 @@
 /datum/alt_title/maid
 	title = "Maid"
 
+/datum/alt_title/garbage_collector
+	title = "Garbage Collector"
+	title_blurb = "A Garbage Collector keeps the station clean, though focuses moreso on collecting larger trash, with wet cleaning being secondary task."
+
 
 /datum/job/librarian
 	total_positions = 2
 	spawn_positions = 2
-	alt_titles = list("Journalist" = /datum/alt_title/journalist, "Writer" = /datum/alt_title/writer, "Historian" = /datum/alt_title/historian, "Professor" = /datum/alt_title/professor)
+	alt_titles = list("Journalist" = /datum/alt_title/journalist, "Reporter" =  , "Writer" = /datum/alt_title/writer,
+					"Historian" = /datum/alt_title/historian, "Archivist" = /datum/alt_title/archivist, "Professor" = /datum/alt_title/professor)
 	pto_type = PTO_CIVILIAN
+
+/datum/alt_title/reporter
+	title = "Reporter"
+	title_blurb = "The Reporter uses the Library as a base of operations, from which they can report the news and goings-on on the station with their camera."
 
 /datum/alt_title/historian
 	title = "Historian"
 	title_blurb = "The Historian uses the Library as a base of operation to record any important events occuring on station."
+
+/datum/alt_title/archivist
+	title = "Archivist"
+	title_blurb = "The Archivist uses the Library as a base of operation to record any important events occuring on station."
 
 /datum/alt_title/professor
 	title = "Professor"
@@ -105,14 +125,14 @@
 /datum/job/lawyer
 	disallow_jobhop = TRUE
 	pto_type = PTO_CIVILIAN
-	alt_titles = list("Internal Affairs Liaison" = /datum/alt_title/ia_liaison, "Internal Affairs Informant" = /datum/alt_title/ia_informant,
+	alt_titles = list("Internal Affairs Liaison" = /datum/alt_title/ia_liaison, "Internal Affairs Delegate" = /datum/alt_title/ia_delegate,
 						"Internal Affairs Investigator" = /datum/alt_title/ia_investigator)
 
 /datum/alt_title/ia_liaison
 	title = "Internal Affairs Liaison"
 
-/datum/alt_title/ia_informant
-	title = "Internal Affairs Informant"
+/datum/alt_title/ia_delegate
+	title = "Internal Affairs Delegate"
 
 /datum/alt_title/ia_investigator
 	title = "Internal Affairs Investigator"
@@ -154,17 +174,35 @@
 
 	outfit_type = /decl/hierarchy/outfit/job/assistant
 	job_description = "An entertainer does just that, entertains! Put on plays, play music, sing songs, tell stories, or read your favorite fanfic."
-	alt_titles = list("Performer" = /datum/alt_title/performer, "Musician" = /datum/alt_title/musician, "Stagehand" = /datum/alt_title/stagehand)
+	alt_titles = list("Performer" = /datum/alt_title/performer, "Musician" = /datum/alt_title/musician, "Stagehand" = /datum/alt_title/stagehand
+						"Actor" = /datum/alt_title/actor, "Dancer" = /datum/alt_title/dancer, "Singer" = /datum/alt_title/singer,
+						"Comedian" = /datum/alt_title/comedian)
 
 // Entertainer Alt Titles
+/datum/alt_title/actor
+	title = "Actor"
+	title_blurb = "An Actor is someone who acts out a role! Whatever sort of character it is, get into it and impress people with power of comedy and tragedy!"
+
 /datum/alt_title/performer
 	title = "Performer"
-	title_blurb = "A Performer is someone who performs! Acting, dancing, wrestling, etc!"
+	title_blurb = "A Performer is someone who performs! Whatever sort of performance will come to your mind, the world's a stage!"
 
 /datum/alt_title/musician
 	title = "Musician"
-	title_blurb = "A Musician is someone who makes music! Singing, playing instruments, slam poetry, it's your call!"
+	title_blurb = "A Musician is someone who makes music with a wide variety of musical instruments!"
 
 /datum/alt_title/stagehand
 	title = "Stagehand"
 	title_blurb = "A Stagehand typically performs everything the rest of the entertainers don't. Operate lights, shutters, windows, or narrate through your voicebox!"
+
+/datum/alt_title/dancer
+	title = "Dancer"
+	title_blurb = "A Dancer is someone who impresses people through power of their own body! From waltz to breakdance, as long as crowd as cheering!"
+
+/datum/alt_title/singer
+	title = "Singer"
+	title_blurb = "A Singer is someone with gift of melodious voice! Impress people with your vocal range!"
+
+/datum/alt_title/comedian
+	title = "Comedian"
+	title_blurb = "A Comedian will focus on making people laugh with the power of wit! Telling jokes, stand-up comedy, you are here to make others smile!"

@@ -78,11 +78,14 @@ var/const/SAR 				=(1<<14)
 	minimal_access = list(access_pilot)
 	outfit_type = /decl/hierarchy/outfit/job/pilot
 	job_description = "A Pilot flies the various shuttles in the Virgo-Erigone System."
-	alt_titles = list("Co-Pilot" = /datum/alt_title/co_pilot)
+	alt_titles = list("Co-Pilot" = /datum/alt_title/co_pilot, "Navigator" = /datum/alt_title/navigator)
 
 /datum/alt_title/co_pilot
 	title = "Co-Pilot"
 	title_blurb = "A Co-Pilot is there primarily to assist main pilot as well as learn from them"
+
+/datum/alt_title/navigator
+	title = "Navigator"
 
 
 /datum/job/explorer
@@ -101,10 +104,13 @@ var/const/SAR 				=(1<<14)
 	minimal_access = list(access_explorer, access_external_airlocks, access_eva)
 	outfit_type = /decl/hierarchy/outfit/job/explorer2
 	job_description = "An Explorer searches for interesting things, and returns them to the station."
-	alt_titles = list("Offsite Investigator" = /datum/alt_title/offsite_investigator)
+	alt_titles = list("Surveyor" = /datum/alt_title/surveyor, "Offsite Scout" = /datum/alt_title/offsite_scout)
 
-/datum/alt_title/offsite_investigator
-	title = "Offsite Investigator"
+/datum/alt_title/surveyor
+	title = "Surveyor"
+
+/datum/alt_title/offsite_scout
+	title = "Offsite Scout"
 
 
 /datum/job/sar
