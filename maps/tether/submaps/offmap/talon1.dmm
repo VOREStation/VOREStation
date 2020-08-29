@@ -742,6 +742,7 @@
 "bE" = (
 /obj/machinery/vending/engineering{
 	products = list(/obj/item/clothing/under/rank/chief_engineer = 4, /obj/item/clothing/under/rank/engineer = 4, /obj/item/clothing/shoes/orange = 4, /obj/item/clothing/head/hardhat = 4, /obj/item/weapon/storage/belt/utility = 4, /obj/item/clothing/glasses/meson = 4, /obj/item/clothing/gloves/yellow = 4, /obj/item/weapon/tool/screwdriver = 12, /obj/item/weapon/tool/crowbar = 12, /obj/item/weapon/tool/wirecutters = 12, /obj/item/device/multitool = 12, /obj/item/weapon/tool/wrench = 12, /obj/item/device/t_scanner = 12, /obj/item/stack/cable_coil/heavyduty = 8, /obj/item/weapon/cell = 8, /obj/item/weapon/weldingtool = 8, /obj/item/clothing/head/welding = 8, /obj/item/weapon/light/tube = 10, /obj/item/clothing/head/hardhat/red = 4, /obj/item/clothing/suit/fire = 4, /obj/item/weapon/stock_parts/scanning_module = 5, /obj/item/weapon/stock_parts/micro_laser = 5, /obj/item/weapon/stock_parts/matter_bin = 5, /obj/item/weapon/stock_parts/manipulator = 5, /obj/item/weapon/stock_parts/console_screen = 5);
+	req_access = list(301);
 	req_log_access = 301;
 	req_one_access = list(301)
 	},
@@ -752,8 +753,8 @@
 /obj/item/weapon/storage/toolbox/electrical,
 /obj/item/stack/marker_beacon/thirty,
 /obj/item/weapon/pipe_dispenser,
-/obj/structure/closet/hydrant{
-	pixel_y = 32
+/obj/machinery/alarm/talon{
+	pixel_y = 28
 	},
 /turf/simulated/floor/tiled/eris/dark/brown_platform,
 /area/talon/deckone/port_eng_store)
@@ -1170,6 +1171,50 @@
 /obj/structure/vehiclecage/spacebike,
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/deckone/central_hallway)
+"cs" = (
+/obj/structure/closet/hydrant{
+	pixel_x = -32;
+	starts_with = list(/obj/item/clothing/suit/fire/firefighter = 2, /obj/item/clothing/mask/gas = 2, /obj/item/device/flashlight = 2, /obj/item/weapon/tank/oxygen/red = 2, /obj/item/weapon/extinguisher = 2, /obj/item/clothing/head/hardhat/red = 2)
+	},
+/turf/simulated/floor/tiled/eris/dark/brown_platform,
+/area/talon/deckone/port_eng_store)
+"ct" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4;
+	icon_state = "intact-scrubbers"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/eris/steel,
+/area/talon/deckone/central_hallway)
+"cu" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4;
+	icon_state = "intact-scrubbers"
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-s"
+	},
+/obj/machinery/atmospherics/unary/heater{
+	anchored = 0
+	},
+/turf/simulated/floor/tiled/eris/steel,
+/area/talon/deckone/central_hallway)
 "cv" = (
 /obj/machinery/vending/coffee,
 /turf/simulated/floor/tiled/steel_ridged,
@@ -1177,6 +1222,25 @@
 "cw" = (
 /obj/machinery/vending/sovietsoda,
 /turf/simulated/floor/tiled/steel_ridged,
+/area/talon/deckone/central_hallway)
+"cx" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/obj/structure/cable/green{
+	icon_state = "2-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
+	},
+/obj/machinery/atmospherics/unary/freezer{
+	anchored = 0
+	},
+/turf/simulated/floor/tiled/eris/steel,
 /area/talon/deckone/central_hallway)
 "cA" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -3696,24 +3760,6 @@
 	},
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/talon/deckone/workroom)
-"CH" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/unary/heater{
-	anchored = 0
-	},
-/turf/simulated/floor/tiled/eris/steel,
-/area/talon/deckone/central_hallway)
 "CP" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 4;
@@ -4947,15 +4993,6 @@
 /obj/item/weapon/pen,
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/talon/deckone/workroom)
-"Nt" = (
-/obj/machinery/alarm/talon{
-	dir = 4;
-	icon_state = "alarm0";
-	pixel_x = -22;
-	pixel_y = 0
-	},
-/turf/simulated/floor/tiled/eris/dark/brown_platform,
-/area/talon/deckone/port_eng_store)
 "Nu" = (
 /obj/structure/table/standard,
 /obj/fiftyspawner/glass,
@@ -5193,24 +5230,6 @@
 	},
 /turf/space,
 /area/talon/deckone/starboard_eng)
-"QT" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/unary/freezer{
-	anchored = 0
-	},
-/turf/simulated/floor/tiled/eris/steel,
-/area/talon/deckone/central_hallway)
 "QX" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 4
@@ -14496,7 +14515,7 @@ dH
 am
 gU
 dR
-Nt
+cs
 gU
 NP
 ho
@@ -14782,7 +14801,7 @@ gU
 kB
 PO
 gU
-QT
+ct
 Bj
 iA
 Sr
@@ -15066,7 +15085,7 @@ gU
 bF
 bO
 gU
-CH
+ct
 Bj
 iA
 Yc
@@ -17338,7 +17357,7 @@ ci
 gW
 Yo
 gY
-MG
+cu
 Bj
 iF
 er
@@ -17480,7 +17499,7 @@ gY
 Te
 ZA
 gY
-VQ
+cx
 Id
 cn
 Vt
