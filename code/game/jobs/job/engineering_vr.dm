@@ -46,4 +46,4 @@
 
 /datum/alt_title/disposals_tech
 	title = "Disposals Technician"
-	title_blurb = "A Disposal Technician is an Atmospheric Technician still and can fulfill all the same duties, although specializes more in disposals delivery system's operations and configurations."
+	title_blurb = "A Disposals Technician is an Atmospheric Technician still and can fulfill all the same duties, although specializes more in disposals delivery system's operations and configurations."
