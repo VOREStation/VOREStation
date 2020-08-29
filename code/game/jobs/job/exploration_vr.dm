@@ -52,13 +52,13 @@ var/const/SAR 				=(1<<14)
 	minimal_access = list(access_eva, access_maint_tunnels, access_external_airlocks, access_pilot, access_explorer, access_gateway)
 	outfit_type = /decl/hierarchy/outfit/job/pathfinder
 	job_description = "The Pathfinder's job is to lead and manage expeditions, and is the primary authority on all off-station expeditions."
-	alt_titles = list("Expedition Leader" = /datum/alt_title/expedition_leader)
+	alt_titles = list("Expedition Lead" = /datum/alt_title/expedition_lead, "Exploration Manager" = /datum/alt_title/exploration_manager)
 
-/datum/alt_title/pathfinder
-	title = "Pathfinder"
+/datum/alt_title/expedition_lead
+	title = "Expedition Lead"
 
-/datum/alt_title/expedition_leader
-	title = "Expedition Leader"
+/datum/alt_title/exploration_manager
+	title = "Exploration Manager"
 
 
 /datum/job/pilot
@@ -79,9 +79,6 @@ var/const/SAR 				=(1<<14)
 	outfit_type = /decl/hierarchy/outfit/job/pilot
 	job_description = "A Pilot flies the various shuttles in the Virgo-Erigone System."
 	alt_titles = list("Co-Pilot" = /datum/alt_title/co_pilot)
-
-/datum/alt_title/pilot
-	title = "Pilot"
 
 /datum/alt_title/co_pilot
 	title = "Co-Pilot"
@@ -106,9 +103,6 @@ var/const/SAR 				=(1<<14)
 	job_description = "An Explorer searches for interesting things, and returns them to the station."
 	alt_titles = list("Offsite Investigator" = /datum/alt_title/offsite_investigator)
 
-/datum/alt_title/explorer
-	title = "Explorer"
-
 /datum/alt_title/offsite_investigator
 	title = "Offsite Investigator"
 
@@ -131,9 +125,6 @@ var/const/SAR 				=(1<<14)
 	outfit_type = /decl/hierarchy/outfit/job/medical/sar
 	job_description = "A Field medic works as the field doctor of expedition teams."
 	alt_titles = list("Expedition Doctor" = /datum/alt_title/expedition_doctor)
-
-/datum/alt_title/field_medic
-	title = "Field Medic"
 
 /datum/alt_title/expedition_doctor
 	title = "Expedition Doctor"
