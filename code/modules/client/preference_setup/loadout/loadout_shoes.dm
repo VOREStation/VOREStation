@@ -9,10 +9,6 @@
 	display_name = "jackboots"
 	path = /obj/item/clothing/shoes/boots/jackboots
 
-/datum/gear/shoes/toeless
-	display_name = "toe-less jackboots"
-	path = /obj/item/clothing/shoes/boots/jackboots/toeless
-
 /datum/gear/shoes/kneeboots
 	display_name = "jackboots, knee-length"
 	path = /obj/item/clothing/shoes/boots/jackboots/knee

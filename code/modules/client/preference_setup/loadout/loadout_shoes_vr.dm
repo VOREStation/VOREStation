@@ -19,3 +19,7 @@
 /datum/gear/shoes/siren
 	display_name = "boots, Siren"
 	path = /obj/item/clothing/shoes/boots/fluff/siren
+
+/datum/gear/shoes/toeless
+	display_name = "toe-less jackboots"
+	path = /obj/item/clothing/shoes/boots/jackboots/toeless
