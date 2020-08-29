@@ -6,7 +6,7 @@
 /mob/living/simple_mob/vore/rabbit
 	name = "rabbit"
 	desc = "It's a fluffy, smol bunny! Adorable!"
-	tt_desc = "Vulpes zerda"
+	tt_desc = "Oryctolagus cuniculus"
 
 	icon_state = "rabbit_brown"
 	icon_living = "rabbit_brown"
