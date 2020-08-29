@@ -16,8 +16,8 @@
 	alt_titles = list("Cook" = /datum/alt_title/cook, "Kitchen Worker" = /datum/alt_title/kitchen_worker)
 
 /datum/alt_title/kitchen_worker
-	title = "Kitchen Worker
-	title_blurb = "A Kitchen Worker has the same duties, though they may be less experienced.""
+	title = "Kitchen Worker"
+	title_blurb = "A Kitchen Worker has the same duties, though they may be less experienced."
 
 
 /datum/job/hydro
