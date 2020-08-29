@@ -72,11 +72,6 @@
 	title_blurb = "A Server helps out kitchen and diner staff with various tasks, primarily food delivery. A Server has no real authority."
 	title_outfit = /decl/hierarchy/outfit/job/service/server
 
-
-//////////////////////////////////
-//		Visitor
-//////////////////////////////////
-
 /datum/job/intern/New()
 	..()
 	if(config)
@@ -89,11 +84,17 @@
 	else
 		return list()
 
+
+//////////////////////////////////
+//		Visitor
+//////////////////////////////////
+
 /datum/job/assistant		// Visitor
 	title = USELESS_JOB
 	supervisors = "nobody! You don't work here"
 	job_description = "A Visitor is just there to visit the place. They have no real authority or responsibility."
 	timeoff_factor = 0
+	alt_titles = list("Guest" = /datum/alt_title/guest, "Traveler" = /datum/alt_title/traveler, "Drifter" = /datum/alt_title/drifter)
 
 /datum/job/assistant/New()
 	..()
@@ -103,3 +104,12 @@
 
 /datum/job/assistant/get_access()
 	return list()
+
+/datum/alt_title/guest
+	title = "Guest"
+
+/datum/alt_title/traveler
+	title = "Traveler"
+
+/datum/alt_title/drifter
+	title = "Drifter"

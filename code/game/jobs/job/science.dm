@@ -23,7 +23,6 @@
 			            access_tox_storage, access_teleporter, access_sec_doors,
 			            access_research, access_robotics, access_xenobiology, access_ai_upload, access_tech_storage,
 			            access_RC_announce, access_keycard_auth, access_tcomsat, access_gateway, access_xenoarch, access_network)
-	alt_titles = list("Research Supervisor")
 
 	minimum_character_age = 25
 	minimal_player_age = 14

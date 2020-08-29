@@ -2,6 +2,14 @@
 	disallow_jobhop = TRUE
 	pto_type = PTO_CIVILIAN
 	dept_time_required = 80 //Pending something more complicated
+	alt_titles = list("Overseer"= /datum/alt_title/overseer, "Executive Officer" = /datum/alt_title/executive_officer, "Chief Supervisor" = /datum/alt_title/chief_supervisor)
+
+/datum/alt_title/executive_officer
+	title = "Executive Officer"
+
+/datum/alt_title/chief_supervisor
+	title = "Chief Supervisor"
+
 
 /datum/job/hop
 	disallow_jobhop = TRUE
@@ -10,8 +18,7 @@
 	departments_managed = list(DEPARTMENT_CIVILIAN, DEPARTMENT_CARGO, DEPARTMENT_PLANET)
 	dept_time_required = 60
 
-	alt_titles = list("Crew Resources Officer" = /datum/alt_title/cro,
-					  "Deputy Director" = /datum/alt_title/deputy_director)
+	alt_titles = list("Crew Resources Officer" = /datum/alt_title/cro, "Deputy Manager" = /datum/alt_title/deputy_manager, "Staff Manager" = /datum/alt_title/staff_manager)
 
 	access = list(access_security, access_sec_doors, access_brig, access_forensics_lockers,
 			            access_medical, access_engine, access_change_ids, access_ai_upload, access_eva, access_heads,
@@ -26,9 +33,23 @@
 			            access_chapel_office, access_library, access_research, access_mining, access_heads_vault, access_mining_station,
 			            access_hop, access_RC_announce, access_keycard_auth)
 
-/datum/alt_title/deputy_director
-	title = "Deputy Director"
+/datum/alt_title/deputy_manager
+	title = "Deputy Manager"
+
+/datum/alt_title/staff_manager
+	title = "Staff Manager"
+
 
 /datum/job/secretary
 	disallow_jobhop = TRUE
 	pto_type = PTO_CIVILIAN
+	alt_titles = list("Command Liaison" = /datum/alt_title/command_liaison, "Bridge Secretary" = /datum/alt_title/bridge_secretary, "Command Assistant" = /datum/alt_title/command_assistant)
+
+/datum/alt_title/command_liaison
+	title = "Command Liaison"
+
+/datum/alt_title/bridge_secretary
+	title = "Bridge Secretary"
+
+/datum/alt_title/command_assistant
+	title = "Command Assistant"

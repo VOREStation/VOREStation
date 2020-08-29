@@ -109,3 +109,21 @@
 
 /datum/alt_title/offduty_sec
 	title = "Off-duty Officer"
+
+/datum/job/offduty_exploration
+	title = "Off-duty Explorer"
+	latejoin_only = TRUE
+	timeoff_factor = -1
+	total_positions = -1
+	faction = "Station"
+	departments = list(DEPARTMENT_OFFDUTY)
+	supervisors = "nobody! Enjoy your time off"
+	selection_color = "#999440"
+	access = list(access_maint_tunnels, access_external_airlocks)
+	minimal_access = list(access_maint_tunnels, access_external_airlocks)
+	outfit_type = /decl/hierarchy/outfit/job/assistant/explorer
+	job_description = "Off-duty crew has no responsibilities or authority and is just there to spend their well-deserved time off."
+	pto_type = PTO_EXPLORATION
+
+/datum/alt_title/offduty_exp
+	title = "Off-duty Explorer"
