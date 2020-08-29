@@ -742,7 +742,8 @@
 "bE" = (
 /obj/machinery/vending/engineering{
 	products = list(/obj/item/clothing/under/rank/chief_engineer = 4, /obj/item/clothing/under/rank/engineer = 4, /obj/item/clothing/shoes/orange = 4, /obj/item/clothing/head/hardhat = 4, /obj/item/weapon/storage/belt/utility = 4, /obj/item/clothing/glasses/meson = 4, /obj/item/clothing/gloves/yellow = 4, /obj/item/weapon/tool/screwdriver = 12, /obj/item/weapon/tool/crowbar = 12, /obj/item/weapon/tool/wirecutters = 12, /obj/item/device/multitool = 12, /obj/item/weapon/tool/wrench = 12, /obj/item/device/t_scanner = 12, /obj/item/stack/cable_coil/heavyduty = 8, /obj/item/weapon/cell = 8, /obj/item/weapon/weldingtool = 8, /obj/item/clothing/head/welding = 8, /obj/item/weapon/light/tube = 10, /obj/item/clothing/head/hardhat/red = 4, /obj/item/clothing/suit/fire = 4, /obj/item/weapon/stock_parts/scanning_module = 5, /obj/item/weapon/stock_parts/micro_laser = 5, /obj/item/weapon/stock_parts/matter_bin = 5, /obj/item/weapon/stock_parts/manipulator = 5, /obj/item/weapon/stock_parts/console_screen = 5);
-	req_log_access = 301;
+	req_access = list(301);
+	req_log_access = list(301);
 	req_one_access = list(301)
 	},
 /turf/simulated/floor/tiled/eris/dark/brown_platform,
@@ -752,8 +753,8 @@
 /obj/item/weapon/storage/toolbox/electrical,
 /obj/item/stack/marker_beacon/thirty,
 /obj/item/weapon/pipe_dispenser,
-/obj/structure/closet/hydrant{
-	pixel_y = 32
+/obj/machinery/alarm/talon{
+	pixel_y = 28
 	},
 /turf/simulated/floor/tiled/eris/dark/brown_platform,
 /area/talon/deckone/port_eng_store)
@@ -1170,6 +1171,13 @@
 /obj/structure/vehiclecage/spacebike,
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/deckone/central_hallway)
+"cs" = (
+/obj/structure/closet/hydrant{
+	pixel_x = -32;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/eris/dark/brown_platform,
+/area/talon/deckone/port_eng_store)
 "cv" = (
 /obj/machinery/vending/coffee,
 /turf/simulated/floor/tiled/steel_ridged,
@@ -4947,15 +4955,6 @@
 /obj/item/weapon/pen,
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/talon/deckone/workroom)
-"Nt" = (
-/obj/machinery/alarm/talon{
-	dir = 4;
-	icon_state = "alarm0";
-	pixel_x = -22;
-	pixel_y = 0
-	},
-/turf/simulated/floor/tiled/eris/dark/brown_platform,
-/area/talon/deckone/port_eng_store)
 "Nu" = (
 /obj/structure/table/standard,
 /obj/fiftyspawner/glass,
@@ -14496,7 +14495,7 @@ dH
 am
 gU
 dR
-Nt
+cs
 gU
 NP
 ho
