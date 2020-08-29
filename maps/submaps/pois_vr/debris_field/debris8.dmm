@@ -3,18 +3,25 @@
 /turf/template_noop,
 /area/space)
 "b" = (
-/turf/simulated/floor/hull/airless,
-/area/space)
+/turf/template_noop,
+/area/tether_away/debrisfield/shuttle_buffer)
 "c" = (
+/turf/simulated/floor/hull/airless,
+/area/tether_away/debrisfield/shuttle_buffer)
+"d" = (
 /obj/machinery/power/pointdefense{
 	dir = 4
 	},
 /turf/simulated/floor/hull/airless,
-/area/space)
-"d" = (
+/area/tether_away/debrisfield/shuttle_buffer)
+"e" = (
 /obj/structure/lattice,
-/turf/template_noop,
+/turf/space,
 /area/space)
+"f" = (
+/obj/structure/lattice,
+/turf/space,
+/area/tether_away/debrisfield/shuttle_buffer)
 
 (1,1,1) = {"
 a
@@ -34,57 +41,57 @@ a
 a
 a
 a
-d
+e
 a
-d
+e
 a
 a
 "}
 (3,1,1) = {"
 a
 a
-a
 b
-b
-b
-b
-d
-d
+c
+c
+c
+c
+f
+e
 a
 "}
 (4,1,1) = {"
 a
 a
-b
-b
 c
-b
-b
-b
+c
 d
+c
+c
+c
+e
 a
 "}
 (5,1,1) = {"
 a
 a
-a
 b
-b
-b
-b
-d
-d
+c
+c
+c
+c
+f
+e
 a
 "}
 (6,1,1) = {"
 a
 a
-a
-a
-a
-d
-d
-a
+b
+b
+b
+f
+f
+b
 a
 a
 "}
@@ -94,7 +101,7 @@ a
 a
 a
 a
-d
+e
 a
 a
 a

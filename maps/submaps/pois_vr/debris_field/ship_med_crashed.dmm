@@ -8,7 +8,7 @@
 "c" = (
 /obj/tether_away_spawner/debrisfield/carp,
 /turf/template_noop,
-/area/space)
+/area/tether_away/debrisfield/shuttle_buffer)
 "d" = (
 /turf/simulated/mineral/vacuum,
 /area/submap/debrisfield/misc_debris)
@@ -190,16 +190,14 @@ a
 a
 a
 a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
+b
+b
+b
+b
+b
+b
+b
+b
 a
 a
 a
@@ -209,30 +207,24 @@ a
 a
 a
 a
-a
-a
-a
-a
 b
 b
 b
 b
+d
+d
+d
+d
+d
+d
 b
 b
 b
 b
-a
-a
-a
-a
 a
 "}
 (3,1,1) = {"
 a
-a
-a
-a
-b
 b
 b
 b
@@ -242,17 +234,16 @@ d
 d
 d
 d
+d
+d
+d
+d
+d
+d
 b
 b
-b
-b
-a
-a
 "}
 (4,1,1) = {"
-a
-a
-b
 b
 b
 d
@@ -267,13 +258,12 @@ d
 d
 d
 d
+d
+d
+d
 b
-b
-a
 "}
 (5,1,1) = {"
-a
-b
 b
 d
 d
@@ -290,11 +280,10 @@ d
 d
 d
 d
+d
 b
-a
 "}
 (6,1,1) = {"
-a
 b
 d
 d
@@ -313,10 +302,8 @@ d
 d
 d
 b
-a
 "}
 (7,1,1) = {"
-a
 b
 d
 d
@@ -335,10 +322,8 @@ d
 d
 d
 b
-a
 "}
 (8,1,1) = {"
-a
 b
 d
 d
@@ -357,10 +342,8 @@ d
 d
 d
 b
-a
 "}
 (9,1,1) = {"
-a
 b
 d
 d
@@ -379,10 +362,8 @@ d
 d
 d
 b
-a
 "}
 (10,1,1) = {"
-a
 b
 d
 d
@@ -401,10 +382,8 @@ d
 d
 d
 b
-a
 "}
 (11,1,1) = {"
-a
 b
 d
 d
@@ -421,34 +400,10 @@ d
 d
 d
 d
-d
 b
-a
+b
 "}
 (12,1,1) = {"
-a
-b
-d
-d
-d
-d
-d
-d
-d
-d
-d
-d
-d
-d
-d
-d
-d
-b
-b
-a
-"}
-(13,1,1) = {"
-a
 b
 b
 d
@@ -467,10 +422,8 @@ b
 b
 b
 a
-a
 "}
-(14,1,1) = {"
-a
+(13,1,1) = {"
 a
 b
 b
@@ -489,10 +442,8 @@ b
 a
 a
 a
-a
 "}
-(15,1,1) = {"
-a
+(14,1,1) = {"
 a
 a
 a
@@ -511,10 +462,8 @@ a
 a
 a
 a
-a
 "}
-(16,1,1) = {"
-a
+(15,1,1) = {"
 a
 a
 a
@@ -533,10 +482,8 @@ a
 a
 a
 a
-a
 "}
-(17,1,1) = {"
-a
+(16,1,1) = {"
 a
 a
 a
@@ -555,10 +502,8 @@ a
 a
 a
 a
-a
 "}
-(18,1,1) = {"
-a
+(17,1,1) = {"
 a
 a
 a
@@ -577,13 +522,31 @@ a
 a
 a
 a
+"}
+(18,1,1) = {"
+a
+a
+a
+f
+j
+j
+j
+e
+j
+j
+j
+j
+j
+f
+a
+a
+a
 a
 "}
 (19,1,1) = {"
 a
 a
 a
-a
 f
 j
 j
@@ -595,36 +558,12 @@ j
 j
 j
 f
-a
 a
 a
 a
 a
 "}
 (20,1,1) = {"
-a
-a
-a
-a
-f
-j
-j
-j
-e
-j
-j
-j
-j
-j
-f
-a
-a
-a
-a
-a
-"}
-(21,1,1) = {"
-a
 a
 a
 a
@@ -643,10 +582,8 @@ a
 a
 a
 a
-a
 "}
-(22,1,1) = {"
-a
+(21,1,1) = {"
 a
 a
 a
@@ -665,10 +602,8 @@ a
 a
 a
 a
-a
 "}
-(23,1,1) = {"
-a
+(22,1,1) = {"
 c
 a
 a
@@ -687,49 +622,4 @@ a
 a
 a
 c
-a
-"}
-(24,1,1) = {"
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-"}
-(25,1,1) = {"
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
-a
 "}

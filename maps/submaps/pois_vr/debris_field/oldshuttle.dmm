@@ -23,10 +23,6 @@
 /obj/structure/grille/broken,
 /turf/simulated/shuttle/plating/airless,
 /area/submap/debrisfield/misc_debris)
-"af" = (
-/obj/structure/lattice,
-/turf/space,
-/area/space)
 "ag" = (
 /obj/structure/lattice,
 /turf/space,
@@ -385,16 +381,15 @@
 /turf/space,
 /area/space)
 "bf" = (
-/turf/simulated/mineral/floor/vacuum,
+/turf/template_noop,
 /area/space)
 "bg" = (
-/obj/effect/immovablerod,
-/turf/simulated/mineral/floor/vacuum,
-/area/space)
+/obj/structure/lattice,
+/turf/space,
+/area/tether_away/debrisfield/shuttle_buffer)
 "bh" = (
-/obj/structure/loot_pile/mecha/durand,
-/turf/simulated/mineral/floor/vacuum,
-/area/space)
+/turf/space,
+/area/tether_away/debrisfield/shuttle_buffer)
 "bi" = (
 /obj/machinery/door/airlock/multi_tile/metal,
 /turf/simulated/shuttle/floor/black/airless,
@@ -403,57 +398,40 @@
 /obj/structure/shuttle/engine/propulsion,
 /turf/simulated/shuttle/plating/airless,
 /area/submap/debrisfield/misc_debris)
+"bk" = (
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/debrisfield/shuttle_buffer)
+"bl" = (
+/obj/effect/immovablerod,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/debrisfield/shuttle_buffer)
+"bm" = (
+/obj/structure/loot_pile/mecha/durand,
+/turf/simulated/mineral/floor/vacuum,
+/area/tether_away/debrisfield/shuttle_buffer)
 
 (1,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+ad
+ad
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+bf
 "}
 (2,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-ad
-ad
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-"}
-(3,1,1) = {"
-aa
 ab
 aa
 ad
@@ -471,13 +449,10 @@ ad
 ad
 ak
 bj
-aa
-aa
-aa
-aa
+bf
+bf
 "}
-(4,1,1) = {"
-aa
+(3,1,1) = {"
 aa
 ad
 ak
@@ -495,14 +470,11 @@ aR
 bc
 ad
 bj
-aa
-aa
-aa
-aa
+bf
+bf
 "}
-(5,1,1) = {"
-aa
-aa
+(4,1,1) = {"
+bf
 ac
 al
 ai
@@ -519,14 +491,11 @@ aR
 bd
 ad
 bj
-aa
-aa
-aa
-aa
+bf
+bf
 "}
-(6,1,1) = {"
-aa
-aa
+(5,1,1) = {"
+bf
 ac
 am
 ao
@@ -542,15 +511,12 @@ aH
 ba
 ak
 ad
-aa
-aa
-aa
-aa
-aa
+bf
+bf
+bf
 "}
-(7,1,1) = {"
-aa
-aa
+(6,1,1) = {"
+bf
 ae
 ai
 ai
@@ -568,13 +534,10 @@ bi
 aa
 aa
 be
-aa
-aa
-aa
+bf
 "}
-(8,1,1) = {"
-aa
-aa
+(7,1,1) = {"
+bf
 ag
 ah
 ah
@@ -592,13 +555,10 @@ ai
 aa
 aa
 aa
-aa
-aa
-aa
+bf
 "}
-(9,1,1) = {"
-aa
-aa
+(8,1,1) = {"
+bf
 ah
 an
 ah
@@ -612,64 +572,55 @@ ah
 ag
 ah
 ah
-af
-aa
-aa
-aa
-aa
-aa
-aa
-"}
-(10,1,1) = {"
-aa
-aa
-ah
-ah
-ah
-ah
-ah
-ah
-ah
-ah
-ah
-ah
-ah
-ah
-ah
-af
-aa
-aa
-aa
-aa
-aa
-aa
-"}
-(11,1,1) = {"
-aa
-aa
-ag
-ag
-ah
-ah
-ah
-ah
-ah
-ah
-ah
-ah
-ah
-ah
-ah
-aa
+bg
+bh
 aa
 aa
 bf
-bg
-aa
-aa
 "}
-(12,1,1) = {"
-aa
+(9,1,1) = {"
+bf
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+bg
+bh
+bh
+bh
+bh
+"}
+(10,1,1) = {"
+bf
+ag
+ag
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+ah
+bh
+bh
+bh
+bk
+bl
+"}
+(11,1,1) = {"
 ac
 ai
 ao
@@ -684,16 +635,13 @@ ah
 ag
 ah
 ah
-aa
-aa
-aa
-aa
 bh
-aa
-aa
+bh
+bh
+bh
+bm
 "}
-(13,1,1) = {"
-aa
+(12,1,1) = {"
 ac
 aj
 ai
@@ -708,16 +656,13 @@ ag
 ag
 ah
 ag
+bh
+bh
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+bf
 "}
-(14,1,1) = {"
-aa
+(13,1,1) = {"
 ad
 ak
 ap
@@ -734,15 +679,12 @@ aP
 bb
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+bf
+bf
+bf
 "}
-(15,1,1) = {"
-aa
-aa
+(14,1,1) = {"
+bf
 ad
 aq
 ad
@@ -758,19 +700,16 @@ aW
 bb
 aa
 be
-aa
-aa
-aa
-aa
-aa
+bf
+bf
+bf
 "}
-(16,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
+(15,1,1) = {"
+bf
+bf
+bf
+bf
+bf
 aw
 ay
 aB
@@ -781,20 +720,17 @@ aR
 aX
 ad
 bj
-aa
-aa
-aa
-aa
-aa
-aa
+bf
+bf
+bf
+bf
 "}
-(17,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
+(16,1,1) = {"
+bf
+bf
+bf
+bf
+bf
 aq
 ad
 ad
@@ -805,23 +741,20 @@ aS
 aY
 ad
 bj
-aa
-aa
-aa
-aa
-aa
-aa
+bf
+bf
+bf
+bf
 "}
-(18,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+(17,1,1) = {"
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+bf
 ad
 aJ
 aN
@@ -829,58 +762,8 @@ aT
 aZ
 ak
 bj
-aa
-aa
-aa
-aa
-aa
-aa
-"}
-(19,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-"}
-(20,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+bf
+bf
+bf
+bf
 "}

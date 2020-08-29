@@ -105,6 +105,9 @@
 	name = "POI - Disabled Mining Drone"
 	requires_power = 0
 
+/area/submap/debrisfield/mining_outpost
+	name = "POI - Destroyed Mining Outpost"
+
 /area/submap/debrisfield/misc_debris //for random bits of debris that should use dynamic lights
 	requires_power = 1
 	always_unpowered = 1

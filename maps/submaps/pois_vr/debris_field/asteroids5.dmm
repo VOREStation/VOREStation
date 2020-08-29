@@ -5,6 +5,12 @@
 "b" = (
 /turf/simulated/mineral/vacuum,
 /area/space)
+"c" = (
+/turf/template_noop,
+/area/tether_away/debrisfield/shuttle_buffer)
+"d" = (
+/turf/simulated/mineral/vacuum,
+/area/tether_away/debrisfield/shuttle_buffer)
 
 (1,1,1) = {"
 a
@@ -25,80 +31,80 @@ a
 (3,1,1) = {"
 a
 a
-a
-b
+c
+d
 b
 b
 "}
 (4,1,1) = {"
 a
 a
-a
-a
+c
+c
 a
 a
 "}
 (5,1,1) = {"
 a
 a
-a
-a
+c
+c
 a
 a
 "}
 (6,1,1) = {"
 a
 a
-a
-a
+c
+c
 a
 a
 "}
 (7,1,1) = {"
 b
 b
-a
-a
+c
+c
 a
 a
 "}
 (8,1,1) = {"
 b
 b
-a
-a
+c
+c
 a
 a
 "}
 (9,1,1) = {"
 a
 b
-b
-a
+d
+c
 a
 a
 "}
 (10,1,1) = {"
 a
 a
-a
-a
+c
+c
 a
 a
 "}
 (11,1,1) = {"
 a
 a
-a
-a
+c
+c
 a
 a
 "}
 (12,1,1) = {"
 a
 a
-a
-b
+c
+d
 b
 a
 "}

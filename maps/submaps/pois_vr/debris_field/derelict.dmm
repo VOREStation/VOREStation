@@ -281,14 +281,14 @@
 	dir = 8
 	},
 /turf/space,
-/area/space)
+/area/submap/debrisfield/derelict/interior)
 "aQ" = (
 /obj/structure/shuttle/engine/propulsion{
 	icon_state = "burst_l";
 	dir = 4
 	},
 /turf/space,
-/area/space)
+/area/submap/debrisfield/derelict/interior)
 "aR" = (
 /turf/simulated/floor/plating,
 /area/submap/debrisfield/derelict/interior)
@@ -609,7 +609,7 @@
 "bR" = (
 /obj/structure/shuttle/engine/propulsion,
 /turf/space,
-/area/space)
+/area/submap/debrisfield/derelict/interior)
 "bS" = (
 /obj/machinery/door/airlock/alien,
 /obj/structure/cable{

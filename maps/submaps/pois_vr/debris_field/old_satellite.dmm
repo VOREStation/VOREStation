@@ -4,12 +4,12 @@
 /area/space)
 "b" = (
 /obj/structure/lattice,
-/turf/template_noop,
+/turf/space,
 /area/space)
 "c" = (
 /obj/machinery/doppler_array,
 /obj/structure/lattice,
-/turf/template_noop,
+/turf/space,
 /area/submap/debrisfield/old_sat)
 "d" = (
 /obj/structure/window/phoronbasic{
@@ -47,7 +47,7 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/power/solar/fake{
-	adir = 315
+	adir = 135
 	},
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/old_sat)
@@ -60,7 +60,7 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/power/solar/fake{
-	adir = 315
+	adir = 135
 	},
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/old_sat)
@@ -115,7 +115,7 @@
 "o" = (
 /obj/structure/lattice,
 /obj/item/weapon/material/shard,
-/turf/template_noop,
+/turf/space,
 /area/space)
 "p" = (
 /obj/structure/window/phoronbasic,

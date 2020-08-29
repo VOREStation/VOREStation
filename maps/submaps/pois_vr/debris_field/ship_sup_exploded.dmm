@@ -278,37 +278,6 @@
 /area/submap/debrisfield/misc_debris)
 
 (1,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-"}
-(2,1,1) = {"
-aa
 ab
 ab
 ab
@@ -334,11 +303,8 @@ aa
 aa
 aa
 aa
-aa
-aa
 "}
-(3,1,1) = {"
-aa
+(2,1,1) = {"
 ac
 ae
 ah
@@ -364,11 +330,8 @@ ab
 aa
 aa
 aa
-aa
-aa
 "}
-(4,1,1) = {"
-aa
+(3,1,1) = {"
 ad
 af
 ah
@@ -394,11 +357,8 @@ ab
 ab
 aa
 aa
-aa
-aa
 "}
-(5,1,1) = {"
-aa
+(4,1,1) = {"
 ad
 ad
 ai
@@ -424,11 +384,8 @@ ba
 ab
 aJ
 ab
-aa
-aa
 "}
-(6,1,1) = {"
-aa
+(5,1,1) = {"
 ad
 ac
 ae
@@ -454,11 +411,8 @@ aC
 bc
 be
 aJ
-aa
-aa
 "}
-(7,1,1) = {"
-aa
+(6,1,1) = {"
 ad
 ag
 ab
@@ -484,11 +438,8 @@ aC
 aC
 be
 aJ
-aa
-aa
 "}
-(8,1,1) = {"
-aa
+(7,1,1) = {"
 ad
 ad
 aj
@@ -514,11 +465,8 @@ bb
 bd
 be
 aJ
-aa
-aa
 "}
-(9,1,1) = {"
-aa
+(8,1,1) = {"
 ad
 ad
 ab
@@ -544,11 +492,8 @@ aC
 aC
 be
 aJ
-aa
-aa
 "}
-(10,1,1) = {"
-aa
+(9,1,1) = {"
 ad
 ac
 ab
@@ -574,11 +519,8 @@ aC
 bc
 be
 aJ
-aa
-aa
 "}
-(11,1,1) = {"
-aa
+(10,1,1) = {"
 ad
 ac
 ab
@@ -604,11 +546,8 @@ ba
 ab
 aJ
 ab
-aa
-aa
 "}
-(12,1,1) = {"
-aa
+(11,1,1) = {"
 ad
 ac
 ab
@@ -634,11 +573,8 @@ ab
 ab
 aa
 aa
-aa
-aa
 "}
-(13,1,1) = {"
-aa
+(12,1,1) = {"
 ad
 ac
 ab
@@ -664,11 +600,8 @@ ab
 aa
 aa
 aa
-aa
-aa
 "}
-(14,1,1) = {"
-aa
+(13,1,1) = {"
 ad
 ab
 ae
@@ -690,38 +623,6 @@ ab
 aJ
 aJ
 ab
-aa
-aa
-aa
-aa
-aa
-aa
-"}
-(15,1,1) = {"
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 aa
 aa
 aa

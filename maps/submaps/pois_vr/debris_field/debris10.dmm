@@ -1,55 +1,45 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/template_noop,
-/area/space)
-"b" = (
-/obj/structure/lattice,
-/turf/space,
-/area/space)
-"c" = (
-/turf/simulated/floor/airless,
-/area/space)
-"d" = (
 /obj/structure/girder,
 /turf/simulated/floor/airless,
 /area/space)
+"b" = (
+/obj/item/weapon/material/shard,
+/turf/simulated/floor/airless,
+/area/space)
+"c" = (
+/turf/template_noop,
+/area/space)
+"d" = (
+/obj/structure/grille/broken,
+/obj/item/weapon/material/shard,
+/turf/simulated/floor/airless,
+/area/space)
 "e" = (
-/obj/structure/lattice,
-/turf/space,
-/area/tether_away/debrisfield/shuttle_buffer)
-"f" = (
+/obj/item/stack/rods,
 /turf/simulated/floor/airless,
 /area/tether_away/debrisfield/shuttle_buffer)
+"f" = (
+/obj/structure/lattice,
+/turf/space,
+/area/space)
+"g" = (
+/obj/structure/grille,
+/turf/simulated/floor/airless,
+/area/space)
 
 (1,1,1) = {"
 a
-a
-a
-b
 d
-d
+g
 "}
 (2,1,1) = {"
-a
 b
 e
 f
-c
-c
 "}
 (3,1,1) = {"
-b
 c
-e
-e
-b
+f
 c
-"}
-(4,1,1) = {"
-c
-c
-b
-b
-a
-a
 "}

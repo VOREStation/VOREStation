@@ -3,105 +3,80 @@
 /turf/template_noop,
 /area/space)
 "b" = (
-/turf/simulated/wall/dshull,
+/obj/structure/lattice,
+/turf/space,
 /area/space)
 "c" = (
-/obj/structure/lattice,
-/obj/item/stack/cable_coil/cut,
-/turf/space,
+/turf/simulated/floor/airless,
 /area/space)
 "d" = (
-/turf/simulated/floor/airless,
+/turf/simulated/wall/lead,
 /area/space)
 "e" = (
-/turf/simulated/floor/airless,
-/area/tether_away/debrisfield/shuttle_buffer)
+/turf/simulated/mineral/vacuum,
+/area/space)
 "f" = (
-/obj/structure/lattice,
-/turf/space,
+/obj/structure/closet/crate/radiation,
+/turf/simulated/floor/airless,
 /area/tether_away/debrisfield/shuttle_buffer)
 "g" = (
-/obj/structure/lattice,
-/turf/space,
-/area/space)
-"h" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
+/obj/structure/table/rack,
 /turf/simulated/floor/airless,
 /area/tether_away/debrisfield/shuttle_buffer)
-"i" = (
-/obj/structure/lattice,
-/obj/item/stack/cable_coil/cut,
-/turf/space,
+"h" = (
+/turf/simulated/wall/lead,
 /area/tether_away/debrisfield/shuttle_buffer)
-"j" = (
-/turf/template_noop,
+"i" = (
+/obj/structure/sign/warning/radioactive,
+/turf/simulated/wall/lead,
 /area/tether_away/debrisfield/shuttle_buffer)
 
 (1,1,1) = {"
 a
+b
+d
 a
 a
-a
-b
-b
-b
-b
-b
 "}
 (2,1,1) = {"
-b
-b
-b
-b
-b
-d
-d
-d
+a
+f
+h
+a
 a
 "}
 (3,1,1) = {"
 a
-c
-e
-e
-e
-e
-e
+g
+h
 a
 a
 "}
 (4,1,1) = {"
-a
-a
-f
-h
-h
+b
+c
 i
-j
 a
 a
 "}
 (5,1,1) = {"
-a
-a
-g
-g
-g
-a
-a
-a
+b
+c
+h
+e
 a
 "}
 (6,1,1) = {"
 a
+c
+e
+e
 a
+"}
+(7,1,1) = {"
 a
-g
-a
-a
-a
-a
+b
+e
+e
 a
 "}
