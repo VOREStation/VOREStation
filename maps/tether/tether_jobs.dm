@@ -28,7 +28,10 @@
 	pto_type = null
 	access = list(access_talon)
 	minimal_access = list(access_talon)
+	alt_titles = list("Talon Commander" = /datum/alt_title/talon_commander)
 
+/datum/alt_title/talon_commander
+	title = "Talon Commander"
 
 /datum/job/talon_doctor
 	title = "Talon Doctor"
@@ -99,6 +102,10 @@
 	pto_type = null
 	access = list(access_talon)
 	minimal_access = list(access_talon)
+	alt_titles = list("Talon Helmsman" = /datum/alt_title/talon_helmsman)
+
+/datum/alt_title/talon_helmsman
+	title = "Talon Helmsman"
 
 
 /datum/job/talon_guard
