@@ -29,6 +29,7 @@
 	access = list(access_talon)
 	minimal_access = list(access_talon)
 
+
 /datum/job/talon_doctor
 	title = "Talon Doctor"
 	flag = TALDOC
@@ -48,6 +49,11 @@
 	pto_type = null
 	access = list(access_talon)
 	minimal_access = list(access_talon)
+	alt_titles = list("Talon Medic" = /datum/alt_title/talon_medic)
+
+/datum/alt_title/talon_medic
+	title = "Talon Medic"
+
 
 /datum/job/talon_engineer
 	title = "Talon Engineer"
@@ -68,6 +74,11 @@
 	pto_type = null
 	access = list(access_talon)
 	minimal_access = list(access_talon)
+	alt_titles = list("Talon Technician" = /datum/alt_title/talon_tech)
+
+/datum/alt_title/talon_tech
+	title = "Talon Technician"
+
 
 /datum/job/talon_pilot
 	title = "Talon Pilot"
@@ -89,6 +100,7 @@
 	access = list(access_talon)
 	minimal_access = list(access_talon)
 
+
 /datum/job/talon_guard
 	title = "Talon Guard"
 	flag = TALSEC
@@ -108,6 +120,11 @@
 	pto_type = null
 	access = list(access_talon)
 	minimal_access = list(access_talon)
+	alt_titles = list("Talon Security" = /datum/alt_title/talon_security)
+
+/datum/alt_title/talon_security
+	title = "Talon Security"
+
 
 /decl/hierarchy/outfit/job/talon_captain
 	name = OUTFIT_JOB_NAME("Talon Captain")
