@@ -468,7 +468,10 @@ var/global/list/##LIST_NAME = list();\
 #define VOLUME_CHANNEL_MASTER "Master"
 #define VOLUME_CHANNEL_AMBIENCE "Ambience"
 #define VOLUME_CHANNEL_ALARMS "Alarms"
+<<<<<<< HEAD
 #define VOLUME_CHANNEL_VORE "Vore"
+=======
+>>>>>>> e2cff9b... Adds Door Volume Channel (#7592)
 #define VOLUME_CHANNEL_DOORS "Doors"
 
 // Make sure you update this or clients won't be able to adjust the channel
@@ -476,6 +479,11 @@ GLOBAL_LIST_INIT(all_volume_channels, list(
 	VOLUME_CHANNEL_MASTER,
 	VOLUME_CHANNEL_AMBIENCE,
 	VOLUME_CHANNEL_ALARMS,
+<<<<<<< HEAD
 	VOLUME_CHANNEL_VORE,
 	VOLUME_CHANNEL_DOORS,
 ))
+=======
+	VOLUME_CHANNEL_DOORS,
+))
+>>>>>>> e2cff9b... Adds Door Volume Channel (#7592)
