@@ -43,7 +43,8 @@
 /datum/job/secretary
 	disallow_jobhop = TRUE
 	pto_type = PTO_CIVILIAN
-	alt_titles = list("Command Liaison" = /datum/alt_title/command_liaison, "Bridge Secretary" = /datum/alt_title/bridge_secretary, "Command Assistant" = /datum/alt_title/command_assistant)
+	alt_titles = list("Command Liaison" = /datum/alt_title/command_liaison, "Bridge Secretary" = /datum/alt_title/bridge_secretary,
+						"Command Assistant" = /datum/alt_title/command_assistant, "Command Intern" = /datum/alt_title/command_intern)
 
 /datum/alt_title/command_liaison
 	title = "Command Liaison"
@@ -53,3 +54,6 @@
 
 /datum/alt_title/command_assistant
 	title = "Command Assistant"
+
+/datum/alt_title/command_intern
+	title = "Command Intern"
