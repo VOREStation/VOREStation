@@ -516,6 +516,14 @@
 	},
 /obj/structure/table/standard,
 /obj/item/weapon/storage/firstaid/surgery,
+/obj/item/stack/nanopaste{
+	pixel_x = -7;
+	pixel_y = -4
+	},
+/obj/item/stack/nanopaste{
+	pixel_x = 9;
+	pixel_y = -4
+	},
 /obj/item/device/robotanalyzer{
 	pixel_y = -8
 	},
