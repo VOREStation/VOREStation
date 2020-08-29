@@ -511,10 +511,14 @@
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/deckone/brig)
 "bh" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
 /obj/structure/table/standard,
-/obj/item/device/defib_kit/loaded,
-/obj/item/weapon/storage/belt/medical/emt,
-/obj/item/device/sleevemate,
+/obj/item/weapon/storage/firstaid/surgery,
+/obj/item/device/robotanalyzer{
+	pixel_y = -8
+	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/talon/deckone/medical)
 "bi" = (
@@ -1178,6 +1182,14 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/brown_platform,
 /area/talon/deckone/port_eng_store)
+"ct" = (
+/obj/structure/table/standard,
+/obj/item/device/defib_kit/jumper_kit/loaded,
+/obj/item/device/defib_kit/loaded,
+/obj/item/weapon/storage/belt/medical/emt,
+/obj/item/device/sleevemate,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
+/area/talon/deckone/medical)
 "cv" = (
 /obj/machinery/vending/coffee,
 /turf/simulated/floor/tiled/steel_ridged,
@@ -1527,14 +1539,6 @@
 	},
 /turf/simulated/floor/tiled/eris/techmaint_panels,
 /area/talon/deckone/brig)
-"eV" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
-	},
-/obj/structure/table/standard,
-/obj/item/weapon/storage/firstaid/surgery,
-/turf/simulated/floor/tiled/eris/white/bluecorner,
-/area/talon/deckone/medical)
 "fi" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4;
@@ -17183,7 +17187,7 @@ xH
 aw
 Xd
 be
-eV
+bh
 dO
 uN
 SI
@@ -17609,7 +17613,7 @@ dz
 Rk
 Gb
 bC
-bh
+ct
 dO
 Gt
 SI
