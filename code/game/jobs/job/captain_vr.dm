@@ -18,7 +18,7 @@
 	departments_managed = list(DEPARTMENT_CIVILIAN, DEPARTMENT_CARGO, DEPARTMENT_PLANET)
 	dept_time_required = 60
 
-	alt_titles = list("Crew Resources Officer" = /datum/alt_title/cro, "Deputy Manager" = /datum/alt_title/deputy_manager, "Staff Manager" = /datum/alt_title/staff_manager
+	alt_titles = list("Crew Resources Officer" = /datum/alt_title/cro, "Deputy Manager" = /datum/alt_title/deputy_manager, "Staff Manager" = /datum/alt_title/staff_manager,
 						"Facility Steward" = /datum/alt_title/facility_steward)
 
 	access = list(access_security, access_sec_doors, access_brig, access_forensics_lockers,
