@@ -5,87 +5,87 @@
 	icon_state = "p08"
 	spawn_nothing_percentage = 50
 	item_to_spawn()
-		return pick(prob(11);/obj/random/ammo_all,\
-					prob(11);/obj/item/weapon/gun/energy/laser,\
-					prob(11);/obj/item/weapon/gun/projectile/pirate,\
-					prob(10);/obj/item/weapon/material/twohanded/spear,\
-					prob(10);/obj/item/weapon/gun/energy/stunrevolver,\
-					prob(10);/obj/item/weapon/gun/energy/taser,\
-					prob(10);/obj/item/weapon/gun/projectile/shotgun/doublebarrel/pellet,\
-					prob(10);/obj/item/weapon/material/knife,\
-					prob(10);/obj/item/weapon/gun/projectile/luger,\
-				/*	prob(10);/obj/item/weapon/gun/projectile/pipegun,\ */
-					prob(10);/obj/item/weapon/gun/projectile/revolver/detective,\
-					prob(10);/obj/item/weapon/gun/projectile/revolver/judge,\
-					prob(10);/obj/item/weapon/gun/projectile/colt,\
-					prob(10);/obj/item/weapon/gun/projectile/shotgun/pump,\
-					prob(10);/obj/item/weapon/gun/projectile/shotgun/pump/rifle,\
-					prob(10);/obj/item/weapon/melee/baton,\
-					prob(10);/obj/item/weapon/melee/telebaton,\
-					prob(10);/obj/item/weapon/melee/classic_baton,\
-					prob(9);/obj/item/weapon/gun/projectile/automatic/wt550/lethal,\
-					prob(9);/obj/item/weapon/gun/projectile/automatic/pdw,\
-					prob(9);/obj/item/weapon/gun/projectile/automatic/sol, \
-					prob(9);/obj/item/weapon/gun/energy/crossbow/largecrossbow,\
-					prob(9);/obj/item/weapon/gun/projectile/pistol,\
-					prob(9);/obj/item/weapon/gun/projectile/shotgun/pump,\
-					prob(9);/obj/item/weapon/cane/concealed,\
-					prob(9);/obj/item/weapon/gun/energy/gun,\
-					prob(8);/obj/item/weapon/gun/energy/retro,\
-					prob(8);/obj/item/weapon/gun/energy/gun/eluger,\
-					prob(8);/obj/item/weapon/gun/energy/xray,\
-					prob(8);/obj/item/weapon/gun/projectile/automatic/c20r,\
-					prob(8);/obj/item/weapon/melee/energy/sword,\
-					prob(8);/obj/item/weapon/gun/projectile/derringer,\
-					prob(8);/obj/item/weapon/gun/projectile/revolver/lemat,\
-				/*	prob(8);/obj/item/weapon/gun/projectile/shotgun/pump/rifle/mosin,\ */
-				/*	prob(8);/obj/item/weapon/gun/projectile/automatic/m41a,\ */
-					prob(7);/obj/item/weapon/material/butterfly,\
-					prob(7);/obj/item/weapon/material/butterfly/switchblade,\
-					prob(7);/obj/item/weapon/gun/projectile/giskard,\
-					prob(7);/obj/item/weapon/gun/projectile/automatic/p90,\
-					prob(7);/obj/item/weapon/gun/projectile/automatic/sts35,\
-					prob(7);/obj/item/weapon/gun/projectile/shotgun/pump/combat,\
-					prob(6);/obj/item/weapon/gun/energy/sniperrifle,\
-					prob(6);/obj/item/weapon/gun/projectile/automatic/z8,\
-					prob(6);/obj/item/weapon/gun/energy/captain,\
-					prob(6);/obj/item/weapon/material/knife/tacknife,\
-					prob(5);/obj/item/weapon/gun/projectile/shotgun/pump/USDF,\
-					prob(5);/obj/item/weapon/gun/projectile/giskard/olivaw,\
-					prob(5);/obj/item/weapon/gun/projectile/revolver/consul,\
-					prob(5);/obj/item/weapon/gun/projectile/revolver/mateba,\
-					prob(5);/obj/item/weapon/gun/projectile/revolver,\
-					prob(4);/obj/item/weapon/gun/projectile/deagle,\
-					prob(4);/obj/item/weapon/material/knife/tacknife/combatknife,\
-					prob(4);/obj/item/weapon/melee/energy/sword,\
-					prob(4);/obj/item/weapon/gun/projectile/automatic/mini_uzi,\
-					prob(4);/obj/item/weapon/gun/projectile/contender,\
-					prob(4);/obj/item/weapon/gun/projectile/contender/tacticool,\
-					prob(3);/obj/item/weapon/gun/projectile/SVD,\
-					prob(3);/obj/item/weapon/gun/energy/lasercannon,\
-					prob(3);/obj/item/weapon/gun/projectile/shotgun/pump/rifle/lever,\
-					prob(3);/obj/item/weapon/gun/projectile/automatic/bullpup,\
-					prob(2);/obj/item/weapon/gun/energy/pulse_rifle,\
-					prob(2);/obj/item/weapon/gun/energy/gun/nuclear,\
-					prob(2);/obj/item/weapon/gun/projectile/automatic/l6_saw,\
-					prob(2);/obj/item/weapon/gun/energy/gun/burst,\
-					prob(2);/obj/item/weapon/storage/box/frags,\
-					prob(2);/obj/item/weapon/twohanded/fireaxe,\
-					prob(2);/obj/item/weapon/gun/projectile/luger/brown,\
-					prob(2);/obj/item/weapon/gun/launcher/crossbow,\
-				/*	prob(1);/obj/item/weapon/gun/projectile/automatic/battlerifle,\ */ // Too OP
-					prob(1);/obj/item/weapon/gun/projectile/deagle/gold,\
-					prob(1);/obj/item/weapon/gun/energy/imperial,\
-					prob(1);/obj/item/weapon/gun/projectile/automatic/as24,\
-					prob(1);/obj/item/weapon/gun/launcher/rocket,\
-					prob(1);/obj/item/weapon/gun/launcher/grenade,\
-					prob(1);/obj/item/weapon/gun/projectile/gyropistol,\
-					prob(1);/obj/item/weapon/gun/projectile/heavysniper,\
-					prob(1);/obj/item/weapon/plastique,\
-					prob(1);/obj/item/weapon/gun/energy/ionrifle,\
-					prob(1);/obj/item/weapon/material/sword,\
-					prob(1);/obj/item/weapon/cane/concealed,\
-					prob(1);/obj/item/weapon/material/sword/katana)
+		return pick(/obj/random/ammo_all,\
+					/obj/item/weapon/gun/energy/laser,\
+					/obj/item/weapon/gun/projectile/pirate,\
+					prob(90);/obj/item/weapon/material/twohanded/spear,\
+					prob(90);/obj/item/weapon/gun/energy/stunrevolver,\
+					prob(90);/obj/item/weapon/gun/energy/taser,\
+					prob(90);/obj/item/weapon/gun/projectile/shotgun/doublebarrel/pellet,\
+					prob(90);/obj/item/weapon/material/knife,\
+					prob(90);/obj/item/weapon/gun/projectile/luger,\
+				/*	prob(90);/obj/item/weapon/gun/projectile/pipegun,\ */
+					prob(90);/obj/item/weapon/gun/projectile/revolver/detective,\
+					prob(90);/obj/item/weapon/gun/projectile/revolver/judge,\
+					prob(90);/obj/item/weapon/gun/projectile/colt,\
+					prob(90);/obj/item/weapon/gun/projectile/shotgun/pump,\
+					prob(90);/obj/item/weapon/gun/projectile/shotgun/pump/rifle,\
+					prob(90);/obj/item/weapon/melee/baton,\
+					prob(90);/obj/item/weapon/melee/telebaton,\
+					prob(90);/obj/item/weapon/melee/classic_baton,\
+					prob(80);/obj/item/weapon/gun/projectile/automatic/wt550/lethal,\
+					prob(80);/obj/item/weapon/gun/projectile/automatic/pdw,\
+					prob(80);/obj/item/weapon/gun/projectile/automatic/sol, \
+					prob(80);/obj/item/weapon/gun/energy/crossbow/largecrossbow,\
+					prob(80);/obj/item/weapon/gun/projectile/pistol,\
+					prob(80);/obj/item/weapon/gun/projectile/shotgun/pump,\
+					prob(80);/obj/item/weapon/cane/concealed,\
+					prob(80);/obj/item/weapon/gun/energy/gun,\
+					prob(70);/obj/item/weapon/gun/energy/retro,\
+					prob(70);/obj/item/weapon/gun/energy/gun/eluger,\
+					prob(70);/obj/item/weapon/gun/energy/xray,\
+					prob(70);/obj/item/weapon/gun/projectile/automatic/c20r,\
+					prob(70);/obj/item/weapon/melee/energy/sword,\
+					prob(70);/obj/item/weapon/gun/projectile/derringer,\
+					prob(70);/obj/item/weapon/gun/projectile/revolver/lemat,\
+				/*	prob(70);/obj/item/weapon/gun/projectile/shotgun/pump/rifle/mosin,\ */
+				/*	prob(70);/obj/item/weapon/gun/projectile/automatic/m41a,\ */
+					prob(60);/obj/item/weapon/material/butterfly,\
+					prob(60);/obj/item/weapon/material/butterfly/switchblade,\
+					prob(60);/obj/item/weapon/gun/projectile/giskard,\
+					prob(60);/obj/item/weapon/gun/projectile/automatic/p90,\
+					prob(60);/obj/item/weapon/gun/projectile/automatic/sts35,\
+					prob(60);/obj/item/weapon/gun/projectile/shotgun/pump/combat,\
+					prob(50);/obj/item/weapon/gun/energy/sniperrifle,\
+					prob(50);/obj/item/weapon/gun/projectile/automatic/z8,\
+					prob(50);/obj/item/weapon/gun/energy/captain,\
+					prob(50);/obj/item/weapon/material/knife/tacknife,\
+					prob(40);/obj/item/weapon/gun/projectile/shotgun/pump/USDF,\
+					prob(40);/obj/item/weapon/gun/projectile/giskard/olivaw,\
+					prob(40);/obj/item/weapon/gun/projectile/revolver/consul,\
+					prob(40);/obj/item/weapon/gun/projectile/revolver/mateba,\
+					prob(40);/obj/item/weapon/gun/projectile/revolver,\
+					prob(30);/obj/item/weapon/gun/projectile/deagle,\
+					prob(30);/obj/item/weapon/material/knife/tacknife/combatknife,\
+					prob(30);/obj/item/weapon/melee/energy/sword,\
+					prob(30);/obj/item/weapon/gun/projectile/automatic/mini_uzi,\
+					prob(30);/obj/item/weapon/gun/projectile/contender,\
+					prob(30);/obj/item/weapon/gun/projectile/contender/tacticool,\
+					prob(20);/obj/item/weapon/gun/projectile/SVD,\
+					prob(20);/obj/item/weapon/gun/energy/lasercannon,\
+					prob(20);/obj/item/weapon/gun/projectile/shotgun/pump/rifle/lever,\
+					prob(20);/obj/item/weapon/gun/projectile/automatic/bullpup,\
+					prob(10);/obj/item/weapon/gun/energy/pulse_rifle,\
+					prob(10);/obj/item/weapon/gun/energy/gun/nuclear,\
+					prob(10);/obj/item/weapon/gun/projectile/automatic/l6_saw,\
+					prob(10);/obj/item/weapon/gun/energy/gun/burst,\
+					prob(10);/obj/item/weapon/storage/box/frags,\
+					prob(10);/obj/item/weapon/twohanded/fireaxe,\
+					prob(10);/obj/item/weapon/gun/projectile/luger/brown,\
+					prob(10);/obj/item/weapon/gun/launcher/crossbow,\
+				/*	prob(5);/obj/item/weapon/gun/projectile/automatic/battlerifle,\ */ // Too OP
+					prob(5);/obj/item/weapon/gun/projectile/deagle/gold,\
+					prob(5);/obj/item/weapon/gun/energy/imperial,\
+					prob(5);/obj/item/weapon/gun/projectile/automatic/as24,\
+					prob(5);/obj/item/weapon/gun/launcher/rocket,\
+					prob(5);/obj/item/weapon/gun/launcher/grenade,\
+					prob(5);/obj/item/weapon/gun/projectile/gyropistol,\
+					prob(5);/obj/item/weapon/gun/projectile/heavysniper,\
+					prob(5);/obj/item/weapon/plastique,\
+					prob(5);/obj/item/weapon/gun/energy/ionrifle,\
+					prob(5);/obj/item/weapon/material/sword,\
+					prob(5);/obj/item/weapon/cane/concealed,\
+					prob(5);/obj/item/weapon/material/sword/katana)
 
 /obj/random/weapon/guarenteed
 	spawn_nothing_percentage = 0
@@ -96,43 +96,43 @@
 	icon = 'icons/obj/ammo.dmi'
 	icon_state = "666"
 	item_to_spawn()
-		return pick(prob(5);/obj/item/weapon/storage/box/shotgunammo,\
-					prob(5);/obj/item/weapon/storage/box/shotgunshells,\
-					prob(5);/obj/item/ammo_magazine/clip/c762,\
-					prob(5);/obj/item/ammo_magazine/m380,\
-					prob(5);/obj/item/ammo_magazine/m45,\
-					prob(5);/obj/item/ammo_magazine/m9mm,\
-					prob(5);/obj/item/ammo_magazine/s38,\
-					prob(4);/obj/item/ammo_magazine/clip/c45,\
-					prob(4);/obj/item/ammo_magazine/clip/c9mm,\
-					prob(4);/obj/item/ammo_magazine/m45uzi,\
-					prob(4);/obj/item/ammo_magazine/m9mml,\
-					prob(4);/obj/item/ammo_magazine/m9mmt,\
-					prob(4);/obj/item/ammo_magazine/m9mmp90,\
-					prob(4);/obj/item/ammo_magazine/m10mm,\
-					prob(4);/obj/item/ammo_magazine/m545/small,\
-					prob(3);/obj/item/ammo_magazine/clip/c10mm,\
-					prob(3);/obj/item/ammo_magazine/clip/c44,\
-					prob(3);/obj/item/ammo_magazine/s44,\
-					prob(3);/obj/item/ammo_magazine/m762,\
-					prob(3);/obj/item/ammo_magazine/m545,\
-					prob(3);/obj/item/weapon/cell/device/weapon,\
-					prob(2);/obj/item/ammo_magazine/m44,\
-					prob(2);/obj/item/ammo_magazine/s357,\
-					prob(2);/obj/item/ammo_magazine/m762m,\
-					prob(2);/obj/item/ammo_magazine/clip/c12g,
-					prob(2);/obj/item/ammo_magazine/clip/c12g/pellet,\
-					prob(1);/obj/item/ammo_magazine/m45tommy,\
-				/*	prob(1);/obj/item/ammo_magazine/m95,\ */
-					prob(1);/obj/item/ammo_casing/rocket,\
-					prob(1);/obj/item/weapon/storage/box/sniperammo,\
-					prob(1);/obj/item/weapon/storage/box/flashshells,\
-					prob(1);/obj/item/weapon/storage/box/beanbags,\
-					prob(1);/obj/item/weapon/storage/box/stunshells,\
-					prob(1);/obj/item/ammo_magazine/mtg,\
-					prob(1);/obj/item/ammo_magazine/m12gdrum,\
-					prob(1);/obj/item/ammo_magazine/m12gdrum/pellet,\
-					prob(1);/obj/item/ammo_magazine/m45tommydrum
+		return pick(/obj/item/weapon/storage/box/shotgunammo,\
+					/obj/item/weapon/storage/box/shotgunshells,\
+					/obj/item/ammo_magazine/clip/c762,\
+					/obj/item/ammo_magazine/m380,\
+					/obj/item/ammo_magazine/m45,\
+					/obj/item/ammo_magazine/m9mm,\
+					/obj/item/ammo_magazine/s38,\
+					prob(80);/obj/item/ammo_magazine/clip/c45,\
+					prob(80);/obj/item/ammo_magazine/clip/c9mm,\
+					prob(80);/obj/item/ammo_magazine/m45uzi,\
+					prob(80);/obj/item/ammo_magazine/m9mml,\
+					prob(80);/obj/item/ammo_magazine/m9mmt,\
+					prob(80);/obj/item/ammo_magazine/m9mmp90,\
+					prob(80);/obj/item/ammo_magazine/m10mm,\
+					prob(80);/obj/item/ammo_magazine/m545/small,\
+					prob(60);/obj/item/ammo_magazine/clip/c10mm,\
+					prob(60);/obj/item/ammo_magazine/clip/c44,\
+					prob(60);/obj/item/ammo_magazine/s44,\
+					prob(60);/obj/item/ammo_magazine/m762,\
+					prob(60);/obj/item/ammo_magazine/m545,\
+					prob(60);/obj/item/weapon/cell/device/weapon,\
+					prob(40);/obj/item/ammo_magazine/m44,\
+					prob(40);/obj/item/ammo_magazine/s357,\
+					prob(40);/obj/item/ammo_magazine/m762m,\
+					prob(40);/obj/item/ammo_magazine/clip/c12g,
+					prob(40);/obj/item/ammo_magazine/clip/c12g/pellet,\
+					prob(20);/obj/item/ammo_magazine/m45tommy,\
+				/*	prob(20);/obj/item/ammo_magazine/m95,\ */
+					prob(20);/obj/item/ammo_casing/rocket,\
+					prob(20);/obj/item/weapon/storage/box/sniperammo,\
+					prob(20);/obj/item/weapon/storage/box/flashshells,\
+					prob(20);/obj/item/weapon/storage/box/beanbags,\
+					prob(20);/obj/item/weapon/storage/box/stunshells,\
+					prob(20);/obj/item/ammo_magazine/mtg,\
+					prob(20);/obj/item/ammo_magazine/m12gdrum,\
+					prob(20);/obj/item/ammo_magazine/m12gdrum/pellet,\
+					prob(20);/obj/item/ammo_magazine/m45tommydrum
 					)
 
 /obj/random/cargopod
@@ -143,24 +143,24 @@
 	spawn_nothing_percentage = 0
 
 /obj/random/cargopod/item_to_spawn()
-	return pick(prob(10);/obj/item/weapon/contraband/poster,\
-				prob(8);/obj/item/weapon/haircomb,\
-				prob(6);/obj/item/weapon/material/wirerod,\
-				prob(6);/obj/item/weapon/storage/pill_bottle/paracetamol,\
-				prob(6);/obj/item/weapon/material/butterflyblade,\
-				prob(6);/obj/item/weapon/material/butterflyhandle,\
-				prob(4);/obj/item/weapon/storage/pill_bottle/happy,\
-				prob(4);/obj/item/weapon/storage/pill_bottle/zoom,\
-				prob(4);/obj/item/weapon/material/butterfly,\
-				prob(2);/obj/item/weapon/material/butterfly/switchblade,\
-				prob(2);/obj/item/clothing/gloves/knuckledusters,\
-				prob(2);/obj/item/weapon/reagent_containers/syringe/drugs,\
-				prob(1);/obj/item/weapon/material/knife/tacknife,\
-				prob(1);/obj/item/clothing/suit/storage/vest/heavy/merc,\
-				prob(1);/obj/item/weapon/beartrap,\
-				prob(1);/obj/item/weapon/handcuffs,\
-				prob(1);/obj/item/weapon/handcuffs/legcuffs,\
-				prob(1);/obj/item/weapon/reagent_containers/syringe/steroid)
+	return pick(/obj/item/weapon/contraband/poster,\
+				prob(80);/obj/item/weapon/haircomb,\
+				prob(60);/obj/item/weapon/material/wirerod,\
+				prob(60);/obj/item/weapon/storage/pill_bottle/paracetamol,\
+				prob(60);/obj/item/weapon/material/butterflyblade,\
+				prob(60);/obj/item/weapon/material/butterflyhandle,\
+				prob(40);/obj/item/weapon/storage/pill_bottle/happy,\
+				prob(40);/obj/item/weapon/storage/pill_bottle/zoom,\
+				prob(40);/obj/item/weapon/material/butterfly,\
+				prob(20);/obj/item/weapon/material/butterfly/switchblade,\
+				prob(20);/obj/item/clothing/gloves/knuckledusters,\
+				prob(20);/obj/item/weapon/reagent_containers/syringe/drugs,\
+				prob(10);/obj/item/weapon/material/knife/tacknife,\
+				prob(10);/obj/item/clothing/suit/storage/vest/heavy/merc,\
+				prob(10);/obj/item/weapon/beartrap,\
+				prob(10);/obj/item/weapon/handcuffs,\
+				prob(10);/obj/item/weapon/handcuffs/legcuffs,\
+				prob(10);/obj/item/weapon/reagent_containers/syringe/steroid)
 
 //A random thing so that the spawn_nothing_percentage can be used w/o duplicating code.
 /obj/random/trash_pile
@@ -209,11 +209,12 @@
 	icon_state = "firstaid"
 
 /obj/random/tetheraid/item_to_spawn()
-	return pick(prob(4);/obj/item/weapon/storage/firstaid/regular,
-				prob(3);/obj/item/weapon/storage/firstaid/toxin,
-				prob(3);/obj/item/weapon/storage/firstaid/o2,
-				prob(2);/obj/item/weapon/storage/firstaid/adv,
-				prob(3);/obj/item/weapon/storage/firstaid/fire)
+	return pick(/obj/item/weapon/storage/firstaid/regular,
+				prob(75);/obj/item/weapon/storage/firstaid/toxin,
+				prob(75);/obj/item/weapon/storage/firstaid/o2,
+				prob(75);/obj/item/weapon/storage/firstaid/fire,
+				prob(50);/obj/item/weapon/storage/firstaid/adv
+				)
 
 //Override from maintenance.dm to prevent combat kits from spawning in Tether maintenance
 /obj/random/maintenance/item_to_spawn()
@@ -242,11 +243,11 @@
 	spawn_nothing_percentage = 0
 
 /obj/random/roguemineloot/item_to_spawn()
-	return pick(prob(5);/obj/random/mre,
-				prob(5);/obj/random/maintenance,
-				prob(4);/obj/random/firstaid,
-				prob(3);/obj/random/toolbox,
-				prob(2);/obj/random/multiple/minevault,
-				prob(1);/obj/random/coin,
-				prob(1);/obj/random/drinkbottle,
-				prob(1);/obj/random/tool/alien)
+	return pick(/obj/random/mre,
+				/obj/random/maintenance,
+				prob(80);/obj/random/firstaid,
+				prob(60);/obj/random/toolbox,
+				prob(40);/obj/random/multiple/minevault,
+				prob(20);/obj/random/coin,
+				prob(20);/obj/random/drinkbottle,
+				prob(20);/obj/random/tool/alien)
