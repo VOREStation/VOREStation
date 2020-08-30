@@ -110,7 +110,8 @@
 	total_positions = 2
 	spawn_positions = 2
 	alt_titles = list("Journalist" = /datum/alt_title/journalist, "Reporter" =  /datum/alt_title/reporter, "Writer" = /datum/alt_title/writer,
-					"Historian" = /datum/alt_title/historian, "Archivist" = /datum/alt_title/archivist, "Professor" = /datum/alt_title/professor)
+					"Historian" = /datum/alt_title/historian, "Archivist" = /datum/alt_title/archivist, "Professor" = /datum/alt_title/professor,
+					"Academic" = /datum/alt_title/academic, "Philosopher" = /datum/alt_title/philosopher)
 	pto_type = PTO_CIVILIAN
 
 /datum/alt_title/reporter
@@ -128,6 +129,14 @@
 /datum/alt_title/professor
 	title = "Professor"
 	title_blurb = "The Professor uses the Library as a base of operations to share their vast knowledge with the crew."
+
+/datum/alt_title/academic
+	title = "Academic"
+	title_blurb = "The Academic uses the Library as a base of operations to share their vast knowledge with the crew."
+
+/datum/alt_title/philosopher
+	title = "Philosopher"
+	title_blurb = "The Philosopher uses the Library as a base of operation to ruminate on nature of life and other great questions, and share their opinions with the crew."
 
 
 /datum/job/lawyer

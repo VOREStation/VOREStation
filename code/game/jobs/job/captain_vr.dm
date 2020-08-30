@@ -2,10 +2,10 @@
 	disallow_jobhop = TRUE
 	pto_type = PTO_CIVILIAN
 	dept_time_required = 80 //Pending something more complicated
-	alt_titles = list("Overseer"= /datum/alt_title/overseer, "Executive Officer" = /datum/alt_title/executive_officer, "Chief Supervisor" = /datum/alt_title/chief_supervisor)
+	alt_titles = list("Overseer"= /datum/alt_title/overseer, "Facility Director" = /datum/alt_title/facility_director, "Chief Supervisor" = /datum/alt_title/chief_supervisor)
 
-/datum/alt_title/executive_officer
-	title = "Executive Officer"
+/datum/alt_title/facility_director
+	title = "Facility Director"
 
 /datum/alt_title/chief_supervisor
 	title = "Chief Supervisor"
@@ -18,7 +18,8 @@
 	departments_managed = list(DEPARTMENT_CIVILIAN, DEPARTMENT_CARGO, DEPARTMENT_PLANET)
 	dept_time_required = 60
 
-	alt_titles = list("Crew Resources Officer" = /datum/alt_title/cro, "Deputy Manager" = /datum/alt_title/deputy_manager, "Staff Manager" = /datum/alt_title/staff_manager)
+	alt_titles = list("Crew Resources Officer" = /datum/alt_title/cro, "Deputy Manager" = /datum/alt_title/deputy_manager, "Staff Manager" = /datum/alt_title/staff_manager
+						"Facility Steward" = /datum/alt_title/facility_steward)
 
 	access = list(access_security, access_sec_doors, access_brig, access_forensics_lockers,
 			            access_medical, access_engine, access_change_ids, access_ai_upload, access_eva, access_heads,
@@ -38,6 +39,9 @@
 
 /datum/alt_title/staff_manager
 	title = "Staff Manager"
+
+/datum/alt_title/facility_steward
+	title = "Facility Steward"
 
 
 /datum/job/secretary

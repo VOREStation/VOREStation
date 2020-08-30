@@ -12,13 +12,13 @@
 			            access_teleporter, access_external_airlocks, access_atmospherics, access_emergency_storage, access_eva,
 			            access_heads, access_construction,
 			            access_ce, access_RC_announce, access_keycard_auth, access_tcomsat, access_ai_upload)
-	alt_titles = list("Head Engineer" = /datum/alt_title/head_engineer, "Engineering Foreman" = /datum/alt_title/engineering_foreman, "Maintenance Manager" = /datum/alt_title/maintenance_manager)
+	alt_titles = list("Head Engineer" = /datum/alt_title/head_engineer, "Foreman" = /datum/alt_title/foreman, "Maintenance Manager" = /datum/alt_title/maintenance_manager)
 
 /datum/alt_title/head_engineer
 	title = "Head Engineer"
 
-/datum/alt_title/engineering_foreman
-	title = "Engineering Foreman"
+/datum/alt_title/foreman
+	title = "Foreman"
 
 /datum/alt_title/maintenance_manager
 	title = "Maintenance Manager"
