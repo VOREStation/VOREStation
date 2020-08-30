@@ -476,9 +476,9 @@
 /area/submap/debrisfield/mining_drone_ship)
 "R" = (
 /obj/structure/shuttle/engine/heater{
-	pixel_y = -16
+	pixel_y = 8
 	},
-/turf/simulated/wall/rthull,
+/turf/space,
 /area/submap/debrisfield/mining_drone_ship)
 "S" = (
 /obj/item/weapon/ore/gold,
@@ -557,7 +557,7 @@
 /area/submap/debrisfield/mining_drone_ship)
 "Z" = (
 /obj/structure/shuttle/engine/propulsion{
-	pixel_y = -16
+	pixel_y = 8
 	},
 /turf/space,
 /area/submap/debrisfield/mining_drone_ship)
@@ -566,6 +566,7 @@
 a
 a
 a
+b
 b
 b
 b
@@ -589,6 +590,7 @@ A
 A
 b
 b
+a
 "}
 (3,1,1) = {"
 a
@@ -603,6 +605,7 @@ B
 J
 S
 b
+a
 "}
 (4,1,1) = {"
 a
@@ -617,6 +620,7 @@ C
 K
 T
 b
+a
 "}
 (5,1,1) = {"
 a
@@ -631,6 +635,7 @@ D
 L
 U
 b
+a
 "}
 (6,1,1) = {"
 a
@@ -645,6 +650,7 @@ E
 M
 V
 b
+a
 "}
 (7,1,1) = {"
 a
@@ -659,6 +665,7 @@ F
 N
 W
 b
+a
 "}
 (8,1,1) = {"
 m
@@ -673,6 +680,7 @@ G
 O
 X
 b
+a
 "}
 (9,1,1) = {"
 m
@@ -687,6 +695,7 @@ H
 P
 Y
 b
+a
 "}
 (10,1,1) = {"
 m
@@ -701,6 +710,7 @@ I
 Q
 b
 b
+a
 "}
 (11,1,1) = {"
 a
@@ -710,6 +720,7 @@ b
 b
 b
 y
+b
 b
 b
 b

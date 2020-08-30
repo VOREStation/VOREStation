@@ -154,6 +154,11 @@
 	mappath = 'debris12.dmm'
 	cost = 2
 
+/datum/map_template/debrisfield/debris13
+	name = "Debris 13"
+	mappath = 'debris13.dmm'
+	cost = 2
+
 /datum/map_template/debrisfield/escape_pod
 	name = "Ancient Escape Pod"
 	mappath = 'escape_pod.dmm'
