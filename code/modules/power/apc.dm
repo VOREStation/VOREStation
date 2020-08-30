@@ -718,6 +718,9 @@ GLOBAL_LIST_EMPTY(apcs)
 	..()
 	togglelock(user)
 
+/obj/machinery/power/apc/get_cell()
+	return cell
+
 /obj/machinery/power/apc/emag_act(var/remaining_charges, var/mob/user)
 	if(!(emagged || hacker))		// trying to unlock with an emag card
 		if(opened)
