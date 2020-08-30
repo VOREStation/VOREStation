@@ -130,7 +130,7 @@ var/const/SAR 				=(1<<14)
 	minimal_access = list(access_medical, access_medical_equip, access_morgue, access_pilot)
 	outfit_type = /decl/hierarchy/outfit/job/medical/sar
 	job_description = "A Field medic works as the field doctor of expedition teams."
-	alt_titles = list("Expedition Doctor" = /datum/alt_title/expedition_doctor)
+	alt_titles = list("Expedition Medic" = /datum/alt_title/expedition_medic)
 
-/datum/alt_title/expedition_doctor
-	title = "Expedition Doctor"
+/datum/alt_title/expedition_medic
+	title = "Expedition Medic"

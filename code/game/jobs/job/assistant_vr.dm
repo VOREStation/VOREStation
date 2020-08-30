@@ -94,7 +94,7 @@
 	supervisors = "nobody! You don't work here"
 	job_description = "A Visitor is just there to visit the place. They have no real authority or responsibility."
 	timeoff_factor = 0
-	alt_titles = list("Guest" = /datum/alt_title/guest, "Traveler" = /datum/alt_title/traveler, "Drifter" = /datum/alt_title/drifter)
+	alt_titles = list("Guest" = /datum/alt_title/guest, "Traveler" = /datum/alt_title/traveler)
 
 /datum/job/assistant/New()
 	..()
@@ -110,6 +110,3 @@
 
 /datum/alt_title/traveler
 	title = "Traveler"
-
-/datum/alt_title/drifter
-	title = "Drifter"

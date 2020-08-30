@@ -1,9 +1,12 @@
 /datum/job/bartender
 	pto_type = PTO_CIVILIAN
-	alt_titles = list("Barkeeper" = /datum/alt_title/barkeeper, "Barista" = /datum/alt_title/barista, "Mixologist" = /datum/alt_title/mixologist)
+	alt_titles = list("Barkeeper" = /datum/alt_title/barkeeper, "Barmaid" = /datum/alt_title/barmaid, "Barista" = /datum/alt_title/barista, "Mixologist" = /datum/alt_title/mixologist)
 
 /datum/alt_title/barkeeper
 	title = "Barkeeper"
+
+/datum/alt_title/barmaid
+	title = "Barmaid"
 
 /datum/alt_title/mixologist
 	title = "Mixologist"
@@ -51,7 +54,8 @@
 	total_positions = 3
 	spawn_positions = 3
 	pto_type = PTO_CARGO
-	alt_titles = list("Supply Courier" = /datum/alt_title/supply_courier, "Cargo Loader" = /datum/alt_title/cargo_loader, "Disposals Sorter" = /datum/alt_title/disposal_sorter)
+	alt_titles = list("Cargo Loader" = /datum/alt_title/cargo_loader, "Cargo Handler" = /datum/alt_title/cargo_handler, "Supply Courier" = /datum/alt_title/supply_courier,
+					"Disposals Sorter" = /datum/alt_title/disposal_sorter)
 
 /datum/alt_title/supply_courier
 	title = "Supply Courier"
@@ -59,6 +63,10 @@
 
 /datum/alt_title/cargo_loader
 	title = "Cargo Loader"
+	title_blurb = "A Cargo Loader is usually tasked with more menial labor within Supply department, such as loading and unloading supply shuttle."
+
+/datum/alt_title/cargo_handler
+	title = "Cargo Handler"
 	title_blurb = "A Cargo Loader is usually tasked with more menial labor within Supply department, such as loading and unloading supply shuttle."
 
 /datum/alt_title/disposal_sorter

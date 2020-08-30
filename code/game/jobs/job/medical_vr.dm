@@ -64,10 +64,10 @@
 
 /datum/job/paramedic
 	pto_type = PTO_MEDICAL
-	alt_titles = list("Emergency Medical Technician" = /datum/alt_title/emt, "First Responder" = /datum/alt_title/first_responder)
+	alt_titles = list("Emergency Medical Technician" = /datum/alt_title/emt, "Medical Responder" = /datum/alt_title/medical_responder)
 
-/datum/alt_title/first_responder
-	title = "First Responder"
-	title_blurb = "A First Responder is primarily concerned with the recovery of patients who are unable to make it to the Medical Department on their \
+/datum/alt_title/medical_responder
+	title = "Medical Responder"
+	title_blurb = "A Medical Responder is primarily concerned with the recovery of patients who are unable to make it to the Medical Department on their \
 					own. They are capable of keeping a patient stabilized until they reach the hands of someone with more training."
 	title_outfit = /decl/hierarchy/outfit/job/medical/paramedic/emt
