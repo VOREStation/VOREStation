@@ -705,15 +705,7 @@
 
 	if(istype(user,/mob/living/carbon/human) && !opened)
 		var/mob/living/carbon/human/H = user
-<<<<<<< HEAD
-		//VOREStation Removal
-		//if(H.species.can_shred(H))
-		//	attack_generic(H, rand(30,50), "slashed")
-		//	return
-		//Adding borg petting.  Help intent pets, Disarm intent taps, Grab should remove the battery for replacement, and Harm is punching(no damage)
-=======
 		//Adding borg petting.  Help intent pets, Disarm intent taps and Harm is punching(no damage)
->>>>>>> 4cd8585... Makes borg cell replacement take priority over petting (#7579)
 		switch(H.a_intent)
 			if(I_HELP)
 				visible_message("<span class='notice'>[H] pets [src].</span>")
