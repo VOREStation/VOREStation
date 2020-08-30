@@ -86,10 +86,10 @@
 	icon_state = "spickaxe"
 
 /obj/random/underdark/item_to_spawn()
-	return pick(prob(3);/obj/random/multiple/underdark/miningdrills,
-				prob(3);/obj/random/multiple/underdark/ores,
-				prob(2);/obj/random/multiple/underdark/treasure,
-				prob(1);/obj/random/multiple/underdark/mechtool)
+	return pick(/obj/random/multiple/underdark/miningdrills,
+				/obj/random/multiple/underdark/ores,
+				prob(66);/obj/random/multiple/underdark/treasure,
+				prob(33);/obj/random/multiple/underdark/mechtool)
 
 /obj/random/underdark/uncertain
 	icon_state = "upickaxe"
@@ -103,13 +103,13 @@
 
 /obj/random/multiple/underdark/miningdrills/item_to_spawn()
 	return pick(
-				prob(10);list(/obj/item/weapon/pickaxe/silver),
-				prob(8);list(/obj/item/weapon/pickaxe/drill),
-				prob(6);list(/obj/item/weapon/pickaxe/jackhammer),
-				prob(5);list(/obj/item/weapon/pickaxe/gold),
-				prob(4);list(/obj/item/weapon/pickaxe/plasmacutter),
-				prob(2);list(/obj/item/weapon/pickaxe/diamond),
-				prob(1);list(/obj/item/weapon/pickaxe/diamonddrill)
+				list(/obj/item/weapon/pickaxe/silver),
+				prob(80);list(/obj/item/weapon/pickaxe/drill),
+				prob(60);list(/obj/item/weapon/pickaxe/jackhammer),
+				prob(50);list(/obj/item/weapon/pickaxe/gold),
+				prob(40);list(/obj/item/weapon/pickaxe/plasmacutter),
+				prob(20);list(/obj/item/weapon/pickaxe/diamond),
+				prob(10);list(/obj/item/weapon/pickaxe/diamonddrill)
 				)
 
 /obj/random/multiple/underdark/ores
@@ -120,7 +120,7 @@
 
 /obj/random/multiple/underdark/ores/item_to_spawn()
 	return pick(
-				prob(9);list(
+				prob(90);list(
 							/obj/item/weapon/storage/bag/ore,
 							/obj/item/weapon/shovel,
 							/obj/item/weapon/ore/glass,
@@ -140,7 +140,7 @@
 							/obj/item/weapon/ore/hydrogen,
 							/obj/item/weapon/ore/hydrogen
 							),
-				prob(7);list(
+				prob(70);list(
 							/obj/item/weapon/storage/bag/ore,
 							/obj/item/weapon/pickaxe,
 							/obj/item/weapon/ore/osmium,
@@ -154,7 +154,7 @@
 							/obj/item/weapon/ore/osmium,
 							/obj/item/weapon/ore/osmium
 							),
-				prob(4);list(
+				prob(40);list(
 							/obj/item/clothing/suit/radiation,
 							/obj/item/clothing/head/radiation,
 							/obj/item/weapon/ore/uranium,
@@ -177,7 +177,7 @@
 							/obj/item/weapon/ore/uranium,
 							/obj/item/weapon/ore/uranium,
 							/obj/item/weapon/ore/uranium),
-				prob(2);list(
+				prob(20);list(
 							/obj/item/device/flashlight/lantern,
 							/obj/item/clothing/glasses/material,
 							/obj/item/weapon/ore/diamond,
@@ -191,7 +191,7 @@
 							/obj/item/weapon/ore/diamond,
 							/obj/item/weapon/ore/diamond
 							),
-				prob(1);list(
+				prob(10);list(
 							/obj/item/weapon/mining_scanner,
 							/obj/item/weapon/shovel/spade,
 							/obj/item/weapon/ore/verdantium,
@@ -210,7 +210,7 @@
 
 /obj/random/multiple/underdark/treasure/item_to_spawn()
 	return pick(
-				prob(5);list(
+				list(
 							/obj/random/coin,
 							/obj/random/coin,
 							/obj/random/coin,
@@ -218,13 +218,13 @@
 							/obj/random/coin,
 							/obj/item/clothing/head/pirate
 							),
-				prob(4);list(
+				prob(80);list(
 							/obj/item/weapon/storage/bag/cash,
 							/obj/item/weapon/spacecash/c500,
 							/obj/item/weapon/spacecash/c100,
 							/obj/item/weapon/spacecash/c50
 							),
-				prob(3);list(
+				prob(60);list(
 							/obj/item/clothing/head/hardhat/orange,
 							/obj/item/stack/material/gold,
 							/obj/item/stack/material/gold,
@@ -236,7 +236,7 @@
 							/obj/item/stack/material/gold,
 							/obj/item/stack/material/gold,
 							/obj/item/stack/material/gold),
-				prob(1);list(
+				prob(20);list(
 							/obj/item/stack/material/phoron,
 							/obj/item/stack/material/phoron,
 							/obj/item/stack/material/phoron,
@@ -255,15 +255,15 @@
 
 /obj/random/multiple/underdark/mechtool/item_to_spawn()
 	return pick(
-				prob(12);list(/obj/item/mecha_parts/mecha_equipment/tool/drill),
-				prob(10);list(/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp),
-				prob(8);list(/obj/item/mecha_parts/mecha_equipment/generator),
-				prob(7);list(/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/scattershot/rigged),
-				prob(6);list(/obj/item/mecha_parts/mecha_equipment/repair_droid),
-				prob(3);list(/obj/item/mecha_parts/mecha_equipment/gravcatapult),
-				prob(2);list(/obj/item/mecha_parts/mecha_equipment/weapon/energy/riggedlaser),
-				prob(2);list(/obj/item/mecha_parts/mecha_equipment/weapon/energy/flamer/rigged),
-				prob(1);list(/obj/item/mecha_parts/mecha_equipment/tool/drill/diamonddrill),
+				list(/obj/item/mecha_parts/mecha_equipment/tool/drill),
+				prob(90);list(/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp),
+				prob(80);list(/obj/item/mecha_parts/mecha_equipment/generator),
+				prob(70);list(/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/scattershot/rigged),
+				prob(60);list(/obj/item/mecha_parts/mecha_equipment/repair_droid),
+				prob(30);list(/obj/item/mecha_parts/mecha_equipment/gravcatapult),
+				prob(20);list(/obj/item/mecha_parts/mecha_equipment/weapon/energy/riggedlaser),
+				prob(20);list(/obj/item/mecha_parts/mecha_equipment/weapon/energy/flamer/rigged),
+				prob(10);list(/obj/item/mecha_parts/mecha_equipment/tool/drill/diamonddrill),
 				)
 
 //POI STUFF
