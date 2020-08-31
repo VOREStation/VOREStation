@@ -2,6 +2,7 @@
 #if MAP_TEST
 #include "mackerel_sh.dmm"
 #include "mackerel_lc.dmm"
+#include "mackerel_lc_wreck.dmm"
 #include "mackerel_hc.dmm"
 #endif
 
@@ -24,6 +25,12 @@
 	mappath = 'mackerel_hc.dmm'
 	annihilate = TRUE
 
+/datum/map_template/om_ships/mackerel_lightcargo_wreck
+	name = "OM Ship - Mackerel Light Cargo Wreck (new Z)"
+	desc = "A small light cargo transport shuttle, struck by... something. Ouch."
+	mappath = 'mackerel_lc_wreck.dmm'
+	annihilate = TRUE
+
 // The shuttle's area(s)
 /area/shuttle/mackerel_sh	
 	name = "\improper Mackerel Stationhopper"
@@ -40,6 +47,12 @@
 /area/shuttle/mackerel_hc	
 	name = "\improper Mackerel Heavy Cargo"
 	icon_state = "shuttle3"
+	requires_power = 1
+	has_gravity = 0
+	
+/area/shuttle/mackerel_lc_wreck	
+	name = "\improper Wrecked Mackerel Light Cargo"
+	icon_state = "shuttle2"
 	requires_power = 1
 	has_gravity = 0
 
@@ -84,6 +97,14 @@
 	defer_initialisation = TRUE //We're not loaded until an admin does it
 	fuel_consumption = 1.25
 
+/datum/shuttle/autodock/overmap/mackerel_lc_wreck
+	name = "Mackerel Light Cargo II"
+	current_location = "omship_spawn_mackerel_lc_wreck"
+	docking_controller_tag = "mack_lc_docking_wreck"
+	shuttle_area = list(/area/shuttle/mackerel_lc_wreck)
+	defer_initialisation = TRUE //We're not loaded until an admin does it
+	fuel_consumption = 1
+
 // A shuttle lateloader landmark
 /obj/effect/shuttle_landmark/shuttle_initializer/mackerel_sh
 	name = "ITV Mackerel I"
@@ -105,6 +126,13 @@
 	base_turf = /turf/space
 	landmark_tag = "omship_spawn_mackerel_hc"
 	shuttle_type = /datum/shuttle/autodock/overmap/mackerel_hc
+
+/obj/effect/shuttle_landmark/shuttle_initializer/mackerel_lc_wrech
+	name = "ITV Mackerel IV"
+	base_area = /area/space
+	base_turf = /turf/space
+	landmark_tag = "omship_spawn_mackerel_lc_wreck"
+	shuttle_type = /datum/shuttle/autodock/overmap/mackerel_lc_wreck
 
 // The 'ship'
 /obj/effect/overmap/visitable/ship/landable/mackerel_sh
@@ -139,3 +167,14 @@
 	vessel_mass = 1500
 	vessel_size = SHIP_SIZE_TINY
 	shuttle = "Mackerel Heavy Cargo"
+
+/obj/effect/overmap/visitable/ship/landable/mackerel_lc_wreck
+	scanner_name = "Wrecked Mackerel-class Transport"
+	scanner_desc = @{"[i]Registration[/i]: ITV Phish Phood
+[i]Class[/i]: Small Shuttle Wreck
+[i]Transponder[/i]: Not Transmitting
+[b]Notice[/b]: Critical Damage Sustained"}
+	color = "#0099FF"
+	vessel_mass = 1000
+	vessel_size = SHIP_SIZE_TINY
+	shuttle = "Mackerel Light Cargo II"

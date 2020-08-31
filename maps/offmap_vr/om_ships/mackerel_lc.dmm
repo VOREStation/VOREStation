@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aq" = (
-/obj/machinery/light/small/flicker{
+/obj/machinery/light/small{
 	dir = 8
 	},
 /turf/simulated/floor/plating,
@@ -117,7 +117,7 @@
 /obj/structure/handrail{
 	dir = 4
 	},
-/obj/machinery/light/small/flicker{
+/obj/machinery/light/small{
 	dir = 1
 	},
 /turf/simulated/floor/plating,
@@ -127,7 +127,7 @@
 /area/shuttle/mackerel_lc)
 "kU" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
-/obj/machinery/light/small/flicker{
+/obj/machinery/light/small{
 	dir = 8
 	},
 /turf/simulated/floor/plating,
@@ -211,7 +211,7 @@
 /obj/structure/handrail{
 	dir = 8
 	},
-/obj/machinery/light/small/flicker{
+/obj/machinery/light/small{
 	dir = 1
 	},
 /turf/simulated/floor/plating,
@@ -259,7 +259,7 @@
 /area/shuttle/mackerel_lc)
 "rQ" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
-/obj/machinery/light/small/flicker{
+/obj/machinery/light/small{
 	dir = 4
 	},
 /turf/simulated/floor/plating,
@@ -439,7 +439,7 @@
 /area/shuttle/mackerel_lc)
 "Dc" = (
 /obj/structure/handrail,
-/obj/machinery/light/small/flicker{
+/obj/machinery/light/small{
 	dir = 4
 	},
 /turf/simulated/floor/airless,
@@ -610,7 +610,7 @@
 /obj/machinery/power/terminal{
 	dir = 1
 	},
-/obj/machinery/light/small/flicker{
+/obj/machinery/light/small{
 	dir = 8
 	},
 /turf/simulated/floor/plating,
@@ -657,7 +657,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc)
 "RB" = (
-/obj/machinery/light/small/flicker{
+/obj/machinery/light/small{
 	dir = 4
 	},
 /turf/simulated/floor/plating,
@@ -801,7 +801,7 @@
 /area/shuttle/mackerel_lc)
 "Zb" = (
 /obj/structure/handrail,
-/obj/machinery/light/small/flicker{
+/obj/machinery/light/small{
 	dir = 8
 	},
 /turf/simulated/floor/airless,
