@@ -183,31 +183,32 @@
 // VOREstation Edit End.
 #undef HUMAN_LOWEST_SLOWDOWN
 
+/mob/living/carbon/human/get_jetpack()
+	if(back)
+		var/obj/item/weapon/rig/rig = get_rig()
+		if(istype(back, /obj/item/weapon/tank/jetpack))
+			return back
+		else if(istype(rig))
+			for(var/obj/item/rig_module/maneuvering_jets.module in rig.installed_modules)
+				return module.jets
+
 /mob/living/carbon/human/Process_Spacemove(var/check_drift = 0)
 	//Can we act?
 	if(restrained())	return 0
 
+	if(..()) //Can move due to other reasons, don't use jetpack fuel
+		return 1
+
 	//Do we have a working jetpack?
-	var/obj/item/weapon/tank/jetpack/thrust
-	if(back)
-		if(istype(back,/obj/item/weapon/tank/jetpack))
-			thrust = back
-		else if(istype(get_rig(),/obj/item/weapon/rig))
-			var/obj/item/weapon/rig/rig = get_rig()
-			for(var/obj/item/rig_module/maneuvering_jets/module in rig.installed_modules)
-				thrust = module.jets
-				break
+	var/obj/item/weapon/tank/jetpack/thrust = get_jetpack()
 
 	if(thrust)
-		if(((!check_drift) || (check_drift && thrust.stabilization_on)) && (!lying) && (thrust.allow_thrust(0.01, src)))
+		if(((!check_drift) || (check_drift && thrust.stabilization_on)) && (!lying) && (thrust.do_thrust(0.01, src)))
 			inertia_dir = 0
 			return 1
 	if(flying) //VOREStation Edit. If you're flying, you glide around!
 		return 0  //VOREStation Edit.
 
-	//If no working jetpack then use the other checks
-	if(..())
-		return 1
 	return 0
 
 
@@ -215,7 +216,11 @@
 	//If knocked out we might just hit it and stop.  This makes it possible to get dead bodies and such.
 
 	if(species.flags & NO_SLIP)
-		return
+		return 0
+
+	var/obj/item/weapon/tank/jetpack/thrust = get_jetpack()
+	if(thrust?.can_thrust(0.01))
+		return 0
 
 	if(stat)
 		prob_slip = 0 // Changing this to zero to make it line up with the comment, and also, make more sense.
