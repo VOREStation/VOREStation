@@ -78,14 +78,17 @@
 	selection_color = "#515151"
 	economic_modifier = 1
 	job_description = "A Clown is there to entertain the crew and keep high morale using various harmless pranks and ridiculous jokes!"
-	alt_titles = list("Jester" = /datum/alt_title/jester)
 	whitelist_only = 1
 	latejoin_only = 1
 	outfit_type = /decl/hierarchy/outfit/job/clown
 	pto_type = PTO_CIVILIAN
+	alt_titles = list("Jester" = /datum/alt_title/jester, "Fool" = /datum/alt_title/fool)
 
 /datum/alt_title/jester
 	title = "Jester"
+
+/datum/alt_title/fool
+	title = "Fool"
 
 /datum/job/clown/get_access()
 	if(config.assistant_maint)

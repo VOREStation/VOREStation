@@ -29,7 +29,8 @@
 /datum/job/hydro
 	spawn_positions = 2
 	pto_type = PTO_CIVILIAN
-	alt_titles = list("Gardener" = /datum/alt_title/gardener, "Hydroponicist" = /datum/alt_title/hydroponicist, "Cultivator" = /datum/alt_title/cultivator, "Farmer" = /datum/alt_title/farmer)
+	alt_titles = list("Hydroponicist" = /datum/alt_title/hydroponicist, "Cultivator" = /datum/alt_title/cultivator, "Farmer" = /datum/alt_title/farmer,
+						"Gardener" = /datum/alt_title/gardener, "Florist" = /datum/alt_title/florsit)
 
 /datum/alt_title/hydroponicist
 	title = "Hydroponicist"
@@ -39,6 +40,10 @@
 
 /datum/alt_title/farmer
 	title = "Farmer"
+
+/datum/alt_title/florsit
+	title = "Florist"
+	title_blurb = "A Florist may be less professional than their counterparts, and are more likely to tend to the public gardens if they aren't needed elsewhere."
 
 
 /datum/job/qm
@@ -193,7 +198,7 @@
 	job_description = "An entertainer does just that, entertains! Put on plays, play music, sing songs, tell stories, or read your favorite fanfic."
 	alt_titles = list("Performer" = /datum/alt_title/performer, "Musician" = /datum/alt_title/musician, "Stagehand" = /datum/alt_title/stagehand,
 						"Actor" = /datum/alt_title/actor, "Dancer" = /datum/alt_title/dancer, "Singer" = /datum/alt_title/singer,
-						"Comedian" = /datum/alt_title/comedian)
+						"Comedian" = /datum/alt_title/comedian, "Tragedian" = /datum/alt_title/tragedian)
 
 // Entertainer Alt Titles
 /datum/alt_title/actor
@@ -223,3 +228,7 @@
 /datum/alt_title/comedian
 	title = "Comedian"
 	title_blurb = "A Comedian will focus on making people laugh with the power of wit! Telling jokes, stand-up comedy, you are here to make others smile!"
+
+/datum/alt_title/tragedian
+	title = "Tragedian"
+	title_blurb = "A Tragedian will focus on making people think about life and world around them! Life is a tragedy, and who's better to convey its emotions than you?"
