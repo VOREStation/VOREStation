@@ -1864,11 +1864,8 @@
 #include "code\modules\clothing\masks\breath.dm"
 #include "code\modules\clothing\masks\breath_vr.dm"
 #include "code\modules\clothing\masks\gasmask.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\modules\clothing\masks\gasmask_vr.dm"
-=======
 #include "code\modules\clothing\masks\hailer.dm"
->>>>>>> cc3591c... Merge pull request #7552 from SplinterGP/master:polaris.dme
 #include "code\modules\clothing\masks\miscellaneous.dm"
 #include "code\modules\clothing\masks\voice.dm"
 #include "code\modules\clothing\rings\material.dm"
