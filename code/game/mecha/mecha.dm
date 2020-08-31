@@ -1891,7 +1891,7 @@
 		update_cell_alerts()
 		update_damage_alerts()
 		set_dir(dir_in)
-		playsound(src, 'sound/machines/windowdoor.ogg', 50, 1)
+		playsound(src, 'sound/machines/door/windowdoor.ogg', 50, 1)
 		if(occupant.client && cloaked_selfimage)
 			occupant.client.images += cloaked_selfimage
 		play_entered_noise(occupant)

@@ -42,6 +42,9 @@
 	data["busy_msg"] = busy_msg
 	data["search"] = search
 
+	data["builder_page"] = builder_page
+	data["design_page"] = design_page
+
 	data["info"] = null
 	if(!locked && !busy_msg)
 		data["info"] = list(

@@ -18,7 +18,7 @@ const canBeMade = (recipe, materials) => {
   for (let mat_id of recipeRequiredMaterials) {
     let material = materials.find(val => val.name === mat_id);
     if (!material) {
-      return false;
+      continue; // yes, if we cannot find the material, we just ignore it :V
     }
     if (material.amount < recipe.requirements[mat_id]) {
       return false;

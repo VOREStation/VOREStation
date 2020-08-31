@@ -379,7 +379,6 @@
 	pixel_y = 0
 	},
 /obj/structure/table/standard,
-/obj/item/weapon/paper/talon_shields,
 /obj/structure/closet/hydrant{
 	pixel_x = 0;
 	pixel_y = 32;
@@ -667,6 +666,20 @@
 	},
 /turf/simulated/floor/wood,
 /area/talon/decktwo/sec_room)
+"bA" = (
+/obj/machinery/power/apc/talon{
+	cell_type = /obj/item/weapon/cell/apc;
+	dir = 8;
+	name = "west bump";
+	pixel_x = -28
+	},
+/obj/structure/cable/green{
+	icon_state = "0-4"
+	},
+/obj/structure/table/standard,
+/obj/item/weapon/paper/talon_shields,
+/turf/simulated/floor/tiled/eris/dark/violetcorener,
+/area/talon/decktwo/tech)
 "bB" = (
 /obj/machinery/alarm/talon{
 	dir = 4;
@@ -2253,19 +2266,6 @@
 "pi" = (
 /turf/simulated/floor/hull/airless,
 /area/talon/maintenance/decktwo_solars)
-"pp" = (
-/obj/machinery/power/apc/talon{
-	cell_type = /obj/item/weapon/cell/apc;
-	dir = 8;
-	name = "west bump";
-	pixel_x = -28
-	},
-/obj/structure/cable/green{
-	icon_state = "0-4"
-	},
-/obj/structure/table/standard,
-/turf/simulated/floor/tiled/eris/dark/violetcorener,
-/area/talon/decktwo/tech)
 "pt" = (
 /obj/effect/map_helper/airlock/door/ext_door,
 /obj/machinery/door/airlock/glass_external{
@@ -14326,7 +14326,7 @@ NT
 bF
 ds
 aZ
-pp
+bA
 Db
 iV
 ds
