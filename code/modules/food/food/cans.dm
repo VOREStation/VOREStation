@@ -66,7 +66,7 @@
 	name = "\improper Diet Dr. Gibb"
 	desc = "A delicious mixture of 42 different flavors, one of which is water."
 	description_fluff = "Following a 2490 lawsuit and a spate of deaths, Gilthari Exports reminds customers that the 'Dr.' legally stands for 'Drink'."
-	icon_state = "diet_dr_gibb"
+	icon_state = "dr_gibb_diet"
 	center_of_mass = list("x"=16, "y"=8)
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/dr_gibb_diet/Initialize()
