@@ -551,11 +551,7 @@ ENABLE_NIGHT_SHIFTS
 # Uncomment to allow links of the following kinds. #
 # ALLOW_BYOND_LINKS
 # ALLOW_DISCORD_LINKS
-<<<<<<< HEAD
-ALLOW_URL_LINKS
-=======
 ALLOW_URL_LINKS
 
 # Control which submaps are loaded for the Dynamic Engine system
 ENGINE_MAP Supermatter Engine,Edison's Bane
->>>>>>> 04ce5a1... Merge pull request #7588 from zekesulastin/patch-1
