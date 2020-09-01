@@ -36,6 +36,7 @@ const ResearchConsoleViewResearch = (props, context) => {
   );
 };
 
+<<<<<<< HEAD
 const PaginationTitle = (props, context) => {
   const { data } = useBackend(context);
 
@@ -52,10 +53,16 @@ const PaginationTitle = (props, context) => {
   return title;
 };
 
+=======
+>>>>>>> 3ce4862... Merge pull request #7594 from ShadowLarkens/tgui_more
 const PaginationChevrons = (props, context) => {
   const { act } = useBackend(context);
 
   const {
+<<<<<<< HEAD
+=======
+    length,
+>>>>>>> 3ce4862... Merge pull request #7594 from ShadowLarkens/tgui_more
     target,
   } = props;
 
@@ -82,14 +89,22 @@ const ResearchConsoleViewDesigns = (props, context) => {
   } = data;
 
   return (
+<<<<<<< HEAD
     <Section title={<PaginationTitle title="Researched Technologies & Designs" target="design_page" />} buttons={
+=======
+    <Section title="Researched Technologies & Designs" buttons={
+>>>>>>> 3ce4862... Merge pull request #7594 from ShadowLarkens/tgui_more
       <Fragment>
         <Button
           icon="print"
           onClick={() => act("print", { print: 2 })}>
           Print This Page
         </Button>
+<<<<<<< HEAD
         {<PaginationChevrons target={"design_page"} /> || null}
+=======
+        {<PaginationChevrons length={designs && designs.length} target={"design_page"} /> || null}
+>>>>>>> 3ce4862... Merge pull request #7594 from ShadowLarkens/tgui_more
       </Fragment>
     }>
       <Input
@@ -228,6 +243,7 @@ const DataDisk = (props, context) => {
 
   if (saveDialog) {
     return (
+<<<<<<< HEAD
       <Section 
         title={<PaginationTitle title="Load Design to Disk" target="design_page" />}
         buttons={
@@ -239,6 +255,17 @@ const DataDisk = (props, context) => {
             {<PaginationChevrons target={"design_page"} /> || null}
           </Fragment>
         }>
+=======
+      <Section title="Load Design to Disk" buttons={
+        <Fragment>
+          <Button
+            icon="arrow-left"
+            content="Back"
+            onClick={() => setSaveDialog(false)} />
+          {<PaginationChevrons length={designs && designs.length} target={"design_page"} /> || null}
+        </Fragment>
+      }>
+>>>>>>> 3ce4862... Merge pull request #7594 from ShadowLarkens/tgui_more
         <Input
           fluid
           placeholder="Search for..."
@@ -428,11 +455,17 @@ const ResearchConsoleBuildMenu = (props, context) => {
   }
 
   return (
+<<<<<<< HEAD
     <Section
       title={<PaginationTitle target="builder_page" title="Designs" />}
       buttons={
         <PaginationChevrons target={"builder_page"} />
       }>
+=======
+    <Section title="Designs" buttons={
+      <PaginationChevrons length={designs && designs.length} target={"builder_page"} />
+    }>
+>>>>>>> 3ce4862... Merge pull request #7594 from ShadowLarkens/tgui_more
       <Input
         fluid
         placeholder="Search for..."
@@ -502,7 +535,11 @@ const ResearchConsoleConstructor = (props, context) => {
   if (!linked || !linked.present) {
     return (
       <Section title={name}>
+<<<<<<< HEAD
         No {name} found.
+=======
+        No protolathe found.
+>>>>>>> 3ce4862... Merge pull request #7594 from ShadowLarkens/tgui_more
       </Section>
     );
   }
