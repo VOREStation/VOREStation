@@ -498,7 +498,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 				to_chat(usr, "<span class='notice'>Vending object due to admin interaction.</span>")
 				paid = TRUE*/
 			else
-				to_chat(usr, "<span class='warning'>Payment failure: you have no ID or other method of payment.")
+				to_chat(usr, "<span class='warning'>Payment failure: you have no ID or other method of payment.</span>")
 				vend_ready = TRUE
 				flick("[icon_state]-deny",src)
 				return TRUE // we set this because they shouldn't even be able to get this far, and we want the UI to update.
@@ -506,7 +506,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 				vend(currently_vending, usr) // vend will handle vend_ready
 				. = TRUE
 			else
-				to_chat(usr, "<span class='warning'>Payment failure: unable to process payment.")
+				to_chat(usr, "<span class='warning'>Payment failure: unable to process payment.</span>")
 				vend_ready = TRUE
 
 		if("togglevoice")
