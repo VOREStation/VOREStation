@@ -69,7 +69,14 @@ somewhere on that shuttle. Subtypes of these can be then used to perform ship ov
 	if(linked)
 		apply_visual(user)
 		user.reset_view(linked)
+<<<<<<< HEAD
 	user.set_machine(src)
+=======
+	if(isliving(user))
+		var/mob/living/L = user
+		L.looking_elsewhere = 1
+		L.handle_vision()
+>>>>>>> dbc006f... Stops meson/etc use with overmap consoles (#7591)
 	user.set_viewsize(world.view + extra_view)
 	GLOB.moved_event.register(user, src, /obj/machinery/computer/ship/proc/unlook)
 	// TODO GLOB.stat_set_event.register(user, src, /obj/machinery/computer/ship/proc/unlook)
@@ -77,6 +84,10 @@ somewhere on that shuttle. Subtypes of these can be then used to perform ship ov
 
 /obj/machinery/computer/ship/proc/unlook(var/mob/user)
 	user.reset_view()
+	if(isliving(user))
+		var/mob/living/L = user
+		L.looking_elsewhere = 0
+		L.handle_vision()
 	user.set_viewsize() // reset to default
 	GLOB.moved_event.unregister(user, src, /obj/machinery/computer/ship/proc/unlook)
 	// TODO GLOB.stat_set_event.unregister(user, src, /obj/machinery/computer/ship/proc/unlook)
