@@ -155,6 +155,7 @@
 #include "code\_onclick\hud\action.dm"
 #include "code\_onclick\hud\ai.dm"
 #include "code\_onclick\hud\alert.dm"
+#include "code\_onclick\hud\alert_vr.dm"
 #include "code\_onclick\hud\alien_larva.dm"
 #include "code\_onclick\hud\fullscreen.dm"
 #include "code\_onclick\hud\ghost.dm"
