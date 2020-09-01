@@ -1,18 +1,18 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
+"aa" = (
 /turf/template_noop,
 /area/space)
-"b" = (
+"ab" = (
 /turf/simulated/wall/rthull,
 /area/submap/debrisfield/mining_drone_ship)
-"c" = (
+"ac" = (
 /obj/structure/window/plastitanium/full,
 /obj/structure/window/plastitanium{
 	dir = 1
 	},
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"d" = (
+"ad" = (
 /obj/machinery/power/emitter/gyrotron/anchored{
 	active = 1;
 	desc = "A heavy beam emitter modified for use in breaking apart ore-rich asteroids.";
@@ -29,10 +29,10 @@
 	},
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"e" = (
+"ae" = (
 /turf/simulated/mineral/vacuum,
 /area/submap/debrisfield/mining_drone_ship)
-"f" = (
+"af" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 2;
@@ -40,11 +40,11 @@
 	},
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"g" = (
+"ag" = (
 /obj/structure/girder/reinforced,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"h" = (
+"ah" = (
 /obj/structure/prop{
 	desc = "An array of conventional power storage units, for when the added charge longivity and cost of a SMES unit is unneded or impractical.";
 	icon = 'icons/obj/power.dmi';
@@ -57,7 +57,7 @@
 	},
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"i" = (
+"ai" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 8;
@@ -70,7 +70,7 @@
 	},
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"j" = (
+"aj" = (
 /obj/machinery/door/blast/regular/open{
 	dir = 4;
 	id = "drone_toggle"
@@ -80,7 +80,7 @@
 	},
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"k" = (
+"ak" = (
 /obj/structure/prop{
 	desc = "There are a number of what seem to be error messages on these screens, none intelligible.";
 	icon = 'icons/obj/mainframe.dmi';
@@ -89,7 +89,7 @@
 	},
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"l" = (
+"al" = (
 /obj/structure/prop{
 	desc = "This isn't going to be fixable.";
 	icon = 'icons/obj/mainframe.dmi';
@@ -99,19 +99,19 @@
 /obj/effect/map_effect/interval/effect_emitter/sparks,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"m" = (
+"am" = (
 /turf/simulated/mineral/vacuum,
 /area/space)
-"n" = (
+"an" = (
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"o" = (
+"ao" = (
 /obj/machinery/conveyor{
 	operating = 1
 	},
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"p" = (
+"ap" = (
 /obj/structure/cable/yellow{
 	d2 = 2;
 	icon_state = "0-2"
@@ -121,11 +121,11 @@
 	},
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"q" = (
+"aq" = (
 /mob/living/simple_mob/mechanical/hivebot/swarm,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"r" = (
+"ar" = (
 /obj/machinery/power/rtg/fake_gen{
 	desc = "An array of conventional power storage units, for when the added charge longivity and cost of a SMES unit is unneded or impractical.";
 	icon = 'icons/obj/power.dmi';
@@ -139,7 +139,7 @@
 	},
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"s" = (
+"as" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 8;
@@ -152,7 +152,7 @@
 	},
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"t" = (
+"at" = (
 /obj/structure/cable/yellow{
 	d1 = 4;
 	d2 = 8;
@@ -160,7 +160,7 @@
 	},
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"u" = (
+"au" = (
 /obj/machinery/door/blast/regular{
 	id = "miner_poi_toggle"
 	},
@@ -172,7 +172,7 @@
 	},
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"v" = (
+"av" = (
 /obj/machinery/conveyor{
 	operating = 1
 	},
@@ -185,7 +185,7 @@
 	},
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"w" = (
+"aw" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 8;
@@ -193,7 +193,7 @@
 	},
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"x" = (
+"ax" = (
 /obj/machinery/button/remote/blast_door{
 	id = "miner_poi_toggle";
 	name = "Power Compartment Access";
@@ -201,11 +201,11 @@
 	},
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"y" = (
+"ay" = (
 /obj/machinery/door/airlock/maintenance_hatch,
 /turf/simulated/wall/rthull,
 /area/submap/debrisfield/mining_drone_ship)
-"z" = (
+"az" = (
 /obj/machinery/door/blast/regular/open{
 	dir = 4;
 	id = "miner_poi_toggle"
@@ -215,19 +215,19 @@
 	},
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"A" = (
+"aA" = (
 /obj/item/weapon/ore/gold,
 /obj/item/weapon/ore/gold,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"B" = (
+"aB" = (
 /obj/item/weapon/ore,
 /obj/item/weapon/ore/gold,
 /obj/item/weapon/ore/iron,
 /obj/item/weapon/ore,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"C" = (
+"aC" = (
 /obj/item/weapon/ore/diamond,
 /obj/item/weapon/ore/gold,
 /obj/item/weapon/ore/iron,
@@ -236,7 +236,7 @@
 /obj/machinery/artifact,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"D" = (
+"aD" = (
 /obj/item/weapon/ore/diamond,
 /obj/item/weapon/ore/diamond,
 /obj/item/weapon/ore/silver,
@@ -244,7 +244,7 @@
 /obj/item/weapon/ore/phoron,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"E" = (
+"aE" = (
 /obj/item/weapon/ore/diamond,
 /obj/item/weapon/ore/diamond,
 /obj/item/weapon/ore/iron,
@@ -254,7 +254,7 @@
 /obj/item/weapon/ore/iron,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"F" = (
+"aF" = (
 /obj/item/weapon/ore/diamond,
 /obj/item/weapon/ore/diamond,
 /obj/item/weapon/ore/gold,
@@ -266,7 +266,7 @@
 /obj/item/weapon/ore/phoron,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"G" = (
+"aG" = (
 /obj/item/weapon/ore/diamond,
 /obj/item/weapon/ore/diamond,
 /obj/item/weapon/ore/gold,
@@ -282,7 +282,7 @@
 /obj/item/weapon/ore/gold,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"H" = (
+"aH" = (
 /obj/item/weapon/ore/diamond,
 /obj/item/weapon/ore/gold,
 /obj/item/weapon/ore/silver,
@@ -292,13 +292,13 @@
 /obj/item/weapon/ore/phoron,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"I" = (
+"aI" = (
 /obj/item/weapon/ore/diamond,
 /obj/item/weapon/ore/iron,
 /mob/living/simple_mob/mechanical/hivebot/support/commander,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"J" = (
+"aJ" = (
 /obj/item/weapon/ore/diamond,
 /obj/item/weapon/ore/diamond,
 /obj/item/weapon/ore/gold,
@@ -311,7 +311,7 @@
 /obj/item/weapon/ore/phoron,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"K" = (
+"aK" = (
 /obj/item/weapon/ore/diamond,
 /obj/item/weapon/ore/diamond,
 /obj/item/weapon/ore/diamond,
@@ -335,7 +335,7 @@
 /obj/item/weapon/ore/phoron,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"L" = (
+"aL" = (
 /obj/item/weapon/ore/diamond,
 /obj/item/weapon/ore/diamond,
 /obj/item/weapon/ore/diamond,
@@ -359,7 +359,7 @@
 /obj/item/weapon/ore/phoron,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"M" = (
+"aM" = (
 /obj/item/weapon/ore,
 /obj/item/weapon/ore/diamond,
 /obj/item/weapon/ore/diamond,
@@ -388,7 +388,7 @@
 /obj/item/weapon/ore,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"N" = (
+"aN" = (
 /obj/item/weapon/ore/diamond,
 /obj/item/weapon/ore/diamond,
 /obj/item/weapon/ore/diamond,
@@ -413,7 +413,7 @@
 /obj/item/weapon/ore/phoron,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"O" = (
+"aO" = (
 /obj/item/weapon/ore,
 /obj/item/weapon/ore/diamond,
 /obj/item/weapon/ore/diamond,
@@ -440,7 +440,7 @@
 /obj/item/weapon/ore/phoron,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"P" = (
+"aP" = (
 /obj/item/weapon/ore/diamond,
 /obj/item/weapon/ore/diamond,
 /obj/item/weapon/ore/diamond,
@@ -458,7 +458,7 @@
 /obj/item/weapon/ore,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"Q" = (
+"aQ" = (
 /obj/item/weapon/ore/gold,
 /obj/item/weapon/ore/iron,
 /obj/structure/mob_spawner{
@@ -474,17 +474,17 @@
 	},
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"R" = (
+"aR" = (
 /obj/structure/shuttle/engine/heater{
 	pixel_y = 8
 	},
 /turf/space,
 /area/submap/debrisfield/mining_drone_ship)
-"S" = (
+"aS" = (
 /obj/item/weapon/ore/gold,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"T" = (
+"aT" = (
 /obj/item/weapon/ore,
 /obj/item/weapon/ore/diamond,
 /obj/item/weapon/ore/diamond,
@@ -498,7 +498,7 @@
 /obj/item/weapon/ore/iron,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"U" = (
+"aU" = (
 /obj/item/weapon/ore/diamond,
 /obj/item/weapon/ore/diamond,
 /obj/item/weapon/ore/diamond,
@@ -512,7 +512,7 @@
 /obj/item/weapon/ore,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"V" = (
+"aV" = (
 /obj/item/weapon/ore/diamond,
 /obj/item/weapon/ore/gold,
 /obj/item/weapon/ore/gold,
@@ -524,9 +524,10 @@
 /obj/item/weapon/ore/diamond,
 /obj/item/weapon/ore/phoron,
 /obj/item/weapon/ore/phoron,
+/obj/machinery/light/poi,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"W" = (
+"aW" = (
 /obj/item/weapon/ore,
 /obj/item/weapon/ore/diamond,
 /obj/item/weapon/ore/diamond,
@@ -541,7 +542,7 @@
 /obj/item/weapon/ore/phoron,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"X" = (
+"aX" = (
 /obj/item/weapon/ore/diamond,
 /obj/item/weapon/ore/diamond,
 /obj/item/weapon/ore/diamond,
@@ -550,180 +551,202 @@
 /obj/item/weapon/ore/iron,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"Y" = (
+"aY" = (
 /obj/item/weapon/ore/diamond,
 /obj/item/weapon/ore/iron,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
-"Z" = (
+"aZ" = (
 /obj/structure/shuttle/engine/propulsion{
 	pixel_y = 8
 	},
 /turf/space,
 /area/submap/debrisfield/mining_drone_ship)
+"ba" = (
+/obj/structure/prop{
+	desc = "An array of conventional power storage units, for when the added charge longivity and cost of a SMES unit is unneded or impractical.";
+	icon = 'icons/obj/power.dmi';
+	icon_state = "gridchecker_off";
+	name = "capacitor bank"
+	},
+/obj/structure/cable/yellow{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/light/small/poi{
+	dir = 8
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
+"bb" = (
+/obj/machinery/light/small/flicker{
+	dir = 4
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/mining_drone_ship)
 
 (1,1,1) = {"
-a
-a
-a
-b
-b
-b
-b
-b
-b
-b
-b
-R
-Z
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aR
+aZ
 "}
 (2,1,1) = {"
-a
-b
-b
-b
-h
-h
-r
-b
-A
-A
-b
-b
-a
+aa
+ab
+ab
+ab
+ah
+ba
+ar
+ab
+aA
+aA
+ab
+ab
+aa
 "}
 (3,1,1) = {"
-a
-c
-d
-f
-i
-i
-s
-b
-B
-J
-S
-b
-a
+aa
+ac
+ad
+af
+ai
+ai
+as
+ab
+aB
+aJ
+aS
+ab
+aa
 "}
 (4,1,1) = {"
-a
-b
-b
-b
-b
-n
-t
-b
-C
-K
-T
-b
-a
+aa
+ab
+ab
+ab
+ab
+an
+at
+ab
+aC
+aK
+aT
+ab
+aa
 "}
 (5,1,1) = {"
-a
-a
-a
-a
-b
-b
-u
-b
-D
-L
-U
-b
-a
+aa
+aa
+aa
+aa
+ab
+ab
+au
+ab
+aD
+aL
+aU
+ab
+aa
 "}
 (6,1,1) = {"
-a
-a
-a
-a
-j
-o
-v
-z
-E
-M
-V
-b
-a
+aa
+aa
+aa
+aa
+aj
+ao
+av
+az
+aE
+aM
+aV
+ab
+aa
 "}
 (7,1,1) = {"
-a
-m
-a
-a
-b
-b
-u
-b
-F
-N
-W
-b
-a
+aa
+am
+aa
+aa
+ab
+ab
+au
+ab
+aF
+aN
+aW
+ab
+aa
 "}
 (8,1,1) = {"
-m
-m
-m
-b
-b
-p
-w
-b
-G
-O
-X
-b
-a
+am
+am
+am
+ab
+ab
+ap
+aw
+ab
+aG
+aO
+aX
+ab
+aa
 "}
 (9,1,1) = {"
-m
-m
-e
-g
-k
-q
-x
-b
-H
-P
-Y
-b
-a
+am
+am
+ae
+ag
+ak
+aq
+ax
+ab
+aH
+aP
+aY
+ab
+aa
 "}
 (10,1,1) = {"
-m
-m
-e
-e
-l
-n
-n
-b
-I
-Q
-b
-b
-a
+am
+am
+ae
+ae
+al
+bb
+an
+ab
+aI
+aQ
+ab
+ab
+aa
 "}
 (11,1,1) = {"
-a
-m
-m
-b
-b
-b
-y
-b
-b
-b
-b
-R
-Z
+aa
+am
+am
+ab
+ab
+ab
+ay
+ab
+ab
+ab
+ab
+aR
+aZ
 "}

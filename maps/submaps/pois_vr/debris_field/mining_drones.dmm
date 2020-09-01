@@ -70,6 +70,7 @@
 	icon_state = "turret_cover_industrial";
 	turret_type = "industrial"
 	},
+/obj/effect/map_effect/perma_light,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_outpost)
 "o" = (

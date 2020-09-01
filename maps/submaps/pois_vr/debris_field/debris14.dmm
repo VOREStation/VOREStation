@@ -1,0 +1,73 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/turf/simulated/wall,
+/area/space)
+"c" = (
+/obj/item/weapon/material/shard/shrapnel,
+/turf/simulated/floor/airless,
+/area/space)
+"d" = (
+/turf/simulated/floor/airless,
+/area/space)
+"e" = (
+/obj/structure/lattice,
+/turf/space,
+/area/space)
+"f" = (
+/obj/item/stack/rods,
+/turf/simulated/floor/airless,
+/area/space)
+"g" = (
+/obj/structure/lattice,
+/obj/item/stack/rods,
+/turf/space,
+/area/space)
+"h" = (
+/obj/structure/lattice,
+/obj/structure/lattice,
+/turf/space,
+/area/space)
+"i" = (
+/obj/structure/girder,
+/turf/simulated/floor/airless,
+/area/space)
+"j" = (
+/obj/item/weapon/material/shard/shrapnel,
+/obj/machinery/firealarm/alarms_hidden{
+	dir = 4;
+	pixel_x = -24
+	},
+/turf/simulated/floor/airless,
+/area/space)
+"k" = (
+/turf/template_noop,
+/area/space)
+
+(1,1,1) = {"
+i
+b
+e
+e
+e
+"}
+(2,1,1) = {"
+k
+j
+f
+e
+k
+"}
+(3,1,1) = {"
+c
+d
+d
+e
+k
+"}
+(4,1,1) = {"
+k
+e
+g
+h
+k
+"}
