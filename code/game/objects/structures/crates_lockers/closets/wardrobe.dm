@@ -406,7 +406,8 @@
 		/obj/item/clothing/gloves/swat,
 		/obj/item/clothing/mask/balaclava/tactical,
 		/obj/item/clothing/mask/balaclava,
-		/obj/item/clothing/mask/bandana/skull = 2)
+		/obj/item/clothing/mask/bandana/skull = 2,
+		/obj/item/clothing/mask/gas/sechailer/swat)
 
 
 /obj/structure/closet/wardrobe/suit

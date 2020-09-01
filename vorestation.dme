@@ -1865,6 +1865,7 @@
 #include "code\modules\clothing\masks\breath_vr.dm"
 #include "code\modules\clothing\masks\gasmask.dm"
 #include "code\modules\clothing\masks\gasmask_vr.dm"
+#include "code\modules\clothing\masks\hailer.dm"
 #include "code\modules\clothing\masks\miscellaneous.dm"
 #include "code\modules\clothing\masks\voice.dm"
 #include "code\modules\clothing\rings\material.dm"
