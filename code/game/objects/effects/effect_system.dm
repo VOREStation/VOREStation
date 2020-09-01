@@ -438,11 +438,15 @@ steam.start() -- spawns the effect
 		if(src.processing)
 			src.processing = 0
 			spawn(0)
-				var/turf/T = get_turf(src.holder)
+				var/turf/T
 				if(istype(holder, /atom/movable))
 					var/atom/movable/AM = holder
 					if(AM.locs && AM.locs.len)
-						T = pick(AM.locs)
+						T = get_turf(pick(AM.locs))
+					else
+						T = get_turf(AM)
+				else //when would this ever be attached a non-atom/movable?
+					T = get_turf(src.holder)
 				if(T != src.oldposition)
 					if(isturf(T))
 						var/obj/effect/effect/ion_trails/I = new /obj/effect/effect/ion_trails(src.oldposition)
