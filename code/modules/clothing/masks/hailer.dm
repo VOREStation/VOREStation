@@ -51,7 +51,7 @@
 	flags_inv = HIDEFACE|BLOCKHAIR
 	aggressiveness = 3
 	phrase = 12
-	
+
 
 /obj/item/clothing/mask/gas/sechailer/ui_action_click()
 	halt()
@@ -63,7 +63,7 @@
 	set name = "Select gas mask phrase"
 	set category = "Object"
 	set desc = "Alter the message shouted by your complionator gas mask."
-	
+
 	var/key = phrase_list[phrase]
 	var/message = phrase_list[key]
 
@@ -97,10 +97,10 @@
 /obj/item/clothing/mask/gas/sechailer/emag_act(mob/user)
 	if(safety)
 		safety = 0
-		to_chat(user, "<span class='warning'>You silently fry [src]'s vocal circuit with the cryptographic sequencer.")
+		to_chat(user, "<span class='warning'>You silently fry [src]'s vocal circuit with the cryptographic sequencer.</span>")
 	else
 		return
-	
+
 /obj/item/clothing/mask/gas/sechailer/attackby(obj/item/I, mob/user)
 	if(I.is_screwdriver())
 		switch(aggressiveness)
@@ -144,7 +144,7 @@
 			qdel(src)
 			return
 	..()
- 
+
 /obj/item/clothing/mask/gas/sechailer/verb/halt()
 	set name = "HALT!"
 	set category = "Objects"
