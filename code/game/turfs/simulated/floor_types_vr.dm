@@ -42,3 +42,32 @@
 		spawn(5 SECONDS)
 			icon_state = "floor"
 			set_light(0,0,"#ffffff")
+
+/turf/simulated/shuttle/plating/airless/carry/attackby(obj/item/C, mob/user) //this is gross
+	if (istype(C, /obj/item/stack/rods))
+		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
+		if(L)
+			return
+		var/obj/item/stack/rods/R = C
+		if (R.use(1))
+			to_chat(user, "<span class='notice'>Constructing support lattice ...</span>")
+			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+			new/obj/structure/lattice(src)
+		return
+
+	if (istype(C, /obj/item/stack/tile/floor))
+		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
+		if(L)
+			var/obj/item/stack/tile/floor/S = C
+			if (S.get_amount() < 1)
+				return
+			qdel(L)
+			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+			S.use(1)
+			ChangeTurf(/turf/simulated/floor/airless)
+			return
+		else
+			to_chat(user, "<span class='warning'>The plating is going to need some support.</span>")
+
+/turf/simulated/shuttle/plating/airless/carry/is_solid_structure()
+	return locate(/obj/structure/lattice, src)

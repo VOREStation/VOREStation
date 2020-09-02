@@ -218,6 +218,12 @@
 	cost = 30
 	allow_duplicates = FALSE
 
+/datum/map_template/debrisfield/tinycarrier
+	name = "Disabled Tiny Carrier"
+	mappath = 'tinycarrier.dmm'
+	cost = 30
+	allow_duplicates = FALSE
+
 /datum/map_template/debrisfield/alien_massive_derelict
 	name = "Alien Derelict"
 	mappath = 'derelict.dmm'
