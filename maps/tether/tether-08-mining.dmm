@@ -226,21 +226,17 @@
 /turf/simulated/floor/virgo3b,
 /area/mine/explored)
 "aI" = (
-/obj/structure/reagent_dispensers/water_cooler/full,
-/obj/effect/floor_decal/borderfloor{
-	dir = 9
+/obj/machinery/atmospherics/pipe/manifold/visible/cyan{
+	dir = 1
 	},
-/obj/effect/floor_decal/corner/brown/border{
-	dir = 9
+/obj/machinery/firealarm{
+	dir = 2;
+	layer = 3.3;
+	pixel_x = 0;
+	pixel_y = 26
 	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 10
-	},
-/obj/effect/floor_decal/corner/brown/bordercorner2{
-	dir = 10
-	},
-/turf/simulated/floor/tiled,
-/area/outpost/mining_main/break_room)
+/turf/simulated/floor/plating,
+/area/outpost/mining_main/maintenance)
 "aJ" = (
 /obj/structure/cable/heavyduty{
 	icon_state = "4-8"
@@ -325,11 +321,34 @@
 /turf/simulated/floor/plating,
 /area/outpost/mining_main/maintenance)
 "aR" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/cyan{
-	dir = 1
+/obj/structure/reagent_dispensers/water_cooler/full,
+/obj/effect/floor_decal/borderfloor{
+	dir = 9
 	},
-/turf/simulated/floor/plating,
-/area/outpost/mining_main/maintenance)
+/obj/effect/floor_decal/corner/brown/border{
+	dir = 9
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/brown/bordercorner2{
+	dir = 10
+	},
+/obj/machinery/status_display{
+	pixel_x = -32
+	},
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_x = 0;
+	pixel_y = 24
+	},
+/obj/structure/cable/green{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/mining_main/break_room)
 "aS" = (
 /obj/machinery/camera/network/mining,
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
@@ -1041,6 +1060,36 @@
 /obj/effect/floor_decal/rust,
 /turf/unsimulated/wall/planetary/virgo3b,
 /area/mine/explored)
+"cn" = (
+/obj/effect/floor_decal/steeldecal/steel_decals7,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 4
+	},
+/obj/machinery/light_switch{
+	dir = 1;
+	pixel_x = 12;
+	pixel_y = 24
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 1;
+	pixel_y = 0
+	},
+/obj/effect/floor_decal/corner/brown/border{
+	dir = 1
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/brown/bordercorner2{
+	dir = 4
+	},
+/obj/item/device/radio/intercom{
+	dir = 1;
+	pixel_y = 24;
+	req_access = list()
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/mining_main/break_room)
 "co" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -1070,6 +1119,16 @@
 /area/outpost/mining_main/passage)
 "cr" = (
 /obj/machinery/mining/brace,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/outpost/mining_main/drill_equipment)
+"cs" = (
+/obj/structure/table/steel,
+/obj/machinery/cell_charger,
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 8
+	},
+/obj/item/weapon/cell/high,
+/obj/item/weapon/cell/high,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/outpost/mining_main/drill_equipment)
 "ct" = (
@@ -1143,9 +1202,22 @@
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/outpost/mining_main/drill_equipment)
 "cA" = (
-/obj/machinery/status_display,
-/turf/simulated/wall/r_wall,
-/area/outpost/mining_main/secondary_gear_storage)
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/outpost/mining_main/break_room)
 "cB" = (
 /obj/machinery/door/airlock/glass_mining,
 /obj/structure/cable/green{
@@ -1232,49 +1304,24 @@
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/secondary_gear_storage)
 "cF" = (
-/obj/effect/floor_decal/steeldecal/steel_decals7,
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 4
-	},
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "north bump";
-	pixel_x = 0;
-	pixel_y = 24
-	},
 /obj/structure/cable/green{
-	d2 = 2;
-	icon_state = "0-2"
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
 	},
-/obj/machinery/light_switch{
-	dir = 1;
-	pixel_x = 12;
-	pixel_y = 24
-	},
-/obj/effect/floor_decal/borderfloor{
-	dir = 1;
-	pixel_y = 0
-	},
-/obj/effect/floor_decal/corner/brown/border{
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
 	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 4
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
 	},
-/obj/effect/floor_decal/corner/brown/bordercorner2{
-	dir = 4
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/steel_grid,
 /area/outpost/mining_main/break_room)
-"cG" = (
-/obj/structure/table/steel,
-/obj/machinery/cell_charger,
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 8
-	},
-/obj/item/weapon/cell/high,
-/turf/simulated/floor/tiled/steel_dirty/virgo3b,
-/area/outpost/mining_main/drill_equipment)
 "cH" = (
 /obj/machinery/mech_recharger,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
@@ -1292,30 +1339,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/secondary_gear_storage)
-"cJ" = (
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 1
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/turf/simulated/floor/tiled/steel_grid,
-/area/outpost/mining_main/break_room)
 "cK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -3599,7 +3622,7 @@ ab
 ab
 ab
 ay
-aR
+aI
 bb
 bj
 bo
@@ -4308,9 +4331,9 @@ cU
 bU
 cX
 cT
+bG
+aR
 cA
-aI
-aW
 cR
 hK
 WK
@@ -4735,8 +4758,8 @@ bS
 bS
 bS
 bG
+cn
 cF
-cJ
 ZV
 ty
 Fn
@@ -5303,7 +5326,7 @@ cf
 cf
 cz
 cC
-cG
+cs
 cN
 Px
 ae
