@@ -70,6 +70,10 @@
 /obj/machinery/atmospherics/pipe/manifold/visible/yellow,
 /turf/simulated/floor/plating,
 /area/shuttle/mackerel_lc)
+"fC" = (
+/obj/structure/grille,
+/turf/simulated/floor/airless,
+/area/shuttle/mackerel_lc)
 "fD" = (
 /obj/structure/handrail{
 	dir = 4
@@ -702,6 +706,9 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc)
+"SY" = (
+/turf/simulated/floor/airless,
+/area/shuttle/mackerel_lc)
 "Td" = (
 /obj/machinery/airlock_sensor{
 	pixel_x = -25
@@ -910,15 +917,15 @@ WP
 WP
 WP
 WP
+ka
+fC
+fC
+ka
 WP
-WP
-WP
-WP
-WP
-WP
-WP
-WP
-WP
+ka
+fC
+fC
+ka
 WP
 WP
 WP
@@ -935,15 +942,15 @@ WP
 WP
 WP
 WP
+SY
 WP
 WP
+SY
+WP
+SY
 WP
 WP
-WP
-WP
-WP
-WP
-WP
+SY
 WP
 WP
 WP
@@ -1185,15 +1192,15 @@ WP
 WP
 WP
 WP
+SY
 WP
 WP
+SY
+WP
+SY
 WP
 WP
-WP
-WP
-WP
-WP
-WP
+SY
 WP
 WP
 WP
@@ -1210,15 +1217,15 @@ WP
 WP
 WP
 WP
+ka
+fC
+fC
+ka
 WP
-WP
-WP
-WP
-WP
-WP
-WP
-WP
-WP
+ka
+fC
+fC
+ka
 WP
 WP
 WP

@@ -4,6 +4,7 @@
 #include "mackerel_lc.dmm"
 #include "mackerel_lc_wreck.dmm"
 #include "mackerel_hc.dmm"
+#include "mackerel_hc_skel.dmm"
 #endif
 
 // Map template for spawning the shuttle
@@ -20,6 +21,12 @@
 	annihilate = TRUE
 
 /datum/map_template/om_ships/mackerel_heavycargo
+	name = "OM Ship - Mackerel Heavy Cargo (new Z)"
+	desc = "A small secure cargo transport shuttle."
+	mappath = 'mackerel_hc.dmm'
+	annihilate = TRUE
+
+/datum/map_template/om_ships/mackerel_heavycargo_skel
 	name = "OM Ship - Mackerel Heavy Cargo (new Z)"
 	desc = "A small secure cargo transport shuttle."
 	mappath = 'mackerel_hc.dmm'
@@ -50,6 +57,12 @@
 	requires_power = 1
 	has_gravity = 0
 	
+/area/shuttle/mackerel_hc_skel	
+	name = "\improper Mackerel Heavy Cargo Spartan"
+	icon_state = "shuttle3"
+	requires_power = 1
+	has_gravity = 0
+	
 /area/shuttle/mackerel_lc_wreck	
 	name = "\improper Wrecked Mackerel Light Cargo"
 	icon_state = "shuttle2"
@@ -70,6 +83,11 @@
 /obj/machinery/computer/shuttle_control/explore/mackerel_hc
 	name = "short jump console"
 	shuttle_tag = "Mackerel Heavy Cargo"
+	req_one_access = list()
+
+/obj/machinery/computer/shuttle_control/explore/mackerel_hc_skel
+	name = "short jump console"
+	shuttle_tag = "Mackerel Heavy Cargo Spartan"
 	req_one_access = list()
 
 // The 'shuttle'
@@ -96,6 +114,14 @@
 	shuttle_area = list(/area/shuttle/mackerel_hc)
 	defer_initialisation = TRUE //We're not loaded until an admin does it
 	fuel_consumption = 1.25
+
+/datum/shuttle/autodock/overmap/mackerel_hc_skel
+	name = "Mackerel Heavy Cargo Spartan"
+	current_location = "omship_spawn_mackerel_hc_skel"
+	docking_controller_tag = "mack_hc_docking_skel"
+	shuttle_area = list(/area/shuttle/mackerel_hc_skel)
+	defer_initialisation = TRUE //We're not loaded until an admin does it
+	fuel_consumption = 1.20 //slightly lower due to the stripped-down internals
 
 /datum/shuttle/autodock/overmap/mackerel_lc_wreck
 	name = "Mackerel Light Cargo II"
@@ -127,8 +153,15 @@
 	landmark_tag = "omship_spawn_mackerel_hc"
 	shuttle_type = /datum/shuttle/autodock/overmap/mackerel_hc
 
-/obj/effect/shuttle_landmark/shuttle_initializer/mackerel_lc_wrech
+/obj/effect/shuttle_landmark/shuttle_initializer/mackerel_hc_skel
 	name = "ITV Mackerel IV"
+	base_area = /area/space
+	base_turf = /turf/space
+	landmark_tag = "omship_spawn_mackerel_hc_skel"
+	shuttle_type = /datum/shuttle/autodock/overmap/mackerel_hc_skel
+
+/obj/effect/shuttle_landmark/shuttle_initializer/mackerel_lc_wreck
+	name = "ITV Mackerel II KIA"
 	base_area = /area/space
 	base_turf = /turf/space
 	landmark_tag = "omship_spawn_mackerel_lc_wreck"
@@ -167,6 +200,17 @@
 	vessel_mass = 1500
 	vessel_size = SHIP_SIZE_TINY
 	shuttle = "Mackerel Heavy Cargo"
+
+/obj/effect/overmap/visitable/ship/landable/mackerel_hc_skel
+	scanner_name = "Mackerel-class Transport (Spartanized)"
+	scanner_desc = @{"[i]Registration[/i]: ITV Phish Pond
+[i]Class[/i]: Small Shuttle
+[i]Transponder[/i]: Transmitting (CIV), non-hostile
+[b]Notice[/b]: Small private vessel"}
+	color = "#33CCCC"
+	vessel_mass = 1500
+	vessel_size = SHIP_SIZE_TINY
+	shuttle = "Mackerel Heavy Cargo Spartan"
 
 /obj/effect/overmap/visitable/ship/landable/mackerel_lc_wreck
 	scanner_name = "Wrecked Mackerel-class Transport"
