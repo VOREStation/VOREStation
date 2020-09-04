@@ -1,3 +1,10 @@
+// I'm honestly pretty sure that short of stuffing five million things into this
+// there's absolutely no way it could ever have any performance impact
+// Given that all it does is set the color var
+// But just in case it's cursed in some arcane horrible way
+// I'm going to leave this limit here
+#define MAX_PROCESSING 10 // Arbitrary performance insurance
+
 /obj/machinery/gear_painter
 	name = "Color Mate"
 	desc = "A machine to give your apparel a fresh new color! Recommended to use with white items for best results."
@@ -29,9 +36,9 @@
 	processing.Cut()
 	return ..()
 
-/obj/machinery/gear_painter/attackby(obj/item/W as obj, mob/user as mob)
-	if(processing.len)
-		to_chat(user, "<span class='warning'>The machine is already loaded.</span>")
+/obj/machinery/gear_painter/attackby(obj/item/W, mob/user)
+	if(LAZYLEN(processing) >= MAX_PROCESSING)
+		to_chat(user, "<span class='warning'>The machine is full.</span>")
 		return
 	if(default_deconstruction_screwdriver(user, W))
 		return
@@ -45,65 +52,65 @@
 		user.drop_from_inventory(W)
 		W.forceMove(src)
 		processing |= W
+		SStgui.update_uis(src)
 	else
 		..()
 	update_icon()
 
-/obj/machinery/gear_painter/attack_hand(mob/user as mob)
+/obj/machinery/gear_painter/attack_hand(mob/user)
 	if(..())
 		return
-	interact(user)
+	tgui_interact(user)
 
-/obj/machinery/gear_painter/interact(mob/user as mob)
-	if(inoperable())
-		return
-	user.set_machine(src)
-	var/dat = "<TITLE>Color Mate Control Panel</TITLE><BR>"
-	if(!processing.len)
-		dat += "No item inserted."
-	else
-		for(var/atom/movable/O in processing)
-			dat += "Item inserted: [O]<HR>"
-		dat += "<A href='?src=\ref[src];select=1'>Select new color.</A><BR>"
-		dat += "Color: <font color='[activecolor]'>&#9899;</font>"
-		dat += "<A href='?src=\ref[src];paint=1'>Apply new color.</A><BR><BR>"
-		dat += "<A href='?src=\ref[src];clear=1'>Remove paintjob.</A><BR><BR>"
-		dat += "<A href='?src=\ref[src];eject=1'>Eject item.</A><BR><BR>"
+/obj/machinery/gear_painter/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "ColorMate", name)
+		ui.open()
 
-	var/datum/browser/menu = new(user, "colormate","Color Mate Control Panel", 400, 600, src)
-	menu.set_content(dat)
-	menu.open()
-	return
+/obj/machinery/gear_painter/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
 
-/obj/machinery/gear_painter/Topic(href, href_list)
+	var/list/items = list()
+	for(var/atom/movable/O in processing)
+		items.Add("[O]")
+	data["items"] = items
+
+	data["activecolor"] = activecolor
+	return data
+
+/obj/machinery/gear_painter/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
-		return
+		return TRUE
 
-	usr.set_machine(src)
 	add_fingerprint(usr)
 
-	if(href_list["close"])
-		return
+	switch(action)
+		if("select")
+			var/newcolor = input(usr, "Choose a color.", "", activecolor) as color|null
+			if(newcolor)
+				activecolor = newcolor
+			. = TRUE
 
-	if(href_list["select"])
-		var/newcolor = input(usr, "Choose a color.", "", activecolor) as color|null
-		if(newcolor)
-			activecolor = newcolor
+		if("paint")
+			for(var/atom/movable/O in processing)
+				O.color = activecolor
+				CHECK_TICK
+			playsound(src, 'sound/effects/spray3.ogg', 50, 1)
+			. = TRUE
 
-	if(href_list["paint"])
-		for(var/atom/movable/O in processing)
-			O.color = activecolor
-		playsound(src, 'sound/effects/spray3.ogg', 50, 1)
+		if("clear")
+			for(var/atom/movable/O in processing)
+				O.color = initial(O.color)
+				CHECK_TICK
+			playsound(src, 'sound/effects/spray3.ogg', 50, 1)
+			. = TRUE
 
-	if(href_list["clear"])
-		for(var/atom/movable/O in processing)
-			O.color = initial(O.color)
-		playsound(src, 'sound/effects/spray3.ogg', 50, 1)
-
-	if(href_list["eject"])
-		for(var/atom/movable/O in processing)
-			O.forceMove(drop_location())
-		processing.Cut()
+		if("eject")
+			for(var/atom/movable/O in processing)
+				O.forceMove(drop_location())
+				CHECK_TICK
+			processing.Cut()
+			. = TRUE
 
 	update_icon()
-	updateUsrDialog()
