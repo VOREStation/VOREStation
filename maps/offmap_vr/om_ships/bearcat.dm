@@ -13,31 +13,31 @@
 /datum/shuttle/autodock/overmap/bearcat
 	name = "Bearcat"
 	current_location = "omship_spawn_bearcat"
-	docking_controller_tag = "bearcat_starboard" //technically we have two ports, but the starboard is used as the default as it allows us to hook up to most sites
+	docking_controller_tag = "bearcat_docking"
 	shuttle_area = list(	/area/ship/scrap,
 				/area/shuttle/bearcat/cargo,
 				/area/shuttle/bearcat/command,
-				/area/shuttle/bearcat/command/captain,
+				/area/shuttle/bearcat/command_captain,
 				/area/shuttle/bearcat/comms,
 				/area/shuttle/bearcat/crew,
-				/area/shuttle/bearcat/crew/corridors,
-				/area/shuttle/bearcat/crew/dorms,
-				/area/shuttle/bearcat/crew/kitchen,
-				/area/shuttle/bearcat/crew/medbay,
-				/area/shuttle/bearcat/crew/saloon,
-				/area/shuttle/bearcat/crew/toilets,
-				/area/shuttle/bearcat/crew/wash,
-				/area/shuttle/bearcat/dock/central,
-				/area/shuttle/bearcat/dock/port,
-				/area/shuttle/bearcat/dock/starboard,
+				/area/shuttle/bearcat/crew_corridors,
+				/area/shuttle/bearcat/crew_dorms,
+				/area/shuttle/bearcat/crew_kitchen,
+				/area/shuttle/bearcat/crew_medbay,
+				/area/shuttle/bearcat/crew_saloon,
+				/area/shuttle/bearcat/crew_toilets,
+				/area/shuttle/bearcat/crew_wash,
+				/area/shuttle/bearcat/dock_central,
+				/area/shuttle/bearcat/dock_port,
+				/area/shuttle/bearcat/dock_starboard,
 				/area/shuttle/bearcat/maintenance,
-				/area/shuttle/bearcat/maintenance/atmos,
-				/area/shuttle/bearcat/maintenance/engine,
-				/area/shuttle/bearcat/maintenance/engine_pod_port,
-				/area/shuttle/bearcat/maintenance/engine_pod_starboard,
-				/area/shuttle/bearcat/maintenance/enginecontrol,
-				/area/shuttle/bearcat/maintenance/power,
-				/area/shuttle/bearcat/maintenance/storage,
+				/area/shuttle/bearcat/maintenance_atmos,
+				/area/shuttle/bearcat/maintenance_engine,
+				/area/shuttle/bearcat/maintenance_engine_pod_port,
+				/area/shuttle/bearcat/maintenance_engine_pod_starboard,
+				/area/shuttle/bearcat/maintenance_enginecontrol,
+				/area/shuttle/bearcat/maintenance_power,
+				/area/shuttle/bearcat/maintenance_storage,
 				/area/shuttle/bearcat/unused1,
 				/area/shuttle/bearcat/unused2
 				) //it's a miracle this thing works
@@ -89,31 +89,31 @@
 	name = "\improper Bearcat Crew Compartments"
 	icon_state = "hallC"
 
-/area/shuttle/bearcat/crew/corridors
+/area/shuttle/bearcat/crew_corridors
 	name = "\improper Bearcat Corridors"
 	icon_state = "hallC1"
 
-/area/shuttle/bearcat/crew/kitchen
+/area/shuttle/bearcat/crew_kitchen
 	name = "\improper Bearcat Galley"
 	icon_state = "kitchen"
 
-/area/shuttle/bearcat/crew/dorms
+/area/shuttle/bearcat/crew_dorms
 	name = "\improper Bearcat Dorms"
 	icon_state = "crew_quarters"
 
-/area/shuttle/bearcat/crew/saloon
+/area/shuttle/bearcat/crew_saloon
 	name = "\improper Bearcat Saloon"
 	icon_state = "conference"
 
-/area/shuttle/bearcat/crew/toilets
+/area/shuttle/bearcat/crew_toilets
 	name = "\improper Bearcat Bathrooms"
 	icon_state = "toilet"
 
-/area/shuttle/bearcat/crew/wash
+/area/shuttle/bearcat/crew_wash
 	name = "\improper Bearcat Washroom"
 	icon_state = "locker"
 
-/area/shuttle/bearcat/crew/medbay
+/area/shuttle/bearcat/crew_medbay
 	name = "\improper Bearcat Medical Bay"
 	icon_state = "medbay"
 
@@ -125,14 +125,15 @@
 	name = "\improper Bearcat Docking Bay"
 	icon_state = "start"
 
-/area/shuttle/bearcat/dock/central
+/area/shuttle/bearcat/dock_central
 	name = "\improper Bearcat Passenger Bay"
+	icon_state = "start"
 
-/area/shuttle/bearcat/dock/port
+/area/shuttle/bearcat/dock_port
 	name = "\improper Bearcat Docking Bay Port"
 	icon_state = "west"
 
-/area/shuttle/bearcat/dock/starboard
+/area/shuttle/bearcat/dock_starboard
 	name = "\improper Bearcat Docking Bay Starboard"
 	icon_state = "east"
 
@@ -152,35 +153,36 @@
 	name = "\improper Bearcat Maintenance Compartments"
 	icon_state = "storage"
 
-/area/shuttle/bearcat/maintenance/storage
+/area/shuttle/bearcat/maintenance_storage
 	name = "\improper Bearcat Tools Storage"
 	icon_state = "eva"
 
-/area/shuttle/bearcat/maintenance/atmos
+/area/shuttle/bearcat/maintenance_atmos
 	name = "\improper Bearcat Atmospherics Compartment"
 	icon_state = "atmos"
 	music = list('sound/ambience/ambiatm1.ogg')
 
-/area/shuttle/bearcat/maintenance/power
+/area/shuttle/bearcat/maintenance_power
 	name = "\improper Bearcat Power Compartment"
 	icon_state = "engine_smes"
+	music = list('sound/ambience/ambisin1.ogg','sound/ambience/ambisin2.ogg','sound/ambience/ambisin3.ogg')
 
-/area/shuttle/bearcat/maintenance/engine
+/area/shuttle/bearcat/maintenance_engine
 	name = "\improper Bearcat Main Engine Compartment"
 	icon_state = "engine"
 	music = list('sound/ambience/ambisin1.ogg','sound/ambience/ambisin2.ogg','sound/ambience/ambisin3.ogg')
 
-/area/shuttle/bearcat/maintenance/engine_pod_port
+/area/shuttle/bearcat/maintenance_engine_pod_port
 	name = "\improper Bearcat Port Engine Pod"
 	icon_state = "west"
 	music = list('sound/ambience/ambisin1.ogg','sound/ambience/ambisin2.ogg','sound/ambience/ambisin3.ogg')
 
-/area/shuttle/bearcat/maintenance/engine_pod_starboard
+/area/shuttle/bearcat/maintenance_engine_pod_starboard
 	name = "\improper Bearcat Starboard Engine Pod"
 	icon_state = "east"
 	music = list('sound/ambience/ambisin1.ogg','sound/ambience/ambisin2.ogg','sound/ambience/ambisin3.ogg')
 
-/area/shuttle/bearcat/maintenance/enginecontrol
+/area/shuttle/bearcat/maintenance_enginecontrol
 	name = "\improper Bearcat Engine Control Room"
 	icon_state = "engine_monitoring"
 	music = list('sound/ambience/ambisin1.ogg','sound/ambience/ambisin2.ogg','sound/ambience/ambisin3.ogg')
@@ -190,9 +192,10 @@
 	icon_state = "centcom"
 	music = list('sound/ambience/signal.ogg')
 
-/area/shuttle/bearcat/command/captain
+/area/shuttle/bearcat/command_captain
 	name = "\improper Bearcat Captain's Quarters"
 	icon_state = "captain"
+	music = list('sound/ambience/signal.ogg')
 
 /area/shuttle/bearcat/comms
 	name = "\improper Bearcat Communications Relay"

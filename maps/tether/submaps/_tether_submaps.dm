@@ -518,6 +518,7 @@
 #include "../../offmap_vr/om_ships/cruiser.dm"
 #include "../../offmap_vr/om_ships/vespa.dm"
 #include "../../offmap_vr/om_ships/generic_shuttle.dm"
+#include "../../offmap_vr/om_ships/geckos.dm"
 #include "../../offmap_vr/om_ships/mackerels.dm"
 #include "../../offmap_vr/om_ships/mercenarybase.dm"
 #include "../../offmap_vr/om_ships/mercship.dm"
