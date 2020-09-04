@@ -171,15 +171,22 @@
 	},
 /obj/effect/map_helper/airlock/sensor/chamber_sensor,
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
-/obj/machinery/airlock_sensor{
-	pixel_y = 21
-	},
 /obj/machinery/light,
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
+	},
+/obj/machinery/embedded_controller/radio/airlock/docking_port_multi{
+	id_tag = "mackerel_hc_docking_port";
+	name = "Port Airlock Control";
+	pixel_x = 8;
+	pixel_y = 22
+	},
+/obj/machinery/airlock_sensor{
+	pixel_x = -8;
+	pixel_y = 21
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/mackerel_hc)
@@ -235,11 +242,15 @@
 	dir = 4
 	},
 /obj/structure/closet/walllocker/emerglocker/south,
-/obj/machinery/embedded_controller/radio/airlock/docking_port{
-	id_tag = "mack_hc_docking";
-	pixel_y = -28
-	},
 /obj/machinery/light,
+/obj/machinery/embedded_controller/radio/docking_port_multi{
+	child_names = list("Port Airlock Control","Starboard Airlock Control");
+	child_names_txt = list("Port Airlock Control","Starboard Airlock Control");
+	child_tags_txt = "mackerel_hc_docking_port";"mackerel_hc_docking_star";
+	dir = 1;
+	id_tag = "mackerel_hc_docking";
+	pixel_y = -22
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc)
 "rQ" = (
@@ -440,17 +451,6 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/simulated/floor/tiled/techmaint,
-/area/shuttle/mackerel_hc)
-"Dq" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/effect/shuttle_landmark/shuttle_initializer/mackerel_hc,
-/obj/effect/overmap/visitable/ship/landable/mackerel_hc,
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/mackerel_hc)
 "EC" = (
@@ -738,15 +738,24 @@
 /obj/structure/handrail,
 /obj/effect/map_helper/airlock/sensor/chamber_sensor,
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
-/obj/machinery/airlock_sensor{
-	pixel_y = 21
-	},
 /obj/machinery/light,
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
+	},
+/obj/effect/shuttle_landmark/shuttle_initializer/mackerel_hc,
+/obj/effect/overmap/visitable/ship/landable/mackerel_hc,
+/obj/machinery/embedded_controller/radio/airlock/docking_port_multi{
+	id_tag = "mackerel_hc_docking_star";
+	name = "Starboard Airlock Control";
+	pixel_x = -8;
+	pixel_y = 22
+	},
+/obj/machinery/airlock_sensor{
+	pixel_x = 7;
+	pixel_y = 21
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/mackerel_hc)
@@ -1102,7 +1111,7 @@ Dl
 WW
 Xs
 Xs
-Dq
+Xs
 bY
 Kb
 Wj

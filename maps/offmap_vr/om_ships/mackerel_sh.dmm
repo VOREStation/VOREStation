@@ -129,6 +129,9 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 4
 	},
+/obj/structure/railing/grey{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_sh)
 "lC" = (
@@ -180,6 +183,7 @@
 /obj/effect/map_helper/airlock/sensor/chamber_sensor,
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /obj/machinery/airlock_sensor{
+	pixel_x = -8;
 	pixel_y = 21
 	},
 /obj/machinery/light,
@@ -188,6 +192,12 @@
 	},
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
+	},
+/obj/machinery/embedded_controller/radio/airlock/docking_port_multi{
+	id_tag = "mackerel_sh_docking_port";
+	name = "Port Airlock Control";
+	pixel_x = 8;
+	pixel_y = 22
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/mackerel_sh)
@@ -229,6 +239,9 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 1
 	},
+/obj/structure/railing/grey{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_sh)
 "rr" = (
@@ -243,9 +256,13 @@
 /obj/structure/bed/chair/bay/shuttle{
 	dir = 8
 	},
-/obj/machinery/embedded_controller/radio/airlock/docking_port{
-	id_tag = "mack_sh_docking";
-	pixel_y = -28
+/obj/machinery/embedded_controller/radio/docking_port_multi{
+	child_names = list("Port Airlock Control","Starboard Airlock Control");
+	child_names_txt = list("Port Airlock Control","Starboard Airlock Control");
+	child_tags_txt = "mackerel_sh_docking_port";"mackerel_sh_docking_star";
+	dir = 1;
+	id_tag = "mackerel_sh_docking";
+	pixel_y = -22
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_sh)
@@ -286,6 +303,7 @@
 	},
 /obj/effect/map_helper/airlock/sensor/int_sensor,
 /obj/effect/floor_decal/industrial/warning/corner,
+/obj/structure/railing/grey,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_sh)
 "sZ" = (
@@ -749,6 +767,7 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 8
 	},
+/obj/structure/railing/grey,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_sh)
 "UY" = (
@@ -756,17 +775,6 @@
 	dir = 1
 	},
 /turf/simulated/floor/airless,
-/area/shuttle/mackerel_sh)
-"Vh" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/effect/shuttle_landmark/shuttle_initializer/mackerel_sh,
-/obj/effect/overmap/visitable/ship/landable/mackerel_sh,
-/turf/simulated/floor/tiled/techmaint,
 /area/shuttle/mackerel_sh)
 "Vs" = (
 /obj/machinery/atmospherics/unary/vent_pump{
@@ -784,7 +792,16 @@
 	dir = 8
 	},
 /obj/machinery/airlock_sensor{
+	pixel_x = 7;
 	pixel_y = 21
+	},
+/obj/effect/shuttle_landmark/shuttle_initializer/mackerel_sh,
+/obj/effect/overmap/visitable/ship/landable/mackerel_sh,
+/obj/machinery/embedded_controller/radio/airlock/docking_port_multi{
+	id_tag = "mackerel_sh_docking_star";
+	name = "Starboard Airlock Control";
+	pixel_x = -8;
+	pixel_y = 22
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/mackerel_sh)
@@ -1119,7 +1136,7 @@ Dl
 WW
 Xs
 Xs
-Vh
+Xs
 bY
 Kb
 Wj

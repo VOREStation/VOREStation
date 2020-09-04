@@ -27,9 +27,9 @@
 	annihilate = TRUE
 
 /datum/map_template/om_ships/mackerel_heavycargo_skel
-	name = "OM Ship - Mackerel Heavy Cargo (new Z)"
-	desc = "A small secure cargo transport shuttle."
-	mappath = 'mackerel_hc.dmm'
+	name = "OM Ship - Mackerel Heavy Cargo Spartanized (new Z)"
+	desc = "A small heavy cargo transport shuttle."
+	mappath = 'mackerel_hc_skel.dmm'
 	annihilate = TRUE
 
 /datum/map_template/om_ships/mackerel_lightcargo_wreck
@@ -94,7 +94,7 @@
 /datum/shuttle/autodock/overmap/mackerel_sh
 	name = "Mackerel Stationhopper"
 	current_location = "omship_spawn_mackerel_sh"
-	docking_controller_tag = "mack_sh_docking"
+	docking_controller_tag = "mackerel_sh_docking"
 	shuttle_area = list(/area/shuttle/mackerel_sh)
 	defer_initialisation = TRUE //We're not loaded until an admin does it
 	fuel_consumption = 1
@@ -102,7 +102,7 @@
 /datum/shuttle/autodock/overmap/mackerel_lc
 	name = "Mackerel Light Cargo"
 	current_location = "omship_spawn_mackerel_lc"
-	docking_controller_tag = "mack_lc_docking"
+	docking_controller_tag = "mackerel_lc_docking"
 	shuttle_area = list(/area/shuttle/mackerel_lc)
 	defer_initialisation = TRUE //We're not loaded until an admin does it
 	fuel_consumption = 1
@@ -110,15 +110,15 @@
 /datum/shuttle/autodock/overmap/mackerel_hc
 	name = "Mackerel Heavy Cargo"
 	current_location = "omship_spawn_mackerel_hc"
-	docking_controller_tag = "mack_hc_docking"
+	docking_controller_tag = "mackerel_hc_docking"
 	shuttle_area = list(/area/shuttle/mackerel_hc)
 	defer_initialisation = TRUE //We're not loaded until an admin does it
-	fuel_consumption = 1.25
+	fuel_consumption = 1.25 //slightly higher due to the added framework/plating
 
 /datum/shuttle/autodock/overmap/mackerel_hc_skel
 	name = "Mackerel Heavy Cargo Spartan"
 	current_location = "omship_spawn_mackerel_hc_skel"
-	docking_controller_tag = "mack_hc_docking_skel"
+	docking_controller_tag = "mackerel_hc_docking_skel"
 	shuttle_area = list(/area/shuttle/mackerel_hc_skel)
 	defer_initialisation = TRUE //We're not loaded until an admin does it
 	fuel_consumption = 1.20 //slightly lower due to the stripped-down internals
@@ -126,7 +126,7 @@
 /datum/shuttle/autodock/overmap/mackerel_lc_wreck
 	name = "Mackerel Light Cargo II"
 	current_location = "omship_spawn_mackerel_lc_wreck"
-	docking_controller_tag = "mack_lc_docking_wreck"
+	docking_controller_tag = "mackerel_lc_docking_wreck"
 	shuttle_area = list(/area/shuttle/mackerel_lc_wreck)
 	defer_initialisation = TRUE //We're not loaded until an admin does it
 	fuel_consumption = 1

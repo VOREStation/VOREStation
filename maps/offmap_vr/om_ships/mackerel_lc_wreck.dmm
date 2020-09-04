@@ -59,17 +59,6 @@
 /obj/item/weapon/bone/arm,
 /turf/simulated/floor/airless,
 /area/shuttle/mackerel_lc_wreck)
-"cC" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/effect/shuttle_landmark/shuttle_initializer/mackerel_lc_wreck,
-/obj/effect/overmap/visitable/ship/landable/mackerel_lc_wreck,
-/turf/simulated/floor/tiled/techmaint,
-/area/shuttle/mackerel_lc_wreck)
 "cD" = (
 /obj/effect/floor_decal/industrial/warning,
 /obj/item/weapon/bone/skull,
@@ -169,15 +158,22 @@
 	},
 /obj/effect/map_helper/airlock/sensor/chamber_sensor,
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
-/obj/machinery/airlock_sensor{
-	pixel_y = 21
-	},
 /obj/machinery/light,
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
+	},
+/obj/machinery/airlock_sensor{
+	pixel_x = -8;
+	pixel_y = 21
+	},
+/obj/machinery/embedded_controller/radio/airlock/docking_port_multi{
+	id_tag = "mackerel_lc_wreck_docking_port";
+	name = "Port Airlock Control";
+	pixel_x = 8;
+	pixel_y = 22
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/mackerel_lc_wreck)
@@ -247,15 +243,19 @@
 	dir = 4
 	},
 /obj/structure/closet/walllocker/emerglocker/south,
-/obj/machinery/embedded_controller/radio/airlock/docking_port{
-	id_tag = "mack_lc_docking";
-	pixel_y = -28
-	},
 /obj/random/crate{
 	dir = 8
 	},
 /obj/random/contraband,
 /obj/random/medical,
+/obj/machinery/embedded_controller/radio/docking_port_multi{
+	child_names = list("Port Airlock Control","Starboard Airlock Control");
+	child_names_txt = list("Port Airlock Control","Starboard Airlock Control");
+	child_tags_txt = "mackerel_lc_wreck_docking_port";"mackerel_lc_wreck_docking_star";
+	dir = 1;
+	id_tag = "mackerel_lc_wreck_docking";
+	pixel_y = -22
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc_wreck)
 "rQ" = (
@@ -774,15 +774,24 @@
 /obj/structure/handrail,
 /obj/effect/map_helper/airlock/sensor/chamber_sensor,
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
-/obj/machinery/airlock_sensor{
-	pixel_y = 21
-	},
 /obj/machinery/light,
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
+	},
+/obj/effect/shuttle_landmark/shuttle_initializer/mackerel_lc_wreck,
+/obj/effect/overmap/visitable/ship/landable/mackerel_lc_wreck,
+/obj/machinery/airlock_sensor{
+	pixel_x = 7;
+	pixel_y = 21
+	},
+/obj/machinery/embedded_controller/radio/airlock/docking_port_multi{
+	id_tag = "mackerel_lc_wreck_docking_star";
+	name = "Starboard Airlock Control";
+	pixel_x = -8;
+	pixel_y = 22
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/mackerel_lc_wreck)
@@ -1120,7 +1129,7 @@ Dl
 WW
 Xs
 zr
-cC
+zr
 bY
 Kb
 Wj
