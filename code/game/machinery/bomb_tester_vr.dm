@@ -237,7 +237,7 @@
 			pressure = faketank.return_pressure()
 
 			var/strength = (pressure-TANK_FRAGMENT_PRESSURE)/TANK_FRAGMENT_SCALE
-			var/mult = ((faketank.volume/140)**(1/2)) * (faketank.total_moles**2/3)/((29*0.64) **2/3) //Don't ask me what this is, see tanks.dm
+			var/mult = ((faketank.volume/140)**(1/2)) * (faketank.total_moles**(2/3))/((29*0.64) **(2/3)) //Don't ask me what this is, see tanks.dm
 
 			var/dev = round((mult*strength)*0.15)
 			var/heavy = round((mult*strength)*0.35)
