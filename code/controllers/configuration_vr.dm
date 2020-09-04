@@ -3,7 +3,6 @@
 //
 
 /datum/configuration
-	var/static/list/engine_map	// Comma separated list of engines to choose from.  Blank means fully random.
 	var/static/time_off = FALSE
 	var/static/pto_job_change = FALSE
 	var/static/limit_interns = -1 //Unlimited by default
@@ -42,8 +41,6 @@
 				config.chat_webhook_url = value
 			if ("chat_webhook_key")
 				config.chat_webhook_key = value
-			if ("engine_map")
-				config.engine_map = splittext(value, ",")
 			if ("fax_export_dir")
 				config.fax_export_dir = value
 			if ("items_survive_digestion")

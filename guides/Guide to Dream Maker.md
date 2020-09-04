@@ -29,6 +29,8 @@ https://i.imgur.com/Ek9jaCe.png
 
 Cost is how much the POI system has to spend to spawn that .dmm, and name/mappath are self-explanatory.
 
+Regarding new submaps, refer to Guide to Map Folders.md!
+
 If you have questions, ask in Discord in #dev-general! <3
 
 SPRITERS:

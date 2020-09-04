@@ -6,7 +6,7 @@
 	item_state = "electronic"
 	origin_tech = list(TECH_MAGNET = 1, TECH_ENGINEERING = 1)
 	matter = list(DEFAULT_WALL_MATERIAL = 150)
-	var/scan_time = 5 SECONDS
+	var/scan_time = 2 SECONDS
 
 /obj/item/weapon/mining_scanner/attack_self(mob/user as mob)
 	to_chat(user, "<span class='notice'>You begin sweeping \the [src] about, scanning for metal deposits.</span>")

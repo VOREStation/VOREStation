@@ -25,10 +25,13 @@ export const Button = props => {
     selected,
     tooltip,
     tooltipPosition,
+    tooltipScale,
     ellipsis,
     content,
     iconRotation,
     iconSpin,
+    iconColor,
+    iconSize,
     children,
     onclick,
     onClick,
@@ -89,14 +92,17 @@ export const Button = props => {
         <Icon
           name={icon}
           rotation={iconRotation}
-          spin={iconSpin} />
+          spin={iconSpin}
+          color={iconColor}
+          fontSize={iconSize} />
       )}
       {content}
       {children}
       {tooltip && (
         <Tooltip
           content={tooltip}
-          position={tooltipPosition} />
+          position={tooltipPosition}
+          scale={tooltipScale} />
       )}
     </Box>
   );

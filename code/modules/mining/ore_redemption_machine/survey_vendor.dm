@@ -55,6 +55,7 @@
 		EQUIPMENT("Digital Tablet - Standard",	/obj/item/modular_computer/tablet/preset/custom_loadout/standard,	50),
 		EQUIPMENT("Digital Tablet - Advanced",	/obj/item/modular_computer/tablet/preset/custom_loadout/advanced,	100),
 		EQUIPMENT("Industrial Equipment - Phoron Bore",	/obj/item/weapon/gun/magnetic/matfed,						300),
+		EQUIPMENT("Industrial Equipment - Inducer",			/obj/item/weapon/inducer,								90),
 		EQUIPMENT("Laser Pointer",				/obj/item/device/laser_pointer,										90),
 		EQUIPMENT("Luxury Shelter Capsule",		/obj/item/device/survivalcapsule/luxury,							310),
 		EQUIPMENT("Bar Shelter Capsule",		/obj/item/device/survivalcapsule/luxurybar,							1000),

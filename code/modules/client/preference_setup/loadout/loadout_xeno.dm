@@ -184,12 +184,12 @@
 /datum/gear/uniform/dept/undercoat/command
 	display_name = "command undercoat (Teshari)"
 	path = /obj/item/clothing/under/seromi/undercoat/jobs/command
-	allowed_roles = list("Colony Director","Head of Personnel","Head of Security","Chief Engineer","Chief Medical Officer","Research Director")
+	allowed_roles = list("Site Manager","Head of Personnel","Head of Security","Chief Engineer","Chief Medical Officer","Research Director")
 
 /datum/gear/uniform/dept/undercoat/command_g
 	display_name = "command undercoat - gold buttons (Teshari)"
 	path = /obj/item/clothing/under/seromi/undercoat/jobs/command_g
-	allowed_roles = list("Colony Director","Head of Personnel","Head of Security","Chief Engineer","Chief Medical Officer","Research Director")
+	allowed_roles = list("Site Manager","Head of Personnel","Head of Security","Chief Engineer","Chief Medical Officer","Research Director")
 
 /datum/gear/uniform/dept/undercoat/cmo
 	display_name = "chief medical officer undercoat (Teshari)"
@@ -278,7 +278,7 @@
 /datum/gear/suit/dept/cloak/command
 	display_name = "command cloak (Teshari)"
 	path = /obj/item/clothing/suit/storage/seromi/cloak/jobs/command
-	allowed_roles = list("Colony Director","Head of Personnel","Head of Security","Chief Engineer","Chief Medical Officer","Research Director")
+	allowed_roles = list("Site Manager","Head of Personnel","Head of Security","Chief Engineer","Chief Medical Officer","Research Director")
 
 /datum/gear/suit/dept/cloak/cmo
 	display_name = "chief medical officer cloak (Teshari)"
@@ -418,3 +418,16 @@
 /datum/gear/accessory/teshneckscarf/New()
 	..()
 	gear_tweaks = list(gear_tweak_free_color_choice)
+
+/datum/gear/shoes/toelessjack
+	display_name = "toe-less jackboots"
+	path = /obj/item/clothing/shoes/boots/jackboots/toeless
+
+
+/datum/gear/shoes/toelessknee
+	display_name = "toe-less jackboots, knee-length"
+	path = /obj/item/clothing/shoes/boots/jackboots/toeless/knee
+
+/datum/gear/shoes/toelessthigh
+	display_name = "toe-less jackboots, thigh-length"
+	path = /obj/item/clothing/shoes/boots/jackboots/toeless/thigh

@@ -103,7 +103,7 @@
 		if(ATM_P) 
 			return "phoron"
 		if(ATM_N2O) 
-			return "sleeping_agent"
+			return "nitrous_oxide"
 		else
 			return null
 	

@@ -19,6 +19,8 @@
 	icon_state = "donutbox6"
 	name = "donut box"
 	var/icon_type = "donut"
+	drop_sound = 'sound/items/drop/cardboardbox.ogg'
+	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
 /obj/item/weapon/storage/fancy/update_icon(var/itemremoved = 0)
 	var/total_contents = contents.len - itemremoved
@@ -202,6 +204,7 @@
 /obj/item/weapon/storage/fancy/cigarettes
 	name = "\improper pack of Trans-Stellar Duty-frees"
 	desc = "A ubiquitous brand of cigarettes, found in every major spacefaring corporation in the universe. As mild and flavorless as it gets."
+	description_fluff = "The Trans-Stellar Duty-Free Cigarette Company was created as an imprint of NanoTrasen.  They are the most boring, tasteless, dry cigarettes on the market, but due to just how unremarkable (not to mention cheap to produce) they are, they sold in vending machines in almost every corner of the galaxy."
 	icon = 'icons/obj/cigarettes.dmi'
 	icon_state = "cigpacket"
 	item_state_slots = list(slot_r_hand_str = "cigpacket", slot_l_hand_str = "cigpacket")
@@ -316,7 +319,7 @@
 /obj/item/weapon/storage/fancy/cigar
 	name = "cigar case"
 	desc = "A case for holding your cigars when you are not smoking them."
-	description_fluff = "The tastefully engraved palm tree tells you that these 'Corona Grande' premium cigars are only sold on the luxury cruises and resorts of Oasis, though ten separate companies produce them for that purpose galaxy-wide. The standard is however very high."
+	description_fluff = "The tastefully engraved palm tree tells you that these 'Palma Grande' premium cigars are only sold on the luxury cruises and resorts of Oasis, though ten separate companies produce them for that purpose galaxy-wide. The standard is however very high."
 	icon_state = "cigarcase"
 	icon = 'icons/obj/cigarettes.dmi'
 	w_class = ITEMSIZE_TINY

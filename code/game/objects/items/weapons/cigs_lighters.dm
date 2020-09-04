@@ -34,7 +34,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	origin_tech = list(TECH_MATERIAL = 1)
 	slot_flags = SLOT_EARS
 	attack_verb = list("burnt", "singed")
-	drop_sound = null
+	drop_sound = 'sound/items/drop/food.ogg'
+	pickup_sound = 'sound/items/pickup/food.ogg'
 
 /obj/item/weapon/flame/match/process()
 	if(isliving(loc))
@@ -340,6 +341,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/clothing/mask/smokable/cigarette/cigar
 	name = "premium cigar"
 	desc = "A brown roll of tobacco and... well, you're not quite sure. This thing's huge!"
+	description_fluff = "While the label does say that this is a 'premium cigar', it really cannot match other types of cigars on the market.  Is it a quality cigarette?  Perhaps.  Was it hand-made with care?  No."
 	icon_state = "cigar2"
 	type_butt = /obj/item/trash/cigbutt/cigarbutt
 	throw_speed = 0.5
@@ -357,12 +359,14 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/clothing/mask/smokable/cigarette/cigar/cohiba
 	name = "\improper Cohiba Robusto cigar"
 	desc = "There's little more you could want from a cigar."
+	description_fluff = "Cohiba has been a popular cigar company for centuries.  They are still based out of Cuba and refuse to expand and therefore have a very limited quantity, making their cigars coveted all through known space. Robusto is one of their most popular shapes of cigars."
 	icon_state = "cigar2"
 	nicotine_amt = 7
 
 /obj/item/clothing/mask/smokable/cigarette/cigar/havana
 	name = "premium Havanian cigar"
 	desc = "A cigar fit for only the best of the best."
+	description_fluff = "'Havanian' is an umbrella term for any cigar made in the typical handmade style of Cuba. This particular cigar is from Gilthari's cigar manufacturers and produced galaxy-wide. While this way of making quality cigars has become slightly bastardized over the years, overall quality has remained relatively the same, even if there is a large quantity of 'Havanian' cigars."
 	icon_state = "cigar2"
 	max_smoketime = 7200
 	smoketime = 7200
@@ -402,6 +406,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/clothing/mask/smokable/pipe
 	name = "smoking pipe"
 	desc = "A pipe, for smoking. Made of fine, stained cherry wood."
+	description_fluff = "ClassiCo Accessories and Haberdashers, originating out of Mars, claim to produce products 'for the modern gentlefolk'. Most of their items are high-end and expensive, but they pledge to back their prices up with quality, and usually do."
 	icon_state = "pipe"
 	item_state = "pipe"
 	smoketime = 0

@@ -113,7 +113,7 @@
 		return
 	closing = TRUE
 	for(var/datum/tgui/child in children)
-		child.close()
+		child.close(can_be_suspended, logout)
 	children.Cut()
 	// If we don't have window_id, open proc did not have the opportunity
 	// to finish, therefore it's safe to skip this whole block.

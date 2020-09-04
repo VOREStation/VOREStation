@@ -421,8 +421,8 @@
 	var/mob/living/silicon/S = input("Select silicon.", "Manage Silicon Laws") as null|anything in silicon_mob_list
 	if(!S) return
 
-	var/datum/nano_module/law_manager/L = new(S)
-	L.ui_interact(usr, state = admin_state)
+	var/datum/tgui_module/law_manager/admin/L = new(S)
+	L.tgui_interact(usr)
 	log_and_message_admins("has opened [S]'s law manager.")
 	feedback_add_details("admin_verb","MSL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 

@@ -22,6 +22,7 @@
 	attack_verb = list("chopped", "torn", "cut")
 	applies_material_colour = 0
 	drop_sound = 'sound/items/drop/axe.ogg'
+	pickup_sound = 'sound/items/pickup/axe.ogg'
 
 /obj/item/weapon/material/knife/machete/hatchet/unathiknife
 	name = "duelling knife"

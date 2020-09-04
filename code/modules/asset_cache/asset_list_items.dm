@@ -499,3 +499,10 @@
 	for(var/asset_name in assets)
 		register_asset(asset_name, assets[asset_name])
 // VOREStation Add End
+
+/datum/asset/spritesheet/sheetmaterials
+	name = "sheetmaterials"
+
+/datum/asset/spritesheet/sheetmaterials/register()
+	InsertAll("", 'icons/obj/stacks.dmi')
+	..()

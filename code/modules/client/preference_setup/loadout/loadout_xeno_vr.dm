@@ -1,3 +1,14 @@
+// Upstream things
+/////
+
+/datum/gear/suit/dept/cloak/research
+	allowed_roles = list("Research Director","Scientist", "Roboticist", "Xenobiologist", "Xenobotanist")
+
+/datum/gear/uniform/dept/undercoat/research
+	allowed_roles = list("Research Director","Scientist", "Roboticist", "Xenobiologist", "Xenobotanist")
+
+/////
+
 /datum/gear/uniform/voxcasual
 	display_name = "casual wear (Vox)"
 	path = /obj/item/clothing/under/vox/vox_casual

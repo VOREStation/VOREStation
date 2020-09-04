@@ -24,35 +24,68 @@
 	if(!owned_scanner)
 		owned_scanner = locate(/obj/machinery/artifact_scanpad) in orange(1, src)
 
-/obj/machinery/artifact_analyser/attack_hand(var/mob/user as mob)
-	src.add_fingerprint(user)
-	interact(user)
-
-/obj/machinery/artifact_analyser/interact(mob/user)
+/obj/machinery/artifact_analyser/attack_hand(mob/user)
+	add_fingerprint(user)
 	if(stat & (NOPOWER|BROKEN) || get_dist(src, user) > 1)
-		user.unset_machine(src)
 		return
+	tgui_interact(user)
 
-	var/dat = "<B>Anomalous material analyser</B><BR>"
-	dat += "<HR>"
+/obj/machinery/artifact_analyser/tgui_interact(mob/user, datum/tgui/ui)
 	if(!owned_scanner)
 		reconnect_scanner()
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "XenoarchArtifactAnalyzer", name)
+		ui.open()
 
-	if(!owned_scanner)
-		dat += "<b><font color=red>Unable to locate analysis pad.</font></b><br>"
-	else if(scan_in_progress)
-		dat += "Please wait. Analysis in progress.<br>"
-		dat += "<a href='?src=\ref[src];halt_scan=1'>Halt scanning.</a><br>"
-	else
-		dat += "Scanner is ready.<br>"
-		dat += "<a href='?src=\ref[src];begin_scan=1'>Begin scanning.</a><br>"
+/obj/machinery/artifact_analyser/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
 
-	dat += "<br>"
-	dat += "<hr>"
-	dat += "<a href='?src=\ref[src]'>Refresh</a> <a href='?src=\ref[src];close=1'>Close</a>"
-	user << browse(dat, "window=artanalyser;size=450x500")
-	user.set_machine(src)
-	onclose(user, "artanalyser")
+	data["owned_scanner"] = owned_scanner
+	data["scan_in_progress"] = scan_in_progress
+
+	return data
+
+/obj/machinery/artifact_analyser/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	if(..())
+		return TRUE
+	
+	add_fingerprint(usr)
+	
+	switch(action)
+		if("scan")
+			if(scan_in_progress)
+				scan_in_progress = FALSE
+				atom_say("Scanning halted.")
+				return TRUE
+			if(!owned_scanner)
+				reconnect_scanner()
+			if(owned_scanner)
+				var/artifact_in_use = 0
+				for(var/obj/O in owned_scanner.loc)
+					if(O == owned_scanner)
+						continue
+					if(O.invisibility)
+						continue
+					if(istype(O, /obj/machinery/artifact))
+						var/obj/machinery/artifact/A = O
+						if(A.being_used)
+							artifact_in_use = 1
+						else
+							A.anchored = 1
+							A.being_used = 1
+
+					if(artifact_in_use)
+						atom_say("Cannot scan. Too much interference.")
+					else
+						scanned_object = O
+						scan_in_progress = 1
+						scan_completion_time = world.time + scan_duration
+						atom_say("Scanning begun.")
+					break
+				if(!scanned_object)
+					atom_say("Unable to isolate scan target.")
+			return TRUE
 
 /obj/machinery/artifact_analyser/process()
 	if(scan_in_progress && world.time > scan_completion_time)
@@ -69,7 +102,7 @@
 		else
 			results = get_scan_info(scanned_object)
 
-		src.visible_message("<b>[name]</b> states, \"Scanning complete.\"")
+		atom_say("Scanning complete.")
 		var/obj/item/weapon/paper/P = new(src.loc)
 		P.name = "[src] report #[++report_num]"
 		P.info = "<b>[src] analysis report #[report_num]</b><br>"
@@ -83,46 +116,6 @@
 			A.anchored = 0
 			A.being_used = 0
 			scanned_object = null
-
-/obj/machinery/artifact_analyser/Topic(href, href_list)
-	if(href_list["begin_scan"])
-		if(!owned_scanner)
-			reconnect_scanner()
-		if(owned_scanner)
-			var/artifact_in_use = 0
-			for(var/obj/O in owned_scanner.loc)
-				if(O == owned_scanner)
-					continue
-				if(O.invisibility)
-					continue
-				if(istype(O, /obj/machinery/artifact))
-					var/obj/machinery/artifact/A = O
-					if(A.being_used)
-						artifact_in_use = 1
-					else
-						A.anchored = 1
-						A.being_used = 1
-
-				if(artifact_in_use)
-					src.visible_message("<b>[name]</b> states, \"Cannot scan. Too much interference.\"")
-				else
-					scanned_object = O
-					scan_in_progress = 1
-					scan_completion_time = world.time + scan_duration
-					src.visible_message("<b>[name]</b> states, \"Scanning begun.\"")
-				break
-			if(!scanned_object)
-				src.visible_message("<b>[name]</b> states, \"Unable to isolate scan target.\"")
-	if(href_list["halt_scan"])
-		scan_in_progress = 0
-		src.visible_message("<b>[name]</b> states, \"Scanning halted.\"")
-
-	if(href_list["close"])
-		usr.unset_machine(src)
-		usr << browse(null, "window=artanalyser")
-
-	..()
-	updateDialog()
 
 //hardcoded responses, oh well
 /obj/machinery/artifact_analyser/proc/get_scan_info(var/obj/scanned_obj)

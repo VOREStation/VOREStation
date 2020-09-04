@@ -1,0 +1,4 @@
+author: Atermonera
+delete-after: True
+changes: 
+  - tweak: "You can use Move Up/Down to traverse ladders No popup "Which way do you want to go?" windows required for bidirectional ladders!."

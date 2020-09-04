@@ -695,7 +695,7 @@
 "ns" = (/obj/machinery/door/blast/regular{icon_state = "pdoor1"; id = "CREED"; name = "Ready Room"; p_open = 0},/turf/simulated/shuttle/floor,/area/centcom/evac)
 "nt" = (/obj/machinery/embedded_controller/radio/simple_docking_controller{frequency = 1380; id_tag = "large_escape_pod_2_recovery"; pixel_x = -25; pixel_y = 25; req_one_access = list(13); tag_door = "large_escape_pod_2_recovery_hatch"},/turf/simulated/shuttle/floor/yellow,/area/centcom/evac)
 "nu" = (/obj/structure/table/standard,/turf/simulated/shuttle/floor/yellow,/area/centcom/evac)
-"nv" = (/obj/machinery/portable_atmospherics/canister/sleeping_agent{pixel_x = 1},/obj/machinery/atmospherics/portables_connector{dir = 4},/turf/unsimulated/floor{icon_state = "lino"},/area/tdome/tdomeadmin)
+"nv" = (/obj/machinery/portable_atmospherics/canister/nitrous_oxide{pixel_x = 1},/obj/machinery/atmospherics/portables_connector{dir = 4},/turf/unsimulated/floor{icon_state = "lino"},/area/tdome/tdomeadmin)
 "nw" = (/obj/machinery/atmospherics/valve{dir = 4},/turf/unsimulated/floor{icon_state = "lino"},/area/tdome/tdomeadmin)
 "nx" = (/obj/effect/forcefield{desc = "You can't get in. Heh."; layer = 1; name = "Blocker"},/obj/effect/wingrille_spawn/reinforced/crescent,/obj/machinery/atmospherics/pipe/simple/visible{dir = 4},/turf/unsimulated/floor{icon_state = "dark"},/area/tdome)
 "ny" = (/obj/machinery/atmospherics/pipe/simple/visible{dir = 4},/turf/unsimulated/floor{icon_state = "dark"},/area/tdome)

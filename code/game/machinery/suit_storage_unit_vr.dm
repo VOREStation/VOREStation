@@ -1,5 +1,5 @@
 /obj/machinery/suit_cycler
-	departments = list("Engineering","Mining","Medical","Security","Atmos","HAZMAT","Construction","Biohazard","Emergency Medical Response","Crowd Control","Exploration","Pilot Blue","Pilot","Director","Prototype")
+	departments = list("Engineering","Mining","Medical","Security","Atmos","HAZMAT","Construction","Biohazard","Emergency Medical Response","Crowd Control","Exploration","Pilot Blue","Pilot","Manager","Prototype")
 	species = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_VULPKANIN)
 
 // Old Exploration is too WIP to use right now
@@ -11,10 +11,10 @@
 	req_access = list(access_pilot)
 
 /obj/machinery/suit_cycler/captain
-	name = "Director suit cycler"
-	model_text = "Director"
+	name = "Manager suit cycler"
+	model_text = "Manager"
 	req_access = list(access_captain)
-	departments = list("Director")
+	departments = list("Manager")
 
 /obj/machinery/suit_cycler/captain/Initialize() //No Teshari Sprites
 	species -= SPECIES_TESHARI

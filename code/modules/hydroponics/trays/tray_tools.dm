@@ -16,42 +16,50 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "hydro"
 	item_state = "analyzer"
-	var/form_title
-	var/last_data
+	var/datum/seed/last_seed
+	var/list/last_reagents
 
-/obj/item/device/analyzer/plant_analyzer/proc/print_report_verb()
-	set name = "Print Plant Report"
-	set category = "Object"
-	set src = usr
+/obj/item/device/analyzer/plant_analyzer/attack_self(mob/user)
+	tgui_interact(user)
 
-	if(usr.stat || usr.restrained() || usr.lying)
-		return
-	print_report(usr)
+/obj/item/device/analyzer/plant_analyzer/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "PlantAnalyzer", name)
+		ui.open()
+	
+/obj/item/device/analyzer/plant_analyzer/tgui_state(mob/user)
+	return GLOB.tgui_inventory_state
 
-/obj/item/device/analyzer/plant_analyzer/Topic(href, href_list)
+/obj/item/device/analyzer/plant_analyzer/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
+
+	var/datum/seed/grown_seed = locate(last_seed)
+	if(!istype(grown_seed))
+		return list("no_seed" = TRUE)
+
+	data["no_seed"] = FALSE
+	data["seed"] = grown_seed.get_tgui_analyzer_data(user)
+	data["reagents"] = last_reagents
+
+	return data
+
+/obj/item/device/analyzer/plant_analyzer/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
-		return
-	if(href_list["print"])
-		print_report(usr)
-
-/obj/item/device/analyzer/plant_analyzer/proc/print_report(var/mob/living/user)
-	if(!last_data)
-		to_chat(user, "There is no scan data to print.")
-		return
-	var/obj/item/weapon/paper/P = new /obj/item/weapon/paper(get_turf(src))
-	P.name = "paper - [form_title]"
-	P.info = "[last_data]"
-	if(istype(user,/mob/living/carbon/human))
-		user.put_in_hands(P)
-	user.visible_message("\The [src] spits out a piece of paper.")
-	return
-
-/obj/item/device/analyzer/plant_analyzer/attack_self(mob/user as mob)
-	print_report(user)
-	return 0
+		return TRUE
+	
+	switch(action)
+		if("print")
+			print_report(usr)
+			return TRUE
+		if("close")
+			last_seed = null
+			last_reagents = null
+			return TRUE
 
 /obj/item/device/analyzer/plant_analyzer/afterattack(obj/target, mob/user, flag)
-	if(!flag) return
+	if(!flag)
+		return
 
 	var/datum/seed/grown_seed
 	var/datum/reagents/grown_reagents
@@ -60,13 +68,13 @@
 	else if(istype(target,/obj/item/weapon/reagent_containers/food/snacks/grown))
 
 		var/obj/item/weapon/reagent_containers/food/snacks/grown/G = target
-		grown_seed = plant_controller.seeds[G.plantname]
+		grown_seed = SSplants.seeds[G.plantname]
 		grown_reagents = G.reagents
 
 	else if(istype(target,/obj/item/weapon/grown))
 
 		var/obj/item/weapon/grown/G = target
-		grown_seed = plant_controller.seeds[G.plantname]
+		grown_seed = SSplants.seeds[G.plantname]
 		grown_reagents = G.reagents
 
 	else if(istype(target,/obj/item/seeds))
@@ -87,12 +95,38 @@
 		to_chat(user, "<span class='danger'>[src] can tell you nothing about \the [target].</span>")
 		return
 
-	form_title = "[grown_seed.seed_name] (#[grown_seed.uid])"
-	var/dat = "<h3>Plant data for [form_title]</h3>"
+	last_seed = REF(grown_seed)
+
 	user.visible_message("<span class='notice'>[user] runs the scanner over \the [target].</span>")
 
-	dat += "<h2>General Data</h2>"
+	last_reagents = list()
+	if(grown_reagents && grown_reagents.reagent_list && grown_reagents.reagent_list.len)
+		for(var/datum/reagent/R in grown_reagents.reagent_list)
+			last_reagents.Add(list(list(
+				"name" = R.name,
+				"volume" = grown_reagents.get_reagent_amount(R.id),
+			)))
 
+	tgui_interact(user)
+
+/obj/item/device/analyzer/plant_analyzer/proc/print_report_verb()
+	set name = "Print Plant Report"
+	set category = "Object"
+	set src = usr
+
+	if(usr.stat || usr.restrained() || usr.lying)
+		return
+	print_report(usr)
+
+/obj/item/device/analyzer/plant_analyzer/proc/print_report(var/mob/living/user)
+	var/datum/seed/grown_seed = locate(last_seed)
+	if(!istype(grown_seed))
+		to_chat(user, "<span class='warning'>There is no scan data to print.</span>")
+		return
+
+	var/form_title = "[grown_seed.seed_name] (#[grown_seed.uid])"
+	var/dat = "<h3>Plant data for [form_title]</h3>"
+	dat += "<h2>General Data</h2>"
 	dat += "<table>"
 	dat += "<tr><td><b>Endurance</b></td><td>[grown_seed.get_trait(TRAIT_ENDURANCE)]</td></tr>"
 	dat += "<tr><td><b>Yield</b></td><td>[grown_seed.get_trait(TRAIT_YIELD)]</td></tr>"
@@ -101,138 +135,156 @@
 	dat += "<tr><td><b>Potency</b></td><td>[grown_seed.get_trait(TRAIT_POTENCY)]</td></tr>"
 	dat += "</table>"
 
-	if(grown_reagents && grown_reagents.reagent_list && grown_reagents.reagent_list.len)
+	if(LAZYLEN(last_reagents))
 		dat += "<h2>Reagent Data</h2>"
-
 		dat += "<br>This sample contains: "
-		for(var/datum/reagent/R in grown_reagents.reagent_list)
-			dat += "<br>- [R.name], [grown_reagents.get_reagent_amount(R.id)] unit(s)"
+		for(var/i in 1 to LAZYLEN(last_reagents))
+			dat += "<br>- [last_reagents[i]["name"]], [last_reagents[i]["volume"]] unit(s)"
 
 	dat += "<h2>Other Data</h2>"
 
-	if(grown_seed.get_trait(TRAIT_HARVEST_REPEAT))
-		dat += "This plant can be harvested repeatedly.<br>"
+	var/list/tgui_data = grown_seed.get_tgui_analyzer_data()
 
-	if(grown_seed.get_trait(TRAIT_IMMUTABLE) == -1)
-		dat += "This plant is highly mutable.<br>"
-	else if(grown_seed.get_trait(TRAIT_IMMUTABLE) > 0)
-		dat += "This plant does not possess genetics that are alterable.<br>"
+	dat += jointext(tgui_data["trait_info"], "<br>\n")
 
-	if(grown_seed.get_trait(TRAIT_REQUIRES_NUTRIENTS))
-		if(grown_seed.get_trait(TRAIT_NUTRIENT_CONSUMPTION) < 0.05)
-			dat += "It consumes a small amount of nutrient fluid.<br>"
-		else if(grown_seed.get_trait(TRAIT_NUTRIENT_CONSUMPTION) > 0.2)
-			dat += "It requires a heavy supply of nutrient fluid.<br>"
+	var/obj/item/weapon/paper/P = new /obj/item/weapon/paper(get_turf(src))
+	P.name = "paper - [form_title]"
+	P.info = "[dat]"
+	if(istype(user,/mob/living/carbon/human))
+		user.put_in_hands(P)
+	user.visible_message("\The [src] spits out a piece of paper.")
+	return
+
+/datum/seed/proc/get_tgui_analyzer_data(mob/user)
+	var/list/data = list()
+
+	data["name"] = seed_name
+	data["uid"] = uid
+	data["endurance"] = get_trait(TRAIT_ENDURANCE)
+	data["yield"] = get_trait(TRAIT_YIELD)
+	data["maturation_time"] = get_trait(TRAIT_MATURATION)
+	data["production_time"] = get_trait(TRAIT_PRODUCTION)
+	data["potency"] = get_trait(TRAIT_POTENCY)
+
+	data["trait_info"] = list()
+	if(get_trait(TRAIT_HARVEST_REPEAT))
+		data["trait_info"] += "This plant can be harvested repeatedly."
+
+	if(get_trait(TRAIT_IMMUTABLE) == -1)
+		data["trait_info"] += "This plant is highly mutable."
+	else if(get_trait(TRAIT_IMMUTABLE) > 0)
+		data["trait_info"] += "This plant does not possess genetics that are alterable."
+
+	if(get_trait(TRAIT_REQUIRES_NUTRIENTS))
+		if(get_trait(TRAIT_NUTRIENT_CONSUMPTION) < 0.05)
+			data["trait_info"] += "It consumes a small amount of nutrient fluid."
+		else if(get_trait(TRAIT_NUTRIENT_CONSUMPTION) > 0.2)
+			data["trait_info"] += "It requires a heavy supply of nutrient fluid."
 		else
-			dat += "It requires a supply of nutrient fluid.<br>"
+			data["trait_info"] += "It requires a supply of nutrient fluid."
 
-	if(grown_seed.get_trait(TRAIT_REQUIRES_WATER))
-		if(grown_seed.get_trait(TRAIT_WATER_CONSUMPTION) < 1)
-			dat += "It requires very little water.<br>"
-		else if(grown_seed.get_trait(TRAIT_WATER_CONSUMPTION) > 5)
-			dat += "It requires a large amount of water.<br>"
+	if(get_trait(TRAIT_REQUIRES_WATER))
+		if(get_trait(TRAIT_WATER_CONSUMPTION) < 1)
+			data["trait_info"] += "It requires very little water."
+		else if(get_trait(TRAIT_WATER_CONSUMPTION) > 5)
+			data["trait_info"] += "It requires a large amount of water."
 		else
-			dat += "It requires a stable supply of water.<br>"
+			data["trait_info"] += "It requires a stable supply of water."
 
-	if(grown_seed.mutants && grown_seed.mutants.len)
-		dat += "It exhibits a high degree of potential subspecies shift.<br>"
+	if(mutants && mutants.len)
+		data["trait_info"] += "It exhibits a high degree of potential subspecies shift."
 
-	dat += "It thrives in a temperature of [grown_seed.get_trait(TRAIT_IDEAL_HEAT)] Kelvin."
+	data["trait_info"] += "It thrives in a temperature of [get_trait(TRAIT_IDEAL_HEAT)] Kelvin."
 
-	if(grown_seed.get_trait(TRAIT_LOWKPA_TOLERANCE) < 20)
-		dat += "<br>It is well adapted to low pressure levels."
-	if(grown_seed.get_trait(TRAIT_HIGHKPA_TOLERANCE) > 220)
-		dat += "<br>It is well adapted to high pressure levels."
+	if(get_trait(TRAIT_LOWKPA_TOLERANCE) < 20)
+		data["trait_info"] += "It is well adapted to low pressure levels."
+	if(get_trait(TRAIT_HIGHKPA_TOLERANCE) > 220)
+		data["trait_info"] += "It is well adapted to high pressure levels."
 
-	if(grown_seed.get_trait(TRAIT_HEAT_TOLERANCE) > 30)
-		dat += "<br>It is well adapted to a range of temperatures."
-	else if(grown_seed.get_trait(TRAIT_HEAT_TOLERANCE) < 10)
-		dat += "<br>It is very sensitive to temperature shifts."
+	if(get_trait(TRAIT_HEAT_TOLERANCE) > 30)
+		data["trait_info"] += "It is well adapted to a range of temperatures."
+	else if(get_trait(TRAIT_HEAT_TOLERANCE) < 10)
+		data["trait_info"] += "It is very sensitive to temperature shifts."
 
-	dat += "<br>It thrives in a light level of [grown_seed.get_trait(TRAIT_IDEAL_LIGHT)] lumen[grown_seed.get_trait(TRAIT_IDEAL_LIGHT) == 1 ? "" : "s"]."
+	data["trait_info"] += "It thrives in a light level of [get_trait(TRAIT_IDEAL_LIGHT)] lumen[get_trait(TRAIT_IDEAL_LIGHT) == 1 ? "" : "s"]."
 
-	if(grown_seed.get_trait(TRAIT_LIGHT_TOLERANCE) > 10)
-		dat += "<br>It is well adapted to a range of light levels."
-	else if(grown_seed.get_trait(TRAIT_LIGHT_TOLERANCE) < 3)
-		dat += "<br>It is very sensitive to light level shifts."
+	if(get_trait(TRAIT_LIGHT_TOLERANCE) > 10)
+		data["trait_info"] += "It is well adapted to a range of light levels."
+	else if(get_trait(TRAIT_LIGHT_TOLERANCE) < 3)
+		data["trait_info"] += "It is very sensitive to light level shifts."
 
-	if(grown_seed.get_trait(TRAIT_TOXINS_TOLERANCE) < 3)
-		dat += "<br>It is highly sensitive to toxins."
-	else if(grown_seed.get_trait(TRAIT_TOXINS_TOLERANCE) > 6)
-		dat += "<br>It is remarkably resistant to toxins."
+	if(get_trait(TRAIT_TOXINS_TOLERANCE) < 3)
+		data["trait_info"] += "It is highly sensitive to toxins."
+	else if(get_trait(TRAIT_TOXINS_TOLERANCE) > 6)
+		data["trait_info"] += "It is remarkably resistant to toxins."
 
-	if(grown_seed.get_trait(TRAIT_PEST_TOLERANCE) < 3)
-		dat += "<br>It is highly sensitive to pests."
-	else if(grown_seed.get_trait(TRAIT_PEST_TOLERANCE) > 6)
-		dat += "<br>It is remarkably resistant to pests."
+	if(get_trait(TRAIT_PEST_TOLERANCE) < 3)
+		data["trait_info"] += "It is highly sensitive to pests."
+	else if(get_trait(TRAIT_PEST_TOLERANCE) > 6)
+		data["trait_info"] += "It is remarkably resistant to pests."
 
-	if(grown_seed.get_trait(TRAIT_WEED_TOLERANCE) < 3)
-		dat += "<br>It is highly sensitive to weeds."
-	else if(grown_seed.get_trait(TRAIT_WEED_TOLERANCE) > 6)
-		dat += "<br>It is remarkably resistant to weeds."
+	if(get_trait(TRAIT_WEED_TOLERANCE) < 3)
+		data["trait_info"] += "It is highly sensitive to weeds."
+	else if(get_trait(TRAIT_WEED_TOLERANCE) > 6)
+		data["trait_info"] += "It is remarkably resistant to weeds."
 
-	switch(grown_seed.get_trait(TRAIT_SPREAD))
+	switch(get_trait(TRAIT_SPREAD))
 		if(1)
-			dat += "<br>It is able to be planted outside of a tray."
+			data["trait_info"] += "It is able to be planted outside of a tray."
 		if(2)
-			dat += "<br>It is a robust and vigorous vine that will spread rapidly."
+			data["trait_info"] += "It is a robust and vigorous vine that will spread rapidly."
 
-	switch(grown_seed.get_trait(TRAIT_CARNIVOROUS))
+	switch(get_trait(TRAIT_CARNIVOROUS))
 		if(1)
-			dat += "<br>It is carnivorous and will eat tray pests for sustenance."
+			data["trait_info"] += "It is carnivorous and will eat tray pests for sustenance."
 		if(2)
-			dat	+= "<br>It is carnivorous and poses a significant threat to living things around it."
+			data["trait_info"] += "It is carnivorous and poses a significant threat to living things around it."
 
-	if(grown_seed.get_trait(TRAIT_PARASITE))
-		dat += "<br>It is capable of parisitizing and gaining sustenance from tray weeds."
+	if(get_trait(TRAIT_PARASITE))
+		data["trait_info"] += "It is capable of parisitizing and gaining sustenance from tray weeds."
 
 /*
 	There's currently no code that actually changes the temperature of the local environment, so let's not show it until there is.
-	if(grown_seed.get_trait(TRAIT_ALTER_TEMP))
-		dat += "<br>It will periodically alter the local temperature by [grown_seed.get_trait(TRAIT_ALTER_TEMP)] degrees Kelvin."
+	if(get_trait(TRAIT_ALTER_TEMP))
+		data["trait_info"] += "It will periodically alter the local temperature by [get_trait(TRAIT_ALTER_TEMP)] degrees Kelvin."
 */
 
-	if(grown_seed.get_trait(TRAIT_BIOLUM))
-		dat += "<br>It is [grown_seed.get_trait(TRAIT_BIOLUM_COLOUR)  ? "<font color='[grown_seed.get_trait(TRAIT_BIOLUM_COLOUR)]'>bio-luminescent</font>" : "bio-luminescent"]."
+	if(get_trait(TRAIT_BIOLUM))
+		data["trait_info"] += "It is [get_trait(TRAIT_BIOLUM_COLOUR)  ? "<font color='[get_trait(TRAIT_BIOLUM_COLOUR)]'>bio-luminescent</font>" : "bio-luminescent"]."
 
-	if(grown_seed.get_trait(TRAIT_PRODUCES_POWER))
-		dat += "<br>The fruit will function as a battery if prepared appropriately."
+	if(get_trait(TRAIT_PRODUCES_POWER))
+		data["trait_info"] += "The fruit will function as a battery if prepared appropriately."
 
-	if(grown_seed.get_trait(TRAIT_STINGS))
-		dat += "<br>The fruit is covered in stinging spines."
+	if(get_trait(TRAIT_STINGS))
+		data["trait_info"] += "The fruit is covered in stinging spines."
 
-	if(grown_seed.get_trait(TRAIT_JUICY) == 1)
-		dat += "<br>The fruit is soft-skinned and juicy."
-	else if(grown_seed.get_trait(TRAIT_JUICY) == 2)
-		dat += "<br>The fruit is excessively juicy."
+	if(get_trait(TRAIT_JUICY) == 1)
+		data["trait_info"] += "The fruit is soft-skinned and juicy."
+	else if(get_trait(TRAIT_JUICY) == 2)
+		data["trait_info"] += "The fruit is excessively juicy."
 
-	if(grown_seed.get_trait(TRAIT_EXPLOSIVE))
-		dat += "<br>The fruit is internally unstable."
+	if(get_trait(TRAIT_EXPLOSIVE))
+		data["trait_info"] += "The fruit is internally unstable."
 
-	if(grown_seed.get_trait(TRAIT_TELEPORTING))
-		dat += "<br>The fruit is temporal/spatially unstable."
+	if(get_trait(TRAIT_TELEPORTING))
+		data["trait_info"] += "The fruit is temporal/spatially unstable."
 
-	if(grown_seed.exude_gasses && grown_seed.exude_gasses.len)
-		for(var/gas in grown_seed.exude_gasses)
+	if(exude_gasses && exude_gasses.len)
+		for(var/gas in exude_gasses)
 			var/amount = ""
-			if (grown_seed.exude_gasses[gas] > 7)
+			if (exude_gasses[gas] > 7)
 				amount = "large amounts of "
-			else if (grown_seed.exude_gasses[gas] < 5)
+			else if (exude_gasses[gas] < 5)
 				amount = "small amounts of "
-			dat += "<br>It will release [amount][gas_data.name[gas]] into the environment."
+			data["trait_info"] += "It will release [amount][gas_data.name[gas]] into the environment."
 
-	if(grown_seed.consume_gasses && grown_seed.consume_gasses.len)
-		for(var/gas in grown_seed.consume_gasses)
+	if(consume_gasses && consume_gasses.len)
+		for(var/gas in consume_gasses)
 			var/amount = ""
-			if (grown_seed.consume_gasses[gas] > 7)
+			if (consume_gasses[gas] > 7)
 				amount = "large amounts of "
-			else if (grown_seed.consume_gasses[gas] < 5)
+			else if (consume_gasses[gas] < 5)
 				amount = "small amounts of "
-			dat += "<br>It will consume [amount][gas_data.name[gas]] from the environment."
+			data["trait_info"] += "It will consume [amount][gas_data.name[gas]] from the environment."
 
-	if(dat)
-		last_data = dat
-		dat += "<br><br>\[<a href='?src=\ref[src];print=1'>print report</a>\]"
-		user << browse(dat,"window=plant_analyzer")
-
-	return
+	return data
