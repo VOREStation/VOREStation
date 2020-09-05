@@ -117,7 +117,7 @@
 	name = "slug"
 	fire_sound = 'sound/weapons/Gunshot_shotgun.ogg'
 	damage = 50
-	armor_penetration = 15
+	armor_penetration = 20
 
 /obj/item/projectile/bullet/shotgun/beanbag		//because beanbags are not bullets
 	name = "beanbag"
