@@ -14,7 +14,7 @@
 /datum/reagent/inaprovaline/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien != IS_DIONA)
 		M.add_chemical_effect(CE_STABLE, 15)
-		M.add_chemical_effect(CE_PAINKILLER, 10)
+		M.add_chemical_effect(CE_PAINKILLER, 10 * M.species.chem_strength_pain)
 
 /datum/reagent/inaprovaline/topical
 	name = "Inaprovalaze"
@@ -37,7 +37,7 @@
 /datum/reagent/inaprovaline/topical/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien != IS_DIONA)
 		M.add_chemical_effect(CE_STABLE, 20)
-		M.add_chemical_effect(CE_PAINKILLER, 12)
+		M.add_chemical_effect(CE_PAINKILLER, 12 * M.species.chem_strength_pain)
 
 /datum/reagent/bicaridine
 	name = "Bicaridine"
@@ -48,10 +48,11 @@
 	reagent_state = LIQUID
 	color = "#BF0000"
 	overdose = REAGENTS_OVERDOSE
+	overdose_mod = 0.25
 	scannable = 1
 
 /datum/reagent/bicaridine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	var/chem_effective = 1
+	var/chem_effective = 1 * M.species.chem_strength_heal
 	if(alien == IS_SLIME)
 		chem_effective = 0.75
 	if(alien != IS_DIONA)
@@ -88,7 +89,7 @@
 	can_overdose_touch = TRUE
 
 /datum/reagent/bicaridine/topical/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	var/chem_effective = 1
+	var/chem_effective = 1 * M.species.chem_strength_heal
 	if(alien == IS_SLIME)
 		chem_effective = 0.75
 	if(alien != IS_DIONA)
@@ -96,7 +97,7 @@
 		M.adjustToxLoss(2 * removed)
 
 /datum/reagent/bicaridine/topical/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
-	var/chem_effective = 1
+	var/chem_effective = 1 * M.species.chem_strength_heal
 	if(alien == IS_SLIME)
 		chem_effective = 0.75
 	if(alien != IS_DIONA)
@@ -132,7 +133,7 @@
 	scannable = 1
 
 /datum/reagent/kelotane/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	var/chem_effective = 1
+	var/chem_effective = 1 * M.species.chem_strength_heal
 	if(alien == IS_SLIME)
 		chem_effective = 0.5
 		M.adjustBruteLoss(2 * removed) //Mends burns, but has negative effects with a Promethean's skeletal structure.
@@ -151,7 +152,7 @@
 	scannable = 1
 
 /datum/reagent/dermaline/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	var/chem_effective = 1
+	var/chem_effective = 1 * M.species.chem_strength_heal
 	if(alien == IS_SLIME)
 		chem_effective = 0.75
 	if(alien != IS_DIONA)
@@ -171,7 +172,7 @@
 	can_overdose_touch = TRUE
 
 /datum/reagent/dermaline/topical/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	var/chem_effective = 1
+	var/chem_effective = 1 * M.species.chem_strength_heal
 	if(alien == IS_SLIME)
 		chem_effective = 0.75
 	if(alien != IS_DIONA)
@@ -179,7 +180,7 @@
 		M.adjustToxLoss(2 * removed)
 
 /datum/reagent/dermaline/topical/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
-	var/chem_effective = 1
+	var/chem_effective = 1 * M.species.chem_strength_heal
 	if(alien == IS_SLIME)
 		chem_effective = 0.75
 	if(alien != IS_DIONA)
@@ -195,7 +196,7 @@
 	scannable = 1
 
 /datum/reagent/dylovene/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	var/chem_effective = 1
+	var/chem_effective = 1 * M.species.chem_strength_heal
 	if(alien == IS_SLIME)
 		chem_effective = 0.66
 		if(dose >= 15)
@@ -214,13 +215,15 @@
 	reagent_state = LIQUID
 	color = "#225722"
 	scannable = 1
+	overdose = REAGENTS_OVERDOSE * 0.5
+	overdose_mod = 0 // Not used, but it shouldn't deal toxin damage anyways. Carth heals toxins!
 
 /datum/reagent/carthatoline/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
 	if(M.getToxLoss() && prob(10))
 		M.vomit(1)
-	M.adjustToxLoss(-8 * removed)
+	M.adjustToxLoss(-8 * removed * M.species.chem_strength_heal)
 	if(prob(30))
 		M.remove_a_modifier_of_type(/datum/modifier/poisoned)
 	if(ishuman(M))
@@ -233,6 +236,11 @@
 				L.damage = max(L.damage - 2 * removed, 0)
 		if(alien == IS_SLIME)
 			H.druggy = max(M.druggy, 5)
+
+/datum/reagent/carthatoline/overdose(var/mob/living/carbon/M, var/alien, var/removed)
+	M.adjustHalLoss(2)
+	var/mob/living/carbon/human/H = M
+	H.internal_organs_by_name[O_STOMACH].take_damage(removed * 2) // Causes stomach contractions, makes sense for an overdose to make it much worse.
 
 /datum/reagent/dexalin
 	name = "Dexalin"
@@ -249,13 +257,13 @@
 	if(alien == IS_VOX)
 		M.adjustToxLoss(removed * 24) //VOREStation Edit
 	else if(alien == IS_SLIME && dose >= 15)
-		M.add_chemical_effect(CE_PAINKILLER, 15)
+		M.add_chemical_effect(CE_PAINKILLER, 15 * M.species.chem_strength_pain)
 		if(prob(15))
 			to_chat(M, "<span class='notice'>You have a moment of clarity as you collapse.</span>")
 			M.adjustBrainLoss(-20 * removed) //VOREStation Edit
 			M.Weaken(6)
 	else if(alien != IS_DIONA)
-		M.adjustOxyLoss(-60 * removed) //VOREStation Edit
+		M.adjustOxyLoss(-15 * removed * M.species.chem_strength_heal)
 
 	holder.remove_reagent("lexorin", 8 * removed) //VOREStation Edit
 
@@ -267,19 +275,20 @@
 	reagent_state = LIQUID
 	color = "#0040FF"
 	overdose = REAGENTS_OVERDOSE * 0.5
+	overdose_mod = 1.25
 	scannable = 1
 
 /datum/reagent/dexalinp/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_VOX)
 		M.adjustToxLoss(removed * 9)
 	else if(alien == IS_SLIME && dose >= 10)
-		M.add_chemical_effect(CE_PAINKILLER, 25)
+		M.add_chemical_effect(CE_PAINKILLER, 25 * M.species.chem_strength_pain)
 		if(prob(25))
 			to_chat(M, "<span class='notice'>You have a moment of clarity, as you feel your tubes lose pressure rapidly.</span>")
 			M.adjustBrainLoss(-8 * removed)
 			M.Weaken(3)
 	else if(alien != IS_DIONA)
-		M.adjustOxyLoss(-150 * removed)
+		M.adjustOxyLoss(-150 * removed * M.species.chem_strength_heal)
 
 	holder.remove_reagent("lexorin", 3 * removed)
 
@@ -294,7 +303,7 @@
 
 /datum/reagent/tricordrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien != IS_DIONA)
-		var/chem_effective = 1
+		var/chem_effective = 1 * M.species.chem_strength_heal
 		if(alien == IS_SLIME)
 			chem_effective = 0.5
 		M.adjustOxyLoss(-3 * removed * chem_effective)
@@ -317,7 +326,7 @@
 
 /datum/reagent/tricorlidaze/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien != IS_DIONA)
-		var/chem_effective = 1
+		var/chem_effective = 1 * M.species.chem_strength_heal
 		if(alien == IS_SLIME)
 			chem_effective = 0.5
 		M.adjustOxyLoss(-2 * removed * chem_effective)
@@ -327,7 +336,6 @@
 /datum/reagent/tricorlidaze/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien != IS_DIONA)
 		M.adjustToxLoss(3 * removed)
-		affect_blood(M, alien, removed * 0.4)
 
 /datum/reagent/tricorlidaze/touch_obj(var/obj/O)
 	if(istype(O, /obj/item/stack/medical/bruise_pack) && round(volume) >= 5)
@@ -354,7 +362,7 @@
 
 /datum/reagent/cryoxadone/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(M.bodytemperature < 170)
-		var/chem_effective = 1
+		var/chem_effective = 1 * M.species.chem_strength_heal
 		if(alien == IS_SLIME)
 			chem_effective = 0.25
 			to_chat(M, "<span class='danger'>It's cold. Something causes your cellular mass to harden occasionally, resulting in vibration.</span>")
@@ -379,7 +387,7 @@
 
 /datum/reagent/clonexadone/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(M.bodytemperature < 170)
-		var/chem_effective = 1
+		var/chem_effective = 1 * M.species.chem_strength_heal
 		if(alien == IS_SLIME)
 			if(prob(10))
 				to_chat(M, "<span class='danger'>It's so cold. Something causes your cellular mass to harden sporadically, resulting in seizure-like twitching.</span>")
@@ -392,6 +400,49 @@
 		M.heal_organ_damage(30 * removed, 30 * removed * chem_effective)
 		M.adjustToxLoss(-30 * removed * chem_effective)
 
+/datum/reagent/mortiferin
+	name = "Mortiferin"
+	id = "mortiferin"
+	description = "A liquid compound based upon those used in cloning. Utilized in cases of toxic shock. May cause liver damage."
+	taste_description = "meat"
+	reagent_state = LIQUID
+	color = "#6b4de3"
+	metabolism = REM * 0.5
+	mrate_static = TRUE
+	scannable = 1
+
+/datum/reagent/mortiferin/on_mob_life(var/mob/living/carbon/M, var/alien, var/datum/reagents/metabolism/location)
+	if(M.stat == DEAD && M.has_modifier_of_type(/datum/modifier/bloodpump_corpse))
+		affects_dead = TRUE
+	else
+		affects_dead = FALSE
+
+	. = ..(M, alien, location)
+
+/datum/reagent/mortiferin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(M.bodytemperature < (T0C - 10) || (M.stat == DEAD && M.has_modifier_of_type(/datum/modifier/bloodpump_corpse)))
+		var/chem_effective = 1 * M.species.chem_strength_heal
+		if(alien == IS_SLIME)
+			if(prob(10))
+				to_chat(M, "<span class='danger'>It's so cold. Something causes your cellular mass to solidify sporadically, resulting in uncontrollable twitching.</span>")
+			chem_effective = 0.5
+			M.Weaken(10)
+			M.silent = max(M.silent, 10)
+			M.make_jittery(4)
+		if(M.stat != DEAD)
+			M.adjustCloneLoss(-5 * removed * chem_effective)
+		M.adjustOxyLoss(-10 * removed * chem_effective)
+		M.adjustToxLoss(-20 * removed * chem_effective)
+
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			var/obj/item/organ/internal/liver/L = H.internal_organs_by_name[O_LIVER]
+			if(istype(L) && prob(5))
+				if(L.robotic >= ORGAN_ROBOT)
+					return
+
+				L.take_damage(rand(1,3) * removed)
+
 /datum/reagent/necroxadone
 	name = "Necroxadone"
 	id = "necroxadone"
@@ -402,18 +453,11 @@
 	metabolism = REM * 0.5
 	mrate_static = TRUE
 	scannable = 1
-
-/datum/reagent/necroxadone/on_mob_life(var/mob/living/carbon/M, var/alien, var/datum/reagents/metabolism/location)
-	if(M.stat == DEAD && M.has_modifier_of_type(/datum/modifier/bloodpump_corpse))
-		affects_dead = TRUE
-	else
-		affects_dead = FALSE
-
-	. = ..(M, alien, location)
+	affects_dead = TRUE
 
 /datum/reagent/necroxadone/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	var/chem_effective = 1 * M.species.chem_strength_heal
 	if(M.bodytemperature < 170 || (M.stat == DEAD && M.has_modifier_of_type(/datum/modifier/bloodpump_corpse)))
-		var/chem_effective = 1
 		if(alien == IS_SLIME)
 			if(prob(10))
 				to_chat(M, "<span class='danger'>It's so cold. Something causes your cellular mass to harden sporadically, resulting in seizure-like twitching.</span>")
@@ -425,6 +469,12 @@
 			M.adjustCloneLoss(-5 * removed * chem_effective)
 		M.adjustOxyLoss(-20 * removed * chem_effective)
 		M.adjustToxLoss(-40 * removed * chem_effective)
+		M.adjustCloneLoss(-15 * removed * chem_effective)
+
+	else
+		M.adjustToxLoss(-25 * removed * chem_effective)
+		M.adjustOxyLoss(-10 * removed * chem_effective)
+		M.adjustCloneLoss(-7 * removed * chem_effective)
 
 /* Painkillers */
 
@@ -435,13 +485,14 @@
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#C8A5DC"
-	overdose = 60
+	overdose = REAGENTS_OVERDOSE * 2
+	overdose_mod = 0.75
 	scannable = 1
 	metabolism = 0.02
 	mrate_static = TRUE
 
 /datum/reagent/paracetamol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	var/chem_effective = 1
+	var/chem_effective = 1 * M.species.chem_strength_pain
 	if(alien == IS_SLIME)
 		chem_effective = 0.75
 	M.add_chemical_effect(CE_PAINKILLER, 25 * chem_effective)
@@ -459,13 +510,14 @@
 	taste_description = "sourness"
 	reagent_state = LIQUID
 	color = "#CB68FC"
-	overdose = 30
+	overdose = REAGENTS_OVERDOSE
+	overdose_mod = 0.75
 	scannable = 1
 	metabolism = 0.02
 	mrate_static = TRUE
 
 /datum/reagent/tramadol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	var/chem_effective = 1
+	var/chem_effective = 1 * M.species.chem_strength_pain
 	if(alien == IS_SLIME)
 		chem_effective = 0.8
 		M.add_chemical_effect(CE_SLOWDOWN, 1)
@@ -483,12 +535,13 @@
 	reagent_state = LIQUID
 	color = "#800080"
 	overdose = 20
+	overdose_mod = 0.75
 	scannable = 1
 	metabolism = 0.02
 	mrate_static = TRUE
 
 /datum/reagent/oxycodone/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	var/chem_effective = 1
+	var/chem_effective = 1 * M.species.chem_strength_pain
 	if(alien == IS_SLIME)
 		chem_effective = 0.75
 		M.stuttering = min(50, max(0, M.stuttering + 5)) //If you can't feel yourself, and your main mode of speech is resonation, there's a problem.
@@ -515,7 +568,7 @@
 	scannable = 1
 
 /datum/reagent/synaptizine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	var/chem_effective = 1
+	var/chem_effective = 1 * M.species.chem_strength_heal
 	if(alien == IS_DIONA)
 		return
 	if(alien == IS_SLIME)
@@ -530,8 +583,8 @@
 	M.AdjustWeakened(-1)
 	holder.remove_reagent("mindbreaker", 5)
 	M.hallucination = max(0, M.hallucination - 10)
-	M.adjustToxLoss(5 * removed * chem_effective) // It used to be incredibly deadly due to an oversight. Not anymore!
-	M.add_chemical_effect(CE_PAINKILLER, 20 * chem_effective)
+	M.adjustToxLoss(10 * removed * chem_effective) // It used to be incredibly deadly due to an oversight. Not anymore!
+	M.add_chemical_effect(CE_PAINKILLER, 20 * chem_effective * M.species.chem_strength_pain)
 
 /datum/reagent/hyperzine
 	name = "Hyperzine"
@@ -541,6 +594,7 @@
 	reagent_state = LIQUID
 	color = "#FF3300"
 	overdose = REAGENTS_OVERDOSE * 0.5
+	overdose_mod = 0.25
 
 /datum/reagent/hyperzine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_TAJARA)
@@ -553,6 +607,13 @@
 	if(prob(5))
 		M.emote(pick("twitch", "blink_r", "shiver"))
 	M.add_chemical_effect(CE_SPEEDBOOST, 1)
+
+/datum/reagent/hyperzine/overdose(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	if(prob(5)) // 1 in 20
+		var/mob/living/carbon/human/H = M
+		H.internal_organs_by_name[O_HEART].take_damage(1)
+		to_chat(M, "<span class='warning'>Huh... Is this what a heart attack feels like?</span>")
 
 /datum/reagent/alkysine
 	name = "Alkysine"
@@ -568,7 +629,7 @@
 /datum/reagent/alkysine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
-	var/chem_effective = 1
+	var/chem_effective = 1 * M.species.chem_strength_heal
 	if(alien == IS_SLIME)
 		chem_effective = 0.25
 		if(M.brainloss >= 10)
@@ -576,7 +637,7 @@
 		if(dose >= 10 && M.paralysis < 40)
 			M.AdjustParalysis(1) //Messing with the core with a simple chemical probably isn't the best idea.
 	M.adjustBrainLoss(-8 * removed * chem_effective) //VOREStation Edit
-	M.add_chemical_effect(CE_PAINKILLER, 10 * chem_effective)
+	M.add_chemical_effect(CE_PAINKILLER, 10 * chem_effective * M.species.chem_strength_pain)
 
 /datum/reagent/imidazoline
 	name = "Imidazoline"
@@ -610,6 +671,7 @@
 	reagent_state = LIQUID
 	color = "#561EC3"
 	overdose = 10
+	overdose_mod = 1.5
 	scannable = 1
 
 /datum/reagent/peridaxon/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -625,9 +687,14 @@
 				H.eye_blurry = min(M.eye_blurry + 10, 250) //Eyes need to reset, or something
 				H.sdisabilities &= ~BLIND
 		if(alien == IS_SLIME)
-			H.add_chemical_effect(CE_PAINKILLER, 20)
+			H.add_chemical_effect(CE_PAINKILLER, 20 * M.species.chem_strength_pain)
 			if(prob(33))
 				H.Confuse(10)
+
+/datum/reagent/peridaxon/overdose(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	M.adjustHalLoss(5)
+	M.hallucination = max(M.hallucination, 10)
 
 /datum/reagent/osteodaxon
 	name = "Osteodaxon"
@@ -637,6 +704,7 @@
 	color = "#C9BCE3"
 	metabolism = REM * 0.5
 	overdose = REAGENTS_OVERDOSE * 0.5
+	overdose_mod = 1.5
 	scannable = 1
 
 /datum/reagent/osteodaxon/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -659,6 +727,7 @@
 	color = "#4246C7"
 	metabolism = REM * 0.5
 	overdose = REAGENTS_OVERDOSE * 0.5
+	overdose_mod = 1.5
 	scannable = 1
 	var/repair_strength = 3
 
@@ -680,6 +749,23 @@
 					if(W.damage <= 0)
 						O.wounds -= W
 
+/datum/reagent/myelamine/overdose(var/mob/living/carbon/M, var/alien, var/removed)
+	// Copypaste of affect_blood with slight adjustment. Heals slightly faster at the cost of high toxins
+	..()
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/wound_heal = removed * repair_strength / 2
+		for(var/obj/item/organ/external/O in H.bad_external_organs)
+			for(var/datum/wound/W in O.wounds)
+				if(W.bleeding())
+					W.damage = max(W.damage - wound_heal, 0)
+					if(W.damage <= 0)
+						O.wounds -= W
+				if(W.internal)
+					W.damage = max(W.damage - wound_heal, 0)
+					if(W.damage <= 0)
+						O.wounds -= W
+
 /datum/reagent/respirodaxon
 	name = "Respirodaxon"
 	id = "respirodaxon"
@@ -689,10 +775,11 @@
 	color = "#4444FF"
 	metabolism = REM * 1.5
 	overdose = 10
+	overdose_mod = 1.75
 	scannable = 1
 
 /datum/reagent/respirodaxon/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	var/repair_strength = 1
+	var/repair_strength = 1 * M.species.chem_strength_heal
 	if(alien == IS_SLIME)
 		repair_strength = 0.6
 	if(ishuman(M))
@@ -720,10 +807,11 @@
 	color = "#8B4513"
 	metabolism = REM * 1.5
 	overdose = 10
+	overdose_mod = 1.75
 	scannable = 1
 
 /datum/reagent/gastirodaxon/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	var/repair_strength = 1
+	var/repair_strength = 1 * M.species.chem_strength_heal
 	if(alien == IS_SLIME)
 		repair_strength = 0.6
 	if(ishuman(M))
@@ -751,10 +839,11 @@
 	color = "#D2691E"
 	metabolism = REM * 1.5
 	overdose = 10
+	overdose_mod = 1.75
 	scannable = 1
 
 /datum/reagent/hepanephrodaxon/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	var/repair_strength = 1
+	var/repair_strength = 1 * M.species.chem_strength_heal
 	if(alien == IS_SLIME)
 		repair_strength = 0.4
 	if(ishuman(M))
@@ -784,10 +873,11 @@
 	color = "#FF4444"
 	metabolism = REM * 1.5
 	overdose = 10
+	overdose_mod = 1.75
 	scannable = 1
 
 /datum/reagent/cordradaxon/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	var/repair_strength = 1
+	var/repair_strength = 1 * M.species.chem_strength_heal
 	if(alien == IS_SLIME)
 		repair_strength = 0.6
 	if(ishuman(M))
@@ -811,10 +901,11 @@
 	reagent_state = SOLID
 	color = "#7B4D4F"
 	overdose = 20
+	overdose_mod = 1.5
 	scannable = 1
 
 /datum/reagent/immunosuprizine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	var/strength_mod = 1
+	var/strength_mod = 1 * M.species.chem_strength_heal
 
 	if(alien == IS_DIONA)	// It's a tree.
 		strength_mod = 0.25
@@ -868,10 +959,11 @@
 	color = "#84B2B0"
 	metabolism = REM * 0.75
 	overdose = 20
+	overdose_mod = 1.5
 	scannable = 1
 
 /datum/reagent/skrellimmuno/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	var/strength_mod = 0.5
+	var/strength_mod = 0.5 * M.species.chem_strength_heal
 
 	if(alien == IS_SKRELL)
 		strength_mod = 1
@@ -998,7 +1090,7 @@
 /datum/reagent/hyronalin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
-	M.radiation = max(M.radiation - 30 * removed, 0)
+	M.radiation = max(M.radiation - 30 * removed * M.species.chem_strength_heal, 0)
 
 /datum/reagent/arithrazine
 	name = "Arithrazine"
@@ -1009,12 +1101,13 @@
 	color = "#008000"
 	metabolism = REM * 0.25
 	overdose = REAGENTS_OVERDOSE
+	overdose_mod = 1.25
 	scannable = 1
 
 /datum/reagent/arithrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
-	M.radiation = max(M.radiation - 70 * removed, 0)
+	M.radiation = max(M.radiation - 70 * removed * M.species.chem_strength_heal, 0)
 	M.adjustToxLoss(-10 * removed)
 	if(prob(60))
 		M.take_organ_damage(4 * removed, 0)
@@ -1057,6 +1150,7 @@
 	color = "#FFB0B0"
 	mrate_static = TRUE
 	overdose = 10
+	overdose_mod = 1.5
 	scannable = 1
 	data = 0
 
@@ -1130,7 +1224,7 @@
 	can_overdose_touch = TRUE
 
 /datum/reagent/spacomycaze/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 10)
+	M.add_chemical_effect(CE_PAINKILLER, 10 * M.species.chem_strength_pain)
 	M.adjustToxLoss(3 * removed)
 
 /datum/reagent/spacomycaze/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
@@ -1149,7 +1243,7 @@
 				to_chat(M, "<span class='warning'>Your skin itches.</span>")
 
 	M.add_chemical_effect(CE_ANTIBIOTIC, dose >= overdose ? ANTIBIO_OD : ANTIBIO_NORM)
-	M.add_chemical_effect(CE_PAINKILLER, 20) // 5 less than paracetamol.
+	M.add_chemical_effect(CE_PAINKILLER, 20 * M.species.chem_strength_pain) // 5 less than paracetamol.
 
 /datum/reagent/spacomycaze/touch_obj(var/obj/O)
 	if(istype(O, /obj/item/stack/medical/crude_pack) && round(volume) >= 1)
@@ -1198,6 +1292,12 @@
 	for(var/obj/effect/decal/cleanable/blood/B in T)
 		qdel(B)
 
+	//VOREstation edit. Floor polishing.
+	if(istype(T, /turf/simulated))
+		var/turf/simulated/S = T
+		S.dirt = -50 
+	//VOREstation edit end	
+
 /datum/reagent/sterilizine/touch_mob(var/mob/living/L, var/amount)
 	if(istype(L))
 		if(istype(L, /mob/living/simple_mob/slime))
@@ -1232,6 +1332,7 @@
 	reagent_state = SOLID
 	color = "#669900"
 	overdose = REAGENTS_OVERDOSE
+	overdose_mod = 2
 	scannable = 1
 
 /datum/reagent/rezadone/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -1380,6 +1481,7 @@
 	color = "#555555"
 	metabolism = REM * 4 // Nanomachines gotta go fast.
 	scannable = 1
+	affects_robots = TRUE
 
 /datum/reagent/healing_nanites/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.heal_organ_damage(2 * removed, 2 * removed)

@@ -9,6 +9,7 @@
 	w_class = ITEMSIZE_TINY
 	preserve_item = 1
 	drop_sound = 'sound/items/drop/ring.ogg'
+	pickup_sound = 'sound/items/pickup/ring.ogg'
 
 	var/leaves_residue = 1
 	var/caliber = ""					//Which kind of guns it can be loaded into
@@ -29,8 +30,8 @@
 	set_dir(pick(cardinal)) //spin spent casings
 	update_icon()
 
-/obj/item/ammo_casing/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.is_screwdriver())
+/obj/item/ammo_casing/attackby(obj/item/I as obj, mob/user as mob)
+	if(I.is_screwdriver())
 		if(!BB)
 			to_chat(user, "<font color='blue'>There is no bullet in the casing to inscribe anything into.</font>")
 			return
@@ -45,6 +46,39 @@
 		else
 			to_chat(user, "<font color='blue'>You inscribe \"[label_text]\" into \the [initial(BB.name)].</font>")
 			BB.name = "[initial(BB.name)] (\"[label_text]\")"
+	else if(istype(I, /obj/item/ammo_magazine) && isturf(loc)) // Mass magazine reloading.
+		var/obj/item/ammo_magazine/box = I
+		if (!box.can_remove_ammo || box.reloading)
+			return ..()
+
+		box.reloading = TRUE
+		var/boolets = 0
+		var/turf/floor = loc
+		for(var/obj/item/ammo_casing/bullet in floor)
+			if(box.stored_ammo.len >= box.max_ammo)
+				break
+			if(box.caliber == bullet.caliber && bullet.BB)
+				if (boolets < 1)
+					to_chat(user, "<span class='notice'>You start collecting shells.</span>") // Say it here so it doesn't get said if we don't find anything useful.
+				if(do_after(user,5,box))
+					if(box.stored_ammo.len >= box.max_ammo) // Double check because these can change during the wait.
+						break
+					if(bullet.loc != floor)
+						continue
+					bullet.forceMove(box)
+					box.stored_ammo.Add(bullet)
+					box.update_icon()
+					boolets++
+				else
+					break
+
+		if(boolets > 0)
+			to_chat(user, "<span class='notice'>You collect [boolets] shell\s. [box] now contains [box.stored_ammo.len] shell\s.</span>")
+		else
+			to_chat(user, "<span class='warning'>You fail to collect anything!</span>")
+		box.reloading = FALSE
+	else
+		return ..()
 
 /obj/item/ammo_casing/update_icon()
 	if(!BB)
@@ -84,6 +118,7 @@
 	var/initial_ammo = null
 
 	var/can_remove_ammo = TRUE	// Can this thing have bullets removed one-by-one? As of first implementation, only affects smart magazines
+	var/reloading = FALSE		//  Is this magazine being reloaded, currently? - Currently only useful for automatic pickups, ignored by manual reloading.
 
 	var/multiple_sprites = 0
 	//because BYOND doesn't support numbers as keys in associative lists
@@ -115,7 +150,7 @@
 			to_chat(user, "<span class='warning'>[src] is full!</span>")
 			return
 		user.remove_from_mob(C)
-		C.loc = src
+		C.forceMove(src)
 		stored_ammo.Add(C)
 		update_icon()
 	if(istype(W, /obj/item/ammo_magazine/clip))
@@ -131,7 +166,7 @@
 			return
 		var/obj/item/ammo_casing/AC = L.stored_ammo[1] //select the next casing.
 		L.stored_ammo -= AC //Remove this casing from loaded list of the clip.
-		AC.loc = src
+		AC.forceMove(src)
 		stored_ammo.Insert(1, AC) //add it to the head of our magazine's list
 		L.update_icon()
 	playsound(src, 'sound/weapons/flipblade.ogg', 50, 1)

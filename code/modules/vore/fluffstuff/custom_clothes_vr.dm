@@ -1963,3 +1963,41 @@ Departamental Swimsuits, for general use
 
 	icon_override = 'icons/vore/custom_onmob_vr.dmi'
 	icon_state = "azuracollar"
+
+
+//Xonkon: Zena Aviv
+/obj/item/clothing/head/helmet/space/void/engineering/zena
+	name = "custom shroud helmet"
+	desc = "A black and orange engineering shroud helmet. Orange plated and specially crafted and augmented for a variety of activites."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "zenahelmet"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "zenahelmet_mob"
+
+	species_restricted = null
+
+
+/obj/item/clothing/suit/space/void/engineering/zena
+	name = "custom shroud suit"
+	desc = "A black and orange engineering shroud helmet. Skintight and specially crafted and augmented for a variety of activites."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "zenasuit"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "zenasuit_mob"
+
+	species_restricted = null
+
+/obj/item/clothing/suit/storage/flintlock
+	name = "green jacket"
+	desc = "Flintlock's green jacket. It seems to be made of rather high quality leather."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "flintlock"
+	item_state_slots = list(slot_r_hand_str = "item_greensuit", slot_l_hand_str = "item_greensuit")
+	blood_overlay_type = "coat"
+	body_parts_covered = UPPER_TORSO|ARMS
+	flags_inv = HIDEHOLSTER
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "flintlock_mob"

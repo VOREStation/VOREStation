@@ -51,6 +51,8 @@ var/list/civilian_cartridges = list(
 	icon_state = "cart"
 	item_state = "electronic"
 	w_class = ITEMSIZE_TINY
+	drop_sound = 'sound/items/drop/component.ogg'
+	pickup_sound = 'sound/items/pickup/component.ogg'
 
 	var/obj/item/radio/integrated/radio = null
 	var/access_security = 0
@@ -519,7 +521,10 @@ var/list/civilian_cartridges = list(
 				if(bl.z != cl.z)
 					continue
 				var/direction = get_dir(src,B)
-				CartData[++CartData.len] = list("x" = bl.x, "y" = bl.y, "dir" = uppertext(dir2text(direction)), "status" = B.reagents.total_volume/100)
+				var/status = "No Bucket"
+				if(B.mybucket)
+					status = B.mybucket.reagents.total_volume / 100
+				CartData[++CartData.len] = list("x" = bl.x, "y" = bl.y, "dir" = uppertext(dir2text(direction)), "status" = status)
 		if(!CartData.len)
 			CartData[++CartData.len] = list("x" = 0, "y" = 0, dir=null, status = null)
 

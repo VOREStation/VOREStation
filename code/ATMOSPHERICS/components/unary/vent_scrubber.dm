@@ -107,7 +107,7 @@
 		"filter_n2" = ("nitrogen" in scrubbing_gas),
 		"filter_co2" = ("carbon_dioxide" in scrubbing_gas),
 		"filter_phoron" = ("phoron" in scrubbing_gas),
-		"filter_n2o" = ("sleeping_agent" in scrubbing_gas),
+		"filter_n2o" = ("nitrous_oxide" in scrubbing_gas),
 		"filter_fuel" = ("volatile_fuel" in scrubbing_gas),
 		"sigtype" = "status"
 	)
@@ -230,10 +230,10 @@
 	else if(signal.data["toggle_tox_scrub"])
 		toggle += "phoron"
 
-	if(!isnull(signal.data["n2o_scrub"]) && text2num(signal.data["n2o_scrub"]) != ("sleeping_agent" in scrubbing_gas))
-		toggle += "sleeping_agent"
+	if(!isnull(signal.data["n2o_scrub"]) && text2num(signal.data["n2o_scrub"]) != ("nitrous_oxide" in scrubbing_gas))
+		toggle += "nitrous_oxide"
 	else if(signal.data["toggle_n2o_scrub"])
-		toggle += "sleeping_agent"
+		toggle += "nitrous_oxide"
 
 	if(!isnull(signal.data["fuel_scrub"]) && text2num(signal.data["fuel_scrub"]) != ("volatile_fuel" in scrubbing_gas))
 		toggle += "volatile_fuel"

@@ -43,7 +43,7 @@
 /obj/structure/closet/thunderdome
 	name = "\improper Thunderdome closet"
 	desc = "Everything you need!"
-	closet_appearance = /decl/closet_appearance/tactical/alt
+	closet_appearance = /decl/closet_appearance/thunderdomered
 	anchored = 1
 
 /obj/structure/closet/thunderdome/tdred
@@ -59,7 +59,7 @@
 
 /obj/structure/closet/thunderdome/tdgreen
 	name = "green-team Thunderdome closet"
-	closet_appearance = /decl/closet_appearance/tactical
+	closet_appearance = /decl/closet_appearance/thunderdomegreen
 
 	starts_with = list(
 		/obj/item/clothing/suit/armor/tdome/green = 3,

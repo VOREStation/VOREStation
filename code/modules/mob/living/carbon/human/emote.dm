@@ -240,7 +240,7 @@
 			message = "faints."
 			if(sleeping)
 				return //Can't faint while asleep
-			sleeping += 10 //Short-short nap
+			Sleeping(10)
 			m_type = 1
 
 		if("cough", "coughs")
@@ -475,6 +475,12 @@
 					message = "points to [M]."
 				else
 			m_type = 1
+			
+		if("crack")
+			if(!restrained())
+				message = "cracks [T.his] knuckles."
+				playsound(src, 'sound/voice/knuckles.ogg', 50, 1, preference = /datum/client_preference/emote_noises)
+				m_type = 1
 
 		if("raise")
 			if(!restrained())

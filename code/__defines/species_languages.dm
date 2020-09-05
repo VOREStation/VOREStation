@@ -1,16 +1,28 @@
 // Species flags.
-#define NO_MINOR_CUT      0x1    // Can step on broken glass with no ill-effects. Either thick skin (diona), cut resistant (slimes) or incorporeal (shadows)
-#define IS_PLANT          0x2    // Is a treeperson.
-#define NO_SCAN           0x4    // Cannot be scanned in a DNA machine/genome-stolen.
-#define NO_PAIN           0x8    // Cannot suffer halloss/recieves deceptive health indicator.
-#define NO_SLIP           0x10   // Cannot fall over.
-#define NO_POISON         0x20   // Cannot not suffer toxloss.
-#define NO_EMBED		  0x40	 // Can step on broken glass with no ill-effects and cannot have shrapnel embedded in it.
-#define NO_HALLUCINATION  0x80	 // Don't hallucinate, ever
-#define NO_BLOOD		  0x100  // Never bleed, never show blood amount
-#define UNDEAD			  0x200	 // Various things that living things don't do, mostly for skeletons
-#define NO_INFECT		  0x400  // Don't allow infections in limbs or organs, similar to IS_PLANT, without other strings.
+#define NO_MINOR_CUT      	0x1	// Can step on broken glass with no ill-effects. Either thick skin (diona), cut resistant (slimes) or incorporeal (shadows)
+#define IS_PLANT          	0x2	// Is a treeperson.
+#define NO_SCAN           	0x4	// Cannot be scanned in a DNA machine/genome-stolen.
+#define NO_PAIN           	0x8	// Cannot suffer halloss/recieves deceptive health indicator.
+#define NO_SLIP           	0x10	// Cannot fall over.
+#define NO_POISON         	0x20	// Cannot not suffer toxloss.
+#define NO_EMBED		0x40	// Can step on broken glass with no ill-effects and cannot have shrapnel embedded in it.
+#define NO_HALLUCINATION  	0x80	// Don't hallucinate, ever
+#define NO_BLOOD		0x100	// Never bleed, never show blood amount
+#define UNDEAD			0x200	// Various things that living things don't do, mostly for skeletons
+#define NO_INFECT		0x400	// Don't allow infections in limbs or organs, similar to IS_PLANT, without other strings.
+#define NO_DEFIB		0x800	// Don't allow them to be defibbed
 // unused: 0x8000 - higher than this will overflow
+
+// Species EMP vuln for carbons
+#define EMP_PAIN	0x1	// EMPs cause pain
+#define EMP_BLIND	0x2	// EMPs cause screenflash and blindness
+#define EMP_DEAFEN	0x4	// EMPs cause deafness
+#define EMP_CONFUSE	0x8	// EMPs cause disorientation
+#define EMP_WEAKEN	0x10	// EMPs cause collapsing (at high severity only)
+#define EMP_BRUTE_DMG	0x20	// EMPs inflict brute damage
+#define EMP_BURN_DMG	0x40	// EMPs inflict burn damage
+#define EMP_TOX_DMG	0x80	// EMPs inflict toxin damage
+#define EMP_OXY_DMG	0x100	// EMPs inflict oxy damage
 
 // Species spawn flags
 #define SPECIES_IS_WHITELISTED    0x1    // Must be whitelisted to play.
@@ -37,7 +49,9 @@
 #define LANGUAGE_SIIK "Siik"
 #define LANGUAGE_SKRELLIAN "Common Skrellian"
 #define LANGUAGE_TRADEBAND "Tradeband"
-#define LANGUAGE_GUTTER "Gutter"
+//VOREStation edit 08/23/20
+#define LANGUAGE_GUTTER "Gutterband"
+//VS edit end
 #define LANGUAGE_SIGN "Sign Language"
 #define LANGUAGE_SCHECHI "Schechi"
 #define LANGUAGE_ROOTLOCAL "Local Rootspeak"

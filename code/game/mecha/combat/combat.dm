@@ -17,6 +17,14 @@
 	max_special_equip = 1
 	cargo_capacity = 1
 
+	starting_components = list(
+		/obj/item/mecha_parts/component/hull/durable,
+		/obj/item/mecha_parts/component/actuator,
+		/obj/item/mecha_parts/component/armor/reinforced,
+		/obj/item/mecha_parts/component/gas,
+		/obj/item/mecha_parts/component/electrical
+		)
+
 /*
 /obj/mecha/combat/range_action(target as obj|mob|turf)
 	if(internal_damage&MECHA_INT_CONTROL_LOST)

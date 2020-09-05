@@ -29,6 +29,7 @@
 	slot_flags = SLOT_TIE | SLOT_OCLOTHING
 	icon = 'icons/obj/clothing/ties_vr.dmi'
 	icon_override = 'icons/mob/ties_vr.dmi'
+	icon_state = "collar_blk"
 	var/writtenon = 0
 
 /obj/item/clothing/accessory/collar/silver
@@ -62,6 +63,7 @@
 
 	if(!jingled)
 		usr.audible_message("[usr] jingles the [src]'s bell.")
+		playsound(src, 'sound/items/pickup/ring.ogg', 50, 1)
 		jingled = 1
 		addtimer(CALLBACK(src, .proc/jingledreset), 50)
 	return

@@ -152,6 +152,24 @@ var/list/_client_preferences_by_type
 	key = "SOUND_AIRPUMP"
 	enabled_description = "Audible"
 	disabled_description = "Silent"
+	
+/datum/client_preference/old_door_sounds
+	description ="Old Door Sounds"
+	key = "SOUND_OLDDOORS"
+	enabled_description = "Old"
+	disabled_description = "New"
+
+/datum/client_preference/department_door_sounds
+	description ="Department-Specific Door Sounds"
+	key = "SOUND_DEPARTMENTDOORS"
+	enabled_description = "Enabled"
+	disabled_description = "Disabled"
+
+/datum/client_preference/pickup_sounds
+	description = "Picked Up Item Sounds"
+	key = "SOUND_PICKED"
+	enabled_description = "Enabled"
+	disabled_description = "Disabled"
 
 /datum/client_preference/drop_sounds
 	description = "Dropped Item Sounds"
@@ -265,6 +283,18 @@ var/list/_client_preferences_by_type
 	key = "VCHAT_ENABLE"
 	enabled_description =  "Enabled"
 	disabled_description = "Disabled"
+
+/datum/client_preference/status_indicators
+	description = "Status Indicators"
+	key = "SHOW_STATUS"
+	enabled_description = "Show"
+	disabled_description = "Hide"
+
+/datum/client_preference/status_indicators/toggled(mob/preference_mob, enabled)
+	. = ..()
+	if(preference_mob && preference_mob.plane_holder)
+		var/datum/plane_holder/PH = preference_mob.plane_holder
+		PH.set_vis(VIS_STATUS, enabled)
 
 /********************
 * Staff Preferences *

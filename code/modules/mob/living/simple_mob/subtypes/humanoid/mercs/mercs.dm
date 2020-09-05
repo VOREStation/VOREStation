@@ -83,6 +83,8 @@
 	threaten = TRUE
 	returns_home = TRUE		// Stay close to the base...
 	wander = TRUE			// ... but "patrol" a little.
+	intelligence_level = AI_SMART // Also knows not to walk while confused if it risks death.
+	threaten_delay = 30 SECONDS // Mercs will give you 30 seconds to leave or get shot.
 
 /datum/ai_holder/simple_mob/merc/ranged
 	pointblank = TRUE		// They get close? Just shoot 'em!

@@ -27,6 +27,10 @@ FIRE ALARM
 /obj/machinery/firealarm/alarms_hidden
 	alarms_hidden = TRUE
 
+/obj/machinery/firealarm/examine()
+	. = ..()
+	. += "Current security level: [seclevel]"
+
 /obj/machinery/firealarm/Initialize()
 	. = ..()
 	if(z in using_map.contact_levels)
@@ -127,89 +131,33 @@ FIRE ALARM
 	if(user.stat || stat & (NOPOWER | BROKEN))
 		return
 
-	user.set_machine(src)
-	var/area/A = src.loc
-	var/d1
-	var/d2
-	if(istype(user, /mob/living/carbon/human) || istype(user, /mob/living/silicon))
-		A = A.loc
-
-		if(A.fire)
-			d1 = text("<A href='?src=\ref[];reset=1'>Reset - Lockdown</A>", src)
-		else
-			d1 = text("<A href='?src=\ref[];alarm=1'>Alarm - Lockdown</A>", src)
-		if(timing)
-			d2 = text("<A href='?src=\ref[];time=0'>Stop Time Lock</A>", src)
-		else
-			d2 = text("<A href='?src=\ref[];time=1'>Initiate Time Lock</A>", src)
-		var/second = round(time) % 60
-		var/minute = (round(time) - second) / 60
-		var/dat = "<HTML><HEAD></HEAD><BODY><TT><B>Fire alarm</B> [d1]\n<HR>The current alert level is: <b>[get_security_level()]</b><br><br>\nTimer System: [d2]<BR>\nTime Left: [(minute ? "[minute]:" : null)][second] <A href='?src=\ref[src];tp=-30'>-</A> <A href='?src=\ref[src];tp=-1'>-</A> <A href='?src=\ref[src];tp=1'>+</A> <A href='?src=\ref[src];tp=30'>+</A>\n</TT></BODY></HTML>"
-		user << browse(dat, "window=firealarm")
-		onclose(user, "firealarm")
+	add_fingerprint(user)
+	var/area/A = get_area(src)
+	if(A.fire)
+		reset(user)
 	else
-		A = A.loc
-		if(A.fire)
-			d1 = text("<A href='?src=\ref[];reset=1'>[]</A>", src, stars("Reset - Lockdown"))
-		else
-			d1 = text("<A href='?src=\ref[];alarm=1'>[]</A>", src, stars("Alarm - Lockdown"))
-		if(timing)
-			d2 = text("<A href='?src=\ref[];time=0'>[]</A>", src, stars("Stop Time Lock"))
-		else
-			d2 = text("<A href='?src=\ref[];time=1'>[]</A>", src, stars("Initiate Time Lock"))
-		var/second = round(time) % 60
-		var/minute = (round(time) - second) / 60
-		var/dat = "<HTML><HEAD></HEAD><BODY><TT><B>[stars("Fire alarm")]</B> [d1]\n<HR><b>The current alert level is: [stars(get_security_level())]</b><br><br>\nTimer System: [d2]<BR>\nTime Left: [(minute ? text("[]:", minute) : null)][second] <A href='?src=\ref[src];tp=-30'>-</A> <A href='?src=\ref[src];tp=-1'>-</A> <A href='?src=\ref[src];tp=1'>+</A> <A href='?src=\ref[src];tp=30'>+</A>\n</TT></BODY></HTML>"
-		user << browse(dat, "window=firealarm")
-		onclose(user, "firealarm")
-	return
+		alarm(0, user)
 
-/obj/machinery/firealarm/Topic(href, href_list)
-	..()
-	if(usr.stat || stat & (BROKEN | NOPOWER))
-		return
-
-	if((usr.contents.Find(src) || ((get_dist(src, usr) <= 1) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon)))
-		usr.set_machine(src)
-		if(href_list["reset"])
-			reset()
-		else if(href_list["alarm"])
-			alarm()
-		else if(href_list["time"])
-			timing = text2num(href_list["time"])
-			last_process = world.timeofday
-			START_PROCESSING(SSobj, src)
-		else if(href_list["tp"])
-			var/tp = text2num(href_list["tp"])
-			time += tp
-			time = min(max(round(time), 0), 120)
-
-		updateUsrDialog()
-
-		add_fingerprint(usr)
-	else
-		usr << browse(null, "window=firealarm")
-		return
-	return
-
-/obj/machinery/firealarm/proc/reset()
+/obj/machinery/firealarm/proc/reset(mob/user)
 	if(!(working))
 		return
 	var/area/area = get_area(src)
 	for(var/obj/machinery/firealarm/FA in area)
 		fire_alarm.clearAlarm(src.loc, FA)
 	update_icon()
-	return
+	if(user)
+		log_game("[user] reset a fire alarm at [COORD(src)]")
 
-/obj/machinery/firealarm/proc/alarm(var/duration = 0)
+/obj/machinery/firealarm/proc/alarm(var/duration = 0, mob/user)
 	if(!(working))
 		return
 	var/area/area = get_area(src)
 	for(var/obj/machinery/firealarm/FA in area)
 		fire_alarm.triggerAlarm(loc, FA, duration, hidden = alarms_hidden)
 	update_icon()
-	playsound(src, 'sound/machines/airalarm.ogg', 25, 0, 4)
-	return
+	playsound(src, 'sound/machines/airalarm.ogg', 25, 0, 4, volume_channel = VOLUME_CHANNEL_ALARMS)
+	if(user)
+		log_game("[user] triggered a fire alarm at [COORD(src)]")
 
 /obj/machinery/firealarm/proc/set_security_level(var/newlevel)
 	if(seclevel != newlevel)

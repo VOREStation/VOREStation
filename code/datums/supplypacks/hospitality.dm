@@ -23,7 +23,7 @@
 			/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer = 4,
 			)
 	cost = 10
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/gilthari
 	containername = "Party equipment"
 
 /datum/supply_pack/hospitality/barsupplies
@@ -38,29 +38,30 @@
 			/obj/item/weapon/storage/box/glasses/shot,
 			/obj/item/weapon/storage/box/glasses/mug,
 			/obj/item/weapon/storage/box/glasses/meta,
+			/obj/item/weapon/storage/box/glasses/meta/metapint,
 			/obj/item/weapon/reagent_containers/food/drinks/shaker,
 			/obj/item/weapon/storage/box/glass_extras/straws,
 			/obj/item/weapon/storage/box/glass_extras/sticks
 			)
 	cost = 10
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/gilthari
 	containername = "crate of bar supplies"
+	
+/datum/supply_pack/hospitality/cookingoil
+	name = "Cooking oil tank crate"
+	contains = list(/obj/structure/reagent_dispensers/cookingoil)
+	cost = 10
+	containertype = /obj/structure/largecrate
+	containername = "cooking oil tank crate"
 
-/datum/supply_pack/randomised/hospitality/
-	group = "Hospitality"
-
-/datum/supply_pack/randomised/hospitality/pizza
-	num_contained = 5
-	contains = list(
-			/obj/item/pizzabox/margherita,
-			/obj/item/pizzabox/mushroom,
-			/obj/item/pizzabox/meat,
-			/obj/item/pizzabox/vegetable,
-			/obj/item/pizzabox/pineapple
-			)
+/datum/supply_pack/hospitality/pizza
 	name = "Surprise pack of five pizzas"
+	contains = list(
+			/obj/random/pizzabox = 5,
+			/obj/item/weapon/material/knife/plastic
+			)
 	cost = 15
-	containertype = /obj/structure/closet/crate/freezer
+	containertype = /obj/structure/closet/crate/freezer/centauri
 	containername = "Pizza crate"
 
 /datum/supply_pack/hospitality/gifts
@@ -74,5 +75,9 @@
 		/obj/item/weapon/paper/card/flower
 		)
 	cost = 10
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/allico
 	containername = "crate of gifts"
+
+/datum/supply_pack/randomised/hospitality/
+	group = "Hospitality"
+

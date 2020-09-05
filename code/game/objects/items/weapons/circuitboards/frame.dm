@@ -121,16 +121,6 @@
 							/obj/item/weapon/stock_parts/motor = 2,
 							/obj/item/stack/cable_coil = 5)
 
-/obj/item/weapon/circuitboard/microwave
-	name = T_BOARD("microwave")
-	build_path = /obj/machinery/microwave
-	board_type = new /datum/frame/frame_types/microwave
-	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
-	req_components = list(
-							/obj/item/weapon/stock_parts/console_screen = 1,
-							/obj/item/weapon/stock_parts/motor = 1,
-							/obj/item/weapon/stock_parts/capacitor = 1)
-
 /obj/item/weapon/circuitboard/recharger
 	name = T_BOARD("recharger")
 	build_path = /obj/machinery/recharger
@@ -249,14 +239,4 @@
 							/obj/item/weapon/stock_parts/capacitor = 1,
 							/obj/item/weapon/stock_parts/spring = 1,
 							/obj/item/stack/cable_coil = 5)
-
-/obj/item/weapon/circuitboard/microwave/advanced
-	name = T_BOARD("deluxe microwave")
-	build_path = /obj/machinery/microwave/advanced
-	board_type = new /datum/frame/frame_types/microwave
-	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
-	req_components = list(
-							/obj/item/weapon/stock_parts/console_screen = 1,
-							/obj/item/weapon/stock_parts/motor = 1,
-							/obj/item/weapon/stock_parts/capacitor = 1)
 

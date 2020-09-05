@@ -131,7 +131,7 @@
 		lift.update_fire_mode(!lift.fire_mode)
 		if(lift.fire_mode)
 			audible_message("<span class='danger'>Firefighter Mode Activated.  Door safeties disabled.  Manual control engaged.</span>")
-			playsound(src, 'sound/machines/airalarm.ogg', 25, 0, 4)
+			playsound(src, 'sound/machines/airalarm.ogg', 25, 0, 4, volume_channel = VOLUME_CHANNEL_ALARMS)
 		else
 			audible_message("<span class='warning'>Firefighter Mode Deactivated. Door safeties enabled.  Automatic control engaged.</span>")
 		return
@@ -143,57 +143,56 @@
 /obj/structure/lift/panel/interact(var/mob/user)
 	if(!..())
 		return
+	
+	tgui_interact(user)
 
-	var/dat = list()
-	dat += "<html><body><hr><b>Lift panel</b><hr>"
+/obj/structure/lift/panel/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Turbolift", name)
+		ui.open()
 
-	//the floors list stores levels in order of increasing Z
-	//therefore, to display upper levels at the top of the menu and
-	//lower levels at the bottom, we need to go through the list in reverse
+/obj/structure/lift/panel/tgui_data(mob/user)
+	var/list/data = list()
+
+	data["doors_open"] = lift.doors_are_open()
+	data["fire_mode"] = lift.fire_mode
+
+	data["floors"] = list()
 	for(var/i in lift.floors.len to 1 step -1)
 		var/datum/turbolift_floor/floor = lift.floors[i]
-		var/label = floor.label? floor.label : "Level #[i]"
-		dat += "<font color = '[(floor in lift.queued_floors) ? COLOR_YELLOW : COLOR_WHITE]'>"
-		dat += "<a href='?src=\ref[src];move_to_floor=["\ref[floor]"]'>[label]</a>: [floor.name]</font><br>"
+		data["floors"].Add(list(list(
+			"id" = i,
+			"ref" = "\ref[floor]",
+			"queued" = (floor in lift.queued_floors),
+			"target" = (lift.target_floor == floor),
+			"current" = (lift.current_floor == floor),
+			"label" = floor.label,
+			"name" = floor.name,
+		)))
+	
+	return data
 
-	dat += "<hr>"
-	if(lift.doors_are_open())
-		dat += "<a href='?src=\ref[src];close_doors=1'>Close Doors</a><br>"
-	else
-		dat += "<a href='?src=\ref[src];open_doors=1'>Open Doors</a><br>"
-	dat += "<a href='?src=\ref[src];emergency_stop=1'>Emergency Stop</a>"
-	dat += "<hr></body></html>"
+/obj/structure/lift/panel/tgui_act(action, params)
+	if(..())
+		return TRUE
 
-	user.set_machine(src)
-	var/datum/browser/popup = new(user, "turbolift_panel", "Lift Panel", 350, 320) //VOREStation Edit - Wider!
-	popup.set_content(jointext(dat, null))
-	popup.open()
-	return
+	switch(action)
+		if("move_to_floor")
+			. = TRUE
+			lift.queue_move_to(locate(params["ref"]))
+		if("toggle_doors")
+			. = TRUE
+			if(lift.doors_are_open())
+				lift.close_doors()
+			else
+				lift.open_doors()
+		if("emergency_stop")
+			. = TRUE
+			lift.emergency_stop()
 
-/obj/structure/lift/panel/Topic(href, href_list)
-	. = ..()
 	if(.)
-		return
-
-	var/panel_interact
-	if(href_list["move_to_floor"])
-		lift.queue_move_to(locate(href_list["move_to_floor"]))
-		panel_interact = 1
-	if(href_list["open_doors"])
-		panel_interact = 1
-		lift.open_doors()
-	if(href_list["close_doors"])
-		panel_interact = 1
-		lift.close_doors()
-	if(href_list["emergency_stop"])
-		panel_interact = 1
-		lift.emergency_stop()
-
-	if(panel_interact)
 		pressed(usr)
-		updateDialog()
-
-	return 0
 
 /obj/structure/lift/panel/update_icon()
 	if(lift.fire_mode)

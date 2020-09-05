@@ -1,5 +1,5 @@
 /datum/design/item/mechfab/gopher
-	category = "Gopher"
+	category = list("Gopher")
 	time = 5
 
 /datum/design/item/mechfab/gopher/chassis
@@ -55,7 +55,7 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 2500)
 
 /datum/design/item/mechfab/polecat
-	category = "Polecat"
+	category = list("Polecat")
 	time = 10
 
 /datum/design/item/mechfab/polecat/chassis
@@ -134,7 +134,7 @@
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/microshotgun
 
 /datum/design/item/mechfab/weasel
-	category = "Weasel"
+	category = list("Weasel")
 	time = 5
 
 /datum/design/item/mechfab/weasel/chassis

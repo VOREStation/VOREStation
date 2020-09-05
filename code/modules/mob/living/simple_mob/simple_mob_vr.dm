@@ -21,7 +21,7 @@
 	var/vore_pounce_falloff = 1			// Success rate falloff per %health of target mob.
 	var/vore_pounce_maxhealth = 80		// Mob will not attempt to pounce targets above this %health
 	var/vore_standing_too = 0			// Can also eat non-stunned mobs
-	var/vore_ignores_undigestable = 1	// Refuse to eat mobs who are undigestable by the prefs toggle.
+	var/vore_ignores_undigestable = FALSE	// If set to true, will refuse to eat mobs who are undigestable by the prefs toggle.
 	var/swallowsound = null				// What noise plays when you succeed in eating the mob.
 
 	var/vore_default_mode = DM_DIGEST	// Default bellymode (DM_DIGEST, DM_HOLD, DM_ABSORB)
@@ -244,17 +244,23 @@
 		"The stomach glorps and gurgles as it tries to work you into slop.")
 
 /mob/living/simple_mob/Bumped(var/atom/movable/AM, yes)
-	if(ismob(AM))
-		var/mob/tmob = AM
-		if(will_eat(tmob) && !istype(tmob, type) && prob(vore_bump_chance) && !ckey) //check if they decide to eat. Includes sanity check to prevent cannibalism.
-			if(tmob.canmove && prob(vore_pounce_chance)) //if they'd pounce for other noms, pounce for these too, otherwise still try and eat them if they hold still
-				tmob.Weaken(5)
-			tmob.visible_message("<span class='danger'>\the [src] [vore_bump_emote] \the [tmob]!</span>!")
-			set_AI_busy(TRUE)
+	if(tryBumpNom(AM))
+		return
+	..()
+
+/mob/living/simple_mob/proc/tryBumpNom(var/mob/tmob)
+	//returns TRUE if we actually start an attempt to bumpnom, FALSE if checks fail or the random bump nom chance fails
+	if(istype(tmob) && will_eat(tmob) && !istype(tmob, type) && prob(vore_bump_chance) && !ckey) //check if they decide to eat. Includes sanity check to prevent cannibalism.
+		if(tmob.canmove && prob(vore_pounce_chance)) //if they'd pounce for other noms, pounce for these too, otherwise still try and eat them if they hold still
+			tmob.Weaken(5)
+		tmob.visible_message("<span class='danger'>\the [src] [vore_bump_emote] \the [tmob]!</span>!")
+		set_AI_busy(TRUE)
+		spawn()
 			animal_nom(tmob)
 			update_icon()
 			set_AI_busy(FALSE)
-	..()
+		return TRUE
+	return FALSE
 
 // Checks to see if mob doesn't like this kind of turf
 /mob/living/simple_mob/IMove(newloc)

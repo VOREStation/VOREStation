@@ -65,5 +65,5 @@
 	value = CATALOGUER_REWARD_TRIVIAL
 
 /datum/category_item/catalogue/information/organization/khi
-	name = "Government - Kitsuhana Heavy Industries"
-	datum_to_copy = /datum/lore/organization/gov/kitsuhana
+	name = "Independents - Kitsuhana Heavy Industries"
+	datum_to_copy = /datum/lore/organization/other/kitsuhana

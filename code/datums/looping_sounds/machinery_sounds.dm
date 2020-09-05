@@ -4,14 +4,15 @@
 	mid_sounds = list('sound/machines/shower/shower_mid1.ogg'=1,'sound/machines/shower/shower_mid2.ogg'=1,'sound/machines/shower/shower_mid3.ogg'=1)
 	mid_length = 10
 	end_sound = 'sound/machines/shower/shower_end.ogg'
-	volume = 20
+	volume = 15
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /datum/looping_sound/supermatter
-	mid_sounds = list('sound/machines/sm/supermatter1.ogg'=1,'sound/machines/sm/supermatter2.ogg'=1,'sound/machines/sm/supermatter3.ogg'=1)
-	mid_length = 10
-	volume = 1
+	mid_sounds = list('sound/machines/sm/loops/calm.ogg'=1)
+	mid_length = 60
+	volume = 40
+	extra_range = 10
 	pref_check = /datum/client_preference/supermatter_hum
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -28,25 +29,74 @@
 
 
 /datum/looping_sound/deep_fryer
-	start_sound = 'sound/machines/fryer/deep_fryer_immerse.ogg' //my immersions
+	start_sound = 'sound/machines/kitchen/fryer/deep_fryer_immerse.ogg' //my immersions
 	start_length = 10
-	mid_sounds = list('sound/machines/fryer/deep_fryer_1.ogg' = 1, 'sound/machines/fryer/deep_fryer_2.ogg' = 1)
+	mid_sounds = list('sound/machines/kitchen/fryer/deep_fryer_1.ogg' = 1, 'sound/machines/kitchen/fryer/deep_fryer_2.ogg' = 1)
 	mid_length = 2
-	end_sound = 'sound/machines/fryer/deep_fryer_emerge.ogg'
+	end_sound = 'sound/machines/kitchen/fryer/deep_fryer_emerge.ogg'
 	volume = 15
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /datum/looping_sound/microwave
-	start_sound = 'sound/machines/microwave/microwave-start.ogg'
+	start_sound = 'sound/machines/kitchen/microwave/microwave-start.ogg'
 	start_length = 10
-	mid_sounds = list('sound/machines/microwave/microwave-mid1.ogg'=10, 'sound/machines/microwave/microwave-mid2.ogg'=1)
+	mid_sounds = list('sound/machines/kitchen/microwave/microwave-mid1.ogg'=10, 'sound/machines/kitchen/microwave/microwave-mid2.ogg'=1)
 	mid_length = 10
-	end_sound = 'sound/machines/microwave/microwave-end.ogg'
+	end_sound = 'sound/machines/kitchen/microwave/microwave-end.ogg'
 	volume = 90
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/datum/looping_sound/oven
+	start_sound = 'sound/machines/kitchen/oven/oven-start.ogg'
+	start_length = 10
+	mid_sounds = list('sound/machines/kitchen/oven/oven-mid1.ogg'=10)
+	mid_length = 40
+	end_sound = 'sound/machines/kitchen/oven/oven-stop.ogg'
+	volume = 50
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/datum/looping_sound/grill
+	start_sound = 'sound/machines/kitchen/grill/grill-start.ogg'
+	start_length = 10
+	mid_sounds = list('sound/machines/kitchen/grill/grill-mid1.ogg'=10)
+	mid_length = 40
+	end_sound = 'sound/machines/kitchen/grill/grill-stop.ogg'
+	volume = 50
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/datum/looping_sound/mixer
+	start_sound = 'sound/machines/kitchen/mixer/mixer-start.ogg'
+	start_length = 10
+	mid_sounds = list('sound/machines/kitchen/mixer/mixer-mid1.ogg'=10)
+	mid_length = 10
+	end_sound = 'sound/machines/kitchen/mixer/mixer-stop.ogg'
+	volume = 50
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/datum/looping_sound/cerealmaker
+	start_sound = 'sound/machines/kitchen/cerealmaker/cerealmaker-start.ogg'
+	start_length = 10 
+	mid_sounds = list('sound/machines/kitchen/cerealmaker/cerealmaker-mid1.ogg'=10)
+	mid_length = 60
+	end_sound = 'sound/machines/kitchen/cerealmaker/cerealmaker-stop.ogg'
+	volume = 50
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/datum/looping_sound/candymaker
+	start_sound = 'sound/machines/kitchen/candymaker/candymaker-start.ogg'
+	start_length = 10
+	mid_sounds = list('sound/machines/kitchen/candymaker/candymaker-mid1.ogg'=10)
+	mid_length = 40
+	end_sound = 'sound/machines/kitchen/candymaker/candymaker-stop.ogg'
+	volume = 20
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /datum/looping_sound/air_pump
 	start_sound = 'sound/machines/air_pump/airpumpstart.ogg'
 	start_length = 10

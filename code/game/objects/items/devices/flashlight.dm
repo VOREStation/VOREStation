@@ -239,6 +239,8 @@
 	desc = "A pen-sized light, used by medical staff."
 	icon_state = "penlight"
 	item_state = "pen"
+	drop_sound = 'sound/items/drop/accessory.ogg'
+	pickup_sound = 'sound/items/pickup/accessory.ogg'
 	slot_flags = SLOT_EARS
 	brightness_on = 2
 	w_class = ITEMSIZE_TINY
@@ -330,6 +332,8 @@
 	var/on_damage = 7
 	var/produce_heat = 1500
 	power_use = 0
+	drop_sound = 'sound/items/drop/gloves.ogg'
+	pickup_sound = 'sound/items/pickup/gloves.ogg'
 
 /obj/item/device/flashlight/flare/New()
 	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.

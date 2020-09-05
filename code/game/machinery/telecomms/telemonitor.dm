@@ -6,7 +6,6 @@
 	and displays a heirarchy of linked machines.
 */
 
-
 /obj/machinery/computer/telecomms/monitor
 	name = "Telecommunications Monitor"
 	desc = "Used to traverse a telecommunication network. Helpful for debugging connection issues."
@@ -19,111 +18,103 @@
 
 	var/network = "NULL"		// the network to probe
 
-	var/temp = ""				// temporary feedback messages
+	var/list/temp = null				// temporary feedback messages
 
-	attack_hand(mob/user as mob)
-		if(stat & (BROKEN|NOPOWER))
-			return
-		user.set_machine(src)
-		var/dat = "<TITLE>Telecommunications Monitor</TITLE><center><b>Telecommunications Monitor</b></center>"
+/obj/machinery/computer/telecomms/monitor/tgui_data(mob/user)
+	var/list/data = list()
 
-		switch(screen)
+	data["network"] = network
+	data["temp"] = temp
 
+	data["machinelist"] = list()
+	for(var/obj/machinery/telecomms/T in machinelist)
+		data["machinelist"].Add(list(list(
+			"id" = T.id,
+			"name" = T.name,
+		)))
 
-		  // --- Main Menu ---
+	data["selectedMachine"] = null
+	if(SelectedMachine)
+		data["selectedMachine"] = list(
+			"id" = SelectedMachine.id,
+			"name" = SelectedMachine.name,
+			"links" = list(),
+		)
 
-			if(0)
-				dat += "<br>[temp]<br><br>"
-				dat += "<br>Current Network: <a href='?src=\ref[src];network=1'>[network]</a><br>"
-				if(machinelist.len)
-					dat += "<br>Detected Network Entities:<ul>"
-					for(var/obj/machinery/telecomms/T in machinelist)
-						dat += "<li><a href='?src=\ref[src];viewmachine=[T.id]'>\ref[T] [T.name]</a> ([T.id])</li>"
-					dat += "</ul>"
-					dat += "<br><a href='?src=\ref[src];operation=release'>\[Flush Buffer\]</a>"
-				else
-					dat += "<a href='?src=\ref[src];operation=probe'>\[Probe Network\]</a>"
+		for(var/obj/machinery/telecomms/T in SelectedMachine.links)
+			if(!T.hide)
+				data["selectedMachine"]["links"].Add(list(list(
+					"id" = T.id,
+					"name" = T.name
+				)))
 
+	return data
 
-		  // --- Viewing Machine ---
-
-			if(1)
-				dat += "<br>[temp]<br>"
-				dat += "<center><a href='?src=\ref[src];operation=mainmenu'>\[Main Menu\]</a></center>"
-				dat += "<br>Current Network: [network]<br>"
-				dat += "Selected Network Entity: [SelectedMachine.name] ([SelectedMachine.id])<br>"
-				dat += "Linked Entities: <ol>"
-				for(var/obj/machinery/telecomms/T in SelectedMachine.links)
-					if(!T.hide)
-						dat += "<li><a href='?src=\ref[src];viewmachine=[T.id]'>\ref[T.id] [T.name]</a> ([T.id])</li>"
-				dat += "</ol>"
-
-
-
-		user << browse(dat, "window=comm_monitor;size=575x400")
-		onclose(user, "server_control")
-
-		temp = ""
+/obj/machinery/computer/telecomms/monitor/attack_hand(mob/user)
+	if(stat & (BROKEN|NOPOWER))
 		return
+	tgui_interact(user)
 
+/obj/machinery/computer/telecomms/monitor/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "TelecommsMachineBrowser", name)
+		ui.open()
 
-	Topic(href, href_list)
-		if(..())
-			return
+/obj/machinery/computer/telecomms/monitor/tgui_act(action, params)
+	if(..())
+		return TRUE
 
+	add_fingerprint(usr)
 
-		add_fingerprint(usr)
-		usr.set_machine(src)
-
-		if(href_list["viewmachine"])
-			screen = 1
+	switch(action)
+		if("view")
 			for(var/obj/machinery/telecomms/T in machinelist)
-				if(T.id == href_list["viewmachine"])
+				if(T.id == params["id"])
 					SelectedMachine = T
 					break
+			. = TRUE
 
-		if(href_list["operation"])
-			switch(href_list["operation"])
+		if("mainmenu")
+			SelectedMachine = null
+			. = TRUE
 
-				if("release")
-					machinelist = list()
-					screen = 0
+		if("release")
+			machinelist = list()
+			SelectedMachine = null
+			. = TRUE
 
-				if("mainmenu")
-					screen = 0
+		if("scan")
+			if(machinelist.len > 0)
+				set_temp("FAILED: CANNOT PROBE WHEN BUFFER FULL", "bad")
+				return TRUE
 
-				if("probe")
-					if(machinelist.len > 0)
-						temp = "<font color = #D70B00>- FAILED: CANNOT PROBE WHEN BUFFER FULL -</font>"
+			for(var/obj/machinery/telecomms/T in range(25, src))
+				if(T.network == network)
+					machinelist.Add(T)
 
-					else
-						for(var/obj/machinery/telecomms/T in range(25, src))
-							if(T.network == network)
-								machinelist.Add(T)
+			if(!machinelist.len)
+				set_temp("FAILED: UNABLE TO LOCATE NETWORK ENTITIES IN \[[network]\]", "bad")
+			else
+				set_temp("[machinelist.len] ENTITIES LOCATED & BUFFERED", "good")
+			. = TRUE
 
-						if(!machinelist.len)
-							temp = "<font color = #D70B00>- FAILED: UNABLE TO LOCATE NETWORK ENTITIES IN \[[network]\] -</font>"
-						else
-							temp = "<font color = #336699>- [machinelist.len] ENTITIES LOCATED & BUFFERED -</font>"
-
-						screen = 0
-
-
-		if(href_list["network"])
-
+		if("network")
 			var/newnet = input(usr, "Which network do you want to view?", "Comm Monitor", network) as null|text
 			if(newnet && ((usr in range(1, src) || issilicon(usr))))
 				if(length(newnet) > 15)
-					temp = "<font color = #D70B00>- FAILED: NETWORK TAG STRING TOO LENGHTLY -</font>"
+					set_temp("FAILED: NETWORK TAG STRING TOO LENGTHY", "bad")
+					return TRUE
+				network = newnet
+				machinelist = list()
+				set_temp("NEW NETWORK TAG SET IN ADDRESS \[[network]\]", "good")
+			
+			. = TRUE
 
-				else
-					network = newnet
-					screen = 0
-					machinelist = list()
-					temp = "<font color = #336699>- NEW NETWORK TAG SET IN ADDRESS \[[network]\] -</font>"
+		if("cleartemp")
+			temp = null
+			. = TRUE
 
-		updateUsrDialog()
-		return
 
 /obj/machinery/computer/telecomms/monitor/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
@@ -132,3 +123,6 @@
 		to_chat(user, "<span class='notice'>You you disable the security protocols</span>")
 		src.updateUsrDialog()
 		return 1
+
+/obj/machinery/computer/telecomms/monitor/proc/set_temp(var/text, var/color = "average")
+	temp = list("color" = color, "text" = text)

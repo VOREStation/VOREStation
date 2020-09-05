@@ -34,9 +34,10 @@
 	if(..())
 		return
 	if(!allowed(user))
+		to_chat(user, "<span class='warning'>You don't have the required access to use this console.</span>")
 		return
 	user.set_machine(src)
-	ui_interact(user)
+	tgui_interact(user)
 	return
 
 /obj/machinery/computer/supplycomp/emag_act(var/remaining_charges, var/mob/user)
@@ -44,24 +45,27 @@
 		to_chat(user, "<span class='notice'>Special supplies unlocked.</span>")
 		authorization |= SUP_CONTRABAND
 		req_access = list()
+		can_order_contraband = TRUE
 		return 1
 
 
+// TGUI
+/obj/machinery/computer/supplycomp/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "SupplyConsole", name)
+		ui.open()
 
-
-/obj/machinery/computer/supplycomp/ui_interact(mob/user, ui_key = "supply_records", var/datum/nanoui/ui = null, var/force_open = 1, var/key_state = null)
-	var/data[0]
-	var/shuttle_status[0]	// Supply shuttle status
-	var/pack_list[0]		// List of supply packs within the active_category
-	var/orders[0]
-	var/receipts[0]
+/obj/machinery/computer/supplycomp/tgui_data(mob/user)
+	var/list/data = ..()
+	var/list/shuttle_status = list()
 
 	var/datum/shuttle/autodock/ferry/supply/shuttle = SSsupply.shuttle
 	if(shuttle)
 		if(shuttle.has_arrive_time())
 			shuttle_status["location"] = "In transit"
 			shuttle_status["mode"] = SUP_SHUTTLE_TRANSIT
-			shuttle_status["time"] = shuttle.eta_minutes()
+			shuttle_status["time"] = shuttle.eta_seconds()
 
 		else
 			shuttle_status["time"] = 0
@@ -107,149 +111,192 @@
 				shuttle_status["engine"] = "Engaged"
 
 	else
-		shuttle["mode"] = SUP_SHUTTLE_ERROR
-
-	for(var/pack_name in SSsupply.supply_pack)
-		var/datum/supply_pack/P = SSsupply.supply_pack[pack_name]
-		if(P.group == active_category)
-			var/list/pack = list(
-					"name" = P.name,
-					"cost" = P.cost,
-					"contraband" = P.contraband,
-					"manifest" = uniquelist(P.manifest),
-					"random" = P.num_contained,
-					"expand" = 0,
-					"ref" = "\ref[P]"
-				)
-
-			if(P in expanded_packs)
-				pack["expand"] = 1
-
-			pack_list[++pack_list.len] = pack
+		shuttle_status["mode"] = SUP_SHUTTLE_ERROR
 
 	// Compile user-side orders
 	// Status determines which menus the entry will display in
 	// Organized in field-entry list for iterative display
 	// List is nested so both the list of orders, and the list of elements in each order, can be iterated over
+	var/list/orders = list()
 	for(var/datum/supply_order/S in SSsupply.order_history)
-		orders[++orders.len] = list(
-				"ref" = "\ref[S]",
-				"status" = S.status,
-				"entries" = list(
-						list("field" = "Supply Pack", "entry" = S.name),
-						list("field" = "Cost", "entry" = S.cost),
-						list("field" = "Index", "entry" = S.index),
-						list("field" = "Reason", "entry" = S.comment),
-						list("field" = "Ordered by", "entry" = S.ordered_by),
-						list("field" = "Ordered at", "entry" = S.ordered_at),
-						list("field" = "Approved by", "entry" = S.approved_by),
-						list("field" = "Approved at", "entry" = S.approved_at)
-					)
-			)
+		orders.Add(list(list(
+			"ref" = "\ref[S]",
+			"status" = S.status,
+			"cost" = S.cost,
+			"entries" = list(
+				list("field" = "Supply Pack", "entry" = S.name),
+				list("field" = "Cost", "entry" = S.cost),
+				list("field" = "Index", "entry" = S.index),
+				list("field" = "Reason", "entry" = S.comment),
+				list("field" = "Ordered by", "entry" = S.ordered_by),
+				list("field" = "Ordered at", "entry" = S.ordered_at),
+				list("field" = "Approved by", "entry" = S.approved_by),
+				list("field" = "Approved at", "entry" = S.approved_at)
+				)
+			)))
 
 	// Compile exported crates
+	var/list/receipts = list()
 	for(var/datum/exported_crate/E in SSsupply.exported_crates)
-		receipts[++receipts.len] = list(
-				"ref" = "\ref[E]",
-				"contents" = E.contents,
-				"error" = E.contents["error"],
-				"title" = list(
-						list("field" = "Name", "entry" = E.name),
-						list("field" = "Value", "entry" = E.value)
-					)
+		receipts.Add(list(list(
+			"ref" = "\ref[E]",
+			"contents" = E.contents,
+			"error" = E.contents["error"],
+			"title" = list(
+				list("field" = "Name", "entry" = E.name),
+				list("field" = "Value", "entry" = E.value)
 			)
+		)))
 
-	data["user"] = "\ref[user]"
-	data["currentTab"] = menu_tab // Communicator compatibility, controls which menu is in use
 	data["shuttle_auth"] = (authorization & SUP_SEND_SHUTTLE) // Whether this ui is permitted to control the supply shuttle
 	data["order_auth"] = (authorization & SUP_ACCEPT_ORDERS)   // Whether this ui is permitted to accept/deny requested orders
 	data["shuttle"] = shuttle_status
 	data["supply_points"] = SSsupply.points
-	data["categories"] = all_supply_groups
-	data["active_category"] = active_category
-	data["supply_packs"] = pack_list
 	data["orders"] = orders
 	data["receipts"] = receipts
 	data["contraband"] = can_order_contraband || (authorization & SUP_CONTRABAND)
+	data["modal"] = tgui_modal_data(src)
+	return data
 
-	// update the ui if it exists, returns null if no ui is passed/found
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if(!ui)
-		// the ui does not exist, so we'll create a new() one
-        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "supply_records.tmpl", "Supply Console", 475, 700, state = key_state)
-		// when the ui is first opened this is the data it will use
-		ui.set_initial_data(data)
-		// open the new ui window
-		ui.open()
-		// auto update every 20 Master Controller tick
-		ui.set_auto_update(20) // Longer term to reduce the rate of data collection and processing
+/obj/machinery/computer/supplycomp/tgui_static_data(mob/user)
+	var/list/data = ..()
+	
+	var/list/pack_list = list()
+	for(var/pack_name in SSsupply.supply_pack)
+		var/datum/supply_pack/P = SSsupply.supply_pack[pack_name]
+		var/list/pack = list(
+				"name" = P.name,
+				"cost" = P.cost,
+				"group" = P.group,
+				"contraband" = P.contraband,
+				"manifest" = uniquelist(P.manifest),
+				"random" = P.num_contained,
+				"ref" = "\ref[P]"
+			)
 
+		pack_list.Add(list(pack))
+	data["supply_packs"] = pack_list
+	data["categories"] = all_supply_groups
+	return data
 
-
-
-/obj/machinery/computer/supplycomp/Topic(href, href_list)
-	if(!SSsupply)
-		to_world_log("## ERROR: The SSsupply datum is missing.")
-		return
-	var/datum/shuttle/autodock/ferry/supply/shuttle = SSsupply.shuttle
-	if (!shuttle)
-		to_world_log("## ERROR: The supply shuttle datum is missing.")
-		return
+/obj/machinery/computer/supplycomp/tgui_act(action, params)
 	if(..())
-		return 1
+		return TRUE
+	if(!SSsupply)
+		log_runtime(EXCEPTION("## ERROR: The SSsupply datum is missing."))
+		return TRUE
+	var/datum/shuttle/autodock/ferry/supply/shuttle = SSsupply.shuttle
+	if(!shuttle)
+		log_runtime(EXCEPTION("## ERROR: The supply shuttle datum is missing."))
+		return TRUE
 
-	if(isturf(loc) && ( in_range(src, usr) || istype(usr, /mob/living/silicon) ) )
-		usr.set_machine(src)
+	if(tgui_modal_act(src, action, params))
+		return TRUE
 
-	// NEW TOPIC
+	switch(action)
+		if("view_crate")
+			var/datum/supply_pack/P = locate(params["crate"])
+			if(!istype(P))
+				return FALSE
+			var/list/payload = list(
+				"name" = P.name,
+				"cost" = P.cost,
+				"manifest" = uniquelist(P.manifest),
+				"ref" = "\ref[P]",
+				"random" = P.num_contained,
+			)
+			tgui_modal_message(src, action, "", null, payload)
+			. = TRUE
+		if("request_crate_multi")
+			var/datum/supply_pack/S = locate(params["ref"])
 
-	// Switch menu
-	if(href_list["switch_tab"])
-		menu_tab = href_list["switch_tab"]
+			// Invalid ref
+			if(!istype(S))
+				return FALSE
 
-	if(href_list["active_category"])
-		active_category = href_list["active_category"]
-
-	if(href_list["pack_ref"])
-		var/datum/supply_pack/S = locate(href_list["pack_ref"])
-
-		// Invalid ref
-		if(!istype(S))
-			return
-
-		// Expand the supply pack's contents
-		if(href_list["expand"])
-			expanded_packs ^= S
-
-		// Make a request for the pack
-		if(href_list["request"])
-			var/mob/user = locate(href_list["user"])
-			if(!istype(user)) // Invalid ref
-				return
+			if(S.contraband && !(authorization & SUP_CONTRABAND || can_order_contraband))
+				return FALSE
 
 			if(world.time < reqtime)
 				visible_message("<span class='warning'>[src]'s monitor flashes, \"[reqtime - world.time] seconds remaining until another requisition form may be printed.\"</span>")
-				return
+				return FALSE
+
+			var/amount = clamp(input(usr, "How many crates? (0 to 20)") as num|null, 0, 20)
+			if(!amount)
+				return FALSE
 
 			var/timeout = world.time + 600
-			var/reason = sanitize(input(user, "Reason:","Why do you require this item?","") as null|text)
+			var/reason = sanitize(input(usr, "Reason:","Why do you require this item?","") as null|text)
 			if(world.time > timeout)
-				to_chat(user, "<span class='warning'>Error. Request timed out.</span>")
-				return
+				to_chat(usr, "<span class='warning'>Error. Request timed out.</span>")
+				return FALSE
 			if(!reason)
-				return
+				return FALSE
 
-			SSsupply.create_order(S, user, reason)
+			for(var/i in 1 to amount)
+				SSsupply.create_order(S, usr, reason)
 
 			var/idname = "*None Provided*"
 			var/idrank = "*None Provided*"
-			if(ishuman(user))
-				var/mob/living/carbon/human/H = user
+			if(ishuman(usr))
+				var/mob/living/carbon/human/H = usr
 				idname = H.get_authentification_name()
 				idrank = H.get_assignment()
-			else if(issilicon(user))
-				idname = user.real_name
+			else if(issilicon(usr))
+				idname = usr.real_name
+				idrank = "Stationbound synthetic"
+
+			var/obj/item/weapon/paper/reqform = new /obj/item/weapon/paper(loc)
+			reqform.name = "Requisition Form - [S.name]"
+			reqform.info += "<h3>[station_name()] Supply Requisition Form</h3><hr>"
+			reqform.info += "INDEX: #[SSsupply.ordernum]<br>"
+			reqform.info += "REQUESTED BY: [idname]<br>"
+			reqform.info += "RANK: [idrank]<br>"
+			reqform.info += "REASON: [reason]<br>"
+			reqform.info += "SUPPLY CRATE TYPE: [S.name]<br>"
+			reqform.info += "ACCESS RESTRICTION: [get_access_desc(S.access)]<br>"
+			reqform.info += "AMOUNT: [amount]<br>"
+			reqform.info += "CONTENTS:<br>"
+			reqform.info +=  S.get_html_manifest()
+			reqform.info += "<hr>"
+			reqform.info += "STAMP BELOW TO APPROVE THIS REQUISITION:<br>"
+
+			reqform.update_icon()	//Fix for appearing blank when printed.
+			reqtime = (world.time + 5) % 1e5
+			. = TRUE
+
+		if("request_crate")
+			var/datum/supply_pack/S = locate(params["ref"])
+
+			// Invalid ref
+			if(!istype(S))
+				return FALSE
+
+			if(S.contraband && !(authorization & SUP_CONTRABAND || can_order_contraband))
+				return FALSE
+
+			if(world.time < reqtime)
+				visible_message("<span class='warning'>[src]'s monitor flashes, \"[reqtime - world.time] seconds remaining until another requisition form may be printed.\"</span>")
+				return FALSE
+
+			var/timeout = world.time + 600
+			var/reason = sanitize(input(usr, "Reason:","Why do you require this item?","") as null|text)
+			if(world.time > timeout)
+				to_chat(usr, "<span class='warning'>Error. Request timed out.</span>")
+				return FALSE
+			if(!reason)
+				return FALSE
+
+			SSsupply.create_order(S, usr, reason)
+
+			var/idname = "*None Provided*"
+			var/idrank = "*None Provided*"
+			if(ishuman(usr))
+				var/mob/living/carbon/human/H = usr
+				idname = H.get_authentification_name()
+				idrank = H.get_assignment()
+			else if(issilicon(usr))
+				idname = usr.real_name
 				idrank = "Stationbound synthetic"
 
 			var/obj/item/weapon/paper/reqform = new /obj/item/weapon/paper(loc)
@@ -268,24 +315,19 @@
 
 			reqform.update_icon()	//Fix for appearing blank when printed.
 			reqtime = (world.time + 5) % 1e5
-
-	if(href_list["order_ref"])
-		var/datum/supply_order/O = locate(href_list["order_ref"])
-
-		// Invalid ref
-		if(!istype(O))
-			return
-
-		var/mob/user = locate(href_list["user"])
-		if(!istype(user)) // Invalid ref
-			return
-
-		if(href_list["edit"])
-			var/new_val = sanitize(input(user, href_list["edit"], "Enter the new value for this field:", href_list["default"]) as null|text)
+			. = TRUE
+		// Approving Orders
+		if("edit_order_value")
+			var/datum/supply_order/O = locate(params["ref"])
+			if(!istype(O))
+				return FALSE
+			if(!(authorization & SUP_ACCEPT_ORDERS))
+				return FALSE
+			var/new_val = sanitize(input(usr, params["edit"], "Enter the new value for this field:", params["default"]) as null|text)
 			if(!new_val)
-				return
+				return FALSE
 
-			switch(href_list["edit"])
+			switch(params["edit"])
 				if("Supply Pack")
 					O.name = new_val
 
@@ -313,68 +355,95 @@
 
 				if("Approved at")
 					O.approved_at = new_val
+			. = TRUE
+		if("approve_order")
+			var/datum/supply_order/O = locate(params["ref"])
+			if(!istype(O))
+				return FALSE
+			if(!(authorization & SUP_ACCEPT_ORDERS))
+				return FALSE
+			SSsupply.approve_order(O, usr)
+			. = TRUE
+		if("deny_order")
+			var/datum/supply_order/O = locate(params["ref"])
+			if(!istype(O))
+				return FALSE
+			if(!(authorization & SUP_ACCEPT_ORDERS))
+				return FALSE
+			SSsupply.deny_order(O, usr)
+			. = TRUE
+		if("delete_order")
+			var/datum/supply_order/O = locate(params["ref"])
+			if(!istype(O))
+				return FALSE
+			if(!(authorization & SUP_ACCEPT_ORDERS))
+				return FALSE
+			SSsupply.delete_order(O, usr)
+			. = TRUE
+		if("clear_all_requests")
+			if(!(authorization & SUP_ACCEPT_ORDERS))
+				return FALSE
+			SSsupply.deny_all_pending(usr)
+			. = TRUE
+		// Exports
+		if("export_edit_field")
+			var/datum/exported_crate/E = locate(params["ref"])
+			// Invalid ref
+			if(!istype(E))
+				return FALSE
+			if(!(authorization & SUP_ACCEPT_ORDERS))
+				return FALSE
+			var/list/L = E.contents[params["index"]]
+			var/field = alert(usr, "Select which field to edit", , "Name", "Quantity", "Value")
 
-		if(href_list["approve"])
-			SSsupply.approve_order(O, user)
-
-		if(href_list["deny"])
-			SSsupply.deny_order(O, user)
-
-		if(href_list["delete"])
-			SSsupply.delete_order(O, user)
-
-	if(href_list["clear_all_requests"])
-		var/mob/user = locate(href_list["user"])
-		if(!istype(user)) // Invalid ref
-			return
-
-		SSsupply.deny_all_pending(user)
-
-	if(href_list["export_ref"])
-		var/datum/exported_crate/E = locate(href_list["export_ref"])
-
-		// Invalid ref
-		if(!istype(E))
-			return
-
-		var/mob/user = locate(href_list["user"])
-		if(!istype(user)) // Invalid ref
-			return
-
-		if(href_list["index"])
-			var/list/L = E.contents[href_list["index"]]
-
-			if(href_list["edit"])
-				var/field = alert(user, "Select which field to edit", , "Name", "Quantity", "Value")
-
-				var/new_val = sanitize(input(user, href_list["edit"], "Enter the new value for this field:", href_list["default"]) as null|text)
-				if(!new_val)
-					return
-
-				switch(field)
-					if("Name")
-						L["object"] = new_val
-
-					if("Quantity")
-						var/num = text2num(new_val)
-						if(num)
-							L["quantity"] = num
-
-					if("Value")
-						var/num = text2num(new_val)
-						if(num)
-							L["value"] = num
-
-			if(href_list["delete"])
-				E.contents.Cut(href_list["index"], href_list["index"] + 1)
-
-		// Else clause means they're editing/deleting the whole export report, rather than a specific item in it
-		else if(href_list["edit"])
-			var/new_val = sanitize(input(user, href_list["edit"], "Enter the new value for this field:", href_list["default"]) as null|text)
+			var/new_val = sanitize(input(usr, field, "Enter the new value for this field:", L[lowertext(field)]) as null|text)
 			if(!new_val)
 				return
 
-			switch(href_list["edit"])
+			switch(field)
+				if("Name")
+					L["object"] = new_val
+
+				if("Quantity")
+					var/num = text2num(new_val)
+					if(num)
+						L["quantity"] = num
+
+				if("Value")
+					var/num = text2num(new_val)
+					if(num)
+						L["value"] = num
+			. = TRUE
+		if("export_delete_field")
+			var/datum/exported_crate/E = locate(params["ref"])
+			// Invalid ref
+			if(!istype(E))
+				return FALSE
+			if(!(authorization & SUP_ACCEPT_ORDERS))
+				return FALSE
+			E.contents.Cut(params["index"], params["index"] + 1)
+			. = TRUE
+		if("export_add_field")
+			var/datum/exported_crate/E = locate(params["ref"])
+			// Invalid ref
+			if(!istype(E))
+				return FALSE
+			if(!(authorization & SUP_ACCEPT_ORDERS))
+				return FALSE
+			SSsupply.add_export_item(E, usr)
+			. = TRUE
+		if("export_edit")
+			var/datum/exported_crate/E = locate(params["ref"])
+			// Invalid ref
+			if(!istype(E))
+				return FALSE
+			if(!(authorization & SUP_ACCEPT_ORDERS))
+				return FALSE
+			var/new_val = sanitize(input(usr, params["edit"], "Enter the new value for this field:", params["default"]) as null|text)
+			if(!new_val)
+				return
+
+			switch(params["edit"])
 				if("Name")
 					E.name = new_val
 
@@ -382,39 +451,39 @@
 					var/num = text2num(new_val)
 					if(num)
 						E.value = num
+			. = TRUE
+		if("export_delete")
+			var/datum/exported_crate/E = locate(params["ref"])
+			// Invalid ref
+			if(!istype(E))
+				return FALSE
+			if(!(authorization & SUP_ACCEPT_ORDERS))
+				return FALSE
+			SSsupply.delete_export(E, usr)
+			. = TRUE
+		if("send_shuttle")
+			switch(params["mode"])
+				if("send_away")
+					if (shuttle.forbidden_atoms_check())
+						to_chat(usr, "<span class='warning'>For safety reasons the automated supply shuttle cannot transport live organisms, classified nuclear weaponry or homing beacons.</span>")
+					else
+						shuttle.launch(src)
+						to_chat(usr, "<span class='notice'>Initiating launch sequence.</span>")
 
-		else if(href_list["delete"])
-			SSsupply.delete_export(E, user)
+				if("send_to_station")
+					shuttle.launch(src)
+					to_chat(usr, "<span class='notice'>The supply shuttle has been called and will arrive in approximately [round(SSsupply.movetime/600,1)] minutes.</span>")
 
-		else if(href_list["add_item"])
-			SSsupply.add_export_item(E, user)
+				if("cancel_shuttle")
+					shuttle.cancel_launch(src)
 
-
-
-	switch(href_list["send_shuttle"])
-		if("send_away")
-			if (shuttle.forbidden_atoms_check())
-				to_chat(usr, "<span class='warning'>For safety reasons the automated supply shuttle cannot transport live organisms, classified nuclear weaponry or homing beacons.</span>")
-			else
-				shuttle.launch(src)
-				to_chat(usr, "<span class='notice'>Initiating launch sequence.</span>")
-
-		if("send_to_station")
-			shuttle.launch(src)
-			to_chat(usr, "<span class='notice'>The supply shuttle has been called and will arrive in approximately [round(SSsupply.movetime/600,1)] minutes.</span>")
-
-		if("cancel_shuttle")
-			shuttle.cancel_launch(src)
-
-		if("force_shuttle")
-			shuttle.force_launch(src)
+				if("force_shuttle")
+					shuttle.force_launch(src)
+			. = TRUE
 
 	add_fingerprint(usr)
-	updateUsrDialog()
-	return
 
 /obj/machinery/computer/supplycomp/proc/post_signal(var/command)
-
 	var/datum/radio_frequency/frequency = radio_controller.return_frequency(1435)
 
 	if(!frequency) return

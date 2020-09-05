@@ -42,3 +42,15 @@
 /datum/category_item/autolathe/tools/welder_industrial
 	name = "industrial welding tool"
 	path =/obj/item/weapon/weldingtool/largetank
+
+/datum/category_item/autolathe/tools/spraybottle
+	name = "spray bottle"
+	path = /obj/item/weapon/reagent_containers/spray
+	resources = list(MAT_PLASTIC = 2000)
+
+/datum/category_item/autolathe/tools/spraynozzle
+	name = "spray nozzle"
+	path = /obj/item/weapon/reagent_containers/spray
+	resources = list(MAT_PLASTIC = 5000, DEFAULT_WALL_MATERIAL = 2000)
+	hidden = 1
+	man_rating = 2

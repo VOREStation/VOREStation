@@ -1,3 +1,5 @@
+#define TANK_DISPENSER_CAPACITY 10
+
 /obj/structure/dispenser
 	name = "tank storage unit"
 	desc = "A simple yet bulky storage device for gas tanks. Has room for up to ten oxygen tanks, and ten phoron tanks."
@@ -6,10 +8,8 @@
 	density = 1
 	anchored = 1.0
 	w_class = ITEMSIZE_HUGE
-	var/oxygentanks = 10
-	var/phorontanks = 10
-	var/list/oxytanks = list()	//sorry for the similar var names
-	var/list/platanks = list()
+	var/oxygentanks = TANK_DISPENSER_CAPACITY
+	var/phorontanks = TANK_DISPENSER_CAPACITY
 
 
 /obj/structure/dispenser/oxygen
@@ -19,9 +19,13 @@
 	oxygentanks = 0
 
 
-/obj/structure/dispenser/New()
+/obj/structure/dispenser/Initialize()
+	. = ..()
+	for(var/i in 1 to oxygentanks)
+		new /obj/item/weapon/tank/oxygen(src)
+	for(var/i in 1 to phorontanks)
+		new /obj/item/weapon/tank/phoron(src)
 	update_icon()
-
 
 /obj/structure/dispenser/update_icon()
 	overlays.Cut()
@@ -32,49 +36,44 @@
 		if(1 to 4)	overlays += "phoron-[phorontanks]"
 		if(5 to INFINITY) overlays += "phoron-5"
 
-/obj/structure/dispenser/attack_ai(mob/user as mob)
+/obj/structure/dispenser/attack_ai(mob/user)
+	// This looks silly, but robots also call attack_ai, and they're allowed physical state stuff.
 	if(user.Adjacent(src))
 		return attack_hand(user)
 	..()
 
-/obj/structure/dispenser/attack_hand(mob/user as mob)
-	user.set_machine(src)
-	var/dat = "[src]<br><br>"
-	dat += "Oxygen tanks: [oxygentanks] - [oxygentanks ? "<A href='?src=\ref[src];oxygen=1'>Dispense</A>" : "empty"]<br>"
-	dat += "Phoron tanks: [phorontanks] - [phorontanks ? "<A href='?src=\ref[src];phoron=1'>Dispense</A>" : "empty"]"
-	user << browse(dat, "window=dispenser")
-	onclose(user, "dispenser")
-	return
+/obj/structure/dispenser/attack_hand(mob/user)
+	tgui_interact(user)
 
+/obj/structure/dispenser/tgui_state(mob/user)
+	return GLOB.tgui_physical_state
 
-/obj/structure/dispenser/attackby(obj/item/I as obj, mob/user as mob)
+/obj/structure/dispenser/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "TankDispenser", name)
+		ui.open()
+
+/obj/structure/dispenser/tgui_data(mob/user)
+	var/list/data = list()
+	data["oxygen"] = oxygentanks
+	data["plasma"] = phorontanks
+
+	return data
+
+/obj/structure/dispenser/attackby(obj/item/I, mob/user)
+	var/full
 	if(istype(I, /obj/item/weapon/tank/oxygen) || istype(I, /obj/item/weapon/tank/air) || istype(I, /obj/item/weapon/tank/anesthetic))
-		if(oxygentanks < 10)
-			user.drop_item()
-			I.loc = src
-			oxytanks.Add(I)
+		if(oxygentanks < TANK_DISPENSER_CAPACITY)
 			oxygentanks++
-			to_chat(user, "<span class='notice'>You put [I] in [src].</span>")
-			if(oxygentanks < 5)
-				update_icon()
 		else
-			to_chat(user, "<span class='notice'>[src] is full.</span>")
-		updateUsrDialog()
-		return
-	if(istype(I, /obj/item/weapon/tank/phoron))
-		if(phorontanks < 10)
-			user.drop_item()
-			I.loc = src
-			platanks.Add(I)
+			full = TRUE
+	else if(istype(I, /obj/item/weapon/tank/phoron))
+		if(phorontanks < TANK_DISPENSER_CAPACITY)
 			phorontanks++
-			to_chat(user, "<span class='notice'>You put [I] in [src].</span>")
-			if(oxygentanks < 6)
-				update_icon()
 		else
-			to_chat(user, "<span class='notice'>[src] is full.</span>")
-		updateUsrDialog()
-		return
-	if(I.is_wrench())
+			full = TRUE
+	else if(I.is_wrench())
 		if(anchored)
 			to_chat(user, "<span class='notice'>You lean down and unwrench [src].</span>")
 			anchored = 0
@@ -82,39 +81,42 @@
 			to_chat(user, "<span class='notice'>You wrench [src] into place.</span>")
 			anchored = 1
 		return
-
-/obj/structure/dispenser/Topic(href, href_list)
-	if(usr.stat || usr.restrained())
+	else if(user.a_intent != I_HURT)
+		to_chat(user, "<span class='notice'>[I] does not fit into [src].</span>")
 		return
-	if(Adjacent(usr))
-		usr.set_machine(src)
-		if(href_list["oxygen"])
-			if(oxygentanks > 0)
-				var/obj/item/weapon/tank/oxygen/O
-				if(oxytanks.len == oxygentanks)
-					O = oxytanks[1]
-					oxytanks.Remove(O)
-				else
-					O = new /obj/item/weapon/tank/oxygen(loc)
-				O.loc = loc
-				to_chat(usr, "<span class='notice'>You take [O] out of [src].</span>")
-				oxygentanks--
-				update_icon()
-		if(href_list["phoron"])
-			if(phorontanks > 0)
-				var/obj/item/weapon/tank/phoron/P
-				if(platanks.len == phorontanks)
-					P = platanks[1]
-					platanks.Remove(P)
-				else
-					P = new /obj/item/weapon/tank/phoron(loc)
-				P.loc = loc
-				to_chat(usr, "<span class='notice'>You take [P] out of [src].</span>")
-				phorontanks--
-				update_icon()
-		add_fingerprint(usr)
-		updateUsrDialog()
 	else
-		usr << browse(null, "window=dispenser")
+		return ..()
+
+	if(full)
+		to_chat(user, "<span class='notice'>[src] can't hold any more of [I].</span>")
 		return
-	return
+
+	if(!user.unEquip(I, target = src))
+		return
+	to_chat(user, "<span class='notice'>You put [I] in [src].</span>")
+	update_icon()
+
+
+/obj/structure/dispenser/tgui_act(action, params)
+	if(..())
+		return
+	switch(action)
+		if("plasma")
+			var/obj/item/weapon/tank/phoron/tank = locate() in src
+			if(tank && Adjacent(usr))
+				usr.put_in_hands(tank)
+				phorontanks--
+			. = TRUE
+			playsound(src, 'sound/items/drop/gascan.ogg', 100, 1, 1)
+		if("oxygen")
+			var/obj/item/weapon/tank/tank = null
+			for(var/obj/item/weapon/tank/T in src)
+				if(istype(T, /obj/item/weapon/tank/oxygen) || istype(T, /obj/item/weapon/tank/air) || istype(T, /obj/item/weapon/tank/anesthetic))
+					tank = T
+					break
+			if(tank && Adjacent(usr))
+				usr.put_in_hands(tank)
+				oxygentanks--
+			. = TRUE
+			playsound(src, 'sound/items/drop/gascan.ogg', 100, 1, 1)
+	update_icon()

@@ -34,16 +34,22 @@
 
 	#endif
 
+	// asset_cache
+	var/asset_cache_job
 	if(href_list["asset_cache_confirm_arrival"])
-		var/job = text2num(href_list["asset_cache_confirm_arrival"])
-		completed_asset_jobs += job
-		return
+		asset_cache_job = asset_cache_confirm_arrival(href_list["asset_cache_confirm_arrival"])
+		if (!asset_cache_job)
+			return
 
 	//search the href for script injection
 	if( findtext(href,"<script",1,0) )
 		to_world_log("Attempted use of scripts within a topic call, by [src]")
 		message_admins("Attempted use of scripts within a topic call, by [src]")
 		//del(usr)
+		return
+
+	// Tgui Topic middleware
+	if(!tgui_Topic(href_list))
 		return
 
 	//Admin PM
@@ -105,6 +111,15 @@
 	//Logs all hrefs
 	if(config && config.log_hrefs && href_logfile)
 		WRITE_LOG(href_logfile, "[src] (usr:[usr])</small> || [hsrc ? "[hsrc] " : ""][href]")
+
+	//byond bug ID:2256651
+	if (asset_cache_job && (asset_cache_job in completed_asset_jobs))
+		to_chat(src, "<span class='danger'>An error has been detected in how your client is receiving resources. Attempting to correct.... (If you keep seeing these messages you might want to close byond and reconnect)</span>")
+		src << browse("...", "window=asset_cache_browser")
+		return
+	if (href_list["asset_cache_preload_data"])
+		asset_cache_preload_data(href_list["asset_cache_preload_data"])
+		return
 
 	switch(href_list["_src_"])
 		if("holder")	hsrc = holder
@@ -180,6 +195,10 @@
 
 	. = ..()	//calls mob.Login()
 	prefs.sanitize_preferences()
+
+	connection_time = world.time
+	connection_realtime = world.realtime
+	connection_timeofday = world.timeofday
 
 	if(custom_event_msg && custom_event_msg != "")
 		to_chat(src, "<h1 class='alert'>Custom Event</h1>")
@@ -359,14 +378,16 @@
 			log_admin("Couldn't perform IP check on [key] with [address]")
 
 	// VOREStation Edit Start - Department Hours
-	if(config.time_off)
-		var/DBQuery/query_hours = dbcon.NewQuery("SELECT department, hours, total_hours FROM vr_player_hours WHERE ckey = '[sql_ckey]'")
-		query_hours.Execute()
-		LAZYINITLIST(department_hours)
-		LAZYINITLIST(play_hours)
+	var/DBQuery/query_hours = dbcon.NewQuery("SELECT department, hours, total_hours FROM vr_player_hours WHERE ckey = '[sql_ckey]'")
+	if(query_hours.Execute())
 		while(query_hours.NextRow())
 			department_hours[query_hours.item[1]] = text2num(query_hours.item[2])
 			play_hours[query_hours.item[1]] = text2num(query_hours.item[3])
+	else
+		var/error_message = query_hours.ErrorMsg() // Need this out here since the spawn below will split the stack and who knows what'll happen by the time it runs
+		log_debug("Error loading play hours for [ckey]: [error_message]")
+		spawn(0)
+			alert(src, "The query to load your existing playtime failed. Screenshot this, give the screenshot to a developer, and reconnect, otherwise you may lose any recorded play hours (which may limit access to jobs). ERROR: [error_message]", "PROBLEMS!!")
 	// VOREStation Edit End - Department Hours
 
 	if(sql_id)
@@ -406,8 +427,12 @@
 //send resources to the client. It's here in its own proc so we can move it around easiliy if need be
 /client/proc/send_resources()
 	spawn (10) //removing this spawn causes all clients to not get verbs.
+
+		//load info on what assets the client has
+		src << browse('code/modules/asset_cache/validate_assets.html', "window=asset_cache_browser")
+
 		//Precache the client with all other assets slowly, so as to not block other browse() calls
-		getFilesSlow(src, SSassets.preload, register_asset = FALSE)
+		addtimer(CALLBACK(GLOBAL_PROC, /proc/getFilesSlow, src, SSassets.preload, FALSE), 5 SECONDS)
 
 mob/proc/MayRespawn()
 	return 0

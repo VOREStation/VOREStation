@@ -27,6 +27,19 @@ var/list/holder_mob_icon_cache = list()
 	..()
 	START_PROCESSING(SSobj, src)
 
+/obj/item/weapon/holder/throw_at(atom/target, range, speed, thrower)
+	if(held_mob)
+		held_mob.forceMove(loc)
+		var/thrower_mob_size = 1
+		if(ismob(thrower))
+			var/mob/M = thrower
+			thrower_mob_size = M.mob_size
+		var/mob_range = round(range * min(thrower_mob_size / held_mob.mob_size, 1))
+		held_mob.throw_at(target, mob_range, speed, thrower)
+		held_mob = null
+	drop_items()
+	qdel(src)
+
 /obj/item/weapon/holder/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
@@ -185,6 +198,7 @@ var/list/holder_mob_icon_cache = list()
 		to_chat(grabber, "<span class='notice'>You scoop up \the [src]!</span>")
 		to_chat(src, "<span class='notice'>\The [grabber] scoops you up!</span>")
 
+	add_attack_logs(grabber, H.held_mob, "Scooped up", FALSE) // Not important enough to notify admins, but still helpful.
 	H.sync(src)
 	return H
 

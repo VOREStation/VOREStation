@@ -5,6 +5,7 @@
 	var/load = 0				// the current load on the powernet, increased by each machine at processing
 	var/newavail = 0			// what available power was gathered last tick, then becomes...
 	var/avail = 0				//...the current available power in the powernet
+	var/viewavail = 0			// the availability as it appears on the power console (gradually updated)
 	var/viewload = 0			// the load as it appears on the power console (gradually updated)
 	var/number = 0				// Unused //TODEL
 
@@ -134,7 +135,8 @@
 			S.restore(perc)
 
 	//updates the viewed load (as seen on power computers)
-	viewload = round(load)
+	viewavail = round(0.8 * viewavail + 0.2 * avail)
+	viewload = round(0.8 * viewload + 0.2 * load)
 
 	//reset the powernet
 	load = 0

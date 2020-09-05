@@ -110,6 +110,21 @@
 		"ver", "stv", "pro", "ski"
 	)
 
+/datum/language/drudakar
+	name = LANGUAGE_DRUDAKAR
+	desc = "The native language of the D'Rudak'Ar, a loosely tied together community of dragons and demi-dragons based in the Diul system. Features include many hard consonants and rolling 'r's."
+	speech_verb = "gaos"
+	ask_verb = "gaos"
+	exclaim_verb = "GAOS"
+	whisper_verb = "gaos"
+	colour = "drudakar"
+	key = "K"
+	syllables = list(
+		"gok", "rha", "rou", "gao", "do", "ra", "bo", "lah", "draz", "khi", "zah", "lah", "ora", "ille",
+		"ghlas", "ghlai", "tyur", "vah", "bao", "raag", "drag", "zhi", "dahl", "tiyr", "vahl", "nyem",
+		"roar", "hyaa", "ma", "ha", "ya", "shi", "yo", "go"
+	)
+
 /datum/language/unathi
 	flags = 0
 /datum/language/tajaran
@@ -123,8 +138,9 @@
 /datum/language/human
 	flags = 0
 /datum/language/gutter
-	flags = WHITELISTED
 	machine_understands = FALSE
+	desc = "A dialect of Tradeband not uncommon amongst traders in the Free Trade Union. The language is often difficult to translate due to changing frequently and being highly colloquial."
+	partial_understanding = list(LANGUAGE_TRADEBAND = 30, LANGUAGE_SOL_COMMON = 10)
 /datum/language/human/monkey
 	flags = RESTRICTED
 /datum/language/skrell/monkey

@@ -39,12 +39,16 @@
 	var/secured_wires = 0
 	var/datum/wires/airlock/wires = null
 
-	var/open_sound_powered = 'sound/machines/airlock.ogg'
-	var/open_sound_unpowered = 'sound/machines/airlockforced.ogg'
-	var/close_sound_powered = 'sound/machines/airlockclose.ogg'
+	var/open_sound_powered = 'sound/machines/door/covert1o.ogg'
+	var/open_sound_unpowered = 'sound/machines/door/airlockforced.ogg'
+	var/close_sound_powered = 'sound/machines/door/covert1c.ogg'
+	var/legacy_open_powered = 'sound/machines/door/old_airlock.ogg'
+	var/legacy_close_powered = 'sound/machines/door/old_airlockclose.ogg'
+	var/department_open_powered = null
+	var/department_close_powered = null
 	var/denied_sound = 'sound/machines/deniedbeep.ogg'
-	var/bolt_up_sound = 'sound/machines/boltsup.ogg'
-	var/bolt_down_sound = 'sound/machines/boltsdown.ogg'
+	var/bolt_up_sound = 'sound/machines/door/boltsup.ogg'
+	var/bolt_down_sound = 'sound/machines/door/boltsdown.ogg'
 
 /obj/machinery/door/airlock/attack_generic(var/mob/living/user, var/damage)
 	if(stat & (BROKEN|NOPOWER))
@@ -81,7 +85,7 @@
 				if(do_after(user,5 SECONDS,src))
 					visible_message("<span class='danger'>\The [user] forces \the [src] open, sparks flying from its electronics!</span>")
 					src.do_animate("spark")
-					playsound(src, 'sound/machines/airlock_creaking.ogg', 100, 1)
+					playsound(src, 'sound/machines/door/airlock_creaking.ogg', 100, 1, volume_channel = VOLUME_CHANNEL_DOORS)
 					src.locked = 0
 					src.welded = 0
 					update_icon()
@@ -90,7 +94,7 @@
 			else if(src.density)
 				visible_message("<span class='alium'>\The [user] begins forcing \the [src] open!</span>")
 				if(do_after(user, 5 SECONDS,src))
-					playsound(src, 'sound/machines/airlock_creaking.ogg', 100, 1)
+					playsound(src, 'sound/machines/door/airlock_creaking.ogg', 100, 1, volume_channel = VOLUME_CHANNEL_DOORS)
 					visible_message("<span class='danger'>\The [user] forces \the [src] open!</span>")
 					open(1)
 			else
@@ -112,40 +116,66 @@
 	icon = 'icons/obj/doors/Doorcom.dmi'
 	req_one_access = list(access_heads)
 	assembly_type = /obj/structure/door_assembly/door_assembly_com
+	open_sound_powered = 'sound/machines/door/hall1o.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+	close_sound_powered = 'sound/machines/door/hall1c.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+	department_open_powered = 'sound/machines/door/cmd3o.ogg'
+	department_close_powered = 'sound/machines/door/cmd3c.ogg'
 
 /obj/machinery/door/airlock/security
 	name = "Security Airlock"
 	icon = 'icons/obj/doors/Doorsec.dmi'
 	req_one_access = list(access_security)
 	assembly_type = /obj/structure/door_assembly/door_assembly_sec
+	open_sound_powered = 'sound/machines/door/hall1o.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+	close_sound_powered = 'sound/machines/door/hall1c.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+	department_open_powered = 'sound/machines/door/sec1o.ogg'
+	department_close_powered = 'sound/machines/door/sec1c.ogg'
 
 /obj/machinery/door/airlock/engineering
 	name = "Engineering Airlock"
 	icon = 'icons/obj/doors/Dooreng.dmi'
 	req_one_access = list(access_engine)
 	assembly_type = /obj/structure/door_assembly/door_assembly_eng
+	open_sound_powered = 'sound/machines/door/hall1o.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+	close_sound_powered = 'sound/machines/door/hall1c.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+	department_open_powered = 'sound/machines/door/eng1o.ogg'
+	department_close_powered = 'sound/machines/door/eng1c.ogg'
 
 /obj/machinery/door/airlock/engineeringatmos
 	name = "Atmospherics Airlock"
 	icon = 'icons/obj/doors/Doorengatmos.dmi'
 	req_one_access = list(access_atmospherics)
 	assembly_type = /obj/structure/door_assembly/door_assembly_eat
+	open_sound_powered = 'sound/machines/door/hall1o.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+	close_sound_powered = 'sound/machines/door/hall1c.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+	department_open_powered = 'sound/machines/door/eng1o.ogg'
+	department_close_powered = 'sound/machines/door/eng1c.ogg'
 
 /obj/machinery/door/airlock/medical
 	name = "Medical Airlock"
 	icon = 'icons/obj/doors/Doormed.dmi'
 	req_one_access = list(access_medical)
 	assembly_type = /obj/structure/door_assembly/door_assembly_med
+	open_sound_powered = 'sound/machines/door/hall1o.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+	close_sound_powered = 'sound/machines/door/hall1c.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+	department_open_powered = 'sound/machines/door/med1o.ogg'
+	department_close_powered = 'sound/machines/door/med1c.ogg'
 
 /obj/machinery/door/airlock/maintenance
 	name = "Maintenance Access"
 	icon = 'icons/obj/doors/Doormaint.dmi'
 	//req_one_access = list(access_maint_tunnels) //VOREStation Edit - Maintenance is open access
 	assembly_type = /obj/structure/door_assembly/door_assembly_mai
+	open_sound_powered = 'sound/machines/door/door2o.ogg'
+	close_sound_powered = 'sound/machines/door/door2c.ogg'
 
 /obj/machinery/door/airlock/maintenance/cargo
 	icon = 'icons/obj/doors/Doormaint_cargo.dmi'
 	req_one_access = list(access_cargo)
+	open_sound_powered = 'sound/machines/door/hall1o.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+	close_sound_powered = 'sound/machines/door/hall1c.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+	department_open_powered = 'sound/machines/door/door2o.ogg'
+	department_close_powered = 'sound/machines/door/door2c.ogg'
 
 /obj/machinery/door/airlock/maintenance/command
 	icon = 'icons/obj/doors/Doormaint_command.dmi'
@@ -153,6 +183,8 @@
 
 /obj/machinery/door/airlock/maintenance/common
 	icon = 'icons/obj/doors/Doormaint_common.dmi'
+	open_sound_powered = 'sound/machines/door/hall3o.ogg'
+	close_sound_powered = 'sound/machines/door/hall3c.ogg'
 
 /obj/machinery/door/airlock/maintenance/engi
 	icon = 'icons/obj/doors/Doormaint_engi.dmi'
@@ -177,6 +209,8 @@
 	name = "External Airlock"
 	icon = 'icons/obj/doors/Doorext.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_ext
+	open_sound_powered = 'sound/machines/door/space1o.ogg'
+	close_sound_powered = 'sound/machines/door/space1c.ogg'
 
 /obj/machinery/door/airlock/external/glass/bolted
 	icon_state = "door_locked" // So it looks visibly bolted in map editor
@@ -193,12 +227,16 @@
 	opacity = 0
 	glass = 1
 	req_one_access = list(access_external_airlocks)
+	open_sound_powered = 'sound/machines/door/space1o.ogg'
+	close_sound_powered = 'sound/machines/door/space1c.ogg'
 
 /obj/machinery/door/airlock/glass
 	name = "Glass Airlock"
 	icon = 'icons/obj/doors/Doorglass.dmi'
 	hitsound = 'sound/effects/Glasshit.ogg'
-	open_sound_powered = 'sound/machines/windowdoor.ogg'
+	open_sound_powered = 'sound/machines/door/hall1o.ogg'
+	close_sound_powered = 'sound/machines/door/hall1c.ogg'
+	legacy_open_powered = 'sound/machines/door/windowdoor.ogg'
 	maxhealth = 300
 	explosion_resistance = 5
 	opacity = 0
@@ -209,12 +247,16 @@
 	icon = 'icons/obj/doors/Doorele.dmi'
 	req_one_access = list(access_cent_general)
 	opacity = 1
+	open_sound_powered = 'sound/machines/door/cmd3o.ogg'
+	close_sound_powered = 'sound/machines/door/cmd3c.ogg'
 
 /obj/machinery/door/airlock/glass_centcom
 	name = "Airlock"
 	icon = 'icons/obj/doors/Dooreleglass.dmi'
 	opacity = 0
 	glass = 1
+	open_sound_powered = 'sound/machines/door/cmd3o.ogg'
+	close_sound_powered = 'sound/machines/door/cmd3c.ogg'
 
 /obj/machinery/door/airlock/vault
 	name = "Vault"
@@ -224,6 +266,8 @@
 	secured_wires = 1
 	assembly_type = /obj/structure/door_assembly/door_assembly_highsecurity //Until somebody makes better sprites.
 	req_one_access = list(access_heads_vault)
+	open_sound_powered = 'sound/machines/door/vault1o.ogg'
+	close_sound_powered = 'sound/machines/door/vault1c.ogg'
 
 /obj/machinery/door/airlock/vault/bolted
 	icon_state = "door_locked"
@@ -242,6 +286,9 @@
 	opacity = 1
 	assembly_type = /obj/structure/door_assembly/door_assembly_hatch
 	req_one_access = list(access_maint_tunnels)
+	open_sound_powered = 'sound/machines/door/hatchopen.ogg'
+	close_sound_powered = 'sound/machines/door/hatchclose.ogg'
+	open_sound_unpowered = 'sound/machines/door/hatchforced.ogg'
 
 /obj/machinery/door/airlock/maintenance_hatch
 	name = "Maintenance Hatch"
@@ -250,6 +297,9 @@
 	opacity = 1
 	assembly_type = /obj/structure/door_assembly/door_assembly_mhatch
 	req_one_access = list(access_maint_tunnels)
+	open_sound_powered = 'sound/machines/door/hatchopen.ogg'
+	close_sound_powered = 'sound/machines/door/hatchclose.ogg'
+	open_sound_unpowered = 'sound/machines/door/hatchforced.ogg'
 
 /obj/machinery/door/airlock/glass_command
 	name = "Command Airlock"
@@ -261,6 +311,10 @@
 	assembly_type = /obj/structure/door_assembly/door_assembly_com
 	glass = 1
 	req_one_access = list(access_heads)
+	open_sound_powered = 'sound/machines/door/hall1o.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+	close_sound_powered = 'sound/machines/door/hall1c.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+	department_open_powered = 'sound/machines/door/cmd1o.ogg'
+	department_close_powered = 'sound/machines/door/cmd1c.ogg'
 
 /obj/machinery/door/airlock/glass_engineering
 	name = "Engineering Airlock"
@@ -272,6 +326,8 @@
 	assembly_type = /obj/structure/door_assembly/door_assembly_eng
 	glass = 1
 	req_one_access = list(access_engine)
+	department_open_powered = 'sound/machines/door/eng1o.ogg'
+	department_close_powered = 'sound/machines/door/eng1c.ogg'
 
 /obj/machinery/door/airlock/glass_engineeringatmos
 	name = "Atmospherics Airlock"
@@ -283,6 +339,10 @@
 	assembly_type = /obj/structure/door_assembly/door_assembly_eat
 	glass = 1
 	req_one_access = list(access_atmospherics)
+	open_sound_powered = 'sound/machines/door/hall1o.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+	close_sound_powered = 'sound/machines/door/hall1c.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+	department_open_powered = 'sound/machines/door/eng1o.ogg'
+	department_close_powered = 'sound/machines/door/eng1c.ogg'
 
 /obj/machinery/door/airlock/glass_security
 	name = "Security Airlock"
@@ -294,6 +354,10 @@
 	assembly_type = /obj/structure/door_assembly/door_assembly_sec
 	glass = 1
 	req_one_access = list(access_security)
+	open_sound_powered = 'sound/machines/door/hall1o.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+	close_sound_powered = 'sound/machines/door/hall1c.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+	department_open_powered = 'sound/machines/door/sec1o.ogg'
+	department_close_powered = 'sound/machines/door/sec1c.ogg'
 
 /obj/machinery/door/airlock/glass_medical
 	name = "Medical Airlock"
@@ -305,23 +369,39 @@
 	assembly_type = /obj/structure/door_assembly/door_assembly_med
 	glass = 1
 	req_one_access = list(access_medical)
+	open_sound_powered = 'sound/machines/door/hall1o.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+	close_sound_powered = 'sound/machines/door/hall1c.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+	department_open_powered = 'sound/machines/door/med1o.ogg'
+	department_close_powered = 'sound/machines/door/med1c.ogg'
 
 /obj/machinery/door/airlock/mining
 	name = "Mining Airlock"
 	icon = 'icons/obj/doors/Doormining.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_min
 	req_one_access = list(access_mining)
+	open_sound_powered = 'sound/machines/door/hall1o.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+	close_sound_powered = 'sound/machines/door/hall1c.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+	department_open_powered = 'sound/machines/door/cgo1o.ogg'
+	department_close_powered = 'sound/machines/door/cgo1c.ogg'
 
 /obj/machinery/door/airlock/atmos
 	name = "Atmospherics Airlock"
 	icon = 'icons/obj/doors/Dooratmo.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_atmo
 	req_one_access = list(access_atmospherics)
+	open_sound_powered = 'sound/machines/door/hall1o.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+	close_sound_powered = 'sound/machines/door/hall1c.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+	department_open_powered = 'sound/machines/door/eng1o.ogg'
+	department_close_powered = 'sound/machines/door/eng1c.ogg'
 
 /obj/machinery/door/airlock/research
 	name = "Research Airlock"
 	icon = 'icons/obj/doors/Doorresearch.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_research
+	open_sound_powered = 'sound/machines/door/hall1o.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+	close_sound_powered = 'sound/machines/door/hall1c.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+	department_open_powered = 'sound/machines/door/sci1o.ogg'
+	department_close_powered = 'sound/machines/door/sci1c.ogg'
 
 /obj/machinery/door/airlock/glass_research
 	name = "Research Airlock"
@@ -333,6 +413,10 @@
 	assembly_type = /obj/structure/door_assembly/door_assembly_research
 	glass = 1
 	req_one_access = list(access_research)
+	open_sound_powered = 'sound/machines/door/hall1o.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+	close_sound_powered = 'sound/machines/door/hall1c.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+	department_open_powered = 'sound/machines/door/sci1o.ogg'
+	department_close_powered = 'sound/machines/door/sci1c.ogg'
 
 /obj/machinery/door/airlock/glass_mining
 	name = "Mining Airlock"
@@ -344,6 +428,10 @@
 	assembly_type = /obj/structure/door_assembly/door_assembly_min
 	glass = 1
 	req_one_access = list(access_mining)
+	open_sound_powered = 'sound/machines/door/hall1o.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+	close_sound_powered = 'sound/machines/door/hall1c.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+	department_open_powered = 'sound/machines/door/cgo1o.ogg'
+	department_close_powered = 'sound/machines/door/cgo1c.ogg'
 
 /obj/machinery/door/airlock/glass_atmos
 	name = "Atmospherics Airlock"
@@ -355,6 +443,10 @@
 	assembly_type = /obj/structure/door_assembly/door_assembly_atmo
 	glass = 1
 	req_one_access = list(access_atmospherics)
+	open_sound_powered = 'sound/machines/door/hall1o.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+	close_sound_powered = 'sound/machines/door/hall1c.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+	department_open_powered = 'sound/machines/door/eng1o.ogg'
+	department_close_powered = 'sound/machines/door/eng1c.ogg'
 
 /obj/machinery/door/airlock/gold
 	name = "Gold Airlock"
@@ -435,6 +527,10 @@
 	icon = 'icons/obj/doors/Doorsci.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_science
 	req_one_access = list(access_research)
+	open_sound_powered = 'sound/machines/door/hall1o.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+	close_sound_powered = 'sound/machines/door/hall1c.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+	department_open_powered = 'sound/machines/door/sci1o.ogg'
+	department_close_powered = 'sound/machines/door/sci1c.ogg'
 
 /obj/machinery/door/airlock/glass_science
 	name = "Glass Airlocks"
@@ -443,6 +539,10 @@
 	assembly_type = /obj/structure/door_assembly/door_assembly_science
 	glass = 1
 	req_one_access = list(access_research)
+	open_sound_powered = 'sound/machines/door/hall1o.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+	close_sound_powered = 'sound/machines/door/hall1c.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+	department_open_powered = 'sound/machines/door/sci1o.ogg'
+	department_close_powered = 'sound/machines/door/sci1c.ogg'
 
 /obj/machinery/door/airlock/highsecurity
 	name = "Secure Airlock"
@@ -451,6 +551,8 @@
 	secured_wires = 1
 	assembly_type = /obj/structure/door_assembly/door_assembly_highsecurity
 	req_one_access = list(access_heads_vault)
+	open_sound_powered = 'sound/machines/door/secure1o.ogg'
+	close_sound_powered = 'sound/machines/door/secure1c.ogg'
 
 /obj/machinery/door/airlock/voidcraft
 	name = "voidcraft hatch"
@@ -460,11 +562,15 @@
 	opacity = 0
 	glass = 1
 	assembly_type = /obj/structure/door_assembly/door_assembly_voidcraft
+	open_sound_powered = 'sound/machines/door/shuttle1o.ogg'
+	close_sound_powered = 'sound/machines/door/shuttle1c.ogg'
 
 // Airlock opens from top-bottom instead of left-right.
 /obj/machinery/door/airlock/voidcraft/vertical
 	icon = 'icons/obj/doors/shuttledoors_vertical.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_voidcraft/vertical
+	open_sound_powered = 'sound/machines/door/shuttle1o.ogg'
+	close_sound_powered = 'sound/machines/door/shuttle1c.ogg'
 
 
 /datum/category_item/catalogue/anomalous/precursor_a/alien_airlock
@@ -543,10 +649,6 @@ About the new airlock wires panel:
 		return 1
 	return 0
 
-/obj/machinery/door/airlock/proc/isWireCut(var/wireIndex)
-	// You can find the wires in the datum folder.
-	return wires.IsIndexCut(wireIndex)
-
 /obj/machinery/door/airlock/proc/canAIControl()
 	return ((src.aiControlDisabled!=1) && (!src.isAllPowerLoss()));
 
@@ -559,7 +661,7 @@ About the new airlock wires panel:
 	return (src.main_power_lost_until==0 || src.backup_power_lost_until==0)
 
 /obj/machinery/door/airlock/requiresID()
-	return !(src.isWireCut(AIRLOCK_WIRE_IDSCAN) || aiDisabledIdScanner)
+	return !(wires.is_cut(WIRE_IDSCAN) || aiDisabledIdScanner)
 
 /obj/machinery/door/airlock/proc/isAllPowerLoss()
 	if(stat & (NOPOWER|BROKEN))
@@ -569,10 +671,10 @@ About the new airlock wires panel:
 	return 0
 
 /obj/machinery/door/airlock/proc/mainPowerCablesCut()
-	return src.isWireCut(AIRLOCK_WIRE_MAIN_POWER1) || src.isWireCut(AIRLOCK_WIRE_MAIN_POWER2)
+	return wires.is_cut(WIRE_MAIN_POWER1) || wires.is_cut(WIRE_MAIN_POWER2)
 
 /obj/machinery/door/airlock/proc/backupPowerCablesCut()
-	return src.isWireCut(AIRLOCK_WIRE_BACKUP_POWER1) || src.isWireCut(AIRLOCK_WIRE_BACKUP_POWER2)
+	return wires.is_cut(WIRE_BACKUP_POWER1) || wires.is_cut(WIRE_BACKUP_POWER2)
 
 /obj/machinery/door/airlock/proc/loseMainPower()
 	main_power_lost_until = mainPowerCablesCut() ? -1 : world.time + SecondsToTicks(60)
@@ -620,7 +722,7 @@ About the new airlock wires panel:
 
 /obj/machinery/door/airlock/proc/electrify(var/duration, var/feedback = 0)
 	var/message = ""
-	if(src.isWireCut(AIRLOCK_WIRE_ELECTRIFY) && arePowerSystemsOn())
+	if(wires.is_cut(WIRE_ELECTRIFY) && arePowerSystemsOn())
 		message = text("The electrification wire is cut - Door permanently electrified.")
 		src.electrified_until = -1
 	else if(duration && !arePowerSystemsOn())
@@ -646,7 +748,7 @@ About the new airlock wires panel:
 
 /obj/machinery/door/airlock/proc/set_idscan(var/activate, var/feedback = 0)
 	var/message = ""
-	if(src.isWireCut(AIRLOCK_WIRE_IDSCAN))
+	if(wires.is_cut(WIRE_IDSCAN))
 		message = "The IdScan wire is cut - IdScan feature permanently disabled."
 	else if(activate && src.aiDisabledIdScanner)
 		src.aiDisabledIdScanner = 0
@@ -661,7 +763,7 @@ About the new airlock wires panel:
 /obj/machinery/door/airlock/proc/set_safeties(var/activate, var/feedback = 0)
 	var/message = ""
 	// Safeties!  We don't need no stinking safeties!
-	if (src.isWireCut(AIRLOCK_WIRE_SAFETY))
+	if (wires.is_cut(WIRE_SAFETY))
 		message = text("The safety wire is cut - Cannot enable safeties.")
 	else if (!activate && src.safe)
 		safe = 0
@@ -744,32 +846,52 @@ About the new airlock wires panel:
 	return
 
 /obj/machinery/door/airlock/attack_ai(mob/user as mob)
-	ui_interact(user)
+	tgui_interact(user)
 
-/obj/machinery/door/airlock/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
-	var/data[0]
+/obj/machinery/door/airlock/attack_ghost(mob/user)
+	tgui_interact(user)
 
-	data["main_power_loss"]		= round(main_power_lost_until 	> 0 ? max(main_power_lost_until - world.time,	0) / 10 : main_power_lost_until,	1)
-	data["backup_power_loss"]	= round(backup_power_lost_until	> 0 ? max(backup_power_lost_until - world.time,	0) / 10 : backup_power_lost_until,	1)
-	data["electrified"] 		= round(electrified_until		> 0 ? max(electrified_until - world.time, 	0) / 10 	: electrified_until,		1)
-	data["open"] = !density
-
-	var/commands[0]
-	commands[++commands.len] = list("name" = "IdScan",					"command"= "idscan",				"active" = !aiDisabledIdScanner,	"enabled" = "Enabled",	"disabled" = "Disable",		"danger" = 0, "act" = 1)
-	commands[++commands.len] = list("name" = "Bolts",					"command"= "bolts",					"active" = !locked,					"enabled" = "Raised ",	"disabled" = "Dropped",		"danger" = 0, "act" = 0)
-	commands[++commands.len] = list("name" = "Bolt Lights",				"command"= "lights",				"active" = lights,					"enabled" = "Enabled",	"disabled" = "Disable",		"danger" = 0, "act" = 1)
-	commands[++commands.len] = list("name" = "Safeties",				"command"= "safeties",				"active" = safe,					"enabled" = "Nominal",	"disabled" = "Overridden",	"danger" = 1, "act" = 0)
-	commands[++commands.len] = list("name" = "Timing",					"command"= "timing",				"active" = normalspeed,				"enabled" = "Nominal",	"disabled" = "Overridden",	"danger" = 1, "act" = 0)
-	commands[++commands.len] = list("name" = "Door State",				"command"= "open",					"active" = density,					"enabled" = "Closed",	"disabled" = "Opened", 		"danger" = 0, "act" = 0)
-
-	data["commands"] = commands
-
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "door_control.tmpl", "Door Controls", 450, 350, state = state)
-		ui.set_initial_data(data)
+/obj/machinery/door/airlock/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "AiAirlock", name)
 		ui.open()
-		ui.set_auto_update(1)
+	return TRUE
+
+/obj/machinery/door/airlock/tgui_data(mob/user)
+	var/list/data = list()
+	
+	var/list/power = list()
+	power["main"] = main_power_lost_until > 0 ? 0 : 2
+	power["main_timeleft"] = round(main_power_lost_until > 0 ? max(main_power_lost_until - world.time,	0) / 10 : main_power_lost_until, 1)
+	power["backup"] = backup_power_lost_until > 0 ? 0 : 2
+	power["backup_timeleft"] = round(backup_power_lost_until > 0 ? max(backup_power_lost_until - world.time, 0) / 10 : backup_power_lost_until, 1)
+	data["power"] = power
+	
+	data["shock"] = (electrified_until == 0) ? 2 : 0
+	data["shock_timeleft"] = round(electrified_until > 0 ? max(electrified_until - world.time, 	0) / 10 : electrified_until, 1)
+	data["id_scanner"] = !aiDisabledIdScanner
+	data["locked"] = locked // bolted
+	data["lights"] = lights // bolt lights
+	data["safe"] = safe // safeties
+	data["speed"] = normalspeed // safe speed
+	data["welded"] = welded // welded
+	data["opened"] = !density // opened
+
+	var/list/wire = list()
+	wire["main_1"] = !wires.is_cut(WIRE_MAIN_POWER1)
+	wire["main_2"] = !wires.is_cut(WIRE_MAIN_POWER2)
+	wire["backup_1"] = !wires.is_cut(WIRE_BACKUP_POWER1)
+	wire["backup_2"] = !wires.is_cut(WIRE_BACKUP_POWER2)
+	wire["shock"] = !wires.is_cut(WIRE_ELECTRIFY)
+	wire["id_scanner"] = !wires.is_cut(WIRE_IDSCAN)
+	wire["bolts"] = !wires.is_cut(WIRE_DOOR_BOLTS)
+	wire["lights"] = !wires.is_cut(WIRE_BOLT_LIGHT)
+	wire["safe"] = !wires.is_cut(WIRE_SAFETY)
+	wire["timing"] = !wires.is_cut(WIRE_SPEED)
+
+	data["wires"] = wire
+	return data
 
 /obj/machinery/door/airlock/proc/hack(mob/user as mob)
 	if(src.aiHacking==0)
@@ -848,79 +970,105 @@ About the new airlock wires panel:
 		..(user)
 	return
 
-/obj/machinery/door/airlock/CanUseTopic(var/mob/user)
-	if(operating < 0) //emagged
-		to_chat(user, "<span class='warning'>Unable to interface: Internal error.</span>")
-		return STATUS_CLOSE
-	if(issilicon(user) && !src.canAIControl())
-		if(src.canAIHack(user))
-			src.hack(user)
-		else
-			if (src.isAllPowerLoss()) //don't really like how this gets checked a second time, but not sure how else to do it.
-				to_chat(user, "<span class='warning'>Unable to interface: Connection timed out.</span>")
-			else
-				to_chat(user, "<span class='warning'>Unable to interface: Connection refused.</span>")
-		return STATUS_CLOSE
-
-	return ..()
-
-/obj/machinery/door/airlock/Topic(href, href_list)
+/obj/machinery/door/airlock/tgui_act(action, params)
 	if(..())
-		return 1
+		return TRUE
+	if(!user_allowed(usr))
+		return TRUE
 
-	var/activate = text2num(href_list["activate"])
-	switch (href_list["command"])
-		if("idscan")
-			set_idscan(activate, 1)
-		if("main_power")
+	switch(action)
+		if("disrupt-main")
 			if(!main_power_lost_until)
-				src.loseMainPower()
-		if("backup_power")
+				loseMainPower()
+				update_icon()
+			else
+				to_chat(usr, "<span class='warning'>Main power is already offline.</span>")
+			. = TRUE
+		if("disrupt-backup")
 			if(!backup_power_lost_until)
-				src.loseBackupPower()
-		if("bolts")
-			if(src.isWireCut(AIRLOCK_WIRE_DOOR_BOLTS))
-				to_chat(usr, "The door bolt control wire is cut - Door bolts permanently dropped.")
-			else if(activate && src.lock())
-				to_chat(usr, "The door bolts have been dropped.")
-			else if(!activate && src.unlock())
-				to_chat(usr, "The door bolts have been raised.")
-		if("electrify_temporary")
-			electrify(30 * activate, 1)
-		if("electrify_permanently")
-			electrify(-1 * activate, 1)
-		if("open")
-			if(src.welded)
-				to_chat(usr, "The airlock has been welded shut!")
-			else if(src.locked)
-				to_chat(usr, "The door bolts are down!")
-			else if(activate && density)
-				open()
-			else if(!activate && !density)
-				close()
-		if("safeties")
-			set_safeties(!activate, 1)
-		if("timing")
-			// Door speed control
-			if(src.isWireCut(AIRLOCK_WIRE_SPEED))
-				to_chat(usr, "The timing wire is cut - Cannot alter timing.")
-			else if (activate && src.normalspeed)
-				normalspeed = 0
-			else if (!activate && !src.normalspeed)
-				normalspeed = 1
-		if("lights")
-			// Bolt lights
-			if(src.isWireCut(AIRLOCK_WIRE_LIGHT))
+				loseBackupPower()
+				update_icon()
+			else
+				to_chat(usr, "<span class='warning'>Backup power is already offline.</span>")
+			. = TRUE
+		if("shock-restore")
+			electrify(0, 1)
+			. = TRUE
+		if("shock-temp")
+			electrify(30, 1)
+			. = TRUE
+		if("shock-perm")
+			electrify(-1, 1)
+			. = TRUE
+		if("idscan-toggle")
+			set_idscan(aiDisabledIdScanner, 1)
+			. = TRUE
+		// if("emergency-toggle")
+		// 	toggle_emergency(usr)
+		// 	. = TRUE
+		if("bolt-toggle")
+			toggle_bolt(usr)
+			. = TRUE
+		if("light-toggle")
+			if(wires.is_cut(WIRE_BOLT_LIGHT))
 				to_chat(usr, "The bolt lights wire is cut - The door bolt lights are permanently disabled.")
-			else if (!activate && src.lights)
-				lights = 0
-				to_chat(usr, "The door bolt lights have been disabled.")
-			else if (activate && !src.lights)
-				lights = 1
-				to_chat(usr, "The door bolt lights have been enabled.")
+				return
+			lights = !lights
+			update_icon()
+			. = TRUE
+		if("safe-toggle")
+			set_safeties(!safe, 1)
+			. = TRUE
+		if("speed-toggle")
+			if(wires.is_cut(WIRE_SPEED))
+				to_chat(usr, "The timing wire is cut - Cannot alter timing.")
+				return
+			normalspeed = !normalspeed
+			. = TRUE
+		if("open-close")
+			user_toggle_open(usr)
+			. = TRUE
 
 	update_icon()
 	return 1
+
+/obj/machinery/door/airlock/proc/user_allowed(mob/user)
+	var/allowed = (issilicon(user) && canAIControl(user))
+	if(!allowed && isobserver(user))
+		var/mob/observer/dead/D = user
+		if(D.can_admin_interact())
+			allowed = TRUE
+	return allowed
+
+/obj/machinery/door/airlock/proc/toggle_bolt(mob/user)
+	if(!user_allowed(user))
+		return
+	if(wires.is_cut(WIRE_DOOR_BOLTS))
+		to_chat(user, "<span class='warning'>The door bolt drop wire is cut - you can't toggle the door bolts.</span>")
+		return
+	if(locked)
+		if(!arePowerSystemsOn())
+			to_chat(user, "<span class='warning'>The door has no power - you can't raise the door bolts.</span>")
+		else
+			unlock()
+			to_chat(user, "<span class='notice'>The door bolts have been raised.</span>")
+			// log_combat(user, src, "unbolted")
+	else
+		lock()
+		to_chat(user, "<span class='warning'>The door bolts have been dropped.</span>")
+		// log_combat(user, src, "bolted")
+
+/obj/machinery/door/airlock/proc/user_toggle_open(mob/user)
+	if(!user_allowed(user))
+		return
+	if(welded)
+		to_chat(user, text("<span class='warning'>The airlock has been welded shut!</span>"))
+	else if(locked)
+		to_chat(user, text("<span class='warning'>The door bolts are down!</span>"))
+	else if(!density)
+		close()
+	else
+		open()
 
 /obj/machinery/door/airlock/proc/can_remove_electronics()
 	return src.p_open && (operating < 0 || (!operating && welded && !src.arePowerSystemsOn() && density && (!src.locked || (stat & BROKEN))))
@@ -1065,10 +1213,41 @@ About the new airlock wires panel:
 	use_power(360)	//360 W seems much more appropriate for an actuator moving an industrial door capable of crushing people
 
 	//if the door is unpowered then it doesn't make sense to hear the woosh of a pneumatic actuator
-	if(arePowerSystemsOn())
-		playsound(src, open_sound_powered, 50, 1)
-	else
-		playsound(src, open_sound_unpowered, 75, 1)
+	for(var/P in player_list)
+		var/mob/M = P
+		if(!M || !M.client)
+			continue
+		var/old_sounds = M.client.is_preference_enabled(/datum/client_preference/old_door_sounds)
+		var/department_door_sounds = M.client.is_preference_enabled(/datum/client_preference/department_door_sounds)
+		var/sound
+		var/volume
+		if(old_sounds) // Do we have old sounds enabled? Play these even if we have department door sounds enabled.
+			if(arePowerSystemsOn())
+				sound = legacy_open_powered
+				volume = 50
+			else
+				sound = open_sound_unpowered
+				volume = 75
+		else if(!old_sounds && department_door_sounds && src.department_open_powered) // Else, we have old sounds disabled, the door has per-department door sounds, and we have chosen to play department door sounds, use these.
+			if(arePowerSystemsOn())
+				sound = department_open_powered
+				volume = 50
+			else
+				sound = open_sound_unpowered
+				volume = 75
+		else // Else, play these.
+			if(arePowerSystemsOn())
+				sound = open_sound_powered
+				volume = 50
+			else
+				sound = open_sound_unpowered
+				volume = 75
+
+		var/turf/T = get_turf(M)
+		var/distance = get_dist(T, get_turf(src))
+		if(distance <= world.view * 2)
+			if(T && T.z == get_z(src))
+				M.playsound_local(get_turf(src), sound, volume, 1, null, 0, TRUE, sound(sound), volume_channel = VOLUME_CHANNEL_DOORS)
 
 	if(src.closeOther != null && istype(src.closeOther, /obj/machinery/door/airlock/) && !src.closeOther.density)
 		src.closeOther.close()
@@ -1076,7 +1255,7 @@ About the new airlock wires panel:
 
 /obj/machinery/door/airlock/can_open(var/forced=0)
 	if(!forced)
-		if(!arePowerSystemsOn() || isWireCut(AIRLOCK_WIRE_OPEN_DOOR))
+		if(!arePowerSystemsOn() || wires.is_cut(WIRE_OPEN_DOOR))
 			return 0
 
 	if(locked || welded)
@@ -1089,7 +1268,7 @@ About the new airlock wires panel:
 
 	if(!forced)
 		//despite the name, this wire is for general door control.
-		if(!arePowerSystemsOn() || isWireCut(AIRLOCK_WIRE_OPEN_DOOR))
+		if(!arePowerSystemsOn() || wires.is_cut(WIRE_OPEN_DOOR))
 			return	0
 
 	return ..()
@@ -1131,6 +1310,7 @@ About the new airlock wires panel:
 	SetWeakened(5)
 	var/turf/T = get_turf(src)
 	T.add_blood(src)
+	return 1
 
 /mob/living/carbon/airlock_crush(var/crush_damage)
 	. = ..()
@@ -1162,10 +1342,41 @@ About the new airlock wires panel:
 
 	use_power(360)	//360 W seems much more appropriate for an actuator moving an industrial door capable of crushing people
 	has_beeped = 0
-	if(arePowerSystemsOn())
-		playsound(src, close_sound_powered, 50, 1)
-	else
-		playsound(src, open_sound_unpowered, 75, 1)
+	for(var/P in player_list)
+		var/mob/M = P
+		if(!M || !M.client)
+			continue
+		var/old_sounds = M.client.is_preference_enabled(/datum/client_preference/old_door_sounds)
+		var/department_door_sounds = M.client.is_preference_enabled(/datum/client_preference/department_door_sounds)
+		var/sound
+		var/volume
+		if(old_sounds)
+			if(arePowerSystemsOn())
+				sound = legacy_close_powered
+				volume = 50
+			else
+				sound = open_sound_unpowered
+				volume = 75
+		else if(!old_sounds && department_door_sounds && src.department_close_powered) // Else, we have old sounds disabled, the door has per-department door sounds, and we have chosen to play department door sounds, use these.
+			if(arePowerSystemsOn())
+				sound = department_close_powered
+				volume = 50
+			else
+				sound = open_sound_unpowered
+				volume = 75
+		else
+			if(arePowerSystemsOn())
+				sound = close_sound_powered
+				volume = 50
+			else
+				sound = open_sound_unpowered
+				volume = 75
+
+		var/turf/T = get_turf(M)
+		var/distance = get_dist(T, get_turf(src))
+		if(distance <= world.view * 2)
+			if(T && T.z == get_z(src))
+				M.playsound_local(get_turf(src), sound, volume, 1, null, 0, TRUE, sound(sound), volume_channel = VOLUME_CHANNEL_DOORS)
 	for(var/turf/turf in locs)
 		var/obj/structure/window/killthis = (locate(/obj/structure/window) in turf)
 		if(killthis)
@@ -1179,7 +1390,7 @@ About the new airlock wires panel:
 	if (operating && !forced) return 0
 
 	src.locked = 1
-	playsound(src, bolt_down_sound, 30, 0, 3)
+	playsound(src, bolt_down_sound, 30, 0, 3, volume_channel = VOLUME_CHANNEL_DOORS)
 	for(var/mob/M in range(1,src))
 		M.show_message("You hear a click from the bottom of the door.", 2)
 	update_icon()
@@ -1190,10 +1401,10 @@ About the new airlock wires panel:
 		return
 
 	if (!forced)
-		if(operating || !src.arePowerSystemsOn() || isWireCut(AIRLOCK_WIRE_DOOR_BOLTS)) return
+		if(operating || !src.arePowerSystemsOn() || wires.is_cut(WIRE_DOOR_BOLTS)) return
 
 	src.locked = 0
-	playsound(src, bolt_up_sound, 30, 0, 3)
+	playsound(src, bolt_up_sound, 30, 0, 3, volume_channel = VOLUME_CHANNEL_DOORS)
 	for(var/mob/M in range(1,src))
 		M.show_message("You hear a click from the bottom of the door.", 2)
 	update_icon()

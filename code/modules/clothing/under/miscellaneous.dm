@@ -169,13 +169,13 @@
 	icon_state = "gentlesuit_skirt"
 
 /obj/item/clothing/under/gimmick/rank/captain/suit
-	name = "colony director's suit"
+	name = "site manager's suit"
 	desc = "A green suit and yellow necktie. Exemplifies authority."
 	icon_state = "green_suit"
 	item_state_slots = list(slot_r_hand_str = "centcom", slot_l_hand_str = "centcom")
 
 /obj/item/clothing/under/gimmick/rank/captain/suit/skirt
-	name = "colony director's skirt suit"
+	name = "site manager's skirt suit"
 	icon_state = "green_suit_skirt"
 
 /obj/item/clothing/under/gimmick/rank/head_of_personnel/suit
@@ -401,8 +401,8 @@
 	item_state_slots = list(slot_r_hand_str = "dress_white", slot_l_hand_str = "dress_white")
 
 /obj/item/clothing/under/dress/dress_cap
-	name = "colony director's dress uniform"
-	desc = "Feminine fashion for the style conscious Colony Director."
+	name = "site manager's dress uniform"
+	desc = "Feminine fashion for the style conscious Site Manager."
 	icon_state = "dress_cap"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 
@@ -535,6 +535,37 @@
 	desc = "A red and white dress themed after some winter holidays. Tastefully festive!"
 	icon_state = "festivedress"
 
+/obj/item/clothing/under/dress/revealingdress
+	name = "revealing dress"
+	desc = "A very revealing black and blue dress. Is this work appropriate?"
+	icon_state = "revealingdress"
+	index = 1
+
+/obj/item/clothing/under/dress/gothic
+	name = "gothic dress"
+	desc = "A black dress with a sheer mesh over it, tastefully old school goth."
+	icon_state = "gothic"
+	index = 1
+
+/obj/item/clothing/under/dress/formalred
+	name = "formal red dress"
+	desc = "A very formal red dress, for those fancy galas."
+	icon_state = "formalred"
+	flags_inv = HIDESHOES
+	index = 1
+
+/obj/item/clothing/under/dress/pentagram
+	name = "pentagram dress"
+	desc = "A black dress with straps over the chest in the shape of a pentagram."
+	icon_state = "pentagram"
+	index = 1
+
+obj/item/clothing/under/dress/yellowswoop
+	name = "yellow swooped dress"
+	desc = "A yellow dress that swoops to the side."
+	icon_state = "yellowswoop"
+	index = 1
+
 /*
  * wedding stuff
  */
@@ -589,8 +620,8 @@ Uniforms and such
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 
 /obj/item/clothing/under/captainformal
-	name = "colony director's formal uniform"
-	desc = "A Colony Director's formal-wear, for special occasions."
+	name = "site manager's formal uniform"
+	desc = "A Site Manager's formal-wear, for special occasions."
 	icon_state = "captain_formal"
 	item_state_slots = list(slot_r_hand_str = "lawyer_blue", slot_l_hand_str = "lawyer_blue")
 
@@ -766,6 +797,24 @@ Uniforms and such
 	name = "halter top"
 	desc = "Jean shorts and a black halter top. Perfect for casual Fridays!"
 	icon_state = "haltertop"
+
+/obj/item/clothing/under/rippedpunk
+	name = "ripped punk jeans"
+	desc = "Black ripped jeans and a fishnet top. How punk."
+	icon_state = "rippedpunk"
+	index = 1
+
+/obj/item/clothing/under/greenasym
+	name = "green asymmetrical jumpsuit"
+	desc = "A green futuristic uniform with asymmetrical pants. Trendy!"
+	icon_state = "greenasym"
+	index = 1
+
+/obj/item/clothing/under/cyberpunkharness
+	name = "cyberpunk strapped harness"
+	desc = "A cyberpunk styled harness and pants. Perfect for your dystopian future."
+	icon_state = "cyberhell"
+	index = 1
 
 /*
  * swimsuit
@@ -978,7 +1027,7 @@ Uniforms and such
 	desc = "Made from a space-proof fibre and tight fitting, this uniform usually gives the agile Rangers all kinds of protection while not inhibiting their movement. \
 	This costume is instead made from genuine cotton fibre and is based on the season three uniform."
 	icon = 'icons/obj/clothing/ranger.dmi'
-	icon_state = "ranger_uniform"
+	icon_state = "white_ranger_uniform"
 	rolled_down = 0
 	rolled_sleeves = 0
 

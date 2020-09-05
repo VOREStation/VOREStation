@@ -50,27 +50,30 @@
 	return ..()
 
 /obj/machinery/computer/looking_glass/attack_ai(var/mob/user as mob)
-	return src.attack_hand(user)
+	return attack_hand(user)
 
 /obj/machinery/computer/looking_glass/attack_hand(var/mob/user as mob)
 	if(..())
 		return
-	user.set_machine(src)
 
-	ui_interact(user)
+	tgui_interact(user)
 
-/obj/machinery/computer/looking_glass/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	user.set_machine(src)
+/obj/machinery/computer/looking_glass/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "LookingGlass", name)
+		ui.open()
 
-	var/list/data = list()
-	var/program_list[0]
-
+/obj/machinery/computer/looking_glass/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
+	
+	var/list/program_list = list()
 	for(var/P in supported_programs)
-		program_list[++program_list.len] = P
+		program_list.Add(P)
 
 	if(emagged)
 		for(var/P in secret_programs)
-			program_list[++program_list.len] = P
+			program_list.Add(P)
 
 	data["supportedPrograms"] = program_list
 	data["currentProgram"] = current_program
@@ -78,24 +81,18 @@
 	if(my_area?.has_gravity)
 		data["gravity"] = 1
 	else
-		data["gravity"] = null
+		data["gravity"] = 0
 
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "lookingglass.tmpl", src.name, 400, 550)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(20)
+	return data
 
-/obj/machinery/computer/looking_glass/Topic(href, href_list)
+/obj/machinery/computer/looking_glass/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
-		return 1
-	if((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon)))
-		usr.set_machine(src)
-
-		if(href_list["program"])
+		return TRUE
+	
+	switch(action)
+		if("program")
 			if(ready)
-				var/prog = href_list["program"]
+				var/prog = params["program"]
 				if(prog == "Off")
 					current_program = "Off"
 					unload_program()
@@ -104,17 +101,18 @@
 					load_program(prog)
 			else
 				visible_message("<span class='warning'>ERROR. Recalibrating displays.</span>")
+			return TRUE
 
-		else if(href_list["gravity"])
+		if("gravity")
 			toggle_gravity(my_area)
+			return TRUE
 
-		else if(href_list["immersion"])
+		if("immersion")
 			immersion = !immersion
 			my_area.toggle_optional(immersion)
+			return TRUE
 
-		src.add_fingerprint(usr)
-
-	SSnanoui.update_uis(src)
+	add_fingerprint(usr)
 
 /obj/machinery/computer/looking_glass/emag_act(var/remaining_charges, var/mob/user as mob)
 	if (!emagged)

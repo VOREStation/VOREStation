@@ -42,13 +42,13 @@
 	name = "Darksight"
 	desc = "Allows you to see a short distance in the dark."
 	cost = 1
-	var_changes = list("darksight" = 3, "flash_mod" = 2.0)
+	var_changes = list("darksight" = 5, "flash_mod" = 2.0)
 
 /datum/trait/darksight_plus
 	name = "Darksight (Major)"
 	desc = "Allows you to see in the dark for the whole screen."
 	cost = 2
-	var_changes = list("darksight" = 7, "flash_mod" = 3.0)
+	var_changes = list("darksight" = 8, "flash_mod" = 3.0)
 
 /datum/trait/melee_attack
 	name = "Sharp Melee"
@@ -124,3 +124,9 @@
 	desc = "You're capable of parkour and can *flip over low objects (most of the time)."
 	cost = 2
 	var_changes = list("agility" = 90)
+
+/datum/trait/snowwalker
+	name = "Snow Walker"
+	desc = "You are able to move unhindered on snow."
+	cost = 1
+	var_changes = list("snow_movement" = -2)

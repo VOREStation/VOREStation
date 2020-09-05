@@ -423,7 +423,7 @@
 				return
 
 			// If the human is losing too much blood, beep.
-			if(((H.vessel.get_reagent_amount("blood")/H.species.blood_volume)*100) < BLOOD_VOLUME_SAFE)
+			if(H.vessel.get_reagent_amount("blood") < H.species.blood_volume*H.species.blood_level_safe)
 				visible_message("\The [src] beeps loudly.")
 
 			var/datum/reagent/B = H.take_blood(beaker,amount)

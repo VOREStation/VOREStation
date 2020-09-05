@@ -20,6 +20,7 @@
 
 /obj/structure/closet/secure_closet/personal/patient
 	name = "patient's closet"
+	closet_appearance = /decl/closet_appearance/secure_closet/patient
 
 	starts_with = list(
 		/obj/item/clothing/under/medigown,

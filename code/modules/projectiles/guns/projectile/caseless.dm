@@ -1,6 +1,8 @@
 /obj/item/weapon/gun/projectile/caseless/prototype
 	name = "prototype caseless rifle"
-	desc = "A rifle cooked up in NanoTrasen's R&D labs that operates with Kraut Space Magic™ clockwork internals. Uses solid phoron 5mm caseless rounds."
+	desc = "The GC1 is a rifle cooked up in Gilthari Exports's R&D labs that operates with barely comprehensible clockwork internals. Uses solid phoron 5mm caseless rounds."
+	description_fluff = "Gilthari is Solâ€™s premier supplier of luxury goods, specializing in extracting money from the rich and successful. \
+	The GC1 is currently undergoing limited consumer trials, and is firmly aimed at a segment of the enthusiast market with more money than sense."
 	icon_state = "caseless"
 	item_state = "caseless"
 	w_class = ITEMSIZE_LARGE

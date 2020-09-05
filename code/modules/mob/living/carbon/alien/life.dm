@@ -59,7 +59,7 @@
 			adjustHalLoss(-3)
 			if (mind)
 				if(mind.active && client != null)
-					sleeping = max(sleeping-1, 0)
+					AdjustSleeping(-1)
 			blinded = 1
 			set_stat(UNCONSCIOUS)
 		else if(resting)

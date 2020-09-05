@@ -9,6 +9,7 @@
 /obj/item/weapon/book/manual/engineering_construction
 	name = "Station Repairs and Construction"
 	icon_state ="bookEngineering"
+	item_state = "book3"
 	author = "Engineering Encyclopedia"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
 	title = "Station Repairs and Construction"
 
@@ -30,6 +31,7 @@
 /obj/item/weapon/book/manual/engineering_particle_accelerator
 	name = "Particle Accelerator User's Guide"
 	icon_state ="bookParticleAccelerator"
+	item_state = "book15"
 	author = "Engineering Encyclopedia"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
 	title = "Particle Accelerator User's Guide"
 
@@ -77,6 +79,7 @@
 /obj/item/weapon/book/manual/supermatter_engine
 	name = "Supermatter Engine Operating Manual"
 	icon_state = "bookSupermatter"
+	item_state = "book15"
 	author = "Central Engineering Division"
 	title = "Supermatter Engine Operating Manual"
 
@@ -160,6 +163,7 @@
 /obj/item/weapon/book/manual/tesla_engine
 	name = "Tesla Operating Manual"
 	icon_state ="bookTesla"
+	item_state = "book15"
 	author = "Engineering Encyclopedia"
 	title = "Tesla Engine User's Guide"
 	dat = {"<html>
@@ -229,6 +233,7 @@
 /obj/item/weapon/book/manual/rust_engine
 	name = "R-UST Operating Manual"
 	icon_state = "bookSupermatter"
+	item_state = "book15"
 	author = "Cindy Crawfish"
 	title = "R-UST Operating Manual"
 
@@ -269,6 +274,7 @@
 /obj/item/weapon/book/manual/engineering_hacking
 	name = "Hacking"
 	icon_state ="bookHacking"
+	item_state = "book2"
 	author = "Engineering Encyclopedia"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
 	title = "Hacking"
 
@@ -291,6 +297,7 @@
 /obj/item/weapon/book/manual/engineering_singularity_safety
 	name = "Singularity Safety in Special Circumstances"
 	icon_state ="bookEngineeringSingularitySafety"
+	item_state = "book15"
 	author = "Engineering Encyclopedia"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
 	title = "Singularity Safety in Special Circumstances"
 
@@ -343,6 +350,7 @@
 /obj/item/weapon/book/manual/hydroponics_pod_people
 	name = "The Diona Harvest - From Seed to Market"
 	icon_state ="bookHydroponicsPodPeople"
+	item_state = "book5"
 	author = "Farmer John"
 	title = "The Diona Harvest - From Seed to Market"
 
@@ -381,6 +389,7 @@
 /obj/item/weapon/book/manual/medical_cloning
 	name = "Cloning Techniques of the 26th Century"
 	icon_state ="bookCloning"
+	item_state = "book9"
 	author = "Medical Journal, volume 3"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
 	title = "Cloning Techniques of the 26th Century"
 
@@ -474,6 +483,7 @@
 /obj/item/weapon/book/manual/ripley_build_and_repair
 	name = "APLU \"Ripley\" Construction and Operation Manual"
 	icon_state ="book"
+	item_state = "book"
 	author = "Randall Varn, Einstein Engines Senior Mechanic"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
 	title = "APLU \"Ripley\" Construction and Operation Manual"
 
@@ -551,6 +561,7 @@
 /obj/item/weapon/book/manual/research_and_development
 	name = "Research and Development 101"
 	icon_state = "rdbook"
+	item_state = "book7"
 	author = "Dr. L. Ight"
 	title = "Research and Development 101"
 
@@ -620,6 +631,7 @@
 /obj/item/weapon/book/manual/robotics_cyborgs
 	name = "Cyborgs for Dummies"
 	icon_state = "borgbook"
+	item_state = "book1"
 	author = "XISC"
 	title = "Cyborgs for Dummies"
 
@@ -826,6 +838,7 @@
 	name = "Corporate Regulations"
 	desc = "A set of corporate guidelines for keeping law and order on privately-owned space stations."
 	icon_state = "bookSpaceLaw"
+	item_state = "book13"
 	author = "The Company"
 	title = "Corporate Regulations"
 
@@ -850,6 +863,7 @@
 	name = "Medical Diagnostics Manual"
 	desc = "First, do no harm. A detailed medical practitioner's guide."
 	icon_state = "bookMedical"
+	item_state = "book12"
 	author = "Medical Department"
 	title = "Medical Diagnostics Manual"
 
@@ -897,6 +911,7 @@
 /obj/item/weapon/book/manual/engineering_guide
 	name = "Engineering Textbook"
 	icon_state ="bookEngineering2"
+	item_state = "book3"
 	author = "Engineering Encyclopedia"
 	title = "Engineering Textbook"
 
@@ -918,6 +933,7 @@
 /obj/item/weapon/book/manual/chef_recipes
 	name = "Chef Recipes"
 	icon_state = "cooked_book"
+	item_state = "book16"
 	author = "Victoria Ponsonby"
 	title = "Chef Recipes"
 
@@ -978,6 +994,7 @@
 	name = "Barman Recipes"
 	desc = "For the enterprising drink server."
 	icon_state = "barbook"
+	item_state = "book14"
 	author = "Sir John Rose"
 	title = "Barman Recipes"
 
@@ -1033,6 +1050,7 @@
 /obj/item/weapon/book/manual/detective
 	name = "The Film Noir: Proper Procedures for Investigations"
 	icon_state ="bookDetective"
+	item_state = "book8"
 	author = "The Company"
 	title = "The Film Noir: Proper Procedures for Investigations"
 
@@ -1076,6 +1094,7 @@
 /obj/item/weapon/book/manual/nuclear
 	name = "Fission Mailed: Nuclear Sabotage 101"
 	icon_state ="bookNuclear"
+	item_state = "book8"
 	author = "Syndicate"
 	title = "Fission Mailed: Nuclear Sabotage 101"
 
@@ -1117,7 +1136,7 @@
 
 				Remember the order:<br>
 				<b>Disk, Code, Safety, Timer, Disk, RUN!</b><br><br>
-				Intelligence Analysts believe that normal corporate procedure is for the Colony Director to secure the nuclear authentication disk.<br><br>
+				Intelligence Analysts believe that normal corporate procedure is for the Site Manager to secure the nuclear authentication disk.<br><br>
 
 				Good luck!
 				</body>
@@ -1127,6 +1146,7 @@
 /obj/item/weapon/book/manual/atmospipes
 	name = "Pipes and You: Getting To Know Your Scary Tools"
 	icon_state = "pipingbook"
+	item_state = "book3"
 	author = "Maria Crash, Senior Atmospherics Technician"
 	title = "Pipes and You: Getting To Know Your Scary Tools"
 	dat = {"<html>
@@ -1235,6 +1255,7 @@
 /obj/item/weapon/book/manual/evaguide
 	name = "EVA Gear and You: Not Spending All Day Inside, 2nd Edition"
 	icon_state = "evabook"
+	item_state = "book14"
 	author = "Maria Crash, Senior Atmospherics Technician"
 	title = "EVA Gear and You: Not Spending All Day Inside, 2nd Edition"
 	dat = {"<html>

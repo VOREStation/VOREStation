@@ -126,6 +126,8 @@
 	var/icon/suit_sprites = null //File for suit sprites, if any.
 	var/icon/under_sprites = null
 
+	var/icon_sprite_tag			// This is where we put stuff like _Horse, so we can assign icons easier. 
+
 	var/can_ride = 1			//whether we're real rideable taur or just in that category
 
 	//Could do nested lists but it started becoming a nightmare. It'd be more fun for lookups of a_intent and m_intent, but then subtypes need to
@@ -167,32 +169,38 @@
 	icon_state = "wolf_s"
 	under_sprites = 'icons/mob/taursuits_wolf_vr.dmi'
 	suit_sprites = 'icons/mob/taursuits_wolf_vr.dmi'
+	icon_sprite_tag = "wolf"
 
 //TFF 22/11/19 - CHOMPStation port of fat taur sprites
 /datum/sprite_accessory/tail/taur/fatwolf
 	name = "Fat Wolf (Taur)"
 	icon_state = "fatwolf_s"
+	icon_sprite_tag = "wolf"	//This could be modified later.
 
 /datum/sprite_accessory/tail/taur/wolf/wolf_2c
 	name = "Wolf dual-color (Taur)"
 	icon_state = "wolf_s"
 	extra_overlay = "wolf_markings"
+	//icon_sprite_tag = "wolf2c"
 
 //TFF 22/11/19 - CHOMPStation port of fat taur sprites
 /datum/sprite_accessory/tail/taur/wolf/fatwolf_2c
 	name = "Fat Wolf dual-color (Taur)"
 	icon_state = "fatwolf_s"
 	extra_overlay = "fatwolf_markings"
+	//icon_sprite_tag = "fatwolf2c"
 
 /datum/sprite_accessory/tail/taur/wolf/synthwolf
 	name = "SynthWolf dual-color (Taur)"
 	icon_state = "synthwolf_s"
 	extra_overlay = "synthwolf_markings"
+	//icon_sprite_tag = "synthwolf"
 
 /datum/sprite_accessory/tail/taur/naga
 	name = "Naga (Taur)"
 	icon_state = "naga_s"
 	suit_sprites = 'icons/mob/taursuits_naga_vr.dmi'
+	//icon_sprite_tag = "naga"
 
 	msg_owner_help_walk = "You carefully slither around %prey."
 	msg_prey_help_walk = "%owner's huge tail slithers past beside you!"
@@ -225,12 +233,14 @@
 	name = "Naga dual-color (Taur)"
 	icon_state = "naga_s"
 	extra_overlay = "naga_markings"
+	//icon_sprite_tag = "naga2c"
 
 /datum/sprite_accessory/tail/taur/horse
 	name = "Horse (Taur)"
 	icon_state = "horse_s"
 	under_sprites = 'icons/mob/taursuits_horse_vr.dmi'
 	suit_sprites = 'icons/mob/taursuits_horse_vr.dmi'
+	icon_sprite_tag = "horse"
 
 	msg_owner_disarm_run = "You quickly push %prey to the ground with your hoof!"
 	msg_prey_disarm_run = "%owner pushes you down to the ground with their hoof!"
@@ -251,11 +261,13 @@
 	name = "SynthHorse dual-color (Taur)"
 	icon_state = "synthhorse_s"
 	extra_overlay = "synthhorse_markings"
+	//icon_sprite_tag = "synthhorse"
 
 /datum/sprite_accessory/tail/taur/cow
 	name = "Cow (Taur)"
 	icon_state = "cow_s"
 	suit_sprites = 'icons/mob/taursuits_cow_vr.dmi'
+	icon_sprite_tag = "cow"
 
 	msg_owner_disarm_run = "You quickly push %prey to the ground with your hoof!"
 	msg_prey_disarm_run = "%owner pushes you down to the ground with their hoof!"
@@ -277,6 +289,7 @@
 	icon_state = "deer_s"
 	extra_overlay = "deer_markings"
 	suit_sprites = 'icons/mob/taursuits_deer_vr.dmi'
+	icon_sprite_tag = "deer"
 
 	msg_owner_disarm_run = "You quickly push %prey to the ground with your hoof!"
 	msg_prey_disarm_run = "%owner pushes you down to the ground with their hoof!"
@@ -297,21 +310,25 @@
 	name = "Lizard (Taur)"
 	icon_state = "lizard_s"
 	suit_sprites = 'icons/mob/taursuits_lizard_vr.dmi'
+	icon_sprite_tag = "lizard"
 
 /datum/sprite_accessory/tail/taur/lizard/lizard_2c
 	name = "Lizard dual-color (Taur)"
 	icon_state = "lizard_s"
 	extra_overlay = "lizard_markings"
+	//icon_sprite_tag = "lizard2c"
 
 /datum/sprite_accessory/tail/taur/lizard/synthlizard
 	name = "SynthLizard dual-color (Taur)"
 	icon_state = "synthlizard_s"
 	extra_overlay = "synthlizard_markings"
+	//icon_sprite_tag = "synthlizard"
 
 /datum/sprite_accessory/tail/taur/spider
 	name = "Spider (Taur)"
 	icon_state = "spider_s"
 	suit_sprites = 'icons/mob/taursuits_spider_vr.dmi'
+	icon_sprite_tag = "spider"
 
 	msg_owner_disarm_run = "You quickly push %prey to the ground with your leg!"
 	msg_prey_disarm_run = "%owner pushes you down to the ground with their leg!"
@@ -331,6 +348,7 @@
 /datum/sprite_accessory/tail/taur/tents
 	name = "Tentacles (Taur)"
 	icon_state = "tent_s"
+	icon_sprite_tag = "tentacle"
 	can_ride = 0
 
 	msg_prey_stepunder = "You run between %prey's tentacles."
@@ -358,11 +376,13 @@
 	name = "Feline (Taur)"
 	icon_state = "feline_s"
 	suit_sprites = 'icons/mob/taursuits_feline_vr.dmi'
+	icon_sprite_tag = "feline"
 
 //TFF 22/11/19 - CHOMPStation port of fat taur sprites
 /datum/sprite_accessory/tail/taur/fatfeline
 	name = "Fat Feline (Taur)"
 	icon_state = "fatfeline_s"
+	//icon_sprite_tag = "fatfeline"
 
 /datum/sprite_accessory/tail/taur/fatfeline_wag
 	name = "Fat Feline (Taur) (vwag)"
@@ -373,22 +393,26 @@
 	name = "Feline dual-color (Taur)"
 	icon_state = "feline_s"
 	extra_overlay = "feline_markings"
+	//icon_sprite_tag = "feline2c"
 
 //TFF 22/11/19 - CHOMPStation port of fat taur sprites
 /datum/sprite_accessory/tail/taur/feline/fatfeline_2c
 	name = "Fat Feline dual-color (Taur)"
 	icon_state = "fatfeline_s"
 	extra_overlay = "fatfeline_markings"
+	//icon_sprite_tag = "fatfeline2c"
 
 /datum/sprite_accessory/tail/taur/feline/synthfeline
 	name = "SynthFeline dual-color (Taur)"
 	icon_state = "synthfeline_s"
 	extra_overlay = "synthfeline_markings"
+	//icon_sprite_tag = "synthfeline"
 
 /datum/sprite_accessory/tail/taur/slug
 	name = "Slug (Taur)"
 	icon_state = "slug_s"
 	suit_sprites = 'icons/mob/taursuits_slug_vr.dmi'
+	icon_sprite_tag = "slug"
 
 	msg_owner_help_walk = "You carefully slither around %prey."
 	msg_prey_help_walk = "%owner's huge tail slithers past beside you!"
@@ -420,22 +444,48 @@
 /datum/sprite_accessory/tail/taur/frog
 	name = "Frog (Taur)"
 	icon_state = "frog_s"
+	icon_sprite_tag = "frog"
 
 /datum/sprite_accessory/tail/taur/thicktentacles
-	name = "Tentacles(Thick)"
-	icon_state = "tentacles_s"
+	name = "Thick Tentacles (Taur)"
+	icon_state = "tentacle_s"
+	can_ride = 0
+	icon_sprite_tag = "thick_tentacles"
+
+	msg_prey_stepunder = "You run between %prey's tentacles."
+	msg_owner_stepunder = "%owner runs between your tentacles."
+
+	msg_owner_disarm_run = "You quickly push %prey to the ground with some of your tentacles!"
+	msg_prey_disarm_run = "%owner pushes you down to the ground with some of their tentacles!"
+
+	msg_owner_disarm_walk = "You push down on %prey with some of your tentacles, pinning them down firmly under you!"
+	msg_prey_disarm_walk = "%owner pushes down on you with some of their tentacles, pinning you down firmly below them!"
+
+	msg_owner_harm_run = "Your tentacles carelessly slide past %prey, crushing them!"
+	msg_prey_harm_run = "%owner quickly goes over your body, carelessly crushing you with their tentacles!"
+
+	msg_owner_harm_walk = "Your tentacles methodically apply pressure on %prey's body, crushing them against the floor below!"
+	msg_prey_harm_walk = "%owner's thick tentacles methodically apply pressure on your body, crushing you into the floor below!"
+
+	msg_owner_grab_success = "You slide over %prey with your tentacles, smushing them against the ground before wrapping one up around them, trapping them within the tight confines of your tentacles!"
+	msg_prey_grab_success = "%owner slides over you with their tentacles, smushing you against the ground before wrapping one up around you, trapping you within the tight confines of their tentacles!"
+
+	msg_owner_grab_fail = "You step down onto %prey with one of your tentacles, forcing them onto the ground!"
+	msg_prey_grab_fail = "%owner steps down onto you with one of their tentacles, squishing you and forcing you onto the ground!"
 
 /datum/sprite_accessory/tail/taur/drake //Enabling on request, no suit compatibility but then again see 2 above.
 	name = "Drake (Taur)"
 	icon_state = "drake_s"
 	extra_overlay = "drake_markings"
 	suit_sprites = 'icons/mob/taursuits_drake_vr.dmi'
+	icon_sprite_tag = "drake"
 
 /datum/sprite_accessory/tail/taur/otie
 	name = "Otie (Taur)"
 	icon_state = "otie_s"
 	extra_overlay = "otie_markings"
 	suit_sprites = 'icons/mob/taursuits_otie_vr.dmi'
+	icon_sprite_tag = "otie"
 
 /datum/sprite_accessory/tail/taur/alraune/alraune_2c
 	name = "Alraune (dual color)"
@@ -446,12 +496,14 @@
 	extra_overlay = "alraunecolor_markings"
 	extra_overlay_w = "alraunecolor_closed_markings"
 	clip_mask_state = "taur_clip_mask_alraune"
+	icon_sprite_tag = "alraune"
 
 /datum/sprite_accessory/tail/taur/wasp
 	name = "Wasp (dual color)"
 	icon_state = "wasp_s"
 	extra_overlay = "wasp_markings"
 	clip_mask_state = "taur_clip_mask_wasp"
+	icon_sprite_tag = "wasp"
 
 	msg_owner_disarm_run = "You quickly push %prey to the ground with your leg!"
 	msg_prey_disarm_run = "%owner pushes you down to the ground with their leg!"
@@ -467,6 +519,39 @@
 
 	msg_owner_grab_fail = "You step down onto %prey, squishing them and forcing them down to the ground!"
 	msg_prey_grab_fail = "%owner steps down and squishes you with their leg, forcing you down to the ground!"
+
+/datum/sprite_accessory/tail/taur/mermaid
+	name = "Mermaid (Taur)"
+	icon_state = "mermaid_s"
+	can_ride = 0
+	icon_sprite_tag = "mermaid"
+
+	msg_owner_help_walk = "You carefully slither around %prey."
+	msg_prey_help_walk = "%owner's huge tail slithers past beside you!"
+
+	msg_owner_help_run = "You carefully slither around %prey."
+	msg_prey_help_run = "%owner's huge tail slithers past beside you!"
+
+	msg_owner_disarm_run = "Your tail slides over %prey, pushing them down to the ground!"
+	msg_prey_disarm_run = "%owner's tail slides over you, forcing you down to the ground!"
+
+	msg_owner_disarm_walk = "You push down on %prey with your tail, pinning them down under you!"
+	msg_prey_disarm_walk = "%owner pushes down on you with their tail, pinning you down below them!"
+
+	msg_owner_harm_run = "Your heavy tail carelessly slides past %prey, crushing them!"
+	msg_prey_harm_run = "%owner quickly goes over your body, carelessly crushing you with their heavy tail!"
+
+	msg_owner_harm_walk = "Your heavy tail slowly and methodically slides down upon %prey, crushing against the floor below!"
+	msg_prey_harm_walk = "%owner's thick, heavy tail slowly and methodically slides down upon your body, mercilessly crushing you into the floor below!"
+
+	msg_owner_grab_success = "You slither over %prey with your large, thick tail, smushing them against the ground before coiling up around them, trapping them within the tight confines of your tail!"
+	msg_prey_grab_success = "%owner slithers over you with their large, thick tail, smushing you against the ground before coiling up around you, trapping you within the tight confines of their tail!"
+
+	msg_owner_grab_fail = "You squish %prey under your large, thick tail, forcing them onto the ground!"
+	msg_prey_grab_fail = "%owner pins you under their large, thick tail, forcing you onto the ground!"
+
+	msg_prey_stepunder = "You jump over %prey's thick tail."
+	msg_owner_stepunder = "%owner bounds over your tail."
 
 /datum/sprite_accessory/tail/taur/shadekin_tail
 	name = "Shadekin Tail"

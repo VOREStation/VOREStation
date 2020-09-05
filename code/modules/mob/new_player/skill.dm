@@ -63,7 +63,7 @@ var/global/list/SKILL_PRE = list("Engineer" = SKILL_ENGINEER, "Roboticist" = SKI
 /datum/skill/knowledge/law
 	ID = "law"
 	name = "Corporate Law"
-	desc = "Your knowledge of corporate law and procedures. This includes Corporate Regulations, as well as general station rulings and procedures. A low level in this skill is typical for security officers, a high level in this skill is typical for Colony Directors."
+	desc = "Your knowledge of corporate law and procedures. This includes Corporate Regulations, as well as general station rulings and procedures. A low level in this skill is typical for security officers, a high level in this skill is typical for Site Managers."
 	field = "Security"
 	secondary = 1
 

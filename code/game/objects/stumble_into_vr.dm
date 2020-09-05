@@ -89,7 +89,7 @@
 	..()
 	bumpopen(M)
 
-/obj/machinery/cooker/fryer/stumble_into(mob/living/M)
+/obj/machinery/appliance/cooker/fryer/stumble_into(mob/living/M)
 	visible_message("<span class='warning'>[M] [pick("ran", "slammed")] into \the [src]!</span>")
 	M.apply_damage(15, BURN)
 	M.Weaken(5)

@@ -27,13 +27,15 @@
 	var/list/help_messages = list("slaps", "pokes", "nudges", "bumps", "pinches")
 	var/done_mob_unique = FALSE	// Has the projectile already done something to a mob?
 
+	var/datum/beam/chain = null
+
 /obj/item/projectile/energy/hook/launch_projectile(atom/target, target_zone, mob/user, params, angle_override, forced_spread = 0)
 	var/expected_distance = get_dist(target, loc)
 	range = expected_distance // So the hook hits the ground if no mob is hit.
 	target_distance = expected_distance
 	if(firer)	// Needed to ensure later checks in impact and on hit function.
 		launcher_intent = firer.a_intent
-		firer.Beam(src,icon_state=beam_state,icon='icons/effects/beam.dmi',time=60, maxdistance=10,beam_type=/obj/effect/ebeam,beam_sleep_time=1)
+		chain = firer.Beam(src,icon_state=beam_state,icon='icons/effects/beam.dmi',time=60, maxdistance=10,beam_type=/obj/effect/ebeam,beam_sleep_time=1)
 
 	if(launcher_intent)
 		switch(launcher_intent)
@@ -58,9 +60,21 @@
 
 	..() // Does the regular launching stuff.
 
+/obj/item/projectile/energy/hook/after_move()
+	if(chain)
+		var/origin_turf = get_turf(firer)
+		var/target_turf = get_turf(src)
+		if(!chain.static_beam && (origin_turf != chain.origin_oldloc || target_turf != chain.target_oldloc))
+			chain.origin_oldloc = origin_turf //so we don't keep checking against their initial positions, leading to endless Reset()+Draw() calls
+			chain.target_oldloc = target_turf
+			chain.Reset()
+			chain.Draw()
+	return
+
 /obj/item/projectile/energy/hook/on_hit(var/atom/target, var/blocked = 0, var/def_zone = null)
 	if(..())
 		perform_intent_unique(target)
+
 
 /obj/item/projectile/energy/hook/on_impact(var/atom/A)
 	perform_intent_unique(get_turf(A))

@@ -38,7 +38,7 @@ var/list/all_maps = list()
 
 	// Z-levels available to various consoles, such as the crew monitor. Defaults to station_levels if unset.
 	var/list/map_levels
-	
+
 	// E-mail TLDs to use for NTnet modular computer e-mail addresses
 	var/list/usable_email_tlds = list("freemail.nt")
 
@@ -78,6 +78,7 @@ var/list/all_maps = list()
 	var/station_name  = "BAD Station"
 	var/station_short = "Baddy"
 	var/dock_name     = "THE PirateBay"
+	var/dock_type     = "station"	//VOREStation Edit - for a list of valid types see the switch block in air_traffic.dm at line 148
 	var/boss_name     = "Captain Roger"
 	var/boss_short    = "Cap'"
 	var/company_name  = "BadMan"
@@ -88,6 +89,7 @@ var/list/all_maps = list()
 	var/shuttle_leaving_dock
 	var/shuttle_called_message
 	var/shuttle_recall_message
+	var/shuttle_name  = "NAS |Hawking|"	//VS ADD
 	var/emergency_shuttle_docked_message
 	var/emergency_shuttle_leaving_dock
 	var/emergency_shuttle_called_message

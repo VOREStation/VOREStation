@@ -197,7 +197,7 @@
 	M.drowsyness = 0
 	M.stuttering = 0
 	M.SetConfused(0)
-	M.sleeping = 0
+	M.SetSleeping(0)
 	M.jitteriness = 0
 	M.radiation = 0
 	M.ExtinguishMob()
@@ -423,6 +423,16 @@
 		if(prob(5))
 			M.vomit()
 
+/datum/reagent/space_cleaner/touch_mob(var/mob/living/L, var/amount)
+	if(istype(L, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = L
+		if(H.wear_mask)
+			if(istype(H.wear_mask, /obj/item/clothing/mask/smokable))
+				var/obj/item/clothing/mask/smokable/S = H.wear_mask
+				if(S.lit)
+					S.quench() // No smoking in my medbay!
+					H.visible_message("<span class='notice'>[H]\'s [S.name] is put out.</span>")
+
 /datum/reagent/lube // TODO: spraying on borgs speeds them up
 	name = "Space Lube"
 	id = "lube"
@@ -477,6 +487,24 @@
 	reagent_state = LIQUID
 	color = "#C8A5DC"
 
+	affects_robots = TRUE
+
+/datum/reagent/coolant/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(M.isSynthetic() && ishuman(M))
+		var/mob/living/carbon/human/H = M
+
+		var/datum/reagent/blood/coolant = H.get_blood(H.vessel)
+
+		if(coolant)
+			H.vessel.add_reagent("blood", removed, coolant.data)
+
+		else
+			H.vessel.add_reagent("blood", removed)
+			H.fixblood()
+
+	else
+		..()
+
 /datum/reagent/ultraglue
 	name = "Ultra Glue"
 	id = "glue"
@@ -513,6 +541,14 @@
 	taste_description = "salty meat"
 	reagent_state = LIQUID
 	color = "#DF9FBF"
+
+/datum/reagent/mineralfluid
+	name = "Mineral-Rich Fluid"
+	id = "mineralizedfluid"
+	description = "A warm, mineral-rich fluid."
+	taste_description = "salt"
+	reagent_state = LIQUID
+	color = "#ff205255"
 
 // The opposite to healing nanites, exists to make unidentified hypos implied to have nanites not be 100% safe.
 /datum/reagent/defective_nanites

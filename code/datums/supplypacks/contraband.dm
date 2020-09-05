@@ -28,7 +28,7 @@
 			/obj/item/weapon/grenade/chem_grenade/incendiary
 			)
 	cost = 25
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/weapon
 	containername = "Special Ops crate"
 	contraband = 1
 
@@ -39,7 +39,7 @@
 			/obj/item/weapon/reagent_containers/food/snacks/unajerky = 4
 			)
 	cost = 25
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/unathi
 	containername = "Moghes imports crate"
 	contraband = 1
 
@@ -51,7 +51,7 @@
  			)
  	cost = 50
  	contraband = 1
- 	containertype = /obj/structure/closet/crate/secure/weapon
+ 	containertype = /obj/structure/closet/crate/hedberg
  	containername = "Ballistic weapons crate"
 
 /datum/supply_pack/randomised/misc/telecrate //you get something awesome, a couple of decent things, and a few weak/filler things
@@ -103,5 +103,5 @@
 			)
 	cost = 250 //more than a hat crate!,
 	contraband = 1
-	containertype = /obj/structure/largecrate
+	containertype = /obj/structure/closet/crate/large
 	containername = "Suspicious crate"

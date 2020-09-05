@@ -2,13 +2,13 @@
 	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist", "Field Medic")
 
 /datum/gear/suit/wintercoat/science
-	allowed_roles = list("Research Director","Scientist", "Roboticist", "Xenobiologist", "Explorer", "Pathfinder")
+	allowed_roles = list("Research Director","Scientist", "Roboticist", "Xenobiologist", "Xenobotanist", "Explorer", "Pathfinder")
 
 /datum/gear/suit/snowsuit/medical
 	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist", "Field Medic")
 
 /datum/gear/suit/snowsuit/science
-	allowed_roles = list("Research Director","Scientist", "Roboticist", "Xenobiologist", "Explorer", "Pathfinder")
+	allowed_roles = list("Research Director","Scientist", "Roboticist", "Xenobiologist", "Xenobotanist", "Explorer", "Pathfinder")
 
 /datum/gear/suit/labcoat_colorable
 	display_name = "labcoat, colorable"
@@ -50,3 +50,20 @@
 	display_name = "sleek modern coat (long), detective"
 	path = /obj/item/clothing/suit/storage/det_trench/alt2
 	allowed_roles = list("Head of Security", "Detective")
+
+//Emergency Responder jackets for Parameds & EMTs, but also general Medical Staff
+/datum/gear/suit/roles/medical/ems_jacket
+	display_name = "first responder jacket"
+	path = /obj/item/clothing/suit/storage/toggle/fr_jacket
+	allowed_roles = list("Chief Medical Officer","Paramedic","Medical Doctor")
+
+//imo-superior 'martian' style jacket with the star-of-life design
+/datum/gear/suit/roles/medical/ems_jacket/alt
+	display_name = "first responder jacket, alt."
+	path = /obj/item/clothing/suit/storage/toggle/fr_jacket/ems
+
+//paramedic vest
+/datum/gear/suit/roles/medical/paramedic_vest
+	display_name = "paramedic vest"
+	path = /obj/item/clothing/suit/storage/toggle/paramedic
+	allowed_roles = list("Chief Medical Officer","Paramedic","Medical Doctor")

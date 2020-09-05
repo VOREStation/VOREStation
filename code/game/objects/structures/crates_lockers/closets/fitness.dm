@@ -23,6 +23,7 @@
 /obj/structure/closet/boxinggloves
 	name = "boxing gloves"
 	desc = "It's a storage unit for gloves for use in the boxing ring."
+	closet_appearance = /decl/closet_appearance/wardrobe/mixed
 
 	starts_with = list(
 		/obj/item/clothing/gloves/boxing/blue,
@@ -33,6 +34,7 @@
 /obj/structure/closet/masks
 	name = "mask closet"
 	desc = "IT'S A STORAGE UNIT FOR FIGHTER MASKS OLE!"
+	closet_appearance = /decl/closet_appearance/wardrobe/mixed
 
 	starts_with = list(
 		/obj/item/clothing/mask/luchador,
@@ -53,7 +55,7 @@
 /obj/structure/closet/lasertag/blue
 	name = "blue laser tag equipment"
 	desc = "It's a storage unit for laser tag equipment."
-	closet_appearance = /decl/closet_appearance/wardrobe
+	closet_appearance = /decl/closet_appearance/wardrobe/blue
 
 	starts_with = list(
 		/obj/item/weapon/gun/energy/lasertag/blue = 5,

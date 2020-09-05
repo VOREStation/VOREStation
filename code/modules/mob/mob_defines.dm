@@ -181,6 +181,7 @@
 	var/status_flags = CANSTUN|CANWEAKEN|CANPARALYSE|CANPUSH	//bitflags defining which status effects can be inflicted (replaces canweaken, canstun, etc)
 
 	var/area/lastarea = null
+	var/lastareachange = null
 
 	var/digitalcamo = 0 // Can they be tracked by the AI?
 
@@ -224,4 +225,6 @@
 
 	var/registered_z
 
-	var/list/progressbars = null //for stacking do_after bars
+	var/in_enclosed_vehicle = 0	//For mechs and fighters ambiance. Can be used in other cases.
+
+	var/list/progressbars = null //VOREStation Edit

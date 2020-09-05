@@ -250,7 +250,7 @@
 					//Strange audio
 					//to_chat(src, "Strange Audio")
 					switch(rand(1,12))
-						if(1) src << 'sound/machines/airlock.ogg'
+						if(1) src << 'sound/machines/door/old_airlock.ogg'
 						if(2)
 							if(prob(50))src << 'sound/effects/Explosion1.ogg'
 							else src << 'sound/effects/Explosion2.ogg'
@@ -259,7 +259,7 @@
 						if(5) src << 'sound/effects/Glassbr2.ogg'
 						if(6) src << 'sound/effects/Glassbr3.ogg'
 						if(7) src << 'sound/machines/twobeep.ogg'
-						if(8) src << 'sound/machines/windowdoor.ogg'
+						if(8) src << 'sound/machines/door/windowdoor.ogg'
 						if(9)
 							//To make it more realistic, I added two gunshots (enough to kill)
 							src << 'sound/weapons/Gunshot1.ogg'

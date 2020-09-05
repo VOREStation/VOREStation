@@ -111,6 +111,18 @@
 	if(prob(10))
 		add_overlay("asteroid[rand(0,9)]")
 
+/turf/simulated/floor/holofloor/bmarble
+	name = "marble"
+	icon = 'icons/turf/flooring/misc.dmi'
+	icon_state = "darkmarble"
+	initial_flooring = /decl/flooring/bmarble
+
+/turf/simulated/floor/holofloor/wmarble
+	name = "marble"
+	icon = 'icons/turf/flooring/misc.dmi'
+	icon_state = "lightmarble"
+	initial_flooring = /decl/flooring/wmarble
+
 /obj/structure/holostool
 	name = "stool"
 	desc = "Apply butt."
@@ -348,6 +360,7 @@ datum/unarmed_attack/holopugilism/unarmed_override(var/mob/living/carbon/human/u
 	desc = "Here's your chance, do your dance at the Space Jam."
 	w_class = ITEMSIZE_LARGE //Stops people from hiding it in their bags/pockets
 	drop_sound = 'sound/items/drop/basketball.ogg'
+	pickup_sound = 'sound/items/pickup/basketball.ogg'
 
 /obj/structure/holohoop
 	name = "basketball hoop"

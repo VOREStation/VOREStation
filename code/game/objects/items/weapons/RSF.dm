@@ -19,6 +19,7 @@ RSF
 
 	var/list/container_types = list(
 		"metamorphic glass" = /obj/item/weapon/reagent_containers/food/drinks/metaglass,
+		"metamorphic pint glass" = /obj/item/weapon/reagent_containers/food/drinks/metaglass/metapint,
 		"half-pint glass" = /obj/item/weapon/reagent_containers/food/drinks/glass2/square,
 		"rocks glass" = /obj/item/weapon/reagent_containers/food/drinks/glass2/rocks,
 		"milkshake glass" = /obj/item/weapon/reagent_containers/food/drinks/glass2/shake,

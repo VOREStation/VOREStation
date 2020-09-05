@@ -5,6 +5,10 @@
 	var/b_hair = 0
 	var/h_style = "Bald"
 
+	var/r_grad = 0
+	var/g_grad = 0
+	var/b_grad = 0
+	var/grad_style = "none"
 	//Facial hair colour and style
 	var/r_facial = 0
 	var/g_facial = 0
@@ -112,3 +116,5 @@
 	var/mob/living/carbon/human/vr_link = null
 
 	var/obj/machinery/machine_visual //machine that is currently applying visual effects to this mob. Only used for camera monitors currently.
+
+	inventory_panel_type = /datum/inventory_panel/human

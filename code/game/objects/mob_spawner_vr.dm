@@ -30,7 +30,7 @@
 /obj/structure/mob_spawner/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	for(var/mob/living/L in spawned_mobs)
-		L.source_spawner = null
+		L.nest = null
 	spawned_mobs.Cut()
 	return ..()
 
@@ -57,7 +57,7 @@
 	if(!ispath(mob_path))
 		return 0
 	var/mob/living/L = new mob_path(get_turf(src))
-	L.source_spawner = src
+	L.nest = src
 	spawned_mobs.Add(L)
 	last_spawn = world.time
 	if(total_spawns > 0)

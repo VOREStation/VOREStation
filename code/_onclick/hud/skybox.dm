@@ -3,17 +3,20 @@
 #define SKYBOX_TURFS	(SKYBOX_PIXELS/WORLD_ICON_SIZE)
 
 // Skybox screen object.
-/obj/skybox
+/obj/screen/skybox
 	name = "skybox"
+	icon = null
+	appearance_flags = TILE_BOUND|PIXEL_SCALE
 	mouse_opacity = 0
 	anchored = TRUE
 	simulated = FALSE
 	screen_loc = "CENTER,CENTER"
+	layer = OBJ_LAYER
 	plane = SKYBOX_PLANE
 	blend_mode = BLEND_MULTIPLY // You actually need to do it this way or you see it in occlusion.
 
 // Adjust transform property to scale for client's view var. We assume the skybox is 736x736 px
-/obj/skybox/proc/scale_to_view(var/view)
+/obj/screen/skybox/proc/scale_to_view(var/view)
 	var/matrix/M = matrix()
 	// Translate to center the icon over us!
 	M.Translate(-(SKYBOX_PIXELS - WORLD_ICON_SIZE) / 2)
@@ -23,7 +26,7 @@
 	src.transform = M
 
 /client
-	var/obj/skybox/skybox
+	var/obj/screen/skybox/skybox
 
 /client/proc/update_skybox(rebuild)
 	if(!skybox)

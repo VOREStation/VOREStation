@@ -43,6 +43,9 @@
 
 #define WARNING_DELAY 20			//seconds between warnings.
 
+// Keeps Accent sounds from layering, increase or decrease as preferred.
+#define SUPERMATTER_ACCENT_SOUND_COOLDOWN 2 SECONDS
+
 /obj/machinery/power/supermatter
 	name = "Supermatter"
 	desc = "A strangely translucent and iridescent crystal. <font color='red'>You get headaches just from looking at it.</font>"
@@ -98,6 +101,9 @@
 	var/config_hallucination_power = 0.1
 
 	var/debug = 0
+	
+	/// Cooldown tracker for accent sounds, 
+	var/last_accent_sound = 0
 
 	var/datum/looping_sound/supermatter/soundloop
 
@@ -290,11 +296,29 @@
 		shift_light(4,initial(light_color))
 	if(grav_pulling)
 		supermatter_pull(src)
-
+	
+	// Vary volume by power produced.
 	if(power)
 		// Volume will be 1 at no power, ~12.5 at ENERGY_NITROGEN, and 20+ at ENERGY_PHORON.
 		// Capped to 20 volume since higher volumes get annoying and it sounds worse.
-		soundloop.volume = min(round(power/10)+1, 20)
+		// Formula previously was min(round(power/10)+1, 20)
+		soundloop.volume = CLAMP((50 + (power / 50)), 50, 100)
+
+	// Swap loops between calm and delamming.
+	if(damage >= 300)
+		soundloop.mid_sounds = list('sound/machines/sm/loops/delamming.ogg' = 1)
+	else
+		soundloop.mid_sounds = list('sound/machines/sm/loops/calm.ogg' = 1)
+	
+	// Play Delam/Neutral sounds at rate determined by power and damage.
+	if(last_accent_sound < world.time && prob(20))
+		var/aggression = min(((damage / 800) * (power / 2500)), 1.0) * 100
+		if(damage >= 300)
+			playsound(src, "smdelam", max(50, aggression), FALSE, 10)
+		else
+			playsound(src, "smcalm", max(50, aggression), FALSE, 10)
+		var/next_sound = round((100 - aggression) * 5)
+		last_accent_sound = world.time + max(SUPERMATTER_ACCENT_SOUND_COOLDOWN, next_sound)
 
 	//Ok, get the air from the turf
 	var/datum/gas_mixture/removed = null
@@ -390,11 +414,11 @@
 	if(Adjacent(user))
 		return attack_hand(user)
 	else
-		ui_interact(user)
+		tgui_interact(user)
 	return
 
 /obj/machinery/power/supermatter/attack_ai(mob/user as mob)
-	ui_interact(user)
+	tgui_interact(user)
 
 /obj/machinery/power/supermatter/attack_hand(mob/user as mob)
 	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
@@ -404,9 +428,15 @@
 
 	Consume(user)
 
+/obj/machinery/power/supermatter/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "AiSupermatter", name)
+		ui.open()
+
 // This is purely informational UI that may be accessed by AIs or robots
-/obj/machinery/power/supermatter/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	var/data[0]
+/obj/machinery/power/supermatter/tgui_data(mob/user)
+	var/list/data = list()
 
 	data["integrity_percentage"] = round(get_integrity())
 	var/datum/gas_mixture/env = null
@@ -421,12 +451,7 @@
 		data["ambient_pressure"] = round(env.return_pressure())
 	data["detonating"] = grav_pulling
 
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "supermatter_crystal.tmpl", "Supermatter Crystal", 500, 300)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(1)
+	return data
 
 
 /obj/machinery/power/supermatter/attackby(obj/item/weapon/W as obj, mob/living/user as mob)

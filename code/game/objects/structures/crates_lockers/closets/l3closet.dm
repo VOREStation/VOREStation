@@ -53,7 +53,7 @@
 
 
 /obj/structure/closet/l3closet/medical
-	closet_appearance = /decl/closet_appearance/bio/science
+	closet_appearance = /decl/closet_appearance/bio/medical
 
 	starts_with = list(
 		/obj/item/clothing/suit/bio_suit/general = 3,

@@ -167,6 +167,11 @@ Book Cart End
 	name = "book"
 	icon = 'icons/obj/library.dmi'
 	icon_state ="book"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items/lefthand_books.dmi',
+		slot_r_hand_str = 'icons/mob/items/righthand_books.dmi'
+		)
+	item_state = "book"
 	throw_speed = 1
 	throw_range = 5
 	flags = NOCONDUCT
@@ -180,7 +185,8 @@ Book Cart End
 	var/title		 // The real name of the book.
 	var/carved = 0	 // Has the book been hollowed out for use as a secret storage item?
 	var/obj/item/store	//What's in the book?
-	drop_sound = 'sound/bureaucracy/bookclose.ogg'
+	drop_sound = 'sound/items/drop/book.ogg'
+	pickup_sound = 'sound/items/pickup/book.ogg'
 
 /obj/item/weapon/book/attack_self(var/mob/user as mob)
 	if(carved)

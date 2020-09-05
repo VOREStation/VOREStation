@@ -1,15 +1,15 @@
 /datum/design/item/prosfab
 	build_type = PROSFAB
-	category = "Misc"
+	category = list("Misc")
 	req_tech = list(TECH_MATERIAL = 1)
 
 /datum/design/item/prosfab/pros
-	category = "Prosthetics"
+	category = list("Prosthetics")
 
 // Make new external organs and make 'em robotish
 /datum/design/item/prosfab/pros/Fabricate(var/newloc, var/fabricator)
-	if(istype(fabricator, /obj/machinery/pros_fabricator))
-		var/obj/machinery/pros_fabricator/prosfab = fabricator
+	if(istype(fabricator, /obj/machinery/mecha_part_fabricator/pros))
+		var/obj/machinery/mecha_part_fabricator/pros/prosfab = fabricator
 		var/obj/item/organ/O = new build_path(newloc)
 		if(prosfab.manufacturer)
 			var/datum/robolimb/manf = all_robolimbs[prosfab.manufacturer]
@@ -37,8 +37,8 @@
 
 // Deep Magic for the torso since it needs to be a new mob
 /datum/design/item/prosfab/pros/torso/Fabricate(var/newloc, var/fabricator)
-	if(istype(fabricator, /obj/machinery/pros_fabricator))
-		var/obj/machinery/pros_fabricator/prosfab = fabricator
+	if(istype(fabricator, /obj/machinery/mecha_part_fabricator/pros))
+		var/obj/machinery/mecha_part_fabricator/pros/prosfab = fabricator
 		var/newspecies = "Human"
 
 		var/datum/robolimb/manf = all_robolimbs[prosfab.manufacturer]
@@ -175,7 +175,7 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 2813)
 
 /datum/design/item/prosfab/pros/internal
-	category = "Prosthetics, Internal"
+	category = list("Prosthetics, Internal")
 
 /datum/design/item/prosfab/pros/internal/cell
 	name = "Prosthetic Powercell"
@@ -192,6 +192,34 @@
 	time = 15
 	materials = list(DEFAULT_WALL_MATERIAL = 5625, "glass" = 5625)
 //	req_tech = list(TECH_ENGINEERING = 2, TECH_MATERIAL = 2)
+
+/datum/design/item/prosfab/pros/internal/hydraulic
+	name = "Hydraulic Hub"
+	id = "pros_hydraulic"
+	build_path = /obj/item/organ/internal/heart/machine
+	time = 15
+	materials = list(DEFAULT_WALL_MATERIAL = 7500, MAT_PLASTIC = 3000)
+
+/datum/design/item/prosfab/pros/internal/reagcycler
+	name = "Reagent Cycler"
+	id = "pros_reagcycler"
+	build_path = /obj/item/organ/internal/stomach/machine
+	time = 15
+	materials = list(DEFAULT_WALL_MATERIAL = 7500, MAT_PLASTIC = 3000)
+
+/datum/design/item/prosfab/pros/internal/heatsink
+	name = "Heatsink"
+	id = "pros_heatsink"
+	build_path = /obj/item/organ/internal/robotic/heatsink
+	time = 15
+	materials = list(DEFAULT_WALL_MATERIAL = 7500, MAT_PLASTIC = 3000)
+
+/datum/design/item/prosfab/pros/internal/diagnostic
+	name = "Diagnostic Controller"
+	id = "pros_diagnostic"
+	build_path = /obj/item/organ/internal/robotic/diagnostic
+	time = 15
+	materials = list(DEFAULT_WALL_MATERIAL = 7500, MAT_PLASTIC = 3000)
 
 /datum/design/item/prosfab/pros/internal/heart
 	name = "Prosthetic Heart"
@@ -242,7 +270,7 @@
 
 //////////////////// Cyborg Parts ////////////////////
 /datum/design/item/prosfab/cyborg
-	category = "Cyborg Parts"
+	category = list("Cyborg Parts")
 	time = 20
 	materials = list(DEFAULT_WALL_MATERIAL = 3750)
 
@@ -298,7 +326,7 @@
 
 //////////////////// Cyborg Internals ////////////////////
 /datum/design/item/prosfab/cyborg/component
-	category = "Cyborg Internals"
+	category = list("Cyborg Internals")
 	build_type = PROSFAB
 	time = 12
 	materials = list(DEFAULT_WALL_MATERIAL = 7500)
@@ -340,7 +368,7 @@
 
 //////////////////// Cyborg Modules ////////////////////
 /datum/design/item/prosfab/robot_upgrade
-	category = "Cyborg Modules"
+	category = list("Cyborg Modules")
 	build_type = PROSFAB
 	time = 12
 	materials = list(DEFAULT_WALL_MATERIAL = 7500)

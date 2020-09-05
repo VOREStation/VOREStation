@@ -22,8 +22,9 @@
 #define Z_LEVEL_AEROSTAT					21
 #define Z_LEVEL_AEROSTAT_SURFACE			22
 #define Z_LEVEL_DEBRISFIELD					23
-#define Z_LEVEL_FUELDEPOT					24
-#define Z_LEVEL_GATEWAY						25
+#define Z_LEVEL_GUTTERSITE					24
+#define Z_LEVEL_FUELDEPOT					25
+#define Z_LEVEL_GATEWAY						26
 
 //Camera networks
 #define NETWORK_TETHER "Tether"
@@ -73,6 +74,7 @@
 	station_name  = "NSB Adephagia"
 	station_short = "Tether"
 	dock_name     = "Virgo-3B Colony"
+	dock_type     = "surface"
 	boss_name     = "Central Command"
 	boss_short    = "CentCom"
 	company_name  = "NanoTrasen"
@@ -83,6 +85,7 @@
 	shuttle_leaving_dock = "The Orange Line tram has left the station. Estimate %ETA% until the tram arrives at %dock_name%."
 	shuttle_called_message = "A scheduled crew transfer to the %dock_name% is occuring. The tram will be arriving shortly. Those departing should proceed to the Orange Line tram station within %ETA%."
 	shuttle_recall_message = "The scheduled crew transfer has been cancelled."
+	shuttle_name = "Automated Tram"
 	emergency_shuttle_docked_message = "The evacuation tram has arrived at the tram station. You have approximately %ETD% to board the tram."
 	emergency_shuttle_leaving_dock = "The emergency tram has left the station. Estimate %ETA% until the shuttle arrives at %dock_name%."
 	emergency_shuttle_called_message = "An emergency evacuation has begun, and an off-schedule tram has been called. It will arrive at the tram station in approximately %ETA%."
@@ -159,6 +162,7 @@
 		list("Desert Planet - Z1 Beach","Desert Planet - Z2 Cave"),
 		list("Remmi Aerostat - Z1 Aerostat","Remmi Aerostat - Z2 Surface"),
 		list("Debris Field - Z1 Space"),
+		list("Gutter Site - Z1 Space"),
 		list("Fuel Depot - Z1 Space")
 		)
 

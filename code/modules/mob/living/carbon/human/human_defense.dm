@@ -133,6 +133,12 @@ emp_act
 		if(istype(C) && (C.body_parts_covered & def_zone.body_part)) // Is that body part being targeted covered?
 			siemens_coefficient *= C.siemens_coefficient
 
+	// Modifiers.
+	for(var/thing in modifiers)
+		var/datum/modifier/M = thing
+		if(!isnull(M.siemens_coefficient))
+			siemens_coefficient *= M.siemens_coefficient
+
 	return siemens_coefficient
 
 // Similar to above but is for the mob's overall protection, being the average of all slots.
@@ -150,11 +156,11 @@ emp_act
 	if(fire_stacks < 0) // Water makes you more conductive.
 		siemens_value *= 1.5
 
-	return (siemens_value/max(total, 1))
+	return (siemens_value / max(total, 1))
 
 // Returns a number between 0 to 1, with 1 being total protection.
 /mob/living/carbon/human/get_shock_protection()
-	return between(0, 1-get_siemens_coefficient_average(), 1)
+	return min(1 - get_siemens_coefficient_average(), 1) // Don't go above 1, but negatives are fine.
 
 // Returns a list of clothing that is currently covering def_zone.
 /mob/living/carbon/human/proc/get_clothing_list_organ(var/obj/item/organ/external/def_zone, var/type)
@@ -173,6 +179,13 @@ emp_act
 	var/list/protective_gear = def_zone.get_covering_clothing()
 	for(var/obj/item/clothing/gear in protective_gear)
 		protection += gear.armor[type]
+
+	for(var/thing in modifiers)
+		var/datum/modifier/M = thing
+		var/modifier_armor = LAZYACCESS(M.armor_percent, type)
+		if(modifier_armor)
+			protection += modifier_armor
+
 	return protection
 
 /mob/living/carbon/human/proc/getsoak_organ(var/obj/item/organ/external/def_zone, var/type)
@@ -182,6 +195,13 @@ emp_act
 	var/list/protective_gear = def_zone.get_covering_clothing()
 	for(var/obj/item/clothing/gear in protective_gear)
 		soaked += gear.armorsoak[type]
+
+	for(var/thing in modifiers)
+		var/datum/modifier/M = thing
+		var/modifier_armor = LAZYACCESS(M.armor_flat, type)
+		if(modifier_armor)
+			soaked += modifier_armor
+
 	return soaked
 
 // Checked in borer code

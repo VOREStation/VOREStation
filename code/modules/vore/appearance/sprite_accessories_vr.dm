@@ -737,13 +737,6 @@
 	desc = ""
 	icon_state = "snag-backplate"
 
-/datum/sprite_accessory/wing/nevrean
-	name = "nevrean wings/fantail"
-	desc = ""
-	icon_state = "nevrean_s"
-	do_colouration = 1
-	color_blend_mode = ICON_MULTIPLY
-
 /datum/sprite_accessory/wing/sepulchre_c_yw
 	name = "demon wings (colorable)"
 	desc = ""
@@ -956,6 +949,30 @@
 	name = "avian wagtail, colorable"
 	desc = ""
 	icon_state = "wagtail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/nevreandc
+	name = "nevrean tail, dual-color"
+	desc = ""
+	icon_state = "nevreantail_dc"
+	extra_overlay = "nevreantail_dc_tail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/nevreanwagdc
+	name = "nevrean wagtail, dual-color"
+	desc = ""
+	icon_state = "wagtail"
+	extra_overlay = "wagtail_dc_tail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/nevreanwagdc_alt
+	name = "nevrean wagtail, marked, dual-color"
+	desc = ""
+	icon_state = "wagtail2_dc"
+	extra_overlay = "wagtail2_dc_mark"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
@@ -1413,7 +1430,7 @@
 	do_colouration = 1
 
 /datum/sprite_accessory/tail/special/monkeyhc
-	name = "monkey tail, colorable, colorable"
+	name = "monkey tail, colorable"
 	desc = ""
 	icon_state = "chimptail_hc_s"
 	do_colouration = 1

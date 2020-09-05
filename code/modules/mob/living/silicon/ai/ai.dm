@@ -24,7 +24,9 @@ var/list/ai_verbs_default = list(
 	/mob/living/silicon/ai/proc/ai_checklaws,
 	/mob/living/silicon/ai/proc/toggle_camera_light,
 	/mob/living/silicon/ai/proc/take_image,
-	/mob/living/silicon/ai/proc/view_images
+	/mob/living/silicon/ai/proc/view_images,
+	/mob/living/silicon/ai/proc/toggle_multicam_verb,
+	/mob/living/silicon/ai/proc/add_multicam_verb
 )
 
 //Not sure why this is necessary...
@@ -973,6 +975,16 @@ var/list/ai_verbs_default = list(
 	//This communication is imperfect because the holopad "filters" voices and is only designed to connect to the master only.
 	var/rendered = "<i><span class='game say'>Relayed Speech: <span class='name'>[name_used]</span> [message]</span></i>"
 	show_message(rendered, 2)
+	
+/mob/living/silicon/ai/proc/toggle_multicam_verb()
+	set name = "Toggle Multicam"
+	set category = "AI Commands"
+	toggle_multicam()
+
+/mob/living/silicon/ai/proc/add_multicam_verb()
+	set name = "Add Multicam Viewport"
+	set category = "AI Commands"
+	drop_new_multicam()
 
 //Special subtype kept around for global announcements
 /mob/living/silicon/ai/announcer/

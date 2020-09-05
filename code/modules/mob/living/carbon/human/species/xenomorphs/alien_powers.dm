@@ -173,6 +173,8 @@
 			if(F.flooring && (F.flooring.flags & TURF_ACID_IMMUNE))
 */
 			cannot_melt = 1
+		else
+			cannot_melt = 1
 
 	if(cannot_melt)
 		to_chat(src, "<span class='alium'>You cannot dissolve this object.</span>")
