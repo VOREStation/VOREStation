@@ -72,6 +72,8 @@
 /obj/effect/floor_decal/industrial/warning,
 /obj/item/weapon/bone/skull,
 /obj/item/clothing/head/helmet/space/void/refurb/pilot,
+/obj/item/weapon/material/shard/shrapnel,
+/obj/item/weapon/material/shard/shrapnel,
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/shuttle/mackerel_lc_wreck)
 "dG" = (
@@ -90,6 +92,7 @@
 	dir = 1
 	},
 /obj/item/weapon/material/shard,
+/obj/item/weapon/material/shard/shrapnel,
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/shuttle/mackerel_lc_wreck)
 "ju" = (
@@ -418,6 +421,10 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/mackerel_lc_wreck)
+"BB" = (
+/obj/item/weapon/material/shard/shrapnel,
+/turf/template_noop,
+/area/template_noop)
 "BN" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/wall/rshull,
@@ -615,7 +622,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/tiled/techmaint,
 /area/shuttle/mackerel_lc_wreck)
 "Ko" = (
 /turf/simulated/wall/rshull,
@@ -629,6 +636,7 @@
 /area/shuttle/mackerel_lc_wreck)
 "Ly" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/item/weapon/material/shard/shrapnel,
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/shuttle/mackerel_lc_wreck)
 "LU" = (
@@ -759,6 +767,10 @@
 /obj/structure/railing/grey,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc_wreck)
+"TC" = (
+/obj/item/weapon/material/shard/shrapnel,
+/turf/template_noop,
+/area/shuttle/mackerel_lc_wreck)
 "UY" = (
 /obj/machinery/atmospherics/unary/engine{
 	dir = 1
@@ -820,6 +832,7 @@
 /area/shuttle/mackerel_lc_wreck)
 "WN" = (
 /obj/structure/grille/broken,
+/obj/item/weapon/material/shard/shrapnel,
 /turf/template_noop,
 /area/shuttle/mackerel_lc_wreck)
 "WP" = (
@@ -894,7 +907,7 @@ WP
 WP
 WP
 WP
-WP
+BB
 WP
 WP
 WP
@@ -907,6 +920,7 @@ WP
 WP
 WP
 WP
+BB
 WP
 WP
 WP
@@ -916,8 +930,7 @@ WP
 WP
 WP
 WP
-WP
-WP
+BB
 oG
 oe
 ka
@@ -929,6 +942,7 @@ WP
 (3,1,1) = {"
 WP
 WP
+BB
 WP
 WP
 WP
@@ -939,8 +953,7 @@ WP
 WP
 WP
 WP
-WP
-WP
+BB
 WP
 WP
 oe
@@ -966,7 +979,7 @@ wQ
 ka
 WP
 WP
-WP
+BB
 WP
 NI
 oq
@@ -978,10 +991,10 @@ WP
 "}
 (5,1,1) = {"
 WP
-WP
+BB
 WP
 oe
-WP
+BB
 WP
 oq
 WP
@@ -1004,7 +1017,7 @@ WP
 (6,1,1) = {"
 WP
 WP
-WP
+BB
 oe
 oe
 Zb
@@ -1154,7 +1167,7 @@ WP
 (12,1,1) = {"
 WP
 ka
-oe
+oq
 NI
 Ko
 xB
@@ -1179,7 +1192,7 @@ WP
 (13,1,1) = {"
 WP
 WP
-oG
+oe
 oe
 oe
 Da
@@ -1203,9 +1216,9 @@ WP
 "}
 (14,1,1) = {"
 WP
+BB
 WP
-WP
-oG
+oe
 oG
 oe
 NI
@@ -1223,14 +1236,14 @@ ka
 tV
 ka
 WP
-WP
+BB
 WP
 "}
 (15,1,1) = {"
 WP
 WP
 WP
-oG
+TC
 WP
 WP
 oq
@@ -1256,7 +1269,7 @@ WP
 WP
 WP
 oG
-oG
+TC
 WN
 ka
 WP
@@ -1265,19 +1278,20 @@ wQ
 wQ
 ka
 WP
-WP
+BB
 WP
 WP
 NI
-oq
+Zb
 ca
 NI
 oq
 WP
-WP
+BB
 "}
 (17,1,1) = {"
 WP
+BB
 WP
 WP
 WP
@@ -1291,10 +1305,9 @@ WP
 WP
 WP
 WP
-WP
-WP
+BB
 oe
-Zb
+oq
 oq
 oq
 oe
@@ -1306,10 +1319,10 @@ WP
 WP
 WP
 WP
+BB
 WP
 WP
-WP
-WP
+BB
 WP
 WP
 WP
@@ -1323,7 +1336,7 @@ oe
 oe
 oe
 oe
-WP
+BB
 WP
 "}
 (19,1,1) = {"
@@ -1342,7 +1355,7 @@ WP
 WP
 WP
 WP
-WP
+BB
 WP
 WP
 WP

@@ -3509,7 +3509,7 @@
 /obj/machinery/embedded_controller/radio/docking_port_multi{
 	child_names = list("Port Airlock Control","Starboard Airlock Control");
 	child_names_txt = list("Port Airlock Control","Starboard Airlock Control");
-	child_tags_txt = "bearcat_docking_port";"bearcat_docking_star";
+	child_tags_txt = list("bearcat_docking_port","bearcat_docking_star");
 	dir = 1;
 	id_tag = "bearcat_docking";
 	pixel_y = -22
