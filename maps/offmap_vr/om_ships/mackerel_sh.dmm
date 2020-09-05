@@ -203,7 +203,8 @@
 /area/shuttle/mackerel_sh)
 "nD" = (
 /obj/structure/closet/crate/engineering/electrical,
-/obj/item/weapon/storage/toolbox/electrical,
+/obj/item/weapon/tank/phoron,
+/obj/item/weapon/tank/phoron,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_sh)
 "oe" = (
@@ -259,7 +260,7 @@
 /obj/machinery/embedded_controller/radio/docking_port_multi{
 	child_names = list("Port Airlock Control","Starboard Airlock Control");
 	child_names_txt = list("Port Airlock Control","Starboard Airlock Control");
-	child_tags_txt = "mackerel_sh_docking_port";"mackerel_sh_docking_star";
+	child_tags_txt = list("mackerel_sh_docking_port","mackerel_sh_docking_star");
 	dir = 1;
 	id_tag = "mackerel_sh_docking";
 	pixel_y = -22
@@ -319,6 +320,7 @@
 "ue" = (
 /obj/structure/closet/crate/engineering,
 /obj/item/weapon/storage/toolbox/mechanical,
+/obj/item/weapon/storage/toolbox/electrical,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_sh)
 "ug" = (
@@ -421,6 +423,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
+/obj/machinery/meter,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_sh)
 "Ck" = (

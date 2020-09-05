@@ -104,3 +104,9 @@
 	cost = 35
 	allow_duplicates = FALSE
 	discard_prob = 50
+
+/datum/map_template/debrisfield/gutted_mackerel
+	name = "Gutted Mackerel LC"
+	mappath = 'maps/offmap_vr/om_ships/mackerel_lc_wreck.dmm'
+	cost = 30
+	allow_duplicates = FALSE

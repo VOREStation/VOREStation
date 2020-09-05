@@ -41,31 +41,43 @@
 // The shuttle's area(s)
 /area/shuttle/mackerel_sh	
 	name = "\improper Mackerel Stationhopper"
-	icon_state = "shuttle"
+	icon_state = "green"
 	requires_power = 1
 	has_gravity = 0
 	
 /area/shuttle/mackerel_lc	
 	name = "\improper Mackerel Light Cargo"
-	icon_state = "shuttle2"
+	icon_state = "green"
 	requires_power = 1
 	has_gravity = 0
 	
 /area/shuttle/mackerel_hc	
 	name = "\improper Mackerel Heavy Cargo"
-	icon_state = "shuttle3"
+	icon_state = "green"
 	requires_power = 1
 	has_gravity = 0
 	
 /area/shuttle/mackerel_hc_skel	
 	name = "\improper Mackerel Heavy Cargo Spartan"
-	icon_state = "shuttle3"
+	icon_state = "green"
+	requires_power = 1
+	has_gravity = 0
+	
+/area/shuttle/mackerel_hc_skel_cockpit
+	name = "\improper Mackerel Heavy Cargo Cockpit"
+	icon_state = "purple"
+	requires_power = 1
+	has_gravity = 0
+	
+/area/shuttle/mackerel_hc_skel_eng
+	name = "\improper Mackerel Heavy Cargo Engineering"
+	icon_state = "yellow"
 	requires_power = 1
 	has_gravity = 0
 	
 /area/shuttle/mackerel_lc_wreck	
 	name = "\improper Wrecked Mackerel Light Cargo"
-	icon_state = "shuttle2"
+	icon_state = "green"
 	requires_power = 1
 	has_gravity = 0
 
@@ -78,6 +90,11 @@
 /obj/machinery/computer/shuttle_control/explore/mackerel_lc
 	name = "short jump console"
 	shuttle_tag = "Mackerel Light Cargo"
+	req_one_access = list()
+
+/obj/machinery/computer/shuttle_control/explore/mackerel_lc_wreck
+	name = "short jump console"
+	shuttle_tag = "Mackerel Light Cargo II"
 	req_one_access = list()
 
 /obj/machinery/computer/shuttle_control/explore/mackerel_hc
@@ -96,7 +113,7 @@
 	current_location = "omship_spawn_mackerel_sh"
 	docking_controller_tag = "mackerel_sh_docking"
 	shuttle_area = list(/area/shuttle/mackerel_sh)
-	defer_initialisation = TRUE //We're not loaded until an admin does it
+	defer_initialisation = TRUE
 	fuel_consumption = 1
 
 /datum/shuttle/autodock/overmap/mackerel_lc
@@ -104,7 +121,7 @@
 	current_location = "omship_spawn_mackerel_lc"
 	docking_controller_tag = "mackerel_lc_docking"
 	shuttle_area = list(/area/shuttle/mackerel_lc)
-	defer_initialisation = TRUE //We're not loaded until an admin does it
+	defer_initialisation = TRUE
 	fuel_consumption = 1
 
 /datum/shuttle/autodock/overmap/mackerel_hc
@@ -112,23 +129,23 @@
 	current_location = "omship_spawn_mackerel_hc"
 	docking_controller_tag = "mackerel_hc_docking"
 	shuttle_area = list(/area/shuttle/mackerel_hc)
-	defer_initialisation = TRUE //We're not loaded until an admin does it
+	defer_initialisation = TRUE
 	fuel_consumption = 1.25 //slightly higher due to the added framework/plating
 
 /datum/shuttle/autodock/overmap/mackerel_hc_skel
 	name = "Mackerel Heavy Cargo Spartan"
 	current_location = "omship_spawn_mackerel_hc_skel"
-	docking_controller_tag = "mackerel_hc_docking_skel"
-	shuttle_area = list(/area/shuttle/mackerel_hc_skel)
-	defer_initialisation = TRUE //We're not loaded until an admin does it
+	docking_controller_tag = "mackerel_hc_skel_docking"
+	shuttle_area = list(/area/shuttle/mackerel_hc_skel,/area/shuttle/mackerel_hc_skel_cockpit,/area/shuttle/mackerel_hc_skel_eng)
+	defer_initialisation = TRUE
 	fuel_consumption = 1.20 //slightly lower due to the stripped-down internals
 
 /datum/shuttle/autodock/overmap/mackerel_lc_wreck
 	name = "Mackerel Light Cargo II"
 	current_location = "omship_spawn_mackerel_lc_wreck"
-	docking_controller_tag = "mackerel_lc_docking_wreck"
+	docking_controller_tag = "mackerel_lc_wreck_docking"
 	shuttle_area = list(/area/shuttle/mackerel_lc_wreck)
-	defer_initialisation = TRUE //We're not loaded until an admin does it
+	defer_initialisation = TRUE
 	fuel_consumption = 1
 
 // A shuttle lateloader landmark
