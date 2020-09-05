@@ -24,13 +24,13 @@
 /obj/structure/closet/walllocker/emerglocker/south,
 /obj/machinery/light,
 /obj/machinery/embedded_controller/radio/docking_port_multi{
-	child_names = list("Port Airlock Control","Starboard Airlock Control");
-	child_names_txt = list("Port Airlock Control","Starboard Airlock Control");
-	child_tags_txt = list("mackerel_hc_docking_port","mackerel_hc_docking_star");
+	child_names_txt = "Port Airlock Control;Starboard Airlock Control";
+	child_tags_txt = "mackerel_hc_docking_port;mackerel_hc_docking_star";
 	dir = 1;
 	id_tag = "mackerel_hc_docking";
 	pixel_y = -22
 	},
+/obj/structure/handrail,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc)
 "bw" = (
@@ -50,12 +50,12 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 1
 	},
-/obj/structure/closet/crate/large,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
 /obj/structure/window/reinforced,
 /obj/machinery/door/window,
+/obj/random/multiple/large_corp_crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc)
 "cv" = (
@@ -188,6 +188,9 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/structure/handrail{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc)
 "pZ" = (
@@ -256,12 +259,12 @@
 	icon_state = "extinguisher_closed";
 	pixel_x = 30
 	},
-/obj/structure/closet/crate/large,
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
 /obj/machinery/door/window/westright,
+/obj/random/multiple/large_corp_crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc)
 "tV" = (
@@ -285,12 +288,12 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 1
 	},
-/obj/structure/closet/crate/large,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
 /obj/structure/window/reinforced,
 /obj/machinery/door/window,
+/obj/random/multiple/large_corp_crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc)
 "uR" = (
@@ -400,17 +403,20 @@
 /area/shuttle/mackerel_hc)
 "Dc" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/closet/crate/large,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
 /obj/structure/window/reinforced,
 /obj/machinery/door/window,
+/obj/random/multiple/large_corp_crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc)
 "Dh" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
+	},
+/obj/structure/handrail{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/mackerel_hc)
@@ -425,12 +431,12 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 8
 	},
-/obj/structure/closet/crate/large,
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
 /obj/machinery/door/window,
+/obj/random/multiple/large_corp_crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc)
 "EK" = (
@@ -486,12 +492,12 @@
 /area/shuttle/mackerel_hc)
 "Gm" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/closet/crate/large,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
 /obj/structure/window/reinforced,
 /obj/machinery/door/window/westright,
+/obj/random/multiple/large_corp_crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc)
 "GF" = (
@@ -518,12 +524,12 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/industrial/warning/corner,
-/obj/structure/closet/crate/large,
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
 /obj/machinery/door/window/westright,
+/obj/random/multiple/large_corp_crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc)
 "JG" = (
@@ -546,6 +552,9 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/structure/handrail{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc)
 "JQ" = (
@@ -562,12 +571,12 @@
 	icon_state = "extinguisher_closed";
 	pixel_x = -30
 	},
-/obj/structure/closet/crate/large,
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
 /obj/machinery/door/window,
+/obj/random/multiple/large_corp_crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc)
 "Ko" = (
@@ -592,6 +601,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
+	},
+/obj/structure/handrail{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/mackerel_hc)
@@ -621,6 +633,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/structure/handrail,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc)
 "Pc" = (
@@ -642,6 +655,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
+/obj/structure/handrail,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc)
 "PL" = (
@@ -738,6 +752,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/structure/handrail,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc)
 "UY" = (
@@ -753,6 +768,7 @@
 	dir = 8
 	},
 /obj/machinery/light,
+/obj/structure/handrail,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc)
 "Wv" = (
@@ -760,12 +776,12 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 4
 	},
-/obj/structure/closet/crate/large,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
 /obj/structure/window/reinforced,
 /obj/machinery/door/window/westright,
+/obj/random/multiple/large_corp_crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc)
 "WI" = (
@@ -788,6 +804,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
+/obj/structure/handrail,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc)
 "Xn" = (
@@ -797,12 +814,12 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 1
 	},
-/obj/structure/closet/crate/large,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
 /obj/structure/window/reinforced,
 /obj/machinery/door/window,
+/obj/random/multiple/large_corp_crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc)
 "YD" = (

@@ -739,9 +739,8 @@
 /area/shuttle/mackerel_hc_skel)
 "KZ" = (
 /obj/machinery/embedded_controller/radio/docking_port_multi{
-	child_names = list("Port Airlock Control","Starboard Airlock Control");
-	child_names_txt = list("Port Airlock Control","Starboard Airlock Control");
-	child_tags_txt = list("mackerel_hc_skel_docking_port","mackerel_hc_skel_docking_star");
+	child_names_txt = "Port Airlock Control;Starboard Airlock Control";
+	child_tags_txt = "mackerel_hc_skel_docking_port;mackerel_hc_skel_docking_star";
 	dir = 1;
 	id_tag = "mackerel_hc_skel_docking";
 	pixel_y = -22

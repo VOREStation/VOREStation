@@ -170,6 +170,14 @@
 	},
 /turf/simulated/floor/reinforced,
 /area/shuttle/gecko_cr)
+"dC" = (
+/obj/random/multiple/corp_crate,
+/turf/simulated/floor/reinforced,
+/area/shuttle/gecko_cr)
+"dE" = (
+/obj/random/multiple/large_corp_crate,
+/turf/simulated/floor/reinforced,
+/area/shuttle/gecko_cr)
 "dO" = (
 /obj/effect/floor_decal/industrial/warning,
 /obj/structure/closet/crate/engineering/electrical,
@@ -457,6 +465,7 @@
 /area/shuttle/gecko_cr_engineering)
 "jo" = (
 /obj/machinery/atmospherics/pipe/manifold4w/hidden,
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/reinforced,
 /area/shuttle/gecko_cr)
 "jq" = (
@@ -519,6 +528,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
 	},
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/reinforced,
 /area/shuttle/gecko_cr)
 "kx" = (
@@ -645,6 +655,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 5
 	},
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/reinforced,
 /area/shuttle/gecko_cr)
 "lV" = (
@@ -709,6 +720,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/random/multiple/large_corp_crate,
 /turf/simulated/floor/reinforced,
 /area/shuttle/gecko_cr)
 "mY" = (
@@ -722,10 +734,23 @@
 "nl" = (
 /turf/simulated/floor/plating,
 /area/shuttle/gecko_cr_engineering)
+"nm" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/obj/random/multiple/large_corp_crate,
+/turf/simulated/floor/reinforced,
+/area/shuttle/gecko_cr)
+"nq" = (
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/random/multiple/corp_crate,
+/turf/simulated/floor/reinforced,
+/area/shuttle/gecko_cr)
 "oe" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 10
 	},
+/obj/random/multiple/large_corp_crate,
 /turf/simulated/floor/reinforced,
 /area/shuttle/gecko_cr)
 "oi" = (
@@ -813,6 +838,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 10
 	},
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/reinforced,
 /area/shuttle/gecko_cr)
 "pG" = (
@@ -1056,6 +1082,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 5
 	},
+/obj/random/multiple/large_corp_crate,
 /turf/simulated/floor/reinforced,
 /area/shuttle/gecko_cr)
 "tP" = (
@@ -1148,6 +1175,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
 	},
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/reinforced,
 /area/shuttle/gecko_cr)
 "vP" = (
@@ -1206,6 +1234,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 9
 	},
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/reinforced,
 /area/shuttle/gecko_cr)
 "wV" = (
@@ -1341,6 +1370,13 @@
 /obj/machinery/atmospherics/binary/pump/fuel,
 /turf/simulated/floor/plating,
 /area/shuttle/gecko_cr_engineering)
+"yY" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/random/multiple/corp_crate,
+/turf/simulated/floor/reinforced,
+/area/shuttle/gecko_cr)
 "zs" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
@@ -1398,6 +1434,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
+/obj/random/multiple/large_corp_crate,
 /turf/simulated/floor/reinforced,
 /area/shuttle/gecko_cr)
 "AE" = (
@@ -1420,6 +1457,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 10
 	},
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/reinforced,
 /area/shuttle/gecko_cr)
 "Bd" = (
@@ -1529,6 +1567,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
+/obj/random/multiple/large_corp_crate,
 /turf/simulated/floor/reinforced,
 /area/shuttle/gecko_cr)
 "Ck" = (
@@ -1597,6 +1636,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 6
 	},
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/reinforced,
 /area/shuttle/gecko_cr)
 "Di" = (
@@ -1707,6 +1747,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/reinforced,
 /area/shuttle/gecko_cr)
 "EC" = (
@@ -1755,6 +1796,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 10
 	},
+/obj/random/multiple/large_corp_crate,
 /turf/simulated/floor/reinforced,
 /area/shuttle/gecko_cr)
 "Ff" = (
@@ -1857,6 +1899,13 @@
 	},
 /turf/simulated/floor/airless,
 /area/shuttle/gecko_cr_cockpit)
+"Gq" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 6
+	},
+/obj/random/multiple/large_corp_crate,
+/turf/simulated/floor/reinforced,
+/area/shuttle/gecko_cr)
 "Gs" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
@@ -1910,6 +1959,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/random/multiple/large_corp_crate,
 /turf/simulated/floor/reinforced,
 /area/shuttle/gecko_cr)
 "Ho" = (
@@ -1925,9 +1975,8 @@
 	},
 /obj/effect/floor_decal/industrial/outline/grey,
 /obj/machinery/embedded_controller/radio/docking_port_multi{
-	child_names = list("Port Airlock Control","Starboard Airlock Control");
-	child_names_txt = list("Port Airlock Control","Starboard Airlock Control");
-	child_tags_txt = list("geck_sh_docking_port","geck_sh_docking_star");
+	child_names_txt = "Port Airlock Control;Starboard Airlock Control";
+	child_tags_txt = "geck_sh_docking_port;geck_sh_docking_star";
 	id_tag = "geck_sh_docking";
 	pixel_y = 22
 	},
@@ -1985,6 +2034,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 5
 	},
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/reinforced,
 /area/shuttle/gecko_cr)
 "Im" = (
@@ -2010,6 +2060,13 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/gecko_cr_cockpit)
+"II" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 5
+	},
+/obj/random/multiple/large_corp_crate,
+/turf/simulated/floor/reinforced,
+/area/shuttle/gecko_cr)
 "IL" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -2194,6 +2251,13 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/shuttle/gecko_cr_engineering)
+"Lu" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 9
+	},
+/obj/random/multiple/corp_crate,
+/turf/simulated/floor/reinforced,
+/area/shuttle/gecko_cr)
 "LU" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -2232,6 +2296,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 6
 	},
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/reinforced,
 /area/shuttle/gecko_cr)
 "Nr" = (
@@ -2321,6 +2386,13 @@
 	},
 /turf/simulated/floor/plating,
 /area/shuttle/gecko_cr_engineering)
+"NZ" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/random/multiple/large_corp_crate,
+/turf/simulated/floor/reinforced,
+/area/shuttle/gecko_cr)
 "Oc" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel,
@@ -2361,6 +2433,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 6
 	},
+/obj/random/multiple/large_corp_crate,
 /turf/simulated/floor/reinforced,
 /area/shuttle/gecko_cr)
 "OH" = (
@@ -2412,6 +2485,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 9
 	},
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/reinforced,
 /area/shuttle/gecko_cr)
 "OZ" = (
@@ -2444,10 +2518,12 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 9
 	},
+/obj/random/multiple/large_corp_crate,
 /turf/simulated/floor/reinforced,
 /area/shuttle/gecko_cr)
 "Pn" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden,
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/reinforced,
 /area/shuttle/gecko_cr)
 "Pv" = (
@@ -2519,6 +2595,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
+/obj/random/multiple/large_corp_crate,
 /turf/simulated/floor/reinforced,
 /area/shuttle/gecko_cr)
 "PR" = (
@@ -2575,6 +2652,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 5
 	},
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/reinforced,
 /area/shuttle/gecko_cr)
 "Rd" = (
@@ -2743,6 +2821,13 @@
 	},
 /turf/simulated/floor/reinforced,
 /area/shuttle/gecko_cr)
+"Tv" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 10
+	},
+/obj/random/multiple/corp_crate,
+/turf/simulated/floor/reinforced,
+/area/shuttle/gecko_cr)
 "Tw" = (
 /obj/machinery/firealarm{
 	dir = 8;
@@ -2867,6 +2952,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/reinforced,
 /area/shuttle/gecko_cr)
 "Vl" = (
@@ -2874,6 +2960,7 @@
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/reinforced,
 /area/shuttle/gecko_cr)
 "Vr" = (
@@ -2995,6 +3082,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/reinforced,
 /area/shuttle/gecko_cr)
 "Xc" = (
@@ -3004,6 +3092,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 6
 	},
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/reinforced,
 /area/shuttle/gecko_cr)
 "Xn" = (
@@ -3170,6 +3259,7 @@
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/reinforced,
 /area/shuttle/gecko_cr)
 "Zo" = (
@@ -3185,6 +3275,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 9
 	},
+/obj/random/multiple/large_corp_crate,
 /turf/simulated/floor/reinforced,
 /area/shuttle/gecko_cr)
 "Zs" = (
@@ -3555,9 +3646,9 @@ Ve
 sV
 WZ
 jo
+nq
 VJ
-VJ
-VJ
+nq
 Pn
 Ez
 Va
@@ -3640,11 +3731,11 @@ kI
 qh
 Rp
 PJ
-Vi
+nm
 oe
 Gx
 Zp
-Vi
+nm
 Hi
 JP
 lB
@@ -3683,12 +3774,12 @@ FX
 Ti
 rA
 Aq
-Vi
-Wz
+nm
+dE
 gA
-Wz
-Vi
-Ez
+dE
+nm
+NZ
 EK
 ju
 CW
@@ -3726,11 +3817,11 @@ YG
 Ti
 aK
 tI
-Vi
-Np
+nm
+Gq
 Gx
-QO
-Vi
+II
+nm
 Ox
 Zs
 HI
@@ -3812,11 +3903,11 @@ Ql
 Ti
 XX
 Pl
-Vi
+nm
 oe
 Gx
 Zp
-Vi
+nm
 Fe
 wH
 HI
@@ -3855,12 +3946,12 @@ Di
 Ti
 TM
 Aq
-Vi
-Wz
+nm
+dE
 gA
-Wz
-Vi
-Ez
+dE
+nm
+NZ
 ON
 Wr
 CW
@@ -3898,11 +3989,11 @@ Jn
 qh
 gD
 Ca
-Vi
-Np
+nm
+Gq
 Gx
-QO
-Vi
+II
+nm
 mS
 TE
 lB
@@ -3942,9 +4033,9 @@ Wr
 yR
 Zn
 Vi
-oe
+Tv
 Wz
-Zp
+Lu
 Vi
 kp
 Tl
@@ -3983,11 +4074,11 @@ Ed
 Kz
 Wr
 Wz
-Aq
+yY
 Vi
+dC
 Wz
-Wz
-Wz
+dC
 Vi
 Ez
 JV

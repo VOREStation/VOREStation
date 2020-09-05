@@ -119,6 +119,7 @@
 /obj/structure/railing/grey{
 	dir = 1
 	},
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc_wreck)
 "lC" = (
@@ -141,6 +142,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc_wreck)
 "mf" = (
@@ -240,6 +242,7 @@
 /obj/structure/railing/grey{
 	dir = 1
 	},
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc_wreck)
 "rr" = (
@@ -252,9 +255,8 @@
 	},
 /obj/structure/closet/walllocker/emerglocker/south,
 /obj/machinery/embedded_controller/radio/docking_port_multi{
-	child_names = list("Port Airlock Control","Starboard Airlock Control");
-	child_names_txt = list("Port Airlock Control","Starboard Airlock Control");
-	child_tags_txt = list("mackerel_lc_wreck_docking_port","mackerel_lc_wreck_docking_star");
+	child_names_txt = "Port Airlock Control;Starboard Airlock Control";
+	child_tags_txt = "mackerel_lc_wreck_docking_port;mackerel_lc_wreck_docking_star";
 	dir = 1;
 	id_tag = "mackerel_lc_wreck_docking";
 	pixel_y = -22
@@ -294,6 +296,7 @@
 	icon_state = "0-8"
 	},
 /obj/item/frame/apc,
+/obj/item/trash/material/circuit,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc_wreck)
 "sL" = (
@@ -304,6 +307,7 @@
 /obj/effect/map_helper/airlock/sensor/int_sensor,
 /obj/effect/floor_decal/industrial/warning/corner,
 /obj/structure/railing/grey,
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc_wreck)
 "sX" = (
@@ -323,6 +327,7 @@
 /obj/structure/closet/crate/engineering,
 /obj/item/weapon/storage/toolbox/mechanical,
 /obj/item/weapon/storage/toolbox/electrical,
+/obj/item/weapon/module/power_control,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc_wreck)
 "ug" = (
@@ -370,6 +375,7 @@
 	dir = 8
 	},
 /obj/structure/railing/grey,
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc_wreck)
 "wN" = (
@@ -464,6 +470,7 @@
 /obj/machinery/light/flicker{
 	dir = 8
 	},
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc_wreck)
 "Da" = (
@@ -530,6 +537,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc_wreck)
 "FL" = (
@@ -579,6 +587,7 @@
 	},
 /obj/effect/floor_decal/industrial/warning/corner,
 /obj/structure/railing/grey,
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc_wreck)
 "He" = (
@@ -586,12 +595,8 @@
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/shuttle/mackerel_lc_wreck)
 "Ib" = (
-/obj/machinery/door/airlock/hatch{
-	density = 0;
-	icon_state = "door_open";
-	opacity = 0
-	},
 /obj/effect/map_helper/airlock/door/int_door,
+/obj/machinery/door/airlock/hatch,
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/mackerel_lc_wreck)
 "Jq" = (
@@ -649,6 +654,7 @@
 /area/shuttle/mackerel_lc_wreck)
 "LW" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc_wreck)
 "Mk" = (
@@ -709,6 +715,7 @@
 /area/shuttle/mackerel_lc_wreck)
 "Qu" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc_wreck)
 "RB" = (
@@ -754,6 +761,7 @@
 /obj/machinery/light/flicker{
 	dir = 4
 	},
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc_wreck)
 "Td" = (
@@ -765,6 +773,7 @@
 	dir = 8
 	},
 /obj/structure/railing/grey,
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc_wreck)
 "TC" = (
@@ -824,6 +833,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc_wreck)
 "Wv" = (

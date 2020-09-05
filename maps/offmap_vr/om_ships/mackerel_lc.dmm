@@ -59,10 +59,6 @@
 /obj/machinery/atmospherics/pipe/manifold/visible/yellow,
 /turf/simulated/floor/plating,
 /area/shuttle/mackerel_lc)
-"fC" = (
-/obj/structure/grille,
-/turf/simulated/floor/airless,
-/area/shuttle/mackerel_lc)
 "fD" = (
 /obj/structure/handrail{
 	dir = 4
@@ -130,12 +126,10 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 4
 	},
-/obj/structure/closet/crate{
-	dir = 2
-	},
 /obj/structure/railing/grey{
 	dir = 1
 	},
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc)
 "lC" = (
@@ -157,10 +151,8 @@
 	icon_state = "extinguisher_closed";
 	pixel_x = 30
 	},
-/obj/structure/closet/crate{
-	dir = 2
-	},
 /obj/structure/railing/grey,
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc)
 "mf" = (
@@ -242,12 +234,10 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 1
 	},
-/obj/structure/closet/crate{
-	dir = 1
-	},
 /obj/structure/railing/grey{
 	dir = 1
 	},
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc)
 "rr" = (
@@ -260,9 +250,8 @@
 	},
 /obj/structure/closet/walllocker/emerglocker/south,
 /obj/machinery/embedded_controller/radio/docking_port_multi{
-	child_names = list("Port Airlock Control","Starboard Airlock Control");
-	child_names_txt = list("Port Airlock Control","Starboard Airlock Control");
-	child_tags_txt = list("mackerel_lc_docking_port","mackerel_lc_docking_star");
+	child_names_txt = "Port Airlock Control;Starboard Airlock Control";
+	child_tags_txt = "mackerel_lc_docking_port;mackerel_lc_docking_star";
 	dir = 1;
 	id_tag = "mackerel_lc_docking";
 	pixel_y = -22
@@ -303,10 +292,8 @@
 	},
 /obj/effect/map_helper/airlock/sensor/int_sensor,
 /obj/effect/floor_decal/industrial/warning/corner,
-/obj/structure/closet/crate{
-	dir = 2
-	},
 /obj/structure/railing/grey,
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc)
 "sZ" = (
@@ -370,10 +357,8 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 8
 	},
-/obj/structure/closet/crate{
-	dir = 1
-	},
 /obj/structure/railing/grey,
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc)
 "wN" = (
@@ -439,10 +424,8 @@
 	icon_state = "extinguisher_closed";
 	pixel_x = -30
 	},
-/obj/structure/closet/crate{
-	dir = 1
-	},
 /obj/structure/railing/grey,
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc)
 "Da" = (
@@ -510,12 +493,10 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 1
 	},
-/obj/structure/closet/crate{
-	dir = 1
-	},
 /obj/structure/railing/grey{
 	dir = 1
 	},
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc)
 "FL" = (
@@ -565,10 +546,8 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/industrial/warning/corner,
-/obj/structure/closet/crate{
-	dir = 2
-	},
 /obj/structure/railing/grey,
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc)
 "Jq" = (
@@ -621,9 +600,7 @@
 /area/shuttle/mackerel_lc)
 "LW" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/closet/crate{
-	dir = 2
-	},
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc)
 "Nr" = (
@@ -671,9 +648,7 @@
 /area/shuttle/mackerel_lc)
 "Qu" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/closet/crate{
-	dir = 1
-	},
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc)
 "RB" = (
@@ -717,16 +692,11 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 4
 	},
-/obj/structure/closet/crate{
-	dir = 2
-	},
 /obj/structure/railing/grey{
 	dir = 1
 	},
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/tiled/techfloor,
-/area/shuttle/mackerel_lc)
-"SY" = (
-/turf/simulated/floor/airless,
 /area/shuttle/mackerel_lc)
 "Td" = (
 /obj/machinery/airlock_sensor{
@@ -736,10 +706,8 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 8
 	},
-/obj/structure/closet/crate{
-	dir = 1
-	},
 /obj/structure/railing/grey,
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc)
 "UY" = (
@@ -794,12 +762,10 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 1
 	},
-/obj/structure/closet/crate{
-	dir = 1
-	},
 /obj/structure/railing/grey{
 	dir = 1
 	},
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc)
 "Wv" = (
@@ -949,15 +915,15 @@ WP
 WP
 WP
 WP
-ka
-fC
-fC
-ka
 WP
-ka
-fC
-fC
-ka
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
 WP
 WP
 WP
@@ -974,15 +940,15 @@ WP
 WP
 WP
 WP
-SY
 WP
 WP
-SY
-WP
-SY
 WP
 WP
-SY
+WP
+WP
+WP
+WP
+WP
 WP
 WP
 WP
@@ -1224,15 +1190,15 @@ WP
 WP
 WP
 WP
-SY
 WP
 WP
-SY
-WP
-SY
 WP
 WP
-SY
+WP
+WP
+WP
+WP
+WP
 WP
 WP
 WP
@@ -1249,15 +1215,15 @@ WP
 WP
 WP
 WP
-ka
-fC
-fC
-ka
 WP
-ka
-fC
-fC
-ka
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
 WP
 WP
 WP
