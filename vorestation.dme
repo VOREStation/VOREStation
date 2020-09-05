@@ -1077,6 +1077,8 @@
 #include "code\game\objects\effects\map_effects\radiation_emitter.dm"
 #include "code\game\objects\effects\map_effects\screen_shaker.dm"
 #include "code\game\objects\effects\map_effects\sound_emitter.dm"
+#include "code\game\objects\effects\prop\columnblast.dm"
+#include "code\game\objects\effects\prop\snake.dm"
 #include "code\game\objects\effects\spawners\bombspawner.dm"
 #include "code\game\objects\effects\spawners\gibspawner.dm"
 #include "code\game\objects\effects\temporary_visuals\miscellaneous.dm"
