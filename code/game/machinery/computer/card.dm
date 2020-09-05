@@ -26,7 +26,7 @@
 	var/list/formatted = list()
 	for(var/job in jobs)
 		formatted.Add(list(list(
-			"display_name" = replacetext(job, " ", "&nbsp"),
+			"display_name" = replacetext(job, " ", "&nbsp;"),
 			"target_rank" = get_target_rank(),
 			"job" = job)))
 
@@ -68,7 +68,7 @@
 		id_card.forceMove(src)
 		modify = id_card
 
-	SSnanoui.update_uis(src)
+	SStgui.update_uis(src)
 	attack_hand(user)
 
 /obj/machinery/computer/card/attack_ai(var/mob/user as mob)
@@ -77,20 +77,27 @@
 /obj/machinery/computer/card/attack_hand(mob/user as mob)
 	if(..()) return
 	if(stat & (NOPOWER|BROKEN)) return
-	ui_interact(user)
+	tgui_interact(user)
 
-/obj/machinery/computer/card/ui_interact(mob/user, ui_key="main", var/datum/nanoui/ui = null, var/force_open = 1)
-	user.set_machine(src)
+/obj/machinery/computer/card/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "IdentificationComputer", name)
+		ui.open()
 
+/obj/machinery/computer/card/tgui_static_data(mob/user)
+	var/list/data =  ..()
 	if(data_core)
 		data_core.get_manifest_list()
+	data["manifest"] = PDA_Manifest
+	return data
 
-	var/data[0]
-	data["src"] = "\ref[src]"
+/obj/machinery/computer/card/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
+
 	data["station_name"] = station_name()
 	data["mode"] = mode
 	data["printing"] = printing
-	data["manifest"] = PDA_Manifest
 	data["target_name"] = modify ? modify.name : "-----"
 	data["target_owner"] = modify && modify.registered_name ? modify.registered_name : "-----"
 	data["target_rank"] = get_target_rank()
@@ -110,27 +117,27 @@
 			continue
 		if(dept.centcom_only && !is_centcom())
 			continue
-		departments[++departments.len] = list("department_name" = dept.name, "jobs" = format_jobs(SSjob.get_job_titles_in_department(dept.name)) )
-
+		departments.Add(list(list(
+			"department_name" = dept.name,
+			"jobs" = format_jobs(SSjob.get_job_titles_in_department(dept.name))
+		)))
 	data["departments"] = departments
 
-	if (modify && is_centcom())
-		var/list/all_centcom_access = list()
+	var/list/all_centcom_access = list()
+	var/list/regions = list()
+	if(modify && is_centcom())
 		for(var/access in get_all_centcom_access())
 			all_centcom_access.Add(list(list(
-				"desc" = replacetext(get_centcom_access_desc(access), " ", "&nbsp"),
+				"desc" = replacetext(get_centcom_access_desc(access), " ", "&nbsp;"),
 				"ref" = access,
 				"allowed" = (access in modify.access) ? 1 : 0)))
-
-		data["all_centcom_access"] = all_centcom_access
-	else if (modify)
-		var/list/regions = list()
-		for(var/i = 1; i <= 7; i++)
+	else if(modify)
+		for(var/i in ACCESS_REGION_SECURITY to ACCESS_REGION_SUPPLY)
 			var/list/accesses = list()
 			for(var/access in get_region_accesses(i))
 				if (get_access_desc(access))
 					accesses.Add(list(list(
-						"desc" = replacetext(get_access_desc(access), " ", "&nbsp"),
+						"desc" = replacetext(get_access_desc(access), " ", "&nbsp;"),
 						"ref" = access,
 						"allowed" = (access in modify.access) ? 1 : 0)))
 
@@ -138,23 +145,20 @@
 				"name" = get_region_accesses_name(i),
 				"accesses" = accesses)))
 
-		data["regions"] = regions
+	data["regions"] = regions
+	data["all_centcom_access"] = all_centcom_access
 
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "identification_computer.tmpl", src.name, 600, 700)
-		ui.set_initial_data(data)
-		ui.open()
+	return data
 
-/obj/machinery/computer/card/Topic(href, href_list)
+/obj/machinery/computer/card/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
-		return 1
+		return TRUE
 
-	switch(href_list["choice"])
-		if ("modify")
-			if (modify)
+	switch(action)
+		if("modify")
+			if(modify)
 				data_core.manifest_modify(modify.registered_name, modify.assignment)
-				modify.name = text("[modify.registered_name]'s ID Card ([modify.assignment])")
+				modify.name = "[modify.registered_name]'s ID Card ([modify.assignment])"
 				if(ishuman(usr))
 					modify.forceMove(get_turf(src))
 					if(!usr.get_active_hand())
@@ -165,12 +169,13 @@
 					modify = null
 			else
 				var/obj/item/I = usr.get_active_hand()
-				if (istype(I, /obj/item/weapon/card/id) && usr.unEquip(I))
+				if(istype(I, /obj/item/weapon/card/id) && usr.unEquip(I))
 					I.forceMove(src)
 					modify = I
+			. = TRUE
 
-		if ("scan")
-			if (scan)
+		if("scan")
+			if(scan)
 				if(ishuman(usr))
 					scan.forceMove(get_turf(src))
 					if(!usr.get_active_hand())
@@ -181,25 +186,26 @@
 					scan = null
 			else
 				var/obj/item/I = usr.get_active_hand()
-				if (istype(I, /obj/item/weapon/card/id))
+				if(istype(I, /obj/item/weapon/card/id))
 					usr.drop_item()
 					I.forceMove(src)
 					scan = I
+			. = TRUE
 
 		if("access")
-			if(href_list["allowed"])
-				if(is_authenticated())
-					var/access_type = text2num(href_list["access_target"])
-					var/access_allowed = text2num(href_list["allowed"])
-					if(access_type in (is_centcom() ? get_all_centcom_access() : get_all_station_access()))
-						modify.access -= access_type
-						if(!access_allowed)
-							modify.access += access_type
-					modify.lost_access = list()	//VOREStation addition: reset the lost access upon any modifications
+			if(is_authenticated())
+				var/access_type = text2num(params["access_target"])
+				var/access_allowed = text2num(params["allowed"])
+				if(access_type in (is_centcom() ? get_all_centcom_access() : get_all_station_access()))
+					modify.access -= access_type
+					if(!access_allowed)
+						modify.access += access_type
+				modify.lost_access = list()	//VOREStation addition: reset the lost access upon any modifications
+			. = TRUE
 
-		if ("assign")
-			if (is_authenticated() && modify)
-				var/t1 = href_list["assign_target"]
+		if("assign")
+			if(is_authenticated() && modify)
+				var/t1 = params["assign_target"]
 				if(t1 == "Custom")
 					var/temp_t = sanitize(input("Enter a custom job assignment.","Assignment"), 45)
 					//let custom jobs function as an impromptu alt title, mainly for sechuds
@@ -222,44 +228,42 @@
 					modify.lost_access = list()	//VOREStation addition: reset the lost access upon any modifications
 
 				callHook("reassign_employee", list(modify))
+			. = TRUE
 
-		if ("reg")
-			if (is_authenticated())
-				var/t2 = modify
-				if ((modify == t2 && (in_range(src, usr) || (istype(usr, /mob/living/silicon))) && istype(loc, /turf)))
-					var/temp_name = sanitizeName(href_list["reg"])
-					if(temp_name)
-						modify.registered_name = temp_name
-					else
-						src.visible_message("<span class='notice'>[src] buzzes rudely.</span>")
-			SSnanoui.update_uis(src)
+		if("reg")
+			if(is_authenticated())
+				var/temp_name = sanitizeName(params["reg"])
+				if(temp_name)
+					modify.registered_name = temp_name
+				else
+					visible_message("<span class='notice'>[src] buzzes rudely.</span>")
+			. = TRUE
 
-		if ("account")
-			if (is_authenticated())
-				var/t2 = modify
-				if ((modify == t2 && (in_range(src, usr) || (istype(usr, /mob/living/silicon))) && istype(loc, /turf)))
-					var/account_num = text2num(href_list["account"])
-					modify.associated_account_number = account_num
-			SSnanoui.update_uis(src)
+		if("account")
+			if(is_authenticated())
+				var/account_num = text2num(params["account"])
+				modify.associated_account_number = account_num
+			. = TRUE
 
-		if ("mode")
-			mode = text2num(href_list["mode_target"])
+		if("mode")
+			mode = text2num(params["mode_target"])
+			. = TRUE
 
-		if ("print")
-			if (!printing)
+		if("print")
+			if(!printing)
 				printing = 1
 				spawn(50)
 					printing = null
-					SSnanoui.update_uis(src)
+					SStgui.update_uis(src)
 
 					var/obj/item/weapon/paper/P = new(loc)
-					if (mode)
+					if(mode)
 						P.name = text("crew manifest ([])", stationtime2text())
 						P.info = {"<h4>Crew Manifest</h4>
 							<br>
 							[data_core ? data_core.get_manifest(0) : ""]
 						"}
-					else if (modify)
+					else if(modify)
 						P.name = "access report"
 						P.info = {"<h4>Access Report</h4>
 							<u>Prepared By:</u> [scan.registered_name ? scan.registered_name : "Unknown"]<br>
@@ -273,19 +277,20 @@
 
 						for(var/A in modify.access)
 							P.info += "  [get_access_desc(A)]"
+				. = TRUE
 
-		if ("terminate")
-			if (is_authenticated())
+		if("terminate")
+			if(is_authenticated())
 				modify.assignment = "Dismissed"	//VOREStation Edit: setting adjustment
 				modify.access = list()
 				modify.lost_access = list()	//VOREStation addition: reset the lost access upon any modifications
 
 				callHook("terminate_employee", list(modify))
 
-	if (modify)
-		modify.name = text("[modify.registered_name]'s ID Card ([modify.assignment])")
+			. = TRUE
 
-	return 1
+	if(modify)
+		modify.name = "[modify.registered_name]'s ID Card ([modify.assignment])"
 
 /obj/machinery/computer/card/centcom
 	name = "\improper CentCom ID card modification console"

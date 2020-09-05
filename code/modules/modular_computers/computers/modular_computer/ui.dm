@@ -1,5 +1,10 @@
-// Operates NanoUI
-/obj/item/modular_computer/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+// Operates TGUI
+/obj/item/modular_computer/ui_assets(mob/user)
+	return list(
+		get_asset_datum(/datum/asset/simple/headers)
+	)
+
+/obj/item/modular_computer/tgui_interact(mob/user, datum/tgui/ui)
 	if(!screen_on || !enabled)
 		if(ui)
 			ui.close()
@@ -13,7 +18,7 @@
 	if(active_program)
 		if(ui) // This is the main laptop screen. Since we are switching to program's UI close it for now.
 			ui.close()
-		active_program.ui_interact(user)
+		active_program.tgui_interact(user)
 		return
 
 	// We are still here, that means there is no program loaded. Load the BIOS/ROM/OS/whatever you want to call it.
@@ -22,80 +27,100 @@
 		visible_message("\The [src] beeps three times, it's screen displaying \"DISK ERROR\" warning.")
 		return // No HDD, No HDD files list or no stored files. Something is very broken.
 
-	var/datum/computer_file/data/autorun = hard_drive.find_file_by_name("autorun")
-
-	var/list/data = get_header_data()
-
-	var/list/programs = list()
-	for(var/datum/computer_file/program/P in hard_drive.stored_files)
-		var/list/program = list()
-		program["name"] = P.filename
-		program["desc"] = P.filedesc
-		program["icon"] = P.program_menu_icon
-		program["autorun"] = (istype(autorun) && (autorun.stored_data == P.filename)) ? 1 : 0
-		if(P in idle_threads)
-			program["running"] = 1
-		programs.Add(list(program))
-
-	data["programs"] = programs
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "laptop_mainscreen.tmpl", "NTOS Main Menu", 400, 500)
-		ui.auto_update_layout = 1
-		ui.set_initial_data(data)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "NtosMain")
+		ui.set_autoupdate(TRUE)
 		ui.open()
-		ui.set_auto_update(1)
+
+/obj/item/modular_computer/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = get_header_data()
+	data["device_theme"] = device_theme
+
+	data["login"] = list()
+	var/obj/item/weapon/computer_hardware/card_slot/cardholder = card_slot
+	if(cardholder)
+		var/obj/item/weapon/card/id/stored_card = cardholder.stored_card
+		if(stored_card)
+			var/stored_name = stored_card.registered_name
+			var/stored_title = stored_card.assignment
+			if(!stored_name)
+				stored_name = "Unknown"
+			if(!stored_title)
+				stored_title = "Unknown"
+			data["login"] = list(
+				IDName = stored_name,
+				IDJob = stored_title,
+			)
+
+	data["removable_media"] = list()
+
+	var/datum/computer_file/data/autorun = hard_drive.find_file_by_name("autorun")
+	data["programs"] = list()
+	for(var/datum/computer_file/program/P in hard_drive.stored_files)
+		var/running = FALSE
+		if(P in idle_threads)
+			running = TRUE
+
+		data["programs"] += list(list(
+			"name" = P.filename,
+			"desc" = P.filedesc,
+			"icon" = P.program_menu_icon,
+			"running" = running,
+			"autorun" = (istype(autorun) && (autorun.stored_data == P.filename)) ? 1 : 0
+		))
+
+	data["has_light"] = FALSE // has_light
+	data["light_on"] = FALSE // light_on
+	data["comp_light_color"] = null // comp_light_color
+
+	return data
 
 // Handles user's GUI input
-/obj/item/modular_computer/Topic(href, href_list)
+/obj/item/modular_computer/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
-		return 1
-	if( href_list["PC_exit"] )
-		kill_program()
-		return 1
-	if( href_list["PC_enable_component"] )
-		var/obj/item/weapon/computer_hardware/H = find_hardware_by_name(href_list["PC_enable_component"])
-		if(H && istype(H) && !H.enabled)
-			H.enabled = 1
-		. = 1
-	if( href_list["PC_disable_component"] )
-		var/obj/item/weapon/computer_hardware/H = find_hardware_by_name(href_list["PC_disable_component"])
-		if(H && istype(H) && H.enabled)
-			H.enabled = 0
-		. = 1
-	if( href_list["PC_shutdown"] )
-		shutdown_computer()
-		return 1
-	if( href_list["PC_minimize"] )
-		var/mob/user = usr
-		minimize_program(user)
+		return TRUE
+	
+	switch(action)
+		if("PC_exit")
+			kill_program()
+			return TRUE
+		if("PC_shutdown")
+			shutdown_computer()
+			return TRUE
+		if("PC_minimize")
+			var/mob/user = usr
+			minimize_program(user)
+		if("PC_killprogram")
+			var/prog = params["name"]
+			var/datum/computer_file/program/P = null
+			var/mob/user = usr
+			if(hard_drive)
+				P = hard_drive.find_file_by_name(prog)
 
-	if( href_list["PC_killprogram"] )
-		var/prog = href_list["PC_killprogram"]
-		var/datum/computer_file/program/P = null
-		var/mob/user = usr
-		if(hard_drive)
-			P = hard_drive.find_file_by_name(prog)
+			if(!istype(P) || P.program_state == PROGRAM_STATE_KILLED)
+				return
 
-		if(!istype(P) || P.program_state == PROGRAM_STATE_KILLED)
+			P.kill_program(1)
+			to_chat(user, "<span class='notice'>Program [P.filename].[P.filetype] with PID [rand(100,999)] has been killed.</span>")
+			return TRUE
+		if("PC_runprogram")
+			return run_program(params["name"])
+		if("PC_setautorun")
+			if(!hard_drive)
+				return
+			set_autorun(params["name"])
+			return TRUE
+		if("PC_Eject_Disk")
+			var/param = params["name"]
+			switch(param)
+				if("ID")
+					proc_eject_id(usr)
+					return TRUE
+		else
 			return
 
-		P.kill_program(1)
-		update_uis()
-		to_chat(user, "<span class='notice'>Program [P.filename].[P.filetype] with PID [rand(100,999)] has been killed.</span>")
-
-	if( href_list["PC_runprogram"] )
-		return run_program(href_list["PC_runprogram"])
-
-	if( href_list["PC_setautorun"] )
-		if(!hard_drive)
-			return
-		set_autorun(href_list["PC_setautorun"])
-
-	if(.)
-		update_uis()
-
-// Function used by NanoUI's to obtain data for header. All relevant entries begin with "PC_"
+// Function used by TGUI's to obtain data for header. All relevant entries begin with "PC_"
 /obj/item/modular_computer/proc/get_header_data()
 	var/list/data = list()
 
