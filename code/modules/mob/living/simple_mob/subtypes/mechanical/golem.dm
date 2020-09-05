@@ -151,4 +151,3 @@
 /mob/living/simple_mob/mechanical/technomancer_golem/special_post_animation(atom/A)
 	casting = FALSE
 	ranged_post_animation(A)
->>>>>>> 2f8e96e... Increase a bunch of mobs MELEE AP power. (#7620)
