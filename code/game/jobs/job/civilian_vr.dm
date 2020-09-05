@@ -198,7 +198,7 @@
 	job_description = "An entertainer does just that, entertains! Put on plays, play music, sing songs, tell stories, or read your favorite fanfic."
 	alt_titles = list("Performer" = /datum/alt_title/performer, "Musician" = /datum/alt_title/musician, "Stagehand" = /datum/alt_title/stagehand,
 						"Actor" = /datum/alt_title/actor, "Dancer" = /datum/alt_title/dancer, "Singer" = /datum/alt_title/singer,
-						"Comedian" = /datum/alt_title/comedian, "Tragedian" = /datum/alt_title/tragedian)
+						"Magician" = /datum/alt_title/magician, "Comedian" = /datum/alt_title/comedian, "Tragedian" = /datum/alt_title/tragedian)
 
 // Entertainer Alt Titles
 /datum/alt_title/actor
@@ -224,6 +224,10 @@
 /datum/alt_title/singer
 	title = "Singer"
 	title_blurb = "A Singer is someone with gift of melodious voice! Impress people with your vocal range!"
+
+/datum/alt_title/magician
+	title = "Magician"
+	title_blurb = "A Magician is someone who awes those around them with impossible! Show off your repertoire of magic tricks, while keeping the secret hidden!"
 
 /datum/alt_title/comedian
 	title = "Comedian"
