@@ -36,11 +36,26 @@ const ResearchConsoleViewResearch = (props, context) => {
   );
 };
 
+const PaginationTitle = (props, context) => {
+  const { data } = useBackend(context);
+
+  const {
+    title,
+    target,
+  } = props;
+
+  let page = data[target];
+  if (typeof page === "number") {
+    return title + " - Page " + (page + 1);
+  }
+
+  return title;
+};
+
 const PaginationChevrons = (props, context) => {
   const { act } = useBackend(context);
 
   const {
-    length,
     target,
   } = props;
 
@@ -67,14 +82,14 @@ const ResearchConsoleViewDesigns = (props, context) => {
   } = data;
 
   return (
-    <Section title="Researched Technologies & Designs" buttons={
+    <Section title={<PaginationTitle title="Researched Technologies & Designs" target="design_page" />} buttons={
       <Fragment>
         <Button
           icon="print"
           onClick={() => act("print", { print: 2 })}>
           Print This Page
         </Button>
-        {<PaginationChevrons length={designs && designs.length} target={"design_page"} /> || null}
+        {<PaginationChevrons target={"design_page"} /> || null}
       </Fragment>
     }>
       <Input
@@ -213,15 +228,17 @@ const DataDisk = (props, context) => {
 
   if (saveDialog) {
     return (
-      <Section title="Load Design to Disk" buttons={
-        <Fragment>
-          <Button
-            icon="arrow-left"
-            content="Back"
-            onClick={() => setSaveDialog(false)} />
-          {<PaginationChevrons length={designs && designs.length} target={"design_page"} /> || null}
-        </Fragment>
-      }>
+      <Section 
+        title={<PaginationTitle title="Load Design to Disk" target="design_page" />}
+        buttons={
+          <Fragment>
+            <Button
+              icon="arrow-left"
+              content="Back"
+              onClick={() => setSaveDialog(false)} />
+            {<PaginationChevrons target={"design_page"} /> || null}
+          </Fragment>
+        }>
         <Input
           fluid
           placeholder="Search for..."
@@ -411,9 +428,11 @@ const ResearchConsoleBuildMenu = (props, context) => {
   }
 
   return (
-    <Section title="Designs" buttons={
-      <PaginationChevrons length={designs && designs.length} target={"builder_page"} />
-    }>
+    <Section
+      title={<PaginationTitle target="builder_page" title="Designs" />}
+      buttons={
+        <PaginationChevrons target={"builder_page"} />
+      }>
       <Input
         fluid
         placeholder="Search for..."
@@ -483,7 +502,7 @@ const ResearchConsoleConstructor = (props, context) => {
   if (!linked || !linked.present) {
     return (
       <Section title={name}>
-        No protolathe found.
+        No {name} found.
       </Section>
     );
   }

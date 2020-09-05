@@ -152,6 +152,18 @@ var/list/_client_preferences_by_type
 	key = "SOUND_AIRPUMP"
 	enabled_description = "Audible"
 	disabled_description = "Silent"
+	
+/datum/client_preference/old_door_sounds
+	description ="Old Door Sounds"
+	key = "SOUND_OLDDOORS"
+	enabled_description = "Old"
+	disabled_description = "New"
+
+/datum/client_preference/department_door_sounds
+	description ="Department-Specific Door Sounds"
+	key = "SOUND_DEPARTMENTDOORS"
+	enabled_description = "Enabled"
+	disabled_description = "Disabled"
 
 /datum/client_preference/pickup_sounds
 	description = "Picked Up Item Sounds"

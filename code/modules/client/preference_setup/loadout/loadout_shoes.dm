@@ -95,7 +95,7 @@
 
 /datum/gear/shoes/flipflops/New()
 	..()
-	gear_tweaks = list(gear_tweak_free_color_choice)
+	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/shoes/athletic
 	display_name = "athletic shoes"
@@ -103,7 +103,7 @@
 
 /datum/gear/shoes/athletic/New()
 	..()
-	gear_tweaks = list(gear_tweak_free_color_choice)
+	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/shoes/skater
 	display_name = "skater shoes"
@@ -111,7 +111,7 @@
 
 /datum/gear/shoes/skater/New()
 	..()
-	gear_tweaks = list(gear_tweak_free_color_choice)
+	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/shoes/flats
 	display_name = "flats"
@@ -119,7 +119,7 @@
 
 /datum/gear/shoes/flats/New()
 	..()
-	gear_tweaks = list(gear_tweak_free_color_choice)
+	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/shoes/cowboy
 	display_name = "cowboy boots"
@@ -157,7 +157,7 @@
 
 /datum/gear/shoes/heels/New()
 	..()
-	gear_tweaks = list(gear_tweak_free_color_choice)
+	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/shoes/slippers
 	display_name = "bunny slippers"

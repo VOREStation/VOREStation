@@ -39,3 +39,11 @@
 	containertype = /obj/structure/closet/crate/secure/engineering
 	containername = "Tesla Generator crate"
 	access = access_ce
+
+/datum/supply_pack/eng/inducer
+	contains = list(/obj/item/weapon/inducer = 3)
+	name = "inducer"
+	cost = 90	//Relatively expensive
+	containertype = /obj/structure/closet/crate/xion
+	containername = "Inducers crate"
+	access = access_engine

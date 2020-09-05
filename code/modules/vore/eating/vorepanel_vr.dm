@@ -271,6 +271,18 @@
 		if("bellypick")
 			host.vore_selected = locate(params["bellypick"])
 			return TRUE
+		if("move_belly")
+			var/dir = text2num(params["dir"])
+			if(LAZYLEN(host.vore_organs) <= 1)
+				to_chat(usr, "<span class='warning'>You can't sort bellies with only one belly to sort...</span>")
+				return TRUE
+
+			var/current_index = host.vore_organs.Find(host.vore_selected)
+			if(current_index)
+				var/new_index = clamp(current_index + dir, 1, LAZYLEN(host.vore_organs))
+				host.vore_organs.Swap(current_index, new_index)
+				unsaved_changes = TRUE
+			return TRUE
 
 		if("set_attribute")
 			return set_attr(usr, params)

@@ -390,6 +390,9 @@
 /mob/proc/Post_Incorpmove()
 	return
 
+/mob/proc/get_jetpack()
+	return
+
 ///Process_Spacemove
 ///Called by /client/Move()
 ///For moving in space

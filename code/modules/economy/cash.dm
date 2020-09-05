@@ -1,5 +1,6 @@
 /obj/item/weapon/spacecash
 	name = "0 Thaler"
+	var/initial_name = "Thaler"
 	desc = "It's worth 0 Thalers."
 	gender = PLURAL
 	icon = 'icons/obj/items.dmi'
@@ -31,15 +32,15 @@
 			h_user.drop_from_inventory(src)
 			h_user.drop_from_inventory(SC)
 			h_user.put_in_hands(SC)
-		to_chat(user, "<span class='notice'>You combine the Thalers to a bundle of [SC.worth] Thalers.</span>")
+		to_chat(user, "<span class='notice'>You combine the [initial_name]s to a bundle of [SC.worth] [initial_name]s.</span>")
 		qdel(src)
 
 /obj/item/weapon/spacecash/update_icon()
 	overlays.Cut()
-	name = "[worth] Thaler\s"
+	name = "[worth] [initial_name]\s"
 	if(worth in list(1000,500,200,100,50,20,10,1))
 		icon_state = "spacecash[worth]"
-		desc = "It's worth [worth] Thalers."
+		desc = "It's worth [worth] [initial_name]s."
 		return
 	var/sum = src.worth
 	var/num = 0
@@ -60,7 +61,7 @@
 		M.Turn(pick(-45, -27.5, 0, 0, 0, 0, 0, 0, 0, 27.5, 45))
 		banknote.transform = M
 		src.overlays += banknote
-	src.desc = "They are worth [worth] Thalers."
+	src.desc = "They are worth [worth] [initial_name]s."
 
 /obj/item/weapon/spacecash/proc/adjust_worth(var/adjust_worth = 0, var/update = 1)
 	worth += adjust_worth
@@ -79,7 +80,7 @@
 	return worth
 
 /obj/item/weapon/spacecash/attack_self()
-	var/amount = input(usr, "How many Thalers do you want to take? (0 to [src.worth])", "Take Money", 20) as num
+	var/amount = input(usr, "How many [initial_name]s do you want to take? (0 to [src.worth])", "Take Money", 20) as num
 	if(!src || QDELETED(src))
 		return
 	amount = round(CLAMP(amount, 0, src.worth))
@@ -150,6 +151,7 @@ proc/spawn_money(var/sum, spawnloc, mob/living/carbon/human/human_user as mob)
 
 /obj/item/weapon/spacecash/ewallet
 	name = "charge card"
+	initial_name = "charge card"
 	icon_state = "efundcard"
 	desc = "A card that holds an amount of money."
 	drop_sound = 'sound/items/drop/card.ogg'

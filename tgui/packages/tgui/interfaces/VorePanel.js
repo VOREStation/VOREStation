@@ -226,7 +226,20 @@ const VoreSelectedBelly = (props, context) => {
       </Tabs>
       {tabIndex === 0 && (
         <LabeledList>
-          <LabeledList.Item label="Name">
+          <LabeledList.Item label="Name" buttons={
+            <Fragment>
+              <Button
+                icon="arrow-left"
+                tooltipPosition="left"
+                tooltip="Move this belly tab left."
+                onClick={() => act("move_belly", { dir: -1 })} />
+              <Button
+                icon="arrow-right"
+                tooltipPosition="left"
+                tooltip="Move this belly tab right."
+                onClick={() => act("move_belly", { dir: 1 })} />
+            </Fragment>
+          }>
             <Button
               onClick={() => act("set_attribute", { attribute: "b_name" })}
               content={belly_name} />
