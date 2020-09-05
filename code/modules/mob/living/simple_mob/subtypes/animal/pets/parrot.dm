@@ -250,5 +250,4 @@
 	if(holder.stat || !holder.say_list || !message || speaker == holder)
 		return
 	var/datum/say_list/S = holder.say_list
->>>>>>> 2f8e96e... Increase a bunch of mobs MELEE AP power. (#7620)
 	S.speak |= message
