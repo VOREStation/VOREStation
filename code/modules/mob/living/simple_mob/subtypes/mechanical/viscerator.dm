@@ -87,3 +87,9 @@
 		if(istype(L, /mob/living/simple_mob/mechanical/ward/monitor/crew))	// Also ignore friendly monitor wards
 			return TRUE
 		return L.assess_perp(src, FALSE, FALSE, TRUE, FALSE) <= 3
+
+// Variant that has high armor pen. Slightly slower attack speed and movement. Meant to be dispersed in groups with other ones
+/mob/living/simple_mob/mechanical/viscerator/piercing.
+	attack_armor_pen = 20
+	base_attack_cooldown = 10 // One attack a second or so.
+	movement_cooldown = 0.5
