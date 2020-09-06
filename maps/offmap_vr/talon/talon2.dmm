@@ -257,7 +257,9 @@
 	icon_state = "bulb1"
 	},
 /obj/structure/closet/secure_closet/talon_captain,
-/obj/item/device/radio/off,
+/obj/item/device/radio/off{
+	channels = list("Talon" = 1)
+	},
 /turf/simulated/floor/wood,
 /area/talon/decktwo/cap_room)
 "aM" = (
@@ -453,7 +455,9 @@
 	dir = 1
 	},
 /obj/structure/closet/secure_closet/talon_engineer,
-/obj/item/device/radio/off,
+/obj/item/device/radio/off{
+	channels = list("Talon" = 1)
+	},
 /turf/simulated/floor/wood,
 /area/talon/decktwo/eng_room)
 "bg" = (
@@ -461,7 +465,9 @@
 	dir = 1
 	},
 /obj/structure/closet/secure_closet/talon_pilot,
-/obj/item/device/radio/off,
+/obj/item/device/radio/off{
+	channels = list("Talon" = 1)
+	},
 /turf/simulated/floor/wood,
 /area/talon/decktwo/pilot_room)
 "bh" = (
@@ -625,7 +631,9 @@
 	dir = 1
 	},
 /obj/structure/closet/secure_closet/talon_doctor,
-/obj/item/device/radio/off,
+/obj/item/device/radio/off{
+	channels = list("Talon" = 1)
+	},
 /turf/simulated/floor/wood,
 /area/talon/decktwo/med_room)
 "bx" = (
@@ -649,7 +657,9 @@
 	dir = 1
 	},
 /obj/structure/closet/secure_closet/talon_guard,
-/obj/item/device/radio/off,
+/obj/item/device/radio/off{
+	channels = list("Talon" = 1)
+	},
 /turf/simulated/floor/wood,
 /area/talon/decktwo/sec_room)
 "bz" = (
@@ -729,13 +739,8 @@
 	},
 /obj/structure/catwalk,
 /obj/machinery/alarm/talon{
-	alarm_id = "anomaly_testing";
-	breach_detection = 0;
 	dir = 8;
-	frequency = 1439;
-	pixel_x = 22;
-	pixel_y = 0;
-	report_danger_level = 0
+	pixel_x = 22
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/decktwo_port)
@@ -796,13 +801,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/alarm/talon{
-	alarm_id = "anomaly_testing";
-	breach_detection = 0;
 	dir = 8;
-	frequency = 1439;
-	pixel_x = 22;
-	pixel_y = 0;
-	report_danger_level = 0
+	pixel_x = 22
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/decktwo_port)
