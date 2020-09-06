@@ -2931,6 +2931,38 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/surface_two_hall)
+"afJ" = (
+/obj/item/modular_computer/console/preset/engineering{
+	icon_state = "console";
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark,
+/area/engineering/lower/breakroom)
+"afK" = (
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 1;
+	icon_state = "borderfloor";
+	pixel_y = 0
+	},
+/obj/effect/floor_decal/corner/yellow/border{
+	dir = 1;
+	icon_state = "bordercolor"
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/yellow/bordercorner2{
+	dir = 4;
+	icon_state = "bordercolorcorner2"
+	},
+/obj/item/modular_computer/console/preset/engineering,
+/turf/simulated/floor/tiled,
+/area/engineering/atmos/monitoring)
 "afL" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
@@ -3079,6 +3111,43 @@
 /obj/structure/window/basic,
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/surface_two_hall)
+"afZ" = (
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	pixel_x = 28
+	},
+/obj/structure/cable/cyan{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/yellow/border{
+	dir = 5;
+	icon_state = "bordercolor"
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/modular_computer/console/preset/engineering,
+/turf/simulated/floor/tiled,
+/area/engineering/atmos/monitoring)
+"aga" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/yellow/border{
+	dir = 8;
+	icon_state = "bordercolor"
+	},
+/obj/item/modular_computer/console/preset/engineering{
+	icon_state = "console";
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/engineering/atmos/monitoring)
 "agb" = (
 /obj/effect/floor_decal/techfloor/orange{
 	dir = 8
@@ -3111,6 +3180,20 @@
 "age" = (
 /turf/simulated/wall,
 /area/tether/surfacebase/north_staires_two)
+"agf" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/yellow/border{
+	dir = 10;
+	icon_state = "bordercolor"
+	},
+/obj/item/modular_computer/console/preset/engineering{
+	icon_state = "console";
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/engineering/atmos/monitoring)
 "agg" = (
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/techmaint,
@@ -3240,6 +3323,18 @@
 	},
 /turf/simulated/open,
 /area/tether/surfacebase/surface_two_hall)
+"agy" = (
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/yellow/border,
+/obj/machinery/camera/network/engineering{
+	dir = 1
+	},
+/obj/item/modular_computer/console/preset/engineering{
+	icon_state = "console";
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/engineering/atmos/monitoring)
 "agz" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -10089,13 +10184,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/lower/lobby)
-"atX" = (
-/obj/machinery/computer/station_alert{
-	dir = 4;
-	icon_state = "computer"
-	},
-/turf/simulated/floor/tiled/dark,
-/area/engineering/lower/breakroom)
 "atY" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/wood,
@@ -14803,54 +14891,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/atmos/monitoring)
-"aBI" = (
-/obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/effect/floor_decal/borderfloor{
-	dir = 1;
-	icon_state = "borderfloor";
-	pixel_y = 0
-	},
-/obj/effect/floor_decal/corner/yellow/border{
-	dir = 1;
-	icon_state = "bordercolor"
-	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/yellow/bordercorner2{
-	dir = 4;
-	icon_state = "bordercolorcorner2"
-	},
-/obj/machinery/computer/power_monitor,
-/turf/simulated/floor/tiled,
-/area/engineering/atmos/monitoring)
-"aBJ" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "east bump";
-	pixel_x = 28
-	},
-/obj/structure/cable/cyan{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/obj/effect/floor_decal/borderfloor{
-	dir = 5
-	},
-/obj/effect/floor_decal/corner/yellow/border{
-	dir = 5;
-	icon_state = "bordercolor"
-	},
-/obj/machinery/computer/rcon,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/simulated/floor/tiled,
-/area/engineering/atmos/monitoring)
 "aBK" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/zpipe/down{
@@ -15010,20 +15050,6 @@
 	},
 /turf/simulated/open,
 /area/engineering/atmos)
-"aCd" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 8
-	},
-/obj/effect/floor_decal/corner/yellow/border{
-	dir = 8;
-	icon_state = "bordercolor"
-	},
-/obj/machinery/computer/atmoscontrol{
-	dir = 4;
-	icon_state = "computer"
-	},
-/turf/simulated/floor/tiled,
-/area/engineering/atmos/monitoring)
 "aCe" = (
 /obj/structure/bed/chair/office/light{
 	dir = 8
@@ -15671,19 +15697,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/drone_fabrication)
-"aDw" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 10
-	},
-/obj/effect/floor_decal/corner/yellow/border{
-	dir = 10;
-	icon_state = "bordercolor"
-	},
-/obj/machinery/computer/station_alert{
-	dir = 1
-	},
-/turf/simulated/floor/tiled,
-/area/engineering/atmos/monitoring)
 "aDx" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 4
@@ -21310,18 +21323,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
-"aOW" = (
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/corner/yellow/border,
-/obj/machinery/computer/atmos_alert{
-	dir = 1;
-	icon_state = "computer"
-	},
-/obj/machinery/camera/network/engineering{
-	dir = 1
-	},
-/turf/simulated/floor/tiled,
-/area/engineering/atmos/monitoring)
 "aOX" = (
 /obj/structure/catwalk,
 /obj/machinery/camera/network/engineering{
@@ -40500,7 +40501,7 @@ azv
 aAp
 aBb
 aGS
-aCd
+aga
 aCB
 aDd
 aBc
@@ -40645,7 +40646,7 @@ ave
 aCe
 aCC
 aDe
-aDw
+agf
 aBc
 aAX
 aAX
@@ -40787,7 +40788,7 @@ aBH
 aCf
 aCD
 aDf
-aOW
+agy
 aBc
 aAX
 aAX
@@ -40925,7 +40926,7 @@ ayL
 azy
 aAs
 aBc
-aBI
+afK
 aCg
 aCE
 aDg
@@ -41067,7 +41068,7 @@ avK
 azz
 aAt
 aBb
-aBJ
+afZ
 aCh
 aCF
 aDh
@@ -41340,7 +41341,7 @@ arg
 arO
 asI
 atn
-atX
+afJ
 auG
 avf
 avM
