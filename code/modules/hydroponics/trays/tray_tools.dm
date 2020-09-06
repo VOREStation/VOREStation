@@ -19,6 +19,10 @@
 	var/datum/seed/last_seed
 	var/list/last_reagents
 
+/obj/item/device/analyzer/plant_analyzer/Destroy()
+	. = ..()
+	QDEL_NULL(last_seed)
+
 /obj/item/device/analyzer/plant_analyzer/attack_self(mob/user)
 	tgui_interact(user)
 
@@ -34,7 +38,7 @@
 /obj/item/device/analyzer/plant_analyzer/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
 
-	var/datum/seed/grown_seed = locate(last_seed)
+	var/datum/seed/grown_seed = last_seed
 	if(!istype(grown_seed))
 		return list("no_seed" = TRUE)
 
@@ -95,7 +99,9 @@
 		to_chat(user, "<span class='danger'>[src] can tell you nothing about \the [target].</span>")
 		return
 
-	last_seed = REF(grown_seed)
+	last_seed = grown_seed.diverge()
+	if(!istype(last_seed))
+		last_seed = grown_seed // TRAIT_IMMUTABLE makes diverge() return null
 
 	user.visible_message("<span class='notice'>[user] runs the scanner over \the [target].</span>")
 
@@ -119,7 +125,7 @@
 	print_report(usr)
 
 /obj/item/device/analyzer/plant_analyzer/proc/print_report(var/mob/living/user)
-	var/datum/seed/grown_seed = locate(last_seed)
+	var/datum/seed/grown_seed = last_seed
 	if(!istype(grown_seed))
 		to_chat(user, "<span class='warning'>There is no scan data to print.</span>")
 		return
