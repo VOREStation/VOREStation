@@ -43,6 +43,21 @@
 
 // Ears avaliable to anyone
 
+/datum/sprite_accessory/ears/hyena
+	name = "hyena ears, dual-color"
+	desc = ""
+	icon_state = "hyena"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "hyena-inner"
+
+/datum/sprite_accessory/ears/moth
+	name = "moth antennae"
+	desc = ""
+	icon_state = "moth"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/ears/squirrel_orange
 	name = "squirel, orange"
 	desc = ""
