@@ -37,19 +37,19 @@
 	has_gravity = 0
 
 /area/shuttle/gecko_cr	
-	name = "\improper Gecko Cargo Hauler"
+	name = "\improper Gecko Cargo Hauler Bay"
 	icon_state = "green"
 	requires_power = 1
 	has_gravity = 0
 
 /area/shuttle/gecko_cr_engineering
-	name = "\improper Gecko Cargo Hauler Engineering"
+	name = "\improper Gecko Cargo Hauler Aft"
 	icon_state = "yellow"
 	requires_power = 1
 	has_gravity = 0
 
 /area/shuttle/gecko_cr_cockpit
-	name = "\improper Gecko Cargo Hauler Cockpit"
+	name = "\improper Gecko Cargo Hauler Fore"
 	icon_state = "purple"
 	requires_power = 1
 	has_gravity = 0

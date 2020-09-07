@@ -55,7 +55,7 @@
 	},
 /obj/structure/window/reinforced,
 /obj/machinery/door/window,
-/obj/random/multiple/large_corp_crate,
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc)
 "cv" = (
@@ -293,7 +293,7 @@
 	},
 /obj/structure/window/reinforced,
 /obj/machinery/door/window,
-/obj/random/multiple/large_corp_crate,
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc)
 "uR" = (
@@ -408,7 +408,7 @@
 	},
 /obj/structure/window/reinforced,
 /obj/machinery/door/window,
-/obj/random/multiple/large_corp_crate,
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc)
 "Dh" = (
@@ -436,7 +436,7 @@
 	dir = 1
 	},
 /obj/machinery/door/window,
-/obj/random/multiple/large_corp_crate,
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc)
 "EK" = (
@@ -497,7 +497,7 @@
 	},
 /obj/structure/window/reinforced,
 /obj/machinery/door/window/westright,
-/obj/random/multiple/large_corp_crate,
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc)
 "GF" = (
@@ -529,7 +529,7 @@
 	dir = 1
 	},
 /obj/machinery/door/window/westright,
-/obj/random/multiple/large_corp_crate,
+/obj/random/multiple/corp_crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc)
 "JG" = (
@@ -721,6 +721,19 @@
 /area/shuttle/mackerel_hc)
 "So" = (
 /turf/simulated/floor/tiled/techmaint,
+/area/shuttle/mackerel_hc)
+"Sp" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/obj/machinery/door/window/westright,
+/obj/random/multiple/corp_crate,
+/turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc)
 "SU" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
@@ -1183,14 +1196,14 @@ Ko
 gU
 xB
 oq
-Wv
+Sp
 Gm
 Jq
 PI
 Wv
 TG
 Mv
-Wv
+Sp
 tL
 bh
 PY
