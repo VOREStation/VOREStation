@@ -887,6 +887,13 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/bridge)
+"iB" = (
+/obj/machinery/alarm/alarms_hidden{
+	dir = 1;
+	pixel_y = -26
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/ship/ert/engineering)
 "iC" = (
 /obj/item/device/healthanalyzer/advanced,
 /obj/item/device/healthanalyzer/advanced,
@@ -1007,6 +1014,12 @@
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/mech_bay)
+"km" = (
+/obj/effect/floor_decal/corner/white{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/ert/med)
 "kn" = (
 /obj/structure/table/rack/steel,
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/explosive,
@@ -1447,7 +1460,8 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
-/turf/simulated/floor/tiled/techmaint,
+/obj/effect/catwalk_plated,
+/turf/simulated/floor/plating,
 /area/ship/ert/barracks)
 "nl" = (
 /obj/structure/grille,
@@ -3338,6 +3352,12 @@
 /obj/machinery/shieldgen,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/eng_storage)
+"Bo" = (
+/obj/machinery/alarm/alarms_hidden{
+	pixel_y = 26
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/ship/ert/engineering)
 "Bp" = (
 /obj/structure/table/rack/steel,
 /obj/item/weapon/gun/projectile/automatic/z8,
@@ -4878,6 +4898,12 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/engineering)
+"Nd" = (
+/obj/effect/floor_decal/corner/white{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/ert/med)
 "Nf" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
@@ -5394,7 +5420,8 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
-/turf/simulated/floor/tiled/techmaint,
+/obj/effect/catwalk_plated,
+/turf/simulated/floor/plating,
 /area/ship/ert/eng_storage)
 "PG" = (
 /obj/machinery/alarm/alarms_hidden{
@@ -5713,7 +5740,8 @@
 "Sp" = (
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
-/turf/simulated/floor/tiled/techmaint,
+/obj/effect/catwalk_plated,
+/turf/simulated/floor/plating,
 /area/ship/ert/med)
 "Sr" = (
 /obj/machinery/light/no_nightshift,
@@ -5927,6 +5955,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
 	},
+/obj/machinery/alarm/alarms_hidden{
+	pixel_y = 26
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/teleporter)
 "UH" = (
@@ -6000,7 +6031,9 @@
 /turf/simulated/floor/reinforced,
 /area/ship/ert/hangar)
 "VB" = (
-/obj/machinery/ntnet_relay,
+/obj/machinery/firealarm/alarms_hidden{
+	pixel_y = 26
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/teleporter)
 "VC" = (
@@ -6214,7 +6247,8 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/techmaint,
+/obj/effect/catwalk_plated,
+/turf/simulated/floor/plating,
 /area/ship/ert/barracks)
 "Xg" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -6239,6 +6273,7 @@
 /obj/machinery/light/no_nightshift{
 	dir = 8
 	},
+/obj/machinery/ntnet_relay,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/teleporter)
 "XB" = (
@@ -13815,7 +13850,7 @@ ZL
 XW
 XW
 XW
-lu
+Bo
 XW
 sp
 sp
@@ -13831,7 +13866,7 @@ Mm
 Mm
 Mm
 XW
-lu
+iB
 XW
 XW
 XW
@@ -18093,7 +18128,7 @@ sP
 qA
 oQ
 dx
-Pq
+Nd
 Pq
 kx
 TU
@@ -18519,7 +18554,7 @@ tE
 OZ
 Cq
 tg
-Pq
+km
 Pq
 kx
 TU
