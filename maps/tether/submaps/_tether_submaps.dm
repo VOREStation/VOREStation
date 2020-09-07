@@ -331,6 +331,7 @@
 #include "../../submaps/admin_use_vr/spa.dmm"
 #endif
 
+#include "../../submaps/admin_use_vr/ert.dm"
 #include "../../submaps/admin_use_vr/fun.dm"
 /datum/map_template/tether_lateload/fun/spa
 	name = "Space Spa"

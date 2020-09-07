@@ -8,7 +8,7 @@
 /datum/map_template/om_ships/ert_ship
 	name = "OM Ship - ERT Ship (New Z)"
 	desc = "NT Emergency Response Ship."
-	mappath = 'ertship.dmm'
+	mappath = 'ert.dmm'
 
 	// The ship's area(s)
 /area/ship/ert
@@ -19,36 +19,72 @@
 
 /area/ship/ert/engineering
 	name = "\improper NRV Von Braun - Engineering"
-/area/ship/ert/engineeringcntrl
-	name = "\improper NRV Von Braun - Engineering Power Room"
+	icon_state = "engineering"
+	
+/area/ship/ert/eng_storage
+	name = "\improper NRV Von Braun - Engineering Storage"
+	icon_state = "storage"
+
 /area/ship/ert/bridge
 	name = "\improper NRV Von Braun - Bridge"
+	icon_state = "centcom_command"
+
 /area/ship/ert/atmos
 	name = "\improper NRV Von Braun - Atmospherics"
-/area/ship/ert/engine
+	icon_state = "atmos"
+                                   
+/area/ship/ert/mech_bay
 	name = "\improper NRV Von Braun - RIG & Mech Bay"
-/area/ship/ert/engine1
-	name = "\improper NRV Von Braun - Engine"
-/area/ship/ert/armoury_en
-	name = "\improper NRV Von Braun - Energy Armoury"
-/area/ship/ert/armoury_bl
-	name = "\improper NRV Von Braun - Ballistics Armoury"
+	icon_state = "yellow"
+
+/area/ship/ert/armoury_st
+	name = "\improper NRV Von Braun - Standard Armoury"
+	icon_state = "security"
+
+/area/ship/ert/armoury_dl
+	name = "\improper NRV Von Braun - Delta Armoury"
+	icon_state = "darkred"
+
 /area/ship/ert/hangar
 	name = "\improper NRV Von Braun - Hangar"
+	icon_state = "hangar"
+
 /area/ship/ert/barracks
 	name = "\improper NRV Von Braun - Barracks"
+	icon_state = "centcom_crew"
+
 /area/ship/ert/med
 	name = "\improper NRV Von Braun - Medical"
-/area/ship/ert/med1
+	icon_state = "centcom_medical"
+
+/area/ship/ert/med_surg
 	name = "\improper NRV Von Braun - Surgery"
-/area/ship/ert/hall1
-	name = "\improper NRV Von Braun - Corridor"
-/area/ship/ert/hall2
-	name = "\improper NRV Von Braun - Corridor"
-/area/ship/ert/southairlock
+	icon_state = "surgery"
+
+/area/ship/ert/hallways
+	name = "\improper NRV Von Braun - Corridors"
+	icon_state = "centcom_Hallway"
+
+/area/ship/ert/dock_star
 	name = "\improper NRV Von Braun - Starboard Airlock"
-/area/ship/ert/northairlock
+	icon_state = "exit"
+
+/area/ship/ert/dock_port
 	name = "\improper NRV Von Braun - Port Airlock"
+	icon_state = "exit"
+
+/area/ship/ert/teleporter
+	name = "\improper NRV Von Braun - Teleporter"
+	icon_state = "teleporter"
+
+/area/ship/ert/commander
+	name = "\improper NRV Von Braun - Commander's Room"
+	icon_state = "head_quarters"
+
+/area/shuttle/ert_ship_boat
+	name = "\improper NRB Robineau"
+	icon_state = "yellow"
+	requires_power = 0
 
 // The 'shuttle' of the excursion shuttle
 // /datum/shuttle/autodock/overmap/ert_ship
@@ -70,15 +106,19 @@
 	color = "#9999ff" //Red
 	vessel_mass = 8000
 	vessel_size = SHIP_SIZE_LARGE
-	initial_generic_waypoints = list("ert_ship_fore", "ert_ship_aft", "ert_ship_port", "ert_ship_starboard", "ert_ship_base_dock")
+	initial_generic_waypoints = list("ert_ship_fore", "ert_ship_aft", "ert_ship_port", "ert_ship_star", "ert_ship_base_dock")
 	initial_restricted_waypoints = list("NRB Von Braun's Bay" = list("omship_spawn_ert_lander"))
 
+/obj/effect/landmark/map_data/ert_ship
+    height = 1
 
-//The boat's area
-/area/shuttle/ert_ship_boat
-	name = "\improper Carrier's Ship's Boat"
-	icon_state = "yellow"
-	requires_power = 0
+/obj/effect/shuttle_landmark/premade/ert_ship_port
+	name = "NRV Von Braun - Port Airlock"
+	landmark_tag = "ert_ship_port"
+
+/obj/effect/shuttle_landmark/premade/ert_ship_star
+	name = "NRV Von Braun - Starboard Airlock"
+	landmark_tag = "ert_ship_star"
 
 // The shuttle's 'shuttle' computer
 /obj/machinery/computer/shuttle_control/explore/ert_ship_boat
@@ -92,7 +132,7 @@
 	base_turf = /turf/simulated/floor/plating
 	landmark_tag = "omship_spawn_ert_lander"
 	docking_controller = "ert_boarding_shuttle_dock"
-	shuttle_type = /datum/shuttle/autodock/overmap/mercboat
+	shuttle_type = /datum/shuttle/autodock/overmap/ert_ship_boat
 
 // The 'shuttle'
 /datum/shuttle/autodock/overmap/ert_ship_boat
