@@ -98,19 +98,20 @@
 // The 'ship'
 /obj/effect/overmap/visitable/ship/ert_ship
 	name = "NRV Von Braun"
-	desc = "Spacefaring vessel. Broadcasting Emergency Response IFF."
+	desc = "Spacefaring vessel. Broadcasting Corporate Emergency Responder IFF."
 	scanner_desc = @{"[i]Registration[/i]: Nanotrasen Rapid Response Vessel [i]Von Braun[/i]
 [i]Class[/i]: [i]Kepler[/i]-class Frigate
-[i]Transponder[/i]: Broadcasting
+[i]Transponder[/i]: Broadcasting (ER-CORP)
 [b]Notice[/b]: Impeding or interfering with emergency response vessels is a breach of numerous interstellar codes. Approach with caution."}
-	color = "#9999ff" //Red
+	color = "#9999ff" //Blue
 	vessel_mass = 8000
 	vessel_size = SHIP_SIZE_LARGE
-	initial_generic_waypoints = list("ert_ship_fore", "ert_ship_aft", "ert_ship_port", "ert_ship_star", "ert_ship_base_dock")
-	initial_restricted_waypoints = list("NRB Von Braun's Bay" = list("omship_spawn_ert_lander"))
+	fore_dir = EAST
+	initial_generic_waypoints = list("ert_ship_near_fore", "ert_ship_near_aft", "ert_ship_near_port", "ert_ship_near_star", "ert_ship_port", "ert_ship_star", "ert_ship_base_dock", "omship_spawn_ert_lander")
+//	initial_restricted_waypoints = list("NRV Von Braun's Bay" = list("omship_spawn_ert_lander"))
 
 /obj/effect/landmark/map_data/ert_ship
-    height = 1
+	height = 1
 
 /obj/effect/shuttle_landmark/premade/ert_ship_port
 	name = "NRV Von Braun - Port Airlock"
@@ -119,6 +120,22 @@
 /obj/effect/shuttle_landmark/premade/ert_ship_star
 	name = "NRV Von Braun - Starboard Airlock"
 	landmark_tag = "ert_ship_star"
+
+/obj/effect/shuttle_landmark/premade/ert_ship_near_fore
+	name = "Near NRV Von Braun (Fore)"
+	landmark_tag = "ert_ship_near_fore"
+
+/obj/effect/shuttle_landmark/premade/ert_ship_near_aft
+	name = "Near NRV Von Braun (Aft)"
+	landmark_tag = "ert_ship_near_aft"
+
+/obj/effect/shuttle_landmark/premade/ert_ship_near_port
+	name = "Near NRV Von Braun (Port)"
+	landmark_tag = "ert_ship_near_port"
+
+/obj/effect/shuttle_landmark/premade/ert_ship_near_star
+	name = "Near NRV Von Braun (Starboard)"
+	landmark_tag = "ert_ship_near_star"
 
 // The shuttle's 'shuttle' computer
 /obj/machinery/computer/shuttle_control/explore/ert_ship_boat
@@ -142,3 +159,24 @@
 	shuttle_area = /area/shuttle/ert_ship_boat
 	fuel_consumption = 0
 	defer_initialisation = TRUE
+
+/obj/machinery/cryopod/ert_ship
+	announce_channel = "Response Team"
+	on_store_message = "has entered cryogenic storage."
+	on_store_name = "NRV Von Braun Cryo"
+	on_enter_visible_message = "starts climbing into the"
+	on_enter_occupant_message = "You feel cool air surround you. You go numb as your senses turn inward."
+	on_store_visible_message_1 = "hums and hisses as it moves"
+	on_store_visible_message_2 = "into cryogenic storage."
+	
+//Misc Stuff
+/obj/item/weapon/paper/ert_armory_cells
+	name = "ERT Armory Cell Supply"
+	info = {"To All Current ERT Members,<br>\
+All energy weapons here come installed with standard power cells, but the spares on the racks are self-charging tech.<br>\
+<br>\
+Some fancy new micro-RTG cells or something, I think?<br>\
+<br>\
+Point is they're fairly expensive and probably prototypes or something, so for the love of God and your own career don't lose any of them and put them back when you return from a sortie.<br>\
+<br>\
+<i>Lt. Cmdr. Sykes</i>"}
