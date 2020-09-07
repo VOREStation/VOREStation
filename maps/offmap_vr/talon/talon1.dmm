@@ -211,8 +211,10 @@
 /turf/simulated/floor/tiled/eris/steel/gray_perforated,
 /area/talon/deckone/starboard_eng)
 "av" = (
-/obj/structure/table/standard,
-/obj/machinery/reagentgrinder,
+/obj/machinery/smartfridge/chemistry{
+	req_access = list(301);
+	req_one_access = list(301)
+	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/talon/deckone/medical)
 "aw" = (
@@ -1602,6 +1604,52 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/brown_platform,
 /area/talon/deckone/starboard_eng_store)
+"dd" = (
+/obj/structure/table/standard,
+/obj/machinery/reagentgrinder,
+/obj/structure/closet/medical_wall{
+	pixel_x = 0;
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/eris/white/bluecorner,
+/area/talon/deckone/medical)
+"de" = (
+/obj/machinery/vending/blood{
+	req_access = list(301);
+	req_log_access = 301
+	},
+/turf/simulated/floor/tiled/eris/white/bluecorner,
+/area/talon/deckone/medical)
+"df" = (
+/obj/machinery/light/small{
+	dir = 4;
+	pixel_y = 0
+	},
+/obj/structure/closet/crate/medical{
+	name = "first-aid kits"
+	},
+/obj/item/weapon/storage/firstaid/toxin,
+/obj/item/weapon/storage/firstaid/toxin,
+/obj/item/weapon/storage/firstaid/o2,
+/obj/item/weapon/storage/firstaid/o2,
+/obj/item/weapon/storage/firstaid/fire,
+/obj/item/weapon/storage/firstaid/fire,
+/obj/item/weapon/storage/firstaid/adv,
+/obj/item/weapon/storage/firstaid/adv,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
+/area/talon/deckone/medical)
+"dg" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/vending/medical_talon{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/eris/white/bluecorner,
+/area/talon/deckone/medical)
 "dj" = (
 /obj/structure/table/standard,
 /obj/item/weapon/storage/box/handcuffs,
@@ -1616,18 +1664,6 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/brown_perforated,
 /area/talon/deckone/starboard_eng)
-"dz" = (
-/obj/structure/closet/crate/medical{
-	name = "first-aid kits"
-	},
-/obj/item/weapon/storage/firstaid/toxin,
-/obj/item/weapon/storage/firstaid/toxin,
-/obj/item/weapon/storage/firstaid/o2,
-/obj/item/weapon/storage/firstaid/o2,
-/obj/item/weapon/storage/firstaid/fire,
-/obj/item/weapon/storage/firstaid/fire,
-/turf/simulated/floor/tiled/eris/white/bluecorner,
-/area/talon/deckone/medical)
 "dB" = (
 /obj/item/modular_computer/console/preset/talon{
 	dir = 8;
@@ -4735,10 +4771,6 @@
 /obj/effect/catwalk_plated/dark,
 /turf/simulated/floor/plating/eris/under,
 /area/talon/deckone/starboard_solar)
-"Ks" = (
-/obj/machinery/vending/medical_talon,
-/turf/simulated/floor/tiled/eris/white/bluecorner,
-/area/talon/deckone/medical)
 "KF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -5312,16 +5344,6 @@
 	},
 /turf/simulated/floor/hull/airless,
 /area/talon/maintenance/deckone_starboard_aft_wing)
-"Rk" = (
-/obj/machinery/light/small{
-	dir = 4;
-	pixel_y = 0
-	},
-/obj/structure/closet/crate/medical/blood,
-/obj/item/weapon/reagent_containers/blood/prelabeled/OMinus,
-/obj/item/weapon/reagent_containers/blood/prelabeled/OMinus,
-/turf/simulated/floor/tiled/eris/white/bluecorner,
-/area/talon/deckone/medical)
 "Rr" = (
 /obj/machinery/alarm/talon{
 	dir = 1;
@@ -5495,21 +5517,6 @@
 "Tq" = (
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/talon/deckone/workroom)
-"Ts" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/closet/medical_wall{
-	pixel_x = -32
-	},
-/obj/structure/closet/crate/medical{
-	name = "medicine cooler"
-	},
-/turf/simulated/floor/tiled/eris/white/bluecorner,
-/area/talon/deckone/medical)
 "Tz" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -16651,7 +16658,7 @@ dO
 XG
 aL
 qz
-Ts
+dg
 jB
 dO
 Tc
@@ -16932,7 +16939,7 @@ IW
 pX
 EE
 dO
-Ks
+av
 FA
 it
 Gb
@@ -17074,7 +17081,7 @@ co
 co
 Nm
 dO
-av
+dd
 FA
 Gb
 Gb
@@ -17642,8 +17649,8 @@ VX
 co
 qA
 dO
-dz
-Rk
+de
+df
 Gb
 bC
 ct
