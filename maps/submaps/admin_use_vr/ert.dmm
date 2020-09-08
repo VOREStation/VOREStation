@@ -52,7 +52,7 @@
 	dir = 6;
 	icon_state = "intact"
 	},
-/turf/simulated/wall/rdshull,
+/turf/simulated/wall/rshull,
 /area/ship/ert/dock_port)
 "al" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
@@ -125,8 +125,8 @@
 	dir = 1;
 	pixel_y = -26
 	},
-/obj/fiftyspawner/uranium,
-/obj/fiftyspawner/uranium,
+/obj/fiftyspawner/tritium,
+/obj/fiftyspawner/tritium,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/eng_storage)
 "aI" = (
@@ -170,6 +170,16 @@
 /turf/space,
 /turf/space,
 /area/space)
+"bj" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4;
+	icon_state = "intact-scrubbers"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/ship/ert/med_surg)
 "bp" = (
 /obj/machinery/atmospherics/pipe/simple/visible/universal,
 /turf/simulated/floor/tiled/techfloor,
@@ -184,6 +194,22 @@
 /obj/item/weapon/tank/jetpack/oxygen,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/barracks)
+"bt" = (
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4;
+	icon_state = "intact-scrubbers"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/light/no_nightshift,
+/turf/simulated/floor/tiled/techmaint,
+/area/ship/ert/bridge)
 "bI" = (
 /obj/structure/table/rack/steel,
 /obj/item/weapon/tank/jetpack/oxygen,
@@ -208,7 +234,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/dock_star)
 "bM" = (
-/turf/simulated/wall/rdshull,
+/turf/simulated/wall/rshull,
 /area/ship/ert/mech_bay)
 "bO" = (
 /turf/simulated/floor/reinforced/airless,
@@ -297,7 +323,7 @@
 /area/ship/ert/engine)
 "dd" = (
 /obj/machinery/atmospherics/pipe/manifold/visible,
-/turf/simulated/wall/rdshull,
+/turf/simulated/wall/rshull,
 /area/ship/ert/dock_port)
 "dg" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
@@ -415,15 +441,15 @@
 "dT" = (
 /obj/machinery/door/firedoor,
 /obj/structure/grille,
-/obj/structure/window/plastitanium/full,
-/obj/structure/window/plastitanium,
-/obj/structure/window/plastitanium{
-	dir = 1
-	},
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
 /obj/machinery/door/blast/regular/open{
 	dir = 8;
 	id = "ERT_Blast_Windows";
 	name = "Blast Shield"
+	},
+/obj/structure/window/reinforced{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/ert_ship_boat)
@@ -513,16 +539,13 @@
 "et" = (
 /obj/machinery/atmospherics/pipe/manifold4w/visible/fuel,
 /obj/structure/grille,
-/obj/structure/window/plastitanium/full,
-/obj/structure/window/plastitanium{
-	dir = 8
-	},
-/obj/structure/window/plastitanium{
-	dir = 4
-	},
+/obj/structure/window/reinforced/full,
 /obj/machinery/door/blast/regular/open{
 	id = "VB_Rear_Blast";
 	name = "Blast Shield"
+	},
+/obj/structure/window/reinforced{
+	dir = 8
 	},
 /turf/simulated/floor/plating,
 /area/ship/ert/engine)
@@ -538,7 +561,7 @@
 /obj/structure/sign/department/cargo{
 	name = "ENGINEERING SUPPLIES"
 	},
-/turf/simulated/wall/rdshull,
+/turf/simulated/wall/rshull,
 /area/ship/ert/bridge)
 "eI" = (
 /obj/structure/cable/yellow{
@@ -647,7 +670,7 @@
 /area/ship/ert/mech_bay)
 "ga" = (
 /obj/structure/sign/department/operational,
-/turf/simulated/wall/rdshull,
+/turf/simulated/wall/rshull,
 /area/ship/ert/med_surg)
 "gc" = (
 /turf/simulated/floor/tiled/techmaint,
@@ -921,6 +944,18 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/hangar)
+"hW" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 1
+	},
+/obj/machinery/power/pointdefense{
+	id_tag = "vonbraun_pd"
+	},
+/obj/machinery/light/no_nightshift{
+	dir = 8
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/ship/ert/hangar)
 "hY" = (
 /obj/machinery/porta_turret/industrial/military,
 /turf/simulated/floor/reinforced/airless,
@@ -935,6 +970,18 @@
 /obj/item/clothing/accessory/holster/leg,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/barracks)
+"ib" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 8
+	},
+/obj/machinery/power/pointdefense{
+	id_tag = "vonbraun_pd"
+	},
+/obj/machinery/light/no_nightshift{
+	dir = 8
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/ship/ert/hangar)
 "ij" = (
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/med_surg)
@@ -958,9 +1005,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/bridge)
 "iA" = (
-/obj/structure/window/plastitanium{
-	dir = 1
-	},
+/obj/structure/window/reinforced,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/teleporter)
 "iB" = (
@@ -1137,10 +1182,10 @@
 /area/shuttle/ert_ship_boat)
 "kx" = (
 /obj/structure/grille,
-/obj/structure/window/plastitanium/full,
+/obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/border_only,
-/obj/structure/window/plastitanium,
-/obj/structure/window/plastitanium{
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/techfloor,
@@ -1172,7 +1217,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/hangar)
 "kJ" = (
-/turf/simulated/wall/rdshull,
+/turf/simulated/wall/rshull,
 /area/ship/ert/atmos)
 "kL" = (
 /obj/machinery/light/no_nightshift{
@@ -1216,7 +1261,7 @@
 /obj/machinery/atmospherics/pipe/manifold/visible{
 	dir = 1
 	},
-/turf/simulated/wall/rdshull,
+/turf/simulated/wall/rshull,
 /area/ship/ert/dock_star)
 "kY" = (
 /obj/machinery/atmospherics/pipe/simple/visible{
@@ -1575,8 +1620,12 @@
 /area/ship/ert/barracks)
 "nl" = (
 /obj/structure/grille,
-/obj/structure/window/plastitanium/full,
+/obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/border_only,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/med_surg)
 "nn" = (
@@ -1749,15 +1798,15 @@
 "og" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/grille,
-/obj/structure/window/plastitanium/full,
-/obj/structure/window/plastitanium,
-/obj/structure/window/plastitanium{
-	dir = 1
-	},
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
 /obj/machinery/door/blast/regular/open{
 	dir = 8;
 	id = "ERT_Blast_Windows";
 	name = "Blast Shield"
+	},
+/obj/structure/window/reinforced{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/ert_ship_boat)
@@ -2049,7 +2098,7 @@
 /obj/structure/sign/department/eng{
 	name = "RIG AND MECH BAY"
 	},
-/turf/simulated/wall/rdshull,
+/turf/simulated/wall/rshull,
 /area/ship/ert/mech_bay)
 "pM" = (
 /obj/structure/table/steel_reinforced,
@@ -2160,7 +2209,7 @@
 	desc = "ACCESS VIA DIRECT AUTHORIZATION FROM CENTRAL ONLY.";
 	name = "MECH BAY"
 	},
-/turf/simulated/wall/rdshull,
+/turf/simulated/wall/rshull,
 /area/ship/ert/mech_bay)
 "qz" = (
 /obj/mecha/working/ripley/firefighter,
@@ -2286,14 +2335,14 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/engineering)
 "rA" = (
-/obj/structure/window/plastitanium{
-	dir = 8
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
 	dir = 8;
 	icon_state = "intact-fuel"
 	},
 /obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/techfloor,
@@ -2373,7 +2422,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/barracks)
 "sp" = (
-/turf/simulated/wall/rdshull,
+/turf/simulated/wall/rshull,
 /area/ship/ert/commander)
 "sq" = (
 /obj/structure/cable/yellow{
@@ -2475,9 +2524,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/barracks)
-"sP" = (
-/turf/simulated/wall/rdshull,
-/area/ship/ert/hangar)
 "sS" = (
 /obj/machinery/shieldwallgen,
 /obj/machinery/light/no_nightshift{
@@ -2571,10 +2617,10 @@
 /obj/structure/sign/department/dock{
 	name = "ROBINEAU DOCK"
 	},
-/turf/simulated/wall/rdshull,
+/turf/simulated/wall/rshull,
 /area/ship/ert/hangar)
 "tH" = (
-/turf/simulated/wall/rdshull,
+/turf/simulated/wall/rshull,
 /area/ship/ert/armoury_st)
 "tK" = (
 /obj/structure/bed/chair/bay/chair/padded/blue{
@@ -2588,16 +2634,13 @@
 	dir = 9
 	},
 /obj/structure/grille,
-/obj/structure/window/plastitanium/full,
-/obj/structure/window/plastitanium{
-	dir = 8
-	},
-/obj/structure/window/plastitanium{
-	dir = 4
-	},
+/obj/structure/window/reinforced/full,
 /obj/machinery/door/blast/regular/open{
 	id = "VB_Rear_Blast";
 	name = "Blast Shield"
+	},
+/obj/structure/window/reinforced{
+	dir = 8
 	},
 /turf/simulated/floor/plating,
 /area/ship/ert/engine)
@@ -2624,8 +2667,12 @@
 /area/shuttle/ert_ship_boat)
 "tX" = (
 /obj/structure/grille,
-/obj/structure/window/plastitanium/full,
+/obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/border_only,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/mech_bay)
 "tZ" = (
@@ -2649,16 +2696,13 @@
 	dir = 10
 	},
 /obj/structure/grille,
-/obj/structure/window/plastitanium/full,
-/obj/structure/window/plastitanium{
-	dir = 8
-	},
-/obj/structure/window/plastitanium{
-	dir = 4
-	},
+/obj/structure/window/reinforced/full,
 /obj/machinery/door/blast/regular/open{
 	id = "VB_Rear_Blast";
 	name = "Blast Shield"
+	},
+/obj/structure/window/reinforced{
+	dir = 8
 	},
 /turf/simulated/floor/plating,
 /area/ship/ert/engine)
@@ -2687,7 +2731,7 @@
 /area/ship/ert/med)
 "uq" = (
 /obj/structure/sign/department/medbay,
-/turf/simulated/wall/rdshull,
+/turf/simulated/wall/rshull,
 /area/ship/ert/med_surg)
 "us" = (
 /turf/simulated/floor/tiled/techfloor,
@@ -2826,15 +2870,6 @@
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/ship/ert/med_surg)
-"vL" = (
-/obj/machinery/light_switch{
-	pixel_y = 23
-	},
-/obj/machinery/light_switch{
-	pixel_y = 23
-	},
-/turf/simulated/floor/wood,
-/area/ship/ert/commander)
 "vQ" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
@@ -2846,7 +2881,7 @@
 /obj/structure/sign/department/conference_room{
 	name = "OUTFITTING"
 	},
-/turf/simulated/wall/rdshull,
+/turf/simulated/wall/rshull,
 /area/ship/ert/bridge)
 "wi" = (
 /obj/machinery/door/airlock/glass{
@@ -2882,7 +2917,7 @@
 /obj/structure/sign/department/telecoms{
 	name = "TELEPORTER"
 	},
-/turf/simulated/wall/rdshull,
+/turf/simulated/wall/rshull,
 /area/ship/ert/teleporter)
 "wo" = (
 /obj/machinery/light/no_nightshift,
@@ -2937,7 +2972,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/engineering)
 "wU" = (
-/turf/simulated/wall/rdshull,
+/turf/simulated/wall/rshull,
 /area/ship/ert/hallways)
 "wX" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -2947,8 +2982,26 @@
 /area/ship/ert/med)
 "wZ" = (
 /obj/machinery/oxygen_pump/anesthetic,
-/turf/simulated/wall/rdshull,
+/turf/simulated/wall/rshull,
 /area/ship/ert/med_surg)
+"xe" = (
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4;
+	icon_state = "intact-scrubbers"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/light/no_nightshift{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/ship/ert/bridge)
 "xg" = (
 /obj/structure/table/rack/steel,
 /obj/item/weapon/storage/box/anti_photons,
@@ -3116,17 +3169,17 @@
 "yg" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/grille,
-/obj/structure/window/plastitanium/full,
-/obj/structure/window/plastitanium{
-	dir = 4
-	},
-/obj/structure/window/plastitanium{
-	dir = 8
-	},
+/obj/structure/window/reinforced/full,
 /obj/machinery/door/blast/regular/open{
 	dir = 2;
 	id = "ERT_Blast_Windows";
 	name = "Blast Shield"
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/ert_ship_boat)
@@ -3219,18 +3272,13 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/eng_storage)
 "yD" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 6
-	},
 /obj/machinery/light/no_nightshift{
 	dir = 1
-	},
-/obj/structure/railing/grey{
-	dir = 4
 	},
 /obj/structure/sign/vacuum{
 	pixel_y = 32
 	},
+/obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/hangar)
 "yG" = (
@@ -3242,7 +3290,7 @@
 /area/ship/ert/hallways_aft)
 "yI" = (
 /obj/structure/sign/department/medbay,
-/turf/simulated/wall/rdshull,
+/turf/simulated/wall/rshull,
 /area/ship/ert/med)
 "yJ" = (
 /obj/structure/table/steel_reinforced,
@@ -3273,20 +3321,14 @@
 /turf/simulated/floor/plating,
 /area/ship/ert/engineering)
 "yX" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/structure/fans/hardlight,
-/obj/machinery/door/blast/regular/open{
-	id = "Von_Braun_Hangar";
-	name = "Hangar Blast Door"
-	},
-/turf/simulated/floor/reinforced,
+/turf/simulated/wall/rshull,
 /area/ship/ert/hangar)
 "yY" = (
 /obj/structure/grille,
-/obj/structure/window/plastitanium/full,
+/obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/border_only,
-/obj/structure/window/plastitanium,
-/obj/structure/window/plastitanium{
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/techfloor,
@@ -3326,16 +3368,6 @@
 /obj/structure/table/steel_reinforced,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/engineering)
-"zi" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/ship/ert/med_surg)
 "zk" = (
 /obj/machinery/light/no_nightshift{
 	dir = 8
@@ -3721,10 +3753,25 @@
 /obj/machinery/porta_turret/industrial/military,
 /turf/simulated/floor/reinforced/airless,
 /area/ship/ert/med_surg)
+"CH" = (
+/obj/machinery/door/firedoor/border_only,
+/obj/structure/fans/hardlight,
+/obj/machinery/door/blast/regular{
+	id = "Von_Braun_Hangar";
+	name = "Hangar Blast Door"
+	},
+/turf/simulated/floor/reinforced,
+/area/ship/ert/hangar)
 "CI" = (
 /obj/structure/grille,
-/obj/structure/window/plastitanium/full,
+/obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/border_only,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/armoury_st)
 "CL" = (
@@ -3770,7 +3817,7 @@
 /area/ship/ert/engine)
 "Dd" = (
 /obj/structure/grille,
-/obj/structure/window/plastitanium/full,
+/obj/structure/window/reinforced/full,
 /obj/machinery/door/blast/regular{
 	closed_layer = 4;
 	dir = 4;
@@ -3782,17 +3829,17 @@
 /area/ship/ert/barracks)
 "Dh" = (
 /obj/structure/grille,
-/obj/structure/window/plastitanium/full,
+/obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/border_only,
-/obj/structure/window/plastitanium{
-	dir = 8
-	},
-/obj/structure/window/plastitanium{
-	dir = 4
-	},
 /obj/machinery/door/blast/regular/open{
 	id = "VB_Rear_Blast";
 	name = "Blast Shield"
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/engineering)
@@ -3897,7 +3944,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/med)
 "DS" = (
-/turf/simulated/wall/rdshull,
+/turf/simulated/wall/rshull,
 /area/ship/ert/hallways_aft)
 "Ec" = (
 /obj/structure/table/rack/steel,
@@ -3961,15 +4008,15 @@
 /area/ship/ert/eng_storage)
 "Eq" = (
 /obj/structure/grille,
-/obj/structure/window/plastitanium/full,
-/obj/structure/window/plastitanium{
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/window/plastitanium,
-/obj/structure/window/plastitanium{
+/obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/plastitanium{
+/obj/structure/window/reinforced{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/techmaint,
@@ -4056,15 +4103,13 @@
 /turf/simulated/floor/reinforced/airless,
 /area/ship/ert/med)
 "Ff" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 5
-	},
 /obj/machinery/light/no_nightshift,
-/obj/structure/railing/grey{
-	dir = 4
-	},
 /obj/structure/sign/vacuum{
 	pixel_y = -32
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1;
+	icon_state = "warning"
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/hangar)
@@ -4076,7 +4121,7 @@
 /area/ship/ert/bridge)
 "Fp" = (
 /obj/structure/sign/nosmoking_1,
-/turf/simulated/wall/rdshull,
+/turf/simulated/wall/rshull,
 /area/ship/ert/engineering)
 "Fq" = (
 /obj/structure/table/rack/steel,
@@ -4240,10 +4285,10 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/barracks)
 "GI" = (
-/obj/structure/window/plastitanium{
+/obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
-/obj/effect/floor_decal/industrial/warning{
+/obj/structure/window/reinforced{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/techfloor,
@@ -4316,7 +4361,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/ert_ship_boat)
 "Hf" = (
-/turf/simulated/wall/rdshull,
+/turf/simulated/wall/rshull,
 /area/ship/ert/engine)
 "Hp" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -4326,30 +4371,30 @@
 "Hq" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/grille,
-/obj/structure/window/plastitanium/full,
-/obj/structure/window/plastitanium,
-/obj/structure/window/plastitanium{
-	dir = 1
-	},
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
 /obj/machinery/door/blast/regular/open{
 	dir = 4;
 	id = "ERT_Blast_Windows";
 	name = "Blast Shield"
+	},
+/obj/structure/window/reinforced{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/ert_ship_boat)
 "Hu" = (
 /obj/machinery/door/firedoor,
 /obj/structure/grille,
-/obj/structure/window/plastitanium/full,
-/obj/structure/window/plastitanium,
-/obj/structure/window/plastitanium{
-	dir = 1
-	},
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
 /obj/machinery/door/blast/regular/open{
 	dir = 4;
 	id = "ERT_Blast_Windows";
 	name = "Blast Shield"
+	},
+/obj/structure/window/reinforced{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/ert_ship_boat)
@@ -4430,7 +4475,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/ert_ship_boat)
 "HO" = (
-/turf/simulated/wall/rdshull,
+/turf/simulated/wall/rshull,
 /area/shuttle/ert_ship_boat)
 "HR" = (
 /obj/structure/bed/chair/bay/chair/padded/blue{
@@ -4643,7 +4688,7 @@
 /area/ship/ert/med_surg)
 "Jk" = (
 /obj/structure/sign/department/bridge,
-/turf/simulated/wall/rdshull,
+/turf/simulated/wall/rshull,
 /area/ship/ert/bridge)
 "Jl" = (
 /obj/effect/floor_decal/corner/blue{
@@ -4701,7 +4746,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/armoury_st)
 "JB" = (
-/turf/simulated/wall/rdshull,
+/turf/simulated/wall/rshull,
 /area/ship/ert/dock_port)
 "JE" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -4875,14 +4920,14 @@
 /area/ship/ert/dock_star)
 "Kw" = (
 /obj/structure/sign/department/eng,
-/turf/simulated/wall/rdshull,
+/turf/simulated/wall/rshull,
 /area/ship/ert/bridge)
 "KB" = (
 /obj/structure/grille,
-/obj/structure/window/plastitanium/full,
+/obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/border_only,
-/obj/structure/window/plastitanium,
-/obj/structure/window/plastitanium{
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/techfloor,
@@ -5157,7 +5202,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/armoury_dl)
 "Mm" = (
-/turf/simulated/wall/rdshull,
+/turf/simulated/wall/rshull,
 /area/ship/ert/teleporter)
 "Ms" = (
 /turf/simulated/floor/tiled/techmaint,
@@ -5211,7 +5256,7 @@
 /area/ship/ert/hangar)
 "MK" = (
 /obj/structure/sign/nosmoking_1,
-/turf/simulated/wall/rdshull,
+/turf/simulated/wall/rshull,
 /area/ship/ert/engine)
 "ML" = (
 /obj/machinery/door/blast/regular/open{
@@ -5242,7 +5287,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/ert_ship_boat)
 "MU" = (
-/obj/structure/window/plastitanium,
+/obj/structure/window/reinforced,
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/ert_ship_boat)
 "MX" = (
@@ -5262,7 +5307,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/barracks)
 "MZ" = (
-/turf/simulated/wall/rdshull,
+/turf/simulated/wall/rshull,
 /area/ship/ert/med_surg)
 "Na" = (
 /obj/machinery/door/firedoor/border_only,
@@ -5722,7 +5767,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/simulated/wall/rdshull,
+/turf/simulated/wall/rshull,
 /area/ship/ert/bridge)
 "Pe" = (
 /obj/machinery/button/remote/blast_door{
@@ -5740,7 +5785,7 @@
 /area/shuttle/ert_ship_boat)
 "Pl" = (
 /obj/structure/grille,
-/obj/structure/window/plastitanium/full,
+/obj/structure/window/reinforced/full,
 /obj/machinery/door/blast/regular{
 	closed_layer = 4;
 	dir = 4;
@@ -5771,7 +5816,7 @@
 /obj/structure/sign/department/medbay{
 	name = "MEDICAL OUTFITTING & SUPPLIES"
 	},
-/turf/simulated/wall/rdshull,
+/turf/simulated/wall/rshull,
 /area/ship/ert/med)
 "PE" = (
 /obj/structure/cable/yellow{
@@ -5946,12 +5991,12 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/med)
 "QX" = (
-/obj/structure/window/plastitanium{
-	dir = 1
-	},
-/obj/structure/window/plastitanium,
+/obj/structure/window/reinforced,
 /obj/machinery/computer/shuttle_control/explore/ert_ship_boat{
 	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/ert_ship_boat)
@@ -6174,7 +6219,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/armoury_dl)
 "Sz" = (
-/turf/simulated/wall/rdshull,
+/turf/simulated/wall/rshull,
 /area/ship/ert/dock_star)
 "SA" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -6239,7 +6284,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 5
 	},
-/turf/simulated/wall/rdshull,
+/turf/simulated/wall/rshull,
 /area/ship/ert/dock_star)
 "SV" = (
 /obj/structure/table/rack/steel,
@@ -6253,7 +6298,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/med)
 "SZ" = (
-/obj/structure/window/plastitanium{
+/obj/structure/window/reinforced{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/techmaint,
@@ -6301,10 +6346,10 @@
 /area/ship/ert/med_surg)
 "TG" = (
 /obj/structure/grille,
-/obj/structure/window/plastitanium/full,
+/obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/border_only,
-/obj/structure/window/plastitanium,
-/obj/structure/window/plastitanium{
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/techfloor,
@@ -6322,13 +6367,19 @@
 /area/ship/ert/hallways_aft)
 "TR" = (
 /obj/structure/grille,
-/obj/structure/window/plastitanium/full,
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor/border_only,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /obj/machinery/door/blast/regular{
 	closed_layer = 4;
 	id = "NRV_DELTA";
 	layer = 4
 	},
-/obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/armoury_dl)
 "TU" = (
@@ -6394,15 +6445,17 @@
 /obj/machinery/door/airlock/glass_security{
 	req_one_access = list(103)
 	},
-/obj/machinery/door/blast/regular{
-	id = "NRV_DELTA"
-	},
 /obj/structure/cable/yellow{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/blast/regular{
+	closed_layer = 4;
+	id = "NRV_DELTA";
+	layer = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/armoury_dl)
 "UU" = (
@@ -6412,7 +6465,7 @@
 	req_access = list(103);
 	state = 1
 	},
-/obj/structure/window/plastitanium,
+/obj/structure/window/reinforced,
 /obj/effect/floor_decal/industrial/warning,
 /obj/structure/cable/yellow,
 /turf/simulated/floor/tiled/techfloor,
@@ -6549,10 +6602,12 @@
 /obj/machinery/door/airlock/glass_security{
 	req_one_access = list(103)
 	},
-/obj/machinery/door/blast/regular{
-	id = "NRV_DELTA"
-	},
 /obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/blast/regular{
+	closed_layer = 4;
+	id = "NRV_DELTA";
+	layer = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/armoury_dl)
 "Wv" = (
@@ -6588,18 +6643,6 @@
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/ship/ert/med)
-"WG" = (
-/obj/structure/window/plastitanium{
-	dir = 4
-	},
-/obj/structure/window/plastitanium{
-	dir = 4
-	},
-/obj/effect/floor_decal/techfloor/orange{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/ship/ert/hangar)
 "WH" = (
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/barracks)
@@ -6705,7 +6748,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/teleporter)
 "XG" = (
-/turf/simulated/wall/rdshull,
+/turf/simulated/wall/rshull,
 /area/ship/ert/eng_storage)
 "XH" = (
 /obj/machinery/alarm/alarms_hidden{
@@ -6737,7 +6780,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/engineering)
 "XW" = (
-/turf/simulated/wall/rdshull,
+/turf/simulated/wall/rshull,
 /area/ship/ert/engineering)
 "XX" = (
 /obj/structure/cable/yellow{
@@ -6749,7 +6792,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/teleporter)
 "Yd" = (
-/turf/simulated/wall/rdshull,
+/turf/simulated/wall/rshull,
 /area/ship/ert/armoury_dl)
 "Ye" = (
 /turf/simulated/floor/reinforced/airless,
@@ -6772,8 +6815,15 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/teleporter)
+"Yr" = (
+/obj/structure/window/reinforced,
+/obj/machinery/light/no_nightshift{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/ert/teleporter)
 "Ys" = (
-/obj/structure/window/plastitanium,
+/obj/structure/window/reinforced,
 /obj/effect/floor_decal/industrial/warning,
 /obj/structure/cable/yellow,
 /obj/machinery/shieldwallgen{
@@ -6805,7 +6855,7 @@
 /area/ship/ert/bridge)
 "YN" = (
 /obj/structure/sign/warning/radioactive,
-/turf/simulated/wall/rdshull,
+/turf/simulated/wall/rshull,
 /area/ship/ert/engineering)
 "YP" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/fuel{
@@ -6835,21 +6885,6 @@
 	},
 /turf/simulated/floor/reinforced,
 /area/shuttle/ert_ship_boat)
-"YZ" = (
-/obj/effect/floor_decal/industrial/warning,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
-	},
-/obj/machinery/button/remote/blast_door{
-	dir = 1;
-	id = "Von_Braun_Hangar";
-	name = "Hangar Blast Shields";
-	pixel_y = 24;
-	req_one_access = list(101)
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/ship/ert/hangar)
 "Zi" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -6861,7 +6896,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/eng_storage)
 "Zo" = (
-/turf/simulated/wall/rdshull,
+/turf/simulated/wall/rshull,
 /area/ship/ert/barracks)
 "Zv" = (
 /turf/simulated/floor/tiled/techfloor,
@@ -6911,7 +6946,7 @@
 /turf/simulated/floor/reinforced/airless,
 /area/ship/ert/engine)
 "ZM" = (
-/turf/simulated/wall/rdshull,
+/turf/simulated/wall/rshull,
 /area/ship/ert/bridge)
 "ZP" = (
 /obj/structure/cable/yellow{
@@ -6928,7 +6963,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/med)
 "ZT" = (
-/turf/simulated/wall/rdshull,
+/turf/simulated/wall/rshull,
 /area/ship/ert/med)
 "ZU" = (
 /obj/machinery/light/no_nightshift,
@@ -6936,7 +6971,7 @@
 	dir = 1;
 	pixel_y = -26
 	},
-/obj/machinery/power/port_gen/pacman/super,
+/obj/machinery/power/port_gen/pacman/mrs,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/eng_storage)
 "ZW" = (
@@ -14436,7 +14471,7 @@ Iv
 Iv
 Iv
 sp
-Oi
+bt
 Mm
 sw
 Xx
@@ -14715,7 +14750,7 @@ JB
 Na
 JB
 Wa
-vL
+Iv
 zT
 Ez
 IK
@@ -14862,7 +14897,7 @@ Ah
 EA
 IL
 sp
-Oi
+xe
 Mm
 Vm
 XX
@@ -15009,7 +15044,7 @@ wn
 VB
 Yq
 Ys
-iA
+Yr
 jA
 Sz
 uu
@@ -18548,7 +18583,7 @@ fj
 ip
 mV
 pt
-sP
+yX
 xG
 CL
 GR
@@ -18560,7 +18595,7 @@ WE
 hV
 WA
 EB
-sP
+yX
 qA
 oQ
 dx
@@ -18835,13 +18870,13 @@ ip
 tx
 JE
 Nf
-WG
-WG
 Nf
 Nf
 Nf
-WG
-WG
+Nf
+Nf
+Nf
+Nf
 Nf
 yi
 dA
@@ -19840,7 +19875,7 @@ WC
 Zx
 nl
 pb
-zi
+bj
 SB
 MC
 MZ
@@ -19969,7 +20004,7 @@ ki
 nz
 qy
 bM
-YZ
+xO
 WC
 Hq
 JN
@@ -20124,7 +20159,7 @@ WC
 Zx
 nl
 aQ
-zi
+bj
 SB
 aQ
 MZ
@@ -20266,7 +20301,7 @@ WC
 Zx
 nl
 cO
-zi
+bj
 SB
 Mb
 MZ
@@ -20408,7 +20443,7 @@ WC
 Zx
 nl
 NJ
-zi
+bj
 SB
 NJ
 MZ
@@ -21106,15 +21141,15 @@ nR
 rr
 bM
 yX
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-yX
-yX
+CH
+CH
+CH
+CH
+CH
+CH
+CH
+CH
+CH
 yX
 MZ
 MZ
@@ -21247,6 +21282,7 @@ bM
 bM
 bM
 bM
+ib
 za
 za
 za
@@ -21256,8 +21292,7 @@ za
 za
 za
 za
-za
-za
+hW
 MZ
 MZ
 MZ

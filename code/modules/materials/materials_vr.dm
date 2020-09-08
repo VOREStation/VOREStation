@@ -65,6 +65,17 @@
 	composite_material = list(MAT_TITANIUM = SHEET_MATERIAL_AMOUNT, MAT_PLASTEEL = SHEET_MATERIAL_AMOUNT)
 	supply_conversion_value = 8
 
+/material/plastitanium/hull
+	name = MAT_PLASTITANIUMHULL
+	stack_type = /obj/item/stack/material/plastitanium/hull
+	icon_base = "hull"
+	icon_reinf = "reinf_mesh"
+	icon_colour = "#585658"
+	explosion_resistance = 50
+
+/material/plastitanium/hull/place_sheet(var/turf/target) //Deconstructed into normal plasteel sheets.
+	new /obj/item/stack/material/plastitanium(target)
+
 /material/glass/plastaniumglass
 	name = MAT_PLASTITANIUMGLASS
 	display_name = "plas-titanium glass"
