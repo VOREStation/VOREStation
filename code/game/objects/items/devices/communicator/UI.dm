@@ -124,14 +124,6 @@
 	data["latest_news"] = get_recent_news()
 	if(newsfeed_channel)
 		data["target_feed"] = data["feeds"][newsfeed_channel]
-	if(cartridge) // If there's a cartridge, we need to grab the information from it
-		data["cart_devices"] = cartridge.get_device_status()
-		data["cart_templates"] = cartridge.ui_templates
-		for(var/list/L in cartridge.get_data())
-			data[L["field"]] = L["value"]
-			// cartridge.get_data() returns a list of tuples:
-			// The field element is the tag used to access the information by the template
-			// The value element is the actual data, and can take any form necessary for the template
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
@@ -278,15 +270,8 @@
 		fon = !fon
 		set_light(fon * flum)
 
-	if(href_list["toggle_device"])
-		var/obj/O = cartridge.internal_devices[text2num(href_list["toggle_device"])]
-		cartridge.active_devices ^= list(O) // Exclusive or, will toggle its presence
-
 	if(href_list["newsfeed"])
 		newsfeed_channel = text2num(href_list["newsfeed"])
-
-	if(href_list["cartridge_topic"] && cartridge) // Has to have a cartridge to perform these functions
-		cartridge.Topic(href, href_list)
 
 	SSnanoui.update_uis(src)
 	add_fingerprint(usr)

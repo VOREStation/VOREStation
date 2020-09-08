@@ -43,7 +43,6 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	var/note = "Thank you for choosing the T-14.2 Communicator, this is your notepad!" //Current note in the notepad function
 	var/notehtml = ""
 
-	var/obj/item/weapon/commcard/cartridge = null //current cartridge
 	var/fon = 0 // Internal light
 	var/flum = 2 // Brightness
 
@@ -203,17 +202,6 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 		if(!get_connection_to_tcomms())
 			close_connection(reason = "Connection timed out")
 
-// Proc: attack()
-// Parameters: 2 (M - what is being attacked. user - the mob that has the communicator)
-// Description: When the communicator has an attached commcard with internal devices, relay the attack() through to those devices.
-// 		Contents of the for loop are copied from gripper code, because that does approximately what we want to do.
-/obj/item/device/communicator/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	if(cartridge && cartridge.active_devices)
-		for(var/obj/item/wrapped in cartridge.active_devices)
-			if(wrapped) 	//The force of the wrapped obj gets set to zero during the attack() and afterattack().
-				wrapped.attack(M,user)
-	return 0
-
 // Proc: attackby()
 // Parameters: 2 (C - what is used on the communicator. user - the mob that has the communicator)
 // Description: When an ID is swiped on the communicator, the communicator reads the job and checks it against the Owner name, if success, the occupation is added.
@@ -229,13 +217,6 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 			occupation = idcard.assignment
 			to_chat(user, "<span class='notice'>Occupation updated.</span>")
 
-	if(istype(C, /obj/item/weapon/commcard) && !cartridge)
-		cartridge = C
-		user.drop_item()
-		cartridge.forceMove(src)
-		to_chat(usr, "<span class='notice'>You slot \the [cartridge] into \the [src].</span>")
-		modules[++modules.len] = list("module" = "External Device", "icon" = "external64", "number" = EXTRTAB)
-		SSnanoui.update_uis(src) // update all UIs attached to src
 	return
 
 // Proc: attack_self()
@@ -357,38 +338,6 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	..()
 	client_huds |= global_hud.whitense
 	client_huds |= global_hud.darkMask
-
-/obj/item/device/communicator/verb/verb_remove_cartridge()
-	set category = "Object"
-	set name = "Remove commcard"
-	set src in usr
-
-	// Can't remove what isn't there
-	if(!cartridge)
-		to_chat(usr, "<span class='notice'>There isn't a commcard to remove!</span>")
-		return
-
-	// Can't remove if you're physically unable to
-	if(usr.stat || usr.restrained() || usr.paralysis || usr.stunned || usr.weakened)
-		to_chat(usr, "<span class='notice'>You cannot do this while restrained.</span>")
-		return
-
-	var/turf/T = get_turf(src)
-	cartridge.loc = T
-	// If it's in someone, put the cartridge in their hands
-	if (ismob(loc))
-		var/mob/M = loc
-		M.put_in_hands(cartridge)
-	// Else just set it on the ground
-	else
-		cartridge.loc = get_turf(src)
-	cartridge = null
-	// We have to iterate through the modules to find EXTRTAB, because list procs don't play nice with a list of lists
-	for(var/i = 1, i <= modules.len, i++)
-		if(modules[i]["number"] == EXTRTAB)
-			modules.Cut(i, i+1)
-			break
-	to_chat(usr, "<span class='notice'>You remove \the [cartridge] from the [name].</span>")
 
 //It's the 26th century. We should have smart watches by now.
 /obj/item/device/communicator/watch
