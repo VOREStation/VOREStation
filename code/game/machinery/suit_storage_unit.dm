@@ -1049,7 +1049,7 @@
 /obj/machinery/suit_cycler/proc/apply_paintjob()
 	var/obj/item/clothing/head/helmet/parent_helmet
 	var/obj/item/clothing/suit/space/parent_suit
-	var/turf T = get_turf(src)
+	var/turf/T = get_turf(src)
 	if(!target_species || !target_department)
 		return
 	//Now "Complete" with most departmental and variant suits, and sorted by department. These aren't available in the standard or emagged cycler lists because they're incomplete for most species.
