@@ -1,6 +1,6 @@
 // Compile in the map for CI testing if we're testing compileability of all the maps
 #if MAP_TEST
-#include "mercship.dmm"
+#include "ert.dmm"
 #endif
 
 
@@ -192,13 +192,16 @@ Point is they're fairly expensive and probably prototypes or something, so for t
 /obj/item/weapon/paper/vonbraun_shields
 	name = "NRV Von Braun Shield Configuration Documentation"
 	info = {"To All Current ERT Members,<br>\
-Be advised that use of the NRV Von Braun's shield generator (located adjacent to this document) is strongly recommended when responding to calls, but also that it is not impervious, nor is the ship's point defense system flawless. Recommended settings as follows:<br>\
+Be advised that use of the NRV Von Braun's shield generator (located adjacent to this document) is strongly recommended when responding to calls, but also that it is not impervious, nor is the ship's point defense system flawless.<br>\
+<br>\
+Recommended settings as follows:<br>\
 Photonic: Off (PD will not work with it enabled!)<br>\
 EM: On<br>\
 Humanoids: Off<br>\
 Atmospheric: Off<br>\
 Hull Shield: On<br>\
 Radius: 26<br>\
+<br>\
 The shield generator will tax the Von Braun's reserves greatly so try to use it sparingly. Do not be afraid to use it however, as the Von Braun represents the Company making a <i>significant</i> investment in this sector's future. I can bail you out if the occasional intern goes missing or you break something minor, but if you go flying this thing through an asteroid belt and get massive holes blown in it Central <b>will</b> make <u>everyone</u> involved disappear <b><u>permanently</b></u>.<br>\
 <br>\
 <i>Lt. Cmdr. Sykes</i>"}

@@ -21,9 +21,11 @@
 /obj/machinery/door/airlock/external,
 /obj/effect/map_helper/airlock/door/ext_door,
 /obj/machinery/airlock_sensor/airlock_exterior{
+	dir = 1;
 	pixel_x = 24;
-	pixel_y = 9
+	pixel_y = 11
 	},
+/obj/effect/map_helper/airlock/sensor/ext_sensor,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/dock_port)
 "af" = (
@@ -3282,6 +3284,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
+/obj/machinery/shield_diffuser,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/ert_ship_boat)
 "yi" = (
@@ -4608,13 +4611,14 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/ert_ship_boat)
 "HK" = (
-/obj/machinery/door/blast/regular{
-	id = "ERT_Shuttle_Fore"
-	},
 /obj/machinery/door/blast/regular/open{
 	dir = 2;
 	id = "ERT_Blast_Windows";
 	name = "Blast Shield"
+	},
+/obj/machinery/shield_diffuser,
+/obj/machinery/door/blast/regular{
+	id = "ERT_Shuttle_Fore"
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/ert_ship_boat)
