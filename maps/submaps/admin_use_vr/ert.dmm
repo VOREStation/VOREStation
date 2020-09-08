@@ -672,9 +672,6 @@
 /obj/structure/sign/department/operational,
 /turf/simulated/wall/rshull,
 /area/ship/ert/med_surg)
-"gc" = (
-/turf/simulated/floor/tiled/techmaint,
-/area/space)
 "gf" = (
 /obj/machinery/bodyscanner{
 	dir = 8
@@ -10053,7 +10050,7 @@ yz
 yz
 yz
 yz
-gc
+yz
 yz
 yz
 yz
