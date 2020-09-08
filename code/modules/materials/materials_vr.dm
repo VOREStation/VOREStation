@@ -81,3 +81,15 @@
 	wire_product = null
 	rod_product = /obj/item/stack/material/glass/plastitanium
 	composite_material = list(MAT_PLASTITANIUM = SHEET_MATERIAL_AMOUNT, "glass" = SHEET_MATERIAL_AMOUNT)
+
+/material/steel
+	radiation_resistance = 7
+
+/material/plasteel
+	radiation_resistance = 10
+
+/material/durasteel
+	radiation_resistance = 18
+
+/material/gold
+	radiation_resistance = 8

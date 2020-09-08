@@ -286,9 +286,6 @@ var/list/name_to_material
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
 	supply_conversion_value = 2
-	//VOREstation Edit Start
-	radiation_resistance = 8
-	//VOREstation Edit End
 
 /material/gold/bronze //placeholder for ashtrays
 	name = "bronze"
@@ -390,9 +387,6 @@ var/list/name_to_material
 	icon_base = "solid"
 	icon_reinf = "reinf_over"
 	icon_colour = "#666666"
-	//VOREstation Edit Start
-	radiation_resistance = 7
-	//VOREstation Edit End
 
 /material/steel/hull
 	name = MAT_STEELHULL
@@ -442,9 +436,6 @@ var/list/name_to_material
 	stack_origin_tech = list(TECH_MATERIAL = 2)
 	composite_material = list(DEFAULT_WALL_MATERIAL = SHEET_MATERIAL_AMOUNT, "platinum" = SHEET_MATERIAL_AMOUNT) //todo
 	supply_conversion_value = 6
-	//VOREstation Edit Start
-	radiation_resistance = 10
-	//VOREstation Edit End
 
 /material/plasteel/hull
 	name = MAT_PLASTEELHULL
@@ -475,9 +466,6 @@ var/list/name_to_material
 	stack_origin_tech = list(TECH_MATERIAL = 8)
 	composite_material = list("plasteel" = SHEET_MATERIAL_AMOUNT, "diamond" = SHEET_MATERIAL_AMOUNT) //shrug
 	supply_conversion_value = 9
-	//VOREstation Edit Start
-	radiation_resistance = 18
-	//VOREstation Edit End
 
 /material/durasteel/hull //The 'Hardball' of starship hulls.
 	name = MAT_DURASTEELHULL
