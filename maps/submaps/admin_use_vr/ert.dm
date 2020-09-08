@@ -17,9 +17,13 @@
 	requires_power = 1
 	dynamic_lighting = 1
 
+/area/ship/ert/engine
+	name = "\improper NRV Von Braun - Engine Bay"
+	icon_state = "engine"
+
 /area/ship/ert/engineering
-	name = "\improper NRV Von Braun - Engineering"
-	icon_state = "engineering"
+	name = "\improper NRV Von Braun - Engineering Control Room"
+	icon_state = "engine_monitoring"
 	
 /area/ship/ert/eng_storage
 	name = "\improper NRV Von Braun - Engineering Storage"
@@ -62,8 +66,12 @@
 	icon_state = "surgery"
 
 /area/ship/ert/hallways
-	name = "\improper NRV Von Braun - Corridors"
-	icon_state = "centcom_Hallway"
+	name = "\improper NRV Von Braun - Fore Corridors"
+	icon_state = "centcom"
+
+/area/ship/ert/hallways_aft
+	name = "\improper NRV Von Braun - Aft Corridors"
+	icon_state = "centcom_hallway1"
 
 /area/ship/ert/dock_star
 	name = "\improper NRV Von Braun - Starboard Airlock"

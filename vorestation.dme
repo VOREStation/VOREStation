@@ -520,6 +520,7 @@
 #include "code\game\antagonist\outsider\commando.dm"
 #include "code\game\antagonist\outsider\deathsquad.dm"
 #include "code\game\antagonist\outsider\ert.dm"
+#include "code\game\antagonist\outsider\ert_vr.dm"
 #include "code\game\antagonist\outsider\mercenary.dm"
 #include "code\game\antagonist\outsider\ninja.dm"
 #include "code\game\antagonist\outsider\raider.dm"
