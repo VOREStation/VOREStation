@@ -17547,6 +17547,10 @@
 	dir = 5
 	},
 /obj/item/weapon/shovel/spade,
+/obj/item/weapon/storage/belt/utility,
+/obj/item/stack/material/sandstone{
+	amount = 5
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/botanystorage)
 "aEl" = (
@@ -17811,6 +17815,10 @@
 	dir = 4
 	},
 /obj/item/weapon/shovel/spade,
+/obj/item/weapon/storage/belt/utility,
+/obj/item/stack/material/sandstone{
+	amount = 5
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/botanystorage)
 "aEM" = (
