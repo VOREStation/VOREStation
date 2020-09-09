@@ -173,13 +173,6 @@
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/ship/ert/eng_storage)
-"ba" = (
-/obj/machinery/alarm/alarms_hidden{
-	dir = 1;
-	pixel_y = -26
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/ship/ert/hallways_aft)
 "bg" = (
 /turf/space,
 /turf/space,
@@ -312,9 +305,13 @@
 /obj/machinery/computer/operating,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/med_surg)
-"cU" = (
+"cP" = (
+/obj/machinery/recharge_station,
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/ert/bridge)
+"cS" = (
 /turf/simulated/wall/shull,
-/area/ship/ert/med)
+/area/ship/ert/hallways_aft)
 "cV" = (
 /obj/machinery/vending/assist,
 /turf/simulated/floor/tiled/techfloor,
@@ -402,6 +399,9 @@
 /obj/effect/floor_decal/industrial/outline/grey,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/barracks)
+"dq" = (
+/turf/simulated/wall/shull,
+/area/ship/ert/med_surg)
 "dr" = (
 /obj/structure/table/rack/steel,
 /obj/item/toy/plushie/squid/blue{
@@ -614,10 +614,6 @@
 /obj/item/weapon/storage/box/cdeathalarm_kit,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/barracks)
-"eQ" = (
-/obj/machinery/recharge_station,
-/turf/simulated/floor/tiled/techfloor,
-/area/ship/ert/bridge)
 "eX" = (
 /obj/structure/table/steel_reinforced,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
@@ -654,10 +650,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/dock_star)
-"fu" = (
-/obj/machinery/recharge_station,
-/turf/simulated/floor/tiled/techfloor,
-/area/ship/ert/med)
 "fx" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/rig_module/rescue_pharm,
@@ -1332,6 +1324,9 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/atmos)
+"kW" = (
+/turf/simulated/wall/shull,
+/area/ship/ert/dock_star)
 "kX" = (
 /obj/machinery/atmospherics/pipe/manifold/visible{
 	dir = 1
@@ -1409,6 +1404,13 @@
 "lL" = (
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/dock_port)
+"lO" = (
+/obj/machinery/alarm/alarms_hidden{
+	dir = 1;
+	pixel_y = -26
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/ship/ert/hallways_aft)
 "lR" = (
 /obj/machinery/firealarm/alarms_hidden{
 	dir = 1;
@@ -1861,9 +1863,6 @@
 /obj/item/device/survivalcapsule,
 /turf/simulated/floor/wood,
 /area/ship/ert/commander)
-"oc" = (
-/turf/simulated/wall/shull,
-/area/ship/ert/eng_storage)
 "og" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/grille,
@@ -1879,6 +1878,15 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/ert_ship_boat)
+"oi" = (
+/turf/simulated/wall/shull,
+/area/ship/ert/hangar)
+"oj" = (
+/obj/machinery/alarm/alarms_hidden{
+	pixel_y = 26
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/ship/ert/hallways_aft)
 "ok" = (
 /obj/machinery/alarm/alarms_hidden{
 	pixel_y = 26
@@ -2205,6 +2213,9 @@
 /obj/machinery/body_scanconsole,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/med_surg)
+"pV" = (
+/turf/simulated/wall/shull,
+/area/ship/ert/atmos)
 "pW" = (
 /obj/structure/table/rack/steel,
 /obj/item/weapon/gun/energy/plasmastun,
@@ -2346,6 +2357,10 @@
 /obj/effect/floor_decal/industrial/outline/grey,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/mech_bay)
+"qR" = (
+/obj/machinery/recharge_station,
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/ert/atmos)
 "qS" = (
 /obj/structure/table/rack/steel,
 /obj/item/mecha_parts/mecha_equipment/tool/jetpack,
@@ -2437,6 +2452,10 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/engine)
+"rM" = (
+/obj/machinery/recharge_station,
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/ert/hallways_aft)
 "rO" = (
 /obj/machinery/shipsensors{
 	dir = 4
@@ -2724,9 +2743,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/ship/ert/engine)
-"tS" = (
-/turf/simulated/wall/shull,
-/area/ship/ert/mech_bay)
 "tV" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
@@ -2964,6 +2980,9 @@
 /obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/teleporter)
+"vX" = (
+/turf/simulated/wall/shull,
+/area/ship/ert/engineering)
 "wd" = (
 /obj/structure/sign/department/conference_room{
 	name = "OUTFITTING"
@@ -3437,6 +3456,9 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/med_surg)
+"zc" = (
+/turf/simulated/wall/shull,
+/area/ship/ert/eng_storage)
 "zg" = (
 /obj/item/modular_computer/console/preset/engineering{
 	dir = 4
@@ -3807,9 +3829,6 @@
 "BW" = (
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/hallways)
-"BY" = (
-/turf/simulated/wall/shull,
-/area/ship/ert/med_surg)
 "Ce" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -3858,6 +3877,9 @@
 /obj/machinery/porta_turret/industrial/military,
 /turf/simulated/floor/reinforced/airless,
 /area/ship/ert/med_surg)
+"Cx" = (
+/turf/simulated/wall/shull,
+/area/ship/ert/mech_bay)
 "CH" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/structure/fans/hardlight,
@@ -3994,9 +4016,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/dock_port)
-"DG" = (
-/turf/simulated/wall/shull,
-/area/ship/ert/engineering)
 "DJ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -4063,9 +4082,6 @@
 "DS" = (
 /turf/simulated/wall/rshull,
 /area/ship/ert/hallways_aft)
-"DT" = (
-/turf/simulated/wall/shull,
-/area/ship/ert/atmos)
 "Ec" = (
 /obj/structure/table/rack/steel,
 /obj/item/weapon/storage/backpack/ert/security,
@@ -5091,6 +5107,9 @@
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/eng_storage)
+"KI" = (
+/turf/simulated/wall/shull,
+/area/ship/ert/med)
 "KJ" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
@@ -5284,10 +5303,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/med_surg)
-"LQ" = (
-/obj/machinery/recharge_station,
-/turf/simulated/floor/tiled/techfloor,
-/area/ship/ert/atmos)
 "LR" = (
 /obj/machinery/door/airlock/external,
 /obj/effect/map_helper/airlock/door/ext_door,
@@ -5936,12 +5951,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/ert_ship_boat)
-"Pf" = (
-/obj/machinery/alarm/alarms_hidden{
-	pixel_y = 26
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/ship/ert/hallways_aft)
 "Pl" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -5963,9 +5972,10 @@
 "Pq" = (
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/med)
-"Px" = (
-/turf/simulated/wall/shull,
-/area/ship/ert/hangar)
+"PA" = (
+/obj/machinery/recharge_station,
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/ert/med)
 "PC" = (
 /obj/machinery/door/blast/regular{
 	dir = 4;
@@ -6008,9 +6018,6 @@
 /obj/structure/cable/yellow,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/engineering)
-"PO" = (
-/turf/simulated/wall/shull,
-/area/ship/ert/hallways_aft)
 "PS" = (
 /obj/machinery/shield_capacitor,
 /obj/effect/floor_decal/industrial/outline/blue,
@@ -6135,9 +6142,6 @@
 "QT" = (
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/med)
-"QU" = (
-/turf/simulated/wall/shull,
-/area/ship/ert/dock_star)
 "QX" = (
 /obj/structure/window/reinforced,
 /obj/machinery/computer/shuttle_control/explore/ert_ship_boat{
@@ -6575,10 +6579,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/teleporter)
-"UP" = (
-/obj/machinery/recharge_station,
-/turf/simulated/floor/tiled/techfloor,
-/area/ship/ert/hallways_aft)
 "UT" = (
 /obj/machinery/door/airlock/glass_security{
 	req_one_access = list(103)
@@ -13337,17 +13337,17 @@ yz
 yz
 bO
 kJ
-DT
+pV
 kP
 kP
 rS
 gA
 gA
 CT
-LQ
-DT
+qR
+pV
 wO
-DG
+vX
 zh
 WS
 lB
@@ -13479,7 +13479,7 @@ yz
 yz
 bR
 kJ
-DT
+pV
 kS
 os
 os
@@ -13487,14 +13487,14 @@ vg
 bp
 Dn
 gn
-DT
+pV
 NR
-DG
+vX
 ry
 Xg
 Sc
 Nb
-DG
+vX
 XW
 XW
 XW
@@ -13621,7 +13621,7 @@ yz
 yz
 bO
 kJ
-DT
+pV
 kT
 gA
 gA
@@ -13763,7 +13763,7 @@ yz
 yz
 bW
 kJ
-DT
+pV
 kY
 oy
 oy
@@ -13771,9 +13771,9 @@ vg
 bp
 DK
 Io
-DT
+pV
 NZ
-DG
+vX
 XS
 Xu
 ZI
@@ -13905,7 +13905,7 @@ yz
 yz
 wr
 kJ
-DT
+pV
 ls
 ls
 ls
@@ -13913,14 +13913,14 @@ gA
 gA
 DQ
 Ip
-DT
+pV
 NZ
-DG
+vX
 hN
 PH
 ZI
 My
-DG
+vX
 XW
 XW
 XW
@@ -14047,25 +14047,25 @@ yz
 xx
 DS
 DS
-DT
-DT
-DT
-DT
-DT
-DT
-DT
-DT
-DT
+pV
+pV
+pV
+pV
+pV
+pV
+pV
+pV
+pV
 Oa
-DG
-DG
-DG
-DG
-DG
-DG
-DG
-DG
-DG
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
+vX
 XW
 XW
 cJ
@@ -14472,8 +14472,8 @@ yz
 yz
 sB
 DS
-PO
-UP
+cS
+rM
 lu
 DS
 NI
@@ -14491,8 +14491,8 @@ iA
 jA
 DS
 lu
-UP
-PO
+rM
+cS
 DS
 sB
 yz
@@ -14614,9 +14614,9 @@ yz
 Ib
 DS
 DS
-PO
-PO
-Pf
+cS
+cS
+oj
 DS
 Qh
 Iv
@@ -14632,8 +14632,8 @@ eF
 Ms
 Kf
 DS
-ba
-PO
+lO
+cS
 DS
 DS
 DS
@@ -14757,7 +14757,7 @@ HE
 JB
 iB
 iB
-PO
+cS
 lu
 DS
 RV
@@ -14775,7 +14775,7 @@ Ms
 jI
 DS
 lu
-PO
+cS
 Sz
 Sz
 Sz
@@ -14917,8 +14917,8 @@ Mv
 wo
 Sz
 Un
-QU
-QU
+kW
+kW
 rt
 Sz
 FO
@@ -15202,7 +15202,7 @@ jA
 Sz
 uu
 na
-QU
+kW
 kX
 SJ
 Sz
@@ -15624,12 +15624,12 @@ ZM
 ZM
 ZM
 ZM
-QU
-QU
-QU
+kW
+kW
+kW
 ix
-QU
-QU
+kW
+kW
 Sz
 Sz
 yz
@@ -15759,7 +15759,7 @@ ZM
 ZM
 ED
 Ao
-eQ
+cP
 Oi
 Sj
 zg
@@ -15771,7 +15771,7 @@ Ar
 hP
 Br
 PS
-oc
+zc
 XG
 GJ
 yz
@@ -15913,7 +15913,7 @@ Zv
 Zv
 Br
 PS
-oc
+zc
 XG
 qF
 yz
@@ -16055,7 +16055,7 @@ Zv
 xC
 sW
 PS
-oc
+zc
 XG
 aV
 yz
@@ -17332,8 +17332,8 @@ ZT
 yI
 ZR
 pz
-cU
-cU
+KI
+KI
 ZT
 eD
 yz
@@ -18610,8 +18610,8 @@ ZT
 PD
 un
 VJ
-cU
-cU
+KI
+KI
 ZT
 eD
 yz
@@ -18736,7 +18736,7 @@ fj
 ip
 mV
 pt
-Px
+oi
 xG
 CL
 GR
@@ -18748,12 +18748,12 @@ WE
 hV
 WA
 EB
-Px
+oi
 qA
 oQ
 dx
 Nd
-fu
+PA
 kx
 TU
 yz
@@ -19179,7 +19179,7 @@ OZ
 Cq
 tg
 km
-fu
+PA
 kx
 TU
 yz
@@ -19299,12 +19299,12 @@ yz
 yz
 af
 bM
-tS
-tS
+Cx
+Cx
 jK
 nn
 pK
-tS
+Cx
 yj
 WC
 WC
@@ -19320,8 +19320,8 @@ uq
 ga
 po
 Rv
-BY
-BY
+dq
+dq
 MZ
 Jg
 yz
@@ -19441,12 +19441,12 @@ yz
 yz
 ag
 bM
-tS
+Cx
 fx
 jQ
 np
 pM
-tS
+Cx
 yj
 WC
 YW
@@ -19458,12 +19458,12 @@ HO
 YW
 WC
 dk
-BY
+dq
 gf
 TF
 SB
 hv
-BY
+dq
 MZ
 aC
 yz
@@ -19583,7 +19583,7 @@ yz
 yz
 ah
 bM
-tS
+Cx
 fE
 jQ
 np
@@ -19605,7 +19605,7 @@ pU
 TF
 SB
 wp
-BY
+dq
 MZ
 ci
 yz
@@ -19725,7 +19725,7 @@ yz
 yz
 ah
 bM
-tS
+Cx
 fP
 jU
 nt
@@ -19747,7 +19747,7 @@ ij
 LB
 xU
 GT
-BY
+dq
 MZ
 ci
 yz
@@ -19867,7 +19867,7 @@ yz
 yz
 ai
 bM
-tS
+Cx
 fU
 jY
 nv
@@ -19889,7 +19889,7 @@ mh
 LZ
 LJ
 hS
-BY
+dq
 MZ
 Cr
 yz
@@ -20009,7 +20009,7 @@ yz
 yz
 ah
 bM
-tS
+Cx
 fZ
 jQ
 np
@@ -20031,7 +20031,7 @@ pb
 bj
 SB
 MC
-BY
+dq
 MZ
 ci
 yz
@@ -20173,7 +20173,7 @@ MZ
 zb
 PG
 MZ
-BY
+dq
 MZ
 ci
 yz
@@ -20315,7 +20315,7 @@ aQ
 bj
 SB
 aQ
-BY
+dq
 MZ
 Jg
 yz
@@ -20457,7 +20457,7 @@ cO
 bj
 SB
 Mb
-BY
+dq
 MZ
 ci
 yz
@@ -20599,7 +20599,7 @@ NJ
 bj
 SB
 NJ
-BY
+dq
 MZ
 ci
 yz
@@ -20741,7 +20741,7 @@ wZ
 gZ
 CP
 wZ
-BY
+dq
 MZ
 Cr
 yz
@@ -20883,7 +20883,7 @@ ij
 nq
 LJ
 ij
-BY
+dq
 MZ
 ci
 yz
@@ -21020,12 +21020,12 @@ WC
 WC
 WC
 zr
-BY
+dq
 mN
 SB
 SB
 mN
-BY
+dq
 MZ
 ci
 yz
@@ -21162,12 +21162,12 @@ QE
 QE
 QE
 Ff
-BY
+dq
 vb
 SB
 SB
 vb
-BY
+dq
 MZ
 aC
 yz
@@ -21305,10 +21305,10 @@ CH
 CH
 yX
 MZ
-BY
+dq
 sT
 sT
-BY
+dq
 MZ
 MZ
 Jg
@@ -21448,8 +21448,8 @@ za
 hW
 MZ
 MZ
-BY
-BY
+dq
+dq
 MZ
 MZ
 Cr
