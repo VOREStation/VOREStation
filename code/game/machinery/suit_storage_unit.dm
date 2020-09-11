@@ -1220,9 +1220,6 @@
 			parent_suit = /obj/item/clothing/suit/space/void/refurb/mercenary/talon
 		//VOREStation Addition End
 		//END: downstream variant space
-<<<<<<< HEAD
-
-=======
 	if(target_species)
 		//Making sure all of our items have the sprites to be refitted.
 		var/helmet_check = ((helmet!=null && (initial(parent_helmet.icon_state) in icon_states(helmet.sprite_sheets_obj[target_species],1))) || helmet==null)
@@ -1240,7 +1237,6 @@
 			//If they don't, alert the user and stop here.
 			T.visible_message("[bicon(src)]<span class='warning'>Unable to apply specified cosmetics with specified species. Please try again with a different species or cosmetic option selected.</span>")
 			return
->>>>>>> f3e3469... Cycler made more rugged and options for no cosmetic changes added to all cyclers. (#7640)
 	//look at this! isn't it beautiful? -KK (well ok not beautiful but it's a lot cleaner)
 	if(helmet && target_department != "No Change")
 		var/obj/item/clothing/H = new parent_helmet
