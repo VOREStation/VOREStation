@@ -33,8 +33,10 @@
 	return ..()
 
 /obj/machinery/atmospherics/omni/atmos_filter/sort_ports()
+	var/any_updated = FALSE
 	for(var/datum/omni_port/P in ports)
 		if(P.update)
+			any_updated = TRUE
 			if(output == P)
 				output = null
 			if(input == P)
@@ -50,6 +52,8 @@
 					output = P
 				if(ATM_O2 to ATM_N2O)
 					atmos_filters += P
+	if(any_updated)
+		rebuild_filtering_list()
 
 /obj/machinery/atmospherics/omni/atmos_filter/error_check()
 	if(!input || !output || !atmos_filters)
@@ -231,7 +235,6 @@
 		target_port.mode = mode
 		if(target_port.mode != previous_mode)
 			handle_port_change(target_port)
-			rebuild_filtering_list()
 		else
 			return
 	else
