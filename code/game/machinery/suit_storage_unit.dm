@@ -1052,17 +1052,6 @@
 	var/turf/T = get_turf(src)
 	if(!target_species || !target_department)
 		return
-<<<<<<< HEAD
-
-	if(target_species)
-		if(helmet) helmet.refit_for_species(target_species)
-		if(suit)
-			suit.refit_for_species(target_species)
-			if(suit.helmet)
-				suit.helmet.refit_for_species(target_species)
-
-=======
->>>>>>> f3e3469... Cycler made more rugged and options for no cosmetic changes added to all cyclers. (#7640)
 	//Now "Complete" with most departmental and variant suits, and sorted by department. These aren't available in the standard or emagged cycler lists because they're incomplete for most species.
 	switch(target_department)
 		if("No Change")
