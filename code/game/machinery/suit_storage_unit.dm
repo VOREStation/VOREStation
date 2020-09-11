@@ -652,23 +652,13 @@
 /obj/machinery/suit_cycler/vintage/pilot
 	name = "Vintage Pilot suit cycler"
 	model_text = "Vintage Pilot"
-<<<<<<< HEAD
-	departments = list("Vintage Pilot (Bubble Helm)","Vintage Pilot (Closed Helm)")
-
-/obj/machinery/suit_cycler/vintage/medsci
-	name = "Vintage MedSci suit cycler"
-	model_text = "Vintage MedSci"
-	departments = list("Vintage Medical (Bubble Helm)","Vintage Medical (Closed Helm)","Vintage Research (Bubble Helm)","Vintage Research (Closed Helm)")
-
-=======
 	departments = list("Vintage Pilot (Bubble Helm)","Vintage Pilot (Closed Helm)","No Change")
-	
+
 /obj/machinery/suit_cycler/vintage/medsci
 	name = "Vintage MedSci suit cycler"
 	model_text = "Vintage MedSci"
 	departments = list("Vintage Medical (Bubble Helm)","Vintage Medical (Closed Helm)","Vintage Research (Bubble Helm)","Vintage Research (Closed Helm)","No Change")
-	
->>>>>>> f3e3469... Cycler made more rugged and options for no cosmetic changes added to all cyclers. (#7640)
+
 /obj/machinery/suit_cycler/vintage/rugged
 	name = "Vintage Ruggedized suit cycler"
 	model_text = "Vintage Ruggedized"
