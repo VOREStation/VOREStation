@@ -107,7 +107,7 @@
 /obj/effect/overmap/visitable/ship/ert_ship
 	name = "NRV Von Braun"
 	desc = "Spacefaring vessel. Broadcasting Corporate Emergency Responder IFF."
-	scanner_desc = @{"[i]Registration[/i]: Nanotrasen Rapid Response Vessel [i]Von Braun[/i]
+	scanner_desc = @{"[i]Registration[/i]: Nanotrasen RRV Von Braun
 [i]Class[/i]: [i]Kepler[/i]-class Frigate
 [i]Transponder[/i]: Broadcasting (ER-CORP)
 [b]Notice[/b]: Impeding or interfering with emergency response vessels is a breach of numerous interstellar codes. Approach with caution."}
@@ -200,8 +200,17 @@ EM: On<br>\
 Humanoids: Off<br>\
 Atmospheric: Off<br>\
 Hull Shield: On<br>\
-Radius: 26<br>\
+Radius: 42<br>\
 <br>\
 The shield generator will tax the Von Braun's reserves greatly so try to use it sparingly. Do not be afraid to use it however, as the Von Braun represents the Company making a <i>significant</i> investment in this sector's future. I can bail you out if the occasional intern goes missing or you break something minor, but if you go flying this thing through an asteroid belt and get massive holes blown in it Central <b>will</b> make <u>everyone</u> involved disappear <b><u>permanently</b></u>.<br>\
 <br>\
 <i>Lt. Cmdr. Sykes</i>"}
+
+/obj/machinery/computer/cryopod/ert
+	name = "responder oversight console"
+	desc = "An interface between responders and the cryo oversight systems tasked with keeping track of all responders who enter or exit cryostasis."
+	circuit = "/obj/item/weapon/circuitboard/robotstoragecontrol"
+
+	storage_type = "responders"
+	storage_name = "ERT Oversight Control"
+	allow_items = 1

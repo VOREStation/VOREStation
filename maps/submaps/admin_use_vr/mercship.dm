@@ -110,7 +110,7 @@
 	icon_state = "recreation_area"
 
 /area/shuttle/manta_ship_boat
-	name = "\improper Boarding Craft"
+	name = "\improper SAARE Lander"
 	icon_state = "syndie-ship"
 	requires_power = 0
 
@@ -127,7 +127,7 @@
 /obj/effect/overmap/visitable/ship/manta_ship
 	name = "SAARE Typhon Four-Niner"
 	desc = "Spacefaring vessel. Broadcasting Private Military Contractor IFF."
-	scanner_desc = @{"[i]Registration[/i]: SAARE Mercenary Cruiser [i]Typhon Four-Niner[/i]
+	scanner_desc = @{"[i]Registration[/i]: SAARE Mercenary Cruiser Typhon Four-Niner
 [i]Class[/i]: [i]Manta[/i]-class Cruiser
 [i]Transponder[/i]: Broadcasting (PMC)
 [b]Notice[/b]: SAARE are unlikely to tolerate civilian or corporate personnel interfering with their affairs. Approach with caution."}
@@ -193,12 +193,12 @@
 	defer_initialisation = TRUE
 
 /obj/effect/overmap/visitable/ship/landable/manta_ship_boat
-	scanner_name = "Unknown Landing Craft"
-	desc = "Spacefaring vessel. No IFF detected."
-	scanner_desc = @{"[i]Registration[/i]: None detected.
-[i]Class[/i]: Unknown (Frigate-approximate Mass)
-[i]Transponder[/i]: Not Responding
-[b]Notice[/b]: Failure to broadcast a valid IFF signal via transponder is a breach of numerous interstellar codes. Approach with caution."}
+	scanner_name = "SAARE Landing Craft"
+	desc = "Spacefaring vessel. Broadcasting Private Military Contractor IFF."
+	scanner_desc = @{"[i]Registration[/i]: SAARE Mercenary Cruiser Typhon Four-Niner's Lander
+[i]Class[/i]: Unknown Shuttle-approximate
+[i]Transponder[/i]: Broadcasting (PMC)
+[b]Notice[/b]: SAARE are unlikely to tolerate civilian or corporate personnel interfering with their affairs. Approach with caution."}
 	color = "#3366FF"
 	color = "#333333" //TACTICAL BLACK
 	vessel_mass = 500
@@ -226,7 +226,7 @@ Electromagnetic: On<br>\
 Humanoid: Off<br>\
 Atmosphere: Off<br>\
 Hull Shield: On<br>\
-Radius: 26<br>\
+Radius: 28 minimum<br>\
 <br>\
 The shield generator's a hungry beast and will drain the cruiser's reserves fairly quick, so don't overuse it. Don't be afraid to use it either, as this ship's a <i>serious</i> investment. If you fuck up, I <u>won't</u> be sticking my neck out for you, you get me? This 'Lieutenant Commander Sykes' asshole is enough of a pain already.<br>\
 <br>\
@@ -262,3 +262,12 @@ I don't care if they're 'not being cooperative', for the love of fuck if another
 <i>Capt. Thorne</i><br>\
 <br>\
 P.S. If you gotta cut 'em up or whatever try not to make too much of a mess, and clean up when you're done. Don't trail blood all over my damn ship, and don't get them killed by infections either."}
+
+/obj/machinery/computer/cryopod/merc
+	name = "mercenary oversight console"
+	desc = "An interface between mercenaries and the cryo oversight systems tasked with keeping track of all mercenaries who enter or exit cryostasis."
+	circuit = "/obj/item/weapon/circuitboard/robotstoragecontrol"
+
+	storage_type = "mercenaries"
+	storage_name = "Merc Oversight Control"
+	allow_items = 1

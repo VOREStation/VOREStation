@@ -58,26 +58,20 @@
 #include "../../submaps/admin_use_vr/ert.dm"
 #include "../../submaps/admin_use_vr/mercship.dm"
 
-/*
-//not loading this here, it's already defined in the ert.dm
 /datum/map_template/admin_use/ert
 	name = "Special Area - ERT"
 	desc = "It's the ERT ship! Lorge."
 	mappath = 'maps/submaps/admin_use_vr/ert.dmm'
-*/
 
 /datum/map_template/admin_use/trader
 	name = "Special Area - Trader"
 	desc = "Big trader ship."
 	mappath = 'maps/submaps/admin_use_vr/tradeship.dmm'
 
-/*
-//not loading this here, it's already defined in the mercship.dm
 /datum/map_template/admin_use/mercenary
 	name = "Special Area - Merc Ship"
 	desc = "Prepare tae be boarded, arr!"
 	mappath = 'maps/submaps/admin_use_vr/kk_mercship.dmm'
-*/
 
 /datum/map_template/admin_use/old_mercenary
 	name = "Special Area - Old Merc Base"
