@@ -194,7 +194,7 @@
 	name = "Skunk (Taur)"
 	icon_state = "skunk_s"
 	extra_overlay = "skunk_markings"
-	//icon_sprite_tag = "skunk"
+	icon_sprite_tag = "skunk"
 
 /datum/sprite_accessory/tail/taur/wolf/synthwolf
 	name = "SynthWolf dual-color (Taur)"
