@@ -1,7 +1,7 @@
 import { filter } from 'common/collections';
 import { decodeHtmlEntities, toTitleCase } from 'common/string';
 import { Fragment } from 'inferno';
-import { useBackend } from "../backend";
+import { useBackend, useLocalState } from "../backend";
 import { Box, Button, Flex, Icon, LabeledList, Input, ProgressBar, Section, Table } from "../components";
 import { Window } from "../layouts";
 import { IdentificationComputerCrewManifest } from './IdentificationComputer';
@@ -218,29 +218,34 @@ const PhoneTab = (props, context) => {
         </Section>
         <Section title="Internal Connections" level={3}>
           {!!communicating.length && (
-            <LabeledList>
+            <Table>
               {communicating.map(comm => (
-                <LabeledList.Item label={decodeHtmlEntities(comm.name)} key={comm.address}>
-                  <Button
-                    icon="times"
-                    color="bad"
-                    content="Disconnect"
-                    onClick={() => act("disconnect", { disconnect: comm.true_name })} />
-                  {video_comm === null && (
-                    <Button
-                      icon="camera"
-                      content="Start Video"
-                      onClick={() => act("startvideo", { startvideo: comm.ref })} />
-                  ) || video_comm === comm.ref && (
+                <Table.Row key={comm.address}>
+                  <Table.Cell color="label">
+                    {decodeHtmlEntities(comm.name)}
+                  </Table.Cell>
+                  <Table.Cell>
                     <Button
                       icon="times"
                       color="bad"
-                      content="Stop Video"
-                      onClick={() => act("endvideo", { endvideo: comm.true_name })} />
-                  )}
-                </LabeledList.Item>
+                      content="Disconnect"
+                      onClick={() => act("disconnect", { disconnect: comm.true_name })} />
+                    {video_comm === null && (
+                      <Button
+                        icon="camera"
+                        content="Start Video"
+                        onClick={() => act("startvideo", { startvideo: comm.ref })} />
+                    ) || video_comm === comm.ref && (
+                      <Button
+                        icon="times"
+                        color="bad"
+                        content="Stop Video"
+                        onClick={() => act("endvideo", { endvideo: comm.true_name })} />
+                    )}
+                  </Table.Cell>
+                </Table.Row>
               ))}
-            </LabeledList>
+            </Table>
           ) || (
             <Box>
               No connections
@@ -415,38 +420,45 @@ const ContactsTab = (props, context) => {
   return (
     <Section title="Known Devices">
       {knownDevices.length && (
-        <LabeledList>
+        <Table>
           {knownDevices.map(device => (
-            <LabeledList.Item label={decodeHtmlEntities(device.name)} key={device.address}>
-              <Box>{device.address}</Box>
-              <Box>
-                <Button
-                  icon="pen"
-                  onClick={() => {
-                    act("copy", { "copy": device.address });
-                    act("switch_tab", { switch_tab: PHONTAB });
-                  }}
-                  content="Copy" />
-                <Button
-                  icon="phone"
-                  onClick={() => {
-                    act("dial", { "dial": device.address });
-                    act("copy", { "copy": device.address });
-                    act("switch_tab", { switch_tab: PHONTAB });
-                  }}
-                  content="Call" />
-                <Button
-                  icon="comment-alt"
-                  onClick={() => {
-                    act("copy", { "copy": device.address });
-                    act("copy_name", { "copy_name": device.name });
-                    act("switch_tab", { switch_tab: MESSSUBTAB });
-                  }}
-                  content="Msg" />
-              </Box>
-            </LabeledList.Item>
+            <Table.Row key={device.address}>
+              <Table.Cell color="label" style={{
+                "word-break": "break-all",
+              }}>
+                {decodeHtmlEntities(device.name)}
+              </Table.Cell>
+              <Table.Cell>
+                <Box>{device.address}</Box>
+                <Box>
+                  <Button
+                    icon="pen"
+                    onClick={() => {
+                      act("copy", { "copy": device.address });
+                      act("switch_tab", { switch_tab: PHONTAB });
+                    }}
+                    content="Copy" />
+                  <Button
+                    icon="phone"
+                    onClick={() => {
+                      act("dial", { "dial": device.address });
+                      act("copy", { "copy": device.address });
+                      act("switch_tab", { switch_tab: PHONTAB });
+                    }}
+                    content="Call" />
+                  <Button
+                    icon="comment-alt"
+                    onClick={() => {
+                      act("copy", { "copy": device.address });
+                      act("copy_name", { "copy_name": device.name });
+                      act("switch_tab", { switch_tab: MESSSUBTAB });
+                    }}
+                    content="Msg" />
+                </Box>
+              </Table.Cell>
+            </Table.Row>
           ))}
-        </LabeledList>
+        </Table>
       ) || (
         <Box>
           No devices detected on your local NTNet region.
@@ -469,23 +481,30 @@ const MessagingTab = (props, context) => {
   return (
     <Section title="Messaging">
       {imContacts.length && (
-        <LabeledList>
+        <Table>
           {imContacts.map(device => (
-            <LabeledList.Item label={decodeHtmlEntities(device.name)} key={device.address}>
-              <Box>{device.address}</Box>
-              <Box>
-                <Button
-                  icon="comment"
-                  onClick={() => {
-                    act("copy", { copy: device.address });
-                    act("copy_name", { copy_name: device.name });
-                    act("switch_tab", { switch_tab: MESSSUBTAB });
-                  }}
-                  content="View Conversation" />
-              </Box>
-            </LabeledList.Item>
+            <Table.Row key={device.address}>
+              <Table.Cell color="label" style={{
+                "word-break": "break-all",
+              }}>
+                {decodeHtmlEntities(device.name)}:
+              </Table.Cell>
+              <Table.Cell>
+                <Box>{device.address}</Box>
+                <Box>
+                  <Button
+                    icon="comment"
+                    onClick={() => {
+                      act("copy", { copy: device.address });
+                      act("copy_name", { copy_name: device.name });
+                      act("switch_tab", { switch_tab: MESSSUBTAB });
+                    }}
+                    content="View Conversation" />
+                </Box>
+              </Table.Cell>
+            </Table.Row>
           ))}
-        </LabeledList>
+        </Table>
       ) || (
         <Box>
           You haven&apos;t sent any messages yet.
@@ -507,6 +526,16 @@ const IsIMOurs = (im, targetAddress) => {
   return im.address !== targetAddress;
 };
 
+const enforceLengthLimit = (prefix, name, length) => {
+  if ((prefix + name).length > length) {
+    if (name.length > length) {
+      return name.slice(0, length) + "...";
+    }
+    return name;
+  }
+  return prefix + name;
+};
+
 const MessagingThreadTab = (props, context) => {
   const { act, data } = useBackend(context);
 
@@ -516,15 +545,82 @@ const MessagingThreadTab = (props, context) => {
     imList,
   } = data;
 
+  const [clipboardMode, setClipboardMode] = useLocalState(context, 'clipboardMode', false);
+
+  if (clipboardMode) {
+    return (
+      <Section
+        title={(
+          <Box
+            inline
+            style={{
+              "white-space": "nowrap",
+              "overflow-x": "hidden",
+            }}
+            width="90%">
+            {enforceLengthLimit("Conversation with ", decodeHtmlEntities(targetAddressName), 30)}
+          </Box>
+        )}
+        buttons={
+          <Button
+            icon="eye"
+            selected={clipboardMode}
+            tooltip="Exit Clipboard Mode"
+            tooltipPosition="bottom-left"
+            onClick={() => setClipboardMode(!clipboardMode)} />
+        }
+        height="100%"
+        stretchContents>
+        <Section style={{
+          "height": "95%",
+          "overflow-y": "auto",
+        }}>
+          {imList.map((im, i) => (
+            <Box
+              key={i}
+              color={IsIMOurs(im, targetAddress) ? "#4d9121" : "#cd7a0d"}>
+              {IsIMOurs(im, targetAddress) ? "You" : "Them"}: {im.im}
+            </Box>
+          ))}
+        </Section>
+        <Button
+          icon="comment"
+          onClick={() => act("message", { "message": targetAddress })}
+          content="Message" />
+      </Section>
+    );
+  }
+
   return (
-    <Section title={"Conversation with " + decodeHtmlEntities(targetAddressName)} height="100%" stretchContents>
+    <Section
+      title={(
+        <Box
+          inline
+          style={{
+            "white-space": "nowrap",
+            "overflow-x": "hidden",
+          }}
+          width="100%">
+          {enforceLengthLimit("Conversation with ", decodeHtmlEntities(targetAddressName), 30)}
+        </Box>
+      )}
+      buttons={
+        <Button
+          icon="eye"
+          selected={clipboardMode}
+          tooltip="Enter Clipboard Mode"
+          tooltipPosition="bottom-left"
+          onClick={() => setClipboardMode(!clipboardMode)} />
+      }
+      height="100%"
+      stretchContents>
       <Section style={{
         "height": "95%",
         "overflow-y": "auto",
       }}>
         {imList.map((im, i) => (
           <Box
-            textAlign={IsIMOurs(im, targetAddress) ? "left" : "right"}
+            textAlign={IsIMOurs(im, targetAddress) ? "right" : "left"}
             position="relative"
             mb={1}
             key={i}>
@@ -532,12 +628,12 @@ const MessagingThreadTab = (props, context) => {
               fontSize={2.5}
               color={IsIMOurs(im, targetAddress) ? "#4d9121" : "#cd7a0d"}
               position="absolute"
-              left={IsIMOurs(im, targetAddress) ? "0px" : null}
-              right={IsIMOurs(im, targetAddress) ? null : "0px"}
+              left={IsIMOurs(im, targetAddress) ? null : "0px"}
+              right={IsIMOurs(im, targetAddress) ? "0px" : null}
               bottom="-4px"
               style={{
                 "z-index": "0",
-                "transform": IsIMOurs(im, targetAddress) ? null : "scale(-1, 1)",
+                "transform": IsIMOurs(im, targetAddress) ? "scale(-1, 1)" : null,
               }}
               name="comment" />
             <Box
@@ -546,7 +642,7 @@ const MessagingThreadTab = (props, context) => {
               p={1}
               maxWidth="100%"
               position="relative"
-              textAlign={IsIMOurs(im, targetAddress) ? "right" : "left"}
+              textAlign={IsIMOurs(im, targetAddress) ? "left" : "right"}
               style={{
                 "z-index": "1",
                 "border-radius": "10px",
