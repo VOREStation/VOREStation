@@ -5,122 +5,170 @@
 	icon_state = "power_mod"
 	var/obj/item/device/pda/hostpda = null
 
-	var/on = 0 //Are we currently active??
-	var/menu_message = ""
-
-	New()
-		..()
-		if (istype(loc.loc, /obj/item/device/pda))
-			hostpda = loc.loc
-
-	proc/post_signal(var/freq, var/key, var/value, var/key2, var/value2, var/key3, var/value3, s_filter)
-
-		//to_world("Post: [freq]: [key]=[value], [key2]=[value2]")
-		var/datum/radio_frequency/frequency = radio_controller.return_frequency(freq)
-
-		if(!frequency) return
-
-		var/datum/signal/signal = new()
-		signal.source = src
-		signal.transmission_method = TRANSMISSION_RADIO
-		signal.data[key] = value
-		if(key2)
-			signal.data[key2] = value2
-		if(key3)
-			signal.data[key3] = value3
-
-		frequency.post_signal(src, signal, radio_filter = s_filter)
-
-		return
-
-	proc/generate_menu()
-
-/obj/item/radio/integrated/beepsky
 	var/list/botlist = null		// list of bots
-	var/mob/living/bot/secbot/active 	// the active bot; if null, show bot list
+	var/mob/living/bot/active 	// the active bot; if null, show bot list
 	var/list/botstatus			// the status signal sent by the bot
+	
+	var/bot_type				//The type of bot it is.
+	var/bot_filter				//Determines which radio filter to use.
 
 	var/control_freq = BOT_FREQ
 
-	// create a new QM cartridge, and register to receive bot control & beacon message
-	New()
-		..()
+	var/on = 0 //Are we currently active??
+	var/menu_message = ""
+
+/obj/item/radio/integrated/New()
+	..()
+	if(istype(loc.loc, /obj/item/device/pda))
+		hostpda = loc.loc
+	if(bot_filter)
 		spawn(5)
-			if(radio_controller)
-				radio_controller.add_object(src, control_freq, radio_filter = RADIO_SECBOT)
+			add_to_radio(bot_filter)
 
-	// receive radio signals
-	// can detect bot status signals
-	// create/populate list as they are recvd
-
-	receive_signal(datum/signal/signal)
-//		var/obj/item/device/pda/P = src.loc
-
-		/*
-		to_world("recvd:[P] : [signal.source]")
-		for(var/d in signal.data)
-			to_world("- [d] = [signal.data[d]]")
-		*/
-		if (signal.data["type"] == "secbot")
-			if(!botlist)
-				botlist = new()
-
-			if(!(signal.source in botlist))
-				botlist += signal.source
-
-			if(active == signal.source)
-				var/list/b = signal.data
-				botstatus = b.Copy()
-
-//		if (istype(P)) P.updateSelfDialog()
-
-	Topic(href, href_list)
-		..()
-		var/obj/item/device/pda/PDA = src.hostpda
-
-		switch(href_list["op"])
-
-			if("control")
-				active = locate(href_list["bot"])
-				post_signal(control_freq, "command", "bot_status", "active", active, s_filter = RADIO_SECBOT)
-
-			if("scanbots")		// find all bots
-				botlist = null
-				post_signal(control_freq, "command", "bot_status", s_filter = RADIO_SECBOT)
-
-			if("botlist")
-				active = null
-
-			if("stop", "go")
-				post_signal(control_freq, "command", href_list["op"], "active", active, s_filter = RADIO_SECBOT)
-				post_signal(control_freq, "command", "bot_status", "active", active, s_filter = RADIO_SECBOT)
-
-			if("summon")
-				post_signal(control_freq, "command", "summon", "active", active, "target", get_turf(PDA) , s_filter = RADIO_SECBOT)
-				post_signal(control_freq, "command", "bot_status", "active", active, s_filter = RADIO_SECBOT)
-
-
-/obj/item/radio/integrated/beepsky/Destroy()
+/obj/item/radio/integrated/Destroy()
 	if(radio_controller)
 		radio_controller.remove_object(src, control_freq)
+	hostpda = null
 	return ..()
+
+/obj/item/radio/integrated/proc/post_signal(var/freq, var/key, var/value, var/key2, var/value2, var/key3, var/value3, s_filter)
+
+	//to_world("Post: [freq]: [key]=[value], [key2]=[value2]")
+	var/datum/radio_frequency/frequency = radio_controller.return_frequency(freq)
+
+	if(!frequency)
+		return
+
+	var/datum/signal/signal = new()
+	signal.source = src
+	signal.transmission_method = TRANSMISSION_RADIO
+	signal.data[key] = value
+	if(key2)
+		signal.data[key2] = value2
+	if(key3)
+		signal.data[key3] = value3
+
+	frequency.post_signal(src, signal, radio_filter = s_filter)
+
+/obj/item/radio/integrated/Topic(href, href_list)
+	..()
+	switch(href_list["op"])
+		if("control")
+			active = locate(href_list["bot"])
+			spawn(0)
+				post_signal(control_freq, "command", "bot_status", "active", active, s_filter = bot_filter)
+
+		if("scanbots")		// find all bots
+			botlist = null
+			spawn(0)
+				post_signal(control_freq, "command", "bot_status", s_filter = bot_filter)
+
+		if("botlist")
+			active = null
+
+		if("stop", "go", "home")
+			spawn(0)
+				post_signal(control_freq, "command", href_list["op"], "active", active, s_filter = bot_filter)
+				post_signal(control_freq, "command", "bot_status", "active", active, s_filter = bot_filter)
+
+		if("summon")
+			spawn(0)
+				post_signal(control_freq, "command", "summon", "active", active, "target", get_turf(hostpda), "useraccess", hostpda.GetAccess(), "user", usr, s_filter = bot_filter)
+				post_signal(control_freq, "command", "bot_status", "active", active, s_filter = bot_filter)
+
+/obj/item/radio/integrated/receive_signal(datum/signal/signal)
+	if(bot_type && istype(signal.source, /mob/living/bot) && signal.data["type"] == bot_type)
+		if(!botlist)
+			botlist = new()
+
+		botlist |= signal.source
+
+		if(active == signal.source)
+			var/list/b = signal.data
+			botstatus = b.Copy()
+
+/obj/item/radio/integrated/proc/add_to_radio(bot_filter) //Master filter control for bots. Must be placed in the bot's local New() to support map spawned bots.
+	if(radio_controller)
+		radio_controller.add_object(src, control_freq, radio_filter = bot_filter)
+
+/obj/item/radio/integrated/beepsky
+	bot_filter = RADIO_SECBOT
+	bot_type = "secbot"
+
+/obj/item/radio/integrated/mule
+	bot_filter = RADIO_MULEBOT
+	bot_type = "mulebot"
+
+/obj/item/radio/integrated/mule/proc/GetBeaconList()
+	var/list/beaconlist = list()
+	for(var/obj/machinery/navbeacon/N in navbeacons)
+		if(!N.codes["delivery"])
+			continue
+		beaconlist.Add(N.location)
+		beaconlist[N.location] = N
+	return beaconlist
+
+/obj/item/radio/integrated/mule/Topic(href, href_list)
+	..()
+	switch(href_list["op"])
+		if("start")
+			spawn(0)
+				post_signal(control_freq, "command", "start", "active", active, s_filter = RADIO_MULEBOT)
+
+		if("unload")
+			spawn(0)
+				post_signal(control_freq, "command", "unload", "active", active, s_filter = RADIO_MULEBOT)
+
+		if("setdest")
+			var/dest
+			var/list/beaconlist = GetBeaconList()
+			if(LAZYLEN(beaconlist))
+				dest = input("Select Bot Destination", "Mulebot [active.suffix] Interlink", active.target) as null|anything in beaconlist
+			else
+				alert("No destination beacons available.")
+			if(dest)
+				spawn(0)
+					post_signal(control_freq, "command", "target", "active", active, "destination", dest, s_filter = RADIO_MULEBOT)
+
+		if("retoff")
+			spawn(0)
+				post_signal(control_freq, "command", "autoret", "active", active, "value", 0, s_filter = RADIO_MULEBOT)
+
+		if("reton")
+			spawn(0)
+				post_signal(control_freq, "command", "autoret", "active", active, "value", 1, s_filter = RADIO_MULEBOT)
+
+		if("pickoff")
+			spawn(0)
+				post_signal(control_freq, "command", "autopick", "active", active, "value", 0, s_filter = RADIO_MULEBOT)
+
+		if("pickon")
+			spawn(0)
+				post_signal(control_freq, "command", "autopick", "active", active, "value", 1, s_filter = RADIO_MULEBOT)
+
+	spawn(10)
+		post_signal(control_freq, "command", "bot_status", "active", active, s_filter = RADIO_MULEBOT)
 
 /*
  *	Radio Cartridge, essentially a signaler.
  */
-
-
 /obj/item/radio/integrated/signal
 	var/frequency = 1457
 	var/code = 30.0
 	var/last_transmission
 	var/datum/radio_frequency/radio_connection
 
+/obj/item/radio/integrated/signal/Destroy()
+	if(radio_controller)
+		radio_controller.remove_object(src, frequency)
+	radio_connection = null
+	return ..()
+
 /obj/item/radio/integrated/signal/Initialize()
 	if(!radio_controller)
 		return
 
-	if (src.frequency < PUBLIC_LOW_FREQ || src.frequency > PUBLIC_HIGH_FREQ)
+	if(src.frequency < PUBLIC_LOW_FREQ || src.frequency > PUBLIC_HIGH_FREQ)
 		src.frequency = sanitize_frequency(src.frequency)
 
 	set_frequency(frequency)
@@ -131,7 +179,6 @@
 	radio_connection = radio_controller.add_object(src, frequency)
 
 /obj/item/radio/integrated/signal/proc/send_signal(message="ACTIVATE")
-
 	if(last_transmission && world.time < (last_transmission + 5))
 		return
 	last_transmission = world.time
@@ -145,9 +192,5 @@
 	signal.encryption = code
 	signal.data["message"] = message
 
-	radio_connection.post_signal(src, signal)
-
-/obj/item/radio/integrated/signal/Destroy()
-	if(radio_controller)
-		radio_controller.remove_object(src, frequency)
-	return ..()
+	spawn(0)
+		radio_connection.post_signal(src, signal)

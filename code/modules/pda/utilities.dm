@@ -43,22 +43,28 @@
 /datum/data/pda/utility/scanmode/medical/scan_mob(mob/living/C as mob, mob/living/user as mob)
 	C.visible_message("<span class=warning>[user] has analyzed [C]'s vitals!</span>")
 
-	user.show_message("<span class=notice>Analyzing Results for [C]:</span>")
-	user.show_message("<span class=notice>\t Overall Status: [C.stat > 1 ? "dead" : "[C.health]% healthy"]</span>", 1)
-	user.show_message("<span class=notice>\t Damage Specifics: [C.getOxyLoss() > 50 ? "</span><span class=warning>" : ""][C.getOxyLoss()]-[C.getToxLoss() > 50 ? "</span><span class=warning>" : "</span><span class=notice>"][C.getToxLoss()]-[C.getFireLoss() > 50 ? "</span><span class=warning>" : "</span><span class=notice>"][C.getFireLoss()]-[C.getBruteLoss() > 50 ? "</span><span class=warning>" : "</span><span class=notice>"][C.getBruteLoss()]</span>", 1)
-	user.show_message("<span class=notice>\t Key: Suffocation/Toxin/Burns/Brute</span>", 1)
-	user.show_message("<span class=notice>\t Body Temperature: [C.bodytemperature-T0C]&deg;C ([C.bodytemperature*1.8-459.67]&deg;F)</span>", 1)
+	user.show_message("<span class='notice'>Analyzing Results for [C]:</span>")
+	user.show_message("<span class='notice'>    Overall Status: [C.stat > 1 ? "dead" : "[C.health - C.halloss]% healthy"]</span>", 1)
+	user.show_message(text("<span class='notice'>    Damage Specifics:</span> <span class='[]'>[]</span>-<span class='[]'>[]</span>-<span class='[]'>[]</span>-<span class='[]'>[]</span>",
+			(C.getOxyLoss() > 50) ? "warning" : "", C.getOxyLoss(),
+			(C.getToxLoss() > 50) ? "warning" : "", C.getToxLoss(),
+			(C.getFireLoss() > 50) ? "warning" : "", C.getFireLoss(),
+			(C.getBruteLoss() > 50) ? "warning" : "", C.getBruteLoss()
+			), 1)
+	user.show_message("<span class='notice'>    Key: Suffocation/Toxin/Burns/Brute</span>", 1)
+	user.show_message("<span class='notice'>    Body Temperature: [C.bodytemperature-T0C]&deg;C ([C.bodytemperature*1.8-459.67]&deg;F)</span>", 1)
 	if(C.tod && (C.stat == DEAD || (C.status_flags & FAKEDEATH)))
-		user.show_message("<span class=notice>\t Time of Death: [C.tod]</span>")
+		user.show_message("<span class='notice'>    Time of Death: [C.tod]</span>")
 	if(istype(C, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = C
 		var/list/damaged = H.get_damaged_organs(1,1)
-		user.show_message("<span class=notice>Localized Damage, Brute/Burn:</span>",1)
+		user.show_message("<span class='notice'>Localized Damage, Brute/Burn:</span>",1)
 		if(length(damaged)>0)
 			for(var/obj/item/organ/external/org in damaged)
-				user.show_message("<span class=notice>\t [capitalize(org.name)]: [org.brute_dam > 0 ? "<span class=warning>[org.brute_dam]</span>" : "0"]-[org.burn_dam > 0 ? "<span class=warning>[org.burn_dam]</span>" : "0"]", 1)
+				user.show_message(text("<span class='notice'>     []: <span class='[]'>[]</span>-<span class='[]'>[]</span></span>",
+						capitalize(org.name), (org.brute_dam > 0) ? "warning" : "notice", org.brute_dam, (org.burn_dam > 0) ? "warning" : "notice", org.burn_dam),1)
 		else
-			user.show_message("<span class=notice>\t Limbs are OK.",1)
+			user.show_message("<span class='notice'>    Limbs are OK.</span>",1)
 
 /datum/data/pda/utility/scanmode/dna
 	base_name = "DNA Scanner"
@@ -118,32 +124,10 @@
 
 /datum/data/pda/utility/scanmode/gas
 	base_name = "Gas Scanner"
-	icon = "tachometer"
+	icon = "tachometer-alt"
 
 /datum/data/pda/utility/scanmode/gas/scan_atom(atom/A as mob|obj|turf|area, mob/user as mob)
-	// if(istype(A, /obj/item/tank))
-	// 	var/obj/item/tank/T = A
-	// 	pda.atmosanalyzer_scan(T.air_contents, user, T)
-	// else if(istype(A, /obj/machinery/portable_atmospherics))
-	// 	var/obj/machinery/portable_atmospherics/T = A
-	// 	pda.atmosanalyzer_scan(T.air_contents, user, T)
-	// else if(istype(A, /obj/machinery/atmospherics/pipe))
-	// 	var/obj/machinery/atmospherics/pipe/T = A
-	// 	pda.atmosanalyzer_scan(T.parent.air, user, T)
-	// else if(istype(A, /obj/machinery/power/rad_collector))
-	// 	var/obj/machinery/power/rad_collector/T = A
-	// 	if(T.P)
-	// 		pda.atmosanalyzer_scan(T.P.air_contents, user, T)
-	// else if(istype(A, /obj/item/flamethrower))
-	// 	var/obj/item/flamethrower/T = A
-	// 	if(T.ptank)
-	// 		pda.atmosanalyzer_scan(T.ptank.air_contents, user, T)
-	// else if(istype(A, /obj/machinery/portable_atmospherics/scrubber/huge))
-	// 	var/obj/machinery/portable_atmospherics/scrubber/huge/T = A
-	// 	pda.atmosanalyzer_scan(T.air_contents, user, T)
-	// else if(istype(A, /obj/machinery/atmospherics/unary/tank))
-	// 	var/obj/machinery/atmospherics/unary/tank/T = A
-	// 	pda.atmosanalyzer_scan(T.air_contents, user, T)
+	pda.analyze_gases(A, user)
 
 /datum/data/pda/utility/scanmode/notes
 	base_name = "Note Scanner"

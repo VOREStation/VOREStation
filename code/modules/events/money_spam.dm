@@ -112,17 +112,5 @@
 			//Commented out because we don't send messages like this anymore.  Instead it will just popup in their chat window.
 			//P.tnote += "<i><b>&larr; From [sender] (Unknown / spam?):</b></i><br>[message]<br>"
 
-			if (!P.message_silent)
-				playsound(P, 'sound/machines/twobeep.ogg', 50, 1)
-			for (var/mob/O in hearers(3, P.loc))
-				if(!P.message_silent) O.show_message(text("[bicon(P)] *[P.ttone]*"))
-			//Search for holder of the PDA.
-			var/mob/living/L = null
-			if(P.loc && isliving(P.loc))
-				L = P.loc
-			//Maybe they are a pAI!
-			else
-				L = get(P, /mob/living/silicon)
-
-			if(L)
-				to_chat(L, "[bicon(P)] <b>Message from [sender] (Unknown / spam?), </b>\"[message]\" (Unable to Reply)")
+			var/datum/data/pda/app/messenger/PM = P.find_program(/datum/data/pda/app/messenger)
+			PM.notify("<b>Message from [sender] (Unknown / spam?), </b>\"[message]\" (Unable to Reply)", 0)

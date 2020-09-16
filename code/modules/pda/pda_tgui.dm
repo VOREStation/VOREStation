@@ -2,6 +2,11 @@
 /obj/item/device/pda/tgui_state(mob/user)
 	return GLOB.tgui_inventory_state
 
+/obj/item/device/pda/tgui_status(mob/user, datum/tgui_state/state)
+	. = ..()
+	if(!can_use())
+		. = min(., STATUS_UPDATE)
+
 /obj/item/device/pda/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -47,13 +52,142 @@
 	data["useRetro"] = retro_mode
 
 	data["cartridge_name"] = cartridge ? cartridge.name : ""
-	data["stationTime"] = worldtime2stationtime(world.time)
+	data["stationTime"] = stationtime2text() //worldtime2stationtime(world.time) // Aaa which fucking one is canonical there's SO MANY
 
 	data["app"] = list(
 		"name" = current_app.title,
 		"icon" = current_app.icon,
 		"template" = current_app.template,
 		"has_back" = current_app.has_back)
+
 	current_app.update_ui(user, data)
 
 	return data
+
+/obj/item/device/pda/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	if(..())
+		return TRUE
+
+	if(!can_use())
+		usr.unset_machine()
+		if(ui)
+			ui.close()
+		return FALSE
+
+	add_fingerprint(usr)
+	usr.set_machine(src)
+
+	. = TRUE
+	switch(action)
+		if("Home") //Go home, largely replaces the old Return
+			var/datum/data/pda/app/main_menu/A = find_program(/datum/data/pda/app/main_menu)
+			if(A)
+				start_program(A)
+		if("StartProgram")
+			if(params["program"])
+				var/datum/data/pda/app/A = locate(params["program"])
+				if(A)
+					start_program(A)
+		if("Eject")//Ejects the cart, only done from hub.
+			if(!isnull(cartridge))
+				var/turf/T = loc
+				if(ismob(T))
+					T = T.loc
+				var/obj/item/weapon/cartridge/C = cartridge
+				C.forceMove(T)
+				if(scanmode in C.programs)
+					scanmode = null
+				if(current_app in C.programs)
+					start_program(find_program(/datum/data/pda/app/main_menu))
+				if(C.radio)
+					C.radio.hostpda = null
+				for(var/datum/data/pda/P in notifying_programs)
+					if(P in C.programs)
+						P.unnotify()
+				cartridge = null
+				update_shortcuts()
+		if("Authenticate")//Checks for ID
+			id_check(usr, 1)
+		if("Retro")
+			retro_mode = !retro_mode
+		if("Ringtone")
+			return set_ringtone()
+		else
+			if(current_app)
+				. = current_app.tgui_act(action, params, ui, state)
+
+	if((honkamt > 0) && (prob(60)))//For clown virus.
+		honkamt--
+		playsound(loc, 'sound/items/bikehorn.ogg', 30, 1)
+	
+
+// Reference only, TODO: Remove
+/obj/item/device/pda/Topic(href, href_list)
+	. = ..()
+	if(.)
+		return
+
+	var/mob/user = usr
+	var/datum/nanoui/ui = SSnanoui.get_open_ui(user, src, "main")
+	var/mob/living/U = usr
+	if(usr.stat == DEAD)
+		return 0
+	if(!can_use()) //Why reinvent the wheel? There's a proc that does exactly that.
+		U.unset_machine()
+		if(ui)
+			ui.close()
+		return 0
+
+	add_fingerprint(U)
+	U.set_machine(src)
+
+	if(href_list["radiomenu"] && !isnull(cartridge) && !isnull(cartridge.radio))
+		cartridge.radio.Topic(href, href_list)
+		return 1
+
+	. = 1
+
+	switch(href_list["choice"])
+		if("Home")//Go home, largely replaces the old Return
+			var/datum/data/pda/app/main_menu/A = find_program(/datum/data/pda/app/main_menu)
+			if(A)
+				start_program(A)
+		if("StartProgram")
+			if(href_list["program"])
+				var/datum/data/pda/app/A = locate(href_list["program"])
+				if(A)
+					start_program(A)
+		if("Eject")//Ejects the cart, only done from hub.
+			if(!isnull(cartridge))
+				var/turf/T = loc
+				if(ismob(T))
+					T = T.loc
+				var/obj/item/weapon/cartridge/C = cartridge
+				C.forceMove(T)
+				if(scanmode in C.programs)
+					scanmode = null
+				if(current_app in C.programs)
+					start_program(find_program(/datum/data/pda/app/main_menu))
+				if(C.radio)
+					C.radio.hostpda = null
+				for(var/datum/data/pda/P in notifying_programs)
+					if(P in C.programs)
+						P.unnotify()
+				cartridge = null
+				update_shortcuts()
+		if("Authenticate")//Checks for ID
+			id_check(usr, 1)
+		if("Retro")
+			retro_mode = !retro_mode
+		if("Ringtone")
+			return set_ringtone()
+		else
+			if(current_app)
+				. = current_app.Topic(href, href_list)
+
+//EXTRA FUNCTIONS===================================
+	if((honkamt > 0) && (prob(60)))//For clown virus.
+		honkamt--
+		playsound(loc, 'sound/items/bikehorn.ogg', 30, 1)
+
+	return // return 1 tells it to refresh the UI in NanoUI
