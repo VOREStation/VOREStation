@@ -543,12 +543,10 @@
 /obj/item/weapon/handcuffs/fuzzy,
 /obj/item/weapon/handcuffs/legcuffs/fuzzy,
 /obj/item/weapon/handcuffs/fuzzy,
-/obj/item/clothing/mask/balaclava,
-/obj/item/clothing/gloves/black{
-	desc = "They seem to be made of rubber-like material, though insulation quality is doubtful";
-	name = "elastic black gloves"
-	},
-/obj/item/clothing/under/fluff/latexmaid,
+/obj/item/clothing/accessory/shiny/socks,
+/obj/item/clothing/under/shiny/catsuit,
+/obj/item/clothing/accessory/shiny/gloves,
+/obj/item/clothing/head/shiny_hood,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/mining)
 "aaZ" = (

@@ -1,13 +1,11 @@
 /datum/nano_module
 	var/name
 	var/datum/host
-	var/datum/topic_manager/topic_manager
 	var/list/using_access
 
-/datum/nano_module/New(var/datum/host, var/topic_manager)
+/datum/nano_module/New(var/datum/host)
 	..()
 	src.host = host.nano_host()
-	src.topic_manager = topic_manager
 
 /datum/nano_module/nano_host()
 	return host ? host : src
@@ -39,11 +37,6 @@
 		return 1
 
 	return 0
-
-/datum/nano_module/Topic(href, href_list)
-	if(topic_manager && topic_manager.Topic(href, href_list))
-		return TRUE
-	. = ..()
 
 /datum/nano_module/proc/print_text(var/text, var/mob/user)
 	var/obj/item/modular_computer/MC = nano_host()

@@ -399,9 +399,7 @@ var/list/ai_verbs_default = list(
 
 	// hack to display shuttle timer
 	if(emergency_shuttle.online())
-		var/obj/machinery/computer/communications/C = locate() in machines
-		if(C)
-			C.post_status("shuttle")
+		post_status(src, "shuttle", user = src)
 
 /mob/living/silicon/ai/proc/ai_recall_shuttle()
 	set category = "AI Commands"

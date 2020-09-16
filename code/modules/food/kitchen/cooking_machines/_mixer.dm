@@ -68,11 +68,13 @@ fundamental differences
 	return 0
 
 
-/obj/machinery/appliance/mixer/can_remove_items(var/mob/user)
-	if (stat)
+/obj/machinery/appliance/mixer/can_remove_items(var/mob/user, show_warning = TRUE)
+	if(stat)
 		return 1
 	else
-		to_chat(user, "<span class='warning'>You can't remove ingredients while it's turned on! Turn it off first or wait for it to finish.</span>")
+		if(show_warning)
+			to_chat(user, "<span class='warning'>You can't remove ingredients while it's turned on! Turn it off first or wait for it to finish.</span>")
+		return 0
 
 //Container is not removable
 /obj/machinery/appliance/mixer/removal_menu(var/mob/user)

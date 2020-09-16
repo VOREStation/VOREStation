@@ -180,7 +180,7 @@
 
 /proc/get_access_by_id(id)
 	var/list/AS = get_all_access_datums_by_id()
-	return AS[id]
+	return AS["[id]"]
 
 /proc/get_all_jobs()
 	var/list/all_jobs = list()
