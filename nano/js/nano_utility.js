@@ -167,3 +167,8 @@ if (!String.prototype.ckey) {
         return this.replace(/\W/g, '').toLowerCase();
     };
 }
+
+var reportError = function (str) {
+    window.location = "byond://?nano_err=" + encodeURIComponent(str);
+    alert(str);
+}

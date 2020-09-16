@@ -80,9 +80,13 @@ var/list/civilian_cartridges = list(
 	var/message1	// used for status_displays
 	var/message2
 	var/list/stored_data = list()
+	var/list/programs = list()
+	var/list/messenger_plugins = list()
 
 /obj/item/weapon/cartridge/Destroy()
 	QDEL_NULL(radio)
+	QDEL_LIST(programs)
+	QDEL_LIST(messenger_plugins)
 	return ..()
 
 /obj/item/weapon/cartridge/engineering
@@ -234,14 +238,25 @@ var/list/civilian_cartridges = list(
 	name = "\improper Value-PAK cartridge"
 	desc = "Now with 200% more value!"
 	icon_state = "cart-c"
-	access_quartermaster = 1
-	access_janitor = 1
-	access_engine = 1
-	access_security = 1
-	access_medical = 1
-	access_reagent_scanner = 1
-	access_status_display = 1
-	access_atmos = 1
+	programs = list(
+		new/datum/data/pda/app/power,
+		new/datum/data/pda/utility/scanmode/halogen,
+
+		new/datum/data/pda/utility/scanmode/gas,
+
+		new/datum/data/pda/app/crew_records/medical,
+		new/datum/data/pda/utility/scanmode/medical,
+
+		new/datum/data/pda/utility/scanmode/reagent,
+
+		new/datum/data/pda/app/crew_records/security,
+		new/datum/data/pda/app/secbot_control,
+
+		new/datum/data/pda/app/janitor,
+
+		new/datum/data/pda/app/supply,
+
+		new/datum/data/pda/app/status_display)
 
 /obj/item/weapon/cartridge/syndicate
 	name = "\improper Detomatix cartridge"
@@ -275,6 +290,13 @@ var/list/civilian_cartridges = list(
 			status_signal.data["picture_state"] = data1
 
 	frequency.post_signal(src, status_signal)
+
+/obj/item/weapon/cartridge/frame
+	name = "F.R.A.M.E. cartridge"
+	icon_state = "cart"
+	charges = 5
+	var/telecrystals = 0
+	messenger_plugins = list(new/datum/data/pda/messenger_plugin/virus/frame)
 
 
 /*

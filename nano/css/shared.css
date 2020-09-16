@@ -48,13 +48,13 @@ hr {
 .link32 {
     float: left;
     min-width: 15px;
-	max-width: 31px;
+    max-width: 31px;
     height: 31px;
     text-align: center;
-	text-decoration: none;
-	background: #40628a;
+    text-decoration: none;
+    background: #40628a;
     border: 1px solid #161616;
-	margin: 0 2px 2px 0;
+    margin: 0 2px 2px 0;
     cursor: default;
 }
 
@@ -191,7 +191,7 @@ h4 {
 }
 
 .greenButton {
-	background: #00aa00;
+    background: #00aa00;
 }
 
 .yellowButton {
@@ -209,11 +209,11 @@ h4 {
 .caption {
     font-size: 10px;
     font-weight: bold;
-	padding: 5px;
+    padding: 5px;
 }
 
 .footer {
-	font-size: 10px;
+    font-size: 10px;
 }
 
 .multiLine {
@@ -267,7 +267,7 @@ div.notice {
     width: 100%;
     margin: 4px 0 0 0;
     clear: both;
-	overflow: auto;
+    overflow: auto;
 }
 
 .itemContentNarrow, .itemContent, .itemContentWide, .itemContentSmall, .itemContentMedium {
@@ -325,7 +325,7 @@ div.notice {
     border: 1px solid #40628a;
     padding: 4px;
     margin: 3px 0;
-	overflow: hidden;
+    overflow: hidden;
 }
 
 .statusDisplayRecords {
@@ -339,16 +339,16 @@ div.notice {
 }
 
 .statusDisplayComm {
-	width: 100%;
+    width: 100%;
     background: rgba(0, 0, 0, 0.5);
     color: #ffffff;
-	padding-bottom: 4px;
-	border-top: 0 none;
-	border-left: 0 none;
-	border-right: 0 none;
-	border-bottom: 2px inset #40628a;
+    padding-bottom: 4px;
+    border-top: 0 none;
+    border-left: 0 none;
+    border-right: 0 none;
+    border-bottom: 2px inset #40628a;
     margin: 3px 0;
-	overflow: hidden;
+    overflow: hidden;
 }
 
 .statusLabel {
@@ -410,7 +410,7 @@ div.notice {
     float: left;
     margin: 0 5px 0 0;
     overflow: hidden;
-	background: #40628a;
+    background: #40628a;
 }
 
 .displayBarVerticalFill {
@@ -418,7 +418,7 @@ div.notice {
     height: 0%;
     overflow: hidden;
     float: left;
-	background: #000000;
+    background: #000000;
 }
 
 /*used in xenobio2 computer*/
@@ -428,12 +428,12 @@ div.notice {
     width: 100px;
     height: 110px;
     border-right: 2px solid rgb(102, 179, 255);
-	border-left: 2px solid rgb(102, 179, 255);
-	border-bottom: 2px solid rgb(102, 179, 255);
+    border-left: 2px solid rgb(102, 179, 255);
+    border-bottom: 2px solid rgb(102, 179, 255);
     float: left;
     margin: 0 5px 0 0;
     overflow: hidden;
-	background: #40628a;
+    background: #40628a;
 }
 
 .displayBarBeakerFill {
@@ -441,7 +441,7 @@ div.notice {
     height: 0%;
     overflow: hidden;
     float: left;
-	background: rgba(153, 204, 255, 0.3);
+    background: rgba(153, 204, 255, 0.3);
 }
 
 .displayBarFill.alignRight {
@@ -514,7 +514,7 @@ div.notice {
 .fixedLeftWiderRed {
     width: 220px;
     float: left;
-	background: #ee0000;
+    background: #ee0000;
 }
 
 .floatRight {
@@ -522,7 +522,7 @@ div.notice {
 }
 
 .floatLeft {
-	float: left;
+    float: left;
 }
 
 /* Used in PDA */
@@ -538,6 +538,14 @@ div.notice {
 .pdalink {
     float: left;
     white-space: nowrap;
+    cursor: default !important;
+}
+
+.pdalink.disabled {
+    background: none;
+    border: none;
+    color: #999;
+    text-align: left;
 }
 
 /* DNA Modifier UI (dna_modifier.tmpl) */
@@ -585,11 +593,11 @@ div.notice {
 }
 
 table.fixed { 
-	table-layout:fixed;
+    table-layout:fixed;
 }
 
 table.fixed td {
-	overflow: hidden;
+    overflow: hidden;
 }
 
 /* Table stuffs for power monitor */
@@ -641,9 +649,9 @@ th.Cargo {
 }
 
 th.Planetside{
-	background: #555555;
-	font-weight: bold;
-	color: #ffffff;
+    background: #555555;
+    font-weight: bold;
+    color: #ffffff;
 }
 
 th.Civilian {
@@ -659,9 +667,9 @@ th.Miscellaneous {
 }
 
 th.Silicon {
-	background: #222222;
-	font-weight: bold;
-	color: #ffffff;
+    background: #222222;
+    font-weight: bold;
+    color: #ffffff;
 }
 /* Damage/health colors for crew monitoring computer */
 
@@ -696,20 +704,20 @@ th.Silicon {
 
 /*Communicator Homescreen*/
 div.homeContainer {
-	width: 100%;
-	text-align: center;
-	margin: auto;
-	padding-top: 5px;
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    padding-top: 5px;
 }
 
 div.homeScreen {
-	padding: 0 20px 0 20px;
+    padding: 0 20px 0 20px;
 }
 
 .link64 {
     float: left;
     min-width: 15px;
-	max-width: 68px;
+    max-width: 68px;
     height: 64px;
     text-align: center;
     color: #ffffff;
@@ -717,43 +725,43 @@ div.homeScreen {
     background: rgba(64, 98, 138, 0.6);
     border: 1px solid #161616;
     padding: 0 0 4px 0;
-	margin: 0 0 30px 5.5%;
+    margin: 0 0 30px 5.5%;
     cursor: default;
-	border-radius: 10px;
+    border-radius: 10px;
 }
 
 .link64:hover {
-	font-size: 13px;
+    font-size: 13px;
 }
 
 /*Communicator Dialing*/
 .dialPad {
     clear: both;
-	text-align: center;
-	margin: auto;
+    text-align: center;
+    margin: auto;
 }
 
 .dialPadKeys {
     float: left;
-	width: 47px;
-	height: 47px;
-	font-size: 32px;
-	text-align: center;
+    width: 47px;
+    height: 47px;
+    font-size: 32px;
+    text-align: center;
     color: #ffffff;
     text-decoration: none;
     background: rgba(64, 98, 138, 0.15);
     border: 1px inset rgba(100, 100, 100, 0.25);
     cursor: default;
-	line-height: 47px;
+    line-height: 47px;
 }
 
 .dialPadKeys:hover {
-	background: rgba(80, 122, 172, 0.5);
+    background: rgba(80, 122, 172, 0.5);
 }
 
 .dialPadButtons {
     float: left;
-	width: 63.2px;
+    width: 63.2px;
     height: 63.2px;
     text-align: center;
     color: #ffffff;
@@ -762,42 +770,88 @@ div.homeScreen {
     border: 1px inset rgba(100, 100, 100, 0.25);
     padding: 0 0 4px 0;
     cursor: default;
-	margin-bottom: 25px;
+    margin-bottom: 25px;
 }
 
 .dialPadButtons:hover {
-	background: rgba(80, 122, 172, 0.5);
-	font-size: 13px;
-	
+    background: rgba(80, 122, 172, 0.5);
+    font-size: 13px;
+    
 }
 
 .dialPadAddress {
     float: left;
-	width: 192px;
-	height: 18px;
+    width: 192px;
+    height: 18px;
     background: rgba(64, 98, 138, 0.15);
-	color: #ffffff;
-	border-left: 1px inset #40628a;
-	border-top: 1px inset #40628a;
-	border-bottom: 1px inset #40628a;
+    color: #ffffff;
+    border-left: 1px inset #40628a;
+    border-top: 1px inset #40628a;
+    border-bottom: 1px inset #40628a;
 
 }
 
 .dialPadAddress:hover{
-	background: rgba(80, 122, 172, 0.5);
+    background: rgba(80, 122, 172, 0.5);
 }
 
 .dialPadClear {
     float: left;
-	width: 19%;
-	height: 18px;
+    width: 19%;
+    height: 18px;
     background: rgba(64, 98, 138, 0.15);
-	color: #ffffff;
-	border-right: 1px inset #40628a;
-	border-top: 1px inset #40628a;
-	border-bottom: 1px inset #40628a;
+    color: #ffffff;
+    border-right: 1px inset #40628a;
+    border-top: 1px inset #40628a;
+    border-bottom: 1px inset #40628a;
 }
 
 .dialPadClear:hover{
-	background: rgba(80, 122, 172, 0.5);
+    background: rgba(80, 122, 172, 0.5);
 }
+
+
+.item.mainmenu {
+    padding-bottom: 0.5em;
+}
+
+div.clock {
+    color: white;
+    font-weight: bold;
+    float: right;
+    padding-right: 2em;
+}
+
+#pdaFooter {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: #2c2c2c;
+}
+
+.pdaFooterButton {
+    width: 33%;
+    padding: 0.5em 0;
+    font-size: 200%;
+    border: none;
+    background: none;
+    color: #fff;
+}
+
+.pdaFooterButton:hover {
+    background: #507aac;
+}
+
+.pdaFooterButton.disabled {
+    background: none !important;
+    color: #555 !important;
+}
+
+.pdaFooterButton.uiLinkPendingIcon {
+    position: absolute;
+    width: 33%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
