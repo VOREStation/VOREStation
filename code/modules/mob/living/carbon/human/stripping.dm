@@ -75,15 +75,14 @@
 
 	if(!do_after(user,HUMAN_STRIP_DELAY,src))
 		return
-	//VOREStation Edit Start
+
 	if(!stripping)
 		if(user.get_active_hand() != held)
 			return
-		var/obj/item/weapon/holder/micro/microheld = held
-		if(istype(microheld)&&microheld.held_mob==src)
+		var/obj/item/weapon/holder/mobheld = held
+		if(istype(mobheld)&&mobheld.held_mob==src)
 			to_chat(user, "<span class='warning'>You can't put someone on themselves! Stop trying to break reality!</span>")
 			return
-	//VOREStation Edit End
 
 	if(stripping)
 		add_attack_logs(user,src,"Removed equipment from slot [target_slot]")
