@@ -116,8 +116,11 @@
 	icon = 'icons/obj/doors/Doorcom.dmi'
 	req_one_access = list(access_heads)
 	assembly_type = /obj/structure/door_assembly/door_assembly_com
+<<<<<<< HEAD
 	open_sound_powered = 'sound/machines/door/hall1o.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
 	close_sound_powered = 'sound/machines/door/hall1c.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+=======
+>>>>>>> 106ac35... Merge pull request #7597 from Rykka-Stormheart/shep-dev-airlock-sound-prefs
 	department_open_powered = 'sound/machines/door/cmd3o.ogg'
 	department_close_powered = 'sound/machines/door/cmd3c.ogg'
 
@@ -126,8 +129,11 @@
 	icon = 'icons/obj/doors/Doorsec.dmi'
 	req_one_access = list(access_security)
 	assembly_type = /obj/structure/door_assembly/door_assembly_sec
+<<<<<<< HEAD
 	open_sound_powered = 'sound/machines/door/hall1o.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
 	close_sound_powered = 'sound/machines/door/hall1c.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+=======
+>>>>>>> 106ac35... Merge pull request #7597 from Rykka-Stormheart/shep-dev-airlock-sound-prefs
 	department_open_powered = 'sound/machines/door/sec1o.ogg'
 	department_close_powered = 'sound/machines/door/sec1c.ogg'
 
@@ -136,8 +142,11 @@
 	icon = 'icons/obj/doors/Dooreng.dmi'
 	req_one_access = list(access_engine)
 	assembly_type = /obj/structure/door_assembly/door_assembly_eng
+<<<<<<< HEAD
 	open_sound_powered = 'sound/machines/door/hall1o.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
 	close_sound_powered = 'sound/machines/door/hall1c.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+=======
+>>>>>>> 106ac35... Merge pull request #7597 from Rykka-Stormheart/shep-dev-airlock-sound-prefs
 	department_open_powered = 'sound/machines/door/eng1o.ogg'
 	department_close_powered = 'sound/machines/door/eng1c.ogg'
 
@@ -146,8 +155,11 @@
 	icon = 'icons/obj/doors/Doorengatmos.dmi'
 	req_one_access = list(access_atmospherics)
 	assembly_type = /obj/structure/door_assembly/door_assembly_eat
+<<<<<<< HEAD
 	open_sound_powered = 'sound/machines/door/hall1o.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
 	close_sound_powered = 'sound/machines/door/hall1c.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+=======
+>>>>>>> 106ac35... Merge pull request #7597 from Rykka-Stormheart/shep-dev-airlock-sound-prefs
 	department_open_powered = 'sound/machines/door/eng1o.ogg'
 	department_close_powered = 'sound/machines/door/eng1c.ogg'
 
@@ -156,8 +168,11 @@
 	icon = 'icons/obj/doors/Doormed.dmi'
 	req_one_access = list(access_medical)
 	assembly_type = /obj/structure/door_assembly/door_assembly_med
+<<<<<<< HEAD
 	open_sound_powered = 'sound/machines/door/hall1o.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
 	close_sound_powered = 'sound/machines/door/hall1c.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+=======
+>>>>>>> 106ac35... Merge pull request #7597 from Rykka-Stormheart/shep-dev-airlock-sound-prefs
 	department_open_powered = 'sound/machines/door/med1o.ogg'
 	department_close_powered = 'sound/machines/door/med1c.ogg'
 
@@ -166,14 +181,17 @@
 	icon = 'icons/obj/doors/Doormaint.dmi'
 	//req_one_access = list(access_maint_tunnels) //VOREStation Edit - Maintenance is open access
 	assembly_type = /obj/structure/door_assembly/door_assembly_mai
-	open_sound_powered = 'sound/machines/door/door2o.ogg'
-	close_sound_powered = 'sound/machines/door/door2c.ogg'
+	open_sound_powered = 'sound/machines/door/hall1o.ogg'
+	close_sound_powered = 'sound/machines/door/hall1c.ogg'
 
 /obj/machinery/door/airlock/maintenance/cargo
 	icon = 'icons/obj/doors/Doormaint_cargo.dmi'
 	req_one_access = list(access_cargo)
+<<<<<<< HEAD
 	open_sound_powered = 'sound/machines/door/hall1o.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
 	close_sound_powered = 'sound/machines/door/hall1c.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+=======
+>>>>>>> 106ac35... Merge pull request #7597 from Rykka-Stormheart/shep-dev-airlock-sound-prefs
 	department_open_powered = 'sound/machines/door/door2o.ogg'
 	department_close_powered = 'sound/machines/door/door2c.ogg'
 
@@ -234,8 +252,13 @@
 	name = "Glass Airlock"
 	icon = 'icons/obj/doors/Doorglass.dmi'
 	hitsound = 'sound/effects/Glasshit.ogg'
+<<<<<<< HEAD
 	open_sound_powered = 'sound/machines/door/hall1o.ogg'
 	close_sound_powered = 'sound/machines/door/hall1c.ogg'
+=======
+	open_sound_powered = 'sound/machines/door/cmd3o.ogg'
+	close_sound_powered = 'sound/machines/door/cmd3c.ogg'
+>>>>>>> 106ac35... Merge pull request #7597 from Rykka-Stormheart/shep-dev-airlock-sound-prefs
 	legacy_open_powered = 'sound/machines/door/windowdoor.ogg'
 	maxhealth = 300
 	explosion_resistance = 5
@@ -310,9 +333,12 @@
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_com
 	glass = 1
+<<<<<<< HEAD
 	req_one_access = list(access_heads)
 	open_sound_powered = 'sound/machines/door/hall1o.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
 	close_sound_powered = 'sound/machines/door/hall1c.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+=======
+>>>>>>> 106ac35... Merge pull request #7597 from Rykka-Stormheart/shep-dev-airlock-sound-prefs
 	department_open_powered = 'sound/machines/door/cmd1o.ogg'
 	department_close_powered = 'sound/machines/door/cmd1c.ogg'
 
@@ -325,7 +351,10 @@
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_eng
 	glass = 1
+<<<<<<< HEAD
 	req_one_access = list(access_engine)
+=======
+>>>>>>> 106ac35... Merge pull request #7597 from Rykka-Stormheart/shep-dev-airlock-sound-prefs
 	department_open_powered = 'sound/machines/door/eng1o.ogg'
 	department_close_powered = 'sound/machines/door/eng1c.ogg'
 
@@ -338,9 +367,12 @@
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_eat
 	glass = 1
+<<<<<<< HEAD
 	req_one_access = list(access_atmospherics)
 	open_sound_powered = 'sound/machines/door/hall1o.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
 	close_sound_powered = 'sound/machines/door/hall1c.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+=======
+>>>>>>> 106ac35... Merge pull request #7597 from Rykka-Stormheart/shep-dev-airlock-sound-prefs
 	department_open_powered = 'sound/machines/door/eng1o.ogg'
 	department_close_powered = 'sound/machines/door/eng1c.ogg'
 
@@ -353,9 +385,12 @@
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_sec
 	glass = 1
+<<<<<<< HEAD
 	req_one_access = list(access_security)
 	open_sound_powered = 'sound/machines/door/hall1o.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
 	close_sound_powered = 'sound/machines/door/hall1c.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+=======
+>>>>>>> 106ac35... Merge pull request #7597 from Rykka-Stormheart/shep-dev-airlock-sound-prefs
 	department_open_powered = 'sound/machines/door/sec1o.ogg'
 	department_close_powered = 'sound/machines/door/sec1c.ogg'
 
@@ -368,9 +403,12 @@
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_med
 	glass = 1
+<<<<<<< HEAD
 	req_one_access = list(access_medical)
 	open_sound_powered = 'sound/machines/door/hall1o.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
 	close_sound_powered = 'sound/machines/door/hall1c.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+=======
+>>>>>>> 106ac35... Merge pull request #7597 from Rykka-Stormheart/shep-dev-airlock-sound-prefs
 	department_open_powered = 'sound/machines/door/med1o.ogg'
 	department_close_powered = 'sound/machines/door/med1c.ogg'
 
@@ -378,9 +416,12 @@
 	name = "Mining Airlock"
 	icon = 'icons/obj/doors/Doormining.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_min
+<<<<<<< HEAD
 	req_one_access = list(access_mining)
 	open_sound_powered = 'sound/machines/door/hall1o.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
 	close_sound_powered = 'sound/machines/door/hall1c.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+=======
+>>>>>>> 106ac35... Merge pull request #7597 from Rykka-Stormheart/shep-dev-airlock-sound-prefs
 	department_open_powered = 'sound/machines/door/cgo1o.ogg'
 	department_close_powered = 'sound/machines/door/cgo1c.ogg'
 
@@ -388,9 +429,12 @@
 	name = "Atmospherics Airlock"
 	icon = 'icons/obj/doors/Dooratmo.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_atmo
+<<<<<<< HEAD
 	req_one_access = list(access_atmospherics)
 	open_sound_powered = 'sound/machines/door/hall1o.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
 	close_sound_powered = 'sound/machines/door/hall1c.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+=======
+>>>>>>> 106ac35... Merge pull request #7597 from Rykka-Stormheart/shep-dev-airlock-sound-prefs
 	department_open_powered = 'sound/machines/door/eng1o.ogg'
 	department_close_powered = 'sound/machines/door/eng1c.ogg'
 
@@ -398,8 +442,11 @@
 	name = "Research Airlock"
 	icon = 'icons/obj/doors/Doorresearch.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_research
+<<<<<<< HEAD
 	open_sound_powered = 'sound/machines/door/hall1o.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
 	close_sound_powered = 'sound/machines/door/hall1c.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+=======
+>>>>>>> 106ac35... Merge pull request #7597 from Rykka-Stormheart/shep-dev-airlock-sound-prefs
 	department_open_powered = 'sound/machines/door/sci1o.ogg'
 	department_close_powered = 'sound/machines/door/sci1c.ogg'
 
@@ -412,9 +459,12 @@
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_research
 	glass = 1
+<<<<<<< HEAD
 	req_one_access = list(access_research)
 	open_sound_powered = 'sound/machines/door/hall1o.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
 	close_sound_powered = 'sound/machines/door/hall1c.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+=======
+>>>>>>> 106ac35... Merge pull request #7597 from Rykka-Stormheart/shep-dev-airlock-sound-prefs
 	department_open_powered = 'sound/machines/door/sci1o.ogg'
 	department_close_powered = 'sound/machines/door/sci1c.ogg'
 
@@ -427,9 +477,12 @@
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_min
 	glass = 1
+<<<<<<< HEAD
 	req_one_access = list(access_mining)
 	open_sound_powered = 'sound/machines/door/hall1o.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
 	close_sound_powered = 'sound/machines/door/hall1c.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+=======
+>>>>>>> 106ac35... Merge pull request #7597 from Rykka-Stormheart/shep-dev-airlock-sound-prefs
 	department_open_powered = 'sound/machines/door/cgo1o.ogg'
 	department_close_powered = 'sound/machines/door/cgo1c.ogg'
 
@@ -442,9 +495,12 @@
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_atmo
 	glass = 1
+<<<<<<< HEAD
 	req_one_access = list(access_atmospherics)
 	open_sound_powered = 'sound/machines/door/hall1o.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
 	close_sound_powered = 'sound/machines/door/hall1c.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+=======
+>>>>>>> 106ac35... Merge pull request #7597 from Rykka-Stormheart/shep-dev-airlock-sound-prefs
 	department_open_powered = 'sound/machines/door/eng1o.ogg'
 	department_close_powered = 'sound/machines/door/eng1c.ogg'
 
@@ -526,9 +582,12 @@
 	name = "Research Airlock"
 	icon = 'icons/obj/doors/Doorsci.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_science
+<<<<<<< HEAD
 	req_one_access = list(access_research)
 	open_sound_powered = 'sound/machines/door/hall1o.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
 	close_sound_powered = 'sound/machines/door/hall1c.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+=======
+>>>>>>> 106ac35... Merge pull request #7597 from Rykka-Stormheart/shep-dev-airlock-sound-prefs
 	department_open_powered = 'sound/machines/door/sci1o.ogg'
 	department_close_powered = 'sound/machines/door/sci1c.ogg'
 
@@ -538,9 +597,12 @@
 	opacity = 0
 	assembly_type = /obj/structure/door_assembly/door_assembly_science
 	glass = 1
+<<<<<<< HEAD
 	req_one_access = list(access_research)
 	open_sound_powered = 'sound/machines/door/hall1o.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
 	close_sound_powered = 'sound/machines/door/hall1c.ogg' // VOREStation Edit: Default door sounds for fancy, department-off.
+=======
+>>>>>>> 106ac35... Merge pull request #7597 from Rykka-Stormheart/shep-dev-airlock-sound-prefs
 	department_open_powered = 'sound/machines/door/sci1o.ogg'
 	department_close_powered = 'sound/machines/door/sci1c.ogg'
 
