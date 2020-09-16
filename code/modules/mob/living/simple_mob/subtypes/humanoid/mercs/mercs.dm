@@ -24,6 +24,7 @@
 	harm_intent_damage = 5
 	melee_damage_lower = 15		//Tac Knife damage
 	melee_damage_upper = 15
+	attack_armor_pen = 20
 	attack_sharp = 1
 	attack_edge = 1
 	attacktext = list("slashed", "stabbed")

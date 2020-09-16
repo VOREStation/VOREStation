@@ -1290,13 +1290,19 @@
 			clear_fullscreen("blind")
 			clear_alert("blind")
 
-		if(disabilities & NEARSIGHTED)	//this looks meh but saves a lot of memory by not requiring to add var/prescription
-			if(glasses)					//to every /obj/item
+		var/apply_nearsighted_overlay = FALSE
+		if(disabilities & NEARSIGHTED)	
+			apply_nearsighted_overlay = TRUE
+
+			if(glasses)
 				var/obj/item/clothing/glasses/G = glasses
-				if(!G.prescription)
-					set_fullscreen(disabilities & NEARSIGHTED, "impaired", /obj/screen/fullscreen/impaired, 1)
-			else if (!nif || !nif.flag_check(NIF_V_CORRECTIVE,NIF_FLAGS_VISION))	//VOREStation Edit - NIF
-				set_fullscreen(disabilities & NEARSIGHTED, "impaired", /obj/screen/fullscreen/impaired, 1)
+				if(G.prescription)
+					apply_nearsighted_overlay = FALSE
+
+			if(nif && nif.flag_check(NIF_V_CORRECTIVE, NIF_FLAGS_VISION)) // VOREStation Edit - NIF
+				apply_nearsighted_overlay = FALSE
+
+		set_fullscreen(apply_nearsighted_overlay, "nearsighted", /obj/screen/fullscreen/impaired, 1)
 
 		set_fullscreen(eye_blurry, "blurry", /obj/screen/fullscreen/blurry)
 		set_fullscreen(druggy, "high", /obj/screen/fullscreen/high)

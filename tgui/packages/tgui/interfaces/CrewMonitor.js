@@ -51,7 +51,7 @@ export const CrewMonitorContent = (props, context) => {
           </Table.Cell>
         </Table.Row>
         {crew.map(cm => (
-          <Table.Row key={cm.name}>
+          <Table.Row key={cm.ref}>
             <TableCell>
               {cm.name} ({cm.assignment})
             </TableCell>
