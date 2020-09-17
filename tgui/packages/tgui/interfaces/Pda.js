@@ -1,7 +1,7 @@
 import { round } from 'common/math';
 import { Fragment } from 'inferno';
-import { useBackend } from "../backend";
-import { Box, Button, Flex, Icon, LabeledList, ProgressBar, Section } from "../components";
+import { useBackend, useLocalState } from "../backend";
+import { Box, Button, Flex, Icon, LabeledList, Modal, ProgressBar, Section } from "../components";
 import { Window } from "../layouts";
 
 /* This is all basically stolen from routes.js. */
@@ -49,22 +49,28 @@ export const Pda = (props, context) => {
 
   let App = getPdaApp(app.template);
 
+  const [settingsMode, setSettingsMode] = useLocalState(context, 'settingsMode', false);
+
   return (
     <Window width={580} height={670} theme={useRetro ? "pda-retro" : null} resizable>
       <Window.Content scrollable>
-        <PDAHeader />
-        <Section
-          title={
-            <Box>
-              <Icon name={app.icon} mr={1} />
-              {app.name}
-            </Box>
-          }
-          p={1}>
-          <App />
-        </Section>
+        <PDAHeader settingsMode={settingsMode} setSettingsMode={setSettingsMode} />
+        {settingsMode && (
+          <PDASettings />
+        ) || (
+          <Section
+            title={
+              <Box>
+                <Icon name={app.icon} mr={1} />
+                {app.name}
+              </Box>
+            }
+            p={1}>
+            <App />
+          </Section>
+        )}
         <Box mb={8} />
-        <PDAFooter />
+        <PDAFooter setSettingsMode={setSettingsMode} />
       </Window.Content>
     </Window>
   );
@@ -72,6 +78,11 @@ export const Pda = (props, context) => {
 
 const PDAHeader = (props, context) => {
   const { act, data } = useBackend(context);
+
+  const {
+    settingsMode,
+    setSettingsMode,
+  } = props;
 
   const {
     idInserted,
@@ -82,44 +93,78 @@ const PDAHeader = (props, context) => {
 
   return (
     <Box mb={1}>
-      <Flex align="center" justify="space-between" pl={1} pr={1}>
+      <Flex align="center" justify="space-between">
         {!!idInserted && (
           <Flex.Item>
             <Button
-              color="transparent"
               icon="eject"
+              color="transparent"
               onClick={() => act("Authenticate")}
               content={idLink} />
           </Flex.Item>
         )}
-        {!!cartridge_name && (
-          <Flex.Item>
-            <Button
-              color="transparent"
-              icon="eject"
-              onClick={() => act("Eject")}
-              content={cartridge_name} />
-          </Flex.Item>
-        )}
-        <Flex.Item>
-          <Button
-            icon="cog"
-            color="transparent"
-            content={"Retro Theme"}
-            onClick={() => act("Retro")} />
+        <Flex.Item grow={1} textAlign="center" bold>
+          {stationTime}
         </Flex.Item>
         <Flex.Item>
-          <Box bold>
-            {stationTime}
-          </Box>
+          <Button
+            selected={settingsMode}
+            onClick={() => setSettingsMode(!settingsMode)}
+            icon="cog" />
+          <Button
+            onClick={() => act("Retro")}
+            icon="adjust" />
         </Flex.Item>
       </Flex>
     </Box>
   );
 };
 
+const PDASettings = (props, context) => {
+  const { act, data } = useBackend(context);
+
+  const {
+    idInserted,
+    idLink,
+    cartridge_name,
+  } = data;
+
+  return (
+    <Section title="Settings">
+      <LabeledList>
+        <LabeledList.Item label="R.E.T.R.O Mode">
+          <Button
+            icon="cog"
+            content={"Retro Theme"}
+            onClick={() => act("Retro")} />
+        </LabeledList.Item>
+        {!!cartridge_name && (
+          <LabeledList.Item label="Cartridge">
+            <Button
+              icon="eject"
+              onClick={() => act("Eject")}
+              content={cartridge_name} />
+          </LabeledList.Item>
+        )}
+        {!!idInserted && (
+          <LabeledList.Item label="ID Card">
+            <Button
+              icon="eject"
+              onClick={() => act("Authenticate")}
+              content={idLink} />
+          </LabeledList.Item>
+        )}
+      </LabeledList>
+    </Section>
+  );
+};
+
 const PDAFooter = (props, context) => {
   const { act, data } = useBackend(context);
+
+  const {
+    setSettingsMode,
+  } = props;
 
   const {
     app,
@@ -149,7 +194,10 @@ const PDAFooter = (props, context) => {
             icon="home"
             mb={0}
             fontSize={1.7}
-            onClick={() => act("Home")} />
+            onClick={() => {
+              setSettingsMode(false);
+              act("Home");
+            }} />
         </Flex.Item>
       </Flex>
     </Box>

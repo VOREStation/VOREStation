@@ -51,6 +51,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	var/list/programs = list(
 		new/datum/data/pda/app/main_menu,
 		new/datum/data/pda/app/notekeeper,
+		new/datum/data/pda/app/news,
 		new/datum/data/pda/app/messenger,
 		new/datum/data/pda/app/manifest,
 		new/datum/data/pda/app/atmos_scanner,

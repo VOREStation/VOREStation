@@ -8,7 +8,7 @@ export const pda_manifest = (props, context) => {
   const { act, data } = useBackend(context);
 
   return (
-    <Box>
+    <Box color="white">
       <IdentificationComputerCrewManifest />
     </Box>
   );

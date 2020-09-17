@@ -125,3 +125,82 @@
 		results = list(list("entry" = "pressure", "units" = "kPa", "val" = "0", "bad_high" = 120, "poor_high" = 110, "poor_low" = 95, "bad_low" = 80))
 
 	data["aircontents"] = results
+
+/datum/data/pda/app/news
+	name = "News"
+	icon = "newspaper"
+	template = "pda_news"
+
+	var/newsfeed_channel
+
+/datum/data/pda/app/news/update_ui(mob/user as mob, list/data)
+	data["feeds"] = compile_news()
+	data["latest_news"] = get_recent_news()
+	if(newsfeed_channel)
+		data["target_feed"] = data["feeds"][newsfeed_channel]
+	else
+		data["target_feed"] = null
+
+/datum/data/pda/app/news/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	if(..())
+		return TRUE
+	switch(action)
+		if("newsfeed")
+			newsfeed_channel = text2num(params["newsfeed"])
+
+/datum/data/pda/app/news/proc/compile_news()
+	var/list/feeds = list()
+	for(var/datum/feed_channel/channel in news_network.network_channels)
+		var/list/messages = list()
+		if(!channel.censored)
+			var/index = 0
+			for(var/datum/feed_message/FM in channel.messages)
+				index++
+				var/list/msgdata = list(
+					"author" = FM.author,
+					"body" = FM.body,
+					"img" = null,
+					"message_type" = FM.message_type,
+					"time_stamp" = FM.time_stamp,
+					"caption" = FM.caption,
+					"index" = index
+				)
+				if(FM.img)
+					msgdata["img"] = icon2base64(FM.img)
+				messages[++messages.len] = msgdata
+
+		feeds[++feeds.len] = list(
+					"name" = channel.channel_name,
+					"censored" = channel.censored,
+					"author" = channel.author,
+					"messages" = messages,
+					"index" = feeds.len + 1
+					)
+	return feeds
+
+/datum/data/pda/app/news/proc/get_recent_news()
+	var/list/news = list()
+
+	// Compile all the newscasts
+	for(var/datum/feed_channel/channel in news_network.network_channels)
+		if(!channel.censored)
+			for(var/datum/feed_message/FM in channel.messages)
+				var/body = replacetext(FM.body, "\n", "<br>")
+				news[++news.len] = list(
+							"channel" = channel.channel_name,
+							"author" = FM.author,
+							"body" = body,
+							"message_type" = FM.message_type,
+							"time_stamp" = FM.time_stamp,
+							"has_image" = (FM.img != null),
+							"caption" = FM.caption,
+							"time" = FM.post_time
+							)
+
+	// Cut out all but the youngest three
+	if(news.len > 3)
+		sortByKey(news, "time")
+		news.Cut(1, news.len - 2) // Last three have largest timestamps, youngest posts
+		news.Swap(1, 3) // List is sorted in ascending order of timestamp, we want descending
+
+	return news
