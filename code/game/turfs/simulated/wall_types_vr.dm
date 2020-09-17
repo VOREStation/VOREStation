@@ -83,3 +83,21 @@ var/list/flesh_overlay_cache = list()
 	icon = 'icons/turf/wall_masks_vr.dmi'
 /turf/simulated/wall/plastitanium/Initialize(mapload)
 	. = ..(mapload, MAT_PLASTITANIUM, null,MAT_PLASTITANIUM)
+
+	/turf/simulated/gore
+	name = "wall of viscera"
+	desc = "Its veins pulse in a sickeningly rapid fashion, while certain spots of the wall rise and fall gently, much like slow, deliberate breathing."
+	icon = 'icons/goonstation/turf/meatland.dmi'
+	icon_state = "bloodwall_2"
+	opacity = 1
+	density = 1
+	blocks_air = 1
+
+	/turf/simulated/goreeyes
+	name = "wall of viscera"
+	desc = "Strangely observant eyes dot the wall. Getting too close has the eyes fixate on you, while their pupils shake violently. Each socket is connected by a series of winding, writhing veins."
+	icon = 'icons/goonstation/turf/meatland.dmi'
+	icon_state = "bloodwall_4"
+	opacity = 1
+	density = 1
+	blocks_air = 1
