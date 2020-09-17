@@ -30,7 +30,7 @@
 	else
 		..()
 
-/obj/item/device/multitool/hacktool/resolve_attackby(atom/A, mob/user)
+/obj/item/device/multitool/hacktool/afterattack(atom/A, mob/user)
 	sanity_check()
 
 	if(!in_hack_mode)
