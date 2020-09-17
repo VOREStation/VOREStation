@@ -328,6 +328,15 @@ var/list/table_icon_cache = list()
 	qdel(src)
 	return shards
 
+/obj/structure/table/can_visually_connect_to(var/obj/structure/S)
+	if(istype(S,/obj/structure/table/bench) && !istype(src,/obj/structure/table/bench))
+		return FALSE
+	if(istype(src,/obj/structure/table/bench) && !istype(S,/obj/structure/table/bench))
+		return FALSE
+	if(istype(S,/obj/structure/table))
+		return TRUE
+	..()
+
 /proc/get_table_image(var/icon/ticon,var/ticonstate,var/tdir,var/tcolor,var/talpha)
 	var/icon_cache_key = "\ref[ticon]-[ticonstate]-[tdir]-[tcolor]-[talpha]"
 	var/image/I = table_icon_cache[icon_cache_key]

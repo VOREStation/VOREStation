@@ -44,6 +44,7 @@
 	reagent_state = LIQUID
 	color = "#333333"
 	scannable = 1
+	affects_robots = TRUE
 
 /datum/reagent/nif_repair_nanites/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(ishuman(M))
@@ -108,6 +109,7 @@
 	color = "#1d1d1d"
 	scannable = 0
 	metabolism = REM * 0.5
+	affects_robots = TRUE
 
 /datum/reagent/liquid_protean/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien != IS_DIONA)

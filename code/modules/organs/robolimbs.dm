@@ -45,13 +45,15 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	var/company = "Unbranded"                            // Shown when selecting the limb.
 	var/desc = "A generic unbranded robotic prosthesis." // Seen when examining a limb.
 	var/icon = 'icons/mob/human_races/robotic.dmi'       // Icon base to draw from.
+	var/monitor_icon = 'icons/mob/monitor_icons.dmi'     // Where it draws the monitor icon from.
 	var/unavailable_at_chargen                           // If set, not available at chargen.
 	var/unavailable_to_build							 // If set, can't be constructed.
 	var/lifelike										 // If set, appears organic.
 	var/skin_tone										 // If set, applies skin tone rather than part color Overrides color.
 	var/skin_color										 // If set, applies skin color rather than part color.
 	var/blood_color = "#030303"
-	var/list/species_cannot_use = list(SPECIES_TESHARI, SPECIES_PROMETHEAN, SPECIES_DIONA, SPECIES_XENOCHIMERA)	 //VOREStation Edit
+	var/blood_name = "oil"
+	var/list/species_cannot_use = list(SPECIES_TESHARI, SPECIES_PROMETHEAN, SPECIES_DIONA, SPECIES_XENOCHIMERA)  //VOREStation Edit
 	var/list/species_alternates = list(SPECIES_TAJ = "Unbranded - Tajaran", SPECIES_UNATHI = "Unbranded - Unathi")				 //"Species Name" = "Robolimb Company" , List, when initialized, will become "Species Name" = RobolimbDatum, used for alternate species sprites.
 	var/list/monitor_styles			 		 			 //If empty, the model of limbs offers a head compatible with monitors.
 	var/parts = BP_ALL						 			 //Defines what parts said brand can replace on a body.
@@ -171,6 +173,7 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	desc = "This limb looks to be more like a strange.. puppet, than a prosthetic."
 	icon = 'icons/mob/human_races/cyberlimbs/veymed/dionaea/skrellian.dmi'
 	blood_color = "#63b521"
+	blood_name = "synthetic ichor"
 	speech_bubble_appearance = "machine"
 	unavailable_to_build = 1
 	species_cannot_use = list(SPECIES_TESHARI, SPECIES_PROMETHEAN, SPECIES_TAJ, SPECIES_HUMAN, SPECIES_VOX, SPECIES_HUMAN_VATBORN, SPECIES_UNATHI, SPECIES_SKRELL, SPECIES_ZADDAT)
@@ -186,17 +189,23 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	unavailable_to_build = 1
 
 /datum/robolimb/cybersolutions_alt2
-	company = "Cyber Solutions - Array"
-	desc = "This limb is simple and functional; array of sensors on a featureless case."
+	company = "Cyber Solutions - Outdated"
+	desc = "This limb is of severely outdated design; there's no way it's comfortable or very functional to use."
 	icon = 'icons/mob/human_races/cyberlimbs/cybersolutions/cybersolutions_alt2.dmi'
 	unavailable_to_build = 1
-	parts = list(BP_HEAD)
 
 /datum/robolimb/cybersolutions_alt1
 	company = "Cyber Solutions - Wight"
 	desc = "This limb has cheap plastic panels mounted on grey metal."
 	icon = 'icons/mob/human_races/cyberlimbs/cybersolutions/cybersolutions_alt1.dmi'
 	unavailable_to_build = 1
+
+/datum/robolimb/cybersolutions_alt3
+	company = "Cyber Solutions - Array"
+	desc = "This limb is simple and functional; array of sensors on a featureless case."
+	icon = 'icons/mob/human_races/cyberlimbs/cybersolutions/cybersolutions_alt3.dmi'
+	unavailable_to_build = 1
+	parts = list(BP_HEAD)
 
 /datum/robolimb/einstein
 	company = "Einstein Engines"
@@ -301,6 +310,7 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	skin_tone = 1
 	species_alternates = list(SPECIES_SKRELL = "Vey-Med - Skrell")
 	blood_color = "#CCCCCC"
+	blood_name = "coolant"
 	speech_bubble_appearance = "normal"
 	//robo_brute_mod = 1.1 //VOREStation Edit
 	//robo_burn_mod = 1.1 //VOREStation Edit
@@ -314,6 +324,7 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	skin_color = TRUE
 	species_cannot_use = list(SPECIES_TESHARI, SPECIES_PROMETHEAN, SPECIES_TAJ, SPECIES_HUMAN, SPECIES_VOX, SPECIES_HUMAN_VATBORN, SPECIES_UNATHI, SPECIES_DIONA, SPECIES_ZADDAT)
 	blood_color = "#4451cf"
+	blood_name = "coolant"
 	speech_bubble_appearance = "normal"
 	robo_brute_mod = 1.05
 	robo_burn_mod = 1.05

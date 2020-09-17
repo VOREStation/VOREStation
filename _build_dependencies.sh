@@ -8,6 +8,6 @@ export PHP_VERSION=5.6
 # Byond Major
 export BYOND_MAJOR=513
 # Byond Minor
-export BYOND_MINOR=1526
+export BYOND_MINOR=1528
 # Macro Count
 export MACRO_COUNT=4

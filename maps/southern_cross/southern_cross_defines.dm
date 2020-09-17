@@ -93,8 +93,7 @@
 			Z_LEVEL_STATION_TWO,
 			Z_LEVEL_STATION_THREE,
 			Z_LEVEL_SURFACE,
-			Z_LEVEL_SURFACE_MINE,
-			Z_LEVEL_SURFACE_WILD
+			Z_LEVEL_SURFACE_MINE
 		)
 
 // Commented out due to causing a lot of bugs. The base proc plus overmap achieves this functionality anyways.
@@ -188,13 +187,13 @@
 /datum/map_z_level/southern_cross/surface
 	z = Z_LEVEL_SURFACE
 	name = "Plains"
-	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_SEALED|MAP_LEVEL_CONSOLES
+	flags = MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_SEALED|MAP_LEVEL_CONSOLES
 	base_turf = /turf/simulated/floor/outdoors/rocks
 
 /datum/map_z_level/southern_cross/surface_mine
 	z = Z_LEVEL_SURFACE_MINE
 	name = "Mountains"
-	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_SEALED|MAP_LEVEL_CONSOLES
+	flags = MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_SEALED|MAP_LEVEL_CONSOLES
 	base_turf = /turf/simulated/floor/outdoors/rocks
 
 /datum/map_z_level/southern_cross/surface_wild
@@ -251,8 +250,7 @@
 	expected_z_levels = list(
 		Z_LEVEL_SURFACE,
 		Z_LEVEL_SURFACE_MINE,
-		Z_LEVEL_SURFACE_WILD,
-		Z_LEVEL_TRANSIT
+		Z_LEVEL_SURFACE_WILD
 	)
 
 /obj/effect/step_trigger/teleporter/bridge/east_to_west/Initialize()
@@ -290,6 +288,31 @@
 	teleport_y = src.y + 4
 	teleport_z = src.z
 	return ..()
+
+/obj/effect/map_effect/portal/master/side_a/plains_to_caves
+	portal_id = "plains_caves-normal"
+
+/obj/effect/map_effect/portal/master/side_b/caves_to_plains
+	portal_id = "plains_caves-normal"
+
+/obj/effect/map_effect/portal/master/side_a/plains_to_caves/river
+	portal_id = "plains_caves-river"
+
+/obj/effect/map_effect/portal/master/side_b/caves_to_plains/river
+	portal_id = "plains_caves-river"
+
+
+/obj/effect/map_effect/portal/master/side_a/caves_to_wilderness
+	portal_id = "caves_wilderness-normal"
+
+/obj/effect/map_effect/portal/master/side_b/wilderness_to_caves
+	portal_id = "caves_wilderness-normal"
+
+/obj/effect/map_effect/portal/master/side_a/caves_to_wilderness/river
+	portal_id = "caves_wilderness-river"
+
+/obj/effect/map_effect/portal/master/side_b/wilderness_to_caves/river
+	portal_id = "caves_wilderness-river"
 
 //Suit Storage Units
 

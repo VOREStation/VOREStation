@@ -257,7 +257,7 @@
 			var/list/potentials = living_mobs(0)
 			if(potentials.len)
 				var/mob/living/target = pick(potentials)
-				if(istype(target) && vore_selected)
+				if(istype(target) && target.devourable && target.can_be_drop_prey && vore_selected)
 					if(target.buckled)
 						target.buckled.unbuckle_mob(target, force = TRUE)
 					target.forceMove(vore_selected)
@@ -297,6 +297,12 @@
 	if(resting)
 		return
 	..()
+
+var/global/list/disallowed_protean_accessories = list(
+	/obj/item/clothing/accessory/holster,
+	/obj/item/clothing/accessory/storage,
+	/obj/item/clothing/accessory/armor
+	)
 
 // Helpers - Unsafe, WILL perform change.
 /mob/living/carbon/human/proc/nano_intoblob()
@@ -343,7 +349,8 @@
 		var/obj/item/clothing/uniform = w_uniform
 		if(LAZYLEN(uniform.accessories))
 			for(var/obj/item/clothing/accessory/A in uniform.accessories)
-				uniform.remove_accessory(null,A) //First param is user, but adds fingerprints and messages
+				if(is_type_in_list(A, disallowed_protean_accessories))
+					uniform.remove_accessory(null,A) //First param is user, but adds fingerprints and messages
 
 	//Size update
 	blob.transform = matrix()*size_multiplier

@@ -1,11 +1,11 @@
 /mob/living/silicon
 	var/register_alarms = 1
-	var/datum/nano_module/alarm_monitor/all/alarm_monitor
-	var/datum/nano_module/atmos_control/atmos_control
+	var/datum/tgui_module/alarm_monitor/all/robot/alarm_monitor
+	var/datum/tgui_module/atmos_control/robot/atmos_control
 	var/datum/tgui_module/crew_monitor/robot/crew_monitor
-	var/datum/nano_module/law_manager/law_manager
-	var/datum/nano_module/power_monitor/power_monitor
-	var/datum/nano_module/rcon/rcon
+	var/datum/tgui_module/law_manager/robot/law_manager
+	var/datum/tgui_module/power_monitor/robot/power_monitor
+	var/datum/tgui_module/rcon/robot/rcon
 
 /mob/living/silicon
 	var/list/silicon_subsystems = list(
@@ -49,7 +49,7 @@
 	set name = "Alarm Monitor"
 	set category = "Subystems"
 
-	alarm_monitor.ui_interact(usr, state = self_state)
+	alarm_monitor.tgui_interact(usr)
 
 /********************
 *	Atmos Control	*
@@ -58,7 +58,7 @@
 	set category = "Subystems"
 	set name = "Atmospherics Control"
 
-	atmos_control.ui_interact(usr, state = self_state)
+	atmos_control.tgui_interact(usr)
 
 /********************
 *	Crew Monitor	*
@@ -76,7 +76,7 @@
 	set name = "Law Manager"
 	set category = "Subystems"
 
-	law_manager.ui_interact(usr, state = conscious_state)
+	law_manager.tgui_interact(usr)
 
 /********************
 *	Power Monitor	*
@@ -85,7 +85,7 @@
 	set category = "Subystems"
 	set name = "Power Monitor"
 
-	power_monitor.ui_interact(usr, state = self_state)
+	power_monitor.tgui_interact(usr)
 
 /************
 *	RCON	*
@@ -94,4 +94,4 @@
 	set category = "Subystems"
 	set name = "RCON"
 
-	rcon.ui_interact(usr, state = self_state)
+	rcon.tgui_interact(usr)

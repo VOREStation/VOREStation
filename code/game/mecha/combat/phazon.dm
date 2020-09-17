@@ -25,15 +25,24 @@
 	max_universal_equip = 3
 	max_special_equip = 4
 
-	phasing_possible = 1
-	switch_dmg_type_possible = 1
+	starting_components = list(
+		/obj/item/mecha_parts/component/hull/durable,
+		/obj/item/mecha_parts/component/actuator,
+		/obj/item/mecha_parts/component/armor/alien,
+		/obj/item/mecha_parts/component/gas,
+		/obj/item/mecha_parts/component/electrical
+		)
+
+	cloak_possible = TRUE
+	phasing_possible = TRUE
+	switch_dmg_type_possible = TRUE
 
 /obj/mecha/combat/phazon/equipped/Initialize()
 	..()
-	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/tool/rcd
-	ME.attach(src)
-	ME = new /obj/item/mecha_parts/mecha_equipment/gravcatapult
-	ME.attach(src)
+	starting_equipment = list(
+		/obj/item/mecha_parts/mecha_equipment/tool/rcd,
+		/obj/item/mecha_parts/mecha_equipment/gravcatapult
+		)
 	return
 
 /* Leaving this until we are really sure we don't need it for reference.
@@ -95,8 +104,9 @@
 	max_universal_equip = 2
 	max_special_equip = 2
 
-	phasing_possible = 1
-	switch_dmg_type_possible = 1
+	phasing_possible = TRUE
+	switch_dmg_type_possible = TRUE
+	cloak_possible = FALSE
 
 /obj/mecha/combat/phazon/janus/take_damage(amount, type="brute")
 	..()

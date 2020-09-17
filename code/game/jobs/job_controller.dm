@@ -394,7 +394,7 @@ var/global/datum/controller/occupations/job_master
 					var/datum/gear/G = gear_datums[thing]
 					if(!G) //Not a real gear datum (maybe removed, as this is loaded from their savefile)
 						continue
-					
+
 					var/permitted
 					// Check if it is restricted to certain roles
 					if(G.allowed_roles)
@@ -435,13 +435,13 @@ var/global/datum/controller/occupations/job_master
 
 			// Set up their account
 			job.setup_account(H)
-			
+
 			// Equip job items.
 			job.equip(H, H.mind ? H.mind.role_alt_title : "")
-			
+
 			// Stick their fingerprints on literally everything
 			job.apply_fingerprints(H)
-			
+
 			// Only non-silicons get post-job-equip equipment
 			if(!(job.mob_type & JOB_SILICON))
 				H.equip_post_job()
@@ -487,11 +487,11 @@ var/global/datum/controller/occupations/job_master
 				return H.Robotize()
 			if(job.mob_type & JOB_SILICON_AI)
 				return H
-			
+
 			// TWEET PEEP
-			if(rank == "Colony Director")
+			if(rank == "Site Manager")
 				var/sound/announce_sound = (ticker.current_state <= GAME_STATE_SETTING_UP) ? null : sound('sound/misc/boatswain.ogg', volume=20)
-				captain_announcement.Announce("All hands, [alt_title ? alt_title : "Colony Director"] [H.real_name] on deck!", new_sound = announce_sound, zlevel = H.z)
+				captain_announcement.Announce("All hands, [alt_title ? alt_title : "Site Manager"] [H.real_name] on deck!", new_sound = announce_sound, zlevel = H.z)
 
 			//Deferred item spawning.
 			if(spawn_in_storage && spawn_in_storage.len)

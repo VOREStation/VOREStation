@@ -56,6 +56,26 @@ $border-radius: base.$border-radius !default;
   transform: translateX(-50%) translateY(-0.5em);
 }
 
+.Tooltip--top-left::after {
+  bottom: 100%;
+  right: 50%;
+  transform: translateX(12px) translateY(-8px);
+}
+
+.Tooltip--top-left:hover::after {
+  transform: translateX(12px) translateY(8px);
+}
+
+.Tooltip--top-right::after {
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-12px) translateY(-8px);
+}
+
+.Tooltip--top-right:hover::after {
+  transform: translateX(-12px) translateY(8px);
+}
+
 .Tooltip--bottom::after {
   top: 100%;
   left: 50%;
@@ -104,4 +124,16 @@ $border-radius: base.$border-radius !default;
 
 .Tooltip--right:hover::after {
   transform: translateX(0.5em) translateY(-50%);
+}
+
+@for $i from 1 through 8 {
+  .Tooltip--scale--#{$i}::after {
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%) scale(1 / $i);
+  }
+
+  .Tooltip--scale--#{$i}:hover::after {
+    transform: translateX(-50%) scale(1 / $i);
+  }
 }

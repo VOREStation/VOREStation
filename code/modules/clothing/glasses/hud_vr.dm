@@ -1,7 +1,9 @@
 /obj/item/clothing/glasses/omnihud
 	name = "\improper AR glasses"
 	desc = "The ARG-62 AR Glasses are capable of displaying information on individuals. \
-	Commonly used to allow non-augmented crew to interact with virtual interfaces."
+	Commonly used to allow non-augmented crew to interact with virtual interfaces. \
+	<br>They are also fitted with toggleable cosmetic electrochromic lenses. \
+	The lenses will not protect against sudden bright flashes or welding."
 	origin_tech = list(TECH_MAGNET = 3, TECH_BIO = 3)
 	var/obj/item/clothing/glasses/hud/omni/hud = null
 	var/mode = "civ"
@@ -45,6 +47,13 @@
 	spawn(20 SECONDS)
 		arscreen = disconnect_ar
 		tgarscreen = disconnect_tgar
+	
+	//extra fun for non-sci variants; a small chance flip the state to the dumb 3d glasses when EMP'd
+	if(icon_state == "glasses" || icon_state == "sun")
+		if(prob(10))
+			icon_state = "3d"
+			if(ishuman(loc))
+				to_chat(loc, "<span class='warning'>The lenses of your [src.name] malfunction!</span>")
 	..()
 
 /obj/item/clothing/glasses/omnihud/proc/flashed()
@@ -55,11 +64,13 @@
 	prescription = !prescription
 	playsound(src,'sound/items/screwdriver.ogg', 50, 1)
 	if(prescription)
-		name = "[initial(name)] (pr)"
-		user.visible_message("[user] uploads new prescription data to the [src.name].")
+		user.visible_message("[user] uploads new prescription data to the [src.name] and resets the lenses.")
+		name = "[initial(name)] (pr)" //change the name *after* the text so the message above is accurate
+		icon_state = "[initial(icon_state)]" //reset the icon state just to be safe
 	else
+		user.visible_message("[user] deletes the prescription data on the [src.name] and resets the lenses.")
 		name = "[initial(name)]"
-		user.visible_message("[user] deletes the prescription data on the [src.name].")
+		icon_state = "[initial(icon_state)]"
 
 /obj/item/clothing/glasses/omnihud/attack_self(mob/user)
 	if(!ishuman(user))
@@ -72,6 +83,45 @@
 		if(!ar_interact(H))
 			to_chat(user, "<span class='warning'>The [src] does not have any kind of special display.</span>")
 
+//cosmetic shading, doesn't enhance eye protection
+/obj/item/clothing/glasses/omnihud/verb/chromatize()
+	set name = "Toggle AR Glasses Shading"
+	set desc = "Toggle the cosmetic electrochromatic shading of your AR glasses."
+	set category = "Object"
+	set src in usr
+	if(!usr.canmove || usr.stat || usr.restrained())
+		return
+	if(icon_state == "3d")
+		to_chat(usr, "You reset the electrochromic lenses of \the [src] back to normal.")
+		if(prescription)
+			name = "[initial(name)] (pr)"
+		else
+			name = "[initial(name)]"
+		icon_state = "[initial(icon_state)]"
+	else if(prescription)
+		if(icon_state == "glasses")
+			to_chat(usr, "You darken the electrochromic lenses of \the [src] to one-way transparency.")
+			name = "[initial(name)] (shaded, pr)"
+			icon_state = "sun"
+		else if(icon_state == "sun")
+			to_chat(usr, "You restore the electrochromic lenses of \the [src] to standard two-way transparency.")
+			name = "[initial(name)] (pr)"
+			icon_state = "glasses"
+		else
+			to_chat(usr, "The [src] don't seem to support this functionality.")
+	else if(!prescription)
+		if(icon_state == "glasses")
+			to_chat(usr, "You darken the electrochromic lenses of \the [src] to one-way transparency.")
+			name = "[initial(name)] (shaded)"
+			icon_state = "sun"
+		else if(icon_state == "sun")
+			to_chat(usr, "You restore the electrochromic lenses of \the [src] to standard two-way transparency.")
+			name = "[initial(name)]"
+			icon_state = "glasses"
+		else
+			to_chat(usr, "The [src] don't seem to support this functionality.")
+	update_clothing_icon()
+
 /obj/item/clothing/glasses/omnihud/proc/ar_interact(var/mob/living/carbon/human/user)
 	return 0 //The base models do nothing.
 
@@ -82,7 +132,8 @@
 /obj/item/clothing/glasses/omnihud/med
 	name = "\improper AR-M glasses"
 	desc = "The ARG-62-M AR Glasses are capable of displaying information on individuals. \
-	These have been upgraded with medical records access and virus database integration."
+	These have been upgraded with medical records access and virus database integration. \
+	They can also read data from active suit sensors using the crew monitoring system."
 	mode = "med"
 	action_button_name = "AR Console (Crew Monitor)"
 	tgarscreen_path = /datum/tgui_module/crew_monitor/glasses
@@ -96,44 +147,43 @@
 /obj/item/clothing/glasses/omnihud/sec
 	name = "\improper AR-S glasses"
 	desc = "The ARG-62-S AR Glasses are capable of displaying information on individuals. \
-	These have been upgraded with security records integration and flash protection."
+	These have been upgraded with security records integration and flash protection. \
+	They also have access to security alerts such as camera and motion sensor alarms."
 	mode = "sec"
-	flash_protection = FLASH_PROTECTION_MAJOR
+	flash_protection = FLASH_PROTECTION_MODERATE //weld protection is a little too widespread
 	action_button_name = "AR Console (Security Alerts)"
-	arscreen_path = /datum/nano_module/alarm_monitor/security
+	tgarscreen_path = /datum/tgui_module/alarm_monitor/security/glasses
 	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_WANTED,VIS_AUGMENTED)
 
 	ar_interact(var/mob/living/carbon/human/user)
-		if(arscreen)
-			arscreen.ui_interact(user,"main",null,1,glasses_state)
+		if(tgarscreen)
+			tgarscreen.tgui_interact(user)
 		return 1
 
 /obj/item/clothing/glasses/omnihud/eng
 	name = "\improper AR-E glasses"
 	desc = "The ARG-62-E AR Glasses are capable of displaying information on individuals. \
-	These have been upgraded with advanced electrochromic lenses to protect your eyes during welding."
+	These have been upgraded with advanced electrochromic lenses to protect your eyes during welding, \
+	and can also display a list of atmospheric, fire, and power alarms."
 	mode = "eng"
 	flash_protection = FLASH_PROTECTION_MAJOR
 	action_button_name = "AR Console (Station Alerts)"
-	arscreen_path = /datum/nano_module/alarm_monitor/engineering
+	tgarscreen_path = /datum/tgui_module/alarm_monitor/engineering/glasses
 
 	ar_interact(var/mob/living/carbon/human/user)
-		if(arscreen)
-			arscreen.ui_interact(user,"main",null,1,glasses_state)
+		if(tgarscreen)
+			tgarscreen.tgui_interact(user)
 		return 1
 
 /obj/item/clothing/glasses/omnihud/rnd
 	name = "\improper AR-R glasses"
 	desc = "The ARG-62-R AR Glasses are capable of displaying information on individuals. \
-	These have been ... modified ... to fit into a different frame."
+	They... don't seem to do anything particularly interesting? But hey, at least they look kinda science-y."
 	mode = "sci"
-	icon = 'icons/obj/clothing/glasses.dmi'
-	icon_override = null
-	icon_state = "purple"
 
 /obj/item/clothing/glasses/omnihud/eng/meson
 	name = "meson scanner HUD"
-	desc = "A headset equipped with a scanning lens and mounted retinal projector. They don't provide any eye protection, but they're less obtrusive than goggles."
+	desc = "A headset equipped with a scanning lens and mounted retinal projector. It doesn't provide any eye protection, but it's less obtrusive than goggles."
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "projector"
@@ -141,6 +191,7 @@
 	body_parts_covered = 0
 	toggleable = 1
 	vision_flags = SEE_TURFS //but they can spot breaches. Due to the way HUDs work, they don't provide darkvision up-close the way mesons do.
+	flash_protection = 0 //it's an open, single-eye retinal projector. there's no way it protects your eyes from flashes or welders.
 
 /obj/item/clothing/glasses/omnihud/eng/meson/attack_self(mob/user)
 	if(!active)
@@ -171,10 +222,18 @@
 /obj/item/clothing/glasses/omnihud/all
 	name = "\improper AR-B glasses"
 	desc = "The ARG-62-B AR Glasses are capable of displaying information on individuals. \
-	These have been upgraded with every feature the lesser models have. Now we're talkin'."
+	These have been upgraded with (almost) every feature the lesser models have. Now we're talkin'. \
+	<br>Offers full protection against bright flashes/welders and full access to system alarm monitoring."
 	mode = "best"
 	flash_protection = FLASH_PROTECTION_MAJOR
 	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_STATUS_R,VIS_CH_BACKUP,VIS_CH_WANTED)
+	action_button_name = "AR Console (All Alerts)"
+	tgarscreen_path = /datum/tgui_module/alarm_monitor/all/glasses
+
+	ar_interact(var/mob/living/carbon/human/user)
+		if(tgarscreen)
+			tgarscreen.tgui_interact(user)
+		return 1
 
 /obj/item/clothing/glasses/hud/security/eyepatch
     name = "Security Hudpatch"
@@ -222,4 +281,3 @@
 	else
 		icon_state = initial(icon_state)
 	update_clothing_icon()
-

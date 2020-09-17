@@ -21,6 +21,7 @@ export const Knob = props => {
   const {
     // Draggable props (passthrough)
     animated,
+    forcedInputWidth,
     format,
     maxValue,
     minValue,
@@ -40,6 +41,7 @@ export const Knob = props => {
     size,
     bipolar,
     children,
+    popUpPosition,
     ...rest
   } = props;
   return (
@@ -47,6 +49,7 @@ export const Knob = props => {
       dragMatrix={[0, -1]}
       {...{
         animated,
+        forcedInputWidth,
         format,
         maxValue,
         minValue,
@@ -107,7 +110,10 @@ export const Knob = props => {
               </div>
             </div>
             {dragging && (
-              <div className="Knob__popupValue">
+              <div className={classes([
+                'Knob__popupValue',
+                popUpPosition && 'Knob__popupValue--' + popUpPosition,
+              ])}>
                 {displayElement}
               </div>
             )}

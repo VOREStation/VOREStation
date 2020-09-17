@@ -39,7 +39,7 @@
 			/obj/item/clothing/head/soft/purple,
 			/obj/item/weapon/storage/belt/janitor,
 			/obj/item/clothing/shoes/galoshes,
-			/obj/item/weapon/caution = 4,
+			/obj/item/clothing/suit/caution = 4,
 			/obj/item/weapon/storage/bag/trash,
 			/obj/item/device/lightreplacer,
 			/obj/item/weapon/reagent_containers/spray/cleaner,
@@ -84,6 +84,13 @@
 	cost = 15
 	containertype = /obj/structure/closet/crate/ummarcar
 	containername = "Office supplies crate"
+
+/datum/supply_pack/supply/sticky_notes
+	name = "Stationery - sticky notes (50)"
+	contains = list(/obj/item/sticky_pad/random)
+	cost = 10
+	containertype = /obj/structure/closet/crate/ummarcar
+	containername = "\improper Sticky notes crate"
 
 /datum/supply_pack/supply/spare_pda
 	name = "Spare PDAs"

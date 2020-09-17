@@ -401,8 +401,8 @@
 	desc = "A crate emblazoned with the NanoThreads Garments livery, a subsidary of the NanoTrasen Corporation."
 	closet_appearance = /decl/closet_appearance/crate/nanotrasenclothing
 
-/obj/structure/closet/crate/nanocare
-	desc = "A crate emblazoned with the NanoCare Medical livery, a subsidary of the NanoTrasen Corporation."
+/obj/structure/closet/crate/nanomed
+	desc = "A crate emblazoned with the NanoMed Medical livery, a subsidary of the NanoTrasen Corporation."
 	closet_appearance = /decl/closet_appearance/crate/nanotrasenmedical
 
 /obj/structure/closet/crate/oculum
@@ -516,8 +516,8 @@
 	desc = "A secure crate emblazoned with the standard NanoTrasen livery."
 	closet_appearance = /decl/closet_appearance/crate/secure/nanotrasen
 
-/obj/structure/closet/crate/secure/nanocare
-	desc = "A secure crate emblazoned with the NanoCare Medical livery, a subsidary of the NanoTrasen Corporation."
+/obj/structure/closet/crate/secure/nanomed
+	desc = "A secure crate emblazoned with the NanoMed Medical livery, a subsidary of the NanoTrasen Corporation."
 	closet_appearance = /decl/closet_appearance/crate/secure/nanotrasenmedical
 
 /obj/structure/closet/crate/secure/scg

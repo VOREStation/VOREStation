@@ -26,7 +26,7 @@
 	sort_string = "MAAVB"
 
 /datum/design/item/weapon/energy/netgun
-	name = "\'Hunter\' capture gun"
+	desc  = "The \"Varmint Catcher\" is an energy net projector designed to immobilize dangerous wildlife."
 	id = "netgun"
 	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 5, TECH_MAGNET = 3)
 	materials = list(DEFAULT_WALL_MATERIAL = 6000, "glass" = 3000)

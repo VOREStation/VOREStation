@@ -130,9 +130,6 @@ var/custom_event_msg = null
 var/DBConnection/dbcon     = new() // Feedback    database (New database)
 var/DBConnection/dbcon_old = new() // /tg/station database (Old database) -- see the files in the SQL folder for information on what goes where.
 
-// Reference list for disposal sort junctions. Filled up by sorting junction's New()
-/var/list/tagger_locations = list()
-
 // Added for Xenoarchaeology, might be useful for other stuff.
 var/global/list/alphabet_uppercase = list("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z")
 
@@ -160,7 +157,7 @@ var/static/list/scarySounds = list(
 	'sound/effects/Glassbr3.ogg',
 	'sound/items/Welder.ogg',
 	'sound/items/Welder2.ogg',
-	'sound/machines/airlock.ogg',
+	'sound/machines/door/old_airlock.ogg',
 	'sound/effects/clownstep1.ogg',
 	'sound/effects/clownstep2.ogg'
 )

@@ -20,14 +20,29 @@
 			sensors = S
 			break
 
-/obj/machinery/computer/ship/sensors/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/computer/ship/sensors/tgui_interact(mob/user, datum/tgui/ui)
 	if(!linked)
 		display_reconnect_dialog(user, "sensors")
 		return
 
-	var/data[0]
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "OvermapShipSensors", "[linked.name] Sensors Control") // 420, 530
+		ui.open()
+
+/obj/machinery/computer/ship/sensors/tgui_data(mob/user)
+	var/list/data = list()
 
 	data["viewing"] = viewing_overmap(user)
+	data["on"] = 0
+	data["range"] = "N/A"
+	data["health"] = 0
+	data["max_health"] = 0
+	data["heat"] = 0
+	data["critical_heat"] = 0
+	data["status"] = "MISSING"
+	data["contacts"] = list()
+
 	if(sensors)
 		data["on"] = sensors.use_power
 		data["range"] = sensors.range
@@ -53,54 +68,49 @@
 			if(bearing < 0)
 				bearing += 360
 			contacts.Add(list(list("name"=O.name, "ref"="\ref[O]", "bearing"=bearing)))
-		if(contacts.len)
-			data["contacts"] = contacts
-	else
-		data["status"] = "MISSING"
-		data["range"] = "N/A"
-		data["on"] = 0
+		data["contacts"] = contacts
 
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "shipsensors.tmpl", "[linked.name] Sensors Control", 420, 530, src)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(1)
+	return data
 
-/obj/machinery/computer/ship/sensors/OnTopic(var/mob/user, var/list/href_list, state)
+/obj/machinery/computer/ship/sensors/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
-		return TOPIC_HANDLED
+		return TRUE
 
-	if (!linked)
-		return TOPIC_NOACTION
+	if(!linked)
+		return FALSE
 
-	if (href_list["viewing"])
-		if(user && !isAI(user))
-			viewing_overmap(user) ? unlook(user) : look(user)
-		return TOPIC_REFRESH
+	switch(action)
+		if("viewing")
+			if(usr && !isAI(usr))
+				viewing_overmap(usr) ? unlook(usr) : look(usr)
+			. = TRUE
 
-	if (href_list["link"])
-		find_sensors()
-		return TOPIC_REFRESH
+		if("link")
+			find_sensors()
+			. = TRUE
+
+		if("scan")
+			var/obj/effect/overmap/O = locate(params["scan"])
+			if(istype(O) && !QDELETED(O) && (O in view(7,linked)))
+				new/obj/item/weapon/paper/(get_turf(src), O.get_scan_data(usr), "paper (Sensor Scan - [O])")
+				playsound(src, "sound/machines/printer.ogg", 30, 1)
+			. = TRUE
 
 	if(sensors)
-		if (href_list["range"])
-			var/nrange = input("Set new sensors range", "Sensor range", sensors.range) as num|null
-			if(!CanInteract(user,state))
-				return TOPIC_NOACTION
-			if (nrange)
-				sensors.set_range(CLAMP(nrange, 1, world.view))
-			return TOPIC_REFRESH
-		if (href_list["toggle"])
-			sensors.toggle()
-			return TOPIC_REFRESH
+		switch(action)
+			if("range")
+				var/nrange = input("Set new sensors range", "Sensor range", sensors.range) as num|null
+				if(tgui_status(usr, state) != STATUS_INTERACTIVE)
+					return FALSE
+				if(nrange)
+					sensors.set_range(CLAMP(nrange, 1, world.view))
+				. = TRUE
+			if("toggle")
+				sensors.toggle()
+				. = TRUE
 
-	if (href_list["scan"])
-		var/obj/effect/overmap/O = locate(href_list["scan"])
-		if(istype(O) && !QDELETED(O) && (O in view(7,linked)))
-			playsound(src, "sound/machines/dotprinter.ogg", 30, 1)
-			new/obj/item/weapon/paper/(get_turf(src), O.get_scan_data(user), "paper (Sensor Scan - [O])")
-		return TOPIC_HANDLED
+	if(. && !issilicon(usr))
+		playsound(src, "terminal_type", 50, 1)
 
 /obj/machinery/computer/ship/sensors/process()
 	..()

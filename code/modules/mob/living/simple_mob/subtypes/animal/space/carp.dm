@@ -87,6 +87,8 @@
 
 	pixel_x = -16
 	default_pixel_x = -16
+	icon_expected_width = 64
+	icon_expected_height = 32
 
 	meat_amount = 3
 
@@ -108,6 +110,8 @@
 
 	pixel_y = -16
 	default_pixel_y = -16
+	icon_expected_width = 64
+	icon_expected_height = 64
 
 	meat_amount = 10
 

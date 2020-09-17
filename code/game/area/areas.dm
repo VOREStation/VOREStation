@@ -49,6 +49,7 @@
 	var/sound_env = STANDARD_STATION
 	var/turf/base_turf //The base turf type of the area, which can be used to override the z-level's base turf
 	var/forbid_events = FALSE // If true, random events will not start inside this area.
+	var/no_spoilers = FALSE // If true, makes it much more difficult to see what is inside an area with things like mesons.
 
 /area/Initialize()
 	. = ..()
@@ -64,6 +65,8 @@
 		power_equip = 0
 		power_environ = 0
 	power_change()		// all machines set to current power level, also updates lighting icon
+	if(no_spoilers)
+		set_spoiler_obfuscation(TRUE)
 	return INITIALIZE_HINT_LATELOAD
 
 // Changes the area of T to A. Do not do this manually.
@@ -367,30 +370,40 @@ var/list/mob/living/forced_ambiance_list = new
 		L.update_floating( L.Check_Dense_Object() )
 
 	L.lastarea = newarea
-	play_ambience(L)
+	L.lastareachange = world.time
+	play_ambience(L, initial = TRUE)
+	if(no_spoilers)
+		L.disable_spoiler_vision()
 
-/area/proc/play_ambience(var/mob/living/L)
+/area/proc/play_ambience(var/mob/living/L, initial = TRUE)
 	// Ambience goes down here -- make sure to list each area seperately for ease of adding things in later, thanks! Note: areas adjacent to each other should have the same sounds to prevent cutoff when possible.- LastyScratch
-	if(!(L && L.is_preference_enabled(/datum/client_preference/play_ambiance)))	return
-
+	if(!(L && L.is_preference_enabled(/datum/client_preference/play_ambiance)))
+		return
+	
+	var/volume_mod = L.get_preference_volume_channel(VOLUME_CHANNEL_AMBIENCE)
+	
 	// If we previously were in an area with force-played ambiance, stop it.
-	if(L in forced_ambiance_list)
+	if((L in forced_ambiance_list) && initial)
 		L << sound(null, channel = CHANNEL_AMBIENCE_FORCED)
 		forced_ambiance_list -= L
 
 	if(forced_ambience)
+		if(L in forced_ambiance_list)
+			return
 		if(forced_ambience.len)
 			forced_ambiance_list |= L
 			var/sound/chosen_ambiance = pick(forced_ambience)
 			if(!istype(chosen_ambiance))
 				chosen_ambiance = sound(chosen_ambiance, repeat = 1, wait = 0, volume = 25, channel = CHANNEL_AMBIENCE_FORCED)
+			chosen_ambiance.volume *= volume_mod
 			L << chosen_ambiance
 		else
 			L << sound(null, channel = CHANNEL_AMBIENCE_FORCED)
-	else if(src.ambience.len && prob(35))
-		if((world.time >= L.client.time_last_ambience_played + 1 MINUTE))
+	else if(src.ambience.len)
+		var/ambience_odds = L?.client.prefs.ambience_chance
+		if(prob(ambience_odds) && (world.time >= L.client.time_last_ambience_played + 1 MINUTE))
 			var/sound = pick(ambience)
-			L << sound(sound, repeat = 0, wait = 0, volume = 50, channel = CHANNEL_AMBIENCE)
+			L << sound(sound, repeat = 0, wait = 0, volume = 50 * volume_mod, channel = CHANNEL_AMBIENCE)
 			L.client.time_last_ambience_played = world.time
 
 /area/proc/gravitychange(var/gravitystate = 0)
@@ -501,3 +514,15 @@ var/list/ghostteleportlocs = list()
 	if(secret_name)
 		return "Unknown Area"
 	return name
+
+GLOBAL_DATUM(spoiler_obfuscation_image, /image)
+
+/area/proc/set_spoiler_obfuscation(should_obfuscate)
+	if(!GLOB.spoiler_obfuscation_image)
+		GLOB.spoiler_obfuscation_image = image(icon = 'icons/misc/static.dmi')
+		GLOB.spoiler_obfuscation_image.plane = PLANE_MESONS
+
+	if(should_obfuscate)
+		add_overlay(GLOB.spoiler_obfuscation_image)
+	else
+		cut_overlay(GLOB.spoiler_obfuscation_image)

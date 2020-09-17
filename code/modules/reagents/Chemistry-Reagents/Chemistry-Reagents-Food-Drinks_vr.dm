@@ -67,6 +67,17 @@
 	glass_name = "Monster Tamer"
 	glass_desc = "This looks like a vaguely-alcoholic slurry of meat. Gross."
 
+/datum/reagent/ethanol/pink_moo
+	name = "Pink Moo"
+	id = "pinkmoo"
+	description = "Like a White Russian but with 100% more pink!"
+	taste_description = "strawberry icecream, with a coffee kick"
+	color = "#d789bd"
+	strength = 15
+
+	glass_name = "Pink Moo"
+	glass_desc = "A very familiar looking drink. ...moo?"
+
 /datum/reagent/ethanol/monstertamer/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 
@@ -226,9 +237,9 @@
 	..()
 	M.Stun(2)
 
-/datum/reagent/ethanol/lovepotion
-	name = "Love Potion"
-	id = "lovepotion"
+/datum/reagent/ethanol/lovemaker
+	name = "The Love Maker"
+	id = "lovemaker"
 	description = "A drink said to help one find true love."
 	taste_description = "sweet fruit and honey."
 	strength = 30
@@ -239,7 +250,7 @@
 	targ_temp = 360
 	color = "#d3785d"
 
-	glass_name = "Love Potion"
+	glass_name = "The Love Maker"
 	glass_desc = "A drink said to help one find the perfect fuck."
 
 /datum/reagent/ethanol/honeyshot

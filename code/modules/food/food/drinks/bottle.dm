@@ -202,7 +202,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey
 	name = "Uncle Git's Special Reserve"
-	desc = "A premium single-malt whiskey, gently matured inside the tunnels of a nuclear shelter."
+	desc = "A premium single-malt whiskey, gently matured in a highly classified location."
 	icon_state = "whiskeybottle"
 	center_of_mass = list("x"=16, "y"=3)
 
@@ -233,7 +233,7 @@
 /obj/item/weapon/reagent_containers/food/drinks/bottle/tequilla
 	name = "Caccavo Guaranteed Quality Tequilla"
 	desc = "Made from premium petroleum distillates, pure thalidomide and other fine quality ingredients!"
-	icon_state = "tequillabottle"
+	icon_state = "tequilabottle"
 	center_of_mass = list("x"=16, "y"=3)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/tequilla/Initialize()
@@ -252,7 +252,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/patron
 	name = "Wrapp Artiste Patron"
-	desc = "Silver laced tequilla, served in space night clubs across the galaxy."
+	desc = "Silver laced tequilla, served in night clubs across the galaxy."
 	icon_state = "patronbottle"
 	center_of_mass = list("x"=16, "y"=6)
 
@@ -514,14 +514,37 @@
 	rag_underlay = "rag_small"
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer
-	name = "space beer"
-	desc = "Contains only water, malt and hops."
+	name = "Spacer beer"
+	desc = "A remarkably unremarkable pale lager. Barley malt, hops and yeast."
+	description_fluff = "Identical to an earlier Earth-based variety of beer, Spacer beer was rebranded at the height of humanity's first extra-solar colonization boom in the 2130s and become the go-to cheap booze for those dreaming of a brighter future in the stars. Today, the beer is advertised as 'brewed in space, for space."
 	icon_state = "beer"
 	center_of_mass = list("x"=16, "y"=12)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer/Initialize()
 	. = ..()
-	reagents.add_reagent("beer", 30)
+	reagents.add_reagent("beer", 50)
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer/silverdragon
+	name = "Silver Dragon pilsner"
+	desc = "An earthy pale lager produced exclusively on Nisp, best served cold."
+	description_fluff = "Brewed using locally grown hops, with hints of local flora, Silver Dragon has a reputation as the beer of the frontier hunter - and those trying to look just as tough."
+	icon_state = "beer2"
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer/meteor
+	name = "Meteor beer"
+	desc = "A strong, premium beer with a hint of maize."
+	description_fluff = "Sold across human space, Meteor beer has won more awards than any single variety in history. It should be noted that Meteor's parent company Gilthari Exports, owns most alcohol awards agencies."
+	icon_state = "beerprem"
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/small/litebeer
+	name = "Lite-Speed Lite beer"
+	desc = "A reduced-alcohol, reduced-calorie beer for the drunk on a diet."
+	description_fluff = "Lite-Speed is Spacer Beer's light brand, and despite being widely considered inferior in every regard, it's still pretty cheap. The lower alcohol content also appeals to some Skrell, for whom full-strength beer is too strong."
+	icon_state = "beerlite"
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/small/litebeer/Initialize()
+	. = ..()
+	reagents.add_reagent("litebeer", 50)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/small/cider
 	name = "Crisp's Cider"
@@ -531,7 +554,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/small/cider/Initialize()
 	. = ..()
-	reagents.add_reagent("cider", 30)
+	reagents.add_reagent("cider", 50)
 
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/small/ale
@@ -543,7 +566,17 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/small/ale/Initialize()
 	. = ..()
-	reagents.add_reagent("ale", 30)
+	reagents.add_reagent("ale", 50)
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/small/ale/hushedwhisper
+	name = "Hushed Whisper IPA"
+	desc = "A popular Sivian pale ale named for an infamous space pirate."
+	description_fluff = "Named for one of history's most infamous pirates, Qar’raqel, who ruled over Natuna before suffering a mysterious fate. This ale is brewed on Sif by a small company... Owned by Centauri Provisions."
+	icon_state = "alebottle2"
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/small/ale/hushedwhisper/Initialize()
+	. = ..()
+	reagents.add_reagent("ale", 50)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/sake
 	name = "Mono-No-Aware Luxury Sake"

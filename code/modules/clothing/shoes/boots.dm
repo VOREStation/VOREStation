@@ -17,13 +17,11 @@
 	name = "classic cowboy boots"
 	desc = "A classic looking pair of durable cowboy boots."
 	icon_state = "cowboy_classic"
-	item_state_slots = list(slot_r_hand_str = "leather", slot_l_hand_str = "leather")
 
 /obj/item/clothing/shoes/boots/cowboy/snakeskin
 	name = "snakeskin cowboy boots"
 	desc = "A pair of cowboy boots made from python skin."
 	icon_state = "cowboy_snakeskin"
-	item_state_slots = list(slot_r_hand_str = "white", slot_l_hand_str = "white")
 
 /obj/item/clothing/shoes/boots/jackboots
 	name = "jackboots"
@@ -31,11 +29,39 @@
 	icon_state = "jackboots"
 	armor = list(melee = 30, bullet = 10, laser = 10, energy = 15, bomb = 20, bio = 0, rad = 0)
 	siemens_coefficient = 0.7
+	drop_sound = 'sound/items/drop/boots.ogg'
+	pickup_sound = 'sound/items/pickup/boots.ogg'
 
 /obj/item/clothing/shoes/boots/jackboots/toeless
 	name = "toe-less jackboots"
 	desc = "Modified pair of jackboots, particularly friendly to those species whose toes hold claws."
 	icon_state = "digiboots"
+	item_state_slots = list(slot_r_hand_str = "jackboots", slot_l_hand_str = "jackboots")
+	species_restricted = null
+
+/obj/item/clothing/shoes/boots/jackboots/knee
+	name = "knee-length jackboots"
+	desc = "Taller synthleather boots with an artificial shine."
+	icon_state = "kneeboots"
+	item_state_slots = list(slot_r_hand_str = "jackboots", slot_l_hand_str = "jackboots")
+
+/obj/item/clothing/shoes/boots/jackboots/toeless/knee
+	name = "toe-less knee-length jackboots"
+	desc = "Modified pair of taller boots, particularly friendly to those species whose toes hold claws."
+	icon_state = "digikneeboots"
+	item_state_slots = list(slot_r_hand_str = "jackboots", slot_l_hand_str = "jackboots")
+	species_restricted = null
+
+/obj/item/clothing/shoes/boots/jackboots/thigh
+	name = "thigh-length jackboots"
+	desc = "Even taller synthleather boots with an artificial shine."
+	icon_state = "thighboots"
+	item_state_slots = list(slot_r_hand_str = "jackboots", slot_l_hand_str = "jackboots")
+
+/obj/item/clothing/shoes/boots/jackboots/toeless/thigh
+	name = "toe-less thigh-length jackboots"
+	desc = "Modified pair of even taller boots, particularly friendly to those species whose toes hold claws."
+	icon_state = "digithighboots"
 	item_state_slots = list(slot_r_hand_str = "jackboots", slot_l_hand_str = "jackboots")
 	species_restricted = null
 
@@ -45,6 +71,8 @@
 	icon_state = "workboots"
 	armor = list(melee = 40, bullet = 0, laser = 0, energy = 15, bomb = 20, bio = 0, rad = 20)
 	siemens_coefficient = 0.7
+	drop_sound = 'sound/items/drop/boots.ogg'
+	pickup_sound = 'sound/items/pickup/boots.ogg'
 
 /obj/item/clothing/shoes/boots/workboots/toeless
 	name = "toe-less workboots"
@@ -76,7 +104,7 @@
 	icon_state = "winterboots_sci"
 
 /obj/item/clothing/shoes/boots/winter/command
-	name = "colony director's winter boots"
+	name = "site manager's winter boots"
 	desc = "A pair of winter boots. They're lined with dark fur, and trimmed in the colours of superiority."
 	icon_state = "winterboots_cap"
 

@@ -12,6 +12,8 @@
 	var/auto_rearm = 0 //Does the weapon reload itself after each shot?
 	required_type = list(/obj/mecha/combat, /obj/mecha/working/hoverpod/combatpod)
 
+	step_delay = 0.1
+
 	equip_type = EQUIP_WEAPON
 
 /obj/item/mecha_parts/mecha_equipment/weapon/action_checks(atom/target)
@@ -30,6 +32,13 @@
 	chassis.visible_message("<span class='warning'>[chassis] fires [src]!</span>")
 	occupant_message("<span class='warning'>You fire [src]!</span>")
 	log_message("Fired from [src], targeting [target].")
+	var/target_for_log = "unknown"
+	if(ismob(target))
+		target_for_log = target
+	else if(target)
+		target_for_log = "[target.name]"
+	add_attack_logs(chassis.occupant,target_for_log,"Fired exosuit weapon [src.name] (MANUAL)")
+
 	for(var/i = 1 to min(projectiles, projectiles_per_shot))
 		var/turf/aimloc = targloc
 		if(deviation)
@@ -54,14 +63,6 @@
 	if(auto_rearm)
 		projectiles = projectiles_per_shot
 //	set_ready_state(0)
-
-	var/target_for_log
-	if(ismob(target))
-		target_for_log = target
-	else
-		target_for_log = "[target.name]"
-
-	add_attack_logs(chassis.occupant,target_for_log,"Fired exosuit weapon [src.name] (MANUAL)")
 
 	do_after_cooldown()
 

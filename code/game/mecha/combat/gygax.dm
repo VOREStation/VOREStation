@@ -5,8 +5,8 @@
 	initial_icon = "gygax"
 	step_in = 3
 	dir_in = 1 //Facing North.
-	health = 300
-	maxhealth = 300			//Don't forget to update the /old variant if  you change this number.
+	health = 250
+	maxhealth = 250			//Don't forget to update the /old variant if  you change this number.
 	deflect_chance = 15
 	damage_absorption = list("brute"=0.75,"fire"=1,"bullet"=0.8,"laser"=0.7,"energy"=0.85,"bomb"=1)
 	max_temperature = 25000
@@ -20,6 +20,14 @@
 	max_utility_equip = 2
 	max_universal_equip = 1
 	max_special_equip = 1
+
+	starting_components = list(
+		/obj/item/mecha_parts/component/hull/lightweight,
+		/obj/item/mecha_parts/component/actuator,
+		/obj/item/mecha_parts/component/armor/marshal,
+		/obj/item/mecha_parts/component/gas,
+		/obj/item/mecha_parts/component/electrical
+		)
 
 	overload_possible = 1
 
@@ -58,17 +66,12 @@
 	max_universal_equip = 1
 	max_special_equip = 2
 
-/obj/mecha/combat/gygax/dark/Initialize()
-	..()
-	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/scattershot
-	ME.attach(src)
-	ME = new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/grenade/clusterbang
-	ME.attach(src)
-	ME = new /obj/item/mecha_parts/mecha_equipment/teleporter
-	ME.attach(src)
-	ME = new /obj/item/mecha_parts/mecha_equipment/tesla_energy_relay
-	ME.attach(src)
-	return
+	starting_equipment = list(
+		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/scattershot,
+		/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/grenade/clusterbang,
+		/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay,
+		/obj/item/mecha_parts/mecha_equipment/teleporter
+		)
 
 /obj/mecha/combat/gygax/dark/add_cell(var/obj/item/weapon/cell/C=null)
 	if(C)
@@ -100,6 +103,14 @@
 	max_utility_equip = 2
 	max_universal_equip = 1
 	max_special_equip = 1
+
+	starting_components = list(
+		/obj/item/mecha_parts/component/hull,
+		/obj/item/mecha_parts/component/actuator,
+		/obj/item/mecha_parts/component/armor/lightweight,
+		/obj/item/mecha_parts/component/gas,
+		/obj/item/mecha_parts/component/electrical
+		)
 
 	var/obj/item/clothing/glasses/hud/health/mech/hud
 

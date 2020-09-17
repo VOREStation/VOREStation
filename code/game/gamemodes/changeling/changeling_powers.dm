@@ -182,20 +182,20 @@ turf/proc/AdjacentTurfsRangedSting()
 			add = 0
 		if(add && TurfBlockedNonWindow(t))
 			add = 0
-			for(var/obj/O in t)
-				if(!O.density)
+		for(var/obj/O in t)
+			if(O.density)
+				add = 0
+				break
+			if(istype(O, /obj/machinery/door))
+				//not sure why this doesn't fire on LinkBlocked()
+				add = 0
+				break
+			for(var/type in allowed)
+				if (istype(O, type))
 					add = 1
 					break
-				if(istype(O, /obj/machinery/door))
-					//not sure why this doesn't fire on LinkBlocked()
-					add = 0
-					break
-				for(var/type in allowed)
-					if (istype(O, type))
-						add = 1
-						break
-				if(!add)
-					break
+			if(!add)
+				break
 		if(add)
 			L.Add(t)
 	return L

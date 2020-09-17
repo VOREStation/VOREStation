@@ -94,7 +94,7 @@
 	shelter_id = "shelter_epsilon"
 	description = "An escape pod, with a mediocre amount of supplies \
 		for escaping a dying ship as soon as possible."
-	mappath = "maps/tether/submaps/om_ships/shelter_5.dmm"
+	mappath = "maps/offmap_vr/om_ships/shelter_5.dmm"
 
 /datum/map_template/shelter/zeta
 	name = "Shelter Zeta"
@@ -104,7 +104,7 @@
 		a shield generator, and extremely advanced technology. It is \
 		unknown who manufactued a vessel like this, as it is beyond the \
 		technology level of most contemporary powers."
-	mappath = "maps/tether/submaps/om_ships/shelter_6.dmm"
+	mappath = "maps/offmap_vr/om_ships/shelter_6.dmm"
 
 /datum/map_template/shelter/phi
 	name = "Shelter Phi"

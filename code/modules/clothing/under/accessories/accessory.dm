@@ -4,17 +4,20 @@
 	icon = 'icons/obj/clothing/ties.dmi'
 	icon_state = "bluetie"
 	item_state_slots = list(slot_r_hand_str = "", slot_l_hand_str = "")
+	appearance_flags = RESET_COLOR	// Stops has_suit's color from being multiplied onto the accessory
 	slot_flags = SLOT_TIE
 	w_class = ITEMSIZE_SMALL
 	var/slot = ACCESSORY_SLOT_DECOR
-	var/obj/item/clothing/has_suit = null		//the suit the tie may be attached to
-	var/image/inv_overlay = null	//overlay used when attached to clothing.
+	var/obj/item/clothing/has_suit = null		// The suit the tie may be attached to
+	var/image/inv_overlay = null				// Overlay used when attached to clothing.
 	var/image/mob_overlay = null
 	var/overlay_state = null
 	var/concealed_holster = 0
-	var/mob/living/carbon/human/wearer = null //To check if the wearer changes, so species spritesheets change properly.
-	var/list/on_rolled = list()	//used when jumpsuit sleevels are rolled ("rolled" entry) or it's rolled down ("down"). Set to "none" to hide in those states.
+	var/mob/living/carbon/human/wearer = null 	// To check if the wearer changes, so species spritesheets change properly.
+	var/list/on_rolled = list()					// Used when jumpsuit sleevels are rolled ("rolled" entry) or it's rolled down ("down"). Set to "none" to hide in those states.
 	sprite_sheets = list(SPECIES_TESHARI = 'icons/mob/species/seromi/ties.dmi') //Teshari can into webbing, too!
+	drop_sound = 'sound/items/drop/accessory.ogg'
+	pickup_sound = 'sound/items/pickup/accessory.ogg'
 
 /obj/item/clothing/accessory/Destroy()
 	on_removed()
@@ -29,6 +32,9 @@
 			inv_overlay = image(icon = icon_override, icon_state = tmp_icon_state, dir = SOUTH)
 		else
 			inv_overlay = image(icon = INV_ACCESSORIES_DEF_ICON, icon_state = tmp_icon_state, dir = SOUTH)
+
+		inv_overlay.color = src.color
+		inv_overlay.appearance_flags = appearance_flags	// Stops has_suit's color from being multiplied onto the accessory
 	return inv_overlay
 
 /obj/item/clothing/accessory/proc/get_mob_overlay()
@@ -65,6 +71,7 @@
 	else
 		mob_overlay.color = src.color
 
+	mob_overlay.appearance_flags = appearance_flags	// Stops has_suit's color from being multiplied onto the accessory
 	return mob_overlay
 
 //when user attached an accessory to S
@@ -72,8 +79,8 @@
 	if(!istype(S))
 		return
 	has_suit = S
-	loc = has_suit
-	has_suit.overlays += get_inv_overlay()
+	src.forceMove(S)
+	has_suit.add_overlay(get_inv_overlay())
 
 	if(user)
 		to_chat(user, "<span class='notice'>You attach \the [src] to \the [has_suit].</span>")
@@ -82,7 +89,7 @@
 /obj/item/clothing/accessory/proc/on_removed(var/mob/user)
 	if(!has_suit)
 		return
-	has_suit.overlays -= get_inv_overlay()
+	has_suit.cut_overlay(get_inv_overlay())
 	has_suit = null
 	if(user)
 		usr.put_in_hands(src)
@@ -217,6 +224,8 @@
 	desc = "A bronze medal."
 	icon_state = "bronze"
 	slot = ACCESSORY_SLOT_MEDAL
+	drop_sound = 'sound/items/drop/accessory.ogg'
+	pickup_sound = 'sound/items/pickup/accessory.ogg'
 
 /obj/item/clothing/accessory/medal/conduct
 	name = "distinguished conduct medal"
@@ -324,6 +333,12 @@
 /obj/item/clothing/accessory/scarf/stripedblue
 	name = "striped blue scarf"
 	icon_state = "stripedbluescarf"
+
+/obj/item/clothing/accessory/scarf/teshari/neckscarf
+	name = "small neckscarf"
+	desc = "a neckscarf that is too small for a human's neck"
+	icon_state = "tesh_neckscarf"
+	species_restricted = list(SPECIES_TESHARI)
 
 //bracelets
 

@@ -240,11 +240,16 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 /obj/machinery/gravity_generator/main/attack_hand(mob/user)
 	if((. = ..()))
 		return
-	if(CanUseTopic(user, global.default_state) > STATUS_CLOSE)
-		ui_interact(user)
-		return TRUE
+	tgui_interact(user)
+	return TRUE
 
-/obj/machinery/gravity_generator/main/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/gravity_generator/main/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "GravityGenerator", name)
+		ui.open()
+
+/obj/machinery/gravity_generator/main/tgui_data(mob/user)
 	var/data[0]
 
 	data["breaker"] = breaker
@@ -253,22 +258,18 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 	data["on"] = on
 	data["operational"] = (stat & BROKEN) ? FALSE : TRUE
 
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "gravity_generator.tmpl", src.name, 500, 400)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(1)
+	return data
 
-/obj/machinery/gravity_generator/main/Topic(href, href_list, datum/topic_state/state = default_state)
-	if((. = ..()))
-		return
+/obj/machinery/gravity_generator/main/tgui_act(action, params)
+	if((..()))
+		return TRUE
 
-	if(href_list["gentoggle"])
-		breaker = !breaker
-		investigate_log("was toggled [breaker ? "<font color='green'>ON</font>" : "<font color='red'>OFF</font>"] by [key_name(usr)].", "gravity")
-		set_power()
-		return TOPIC_REFRESH
+	switch(action)
+		if("gentoggle")
+			breaker = !breaker
+			investigate_log("was toggled [breaker ? "<font color='green'>ON</font>" : "<font color='red'>OFF</font>"] by [key_name(usr)].", "gravity")
+			set_power()
+			return TOPIC_REFRESH
 
 // Power and Icon States
 

@@ -9,6 +9,8 @@
 	S["ooccolor"]		>> pref.ooccolor
 	S["tooltipstyle"]	>> pref.tooltipstyle
 	S["client_fps"]		>> pref.client_fps
+	S["ambience_freq"]	>> pref.ambience_freq
+	S["ambience_chance"] >> pref.ambience_chance
 	S["tgui_fancy"]		>> pref.tgui_fancy
 	S["tgui_lock"]		>> pref.tgui_lock
 
@@ -19,16 +21,20 @@
 	S["ooccolor"]		<< pref.ooccolor
 	S["tooltipstyle"]	<< pref.tooltipstyle
 	S["client_fps"]		<< pref.client_fps
+	S["ambience_freq"]	<< pref.ambience_freq
+	S["ambience_chance"] << pref.ambience_chance
 	S["tgui_fancy"]		<< pref.tgui_fancy
 	S["tgui_lock"]		<< pref.tgui_lock
 
 /datum/category_item/player_setup_item/player_global/ui/sanitize_preferences()
-	pref.UI_style		= sanitize_inlist(pref.UI_style, all_ui_styles, initial(pref.UI_style))
-	pref.UI_style_color	= sanitize_hexcolor(pref.UI_style_color, initial(pref.UI_style_color))
-	pref.UI_style_alpha	= sanitize_integer(pref.UI_style_alpha, 0, 255, initial(pref.UI_style_alpha))
-	pref.ooccolor		= sanitize_hexcolor(pref.ooccolor, initial(pref.ooccolor))
-	pref.tooltipstyle	= sanitize_inlist(pref.tooltipstyle, all_tooltip_styles, initial(pref.tooltipstyle))
-	pref.client_fps		= sanitize_integer(pref.client_fps, 0, MAX_CLIENT_FPS, initial(pref.client_fps))
+	pref.UI_style			= sanitize_inlist(pref.UI_style, all_ui_styles, initial(pref.UI_style))
+	pref.UI_style_color		= sanitize_hexcolor(pref.UI_style_color, initial(pref.UI_style_color))
+	pref.UI_style_alpha		= sanitize_integer(pref.UI_style_alpha, 0, 255, initial(pref.UI_style_alpha))
+	pref.ooccolor			= sanitize_hexcolor(pref.ooccolor, initial(pref.ooccolor))
+	pref.tooltipstyle		= sanitize_inlist(pref.tooltipstyle, all_tooltip_styles, initial(pref.tooltipstyle))
+	pref.client_fps			= sanitize_integer(pref.client_fps, 0, MAX_CLIENT_FPS, initial(pref.client_fps))
+	pref.ambience_freq		= sanitize_integer(pref.ambience_freq, 0, 60, initial(pref.ambience_freq)) // No more than once per hour.
+	pref.ambience_chance 	= sanitize_integer(pref.ambience_chance, 0, 100, initial(pref.ambience_chance)) // 0-100 range.
 	pref.tgui_fancy		= sanitize_integer(pref.tgui_fancy, 0, 1, initial(pref.tgui_fancy))
 	pref.tgui_lock		= sanitize_integer(pref.tgui_lock, 0, 1, initial(pref.tgui_lock))
 
@@ -39,6 +45,8 @@
 	. += "-Alpha(transparency): <a href='?src=\ref[src];select_alpha=1'><b>[pref.UI_style_alpha]</b></a>�<a href='?src=\ref[src];reset=alpha'>reset</a><br>"
 	. += "<b>Tooltip Style:</b> <a href='?src=\ref[src];select_tooltip_style=1'><b>[pref.tooltipstyle]</b></a><br>"
 	. += "<b>Client FPS:</b> <a href='?src=\ref[src];select_client_fps=1'><b>[pref.client_fps]</b></a><br>"
+	. += "<b>Random Ambience Frequency:</b> <a href='?src=\ref[src];select_ambience_freq=1'><b>[pref.ambience_freq]</b></a><br>"
+	. += "<b>Ambience Chance:</b> <a href='?src=\ref[src];select_ambience_chance=1'><b>[pref.ambience_chance]</b></a><br>"
 	. += "<b>tgui Window Mode:</b> <a href='?src=\ref[src];tgui_fancy=1'><b>[(pref.tgui_fancy) ? "Fancy (default)" : "Compatible (slower)"]</b></a><br>"
 	. += "<b>tgui Window Placement:</b> <a href='?src=\ref[src];tgui_lock=1'><b>[(pref.tgui_lock) ? "Primary Monitor" : "Free (default)"]</b></a><br>"
 	if(can_select_ooc_color(user))
@@ -86,6 +94,20 @@
 		pref.client_fps = fps_new
 		if(pref.client)
 			pref.client.fps = fps_new
+		return TOPIC_REFRESH
+		
+	else if(href_list["select_ambience_freq"])
+		var/ambience_new = input(user, "Input how often you wish to hear ambience repeated! (1-60 MINUTES, 0 for disabled)", "Global Preference", pref.ambience_freq) as null|num
+		if(isnull(ambience_new) || !CanUseTopic(user)) return TOPIC_NOACTION
+		if(ambience_new < 0 || ambience_new > 60) return TOPIC_NOACTION
+		pref.ambience_freq = ambience_new
+		return TOPIC_REFRESH
+		
+	else if(href_list["select_ambience_chance"])
+		var/ambience_chance_new = input(user, "Input the chance you'd like to hear ambience played to you (On area change, or by random ambience). 35 means a 35% chance to play ambience. This is a range from 0-100. 0 disables ambience playing entirely. This is also affected by Ambience Frequency.", "Global Preference", pref.ambience_freq) as null|num
+		if(isnull(ambience_chance_new) || !CanUseTopic(user)) return TOPIC_NOACTION
+		if(ambience_chance_new < 0 || ambience_chance_new > 100) return TOPIC_NOACTION
+		pref.ambience_chance = ambience_chance_new
 		return TOPIC_REFRESH
 
 	else if(href_list["tgui_fancy"])

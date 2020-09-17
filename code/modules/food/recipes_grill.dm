@@ -155,7 +155,7 @@
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/tofukabob
 	
-/datum/recipe/spellburger
+/datum/recipe/fakespellburger
 	appliance = GRILL
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/monkeyburger,

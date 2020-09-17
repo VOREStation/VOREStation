@@ -6,36 +6,36 @@
 		"tgui.bundle.css" = 'tgui/packages/tgui/public/tgui.bundle.css',
 	)
 
-// /datum/asset/simple/headers
-// 	assets = list(
-// 		"alarm_green.gif" 			= 'icons/program_icons/alarm_green.gif',
-// 		"alarm_red.gif" 			= 'icons/program_icons/alarm_red.gif',
-// 		"batt_5.gif" 				= 'icons/program_icons/batt_5.gif',
-// 		"batt_20.gif" 				= 'icons/program_icons/batt_20.gif',
-// 		"batt_40.gif" 				= 'icons/program_icons/batt_40.gif',
-// 		"batt_60.gif" 				= 'icons/program_icons/batt_60.gif',
-// 		"batt_80.gif" 				= 'icons/program_icons/batt_80.gif',
-// 		"batt_100.gif" 				= 'icons/program_icons/batt_100.gif',
-// 		"charging.gif" 				= 'icons/program_icons/charging.gif',
-// 		"downloader_finished.gif" 	= 'icons/program_icons/downloader_finished.gif',
-// 		"downloader_running.gif" 	= 'icons/program_icons/downloader_running.gif',
-// 		"ntnrc_idle.gif"			= 'icons/program_icons/ntnrc_idle.gif',
-// 		"ntnrc_new.gif"				= 'icons/program_icons/ntnrc_new.gif',
-// 		"power_norm.gif"			= 'icons/program_icons/power_norm.gif',
-// 		"power_warn.gif"			= 'icons/program_icons/power_warn.gif',
-// 		"sig_high.gif" 				= 'icons/program_icons/sig_high.gif',
-// 		"sig_low.gif" 				= 'icons/program_icons/sig_low.gif',
-// 		"sig_lan.gif" 				= 'icons/program_icons/sig_lan.gif',
-// 		"sig_none.gif" 				= 'icons/program_icons/sig_none.gif',
-// 		"smmon_0.gif" 				= 'icons/program_icons/smmon_0.gif',
-// 		"smmon_1.gif" 				= 'icons/program_icons/smmon_1.gif',
-// 		"smmon_2.gif" 				= 'icons/program_icons/smmon_2.gif',
-// 		"smmon_3.gif" 				= 'icons/program_icons/smmon_3.gif',
-// 		"smmon_4.gif" 				= 'icons/program_icons/smmon_4.gif',
-// 		"smmon_5.gif" 				= 'icons/program_icons/smmon_5.gif',
-// 		"smmon_6.gif" 				= 'icons/program_icons/smmon_6.gif',
-// 		"borg_mon.gif"				= 'icons/program_icons/borg_mon.gif'
-// 	)
+/datum/asset/simple/headers
+	assets = list(
+		"alarm_green.gif" 			= 'icons/program_icons/alarm_green.gif',
+		"alarm_red.gif" 			= 'icons/program_icons/alarm_red.gif',
+		"batt_5.gif" 				= 'icons/program_icons/batt_5.gif',
+		"batt_20.gif" 				= 'icons/program_icons/batt_20.gif',
+		"batt_40.gif" 				= 'icons/program_icons/batt_40.gif',
+		"batt_60.gif" 				= 'icons/program_icons/batt_60.gif',
+		"batt_80.gif" 				= 'icons/program_icons/batt_80.gif',
+		"batt_100.gif" 				= 'icons/program_icons/batt_100.gif',
+		"charging.gif" 				= 'icons/program_icons/charging.gif',
+		"downloader_finished.gif" 	= 'icons/program_icons/downloader_finished.gif',
+		"downloader_running.gif" 	= 'icons/program_icons/downloader_running.gif',
+		"ntnrc_idle.gif"			= 'icons/program_icons/ntnrc_idle.gif',
+		"ntnrc_new.gif"				= 'icons/program_icons/ntnrc_new.gif',
+		"power_norm.gif"			= 'icons/program_icons/power_norm.gif',
+		"power_warn.gif"			= 'icons/program_icons/power_warn.gif',
+		"sig_high.gif" 				= 'icons/program_icons/sig_high.gif',
+		"sig_low.gif" 				= 'icons/program_icons/sig_low.gif',
+		"sig_lan.gif" 				= 'icons/program_icons/sig_lan.gif',
+		"sig_none.gif" 				= 'icons/program_icons/sig_none.gif',
+		"smmon_0.gif" 				= 'icons/program_icons/smmon_0.gif',
+		"smmon_1.gif" 				= 'icons/program_icons/smmon_1.gif',
+		"smmon_2.gif" 				= 'icons/program_icons/smmon_2.gif',
+		"smmon_3.gif" 				= 'icons/program_icons/smmon_3.gif',
+		"smmon_4.gif" 				= 'icons/program_icons/smmon_4.gif',
+		"smmon_5.gif" 				= 'icons/program_icons/smmon_5.gif',
+		"smmon_6.gif" 				= 'icons/program_icons/smmon_6.gif',
+		// "borg_mon.gif"				= 'icons/program_icons/borg_mon.gif'
+	)
 
 // /datum/asset/simple/radar_assets
 // 	assets = list(
@@ -206,15 +206,15 @@
 // 		"none_button.png" = 'html/none_button.png',
 // 	)
 
-// /datum/asset/simple/arcade
-// 	assets = list(
-// 		"boss1.gif" = 'icons/UI_Icons/Arcade/boss1.gif',
-// 		"boss2.gif" = 'icons/UI_Icons/Arcade/boss2.gif',
-// 		"boss3.gif" = 'icons/UI_Icons/Arcade/boss3.gif',
-// 		"boss4.gif" = 'icons/UI_Icons/Arcade/boss4.gif',
-// 		"boss5.gif" = 'icons/UI_Icons/Arcade/boss5.gif',
-// 		"boss6.gif" = 'icons/UI_Icons/Arcade/boss6.gif',
-// 		)
+/datum/asset/simple/arcade
+	assets = list(
+		"boss1.gif" = 'icons/UI_Icons/Arcade/boss1.gif',
+		"boss2.gif" = 'icons/UI_Icons/Arcade/boss2.gif',
+		"boss3.gif" = 'icons/UI_Icons/Arcade/boss3.gif',
+		"boss4.gif" = 'icons/UI_Icons/Arcade/boss4.gif',
+		"boss5.gif" = 'icons/UI_Icons/Arcade/boss5.gif',
+		"boss6.gif" = 'icons/UI_Icons/Arcade/boss6.gif',
+		)
 
 // /datum/asset/spritesheet/simple/achievements
 // 	name ="achievements"
@@ -285,6 +285,17 @@
 		InsertAll("", each, global.alldirs)
 	..()
 
+//VOREStation Add
+/datum/asset/spritesheet/vore
+	name = "vore"
+
+/datum/asset/spritesheet/vore/register()
+	var/icon/downscaled = icon('icons/mob/screen_full_vore.dmi')
+	downscaled.Scale(240, 240)
+	InsertAll("", downscaled)
+	..()
+//VOREStation Add End
+
 // // Representative icons for each research design
 // /datum/asset/spritesheet/research_designs
 // 	name = "design"
@@ -344,39 +355,56 @@
 // 		Insert(initial(D.id), I)
 // 	return ..()
 
-// /datum/asset/spritesheet/vending
-// 	name = "vending"
+/datum/asset/spritesheet/vending
+	name = "vending"
 
-// /datum/asset/spritesheet/vending/register()
-// 	for (var/k in GLOB.vending_products)
-// 		var/atom/item = k
-// 		if (!ispath(item, /atom))
-// 			continue
+/datum/asset/spritesheet/vending/register()
+	for(var/k in GLOB.vending_products)
+		var/atom/item = k
+		if(!ispath(item, /atom))
+			continue
 
-// 		var/icon_file = initial(item.icon)
-// 		var/icon_state = initial(item.icon_state)
-// 		var/icon/I
+		var/icon_file = initial(item.icon)
+		var/icon_state = initial(item.icon_state)
 
-// 		var/icon_states_list = icon_states(icon_file)
-// 		if(icon_state in icon_states_list)
-// 			I = icon(icon_file, icon_state, SOUTH)
-// 			var/c = initial(item.color)
-// 			if (!isnull(c) && c != "#FFFFFF")
-// 				I.Blend(c, ICON_MULTIPLY)
-// 		else
-// 			var/icon_states_string
-// 			for (var/an_icon_state in icon_states_list)
-// 				if (!icon_states_string)
-// 					icon_states_string = "[json_encode(an_icon_state)](\ref[an_icon_state])"
-// 				else
-// 					icon_states_string += ", [json_encode(an_icon_state)](\ref[an_icon_state])"
-// 			stack_trace("[item] does not have a valid icon state, icon=[icon_file], icon_state=[json_encode(icon_state)](\ref[icon_state]), icon_states=[icon_states_string]")
-// 			I = icon('icons/turf/floors.dmi', "", SOUTH)
+		// I really don't like the fact that I have to do this, but what the hell else *can* I do to make all of these
+		// random special items work?
+		if(ispath(item, /obj/item/weapon/reagent_containers/food/drinks/glass2) && !ispath(item, /obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask))
+			var/obj/item/weapon/reagent_containers/food/drinks/glass2/G = item
+			icon_state = initial(G.base_icon)
+		if(ispath(item, /obj/item/clothing/suit))
+			var/obj/item/clothing/suit/U = item
+			if(initial(U.index))
+				icon_file = "icons/obj/clothing/suits_[initial(U.index)].dmi"
+		if(ispath(item, /obj/item/clothing/under))
+			var/obj/item/clothing/under/U = item
+			if(initial(U.index))
+				icon_file = "icons/obj/clothing/uniforms_[initial(U.index)].dmi"
+		if(ispath(item, /obj/item/weapon/reagent_containers/hypospray/autoinjector))
+			icon_state += "0"
 
-// 		var/imgid = replacetext(replacetext("[item]", "/obj/item/", ""), "/", "-")
+		var/icon/I
 
-// 		Insert(imgid, I)
-// 	return ..()
+		var/icon_states_list = icon_states(icon_file)
+		if(icon_state in icon_states_list)
+			I = icon(icon_file, icon_state, SOUTH)
+			var/c = initial(item.color)
+			if(!isnull(c) && c != "#FFFFFF")
+				I.Blend(c, ICON_MULTIPLY)
+		else
+			var/icon_states_string
+			for(var/an_icon_state in icon_states_list)
+				if(!icon_states_string)
+					icon_states_string = "[json_encode(an_icon_state)](\ref[an_icon_state])"
+				else
+					icon_states_string += ", [json_encode(an_icon_state)](\ref[an_icon_state])"
+			stack_trace("[item] does not have a valid icon state, icon=[icon_file], icon_state=[json_encode(icon_state)](\ref[icon_state]), icon_states=[icon_states_string]")
+			I = icon('icons/turf/floors.dmi', "", SOUTH)
+
+		var/imgid = replacetext(replacetext("[item]", "/obj/item/", ""), "/", "-")
+
+		Insert(imgid, I)
+	return ..()
 
 // /datum/asset/simple/genetics
 // 	assets = list(
@@ -443,3 +471,55 @@
 
 /datum/asset/nanoui/send(client)
 	send_asset_list(client, common)
+
+//Pill sprites for UIs
+/datum/asset/chem_master
+	var/assets = list()
+	var/verify = FALSE
+
+/datum/asset/chem_master/register()
+	for(var/i = 1 to 24)
+		assets["pill[i].png"] = icon('icons/obj/chemical.dmi', "pill[i]")
+
+	for(var/i = 1 to 4)
+		assets["bottle-[i].png"] = icon('icons/obj/chemical.dmi', "bottle-[i]")
+
+	for(var/asset_name in assets)
+		register_asset(asset_name, assets[asset_name])
+
+/datum/asset/chem_master/send(client)
+	send_asset_list(client, assets, verify)
+
+//Cloning pod sprites for UIs
+/datum/asset/cloning
+	var/assets = list()
+	var/verify = FALSE
+
+/datum/asset/cloning/register()
+	assets["pod_idle.gif"] = icon('icons/obj/cloning.dmi', "pod_idle")
+	assets["pod_cloning.gif"] = icon('icons/obj/cloning.dmi', "pod_cloning")
+	assets["pod_mess.gif"] = icon('icons/obj/cloning.dmi', "pod_mess")
+	for(var/asset_name in assets)
+		register_asset(asset_name, assets[asset_name])
+
+/datum/asset/cloning/send(client)
+	send_asset_list(client, assets, verify)
+
+// VOREStation Add
+/datum/asset/cloning/resleeving
+/datum/asset/cloning/resleeving/register()
+	// This intentionally does not call the parent. Duplicate assets are not allowed.
+	assets["sleeve_empty.gif"] = icon('icons/obj/machines/implantchair.dmi', "implantchair")
+	assets["sleeve_occupied.gif"] = icon('icons/obj/machines/implantchair.dmi', "implantchair_on")
+	assets["synthprinter.gif"] = icon('icons/obj/machines/synthpod.dmi', "pod_0")
+	assets["synthprinter_working.gif"] = icon('icons/obj/machines/synthpod.dmi', "pod_1")
+	for(var/asset_name in assets)
+		register_asset(asset_name, assets[asset_name])
+// VOREStation Add End
+
+/datum/asset/spritesheet/sheetmaterials
+	name = "sheetmaterials"
+
+/datum/asset/spritesheet/sheetmaterials/register()
+	InsertAll("", 'icons/obj/stacks.dmi')
+	..()

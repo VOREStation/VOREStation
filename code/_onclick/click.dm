@@ -51,6 +51,9 @@
 	if(modifiers["shift"] && modifiers["ctrl"])
 		CtrlShiftClickOn(A)
 		return 1
+	if(modifiers["shift"] && modifiers["middle"])
+		ShiftMiddleClickOn(A)
+		return 1
 	if(modifiers["middle"])
 		MiddleClickOn(A)
 		return 1
@@ -111,12 +114,11 @@
 		trigger_aiming(TARGET_CAN_CLICK)
 		return 1
 
-	// VOREStation Addition Start: inbelly item interaction
+	// VOREStation Addition Start: inbelly interaction
 	if(isbelly(loc) && (loc == A.loc))
 		if(W)
-			var/resolved = W.resolve_attackby(A,src)
-			if(!resolved && A && W)
-				W.afterattack(A, src, 1, params) // 1: clicking something Adjacent
+			to_chat(src, "The firm confines prevent that kind of dexterity!")	//Only hand-based interactions in bellies
+			return
 		else
 			if(ismob(A)) // No instant mob attacking
 				setClickCooldown(get_attack_speed())
@@ -231,6 +233,15 @@
 */
 
 /*
+	Shift middle click
+	Used for pointing.
+*/
+
+/mob/proc/ShiftMiddleClickOn(atom/A)
+	pointed(A)
+	return
+
+/*
 	Shift click
 	For most mobs, examine.
 	This is overridden in ai.dm
@@ -271,12 +282,15 @@
 /atom/proc/AltClick(var/mob/user)
 	var/turf/T = get_turf(src)
 	if(T && user.TurfAdjacent(T))
-		if(user.listed_turf == T)
-			user.listed_turf = null
-		else
-			user.listed_turf = T
-			user.client.statpanel = "Turf"
+		user.ToggleTurfTab(T)
 	return 1
+	
+/mob/proc/ToggleTurfTab(var/turf/T)
+	if(listed_turf == T)
+		listed_turf = null
+	else
+		listed_turf = T
+		client.statpanel = "Turf"
 
 /mob/proc/TurfAdjacent(var/turf/T)
 	return T.AdjacentQuick(src)

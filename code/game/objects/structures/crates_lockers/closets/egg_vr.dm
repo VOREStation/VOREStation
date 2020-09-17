@@ -7,6 +7,7 @@
 	var/icon_closed = "egg"
 	var/icon_opened = "egg_open"
 	var/icon_locked = "egg"
+	closet_appearance = null
 	open_sound = 'sound/vore/schlorp.ogg'
 	close_sound = 'sound/vore/schlorp.ogg'
 	opened = 0

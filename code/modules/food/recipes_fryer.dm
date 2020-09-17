@@ -5,6 +5,13 @@
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/fries
 
+/datum/recipe/cheesyfries
+	appliance = FRYER
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/fries,
+		/obj/item/weapon/reagent_containers/food/snacks/cheesewedge,
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/cheesyfries
 
 /datum/recipe/jpoppers
 	appliance = FRYER
@@ -94,13 +101,11 @@
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/donut/poisonberry
 
-/datum/recipe/jellydonut/slime
-	appliance = FRYER
+/datum/recipe/jellydonut/slime // Subtypes of jellydonut, appliance inheritance applies.
 	reagents = list("slimejelly" = 5, "sugar" = 5)
 	result = /obj/item/weapon/reagent_containers/food/snacks/donut/slimejelly
 
-/datum/recipe/jellydonut/cherry
-	appliance = FRYER
+/datum/recipe/jellydonut/cherry // Subtypes of jellydonut, appliance inheritance applies.
 	reagents = list("cherryjelly" = 5, "sugar" = 5)
 	result = /obj/item/weapon/reagent_containers/food/snacks/donut/cherryjelly
 

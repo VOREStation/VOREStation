@@ -374,6 +374,12 @@
 			ONE_ATMOSPHERE*50
 		)
 
+	if("reset_external_pressure" in signal.data)
+		external_pressure_bound = ONE_ATMOSPHERE
+
+	if("reset_internal_pressure" in signal.data)
+		internal_pressure_bound = 0
+
 	if(signal.data["init"] != null)
 		name = signal.data["init"]
 		return

@@ -26,35 +26,48 @@
 	item_state = "syringe_kit"
 	center_of_mass = list("x" = 13,"y" = 10)
 	var/foldable = /obj/item/stack/material/cardboard	// BubbleWrap - if set, can be folded (when empty) into a sheet of cardboard
+	var/trash = null  // if set, can be crushed into a trash item when empty
 	max_w_class = ITEMSIZE_SMALL
 	max_storage_space = INVENTORY_BOX_SPACE
 	use_sound = 'sound/items/storage/box.ogg'
-	drop_sound = 'sound/items/drop/box.ogg'
+	drop_sound = 'sound/items/drop/cardboardbox.ogg'
+	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
 // BubbleWrap - A box can be folded up to make card
 /obj/item/weapon/storage/box/attack_self(mob/user as mob)
 	if(..()) return
 
-	//try to fold it.
-	if ( contents.len )
-		return
+	//try to fold it
+	if(ispath(foldable))
+		if (contents.len)
+			return
+		var/found = 0
+		// Close any open UI windows first
+		for(var/mob/M in range(1))
+			if (M.s_active == src)
+				close(M)
+			if (M == user)
+				found = 1
+		if (!found)	// User is too far away
+			return
+		// Now make the cardboard
+		to_chat(user, "<span class='notice'>You fold [src] flat.</span>")
+		playsound(src, 'sound/items/storage/boxfold.ogg', 30, 1)
+		new foldable(get_turf(src))
+		qdel(src)
 
-	if ( !ispath(foldable) )
-		return
-	var/found = 0
-	// Close any open UI windows first
-	for(var/mob/M in range(1))
-		if (M.s_active == src)
-			close(M)
-		if ( M == user )
-			found = 1
-	if ( !found )	// User is too far away
-		return
-	// Now make the cardboard
-	to_chat(user, "<span class='notice'>You fold [src] flat.</span>")
-	playsound(src, 'sound/items/storage/boxfold.ogg', 30, 1)
-	new foldable(get_turf(src))
-	qdel(src)
+	//try to crush it
+	if(ispath(trash))
+		if(contents.len &&  user.a_intent == I_HURT)  // only crumple with things inside on harmintent.
+			user.visible_message(SPAN_DANGER("[user] crushes \the [src], spilling its contents everywhere!"), SPAN_DANGER("You crush \the [src], spilling its contents everywhere!"))
+			spill()
+		else
+			to_chat(user, SPAN_NOTICE("You crumple up \the [src].")) //make trash
+		playsound(src.loc, 'sound/items/drop/wrapper.ogg', 30, 1)
+		var/obj/item/trash = new src.trash()
+		qdel(src)
+		user.put_in_hands(trash)
+
 
 /obj/item/weapon/storage/box/survival
 	name = "emergency supply box"
@@ -125,6 +138,8 @@
 	icon_state = "blankshot_box"
 	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
 	starts_with = list(/obj/item/ammo_casing/a12g/blank = 8)
+	drop_sound = 'sound/items/drop/ammobox.ogg'
+	pickup_sound = 'sound/items/pickup/ammobox.ogg'
 
 /obj/item/weapon/storage/box/blanks/large
 	starts_with = list(/obj/item/ammo_casing/a12g/blank = 16)
@@ -135,6 +150,8 @@
 	icon_state = "beanshot_box"
 	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
 	starts_with = list(/obj/item/ammo_casing/a12g/beanbag = 8)
+	drop_sound = 'sound/items/drop/ammobox.ogg'
+	pickup_sound = 'sound/items/pickup/ammobox.ogg'
 
 /obj/item/weapon/storage/box/beanbags/large/New()
 	starts_with = list(/obj/item/ammo_casing/a12g/beanbag = 16)
@@ -145,6 +162,8 @@
 	icon_state = "lethalshellshot_box"
 	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
 	starts_with = list(/obj/item/ammo_casing/a12g = 8)
+	drop_sound = 'sound/items/drop/ammobox.ogg'
+	pickup_sound = 'sound/items/pickup/ammobox.ogg'
 
 /obj/item/weapon/storage/box/shotgunammo/large
 	starts_with = list(/obj/item/ammo_casing/a12g = 16)
@@ -155,6 +174,8 @@
 	icon_state = "lethalslug_box"
 	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
 	starts_with = list(/obj/item/ammo_casing/a12g/pellet = 8)
+	drop_sound = 'sound/items/drop/ammobox.ogg'
+	pickup_sound = 'sound/items/pickup/ammobox.ogg'
 
 /obj/item/weapon/storage/box/shotgunshells/large
 	starts_with = list(/obj/item/ammo_casing/a12g/pellet = 16)
@@ -165,6 +186,8 @@
 	icon_state = "illumshot_box"
 	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
 	starts_with = list(/obj/item/ammo_casing/a12g/flash = 8)
+	drop_sound = 'sound/items/drop/ammobox.ogg'
+	pickup_sound = 'sound/items/pickup/ammobox.ogg'
 
 /obj/item/weapon/storage/box/flashshells/large
 	starts_with = list(/obj/item/ammo_casing/a12g/flash = 16)
@@ -175,6 +198,8 @@
 	icon_state = "stunshot_box"
 	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
 	starts_with = list(/obj/item/ammo_casing/a12g/stunshell = 8)
+	drop_sound = 'sound/items/drop/ammobox.ogg'
+	pickup_sound = 'sound/items/pickup/ammobox.ogg'
 
 /obj/item/weapon/storage/box/stunshells/large
 	starts_with = list(/obj/item/ammo_casing/a12g/stunshell = 16)
@@ -185,6 +210,8 @@
 	icon_state = "blankshot_box"
 	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
 	starts_with = list(/obj/item/ammo_casing/a12g/practice = 8)
+	drop_sound = 'sound/items/drop/ammobox.ogg'
+	pickup_sound = 'sound/items/pickup/ammobox.ogg'
 
 /obj/item/weapon/storage/box/practiceshells/large
 	starts_with = list(/obj/item/ammo_casing/a12g/practice = 16)
@@ -195,14 +222,30 @@
 	icon_state = "empshot_box"
 	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
 	starts_with = list(/obj/item/ammo_casing/a12g/emp = 8)
+	drop_sound = 'sound/items/drop/ammobox.ogg'
+	pickup_sound = 'sound/items/pickup/ammobox.ogg'
 
 /obj/item/weapon/storage/box/empshells/large
 	starts_with = list(/obj/item/ammo_casing/a12g/emp = 16)
+
+/obj/item/weapon/storage/box/flechetteshells
+	name = "box of shotgun flechettes"
+	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
+	icon_state = "lethalslug_box"
+	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
+	starts_with = list(/obj/item/ammo_casing/a12g/flechette = 8)
+	drop_sound = 'sound/items/drop/ammobox.ogg'
+	pickup_sound = 'sound/items/pickup/ammobox.ogg'
+
+/obj/item/weapon/storage/box/flechetteshells/large
+	starts_with = list(/obj/item/ammo_casing/a12g/flechette = 16)
 
 /obj/item/weapon/storage/box/sniperammo
 	name = "box of 14.5mm shells"
 	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
 	starts_with = list(/obj/item/ammo_casing/a145 = 7)
+	drop_sound = 'sound/items/drop/ammobox.ogg'
+	pickup_sound = 'sound/items/pickup/ammobox.ogg'
 
 /obj/item/weapon/storage/box/sniperammo/highvel
 	name = "box of 14.5mm sabot shells"
@@ -214,42 +257,56 @@
 	desc = "<B>WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use.</B>"
 	icon_state = "flashbang"
 	starts_with = list(/obj/item/weapon/grenade/flashbang = 7)
+	drop_sound = 'sound/items/drop/ammobox.ogg'
+	pickup_sound = 'sound/items/pickup/ammobox.ogg'
 
 /obj/item/weapon/storage/box/emps
 	name = "box of emp grenades"
 	desc = "A box containing 5 military grade EMP grenades.<br> WARNING: Do not use near unshielded electronics or biomechanical augmentations, death or permanent paralysis may occur."
 	icon_state = "emp"
 	starts_with = list(/obj/item/weapon/grenade/empgrenade = 7)
+	drop_sound = 'sound/items/drop/ammobox.ogg'
+	pickup_sound = 'sound/items/pickup/ammobox.ogg'
 
 /obj/item/weapon/storage/box/empslite
 	name = "box of low yield emp grenades"
 	desc = "A box containing 5 low yield EMP grenades.<br> WARNING: Do not use near unshielded electronics or biomechanical augmentations, death or permanent paralysis may occur."
 	icon_state = "emp"
 	starts_with = list(/obj/item/weapon/grenade/empgrenade/low_yield = 7)
+	drop_sound = 'sound/items/drop/ammobox.ogg'
+	pickup_sound = 'sound/items/pickup/ammobox.ogg'
 
 /obj/item/weapon/storage/box/smokes
 	name = "box of smoke bombs"
 	desc = "A box containing 7 smoke bombs."
 	icon_state = "flashbang"
 	starts_with = list(/obj/item/weapon/grenade/smokebomb = 7)
+	drop_sound = 'sound/items/drop/ammobox.ogg'
+	pickup_sound = 'sound/items/pickup/ammobox.ogg'
 
 /obj/item/weapon/storage/box/anti_photons
 	name = "box of anti-photon grenades"
 	desc = "A box containing 7 experimental photon disruption grenades."
 	icon_state = "flashbang"
 	starts_with = list(/obj/item/weapon/grenade/anti_photon = 7)
+	drop_sound = 'sound/items/drop/ammobox.ogg'
+	pickup_sound = 'sound/items/pickup/ammobox.ogg'
 
 /obj/item/weapon/storage/box/frags
 	name = "box of fragmentation grenades (WARNING)"
 	desc = "A box containing 7 military grade fragmentation grenades.<br> WARNING: These devices are extremely dangerous and can cause limb loss or death in repeated use."
 	icon_state = "frag"
 	starts_with = list(/obj/item/weapon/grenade/explosive = 7)
+	drop_sound = 'sound/items/drop/ammobox.ogg'
+	pickup_sound = 'sound/items/pickup/ammobox.ogg'
 
 /obj/item/weapon/storage/box/frags_half_box
 	name = "box of fragmentation grenades (WARNING)"
 	desc = "A box containing 4 military grade fragmentation grenades.<br> WARNING: These devices are extremely dangerous and can cause limb loss or death in repeated use."
 	icon_state = "frag"
 	starts_with = list(/obj/item/weapon/grenade/explosive = 4)
+	drop_sound = 'sound/items/drop/ammobox.ogg'
+	pickup_sound = 'sound/items/pickup/ammobox.ogg'
 
 /obj/item/weapon/storage/box/metalfoam
 	name = "box of metal foam grenades."
@@ -412,6 +469,8 @@
 	slot_flags = SLOT_BELT
 	can_hold = list(/obj/item/weapon/flame/match)
 	starts_with = list(/obj/item/weapon/flame/match = 10)
+	drop_sound = 'sound/items/drop/matchbox.ogg'
+	pickup_sound =  'sound/items/pickup/matchbox.ogg'
 
 /obj/item/weapon/storage/box/matches/attackby(var/obj/item/weapon/flame/match/W, var/mob/user)
 	if(istype(W) && !W.lit && !W.burnt)

@@ -94,3 +94,23 @@ export const formatMoney = (value, precision = 0) => {
   }
   return result;
 };
+
+export const formatCommaNumber = value => {
+  if (!Number.isFinite(value)) {
+    return value;
+  }
+  // From http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
+  let parts = value.toString().split(".");
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return parts.join(".");
+};
+
+// Function from https://stackoverflow.com/a/34841026. CC BY-SA 4.0.
+export const formatTime = seconds => {
+  let hours = Math.floor(seconds / 3600);
+  let minutes = Math.floor(seconds / 60) % 60;
+  return [hours, minutes, seconds % 60]
+    .map(v => v < 10 ? "0" + v : v)
+    .filter((v, i) => v !== "00" || i > 0)
+    .join(":");
+};

@@ -19,10 +19,13 @@
 	var/dose = 0
 	var/max_dose = 0
 	var/overdose = 0		//Amount at which overdose starts
-	var/overdose_mod = 2	//Modifier to overdose damage
+	var/overdose_mod = 1	//Modifier to overdose damage
 	var/can_overdose_touch = FALSE	// Can the chemical OD when processing on touch?
 	var/scannable = 0 // Shows up on health analyzers.
-	var/affects_dead = 0
+
+	var/affects_dead = 0	// Does this chem process inside a corpse?
+	var/affects_robots = 0	// Does this chem process inside a Synth?
+
 	var/cup_icon_state = null
 	var/cup_name = null
 	var/cup_desc = null
@@ -55,6 +58,8 @@
 		return
 	if(!affects_dead && M.stat == DEAD)
 		return
+	if(!affects_robots && M.isSynthetic())
+		return
 	if(!istype(location))
 		return
 
@@ -79,28 +84,55 @@
 
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			if(H.species.has_organ[O_HEART] && (active_metab.metabolism_class == CHEM_BLOOD))
-				var/obj/item/organ/internal/heart/Pump = H.internal_organs_by_name[O_HEART]
-				if(!Pump)
-					removed *= 0.1
-				else if(Pump.standard_pulse_level == PULSE_NONE)	// No pulse normally means chemicals process a little bit slower than normal.
-					removed *= 0.8
-				else	// Otherwise, chemicals process as per percentage of your current pulse, or, if you have no pulse but are alive, by a miniscule amount.
-					removed *= max(0.1, H.pulse / Pump.standard_pulse_level)
+			if(!H.isSynthetic())
+				if(H.species.has_organ[O_HEART] && (active_metab.metabolism_class == CHEM_BLOOD))
+					var/obj/item/organ/internal/heart/Pump = H.internal_organs_by_name[O_HEART]
+					if(!Pump)
+						removed *= 0.1
+					else if(Pump.standard_pulse_level == PULSE_NONE)	// No pulse normally means chemicals process a little bit slower than normal.
+						removed *= 0.8
+					else	// Otherwise, chemicals process as per percentage of your current pulse, or, if you have no pulse but are alive, by a miniscule amount.
+						removed *= max(0.1, H.pulse / Pump.standard_pulse_level)
 
-			if(H.species.has_organ[O_STOMACH] && (active_metab.metabolism_class == CHEM_INGEST))
-				var/obj/item/organ/internal/stomach/Chamber = H.internal_organs_by_name[O_STOMACH]
-				if(Chamber)
-					ingest_rem_mult *= max(0.1, 1 - (Chamber.damage / Chamber.max_damage))
-				else
-					ingest_rem_mult = 0.1
+				if(H.species.has_organ[O_STOMACH] && (active_metab.metabolism_class == CHEM_INGEST))
+					var/obj/item/organ/internal/stomach/Chamber = H.internal_organs_by_name[O_STOMACH]
+					if(Chamber)
+						ingest_rem_mult *= max(0.1, 1 - (Chamber.damage / Chamber.max_damage))
+					else
+						ingest_rem_mult = 0.1
 
-			if(H.species.has_organ[O_INTESTINE] && (active_metab.metabolism_class == CHEM_INGEST))
-				var/obj/item/organ/internal/intestine/Tube = H.internal_organs_by_name[O_INTESTINE]
-				if(Tube)
-					ingest_abs_mult *= max(0.1, 1 - (Tube.damage / Tube.max_damage))
-				else
-					ingest_abs_mult = 0.1
+				if(H.species.has_organ[O_INTESTINE] && (active_metab.metabolism_class == CHEM_INGEST))
+					var/obj/item/organ/internal/intestine/Tube = H.internal_organs_by_name[O_INTESTINE]
+					if(Tube)
+						ingest_abs_mult *= max(0.1, 1 - (Tube.damage / Tube.max_damage))
+					else
+						ingest_abs_mult = 0.1
+
+			else
+				var/obj/item/organ/internal/heart/machine/Pump = H.internal_organs_by_name[O_PUMP]
+				var/obj/item/organ/internal/stomach/machine/Cycler = H.internal_organs_by_name[O_CYCLER]
+
+				if(active_metab.metabolism_class == CHEM_BLOOD)
+					if(Pump)
+						removed *= 1.1 - Pump.damage / Pump.max_damage
+					else
+						removed *= 0.1
+
+				else if(active_metab.metabolism_class == CHEM_INGEST)	// If the pump is damaged, we waste chems from the tank.
+					if(Pump)
+						ingest_abs_mult *= max(0.25, 1 - Pump.damage / Pump.max_damage)
+
+					else
+						ingest_abs_mult *= 0.2
+
+					if(Cycler)	// If we're damaged, we empty our tank slower.
+						ingest_rem_mult = max(0.1, 1 - (Cycler.damage / Cycler.max_damage))
+
+					else
+						ingest_rem_mult = 0.1
+
+				else if(active_metab.metabolism_class == CHEM_TOUCH)	// Machines don't exactly absorb chemicals.
+					removed *= 0.5
 
 			if(filtered_organs && filtered_organs.len)
 				for(var/organ_tag in filtered_organs)
@@ -146,7 +178,10 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		overdose_mod *= H.species.chemOD_mod
-	M.adjustToxLoss(removed * overdose_mod)
+	// 6 damage per unit at minimum, scales with excessive reagents. Rounding should help keep damage consistent between ingest / inject, but isn't perfect.
+	// Hardcapped at 3.6 damage per tick, or 18 damage per unit at 0.2 metabolic rate so that you can't instakill people with overdoses by feeding them infinite periadaxon.
+	// Overall, max damage is slightly less effective than hydrophoron, and 1/5 as effective as cyanide.
+	M.adjustToxLoss(min(removed * overdose_mod * round(3 + 3 * volume / overdose), 3.6))
 
 /datum/reagent/proc/initialize_data(var/newdata) // Called when the reagent is created.
 	if(!isnull(newdata))

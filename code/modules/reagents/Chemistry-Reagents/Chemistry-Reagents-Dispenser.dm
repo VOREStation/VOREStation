@@ -66,6 +66,10 @@
 	taste_description = "pennies"
 	color = "#6E3B08"
 
+/datum/reagent/copper/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien == IS_SKRELL)
+		M.add_chemical_effect(CE_BLOODRESTORE, 8 * removed)
+
 /datum/reagent/ethanol
 	name = "Ethanol" //Parent class for all alcoholic reagents.
 	id = "ethanol"
@@ -122,8 +126,8 @@
 	if(effective_dose >= strength * 6) // Toxic dose
 		M.add_chemical_effect(CE_ALCOHOL_TOXIC, toxicity*3)
 	if(effective_dose >= strength * 7) // Pass out
-		M.paralysis = max(M.paralysis, 60)
-		M.sleeping  = max(M.sleeping, 90)
+		M.Paralyse(60)
+		M.Sleeping(90)
 
 	if(druggy != 0)
 		M.druggy = max(M.druggy, druggy*3)
@@ -166,8 +170,8 @@
 	if(dose * strength_mod >= strength * 6) // Toxic dose
 		M.add_chemical_effect(CE_ALCOHOL_TOXIC, toxicity)
 	if(dose * strength_mod >= strength * 7) // Pass out
-		M.paralysis = max(M.paralysis, 20)
-		M.sleeping  = max(M.sleeping, 30)
+		M.Paralyse(20)
+		M.Sleeping(30)
 
 	if(druggy != 0)
 		M.druggy = max(M.druggy, druggy)
@@ -228,7 +232,7 @@
 	color = "#353535"
 
 /datum/reagent/iron/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien != IS_DIONA)
+	if(alien != IS_DIONA && alien != IS_SKRELL)
 		M.add_chemical_effect(CE_BLOODRESTORE, 8 * removed)
 
 /datum/reagent/lithium
@@ -260,7 +264,7 @@
 			step(M, pick(cardinal))
 		if(prob(5))
 			M.emote(pick("twitch", "drool", "moan"))
-		M.adjustBrainLoss(0.1)
+		M.adjustBrainLoss(0.5 * removed)
 
 /datum/reagent/nitrogen
 	name = "Nitrogen"
@@ -465,7 +469,7 @@
 				M.Weaken(2)
 			M.drowsyness = max(M.drowsyness, 20)
 		else
-			M.sleeping = max(M.sleeping, 20)
+			M.Sleeping(20)
 			M.drowsyness = max(M.drowsyness, 60)
 
 /datum/reagent/sulfur

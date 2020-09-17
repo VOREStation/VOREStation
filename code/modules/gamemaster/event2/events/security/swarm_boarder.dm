@@ -5,6 +5,7 @@
 	departments = list(DEPARTMENT_EVERYONE, DEPARTMENT_SECURITY, DEPARTMENT_ENGINEERING)
 	chaos = 60
 	chaotic_threshold = EVENT_CHAOS_THRESHOLD_HIGH_IMPACT
+	enabled = FALSE // Turns out they are in fact grossly OP.
 	var/safe_for_extended = FALSE
 
 /datum/event2/meta/swarm_boarder/get_weight()

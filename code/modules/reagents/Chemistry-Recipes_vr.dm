@@ -47,6 +47,9 @@
 	s.start()
 	holder.clear_reagents()
 
+///////////////////////////////////////////////////////////////////////////////////
+/// Miscellaneous Reactions
+
 /datum/chemical_reaction/xenolazarus
 	name = "Discount Lazarus"
 	id = "discountlazarus"
@@ -71,6 +74,17 @@
 			else
 				H.visible_message("<span class='info'>[H] twitches for a moment, but remains still.</span>") // no nutriment
 
+
+/datum/chemical_reaction/foam/softdrink
+	required_reagents = list("cola" = 1, "mint" = 1)
+	
+/datum/chemical_reaction/firefightingfoam //TODO: Make it so we can add this to the foam tanks to refill them
+    name = "Firefighting Foam"
+    id = "firefighting foam"
+    result = "firefoam"
+    required_reagents = list("water" = 1)
+    catalysts = list("fluorine" = 10)
+    result_amount = 1
 
 ///////////////////////////////////////////////////////////////////////////////////
 /// Vore Drugs
@@ -206,10 +220,10 @@
 	required_reagents = list("whiterussian" = 5, "iron" = 1)
 	result_amount = 6
 
-/datum/chemical_reaction/drinks/lovepotion
-	name = "Love Potion"
-	id = "lovepotion"
-	result = "lovepotion"
+/datum/chemical_reaction/drinks/lovemaker
+	name = "The Love Maker"
+	id = "lovemaker"
+	result = "lovemaker"
 	required_reagents = list("honey" = 1, "sexonthebeach" = 5)
 	result_amount = 6
 
@@ -267,6 +281,13 @@
 	id = "hairoftherat"
 	result = "hairoftherat"
 	required_reagents = list("monstertamer" = 2, "nutriment" = 1)
+	result_amount = 3
+
+/datum/chemical_reaction/drinks/pink_moo
+	name = "Pink Moo"
+	id = "pinkmoo"
+	result = "pinkmoo"
+	required_reagents = list("blackrussian" = 2, "berryshake" = 1)
 	result_amount = 3
 
 ///////////////////////////////////////////////////////////////////////////////////

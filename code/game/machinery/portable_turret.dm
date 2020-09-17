@@ -822,6 +822,7 @@
 	var/atom/flick_holder = new /atom/movable/porta_turret_cover(loc)
 	flick_holder.layer = layer + 0.1
 	flick("popup_[turret_type]", flick_holder)
+	playsound(src, 'sound/machines/turrets/turret_deploy.ogg', 100, 1)
 	sleep(10)
 	qdel(flick_holder)
 
@@ -843,6 +844,7 @@
 	var/atom/flick_holder = new /atom/movable/porta_turret_cover(loc)
 	flick_holder.layer = layer + 0.1
 	flick("popdown_[turret_type]", flick_holder)
+	playsound(src, 'sound/machines/turrets/turret_retract.ogg', 100, 1)
 	sleep(10)
 	qdel(flick_holder)
 
@@ -863,6 +865,7 @@
 		spawn()
 			popUp()				//pop the turret up if it's not already up.
 		set_dir(get_dir(src, target))	//even if you can't shoot, follow the target
+		playsound(src, 'sound/machines/turrets/turret_rotate.ogg', 100, 1) // Play rotating sound
 		spawn()
 			shootAt(target)
 		return 1

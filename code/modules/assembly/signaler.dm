@@ -31,58 +31,45 @@
 	if(holder)
 		holder.update_icon()
 
-/obj/item/device/assembly/signaler/interact(var/mob/user)
-	var/t1 = "-------"
-	var/dat = {"
-<TT>
+/obj/item/device/assembly/signaler/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Signaler", name)
+		ui.open()
 
-<A href='byond://?src=\ref[src];send=1'>Send Signal</A><BR>
-<B>Frequency/Code</B> for signaler:<BR>
-Frequency:
-<A href='byond://?src=\ref[src];freq=-10'>-</A>
-<A href='byond://?src=\ref[src];freq=-2'>-</A>
-[format_frequency(src.frequency)]
-<A href='byond://?src=\ref[src];freq=2'>+</A>
-<A href='byond://?src=\ref[src];freq=10'>+</A><BR>
+/obj/item/device/assembly/signaler/tgui_data(mob/user)
+	var/list/data = list()
+	data["frequency"] = frequency
+	data["code"] = code
+	data["minFrequency"] = RADIO_LOW_FREQ
+	data["maxFrequency"] = RADIO_HIGH_FREQ
+	return data
 
-Code:
-<A href='byond://?src=\ref[src];code=-5'>-</A>
-<A href='byond://?src=\ref[src];code=-1'>-</A>
-[src.code]
-<A href='byond://?src=\ref[src];code=1'>+</A>
-<A href='byond://?src=\ref[src];code=5'>+</A><BR>
-[t1]
-</TT>"}
-	user << browse(dat, "window=radio")
-	onclose(user, "radio")
-
-/obj/item/device/assembly/signaler/Topic(href, href_list, state = deep_inventory_state)
+/obj/item/device/assembly/signaler/tgui_act(action, params)
 	if(..())
 		return TRUE
 
-	if(!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
-		usr << browse(null, "window=radio")
-		onclose(usr, "radio")
-		return
+	switch(action)
+		if("signal")
+			INVOKE_ASYNC(src, .proc/signal)
+			. = TRUE
+		if("freq")
+			frequency = unformat_frequency(params["freq"])
+			frequency = sanitize_frequency(frequency, RADIO_LOW_FREQ, RADIO_HIGH_FREQ)
+			set_frequency(frequency)
+			. = TRUE
+		if("code")
+			code = text2num(params["code"])
+			code = clamp(round(code), 1, 100)
+			. = TRUE
+		if("reset")
+			if(params["reset"] == "freq")
+				set_frequency(initial(frequency))
+			else
+				code = initial(code)
+			. = TRUE
 
-	if (href_list["freq"])
-		var/new_frequency = (frequency + text2num(href_list["freq"]))
-		if(new_frequency < RADIO_LOW_FREQ || new_frequency > RADIO_HIGH_FREQ)
-			new_frequency = sanitize_frequency(new_frequency, RADIO_LOW_FREQ, RADIO_HIGH_FREQ)
-		set_frequency(new_frequency)
-
-	if(href_list["code"])
-		src.code += text2num(href_list["code"])
-		src.code = round(src.code)
-		src.code = min(100, src.code)
-		src.code = max(1, src.code)
-
-	if(href_list["send"])
-		spawn( 0 )
-			signal()
-
-	if(usr)
-		attack_self(usr)
+	update_icon()
 
 /obj/item/device/assembly/signaler/attackby(var/obj/item/weapon/W, mob/user, params)
 	if(issignaler(W))
@@ -109,8 +96,8 @@ Code:
 /obj/item/device/assembly/signaler/pulse(var/radio = 0)
 	if(is_jammed(src))
 		return FALSE
-	if(src.connected && src.wires)
-		connected.Pulse(src)
+	if(connected && wires)
+		connected.pulse_assembly(src)
 	else if(holder)
 		holder.process_activation(src, 1, 0)
 	else

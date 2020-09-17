@@ -54,22 +54,8 @@
 //
 // Topic
 //
-
-/obj/machinery/computer/ship/proc/DefaultTopicState()
-	return global.default_state
-
-/obj/machinery/computer/ship/Topic(var/href, var/href_list = list(), var/datum/topic_state/state)
-	if((. = ..()))
-		return
-	state = state || DefaultTopicState() || global.default_state
-	if(CanUseTopic(usr, state, href_list) == STATUS_INTERACTIVE)
-		CouldUseTopic(usr)
-		return OnTopic(usr, href_list, state)
-	CouldNotUseTopic(usr)
-	return TRUE
-
-/obj/machinery/computer/ship/proc/OnTopic(var/mob/user, var/href_list, var/datum/topic_state/state)
-	return TOPIC_NOACTION
+/obj/machinery/computer/ship/tgui_state()
+	return GLOB.tgui_default_state
 
 //
 // Interaction
@@ -80,11 +66,11 @@
 // If you perform direct interactions in here, you are responsible for ensuring that full interactivity checks have been made (i.e CanInteract).
 // The checks leading in to here only guarantee that the user should be able to view a UI.
 /obj/machinery/computer/ship/proc/interface_interact(var/mob/user)
-	ui_interact(user)
+	tgui_interact(user)
 	return TRUE
 
 /obj/machinery/computer/ship/attack_ai(mob/user)
-	if(CanUseTopic(user, DefaultTopicState()) > STATUS_CLOSE)
+	if(tgui_status(user, tgui_state()) > STATUS_CLOSE)
 		return interface_interact(user)
 
 // After a recent rework this should mostly be safe.
@@ -98,6 +84,6 @@
 		return
 	if(!allowed(user))
 		to_chat(user, "<span class='warning'>Access Denied.</span>")
-		return 1
-	if(CanUseTopic(user, DefaultTopicState()) > STATUS_CLOSE)
+		return TRUE
+	if(tgui_status(user, tgui_state()) > STATUS_CLOSE)
 		return interface_interact(user)

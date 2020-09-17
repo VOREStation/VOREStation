@@ -30,6 +30,7 @@
 	var/synced = FALSE
 	var/startdrain = 500
 	var/max_item_count = 1
+	var/upgraded_capacity = FALSE
 	var/gulpsound = 'sound/vore/gulp.ogg'
 	var/datum/matter_synth/metal = null
 	var/datum/matter_synth/glass = null
@@ -39,6 +40,7 @@
 	var/digest_brute = 2
 	var/digest_burn = 3
 	var/recycles = FALSE
+	var/medsensor = TRUE //Does belly sprite come with patient ok/dead light?
 
 /obj/item/device/dogborg/sleeper/New()
 	..()
@@ -426,21 +428,25 @@
 
 	//Well, we HAD one, what happened to them?
 	if(patient in contents)
-		if(patient_laststat != patient.stat)
-			if(cleaning)
-				hound.sleeper_r = TRUE
-				hound.sleeper_g = FALSE
-				patient_laststat = patient.stat
-			else if(patient.stat & DEAD)
-				hound.sleeper_r = TRUE
-				hound.sleeper_g = FALSE
-				patient_laststat = patient.stat
-			else
-				hound.sleeper_r = FALSE
-				hound.sleeper_g = TRUE
-				patient_laststat = patient.stat
-			//Update icon
-			hound.updateicon()
+		if(medsensor)
+			if(patient_laststat != patient.stat)
+				if(cleaning)
+					hound.sleeper_r = TRUE
+					hound.sleeper_g = FALSE
+					patient_laststat = patient.stat
+				else if(patient.stat & DEAD)
+					hound.sleeper_r = TRUE
+					hound.sleeper_g = FALSE
+					patient_laststat = patient.stat
+				else
+					hound.sleeper_r = FALSE
+					hound.sleeper_g = TRUE
+					patient_laststat = patient.stat
+		else
+			hound.sleeper_r = TRUE
+			patient_laststat = patient.stat
+		//Update icon
+		hound.updateicon()
 		//Return original patient
 		return(patient)
 
@@ -448,17 +454,21 @@
 	else
 		for(var/mob/living/carbon/human/C in contents)
 			patient = C
-			if(cleaning)
-				hound.sleeper_r = TRUE
-				hound.sleeper_g = FALSE
-				patient_laststat = patient.stat
-			else if(patient.stat & DEAD)
-				hound.sleeper_r = TRUE
-				hound.sleeper_g = FALSE
-				patient_laststat = patient.stat
+			if(medsensor)
+				if(cleaning)
+					hound.sleeper_r = TRUE
+					hound.sleeper_g = FALSE
+					patient_laststat = patient.stat
+				else if(patient.stat & DEAD)
+					hound.sleeper_r = TRUE
+					hound.sleeper_g = FALSE
+					patient_laststat = patient.stat
+				else
+					hound.sleeper_r = FALSE
+					hound.sleeper_g = TRUE
+					patient_laststat = patient.stat
 			else
-				hound.sleeper_r = FALSE
-				hound.sleeper_g = TRUE
+				hound.sleeper_r = TRUE
 				patient_laststat = patient.stat
 			//Update icon and return new patient
 			hound.updateicon()
@@ -659,6 +669,7 @@
 	desc = "Equipment for a K9 unit. A mounted portable-brig that holds criminals."
 	icon_state = "sleeperb"
 	injection_chems = null //So they don't have all the same chems as the medihound!
+	medsensor = FALSE
 
 /obj/item/device/dogborg/sleeper/compactor //Janihound gut.
 	name = "Garbage Processor"
@@ -668,6 +679,7 @@
 	compactor = TRUE
 	recycles = TRUE
 	max_item_count = 25
+	medsensor = FALSE
 
 /obj/item/device/dogborg/sleeper/compactor/analyzer //sci-borg gut.
 	name = "Digestive Analyzer"

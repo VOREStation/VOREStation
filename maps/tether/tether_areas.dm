@@ -221,6 +221,12 @@
 	name = "\improper Bar Backroom"
 	icon_state = "red"
 	sound_env = SMALL_SOFTFLOOR
+/area/tether/surfacebase/servicebackroom
+	name = "\improper Service Block Backroom"
+	icon_state = "red"
+/area/tether/surfacebase/barbackmaintenance
+	name = "\improper Bar Back Maintenance"
+	icon_state = "red"
 
 /area/tether/surfacebase/public_garden_lg
 	name = "\improper Public Garden Looking Glass"
@@ -274,6 +280,7 @@
 	name = "\improper Mining Airlock"
 /area/tether/surfacebase/cargo/warehouse
 	name = "\improper Surface Cargo Warehouse"
+	sound_env = LARGE_ENCLOSED
 /area/tether/surfacebase/cargo/office
 	name = "\improper Surface Cargo Office"
 	lightswitch = 0
@@ -289,6 +296,8 @@
 	name = "\improper Mining Bathroom"
 /area/outpost/mining_main/hangar
 	name = "\improper Mining Outpost Shuttle Hangar"
+	ambience = AMBIENCE_HANGAR
+	sound_env = LARGE_ENCLOSED
 /area/outpost/mining_main/secondary_gear_storage
 	name = "\improper Mining Outpost Gear Storage"
 /area/outpost/mining_main/drill_equipment
@@ -377,6 +386,23 @@
 	name = "\improper Library Private Study"
 	lightswitch = 0
 	icon_state = "library"
+
+/area/tether/surfacebase/entertainment
+	name = "\improper Entertainment Auditorium"
+	icon_state = "library"
+
+/area/tether/surfacebase/entertainment/stage
+	name = "\improper Entertainment Stage"
+	icon_state = "library"
+
+/area/tether/surfacebase/entertainment/backstage
+	name = "\improper Entertainment Backstage"
+	icon_state = "library"
+
+/area/tether/surfacebase/botanystorage
+	name = "\improper Botany Storage"
+	icon_state = "library"
+
 
 /area/tether/surfacebase/security
 	icon_state = "security"
@@ -504,6 +530,7 @@
 // Research
 /area/rnd/xenobiology/xenoflora/lab_atmos
 	name = "\improper Xenoflora Atmospherics Lab"
+	ambience = AMBIENCE_ATMOS
 /area/rnd/breakroom
 	name = "\improper Research Break Room"
 	icon_state = "research"
@@ -537,6 +564,15 @@
 /area/rnd/breakroom/bathroom
 	name = "\improper Research Bathroom"
 	icon_state = "research"
+/area/rnd/testingroom
+	name = "\improper Research Testing Room"
+	icon_state = "research"
+/area/rnd/hardstorage
+	name = "\improper Research Hard Storage"
+	icon_state = "research"
+/area/rnd/tankstorage
+	name = "\improper Research Tank Storage"
+	icon_state = "research"
 
 //TFF 28/8/19 - cleanup of areas placement
 /area/rnd/research/testingrange
@@ -553,6 +589,7 @@
 /area/rnd/outpost
 	name = "\improper Research Outpost Hallway"
 	icon_state = "research"
+	ambience = AMBIENCE_OUTPOST
 
 /area/rnd/outpost/breakroom
 	name = "\improper Research Outpost Breakroom"
@@ -569,26 +606,32 @@
 /area/rnd/outpost/chamber
 	name = "\improper Research Outpost Burn Chamber"
 	icon_state = "engine"
+	ambience = AMBIENCE_ATMOS
 
 /area/rnd/outpost/atmos
 	name = "Research Outpost Atmospherics"
 	icon_state = "atmos"
+	ambience = AMBIENCE_ATMOS
 
 /area/rnd/outpost/storage
 	name = "\improper Research Outpost Gas Storage"
 	icon_state = "toxstorage"
+	ambience = AMBIENCE_ATMOS
 
 /area/rnd/outpost/mixing
 	name = "\improper Research Outpost Gas Mixing"
 	icon_state = "toxmix"
+	ambience = AMBIENCE_ATMOS
 
 /area/rnd/outpost/heating
 	name = "\improper Research Outpost Gas Heating"
 	icon_state = "toxmix"
+	ambience = AMBIENCE_ATMOS
 
 /area/rnd/outpost/testing
 	name = "\improper Research Outpost Testing"
 	icon_state = "toxtest"
+	ambience = AMBIENCE_ATMOS
 
 /area/maintenance/substation/outpost
 	name = "Research Outpost Substation"
@@ -614,45 +657,51 @@
 
 
 // Xenobiology Outpost Areas
+/area/rnd/outpost/xenobiology
+	name = "\improper Xenobiology Wing"
+	icon_state = "research"
+	ambience = AMBIENCE_GENERIC // Still part of the station, even if it's it's own wing. TODO: Science Ambience.
 /area/rnd/outpost/xenobiology/outpost_north_airlock
-	name = "\improper Xenbiology Northern Airlock"
+	name = "\improper Xenobiology Northern Airlock"
 	icon_state = "research"
 /area/rnd/outpost/xenobiology/outpost_south_airlock
-	name = "\improper Xenbiology Southern Airlock"
+	name = "\improper Xenobiology Southern Airlock"
 	icon_state = "research"
 /area/rnd/outpost/xenobiology/outpost_hallway
-	name = "\improper Xenbiology Access Corridor"
+	name = "\improper Xenobiology Access Corridor"
 	icon_state = "research"
 /area/rnd/outpost/xenobiology/outpost_breakroom
-	name = "\improper Xenbiology Breakroom"
+	name = "\improper Xenobiology Breakroom"
 	icon_state = "research"
 /area/rnd/outpost/xenobiology/outpost_office
-	name = "\improper Xenbiology Main Office"
+	name = "\improper Xenobiology Main Office"
 	icon_state = "research"
 /area/rnd/outpost/xenobiology/outpost_autopsy
-	name = "\improper Xenbiology Alien Autopsy Room"
+	name = "\improper Xenobiology Alien Autopsy Room"
 	icon_state = "research"
 /area/rnd/outpost/xenobiology/outpost_decon
-	name = "\improper Xenbiology Decontamination and Showers"
+	name = "\improper Xenobiology Decontamination and Showers"
 	icon_state = "research"
+	sound_env = SMALL_ENCLOSED
 /area/rnd/outpost/xenobiology/outpost_first_aid
-	name = "\improper Xenbiology First Aid"
+	name = "\improper Xenobiology First Aid"
 	icon_state = "research"
 /area/rnd/outpost/xenobiology/outpost_slimepens
-	name = "\improper Xenbiology Slime and Xenos Containment"
+	name = "\improper Xenobiology Slime and Xenos Containment"
 	icon_state = "research"
 /area/rnd/outpost/xenobiology/outpost_main
-	name = "\improper Xenbiology Main Outpost"
+	name = "\improper Xenobiology Main Outpost"
 	icon_state = "research"
 /area/rnd/outpost/xenobiology/outpost_storage
-	name = "\improper Xenbiology Equipment Storage"
+	name = "\improper Xenobiology Equipment Storage"
 	icon_state = "research"
 /area/rnd/outpost/xenobiology/outpost_stairs
-	name = "\improper Xenbiology Stairwell"
+	name = "\improper Xenobiology Stairwell"
 	icon_state = "research"
 /area/rnd/outpost/xenobiology/outpost_substation
-	name = "\improper Xenbiology SMES Substation"
+	name = "\improper Xenobiology SMES Substation"
 	icon_state = "research"
+	ambience = AMBIENCE_SUBSTATION
 
 // Misc
 /area/hallway/lower/third_south
@@ -723,6 +772,7 @@
 /area/crew_quarters/showers
 	name = "\improper Unisex Showers"
 	icon_state = "recreation_area_restroom"
+	sound_env = SMALL_ENCLOSED
 
 /area/crew_quarters/sleep/maintDorm1
 	name = "\improper Construction Dorm 1"
@@ -1027,24 +1077,38 @@
 	name = "\improper Excursion Shuttle Dock"
 	icon_state = "yellow"
 	holomap_color = HOLOMAP_AREACOLOR_SCIENCE
+	sound_env = LARGE_ENCLOSED
+	ambience = AMBIENCE_HANGAR
 
 /area/tether/exploration/equipment
 	name = "\improper Exploration Equipment Storage"
+	sound_env = STANDARD_STATION
+	ambience = AMBIENCE_GENERIC
 
 /area/tether/exploration/crew
 	name = "\improper Exploration Crew Area"
+	sound_env = STANDARD_STATION
+	ambience = AMBIENCE_GENERIC
 
 /area/tether/exploration/pathfinder_office
 	name = "\improper Pathfinder's Office"
+	sound_env = STANDARD_STATION
+	ambience = AMBIENCE_GENERIC
 
 /area/tether/exploration/hallway
 	name = "\improper Exploration Hallway"
+	sound_env = STANDARD_STATION
+	ambience = AMBIENCE_GENERIC
 
 /area/tether/exploration/staircase
 	name = "\improper Exploration Staircase"
+	sound_env = STANDARD_STATION
+	ambience = AMBIENCE_GENERIC
 
 /area/tether/exploration/showers
 	name = "\improper Exploration Showers"
+	sound_env = SMALL_ENCLOSED
+	ambience = AMBIENCE_GENERIC
 
 /area/shuttle/excursion
 	requires_power = 1
@@ -1109,6 +1173,8 @@
 	name = "\improper Mining Refinery"
 /area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar
 	name = "\improper Mining Outpost Shuttle - Station"
+	ambience = AMBIENCE_HANGAR
+	sound_env = LARGE_ENCLOSED
 area/shuttle/mining_outpost/shuttle
 	name = "\improper Mining Outpost Shuttle"
 	icon_state = "shuttle2"

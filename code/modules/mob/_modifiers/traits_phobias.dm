@@ -120,27 +120,32 @@
 
 		// People covered in blood is also bad.
 		// Feel free to trim down if its too expensive CPU wise.
-		if(istype(thing, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = thing
-			var/self_multiplier = H == holder ? 2 : 1
-			var/human_blood_fear_amount = 0
-			if(!H.gloves && H.bloody_hands && H.hand_blood_color != SYNTH_BLOOD_COLOUR)
-				human_blood_fear_amount += 1
-			if(!H.shoes && H.feet_blood_color && H.feet_blood_color != SYNTH_BLOOD_COLOUR)
-				human_blood_fear_amount += 1
+		if(isliving(thing))
+			var/mob/living/L = thing
+			if(L.alpha <= FAKE_INVIS_ALPHA_THRESHOLD) // Can't fear something you can't (easily) see.
+				continue
 
-			// List of slots.  Some slots like pockets are omitted due to not being visible, if H isn't the holder.
-			var/list/clothing_slots = list(H.back, H.wear_mask, H.l_hand, H.r_hand, H.wear_id, H.glasses, H.gloves, H.head, H.shoes, H.belt, H.wear_suit, H.w_uniform, H.s_store, H.l_ear, H.r_ear)
-			if(H == holder)
-				clothing_slots += list(H.l_store, H.r_store)
-
-			for(var/obj/item/clothing/C in clothing_slots)
-				if(C.blood_DNA && C.blood_color && C.blood_color != SYNTH_BLOOD_COLOUR)
+			if(istype(thing, /mob/living/carbon/human))
+				var/mob/living/carbon/human/H = thing
+				var/self_multiplier = H == holder ? 2 : 1
+				var/human_blood_fear_amount = 0
+				if(!H.gloves && H.bloody_hands && H.hand_blood_color != SYNTH_BLOOD_COLOUR)
+					human_blood_fear_amount += 1
+				if(!H.shoes && H.feet_blood_color && H.feet_blood_color != SYNTH_BLOOD_COLOUR)
 					human_blood_fear_amount += 1
 
-			// This is divided, since humans can wear so many items at once.
-			human_blood_fear_amount = round( (human_blood_fear_amount * self_multiplier) / 3, 1)
-			fear_amount += human_blood_fear_amount
+				// List of slots.  Some slots like pockets are omitted due to not being visible, if H isn't the holder.
+				var/list/clothing_slots = list(H.back, H.wear_mask, H.l_hand, H.r_hand, H.wear_id, H.glasses, H.gloves, H.head, H.shoes, H.belt, H.wear_suit, H.w_uniform, H.s_store, H.l_ear, H.r_ear)
+				if(H == holder)
+					clothing_slots += list(H.l_store, H.r_store)
+
+				for(var/obj/item/clothing/C in clothing_slots)
+					if(C.blood_DNA && C.blood_color && C.blood_color != SYNTH_BLOOD_COLOUR)
+						human_blood_fear_amount += 1
+
+				// This is divided, since humans can wear so many items at once.
+				human_blood_fear_amount = round( (human_blood_fear_amount * self_multiplier) / 3, 1)
+				fear_amount += human_blood_fear_amount
 
 		// Bloody objects are also bad.
 		if(istype(thing, /obj))
@@ -207,12 +212,18 @@
 		if(istype(thing, /obj/structure/snowman/spider)) //Snow spiders are also spooky so people can be assholes with those too.
 			fear_amount += 1
 
-		if(istype(thing, /mob/living/simple_mob/animal/giant_spider)) // Actual giant spiders are the scariest of them all.
-			var/mob/living/simple_mob/animal/giant_spider/S = thing
-			if(S.stat == DEAD) // Dead giant spiders are less scary than alive ones.
-				fear_amount += 4
-			else
-				fear_amount += 8
+		if(isliving(thing))
+			var/mob/living/L = thing
+			if(L.alpha <= FAKE_INVIS_ALPHA_THRESHOLD) // Can't fear something you can't (easily) see.
+				continue
+
+			if(istype(L, /mob/living/simple_mob/animal/giant_spider)) // Actual giant spiders are the scariest of them all.
+				var/mob/living/simple_mob/animal/giant_spider/S = L
+
+				if(S.stat == DEAD) // Dead giant spiders are less scary than alive ones.
+					fear_amount += 4
+				else
+					fear_amount += 8
 	return fear_amount
 
 
@@ -425,25 +436,29 @@
 		if(istype(thing, /obj/item/clothing/head/collectable/slime)) // Some hats are spooky so people can be assholes with them.
 			fear_amount += 1
 
-		if(istype(thing, /mob/living/simple_mob/slime)) // An actual predatory specimen!
-			var/mob/living/simple_mob/slime/S = thing
-			if(S.stat == DEAD) // Dead slimes are somewhat less spook.
-				fear_amount += 4
-			if(istype(S, /mob/living/simple_mob/slime/xenobio))
-				var/mob/living/simple_mob/slime/xenobio/X = S
-				if(X.is_adult == TRUE) //big boy
-					fear_amount += 8
+		if(isliving(thing))
+			var/mob/living/L = thing
+			if(L.alpha <= FAKE_INVIS_ALPHA_THRESHOLD) // Can't fear something you can't (easily) see.
+				continue
+			if(istype(L, /mob/living/simple_mob/slime)) // An actual predatory specimen!
+				var/mob/living/simple_mob/slime/S = L
+				if(S.stat == DEAD) // Dead slimes are somewhat less spook.
+					fear_amount += 4
+				if(istype(S, /mob/living/simple_mob/slime/xenobio))
+					var/mob/living/simple_mob/slime/xenobio/X = S
+					if(X.is_adult == TRUE) //big boy
+						fear_amount += 8
+					else
+						fear_amount += 6
 				else
-					fear_amount += 6
-			else
-				fear_amount += 10 // It's huge and feral.
+					fear_amount += 10 // It's huge and feral.
 
-		if(istype(thing, /mob/living/carbon/human))
-			var/mob/living/carbon/human/S = thing
-			if(istype(S.species, /datum/species/skrell)) //Skrell ARE slimey.
-				fear_amount += 1
-			if(istype(S.species, /datum/species/shapeshifter/promethean))
-				fear_amount += 4
+			if(istype(L, /mob/living/carbon/human))
+				var/mob/living/carbon/human/S = L
+				if(istype(S.species, /datum/species/skrell)) //Skrell ARE slimey.
+					fear_amount += 1
+				if(istype(S.species, /datum/species/shapeshifter/promethean))
+					fear_amount += 4
 
 	return fear_amount
 
@@ -525,13 +540,17 @@
 		if(istype(thing, /obj/item/weapon/gun/launcher/syringe))
 			fear_amount += 6
 
-		if(istype(thing, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = thing
-			if(H.l_hand && istype(H.l_hand, /obj/item/weapon/reagent_containers/syringe) || H.r_hand && istype(H.r_hand, /obj/item/weapon/reagent_containers/syringe))
-				fear_amount += 10
+		if(isliving(thing))
+			var/mob/living/L = thing
+			if(L.alpha <= FAKE_INVIS_ALPHA_THRESHOLD) // Can't fear something you can't (easily) see.
+				continue
+			if(istype(L, /mob/living/carbon/human))
+				var/mob/living/carbon/human/H = L
+				if(H.l_hand && istype(H.l_hand, /obj/item/weapon/reagent_containers/syringe) || H.r_hand && istype(H.r_hand, /obj/item/weapon/reagent_containers/syringe))
+					fear_amount += 10
 
-			if(H.l_ear && istype(H.l_ear, /obj/item/weapon/reagent_containers/syringe) || H.r_ear && istype(H.r_ear, /obj/item/weapon/reagent_containers/syringe))
-				fear_amount +=10
+				if(H.l_ear && istype(H.l_ear, /obj/item/weapon/reagent_containers/syringe) || H.r_ear && istype(H.r_ear, /obj/item/weapon/reagent_containers/syringe))
+					fear_amount +=10
 
 
 	return fear_amount

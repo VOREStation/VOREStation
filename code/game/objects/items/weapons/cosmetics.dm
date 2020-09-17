@@ -9,6 +9,7 @@
 	var/colour = "red"
 	var/open = 0
 	drop_sound = 'sound/items/drop/glass.ogg'
+	pickup_sound = 'sound/items/pickup/glass.ogg'
 
 /obj/item/weapon/lipstick/purple
 	name = "purple lipstick"
@@ -96,17 +97,16 @@
 	w_class = ITEMSIZE_TINY
 	icon = 'icons/obj/items.dmi'
 	icon_state = "trinketbox"
-	var/list/ui_users = list()
+	var/datum/tgui_module/appearance_changer/mirror/coskit/M
+
+/obj/item/weapon/makeover/Initialize()
+	. = ..()
+	M = new(src, null)
 
 /obj/item/weapon/makeover/attack_self(mob/living/carbon/user as mob)
 	if(ishuman(user))
 		to_chat(user, "<span class='notice'>You flip open \the [src] and begin to adjust your appearance.</span>")
-		var/datum/nano_module/appearance_changer/AC = ui_users[user]
-		if(!AC)
-			AC = new(src, user)
-			AC.name = "SalonPro Porta-Makeover Deluxe&trade;"
-			ui_users[user] = AC
-		AC.ui_interact(user)
+		M.tgui_interact(user)
 		var/mob/living/carbon/human/H = user
 		var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[O_EYES]
 		if(istype(E))

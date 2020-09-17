@@ -1,3 +1,24 @@
+GLOBAL_LIST_INIT(biblenames, list(
+	"Bible", "Koran", "Scrapbook",
+	"Pagan", "White Bible", "Holy Light",
+	"Athiest", "Tome", "The King in Yellow",
+	"Ithaqua", "Scientology", "the bible melts",
+	"Necronomicon", "Orthodox", "Torah"))
+//If you get these two lists not matching in size, there will be runtimes and I will hurt you in ways you couldn't even begin to imagine
+// if your bible has no custom itemstate, use one of the existing ones
+GLOBAL_LIST_INIT(biblestates, list(
+	"bible", "koran", "scrapbook",
+	"shadows", "white", "holylight",
+	"athiest", "tome", "kingyellow",
+	"ithaqua", "scientology", "melted",
+	"necronomicon", "orthodoxy", "torah"))
+GLOBAL_LIST_INIT(bibleitemstates, list(
+	"bible", "koran", "scrapbook",
+	"syringe_kit", "syringe_kit", "syringe_kit",
+	"syringe_kit", "syringe_kit", "kingyellow",
+	"ithaqua", "scientology", "melted",
+	"necronomicon", "bible", "clipboard"))
+
 /obj/item/weapon/storage/bible
 	name = "bible"
 	desc = "Apply to head repeatedly."
@@ -14,6 +35,51 @@
 	var/deity_name = "Christ"
 	use_sound = 'sound/bureaucracy/bookopen.ogg'
 	drop_sound = 'sound/bureaucracy/bookclose.ogg'
+
+/obj/item/weapon/storage/bible/attack_self(mob/living/carbon/human/user)
+	if(GLOB.bible_icon_state)
+		icon_state = GLOB.bible_icon_state
+		item_state = GLOB.bible_item_state
+		return FALSE
+	if(user?.mind?.assigned_role != "Chaplain")
+		return FALSE
+
+	var/list/skins = list()
+	for(var/i in 1 to GLOB.biblestates.len)
+		var/image/bible_image = image(icon = 'icons/obj/storage.dmi', icon_state = GLOB.biblestates[i])
+		skins += list("[GLOB.biblenames[i]]" = bible_image)
+
+	var/choice = show_radial_menu(user, src, skins, custom_check = CALLBACK(src, .proc/check_menu, user), radius = 40, require_near = TRUE)
+	if(!choice)
+		return FALSE
+	var/bible_index = GLOB.biblenames.Find(choice)
+	if(!bible_index)
+		return FALSE
+	icon_state = GLOB.biblestates[bible_index]
+	item_state = GLOB.bibleitemstates[bible_index]
+
+	GLOB.bible_icon_state = icon_state
+	GLOB.bible_item_state = item_state
+	feedback_set_details("religion_book", "[choice]")
+
+/**
+  * Checks if we are allowed to interact with a radial menu
+  *
+  * Arguments:
+  * * user The mob interacting with the menu
+  */
+/obj/item/weapon/storage/bible/proc/check_menu(mob/living/carbon/human/user)
+	if(GLOB.bible_icon_state)
+		return FALSE
+	if(!istype(user))
+		return FALSE
+	if(user.get_active_hand() != src)
+		return FALSE
+	if(user.incapacitated())
+		return FALSE
+	if(user.mind.assigned_role != "Chaplain")
+		return FALSE
+	return TRUE
 
 /obj/item/weapon/storage/bible/booze
 	name = "bible"

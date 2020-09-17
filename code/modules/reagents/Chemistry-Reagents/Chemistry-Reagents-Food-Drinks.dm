@@ -69,14 +69,14 @@
 /datum/reagent/nutriment/coating/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 
 	//We'll assume that the batter isnt going to be regurgitated and eaten by someone else. Only show this once
-	if (data["cooked"] != 1)
+	if(data["cooked"] != 1)
 		if (!messaged)
-			to_chat(M, "Ugh, this raw [name] tastes disgusting.")
+			to_chat(M, "<span class='warning'>Ugh, this raw [name] tastes disgusting.</span>")
 			nutriment_factor *= 0.5
 			messaged = 1
 
-		//Raw coatings will sometimes cause vomiting
-		if (prob(1))
+		//Raw coatings will sometimes cause vomiting. 75% chance of this happening.
+		if(prob(75))
 			M.vomit()
 	..()
 
@@ -153,6 +153,14 @@
 	if(!istype(T))
 		return
 
+	var/hotspot = (locate(/obj/fire) in T)
+	if(hotspot && !istype(T, /turf/space))
+		var/datum/gas_mixture/lowertemp = T.remove_air(T:air:total_moles)
+		lowertemp.temperature = max(min(lowertemp.temperature-2000, lowertemp.temperature / 2), 0)
+		lowertemp.react()
+		T.assume_air(lowertemp)
+		qdel(hotspot)
+
 	if(volume >= 3)
 		T.wet_floor(2)
 
@@ -206,13 +214,25 @@
 		M.take_organ_damage(0, removed * 1.5 * dfactor)
 		data["temperature"] -= (6 * removed) / (1 + volume*0.1)//Cools off as it burns you
 		if (lastburnmessage+100 < world.time	)
-			M << span("danger", "Searing hot oil burns you, wash it off quick!")
+			to_chat(M, "<span class='danger'>Searing hot oil burns you, wash it off quick!</span>")
 			lastburnmessage = world.time
 
 /datum/reagent/nutriment/triglyceride/oil/corn
 	name = "Corn Oil"
 	id = "cornoil"
 	description = "An oil derived from various types of corn."
+	taste_description = "oil"
+	taste_mult = 0.1
+	reagent_state = LIQUID
+
+/datum/reagent/nutriment/triglyceride/oil/peanut
+	name = "Peanut Oil"
+	id = "peanutoil"
+	description = "An oil derived from various types of nuts."
+	taste_description = "nuts"
+	taste_mult = 0.3
+	nutriment_factor = 15
+	color = "#4F3500"
 
 // Aurora Cooking Port Insertion End
 
@@ -307,7 +327,7 @@
 				M.Weaken(2)
 			M.drowsyness = max(M.drowsyness, 20)
 		else
-			M.sleeping = max(M.sleeping, 20)
+			M.Sleeping(20)
 			M.drowsyness = max(M.drowsyness, 60)
 
 /datum/reagent/nutriment/mayo
@@ -440,57 +460,7 @@
 	reagent_state = LIQUID
 	nutriment_factor = 1
 	color = "#801E28"
-/* TEMPORARY REMOVAL DUE TO AURORA COOKING PORT - WILL REVISIT LATER 7/16/2020
-/datum/reagent/nutriment/cornoil
-	name = "Corn Oil"
-	id = "cornoil"
-	description = "An oil derived from various types of corn."
-	taste_description = "slime"
-	taste_mult = 0.1
-	reagent_state = LIQUID
-	nutriment_factor = 20
-	color = "#302000"
 
-/datum/reagent/nutriment/cornoil/touch_turf(var/turf/simulated/T)
-	if(!istype(T))
-		return
-
-	var/hotspot = (locate(/obj/fire) in T)
-	if(hotspot && !istype(T, /turf/space))
-		var/datum/gas_mixture/lowertemp = T.remove_air(T:air:total_moles)
-		lowertemp.temperature = max(min(lowertemp.temperature-2000, lowertemp.temperature / 2), 0)
-		lowertemp.react()
-		T.assume_air(lowertemp)
-		qdel(hotspot)
-
-	if(volume >= 3)
-		T.wet_floor()
-
-/datum/reagent/nutriment/peanutoil
-	name = "Peanut Oil"
-	id = "peanutoil"
-	description = "An oil derived from various types of nuts."
-	taste_description = "nuts"
-	taste_mult = 0.3
-	reagent_state = LIQUID
-	nutriment_factor = 15
-	color = "#4F3500"
-
-/datum/reagent/nutriment/peanutoil/touch_turf(var/turf/simulated/T)
-	if(!istype(T))
-		return
-
-	var/hotspot = (locate(/obj/fire) in T)
-	if(hotspot && !istype(T, /turf/space))
-		var/datum/gas_mixture/lowertemp = T.remove_air(T:air:total_moles)
-		lowertemp.temperature = max(min(lowertemp.temperature-2000, lowertemp.temperature / 2), 0)
-		lowertemp.react()
-		T.assume_air(lowertemp)
-		qdel(hotspot)
-
-	if(volume >= 5)
-		T.wet_floor()
-*/
 /datum/reagent/nutriment/peanutbutter
 	name = "Peanut Butter"
 	id = "peanutbutter"
@@ -614,7 +584,7 @@
 	reagent_state = LIQUID
 	color = "#365E30"
 	overdose = REAGENTS_OVERDOSE
-	
+
 //SYNNONO MEME FOODS EXPANSION - Credit to Synnono
 
 /datum/reagent/spacespice
@@ -648,6 +618,28 @@
 	if(prob(1))
 		M.emote("shiver")
 	holder.remove_reagent("capsaicin", 5)
+
+/datum/reagent/frostoil/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed) // Eating frostoil now acts like capsaicin. Wee!
+	if(alien == IS_DIONA)
+		return
+	if(alien == IS_ALRAUNE) // VOREStation Edit: It wouldn't affect plants that much.
+		if(prob(5))
+			to_chat(M, "<span class='rose'>You feel a chilly, tingling sensation in your mouth.</span>")
+		M.bodytemperature -= rand(10, 25)
+		return
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(!H.can_feel_pain())
+			return
+	var/effective_dose = (dose * M.species.spice_mod)
+	if((effective_dose < 5) && (dose == metabolism || prob(5)))
+		to_chat(M, "<span class='danger'>Your insides suddenly feel a spreading chill!</span>")
+	if(effective_dose >= 5)
+		M.apply_effect(2 * M.species.spice_mod, AGONY, 0)
+		M.bodytemperature -= rand(1, 5) * M.species.spice_mod // Really fucks you up, cause it makes you cold.
+		if(prob(5))
+			M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>", pick("<span class='danger'>You feel like your insides are freezing!</span>", "<span class='danger'>Your insides feel like they're turning to ice!</span>"))
+	// holder.remove_reagent("capsaicin", 5) // VOREStation Edit: Nop, we don't instadelete spices for free. 
 
 /datum/reagent/frostoil/cryotoxin //A longer lasting version of frost oil.
 	name = "Cryotoxin"
@@ -684,14 +676,16 @@
 		var/mob/living/carbon/human/H = M
 		if(!H.can_feel_pain())
 			return
-
-	if(dose < 5 && (dose == metabolism || prob(5)))
+	
+	var/effective_dose = (dose * M.species.spice_mod)
+	if((effective_dose < 5) && (dose == metabolism || prob(5)))
 		to_chat(M, "<span class='danger'>Your insides feel uncomfortably hot!</span>")
-	if(dose >= 5)
-		M.apply_effect(2, AGONY, 0)
+	if(effective_dose >= 5)
+		M.apply_effect(2 * M.species.spice_mod, AGONY, 0)
+		M.bodytemperature += rand(1, 5) * M.species.spice_mod // Really fucks you up, cause it makes you overheat, too.
 		if(prob(5))
-			M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>", "<span class='danger'>You feel like your insides are burning!</span>")
-	holder.remove_reagent("frostoil", 5)
+			M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>", pick("<span class='danger'>You feel like your insides are burning!</span>", "<span class='danger'>You feel like your insides are on fire!</span>", "<span class='danger'>You feel like your belly is full of lava!</span>"))
+	// holder.remove_reagent("frostoil", 5)  // VOREStation Edit: Nop, we don't instadelete spices for free. 
 
 /datum/reagent/condensedcapsaicin
 	name = "Condensed Capsaicin"
@@ -835,7 +829,7 @@
 		M.apply_effect(4, AGONY, 0)
 		if(prob(5))
 			M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>", "<span class='danger'>You feel like your insides are burning!</span>")
-	holder.remove_reagent("frostoil", 5)
+	// holder.remove_reagent("frostoil", 5) // VOREStation Edit: Nop, we don't instadelete spices for free. 
 
 /* Drinks */
 
@@ -864,7 +858,7 @@
 	M.adjust_nutrition(nutrition * removed)
 	M.dizziness = max(0, M.dizziness + adj_dizzy)
 	M.drowsyness = max(0, M.drowsyness + adj_drowsy)
-	M.sleeping = max(0, M.sleeping + adj_sleepy)
+	M.AdjustSleeping(adj_sleepy)
 	if(adj_temp > 0 && M.bodytemperature < 310) // 310 is the normal bodytemp. 310.055
 		M.bodytemperature = min(310, M.bodytemperature + (adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT))
 	if(adj_temp < 0 && M.bodytemperature > 310)
@@ -952,7 +946,7 @@
 				M.Weaken(2)
 			M.drowsyness = max(M.drowsyness, 20)
 		else
-			M.sleeping = max(M.sleeping, 20)
+			M.Sleeping(20)
 			M.drowsyness = max(M.drowsyness, 60)
 */
 
@@ -1248,6 +1242,32 @@
 	cup_name = "cup of berry tea"
 	cup_desc = "A tasty mixture of berries and tea. It's apparently good for you!"
 
+/datum/reagent/drink/greentea
+	name = "Green Tea"
+	id = "greentea"
+	description = "A subtle blend of green tea. It's apparently good for you!"
+	color = "#A8442C"
+	taste_description = "green tea"
+
+	glass_name = "green tea"
+	glass_desc = "A subtle blend of green tea. It's apparently good for you!"
+
+	cup_name = "cup of green tea"
+	cup_desc = "A subtle blend of green tea. It's apparently good for you!"
+
+/datum/reagent/drink/chaitea
+	name = "Chai Tea"
+	id = "chaitea"
+	description = "A tea spiced with cinnamon and cloves."
+	color = "#A8442C"
+	taste_description = "creamy cinnamon and spice"
+
+	glass_name = "chai tea"
+	glass_desc = "A tea spiced with cinnamon and cloves."
+
+	cup_name = "cup of chai tea"
+	cup_desc = "A tea spiced with cinnamon and cloves."
+
 /datum/reagent/drink/coffee
 	name = "Coffee"
 	id = "coffee"
@@ -1536,7 +1556,7 @@
 				M.Weaken(2)
 			M.drowsyness = max(M.drowsyness, 20)
 		else
-			M.sleeping = max(M.sleeping, 20)
+			M.Sleeping(20)
 			M.drowsyness = max(M.drowsyness, 60)
 
 /datum/reagent/drink/milkshake/chocoshake
@@ -1689,7 +1709,7 @@
 	glass_special = list(DRINK_FIZZ)
 
 /datum/reagent/drink/soda/lemon_lime
-	name = "Lemon Lime"
+	name = "Lemon-Lime"
 	id = "lemon_lime"
 	description = "A tangy substance made of 0.5% natural citrus!"
 	taste_description = "tangy lime and lemon soda"
@@ -1710,6 +1730,26 @@
 
 	glass_name = "ginger ale"
 	glass_desc = "The original, refreshing not-actually-ale."
+	glass_special = list(DRINK_FIZZ)
+
+/datum/reagent/drink/root_beer
+	name = "R&D Root Beer"
+	id = "rootbeer"
+	color = "#211100"
+	adj_drowsy = -6
+	taste_description = "sassafras and anise soda"
+
+	glass_name = "glass of R&D Root Beer"
+	glass_desc = "A glass of bubbly R&D Root Beer."
+
+/datum/reagent/drink/dr_gibb_diet
+	name = "Diet Dr. Gibb"
+	id = "diet_dr_gibb"
+	color = "#102000"
+	taste_description = "watered down cherry soda"
+
+	glass_name = "glass of Diet Dr. Gibb"
+	glass_desc = "Regular Dr.Gibb is probably healthier than this cocktail of artificial flavors."
 	glass_special = list(DRINK_FIZZ)
 
 /datum/reagent/drink/shirley_temple
@@ -2079,6 +2119,7 @@
 	glass_icon = DRINK_ICON_NOISY
 	glass_special = list(DRINK_FIZZ)
 
+
 /* Alcohol */
 
 // Basic
@@ -2123,6 +2164,18 @@
 	if(alien == IS_DIONA)
 		return
 	M.jitteriness = max(M.jitteriness - 3, 0)
+
+/datum/reagent/ethanol/beer/lite
+	name = "Lite Beer"
+	id = "litebeer"
+	description = "An alcoholic beverage made from malted grains, hops, yeast, water, and water."
+	taste_description = "bad beer"
+	color = "#FFD300"
+	strength = 75
+	nutriment_factor = 1
+
+	glass_name = "lite beer"
+	glass_desc = "A freezing pint of lite beer"
 
 /datum/reagent/ethanol/bluecuracao
 	name = "Blue Curacao"
@@ -2198,7 +2251,7 @@
 	..()
 	M.dizziness = max(0, M.dizziness - 5)
 	M.drowsyness = max(0, M.drowsyness - 3)
-	M.sleeping = max(0, M.sleeping - 2)
+	M.AdjustSleeping(-2)
 	if(M.bodytemperature > 310)
 		M.bodytemperature = max(310, M.bodytemperature - (5 * TEMPERATURE_DAMAGE_COEFFICIENT))
 	//if(alien == IS_TAJARA)

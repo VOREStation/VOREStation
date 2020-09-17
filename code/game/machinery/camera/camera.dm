@@ -42,24 +42,6 @@
 
 	var/list/camera_computers_using_this = list()
 
-/obj/machinery/camera/apply_visual(mob/living/carbon/human/M)
-	if(!M.client)
-		return
-	M.overlay_fullscreen("fishbed",/obj/screen/fullscreen/fishbed)
-	M.overlay_fullscreen("scanlines",/obj/screen/fullscreen/scanline)
-	M.overlay_fullscreen("whitenoise",/obj/screen/fullscreen/noise)
-	M.machine_visual = src
-	return 1
-
-/obj/machinery/camera/remove_visual(mob/living/carbon/human/M)
-	if(!M.client)
-		return
-	M.clear_fullscreen("fishbed",0)
-	M.clear_fullscreen("scanlines")
-	M.clear_fullscreen("whitenoise")
-	M.machine_visual = null
-	return 1
-
 /obj/machinery/camera/New()
 	wires = new(src)
 	assembly = new(src)
@@ -292,7 +274,7 @@
 //Used when someone breaks a camera
 /obj/machinery/camera/proc/destroy()
 	stat |= BROKEN
-	wires.RandomCutAll()
+	wires.cut_all()
 
 	triggerCameraAlarm()
 	update_icon()
@@ -327,7 +309,7 @@
 	camera_alarm.triggerAlarm(loc, src, duration)
 
 /obj/machinery/camera/proc/cancelCameraAlarm()
-	if(wires.IsIndexCut(CAMERA_WIRE_ALARM))
+	if(wires.is_cut(WIRE_CAM_ALARM))
 		return
 
 	alarm_on = 0
@@ -465,7 +447,7 @@
 		network.Cut()
 		update_coverage(1)
 
-/obj/machinery/camera/proc/nano_structure()
+/obj/machinery/camera/proc/tgui_structure()
 	var/cam[0]
 	cam["name"] = sanitize(c_tag)
 	cam["deact"] = !can_use()
@@ -494,7 +476,6 @@
 		return
 	if (stat & BROKEN) // Fix the camera
 		stat &= ~BROKEN
-	wires.CutAll()
-	wires.MendAll()
+	wires.repair()
 	update_icon()
 	update_coverage()

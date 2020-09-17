@@ -68,9 +68,9 @@
 	if(health <= 0)
 		death()
 		return
-	weakened = 0
-	stunned = 0
-	paralysis = 0
+	SetWeakened(0)
+	SetStunned(0)
+	SetParalysis(0)
 
 	if(on && !client && !busy)
 		spawn(0)
@@ -197,6 +197,12 @@
 			else
 				startPatrol()
 		else
+			if((locate(/obj/machinery/door) in loc) && !pulledby) //Don't hang around blocking doors, but don't run off if someone tries to pull us through one.
+				var/turf/my_turf = get_turf(src)
+				var/list/can_go = my_turf.CardinalTurfsWithAccess(botcard)
+				if(LAZYLEN(can_go))
+					if(step_towards(src, pick(can_go)))
+						return
 			handleIdle()
 
 /mob/living/bot/proc/handleRegular()

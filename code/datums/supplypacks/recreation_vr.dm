@@ -64,3 +64,25 @@
 	cost = 25
 	containertype = /obj/structure/closet/crate
 	containername = "collar crate"
+
+/datum/supply_pack/recreation/shiny
+	name = "Shiny Clothing"
+	contains = list(
+			/obj/item/clothing/mask/muzzle/ballgag = 1,
+			/obj/item/clothing/mask/muzzle/ballgag/ringgag = 1,
+			/obj/item/clothing/head/shiny_hood = 1,
+			/obj/item/clothing/head/shiny_hood/poly = 1,
+			/obj/item/clothing/head/shiny_hood/closed = 1,
+			/obj/item/clothing/head/shiny_hood/closed/poly = 1,
+			/obj/item/clothing/under/shiny/catsuit = 1,
+			/obj/item/clothing/under/shiny/catsuit/poly = 1,
+			/obj/item/clothing/under/shiny/leotard = 1,
+			/obj/item/clothing/under/shiny/leotard/poly = 1,
+			/obj/item/clothing/accessory/shiny/gloves = 1,
+			/obj/item/clothing/accessory/shiny/gloves/poly = 1,
+			/obj/item/clothing/accessory/shiny/socks = 1,
+			/obj/item/clothing/accessory/shiny/socks/poly = 1
+			)
+	containertype = /obj/structure/closet/crate
+	containername = "Shiny clothes crate"
+	cost = 30

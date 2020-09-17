@@ -91,7 +91,7 @@ export const toTitleCase = str => {
     return str;
   }
   // Handle string
-  const WORDS_UPPER = ['Id', 'Tv'];
+  const WORDS_UPPER = ['Id', 'Tv', 'Rcd'];
   const WORDS_LOWER = [
     'A', 'An', 'And', 'As', 'At', 'But', 'By', 'For', 'For', 'From', 'In',
     'Into', 'Near', 'Nor', 'Of', 'On', 'Onto', 'Or', 'The', 'To', 'With',
@@ -105,7 +105,7 @@ export const toTitleCase = str => {
   }
   for (let word of WORDS_UPPER) {
     const regex = new RegExp('\\b' + word + '\\b', 'g');
-    currentStr = currentStr.replace(regex, str => str.toLowerCase());
+    currentStr = currentStr.replace(regex, str => str.toUpperCase());
   }
   return currentStr;
 };
@@ -120,7 +120,7 @@ export const decodeHtmlEntities = str => {
   if (!str) {
     return str;
   }
-  const translate_re = /&(nbsp|amp|quot|lt|gt|apos);/g;
+  const translate_re = /&(nbsp|amp|quot|lt|gt|apos|trade);/g;
   const translate = {
     nbsp: ' ',
     amp: '&',
@@ -128,6 +128,7 @@ export const decodeHtmlEntities = str => {
     lt: '<',
     gt: '>',
     apos: '\'',
+    trade: '™',
   };
   return str
     // Newline tags

@@ -244,17 +244,23 @@
 		"The stomach glorps and gurgles as it tries to work you into slop.")
 
 /mob/living/simple_mob/Bumped(var/atom/movable/AM, yes)
-	if(ismob(AM))
-		var/mob/tmob = AM
-		if(will_eat(tmob) && !istype(tmob, type) && prob(vore_bump_chance) && !ckey) //check if they decide to eat. Includes sanity check to prevent cannibalism.
-			if(tmob.canmove && prob(vore_pounce_chance)) //if they'd pounce for other noms, pounce for these too, otherwise still try and eat them if they hold still
-				tmob.Weaken(5)
-			tmob.visible_message("<span class='danger'>\the [src] [vore_bump_emote] \the [tmob]!</span>!")
-			set_AI_busy(TRUE)
+	if(tryBumpNom(AM))
+		return
+	..()
+
+/mob/living/simple_mob/proc/tryBumpNom(var/mob/tmob)
+	//returns TRUE if we actually start an attempt to bumpnom, FALSE if checks fail or the random bump nom chance fails
+	if(istype(tmob) && will_eat(tmob) && !istype(tmob, type) && prob(vore_bump_chance) && !ckey) //check if they decide to eat. Includes sanity check to prevent cannibalism.
+		if(tmob.canmove && prob(vore_pounce_chance)) //if they'd pounce for other noms, pounce for these too, otherwise still try and eat them if they hold still
+			tmob.Weaken(5)
+		tmob.visible_message("<span class='danger'>\the [src] [vore_bump_emote] \the [tmob]!</span>!")
+		set_AI_busy(TRUE)
+		spawn()
 			animal_nom(tmob)
 			update_icon()
 			set_AI_busy(FALSE)
-	..()
+		return TRUE
+	return FALSE
 
 // Checks to see if mob doesn't like this kind of turf
 /mob/living/simple_mob/IMove(newloc)

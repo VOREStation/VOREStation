@@ -29,8 +29,17 @@ $color-separator: colors.$primary !default;
   }
 }
 
+.Section--flex {
+  display: flex;
+  flex-flow: column;
+}
+
+.Section--flex .Section__content {
+  overflow: auto;
+  flex-grow: 1;
+}
+
 .Section__title {
-  position: relative;
   padding: 0.5em;
   border-bottom: base.em(2px) solid $color-separator;
 }
@@ -57,8 +66,22 @@ $color-separator: colors.$primary !default;
   height: 100%;
 }
 
+.Section--scrollable .Section__content {
+  overflow-y: auto;
+  height: 100%;
+  overflow-x: hidden;
+}
+
 .Section--fill .Section__content {
   flex-grow: 1;
+}
+
+.Section__content--noTopPadding {
+  padding-top: 0;
+}
+
+.Section__content--stretchContents {
+  height: calc(100% - 3rem);
 }
 
 .Section--level--1 .Section__titleText {

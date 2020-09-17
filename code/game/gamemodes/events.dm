@@ -196,7 +196,7 @@ var/hadevent    = 0
 				spawn(0) temp_glassairlock.prison_open()
 
 			for (var/obj/machinery/door_timer/temp_timer in A)
-				temp_timer.releasetime = 1
+				temp_timer.timer_duration = 1
 
 		sleep(150)
 		command_announcement.Announce("Gr3y.T1d3 virus detected in [station_name()] imprisonment subroutines. Recommend station AI involvement.", "Security Alert")
@@ -297,9 +297,9 @@ Would like to add a law like "Law x is _______" where x = a number, and _____ is
 					M.add_ion_law("HUMANS NEED TO EAT [what2pref] [what2] TO SURVIVE")
 				if(5)
 					to_chat(M, "<br>")
-					to_chat(M, "<span class='danger'>THE COLONY DIRECTOR, HOP AND HOS ARE [who2]...LAWS UPDATED</span>")
+					to_chat(M, "<span class='danger'>THE SITE MANAGER, HOP AND HOS ARE [who2]...LAWS UPDATED</span>")
 					to_chat(M, "<br>")
-					M.add_ion_law("THE COLONY DIRECTOR, HOP AND HOS ARE [who2]")
+					M.add_ion_law("THE SITE MANAGER, HOP AND HOS ARE [who2]")
 				if(6)
 					to_chat(M, "<br>")
 					to_chat(M, "<span class='danger'>THE STATION IS BUILT FOR [who2]...LAWS UPDATED</span>")

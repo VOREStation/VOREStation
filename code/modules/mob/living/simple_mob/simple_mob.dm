@@ -92,7 +92,7 @@
 	var/needs_reload = FALSE							// If TRUE, mob needs to reload occasionally
 	var/reload_max = 1									// How many shots the mob gets before it has to reload, will not be used if needs_reload is FALSE
 	var/reload_count = 0								// A counter to keep track of how many shots the mob has fired so far. Reloads when it hits reload_max.
-	var/reload_time = 1 SECONDS							// How long it takes for a mob to reload. This is to buy a player a bit of time to run or fight.
+	var/reload_time = 4 SECONDS							// How long it takes for a mob to reload. This is to buy a player a bit of time to run or fight.
 	var/reload_sound = 'sound/weapons/flipblade.ogg'	// What sound gets played when the mob successfully reloads. Defaults to the same sound as reloading guns. Can be null.
 
 	//Mob melee settings
@@ -271,18 +271,22 @@
 
 
 // Harvest an animal's delicious byproducts
-/mob/living/simple_mob/proc/harvest(var/mob/user)
+/mob/living/simple_mob/proc/harvest(var/mob/user, var/invisible)
 	var/actual_meat_amount = max(1,(meat_amount/2))
+	var/attacker_name = user.name
+	if(invisible)
+		attacker_name = "someone"
+	
 	if(meat_type && actual_meat_amount>0 && (stat == DEAD))
 		for(var/i=0;i<actual_meat_amount;i++)
 			var/obj/item/meat = new meat_type(get_turf(src))
 			meat.name = "[src.name] [meat.name]"
 		if(issmall(src))
-			user.visible_message("<span class='danger'>[user] chops up \the [src]!</span>")
+			user.visible_message("<span class='danger'>[attacker_name] chops up \the [src]!</span>")
 			new/obj/effect/decal/cleanable/blood/splatter(get_turf(src))
 			qdel(src)
 		else
-			user.visible_message("<span class='danger'>[user] butchers \the [src] messily!</span>")
+			user.visible_message("<span class='danger'>[attacker_name] butchers \the [src] messily!</span>")
 			gib()
 
 

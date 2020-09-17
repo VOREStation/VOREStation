@@ -243,7 +243,9 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		icon_key += "[rgb(eyes.eye_colour[1], eyes.eye_colour[2], eyes.eye_colour[3])]"
 	else
 		icon_key += "[r_eyes], [g_eyes], [b_eyes]"
-
+	var/obj/item/organ/external/head/head = organs_by_name[BP_HEAD]
+	if(head)
+		icon_key += "[head.eye_icon]"
 	for(var/organ_tag in species.has_limbs)
 		var/obj/item/organ/external/part = organs_by_name[organ_tag]
 		if(isnull(part) || part.is_stump() || part.is_hidden_by_tail()) //VOREStation Edit allowing tails to prevent bodyparts rendering, granting more spriter freedom for taur/digitigrade stuff.
@@ -281,7 +283,6 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 				icon_key += "_t" //VOREStation Edit.
 
 	icon_key = "[icon_key][husk ? 1 : 0][fat ? 1 : 0][hulk ? 1 : 0][skeleton ? 1 : 0]"
-
 	var/icon/base_icon
 	if(human_icon_cache[icon_key])
 		base_icon = human_icon_cache[icon_key]
@@ -499,6 +500,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 	var/image/eyes_image = image(eyes_icon)
 	eyes_image.plane = PLANE_LIGHTING_ABOVE
+	eyes_image.appearance_flags = appearance_flags
 
 	overlays_standing[EYES_LAYER] = eyes_image
 	apply_layer(EYES_LAYER)

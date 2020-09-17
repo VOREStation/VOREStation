@@ -11,7 +11,7 @@
 	permeability_coefficient = 0.01
 	siemens_coefficient = 0.9
 	var/gas_filter_strength = 1			//For gas mask filters
-	var/list/filtered_gases = list("phoron", "sleeping_agent")
+	var/list/filtered_gases = list("phoron", "nitrous_oxide")
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 75, rad = 0)
 
 /obj/item/clothing/mask/gas/filter_air(datum/gas_mixture/air)
@@ -42,6 +42,23 @@
 	w_class = ITEMSIZE_SMALL
 	armor = list(melee = 10, bullet = 10, laser = 10, energy = 0, bomb = 0, bio = 55, rad = 0)
 
+//Turn it into a hailer mask
+/obj/item/clothing/mask/gas/half/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/device/hailer))
+		playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
+		user.drop_item(src)
+		var/obj/item/clothing/mask/gas/sechailer/N = new /obj/item/clothing/mask/gas/sechailer(src.loc)
+		N.fingerprints = src.fingerprints
+		N.fingerprintshidden = src.fingerprintshidden
+		N.fingerprintslast = src.fingerprintslast
+		N.suit_fibers = src.suit_fibers
+		N.hailer = I
+		I.loc = N
+		if(!isturf(N.loc))
+			user.put_in_hands(N)
+		qdel(src)
+	..()
+
 //Plague Dr suit can be found in clothing/suits/bio.dm
 /obj/item/clothing/mask/gas/plaguedoctor
 	name = "plague doctor mask"
@@ -65,7 +82,7 @@
 	flags = PHORONGUARD
 	item_flags = BLOCK_GAS_SMOKE_EFFECT | AIRTIGHT
 	species_restricted = list(SPECIES_VOX)
-	filtered_gases = list("oxygen", "sleeping_agent")
+	filtered_gases = list("oxygen", "nitrous_oxide")
 	var/mask_open = FALSE	// Controls if the Vox can eat through this mask
 	action_button_name = "Toggle Feeding Port"
 
@@ -92,7 +109,7 @@
 	//body_parts_covered = 0
 	species_restricted = list(SPECIES_ZADDAT)
 	flags_inv = HIDEEARS //semi-transparent
-	filtered_gases = list("phoron", "nitrogen", "sleeping_agent")
+	filtered_gases = list("phoron", "nitrogen", "nitrous_oxide")
 
 /obj/item/clothing/mask/gas/syndicate
 	name = "tactical mask"

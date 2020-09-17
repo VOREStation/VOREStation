@@ -60,6 +60,7 @@
 /area/surface/outside
 	ambience = AMBIENCE_SIF
 	always_unpowered = TRUE
+	flags = AREA_FLAG_IS_NOT_PERSISTENT
 
 // The area near the outpost, so POIs don't show up right next to the outpost.
 /area/surface/outside/plains/outpost
@@ -108,13 +109,13 @@
 	icon_state = "bluenew"
 
 /area/surface/outside/river/faxalven
-	name = "Faxälven River"
+	name = "Faxï¿½lven River"
 
 /area/surface/outside/river/indalsalven
-	name = "Indalsälven River"
+	name = "Indalsï¿½lven River"
 
 /area/surface/outside/river/svartan
-	name = "Svartån River"
+	name = "Svartï¿½n River"
 
 /area/surface/outside/lake/romsele
 	name = "Romsele Lake"
@@ -123,7 +124,7 @@
 
 
 /area/surface/cave
-	flags = RAD_SHIELDED
+	flags = RAD_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT
 	always_unpowered = TRUE
 
 /area/surface/cave
@@ -182,6 +183,7 @@
 /area/surface/outpost/mining_main/gen_room
 	name = "North Mining Generator Room"
 	icon_state = "substation"
+	ambience = AMBIENCE_SUBSTATION
 
 /area/surface/outpost/mining_main/emergencystorage
 	name = "\improper North Mining Emergency Storage"
@@ -211,6 +213,7 @@
 	name = "\improper Xenoresearch SMES Maintenance"
 	icon_state = "substation"
 	sound_env = SMALL_ENCLOSED
+	ambience = AMBIENCE_SUBSTATION
 
 /area/surface/outpost/research/xenoresearch/emergencystorage
 	name = "\improper Xenoresearch Emergency Storage"
@@ -247,6 +250,7 @@
 	name = "\improper Xenoarcheology SMES Maintenance"
 	icon_state = "substation"
 	sound_env = SMALL_ENCLOSED
+	ambience = AMBIENCE_SUBSTATION
 
 /area/surface/outpost/research/xenoarcheology/emergencystorage
 	name = "\improper Xenoarcheology Emergency Storage"
@@ -291,7 +295,7 @@
 /area/surface/outpost/main/gen_room
 	name = "\improper Main Outpost SMES"
 	icon_state = "substation"
-	ambience = AMBIENCE_ENGINEERING
+	ambience = AMBIENCE_SUBSTATION
 
 /area/surface/outpost/main/gen_room/smes
 	name = "\improper Main Outpost Dorm SMES"
@@ -377,6 +381,7 @@
 /area/outpost/mining_station/gen_station
 	name = "Mining Station Generator Room"
 	icon_state = "substation"
+	ambience = AMBIENCE_SUBSTATION
 
 /area/outpost/mining_station/crew_area
 	name = "Mining Station Crew Area"
@@ -398,7 +403,7 @@
 	icon_state = "shuttle"
 	requires_power = 0
 	dynamic_lighting = 1
-	flags = RAD_SHIELDED
+	flags = RAD_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT
 
 /area/turbolift/start
 	name = "\improper Turbolift Start"
@@ -608,6 +613,7 @@
 	name = "\improper First Deck Hangar"
 	icon_state = "hangar"
 	sound_env = LARGE_ENCLOSED
+	ambience = AMBIENCE_HANGAR
 
 /area/hangar/one
 	name = "\improper Hangar One"
@@ -753,11 +759,13 @@
 	name = "\improper Command - HoP's Office"
 	icon_state = "head_quarters"
 	holomap_color = HOLOMAP_AREACOLOR_COMMAND
+	flags = AREA_FLAG_IS_NOT_PERSISTENT
 
 /area/crew_quarters/heads/sc/hor
 	name = "\improper Research - RD's Office"
 	icon_state = "head_quarters"
 	holomap_color = HOLOMAP_AREACOLOR_SCIENCE
+	flags = AREA_FLAG_IS_NOT_PERSISTENT
 
 /area/crew_quarters/heads/sc/chief
 	name = "\improper Engineering - CE's Office"
@@ -773,6 +781,7 @@
 	name = "\improper Medbay - CMO's Office"
 	icon_state = "head_quarters"
 	holomap_color = HOLOMAP_AREACOLOR_MEDICAL
+	flags = AREA_FLAG_IS_NOT_PERSISTENT
 
 /area/engineering/engineer_eva
 	name = "\improper Engineering EVA"
@@ -1052,6 +1061,7 @@ area/crew_quarters/heads/sc/hop/quarters
 	name = "\improper Third Deck Plating"
 	dynamic_lighting = 0
 	ambience = AMBIENCE_SPACE
+	flags = AREA_FLAG_IS_NOT_PERSISTENT
 
 // Shuttles
 

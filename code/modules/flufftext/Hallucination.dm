@@ -112,7 +112,7 @@ mob/living/carbon/proc/handle_hallucinations()
 				//Strange audio
 				//to_chat(src, "Strange Audio")
 				switch(rand(1,12))
-					if(1) src << 'sound/machines/airlock.ogg'
+					if(1) src << 'sound/machines/door/old_airlock.ogg'
 					if(2)
 						if(prob(50))src << 'sound/effects/Explosion1.ogg'
 						else src << 'sound/effects/Explosion2.ogg'
@@ -121,7 +121,7 @@ mob/living/carbon/proc/handle_hallucinations()
 					if(5) src << 'sound/effects/Glassbr2.ogg'
 					if(6) src << 'sound/effects/Glassbr3.ogg'
 					if(7) src << 'sound/machines/twobeep.ogg'
-					if(8) src << 'sound/machines/windowdoor.ogg'
+					if(8) src << 'sound/machines/door/windowdoor.ogg'
 					if(9)
 						//To make it more realistic, I added two gunshots (enough to kill)
 						src << 'sound/weapons/Gunshot1.ogg'
@@ -168,12 +168,12 @@ mob/living/carbon/proc/handle_hallucinations()
 			if(71 to 72)
 				//Fake death
 //				src.sleeping_willingly = 1
-				src.sleeping = 20
+				SetSleeping(20)
 				hal_crit = 1
 				hal_screwyhud = 1
 				spawn(rand(50,100))
 //					src.sleeping_willingly = 0
-					src.sleeping = 0
+					SetSleeping(0)
 					hal_crit = 0
 					hal_screwyhud = 0
 	handling_hal = 0
@@ -189,7 +189,7 @@ mob/living/carbon/proc/handle_hallucinations()
 
 		var/possible_txt = list("Launch Escape Pods","Self-Destruct Sequence","\[Swipe ID\]","De-Monkify",\
 		"Reticulate Splines","Plasma","Open Valve","Lockdown","Nerf Airflow","Kill Traitor","Nihilism",\
-		"OBJECTION!","Arrest Stephen Bowman","Engage Anti-Trenna Defenses","Increase Colony Director IQ","Retrieve Arms",\
+		"OBJECTION!","Arrest Stephen Bowman","Engage Anti-Trenna Defenses","Increase Site Manager IQ","Retrieve Arms",\
 		"Play Charades","Oxygen","Inject BeAcOs","Ninja Lizards","Limit Break","Build Sentry")
 
 		if(mid_txts)

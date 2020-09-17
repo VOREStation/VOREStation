@@ -13,7 +13,7 @@
 	circuit = /obj/item/weapon/circuitboard/rcon_console
 	req_one_access = list(access_engine)
 	var/current_tag = null
-	var/datum/nano_module/rcon/rcon
+	var/datum/tgui_module/rcon/rcon
 
 /obj/machinery/computer/rcon/New()
 	..()
@@ -29,13 +29,12 @@
 // Description: Opens UI of this machine.
 /obj/machinery/computer/rcon/attack_hand(var/mob/user as mob)
 	..()
-	ui_interact(user)
+	tgui_interact(user)
 
 // Proc: ui_interact()
-// Parameters: 4 (standard NanoUI parameters)
-// Description: Uses dark magic (NanoUI) to render this machine's UI
-/obj/machinery/computer/rcon/ui_interact(mob/user, ui_key = "rcon", var/datum/nanoui/ui = null, var/force_open = 1)
-	rcon.ui_interact(user, ui_key, ui, force_open)
+// Description: Uses dark magic (TGUI) to render this machine's UI
+/obj/machinery/computer/rcon/tgui_interact(mob/user, datum/tgui/ui)
+	rcon.tgui_interact(user, ui)
 
 /obj/machinery/computer/rcon/update_icon()
 	..()

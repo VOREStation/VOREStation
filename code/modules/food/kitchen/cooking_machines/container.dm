@@ -145,7 +145,7 @@
 /obj/item/weapon/reagent_containers/cooking_container/oven
 	name = "oven dish"
 	shortname = "shelf"
-	desc = "Put ingredients in this; designed for use with an oven. Warranty void if used incorrectly."
+	desc = "Put ingredients in this; designed for use with an oven. Warranty void if used incorrectly. Alt click to remove contents."
 	icon_state = "ovendish"
 	max_space = 30
 	max_reagents = 120
@@ -162,11 +162,11 @@
 /obj/item/weapon/reagent_containers/cooking_container/fryer
 	name = "fryer basket"
 	shortname = "basket"
-	desc = "Put ingredients in this; designed for use with a deep fryer. Warranty void if used incorrectly."
+	desc = "Put ingredients in this; designed for use with a deep fryer. Warranty void if used incorrectly. Alt click to remove contents."
 	icon_state = "basket"
 	
 /obj/item/weapon/reagent_containers/cooking_container/grill
 	name = "grill rack"
 	shortname = "rack"
-	desc = "Put ingredients 'in'/on this; designed for use with a grill. Warranty void if used incorrectly."
+	desc = "Put ingredients 'in'/on this; designed for use with a grill. Warranty void if used incorrectly. Alt click to remove contents."
 	icon_state = "grillrack"

@@ -142,15 +142,15 @@
 			add_attack_logs(D,M,"Ran over with [src.name]")
 
 
-/obj/vehicle/train/engine/quadbike/RunOver(var/mob/living/carbon/human/H)
+/obj/vehicle/train/engine/quadbike/RunOver(var/mob/living/M)
 	..()
 	var/list/throw_dirs = list(1, 2, 4, 8, 5, 6, 9, 10)
 	if(!emagged)
 		throw_dirs -= dir
 		if(tow)
-			throw_dirs -= get_dir(H, tow) //Don't throw it at the trailer either.
-	var/turf/T = get_step(H, pick(throw_dirs))
-	H.throw_at(T, 1, 1, src)
+			throw_dirs -= get_dir(M, tow) //Don't throw it at the trailer either.
+	var/turf/T = get_step(M, pick(throw_dirs))
+	M.throw_at(T, 1, 1, src)
 
 /*
  * Trailer bits and bobs.

@@ -418,6 +418,9 @@
 	var/mob/living/character = create_character(T)	//creates the human and transfers vars and mind
 	character = job_master.EquipRank(character, rank, 1)					//equips the human
 	UpdateFactionList(character)
+	if(character && character.client)
+		var/obj/screen/splash/Spl = new(character.client, TRUE)
+		Spl.Fade(TRUE)
 
 	var/datum/job/J = SSjob.get_job(rank)
 
@@ -582,7 +585,6 @@
 	// Do the initial caching of the player's body icons.
 	new_character.force_update_limbs()
 	new_character.update_icons_body()
-	new_character.update_eyes()
 
 	new_character.key = key		//Manually transfer the key to log them in
 

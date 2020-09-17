@@ -82,10 +82,13 @@
 
 /obj/machinery/computer/aifixer/tgui_act(action, params)
 	if(..())
-		return
+		return TRUE
 	if(!occupier)
 		restoring = FALSE
-
+	
+	if(action)
+		playsound(src, "terminal_type", 50, 1)
+	
 	switch(action)
 		if("PRG_beginReconstruction")
 			if(occupier?.health < 100)

@@ -33,7 +33,7 @@
 					if(FD.blocked)
 						FD.visible_message("<span class='danger'>\The [chassis] begins prying on \the [FD]!</span>")
 						if(do_after(chassis.occupant,10 SECONDS,FD))
-							playsound(FD, 'sound/machines/airlock_creaking.ogg', 100, 1)
+							playsound(FD, 'sound/machines/door/airlock_creaking.ogg', 100, 1)
 							FD.blocked = 0
 							FD.update_icon()
 							FD.open(1)
@@ -41,7 +41,7 @@
 					else if(FD.density)
 						FD.visible_message("<span class='warning'>\The [chassis] begins forcing \the [FD] open!</span>")
 						if(do_after(chassis.occupant, 5 SECONDS,FD))
-							playsound(FD, 'sound/machines/airlock_creaking.ogg', 100, 1)
+							playsound(FD, 'sound/machines/door/airlock_creaking.ogg', 100, 1)
 							FD.visible_message("<span class='danger'>\The [chassis] forces \the [FD] open!</span>")
 							FD.open(1)
 					else
@@ -57,7 +57,7 @@
 							if(do_after(chassis.occupant, 15 SECONDS,AD) && chassis.Adjacent(AD))
 								AD.welded = FALSE
 								AD.update_icon()
-								playsound(AD, 'sound/machines/airlock_creaking.ogg', 100, 1)
+								playsound(AD, 'sound/machines/door/airlock_creaking.ogg', 100, 1)
 								AD.visible_message("<span class='danger'>\The [chassis] tears \the [AD] open!</span>")
 						if(!AD.welded)
 							if(density)
