@@ -42,15 +42,16 @@
 /obj/item/device/pda/mime
 	default_cartridge = /obj/item/weapon/cartridge/mime
 	icon_state = "pda-mime"
-	message_silent = 1
-	news_silent = 1
-	ttone = "silence"
-	newstone = "silence"
+
+/obj/item/device/pda/mime/New()
+	. = ..()
+	var/datum/data/pda/app/M = find_program(/datum/data/pda/app/messenger)
+	if(M)
+		M.notify_silent = TRUE
 
 /obj/item/device/pda/heads
 	default_cartridge = /obj/item/weapon/cartridge/head
 	icon_state = "pda-h"
-	news_silent = 1
 
 /obj/item/device/pda/heads/hop
 	default_cartridge = /obj/item/weapon/cartridge/hop
@@ -125,14 +126,18 @@
 	default_cartridge = /obj/item/weapon/cartridge/service
 	icon_state = "pda-libb"
 	desc = "A portable microcomputer by Thinktronic Systems, LTD. This is model is a WGW-11 series e-reader."
-	note = "Congratulations, your station has chosen the Thinktronic 5290 WGW-11 Series E-reader and Personal Data Assistant!"
-	message_silent = 1 //Quiet in the library!
-	news_silent = 0		// Librarian is above the law!  (That and alt job title is reporter)
+	model_name = "Thinktronic 5290 WGW-11 Series E-reader and Personal Data Assistant"
+
+/obj/item/device/pda/librarian/New()
+	. = ..()
+	var/datum/data/pda/app/M = find_program(/datum/data/pda/app/messenger)
+	if(M)
+		M.notify_silent = TRUE //Quiet in the library!
 
 /obj/item/device/pda/clear
 	icon_state = "pda-transp"
 	desc = "A portable microcomputer by Thinktronic Systems, LTD. This is model is a special edition with a transparent case."
-	note = "Congratulations, you have chosen the Thinktronic 5230 Personal Data Assistant Deluxe Special Max Turbo Limited Edition!"
+	model_name = "Thinktronic 5230 Personal Data Assistant Deluxe Special Max Turbo Limited Edition"
 
 /obj/item/device/pda/chef
 	default_cartridge = /obj/item/weapon/cartridge/service
@@ -159,53 +164,12 @@
 /obj/item/device/pda/multicaster
 	ownjob = "Relay"
 	icon_state = "NONE"
-	ttone = "data"
 	detonate = 0
-	news_silent = 1
 	spam_proof = TRUE // Spam messages don't actually work and its difficult to disable these.
+	programs = list(
+		new/datum/data/pda/app/messenger/multicast
+	)
 	var/list/cartridges_to_send_to = list()
-
-// This is what actually mirrors the message,
-/obj/item/device/pda/multicaster/new_message(var/sending_unit, var/sender, var/sender_job, var/message)
-	if(sender)
-		var/list/targets = list()
-		for(var/obj/item/device/pda/pda in PDAs)
-			if(pda.cartridge && pda.owner && is_type_in_list(pda.cartridge, cartridges_to_send_to))
-				targets |= pda
-		if(targets.len)
-			for(var/obj/item/device/pda/target in targets)
-				create_message(target, sender, sender_job, message)
-
-// This has so much copypasta,
-/obj/item/device/pda/multicaster/create_message(var/obj/item/device/pda/P, var/original_sender, var/original_job, var/t)
-	t = sanitize(t, MAX_MESSAGE_LEN, 0)
-	t = replace_characters(t, list("&#34;" = "\""))
-	if (!t || !istype(P))
-		return
-
-	if (isnull(P)||P.toff || toff)
-		return
-
-	last_text = world.time
-	var/datum/reception/reception = get_reception(src, P, t)
-	t = reception.message
-
-	if(reception.message_server && (reception.telecomms_reception & TELECOMMS_RECEPTION_SENDER)) // only send the message if it's stable,
-		if(reception.telecomms_reception & TELECOMMS_RECEPTION_RECEIVER == 0) // Does our recipient have a broadcaster on their level?,
-			return
-		var/send_result = reception.message_server.send_pda_message("[P.owner]","[owner]","[t]")
-		if (send_result)
-			return
-
-		P.tnote.Add(list(list("sent" = 0, "owner" = "[owner]", "job" = "[ownjob]", "message" = "[t]", "target" = "\ref[src]")))
-
-		if(!P.conversations.Find("\ref[src]"))
-			P.conversations.Add("\ref[src]")
-
-		P.new_message(src, "[original_sender] \[Relayed\]", original_job, t, 0)
-
-	else
-		return
 
 /obj/item/device/pda/multicaster/command/New()
 	..()

@@ -66,8 +66,10 @@
 /datum/data/pda/app/signaller/update_ui(mob/user as mob, list/data)
 	if(pda.cartridge && istype(pda.cartridge.radio, /obj/item/radio/integrated/signal))
 		var/obj/item/radio/integrated/signal/R = pda.cartridge.radio
-		data["signal_freq"] = format_frequency(R.frequency)
-		data["signal_code"] = R.code
+		data["frequency"] = R.frequency
+		data["minFrequency"] = RADIO_LOW_FREQ
+		data["maxFrequency"] = RADIO_HIGH_FREQ
+		data["code"] = R.code
 
 /datum/data/pda/app/signaller/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
@@ -76,19 +78,23 @@
 		var/obj/item/radio/integrated/signal/R = pda.cartridge.radio
 
 		switch(action)
-			if("Send Signal")
+			if("signal")
 				spawn(0)
 					R.send_signal("ACTIVATE")
-
-			if("Signal Frequency")
-				var/new_frequency = sanitize_frequency(R.frequency + text2num(params["sfreq"]))
-				R.set_frequency(new_frequency)
-
-			if("Signal Code")
-				R.code += text2num(params["scode"])
-				R.code = round(R.code)
-				R.code = min(100, R.code)
-				R.code = max(1, R.code)
+			if("freq")
+				var/frequency = unformat_frequency(params["freq"])
+				frequency = sanitize_frequency(frequency, RADIO_LOW_FREQ, RADIO_HIGH_FREQ)
+				R.set_frequency(frequency)
+				. = TRUE
+			if("code")
+				R.code = clamp(round(text2num(params["code"])), 1, 100)
+				. = TRUE
+			if("reset")
+				if(params["reset"] == "freq")
+					R.set_frequency(initial(R.frequency))
+				else
+					R.code = initial(R.code)
+				. = TRUE
 
 /datum/data/pda/app/power
 	name = "Power Monitor"
@@ -207,110 +213,6 @@
 		if(E && (E.fields["name"] == R.fields["name"] || E.fields["id"] == R.fields["id"]))
 			security_records = E
 			break
-
-/datum/data/pda/app/secbot_control
-	name = "Security Bot Access"
-	icon = "rss"
-	template = "pda_secbot"
-	category = "Security"
-
-/datum/data/pda/app/secbot_control/update_ui(mob/user as mob, list/data)
-	var/botsData[0]
-	var/beepskyData[0]
-	if(pda.cartridge && istype(pda.cartridge.radio, /obj/item/radio/integrated/beepsky))
-		var/obj/item/radio/integrated/beepsky/SC = pda.cartridge.radio
-		beepskyData["active"] = SC.active ? sanitize(SC.active.name) : null
-		has_back = SC.active ? 1 : 0
-		if(SC.active && !isnull(SC.botstatus))
-			var/area/loca = SC.botstatus["loca"]
-			var/loca_name = sanitize(loca.name)
-			beepskyData["botstatus"] = list("loca" = loca_name, "mode" = SC.botstatus["mode"])
-		else
-			beepskyData["botstatus"] = list("loca" = null, "mode" = -1)
-		var/botsCount=0
-		if(SC.botlist && SC.botlist.len)
-			for(var/mob/living/bot/B in SC.botlist)
-				botsCount++
-				if(B.loc)
-					botsData[++botsData.len] = list("Name" = sanitize(B.name), "Location" = sanitize(B.loc.loc.name), "ref" = "\ref[B]")
-
-		if(!botsData.len)
-			botsData[++botsData.len] = list("Name" = "No bots found", "Location" = "Invalid", "ref"= null)
-
-		beepskyData["bots"] = botsData
-		beepskyData["count"] = botsCount
-
-	else
-		beepskyData["active"] = 0
-		botsData[++botsData.len] = list("Name" = "No bots found", "Location" = "Invalid", "ref"= null)
-		beepskyData["botstatus"] = list("loca" = null, "mode" = null)
-		beepskyData["bots"] = botsData
-		beepskyData["count"] = 0
-		has_back = 0
-
-	data["beepsky"] = beepskyData
-
-/datum/data/pda/app/secbot_control/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
-	if(..())
-		return TRUE
-	switch(action)
-		if("Back")
-			if(pda.cartridge && istype(pda.cartridge.radio, /obj/item/radio/integrated/beepsky))
-				pda.cartridge.radio.Topic(null, list(radiomenu = "1", op = "botlist"))
-			return TRUE
-
-/datum/data/pda/app/mule_control
-	name = "Delivery Bot Control"
-	icon = "truck"
-	template = "pda_mule"
-	category = "Quartermaster"
-
-/datum/data/pda/app/mule_control/update_ui(mob/user as mob, list/data)
-	var/muleData[0]
-	var/mulebotsData[0]
-	if(pda.cartridge && istype(pda.cartridge.radio, /obj/item/radio/integrated/mule))
-		var/obj/item/radio/integrated/mule/QC = pda.cartridge.radio
-		muleData["active"] = QC.active ? sanitize(QC.active.name) : null
-		has_back = QC.active ? 1 : 0
-		if(QC.active && !isnull(QC.botstatus))
-			var/area/loca = QC.botstatus["loca"]
-			var/loca_name = sanitize(loca.name)
-			muleData["botstatus"] =  list("loca" = loca_name, "mode" = QC.botstatus["mode"],"home"=QC.botstatus["home"],"powr" = QC.botstatus["powr"],"retn" =QC.botstatus["retn"], "pick"=QC.botstatus["pick"], "load" = QC.botstatus["load"], "dest" = sanitize(QC.botstatus["dest"]))
-
-		else
-			muleData["botstatus"] = list("loca" = null, "mode" = -1,"home"=null,"powr" = null,"retn" =null, "pick"=null, "load" = null, "dest" = null)
-
-
-		var/mulebotsCount=0
-		for(var/mob/living/bot/B in QC.botlist)
-			mulebotsCount++
-			if(B.loc)
-				mulebotsData[++mulebotsData.len] = list("Name" = sanitize(B.name), "Location" = sanitize(B.loc.loc.name), "ref" = "\ref[B]")
-
-		if(!mulebotsData.len)
-			mulebotsData[++mulebotsData.len] = list("Name" = "No bots found", "Location" = "Invalid", "ref"= null)
-
-		muleData["bots"] = mulebotsData
-		muleData["count"] = mulebotsCount
-
-	else
-		muleData["botstatus"] =  list("loca" = null, "mode" = -1,"home"=null,"powr" = null,"retn" =null, "pick"=null, "load" = null, "dest" = null)
-		muleData["active"] = 0
-		mulebotsData[++mulebotsData.len] = list("Name" = "No bots found", "Location" = "Invalid", "ref"= null)
-		muleData["bots"] = mulebotsData
-		muleData["count"] = 0
-		has_back = 0
-
-	data["mulebot"] = muleData
-
-/datum/data/pda/app/mule_control/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
-	if(..())
-		return TRUE
-	switch(action)
-		if("Back")
-			if(pda.cartridge && istype(pda.cartridge.radio, /obj/item/radio/integrated/mule))
-				pda.cartridge.radio.Topic(null, list(radiomenu = "1", op = "botlist"))
-			return TRUE
 
 /datum/data/pda/app/supply
 	name = "Supply Records"

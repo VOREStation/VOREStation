@@ -107,12 +107,7 @@ var/list/civilian_cartridges = list(
 	name = "\improper R.O.B.U.S.T. cartridge"
 	icon_state = "cart-s"
 	programs = list(
-		new/datum/data/pda/app/crew_records/security,
-		new/datum/data/pda/app/secbot_control)
-
-/obj/item/weapon/cartridge/security/Initialize()
-	radio = new /obj/item/radio/integrated/beepsky(src)
-	. = ..()
+		new/datum/data/pda/app/crew_records/security)
 
 /obj/item/weapon/cartridge/detective
 	name = "\improper D.E.T.E.C.T. cartridge"
@@ -177,12 +172,7 @@ var/list/civilian_cartridges = list(
 	desc = "Perfect for the Quartermaster on the go!"
 	icon_state = "cart-q"
 	programs = list(
-		new/datum/data/pda/app/supply,
-		new/datum/data/pda/app/mule_control)
-
-/obj/item/weapon/cartridge/quartermaster/Initialize()
-	radio = new /obj/item/radio/integrated/mule(src)
-	..()
+		new/datum/data/pda/app/supply)
 
 /obj/item/weapon/cartridge/miner
 	name = "\improper Drill-Jockey 4.5 cartridge"
@@ -203,26 +193,16 @@ var/list/civilian_cartridges = list(
 		new/datum/data/pda/app/janitor,
 
 		new/datum/data/pda/app/supply,
-		new/datum/data/pda/app/mule_control,
 
 		new/datum/data/pda/app/status_display)
-
-/obj/item/weapon/cartridge/hop/Initialize()
-	radio = new /obj/item/radio/integrated/mule(src)
-	..()
 
 /obj/item/weapon/cartridge/hos
 	name = "\improper R.O.B.U.S.T. DELUXE cartridge"
 	icon_state = "cart-hos"
 	programs = list(
 		new/datum/data/pda/app/crew_records/security,
-		new/datum/data/pda/app/secbot_control,
 
 		new/datum/data/pda/app/status_display)
-
-/obj/item/weapon/cartridge/hos/Initialize()
-	radio = new /obj/item/radio/integrated/beepsky(src)
-	. = ..()
 
 /obj/item/weapon/cartridge/ce
 	name = "\improper Power-On DELUXE cartridge"
@@ -278,7 +258,6 @@ var/list/civilian_cartridges = list(
 		new/datum/data/pda/utility/scanmode/reagent,
 
 		new/datum/data/pda/app/crew_records/security,
-		new/datum/data/pda/app/secbot_control,
 
 		new/datum/data/pda/app/janitor,
 

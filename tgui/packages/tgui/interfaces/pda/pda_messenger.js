@@ -173,7 +173,7 @@ const MessengerList = (props, context) => {
             Ringer: {silent ? "Off" : "On"}
           </Button>
           <Button
-            selected={!toff}
+            color={toff ? "bad" : "green"}
             icon="power-off"
             onClick={() => act("Toggle Messenger")}>
             Messenger: {toff ? "Off" : "On"}
@@ -208,6 +208,10 @@ const MessengerList = (props, context) => {
               <PDAList title="Other PDAs" pdas={pdas} msgAct="Message" />
             </Box>
           )}
+        </Box>
+      ) || (
+        <Box color="bad" mt={2}>
+          Messenger Offline.
         </Box>
       )}
     </Box>

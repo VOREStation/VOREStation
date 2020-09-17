@@ -35,7 +35,11 @@
 	var/list/viables = list()
 
 	for(var/obj/item/device/pda/check_pda in sortAtom(PDAs))
-		if(!check_pda.owner || check_pda.toff || check_pda.hidden || check_pda.spam_proof)
+		if (!check_pda.owner || check_pda == src || check_pda.hidden)
+			continue
+		
+		var/datum/data/pda/app/messenger/M = check_pda.find_program(/datum/data/pda/app/messenger)
+		if(!M || M.toff)
 			continue
 		viables += check_pda
 
@@ -93,7 +97,7 @@
 			message = pick("Luxury watches for Blowout sale prices!",\
 			"Watches, Jewelry & Accessories, Bags & Wallets !",\
 			"Deposit 100$ and get 300$ totally free!",\
-			" 100K NT.|WOWGOLD õnly $89            <HOT>",\
+			" 100K NT.|WOWGOLD ï¿½nly $89            <HOT>",\
 			"We have been filed with a complaint from one of your customers in respect of their business relations with you.",\
 			"We kindly ask you to open the COMPLAINT REPORT (attached) to reply on this complaint..")
 		if(4)
@@ -127,7 +131,8 @@
 
 /datum/event2/event/pda_spam/proc/send_spam(obj/item/device/pda/P, sender, message)
 	last_spam_time = world.time
-	P.spam_message(sender, message)
+	var/datum/data/pda/app/messenger/PM = P.find_program(/datum/data/pda/app/messenger)
+	PM.notify("<b>Message from [sender] (Unknown / spam?), </b>\"[message]\" (Unable to Reply)", 0)
 	if(spam_debug)
 		log_debug("PDA Spam event sent spam to \the [P].")
 

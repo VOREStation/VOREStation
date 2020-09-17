@@ -31,10 +31,10 @@
 				if(pda.pai.loc != pda)
 					pda.pai = null
 				else
-					switch(params["option"])
-						if("1")		// Configure pAI device
+					switch(text2num(params["option"]))
+						if(1)		// Configure pAI device
 							pda.pai.attack_self(usr)
-						if("2")		// Eject pAI device
+						if(2)		// Eject pAI device
 							var/turf/T = get_turf_or_move(pda.loc)
 							if(T)
 								pda.pai.loc = T

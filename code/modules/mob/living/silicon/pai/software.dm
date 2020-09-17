@@ -108,6 +108,7 @@ var/global/list/default_pai_software = list()
 			S.toggle(src)
 		else
 			ui_interact(src, ui_key = soft)
+			S.tgui_interact(src)
 		return 1
 
 	else if(href_list["stopic"])

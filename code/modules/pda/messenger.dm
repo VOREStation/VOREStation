@@ -107,6 +107,20 @@
 		if("Back")
 			active_conversation = null
 
+// Specifically here for the chat message.
+/datum/data/pda/app/messenger/Topic(href, href_list)
+	if(!pda.can_use())
+		return
+	unnotify()
+
+	switch(href_list["choice"])
+		if("Message")
+			var/obj/item/device/pda/P = locate(href_list["target"])
+			create_message(usr, P)
+			if(href_list["target"] in conversations)            // Need to make sure the message went through, if not welp.
+				active_conversation = href_list["target"]
+	
+
 /datum/data/pda/app/messenger/proc/create_message(var/mob/living/U, var/obj/item/device/pda/P)
 	var/t = input(U, "Please enter message", name, null) as text|null
 	if(!t)
@@ -160,16 +174,12 @@
 			to_chat(U, "ERROR: Cannot reach recipient.")
 			return
 		useMS.send_pda_message("[P.owner]","[pda.owner]","[t]")
-		tnote.Add(list(list("sent" = 1, "owner" = "[P.owner]", "job" = "[P.ownjob]", "message" = "[t]", "target" = "\ref[P]")))
-		PM.tnote.Add(list(list("sent" = 0, "owner" = "[pda.owner]", "job" = "[pda.ownjob]", "message" = "[t]", "target" = "\ref[pda]")))
 		pda.investigate_log("<span class='game say'>PDA Message - <span class='name'>[U.key] - [pda.owner]</span> -> <span class='name'>[P.owner]</span>: <span class='message'>[t]</span></span>", "pda")
-		if(!conversations.Find("\ref[P]"))
-			conversations.Add("\ref[P]")
-		if(!PM.conversations.Find("\ref[pda]"))
-			PM.conversations.Add("\ref[pda]")
+
+		receive_message(list("sent" = 1, "owner" = "[P.owner]", "job" = "[P.ownjob]", "message" = "[t]", "target" = "\ref[P]"), "\ref[P]")
+		PM.receive_message(list("sent" = 0, "owner" = "[pda.owner]", "job" = "[pda.ownjob]", "message" = "[t]", "target" = "\ref[pda]"), "\ref[pda]")
 
 		SStgui.update_user_uis(U, P) // Update the sending user's PDA UI so that they can see the new message
-		PM.notify("<b>Message from [pda.owner] ([pda.ownjob]), </b>\"[t]\" (<a href='?src=[REF(PM)];choice=Message;target=\ref[pda]'>Reply</a>)")
 		log_pda("(PDA: [src.name]) sent \"[t]\" to [P.name]", usr)
 	else
 		to_chat(U, "<span class='notice'>ERROR: Messaging server is not responding.</span>")
@@ -203,3 +213,35 @@
 
 /datum/data/pda/app/messenger/proc/can_receive()
 	return pda.owner && !toff && !hidden
+
+/datum/data/pda/app/messenger/proc/receive_message(list/data, ref)
+	tnote.Add(list(data))
+	if(!conversations.Find(ref))
+		conversations.Add(ref)
+	if(!data["sent"])
+		var/owner = data["owner"]
+		var/job = data["job"]
+		var/message = data["message"]
+		notify("<b>Message from [owner] ([job]), </b>\"[message]\" (<a href='?src=\ref[src];choice=Message;target=[ref]'>Reply</a>)")
+
+/datum/data/pda/app/messenger/multicast
+/datum/data/pda/app/messenger/multicast/receive_message(list/data, ref)
+	. = ..()
+	
+	var/obj/item/device/pda/multicaster/M = pda
+	if(!istype(M))
+		return
+
+	var/list/modified_message = data.Copy()
+	modified_message["owner"] = modified_message["owner"] + " \[Relayed]"
+	modified_message["target"] = "\ref[M]"
+
+	var/list/targets = list()
+	for(var/obj/item/device/pda/pda in PDAs)
+		if(pda.cartridge && pda.owner && is_type_in_list(pda.cartridge, M.cartridges_to_send_to))
+			targets |= pda
+	if(targets.len)
+		for(var/obj/item/device/pda/target in targets)
+			var/datum/data/pda/app/messenger/P = target.find_program(/datum/data/pda/app/messenger)
+			if(P)
+				P.receive_message(modified_message, "\ref[M]")

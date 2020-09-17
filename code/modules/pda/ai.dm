@@ -3,7 +3,6 @@
 /obj/item/device/pda/ai
 	icon_state = "NONE"
 	ttone = "data"
-	newstone = "news"
 	detonate = 0
 
 
@@ -90,6 +89,22 @@
 
 /obj/item/device/pda/ai/pai
 	ttone = "assist"
+	var/our_owner = null // Ref to a pAI
+	touch_silent = TRUE
+	programs = list(
+		new/datum/data/pda/app/main_menu,
+		new/datum/data/pda/app/notekeeper,
+		new/datum/data/pda/app/messenger)
+
+/obj/item/device/pda/ai/pai/New(mob/living/silicon/pai/P)
+	if(istype(P))
+		our_owner = REF(P)
+	return ..()
+
+/obj/item/device/pda/ai/pai/tgui_status(mob/living/silicon/pai/user, datum/tgui_state/state)
+	if(!istype(user) || REF(user) != our_owner) // Only allow our pAI to interface with us
+		return STATUS_CLOSE
+	return ..()
 
 /obj/item/device/pda/ai/shell
 	spam_proof = TRUE // Since empty shells get a functional PDA.

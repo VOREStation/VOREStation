@@ -77,6 +77,9 @@
 	add_fingerprint(usr)
 	usr.set_machine(src)
 
+	if(!touch_silent)
+		playsound(src, 'sound/machines/pda_click.ogg', 20)
+
 	. = TRUE
 	switch(action)
 		if("Home") //Go home, largely replaces the old Return
@@ -119,75 +122,3 @@
 	if((honkamt > 0) && (prob(60)))//For clown virus.
 		honkamt--
 		playsound(loc, 'sound/items/bikehorn.ogg', 30, 1)
-	
-
-// Reference only, TODO: Remove
-/obj/item/device/pda/Topic(href, href_list)
-	. = ..()
-	if(.)
-		return
-
-	var/mob/user = usr
-	var/datum/nanoui/ui = SSnanoui.get_open_ui(user, src, "main")
-	var/mob/living/U = usr
-	if(usr.stat == DEAD)
-		return 0
-	if(!can_use()) //Why reinvent the wheel? There's a proc that does exactly that.
-		U.unset_machine()
-		if(ui)
-			ui.close()
-		return 0
-
-	add_fingerprint(U)
-	U.set_machine(src)
-
-	if(href_list["radiomenu"] && !isnull(cartridge) && !isnull(cartridge.radio))
-		cartridge.radio.Topic(href, href_list)
-		return 1
-
-	. = 1
-
-	switch(href_list["choice"])
-		if("Home")//Go home, largely replaces the old Return
-			var/datum/data/pda/app/main_menu/A = find_program(/datum/data/pda/app/main_menu)
-			if(A)
-				start_program(A)
-		if("StartProgram")
-			if(href_list["program"])
-				var/datum/data/pda/app/A = locate(href_list["program"])
-				if(A)
-					start_program(A)
-		if("Eject")//Ejects the cart, only done from hub.
-			if(!isnull(cartridge))
-				var/turf/T = loc
-				if(ismob(T))
-					T = T.loc
-				var/obj/item/weapon/cartridge/C = cartridge
-				C.forceMove(T)
-				if(scanmode in C.programs)
-					scanmode = null
-				if(current_app in C.programs)
-					start_program(find_program(/datum/data/pda/app/main_menu))
-				if(C.radio)
-					C.radio.hostpda = null
-				for(var/datum/data/pda/P in notifying_programs)
-					if(P in C.programs)
-						P.unnotify()
-				cartridge = null
-				update_shortcuts()
-		if("Authenticate")//Checks for ID
-			id_check(usr, 1)
-		if("Retro")
-			retro_mode = !retro_mode
-		if("Ringtone")
-			return set_ringtone()
-		else
-			if(current_app)
-				. = current_app.Topic(href, href_list)
-
-//EXTRA FUNCTIONS===================================
-	if((honkamt > 0) && (prob(60)))//For clown virus.
-		honkamt--
-		playsound(loc, 'sound/items/bikehorn.ogg', 30, 1)
-
-	return // return 1 tells it to refresh the UI in NanoUI

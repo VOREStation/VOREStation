@@ -88,7 +88,7 @@ const PDAHeader = (props, context) => {
             <Button
               color="transparent"
               icon="eject"
-              onClick={() => act("authenticate")}
+              onClick={() => act("Authenticate")}
               content={idLink} />
           </Flex.Item>
         )}
@@ -97,7 +97,7 @@ const PDAHeader = (props, context) => {
             <Button
               color="transparent"
               icon="eject"
-              onClick={() => act("eject")}
+              onClick={() => act("Eject")}
               content={cartridge_name} />
           </Flex.Item>
         )}
@@ -105,7 +105,7 @@ const PDAHeader = (props, context) => {
           <Button
             icon="cog"
             color="transparent"
-            content="Toggle R.E.T.R.O. Mode"
+            content={"Retro Theme"}
             onClick={() => act("Retro")} />
         </Flex.Item>
         <Flex.Item>
@@ -123,10 +123,11 @@ const PDAFooter = (props, context) => {
 
   const {
     app,
+    useRetro,
   } = data;
 
   return (
-    <Box position="fixed" bottom="0%" left="0%" right="0%">
+    <Box position="fixed" bottom="0%" left="0%" right="0%" backgroundColor={useRetro ? "#6f7961" : "#1b1b1b"}>
       <Flex>
         <Flex.Item basis="33%">
           <Button

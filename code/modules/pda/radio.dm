@@ -91,64 +91,6 @@
 	if(radio_controller)
 		radio_controller.add_object(src, control_freq, radio_filter = bot_filter)
 
-/obj/item/radio/integrated/beepsky
-	bot_filter = RADIO_SECBOT
-	bot_type = "secbot"
-
-/obj/item/radio/integrated/mule
-	bot_filter = RADIO_MULEBOT
-	bot_type = "mulebot"
-
-/obj/item/radio/integrated/mule/proc/GetBeaconList()
-	var/list/beaconlist = list()
-	for(var/obj/machinery/navbeacon/N in navbeacons)
-		if(!N.codes["delivery"])
-			continue
-		beaconlist.Add(N.location)
-		beaconlist[N.location] = N
-	return beaconlist
-
-/obj/item/radio/integrated/mule/Topic(href, href_list)
-	..()
-	switch(href_list["op"])
-		if("start")
-			spawn(0)
-				post_signal(control_freq, "command", "start", "active", active, s_filter = RADIO_MULEBOT)
-
-		if("unload")
-			spawn(0)
-				post_signal(control_freq, "command", "unload", "active", active, s_filter = RADIO_MULEBOT)
-
-		if("setdest")
-			var/dest
-			var/list/beaconlist = GetBeaconList()
-			if(LAZYLEN(beaconlist))
-				dest = input("Select Bot Destination", "Mulebot [active.suffix] Interlink", active.target) as null|anything in beaconlist
-			else
-				alert("No destination beacons available.")
-			if(dest)
-				spawn(0)
-					post_signal(control_freq, "command", "target", "active", active, "destination", dest, s_filter = RADIO_MULEBOT)
-
-		if("retoff")
-			spawn(0)
-				post_signal(control_freq, "command", "autoret", "active", active, "value", 0, s_filter = RADIO_MULEBOT)
-
-		if("reton")
-			spawn(0)
-				post_signal(control_freq, "command", "autoret", "active", active, "value", 1, s_filter = RADIO_MULEBOT)
-
-		if("pickoff")
-			spawn(0)
-				post_signal(control_freq, "command", "autopick", "active", active, "value", 0, s_filter = RADIO_MULEBOT)
-
-		if("pickon")
-			spawn(0)
-				post_signal(control_freq, "command", "autopick", "active", active, "value", 1, s_filter = RADIO_MULEBOT)
-
-	spawn(10)
-		post_signal(control_freq, "command", "bot_status", "active", active, s_filter = RADIO_MULEBOT)
-
 /*
  *	Radio Cartridge, essentially a signaler.
  */
