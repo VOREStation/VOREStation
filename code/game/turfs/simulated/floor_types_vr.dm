@@ -46,11 +46,11 @@
 /turf/simulated/floor/gorefloor
 	name = "infected tile"
 	desc = "Slick, sickly-squirming meat has grown in and out of cracks once empty. It pulsates intermittently, and with every beat, blood seeps out of pores."
-	icon_state = "bloodfloor_2"
+	icon_state = "bloodfloor_1"
 	icon = 'icons/goonstation/turf/meatland.dmi'
 
 /turf/simulated/floor/gorefloor2
 	name = "putrid mass"
 	desc = "It is entirely made of sick, gurgling flesh. It is releasing a sickly odour."
-	icon_state = "bloodfloor_4"
+	icon_state = "bloodfloor_2"
 	icon = 'icons/goonstation/turf/meatland.dmi'
