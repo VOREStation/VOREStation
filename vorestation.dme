@@ -3535,6 +3535,7 @@
 #include "code\modules\tgui\modules\atmos_control.dm"
 #include "code\modules\tgui\modules\camera.dm"
 #include "code\modules\tgui\modules\communications.dm"
+#include "code\modules\tgui\modules\crew_manifest.dm"
 #include "code\modules\tgui\modules\crew_monitor.dm"
 #include "code\modules\tgui\modules\law_manager.dm"
 #include "code\modules\tgui\modules\overmap.dm"
