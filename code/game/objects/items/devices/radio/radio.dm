@@ -159,10 +159,10 @@ var/global/list/default_medbay_channels = list(
 		log_runtime(EXCEPTION("Warning: Topic() was improperly called on radio [src] [type], with the track href and \[[href] [json_encode(href_list)]]. Please update the caller to use tgui_act."))
 	. = ..()
 
-/obj/item/device/radio/tgui_interact(mob/user, datum/tgui/ui)
+/obj/item/device/radio/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "Radio", name)
+		ui = new(user, src, "Radio", name, parent_ui)
 		ui.open()
 
 /obj/item/device/radio/tgui_data(mob/user)
