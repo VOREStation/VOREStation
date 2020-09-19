@@ -18,11 +18,14 @@
 		return
 
 	//add the new taste data
-	for(var/taste in newdata)
-		if(taste in data)
-			data[taste] += newdata[taste]
-		else
-			data[taste] = newdata[taste]
+	if(islist(data))
+		for(var/taste in newdata)
+			if(taste in data)
+				data[taste] += newdata[taste]
+			else
+				data[taste] = newdata[taste]
+	else
+		initialize_data(newdata)
 
 	//cull all tastes below 10% of total
 	var/totalFlavor = 0
@@ -676,7 +679,7 @@
 		var/mob/living/carbon/human/H = M
 		if(!H.can_feel_pain())
 			return
-	
+
 	var/effective_dose = (dose * M.species.spice_mod)
 	if((effective_dose < 5) && (dose == metabolism || prob(5)))
 		to_chat(M, "<span class='danger'>Your insides feel uncomfortably hot!</span>")
