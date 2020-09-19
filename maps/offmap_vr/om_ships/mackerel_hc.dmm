@@ -611,13 +611,13 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
-/obj/structure/symbol/gu,
+/obj/structure/symbol/maint,
 /turf/simulated/wall/rshull{
 	can_open = 1
 	},
 /area/shuttle/mackerel_hc)
 "NN" = (
-/obj/structure/symbol/gu,
+/obj/structure/symbol/maint,
 /turf/simulated/wall/rshull{
 	can_open = 1
 	},

@@ -501,7 +501,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_sh)
 "EL" = (
-/obj/structure/symbol/gu,
+/obj/structure/symbol/maint,
 /turf/simulated/wall/rshull{
 	can_open = 1
 	},
@@ -688,7 +688,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
-/obj/structure/symbol/gu,
+/obj/structure/symbol/maint,
 /turf/simulated/wall/rshull{
 	can_open = 1
 	},

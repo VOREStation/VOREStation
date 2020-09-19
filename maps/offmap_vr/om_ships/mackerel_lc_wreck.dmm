@@ -119,7 +119,7 @@
 /obj/structure/railing/grey{
 	dir = 1
 	},
-/obj/random/multiple/corp_crate,
+/obj/random/crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc_wreck)
 "lC" = (
@@ -135,14 +135,13 @@
 /obj/effect/floor_decal/industrial/warning/corner,
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
-	icon_state = "extinguisher_closed";
 	pixel_x = 30
 	},
 /obj/structure/railing/grey,
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/random/multiple/corp_crate,
+/obj/random/crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc_wreck)
 "mf" = (
@@ -368,8 +367,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 8
@@ -413,8 +411,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /turf/simulated/wall/rshull,
 /area/shuttle/mackerel_lc_wreck)
@@ -463,7 +460,6 @@
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
-	icon_state = "extinguisher_closed";
 	pixel_x = -30
 	},
 /obj/structure/railing/grey,
@@ -521,7 +517,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc_wreck)
 "EL" = (
-/obj/structure/symbol/gu,
+/obj/structure/symbol/maint,
 /turf/simulated/wall/rshull{
 	can_open = 1
 	},
@@ -554,13 +550,12 @@
 	icon_state = "door_open";
 	opacity = 0
 	},
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/tiled/techmaint/airless,
 /area/shuttle/mackerel_lc_wreck)
 "FS" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
 /obj/machinery/computer/ship/engines{
-	dir = 1;
-	icon_state = "computer"
+	dir = 1
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc_wreck)
@@ -699,7 +694,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
-/obj/structure/symbol/gu,
+/obj/structure/symbol/maint,
 /turf/simulated/wall/rshull{
 	can_open = 1
 	},
@@ -715,7 +710,7 @@
 /area/shuttle/mackerel_lc_wreck)
 "Qu" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/random/multiple/corp_crate,
+/obj/random/crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc_wreck)
 "RB" = (
@@ -761,7 +756,7 @@
 /obj/machinery/light/flicker{
 	dir = 4
 	},
-/obj/random/multiple/corp_crate,
+/obj/random/crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc_wreck)
 "Td" = (
@@ -812,7 +807,7 @@
 	pixel_x = -8;
 	pixel_y = 22
 	},
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/tiled/techmaint/airless,
 /area/shuttle/mackerel_lc_wreck)
 "Wj" = (
 /obj/effect/floor_decal/industrial/warning,
@@ -884,7 +879,6 @@
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
-	icon_state = "extinguisher_closed";
 	pixel_x = 30
 	},
 /obj/machinery/light{
