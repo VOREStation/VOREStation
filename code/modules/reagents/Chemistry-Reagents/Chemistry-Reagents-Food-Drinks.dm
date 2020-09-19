@@ -137,6 +137,8 @@
 	name = "triglyceride"
 	id = "triglyceride"
 	description = "More commonly known as fat, the third macronutrient, with over double the energy content of carbs and protein"
+	taste_description = "bit of greasiness"	//VR edit
+	taste_mult = 0.1	//VR edit
 
 	reagent_state = SOLID
 	nutriment_factor = 27//The caloric ratio of carb/protein/fat is 4:4:9
