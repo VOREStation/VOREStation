@@ -105,7 +105,7 @@ SUBSYSTEM_DEF(supply)
 					// Sell phoron and platinum
 					if(istype(A, /obj/item/stack))
 						var/obj/item/stack/P = A
-						var/material/mat = P.get_material()
+						var/datum/material/mat = P.get_material()
 						if(mat?.supply_conversion_value)
 							EC.contents[EC.contents.len]["value"] = P.get_amount() * mat.supply_conversion_value
 						EC.contents[EC.contents.len]["quantity"] = P.get_amount()
