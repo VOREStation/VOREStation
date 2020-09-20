@@ -4,14 +4,22 @@
 	id = "cargo_hatch_port";
 	name = "Port Cargo Hatch"
 	},
-/turf/simulated/floor/plating,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/turf/simulated/floor/reinforced,
 /area/shuttle/mackerel_hc_skel)
 "az" = (
 /turf/simulated/floor/airless,
 /area/shuttle/mackerel_hc_skel)
 "aF" = (
-/obj/effect/wingrille_spawn/reinforced,
 /obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
 /turf/simulated/floor/plating,
 /area/shuttle/mackerel_hc_skel_cockpit)
 "bw" = (
@@ -52,7 +60,12 @@
 "cg" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/door/firedoor/glass,
-/obj/effect/wingrille_spawn/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
 /turf/simulated/floor/plating,
 /area/shuttle/mackerel_hc_skel_eng)
 "cv" = (
@@ -91,9 +104,6 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/mackerel_hc_skel)
 "fD" = (
-/obj/structure/handrail{
-	dir = 4
-	},
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -127,6 +137,7 @@
 	dir = 8
 	},
 /obj/structure/railing/grey,
+/obj/structure/closet/walllocker/emerglocker/east,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc_skel)
 "fL" = (
@@ -171,6 +182,11 @@
 /turf/simulated/floor/plating,
 /area/shuttle/mackerel_hc_skel)
 "ju" = (
+/obj/machinery/power/smes/buildable,
+/obj/structure/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
 /turf/simulated/floor/plating,
 /area/shuttle/mackerel_hc_skel)
 "ka" = (
@@ -220,8 +236,11 @@
 /turf/simulated/floor/airless,
 /area/shuttle/mackerel_hc_skel)
 "ms" = (
-/obj/structure/sign/warning/airlock,
-/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/wall/rshull,
 /area/shuttle/mackerel_hc_skel)
 "mw" = (
@@ -299,7 +318,10 @@
 	id = "cargo_hatch_star";
 	name = "Starboard Cargo Hatch"
 	},
-/turf/simulated/floor/plating,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/turf/simulated/floor/reinforced,
 /area/shuttle/mackerel_hc_skel)
 "sg" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/yellow{
@@ -347,7 +369,17 @@
 "ug" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/door/firedoor/glass,
-/obj/effect/wingrille_spawn/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/plating,
 /area/shuttle/mackerel_hc_skel_cockpit)
 "ul" = (
@@ -386,6 +418,16 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/firedoor/glass,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/mackerel_hc_skel_cockpit)
 "we" = (
@@ -395,11 +437,6 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc_skel_eng)
 "wF" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/reinforced,
 /area/shuttle/mackerel_hc_skel)
@@ -424,7 +461,12 @@
 	dir = 8
 	},
 /obj/machinery/door/firedoor/glass,
-/obj/effect/wingrille_spawn/reinforced,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
 /turf/simulated/floor/plating,
 /area/shuttle/mackerel_hc_skel_cockpit)
 "xG" = (
@@ -448,11 +490,6 @@
 /turf/simulated/floor/plating,
 /area/shuttle/mackerel_hc_skel)
 "zq" = (
-/obj/machinery/power/smes/buildable,
-/obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
-	},
 /obj/structure/sign/warning/vacuum{
 	pixel_x = -32
 	},
@@ -512,17 +549,9 @@
 /area/shuttle/mackerel_hc_skel)
 "Dl" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /turf/simulated/floor/reinforced,
 /area/shuttle/mackerel_hc_skel)
 "Ds" = (
-/obj/machinery/power/terminal{
-	dir = 1
-	},
 /obj/machinery/light/small{
 	dir = 8
 	},
@@ -575,6 +604,9 @@
 	pixel_x = -24;
 	pixel_y = -8
 	},
+/obj/machinery/power/terminal{
+	dir = 1
+	},
 /turf/simulated/floor/plating,
 /area/shuttle/mackerel_hc_skel)
 "EW" = (
@@ -621,10 +653,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/mackerel_hc_skel)
-"FN" = (
-/obj/structure/closet/walllocker/emerglocker/north,
-/turf/simulated/wall/rshull,
-/area/shuttle/mackerel_hc_skel)
 "FS" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
@@ -670,8 +698,13 @@
 /area/shuttle/mackerel_hc_skel)
 "GI" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/effect/wingrille_spawn/reinforced,
 /obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
 /turf/simulated/floor/plating,
 /area/shuttle/mackerel_hc_skel_eng)
 "GK" = (
@@ -679,15 +712,11 @@
 	dir = 4
 	},
 /obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/structure/catwalk,
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/mackerel_hc_skel)
 "Jq" = (
@@ -717,6 +746,7 @@
 	dir = 4;
 	pixel_x = -26
 	},
+/obj/structure/railing/grey,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc_skel)
 "JW" = (
@@ -758,6 +788,9 @@
 	},
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 8
+	},
+/obj/structure/railing/grey{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc_skel)
@@ -884,6 +917,9 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/industrial/warning/corner,
+/obj/structure/railing/grey{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc_skel)
 "RV" = (
@@ -970,6 +1006,7 @@
 	dir = 8;
 	pixel_x = 26
 	},
+/obj/structure/railing/grey,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc_skel)
 "WW" = (
@@ -1270,8 +1307,8 @@ ka
 ka
 sZ
 sZ
+ms
 sZ
-FN
 FH
 Qu
 wF
@@ -1379,7 +1416,7 @@ ka
 sZ
 sZ
 Da
-FN
+sZ
 ED
 um
 LU
@@ -1387,7 +1424,7 @@ RB
 Xn
 Td
 ZK
-ms
+Td
 fL
 KZ
 sZ

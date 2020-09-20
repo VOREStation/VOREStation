@@ -44,6 +44,7 @@
 	defer_initialisation = TRUE //We're not loaded until an admin does it
 	fuel_consumption = 4 //chonker uses more fuel
 	move_direction = NORTH
+	ceiling_type = /turf/simulated/floor/reinforced/airless
 
 // A shuttle lateloader landmark
 /obj/effect/shuttle_landmark/shuttle_initializer/bearcat

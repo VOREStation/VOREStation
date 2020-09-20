@@ -115,6 +115,7 @@
 	shuttle_area = list(/area/shuttle/mackerel_sh)
 	defer_initialisation = TRUE
 	fuel_consumption = 1
+	ceiling_type = /turf/simulated/floor/reinforced/airless
 
 /datum/shuttle/autodock/overmap/mackerel_lc
 	name = "Mackerel Light Cargo"
@@ -123,6 +124,7 @@
 	shuttle_area = list(/area/shuttle/mackerel_lc)
 	defer_initialisation = TRUE
 	fuel_consumption = 1
+	ceiling_type = /turf/simulated/floor/reinforced/airless
 
 /datum/shuttle/autodock/overmap/mackerel_hc
 	name = "Mackerel Heavy Cargo"
@@ -131,6 +133,7 @@
 	shuttle_area = list(/area/shuttle/mackerel_hc)
 	defer_initialisation = TRUE
 	fuel_consumption = 1.25 //slightly higher due to the added framework/plating
+	ceiling_type = /turf/simulated/floor/reinforced/airless
 
 /datum/shuttle/autodock/overmap/mackerel_hc_skel
 	name = "Mackerel Heavy Cargo Spartan"
@@ -139,6 +142,7 @@
 	shuttle_area = list(/area/shuttle/mackerel_hc_skel,/area/shuttle/mackerel_hc_skel_cockpit,/area/shuttle/mackerel_hc_skel_eng)
 	defer_initialisation = TRUE
 	fuel_consumption = 1.20 //slightly lower due to the stripped-down internals
+	ceiling_type = /turf/simulated/floor/reinforced/airless
 
 /datum/shuttle/autodock/overmap/mackerel_lc_wreck
 	name = "Mackerel Light Cargo II"
@@ -147,6 +151,7 @@
 	shuttle_area = list(/area/shuttle/mackerel_lc_wreck)
 	defer_initialisation = TRUE
 	fuel_consumption = 1
+	ceiling_type = /turf/simulated/floor/reinforced/airless
 
 // A shuttle lateloader landmark
 /obj/effect/shuttle_landmark/shuttle_initializer/mackerel_sh

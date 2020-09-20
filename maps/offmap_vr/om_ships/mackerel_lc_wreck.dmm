@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aq" = (
-/obj/machinery/light/small/flicker{
+/obj/machinery/light/small{
 	dir = 8
 	},
 /turf/simulated/floor/airless,
@@ -106,7 +106,7 @@
 /area/shuttle/mackerel_lc_wreck)
 "kU" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
-/obj/machinery/light/small/flicker{
+/obj/machinery/light/small{
 	dir = 8
 	},
 /turf/simulated/floor/airless,
@@ -252,7 +252,6 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
-/obj/structure/closet/walllocker/emerglocker/south,
 /obj/machinery/embedded_controller/radio/docking_port_multi{
 	child_names_txt = "Port Airlock Control;Starboard Airlock Control";
 	child_tags_txt = "mackerel_lc_wreck_docking_port;mackerel_lc_wreck_docking_star";
@@ -341,6 +340,7 @@
 /obj/machinery/light/flicker{
 	dir = 8
 	},
+/obj/structure/closet/walllocker/emerglocker/west,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc_wreck)
 "ut" = (
@@ -349,6 +349,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
+/obj/structure/closet/walllocker/emerglocker/south,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc_wreck)
 "uR" = (
@@ -501,6 +502,7 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 4
 	},
+/obj/structure/closet/walllocker/emerglocker/north,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc_wreck)
 "EK" = (
@@ -588,6 +590,20 @@
 "He" = (
 /obj/machinery/computer/ship/sensors,
 /turf/simulated/floor/tiled/techmaint/airless,
+/area/shuttle/mackerel_lc_wreck)
+"HI" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 4
+	},
+/obj/structure/railing/grey{
+	dir = 1
+	},
+/obj/random/crate,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc_wreck)
 "Ib" = (
 /obj/effect/map_helper/airlock/door/int_door,
@@ -1151,7 +1167,7 @@ Ly
 mf
 uR
 EK
-So
+HI
 LW
 GK
 Pc

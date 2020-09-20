@@ -12,8 +12,13 @@
 /turf/simulated/floor/airless,
 /area/shuttle/mackerel_sh)
 "aF" = (
-/obj/effect/wingrille_spawn/reinforced,
 /obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
 /turf/simulated/floor/plating,
 /area/shuttle/mackerel_sh)
 "bw" = (
@@ -97,7 +102,6 @@
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
-	icon_state = "extinguisher_closed";
 	pixel_x = 30
 	},
 /turf/simulated/floor/tiled/techmaint,
@@ -144,8 +148,7 @@
 "lT" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /obj/effect/floor_decal/industrial/warning/corner,
 /obj/structure/bed/chair/bay/shuttle{
@@ -153,7 +156,6 @@
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
-	icon_state = "extinguisher_closed";
 	pixel_x = 30
 	},
 /turf/simulated/floor/tiled/techfloor,
@@ -281,8 +283,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "east bump";
-	pixel_x = 24;
-	pixel_y = 0
+	pixel_x = 24
 	},
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 1
@@ -331,9 +332,7 @@
 	dir = 1
 	},
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_x = 0
+	dir = 8
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_sh)
@@ -367,8 +366,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 8
@@ -401,8 +399,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /turf/simulated/wall/rshull,
 /area/shuttle/mackerel_sh)
@@ -428,9 +425,7 @@
 "Ck" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_x = 0
+	dir = 8
 	},
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 8
@@ -440,7 +435,6 @@
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
-	icon_state = "extinguisher_closed";
 	pixel_x = -30
 	},
 /turf/simulated/floor/tiled/techfloor,
@@ -512,9 +506,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_x = 0
+	dir = 8
 	},
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 1
@@ -542,8 +534,7 @@
 "FS" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
 /obj/machinery/computer/ship/engines{
-	dir = 1;
-	icon_state = "computer"
+	dir = 1
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_sh)
@@ -581,8 +572,7 @@
 	dir = 8
 	},
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 4
@@ -645,7 +635,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
-	icon_state = "extinguisher_closed";
 	pixel_x = 30
 	},
 /turf/simulated/floor/tiled/techfloor,
@@ -706,7 +695,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
-	icon_state = "extinguisher_closed";
 	pixel_x = -30
 	},
 /turf/simulated/floor/tiled/techfloor,
@@ -749,8 +737,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 4
@@ -821,9 +808,7 @@
 	dir = 4
 	},
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_x = 0
+	dir = 8
 	},
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 1
@@ -882,12 +867,10 @@
 	dir = 1
 	},
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
-	icon_state = "extinguisher_closed";
 	pixel_x = 30
 	},
 /turf/simulated/floor/tiled/techfloor,

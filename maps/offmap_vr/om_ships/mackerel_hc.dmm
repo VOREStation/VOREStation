@@ -9,8 +9,13 @@
 /turf/simulated/floor/airless,
 /area/shuttle/mackerel_hc)
 "aF" = (
-/obj/effect/wingrille_spawn/reinforced,
 /obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
 /turf/simulated/floor/plating,
 /area/shuttle/mackerel_hc)
 "bh" = (
@@ -21,7 +26,6 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
-/obj/structure/closet/walllocker/emerglocker/south,
 /obj/machinery/light,
 /obj/machinery/embedded_controller/radio/docking_port_multi{
 	child_names_txt = "Port Airlock Control;Starboard Airlock Control";
@@ -256,7 +260,6 @@
 /obj/effect/floor_decal/industrial/warning/corner,
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
-	icon_state = "extinguisher_closed";
 	pixel_x = 30
 	},
 /obj/structure/window/reinforced,
@@ -316,8 +319,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /turf/simulated/wall/rshull,
 /area/shuttle/mackerel_hc)
@@ -408,7 +410,7 @@
 	},
 /obj/structure/window/reinforced,
 /obj/machinery/door/window,
-/obj/random/multiple/corp_crate,
+/obj/random/multiple/large_corp_crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc)
 "Dh" = (
@@ -425,8 +427,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 8
@@ -484,10 +485,9 @@
 	dir = 1
 	},
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_x = 0
+	dir = 8
 	},
+/obj/structure/closet/walllocker/emerglocker/west,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc)
 "Gm" = (
@@ -497,7 +497,7 @@
 	},
 /obj/structure/window/reinforced,
 /obj/machinery/door/window/westright,
-/obj/random/multiple/corp_crate,
+/obj/random/multiple/large_corp_crate,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc)
 "GF" = (
@@ -555,6 +555,7 @@
 /obj/structure/handrail{
 	dir = 1
 	},
+/obj/structure/closet/walllocker/emerglocker/north,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc)
 "JQ" = (
@@ -568,7 +569,6 @@
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
-	icon_state = "extinguisher_closed";
 	pixel_x = -30
 	},
 /obj/structure/window/reinforced,
@@ -586,7 +586,6 @@
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
-	icon_state = "extinguisher_closed";
 	pixel_x = 30
 	},
 /turf/simulated/floor/tiled/techmaint,
@@ -743,8 +742,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "east bump";
-	pixel_x = 24;
-	pixel_y = 0
+	pixel_x = 24
 	},
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 1
@@ -782,6 +780,7 @@
 	},
 /obj/machinery/light,
 /obj/structure/handrail,
+/obj/structure/closet/walllocker/emerglocker/south,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc)
 "Wv" = (
@@ -862,8 +861,7 @@
 "ZJ" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
 /obj/machinery/computer/ship/engines{
-	dir = 1;
-	icon_state = "computer"
+	dir = 1
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc)
@@ -878,12 +876,10 @@
 	dir = 1
 	},
 /obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+	dir = 4
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
-	icon_state = "extinguisher_closed";
 	pixel_x = 30
 	},
 /turf/simulated/floor/tiled/techfloor,

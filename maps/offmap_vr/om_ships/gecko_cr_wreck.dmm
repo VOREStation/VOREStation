@@ -455,7 +455,6 @@
 /turf/simulated/floor/reinforced/airless,
 /area/shuttle/gecko_cr_wreck)
 "kd" = (
-/obj/machinery/door/airlock/hatch,
 /obj/effect/map_helper/airlock/sensor/ext_sensor,
 /obj/effect/map_helper/airlock/door/ext_door,
 /obj/machinery/airlock_sensor/airlock_exterior/shuttle{
@@ -464,8 +463,16 @@
 	pixel_y = 26
 	},
 /obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
 	id = "gecko_wreck_cr_blast";
-	name = "Blast Shields"
+	name = "Blast Shields";
+	opacity = 0
+	},
+/obj/machinery/door/airlock/hatch{
+	density = 0;
+	icon_state = "door_open";
+	opacity = 0
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/gecko_cr_cockpit_wreck)
@@ -1135,16 +1142,6 @@
 /obj/structure/table/steel,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/gecko_cr_cockpit_wreck)
-"wH" = (
-/obj/structure/railing/grey{
-	dir = 1
-	},
-/obj/structure/catwalk,
-/obj/structure/sign/directions/engineering{
-	pixel_y = -22
-	},
-/turf/simulated/floor/airless,
-/area/shuttle/gecko_cr_wreck)
 "wU" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 10
@@ -2881,9 +2878,13 @@
 /area/shuttle/gecko_cr_cockpit_wreck)
 "YV" = (
 /obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
 	id = "gecko_wreck_cr_blast";
-	name = "Blast Shields"
+	name = "Blast Shields";
+	opacity = 0
 	},
+/obj/structure/grille/broken,
 /turf/simulated/floor/plating,
 /area/shuttle/gecko_cr_cockpit_wreck)
 "Zb" = (
@@ -3570,8 +3571,8 @@ Gx
 Lu
 Vi
 Fe
-wH
-Wr
+TE
+Pf
 ai
 Do
 dO
@@ -3872,7 +3873,7 @@ xU
 xU
 Oz
 BC
-ZJ
+Pf
 WP
 WP
 WP

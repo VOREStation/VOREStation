@@ -102,6 +102,7 @@
 	shuttle_area = list(/area/shuttle/gecko_sh,/area/shuttle/gecko_sh_cockpit,/area/shuttle/gecko_sh_engineering)
 	defer_initialisation = TRUE //We're not loaded until an admin does it
 	fuel_consumption = 7.5
+	ceiling_type = /turf/simulated/floor/reinforced/airless
 
 /datum/shuttle/autodock/overmap/gecko_cr
 	name = "Gecko Cargo Hauler"
@@ -110,6 +111,7 @@
 	shuttle_area = list(/area/shuttle/gecko_cr,/area/shuttle/gecko_cr_cockpit,/area/shuttle/gecko_cr_engineering)
 	defer_initialisation = TRUE //We're not loaded until an admin does it
 	fuel_consumption = 7.5
+	ceiling_type = /turf/simulated/floor/reinforced/airless
 
 /datum/shuttle/autodock/overmap/gecko_cr_wreck
 	name = "Wrecked Gecko Cargo Hauler"
@@ -118,6 +120,7 @@
 	shuttle_area = list(/area/shuttle/gecko_cr_wreck,/area/shuttle/gecko_cr_cockpit_wreck,/area/shuttle/gecko_cr_engineering_wreck)
 	defer_initialisation = TRUE //We're not loaded until an admin does it
 	fuel_consumption = 7.5
+	ceiling_type = /turf/simulated/floor/reinforced/airless
 
 // A shuttle lateloader landmark
 /obj/effect/shuttle_landmark/shuttle_initializer/gecko_sh
