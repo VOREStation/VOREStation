@@ -362,6 +362,8 @@
 			usr.client.screen -= W
 		W.dropped(usr)
 		add_fingerprint(usr)
+		if (use_sound)
+			playsound(src, src.use_sound, 50, 0, -5) //Something broke "add item to container" sounds, this is a hacky fix.
 
 		if(!prevent_warning)
 			for(var/mob/M in viewers(usr, null))

@@ -2,7 +2,7 @@
 	name = "clothing"
 	siemens_coefficient = 0.9
 	drop_sound = 'sound/items/drop/clothing.ogg'
-	pickup_sound = 'sound/items/pickup/cloth.ogg'
+	pickup_sound = 'sound/items/pickup/clothing.ogg'
 	var/list/species_restricted = null //Only these species can wear this kit.
 	var/gunshot_residue //Used by forensics.
 
@@ -435,6 +435,8 @@
 	fingerprint_chance = 100
 	punch_force = 2
 	body_parts_covered = 0
+	drop_sound = 'sound/items/drop/ring.ogg'
+	pickup_sound = 'sound/items/pickup/ring.ogg'
 
 ///////////////////////////////////////////////////////////////////////
 //Head
@@ -572,6 +574,9 @@
 	var/voicechange = 0
 	var/list/say_messages
 	var/list/say_verbs
+
+	drop_sound = "generic_drop"
+	pickup_sound = "generic_pickup"
 
 /obj/item/clothing/mask/update_clothing_icon()
 	if (ismob(src.loc))
@@ -733,6 +738,7 @@
 	siemens_coefficient = 0.9
 	w_class = ITEMSIZE_NORMAL
 	preserve_item = 1
+	equip_sound = 'sound/items/jumpsuit_equip.ogg'
 
 
 	sprite_sheets = list(

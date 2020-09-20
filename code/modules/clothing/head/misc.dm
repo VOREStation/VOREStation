@@ -17,8 +17,8 @@
 	desc = "A nice hair pin."
 	slot_flags = SLOT_HEAD | SLOT_EARS
 	body_parts_covered = 0
-	drop_sound = 'sound/items/drop/ring.ogg'
-	pickup_sound = 'sound/items/pickup/ring.ogg'
+	drop_sound = 'sound/items/drop/accessory.ogg'
+	pickup_sound = 'sound/items/pickup/accessory.ogg'
 
 /obj/item/clothing/head/pin/pink
 	icon_state = "pinkpin"
@@ -424,7 +424,8 @@
 	desc = "A jeweled headpiece originating in India."
 	icon_state = "maangtikka"
 	body_parts_covered = 0
-	drop_sound = 'sound/items/drop/accessory.ogg'
+	drop_sound = 'sound/items/drop/ring.ogg'
+	pickup_sound = 'sound/items/pickup/ring.ogg'
 
 /obj/item/clothing/head/jingasa
 	name = "jingasa"
