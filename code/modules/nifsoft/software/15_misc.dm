@@ -9,36 +9,36 @@
 	var/obj/machinery/power/apc/apc
 	other_flags = (NIF_O_APCCHARGE)
 
-	activate()
-		if((. = ..()))
-			var/mob/living/carbon/human/H = nif.human
-			apc = locate(/obj/machinery/power/apc) in get_step(H,H.dir)
-			if(!apc)
-				apc = locate(/obj/machinery/power/apc) in get_step(H,0)
-			if(!apc)
-				nif.notify("You must be facing an APC to connect to.",TRUE)
-				spawn(0)
-					deactivate()
-				return FALSE
-
-			H.visible_message("<span class='warning'>Thin snakelike tendrils grow from [H] and connect to \the [apc].</span>","<span class='notice'>Thin snakelike tendrils grow from you and connect to \the [apc].</span>")
-
-	deactivate()
-		if((. = ..()))
-			apc = null
-
-	life()
-		if((. = ..()))
-			var/mob/living/carbon/human/H = nif.human
-			if(apc && (get_dist(H,apc) <= 1) && H.nutrition < 440) // 440 vs 450, life() happens before we get here so it'll never be EXACTLY 450
-				H.nutrition = min(H.nutrition+10, 450)
-				apc.drain_power(7000/450*10) //This is from the large rechargers. No idea what the math is.
-				return TRUE
-			else
-				nif.notify("APC charging has ended.")
-				H.visible_message("<span class='warning'>[H]'s snakelike tendrils whip back into their body from \the [apc].</span>","<span class='notice'>The APC connector tendrils return to your body.</span>")
+/datum/nifsoft/apc_recharge/activate()
+	if((. = ..()))
+		var/mob/living/carbon/human/H = nif.human
+		apc = locate(/obj/machinery/power/apc) in get_step(H,H.dir)
+		if(!apc)
+			apc = locate(/obj/machinery/power/apc) in get_step(H,0)
+		if(!apc)
+			nif.notify("You must be facing an APC to connect to.",TRUE)
+			spawn(0)
 				deactivate()
-				return FALSE
+			return FALSE
+
+		H.visible_message("<span class='warning'>Thin snakelike tendrils grow from [H] and connect to \the [apc].</span>","<span class='notice'>Thin snakelike tendrils grow from you and connect to \the [apc].</span>")
+
+/datum/nifsoft/apc_recharge/deactivate()
+	if((. = ..()))
+		apc = null
+
+/datum/nifsoft/apc_recharge/life()
+	if((. = ..()))
+		var/mob/living/carbon/human/H = nif.human
+		if(apc && (get_dist(H,apc) <= 1) && H.nutrition < 440) // 440 vs 450, life() happens before we get here so it'll never be EXACTLY 450
+			H.nutrition = min(H.nutrition+10, 450)
+			apc.drain_power(7000/450*10) //This is from the large rechargers. No idea what the math is.
+			return TRUE
+		else
+			nif.notify("APC charging has ended.")
+			H.visible_message("<span class='warning'>[H]'s snakelike tendrils whip back into their body from \the [apc].</span>","<span class='notice'>The APC connector tendrils return to your body.</span>")
+			deactivate()
+			return FALSE
 
 /datum/nifsoft/pressure
 	name = "Pressure Seals"
@@ -62,31 +62,31 @@
 	applies_to = NIF_SYNTHETIC
 	other_flags = (NIF_O_HEATSINKS)
 
-	activate()
-		if((. = ..()))
-			if(used >= 1500)
-				nif.notify("Heat sinks not safe to operate again yet! Max 75% on activation.",TRUE)
-				spawn(0)
-					deactivate()
-				return FALSE
-
-	stat_text()
-		return "[active ? "Active" : "Disabled"] (Stored Heat: [FLOOR((used/20), 1)]%)"
-
-	life()
-		if((. = ..()))
-			//Not being used, all clean.
-			if(!active && !used)
-				return TRUE
-
-			//Being used, and running out.
-			else if(active && ++used == 2000)
-				nif.notify("Heat sinks overloaded! Shutting down!",TRUE)
+/datum/nifsoft/heatsinks/activate()
+	if((. = ..()))
+		if(used >= 1500)
+			nif.notify("Heat sinks not safe to operate again yet! Max 75% on activation.",TRUE)
+			spawn(0)
 				deactivate()
+			return FALSE
 
-			//Being cleaned, and finishing empty.
-			else if(!active && --used == 0)
-				nif.notify("Heat sinks re-chilled.")
+/datum/nifsoft/heatsinks/stat_text()
+	return "[active ? "Active" : "Disabled"] (Stored Heat: [FLOOR((used/20), 1)]%)"
+
+/datum/nifsoft/heatsinks/life()
+	if((. = ..()))
+		//Not being used, all clean.
+		if(!active && !used)
+			return TRUE
+
+		//Being used, and running out.
+		else if(active && ++used == 2000)
+			nif.notify("Heat sinks overloaded! Shutting down!",TRUE)
+			deactivate()
+
+		//Being cleaned, and finishing empty.
+		else if(!active && --used == 0)
+			nif.notify("Heat sinks re-chilled.")
 
 /datum/nifsoft/compliance
 	name = "Compliance Module"
@@ -99,24 +99,24 @@
 	access = 999 //Prevents anyone from buying it without an emag.
 	var/laws = "Be nice to people!"
 
-	New(var/newloc,var/newlaws)
-		laws = newlaws //Sanitize before this (the disk does)
-		..(newloc)
+/datum/nifsoft/compliance/New(var/newloc,var/newlaws)
+	laws = newlaws //Sanitize before this (the disk does)
+	..(newloc)
 
-	activate()
-		if((. = ..()))
-			to_chat(nif.human,"<span class='danger'>You are compelled to follow these rules: </span>\n<span class='notify'>[laws]</span>")
+/datum/nifsoft/compliance/activate()
+	if((. = ..()))
+		to_chat(nif.human,"<span class='danger'>You are compelled to follow these rules: </span>\n<span class='notify'>[laws]</span>")
 
-	install()
-		if((. = ..()))
-			to_chat(nif.human,"<span class='danger'>You feel suddenly compelled to follow these rules: </span>\n<span class='notify'>[laws]</span>")
+/datum/nifsoft/compliance/install()
+	if((. = ..()))
+		to_chat(nif.human,"<span class='danger'>You feel suddenly compelled to follow these rules: </span>\n<span class='notify'>[laws]</span>")
 
-	uninstall()
-		nif.notify("ERROR! Unable to comply!",TRUE)
-		return FALSE //NOPE.
+/datum/nifsoft/compliance/uninstall()
+	nif.notify("ERROR! Unable to comply!",TRUE)
+	return FALSE //NOPE.
 
-	stat_text()
-		return "Show Laws"
+/datum/nifsoft/compliance/stat_text()
+	return "Show Laws"
 
 /datum/nifsoft/sizechange
 	name = "Mass Alteration"
@@ -125,28 +125,28 @@
 	cost = 375
 	wear = 6
 
-	activate()
-		if((. = ..()))
-			var/new_size = input("Put the desired size (25-200%)", "Set Size", 200) as num
+/datum/nifsoft/sizechange/activate()
+	if((. = ..()))
+		var/new_size = input("Put the desired size (25-200%)", "Set Size", 200) as num
 
-			if (!ISINRANGE(new_size,25,200))
-				to_chat(nif.human,"<span class='notice'>The safety features of the NIF Program prevent you from choosing this size.</span>")
-				return
-			else
-				nif.human.resize(new_size/100)
-				to_chat(nif.human,"<span class='notice'>You set the size to [new_size]%</span>")
+		if (!ISINRANGE(new_size,25,200))
+			to_chat(nif.human,"<span class='notice'>The safety features of the NIF Program prevent you from choosing this size.</span>")
+			return
+		else
+			nif.human.resize(new_size/100)
+			to_chat(nif.human,"<span class='notice'>You set the size to [new_size]%</span>")
 
-			nif.human.visible_message("<span class='warning'>Swirling grey mist envelops [nif.human] as they change size!</span>","<span class='notice'>Swirling streams of nanites wrap around you as you change size!</span>")
+		nif.human.visible_message("<span class='warning'>Swirling grey mist envelops [nif.human] as they change size!</span>","<span class='notice'>Swirling streams of nanites wrap around you as you change size!</span>")
 
-			spawn(0)
-				deactivate()
+		spawn(0)
+			deactivate()
 
-	deactivate()
-		if((. = ..()))
-			return TRUE
+/datum/nifsoft/sizechange/deactivate()
+	if((. = ..()))
+		return TRUE
 
-	stat_text()
-		return "Change Size"
+/datum/nifsoft/sizechange/stat_text()
+	return "Change Size"
 
 /datum/nifsoft/worldbend
 	name = "World Bender"
@@ -155,22 +155,22 @@
 	cost = 100
 	a_drain = 0.01
 
-	activate()
-		if((. = ..()))
-			var/list/justme = list(nif.human)
-			for(var/human in human_mob_list)
-				if(human == nif.human)
-					continue
-				var/mob/living/carbon/human/H = human
-				H.display_alt_appearance("animals", justme)
-				alt_farmanimals += nif.human
+/datum/nifsoft/worldbend/activate()
+	if((. = ..()))
+		var/list/justme = list(nif.human)
+		for(var/human in human_mob_list)
+			if(human == nif.human)
+				continue
+			var/mob/living/carbon/human/H = human
+			H.display_alt_appearance("animals", justme)
+			alt_farmanimals += nif.human
 
-	deactivate()
-		if((. = ..()))
-			var/list/justme = list(nif.human)
-			for(var/human in human_mob_list)
-				if(human == nif.human)
-					continue
-				var/mob/living/carbon/human/H = human
-				H.hide_alt_appearance("animals", justme)
-				alt_farmanimals -= nif.human
+/datum/nifsoft/worldbend/deactivate()
+	if((. = ..()))
+		var/list/justme = list(nif.human)
+		for(var/human in human_mob_list)
+			if(human == nif.human)
+				continue
+			var/mob/living/carbon/human/H = human
+			H.hide_alt_appearance("animals", justme)
+			alt_farmanimals -= nif.human

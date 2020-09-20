@@ -77,6 +77,14 @@
 
 /datum/chemical_reaction/foam/softdrink
 	required_reagents = list("cola" = 1, "mint" = 1)
+	
+/datum/chemical_reaction/firefightingfoam //TODO: Make it so we can add this to the foam tanks to refill them
+    name = "Firefighting Foam"
+    id = "firefighting foam"
+    result = "firefoam"
+    required_reagents = list("water" = 1)
+    catalysts = list("fluorine" = 10)
+    result_amount = 1
 
 ///////////////////////////////////////////////////////////////////////////////////
 /// Vore Drugs

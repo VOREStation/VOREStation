@@ -112,7 +112,10 @@ var/list/infomorph_emotions = list(
 		pda.ownjob = "Sleevecard"
 		pda.owner = text("[]", src)
 		pda.name = pda.owner + " (" + pda.ownjob + ")"
-		pda.toff = 1
+
+		var/datum/data/pda/app/messenger/M = pda.find_program(/datum/data/pda/app/messenger)
+		if(M)
+			M.toff = TRUE
 
 	..()
 
