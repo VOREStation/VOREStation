@@ -58,14 +58,22 @@
 	var/stripping
 	var/obj/item/held = user.get_active_hand()
 	if(!istype(held) || is_robot_module(held))
+		stripping = TRUE
+	else
+		var/obj/item/weapon/holder/holder = held
+		if(istype(holder) && src == holder.held_mob)
+			stripping = TRUE
+		else
+			var/obj/item/weapon/grab/grab = held
+			if(istype(grab) && grab.affecting == src)
+				stripping = TRUE
+		
+	if(stripping)
 		if(!istype(target_slot))  // They aren't holding anything valid and there's nothing to remove, why are we even here?
 			return
 		if(!target_slot.canremove)
 			to_chat(user, "<span class='warning'>You cannot remove \the [src]'s [target_slot.name].</span>")
 			return
-		stripping = 1
-
-	if(stripping)
 		visible_message("<span class='danger'>\The [user] is trying to remove \the [src]'s [target_slot.name]!</span>")
 	else
 		if(slot_to_strip == slot_wear_mask && istype(held, /obj/item/weapon/grenade))
