@@ -120,7 +120,11 @@
 
 /datum/surgery_step/cavity/place_item/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(!istype(tool))
+<<<<<<< HEAD
 		return 0
+=======
+		return FALSE
+>>>>>>> 6bd15bc... Merge pull request #7625 from ShadowLarkens/tgui_med
 	if(..())
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		if(istype(user,/mob/living/silicon/robot))

@@ -472,6 +472,10 @@
 /datum/asset/nanoui/send(client)
 	send_asset_list(client, common)
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6bd15bc... Merge pull request #7625 from ShadowLarkens/tgui_med
 //Pill sprites for UIs
 /datum/asset/chem_master
 	var/assets = list()
@@ -504,6 +508,7 @@
 
 /datum/asset/cloning/send(client)
 	send_asset_list(client, assets, verify)
+<<<<<<< HEAD
 
 // VOREStation Add
 /datum/asset/cloning/resleeving
@@ -523,3 +528,5 @@
 /datum/asset/spritesheet/sheetmaterials/register()
 	InsertAll("", 'icons/obj/stacks.dmi')
 	..()
+=======
+>>>>>>> 6bd15bc... Merge pull request #7625 from ShadowLarkens/tgui_med

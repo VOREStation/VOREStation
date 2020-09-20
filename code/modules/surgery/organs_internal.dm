@@ -165,7 +165,11 @@
 		return 0
 
 	if(!istype(tool))
+<<<<<<< HEAD
 		return 0
+=======
+		return FALSE
+>>>>>>> 6bd15bc... Merge pull request #7625 from ShadowLarkens/tgui_med
 
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
@@ -231,7 +235,11 @@
 		return 0
 
 	if(!istype(tool))
+<<<<<<< HEAD
 		return 0
+=======
+		return FALSE
+>>>>>>> 6bd15bc... Merge pull request #7625 from ShadowLarkens/tgui_med
 
 	target.op_stage.current_organ = null
 
@@ -368,7 +376,11 @@
 		return 0
 
 	if(!istype(tool))
+<<<<<<< HEAD
 		return 0
+=======
+		return FALSE
+>>>>>>> 6bd15bc... Merge pull request #7625 from ShadowLarkens/tgui_med
 
 	target.op_stage.current_organ = null
 
@@ -427,7 +439,11 @@
 		return 0
 
 	if(!istype(tool))
+<<<<<<< HEAD
 		return 0
+=======
+		return FALSE
+>>>>>>> 6bd15bc... Merge pull request #7625 from ShadowLarkens/tgui_med
 
 	target.op_stage.current_organ = null
 

@@ -167,4 +167,8 @@ if (!(DATUM.datum_flags & DF_ISPROCESSING)) {\
 // Computer login types
 #define LOGIN_TYPE_NORMAL 1
 #define LOGIN_TYPE_AI 2
+<<<<<<< HEAD
 #define LOGIN_TYPE_ROBOT 3
+=======
+#define LOGIN_TYPE_ROBOT 3 
+>>>>>>> 6bd15bc... Merge pull request #7625 from ShadowLarkens/tgui_med

@@ -143,7 +143,10 @@
 	if(..() || usr == occupant)
 		return TRUE
 
+<<<<<<< HEAD
 	. = TRUE
+=======
+>>>>>>> 6bd15bc... Merge pull request #7625 from ShadowLarkens/tgui_med
 	switch(action)
 		if("switchOn")
 			on = 1
@@ -158,12 +161,20 @@
 				update_icon()
 		if("ejectOccupant")
 			if(!occupant || isslime(usr) || ispAI(usr))
+<<<<<<< HEAD
 				return 0 // don't update UIs attached to this object
+=======
+				return FALSE // don't update UIs attached to this object
+>>>>>>> 6bd15bc... Merge pull request #7625 from ShadowLarkens/tgui_med
 			go_out()
 		else
 			return FALSE
 
 	add_fingerprint(usr)
+<<<<<<< HEAD
+=======
+	return TRUE
+>>>>>>> 6bd15bc... Merge pull request #7625 from ShadowLarkens/tgui_med
 
 /obj/machinery/atmospherics/unary/cryo_cell/attackby(var/obj/item/weapon/G as obj, var/mob/user as mob)
 	if(istype(G, /obj/item/weapon/reagent_containers/glass))

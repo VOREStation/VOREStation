@@ -117,6 +117,7 @@ Code is pretty much ripped verbatim from nano modules, but with un-needed stuff 
 	. += new /obj/screen/plane_master/main{plane = MOB_PLANE}
 	. += new /obj/screen/plane_master/cloaked								//Cloaked atoms!
 
+<<<<<<< HEAD
 	//VOREStation Add - Random other plane masters
 	. += new /obj/screen/plane_master{plane = PLANE_CH_STATUS_R}			//Right-side status icon
 	. += new /obj/screen/plane_master{plane = PLANE_CH_HEALTH_VR}			//Health bar but transparent at 100
@@ -125,5 +126,7 @@ Code is pretty much ripped verbatim from nano modules, but with un-needed stuff 
 	. += new /obj/screen/plane_master{plane = PLANE_AUGMENTED}				//Augmented reality
 	//VOREStation Add End
 
+=======
+>>>>>>> 6bd15bc... Merge pull request #7625 from ShadowLarkens/tgui_med
 /datum/tgui_module/proc/relaymove(mob/user, direction)
 	return FALSE

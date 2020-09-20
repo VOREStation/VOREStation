@@ -214,7 +214,11 @@
 		is_off = "-off"
 
 	// Fridge contents
+<<<<<<< HEAD
 	if(contents) //VOREStation Edit - Some fridges do not have visible contents
+=======
+	if(contents)
+>>>>>>> 6bd15bc... Merge pull request #7625 from ShadowLarkens/tgui_med
 		switch(contents.len)
 			if(0)
 				add_overlay("empty[is_off]")

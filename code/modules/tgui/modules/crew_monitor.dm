@@ -66,11 +66,14 @@
 
 /datum/tgui_module/crew_monitor/ntos
 	ntos = TRUE
+<<<<<<< HEAD
 
 // Subtype for glasses_state
 /datum/tgui_module/crew_monitor/glasses
 /datum/tgui_module/crew_monitor/glasses/tgui_state(mob/user)
 	return GLOB.tgui_glasses_state
+=======
+>>>>>>> 6bd15bc... Merge pull request #7625 from ShadowLarkens/tgui_med
 
 // Subtype for self_state
 /datum/tgui_module/crew_monitor/robot

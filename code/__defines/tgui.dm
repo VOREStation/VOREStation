@@ -26,4 +26,8 @@
 #define TGUI_MODAL_OPEN 1
 #define TGUI_MODAL_DELEGATE 2
 #define TGUI_MODAL_ANSWER 3
+<<<<<<< HEAD
 #define TGUI_MODAL_CLOSE 4
+=======
+#define TGUI_MODAL_CLOSE 4 
+>>>>>>> 6bd15bc... Merge pull request #7625 from ShadowLarkens/tgui_med

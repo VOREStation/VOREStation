@@ -2958,6 +2958,10 @@
 #include "code\modules\nano\interaction\remote.dm"
 #include "code\modules\nano\interaction\self.dm"
 #include "code\modules\nano\interaction\zlevel.dm"
+<<<<<<< HEAD:vorestation.dme
+=======
+#include "code\modules\nano\modules\law_manager.dm"
+>>>>>>> 6bd15bc... Merge pull request #7625 from ShadowLarkens/tgui_med:polaris.dme
 #include "code\modules\nano\modules\nano_module.dm"
 #include "code\modules\nifsoft\nif.dm"
 #include "code\modules\nifsoft\nif_softshop.dm"
@@ -3530,9 +3534,13 @@
 #include "code\modules\tgui\tgui.dm"
 #include "code\modules\tgui\tgui_window.dm"
 #include "code\modules\tgui\modules\_base.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\modules\tgui\modules\alarm.dm"
 #include "code\modules\tgui\modules\appearance_changer.dm"
 #include "code\modules\tgui\modules\atmos_control.dm"
+=======
+#include "code\modules\tgui\modules\appearance_changer.dm"
+>>>>>>> 6bd15bc... Merge pull request #7625 from ShadowLarkens/tgui_med:polaris.dme
 #include "code\modules\tgui\modules\camera.dm"
 #include "code\modules\tgui\modules\communications.dm"
 #include "code\modules\tgui\modules\crew_monitor.dm"

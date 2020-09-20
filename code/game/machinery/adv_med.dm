@@ -14,7 +14,11 @@
 	active_power_usage = 10000	//10 kW. It's a big all-body scanner.
 	light_color = "#00FF00"
 	var/obj/machinery/body_scanconsole/console
+<<<<<<< HEAD
 	var/known_implants = list(/obj/item/weapon/implant/health, /obj/item/weapon/implant/chem, /obj/item/weapon/implant/death_alarm, /obj/item/weapon/implant/loyalty, /obj/item/weapon/implant/tracking, /obj/item/weapon/implant/language, /obj/item/weapon/implant/language/eal, /obj/item/weapon/implant/backup, /obj/item/device/nif) //VOREStation Add - Backup Implant, NIF
+=======
+	var/known_implants = list(/obj/item/weapon/implant/health, /obj/item/weapon/implant/chem, /obj/item/weapon/implant/death_alarm, /obj/item/weapon/implant/loyalty, /obj/item/weapon/implant/tracking, /obj/item/weapon/implant/language, /obj/item/weapon/implant/language/eal)
+>>>>>>> 6bd15bc... Merge pull request #7625 from ShadowLarkens/tgui_med
 	var/printing_text = null
 
 /obj/machinery/bodyscanner/Initialize()
@@ -129,7 +133,11 @@
 		occupant.client.perspective = MOB_PERSPECTIVE
 	occupant.loc = src.loc
 	occupant = null
+<<<<<<< HEAD
 	update_icon() //icon_state = "body_scanner_1" //VOREStation Edit - Health display for consoles with light and such.
+=======
+	icon_state = "body_scanner_1"
+>>>>>>> 6bd15bc... Merge pull request #7625 from ShadowLarkens/tgui_med
 	SStgui.update_uis(src)
 	return
 
@@ -182,7 +190,11 @@
 
 	var/occupantData[0]
 	if(occupant && ishuman(occupant))
+<<<<<<< HEAD
 		update_icon() //VOREStation Edit - Health display for consoles with light and such.
+=======
+		icon_state = "body_scanner_1"
+>>>>>>> 6bd15bc... Merge pull request #7625 from ShadowLarkens/tgui_med
 		var/mob/living/carbon/human/H = occupant
 		occupantData["name"] = H.name
 		occupantData["stat"] = H.stat
@@ -318,7 +330,10 @@
 
 		occupantData["blind"] = (H.sdisabilities & BLIND)
 		occupantData["nearsighted"] = (H.disabilities & NEARSIGHTED)
+<<<<<<< HEAD
 		occupantData = attempt_vr(src, "get_occupant_data_vr", list(occupantData, H)) //VOREStation Insert
+=======
+>>>>>>> 6bd15bc... Merge pull request #7625 from ShadowLarkens/tgui_med
 	data["occupant"] = occupantData
 
 	return data
@@ -558,6 +573,7 @@
 		return
 	else
 		return attack_hand(user)
+
 
 /obj/machinery/body_scanconsole/power_change()
 	/* VOREStation Removal

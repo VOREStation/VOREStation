@@ -263,6 +263,7 @@
 					for(var/i = 1 to MAX_BOTTLE_SPRITE)
 						choices += "bottle-[i].png"
 					tgui_modal_bento(src, id, "Please select the new style for bottles:", null, arguments, bottlesprite, choices)
+<<<<<<< HEAD
 				else
 					return FALSE
 		if(TGUI_MODAL_ANSWER)
@@ -398,6 +399,143 @@
 					bottlesprite = new_style
 				else
 					return FALSE
+=======
+				else
+					return FALSE
+		if(TGUI_MODAL_ANSWER)
+			var/answer = params["answer"]
+			switch(id)
+				// if("change_pill_bottle_style")
+				// 	if(!pill_bottle_wrappers || !loaded_pill_bottle) // wat?
+				// 		return
+				// 	var/color = "CLEAR"
+				// 	for(var/col in pill_bottle_wrappers)
+				// 		var/col_name = pill_bottle_wrappers[col]
+				// 		if(col_name == answer)
+				// 			color = col
+				// 			break
+				// 	if(length(color) && color != "CLEAR")
+				// 		loaded_pill_bottle.wrapper_color = color
+				// 		loaded_pill_bottle.apply_wrap()
+				// 	else
+				// 		loaded_pill_bottle.wrapper_color = null
+				// 		loaded_pill_bottle.cut_overlays()
+				if("addcustom")
+					var/amount = isgoodnumber(text2num(answer))
+					if(!amount || !arguments["id"])
+						return
+					tgui_act("add", list("id" = arguments["id"], "amount" = amount), ui, state)
+				if("removecustom")
+					var/amount = isgoodnumber(text2num(answer))
+					if(!amount || !arguments["id"])
+						return
+					tgui_act("remove", list("id" = arguments["id"], "amount" = amount), ui, state)
+				if("create_condi_pack")
+					if(!condi || !reagents.total_volume)
+						return
+					if(!length(answer))
+						answer = reagents.get_master_reagent_name()
+					var/obj/item/weapon/reagent_containers/pill/P = new(loc)
+					P.name = "[answer] pack"
+					P.desc = "A small condiment pack. The label says it contains [answer]."
+					P.icon_state = "bouilloncube"//Reskinned monkey cube
+					reagents.trans_to_obj(P, 10)
+				if("create_pill")
+					if(condi || !reagents.total_volume)
+						return
+					var/count = CLAMP(round(text2num(arguments["num"]) || 0), 0, MAX_MULTI_AMOUNT)
+					if(!count)
+						return
+
+					if(!length(answer))
+						answer = reagents.get_master_reagent_name()
+					var/amount_per_pill = CLAMP(reagents.total_volume / count, 0, MAX_UNITS_PER_PILL)
+					while(count--)
+						if(reagents.total_volume <= 0)
+							to_chat(usr, "<span class='notice'>Not enough reagents to create these pills!</span>")
+							return
+
+						var/obj/item/weapon/reagent_containers/pill/P = new(loc)
+						P.name = "[answer] pill"
+						P.pixel_x = rand(-7, 7) // Random position
+						P.pixel_y = rand(-7, 7)
+						P.icon_state = "pill[pillsprite]"
+						if(P.icon_state in list("pill1", "pill2", "pill3", "pill4")) // if using greyscale, take colour from reagent
+							P.color = reagents.get_color()
+						reagents.trans_to_obj(P, amount_per_pill)
+						// Load the pills in the bottle if there's one loaded
+						if(istype(loaded_pill_bottle) && length(loaded_pill_bottle.contents) < loaded_pill_bottle.max_storage_space)
+							P.forceMove(loaded_pill_bottle)
+				if("create_pill_multiple")
+					if(condi || !reagents.total_volume)
+						return
+					tgui_act("modal_open", list("id" = "create_pill", "arguments" = list("num" = answer)), ui, state)
+				if("change_pill_style")
+					var/new_style = CLAMP(text2num(answer) || 0, 0, MAX_PILL_SPRITE)
+					if(!new_style)
+						return
+					pillsprite = new_style
+				if("create_patch")
+					if(condi || !reagents.total_volume)
+						return
+					var/count = CLAMP(round(text2num(arguments["num"]) || 0), 0, MAX_MULTI_AMOUNT)
+					if(!count)
+						return
+
+					if(!length(answer))
+						answer = reagents.get_master_reagent_name()
+					var/amount_per_patch = CLAMP(reagents.total_volume / count, 0, MAX_UNITS_PER_PATCH)
+					// var/is_medical_patch = chemical_safety_check(reagents)
+					while(count--)
+						if(reagents.total_volume <= 0)
+							to_chat(usr, "<span class='notice'>Not enough reagents to create these patches!</span>")
+							return
+
+						var/obj/item/weapon/reagent_containers/pill/patch/P = new(loc)
+						P.name = "[answer] patch"
+						P.pixel_x = rand(-7, 7) // random position
+						P.pixel_y = rand(-7, 7)
+						reagents.trans_to_obj(P, amount_per_patch)
+						// if(is_medical_patch)
+							// P.instant_application = TRUE
+							// P.icon_state = "bandaid_med"
+				if("create_patch_multiple")
+					if(condi || !reagents.total_volume)
+						return
+					tgui_act("modal_open", list("id" = "create_patch", "arguments" = list("num" = answer)), ui, state)
+				if("create_bottle")
+					if(condi || !reagents.total_volume)
+						return
+					var/count = CLAMP(round(text2num(arguments["num"]) || 0), 0, MAX_MULTI_AMOUNT)
+					if(!count)
+						return
+
+					if(!length(answer))
+						answer = reagents.get_master_reagent_name()
+					var/amount_per_bottle = CLAMP(reagents.total_volume / count, 0, MAX_UNITS_PER_BOTTLE)
+					while(count--)
+						if(reagents.total_volume <= 0)
+							to_chat(usr, "<span class='notice'>Not enough reagents to create these bottles!</span>")
+							return
+						var/obj/item/weapon/reagent_containers/glass/bottle/P = new(loc)
+						P.name = "[answer] bottle"
+						P.pixel_x = rand(-7, 7) // random position
+						P.pixel_y = rand(-7, 7)
+						P.icon_state = "bottle-[bottlesprite]" || "bottle-1"
+						reagents.trans_to_obj(P, amount_per_bottle)
+						P.update_icon()
+				if("create_bottle_multiple")
+					if(condi || !reagents.total_volume)
+						return
+					tgui_act("modal_open", list("id" = "create_bottle", "arguments" = list("num" = answer)), ui, state)
+				if("change_bottle_style")
+					var/new_style = CLAMP(text2num(answer) || 0, 0, MAX_BOTTLE_SPRITE)
+					if(!new_style)
+						return
+					bottlesprite = new_style
+				else
+					return FALSE
+>>>>>>> 6bd15bc... Merge pull request #7625 from ShadowLarkens/tgui_med
 		else
 			return FALSE
 

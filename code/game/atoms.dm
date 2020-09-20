@@ -612,8 +612,11 @@
 		<a href='?_src_=vars;rotatedatum=\ref[src];rotatedir=right'>>></a>
 		</font>
 		"}
+<<<<<<< HEAD
 	var/turf/T = get_turf(src)
 	. += "<br><font size='1'>[ADMIN_COORDJMP(T)]</font>"
+=======
+>>>>>>> 6bd15bc... Merge pull request #7625 from ShadowLarkens/tgui_med
 
 /atom/proc/atom_say(message)
 	if(!message)

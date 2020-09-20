@@ -171,7 +171,7 @@
 	'sound/ambience/foreboding/foreboding3.ogg',\
 	'sound/ambience/foreboding/foreboding4.ogg',\
 	'sound/ambience/foreboding/foreboding5.ogg',\
-	'sound/ambience/foreboding/foreboding6.ogg'\
+	'sound/ambience/maintenance/maintenance6.ogg'\
 	)
 
 // Ambience heard when aboveground on Sif and not in a Point of Interest.

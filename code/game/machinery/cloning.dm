@@ -23,7 +23,11 @@
 			break
 	return selected
 
+<<<<<<< HEAD
 #define CLONE_BIOMASS 30 //VOREstation Edit
+=======
+#define CLONE_BIOMASS 60
+>>>>>>> 6bd15bc... Merge pull request #7625 from ShadowLarkens/tgui_med
 #define MINIMUM_HEAL_LEVEL 40
 
 /obj/machinery/clonepod
