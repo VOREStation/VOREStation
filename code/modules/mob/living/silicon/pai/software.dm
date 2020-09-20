@@ -41,7 +41,6 @@ var/global/list/default_pai_software = list()
 	set category = "pAI Commands"
 	set name = "Software Interface"
 
-	ui_interact(src)
 	tgui_interact(src)
 
 /mob/living/silicon/pai/tgui_state(mob/user)

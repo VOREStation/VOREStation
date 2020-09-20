@@ -851,11 +851,13 @@ About the new airlock wires panel:
 /obj/machinery/door/airlock/attack_ghost(mob/user)
 	tgui_interact(user)
 
-/obj/machinery/door/airlock/tgui_interact(mob/user, datum/tgui/ui)
+/obj/machinery/door/airlock/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui, datum/tgui_state/custom_state)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "AiAirlock", name)
 		ui.open()
+	if(custom_state)
+		ui.set_state(custom_state)
 	return TRUE
 
 /obj/machinery/door/airlock/tgui_data(mob/user)

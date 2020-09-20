@@ -34,6 +34,11 @@
 			ui.set_map_z_level(params["mapZLevel"])
 			return TRUE
 
+/datum/tgui_module/atmos_control/ui_assets(mob/user)
+	return list(
+		get_asset_datum(/datum/asset/simple/nanomaps),
+	)
+
 /datum/tgui_module/atmos_control/tgui_interact(mob/user, datum/tgui/ui = null)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)

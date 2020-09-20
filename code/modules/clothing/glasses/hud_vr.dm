@@ -8,8 +8,6 @@
 	var/obj/item/clothing/glasses/hud/omni/hud = null
 	var/mode = "civ"
 	icon_state = "glasses"
-	var/datum/nano_module/arscreen
-	var/arscreen_path
 	var/datum/tgui_module/tgarscreen
 	var/tgarscreen_path
 	var/flash_prot = 0 //0 for none, 1 for flash weapon protection, 2 for welder protection
@@ -18,34 +16,24 @@
 
 /obj/item/clothing/glasses/omnihud/New()
 	..()
-	if(arscreen_path)
-		arscreen = new arscreen_path(src)
 	if(tgarscreen_path)
 		tgarscreen = new tgarscreen_path(src)
 
 /obj/item/clothing/glasses/omnihud/Destroy()
-	QDEL_NULL(arscreen)
 	QDEL_NULL(tgarscreen)
 	. = ..()
 
 /obj/item/clothing/glasses/omnihud/dropped()
-	if(arscreen)
-		SSnanoui.close_uis(src)
 	if(tgarscreen)
 		SStgui.close_uis(src)
 	..()
 
 /obj/item/clothing/glasses/omnihud/emp_act(var/severity)
-	if(arscreen)
-		SSnanoui.close_uis(src)
 	if(tgarscreen)
 		SStgui.close_uis(src)
-	var/disconnect_ar = arscreen
 	var/disconnect_tgar = tgarscreen
-	arscreen = null
 	tgarscreen = null
 	spawn(20 SECONDS)
-		arscreen = disconnect_ar
 		tgarscreen = disconnect_tgar
 	
 	//extra fun for non-sci variants; a small chance flip the state to the dumb 3d glasses when EMP'd

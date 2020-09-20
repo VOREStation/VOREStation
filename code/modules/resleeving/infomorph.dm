@@ -147,9 +147,9 @@ var/list/infomorph_emotions = list(
 		return 0
 	..()
 
-/mob/living/silicon/infomorph/default_can_use_topic(var/src_object)
+/mob/living/silicon/infomorph/default_can_use_tgui_topic(var/src_object)
 	if(src_object in src)
-		return shared_nano_interaction()
+		return shared_tgui_interaction()
 
 /////////// DAMAGES
 /mob/living/silicon/infomorph/emp_act(severity)
@@ -190,7 +190,7 @@ var/list/infomorph_emotions = list(
 	medicalActive1 = null
 	medicalActive2 = null
 	medical_cannotfind = 0
-	SSnanoui.update_uis(src)
+	SStgui.update_uis(src)
 	to_chat(usr, "<span class='notice'>You reset your record-viewing software.</span>")
 
 /*

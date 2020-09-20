@@ -53,13 +53,12 @@
 		O.loc = src
 		held_card = O
 
-		SSnanoui.update_uis(src)
+		SStgui.update_uis(src)
 
 	attack_hand(user)
 
 /obj/machinery/account_database/attack_hand(mob/user as mob)
 	if(stat & (NOPOWER|BROKEN)) return
-	ui_interact(user)
 	tgui_interact(user)
 
 /obj/machinery/account_database/tgui_interact(mob/user, datum/tgui/ui)

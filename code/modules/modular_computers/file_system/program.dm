@@ -220,12 +220,6 @@
 	else
 		return -1
 
-/obj/item/modular_computer/initial_data()
-	return get_header_data()
-
-/obj/item/modular_computer/update_layout()
-	return TRUE
-
 /datum/computer_file/program/apply_visual(mob/M)
 	if(TM)
 		return TM.apply_visual(M)

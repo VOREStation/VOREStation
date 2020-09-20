@@ -144,6 +144,6 @@
 	if(!istype(user))
 		return
 
-	if(CanInteract(user, physical_state))
+	if(CanInteract(user, GLOB.tgui_physical_state))
 		beep = !beep
 		to_chat(user, "<span class='notice'>You turn the sound on \the [src] [beep ? "on" : "off"].</span>")
