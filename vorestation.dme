@@ -3530,6 +3530,7 @@
 #include "code\modules\tgui\tgui.dm"
 #include "code\modules\tgui\tgui_window.dm"
 #include "code\modules\tgui\modules\_base.dm"
+#include "code\modules\tgui\modules\agentcard.dm"
 #include "code\modules\tgui\modules\alarm.dm"
 #include "code\modules\tgui\modules\appearance_changer.dm"
 #include "code\modules\tgui\modules\atmos_control.dm"
