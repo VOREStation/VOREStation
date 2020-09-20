@@ -62,6 +62,7 @@
 	switch(action)
 		if("make_copy")
 			addtimer(CALLBACK(src, .proc/copy_operation, usr), 0)
+			. = TRUE
 		if("remove")
 			if(copyitem)
 				copyitem.loc = usr.loc
@@ -70,8 +71,10 @@
 				copyitem = null
 			else if(has_buckled_mobs())
 				to_chat(buckled_mobs[1], "<span class='notice'>You feel a slight pressure on your ass.</span>") // It can't eject your asscheeks, but it'll try.
+			. = TRUE
 		if("set_copies")
 			copies = clamp(text2num(params["num_copies"]), 1, maxcopies)
+			. = TRUE
 		if("ai_photo")
 			if(!issilicon(usr))
 				return
@@ -94,8 +97,7 @@
 				else
 					p.desc += " - Copied by [tempAI.name]"
 				toner -= 5
-
-	return TRUE
+			. = TRUE
 
 /obj/machinery/photocopier/proc/copy_operation(var/mob/user)
 	if(copying)
