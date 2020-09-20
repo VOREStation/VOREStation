@@ -133,15 +133,13 @@
 	var/icon_full = "fuel_port_full"
 	var/opened = 0
 	var/parent_shuttle
-	var/base_tank = /obj/item/weapon/tank/phoron //VOREStation EDIT - add default tank var + value
+	var/base_tank = /obj/item/weapon/tank/phoron
 
 /obj/structure/fuel_port/Initialize()
 	. = ..()
-	if(base_tank)	//VOREStation EDIT - if we have a base_tank var, spawn it; else do nothing (tested & works)
-		new base_tank(src) //VOREStation EDIT 2
+	if(base_tank)
+		new base_tank(src)
 
-//VOREStation EDIT START
-//two new variants: heavy (pressurized tank) and empty (oh no!)
 /obj/structure/fuel_port/heavy
 	base_tank = /obj/item/weapon/tank/phoron/pressurized
 
@@ -149,7 +147,6 @@
 	base_tank = null	//oops, no gas!
 	opened = 1	//shows open so you can diagnose 'oops, no gas' easily
 	icon_state = "fuel_port_empty"	//set the default state just to be safe
-//VOREStation EDIT END
 
 /obj/structure/fuel_port/attack_hand(mob/user as mob)
 	if(!opened)

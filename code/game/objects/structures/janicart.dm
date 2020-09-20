@@ -32,12 +32,12 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 	return ..()
 
 /obj/structure/janitorialcart/examine(mob/user)
-	if(..(user, 1))
-		if (mybucket)
-			var/contains = mybucket.reagents.total_volume
-			to_chat(user, "\icon[src] The bucket contains [contains] unit\s of liquid!")
-		else
-			to_chat(user, "\icon[src] There is no bucket mounted on it!")
+	. = ..(user)
+	if(istype(mybucket))
+		var/contains = mybucket.reagents.total_volume
+		. += "[bicon(src)] The bucket contains [contains] unit\s of liquid!"
+	else
+		. += "[bicon(src)] There is no bucket mounted on it!"
 
 /obj/structure/janitorialcart/MouseDrop_T(atom/movable/O as mob|obj, mob/living/user as mob)
 	if (istype(O, /obj/structure/mopbucket) && !mybucket)
