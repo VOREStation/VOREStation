@@ -133,10 +133,20 @@
 	var/icon_full = "fuel_port_full"
 	var/opened = 0
 	var/parent_shuttle
+	var/base_tank = /obj/item/weapon/tank/phoron
 
 /obj/structure/fuel_port/Initialize()
 	. = ..()
-	new /obj/item/weapon/tank/phoron(src)
+	if(base_tank)
+		new base_tank(src)
+
+/obj/structure/fuel_port/heavy
+	base_tank = /obj/item/weapon/tank/phoron/pressurized
+
+/obj/structure/fuel_port/empty
+	base_tank = null	//oops, no gas!
+	opened = 1	//shows open so you can diagnose 'oops, no gas' easily
+	icon_state = "fuel_port_empty"	//set the default state just to be safe
 
 /obj/structure/fuel_port/attack_hand(mob/user as mob)
 	if(!opened)
