@@ -25,6 +25,7 @@
 	var/equalise = 0									// If true try to equalise charge between cells
 	var/icon_update = 0									// Timer in ticks for icon update.
 	var/ui_tick = 0
+	should_be_mapped = TRUE
 
 
 /obj/machinery/power/smes/batteryrack/New()
@@ -113,6 +114,8 @@
 	if(equalise)
 		// Now try to get least charged cell and use the power from it.
 		var/obj/item/weapon/cell/CL = get_least_charged_cell()
+		if(!CL)
+			return
 		amount -= CL.give(amount)
 		if(!amount)
 			return
@@ -209,8 +212,43 @@
 		celldiff = min(min(celldiff, most.charge), least.maxcharge - least.charge)
 		least.give(most.use(celldiff))
 
-/obj/machinery/power/smes/batteryrack/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	var/data[0]
+/obj/machinery/power/smes/batteryrack/dismantle()
+	for(var/obj/item/weapon/cell/C in internal_cells)
+		C.forceMove(get_turf(src))
+		internal_cells -= C
+	return ..()
+
+/obj/machinery/power/smes/batteryrack/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+	if(istype(W, /obj/item/weapon/cell)) // ID Card, try to insert it.
+		if(insert_cell(W, user))
+			to_chat(user, "<span class='filter_notice'>You insert \the [W] into \the [src].</span>")
+		else
+			to_chat(user, "<span class='filter_notice'>\The [src] has no empty slot for \the [W]</span>")
+	if(!..())
+		return 0
+	if(default_deconstruction_crowbar(user, W))
+		return
+	if(default_part_replacement(user, W))
+		return
+
+/obj/machinery/power/smes/batteryrack/inputting()
+	return
+
+/obj/machinery/power/smes/batteryrack/outputting()
+	return
+
+/obj/machinery/power/smes/batteryrack/attack_hand(var/mob/user)
+	tgui_interact(user)
+
+/obj/machinery/power/smes/batteryrack/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Batteryrack", name)
+		ui.open()
+
+/obj/machinery/power/smes/batteryrack/tgui_data(mob/user)
+	// DO NOT CALL PARENT.
+	var/list/data = list()
 
 	data["mode"] = mode
 	data["transfer_max"] = max_transfer_rate
@@ -238,75 +276,44 @@
 		cells += list(cell)
 	data["cells_list"] = cells
 
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "psu.tmpl", "Cell Rack PSU", 500, 430)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(1)
+	return data
 
-/obj/machinery/power/smes/batteryrack/dismantle()
-	for(var/obj/item/weapon/cell/C in internal_cells)
-		C.forceMove(get_turf(src))
-		internal_cells -= C
-	return ..()
-
-/obj/machinery/power/smes/batteryrack/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if(!..())
-		return 0
-	if(default_deconstruction_crowbar(user, W))
-		return
-	if(default_part_replacement(user, W))
-		return
-	if(istype(W, /obj/item/weapon/cell)) // ID Card, try to insert it.
-		if(insert_cell(W, user))
-			to_chat(user, "<span class='filter_notice'>You insert \the [W] into \the [src].</span>")
-		else
-			to_chat(user, "<span class='filter_notice'>\The [src] has no empty slot for \the [W]</span>")
-
-/obj/machinery/power/smes/batteryrack/attack_hand(var/mob/user)
-	ui_interact(user)
-
-/obj/machinery/power/smes/batteryrack/inputting()
-	return
-
-/obj/machinery/power/smes/batteryrack/outputting()
-	return
-
-/obj/machinery/power/smes/batteryrack/Topic(href, href_list)
+/obj/machinery/power/smes/batteryrack/tgui_act(action, list/params)
 	// ..() would respond to those topic calls, but we don't want to use them at all.
 	// Calls to these shouldn't occur anyway, due to usage of different nanoUI, but
 	// it's here in case someone decides to try hrefhacking/modified templates.
-	if(href_list["input"] || href_list["output"])
-		return 1
+	if(!(action in list("disable", "enable", "equaliseon", "equaliseoff", "ejectcell")))
+		return TRUE
 
 	if(..())
-		return 1
-	if( href_list["disable"] )
-		update_io(0)
-		return 1
-	else if( href_list["enable"] )
-		update_io(between(1, text2num(href_list["enable"]), 3))
-		return 1
-	else if( href_list["equaliseon"] )
-		equalise = 1
-		return 1
-	else if( href_list["equaliseoff"] )
-		equalise = 0
-		return 1
-	else if( href_list["ejectcell"] )
-		var/obj/item/weapon/cell/C
-		for(var/obj/item/weapon/cell/CL in internal_cells)
-			if(CL.c_uid == text2num(href_list["ejectcell"]))
-				C = CL
-				break
+		return TRUE
 
-		if(!istype(C))
-			return 1
+	switch(action)
+		if("disable")
+			update_io(0)
+			return TRUE
+		if("enable")
+			update_io(between(1, text2num(params["enable"]), 3))
+			return TRUE
+		if("equaliseon")
+			equalise = 1
+			return TRUE
+		if("equaliseoff")
+			equalise = 0
+			return TRUE
+		if("ejectcell")
+			var/obj/item/weapon/cell/C
+			for(var/obj/item/weapon/cell/CL in internal_cells)
+				if(CL.c_uid == text2num(params["ejectcell"]))
+					C = CL
+					break
 
-		C.forceMove(get_turf(src))
-		internal_cells -= C
-		update_icon()
-		RefreshParts()
-		update_maxcharge()
-		return 1
+			if(!istype(C))
+				return TRUE
+
+			C.forceMove(get_turf(src))
+			internal_cells -= C
+			update_icon()
+			RefreshParts()
+			update_maxcharge()
+			return TRUE
