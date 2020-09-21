@@ -552,3 +552,6 @@ ENABLE_NIGHT_SHIFTS
 # ALLOW_BYOND_LINKS
 # ALLOW_DISCORD_LINKS
 ALLOW_URL_LINKS
+
+# Control which submaps are loaded for the Dynamic Engine system
+ENGINE_MAP Supermatter Engine,Edison's Bane

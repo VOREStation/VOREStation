@@ -1,0 +1,61 @@
+@use 'sass:color';
+@use 'sass:meta';
+
+@use '../colors.scss' with (
+  $primary: #000000,
+  $label: #000000,
+  $average: #000000,
+);
+@use '../base.scss' with (
+  $color-bg: #6f7961,
+  $color-bg-grad-spread: 0%,
+  $color-fg: #000,
+  $border-radius: 0,
+);
+
+// A fat warning to anyone who wants to use this: this only half works.
+// It was made almost purely for the pda ui, and requires a good amount of manual hacks to get it working as intended.
+.theme-pda-retro {
+  // Atomic classes
+  @include meta.load-css('../atomic/color.scss');
+
+  // Components
+  @include meta.load-css('../components/Button.scss', $with: (
+    'color-default': #E8E4C9,
+    'color-disabled': #505050,
+    'color-selected': #9d0808,
+    'color-caution': #be6209,
+    'color-danger': #9a9d00,
+  ));
+  @include meta.load-css('../components/ProgressBar.scss', $with: (
+    'color-background': rgba(0, 0, 0, 0.5),
+  ));
+  @include meta.load-css('../components/Section.scss', $with: (
+    'color-background': rgba(0, 0, 0, 0.1),
+  ));
+
+  // Layouts
+  @include meta.load-css('../layouts/Layout.scss');
+  @include meta.load-css('../layouts/Window.scss');
+  @include meta.load-css('../layouts/TitleBar.scss', $with: (
+    'color-background': #363636,
+  ));
+
+  .Button {
+    color: #161613;
+    background-color: #565d4b;
+    border: 1px solid #000000;
+  }
+
+  .Layout__content {
+    background-image: none;
+  }
+
+  .LabeledList__label {
+    font-weight: bold;
+  }
+
+  .Tooltip::after {
+    color: #ffffff;
+  }
+}

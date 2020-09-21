@@ -22,10 +22,8 @@ hawkerthegreat - Vox
 hollifex - Diona
 inuzari - Diona
 jademanique - Xenochimera
-jemli - Gutter
 ktccd - Diona
 khanivore - Protean
-lunarfleet - Gutter
 mewchild - Diona
 mewchild - Vox
 mrsebbi - Xenochimera
@@ -41,7 +39,6 @@ rapidvalj - Common Skrellian
 rapidvalj - High Skrellian
 rikaru19xjenkins - Xenochimera
 rixunie - Diona
-rixunie - Gutter
 rykkastormheart - Xenochimera
 rubyflamewing - Protean
 radiantaurora - Protean
@@ -51,7 +48,6 @@ sepulchre - Vox
 silvertalismen - Diona
 silvertalismen - Vox
 silvertalismen - Xenochimera
-singo - Gutter
 storesund97 - Protean
 sharplight - Protean
 tastypred - Black-Eyed Shadekin
@@ -68,3 +64,4 @@ xioen - Xenochimera
 xonkon - Protean
 zalvine - Shadekin Empathy
 zammyman215 - Vox
+stackerrobot - Protean

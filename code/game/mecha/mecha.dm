@@ -23,20 +23,20 @@
 	description_info = "Alt click to strafe."
 	icon = 'icons/mecha/mecha.dmi'
 	density = 1							//Dense. To raise the heat.
-	opacity = 1							///opaque. Menacing.
-	anchored = 1						//no pulling around.
-	unacidable = 1						//and no deleting hoomans inside
-	layer = MOB_LAYER					//icon draw layer
-	infra_luminosity = 15				//byond implementation is bugged.
+	opacity = 1							//Opaque. Menacing.
+	anchored = 1						//No pulling around.
+	unacidable = 1						//And no deleting hoomans inside
+	layer = MOB_LAYER					//Icon draw layer
+	infra_luminosity = 15				//Byond implementation is bugged.
 	var/initial_icon = null				//Mech type for resetting icon. Only used for reskinning kits (see custom items)
 	var/can_move = 1
 	var/mob/living/carbon/occupant = null
-	var/step_in = 10					//make a step in step_in/10 sec.
+	var/step_in = 10					//Make a step in step_in/10 sec.
 	var/dir_in = 2						//What direction will the mech face when entered/powered on? Defaults to South.
 	var/step_energy_drain = 10
-	var/health = 300 					//health is health
-	var/maxhealth = 300 				//maxhealth is maxhealth.
-	var/deflect_chance = 10 			//chance to deflect the incoming projectiles, hits, or lesser the effect of ex_act.
+	var/health = 300 					//Health is health
+	var/maxhealth = 300 				//Maxhealth is maxhealth.
+	var/deflect_chance = 10 			//Chance to deflect the incoming projectiles, hits, or lesser the effect of ex_act.
 	//the values in this list show how much damage will pass through, not how much will be absorbed.
 	var/list/damage_absorption = list(
 									"brute"=0.8,
@@ -51,7 +51,7 @@
 
 	var/damage_minimum = 10				//Incoming damage lower than this won't actually deal damage. Scrapes shouldn't be a real thing.
 	var/minimum_penetration = 15		//Incoming damage won't be fully applied if you don't have at least 20. Almost all AP clears this.
-	var/fail_penetration_value = 0.66	//By how much failing to penetrate reduces your shit. 66% by default.
+	var/fail_penetration_value = 0.66	//By how much failing to penetrate reduces your shit. 66% by default. 100dmg = 66dmg if failed pen
 
 	var/obj/item/weapon/cell/cell
 	var/state = MECHA_OPERATING
@@ -59,8 +59,8 @@
 	var/last_message = 0
 	var/add_req_access = 1
 	var/maint_access = 1
-	var/dna								//dna-locking the mech
-	var/list/proc_res = list() 			//stores proc owners, like proc_res["functionname"] = owner reference
+	var/dna								//Dna-locking the mech
+	var/list/proc_res = list() 			//Stores proc owners, like proc_res["functionname"] = owner reference
 	var/datum/effect/effect/system/spark_spread/spark_system = new
 	var/lights = 0
 	var/lights_power = 6
@@ -82,17 +82,17 @@
 	var/obj/item/device/radio/radio = null
 
 	var/max_temperature = 25000			//Kelvin values.
-	var/internal_damage_threshold = 33	//health percentage below which internal damage is possible
+	var/internal_damage_threshold = 33	//Health percentage below which internal damage is possible
 	var/internal_damage_minimum = 15	//At least this much damage to trigger some real bad hurt.
-	var/internal_damage = 0 			//contains bitflags
+	var/internal_damage = 0 			//Contains bitflags
 
-	var/list/operation_req_access = list()//required access level for mecha operation
-	var/list/internals_req_access = list(access_engine,access_robotics)//required access level to open cell compartment
+	var/list/operation_req_access = list()								//Required access level for mecha operation
+	var/list/internals_req_access = list(access_engine,access_robotics)	//Required access level to open cell compartment
 
-	var/datum/global_iterator/pr_int_temp_processor 	//normalizes internal air mixture temperature
-	var/datum/global_iterator/pr_inertial_movement 		//controls intertial movement in spesss
-	var/datum/global_iterator/pr_give_air 				//moves air from tank to cabin
-	var/datum/global_iterator/pr_internal_damage		//processes internal damage
+	var/datum/global_iterator/pr_int_temp_processor 	//Normalizes internal air mixture temperature
+	var/datum/global_iterator/pr_inertial_movement 		//Controls intertial movement in spesss
+	var/datum/global_iterator/pr_give_air 				//Moves air from tank to cabin
+	var/datum/global_iterator/pr_internal_damage		//Processes internal damage
 
 
 	var/wreckage
@@ -559,12 +559,12 @@
 		target.attack_hand(src.occupant)
 		return 1
 	if(istype(target, /obj/machinery/embedded_controller))
-		target.ui_interact(src.occupant)
+		target.tgui_interact(src.occupant)
 		return 1
 	return 0
 
-/obj/mecha/contents_nano_distance(var/src_object, var/mob/living/user)
-	. = user.shared_living_nano_distance(src_object) //allow them to interact with anything they can interact with normally.
+/obj/mecha/contents_tgui_distance(var/src_object, var/mob/living/user)
+	. = user.shared_living_tgui_distance(src_object) //allow them to interact with anything they can interact with normally.
 	if(. != STATUS_INTERACTIVE)
 		//Allow interaction with the mecha or anything that is part of the mecha
 		if(src_object == src || (src_object in src))
@@ -1891,7 +1891,7 @@
 		update_cell_alerts()
 		update_damage_alerts()
 		set_dir(dir_in)
-		playsound(src, 'sound/machines/windowdoor.ogg', 50, 1)
+		playsound(src, 'sound/machines/door/windowdoor.ogg', 50, 1)
 		if(occupant.client && cloaked_selfimage)
 			occupant.client.images += cloaked_selfimage
 		play_entered_noise(occupant)
@@ -2242,6 +2242,16 @@
 						"}
 	output += "</body></html>"
 	return output
+
+/obj/mecha/proc/get_log_tgui()
+	var/list/data = list()
+	for(var/list/entry in log)
+		data.Add(list(list(
+			"time" = time2text(entry["time"], "DDD MMM DD hh:mm:ss"),
+			"year" = game_year,
+			"message" = entry["message"],
+		)))
+	return data
 
 
 /obj/mecha/proc/output_access_dialog(obj/item/weapon/card/id/id_card, mob/user)

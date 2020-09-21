@@ -42,8 +42,8 @@
 		EQUIPMENT("Defense Equipment - Sentry Drone Deployer",	/obj/item/weapon/grenade/spawnergrenade/ward,						1500),
 		EQUIPMENT("Defense Equipment - Smoke Bomb",				/obj/item/weapon/grenade/smokebomb,									100),
 		EQUIPMENT("Durasteel Fishing Rod",						/obj/item/weapon/material/fishing_rod/modern/strong,				7500),
-		EQUIPMENT("Fishing Net",								/obj/item/weapon/material/fishing_net,								500),
 		EQUIPMENT("Titanium Fishing Rod",						/obj/item/weapon/material/fishing_rod/modern,						1000),
+		EQUIPMENT("Fishing Net",								/obj/item/weapon/material/fishing_net,								500),
 		EQUIPMENT("Fulton Beacon",								/obj/item/fulton_core,												500),
 		EQUIPMENT("Geiger Counter",								/obj/item/device/geiger,											750),
 		EQUIPMENT("GPS Device",									/obj/item/device/gps/mining,										100),
@@ -54,9 +54,9 @@
 
 	)
 	prize_list["Consumables"] = list(
-		EQUIPMENT("1 Marker Beacon",		/obj/item/stack/marker_beacon,													10),
-		EQUIPMENT("10 Marker Beacons",		/obj/item/stack/marker_beacon/ten,												100),
-		EQUIPMENT("30 Marker Beacons",		/obj/item/stack/marker_beacon/thirty,											300),
+		EQUIPMENT("1 Marker Beacon",		/obj/item/stack/marker_beacon,													1),
+		EQUIPMENT("10 Marker Beacons",		/obj/item/stack/marker_beacon/ten,												10),
+		EQUIPMENT("30 Marker Beacons",		/obj/item/stack/marker_beacon/thirty,											30),
 		EQUIPMENT("Fulton Pack",			/obj/item/extraction_pack,														1200),
 		EQUIPMENT("Injector (L) - Glucose",	/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/glucose,	500),
 		EQUIPMENT("Injector (L) - Panacea",	/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/purity,	500),
@@ -71,14 +71,14 @@
 	)
 	prize_list["Kinetic Accelerator"] = list(
 		EQUIPMENT("Kinetic Accelerator",		/obj/item/weapon/gun/energy/kinetic_accelerator,				900),
-		EQUIPMENT("KA Adjustable Tracer Rounds",/obj/item/borg/upgrade/modkit/tracer/adjustable,				175),
 		EQUIPMENT("KA AoE Damage",				/obj/item/borg/upgrade/modkit/aoe/mobs,							2000),
 		EQUIPMENT("KA Damage Increase",			/obj/item/borg/upgrade/modkit/damage,							1000),
 		EQUIPMENT("KA Efficiency Increase",		/obj/item/borg/upgrade/modkit/efficiency,						1200),
-		EQUIPMENT("KA Holster",					/obj/item/clothing/accessory/holster/waist/kinetic_accelerator,	350),
-		EQUIPMENT("KA Hyper Chassis",			/obj/item/borg/upgrade/modkit/chassis_mod/orange,				300),
 		EQUIPMENT("KA Range Increase",			/obj/item/borg/upgrade/modkit/range,							1000),
+		EQUIPMENT("KA Holster",					/obj/item/clothing/accessory/holster/waist/kinetic_accelerator,	350),
 		EQUIPMENT("KA Super Chassis",			/obj/item/borg/upgrade/modkit/chassis_mod,						250),
+		EQUIPMENT("KA Hyper Chassis",			/obj/item/borg/upgrade/modkit/chassis_mod/orange,				300),
+		EQUIPMENT("KA Adjustable Tracer Rounds",/obj/item/borg/upgrade/modkit/tracer/adjustable,				175),
 		EQUIPMENT("KA White Tracer Rounds",		/obj/item/borg/upgrade/modkit/tracer,							125),
 	)
 	prize_list["Digging Tools"] = list(
@@ -91,6 +91,9 @@
 		EQUIPMENT("Fine Excavation Kit - Measuring Tape",	/obj/item/device/measuring_tape,				125),
 		EQUIPMENT("Fine Excavation Kit - Hand Pick",		/obj/item/weapon/pickaxe/hand,					375),
 		EQUIPMENT("Explosive Excavation Kit - Plastic Charge",/obj/item/weapon/plastique/seismic/locked,	1500),
+		EQUIPMENT("Industrial Equipment - Phoron Bore",		/obj/item/weapon/gun/magnetic/matfed,			3000),
+		EQUIPMENT("Industrial Equipment - Inducer",			/obj/item/weapon/inducer,						900),
+		EQUIPMENT("Industrial Equipment - Sheet-Snatcher",	/obj/item/weapon/storage/bag/sheetsnatcher,		500),
 	)
 	prize_list["Hardsuit"] = list(
 		EQUIPMENT("Hardsuit - Control Module",		/obj/item/weapon/rig/industrial/vendor,		2000),
@@ -104,14 +107,12 @@
 	)
 	prize_list["Miscellaneous"] = list(
 		EQUIPMENT("Absinthe",					/obj/item/weapon/reagent_containers/food/drinks/bottle/absinthe,	125),
-		EQUIPMENT("Bar Shelter Capsule",		/obj/item/device/survivalcapsule/luxurybar,							10000),
 		EQUIPMENT("Cigar",						/obj/item/clothing/mask/smokable/cigarette/cigar/havana,			150),
-		EQUIPMENT("Digital Tablet - Advanced",	/obj/item/modular_computer/tablet/preset/custom_loadout/advanced,	1000),
 		EQUIPMENT("Digital Tablet - Standard",	/obj/item/modular_computer/tablet/preset/custom_loadout/standard,	500),
-		EQUIPMENT("Industrial Equipment - Phoron Bore",	/obj/item/weapon/gun/magnetic/matfed,						3000),
-		EQUIPMENT("Industrial Equipment - Sheet-Snatcher",/obj/item/weapon/storage/bag/sheetsnatcher,				500),
+		EQUIPMENT("Digital Tablet - Advanced",	/obj/item/modular_computer/tablet/preset/custom_loadout/advanced,	1000),
 		EQUIPMENT("Laser Pointer",				/obj/item/device/laser_pointer,										900),
 		EQUIPMENT("Luxury Shelter Capsule",		/obj/item/device/survivalcapsule/luxury,							3100),
+		EQUIPMENT("Bar Shelter Capsule",		/obj/item/device/survivalcapsule/luxurybar,							10000),
 		EQUIPMENT("Plush Toy",					/obj/random/plushie,												300),
 		EQUIPMENT("Soap",						/obj/item/weapon/soap/nanotrasen,									200),
 		EQUIPMENT("Thalers - 100",				/obj/item/weapon/spacecash/c100,									1000),

@@ -124,3 +124,6 @@ Code is pretty much ripped verbatim from nano modules, but with un-needed stuff 
 	. += new /obj/screen/plane_master{plane = PLANE_CH_VANTAG}				//Vore Antags
 	. += new /obj/screen/plane_master{plane = PLANE_AUGMENTED}				//Augmented reality
 	//VOREStation Add End
+
+/datum/tgui_module/proc/relaymove(mob/user, direction)
+	return FALSE

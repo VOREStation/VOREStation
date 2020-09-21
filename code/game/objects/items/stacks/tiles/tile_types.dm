@@ -18,6 +18,7 @@
 	w_class = ITEMSIZE_NORMAL
 	max_amount = 60
 	drop_sound = 'sound/items/drop/axe.ogg'
+	pickup_sound = 'sound/items/pickup/axe.ogg'
 
 /obj/item/stack/tile/New()
 	..()
@@ -39,6 +40,7 @@
 	origin_tech = list(TECH_BIO = 1)
 	no_variants = FALSE
 	drop_sound = 'sound/items/drop/herb.ogg'
+	pickup_sound = 'sound/items/pickup/herb.ogg'
 /*
  * Wood
  */
@@ -54,6 +56,7 @@
 	flags = 0
 	no_variants = FALSE
 	drop_sound = 'sound/items/drop/wooden.ogg'
+	pickup_sound = 'sound/items/pickup/wooden.ogg'
 
 /obj/item/stack/tile/wood/sif
 	name = "alien wood tile"
@@ -83,7 +86,8 @@
 	throw_range = 20
 	flags = 0
 	no_variants = FALSE
-	drop_sound = 'sound/items/drop/clothing.ogg'
+	drop_sound = 'sound/items/drop/cloth.ogg'
+	pickup_sound = 'sound/items/pickup/cloth.ogg'
 
 /obj/item/stack/tile/carpet/teal
 	name = "teal carpet"

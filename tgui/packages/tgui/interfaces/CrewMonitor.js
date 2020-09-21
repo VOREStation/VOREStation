@@ -1,9 +1,9 @@
 import { sortBy } from 'common/collections';
+import { flow } from 'common/fp';
 import { useBackend, useLocalState } from "../backend";
 import { Window } from "../layouts";
 import { NanoMap, Box, Table, Button, Tabs, Icon, NumberInput } from "../components";
 import { TableCell } from '../components/Table';
-import { COLORS } from '../constants.js';
 import { Fragment } from 'inferno';
 
 export const CrewMonitor = () => {
@@ -22,9 +22,13 @@ export const CrewMonitor = () => {
 export const CrewMonitorContent = (props, context) => {
   const { act, data, config } = useBackend(context);
   const [tabIndex, setTabIndex] = useLocalState(context, 'tabIndex', 0);
-  const crew = sortBy(
-    cm => cm.name,
-  )(data.crewmembers || []);
+
+  const crew = flow([
+    sortBy(cm => cm.name),
+    sortBy(cm => cm?.x),
+    sortBy(cm => cm?.y),
+    sortBy(cm => cm?.realZ),
+  ])(data.crewmembers || []);
 
   const [
     mapZoom,
@@ -47,7 +51,7 @@ export const CrewMonitorContent = (props, context) => {
           </Table.Cell>
         </Table.Row>
         {crew.map(cm => (
-          <Table.Row key={cm.name}>
+          <Table.Row key={cm.ref}>
             <TableCell>
               {cm.name} ({cm.assignment})
             </TableCell>

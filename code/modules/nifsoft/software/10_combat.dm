@@ -34,10 +34,10 @@
 	tick_flags = NIF_ACTIVETICK
 	combat_flags = (NIF_C_PAINKILLERS)
 
-	life()
-		if((. = ..()))
-			var/mob/living/carbon/human/H = nif.human
-			H.bloodstr.add_reagent("numbenzyme",0.5)
+/datum/nifsoft/painkillers/life()
+	if((. = ..()))
+		var/mob/living/carbon/human/H = nif.human
+		H.bloodstr.add_reagent("numbenzyme",0.5)
 
 /datum/nifsoft/hardclaws
 	name = "Bloodletters"
@@ -74,25 +74,25 @@ var/global/datum/unarmed_attack/hardclaws/unarmed_hardclaws = new()
 	var/used = FALSE
 	combat_flags = (NIF_C_HIDELASER)
 
-	activate()
-		if((. = ..()))
-			if(used)
-				nif.notify("You do not have a hidden weapon to deploy anymore!",TRUE)
-				deactivate()
-				return FALSE
-			if(!nif.use_charge(50))
-				nif.notify("Insufficient energy to deploy weapon!",TRUE)
-				deactivate()
-				return FALSE
+/datum/nifsoft/hidelaser/activate()
+	if((. = ..()))
+		if(used)
+			nif.notify("You do not have a hidden weapon to deploy anymore!",TRUE)
+			deactivate()
+			return FALSE
+		if(!nif.use_charge(50))
+			nif.notify("Insufficient energy to deploy weapon!",TRUE)
+			deactivate()
+			return FALSE
 
-			var/mob/living/carbon/human/H = nif.human
-			H.adjustHalLoss(30)
-			var/obj/item/weapon/gun/energy/gun/martin/dazzle/dgun = new(get_turf(H))
-			H.put_in_hands(dgun)
-			nif.notify("Weapon deployed!",TRUE)
-			used = TRUE
-			spawn(0)
-				uninstall()
+		var/mob/living/carbon/human/H = nif.human
+		H.adjustHalLoss(30)
+		var/obj/item/weapon/gun/energy/gun/martin/dazzle/dgun = new(get_turf(H))
+		H.put_in_hands(dgun)
+		nif.notify("Weapon deployed!",TRUE)
+		used = TRUE
+		spawn(0)
+			uninstall()
 
 //The gun to go with this implant
 /obj/item/weapon/gun/energy/gun/martin/dazzle

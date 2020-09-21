@@ -9,24 +9,24 @@
 	p_drain = 0.01
 	other_flags = (NIF_O_COMMLINK)
 
-	install()
-		if((. = ..()))
-			nif.comm = new(nif,src)
+/datum/nifsoft/commlink/install()
+	if((. = ..()))
+		nif.comm = new(nif,src)
 
-	uninstall()
-		var/obj/item/device/nif/lnif = nif //Awkward. Parent clears it in an attempt to clean up.
-		if((. = ..()) && lnif)
-			QDEL_NULL(lnif.comm)
+/datum/nifsoft/commlink/uninstall()
+	var/obj/item/device/nif/lnif = nif //Awkward. Parent clears it in an attempt to clean up.
+	if((. = ..()) && lnif)
+		QDEL_NULL(lnif.comm)
 
-	activate()
-		if((. = ..()))
-			nif.comm.initialize_exonet(nif.human)
-			nif.comm.ui_interact(nif.human,key_state = commlink_state)
-			spawn(0)
-				deactivate()
+/datum/nifsoft/commlink/activate()
+	if((. = ..()))
+		nif.comm.initialize_exonet(nif.human)
+		nif.comm.tgui_interact(nif.human, custom_state = GLOB.tgui_commlink_state)
+		spawn(0)
+			deactivate()
 
-	stat_text()
-		return "Show Commlink"
+/datum/nifsoft/commlink/stat_text()
+	return "Show Commlink"
 
 /datum/nifsoft/commlink/Topic(href, href_list)
 	if(href_list["open"])
@@ -39,18 +39,18 @@
 	var/obj/item/device/nif/nif
 	var/datum/nifsoft/commlink/nifsoft
 
-	New(var/newloc,var/soft)
-		..()
-		nif = newloc
-		nifsoft = soft
-		QDEL_NULL(camera) //Not supported on internal one.
+/obj/item/device/communicator/commlink/New(var/newloc,var/soft)
+	..()
+	nif = newloc
+	nifsoft = soft
+	QDEL_NULL(camera) //Not supported on internal one.
 
-	Destroy()
-		if(nif)
-			nif.comm = null
-			nif = null
-		nifsoft = null
-		return ..()
+/obj/item/device/communicator/commlink/Destroy()
+	if(nif)
+		nif.comm = null
+		nif = null
+	nifsoft = null
+	return ..()
 
 /obj/item/device/communicator/commlink/register_device(var/new_name)
 	owner = new_name

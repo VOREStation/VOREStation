@@ -276,7 +276,7 @@ var/global/list/datum/dna/gene/dna_genes[0]
 // Set a DNA UI block's raw value.
 /datum/dna/proc/SetUIValue(var/block,var/value,var/defer=0)
 	if (block<=0) return
-	ASSERT(value>0)
+	ASSERT(value>=0)
 	ASSERT(value<=4095)
 	UI[block]=value
 	dirtyUI=1
@@ -292,7 +292,6 @@ var/global/list/datum/dna/gene/dna_genes[0]
 // Used in hair and facial styles (value being the index and maxvalue being the len of the hairstyle list)
 /datum/dna/proc/SetUIValueRange(var/block,var/value,var/maxvalue,var/defer=0)
 	if (block<=0) return
-	if (value==0) value = 1   // FIXME: hair/beard/eye RGB values if they are 0 are not set, this is a work around we'll encode it in the DNA to be 1 instead.
 	ASSERT(maxvalue<=4095)
 	var/range = (4095 / maxvalue)
 	if(value)
@@ -302,7 +301,7 @@ var/global/list/datum/dna/gene/dna_genes[0]
 /datum/dna/proc/GetUIValueRange(var/block,var/maxvalue)
 	if (block<=0) return 0
 	var/value = GetUIValue(block)
-	return round(0.5 + (value / 4096) * maxvalue)
+	return round(0.5 + (value / 4095) * maxvalue)
 
 // Is the UI gene "on" or "off"?
 // For UI, this is simply a check of if the value is > 2050.
@@ -388,7 +387,7 @@ var/global/list/datum/dna/gene/dna_genes[0]
 /datum/dna/proc/GetSEValueRange(var/block,var/maxvalue)
 	if (block<=0) return 0
 	var/value = GetSEValue(block)
-	return round(1 +(value / 4096)*maxvalue)
+	return round(1 +(value / 4095)*maxvalue)
 
 // Is the block "on" (1) or "off" (0)? (Un-assigned genes are always off.)
 /datum/dna/proc/GetSEState(var/block)

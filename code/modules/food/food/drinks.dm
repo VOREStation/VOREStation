@@ -5,7 +5,8 @@
 	name = "drink"
 	desc = "yummy"
 	icon = 'icons/obj/drinks.dmi'
-	drop_sound = 'sound/items/drop/bottle.ogg'
+	drop_sound = 'sound/items/drop/drinkglass.ogg'
+	pickup_sound =  'sound/items/pickup/drinkglass.ogg'
 	icon_state = null
 	flags = OPENCONTAINER
 	amount_per_transfer_from_this = 5
@@ -135,7 +136,8 @@
 	icon_state = "milk"
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=9)
-	drop_sound = 'sound/items/drop/box.ogg'
+	drop_sound = 'sound/items/drop/cardboardbox.ogg'
+	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
 /obj/item/weapon/reagent_containers/food/drinks/milk/Initialize()
 	. = ..()
@@ -148,7 +150,8 @@
 	icon_state = "soymilk"
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=9)
-	drop_sound = 'sound/items/drop/box.ogg'
+	drop_sound = 'sound/items/drop/cardboardbox.ogg'
+	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
 /obj/item/weapon/reagent_containers/food/drinks/soymilk/Initialize()
 	. = ..()
@@ -162,7 +165,8 @@
 	icon_state = "mini-milk"
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=9)
-	drop_sound = 'sound/items/drop/box.ogg'
+	drop_sound = 'sound/items/drop/cardboardbox.ogg'
+	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
 /obj/item/weapon/reagent_containers/food/drinks/smallmilk/Initialize()
 	. = ..()
@@ -176,7 +180,8 @@
 	icon_state = "mini-milk_choco"
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=9)
-	drop_sound = 'sound/items/drop/box.ogg'
+	drop_sound = 'sound/items/drop/cardboardbox.ogg'
+	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
 /obj/item/weapon/reagent_containers/food/drinks/smallchocmilk/Initialize()
 	. = ..()
@@ -190,6 +195,7 @@
 	trash = /obj/item/trash/coffee
 	center_of_mass = list("x"=15, "y"=10)
 	drop_sound = 'sound/items/drop/papercup.ogg'
+	pickup_sound = 'sound/items/pickup/papercup.ogg'
 
 /obj/item/weapon/reagent_containers/food/drinks/coffee/Initialize()
 	. = ..()
@@ -204,6 +210,7 @@
 	trash = /obj/item/trash/coffee
 	center_of_mass = list("x"=16, "y"=14)
 	drop_sound = 'sound/items/drop/papercup.ogg'
+	pickup_sound = 'sound/items/pickup/papercup.ogg'
 
 /obj/item/weapon/reagent_containers/food/drinks/tea/Initialize()
 	. = ..()
@@ -227,6 +234,7 @@
 	trash = /obj/item/trash/coffee
 	center_of_mass = list("x"=15, "y"=13)
 	drop_sound = 'sound/items/drop/papercup.ogg'
+	pickup_sound = 'sound/items/pickup/papercup.ogg'
 
 /obj/item/weapon/reagent_containers/food/drinks/h_chocolate/Initialize()
 	..()
@@ -241,6 +249,7 @@
 	trash = /obj/item/trash/coffee
 	center_of_mass = list("x"=16, "y"=14)
 	drop_sound = 'sound/items/drop/papercup.ogg'
+	pickup_sound = 'sound/items/pickup/papercup.ogg'
 
 /obj/item/weapon/reagent_containers/food/drinks/greentea/Initialize()
 	. = ..()
@@ -255,6 +264,7 @@
 	trash = /obj/item/trash/coffee
 	center_of_mass = list("x"=16, "y"=14)
 	drop_sound = 'sound/items/drop/papercup.ogg'
+	pickup_sound = 'sound/items/pickup/papercup.ogg'
 
 /obj/item/weapon/reagent_containers/food/drinks/chaitea/Initialize()
 	. = ..()
@@ -269,6 +279,7 @@
 	trash = /obj/item/trash/coffee
 	center_of_mass = list("x"=16, "y"=14)
 	drop_sound = 'sound/items/drop/papercup.ogg'
+	pickup_sound = 'sound/items/pickup/papercup.ogg'
 
 /obj/item/weapon/reagent_containers/food/drinks/decaf/Initialize()
 	. = ..()
@@ -282,6 +293,7 @@
 	trash = /obj/item/trash/ramen
 	center_of_mass = list("x"=16, "y"=11)
 	drop_sound = 'sound/items/drop/papercup.ogg'
+	pickup_sound = 'sound/items/pickup/papercup.ogg'
 
 /obj/item/weapon/reagent_containers/food/drinks/dry_ramen/Initialize()
 	..()
@@ -295,6 +307,7 @@
 	volume = 10
 	center_of_mass = list("x"=16, "y"=12)
 	drop_sound = 'sound/items/drop/papercup.ogg'
+	pickup_sound = 'sound/items/pickup/papercup.ogg'
 
 /obj/item/weapon/reagent_containers/food/drinks/sillycup/Initialize()
 	. = ..()
@@ -347,8 +360,8 @@
 	..()
 
 /obj/item/weapon/reagent_containers/food/drinks/flask
-	name = "\improper Colony Director's flask"
-	desc = "A metal flask belonging to the Colony Director"
+	name = "\improper Site Manager's flask"
+	desc = "A metal flask belonging to the Site Manager"
 	icon_state = "flask"
 	volume = 60
 	center_of_mass = list("x"=17, "y"=7)

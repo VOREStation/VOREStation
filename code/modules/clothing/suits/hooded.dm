@@ -100,7 +100,7 @@
 	/obj/item/weapon/storage/box/matches, /obj/item/weapon/reagent_containers/food/drinks/flask, /obj/item/device/suit_cooling_unit)
 
 /obj/item/clothing/suit/storage/hooded/wintercoat/captain
-	name = "colony director's winter coat"
+	name = "site manager's winter coat"
 	icon_state = "coatcaptain"
 	item_state_slots = list(slot_r_hand_str = "coatcaptain", slot_l_hand_str = "coatcaptain")
 	armor = list(melee = 20, bullet = 15, laser = 20, energy = 10, bomb = 15, bio = 0, rad = 0)

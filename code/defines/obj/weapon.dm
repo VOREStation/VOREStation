@@ -10,6 +10,8 @@
 	w_class = ITEMSIZE_SMALL
 	attack_verb = list("called", "rang")
 	hitsound = 'sound/weapons/ring.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
+	pickup_sound = 'sound/items/pickup/device.ogg'
 
 /obj/item/weapon/rsp
 	name = "\improper Rapid-Seed-Producer (RSP)"
@@ -22,6 +24,8 @@
 	var/stored_matter = 0
 	var/mode = 1
 	w_class = ITEMSIZE_NORMAL
+	drop_sound = 'sound/items/drop/device.ogg'
+	pickup_sound = 'sound/items/pickup/device.ogg'
 
 /obj/item/weapon/soap
 	name = "soap"
@@ -35,7 +39,6 @@
 	throwforce = 0
 	throw_speed = 4
 	throw_range = 20
-	drop_sound = 'sound/misc/slip.ogg'
 
 /obj/item/weapon/soap/nanotrasen
 	desc = "A NanoTrasen-brand bar of soap. Smells of phoron."
@@ -79,6 +82,8 @@
 /obj/item/weapon/disk
 	name = "disk"
 	icon = 'icons/obj/discs_vr.dmi' //VOREStation Edit
+	drop_sound = 'sound/items/drop/disk.ogg'
+	pickup_sound =  'sound/items/pickup/disk.ogg'
 
 /obj/item/weapon/disk/nuclear
 	name = "nuclear authentication disk"
@@ -147,6 +152,8 @@
 	throw_range = 20
 	matter = list(DEFAULT_WALL_MATERIAL = 100)
 	origin_tech = list(TECH_MAGNET = 1)
+	drop_sound = 'sound/items/drop/device.ogg'
+	pickup_sound = 'sound/items/pickup/device.ogg'
 
 /obj/item/weapon/staff
 	name = "wizards staff"
@@ -194,6 +201,8 @@
 	item_state = "std_mod"
 	w_class = ITEMSIZE_SMALL
 	var/mtype = 1						// 1=electronic 2=hardware
+	drop_sound = 'sound/items/drop/component.ogg'
+	pickup_sound = 'sound/items/pickup/component.ogg'
 
 /obj/item/weapon/module/card_reader
 	name = "card reader module"
@@ -224,7 +233,6 @@
 	icon_state = "power_mod"
 	item_state = "std_mod"
 	desc = "Charging circuits for power cells."
-
 
 /obj/item/device/camera_bug
 	name = "camera bug"
@@ -301,6 +309,8 @@
 	display_contents_with_number = 1
 	max_w_class = ITEMSIZE_NORMAL
 	max_storage_space = 100
+	drop_sound = 'sound/items/drop/device.ogg'
+	pickup_sound = 'sound/items/pickup/device.ogg'
 
 /obj/item/weapon/storage/part_replacer/adv
 	name = "advanced rapid part exchange device"
@@ -324,7 +334,8 @@
 	icon = 'icons/obj/stock_parts.dmi'
 	w_class = ITEMSIZE_SMALL
 	var/rating = 1
-	drop_sound = 'sound/items/drop/glass.ogg'
+	drop_sound = 'sound/items/drop/component.ogg'
+	pickup_sound = 'sound/items/pickup/component.ogg'
 
 /obj/item/weapon/stock_parts/New()
 	src.pixel_x = rand(-5.0, 5)

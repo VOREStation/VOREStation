@@ -106,12 +106,12 @@
 	vision_flags = (NIF_V_MESONS)
 	incompatible_with = list(NIF_MATERIAL,NIF_THERMALS,NIF_NIGHTVIS)
 
-	life()
-		if((. = ..()))
-			var/mob/living/carbon/human/H = nif.human
-			H.sight |= SEE_TURFS
-			if(H.client)
-				H.client.screen |= global_hud.meson
+/datum/nifsoft/mesons/life()
+	if((. = ..()))
+		var/mob/living/carbon/human/H = nif.human
+		H.sight |= SEE_TURFS
+		if(H.client)
+			H.client.screen |= global_hud.meson
 
 /datum/nifsoft/material
 	name = "Material Scanner"
@@ -125,12 +125,12 @@
 	vision_flags = (NIF_V_MATERIAL)
 	incompatible_with = list(NIF_MESONS,NIF_THERMALS,NIF_NIGHTVIS)
 
-	life()
-		if((. = ..()))
-			var/mob/living/carbon/human/H = nif.human
-			H.sight |= SEE_OBJS
-			if(H.client)
-				H.client.screen |= global_hud.material
+/datum/nifsoft/material/life()
+	if((. = ..()))
+		var/mob/living/carbon/human/H = nif.human
+		H.sight |= SEE_OBJS
+		if(H.client)
+			H.client.screen |= global_hud.material
 
 /datum/nifsoft/thermals
 	name = "Thermal Scanner"
@@ -145,12 +145,12 @@
 	vision_flags = (NIF_V_THERMALS)
 	incompatible_with = list(NIF_MESONS,NIF_MATERIAL,NIF_NIGHTVIS)
 
-	life()
-		if((. = ..()))
-			var/mob/living/carbon/human/H = nif.human
-			H.sight |= SEE_MOBS
-			if(H.client)
-				H.client.screen |= global_hud.thermal
+/datum/nifsoft/thermals/life()
+	if((. = ..()))
+		var/mob/living/carbon/human/H = nif.human
+		H.sight |= SEE_MOBS
+		if(H.client)
+			H.client.screen |= global_hud.thermal
 
 /datum/nifsoft/nightvis
 	name = "Low-Light Amp"
@@ -164,9 +164,9 @@
 	vision_flags = (NIF_V_NIGHTVIS)
 	incompatible_with = list(NIF_MESONS,NIF_MATERIAL,NIF_THERMALS)
 
-	life()
-		if((. = ..()))
-			var/mob/living/carbon/human/H = nif.human
-			H.see_in_dark += 7
-			if(H.client)
-				H.client.screen |= global_hud.nvg
+/datum/nifsoft/nightvis/life()
+	if((. = ..()))
+		var/mob/living/carbon/human/H = nif.human
+		H.see_in_dark += 7
+		if(H.client)
+			H.client.screen |= global_hud.nvg

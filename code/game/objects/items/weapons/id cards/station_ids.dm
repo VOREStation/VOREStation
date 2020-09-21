@@ -40,6 +40,9 @@
 /obj/item/weapon/card/id/proc/prevent_tracking()
 	return 0
 
+/obj/item/weapon/card/id/tgui_state(mob/user)
+	return GLOB.tgui_deep_inventory_state
+
 /obj/item/weapon/card/id/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -135,13 +138,13 @@
 	preserve_item = 1
 
 /obj/item/weapon/card/id/gold/captain
-	assignment = "Colony Director"
-	rank = "Colony Director"
+	assignment = "Site Manager"
+	rank = "Site Manager"
 
 /obj/item/weapon/card/id/gold/captain/spare
-	name = "\improper Colony Director's spare ID"
+	name = "\improper Site Manager's spare ID"
 	desc = "The spare ID of the High Lord himself."
-	registered_name = "Colony Director"
+	registered_name = "Site Manager"
 
 /obj/item/weapon/card/id/synthetic
 	name = "\improper Synthetic ID"

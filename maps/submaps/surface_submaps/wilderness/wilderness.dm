@@ -34,6 +34,14 @@
 #include "ButcherShack.dmm"
 #include "Chapel.dmm"
 #include "Shelter.dmm"
+#include "derelictengine.dmm"
+#include "wolfden.dmm"
+#include "demonpool.dmm"
+#include "frostoasis.dmm"
+#include "xenohive.dmm"
+#include "borglab.dmm"
+#include "chasm.dmm"
+#include "deathden.dmm"
 
 #endif
 
@@ -286,3 +294,52 @@
 	desc = "The nest of a Frostfly, or more."
 	mappath = 'maps/submaps/surface_submaps/wilderness/FrostflyNest.dmm'
 	cost = 20
+
+/datum/map_template/surface/wilderness/deep/DerelictEngine
+	name = "Derelict Engine"
+	desc = "An crashed alien ship, something went wrong inside."
+	mappath = 'maps/submaps/surface_submaps/wilderness/derelictengine.dmm'
+	cost = 45
+
+/datum/map_template/surface/wilderness/normal/WolfDen
+	name = "Wolf Den"
+	desc = "Small wolf den and their hunt spoils."
+	mappath = 'maps/submaps/surface_submaps/wilderness/wolfden.dmm'
+	cost = 10
+
+/datum/map_template/surface/wilderness/normal/DemonPool
+	name = "Demon Pool"
+	desc = "A cult ritual gone horribly wrong."
+	mappath = 'maps/submaps/surface_submaps/wilderness/demonpool.dmm'
+	cost = 15
+
+/datum/map_template/surface/wilderness/normal/FrostOasis
+	name = "Frost Oasis"
+	desc = "A strange oasis with a gathering of wild animals."
+	mappath = 'maps/submaps/surface_submaps/wilderness/frostoasis.dmm'
+	cost = 15
+
+/datum/map_template/surface/wilderness/deep/XenoHive
+	name = "Xeno Hive"
+	desc = "A containment experiment gone wrong."
+	mappath = 'maps/submaps/surface_submaps/wilderness/xenohive.dmm'
+	cost = 25
+
+/datum/map_template/surface/wilderness/deep/BorgLab
+	name = "Borg Lab"
+	desc = "Production of experimental combat robots gone rogue."
+	mappath = 'maps/submaps/surface_submaps/wilderness/borglab.dmm'
+	cost = 30
+
+/datum/map_template/surface/wilderness/normal/Chasm
+	name = "Chasm"
+	desc = "An inconspicuous looking cave, watch your step."
+	mappath = 'maps/submaps/surface_submaps/wilderness/chasm.dmm'
+	cost = 20
+
+/datum/map_template/surface/wilderness/deep/DeathDen
+	name = "Death Den"
+	desc = "Gathering of acolytes gone wrong."
+	mappath = 'maps/submaps/surface_submaps/wilderness/deathden.dmm'
+	cost = 15
+

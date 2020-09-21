@@ -117,6 +117,10 @@
 	//List has indexes that are the digestion mode strings, and keys that are lists of strings.
 	var/tmp/list/emote_lists = list()
 
+	// Lets you do a fullscreen overlay. Set to an icon_state string.
+	var/belly_fullscreen = ""
+	var/disable_hud = FALSE
+
 //For serialization, keep this updated, required for bellies to save correctly.
 /obj/belly/vars_to_save()
 	return ..() + list(
@@ -155,7 +159,9 @@
 		"release_sound",
 		"fancy_vore",
 		"is_wet",
-		"wet_loop"
+		"wet_loop",
+		"belly_fullscreen",
+		"disable_hud"
 		)
 
 /obj/belly/Initialize()
@@ -199,6 +205,7 @@
 		var/taste
 		if(can_taste && (taste = M.get_taste_message(FALSE)))
 			to_chat(owner, "<span class='notice'>[M] tastes of [taste].</span>")
+		vore_fx(M)
 		//Stop AI processing in bellies
 		if(M.ai_holder)
 			M.ai_holder.go_sleep()
@@ -208,8 +215,31 @@
 	. = ..()
 	if(isliving(thing) && !isbelly(thing.loc))
 		var/mob/living/L = thing
+		L.clear_fullscreen("belly")
+		if(L.hud_used)
+			if(!L.hud_used.hud_shown)
+				L.toggle_hud_vis()
 		if((L.stat != DEAD) && L.ai_holder)
 			L.ai_holder.go_wake()
+
+/obj/belly/proc/vore_fx(mob/living/L)
+	if(!istype(L))
+		return
+	if(!L.show_vore_fx)
+		L.clear_fullscreen("belly")
+		return
+
+	if(belly_fullscreen)
+		var/obj/screen/fullscreen/F = L.overlay_fullscreen("belly", /obj/screen/fullscreen/belly)
+		F.icon_state = belly_fullscreen
+		// F.color = belly_fullscreen_color
+	else
+		L.clear_fullscreen("belly")
+
+	if(disable_hud)
+		if(L?.hud_used?.hud_shown)
+			to_chat(L, "<span class='notice'>((Your pred has disabled huds in their belly. Turn off vore FX and hit F12 to get it back; or relax, and enjoy the serenity.))</span>")
+			L.toggle_hud_vis(TRUE)
 
 // Release all contents of this belly into the owning mob's location.
 // If that location is another mob, contents are transferred into whichever of its bellies the owning mob is in.
@@ -453,9 +483,9 @@
 		var/mob/living/carbon/human/Prey = M
 		var/mob/living/carbon/human/Pred = owner
 		//Reagent sharing for absorbed with pred - Copy so both pred and prey have these reagents.
-		Prey.bloodstr.trans_to_holder(Pred.bloodstr, Prey.bloodstr.total_volume, copy = TRUE)
-		Prey.ingested.trans_to_holder(Pred.bloodstr, Prey.ingested.total_volume, copy = TRUE)
-		Prey.touching.trans_to_holder(Pred.bloodstr, Prey.touching.total_volume, copy = TRUE)
+		Prey.bloodstr.trans_to_holder(Pred.ingested, Prey.bloodstr.total_volume, copy = TRUE)
+		Prey.ingested.trans_to_holder(Pred.ingested, Prey.ingested.total_volume, copy = TRUE)
+		Prey.touching.trans_to_holder(Pred.ingested, Prey.touching.total_volume, copy = TRUE)
 		// TODO - Find a way to make the absorbed prey share the effects with the pred.
 		// Currently this is infeasible because reagent containers are designed to have a single my_atom, and we get
 		// problems when A absorbs B, and then C absorbs A,  resulting in B holding onto an invalid reagent container.
@@ -684,6 +714,8 @@
 	dupe.fancy_vore = fancy_vore
 	dupe.is_wet = is_wet
 	dupe.wet_loop = wet_loop
+	dupe.belly_fullscreen = belly_fullscreen
+	dupe.disable_hud = disable_hud
 
 	//// Object-holding variables
 	//struggle_messages_outside - strings

@@ -54,35 +54,73 @@
 		return ..()
 
 /obj/item/weapon/anodevice/attack_self(var/mob/user as mob)
-	return src.interact(user)
+	return tgui_interact(user)
 
-/obj/item/weapon/anodevice/interact(var/mob/user)
-	var/dat = "<b>Anomalous Materials Energy Utiliser</b><br>"
+/obj/item/weapon/anodevice/tgui_state(mob/user)
+	return GLOB.tgui_inventory_state
+
+/obj/item/weapon/anodevice/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "XenoarchHandheldPowerUtilizer", name)
+		ui.open()
+
+/obj/item/weapon/anodevice/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
+	
+	data["inserted_battery"] = inserted_battery
+	data["anomaly"] = null
+	data["charge"] = null
+	data["capacity"] = null
+	data["timeleft"] = null
+	data["activated"] = null
+	data["duration"] = null
+	data["interval"] = null
 	if(inserted_battery)
-		if(activated)
-			dat += "Device active.<br>"
+		data["anomaly"] = inserted_battery?.battery_effect?.artifact_id
+		data["charge"] = inserted_battery.stored_charge
+		data["capacity"] = inserted_battery.capacity
+		data["timeleft"] = round(max((time_end - last_process) / 10, 0))
+		data["activated"] = activated
+		data["duration"] = duration / 10
+		data["interval"] = interval / 10
 
-		dat += "[inserted_battery] inserted, anomaly ID: [inserted_battery.battery_effect.artifact_id ? inserted_battery.battery_effect.artifact_id : "NA"]<BR>"
-		dat += "<b>Charge:</b> [inserted_battery.stored_charge] / [inserted_battery.capacity]<BR>"
-		dat += "<b>Time left activated:</b> [round(max((time_end - last_process) / 10, 0))]<BR>"
-		if(activated)
-			dat += "<a href='?src=\ref[src];shutdown=1'>Shutdown</a><br>"
-		else
-			dat += "<A href='?src=\ref[src];startup=1'>Start</a><BR>"
-		dat += "<BR>"
+	return data
 
-		dat += "<b>Activate duration (sec):</b> <A href='?src=\ref[src];changetime=-100;duration=1'>--</a> <A href='?src=\ref[src];changetime=-10;duration=1'>-</a> [duration/10] <A href='?src=\ref[src];changetime=10;duration=1'>+</a> <A href='?src=\ref[src];changetime=100;duration=1'>++</a><BR>"
-		dat += "<b>Activate interval (sec):</b> <A href='?src=\ref[src];changetime=-100;interval=1'>--</a> <A href='?src=\ref[src];changetime=-10;interval=1'>-</a> [interval/10] <A href='?src=\ref[src];changetime=10;interval=1'>+</a> <A href='?src=\ref[src];changetime=100;interval=1'>++</a><BR>"
-		dat += "<br>"
-		dat += "<A href='?src=\ref[src];ejectbattery=1'>Eject battery</a><BR>"
-	else
-		dat += "Please insert battery<br>"
+/obj/item/weapon/anodevice/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	if(..())
+		return TRUE
 
-	dat += "<hr>"
-	dat += "<a href='?src=\ref[src];refresh=1'>Refresh</a> <a href='?src=\ref[src];close=1'>Close</a>"
-
-	user << browse(dat, "window=anodevice;size=400x500")
-	onclose(user, "anodevice")
+	switch(action)
+		if("changeduration")
+			duration = clamp(text2num(params["duration"]), 0, 300)
+			if(activated)
+				time_end = world.time + duration
+			return TRUE
+		if("changeinterval")
+			interval = clamp(text2num(params["interval"]), 0, 100)
+			return TRUE
+		if("startup")
+			if(inserted_battery && inserted_battery.battery_effect && (inserted_battery.stored_charge > 0))
+				activated = TRUE
+				visible_message("<font color='blue'>[bicon(src)] [src] whirrs.</font>", "[bicon(src)]<font color='blue'>You hear something whirr.</font>")
+				if(!inserted_battery.battery_effect.activated)
+					inserted_battery.battery_effect.ToggleActivate(1)
+				time_end = world.time + duration
+				last_process = world.time
+			else
+				to_chat(usr, "<span class='warning'>[src] is unable to start due to no anomolous power source inserted/remaining.</span>")
+			return TRUE
+		if("shutdown")
+			activated = FALSE
+			return TRUE
+		if("ejectbattery")
+			if(inserted_battery)
+				inserted_battery.forceMove(get_turf(src))
+				inserted_battery = null
+				UpdateSprite()
+			shutdown_emission()
+			return TRUE
 
 /obj/item/weapon/anodevice/process()
 	if(activated)
@@ -150,44 +188,8 @@
 /obj/item/weapon/anodevice/proc/shutdown_emission()
 	if(activated)
 		activated = 0
-		if(inserted_battery.battery_effect.activated)
+		if(inserted_battery?.battery_effect?.activated)
 			inserted_battery.battery_effect.ToggleActivate(1)
-
-/obj/item/weapon/anodevice/Topic(href, href_list)
-
-	if(href_list["changetime"])
-		var/timedif = text2num(href_list["changetime"])
-		if(href_list["duration"])
-			duration += timedif
-			//max 30 sec duration
-			duration = min(max(duration, 0), 300)
-			if(activated)
-				time_end += timedif
-		else if(href_list["interval"])
-			interval += timedif
-			//max 10 sec interval
-			interval = min(max(interval, 0), 100)
-	if(href_list["startup"])
-		if(inserted_battery && inserted_battery.battery_effect && (inserted_battery.stored_charge > 0) )
-			activated = 1
-			src.visible_message("<font color='blue'>[bicon(src)] [src] whirrs.</font>", "[bicon(src)]<font color='blue'>You hear something whirr.</font>")
-			if(!inserted_battery.battery_effect.activated)
-				inserted_battery.battery_effect.ToggleActivate(1)
-			time_end = world.time + duration
-			last_process = world.time
-	if(href_list["shutdown"])
-		activated = 0
-	if(href_list["ejectbattery"])
-		shutdown_emission()
-		inserted_battery.loc = get_turf(src)
-		inserted_battery = null
-		UpdateSprite()
-	if(href_list["close"])
-		usr << browse(null, "window=anodevice")
-	else if(ismob(src.loc))
-		var/mob/M = src.loc
-		src.interact(M)
-	..()
 
 /obj/item/weapon/anodevice/proc/UpdateSprite()
 	if(!inserted_battery)
@@ -205,8 +207,8 @@
 	if (!istype(M))
 		return
 
-	if(activated && inserted_battery.battery_effect.effect == EFFECT_TOUCH && !isnull(inserted_battery))
-		inserted_battery.battery_effect.DoEffectTouch(M)
+	if(activated && inserted_battery?.battery_effect?.effect == EFFECT_TOUCH && !isnull(inserted_battery))
+		inserted_battery?.battery_effect?.DoEffectTouch(M)
 		inserted_battery.use_power(energy_consumed_on_touch)
 		user.visible_message("<font color='blue'>[user] taps [M] with [src], and it shudders on contact.</font>")
 	else
@@ -216,5 +218,5 @@
 	user.lastattacked = M
 	M.lastattacker = user
 
-	if(inserted_battery.battery_effect)
-		add_attack_logs(user,M,"Anobattery tap ([inserted_battery.battery_effect.name])")
+	if(inserted_battery?.battery_effect)
+		add_attack_logs(user,M,"Anobattery tap ([inserted_battery?.battery_effect?.name])")

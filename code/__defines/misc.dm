@@ -463,10 +463,13 @@ var/global/list/##LIST_NAME = list();\
 
 #define FONT_GIANT(X) "<font size='5'>[X]</font>"
 
+// Volume Channel Defines
+
 #define VOLUME_CHANNEL_MASTER "Master"
 #define VOLUME_CHANNEL_AMBIENCE "Ambience"
 #define VOLUME_CHANNEL_ALARMS "Alarms"
 #define VOLUME_CHANNEL_VORE "Vore"
+#define VOLUME_CHANNEL_DOORS "Doors"
 
 // Make sure you update this or clients won't be able to adjust the channel
 GLOBAL_LIST_INIT(all_volume_channels, list(
@@ -474,4 +477,5 @@ GLOBAL_LIST_INIT(all_volume_channels, list(
 	VOLUME_CHANNEL_AMBIENCE,
 	VOLUME_CHANNEL_ALARMS,
 	VOLUME_CHANNEL_VORE,
+	VOLUME_CHANNEL_DOORS,
 ))

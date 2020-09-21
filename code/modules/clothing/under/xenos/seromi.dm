@@ -39,19 +39,19 @@
 
 /obj/item/clothing/under/seromi/smock/dress/science
 	name = "small research dress"
-	icon_state = "seromi_dress_science"
+	icon_state = "tesh_dress_science"
 
 /obj/item/clothing/under/seromi/smock/dress/security
 	name = "small security dress"
-	icon_state = "seromi_dress_security"
+	icon_state = "tesh_dress_security"
 
 /obj/item/clothing/under/seromi/smock/dress/engine
 	name = "small engineering dress"
-	icon_state = "seromi_dress_engine"
+	icon_state = "tesh_dress_engine"
 
 /obj/item/clothing/under/seromi/smock/dress/medical
 	name = "small medical dress"
-	icon_state = "seromi_dress_medical"
+	icon_state = "tesh_dress_medical"
 
 /obj/item/clothing/under/seromi/smock/uniform
 	name = "small command uniform"

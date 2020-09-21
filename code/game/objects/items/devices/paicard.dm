@@ -33,6 +33,24 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 	QDEL_NULL(radio)
 	return ..()
 
+/obj/item/device/paicard/attack_ghost(mob/observer/dead/user)
+	if(istype(user) && user.can_admin_interact())
+		switch(alert(user, "Would you like to become a pAI by force? (Admin)", "pAI Creation", "Yes", "No"))
+			if("Yes")
+				// Copied from paiController/Topic
+				var/mob/living/silicon/pai/pai = new(src)
+				pai.name = user.name
+				pai.real_name = pai.name
+				pai.key = user.key
+
+				setPersonality(pai)
+				looking_for_personality = FALSE
+
+				if(pai.mind)
+					update_antag_icons(pai.mind)
+	return ..()
+
+
 /obj/item/device/paicard/attack_self(mob/user)
 	if (!in_range(src, user))
 		return

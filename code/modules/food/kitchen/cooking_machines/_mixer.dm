@@ -13,6 +13,7 @@ fundamental differences
 	cooking_coeff = 0.75 // Original value 0.4
 	active_power_usage = 3000
 	idle_power_usage = 50
+	var/datum/looping_sound/mixer/mixer_loop
 
 /obj/machinery/appliance/mixer/examine(var/mob/user)
 	. = ..()
@@ -24,6 +25,13 @@ fundamental differences
 	cooking_objs += new /datum/cooking_item(new /obj/item/weapon/reagent_containers/cooking_container(src))
 	cooking = FALSE
 	selected_option = pick(output_options)
+	
+	mixer_loop = new(list(src), FALSE)
+	
+/obj/machinery/appliance/mixer/Destroy()
+	. = ..()
+	
+	QDEL_NULL(mixer_loop)
 
 //Mixers cannot-not do combining mode. So the default option is removed from this. A combine target must be chosen
 /obj/machinery/appliance/mixer/choose_output()
@@ -60,11 +68,13 @@ fundamental differences
 	return 0
 
 
-/obj/machinery/appliance/mixer/can_remove_items(var/mob/user)
-	if (stat)
+/obj/machinery/appliance/mixer/can_remove_items(var/mob/user, show_warning = TRUE)
+	if(stat)
 		return 1
 	else
-		to_chat(user, "<span class='warning'>You can't remove ingredients while it's turned on! Turn it off first or wait for it to finish.</span>")
+		if(show_warning)
+			to_chat(user, "<span class='warning'>You can't remove ingredients while it's turned on! Turn it off first or wait for it to finish.</span>")
+		return 0
 
 //Container is not removable
 /obj/machinery/appliance/mixer/removal_menu(var/mob/user)
@@ -132,8 +142,12 @@ fundamental differences
 /obj/machinery/appliance/mixer/update_icon()
 	if (!stat)
 		icon_state = on_icon
+		if(mixer_loop)
+			mixer_loop.start(src)
 	else
 		icon_state = off_icon
+		if(mixer_loop)
+			mixer_loop.stop(src)
 
 
 /obj/machinery/appliance/mixer/process()

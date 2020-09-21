@@ -59,3 +59,34 @@
 		slowdown = shoes.slowdown
 	else
 		slowdown = SHOES_SLOWDOWN
+
+// Armor Versions Here
+/obj/item/clothing/shoes/knight
+	name = "knight boots"
+	desc = "A pair of olde knight boots."
+	icon_state = "knight_boots1"
+	item_state = "knight_boots1"
+	icon = 'icons/obj/clothing/shoes_vr.dmi'
+	icon_override = 'icons/obj/clothing/shoes_vr.dmi'
+	armor = list(melee = 80, bullet = 50, laser = 10, energy = 0, bomb = 0, bio = 0, rad = 0)
+	
+/obj/item/clothing/shoes/knight/black
+	name = "knight boots"
+	desc = "A pair of olde knight boots."
+	icon_state = "knight_boots2"
+	item_state = "knight_boots2"
+	
+// Costume Versions Here
+/obj/item/clothing/shoes/knight_costume
+	name = "knight boots"
+	desc = "A pair of olde knight boots."
+	icon_state = "knight_boots1"
+	item_state = "knight_boots1"
+	icon = 'icons/obj/clothing/shoes_vr.dmi'
+	icon_override = 'icons/obj/clothing/shoes_vr.dmi'
+	
+/obj/item/clothing/shoes/knight_costume/black
+	name = "knight boots"
+	desc = "A pair of olde knight boots."
+	icon_state = "knight_boots2"
+	item_state = "knight_boots2"

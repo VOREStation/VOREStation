@@ -7,9 +7,6 @@ import { useBackend } from '../backend';
 import { Box, Button, Icon, LabeledList, Section, Table } from '../components';
 import { Window } from '../layouts';
 
-import { createLogger } from '../logging';
-const logger = createLogger('lol what');
-
 const coordsToVec = coords => map(parseFloat)(coords.split(', '));
 
 export const Gps = (props, context) => {

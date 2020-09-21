@@ -22,7 +22,7 @@
 	S["tooltipstyle"]	<< pref.tooltipstyle
 	S["client_fps"]		<< pref.client_fps
 	S["ambience_freq"]	<< pref.ambience_freq
-	S["ambience_chance"] << pref.ambience_freq
+	S["ambience_chance"] << pref.ambience_chance
 	S["tgui_fancy"]		<< pref.tgui_fancy
 	S["tgui_lock"]		<< pref.tgui_lock
 
@@ -35,8 +35,8 @@
 	pref.client_fps			= sanitize_integer(pref.client_fps, 0, MAX_CLIENT_FPS, initial(pref.client_fps))
 	pref.ambience_freq		= sanitize_integer(pref.ambience_freq, 0, 60, initial(pref.ambience_freq)) // No more than once per hour.
 	pref.ambience_chance 	= sanitize_integer(pref.ambience_chance, 0, 100, initial(pref.ambience_chance)) // 0-100 range.
-	pref.tgui_fancy			= sanitize_integer(pref.tgui_fancy, 0, 1, initial(pref.tgui_fancy))
-	pref.tgui_lock			= sanitize_integer(pref.tgui_lock, 0, 1, initial(pref.tgui_lock))
+	pref.tgui_fancy		= sanitize_integer(pref.tgui_fancy, 0, 1, initial(pref.tgui_fancy))
+	pref.tgui_lock		= sanitize_integer(pref.tgui_lock, 0, 1, initial(pref.tgui_lock))
 
 /datum/category_item/player_setup_item/player_global/ui/content(var/mob/user)
 	. = "<b>UI Style:</b> <a href='?src=\ref[src];select_style=1'><b>[pref.UI_style]</b></a><br>"

@@ -543,12 +543,10 @@
 /obj/item/weapon/handcuffs/fuzzy,
 /obj/item/weapon/handcuffs/legcuffs/fuzzy,
 /obj/item/weapon/handcuffs/fuzzy,
-/obj/item/clothing/mask/balaclava,
-/obj/item/clothing/gloves/black{
-	desc = "They seem to be made of rubber-like material, though insulation quality is doubtful";
-	name = "elastic black gloves"
-	},
-/obj/item/clothing/under/fluff/latexmaid,
+/obj/item/clothing/accessory/shiny/socks,
+/obj/item/clothing/under/shiny/catsuit,
+/obj/item/clothing/accessory/shiny/gloves,
+/obj/item/clothing/head/shiny_hood,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/mining)
 "aaZ" = (
@@ -17687,15 +17685,15 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
 "aId" = (
-/obj/machinery/pros_fabricator{
+/obj/machinery/mecha_part_fabricator/pros{
 	desc = "A machine used for construction of legit prosthetics. You weren't sure if cardboard was considered an engineering material until now.";
 	dir = 4;
 	emagged = 0;
-	mat_efficiency = 0.9;
+	component_coeff = 0.9;
 	name = "Legitimate Prosthetics Fabricator";
 	req_access = list();
 	res_max_amount = 150000;
-	speed = 0.2
+	time_coeff = 0.2
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)

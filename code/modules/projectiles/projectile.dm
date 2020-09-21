@@ -739,6 +739,8 @@
 
 	shot_from = launcher.name
 	silenced = launcher.silenced
+	if(user)
+		firer = user
 
 	return launch_projectile(target, target_zone, user, params, angle_override, forced_spread)
 

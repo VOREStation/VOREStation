@@ -18,7 +18,7 @@
 /area/mine/explored/underdark)
 "f" = (
 /obj/item/clothing/suit/storage/toggle/hoodie/blue,
-/obj/item/clothing/shoes/slippers_worn,
+/obj/item/clothing/shoes/slippers/worn,
 /turf/simulated/floor/tiled/kafel_full/yellow/virgo3b,
 /area/mine/explored/underdark)
 "g" = (

@@ -26,7 +26,7 @@
 /obj/machinery/portable_atmospherics/canister/drain_power()
 	return -1
 
-/obj/machinery/portable_atmospherics/canister/sleeping_agent
+/obj/machinery/portable_atmospherics/canister/nitrous_oxide
 	name = "Canister: \[N2O\]"
 	icon_state = "redws"
 	canister_color = "redws"
@@ -88,7 +88,7 @@
 	name = "Canister \[CO2\]"
 	icon_state = "black"
 	canister_color = "black"
-/obj/machinery/portable_atmospherics/canister/empty/sleeping_agent
+/obj/machinery/portable_atmospherics/canister/empty/nitrous_oxide
 	name = "Canister \[N2O\]"
 	icon_state = "redws"
 	canister_color = "redws"
@@ -260,7 +260,7 @@ update_flag
 
 	..()
 
-	SSnanoui.update_uis(src) // Update all NanoUIs attached to src
+	SStgui.update_uis(src) // Update all NanoUIs attached to src
 
 /obj/machinery/portable_atmospherics/canister/attack_ai(var/mob/user as mob)
 	return src.attack_hand(user)
@@ -390,17 +390,17 @@ update_flag
 	src.update_icon()
 	return 1
 
-/obj/machinery/portable_atmospherics/canister/sleeping_agent/New()
+/obj/machinery/portable_atmospherics/canister/nitrous_oxide/New()
 	..()
 
-	air_contents.adjust_gas("sleeping_agent", MolesForPressure())
+	air_contents.adjust_gas("nitrous_oxide", MolesForPressure())
 	src.update_icon()
 	return 1
 
 //Dirty way to fill room with gas. However it is a bit easier to do than creating some floor/engine/n2o -rastaf0
-/obj/machinery/portable_atmospherics/canister/sleeping_agent/roomfiller/Initialize()
+/obj/machinery/portable_atmospherics/canister/nitrous_oxide/roomfiller/Initialize()
 	. = ..()
-	air_contents.gas["sleeping_agent"] = 9*4000
+	air_contents.gas["nitrous_oxide"] = 9*4000
 	var/turf/simulated/location = src.loc
 	if (istype(src.loc))
 		location.assume_air(air_contents)

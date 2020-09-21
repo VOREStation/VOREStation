@@ -349,12 +349,6 @@
 		updatename()
 		updateicon()
 
-// this verb lets cyborgs see the stations manifest
-/mob/living/silicon/robot/verb/cmd_station_manifest()
-	set category = "Robot Commands"
-	set name = "Show Crew Manifest"
-	show_station_manifest()
-
 /mob/living/silicon/robot/proc/self_diagnosis()
 	if(!is_component_functioning("diagnosis unit"))
 		return null
@@ -686,32 +680,6 @@
 
 	add_fingerprint(user)
 
-	if(istype(user,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = user
-		//VOREStation Removal
-		//if(H.species.can_shred(H))
-		//	attack_generic(H, rand(30,50), "slashed")
-		//	return
-		//VOREStation Edit: Adding borg petting.  Help intent pets, Disarm intent taps, Grab should remove the battery for replacement, and Harm is punching(no damage)
-		switch(H.a_intent)
-			if(I_HELP)
-				visible_message("<span class='notice'>[H] pets [src].</span>")
-				return
-			if(I_HURT)
-				H.do_attack_animation(src)
-				if(H.species.can_shred(H))
-					attack_generic(H, rand(30,50), "slashed")
-					return
-				else
-					playsound(src, 'sound/effects/bang.ogg', 10, 1)
-					visible_message("<span class='warning'>[H] punches [src], but doesn't leave a dent.</span>")
-					return
-			if(I_DISARM)
-				H.do_attack_animation(src)
-				playsound(src, 'sound/effects/clang1.ogg', 10, 1)
-				visible_message("<span class='warning'>[H] taps [src].</span>")
-				return
-		//VOREStation Edit: Addition of borg petting end
 	if(opened && !wiresexposed && (!istype(user, /mob/living/silicon)))
 		var/datum/robot_component/cell_component = components["power cell"]
 		if(cell)
@@ -728,6 +696,28 @@
 			var/obj/item/broken_device = cell_component.wrapped
 			to_chat(user, "You remove \the [broken_device].")
 			user.put_in_active_hand(broken_device)
+
+	if(istype(user,/mob/living/carbon/human) && !opened)
+		var/mob/living/carbon/human/H = user
+		//Adding borg petting.  Help intent pets, Disarm intent taps and Harm is punching(no damage)
+		switch(H.a_intent)
+			if(I_HELP)
+				visible_message("<span class='notice'>[H] pets [src].</span>")
+				return
+			if(I_HURT)
+				H.do_attack_animation(src)
+				if(H.species.can_shred(H))
+					attack_generic(H, rand(30,50), "slashed")
+					return
+				else
+					playsound(src.loc, 'sound/effects/bang.ogg', 10, 1)
+					visible_message("<span class='warning'>[H] punches [src], but doesn't leave a dent.</span>")
+					return
+			if(I_DISARM)
+				H.do_attack_animation(src)
+				playsound(src.loc, 'sound/effects/clang2.ogg', 10, 1)
+				visible_message("<span class='warning'>[H] taps [src].</span>")
+				return
 
 //Robots take half damage from basic attacks.
 /mob/living/silicon/robot/attack_generic(var/mob/user, var/damage, var/attack_message)

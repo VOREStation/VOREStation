@@ -671,6 +671,18 @@
 "abk" = (
 /turf/simulated/floor/reinforced,
 /area/engineering/engine_room)
+"abl" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 1;
+	icon_state = "borderfloor";
+	pixel_y = 0
+	},
+/obj/effect/floor_decal/corner/yellow/border{
+	dir = 1
+	},
+/obj/machinery/camera/network/engineering,
+/turf/simulated/floor/tiled,
+/area/engineering/gravity_lobby)
 "abm" = (
 /obj/structure/cable/green{
 	icon_state = "1-2"
@@ -997,6 +1009,16 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/substation/engineering)
+"abO" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 9
+	},
+/obj/machinery/camera/network/engineering,
+/turf/simulated/floor/tiled/techmaint,
+/area/engineering/gravity_gen)
 "abP" = (
 /obj/machinery/light/small{
 	dir = 8;
@@ -1062,6 +1084,15 @@
 	},
 /turf/simulated/wall/r_wall,
 /area/engineering/engine_monitoring)
+"abX" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/machinery/camera/network/engineering{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/engineering/gravity_gen)
 "abY" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 5
@@ -1094,6 +1125,14 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/station/eng_lower)
+"acc" = (
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/yellow/border,
+/obj/machinery/camera/network/engineering{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/engineering/gravity_lobby)
 "acd" = (
 /obj/structure/sign/securearea{
 	desc = "A warning sign which reads 'RADIOACTIVE AREA'";
@@ -1110,6 +1149,18 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/station/eng_lower)
+"acf" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 10
+	},
+/obj/machinery/camera/network/engineering{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/engineering/gravity_gen)
 "acg" = (
 /turf/simulated/wall/r_wall,
 /area/engineering/engine_gas)
@@ -1166,6 +1217,19 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
+"acq" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/camera/network/engineering{
+	dir = 4
+	},
+/turf/simulated/floor/tiled{
+	icon_state = "techmaint"
+	},
+/area/engineering/gravity_lobby)
 "acr" = (
 /obj/structure/disposalpipe/junction{
 	dir = 8
@@ -21201,15 +21265,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/storage/tools)
-"dZN" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/floor_decal/industrial/warning{
-	dir = 10
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/engineering/gravity_gen)
 "dZO" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/book/manual/security_space_law,
@@ -23466,16 +23521,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/station/dock_one)
-"shi" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/tiled{
-	icon_state = "techmaint"
-	},
-/area/engineering/gravity_lobby)
 "siQ" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -23763,15 +23808,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/dark,
 /area/tether/station/dock_one)
-"tsV" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/floor_decal/industrial/warning{
-	dir = 9
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/engineering/gravity_gen)
 "tAQ" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1;
@@ -33442,7 +33478,7 @@ aiO
 aiO
 aiO
 wDo
-shi
+acq
 anD
 aoH
 apU
@@ -34009,7 +34045,7 @@ ack
 ack
 aik
 rEb
-fgA
+abl
 hZW
 vxw
 uOm
@@ -34017,7 +34053,7 @@ ykG
 qiQ
 qiQ
 uyn
-aHe
+acc
 rEb
 aik
 azB
@@ -35145,7 +35181,7 @@ ack
 ack
 aik
 plz
-tsV
+abO
 aWA
 kXK
 kXK
@@ -35153,7 +35189,7 @@ sqw
 tGV
 tGV
 xiv
-dZN
+acf
 plz
 afC
 aih
@@ -36285,7 +36321,7 @@ dJL
 sUY
 sUY
 sUY
-sUY
+abX
 sUY
 sUY
 sUY

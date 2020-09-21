@@ -101,7 +101,7 @@
 			/obj/item/clothing/under/lawyer/bluesuit,
 			/obj/item/clothing/under/lawyer/purpsuit,
 			/obj/item/clothing/shoes/black = 2,
-			/obj/item/clothing/shoes/leather,
+			/obj/item/clothing/shoes/laceup/brown,
 			/obj/item/clothing/accessory/wcoat
 			)
 	name = "Formalwear (Suits)"

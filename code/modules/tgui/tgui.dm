@@ -113,8 +113,7 @@
 		return
 	closing = TRUE
 	for(var/datum/tgui/child in children)
-		child.close()
-	children.Cut()
+		child.close(can_be_suspended, logout)
 	// If we don't have window_id, open proc did not have the opportunity
 	// to finish, therefore it's safe to skip this whole block.
 	if(window)
@@ -126,6 +125,8 @@
 		src_object.tgui_close(user)
 		SStgui.on_close(src)
 	state = null
+	if(parent_ui)
+		parent_ui.children -= src
 	parent_ui = null
 	qdel(src)
 

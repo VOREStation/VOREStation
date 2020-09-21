@@ -85,3 +85,37 @@
 /obj/item/clothing/suit/storage/vest/hoscoat/jensen/alt
 	icon = 'icons/obj/clothing/suits_vr.dmi'
 	icon_override = 'icons/mob/suit_vr.dmi'
+
+// Armor Versions Here	
+/obj/item/clothing/suit/armor/combat/crusader
+	name = "crusader armor"
+	desc = "ye olde knight, risen again."
+	icon_state = "crusader"
+	icon = 'icons/obj/clothing/knights_vr.dmi'
+	icon_override = 'icons/obj/clothing/knights_vr.dmi'
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	armor = list(melee = 80, bullet = 50, laser = 10, energy = 0, bomb = 0, bio = 0, rad = 0)
+	siemens_coefficient = 2
+	
+/obj/item/clothing/suit/armor/combat/crusader/bedevere
+	name = "bedevere's armor"
+	desc = "ye olde knight, risen again."
+	icon_state = "bedevere"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+
+// Costume Versions Here
+/obj/item/clothing/suit/armor/combat/crusader_costume
+	name = "crusader costume armor"
+	desc = "ye olde knight, risen again."
+	icon_state = "crusader"
+	icon = 'icons/obj/clothing/knights_vr.dmi'
+	icon_override = 'icons/obj/clothing/knights_vr.dmi'
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
+	siemens_coefficient = 1
+	
+/obj/item/clothing/suit/armor/combat/crusader_costume/bedevere
+	name = "bedevere's costume armor"
+	desc = "ye olde knight, risen again."
+	icon_state = "bedevere"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO

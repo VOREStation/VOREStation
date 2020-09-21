@@ -190,9 +190,9 @@
 //Captain fox
 /mob/living/simple_mob/animal/passive/fox/renault
 	name = "Renault"
-	desc = "Renault, the Colony Director's trustworthy fox. I wonder what it says?"
+	desc = "Renault, the Site Manager's trustworthy fox. I wonder what it says?"
 	tt_desc = "Vulpes nobilis"
-	//befriend_job = "Colony Director" Sebbe edit: couldn't make this work, commenting out for now.
+	//befriend_job = "Site Manager" Sebbe edit: couldn't make this work, commenting out for now.
 
 	var/mob/living/friend = null // Our best pal, who we'll follow. awoo.
 	ai_holder_type = /datum/ai_holder/simple_mob/passive

@@ -188,91 +188,91 @@
 	if (panel_open)
 		overlays += "panel_open"
 
-/obj/machinery/media/jukebox/Topic(href, href_list)
-	if(..() || !(Adjacent(usr) || istype(usr, /mob/living/silicon)))
-		return
-
-	if(!anchored)
-		to_chat(usr, "<span class='warning'>You must secure \the [src] first.</span>")
-		return
-
-	if(inoperable())
-		to_chat(usr, "\The [src] doesn't appear to function.")
-		return
-
-	if(href_list["change_track"])
-		var/datum/track/T = locate(href_list["change_track"]) in tracks
-		if(istype(T))
-			current_track = T
-			StartPlaying()
-	else if(href_list["loopmode"])
-		var/newval = text2num(href_list["loopmode"])
-		loop_mode = sanitize_inlist(newval, list(JUKEMODE_NEXT, JUKEMODE_RANDOM, JUKEMODE_REPEAT_SONG, JUKEMODE_PLAY_ONCE), loop_mode)
-	else if(href_list["volume"])
-		var/newval = input("Choose Jukebox volume (0-100%)", "Jukebox volume", round(volume * 100.0))
-		newval = sanitize_integer(text2num(newval), min = 0, max = 100, default = volume * 100.0)
-		volume = newval / 100.0
-		update_music() // To broadcast volume change without restarting song
-	else if(href_list["stop"])
-		StopPlaying()
-	else if(href_list["play"])
-		if(emagged)
-			playsound(src, 'sound/items/AirHorn.ogg', 100, 1)
-			for(var/mob/living/carbon/M in ohearers(6, src))
-				if(M.get_ear_protection() >= 2)
-					continue
-				M.SetSleeping(0)
-				M.stuttering += 20
-				M.ear_deaf += 30
-				M.Weaken(3)
-				if(prob(30))
-					M.Stun(10)
-					M.Paralyse(4)
-				else
-					M.make_jittery(500)
-			spawn(15)
-				explode()
-		else if(current_track == null)
-			to_chat(usr, "No track selected.")
-		else
-			StartPlaying()
-
-	return 1
-
 /obj/machinery/media/jukebox/interact(mob/user)
 	if(inoperable())
 		to_chat(usr, "\The [src] doesn't appear to function.")
 		return
-	ui_interact(user)
+	tgui_interact(user)
 
-/obj/machinery/media/jukebox/ui_interact(mob/user, ui_key = "jukebox", var/datum/nanoui/ui = null, var/force_open = 1)
-	var/title = "RetroBox - Space Style"
-	var/data[0]
+/obj/machinery/media/jukebox/tgui_status(mob/user)
+	if(inoperable())
+		to_chat(user, "<span class='warning'>[src] doesn't appear to function.</span>")
+		return STATUS_CLOSE
+	if(!anchored)
+		to_chat(user, "<span class='warning'>You must secure [src] first.</span>")
+		return STATUS_CLOSE
+	. = ..()
 
-	if(operable())
-		data["playing"] = playing
-		data["hacked"] = hacked
-		data["max_queue_len"] = max_queue_len
-		data["media_start_time"] = media_start_time
-		data["loop_mode"] = loop_mode
-		data["volume"] = volume
-		if(current_track)
-			data["current_track_ref"] = "\ref[current_track]"  // Convenient shortcut
-			data["current_track"] = current_track.toNanoList()
-		data["percent"] = playing ? min(100, round(world.time - media_start_time) / current_track.duration) : 0;
-
-		var/list/nano_tracks = new
-		for(var/datum/track/T in tracks)
-			nano_tracks[++nano_tracks.len] = T.toNanoList()
-		data["tracks"] = nano_tracks
-
-	// update the ui if it exists, returns null if no ui is passed/found
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "jukebox.tmpl", title, 450, 600)
-		ui.set_initial_data(data)
+/obj/machinery/media/jukebox/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Jukebox", "RetroBox - Space Style")
 		ui.open()
-		ui.set_auto_update(playing)
+
+/obj/machinery/media/jukebox/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
+	
+	data["playing"] = playing
+	data["loop_mode"] = loop_mode
+	data["volume"] = volume
+	data["current_track_ref"] = null
+	data["current_track"] = null
+	if(current_track)
+		data["current_track_ref"] = "\ref[current_track]"  // Convenient shortcut
+		data["current_track"] = current_track.toTguiList()
+	data["percent"] = playing ? min(100, round(world.time - media_start_time) / current_track.duration) : 0;
+
+	var/list/tgui_tracks = list()
+	for(var/datum/track/T in tracks)
+		tgui_tracks.Add(list(T.toTguiList()))
+	data["tracks"] = tgui_tracks
+
+	return data
+
+/obj/machinery/media/jukebox/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	if(..())
+		return TRUE
+
+	switch(action)
+		if("change_track")
+			var/datum/track/T = locate(params["change_track"]) in tracks
+			if(istype(T))
+				current_track = T
+				StartPlaying()
+			return TRUE
+		if("loopmode")
+			var/newval = text2num(params["loopmode"])
+			loop_mode = sanitize_inlist(newval, list(JUKEMODE_NEXT, JUKEMODE_RANDOM, JUKEMODE_REPEAT_SONG, JUKEMODE_PLAY_ONCE), loop_mode)
+			return TRUE
+		if("volume")
+			volume = clamp(params["val"], 0, 1)
+			update_music() // To broadcast volume change without restarting song
+			return TRUE
+		if("stop")
+			StopPlaying()
+			return TRUE
+		if("play")
+			if(emagged)
+				playsound(src, 'sound/items/AirHorn.ogg', 100, 1)
+				for(var/mob/living/carbon/M in ohearers(6, src))
+					if(M.get_ear_protection() >= 2)
+						continue
+					M.SetSleeping(0)
+					M.stuttering += 20
+					M.ear_deaf += 30
+					M.Weaken(3)
+					if(prob(30))
+						M.Stun(10)
+						M.Paralyse(4)
+					else
+						M.make_jittery(500)
+				spawn(15)
+					explode()
+			else if(current_track == null)
+				to_chat(usr, "No track selected.")
+			else
+				StartPlaying()
+			return TRUE
 
 /obj/machinery/media/jukebox/attack_ai(mob/user as mob)
 	return src.attack_hand(user)

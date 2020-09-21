@@ -81,6 +81,30 @@
 	else
 		to_chat(user, "<span class='notice>'It is empty.</span>")
 
+/obj/machinery/appliance/proc/report_progress_tgui(datum/cooking_item/CI)
+	if(!CI || !CI.max_cookwork)
+		return list("average", "Not Cooking.")
+
+	if(!CI.cookwork)
+		return list("blue", "Cold.")
+
+	var/progress = CI.cookwork / CI.max_cookwork
+
+	if (progress < 0.25)
+		return list("blue", "It's barely started cooking.")
+	if (progress < 0.75)
+		return list("average", "It's cooking away nicely.")
+	if (progress < 1)
+		return list("good", "It's almost ready!")
+
+	var/half_overcook = (CI.overcook_mult - 1)*0.5
+	if (progress < 1+half_overcook)
+		return list("good", "It's done!")
+	if (progress < CI.overcook_mult)
+		return list("bad", "It looks overcooked, get it out!")
+	else
+		return list("bad", "It is burning!")
+
 /obj/machinery/appliance/proc/report_progress(var/datum/cooking_item/CI)
 	if (!CI || !CI.max_cookwork)
 		return null
@@ -240,28 +264,28 @@
 /obj/machinery/appliance/attackby(var/obj/item/I, var/mob/user)
 	if(!cook_type || (stat & (BROKEN)))
 		to_chat(user, "<span class='warning'>\The [src] is not working.</span>")
-		return
+		return FALSE
 
 	var/result = can_insert(I, user)
 	if(!result)
 		if(!(default_deconstruction_screwdriver(user, I)))
 			default_part_replacement(user, I)
-		return
+		return FALSE
 
 	if(result == 2)
 		var/obj/item/weapon/grab/G = I
 		if (G && istype(G) && G.affecting)
 			cook_mob(G.affecting, user)
-			return
+			return FALSE
 
 	//From here we can start cooking food
-	add_content(I, user)
+	. = add_content(I, user)
 	update_icon()
 
 //Override for container mechanics
 /obj/machinery/appliance/proc/add_content(var/obj/item/I, var/mob/user)
 	if(!user.unEquip(I))
-		return
+		return FALSE
 
 	var/datum/cooking_item/CI = has_space(I)
 	if (istype(I, /obj/item/weapon/reagent_containers/cooking_container) && CI == 1)
@@ -271,13 +295,13 @@
 		cooking_objs.Add(CI)
 		user.visible_message("<span class='notice'>\The [user] puts \the [I] into \the [src].</span>")
 		if (CC.check_contents() == 0)//If we're just putting an empty container in, then dont start any processing.
-			return
+			return TRUE
 	else
 		if (CI && istype(CI))
 			I.forceMove(CI.container)
 
 		else //Something went wrong
-			return
+			return FALSE
 
 	if (selected_option)
 		CI.combine_target = selected_option
@@ -480,7 +504,8 @@
 	CI.container.reagents.trans_to_holder(buffer, CI.container.reagents.total_volume)
 
 	var/obj/item/weapon/reagent_containers/food/snacks/result = new cook_path(CI.container)
-	buffer.trans_to(result, buffer.total_volume)
+	buffer.trans_to_holder(result.reagents, buffer.total_volume) //trans_to doesn't handle food items well, so
+																 //just call trans_to_holder instead
 
 	//Filling overlay
 	var/image/I = image(result.icon, "[result.icon_state]_filling")
@@ -548,11 +573,11 @@
 		FA.alarm()
 
 /obj/machinery/appliance/attack_hand(var/mob/user)
-	if (cooking_objs.len)
-		if (removal_menu(user))
-			return
-		else
-			..()
+	if(..())
+		return
+	
+	if(cooking_objs.len)
+		removal_menu(user)
 
 /obj/machinery/appliance/proc/removal_menu(var/mob/user)
 	if (can_remove_items(user))
@@ -570,7 +595,7 @@
 		return TRUE
 	return FALSE
 
-/obj/machinery/appliance/proc/can_remove_items(var/mob/user)
+/obj/machinery/appliance/proc/can_remove_items(var/mob/user, show_warning = TRUE)
 	if (!Adjacent(user))
 		return FALSE
 

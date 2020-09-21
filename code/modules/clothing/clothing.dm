@@ -2,6 +2,7 @@
 	name = "clothing"
 	siemens_coefficient = 0.9
 	drop_sound = 'sound/items/drop/clothing.ogg'
+	pickup_sound = 'sound/items/pickup/clothing.ogg'
 	var/list/species_restricted = null //Only these species can wear this kit.
 	var/gunshot_residue //Used by forensics.
 
@@ -29,6 +30,7 @@
 
 	var/update_icon_define = null	// Only needed if you've got multiple files for the same type of clothing
 
+	var/polychromic = FALSE //VOREStation edit
 
 //Updates the icons of the mob wearing the clothing item, if any.
 /obj/item/clothing/proc/update_clothing_icon()
@@ -47,6 +49,11 @@
 			var/obj/item/clothing/accessory/tie = new T(src)
 			src.attach_accessory(null, tie)
 	set_clothing_index()
+
+	//VOREStation edit start
+	if(polychromic)
+		verbs |= /obj/item/clothing/proc/change_color
+	//VOREStation edit start
 
 /obj/item/clothing/equipped(var/mob/user,var/slot)
 	..()
@@ -111,7 +118,7 @@
 	. = FALSE
 	if(LAZYLEN(accessories))
 		for(var/obj/item/clothing/C in accessories)
-			if(C.handle_low_temperature(tempcheck))
+			if(C.handle_high_temperature(tempcheck))
 				. = TRUE
 
 	if(max_heat_protection_temperature && max_heat_protection_temperature >= tempcheck)
@@ -159,6 +166,24 @@
 		icon = sprite_sheets_obj[target_species]
 	else
 		icon = initial(icon)
+
+//VOREStation edit start
+/obj/item/clothing/proc/change_color()
+	set name = "Change Color"
+	set category = "Object"
+	set desc = "Change the color of the clothing."
+	set src in usr
+
+	if(usr.stat || usr.restrained() || usr.incapacitated())
+		return
+
+	var/new_color = input(usr, "Pick a new color", "Color", color) as color|null
+
+	if(new_color && (new_color != color))
+		color = new_color
+	update_icon()
+	update_clothing_icon()
+//VOREStation edit end
 
 /obj/item/clothing/head/helmet/refit_for_species(var/target_species)
 	if(!species_restricted)
@@ -301,6 +326,7 @@
 		SPECIES_VOX = 'icons/mob/species/vox/gloves.dmi'
 		)
 	drop_sound = 'sound/items/drop/gloves.ogg'
+	pickup_sound = 'sound/items/pickup/gloves.ogg'
 
 /obj/item/clothing/proc/set_clothing_index()
 	return
@@ -409,6 +435,8 @@
 	fingerprint_chance = 100
 	punch_force = 2
 	body_parts_covered = 0
+	drop_sound = 'sound/items/drop/ring.ogg'
+	pickup_sound = 'sound/items/pickup/ring.ogg'
 
 ///////////////////////////////////////////////////////////////////////
 //Head
@@ -435,6 +463,7 @@
 		SPECIES_VOX = 'icons/mob/species/vox/head.dmi'
 		)
 	drop_sound = 'sound/items/drop/hat.ogg'
+	pickup_sound = 'sound/items/pickup/hat.ogg'
 
 /obj/item/clothing/head/attack_self(mob/user)
 	if(brightness_on)
@@ -546,6 +575,9 @@
 	var/list/say_messages
 	var/list/say_verbs
 
+	drop_sound = "generic_drop"
+	pickup_sound = "generic_pickup"
+
 /obj/item/clothing/mask/update_clothing_icon()
 	if (ismob(src.loc))
 		var/mob/M = src.loc
@@ -591,6 +623,7 @@
 		SPECIES_VOX = 'icons/mob/species/vox/shoes.dmi'
 		)
 	drop_sound = 'sound/items/drop/shoes.ogg'
+	pickup_sound = 'sound/items/pickup/shoes.ogg'
 
 /obj/item/clothing/shoes/proc/draw_knife()
 	set name = "Draw Boot Knife"
@@ -705,6 +738,7 @@
 	siemens_coefficient = 0.9
 	w_class = ITEMSIZE_NORMAL
 	preserve_item = 1
+	equip_sound = 'sound/items/jumpsuit_equip.ogg'
 
 
 	sprite_sheets = list(
@@ -749,6 +783,7 @@
 	permeability_coefficient = 0.90
 	slot_flags = SLOT_ICLOTHING
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	equip_sound = 'sound/items/jumpsuit_equip.ogg'
 	w_class = ITEMSIZE_NORMAL
 	show_messages = 1
 	blood_sprite_state = "uniformblood"

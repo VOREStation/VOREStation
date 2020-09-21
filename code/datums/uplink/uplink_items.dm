@@ -51,7 +51,7 @@ var/datum/uplink/uplink = new()
 	if(!can_buy(U))
 		return
 
-	if(U.CanUseTopic(user, inventory_state) != STATUS_INTERACTIVE)
+	if(U.CanUseTopic(user, GLOB.tgui_inventory_state) != STATUS_INTERACTIVE)
 		return
 
 	var/cost = cost(U.uses, U)
