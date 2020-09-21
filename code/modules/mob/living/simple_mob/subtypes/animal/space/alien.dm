@@ -18,6 +18,7 @@
 
 	maxHealth = 100
 	health = 100
+	see_in_dark = 7
 
 	harm_intent_damage = 5
 	melee_damage_lower = 25
