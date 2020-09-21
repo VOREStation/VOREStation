@@ -1194,6 +1194,7 @@
 #include "code\game\objects\items\toys\toys_vr.dm"
 #include "code\game\objects\items\weapons\AI_modules.dm"
 #include "code\game\objects\items\weapons\AI_modules_vr.dm"
+#include "code\game\objects\items\weapons\augment_items.dm"
 #include "code\game\objects\items\weapons\autopsy.dm"
 #include "code\game\objects\items\weapons\bones.dm"
 #include "code\game\objects\items\weapons\candle.dm"
