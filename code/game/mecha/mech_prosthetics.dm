@@ -156,8 +156,6 @@
 				to_chat(user, "<span class='notice'>Uploaded [D.species] files!</span>")
 				qdel(I)
 		return
-<<<<<<< HEAD
-=======
 
 	if(istype(I,/obj/item/stack/material))
 		var/obj/item/stack/material/S = I
@@ -323,4 +321,3 @@
 		files.RefreshResearch()
 		sync_message = "Sync complete."
 	update_categories()
->>>>>>> 927c41c... Convert /material to it's correct absolute path /datum/material (#7637)
