@@ -433,7 +433,7 @@
 		if(IS_CHIMERA) removed *= 0.25 //VOREStation Edit
 	if(issmall(M)) removed *= 2 // Small bodymass, more effect from lower volume.
 	if(M.species.gets_food_nutrition) //VOREStation edit. If this is set to 0, they don't get nutrition from food.
-		if(M.isSynthetic() && H.nutrition < 500)	//cap us off at the limit just like a charger
+		if(M.isSynthetic() && M.nutrition < 500)	//cap us off at the limit just like a charger
 			M.adjust_nutrition((nutriment_factor / fbp_factor) * removed)
 		else
 			M.adjust_nutrition(nutriment_factor * removed)
