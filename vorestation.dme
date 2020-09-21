@@ -2212,7 +2212,6 @@
 #include "code\modules\hydroponics\grown_inedible.dm"
 #include "code\modules\hydroponics\grown_predefined.dm"
 #include "code\modules\hydroponics\seed.dm"
-#include "code\modules\hydroponics\seed_datums.dm"
 #include "code\modules\hydroponics\seed_datums_vr.dm"
 #include "code\modules\hydroponics\seed_gene_mut.dm"
 #include "code\modules\hydroponics\seed_machines.dm"
