@@ -418,7 +418,13 @@
 
 /datum/reagent/nutriment
 	affects_robots = 1	//fbps can get energy from food, but;
-	var/fbp_factor = 2	//divisor for how much it's worth (so, one half normal)
+	var/fbp_factor = 1.5	//divisor for how much it's worth (so, two-thirds normal)
+
+/datum/reagent/nutriment/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(!injectable && alien != IS_SLIME && alien != IS_CHIMERA && !M.isSynthetic())
+		M.adjustToxLoss(0.1 * removed)
+		return
+	affect_ingest(M, alien, removed)
 
 /datum/reagent/nutriment/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	switch(alien)
@@ -427,7 +433,7 @@
 		if(IS_CHIMERA) removed *= 0.25 //VOREStation Edit
 	if(issmall(M)) removed *= 2 // Small bodymass, more effect from lower volume.
 	if(M.species.gets_food_nutrition) //VOREStation edit. If this is set to 0, they don't get nutrition from food.
-		if(M.isSynthetic())
+		if(M.isSynthetic() && H.nutrition < 500)	//cap us off at the limit just like a charger
 			M.adjust_nutrition((nutriment_factor / fbp_factor) * removed)
 		else
 			M.adjust_nutrition(nutriment_factor * removed)
