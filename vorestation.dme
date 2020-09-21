@@ -1193,11 +1193,8 @@
 #include "code\game\objects\items\toys\toys.dm"
 #include "code\game\objects\items\toys\toys_vr.dm"
 #include "code\game\objects\items\weapons\AI_modules.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\game\objects\items\weapons\AI_modules_vr.dm"
-=======
 #include "code\game\objects\items\weapons\augment_items.dm"
->>>>>>> 3b1fe3f... Adds two new augments to Traitor uplink (#7642):polaris.dme
 #include "code\game\objects\items\weapons\autopsy.dm"
 #include "code\game\objects\items\weapons\bones.dm"
 #include "code\game\objects\items\weapons\candle.dm"
