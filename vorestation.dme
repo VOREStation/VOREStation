@@ -2212,12 +2212,9 @@
 #include "code\modules\hydroponics\grown_inedible.dm"
 #include "code\modules\hydroponics\grown_predefined.dm"
 #include "code\modules\hydroponics\seed.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\modules\hydroponics\seed_datums.dm"
 #include "code\modules\hydroponics\seed_datums_vr.dm"
-=======
 #include "code\modules\hydroponics\seed_controller.dm"
->>>>>>> f518a31... Hydro upkeep (#7475):polaris.dme
 #include "code\modules\hydroponics\seed_gene_mut.dm"
 #include "code\modules\hydroponics\seed_machines.dm"
 #include "code\modules\hydroponics\seed_mobs.dm"
