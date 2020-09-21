@@ -319,22 +319,13 @@
 				return
 
 	//From here we can start cooking food
-<<<<<<< HEAD
-	. = add_content(I, user)
-=======
 	add_content(ToCook, user)
->>>>>>> f518a31... Hydro upkeep (#7475)
 	update_icon()
 
 //Override for container mechanics
 /obj/machinery/appliance/proc/add_content(var/obj/item/I, var/mob/user)
-<<<<<<< HEAD
-	if(!user.unEquip(I))
-		return FALSE
-=======
 	if(!user.unEquip(I) && !isturf(I.loc))
 		return
->>>>>>> f518a31... Hydro upkeep (#7475)
 
 	var/datum/cooking_item/CI = has_space(I)
 	if (istype(I, /obj/item/weapon/reagent_containers/cooking_container) && CI == 1)
