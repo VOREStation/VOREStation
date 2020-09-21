@@ -266,19 +266,6 @@
 		to_chat(user, "<span class='warning'>\The [src] is not working.</span>")
 		return FALSE
 
-<<<<<<< HEAD
-	var/result = can_insert(I, user)
-	if(!result)
-		if(!(default_deconstruction_screwdriver(user, I)))
-			default_part_replacement(user, I)
-		return FALSE
-
-	if(result == 2)
-		var/obj/item/weapon/grab/G = I
-		if (G && istype(G) && G.affecting)
-			cook_mob(G.affecting, user)
-			return FALSE
-=======
 	var/obj/item/ToCook = I
 
 	if(istype(I, /obj/item/weapon/gripper))
@@ -310,7 +297,6 @@
 			if(!(default_deconstruction_screwdriver(user, I)))
 				default_part_replacement(user, I)
 			return
->>>>>>> f518a31... Hydro upkeep (#7475)
 
 		if(result == 2)
 			var/obj/item/weapon/grab/G = I
