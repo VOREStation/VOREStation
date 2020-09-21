@@ -403,8 +403,8 @@
 	no_variants = FALSE
 	pass_color = TRUE
 	strict_color_stacking = TRUE
-	drop_sound = 'sound/items/drop/cloth.ogg'
-	pickup_sound = 'sound/items/pickup/cloth.ogg'
+	drop_sound = 'sound/items/drop/clothing.ogg'
+	pickup_sound = 'sound/items/pickup/clothing.ogg'
 
 /obj/item/stack/material/cloth/diyaab
 	color = "#c6ccf0"

@@ -37,6 +37,7 @@
 	icon_state = "sunflower_crown"
 	body_parts_covered = 0
 	drop_sound = 'sound/items/drop/herb.ogg'
+	pickup_sound = 'sound/items/pickup/herb.ogg'
 
 /obj/item/clothing/head/lavender_crown
 	name = "lavender crown"
@@ -44,6 +45,7 @@
 	icon_state = "lavender_crown"
 	body_parts_covered = 0
 	drop_sound = 'sound/items/drop/herb.ogg'
+	pickup_sound = 'sound/items/pickup/herb.ogg'
 
 /obj/item/clothing/head/poppy_crown
 	name = "poppy crown"
@@ -51,6 +53,7 @@
 	icon_state = "poppy_crown"
 	body_parts_covered = 0
 	drop_sound = 'sound/items/drop/herb.ogg'
+	pickup_sound = 'sound/items/pickup/herb.ogg'
 
 /obj/item/clothing/head/rose_crown
 	name = "rose crown"
@@ -58,3 +61,4 @@
 	icon_state = "poppy_crown"
 	body_parts_covered = 0
 	drop_sound = 'sound/items/drop/herb.ogg'
+	pickup_sound = 'sound/items/pickup/herb.ogg'

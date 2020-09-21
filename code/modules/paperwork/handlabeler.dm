@@ -6,6 +6,8 @@
 	var/label = null
 	var/labels_left = 30
 	var/mode = 0	//off or on.
+	drop_sound = 'sound/items/drop/device.ogg'
+	pickup_sound = 'sound/items/pickup/device.ogg'
 
 /obj/item/weapon/hand_labeler/attack()
 	return
