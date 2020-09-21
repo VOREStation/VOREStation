@@ -592,7 +592,7 @@
 //SYNNONO MEME FOODS EXPANSION - Credit to Synnono
 
 /datum/reagent/spacespice
-	name = "Space Spice"
+	name = "Wurmwoad"
 	id = "spacespice"
 	description = "An exotic blend of spices for cooking. Definitely not worms."
 	reagent_state = SOLID
