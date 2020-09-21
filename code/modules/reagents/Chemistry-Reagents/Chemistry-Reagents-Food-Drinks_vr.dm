@@ -435,7 +435,7 @@
 	if(M.species.gets_food_nutrition) //VOREStation edit. If this is set to 0, they don't get nutrition from food.
 		if(M.isSynthetic() && M.nutrition < 500)	//cap us off at the limit just like a charger
 			M.adjust_nutrition((nutriment_factor / fbp_factor) * removed)
-		else
+		else if(!M.isSynthetic())
 			M.adjust_nutrition(nutriment_factor * removed)
 	if(!M.isSynthetic())	//only meatbags get healing and blood from nutriment
 		M.heal_organ_damage(0.5 * removed, 0)
