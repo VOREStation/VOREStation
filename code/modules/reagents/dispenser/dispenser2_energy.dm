@@ -25,7 +25,7 @@
 				C.reagents.add_reagent(id, to_restore)
 				. = 1
 		if(.)
-			SSnanoui.update_uis(src)
+			SStgui.update_uis(src)
 
 /obj/machinery/chemical_dispenser
 	dispense_reagents = list(

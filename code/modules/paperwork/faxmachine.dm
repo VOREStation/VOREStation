@@ -17,8 +17,10 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	active_power_usage = 200
 	circuit = /obj/item/weapon/circuitboard/fax
 
-	var/obj/item/weapon/card/id/scan = null // identification
-	var/authenticated = 0
+	var/obj/item/weapon/card/id/scan = null
+	var/authenticated = null
+	var/rank = null
+
 	var/sendcooldown = 0 // to avoid spamming fax messages
 	var/department = "Unknown" // our department
 	var/destination = null // the department we're sending to
@@ -33,91 +35,101 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 /obj/machinery/photocopier/faxmachine/attack_hand(mob/user as mob)
 	user.set_machine(src)
 
-	ui_interact(user)
+	tgui_interact(user)
 
-/**
- *  Display the NanoUI window for the fax machine.
- *
- *  See NanoUI documentation for details.
- */
-/obj/machinery/photocopier/faxmachine/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	user.set_machine(src)
+/obj/machinery/photocopier/faxmachine/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Fax", name)
+		ui.open()
 
-	var/list/data = list()
-	if(scan)
-		data["scanName"] = scan.name
-	else
-		data["scanName"] = null
-	data["bossName"] = using_map.boss_name
+/obj/machinery/photocopier/faxmachine/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
+	data["scan"] = scan ? scan.name : null
 	data["authenticated"] = authenticated
+	data["rank"] = rank
+	data["isAI"] = isAI(user)
+	data["isRobot"] = isrobot(user)
+
+	data["bossName"] = using_map.boss_name
 	data["copyItem"] = copyitem
-	if(copyitem)
-		data["copyItemName"] = copyitem.name
-	else
-		data["copyItemName"] = null
 	data["cooldown"] = sendcooldown
 	data["destination"] = destination
 
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "fax.tmpl", src.name, 500, 500)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(10) //this machine is so unimportant let's not have it update that often.
+	return data
 
-/obj/machinery/photocopier/faxmachine/Topic(href, href_list)
-	if(href_list["send"])
-		if(copyitem)
-			if (destination in admin_departments)
-				send_admin_fax(usr, destination)
-			else
-				sendfax(destination)
+/obj/machinery/photocopier/faxmachine/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	if(..())
+		return TRUE
 
-			if (sendcooldown)
-				spawn(sendcooldown) // cooldown time
-					sendcooldown = 0
-
-	else if(href_list["remove"])
-		if(copyitem)
-			if(get_dist(usr, src) >= 2)
-				to_chat(usr, "\The [copyitem] is too far away for you to remove it.")
-				return
-			copyitem.loc = usr.loc
-			usr.put_in_hands(copyitem)
-			to_chat(usr, "<span class='notice'>You take \the [copyitem] out of \the [src].</span>")
-			copyitem = null
-
-	if(href_list["scan"])
-		if (scan)
-			if(ishuman(usr))
-				scan.loc = usr.loc
-				if(!usr.get_active_hand())
+	switch(action)
+		if("scan")
+			if(scan)
+				scan.forceMove(loc)
+				if(ishuman(usr) && !usr.get_active_hand())
 					usr.put_in_hands(scan)
 				scan = null
 			else
-				scan.loc = src.loc
+				var/obj/item/I = usr.get_active_hand()
+				if(istype(I, /obj/item/weapon/card/id))
+					usr.drop_item()
+					I.forceMove(src)
+					scan = I
+			return TRUE
+		if("login")
+			var/login_type = text2num(params["login_type"])
+			if(login_type == LOGIN_TYPE_NORMAL && istype(scan))
+				if(check_access(scan))
+					authenticated = scan.registered_name
+					rank = scan.assignment
+			else if(login_type == LOGIN_TYPE_AI && isAI(usr))
+				authenticated = usr.name
+				rank = "AI"
+			else if(login_type == LOGIN_TYPE_ROBOT && isrobot(usr))
+				authenticated = usr.name
+				var/mob/living/silicon/robot/R = usr
+				rank = "[R.modtype] [R.braintype]"
+			return TRUE
+		if("logout")
+			if(scan)
+				scan.forceMove(loc)
+				if(ishuman(usr) && !usr.get_active_hand())
+					usr.put_in_hands(scan)
 				scan = null
-		else
-			var/obj/item/I = usr.get_active_hand()
-			if (istype(I, /obj/item/weapon/card/id) && usr.unEquip(I))
-				I.loc = src
-				scan = I
-		authenticated = 0
+			authenticated = null
+			return TRUE
+		if("remove")
+			if(copyitem)
+				if(get_dist(usr, src) >= 2)
+					to_chat(usr, "\The [copyitem] is too far away for you to remove it.")
+					return
+				copyitem.forceMove(loc)
+				usr.put_in_hands(copyitem)
+				to_chat(usr, "<span class='notice'>You take \the [copyitem] out of \the [src].</span>")
+				copyitem = null
 
-	if(href_list["dept"])
-		var/lastdestination = destination
-		destination = input(usr, "Which department?", "Choose a department", "") as null|anything in (alldepartments + admin_departments)
-		if(!destination) destination = lastdestination
+	if(!authenticated)
+		return
+	
+	switch(action)
+		if("send")
+			if(copyitem)
+				if (destination in admin_departments)
+					send_admin_fax(usr, destination)
+				else
+					sendfax(destination)
 
-	if(href_list["auth"])
-		if ( (!( authenticated ) && (scan)) )
-			if (check_access(scan))
-				authenticated = 1
+				if (sendcooldown)
+					spawn(sendcooldown) // cooldown time
+						sendcooldown = 0
 
-	if(href_list["logout"])
-		authenticated = 0
+		if("dept")
+			var/lastdestination = destination
+			destination = input(usr, "Which department?", "Choose a department", "") as null|anything in (alldepartments + admin_departments)
+			if(!destination)
+				destination = lastdestination
 
-	SSnanoui.update_uis(src)
+	return TRUE
 
 /obj/machinery/photocopier/faxmachine/attackby(obj/item/O as obj, mob/user as mob)
 	if(O.is_multitool() && panel_open)

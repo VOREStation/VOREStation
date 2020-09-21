@@ -11,31 +11,35 @@
 	desc = "Used to control a room's automated defenses."
 	icon = 'icons/obj/machines/turret_control.dmi'
 	icon_state = "control_standby"
-	anchored = 1
-	density = 0
-	var/enabled = 0
-	var/lethal = 0
-	var/locked = 1
+	anchored = TRUE
+	density = FALSE
+	var/enabled = FALSE
+	var/lethal = FALSE
+	var/lethal_is_configurable = TRUE
+	var/locked = TRUE
 	var/area/control_area //can be area name, path or nothing.
 
-	var/check_arrest = 1	//checks if the perp is set to arrest
-	var/check_records = 1	//checks if a security record exists at all
-	var/check_weapons = 0	//checks if it can shoot people that have a weapon they aren't authorized to have
-	var/check_access = 1	//if this is active, the turret shoots everything that does not meet the access requirements
-	var/check_anomalies = 1	//checks if it can shoot at unidentified lifeforms (ie xenos)
-	var/check_synth = 0 	//if active, will shoot at anything not an AI or cyborg
-	var/check_all = 0		//If active, will shoot at anything.
-	var/ailock = 0 	//Silicons cannot use this
+	var/targetting_is_configurable = TRUE // if false, you cannot change who this turret attacks via its UI
+	var/check_arrest = TRUE	//checks if the perp is set to arrest
+	var/check_records = TRUE	//checks if a security record exists at all
+	var/check_weapons = FALSE	//checks if it can shoot people that have a weapon they aren't authorized to have
+	var/check_access = TRUE	//if this is active, the turret shoots everything that does not meet the access requirements
+	var/check_anomalies = TRUE	//checks if it can shoot at unidentified lifeforms (ie xenos)
+	var/check_synth = FALSE 	//if active, will shoot at anything not an AI or cyborg
+	var/check_all = FALSE		//If active, will shoot at anything.
+	var/check_down = TRUE		//If active, won't shoot laying targets.
+	var/ailock = FALSE 	//Silicons cannot use this
 
+	var/syndicate = FALSE
 	req_access = list(access_ai_upload)
 
 /obj/machinery/turretid/stun
-	enabled = 1
+	enabled = TRUE
 	icon_state = "control_stun"
 
 /obj/machinery/turretid/lethal
-	enabled = 1
-	lethal = 1
+	enabled = TRUE
+	lethal = TRUE
 	icon_state = "control_kill"
 
 /obj/machinery/turretid/Destroy()
@@ -67,21 +71,24 @@
 	. = ..()
 
 /obj/machinery/turretid/proc/isLocked(mob/user)
-	if(ailock && issilicon(user))
-		to_chat(user, "<span class='notice'>There seems to be a firewall preventing you from accessing this device.</span>")
-		return 1
+	if(isrobot(user) || isAI(user))
+		if(ailock)
+			to_chat(user, "<span class='notice'>There seems to be a firewall preventing you from accessing this device.</span>")
+			return TRUE
+		else
+			return FALSE
 
-	if(locked && !issilicon(user))
-		to_chat(user, "<span class='notice'>Access denied.</span>")
-		return 1
+	if(isobserver(user))
+		var/mob/observer/dead/D = user
+		if(D.can_admin_interact())
+			return FALSE
+		else
+			return TRUE
 
-	return 0
+	if(locked)
+		return TRUE
 
-/obj/machinery/turretid/CanUseTopic(mob/user)
-	if(isLocked(user))
-		return STATUS_CLOSE
-
-	return ..()
+	return FALSE
 
 /obj/machinery/turretid/attackby(obj/item/weapon/W, mob/user)
 	if(stat & BROKEN)
@@ -100,77 +107,80 @@
 /obj/machinery/turretid/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
 		to_chat(user, "<span class='danger'>You short out the turret controls' access analysis module.</span>")
-		emagged = 1
-		locked = 0
-		ailock = 0
-		return 1
+		emagged = TRUE
+		locked = FALSE
+		ailock = FALSE
+		return TRUE
 
 /obj/machinery/turretid/attack_ai(mob/user as mob)
-	if(isLocked(user))
-		return
+	tgui_interact(user)
 
-	ui_interact(user)
+/obj/machinery/turretid/attack_ghost(mob/user as mob)
+	tgui_interact(user)
 
 /obj/machinery/turretid/attack_hand(mob/user as mob)
-	if(isLocked(user))
+	tgui_interact(user)
+
+/obj/machinery/turretid/tgui_interact(mob/user, datum/tgui/ui = null)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "PortableTurret", name) // 500, 400
+		ui.open()
+
+/obj/machinery/turretid/tgui_data(mob/user)
+	var/list/data = list(
+		"locked" = isLocked(user), // does the current user have access?
+		"on" = enabled,
+		"targetting_is_configurable" = targetting_is_configurable,
+		"lethal" = lethal,
+		"lethal_is_configurable" = lethal_is_configurable,
+		"check_weapons" = check_weapons,
+		"neutralize_noaccess" = check_access,
+		"one_access" = FALSE,
+		"selectedAccess" = list(),
+		"access_is_configurable" = FALSE,
+		"neutralize_norecord" = check_records,
+		"neutralize_criminals" = check_arrest,
+		"neutralize_nonsynth" = check_synth,
+		"neutralize_all" = check_all,
+		"neutralize_unidentified" = check_anomalies,
+		"neutralize_down" = check_down,
+	)
+	return data
+
+/obj/machinery/turretid/tgui_act(action, params)
+	if(..())
+		return
+	if(isLocked(usr))
 		return
 
-	ui_interact(user)
+	. = TRUE
+	switch(action)
+		if("power")
+			enabled = !enabled
+		if("lethal")
+			if(lethal_is_configurable)
+				lethal = !lethal
+	if(targetting_is_configurable)
+		switch(action)
+			if("authweapon")
+				check_weapons = !check_weapons
+			if("authaccess")
+				check_access = !check_access
+			if("authnorecord")
+				check_records = !check_records
+			if("autharrest")
+				check_arrest = !check_arrest
+			if("authxeno")
+				check_anomalies = !check_anomalies
+			if("authsynth")
+				check_synth = !check_synth
+			if("authall")
+				check_all = !check_all
+			if("authdown")
+				check_down = !check_down
 
-/obj/machinery/turretid/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	var/data[0]
-	data["access"] = !isLocked(user)
-	data["locked"] = locked
-	data["enabled"] = enabled
-	data["is_lethal"] = 1
-	data["lethal"] = lethal
-
-	if(data["access"])
-		var/settings[0]
-		settings[++settings.len] = list("category" = "Neutralize All Non-Synthetics", "setting" = "check_synth", "value" = check_synth)
-		settings[++settings.len] = list("category" = "Check Weapon Authorization", "setting" = "check_weapons", "value" = check_weapons)
-		settings[++settings.len] = list("category" = "Check Security Records", "setting" = "check_records", "value" = check_records)
-		settings[++settings.len] = list("category" = "Check Arrest Status", "setting" = "check_arrest", "value" = check_arrest)
-		settings[++settings.len] = list("category" = "Check Access Authorization", "setting" = "check_access", "value" = check_access)
-		settings[++settings.len] = list("category" = "Check misc. Lifeforms", "setting" = "check_anomalies", "value" = check_anomalies)
-		settings[++settings.len] = list("category" = "Neutralize All Entities", "setting" = "check_all", "value" = check_all)
-
-		data["settings"] = settings
-
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if(!ui)
-		ui = new(user, src, ui_key, "turret_control.tmpl", "Turret Controls", 500, 300)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(1)
-
-/obj/machinery/turretid/Topic(href, href_list)
-	if(..())
-		return 1
-
-	if(href_list["command"] && href_list["value"])
-		var/value = text2num(href_list["value"])
-		if(href_list["command"] == "enable")
-			enabled = value
-		else if(href_list["command"] == "lethal")
-			lethal = value
-		else if(href_list["command"] == "check_synth")
-			check_synth = value
-		else if(href_list["command"] == "check_weapons")
-			check_weapons = value
-		else if(href_list["command"] == "check_records")
-			check_records = value
-		else if(href_list["command"] == "check_arrest")
-			check_arrest = value
-		else if(href_list["command"] == "check_access")
-			check_access = value
-		else if(href_list["command"] == "check_anomalies")
-			check_anomalies = value
-		else if(href_list["command"] == "check_all")
-			check_all = value
-
-		updateTurrets()
-		return 1
+	updateTurrets()
 
 /obj/machinery/turretid/proc/updateTurrets()
 	var/datum/turret_checks/TC = new
@@ -183,10 +193,11 @@
 	TC.check_weapons = check_weapons
 	TC.check_anomalies = check_anomalies
 	TC.check_all = check_all
+	TC.check_down = check_down
 	TC.ailock = ailock
 
 	if(istype(control_area))
-		for (var/obj/machinery/porta_turret/aTurret in control_area)
+		for(var/obj/machinery/porta_turret/aTurret in control_area)
 			aTurret.setState(TC)
 
 	update_icon()
