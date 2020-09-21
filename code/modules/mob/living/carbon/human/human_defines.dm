@@ -44,7 +44,11 @@
 
 	var/age = 30		//Player's age (pure fluff)
 	var/b_type = "A+"	//Player's bloodtype
+<<<<<<< HEAD
 	var/datum/robolimb/synthetic		//If they are a synthetic (aka synthetic torso)
+=======
+	var/datum/robolimb/synthetic		//If they are a synthetic (aka synthetic torso). Also holds the datum for the type of robolimb.
+>>>>>>> a68014a... Kaleidoscope, Toolbox (#7608)
 
 	var/list/all_underwear = list()
 	var/list/all_underwear_metadata = list()
@@ -117,4 +121,35 @@
 
 	var/obj/machinery/machine_visual //machine that is currently applying visual effects to this mob. Only used for camera monitors currently.
 
+<<<<<<< HEAD
 	inventory_panel_type = /datum/inventory_panel/human
+=======
+	// Horray Furries!
+	var/datum/sprite_accessory/ears/ear_style = null
+	var/r_ears = 30
+	var/g_ears = 30
+	var/b_ears = 30
+	var/r_ears2 = 30
+	var/g_ears2 = 30
+	var/b_ears2 = 30
+	var/datum/sprite_accessory/tail/tail_style = null
+	var/r_tail = 30
+	var/g_tail = 30
+	var/b_tail = 30
+	var/r_tail2 = 30
+	var/g_tail2 = 30
+	var/b_tail2 = 30
+	var/datum/sprite_accessory/wing/wing_style = null
+	var/r_wing = 30
+	var/g_wing = 30
+	var/b_wing = 30
+	var/r_wing2 = 30
+	var/g_wing2 = 30
+	var/b_wing2 = 30
+
+	var/wagging = 0 //UGH.
+	var/flapping = 0
+
+	// Custom Species Name
+	var/custom_species
+>>>>>>> a68014a... Kaleidoscope, Toolbox (#7608)

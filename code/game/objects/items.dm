@@ -787,7 +787,11 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	icon = 'icons/obj/device.dmi'
 
 //Worn icon generation for on-mob sprites
+<<<<<<< HEAD
 /obj/item/proc/make_worn_icon(var/body_type,var/slot_name,var/inhands,var/default_icon,var/default_layer,var/icon/clip_mask = null) //VOREStation edit - add 'clip mask' argument.
+=======
+/obj/item/proc/make_worn_icon(var/body_type,var/slot_name,var/inhands,var/default_icon,var/default_layer,var/icon/clip_mask = null)
+>>>>>>> a68014a... Kaleidoscope, Toolbox (#7608)
 	//Get the required information about the base icon
 	var/icon/icon2use = get_worn_icon_file(body_type = body_type, slot_name = slot_name, default_icon = default_icon, inhands = inhands)
 	var/state2use = get_worn_icon_state(slot_name = slot_name)
@@ -815,6 +819,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	standing.color = color
 	standing.layer = layer2use
 	if(istype(clip_mask)) //VOREStation Edit - For taur bodies/tails clipping off parts of uniforms and suits.
+		standing.filters += filter(type = "alpha", icon = clip_mask)
+
+	if(istype(clip_mask)) //For taur bodies/tails clipping off parts of uniforms and suits.
 		standing.filters += filter(type = "alpha", icon = clip_mask)
 
 	//Apply any special features
