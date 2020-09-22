@@ -1363,6 +1363,7 @@
 #include "code\game\objects\random\guns_and_ammo.dm"
 #include "code\game\objects\random\maintenance.dm"
 #include "code\game\objects\random\mapping.dm"
+#include "code\game\objects\random\mapping_vr.dm"
 #include "code\game\objects\random\mechs.dm"
 #include "code\game\objects\random\misc.dm"
 #include "code\game\objects\random\misc_vr.dm"

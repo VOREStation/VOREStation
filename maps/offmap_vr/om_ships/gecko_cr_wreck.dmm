@@ -130,7 +130,9 @@
 /turf/simulated/floor/reinforced/airless,
 /area/shuttle/gecko_cr_wreck)
 "dC" = (
-/obj/random/multiple/corp_crate,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 6
+	},
 /turf/simulated/floor/reinforced/airless,
 /area/shuttle/gecko_cr_wreck)
 "dE" = (
@@ -452,6 +454,7 @@
 	dir = 4
 	},
 /obj/item/weapon/material/shard/shrapnel,
+/obj/random/empty_or_lootable_crate,
 /turf/simulated/floor/reinforced/airless,
 /area/shuttle/gecko_cr_wreck)
 "kd" = (
@@ -491,7 +494,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
 	},
-/obj/random/multiple/corp_crate,
+/obj/random/empty_or_lootable_crate,
 /turf/simulated/floor/reinforced/airless,
 /area/shuttle/gecko_cr_wreck)
 "kx" = (
@@ -651,7 +654,7 @@
 /turf/template_noop,
 /area/shuttle/gecko_cr_engineering_wreck)
 "nj" = (
-/obj/random/crate,
+/obj/random/empty_or_lootable_crate,
 /turf/simulated/floor/reinforced/airless,
 /area/shuttle/gecko_cr_wreck)
 "nm" = (
@@ -662,7 +665,7 @@
 /area/shuttle/gecko_cr_wreck)
 "nq" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
-/obj/random/multiple/corp_crate,
+/obj/random/empty_or_lootable_crate,
 /turf/simulated/floor/reinforced/airless,
 /area/shuttle/gecko_cr_wreck)
 "od" = (
@@ -785,7 +788,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 10
 	},
-/obj/random/multiple/corp_crate,
+/obj/random/empty_or_lootable_crate,
 /turf/simulated/floor/reinforced/airless,
 /area/shuttle/gecko_cr_wreck)
 "pG" = (
@@ -1009,7 +1012,6 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 5
 	},
-/obj/random/crate,
 /turf/simulated/floor/reinforced/airless,
 /area/shuttle/gecko_cr_wreck)
 "tP" = (
@@ -1101,7 +1103,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
 	},
-/obj/random/multiple/corp_crate,
+/obj/random/empty_or_lootable_crate,
 /turf/simulated/floor/reinforced/airless,
 /area/shuttle/gecko_cr_wreck)
 "vP" = (
@@ -1149,7 +1151,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 9
 	},
-/obj/random/crate,
+/obj/random/empty_or_lootable_crate,
 /turf/simulated/floor/reinforced/airless,
 /area/shuttle/gecko_cr_wreck)
 "wV" = (
@@ -1293,7 +1295,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/random/crate,
+/obj/random/empty_or_lootable_crate,
 /turf/simulated/floor/reinforced/airless,
 /area/shuttle/gecko_cr_wreck)
 "AE" = (
@@ -1316,7 +1318,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 10
 	},
-/obj/random/crate,
 /turf/simulated/floor/reinforced/airless,
 /area/shuttle/gecko_cr_wreck)
 "Bd" = (
@@ -1416,7 +1417,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/random/crate,
+/obj/random/empty_or_lootable_crate,
 /turf/simulated/floor/reinforced/airless,
 /area/shuttle/gecko_cr_wreck)
 "Ck" = (
@@ -1511,6 +1512,12 @@
 	},
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/shuttle/gecko_cr_engineering_wreck)
+"DK" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/shuttle/gecko_cr_wreck)
 "DM" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
@@ -1928,7 +1935,6 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 9
 	},
-/obj/random/crate,
 /turf/simulated/floor/reinforced/airless,
 /area/shuttle/gecko_cr_wreck)
 "LU" = (
@@ -1991,17 +1997,17 @@
 /turf/simulated/wall/rshull,
 /area/shuttle/gecko_cr_wreck)
 "Nj" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 4
+/obj/effect/floor_decal/industrial/warning{
+	dir = 9
 	},
-/obj/random/multiple/corp_crate,
+/obj/random/empty_or_lootable_crate,
 /turf/simulated/floor/reinforced/airless,
 /area/shuttle/gecko_cr_wreck)
 "Np" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 6
 	},
-/obj/random/crate,
+/obj/random/empty_or_lootable_crate,
 /turf/simulated/floor/reinforced/airless,
 /area/shuttle/gecko_cr_wreck)
 "Nr" = (
@@ -2095,7 +2101,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/random/crate,
+/obj/random/empty_or_lootable_crate,
 /turf/simulated/floor/reinforced/airless,
 /area/shuttle/gecko_cr_wreck)
 "Ol" = (
@@ -2124,7 +2130,6 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 6
 	},
-/obj/random/crate,
 /turf/simulated/floor/reinforced/airless,
 /area/shuttle/gecko_cr_wreck)
 "Oz" = (
@@ -2133,7 +2138,7 @@
 /area/shuttle/gecko_cr_wreck)
 "OA" = (
 /obj/machinery/atmospherics/pipe/manifold4w/hidden,
-/obj/random/crate,
+/obj/random/empty_or_lootable_crate,
 /turf/simulated/floor/reinforced/airless,
 /area/shuttle/gecko_cr_wreck)
 "OH" = (
@@ -2171,6 +2176,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 9
 	},
+/obj/random/empty_or_lootable_crate,
 /turf/simulated/floor/reinforced/airless,
 /area/shuttle/gecko_cr_wreck)
 "OU" = (
@@ -2222,7 +2228,7 @@
 /area/shuttle/gecko_cr_wreck)
 "Pn" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden,
-/obj/random/multiple/corp_crate,
+/obj/random/empty_or_lootable_crate,
 /turf/simulated/floor/reinforced/airless,
 /area/shuttle/gecko_cr_wreck)
 "Pv" = (
@@ -2347,7 +2353,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 5
 	},
-/obj/random/crate,
+/obj/random/empty_or_lootable_crate,
 /turf/simulated/floor/reinforced/airless,
 /area/shuttle/gecko_cr_wreck)
 "QX" = (
@@ -2505,7 +2511,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 10
 	},
-/obj/random/multiple/corp_crate,
+/obj/random/empty_or_lootable_crate,
 /turf/simulated/floor/reinforced/airless,
 /area/shuttle/gecko_cr_wreck)
 "Tw" = (
@@ -2604,7 +2610,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
-/obj/random/crate,
+/obj/random/empty_or_lootable_crate,
 /turf/simulated/floor/reinforced/airless,
 /area/shuttle/gecko_cr_wreck)
 "Vl" = (
@@ -2612,7 +2618,7 @@
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
-/obj/random/crate,
+/obj/random/empty_or_lootable_crate,
 /turf/simulated/floor/reinforced/airless,
 /area/shuttle/gecko_cr_wreck)
 "Vr" = (
@@ -2751,7 +2757,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden,
-/obj/random/multiple/corp_crate,
+/obj/random/empty_or_lootable_crate,
 /turf/simulated/floor/reinforced/airless,
 /area/shuttle/gecko_cr_wreck)
 "Xn" = (
@@ -2919,7 +2925,7 @@
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
-/obj/random/multiple/corp_crate,
+/obj/random/empty_or_lootable_crate,
 /turf/simulated/floor/reinforced/airless,
 /area/shuttle/gecko_cr_wreck)
 "Zo" = (
@@ -3268,7 +3274,7 @@ jo
 wU
 Wz
 pv
-OA
+jo
 OP
 vX
 Pv
@@ -3310,7 +3316,7 @@ WZ
 OA
 nq
 VJ
-VJ
+nq
 Pn
 NZ
 Va
@@ -3393,8 +3399,8 @@ kI
 qh
 Rp
 PJ
-nm
-oe
+Vi
+Tv
 Gx
 Zp
 Vi
@@ -3435,13 +3441,13 @@ tP
 FX
 Ti
 rA
-Aq
-nm
+gy
+Vi
 dE
 gA
-nj
+Wz
 lS
-NZ
+DK
 EK
 Wr
 ov
@@ -3480,7 +3486,7 @@ Ti
 aK
 tI
 lS
-Np
+dC
 Gx
 II
 nm
@@ -3611,9 +3617,9 @@ gy
 Vi
 dE
 th
-Wz
+nj
 Vi
-NZ
+DK
 ON
 Wr
 LW
@@ -3694,11 +3700,11 @@ Ey
 Wr
 yR
 Zn
-Vi
+nm
 Tv
 Wz
-Lu
 Nj
+nm
 kp
 Tl
 Wr
@@ -3738,10 +3744,10 @@ Wr
 Wz
 Aq
 es
-dC
+Wz
 ZL
-dC
-Vi
+Wz
+nm
 fv
 JV
 Wr
