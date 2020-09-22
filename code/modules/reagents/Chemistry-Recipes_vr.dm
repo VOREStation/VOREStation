@@ -87,12 +87,12 @@
     result_amount = 1
 	
 /datum/chemical_reaction/firefightingfoamqol //Please don't abuse this and make us remove it. Seriously.
-    name = "Firefighting Foam EZ"
+    name = "Firefighting Foam"
     id = "firefighting foam ez"
     result = "firefoam"
     required_reagents = list("water" = 1)
     catalysts = list("firefoam" = 0.01)
-	inhibitors = list("fluorine" = 0.01)
+    inhibitors = list("fluorine" = 0.01)
     result_amount = 1
 
 ///////////////////////////////////////////////////////////////////////////////////
