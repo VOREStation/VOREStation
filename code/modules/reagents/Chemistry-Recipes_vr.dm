@@ -91,7 +91,7 @@
     id = "firefighting foam ez"
     result = "firefoam"
     required_reagents = list("water" = 1)
-    catalysts = list("firefoam" = 0.01)
+    catalysts = list("firefoam" = 5)
     inhibitors = list("fluorine" = 0.01)
     result_amount = 1
 
