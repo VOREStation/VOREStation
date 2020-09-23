@@ -5,7 +5,10 @@ import { Box, Button, Flex, Input, LabeledList, Section, Table, Tabs } from "../
 import { Window } from "../layouts";
 import { decodeHtmlEntities } from 'common/string';
 import { COLORS } from "../constants";
+<<<<<<< HEAD
 import { CrewManifestContent } from './CrewManifest';
+=======
+>>>>>>> 47878df... Merge pull request #7678 from ShadowLarkens/tgui_folder_update
 
 export const IdentificationComputer = (props, context) => {
   const { act, data } = useBackend(context);
@@ -34,11 +37,19 @@ export const IdentificationComputerContent = (props, context) => {
   
   let body = <IdentificationComputerAccessModification ntos={ntos} />;
   if (ntos && !data.have_id_slot) {
+<<<<<<< HEAD
     body = <CrewManifestContent />;
   } else if (printing) {
     body = <IdentificationComputerPrinting />;
   } else if (mode === 1) {
     body = <CrewManifestContent />;
+=======
+    body = <IdentificationComputerCrewManifest />;
+  } else if (printing) {
+    body = <IdentificationComputerPrinting />;
+  } else if (mode === 1) {
+    body = <IdentificationComputerCrewManifest />;
+>>>>>>> 47878df... Merge pull request #7678 from ShadowLarkens/tgui_folder_update
   }
 
   return (
@@ -235,3 +246,47 @@ export const IdentificationComputerRegions = (props, context) => {
     </Flex>
   );
 };
+<<<<<<< HEAD
+=======
+
+
+export const IdentificationComputerCrewManifest = (props, context) => {
+  const { act, data } = useBackend(context);
+
+  const {
+    manifest,
+  } = data;
+
+  return (
+    <Section title="Crew Manifest" noTopPadding>
+      {manifest.map(cat => !!cat.elems.length && (
+        <Section
+          title={(
+            <Box backgroundColor={COLORS.manifest[cat.cat.toLowerCase()]} m={-1} pt={1} pb={1}>
+              <Box ml={1} textAlign="center" fontSize={1.4}>
+                {cat.cat}
+              </Box>
+            </Box>
+          )}
+          key={cat.cat}
+          level={2}>
+          <Table>
+            <Table.Row header color="white">
+              <Table.Cell>Name</Table.Cell>
+              <Table.Cell>Rank</Table.Cell>
+              <Table.Cell>Active</Table.Cell>
+            </Table.Row>
+            {cat.elems.map(person => (
+              <Table.Row color="average" key={person.name + person.rank}>
+                <Table.Cell>{person.name}</Table.Cell>
+                <Table.Cell>{person.rank}</Table.Cell>
+                <Table.Cell>{person.active}</Table.Cell>
+              </Table.Row>
+            ))}
+          </Table>
+        </Section>
+      ))}
+    </Section>
+  );
+};
+>>>>>>> 47878df... Merge pull request #7678 from ShadowLarkens/tgui_folder_update

@@ -4,7 +4,11 @@ import { Fragment } from 'inferno';
 import { useBackend, useLocalState } from "../backend";
 import { Box, Button, Flex, Icon, LabeledList, Input, ProgressBar, Section, Table } from "../components";
 import { Window } from "../layouts";
+<<<<<<< HEAD
 import { CrewManifestContent } from './CrewManifest';
+=======
+import { IdentificationComputerCrewManifest } from './IdentificationComputer';
+>>>>>>> 47878df... Merge pull request #7678 from ShadowLarkens/tgui_folder_update
 
 const HOMETAB = 1;
 const PHONTAB = 2;
@@ -883,8 +887,13 @@ const WeatherTab = (props, context) => {
 TabToTemplate[WTHRTAB] = <WeatherTab />;
 
 /* Crew Manifest */
+<<<<<<< HEAD
 // Lol just steal it from the existing template
 TabToTemplate[MANITAB] = <CrewManifestContent />;
+=======
+// Lol just steal it from ID Computer
+TabToTemplate[MANITAB] = <IdentificationComputerCrewManifest />;
+>>>>>>> 47878df... Merge pull request #7678 from ShadowLarkens/tgui_folder_update
 
 /* Settings */
 const SettingsTab = (props, context) => {
