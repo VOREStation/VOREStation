@@ -1166,3 +1166,8 @@
 		icon_state = "dnose"
 		color_blend_mode = ICON_MULTIPLY
 		body_parts = list(BP_HEAD)
+
+	bee_stripes
+		name = "bee stripes"
+		icon_state = "beestripes"
+		body_parts = list(BP_TORSO,BP_GROIN)
