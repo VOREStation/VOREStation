@@ -17,6 +17,8 @@
 	max_special_equip = 1
 	cargo_capacity = 1
 
+	encumbrance_gap = 1.5
+
 	starting_components = list(
 		/obj/item/mecha_parts/component/hull/durable,
 		/obj/item/mecha_parts/component/actuator,
