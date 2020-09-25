@@ -38,9 +38,10 @@ var/global/datum/repository/crew/crew_repository = new()
 				crewmemberData["assignment"] = H.get_assignment(if_no_id="Unknown", if_no_job="No Job")
 
 				if(C.sensor_mode >= SUIT_SENSOR_BINARY)
-					crewmemberData["dead"] = H.stat > UNCONSCIOUS
+					crewmemberData["dead"] = H.stat == DEAD
 
 				if(C.sensor_mode >= SUIT_SENSOR_VITAL)
+					crewmemberData["stat"] = H.stat
 					crewmemberData["oxy"] = round(H.getOxyLoss(), 1)
 					crewmemberData["tox"] = round(H.getToxLoss(), 1)
 					crewmemberData["fire"] = round(H.getFireLoss(), 1)
