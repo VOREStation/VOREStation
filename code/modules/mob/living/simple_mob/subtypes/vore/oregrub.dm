@@ -72,9 +72,9 @@
 	var/min_ore = 4
 	var/max_ore = 7
 
-	vore_bump_chance = 50
+	vore_bump_chance = 0 //disabled for now
 	vore_bump_emote = "applies minimal effort to try and slurp up"
-	vore_active = 1
+	vore_active = 0 //disabled for now
 	vore_capacity = 1
 	vore_pounce_chance = 0 //grubs only eat incapacitated targets
 	vore_default_mode = DM_DIGEST
@@ -150,6 +150,12 @@
 		i--
 	..()
 
+/mob/living/simple_mob/vore/oregrub/lava/handle_light()
+	. = ..()
+	if(. == 0 && !is_dead())
+		set_light(2.5, 1, COLOR_ORANGE)
+		return 1
+
 /mob/living/simple_mob/vore/oregrub/lava/death()
 	set_light(0)
 	var/p = rand(lava_min_ore,lava_max_ore)
@@ -165,6 +171,7 @@
 		to_chat(L, "<span class='warning'>You feel fire running through your veins!</span>")
 		L.reagents.add_reagent(poison_type, poison_per_bite)
 
+//I'm no good at writing this stuff, so I've just left it as placeholders and disabled the chances of them eating you.
 /mob/living/simple_mob/vore/oregrub/init_vore()
 	..()
 	var/obj/belly/B = vore_selected
@@ -176,9 +183,3 @@
 
 	B.emote_lists[DM_DIGEST] = list(
 		"PLACEHOLDER!")
-
-/mob/living/simple_mob/vore/oregrub/lava/handle_light()
-	. = ..()
-	if(. == 0 && !is_dead())
-		set_light(2.5, 1, COLOR_ORANGE)
-		return 1
