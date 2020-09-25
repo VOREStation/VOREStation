@@ -22,11 +22,6 @@
 	outmatched_threshold = 25	//and we're outmatched by... basically everything!
 
 /datum/ai_holder/simple_mob/oregrub/lava
-	hostile = FALSE
-	retaliate = TRUE
-	can_flee = TRUE
-	dying_threshold = 1
-	flee_when_outmatched = TRUE	//lavagrubs will flee more readily than oregrubs
 	outmatched_threshold = 15
 
 /mob/living/simple_mob/vore/oregrub
@@ -116,8 +111,8 @@
 				"rad"		= 100
 				)
 	
-	var/lava_min_ore = 8
-	var/lava_max_ore = 12
+	var/lava_min_ore = 6
+	var/lava_max_ore = 10
 	
 	poison_per_bite = 5
 	poison_chance = 66
@@ -163,6 +158,7 @@
 		L.reagents.add_reagent(poison_type, poison_per_bite)
 
 //I'm no good at writing this stuff, so I've just left it as placeholders and disabled the chances of them eating you.
+/*
 /mob/living/simple_mob/vore/oregrub/init_vore()
 	..()
 	var/obj/belly/B = vore_selected
@@ -174,3 +170,4 @@
 
 	B.emote_lists[DM_DIGEST] = list(
 		"PLACEHOLDER!")
+*/
