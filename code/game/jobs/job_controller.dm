@@ -540,6 +540,8 @@ var/global/datum/controller/occupations/job_master
 		// EMAIL GENERATION
 		// Email addresses will be created under this domain name. Mostly for the looks.
 		var/domain = "freemail.nt"
+		if(using_map && LAZYLEN(using_map.usable_email_tlds))
+			domain = using_map.usable_email_tlds[1]
 		var/sanitized_name = sanitize(replacetext(replacetext(lowertext(H.real_name), " ", "."), "'", ""))
 		var/complete_login = "[sanitized_name]@[domain]"
 
