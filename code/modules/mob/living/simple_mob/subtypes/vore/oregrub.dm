@@ -21,14 +21,6 @@
 	flee_when_outmatched = TRUE	//especially when outmatched
 	outmatched_threshold = 25	//and we're outmatched by... basically everything!
 
-/*
-	var/run_if_this_close = 3	//oregrubs will try to book it if you get too close
-
-/datum/ai_holder/simple_mob/oregrub/on_engagement(atom/A)
-	if(get_dist(holder, A) < run_if_this_close)
-		holder.IMove(get_step_away(holder, A, run_if_this_close))
-*/
-
 /datum/ai_holder/simple_mob/oregrub/lava
 	hostile = FALSE
 	retaliate = TRUE
@@ -36,7 +28,6 @@
 	dying_threshold = 1
 	flee_when_outmatched = TRUE	//lavagrubs will flee more readily than oregrubs
 	outmatched_threshold = 15
-//	run_if_this_close = 4
 
 /mob/living/simple_mob/vore/oregrub
 	name = "juvenile oregrub"
