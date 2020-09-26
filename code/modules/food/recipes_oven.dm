@@ -81,7 +81,7 @@
 		/obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/flatbread
-	
+
 /datum/recipe/tortilla
 	appliance = OVEN
 	reagents = list("flour" = 5)
@@ -408,7 +408,7 @@
 		/obj/item/weapon/reagent_containers/food/snacks/cheesewedge
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/cheesecake
-	
+
 /datum/recipe/cake/peanut
 	fruit = list("peanut" = 3)
 	reagents = list("milk" = 5, "flour" = 10, "sugar" = 5, "egg" = 6, "peanutbutter" = 5)
@@ -458,7 +458,7 @@
 
 /datum/recipe/pancakes
 	appliance = OVEN
-	fruit = list("blueberries" = 2)
+	fruit = list("berries" = 2)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough,
 		/obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough
