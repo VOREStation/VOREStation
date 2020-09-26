@@ -5,6 +5,16 @@
 	slot = slot_glasses
 	sort_category = "Glasses and Eyewear"
 
+/datum/gear/eyes/eyepatchwhite
+	display_name = "eyepatch (recolorable)"
+	path = /obj/item/clothing/glasses/eyepatchwhite
+	slot = slot_glasses
+	sort_category = "Glasses and Eyewear"
+
+/datum/gear/eyes/eyepatchwhite/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
 /datum/gear/eyes/glasses
 	display_name = "Glasses, prescription"
 	path = /obj/item/clothing/glasses/regular
