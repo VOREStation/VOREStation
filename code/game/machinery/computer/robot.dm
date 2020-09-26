@@ -227,4 +227,5 @@
 			message_admins("<span class='notice'>[key_name_admin(usr)] emagged [key_name_admin(R)] using robotic console!</span>")
 			R.emagged = TRUE
 			to_chat(R, "<span class='notice'>Failsafe protocols overriden. New tools available.</span>")
+			R.logevent("WARN: root privleges granted to PID [num2hex(rand(1,65535), -1)][num2hex(rand(1,65535), -1)].") //random eight digit hex value. Two are used because rand(1,4294967295) throws an error
 			. = TRUE

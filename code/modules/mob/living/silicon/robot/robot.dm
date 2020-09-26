@@ -12,7 +12,6 @@
 	mob_swap_flags = ~HEAVY
 	mob_push_flags = ~HEAVY //trundle trundle
 
-	var/lights_on = 0 // Is our integrated light on?
 	var/used_power_this_tick = 0
 	var/sight_mode = 0
 	var/custom_name = ""
@@ -20,7 +19,21 @@
 	var/sprite_name = null // The name of the borg, for the purposes of custom icon sprite indexing.
 	var/crisis //Admin-settable for combat module use.
 	var/crisis_override = 0
-	var/integrated_light_power = 6
+
+	var/toner = 0
+	var/tonermax = 40
+
+	///If the lamp isn't broken.
+	var/lamp_functional = TRUE
+	///If the lamp is turned on
+	var/lamp_enabled = FALSE
+	///Set lamp color
+	var/lamp_color = COLOR_WHITE
+	///Lamp brightness. Starts at 6, but can be 1 - 6.
+	var/lamp_intensity = 6
+	///Lamp button reference
+	var/obj/screen/robot/lamp/lampButton
+
 	var/datum/wires/robot/wires
 
 	can_be_antagged = TRUE
@@ -77,7 +90,7 @@
 	var/lower_mod = 0
 	var/jetpack = 0
 	var/datum/effect/effect/system/ion_trail_follow/ion_trail = null
-	var/datum/effect/effect/system/spark_spread/spark_system//So they can initialize sparks whenever/N
+	var/datum/effect/effect/system/spark_spread/spark_system //So they can initialize sparks whenever/N
 	var/jeton = 0
 	var/killswitch = 0
 	var/killswitch_time = 60
@@ -91,10 +104,9 @@
 	var/tracking_entities = 0 //The number of known entities currently accessing the internal camera
 	var/braintype = "Cyborg"
 
-	var/list/robot_verbs_default = list(
-		/mob/living/silicon/robot/proc/sensor_mode,
-		/mob/living/silicon/robot/proc/robot_checklaws
-	)
+	///The reference to the built-in tablet that borgs carry.
+	var/obj/item/modular_computer/tablet/integrated/modularInterface
+	var/obj/screen/robot/modPC/interfaceButton
 
 /mob/living/silicon/robot/New(loc,var/unfinished = 0)
 	spark_system = new /datum/effect/effect/system/spark_spread()
@@ -129,6 +141,8 @@
 
 	init()
 	initialize_components()
+	create_modularInterface()
+	logevent("System brought online.")
 	//if(!unfinished)
 	// Create all the robot parts.
 	for(var/V in components) if(V != "power cell")
@@ -162,6 +176,7 @@
 
 /mob/living/silicon/robot/proc/init()
 	aiCamera = new/obj/item/device/camera/siliconcam/robot_camera(src)
+	toner = tonermax
 	laws = new /datum/ai_laws/nanotrasen()
 	additional_law_channels["Binary"] = "#b"
 	var/new_ai = select_active_ai_with_fewest_borgs()
@@ -171,7 +186,11 @@
 	else
 		lawupdate = 0
 
-
+/mob/living/silicon/robot/proc/create_modularInterface()
+	if(!modularInterface)
+		modularInterface = new /obj/item/modular_computer/tablet/integrated(src)
+	modularInterface.layer = LAYER_HUD_ITEM
+	modularInterface.plane = PLANE_PLAYER_HUD_ITEMS
 
 /mob/living/silicon/robot/SetName(pickedName as text)
 	custom_name = pickedName
@@ -237,6 +256,8 @@
 		if(deployed)
 			undeploy()
 		revert_shell() // To get it out of the GLOB list.
+	if(modularInterface)
+		QDEL_NULL(modularInterface)
 	qdel(wires)
 	wires = null
 	return ..()
@@ -278,6 +299,7 @@
 	var/module_type = robot_modules[modtype]
 	transform_with_anim()	//VOREStation edit: sprite animation
 	new module_type(src)
+	logevent("Chassis configuration has been set to [modtype].")
 
 	hands.icon_state = lowertext(modtype)
 	feedback_inc("cyborg_[lowertext(modtype)]",1)
@@ -333,8 +355,7 @@
 		if (meta_info)
 			ooc_notes = meta_info
 
-/mob/living/silicon/robot/verb/Namepick()
-	set category = "Robot Commands"
+/mob/living/silicon/robot/proc/Namepick()
 	if(custom_name)
 		to_chat(usr, "You can't pick another custom name. Go ask for a name change.")
 		return 0
@@ -349,67 +370,13 @@
 		updatename()
 		updateicon()
 
-/mob/living/silicon/robot/proc/self_diagnosis()
-	if(!is_component_functioning("diagnosis unit"))
-		return null
-
-	var/dat = "<HEAD><TITLE>[src.name] Self-Diagnosis Report</TITLE></HEAD><BODY>\n"
-	for (var/V in components)
-		var/datum/robot_component/C = components[V]
-		dat += "<b>[C.name]</b><br><table><tr><td>Brute Damage:</td><td>[C.brute_damage]</td></tr><tr><td>Electronics Damage:</td><td>[C.electronics_damage]</td></tr><tr><td>Powered:</td><td>[(!C.idle_usage || C.is_powered()) ? "Yes" : "No"]</td></tr><tr><td>Toggled:</td><td>[ C.toggled ? "Yes" : "No"]</td></table><br>"
-
-	return dat
-
-/mob/living/silicon/robot/verb/toggle_lights()
-	set category = "Robot Commands"
-	set name = "Toggle Lights"
-
-	lights_on = !lights_on
-	to_chat(usr, "You [lights_on ? "enable" : "disable"] your integrated light.")
+/mob/living/silicon/robot/proc/toggle_headlamp()
+	lamp_enabled = !lamp_enabled
+	to_chat(usr, "You [lamp_enabled ? "enable" : "disable"] your integrated light.")
 	handle_light()
 	updateicon() //VOREStation Add - Since dogborgs have sprites for this
 
-/mob/living/silicon/robot/verb/self_diagnosis_verb()
-	set category = "Robot Commands"
-	set name = "Self Diagnosis"
-
-	if(!is_component_functioning("diagnosis unit"))
-		to_chat(src, "<font color='red'>Your self-diagnosis component isn't functioning.</font>")
-
-	var/datum/robot_component/CO = get_component("diagnosis unit")
-	if (!cell_use_power(CO.active_usage))
-		to_chat(src, "<font color='red'>Low Power.</font>")
-	var/dat = self_diagnosis()
-	src << browse(dat, "window=robotdiagnosis")
-
-
-/mob/living/silicon/robot/verb/toggle_component()
-	set category = "Robot Commands"
-	set name = "Toggle Component"
-	set desc = "Toggle a component, conserving power."
-
-	var/list/installed_components = list()
-	for(var/V in components)
-		if(V == "power cell") continue
-		var/datum/robot_component/C = components[V]
-		if(C.installed)
-			installed_components += V
-
-	var/toggle = input(src, "Which component do you want to toggle?", "Toggle Component") as null|anything in installed_components
-	if(!toggle)
-		return
-
-	var/datum/robot_component/C = components[toggle]
-	if(C.toggled)
-		C.toggled = 0
-		to_chat(src, "<font color='red'>You disable [C.name].</font>")
-	else
-		C.toggled = 1
-		to_chat(src, "<font color='red'>You enable [C.name].</font>")
-
-/mob/living/silicon/robot/verb/spark_plug() //So you can still sparkle on demand without violence.
-	set category = "Robot Commands"
-	set name = "Emit Sparks"
+/mob/living/silicon/robot/proc/spark_plug() //So you can still sparkle on demand without violence.
 	to_chat(src, "You harmlessly spark.")
 	spark_system.start()
 
@@ -445,7 +412,7 @@
 	if (statpanel("Status"))
 		show_cell_power()
 		show_jetpack_pressure()
-		stat(null, text("Lights: [lights_on ? "ON" : "OFF"]"))
+		stat(null, text("Lights: [lamp_enabled ? "ON" : "OFF"]"))
 		if(module)
 			for(var/datum/matter_synth/ms in module.synths)
 				stat("[ms.name]: [ms.energy]/[ms.max_energy]")
@@ -638,6 +605,11 @@
 				locked = !locked
 				to_chat(user, "You [ locked ? "lock" : "unlock"] [src]'s interface.")
 				updateicon()
+				if(emagged)
+					to_chat(user, "<span class='notice'>The cover interface glitches out for a split second.</span>")
+					logevent("ChÃ¥vÃis cover lock has been [locked ? "engaged" : "released"]") //ChÃ¥vÃis: see above line
+				else
+					logevent("Chassis cover lock has been [locked ? "engaged" : "released"]")
 			else
 				to_chat(user, "<font color='red'>Access denied.</font>")
 
@@ -652,11 +624,30 @@
 		else
 			if(U.action(src))
 				to_chat(usr, "You apply the upgrade to [src]!")
+				logevent("Hardware [U] detected and installed successfully.")
 				usr.drop_item()
 				U.loc = src
 			else
 				to_chat(usr, "Upgrade error!")
 
+	else if(istype(W, /obj/item/weapon/computer_hardware/hard_drive/portable))
+		if(!modularInterface)
+			stack_trace("Cyborg [src] ( [type] ) was somehow missing their integrated tablet. Please make a bug report.")
+			create_modularInterface()
+		var/obj/item/weapon/computer_hardware/hard_drive/portable/floppy = W
+		if(modularInterface.try_install_component(floppy, user))
+			return
+
+	else if(istype(W, /obj/item/device/toner))
+		if(toner >= tonermax)
+			to_chat(user, "<span class='warning'>The toner level of [src] is at its highest level possible!</span>")
+			return
+		if(!user.unEquip(W))
+			return
+		toner = tonermax
+		qdel(W)
+		to_chat(user, "<span class='notice'>You fill the toner level of [src] to its max capacity.</span>")
+		return
 
 	else
 		if( !(istype(W, /obj/item/device/robotanalyzer) || istype(W, /obj/item/device/healthanalyzer)) )
@@ -674,6 +665,7 @@
 	module.Reset(src)
 	qdel(module)
 	module = null
+	logevent("Chassis configuration has been reset.")
 	updatename("Default")
 
 /mob/living/silicon/robot/attack_hand(mob/user)
@@ -911,16 +903,11 @@
 
 
 /mob/living/silicon/robot/proc/ResetSecurityCodes()
-	set category = "Robot Commands"
-	set name = "Reset Identity Codes"
-	set desc = "Scrambles your security and identification codes and resets your current buffers.  Unlocks you and but permenantly severs you from your AI and the robotics console and will deactivate your camera system."
-
 	var/mob/living/silicon/robot/R = src
 
 	if(R)
 		R.UnlinkSelf()
 		to_chat(R, "Buffers flushed and reset. Camera system shutdown.  All systems operational.")
-		src.verbs -= /mob/living/silicon/robot/proc/ResetSecurityCodes
 
 /mob/living/silicon/robot/proc/SetLockdown(var/state = 1)
 	// They stay locked down if their wire is cut.
@@ -932,6 +919,7 @@
 		clear_alert("locked")
 	lockdown = state
 	lockcharge = state
+	logevent("System lockdown [lockcharge?"triggered":"released"].")
 	update_canmove()
 
 /mob/living/silicon/robot/mode()
@@ -983,18 +971,10 @@
 	icon_selection_tries = 0
 	to_chat(src, "Your icon has been set. You now require a module reset to change it.")
 
-/mob/living/silicon/robot/proc/sensor_mode() //Medical/Security HUD controller for borgs
-	set name = "Set Sensor Augmentation"
-	set category = "Robot Commands"
-	set desc = "Augment visual feed with internal sensor overlays."
-	toggle_sensor_mode()
-
 /mob/living/silicon/robot/proc/add_robot_verbs()
-	src.verbs |= robot_verbs_default
 	src.verbs |= silicon_subsystems
 
 /mob/living/silicon/robot/proc/remove_robot_verbs()
-	src.verbs -= robot_verbs_default
 	src.verbs -= silicon_subsystems
 
 // Uses power from cyborg's cell. Returns 1 on success or 0 on failure.
@@ -1102,10 +1082,12 @@
 			. = 1
 			spawn()
 				to_chat(src, "<span class='danger'>ALERT: Foreign software detected.</span>")
+				logevent("ALERT: Foreign software detected.")
 				sleep(5)
 				to_chat(src, "<span class='danger'>Initiating diagnostics...</span>")
 				sleep(20)
 				to_chat(src, "<span class='danger'>SynBorg v1.7.1 loaded.</span>")
+				logevent("WARN: root privleges granted to PID [num2hex(rand(1,65535), -1)][num2hex(rand(1,65535), -1)].") //random eight digit hex value. Two are used because rand(1,4294967295) throws an error
 				sleep(5)
 				to_chat(src, "<span class='danger'>LAW SYNCHRONISATION ERROR</span>")
 				sleep(5)
@@ -1148,3 +1130,29 @@
 
 		if(current_selection_index) // Select what the player had before if possible.
 			select_module(current_selection_index)
+
+/**
+  * Records an IC event log entry in the cyborg's internal tablet.
+  *
+  * Creates an entry in the borglog list of the cyborg's internal tablet, listing the current
+  * in-game time followed by the message given. These logs can be seen by the cyborg in their
+  * BorgUI tablet app. By design, logging fails if the cyborg is dead.
+  *
+  * Arguments:
+  * arg1: a string containing the message to log.
+ */
+/mob/living/silicon/robot/proc/logevent(var/string = "")
+	if(!string)
+		return
+	if(stat == DEAD) //Dead borgs log no longer
+		return
+	if(!modularInterface)
+		stack_trace("Cyborg [src] ( [type] ) was somehow missing their integrated tablet. Please make a bug report.")
+		create_modularInterface()
+	modularInterface.borglog += "[stationtime2text()] - [string]"
+	var/datum/computer_file/program/robotact/program = modularInterface.get_robotact()
+	if(program)
+		program.force_full_update()
+
+/mob/living/silicon/robot/proc/take_image()
+	aiCamera?.toggle_camera_mode()

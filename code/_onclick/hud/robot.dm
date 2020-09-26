@@ -29,6 +29,44 @@ var/obj/screen/robot_inventory
 	using.layer = HUD_LAYER
 	adding += using
 
+//Photography stuff
+	using = new /obj/screen()
+	using.name = "Take Image"
+	using.icon = HUD.ui_style
+	using.color = HUD.ui_color
+	using.alpha = HUD.ui_alpha
+	using.icon_state = "take_picture"
+	using.screen_loc = ui_borg_camera
+	using.layer = HUD_LAYER
+	HUD.adding += using
+
+// Lamp Control
+	using = new /obj/screen/robot/lamp()
+	using.screen_loc = ui_borg_lamp
+	using.hud = src
+	using.icon = HUD.ui_style
+	using.color = HUD.ui_color
+	using.alpha = HUD.ui_alpha
+	adding += using
+	lampButton = using
+	var/obj/screen/robot/lamp/lampscreen = using
+	lampscreen.robot = src
+
+//Borg Integrated Tablet
+	using = new /obj/screen/robot/modPC()
+	using.screen_loc = ui_borg_tablet
+	using.hud = HUD
+	using.icon = HUD.ui_style
+	using.color = HUD.ui_color
+	using.alpha = HUD.ui_alpha
+	using.layer = HUD_LAYER
+	adding += using
+	interfaceButton = using
+	if(modularInterface)
+		using.vis_contents += modularInterface
+	var/obj/screen/robot/modPC/tabletbutton = using
+	tabletbutton.robot = src
+
 //Module select
 
 	using = new /obj/screen()
@@ -242,3 +280,29 @@ var/obj/screen/robot_inventory
 	if(modtype)
 		hands.icon_state = lowertext(modtype)
 	..()
+
+/obj/screen/robot/modPC
+	name = "Modular Interface"
+	icon_state = "blank"
+	var/mob/living/silicon/robot/robot
+
+/obj/screen/robot/modPC/Click()
+	robot.modularInterface?.attack_self(robot)
+
+/obj/screen/robot/lamp
+	name = "headlamp"
+	icon_state = "lamp_off"
+	var/mob/living/silicon/robot/robot
+
+/obj/screen/robot/lamp/Click()
+	. = ..()
+	if(.)
+		return
+	robot?.toggle_headlamp()
+	update_icon()
+
+/obj/screen/robot/lamp/update_icon()
+	if(robot?.lamp_enabled)
+		icon_state = "lamp_on"
+	else
+		icon_state = "lamp_off"

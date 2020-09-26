@@ -256,14 +256,6 @@
 		return resolved
 	return ..()
 
-/obj/item/weapon/gripper/verb/drop_gripper_item()
-
-	set name = "Drop Item"
-	set desc = "Release an item from your magnetic gripper."
-	set category = "Robot Commands"
-
-	drop_item()
-
 obj/item/weapon/gripper/proc/drop_item()
 	if(!wrapped)
 		//There's some weirdness with items being lost inside the arm. Trying to fix all cases. ~Z

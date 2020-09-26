@@ -34,7 +34,7 @@ var/list/mob_hat_cache = list()
 	lawupdate = 0
 	density = 1
 	req_access = list(access_engine, access_robotics)
-	integrated_light_power = 3
+	lamp_intensity = 3
 	local_transmit = 1
 
 	can_pull_size = ITEMSIZE_NO_CONTAINER
@@ -114,13 +114,15 @@ var/list/mob_hat_cache = list()
 		var/datum/robot_component/C = components[V]
 		C.max_damage = 10
 
-	verbs -= /mob/living/silicon/robot/verb/Namepick
 	updateicon()
 	updatename()
 
+/mob/living/silicon/robot/drone/Namepick()
+	return
+
 /mob/living/silicon/robot/drone/init()
 	if(!scrambledcodes && !foreign_droid)
-		aiCamera = new/obj/item/device/camera/siliconcam/drone_camera(src)
+		aiCamera = new/obj/item/device/camera/siliconcam/robot_camera/drone_camera(src)
 	additional_law_channels["Drone"] = ":d"
 	if(!laws) laws = new law_type
 	if(!module) module = new module_type(src)

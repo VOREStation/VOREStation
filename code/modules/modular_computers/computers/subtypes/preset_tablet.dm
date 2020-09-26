@@ -26,3 +26,10 @@
 	network_card = new/obj/item/weapon/computer_hardware/network_card(src)
 	battery_module = new/obj/item/weapon/computer_hardware/battery_module/micro(src)
 	battery_module.charge_to_full()
+
+//Borg Built-in tablet
+/obj/item/modular_computer/tablet/integrated/install_default_hardware()
+	. = ..()
+	processor_unit = new /obj/item/weapon/computer_hardware/processor_unit/small(src)
+	hard_drive = new /obj/item/weapon/computer_hardware/hard_drive/small/integrated(src)
+	network_card = new /obj/item/weapon/computer_hardware/network_card/integrated(src)

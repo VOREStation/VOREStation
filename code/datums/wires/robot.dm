@@ -28,17 +28,21 @@
 			else
 				if(!R.lawupdate && !R.emagged)
 					R.lawupdate = TRUE
+			R.logevent("Lawsync Module fault [mend?"cleared":"detected"]")
 
 		if(WIRE_AI_CONTROL) //Cut the AI wire to reset AI control
 			if(!mend)
 				R.disconnect_from_ai()
+			R.logevent("AI connection fault [mend?"cleared":"detected"]")
 
 		if(WIRE_BORG_CAMERA)
 			if(!isnull(R.camera) && !R.scrambledcodes)
 				R.camera.status = mend
+			R.logevent("Camera Module fault [mend?"cleared":"detected"]")
 
 		if(WIRE_BORG_LOCKED)
 			R.SetLockdown(!mend)
+			R.logevent("Motor Controller fault [mend?"cleared":"detected"]")
 	..()
 
 /datum/wires/robot/on_pulse(wire)

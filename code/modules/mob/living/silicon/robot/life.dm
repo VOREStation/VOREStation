@@ -54,7 +54,7 @@
 		if(src.module_state_3)
 			cell_use_power(50)
 
-		if(lights_on)
+		if(lamp_enabled)
 			cell_use_power(30) 	// 30W light. Normal lights would use ~15W, but increased for balance reasons.
 
 		src.has_power = 1
@@ -62,8 +62,8 @@
 		if (src.has_power)
 			to_chat(src, "<font color='red'>You are now running on emergency backup power.</font>")
 		src.has_power = 0
-		if(lights_on) // Light is on but there is no power!
-			lights_on = 0
+		if(lamp_enabled) // Light is on but there is no power!
+			lamp_enabled = 0
 			set_light(0)
 
 /mob/living/silicon/robot/handle_regular_status_updates()
@@ -369,6 +369,6 @@
 /mob/living/silicon/robot/handle_light()
 	. = ..()
 	if(. == FALSE) // If no other light sources are on.
-		if(lights_on)
-			set_light(integrated_light_power, 1, "#FFFFFF")
+		if(lamp_enabled)
+			set_light(lamp_intensity, 1, lamp_color)
 			return TRUE

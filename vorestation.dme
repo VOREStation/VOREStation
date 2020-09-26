@@ -2954,6 +2954,7 @@
 #include "code\modules\modular_computers\file_system\programs\generic\ntdownloader.dm"
 #include "code\modules\modular_computers\file_system\programs\generic\ntnrc_client.dm"
 #include "code\modules\modular_computers\file_system\programs\generic\nttransfer.dm"
+#include "code\modules\modular_computers\file_system\programs\generic\robotact.dm"
 #include "code\modules\modular_computers\file_system\programs\generic\uav.dm"
 #include "code\modules\modular_computers\file_system\programs\generic\wordprocessor.dm"
 #include "code\modules\modular_computers\file_system\programs\medical\suit_sensors.dm"

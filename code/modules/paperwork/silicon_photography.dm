@@ -11,8 +11,9 @@
 
 /obj/item/device/camera/siliconcam/robot_camera //camera cyborgs can take pictures with
 	name = "Cyborg photo camera"
+	var/printcost = 2
 
-/obj/item/device/camera/siliconcam/drone_camera //currently doesn't offer the verbs, thus cannot be used
+/obj/item/device/camera/siliconcam/robot_camera/drone_camera //currently doesn't offer the verbs, thus cannot be used
 	name = "Drone photo camera"
 
 /obj/item/device/camera/siliconcam/proc/injectaialbum(obj/item/weapon/photo/p, var/sufix = "") //stores image information to a list similar to that of the datacore
@@ -116,29 +117,6 @@
 
 	deletepicture()
 
-/obj/item/device/camera/siliconcam/robot_camera/verb/take_image()
-	set category ="Robot Commands"
-	set name = "Take Image"
-	set desc = "Takes an image"
-	set src in usr
-	toggle_camera_mode()
-
-/obj/item/device/camera/siliconcam/robot_camera/verb/view_images()
-	set category ="Robot Commands"
-	set name = "View Images"
-	set desc = "View images"
-	set src in usr
-
-	viewpictures()
-
-/obj/item/device/camera/siliconcam/robot_camera/verb/delete_images()
-	set category = "Robot Commands"
-	set name = "Delete Image"
-	set desc = "Delete a local image"
-	set src in usr
-
-	deletepicture(src)
-
 obj/item/device/camera/siliconcam/proc/getsource()
 	if(istype(src.loc, /mob/living/silicon/ai))
 		return src
@@ -155,3 +133,20 @@ obj/item/device/camera/siliconcam/proc/getsource()
 	if(!aiCamera)
 		return
 	return aiCamera.selectpicture()
+
+/obj/item/device/camera/siliconcam/robot_camera/proc/borgprint(mob/user)
+	var/mob/living/silicon/robot/C = loc
+	if(!istype(C) || C.toner < 20)
+		to_chat(user, "<span class='warning'>Insufficent toner to print image.</span>")
+		return
+	var/obj/item/weapon/photo/selection = selectpicture()
+	if(!istype(selection))
+		to_chat(user, "<span class='warning'>Invalid Image.</span>")
+		return
+	var/obj/item/weapon/photo/p = new /obj/item/weapon/photo(C.loc)
+	p.img = selection.img
+	p.pixel_x = rand(-10, 10)
+	p.pixel_y = rand(-10, 10)
+	C.toner -= printcost	 //All fun allowed.
+	visible_message("<span class='notice'>[C.name] spits out a photograph from a narrow slot on its chassis.</span>")
+	to_chat(usr, "<span class='notice'>You print a photograph.</span>")

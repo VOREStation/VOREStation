@@ -17,7 +17,7 @@
 	density = 1
 	idcard_type = /obj/item/weapon/card/id/syndicate
 	req_access = list(999)
-	integrated_light_power = 3
+	lamp_intensity = 3
 	local_transmit = 0
 
 	can_pull_size = ITEMSIZE_NO_CONTAINER

@@ -94,7 +94,7 @@
 			add_overlay("laser")
 		if(istype(module_active,/obj/item/weapon/gun/energy/taser/mounted/cyborg))
 			add_overlay("taser")
-		if(lights_on)
+		if(lamp_enabled)
 			add_overlay("eyes-[module_sprites[icontype]]-lights")
 		if(resting)
 			cut_overlays() // Hide that gut for it has no ground sprite yo.

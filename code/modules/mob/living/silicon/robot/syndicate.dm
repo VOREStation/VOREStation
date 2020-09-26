@@ -26,3 +26,8 @@
 	radio.recalculateChannels()
 
 	playsound(src, 'sound/mecha/nominalsyndi.ogg', 75, 0)
+
+/mob/living/silicon/robot/syndicate/create_modularInterface()
+	if(!modularInterface)
+		modularInterface = new /obj/item/modular_computer/tablet/integrated/syndicate(src)
+	return ..()

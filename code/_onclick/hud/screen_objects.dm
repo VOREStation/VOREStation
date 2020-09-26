@@ -553,6 +553,9 @@
 			if(isAI(usr))
 				var/mob/living/silicon/ai/AI = usr
 				AI.take_image()
+			if(isrobot(usr))
+				var/mob/living/silicon/robot/R =usr
+				R.take_image()
 
 		if("View Images")
 			if(isAI(usr))

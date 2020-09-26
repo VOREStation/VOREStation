@@ -19,4 +19,7 @@
 		if(S) S.go_out() //VOREStation edit.
 	remove_robot_verbs()
 	sql_report_cyborg_death(src)
+	if(!gibbed)
+		logevent("FATAL -- SYSTEM HALT")
+	modularInterface?.shutdown_computer()
 	..(gibbed,"shudders violently for a moment, then becomes motionless, its eyes slowly darkening.")

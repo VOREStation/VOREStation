@@ -39,6 +39,9 @@
 #define ui_inv3 "CENTER+1,SOUTH:5"			//borgs
 #define ui_borg_store "CENTER+2,SOUTH:5"	//borgs
 #define ui_borg_inventory "CENTER-2,SOUTH:5"//borgs
+#define ui_borg_tablet "CENTER-3,SOUTH:5"//borgs
+#define ui_borg_lamp "CENTER-4,SOUTH:5" //borgs
+#define ui_borg_camera "CENTER+3:21,SOUTH:5"//borgs
 
 #define ui_monkey_mask "WEST+4:14,SOUTH:5"	//monkey
 #define ui_monkey_back "WEST+5:14,SOUTH:5"	//monkey

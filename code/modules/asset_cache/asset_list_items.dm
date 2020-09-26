@@ -35,6 +35,7 @@
 		"smmon_5.gif" 				= 'icons/program_icons/smmon_5.gif',
 		"smmon_6.gif" 				= 'icons/program_icons/smmon_6.gif',
 		// "borg_mon.gif"				= 'icons/program_icons/borg_mon.gif'
+		"robotact.gif" = 'icons/program_icons/robotact.gif',
 	)
 
 // /datum/asset/simple/radar_assets

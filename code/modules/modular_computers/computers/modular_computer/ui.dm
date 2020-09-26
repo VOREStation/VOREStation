@@ -39,7 +39,9 @@
 
 	data["login"] = list()
 	var/obj/item/weapon/computer_hardware/card_slot/cardholder = card_slot
+	data["cardholder"] = FALSE
 	if(cardholder)
+		data["cardholder"] = TRUE
 		var/obj/item/weapon/card/id/stored_card = cardholder.stored_card
 		if(stored_card)
 			var/stored_name = stored_card.registered_name

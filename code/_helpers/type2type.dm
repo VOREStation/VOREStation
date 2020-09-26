@@ -381,3 +381,10 @@
 		.          += copytext(text, last_found, found)
 		last_found  = found + delim_len
 	while (found)
+
+//assumes format #RRGGBB #rrggbb
+/proc/color_hex2num(A)
+	if(!A || length(A) != length_char(A))
+		return 0
+	var/rgb = hex2rgb(A)
+	return rgb[1] + rgb[2] + rgb[3]
