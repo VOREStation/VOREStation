@@ -73,3 +73,13 @@
 	name = "Integrated Surge Implant"
 	item_cost = 40
 	path = /obj/item/weapon/storage/box/syndie_kit/imp_aug/surge
+	
+/datum/uplink_item/item/implants/imp_armblade
+	name = "Integrated Armblade Implant"
+	item_cost = 40
+	path = /obj/item/weapon/storage/box/syndie_kit/imp_aug/armblade
+
+/datum/uplink_item/item/implants/imp_handblade
+	name = "Integrated Handblade Implant"
+	item_cost = 25
+	path = /obj/item/weapon/storage/box/syndie_kit/imp_aug/handblade

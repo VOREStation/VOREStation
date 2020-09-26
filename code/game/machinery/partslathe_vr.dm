@@ -233,7 +233,6 @@
 /obj/machinery/partslathe/attack_hand(mob/user)
 	if(..())
 		return
-	ui_interact(user)
 	tgui_interact(user)
 
 /obj/machinery/partslathe/ui_assets(mob/user)

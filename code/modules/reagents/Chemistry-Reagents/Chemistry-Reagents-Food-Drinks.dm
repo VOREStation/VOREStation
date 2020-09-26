@@ -139,6 +139,8 @@
 	description = "More commonly known as fat, the third macronutrient, with over double the energy content of carbs and protein"
 
 	reagent_state = SOLID
+	taste_description = "greasiness"
+	taste_mult = 0.1
 	nutriment_factor = 27//The caloric ratio of carb/protein/fat is 4:4:9
 	color = "#CCCCCC"
 
@@ -148,6 +150,7 @@
 	id = "oil"
 	description = "Oils are liquid fats."
 	reagent_state = LIQUID
+	taste_description = "oil"
 	color = "#c79705"
 	touch_met = 1.5
 	var/lastburnmessage = 0
@@ -224,8 +227,6 @@
 	name = "Corn Oil"
 	id = "cornoil"
 	description = "An oil derived from various types of corn."
-	taste_description = "oil"
-	taste_mult = 0.1
 	reagent_state = LIQUID
 
 /datum/reagent/nutriment/triglyceride/oil/peanut
@@ -591,7 +592,7 @@
 //SYNNONO MEME FOODS EXPANSION - Credit to Synnono
 
 /datum/reagent/spacespice
-	name = "Space Spice"
+	name = "Wurmwoad"
 	id = "spacespice"
 	description = "An exotic blend of spices for cooking. Definitely not worms."
 	reagent_state = SOLID

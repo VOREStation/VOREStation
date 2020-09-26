@@ -53,7 +53,8 @@
 					   "zoomba-service",
 					   "zoomba-combat",
 					   "zoomba-combat-roll",
-					   "zoomba-combat-shield"
+					   "zoomba-combat-shield",
+					   "spiderscience"
 					   )					//List of all used sprites that are in robots_vr.dmi
 
 

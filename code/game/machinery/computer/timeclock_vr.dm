@@ -55,7 +55,7 @@
 		if(!card && user.unEquip(I))
 			I.forceMove(src)
 			card = I
-			SSnanoui.update_uis(src)
+			SStgui.update_uis(src)
 			update_icon()
 		else if(card)
 			to_chat(user, "<span class='warning'>There is already ID card inside.</span>")

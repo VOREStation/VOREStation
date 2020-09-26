@@ -233,7 +233,6 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	initialize_exonet(user)
 	alert_called = 0
 	update_icon()
-	ui_interact(user) // TGUITODO: Remove
 	tgui_interact(user)
 	if(video_source)
 		watch_video(user)
