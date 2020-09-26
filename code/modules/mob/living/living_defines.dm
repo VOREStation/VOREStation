@@ -71,7 +71,11 @@
 
 	var/looking_elsewhere = FALSE //If the mob's view has been relocated to somewhere else, like via a camera or with binocs
 
+<<<<<<< HEAD
 	var/image/selected_image = null // Used for buildmode AI control stuff.
 
 	var/inventory_panel_type = /datum/inventory_panel
 	var/datum/inventory_panel/inventory_panel
+=======
+	var/image/selected_image = null // Used for buildmode AI control stuff.
+>>>>>>> 83d2988... Merge pull request #7694 from Atermonera/revert_kaleidoscope

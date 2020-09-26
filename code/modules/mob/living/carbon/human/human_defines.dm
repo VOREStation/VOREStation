@@ -44,7 +44,11 @@
 
 	var/age = 30		//Player's age (pure fluff)
 	var/b_type = "A+"	//Player's bloodtype
+<<<<<<< HEAD
 	var/datum/robolimb/synthetic		//If they are a synthetic (aka synthetic torso)
+=======
+	var/synthetic		//If they are a synthetic (aka synthetic torso)
+>>>>>>> 83d2988... Merge pull request #7694 from Atermonera/revert_kaleidoscope
 
 	var/list/all_underwear = list()
 	var/list/all_underwear_metadata = list()
@@ -116,5 +120,8 @@
 	var/mob/living/carbon/human/vr_link = null
 
 	var/obj/machinery/machine_visual //machine that is currently applying visual effects to this mob. Only used for camera monitors currently.
+<<<<<<< HEAD
 
 	inventory_panel_type = /datum/inventory_panel/human
+=======
+>>>>>>> 83d2988... Merge pull request #7694 from Atermonera/revert_kaleidoscope

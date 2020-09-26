@@ -375,6 +375,7 @@
 				t_him = "him"
 			if(FEMALE)
 				t_him = "her"
+<<<<<<< HEAD
 	//VOREStation Edit Start - Headpats and Handshakes.
 	if(H.zone_sel.selecting == "head")
 		H.visible_message( \
@@ -392,6 +393,11 @@
 	//VOREStation Edit End
 	else H.visible_message("<span class='notice'>[H] hugs [target] to make [t_him] feel better!</span>", \
 					"<span class='notice'>You hug [target] to make [t_him] feel better!</span>") //End VOREStation Edit
+=======
+
+	H.visible_message("<span class='notice'>[H] hugs [target] to make [t_him] feel better!</span>", \
+					"<span class='notice'>You hug [target] to make [t_him] feel better!</span>")
+>>>>>>> 83d2988... Merge pull request #7694 from Atermonera/revert_kaleidoscope
 
 /datum/species/proc/remove_inherent_verbs(var/mob/living/carbon/human/H)
 	if(inherent_verbs)

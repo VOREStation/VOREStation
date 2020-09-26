@@ -1385,5 +1385,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 	. = 0
 	for(var/obj/item/organ/external/L in organs)
 		for(var/obj/item/I in L.implants)
+<<<<<<< HEAD
 			if(!istype(I,/obj/item/weapon/implant) && !istype(I,/obj/item/device/nif)) //VOREStation Add - NIFs
+=======
+			if(!istype(I,/obj/item/weapon/implant))
+>>>>>>> 83d2988... Merge pull request #7694 from Atermonera/revert_kaleidoscope
 				return 1

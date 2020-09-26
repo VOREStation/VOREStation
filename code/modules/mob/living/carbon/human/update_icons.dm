@@ -86,6 +86,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 #define LEGCUFF_LAYER			25		//Same as handcuffs, for legcuffs
 #define L_HAND_LAYER			26		//Left-hand item
 #define R_HAND_LAYER			27		//Right-hand item
+<<<<<<< HEAD
 #define WING_LAYER				28		//VOREStation edit. Simply move this up a number if things are added.
 #define TAIL_LAYER_ALT			29		//VOREStation edit. Simply move this up a number if things are added.
 #define MODIFIER_EFFECTS_LAYER	30		//Effects drawn by modifiers
@@ -93,6 +94,13 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 #define WATER_LAYER				32		//'Mob submerged' overlay layer
 #define TARGETED_LAYER			33		//'Aimed at' overlay layer
 #define TOTAL_LAYERS			33		//VOREStation edit. <---- KEEP THIS UPDATED, should always equal the highest number here, used to initialize a list.
+=======
+#define MODIFIER_EFFECTS_LAYER	28		//Effects drawn by modifiers
+#define FIRE_LAYER				29		//'Mob on fire' overlay layer
+#define WATER_LAYER				30		//'Mob submerged' overlay layer
+#define TARGETED_LAYER			31		//'Aimed at' overlay layer
+#define TOTAL_LAYERS			31//<---- KEEP THIS UPDATED, should always equal the highest number here, used to initialize a list.
+>>>>>>> 83d2988... Merge pull request #7694 from Atermonera/revert_kaleidoscope
 //////////////////////////////////
 
 /mob/living/carbon/human
@@ -259,12 +267,16 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 				icon_key += "[rgb(part.s_col[1],part.s_col[2],part.s_col[3])]"
 			if(part.body_hair && part.h_col && part.h_col.len >= 3)
 				icon_key += "[rgb(part.h_col[1],part.h_col[2],part.h_col[3])]"
+<<<<<<< HEAD
 				//VOREStation Edit - Different way of tracking add/mult species
 				if(species.color_mult)
 					icon_key += "[ICON_MULTIPLY]"
 				else
 					icon_key += "[ICON_ADD]"
 				//VOREStation Edit End
+=======
+				icon_key += "[part.s_col_blend]"
+>>>>>>> 83d2988... Merge pull request #7694 from Atermonera/revert_kaleidoscope
 			else
 				icon_key += "#000000"
 			for(var/M in part.markings)
@@ -273,14 +285,21 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 			if(part.robotic >= ORGAN_ROBOT)
 				icon_key += "2[part.model ? "-[part.model]": ""]"
 				robolimb_count++
+<<<<<<< HEAD
 				if((part.robotic == ORGAN_ROBOT || part.robotic == ORGAN_LIFELIKE) && (part.organ_tag == BP_HEAD || part.organ_tag == BP_TORSO || part.organ_tag == BP_GROIN)) //VOREStation Edit - Not for nanoform parts
+=======
+				if(part.organ_tag == BP_HEAD || part.organ_tag == BP_TORSO || part.organ_tag == BP_GROIN)
+>>>>>>> 83d2988... Merge pull request #7694 from Atermonera/revert_kaleidoscope
 					robobody_count ++
 			else if(part.status & ORGAN_DEAD)
 				icon_key += "3"
 			else
 				icon_key += "1"
+<<<<<<< HEAD
 			if(part.transparent) //VOREStation Edit. For better slime limbs. Avoids using solid var due to limb dropping.
 				icon_key += "_t" //VOREStation Edit.
+=======
+>>>>>>> 83d2988... Merge pull request #7694 from Atermonera/revert_kaleidoscope
 
 	icon_key = "[icon_key][husk ? 1 : 0][fat ? 1 : 0][hulk ? 1 : 0][skeleton ? 1 : 0]"
 	var/icon/base_icon
@@ -298,7 +317,11 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 			//That part makes left and right legs drawn topmost and lowermost when human looks WEST or EAST
 			//And no change in rendering for other parts (they icon_position is 0, so goes to 'else' part)
 			if(part.icon_position & (LEFT | RIGHT))
+<<<<<<< HEAD
 				var/icon/temp2 = new(species.icon_template ? species.icon_template : 'icons/mob/human.dmi', icon_state = "blank") //VOREStation Edit.
+=======
+				var/icon/temp2 = new('icons/mob/human.dmi',"blank")
+>>>>>>> 83d2988... Merge pull request #7694 from Atermonera/revert_kaleidoscope
 				temp2.Insert(new/icon(temp,dir=NORTH),dir=NORTH)
 				temp2.Insert(new/icon(temp,dir=SOUTH),dir=SOUTH)
 				if(!(part.icon_position & LEFT))
@@ -339,7 +362,10 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 	//tail
 	update_tail_showing()
+<<<<<<< HEAD
 	update_wing_showing() // VOREStation Edit
+=======
+>>>>>>> 83d2988... Merge pull request #7694 from Atermonera/revert_kaleidoscope
 
 /mob/living/carbon/human/proc/update_skin()
 	if(QDESTROYING(src))
@@ -422,7 +448,11 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		if(facial_hair_style && facial_hair_style.species_allowed && (src.species.get_bodytype(src) in facial_hair_style.species_allowed))
 			var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
 			if(facial_hair_style.do_colouration)
+<<<<<<< HEAD
 				facial_s.Blend(rgb(r_facial, g_facial, b_facial), ICON_MULTIPLY) //VOREStation edit
+=======
+				facial_s.Blend(rgb(r_facial, g_facial, b_facial), ICON_ADD)
+>>>>>>> 83d2988... Merge pull request #7694 from Atermonera/revert_kaleidoscope
 
 			face_standing.Blend(facial_s, ICON_OVERLAY)
 
@@ -448,6 +478,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 			face_standing.Blend(hair_s, ICON_OVERLAY)
 
+<<<<<<< HEAD
 	// VOREStation Edit - START
 	var/icon/ears_s = get_ears_overlay()
 	if(ears_s)
@@ -460,6 +491,9 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	// VOREStation Edit - END
 
 	if(head_organ.transparent) //VOREStation Edit. For better slime limbs.
+=======
+	if(head_organ.nonsolid)
+>>>>>>> 83d2988... Merge pull request #7694 from Atermonera/revert_kaleidoscope
 		face_standing += rgb(,,,120)
 
 	overlays_standing[HAIR_LAYER] = image(face_standing, layer = BODY_LAYER+HAIR_LAYER)
@@ -601,6 +635,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		uniform_sprite = "[INV_W_UNIFORM_DEF_ICON].dmi"
 
 	//Build a uniform sprite
+<<<<<<< HEAD
 	//VOREStation Edit start.
 	var/icon/c_mask = tail_style?.clip_mask
 	if(c_mask)
@@ -609,6 +644,9 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 			c_mask = null
 	overlays_standing[UNIFORM_LAYER] = w_uniform.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_w_uniform_str, default_icon = uniform_sprite, default_layer = UNIFORM_LAYER, clip_mask = c_mask)
 	//VOREStation Edit end.
+=======
+	overlays_standing[UNIFORM_LAYER] = w_uniform.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_w_uniform_str, default_icon = uniform_sprite, default_layer = UNIFORM_LAYER)
+>>>>>>> 83d2988... Merge pull request #7694 from Atermonera/revert_kaleidoscope
 	apply_layer(UNIFORM_LAYER)
 
 /mob/living/carbon/human/update_inv_wear_id()
@@ -690,12 +728,15 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	if(!shoes || (wear_suit && wear_suit.flags_inv & HIDESHOES) || (w_uniform && w_uniform.flags_inv & HIDESHOES))
 		return //Either nothing to draw, or it'd be hidden.
 
+<<<<<<< HEAD
 	//VOREStation Edit
 	for(var/f in list(BP_L_FOOT, BP_R_FOOT))
 		var/obj/item/organ/external/foot/foot = get_organ(f)
 		if(istype(foot) && foot.is_hidden_by_tail()) //If either foot is hidden by the tail, don't render footwear.
 			return
 
+=======
+>>>>>>> 83d2988... Merge pull request #7694 from Atermonera/revert_kaleidoscope
 	//Allow for shoe layer toggle nonsense
 	var/shoe_layer = SHOES_LAYER
 	if(istype(shoes, /obj/item/clothing/shoes))
@@ -772,7 +813,10 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	update_inv_w_uniform()
 	update_inv_shoes()
 	update_tail_showing()
+<<<<<<< HEAD
 	update_wing_showing() // VOREStation Edit
+=======
+>>>>>>> 83d2988... Merge pull request #7694 from Atermonera/revert_kaleidoscope
 
 	if(!wear_suit)
 		return //No point, no suit.
@@ -787,6 +831,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	else
 		suit_sprite = "[INV_SUIT_DEF_ICON].dmi"
 
+<<<<<<< HEAD
 	//VOREStation Edit start.
 	var/icon/c_mask = null
 	var/tail_is_rendered = (overlays_standing[TAIL_LAYER] || overlays_standing[TAIL_LAYER_ALT])
@@ -795,6 +840,9 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	if(tail_is_rendered && valid_clip_mask && !(istype(suit) && suit.taurized)) //Clip the lower half of the suit off using the tail's clip mask for taurs since taur bodies aren't hidden.
 		c_mask = valid_clip_mask
 	overlays_standing[SUIT_LAYER] = wear_suit.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_wear_suit_str, default_icon = suit_sprite, default_layer = SUIT_LAYER, clip_mask = c_mask)
+=======
+	overlays_standing[SUIT_LAYER] = wear_suit.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_wear_suit_str, default_icon = suit_sprite, default_layer = SUIT_LAYER)
+>>>>>>> 83d2988... Merge pull request #7694 from Atermonera/revert_kaleidoscope
 
 	//VOREStation Edit end.
 
@@ -909,6 +957,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		return
 
 	remove_layer(TAIL_LAYER)
+<<<<<<< HEAD
 	remove_layer(TAIL_LAYER_ALT) // VOREStation Edit - START - Alt Tail Layer
 
 	var/used_tail_layer = tail_alt ? TAIL_LAYER_ALT : TAIL_LAYER
@@ -921,12 +970,18 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		return
 	// VOREStation Edit - END
 
+=======
+>>>>>>> 83d2988... Merge pull request #7694 from Atermonera/revert_kaleidoscope
 	var/species_tail = species.get_tail(src) // Species tail icon_state prefix.
 
 	//This one is actually not that bad I guess.
 	if(species_tail && !(wear_suit && wear_suit.flags_inv & HIDETAIL))
 		var/icon/tail_s = get_tail_icon()
+<<<<<<< HEAD
 		overlays_standing[used_tail_layer] = image(icon = tail_s, icon_state = "[species_tail]_s", layer = BODY_LAYER+used_tail_layer) // VOREStation Edit - Alt Tail Layer
+=======
+		overlays_standing[TAIL_LAYER] = image(icon = tail_s, icon_state = "[species_tail]_s", layer = BODY_LAYER+TAIL_LAYER)
+>>>>>>> 83d2988... Merge pull request #7694 from Atermonera/revert_kaleidoscope
 		animate_tail_reset()
 
 //TODO: Is this the appropriate place for this, and not on species...?
@@ -936,6 +991,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	if(!tail_icon)
 		//generate a new one
 		var/species_tail_anim = species.get_tail_animation(src)
+<<<<<<< HEAD
 		if(!species_tail_anim && species.icobase_tail) species_tail_anim = species.icobase //VOREStation Code - Allow override of file for non-animated tails
 		if(!species_tail_anim) species_tail_anim = 'icons/effects/species.dmi'
 		tail_icon = new/icon(species_tail_anim)
@@ -945,25 +1001,42 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		if(use_species_tail)
 			var/icon/hair_icon = icon('icons/effects/species.dmi', "[species.get_tail(src)]_[use_species_tail]_s")	//VOREStation edit -- Suffix icon state string with '_s' to compensate for diff in .dmi b/w us & Polaris.
 			hair_icon.Blend(rgb(r_hair, g_hair, b_hair), species.color_mult ? ICON_MULTIPLY : ICON_ADD)				//VOREStation edit -- Check for species color_mult
+=======
+		if(!species_tail_anim) species_tail_anim = 'icons/effects/species.dmi'
+		tail_icon = new/icon(species_tail_anim)
+		tail_icon.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
+		// The following will not work with animated tails.
+		var/use_species_tail = species.get_tail_hair(src)
+		if(use_species_tail)
+			var/icon/hair_icon = icon('icons/effects/species.dmi', "[species.get_tail(src)]_[use_species_tail]")
+			hair_icon.Blend(rgb(r_hair, g_hair, b_hair), ICON_ADD)
+>>>>>>> 83d2988... Merge pull request #7694 from Atermonera/revert_kaleidoscope
 			tail_icon.Blend(hair_icon, ICON_OVERLAY)
 		tail_icon_cache[icon_key] = tail_icon
 
 	return tail_icon
 
 /mob/living/carbon/human/proc/set_tail_state(var/t_state)
+<<<<<<< HEAD
 	var/used_tail_layer = tail_alt ? TAIL_LAYER_ALT : TAIL_LAYER // VOREStation Edit - START - Alt Tail Layer
 	var/image/tail_overlay = overlays_standing[used_tail_layer]
+=======
+	var/image/tail_overlay = overlays_standing[TAIL_LAYER]
+>>>>>>> 83d2988... Merge pull request #7694 from Atermonera/revert_kaleidoscope
 
 	remove_layer(TAIL_LAYER)
-	remove_layer(TAIL_LAYER_ALT)
 
 	if(tail_overlay)
-		overlays_standing[used_tail_layer] = tail_overlay
+		overlays_standing[TAIL_LAYER] = tail_overlay
 		if(species.get_tail_animation(src))
 			tail_overlay.icon_state = t_state
 			. = tail_overlay
 
+<<<<<<< HEAD
 	apply_layer(used_tail_layer) // VOREStation Edit - END
+=======
+	apply_layer(TAIL_LAYER)
+>>>>>>> 83d2988... Merge pull request #7694 from Atermonera/revert_kaleidoscope
 
 //Not really once, since BYOND can't do that.
 //Update this if the ability to flick() images or make looping animation start at the first frame is ever added.
@@ -973,9 +1046,14 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		return
 
 	var/t_state = "[species.get_tail(src)]_once"
+<<<<<<< HEAD
 	var/used_tail_layer = tail_alt ? TAIL_LAYER_ALT : TAIL_LAYER // VOREStation Edit - Alt Tail Layer
 
 	var/image/tail_overlay = overlays_standing[used_tail_layer] // VOREStation Edit - Alt Tail Layer
+=======
+
+	var/image/tail_overlay = overlays_standing[TAIL_LAYER]
+>>>>>>> 83d2988... Merge pull request #7694 from Atermonera/revert_kaleidoscope
 	if(tail_overlay && tail_overlay.icon_state == t_state)
 		return //let the existing animation finish
 
@@ -983,7 +1061,11 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	if(tail_overlay)
 		spawn(20)
 			//check that the animation hasn't changed in the meantime
+<<<<<<< HEAD
 			if(overlays_standing[used_tail_layer] == tail_overlay && tail_overlay.icon_state == t_state) // VOREStation Edit - Alt Tail Layer
+=======
+			if(overlays_standing[TAIL_LAYER] == tail_overlay && tail_overlay.icon_state == t_state)
+>>>>>>> 83d2988... Merge pull request #7694 from Atermonera/revert_kaleidoscope
 				animate_tail_stop()
 
 /mob/living/carbon/human/proc/animate_tail_start()
@@ -1006,7 +1088,10 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		set_tail_state("[species.get_tail(src)]_idle[rand(0,9)]")
 	else
 		set_tail_state("[species.get_tail(src)]_static")
+<<<<<<< HEAD
 		toggle_tail_vr(FALSE) //VOREStation Add - So tails stop when someone dies. TODO - Fix this hack ~Leshana
+=======
+>>>>>>> 83d2988... Merge pull request #7694 from Atermonera/revert_kaleidoscope
 
 /mob/living/carbon/human/proc/animate_tail_stop()
 	if(QDESTROYING(src))
@@ -1014,6 +1099,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 	set_tail_state("[species.get_tail(src)]_static")
 
+<<<<<<< HEAD
 // VOREStation Edit - Wings! See update_icons_vr.dm for more wing procs
 /mob/living/carbon/human/proc/update_wing_showing()
 	if(QDESTROYING(src))
@@ -1029,6 +1115,8 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	apply_layer(WING_LAYER)
 // VOREStation Edit end
 
+=======
+>>>>>>> 83d2988... Merge pull request #7694 from Atermonera/revert_kaleidoscope
 /mob/living/carbon/human/update_modifier_visuals()
 	if(QDESTROYING(src))
 		return

@@ -1814,6 +1814,11 @@
 #include "code\modules\client\preference_setup\loadout\loadout_xeno_vr.dm"
 #include "code\modules\client\preference_setup\occupation\occupation.dm"
 #include "code\modules\client\preference_setup\skills\skills.dm"
+<<<<<<< HEAD:vorestation.dme
+=======
+#include "code\modules\client\preference_setup\traits\trait_defines.dm"
+#include "code\modules\client\preference_setup\traits\traits.dm"
+>>>>>>> 83d2988... Merge pull request #7694 from Atermonera/revert_kaleidoscope:polaris.dme
 #include "code\modules\client\preference_setup\volume_sliders\01_volume.dm"
 #include "code\modules\client\preference_setup\volume_sliders\02_media.dm"
 #include "code\modules\client\preference_setup\vore\01_ears.dm"
@@ -2909,7 +2914,10 @@
 #include "code\modules\mob\new_player\preferences_setup_vr.dm"
 #include "code\modules\mob\new_player\skill.dm"
 #include "code\modules\mob\new_player\sprite_accessories.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\modules\mob\new_player\sprite_accessories_vr.dm"
+=======
+>>>>>>> 83d2988... Merge pull request #7694 from Atermonera/revert_kaleidoscope:polaris.dme
 #include "code\modules\modular_computers\laptop_vendor.dm"
 #include "code\modules\modular_computers\computers\modular_computer\core.dm"
 #include "code\modules\modular_computers\computers\modular_computer\damage.dm"
@@ -3009,7 +3017,10 @@
 #include "code\modules\organs\organ_stump.dm"
 #include "code\modules\organs\pain.dm"
 #include "code\modules\organs\robolimbs.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\modules\organs\robolimbs_vr.dm"
+=======
+>>>>>>> 83d2988... Merge pull request #7694 from Atermonera/revert_kaleidoscope:polaris.dme
 #include "code\modules\organs\wound.dm"
 #include "code\modules\organs\internal\appendix.dm"
 #include "code\modules\organs\internal\augment.dm"
@@ -3040,7 +3051,10 @@
 #include "code\modules\organs\subtypes\slime.dm"
 #include "code\modules\organs\subtypes\slime_vr.dm"
 #include "code\modules\organs\subtypes\standard.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\modules\organs\subtypes\standard_vr.dm"
+=======
+>>>>>>> 83d2988... Merge pull request #7694 from Atermonera/revert_kaleidoscope:polaris.dme
 #include "code\modules\organs\subtypes\unathi.dm"
 #include "code\modules\organs\subtypes\unbreakable.dm"
 #include "code\modules\organs\subtypes\unseverable.dm"
