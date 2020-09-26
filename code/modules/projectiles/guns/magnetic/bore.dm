@@ -184,7 +184,7 @@
 		soundloop.stop()
 		generator_state = GEN_OFF
 
-	else if(generator_state)
+	else if(generator_state > GEN_OFF)
 		if(generator_state == GEN_IDLE && (cell?.percent() < 80 || (!cell && capacitor && capacitor.charge/capacitor.max_charge < 0.8)))
 			generator_state = GEN_ACTIVE
 		else if(generator_state == GEN_ACTIVE && (!cell || cell.fully_charged()) && (!capacitor || capacitor.charge == capacitor.max_charge))
@@ -228,6 +228,7 @@
 				return
 			pull--
 		soundloop.start()
+		time_started = world.time
 		cell?.use(100)
 		audible_message(SPAN_NOTICE("\The [src] starts chugging."),SPAN_NOTICE("A motor noise starts up."))
 		generator_state = GEN_IDLE
