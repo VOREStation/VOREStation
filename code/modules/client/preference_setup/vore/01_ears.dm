@@ -1,6 +1,10 @@
 // Global stuff that will put us on the map
 /datum/category_group/player_setup_category/vore
+<<<<<<< HEAD:code/modules/client/preference_setup/vore/01_ears.dm
 	name = "VORE"
+=======
+	name = "Genetics"
+>>>>>>> 24e0149... Merge pull request #7691 from Mechoid/TabName:code/modules/client/preference_setup/virgo/01_spriteaccessories.dm
 	sort_order = 8
 	category_item_type = /datum/category_item/player_setup_item/vore
 
@@ -140,7 +144,11 @@
 
 
 /datum/category_item/player_setup_item/vore/ears/content(var/mob/user)
+<<<<<<< HEAD:code/modules/client/preference_setup/vore/01_ears.dm
 	. += "<h2>VORE Station Settings</h2>"
+=======
+	. += "<h2>Cosmetic Genetic Settings</h2>"
+>>>>>>> 24e0149... Merge pull request #7691 from Mechoid/TabName:code/modules/client/preference_setup/virgo/01_spriteaccessories.dm
 
 	var/ear_display = "Normal"
 	if(pref.ear_style && (pref.ear_style in ear_styles_list))
