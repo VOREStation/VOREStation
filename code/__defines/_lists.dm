@@ -40,6 +40,9 @@
 
 #define reverseList(L) reverseRange(L.Copy())
 
+#define LAZYADDASSOC(L, K, V) if(!L) { L = list(); } L[K] += list(V);
+#define LAZYREMOVEASSOC(L, K, V) if(L) { if(L[K]) { L[K] -= V; if(!length(L[K])) L -= K; } if(!length(L)) L = null; }
+
 // binary search sorted insert
 // IN: Object to be inserted
 // LIST: List to insert object into

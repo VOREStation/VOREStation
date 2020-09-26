@@ -460,3 +460,10 @@
 		SScharacter_setup.queue_preferences_save(prefs)
 
 	feedback_add_details("admin_verb","TBeSpecial") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/verb/toggle_runechat()
+	set name = "Activate/Deactivate Runechat" // Called activate/deactivate to put it at the top of prefs for the sake of TMing
+	set category = "Preferences"
+	set desc = "Toggle runechat messages"
+	prefs.runechat = !prefs.runechat
+	to_chat(src, "You will [(prefs.runechat) ? "now see" : "no longer see"] floating chat messages.")

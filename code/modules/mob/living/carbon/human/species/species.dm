@@ -498,3 +498,17 @@
 	amount *= water_damage_mod
 	if(amount > 0)
 		H.adjustToxLoss(amount)
+
+/**
+  * Species-specific runechat colour handler
+  *
+  * Checks the species datum flags and returns the appropriate colour
+  * Can be overridden on subtypes to short-circuit these checks
+  * Arguments:
+  * * H - The human who this DNA belongs to
+  */
+/datum/species/proc/get_species_runechat_color(mob/living/carbon/human/H)
+	if(appearance_flags & HAS_SKIN_COLOR)
+		return rgb(H.r_skin, H.g_skin, H.b_skin)
+	else
+		return rgb(H.r_hair, H.g_hair, H.b_hair)

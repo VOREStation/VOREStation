@@ -40,8 +40,10 @@
 		// There is literally no content left in this message, we need to shut this shit down
 		. = "" // hear_say will suppress it
 	else
-		. = trim(. + trim(msg))
-		. += "\""
+		if(verb)
+			. = "[verb], \"[trim(msg)]\""
+		else
+			. = trim(msg)
 
 /mob/proc/saypiece_scramble(datum/multilingual_say_piece/SP)
 	if(SP.speaking)
@@ -76,10 +78,11 @@
 		var/mob/living/carbon/human/H = speaker
 		speaker_name = H.GetVoice()
 
-	var/message = combine_message(message_pieces, verb, speaker)
+	var/message = combine_message(message_pieces, null, speaker)
 	if(message == "")
 		return
 	
+	var/message_clean = message
 	if(sleeping || stat == UNCONSCIOUS)
 		hear_sleep(multilingual_to_message(message_pieces))
 		return FALSE
@@ -104,9 +107,13 @@
 			to_chat(src, "<span class='filter_say'><span class='name'>[speaker_name]</span>[speaker.GetAltName()] makes a noise, possibly speech, but you cannot hear them.</span>")
 	else
 		var/message_to_send = null
-		message_to_send = "<span class='game say'><span class='name'>[speaker_name]</span>[speaker.GetAltName()] [track][message]</span>"
+		message_to_send = "<span class='game say'><span class='name'>[speaker_name]</span>[speaker.GetAltName()] [track][verb], \"[message]\"</span>"
 		if(check_mentioned(multilingual_to_message(message_pieces)) && is_preference_enabled(/datum/client_preference/check_mention))
 			message_to_send = "<font size='3'><b>[message_to_send]</b></font>"
+
+		// Create map text message
+		if(client?.prefs.runechat) // is_deaf is checked up there on L103
+			create_chat_message(speaker, message_clean, italics)
 
 		on_hear_say(message_to_send)
 
@@ -160,7 +167,7 @@
         
     return tagged_message
 
-/mob/proc/hear_radio(var/list/message_pieces, var/verb = "says", var/part_a, var/part_b, var/part_c, var/mob/speaker = null, var/hard_to_hear = 0, var/vname = "")
+/mob/proc/hear_radio(var/list/message_pieces, var/verb = "says", var/part_a, var/part_b, var/part_c, var/mob/speaker = null, var/hard_to_hear = 0, var/vname = "", radio_freq)
 	if(!client)
 		return
 
@@ -271,12 +278,16 @@
 /mob/proc/handle_track(message, verb = "says", mob/speaker = null, speaker_name, hard_to_hear)
 	return
 
-/mob/proc/hear_holopad_talk(list/message_pieces, var/verb = "says", var/mob/speaker = null)
+/mob/proc/hear_holopad_talk(list/message_pieces, var/verb = "says", var/mob/speaker = null, obj/effect/overlay/aiholo/H)
 	var/message = combine_message(message_pieces, verb, speaker)
+	var/message_unverbed = combine_message(message_pieces, null, speaker)
 
 	var/name = speaker.name
 	if(!say_understands(speaker))
 		name = speaker.voice_name
+
+	if(client?.prefs.runechat && !is_deaf())
+		create_chat_message(H, message_unverbed)
 
 	var/rendered = "<span class='game say'><span class='name'>[name]</span> [message]</span>"
 	to_chat(src, rendered) 

@@ -27,6 +27,9 @@
 	var/datum/volume_panel/volume_panel = null // Initialized by /client/verb/volume_panel()
 	var/chatOutputLoadedAt
 
+	/// Messages currently seen by this client
+	var/list/seen_messages
+
 	var/adminhelped = 0
 
 		///////////////

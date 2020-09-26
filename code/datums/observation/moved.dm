@@ -25,11 +25,6 @@ GLOBAL_DATUM_INIT(moved_event, /decl/observ/moved, new)
 /********************
 * Movement Handling *
 ********************/
-
-/atom/Entered(var/atom/movable/am, var/atom/old_loc)
-	. = ..()
-	GLOB.moved_event.raise_event(am, old_loc, am.loc)
-
 /atom/movable/Entered(var/atom/movable/am, atom/old_loc)
 	. = ..()
 	if(GLOB.moved_event.has_listeners(am))
@@ -38,6 +33,7 @@ GLOBAL_DATUM_INIT(moved_event, /decl/observ/moved, new)
 /atom/movable/Exited(var/atom/movable/am, atom/old_loc)
 	. = ..()
 	GLOB.moved_event.unregister(src, am, /atom/movable/proc/recursive_move)
+
 
 // Entered() typically lifts the moved event, but in the case of null-space we'll have to handle it.
 /atom/movable/Move()

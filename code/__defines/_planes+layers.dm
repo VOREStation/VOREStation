@@ -113,8 +113,12 @@ What is the naming convention for planes or layers?
 
 	//#define FLY_LAYER			5 //For easy recordkeeping; this is a byond define
 
+	#define CHAT_LAYER 12.0001 // Do not insert layers between these two values
+	#define CHAT_LAYER_MAX 12.9999
+
 	#define HUD_LAYER				20	// Above lighting, but below obfuscation. For in-game HUD effects (whereas SCREEN_LAYER is for abstract/OOC things like inventory slots)
 	#define SCREEN_LAYER			22	// Mob HUD/effects layer
+
 
 #define PLANE_STATUS			2 //Status Indicators that show over mobs' heads when certain things like stuns affect them.
 

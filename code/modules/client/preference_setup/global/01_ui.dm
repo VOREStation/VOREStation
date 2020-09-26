@@ -13,6 +13,7 @@
 	S["ambience_chance"] >> pref.ambience_chance
 	S["tgui_fancy"]		>> pref.tgui_fancy
 	S["tgui_lock"]		>> pref.tgui_lock
+	S["runechat"]		>> pref.runechat
 
 /datum/category_item/player_setup_item/player_global/ui/save_preferences(var/savefile/S)
 	S["UI_style"]		<< pref.UI_style
@@ -25,6 +26,7 @@
 	S["ambience_chance"] << pref.ambience_chance
 	S["tgui_fancy"]		<< pref.tgui_fancy
 	S["tgui_lock"]		<< pref.tgui_lock
+	S["runechat"]		<< pref.runechat
 
 /datum/category_item/player_setup_item/player_global/ui/sanitize_preferences()
 	pref.UI_style			= sanitize_inlist(pref.UI_style, all_ui_styles, initial(pref.UI_style))
@@ -37,6 +39,7 @@
 	pref.ambience_chance 	= sanitize_integer(pref.ambience_chance, 0, 100, initial(pref.ambience_chance)) // 0-100 range.
 	pref.tgui_fancy		= sanitize_integer(pref.tgui_fancy, 0, 1, initial(pref.tgui_fancy))
 	pref.tgui_lock		= sanitize_integer(pref.tgui_lock, 0, 1, initial(pref.tgui_lock))
+	pref.runechat		= sanitize_integer(pref.runechat, 0, 1, initial(pref.runechat))
 
 /datum/category_item/player_setup_item/player_global/ui/content(var/mob/user)
 	. = "<b>UI Style:</b> <a href='?src=\ref[src];select_style=1'><b>[pref.UI_style]</b></a><br>"
@@ -49,6 +52,7 @@
 	. += "<b>Ambience Chance:</b> <a href='?src=\ref[src];select_ambience_chance=1'><b>[pref.ambience_chance]</b></a><br>"
 	. += "<b>tgui Window Mode:</b> <a href='?src=\ref[src];tgui_fancy=1'><b>[(pref.tgui_fancy) ? "Fancy (default)" : "Compatible (slower)"]</b></a><br>"
 	. += "<b>tgui Window Placement:</b> <a href='?src=\ref[src];tgui_lock=1'><b>[(pref.tgui_lock) ? "Primary Monitor" : "Free (default)"]</b></a><br>"
+	. += "<b>Runechat (overhead speech):</b> <a href='?src=\ref[src];runechat=1'><b>[(pref.runechat) ? "Shown" : "Hidden"]</b></a><br>"
 	if(can_select_ooc_color(user))
 		. += "<b>OOC Color:</b>�"
 		if(pref.ooccolor == initial(pref.ooccolor))
@@ -116,6 +120,10 @@
 		
 	else if(href_list["tgui_lock"])
 		pref.tgui_lock = !pref.tgui_lock
+		return TOPIC_REFRESH
+
+	else if(href_list["runechat"])
+		pref.runechat = !pref.runechat
 		return TOPIC_REFRESH
 
 	else if(href_list["reset"])

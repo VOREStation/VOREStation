@@ -34,6 +34,11 @@
 	// Track if we are already had initialize() called to prevent double-initialization.
 	var/initialized = FALSE
 
+	/// Last name used to calculate a color for the chatmessage overlays. Used for caching.
+	var/chat_color_name
+	/// Last color calculated for the the chatmessage overlays. Used for caching.
+	var/chat_color
+
 /atom/New(loc, ...)
 	// Don't call ..() unless /datum/New() ever exists
 
@@ -210,6 +215,7 @@
 	if(user.client?.prefs.examine_text_mode == EXAMINE_MODE_SWITCH_TO_PANEL)
 		user.client.statpanel = "Examine" // Switch to stat panel
 
+	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, output)
 	return output
 
 // Don't make these call bicon or anything, these are what bicon uses. They need to return an icon.
@@ -223,6 +229,7 @@
 
 //called to set the atom's dir and used to add behaviour to dir-changes
 /atom/proc/set_dir(new_dir)
+	SEND_SIGNAL(src, COMSIG_ATOM_DIR_CHANGE, dir, new_dir)
 	. = new_dir != dir
 	dir = new_dir
 
@@ -624,6 +631,9 @@
 		if(M.client)
 			speech_bubble_hearers += M.client
 
+		if(M.client?.prefs.runechat && !M.is_deaf())
+			M.create_chat_message(src, message)
+
 	if(length(speech_bubble_hearers))
 		var/image/I = image('icons/mob/talk.dmi', src, "[bubble_icon][say_test(message)]", FLY_LAYER)
 		I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
@@ -631,3 +641,17 @@
 
 /atom/proc/speech_bubble(bubble_state = "", bubble_loc = src, list/bubble_recipients = list())
 	return
+
+/atom/Entered(atom/movable/AM, atom/old_loc)
+	. = ..()
+	GLOB.moved_event.raise_event(AM, old_loc, AM.loc)
+	SEND_SIGNAL(src, COMSIG_ATOM_ENTERED, AM, old_loc)
+
+/atom/Exit(atom/movable/AM, atom/new_loc)
+	. = ..()
+	if(SEND_SIGNAL(src, COMSIG_ATOM_EXIT, AM, new_loc) & COMPONENT_ATOM_BLOCK_EXIT)
+		return FALSE
+
+/atom/Exited(atom/movable/AM, atom/new_loc)
+	. = ..()
+	SEND_SIGNAL(src, COMSIG_ATOM_EXITED, AM, new_loc)
