@@ -2001,3 +2001,8 @@ Departamental Swimsuits, for general use
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "flintlock_mob"
+
+//BobOfBoblandia: Charles Gettler
+/obj/item/clothing/head/that/fluff/gettler
+	name = "Charles' Top-Hat"
+	desc = "A special hat, removed from its owner."
