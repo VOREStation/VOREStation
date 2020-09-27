@@ -717,7 +717,7 @@
 		return
 
 	var/list/nom = null
-	var/material/M = null
+	var/datum/material/M = null
 	if(istype(I, /obj/item/weapon/ore)) //Raw unrefined ore. Some things are just better untempered!
 		var/obj/item/weapon/ore/O = I
 		//List in list, define by material property of ore in code/mining/modules/ore.dm.

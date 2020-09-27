@@ -1,4 +1,4 @@
-/material/flesh
+/datum/material/flesh
 	name = "flesh"
 	display_name = "chunk of flesh"
 	icon_colour = "#dd90aa"
@@ -10,7 +10,7 @@
 	hardness = 500
 	weight = 500
 
-/material/fluff //This is to allow for 2 handed weapons that don't want to have a prefix.
+/datum/material/fluff //This is to allow for 2 handed weapons that don't want to have a prefix.
 	name = " "
 	display_name = ""
 	icon_colour = "#000000"
@@ -19,19 +19,19 @@
 	hardness = 60
 	weight = 20 //Strong as iron.
 
-/material/darkglass
+/datum/material/darkglass
 	name = "darkglass"
 	display_name = "darkglass"
 	icon_base = "darkglass"
 	icon_colour = "#FFFFFF"
 
-/material/fancyblack
+/datum/material/fancyblack
 	name = "fancyblack"
 	display_name = "fancyblack"
 	icon_base = "fancyblack"
 	icon_colour = "#FFFFFF"
 
-/material/glass/titaniumglass
+/datum/material/glass/titaniumglass
 	name = MAT_TITANIUMGLASS
 	display_name = "titanium glass"
 	stack_type = /obj/item/stack/material/glass/titanium
@@ -48,7 +48,7 @@
 	rod_product = /obj/item/stack/material/glass/titanium
 	composite_material = list(MAT_TITANIUM = SHEET_MATERIAL_AMOUNT, "glass" = SHEET_MATERIAL_AMOUNT)
 
-/material/plastitanium
+/datum/material/plastitanium
 	name = MAT_PLASTITANIUM
 	stack_type = /obj/item/stack/material/plastitanium
 	integrity = 600
@@ -65,7 +65,7 @@
 	composite_material = list(MAT_TITANIUM = SHEET_MATERIAL_AMOUNT, MAT_PLASTEEL = SHEET_MATERIAL_AMOUNT)
 	supply_conversion_value = 8
 
-/material/plastitanium/hull
+/datum/material/plastitanium/hull
 	name = MAT_PLASTITANIUMHULL
 	stack_type = /obj/item/stack/material/plastitanium/hull
 	icon_base = "hull"
@@ -73,10 +73,10 @@
 	icon_colour = "#585658"
 	explosion_resistance = 50
 
-/material/plastitanium/hull/place_sheet(var/turf/target) //Deconstructed into normal plasteel sheets.
+/datum/material/plastitanium/hull/place_sheet(var/turf/target) //Deconstructed into normal plasteel sheets.
 	new /obj/item/stack/material/plastitanium(target)
 
-/material/glass/plastaniumglass
+/datum/material/glass/plastaniumglass
 	name = MAT_PLASTITANIUMGLASS
 	display_name = "plas-titanium glass"
 	stack_type = /obj/item/stack/material/glass/plastitanium

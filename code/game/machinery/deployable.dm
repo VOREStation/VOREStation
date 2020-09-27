@@ -14,7 +14,7 @@ Barricades
 	density = 1.0
 	var/health = 100
 	var/maxhealth = 100
-	var/material/material
+	var/datum/material/material
 
 /obj/structure/barricade/New(var/newloc, var/material_name)
 	..(newloc)
