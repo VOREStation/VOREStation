@@ -275,7 +275,7 @@
 				var/can_make = CLAMP(ores_stored[metal],0,sheets_per_tick-sheets)
 				if(can_make%2>0) can_make--
 
-				var/material/M = get_material_by_name(O.compresses_to)
+				var/datum/material/M = get_material_by_name(O.compresses_to)
 
 				if(!istype(M) || !can_make || ores_stored[metal] < 1)
 					continue
@@ -289,7 +289,7 @@
 
 				var/can_make = CLAMP(ores_stored[metal],0,sheets_per_tick-sheets)
 
-				var/material/M = get_material_by_name(O.smelts_to)
+				var/datum/material/M = get_material_by_name(O.smelts_to)
 				if(!istype(M) || !can_make || ores_stored[metal] < 1)
 					continue
 

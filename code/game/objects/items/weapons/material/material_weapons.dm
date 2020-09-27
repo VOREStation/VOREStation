@@ -24,7 +24,7 @@
 	var/thrown_force_divisor = 0.5
 	var/dulled_divisor = 0.5	//Just drops the damage by half
 	var/default_material = DEFAULT_WALL_MATERIAL
-	var/material/material
+	var/datum/material/material
 	var/drops_debris = 1
 
 /obj/item/weapon/material/New(var/newloc, var/material_key)

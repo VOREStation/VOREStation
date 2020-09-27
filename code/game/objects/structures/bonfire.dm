@@ -9,7 +9,7 @@
 	var/burning = FALSE
 	var/next_fuel_consumption = 0 // world.time of when next item in fuel list gets eatten to sustain the fire.
 	var/grill = FALSE
-	var/material/material
+	var/datum/material/material
 	var/set_temperature = T0C + 30	//K
 	var/heating_power = 80000
 
