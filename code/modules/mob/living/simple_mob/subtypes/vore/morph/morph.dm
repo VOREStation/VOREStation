@@ -89,6 +89,10 @@
 		..()
 
 /mob/living/simple_mob/vore/hostile/morph/proc/assume(atom/movable/target)
+	var/mob/living/carbon/human/humantarget = target
+	if(istype(humantarget) && humantarget.resleeve_lock && ckey != humantarget.resleeve_lock)
+		to_chat(src, "<span class='warning'>[target] cannot be impersonated!</span>")
+		return
 	if(morphed)
 		to_chat(src, "<span class='warning'>You must restore to your original form first!</span>")
 		return

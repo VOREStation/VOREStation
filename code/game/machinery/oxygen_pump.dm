@@ -79,7 +79,7 @@
 		update_use_power(USE_POWER_IDLE)
 
 /obj/machinery/oxygen_pump/attack_ai(mob/user as mob)
-	ui_interact(user)
+	tgui_interact(user)
 
 /obj/machinery/oxygen_pump/proc/attach_mask(var/mob/living/carbon/C)
 	if(C && istype(C))
@@ -176,61 +176,60 @@
 	set src in oview(1)
 	set category = "Object"
 	set name = "Show Tank Settings"
-	ui_interact(usr)
+	tgui_interact(usr)
 
-//GUI Tank Setup
-/obj/machinery/oxygen_pump/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	var/data[0]
+/obj/machinery/oxygen_pump/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
 	if(!tank)
-		to_chat(usr, "<span class='warning'>It is missing a tank!</span>")
-		data["tankPressure"] = 0
-		data["releasePressure"] = 0
-		data["defaultReleasePressure"] = 0
-		data["maxReleasePressure"] = 0
-		data["maskConnected"] = 0
-		data["tankInstalled"] = 0
-	// this is the data which will be sent to the ui
+		to_chat(user, "<span class='warning'>[src] is missing a tank.</span>")
+		if(ui)
+			ui.close()
+		return
+
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Tank", name)
+		ui.open()
+
+/obj/machinery/oxygen_pump/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
+
+	data["showToggle"] = FALSE
+	data["maskConnected"] = !!breather
+
+	data["tankPressure"] = 0
+	data["releasePressure"] = 0
+	data["defaultReleasePressure"] = 0
+	data["minReleasePressure"] = 0
+	data["releasePressure"] = round(tank.distribute_pressure ? tank.distribute_pressure : 0)
+	data["maxReleasePressure"] = round(TANK_MAX_RELEASE_PRESSURE)
+
 	if(tank)
 		data["tankPressure"] = round(tank.air_contents.return_pressure() ? tank.air_contents.return_pressure() : 0)
-		data["releasePressure"] = round(tank.distribute_pressure ? tank.distribute_pressure : 0)
 		data["defaultReleasePressure"] = round(TANK_DEFAULT_RELEASE_PRESSURE)
-		data["maxReleasePressure"] = round(TANK_MAX_RELEASE_PRESSURE)
-		data["maskConnected"] = 0
-		data["tankInstalled"] = 1
 
-	if(!breather)
-		data["maskConnected"] = 0
-	if(breather)
-		data["maskConnected"] = 1
+	return data
 
-
-	// update the ui if it exists, returns null if no ui is passed/found
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		// the ui does not exist, so we'll create a new() one
-		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "Oxygen_pump.tmpl", "Tank", 500, 300)
-		// when the ui is first opened this is the data it will use
-		ui.set_initial_data(data)
-		// open the new ui window
-		ui.open()
-		// auto update every Master Controller tick
-		ui.set_auto_update(1)
-
-/obj/machinery/oxygen_pump/Topic(href, href_list)
+/obj/machinery/oxygen_pump/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
-		return 1
+		return TRUE
 
-	if (href_list["dist_p"])
-		if (href_list["dist_p"] == "reset")
-			tank.distribute_pressure = TANK_DEFAULT_RELEASE_PRESSURE
-		else if (href_list["dist_p"] == "max")
-			tank.distribute_pressure = TANK_MAX_RELEASE_PRESSURE
-		else
-			var/cp = text2num(href_list["dist_p"])
-			tank.distribute_pressure += cp
-		tank.distribute_pressure = min(max(round(tank.distribute_pressure), 0), TANK_MAX_RELEASE_PRESSURE)
-		return 1
+	switch(action)
+		if("pressure")
+			var/pressure = params["pressure"]
+			if(pressure == "reset")
+				pressure = TANK_DEFAULT_RELEASE_PRESSURE
+				. = TRUE
+			else if(pressure == "min")
+				pressure = 0
+				. = TRUE
+			else if(pressure == "max")
+				pressure = TANK_MAX_RELEASE_PRESSURE
+				. = TRUE
+			else if(text2num(pressure) != null)
+				pressure = text2num(pressure)
+				. = TRUE
+			if(.)
+				tank.distribute_pressure = clamp(round(pressure), 0, TANK_MAX_RELEASE_PRESSURE)
 
 /obj/machinery/oxygen_pump/anesthetic
 	name = "anesthetic pump"

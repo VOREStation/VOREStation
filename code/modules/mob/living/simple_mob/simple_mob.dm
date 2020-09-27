@@ -271,18 +271,22 @@
 
 
 // Harvest an animal's delicious byproducts
-/mob/living/simple_mob/proc/harvest(var/mob/user)
+/mob/living/simple_mob/proc/harvest(var/mob/user, var/invisible)
 	var/actual_meat_amount = max(1,(meat_amount/2))
+	var/attacker_name = user.name
+	if(invisible)
+		attacker_name = "someone"
+	
 	if(meat_type && actual_meat_amount>0 && (stat == DEAD))
 		for(var/i=0;i<actual_meat_amount;i++)
 			var/obj/item/meat = new meat_type(get_turf(src))
 			meat.name = "[src.name] [meat.name]"
 		if(issmall(src))
-			user.visible_message("<span class='danger'>[user] chops up \the [src]!</span>")
+			user.visible_message("<span class='danger'>[attacker_name] chops up \the [src]!</span>")
 			new/obj/effect/decal/cleanable/blood/splatter(get_turf(src))
 			qdel(src)
 		else
-			user.visible_message("<span class='danger'>[user] butchers \the [src] messily!</span>")
+			user.visible_message("<span class='danger'>[attacker_name] butchers \the [src] messily!</span>")
 			gib()
 
 

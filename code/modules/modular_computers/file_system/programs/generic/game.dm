@@ -1,152 +1,188 @@
 // This file is used as a reference for Modular Computers Development guide on the wiki. It contains a lot of excess comments, as it is intended as explanation
 // for someone who may not be as experienced in coding. When making changes, please try to keep it this way.
 
-// An actual program definition.
 /datum/computer_file/program/game
-	filename = "arcadec"					// File name, as shown in the file browser program.
-	filedesc = "Unknown Game"				// User-Friendly name. In this case, we will generate a random name in constructor.
-	program_icon_state = "game"				// Icon state of this program's screen.
-	program_menu_icon = "script"
-	extended_desc = "Fun for the whole family! Probably not an AAA title, but at least you can download it on the corporate network.."		// A nice description.
-	size = 5								// Size in GQ. Integers only. Smaller sizes should be used for utility/low use programs (like this one), while large sizes are for important programs.
-	requires_ntnet = 0						// This particular program does not require NTNet network conectivity...
-	available_on_ntnet = 1					// ... but we want it to be available for download.
-	nanomodule_path = /datum/nano_module/arcade_classic/	// Path of relevant nano module. The nano module is defined further in the file.
-	var/picked_enemy_name
+	filename = "dsarcade"				// File name, as shown in the file browser program.
+	filedesc = "Donksoft Micro Arcade"	// User-Friendly name.
+	program_icon_state = "arcade"		// Icon state of this program's screen.
+	extended_desc = "This is a port of the classic game 'Outbomb Cuban Pete', redesigned to run on tablets; Now with thrilling graphics and chilling storytelling."	// A nice description.
+	size = 6							// Size in GQ. Integers only. Smaller sizes should be used for utility/low use programs (like this one), while large sizes are for important programs.
+	requires_ntnet = FALSE				// This particular program does not require NTNet network conectivity...
+	available_on_ntnet = TRUE			// ... but we want it to be available for download.
+	tgui_id = "NtosArcade"				// Path of relevant tgui template.js file.
 
-// Blatantly stolen and shortened version from arcade machines. Generates a random enemy name
-/datum/computer_file/program/game/proc/random_enemy_name()
-	var/name_part1 = pick("the Automatic ", "Farmer ", "Lord ", "Professor ", "the Cuban ", "the Evil ", "the Dread King ", "the Space ", "Lord ", "the Great ", "Duke ", "General ")
-	var/name_part2 = pick("Melonoid", "Murdertron", "Sorcerer", "Ruin", "Jeff", "Ectoplasm", "Crushulon", "Uhangoid", "Vhakoid", "Peteoid", "Slime", "Lizard Man", "Unicorn")
-	return "[name_part1] [name_part2]"
+	///Returns TRUE if the game is being played.
+	var/game_active = TRUE
+	///This disables buttom actions from having any impact if TRUE. Resets to FALSE when the player is allowed to make an action again.
+	var/pause_state = FALSE
+	var/boss_hp = 45
+	var/boss_mp = 15
+	var/player_hp = 30
+	var/player_mp = 10
+	var/ticket_count = 0
+	///Shows what text is shown on the app, usually showing the log of combat actions taken by the player.
+	var/heads_up = "Nanotrasen says, winners make us money."
+	var/boss_name = "Cuban Pete's Minion"
+	///Determines which boss image to use on the UI.
+	var/boss_id = 1
 
-// When the program is first created, we generate a new enemy name and name ourselves accordingly.
-/datum/computer_file/program/game/New()
-	..()
-	picked_enemy_name = random_enemy_name()
-	filedesc = "Defeat [picked_enemy_name]"
+// This is the primary game loop, which handles the logic of being defeated or winning.
+/datum/computer_file/program/game/proc/game_check(mob/user)
+	sleep(5)
+	if(boss_hp <= 0)
+		heads_up = "You have crushed [boss_name]! Rejoice!"
+		playsound(computer.loc, 'sound/arcade/win.ogg', 50, TRUE, extrarange = -3, falloff = 10)
+		game_active = FALSE
+		program_icon_state = "arcade_off"
+		if(istype(computer))
+			computer.update_icon()
+		ticket_count += 1
+		// user?.mind?.adjust_experience(/datum/skill/gaming, 50)
+		sleep(10)
+	else if(player_hp <= 0 || player_mp <= 0)
+		heads_up = "You have been defeated... how will the station survive?"
+		playsound(computer.loc, 'sound/arcade/lose.ogg', 50, TRUE, extrarange = -3, falloff = 10)
+		game_active = FALSE
+		program_icon_state = "arcade_off"
+		if(istype(computer))
+			computer.update_icon()
+		// user?.mind?.adjust_experience(/datum/skill/gaming, 10)
+		sleep(10)
 
-// Important in order to ensure that copied versions will have the same enemy name.
-/datum/computer_file/program/game/clone()
-	var/datum/computer_file/program/game/G = ..()
-	G.picked_enemy_name = picked_enemy_name
-	return G
-
-// When running the program, we also want to pass our enemy name to the nano module.
-/datum/computer_file/program/game/run_program()
-	. = ..()
-	if(. && NM)
-		var/datum/nano_module/arcade_classic/NMC = NM
-		NMC.enemy_name = picked_enemy_name
-
-
-// Nano module the program uses.
-// This can be either /datum/nano_module/ or /datum/nano_module/program. The latter is intended for nano modules that are suposed to be exclusively used with modular computers,
-// and should generally not be used, as such nano modules are hard to use on other places.
-/datum/nano_module/arcade_classic/
-	name = "Classic Arcade"
-	var/player_mana			// Various variables specific to the nano module. In this case, the nano module is a simple arcade game, so the variables store health and other stats.
-	var/player_health
-	var/enemy_mana
-	var/enemy_health
-	var/enemy_name = "Greytide Horde"
-	var/gameover
-	var/information
-
-/datum/nano_module/arcade_classic/New()
-	..()
-	new_game()
-
-// ui_interact handles transfer of data to NanoUI. Keep in mind that data you pass from here is actually sent to the client. In other words, don't send anything you don't want a client
-// to see, and don't send unnecessarily large amounts of data (due to laginess).
-/datum/nano_module/arcade_classic/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
-	var/list/data = host.initial_data()
-
-	data["player_health"] = player_health
-	data["player_mana"] = player_mana
-	data["enemy_health"] = enemy_health
-	data["enemy_mana"] = enemy_mana
-	data["enemy_name"] = enemy_name
-	data["gameover"] = gameover
-	data["information"] = information
-
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "arcade_classic.tmpl", "Defeat [enemy_name]", 500, 350, state = state)
-		if(host.update_layout())
-			ui.auto_update_layout = 1
-		ui.set_initial_data(data)
-		ui.open()
-
-// Three helper procs i've created. These are unique to this particular nano module. If you are creating your own nano module, you'll most likely create similar procs too.
-/datum/nano_module/arcade_classic/proc/enemy_play()
-	if((enemy_mana < 5) && prob(60))
-		var/steal = rand(2, 3)
-		player_mana -= steal
-		enemy_mana += steal
-		information += "[enemy_name] steals [steal] of your power!"
-	else if((enemy_health < 15) && (enemy_mana > 3) && prob(80))
-		var/healamt = min(rand(3, 5), enemy_mana)
-		enemy_mana -= healamt
-		enemy_health += healamt
-		information += "[enemy_name] heals for [healamt] health!"
+// This handles the boss "AI".
+/datum/computer_file/program/game/proc/enemy_check(mob/user)
+	var/boss_attackamt = 0 //Spam protection from boss attacks as well.
+	var/boss_mpamt = 0
+	var/bossheal = 0
+	if(pause_state == TRUE)
+		boss_attackamt = rand(3,6)
+		boss_mpamt = rand (2,4)
+		bossheal = rand (4,6)
+	if(game_active == FALSE)
+		return
+	if(boss_mp <= 5)
+		heads_up = "[boss_mpamt] magic power has been stolen from you!"
+		playsound(computer.loc, 'sound/arcade/steal.ogg', 50, TRUE, extrarange = -3, falloff = 10)
+		player_mp -= boss_mpamt
+		boss_mp += boss_mpamt
+	else if(boss_mp > 5 && boss_hp <12)
+		heads_up = "[boss_name] heals for [bossheal] health!"
+		playsound(computer.loc, 'sound/arcade/heal.ogg', 50, TRUE, extrarange = -3, falloff = 10)
+		boss_hp += bossheal
+		boss_mp -= boss_mpamt
 	else
-		var/dam = rand(3,6)
-		player_health -= dam
-		information += "[enemy_name] attacks for [dam] damage!"
+		heads_up = "[boss_name] attacks you for [boss_attackamt] damage!"
+		playsound(computer.loc, 'sound/arcade/hit.ogg', 50, TRUE, extrarange = -3, falloff = 10)
+		player_hp -= boss_attackamt
 
-/datum/nano_module/arcade_classic/proc/check_gameover()
-	if((player_health <= 0) || player_mana <= 0)
-		if(enemy_health <= 0)
-			information += "You have defeated [enemy_name], but you have died in the fight!"
-		else
-			information += "You have been defeated by [enemy_name]!"
-		gameover = 1
+	pause_state = FALSE
+	game_check()
+
+/**
+ * UI assets define a list of asset datums to be sent with the UI.
+ * In this case, it's a bunch of cute enemy sprites.
+ */
+/datum/computer_file/program/game/ui_assets(mob/user)
+	return list(
+		get_asset_datum(/datum/asset/simple/arcade),
+	)
+
+/**
+ * This provides all of the relevant data to the UI in a list().
+ */
+/datum/computer_file/program/game/tgui_data(mob/user)
+	var/list/data = get_header_data()
+	data["Hitpoints"] = boss_hp
+	data["PlayerHitpoints"] = player_hp
+	data["PlayerMP"] = player_mp
+	data["TicketCount"] = ticket_count
+	data["GameActive"] = game_active
+	data["PauseState"] = pause_state
+	data["Status"] = heads_up
+	data["BossID"] = "boss[boss_id].gif"
+	return data
+
+/**
+ * This is tgui's replacement for Topic(). It handles any user input from the UI.
+ */
+/datum/computer_file/program/game/tgui_act(action, list/params)
+	if(..()) // Always call parent in tgui_act, it handles making sure the user is allowed to interact with the UI.
 		return TRUE
-	else if(enemy_health <= 0)
-		gameover = 1
-		information += "Congratulations! You have defeated [enemy_name]!"
-		return TRUE
-	return FALSE
 
-/datum/nano_module/arcade_classic/proc/new_game()
-	player_mana = 10
-	player_health = 30
-	enemy_mana = 20
-	enemy_health = 45
-	gameover = FALSE
-	information = "A new game has started!"
+	var/obj/item/weapon/computer_hardware/nano_printer/printer
+	if(computer)
+		printer = computer.nano_printer
 
-
-
-/datum/nano_module/arcade_classic/Topic(href, href_list)
-	if(..())		// Always begin your Topic() calls with a parent call!
-		return 1
-	if(href_list["new_game"])
-		new_game()
-		return 1	// Returning 1 (TRUE) in Topic automatically handles UI updates.
-	if(gameover)	// If the game has already ended, we don't want the following three topic calls to be processed at all.
-		return 1	// Instead of adding checks into each of those three, we can easily add this one check here to reduce on code copy-paste.
-	if(href_list["attack"])
-		var/damage = rand(2, 6)
-		information = "You attack for [damage] damage."
-		enemy_health -= damage
-		enemy_play()
-		check_gameover()
-		return 1
-	if(href_list["heal"])
-		var/healfor = rand(6, 8)
-		var/cost = rand(1, 3)
-		information = "You heal yourself for [healfor] damage, using [cost] energy in the process."
-		player_health += healfor
-		player_mana -= cost
-		enemy_play()
-		check_gameover()
-		return 1
-	if(href_list["regain_mana"])
-		var/regen = rand(4, 7)
-		information = "You rest of a while, regaining [regen] energy."
-		player_mana += regen
-		enemy_play()
-		check_gameover()
-		return 1
+	// var/gamerSkillLevel = usr.mind?.get_skill_level(/datum/skill/gaming)
+	// var/gamerSkill = usr.mind?.get_skill_modifier(/datum/skill/gaming, SKILL_RANDS_MODIFIER)
+	switch(action)
+		if("Attack")
+			var/attackamt = 0 //Spam prevention.
+			if(pause_state == FALSE)
+				attackamt = rand(2,6) // + rand(0, gamerSkill)
+			pause_state = TRUE
+			heads_up = "You attack for [attackamt] damage."
+			playsound(computer.loc, 'sound/arcade/hit.ogg', 50, TRUE, extrarange = -3, falloff = 10)
+			boss_hp -= attackamt
+			sleep(10)
+			game_check()
+			enemy_check()
+			return TRUE
+		if("Heal")
+			var/healamt = 0 //More Spam Prevention.
+			var/healcost = 0
+			if(pause_state == FALSE)
+				healamt = rand(6,8) // + rand(0, gamerSkill)
+				var/maxPointCost = 3
+				// if(gamerSkillLevel >= SKILL_LEVEL_JOURNEYMAN)
+				// 	maxPointCost = 2
+				healcost = rand(1, maxPointCost)
+			pause_state = TRUE
+			heads_up = "You heal for [healamt] damage."
+			playsound(computer.loc, 'sound/arcade/heal.ogg', 50, TRUE, extrarange = -3, falloff = 10)
+			player_hp += healamt
+			player_mp -= healcost
+			sleep(10)
+			game_check()
+			enemy_check()
+			return TRUE
+		if("Recharge_Power")
+			var/rechargeamt = 0 //As above.
+			if(pause_state == FALSE)
+				rechargeamt = rand(4,7) // + rand(0, gamerSkill)
+			pause_state = TRUE
+			heads_up = "You regain [rechargeamt] magic power."
+			playsound(computer.loc, 'sound/arcade/mana.ogg', 50, TRUE, extrarange = -3, falloff = 10)
+			player_mp += rechargeamt
+			sleep(10)
+			game_check()
+			enemy_check()
+			return TRUE
+		if("Dispense_Tickets")
+			if(!printer)
+				to_chat(usr, "<span class='notice'>Hardware error: A printer is required to redeem tickets.</span>")
+				return
+			if(printer.stored_paper <= 0)
+				to_chat(usr, "<span class='notice'>Hardware error: Printer is out of paper.</span>")
+				return
+			else
+				computer.visible_message("<span class='notice'>\The [computer] prints out paper.</span>")
+				if(ticket_count >= 1)
+					new /obj/item/stack/arcadeticket((get_turf(computer)), 1)
+					to_chat(usr, "<span class='notice'>[src] dispenses a ticket!</span>")
+					ticket_count -= 1
+					printer.stored_paper -= 1
+				else
+					to_chat(usr, "<span class='notice'>You don't have any stored tickets!</span>")
+				return TRUE
+		if("Start_Game")
+			game_active = TRUE
+			boss_hp = 45
+			player_hp = 30
+			player_mp = 10
+			heads_up = "You stand before [boss_name]! Prepare for battle!"
+			program_icon_state = "arcade"
+			boss_id = rand(1,6)
+			pause_state = FALSE
+			if(istype(computer))
+				computer.update_icon()

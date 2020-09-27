@@ -66,16 +66,16 @@ export const AppearanceChanger = (props, context) => {
                   {specimen}
                 </LabeledList.Item>
                 <LabeledList.Item label="Biological Sex" color={!change_gender ? "grey" : null}>
-                  {capitalize(gender)}
+                  {gender ? capitalize(gender) : "Not Set"}
                 </LabeledList.Item>
                 <LabeledList.Item label="Gender Identity" color={!change_color ? "grey" : null}>
-                  {capitalize(gender_id)}
+                  {gender_id ? capitalize(gender_id) : "Not Set"}
                 </LabeledList.Item>
                 <LabeledList.Item label="Hair Style" color={!change_hair ? "grey" : null}>
-                  {capitalize(hair_style)}
+                  {hair_style ? capitalize(hair_style) : "Not Set"}
                 </LabeledList.Item>
                 <LabeledList.Item label="Facial Hair Style" color={!change_facial_hair ? "grey" : null}>
-                  {capitalize(facial_hair_style)}
+                  {facial_hair_style ? capitalize(facial_hair_style) : "Not Set"}
                 </LabeledList.Item>
               </LabeledList>
             </Flex.Item>

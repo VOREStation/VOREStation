@@ -19,6 +19,7 @@
 	if(isGlass)
 		unacidable = 1
 		drop_sound = 'sound/items/drop/bottle.ogg'
+		pickup_sound = 'sound/items/pickup/bottle.ogg'
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/Destroy()
 	if(rag)

@@ -123,3 +123,7 @@
 	if((TK in mutations) && (get_dist(src, src_object) <= 2))
 		return STATUS_INTERACTIVE
 	return ..()
+
+// Topic Extensions for old UIs
+/datum/proc/CanUseTopic(var/mob/user, var/datum/tgui_state/state)
+	return tgui_status(user, state)

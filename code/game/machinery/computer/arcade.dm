@@ -92,8 +92,11 @@
 	var/blocked = 0 //Player cannot attack/heal while set
 	var/turtle = 0
 
-/obj/machinery/computer/arcade/battle/New()
-	..()
+/obj/machinery/computer/arcade/battle/Initialize()
+	. = ..()
+	randomize_characters()
+
+/obj/machinery/computer/arcade/battle/proc/randomize_characters()
 	var/name_action
 	var/name_part1
 	var/name_part2
@@ -111,17 +114,17 @@
 	if(..())
 		return
 	user.set_machine(src)
-	ui_interact(user)
+	tgui_interact(user)
 
-/**
- *  Display the NanoUI window for the arcade machine.
- *
- *  See NanoUI documentation for details.
- */
-/obj/machinery/computer/arcade/battle/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	user.set_machine(src)
+/obj/machinery/computer/arcade/battle/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "ArcadeBattle", name)
+		ui.open()
 
-	var/list/data = list()
+/obj/machinery/computer/arcade/battle/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
+	data["name"] = name
 	data["temp"] = temp
 	data["enemyAction"] = enemy_action
 	data["enemyName"] = enemy_name
@@ -129,59 +132,54 @@
 	data["playerMP"] = player_mp
 	data["enemyHP"] = enemy_hp
 	data["gameOver"] = gameover
+	return data
 
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "arcade_battle.tmpl", src.name, 400, 300)
-		ui.set_initial_data(data)
-		ui.open()
-		//ui.set_auto_update(2)
-
-/obj/machinery/computer/arcade/battle/Topic(href, href_list)
+/obj/machinery/computer/arcade/battle/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
-		return 1
+		return TRUE
 
-	if (!blocked && !gameover)
-		if (href_list["attack"])
-			blocked = 1
-			var/attackamt = rand(2,6)
-			temp = "You attack for [attackamt] damage!"
-			playsound(src, 'sound/arcade/hit.ogg', 50, 1, extrarange = -3, falloff = 0.1, ignore_walls = FALSE)
-			if(turtle > 0)
-				turtle--
+	if(!blocked && !gameover)
+		switch(action)
+			if("attack")
+				blocked = 1
+				var/attackamt = rand(2,6)
+				temp = "You attack for [attackamt] damage!"
+				playsound(src, 'sound/arcade/hit.ogg', 50, 1, extrarange = -3, falloff = 0.1, ignore_walls = FALSE)
+				if(turtle > 0)
+					turtle--
 
-			sleep(10)
-			enemy_hp -= attackamt
-			arcade_action()
+				sleep(10)
+				enemy_hp -= attackamt
+				arcade_action()
 
-		else if (href_list["heal"])
-			blocked = 1
-			var/pointamt = rand(1,3)
-			var/healamt = rand(6,8)
-			temp = "You use [pointamt] magic to heal for [healamt] damage!"
-			playsound(src, 'sound/arcade/heal.ogg', 50, 1, extrarange = -3, falloff = 0.1, ignore_walls = FALSE)
-			turtle++
+			if("heal")
+				blocked = 1
+				var/pointamt = rand(1,3)
+				var/healamt = rand(6,8)
+				temp = "You use [pointamt] magic to heal for [healamt] damage!"
+				playsound(src, 'sound/arcade/heal.ogg', 50, 1, extrarange = -3, falloff = 0.1, ignore_walls = FALSE)
+				turtle++
 
-			sleep(10)
-			player_mp -= pointamt
-			player_hp += healamt
-			blocked = 1
-			arcade_action()
+				sleep(10)
+				player_mp -= pointamt
+				player_hp += healamt
+				blocked = 1
+				arcade_action()
 
-		else if (href_list["charge"])
-			blocked = 1
-			var/chargeamt = rand(4,7)
-			temp = "You regain [chargeamt] points"
-			playsound(src, 'sound/arcade/mana.ogg', 50, 1, extrarange = -3, falloff = 0.1, ignore_walls = FALSE)
-			player_mp += chargeamt
-			if(turtle > 0)
-				turtle--
+			if("charge")
+				blocked = 1
+				var/chargeamt = rand(4,7)
+				temp = "You regain [chargeamt] points"
+				playsound(src, 'sound/arcade/mana.ogg', 50, 1, extrarange = -3, falloff = 0.1, ignore_walls = FALSE)
+				player_mp += chargeamt
+				if(turtle > 0)
+					turtle--
 
-			sleep(10)
-			arcade_action()
+				sleep(10)
+				arcade_action()
 
 
-	else if (href_list["newgame"]) //Reset everything
+	if(action == "newgame") //Reset everything
 		temp = "New Round"
 		player_hp = 30
 		player_mp = 10
@@ -191,12 +189,11 @@
 		turtle = 0
 
 		if(emagged)
-			src.New()
+			randomize_characters()
 			emagged = 0
 
-	src.add_fingerprint(usr)
-	SSnanoui.update_uis(src)
-	return
+	add_fingerprint(usr)
+	return TRUE
 
 /obj/machinery/computer/arcade/battle/proc/arcade_action()
 	if ((enemy_mp <= 0) || (enemy_hp <= 0))
@@ -211,7 +208,7 @@
 				new /obj/item/clothing/head/collectable/petehat(src.loc)
 				message_admins("[key_name_admin(usr)] has outbombed Cuban Pete and been awarded a bomb.")
 				log_game("[key_name_admin(usr)] has outbombed Cuban Pete and been awarded a bomb.")
-				src.New()
+				randomize_characters()
 				emagged = 0
 			else if(!contents.len)
 				feedback_inc("arcade_win_normal")

@@ -10,6 +10,8 @@
 	permeability_coefficient = 0.50
 	var/hanging = 0
 	action_button_name = "Adjust Breath Mask"
+	pickup_sound = 'sound/items/pickup/component.ogg'
+	drop_sound = 'sound/items/drop/component.ogg'
 
 
 /obj/item/clothing/mask/breath/proc/adjust_mask(mob/user)

@@ -63,7 +63,9 @@
 
 /obj/machinery/pda_multicaster/proc/update_PDAs(var/turn_off)
 	for(var/obj/item/device/pda/pda in contents)
-		pda.toff = turn_off
+		var/datum/data/pda/app/messenger/M = pda.find_program(/datum/data/pda/app/messenger/multicast)
+		if(M)
+			M.toff = turn_off
 
 /obj/machinery/pda_multicaster/proc/update_power()
 	if(toggle)

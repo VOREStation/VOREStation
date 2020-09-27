@@ -93,6 +93,8 @@
 		return
 
 /obj/machinery/recharger/attack_hand(mob/user as mob)
+	if(!Adjacent(user))
+		return FALSE
 	add_fingerprint(user)
 
 	if(charging)

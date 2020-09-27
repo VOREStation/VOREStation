@@ -153,6 +153,65 @@
 				prob(2);/obj/item/ammo_magazine/m9mmt,
 				prob(6);/obj/item/ammo_magazine/m9mmt/rubber)
 
+/obj/random/grenade
+	name = "Random Grenade"
+	desc = "This is random thrown grenades (no C4/etc.)."
+	icon = 'icons/obj/grenade.dmi'
+	icon_state = "clusterbang_segment"
+
+/obj/random/grenade/item_to_spawn()
+	return pick(	prob(15);/obj/item/weapon/grenade/concussion,
+			prob(5);/obj/item/weapon/grenade/empgrenade,
+			prob(15);/obj/item/weapon/grenade/empgrenade/low_yield,
+			prob(5);/obj/item/weapon/grenade/chem_grenade/metalfoam,
+			prob(2);/obj/item/weapon/grenade/chem_grenade/incendiary,
+			prob(10);/obj/item/weapon/grenade/chem_grenade/antiweed,
+			prob(10);/obj/item/weapon/grenade/chem_grenade/cleaner,
+			prob(10);/obj/item/weapon/grenade/chem_grenade/teargas,
+			prob(5);/obj/item/weapon/grenade/explosive,
+			prob(10);/obj/item/weapon/grenade/explosive/mini,
+			prob(2);/obj/item/weapon/grenade/explosive/frag,
+			prob(15);/obj/item/weapon/grenade/flashbang,
+			prob(1);/obj/item/weapon/grenade/flashbang/clusterbang, //I can't not do this.
+			prob(15);/obj/item/weapon/grenade/shooter/rubber,
+			prob(10);/obj/item/weapon/grenade/shooter/energy/flash,
+			prob(15);/obj/item/weapon/grenade/smokebomb
+			)
+
+/obj/random/grenade/less_lethal
+	name = "Random Security Grenade"
+	desc = "This is a random thrown grenade that shouldn't kill anyone."
+	icon = 'icons/obj/grenade.dmi'
+	icon_state = "clusterbang_segment"
+
+/obj/random/grenade/less_lethal/item_to_spawn()
+	return pick(	prob(20);/obj/item/weapon/grenade/concussion,
+			prob(15);/obj/item/weapon/grenade/empgrenade/low_yield,
+			prob(15);/obj/item/weapon/grenade/chem_grenade/metalfoam,
+			prob(20);/obj/item/weapon/grenade/chem_grenade/teargas,
+			prob(20);/obj/item/weapon/grenade/flashbang,
+			prob(1);/obj/item/weapon/grenade/flashbang/clusterbang, //I *still* can't not do this.
+			prob(15);/obj/item/weapon/grenade/shooter/rubber,
+			prob(10);/obj/item/weapon/grenade/shooter/energy/flash
+			)
+
+/obj/random/grenade/box
+	name = "Random Grenade Box"
+	desc = "This is a random box of grenades. Not to be mistaken for a box of random grenades. Or a grenade of random boxes - but that would just be silly."
+	icon = 'icons/obj/grenade.dmi'
+	icon_state = "clusterbang_segment"
+
+/obj/random/grenade/box/item_to_spawn()
+	return pick(	prob(20);/obj/item/weapon/storage/box/flashbangs,
+			prob(10);/obj/item/weapon/storage/box/emps,
+			prob(20);/obj/item/weapon/storage/box/empslite,
+			prob(15);/obj/item/weapon/storage/box/smokes,
+			prob(5);/obj/item/weapon/storage/box/anti_photons,
+			prob(5);/obj/item/weapon/storage/box/frags,
+			prob(10);/obj/item/weapon/storage/box/metalfoam,
+			prob(15);/obj/item/weapon/storage/box/teargas
+			)
+
 /obj/random/projectile/random
 	name = "Random Projectile Weapon"
 	desc = "This is a random weapon."
