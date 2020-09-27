@@ -136,6 +136,12 @@
 	ckeywhitelist = list("blakeryan")
 	character_name = list("Nolan Conaway")
 
+/datum/gear/fluff/charles_hat
+	path = /obj/item/clothing/head/that/fluff/gettler
+	display_name = "Charles' Top-Hat"
+	ckeywhitelist = list("bobofboblandia")
+	character_name = list("Charles Gettler")
+
 /datum/gear/fluff/xin_sovietuniform
 	path = /obj/item/clothing/under/soviet
 	display_name = "Xin's Soviet Uniform"
