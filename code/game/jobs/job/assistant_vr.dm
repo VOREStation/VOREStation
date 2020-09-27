@@ -19,7 +19,7 @@
 	alt_titles = list("Intern" = /datum/alt_title/intern,
 					  "Apprentice Engineer" = /datum/alt_title/intern_eng,
 					  "Medical Intern" = /datum/alt_title/intern_med,
-					  "Lab Assistant" = /datum/alt_title/intern_sci,
+					  "Research Intern" = /datum/alt_title/intern_sci,
 					  "Security Cadet" = /datum/alt_title/intern_sec,
 					  "Jr. Cargo Tech" = /datum/alt_title/intern_crg,
 					  "Jr. Explorer" = /datum/alt_title/intern_exp,
@@ -44,9 +44,9 @@
 	title_outfit = /decl/hierarchy/outfit/job/assistant/medic
 
 /datum/alt_title/intern_sci
-	title = "Lab Assistant"
-	title_blurb = "A Lab Assistant attempts to provide whatever the Research department needs. They are not proper Scientists, and are \
-					often in training to become a Scientist. A Lab Assistant has no real authority."
+	title = "Research Intern"
+	title_blurb = "A Research Intern attempts to provide whatever the Research department needs. They are not proper Scientists, and are \
+					often in training to become a Scientist. A Research Intern has no real authority."
 	title_outfit = /decl/hierarchy/outfit/job/assistant/scientist
 
 /datum/alt_title/intern_sec
