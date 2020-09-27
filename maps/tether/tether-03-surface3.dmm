@@ -23544,7 +23544,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/start{
-	name = "Colony Director"
+	name = "Site Manager"
 	},
 /obj/machinery/button/remote/blast_door{
 	dir = 8;
