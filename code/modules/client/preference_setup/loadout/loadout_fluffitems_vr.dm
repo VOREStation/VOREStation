@@ -911,6 +911,13 @@
 	ckeywhitelist = list("theskringdinger")
 	character_name = list("Monty Kopic")
 
+/datum/gear/fluff/shadow_laptop
+	path = /obj/item/modular_computer/laptop/preset/custom_loadout/advanced/shadowlarkens
+	display_name = "Shadow's Laptop"
+	ckeywhitelist = list("tigercat2000")
+	character_name = list("Shadow Larkens")
+	cost = 5
+
 /datum/gear/fluff/konor_medal
 	path = /obj/item/clothing/accessory/medal/silver/unity
 	display_name = "Konor's Unity Medal"
