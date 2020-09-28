@@ -62,7 +62,7 @@
 	var/obj/machinery/hologram/holopad/T = src.holo
 	if(T && T.masters[src])//If there is a hologram and its master is the user.
 		var/obj/effect/overlay/aiholo/H = T.masters[src]
-		if(client?.prefs.runechat && !is_deaf())
+		if(should_show_runechat())
 			var/message = combine_message(message_pieces, null, src)
 			create_chat_message(H, message)
 		var/list/listeners = get_mobs_and_objs_in_view_fast(get_turf(T), world.view)

@@ -965,7 +965,7 @@ var/list/ai_verbs_default = list(
 	var/name_used = M.GetVoice()
 	//This communication is imperfect because the holopad "filters" voices and is only designed to connect to the master only.
 	var/rendered = "<i><span class='game say'>Relayed Speech: <span class='name'>[name_used]</span> [message]</span></i>"
-	if(client?.prefs.runechat)
+	if(should_show_runechat())
 		var/message_clean = combine_message(message_pieces, null, M)
 		create_chat_message(M, message_clean)
 	show_message(rendered, 2)

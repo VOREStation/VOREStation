@@ -35,6 +35,7 @@
 	else
 		input = message
 
+	var/clean_message = "[message]"
 	if(input)
 		log_subtle(message,src)
 		message = "<span class='emote'><B>[src]</B> <I>[input]</I></span>"
@@ -57,6 +58,8 @@
 			else
 				spawn(0)
 					M.show_message(message, 2)
+					if(M.should_show_runechat(audio = (m_type == 2), emote = TRUE))
+						M.create_chat_message(src, clean_message, TRUE)
 
 		for(var/visobj in vis_objs)
 			var/obj/O = visobj

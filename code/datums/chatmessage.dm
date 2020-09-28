@@ -185,13 +185,32 @@
   * * size - Size of the message
   */
 /mob/proc/create_chat_message(atom/movable/speaker, raw_message, italics=FALSE, size)
-
 	if(isobserver(src))
 		return
 
-
 	// Display visual above source
 	new /datum/chatmessage(raw_message, speaker, src, italics, size)
+
+/**
+ * Checks client preferences to see if we should show a given runechat
+ * Arguments:
+ * * audio - Check can_haear
+ * * emote - Check prefs.runechat_emote as well as prefs.runechat
+ */
+/mob/proc/should_show_runechat(audio=TRUE, emote=FALSE)
+	if(isobserver(src) || !client)
+		return FALSE
+
+	if(!client.prefs.runechat)
+		return FALSE
+
+	if(audio && is_deaf())
+		return FALSE
+
+	if(emote && !client.prefs.runechat_emote)
+		return FALSE
+
+	return TRUE
 
 
 // Tweak these defines to change the available color ranges

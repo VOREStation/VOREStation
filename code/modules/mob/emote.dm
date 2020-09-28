@@ -14,6 +14,8 @@
 		input = sanitize_or_reflect(input(src,"Choose an emote to display.") as text|null, src) //VOREStation Edit - Reflect too long messages, within reason
 	else
 		input = message
+
+	var/clean_message = "[message]"
 	if(input)
 		log_emote(message,src) //Log before we add junk
 		message = "<span class='emote'><B>[src]</B> [input]</span>"
@@ -44,6 +46,8 @@
 							M.show_message(message, m_type)
 					else
 						M.show_message(message, m_type)
+						if(M.should_show_runechat(audio = (m_type == 2), emote = TRUE))
+							M.create_chat_message(src, clean_message, TRUE)
 					//End VOREStation edit
 
 		for(var/obj in o_viewers)

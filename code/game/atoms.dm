@@ -631,7 +631,7 @@
 		if(M.client)
 			speech_bubble_hearers += M.client
 
-		if(M.client?.prefs.runechat && !M.is_deaf())
+		if(M.should_show_runechat())
 			M.create_chat_message(src, message)
 
 	if(length(speech_bubble_hearers))

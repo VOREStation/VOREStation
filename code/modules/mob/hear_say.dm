@@ -112,7 +112,7 @@
 			message_to_send = "<font size='3'><b>[message_to_send]</b></font>"
 
 		// Create map text message
-		if(client?.prefs.runechat) // is_deaf is checked up there on L103
+		if(should_show_runechat())
 			create_chat_message(speaker, message_clean, italics)
 
 		on_hear_say(message_to_send)
@@ -286,7 +286,7 @@
 	if(!say_understands(speaker))
 		name = speaker.voice_name
 
-	if(client?.prefs.runechat && !is_deaf())
+	if(should_show_runechat())
 		create_chat_message(H, message_unverbed)
 
 	var/rendered = "<span class='game say'><span class='name'>[name]</span> [message]</span>"
