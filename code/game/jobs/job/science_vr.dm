@@ -27,13 +27,18 @@
 /datum/job/scientist
 	spawn_positions = 5
 	pto_type = PTO_SCIENCE
-	alt_titles = list("Xenoarchaeologist" = /datum/alt_title/xenoarch, "Xenopaleontologist" = /datum/alt_title/xenopaleontologist, \
+	alt_titles = list("Lab Assistant" = /datum/alt_title/lab_assistant, "Xenoarchaeologist" = /datum/alt_title/xenoarch, "Xenopaleontologist" = /datum/alt_title/xenopaleontologist, \
 						"Anomalist" = /datum/alt_title/anomalist, "Phoron Researcher" = /datum/alt_title/phoron_research, "Gas Physicist" = /datum/alt_title/gas_physicist, \
 						"Circuit Designer" = /datum/alt_title/circuit_designer, "Circuit Programmer" = /datum/alt_title/circuit_programmer)
 
 
 	access = list(access_robotics, access_tox, access_tox_storage, access_research, access_xenobiology, access_xenoarch, access_xenobotany)
 	minimal_access = list(access_tox, access_tox_storage, access_research, access_xenoarch)					// Unchanged (for now?), mostly here for reference
+
+/datum/alt_title/lab_assistant
+	title = "Lab Assistant"
+	title_blurb = "A Lab Assistant is a lower-level member of research staff, whose main purpose is to help scientists with their specialized work in more menial fashion, while also \
+					learning the specializations in process."
 
 /datum/alt_title/xenopaleontologist
 	title = "Xenopaleontologist"
