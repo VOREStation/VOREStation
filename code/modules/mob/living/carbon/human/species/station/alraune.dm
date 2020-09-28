@@ -111,19 +111,19 @@
 	//This is mostly normal breath code with some tweaks that apply to their particular biology.
 
 	var/datum/gas_mixture/breath = null
-	var/fullysealed = FALSE //if they're wearing a fully sealed suit, their internals take priority.
-	var/environmentalair = FALSE //if no sealed suit, internals take priority in low pressure environements
+	var/fullysealed = FALSE //are they covered in a sealed suit or not
 
-	if(H.wear_suit && (H.wear_suit.min_pressure_protection = 0) && H.head && (H.head.min_pressure_protection = 0))
+	if(H.wear_suit && (H.wear_suit.min_pressure_protection < hazard_low_pressure) && H.head && (H.head.min_pressure_protection < hazard_low_pressure))
+		//if they're wearing a fully sealed suit, their internals take priority.
+		breath = H.get_breath_from_internal()
 		fullysealed = TRUE
-	else // find out if local gas mixture is enough to override use of internals
+	else
+		// find out if local gas mixture is enough to override use of internals
+		// if pressure is low enough, they can still breathe from internals without a suit
 		var/datum/gas_mixture/environment = H.loc.return_air()
 		var/envpressure = environment.return_pressure()
-		if(envpressure >= hazard_low_pressure)
-			environmentalair = TRUE
-
-	if(fullysealed || !environmentalair)
-		breath = H.get_breath_from_internal()
+		if(envpressure < hazard_low_pressure)
+			breath = H.get_breath_from_internal()
 
 	if(!breath) //No breath from internals so let's try to get air from our location
 		// cut-down version of get_breath_from_environment - notably, gas masks provide no benefit
