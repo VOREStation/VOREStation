@@ -32,7 +32,7 @@
 "aF" = (/obj/machinery/light{dir = 1},/turf/simulated/shuttle/floor/white,/area/derelict/ship)
 "aG" = (/obj/machinery/door/unpowered/shuttle,/turf/simulated/floor/plating,/area/derelict/ship)
 "aH" = (/obj/structure/table/standard,/obj/item/device/analyzer,/turf/simulated/shuttle/floor/white,/area/derelict/ship)
-"aI" = (/obj/structure/shuttle/engine/propulsion{icon_state = "burst_l"; dir = 4},/turf/space,/area/derelict/ship)
+"aI" = (/obj/structure/shuttle/engine/propulsion{ icon_state = "burst_l"; dir = 4},/turf/space,/area/derelict/ship)
 "aJ" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 4},/turf/simulated/shuttle/plating,/area/derelict/ship)
 "aK" = (/obj/structure/bed/chair{dir = 8},/obj/effect/decal/remains/human,/turf/simulated/shuttle/floor/white,/area/derelict/ship)
 "aL" = (/obj/machinery/door/unpowered/shuttle,/turf/simulated/shuttle/floor/white,/area/derelict/ship)
@@ -137,7 +137,7 @@
 "cY" = (/obj/item/device/radio/intercom{dir = 8; name = "Station Intercom (General)"; pixel_x = -28},/obj/machinery/atmospherics/pipe/simple/hidden{dir = 5; icon_state = "intact"},/turf/simulated/floor/tiled,/area/tcommsat/computer)
 "cZ" = (/obj/machinery/atmospherics/pipe/simple/hidden{dir = 4; icon_state = "intact"},/turf/simulated/floor/tiled,/area/tcommsat/computer)
 "da" = (/obj/structure/bed/chair/office/dark{dir = 1},/obj/machinery/atmospherics/pipe/simple/hidden{dir = 4; icon_state = "intact"},/turf/simulated/floor/tiled,/area/tcommsat/computer)
-"db" = (/obj/machinery/atmospherics/pipe/simple/hidden{icon_state = "intact"; dir = 4},/turf/simulated/floor/tiled,/area/tcommsat/computer)
+"db" = (/obj/machinery/atmospherics/pipe/simple/hidden{ icon_state = "intact"; dir = 4},/turf/simulated/floor/tiled,/area/tcommsat/computer)
 "dc" = (/obj/machinery/atmospherics/pipe/simple/hidden{dir = 10; icon_state = "intact"},/turf/simulated/floor/tiled,/area/tcommsat/computer)
 "dd" = (/obj/item/weapon/bedsheet/orange,/obj/machinery/light{dir = 8},/obj/structure/bed/padded,/turf/simulated/floor/tiled,/area/tcommsat/computer)
 "de" = (/obj/machinery/firealarm{dir = 4; pixel_x = 26},/turf/simulated/floor/tiled,/area/tcommsat/computer)
@@ -171,7 +171,7 @@
 "dG" = (/turf/simulated/wall/r_wall,/area/tcommsat/chamber)
 "dH" = (/obj/machinery/vending/cola,/turf/simulated/floor/tiled,/area/tcommsat/computer)
 "dI" = (/obj/machinery/vending/snack,/turf/simulated/floor/tiled,/area/tcommsat/computer)
-"dJ" = (/obj/item/trash/cigbutt,/obj/machinery/light,/turf/simulated/floor/tiled,/area/tcommsat/computer)
+"dJ" = (/obj/item/weapon/cigbutt,/obj/machinery/light,/turf/simulated/floor/tiled,/area/tcommsat/computer)
 "dK" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply,/turf/simulated/floor/tiled,/area/tcommsat/computer)
 "dL" = (/obj/machinery/disposal,/obj/structure/disposalpipe/trunk{dir = 4},/turf/simulated/floor/tiled,/area/tcommsat/computer)
 "dM" = (/obj/structure/bed/chair{dir = 1},/turf/simulated/floor/tiled,/area/tcommsat/computer)
@@ -188,7 +188,7 @@
 "dX" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/tiled/dark,/area/tcommsat/computer)
 "dY" = (/obj/machinery/atmospherics/unary/freezer{dir = 2; icon_state = "freezer_1"; set_temperature = 73; use_power = 1},/turf/simulated/floor/tiled/dark,/area/tcommsat/computer)
 "dZ" = (/obj/machinery/atmospherics/pipe/simple/hidden{dir = 5; icon_state = "intact"},/obj/machinery/airlock_sensor/airlock_exterior{frequency = 1381; id_tag = "server_access_ex_sensor"; master_tag = "server_access_airlock"; pixel_x = 25; pixel_y = 22},/turf/simulated/floor/tiled,/area/tcommsat/computer)
-"ea" = (/obj/machinery/door/airlock/maintenance_hatch{frequency = 1381; icon_state = "door_locked"; id_tag = "server_access_outer"; locked = 1; name = "Telecoms Server Access"; req_access = list(61)},/obj/machinery/atmospherics/pipe/simple/hidden{icon_state = "intact"; dir = 4},/turf/simulated/floor/tiled,/area/tcommsat/chamber)
+"ea" = (/obj/machinery/door/airlock/maintenance_hatch{frequency = 1381; icon_state = "door_locked"; id_tag = "server_access_outer"; locked = 1; name = "Telecoms Server Access"; req_access = list(61)},/obj/machinery/atmospherics/pipe/simple/hidden{ icon_state = "intact"; dir = 4},/turf/simulated/floor/tiled,/area/tcommsat/chamber)
 "eb" = (/obj/machinery/airlock_sensor{frequency = 1381; id_tag = "server_access_sensor"; pixel_x = 12; pixel_y = 25},/obj/machinery/atmospherics/unary/vent_pump/high_volume{dir = 8; frequency = 1381; id_tag = "server_access_pump"},/obj/machinery/embedded_controller/radio/airlock/advanced_airlock_controller{frequency = 1381; id_tag = "server_access_airlock"; name = "Server Access Airlock"; pixel_x = 0; pixel_y = 25; tag_airpump = "server_access_pump"; tag_chamber_sensor = "server_access_sensor"; tag_exterior_door = "server_access_outer"; tag_exterior_sensor = "server_access_ex_sensor"; tag_interior_door = "server_access_inner"; tag_interior_sensor = "server_access_in_sensor"; tag_secure = 1},/turf/simulated/floor/plating,/area/tcommsat/chamber)
 "ec" = (/obj/machinery/light/small{dir = 1},/turf/simulated/floor/plating,/area/tcommsat/chamber)
 "ed" = (/obj/machinery/door/airlock/hatch{name = "Telecoms Lounge"; req_access = list(61)},/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/door/firedoor,/turf/simulated/floor/tiled,/area/tcommsat/computer)
@@ -654,3 +654,4 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 "}
+

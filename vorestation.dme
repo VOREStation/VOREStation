@@ -3736,6 +3736,7 @@
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
 #include "maps\gateway_archive_vr\blackmarketpackers.dm"
+#include "maps\gv_northern_star\northern_star.dm"
 #include "maps\southern_cross\items\clothing\sc_accessory.dm"
 #include "maps\southern_cross\items\clothing\sc_suit.dm"
 #include "maps\southern_cross\items\clothing\sc_under.dm"
@@ -3756,6 +3757,5 @@
 #include "maps\submaps\surface_submaps\plains\plains_areas.dm"
 #include "maps\submaps\surface_submaps\wilderness\wilderness.dm"
 #include "maps\submaps\surface_submaps\wilderness\wilderness_areas.dm"
-#include "maps\tether\tether.dm"
 #include "maps\~map_system\maps.dm"
 // END_INCLUDE

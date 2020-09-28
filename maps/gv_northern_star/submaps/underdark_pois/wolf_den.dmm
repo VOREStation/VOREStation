@@ -1,0 +1,268 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"b" = (
+/turf/template_noop,
+/area/mine/explored/underdark)
+"c" = (
+/turf/simulated/mineral/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"d" = (
+/obj/effect/decal/remains/tajaran,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"e" = (
+/obj/effect/decal/remains/mouse,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"f" = (
+/obj/effect/decal/remains/deer,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"g" = (
+/mob/living/simple_mob/animal/wolf/phoron,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"h" = (
+/obj/effect/decal/remains/ribcage,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"i" = (
+/obj/effect/decal/remains/deer,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"j" = (
+/mob/living/simple_mob/otie/feral{
+	faction = "underdark"
+	},
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"k" = (
+/obj/structure/dogbed,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"l" = (
+/obj/structure/barricade,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"m" = (
+/obj/item/broken_device/random,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"n" = (
+/obj/item/resonator/upgraded,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"o" = (
+/obj/random/multiple/underdark,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+
+(1,1,1) = {"
+b
+b
+c
+c
+c
+c
+c
+b
+b
+c
+c
+c
+c
+c
+c
+"}
+(2,1,1) = {"
+b
+b
+c
+a
+a
+a
+l
+l
+l
+l
+a
+a
+a
+e
+c
+"}
+(3,1,1) = {"
+c
+c
+c
+a
+a
+a
+a
+a
+a
+a
+a
+g
+a
+a
+c
+"}
+(4,1,1) = {"
+a
+d
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+b
+"}
+(5,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+i
+a
+a
+a
+n
+a
+a
+b
+"}
+(6,1,1) = {"
+a
+e
+a
+a
+h
+a
+a
+a
+k
+a
+a
+a
+a
+a
+b
+"}
+(7,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+b
+"}
+(8,1,1) = {"
+a
+a
+a
+m
+a
+j
+a
+a
+a
+a
+a
+a
+a
+a
+b
+"}
+(9,1,1) = {"
+g
+f
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+g
+c
+"}
+(10,1,1) = {"
+c
+c
+c
+a
+g
+a
+e
+a
+a
+a
+a
+e
+a
+a
+c
+"}
+(11,1,1) = {"
+b
+b
+c
+a
+a
+a
+l
+l
+l
+l
+a
+a
+a
+o
+c
+"}
+(12,1,1) = {"
+b
+b
+c
+c
+c
+c
+c
+b
+b
+c
+c
+c
+c
+c
+c
+"}
