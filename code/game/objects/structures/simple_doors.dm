@@ -7,7 +7,7 @@
 	icon = 'icons/obj/doors/material_doors.dmi'
 	icon_state = "metal"
 
-	var/material/material
+	var/datum/material/material
 	var/state = 0 //closed, 1 == open
 	var/isSwitchingStates = 0
 	var/hardness = 1

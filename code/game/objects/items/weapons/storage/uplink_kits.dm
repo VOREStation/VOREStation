@@ -128,6 +128,12 @@
 
 /obj/item/weapon/storage/box/syndie_kit/imp_aug/sprinter
 	case_type = /obj/item/weapon/implantcase/sprinter
+	
+/obj/item/weapon/storage/box/syndie_kit/imp_aug/armblade
+	case_type = /obj/item/weapon/implantcase/armblade
+
+/obj/item/weapon/storage/box/syndie_kit/imp_aug/handblade
+	case_type = /obj/item/weapon/implantcase/handblade
 
 /obj/item/weapon/storage/box/syndie_kit/space
 	name = "boxed space suit and helmet"

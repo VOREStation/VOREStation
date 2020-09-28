@@ -80,7 +80,7 @@
 
 /datum/gear/ears/skrell/colored/band/New()
 	..()
-	gear_tweaks = list(gear_tweak_free_color_choice)
+	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/ears/skrell/colored/chain
 	display_name = "Colored chain (Skrell)"
@@ -90,7 +90,7 @@
 
 /datum/gear/ears/skrell/colored/chain/New()
 	..()
-	gear_tweaks = list(gear_tweak_free_color_choice)
+	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/uniform/smock
 	display_name = "smock selection (Teshari)"
@@ -147,7 +147,7 @@
 
 /datum/gear/shoes/footwraps/New()
 	..()
-	gear_tweaks = list(gear_tweak_free_color_choice)
+	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/uniform/cohesionsuits
 	display_name = "cohesion suit selection (Promethean)"
@@ -358,7 +358,7 @@
 
 /datum/gear/uniform/smockcolor/New()
 	..()
-	gear_tweaks = list(gear_tweak_free_color_choice)
+	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/uniform/undercoatcolor
 	display_name = "undercoat, recolorable (Teshari)"
@@ -368,7 +368,7 @@
 
 /datum/gear/uniform/undercoatcolor/New()
 	..()
-	gear_tweaks = list(gear_tweak_free_color_choice)
+	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/suit/cloakcolor
 	display_name = "cloak, recolorable (Teshari)"
@@ -378,7 +378,7 @@
 
 /datum/gear/suit/cloakcolor/New()
 	..()
-	gear_tweaks = list(gear_tweak_free_color_choice)
+	gear_tweaks += gear_tweak_free_color_choice
 /datum/gear/suit/labcoat_tesh
 	display_name = "labcoat, colorable (Teshari)"
 	path = /obj/item/clothing/suit/storage/toggle/labcoat/teshari
@@ -387,7 +387,7 @@
 
 /datum/gear/suit/labcoat_tesh/New()
 	..()
-	gear_tweaks = list(gear_tweak_free_color_choice)
+	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/suit/teshcoat
 	display_name = "small black coat, recolorable stripes (Teshari)"
@@ -397,7 +397,8 @@
 
 /datum/gear/suit/teshcoat/New()
 	..()
-	gear_tweaks = list(gear_tweak_free_color_choice)
+
+	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/suit/teshcoatwhite
 	display_name = "smallcoat, recolorable (Teshari)"
@@ -407,7 +408,7 @@
 
 /datum/gear/suit/teshcoatwhite/New()
 	..()
-	gear_tweaks = list(gear_tweak_free_color_choice)
+	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/accessory/teshneckscarf
 	display_name = "neckscarf, recolorable (Teshari)"
@@ -417,4 +418,17 @@
 
 /datum/gear/accessory/teshneckscarf/New()
 	..()
-	gear_tweaks = list(gear_tweak_free_color_choice)
+	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/shoes/toelessjack
+	display_name = "toe-less jackboots"
+	path = /obj/item/clothing/shoes/boots/jackboots/toeless
+
+
+/datum/gear/shoes/toelessknee
+	display_name = "toe-less jackboots, knee-length"
+	path = /obj/item/clothing/shoes/boots/jackboots/toeless/knee
+
+/datum/gear/shoes/toelessthigh
+	display_name = "toe-less jackboots, thigh-length"
+	path = /obj/item/clothing/shoes/boots/jackboots/toeless/thigh

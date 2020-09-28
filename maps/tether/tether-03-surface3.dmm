@@ -17546,6 +17546,11 @@
 /obj/effect/floor_decal/corner/lime/border{
 	dir = 5
 	},
+/obj/item/weapon/shovel/spade,
+/obj/item/weapon/storage/belt/utility,
+/obj/item/stack/material/sandstone{
+	amount = 5
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/botanystorage)
 "aEl" = (
@@ -17808,6 +17813,11 @@
 	},
 /obj/effect/floor_decal/corner/lime/border{
 	dir = 4
+	},
+/obj/item/weapon/shovel/spade,
+/obj/item/weapon/storage/belt/utility,
+/obj/item/stack/material/sandstone{
+	amount = 5
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/botanystorage)
@@ -18097,12 +18107,14 @@
 	name = "plastic table frame"
 	},
 /obj/item/weapon/material/knife,
-/obj/item/weapon/material/minihoe,
-/obj/item/weapon/material/minihoe,
 /obj/item/weapon/material/knife,
 /obj/effect/floor_decal/corner/lime/full{
 	dir = 1
 	},
+/obj/item/device/analyzer/plant_analyzer,
+/obj/item/device/analyzer/plant_analyzer,
+/obj/item/weapon/material/minihoe,
+/obj/item/weapon/material/minihoe,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/botanystorage)
 "aFl" = (
@@ -23532,7 +23544,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/start{
-	name = "Colony Director"
+	name = "Site Manager"
 	},
 /obj/machinery/button/remote/blast_door{
 	dir = 8;
@@ -25862,10 +25874,6 @@
 /area/hydroponics)
 "aTG" = (
 /obj/structure/table/woodentable,
-/obj/item/device/destTagger{
-	pixel_x = 4;
-	pixel_y = 3
-	},
 /obj/item/weapon/packageWrap,
 /obj/item/weapon/packageWrap,
 /obj/item/device/destTagger{
@@ -25874,6 +25882,10 @@
 	},
 /obj/machinery/light{
 	dir = 4
+	},
+/obj/item/device/destTagger{
+	pixel_x = 4;
+	pixel_y = 3
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/servicebackroom)
@@ -31050,10 +31062,14 @@
 /turf/simulated/floor/lino,
 /area/crew_quarters/bar)
 "bcq" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tether)
+/obj/structure/table/woodentable,
+/obj/machinery/camera/network/outside{
+	dir = 9
+	},
+/obj/fiftyspawner/cardboard,
+/obj/fiftyspawner/plastic,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/servicebackroom)
 "bcr" = (
 /obj/effect/floor_decal/spline/plain{
 	dir = 1
@@ -31311,18 +31327,21 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/entertainment/stage)
 "bcL" = (
-/obj/machinery/atmospherics/unary/engine{
-	dir = 1
-	},
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tourbus/engines)
+/obj/structure/table/woodentable,
+/obj/item/weapon/storage/box/sinpockets,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/servicebackroom)
 "bcM" = (
 /obj/structure/bed/chair/wood{
 	dir = 1
 	},
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/entertainment)
+"bcN" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tether)
 "bcO" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -31544,6 +31563,13 @@
 	},
 /turf/simulated/floor/lino,
 /area/tether/surfacebase/entertainment/backstage)
+"bde" = (
+/obj/machinery/atmospherics/unary/engine{
+	dir = 1
+	},
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tourbus/engines)
 "bdf" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8
@@ -32786,14 +32812,6 @@
 	},
 /turf/simulated/floor/lino,
 /area/tether/surfacebase/entertainment/backstage)
-"bfJ" = (
-/obj/structure/table/woodentable,
-/obj/item/weapon/storage/box/sinpockets,
-/obj/machinery/camera/network/outside{
-	dir = 9
-	},
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/servicebackroom)
 "bfK" = (
 /obj/machinery/light/small,
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
@@ -47786,7 +47804,7 @@ jML
 jHw
 jpB
 qWU
-bcL
+bde
 aKU
 aOI
 aPb
@@ -48638,7 +48656,7 @@ caw
 jHw
 gHh
 qWU
-bcL
+bde
 aKU
 aOI
 aPb
@@ -50623,7 +50641,7 @@ aNk
 uSA
 aNJ
 aNP
-bcq
+bcN
 aKU
 abg
 aOk
@@ -50765,7 +50783,7 @@ aNl
 aNl
 aNK
 aNP
-bcq
+bcN
 aKU
 abg
 aOk
@@ -50907,7 +50925,7 @@ aNm
 aNl
 aNK
 aNP
-bcq
+bcN
 aKU
 abg
 aOk
@@ -54568,11 +54586,11 @@ aLJ
 aMh
 aJq
 aTG
-bfJ
+bcq
 aMh
 aJq
 aWl
-aLF
+bcL
 aMh
 bfL
 adG

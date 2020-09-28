@@ -318,6 +318,7 @@
 	nutriment_amt = 1
 	nutriment_desc = list("candy" = 1)
 
+
 /obj/item/weapon/reagent_containers/food/snacks/candy/Initialize()
 	. = ..()
 	reagents.add_reagent("sugar", 3)
@@ -2001,7 +2002,7 @@
 	filling_color = "#AFC4B5"
 	center_of_mass = list("x"=16, "y"=8)
 	nutriment_amt = 8
-	nutriment_desc = list("carot" = 2, "corn" = 2, "eggplant" = 2, "potato" = 2)
+	nutriment_desc = list("carrot" = 2, "corn" = 2, "eggplant" = 2, "potato" = 2)
 
 /obj/item/weapon/reagent_containers/food/snacks/vegetablesoup/Initialize()
 	. = ..()
@@ -4161,6 +4162,8 @@
 	trash = /obj/item/trash/unajerky
 	filling_color = "#631212"
 	center_of_mass = list("x"=15, "y"=9)
+	drop_sound = 'sound/items/drop/soda.ogg'
+	pickup_sound = 'sound/items/pickup/soda.ogg'
 
 /obj/item/weapon/reagent_containers/food/snacks/unajerky/Initialize()
 	. =..()

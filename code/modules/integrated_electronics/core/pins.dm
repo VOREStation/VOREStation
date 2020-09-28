@@ -40,8 +40,8 @@ D [1]/  ||
 	holder = null
 	. = ..()
 
-/datum/integrated_io/nano_host()
-	return holder.nano_host()
+/datum/integrated_io/tgui_host()
+	return holder.tgui_host()
 
 
 /datum/integrated_io/proc/data_as_type(var/as_type)

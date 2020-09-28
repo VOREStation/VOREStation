@@ -32,12 +32,6 @@ SUBSYSTEM_DEF(ticker)
 
 	var/list/datum/mind/minds = list()	// The people in the game. Used for objective tracking.
 
-	// TODO - I am sure there is a better place these can go.
-	var/Bible_icon_state	// icon_state the chaplain has chosen for his bible
-	var/Bible_item_state	// item_state the chaplain has chosen for his bible
-	var/Bible_name			// name of the bible
-	var/Bible_deity_name
-
 	var/random_players = FALSE	// If set to nonzero, ALL players who latejoin or declare-ready join will have random appearances/genders
 
 	// TODO - Should this go here or in the job subsystem?
@@ -567,8 +561,4 @@ var/global/datum/controller/subsystem/ticker/ticker
 
 	minds = SSticker.minds
 
-	Bible_icon_state = SSticker.Bible_icon_state
-	Bible_item_state = SSticker.Bible_item_state
-	Bible_name = SSticker.Bible_name
-	Bible_deity_name = SSticker.Bible_deity_name
 	random_players = SSticker.random_players

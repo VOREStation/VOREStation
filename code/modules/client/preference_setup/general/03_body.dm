@@ -444,7 +444,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			pref.r_hair = 0//hex2num(copytext(new_hair, 2, 4))
 			pref.g_hair = 0//hex2num(copytext(new_hair, 4, 6))
 			pref.b_hair = 0//hex2num(copytext(new_hair, 6, 8))
-			pref.s_tone = 0
+			pref.s_tone = -75
 
 			reset_limbs() // Safety for species with incompatible manufacturers; easier than trying to do it case by case.
 			pref.body_markings.Cut() // Basically same as above.

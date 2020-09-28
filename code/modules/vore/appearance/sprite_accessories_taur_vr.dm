@@ -126,7 +126,7 @@
 	var/icon/suit_sprites = null //File for suit sprites, if any.
 	var/icon/under_sprites = null
 
-	var/icon_sprite_tag			// This is where we put stuff like _Horse, so we can assign icons easier. 
+	var/icon_sprite_tag			// This is where we put stuff like _Horse, so we can assign icons easier.
 
 	var/can_ride = 1			//whether we're real rideable taur or just in that category
 
@@ -189,6 +189,12 @@
 	icon_state = "fatwolf_s"
 	extra_overlay = "fatwolf_markings"
 	//icon_sprite_tag = "fatwolf2c"
+
+/datum/sprite_accessory/tail/taur/wolf/skunk
+	name = "Skunk (Taur)"
+	icon_state = "skunk_s"
+	extra_overlay = "skunk_markings"
+	icon_sprite_tag = "skunk"
 
 /datum/sprite_accessory/tail/taur/wolf/synthwolf
 	name = "SynthWolf dual-color (Taur)"

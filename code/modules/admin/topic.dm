@@ -615,7 +615,7 @@
 		jobs += "</tr></table>"
 
 	//Other races (Blue) ... And also graffiti.
-		var/list/misc_roles = list("Dionaea", "Graffiti")
+		var/list/misc_roles = list("Dionaea", "Graffiti", "Custom loadout")
 		jobs += "<tr bgcolor='ccccff'><th colspan='[LAZYLEN(misc_roles)]'>Other Roles</th></tr><tr align='center'>"
 		for(var/entry in misc_roles)
 			if(jobban_isbanned(M, entry))
