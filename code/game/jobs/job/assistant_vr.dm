@@ -34,7 +34,7 @@
 /datum/alt_title/intern_eng
 	title = "Apprentice Engineer"
 	title_blurb = "An Apprentice Engineer attempts to provide whatever the Engineering department needs. They are not proper Engineers, and are \
-					often in training to become an Engineer. A Technical Assistant has no real authority."
+					often in training to become an Engineer. An Apprentice Engineer has no real authority."
 	title_outfit = /decl/hierarchy/outfit/job/assistant/engineer
 
 /datum/alt_title/intern_med
