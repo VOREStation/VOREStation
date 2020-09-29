@@ -1,51 +1,51 @@
 "a" = (/turf/template_noop,/area/template_noop)
-"b" = (/obj/structure/loot_pile/surface/bones,/obj/effect/decal/cleanable/blood,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/template_noop)
-"e" = (/mob/living/simple_mob/vore/rabbit/killer,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/template_noop)
-"g" = (/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/template_noop)
-"h" = (/turf/simulated/mineral/ignore_mapgen/cave,/area/template_noop)
-"m" = (/obj/item/weapon/bone/skull,/obj/effect/decal/cleanable/blood,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/template_noop)
-"n" = (/obj/item/clothing/suit/storage/hooded/knight/galahad,/obj/effect/decal/cleanable/blood,/obj/item/clothing/shoes/knight,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/template_noop)
-"q" = (/obj/effect/decal/cleanable/blood,/obj/item/weapon/bone,/obj/item/weapon/bone/skull,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/template_noop)
-"r" = (/obj/item/weapon/bone,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/template_noop)
-"s" = (/obj/item/weapon/bone/ribs,/obj/effect/decal/cleanable/blood,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/template_noop)
-"t" = (/obj/effect/gibspawner/human,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/template_noop)
-"u" = (/obj/effect/decal/cleanable/blood,/obj/item/weapon/bone/skull,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/template_noop)
-"v" = (/obj/item/weapon/grenade/explosive/frag,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/template_noop)
-"y" = (/obj/item/weapon/bone,/obj/item/weapon/bone/ribs,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/template_noop)
-"A" = (/obj/effect/decal/cleanable/blood,/obj/item/weapon/bone,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/template_noop)
-"C" = (/obj/item/clothing/suit/storage/hooded/knight/lancelot,/obj/effect/decal/cleanable/blood,/obj/item/clothing/shoes/knight,/obj/item/clothing/shoes/knight/black,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/template_noop)
-"E" = (/obj/item/clothing/suit/armor/combat/crusader/bedevere,/obj/item/clothing/head/helmet/combat/bedevere,/obj/effect/decal/cleanable/blood,/obj/item/clothing/shoes/knight/black,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/template_noop)
-"F" = (/obj/item/weapon/bone,/obj/item/weapon/bone/skull,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/template_noop)
-"I" = (/obj/item/clothing/suit/storage/hooded/knight/robin,/obj/effect/decal/cleanable/blood/splatter,/obj/item/clothing/shoes/knight,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/template_noop)
-"J" = (/obj/effect/decal/cleanable/blood,/obj/item/weapon/bone/ribs,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/template_noop)
-"K" = (/obj/item/clothing/suit/armor/combat/crusader,/obj/item/clothing/head/helmet/combat/crusader,/obj/effect/decal/cleanable/blood,/obj/item/clothing/shoes/knight,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/template_noop)
-"L" = (/obj/structure/barricade/cutout/fukken_xeno,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/template_noop)
-"P" = (/obj/item/weapon/bone/skull,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/template_noop)
-"Q" = (/obj/item/weapon/bone,/obj/structure/loot_pile/surface/bones,/obj/effect/decal/cleanable/blood,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/template_noop)
-"T" = (/obj/structure/barricade,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/template_noop)
-"U" = (/obj/item/weapon/bone/ribs,/obj/item/clothing/suit/storage/hooded/knight,/obj/item/weapon/bone/skull,/obj/effect/decal/cleanable/blood,/obj/item/clothing/shoes/knight/black,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/template_noop)
-"V" = (/obj/item/weapon/bone,/obj/effect/decal/cleanable/blood,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/template_noop)
-"Y" = (/obj/effect/decal/cleanable/blood,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/template_noop)
+"b" = (/turf/simulated/mineral/ignore_mapgen/cave,/area/submap/killer_rabbit)
+"c" = (/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/killer_rabbit)
+"d" = (/mob/living/simple_mob/vore/rabbit/killer,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/killer_rabbit)
+"e" = (/obj/effect/gibspawner/human,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/killer_rabbit)
+"f" = (/obj/item/weapon/bone/skull,/obj/effect/decal/cleanable/blood,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/killer_rabbit)
+"g" = (/obj/item/clothing/suit/armor/combat/crusader/bedevere,/obj/item/clothing/head/helmet/combat/bedevere,/obj/effect/decal/cleanable/blood,/obj/item/clothing/shoes/knight/black,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/killer_rabbit)
+"h" = (/obj/item/weapon/bone/ribs,/obj/effect/decal/cleanable/blood,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/killer_rabbit)
+"i" = (/obj/structure/loot_pile/surface/bones,/obj/effect/decal/cleanable/blood,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/killer_rabbit)
+"j" = (/obj/item/clothing/suit/storage/hooded/knight/robin,/obj/effect/decal/cleanable/blood/splatter,/obj/item/clothing/shoes/knight,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/killer_rabbit)
+"k" = (/obj/item/weapon/bone,/obj/effect/decal/cleanable/blood,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/killer_rabbit)
+"l" = (/obj/item/clothing/suit/armor/combat/crusader,/obj/item/clothing/head/helmet/combat/crusader,/obj/effect/decal/cleanable/blood,/obj/item/clothing/shoes/knight,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/killer_rabbit)
+"m" = (/obj/item/weapon/bone/ribs,/obj/item/clothing/suit/storage/hooded/knight,/obj/item/weapon/bone/skull,/obj/effect/decal/cleanable/blood,/obj/item/clothing/shoes/knight/black,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/killer_rabbit)
+"n" = (/obj/item/clothing/suit/storage/hooded/knight/lancelot,/obj/effect/decal/cleanable/blood,/obj/item/clothing/shoes/knight,/obj/item/clothing/shoes/knight/black,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/killer_rabbit)
+"o" = (/obj/item/clothing/suit/storage/hooded/knight/galahad,/obj/effect/decal/cleanable/blood,/obj/item/clothing/shoes/knight,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/killer_rabbit)
+"p" = (/obj/item/weapon/grenade/explosive/frag,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/killer_rabbit)
+"q" = (/obj/structure/barricade/cutout/fukken_xeno,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/killer_rabbit)
+"r" = (/obj/structure/barricade,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/killer_rabbit)
+"s" = (/obj/effect/decal/cleanable/blood,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/killer_rabbit)
+"t" = (/obj/effect/decal/cleanable/blood,/obj/item/weapon/bone,/obj/item/weapon/bone/skull,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/killer_rabbit)
+"u" = (/obj/effect/decal/cleanable/blood,/obj/item/weapon/bone/ribs,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/killer_rabbit)
+"v" = (/obj/effect/decal/cleanable/blood,/obj/item/weapon/bone/skull,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/killer_rabbit)
+"w" = (/obj/effect/decal/cleanable/blood,/obj/item/weapon/bone,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/killer_rabbit)
+"x" = (/obj/item/weapon/bone,/obj/item/weapon/bone/skull,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/killer_rabbit)
+"y" = (/obj/item/weapon/bone/skull,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/killer_rabbit)
+"z" = (/obj/item/weapon/bone,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/killer_rabbit)
+"A" = (/obj/item/weapon/bone,/obj/item/weapon/bone/ribs,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/killer_rabbit)
+"B" = (/obj/item/weapon/bone,/obj/structure/loot_pile/surface/bones,/obj/effect/decal/cleanable/blood,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/killer_rabbit)
 
 (1,1,1) = {"
-aahhhhhhhhhhhhhhhhaa
-aahhhhhhhhhhhhhhhhaa
-aahhhhhhhhhhhhhhhhaa
-aahhhgggggegtmghhhaa
-ahhhgggggggggEgghhha
-ahhhgsggghhggtgbhhha
-ahhhmIVgghhgmKgghhha
-ahhhgtgggggggggthhha
-ahhhgggUggggggCmhhha
-ahhhgntgggVggggghhha
-ahhhgmggghhggggghhha
-aahhhhggbhhggghhhhaa
-aahhhhgghhhhgghhhhaa
-aahhhhgghhhhgghhhhaa
-aagbhhggvhhvgVhhLgaa
-aaaghhggghhTTThhgaaa
-aaaahhTThhhhYThhaaaa
-aaaamqThhhhhhJbmaaaa
-aaaaguAFhhhhPryraaaa
-aaaaggggQhhrgrPraaaa
+aabbbbbbbbbbbbbbbbaa
+aabbbbbbbbbbbbbbbbaa
+aabbbbbbbbbbbbbbbbaa
+aabbbcccccdcefcbbbaa
+abbbcccccccccgccbbba
+abbbchcccbbccecibbba
+abbbfjkccbbcflccbbba
+abbbcecccccccccebbba
+abbbcccmccccccnfbbba
+abbbcoeccckcccccbbba
+abbbcfcccbbcccccbbba
+aabbbbccibbcccbbbbaa
+aabbbbccbbbbccbbbbaa
+aabbbbccbbbbccbbbbaa
+aacibbccpbbpckbbqcaa
+aaacbbcccbbrrrbbcaaa
+aaaabbrrbbbbsrbbaaaa
+aaaaftrbbbbbbuifaaaa
+aaaacvwxbbbbyzAzaaaa
+aaaaccccBbbzczyzaaaa
 "}
