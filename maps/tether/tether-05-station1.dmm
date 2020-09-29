@@ -1251,6 +1251,20 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
+"acu" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8;
+	icon_state = "danger"
+	},
+/obj/item/modular_computer/console/preset/engineering{
+	icon_state = "console";
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/engineering/engine_monitoring)
 "acv" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/cap/visible/scrubbers{
@@ -1258,6 +1272,10 @@
 	},
 /turf/simulated/floor,
 /area/vacant/vacant_restaurant_lower)
+"acw" = (
+/obj/item/modular_computer/console/preset/engineering,
+/turf/simulated/floor/tiled,
+/area/engineering/engineering_monitoring)
 "acx" = (
 /obj/structure/cable/green{
 	d1 = 2;
@@ -1525,6 +1543,13 @@
 /obj/random/drinkbottle,
 /turf/simulated/floor,
 /area/maintenance/station/eng_lower)
+"adj" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/item/modular_computer/console/preset/engineering,
+/turf/simulated/floor/tiled,
+/area/engineering/foyer)
 "adk" = (
 /obj/structure/railing{
 	dir = 1
@@ -1625,6 +1650,16 @@
 	},
 /turf/simulated/floor,
 /area/vacant/vacant_restaurant_lower)
+"adq" = (
+/obj/machinery/requests_console/preset/engineering{
+	pixel_y = -30
+	},
+/obj/item/modular_computer/console/preset/engineering{
+	icon_state = "console";
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/engineering/engineering_monitoring)
 "adr" = (
 /obj/structure/flora/pottedplant,
 /obj/effect/floor_decal/corner/blue/full{
@@ -1636,6 +1671,14 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/bridge/secondary)
+"ads" = (
+/obj/machinery/light,
+/obj/item/modular_computer/console/preset/engineering{
+	icon_state = "console";
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/engineering/engineering_monitoring)
 "adt" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -1870,20 +1913,6 @@
 "adP" = (
 /turf/simulated/wall/r_wall,
 /area/gateway)
-"adQ" = (
-/obj/machinery/computer/power_monitor{
-	dir = 4;
-	throwpass = 1
-	},
-/obj/effect/floor_decal/borderfloor{
-	dir = 8
-	},
-/obj/effect/floor_decal/industrial/danger{
-	dir = 8;
-	icon_state = "danger"
-	},
-/turf/simulated/floor/tiled,
-/area/engineering/engine_monitoring)
 "adR" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -2339,19 +2368,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
-"aeQ" = (
-/obj/machinery/computer/rcon{
-	dir = 4
-	},
-/obj/effect/floor_decal/borderfloor{
-	dir = 8
-	},
-/obj/effect/floor_decal/industrial/danger{
-	dir = 8;
-	icon_state = "danger"
-	},
-/turf/simulated/floor/tiled,
-/area/engineering/engine_monitoring)
 "aeR" = (
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor,
@@ -6021,10 +6037,6 @@
 	},
 /turf/simulated/wall/r_wall,
 /area/engineering/atmos/backup)
-"aly" = (
-/obj/machinery/computer/atmos_alert,
-/turf/simulated/floor/tiled,
-/area/engineering/engineering_monitoring)
 "alz" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/green{
@@ -6097,10 +6109,6 @@
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor,
 /area/engineering/storage)
-"alI" = (
-/obj/machinery/computer/station_alert,
-/turf/simulated/floor/tiled,
-/area/engineering/engineering_monitoring)
 "alJ" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
@@ -18579,24 +18587,6 @@
 /obj/random/tech_supply,
 /turf/simulated/floor/tiled,
 /area/engineering/engineering_monitoring)
-"aVP" = (
-/obj/machinery/computer/power_monitor{
-	dir = 1;
-	icon_state = "computer"
-	},
-/obj/machinery/light,
-/turf/simulated/floor/tiled,
-/area/engineering/engineering_monitoring)
-"aVW" = (
-/obj/machinery/computer/rcon{
-	dir = 1;
-	icon_state = "computer"
-	},
-/obj/machinery/requests_console/preset/engineering{
-	pixel_y = -30
-	},
-/turf/simulated/floor/tiled,
-/area/engineering/engineering_monitoring)
 "aWj" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -18806,13 +18796,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/chief)
-"aZr" = (
-/obj/machinery/computer/atmos_alert,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/turf/simulated/floor/tiled,
-/area/engineering/foyer)
 "aZP" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -30803,7 +30786,7 @@ aPa
 aQw
 asS
 aIO
-aVW
+adq
 alv
 bYm
 amh
@@ -30911,9 +30894,9 @@ abr
 abD
 alF
 acX
-adQ
+acu
 aet
-aeQ
+acu
 aff
 alF
 agF
@@ -30941,11 +30924,11 @@ aBy
 aTQ
 aLY
 alt
-aly
+acw
 alX
 anQ
 aSB
-aVP
+ads
 alv
 bYl
 acM
@@ -31083,7 +31066,7 @@ aIf
 aUo
 aMd
 alt
-alI
+acw
 amY
 awm
 aXX
@@ -31509,7 +31492,7 @@ acS
 apD
 aqu
 aXZ
-aZr
+adj
 aQD
 aSD
 aUk
