@@ -1120,8 +1120,7 @@
 /turf/simulated/floor,
 /area/maintenance/station/eng_lower)
 "acc" = (
-/obj/item/modular_computer/console/preset/engineering{
-	icon_state = "console";
+/obj/machinery/computer/atmoscontrol{
 	dir = 4
 	},
 /turf/simulated/floor/tiled,
@@ -21192,6 +21191,9 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 10
 	},
+/obj/machinery/camera/network/engineering{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/gravity_gen)
 "dZO" = (
@@ -21889,6 +21891,18 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/engineering/gravity_gen)
+"ifE" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 1;
+	icon_state = "borderfloor";
+	pixel_y = 0
+	},
+/obj/effect/floor_decal/corner/yellow/border{
+	dir = 1
+	},
+/obj/machinery/camera/network/engineering,
+/turf/simulated/floor/tiled,
+/area/engineering/gravity_lobby)
 "ijz" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -22998,6 +23012,14 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/gravity_gen)
+"poB" = (
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/yellow/border,
+/obj/machinery/camera/network/engineering{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/engineering/gravity_lobby)
 "psh" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/yellow/border,
@@ -23257,6 +23279,15 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/station/dock_one)
+"rxD" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/machinery/camera/network/engineering{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/engineering/gravity_gen)
 "rxE" = (
 /obj/structure/sign/department/gravi{
 	pixel_x = 32
@@ -23455,6 +23486,9 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/machinery/camera/network/engineering{
+	dir = 4
 	},
 /turf/simulated/floor/tiled{
 	icon_state = "techmaint"
@@ -23754,6 +23788,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 9
 	},
+/obj/machinery/camera/network/engineering,
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/gravity_gen)
 "tAQ" = (
@@ -33993,7 +34028,7 @@ ack
 ack
 aik
 rEb
-fgA
+ifE
 hZW
 vxw
 uOm
@@ -34001,7 +34036,7 @@ ykG
 qiQ
 qiQ
 uyn
-aHe
+poB
 rEb
 aik
 azB
@@ -36269,7 +36304,7 @@ dJL
 sUY
 sUY
 sUY
-sUY
+rxD
 sUY
 sUY
 sUY
