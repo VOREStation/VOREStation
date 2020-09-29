@@ -230,11 +230,11 @@
 /datum/map_template/surface/mountains/normal/cliff1
 	name = "Ore-Topped Cliff"
 	desc = "A raised area of rock created by volcanic forces."
-	mappath = 'maps/submaps/surface_submaps/mountains/Cliff1.dmm'
+	mappath = 'maps/submaps/surface_submaps/mountains/Cliff1_vr.dmm' //VOREStation Edit
 	cost = 5
 	allow_duplicates = TRUE
 	template_group = "Underground Cliffs"
-	
+
 /datum/map_template/surface/mountains/normal/deadly_rabbit // VOREStation Edit
 	name = "The Killer Rabbit"
 	desc = "A cave where the Knights of the Round have fallen to a murderous Rabbit."
