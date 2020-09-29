@@ -524,6 +524,10 @@
 /obj/item/device/robotanalyzer{
 	pixel_y = -8
 	},
+/obj/machinery/alarm/talon{
+	dir = 8;
+	pixel_x = 22
+	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/talon/deckone/medical)
 "bi" = (
@@ -1528,9 +1532,6 @@
 "dd" = (
 /obj/structure/table/standard,
 /obj/machinery/reagentgrinder,
-/obj/structure/closet/medical_wall{
-	pixel_y = 32
-	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/talon/deckone/medical)
 "de" = (
@@ -1662,10 +1663,7 @@
 	pixel_x = 2;
 	pixel_y = 5
 	},
-/obj/machinery/alarm/talon{
-	dir = 1;
-	pixel_y = -22
-	},
+/obj/structure/closet/walllocker/medical/south,
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/talon/deckone/medical)
 "en" = (
@@ -1776,6 +1774,15 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/aux,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/shuttle/talonboat)
+"fB" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/eris/white/bluecorner,
+/area/talon/deckone/medical)
 "fH" = (
 /obj/machinery/firealarm{
 	dir = 1;
@@ -1913,6 +1920,12 @@
 /obj/machinery/autolathe,
 /turf/simulated/floor/tiled/eris/steel/gray_perforated,
 /area/talon/deckone/workroom)
+"hG" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/eris/white/bluecorner,
+/area/talon/deckone/medical)
 "hP" = (
 /obj/machinery/oxygen_pump{
 	pixel_y = 30
@@ -2351,6 +2364,15 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/brown_perforated,
 /area/talon/deckone/port_eng)
+"lZ" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/eris/white/bluecorner,
+/area/talon/deckone/medical)
 "mb" = (
 /obj/structure/cable/green,
 /obj/machinery/power/apc/talon{
@@ -2696,12 +2718,6 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/cyancorner,
 /area/talon/deckone/bridge)
-"pI" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/eris/white/bluecorner,
-/area/talon/deckone/medical)
 "pJ" = (
 /obj/structure/cable/green{
 	d2 = 4;
@@ -2734,6 +2750,12 @@
 /obj/structure/disposalpipe/trunk,
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/deckone/central_hallway)
+"qc" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/eris/white/bluecorner,
+/area/talon/deckone/medical)
 "qe" = (
 /obj/structure/cable/green{
 	d2 = 2;
@@ -2925,15 +2947,6 @@
 	},
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/deckone/central_hallway)
-"sA" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/eris/white/bluecorner,
-/area/talon/deckone/medical)
 "sI" = (
 /obj/structure/catwalk,
 /obj/structure/loot_pile/maint/trash,
@@ -4029,6 +4042,10 @@
 "Fl" = (
 /turf/simulated/floor/tiled/eris/white/danger,
 /area/talon/deckone/armory)
+"Fp" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
+/area/talon/deckone/medical)
 "Fs" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -4380,6 +4397,15 @@
 	},
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/deckone/brig)
+"Jj" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/closet/medical_wall{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/eris/white/bluecorner,
+/area/talon/deckone/medical)
 "Jn" = (
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/eris/steel,
@@ -5406,15 +5432,6 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/cyancorner,
 /area/talon/deckone/bridge)
-"Ux" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
-	},
-/turf/simulated/floor/tiled/eris/white/bluecorner,
-/area/talon/deckone/medical)
 "UC" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -5660,10 +5677,6 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/brown_perforated,
 /area/talon/deckone/starboard_eng)
-"WD" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
-/turf/simulated/floor/tiled/eris/white/bluecorner,
-/area/talon/deckone/medical)
 "WE" = (
 /obj/structure/sign/poster{
 	dir = 1;
@@ -5927,12 +5940,6 @@
 "Zt" = (
 /turf/simulated/floor/tiled/eris/white/orangecorner,
 /area/talon/deckone/armory)
-"Zu" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/eris/white/bluecorner,
-/area/talon/deckone/medical)
 "Zz" = (
 /obj/machinery/alarm/talon{
 	dir = 1;
@@ -16570,7 +16577,7 @@ Kc
 Bn
 Gb
 FA
-Zu
+hG
 Gb
 Gb
 ce
@@ -16711,7 +16718,7 @@ pX
 EE
 dO
 av
-FA
+Jj
 it
 Gb
 Gb
@@ -16854,7 +16861,7 @@ Nm
 dO
 dd
 FA
-Zu
+hG
 Gb
 ek
 dO
@@ -17280,7 +17287,7 @@ qA
 dO
 NG
 bM
-sA
+lZ
 qB
 bf
 dO
@@ -17421,9 +17428,9 @@ co
 qA
 dO
 de
-WD
-Ux
-pI
+Fp
+fB
+qc
 ct
 dO
 Gt
