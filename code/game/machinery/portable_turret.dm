@@ -66,6 +66,7 @@
 	var/last_fired = FALSE			//TRUE: if the turret is cooling down from a shot, FALSE: turret is ready to fire
 	var/shot_delay = 1.5 SECONDS	//1.5 seconds between each shot
 
+	var/targetting_is_configurable = TRUE // if false, you cannot change who this turret attacks via its UI
 	var/check_arrest = TRUE		//checks if the perp is set to arrest
 	var/check_records = TRUE	//checks if a security record exists at all
 	var/check_weapons = FALSE	//checks if it can shoot people that have a weapon they aren't authorized to have
@@ -81,6 +82,7 @@
 
 	var/enabled = TRUE			//determines if the turret is on
 	var/lethal = FALSE			//whether in lethal or stun mode
+	var/lethal_is_configurable = TRUE // if false, its lethal setting cannot be changed
 	var/disabled = FALSE
 
 	var/shot_sound 				//what sound should play when the turret fires
@@ -214,6 +216,9 @@
 	req_one_access = list()
 	installation = /obj/item/weapon/gun/energy/lasertag/omni
 
+	targetting_is_configurable = FALSE
+	lethal_is_configurable = FALSE
+
 	locked = FALSE
 	enabled = FALSE
 	anchored = FALSE
@@ -262,43 +267,14 @@
 		if(istype(M.wear_suit, /obj/item/clothing/suit/bluetag) && check_weapons) // Checks if they are a blue player
 			return TURRET_PRIORITY_TARGET
 
-/obj/machinery/porta_turret/lasertag/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	var/data[0]
-	data["access"] = !isLocked(user)
-	data["locked"] = locked
-	data["enabled"] = enabled
-	//data["is_lethal"] = 1 // VOREStation Removal of "Lethal" setting - it does nothing. Rykka did dis.
-	//data["lethal"] = lethal // VOREStation Removal of "Lethal" setting - it does nothing. Rykka did dis.
-
-	if(data["access"])
-		var/settings[0]
-		settings[++settings.len] = list("category" = "Target Red", "setting" = "check_synth", "value" = check_synth) // Could not get the UI to work with new vars specifically for lasertag turrets -Nalarac
-		settings[++settings.len] = list("category" = "Target Blue", "setting" = "check_weapons", "value" = check_weapons) // So I'm using these variables since they don't do anything else in this case
-		data["settings"] = settings
-
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if(!ui)
-		ui = new(user, src, ui_key, "turret_control.tmpl", "Turret Controls", 500, 300)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(1)
-
-/obj/machinery/porta_turret/lasertag/Topic(href, href_list)
-	if(..())
-		return 1
-
-	if(href_list["command"] && href_list["value"])
-		var/value = text2num(href_list["value"])
-		if(href_list["command"] == "enable")
-			enabled = value
-		//else if(href_list["command"] == "lethal") // VOREStation Removal of "Lethal" setting - it does nothing. Rykka did dis.
-			//lethal = value // VOREStation Removal of "Lethal" setting - it does nothing. Rykka did dis.
-		else if(href_list["command"] == "check_synth")
-			check_synth = value
-		else if(href_list["command"] == "check_weapons")
-			check_weapons = value
-
-		return 1
+/obj/machinery/porta_turret/lasertag/tgui_data(mob/user)
+	var/list/data = list(
+		"locked" = isLocked(user), // does the current user have access?
+		"on" = enabled, // is turret turned on?
+		"lethal" = lethal,
+		"lethal_is_configurable" = lethal_is_configurable
+	)
+	return data
 
 /obj/machinery/porta_turret/Initialize()
 	//Sets up a spark system
@@ -401,102 +377,99 @@
 			lethal_shot_sound = 'sound/weapons/eluger.ogg'
 			shot_sound = 'sound/weapons/Taser.ogg'
 
-/obj/machinery/porta_turret/proc/isLocked(mob/user)
-	if(ailock && issilicon(user))
-		to_chat(user, "<span class='notice'>There seems to be a firewall preventing you from accessing this device.</span>")
-		return 1
-
-	if(locked && !issilicon(user))
-		to_chat(user, "<span class='notice'>Controls locked.</span>")
-		return 1
-
-	return 0
-
-/obj/machinery/porta_turret/attack_ai(mob/user)
-	if(isLocked(user))
-		return
-
-	ui_interact(user)
-
-/obj/machinery/porta_turret/attack_hand(mob/user)
-	if(isLocked(user))
-		return
-
-	ui_interact(user)
-
-/obj/machinery/porta_turret/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	var/data[0]
-	data["access"] = !isLocked(user)
-	data["locked"] = locked
-	data["enabled"] = enabled
-	data["is_lethal"] = 1
-	data["lethal"] = lethal
-
-	if(data["access"])
-		var/settings[0]
-		settings[++settings.len] = list("category" = "Neutralize All Non-Synthetics", "setting" = "check_synth", "value" = check_synth)
-		settings[++settings.len] = list("category" = "Check Weapon Authorization", "setting" = "check_weapons", "value" = check_weapons)
-		settings[++settings.len] = list("category" = "Check Security Records", "setting" = "check_records", "value" = check_records)
-		settings[++settings.len] = list("category" = "Check Arrest Status", "setting" = "check_arrest", "value" = check_arrest)
-		settings[++settings.len] = list("category" = "Check Access Authorization", "setting" = "check_access", "value" = check_access)
-		settings[++settings.len] = list("category" = "Check misc. Lifeforms", "setting" = "check_anomalies", "value" = check_anomalies)
-		settings[++settings.len] = list("category" = "Neutralize All Entities", "setting" = "check_all", "value" = check_all)
-		settings[++settings.len] = list("category" = "Neutralize Downed Entities", "setting" = "check_down", "value" = check_down)
-		data["settings"] = settings
-
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if(!ui)
-		ui = new(user, src, ui_key, "turret_control.tmpl", "Turret Controls", 500, 300)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(1)
-
 /obj/machinery/porta_turret/proc/HasController()
 	var/area/A = get_area(src)
 	return A && A.turret_controls.len > 0
 
-/obj/machinery/porta_turret/CanUseTopic(var/mob/user)
+/obj/machinery/porta_turret/proc/isLocked(mob/user)
 	if(HasController())
-		to_chat(user, "<span class='notice'>Turrets can only be controlled using the assigned turret controller.</span>")
-		return STATUS_CLOSE
+		return TRUE
+	if(isrobot(user) || isAI(user))
+		if(ailock)
+			to_chat(user, "<span class='notice'>There seems to be a firewall preventing you from accessing this device.</span>")
+			return TRUE
+		else
+			return FALSE
+	if(isobserver(user))
+		var/mob/observer/dead/D = user
+		if(D.can_admin_interact())
+			return FALSE
+		else
+			return TRUE
+	if(locked)
+		return TRUE
+	return FALSE
 
-	if(isLocked(user))
-		return STATUS_CLOSE
+/obj/machinery/porta_turret/attack_ai(mob/user)
+	tgui_interact(user)
 
+/obj/machinery/porta_turret/attack_ghost(mob/user)
+	tgui_interact(user)
+
+/obj/machinery/porta_turret/attack_hand(mob/user)
+	tgui_interact(user)
+
+/obj/machinery/porta_turret/tgui_interact(mob/user, datum/tgui/ui = null)
+	if(HasController())
+		to_chat(user, "<span class='notice'>[src] can only be controlled using the assigned turret controller.</span>")
+		return
 	if(!anchored)
-		to_chat(user, "<span class='notice'>\The [src] has to be secured first!</span>")
-		return STATUS_CLOSE
+		to_chat(user, "<span class='notice'>[src] has to be secured first!</span>")
+		return
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "PortableTurret", name, 500, 400)
+		ui.open()
 
-	return ..()
+/obj/machinery/porta_turret/tgui_data(mob/user)
+	var/list/data = list(
+		"locked" = isLocked(user), // does the current user have access?
+		"on" = enabled,
+		"targetting_is_configurable" = targetting_is_configurable, // If false, targetting settings don't show up
+		"lethal" = lethal,
+		"lethal_is_configurable" = lethal_is_configurable,
+		"check_weapons" = check_weapons,
+		"neutralize_noaccess" = check_access,
+		"neutralize_norecord" = check_records,
+		"neutralize_criminals" = check_arrest,
+		"neutralize_all" = check_all,
+		"neutralize_nonsynth" = check_synth,
+		"neutralize_unidentified" = check_anomalies,
+		"neutralize_down" = check_down,
+	)
+	return data
 
-/obj/machinery/porta_turret/Topic(href, href_list)
+/obj/machinery/porta_turret/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
-		return 1
+		return TRUE
+	if(isLocked(usr))
+		return TRUE
+	. = TRUE
 
-	if(href_list["command"] && href_list["value"])
-		var/value = text2num(href_list["value"])
-		if(href_list["command"] == "enable")
-			enabled = value
-		else if(href_list["command"] == "lethal")
-			lethal = value
-		else if(href_list["command"] == "check_synth")
-			check_synth = value
-		else if(href_list["command"] == "check_weapons")
-			check_weapons = value
-		else if(href_list["command"] == "check_records")
-			check_records = value
-		else if(href_list["command"] == "check_arrest")
-			check_arrest = value
-		else if(href_list["command"] == "check_access")
-			check_access = value
-		else if(href_list["command"] == "check_anomalies")
-			check_anomalies = value
-		else if(href_list["command"] == "check_all")
-			check_all = value
-		else if(href_list["command"] == "check_down")
-			check_down = value
-
-		return 1
+	switch(action)
+		if("power")
+			enabled = !enabled
+		if("lethal")
+			if(lethal_is_configurable)
+				lethal = !lethal
+	if(targetting_is_configurable)
+		switch(action)
+			if("authweapon")
+				check_weapons = !check_weapons
+			if("authaccess")
+				check_access = !check_access
+			if("authnorecord")
+				check_records = !check_records
+			if("autharrest")
+				check_arrest = !check_arrest
+			if("authxeno")
+				check_anomalies = !check_anomalies
+			if("authsynth")
+				check_synth = !check_synth
+			if("authall")
+				check_all = !check_all
+			if("authdown")
+				check_down = !check_down
 
 /obj/machinery/porta_turret/power_change()
 	if(powered())
@@ -929,6 +902,7 @@
 	var/check_weapons
 	var/check_anomalies
 	var/check_all
+	var/check_down
 	var/ailock
 
 /obj/machinery/porta_turret/proc/setState(var/datum/turret_checks/TC)
@@ -944,6 +918,7 @@
 	check_weapons = TC.check_weapons
 	check_anomalies = TC.check_anomalies
 	check_all = TC.check_all
+	check_down = TC.check_down
 	ailock = TC.ailock
 
 	power_change()

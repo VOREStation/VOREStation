@@ -1,5 +1,5 @@
 
-/material/steel/generate_recipes()
+/datum/material/steel/generate_recipes()
 	. = ..()
 	recipes += new/datum/stack_recipe_list("mounted chairs", list(
 		new/datum/stack_recipe("mounted chair", /obj/structure/bed/chair/bay/chair, 2, one_per_turf = 1, on_floor = 1, time = 10),
@@ -80,11 +80,11 @@
 		new/datum/stack_recipe("orange sofa corner", /obj/structure/bed/chair/sofa/orange/corner, 1, one_per_turf = 1, on_floor = 1), \
 		))
 
-/material/durasteel/generate_recipes()
+/datum/material/durasteel/generate_recipes()
 	. = ..()
 	recipes += new/datum/stack_recipe("durasteel fishing rod", /obj/item/weapon/material/fishing_rod/modern/strong, 2)
 	recipes += new/datum/stack_recipe("whetstone", /obj/item/weapon/whetstone, 2, time = 30)
 
-/material/plastitanium/generate_recipes()
+/datum/material/plastitanium/generate_recipes()
 	. = ..()
 	recipes += new/datum/stack_recipe("whetstone", /obj/item/weapon/whetstone, 2, time = 20)

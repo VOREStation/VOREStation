@@ -12,6 +12,8 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 60)
 	pressure_resistance = 2
 	attack_verb = list("stamped")
+	drop_sound = 'sound/items/drop/device.ogg'
+	pickup_sound = 'sound/items/pickup/device.ogg'
 
 /obj/item/weapon/stamp/captain
 	name = "site manager's rubber stamp"

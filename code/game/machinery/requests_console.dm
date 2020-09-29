@@ -104,7 +104,6 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 /obj/machinery/requests_console/attack_hand(user as mob)
 	if(..(user))
 		return
-	ui_interact(user)
 	tgui_interact(user)
 
 /obj/machinery/requests_console/tgui_interact(mob/user, datum/tgui/ui)

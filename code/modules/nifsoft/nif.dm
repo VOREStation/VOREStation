@@ -101,6 +101,9 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	//Draw me yo.
 	update_icon()
 
+	if(!our_statclick)
+		our_statclick = new(null, "Open", src)
+
 //Destructor cleans up references
 /obj/item/device/nif/Destroy()
 	human = null
@@ -355,6 +358,8 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 //Prints 'AR' messages to the user
 /obj/item/device/nif/proc/notify(var/message,var/alert = 0)
 	if(!human || stat == NIF_TEMPFAIL) return
+
+	last_notification = message // TGUI Hook
 
 	to_chat(human,"<b>\[[bicon(src.big_icon)]NIF\]</b> displays, \"<span class='[alert ? "danger" : "notice"]'>[message]</span>\"")
 	if(prob(1)) human.visible_message("<span class='notice'>\The [human] [pick(look_messages)].</span>")

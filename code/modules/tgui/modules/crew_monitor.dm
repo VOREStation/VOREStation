@@ -2,6 +2,11 @@
 	name = "Crew monitor"
 	tgui_id = "CrewMonitor"
 
+/datum/tgui_module/crew_monitor/ui_assets(mob/user)
+	return list(
+		get_asset_datum(/datum/asset/simple/nanomaps),
+	)
+
 /datum/tgui_module/crew_monitor/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return TRUE

@@ -602,37 +602,37 @@
 	name = "Engineering suit cycler"
 	model_text = "Engineering"
 	req_access = list(access_construction)
-	departments = list("Engineering","Atmospherics","HAZMAT","Construction")
+	departments = list("Engineering","Atmospherics","HAZMAT","Construction","No Change")
 
 /obj/machinery/suit_cycler/mining
 	name = "Mining suit cycler"
 	model_text = "Mining"
 	req_access = list(access_mining)
-	departments = list("Mining")
+	departments = list("Mining","No Change")
 
 /obj/machinery/suit_cycler/security
 	name = "Security suit cycler"
 	model_text = "Security"
 	req_access = list(access_security)
-	departments = list("Security","Crowd Control","Security EVA")
+	departments = list("Security","Crowd Control","Security EVA","No Change")
 
 /obj/machinery/suit_cycler/medical
 	name = "Medical suit cycler"
 	model_text = "Medical"
 	req_access = list(access_medical)
-	departments = list("Medical","Biohazard","Emergency Medical Response")
+	departments = list("Medical","Biohazard","Emergency Medical Response","No Change")
 
 /obj/machinery/suit_cycler/syndicate
 	name = "Nonstandard suit cycler"
 	model_text = "Nonstandard"
 	req_access = list(access_syndicate)
-	departments = list("Mercenary", "Charring")
+	departments = list("Mercenary", "Charring","No Change")
 	can_repair = 1
 
 /obj/machinery/suit_cycler/exploration
 	name = "Explorer suit cycler"
 	model_text = "Exploration"
-	departments = list("Exploration","Old Exploration")
+	departments = list("Exploration","Old Exploration","No Change")
 
 /obj/machinery/suit_cycler/exploration/Initialize()
 	species -= SPECIES_TESHARI
@@ -641,33 +641,33 @@
 /obj/machinery/suit_cycler/pilot
 	name = "Pilot suit cycler"
 	model_text = "Pilot"
-	departments = list("Pilot Blue","Pilot")
+	departments = list("Pilot Blue","Pilot","No Change")
 
 /obj/machinery/suit_cycler/vintage
 	name = "Vintage Crew suit cycler"
 	model_text = "Vintage"
-	departments = list("Vintage Crew")
+	departments = list("Vintage Crew","No Change")
 	req_access = null
 
 /obj/machinery/suit_cycler/vintage/pilot
 	name = "Vintage Pilot suit cycler"
 	model_text = "Vintage Pilot"
-	departments = list("Vintage Pilot (Bubble Helm)","Vintage Pilot (Closed Helm)")
+	departments = list("Vintage Pilot (Bubble Helm)","Vintage Pilot (Closed Helm)","No Change")
 
 /obj/machinery/suit_cycler/vintage/medsci
 	name = "Vintage MedSci suit cycler"
 	model_text = "Vintage MedSci"
-	departments = list("Vintage Medical (Bubble Helm)","Vintage Medical (Closed Helm)","Vintage Research (Bubble Helm)","Vintage Research (Closed Helm)")
+	departments = list("Vintage Medical (Bubble Helm)","Vintage Medical (Closed Helm)","Vintage Research (Bubble Helm)","Vintage Research (Closed Helm)","No Change")
 
 /obj/machinery/suit_cycler/vintage/rugged
 	name = "Vintage Ruggedized suit cycler"
 	model_text = "Vintage Ruggedized"
-	departments = list("Vintage Engineering","Vintage Marine","Vintage Officer","Vintage Mercenary")
+	departments = list("Vintage Engineering","Vintage Marine","Vintage Officer","Vintage Mercenary","No Change")
 
 /obj/machinery/suit_cycler/vintage/omni
 	name = "Vintage Master suit cycler"
 	model_text = "Vintage Master"
-	departments = list("Vintage Crew","Vintage Engineering","Vintage Pilot (Bubble Helm)","Vintage Pilot (Closed Helm)","Vintage Medical (Bubble Helm)","Vintage Medical (Closed Helm)","Vintage Research (Bubble Helm)","Vintage Research (Closed Helm)","Vintage Marine","Vintage Officer","Vintage Mercenary")
+	departments = list("Vintage Crew","Vintage Engineering","Vintage Pilot (Bubble Helm)","Vintage Pilot (Closed Helm)","Vintage Medical (Bubble Helm)","Vintage Medical (Closed Helm)","Vintage Research (Bubble Helm)","Vintage Research (Closed Helm)","Vintage Marine","Vintage Officer","Vintage Mercenary","No Change")
 
 /obj/machinery/suit_cycler/vintage/Initialize()
 	species -= SPECIES_TESHARI
@@ -1049,17 +1049,9 @@
 /obj/machinery/suit_cycler/proc/apply_paintjob()
 	var/obj/item/clothing/head/helmet/parent_helmet
 	var/obj/item/clothing/suit/space/parent_suit
-
+	var/turf/T = get_turf(src)
 	if(!target_species || !target_department)
 		return
-
-	if(target_species)
-		if(helmet) helmet.refit_for_species(target_species)
-		if(suit)
-			suit.refit_for_species(target_species)
-			if(suit.helmet)
-				suit.helmet.refit_for_species(target_species)
-
 	//Now "Complete" with most departmental and variant suits, and sorted by department. These aren't available in the standard or emagged cycler lists because they're incomplete for most species.
 	switch(target_department)
 		if("No Change")
@@ -1217,7 +1209,32 @@
 			parent_suit = /obj/item/clothing/suit/space/void/refurb/mercenary/talon
 		//VOREStation Addition End
 		//END: downstream variant space
-
+	if(target_species)
+		//Only run these checks if they have a sprite sheet defined, otherwise they use human's anyways, and there is almost definitely a sprite.
+		if((helmet!=null&&(target_species in helmet.sprite_sheets_obj))||(suit!=null&&(target_species in suit.sprite_sheets_obj)))
+			//Making sure all of our items have the sprites to be refitted.
+			var/helmet_check = ((helmet!=null && (initial(parent_helmet.icon_state) in icon_states(helmet.sprite_sheets_obj[target_species],1))) || helmet==null)
+			//If the helmet exists, only return true if there's also sprites for it. If the helmet doesn't exist, return true.
+			var/suit_check = ((suit!=null && (initial(parent_suit.icon_state) in icon_states(suit.sprite_sheets_obj[target_species],1))) || suit==null)
+			var/suit_helmet_check = ((suit!=null && suit.helmet!=null && (initial(parent_helmet.icon_state) in icon_states(suit.helmet.sprite_sheets_obj[target_species],1))) || suit==null || suit.helmet==null)
+			if(helmet_check && suit_check && suit_helmet_check)
+				if(helmet) 
+					helmet.refit_for_species(target_species)
+				if(suit) 
+					suit.refit_for_species(target_species)
+					if(suit.helmet)
+						suit.helmet.refit_for_species(target_species)
+			else
+				//If they don't, alert the user and stop here.
+				T.visible_message("[bicon(src)]<span class='warning'>Unable to apply specified cosmetics with specified species. Please try again with a different species or cosmetic option selected.</span>")
+				return
+		else
+			if(helmet) 
+				helmet.refit_for_species(target_species)
+			if(suit) 
+				suit.refit_for_species(target_species)
+				if(suit.helmet)
+					suit.helmet.refit_for_species(target_species)
 	//look at this! isn't it beautiful? -KK (well ok not beautiful but it's a lot cleaner)
 	if(helmet && target_department != "No Change")
 		var/obj/item/clothing/H = new parent_helmet

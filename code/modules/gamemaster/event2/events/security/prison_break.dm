@@ -218,7 +218,7 @@
 /datum/event2/event/prison_break/start()
 	for(var/area/A in areas_to_break)
 		spawn(0) // So we don't block the ticker.
-			A.prison_break(open_blast_doors = !ignore_blast_doors)
+			A.prison_break(TRUE, TRUE, !ignore_blast_doors) // Naming `open_blast_doors` causes mysterious runtimes.
 
 // There's between 40 seconds and one minute before the whole station knows.
 // If there's a baddie engineer, they can choose to keep their early announcement to themselves and get a minute to exploit it.

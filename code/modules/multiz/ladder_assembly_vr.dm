@@ -125,7 +125,7 @@
 		qdel(above)
 
 // Make them constructable in hand
-/material/steel/generate_recipes()
+/datum/material/steel/generate_recipes()
 	..()
 	recipes += new/datum/stack_recipe("ladder assembly", /obj/structure/ladder_assembly, 4, time = 50, one_per_turf = 1, on_floor = 1)
 

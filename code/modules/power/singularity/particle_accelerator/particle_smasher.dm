@@ -43,9 +43,12 @@
 		for(var/obj/item/I in contents)
 			. += "<span class='notice'>\the [I]</span>"
 
+/obj/machinery/particle_smasher/atmosanalyze(var/mob/user)
+	return list("<span class='notice'>\The [src] reads an energy level of [energy].</span>")
+
 /obj/machinery/particle_smasher/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.type == /obj/item/device/analyzer)
-		to_chat(user, "<span class='notice'>\The [src] reads an energy level of [energy].</span>")
+		return
 	else if(istype(W, /obj/item/stack/material))
 		var/obj/item/stack/material/M = W
 		if(M.uses_charge)
