@@ -732,6 +732,13 @@
 	character_name = list("Tiemli Kroto")
 	allowed_roles = list("Roboticist")
 
+/datum/gear/fluff/clara_flask
+	path = /obj/item/weapon/reagent_containers/food/drinks/glass2/fluff/claraflask
+	display_name = "Clara's Vacuum Flask"
+	ckeywhitelist = list("rboys2")
+	character_name = list("Clara Mali")
+	cost = 1
+
 //  S CKEYS
 /datum/gear/fluff/brynhild_medal
 	path = /obj/item/clothing/accessory/medal/silver/valor
