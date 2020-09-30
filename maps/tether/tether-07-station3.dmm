@@ -4957,13 +4957,33 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/armory/blue)
 "aii" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
+/obj/machinery/disposal,
+/obj/machinery/alarm{
+	dir = 4;
+	icon_state = "alarm0";
+	pixel_x = -22;
+	pixel_y = 0
 	},
-/turf/simulated/floor/tiled/asteroid_steel/airless,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/mining_outpost/shuttle)
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 9
+	},
+/obj/machinery/computer/security/telescreen/entertainment{
+	desc = "Damn, looks like it's on the clown world channel. I wonder what else is on?";
+	icon_state = "frame";
+	pixel_x = 0;
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/white,
+/area/medical/reception)
 "aij" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 9
@@ -5165,12 +5185,23 @@
 /turf/simulated/floor/bluegrid,
 /area/ai)
 "ait" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
-/turf/simulated/floor/tiled/asteroid_steel/airless,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/mining_outpost/shuttle)
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 1
+	},
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white,
+/area/medical/reception)
 "aiu" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 8
@@ -5215,7 +5246,7 @@
 "aix" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8;
-	icon_state = "propulsion_r"
+	icon_state = "propulsion_l"
 	},
 /turf/simulated/floor/tiled/asteroid_steel/airless,
 /turf/simulated/shuttle/plating/airless/carry,
@@ -5620,6 +5651,13 @@
 "aiV" = (
 /turf/simulated/wall,
 /area/maintenance/cargo)
+"aiW" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/asteroid_steel/airless,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/mining_outpost/shuttle)
 "aiX" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow{
 	dir = 6
@@ -5647,6 +5685,14 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/security/armory/blue)
+"ajb" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_r"
+	},
+/turf/simulated/floor/tiled/asteroid_steel/airless,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/mining_outpost/shuttle)
 "ajc" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 4
@@ -13544,30 +13590,6 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/open,
 /area/tether/exploration)
-"awF" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 1
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 1
-	},
-/obj/machinery/computer/security/telescreen/entertainment{
-	desc = "Damn, looks like it's on the clown world channel. I wonder what else is on?";
-	icon_state = "frame";
-	pixel_x = 0;
-	pixel_y = 32
-	},
-/turf/simulated/floor/tiled/white,
-/area/medical/reception)
 "awG" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -15682,28 +15704,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/chemistry)
-"aAA" = (
-/obj/machinery/disposal,
-/obj/machinery/alarm{
-	dir = 4;
-	icon_state = "alarm0";
-	pixel_x = -22;
-	pixel_y = 0
-	},
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 9
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 9
-	},
-/turf/simulated/floor/tiled/white,
-/area/medical/reception)
 "aAB" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -41254,7 +41254,7 @@ kcH
 jbY
 apS
 aDl
-aAA
+aii
 aFK
 aDq
 aEk
@@ -41396,7 +41396,7 @@ ajf
 anc
 aqQ
 ayK
-awF
+ait
 aCl
 aCl
 aEl
@@ -47664,11 +47664,11 @@ avt
 avt
 adD
 aZS
-aii
-ait
-ait
-ait
 aix
+aiW
+aiW
+aiW
+ajb
 baB
 adD
 avt
