@@ -351,7 +351,7 @@
 
 /datum/gear/uniform/shortplaindress/New()
 	..()
-	gear_tweaks = list(gear_tweak_free_color_choice)
+	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/uniform/longdress
 	display_name = "long dress"
@@ -359,7 +359,7 @@
 
 /datum/gear/uniform/longdress/New()
 	..()
-	gear_tweaks = list(gear_tweak_free_color_choice)
+	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/uniform/longwidedress
 	display_name = "long wide dress"
@@ -367,7 +367,7 @@
 
 /datum/gear/uniform/longwidedress/New()
 	..()
-	gear_tweaks = list(gear_tweak_free_color_choice)
+	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/uniform/reddress
 	display_name = "red dress with belt"
@@ -456,7 +456,7 @@
 
 /datum/gear/uniform/yogapants/New()
 	..()
-	gear_tweaks = list(gear_tweak_free_color_choice)
+	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/uniform/black_corset
 	display_name = "black corset"
@@ -512,7 +512,7 @@
 
 /datum/gear/uniform/pleated/New()
 	..()
-	gear_tweaks = list(gear_tweak_free_color_choice)
+	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/uniform/lilacdress
 	display_name = "lilac dress"

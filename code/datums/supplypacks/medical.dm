@@ -32,6 +32,13 @@
 	containertype = /obj/structure/closet/crate/nanomed
 	containername = "BloodPack crate"
 
+/datum/supply_pack/med/synthplas
+	name = "BloodPack (Synthplas) crate"
+	contains = list(/obj/item/weapon/reagent_containers/blood/synthplas = 6)
+	cost = 80
+	containertype = /obj/structure/closet/crate/nanomed
+	containername = "SynthPlas crate"
+
 /datum/supply_pack/med/bodybag
 	name = "Body bag crate"
 	contains = list(/obj/item/weapon/storage/box/bodybags = 3)

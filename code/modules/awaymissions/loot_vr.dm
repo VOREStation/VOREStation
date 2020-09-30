@@ -392,3 +392,8 @@
 /obj/structure/symbol/sa
 	desc = "It looks like a right triangle with a dot to the side. It reminds you of a wooden strut between a wall and ceiling."
 	icon_state = "sa"
+
+/obj/structure/symbol/maint
+	name = "maintenance panel"
+	desc = "This sign suggests that the wall it's attached to can be opened somehow."
+	icon_state = "maintenance_panel"

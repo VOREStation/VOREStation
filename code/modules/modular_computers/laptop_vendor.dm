@@ -6,8 +6,8 @@
 	icon = 'icons/obj/vending.dmi'
 	icon_state = "robotics"
 	layer = OBJ_LAYER - 0.1
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 
 	// The actual laptop/tablet
 	var/obj/item/modular_computer/laptop/fabricated_laptop = null
@@ -160,70 +160,77 @@
 		return total_price
 	return 0
 
-
-
-
-
-/obj/machinery/lapvend/Topic(href, href_list)
+/obj/machinery/lapvend/tgui_act(action, params)
 	if(..())
-		return 1
+		return TRUE
 
-	if(href_list["pick_device"])
-		if(state) // We've already picked a device type
-			return 0
-		devtype = text2num(href_list["pick_device"])
-		state = 1
-		fabricate_and_recalc_price(0)
-		return 1
-	if(href_list["clean_order"])
-		reset_order()
-		return 1
+	switch(action)
+		if("pick_device")
+			if(state) // We've already picked a device type
+				return FALSE
+			devtype = text2num(params["pick"])
+			state = 1
+			fabricate_and_recalc_price(FALSE)
+			return TRUE
+		if("clean_order")
+			reset_order()
+			return TRUE
 	if((state != 1) && devtype) // Following IFs should only be usable when in the Select Loadout mode
-		return 0
-	if(href_list["confirm_order"])
-		state = 2 // Wait for ID swipe for payment processing
-		fabricate_and_recalc_price(0)
-		return 1
-	if(href_list["hw_cpu"])
-		dev_cpu = text2num(href_list["hw_cpu"])
-		fabricate_and_recalc_price(0)
-		return 1
-	if(href_list["hw_battery"])
-		dev_battery = text2num(href_list["hw_battery"])
-		fabricate_and_recalc_price(0)
-		return 1
-	if(href_list["hw_disk"])
-		dev_disk = text2num(href_list["hw_disk"])
-		fabricate_and_recalc_price(0)
-		return 1
-	if(href_list["hw_netcard"])
-		dev_netcard = text2num(href_list["hw_netcard"])
-		fabricate_and_recalc_price(0)
-		return 1
-	if(href_list["hw_tesla"])
-		dev_tesla = text2num(href_list["hw_tesla"])
-		fabricate_and_recalc_price(0)
-		return 1
-	if(href_list["hw_nanoprint"])
-		dev_nanoprint = text2num(href_list["hw_nanoprint"])
-		fabricate_and_recalc_price(0)
-		return 1
-	if(href_list["hw_card"])
-		dev_card = text2num(href_list["hw_card"])
-		fabricate_and_recalc_price(0)
-		return 1
-	return 0
+		return FALSE
+	switch(action)
+		if("confirm_order")
+			state = 2 // Wait for ID swipe for payment processing
+			fabricate_and_recalc_price(FALSE)
+			return TRUE
+		if("hw_cpu")
+			dev_cpu = text2num(params["cpu"])
+			fabricate_and_recalc_price(FALSE)
+			return TRUE
+		if("hw_battery")
+			dev_battery = text2num(params["battery"])
+			fabricate_and_recalc_price(FALSE)
+			return TRUE
+		if("hw_disk")
+			dev_disk = text2num(params["disk"])
+			fabricate_and_recalc_price(FALSE)
+			return TRUE
+		if("hw_netcard")
+			dev_netcard = text2num(params["netcard"])
+			fabricate_and_recalc_price(FALSE)
+			return TRUE
+		if("hw_tesla")
+			dev_tesla = text2num(params["tesla"])
+			fabricate_and_recalc_price(FALSE)
+			return TRUE
+		if("hw_nanoprint")
+			dev_nanoprint = text2num(params["print"])
+			fabricate_and_recalc_price(FALSE)
+			return TRUE
+		if("hw_card")
+			dev_card = text2num(params["card"])
+			fabricate_and_recalc_price(FALSE)
+			return TRUE
+	return FALSE
+
+
 
 /obj/machinery/lapvend/attack_hand(var/mob/user)
-	ui_interact(user)
+	tgui_interact(user)
 
-/obj/machinery/lapvend/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/lapvend/tgui_interact(mob/user, datum/tgui/ui)
 	if(stat & (BROKEN | NOPOWER | MAINT))
 		if(ui)
 			ui.close()
-		return 0
+		return FALSE
 
-	var/list/data[0]
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "ComputerFabricator")
+		ui.open()
+
+/obj/machinery/lapvend/tgui_data(mob/user)
+	var/list/data = list()
+
 	data["state"] = state
 	if(state == 1)
 		data["devtype"] = devtype
@@ -237,13 +244,7 @@
 	if(state == 1 || state == 2)
 		data["totalprice"] = total_price
 
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "computer_fabricator.tmpl", "Personal Computer Vendor", 500, 400)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(1)
-
+	return data
 
 obj/machinery/lapvend/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	var/obj/item/weapon/card/id/I = W.GetID()
@@ -271,7 +272,6 @@ obj/machinery/lapvend/attackby(obj/item/weapon/W as obj, mob/user as mob)
 			return 1
 		return 0
 	return ..()
-
 
 // Simplified payment processing, returns 1 on success.
 /obj/machinery/lapvend/proc/process_payment(var/obj/item/weapon/card/id/I, var/obj/item/ID_container)

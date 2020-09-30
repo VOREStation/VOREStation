@@ -149,7 +149,8 @@
 	pto_type = PTO_SCIENCE
 	vr_sprites = list(
 						"Acheron" = "mechoid-Science",
-						"ZOOM-BA" = "zoomba-research"
+						"ZOOM-BA" = "zoomba-research",
+						"XI-GUS" = "spiderscience"
 					 )
 
 /obj/item/weapon/robot_module/robot/security/combat

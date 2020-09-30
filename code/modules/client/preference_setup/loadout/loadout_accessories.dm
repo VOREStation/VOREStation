@@ -24,7 +24,7 @@
 
 /datum/gear/accessory/armband/colored/New()
 	..()
-	gear_tweaks = list(gear_tweak_free_color_choice)
+	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/accessory/wallet
 	display_name = "wallet, orange"
@@ -43,7 +43,7 @@
 
 /datum/gear/accessory/wallet/womens/New()
 	..()
-	gear_tweaks = list(gear_tweak_free_color_choice)
+	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/accessory/clutch
 	display_name = "clutch bag"
@@ -52,7 +52,7 @@
 
 /datum/gear/accessory/clutch/New()
 	..()
-	gear_tweaks = list(gear_tweak_free_color_choice)
+	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/accessory/purse
 	display_name = "purse"
@@ -61,7 +61,7 @@
 
 /datum/gear/accessory/purse/New()
 	..()
-	gear_tweaks = list(gear_tweak_free_color_choice)
+	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/accessory/wcoat
 	display_name = "waistcoat selection"
@@ -122,7 +122,7 @@
 
 /datum/gear/accessory/scarfcolor/New()
 	..()
-	gear_tweaks = list(gear_tweak_free_color_choice)
+	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/accessory/jacket
 	display_name = "suit jacket selection"
@@ -270,7 +270,7 @@
 
 /datum/gear/accessory/sash/New()
 	..()
-	gear_tweaks = list(gear_tweak_free_color_choice)
+	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/accessory/asym
 	display_name = "asymmetric jacket selection"

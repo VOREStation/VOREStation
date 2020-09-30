@@ -515,7 +515,7 @@
 		if("Show Crew Manifest")
 			if(isAI(usr))
 				var/mob/living/silicon/ai/AI = usr
-				AI.ai_roster()
+				AI.subsystem_crew_manifest()
 
 		if("Show Alerts")
 			if(isAI(usr))
@@ -540,12 +540,14 @@
 		if("PDA - Send Message")
 			if(isAI(usr))
 				var/mob/living/silicon/ai/AI = usr
-				AI.aiPDA.cmd_send_pdamesg(usr)
+				AI.aiPDA.start_program(AI.aiPDA.find_program(/datum/data/pda/app/messenger))
+				AI.aiPDA.cmd_pda_open_ui(usr)
 
 		if("PDA - Show Message Log")
 			if(isAI(usr))
 				var/mob/living/silicon/ai/AI = usr
-				AI.aiPDA.cmd_show_message_log(usr)
+				AI.aiPDA.start_program(AI.aiPDA.find_program(/datum/data/pda/app/messenger))
+				AI.aiPDA.cmd_pda_open_ui(usr)
 
 		if("Take Image")
 			if(isAI(usr))

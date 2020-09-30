@@ -120,10 +120,11 @@ export const decodeHtmlEntities = str => {
   if (!str) {
     return str;
   }
-  const translate_re = /&(nbsp|amp|quot|lt|gt|apos|trade);/g;
+  const translate_re = /&(nbsp|amp|deg|quot|lt|gt|apos|trade);/g;
   const translate = {
     nbsp: ' ',
     amp: '&',
+    deg: '°',
     quot: '"',
     lt: '<',
     gt: '>',

@@ -240,13 +240,6 @@
 		icon_state = "hair_fingerwave"
 		species_allowed = list(SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_TAJ, SPECIES_SERGAL, SPECIES_FENNEC, SPECIES_ZORREN_HIGH, SPECIES_PROTEAN)
 
-	teshari_fluffymohawk
-		name = "Teshari Fluffy Mohawk"
-		icon =  'icons/mob/human_face_vr.dmi'
-		icon_add = 'icons/mob/human_face_vr_add.dmi'
-		icon_state = "teshari_fluffymohawk"
-		species_allowed = list(SPECIES_TESHARI)
-
 //Teshari things
 	teshari
 		icon_add = 'icons/mob/human_face_vr_add.dmi'
@@ -288,6 +281,22 @@
 		icon_add = 'icons/mob/human_face_vr_add.dmi'
 
 	teshari_mushroom
+		icon_add = 'icons/mob/human_face_vr_add.dmi'
+
+	teshari_twies
+		icon_add = 'icons/mob/human_face_vr_add.dmi'
+
+	teshari_backstrafe
+		icon_add = 'icons/mob/human_face_vr_add.dmi'
+
+	teshari_longway
+		icon_add = 'icons/mob/human_face_vr_add.dmi'
+
+	teshari_tree
+		icon_add = 'icons/mob/human_face_vr_add.dmi'
+
+	teshari_fluffymohawk
+		icon =  'icons/mob/human_face_vr.dmi'
 		icon_add = 'icons/mob/human_face_vr_add.dmi'
 
 //Skrell 'hairstyles' - these were requested for a chimera and screw it, if one wants to eat seafood, go nuts
@@ -1166,3 +1175,8 @@
 		icon_state = "dnose"
 		color_blend_mode = ICON_MULTIPLY
 		body_parts = list(BP_HEAD)
+
+	bee_stripes
+		name = "bee stripes"
+		icon_state = "beestripes"
+		body_parts = list(BP_TORSO,BP_GROIN)

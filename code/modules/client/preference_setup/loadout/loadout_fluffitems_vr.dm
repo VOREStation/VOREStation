@@ -136,6 +136,12 @@
 	ckeywhitelist = list("blakeryan")
 	character_name = list("Nolan Conaway")
 
+/datum/gear/fluff/charles_hat
+	path = /obj/item/clothing/head/that/fluff/gettler
+	display_name = "Charles' Top-Hat"
+	ckeywhitelist = list("bobofboblandia")
+	character_name = list("Charles Gettler")
+
 /datum/gear/fluff/xin_sovietuniform
 	path = /obj/item/clothing/under/soviet
 	display_name = "Xin's Soviet Uniform"
@@ -726,6 +732,13 @@
 	character_name = list("Tiemli Kroto")
 	allowed_roles = list("Roboticist")
 
+/datum/gear/fluff/clara_flask
+	path = /obj/item/weapon/reagent_containers/food/drinks/glass2/fluff/claraflask
+	display_name = "Clara's Vacuum Flask"
+	ckeywhitelist = list("rboys2")
+	character_name = list("Clara Mali")
+	cost = 1
+
 //  S CKEYS
 /datum/gear/fluff/brynhild_medal
 	path = /obj/item/clothing/accessory/medal/silver/valor
@@ -910,6 +923,13 @@
 	slot = slot_wear_mask
 	ckeywhitelist = list("theskringdinger")
 	character_name = list("Monty Kopic")
+
+/datum/gear/fluff/shadow_laptop
+	path = /obj/item/modular_computer/laptop/preset/custom_loadout/advanced/shadowlarkens
+	display_name = "Shadow's Laptop"
+	ckeywhitelist = list("tigercat2000")
+	character_name = list("Shadow Larkens")
+	cost = 5
 
 /datum/gear/fluff/konor_medal
 	path = /obj/item/clothing/accessory/medal/silver/unity

@@ -5,9 +5,6 @@
 	var/required_access = null				// List of required accesses to run/download the program.
 	var/requires_access_to_run = 1			// Whether the program checks for required_access when run.
 	var/requires_access_to_download = 1		// Whether the program checks for required_access when downloading.
-	// NanoModule
-	var/datum/nano_module/NM = null			// If the program uses NanoModule, put it here and it will be automagically opened. Otherwise implement ui_interact.
-	var/nanomodule_path = null				// Path to nanomodule, make sure to set this if implementing new program.
 	// TGUIModule
 	var/datum/tgui_module/TM = null			// If the program uses TGUIModule, put it here and it will be automagically opened. Otherwise implement tgui_interact.
 	var/tguimodule_path = null				// Path to tguimodule, make sure to set this if implementing new program.
@@ -29,6 +26,8 @@
 	var/computer_emagged = 0				// Set to 1 if computer that's running us was emagged. Computer updates this every Process() tick
 	var/ui_header = null					// Example: "something.gif" - a header image that will be rendered in computer's UI when this program is running at background. Images are taken from /nano/images/status_icons. Be careful not to use too large images!
 	var/ntnet_speed = 0						// GQ/s - current network connectivity transfer rate
+	/// Name of the tgui interface
+	var/tgui_id
 
 /datum/computer_file/program/New(var/obj/item/modular_computer/comp = null)
 	..()
@@ -39,16 +38,12 @@
 	computer = null
 	. = ..()
 
-/datum/computer_file/program/nano_host()
-	return computer.nano_host()
-
 /datum/computer_file/program/tgui_host()
 	return computer.tgui_host()
 
 /datum/computer_file/program/clone()
 	var/datum/computer_file/program/temp = ..()
 	temp.required_access = required_access
-	temp.nanomodule_path = nanomodule_path
 	temp.filedesc = filedesc
 	temp.program_icon_state = program_icon_state
 	temp.requires_ntnet = requires_ntnet
@@ -134,13 +129,9 @@
 /datum/computer_file/program/proc/run_program(var/mob/living/user)
 	if(can_run(user, 1) || !requires_access_to_run)
 		computer.active_program = src
-		if(nanomodule_path)
-			NM = new nanomodule_path(src, new /datum/topic_manager/program(src), src)
-			NM.using_access = user.GetAccess()
 		if(tguimodule_path)
 			TM = new tguimodule_path(src)
 			TM.using_access = user.GetAccess()
-			TM.tgui_interact(user)
 		if(requires_ntnet && network_destination)
 			generate_network_log("Connection opened to [network_destination].")
 		program_state = PROGRAM_STATE_ACTIVE
@@ -152,26 +143,28 @@
 	program_state = PROGRAM_STATE_KILLED
 	if(network_destination)
 		generate_network_log("Connection to [network_destination] closed.")
-	QDEL_NULL(NM)
 	if(TM)
 		SStgui.close_uis(TM)
-		qdel(TM)
-		TM = null
+	QDEL_NULL(TM)
 	return 1
 
-// This is called every tick when the program is enabled. Ensure you do parent call if you override it. If parent returns 1 continue with UI initialisation.
-// It returns 0 if it can't run or if NanoModule was used instead. I suggest using NanoModules where applicable.
-/datum/computer_file/program/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	if(program_state != PROGRAM_STATE_ACTIVE) // Our program was closed. Close the ui if it exists.
+/datum/computer_file/program/ui_assets(mob/user)
+	return list(
+		get_asset_datum(/datum/asset/simple/headers)
+	)
+
+/datum/computer_file/program/tgui_interact(mob/user, datum/tgui/ui)
+	if(program_state != PROGRAM_STATE_ACTIVE)
 		if(ui)
 			ui.close()
-		return computer.ui_interact(user)
-	if(istype(NM))
-		NM.ui_interact(user, ui_key, null, force_open)
-		return 0
+		return computer.tgui_interact(user)
 	if(istype(TM))
 		TM.tgui_interact(user)
 		return 0
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui && tgui_id)
+		ui = new(user, src, tgui_id, filedesc)
+		ui.open()
 	return 1
 
 // CONVENTIONS, READ THIS WHEN CREATING NEW PROGRAM AND OVERRIDING THIS PROC:
@@ -185,49 +178,56 @@
 	if(computer)
 		return computer.Topic(href, href_list)
 
+// CONVENTIONS, READ THIS WHEN CREATING NEW PROGRAM AND OVERRIDING THIS PROC:
+// Topic calls are automagically forwarded from NanoModule this program contains.
+// Calls beginning with "PRG_" are reserved for programs handling.
+// Calls beginning with "PC_" are reserved for computer handling (by whatever runs the program)
+// ALWAYS INCLUDE PARENT CALL ..() OR DIE IN FIRE.
+/datum/computer_file/program/tgui_act(action,list/params, datum/tgui/ui)
+	if(..())
+		return 1
+	if(computer)
+		switch(action)
+			if("PC_exit")
+				computer.kill_program()
+				ui.close()
+				return 1
+			if("PC_shutdown")
+				computer.shutdown_computer()
+				ui.close()
+				return 1
+			if("PC_minimize")
+				var/mob/user = usr
+				if(!computer.active_program)
+					return
+
+				computer.idle_threads.Add(computer.active_program)
+				program_state = PROGRAM_STATE_BACKGROUND // Should close any existing UIs
+
+				computer.active_program = null
+				computer.update_icon()
+				ui.close()
+
+				if(user && istype(user))
+					computer.tgui_interact(user) // Re-open the UI on this computer. It should show the main screen now.
+
+
+
 // Relays the call to nano module, if we have one
 /datum/computer_file/program/proc/check_eye(var/mob/user)
-	if(NM)
-		return NM.check_eye(user)
 	if(TM)
 		return TM.check_eye(user)
 	else
 		return -1
 
-/obj/item/modular_computer/initial_data()
-	return get_header_data()
-
-/obj/item/modular_computer/update_layout()
-	return TRUE
-
-/datum/nano_module/program
-	//available_to_ai = FALSE
-	var/datum/computer_file/program/program = null	// Program-Based computer program that runs this nano module. Defaults to null.
-
-/datum/nano_module/program/New(var/host, var/topic_manager, var/program)
-	..()
-	src.program = program
-
-/datum/topic_manager/program
-	var/datum/program
-
-/datum/topic_manager/program/New(var/datum/program)
-	..()
-	src.program = program
-
-// Calls forwarded to PROGRAM itself should begin with "PRG_"
-// Calls forwarded to COMPUTER running the program should begin with "PC_"
-/datum/topic_manager/program/Topic(href, href_list)
-	return program && program.Topic(href, href_list)
-
 /datum/computer_file/program/apply_visual(mob/M)
-	if(NM)
-		return NM.apply_visual(M)
+	if(TM)
+		return TM.apply_visual(M)
 
 /datum/computer_file/program/remove_visual(mob/M)
-	if(NM)
-		return NM.remove_visual(M)
+	if(TM)
+		return TM.remove_visual(M)
 
 /datum/computer_file/program/proc/relaymove(var/mob/M, direction)
-	if(NM)
-		return NM.relaymove(M, direction)
+	if(TM)
+		return TM.relaymove(M, direction)

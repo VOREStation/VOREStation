@@ -36,6 +36,13 @@
 		return
 	tgui_interact(user)
 
+/obj/machinery/computer/security/attack_robot(mob/user)
+	if(isrobot(user))
+		var/mob/living/silicon/robot/R = user
+		if(!R.shell)
+			return attack_hand(user)
+	..()
+
 /obj/machinery/computer/security/attack_ai(mob/user)
 	if(isAI(user))
 		to_chat(user, "<span class='notice'>You realise its kind of stupid to access a camera console when you have the entire camera network at your metaphorical fingertips</span>")

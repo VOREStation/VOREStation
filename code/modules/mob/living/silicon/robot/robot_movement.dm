@@ -1,16 +1,28 @@
+/mob/living/silicon/robot/get_jetpack()
+	if(module)
+		for(var/obj/item/weapon/tank/jetpack/J in module.modules)
+			return J
+
+/mob/living/silicon/robot/Check_Shoegrip()
+	return module && module.no_slip
+
 /mob/living/silicon/robot/Process_Spaceslipping(var/prob_slip)
+	var/obj/item/weapon/tank/jetpack/thrust = get_jetpack()
+	if(thrust?.can_thrust(0.01))
+		return 0
 	if(module && module.no_slip)
 		return 0
 	..(prob_slip)
 
-/mob/living/silicon/robot/Process_Spacemove()
-	if(module)
-		for(var/obj/item/weapon/tank/jetpack/J in module.modules)
-			if(istype(J, /obj/item/weapon/tank/jetpack))
-				if(J.allow_thrust(0.01))
-					return 1
-	if(..())
+/mob/living/silicon/robot/Process_Spacemove(var/check_drift = 0)
+	if(..())//Can move due to other reasons, don't use jetpack fuel
 		return 1
+
+	var/obj/item/weapon/tank/jetpack/thrust = get_jetpack()
+	if(thrust && (!check_drift || (check_drift && thrust.stabilization_on)) && thrust.do_thrust(0.01))
+		inertia_dir = 0
+		return 1
+
 	return 0
 
  //No longer needed, but I'll leave it here incase we plan to re-use it.

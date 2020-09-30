@@ -1,9 +1,9 @@
-/material/proc/get_recipes()
+/datum/material/proc/get_recipes()
 	if(!recipes)
 		generate_recipes()
 	return recipes
 
-/material/proc/generate_recipes()
+/datum/material/proc/generate_recipes()
 	recipes = list()
 
 	// If is_brittle() returns true, these are only good for a single strike.
@@ -29,7 +29,7 @@
 		recipes += new/datum/stack_recipe("[display_name] knife", /obj/item/weapon/material/knife/plastic, 1, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE)
 		recipes += new/datum/stack_recipe("[display_name] blade", /obj/item/weapon/material/butterflyblade, 6, time = 20, one_per_turf = 0, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE)
 
-/material/steel/generate_recipes()
+/datum/material/steel/generate_recipes()
 	..()
 	recipes += new/datum/stack_recipe_list("office chairs",list( \
 		new/datum/stack_recipe("dark office chair", /obj/structure/bed/chair/office/dark, 5, one_per_turf = 1, on_floor = 1), \
@@ -105,7 +105,7 @@
 		))
 	recipes += new/datum/stack_recipe("desk bell", /obj/item/weapon/deskbell, 1, on_floor = 1, supplied_material = "[name]")
 
-/material/plasteel/generate_recipes()
+/datum/material/plasteel/generate_recipes()
 	..()
 	recipes += new/datum/stack_recipe("AI core", /obj/structure/AIcore, 4, time = 50, one_per_turf = 1)
 	recipes += new/datum/stack_recipe("Metal crate", /obj/structure/closet/crate, 10, time = 50, one_per_turf = 1)
@@ -114,16 +114,16 @@
 	recipes += new/datum/stack_recipe("roller bed", /obj/item/roller, 5, time = 30, on_floor = 1)
 	recipes += new/datum/stack_recipe("whetstone", /obj/item/weapon/whetstone, 2, time = 10)
 
-/material/stone/generate_recipes()
+/datum/material/stone/generate_recipes()
 	..()
 	recipes += new/datum/stack_recipe("planting bed", /obj/machinery/portable_atmospherics/hydroponics/soil, 3, time = 10, one_per_turf = 1, on_floor = 1)
 
-/material/stone/marble/generate_recipes()
+/datum/material/stone/marble/generate_recipes()
 	..()
 	recipes += new/datum/stack_recipe("light marble floor tile", /obj/item/stack/tile/wmarble, 1, 4, 20)
 	recipes += new/datum/stack_recipe("dark marble floor tile", /obj/item/stack/tile/bmarble, 1, 4, 20)
 
-/material/plastic/generate_recipes()
+/datum/material/plastic/generate_recipes()
 	..()
 	recipes += new/datum/stack_recipe("plastic crate", /obj/structure/closet/crate/plastic, 10, one_per_turf = 1, on_floor = 1, pass_stack_color = TRUE)
 	recipes += new/datum/stack_recipe("plastic bag", /obj/item/weapon/storage/bag/plasticbag, 3, on_floor = 1, pass_stack_color = TRUE)
@@ -141,7 +141,7 @@
 	recipes += new/datum/stack_recipe("plastic fishtank", /obj/item/glass_jar/fish/plastic, 2, time = 30 SECONDS)
 	recipes += new/datum/stack_recipe("reagent tubing", /obj/item/stack/hose, 1, 4, 20, pass_stack_color = TRUE)
 
-/material/wood/generate_recipes()
+/datum/material/wood/generate_recipes()
 	..()
 	recipes += new/datum/stack_recipe("oar", /obj/item/weapon/oar, 2, time = 30, supplied_material = "[name]", pass_stack_color = TRUE)
 	recipes += new/datum/stack_recipe("boat", /obj/vehicle/boat, 20, time = 10 SECONDS, supplied_material = "[name]", pass_stack_color = TRUE)
@@ -163,11 +163,11 @@
 	recipes += new/datum/stack_recipe("wooden standup figure", /obj/structure/barricade/cutout, 5, time = 10 SECONDS, pass_stack_color = TRUE) //VOREStation Add
 	recipes += new/datum/stack_recipe("noticeboard", /obj/structure/noticeboard, 1)
 
-/material/wood/log/generate_recipes()
+/datum/material/wood/log/generate_recipes()
 	recipes = list()
 	recipes += new/datum/stack_recipe("bonfire", /obj/structure/bonfire, 5, time = 50, supplied_material = "[name]", pass_stack_color = TRUE)
 
-/material/cardboard/generate_recipes()
+/datum/material/cardboard/generate_recipes()
 	..()
 	recipes += new/datum/stack_recipe("box", /obj/item/weapon/storage/box, pass_stack_color = TRUE)
 	recipes += new/datum/stack_recipe("donut box", /obj/item/weapon/storage/box/donut/empty, pass_stack_color = TRUE)
@@ -186,7 +186,7 @@
 		new/datum/stack_recipe("yellow folder", /obj/item/weapon/folder/yellow), \
 		))
 
-/material/snow/generate_recipes()
+/datum/material/snow/generate_recipes()
 	recipes = list()
 	recipes += new/datum/stack_recipe("snowball", /obj/item/weapon/material/snow/snowball, 1, time = 10)
 	recipes += new/datum/stack_recipe("snow brick", /obj/item/stack/material/snowbrick, 2, time = 10)
@@ -194,7 +194,7 @@
 	recipes += new/datum/stack_recipe("snow robot", /obj/structure/snowman/borg, 2, time = 10)
 	recipes += new/datum/stack_recipe("snow spider", /obj/structure/snowman/spider, 3, time = 20)
 
-/material/snowbrick/generate_recipes()
+/datum/material/snowbrick/generate_recipes()
 	recipes = list()
 	recipes += new/datum/stack_recipe("[display_name] door", /obj/structure/simple_door, 10, one_per_turf = 1, on_floor = 1, supplied_material = "[name]")
 	recipes += new/datum/stack_recipe("[display_name] barricade", /obj/structure/barricade, 5, time = 50, one_per_turf = 1, on_floor = 1, supplied_material = "[name]")
@@ -205,7 +205,7 @@
 	recipes += new/datum/stack_recipe("[display_name] wall girders", /obj/structure/girder, 2, time = 50, one_per_turf = 1, on_floor = 1, supplied_material = "[name]")
 	recipes += new/datum/stack_recipe("[display_name] ashtray", /obj/item/weapon/material/ashtray, 2, one_per_turf = 1, on_floor = 1, supplied_material = "[name]")
 
-/material/wood/sif/generate_recipes()
+/datum/material/wood/sif/generate_recipes()
 	..()
 	recipes += new/datum/stack_recipe("alien wood floor tile", /obj/item/stack/tile/wood/sif, 1, 4, 20, pass_stack_color = TRUE)
 	for(var/datum/stack_recipe/r_recipe in recipes)
@@ -216,11 +216,11 @@
 			recipes -= r_recipe
 			continue
 
-/material/supermatter/generate_recipes()
+/datum/material/supermatter/generate_recipes()
 	recipes = list()
 	recipes += new/datum/stack_recipe("supermatter shard", /obj/machinery/power/supermatter/shard, 30 , one_per_turf = 1, time = 600, on_floor = 1)
 
-/material/cloth/generate_recipes()
+/datum/material/cloth/generate_recipes()
 	recipes = list()
 	recipes += new/datum/stack_recipe("woven net", /obj/item/weapon/material/fishing_net, 10, time = 30 SECONDS, pass_stack_color = TRUE)
 	recipes += new/datum/stack_recipe("bedsheet", /obj/item/weapon/bedsheet, 10, time = 30 SECONDS, pass_stack_color = TRUE)
@@ -238,7 +238,7 @@
 	recipes += new/datum/stack_recipe("belt pouch", /obj/item/weapon/storage/belt/fannypack/white, 25, time = 1 MINUTE, pass_stack_color = TRUE)
 	recipes += new/datum/stack_recipe("crude bandage", /obj/item/stack/medical/crude_pack, 1, time = 2 SECONDS, pass_stack_color = TRUE)
 
-/material/resin/generate_recipes()
+/datum/material/resin/generate_recipes()
 	recipes = list()
 	recipes += new/datum/stack_recipe("[display_name] door", /obj/structure/simple_door/resin, 10, one_per_turf = 1, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE)
 	recipes += new/datum/stack_recipe("[display_name] barricade", /obj/effect/alien/resin/wall, 5, time = 5 SECONDS, one_per_turf = 1, on_floor = 1, pass_stack_color = TRUE)

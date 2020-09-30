@@ -22,6 +22,7 @@
 			nif_status = "Unknown - Error"
 	nif_status += " (Condition: [nif_percent]%)"
 	stat("NIF Status", nif_status)
+	stat("UI", nif.our_statclick) // TGUI Hook
 
 	if(nif.stat == NIF_WORKING)
 		stat("- Modules -", "LMB: Toggle, Shift+LMB: Info/Uninstall")

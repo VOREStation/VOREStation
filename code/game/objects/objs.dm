@@ -42,7 +42,7 @@
 			old_turf.unregister_dangerous_object(src)
 			new_turf.register_dangerous_object(src)
 
-/obj/Topic(href, href_list, var/datum/topic_state/state = default_state)
+/obj/Topic(href, href_list, var/datum/tgui_state/state = GLOB.tgui_default_state)
 	if(usr && ..())
 		return 1
 
@@ -55,7 +55,7 @@
 	CouldNotUseTopic(usr)
 	return 1
 
-/obj/CanUseTopic(var/mob/user, var/datum/topic_state/state = default_state)
+/obj/CanUseTopic(var/mob/user, var/datum/tgui_state/state = GLOB.tgui_default_state)
 	if(user.CanUseObjTopic(src))
 		return ..()
 	to_chat(user, "<span class='danger'>[bicon(src)]Access Denied!</span>")
@@ -69,7 +69,7 @@
 	return 1
 
 /obj/proc/CouldUseTopic(var/mob/user)
-	var/atom/host = nano_host()
+	var/atom/host = tgui_host()
 	host.add_hiddenprint(user)
 
 /obj/proc/CouldNotUseTopic(var/mob/user)
@@ -135,7 +135,6 @@
 			in_use = 0
 
 /obj/attack_ghost(mob/user)
-	ui_interact(user)
 	tgui_interact(user)
 	..()
 

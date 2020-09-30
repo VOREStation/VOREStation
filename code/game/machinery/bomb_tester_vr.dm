@@ -237,12 +237,12 @@
 			pressure = faketank.return_pressure()
 
 			var/strength = (pressure-TANK_FRAGMENT_PRESSURE)/TANK_FRAGMENT_SCALE
-			var/mult = ((faketank.volume/140)**(1/2)) * (faketank.total_moles**2/3)/((29*0.64) **2/3) //Don't ask me what this is, see tanks.dm
+			var/mult = ((faketank.volume/140)**(1/2)) * (faketank.total_moles**(2/3))/((29*0.64) **(2/3)) //Don't ask me what this is, see tanks.dm
 
 			var/dev = round((mult*strength)*0.15)
 			var/heavy = round((mult*strength)*0.35)
 			var/light = round((mult*strength)*0.80)
-			simulation_results += "<hr>Final Result: Explosive tank rupture. [dev?"Extreme damage within [2.5*dev] meters. ":""][heavy?"Heavy damage within [2.5*heavy] meters. ":""][light?"Light damage within [2.5*light] meters. ":""]Hazardous shrapnel produced."
+			simulation_results += "<hr>Final Result: Explosive tank rupture. [dev?"Extreme damage within [2*dev] meters. ":""][heavy?"Heavy damage within [2*heavy] meters. ":""][light?"Light damage within [2*light] meters. ":""]Hazardous shrapnel produced."
 			return 1
 		else
 			faketank_integrity -= 7
