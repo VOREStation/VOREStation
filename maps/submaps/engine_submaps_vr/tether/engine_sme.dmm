@@ -1495,6 +1495,12 @@
 	},
 /turf/simulated/floor,
 /area/engineering/engine_room)
+"di" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/turf/simulated/floor,
+/area/engineering/engine_gas)
 "dj" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -1502,9 +1508,8 @@
 /turf/simulated/floor,
 /area/engineering/engine_gas)
 "dk" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
 	},
 /turf/simulated/floor,
 /area/engineering/engine_gas)
@@ -1546,18 +1551,14 @@
 /turf/simulated/floor,
 /area/engineering/engine_gas)
 "dp" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 4
-	},
-/turf/simulated/floor,
-/area/engineering/engine_gas)
-"dq" = (
-/obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
+/turf/simulated/floor,
+/area/engineering/engine_gas)
+"dq" = (
+/obj/effect/floor_decal/industrial/warning/corner,
 /turf/simulated/floor,
 /area/engineering/engine_gas)
 "dr" = (
@@ -1585,11 +1586,6 @@
 	dir = 1;
 	pixel_y = -24
 	},
-/turf/simulated/floor,
-/area/engineering/engine_gas)
-"dt" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/floor_decal/industrial/warning/corner,
 /turf/simulated/floor,
 /area/engineering/engine_gas)
 "du" = (
@@ -2099,8 +2095,8 @@ bY
 cR
 cK
 dj
-dp
-dt
+dk
+dq
 dw
 aa
 aa
@@ -2130,8 +2126,8 @@ cD
 bY
 cR
 cK
-dk
-dq
+di
+dp
 du
 dx
 aa
