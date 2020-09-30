@@ -112,3 +112,4 @@
 	outfit_type = /decl/hierarchy/outfit/job/assistant/explorer
 	job_description = "Off-duty crew has no responsibilities or authority and is just there to spend their well-deserved time off."
 	pto_type = PTO_EXPLORATION
+	economic_modifier = 5
