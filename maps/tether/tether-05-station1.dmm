@@ -1251,6 +1251,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
+"acu" = (
+/obj/structure/railing,
+/turf/space,
+/area/space)
 "acv" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/cap/visible/scrubbers{
@@ -1258,6 +1262,10 @@
 	},
 /turf/simulated/floor,
 /area/vacant/vacant_restaurant_lower)
+"acw" = (
+/obj/structure/ladder/up,
+/turf/simulated/floor/airless,
+/area/space)
 "acx" = (
 /obj/structure/cable/green{
 	d1 = 2;
@@ -1525,6 +1533,9 @@
 /obj/random/drinkbottle,
 /turf/simulated/floor,
 /area/maintenance/station/eng_lower)
+"adj" = (
+/turf/simulated/floor/airless,
+/area/mine/explored/upper_level)
 "adk" = (
 /obj/structure/railing{
 	dir = 1
@@ -1625,6 +1636,9 @@
 	},
 /turf/simulated/floor,
 /area/vacant/vacant_restaurant_lower)
+"adq" = (
+/turf/simulated/floor/airless,
+/area/space)
 "adr" = (
 /obj/structure/flora/pottedplant,
 /obj/effect/floor_decal/corner/blue/full{
@@ -3009,13 +3023,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/atmos/backup)
-"afU" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/closet/secure_closet/engineering_electrical,
-/turf/simulated/floor/tiled,
-/area/engineering/workshop)
 "afV" = (
 /turf/simulated/wall/r_wall,
 /area/maintenance/substation/spacecommand)
@@ -28371,7 +28378,7 @@ aaa
 aaa
 ahV
 ahV
-ahW
+acw
 ahV
 ahV
 ahV
@@ -28512,12 +28519,12 @@ aaa
 aaa
 aaa
 aaa
-aaa
+ahW
+adq
 ahW
 aaa
 aaa
-aaa
-aaa
+ahW
 ahW
 ahW
 ahW
@@ -28654,13 +28661,13 @@ acg
 aaa
 aaa
 aaa
-aaa
 ahW
-aaa
-aaa
-aaa
-aaa
+adq
 ahW
+ahW
+ahW
+ahW
+adq
 aAQ
 aGB
 aGB
@@ -28797,12 +28804,12 @@ ahW
 ahW
 ahW
 cbY
-ahW
-ahW
-ahW
-ahW
-ahW
-ahW
+adq
+adq
+adq
+adq
+adq
+adq
 avf
 aCB
 aEa
@@ -28944,7 +28951,7 @@ aoh
 aoh
 aoh
 abZ
-ahW
+adq
 avf
 aCB
 aLI
@@ -30791,7 +30798,7 @@ avo
 aen
 bZd
 aen
-afU
+bZi
 aen
 aMZ
 aQZ
@@ -33885,7 +33892,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+ahW
 aac
 aac
 aac
@@ -34027,7 +34034,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+ahW
 aac
 aac
 aac
@@ -34168,9 +34175,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aat
+acu
+acw
+adj
 aac
 aac
 aac
@@ -34310,9 +34317,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aat
-aat
+acu
+adj
+adj
 aac
 aac
 aac
@@ -34452,9 +34459,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aat
-aat
+acu
+adj
+adj
 aat
 aac
 aac

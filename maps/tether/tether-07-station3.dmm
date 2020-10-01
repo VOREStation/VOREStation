@@ -30,12 +30,15 @@
 /turf/simulated/floor/tiled,
 /area/security/eva)
 "aah" = (
-/obj/machinery/atmospherics/unary/engine{
+/obj/structure/railing{
 	dir = 1
 	},
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/excursion/cargo)
+/obj/machinery/camera/network/security{
+	dir = 8;
+	icon_state = "camera"
+	},
+/turf/space,
+/area/space)
 "aai" = (
 /turf/simulated/wall/r_wall,
 /area/security/armory/red)
@@ -5244,13 +5247,13 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/armory/blue)
 "aix" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
+/obj/structure/catwalk,
+/obj/machinery/camera/network/security{
+	dir = 5;
+	icon_state = "camera"
 	},
-/turf/simulated/floor/tiled/asteroid_steel/airless,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/mining_outpost/shuttle)
+/turf/space,
+/area/space)
 "aiy" = (
 /obj/structure/bed/chair/shuttle{
 	dir = 8
@@ -5652,12 +5655,9 @@
 /turf/simulated/wall,
 /area/maintenance/cargo)
 "aiW" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/asteroid_steel/airless,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/mining_outpost/shuttle)
+/obj/structure/ladder,
+/turf/simulated/floor/airless,
+/area/space)
 "aiX" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow{
 	dir = 6
@@ -5686,13 +5686,12 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/armory/blue)
 "ajb" = (
-/obj/structure/shuttle/engine/propulsion{
+/obj/machinery/camera/network/security{
 	dir = 8;
-	icon_state = "propulsion_r"
+	icon_state = "camera"
 	},
-/turf/simulated/floor/tiled/asteroid_steel/airless,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/mining_outpost/shuttle)
+/turf/space,
+/area/space)
 "ajc" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 4
@@ -5741,6 +5740,13 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled,
 /area/hallway/station/upper)
+"ajg" = (
+/obj/machinery/atmospherics/unary/engine{
+	dir = 1
+	},
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/excursion/cargo)
 "ajh" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -5819,6 +5825,14 @@
 	},
 /turf/simulated/floor/tiled,
 /area/security/hallway)
+"ajm" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_l"
+	},
+/turf/simulated/floor/tiled/asteroid_steel/airless,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/mining_outpost/shuttle)
 "ajn" = (
 /obj/machinery/newscaster/security_unit{
 	pixel_y = 32
@@ -5972,6 +5986,21 @@
 "ajD" = (
 /turf/simulated/wall/durasteel,
 /area/ai)
+"ajE" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/asteroid_steel/airless,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/mining_outpost/shuttle)
+"ajF" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_r"
+	},
+/turf/simulated/floor/tiled/asteroid_steel/airless,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/mining_outpost/shuttle)
 "ajI" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -36970,7 +36999,7 @@ aYW
 aae
 aae
 aae
-aae
+aiW
 aae
 aaa
 mxs
@@ -40067,7 +40096,7 @@ aad
 aaa
 aed
 aRg
-abh
+aah
 aaa
 aab
 aab
@@ -41345,7 +41374,7 @@ aad
 aaa
 aaa
 aRg
-aRg
+aix
 aRg
 aRg
 agg
@@ -42768,7 +42797,7 @@ aaa
 aaa
 aaa
 aed
-agg
+aiW
 agg
 aac
 aag
@@ -42910,8 +42939,8 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
+aRi
+aae
 aaU
 aaU
 aaU
@@ -43336,7 +43365,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+ajb
 aaa
 aaa
 aaa
@@ -44207,7 +44236,7 @@ aUJ
 aXb
 aWp
 iJT
-aah
+ajg
 ams
 aXq
 abe
@@ -44349,7 +44378,7 @@ wRt
 eug
 aWp
 cQa
-aah
+ajg
 ams
 aXq
 abe
@@ -45485,7 +45514,7 @@ pPy
 efQ
 aWp
 cQa
-aah
+ajg
 ams
 amq
 abe
@@ -45627,7 +45656,7 @@ iEV
 tEV
 aWp
 rUl
-aah
+ajg
 ams
 aQL
 abe
@@ -47664,11 +47693,11 @@ avt
 avt
 adD
 aZS
-aix
-aiW
-aiW
-aiW
-ajb
+ajm
+ajE
+ajE
+ajE
+ajF
 baB
 adD
 avt
