@@ -71,7 +71,7 @@
 		var/datum/sprite_accessory/tail/taur/ridertype = H.tail_style
 		if(ridertype.can_ride)
 			if(istype(ridertype, /datum/sprite_accessory/tail/taur/naga) || istype(ridertype, /datum/sprite_accessory/tail/taur/slug))
-				to_chat(src,"<span class='warning'>Too many legs. TOO FEW LEGS!!</span>")
+				to_chat(src,"<span class='warning'>Too few legs. TOO FEW LEGS!!</span>")
 				return FALSE
 			to_chat(src,"<span class='warning'>Too many legs. TOO MANY LEGS!!</span>")
 			return FALSE
