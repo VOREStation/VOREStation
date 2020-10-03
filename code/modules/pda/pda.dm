@@ -147,16 +147,8 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			log_debug("Invalid switch for PDA, defaulting to old PDA icons. [pdachoice] chosen.")
 	start_program(find_program(/datum/data/pda/app/main_menu))
 
-/obj/item/device/pda/proc/can_use()
-	if(!ismob(loc))
-		return FALSE
-
-	var/mob/M = loc
-	if(M.incapacitated(INCAPACITATION_ALL))
-		return FALSE
-	if(src in M.contents)
-		return TRUE
-	return FALSE
+/obj/item/device/pda/proc/can_use(mob/user)
+	return (tgui_status(user, GLOB.tgui_inventory_state) == STATUS_INTERACTIVE)
 
 /obj/item/device/pda/GetAccess()
 	if(id)
@@ -169,7 +161,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 /obj/item/device/pda/MouseDrop(obj/over_object as obj, src_location, over_location)
 	var/mob/M = usr
-	if((!istype(over_object, /obj/screen)) && can_use())
+	if((!istype(over_object, /obj/screen)) && can_use(usr))
 		return attack_self(M)
 	return
 

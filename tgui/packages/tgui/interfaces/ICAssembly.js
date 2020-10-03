@@ -22,8 +22,8 @@ export const ICAssembly = (props, context) => {
   } = data;
 
   return (
-    <Window width={600} height={380}>
-      <Window.Content>
+    <Window width={600} height={380} resizable>
+      <Window.Content scrollable>
         <Section title="Status">
           <LabeledList>
             <LabeledList.Item label="Space in Assembly">
