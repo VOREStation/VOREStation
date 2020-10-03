@@ -2,11 +2,6 @@
 /obj/item/device/pda/tgui_state(mob/user)
 	return GLOB.tgui_inventory_state
 
-/obj/item/device/pda/tgui_status(mob/user, datum/tgui_state/state)
-	. = ..()
-	if(!can_use())
-		. = min(., STATUS_UPDATE)
-
 /obj/item/device/pda/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -67,12 +62,6 @@
 /obj/item/device/pda/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return TRUE
-
-	if(!can_use())
-		usr.unset_machine()
-		if(ui)
-			ui.close()
-		return FALSE
 
 	add_fingerprint(usr)
 	usr.set_machine(src)
