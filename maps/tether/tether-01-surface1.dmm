@@ -11888,6 +11888,21 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /turf/simulated/floor/tiled,
 /area/rnd/hallway)
+"atQ" = (
+/obj/structure/cable/green{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_x = 0;
+	pixel_y = 28
+	},
+/turf/simulated/floor/reinforced{
+	name = "Holodeck Projector Floor"
+	},
+/area/crew_quarters/sleep/Dorm_7/holo)
 "atR" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -12121,6 +12136,23 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/substation/civ_west)
+"auo" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/effect/floor_decal/spline/plain{
+	dir = 8
+	},
+/obj/machinery/computer/HolodeckControl/holodorm/seven,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/status_display{
+	pixel_y = 32
+	},
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/wood,
+/area/crew_quarters/sleep/Dorm_7)
 "aup" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -12135,6 +12167,45 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining_eva)
+"auq" = (
+/obj/machinery/alarm{
+	dir = 8;
+	icon_state = "alarm0";
+	pixel_x = 24
+	},
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_x = 0;
+	pixel_y = 28
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/structure/cable/green{
+	icon_state = "0-2"
+	},
+/obj/structure/closet/secure_closet/personal,
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/wood,
+/area/crew_quarters/sleep/Dorm_7)
+"aur" = (
+/obj/structure/cable/green{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_x = 0;
+	pixel_y = 28
+	},
+/turf/simulated/floor/reinforced{
+	name = "Holodeck Projector Floor"
+	},
+/area/crew_quarters/sleep/Dorm_5/holo)
 "aus" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -12395,6 +12466,23 @@
 "auK" = (
 /turf/simulated/wall,
 /area/maintenance/lower/solars)
+"auL" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/effect/floor_decal/spline/plain{
+	dir = 8
+	},
+/obj/machinery/computer/HolodeckControl/holodorm/five,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/status_display{
+	pixel_y = 32
+	},
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/wood,
+/area/crew_quarters/sleep/Dorm_5)
 "auM" = (
 /obj/structure/table/rack,
 /obj/random/junk,
@@ -12644,6 +12732,45 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/xenoflora)
+"avk" = (
+/obj/machinery/alarm{
+	dir = 8;
+	icon_state = "alarm0";
+	pixel_x = 24
+	},
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_x = 0;
+	pixel_y = 28
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/structure/cable/green{
+	icon_state = "0-2"
+	},
+/obj/structure/closet/secure_closet/personal,
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/wood,
+/area/crew_quarters/sleep/Dorm_5)
+"avl" = (
+/obj/structure/cable/green{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_x = 0;
+	pixel_y = 28
+	},
+/turf/simulated/floor/reinforced{
+	name = "Holodeck Projector Floor"
+	},
+/area/crew_quarters/sleep/Dorm_3/holo)
 "avm" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -13158,6 +13285,62 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/solars)
+"avQ" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/effect/floor_decal/spline/plain{
+	dir = 8
+	},
+/obj/machinery/computer/HolodeckControl/holodorm/three,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/status_display{
+	pixel_y = 32
+	},
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/wood,
+/area/crew_quarters/sleep/Dorm_3)
+"avR" = (
+/obj/machinery/alarm{
+	dir = 8;
+	icon_state = "alarm0";
+	pixel_x = 24
+	},
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_x = 0;
+	pixel_y = 28
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/structure/cable/green{
+	icon_state = "0-2"
+	},
+/obj/structure/closet/secure_closet/personal,
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/wood,
+/area/crew_quarters/sleep/Dorm_3)
+"avS" = (
+/obj/structure/cable/green{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_x = 0;
+	pixel_y = 28
+	},
+/turf/simulated/floor/reinforced{
+	name = "Holodeck Projector Floor"
+	},
+/area/crew_quarters/sleep/Dorm_1/holo)
 "avT" = (
 /turf/simulated/wall/r_wall,
 /area/maintenance/lower/xenoflora)
@@ -13219,6 +13402,23 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_one_hall)
+"avY" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/effect/floor_decal/spline/plain{
+	dir = 8
+	},
+/obj/machinery/computer/HolodeckControl/holodorm/one,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/status_display{
+	pixel_y = 32
+	},
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/wood,
+/area/crew_quarters/sleep/Dorm_1)
 "avZ" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/red/border,
@@ -13451,6 +13651,30 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/solars)
+"awu" = (
+/obj/machinery/alarm{
+	dir = 8;
+	icon_state = "alarm0";
+	pixel_x = 24
+	},
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_x = 0;
+	pixel_y = 28
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/structure/cable/green{
+	icon_state = "0-2"
+	},
+/obj/structure/closet/secure_closet/personal,
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/wood,
+/area/crew_quarters/sleep/Dorm_1)
 "awD" = (
 /obj/machinery/atmospherics/pipe/zpipe/up/scrubbers,
 /obj/machinery/atmospherics/pipe/zpipe/up/supply,
@@ -19043,39 +19267,6 @@
 	name = "Holodeck Projector Floor"
 	},
 /area/crew_quarters/sleep/Dorm_7/holo)
-"aLN" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/effect/floor_decal/spline/plain{
-	dir = 8
-	},
-/obj/machinery/computer/HolodeckControl/holodorm/seven,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/status_display{
-	pixel_y = 32
-	},
-/turf/simulated/floor/wood,
-/area/crew_quarters/sleep/Dorm_7)
-"aLO" = (
-/obj/machinery/alarm{
-	dir = 8;
-	icon_state = "alarm0";
-	pixel_x = 24
-	},
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "north bump";
-	pixel_x = 0;
-	pixel_y = 28
-	},
-/obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/structure/cable/green{
-	icon_state = "0-2"
-	},
-/obj/structure/closet/secure_closet/personal,
-/turf/simulated/floor/wood,
-/area/crew_quarters/sleep/Dorm_7)
 "aLP" = (
 /obj/machinery/camera/network/engineering{
 	dir = 8
@@ -20333,39 +20524,6 @@
 	name = "Holodeck Projector Floor"
 	},
 /area/crew_quarters/sleep/Dorm_5/holo)
-"aOl" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/effect/floor_decal/spline/plain{
-	dir = 8
-	},
-/obj/machinery/computer/HolodeckControl/holodorm/five,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/status_display{
-	pixel_y = 32
-	},
-/turf/simulated/floor/wood,
-/area/crew_quarters/sleep/Dorm_5)
-"aOm" = (
-/obj/machinery/alarm{
-	dir = 8;
-	icon_state = "alarm0";
-	pixel_x = 24
-	},
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "north bump";
-	pixel_x = 0;
-	pixel_y = 28
-	},
-/obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/structure/cable/green{
-	icon_state = "0-2"
-	},
-/obj/structure/closet/secure_closet/personal,
-/turf/simulated/floor/wood,
-/area/crew_quarters/sleep/Dorm_5)
 "aOn" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -21449,39 +21607,6 @@
 	name = "Holodeck Projector Floor"
 	},
 /area/crew_quarters/sleep/Dorm_3/holo)
-"aQd" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/effect/floor_decal/spline/plain{
-	dir = 8
-	},
-/obj/machinery/computer/HolodeckControl/holodorm/three,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/status_display{
-	pixel_y = 32
-	},
-/turf/simulated/floor/wood,
-/area/crew_quarters/sleep/Dorm_3)
-"aQe" = (
-/obj/machinery/alarm{
-	dir = 8;
-	icon_state = "alarm0";
-	pixel_x = 24
-	},
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "north bump";
-	pixel_x = 0;
-	pixel_y = 28
-	},
-/obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/structure/cable/green{
-	icon_state = "0-2"
-	},
-/obj/structure/closet/secure_closet/personal,
-/turf/simulated/floor/wood,
-/area/crew_quarters/sleep/Dorm_3)
 "aQf" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -22585,39 +22710,6 @@
 	name = "Holodeck Projector Floor"
 	},
 /area/crew_quarters/sleep/Dorm_1/holo)
-"aSk" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/effect/floor_decal/spline/plain{
-	dir = 8
-	},
-/obj/machinery/computer/HolodeckControl/holodorm/one,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/status_display{
-	pixel_y = 32
-	},
-/turf/simulated/floor/wood,
-/area/crew_quarters/sleep/Dorm_1)
-"aSl" = (
-/obj/machinery/alarm{
-	dir = 8;
-	icon_state = "alarm0";
-	pixel_x = 24
-	},
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "north bump";
-	pixel_x = 0;
-	pixel_y = 28
-	},
-/obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/structure/cable/green{
-	icon_state = "0-2"
-	},
-/obj/structure/closet/secure_closet/personal,
-/turf/simulated/floor/wood,
-/area/crew_quarters/sleep/Dorm_1)
 "aSm" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -44881,19 +44973,19 @@ aJf
 aJQ
 aKE
 aLg
-aLM
+atQ
 aLM
 aLM
 aLg
-aOk
+aur
 aOk
 aOk
 aOj
-aQc
+avl
 aQc
 aQc
 aQb
-aSj
+avS
 aSj
 aSj
 aSi
@@ -45023,19 +45115,19 @@ aJh
 aJQ
 aKF
 aLg
-aLN
+auo
 aMy
 aNi
 aLg
-aOl
+auL
 aOG
 aOY
 aOj
-aQd
+avQ
 aQG
 aRi
 aQb
-aSk
+avY
 aST
 aTx
 aSi
@@ -45165,19 +45257,19 @@ aJi
 agM
 agM
 aLg
-aLO
+auq
 aMz
 aNj
 aLg
-aOm
+avk
 aOH
 aOZ
 aOj
-aQe
+avR
 aQH
 aRj
 aQb
-aSl
+awu
 aSU
 aTy
 aSi
