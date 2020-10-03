@@ -41,7 +41,7 @@ export const Sleeper = (props, context) => {
   return (
     <Window
       width={550}
-      height={820}
+      height={760}
       resizable>
       <Window.Content className="Layout__content--flexColumn">
         {body}

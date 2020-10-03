@@ -2,11 +2,6 @@
 /obj/item/device/pda/tgui_state(mob/user)
 	return GLOB.tgui_inventory_state
 
-/obj/item/device/pda/tgui_status(mob/user, datum/tgui_state/state)
-	. = ..()
-	if(!can_use())
-		. = min(., STATUS_UPDATE)
-
 /obj/item/device/pda/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -50,6 +45,7 @@
 	data["idLink"] = (id ? text("[id.registered_name], [id.assignment]") : "--------")
 
 	data["useRetro"] = retro_mode
+	data["touch_silent"] = touch_silent
 
 	data["cartridge_name"] = cartridge ? cartridge.name : ""
 	data["stationTime"] = stationtime2text() //worldtime2stationtime(world.time) // Aaa which fucking one is canonical there's SO MANY
@@ -67,12 +63,6 @@
 /obj/item/device/pda/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return TRUE
-
-	if(!can_use())
-		usr.unset_machine()
-		if(ui)
-			ui.close()
-		return FALSE
 
 	add_fingerprint(usr)
 	usr.set_machine(src)
@@ -113,6 +103,8 @@
 			id_check(usr, 1)
 		if("Retro")
 			retro_mode = !retro_mode
+		if("TouchSounds")
+			touch_silent = !touch_silent
 		if("Ringtone")
 			return set_ringtone()
 		else
