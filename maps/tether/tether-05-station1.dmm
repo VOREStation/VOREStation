@@ -396,6 +396,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled/dark,
 /area/tether/station/burial)
 "aaJ" = (
