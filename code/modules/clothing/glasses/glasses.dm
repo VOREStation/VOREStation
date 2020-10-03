@@ -140,6 +140,7 @@ BLIND     // can't see anything
 	toggleable = 1
 	action_button_name = "Toggle Goggles"
 	item_flags = AIRTIGHT
+	flags = PHORONGUARD
 
 /obj/item/clothing/glasses/science/New()
 	..()
@@ -151,6 +152,7 @@ BLIND     // can't see anything
 	icon_state = "plaingoggles"
 	item_state_slots = list(slot_r_hand_str = "glasses", slot_l_hand_str = "glasses")
 	item_flags = AIRTIGHT
+	flags = PHORONGUARD
 	body_parts_covered = EYES
 
 /obj/item/clothing/glasses/night
@@ -344,6 +346,7 @@ BLIND     // can't see anything
 	action_button_name = "Flip Welding Goggles"
 	matter = list(DEFAULT_WALL_MATERIAL = 1500, "glass" = 1000)
 	item_flags = AIRTIGHT
+	flags = PHORONGUARD
 	var/up = 0
 	flash_protection = FLASH_PROTECTION_MAJOR
 	tint = TINT_HEAVY

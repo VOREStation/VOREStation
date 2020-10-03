@@ -16,6 +16,7 @@
 	// resistance_flags = FIRE_PROOF
 	action_button_name = "Activate Jump Boots"
 	permeability_coefficient = 0.05
+	flags = PHORONGUARD
 	var/jumpdistance = 5 //-1 from to see the actual distance, e.g 4 goes over 3 tiles
 	var/jumpspeed = 3
 	var/recharging_rate = 60 //default 6 seconds between each dash

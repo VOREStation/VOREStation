@@ -9,6 +9,7 @@
 	item_state_slots = list(slot_r_hand_str = "gas_alt", slot_l_hand_str = "gas_alt")
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
+	flags = PHORONGUARD
 	siemens_coefficient = 0.9
 	var/gas_filter_strength = 1			//For gas mask filters
 	var/list/filtered_gases = list("phoron", "nitrous_oxide")

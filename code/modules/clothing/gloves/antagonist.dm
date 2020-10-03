@@ -14,6 +14,7 @@
 	item_state_slots = list(slot_r_hand_str = "white", slot_l_hand_str = "white")
 	siemens_coefficient = 0.5 // Not perfect, but slightly more protective than nothing.
 	permeability_coefficient = 0.01
+	flags = PHORONGUARD
 	germ_level = 0
 	fingerprint_chance = 10 // They're thieves' gloves. What do you think?
 

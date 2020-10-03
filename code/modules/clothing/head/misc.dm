@@ -123,6 +123,7 @@
 	icon_state = "plaguedoctor"
 	item_state_slots = list(slot_r_hand_str = "tophat", slot_l_hand_str = "tophat")
 	permeability_coefficient = 0.01
+	flags = PHORONGUARD
 	siemens_coefficient = 0.9
 	body_parts_covered = 0
 

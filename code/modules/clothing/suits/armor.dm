@@ -126,6 +126,7 @@
 	item_state_slots = list(slot_r_hand_str = "swat", slot_l_hand_str = "swat")
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
+	flags = PHORONGUARD
 	item_flags = THICKMATERIAL
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS
 	allowed = list(/obj/item/weapon/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/weapon/tank/emergency/oxygen,/obj/item/clothing/head/helmet)
