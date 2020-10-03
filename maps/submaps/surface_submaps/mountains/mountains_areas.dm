@@ -144,10 +144,6 @@
 	name = "POI - Spatial Anomaly"
 	ambience = AMBIENCE_FOREBODING
 
-/area/submap/ore_cliff
-	name = "POI - Ore Cliff"
-	ambience = AMBIENCE_RUINS
-
-/area/submap/killer_rabbit
+/area/submap/killer_rabbit //VOREStation add
 	name = "POI - Ravenous Lagomoprh"
 	ambience = AMBIENCE_FOREBODING

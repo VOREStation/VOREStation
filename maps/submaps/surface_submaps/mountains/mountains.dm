@@ -230,7 +230,7 @@
 /datum/map_template/surface/mountains/normal/cliff1
 	name = "Ore-Topped Cliff"
 	desc = "A raised area of rock created by volcanic forces."
-	mappath = 'maps/submaps/surface_submaps/mountains/Cliff1_vr.dmm' //VOREStation Edit
+	mappath = 'maps/submaps/surface_submaps/mountains/Cliff1.dmm'
 	cost = 5
 	allow_duplicates = TRUE
 	template_group = "Underground Cliffs"
