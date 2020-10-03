@@ -9696,6 +9696,12 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 8
 	},
+/obj/machinery/button/remote/blast_door{
+	id = "mechbay";
+	name = "Mech Bay Access";
+	pixel_x = 0;
+	pixel_y = -30
+	},
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
 "aqT" = (
@@ -31564,11 +31570,19 @@
 /turf/simulated/floor/lino,
 /area/tether/surfacebase/entertainment/backstage)
 "bde" = (
-/obj/machinery/atmospherics/unary/engine{
+/obj/machinery/power/smes/buildable{
+	charge = 500000;
+	input_attempt = 1;
+	input_level = 5000
+	},
+/obj/structure/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
+/turf/simulated/floor/tiled/eris/dark/bluecorner,
 /area/shuttle/tourbus/engines)
 "bdf" = (
 /obj/structure/disposalpipe/segment{
@@ -32460,6 +32474,13 @@
 	},
 /turf/simulated/floor/tiled/freezer,
 /area/crew_quarters/freezer)
+"beQ" = (
+/obj/machinery/atmospherics/unary/engine{
+	dir = 1
+	},
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tourbus/engines)
 "beR" = (
 /obj/effect/floor_decal/spline/plain{
 	dir = 4
@@ -36215,19 +36236,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
-"tLv" = (
-/obj/machinery/power/smes/buildable{
-	charge = 500000
-	},
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/eris/dark/bluecorner,
-/area/shuttle/tourbus/engines)
 "tRg" = (
 /obj/machinery/light,
 /obj/effect/floor_decal/borderfloor,
@@ -47804,7 +47812,7 @@ jML
 jHw
 jpB
 qWU
-bde
+beQ
 aKU
 aOI
 aPb
@@ -48371,7 +48379,7 @@ gUL
 rbR
 hCB
 wQf
-tLv
+bde
 fNt
 aKU
 aOI
@@ -48656,7 +48664,7 @@ caw
 jHw
 gHh
 qWU
-bde
+beQ
 aKU
 aOI
 aPb

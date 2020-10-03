@@ -13675,6 +13675,22 @@
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/Dorm_1)
+"awv" = (
+/obj/structure/cable/cyan{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/structure/cable/cyan{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/power/smes/buildable{
+	charge = 2e+006;
+	input_attempt = 1;
+	RCon_tag = "Substation - Atmospherics"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/substation/surface_atmos)
 "awD" = (
 /obj/machinery/atmospherics/pipe/zpipe/up/scrubbers,
 /obj/machinery/atmospherics/pipe/zpipe/up/supply,
@@ -17838,21 +17854,6 @@
 	icon_state = "warning"
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/plating,
-/area/maintenance/substation/surface_atmos)
-"aIN" = (
-/obj/structure/cable/cyan{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/obj/structure/cable/cyan{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Atmospherics";
-	charge = 2e+006
-	},
 /turf/simulated/floor/plating,
 /area/maintenance/substation/surface_atmos)
 "aIO" = (
@@ -41277,7 +41278,7 @@ aBO
 aHe
 aHv
 aIf
-aIN
+awv
 aIh
 aKq
 aJI
