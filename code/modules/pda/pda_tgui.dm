@@ -45,6 +45,7 @@
 	data["idLink"] = (id ? text("[id.registered_name], [id.assignment]") : "--------")
 
 	data["useRetro"] = retro_mode
+	data["touch_silent"] = touch_silent
 
 	data["cartridge_name"] = cartridge ? cartridge.name : ""
 	data["stationTime"] = stationtime2text() //worldtime2stationtime(world.time) // Aaa which fucking one is canonical there's SO MANY
@@ -102,6 +103,8 @@
 			id_check(usr, 1)
 		if("Retro")
 			retro_mode = !retro_mode
+		if("TouchSounds")
+			touch_silent = !touch_silent
 		if("Ringtone")
 			return set_ringtone()
 		else
