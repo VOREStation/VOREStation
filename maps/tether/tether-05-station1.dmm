@@ -2395,6 +2395,20 @@
 /obj/random/tool,
 /turf/simulated/floor,
 /area/maintenance/station/eng_lower)
+"aeM" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	pixel_x = 28
+	},
+/obj/structure/cable/green{
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/tiled,
+/area/maintenance/station/abandonedholodeck)
 "aeN" = (
 /obj/machinery/alarm{
 	dir = 8;
@@ -2472,6 +2486,23 @@
 /obj/machinery/door/firedoor/glass/hidden/steel,
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
+"aeV" = (
+/obj/structure/cable/green{
+	icon_state = "0-4"
+	},
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_x = -28;
+	pixel_y = 12
+	},
+/obj/machinery/power/apc{
+	cell_type = /obj/item/weapon/cell/super;
+	dir = 8;
+	name = "west bump";
+	pixel_x = -28
+	},
+/turf/simulated/floor/wood,
+/area/maintenance/abandonedlibrary)
 "aeW" = (
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/storage)
@@ -2487,6 +2518,19 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/bridge/secondary)
+"aeZ" = (
+/obj/structure/cable/green{
+	icon_state = "0-4"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/power/apc{
+	cell_type = /obj/item/weapon/cell/super;
+	dir = 8;
+	name = "west bump";
+	pixel_x = -28
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/abandonedlibraryconference)
 "afa" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -7286,17 +7330,6 @@
 /obj/item/weapon/book/manual/hydroponics_pod_people,
 /turf/simulated/floor/plating,
 /area/maintenance/abandonedlibrary)
-"anN" = (
-/obj/structure/cable/green{
-	icon_state = "0-4"
-	},
-/obj/machinery/light_switch{
-	dir = 4;
-	pixel_x = -28;
-	pixel_y = 12
-	},
-/turf/simulated/floor/wood,
-/area/maintenance/abandonedlibrary)
 "anO" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -9192,13 +9225,6 @@
 /obj/item/weapon/storage/toolbox/electrical,
 /turf/simulated/floor/tiled,
 /area/engineering/workshop)
-"ars" = (
-/obj/structure/cable/green{
-	icon_state = "0-4"
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/plating,
-/area/maintenance/abandonedlibraryconference)
 "art" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -16546,12 +16572,6 @@
 /obj/machinery/light/small,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
-	},
-/turf/simulated/floor/tiled,
-/area/maintenance/station/abandonedholodeck)
-"aEL" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
 	},
 /turf/simulated/floor/tiled,
 /area/maintenance/station/abandonedholodeck)
@@ -37008,7 +37028,7 @@ asG
 asG
 aqW
 ari
-ars
+aeZ
 arU
 asf
 aqd
@@ -37138,7 +37158,7 @@ alN
 ana
 ann
 anm
-anN
+aeV
 anX
 aod
 aov
@@ -39111,7 +39131,7 @@ alo
 alo
 aCu
 aEI
-aEL
+aeM
 aus
 aus
 aus
