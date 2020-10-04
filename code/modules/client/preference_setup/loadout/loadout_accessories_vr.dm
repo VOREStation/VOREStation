@@ -8,7 +8,7 @@
 
 /datum/gear/choker/New()
 	..()
-	gear_tweaks = list(gear_tweak_free_color_choice)
+	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/collar
 	display_name = "collar, silver"
@@ -18,7 +18,7 @@
 
 /datum/gear/collar/New()
 	..()
-	gear_tweaks = list(gear_tweak_collar_tag)
+	gear_tweaks += gear_tweak_collar_tag
 
 /datum/gear/collar/golden
 	display_name = "collar, golden"
@@ -93,6 +93,12 @@
 	description = "A shiny steel chain with a vague metallic object dangling off it."
 	path = /obj/item/clothing/accessory/tronket
 
+/datum/gear/accessory/tronket/New()
+	..()
+	gear_tweaks += gear_tweak_free_name
+	gear_tweaks += gear_tweak_free_desc
+
+
 /datum/gear/accessory/pilotpin
 	display_name = "pilot qualification pin"
 	description = "An iron pin denoting the qualification to fly SCG spacecraft."
@@ -106,4 +112,4 @@
 
 /datum/gear/accessory/flops/New()
 	..()
-	gear_tweaks = list(gear_tweak_free_color_choice)
+	gear_tweaks += gear_tweak_free_color_choice

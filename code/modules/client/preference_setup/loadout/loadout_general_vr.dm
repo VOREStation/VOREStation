@@ -10,3 +10,8 @@
 		var/obj/item/toy/tennis/ball_type = ball
 		balls[initial(ball_type.name)] = ball_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(balls))
+
+/datum/gear/plushie/New()
+	..()
+	gear_tweaks += gear_tweak_free_name
+	gear_tweaks += gear_tweak_free_desc
