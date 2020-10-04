@@ -8,7 +8,7 @@
 
 /datum/gear/choker/New()
 	..()
-	gear_tweaks = += gear_tweak_free_color_choice
+	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/collar
 	display_name = "collar, silver"
