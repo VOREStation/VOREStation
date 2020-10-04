@@ -12,7 +12,7 @@
 
 /datum/gear/gloves/colored/New()
 	..()
-	gear_tweaks = list(gear_tweak_free_color_choice)
+	gear_tweaks += gear_tweak_free_color_choice
 
 
 /datum/gear/gloves/latex/colorable
@@ -21,7 +21,7 @@
 
 /datum/gear/gloves/latex/colorable/New()
 	..()
-	gear_tweaks = list(gear_tweak_free_color_choice)
+	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/gloves/siren
 	display_name = "gloves, Siren"
