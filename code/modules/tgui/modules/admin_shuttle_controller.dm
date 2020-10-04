@@ -78,7 +78,7 @@
 				var/list/possible_d = shuttle.get_possible_destinations()
 				var/D
 				if(!LAZYLEN(possible_d))
-					to_chat(usr, "<span class='warning'>There are no possible destinations for [shuttle] ([shuttle.type])")
+					to_chat(usr, "<span class='warning'>There are no possible destinations for [shuttle] ([shuttle.type])</span>")
 					return FALSE
 				D = input("Choose shuttle destination", "Shuttle Destination") as null|anything in possible_d
 				if(D)
