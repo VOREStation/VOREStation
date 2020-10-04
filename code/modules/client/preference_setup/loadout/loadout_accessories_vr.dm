@@ -8,7 +8,7 @@
 
 /datum/gear/choker/New()
 	..()
-	gear_tweaks = list(gear_tweak_free_color_choice)
+	gear_tweaks = += gear_tweak_free_color_choice
 
 /datum/gear/collar
 	display_name = "collar, silver"
@@ -18,7 +18,7 @@
 
 /datum/gear/collar/New()
 	..()
-	gear_tweaks = list(gear_tweak_collar_tag)
+	gear_tweaks += gear_tweak_collar_tag
 
 /datum/gear/collar/golden
 	display_name = "collar, golden"
@@ -106,4 +106,4 @@
 
 /datum/gear/accessory/flops/New()
 	..()
-	gear_tweaks = list(gear_tweak_free_color_choice)
+	gear_tweaks += gear_tweak_free_color_choice
