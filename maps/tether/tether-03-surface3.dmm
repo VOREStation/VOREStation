@@ -7226,9 +7226,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/crew_quarters/panic_shelter)
 "amK" = (
-/obj/effect/wingrille_spawn/reinforced_phoron,
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/plating,
+/turf/simulated/wall/rplastitanium,
 /area/crew_quarters/panic_shelter)
 "amL" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -8025,8 +8023,8 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
 "aok" = (
-/turf/simulated/wall/r_wall,
-/area/hydroponics)
+/turf/simulated/wall/rplastitanium,
+/area/rnd/xenobiology/xenoflora)
 "aol" = (
 /turf/simulated/wall/r_wall,
 /area/vacant/vacant_shop)
@@ -31344,10 +31342,21 @@
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/entertainment)
 "bcN" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tether)
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/plastitanium/full,
+/obj/structure/window/plastitanium,
+/obj/structure/window/plastitanium{
+	dir = 1
+	},
+/obj/structure/window/plastitanium{
+	dir = 4
+	},
+/obj/structure/window/plastitanium{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/crew_quarters/panic_shelter)
 "bcO" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -32475,12 +32484,8 @@
 /turf/simulated/floor/tiled/freezer,
 /area/crew_quarters/freezer)
 "beQ" = (
-/obj/machinery/atmospherics/unary/engine{
-	dir = 1
-	},
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tourbus/engines)
+/turf/simulated/wall/rplastitanium,
+/area/hydroponics)
 "beR" = (
 /obj/effect/floor_decal/spline/plain{
 	dir = 4
@@ -32495,6 +32500,21 @@
 /obj/structure/bed/chair/wood,
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/entertainment)
+"beT" = (
+/turf/simulated/wall/r_wall,
+/area/hydroponics)
+"beU" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tether)
+"beV" = (
+/obj/machinery/atmospherics/unary/engine{
+	dir = 1
+	},
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tourbus/engines)
 "beX" = (
 /obj/structure/table/woodentable,
 /turf/simulated/floor/wood,
@@ -47812,7 +47832,7 @@ jML
 jHw
 jpB
 qWU
-beQ
+beV
 aKU
 aOI
 aPb
@@ -48664,7 +48684,7 @@ caw
 jHw
 gHh
 qWU
-beQ
+beV
 aKU
 aOI
 aPb
@@ -50649,7 +50669,7 @@ aNk
 uSA
 aNJ
 aNP
-bcN
+beU
 aKU
 abg
 aOk
@@ -50791,7 +50811,7 @@ aNl
 aNl
 aNK
 aNP
-bcN
+beU
 aKU
 abg
 aOk
@@ -50933,7 +50953,7 @@ aNm
 aNl
 aNK
 aNP
-bcN
+beU
 aKU
 abg
 aOk
@@ -51588,13 +51608,13 @@ abe
 anm
 arH
 asn
-aio
-aio
-aio
-aio
-aio
-aio
-aio
+amK
+amK
+amK
+amK
+amK
+amK
+amK
 aio
 anQ
 aol
@@ -51730,16 +51750,16 @@ abe
 aoj
 aXU
 asr
-aio
+amK
 ajl
 aof
 akN
 als
 ame
-aio
+amK
 ano
 anR
-aok
+beT
 awP
 awP
 awP
@@ -51872,13 +51892,13 @@ abe
 aoo
 aXU
 asv
-aio
+amK
 ajm
 akf
 akf
 akf
 amf
-amK
+bcN
 anp
 anS
 asU
@@ -52014,16 +52034,16 @@ abe
 aoD
 aXU
 asr
-aio
+amK
 ajn
 akg
 akO
 akf
 amg
-aio
+amK
 anq
 anT
-aok
+beT
 asK
 asP
 auO
@@ -52156,16 +52176,16 @@ abe
 aoF
 arM
 asE
-aio
+amK
 ajo
 akf
 akP
 akf
 aht
-aio
+amK
 anr
 anU
-aok
+beT
 asi
 asi
 asi
@@ -52298,16 +52318,16 @@ afJ
 acf
 arx
 acf
-aio
+amK
 ajp
 akf
 akP
 akf
 ami
-aio
-aio
+amK
+amK
 anV
-aok
+beQ
 aSx
 aop
 aop
@@ -52440,16 +52460,16 @@ afS
 apa
 arO
 asF
-aio
+amK
 ajq
 akh
 akP
 alt
 amj
-amK
+bcN
 ans
 anU
-aok
+beQ
 aDI
 aqp
 aop
@@ -52582,7 +52602,7 @@ afS
 apH
 arq
 asJ
-aio
+amK
 ajr
 aki
 akQ
@@ -52591,7 +52611,7 @@ amk
 amL
 ant
 anW
-aok
+beQ
 aop
 aop
 aop
@@ -52724,16 +52744,16 @@ afS
 aql
 arq
 asW
-aio
+amK
 ajs
 akj
 akR
 alv
 aml
-amK
+bcN
 anu
 anX
-aok
+beQ
 aoM
 aEX
 atR
@@ -52866,16 +52886,16 @@ arb
 aqn
 bdf
 atj
-acf
-acf
-acf
-acf
-acf
-acf
-aio
+aok
+aok
+aok
+aok
+aok
+aok
+amK
 ajs
 anY
-aok
+beQ
 bdi
 aop
 bdj
@@ -53014,10 +53034,10 @@ atK
 auM
 avh
 awJ
-acf
 aok
-aok
-aok
+beQ
+beQ
+beQ
 aEB
 aop
 aeZ
