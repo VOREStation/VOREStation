@@ -25,7 +25,7 @@
 
 /datum/gear/fluff/collar/New()
 	..()
-	gear_tweaks = list(gear_tweak_collar_tag)
+	gear_tweaks += gear_tweak_collar_tag
 
 //  0-9 CKEYS
 /datum/gear/fluff/malady_crop
