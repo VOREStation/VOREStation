@@ -1,0 +1,2490 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ab" = (
+/obj/machinery/door/airlock/glass_external/public,
+/obj/effect/map_helper/airlock/door/ext_door,
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander)
+"aK" = (
+/obj/machinery/door/airlock/glass_external/public,
+/obj/effect/map_helper/airlock/door/ext_door,
+/obj/effect/map_helper/airlock/sensor/ext_sensor,
+/obj/machinery/airlock_sensor/airlock_exterior/shuttle{
+	dir = 1;
+	pixel_x = 24;
+	pixel_y = 11
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander)
+"aL" = (
+/obj/machinery/atmospherics/pipe/manifold/visible,
+/obj/structure/catwalk,
+/obj/machinery/light/small,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander)
+"bk" = (
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/machinery/alarm/alarms_hidden{
+	pixel_y = 26
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_head)
+"br" = (
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 11
+	},
+/obj/structure/mirror{
+	dir = 4;
+	pixel_x = 28
+	},
+/obj/machinery/light_switch{
+	pixel_y = 23
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_head)
+"bu" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_q2)
+"bA" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_engineering)
+"bH" = (
+/obj/structure/closet/crate,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_engineering)
+"bI" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/item/weapon/storage/box/donkpockets,
+/obj/item/weapon/storage/box/donkpockets,
+/obj/random/snack,
+/obj/random/snack,
+/obj/random/snack,
+/obj/random/snack,
+/obj/random/snack,
+/obj/random/snack,
+/obj/random/snack,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_galley)
+"bK" = (
+/obj/machinery/atmospherics/portables_connector,
+/obj/effect/floor_decal/industrial/outline/blue,
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_engineering)
+"bL" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list(160)
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander)
+"bN" = (
+/obj/machinery/door/airlock/glass_external/public,
+/obj/effect/map_helper/airlock/door/int_door,
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander)
+"bP" = (
+/obj/machinery/door/airlock/glass_external/public,
+/obj/effect/map_helper/airlock/door/int_door,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander)
+"bY" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_engineering)
+"cg" = (
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/machinery/power/apc{
+	name = "south bump";
+	pixel_y = -24
+	},
+/obj/structure/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/obj/structure/closet/autolok_wall{
+	dir = 8;
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_head)
+"ci" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_head)
+"cq" = (
+/obj/machinery/shower{
+	dir = 1
+	},
+/obj/structure/curtain/open/shower,
+/obj/structure/window/reinforced/tinted{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_head)
+"cC" = (
+/obj/structure/fitness/weightlifter,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_q2)
+"cX" = (
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_q2)
+"cY" = (
+/obj/structure/bed/pod,
+/obj/item/weapon/bedsheet/blue,
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_x = 22
+	},
+/obj/effect/landmark/late_antag/trader,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_q2)
+"dj" = (
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_engineering)
+"dm" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_engineering)
+"dn" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_engineering)
+"dO" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 5
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander)
+"dT" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/fuel{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_engineering)
+"ee" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 10
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_engineering)
+"eg" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 5
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_engineering)
+"ey" = (
+/obj/machinery/atmospherics/pipe/manifold/visible{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_engineering)
+"eB" = (
+/obj/machinery/alarm/alarms_hidden{
+	dir = 4;
+	pixel_x = -26
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander)
+"eG" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/door/airlock/voidcraft{
+	req_one_access = list(160)
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_head)
+"eJ" = (
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/machinery/power/apc{
+	name = "south bump";
+	pixel_y = -24
+	},
+/obj/structure/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/obj/structure/closet/autolok_wall{
+	dir = 8;
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_q2)
+"eP" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_q2)
+"fa" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_cockpit)
+"fh" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_cockpit)
+"fn" = (
+/obj/machinery/atmospherics/unary/engine/bigger{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_engineering)
+"fB" = (
+/obj/machinery/light,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_engineering)
+"fC" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 9
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_engineering)
+"fD" = (
+/obj/machinery/atmospherics/binary/pump/fuel{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_engineering)
+"fE" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_engineering)
+"fG" = (
+/obj/structure/handrail{
+	dir = 4
+	},
+/obj/structure/closet/autolok_wall{
+	dir = 8;
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander)
+"fP" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 10
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/structure/closet/crate{
+	dir = 8
+	},
+/obj/random/material/refined,
+/obj/random/toolbox,
+/obj/structure/railing/grey,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander)
+"fR" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 6
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/structure/closet/crate{
+	dir = 8
+	},
+/obj/random/material/refined,
+/obj/random/toolbox,
+/obj/structure/railing/grey,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander)
+"fX" = (
+/obj/structure/closet/walllocker{
+	name = "Voidsuit Locker";
+	pixel_y = 32
+	},
+/obj/item/device/suit_cooling_unit,
+/obj/item/weapon/tank/air,
+/obj/item/clothing/suit/space/void/refurb,
+/obj/item/clothing/head/helmet/space/void/refurb,
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/obj/structure/handrail,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander)
+"fZ" = (
+/obj/machinery/suit_cycler/vintage/omni,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander)
+"gl" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/door/airlock/voidcraft{
+	req_one_access = list(160)
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_q2)
+"gv" = (
+/obj/machinery/computer/ship/sensors{
+	req_one_access = list(160)
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_cockpit)
+"gx" = (
+/obj/structure/window/reinforced/tinted,
+/obj/structure/toilet{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_head)
+"gC" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_cockpit)
+"gD" = (
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/structure/railing/grey{
+	dir = 1
+	},
+/obj/machinery/atmospherics/portables_connector/fuel{
+	dir = 4
+	},
+/obj/machinery/portable_atmospherics/canister/phoron{
+	start_pressure = 8000.25
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_engineering)
+"gL" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/structure/catwalk,
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_engineering)
+"gM" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander)
+"hh" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/door/window/brigdoor/westright{
+	req_access = list();
+	req_one_access = list(160)
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander)
+"hk" = (
+/obj/structure/handrail,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/light_switch{
+	pixel_y = 23
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander)
+"hn" = (
+/obj/structure/closet/walllocker{
+	name = "Personal Locker";
+	pixel_y = 32
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/item/clothing/shoes/boots/workboots,
+/obj/item/clothing/gloves/duty,
+/obj/item/clothing/under/utility,
+/obj/item/clothing/ears/earmuffs,
+/obj/item/clothing/head/soft/black,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander)
+"hp" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_cockpit)
+"hr" = (
+/obj/machinery/computer/shuttle_control/explore/salamander{
+	dir = 8;
+	req_one_access = list(160)
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_cockpit)
+"hC" = (
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/structure/railing/grey,
+/obj/machinery/atmospherics/pipe/tank/phoron{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_engineering)
+"hO" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/obj/effect/catwalk_plated,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander)
+"if" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/obj/structure/catwalk,
+/obj/structure/railing/grey,
+/obj/machinery/computer/ship/engines{
+	dir = 4;
+	req_one_access = list(160)
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_engineering)
+"ii" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_engineering)
+"im" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_engineering)
+"is" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_engineering)
+"iC" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander)
+"iJ" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander)
+"iK" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/door/window/brigdoor/westleft{
+	req_access = list();
+	req_one_access = list(160)
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander)
+"iL" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander)
+"iS" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander)
+"iW" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander)
+"jl" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_cockpit)
+"jq" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/structure/closet/walllocker{
+	dir = 1;
+	name = "Cargo Locker";
+	pixel_y = -32
+	},
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/random/contraband/nofail,
+/obj/random/contraband/nofail,
+/obj/random/contraband/nofail,
+/obj/random/contraband/nofail,
+/obj/random/contraband/nofail,
+/obj/random/contraband/nofail,
+/obj/random/contraband/nofail,
+/obj/random/contraband/nofail,
+/obj/random/contraband/nofail,
+/obj/random/cigarettes,
+/obj/random/drinkbottle,
+/obj/random/drinkbottle,
+/obj/random/snack,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander)
+"jN" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander)
+"jT" = (
+/obj/machinery/door/airlock/multi_tile/glass{
+	dir = 2;
+	req_one_access = list(160)
+	},
+/obj/machinery/door/firedoor/multi_tile{
+	dir = 1
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_cockpit)
+"jV" = (
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_cockpit)
+"ks" = (
+/obj/machinery/computer/ship/helm{
+	dir = 8;
+	req_one_access = list(160)
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_cockpit)
+"kx" = (
+/obj/machinery/atmospherics/binary/pump/fuel,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_engineering)
+"kA" = (
+/obj/item/device/suit_cooling_unit,
+/obj/item/weapon/tank/air,
+/obj/item/clothing/suit/space/void/refurb,
+/obj/item/clothing/head/helmet/space/void/refurb,
+/obj/structure/closet/walllocker{
+	name = "Voidsuit Locker";
+	pixel_y = 32
+	},
+/obj/structure/handrail,
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander)
+"kK" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_engineering)
+"kL" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/handrail{
+	dir = 8
+	},
+/obj/structure/closet/autolok_wall{
+	dir = 4;
+	pixel_x = 32
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_engineering)
+"kU" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/door/airlock/voidcraft{
+	req_one_access = list(160)
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_galley)
+"kZ" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 9
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/obj/structure/closet/crate,
+/obj/random/material/refined,
+/obj/random/toolbox,
+/obj/structure/railing/grey{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander)
+"lc" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 5
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/obj/structure/closet/crate,
+/obj/random/material/refined,
+/obj/random/toolbox,
+/obj/structure/railing/grey{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander)
+"ld" = (
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/machinery/alarm/alarms_hidden{
+	dir = 4;
+	pixel_x = -26
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/closet/autolok_wall{
+	dir = 1;
+	pixel_y = -32
+	},
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_cockpit)
+"ll" = (
+/obj/machinery/computer/ship/engines{
+	dir = 1;
+	req_one_access = list(160)
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_cockpit)
+"lo" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_cockpit)
+"lt" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_engineering)
+"lw" = (
+/obj/effect/shuttle_landmark/shuttle_initializer/salamander,
+/obj/effect/overmap/visitable/ship/landable/salamander,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 6
+	},
+/obj/machinery/embedded_controller/radio/airlock/docking_port_multi{
+	dir = 4;
+	id_tag = "salamander_docking_port";
+	name = "Port AIrlock Control";
+	pixel_x = -22;
+	req_one_access = list(160)
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander)
+"lC" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/fuel,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_engineering)
+"lK" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 6
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_engineering)
+"lV" = (
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/obj/item/weapon/tank/phoron/pressurized,
+/obj/item/weapon/tank/phoron/pressurized,
+/obj/structure/closet/walllocker{
+	dir = 1;
+	name = "Spare Fuel";
+	pixel_y = -32
+	},
+/obj/item/weapon/tool/crowbar/red,
+/obj/item/stack/material/tritium{
+	amount = 25
+	},
+/obj/machinery/light,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_engineering)
+"ma" = (
+/obj/structure/cable,
+/obj/machinery/power/smes/buildable/point_of_interest,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_engineering)
+"mm" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander)
+"mE" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/structure/closet/walllocker{
+	dir = 1;
+	name = "Cargo Locker";
+	pixel_y = -32
+	},
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/random/medical,
+/obj/random/medical,
+/obj/random/medical,
+/obj/random/medical,
+/obj/random/medical,
+/obj/random/contraband/nofail,
+/obj/random/contraband/nofail,
+/obj/random/cigarettes,
+/obj/random/drinkbottle,
+/obj/random/drinkbottle,
+/obj/random/snack,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander)
+"mJ" = (
+/obj/structure/closet/walllocker{
+	dir = 1;
+	name = "Cargo Locker";
+	pixel_y = -32
+	},
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/random/medical,
+/obj/random/medical,
+/obj/random/medical,
+/obj/random/medical,
+/obj/random/medical,
+/obj/random/contraband/nofail,
+/obj/random/contraband/nofail,
+/obj/random/cigarettes,
+/obj/random/drinkbottle,
+/obj/random/drinkbottle,
+/obj/random/snack,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander)
+"mO" = (
+/obj/structure/closet/walllocker{
+	dir = 1;
+	name = "Cargo Locker";
+	pixel_y = -32
+	},
+/obj/machinery/light,
+/obj/random/firstaid,
+/obj/random/firstaid,
+/obj/random/firstaid,
+/obj/random/firstaid,
+/obj/random/firstaid,
+/obj/random/contraband/nofail,
+/obj/random/contraband/nofail,
+/obj/random/cigarettes,
+/obj/random/drinkbottle,
+/obj/random/drinkbottle,
+/obj/random/snack,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander)
+"mR" = (
+/turf/simulated/wall/shull,
+/area/shuttle/salamander_galley)
+"mY" = (
+/obj/structure/bed/chair/bay/chair,
+/obj/structure/handrail,
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_y = 24
+	},
+/obj/structure/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/obj/structure/closet/autolok_wall{
+	dir = 8;
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_q2)
+"nE" = (
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_engineering)
+"nH" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_cockpit)
+"nP" = (
+/obj/machinery/light/small,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_engineering)
+"nX" = (
+/obj/structure/closet/crate{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_engineering)
+"oa" = (
+/obj/machinery/atmospherics/portables_connector{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/outline/red,
+/obj/machinery/portable_atmospherics/canister/empty,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_engineering)
+"oc" = (
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list(160)
+	},
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander)
+"oe" = (
+/obj/structure/bed/chair/bay/chair,
+/obj/structure/handrail,
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_y = 24
+	},
+/obj/structure/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/obj/structure/closet/autolok_wall{
+	dir = 8;
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_galley)
+"oi" = (
+/obj/structure/table/steel,
+/obj/machinery/light,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_q2)
+"ot" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_q2)
+"oF" = (
+/obj/machinery/shipsensors{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_cockpit)
+"oI" = (
+/obj/structure/closet/autolok_wall{
+	pixel_y = 32
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander)
+"oL" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 6
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander)
+"pf" = (
+/obj/machinery/atmospherics/pipe/manifold/visible{
+	dir = 1
+	},
+/obj/structure/catwalk,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander)
+"px" = (
+/obj/effect/map_helper/airlock/sensor/chamber_sensor,
+/obj/machinery/atmospherics/pipe/manifold/hidden{
+	dir = 1
+	},
+/obj/machinery/airlock_sensor{
+	dir = 4;
+	pixel_x = -21;
+	req_one_access = list(160)
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander)
+"pG" = (
+/obj/effect/map_helper/airlock/sensor/int_sensor,
+/obj/machinery/airlock_sensor{
+	dir = 8;
+	pixel_x = 21;
+	req_one_access = list(160)
+	},
+/obj/structure/handrail{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander)
+"pH" = (
+/obj/structure/table/steel,
+/obj/structure/closet/walllocker{
+	dir = 1;
+	pixel_y = -32
+	},
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = -22
+	},
+/obj/random/pizzabox,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_galley)
+"qg" = (
+/obj/structure/closet/walllocker{
+	dir = 1;
+	name = "Personal Locker";
+	pixel_y = -32
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/light,
+/obj/item/clothing/shoes/boots/workboots,
+/obj/item/clothing/gloves/duty,
+/obj/item/clothing/under/utility,
+/obj/item/clothing/ears/earmuffs,
+/obj/item/clothing/head/soft/black,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander)
+"qh" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_galley)
+"qu" = (
+/obj/structure/table/steel,
+/obj/machinery/microwave/advanced,
+/obj/machinery/alarm/alarms_hidden{
+	dir = 8;
+	pixel_x = 26
+	},
+/obj/machinery/light,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_galley)
+"qx" = (
+/obj/machinery/light/small,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander)
+"qE" = (
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander)
+"qM" = (
+/obj/structure/closet/crate{
+	dir = 8
+	},
+/obj/random/multiple/voidsuit/vintage,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander)
+"qQ" = (
+/obj/machinery/atmospherics/portables_connector{
+	dir = 1
+	},
+/obj/machinery/portable_atmospherics/canister/air/airlock,
+/obj/effect/floor_decal/industrial/outline,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander)
+"ri" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 5
+	},
+/obj/machinery/embedded_controller/radio/airlock/docking_port_multi{
+	dir = 4;
+	id_tag = "salamander_docking_star";
+	name = "Starboard AIrlock Control";
+	pixel_x = -22;
+	req_one_access = list(160)
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander)
+"rj" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_galley)
+"rw" = (
+/obj/machinery/door/airlock/glass_external/public,
+/obj/effect/map_helper/airlock/door/ext_door,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander)
+"ry" = (
+/obj/machinery/door/airlock/glass_external/public,
+/obj/effect/map_helper/airlock/door/ext_door,
+/obj/effect/map_helper/airlock/sensor/ext_sensor,
+/obj/machinery/airlock_sensor/airlock_exterior/shuttle{
+	pixel_x = 24;
+	pixel_y = -11
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander)
+"sb" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_engineering)
+"tA" = (
+/obj/machinery/power/pointdefense{
+	id_tag = "salamander_pd"
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_engineering)
+"uk" = (
+/obj/structure/closet/walllocker{
+	dir = 1;
+	name = "Voidsuit Locker";
+	pixel_y = -32
+	},
+/obj/item/device/suit_cooling_unit,
+/obj/item/weapon/tank/air,
+/obj/item/clothing/suit/space/void/refurb,
+/obj/item/clothing/head/helmet/space/void/refurb,
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander)
+"vI" = (
+/obj/structure/bed/chair/bay/comfy{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_cockpit)
+"xL" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_cockpit)
+"yv" = (
+/obj/structure/closet/walllocker{
+	dir = 1;
+	name = "Personal Locker";
+	pixel_y = -32
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/item/clothing/shoes/boots/workboots,
+/obj/item/clothing/gloves/duty,
+/obj/item/clothing/under/utility,
+/obj/item/clothing/ears/earmuffs,
+/obj/item/clothing/head/soft/black,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander)
+"zO" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_engineering)
+"AD" = (
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/fuel,
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_engineering)
+"AN" = (
+/obj/structure/bed/pod,
+/obj/item/weapon/bedsheet/blue,
+/obj/machinery/alarm/alarms_hidden{
+	dir = 8;
+	pixel_x = 26
+	},
+/obj/effect/landmark/late_antag/trader,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_q2)
+"Bf" = (
+/obj/structure/closet/walllocker{
+	name = "Cargo Locker";
+	pixel_y = 32
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/random/tech_supply/component/nofail,
+/obj/random/tech_supply/component/nofail,
+/obj/random/tech_supply/component/nofail,
+/obj/random/tech_supply/component/nofail,
+/obj/random/tech_supply/component/nofail,
+/obj/random/contraband/nofail,
+/obj/random/contraband/nofail,
+/obj/random/powercell,
+/obj/random/powercell,
+/obj/random/drinksoft,
+/obj/random/drinksoft,
+/obj/random/snack,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander)
+"By" = (
+/obj/structure/closet/walllocker{
+	name = "Personal Locker";
+	pixel_y = 32
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/clothing/shoes/boots/workboots,
+/obj/item/clothing/gloves/duty,
+/obj/item/clothing/under/utility,
+/obj/item/clothing/ears/earmuffs,
+/obj/item/clothing/head/soft/black,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander)
+"BW" = (
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander)
+"Df" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/fuel{
+	dir = 4
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_engineering)
+"DB" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_cockpit)
+"DK" = (
+/obj/machinery/atmospherics/unary/vent_pump{
+	dir = 8
+	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/structure/closet/walllocker/emerglocker/east,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander)
+"ES" = (
+/obj/machinery/atmospherics/portables_connector,
+/obj/machinery/portable_atmospherics/canister/air/airlock,
+/obj/effect/floor_decal/industrial/outline,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander)
+"FL" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander)
+"HG" = (
+/obj/machinery/power/apc{
+	dir = 8;
+	name = "west bump";
+	pixel_x = -28
+	},
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/structure/handrail,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/closet/autolok_wall{
+	pixel_y = 32
+	},
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_cockpit)
+"IL" = (
+/obj/machinery/embedded_controller/radio/docking_port_multi{
+	child_names_txt = "Port Airlock Control;Starboard Airlock Control";
+	child_tags_txt = "salamander_docking_port;salamander_docking_star";
+	dir = 1;
+	id_tag = "salamander_docking";
+	name = "Salamander Master Docking Controller";
+	pixel_y = -22
+	},
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	pixel_x = 24
+	},
+/obj/structure/cable,
+/obj/machinery/light,
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander)
+"IQ" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_galley)
+"IR" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander)
+"Jq" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander)
+"Kn" = (
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander)
+"KX" = (
+/obj/structure/closet/walllocker{
+	name = "Cargo Locker";
+	pixel_y = 32
+	},
+/obj/structure/handrail,
+/obj/random/tech_supply/nofail,
+/obj/random/tech_supply/nofail,
+/obj/random/tech_supply/nofail,
+/obj/random/tech_supply/nofail,
+/obj/random/tech_supply/nofail,
+/obj/random/contraband/nofail,
+/obj/random/contraband/nofail,
+/obj/random/powercell,
+/obj/random/powercell,
+/obj/random/drinksoft,
+/obj/random/drinksoft,
+/obj/random/snack,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander)
+"Lf" = (
+/obj/effect/floor_decal/industrial/warning,
+/obj/structure/closet/crate{
+	dir = 8
+	},
+/obj/random/material/refined,
+/obj/random/toolbox,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander)
+"LU" = (
+/obj/structure/closet/crate,
+/obj/random/multiple/voidsuit/vintage,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander)
+"NR" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander)
+"ON" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/obj/structure/closet/crate,
+/obj/random/material/refined,
+/obj/random/toolbox,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander)
+"OU" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_cockpit)
+"Pc" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander)
+"Pk" = (
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_cockpit)
+"PN" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander)
+"Qn" = (
+/obj/item/device/suit_cooling_unit,
+/obj/item/weapon/tank/air,
+/obj/item/clothing/suit/space/void/refurb,
+/obj/item/clothing/head/helmet/space/void/refurb,
+/obj/structure/closet/walllocker{
+	dir = 1;
+	name = "Voidsuit Locker";
+	pixel_y = -32
+	},
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander)
+"Rd" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/structure/closet/walllocker{
+	name = "Cargo Locker";
+	pixel_y = 32
+	},
+/obj/structure/handrail,
+/obj/random/tech_supply/component/nofail,
+/obj/random/tech_supply/component/nofail,
+/obj/random/tech_supply/component/nofail,
+/obj/random/tech_supply/component/nofail,
+/obj/random/tech_supply/component/nofail,
+/obj/random/contraband/nofail,
+/obj/random/contraband/nofail,
+/obj/random/powercell,
+/obj/random/powercell,
+/obj/random/drinksoft,
+/obj/random/drinksoft,
+/obj/random/snack,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander)
+"RO" = (
+/turf/simulated/wall/shull,
+/area/shuttle/salamander_cockpit)
+"Sb" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_q2)
+"Td" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/obj/structure/fuel_port/heavy{
+	pixel_y = 28
+	},
+/obj/structure/table/steel,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_engineering)
+"Tg" = (
+/turf/simulated/wall/shull,
+/area/shuttle/salamander_head)
+"Tl" = (
+/obj/machinery/power/pointdefense{
+	id_tag = "salamander_pd"
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_q2)
+"TG" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander)
+"Vh" = (
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	pixel_x = 24
+	},
+/obj/structure/handrail{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_engineering)
+"Vs" = (
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander)
+"Vz" = (
+/turf/simulated/wall/shull,
+/area/shuttle/salamander_q2)
+"VK" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/obj/structure/catwalk,
+/obj/structure/railing/grey{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_engineering)
+"VT" = (
+/turf/simulated/wall/shull,
+/area/shuttle/salamander)
+"VW" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/turf/simulated/wall/shull,
+/area/shuttle/salamander)
+"Wj" = (
+/turf/simulated/wall/shull,
+/area/shuttle/salamander_engineering)
+"Wv" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/universal,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_engineering)
+"WN" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/multi_tile/metal{
+	dir = 2;
+	name = "Salamander Engineering Bay";
+	req_one_access = list(160)
+	},
+/obj/machinery/door/firedoor/multi_tile{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_engineering)
+"WP" = (
+/turf/template_noop,
+/area/template_noop)
+"WW" = (
+/obj/structure/closet/crate{
+	dir = 1
+	},
+/obj/random/multiple/voidsuit/vintage,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander)
+"Xc" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander)
+"Xn" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/structure/closet/walllocker{
+	name = "Cargo Locker";
+	pixel_y = 32
+	},
+/obj/structure/handrail,
+/obj/random/tech_supply/nofail,
+/obj/random/tech_supply/nofail,
+/obj/random/tech_supply/nofail,
+/obj/random/tech_supply/nofail,
+/obj/random/tech_supply/nofail,
+/obj/random/contraband/nofail,
+/obj/random/contraband/nofail,
+/obj/random/powercell,
+/obj/random/powercell,
+/obj/random/drinksoft,
+/obj/random/drinksoft,
+/obj/random/snack,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander)
+"Xr" = (
+/obj/effect/map_helper/airlock/sensor/chamber_sensor,
+/obj/machinery/atmospherics/pipe/manifold/hidden,
+/obj/machinery/airlock_sensor{
+	dir = 4;
+	pixel_x = -21;
+	req_one_access = list(160)
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander)
+"Xs" = (
+/obj/machinery/power/port_gen/pacman/mrs{
+	anchored = 1
+	},
+/obj/structure/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/machinery/alarm/alarms_hidden{
+	pixel_y = 26
+	},
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_x = 22
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_engineering)
+"XJ" = (
+/obj/structure/handrail,
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander)
+"ZK" = (
+/obj/structure/closet/autolok_wall{
+	dir = 1;
+	pixel_y = -32
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander)
+"ZU" = (
+/obj/machinery/pointdefense_control{
+	id_tag = "salamander_pd";
+	name = "salamander defense control";
+	req_one_access = list(160)
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_cockpit)
+
+(1,1,1) = {"
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+"}
+(2,1,1) = {"
+WP
+WP
+WP
+WP
+Wj
+dj
+fn
+Wj
+Wj
+dj
+fn
+Wj
+WP
+WP
+WP
+WP
+"}
+(3,1,1) = {"
+WP
+WP
+WP
+Wj
+Wj
+dm
+fB
+Wj
+Wj
+dm
+fB
+Wj
+Wj
+WP
+WP
+WP
+"}
+(4,1,1) = {"
+WP
+WP
+WP
+Wj
+Wj
+dn
+dn
+Wj
+Wj
+dn
+lt
+Wj
+Wj
+WP
+WP
+WP
+"}
+(5,1,1) = {"
+WP
+WP
+WP
+Wj
+bA
+dT
+fC
+gD
+hC
+ee
+lC
+nP
+Wj
+WP
+WP
+WP
+"}
+(6,1,1) = {"
+WP
+WP
+WP
+Wj
+bH
+ee
+fD
+AD
+Df
+kx
+fC
+nX
+Wj
+WP
+WP
+WP
+"}
+(7,1,1) = {"
+WP
+WP
+WP
+Wj
+bK
+eg
+nE
+VK
+if
+kK
+lK
+oa
+Wj
+WP
+WP
+WP
+"}
+(8,1,1) = {"
+WP
+WP
+tA
+Wj
+bK
+ey
+Wv
+gL
+ii
+Wv
+ey
+oa
+Wj
+tA
+WP
+WP
+"}
+(9,1,1) = {"
+WP
+WP
+VT
+VT
+Wj
+Td
+fE
+zO
+im
+fE
+lV
+Wj
+VT
+VT
+WP
+WP
+"}
+(10,1,1) = {"
+WP
+VT
+VT
+WW
+Wj
+Xs
+Vh
+bY
+is
+kL
+ma
+Wj
+WW
+VT
+VT
+WP
+"}
+(11,1,1) = {"
+WP
+VT
+Pc
+ZK
+Wj
+Wj
+Wj
+sb
+WN
+Wj
+Wj
+Wj
+oI
+qx
+VT
+WP
+"}
+(12,1,1) = {"
+WP
+VT
+XJ
+Vs
+bL
+eB
+fG
+FL
+iC
+fG
+mm
+oc
+Vs
+qE
+VT
+WP
+"}
+(13,1,1) = {"
+WP
+VT
+LU
+Vs
+VT
+Xn
+fP
+BW
+iJ
+kZ
+mE
+VT
+Vs
+qM
+VT
+WP
+"}
+(14,1,1) = {"
+WP
+VT
+ES
+dO
+VT
+KX
+Lf
+FL
+iC
+ON
+mJ
+VT
+oL
+qQ
+VT
+WP
+"}
+(15,1,1) = {"
+WP
+VT
+ES
+aL
+VT
+Bf
+Lf
+FL
+iC
+ON
+mO
+VT
+pf
+qQ
+VT
+WP
+"}
+(16,1,1) = {"
+WP
+VT
+VT
+VW
+VT
+Rd
+fR
+gM
+Jq
+lc
+jq
+VT
+VW
+VT
+VT
+WP
+"}
+(17,1,1) = {"
+WP
+ab
+lw
+Xr
+bN
+NR
+NR
+PN
+iC
+Kn
+Kn
+bP
+px
+ri
+rw
+WP
+"}
+(18,1,1) = {"
+WP
+aK
+DK
+DK
+bP
+pG
+Kn
+iL
+iC
+Kn
+pG
+bP
+DK
+DK
+ry
+WP
+"}
+(19,1,1) = {"
+WP
+VT
+VT
+VT
+VT
+VT
+fX
+hh
+iK
+uk
+VT
+VT
+VT
+VT
+VT
+WP
+"}
+(20,1,1) = {"
+WP
+WP
+Tg
+gx
+cg
+Tg
+kA
+IR
+iS
+Qn
+mR
+oe
+pH
+mR
+WP
+WP
+"}
+(21,1,1) = {"
+WP
+WP
+Tg
+bk
+ci
+eG
+Xc
+TG
+hO
+Xc
+kU
+IQ
+qh
+rj
+WP
+WP
+"}
+(22,1,1) = {"
+WP
+WP
+Tg
+br
+cq
+Tg
+fZ
+iL
+iW
+IL
+mR
+bI
+qu
+mR
+WP
+WP
+"}
+(23,1,1) = {"
+WP
+WP
+Tg
+Tg
+Tg
+Tg
+VT
+hk
+jN
+VT
+mR
+mR
+mR
+mR
+WP
+WP
+"}
+(24,1,1) = {"
+WP
+WP
+Tl
+Vz
+cC
+eJ
+Vz
+By
+qg
+Vz
+mY
+oi
+Vz
+Tl
+WP
+WP
+"}
+(25,1,1) = {"
+WP
+WP
+WP
+bu
+cX
+eP
+gl
+TG
+hO
+gl
+Sb
+ot
+bu
+WP
+WP
+WP
+"}
+(26,1,1) = {"
+WP
+WP
+WP
+Vz
+cY
+AN
+Vz
+hn
+yv
+Vz
+AN
+cY
+Vz
+WP
+WP
+WP
+"}
+(27,1,1) = {"
+WP
+WP
+WP
+Vz
+Vz
+Vz
+Vz
+hp
+jT
+Vz
+Vz
+Vz
+Vz
+WP
+WP
+WP
+"}
+(28,1,1) = {"
+WP
+WP
+WP
+WP
+WP
+RO
+HG
+fh
+xL
+ld
+RO
+oF
+WP
+WP
+WP
+WP
+"}
+(29,1,1) = {"
+WP
+WP
+WP
+WP
+WP
+fa
+Pk
+DB
+jV
+ZU
+nH
+WP
+WP
+WP
+WP
+WP
+"}
+(30,1,1) = {"
+WP
+WP
+WP
+WP
+WP
+fa
+gv
+vI
+vI
+ll
+nH
+WP
+WP
+WP
+WP
+WP
+"}
+(31,1,1) = {"
+WP
+WP
+WP
+WP
+WP
+jl
+gC
+hr
+ks
+gC
+lo
+WP
+WP
+WP
+WP
+WP
+"}
+(32,1,1) = {"
+WP
+WP
+WP
+WP
+WP
+WP
+jl
+OU
+OU
+lo
+WP
+WP
+WP
+WP
+WP
+WP
+"}
+(33,1,1) = {"
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+"}
