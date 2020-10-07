@@ -3566,6 +3566,7 @@
 #include "code\modules\tgui\modules\agentcard.dm"
 #include "code\modules\tgui\modules\alarm.dm"
 #include "code\modules\tgui\modules\appearance_changer.dm"
+#include "code\modules\tgui\modules\appearance_changer_vr.dm"
 #include "code\modules\tgui\modules\atmos_control.dm"
 #include "code\modules\tgui\modules\camera.dm"
 #include "code\modules\tgui\modules\communications.dm"

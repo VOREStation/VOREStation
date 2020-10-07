@@ -23,18 +23,6 @@ const digestModeToColor = {
   "Size Steal": "purple",
   "Heal": "purple",
   "Encase In Egg": "purple",
-  "Transform": "purple",
-  "Transform (Hair and eyes)": "purple",
-  "Transform (Male)": "purple",
-  "Transform (Female)": "purple",
-  "Transform (Keep Gender)": "purple",
-  "Transform (Replica Of Self)": "purple",
-  "Transform (Change Species and Taur)": "purple",
-  "Transform (Change Species and Taur) (EGG)": "purple",
-  "Transform (Replica Of Self) (EGG)": "purple",
-  "Transform (Keep Gender) (EGG)": "purple",
-  "Transform (Male) (EGG)": "purple",
-  "Transform (Female) (EGG)": "purple",
 };
 
 const digestModeToPreyMode = {
@@ -48,18 +36,6 @@ const digestModeToPreyMode = {
   "Size Steal": "having your size stolen.",
   "Heal": "being healed.",
   "Encase In Egg": "being encased in an egg.",
-  "Transform": "being transformed.",
-  "Transform (Hair and eyes)": "being transformed.",
-  "Transform (Male)": "being transformed.",
-  "Transform (Female)": "being transformed.",
-  "Transform (Keep Gender)": "being transformed.",
-  "Transform (Replica Of Self)": "being transformed.",
-  "Transform (Change Species and Taur)": "being transformed.",
-  "Transform (Change Species and Taur) (EGG)": "being transformed.",
-  "Transform (Replica Of Self) (EGG)": "being transformed.",
-  "Transform (Keep Gender) (EGG)": "being transformed.",
-  "Transform (Male) (EGG)": "being transformed.",
-  "Transform (Female) (EGG)": "being transformed.",
 };
 
 /**
