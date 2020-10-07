@@ -2740,9 +2740,7 @@
 /area/tether/surfacebase/security/evidence)
 "afr" = (
 /obj/machinery/atmospherics/portables_connector,
-/obj/machinery/portable_atmospherics/canister/air/airlock{
-	start_pressure = 4559.63
-	},
+/obj/machinery/portable_atmospherics/canister/air/airlock,
 /turf/simulated/floor/tiled/dark,
 /area/tcommsat/computer)
 "afs" = (
@@ -6377,6 +6375,19 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/fish_farm)
+"amu" = (
+/obj/item/device/radio/intercom{
+	dir = 1;
+	pixel_y = 24;
+	req_access = list()
+	},
+/turf/simulated/floor/bluegrid{
+	name = "Mainframe Base";
+	nitrogen = 100;
+	oxygen = 0;
+	temperature = 80
+	},
+/area/tcommsat/chamber)
 "amy" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/disposalpipe/segment,
@@ -19841,22 +19852,6 @@
 	temperature = 80
 	},
 /area/tcommsat/chamber)
-"aLK" = (
-/obj/machinery/airlock_sensor/airlock_interior{
-	frequency = 1381;
-	id_tag = "server_access_in_sensor";
-	master_tag = "server_access_airlock";
-	name = "interior sensor";
-	pixel_x = 8;
-	pixel_y = 25
-	},
-/turf/simulated/floor/bluegrid{
-	name = "Mainframe Base";
-	nitrogen = 100;
-	oxygen = 0;
-	temperature = 80
-	},
-/area/tcommsat/chamber)
 "aLL" = (
 /obj/machinery/airlock_sensor/airlock_interior{
 	frequency = 1381;
@@ -20805,18 +20800,6 @@
 /obj/item/weapon/flame/lighter/random,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
-"aNB" = (
-/obj/item/device/radio/intercom{
-	dir = 8;
-	pixel_x = -24
-	},
-/turf/simulated/floor/bluegrid{
-	name = "Mainframe Base";
-	nitrogen = 100;
-	oxygen = 0;
-	temperature = 80
-	},
-/area/tcommsat/chamber)
 "aND" = (
 /obj/machinery/door/blast/regular{
 	density = 0;
@@ -43376,7 +43359,7 @@ aLD
 aMM
 aMZ
 aLD
-aNB
+aLD
 aLD
 aLI
 aKh
@@ -44648,7 +44631,7 @@ aJz
 aKh
 aKT
 aKh
-aLK
+amu
 aLM
 aLM
 aLM

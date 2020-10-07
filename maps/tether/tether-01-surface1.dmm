@@ -5377,9 +5377,6 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/north_stairs_one)
-"aiW" = (
-/turf/simulated/mineral,
-/area/engineering/engine_room)
 "aiX" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/structure/disposalpipe/segment{
@@ -35317,7 +35314,7 @@ aah
 aah
 aah
 aah
-aiW
+aah
 aah
 aah
 aah
