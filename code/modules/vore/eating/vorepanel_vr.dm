@@ -573,20 +573,9 @@
 			. = TRUE
 		if("b_mode")
 			var/list/menu_list = host.vore_selected.digest_modes.Copy()
-			if(istype(usr,/mob/living/carbon/human))
-				menu_list += DM_TRANSFORM
-
 			var/new_mode = input("Choose Mode (currently [host.vore_selected.digest_mode])") as null|anything in menu_list
 			if(!new_mode)
 				return FALSE
-
-			if(new_mode == DM_TRANSFORM) //Snowflek submenu
-				var/list/tf_list = host.vore_selected.transform_modes
-				var/new_tf_mode = input("Choose TF Mode (currently [host.vore_selected.digest_mode])") as null|anything in tf_list
-				if(!new_tf_mode)
-					return FALSE
-				host.vore_selected.digest_mode = new_tf_mode
-				return
 
 			host.vore_selected.digest_mode = new_mode
 			. = TRUE
