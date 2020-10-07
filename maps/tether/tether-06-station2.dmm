@@ -5202,8 +5202,12 @@
 /turf/space,
 /area/space)
 "hM" = (
-/obj/structure/plasticflaps,
-/turf/simulated/floor/airless,
+/obj/structure/railing{
+	icon_state = "railing0";
+	dir = 4
+	},
+/obj/structure/railing,
+/turf/space,
 /area/space)
 "hN" = (
 /obj/structure/railing{
@@ -5518,8 +5522,8 @@
 /turf/simulated/floor,
 /area/maintenance/station/exploration)
 "iq" = (
-/obj/structure/catwalk,
-/turf/space,
+/obj/structure/barricade,
+/turf/simulated/floor/airless,
 /area/space)
 "ir" = (
 /obj/structure/table/steel,
@@ -31379,7 +31383,7 @@ aa
 aa
 aa
 aa
-hL
+aa
 hL
 eM
 at
@@ -31520,8 +31524,8 @@ aa
 aa
 aa
 aa
-dU
-iq
+aa
+hM
 ab
 ab
 RB
@@ -31663,8 +31667,8 @@ aa
 aa
 aa
 dU
+iq
 ab
-hM
 IO
 Mq
 Ql
