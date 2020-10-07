@@ -13,6 +13,7 @@ var/global/list/seen_religions = list()
 		seen_religions    |= M.client.prefs.religion*/
 	return
 
+// VOREStation Edits Start
 var/global/list/citizenship_choices = list(
 	"Earth",
 	"Mars",
@@ -20,10 +21,13 @@ var/global/list/citizenship_choices = list(
 	"Binma",
 	"Moghes",
 	"Meralar",
-	"Qerr'balak"
+	"Qerr'balak",
+	"Virgo 3b Colony",
+	"Virgo 4 NT Compound"
 	)
 
 var/global/list/home_system_choices = list(
+	"Virgo-Erigone",
 	"Sol",
 	"Vir",
 	"Nyx",
@@ -32,6 +36,7 @@ var/global/list/home_system_choices = list(
 	"Epsilon Ursae Minoris",
 	"Rarkajar"
 	)
+// VOREStation Edits Stop
 
 var/global/list/faction_choices = list(
 	"Sol Central",
