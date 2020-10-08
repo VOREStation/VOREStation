@@ -37,6 +37,7 @@
 	dir = 1;
 	id = "wilderness";
 	name = "Anti-Fauna shutters";
+	pixel_x = 0;
 	pixel_y = -25
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
@@ -44,7 +45,8 @@
 "aj" = (
 /obj/effect/floor_decal/rust,
 /obj/machinery/light/small{
-	dir = 8
+	dir = 8;
+	pixel_x = 0
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/tether/outpost/exploration_shed)
@@ -97,6 +99,7 @@
 /area/tether/outpost/exploration_shed)
 "aq" = (
 /obj/machinery/button/remote/blast_door{
+	dir = 2;
 	id = "wilderness";
 	name = "Anti-Fauna shutters";
 	pixel_x = -1;
@@ -128,9 +131,6 @@
 /mob/living/simple_mob/animal/passive/gaslamp,
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/tether/outpost/exploration_plains)
-"TI" = (
-/turf/simulated/mineral/virgo3b,
-/area/tether/outpost/exploration_shed)
 
 (1,1,1) = {"
 as
@@ -987,7 +987,7 @@ ac
 (7,1,1) = {"
 as
 bF
-bF
+ad
 ad
 bF
 bF
@@ -1128,7 +1128,7 @@ ac
 "}
 (8,1,1) = {"
 as
-bF
+ad
 ad
 ad
 ad
@@ -1270,7 +1270,7 @@ ac
 "}
 (9,1,1) = {"
 as
-bF
+ad
 ad
 ad
 ad
@@ -1412,7 +1412,7 @@ ac
 "}
 (10,1,1) = {"
 as
-bF
+ab
 ad
 ad
 ab
@@ -1554,9 +1554,9 @@ ac
 "}
 (11,1,1) = {"
 as
-bF
-ad
-ad
+ab
+ab
+ab
 ab
 ab
 ab
@@ -1696,8 +1696,8 @@ ac
 "}
 (12,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -1838,8 +1838,8 @@ ac
 "}
 (13,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -1980,8 +1980,8 @@ ac
 "}
 (14,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -2122,8 +2122,8 @@ ac
 "}
 (15,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -2264,8 +2264,8 @@ ac
 "}
 (16,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -2406,8 +2406,8 @@ ac
 "}
 (17,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -2548,8 +2548,8 @@ ac
 "}
 (18,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -2690,8 +2690,8 @@ ac
 "}
 (19,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -2832,8 +2832,8 @@ ac
 "}
 (20,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -2974,8 +2974,8 @@ ac
 "}
 (21,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -3116,8 +3116,8 @@ ac
 "}
 (22,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -3258,8 +3258,8 @@ ac
 "}
 (23,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -3400,8 +3400,8 @@ ac
 "}
 (24,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -3542,8 +3542,8 @@ ac
 "}
 (25,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -3684,8 +3684,8 @@ ac
 "}
 (26,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -3826,8 +3826,8 @@ ac
 "}
 (27,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -3968,8 +3968,8 @@ ac
 "}
 (28,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -4110,8 +4110,8 @@ ac
 "}
 (29,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -4252,8 +4252,8 @@ ac
 "}
 (30,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -4394,8 +4394,8 @@ ac
 "}
 (31,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -4536,8 +4536,8 @@ ac
 "}
 (32,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -4678,8 +4678,8 @@ ac
 "}
 (33,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -4820,8 +4820,8 @@ ac
 "}
 (34,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -4962,8 +4962,8 @@ ac
 "}
 (35,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -5104,8 +5104,8 @@ ac
 "}
 (36,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -5246,8 +5246,8 @@ ac
 "}
 (37,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 Em
@@ -5388,8 +5388,8 @@ ac
 "}
 (38,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -5530,8 +5530,8 @@ ac
 "}
 (39,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -5672,8 +5672,8 @@ ac
 "}
 (40,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -5814,8 +5814,8 @@ ac
 "}
 (41,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -5956,8 +5956,8 @@ ac
 "}
 (42,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -6098,8 +6098,8 @@ ac
 "}
 (43,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -6240,8 +6240,8 @@ ac
 "}
 (44,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -6382,8 +6382,8 @@ ac
 "}
 (45,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -6524,8 +6524,8 @@ ac
 "}
 (46,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -6666,8 +6666,8 @@ ac
 "}
 (47,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -6808,8 +6808,8 @@ ac
 "}
 (48,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -6950,8 +6950,8 @@ ac
 "}
 (49,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -7092,8 +7092,8 @@ ac
 "}
 (50,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -7234,8 +7234,8 @@ ac
 "}
 (51,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -7376,8 +7376,8 @@ ac
 "}
 (52,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -7518,8 +7518,8 @@ ac
 "}
 (53,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -7660,8 +7660,8 @@ ac
 "}
 (54,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -7802,8 +7802,8 @@ ac
 "}
 (55,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -7944,8 +7944,8 @@ ac
 "}
 (56,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -8086,8 +8086,8 @@ ac
 "}
 (57,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -8228,8 +8228,8 @@ ac
 "}
 (58,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -8370,8 +8370,8 @@ ac
 "}
 (59,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -8512,8 +8512,8 @@ ac
 "}
 (60,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -8654,8 +8654,8 @@ ac
 "}
 (61,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -8796,8 +8796,8 @@ ac
 "}
 (62,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -8938,7 +8938,7 @@ ac
 "}
 (63,1,1) = {"
 as
-bF
+ab
 ad
 ad
 ab
@@ -9080,7 +9080,7 @@ ac
 "}
 (64,1,1) = {"
 at
-TI
+an
 an
 an
 an
@@ -10784,7 +10784,7 @@ ac
 "}
 (76,1,1) = {"
 at
-TI
+an
 an
 an
 an
@@ -10926,7 +10926,7 @@ ac
 "}
 (77,1,1) = {"
 as
-bF
+ad
 ad
 ad
 ab
@@ -11068,8 +11068,8 @@ ac
 "}
 (78,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -11210,8 +11210,8 @@ ac
 "}
 (79,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -11352,8 +11352,8 @@ ac
 "}
 (80,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -11494,8 +11494,8 @@ ac
 "}
 (81,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -11636,8 +11636,8 @@ ac
 "}
 (82,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -11778,8 +11778,8 @@ ac
 "}
 (83,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -11920,8 +11920,8 @@ ac
 "}
 (84,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -12062,8 +12062,8 @@ ac
 "}
 (85,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -12204,8 +12204,8 @@ ac
 "}
 (86,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -12346,8 +12346,8 @@ ac
 "}
 (87,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -12488,8 +12488,8 @@ ac
 "}
 (88,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -12630,8 +12630,8 @@ ac
 "}
 (89,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -12772,8 +12772,8 @@ ac
 "}
 (90,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -12914,8 +12914,8 @@ ac
 "}
 (91,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -13056,8 +13056,8 @@ ac
 "}
 (92,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -13198,8 +13198,8 @@ ac
 "}
 (93,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -13340,8 +13340,8 @@ ac
 "}
 (94,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -13482,8 +13482,8 @@ ac
 "}
 (95,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -13624,8 +13624,8 @@ ac
 "}
 (96,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -13766,8 +13766,8 @@ ac
 "}
 (97,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -13908,8 +13908,8 @@ ac
 "}
 (98,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -14050,8 +14050,8 @@ ac
 "}
 (99,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -14192,8 +14192,8 @@ ac
 "}
 (100,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -14334,8 +14334,8 @@ ac
 "}
 (101,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -14476,8 +14476,8 @@ ac
 "}
 (102,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -14618,8 +14618,8 @@ ac
 "}
 (103,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -14760,8 +14760,8 @@ ac
 "}
 (104,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -14902,8 +14902,8 @@ ac
 "}
 (105,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -15044,8 +15044,8 @@ ac
 "}
 (106,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -15186,8 +15186,8 @@ ac
 "}
 (107,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -15328,8 +15328,8 @@ ac
 "}
 (108,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -15470,8 +15470,8 @@ ac
 "}
 (109,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -15612,8 +15612,8 @@ ac
 "}
 (110,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -15754,8 +15754,8 @@ ac
 "}
 (111,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -15896,8 +15896,8 @@ ac
 "}
 (112,1,1) = {"
 as
-bF
-ad
+ab
+ab
 BE
 ab
 ab
@@ -16038,8 +16038,8 @@ ac
 "}
 (113,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -16180,8 +16180,8 @@ ac
 "}
 (114,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -16322,8 +16322,8 @@ ac
 "}
 (115,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -16464,8 +16464,8 @@ ac
 "}
 (116,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -16606,8 +16606,8 @@ ac
 "}
 (117,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -16748,8 +16748,8 @@ ac
 "}
 (118,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -16890,8 +16890,8 @@ ac
 "}
 (119,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -17032,8 +17032,8 @@ ac
 "}
 (120,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -17174,8 +17174,8 @@ ac
 "}
 (121,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -17316,8 +17316,8 @@ ac
 "}
 (122,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -17458,8 +17458,8 @@ ac
 "}
 (123,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -17600,8 +17600,8 @@ ac
 "}
 (124,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 Em
 ab
@@ -17742,8 +17742,8 @@ ac
 "}
 (125,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -17884,8 +17884,8 @@ ac
 "}
 (126,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -18026,8 +18026,8 @@ ac
 "}
 (127,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -18168,8 +18168,8 @@ ac
 "}
 (128,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -18310,8 +18310,8 @@ ac
 "}
 (129,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -18452,8 +18452,8 @@ ac
 "}
 (130,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -18594,8 +18594,8 @@ ac
 "}
 (131,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ab
 ab
@@ -18736,8 +18736,8 @@ ac
 "}
 (132,1,1) = {"
 as
-bF
-ad
+ab
+ab
 ab
 ad
 ab
@@ -18878,8 +18878,8 @@ ac
 "}
 (133,1,1) = {"
 as
-bF
 ad
+ab
 ad
 ad
 ad
@@ -19020,8 +19020,8 @@ ac
 "}
 (134,1,1) = {"
 as
-bF
-bF
+ad
+ad
 ad
 ad
 ad
