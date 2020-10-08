@@ -5826,13 +5826,14 @@
 /turf/simulated/floor/tiled,
 /area/security/hallway)
 "ajm" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4;
+	icon_state = "intact-scrubbers"
 	},
-/turf/simulated/floor/tiled/asteroid_steel/airless,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/mining_outpost/shuttle)
+/obj/item/toy/plushie/squid/blue,
+/obj/machinery/camera/network/cargo,
+/turf/simulated/floor/outdoors/grass/forest,
+/area/quartermaster/qm)
 "ajn" = (
 /obj/machinery/newscaster/security_unit{
 	pixel_y = 32
@@ -5987,20 +5988,46 @@
 /turf/simulated/wall/durasteel,
 /area/ai)
 "ajE" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
 	},
-/turf/simulated/floor/tiled/asteroid_steel/airless,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/mining_outpost/shuttle)
+/obj/structure/window/reinforced/polarized{
+	dir = 4;
+	id = "qm_officepet"
+	},
+/obj/structure/curtain/open/privacy,
+/turf/simulated/floor/outdoors/grass/forest,
+/area/quartermaster/qm)
 "ajF" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_r"
+/obj/machinery/button/windowtint{
+	id = "qm_officepet";
+	pixel_x = -20;
+	pixel_y = 24
 	},
-/turf/simulated/floor/tiled/asteroid_steel/airless,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/mining_outpost/shuttle)
+/turf/simulated/floor/wood,
+/area/quartermaster/qm)
+"ajG" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/door/window/westleft{
+	dir = 4
+	},
+/obj/structure/curtain/open/privacy,
+/turf/simulated/floor/outdoors/grass/forest,
+/area/quartermaster/qm)
+"ajH" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/obj/structure/window/reinforced/polarized{
+	dir = 4;
+	id = "qm_officepet"
+	},
+/obj/structure/curtain/open/privacy,
+/turf/simulated/floor/outdoors/grass/forest,
+/area/quartermaster/qm)
 "ajI" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -6018,6 +6045,17 @@
 	},
 /turf/simulated/floor/tiled,
 /area/security/hallwayaux)
+"ajJ" = (
+/obj/structure/table/standard,
+/obj/machinery/photocopier/faxmachine{
+	department = "Quartermaster-Office"
+	},
+/obj/machinery/camera/network/cargo{
+	dir = 1;
+	name = "security camera"
+	},
+/turf/simulated/floor/wood,
+/area/quartermaster/qm)
 "ajK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -6097,6 +6135,21 @@
 /obj/machinery/deployable/barrier,
 /turf/simulated/floor/tiled/dark,
 /area/security/armory/blue)
+"ajS" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_l"
+	},
+/turf/simulated/floor/tiled/asteroid_steel/airless,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/mining_outpost/shuttle)
+"ajT" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/asteroid_steel/airless,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/mining_outpost/shuttle)
 "ajU" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 8
@@ -6119,6 +6172,14 @@
 	},
 /turf/simulated/floor/tiled,
 /area/security/hallwayaux)
+"ajV" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_r"
+	},
+/turf/simulated/floor/tiled/asteroid_steel/airless,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/mining_outpost/shuttle)
 "ajW" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -18000,17 +18061,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/reception)
-"aEp" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/item/toy/plushie/squid/blue,
-/obj/machinery/camera/network/cargo,
-/turf/simulated/floor/outdoors/grass/forest,
-/area/quartermaster/qm)
 "aEq" = (
 /obj/structure/table/standard,
 /obj/item/weapon/coin/silver,
@@ -25033,13 +25083,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/office)
-"aQd" = (
-/obj/structure/table/standard,
-/obj/machinery/photocopier/faxmachine{
-	department = "Quartermaster-Office"
-	},
-/turf/simulated/floor/wood,
-/area/quartermaster/qm)
 "aQe" = (
 /obj/machinery/conveyor{
 	dir = 1;
@@ -26747,18 +26790,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock)
-"aTU" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/turf/simulated/floor/outdoors/grass/forest,
-/area/quartermaster/qm)
 "aTV" = (
 /obj/machinery/access_button{
 	command = "cycle_interior";
@@ -27205,13 +27236,6 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock/gear)
-"aVl" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/door/window/westleft{
-	dir = 4
-	},
-/turf/simulated/floor/outdoors/grass/forest,
-/area/quartermaster/qm)
 "aVm" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/storage/box/beakers,
@@ -45114,7 +45138,7 @@ nzs
 ayQ
 azI
 azL
-aZp
+ajm
 aCA
 aZn
 azL
@@ -45256,9 +45280,9 @@ eWq
 aAK
 azJ
 azL
-aEp
-aVl
-aTU
+ajE
+ajG
+ajH
 azL
 azL
 aEc
@@ -45398,7 +45422,7 @@ axZ
 ayS
 azK
 aYf
-aCD
+ajF
 aCD
 aZV
 aAI
@@ -45543,7 +45567,7 @@ aAJ
 aBM
 aCD
 aZV
-aQd
+ajJ
 azL
 aEe
 aEY
@@ -47693,11 +47717,11 @@ avt
 avt
 adD
 aZS
-ajm
-ajE
-ajE
-ajE
-ajF
+ajS
+ajT
+ajT
+ajT
+ajV
 baB
 adD
 avt
