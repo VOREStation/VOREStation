@@ -2,6 +2,7 @@ import { useBackend } from "../backend";
 import { Box, Section, Table } from "../components";
 import { Window } from "../layouts";
 import { COLORS } from "../constants";
+import { decodeHtmlEntities } from "common/string";
 
 /*
  * Shared by the following templates (and used individually too)
@@ -54,7 +55,7 @@ export const CrewManifestContent = (props, context) => {
             </Table.Row>
             {cat.elems.map(person => (
               <Table.Row color="average" key={person.name + person.rank}>
-                <Table.Cell>{person.name}</Table.Cell>
+                <Table.Cell>{decodeHtmlEntities(person.name)}</Table.Cell>
                 <Table.Cell>{person.rank}</Table.Cell>
                 <Table.Cell>{person.active}</Table.Cell>
               </Table.Row>

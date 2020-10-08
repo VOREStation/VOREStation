@@ -16,7 +16,7 @@
 
 /datum/gear/suit/labcoat_colorable/New()
 	..()
-	gear_tweaks = list(gear_tweak_free_color_choice)
+	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/suit/jacket_modular
 	display_name = "jacket, modular"
