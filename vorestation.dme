@@ -3603,6 +3603,7 @@
 #include "code\modules\turbolift\turbolift.dm"
 #include "code\modules\turbolift\turbolift_areas.dm"
 #include "code\modules\turbolift\turbolift_console.dm"
+#include "code\modules\turbolift\turbolift_console_vr.dm"
 #include "code\modules\turbolift\turbolift_door.dm"
 #include "code\modules\turbolift\turbolift_door_vr.dm"
 #include "code\modules\turbolift\turbolift_floor.dm"

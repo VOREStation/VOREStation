@@ -36,3 +36,64 @@
 /obj/structure/flora/pumpkin/carved/owo
 	desc = "A fat, freshly picked pumpkin. This one has a face carved into it! This one has large, round eyes and a squiggly, cat-like smiling mouth. Its pleasantly surprised expression seems to suggest that the pumpkin has noticed something about you."
 	icon_state = "decor-jackolantern-owo"
+
+// Various decorá 
+/obj/structure/flora/log1
+	name = "waterlogged trunk"
+	icon = 'icons/obj/flora/amayastuff.dmi'
+	desc = "A part of a felled tree. It is soaking up the water it is bouyant on."
+	icon_state = "log1"
+	
+/obj/structure/flora/log2
+	name = "waterlogged trunk"
+	icon = 'icons/obj/flora/amayastuff.dmi'
+	desc = "A part of a felled tree. It is soaking up the water it is bouyant on."
+	icon_state = "log2"
+
+/obj/structure/flora/lily1
+	name = "waterlogged trunk"
+	icon = 'icons/obj/flora/amayastuff.dmi'
+	desc = "A part of a felled tree. It is soaking up the water it is bouyant on."
+	icon_state = "lilypad1"
+	
+/obj/structure/flora/lily2
+	name = "waterlogged trunk"
+	icon = 'icons/obj/flora/amayastuff.dmi'
+	desc = "A part of a felled tree. It is soaking up the water it is bouyant on."
+	icon_state = "lilypad2"
+	
+/obj/structure/flora/lily3
+	name = "waterlogged trunk"
+	icon = 'icons/obj/flora/amayastuff.dmi'
+	desc = "A part of a felled tree. It is soaking up the water it is bouyant on."
+	icon_state = "lilypad3"
+
+/obj/structure/flora/smallbould
+	name = "waterlogged trunk"
+	icon = 'icons/obj/flora/amayastuff.dmi'
+	desc = "A part of a felled tree. It is soaking up the water it is bouyant on."
+	icon_state = "smallerboulder"
+	
+/obj/structure/flora/bboulder1
+	name = "waterlogged trunk"
+	icon = 'icons/obj/flora/amayastuff.dmi'
+	desc = "A part of a felled tree. It is soaking up the water it is bouyant on."
+	icon_state = "bigboulder1"
+	
+/obj/structure/flora/bboulder2
+	name = "waterlogged trunk"
+	icon = 'icons/obj/flora/amayastuff.dmi'
+	desc = "A part of a felled tree. It is soaking up the water it is bouyant on."
+	icon_state = "bigboulder2"
+	
+/obj/structure/flora/rocks1
+	name = "waterlogged trunk"
+	icon = 'icons/obj/flora/amayastuff.dmi'
+	desc = "A part of a felled tree. It is soaking up the water it is bouyant on."
+	icon_state = "rocks1"
+	
+/obj/structure/flora/rocks2
+	name = "waterlogged trunk"
+	icon = 'icons/obj/flora/amayastuff.dmi'
+	desc = "A part of a felled tree. It is soaking up the water it is bouyant on."
+	icon_state = "rocks2"

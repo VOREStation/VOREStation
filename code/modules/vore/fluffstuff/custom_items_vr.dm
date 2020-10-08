@@ -1288,3 +1288,24 @@
 	icon_state_unpowered = "shadowlaptop-open"
 	icon_state = "shadowlaptop-open"
 	icon_state_closed = "shadowlaptop-closed"
+
+//Rboys2 - Clara Mali
+/obj/item/weapon/reagent_containers/food/drinks/glass2/fluff/claraflask
+	name = "Clara's Vacuum Flask"
+	desc = "A rose gold vacuum flask."
+	base_name = "Clara's Vacuum Flask"
+	base_icon = "claraflask"
+	icon = 'icons/vore/custom_items_vr.dmi'
+	center_of_mass = list("x" = 15,"y" = 4)
+	filling_states = list(15, 30, 50, 60, 80, 100)
+	volume = 60
+
+/obj/item/weapon/reagent_containers/food/drinks/glass2/fluff/claraflask/Initialize()
+	. = ..()
+	reagents.add_reagent("tea", 40)
+	reagents.add_reagent("milk", 20)
+
+/obj/item/weapon/reagent_containers/food/drinks/glass2/fluff/claraflask/update_icon()
+	..()
+	name = initial(name)
+	desc = initial(desc)

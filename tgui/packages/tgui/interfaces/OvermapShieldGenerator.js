@@ -6,7 +6,7 @@ import { Window } from "../layouts";
 
 export const OvermapShieldGenerator = (props, context) => {
   return (
-    <Window width={500} height={800} resizable>
+    <Window width={500} height={760} resizable>
       <Window.Content scrollable>
         <OvermapShieldGeneratorContent />
       </Window.Content>
