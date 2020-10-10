@@ -15990,9 +15990,13 @@
 /turf/simulated/floor,
 /area/medical/surgery_hallway)
 "yq" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/catwalk,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
 /turf/simulated/floor,
 /area/maintenance/station/sec_lower)
 "yr" = (
@@ -16081,16 +16085,13 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery2)
 "yx" = (
+/obj/structure/catwalk,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/effect/floor_decal/corner_techfloor_grid{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor,
 /area/maintenance/station/sec_lower)
 "yy" = (
@@ -16126,11 +16127,11 @@
 /turf/simulated/floor/tiled,
 /area/tether/exploration/equipment)
 "yB" = (
+/obj/structure/catwalk,
+/obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
-/obj/structure/catwalk,
-/obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
@@ -16167,20 +16168,17 @@
 /turf/simulated/floor,
 /area/maintenance/station/sec_lower)
 "yF" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1)
+/obj/effect/floor_decal/techfloor,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
 "yG" = (
-/obj/structure/shuttle/engine/propulsion{
+/obj/effect/floor_decal/corner_techfloor_grid{
 	dir = 8
 	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1)
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
 "yH" = (
 /obj/structure/closet/secure_closet/pilot,
 /obj/effect/floor_decal/borderfloor,
@@ -16194,6 +16192,33 @@
 /turf/simulated/floor/tiled,
 /area/tether/exploration/equipment)
 "yI" = (
+/obj/structure/catwalk,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 1
+	},
+/turf/simulated/floor,
+/area/maintenance/station/sec_lower)
+"yJ" = (
+/turf/simulated/wall/r_wall,
+/area/maintenance/station/micro)
+"yK" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_l"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1)
+"yL" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1)
+"yM" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8;
 	icon_state = "propulsion_r"
@@ -16201,9 +16226,6 @@
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/large_escape_pod1)
-"yJ" = (
-/turf/simulated/wall/r_wall,
-/area/maintenance/station/micro)
 "yV" = (
 /obj/structure/table/standard,
 /obj/item/device/glasses_kit,
@@ -22844,11 +22866,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/maintenance/station/sec_lower)
-"WJ" = (
-/obj/structure/catwalk,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor,
-/area/maintenance/station/sec_lower)
 "WL" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -23378,17 +23395,6 @@
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled,
 /area/tether/exploration/crew)
-"ZW" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
-	},
-/obj/effect/floor_decal/techfloor,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor,
-/area/maintenance/station/sec_lower)
 "ZZ" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/lightgrey/border,
@@ -27731,7 +27737,7 @@ Yh
 IX
 IX
 yq
-ZW
+yF
 at
 FZ
 FZ
@@ -27872,8 +27878,8 @@ up
 at
 at
 at
-XM
 yx
+yG
 yC
 yE
 FR
@@ -28014,8 +28020,8 @@ Wj
 at
 Qs
 at
-WJ
 yB
+yI
 yD
 oU
 Or
@@ -37959,11 +37965,11 @@ hl
 DI
 RX
 DL
-yF
-yG
-yG
-yG
-yI
+yK
+yL
+yL
+yL
+yM
 oY
 sW
 ef
