@@ -17,7 +17,6 @@
 	icon_state = "forensic"
 	item_state = "black"
 	permeability_coefficient = 0.05
-	flags = PHORONGUARD
 
 	cold_protection = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
@@ -31,7 +30,6 @@
 	item_state = "swat"
 	siemens_coefficient = 0.50
 	permeability_coefficient = 0.05
-	flags = PHORONGUARD
 	cold_protection = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
 	heat_protection = HANDS
@@ -44,7 +42,6 @@
 	item_state = "swat"
 	siemens_coefficient = 0
 	permeability_coefficient = 0.05
-	flags = PHORONGUARD
 	cold_protection = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
 	heat_protection = HANDS
@@ -57,7 +54,6 @@
 	item_state_slots = list(slot_r_hand_str = "white", slot_l_hand_str = "white")
 	siemens_coefficient = 1.0 //thin latex gloves, much more conductive than fabric gloves (basically a capacitor for AC)
 	permeability_coefficient = 0.01
-	flags = PHORONGUARD
 	germ_level = 0
 	fingerprint_chance = 25
 	drop_sound = 'sound/items/drop/rubber.ogg'
@@ -86,7 +82,6 @@
 	icon_state = "leather"
 	item_state_slots = list(slot_r_hand_str = "lightbrown", slot_l_hand_str = "lightbrown")
 	permeability_coefficient = 0.05
-	flags = PHORONGUARD
 	siemens_coefficient = 0.75 //thick work gloves
 	drop_sound = 'sound/items/drop/leather.ogg'
 	pickup_sound = 'sound/items/pickup/leather.ogg'
@@ -107,7 +102,6 @@
 	punch_force = 3
 	siemens_coefficient = 0.75
 	permeability_coefficient = 0.05
-	flags = PHORONGUARD
 	armor = list(melee = 30, bullet = 10, laser = 10, energy = 15, bomb = 20, bio = 0, rad = 0)
 
 /obj/item/clothing/gloves/vox

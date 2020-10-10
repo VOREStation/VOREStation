@@ -11,7 +11,6 @@
 	item_state = "black"
 	siemens_coefficient = 2
 	permeability_coefficient = 0.05
-	flags = PHORONGUARD
 	cold_protection = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
 	heat_protection = HANDS
@@ -32,7 +31,6 @@
 	item_state = "black"
 	siemens_coefficient = 2
 	permeability_coefficient = 0.05
-	flags = PHORONGUARD
 	cold_protection = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
 	heat_protection = HANDS

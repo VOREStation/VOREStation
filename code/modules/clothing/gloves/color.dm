@@ -6,7 +6,6 @@
 	icon_state = "yellow"
 	siemens_coefficient = 0
 	permeability_coefficient = 0.05
-	flags = PHORONGUARD
 	drop_sound = 'sound/items/drop/rubber.ogg'
 	pickup_sound = 'sound/items/pickup/rubber.ogg'
 
@@ -16,7 +15,6 @@
 	icon_state = "yellow"
 	siemens_coefficient = 1			//Set to a default of 1, gets overridden in initialize()
 	permeability_coefficient = 0.05
-	flags = PHORONGUARD
 	drop_sound = 'sound/items/drop/rubber.ogg'
 	pickup_sound = 'sound/items/pickup/rubber.ogg'
 
@@ -31,7 +29,6 @@
 	name = "black gloves"
 	icon_state = "black"
 	permeability_coefficient = 0.05
-	flags = PHORONGUARD
 
 	cold_protection = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE

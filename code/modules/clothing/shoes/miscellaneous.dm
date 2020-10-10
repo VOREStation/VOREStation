@@ -3,7 +3,6 @@
 	name = "brown shoes"
 	icon_state = "brown"
 	permeability_coefficient = 0.05
-	flags = PHORONGUARD
 	item_flags = NOSLIP
 	origin_tech = list(TECH_ILLEGAL = 3)
 	var/list/clothing_choices = list()
@@ -23,7 +22,6 @@
 	name = "galoshes"
 	icon_state = "galoshes"
 	permeability_coefficient = 0.05
-	flags = PHORONGUARD
 	siemens_coefficient = 0 //They're thick rubber boots! Of course they won't conduct electricity!
 	item_flags = NOSLIP
 	slowdown = SHOES_SLOWDOWN+1

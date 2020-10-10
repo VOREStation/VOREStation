@@ -47,7 +47,6 @@
 	icon_state = "medical"
 	item_state_slots = list(slot_r_hand_str = "medical", slot_l_hand_str = "medical")
 	permeability_coefficient = 0.01
-	flags = PHORONGUARD
 
 /obj/item/clothing/mask/breath/emergency
 	desc = "A close-fitting  mask that is used by the wallmounted emergency oxygen pump."
@@ -62,4 +61,3 @@
 	icon_state = "medical"
 	item_state = "medical"
 	permeability_coefficient = 0.01
-	flags = PHORONGUARD
