@@ -4,8 +4,8 @@
 	singular_name = "human skin piece"
 	icon_state = "sheet-hide"
 	no_variants = FALSE
-	drop_sound = 'sound/items/drop/cloth.ogg'
-	pickup_sound = 'sound/items/pickup/cloth.ogg'
+	drop_sound = 'sound/items/drop/leather.ogg'
+	pickup_sound = 'sound/items/pickup/leather.ogg'
 
 /obj/item/stack/animalhide/human
 	amount = 50

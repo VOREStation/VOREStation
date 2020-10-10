@@ -141,8 +141,9 @@
 	return 1
 
 /obj/machinery/turretid/AICtrlClick() //turns off/on Turrets
-	Topic(src, list("command"="enable", "value"="[!enabled]"))
-	return 1
+	enabled = !enabled
+	updateTurrets()
+	return TRUE
 
 /atom/proc/AIAltClick(var/atom/A)
 	return AltClick(A)
@@ -156,8 +157,10 @@
 	return 1
 
 /obj/machinery/turretid/AIAltClick() //toggles lethal on turrets
-	Topic(src, list("command"="lethal", "value"="[!lethal]"))
-	return 1
+	if(lethal_is_configurable)
+		lethal = !lethal
+		updateTurrets()
+	return TRUE
 
 /atom/proc/AIMiddleClick(var/mob/living/silicon/user)
 	return 0

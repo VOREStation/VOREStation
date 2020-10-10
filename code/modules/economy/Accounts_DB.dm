@@ -15,7 +15,7 @@
 	var/const/fund_cap = 1000000
 
 /obj/machinery/account_database/proc/get_access_level()
-	if (!held_card)
+	if(!held_card)
 		return 0
 	if(access_cent_captain in held_card.access)
 		return 2
@@ -53,19 +53,24 @@
 		O.loc = src
 		held_card = O
 
-		SSnanoui.update_uis(src)
+		SStgui.update_uis(src)
 
 	attack_hand(user)
 
 /obj/machinery/account_database/attack_hand(mob/user as mob)
 	if(stat & (NOPOWER|BROKEN)) return
-	ui_interact(user)
+	tgui_interact(user)
 
-/obj/machinery/account_database/ui_interact(mob/user, ui_key="main", var/datum/nanoui/ui = null, var/force_open = 1)
-	user.set_machine(src)
+/obj/machinery/account_database/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "AccountsTerminal", name)
+		ui.open()
 
-	var/data[0]
-	data["src"] = "\ref[src]"
+
+/obj/machinery/account_database/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
+
 	data["id_inserted"] = !!held_card
 	data["id_card"] = held_card ? text("[held_card.registered_name], [held_card.assignment]") : "-----"
 	data["access_level"] = get_access_level()
@@ -73,10 +78,14 @@
 	data["creating_new_account"] = creating_new_account
 	data["detailed_account_view"] = !!detailed_account_view
 	data["station_account_number"] = station_account.account_number
-	data["transactions"] = null
-	data["accounts"] = null
 
-	if (detailed_account_view)
+	data["account_number"] = null
+	data["owner_name"] = null
+	data["money"] = null
+	data["suspended"] = null
+	data["transactions"] = list()
+
+	if(detailed_account_view)
 		data["account_number"] = detailed_account_view.account_number
 		data["owner_name"] = detailed_account_view.owner_name
 		data["money"] = detailed_account_view.money
@@ -92,11 +101,10 @@
 				"amount" = T.amount, \
 				"source_terminal" = T.source_terminal)))
 
-		if (trx.len > 0)
-			data["transactions"] = trx
+		data["transactions"] = trx
 
-	var/list/accounts[0]
-	for(var/i=1, i<=all_money_accounts.len, i++)
+	var/list/accounts = list()
+	for(var/i in 1 to LAZYLEN(all_money_accounts))
 		var/datum/money_account/D = all_money_accounts[i]
 		if(D.offmap)
 			continue
@@ -106,174 +114,168 @@
 			"suspended"=D.suspended ? "SUSPENDED" : "",\
 			"account_index"=i)))
 
-	if (accounts.len > 0)
-		data["accounts"] = accounts
+	data["accounts"] = accounts
 
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "accounts_terminal.tmpl", src.name, 400, 640)
-		ui.set_initial_data(data)
-		ui.open()
+	return data
 
-/obj/machinery/account_database/Topic(href, href_list)
+/obj/machinery/account_database/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
-		return 1
+		return TRUE
 
-	var/datum/nanoui/ui = SSnanoui.get_open_ui(usr, src, "main")
+	switch(action)
+		if("create_account")
+			creating_new_account = 1
 
-	if(href_list["choice"])
-		switch(href_list["choice"])
-			if("create_account")
-				creating_new_account = 1
+		if("add_funds")
+			var/amount = input("Enter the amount you wish to add", "Silently add funds") as num
+			if(detailed_account_view)
+				detailed_account_view.money = min(detailed_account_view.money + amount, fund_cap)
 
-			if("add_funds")
-				var/amount = input("Enter the amount you wish to add", "Silently add funds") as num
-				if(detailed_account_view)
-					detailed_account_view.money = min(detailed_account_view.money + amount, fund_cap)
+		if("remove_funds")
+			var/amount = input("Enter the amount you wish to remove", "Silently remove funds") as num
+			if(detailed_account_view)
+				detailed_account_view.money = max(detailed_account_view.money - amount, -fund_cap)
 
-			if("remove_funds")
-				var/amount = input("Enter the amount you wish to remove", "Silently remove funds") as num
-				if(detailed_account_view)
-					detailed_account_view.money = max(detailed_account_view.money - amount, -fund_cap)
+		if("toggle_suspension")
+			if(detailed_account_view)
+				detailed_account_view.suspended = !detailed_account_view.suspended
+				callHook("change_account_status", list(detailed_account_view))
 
-			if("toggle_suspension")
-				if(detailed_account_view)
-					detailed_account_view.suspended = !detailed_account_view.suspended
-					callHook("change_account_status", list(detailed_account_view))
+		if("finalise_create_account")
+			var/account_name = params["holder_name"]
+			var/starting_funds = max(text2num(params["starting_funds"]), 0)
 
-			if("finalise_create_account")
-				var/account_name = href_list["holder_name"]
-				var/starting_funds = max(text2num(href_list["starting_funds"]), 0)
+			starting_funds = CLAMP(starting_funds, 0, station_account.money)	// Not authorized to put the station in debt.
+			starting_funds = min(starting_funds, fund_cap)						// Not authorized to give more than the fund cap.
 
-				starting_funds = CLAMP(starting_funds, 0, station_account.money)	// Not authorized to put the station in debt.
-				starting_funds = min(starting_funds, fund_cap)						// Not authorized to give more than the fund cap.
+			create_account(account_name, starting_funds, src)
+			if(starting_funds > 0)
+				//subtract the money
+				station_account.money -= starting_funds
 
-				create_account(account_name, starting_funds, src)
-				if(starting_funds > 0)
-					//subtract the money
-					station_account.money -= starting_funds
-
-					//create a transaction log entry
-					var/trx = create_transation(account_name, "New account activation", "([starting_funds])")
-					station_account.transaction_log.Add(trx)
-
-					creating_new_account = 0
-					ui.close()
+				//create a transaction log entry
+				var/trx = create_transation(account_name, "New account activation", "([starting_funds])")
+				station_account.transaction_log.Add(trx)
 
 				creating_new_account = 0
-			if("insert_card")
-				if(held_card)
-					held_card.loc = src.loc
 
-					if(ishuman(usr) && !usr.get_active_hand())
-						usr.put_in_hands(held_card)
-					held_card = null
+			creating_new_account = 0
+		if("insert_card")
+			if(held_card)
+				held_card.loc = src.loc
 
-				else
-					var/obj/item/I = usr.get_active_hand()
-					if (istype(I, /obj/item/weapon/card/id))
-						var/obj/item/weapon/card/id/C = I
-						usr.drop_item()
-						C.loc = src
-						held_card = C
+				if(ishuman(usr) && !usr.get_active_hand())
+					usr.put_in_hands(held_card)
+				held_card = null
 
-			if("view_account_detail")
-				var/index = text2num(href_list["account_index"])
-				if(index && index <= all_money_accounts.len)
-					detailed_account_view = all_money_accounts[index]
+			else
+				var/obj/item/I = usr.get_active_hand()
+				if(istype(I, /obj/item/weapon/card/id))
+					var/obj/item/weapon/card/id/C = I
+					usr.drop_item()
+					C.loc = src
+					held_card = C
 
-			if("view_accounts_list")
-				detailed_account_view = null
-				creating_new_account = 0
+		if("view_account_detail")
+			var/index = text2num(params["account_index"])
+			if(index && index <= all_money_accounts.len)
+				detailed_account_view = all_money_accounts[index]
 
-			if("revoke_payroll")
-				var/funds = detailed_account_view.money
-				var/account_trx = create_transation(station_account.owner_name, "Revoke payroll", "([funds])")
-				var/station_trx = create_transation(detailed_account_view.owner_name, "Revoke payroll", funds)
+		if("view_accounts_list")
+			detailed_account_view = null
+			creating_new_account = 0
 
-				station_account.money += funds
-				detailed_account_view.money = 0
+		if("revoke_payroll")
+			var/funds = detailed_account_view.money
+			var/account_trx = create_transation(station_account.owner_name, "Revoke payroll", "([funds])")
+			var/station_trx = create_transation(detailed_account_view.owner_name, "Revoke payroll", funds)
 
-				detailed_account_view.transaction_log.Add(account_trx)
-				station_account.transaction_log.Add(station_trx)
+			station_account.money += funds
+			detailed_account_view.money = 0
 
-				callHook("revoke_payroll", list(detailed_account_view))
+			detailed_account_view.transaction_log.Add(account_trx)
+			station_account.transaction_log.Add(station_trx)
 
-			if("print")
-				var/text
-				var/obj/item/weapon/paper/P = new(loc)
-				if (detailed_account_view)
-					P.name = "account #[detailed_account_view.account_number] details"
-					var/title = "Account #[detailed_account_view.account_number] Details"
-					text = {"
-						[accounting_letterhead(title)]
-						<u>Holder:</u> [detailed_account_view.owner_name]<br>
-						<u>Balance:</u> $[detailed_account_view.money]<br>
-						<u>Status:</u> [detailed_account_view.suspended ? "Suspended" : "Active"]<br>
-						<u>Transactions:</u> ([detailed_account_view.transaction_log.len])<br>
-						<table>
-							<thead>
-								<tr>
-									<td>Timestamp</td>
-									<td>Target</td>
-									<td>Reason</td>
-									<td>Value</td>
-									<td>Terminal</td>
-								</tr>
-							</thead>
-							<tbody>
-						"}
+			callHook("revoke_payroll", list(detailed_account_view))
 
-					for (var/datum/transaction/T in detailed_account_view.transaction_log)
-						text += {"
-									<tr>
-										<td>[T.date] [T.time]</td>
-										<td>[T.target_name]</td>
-										<td>[T.purpose]</td>
-										<td>[T.amount]</td>
-										<td>[T.source_terminal]</td>
-									</tr>
-							"}
+		if("print")
+			print()
 
-					text += {"
-							</tbody>
-						</table>
-						"}
+	return TRUE
 
-				else
-					P.name = "financial account list"
-					text = {"
-						[accounting_letterhead("Financial Account List")]
+/obj/machinery/account_database/proc/print()
+	var/text
+	var/obj/item/weapon/paper/P = new(loc)
+	if(detailed_account_view)
+		P.name = "account #[detailed_account_view.account_number] details"
+		var/title = "Account #[detailed_account_view.account_number] Details"
+		text = {"
+			[accounting_letterhead(title)]
+			<u>Holder:</u> [detailed_account_view.owner_name]<br>
+			<u>Balance:</u> $[detailed_account_view.money]<br>
+			<u>Status:</u> [detailed_account_view.suspended ? "Suspended" : "Active"]<br>
+			<u>Transactions:</u> ([detailed_account_view.transaction_log.len])<br>
+			<table>
+				<thead>
+					<tr>
+						<td>Timestamp</td>
+						<td>Target</td>
+						<td>Reason</td>
+						<td>Value</td>
+						<td>Terminal</td>
+					</tr>
+				</thead>
+				<tbody>
+			"}
 
-						<table>
-							<thead>
-								<tr>
-									<td>Account Number</td>
-									<td>Holder</td>
-									<td>Balance</td>
-									<td>Status</td>
-								</tr>
-							</thead>
-							<tbody>
-					"}
+		for (var/datum/transaction/T in detailed_account_view.transaction_log)
+			text += {"
+						<tr>
+							<td>[T.date] [T.time]</td>
+							<td>[T.target_name]</td>
+							<td>[T.purpose]</td>
+							<td>[T.amount]</td>
+							<td>[T.source_terminal]</td>
+						</tr>
+				"}
 
-					for(var/i=1, i<=all_money_accounts.len, i++)
-						var/datum/money_account/D = all_money_accounts[i]
-						text += {"
-								<tr>
-									<td>#[D.account_number]</td>
-									<td>[D.owner_name]</td>
-									<td>$[D.money]</td>
-									<td>[D.suspended ? "Suspended" : "Active"]</td>
-								</tr>
-						"}
+		text += {"
+				</tbody>
+			</table>
+			"}
 
-					text += {"
-							</tbody>
-						</table>
-					"}
+	else
+		P.name = "financial account list"
+		text = {"
+			[accounting_letterhead("Financial Account List")]
 
-				P.info = text
-				state("The terminal prints out a report.")
+			<table>
+				<thead>
+					<tr>
+						<td>Account Number</td>
+						<td>Holder</td>
+						<td>Balance</td>
+						<td>Status</td>
+					</tr>
+				</thead>
+				<tbody>
+		"}
 
-	return 1
+		for(var/i=1, i<=all_money_accounts.len, i++)
+			var/datum/money_account/D = all_money_accounts[i]
+			text += {"
+					<tr>
+						<td>#[D.account_number]</td>
+						<td>[D.owner_name]</td>
+						<td>$[D.money]</td>
+						<td>[D.suspended ? "Suspended" : "Active"]</td>
+					</tr>
+			"}
+
+		text += {"
+				</tbody>
+			</table>
+		"}
+
+	P.info = text
+	state("The terminal prints out a report.")

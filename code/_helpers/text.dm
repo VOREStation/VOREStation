@@ -21,6 +21,27 @@
 /*
  * Text sanitization
  */
+// Can be used almost the same way as normal input for text
+/proc/clean_input(Message, Title, Default, mob/user=usr)
+	var/txt = input(user, Message, Title, Default) as text | null
+	if(txt)
+		return html_encode(txt)
+
+//Simply removes < and > and limits the length of the message
+/proc/strip_html_simple(var/t,var/limit=MAX_MESSAGE_LEN)
+	var/list/strip_chars = list("<",">")
+	t = copytext(t,1,limit)
+	for(var/char in strip_chars)
+		var/index = findtext(t, char)
+		while(index)
+			t = copytext(t, 1, index) + copytext(t, index+1)
+			index = findtext(t, char)
+	return t
+
+//Runs byond's sanitization proc along-side strip_html_simple
+//I believe strip_html_simple() is required to run first to prevent '<' from displaying as '&lt;' that html_encode() would cause
+/proc/adminscrub(var/t,var/limit=MAX_MESSAGE_LEN)
+	return copytext((html_encode(strip_html_simple(t))),1,limit)
 
 //Used for preprocessing entered text
 /proc/sanitize(var/input, var/max_length = MAX_MESSAGE_LEN, var/encode = 1, var/trim = 1, var/extra = 1)

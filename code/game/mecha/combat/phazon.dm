@@ -25,6 +25,8 @@
 	max_universal_equip = 3
 	max_special_equip = 4
 
+	encumbrance_gap = 2
+
 	starting_components = list(
 		/obj/item/mecha_parts/component/hull/durable,
 		/obj/item/mecha_parts/component/actuator,

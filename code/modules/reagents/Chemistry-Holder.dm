@@ -115,7 +115,7 @@
 	for(var/datum/reagent/current in reagent_list)
 		if(current.id == id)
 			if(current.id == "blood")
-				if(!isnull(data["species"]) && !isnull(current.data["species"]) && data["species"] != current.data["species"])	// Species bloodtypes are already incompatible, this just stops it from mixing into the one already in a container.
+				if(LAZYLEN(data) && !isnull(data["species"]) && !isnull(current.data["species"]) && data["species"] != current.data["species"])	// Species bloodtypes are already incompatible, this just stops it from mixing into the one already in a container.
 					continue
 
 			current.volume += amount

@@ -14,7 +14,7 @@
 		)
 
 	var/default_type = DEFAULT_WALL_MATERIAL
-	var/material/material
+	var/datum/material/material
 	var/perunit = SHEET_MATERIAL_AMOUNT
 	var/apply_colour //temp pending icon rewrite
 	drop_sound = 'sound/items/drop/axe.ogg'
@@ -403,8 +403,8 @@
 	no_variants = FALSE
 	pass_color = TRUE
 	strict_color_stacking = TRUE
-	drop_sound = 'sound/items/drop/cloth.ogg'
-	pickup_sound = 'sound/items/pickup/cloth.ogg'
+	drop_sound = 'sound/items/drop/clothing.ogg'
+	pickup_sound = 'sound/items/pickup/clothing.ogg'
 
 /obj/item/stack/material/cloth/diyaab
 	color = "#c6ccf0"

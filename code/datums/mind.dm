@@ -85,7 +85,6 @@
 			current.verbs -= /datum/changeling/proc/EvolutionMenu
 		current.mind = null
 
-		SSnanoui.user_transferred(current, new_character) // transfer active NanoUI instances to new user
 	if(new_character.mind)		//remove any mind currently in our new body's mind variable
 		new_character.mind.current = null
 

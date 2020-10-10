@@ -91,16 +91,16 @@
 
 	var/icon/default_worn_icon	//Default on-mob icon
 	var/worn_layer				//Default on-mob layer
-	
+
 	// Pickup/Drop/Equip/Throw Sounds
 	///Used when thrown into a mob
 	var/mob_throw_hit_sound
 	// Sound used when equipping the items into a valid slot.
-	var/equip_sound	
+	var/equip_sound
 	// pickup sound - this is the default
-	var/pickup_sound = 'sound/items/pickup/device.ogg'
+	var/pickup_sound = "generic_pickup"
 	// drop sound - this is the default
-	var/drop_sound = 'sound/items/drop/device.ogg'
+	var/drop_sound = "generic_drop"
 
 	var/tip_timer // reference to timer id for a tooltip we might open soon
 
@@ -468,12 +468,12 @@ var/list/global/slot_flags_enumeration = list(
 
 	if(!canremove)
 		return 0
-	
+
 	if(!slot)
 		if(issilicon(M))
 			return 1 // for stuff in grippers
 		return 0
-	
+
 	if(!M.slot_is_accessible(slot, src, disable_warning? null : M))
 		return 0
 	return 1
@@ -785,6 +785,8 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 // My best guess as to why this is here would be that it does so little. Still, keep it under all the procs, for sanity's sake.
 /obj/item/device
 	icon = 'icons/obj/device.dmi'
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 
 //Worn icon generation for on-mob sprites
 /obj/item/proc/make_worn_icon(var/body_type,var/slot_name,var/inhands,var/default_icon,var/default_layer,var/icon/clip_mask = null) //VOREStation edit - add 'clip mask' argument.

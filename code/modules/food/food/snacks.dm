@@ -318,6 +318,7 @@
 	nutriment_amt = 1
 	nutriment_desc = list("candy" = 1)
 
+
 /obj/item/weapon/reagent_containers/food/snacks/candy/Initialize()
 	. = ..()
 	reagents.add_reagent("sugar", 3)
@@ -4161,6 +4162,8 @@
 	trash = /obj/item/trash/unajerky
 	filling_color = "#631212"
 	center_of_mass = list("x"=15, "y"=9)
+	drop_sound = 'sound/items/drop/soda.ogg'
+	pickup_sound = 'sound/items/pickup/soda.ogg'
 
 /obj/item/weapon/reagent_containers/food/snacks/unajerky/Initialize()
 	. =..()

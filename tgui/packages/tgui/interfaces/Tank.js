@@ -7,6 +7,7 @@ export const Tank = (props, context) => {
 
   const {
     connected,
+    showToggle = true,
     maskConnected,
     tankPressure,
     releasePressure,
@@ -21,14 +22,14 @@ export const Tank = (props, context) => {
       height={320}
       resizable>
       <Window.Content>
-        <Section title="Status" buttons={
+        <Section title="Status" buttons={!!showToggle && (
           <Button
             icon={connected ? "air-freshener" : "lock-open"}
             selected={connected}
             disabled={!maskConnected}
             content="Mask Release Valve"
             onClick={() => act("toggle")} />
-        }>
+        )}>
           <LabeledList>
             <LabeledList.Item label="Mask Connected">
               {maskConnected ? "Yes" : "No"}

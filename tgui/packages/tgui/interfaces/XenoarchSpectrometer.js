@@ -32,7 +32,7 @@ export const XenoarchSpectrometer = (props, context) => {
   } = data;
 
   return (
-    <Window width={900} height={825} resizable>
+    <Window width={900} height={760} resizable>
       <Window.Content scrollable>
         <Section title="Status" buttons={
           <Fragment>

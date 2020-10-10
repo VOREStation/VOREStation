@@ -104,3 +104,17 @@
 	cost = 35
 	allow_duplicates = FALSE
 	discard_prob = 50
+
+/datum/map_template/debrisfield/gutted_mackerel
+	name = "Gutted Mackerel LC"
+	mappath = 'maps/offmap_vr/om_ships/mackerel_lc_wreck.dmm'
+	cost = 35
+	allow_duplicates = FALSE
+	discard_prob = 25
+
+/datum/map_template/debrisfield/ruined_gecko
+	name = "Ruined Gecko CR"
+	mappath = 'maps/offmap_vr/om_ships/gecko_cr_wreck.dmm'
+	cost = 45
+	allow_duplicates = FALSE
+	discard_prob = 50

@@ -192,7 +192,6 @@
 	if(inoperable())
 		to_chat(usr, "\The [src] doesn't appear to function.")
 		return
-	ui_interact(user)
 	tgui_interact(user)
 
 /obj/machinery/media/jukebox/tgui_status(mob/user)

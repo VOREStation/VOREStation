@@ -53,8 +53,7 @@
 "ah" = (
 /obj/effect/floor_decal/industrial/outline/grey,
 /obj/machinery/atmospherics/portables_connector/aux{
-	dir = 4;
-	icon_state = "map_connector-aux"
+	dir = 4
 	},
 /obj/machinery/portable_atmospherics/canister/air/airlock,
 /turf/simulated/floor/tiled/eris/steel/gray_perforated,
@@ -68,13 +67,19 @@
 /turf/space,
 /area/talon/deckone/bridge)
 "aj" = (
-/obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
 	},
-/turf/simulated/floor/tiled/eris/dark/brown_perforated,
-/area/talon/deckone/port_eng)
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/eris/steel,
+/area/talon/deckone/central_hallway)
 "ak" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -89,8 +94,7 @@
 /obj/item/weapon/pen,
 /obj/machinery/alarm/talon{
 	dir = 8;
-	pixel_x = 22;
-	pixel_y = 0
+	pixel_x = 22
 	},
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/deckone/brig)
@@ -115,8 +119,7 @@
 /area/talon/maintenance/deckone_port)
 "an" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
+	dir = 4
 	},
 /obj/structure/cable/green{
 	d1 = 1;
@@ -143,8 +146,7 @@
 /area/talon/maintenance/deckone_port)
 "aq" = (
 /obj/machinery/camera/network/talon{
-	dir = 9;
-	icon_state = "camera"
+	dir = 9
 	},
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -189,23 +191,23 @@
 	},
 /obj/machinery/alarm/talon{
 	dir = 8;
-	pixel_x = 22;
-	pixel_y = 0
+	pixel_x = 22
 	},
 /turf/simulated/floor/tiled/eris/dark/brown_perforated,
 /area/talon/deckone/port_eng)
 "au" = (
 /obj/effect/floor_decal/industrial/outline/grey,
 /obj/machinery/atmospherics/portables_connector/aux{
-	dir = 8;
-	icon_state = "map_connector-aux"
+	dir = 8
 	},
 /obj/machinery/portable_atmospherics/canister/air/airlock,
 /turf/simulated/floor/tiled/eris/steel/gray_perforated,
 /area/talon/deckone/starboard_eng)
 "av" = (
-/obj/structure/table/standard,
-/obj/machinery/reagentgrinder,
+/obj/machinery/smartfridge/chemistry{
+	req_access = list(301);
+	req_one_access = list(301)
+	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/talon/deckone/medical)
 "aw" = (
@@ -214,6 +216,9 @@
 	},
 /obj/structure/table/standard,
 /obj/machinery/chemical_dispenser/full,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/talon/deckone/medical)
 "ax" = (
@@ -232,8 +237,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/light/small{
-	dir = 4;
-	pixel_y = 0
+	dir = 4
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/deckone_port)
@@ -245,8 +249,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/light/small{
-	dir = 8;
-	pixel_x = 0
+	dir = 8
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/deckone_starboard)
@@ -293,6 +296,8 @@
 "aE" = (
 /obj/machinery/camera/network/talon,
 /obj/structure/table/rack/steel,
+/obj/item/clothing/shoes/leg_guard/combat,
+/obj/item/clothing/gloves/arm_guard/combat,
 /obj/item/clothing/under/syndicate/combat,
 /obj/item/clothing/suit/armor/combat,
 /obj/item/clothing/head/helmet/combat,
@@ -305,40 +310,38 @@
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 6
 	},
+/obj/structure/barricade,
 /turf/simulated/floor/greengrid/airless,
 /area/talon/maintenance/deckone_starboard)
 "aG" = (
 /obj/structure/catwalk,
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction{
-	dir = 8;
-	icon_state = "intact"
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction{
-	dir = 8;
-	icon_state = "intact"
+	dir = 8
 	},
 /obj/structure/handrail{
 	dir = 8
 	},
-/turf/space,
+/turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/deckone_port_fore_wing)
 "aH" = (
 /obj/structure/catwalk,
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction{
-	dir = 4;
-	icon_state = "intact"
+	dir = 4
 	},
 /obj/structure/handrail{
 	dir = 4
 	},
-/turf/space,
+/turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/deckone_starboard_fore_wing)
 "aI" = (
 /obj/structure/catwalk,
 /obj/structure/sign/warning/moving_parts{
 	pixel_x = 30
 	},
-/turf/space,
+/turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/deckone_port_fore_wing)
 "aJ" = (
 /obj/structure/table/rack/shelf/steel,
@@ -392,7 +395,6 @@
 "aQ" = (
 /obj/machinery/computer/ship/engines{
 	dir = 8;
-	icon_state = "computer";
 	req_one_access = list(301)
 	},
 /turf/simulated/floor/tiled/eris/dark/cyancorner,
@@ -405,7 +407,7 @@
 /obj/structure/sign/warning/moving_parts{
 	pixel_x = -30
 	},
-/turf/space,
+/turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/deckone_starboard_fore_wing)
 "aT" = (
 /obj/structure/catwalk,
@@ -414,7 +416,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/space,
+/turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/deckone_port_fore_wing)
 "aU" = (
 /obj/structure/catwalk,
@@ -422,14 +424,13 @@
 	dir = 1;
 	icon_state = "4-8"
 	},
-/turf/space,
+/turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/deckone_starboard_fore_wing)
 "aV" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/aux,
 /obj/structure/catwalk,
 /obj/machinery/light/small{
-	dir = 4;
-	pixel_y = 0
+	dir = 4
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/deckone_port)
@@ -455,11 +456,11 @@
 /area/talon/deckone/armory)
 "aZ" = (
 /obj/structure/catwalk,
-/turf/space,
+/turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/deckone_port_fore_wing)
 "ba" = (
 /obj/structure/catwalk,
-/turf/space,
+/turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/deckone_starboard_fore_wing)
 "bb" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -475,14 +476,14 @@
 /obj/structure/handrail{
 	dir = 8
 	},
-/turf/space,
+/turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/deckone_port_aft_wing)
 "bd" = (
 /obj/structure/catwalk,
 /obj/structure/handrail{
 	dir = 4
 	},
-/turf/space,
+/turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/deckone_starboard_aft_wing)
 "be" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -505,8 +506,7 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-s"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/deckone/brig)
@@ -527,11 +527,15 @@
 /obj/item/device/robotanalyzer{
 	pixel_y = -8
 	},
+/obj/machinery/alarm/talon{
+	dir = 8;
+	pixel_x = 22
+	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/talon/deckone/medical)
 "bi" = (
 /obj/structure/catwalk,
-/turf/space,
+/turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/deckone_port_aft_wing)
 "bj" = (
 /obj/structure/window/reinforced,
@@ -546,7 +550,7 @@
 /area/talon/maintenance/deckone_starboard)
 "bl" = (
 /obj/structure/catwalk,
-/turf/space,
+/turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/deckone_starboard_aft_wing)
 "bm" = (
 /obj/structure/catwalk,
@@ -555,7 +559,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/space,
+/turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/deckone_port_aft_wing)
 "bn" = (
 /obj/structure/catwalk,
@@ -564,23 +568,21 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/space,
+/turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/deckone_starboard_aft_wing)
 "bo" = (
 /obj/machinery/light/small{
-	dir = 4;
-	pixel_y = 0
+	dir = 4
 	},
 /obj/structure/catwalk,
-/turf/space,
+/turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/deckone_port)
 "bp" = (
 /obj/machinery/light/small{
-	dir = 8;
-	pixel_y = 0
+	dir = 8
 	},
 /obj/structure/catwalk,
-/turf/space,
+/turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/deckone_starboard)
 "bq" = (
 /obj/machinery/airlock_sensor{
@@ -591,12 +593,10 @@
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /obj/effect/map_helper/airlock/sensor/chamber_sensor,
 /obj/machinery/light/small{
-	dir = 1;
-	icon_state = "bulb1"
+	dir = 1
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume/aux{
-	dir = 4;
-	icon_state = "map_vent_aux"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/shuttle/talonboat)
@@ -622,8 +622,7 @@
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /obj/machinery/atmospherics/unary/vent_pump/high_volume/aux{
-	dir = 8;
-	icon_state = "map_vent_aux"
+	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/shuttle/talonboat)
@@ -633,8 +632,7 @@
 /area/talon/deckone/central_hallway)
 "bu" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -665,8 +663,7 @@
 /area/talon/maintenance/deckone_starboard)
 "bw" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark/brown_perforated,
 /area/talon/deckone/port_eng)
@@ -679,12 +676,11 @@
 	},
 /obj/effect/map_helper/airlock/sensor/ext_sensor,
 /obj/structure/catwalk,
-/turf/space,
+/turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/deckone_port)
 "by" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -709,7 +705,7 @@
 	},
 /obj/effect/map_helper/airlock/sensor/ext_sensor,
 /obj/structure/catwalk,
-/turf/space,
+/turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/deckone_starboard)
 "bA" = (
 /obj/structure/catwalk,
@@ -717,10 +713,9 @@
 	pixel_x = 30
 	},
 /obj/machinery/camera/network/talon{
-	dir = 8;
-	icon_state = "camera"
+	dir = 8
 	},
-/turf/space,
+/turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/deckone_port)
 "bB" = (
 /obj/structure/catwalk,
@@ -728,20 +723,15 @@
 	pixel_x = -30
 	},
 /obj/machinery/camera/network/talon{
-	dir = 4;
-	icon_state = "camera"
+	dir = 4
 	},
-/turf/space,
+/turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/deckone_starboard)
 "bC" = (
-/obj/structure/table/rack,
-/obj/item/weapon/storage/box/bodybags,
-/obj/item/roller,
-/obj/item/roller{
-	pixel_y = 8
-	},
-/turf/simulated/floor/tiled/eris/white/bluecorner,
-/area/talon/deckone/medical)
+/obj/structure/catwalk,
+/obj/structure/loot_pile/maint/technical,
+/turf/simulated/floor/plating/eris/under,
+/area/talon/maintenance/deckone_starboard)
 "bD" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -755,7 +745,7 @@
 /obj/machinery/vending/engineering{
 	products = list(/obj/item/clothing/under/rank/chief_engineer = 4, /obj/item/clothing/under/rank/engineer = 4, /obj/item/clothing/shoes/orange = 4, /obj/item/clothing/head/hardhat = 4, /obj/item/weapon/storage/belt/utility = 4, /obj/item/clothing/glasses/meson = 4, /obj/item/clothing/gloves/yellow = 4, /obj/item/weapon/tool/screwdriver = 12, /obj/item/weapon/tool/crowbar = 12, /obj/item/weapon/tool/wirecutters = 12, /obj/item/device/multitool = 12, /obj/item/weapon/tool/wrench = 12, /obj/item/device/t_scanner = 12, /obj/item/stack/cable_coil/heavyduty = 8, /obj/item/weapon/cell = 8, /obj/item/weapon/weldingtool = 8, /obj/item/clothing/head/welding = 8, /obj/item/weapon/light/tube = 10, /obj/item/clothing/head/hardhat/red = 4, /obj/item/clothing/suit/fire = 4, /obj/item/weapon/stock_parts/scanning_module = 5, /obj/item/weapon/stock_parts/micro_laser = 5, /obj/item/weapon/stock_parts/matter_bin = 5, /obj/item/weapon/stock_parts/manipulator = 5, /obj/item/weapon/stock_parts/console_screen = 5);
 	req_access = list(301);
-	req_log_access = list(301);
+	req_log_access = 301;
 	req_one_access = list(301)
 	},
 /turf/simulated/floor/tiled/eris/dark/brown_platform,
@@ -771,22 +761,28 @@
 /turf/simulated/floor/tiled/eris/dark/brown_platform,
 /area/talon/deckone/port_eng_store)
 "bG" = (
-/obj/structure/closet/crate/engineering,
-/obj/fiftyspawner/cardboard,
-/obj/fiftyspawner/floor,
-/obj/fiftyspawner/glass,
-/obj/fiftyspawner/plastic,
-/obj/fiftyspawner/steel,
-/obj/fiftyspawner/wood,
-/turf/simulated/floor/tiled/eris/dark/brown_platform,
-/area/talon/deckone/starboard_eng_store)
+/obj/machinery/alarm/talon{
+	dir = 1;
+	pixel_y = -25
+	},
+/obj/structure/table/rack/steel,
+/obj/item/weapon/whetstone{
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/obj/item/weapon/grenade/spawnergrenade/manhacks/mercenary{
+	pixel_x = -5;
+	pixel_y = 4
+	},
+/obj/item/device/spaceflare,
+/turf/simulated/floor/tiled/eris/white/danger,
+/area/talon/deckone/armory)
 "bH" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
+	dir = 4
 	},
 /obj/structure/cable/green{
 	d1 = 4;
@@ -794,8 +790,7 @@
 	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-s"
+	dir = 4
 	},
 /obj/machinery/computer/guestpass{
 	pixel_y = 30
@@ -830,26 +825,27 @@
 	},
 /obj/structure/table/steel,
 /obj/item/device/radio/off{
+	channels = list("Talon" = 1);
 	pixel_y = 6
 	},
 /obj/item/device/radio/off{
+	channels = list("Talon" = 1);
 	pixel_x = -6;
 	pixel_y = 4
 	},
 /obj/item/device/radio/off{
+	channels = list("Talon" = 1);
 	pixel_x = 6;
 	pixel_y = 4
 	},
-/obj/item/device/radio/off,
+/obj/item/device/radio/off{
+	channels = list("Talon" = 1)
+	},
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
 /area/talon/deckone/secure_storage)
 "bM" = (
-/obj/structure/closet/secure_closet/chemical{
-	req_access = list(301)
-	},
-/obj/item/weapon/reagent_containers/spray/cleaner{
-	desc = "Someone has crossed out the 'Space' from Space Cleaner and written in Chemistry. Scrawled on the back is, 'Okay, whoever filled this with polytrinic acid, it was only funny the first time. It was hard enough replacing the CMO's first cat!'";
-	name = "Chemistry Cleaner"
+/obj/machinery/light/small{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/talon/deckone/medical)
@@ -861,7 +857,6 @@
 	alarms_hidden = 1;
 	dir = 1;
 	name = "north bump";
-	pixel_x = 0;
 	pixel_y = 28
 	},
 /obj/structure/mopbucket,
@@ -896,8 +891,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
+	dir = 4
 	},
 /obj/structure/cable/green{
 	d1 = 4;
@@ -905,8 +899,7 @@
 	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-s"
+	dir = 4
 	},
 /obj/machinery/door/firedoor/glass{
 	dir = 2
@@ -958,9 +951,7 @@
 "bW" = (
 /obj/structure/table/steel,
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /obj/machinery/button/remote/blast_door{
 	dir = 8;
@@ -1029,8 +1020,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/aux,
 /obj/structure/catwalk,
 /obj/machinery/light/small{
-	dir = 8;
-	pixel_x = 0
+	dir = 8
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/deckone_starboard)
@@ -1047,8 +1037,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
+	dir = 4
 	},
 /obj/structure/cable/green{
 	d1 = 4;
@@ -1061,8 +1050,7 @@
 	},
 /obj/machinery/door/firedoor/glass/talon,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-s"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/techmaint_panels,
 /area/talon/deckone/workroom)
@@ -1185,8 +1173,7 @@
 /area/talon/deckone/central_hallway)
 "cs" = (
 /obj/structure/closet/hydrant{
-	pixel_x = -32;
-	pixel_y = 0
+	pixel_x = -32
 	},
 /turf/simulated/floor/tiled/eris/dark/brown_platform,
 /area/talon/deckone/port_eng_store)
@@ -1198,6 +1185,19 @@
 /obj/item/device/sleevemate,
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/talon/deckone/medical)
+"cu" = (
+/obj/structure/catwalk,
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/machinery/alarm/talon{
+	dir = 8;
+	pixel_x = 22
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/talon/maintenance/deckone_port)
 "cv" = (
 /obj/machinery/vending/coffee,
 /turf/simulated/floor/tiled/steel_ridged,
@@ -1206,6 +1206,41 @@
 /obj/machinery/vending/sovietsoda,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/talon/deckone/central_hallway)
+"cx" = (
+/obj/structure/catwalk,
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/machinery/alarm/talon{
+	dir = 4;
+	pixel_x = -22
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/talon/maintenance/deckone_starboard)
+"cy" = (
+/obj/machinery/power/apc/talon{
+	dir = 4;
+	name = "east bump";
+	pixel_x = 24
+	},
+/obj/structure/cable/green{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/machinery/camera/network/talon{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/eris/white/gray_platform,
+/area/talon/deckone/bridge_hallway)
+"cz" = (
+/obj/structure/catwalk,
+/obj/machinery/alarm/talon{
+	pixel_y = 22
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/talon/maintenance/deckone_port)
 "cA" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -1219,10 +1254,16 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/eris/techmaint_panels,
 /area/talon/deckone/bridge_hallway)
+"cB" = (
+/obj/structure/catwalk,
+/obj/machinery/alarm/talon{
+	pixel_y = 22
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/talon/maintenance/deckone_starboard)
 "cC" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-s"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/white/golden,
 /area/talon/deckone/bridge)
@@ -1234,6 +1275,42 @@
 /obj/machinery/vending/fitness,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/talon/deckone/central_hallway)
+"cF" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/effect/floor_decal/emblem/talon_big,
+/obj/machinery/camera/network/talon{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/talon/deckone/central_hallway)
+"cG" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -24
+	},
+/turf/simulated/floor/tiled/eris/steel,
+/area/talon/deckone/central_hallway)
+"cH" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/aux{
+	dir = 10
+	},
+/obj/structure/catwalk,
+/obj/machinery/alarm/talon{
+	dir = 8;
+	pixel_x = 22
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/talon/maintenance/deckone_port)
 "cI" = (
 /obj/structure/table/rack/shelf/steel,
 /obj/item/weapon/gun/energy/gun/burst,
@@ -1245,6 +1322,17 @@
 /obj/item/clothing/accessory/holster/waist,
 /turf/simulated/floor/tiled/eris/white/danger,
 /area/talon/deckone/armory)
+"cJ" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/aux{
+	dir = 6
+	},
+/obj/structure/catwalk,
+/obj/machinery/alarm/talon{
+	dir = 4;
+	pixel_x = -22
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/talon/maintenance/deckone_starboard)
 "cK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -1258,8 +1346,7 @@
 /area/talon/deckone/bridge_hallway)
 "cL" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
@@ -1268,11 +1355,64 @@
 	icon_state = "2-4"
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-s"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/deckone/brig)
+"cM" = (
+/obj/structure/closet/crate/solar,
+/obj/machinery/firealarm{
+	layer = 3.3;
+	pixel_y = 26
+	},
+/turf/simulated/floor/tiled/eris/dark/brown_platform,
+/area/talon/deckone/starboard_eng_store)
+"cN" = (
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -24
+	},
+/turf/simulated/floor/tiled/eris/dark/brown_platform,
+/area/talon/deckone/port_eng_store)
+"cO" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/aux{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/catwalk_plated,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/talon/deckone/port_eng)
+"cP" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/machinery/light_switch{
+	name = "light switch ";
+	pixel_x = -12;
+	pixel_y = 26
+	},
+/obj/machinery/atmospherics/pipe/cap/hidden{
+	dir = 4
+	},
+/obj/machinery/power/apc/talon{
+	dir = 1;
+	name = "north bump";
+	pixel_y = 28
+	},
+/obj/structure/cable/green{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/tiled/eris/dark/brown_perforated,
+/area/talon/deckone/port_eng)
 "cQ" = (
 /obj/structure/table/rack/shelf/steel,
 /obj/item/weapon/gun/energy/locked/frontier/holdout/unlocked,
@@ -1282,25 +1422,145 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/talon/deckone/workroom)
+"cS" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/obj/machinery/light_switch{
+	name = "light switch ";
+	pixel_x = 12;
+	pixel_y = 26
+	},
+/obj/machinery/atmospherics/pipe/cap/hidden{
+	dir = 8
+	},
+/obj/structure/cable/green{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc/talon{
+	dir = 1;
+	name = "north bump";
+	pixel_y = 28
+	},
+/turf/simulated/floor/tiled/eris/dark/brown_perforated,
+/area/talon/deckone/starboard_eng)
+"cT" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/aux{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/disposalpipe/segment,
+/obj/effect/catwalk_plated,
+/obj/structure/cable/green{
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/talon/deckone/starboard_eng)
+"cU" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/eris/dark/brown_perforated,
+/area/talon/deckone/port_eng)
 "cV" = (
 /obj/structure/cable/green,
 /obj/machinery/power/apc/talon{
-	dir = 2;
 	name = "south bump";
 	pixel_y = -24
 	},
 /obj/machinery/light_switch{
 	dir = 4;
-	icon_state = "light1";
 	pixel_x = -24
 	},
 /turf/simulated/floor/tiled/eris/dark/cyancorner,
 /area/talon/deckone/starboard_solar)
+"cW" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/floor/tiled/eris/dark/brown_perforated,
+/area/talon/deckone/starboard_eng)
+"cX" = (
+/obj/machinery/atmospherics/unary/heater{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/eris/dark/brown_perforated,
+/area/talon/deckone/port_eng)
+"cY" = (
+/turf/simulated/floor/tiled/eris/dark/brown_perforated,
+/area/talon/deckone/starboard_eng)
+"cZ" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/atmospherics/unary/freezer{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/eris/dark/brown_perforated,
+/area/talon/deckone/port_eng)
 "da" = (
 /obj/structure/table/standard,
 /obj/fiftyspawner/phoron,
 /turf/simulated/floor/tiled/eris/dark/cyancorner,
 /area/talon/deckone/port_solar)
+"db" = (
+/obj/machinery/vending/engivend{
+	products = list(/obj/item/device/geiger = 4, /obj/item/clothing/glasses/meson = 2, /obj/item/device/multitool = 4, /obj/item/weapon/cell/high = 10, /obj/item/weapon/airlock_electronics = 10, /obj/item/weapon/module/power_control = 10, /obj/item/weapon/circuitboard/airalarm = 10, /obj/item/weapon/circuitboard/firealarm = 10, /obj/item/weapon/circuitboard/status_display = 2, /obj/item/weapon/circuitboard/ai_status_display = 2, /obj/item/weapon/circuitboard/newscaster = 2, /obj/item/weapon/circuitboard/holopad = 2, /obj/item/weapon/circuitboard/intercom = 4, /obj/item/weapon/circuitboard/security/telescreen/entertainment = 4, /obj/item/weapon/stock_parts/motor = 2, /obj/item/weapon/stock_parts/spring = 2, /obj/item/weapon/stock_parts/gear = 2, /obj/item/weapon/circuitboard/atm, /obj/item/weapon/circuitboard/guestpass, /obj/item/weapon/circuitboard/keycard_auth, /obj/item/weapon/circuitboard/photocopier, /obj/item/weapon/circuitboard/fax, /obj/item/weapon/circuitboard/request, /obj/item/weapon/circuitboard/microwave, /obj/item/weapon/circuitboard/washing, /obj/item/weapon/circuitboard/scanner_console, /obj/item/weapon/circuitboard/sleeper_console, /obj/item/weapon/circuitboard/body_scanner, /obj/item/weapon/circuitboard/sleeper, /obj/item/weapon/circuitboard/dna_analyzer, /obj/item/weapon/circuitboard/partslathe);
+	req_log_access = 301
+	},
+/turf/simulated/floor/tiled/eris/dark/brown_platform,
+/area/talon/deckone/port_eng_store)
+"dc" = (
+/obj/structure/closet/crate/engineering,
+/obj/fiftyspawner/cardboard,
+/obj/fiftyspawner/floor,
+/obj/fiftyspawner/glass,
+/obj/fiftyspawner/plastic,
+/obj/fiftyspawner/steel,
+/obj/fiftyspawner/wood,
+/obj/item/stack/material/plasteel{
+	amount = 30
+	},
+/turf/simulated/floor/tiled/eris/dark/brown_platform,
+/area/talon/deckone/starboard_eng_store)
+"dd" = (
+/obj/structure/table/standard,
+/obj/machinery/reagentgrinder,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
+/area/talon/deckone/medical)
+"de" = (
+/obj/machinery/vending/blood{
+	req_access = list(301);
+	req_log_access = 301
+	},
+/turf/simulated/floor/tiled/eris/white/bluecorner,
+/area/talon/deckone/medical)
+"df" = (
+/obj/structure/catwalk,
+/obj/structure/barricade,
+/turf/simulated/floor/plating/eris/under,
+/area/talon/maintenance/deckone_starboard)
+"dg" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/vending/medical_talon{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/eris/white/bluecorner,
+/area/talon/deckone/medical)
 "dj" = (
 /obj/structure/table/standard,
 /obj/item/weapon/storage/box/handcuffs,
@@ -1315,22 +1575,9 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/brown_perforated,
 /area/talon/deckone/starboard_eng)
-"dz" = (
-/obj/structure/closet/crate/medical{
-	name = "first-aid kits"
-	},
-/obj/item/weapon/storage/firstaid/toxin,
-/obj/item/weapon/storage/firstaid/toxin,
-/obj/item/weapon/storage/firstaid/o2,
-/obj/item/weapon/storage/firstaid/o2,
-/obj/item/weapon/storage/firstaid/fire,
-/obj/item/weapon/storage/firstaid/fire,
-/turf/simulated/floor/tiled/eris/white/bluecorner,
-/area/talon/deckone/medical)
 "dB" = (
 /obj/item/modular_computer/console/preset/talon{
-	dir = 8;
-	icon_state = "console"
+	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark/cyancorner,
 /area/talon/deckone/bridge)
@@ -1360,16 +1607,13 @@
 "dP" = (
 /obj/structure/catwalk,
 /obj/machinery/light/small{
-	dir = 4;
-	pixel_y = 0
+	dir = 4
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/deckone_port)
 "dQ" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/talon/deckone/secure_storage)
@@ -1379,6 +1623,10 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/brown_platform,
 /area/talon/deckone/port_eng_store)
+"dS" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
+/area/talon/deckone/medical)
 "dU" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -1399,8 +1647,7 @@
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5;
-	icon_state = "intact-scrubbers"
+	dir = 5
 	},
 /obj/structure/cable/green{
 	d1 = 1;
@@ -1423,11 +1670,7 @@
 	pixel_x = 2;
 	pixel_y = 5
 	},
-/obj/machinery/alarm/talon{
-	dir = 1;
-	icon_state = "alarm0";
-	pixel_y = -22
-	},
+/obj/structure/closet/walllocker/medical/south,
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/talon/deckone/medical)
 "en" = (
@@ -1441,8 +1684,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
+	dir = 4
 	},
 /obj/machinery/door/window/brigdoor/eastleft{
 	dir = 8;
@@ -1470,29 +1712,12 @@
 /obj/effect/catwalk_plated/dark,
 /turf/simulated/floor/plating/eris/under,
 /area/talon/deckone/port_solar)
-"er" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 6
-	},
-/obj/machinery/light_switch{
-	dir = 2;
-	name = "light switch ";
-	pixel_x = 0;
-	pixel_y = 26
-	},
-/obj/machinery/atmospherics/pipe/cap/hidden{
-	dir = 8;
-	icon_state = "cap"
-	},
-/turf/simulated/floor/tiled/eris/dark/brown_perforated,
-/area/talon/deckone/starboard_eng)
 "et" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
+	dir = 4
 	},
 /obj/structure/cable/green{
 	d1 = 4;
@@ -1504,8 +1729,7 @@
 	req_one_access = list(301)
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-s"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/techmaint_panels,
 /area/talon/deckone/brig)
@@ -1549,8 +1773,7 @@
 /area/talon/deckone/brig)
 "fi" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark/brown_perforated,
 /area/talon/deckone/starboard_eng)
@@ -1613,8 +1836,7 @@
 /area/talon/deckone/workroom)
 "gg" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
-	dir = 5;
-	icon_state = "intact-aux"
+	dir = 5
 	},
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/eris/under,
@@ -1675,19 +1897,10 @@
 /area/talon/deckone/starboard_eng_store)
 "ho" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
-	dir = 4;
-	icon_state = "intact-aux"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/deckone/central_hallway)
-"hs" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable/green{
-	icon_state = "1-8"
-	},
-/turf/simulated/floor/tiled/eris/dark/brown_perforated,
-/area/talon/deckone/port_eng)
 "ht" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	dir = 8;
@@ -1698,28 +1911,19 @@
 /turf/simulated/floor/tiled/eris/white/gray_platform,
 /area/shuttle/talonboat)
 "hv" = (
-/obj/structure/catwalk,
-/obj/machinery/light/small{
-	dir = 8;
-	pixel_x = 0
-	},
-/turf/simulated/floor/plating/eris/under,
-/area/talon/maintenance/deckone_starboard)
+/obj/machinery/suit_cycler/vintage/tmedic,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
+/area/talon/deckone/medical)
 "hD" = (
 /obj/machinery/autolathe,
 /turf/simulated/floor/tiled/eris/steel/gray_perforated,
 /area/talon/deckone/workroom)
-"hL" = (
-/obj/structure/closet/crate/solar,
-/turf/simulated/floor/tiled/eris/dark/brown_platform,
-/area/talon/deckone/starboard_eng_store)
 "hP" = (
 /obj/machinery/oxygen_pump{
 	pixel_y = 30
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden{
-	dir = 1;
-	icon_state = "map"
+	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/dark/brown_perforated,
 /area/talon/deckone/starboard_eng)
@@ -1730,8 +1934,7 @@
 "id" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
-	dir = 4;
-	icon_state = "pipe-t"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/deckone/central_hallway)
@@ -1741,8 +1944,7 @@
 /area/talon/deckone/armory)
 "ij" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
-	dir = 4;
-	icon_state = "intact-aux"
+	dir = 4
 	},
 /obj/machinery/door/airlock/maintenance/common,
 /obj/machinery/door/firedoor/glass/talon,
@@ -1757,32 +1959,31 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/light/small{
-	dir = 8;
-	pixel_x = 0
+	dir = 8
 	},
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/deckone/bridge_hallway)
 "iq" = (
 /obj/machinery/light/small{
-	dir = 8;
-	pixel_y = 0
+	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
 /area/talon/deckone/brig)
 "ir" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/cap/hidden{
-	dir = 1;
-	icon_state = "cap"
+	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/dark/brown_perforated,
 /area/talon/deckone/port_eng)
 "it" = (
 /obj/machinery/optable,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/talon/deckone/medical)
 "ix" = (
@@ -1815,8 +2016,7 @@
 /area/talon/deckone/brig)
 "iE" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
-	dir = 4;
-	icon_state = "intact-aux"
+	dir = 4
 	},
 /obj/machinery/airlock_sensor{
 	dir = 4;
@@ -1833,19 +2033,17 @@
 /area/talon/deckone/starboard_eng)
 "iN" = (
 /obj/structure/ladder/up,
-/turf/simulated/floor/tiled/steel_grid,
+/turf/simulated/floor/tiled/eris/steel,
 /area/talon/deckone/central_hallway)
 "iP" = (
 /turf/simulated/floor/tiled/eris/white/gray_platform,
 /area/talon/deckone/bridge_hallway)
 "iR" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
-	dir = 10;
-	icon_state = "intact-fuel"
+	dir = 10
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
-	icon_state = "extinguisher_closed";
 	pixel_x = 30
 	},
 /turf/simulated/floor/tiled/eris/dark/brown_perforated,
@@ -1869,12 +2067,10 @@
 /area/talon/deckone/brig)
 "jb" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/cap/hidden{
-	dir = 1;
-	icon_state = "cap"
+	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/dark/brown_perforated,
 /area/talon/deckone/starboard_eng)
@@ -1898,7 +2094,6 @@
 "jB" = (
 /obj/structure/cable/green,
 /obj/machinery/power/apc/talon{
-	cell_type = /obj/item/weapon/cell/apc;
 	dir = 8;
 	name = "west bump";
 	pixel_x = -28
@@ -1909,7 +2104,6 @@
 	},
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -25
 	},
 /obj/machinery/recharger,
@@ -1917,8 +2111,7 @@
 /area/talon/deckone/medical)
 "jD" = (
 /obj/effect/floor_decal/emblem/talon_big{
-	dir = 8;
-	icon_state = "talon_big"
+	dir = 8
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/talon/deckone/central_hallway)
@@ -1944,50 +2137,43 @@
 /area/talon/deckone/starboard_eng)
 "jZ" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/fuel{
-	dir = 8;
-	icon_state = "map-fuel"
+	dir = 8
 	},
 /turf/simulated/wall/rshull,
 /area/talon/deckone/port_eng)
 "kb" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
-	dir = 4;
-	icon_state = "intact-fuel"
+	dir = 4
 	},
 /turf/simulated/wall/rshull,
 /area/talon/deckone/port_eng)
 "kc" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
-	dir = 10;
-	icon_state = "intact-fuel"
+	dir = 10
 	},
 /turf/simulated/wall/rshull,
 /area/talon/deckone/port_eng)
 "kd" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
-	dir = 6;
-	icon_state = "intact-fuel"
+	dir = 6
 	},
 /turf/simulated/wall/rshull,
 /area/talon/deckone/starboard_eng)
 "ke" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/fuel{
-	dir = 1;
-	icon_state = "map-fuel"
+	dir = 1
 	},
 /turf/simulated/wall/rshull,
 /area/talon/deckone/starboard_eng)
 "kf" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
-	dir = 4;
-	icon_state = "intact-fuel"
+	dir = 4
 	},
 /turf/simulated/wall/rshull,
 /area/talon/deckone/starboard_eng)
 "kg" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
-	dir = 9;
-	icon_state = "intact-fuel"
+	dir = 9
 	},
 /turf/simulated/wall/rshull,
 /area/talon/deckone/starboard_eng)
@@ -2046,13 +2232,6 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/cyancorner,
 /area/talon/deckone/starboard_solar)
-"kB" = (
-/obj/machinery/vending/engivend{
-	req_access = newlist();
-	req_log_access = 301
-	},
-/turf/simulated/floor/tiled/eris/dark/brown_platform,
-/area/talon/deckone/port_eng_store)
 "kE" = (
 /obj/structure/stairs/west,
 /turf/simulated/floor/tiled/eris/steel,
@@ -2148,8 +2327,7 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-s"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/deckone/central_hallway)
@@ -2174,34 +2352,26 @@
 /area/talon/maintenance/deckone_port_aft_wing)
 "lM" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden{
-	dir = 8;
-	icon_state = "map"
+	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark/brown_perforated,
 /area/talon/deckone/port_eng)
 "mb" = (
 /obj/structure/cable/green,
 /obj/machinery/power/apc/talon{
-	cell_type = /obj/item/weapon/cell/apc;
 	dir = 8;
 	name = "west bump";
 	pixel_x = -28
 	},
 /obj/machinery/alarm/talon{
-	alarm_id = "anomaly_testing";
-	breach_detection = 0;
 	dir = 8;
-	frequency = 1439;
-	pixel_x = 22;
-	pixel_y = 0;
-	report_danger_level = 0
+	pixel_x = 22
 	},
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/deckone/central_hallway)
 "me" = (
 /obj/machinery/camera/network/talon{
-	dir = 9;
-	icon_state = "camera"
+	dir = 9
 	},
 /obj/structure/table/standard,
 /turf/simulated/floor/tiled/eris/white/gray_platform,
@@ -2271,8 +2441,7 @@
 /area/talon/deckone/central_hallway)
 "mF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
-	dir = 4;
-	icon_state = "intact-aux"
+	dir = 4
 	},
 /obj/effect/map_helper/airlock/door/int_door,
 /obj/machinery/door/airlock/glass_external{
@@ -2288,27 +2457,15 @@
 /obj/machinery/power/apc/talon{
 	dir = 1;
 	name = "north bump";
-	pixel_x = 0;
 	pixel_y = 28
 	},
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/deckone_starboard)
-"mN" = (
-/obj/structure/catwalk,
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/turf/simulated/floor/plating/eris/under,
-/area/talon/maintenance/deckone_starboard)
 "mO" = (
 /obj/machinery/alarm/talon{
 	dir = 4;
-	icon_state = "alarm0";
-	pixel_x = -22;
-	pixel_y = 0
+	pixel_x = -22
 	},
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/eris/under,
@@ -2325,8 +2482,7 @@
 	},
 /obj/machinery/portable_atmospherics/canister/air/airlock,
 /obj/machinery/atmospherics/portables_connector/aux{
-	dir = 4;
-	icon_state = "map_connector-aux"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/white/gray_platform,
 /area/shuttle/talonboat)
@@ -2349,8 +2505,7 @@
 /area/talon/deckone/central_hallway)
 "nu" = (
 /obj/effect/floor_decal/emblem/talon_big{
-	dir = 5;
-	icon_state = "talon_big"
+	dir = 5
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/talon/deckone/central_hallway)
@@ -2379,15 +2534,13 @@
 /obj/machinery/atmospherics/binary/pump/fuel,
 /obj/effect/floor_decal/industrial/outline/red,
 /obj/machinery/camera/network/talon{
-	dir = 9;
-	icon_state = "camera"
+	dir = 9
 	},
 /turf/simulated/floor/tiled/eris/dark/brown_perforated,
 /area/talon/deckone/starboard_eng)
 "ob" = (
 /obj/machinery/camera/network/talon{
-	dir = 9;
-	icon_state = "camera"
+	dir = 9
 	},
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/deckone/central_hallway)
@@ -2442,8 +2595,7 @@
 /area/talon/deckone/bridge_hallway)
 "oS" = (
 /obj/structure/bed/chair/bay/comfy/yellow{
-	dir = 1;
-	icon_state = "bay_comfychair_preview"
+	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/dark/cyancorner,
 /area/talon/deckone/bridge)
@@ -2456,15 +2608,13 @@
 /area/talon/maintenance/deckone_starboard)
 "oV" = (
 /obj/effect/floor_decal/emblem/talon_big{
-	dir = 4;
-	icon_state = "talon_big"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/talon/deckone/central_hallway)
 "pc" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
-	dir = 6;
-	icon_state = "intact"
+	dir = 6
 	},
 /turf/simulated/floor/hull/airless,
 /area/talon/maintenance/deckone_starboard_fore_wing)
@@ -2497,12 +2647,10 @@
 	icon_state = "1-2"
 	},
 /obj/structure/bed/chair/bay/chair{
-	dir = 8;
-	icon_state = "bay_chair_preview"
+	dir = 8
 	},
 /obj/machinery/camera/network/talon{
-	dir = 9;
-	icon_state = "camera"
+	dir = 9
 	},
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/deckone/brig)
@@ -2521,8 +2669,7 @@
 /obj/machinery/atmospherics/binary/pump/fuel,
 /obj/effect/floor_decal/industrial/outline/red,
 /obj/machinery/camera/network/talon{
-	dir = 4;
-	icon_state = "camera"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark/brown_perforated,
 /area/talon/deckone/port_eng)
@@ -2560,7 +2707,6 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/power/apc/talon{
-	dir = 2;
 	name = "south bump";
 	pixel_y = -24
 	},
@@ -2595,7 +2741,6 @@
 /obj/machinery/power/apc/talon{
 	dir = 1;
 	name = "north bump";
-	pixel_x = 0;
 	pixel_y = 28
 	},
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
@@ -2617,30 +2762,28 @@
 /area/talon/maintenance/deckone_port_aft_wing)
 "qp" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
-	dir = 6;
-	icon_state = "intact-fuel"
+	dir = 6
 	},
 /turf/simulated/floor/tiled/eris/dark/brown_perforated,
 /area/talon/deckone/port_eng)
 "qz" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
-	},
-/obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
 	},
 /obj/structure/sign/warning/nosmoking_1{
 	pixel_x = -26
 	},
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
-	dir = 1;
-	icon_state = "pipe-t"
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/talon/deckone/medical)
@@ -2651,8 +2794,7 @@
 "qB" = (
 /obj/machinery/alarm/talon{
 	dir = 4;
-	pixel_x = -35;
-	pixel_y = 0
+	pixel_x = -22
 	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/talon/deckone/medical)
@@ -2675,8 +2817,7 @@
 /area/talon/deckone/port_solar)
 "qR" = (
 /obj/machinery/atmospherics/portables_connector/fuel{
-	dir = 1;
-	icon_state = "map_connector-fuel"
+	dir = 1
 	},
 /obj/effect/floor_decal/industrial/outline/red,
 /obj/machinery/portable_atmospherics/canister/phoron,
@@ -2684,8 +2825,7 @@
 /area/talon/deckone/starboard_eng)
 "rm" = (
 /obj/effect/floor_decal/industrial/warning/dust/corner{
-	dir = 1;
-	icon_state = "warningcorner_dust"
+	dir = 1
 	},
 /turf/simulated/floor/hull/airless,
 /area/talon/maintenance/deckone_starboard_aft_wing)
@@ -2701,8 +2841,7 @@
 	icon_state = "2-8"
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-s"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/talon/deckone/workroom)
@@ -2722,9 +2861,6 @@
 	},
 /turf/simulated/floor/hull/airless,
 /area/talon/maintenance/deckone_starboard_aft_wing)
-"rQ" = (
-/turf/simulated/floor/tiled/eris/dark/brown_platform,
-/area/talon/deckone/port_eng_store)
 "rU" = (
 /obj/structure/table/standard,
 /obj/machinery/recharger,
@@ -2732,9 +2868,7 @@
 /area/talon/deckone/workroom)
 "sa" = (
 /obj/machinery/firealarm{
-	dir = 2;
 	layer = 3.3;
-	pixel_x = 0;
 	pixel_y = 26
 	},
 /turf/simulated/floor/tiled/eris/steel,
@@ -2786,9 +2920,7 @@
 /area/talon/maintenance/deckone_port)
 "sz" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/deckone/central_hallway)
@@ -2875,19 +3007,6 @@
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/talon/deckone/secure_storage)
-"tl" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-s"
-	},
-/turf/simulated/floor/tiled/eris/steel,
-/area/talon/deckone/central_hallway)
 "tm" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
@@ -2914,8 +3033,7 @@
 /area/talon/deckone/central_hallway)
 "tw" = (
 /obj/item/modular_computer/console/preset/talon{
-	dir = 4;
-	icon_state = "console"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark/cyancorner,
 /area/talon/deckone/bridge)
@@ -2945,15 +3063,13 @@
 /area/talon/deckone/brig)
 "tZ" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
-	dir = 8;
-	icon_state = "intact"
+	dir = 8
 	},
 /turf/simulated/floor/hull/airless,
 /area/talon/maintenance/deckone_port_fore_wing)
 "uj" = (
 /obj/machinery/power/solar_control{
-	dir = 8;
-	icon_state = "solar"
+	dir = 8
 	},
 /obj/structure/cable/yellow,
 /turf/simulated/floor/tiled/eris/dark/cyancorner,
@@ -3022,7 +3138,6 @@
 "uN" = (
 /obj/structure/extinguisher_cabinet{
 	dir = 1;
-	icon_state = "extinguisher_closed";
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/eris/steel/gray_perforated,
@@ -3032,8 +3147,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
+	dir = 4
 	},
 /obj/structure/cable/green{
 	d1 = 4;
@@ -3046,22 +3160,19 @@
 	icon_state = "2-8"
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-s"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/deckone/central_hallway)
 "vb" = (
 /obj/structure/bed/chair/bay/chair{
-	dir = 8;
-	icon_state = "bay_chair_preview"
+	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
 /area/talon/deckone/brig)
 "vf" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
-	dir = 5;
-	icon_state = "intact"
+	dir = 5
 	},
 /turf/simulated/floor/hull/airless,
 /area/talon/maintenance/deckone_starboard_fore_wing)
@@ -3076,16 +3187,6 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/techfloor,
 /area/shuttle/talonboat)
-"vr" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_y = -24
-	},
-/obj/effect/floor_decal/emblem/talon_big,
-/turf/simulated/floor/tiled/steel_grid,
-/area/talon/deckone/central_hallway)
 "vw" = (
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/deckone/brig)
@@ -3154,8 +3255,7 @@
 /area/talon/deckone/bridge)
 "wD" = (
 /obj/machinery/power/terminal{
-	dir = 8;
-	icon_state = "term"
+	dir = 8
 	},
 /obj/structure/cable/yellow{
 	d2 = 4;
@@ -3184,35 +3284,6 @@
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor/plating/eris/under,
 /area/talon/deckone/central_hallway)
-"xc" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 8
-	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
-	},
-/turf/simulated/floor/tiled/eris/dark/brown_perforated,
-/area/talon/deckone/starboard_eng)
-"xd" = (
-/obj/machinery/alarm/talon{
-	dir = 1;
-	pixel_y = -25
-	},
-/obj/structure/table/rack/steel,
-/obj/item/weapon/grenade/spawnergrenade/manhacks/mercenary{
-	pixel_x = -5;
-	pixel_y = 4
-	},
-/obj/item/device/spaceflare,
-/turf/simulated/floor/tiled/eris/white/danger,
-/area/talon/deckone/armory)
 "xf" = (
 /obj/structure/table/standard,
 /obj/item/weapon/pickaxe/drill,
@@ -3229,8 +3300,7 @@
 /area/talon/maintenance/deckone_starboard)
 "xm" = (
 /obj/machinery/power/solar_control{
-	dir = 4;
-	icon_state = "solar"
+	dir = 4
 	},
 /obj/structure/cable/yellow,
 /turf/simulated/floor/tiled/eris/dark/cyancorner,
@@ -3246,8 +3316,7 @@
 /area/shuttle/talonboat)
 "xv" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5;
-	icon_state = "intact-scrubbers"
+	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -3269,13 +3338,17 @@
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
 /area/talon/deckone/secure_storage)
 "xE" = (
-/obj/structure/catwalk,
-/obj/machinery/light/small{
-	dir = 1;
-	icon_state = "bulb1"
-	},
-/turf/simulated/floor/plating/eris/under,
-/area/talon/maintenance/deckone_port)
+/obj/item/weapon/storage/firstaid/toxin,
+/obj/item/weapon/storage/firstaid/toxin,
+/obj/item/weapon/storage/firstaid/o2,
+/obj/item/weapon/storage/firstaid/o2,
+/obj/item/weapon/storage/firstaid/fire,
+/obj/item/weapon/storage/firstaid/fire,
+/obj/item/weapon/storage/firstaid/adv,
+/obj/item/weapon/storage/firstaid/adv,
+/obj/structure/closet/walllocker/medical/east,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
+/area/talon/deckone/medical)
 "xH" = (
 /obj/machinery/chem_master,
 /turf/simulated/floor/tiled/eris/white/bluecorner,
@@ -3303,8 +3376,7 @@
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /obj/effect/map_helper/airlock/sensor/chamber_sensor,
 /obj/machinery/atmospherics/unary/vent_pump/high_volume/aux{
-	dir = 8;
-	icon_state = "map_vent_aux"
+	dir = 8
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/deckone_starboard)
@@ -3319,8 +3391,7 @@
 /area/talon/maintenance/deckone_starboard_aft_wing)
 "yf" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden{
-	dir = 4;
-	icon_state = "map"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark/brown_perforated,
 /area/talon/deckone/starboard_eng)
@@ -3337,8 +3408,7 @@
 	icon_state = "1-4"
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-s"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/deckone/central_hallway)
@@ -3368,8 +3438,7 @@
 	},
 /obj/effect/map_helper/airlock/sensor/int_sensor,
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
-	dir = 10;
-	icon_state = "intact-aux"
+	dir = 10
 	},
 /turf/simulated/floor/tiled/eris/white/gray_platform,
 /area/shuttle/talonboat)
@@ -3381,23 +3450,13 @@
 /area/talon/maintenance/deckone_starboard_fore_wing)
 "yB" = (
 /obj/machinery/atmospherics/pipe/zpipe/up/scrubbers{
-	dir = 8;
-	icon_state = "up-scrubbers"
+	dir = 8
 	},
 /obj/structure/disposalpipe/up{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark/brown_perforated,
 /area/talon/deckone/starboard_eng)
-"yC" = (
-/obj/structure/catwalk,
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/turf/simulated/floor/plating/eris/under,
-/area/talon/maintenance/deckone_port)
 "yD" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 8
@@ -3422,8 +3481,7 @@
 /area/talon/deckone/starboard_solar)
 "yO" = (
 /obj/effect/floor_decal/industrial/warning/dust/corner{
-	dir = 1;
-	icon_state = "warningcorner_dust"
+	dir = 1
 	},
 /turf/simulated/floor/hull/airless,
 /area/talon/maintenance/deckone_starboard_fore_wing)
@@ -3460,15 +3518,13 @@
 /obj/machinery/power/apc/talon{
 	dir = 1;
 	name = "north bump";
-	pixel_x = 0;
 	pixel_y = 28
 	},
 /turf/simulated/floor/tiled/eris/white/orangecorner,
 /area/talon/deckone/armory)
 "zy" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/white/golden,
 /area/talon/deckone/bridge)
@@ -3511,8 +3567,7 @@
 /area/talon/deckone/starboard_solar)
 "Ar" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
-	dir = 4;
-	icon_state = "intact-aux"
+	dir = 4
 	},
 /obj/machinery/airlock_sensor{
 	dir = 8;
@@ -3527,20 +3582,17 @@
 "At" = (
 /obj/machinery/alarm/talon{
 	dir = 8;
-	pixel_x = 22;
-	pixel_y = 0
+	pixel_x = 22
 	},
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/deckone_port)
 "Ay" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9;
-	pixel_y = 0
+	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
+	dir = 4
 	},
 /obj/structure/cable/green{
 	d1 = 4;
@@ -3548,8 +3600,7 @@
 	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-s"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/talon/deckone/workroom)
@@ -3558,8 +3609,7 @@
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9;
-	pixel_y = 0
+	dir = 9
 	},
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/deckone/brig)
@@ -3593,7 +3643,6 @@
 "AQ" = (
 /obj/machinery/firealarm{
 	dir = 1;
-	pixel_x = 0;
 	pixel_y = -25
 	},
 /turf/simulated/floor/tiled/eris/steel/gray_perforated,
@@ -3619,8 +3668,7 @@
 /area/talon/maintenance/deckone_port_fore_wing)
 "Bh" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
-	dir = 4;
-	icon_state = "intact"
+	dir = 4
 	},
 /turf/simulated/floor/hull/airless,
 /area/talon/maintenance/deckone_port_fore_wing)
@@ -3655,7 +3703,6 @@
 "Bu" = (
 /obj/structure/extinguisher_cabinet{
 	dir = 1;
-	icon_state = "extinguisher_closed";
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/eris/steel,
@@ -3711,33 +3758,13 @@
 /area/talon/deckone/central_hallway)
 "CC" = (
 /obj/item/modular_computer/console/preset/talon{
-	dir = 1;
-	icon_state = "console"
+	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/talon/deckone/workroom)
-"CH" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/unary/heater{
-	anchored = 0
-	},
-/turf/simulated/floor/tiled/eris/steel,
-/area/talon/deckone/central_hallway)
 "CP" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
-	dir = 4;
-	icon_state = "intact"
+	dir = 4
 	},
 /turf/simulated/floor/hull/airless,
 /area/talon/maintenance/deckone_starboard_fore_wing)
@@ -3755,19 +3782,16 @@
 /area/talon/deckone/central_hallway)
 "CU" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
-	dir = 9;
-	icon_state = "intact"
+	dir = 9
 	},
 /turf/simulated/floor/hull/airless,
 /area/talon/maintenance/deckone_starboard_fore_wing)
 "CW" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9;
-	pixel_y = 0
+	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5;
-	icon_state = "intact-scrubbers"
+	dir = 5
 	},
 /turf/simulated/floor/tiled/eris/dark/brown_perforated,
 /area/talon/deckone/port_eng)
@@ -3782,8 +3806,7 @@
 /area/talon/maintenance/deckone_port_aft_wing)
 "Dl" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
-	dir = 10;
-	icon_state = "intact"
+	dir = 10
 	},
 /turf/simulated/floor/hull/airless,
 /area/talon/maintenance/deckone_starboard_fore_wing)
@@ -3794,19 +3817,16 @@
 /area/talon/maintenance/deckone_port)
 "Do" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
-	dir = 5;
-	icon_state = "intact"
+	dir = 5
 	},
 /turf/simulated/floor/hull/airless,
 /area/talon/maintenance/deckone_port_fore_wing)
 "Dr" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
-	dir = 6;
-	icon_state = "intact"
+	dir = 6
 	},
 /obj/effect/floor_decal/industrial/warning/dust/corner{
-	dir = 1;
-	icon_state = "warningcorner_dust"
+	dir = 1
 	},
 /turf/simulated/floor/hull/airless,
 /area/talon/maintenance/deckone_port_fore_wing)
@@ -3881,20 +3901,27 @@
 /area/talon/deckone/central_hallway)
 "Ec" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
-	dir = 9;
-	icon_state = "intact"
+	dir = 9
 	},
 /obj/effect/floor_decal/industrial/warning/dust/corner,
 /turf/simulated/floor/hull/airless,
 /area/talon/maintenance/deckone_starboard_fore_wing)
 "Ee" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
-	dir = 9;
-	icon_state = "intact-aux"
+	dir = 9
 	},
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/deckone_starboard)
+"Ej" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/eris/white/bluecorner,
+/area/talon/deckone/medical)
 "Eo" = (
 /obj/effect/floor_decal/industrial/warning/dust/corner,
 /turf/simulated/floor/hull/airless,
@@ -3913,8 +3940,7 @@
 /area/talon/deckone/armory)
 "Ex" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
-	dir = 10;
-	icon_state = "intact-aux"
+	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -3941,20 +3967,9 @@
 "EF" = (
 /turf/simulated/floor/hull/airless,
 /area/talon/maintenance/deckone_starboard_fore_wing)
-"EL" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/turf/simulated/floor/tiled/eris/dark/brown_perforated,
-/area/talon/deckone/starboard_eng)
 "EM" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
-	dir = 10;
-	icon_state = "intact"
+	dir = 10
 	},
 /obj/effect/floor_decal/industrial/warning/dust/corner{
 	dir = 4
@@ -4015,8 +4030,7 @@
 /area/talon/deckone/armory)
 "Fs" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -4031,15 +4045,13 @@
 	req_one_access = list(301)
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-s"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/techmaint_panels,
 /area/talon/deckone/medical)
 "Fw" = (
 /obj/machinery/atmospherics/portables_connector/fuel{
-	dir = 1;
-	icon_state = "map_connector-fuel"
+	dir = 1
 	},
 /obj/effect/floor_decal/industrial/outline/red,
 /obj/machinery/portable_atmospherics/canister/phoron,
@@ -4064,8 +4076,7 @@
 	req_one_access = list(301)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark/cyancorner,
 /area/talon/deckone/bridge)
@@ -4092,15 +4103,13 @@
 /area/talon/deckone/central_hallway)
 "Gq" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-s"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/deckone/brig)
@@ -4116,8 +4125,7 @@
 /area/talon/deckone/workroom)
 "Gw" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
+	dir = 4
 	},
 /obj/structure/cable/green{
 	d1 = 4;
@@ -4125,15 +4133,13 @@
 	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-s"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/talon/deckone/workroom)
 "GC" = (
 /obj/machinery/atmospherics/portables_connector/fuel{
-	dir = 1;
-	icon_state = "map_connector-fuel"
+	dir = 1
 	},
 /obj/effect/floor_decal/industrial/outline/red,
 /obj/machinery/portable_atmospherics/canister/phoron,
@@ -4164,8 +4170,7 @@
 /area/talon/deckone/medical)
 "GL" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
-	dir = 1;
-	icon_state = "intact"
+	dir = 1
 	},
 /obj/structure/cable/green{
 	d1 = 4;
@@ -4209,8 +4214,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
+	dir = 4
 	},
 /obj/structure/cable/green{
 	d1 = 4;
@@ -4221,8 +4225,7 @@
 	icon_state = "1-8"
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-s"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/deckone/central_hallway)
@@ -4252,8 +4255,7 @@
 /area/talon/deckone/bridge)
 "Id" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
-	dir = 6;
-	icon_state = "intact-aux"
+	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -4267,12 +4269,10 @@
 /area/talon/deckone/central_hallway)
 "Ie" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
-	dir = 6;
-	icon_state = "intact-fuel"
+	dir = 6
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
-	icon_state = "extinguisher_closed";
 	pixel_x = -30
 	},
 /turf/simulated/floor/tiled/eris/dark/brown_perforated,
@@ -4297,23 +4297,10 @@
 /area/talon/deckone/bridge_hallway)
 "Ij" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
-	dir = 9;
-	icon_state = "intact"
+	dir = 9
 	},
 /turf/simulated/floor/hull/airless,
 /area/talon/maintenance/deckone_port_fore_wing)
-"Ik" = (
-/obj/structure/cable/green{
-	icon_state = "0-4"
-	},
-/obj/machinery/power/apc/talon{
-	cell_type = /obj/item/weapon/cell/apc;
-	dir = 8;
-	name = "west bump";
-	pixel_x = -28
-	},
-/turf/simulated/floor/tiled/eris/dark/brown_perforated,
-/area/talon/deckone/port_eng)
 "Iy" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/eris/steel,
@@ -4333,8 +4320,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/effect/floor_decal/emblem/talon_big{
-	dir = 1;
-	icon_state = "talon_big"
+	dir = 1
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/talon/deckone/central_hallway)
@@ -4346,8 +4332,7 @@
 	},
 /obj/structure/bed/chair/office/light,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-s"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/talon/deckone/workroom)
@@ -4364,9 +4349,7 @@
 "IO" = (
 /obj/machinery/alarm/talon{
 	dir = 4;
-	icon_state = "alarm0";
-	pixel_x = -22;
-	pixel_y = 0
+	pixel_x = -22
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
@@ -4421,8 +4404,7 @@
 /area/talon/deckone/central_hallway)
 "JB" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
-	dir = 1;
-	icon_state = "intact"
+	dir = 1
 	},
 /obj/structure/cable/green{
 	dir = 1;
@@ -4438,7 +4420,6 @@
 /obj/machinery/power/apc/talon{
 	dir = 1;
 	name = "north bump";
-	pixel_x = 0;
 	pixel_y = 28
 	},
 /obj/structure/catwalk,
@@ -4485,19 +4466,6 @@
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/talon/deckone/port_eng)
-"JP" = (
-/obj/machinery/power/apc/talon{
-	dir = 4;
-	name = "east bump";
-	pixel_x = 24
-	},
-/obj/structure/cable/green{
-	d2 = 8;
-	dir = 2;
-	icon_state = "0-8"
-	},
-/turf/simulated/floor/tiled/eris/white/gray_platform,
-/area/talon/deckone/bridge_hallway)
 "JS" = (
 /obj/structure/cable/green{
 	icon_state = "16-0"
@@ -4537,21 +4505,18 @@
 /turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/deckone_port)
 "Ka" = (
-/obj/structure/catwalk,
-/obj/machinery/light/small{
-	dir = 1;
-	icon_state = "bulb1"
+/obj/machinery/door/airlock/maintenance/medical{
+	req_one_access = list(301)
 	},
+/obj/machinery/door/firedoor/glass/talon,
 /turf/simulated/floor/plating/eris/under,
-/area/talon/maintenance/deckone_starboard)
+/area/talon/deckone/medical)
 "Kc" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9;
-	pixel_y = 0
+	dir = 9
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-s"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/deckone/central_hallway)
@@ -4572,8 +4537,7 @@
 	icon_state = "4-8"
 	},
 /obj/effect/floor_decal/industrial/warning/dust/corner{
-	dir = 1;
-	icon_state = "warningcorner_dust"
+	dir = 1
 	},
 /turf/simulated/floor/hull/airless,
 /area/talon/maintenance/deckone_port_aft_wing)
@@ -4595,10 +4559,6 @@
 /obj/effect/catwalk_plated/dark,
 /turf/simulated/floor/plating/eris/under,
 /area/talon/deckone/starboard_solar)
-"Ks" = (
-/obj/machinery/vending/medical_talon,
-/turf/simulated/floor/tiled/eris/white/bluecorner,
-/area/talon/deckone/medical)
 "KF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -4624,12 +4584,10 @@
 	},
 /obj/structure/sign/directions/bridge{
 	dir = 1;
-	icon_state = "direction_bridge";
 	pixel_y = 41
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-s"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/deckone/central_hallway)
@@ -4713,8 +4671,7 @@
 /area/talon/deckone/central_hallway)
 "LC" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5;
-	icon_state = "intact-scrubbers"
+	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
@@ -4747,8 +4704,7 @@
 /area/talon/maintenance/deckone_port)
 "LW" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -4767,8 +4723,7 @@
 /area/talon/deckone/central_hallway)
 "LZ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9;
-	pixel_y = 0
+	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
@@ -4790,19 +4745,6 @@
 	},
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/deckone/central_hallway)
-"Mi" = (
-/obj/structure/cable/green{
-	d2 = 8;
-	dir = 2;
-	icon_state = "0-8"
-	},
-/obj/machinery/power/apc/talon{
-	dir = 4;
-	name = "east bump";
-	pixel_x = 24
-	},
-/turf/simulated/floor/tiled/eris/dark/brown_perforated,
-/area/talon/deckone/starboard_eng)
 "Mm" = (
 /obj/machinery/shipsensors{
 	dir = 1
@@ -4834,8 +4776,7 @@
 /area/talon/deckone/brig)
 "MB" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-s"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/deckone/central_hallway)
@@ -4851,8 +4792,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
+	dir = 4
 	},
 /obj/structure/cable/green{
 	d1 = 4;
@@ -4860,8 +4800,7 @@
 	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-s"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/deckone/central_hallway)
@@ -4879,8 +4818,7 @@
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /obj/effect/map_helper/airlock/sensor/chamber_sensor,
 /obj/machinery/atmospherics/unary/vent_pump/high_volume/aux{
-	dir = 4;
-	icon_state = "map_vent_aux"
+	dir = 4
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/deckone_port)
@@ -4958,7 +4896,6 @@
 "Ns" = (
 /obj/structure/cable/green,
 /obj/machinery/power/apc/talon{
-	dir = 2;
 	name = "south bump";
 	pixel_y = -24
 	},
@@ -4992,36 +4929,24 @@
 /area/talon/maintenance/deckone_port)
 "Nz" = (
 /obj/machinery/computer/ship/navigation{
-	dir = 4;
-	icon_state = "computer"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark/cyancorner,
 /area/talon/deckone/bridge)
 "NG" = (
-/obj/machinery/suit_cycler/vintage/tmedic,
+/obj/structure/closet/secure_closet/chemical{
+	req_access = list(301)
+	},
+/obj/item/weapon/reagent_containers/spray/cleaner{
+	desc = "Someone has crossed out the 'Space' from Space Cleaner and written in Chemistry. Scrawled on the back is, 'Okay, whoever filled this with polytrinic acid, it was only funny the first time. It was hard enough replacing the CMO's first cat!'";
+	name = "Chemistry Cleaner"
+	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/talon/deckone/medical)
 "NP" = (
 /obj/structure/closet/emcloset,
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/deckone/central_hallway)
-"NU" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/aux{
-	dir = 9;
-	icon_state = "intact-aux"
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/effect/catwalk_plated,
-/turf/simulated/floor/plating/eris/under,
-/area/talon/deckone/port_eng)
 "Of" = (
 /obj/structure/barricade,
 /obj/structure/catwalk,
@@ -5029,8 +4954,7 @@
 /area/talon/maintenance/deckone_starboard)
 "Os" = (
 /obj/structure/bed/chair/bay/comfy/red{
-	dir = 4;
-	icon_state = "bay_comfychair_preview"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark/cyancorner,
 /area/talon/deckone/bridge)
@@ -5038,16 +4962,14 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/aux,
 /obj/machinery/alarm/talon{
 	dir = 8;
-	pixel_x = 22;
-	pixel_y = 0
+	pixel_x = 22
 	},
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/deckone_port)
 "OJ" = (
 /obj/machinery/computer/shuttle_control/explore/talonboat{
-	dir = 4;
-	icon_state = "computer"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/deckone/central_hallway)
@@ -5072,14 +4994,6 @@
 	},
 /turf/space,
 /area/talon/deckone/port_eng)
-"OU" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/aux{
-	dir = 6;
-	icon_state = "intact-aux"
-	},
-/obj/structure/catwalk,
-/turf/simulated/floor/plating/eris/under,
-/area/talon/maintenance/deckone_starboard)
 "OZ" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden,
 /turf/simulated/floor/tiled/eris/dark/brown_perforated,
@@ -5106,8 +5020,7 @@
 /area/talon/maintenance/deckone_starboard)
 "Py" = (
 /obj/machinery/atmospherics/portables_connector/fuel{
-	dir = 1;
-	icon_state = "map_connector-fuel"
+	dir = 1
 	},
 /obj/effect/floor_decal/industrial/outline/red,
 /obj/machinery/portable_atmospherics/canister/phoron,
@@ -5125,8 +5038,7 @@
 /area/talon/deckone/central_hallway)
 "PF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
-	dir = 4;
-	icon_state = "intact-aux"
+	dir = 4
 	},
 /obj/effect/map_helper/airlock/door/int_door,
 /obj/machinery/door/airlock/glass_external{
@@ -5144,7 +5056,6 @@
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
-	icon_state = "extinguisher_closed";
 	pixel_x = -30
 	},
 /turf/simulated/floor/tiled/eris/steel,
@@ -5164,15 +5075,13 @@
 /area/talon/maintenance/deckone_port)
 "Qg" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
-	dir = 10;
-	icon_state = "intact-fuel"
+	dir = 10
 	},
 /turf/simulated/floor/tiled/eris/dark/brown_perforated,
 /area/talon/deckone/starboard_eng)
 "Qx" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -5184,7 +5093,6 @@
 	},
 /obj/structure/extinguisher_cabinet{
 	dir = 1;
-	icon_state = "extinguisher_closed";
 	pixel_y = 32
 	},
 /obj/machinery/door/firedoor/glass{
@@ -5204,40 +5112,12 @@
 	},
 /turf/space,
 /area/talon/deckone/starboard_eng)
-"QT" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/unary/freezer{
-	anchored = 0
-	},
-/turf/simulated/floor/tiled/eris/steel,
-/area/talon/deckone/central_hallway)
 "QX" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 4
 	},
 /turf/simulated/floor/hull/airless,
 /area/talon/maintenance/deckone_starboard_aft_wing)
-"Rk" = (
-/obj/machinery/light/small{
-	dir = 4;
-	pixel_y = 0
-	},
-/obj/structure/closet/crate/medical/blood,
-/obj/item/weapon/reagent_containers/blood/prelabeled/OMinus,
-/obj/item/weapon/reagent_containers/blood/prelabeled/OMinus,
-/turf/simulated/floor/tiled/eris/white/bluecorner,
-/area/talon/deckone/medical)
 "Rr" = (
 /obj/machinery/alarm/talon{
 	dir = 1;
@@ -5309,31 +5189,28 @@
 	alarms_hidden = 1;
 	dir = 1;
 	name = "north bump";
-	pixel_x = 0;
 	pixel_y = 28
 	},
 /turf/simulated/floor/tiled/eris/dark/brown_platform,
 /area/talon/deckone/starboard_eng_store)
-"Sr" = (
+"So" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/eris/white/bluecorner,
+/area/talon/deckone/medical)
+"Ss" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
-/obj/machinery/light_switch{
-	dir = 2;
-	name = "light switch ";
-	pixel_x = 0;
-	pixel_y = 26
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
 	},
-/obj/machinery/atmospherics/pipe/cap/hidden{
-	dir = 4;
-	icon_state = "cap"
-	},
-/turf/simulated/floor/tiled/eris/dark/brown_perforated,
-/area/talon/deckone/port_eng)
+/turf/simulated/floor/tiled/eris/white/bluecorner,
+/area/talon/deckone/medical)
 "SD" = (
 /obj/effect/floor_decal/emblem/talon_big{
-	dir = 9;
-	icon_state = "talon_big"
+	dir = 9
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/talon/deckone/central_hallway)
@@ -5346,7 +5223,6 @@
 /area/talon/deckone/brig)
 "SF" = (
 /obj/machinery/firealarm{
-	dir = 2;
 	layer = 3.3;
 	pixel_x = 4;
 	pixel_y = 26
@@ -5385,7 +5261,6 @@
 "SS" = (
 /obj/structure/cable/green,
 /obj/machinery/power/apc/talon{
-	dir = 2;
 	name = "south bump";
 	pixel_y = -24
 	},
@@ -5427,21 +5302,6 @@
 "Tq" = (
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/talon/deckone/workroom)
-"Ts" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/closet/medical_wall{
-	pixel_x = -32
-	},
-/obj/structure/closet/crate/medical{
-	name = "medicine cooler"
-	},
-/turf/simulated/floor/tiled/eris/white/bluecorner,
-/area/talon/deckone/medical)
 "Tz" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -5475,8 +5335,7 @@
 /area/talon/maintenance/deckone_starboard)
 "TD" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
-	dir = 5;
-	icon_state = "intact"
+	dir = 5
 	},
 /obj/effect/floor_decal/industrial/warning/dust/corner{
 	dir = 8
@@ -5500,9 +5359,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/aux,
 /obj/machinery/alarm/talon{
 	dir = 4;
-	icon_state = "alarm0";
-	pixel_x = -22;
-	pixel_y = 0
+	pixel_x = -22
 	},
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/eris/under,
@@ -5532,22 +5389,17 @@
 "Uq" = (
 /obj/machinery/alarm/talon{
 	dir = 4;
-	icon_state = "alarm0";
-	pixel_x = -22;
-	pixel_y = 0
+	pixel_x = -22
 	},
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/deckone/central_hallway)
 "Ur" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
-	dir = 4;
-	icon_state = "pipe-t"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/white/gray_platform,
 /area/talon/deckone/bridge_hallway)
@@ -5568,31 +5420,23 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/cyancorner,
 /area/talon/deckone/bridge)
-"Uy" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/eris/dark/brown_perforated,
-/area/talon/deckone/port_eng)
 "UC" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
+	dir = 4
 	},
 /obj/effect/floor_decal/emblem/talon_big{
-	dir = 6;
-	icon_state = "talon_big"
+	dir = 6
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/talon/deckone/central_hallway)
 "UG" = (
-/obj/machinery/door/airlock/maintenance/medical{
-	req_one_access = list(301)
+/obj/machinery/light/small{
+	dir = 4
 	},
-/obj/machinery/door/firedoor/glass/talon,
-/turf/simulated/floor/plating/eris/under,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/talon/deckone/medical)
 "UI" = (
 /obj/structure/cable/green{
@@ -5633,10 +5477,14 @@
 /turf/simulated/floor/tiled/eris/white,
 /area/talon/deckone/bridge_hallway)
 "UQ" = (
-/obj/structure/catwalk,
-/obj/structure/loot_pile/maint/technical,
-/turf/simulated/floor/plating/eris/under,
-/area/talon/maintenance/deckone_starboard)
+/obj/item/weapon/storage/box/bodybags,
+/obj/item/roller,
+/obj/item/roller{
+	pixel_y = 8
+	},
+/obj/structure/table/standard,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
+/area/talon/deckone/medical)
 "UT" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/machinery/door/blast/regular{
@@ -5661,8 +5509,7 @@
 /area/talon/maintenance/deckone_starboard_fore_wing)
 "UV" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -5693,19 +5540,16 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
+	dir = 4
 	},
 /obj/effect/floor_decal/emblem/talon_big{
-	dir = 10;
-	icon_state = "talon_big"
+	dir = 10
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/talon/deckone/central_hallway)
 "Vf" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
-	dir = 10;
-	icon_state = "intact"
+	dir = 10
 	},
 /turf/simulated/floor/hull/airless,
 /area/talon/maintenance/deckone_port_fore_wing)
@@ -5715,24 +5559,6 @@
 	},
 /turf/simulated/floor/tiled/eris/white/gray_platform,
 /area/talon/deckone/bridge_hallway)
-"Vt" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/aux{
-	dir = 5;
-	icon_state = "intact-aux"
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/disposalpipe/segment,
-/obj/effect/catwalk_plated,
-/turf/simulated/floor/plating/eris/under,
-/area/talon/deckone/starboard_eng)
 "VB" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 1
@@ -5794,8 +5620,7 @@
 /area/talon/maintenance/deckone_starboard)
 "VU" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-s"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark/cyancorner,
 /area/talon/deckone/bridge)
@@ -5836,8 +5661,7 @@
 /area/talon/deckone/central_hallway)
 "WA" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/fuel{
-	dir = 1;
-	icon_state = "map-fuel"
+	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/dark/brown_perforated,
 /area/talon/deckone/starboard_eng)
@@ -5870,8 +5694,7 @@
 	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-s"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/talon/deckone/workroom)
@@ -5880,17 +5703,27 @@
 	req_one_access = list(301)
 	},
 /obj/machinery/door/firedoor/glass/talon,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/talon/deckone/medical)
 "Xa" = (
 /obj/item/modular_computer/console/preset/talon{
-	dir = 4;
-	icon_state = "console"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/deckone/brig)
 "Xd" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/talon/deckone/medical)
 "Xe" = (
@@ -5913,15 +5746,13 @@
 /area/talon/maintenance/deckone_starboard_aft_wing)
 "XC" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-s"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark/monofloor,
 /area/talon/deckone/central_hallway)
 "XG" = (
 /obj/machinery/light_switch{
 	dir = 4;
-	icon_state = "light1";
 	pixel_x = -24
 	},
 /obj/structure/sink{
@@ -5930,14 +5761,6 @@
 /obj/structure/medical_stand/anesthetic,
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/talon/deckone/medical)
-"XM" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/aux{
-	dir = 10;
-	icon_state = "intact-aux"
-	},
-/obj/structure/catwalk,
-/turf/simulated/floor/plating/eris/under,
-/area/talon/maintenance/deckone_port)
 "XQ" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -5945,6 +5768,12 @@
 /obj/machinery/portable_atmospherics/canister/air,
 /turf/simulated/floor/tiled/eris/dark/brown_perforated,
 /area/talon/deckone/port_eng)
+"XT" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/eris/white/bluecorner,
+/area/talon/deckone/medical)
 "XV" = (
 /obj/effect/map_helper/airlock/door/int_door,
 /obj/machinery/atmospherics/pipe/simple/hidden/aux,
@@ -5990,15 +5819,13 @@
 /area/talon/deckone/central_hallway)
 "Yh" = (
 /obj/structure/bed/chair/bay/comfy/brown{
-	dir = 1;
-	icon_state = "bay_comfychair_preview"
+	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/dark/cyancorner,
 /area/talon/deckone/bridge)
 "Ym" = (
 /obj/machinery/light/small{
-	dir = 1;
-	icon_state = "bulb1"
+	dir = 1
 	},
 /obj/structure/toilet,
 /obj/machinery/door/window/brigdoor/eastleft{
@@ -6017,18 +5844,6 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/brown_platform,
 /area/talon/deckone/starboard_eng_store)
-"YA" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/tiled/eris/dark/brown_perforated,
-/area/talon/deckone/port_eng)
 "YG" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -6036,8 +5851,7 @@
 /area/talon/deckone/starboard_eng)
 "YI" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/fuel{
-	dir = 1;
-	icon_state = "map-fuel"
+	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/dark/brown_perforated,
 /area/talon/deckone/port_eng)
@@ -6052,15 +5866,13 @@
 "YM" = (
 /obj/structure/bed/chair/bay/comfy/blue{
 	dir = 8;
-	icon_state = "bay_comfychair_preview";
 	name = "doctor's seat"
 	},
 /turf/simulated/floor/tiled/eris/dark/cyancorner,
 /area/talon/deckone/bridge)
 "YO" = (
 /obj/structure/bed/chair/bay/chair{
-	dir = 1;
-	icon_state = "bay_chair_preview"
+	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/steel/techfloor_grid,
 /area/shuttle/talonboat)
@@ -6070,8 +5882,7 @@
 	pixel_y = -25
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark/cyancorner,
 /area/talon/deckone/bridge)
@@ -6098,15 +5909,13 @@
 	pixel_y = 30
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden{
-	dir = 1;
-	icon_state = "map"
+	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/dark/brown_perforated,
 /area/talon/deckone/port_eng)
 "Zq" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
@@ -6117,8 +5926,7 @@
 	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-s"
+	dir = 4
 	},
 /obj/effect/catwalk_plated,
 /turf/simulated/floor/plating/eris/under,
@@ -6141,7 +5949,6 @@
 "ZA" = (
 /obj/machinery/alarm/talon{
 	dir = 1;
-	icon_state = "alarm0";
 	pixel_y = -22
 	},
 /turf/simulated/floor/tiled/eris/dark/brown_perforated,
@@ -6157,7 +5964,6 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/machinery/light_switch{
 	dir = 4;
-	icon_state = "light1";
 	pixel_x = -24
 	},
 /obj/machinery/recharger/wallcharger{
@@ -6168,8 +5974,7 @@
 /area/talon/deckone/armory)
 "ZR" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
-	dir = 6;
-	icon_state = "intact"
+	dir = 6
 	},
 /turf/simulated/floor/hull/airless,
 /area/talon/maintenance/deckone_port_fore_wing)
@@ -6181,8 +5986,7 @@
 /obj/machinery/light,
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
-	dir = 1;
-	icon_state = "pipe-t"
+	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/talon/deckone/workroom)
@@ -14215,7 +14019,7 @@ am
 am
 am
 am
-XM
+cH
 JY
 JY
 jL
@@ -14514,8 +14318,8 @@ ho
 iA
 ah
 IT
-Ik
-aj
+cX
+cZ
 XQ
 qp
 ps
@@ -14649,15 +14453,15 @@ dH
 am
 gU
 bE
-rQ
+cN
 gU
 pR
 Ex
 cm
-NU
-YA
-hs
-Uy
+cO
+cU
+cU
+cU
 CW
 YI
 Fw
@@ -14763,7 +14567,7 @@ ey
 am
 am
 am
-yC
+cu
 ay
 GH
 GH
@@ -14788,15 +14592,15 @@ iY
 tm
 ID
 dH
-xE
+LU
 gU
-kB
+db
 PO
 gU
-QT
+aj
 Bj
 iA
-Sr
+cP
 iX
 vV
 lM
@@ -15052,7 +14856,7 @@ bJ
 en
 aR
 aM
-am
+cz
 ML
 cl
 cl
@@ -15077,7 +14881,7 @@ gU
 bF
 bO
 gU
-CH
+aj
 Bj
 iA
 Yc
@@ -16053,7 +15857,7 @@ cA
 MW
 IF
 eB
-vr
+cF
 dL
 dL
 Wt
@@ -16185,7 +15989,7 @@ ER
 Zi
 UV
 iP
-JP
+cy
 bQ
 bY
 bQ
@@ -16479,7 +16283,7 @@ Bj
 Mg
 Bj
 AV
-tl
+cG
 dO
 dO
 Fs
@@ -16626,7 +16430,7 @@ dO
 XG
 aL
 qz
-Ts
+dg
 jB
 dO
 Tc
@@ -16753,7 +16557,7 @@ aE
 Fl
 aP
 Fl
-xd
+bG
 aY
 aO
 qA
@@ -16767,7 +16571,7 @@ Kc
 Bn
 Gb
 FA
-Gb
+So
 Gb
 Gb
 ce
@@ -16907,7 +16711,7 @@ IW
 pX
 EE
 dO
-Ks
+av
 FA
 it
 Gb
@@ -17040,7 +16844,7 @@ bK
 sS
 aY
 aO
-qA
+cB
 xk
 co
 co
@@ -17049,9 +16853,9 @@ co
 co
 Nm
 dO
-av
+dd
 FA
-Gb
+So
 Gb
 ek
 dO
@@ -17062,8 +16866,8 @@ CC
 fJ
 qA
 gY
-hL
-bG
+cM
+dc
 gY
 bH
 Bj
@@ -17317,9 +17121,9 @@ ar
 aF
 bv
 sI
-Of
 qA
-mN
+qA
+cx
 az
 sL
 sL
@@ -17344,7 +17148,7 @@ Nu
 wh
 ZW
 fJ
-Ka
+VT
 ci
 gW
 Yo
@@ -17352,7 +17156,7 @@ gY
 MG
 Bj
 iF
-er
+cS
 Zj
 jE
 yf
@@ -17477,7 +17281,7 @@ qA
 dO
 NG
 bM
-Gb
+Ej
 qB
 bf
 dO
@@ -17494,9 +17298,9 @@ gY
 VQ
 Id
 cn
-Vt
-xc
-EL
+cT
+cW
+YG
 YG
 dm
 WA
@@ -17617,10 +17421,10 @@ VX
 co
 qA
 dO
-dz
-Rk
-Gb
-bC
+de
+dS
+Ss
+XT
 ct
 dO
 Gt
@@ -17638,7 +17442,7 @@ ho
 iF
 au
 yB
-Mi
+cY
 Bm
 QC
 Qg
@@ -17759,11 +17563,11 @@ co
 co
 Nm
 dO
-dO
-dO
+hv
+xE
+Gb
 UG
-dO
-dO
+UQ
 dO
 fJ
 rn
@@ -17897,17 +17701,17 @@ xk
 qA
 aO
 mO
+bC
+df
 qA
-qA
-qA
-qA
-hv
-qA
-qA
-Of
-UQ
-qA
-OU
+dO
+dO
+dO
+Ka
+dO
+dO
+dO
+cJ
 Dz
 Dz
 AI
@@ -18043,7 +17847,7 @@ sL
 sL
 sL
 sL
-sL
+az
 sL
 TC
 qA

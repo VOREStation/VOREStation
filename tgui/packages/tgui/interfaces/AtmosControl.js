@@ -29,7 +29,7 @@ export const AtmosControlContent = (props, context) => {
   // sortedAlarms = sortedAlarms.slice(1, 3);
 
   const [tabIndex, setTabIndex] = useLocalState(context, 'tabIndex', 0);
-  const [mapZoom, setZoom] = useLocalState(context, 'mapZoom', 1);
+  const [zoom, setZoom] = useLocalState(context, 'zoom', 1);
 
   let body;
   // Alarms View
@@ -54,30 +54,8 @@ export const AtmosControlContent = (props, context) => {
     // you MUST update styles/components/Tooltip.scss
     // and change the @for scss to match.
     body = (
-      <Box textAlign="center">
-        Zoom Level:
-        <NumberInput
-          animated
-          width="40px"
-          step={0.5}
-          stepPixelSize="5"
-          value={mapZoom}
-          minValue={1}
-          maxValue={8}
-          onChange={(e, value) => setZoom(value)} />
-        Z-Level:
-        {data.map_levels
-          .sort((a, b) => Number(a) - Number(b))
-          .map(level => (
-            <Button
-              key={level}
-              selected={~~level === ~~config.mapZLevel}
-              content={level}
-              onClick={() => {
-                act("setZLevel", { "mapZLevel": level });
-              }} />
-          ))}
-        <NanoMap zoom={mapZoom}>
+      <Box height="526px" mb="0.5rem" overflow="hidden">
+        <NanoMap onZoom={v => setZoom(v)}>
           {sortedAlarms
             .filter(x => 
               (~~x.z === ~~config.mapZLevel)
@@ -86,7 +64,7 @@ export const AtmosControlContent = (props, context) => {
                 key={cm.ref}
                 x={cm.x}
                 y={cm.y}
-                zoom={mapZoom}
+                zoom={zoom}
                 icon="bell"
                 tooltip={cm.name}
                 color={cm.danger ? 'red' : 'green'}

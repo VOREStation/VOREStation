@@ -54,6 +54,10 @@
 
 //////////////////////////////////////////////////////////////////////////////
 //Antag/Event/ERT Areas
+
+#include "../../submaps/admin_use_vr/ert.dm"
+#include "../../submaps/admin_use_vr/mercship.dm"
+
 /datum/map_template/admin_use/ert
 	name = "Special Area - ERT"
 	desc = "It's the ERT ship! Lorge."
@@ -65,7 +69,12 @@
 	mappath = 'maps/submaps/admin_use_vr/tradeship.dmm'
 
 /datum/map_template/admin_use/mercenary
-	name = "Special Area - Merc Base"
+	name = "Special Area - Merc Ship"
+	desc = "Prepare tae be boarded, arr!"
+	mappath = 'maps/submaps/admin_use_vr/kk_mercship.dmm'
+
+/datum/map_template/admin_use/old_mercenary
+	name = "Special Area - Old Merc Base"
 	desc = "So much red!"
 	mappath = 'maps/submaps/admin_use_vr/mercbase.dmm'
 
@@ -330,7 +339,6 @@
 #if AWAY_MISSION_TEST
 #include "../../submaps/admin_use_vr/spa.dmm"
 #endif
-
 #include "../../submaps/admin_use_vr/fun.dm"
 /datum/map_template/tether_lateload/fun/spa
 	name = "Space Spa"
@@ -514,9 +522,12 @@
 #include "../../offmap_vr/om_ships/screebarge.dm"
 #include "../../offmap_vr/om_ships/aro.dm"
 #include "../../offmap_vr/om_ships/aro2.dm"
+#include "../../offmap_vr/om_ships/bearcat.dm"
 #include "../../offmap_vr/om_ships/cruiser.dm"
 #include "../../offmap_vr/om_ships/vespa.dm"
 #include "../../offmap_vr/om_ships/generic_shuttle.dm"
+#include "../../offmap_vr/om_ships/geckos.dm"
+#include "../../offmap_vr/om_ships/mackerels.dm"
 #include "../../offmap_vr/om_ships/mercenarybase.dm"
 #include "../../offmap_vr/om_ships/mercship.dm"
 #include "../../offmap_vr/om_ships/curashuttle.dm"

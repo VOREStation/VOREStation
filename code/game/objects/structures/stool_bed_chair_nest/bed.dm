@@ -17,8 +17,8 @@
 	can_buckle = 1
 	buckle_dir = SOUTH
 	buckle_lying = 1
-	var/material/material
-	var/material/padding_material
+	var/datum/material/material
+	var/datum/material/padding_material
 	var/base_icon = "bed"
 	var/applies_material_colour = 1
 

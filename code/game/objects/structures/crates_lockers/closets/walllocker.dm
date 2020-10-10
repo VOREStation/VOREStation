@@ -54,3 +54,25 @@
 /obj/structure/closet/walllocker/emerglocker/east
 	pixel_x = 32
 	dir = EAST
+
+//VOREStation Add Start
+/obj/structure/closet/walllocker/medical
+	name = "first-aid closet"
+	desc = "It's wall-mounted storage unit for first aid supplies."
+	closet_appearance = /decl/closet_appearance/wall/medical
+
+/obj/structure/closet/walllocker/medical/north
+	pixel_y = 32
+	dir = SOUTH
+
+/obj/structure/closet/walllocker/medical/south
+	pixel_y = -32
+	dir = NORTH
+
+/obj/structure/closet/walllocker/medical/west
+	pixel_x = -32
+	dir = WEST
+
+/obj/structure/closet/walllocker/medical/east
+	pixel_x = 32
+	dir = EAST

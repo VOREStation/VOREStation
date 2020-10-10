@@ -14,10 +14,10 @@
 	ammo_type = /obj/item/ammo_casing/a12g/beanbag
 	projectile_type = /obj/item/projectile/bullet/shotgun
 	handle_casings = HOLD_CASINGS
-	var/recentpump = 0 // to prevent spammage
+	var/recentpump = 0 			//To prevent spammage
 	var/action_sound = 'sound/weapons/shotgunpump.ogg'
-	var/animated_pump = 0 //This is for cyling animations.
-	var/empty_sprite = 0 //This is just a dirty var so it doesn't fudge up.
+	var/empty_sprite = 0 		//This is just a dirty var so it doesn't fudge up.
+	var/pump_animation = "shotgun-pump"	//You put the reference to the animation in question here. Frees up namming. Ex: "shotgun_old_pump" or "sniper_cycle"
 
 /obj/item/weapon/gun/projectile/shotgun/pump/consume_next_projectile()
 	if(chambered)
@@ -41,8 +41,8 @@
 		loaded -= AC //Remove casing from loaded list.
 		chambered = AC
 
-	if(animated_pump)//This affects all bolt action and shotguns.
-		flick("[icon_state]-cycling", src)//This plays any pumping
+	if(pump_animation)//This affects all bolt action and shotguns.
+		flick("[pump_animation]", src)//This plays any pumping
 
 	update_icon()
 
@@ -60,6 +60,7 @@
 
 /obj/item/weapon/gun/projectile/shotgun/pump/slug
 	ammo_type = /obj/item/ammo_casing/a12g
+	pump_animation = null
 
 /obj/item/weapon/gun/projectile/shotgun/pump/combat
 	name = "combat shotgun"
@@ -71,6 +72,7 @@
 	max_shells = 7 //match the ammo box capacity, also it can hold a round in the chamber anyways, for a total of 8.
 	ammo_type = /obj/item/ammo_casing/a12g
 	load_method = SINGLE_CASING|SPEEDLOADER
+	pump_animation = "cshotgun-pump"
 
 /obj/item/weapon/gun/projectile/shotgun/pump/combat/empty
 	ammo_type = null
