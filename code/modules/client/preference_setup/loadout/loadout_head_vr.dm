@@ -12,7 +12,7 @@
 
 /datum/gear/head/headbando/New()
 	..()
-	gear_tweaks = list(gear_tweak_free_color_choice)
+	gear_tweaks += gear_tweak_free_color_choice
 
 //Detective alternative
 /datum/gear/head/detective_alt
