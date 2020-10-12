@@ -106,7 +106,7 @@
 		"presets" = list(
 			list("name" = "blank",    "label" = "Clear",        "desc" = "Blank slate."),
 			list("name" = "time",     "label" = "Station Time", "desc" = "The current time according to the station's clock."),
-			list("name" = "shuttle",  "label" = "Shuttle ETA",  "desc" = "Display how much time is left."),
+			list("name" = "shuttle",  "label" = "Tram ETA",     "desc" = "Display how much time is left."),  //VOREStation Edit - Shuttle ETA -> Tram ETA because we use trams
 			list("name" = "message",  "label" = "Message",      "desc" = "A custom message.")
 		),
 	)
