@@ -248,7 +248,7 @@
 				to_chat(usr, "<span class='warning'>Security measures prevent you from changing the alert level.</span>")
 				return
 
-			if(check_access(usr, access_captain))
+			if(is_authenticated(usr))
 				change_security_level(text2num(params["level"]))
 			else
 				to_chat(usr, "<span class='warning'>You are not authorized to do this.</span>")
