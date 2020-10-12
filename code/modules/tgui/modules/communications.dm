@@ -104,9 +104,10 @@
 		"line_2" = (stat_msg2 ? stat_msg2 : "-----"),
 
 		"presets" = list(
-			list("name" = "blank",    "label" = "Clear",       "desc" = "Blank slate"),
-			list("name" = "shuttle",  "label" = "Shuttle ETA", "desc" = "Display how much time is left."),
-			list("name" = "message",  "label" = "Message",     "desc" = "A custom message.")
+			list("name" = "blank",    "label" = "Clear",        "desc" = "Blank slate."),
+			list("name" = "time",     "label" = "Station Time", "desc" = "The current time according to the station's clock."),
+			list("name" = "shuttle",  "label" = "Shuttle ETA",  "desc" = "Display how much time is left."),
+			list("name" = "message",  "label" = "Message",      "desc" = "A custom message.")
 		),
 	)
 
