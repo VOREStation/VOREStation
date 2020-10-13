@@ -1014,6 +1014,7 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 1
 	},
+/obj/machinery/camera/network/medbay,
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/medical/triage)
 "ace" = (
@@ -7495,6 +7496,9 @@
 	dir = 1
 	},
 /obj/structure/closet/firecloset,
+/obj/machinery/camera/network/civilian{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/crew_quarters/panic_shelter)
 "anp" = (
@@ -7678,6 +7682,9 @@
 "anH" = (
 /obj/structure/reagent_dispensers/watertank,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/obj/machinery/camera/network/civilian{
 	dir = 4
 	},
 /turf/simulated/floor/tiled,
@@ -19272,6 +19279,9 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
+/obj/machinery/camera/network/civilian{
+	dir = 4
+	},
 /turf/simulated/floor/wood,
 /area/library)
 "aGZ" = (
@@ -23081,9 +23091,15 @@
 /turf/simulated/open/virgo3b,
 /area/tether/surfacebase/outside/outside3)
 "aOj" = (
-/obj/structure/reagent_dispensers/fueltank,
-/turf/simulated/floor/tiled/techmaint,
-/area/tether/surfacebase/shuttle_pad)
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary,
+/obj/effect/floor_decal/techfloor{
+	dir = 5
+	},
+/obj/machinery/camera/network/civilian{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/crew_quarters/panic_shelter)
 "aOk" = (
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/shuttle_pad)
@@ -31579,20 +31595,12 @@
 /turf/simulated/floor/lino,
 /area/tether/surfacebase/entertainment/backstage)
 "bde" = (
-/obj/machinery/power/smes/buildable{
-	charge = 500000;
-	input_attempt = 1;
-	input_level = 5000
+/obj/machinery/camera/network/outside{
+	dir = 1;
+	icon_state = "camera"
 	},
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/eris/dark/bluecorner,
-/area/shuttle/tourbus/engines)
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/tether/surfacebase/outside/outside3)
 "bdf" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8
@@ -32504,17 +32512,26 @@
 /turf/simulated/wall/r_wall,
 /area/hydroponics)
 "beU" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tether)
-"beV" = (
-/obj/machinery/atmospherics/unary/engine{
-	dir = 1
+/obj/structure/catwalk,
+/obj/machinery/camera/network/outside{
+	dir = 5;
+	icon_state = "camera"
 	},
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tourbus/engines)
+/turf/simulated/open/virgo3b,
+/area/tether/surfacebase/outside/outside3)
+"beV" = (
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
+/obj/structure/catwalk,
+/obj/machinery/camera/network/research{
+	dir = 5;
+	icon_state = "camera"
+	},
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/tether/surfacebase/outside/outside3)
+"beW" = (
+/obj/machinery/camera/network/outside,
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/tether/surfacebase/outside/outside3)
 "beX" = (
 /obj/structure/table/woodentable,
 /turf/simulated/floor/wood,
@@ -32615,6 +32632,27 @@
 	},
 /turf/simulated/wall,
 /area/tether/surfacebase/entertainment)
+"bfh" = (
+/obj/structure/catwalk,
+/obj/machinery/camera/network/outside,
+/turf/simulated/open/virgo3b,
+/area/tether/surfacebase/outside/outside3)
+"bfi" = (
+/obj/machinery/camera/network/outside{
+	dir = 5;
+	icon_state = "camera"
+	},
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/tether/surfacebase/outside/outside3)
+"bfj" = (
+/obj/machinery/computer/ship/engines{
+	dir = 8
+	},
+/obj/machinery/camera/network/civilian{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/eris/white/orangecorner,
+/area/shuttle/tourbus/cockpit)
 "bfk" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
@@ -32853,6 +32891,19 @@
 	},
 /turf/simulated/floor/lino,
 /area/tether/surfacebase/entertainment/backstage)
+"bfJ" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/effect/floor_decal/techfloor,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/obj/machinery/camera/network/civilian{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/crew_quarters/panic_shelter)
 "bfK" = (
 /obj/machinery/light/small,
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
@@ -33111,6 +33162,24 @@
 	},
 /turf/simulated/floor/tiled/eris/steel/bar_light,
 /area/tether/surfacebase/barbackmaintenance)
+"bgm" = (
+/obj/machinery/power/smes/buildable{
+	charge = 500000;
+	input_attempt = 1;
+	input_level = 5000
+	},
+/obj/structure/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/camera/network/civilian{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/eris/dark/bluecorner,
+/area/shuttle/tourbus/engines)
 "bgn" = (
 /obj/effect/floor_decal/corner/grey/diagonal,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -33186,6 +33255,11 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
+"bgu" = (
+/obj/structure/reagent_dispensers/fueltank,
+/obj/machinery/camera/network/engineering,
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/shuttle_pad)
 "bgv" = (
 /obj/structure/bed/chair/wood{
 	dir = 8
@@ -33671,6 +33745,24 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/rnd/outpost/xenobiology/outpost_storage)
+"bhg" = (
+/obj/machinery/camera/network/outside{
+	dir = 5
+	},
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/tether/surfacebase/outside/outside3)
+"bhh" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tether)
+"bhi" = (
+/obj/machinery/atmospherics/unary/engine{
+	dir = 1
+	},
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tourbus/engines)
 "bhu" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/lightgrey/border,
@@ -34793,12 +34885,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
-"ivq" = (
-/obj/machinery/computer/ship/engines{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/eris/white/orangecorner,
-/area/shuttle/tourbus/cockpit)
 "iQr" = (
 /obj/machinery/hologram/holopad,
 /obj/effect/landmark/start{
@@ -35305,16 +35391,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled,
 /area/rnd/research/testingrange)
-"lXv" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/effect/floor_decal/techfloor,
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/crew_quarters/panic_shelter)
 "lYT" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 8
@@ -40566,7 +40642,7 @@ aac
 aac
 aac
 aac
-aac
+aFf
 aac
 aac
 aac
@@ -40707,9 +40783,9 @@ aac
 aac
 aac
 aac
-aac
 aFf
-aac
+aFh
+aFf
 aac
 aac
 aac
@@ -40849,9 +40925,9 @@ aac
 aac
 aac
 aac
-aFf
+aac
 aFh
-aFf
+aac
 aac
 aac
 aac
@@ -40992,7 +41068,7 @@ aac
 aac
 aac
 aac
-aFf
+aac
 aac
 aac
 aac
@@ -41096,7 +41172,7 @@ aac
 aac
 aac
 aac
-aac
+aQU
 aac
 aac
 aac
@@ -41672,7 +41748,7 @@ aac
 aac
 aac
 aac
-aac
+aQU
 aac
 aac
 aac
@@ -41796,7 +41872,7 @@ aac
 aac
 aac
 aac
-aac
+aQW
 arW
 arW
 aDd
@@ -41989,6 +42065,7 @@ aac
 aac
 aac
 aac
+aQU
 aac
 aac
 aac
@@ -41998,8 +42075,7 @@ aac
 aac
 aac
 aac
-aac
-aac
+aQU
 aac
 aac
 aac
@@ -42461,7 +42537,7 @@ aMl
 aMl
 aNR
 aCO
-adG
+bfh
 aOi
 aab
 aab
@@ -42529,14 +42605,14 @@ aac
 aac
 aac
 aac
+aQU
 aac
 aac
 aac
 aac
 aac
 aac
-aac
-aac
+aQU
 aac
 aac
 aac
@@ -43220,7 +43296,7 @@ aac
 aac
 aac
 aac
-aac
+aQW
 arW
 aDz
 aDz
@@ -43683,7 +43759,7 @@ aac
 aac
 aac
 aac
-aac
+aQU
 aac
 aac
 aac
@@ -43958,7 +44034,7 @@ aqu
 are
 arw
 akS
-aac
+beW
 aac
 aac
 aac
@@ -44281,7 +44357,7 @@ aLS
 azL
 azL
 azL
-adG
+bfh
 aOi
 aab
 aab
@@ -44814,7 +44890,7 @@ aac
 aac
 aac
 aac
-aac
+aQU
 aac
 aac
 aac
@@ -45131,7 +45207,7 @@ aac
 aac
 aac
 aac
-aac
+bhg
 aac
 aac
 aac
@@ -46408,7 +46484,7 @@ azD
 azE
 azE
 azE
-aac
+beW
 aac
 aac
 aac
@@ -47474,7 +47550,7 @@ aab
 aaq
 aac
 aac
-aac
+bde
 adO
 abL
 act
@@ -47694,7 +47770,7 @@ aKU
 aKU
 aLn
 aKj
-aac
+beW
 aac
 aac
 aac
@@ -47832,7 +47908,7 @@ jML
 jHw
 jpB
 qWU
-beV
+bhi
 aKU
 aOI
 aPb
@@ -48399,7 +48475,7 @@ gUL
 rbR
 hCB
 wQf
-bde
+bgm
 fNt
 aKU
 aOI
@@ -48534,7 +48610,7 @@ aKU
 aKU
 jvK
 jvK
-ivq
+bfj
 jvK
 rzV
 fcg
@@ -48684,7 +48760,7 @@ caw
 jHw
 gHh
 qWU
-beV
+bhi
 aKU
 aOI
 aPb
@@ -49032,7 +49108,7 @@ aab
 aab
 aab
 aac
-aac
+aQU
 aac
 aac
 aac
@@ -49259,7 +49335,7 @@ aKj
 aNi
 aNi
 aKj
-aac
+aQU
 aac
 aac
 aac
@@ -49947,7 +50023,7 @@ bgv
 bco
 bds
 aIa
-aIz
+aOJ
 ats
 aKj
 aKj
@@ -50530,7 +50606,7 @@ aME
 aME
 aNY
 aKj
-aOj
+bgu
 aOz
 aOM
 aKj
@@ -50669,7 +50745,7 @@ aNk
 uSA
 aNJ
 aNP
-beU
+bhh
 aKU
 abg
 aOk
@@ -50811,7 +50887,7 @@ aNl
 aNl
 aNK
 aNP
-beU
+bhh
 aKU
 abg
 aOk
@@ -50953,7 +51029,7 @@ aNm
 aNl
 aNK
 aNP
-beU
+bhh
 aKU
 abg
 aOk
@@ -51028,7 +51104,7 @@ aac
 aac
 aac
 aac
-aac
+bde
 abe
 abe
 abe
@@ -51190,7 +51266,7 @@ alp
 amc
 aio
 rXW
-lXv
+bfJ
 aol
 alY
 alY
@@ -52161,7 +52237,7 @@ aaq
 aac
 aac
 aac
-aac
+aQU
 aac
 aac
 aac
@@ -52893,7 +52969,7 @@ aok
 aok
 aok
 amK
-ajs
+aOj
 anY
 beQ
 bdi
@@ -53215,7 +53291,7 @@ aac
 aac
 aac
 aac
-aac
+bfi
 aac
 aac
 aac
@@ -54149,7 +54225,7 @@ aab
 aab
 aOm
 adG
-adG
+beU
 adG
 adG
 ajG
@@ -54311,7 +54387,7 @@ acV
 acV
 ave
 arL
-adG
+beU
 azY
 axQ
 aAQ
@@ -54440,7 +54516,7 @@ ajG
 ajG
 ajG
 ajU
-amu
+beV
 amu
 apd
 ajG
@@ -54763,7 +54839,7 @@ azX
 azX
 azX
 aAa
-adG
+bfh
 aOF
 aab
 aab

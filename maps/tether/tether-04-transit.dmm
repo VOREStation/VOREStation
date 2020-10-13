@@ -319,10 +319,6 @@
 /obj/structure/table/bench/padded,
 /turf/simulated/floor/wood,
 /area/tether/midpoint)
-"G" = (
-/obj/structure/grille,
-/turf/simulated/floor/plating,
-/area/maintenance/tether_midpoint)
 "H" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -9652,7 +9648,7 @@ f
 f
 f
 d
-G
+B
 b
 u
 u

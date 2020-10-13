@@ -111,8 +111,11 @@
 /turf/simulated/floor,
 /area/engineering/engine_room)
 "ap" = (
+/obj/machinery/camera/network/engineering{
+	dir = 1
+	},
 /turf/space,
-/area/engineering/engine_smes)
+/area/space)
 "aq" = (
 /turf/simulated/floor,
 /area/engineering/engine_room)
@@ -1480,6 +1483,32 @@
 	},
 /turf/simulated/floor,
 /area/engineering/engine_room)
+"dz" = (
+/obj/structure/sign/securearea{
+	desc = "A warning sign which reads 'RADIOACTIVE AREA'";
+	icon_state = "radiation";
+	name = "RADIOACTIVE AREA";
+	pixel_x = 0;
+	pixel_y = 0
+	},
+/turf/simulated/wall/r_wall,
+/area/space)
+"dA" = (
+/obj/machinery/camera/network/engineering{
+	dir = 8
+	},
+/turf/template_noop,
+/area/template_noop)
+"dB" = (
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
+	dir = 10
+	},
+/obj/structure/lattice,
+/obj/machinery/camera/network/engineering{
+	dir = 8
+	},
+/turf/space,
+/area/space)
 
 (1,1,1) = {"
 aa
@@ -1493,6 +1522,7 @@ aa
 aa
 aa
 aa
+dA
 aa
 aa
 aa
@@ -1503,8 +1533,7 @@ aa
 aa
 aa
 aa
-aa
-aa
+dA
 aa
 aa
 aa
@@ -1516,27 +1545,27 @@ aa
 (2,1,1) = {"
 aa
 ab
-ab
+ap
+dz
+ai
+ai
+aj
 ai
 ai
 ai
+ai
+dz
+ai
+ai
+ai
+ai
+aj
 aj
 ai
 ai
 ai
 ai
-ai
-ai
-ai
-ai
-ai
-aj
-aj
-ai
-ai
-ai
-ai
-ai
+dz
 ai
 ai
 ai
@@ -1550,25 +1579,25 @@ aa
 ab
 ab
 ai
-ab
-ab
 aj
-ab
 aj
-ab
-aj
-ab
 aj
 ab
 aj
 ab
 aj
 aj
-ab
 aj
 ab
 aj
 ab
+aj
+aj
+ab
+aj
+ab
+aj
+aj
 aj
 ab
 aj
@@ -1710,7 +1739,7 @@ aa
 ab
 ab
 ai
-ap
+ab
 aw
 ax
 aw
@@ -1774,8 +1803,8 @@ aa
 ab
 ab
 ai
-ab
-ay
+aj
+cj
 aH
 ay
 aH
@@ -1791,7 +1820,7 @@ bL
 bY
 cj
 cw
-cj
+dB
 cw
 cj
 cw
@@ -1804,8 +1833,8 @@ aa
 (11,1,1) = {"
 aa
 ab
-ab
-ak
+ap
+am
 ak
 ak
 ak
@@ -2284,7 +2313,7 @@ aa
 (26,1,1) = {"
 aa
 ab
-ab
+ap
 am
 ak
 ak

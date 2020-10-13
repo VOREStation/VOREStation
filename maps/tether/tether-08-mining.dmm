@@ -615,23 +615,11 @@
 /turf/simulated/floor/plating,
 /area/outpost/mining_main/maintenance)
 "bt" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 10
+/obj/machinery/camera/network/mining{
+	dir = 4
 	},
-/obj/effect/floor_decal/corner/brown/border{
-	dir = 10
-	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 8
-	},
-/obj/effect/floor_decal/corner/brown/bordercorner2{
-	dir = 8
-	},
-/obj/machinery/vending/cola{
-	dir = 1
-	},
-/turf/simulated/floor/tiled,
-/area/outpost/mining_main/break_room)
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/mine/explored)
 "bu" = (
 /obj/structure/cable{
 	d1 = 2;
@@ -1322,6 +1310,14 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/outpost/mining_main/break_room)
+"cG" = (
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/phoronlock{
+	frequency = 1379;
+	scrub_id = "mining_outpost_airlock_scrubber"
+	},
+/obj/machinery/camera/network/mining,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/outpost/mining_main/airlock)
 "cH" = (
 /obj/machinery/mech_recharger,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
@@ -1339,6 +1335,27 @@
 	},
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/secondary_gear_storage)
+"cJ" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/brown/border{
+	dir = 10
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/brown/bordercorner2{
+	dir = 8
+	},
+/obj/machinery/vending/cola{
+	dir = 1
+	},
+/obj/machinery/camera/network/mining{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/outpost/mining_main/break_room)
 "cK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -1583,6 +1600,19 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /turf/simulated/floor/tiled/steel_grid,
 /area/outpost/mining_main/break_room)
+"de" = (
+/obj/machinery/camera/network/engineering_outpost{
+	dir = 1
+	},
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/mine/explored)
+"df" = (
+/turf/simulated/wall/r_wall,
+/area/mine/explored)
+"dg" = (
+/obj/machinery/camera/network/engineering_outpost,
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/mine/explored)
 "di" = (
 /obj/machinery/access_button{
 	command = "cycle_exterior";
@@ -3203,7 +3233,7 @@ ZC
 vo
 vo
 ay
-ab
+dg
 ab
 ab
 ab
@@ -4763,9 +4793,9 @@ cF
 ZV
 ty
 Fn
-bt
+cJ
 az
-ab
+dg
 aF
 ab
 ab
@@ -4884,6 +4914,7 @@ ab
 ab
 ab
 ab
+bt
 ab
 ab
 ab
@@ -4891,8 +4922,7 @@ ab
 ab
 ab
 ab
-ab
-ab
+bt
 ab
 ab
 ab
@@ -5471,7 +5501,7 @@ ch
 ch
 cO
 Px
-ae
+cG
 DX
 ae
 Px
@@ -6180,7 +6210,7 @@ ab
 ab
 ab
 ab
-ab
+bt
 rH
 rH
 HP
@@ -6329,8 +6359,8 @@ ab
 ab
 ab
 aF
-ab
-ab
+de
+df
 ab
 ab
 aa
@@ -7891,8 +7921,8 @@ ab
 ab
 ab
 aH
-ab
-ab
+de
+df
 ab
 ab
 aa
@@ -9453,8 +9483,8 @@ ab
 ab
 ab
 aF
-ab
-ab
+de
+df
 ab
 ab
 aa
@@ -11015,8 +11045,8 @@ ab
 ab
 ab
 aF
-ab
-ab
+de
+df
 ab
 ab
 aa
@@ -12576,7 +12606,7 @@ af
 af
 ab
 ab
-ab
+de
 aa
 aa
 cm

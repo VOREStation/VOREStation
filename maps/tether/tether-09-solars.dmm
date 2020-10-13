@@ -1144,27 +1144,17 @@
 /obj/structure/window/basic{
 	dir = 8
 	},
+/obj/machinery/camera/network/research_outpost,
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/eva)
 "cA" = (
-/obj/effect/floor_decal/steeldecal/steel_decals5,
-/obj/effect/floor_decal/steeldecal/steel_decals5{
+/obj/effect/floor_decal/rust,
+/obj/effect/floor_decal/rust,
+/obj/machinery/camera/network/engineering_outpost{
 	dir = 1
 	},
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
-	},
-/obj/structure/table/standard,
-/obj/item/weapon/storage/toolbox/emergency,
-/obj/item/device/radio/intercom{
-	dir = 8;
-	pixel_x = 24
-	},
-/turf/simulated/floor/tiled,
-/area/rnd/outpost/eva)
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/mine/explored)
 "cB" = (
 /obj/machinery/alarm{
 	pixel_y = 22
@@ -7618,12 +7608,24 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/anomaly_lab)
 "nS" = (
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary{
-	frequency = 1452;
-	scrub_id = "anomaly_airlock_scrubber"
+/obj/effect/floor_decal/steeldecal/steel_decals5,
+/obj/effect/floor_decal/steeldecal/steel_decals5{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/obj/structure/table/standard,
+/obj/item/weapon/storage/toolbox/emergency,
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
 	},
 /turf/simulated/floor/tiled,
-/area/rnd/outpost/anomaly_lab/airlock)
+/area/rnd/outpost/eva)
 "nT" = (
 /obj/machinery/door/airlock/maintenance/rnd{
 	name = "Anomaly Storage"
@@ -7960,11 +7962,24 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/breakroom)
 "oD" = (
-/obj/machinery/vending/cigarette{
+/obj/machinery/camera/network/research_outpost{
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
-/area/rnd/outpost/breakroom)
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/mine/explored)
+"oE" = (
+/turf/simulated/wall/r_wall,
+/area/mine/explored)
+"oF" = (
+/obj/machinery/camera/network/engineering_outpost{
+	dir = 1
+	},
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/mine/explored)
+"oG" = (
+/obj/machinery/camera/network/engineering_outpost,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/mine/explored)
 "oH" = (
 /obj/structure/table/standard,
 /obj/machinery/light,
@@ -8161,6 +8176,70 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/breakroom)
+"pe" = (
+/obj/machinery/camera/network/engineering_outpost,
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/mine/explored)
+"pf" = (
+/obj/machinery/camera/network/engineering_outpost{
+	dir = 8
+	},
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/mine/explored)
+"pg" = (
+/obj/structure/cable/heavyduty{
+	icon_state = "1-2"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera/network/engineering_outpost{
+	dir = 4
+	},
+/turf/simulated/floor/virgo3b,
+/area/tether/outpost/solars_outside)
+"ph" = (
+/obj/machinery/camera/network/engineering_outpost{
+	dir = 8
+	},
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/mine/explored)
+"pi" = (
+/obj/structure/cable/heavyduty{
+	icon_state = "1-2"
+	},
+/obj/structure/railing{
+	icon_state = "railing0";
+	dir = 4
+	},
+/obj/machinery/camera/network/engineering_outpost{
+	dir = 4
+	},
+/turf/simulated/floor/virgo3b,
+/area/mine/explored)
+"pj" = (
+/obj/machinery/camera/network/research_outpost{
+	dir = 8
+	},
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/mine/explored)
+"pk" = (
+/obj/machinery/vending/cigarette{
+	dir = 4
+	},
+/obj/machinery/camera/network/research_outpost{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/outpost/breakroom)
+"pl" = (
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary{
+	frequency = 1452;
+	scrub_id = "anomaly_airlock_scrubber"
+	},
+/obj/machinery/camera/network/research_outpost{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/outpost/anomaly_lab/airlock)
 "zg" = (
 /obj/effect/shuttle_landmark{
 	base_area = /area/mine/explored;
@@ -18799,7 +18878,7 @@ ad
 ad
 ad
 ad
-ad
+oE
 ad
 ad
 ad
@@ -18941,7 +19020,7 @@ ad
 ad
 ad
 ad
-ad
+oD
 ad
 ad
 ad
@@ -19293,7 +19372,7 @@ ad
 ad
 ad
 ad
-ad
+oF
 au
 aA
 aE
@@ -20291,7 +20370,7 @@ ad
 ad
 aC
 aK
-aK
+pg
 aN
 bn
 bl
@@ -20789,7 +20868,7 @@ ad
 dG
 dG
 ab
-ab
+pj
 ab
 ab
 ab
@@ -20859,8 +20938,8 @@ ad
 ad
 ad
 ad
-ad
-ad
+oE
+oG
 bo
 bj
 ad
@@ -22223,7 +22302,7 @@ ab
 ab
 ka
 lt
-nS
+pl
 ka
 ok
 lY
@@ -22279,8 +22358,8 @@ ad
 ad
 ad
 ad
-ad
-ad
+oE
+oG
 bp
 bj
 ad
@@ -23699,8 +23778,8 @@ ad
 ad
 ad
 ad
-ad
-ad
+oE
+oG
 bp
 bj
 ad
@@ -23905,7 +23984,7 @@ ad
 ad
 jW
 cg
-cA
+nS
 cX
 dy
 dX
@@ -24555,6 +24634,7 @@ ad
 ad
 ad
 ad
+ph
 ad
 ad
 ad
@@ -24564,6 +24644,7 @@ ad
 ad
 ad
 ad
+ph
 ad
 ad
 ad
@@ -24573,9 +24654,7 @@ ad
 ad
 ad
 ad
-ad
-ad
-ad
+ph
 ad
 ad
 ad
@@ -24642,7 +24721,7 @@ oI
 mm
 nf
 ni
-oD
+pk
 oP
 oX
 eE
@@ -24697,6 +24776,7 @@ ad
 ad
 ad
 ad
+oE
 ad
 ad
 ad
@@ -24706,6 +24786,7 @@ ad
 ad
 ad
 ad
+oE
 ad
 ad
 ad
@@ -24715,6 +24796,7 @@ ad
 ad
 ad
 ad
+oE
 ad
 ad
 ad
@@ -24723,12 +24805,9 @@ ad
 ad
 ad
 ad
-ad
-ad
-ad
-ad
-ad
-ad
+oF
+oE
+oG
 bQ
 bj
 bj
@@ -24755,7 +24834,7 @@ bj
 bj
 bj
 bj
-bV
+cA
 cl
 ch
 ch
@@ -25020,6 +25099,7 @@ ad
 ad
 ad
 ad
+ph
 ad
 ad
 ad
@@ -25029,8 +25109,7 @@ ad
 ad
 ad
 ad
-ad
-ad
+ph
 ad
 ad
 ad
@@ -25162,7 +25241,7 @@ ab
 ab
 ab
 ad
-ad
+oE
 ab
 ab
 ab
@@ -25172,7 +25251,7 @@ ab
 ab
 ab
 ab
-ab
+oE
 ab
 ab
 ab
@@ -25611,7 +25690,7 @@ ju
 mu
 mu
 mu
-mv
+pi
 mv
 mv
 mv
@@ -26005,8 +26084,8 @@ ab
 ab
 ab
 ab
-ab
-ab
+oE
+pe
 bQ
 bj
 ab
@@ -27428,7 +27507,7 @@ ab
 ab
 ab
 bQ
-ab
+pf
 bj
 ab
 ab

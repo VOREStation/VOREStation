@@ -964,8 +964,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/maintenance/common,
-/obj/machinery/door/firedoor/glass,
+/obj/machinery/camera/network/engineering_outpost,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/solars)
 "abC" = (
@@ -5046,12 +5045,12 @@
 /turf/simulated/floor/tiled/white,
 /area/rnd/chemistry_lab)
 "aio" = (
-/obj/machinery/camera/network/research{
-	dir = 5;
+/obj/machinery/camera/network/outside{
+	dir = 1;
 	icon_state = "camera"
 	},
-/turf/simulated/floor/tiled,
-/area/rnd/testingroom)
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/tether/surfacebase/outside/outside1)
 "aip" = (
 /obj/structure/table/glass,
 /obj/item/weapon/storage/box/beakers,
@@ -5339,17 +5338,9 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/north_stairs_one)
 "aiT" = (
-/obj/structure/cable/heavyduty{
-	icon_state = "1-2"
-	},
-/obj/machinery/door/firedoor/glass,
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/turf/simulated/floor/plating,
-/area/maintenance/lower/mining_eva)
+/obj/machinery/camera/network/civilian,
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/tether/surfacebase/outside/outside1)
 "aiU" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -6392,10 +6383,6 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/public_garden_maintenence)
 "akH" = (
-/obj/machinery/camera/network/outside{
-	dir = 9;
-	icon_state = "camera"
-	},
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/holodeck_control)
 "akI" = (
@@ -8298,6 +8285,7 @@
 	icon_state = "alarm0";
 	pixel_x = 24
 	},
+/obj/machinery/camera/network/engineering,
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/emergency_storage/atrium)
 "anK" = (
@@ -9382,6 +9370,9 @@
 /obj/structure/reagent_dispensers/watertank,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
+	},
+/obj/machinery/camera/network/civilian{
+	dir = 9
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/north_stairs_one)
@@ -14519,6 +14510,50 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/hallway)
+"axQ" = (
+/obj/structure/grille,
+/obj/machinery/door/firedoor,
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	dir = 8;
+	icon_state = "shutter0";
+	id = "holodeck";
+	name = "Holodeck Privacy Shutters";
+	opacity = 0
+	},
+/obj/structure/window/reinforced/polarized/full{
+	id = "holodeck"
+	},
+/obj/structure/window/reinforced/polarized{
+	dir = 8;
+	id = "holodeck"
+	},
+/obj/machinery/camera/network/civilian,
+/turf/simulated/floor/plating,
+/area/holodeck_control)
+"axR" = (
+/obj/structure/grille,
+/obj/machinery/door/firedoor,
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	dir = 8;
+	icon_state = "shutter0";
+	id = "holodeck";
+	name = "Holodeck Privacy Shutters";
+	opacity = 0
+	},
+/obj/structure/window/reinforced/polarized/full{
+	id = "holodeck"
+	},
+/obj/structure/window/reinforced/polarized{
+	dir = 8;
+	id = "holodeck"
+	},
+/obj/machinery/camera/network/civilian{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/holodeck_control)
 "axS" = (
 /turf/simulated/floor/plating,
 /area/maintenance/lower/xenoflora)
@@ -14664,6 +14699,43 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_one_hall)
+"ayd" = (
+/obj/machinery/camera/network/outside,
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/tether/surfacebase/outside/outside1)
+"aye" = (
+/obj/machinery/camera/network/outside{
+	dir = 5;
+	icon_state = "camera"
+	},
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/tether/surfacebase/outside/outside1)
+"ayf" = (
+/obj/structure/closet/crate/plastic,
+/obj/machinery/camera/network/research,
+/turf/simulated/floor/tiled,
+/area/rnd/hardstorage)
+"ayg" = (
+/obj/machinery/door/firedoor,
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "gogogo";
+	name = "Blast Door";
+	opacity = 0
+	},
+/obj/machinery/camera/network/research{
+	dir = 5;
+	icon_state = "camera"
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/testingroom)
 "ayh" = (
 /turf/simulated/wall,
 /area/crew_quarters/locker/laundry_arrival)
@@ -14673,6 +14745,66 @@
 	},
 /turf/simulated/wall,
 /area/crew_quarters/locker/laundry_arrival)
+"ayj" = (
+/obj/machinery/door/firedoor,
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "gogogo";
+	name = "Blast Door";
+	opacity = 0
+	},
+/obj/machinery/camera/network/research{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/testingroom)
+"ayk" = (
+/obj/structure/table/marble,
+/obj/item/weapon/hand_labeler,
+/obj/item/weapon/reagent_containers/food/condiment/small/sugar,
+/obj/machinery/floor_light/prebuilt{
+	on = 1
+	},
+/obj/item/weapon/reagent_containers/glass/rag,
+/obj/machinery/alarm{
+	pixel_y = 22
+	},
+/obj/machinery/camera/network/civilian{
+	dir = 9
+	},
+/turf/simulated/floor/tiled,
+/area/crew_quarters/visitor_dining)
+"ayl" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 8
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/lightgrey/bordercorner2{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 6
+	},
+/obj/machinery/camera/network/tether{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_one_hall)
 "aym" = (
 /obj/machinery/door/firedoor/glass/hidden/steel{
 	dir = 2
@@ -14761,6 +14893,139 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled,
 /area/rnd/hallway)
+"ayt" = (
+/obj/structure/cable/heavyduty{
+	icon_state = "1-2"
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/machinery/camera/network/engineering_outpost{
+	dir = 8
+	},
+/turf/simulated/floor/virgo3b,
+/area/tether/surfacebase/outside/outside1)
+"ayu" = (
+/obj/structure/grille,
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/machinery/camera/network/research{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/rnd/external)
+"ayv" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
+	},
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/camera/network/engineering,
+/turf/simulated/floor/tiled,
+/area/engineering/atmos/processing)
+"ayw" = (
+/obj/machinery/camera/network/outside{
+	dir = 9
+	},
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/tether/surfacebase/outside/outside1)
+"ayx" = (
+/obj/machinery/camera/network/engineering,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
+/area/engineering/atmos_intake)
+"ayy" = (
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 9
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/blue/border{
+	dir = 4
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 6
+	},
+/obj/effect/floor_decal/corner/blue/bordercorner2{
+	dir = 6
+	},
+/obj/machinery/camera/network/tether{
+	dir = 8;
+	icon_state = "camera"
+	},
+/turf/simulated/floor/tiled,
+/area/crew_quarters/visitor_lodging)
+"ayz" = (
+/obj/structure/undies_wardrobe,
+/obj/effect/floor_decal/borderfloor{
+	dir = 1;
+	pixel_y = 0
+	},
+/obj/effect/floor_decal/corner/grey/border{
+	dir = 1;
+	icon_state = "bordercolor"
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/grey/bordercorner2{
+	dir = 4;
+	icon_state = "bordercolorcorner2"
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/obj/machinery/camera/network/civilian,
+/turf/simulated/floor/tiled,
+/area/crew_quarters/visitor_laundry)
+"ayA" = (
+/obj/machinery/camera/network/research{
+	dir = 8
+	},
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/tether/surfacebase/outside/outside1)
+"ayB" = (
+/obj/machinery/camera/network/research{
+	dir = 5;
+	icon_state = "camera"
+	},
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/tether/surfacebase/outside/outside1)
+"ayC" = (
+/obj/machinery/camera/network/outside,
+/turf/simulated/mineral/floor/virgo3b,
+/area/tether/surfacebase/outside/outside1)
+"ayD" = (
+/obj/machinery/camera/network/engineering_outpost{
+	dir = 4
+	},
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/tether/surfacebase/outside/outside1)
+"ayE" = (
+/obj/machinery/camera/network/engineering_outpost{
+	dir = 1
+	},
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/tether/surfacebase/outside/outside1)
+"ayF" = (
+/obj/machinery/camera/network/civilian{
+	dir = 4
+	},
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/tether/surfacebase/outside/outside1)
 "ayG" = (
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_one_hall)
@@ -14776,6 +15041,21 @@
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_one_hall)
+"ayK" = (
+/obj/structure/cable/heavyduty{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/camera/network/civilian{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/mining_eva)
 "ayQ" = (
 /obj/machinery/status_display{
 	pixel_y = 30
@@ -16279,19 +16559,6 @@
 	},
 /obj/structure/sink{
 	pixel_y = 28
-	},
-/turf/simulated/floor/tiled,
-/area/crew_quarters/visitor_dining)
-"aEa" = (
-/obj/structure/table/marble,
-/obj/item/weapon/hand_labeler,
-/obj/item/weapon/reagent_containers/food/condiment/small/sugar,
-/obj/machinery/floor_light/prebuilt{
-	on = 1
-	},
-/obj/item/weapon/reagent_containers/glass/rag,
-/obj/machinery/alarm{
-	pixel_y = 22
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_dining)
@@ -19588,13 +19855,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/sleep/Dorm_8)
-"aLY" = (
-/obj/structure/grille,
-/obj/structure/railing{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/rnd/external)
 "aMa" = (
 /obj/effect/floor_decal/steeldecal/steel_decals10{
 	dir = 6
@@ -21479,20 +21739,6 @@
 	pixel_y = 22
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 1
-	},
-/obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/tiled,
-/area/engineering/atmos/processing)
-"aPs" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
 	},
 /obj/structure/cable/cyan{
@@ -24823,27 +25069,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_lodging)
-"aVO" = (
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 10
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 9
-	},
-/obj/effect/floor_decal/borderfloor{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/blue/border{
-	dir = 4
-	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 6
-	},
-/obj/effect/floor_decal/corner/blue/bordercorner2{
-	dir = 6
-	},
-/turf/simulated/floor/tiled,
-/area/crew_quarters/visitor_lodging)
 "aVP" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -27890,28 +28115,6 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals3{
 	dir = 10
-	},
-/turf/simulated/floor/tiled,
-/area/crew_quarters/visitor_laundry)
-"bcG" = (
-/obj/structure/undies_wardrobe,
-/obj/effect/floor_decal/borderfloor{
-	dir = 1;
-	pixel_y = 0
-	},
-/obj/effect/floor_decal/corner/grey/border{
-	dir = 1;
-	icon_state = "bordercolor"
-	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/grey/bordercorner2{
-	dir = 4;
-	icon_state = "bordercolorcorner2"
-	},
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_laundry)
@@ -31119,27 +31322,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_one_hall)
-"vHP" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 8
-	},
-/obj/effect/floor_decal/corner/lightgrey/border{
-	dir = 8
-	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 8
-	},
-/obj/effect/floor_decal/corner/lightgrey/bordercorner2{
-	dir = 8
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 5
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 6
-	},
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/surface_one_hall)
 "wxa" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -31983,7 +32165,7 @@ aad
 aad
 aad
 aGE
-aad
+ayD
 aad
 aad
 aad
@@ -33403,8 +33585,8 @@ aad
 aad
 aad
 aGE
-aad
-aad
+ayE
+ano
 aad
 aad
 aad
@@ -34197,20 +34379,20 @@ aad
 aad
 aad
 aad
-aad
+aio
 ajO
 ajO
+axQ
 ajV
 ajV
 ajV
 ajV
 ajV
 ajV
-ajV
-ajV
+axR
 ajO
 ajO
-aad
+ayd
 aad
 aad
 aad
@@ -34536,7 +34718,7 @@ aCc
 aDx
 aCc
 aER
-aib
+ayt
 aib
 aGI
 aad
@@ -34678,7 +34860,7 @@ auK
 auK
 auK
 auK
-aah
+adK
 aah
 aah
 aah
@@ -35288,7 +35470,7 @@ aad
 aad
 aad
 aad
-aad
+ayA
 aad
 aad
 aad
@@ -36687,6 +36869,7 @@ aad
 aad
 aad
 aad
+ayw
 aad
 aad
 aad
@@ -36698,6 +36881,7 @@ aad
 aad
 aad
 aad
+ayw
 aad
 aad
 aad
@@ -36709,9 +36893,7 @@ aad
 aad
 aad
 aad
-aad
-aad
-aad
+ayw
 aad
 aad
 aad
@@ -36804,10 +36986,10 @@ aeR
 aeR
 aji
 agF
-agP
+ayg
 aiQ
 agD
-aio
+aiB
 abN
 xgQ
 ofS
@@ -36818,7 +37000,7 @@ aah
 aah
 aKL
 aLn
-aLY
+ayu
 aKL
 aah
 aah
@@ -37255,6 +37437,7 @@ aad
 aad
 aad
 aad
+aye
 aad
 aad
 aad
@@ -37266,6 +37449,7 @@ aad
 aad
 aad
 aad
+aye
 aad
 aad
 aad
@@ -37277,9 +37461,7 @@ aad
 aad
 aad
 aad
-aad
-aad
-aad
+aye
 aad
 aad
 aad
@@ -38224,7 +38406,7 @@ aeR
 aeR
 ane
 agF
-agP
+ayj
 ail
 aiG
 alL
@@ -38696,7 +38878,7 @@ aad
 aad
 aad
 aad
-aad
+ayB
 aad
 aad
 aad
@@ -39247,7 +39429,7 @@ aPl
 aPl
 aPl
 aOR
-aTW
+ayx
 aUv
 aUy
 aUv
@@ -39494,7 +39676,7 @@ apj
 auK
 avh
 abm
-abI
+ayf
 abI
 abI
 adN
@@ -40516,7 +40698,7 @@ aNB
 aNV
 aNV
 aIh
-aPs
+ayv
 aPS
 aOR
 aQX
@@ -40865,7 +41047,7 @@ aad
 aad
 aad
 aad
-aad
+ano
 aad
 aad
 aad
@@ -41007,7 +41189,7 @@ aad
 aad
 aad
 aad
-aad
+ayF
 aad
 aad
 aad
@@ -41298,7 +41480,7 @@ ajF
 ajC
 aaj
 aib
-aiT
+ayK
 ajG
 ajG
 ajG
@@ -41709,7 +41891,7 @@ aaa
 aaa
 aaa
 aab
-aad
+aiT
 aad
 aad
 aad
@@ -42389,7 +42571,7 @@ aXY
 aZF
 aZW
 aYd
-aad
+ayd
 aad
 aad
 aad
@@ -43385,7 +43567,7 @@ bab
 bau
 aWB
 aYd
-baU
+ayC
 baU
 aad
 aad
@@ -45611,7 +45793,7 @@ kbZ
 cqZ
 xzn
 lQQ
-vHP
+ayl
 bMP
 eUS
 axi
@@ -45925,7 +46107,7 @@ aUl
 aUO
 aVc
 aVy
-aVO
+ayy
 aWm
 aWL
 aVn
@@ -46887,7 +47069,7 @@ vDb
 aBZ
 agM
 aCO
-aEa
+ayk
 aEM
 aFC
 aFT
@@ -46924,7 +47106,7 @@ aUP
 aUP
 aXa
 aUm
-bcG
+ayz
 aUP
 bcL
 aUm
@@ -47630,7 +47812,7 @@ aad
 aad
 aad
 aad
-aad
+aye
 aah
 aah
 aah
@@ -47887,14 +48069,14 @@ axa
 axa
 axc
 axd
+ayd
 aad
 aad
 aad
 aad
 aad
 aad
-aad
-aad
+aye
 aad
 aad
 aad
@@ -49569,7 +49751,7 @@ aad
 aad
 aad
 aad
-aad
+aio
 atC
 atx
 atx
@@ -49591,7 +49773,7 @@ atx
 atx
 atx
 atC
-aad
+ayd
 aad
 aad
 aad
@@ -49716,6 +49898,7 @@ aad
 aad
 aad
 aad
+aye
 aad
 aad
 aad
@@ -49727,8 +49910,7 @@ aad
 aad
 aad
 aad
-aad
-aad
+aye
 aad
 aad
 aad

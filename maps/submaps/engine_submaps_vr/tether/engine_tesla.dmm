@@ -850,6 +850,12 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/submap/pa_room)
+"bx" = (
+/obj/machinery/camera/network/engineering{
+	dir = 1
+	},
+/turf/space,
+/area/space)
 "by" = (
 /obj/effect/floor_decal/techfloor/orange{
 	dir = 1
@@ -1074,6 +1080,10 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/submap/pa_room)
+"bR" = (
+/obj/machinery/camera/network/engineering,
+/turf/simulated/floor/airless,
+/area/space)
 "bS" = (
 /obj/effect/floor_decal/techfloor/orange,
 /turf/simulated/floor/tiled/techfloor,
@@ -1653,6 +1663,18 @@
 	},
 /turf/simulated/floor/airless,
 /area/space)
+"cO" = (
+/obj/machinery/camera/network/engineering{
+	dir = 1
+	},
+/turf/simulated/floor/airless,
+/area/space)
+"cP" = (
+/obj/machinery/camera/network/engineering{
+	dir = 8
+	},
+/turf/template_noop,
+/area/template_noop)
 "cQ" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -1660,6 +1682,16 @@
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/airless,
+/area/space)
+"cR" = (
+/obj/structure/sign/securearea{
+	desc = "A warning sign which reads 'RADIOACTIVE AREA'";
+	icon_state = "radiation";
+	name = "RADIOACTIVE AREA";
+	pixel_x = 0;
+	pixel_y = 0
+	},
+/turf/simulated/wall/r_wall,
 /area/space)
 "hV" = (
 /obj/effect/floor_decal/techfloor/orange,
@@ -1693,13 +1725,13 @@ aa
 aa
 aa
 aa
+cP
 aa
 aa
 aa
 aa
 aa
-aa
-aa
+cP
 aa
 aa
 aa
@@ -1725,13 +1757,13 @@ ac
 ac
 ac
 ac
+cR
 ac
 ac
 ac
 ac
 ac
-ac
-ac
+cR
 ac
 ac
 ac
@@ -1814,8 +1846,8 @@ ac
 ab
 ab
 ab
-ac
-aj
+cR
+bR
 ab
 ab
 ab
@@ -1833,8 +1865,8 @@ ab
 ab
 ab
 ab
-aj
-cC
+cO
+cR
 ab
 aa
 "}
@@ -2484,7 +2516,7 @@ aa
 ab
 ac
 ab
-ab
+bx
 ae
 ae
 ae

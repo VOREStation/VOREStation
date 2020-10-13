@@ -1935,6 +1935,9 @@
 /obj/effect/floor_decal/transit/orange{
 	dir = 4
 	},
+/obj/machinery/camera/network/medbay{
+	dir = 9
+	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining)
 "aea" = (
@@ -6388,11 +6391,53 @@
 	temperature = 80
 	},
 /area/tcommsat/chamber)
+"amv" = (
+/obj/structure/catwalk,
+/obj/machinery/camera/network/outside{
+	dir = 9
+	},
+/turf/simulated/open/virgo3b,
+/area/tether/surfacebase/outside/outside2)
+"amw" = (
+/obj/structure/catwalk,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
+	dir = 4
+	},
+/obj/effect/floor_decal/transit/orange,
+/obj/machinery/camera/network/medbay{
+	dir = 10;
+	icon_state = "camera"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/mining)
+"amx" = (
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/machinery/camera/network/medbay{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/maintenance/lower/bar)
 "amy" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/rnd)
+"amz" = (
+/obj/machinery/camera/network/civilian,
+/turf/simulated/floor/water/deep/indoors,
+/area/tether/surfacebase/fish_farm)
 "amA" = (
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -6643,6 +6688,13 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/surface_two_hall)
+"and" = (
+/obj/structure/railing,
+/obj/machinery/camera/network/civilian{
+	dir = 4
+	},
+/turf/simulated/floor/water/deep/indoors,
+/area/tether/surfacebase/fish_farm)
 "ane" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/storage/box/snakesnackbox,
@@ -6780,6 +6832,12 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/surface_two_hall)
+"ant" = (
+/obj/machinery/camera/network/civilian{
+	dir = 1
+	},
+/turf/simulated/floor/beach/sand/desert,
+/area/tether/surfacebase/fish_farm)
 "anu" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -6798,6 +6856,10 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/substation/command)
+"anw" = (
+/obj/machinery/camera/network/research,
+/turf/simulated/floor/reinforced,
+/area/rnd/rdoffice)
 "anx" = (
 /obj/machinery/door/airlock/maintenance/common,
 /obj/structure/disposalpipe/segment,
@@ -6854,8 +6916,9 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/asmaint2)
 "anD" = (
-/turf/simulated/floor/reinforced,
-/area/rnd/rdoffice)
+/obj/machinery/camera/network/outside,
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/tether/surfacebase/outside/outside2)
 "anE" = (
 /obj/machinery/light{
 	dir = 1
@@ -7342,6 +7405,13 @@
 "aox" = (
 /turf/simulated/floor/holofloor/tiled/dark,
 /area/tether/elevator)
+"aoy" = (
+/obj/structure/catwalk,
+/obj/machinery/camera/network/engineering{
+	dir = 8
+	},
+/turf/simulated/open,
+/area/engineering/atmos)
 "aoz" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 5
@@ -7550,6 +7620,12 @@
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/rnd)
+"aoV" = (
+/obj/machinery/camera/network/outside{
+	dir = 9
+	},
+/turf/simulated/open/virgo3b,
+/area/tether/surfacebase/outside/outside2)
 "aoW" = (
 /obj/effect/floor_decal/borderfloor/corner{
 	dir = 4
@@ -7972,6 +8048,21 @@
 /obj/machinery/door/airlock/glass,
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/surface_two_hall)
+"apL" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/effect/floor_decal/techfloor{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/supply,
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
+/obj/random/junk,
+/obj/machinery/camera/network/tcomms{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/south)
 "apM" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
@@ -8029,6 +8120,12 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/surface_two_hall)
+"apQ" = (
+/obj/machinery/camera/network/tether{
+	dir = 1
+	},
+/turf/simulated/open,
 /area/tether/surfacebase/surface_two_hall)
 "apR" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -8232,6 +8329,12 @@
 	hard_corner = 1
 	},
 /area/tether/elevator)
+"aqo" = (
+/obj/machinery/space_heater,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera/network/engineering,
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/emergency_storage/atmos)
 "aqp" = (
 /obj/effect/floor_decal/borderfloor/corner,
 /turf/simulated/floor/tiled/techmaint,
@@ -8293,6 +8396,13 @@
 /obj/machinery/door/airlock/glass,
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/surface_two_hall)
+"aqv" = (
+/obj/machinery/camera/network/outside{
+	dir = 1;
+	icon_state = "camera"
+	},
+/turf/simulated/open/virgo3b,
+/area/tether/surfacebase/outside/outside2)
 "aqw" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -8389,6 +8499,15 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/surface_two_hall)
+"aqG" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/camera/network/tcomms{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/tcommsat/chamber)
 "aqH" = (
 /obj/machinery/shieldwallgen,
 /obj/effect/floor_decal/industrial/outline/yellow,
@@ -8399,6 +8518,17 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/dark,
 /area/teleporter)
+"aqJ" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/green{
+	dir = 10;
+	icon_state = "intact"
+	},
+/obj/machinery/camera/network/security{
+	dir = 8;
+	icon_state = "camera"
+	},
+/turf/simulated/floor,
+/area/tether/surfacebase/security/gasstorage)
 "aqK" = (
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/dark,
@@ -9533,11 +9663,6 @@
 /area/tether/surfacebase/emergency_storage/atmos)
 "asy" = (
 /obj/machinery/portable_atmospherics/powered/pump/filled,
-/turf/simulated/floor/plating,
-/area/tether/surfacebase/emergency_storage/atmos)
-"asz" = (
-/obj/machinery/space_heater,
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/emergency_storage/atmos)
 "asA" = (
@@ -17935,18 +18060,6 @@
 /obj/item/device/flashlight/lamp,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
-"aIl" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/effect/floor_decal/techfloor{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/visible/supply,
-/obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
-/obj/random/junk,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/south)
 "aIm" = (
 /obj/machinery/power/breakerbox/activated{
 	RCon_tag = "Telecomms Substation Bypass"
@@ -19397,12 +19510,6 @@
 	tag_interior_door = "server_access_inner";
 	tag_interior_sensor = "server_access_in_sensor";
 	tag_secure = 1
-	},
-/turf/simulated/floor/plating,
-/area/tcommsat/chamber)
-"aKV" = (
-/obj/machinery/light/small{
-	dir = 1
 	},
 /turf/simulated/floor/plating,
 /area/tcommsat/chamber)
@@ -24827,13 +24934,6 @@
 	},
 /obj/machinery/alarm{
 	pixel_y = 22
-	},
-/turf/simulated/floor,
-/area/tether/surfacebase/security/gasstorage)
-"aUo" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/green{
-	dir = 10;
-	icon_state = "intact"
 	},
 /turf/simulated/floor,
 /area/tether/surfacebase/security/gasstorage)
@@ -33058,7 +33158,7 @@ acL
 acK
 adj
 adj
-acJ
+amv
 acD
 aac
 aac
@@ -36191,7 +36291,7 @@ aho
 aho
 ahs
 ahs
-aho
+ahD
 alm
 ano
 alB
@@ -36333,7 +36433,7 @@ ahq
 ahr
 ahs
 ahs
-alj
+and
 aln
 alh
 alC
@@ -36489,7 +36589,7 @@ aho
 ajy
 abz
 anp
-anD
+anw
 anN
 asZ
 aok
@@ -36909,8 +37009,8 @@ ahs
 ahr
 ahr
 ahq
-ahq
-aho
+ant
+ahD
 aho
 ajy
 amH
@@ -37052,8 +37152,8 @@ ahs
 ahr
 ahq
 amD
-aho
-aho
+ahD
+ahD
 aii
 ail
 ail
@@ -37375,7 +37475,7 @@ apq
 apq
 aab
 aab
-aab
+aoV
 aab
 aab
 aab
@@ -37466,8 +37566,8 @@ acW
 acW
 acW
 aho
-aho
-ahs
+ahD
+amz
 ahs
 ahs
 ahr
@@ -37608,7 +37708,7 @@ adx
 adx
 acW
 acW
-aho
+ahD
 ahC
 ahs
 ahs
@@ -37763,7 +37863,7 @@ ahs
 ahr
 ahq
 amD
-aho
+ahD
 aii
 aii
 amW
@@ -38157,7 +38257,7 @@ abE
 abE
 abE
 abE
-aUo
+aqJ
 aUB
 aWz
 aUN
@@ -38435,7 +38535,7 @@ aab
 aab
 aab
 aab
-aab
+aqv
 abE
 ami
 aTv
@@ -38818,7 +38918,7 @@ apq
 apq
 aab
 aab
-aab
+aoV
 aab
 aab
 aab
@@ -39480,7 +39580,7 @@ aox
 aqn
 anZ
 arG
-asz
+aqo
 atd
 atM
 auw
@@ -39714,7 +39814,7 @@ aab
 aab
 aab
 aab
-aab
+aqv
 aTr
 aTG
 aTW
@@ -39788,7 +39888,7 @@ aAX
 aAX
 aER
 aFb
-aOX
+aFb
 azl
 aEp
 aEQ
@@ -39930,7 +40030,7 @@ aAX
 aAX
 aES
 aFb
-aFb
+aOX
 azl
 aEn
 aEp
@@ -40850,7 +40950,7 @@ aab
 aab
 aab
 aab
-aab
+aqv
 aTt
 aTt
 aTt
@@ -41785,7 +41885,7 @@ aGC
 aHa
 aHn
 aHK
-aIl
+apL
 aIL
 aJi
 aJN
@@ -42059,7 +42159,7 @@ aAX
 aAX
 aAX
 aET
-aFb
+aoy
 aFb
 azl
 aac
@@ -43020,7 +43120,7 @@ baO
 aXS
 agw
 agw
-agw
+apQ
 adY
 aXS
 aXS
@@ -43831,7 +43931,7 @@ aab
 aab
 aab
 aab
-aab
+aqv
 aah
 aah
 aah
@@ -44276,7 +44376,7 @@ aad
 acy
 aad
 aga
-ajp
+amw
 aad
 aTh
 aZt
@@ -44706,7 +44806,7 @@ ajO
 aev
 aeO
 afv
-afv
+amx
 agb
 agn
 agB
@@ -44913,7 +45013,7 @@ aac
 aac
 aac
 aKh
-aKV
+aqG
 aLr
 aLM
 aLM
@@ -45109,7 +45209,7 @@ aab
 aab
 aab
 aab
-aab
+aqv
 aah
 aah
 aah
@@ -46576,7 +46676,7 @@ ajT
 ajr
 ajr
 aYd
-apq
+anD
 apq
 apq
 apq
@@ -46586,7 +46686,7 @@ apq
 apq
 apq
 ajM
-ajM
+aUa
 ajM
 aab
 aab

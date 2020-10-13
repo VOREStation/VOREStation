@@ -5634,26 +5634,12 @@
 /turf/simulated/floor/tiled,
 /area/tether/exploration/hallway)
 "iz" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10
+/obj/machinery/camera/network/command{
+	dir = 10;
+	icon_state = "camera"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
-	},
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
-	},
-/obj/machinery/alarm{
-	pixel_y = 22
-	},
-/turf/simulated/floor,
-/area/security/riot_control)
+/turf/simulated/mineral/floor/vacuum,
+/area/mine/explored/upper_level)
 "iA" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1;
@@ -16204,6 +16190,85 @@
 /turf/simulated/wall/r_wall,
 /area/maintenance/station/micro)
 "yK" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 4
+	},
+/obj/machinery/camera/network/tether,
+/turf/simulated/floor/tiled,
+/area/hallway/station/starboard)
+"yL" = (
+/obj/machinery/camera/network/security{
+	dir = 8
+	},
+/turf/simulated/floor/airless,
+/area/space)
+"yM" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
+	},
+/obj/machinery/alarm{
+	pixel_y = 22
+	},
+/obj/machinery/camera/network/security{
+	dir = 8
+	},
+/turf/simulated/floor,
+/area/security/riot_control)
+"yN" = (
+/turf/simulated/wall/r_wall,
+/area/hallway/station/starboard)
+"yO" = (
+/obj/machinery/camera/network/command{
+	dir = 4
+	},
+/turf/space,
+/area/space)
+"yP" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/glass/hidden/steel{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/camera/network/tether{
+	dir = 9
+	},
+/turf/simulated/floor/tiled,
+/area/tether/station/stairs_two)
+"yQ" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8;
 	icon_state = "propulsion_l"
@@ -16211,14 +16276,19 @@
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/large_escape_pod1)
-"yL" = (
+"yR" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8
 	},
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/large_escape_pod1)
-"yM" = (
+"yS" = (
+/obj/structure/bed/chair/shuttle,
+/obj/machinery/camera/network/command,
+/turf/simulated/shuttle/floor,
+/area/shuttle/large_escape_pod1)
+"yT" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8;
 	icon_state = "propulsion_r"
@@ -16226,6 +16296,12 @@
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/large_escape_pod1)
+"yU" = (
+/obj/machinery/camera/network/command{
+	dir = 4
+	},
+/turf/simulated/floor/airless,
+/area/space)
 "yV" = (
 /obj/structure/table/standard,
 /obj/item/device/glasses_kit,
@@ -20348,30 +20424,6 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/station/sec_lower)
-"Hi" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2";
-	pixel_y = 0
-	},
-/obj/effect/floor_decal/borderfloor{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/lightgrey/border{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/glass/hidden/steel{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 1
-	},
-/turf/simulated/floor/tiled,
-/area/tether/station/stairs_two)
 "Hm" = (
 /obj/structure/cable,
 /obj/machinery/power/apc{
@@ -21457,18 +21509,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled,
-/area/hallway/station/starboard)
-"Ov" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 5
-	},
-/obj/effect/floor_decal/corner/lightgrey/border{
-	dir = 5
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 4
-	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/starboard)
 "OA" = (
@@ -27582,7 +27622,7 @@ ac
 ac
 ac
 ac
-ab
+yL
 eM
 eM
 eM
@@ -31297,7 +31337,7 @@ ps
 Of
 RO
 OL
-Hi
+yP
 Hn
 Hm
 Zo
@@ -31423,7 +31463,7 @@ aS
 PJ
 Ph
 TY
-iz
+yM
 ad
 bp
 Xp
@@ -37661,7 +37701,7 @@ aP
 aP
 aP
 aP
-aP
+iz
 dZ
 ey
 fm
@@ -37822,7 +37862,7 @@ Dq
 DH
 Dv
 RX
-DL
+yN
 oY
 oY
 oY
@@ -37964,12 +38004,12 @@ hl
 hl
 DI
 RX
-DL
-yK
-yL
-yL
-yL
-yM
+yN
+yQ
+yR
+yR
+yR
+yT
 oY
 sW
 ef
@@ -38106,7 +38146,7 @@ Dx
 hl
 VY
 Iw
-DL
+yN
 YC
 QU
 QU
@@ -38248,7 +38288,7 @@ nv
 hl
 kx
 RX
-DL
+yN
 YC
 Vc
 OR
@@ -38390,14 +38430,14 @@ DB
 hl
 kx
 RX
-DL
+yN
 YC
-Oe
+yS
 ZO
 YH
 YC
 ab
-ab
+yU
 ab
 ab
 ab
@@ -38532,7 +38572,7 @@ hl
 hl
 kx
 Is
-DL
+yN
 YC
 Oe
 ZO
@@ -38671,7 +38711,7 @@ ac
 ac
 ac
 ac
-DL
+yN
 kx
 RV
 Un
@@ -38813,8 +38853,8 @@ ac
 ac
 ac
 ac
-DL
-Ov
+yN
+yK
 Uh
 Pl
 YI
@@ -38955,10 +38995,10 @@ ac
 ac
 ac
 aa
-DL
-DL
-DL
-DL
+yN
+yN
+yN
+yN
 YC
 Oe
 ZO
@@ -39099,10 +39139,10 @@ aa
 aa
 aa
 aa
-aa
+yO
 aa
 YC
-Oe
+yS
 ZO
 YH
 YC

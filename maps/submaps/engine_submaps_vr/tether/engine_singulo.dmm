@@ -34,8 +34,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 10;
-	icon_state = "intact";
-	
+	icon_state = "intact"
 	},
 /turf/simulated/floor,
 /area/engineering/engine_gas)
@@ -102,8 +101,7 @@
 /obj/machinery/portable_atmospherics/canister/phoron,
 /obj/machinery/atmospherics/pipe/manifold/hidden{
 	dir = 4;
-	icon_state = "map";
-	
+	icon_state = "map"
 	},
 /turf/simulated/floor,
 /area/engineering/engine_gas)
@@ -220,8 +218,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 10;
-	icon_state = "intact";
-	
+	icon_state = "intact"
 	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -436,8 +433,7 @@
 /obj/effect/floor_decal/borderfloor{
 	dir = 1;
 	icon_state = "borderfloor";
-	pixel_y = 0;
-	
+	pixel_y = 0
 	},
 /obj/effect/floor_decal/corner/yellow/border{
 	dir = 1
@@ -540,8 +536,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 5;
-	icon_state = "intact";
-	
+	icon_state = "intact"
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/engine_room)
@@ -612,8 +607,7 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden{
 	dir = 4;
-	icon_state = "map";
-	
+	icon_state = "map"
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/engine_room)
@@ -1344,8 +1338,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 9;
-	icon_state = "intact";
-	
+	icon_state = "intact"
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/engine_room)
@@ -1544,8 +1537,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 9;
-	icon_state = "intact";
-	
+	icon_state = "intact"
 	},
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/yellow/border,
@@ -1653,6 +1645,38 @@
 /obj/item/stack/cable_coil/random,
 /turf/simulated/floor,
 /area/engineering/engine_room)
+"cH" = (
+/obj/structure/sign/securearea{
+	desc = "A warning sign which reads 'RADIOACTIVE AREA'";
+	icon_state = "radiation";
+	name = "RADIOACTIVE AREA";
+	pixel_x = 0;
+	pixel_y = 0
+	},
+/turf/simulated/wall/r_wall,
+/area/space)
+"cI" = (
+/obj/machinery/camera/network/engineering{
+	dir = 1
+	},
+/turf/space,
+/area/space)
+"cJ" = (
+/obj/machinery/camera/network/engineering,
+/turf/simulated/floor/airless,
+/area/space)
+"cK" = (
+/obj/machinery/camera/network/engineering{
+	dir = 8
+	},
+/turf/template_noop,
+/area/template_noop)
+"cL" = (
+/obj/machinery/camera/network/engineering{
+	dir = 1
+	},
+/turf/simulated/floor/airless,
+/area/space)
 
 (1,1,1) = {"
 aa
@@ -1668,6 +1692,7 @@ aa
 aa
 aa
 aa
+cK
 aa
 aa
 aa
@@ -1675,8 +1700,7 @@ aa
 aa
 aa
 aa
-aa
-aa
+cK
 aa
 aa
 aa
@@ -1700,6 +1724,7 @@ ac
 ac
 ac
 ac
+cH
 ac
 ac
 ac
@@ -1707,8 +1732,7 @@ ac
 ac
 ac
 ac
-ac
-ac
+cH
 ac
 ac
 ac
@@ -1790,8 +1814,8 @@ ac
 ab
 ab
 ab
-ac
-aj
+cH
+cJ
 ab
 ab
 ab
@@ -1809,8 +1833,8 @@ ad
 ab
 ab
 ab
-aj
-cC
+cL
+cH
 ab
 aa
 "}
@@ -2460,7 +2484,7 @@ aa
 ab
 ac
 ab
-ab
+cI
 ae
 ae
 ae

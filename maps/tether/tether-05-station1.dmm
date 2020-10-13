@@ -2299,6 +2299,9 @@
 /obj/machinery/gateway{
 	dir = 9
 	},
+/obj/machinery/camera/network/command{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/dark,
 /area/gateway)
 "aeC" = (
@@ -2728,6 +2731,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/bridge/secondary)
+"afm" = (
+/obj/machinery/camera/network/engineering{
+	dir = 8
+	},
+/turf/simulated/floor/airless,
+/area/space)
 "afn" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 9
@@ -3133,6 +3142,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/atmos/backup)
+"afU" = (
+/obj/machinery/camera/network/engineering{
+	dir = 4
+	},
+/turf/space,
+/area/space)
 "afV" = (
 /turf/simulated/wall/r_wall,
 /area/maintenance/substation/spacecommand)
@@ -3693,6 +3708,7 @@
 	icon_state = "intact"
 	},
 /obj/structure/closet/emcloset,
+/obj/machinery/camera/network/engineering,
 /turf/simulated/floor/plating,
 /area/engineering/engine_airlock)
 "agJ" = (
@@ -3849,6 +3865,13 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7,
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
+"agV" = (
+/obj/structure/lattice,
+/obj/machinery/camera/network/security{
+	dir = 5
+	},
+/turf/space,
+/area/space)
 "agW" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -4023,6 +4046,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/bridge/secondary)
+"ahi" = (
+/obj/structure/ladder/up,
+/turf/simulated/floor/airless,
+/area/mine/explored/upper_level)
 "ahj" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -4383,6 +4410,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor,
 /area/maintenance/station/spacecommandmaint)
+"ahM" = (
+/obj/machinery/camera/network/engineering,
+/turf/space,
+/area/space)
 "ahN" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8;
@@ -4395,6 +4426,13 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/station/spacecommandmaint)
+"ahP" = (
+/obj/structure/lattice,
+/obj/machinery/camera/network/engineering{
+	dir = 8
+	},
+/turf/space,
+/area/space)
 "ahQ" = (
 /obj/machinery/light{
 	dir = 4
@@ -4533,6 +4571,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/station/visitorhallway/office)
+"aig" = (
+/obj/machinery/camera/network/engineering{
+	dir = 8
+	},
+/turf/space,
+/area/space)
 "aih" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -4840,6 +4884,12 @@
 /obj/item/clothing/glasses/meson,
 /turf/simulated/floor/tiled,
 /area/engineering/engine_airlock)
+"aiG" = (
+/obj/machinery/camera/network/tether{
+	dir = 9
+	},
+/turf/space,
+/area/space)
 "aiH" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
@@ -5115,6 +5165,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/gateway/prep_room)
+"ajk" = (
+/obj/machinery/camera/network/tether{
+	dir = 4
+	},
+/turf/space,
+/area/space)
 "ajl" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 1;
@@ -5453,6 +5509,13 @@
 	},
 /turf/simulated/floor/tiled,
 /area/gateway/prep_room)
+"ajW" = (
+/obj/machinery/door/firedoor/glass/hidden/steel,
+/obj/machinery/camera/network/tether{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/tether/station/dock_two)
 "ajX" = (
 /obj/machinery/light{
 	dir = 4;
@@ -5514,6 +5577,16 @@
 /obj/machinery/floodlight,
 /turf/simulated/floor/tiled/dark,
 /area/gateway/prep_room)
+"ake" = (
+/obj/machinery/door/firedoor/glass/hidden/steel{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
+	},
+/turf/simulated/floor/tiled,
+/area/tether/station/dock_two)
 "akf" = (
 /obj/machinery/button/remote/blast_door{
 	id = "PubPrep";
@@ -5539,6 +5612,10 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/gateway)
+"aki" = (
+/obj/machinery/camera/network/tether,
+/turf/space,
+/area/space)
 "akj" = (
 /obj/item/device/radio/intercom{
 	dir = 2;
@@ -5731,6 +5808,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/gateway/prep_room)
+"akB" = (
+/obj/machinery/camera/network/command,
+/turf/simulated/floor/tiled/dark,
+/area/gateway)
 "akC" = (
 /obj/effect/floor_decal/industrial/warning,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -5765,7 +5846,7 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/gateway)
-"akJ" = (
+"akI" = (
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -5777,12 +5858,14 @@
 	dir = 1;
 	icon_state = "warning"
 	},
-/obj/machinery/camera/network/command{
-	dir = 10;
-	icon_state = "camera"
-	},
 /turf/simulated/floor/tiled/dark,
 /area/gateway)
+"akJ" = (
+/obj/machinery/camera/network/civilian{
+	dir = 4
+	},
+/turf/space,
+/area/space)
 "akK" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -5810,6 +5893,20 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/gateway/prep_room)
+"akN" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 6
+	},
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 1;
+	frequency = 1379;
+	id_tag = "gravity_pump"
+	},
+/obj/machinery/camera/network/engineering{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/engineering/gravity_lobby)
 "akO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
@@ -15562,15 +15659,6 @@
 /obj/machinery/camera/network/tether,
 /turf/simulated/floor/tiled,
 /area/hallway/station/docks)
-"aCA" = (
-/obj/machinery/door/firedoor/glass/hidden/steel{
-	dir = 8
-	},
-/obj/machinery/camera/network/tether{
-	dir = 9
-	},
-/turf/simulated/floor/tiled,
-/area/tether/station/dock_two)
 "aCB" = (
 /obj/machinery/door/airlock/glass_external{
 	frequency = 1379;
@@ -17070,15 +17158,6 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/station/eng_lower)
-"aIA" = (
-/obj/machinery/door/firedoor/glass,
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/simulated/floor/plating,
-/area/tether/station/dock_two)
 "aIO" = (
 /turf/simulated/floor/tiled,
 /area/engineering/engineering_monitoring)
@@ -23452,17 +23531,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/gravity_lobby)
-"rzK" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 6
-	},
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 1;
-	frequency = 1379;
-	id_tag = "gravity_pump"
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/engineering/gravity_lobby)
 "rAZ" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -24539,13 +24607,6 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /turf/simulated/floor/tiled,
 /area/hallway/station/docks)
-"xDA" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/glass/hidden/steel,
-/turf/simulated/floor/tiled,
-/area/tether/station/dock_two)
 "xDU" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -27473,7 +27534,7 @@ ahW
 ahW
 ahW
 aag
-aaa
+ahM
 aaa
 aaa
 aaa
@@ -28616,7 +28677,7 @@ ahW
 ahW
 ahW
 ahW
-ahW
+ahP
 ahW
 ahW
 ahW
@@ -28890,7 +28951,7 @@ ahW
 ahW
 ahW
 cbY
-adq
+afm
 adq
 adq
 adq
@@ -29050,7 +29111,7 @@ aGB
 ahW
 aaa
 aaa
-aaa
+aig
 ahW
 aaa
 aaa
@@ -29781,19 +29842,19 @@ aac
 aaa
 aaa
 aaa
-aaa
+aiG
 aFT
 bHw
 aGZ
-aaa
+aiG
 aaa
 aab
 aaa
-aaa
+aiG
 aFT
 bPr
 aGZ
-aaa
+aiG
 aaa
 aaa
 aaa
@@ -30633,11 +30694,11 @@ aaa
 aaa
 aaa
 aaa
+ajk
 aaa
 aaa
 aaa
-aaa
-aaa
+ajk
 aaa
 aaa
 lGA
@@ -30645,7 +30706,7 @@ mNU
 wlD
 kLN
 kCH
-aaa
+ajk
 aaa
 aaa
 aaa
@@ -31197,7 +31258,7 @@ awH
 rKn
 hLV
 awu
-aaa
+aki
 aaa
 aaa
 aaa
@@ -31843,7 +31904,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+afU
 aaa
 aaa
 aaa
@@ -32621,19 +32682,19 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aiG
 aFY
 bHO
 aHc
+aiG
 aaa
 aaa
 aaa
-aaa
-aaa
+aiG
 ezX
 bPz
 bXn
-aaa
+aiG
 aaa
 aaa
 aaa
@@ -32771,7 +32832,7 @@ aCK
 bzq
 bzq
 col
-aIA
+aCK
 bXl
 bPx
 bXl
@@ -32909,7 +32970,7 @@ aDL
 xEm
 gOd
 oYk
-xDA
+ajW
 aDL
 aDL
 aDL
@@ -33193,7 +33254,7 @@ bPl
 kzv
 aDL
 aDL
-aCA
+ake
 aDL
 aDL
 fil
@@ -33978,7 +34039,7 @@ aaa
 aaa
 aaa
 aaa
-ahW
+agV
 aac
 aac
 aac
@@ -34262,7 +34323,7 @@ aaa
 aaa
 aaa
 acu
-acw
+ahi
 adj
 aac
 aac
@@ -34711,7 +34772,7 @@ uUL
 rEb
 vLS
 cRa
-rzK
+akN
 rEb
 lCO
 hGr
@@ -38401,7 +38462,7 @@ aac
 aac
 aac
 adP
-aiS
+akB
 akx
 akE
 adP
@@ -38688,7 +38749,7 @@ aiL
 aiS
 akz
 akG
-akJ
+akI
 adP
 adP
 aac
@@ -39849,6 +39910,7 @@ aaa
 aaa
 aaa
 aaa
+akJ
 aaa
 aaa
 aaa
@@ -39857,8 +39919,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
+akJ
 aaa
 aaa
 aaa
