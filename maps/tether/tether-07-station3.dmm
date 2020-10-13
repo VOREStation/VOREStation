@@ -13046,12 +13046,14 @@
 /turf/simulated/floor,
 /area/security/lobby)
 "auR" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_r"
+/obj/structure/bed/chair/shuttle{
+	dir = 1
 	},
-/turf/simulated/floor/tiled/asteroid_steel/airless,
-/turf/simulated/shuttle/plating/airless/carry,
+/obj/machinery/camera/network/cargo{
+	dir = 1;
+	name = "security camera"
+	},
+/turf/simulated/shuttle/floor/yellow,
 /area/shuttle/mining_outpost/shuttle)
 "auS" = (
 /obj/machinery/door/firedoor/glass,
@@ -13153,6 +13155,14 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/open,
 /area/maintenance/station/elevator)
+"auY" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_r"
+	},
+/turf/simulated/floor/tiled/asteroid_steel/airless,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/mining_outpost/shuttle)
 "auZ" = (
 /obj/structure/table/bench/wooden,
 /turf/simulated/floor/wood,
@@ -13730,6 +13740,15 @@
 /obj/effect/floor_decal/corner/brown/border,
 /turf/simulated/floor/tiled,
 /area/quartermaster/delivery)
+"avY" = (
+/obj/structure/bed/chair/shuttle{
+	dir = 4
+	},
+/obj/machinery/camera/network/cargo{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/yellow/airless,
+/area/shuttle/belter)
 "avZ" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled,
@@ -46503,7 +46522,7 @@ baq
 bav
 bay
 aVG
-aVS
+avY
 aVS
 aVS
 baG
@@ -47920,7 +47939,7 @@ auj
 auk
 auk
 auk
-auR
+auY
 baB
 adD
 avt
@@ -48487,7 +48506,7 @@ bah
 baj
 bau
 bau
-baN
+auR
 bai
 baB
 adD

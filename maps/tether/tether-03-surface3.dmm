@@ -33752,11 +33752,17 @@
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/tether/surfacebase/outside/outside3)
 "bhh" = (
+/obj/machinery/camera/network/civilian{
+	dir = 9
+	},
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/tether)
+"bhi" = (
 /obj/structure/shuttle/engine/propulsion,
 /turf/simulated/floor/reinforced,
 /turf/simulated/shuttle/plating/carry,
 /area/shuttle/tether)
-"bhi" = (
+"bhj" = (
 /obj/machinery/atmospherics/unary/engine{
 	dir = 1
 	},
@@ -47908,7 +47914,7 @@ jML
 jHw
 jpB
 qWU
-bhi
+bhj
 aKU
 aOI
 aPb
@@ -48760,7 +48766,7 @@ caw
 jHw
 gHh
 qWU
-bhi
+bhj
 aKU
 aOI
 aPb
@@ -50745,7 +50751,7 @@ aNk
 uSA
 aNJ
 aNP
-bhh
+bhi
 aKU
 abg
 aOk
@@ -50887,7 +50893,7 @@ aNl
 aNl
 aNK
 aNP
-bhh
+bhi
 aKU
 abg
 aOk
@@ -51026,10 +51032,10 @@ aKU
 aMF
 aNb
 aNm
-aNl
+bhh
 aNK
 aNP
-bhh
+bhi
 aKU
 abg
 aOk
