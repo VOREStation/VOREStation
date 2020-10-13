@@ -15056,6 +15056,12 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining_eva)
+"ayL" = (
+/obj/machinery/space_heater,
+/obj/effect/floor_decal/industrial/outline/grey,
+/obj/machinery/camera/network/research,
+/turf/simulated/floor/tiled/techfloor,
+/area/tether/surfacebase/emergency_storage/rnd)
 "ayQ" = (
 /obj/machinery/status_display{
 	pixel_y = 30
@@ -16493,11 +16499,6 @@
 "aDP" = (
 /obj/machinery/portable_atmospherics/powered/pump/filled,
 /obj/effect/floor_decal/industrial/outline/blue,
-/turf/simulated/floor/tiled/techfloor,
-/area/tether/surfacebase/emergency_storage/rnd)
-"aDQ" = (
-/obj/machinery/space_heater,
-/obj/effect/floor_decal/industrial/outline/grey,
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/emergency_storage/rnd)
 "aDR" = (
@@ -40253,7 +40254,7 @@ avT
 aBJ
 aCv
 aDi
-aDQ
+ayL
 aEt
 aFj
 aDi
