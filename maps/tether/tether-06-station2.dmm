@@ -10705,18 +10705,17 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/medical/morgue)
 "pW" = (
-/obj/machinery/light/small{
-	dir = 1;
-	icon_state = "bulb1"
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_l"
 	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1)
+"pX" = (
+/obj/machinery/door/firedoor/glass,
 /obj/effect/floor_decal/techfloor{
 	dir = 9
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/medical/morgue)
-"pX" = (
-/obj/effect/floor_decal/techfloor{
-	dir = 5
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/medical/morgue)
@@ -11107,15 +11106,8 @@
 /turf/simulated/floor/tiled,
 /area/hallway/station/starboard)
 "qD" = (
-/obj/machinery/light/small{
-	dir = 1;
-	icon_state = "bulb1"
-	},
 /obj/effect/floor_decal/techfloor{
 	dir = 1
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/medical/morgue)
@@ -12134,34 +12126,25 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery_hallway)
 "sk" = (
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = -26
+/obj/machinery/alarm{
+	pixel_y = 22
 	},
 /obj/effect/floor_decal/techfloor{
-	dir = 1
+	dir = 5
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
+/obj/machinery/camera/network/medbay{
+	dir = 9;
+	icon_state = "camera"
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/medical/morgue)
 "sl" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 6
-	},
-/obj/effect/floor_decal/techfloor/corner{
-	dir = 1
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/medical/morgue)
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1)
 "sm" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -12495,30 +12478,21 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/morgue)
 "sN" = (
-/obj/structure/table/steel,
+/obj/machinery/door/firedoor/glass,
 /obj/effect/floor_decal/techfloor{
-	dir = 4
+	dir = 10
+	},
+/obj/machinery/door/airlock/multi_tile/metal/mait{
+	dir = 2;
+	name = "Morgue Access";
+	req_one_access = list(6)
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/medical/morgue)
 "sO" = (
-/obj/machinery/power/apc{
-	dir = 2;
-	name = "south bump";
-	pixel_y = -28
+/obj/effect/floor_decal/techfloor/corner{
+	dir = 8
 	},
-/obj/structure/cable/green{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9;
-	pixel_y = 0
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
-	},
-/obj/effect/floor_decal/techfloor,
 /turf/simulated/floor/tiled/techfloor,
 /area/medical/morgue)
 "sP" = (
@@ -12701,14 +12675,13 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/medical/morgue)
 "ti" = (
-/obj/structure/filingcabinet/chestdrawer{
-	desc = "A large drawer filled with autopsy reports.";
-	name = "Autopsy Reports"
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_r"
 	},
-/obj/machinery/light/small,
-/obj/effect/floor_decal/techfloor,
-/turf/simulated/floor/tiled/techfloor,
-/area/medical/morgue)
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1)
 "tj" = (
 /obj/effect/floor_decal/techfloor,
 /turf/simulated/floor/tiled/techfloor,
@@ -13214,22 +13187,11 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/resleeving)
 "tY" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/obj/machinery/light/small{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4;
-	icon_state = "intact-scrubbers"
-	},
-/obj/effect/floor_decal/techfloor,
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/effect/floor_decal/techfloor{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/medical/morgue)
@@ -16269,32 +16231,18 @@
 /turf/simulated/floor/tiled,
 /area/tether/station/stairs_two)
 "yQ" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
+/obj/structure/filingcabinet/chestdrawer{
+	desc = "A large drawer filled with autopsy reports.";
+	name = "Autopsy Reports"
 	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1)
-"yR" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1)
+/obj/effect/floor_decal/techfloor,
+/obj/machinery/light,
+/turf/simulated/floor/tiled/techfloor,
+/area/medical/morgue)
 "yS" = (
 /obj/structure/bed/chair/shuttle,
 /obj/machinery/camera/network/command,
 /turf/simulated/shuttle/floor,
-/area/shuttle/large_escape_pod1)
-"yT" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_r"
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/large_escape_pod1)
 "yU" = (
 /obj/machinery/camera/network/command{
@@ -16373,6 +16321,18 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery)
+"zc" = (
+/obj/effect/floor_decal/techfloor{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/multi_tile/metal/mait{
+	dir = 4;
+	name = "Morgue Access";
+	req_one_access = list(6)
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/medical/morgue)
 "zd" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -16776,6 +16736,39 @@
 	},
 /turf/simulated/floor/plating,
 /area/medical/patient_a)
+"zG" = (
+/obj/effect/floor_decal/techfloor{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/tiled/techfloor,
+/area/medical/morgue)
+"zH" = (
+/obj/effect/floor_decal/techfloor{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/medical/morgue)
+"zI" = (
+/obj/structure/morgue,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/medical/morgue)
+"zJ" = (
+/obj/structure/table/steel,
+/obj/effect/floor_decal/techfloor{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/medical/morgue)
 "zK" = (
 /obj/structure/closet/crate/freezer,
 /obj/item/weapon/reagent_containers/blood/OMinus,
@@ -16866,6 +16859,26 @@
 /obj/effect/floor_decal/corner/white/border,
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery2)
+"zQ" = (
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -26
+	},
+/obj/effect/floor_decal/techfloor{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/medical/morgue)
 "zR" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -17134,6 +17147,22 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery_hallway)
+"An" = (
+/obj/effect/floor_decal/techfloor/corner{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4;
+	icon_state = "intact-scrubbers"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/medical/morgue)
 "Ao" = (
 /obj/structure/filingcabinet/chestdrawer{
 	name = "Scan Records"
@@ -17423,6 +17452,26 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery_hallway)
+"AO" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/effect/floor_decal/techfloor,
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/medical/morgue)
 "AP" = (
 /obj/machinery/bodyscanner{
 	dir = 4
@@ -18307,6 +18356,19 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/ward)
+"Cc" = (
+/obj/machinery/power/apc{
+	dir = 2;
+	name = "south bump";
+	pixel_y = -28
+	},
+/obj/structure/cable/green{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/effect/floor_decal/techfloor,
+/turf/simulated/floor/tiled/techfloor,
+/area/medical/morgue)
 "Ce" = (
 /turf/simulated/floor/tiled/white,
 /area/medical/recoveryrestroom)
@@ -33746,10 +33808,10 @@ kG
 nM
 pQ
 DL
-DL
-DL
-DL
-DL
+pX
+sN
+uW
+uW
 uW
 uW
 uW
@@ -33888,17 +33950,17 @@ li
 nN
 pQ
 DL
-ac
-ac
-ac
-ac
+qD
+tj
+uW
+uW
 uW
 pV
+zI
 pV
 pV
-pV
-sk
-tY
+zQ
+AO
 tu
 tU
 vd
@@ -34030,17 +34092,17 @@ li
 nN
 IE
 DL
-ac
-ac
-ac
-ac
-uW
-pW
-rn
-rn
-rn
-sl
+qD
 sO
+rn
+rn
+zc
+rn
+rn
+rn
+rn
+An
+Cc
 tu
 tV
 ve
@@ -34172,12 +34234,12 @@ li
 nN
 pQ
 DL
-ac
-ac
-ac
-ac
-uW
-pX
+sk
+tY
+wB
+wB
+zG
+wB
 wB
 wB
 wB
@@ -34314,10 +34376,10 @@ lj
 nO
 pR
 DL
-ac
-ac
-ac
-ac
+uW
+uW
+uW
+uW
 uW
 pY
 pY
@@ -34466,7 +34528,7 @@ pV
 pV
 pV
 so
-ti
+yQ
 tu
 uq
 vw
@@ -34745,7 +34807,7 @@ ac
 ac
 ac
 uW
-qD
+zH
 xB
 xB
 se
@@ -34888,7 +34950,7 @@ ac
 ac
 uW
 qE
-sN
+zJ
 rz
 sf
 sE
@@ -38005,11 +38067,11 @@ hl
 DI
 RX
 yN
-yQ
-yR
-yR
-yR
-yT
+pW
+sl
+sl
+sl
+ti
 oY
 sW
 ef
