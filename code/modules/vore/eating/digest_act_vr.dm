@@ -28,7 +28,7 @@
 		if(g_damage > digest_stage)
 			g_damage = digest_stage
 		digest_stage -= g_damage
-	else
+	if(digest_stage <= 0)
 		for(var/obj/item/O in contents)
 			if(istype(O,/obj/item/weapon/storage/internal)) //Dump contents from dummy pockets.
 				for(var/obj/item/SO in O)
@@ -38,6 +38,8 @@
 			else if(item_storage)
 				O.forceMove(item_storage)
 		qdel(src)
+	if(g_damage > w_class)
+		return w_class
 	return g_damage
 
 /////////////
