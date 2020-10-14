@@ -41,59 +41,61 @@
 /obj/structure/flora/log1
 	name = "waterlogged trunk"
 	icon = 'icons/obj/flora/amayastuff.dmi'
-	desc = "A part of a felled tree. It is soaking up the water it is bouyant on."
+	desc = "A part of a felled tree. Moss is growing across it."
 	icon_state = "log1"
 	
 /obj/structure/flora/log2
-	name = "waterlogged trunk"
+	name = "driftwood"
 	icon = 'icons/obj/flora/amayastuff.dmi'
-	desc = "A part of a felled tree. It is soaking up the water it is bouyant on."
+	desc = "Driftwood carelessly lost in the water."
 	icon_state = "log2"
 
 /obj/structure/flora/lily1
-	name = "waterlogged trunk"
+	name = "red flowered lilypads"
 	icon = 'icons/obj/flora/amayastuff.dmi'
-	desc = "A part of a felled tree. It is soaking up the water it is bouyant on."
+	desc = "A bunch of lilypads. A beautiful red flower grows in the middle of them."
 	icon_state = "lilypad1"
 	
 /obj/structure/flora/lily2
-	name = "waterlogged trunk"
+	name = "yellow flowered lilypads"
 	icon = 'icons/obj/flora/amayastuff.dmi'
-	desc = "A part of a felled tree. It is soaking up the water it is bouyant on."
+	desc = "A few lilypads. A sunny yellow flower stems from the water and from between the lilypads."
 	icon_state = "lilypad2"
 	
 /obj/structure/flora/lily3
-	name = "waterlogged trunk"
+	name = "lilypads"
 	icon = 'icons/obj/flora/amayastuff.dmi'
-	desc = "A part of a felled tree. It is soaking up the water it is bouyant on."
+	desc = "A group of flowerless lilypads."
 	icon_state = "lilypad3"
 
 /obj/structure/flora/smallbould
-	name = "waterlogged trunk"
+	name = "small boulder"
 	icon = 'icons/obj/flora/amayastuff.dmi'
-	desc = "A part of a felled tree. It is soaking up the water it is bouyant on."
+	desc = "A small boulder, with its top smothered with moss."
 	icon_state = "smallerboulder"
 	
 /obj/structure/flora/bboulder1
-	name = "waterlogged trunk"
+	name = "large boulder"
 	icon = 'icons/obj/flora/amayastuff.dmi'
-	desc = "A part of a felled tree. It is soaking up the water it is bouyant on."
+	desc = "Small stones sit beside this large boulder. Moss grows on the top of each of them."
 	icon_state = "bigboulder1"
+	density = 1
 	
 /obj/structure/flora/bboulder2
-	name = "waterlogged trunk"
+	name = "jagged large boulder"
 	icon = 'icons/obj/flora/amayastuff.dmi'
-	desc = "A part of a felled tree. It is soaking up the water it is bouyant on."
+	desc = "This boulder has had plates broken off it. Moss grows in the cracks and across the top."
 	icon_state = "bigboulder2"
+	density = 1
 	
 /obj/structure/flora/rocks1
-	name = "waterlogged trunk"
+	name = "rocks"
 	icon = 'icons/obj/flora/amayastuff.dmi'
-	desc = "A part of a felled tree. It is soaking up the water it is bouyant on."
+	desc = "A bunch of mossy rocks."
 	icon_state = "rocks1"
 	
 /obj/structure/flora/rocks2
-	name = "waterlogged trunk"
+	name = "rocks"
 	icon = 'icons/obj/flora/amayastuff.dmi'
-	desc = "A part of a felled tree. It is soaking up the water it is bouyant on."
+	desc = "A bunch of mossy rocks."
 	icon_state = "rocks2"
