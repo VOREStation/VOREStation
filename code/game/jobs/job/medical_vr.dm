@@ -26,7 +26,8 @@
 	spawn_positions = 5
 	pto_type = PTO_MEDICAL
 	alt_titles = list("Physician" = /datum/alt_title/physician, "Medical Practitioner" = /datum/alt_title/medical_practitioner, "Surgeon" = /datum/alt_title/surgeon,
-						"Emergency Physician" = /datum/alt_title/emergency_physician, "Nurse" = /datum/alt_title/nurse, "Virologist" = /datum/alt_title/virologist)
+						"Emergency Physician" = /datum/alt_title/emergency_physician, "Nurse" = /datum/alt_title/nurse, "Orderly" = /datum/alt_title/orderly
+						"Virologist" = /datum/alt_title/virologist)
 
 
 /datum/alt_title/physician
@@ -34,6 +35,12 @@
 
 /datum/alt_title/medical_practitioner
 	title = "Medical Practitioner"
+
+/datum/alt_title/orderly
+	title = "Orderly"
+	title_blurb = "An Orderly acts as Medbay's general helping hand, assisting any doctor that might need some form of help, as well as handling manual \
+					and dirty labor around the department."
+	title_outfit = /decl/hierarchy/outfit/job/medical/doctor/nurse
 
 
 /datum/job/chemist
