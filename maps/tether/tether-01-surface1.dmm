@@ -13695,7 +13695,7 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/power/smes/buildable{
-	charge = 2e+006;
+	charge = 6e+006;
 	input_attempt = 1;
 	input_level = 100000;
 	output_level = 200000;
@@ -13704,8 +13704,7 @@
 /turf/simulated/floor/plating,
 /area/maintenance/substation/surface_atmos)
 "aww" = (
-/obj/machinery/power/breakerbox/activated{
-	icon_state = "bbox_off";
+/obj/machinery/power/breakerbox{
 	RCon_tag = "Atmos Substation Bypass"
 	},
 /turf/simulated/floor/plating,

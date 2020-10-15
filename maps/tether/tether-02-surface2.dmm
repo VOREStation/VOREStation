@@ -8812,6 +8812,12 @@
 "arl" = (
 /turf/simulated/wall,
 /area/tether/surfacebase/east_stairs_two)
+"arm" = (
+/obj/machinery/power/breakerbox{
+	RCon_tag = "Telecomms Substation Bypass"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/substation/tcomms)
 "arn" = (
 /obj/machinery/teleport/hub{
 	dir = 2
@@ -9665,6 +9671,24 @@
 /obj/machinery/portable_atmospherics/powered/pump/filled,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/emergency_storage/atmos)
+"asz" = (
+/obj/machinery/power/smes/buildable{
+	charge = 6e+006;
+	input_attempt = 1;
+	input_level = 80000;
+	output_attempt = 1;
+	output_level = 100000;
+	outputting = 0;
+	RCon_tag = "Substation - Telecomms"
+	},
+/obj/structure/cable/green{
+	icon_state = "0-4"
+	},
+/obj/structure/cable/green{
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/substation/tcomms)
 "asA" = (
 /obj/structure/cable/cyan{
 	d2 = 2;
@@ -18060,27 +18084,6 @@
 /obj/item/device/flashlight/lamp,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
-"aIm" = (
-/obj/machinery/power/breakerbox/activated{
-	RCon_tag = "Telecomms Substation Bypass"
-	},
-/turf/simulated/floor/plating,
-/area/maintenance/substation/tcomms)
-"aIn" = (
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Telecomms";
-	charge = 100000;
-	output_attempt = 0;
-	outputting = 0
-	},
-/obj/structure/cable/green{
-	icon_state = "0-4"
-	},
-/obj/structure/cable/green{
-	icon_state = "0-8"
-	},
-/turf/simulated/floor/plating,
-/area/maintenance/substation/tcomms)
 "aIo" = (
 /obj/machinery/power/sensor{
 	name = "Powernet Sensor - Telecomms Subgrid";
@@ -42737,7 +42740,7 @@ aGH
 aHb
 aHp
 aHL
-aIm
+arm
 aIr
 aJn
 aJT
@@ -42879,7 +42882,7 @@ aGI
 aDN
 aHq
 aHM
-aIn
+asz
 aIr
 aJo
 aJU
