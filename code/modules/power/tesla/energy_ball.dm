@@ -112,7 +112,7 @@
 		var/Orchiectomy_target = pick(orbiting_balls)
 		qdel(Orchiectomy_target)
 
-	else if(orbiting_balls.len)
+	else
 		dissipate() //sing code has a much better system.
 
 /obj/singularity/energy_ball/proc/new_mini_ball()
@@ -140,14 +140,14 @@
 	if (istype(target))
 		target.orbiting_balls += src
 		//TODO-LESH-DEL global.poi_list -= src
-		target.dissipate_strength = target.orbiting_balls.len
+		target.dissipate_strength = target.orbiting_balls.len + 1
 
 	. = ..()
 /obj/singularity/energy_ball/stop_orbit()
 	if (orbiting && istype(orbiting.orbiting, /obj/singularity/energy_ball))
 		var/obj/singularity/energy_ball/orbitingball = orbiting.orbiting
 		orbitingball.orbiting_balls -= src
-		orbitingball.dissipate_strength = orbitingball.orbiting_balls.len
+		orbitingball.dissipate_strength = orbitingball.orbiting_balls.len + 1
 	..()
 	if (!loc && !QDELETED(src))
 		qdel(src)
