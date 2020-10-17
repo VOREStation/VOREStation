@@ -589,3 +589,28 @@
 /datum/gear/uniform/cyberpunkharness
 	display_name = "cyberpunk strapped harness"
 	path = /obj/item/clothing/under/cyberpunkharness
+
+/datum/gear/uniform/whitegown
+	display_name = "white gown"
+	path = /obj/item/clothing/under/wedding/whitegown
+
+/datum/gear/uniform/floofdress
+	display_name = "floofy dress"
+	path = /obj/item/clothing/under/wedding/floofdress
+
+/datum/gear/uniform/floofdress/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/uniform/blackngold
+	display_name = "black and gold gown"
+	path = /obj/item/clothing/under/blackngold
+
+/datum/gear/uniform/sheerblue
+	display_name = "sheer blue dress"
+	path = /obj/item/clothing/under/sheerblue
+
+/datum/gear/uniform/disheveled
+	display_name = "disheveled suit"
+	path = /obj/item/clothing/under/disheveled
+
