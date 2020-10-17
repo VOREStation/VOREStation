@@ -193,11 +193,11 @@
 /area/engineering/engine_smes)
 "aas" = (
 /obj/machinery/power/smes/buildable{
-	RCon_tag = "Engine - Core";
-	charge = 2e+006;
+	charge = 5e+006;
 	input_attempt = 1;
 	input_level = 100000;
-	output_level = 200000
+	output_level = 200000;
+	RCon_tag = "Engine - Core"
 	},
 /obj/structure/cable/cyan{
 	d2 = 2;
@@ -358,12 +358,13 @@
 /area/engineering/engine_smes)
 "aaG" = (
 /obj/machinery/power/smes/buildable{
-	RCon_tag = "Power - Main";
-	charge = 2e+007;
+	capacity = 2.4e+007;
+	charge = 2.4e+007;
 	cur_coils = 4;
 	input_attempt = 1;
 	input_level = 500000;
-	output_level = 1e+006
+	output_level = 1e+006;
+	RCon_tag = "Power - Main"
 	},
 /obj/structure/cable{
 	d2 = 4;
