@@ -7242,6 +7242,7 @@
 	name = "Fire/Phoron Shelter Secure Hatch";
 	req_one_access = list()
 	},
+/obj/structure/fans/tiny,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/crew_quarters/panic_shelter)
 "amM" = (
@@ -7875,6 +7876,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/structure/fans/tiny,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/crew_quarters/panic_shelter)
 "anW" = (
