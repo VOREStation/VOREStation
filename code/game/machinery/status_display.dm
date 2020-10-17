@@ -12,8 +12,12 @@
 /obj/machinery/status_display
 	icon = 'icons/obj/status_display.dmi'
 	icon_state = "frame"
+<<<<<<< HEAD
 	plane = TURF_PLANE
 	layer = ABOVE_TURF_LAYER
+=======
+	layer = ABOVE_WINDOW_LAYER
+>>>>>>> 9611ae9... Makes wall-mounted machines layer above windows (#7708)
 	name = "status display"
 	anchored = 1
 	density = 0

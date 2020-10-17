@@ -59,8 +59,7 @@
 	name = "Telescreen"
 	desc = "Used for watching an empty arena."
 	icon_state = "wallframe"
-	plane = TURF_PLANE
-	layer = ABOVE_TURF_LAYER
+	layer = ABOVE_WINDOW_LAYER
 	icon_keyboard = null
 	icon_screen = null
 	light_range_on = 0

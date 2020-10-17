@@ -4,6 +4,7 @@
 	name = "stacking machine console"
 	icon = 'icons/obj/machines/mining_machines_vr.dmi'  // VOREStation Edit
 	icon_state = "console"
+	layer = ABOVE_WINDOW_LAYER
 	density = 1
 	anchored = 1
 	var/obj/machinery/mineral/stacking_machine/machine = null
