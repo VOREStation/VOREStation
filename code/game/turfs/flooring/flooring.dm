@@ -146,6 +146,7 @@ var/list/flooring_types
 	flags = TURF_REMOVE_SHOVEL
 	icon = 'icons/turf/outdoors.dmi'
 	icon_base = "grass_sif"
+	build_type = /obj/item/stack/tile/grass/sif
 	has_base_range = 1
 
 /decl/flooring/water
