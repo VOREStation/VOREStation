@@ -55,7 +55,6 @@
 	pixel_x = 32
 	dir = EAST
 
-<<<<<<< HEAD
 //VOREStation Add Start
 /obj/structure/closet/walllocker/medical
 	name = "first-aid closet"
@@ -75,7 +74,10 @@
 	dir = WEST
 
 /obj/structure/closet/walllocker/medical/east
-=======
+	pixel_x = 32
+	dir = EAST
+//VOREStation Add End
+
 //double-size "cabinet" lockers, from Killian
 /obj/structure/closet/walllocker_double
 	desc = "A wall mounted storage cabinet."
@@ -177,6 +179,5 @@
 	dir = WEST
 
 /obj/structure/closet/walllocker_double/hydrant/east
->>>>>>> 63b7caa... Wall Cabinets & Crate Markings (#7724)
 	pixel_x = 32
 	dir = EAST
