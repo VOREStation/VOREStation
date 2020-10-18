@@ -87,7 +87,7 @@
 			forceMove(T)
 			set_dir(move_dir)
 			for(var/mob/living/carbon/C in loc)
-				dust_mobs(C)
+				dust_mob(C)
 			sleep(1) // So movement is smooth
 
 /obj/singularity/energy_ball/proc/handle_energy()
@@ -129,12 +129,15 @@
 
 	EB.orbit(src, orbitsize, pick(FALSE, TRUE), rand(10, 25), pick(3, 4, 5, 6, 36))
 
+/obj/singularity/energy_ball/attack_hand(mob/user)
+	dust_mob(user)
+	return 1
 
 /obj/singularity/energy_ball/Bump(atom/A)
-	dust_mobs(A)
+	dust_mob(A)
 
 /obj/singularity/energy_ball/Bumped(atom/movable/AM)
-	dust_mobs(AM)
+	dust_mob(AM)
 
 /obj/singularity/energy_ball/orbit(obj/singularity/energy_ball/target)
 	if (istype(target))
@@ -153,19 +156,11 @@
 		qdel(src)
 
 
-/obj/singularity/energy_ball/proc/dust_mobs(atom/A)
-	if(isliving(A))
-		var/mob/living/L = A
-		if(L.incorporeal_move)
-			return
-	if(!iscarbon(A))
+/obj/singularity/energy_ball/proc/dust_mob(mob/living/L)
+	if(!istype(L) || L.incorporeal_move)
 		return
-	for(var/obj/machinery/power/grounding_rod/GR in orange(src, 2))
-		if(GR.anchored)
-			return
-	var/mob/living/carbon/C = A
-	// C.dust() - Changing to do fatal elecrocution instead
-	C.electrocute_act(500, src, def_zone = BP_TORSO)
+	// L.dust() - Changing to do fatal elecrocution instead
+	L.electrocute_act(500, src, def_zone = BP_TORSO)
 
 /proc/tesla_zap(atom/source, zap_range = 3, power, explosive = FALSE, stun_mobs = TRUE)
 	if(!source) // Some mobs and maybe some objects delete themselves when they die.
