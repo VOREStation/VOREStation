@@ -12,7 +12,8 @@
 		var/datum/chemical_reaction/drinks/CR = new path()
 		drink_recipes[path] = list("Result" = CR.name,
         						"ResAmt" = CR.result_amount,
-        						"Reagents" = CR.required_reagents)
+        						"Reagents" = CR.required_reagents,
+								"Catalysts" = CR.catalysts)
 		qdel(CR)
 
 	//////////////////////// FOOD
@@ -30,6 +31,7 @@
 						"Result" = "[res.name]",
 						"ResAmt" = "1",
 						"Reagents" = R.reagents,
+						"Catalysts" = list(),
 						"Fruit" = R.fruit,
 						"Ingredients" = R.items,
 						"Coating" = R.coating,
@@ -46,6 +48,7 @@
 		food_recipes[path] = list("Result" = CR.name,
 								"ResAmt" = CR.result_amount,
 								"Reagents" = CR.required_reagents,
+								"Catalysts" = CR.catalysts,
 								"Fruit" = list(),
 								"Ingredients" = list(),
 								"Image" = null)
@@ -83,6 +86,15 @@
 			var/amt = food_recipes[Rp]["Reagents"][rid]
 			food_recipes[Rp]["Reagents"] -= rid
 			food_recipes[Rp]["Reagents"][R_name] = amt
+		for(var/rid in food_recipes[Rp]["Catalysts"])
+			var/datum/reagent/Rd = SSchemistry.chemical_reagents[rid]
+			if(!Rd) // Leaving this here in the event that if rd is ever invalid or there's a recipe issue, it'll be skipped and recipe dumps can still be ran.
+				log_runtime(EXCEPTION("Food \"[Rp]\" had an invalid RID: \"[rid]\"! Check your reagents list for a missing or mistyped reagent!"))
+				continue // This allows the dump to still continue, and it will skip the invalid recipes.
+			var/R_name = Rd.name
+			var/amt = food_recipes[Rp]["Catalysts"][rid]
+			food_recipes[Rp]["Catalysts"] -= rid
+			food_recipes[Rp]["Catalysts"][R_name] = amt
 	for(var/Rp in drink_recipes)
 		for(var/rid in drink_recipes[Rp]["Reagents"])
 			var/datum/reagent/Rd = SSchemistry.chemical_reagents[rid]
@@ -93,6 +105,15 @@
 			var/amt = drink_recipes[Rp]["Reagents"][rid]
 			drink_recipes[Rp]["Reagents"] -= rid
 			drink_recipes[Rp]["Reagents"][R_name] = amt
+		for(var/rid in drink_recipes[Rp]["Catalysts"])
+			var/datum/reagent/Rd = SSchemistry.chemical_reagents[rid]
+			if(!Rd) // Leaving this here in the event that if rd is ever invalid or there's a recipe issue, it'll be skipped and recipe dumps can still be ran.
+				log_runtime(EXCEPTION("Food \"[Rp]\" had an invalid RID: \"[rid]\"! Check your reagents list for a missing or mistyped reagent!"))
+				continue // This allows the dump to still continue, and it will skip the invalid recipes.
+			var/R_name = Rd.name
+			var/amt = drink_recipes[Rp]["Catalysts"][rid]
+			drink_recipes[Rp]["Catalysts"] -= rid
+			drink_recipes[Rp]["Catalysts"][R_name] = amt
 			
 	//We can also change the appliance to its proper name.
 	for(var/Rp in food_recipes)
@@ -212,6 +233,15 @@
 		if(pretty_rea != "")
 			html += "<li><b>Mix in:</b> [pretty_rea]</li>"
 
+		//For each catalyst
+		var/pretty_cat = ""
+		count = 0
+		for(var/cat in food_recipes[Rp]["Catalysts"])
+			pretty_cat += "[count == 0 ? "" : ", "][food_recipes[Rp]["Catalysts"][cat]]u [cat]"
+			count++
+		if(pretty_cat != "")
+			html += "<li><b>Catalysts:</b> [pretty_cat]</li>"
+
 		//Close ingredients
 		html += "</ul></td>"
 		//Close this row
@@ -249,6 +279,15 @@
 			count++
 		if(pretty_rea != "")
 			html += "<li><b>Mix together:</b> [pretty_rea]</li>"
+
+		//For each catalyst
+		var/pretty_cat = ""
+		count = 0
+		for(var/cat in drink_recipes[Rp]["Catalysts"])
+			pretty_cat += "[count == 0 ? "" : ", "][drink_recipes[Rp]["Catalysts"][cat]]u [cat]"
+			count++
+		if(pretty_cat != "")
+			html += "<li><b>Catalysts:</b> [pretty_cat]</li>"
 
 		html += "<li>Makes [drink_recipes[Rp]["ResAmt"]]u</li>"
 
