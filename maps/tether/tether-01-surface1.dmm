@@ -5338,7 +5338,7 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/north_stairs_one)
 "aiT" = (
-/obj/machinery/camera/network/civilian,
+/obj/machinery/camera/network/engineering_outpost,
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/tether/surfacebase/outside/outside1)
 "aiU" = (
@@ -15020,11 +15020,20 @@
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/tether/surfacebase/outside/outside1)
 "ayF" = (
-/obj/machinery/camera/network/civilian{
+/obj/structure/cable/heavyduty{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/camera/network/engineering_outpost{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/grass/sif/virgo3b,
-/area/tether/surfacebase/outside/outside1)
+/turf/simulated/floor/plating,
+/area/maintenance/lower/mining_eva)
 "ayG" = (
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_one_hall)
@@ -15041,20 +15050,9 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_one_hall)
 "ayK" = (
-/obj/structure/cable/heavyduty{
-	icon_state = "1-2"
-	},
-/obj/machinery/door/firedoor/glass,
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/machinery/camera/network/civilian{
-	dir = 4
-	},
+/obj/machinery/camera/network/engineering,
 /turf/simulated/floor/plating,
-/area/maintenance/lower/mining_eva)
+/area/engineering/atmos/processing)
 "ayL" = (
 /obj/machinery/space_heater,
 /obj/effect/floor_decal/industrial/outline/grey,
@@ -40559,7 +40557,7 @@ aIh
 aPr
 aPR
 aOR
-aQW
+ayK
 aRB
 aRT
 aSB
@@ -41189,7 +41187,7 @@ aad
 aad
 aad
 aad
-ayF
+ayD
 aad
 aad
 aad
@@ -41480,7 +41478,7 @@ ajF
 ajC
 aaj
 aib
-ayK
+ayF
 ajG
 ajG
 ajG
