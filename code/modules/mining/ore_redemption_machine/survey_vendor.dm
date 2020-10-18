@@ -6,11 +6,8 @@
 	density = TRUE
 	anchored = TRUE
 	circuit = /obj/item/weapon/circuitboard/exploration_equipment_vendor
-<<<<<<< HEAD
 	icon_deny = "exploration-deny" //VOREStation Edit
 	icon_vend = "exploration-vend" //VOREStation Add
-=======
-	icon_deny = "explore-deny"
 	prize_list = list(
 		new /datum/data/mining_equipment("1 Marker Beacon",				/obj/item/stack/marker_beacon,										1),
 		new /datum/data/mining_equipment("10 Marker Beacons",			/obj/item/stack/marker_beacon/ten,									10),
@@ -45,7 +42,6 @@
 		new /datum/data/mining_equipment("Defense Equipment - Steel Machete",	/obj/item/weapon/material/knife/machete,					50),
 		new /datum/data/mining_equipment("Survival Equipment - Insulated Poncho",	/obj/random/thermalponcho,								75)
 		)
->>>>>>> 9898fa3... Phoron bore utility improvements (#7680)
 
 /obj/machinery/mineral/equipment_vendor/survey/Initialize(mapload)
 	. = ..()
