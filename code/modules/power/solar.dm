@@ -24,13 +24,16 @@ GLOBAL_LIST_EMPTY(solars_list)
 	var/ndir = SOUTH // target dir
 	var/turn_angle = 0
 	var/obj/machinery/power/solar_control/control = null
+	var/glass_type = /obj/item/stack/material/glass
 
 /obj/machinery/power/solar/drain_power()
 	return -1
 
-/obj/machinery/power/solar/Initialize(mapload, obj/item/solar_assembly/S)
+/obj/machinery/power/solar/Initialize(mapload, glass_type)
 	. = ..()
-	Make(S)
+	if(glass_type == /obj/item/stack/material/glass/reinforced) //if the panel is in reinforced glass
+		health *= 2
+	update_icon()
 	connect_to_network()
 
 /obj/machinery/power/solar/Destroy()
@@ -50,28 +53,16 @@ GLOBAL_LIST_EMPTY(solars_list)
 		control.connected_panels.Remove(src)
 	control = null
 
-/obj/machinery/power/solar/proc/Make(var/obj/item/solar_assembly/S)
-	if(!S)
-		S = new /obj/item/solar_assembly(src)
-		S.glass_type = /obj/item/stack/material/glass
-		S.anchored = TRUE
-	S.loc = src
-	if(S.glass_type == /obj/item/stack/material/glass/reinforced) //if the panel is in reinforced glass
-		health *= 2 								 //this need to be placed here, because panels already on the map don't have an assembly linked to
-	update_icon()
-
-
-
 /obj/machinery/power/solar/attackby(obj/item/weapon/W, mob/user)
 
 	if(W.is_crowbar())
 		playsound(src, 'sound/machines/click.ogg', 50, 1)
 		user.visible_message("<span class='notice'>[user] begins to take the glass off the solar panel.</span>")
 		if(do_after(user, 50))
-			var/obj/item/solar_assembly/S = locate() in src
-			if(S)
-				S.loc = src.loc
-				S.give_glass()
+			var/obj/item/solar_assembly/S = new(loc)
+			S.anchored = TRUE
+			var/obj/item/stack/glass = new glass_type(loc)
+			glass.amount = 2
 			playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 			user.visible_message("<span class='notice'>[user] takes the glass off the solar panel.</span>")
 			qdel(src)
@@ -169,8 +160,8 @@ GLOBAL_LIST_EMPTY(solars_list)
 	return
 
 
-/obj/machinery/power/solar/fake/New(var/turf/loc, var/obj/item/solar_assembly/S)
-	..(loc, S, 0)
+/obj/machinery/power/solar/fake/New(var/turf/loc, var/glass_type)
+	..(loc, glass_type, 0)
 
 /obj/machinery/power/solar/fake/process()
 	. = PROCESS_KILL
@@ -213,19 +204,10 @@ GLOBAL_LIST_EMPTY(solars_list)
 	w_class = ITEMSIZE_LARGE // Pretty big!
 	anchored = 0
 	var/tracker = 0
-	var/glass_type = null
 
 /obj/item/solar_assembly/attack_hand(var/mob/user)
 	if(!anchored || !isturf(loc)) // You can't pick it up
 		..()
-
-// Give back the glass type we were supplied with
-/obj/item/solar_assembly/proc/give_glass()
-	if(glass_type)
-		var/obj/item/stack/material/S = new glass_type(src.loc)
-		S.amount = 2
-		glass_type = null
-
 
 /obj/item/solar_assembly/attackby(var/obj/item/weapon/W, var/mob/user)
 	if (!isturf(loc))
@@ -246,13 +228,12 @@ GLOBAL_LIST_EMPTY(solars_list)
 		if(istype(W, /obj/item/stack/material) && (W.get_material_name() == "glass" || W.get_material_name() == "rglass"))
 			var/obj/item/stack/material/S = W
 			if(S.use(2))
-				glass_type = W.type
 				playsound(src, 'sound/machines/click.ogg', 50, 1)
 				user.visible_message("<span class='notice'>[user] places the glass on the solar assembly.</span>")
 				if(tracker)
-					new /obj/machinery/power/tracker(get_turf(src), src)
+					new /obj/machinery/power/tracker(get_turf(src), W.type)
 				else
-					new /obj/machinery/power/solar(get_turf(src), src)
+					new /obj/machinery/power/solar(get_turf(src), W.type)
 				qdel(src)
 			else
 				to_chat(user, "<span class='warning'>You need two sheets of glass to put them into a solar panel.</span>")
