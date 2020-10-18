@@ -32,6 +32,7 @@
 						"Reagents" = R.reagents,
 						"Fruit" = R.fruit,
 						"Ingredients" = R.items,
+						"Coating" = R.coating,
 						"Appliance" = R.appliance,
 						"Image" = result_icon
 						)
@@ -54,8 +55,11 @@
 	//Items needs further processing into human-readability.
 	for(var/Rp in food_recipes)
 		var/working_ing_list = list()
+		food_recipes[Rp]["has_coatable_items"] = FALSE
 		for(var/I in food_recipes[Rp]["Ingredients"])
 			var/atom/ing = new I()
+			if(istype(ing, /obj/item/weapon/reagent_containers/food/snacks)) // only subtypes of this have a coating variable and are checked for it (fruit are a subtype of this, so there's a check for them too later)
+				food_recipes[Rp]["has_coatable_items"] = TRUE
 
 			//So now we add something like "Bread" = 3
 			if(ing.name in working_ing_list)
@@ -64,6 +68,8 @@
 			else
 				working_ing_list[ing.name] = 1
 
+		if(LAZYLEN(food_recipes[Rp]["Fruit"]))
+			food_recipes[Rp]["has_coatable_items"] = TRUE
 		food_recipes[Rp]["Ingredients"] = working_ing_list
 
 	//Reagents can be resolved to nicer names as well
@@ -173,6 +179,20 @@
 			count++
 		if(pretty_ing != "")
 			html += "<li><b>Ingredients:</b> [pretty_ing]</li>"
+
+		//Coating
+		if(!food_recipes[Rp]["has_coatable_items"])
+			html += "<span class = \"coating coating_not_applicable\"><li><b>Coating:</b> N/A, no coatable items</li></span>" 
+			// css can be used to style or hide these depending on the class.  This has two classes
+			// coating and coating_not_applicable, which can each have styles applied. 
+		else if(food_recipes[Rp]["Coating"] == -1)
+			html += "<span class = \"coating coating_any_coating\"><li><b>Coating:</b> Optionally, any coating</li></span>"
+		else if(isnull(food_recipes[Rp]["Coating"]))
+			html += "<span class = \"coating coating_uncoated\"><li><b>Coating:</b> Must be uncoated</li></span>"
+		else
+			var/coatingtype = food_recipes[Rp]["Coating"]
+			var/datum/reagent/coating = new coatingtype()
+			html += "<span class = \"coating coating_specific_coating\"><li><b>Coating:</b> [coating.name]</li></span>"
 
 		//For each fruit
 		var/pretty_fru = ""
