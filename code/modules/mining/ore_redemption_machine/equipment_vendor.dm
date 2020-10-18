@@ -17,10 +17,6 @@
 	var/icon_vend = "adh-tool-vend"
 	circuit = /obj/item/weapon/circuitboard/mining_equipment_vendor
 	var/obj/item/weapon/card/id/inserted_id
-<<<<<<< HEAD
-	var/list/prize_list // Initialized just below! (if you're wondering why - check CONTRIBUTING.md, look for: "hidden" init proc)
-	var/dirty_items = FALSE // Used to refresh the static/redundant data in case the machine gets VV'd
-=======
 	var/list/prize_list = list(
 		new /datum/data/mining_equipment("1 Marker Beacon",				/obj/item/stack/marker_beacon,										10),
 		new /datum/data/mining_equipment("10 Marker Beacons",			/obj/item/stack/marker_beacon/ten,									100),
@@ -66,7 +62,6 @@
 		new /datum/data/mining_equipment("Defense Equipment - Sentry Drone Deployer",/obj/item/weapon/grenade/spawnergrenade/ward,			1500),
 		new /datum/data/mining_equipment("Defense Equipment - Steel Machete",	/obj/item/weapon/material/knife/machete,					500)
 		)
->>>>>>> 9898fa3... Phoron bore utility improvements (#7680)
 
 /datum/data/mining_equipment
 	var/equipment_name = "generic"
