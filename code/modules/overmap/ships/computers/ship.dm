@@ -18,15 +18,10 @@ somewhere on that shuttle. Subtypes of these can be then used to perform ship ov
 	whitelisted_types = L
 
 // A late init operation called in SSshuttles, used to attach the thing to the right ship.
-<<<<<<< HEAD
-/obj/machinery/computer/ship/proc/attempt_hook_up(obj/effect/overmap/visitable/ship/sector)
-	if(!istype(sector))
-		return
-=======
+
 /obj/machinery/computer/ship/proc/attempt_hook_up(obj/effect/overmap/visitable/sector)
 	if(!sector || !(sector.type in whitelisted_types))
 		return FALSE
->>>>>>> 60aec77... Station overmap sensors should connect automatically now (#7547)
 	if(sector.check_ownership(src))
 		linked = sector
 		return TRUE
