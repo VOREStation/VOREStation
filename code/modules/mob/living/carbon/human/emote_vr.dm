@@ -254,3 +254,10 @@
 	set desc = "Hide your wings, or show them if you already hid them."
 	wings_hidden = !wings_hidden
 	update_wing_showing()
+	var/message = ""
+	if(!wings_hidden)
+		message = "reveals their wings!"
+	else
+		message = "hides their wings."
+	visible_message("[src] [message]")
+	
