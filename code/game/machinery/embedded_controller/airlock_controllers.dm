@@ -14,11 +14,8 @@
 	var/tag_secure = 0
 	var/list/dummy_terminals = list()
 	var/cycle_to_external_air = 0
-<<<<<<< HEAD
 	valid_actions = list("cycle_ext", "cycle_int", "force_ext", "force_int", "abort", "purge", "secure")
-=======
 	layer = ABOVE_WINDOW_LAYER
->>>>>>> 9611ae9... Makes wall-mounted machines layer above windows (#7708)
 
 /obj/machinery/embedded_controller/radio/airlock/Destroy()
 	// TODO - Leshana - Implement dummy terminals
