@@ -9,7 +9,7 @@
 		return image(wing_s)
 
 	//If you have custom wings selected
-	if((wing_style && !(wear_suit && wear_suit.flags_inv & HIDETAIL)) && wings_hidden)
+	if((wing_style && !(wear_suit && wear_suit.flags_inv & HIDETAIL)) && !wings_hidden)
 		var/icon/wing_s = new/icon("icon" = wing_style.icon, "icon_state" = flapping && wing_style.ani_state ? wing_style.ani_state : wing_style.icon_state)
 		if(wing_style.do_colouration)
 			wing_s.Blend(rgb(src.r_wing, src.g_wing, src.b_wing), wing_style.color_blend_mode)
