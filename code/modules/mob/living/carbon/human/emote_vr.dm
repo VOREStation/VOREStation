@@ -247,3 +247,10 @@
 	set desc = "Switch tail layer on top."
 	tail_alt = !tail_alt
 	update_tail_showing()
+	
+/mob/living/carbon/human/verb/hide_wings_vr()
+	set name = "Show/Hide wings"
+	set category = "IC"
+	set desc = "Hide your wings, or show them if you already hid them."
+	wings_hidden = !wings_hidden
+	update_wing_showing()
