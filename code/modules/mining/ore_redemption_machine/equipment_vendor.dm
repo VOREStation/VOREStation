@@ -62,6 +62,7 @@
 		new /datum/data/mining_equipment("Defense Equipment - Sentry Drone Deployer",/obj/item/weapon/grenade/spawnergrenade/ward,			1500),
 		new /datum/data/mining_equipment("Defense Equipment - Steel Machete",	/obj/item/weapon/material/knife/machete,					500)
 		)
+	var/dirty_items = FALSE // Used to refresh the static/redundant data in case the machine gets VV'd
 
 /datum/data/mining_equipment
 	var/equipment_name = "generic"
