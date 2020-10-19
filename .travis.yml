@@ -16,6 +16,7 @@ addons:
       - libgcc1:i386
       - libstdc++6:i386
       - libssl-dev:i386
+      - zlib1g:i386
 
 before_install:
   - chmod -R +x ./tools/travis
