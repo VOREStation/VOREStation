@@ -6009,6 +6009,42 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/abandonedlibraryconference)
+"akV" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/device/radio/intercom{
+	dir = 1;
+	pixel_y = 24;
+	req_access = list()
+	},
+/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
+/turf/simulated/floor/tiled,
+/area/engineering/engine_eva)
+"akW" = (
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_x = 0;
+	pixel_y = 24
+	},
+/obj/structure/cable/green{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/structure/table/reinforced,
+/obj/item/device/gps/engineering{
+	pixel_x = 3;
+	pixel_y = 6
+	},
+/obj/item/device/gps/engineering{
+	pixel_y = 3
+	},
+/obj/item/device/gps/engineering{
+	pixel_x = -3
+	},
+/turf/simulated/floor/tiled,
+/area/engineering/engine_eva)
 "akX" = (
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 8
@@ -6021,6 +6057,21 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/hallway)
+"akY" = (
+/obj/structure/table/reinforced,
+/obj/item/weapon/storage/briefcase/inflatable{
+	pixel_x = 3;
+	pixel_y = 6
+	},
+/obj/item/weapon/storage/briefcase/inflatable{
+	pixel_y = 3
+	},
+/obj/item/weapon/storage/briefcase/inflatable{
+	pixel_x = -3;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled,
+/area/engineering/engine_eva)
 "akZ" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/engineering{
@@ -6091,6 +6142,13 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/gateway)
+"alf" = (
+/obj/structure/table/reinforced,
+/obj/machinery/camera/network/engineering,
+/obj/item/device/suit_cooling_unit,
+/obj/item/device/suit_cooling_unit,
+/turf/simulated/floor/tiled,
+/area/engineering/engine_eva)
 "alg" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/glass{
@@ -6446,6 +6504,31 @@
 "alN" = (
 /turf/simulated/wall/r_wall,
 /area/maintenance/abandonedlibrary)
+"alO" = (
+/obj/structure/table/reinforced,
+/obj/machinery/cell_charger,
+/obj/item/weapon/cell/high{
+	charge = 100;
+	maxcharge = 15000
+	},
+/obj/item/weapon/tool/wrench,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/item/weapon/cell/high{
+	charge = 100;
+	maxcharge = 15000
+	},
+/obj/item/weapon/cell/high{
+	charge = 100;
+	maxcharge = 15000
+	},
+/obj/item/weapon/cell/high{
+	charge = 100;
+	maxcharge = 15000
+	},
+/turf/simulated/floor/tiled,
+/area/engineering/workshop)
 "alP" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -6491,6 +6574,13 @@
 /area/storage/tools)
 "alT" = (
 /turf/simulated/wall,
+/area/storage/emergency_storage/emergency4)
+"alU" = (
+/obj/machinery/space_heater,
+/obj/machinery/camera/network/engineering{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
 /area/storage/emergency_storage/emergency4)
 "alW" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
@@ -6567,28 +6657,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/hallway)
-"amd" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/table/reinforced,
-/obj/item/device/radio/intercom{
-	dir = 1;
-	pixel_y = 24;
-	req_access = list()
-	},
-/obj/item/device/gps/engineering{
-	pixel_x = 3;
-	pixel_y = 6
-	},
-/obj/item/device/gps/engineering{
-	pixel_y = 3
-	},
-/obj/item/device/gps/engineering{
-	pixel_x = -3
-	},
-/turf/simulated/floor/tiled,
-/area/engineering/engine_eva)
 "ame" = (
 /obj/effect/landmark{
 	name = "lightsout"
@@ -7661,10 +7729,6 @@
 	},
 /turf/simulated/floor,
 /area/engineering/atmos/backup)
-"aoi" = (
-/obj/machinery/space_heater,
-/turf/simulated/floor/plating,
-/area/storage/emergency_storage/emergency4)
 "aoj" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/supply{
 	dir = 8
@@ -11577,12 +11641,6 @@
 /obj/effect/floor_decal/corner/blue/bordercorner2,
 /turf/simulated/floor/tiled,
 /area/bridge/secondary/hallway)
-"avs" = (
-/obj/structure/table/reinforced,
-/obj/item/device/suit_cooling_unit,
-/obj/item/device/suit_cooling_unit,
-/turf/simulated/floor/tiled,
-/area/engineering/engine_eva)
 "avt" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -15029,31 +15087,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/spacedorm4)
-"aBp" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "north bump";
-	pixel_x = 0;
-	pixel_y = 24
-	},
-/obj/structure/cable/green{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/obj/structure/table/reinforced,
-/obj/item/weapon/storage/briefcase/inflatable{
-	pixel_x = 3;
-	pixel_y = 6
-	},
-/obj/item/weapon/storage/briefcase/inflatable{
-	pixel_y = 3
-	},
-/obj/item/weapon/storage/briefcase/inflatable{
-	pixel_x = -3;
-	pixel_y = 0
-	},
-/turf/simulated/floor/tiled,
-/area/engineering/engine_eva)
 "aBq" = (
 /obj/machinery/camera/network/engineering{
 	dir = 8
@@ -15467,15 +15500,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
-"aCf" = (
-/obj/structure/table/reinforced,
-/obj/item/weapon/cell/high{
-	charge = 100;
-	maxcharge = 15000
-	},
-/obj/machinery/camera/network/engineering,
-/turf/simulated/floor/tiled,
-/area/engineering/engine_eva)
 "aCg" = (
 /obj/machinery/camera/network/engineering{
 	dir = 4
@@ -15777,27 +15801,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/station/dock_two)
-"aCP" = (
-/obj/structure/table/reinforced,
-/obj/machinery/cell_charger,
-/obj/item/weapon/cell/high{
-	charge = 100;
-	maxcharge = 15000
-	},
-/obj/item/weapon/tool/wrench,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/item/weapon/cell/high{
-	charge = 100;
-	maxcharge = 15000
-	},
-/obj/item/weapon/cell/high{
-	charge = 100;
-	maxcharge = 15000
-	},
-/turf/simulated/floor/tiled,
-/area/engineering/workshop)
 "aCQ" = (
 /obj/structure/table/reinforced,
 /obj/machinery/recharger,
@@ -29977,7 +29980,7 @@ afT
 asy
 axG
 aue
-amd
+akV
 ajB
 ajC
 aQv
@@ -30119,7 +30122,7 @@ aqM
 aqM
 aqM
 aqM
-aBp
+akW
 aCE
 aEf
 aFX
@@ -30403,7 +30406,7 @@ avh
 aen
 axP
 aqM
-avs
+akY
 auA
 auA
 cal
@@ -30545,7 +30548,7 @@ avg
 aen
 axO
 aqM
-aCf
+alf
 aJw
 aJw
 cak
@@ -31398,7 +31401,7 @@ atA
 axU
 aen
 aen
-aCP
+alO
 aNa
 aRy
 aqN
@@ -34666,7 +34669,7 @@ azJ
 alT
 amE
 aFf
-aoi
+alU
 alT
 aes
 aeP
