@@ -300,10 +300,6 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/salamander_head)
 "fh" = (
-/obj/structure/closet/walllocker{
-	name = "Personal Locker";
-	pixel_y = 32
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 8
 	},
@@ -312,6 +308,9 @@
 /obj/item/clothing/under/utility,
 /obj/item/clothing/ears/earmuffs,
 /obj/item/clothing/head/soft/black,
+/obj/structure/closet/walllocker_double/north{
+	name = "Uniform Locker"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/salamander)
 "fn" = (
@@ -383,12 +382,11 @@
 /obj/item/weapon/tank/air,
 /obj/item/clothing/suit/space/void/refurb,
 /obj/item/clothing/head/helmet/space/void/refurb,
-/obj/structure/closet/walllocker{
-	name = "Voidsuit Locker";
-	pixel_y = 32
-	},
 /obj/structure/handrail,
 /obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/structure/closet/walllocker_double/north{
+	name = "Voidsuit Locker"
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/salamander)
 "gl" = (
@@ -477,10 +475,6 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/salamander)
 "hn" = (
-/obj/structure/closet/walllocker{
-	name = "Personal Locker";
-	pixel_y = 32
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 8
 	},
@@ -492,6 +486,9 @@
 /obj/item/clothing/under/utility,
 /obj/item/clothing/ears/earmuffs,
 /obj/item/clothing/head/soft/black,
+/obj/structure/closet/walllocker_double/north{
+	name = "Uniform Locker"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/salamander)
 "hp" = (
@@ -657,11 +654,6 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
-/obj/structure/closet/walllocker{
-	dir = 1;
-	name = "Cargo Locker";
-	pixel_y = -32
-	},
 /obj/structure/handrail{
 	dir = 1
 	},
@@ -678,6 +670,9 @@
 /obj/random/drinkbottle,
 /obj/random/drinkbottle,
 /obj/random/snack,
+/obj/structure/closet/walllocker_double/south{
+	name = "Storage Locker"
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/salamander)
 "jT" = (
@@ -907,11 +902,6 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
-/obj/structure/closet/walllocker{
-	dir = 1;
-	name = "Cargo Locker";
-	pixel_y = -32
-	},
 /obj/structure/handrail{
 	dir = 1
 	},
@@ -926,14 +916,12 @@
 /obj/random/drinkbottle,
 /obj/random/drinkbottle,
 /obj/random/snack,
+/obj/structure/closet/walllocker_double/south{
+	name = "Storage Locker"
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/salamander)
 "mJ" = (
-/obj/structure/closet/walllocker{
-	dir = 1;
-	name = "Cargo Locker";
-	pixel_y = -32
-	},
 /obj/structure/handrail{
 	dir = 1
 	},
@@ -948,14 +936,12 @@
 /obj/random/drinkbottle,
 /obj/random/drinkbottle,
 /obj/random/snack,
+/obj/structure/closet/walllocker_double/south{
+	name = "Storage Locker"
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/salamander)
 "mO" = (
-/obj/structure/closet/walllocker{
-	dir = 1;
-	name = "Cargo Locker";
-	pixel_y = -32
-	},
 /obj/machinery/light,
 /obj/random/firstaid,
 /obj/random/firstaid,
@@ -968,6 +954,9 @@
 /obj/random/drinkbottle,
 /obj/random/drinkbottle,
 /obj/random/snack,
+/obj/structure/closet/walllocker_double/south{
+	name = "Storage Locker"
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/salamander)
 "mR" = (
@@ -1169,15 +1158,12 @@
 /area/shuttle/salamander_q2)
 "qu" = (
 /obj/structure/table/steel,
-/obj/structure/closet/walllocker{
-	dir = 1;
-	pixel_y = -32
-	},
 /obj/machinery/light_switch{
 	dir = 8;
 	pixel_x = -22
 	},
 /obj/random/pizzabox,
+/obj/structure/closet/walllocker_double/kitchen/south,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/salamander_galley)
 "qx" = (
@@ -1314,11 +1300,6 @@
 /turf/simulated/floor/plating,
 /area/shuttle/salamander)
 "xL" = (
-/obj/structure/closet/walllocker{
-	dir = 1;
-	name = "Personal Locker";
-	pixel_y = -32
-	},
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -1332,14 +1313,12 @@
 /obj/item/clothing/under/utility,
 /obj/item/clothing/ears/earmuffs,
 /obj/item/clothing/head/soft/black,
+/obj/structure/closet/walllocker_double/south{
+	name = "Uniform Locker"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/salamander)
 "yv" = (
-/obj/structure/closet/walllocker{
-	dir = 1;
-	name = "Personal Locker";
-	pixel_y = -32
-	},
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -1354,6 +1333,9 @@
 /obj/item/clothing/under/utility,
 /obj/item/clothing/ears/earmuffs,
 /obj/item/clothing/head/soft/black,
+/obj/structure/closet/walllocker_double/south{
+	name = "Uniform Locker"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/salamander)
 "zO" = (
@@ -1403,10 +1385,6 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/salamander_q2)
 "Bf" = (
-/obj/structure/closet/walllocker{
-	name = "Cargo Locker";
-	pixel_y = 32
-	},
 /obj/machinery/light{
 	dir = 1
 	},
@@ -1422,6 +1400,9 @@
 /obj/random/drinksoft,
 /obj/random/drinksoft,
 /obj/random/snack,
+/obj/structure/closet/walllocker_double/north{
+	name = "Storage Locker"
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/salamander)
 "BW" = (
@@ -1527,16 +1508,14 @@
 /obj/item/weapon/tank/air,
 /obj/item/clothing/suit/space/void/refurb,
 /obj/item/clothing/head/helmet/space/void/refurb,
-/obj/structure/closet/walllocker{
-	dir = 1;
-	name = "Voidsuit Locker";
-	pixel_y = -32
-	},
 /obj/structure/handrail{
 	dir = 1
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
+	},
+/obj/structure/closet/walllocker_double/south{
+	name = "Voidsuit Locker"
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/salamander)
@@ -1597,10 +1576,6 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/salamander)
 "KX" = (
-/obj/structure/closet/walllocker{
-	name = "Cargo Locker";
-	pixel_y = 32
-	},
 /obj/structure/handrail,
 /obj/random/tech_supply/nofail,
 /obj/random/tech_supply/nofail,
@@ -1614,6 +1589,9 @@
 /obj/random/drinksoft,
 /obj/random/drinksoft,
 /obj/random/snack,
+/obj/structure/closet/walllocker_double/north{
+	name = "Storage Locker"
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/salamander)
 "Lf" = (
@@ -1727,10 +1705,6 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
-/obj/structure/closet/walllocker{
-	name = "Cargo Locker";
-	pixel_y = 32
-	},
 /obj/structure/handrail,
 /obj/random/tech_supply/component/nofail,
 /obj/random/tech_supply/component/nofail,
@@ -1744,6 +1718,9 @@
 /obj/random/drinksoft,
 /obj/random/drinksoft,
 /obj/random/snack,
+/obj/structure/closet/walllocker_double/north{
+	name = "Storage Locker"
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/salamander)
 "RO" = (
@@ -1813,11 +1790,6 @@
 /turf/simulated/wall/shull,
 /area/shuttle/salamander_head)
 "Tl" = (
-/obj/structure/closet/walllocker{
-	dir = 1;
-	name = "Voidsuit Locker";
-	pixel_y = -32
-	},
 /obj/item/device/suit_cooling_unit,
 /obj/item/weapon/tank/air,
 /obj/item/clothing/suit/space/void/refurb,
@@ -1833,6 +1805,9 @@
 	},
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
+	},
+/obj/structure/closet/walllocker_double/south{
+	name = "Voidsuit Locker"
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/salamander)
@@ -1933,10 +1908,6 @@
 /turf/simulated/floor/plating,
 /area/shuttle/salamander)
 "Xc" = (
-/obj/structure/closet/walllocker{
-	name = "Voidsuit Locker";
-	pixel_y = 32
-	},
 /obj/item/device/suit_cooling_unit,
 /obj/item/weapon/tank/air,
 /obj/item/clothing/suit/space/void/refurb,
@@ -1951,15 +1922,14 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
+/obj/structure/closet/walllocker_double/north{
+	name = "Voidsuit Locker"
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/salamander)
 "Xn" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
-	},
-/obj/structure/closet/walllocker{
-	name = "Cargo Locker";
-	pixel_y = 32
 	},
 /obj/structure/handrail,
 /obj/random/tech_supply/nofail,
@@ -1974,6 +1944,9 @@
 /obj/random/drinksoft,
 /obj/random/drinksoft,
 /obj/random/snack,
+/obj/structure/closet/walllocker_double/north{
+	name = "Storage Locker"
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/salamander)
 "Xr" = (
