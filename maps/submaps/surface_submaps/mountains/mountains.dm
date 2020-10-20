@@ -25,6 +25,7 @@
 #include "vault3.dmm"
 #include "vault4.dmm"
 #include "vault5.dmm"
+#include "vault6.dmm"
 #include "IceCave1A.dmm"
 #include "IceCave1B.dmm"
 #include "IceCave1C.dmm"

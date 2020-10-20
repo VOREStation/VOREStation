@@ -603,6 +603,19 @@ obj/item/clothing/under/dress/yellowswoop
 	flags_inv = HIDESHOES
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 
+/obj/item/clothing/under/wedding/floofdress
+	name = "floofy dress"
+	desc = "A lovely floofed out dress for formal occasions. Comes in many colors!"
+	icon_state = "floofdress"
+	flags_inv = HIDESHOES
+	index = 1
+
+/obj/item/clothing/under/wedding/whitegown
+	name = "white gown"
+	desc = "A elegant white gown with accents of sheer mesh."
+	icon_state = "whitegown"
+	index = 1
+
 /*
 Uniforms and such
 */
@@ -814,6 +827,24 @@ Uniforms and such
 	name = "cyberpunk strapped harness"
 	desc = "A cyberpunk styled harness and pants. Perfect for your dystopian future."
 	icon_state = "cyberhell"
+	index = 1
+
+/obj/item/clothing/under/blackngold
+	name = "black and gold gown"
+	desc = "A black and gold gown. You get the impression this is typically worn for religious purposes."
+	icon_state = "blackngold"
+	index = 1
+
+/obj/item/clothing/under/sheerblue
+	name = "sheer blue dress"
+	desc = "An entirely sheer blue dress. Best worn with something underneath!"
+	icon_state = "sheerblue"
+	index = 1
+
+/obj/item/clothing/under/disheveled
+	name = "disheveled suit"
+	desc = "What might pass as well maintained formal attire. If you're blind."
+	icon_state = "disheveled"
 	index = 1
 
 /*

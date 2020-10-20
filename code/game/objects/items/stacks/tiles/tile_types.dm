@@ -41,6 +41,12 @@
 	no_variants = FALSE
 	drop_sound = 'sound/items/drop/herb.ogg'
 	pickup_sound = 'sound/items/pickup/herb.ogg'
+
+/obj/item/stack/tile/grass/sif
+	name = "sivian grass tile"
+	singular_name = "sivian grass floor tile"
+	desc = "A patch of grass like those that decorate the plains of Sif."
+
 /*
  * Wood
  */

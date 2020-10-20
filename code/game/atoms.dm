@@ -210,6 +210,7 @@
 	if(user.client?.prefs.examine_text_mode == EXAMINE_MODE_SWITCH_TO_PANEL)
 		user.client.statpanel = "Examine" // Switch to stat panel
 
+	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, output)
 	return output
 
 // Don't make these call bicon or anything, these are what bicon uses. They need to return an icon.
@@ -223,6 +224,7 @@
 
 //called to set the atom's dir and used to add behaviour to dir-changes
 /atom/proc/set_dir(new_dir)
+	SEND_SIGNAL(src, COMSIG_ATOM_DIR_CHANGE, dir, new_dir)
 	. = new_dir != dir
 	dir = new_dir
 
@@ -631,3 +633,17 @@
 
 /atom/proc/speech_bubble(bubble_state = "", bubble_loc = src, list/bubble_recipients = list())
 	return
+
+/atom/Entered(atom/movable/AM, atom/old_loc)
+	. = ..()
+	GLOB.moved_event.raise_event(AM, old_loc, AM.loc)
+	SEND_SIGNAL(src, COMSIG_ATOM_ENTERED, AM, old_loc)
+
+/atom/Exit(atom/movable/AM, atom/new_loc)
+	. = ..()
+	if(SEND_SIGNAL(src, COMSIG_ATOM_EXIT, AM, new_loc) & COMPONENT_ATOM_BLOCK_EXIT)
+		return FALSE
+
+/atom/Exited(atom/movable/AM, atom/new_loc)
+	. = ..()
+	SEND_SIGNAL(src, COMSIG_ATOM_EXITED, AM, new_loc)

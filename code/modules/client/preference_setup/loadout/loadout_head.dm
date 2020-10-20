@@ -383,3 +383,7 @@
 /datum/gear/head/rose_crown
 	display_name = "rose crown"
 	path = /obj/item/clothing/head/rose_crown
+
+/datum/gear/head/blackngoldheaddress
+	display_name = "black and gold headdress"
+	path = /obj/item/clothing/head/blackngoldheaddress
