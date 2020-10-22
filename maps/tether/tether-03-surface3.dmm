@@ -16061,12 +16061,8 @@
 /turf/simulated/floor/tiled,
 /area/rnd/research/testingrange)
 "aBJ" = (
-/obj/structure/kitchenspike,
-/obj/machinery/alarm/freezer{
-	dir = 1;
-	pixel_y = -25
-	},
-/turf/simulated/floor/tiled/freezer,
+/obj/structure/closet/secure_closet/freezer/meat,
+/turf/simulated/floor/tiled/freezer/cold,
 /area/crew_quarters/freezer)
 "aBK" = (
 /obj/machinery/door/firedoor/glass,
@@ -26267,8 +26263,8 @@
 	},
 /area/hallway/lower/third_south)
 "aUq" = (
-/obj/structure/closet/secure_closet/freezer/meat,
-/turf/simulated/floor/tiled/freezer,
+/obj/machinery/icecream_vat,
+/turf/simulated/floor/tiled/freezer/cold,
 /area/crew_quarters/freezer)
 "aUr" = (
 /obj/structure/disposalpipe/segment{
@@ -30122,8 +30118,11 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
 "baI" = (
-/obj/machinery/icecream_vat,
-/turf/simulated/floor/tiled/freezer,
+/obj/machinery/firealarm{
+	layer = 3.3;
+	pixel_y = 26
+	},
+/turf/simulated/floor/tiled/freezer/cold,
 /area/crew_quarters/freezer)
 "baJ" = (
 /obj/structure/cable{
@@ -30682,11 +30681,16 @@
 /turf/simulated/floor/tiled/eris/cafe,
 /area/hydroponics)
 "bbJ" = (
-/obj/machinery/firealarm{
-	layer = 3.3;
-	pixel_y = 26
+/obj/machinery/power/apc{
+	cell_type = /obj/item/weapon/cell/super;
+	dir = 1;
+	name = "north bump";
+	pixel_y = 24
 	},
-/turf/simulated/floor/tiled/freezer,
+/obj/structure/cable/green{
+	icon_state = "0-2"
+	},
+/turf/simulated/floor/tiled/freezer/cold,
 /area/crew_quarters/freezer)
 "bbK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -31157,16 +31161,11 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
 "bcv" = (
-/obj/machinery/power/apc{
-	cell_type = /obj/item/weapon/cell/super;
-	dir = 1;
-	name = "north bump";
-	pixel_y = 24
+/obj/machinery/gibber,
+/obj/machinery/light{
+	dir = 1
 	},
-/obj/structure/cable/green{
-	icon_state = "0-2"
-	},
-/turf/simulated/floor/tiled/freezer,
+/turf/simulated/floor/tiled/freezer/cold,
 /area/crew_quarters/freezer)
 "bcw" = (
 /obj/machinery/light,
@@ -31576,7 +31575,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 6
 	},
-/turf/simulated/floor/tiled/freezer,
+/turf/simulated/floor/tiled/freezer/cold,
 /area/crew_quarters/freezer)
 "bdd" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -31962,11 +31961,15 @@
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
 "bdR" = (
-/obj/structure/kitchenspike,
-/obj/machinery/camera/network/civilian{
-	dir = 9
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
 	},
-/turf/simulated/floor/tiled/freezer,
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/freezer/cold,
 /area/crew_quarters/freezer)
 "bdS" = (
 /obj/structure/cable/green{
@@ -31983,15 +31986,18 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/freezer)
 "bdT" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 5
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
 	},
-/turf/simulated/floor/tiled/freezer,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/freezer/cold,
 /area/crew_quarters/freezer)
 "bdU" = (
 /obj/machinery/firealarm{
@@ -32490,11 +32496,18 @@
 /turf/simulated/floor/grass,
 /area/hydroponics)
 "beP" = (
-/obj/machinery/gibber,
-/obj/machinery/light{
-	dir = 1
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
 	},
-/turf/simulated/floor/tiled/freezer,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/mob/living/simple_mob/animal/goat{
+	name = "Spike"
+	},
+/turf/simulated/floor/tiled/freezer/cold,
 /area/crew_quarters/freezer)
 "beQ" = (
 /turf/simulated/wall/rplastitanium,
@@ -32564,15 +32577,11 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/servicebackroom)
 "bfa" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 4
+/obj/structure/kitchenspike,
+/obj/machinery/camera/network/civilian{
+	dir = 9
 	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/tiled/freezer,
+/turf/simulated/floor/tiled/freezer/cold,
 /area/crew_quarters/freezer)
 "bfb" = (
 /obj/machinery/door/airlock/freezer{
@@ -32747,32 +32756,12 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/servicebackroom)
 "bfr" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 6
-	},
-/turf/simulated/floor/tiled/freezer,
+/obj/structure/closet/crate/freezer,
+/turf/simulated/floor/tiled/freezer/cold,
 /area/crew_quarters/freezer)
 "bfs" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
-	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/mob/living/simple_mob/animal/goat{
-	name = "Spike"
-	},
-/turf/simulated/floor/tiled/freezer,
+/obj/machinery/light,
+/turf/simulated/floor/tiled/freezer/cold,
 /area/crew_quarters/freezer)
 "bft" = (
 /obj/machinery/light,
@@ -32809,12 +32798,23 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/servicebackroom)
 "bfw" = (
-/obj/structure/closet/crate/freezer,
-/turf/simulated/floor/tiled/freezer,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/freezer/cold,
 /area/crew_quarters/freezer)
 "bfx" = (
-/obj/machinery/light,
-/turf/simulated/floor/tiled/freezer,
+/obj/machinery/button/remote/blast_door{
+	id = "freezer";
+	name = "Freezer Shutter Control";
+	pixel_y = -24
+	},
+/turf/simulated/floor/tiled/freezer/cold,
 /area/crew_quarters/freezer)
 "bfy" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -33073,12 +33073,12 @@
 /turf/simulated/floor/tiled/eris/cafe,
 /area/hydroponics)
 "bgb" = (
-/obj/machinery/button/remote/blast_door{
-	id = "freezer";
-	name = "Freezer Shutter Control";
-	pixel_y = -24
+/obj/structure/kitchenspike,
+/obj/machinery/alarm/freezer{
+	dir = 1;
+	pixel_y = -25
 	},
-/turf/simulated/floor/tiled/freezer,
+/turf/simulated/floor/tiled/freezer/cold,
 /area/crew_quarters/freezer)
 "bgc" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
@@ -53282,9 +53282,9 @@ ati
 aFz
 asu
 aoJ
-aUq
+aBJ
 bdc
-bfw
+bfr
 aoJ
 beD
 bfV
@@ -53424,9 +53424,9 @@ aty
 aGt
 aKw
 aoJ
-baI
-bfa
-bfx
+aUq
+bdR
+bfs
 aoJ
 bfk
 bgi
@@ -53566,9 +53566,9 @@ aum
 aJw
 asu
 aoJ
-bbJ
-bfr
+baI
 bdT
+bfw
 beq
 bes
 bcB
@@ -53708,9 +53708,9 @@ awq
 aJw
 asu
 aoJ
-bcv
-bfs
-bgb
+bbJ
+beP
+bfx
 aoJ
 beZ
 bfq
@@ -53850,9 +53850,9 @@ axv
 bcF
 bdI
 aoJ
-beP
-bdR
-aBJ
+bcv
+bfa
+bgb
 aoJ
 bbr
 bcB
