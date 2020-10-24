@@ -72,9 +72,13 @@
 #include "code\__defines\process_scheduler.dm"
 #include "code\__defines\qdel.dm"
 #include "code\__defines\research.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\__defines\roguemining_vr.dm"
 #include "code\__defines\rust_g.dm"
 #include "code\__defines\shields.dm"
+=======
+#include "code\__defines\rust_g.dm"
+>>>>>>> 3b80f70... Merge pull request #7744 from ShadowLarkens/chatlog_rustg_improve:polaris.dme
 #include "code\__defines\shuttle.dm"
 #include "code\__defines\sound.dm"
 #include "code\__defines\species_languages.dm"
