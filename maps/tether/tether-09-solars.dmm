@@ -8,6 +8,7 @@
 "ac" = (
 /obj/machinery/power/apc{
 	dir = 1;
+	is_critical = 1;
 	name = "north bump";
 	pixel_x = 0;
 	pixel_y = 28
@@ -398,10 +399,14 @@
 /area/tether/outpost/solars_outside)
 "aO" = (
 /obj/machinery/power/smes/buildable{
-	charge = 0;
+	charge = 1.5e+006;
 	cur_coils = 3;
-	output_attempt = 0;
-	outputting = 0;
+	input_level = 750000;
+	input_level_max = 750000;
+	output_attempt = 1;
+	output_level = 750000;
+	output_level_max = 750000;
+	outputting = 1;
 	RCon_tag = "Power - Solar Array"
 	},
 /obj/structure/cable/heavyduty,
@@ -3799,6 +3804,7 @@
 /obj/machinery/power/apc{
 	cell_type = /obj/item/weapon/cell/super;
 	dir = 8;
+	is_critical = 1;
 	name = "west bump";
 	pixel_x = -28
 	},
@@ -7523,6 +7529,7 @@
 "nJ" = (
 /obj/machinery/power/apc{
 	dir = 4;
+	is_critical = 1;
 	name = "east bump";
 	pixel_x = 28
 	},

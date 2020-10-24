@@ -282,14 +282,14 @@
 /turf/simulated/floor,
 /area/engineering/engine_gas)
 "aA" = (
-/obj/machinery/camera/network/engine{
-	dir = 1
-	},
-/turf/simulated/floor,
-/area/engineering/engine_gas)
-"aB" = (
-/obj/machinery/camera/network/engine{
+/obj/machinery/camera/emp_proof/engine{
 	dir = 8
+	},
+/turf/space,
+/area/space)
+"aB" = (
+/obj/machinery/camera/emp_proof/engine{
+	dir = 4
 	},
 /turf/space,
 /area/space)
@@ -677,13 +677,9 @@
 /turf/simulated/floor/tiled,
 /area/engineering/engine_room)
 "bb" = (
-/obj/machinery/camera/network/engine{
-	dir = 1
-	},
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/borderfloor/corner2,
-/turf/simulated/floor/tiled,
-/area/engineering/engine_room)
+/obj/machinery/camera/emp_proof/engine,
+/turf/simulated/floor/airless,
+/area/space)
 "bc" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
@@ -1008,17 +1004,11 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/submap/pa_room)
 "bK" = (
-/obj/machinery/camera/network/engine{
-	dir = 8
+/obj/machinery/camera/emp_proof/engine{
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6
-	},
-/turf/simulated/floor/tiled,
-/area/submap/pa_room)
+/turf/simulated/floor,
+/area/engineering/engine_gas)
 "bL" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -1231,15 +1221,11 @@
 /turf/simulated/floor/tiled,
 /area/engineering/engine_room)
 "ce" = (
-/obj/machinery/camera/network/engine,
-/obj/effect/floor_decal/borderfloor{
-	dir = 1
+/obj/machinery/camera/emp_proof/engine{
+	dir = 8
 	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 4
-	},
-/turf/simulated/floor/tiled,
-/area/engineering/engine_room)
+/turf/template_noop,
+/area/template_noop)
 "cf" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/effect/floor_decal/borderfloor{
@@ -1656,23 +1642,37 @@
 /turf/simulated/wall/r_wall,
 /area/space)
 "cI" = (
-/obj/machinery/camera/network/engineering{
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/borderfloor/corner2,
+/obj/machinery/camera/emp_proof/engine{
 	dir = 1
 	},
-/turf/space,
-/area/space)
+/turf/simulated/floor/tiled,
+/area/engineering/engine_room)
 "cJ" = (
-/obj/machinery/camera/network/engineering,
-/turf/simulated/floor/airless,
-/area/space)
-"cK" = (
-/obj/machinery/camera/network/engineering{
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/obj/machinery/camera/emp_proof/engine{
 	dir = 8
 	},
-/turf/template_noop,
-/area/template_noop)
+/turf/simulated/floor/tiled,
+/area/submap/pa_room)
+"cK" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 4
+	},
+/obj/machinery/camera/emp_proof/engine,
+/turf/simulated/floor/tiled,
+/area/engineering/engine_room)
 "cL" = (
-/obj/machinery/camera/network/engineering{
+/obj/machinery/camera/emp_proof/engine{
 	dir = 1
 	},
 /turf/simulated/floor/airless,
@@ -1692,7 +1692,7 @@ aa
 aa
 aa
 aa
-cK
+ce
 aa
 aa
 aa
@@ -1700,7 +1700,7 @@ aa
 aa
 aa
 aa
-cK
+ce
 aa
 aa
 aa
@@ -1815,7 +1815,7 @@ ab
 ab
 ab
 cH
-cJ
+bb
 ab
 ab
 ab
@@ -2169,7 +2169,7 @@ ab
 ac
 an
 as
-aB
+aA
 ab
 ab
 ab
@@ -2183,7 +2183,7 @@ bZ
 ab
 ab
 ab
-aB
+aA
 ak
 cA
 cC
@@ -2325,7 +2325,7 @@ ab
 ac
 ab
 ab
-ab
+aA
 ab
 af
 ax
@@ -2364,15 +2364,15 @@ ae
 ae
 aL
 aT
-bb
+cI
 bi
 bt
 bB
-bK
+cJ
 bV
 bY
 bi
-ce
+cK
 aT
 co
 af
@@ -2456,7 +2456,7 @@ ab
 ae
 ai
 aq
-aA
+bK
 ae
 aO
 aW
@@ -2484,7 +2484,7 @@ aa
 ab
 ac
 ab
-cI
+ab
 ae
 ae
 ae
@@ -2517,7 +2517,7 @@ ab
 ac
 ab
 ab
-ab
+aB
 ab
 ab
 aa

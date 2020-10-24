@@ -286,17 +286,14 @@
 /turf/simulated/floor,
 /area/engineering/engine_gas)
 "aA" = (
-/obj/machinery/camera/network/engine{
-	dir = 1
-	},
-/obj/structure/table/standard,
-/obj/item/weapon/circuitboard/tesla_coil,
-/obj/item/weapon/circuitboard/tesla_coil,
-/turf/simulated/floor,
-/area/engineering/engine_gas)
-"aB" = (
-/obj/machinery/camera/network/engine{
+/obj/machinery/camera/emp_proof/engine{
 	dir = 8
+	},
+/turf/space,
+/area/space)
+"aB" = (
+/obj/machinery/camera/emp_proof/engine{
+	dir = 4
 	},
 /turf/space,
 /area/space)
@@ -453,6 +450,7 @@
 "aO" = (
 /obj/machinery/power/apc{
 	dir = 4;
+	is_critical = 1;
 	name = "east bump";
 	pixel_x = 28
 	},
@@ -630,13 +628,9 @@
 /turf/simulated/floor/tiled,
 /area/engineering/engine_room)
 "bb" = (
-/obj/machinery/camera/network/engine{
-	dir = 1
-	},
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/borderfloor/corner2,
-/turf/simulated/floor/tiled,
-/area/engineering/engine_room)
+/obj/machinery/camera/emp_proof/engine,
+/turf/simulated/floor/airless,
+/area/space)
 "bc" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
@@ -815,6 +809,7 @@
 	},
 /obj/machinery/power/apc{
 	dir = 4;
+	is_critical = 1;
 	name = "east bump";
 	pixel_x = 28
 	},
@@ -851,11 +846,14 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/submap/pa_room)
 "bx" = (
-/obj/machinery/camera/network/engineering{
+/obj/structure/table/standard,
+/obj/item/weapon/circuitboard/tesla_coil,
+/obj/item/weapon/circuitboard/tesla_coil,
+/obj/machinery/camera/emp_proof/engine{
 	dir = 1
 	},
-/turf/space,
-/area/space)
+/turf/simulated/floor,
+/area/engineering/engine_gas)
 "by" = (
 /obj/effect/floor_decal/techfloor/orange{
 	dir = 1
@@ -971,17 +969,13 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/submap/pa_room)
 "bK" = (
-/obj/machinery/camera/network/engine{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/borderfloor/corner2,
+/obj/machinery/camera/emp_proof/engine{
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
-/area/submap/pa_room)
+/area/engineering/engine_room)
 "bL" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -1081,9 +1075,11 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/submap/pa_room)
 "bR" = (
-/obj/machinery/camera/network/engineering,
-/turf/simulated/floor/airless,
-/area/space)
+/obj/machinery/camera/emp_proof/engine{
+	dir = 8
+	},
+/turf/template_noop,
+/area/template_noop)
 "bS" = (
 /obj/effect/floor_decal/techfloor/orange,
 /turf/simulated/floor/tiled/techfloor,
@@ -1209,15 +1205,17 @@
 /turf/simulated/floor/tiled,
 /area/submap/pa_room)
 "ce" = (
-/obj/machinery/camera/network/engine,
-/obj/effect/floor_decal/borderfloor{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
 	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/obj/machinery/camera/emp_proof/engine{
+	dir = 8
 	},
 /turf/simulated/floor/tiled,
-/area/engineering/engine_room)
+/area/submap/pa_room)
 "cf" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/effect/floor_decal/borderfloor{
@@ -1664,17 +1662,21 @@
 /turf/simulated/floor/airless,
 /area/space)
 "cO" = (
-/obj/machinery/camera/network/engineering{
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 4
+	},
+/obj/machinery/camera/emp_proof/engine,
+/turf/simulated/floor/tiled,
+/area/engineering/engine_room)
+"cP" = (
+/obj/machinery/camera/emp_proof/engine{
 	dir = 1
 	},
 /turf/simulated/floor/airless,
 /area/space)
-"cP" = (
-/obj/machinery/camera/network/engineering{
-	dir = 8
-	},
-/turf/template_noop,
-/area/template_noop)
 "cQ" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -1725,13 +1727,13 @@ aa
 aa
 aa
 aa
-cP
+bR
 aa
 aa
 aa
 aa
 aa
-cP
+bR
 aa
 aa
 aa
@@ -1847,7 +1849,7 @@ ab
 ab
 ab
 cR
-bR
+bb
 ab
 ab
 ab
@@ -1865,7 +1867,7 @@ ab
 ab
 ab
 ab
-cO
+cP
 cR
 ab
 aa
@@ -2201,7 +2203,7 @@ ab
 ac
 an
 as
-aB
+aA
 ab
 ab
 ab
@@ -2215,7 +2217,7 @@ bd
 ab
 ab
 ab
-aB
+aA
 ak
 cA
 cC
@@ -2357,7 +2359,7 @@ ab
 ac
 ab
 ab
-ab
+aA
 ab
 af
 ax
@@ -2396,15 +2398,15 @@ ae
 ae
 aL
 aS
-bb
+bK
 bi
 bt
 bB
-bK
+ce
 bV
 bY
 bi
-ce
+cO
 aT
 cM
 af
@@ -2488,7 +2490,7 @@ ab
 ae
 ai
 aq
-aA
+bx
 ae
 aO
 aW
@@ -2516,7 +2518,7 @@ aa
 ab
 ac
 ab
-bx
+ab
 ae
 ae
 ae
@@ -2549,7 +2551,7 @@ ab
 ac
 ab
 ab
-ab
+aB
 ab
 ab
 aa

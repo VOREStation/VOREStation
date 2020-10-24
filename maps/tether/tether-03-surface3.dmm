@@ -4441,6 +4441,7 @@
 "ahV" = (
 /obj/machinery/power/apc{
 	dir = 1;
+	is_critical = 1;
 	name = "north bump";
 	pixel_y = 28
 	},
@@ -5365,6 +5366,7 @@
 	},
 /obj/machinery/power/apc{
 	dir = 1;
+	is_critical = 1;
 	name = "north bump";
 	pixel_y = 28
 	},
@@ -25843,28 +25845,18 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenobiology/outpost_breakroom)
 "aTC" = (
-/obj/structure/table/reinforced,
-/obj/item/weapon/storage/firstaid/regular,
-/obj/item/device/radio{
-	pixel_x = 2;
-	pixel_y = 3
-	},
-/obj/item/device/radio,
 /obj/machinery/power/apc{
-	dir = 1;
-	name = "north bump";
-	pixel_y = 28
-	},
-/obj/machinery/light_switch{
-	pixel_x = 12;
-	pixel_y = 25
+	cell_type = /obj/item/weapon/cell/super;
+	dir = 8;
+	is_critical = 1;
+	name = "west bump";
+	pixel_x = -30
 	},
 /obj/structure/cable/green{
 	icon_state = "0-4"
 	},
-/obj/item/device/multitool,
-/turf/simulated/floor/tiled/dark,
-/area/bridge)
+/turf/simulated/floor/wood,
+/area/crew_quarters/captain)
 "aTD" = (
 /obj/machinery/light{
 	dir = 4
@@ -27294,13 +27286,6 @@
 /obj/effect/floor_decal/steeldecal/steel_decals_central1{
 	dir = 8
 	},
-/obj/machinery/door/blast/regular{
-	density = 0;
-	icon_state = "pdoor0";
-	id = "surfbriglockdown";
-	name = "Security Blast Doors";
-	opacity = 0
-	},
 /turf/simulated/floor/tiled/monofloor{
 	dir = 8
 	},
@@ -27310,13 +27295,6 @@
 /obj/structure/disposalpipe/segment,
 /obj/effect/floor_decal/steeldecal/steel_decals_central1{
 	dir = 4
-	},
-/obj/machinery/door/blast/regular{
-	density = 0;
-	icon_state = "pdoor0";
-	id = "surfbriglockdown";
-	name = "Security Blast Doors";
-	opacity = 0
 	},
 /turf/simulated/floor/tiled/monofloor{
 	dir = 4
@@ -28364,13 +28342,10 @@
 /turf/simulated/floor/plating,
 /area/bridge)
 "aXF" = (
-/obj/machinery/power/apc{
-	name = "south bump";
-	pixel_y = -24
-	},
-/obj/structure/cable/green,
-/turf/simulated/floor/tiled/white,
-/area/rnd/outpost/xenobiology/outpost_first_aid)
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tether)
 "aXG" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -29717,17 +29692,15 @@
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/hop)
 "bab" = (
+/obj/structure/table/reinforced,
 /obj/machinery/power/apc{
-	cell_type = /obj/item/weapon/cell/super;
-	dir = 8;
-	name = "west bump";
-	pixel_x = -30
+	is_critical = 1;
+	name = "south bump";
+	pixel_y = -32
 	},
-/obj/structure/cable/green{
-	icon_state = "0-4"
-	},
-/turf/simulated/floor/wood,
-/area/crew_quarters/captain)
+/obj/structure/cable/green,
+/turf/simulated/floor/tiled,
+/area/crew_quarters/heads/hop)
 "bac" = (
 /obj/machinery/requests_console{
 	announcementConsole = 1;
@@ -29905,13 +29878,28 @@
 /area/crew_quarters/heads/hop)
 "bap" = (
 /obj/structure/table/reinforced,
-/obj/machinery/power/apc{
-	name = "south bump";
-	pixel_y = -32
+/obj/item/weapon/storage/firstaid/regular,
+/obj/item/device/radio{
+	pixel_x = 2;
+	pixel_y = 3
 	},
-/obj/structure/cable/green,
-/turf/simulated/floor/tiled,
-/area/crew_quarters/heads/hop)
+/obj/item/device/radio,
+/obj/machinery/power/apc{
+	dir = 1;
+	is_critical = 1;
+	name = "north bump";
+	pixel_y = 28
+	},
+/obj/machinery/light_switch{
+	pixel_x = 12;
+	pixel_y = 25
+	},
+/obj/structure/cable/green{
+	icon_state = "0-4"
+	},
+/obj/item/device/multitool,
+/turf/simulated/floor/tiled/dark,
+/area/bridge)
 "baq" = (
 /obj/effect/floor_decal/corner/grey/diagonal,
 /obj/structure/cable/green{
@@ -33168,10 +33156,12 @@
 /turf/simulated/floor/tiled/eris/steel/bar_light,
 /area/tether/surfacebase/barbackmaintenance)
 "bgm" = (
-/obj/structure/shuttle/engine/propulsion,
+/obj/machinery/atmospherics/unary/engine{
+	dir = 1
+	},
 /turf/simulated/floor/reinforced,
 /turf/simulated/shuttle/plating/carry,
-/area/shuttle/tether)
+/area/shuttle/tourbus/engines)
 "bgn" = (
 /obj/effect/floor_decal/corner/grey/diagonal,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -33768,12 +33758,14 @@
 /turf/simulated/floor/tiled/eris/dark/bluecorner,
 /area/shuttle/tourbus/engines)
 "bhj" = (
-/obj/machinery/atmospherics/unary/engine{
-	dir = 1
+/obj/machinery/power/apc{
+	is_critical = 1;
+	name = "south bump";
+	pixel_y = -24
 	},
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tourbus/engines)
+/obj/structure/cable/green,
+/turf/simulated/floor/tiled/white,
+/area/rnd/outpost/xenobiology/outpost_first_aid)
 "bhu" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/lightgrey/border,
@@ -41835,7 +41827,7 @@ aJy
 aKz
 aLi
 aWy
-aXF
+bhj
 aSA
 adG
 aOs
@@ -47919,7 +47911,7 @@ jML
 jHw
 jpB
 qWU
-bhj
+bgm
 aKU
 aOI
 aPb
@@ -48445,7 +48437,7 @@ baf
 bar
 aPi
 awz
-bab
+aTC
 bbC
 bbE
 asT
@@ -48771,7 +48763,7 @@ caw
 jHw
 gHh
 qWU
-bhj
+bgm
 aKU
 aOI
 aPb
@@ -49725,7 +49717,7 @@ baN
 bbc
 bbp
 asT
-aTC
+bap
 aYg
 bae
 aYb
@@ -50149,7 +50141,7 @@ aZC
 aVV
 baV
 bao
-bap
+bab
 asT
 asT
 asT
@@ -50756,7 +50748,7 @@ aNk
 uSA
 aNJ
 aNP
-bgm
+aXF
 aKU
 abg
 aOk
@@ -50898,7 +50890,7 @@ aNl
 aNl
 aNK
 aNP
-bgm
+aXF
 aKU
 abg
 aOk
@@ -51040,7 +51032,7 @@ aNm
 bhh
 aNK
 aNP
-bgm
+aXF
 aKU
 abg
 aOk

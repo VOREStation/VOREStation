@@ -111,6 +111,7 @@
 /obj/item/weapon/book/manual/security_space_law,
 /obj/machinery/power/apc{
 	dir = 4;
+	is_critical = 1;
 	name = "east bump";
 	pixel_x = 24
 	},
@@ -375,6 +376,9 @@
 	output_attempt = 0;
 	outputting = 0
 	},
+/obj/machinery/camera/network/engineering{
+	dir = 4
+	},
 /turf/simulated/floor,
 /area/maintenance/substation/medsec)
 "aaM" = (
@@ -469,9 +473,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
-	},
-/obj/machinery/camera/network/engineering{
-	dir = 1
 	},
 /turf/simulated/floor,
 /area/maintenance/substation/medsec)
@@ -6807,7 +6808,26 @@
 /turf/simulated/floor/water/deep/indoors,
 /area/tether/surfacebase/fish_farm)
 "anp" = (
-/turf/simulated/wall,
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/mauve/border{
+	dir = 4
+	},
+/obj/machinery/power/apc{
+	dir = 4;
+	is_critical = 1;
+	name = "east bump";
+	pixel_x = 28
+	},
+/obj/structure/cable/green{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/tiled,
 /area/rnd/rdoffice)
 "anq" = (
 /obj/effect/floor_decal/industrial/danger/corner{
@@ -8181,7 +8201,6 @@
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
-/obj/machinery/camera/network/engineering,
 /turf/simulated/floor/plating,
 /area/maintenance/substation/command)
 "apY" = (
@@ -8284,26 +8303,45 @@
 /turf/simulated/floor/tiled,
 /area/rnd/rdoffice)
 "aqj" = (
-/obj/structure/bed/chair{
-	dir = 8
+/obj/machinery/button/remote/blast_door{
+	id = "xenobiodiv7";
+	name = "Divider 7 Blast Doors";
+	pixel_x = -30;
+	pixel_y = -5;
+	req_access = list(55)
 	},
-/obj/effect/floor_decal/borderfloor{
-	dir = 4
+/obj/machinery/button/remote/blast_door{
+	id = "xenobiopen9";
+	name = "Pen 9 Containment";
+	pixel_x = -30;
+	pixel_y = 8
 	},
-/obj/effect/floor_decal/corner/mauve/border{
-	dir = 4
-	},
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "east bump";
-	pixel_x = 28
+/obj/machinery/light{
+	dir = 1
 	},
 /obj/structure/cable/green{
-	d2 = 8;
-	icon_state = "0-8"
+	d2 = 4;
+	icon_state = "0-4"
 	},
-/turf/simulated/floor/tiled,
-/area/rnd/rdoffice)
+/obj/machinery/power/apc/super{
+	dir = 1;
+	is_critical = 1;
+	pixel_y = 24
+	},
+/obj/machinery/button/remote/airlock{
+	id = "phoroncelldoor9";
+	name = "Phoron Cell 9 Doorlock";
+	pixel_x = -38;
+	pixel_y = 0;
+	specialfunctions = 4
+	},
+/obj/machinery/light_switch{
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = 38
+	},
+/turf/simulated/floor/tiled/dark,
+/area/rnd/outpost/xenobiology/outpost_slimepens)
 "aqk" = (
 /turf/simulated/wall,
 /area/rnd/lockers)
@@ -8813,7 +8851,7 @@
 /turf/simulated/wall,
 /area/tether/surfacebase/east_stairs_two)
 "arm" = (
-/obj/machinery/power/breakerbox{
+/obj/machinery/power/breakerbox/activated{
 	RCon_tag = "Telecomms Substation Bypass"
 	},
 /turf/simulated/floor/plating,
@@ -9179,6 +9217,7 @@
 	},
 /obj/machinery/power/apc{
 	dir = 1;
+	is_critical = 1;
 	name = "north bump";
 	pixel_x = 0;
 	pixel_y = 28
@@ -9673,8 +9712,8 @@
 /area/tether/surfacebase/emergency_storage/atmos)
 "asz" = (
 /obj/machinery/power/smes/buildable{
-	charge = 5e+006;
-	input_attempt = 1;
+	charge = 0;
+	input_attempt = 0;
 	input_level = 100000;
 	output_attempt = 1;
 	output_level = 100000;
@@ -9686,6 +9725,9 @@
 	},
 /obj/structure/cable/green{
 	icon_state = "0-8"
+	},
+/obj/machinery/camera/network/engineering{
+	dir = 1
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/substation/tcomms)
@@ -10620,6 +10662,22 @@
 	},
 /turf/simulated/floor/wood,
 /area/rnd/breakroom)
+"aup" = (
+/obj/machinery/power/apc{
+	dir = 1;
+	is_critical = 1;
+	name = "north bump";
+	pixel_x = 0;
+	pixel_y = 28
+	},
+/obj/structure/cable/cyan{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/effect/floor_decal/industrial/warning,
+/obj/machinery/recharge_station,
+/turf/simulated/floor/plating,
+/area/engineering/drone_fabrication)
 "auq" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable/green{
@@ -10953,6 +11011,30 @@
 /obj/structure/stairs/south,
 /turf/simulated/floor/tiled,
 /area/rnd/staircase/secondfloor)
+"auW" = (
+/obj/machinery/power/apc{
+	dir = 4;
+	is_critical = 1;
+	name = "east bump";
+	pixel_x = 28
+	},
+/obj/structure/cable/cyan{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/yellow/border{
+	dir = 5;
+	icon_state = "bordercolor"
+	},
+/obj/machinery/computer/rcon,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/engineering/atmos/monitoring)
 "auX" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable/green{
@@ -12064,6 +12146,22 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/substation/command)
+"awK" = (
+/obj/structure/cable/green{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc{
+	dir = 1;
+	is_critical = 1;
+	name = "north bump";
+	pixel_x = 0;
+	pixel_y = 28
+	},
+/turf/simulated/floor/tiled,
+/area/tcommsat/entrance{
+	name = "\improper Telecomms Entrance"
+	})
 "awL" = (
 /obj/effect/floor_decal/corner_techfloor_grid{
 	dir = 9
@@ -12869,6 +12967,20 @@
 /obj/effect/floor_decal/corner/yellow/bordercorner2,
 /turf/simulated/floor/tiled/monotile,
 /area/engineering/atmos)
+"aya" = (
+/obj/machinery/power/apc{
+	dir = 4;
+	is_critical = 1;
+	name = "east bump";
+	pixel_x = 28
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/structure/cable/green{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/tiled,
+/area/tcommsat/computer)
 "ayb" = (
 /obj/machinery/light_switch{
 	pixel_y = -28
@@ -13567,6 +13679,36 @@
 "azl" = (
 /turf/simulated/wall/r_wall,
 /area/engineering/atmos)
+"azm" = (
+/obj/machinery/power/apc{
+	dir = 2;
+	is_critical = 1;
+	name = "south bump";
+	pixel_y = -28
+	},
+/obj/structure/cable/green,
+/turf/simulated/floor/tiled,
+/area/tcomsat{
+	name = "\improper Telecomms Lobby"
+	})
+"azn" = (
+/obj/structure/table/standard,
+/obj/item/weapon/stock_parts/subspace/transmitter,
+/obj/item/weapon/stock_parts/subspace/transmitter,
+/obj/structure/cable/green{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc{
+	cell_type = /obj/item/weapon/cell/super;
+	dir = 8;
+	is_critical = 1;
+	name = "west bump";
+	pixel_x = -24
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/tcomfoyer{
+	name = "\improper Telecomms Storage"
+	})
 "azo" = (
 /obj/structure/cable/cyan{
 	d1 = 2;
@@ -14127,6 +14269,23 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/east_stairs_two)
+"azK" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 1
+	},
+/obj/machinery/power/apc{
+	dir = 2;
+	is_critical = 1;
+	name = "south bump";
+	pixel_y = -24
+	},
+/obj/structure/cable/green{
+	d2 = 8;
+	dir = 2;
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/substation/command)
 "azL" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -14281,6 +14440,31 @@
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor/plating,
 /area/engineering/lower/breakroom)
+"aAf" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/machinery/light/small,
+/turf/simulated/floor/plating,
+/area/maintenance/substation/tcomms)
+"aAg" = (
+/obj/structure/cable/green{
+	icon_state = "0-2"
+	},
+/obj/structure/cable,
+/obj/machinery/power/smes/buildable{
+	RCon_tag = "Substation - Command";
+	charge = 0;
+	output_attempt = 0;
+	outputting = 0
+	},
+/obj/machinery/camera/network/engineering{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/substation/command)
 "aAh" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -15054,21 +15238,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating,
 /area/maintenance/asmaint2)
-"aBz" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "north bump";
-	pixel_x = 0;
-	pixel_y = 28
-	},
-/obj/structure/cable/cyan{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/obj/effect/floor_decal/industrial/warning,
-/obj/machinery/recharge_station,
-/turf/simulated/floor/plating,
-/area/engineering/drone_fabrication)
 "aBC" = (
 /obj/machinery/light_switch{
 	pixel_y = 28
@@ -15180,29 +15349,6 @@
 	icon_state = "bordercolorcorner2"
 	},
 /obj/machinery/computer/power_monitor,
-/turf/simulated/floor/tiled,
-/area/engineering/atmos/monitoring)
-"aBJ" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "east bump";
-	pixel_x = 28
-	},
-/obj/structure/cable/cyan{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/obj/effect/floor_decal/borderfloor{
-	dir = 5
-	},
-/obj/effect/floor_decal/corner/yellow/border{
-	dir = 5;
-	icon_state = "bordercolor"
-	},
-/obj/machinery/computer/rcon,
-/obj/machinery/light{
-	dir = 1
-	},
 /turf/simulated/floor/tiled,
 /area/engineering/atmos/monitoring)
 "aBK" = (
@@ -18105,18 +18251,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/substation/tcomms)
-"aIp" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/obj/machinery/light/small,
-/obj/machinery/camera/network/engineering{
-	dir = 8
-	},
-/turf/simulated/floor/plating,
-/area/maintenance/substation/tcomms)
 "aIq" = (
 /turf/simulated/wall/r_wall,
 /area/maintenance/substation/tcomms)
@@ -18531,21 +18665,6 @@
 /obj/effect/decal/cleanable/cobweb,
 /obj/machinery/light/small{
 	dir = 1
-	},
-/turf/simulated/floor/tiled,
-/area/tcommsat/entrance{
-	name = "\improper Telecomms Entrance"
-	})
-"aJl" = (
-/obj/structure/cable/green{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "north bump";
-	pixel_x = 0;
-	pixel_y = 28
 	},
 /turf/simulated/floor/tiled,
 /area/tcommsat/entrance{
@@ -19121,19 +19240,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tcommsat/computer)
-"aKg" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "east bump";
-	pixel_x = 28
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden,
-/obj/structure/cable/green{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/turf/simulated/floor/tiled,
-/area/tcommsat/computer)
 "aKh" = (
 /turf/simulated/wall/r_wall,
 /area/tcommsat/chamber)
@@ -19399,17 +19505,6 @@
 /obj/machinery/porta_turret{
 	dir = 6
 	},
-/turf/simulated/floor/tiled,
-/area/tcomsat{
-	name = "\improper Telecomms Lobby"
-	})
-"aKN" = (
-/obj/machinery/power/apc{
-	dir = 2;
-	name = "south bump";
-	pixel_y = -28
-	},
-/obj/structure/cable/green,
 /turf/simulated/floor/tiled,
 /area/tcomsat{
 	name = "\improper Telecomms Lobby"
@@ -20322,23 +20417,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/vacant/vacant_bar_upper)
-"aMt" = (
-/obj/structure/table/standard,
-/obj/item/weapon/stock_parts/subspace/transmitter,
-/obj/item/weapon/stock_parts/subspace/transmitter,
-/obj/structure/cable/green{
-	icon_state = "0-4"
-	},
-/obj/machinery/power/apc{
-	cell_type = /obj/item/weapon/cell/super;
-	dir = 8;
-	name = "west bump";
-	pixel_x = -24
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/tcomfoyer{
-	name = "\improper Telecomms Storage"
-	})
 "aMu" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -25629,45 +25707,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/brig)
-"aVn" = (
-/obj/machinery/button/remote/blast_door{
-	id = "xenobiodiv7";
-	name = "Divider 7 Blast Doors";
-	pixel_x = -30;
-	pixel_y = -5;
-	req_access = list(55)
-	},
-/obj/machinery/button/remote/blast_door{
-	id = "xenobiopen9";
-	name = "Pen 9 Containment";
-	pixel_x = -30;
-	pixel_y = 8
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/cable/green{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/obj/machinery/power/apc/super{
-	dir = 1;
-	pixel_y = 24
-	},
-/obj/machinery/button/remote/airlock{
-	id = "phoroncelldoor9";
-	name = "Phoron Cell 9 Doorlock";
-	pixel_x = -38;
-	pixel_y = 0;
-	specialfunctions = 4
-	},
-/obj/machinery/light_switch{
-	dir = 1;
-	pixel_x = 0;
-	pixel_y = 38
-	},
-/turf/simulated/floor/tiled/dark,
-/area/rnd/outpost/xenobiology/outpost_slimepens)
 "aVo" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
@@ -26911,19 +26950,6 @@
 "aXr" = (
 /turf/simulated/wall,
 /area/maintenance/substation/command)
-"aXs" = (
-/obj/structure/cable/green{
-	icon_state = "0-2"
-	},
-/obj/structure/cable,
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Command";
-	charge = 0;
-	output_attempt = 0;
-	outputting = 0
-	},
-/turf/simulated/floor/plating,
-/area/maintenance/substation/command)
 "aXt" = (
 /obj/structure/cable/green{
 	icon_state = "1-8"
@@ -27757,22 +27783,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/chapel/office)
-"aZl" = (
-/obj/effect/floor_decal/industrial/warning/corner{
-	dir = 1
-	},
-/obj/machinery/power/apc{
-	dir = 2;
-	name = "south bump";
-	pixel_y = -24
-	},
-/obj/structure/cable/green{
-	d2 = 8;
-	dir = 2;
-	icon_state = "0-8"
-	},
-/turf/simulated/floor/plating,
-/area/maintenance/substation/command)
 "aZm" = (
 /obj/machinery/power/apc{
 	dir = 4;
@@ -35087,7 +35097,7 @@ aNk
 aKq
 aND
 aHc
-aVn
+aqj
 aJa
 aJa
 aWK
@@ -36449,10 +36459,10 @@ amE
 aho
 ajy
 amH
-anp
-anp
-anp
-anp
+acF
+acF
+acF
+acF
 aok
 aoI
 apt
@@ -36591,7 +36601,7 @@ ahq
 aho
 ajy
 abz
-anp
+acF
 anw
 anN
 asZ
@@ -36733,7 +36743,7 @@ amF
 amG
 ajx
 abz
-anp
+acF
 anE
 anO
 aMn
@@ -36875,7 +36885,7 @@ ahq
 aho
 ajy
 abz
-anp
+acF
 acF
 anF
 anP
@@ -37592,7 +37602,7 @@ anT
 aop
 aoP
 apz
-aqj
+anp
 avL
 ary
 asp
@@ -39170,7 +39180,7 @@ auv
 tKq
 wRZ
 aAU
-aBz
+aup
 aBX
 aCy
 aDa
@@ -41300,7 +41310,7 @@ avK
 azz
 aAt
 aBb
-aBJ
+auW
 aCh
 aCF
 aDh
@@ -42316,7 +42326,7 @@ arZ
 aac
 aac
 aIM
-aJl
+awK
 aJQ
 aKH
 aIM
@@ -42748,7 +42758,7 @@ aKJ
 aLj
 aLB
 aLZ
-aMt
+azn
 aMJ
 aMW
 aLA
@@ -43114,7 +43124,7 @@ aiC
 arr
 anK
 anv
-aXs
+aAg
 aVu
 alJ
 aXt
@@ -43166,7 +43176,7 @@ aGK
 aDN
 aHr
 aHV
-aIp
+aAf
 aIO
 aJq
 aJW
@@ -43257,7 +43267,7 @@ aOL
 anK
 apX
 aXE
-aZl
+azK
 aXr
 apW
 baI
@@ -43596,7 +43606,7 @@ aIr
 aIQ
 aJs
 aJZ
-aKN
+azm
 aKh
 aLD
 aLM
@@ -44589,7 +44599,7 @@ aHP
 aIw
 aIV
 aJy
-aKg
+aya
 aKS
 aLq
 aLJ

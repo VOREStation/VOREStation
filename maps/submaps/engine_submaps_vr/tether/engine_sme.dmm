@@ -154,10 +154,11 @@
 /turf/simulated/floor,
 /area/engineering/engine_room)
 "aB" = (
-/obj/machinery/atmospherics/pipe/manifold4w/visible/black,
-/obj/machinery/camera/network/engineering,
-/turf/simulated/floor,
-/area/engineering/engine_room)
+/obj/machinery/camera/network/engine{
+	dir = 1
+	},
+/turf/space,
+/area/space)
 "aC" = (
 /obj/machinery/atmospherics/binary/pump{
 	dir = 8
@@ -219,6 +220,7 @@
 	},
 /obj/machinery/power/apc{
 	dir = 4;
+	is_critical = 1;
 	name = "east bump";
 	pixel_x = 28
 	},
@@ -1572,6 +1574,7 @@
 	},
 /obj/machinery/power/apc{
 	dir = 4;
+	is_critical = 1;
 	name = "east bump";
 	pixel_x = 28
 	},
@@ -1593,7 +1596,7 @@
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 4
 	},
-/obj/machinery/camera/network/engineering{
+/obj/machinery/camera/network/engine{
 	dir = 1
 	},
 /turf/space,
@@ -1663,33 +1666,28 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/template_noop)
 "dz" = (
-/obj/machinery/camera/network/engineering{
+/obj/machinery/camera/network/engine{
 	dir = 8
 	},
 /turf/space,
 /area/space)
 "dA" = (
-/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
-	dir = 10
-	},
-/obj/machinery/camera/network/engineering{
-	dir = 8
-	},
-/turf/space,
-/area/space)
+/obj/machinery/atmospherics/pipe/manifold4w/visible/black,
+/obj/machinery/camera/network/engine,
+/turf/simulated/floor,
+/area/engineering/engine_room)
 "dB" = (
+/obj/machinery/camera/network/engine{
+	dir = 8
+	},
+/turf/template_noop,
+/area/template_noop)
+"dC" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 10
 	},
-/obj/structure/lattice,
-/obj/machinery/camera/network/engineering{
+/obj/machinery/camera/network/engine{
 	dir = 8
-	},
-/turf/space,
-/area/space)
-"dC" = (
-/obj/machinery/camera/network/engineering{
-	dir = 1
 	},
 /turf/space,
 /area/space)
@@ -1704,11 +1702,15 @@
 /turf/simulated/wall/r_wall,
 /area/space)
 "dE" = (
-/obj/machinery/camera/network/engineering{
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
+	dir = 10
+	},
+/obj/structure/lattice,
+/obj/machinery/camera/network/engine{
 	dir = 8
 	},
-/turf/template_noop,
-/area/template_noop)
+/turf/space,
+/area/space)
 "dF" = (
 /obj/structure/lattice,
 /obj/structure/grille,
@@ -1727,7 +1729,7 @@ aa
 aa
 aa
 aa
-dE
+dB
 aa
 aa
 aa
@@ -1738,7 +1740,7 @@ aa
 aa
 aa
 aa
-dE
+dB
 aa
 aa
 aa
@@ -1750,7 +1752,7 @@ aa
 (2,1,1) = {"
 aa
 aa
-dC
+aB
 dD
 ac
 ac
@@ -2019,13 +2021,13 @@ ah
 an
 ah
 an
-dA
+dC
 an
 bO
 ai
 co
 aq
-dB
+dE
 aq
 co
 aq
@@ -2070,7 +2072,7 @@ aa
 (12,1,1) = {"
 aa
 aa
-dC
+aB
 dD
 ac
 ac
@@ -2398,7 +2400,7 @@ ap
 ap
 ap
 au
-aB
+dA
 aI
 aS
 bd

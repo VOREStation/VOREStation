@@ -111,7 +111,7 @@
 /turf/simulated/floor,
 /area/engineering/engine_room)
 "ap" = (
-/obj/machinery/camera/network/engineering{
+/obj/machinery/camera/emp_proof/engine{
 	dir = 1
 	},
 /turf/space,
@@ -310,7 +310,6 @@
 /turf/simulated/floor/reinforced,
 /area/engineering/engine_room)
 "aU" = (
-/obj/machinery/camera/network/engine,
 /obj/machinery/button/remote/airlock{
 	id = "engine_access_hatch";
 	name = "Door Bolt Control";
@@ -319,6 +318,7 @@
 	req_access = list(10);
 	specialfunctions = 4
 	},
+/obj/machinery/camera/emp_proof/engine,
 /turf/simulated/floor,
 /area/engineering/engine_room)
 "aV" = (
@@ -376,7 +376,7 @@
 /turf/simulated/floor/reinforced,
 /area/engineering/engine_room)
 "bf" = (
-/obj/machinery/camera/network/engine{
+/obj/machinery/camera/emp_proof/engine{
 	dir = 8
 	},
 /turf/simulated/floor,
@@ -404,6 +404,7 @@
 	},
 /obj/machinery/power/apc{
 	dir = 4;
+	is_critical = 1;
 	name = "east bump";
 	pixel_x = 28
 	},
@@ -541,19 +542,11 @@
 /turf/simulated/floor,
 /area/template_noop)
 "bA" = (
-/obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
+/obj/machinery/camera/emp_proof/engine{
+	dir = 8
 	},
-/obj/machinery/camera/network/engine{
-	dir = 4
-	},
-/obj/effect/floor_decal/industrial/warning{
-	dir = 1
-	},
-/turf/simulated/floor,
-/area/engineering/engine_room)
+/turf/template_noop,
+/area/template_noop)
 "bB" = (
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -1054,18 +1047,16 @@
 /turf/simulated/floor,
 /area/engineering/engine_room)
 "cF" = (
-/obj/structure/cable/yellow{
+/obj/structure/cable/cyan{
 	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+	d2 = 4;
+	icon_state = "1-4"
 	},
-/obj/machinery/camera/network/engine{
-	dir = 8
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
 	},
-/obj/machinery/firealarm{
-	dir = 4;
-	layer = 3.3;
-	pixel_x = 26
+/obj/machinery/camera/emp_proof/engine{
+	dir = 4
 	},
 /turf/simulated/floor,
 /area/engineering/engine_room)
@@ -1076,21 +1067,21 @@
 /turf/simulated/floor,
 /area/engineering/engine_gas)
 "cI" = (
-/obj/effect/floor_decal/industrial/warning/corner,
-/obj/machinery/button/remote/blast_door{
-	desc = "A remote control-switch for the engine control room blast doors.";
-	id = "EngineEmitterPortWest";
-	name = "Engine Room Blast Doors";
-	pixel_x = 0;
-	pixel_y = -25;
-	req_access = null;
-	req_one_access = list(11,24)
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/obj/machinery/camera/network/engine{
-	dir = 1
+/obj/machinery/firealarm{
+	dir = 4;
+	layer = 3.3;
+	pixel_x = 26
+	},
+/obj/machinery/camera/emp_proof/engine{
+	dir = 8
 	},
 /turf/simulated/floor,
-/area/engineering/engine_gas)
+/area/engineering/engine_room)
 "cJ" = (
 /obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor,
@@ -1272,13 +1263,15 @@
 /turf/simulated/floor,
 /area/engineering/engine_room)
 "df" = (
-/obj/effect/floor_decal/industrial/outline/blue,
-/obj/machinery/portable_atmospherics/canister/nitrogen,
-/obj/machinery/camera/network/engineering{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/heat_exchanging{
+	dir = 10
 	},
-/turf/simulated/floor,
-/area/engineering/engine_gas)
+/obj/structure/lattice,
+/obj/machinery/camera/emp_proof/engine{
+	dir = 8
+	},
+/turf/space,
+/area/space)
 "dg" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -1351,6 +1344,7 @@
 	},
 /obj/machinery/power/apc{
 	dir = 4;
+	is_critical = 1;
 	name = "east bump";
 	pixel_x = 28
 	},
@@ -1494,17 +1488,34 @@
 /turf/simulated/wall/r_wall,
 /area/space)
 "dA" = (
-/obj/machinery/camera/network/engineering{
-	dir = 8
+/obj/effect/floor_decal/industrial/warning/corner,
+/obj/machinery/button/remote/blast_door{
+	desc = "A remote control-switch for the engine control room blast doors.";
+	id = "EngineEmitterPortWest";
+	name = "Engine Room Blast Doors";
+	pixel_x = 0;
+	pixel_y = -25;
+	req_access = null;
+	req_one_access = list(11,24)
 	},
-/turf/template_noop,
-/area/template_noop)
+/obj/machinery/camera/emp_proof/engine{
+	dir = 1
+	},
+/turf/simulated/floor,
+/area/engineering/engine_gas)
 "dB" = (
+/obj/effect/floor_decal/industrial/outline/blue,
+/obj/machinery/portable_atmospherics/canister/nitrogen,
+/obj/machinery/camera/emp_proof/engine{
+	dir = 4
+	},
+/turf/simulated/floor,
+/area/engineering/engine_gas)
+"dC" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 10
 	},
-/obj/structure/lattice,
-/obj/machinery/camera/network/engineering{
+/obj/machinery/camera/emp_proof/engine{
 	dir = 8
 	},
 /turf/space,
@@ -1522,7 +1533,7 @@ aa
 aa
 aa
 aa
-dA
+bA
 aa
 aa
 aa
@@ -1533,7 +1544,7 @@ aa
 aa
 aa
 aa
-dA
+bA
 aa
 aa
 aa
@@ -1810,7 +1821,7 @@ ay
 aH
 ay
 aH
-ay
+dC
 aH
 ay
 aH
@@ -1820,7 +1831,7 @@ bL
 bY
 cj
 cw
-dB
+df
 cw
 cj
 cw
@@ -1876,7 +1887,7 @@ aW
 an
 ao
 dx
-bA
+cF
 aB
 aq
 bC
@@ -1887,7 +1898,7 @@ cx
 cH
 cG
 cV
-df
+dB
 dk
 dl
 cG
@@ -1916,7 +1927,7 @@ bO
 cb
 cm
 cy
-cI
+dA
 cG
 cW
 cV
@@ -2299,7 +2310,7 @@ bI
 bW
 ci
 cv
-cF
+cI
 cN
 cT
 de

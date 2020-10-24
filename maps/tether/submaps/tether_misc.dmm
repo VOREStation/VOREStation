@@ -996,9 +996,11 @@
 /turf/simulated/floor/holofloor/grass,
 /area/holodeck/source_picnicarea)
 "cR" = (
-/obj/machinery/hologram/holopad,
+/obj/machinery/camera/network/crescent,
 /turf/simulated/floor/tiled,
-/area/centcom/simulated/terminal)
+/area/centcom/simulated/security{
+	name = "\improper CentCom Security Arrivals"
+	})
 "cS" = (
 /obj/structure/bed/chair/holochair{
 	dir = 1
@@ -1032,7 +1034,7 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/centcom/simulated/terminal)
 "cW" = (
-/obj/machinery/hologram/holopad,
+/obj/machinery/atmospherics/pipe/manifold/hidden,
 /turf/simulated/floor/tiled/white,
 /area/centcom/simulated/medical)
 "cX" = (
@@ -1043,16 +1045,19 @@
 /turf/simulated/floor/tiled/white,
 /area/centcom/simulated/medical)
 "cY" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 8
+/obj/effect/step_trigger/teleporter/random{
+	affect_ghosts = 1;
+	name = "escapeshuttle_leave";
+	teleport_x = 25;
+	teleport_x_offset = 245;
+	teleport_y = 25;
+	teleport_y_offset = 245;
+	teleport_z = 4;
+	teleport_z_offset = 4
 	},
-/obj/machinery/hologram/holopad,
-/turf/simulated/floor/tiled/white,
-/area/centcom/simulated/medical)
-"cZ" = (
-/obj/machinery/hologram/holopad,
-/turf/simulated/floor/wood,
-/area/centcom/simulated/restaurant)
+/turf/space,
+/turf/space/transit/north,
+/area/space)
 "da" = (
 /obj/structure/flora/ausbushes/brflowers,
 /obj/effect/floor_decal/spline/fancy/wood/corner{
@@ -1060,16 +1065,6 @@
 	},
 /turf/simulated/floor/holofloor/grass,
 /area/holodeck/source_picnicarea)
-"db" = (
-/obj/machinery/hologram/holopad,
-/turf/simulated/floor/tiled/steel,
-/area/centcom/simulated/main_hall)
-"dc" = (
-/obj/machinery/hologram/holopad,
-/turf/simulated/floor/tiled,
-/area/centcom/simulated/security{
-	name = "\improper CentCom Security Arrivals"
-	})
 "dd" = (
 /obj/effect/floor_decal/carpet{
 	dir = 8
@@ -1082,13 +1077,6 @@
 	},
 /turf/simulated/floor/holofloor/carpet,
 /area/holodeck/source_courtroom)
-"df" = (
-/obj/machinery/camera/network/crescent,
-/obj/machinery/hologram/holopad,
-/turf/simulated/floor/tiled,
-/area/centcom/simulated/security{
-	name = "\improper CentCom Security Arrivals"
-	})
 "dg" = (
 /turf/unsimulated/wall{
 	icon = 'icons/turf/transit_vr.dmi'
@@ -1158,25 +1146,6 @@
 	},
 /turf/simulated/floor/holofloor/carpet,
 /area/holodeck/source_theatre)
-"dn" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden,
-/obj/machinery/hologram/holopad,
-/turf/simulated/floor/tiled/white,
-/area/centcom/simulated/medical)
-"do" = (
-/obj/effect/step_trigger/teleporter/random{
-	affect_ghosts = 1;
-	name = "escapeshuttle_leave";
-	teleport_x = 25;
-	teleport_x_offset = 245;
-	teleport_y = 25;
-	teleport_y_offset = 245;
-	teleport_z = 4;
-	teleport_z_offset = 4
-	},
-/turf/space,
-/turf/space/transit/north,
-/area/space)
 "dq" = (
 /obj/structure/flora/pottedplant{
 	icon_state = "plant-06"
@@ -14719,10 +14688,10 @@ Jz
 Jz
 Jz
 Jz
-do
-do
-do
-do
+cY
+cY
+cY
+cY
 iO
 El
 El
@@ -14864,7 +14833,7 @@ jf
 Gs
 Gs
 Gs
-do
+cY
 iO
 El
 El
@@ -15006,7 +14975,7 @@ jf
 Gs
 Gs
 Gs
-do
+cY
 iO
 El
 El
@@ -15148,7 +15117,7 @@ jf
 Gs
 Gs
 Gs
-do
+cY
 iO
 El
 El
@@ -15290,7 +15259,7 @@ jf
 Gs
 Gs
 Gs
-do
+cY
 iO
 El
 El
@@ -15432,7 +15401,7 @@ jf
 Gs
 Gs
 Gs
-do
+cY
 iO
 El
 El
@@ -15574,7 +15543,7 @@ jf
 Gs
 Gs
 Gs
-do
+cY
 iO
 El
 El
@@ -15716,7 +15685,7 @@ jf
 Gs
 Gs
 Gs
-do
+cY
 iO
 El
 El
@@ -15858,7 +15827,7 @@ jf
 Gs
 Gs
 Gs
-do
+cY
 iO
 El
 El
@@ -16000,7 +15969,7 @@ jf
 Gs
 Gs
 Gs
-do
+cY
 iO
 El
 El
@@ -16142,7 +16111,7 @@ jf
 Gs
 Gs
 Gs
-do
+cY
 iO
 El
 El
@@ -16284,7 +16253,7 @@ jf
 Gs
 Gs
 Gs
-do
+cY
 iO
 El
 El
@@ -16426,7 +16395,7 @@ jf
 Gs
 Gs
 Gs
-do
+cY
 iO
 El
 El
@@ -16568,7 +16537,7 @@ jf
 Gs
 Gs
 Gs
-do
+cY
 iO
 El
 El
@@ -16710,7 +16679,7 @@ jf
 Gs
 Gs
 Gs
-do
+cY
 iO
 El
 El
@@ -16852,7 +16821,7 @@ jf
 Gs
 Gs
 Gs
-do
+cY
 iO
 El
 El
@@ -16994,7 +16963,7 @@ jf
 Gs
 Gs
 Gs
-do
+cY
 iO
 El
 El
@@ -17136,7 +17105,7 @@ jf
 Gs
 Gs
 Gs
-do
+cY
 iO
 El
 El
@@ -17278,7 +17247,7 @@ jf
 Gs
 Gs
 Gs
-do
+cY
 iO
 El
 El
@@ -17420,7 +17389,7 @@ jf
 Gs
 Gs
 Gs
-do
+cY
 iO
 El
 El
@@ -17539,30 +17508,30 @@ ap
 ap
 ap
 ap
-do
-do
-do
-do
-do
-do
-do
-do
-do
-do
-do
-do
-do
-do
-do
-do
-do
-do
-do
-do
-do
-do
-do
-do
+cY
+cY
+cY
+cY
+cY
+cY
+cY
+cY
+cY
+cY
+cY
+cY
+cY
+cY
+cY
+cY
+cY
+cY
+cY
+cY
+cY
+cY
+cY
+cY
 iO
 El
 El
@@ -18359,7 +18328,7 @@ JR
 Nq
 Nq
 Nq
-cR
+Nq
 Nq
 Nq
 Yx
@@ -18370,7 +18339,7 @@ Nq
 Yx
 Nq
 Nq
-cR
+Nq
 Nq
 Nq
 cJ
@@ -19080,7 +19049,7 @@ Wv
 WJ
 Xv
 XD
-dc
+XD
 VI
 Ys
 XD
@@ -19224,7 +19193,7 @@ Xw
 XD
 XD
 VI
-df
+cR
 XD
 YJ
 VI
@@ -20217,7 +20186,7 @@ VQ
 VQ
 VQ
 VQ
-cZ
+VQ
 WH
 WR
 WW
@@ -21782,7 +21751,7 @@ WS
 WS
 Vd
 cK
-dn
+cW
 XN
 Vd
 ae
@@ -22487,7 +22456,7 @@ Ru
 WC
 WT
 WS
-cW
+WS
 WS
 WS
 Vd
@@ -23061,7 +23030,7 @@ Yc
 Vd
 Zy
 WS
-cW
+WS
 WS
 WS
 cM
@@ -23334,7 +23303,7 @@ Vc
 Wi
 YR
 Ru
-db
+Ru
 Ru
 Vd
 Zj
@@ -23481,7 +23450,7 @@ Ru
 Vd
 Xr
 XB
-cY
+YW
 YW
 YW
 Yw

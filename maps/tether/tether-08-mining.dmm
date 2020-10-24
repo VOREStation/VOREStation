@@ -359,6 +359,7 @@
 "aT" = (
 /obj/machinery/power/apc{
 	dir = 1;
+	is_critical = 1;
 	name = "north bump";
 	pixel_x = 0;
 	pixel_y = 24
@@ -1613,6 +1614,19 @@
 /obj/machinery/camera/network/engineering_outpost,
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/mine/explored)
+"dh" = (
+/obj/machinery/power/apc{
+	dir = 1;
+	is_critical = 1;
+	name = "north bump";
+	pixel_x = 0;
+	pixel_y = 24
+	},
+/obj/structure/cable/green{
+	icon_state = "0-2"
+	},
+/turf/simulated/floor/bluegrid,
+/area/outpost/mining_main/airlock)
 "di" = (
 /obj/machinery/access_button{
 	command = "cycle_exterior";
@@ -1868,18 +1882,6 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/outpost/mining_main/break_room)
-"Gs" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "north bump";
-	pixel_x = 0;
-	pixel_y = 24
-	},
-/obj/structure/cable/green{
-	icon_state = "0-2"
-	},
-/turf/simulated/floor/bluegrid,
-/area/outpost/mining_main/airlock)
 "GU" = (
 /obj/machinery/status_display,
 /turf/simulated/wall/r_wall,
@@ -5643,7 +5645,7 @@ ch
 cH
 cP
 Px
-Gs
+dh
 QZ
 BD
 Px

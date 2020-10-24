@@ -173,6 +173,7 @@
 	},
 /obj/machinery/power/apc{
 	dir = 4;
+	is_critical = 1;
 	name = "east bump";
 	pixel_x = 28
 	},
@@ -6361,6 +6362,7 @@
 /obj/machinery/power/apc{
 	cell_type = /obj/item/weapon/cell/super;
 	dir = 8;
+	is_critical = 1;
 	name = "west bump";
 	pixel_x = -24
 	},
@@ -7755,6 +7757,7 @@
 /obj/machinery/power/apc{
 	cell_type = /obj/item/weapon/cell/super;
 	dir = 8;
+	is_critical = 1;
 	name = "west bump";
 	pixel_x = -24
 	},
@@ -8553,6 +8556,7 @@
 	},
 /obj/machinery/power/apc{
 	dir = 1;
+	is_critical = 1;
 	name = "north bump";
 	pixel_x = 0;
 	pixel_y = 28
@@ -12139,6 +12143,7 @@
 /obj/structure/cable/green{
 	icon_state = "0-4"
 	},
+/obj/machinery/camera/network/engineering,
 /turf/simulated/floor/plating,
 /area/maintenance/substation/civ_west)
 "aun" = (
@@ -12432,9 +12437,6 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 4;
 	icon_state = "warningcorner"
-	},
-/obj/machinery/camera/network/engineering{
-	dir = 4
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/substation/civ_west)
@@ -13695,16 +13697,19 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/power/smes/buildable{
-	charge = 5e+006;
-	input_attempt = 1;
+	charge = 0;
+	input_attempt = 0;
 	input_level = 100000;
 	output_level = 200000;
 	RCon_tag = "Substation - Atmospherics"
 	},
+/obj/machinery/camera/network/engineering{
+	dir = 1
+	},
 /turf/simulated/floor/plating,
 /area/maintenance/substation/surface_atmos)
 "aww" = (
-/obj/machinery/power/breakerbox{
+/obj/machinery/power/breakerbox/activated{
 	RCon_tag = "Atmos Substation Bypass"
 	},
 /turf/simulated/floor/plating,
@@ -14729,8 +14734,8 @@
 	name = "Blast Door";
 	opacity = 0
 	},
-/obj/machinery/camera/network/research{
-	dir = 5;
+/obj/machinery/camera/xray/research{
+	dir = 4;
 	icon_state = "camera"
 	},
 /turf/simulated/floor/tiled,
@@ -14759,8 +14764,9 @@
 	name = "Blast Door";
 	opacity = 0
 	},
-/obj/machinery/camera/network/research{
-	dir = 8
+/obj/machinery/camera/xray/research{
+	dir = 8;
+	icon_state = "camera"
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/testingroom)
@@ -15059,6 +15065,68 @@
 /obj/machinery/camera/network/research,
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/emergency_storage/rnd)
+"ayM" = (
+/obj/machinery/power/apc{
+	dir = 2;
+	is_critical = 1;
+	name = "south bump";
+	pixel_y = -28
+	},
+/obj/structure/cable/green{
+	icon_state = "0-4"
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8;
+	icon_state = "warning"
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals3,
+/obj/effect/floor_decal/steeldecal/steel_decals3{
+	dir = 6
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/external)
+"ayN" = (
+/obj/structure/cable/cyan{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/structure/table/standard,
+/obj/item/clothing/ears/earmuffs,
+/obj/item/clothing/ears/earmuffs,
+/obj/item/device/radio/headset/headset_eng,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/power/apc/super{
+	dir = 1;
+	is_critical = 1;
+	pixel_y = 28
+	},
+/obj/machinery/button/remote/blast_door{
+	id = "atmoslockdown";
+	name = "Atmospherics Lockdown";
+	pixel_x = 0;
+	pixel_y = 0;
+	req_one_access = list(10,24)
+	},
+/turf/simulated/floor/tiled,
+/area/engineering/atmos)
+"ayO" = (
+/obj/machinery/portable_atmospherics/canister/nitrogen,
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/machinery/power/apc{
+	cell_type = /obj/item/weapon/cell/super;
+	dir = 8;
+	is_critical = 1;
+	name = "west bump";
+	pixel_x = -24
+	},
+/obj/structure/cable/cyan{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/engineering/atmos/gas_storage)
 "ayQ" = (
 /obj/machinery/status_display{
 	pixel_y = 30
@@ -19033,31 +19101,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/atmos)
-"aKm" = (
-/obj/structure/cable/cyan{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/obj/structure/table/standard,
-/obj/item/clothing/ears/earmuffs,
-/obj/item/clothing/ears/earmuffs,
-/obj/item/device/radio/headset/headset_eng,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/power/apc/super{
-	dir = 1;
-	pixel_y = 28
-	},
-/obj/machinery/button/remote/blast_door{
-	id = "atmoslockdown";
-	name = "Atmospherics Lockdown";
-	pixel_x = 0;
-	pixel_y = 0;
-	req_one_access = list(10,24)
-	},
-/turf/simulated/floor/tiled,
-/area/engineering/atmos)
 "aKn" = (
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -19611,21 +19654,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/research)
-"aLx" = (
-/obj/machinery/portable_atmospherics/canister/nitrogen,
-/obj/effect/floor_decal/industrial/outline/yellow,
-/obj/machinery/power/apc{
-	cell_type = /obj/item/weapon/cell/super;
-	dir = 8;
-	name = "west bump";
-	pixel_x = -24
-	},
-/obj/structure/cable/cyan{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/engineering/atmos/gas_storage)
 "aLy" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/effect/floor_decal/industrial/outline/yellow,
@@ -27581,25 +27609,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_one_hall)
-"bbo" = (
-/obj/machinery/power/apc{
-	dir = 2;
-	name = "south bump";
-	pixel_y = -28
-	},
-/obj/structure/cable/green{
-	icon_state = "0-4"
-	},
-/obj/effect/floor_decal/industrial/warning{
-	dir = 8;
-	icon_state = "warning"
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals3,
-/obj/effect/floor_decal/steeldecal/steel_decals3{
-	dir = 6
-	},
-/turf/simulated/floor/tiled,
-/area/rnd/external)
 "bbp" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -37140,7 +37149,7 @@ aBv
 aBv
 aKL
 aLo
-bbo
+ayM
 aKL
 aNv
 aoq
@@ -40405,7 +40414,7 @@ aIH
 aJF
 aKi
 aKi
-aLx
+ayO
 aMg
 aMN
 aNz
@@ -41113,7 +41122,7 @@ aHu
 aHu
 aIK
 aIh
-aKm
+ayN
 aJI
 aLB
 aMl

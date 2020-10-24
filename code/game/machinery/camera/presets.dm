@@ -110,6 +110,9 @@ var/global/list/engineering_networks = list(
 	..()
 	upgradeEmpProof()
 
+/obj/machinery/camera/emp_proof/engine
+	network = list(NETWORK_ENGINE)
+	
 // X-RAY
 
 /obj/machinery/camera/xray
@@ -148,6 +151,9 @@ var/global/list/engineering_networks = list(
 
 /obj/machinery/camera/all/command
 	network = list(NETWORK_COMMAND)
+	
+/obj/machinery/camera/all/security
+	network = list(NETWORK_SECURITY)
 
 /obj/machinery/camera/all/New()
 	..()

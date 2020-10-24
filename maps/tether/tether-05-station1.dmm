@@ -994,6 +994,7 @@
 	},
 /obj/machinery/power/apc{
 	dir = 2;
+	is_critical = 1;
 	name = "south bump";
 	pixel_y = -32
 	},
@@ -2691,6 +2692,7 @@
 "afk" = (
 /obj/machinery/power/apc{
 	dir = 2;
+	is_critical = 1;
 	name = "south bump";
 	pixel_y = -32
 	},
@@ -3591,6 +3593,7 @@
 	},
 /obj/machinery/power/apc{
 	dir = 4;
+	is_critical = 1;
 	name = "east bump";
 	pixel_x = 28
 	},
@@ -3885,19 +3888,19 @@
 /turf/space,
 /area/space)
 "agW" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 1
+/obj/machinery/power/apc{
+	dir = 4;
+	is_critical = 1;
+	name = "east bump";
+	pixel_x = 28
 	},
-/obj/effect/floor_decal/corner/lightgrey/border{
-	dir = 1
+/obj/structure/cable/green{
+	d2 = 8;
+	icon_state = "0-8"
 	},
-/obj/machinery/camera/network/tether,
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 4
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7,
+/obj/structure/table/reinforced,
 /turf/simulated/floor/tiled,
-/area/hallway/station/atrium)
+/area/crew_quarters/heads/chief)
 "agX" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -4068,9 +4071,6 @@
 	d2 = 2;
 	icon_state = "1-2";
 	pixel_y = 0
-	},
-/obj/machinery/camera/network/engineering{
-	dir = 8
 	},
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
@@ -4557,6 +4557,9 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
+/obj/machinery/camera/network/engineering{
+	dir = 4
+	},
 /turf/simulated/floor,
 /area/maintenance/substation/spacecommand)
 "aib" = (
@@ -4893,6 +4896,7 @@
 "aiF" = (
 /obj/machinery/power/apc{
 	dir = 4;
+	is_critical = 1;
 	name = "east bump";
 	pixel_x = 28
 	},
@@ -5069,17 +5073,25 @@
 /turf/simulated/floor/tiled,
 /area/gateway/prep_room)
 "aja" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 1;
+	icon_state = "borderfloor";
+	pixel_y = 0
+	},
+/obj/effect/floor_decal/corner/yellow/border{
+	dir = 1
+	},
+/obj/machinery/power/apc/super{
+	dir = 1;
+	is_critical = 1;
+	pixel_y = 28
+	},
 /obj/structure/cable/green{
-	d2 = 8;
-	icon_state = "0-8"
+	d2 = 2;
+	icon_state = "0-2"
 	},
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "east bump";
-	pixel_x = 28
-	},
-/turf/simulated/floor/tiled/dark,
-/area/gateway)
+/turf/simulated/floor/tiled,
+/area/engineering/gravity_gen)
 "ajb" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -6582,6 +6594,27 @@
 	},
 /turf/simulated/floor/plating,
 /area/storage/emergency_storage/emergency4)
+"alV" = (
+/obj/machinery/power/apc{
+	dir = 8;
+	is_critical = 1;
+	name = "west bump";
+	pixel_x = -28
+	},
+/obj/structure/cable/green{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/computer/security/engineering{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1";
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled,
+/area/engineering/engineering_monitoring)
 "alW" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/effect/floor_decal/steeldecal/steel_decals_central6{
@@ -6623,6 +6656,46 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
+"alZ" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/bed/chair/office/dark{
+	dir = 4
+	},
+/obj/effect/landmark/start{
+	name = "Chief Engineer"
+	},
+/obj/machinery/button/windowtint{
+	id = "ce_office";
+	layer = 3.3;
+	pixel_x = 26;
+	pixel_y = 29
+	},
+/obj/machinery/button/remote/blast_door{
+	id = "englockdown";
+	name = "Engineering Lockdown";
+	pixel_x = -8;
+	pixel_y = 24;
+	req_access = list(10)
+	},
+/obj/machinery/button/remote/blast_door{
+	id = "atmoslockdown";
+	name = "Atmospherics Lockdown";
+	pixel_x = 38;
+	pixel_y = -12;
+	req_access = list(10)
+	},
+/obj/machinery/button/remote/airlock{
+	id = "CEdoor";
+	name = "CE Office Door Control";
+	pixel_x = 26
+	},
+/turf/simulated/floor/carpet/oracarpet,
+/area/crew_quarters/heads/chief)
 "ama" = (
 /obj/structure/table/marble,
 /obj/machinery/floor_light/prebuilt{
@@ -6643,6 +6716,20 @@
 /obj/item/weapon/reagent_containers/spray/cleaner,
 /turf/simulated/floor/wood,
 /area/hallway/station/atrium)
+"amb" = (
+/obj/machinery/atmospherics/pipe/simple/visible/red{
+	dir = 4;
+	icon_state = "intact"
+	},
+/obj/machinery/power/apc{
+	dir = 2;
+	is_critical = 1;
+	name = "south bump";
+	pixel_y = -32
+	},
+/obj/structure/cable/green,
+/turf/simulated/floor/tiled,
+/area/engineering/atmos/backup)
 "amc" = (
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 8
@@ -6657,6 +6744,30 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/hallway)
+"amd" = (
+/obj/machinery/atmospherics/portables_connector{
+	dir = 1
+	},
+/obj/machinery/portable_atmospherics/canister/air/airlock,
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 4;
+	icon_state = "warningcorner"
+	},
+/obj/machinery/power/apc{
+	dir = 2;
+	is_critical = 1;
+	name = "south bump";
+	pixel_y = -32
+	},
+/obj/structure/cable/green,
+/obj/machinery/alarm{
+	dir = 8;
+	pixel_x = 25;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled,
+/area/engineering/engineering_airlock)
 "ame" = (
 /obj/effect/landmark{
 	name = "lightsout"
@@ -7289,6 +7400,40 @@
 "anp" = (
 /turf/simulated/floor/plating,
 /area/maintenance/abandonedlibrary)
+"anq" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 8;
+	icon_state = "borderfloor";
+	pixel_x = 0
+	},
+/obj/effect/floor_decal/corner/yellow/border{
+	dir = 8
+	},
+/obj/machinery/power/apc{
+	dir = 8;
+	is_critical = 1;
+	name = "west bump";
+	pixel_x = -28
+	},
+/obj/structure/cable/green{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/turf/simulated/floor/tiled,
+/area/engineering/gravity_lobby)
+"anr" = (
+/obj/structure/cable/green{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/machinery/power/apc{
+	dir = 4;
+	is_critical = 1;
+	name = "east bump";
+	pixel_x = 28
+	},
+/turf/simulated/floor/tiled/dark,
+/area/gateway)
 "ans" = (
 /obj/item/stack/tile/wood{
 	amount = 10
@@ -7334,6 +7479,26 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/hallway)
+"anv" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7,
+/obj/machinery/button/remote/blast_door{
+	id = "englockdown";
+	name = "Engineering Lockdown";
+	pixel_x = 0;
+	pixel_y = 24;
+	req_access = list(10)
+	},
+/turf/simulated/floor/tiled,
+/area/hallway/station/atrium)
 "anw" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/decal/cleanable/dirt,
@@ -7515,6 +7680,20 @@
 /obj/random/trash,
 /turf/simulated/floor/wood,
 /area/maintenance/abandonedlibrary)
+"anJ" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7,
+/obj/machinery/camera/network/tether,
+/turf/simulated/floor/tiled,
+/area/hallway/station/atrium)
 "anK" = (
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/carpet,
@@ -7540,6 +7719,23 @@
 /obj/item/weapon/book/manual/hydroponics_pod_people,
 /turf/simulated/floor/plating,
 /area/maintenance/abandonedlibrary)
+"anN" = (
+/obj/machinery/power/smes/buildable{
+	RCon_tag = "Substation - Civilian";
+	charge = 0;
+	output_attempt = 0;
+	outputting = 0
+	},
+/obj/structure/cable/green{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/structure/cable/green,
+/obj/machinery/camera/network/engineering{
+	dir = 8
+	},
+/turf/simulated/floor,
+/area/maintenance/substation/civilian)
 "anO" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -8717,19 +8913,6 @@
 	},
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor,
-/area/engineering/atmos/backup)
-"aqj" = (
-/obj/machinery/atmospherics/pipe/simple/visible/red{
-	dir = 4;
-	icon_state = "intact"
-	},
-/obj/machinery/power/apc{
-	dir = 2;
-	name = "south bump";
-	pixel_y = -32
-	},
-/obj/structure/cable/green,
-/turf/simulated/floor/tiled,
 /area/engineering/atmos/backup)
 "aqk" = (
 /obj/effect/floor_decal/steeldecal/steel_decals7{
@@ -16793,20 +16976,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor,
 /area/maintenance/substation/civilian)
-"aEX" = (
-/obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Civilian";
-	charge = 0;
-	output_attempt = 0;
-	outputting = 0
-	},
-/obj/structure/cable/green{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/obj/structure/cable/green,
-/turf/simulated/floor,
-/area/maintenance/substation/civilian)
 "aEZ" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -17937,29 +18106,6 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/engineering/workshop)
-"aNd" = (
-/obj/machinery/atmospherics/portables_connector{
-	dir = 1
-	},
-/obj/machinery/portable_atmospherics/canister/air/airlock,
-/obj/effect/floor_decal/industrial/outline/yellow,
-/obj/effect/floor_decal/industrial/warning/corner{
-	dir = 4;
-	icon_state = "warningcorner"
-	},
-/obj/machinery/power/apc{
-	dir = 2;
-	name = "south bump";
-	pixel_y = -32
-	},
-/obj/structure/cable/green,
-/obj/machinery/alarm{
-	dir = 8;
-	pixel_x = 25;
-	pixel_y = 0
-	},
-/turf/simulated/floor/tiled,
-/area/engineering/engineering_airlock)
 "aNe" = (
 /obj/machinery/light/small{
 	dir = 8;
@@ -18187,44 +18333,11 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/carpet/oracarpet,
 /area/crew_quarters/heads/chief)
-"aQl" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "east bump";
-	pixel_x = 28
-	},
-/obj/structure/cable/green{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/obj/structure/table/reinforced,
-/turf/simulated/floor/tiled,
-/area/crew_quarters/heads/chief)
 "aQn" = (
 /obj/structure/cable/green{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
-	},
-/turf/simulated/floor/tiled,
-/area/engineering/engineering_monitoring)
-"aQs" = (
-/obj/machinery/power/apc{
-	dir = 8;
-	name = "west bump";
-	pixel_x = -28
-	},
-/obj/structure/cable/green{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/obj/machinery/computer/security/engineering{
-	dir = 4
-	},
-/obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/engineering_monitoring)
@@ -18376,46 +18489,6 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled,
-/area/crew_quarters/heads/chief)
-"aSe" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/structure/bed/chair/office/dark{
-	dir = 4
-	},
-/obj/effect/landmark/start{
-	name = "Chief Engineer"
-	},
-/obj/machinery/button/windowtint{
-	id = "ce_office";
-	layer = 3.3;
-	pixel_x = 26;
-	pixel_y = 29
-	},
-/obj/machinery/button/remote/blast_door{
-	id = "englockdown";
-	name = "Engineering Lockdown";
-	pixel_x = 26;
-	pixel_y = -12;
-	req_access = list(10)
-	},
-/obj/machinery/button/remote/blast_door{
-	id = "atmoslockdown";
-	name = "Atmospherics Lockdown";
-	pixel_x = 38;
-	pixel_y = -12;
-	req_access = list(10)
-	},
-/obj/machinery/button/remote/airlock{
-	id = "CEdoor";
-	name = "CE Office Door Control";
-	pixel_x = 26
-	},
-/turf/simulated/floor/carpet/oracarpet,
 /area/crew_quarters/heads/chief)
 "aSo" = (
 /obj/effect/landmark{
@@ -21781,25 +21854,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled,
 /area/engineering/hallway)
-"fUR" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 1;
-	icon_state = "borderfloor";
-	pixel_y = 0
-	},
-/obj/effect/floor_decal/corner/yellow/border{
-	dir = 1
-	},
-/obj/machinery/power/apc/super{
-	dir = 1;
-	pixel_y = 28
-	},
-/obj/structure/cable/green{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/turf/simulated/floor/tiled,
-/area/engineering/gravity_gen)
 "fXG" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
@@ -23539,26 +23593,6 @@
 /turf/simulated/floor/tiled{
 	icon_state = "techmaint"
 	},
-/area/engineering/gravity_lobby)
-"rys" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 8;
-	icon_state = "borderfloor";
-	pixel_x = 0
-	},
-/obj/effect/floor_decal/corner/yellow/border{
-	dir = 8
-	},
-/obj/machinery/power/apc{
-	dir = 8;
-	name = "west bump";
-	pixel_x = -28
-	},
-/obj/structure/cable/green{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/turf/simulated/floor/tiled,
 /area/engineering/gravity_lobby)
 "rAZ" = (
 /obj/effect/floor_decal/borderfloor{
@@ -29135,7 +29169,7 @@ aFJ
 aHQ
 amp
 aqm
-aNd
+amd
 aGB
 ahW
 aaa
@@ -29706,7 +29740,7 @@ aLy
 agc
 aYF
 aRX
-aSe
+alZ
 aRX
 aVz
 aRb
@@ -30115,7 +30149,7 @@ aac
 abZ
 arO
 apu
-aqj
+amb
 aqM
 aqM
 aqM
@@ -30415,7 +30449,7 @@ aoq
 aLO
 aRb
 aZg
-aQl
+agW
 aSu
 aDi
 vyI
@@ -30699,7 +30733,7 @@ anu
 aqu
 alt
 aOY
-aQs
+alV
 and
 aTX
 aVN
@@ -32692,7 +32726,7 @@ aSL
 aoJ
 aoJ
 aoJ
-agW
+anv
 acp
 bdK
 awt
@@ -32976,7 +33010,7 @@ aac
 aac
 aac
 afC
-agZ
+anJ
 ahH
 bdS
 arf
@@ -34090,7 +34124,7 @@ sbX
 pbR
 vAQ
 jNX
-rys
+anq
 eYw
 ghJ
 sTb
@@ -34100,7 +34134,7 @@ aik
 azD
 aBR
 aDM
-aEX
+anN
 aof
 alQ
 aeO
@@ -35080,7 +35114,7 @@ ack
 ack
 aik
 plz
-fUR
+aja
 jIo
 ort
 vYM
@@ -39060,7 +39094,7 @@ ahX
 aiK
 aiL
 akh
-aja
+anr
 akH
 ale
 ajf
