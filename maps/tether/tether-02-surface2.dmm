@@ -9714,9 +9714,9 @@
 /obj/machinery/power/smes/buildable{
 	charge = 0;
 	input_attempt = 0;
-	input_level = 100000;
+	input_level = 50000;
 	output_attempt = 1;
-	output_level = 100000;
+	output_level = 50000;
 	outputting = 0;
 	RCon_tag = "Substation - Telecomms"
 	},

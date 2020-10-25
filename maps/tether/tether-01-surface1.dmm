@@ -13699,8 +13699,9 @@
 /obj/machinery/power/smes/buildable{
 	charge = 0;
 	input_attempt = 0;
-	input_level = 100000;
-	output_level = 200000;
+	input_level = 50000;
+	output_attempt = 0;
+	output_level = 50000;
 	RCon_tag = "Substation - Atmospherics"
 	},
 /obj/machinery/camera/network/engineering{

@@ -399,7 +399,8 @@
 /area/tether/outpost/solars_outside)
 "aO" = (
 /obj/machinery/power/smes/buildable{
-	charge = 1.5e+006;
+	capacity = 1.5e+007;
+	charge = 5e+006;
 	cur_coils = 3;
 	input_level = 750000;
 	input_level_max = 750000;
