@@ -10346,24 +10346,13 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/engineering/foyer_mezzenine)
 "pt" = (
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/corner/paleblue/border,
-/obj/effect/floor_decal/borderfloor/corner2,
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 9
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_l"
 	},
-/obj/effect/floor_decal/borderfloor/corner{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2,
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 9
-	},
-/obj/effect/floor_decal/corner/lightgrey/bordercorner{
-	dir = 4
-	},
-/turf/simulated/floor/tiled,
-/area/hallway/station/starboard)
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1)
 "pu" = (
 /obj/structure/table/bench/wooden,
 /obj/effect/landmark/start{
@@ -10941,8 +10930,7 @@
 /area/maintenance/station/sec_lower)
 "qu" = (
 /obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
+	dir = 8
 	},
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
@@ -16276,7 +16264,8 @@
 /area/medical/morgue)
 "yR" = (
 /obj/structure/shuttle/engine/propulsion{
-	dir = 8
+	dir = 8;
+	icon_state = "propulsion_r"
 	},
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
@@ -16383,13 +16372,27 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery)
 "zb" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_r"
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/paleblue/border,
+/obj/effect/floor_decal/borderfloor/corner2,
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 9
 	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1)
+/obj/effect/floor_decal/borderfloor/corner{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner2,
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/lightgrey/bordercorner{
+	dir = 4
+	},
+/obj/machinery/atm{
+	pixel_x = 32
+	},
+/turf/simulated/floor/tiled,
+/area/hallway/station/starboard)
 "zc" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 8
@@ -33686,7 +33689,7 @@ QO
 DV
 FB
 pU
-pt
+zb
 pp
 qP
 ry
@@ -38083,11 +38086,11 @@ hl
 DI
 RX
 yN
+pt
+qu
+qu
 qu
 yR
-yR
-yR
-zb
 oY
 sW
 ef

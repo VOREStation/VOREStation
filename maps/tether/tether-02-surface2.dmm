@@ -10849,16 +10849,16 @@
 /area/engineering/lower/lobby)
 "auF" = (
 /obj/effect/floor_decal/borderfloor{
-	dir = 6
+	dir = 4
 	},
-/obj/effect/floor_decal/corner/yellow/border{
-	dir = 6;
-	icon_state = "bordercolor"
+/obj/machinery/door/firedoor/glass/hidden{
+	dir = 8
 	},
-/obj/effect/floor_decal/borderfloor/corner2,
-/obj/effect/floor_decal/corner/yellow/bordercorner2,
-/turf/simulated/floor/tiled,
-/area/engineering/lower/lobby)
+/obj/machinery/atm{
+	pixel_x = 32
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/surface_two_hall)
 "auG" = (
 /obj/machinery/light_switch{
 	pixel_y = -28
@@ -15036,6 +15036,21 @@
 	},
 /turf/simulated/open,
 /area/engineering/atmos)
+"aBg" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 6
+	},
+/obj/effect/floor_decal/corner/yellow/border{
+	dir = 6;
+	icon_state = "bordercolor"
+	},
+/obj/effect/floor_decal/borderfloor/corner2,
+/obj/effect/floor_decal/corner/yellow/bordercorner2,
+/obj/machinery/atm{
+	pixel_y = -34
+	},
+/turf/simulated/floor/tiled,
+/area/engineering/lower/lobby)
 "aBh" = (
 /obj/structure/railing{
 	dir = 8
@@ -28941,15 +28956,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/drone_fabrication)
-"jfi" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/glass/hidden{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/tether/surfacebase/surface_two_hall)
 "jfF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -41300,7 +41306,7 @@ arN
 asH
 atl
 atW
-auF
+aBg
 avc
 avK
 awA
@@ -43989,7 +43995,7 @@ asB
 afG
 anu
 jnL
-jfi
+auF
 aiE
 apP
 aSL
