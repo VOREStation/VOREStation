@@ -34,6 +34,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 	return ..()
 
 /obj/item/device/paicard/attack_ghost(mob/observer/dead/user)
+	/*VOREStation Edit: Ghosts can do this here anyway, this just forces character slot name onto admin pAIs.
 	if(istype(user) && user.can_admin_interact())
 		switch(alert(user, "Would you like to become a pAI by force? (Admin)", "pAI Creation", "Yes", "No"))
 			if("Yes")
@@ -48,6 +49,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 
 				if(pai.mind)
 					update_antag_icons(pai.mind)
+	*/
 	return ..()
 
 
