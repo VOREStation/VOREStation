@@ -23,6 +23,7 @@
 	var/declare_arrests = FALSE // If true, announces arrests over sechuds.
 	var/threat = 0 // How much of a threat something is. Set upon acquiring a target.
 	var/attacked = FALSE // If true, gives the bot enough threat assessment to attack immediately.
+	var/retaliates = TRUE //If this type of secbot should retaliate at all - so that slime securitrons don't go ballistic the second they get glomped.
 
 	var/is_ranged = FALSE
 	var/awaiting_surrender = 0
@@ -63,6 +64,7 @@
 	desc = "A little security robot, with a slime baton subsituted for the regular one."
 	default_icon_state = "slimesecbot"
 	stun_strength = 10 // Slimebatons aren't meant for humans.
+	retaliates = FALSE // No, you're not allowed to beat the slimes to death just because they scratched you.
 
 	xeno_harm_strength = 9 // Weaker than regular slimesky but they can stun.
 	baton_glow = "#33CCFF"
@@ -193,7 +195,7 @@
 	..()
 
 /mob/living/bot/secbot/proc/react_to_attack(mob/attacker)
-	if(!on)		// We don't want it to react if it's off
+	if(!on || !retaliates)		// We don't want it to react if it's off or doesn't care
 		return
 
 	if(!target)
