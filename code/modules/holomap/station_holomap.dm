@@ -6,6 +6,7 @@
 	desc = "A virtual map of the surrounding station."
 	icon = 'icons/obj/machines/stationmap.dmi'
 	icon_state = "station_map"
+	layer = ABOVE_WINDOW_LAYER
 	anchored = 1
 	density = 0
 	use_power = USE_POWER_IDLE
@@ -18,9 +19,6 @@
 	var/light_power_on = 1
 	var/light_range_on = 2
 	light_color = "#64C864"
-
-	plane = TURF_PLANE
-	layer = ABOVE_TURF_LAYER
 
 	var/mob/watching_mob = null
 	var/image/small_station_map = null

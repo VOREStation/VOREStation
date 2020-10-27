@@ -3,8 +3,7 @@
 	desc = "Talk through this."
 	icon = 'icons/obj/radio_vr.dmi' //VOREStation Edit - New Icon
 	icon_state = "intercom"
-	plane = TURF_PLANE
-	layer = ABOVE_TURF_LAYER
+	layer = ABOVE_WINDOW_LAYER
 	anchored = 1
 	w_class = ITEMSIZE_LARGE
 	canhear_range = 7 //VOREStation Edit
