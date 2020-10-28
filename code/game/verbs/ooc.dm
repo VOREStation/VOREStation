@@ -34,11 +34,6 @@
 			log_admin("[key_name(src)] has attempted to advertise in OOC: [msg]")
 			message_admins("[key_name_admin(src)] has attempted to advertise in OOC: [msg]")
 			return
-		//VOREStation Add - No talking during voting
-		if(SSvote && SSvote.mode)
-			to_chat(src, "<span class='danger'>OOC is not allowed during voting.</span>")
-			return
-		//VOREStation Add End
 		if(findtext(msg, "discord.gg") && !config.allow_discord_links)
 			to_chat(src, "<B>Advertising discords is not allowed.</B>")
 			log_admin("[key_name(src)] has attempted to advertise a discord server in OOC: [msg]")
