@@ -16,6 +16,7 @@
 	outfit_type = /decl/hierarchy/outfit/job/assistant/worker
 	job_description = "Off-duty crew has no responsibilities or authority and is just there to spend their well-deserved time off."
 	pto_type = PTO_CIVILIAN
+	economic_modifier = 2
 
 /datum/alt_title/offduty_civ
 	title = "Off-duty Worker"
@@ -34,6 +35,7 @@
 	outfit_type = /decl/hierarchy/outfit/job/assistant/cargo
 	job_description = "Off-duty crew has no responsibilities or authority and is just there to spend their well-deserved time off."
 	pto_type = PTO_CARGO
+	economic_modifier = 2
 
 /datum/alt_title/offduty_crg
 	title = "Off-duty Cargo"
@@ -52,6 +54,7 @@
 	outfit_type = /decl/hierarchy/outfit/job/assistant/engineer
 	job_description = "Off-duty crew has no responsibilities or authority and is just there to spend their well-deserved time off."
 	pto_type = PTO_ENGINEERING
+	economic_modifier = 5
 
 /datum/alt_title/offduty_eng
 	title = "Off-duty Engineer"
@@ -70,6 +73,7 @@
 	outfit_type = /decl/hierarchy/outfit/job/assistant/medic
 	job_description = "Off-duty crew has no responsibilities or authority and is just there to spend their well-deserved time off."
 	pto_type = PTO_MEDICAL
+	economic_modifier = 5
 
 /datum/alt_title/offduty_med
 	title = "Off-duty Medic"
@@ -88,6 +92,7 @@
 	outfit_type = /decl/hierarchy/outfit/job/assistant/scientist
 	job_description = "Off-duty crew has no responsibilities or authority and is just there to spend their well-deserved time off."
 	pto_type = PTO_SCIENCE
+	economic_modifier = 5 
 
 /datum/alt_title/offduty_sci
 	title = "Off-duty Scientist"
@@ -106,6 +111,7 @@
 	outfit_type = /decl/hierarchy/outfit/job/assistant/officer
 	job_description = "Off-duty crew has no responsibilities or authority and is just there to spend their well-deserved time off."
 	pto_type = PTO_SECURITY
+	economic_modifier = 4
 
 /datum/alt_title/offduty_sec
 	title = "Off-duty Officer"

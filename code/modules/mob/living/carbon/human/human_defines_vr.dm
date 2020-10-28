@@ -9,6 +9,7 @@
 	var/impersonate_bodytype //For impersonating a bodytype
 	var/ability_flags = 0	//Shadekin abilities/potentially other species-based?
 	var/sensorpref = 5		//Suit sensor loadout pref
+	var/wings_hidden = FALSE
 
 /mob/living/carbon/human/proc/shadekin_get_energy()
 	var/datum/species/shadekin/SK = species

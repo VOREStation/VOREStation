@@ -180,7 +180,7 @@ const SecurityRecordsViewGeneral = (_properties, context) => {
           {general.fields.map((field, i) => (
             <LabeledList.Item key={i} label={field.field}>
               <Box height="20px" display="inline-block">
-                {field.value}
+                {field.value.split("\n").map(m => <Box key={m}>{m}</Box>)}
               </Box>
               {!!field.edit && (
                 <Button
@@ -251,7 +251,7 @@ const SecurityRecordsViewSecurity = (_properties, context) => {
           <LabeledList.Item
             key={i}
             label={field.field}>
-            {field.value}
+            {field.value.split("\n").map(m => <Box key={m}>{m}</Box>)}
             <Button
               icon="pen"
               ml="0.5rem"

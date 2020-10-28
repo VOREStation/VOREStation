@@ -3,6 +3,7 @@
 	desc = "This device is used to trigger station functions, which require more than one ID card to authenticate."
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "auth_off"
+	layer = ABOVE_WINDOW_LAYER
 	circuit = /obj/item/weapon/circuitboard/keycard_auth
 	var/active = 0 //This gets set to 1 on all devices except the one where the initial request was made.
 	var/event = ""

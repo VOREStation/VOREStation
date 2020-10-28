@@ -396,6 +396,7 @@
 	description_fluff = "NanoMed is NanoTrasen's medical science division, and provides almost all of the modern medbay essentials in-house at no extra charge. By using this vending machine, employees accept liability for products that may or may not be temporarily replaced by placebos or experimental treatments."
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?"
 	icon_state = "wallmed"
+	layer = ABOVE_WINDOW_LAYER
 	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
 	products = list(/obj/item/stack/medical/bruise_pack = 2,
 				/obj/item/stack/medical/ointment = 2,
@@ -413,6 +414,7 @@
 	desc = "A wall-mounted version of the NanoMed, containing only vital first aid equipment."
 	description_fluff = "NanoMed is NanoTrasen's medical science division, and provides almost all of the modern medbay essentials in-house at no extra charge. By using this vending machine, employees accept liability for products that may or may not be temporarily replaced by placebos or experimental treatments."
 	icon_state = "wallmed"
+	layer = ABOVE_WINDOW_LAYER
 	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
 	products = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector = 5,
 				/obj/item/weapon/reagent_containers/syringe/antitoxin = 3,
@@ -814,3 +816,53 @@
 					/obj/item/stack/cable_coil/random = 4)
 	premium = list(/obj/item/weapon/storage/box/wormcan/deluxe = 1)
 	contraband = list(/obj/item/weapon/storage/box/wormcan/deluxe = 1)
+
+
+/obj/machinery/vending/virtual_autodrobe
+	name = "Virtual AutoDrobe"
+	desc = "A virtual vending machine for virtual avatar customization."
+	icon_state = "Theater"
+	product_slogans = "Dress for success!;Suited and booted!;It's show time!;Why leave style up to fate? Use AutoDrobe!"
+	products = list(/obj/item/weapon/storage/box/syndie_kit/chameleon = 20)
+
+
+/obj/machinery/vending/deathmatch
+	name = "Annihilation Shop (Green)"
+	desc = "A virtual vending machine for virtual murder equipment. This one's for green team."
+	products = list(/obj/item/weapon/melee/energy/sword = 5,
+					/obj/item/weapon/melee/energy/axe = 5,
+					/obj/item/weapon/melee/baton/loaded = 5,
+					/obj/item/weapon/gun/energy/laser = 5,
+					/obj/item/weapon/gun/projectile/shotgun/pump/combat = 5,
+					/obj/item/ammo_magazine/clip/c12g/pellet = 40,
+					/obj/item/ammo_magazine/clip/c12g = 50,
+					/obj/item/weapon/storage/box/flashbangs = 2,
+					/obj/item/clothing/head/helmet/swat = 5,
+					/obj/item/clothing/suit/armor/vest = 5,
+					/obj/item/clothing/head/helmet/thunderdome = 5,
+					/obj/item/clothing/shoes/brown = 5,
+					/obj/item/clothing/suit/armor/tdome/green = 5,
+					/obj/item/clothing/under/color/green = 5,
+					/obj/item/weapon/reagent_containers/pill/adminordrazine = 10,
+					/obj/item/weapon/tool/crowbar = 1)
+
+
+/obj/machinery/vending/deathmatch/red
+	name = "Annihilation Shop (Red)"
+	desc = "A virtual vending machine for virtual murder equipment. This one's for red team."
+	products = list(/obj/item/weapon/melee/energy/sword = 5,
+					/obj/item/weapon/melee/energy/axe = 5,
+					/obj/item/weapon/melee/baton/loaded = 5,
+					/obj/item/weapon/gun/energy/laser = 5,
+					/obj/item/weapon/gun/projectile/shotgun/pump/combat = 5,
+					/obj/item/ammo_magazine/clip/c12g/pellet = 40,
+					/obj/item/ammo_magazine/clip/c12g = 50,
+					/obj/item/weapon/storage/box/flashbangs = 2,
+					/obj/item/clothing/head/helmet/swat = 5,
+					/obj/item/clothing/suit/armor/vest = 5,
+					/obj/item/clothing/head/helmet/thunderdome = 5,
+					/obj/item/clothing/shoes/brown = 5,
+					/obj/item/clothing/suit/armor/tdome/red = 5,
+					/obj/item/clothing/under/color/red = 5,
+					/obj/item/weapon/reagent_containers/pill/adminordrazine = 10,
+					/obj/item/weapon/tool/crowbar = 1)

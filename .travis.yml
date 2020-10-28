@@ -1,5 +1,6 @@
-#pretending we're C because otherwise ruby will initialize, even with "language: dm".
-language: c
+language: generic
+os: linux
+dist: bionic
 
 env:
   global:
@@ -12,10 +13,14 @@ cache:
 addons:
   apt:
     packages:
-      - libc6-i386
+      - libc6:i386
       - libgcc1:i386
       - libstdc++6:i386
-      - libssl-dev:i386
+      - libssl1.1:i386
+      - g++-7
+      - g++-7-multilib
+      - gcc-multilib
+      - zlib1g:i386
 
 before_install:
   - chmod -R +x ./tools/travis
@@ -27,6 +32,7 @@ before_script:
   - shopt -s globstar
 
 script:
+  - ldd librust_g.so
   - ./tools/travis/compile_and_run.sh
 
 # Build-specific settings
