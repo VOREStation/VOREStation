@@ -338,6 +338,8 @@
 
 	prey.forceMove(src)
 	owner.updateVRPanel()
+	if(isanimal(owner))
+		owner.update_icon()
 
 	for(var/mob/living/M in contents)
 		M.updateVRPanel()
@@ -506,6 +508,8 @@
 
 	//Update owner
 	owner.updateVRPanel()
+	if(isanimal(owner))
+		owner.update_icon()
 
 //Digest a single item
 //Receives a return value from digest_act that's how much nutrition
@@ -675,6 +679,8 @@
 			I.gurgle_contaminate(target.contents, target.contamination_flavor, target.contamination_color)
 	items_preserved -= content
 	owner.updateVRPanel()
+	if(isanimal(owner))
+		owner.update_icon()
 	for(var/mob/living/M in contents)
 		M.updateVRPanel()
 

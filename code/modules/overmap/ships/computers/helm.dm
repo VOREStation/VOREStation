@@ -274,6 +274,7 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 
 /obj/machinery/computer/ship/navigation/telescreen	//little hacky but it's only used on one ship so it should be okay
 	icon_state = "tele_nav"
+	layer = ABOVE_WINDOW_LAYER
 	icon_keyboard = null
 	icon_screen = null
 	circuit = /obj/item/weapon/circuitboard/nav/tele

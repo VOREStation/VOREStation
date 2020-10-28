@@ -178,6 +178,7 @@
 	desc = "It doesn't seem all that secure. Oh well, it'll do."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "safe"
+	layer = ABOVE_WINDOW_LAYER
 	icon_opened = "safe0"
 	icon_locking = "safeb"
 	icon_sparking = "safespark"

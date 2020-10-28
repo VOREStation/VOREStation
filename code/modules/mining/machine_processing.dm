@@ -8,6 +8,7 @@
 	name = "production machine console"
 	icon = 'icons/obj/machines/mining_machines_vr.dmi' // VOREStation Edit
 	icon_state = "console"
+	layer = ABOVE_WINDOW_LAYER
 	density = TRUE
 	anchored = TRUE
 

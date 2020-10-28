@@ -1605,3 +1605,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 // Third one is the text that will be clickable.
 /proc/href(href_src, list/href_params, href_text)
 	return "<a href='?src=\ref[href_src];[list2params(href_params)]'>[href_text]</a>"
+
+/proc/CallAsync(datum/source, proctype, list/arguments)
+	set waitfor = FALSE
+	return call(source, proctype)(arglist(arguments))

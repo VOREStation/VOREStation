@@ -63,7 +63,9 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc)
 "cv" = (
-/obj/machinery/computer/ship/helm,
+/obj/machinery/computer/ship/helm{
+	req_one_access = list()
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/mackerel_hc)
 "cD" = (
@@ -300,7 +302,10 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc)
 "uR" = (
-/obj/machinery/door/airlock/hatch,
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
+	},
+/obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/mackerel_hc)
 "we" = (
@@ -371,12 +376,14 @@
 /turf/simulated/floor/plating,
 /area/shuttle/mackerel_hc)
 "BN" = (
-/obj/machinery/door/airlock/hatch,
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/mackerel_hc)

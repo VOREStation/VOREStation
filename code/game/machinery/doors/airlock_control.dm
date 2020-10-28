@@ -148,6 +148,7 @@ obj/machinery/door/airlock/Destroy()
 obj/machinery/airlock_sensor
 	icon = 'icons/obj/airlock_machines.dmi'
 	icon_state = "airlock_sensor_off"
+	layer = ABOVE_WINDOW_LAYER
 	name = "airlock sensor"
 	desc = "Sends atmospheric readings to a nearby controller."
 
@@ -233,6 +234,7 @@ obj/machinery/airlock_sensor/airlock_exterior/shuttle/return_air()
 obj/machinery/access_button
 	icon = 'icons/obj/airlock_machines.dmi'
 	icon_state = "access_button_standby"
+	layer = ABOVE_WINDOW_LAYER
 	name = "access button"
 
 	anchored = 1

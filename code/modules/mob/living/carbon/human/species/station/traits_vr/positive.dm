@@ -62,6 +62,12 @@
 	cost = 2
 	var_changes = list("unarmed_types" = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp, /datum/unarmed_attack/bite/sharp/numbing))
 
+/datum/trait/fangs
+	name = "Numbing Fangs"
+	desc = "Provides fangs that makes the person bit unable to feel their body or pain."
+	cost = 1
+	var_changes = list("unarmed_types" = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/punch, /datum/unarmed_attack/bite/sharp/numbing))
+
 /datum/trait/minor_brute_resist
 	name = "Minor Brute Resist"
 	desc = "Adds 15% resistance to brute damage sources."

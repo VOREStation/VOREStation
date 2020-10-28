@@ -26,6 +26,7 @@
 	VV_DROPDOWN_OPTION(VV_HK_MARK, "Mark Object")
 	VV_DROPDOWN_OPTION(VV_HK_DELETE, "Delete")
 	VV_DROPDOWN_OPTION(VV_HK_EXPOSE, "Show VV To Player")
+	VV_DROPDOWN_OPTION(VV_HK_ADDCOMPONENT, "Add Component/Element")
 
 //This proc is only called if everything topic-wise is verified. The only verifications that should happen here is things like permission checks!
 //href_list is a reference, modifying it in these procs WILL change the rest of the proc in topic.dm of admin/view_variables!
@@ -58,6 +59,34 @@
 		usr.client.mark_datum(src)
 	IF_VV_OPTION(VV_HK_CALLPROC)
 		usr.client.callproc_datum(src)
+	IF_VV_OPTION(VV_HK_ADDCOMPONENT)
+		if(!check_rights(NONE))
+			return
+		var/list/names = list()
+		var/list/componentsubtypes = sortTim(subtypesof(/datum/component), /proc/cmp_typepaths_asc)
+		names += "---Components---"
+		names += componentsubtypes
+		names += "---Elements---"
+		names += sortTim(subtypesof(/datum/element), /proc/cmp_typepaths_asc)
+		var/result = input(usr, "Choose a component/element to add","better know what ur fuckin doin pal") as null|anything in names
+		if(!usr || !result || result == "---Components---" || result == "---Elements---")
+			return
+		if(QDELETED(src))
+			to_chat(usr, "That thing doesn't exist anymore!", confidential = TRUE)
+			return
+		var/list/lst = usr.client.get_callproc_args()
+		if(!lst)
+			return
+		var/datumname = "error"
+		lst.Insert(1, result)
+		if(result in componentsubtypes)
+			datumname = "component"
+			_AddComponent(lst)
+		else
+			datumname = "element"
+			_AddElement(lst)
+		log_admin("[key_name(usr)] has added [result] [datumname] to [key_name(src)].")
+		message_admins("<span class='notice'>[key_name_admin(usr)] has added [result] [datumname] to [key_name_admin(src)].</span>")
 
 /datum/proc/vv_get_header()
 	. = list()

@@ -137,7 +137,7 @@
 					fields[++fields.len] = FIELD("Name", active1.fields["name"], null)
 					fields[++fields.len] = FIELD("ID", active1.fields["id"], null)
 					fields[++fields.len] = FIELD("Sex", active1.fields["sex"], "sex")
-					fields[++fields.len] = FIELD("Age", active1.fields["age"], "age")
+					fields[++fields.len] = FIELD("Age", "[active1.fields["age"]]", "age")
 					fields[++fields.len] = FIELD("Fingerprint", active1.fields["fingerprint"], "fingerprint")
 					fields[++fields.len] = FIELD("Physical Status", active1.fields["p_stat"], "p_stat")
 					fields[++fields.len] = FIELD("Mental Status", active1.fields["m_stat"], "m_stat")

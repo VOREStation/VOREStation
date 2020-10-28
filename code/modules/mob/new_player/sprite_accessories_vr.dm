@@ -697,6 +697,11 @@
 		icon_state = "eyes_sergal"
 		body_parts = list(BP_HEAD)
 
+	closedeyes
+		name = "Closed Eyes"
+		icon_state = "eyes_closed"
+		body_parts = list(BP_HEAD)
+
 	brows
 		name = "Eyebrows"
 		icon_state = "brows"
