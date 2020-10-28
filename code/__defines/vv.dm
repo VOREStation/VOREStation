@@ -50,6 +50,7 @@
 #define VV_HK_EXPOSE "expose"
 #define VV_HK_CALLPROC "proc_call"
 #define VV_HK_MARK "mark"
+#define VV_HK_ADDCOMPONENT "addcomponent"
 
 // /atom
 #define VV_HK_ATOM_EXPLODE "turf_explode"

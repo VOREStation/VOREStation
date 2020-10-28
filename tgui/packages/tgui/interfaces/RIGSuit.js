@@ -153,7 +153,7 @@ const RIGSuitHardware = (props, context) => {
               selected={helmetDeployed}
               onClick={() => act("toggle_piece", { piece: 'helmet' })} />
           )}>
-          {capitalize(helmet)}
+          {helmet ? capitalize(helmet) : "ERROR"}
         </LabeledList.Item>
         <LabeledList.Item
           label="Gauntlets"
@@ -165,7 +165,7 @@ const RIGSuitHardware = (props, context) => {
               selected={gauntletsDeployed}
               onClick={() => act("toggle_piece", { piece: 'gauntlets' })} />
           )}>
-          {capitalize(gauntlets)}
+          {gauntlets ? capitalize(gauntlets) : "ERROR"}
         </LabeledList.Item>
         <LabeledList.Item
           label="Boots"
@@ -177,7 +177,7 @@ const RIGSuitHardware = (props, context) => {
               selected={bootsDeployed}
               onClick={() => act("toggle_piece", { piece: 'boots' })} />
           )}>
-          {capitalize(boots)}
+          {boots ? capitalize(boots) : "ERROR"}
         </LabeledList.Item>
         <LabeledList.Item
           label="Chestpiece"
@@ -189,7 +189,7 @@ const RIGSuitHardware = (props, context) => {
               selected={chestDeployed}
               onClick={() => act("toggle_piece", { piece: 'chest' })} />
           )}>
-          {capitalize(chest)}
+          {chest ? capitalize(chest) : "ERROR"}
         </LabeledList.Item>
       </LabeledList>
     </Section>
@@ -269,7 +269,7 @@ const RIGSuitModules = (props, context) => {
           {module.damage >= 2 ? (
             <Box color="bad">-- MODULE DESTROYED --</Box>
           ) : (
-            <Flex>
+            <Flex spacing={1}>
               <Flex.Item grow={1}>
                 <Box color="average">Engage: {module.engagecost}</Box>
                 <Box color="average">Active: {module.activecost}</Box>
@@ -278,33 +278,33 @@ const RIGSuitModules = (props, context) => {
               <Flex.Item grow={1}>
                 {module.desc}
               </Flex.Item>
-              {module.charges ? (
-                <Flex.Item grow={1}>
-                  <Section title="Module Charges">
-                    <LabeledList>
-                      <LabeledList.Item label="Selected">
-                        {capitalize(module.chargetype)}
-                      </LabeledList.Item>
-                      {module.charges.map((charge, i) => (
-                        <LabeledList.Item
-                          key={charge.caption}
-                          label={capitalize(charge.caption)}
-                          buttons={(
-                            <Button
-                              icon="arrow-right"
-                              onClick={() => act("interact_module", {
-                                "module": module.index,
-                                "module_mode": "select_charge_type",
-                                "charge_type": i,
-                              })} />
-                          )} />
-                      ))}
-                    </LabeledList>
-                  </Section>
-                </Flex.Item>
-              ) : null}
             </Flex>
           )}
+          {module.charges ? (
+            <Flex.Item>
+              <Section title="Module Charges">
+                <LabeledList>
+                  <LabeledList.Item label="Selected">
+                    {capitalize(module.chargetype)}
+                  </LabeledList.Item>
+                  {module.charges.map((charge, i) => (
+                    <LabeledList.Item
+                      key={charge.caption}
+                      label={capitalize(charge.caption)}>
+                      <Button
+                        selected={module.realchargetype === charge.index}
+                        icon="arrow-right"
+                        onClick={() => act("interact_module", {
+                          "module": module.index,
+                          "module_mode": "select_charge_type",
+                          "charge_type": charge.index,
+                        })} />
+                    </LabeledList.Item>
+                  ))}
+                </LabeledList>
+              </Section>
+            </Flex.Item>
+          ) : null}
         </Section>
       ))}
     </Section>

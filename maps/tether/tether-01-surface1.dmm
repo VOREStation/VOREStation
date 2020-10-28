@@ -11536,6 +11536,16 @@
 	},
 /turf/simulated/floor/water/pool,
 /area/tether/surfacebase/surface_one_hall)
+"atm" = (
+/obj/structure/bed/chair/wood,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/lino,
+/area/crew_quarters/visitor_dining)
 "atn" = (
 /obj/machinery/status_display{
 	pixel_x = 32;
@@ -17349,17 +17359,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
-	},
-/turf/simulated/floor/lino,
-/area/crew_quarters/visitor_dining)
-"aIs" = (
-/obj/structure/bed/chair/wood,
-/obj/structure/bed/chair/wood,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
 	},
 /turf/simulated/floor/lino,
 /area/crew_quarters/visitor_dining)
@@ -46116,7 +46115,7 @@ aEK
 aEK
 aEK
 aDu
-aIs
+atm
 aCQ
 aJV
 aDu

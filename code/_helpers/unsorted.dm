@@ -1646,3 +1646,6 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	. += new /obj/screen/plane_master{plane = PLANE_CH_VANTAG}				//Vore Antags
 	. += new /obj/screen/plane_master{plane = PLANE_AUGMENTED}				//Augmented reality
 	//VOREStation Add End
+/proc/CallAsync(datum/source, proctype, list/arguments)
+	set waitfor = FALSE
+	return call(source, proctype)(arglist(arguments))

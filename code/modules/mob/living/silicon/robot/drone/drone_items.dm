@@ -219,7 +219,8 @@
 		/obj/item/mecha_parts/part,
 		/obj/item/mecha_parts/micro/part,		//VOREStation Edit: Allow construction of micromechs,
 		/obj/item/mecha_parts/mecha_equipment,
-		/obj/item/mecha_parts/mecha_tracking
+		/obj/item/mecha_parts/mecha_tracking,
+		/obj/item/mecha_parts/component
 		)
 
 /obj/item/weapon/gripper/no_use //Used when you want to hold and put items in other things, but not able to 'use' the item

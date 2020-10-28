@@ -2,8 +2,7 @@
 	name = "button"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "launcherbtt"
-//	plane = TURF_PLANE //Can't have them under tables, oh well.
-//	layer = ABOVE_TURF_LAYER
+	layer = ABOVE_WINDOW_LAYER
 	desc = "A remote control switch for something."
 	var/id = null
 	var/active = 0

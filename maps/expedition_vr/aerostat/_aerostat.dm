@@ -58,9 +58,11 @@
 	prob_fall = 30
 	//guard = 20
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/animal/space/jelly = 1,
-		/mob/living/simple_mob/mechanical/viscerator = 1,
-		/mob/living/simple_mob/vore/aggressive/corrupthound = 1
+		/mob/living/simple_mob/animal/space/jelly = 6,
+		/mob/living/simple_mob/mechanical/viscerator = 6,
+		/mob/living/simple_mob/vore/aggressive/corrupthound = 3,
+		/mob/living/simple_mob/vore/oregrub = 2,
+		/mob/living/simple_mob/vore/oregrub/lava = 1
 	)
 
 /obj/structure/old_roboprinter
