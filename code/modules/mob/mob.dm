@@ -1021,6 +1021,38 @@ mob/proc/yank_out_object()
 	set hidden = 1
 	set_face_dir(client.client_dir(WEST))
 
+/mob/verb/shiftnorth()
+	set hidden = TRUE
+	if(!canface())
+		return FALSE
+	if(pixel_y <= 16)
+		pixel_y++
+		is_shifted = TRUE
+
+/mob/verb/shiftsouth()
+	set hidden = TRUE
+	if(!canface())
+		return FALSE
+	if(pixel_y >= -16)
+		pixel_y--
+		is_shifted = TRUE
+
+/mob/verb/shiftwest()
+	set hidden = TRUE
+	if(!canface())
+		return FALSE
+	if(pixel_x >= -16)
+		pixel_x--
+		is_shifted = TRUE
+
+mob/verb/shifteast()
+	set hidden = TRUE
+	if(!canface())
+		return FALSE
+	if(pixel_x <= 16)
+		pixel_x++
+		is_shifted = TRUE
+
 /mob/proc/adjustEarDamage()
 	return
 
