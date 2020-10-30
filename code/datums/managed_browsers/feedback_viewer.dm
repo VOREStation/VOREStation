@@ -65,7 +65,7 @@
 
 // Builds the window for players to review their feedback.
 /datum/managed_browser/feedback_viewer/get_html()
-	var/list/dat = list("<html><body>")
+	var/list/dat = list("<html><meta charset=\"UTF-8\"><body>")
 	if(!last_query) // If no query was done before, just show the most recent feedbacks.
 		var/database/query/query = new({"
 			SELECT *
@@ -112,7 +112,7 @@
 
 // Used to show the full version of feedback in a seperate window.
 /datum/managed_browser/feedback_viewer/proc/display_big_feedback(author, text)
-	var/list/dat = list("<html><body>")
+	var/list/dat = list("<html><meta charset=\"UTF-8\"><body>")
 	dat += replacetext(text, "\n", "<br>")
 
 	var/datum/browser/popup = new(my_client.mob, "feedback_big", "[author]'s Feedback", 480, 520, src)

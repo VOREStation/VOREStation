@@ -215,7 +215,7 @@
 				to_chat(O, "<b>[U]</b> holds \a [itemname] up to one of your cameras ...")
 			else
 				to_chat(O, "<b><a href='byond://?src=\ref[O];track2=\ref[O];track=\ref[U];trackname=[U.name]'>[U]</a></b> holds \a [itemname] up to one of your cameras ...")
-			O << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", itemname, info), text("window=[]", itemname))
+			O << browse(text("<HTML><meta charset=\"UTF-8\"><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", itemname, info), text("window=[]", itemname))
 
 	else if (istype(W, /obj/item/weapon/camera_bug))
 		if (!src.can_use())

@@ -40,7 +40,7 @@ GENERAL_PROTECT_DATUM(datum/managed_browser/feedback_form)
 
 // Builds the window for players to review their feedback.
 /datum/managed_browser/feedback_form/get_html()
-	var/list/dat = list("<html><body>")
+	var/list/dat = list("<html><meta charset=\"UTF-8\"><body>")
 	dat += "<center>"
 	dat += "<font size='2'>"
 	dat += "Here, you can write some feedback for the server.<br>"

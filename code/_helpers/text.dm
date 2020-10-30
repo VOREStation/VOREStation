@@ -16,7 +16,7 @@
 // Run all strings to be used in an SQL query through this proc first to properly escape out injection attempts.
 /proc/sanitizeSQL(var/t as text)
 	var/sqltext = dbcon.Quote(t);
-	return copytext(sqltext, 2, length(sqltext));//Quote() adds quotes around input, we already do that
+	return copytext_char(sqltext, 2, length(sqltext));//Quote() adds quotes around input, we already do that
 
 /*
  * Text sanitization
@@ -251,7 +251,7 @@
 
 //Returns a string with the first element of the string capitalized.
 /proc/capitalize(var/t as text)
-	return uppertext(copytext(t, 1, 2)) + copytext(t, 2)
+	return uppertext(copytext_char(t, 1, 2)) + copytext_char(t, 2)
 
 //This proc strips html properly, remove < > and all text between
 //for complete text sanitizing should be used sanitize()

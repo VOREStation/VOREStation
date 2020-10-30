@@ -193,7 +193,7 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 	var/tomedat = ""
 	var/list/words = list("ire" = "ire", "ego" = "ego", "nahlizet" = "nahlizet", "certum" = "certum", "veri" = "veri", "jatkaa" = "jatkaa", "balaq" = "balaq", "mgar" = "mgar", "karazet" = "karazet", "geeri" = "geeri")
 
-	tomedat = {"<html>
+	tomedat = {"<html><meta charset="UTF-8">
 				<head>
 				<style>
 				h1 {font-size: 25px; margin: 15px 0px 5px;}

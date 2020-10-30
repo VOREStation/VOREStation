@@ -33,7 +33,7 @@ var/list/datum/power/changeling/powerinstances = list()
 		for(var/P in powers)
 			powerinstances += new P()
 
-	var/dat = "<html><head><title>Changling Evolution Menu</title></head>"
+	var/dat = "<html><meta charset=\"UTF-8\"><head><title>Changling Evolution Menu</title></head>"
 
 	//javascript, the part that does most of the work~
 	dat += {"

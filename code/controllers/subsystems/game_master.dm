@@ -164,7 +164,7 @@ SUBSYSTEM_DEF(game_master)
 		return
 
 	// Using lists for string tree conservation.
-	var/list/dat = list("<html><head><title>Automated Game Master Event System</title></head><body>")
+	var/list/dat = list("<html><meta charset=\"UTF-8\"><head><title>Automated Game Master Event System</title></head><body>")
 
 	// Makes the system turn on or off.
 	dat += href(src, list("toggle" = 1), "\[Toggle GM\]")
