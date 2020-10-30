@@ -1,6 +1,14 @@
 // This is a datum-based artificial intelligence for simple mobs (and possibly others) to use.
 // The neat thing with having this here instead of on the mob is that it is independant of Life(), and that different mobs
 // can use a more or less complex AI by giving it a different datum.
+#define AI_NO_PROCESS			0
+#define AI_PROCESSING			(1<<0)
+#define AI_FASTPROCESSING		(1<<1)
+
+#define START_AIPROCESSING(Datum) if (!(Datum.process_flags & AI_PROCESSING)) {Datum.process_flags |= AI_PROCESSING;SSai.processing += Datum}
+#define STOP_AIPROCESSING(Datum) Datum.process_flags &= ~AI_PROCESSING;SSai.processing -= Datum
+#define START_AIFASTPROCESSING(Datum) if (!(Datum.process_flags & AI_FASTPROCESSING)) {Datum.process_flags |= AI_FASTPROCESSING;SSaifast.processing += Datum}
+#define STOP_AIFASTPROCESSING(Datum) Datum.process_flags &= ~AI_FASTPROCESSING;SSaifast.processing -= Datum
 
 /mob/living
 	var/datum/ai_holder/ai_holder = null
@@ -9,10 +17,24 @@
 /mob/living/Initialize()
 	if(ai_holder_type)
 		ai_holder = new ai_holder_type(src)
+		if(istype(src, /mob/living/carbon/human))
+			var/mob/living/carbon/human/H = src
+			H.hud_used = new /datum/hud(H)
+			H.create_mob_hud(H.hud_used)
 	return ..()
 
 /mob/living/Destroy()
 	QDEL_NULL(ai_holder)
+	return ..()
+
+/mob/living/Login()
+	if(!stat && ai_holder)
+		ai_holder.manage_processing(AI_NO_PROCESS)
+	return ..()
+
+/mob/living/Logout()
+	if(!stat && !key && ai_holder)
+		ai_holder.manage_processing(AI_PROCESSING)
 	return ..()
 
 /datum/ai_holder
@@ -23,7 +45,21 @@
 	var/busy = FALSE					// If true, the ticker will skip processing this mob until this is false. Good for if you need the
 										// mob to stay still (e.g. delayed attacking). If you need the mob to be inactive for an extended period of time,
 										// consider sleeping the AI instead.
-
+	var/process_flags = 0				// Where we're processing, see flag defines.
+	var/list/static/fastprocess_stances = list(
+		STANCE_ALERT,
+		STANCE_APPROACH,
+		STANCE_FIGHT,
+		STANCE_BLINDFIGHT,
+		STANCE_REPOSITION,
+		STANCE_MOVE,
+		STANCE_FOLLOW,
+		STANCE_FLEE,
+		STANCE_DISABLED
+	)
+	var/list/static/noprocess_stances = list(
+		STANCE_SLEEP
+	)
 
 
 /datum/ai_holder/hostile
@@ -36,18 +72,53 @@
 /datum/ai_holder/New(var/new_holder)
 	ASSERT(new_holder)
 	holder = new_holder
-	SSai.processing += src
 	home_turf = get_turf(holder)
+	manage_processing(AI_PROCESSING)
+	GLOB.stat_set_event.register(holder, src, .proc/holder_stat_change)
 	..()
 
 /datum/ai_holder/Destroy()
 	holder = null
-	SSai.processing -= src // We might've already been asleep and removed, but byond won't care if we do this again and it saves a conditional.
+	manage_processing(AI_NO_PROCESS)
 	home_turf = null
 	return ..()
 
+/datum/ai_holder/proc/manage_processing(var/desired)
+	if(desired & AI_PROCESSING)
+		START_AIPROCESSING(src)
+	else
+		STOP_AIPROCESSING(src)
+
+	if(desired & AI_FASTPROCESSING)
+		START_AIFASTPROCESSING(src)
+	else
+		STOP_AIFASTPROCESSING(src)
+
+/datum/ai_holder/proc/holder_stat_change(var/mob, old_stat, new_stat)
+	if(old_stat >= DEAD && new_stat <= DEAD) //Revived
+		manage_processing(AI_PROCESSING)
+	else if(old_stat <= DEAD && new_stat >= DEAD) //Killed
+		manage_processing(AI_NO_PROCESS)
+
+/datum/ai_holder/proc/update_stance_hud()
+	var/image/stanceimage = holder.grab_hud(LIFE_HUD)
+	stanceimage.icon_state = "ais_[stance]"
+	holder.apply_hud(LIFE_HUD, stanceimage)
+
+/datum/ai_holder/proc/update_paused_hud()
+	var/image/sleepingimage = holder.grab_hud(STATUS_HUD)
+	var/asleep = 0
+	if(busy)
+		asleep = 2
+	else if (stance == STANCE_SLEEP)
+		asleep = 1
+	sleepingimage.icon_state = "ai_[asleep]"
+	holder.apply_hud(STATUS_HUD, sleepingimage)
 
 // Now for the actual AI stuff.
+/datum/ai_holder/proc/set_busy(var/value = 0)
+	busy = value
+	update_paused_hud()
 
 // Makes this ai holder not get processed.
 // Called automatically when the host mob is killed.
@@ -57,7 +128,7 @@
 		return
 	forget_everything() // If we ever wake up, its really unlikely that our current memory will be of use.
 	set_stance(STANCE_SLEEP)
-	SSai.processing -= src
+	update_paused_hud()
 
 // Reverses the above proc.
 // Revived mobs will wake their AI if they have one.
@@ -67,7 +138,7 @@
 	if(!should_wake())
 		return
 	set_stance(STANCE_IDLE)
-	SSai.processing += src
+	update_paused_hud()
 
 /datum/ai_holder/proc/should_wake()
 	if(holder.client && !autopilot)
@@ -80,20 +151,18 @@
 /datum/ai_holder/proc/forget_everything()
 	// Some of these might be redundant, but hopefully this prevents future bugs if that changes.
 	lose_follow()
-	lose_target()
-	lose_target_position()
-	give_up_movement()
+	remove_target()
 
 // 'Tactical' processes such as moving a step, meleeing an enemy, firing a projectile, and other fairly cheap actions that need to happen quickly.
 /datum/ai_holder/proc/handle_tactics()
-	if(busy)
+	if(holder.key && !autopilot)
 		return
 	handle_special_tactic()
 	handle_stance_tactical()
 
 // 'Strategical' processes that are more expensive on the CPU and so don't get run as often as the above proc, such as A* pathfinding or robust targeting.
 /datum/ai_holder/proc/handle_strategicals()
-	if(busy)
+	if(holder.key && !autopilot)
 		return
 	handle_special_strategical()
 	handle_stance_strategical()
@@ -103,39 +172,26 @@
 
 /datum/ai_holder/proc/handle_special_strategical()
 
-/*
-	//AI Actions
-	if(!ai_inactive)
-		//Stanceyness
-		handle_stance()
-
-		//Movement
-		if(!stop_automated_movement && wander && !anchored) //Allowed to move?
-			handle_wander_movement()
-
-		//Speaking
-		if(speak_chance && stance == STANCE_IDLE) // Allowed to chatter?
-			handle_idle_speaking()
-
-		//Resisting out buckles
-		if(stance != STANCE_IDLE && incapacitated(INCAPACITATION_BUCKLED_PARTIALLY))
-			handle_resist()
-
-		//Resisting out of closets
-		if(istype(loc,/obj/structure/closet))
-			var/obj/structure/closet/C = loc
-			if(C.welded)
-				resist()
-			else
-				C.open()
-*/
-
 // For setting the stance WITHOUT processing it
 /datum/ai_holder/proc/set_stance(var/new_stance)
+	if(holder?.key && !autopilot)
+		return
+	if(stance == new_stance)
+		ai_log("set_stance() : Ignoring change stance to same stance request.", AI_LOG_INFO)
+		return
+
 	ai_log("set_stance() : Setting stance from [stance] to [new_stance].", AI_LOG_INFO)
 	stance = new_stance
 	if(stance_coloring) // For debugging or really weird mobs.
 		stance_color()
+	update_stance_hud()
+
+	if(new_stance in fastprocess_stances) //Becoming fast
+		manage_processing(AI_PROCESSING|AI_FASTPROCESSING)
+	else if(new_stance in noprocess_stances)
+		manage_processing(AI_NO_PROCESS) //Becoming off
+	else
+		manage_processing(AI_PROCESSING) //Becoming slow
 
 // This is called every half a second.
 /datum/ai_holder/proc/handle_stance_tactical()
@@ -176,19 +232,6 @@
 			return
 
 	switch(stance)
-		if(STANCE_IDLE)
-			if(should_go_home())
-				ai_log("handle_stance_tactical() : STANCE_IDLE, going to go home.", AI_LOG_TRACE)
-				go_home()
-
-			else if(should_follow_leader())
-				ai_log("handle_stance_tactical() : STANCE_IDLE, going to follow leader.", AI_LOG_TRACE)
-				set_stance(STANCE_FOLLOW)
-
-			else if(should_wander())
-				ai_log("handle_stance_tactical() : STANCE_IDLE, going to wander randomly.", AI_LOG_TRACE)
-				handle_wander_movement()
-
 		if(STANCE_ALERT)
 			ai_log("handle_stance_tactical() : STANCE_ALERT, going to threaten_target().", AI_LOG_TRACE)
 			threaten_target()
@@ -207,7 +250,8 @@
 
 		if(STANCE_REPOSITION) // This is the same as above but doesn't stop if an enemy is visible since its an 'in-combat' move order.
 			ai_log("handle_stance_tactical() : STANCE_REPOSITION, going to walk_to_destination().", AI_LOG_TRACE)
-			walk_to_destination()
+			if(!target && !find_target())
+				walk_to_destination()
 
 		if(STANCE_FOLLOW)
 			ai_log("handle_stance_tactical() : STANCE_FOLLOW, going to walk_to_leader().", AI_LOG_TRACE)
@@ -233,28 +277,56 @@
 	ai_log("++++++++++ Slow Process Beginning ++++++++++", AI_LOG_TRACE)
 	ai_log("handle_stance_strategical() : Called.", AI_LOG_TRACE)
 
+	//We got left around for some reason. Goodbye cruel world.
+	if(!holder)
+		qdel(src)
+
+	ai_log("handle_stance_strategical() : LTT=[lose_target_time]", AI_LOG_TRACE)
+	if(lose_target_time && (lose_target_time + lose_target_timeout < world.time)) // We were tracking an enemy but they are gone.
+		ai_log("handle_stance_strategical() : Giving up a chase.", AI_LOG_DEBUG)
+		remove_target()
+
+	if(stance in STANCES_COMBAT)
+		request_help() // Call our allies.
+
 	switch(stance)
 		if(STANCE_IDLE)
-
 			if(speak_chance) // In the long loop since otherwise it wont shut up.
 				handle_idle_speaking()
 
 			if(hostile)
 				ai_log("handle_stance_strategical() : STANCE_IDLE, going to find_target().", AI_LOG_TRACE)
 				find_target()
+
+			if(should_go_home())
+				ai_log("handle_stance_tactical() : STANCE_IDLE, going to go home.", AI_LOG_TRACE)
+				go_home()
+
+			else if(should_follow_leader())
+				ai_log("handle_stance_tactical() : STANCE_IDLE, going to follow leader.", AI_LOG_TRACE)
+				set_stance(STANCE_FOLLOW)
+
+			else if(should_wander())
+				ai_log("handle_stance_tactical() : STANCE_IDLE, going to wander randomly.", AI_LOG_TRACE)
+				handle_wander_movement()
+
 		if(STANCE_APPROACH)
 			if(target)
 				ai_log("handle_stance_strategical() : STANCE_APPROACH, going to calculate_path([target]).", AI_LOG_TRACE)
 				calculate_path(target)
+				walk_to_target()
 		if(STANCE_MOVE)
 			if(hostile && find_target()) // This will switch its stance.
 				ai_log("handle_stance_strategical() : STANCE_MOVE, found target and was inturrupted.", AI_LOG_TRACE)
+				return
 		if(STANCE_FOLLOW)
 			if(hostile && find_target()) // This will switch its stance.
 				ai_log("handle_stance_strategical() : STANCE_FOLLOW, found target and was inturrupted.", AI_LOG_TRACE)
+				return
 			else if(leader)
 				ai_log("handle_stance_strategical() : STANCE_FOLLOW, going to calculate_path([leader]).", AI_LOG_TRACE)
 				calculate_path(leader)
+				walk_to_leader()
 
 	ai_log("handle_stance_strategical() : Exiting.", AI_LOG_TRACE)
 	ai_log("++++++++++ Slow Process Ending ++++++++++", AI_LOG_TRACE)
@@ -263,7 +335,7 @@
 // Helper proc to turn AI 'busy' mode on or off without having to check if there is an AI, to simplify writing code.
 /mob/living/proc/set_AI_busy(value)
 	if(ai_holder)
-		ai_holder.busy = value
+		ai_holder.set_busy(value)
 
 /mob/living/proc/is_AI_busy()
 	if(!ai_holder)
@@ -288,3 +360,7 @@
 /mob/living/proc/taunt(atom/movable/taunter, force_target_switch = FALSE)
 	if(ai_holder)
 		ai_holder.receive_taunt(taunter, force_target_switch)
+
+#undef AI_NO_PROCESS
+#undef AI_PROCESSING
+#undef AI_FASTPROCESSING

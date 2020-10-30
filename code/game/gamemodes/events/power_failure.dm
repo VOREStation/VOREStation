@@ -5,7 +5,7 @@
 
 	var/list/skipped_areas = list(/area/ai)
 
-	for(var/obj/machinery/power/smes/S in machines)
+	for(var/obj/machinery/power/smes/S in GLOB.smeses)
 		var/area/current_area = get_area(S)
 		if(current_area.type in skipped_areas || !(S.z in using_map.station_levels))
 			continue
@@ -19,7 +19,7 @@
 		S.power_change()
 
 
-	for(var/obj/machinery/power/apc/C in machines)
+	for(var/obj/machinery/power/apc/C in GLOB.apcs)
 		if(!C.is_critical && C.cell && (C.z in using_map.station_levels))
 			C.cell.charge = 0
 
@@ -28,10 +28,10 @@
 
 	if(announce)
 		command_announcement.Announce("Power has been restored to [station_name()]. We apologize for the inconvenience.", "Power Systems Nominal", new_sound = 'sound/AI/poweron.ogg')
-	for(var/obj/machinery/power/apc/C in machines)
+	for(var/obj/machinery/power/apc/C in GLOB.apcs)
 		if(C.cell && (C.z in using_map.station_levels))
 			C.cell.charge = C.cell.maxcharge
-	for(var/obj/machinery/power/smes/S in machines)
+	for(var/obj/machinery/power/smes/S in GLOB.smeses)
 		var/area/current_area = get_area(S)
 		if(current_area.type in skipped_areas || isNotStationLevel(S.z))
 			continue
@@ -45,7 +45,7 @@
 
 	if(announce)
 		command_announcement.Announce("All SMESs on [station_name()] have been recharged. We apologize for the inconvenience.", "Power Systems Nominal", new_sound = 'sound/AI/poweron.ogg')
-	for(var/obj/machinery/power/smes/S in machines)
+	for(var/obj/machinery/power/smes/S in GLOB.smeses)
 		if(isNotStationLevel(S.z))
 			continue
 		S.charge = S.capacity

@@ -37,34 +37,121 @@
 	var/to_helmet = /obj/item/clothing/head/cardborg
 	var/to_suit = /obj/item/clothing/suit/cardborg
 
+	//conversion costs. refunds all parts by default, but can be tweaked per-kit
+	var/from_helmet_cost = 1
+	var/from_suit_cost = 2
+	var/to_helmet_cost = -1
+	var/to_suit_cost = -2
+
+	var/owner_ckey = null		//ckey of the kit owner as a string
+	var/skip_content_check = FALSE	//can we skip the contents check? we generally shouldn't, but this is necessary for rigs/coats with hoods/etc.
+	var/transfer_contents = FALSE	//should we transfer the contents across before deleting? we generally shouldn't, esp. in the case of rigs/coats with hoods/etc. note this does nothing if skip is FALSE.
+	var/can_repair = FALSE		//can we be used to repair damaged voidsuits when converting them?
+	var/can_revert = TRUE		//can we revert items, or is it a one-way trip?
+	var/delete_on_empty = FALSE	//do we self-delete when emptied?
+
 	//Conversion proc
 /obj/item/device/modkit_conversion/afterattack(obj/O, mob/user as mob)
-	var/flag
+	var/cost
 	var/to_type
-	if(istype(O,from_helmet))
-		flag = 1
+	var/keycheck
+
+	if(isturf(O)) //silently fail if you click on a turf. shouldn't work anyway because turfs aren't objects but if I don't do this it spits runtimes.
+		return
+	if(istype(O,/obj/item/clothing/suit/space/void/) && !can_repair) //check if we're a voidsuit and if we're allowed to repair
+		var/obj/item/clothing/suit/space/void/SS = O
+		if(LAZYLEN(SS.breaches))
+			to_chat(user, "<span class='warning'>You should probably repair that before you start tinkering with it.</span>")
+			return
+	if(O.blood_DNA || O.contaminated) //check if we're bloody or gooey or whatever, so modkits can't be used to hide crimes easily.
+		to_chat(user, "<span class='warning'>You should probably clean that up before you start tinkering with it.</span>")
+		return
+	//we have to check that it's not the original type first, because otherwise it might convert wrong based on pathing; the subtype can still count as the basetype
+	if(istype(O,to_helmet) && can_revert)
+		cost = to_helmet_cost
+		to_type = from_helmet
+	else if(istype(O,to_suit) && can_revert)
+		cost = to_suit_cost
+		to_type = from_suit
+	else if(!can_revert && (istype(O,to_helmet) || istype (O,to_suit)))
+		to_chat(user, "<span class='warning'>This kit doesn't seem to have the tools necessary to revert changes to modified items.</span>")
+		return
+	else if(istype(O,from_helmet))
+		cost = from_helmet_cost
 		to_type = to_helmet
+		keycheck = TRUE
 	else if(istype(O,from_suit))
-		flag = 2
+		cost = from_suit_cost
 		to_type = to_suit
+		keycheck = TRUE
 	else
 		return
-	if(!(parts & flag))
-		to_chat(user, "<span class='warning'>This kit has no parts for this modification left.</span>")
-		return
-	if(istype(O,to_type))
-		to_chat(user, "<span class='notice'>[O] is already modified.</span>")
-		return
 	if(!isturf(O.loc))
-		to_chat(user, "<span class='warning'>[O] must be safely placed on the ground for modification.</span>")
+		to_chat(user, "<span class='warning'>You need to put \the [O] on the ground, a table, or other worksurface before modifying it.</span>")
 		return
-	playsound(user.loc, 'sound/items/Screwdriver.ogg', 100, 1)
-	var/N = new to_type(O.loc)
-	user.visible_message("<span class='warning'>[user] opens \the [src] and modifies \the [O] into \the [N].</span>","<span class='warning'>You open \the [src] and modify \the [O] into \the [N].</span>")
+	if(!skip_content_check && O.contents.len) //check if we're loaded/modified, in the event of gun/suit kits, to avoid purging stuff like ammo, badges, armbands, or suit helmets
+		to_chat(user, "<span class='warning'>You should probably remove any attached items or loaded ammunition before trying to modify that!</span>")
+		return
+	if(cost > parts)
+		to_chat(user, "<span class='warning'>The kit doesn't have enough parts left to modify that.</span>")
+		if(can_revert && ((to_helmet_cost || to_suit_cost) < 0))
+			to_chat(user, "<span class='notice'> You can recover parts by using the kit on an already-modified item.</span>")
+		return
+	if(keycheck && owner_ckey) //check if we're supposed to care
+		if(user.ckey != owner_ckey) //ERROR: UNAUTHORIZED USER
+			to_chat(user, "<span class='warning'>You probably shouldn't mess with all these strange tools and parts...</span>") //give them a slightly fluffy explanation as to why it didn't work
+			return
+	playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
+	var/obj/N = new to_type(O.loc)
+	user.visible_message("<span class='notice'>[user] opens \the [src] and modifies \the [O] into \the [N].</span>","<span class='notice'>You open \the [src] and modify \the [O] into \the [N].</span>")
+
+	//crude, but transfer prints and fibers to avoid forensics abuse, same as the bloody/gooey check above
+	N.fingerprints = O.fingerprints
+	N.fingerprintshidden = O.fingerprintshidden
+	N.fingerprintslast = O.fingerprintslast
+	N.suit_fibers = O.suit_fibers
+
+	//transfer logic could technically be made more thorough and handle stuff like helmet/boots/tank vars for suits, but in those cases you should be removing the items first anyway
+	if(skip_content_check && transfer_contents)
+		N.contents = O.contents
+		if(istype(N,/obj/item/weapon/gun/projectile/))
+			var/obj/item/weapon/gun/projectile/NN = N
+			var/obj/item/weapon/gun/projectile/OO = O
+			NN.magazine_type = OO.magazine_type
+			NN.ammo_magazine = OO.ammo_magazine
+		if(istype(N,/obj/item/weapon/gun/energy/))
+			var/obj/item/weapon/gun/energy/NE = N
+			var/obj/item/weapon/gun/energy/OE = O
+			NE.cell_type = OE.cell_type
+	else
+		if(istype(N,/obj/item/weapon/gun/projectile/))
+			var/obj/item/weapon/gun/projectile/NM = N
+			NM.contents = list()
+			NM.magazine_type = null
+			NM.ammo_magazine = null
+		if(istype(N,/obj/item/weapon/gun/energy/))
+			var/obj/item/weapon/gun/energy/NO = N
+			NO.contents = list()
+			NO.cell_type = null
+
 	qdel(O)
-	parts &= ~flag
-	if(!parts)
+	parts -= cost
+	if(!parts && delete_on_empty)
 		qdel(src)
+
+//DEBUG ITEM
+/obj/item/device/modkit_conversion/fluff/debug_gunkit
+	name = "Gun Transformation Kit"
+	desc = "A kit containing all the needed tools and fabric to modify one sidearm to another."
+	skip_content_check = FALSE
+	transfer_contents = FALSE
+
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "harmony_kit"
+
+	from_helmet = /obj/item/weapon/gun/energy/laser
+	to_helmet = /obj/item/weapon/gun/energy/retro
+//DEBUG ITEM ENDS
 
 //JoanRisu:Joan Risu
 /obj/item/weapon/flame/lighter/zippo/fluff/joan
@@ -92,7 +179,7 @@
 
 	if(default_parry_check(user, attacker, damage_source) && prob(75))
 		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
-		playsound(user.loc, 'sound/weapons/punchmiss.ogg', 50, 1)
+		playsound(src, 'sound/weapons/punchmiss.ogg', 50, 1)
 		return 1
 	return 0
 
@@ -105,7 +192,7 @@
 
 	if(default_parry_check(user, attacker, damage_source) && prob(75))
 		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
-		playsound(user.loc, 'sound/weapons/punchmiss.ogg', 50, 1)
+		playsound(src, 'sound/weapons/punchmiss.ogg', 50, 1)
 		return 1
 	return 0
 
@@ -305,7 +392,7 @@
 	if(istype(O,/obj/item/weapon/card/id) && O.icon_state != new_icon)
 		//O.icon = icon // just in case we're using custom sprite paths with fluff items.
 		O.icon_state = new_icon // Changes the icon without changing the access.
-		playsound(user.loc, 'sound/items/polaroid2.ogg', 100, 1)
+		playsound(src, 'sound/items/polaroid2.ogg', 100, 1)
 		user.visible_message("<span class='warning'> [user] reprints their ID.</span>")
 		qdel(src)
 	else if(O.icon_state == new_icon)
@@ -352,8 +439,8 @@
 
 //SilencedMP5A5:Serdykov Antoz
 /obj/item/clothing/suit/armor/vest/wolftaur/serdy //SilencedMP5A5's specialty armor suit.
-	name = "KSS-8 security armor"
-	desc = "A set of armor made from pieces of many other armors. There are two orange holobadges on it, one on the chestplate, one on the steel flank plates. The holobadges appear to be russian in origin. 'Kosmicheskaya Stantsiya-8' is printed in faded white letters on one side, along the spine. It smells strongly of dog."
+	name = "custom security cuirass"
+	desc = "An armored vest that protects against some damage. It appears to be created for a wolfhound. The name 'Serdykov L. Antoz' is written on a tag inside one of the haunchplates."
 	species_restricted = null //Species restricted since all it cares about is a taur half
 	icon = 'icons/mob/taursuits_wolf_vr.dmi'
 	icon_state = "serdy_armor"
@@ -367,16 +454,27 @@
 		to_chat(H, "<span class='warning'>You need to have a wolf-taur half to wear this.</span>")
 		return 0
 
-/obj/item/clothing/head/helmet/serdy //SilencedMP5A5's specialty helmet. Uncomment if/when they make their custom item app and are accepted.
-	name = "KSS-8 security helmet"
-	desc = "desc = An old production model steel-ceramic lined helmet with a white stripe and a custom orange holographic visor. It has ear holes, and smells of dog. It's been heavily modified, and fitted with a metal mask to protect the jaw."
+/obj/item/clothing/head/serdyhelmet //SilencedMP5A5's specialty helmet.
+	name = "custom security helmet"
+	desc = "An old production model steel-ceramic lined helmet with a white stripe and a custom orange holographic visor. It has ear holes, and smells of dog."
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "serdyhelm"
-
+	valid_accessory_slots = (ACCESSORY_SLOT_HELM_C)
+	restricted_accessory_slots = (ACCESSORY_SLOT_HELM_C)
+	flags = THICKMATERIAL
+	armor = list(melee = 40, bullet = 30, laser = 30, energy = 10, bomb = 10, bio = 0, rad = 0)
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "serdyhelm_mob"
+	cold_protection = HEAD
+	min_cold_protection_temperature = HELMET_MIN_COLD_PROTECTION_TEMPERATURE
+	heat_protection = HEAD
+	max_heat_protection_temperature = HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
+	siemens_coefficient = 0.7
+	w_class = ITEMSIZE_NORMAL
+	ear_protection = 1
+	drop_sound = 'sound/items/drop/helm.ogg'
 
-/*
+
 //SilencedMP5A5:Serdykov Antoz
 /obj/item/device/modkit_conversion/fluff/serdykit
 	name = "Serdykov's armor modification kit"
@@ -387,9 +485,9 @@
 
 	from_helmet = /obj/item/clothing/head/helmet
 	from_suit = /obj/item/clothing/suit/armor/vest/wolftaur
-	to_helmet = /obj/item/clothing/head/helmet/serdy
+	to_helmet = /obj/item/clothing/head/serdyhelmet
 	to_suit = /obj/item/clothing/suit/armor/vest/wolftaur/serdy
-*/
+
 
 //Cameron653: Diana Kuznetsova
 /obj/item/clothing/suit/fluff/purp_robes
@@ -560,7 +658,7 @@
 /obj/item/weapon/cane/wand/attack_self(mob/user)
     if(last_use + cooldown >= world.time)
         return
-    playsound(loc, 'sound/weapons/sparkle.ogg', 50, 1)
+    playsound(src, 'sound/weapons/sparkle.ogg', 50, 1)
     user.visible_message("<span class='warning'> [user] swings their wand.</span>")
     var/datum/effect/effect/system/spark_spread/s = new
     s.set_up(3, 1, src)
@@ -582,7 +680,7 @@
 		O.icon = new_icon
 		O.icon_state = new_icon_state // Changes the icon without changing the access.
 		O.desc = new_desc
-		playsound(user.loc, 'sound/items/polaroid2.ogg', 100, 1)
+		playsound(src, 'sound/items/polaroid2.ogg', 100, 1)
 		user.visible_message("<span class='warning'> [user] reprints their ID.</span>")
 		qdel(src)
 	else if(O.icon_state == new_icon)
@@ -666,480 +764,6 @@
 	mid_sounds = list('sound/items/amulanceweeoo.ogg'=1)
 	mid_length = 20
 	volume = 25
-
-//WickedTempest: Chakat Tempest
-/obj/item/weapon/implant/reagent_generator/tempest
-	generated_reagents = list("milk" = 2)
-	reagent_name = "milk"
-	usable_volume = 1000
-
-	empty_message = list("Your breasts are almost completely drained!")
-	full_message = list("Your teats feel heavy and swollen!")
-	emote_descriptor = list("squeezes milk", "tugs on Tempest's breasts, milking them")
-	self_emote_descriptor = list("squeeze")
-	random_emote = list("moos quietly")
-	verb_name = "Milk"
-	verb_desc = "Grab Tempest's nipples and milk them into a container! May cause blushing and groaning."
-
-/obj/item/weapon/implanter/reagent_generator/tempest
-	implant_type = /obj/item/weapon/implant/reagent_generator/tempest
-
-
-//Hottokeeki: Belle Day
-/obj/item/weapon/implant/reagent_generator/belle
-	generated_reagents = list("milk" = 2)
-	reagent_name = "milk"
-	usable_volume = 5000
-
-	empty_message = list("Your breasts and or udder feel almost completely drained!", "You're feeling a liittle on the empty side...")
-	full_message = list("You're due for a milking; your breasts and or udder feel heavy and swollen!", "Looks like you've got some full tanks!")
-	emote_descriptor = list("squeezes milk", "tugs on Belle's breasts/udders, milking them", "extracts milk")
-	self_emote_descriptor = list("squeeze", "extract")
-	random_emote = list("moos", "mrours", "groans softly")
-	verb_name = "Milk"
-	verb_desc = "Obtain Belle's milk and put it into a container! May cause blushing and groaning, or arousal."
-
-/obj/item/weapon/implanter/reagent_generator/belle
-	implant_type = /obj/item/weapon/implant/reagent_generator/belle
-
-//Gowst: Eldi Moljir
-//Eldi iz coolest elf-dorf.
-/obj/item/weapon/implant/reagent_generator/eldi
-	name = "lactation implant"
-	desc = "This is an implant that allows the user to lactate."
-	generated_reagents = list("milk" = 2)
-	reagent_name = "milk"
-	usable_volume = 1000
-
-	empty_message = list("Your breasts feel unusually empty.", "Your chest feels lighter - your milk supply is empty!", "Your milk reserves have run dry.", "Your grateful nipples ache as the last of your milk leaves them.")
-	full_message = list("Your breasts ache badly - they are swollen and feel fit to burst!", "You need to be milked! Your breasts feel bloated, eager for release.", "Your milky breasts are starting to leak...")
-	emote_descriptor = list("squeezes Eldi's nipples, milking them", "milks Eldi's breasts", "extracts milk")
-	self_emote_descriptor = list("squeeze out", "extract")
-	random_emote = list("surpresses a moan", "gasps sharply", "bites her lower lip")
-	verb_name = "Milk"
-	verb_desc = "Grab Eldi's breasts and milk her, storing her fresh, warm milk in a container. This will undoubtedly turn her on."
-
-/obj/item/weapon/implanter/reagent_generator/eldi
-	implant_type = /obj/item/weapon/implant/reagent_generator/eldi
-
-//Vorrarkul: Theodora Lindt
-/obj/item/weapon/implant/reagent_generator/vorrarkul
-	generated_reagents = list("chocolate_milk" = 2)
-	reagent_name = "chocalate milk"
-	usable_volume = 1000
-
-	empty_message = list("Your nipples are sore from being milked!")
-	full_message = list("Your breasts are full, their sweet scent emanating from your chest!")
-	emote_descriptor = list("squeezes chocolate milk from Theodora", "tugs on Theodora's nipples, milking them", "kneads Theodora's breasts, milking them")
-	self_emote_descriptor = list("squeeze", "knead")
-	random_emote = list("moans softly", "gives an involuntary squeal")
-	verb_name = "Milk"
-	verb_desc = "Grab Theodora's breasts and extract delicious chocolate milk from them!"
-
-/obj/item/weapon/implanter/reagent_generator/vorrarkul
-	implant_type = /obj/item/weapon/implant/reagent_generator/vorrarkul
-
-//Lycanthorph: Savannah Dixon
-/obj/item/weapon/implant/reagent_generator/savannah
-	generated_reagents = list("milk" = 2)
-	reagent_name = "milk"
-	usable_volume = 1000
-
-	empty_message = list("Your nipples are sore from being milked!", "Your breasts feel drained, milk is no longer leaking from your nipples!")
-	full_message = list("Your breasts are full, their sweet scent emanating from your chest!", "Your breasts feel full, milk is starting to leak from your nipples, filling the air with it's sweet scent!")
-	emote_descriptor = list("squeezes sweet milk from Savannah", "tugs on Savannah's nipples, milking them", "kneads Savannah's breasts, milking them")
-	self_emote_descriptor = list("squeeze", "knead")
-	random_emote = list("lets out a soft moan", "gives an involuntary squeal")
-	verb_name = "Milk"
-	verb_desc = "Grab Savannah's breasts and extract sweet milk from them!"
-
-/obj/item/weapon/implanter/reagent_generator/savannah
-	implant_type = /obj/item/weapon/implant/reagent_generator/savannah
-
-//SpoopyLizz: Roiz Lizden
-//I made this! Woo!
-//implant
-//--------------------
-/obj/item/weapon/implant/reagent_generator/roiz
-	name = "egg laying implant"
-	desc = "This is an implant that allows the user to lay eggs."
-	generated_reagents = list("egg" = 2)
-	usable_volume = 500
-	transfer_amount = 50
-
-	empty_message = list("Your lower belly feels smooth and empty. Sorry, we're out of eggs!", "The reduced pressure in your lower belly tells you there are no more eggs.")
-	full_message = list("Your lower belly looks swollen with irregular bumps, and it feels heavy.", "Your lower abdomen feels really heavy, making it a bit hard to walk.")
-	emote_descriptor = list("an egg right out of Roiz's lower belly!", "into Roiz' belly firmly, forcing him to lay an egg!", "Roiz really tight, who promptly lays an egg!")
-	var/verb_descriptor = list("squeezes", "pushes", "hugs")
-	var/self_verb_descriptor = list("squeeze", "push", "hug")
-	var/short_emote_descriptor = list("lays", "forces out", "pushes out")
-	self_emote_descriptor = list("lay", "force out", "push out")
-	random_emote = list("hisses softly with a blush on his face", "yelps in embarrassment", "grunts a little")
-	assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant_roiz
-
-/obj/item/weapon/implant/reagent_generator/roiz/post_implant(mob/living/carbon/source)
-	START_PROCESSING(SSobj, src)
-	to_chat(source, "<span class='notice'>You implant [source] with \the [src].</span>")
-	source.verbs |= assigned_proc
-	return 1
-
-/obj/item/weapon/implanter/reagent_generator/roiz
-	implant_type = /obj/item/weapon/implant/reagent_generator/roiz
-
-/mob/living/carbon/human/proc/use_reagent_implant_roiz()
-	set name = "Lay Egg"
-	set desc = "Force Roiz to lay an egg by squeezing into his lower body! This makes the lizard extremely embarrassed, and it looks funny."
-	set category = "Object"
-	set src in view(1)
-
-	//do_reagent_implant(usr)
-	if(!isliving(usr) || !usr.canClick())
-		return
-
-	if(usr.incapacitated() || usr.stat > CONSCIOUS)
-		return
-
-	var/obj/item/weapon/implant/reagent_generator/roiz/rimplant
-	for(var/obj/item/organ/external/E in organs)
-		for(var/obj/item/weapon/implant/I in E.implants)
-			if(istype(I, /obj/item/weapon/implant/reagent_generator))
-				rimplant = I
-				break
-	if (rimplant)
-		if(rimplant.reagents.total_volume <= rimplant.transfer_amount)
-			to_chat(src, "<span class='notice'>[pick(rimplant.empty_message)]</span>")
-			return
-
-		new /obj/item/weapon/reagent_containers/food/snacks/egg/roiz(get_turf(src))
-
-		var/index = rand(0,3)
-
-		if (usr != src)
-			var/emote = rimplant.emote_descriptor[index]
-			var/verb_desc = rimplant.verb_descriptor[index]
-			var/self_verb_desc = rimplant.self_verb_descriptor[index]
-			usr.visible_message("<span class='notice'>[usr] [verb_desc] [emote]</span>",
-							"<span class='notice'>You [self_verb_desc] [emote]</span>")
-		else
-			visible_message("<span class='notice'>[src] [pick(rimplant.short_emote_descriptor)] an egg.</span>",
-								"<span class='notice'>You [pick(rimplant.self_emote_descriptor)] an egg.</span>")
-		if(prob(15))
-			visible_message("<span class='notice'>[src] [pick(rimplant.random_emote)].</span>") // M-mlem.
-
-		rimplant.reagents.remove_any(rimplant.transfer_amount)
-
-//Cameron653: Jasmine Lizden
-/obj/item/weapon/implant/reagent_generator/jasmine
-	name = "egg laying implant"
-	desc = "This is an implant that allows the user to lay eggs."
-	generated_reagents = list("egg" = 2)
-	usable_volume = 500
-	transfer_amount = 50
-
-	empty_message = list("Your lower belly feels flat, empty, and somewhat rough!", "Your lower belly feels completely empty, no more bulges visible... At least, for the moment!")
-	full_message = list("Your lower belly is stretched out, smooth,and heavy, small bulges visible from within!", "It takes considerably more effort to move yourself, the large bulges within your gut most likely the cause!")
-	emote_descriptor = list("an egg from Jasmine's tauric belly!", "into Jasmine's gut, forcing her to lay a considerably large egg!", "Jasmine with a considerable amount of force, causing an egg to slip right out of her!")
-	var/verb_descriptor = list("squeezes", "pushes", "hugs")
-	var/self_verb_descriptor = list("squeeze", "push", "hug")
-	var/short_emote_descriptor = list("lays", "forces out", "pushes out")
-	self_emote_descriptor = list("lay", "force out", "push out")
-	random_emote = list("hisses softly with a blush on her face", "bites down on her lower lip", "lets out a light huff")
-	assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant_jasmine
-
-/obj/item/weapon/implant/reagent_generator/jasmine/post_implant(mob/living/carbon/source)
-	START_PROCESSING(SSobj, src)
-	to_chat(source, "<span class='notice'>You implant [source] with \the [src].</span>")
-	source.verbs |= assigned_proc
-	return 1
-
-/obj/item/weapon/implanter/reagent_generator/jasmine
-	implant_type = /obj/item/weapon/implant/reagent_generator/jasmine
-
-/mob/living/carbon/human/proc/use_reagent_implant_jasmine()
-	set name = "Lay Egg"
-	set desc = "Cause Jasmine to lay an egg by squeezing her tauric belly!"
-	set category = "Object"
-	set src in view(1)
-
-	//do_reagent_implant(usr)
-	if(!isliving(usr) || !usr.canClick())
-		return
-
-	if(usr.incapacitated() || usr.stat > CONSCIOUS)
-		return
-
-	var/obj/item/weapon/implant/reagent_generator/jasmine/rimplant
-	for(var/obj/item/organ/external/E in organs)
-		for(var/obj/item/weapon/implant/I in E.implants)
-			if(istype(I, /obj/item/weapon/implant/reagent_generator))
-				rimplant = I
-				break
-	if (rimplant)
-		if(rimplant.reagents.total_volume <= rimplant.transfer_amount)
-			to_chat(src, "<span class='notice'>[pick(rimplant.empty_message)]</span>")
-			return
-
-		new /obj/item/weapon/reagent_containers/food/snacks/egg/roiz(get_turf(src))
-
-		var/index = rand(0,3)
-
-		if (usr != src)
-			var/emote = rimplant.emote_descriptor[index]
-			var/verb_desc = rimplant.verb_descriptor[index]
-			var/self_verb_desc = rimplant.self_verb_descriptor[index]
-			usr.visible_message("<span class='notice'>[usr] [verb_desc] [emote]</span>",
-							"<span class='notice'>You [self_verb_desc] [emote]</span>")
-		else
-			visible_message("<span class='notice'>[src] [pick(rimplant.short_emote_descriptor)] an egg.</span>",
-								"<span class='notice'>You [pick(rimplant.self_emote_descriptor)] an egg.</span>")
-		if(prob(15))
-			visible_message("<span class='notice'>[src] [pick(rimplant.random_emote)].</span>")
-
-		rimplant.reagents.remove_any(rimplant.transfer_amount)
-
-//Draycu: Schae Yonra
-/obj/item/weapon/implant/reagent_generator/yonra
-	name = "egg laying implant"
-	desc = "This is an implant that allows the user to lay eggs."
-	generated_reagents = list("egg" = 2)
-	usable_volume = 500
-	transfer_amount = 50
-
-	empty_message = list("Your feathery lower belly feels smooth and empty. For now...", "The lack of clacking eggs in your abdomen lets you know you're free to continue your day as normal.",  "The reduced pressure in your lower belly tells you there are no more eggs.", "With a soft sigh, you can feel your lower body is empty.  You know it will only be a matter of time before another batch fills you up again, however.")
-	full_message = list("Your feathery lower belly looks swollen with irregular bumps, and feels very heavy.", "Your feathery covered lower abdomen feels really heavy, making it a bit hard to walk.", "The added weight from your collection of eggs constantly reminds you that you'll have to lay soon!", "The sounds of eggs clacking as you walk reminds you that you will have to lay soon!")
-	emote_descriptor = list("an egg right out of Yonra's feathery crotch!", "into Yonra's belly firmly, forcing her to lay an egg!", ", making Yonra gasp and softly moan while an egg slides out.")
-	var/verb_descriptor = list("squeezes", "pushes", "hugs")
-	var/self_verb_descriptor = list("squeeze", "push", "hug")
-	var/short_emote_descriptor = list("lays", "forces out", "pushes out")
-	self_emote_descriptor = list("lay", "force out", "push out")
-	random_emote = list("hisses softly with a blush on her face", "yelps in embarrassment", "grunts a little")
-	assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant_yonra
-
-/obj/item/weapon/implant/reagent_generator/yonra/post_implant(mob/living/carbon/source)
-	START_PROCESSING(SSobj, src)
-	to_chat(source, "<span class='notice'>You implant [source] with \the [src].</span>")
-	source.verbs |= assigned_proc
-	return 1
-
-/obj/item/weapon/implanter/reagent_generator/yonra
-	implant_type = /obj/item/weapon/implant/reagent_generator/yonra
-
-/mob/living/carbon/human/proc/use_reagent_implant_yonra()
-	set name = "Lay Egg"
-	set desc = "Force Yonra to lay an egg by squeezing into her lower body! This makes the Teshari stop whatever she is doing at the time, greatly embarassing her."
-	set category = "Object"
-	set src in view(1)
-
-	//do_reagent_implant(usr)
-	if(!isliving(usr) || !usr.canClick())
-		return
-
-	if(usr.incapacitated() || usr.stat > CONSCIOUS)
-		return
-
-	var/obj/item/weapon/implant/reagent_generator/yonra/rimplant
-	for(var/obj/item/organ/external/E in organs)
-		for(var/obj/item/weapon/implant/I in E.implants)
-			if(istype(I, /obj/item/weapon/implant/reagent_generator))
-				rimplant = I
-				break
-	if (rimplant)
-		if(rimplant.reagents.total_volume <= rimplant.transfer_amount)
-			to_chat(src, "<span class='notice'>[pick(rimplant.empty_message)]</span>")
-			return
-
-		new /obj/item/weapon/reagent_containers/food/snacks/egg/teshari(get_turf(src))
-
-		var/index = rand(0,3)
-
-		if (usr != src)
-			var/emote = rimplant.emote_descriptor[index]
-			var/verb_desc = rimplant.verb_descriptor[index]
-			var/self_verb_desc = rimplant.self_verb_descriptor[index]
-			usr.visible_message("<span class='notice'>[usr] [verb_desc] [emote]</span>",
-							"<span class='notice'>You [self_verb_desc] [emote]</span>")
-		else
-			visible_message("<span class='notice'>[src] [pick(rimplant.short_emote_descriptor)] an egg.</span>",
-								"<span class='notice'>You [pick(rimplant.self_emote_descriptor)] an egg.</span>")
-		if(prob(15))
-			visible_message("<span class='notice'>[src] [pick(rimplant.random_emote)].</span>")
-
-		rimplant.reagents.remove_any(rimplant.transfer_amount)
-
-/obj/item/weapon/reagent_containers/food/snacks/egg/teshari
-	name = "teshari egg"
-	desc = "It's a large teshari egg."
-	icon = 'icons/vore/custom_items_vr.dmi'
-	icon_state = "tesh_egg"
-	filling_color = "#FDFFD1"
-	volume = 12
-
-/obj/item/weapon/reagent_containers/food/snacks/egg/teshari/New()
-	..()
-	reagents.add_reagent("egg", 10)
-	bitesize = 2
-
-/obj/item/weapon/reagent_containers/food/snacks/egg/teshari/tesh2
-	icon_state = "tesh_egg_2"
-
-//Konabird: Rischi
-/obj/item/weapon/implant/reagent_generator/rischi
-	name = "egg laying implant"
-	desc = "This is an implant that allows the user to lay eggs."
-	generated_reagents = list("egg" = 2)
-	usable_volume = 3000 //They requested 1 egg every ~30 minutes.
-	transfer_amount = 3000
-
-	empty_message = list("Your abdomen feels normal and taught, like usual.", "The lack of eggs in your abdomen leaves your belly flat and smooth.",  "The reduced pressure in your belly tells you there are no more eggs.", "With a soft sigh, you can feel your body is empty of eggs.  You know it will only be a matter of time before an egg forms once again, however.")
-	full_message = list("Your lower abdomen feels a bit swollen", "You feel a pressure within your abdomen, and a broody mood slowly creeps over you.", "You can feel the egg inside of you shift as you move, the needy feeling to lay slowly growing stronger!", "You can feel the egg inside of you, swelling out your normally taught abdomen considerably. You'll definitely need to lay soon!")
-	emote_descriptor = list("Rischi, causing the small female to squeak and wriggle, an egg falling from between her legs!", "Rischi's midsection, forcing her to lay an egg!", "Rischi, the Teshari huffing and grunting as an egg is squeezed from her body!")
-	var/verb_descriptor = list("squeezes", "squashes", "hugs")
-	var/self_verb_descriptor = list("squeeze", "push", "hug")
-	var/short_emote_descriptor = list("lays", "forces out", "pushes out")
-	self_emote_descriptor = list("lay", "force out", "push out")
-	random_emote = list("trembles and huffs, panting from the exertion.", "sees what has happened and covers her face with both hands!", "whimpers softly, her legs shivering, knees pointed inward from the feeling.")
-	assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant_rischi
-
-/obj/item/weapon/implant/reagent_generator/rischi/post_implant(mob/living/carbon/source)
-	START_PROCESSING(SSobj, src)
-	to_chat(source, "<span class='notice'>You implant [source] with \the [src].</span>")
-	source.verbs |= assigned_proc
-	return 1
-
-/obj/item/weapon/implanter/reagent_generator/rischi
-	implant_type = /obj/item/weapon/implant/reagent_generator/rischi
-
-/mob/living/carbon/human/proc/use_reagent_implant_rischi()
-	set name = "Lay Egg"
-	set desc = "Force Rischi to lay an egg by squeezing her! What a terribly rude thing to do!"
-	set category = "Object"
-	set src in view(1)
-
-	//do_reagent_implant(usr)
-	if(!isliving(usr) || !usr.canClick())
-		return
-
-	if(usr.incapacitated() || usr.stat > CONSCIOUS)
-		return
-
-	var/obj/item/weapon/implant/reagent_generator/rischi/rimplant
-	for(var/obj/item/organ/external/E in organs)
-		for(var/obj/item/weapon/implant/I in E.implants)
-			if(istype(I, /obj/item/weapon/implant/reagent_generator))
-				rimplant = I
-				break
-	if (rimplant)
-		if(rimplant.reagents.total_volume <= rimplant.transfer_amount)
-			to_chat(src, "<span class='notice'>[pick(rimplant.empty_message)]</span>")
-			return
-
-		new /obj/item/weapon/reagent_containers/food/snacks/egg/teshari/tesh2(get_turf(src))
-
-		var/index = rand(0,3)
-
-		if (usr != src)
-			var/emote = rimplant.emote_descriptor[index]
-			var/verb_desc = rimplant.verb_descriptor[index]
-			var/self_verb_desc = rimplant.self_verb_descriptor[index]
-			usr.visible_message("<span class='notice'>[usr] [verb_desc] [emote]</span>",
-							"<span class='notice'>You [self_verb_desc] [emote]</span>")
-		else
-			visible_message("<span class='notice'>[src] falls to her knees as the urge to lay overwhelms her, letting out a whimper as she [pick(rimplant.short_emote_descriptor)] an egg from between her legs.</span>",
-								"<span class='notice'>You fall to your knees as the urge to lay overwhelms you, letting out a whimper as you [pick(rimplant.self_emote_descriptor)] an egg from between your legs.</span>")
-		if(prob(15))
-			visible_message("<span class='notice'>[src] [pick(rimplant.random_emote)].</span>")
-
-		rimplant.reagents.remove_any(rimplant.transfer_amount)
-
-/*
-/obj/item/weapon/implant/reagent_generator/pumila_nectar //Bugged. Two implants at once messes things up.
-	generated_reagents = list("honey" = 2)
-	reagent_name = "honey"
-	usable_volume = 5000
-
-	empty_message = list("You appear to be all out of nectar", "You feel as though you are lacking a majority of your nectar.")
-	full_message = list("You appear to be full of nectar.", "You feel as though you are full of nectar!")
-	emote_descriptor = list("squeezes nectar", "extracts nectar")
-	self_emote_descriptor = list("squeeze", "extract")
-	verb_name = "Extract Honey"
-	verb_desc = "Obtain pumila's nectar and put it into a container!"
-
-/obj/item/weapon/implanter/reagent_generator/pumila_nectar
-	implant_type = /obj/item/weapon/implant/reagent_generator/pumila_nectar
-*/
-//Egg item
-//-------------
-/obj/item/weapon/reagent_containers/food/snacks/egg/roiz
-	name = "lizard egg"
-	desc = "It's a large lizard egg."
-	icon = 'icons/vore/custom_items_vr.dmi'
-	icon_state = "egg_roiz"
-	filling_color = "#FDFFD1"
-	volume = 12
-
-/obj/item/weapon/reagent_containers/food/snacks/egg/roiz/New()
-	..()
-	reagents.add_reagent("egg", 9)
-	bitesize = 2
-
-/obj/item/weapon/reagent_containers/food/snacks/egg/roiz/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype( W, /obj/item/weapon/pen/crayon ))
-		var/obj/item/weapon/pen/crayon/C = W
-		var/clr = C.colourName
-
-		if(!(clr in list("blue","green","mime","orange","purple","rainbow","red","yellow")))
-			to_chat(user, "<span class='warning'>The egg refuses to take on this color!</span>")
-			return
-
-		to_chat(user, "<span class='notice'>You color \the [src] [clr]</span>")
-		icon_state = "egg_roiz_[clr]"
-		desc = "It's a large lizard egg. It has been colored [clr]!"
-		if (clr == "rainbow")
-			var/number = rand(1,4)
-			icon_state = icon_state + num2text(number, 0)
-	else
-		..()
-
-/obj/item/weapon/reagent_containers/food/snacks/friedegg/roiz
-	name = "fried lizard egg"
-	desc = "A large, fried lizard egg, with a touch of salt and pepper. It looks rather chewy."
-	icon = 'icons/vore/custom_items_vr.dmi'
-	icon_state = "friedegg"
-	volume = 12
-
-/obj/item/weapon/reagent_containers/food/snacks/friedegg/roiz/New()
-	..()
-	reagents.add_reagent("protein", 9)
-	bitesize = 2
-
-/obj/item/weapon/reagent_containers/food/snacks/boiledegg/roiz
-	name = "boiled lizard egg"
-	desc = "A hard boiled lizard egg. Be careful, a lizard detective may hatch!"
-	icon = 'icons/vore/custom_items_vr.dmi'
-	icon_state = "egg_roiz"
-	volume = 12
-
-/obj/item/weapon/reagent_containers/food/snacks/boiledegg/roiz/New()
-	..()
-	reagents.add_reagent("protein", 6)
-	bitesize = 2
-
-/obj/item/weapon/reagent_containers/food/snacks/chocolateegg/roiz
-	name = "chocolate lizard egg"
-	desc = "Such huge, sweet, fattening food. You feel gluttonous just looking at it."
-	icon = 'icons/vore/custom_items_vr.dmi'
-	icon_state = "chocolateegg_roiz"
-	filling_color = "#7D5F46"
-	nutriment_amt = 3
-	nutriment_desc = list("chocolate" = 5)
-	volume = 18
-
-/obj/item/weapon/reagent_containers/food/snacks/chocolateegg/roiz/New()
-	..()
-	reagents.add_reagent("sugar", 6)
-	reagents.add_reagent("coco", 6)
-	reagents.add_reagent("milk", 2)
-	bitesize = 2
 
 //PontifexMinimus: Lucius/Lucia Null
 /obj/item/weapon/fluff/dragor_dot
@@ -1349,80 +973,6 @@
 	name = "Malady's riding crop"
 	desc = "An infernum made riding crop with Malady Blanche engraved in the shaft. It's a little worn from how many butts it has spanked."
 
-
-//SilverTalisman: Evian
-/obj/item/weapon/implant/reagent_generator/evian
-	emote_descriptor = list("an egg right out of Evian's lower belly!", "into Evian' belly firmly, forcing him to lay an egg!", "Evian really tight, who promptly lays an egg!")
-	var/verb_descriptor = list("squeezes", "pushes", "hugs")
-	var/self_verb_descriptor = list("squeeze", "push", "hug")
-	var/short_emote_descriptor = list("lays", "forces out", "pushes out")
-	self_emote_descriptor = list("lay", "force out", "push out")
-	random_emote = list("hisses softly with a blush on his face", "yelps in embarrassment", "grunts a little")
-	assigned_proc = /mob/living/carbon/human/proc/use_reagent_implant_evian
-
-/obj/item/weapon/implant/reagent_generator/evian/post_implant(mob/living/carbon/source)
-	START_PROCESSING(SSobj, src)
-	to_chat(source, "<span class='notice'>You implant [source] with \the [src].</span>")
-	source.verbs |= assigned_proc
-	return 1
-
-/obj/item/weapon/implanter/reagent_generator/evian
-	implant_type = /obj/item/weapon/implant/reagent_generator/evian
-
-/mob/living/carbon/human/proc/use_reagent_implant_evian()
-	set name = "Lay Egg"
-	set desc = "Force Evian to lay an egg by squeezing into his lower body! This makes the lizard extremely embarrassed, and it looks funny."
-	set category = "Object"
-	set src in view(1)
-
-	//do_reagent_implant(usr)
-	if(!isliving(usr) || !usr.canClick())
-		return
-
-	if(usr.incapacitated() || usr.stat > CONSCIOUS)
-		return
-
-	var/obj/item/weapon/implant/reagent_generator/evian/rimplant
-	for(var/obj/item/organ/external/E in organs)
-		for(var/obj/item/weapon/implant/I in E.implants)
-			if(istype(I, /obj/item/weapon/implant/reagent_generator))
-				rimplant = I
-				break
-	if (rimplant)
-		if(rimplant.reagents.total_volume <= rimplant.transfer_amount)
-			to_chat(src, "<span class='notice'>[pick(rimplant.empty_message)]</span>")
-			return
-
-		new /obj/item/weapon/reagent_containers/food/snacks/egg/roiz/evian(get_turf(src)) //Roiz/evian so it gets all the functionality
-
-		var/index = rand(0,3)
-
-		if (usr != src)
-			var/emote = rimplant.emote_descriptor[index]
-			var/verb_desc = rimplant.verb_descriptor[index]
-			var/self_verb_desc = rimplant.self_verb_descriptor[index]
-			usr.visible_message("<span class='notice'>[usr] [verb_desc] [emote]</span>",
-							"<span class='notice'>You [self_verb_desc] [emote]</span>")
-		else
-			visible_message("<span class='notice'>[src] [pick(rimplant.short_emote_descriptor)] an egg.</span>",
-								"<span class='notice'>You [pick(rimplant.self_emote_descriptor)] an egg.</span>")
-		if(prob(15))
-			visible_message("<span class='notice'>[src] [pick(rimplant.random_emote)].</span>") // M-mlem.
-
-		rimplant.reagents.remove_any(rimplant.transfer_amount)
-
-/obj/item/weapon/reagent_containers/food/snacks/egg/roiz/evian
-	name = "dragon egg"
-	desc = "A quite large dragon egg!"
-	icon_state = "egg_roiz_yellow"
-
-
-/obj/item/weapon/reagent_containers/food/snacks/egg/roiz/evian/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype( W, /obj/item/weapon/pen/crayon)) //No coloring these ones!
-		return
-	else
-		..()
-
 //jacknoir413:Areax Third
 /obj/item/weapon/melee/baton/fluff/stunstaff
 	name = "Electrostaff"
@@ -1467,7 +1017,7 @@
 /obj/item/weapon/melee/baton/fluff/stunstaff/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(wielded && default_parry_check(user, attacker, damage_source) && prob(30))
 		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
-		playsound(user.loc, 'sound/weapons/punchmiss.ogg', 50, 1)
+		playsound(src, 'sound/weapons/punchmiss.ogg', 50, 1)
 		return 1
 	return 0
 
@@ -1491,9 +1041,9 @@
 		status = !status
 		to_chat(user, "<span class='notice'>[src] is now [status ? "on" : "off"].</span>")
 		if(status == 0)
-			playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
+			playsound(src, 'sound/weapons/saberoff.ogg', 50, 1)
 		else
-			playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
+			playsound(src, 'sound/weapons/saberon.ogg', 50, 1)
 	else
 		status = 0
 		to_chat(user, "<span class='warning'>[src] is out of charge.</span>")
@@ -1541,12 +1091,12 @@
 	sharp = 1
 	edge = 1
 	w_class = active_w_class
-	playsound(user, 'sound/weapons/sparkle.ogg', 50, 1)
+	playsound(src, 'sound/weapons/sparkle.ogg', 50, 1)
 
 /obj/item/weapon/melee/fluffstuff/proc/deactivate(mob/living/user)
 	if(!active)
 		return
-	playsound(user, 'sound/weapons/sparkle.ogg', 50, 1)
+	playsound(src, 'sound/weapons/sparkle.ogg', 50, 1)
 	active = 0
 	embed_chance = initial(embed_chance)
 	force = initial(force)
@@ -1703,3 +1253,59 @@
          return 0
       else
          return 1
+
+//Nickcrazy - Damon Bones Xrim
+/obj/item/clothing/suit/storage/toggle/bomber/bombersec
+    name = "Security Bomber Jacket"
+    desc = "A black bomber jacket with the security emblem sewn onto it."
+    icon = 'icons/vore/custom_items_vr.dmi'
+    icon_override = 'icons/vore/custom_items_vr.dmi'
+    icon_state = "bombersec"
+
+
+//pimientopyro - Scylla Casmus
+/obj/item/clothing/glasses/fluff/scylla
+	name = "Cherry-Red Shades"
+	desc = "These cheap, cherry-red cat-eye glasses seem to give you the inclination to eat chalk when you wear them."
+
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "blindshades"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "blindshades_mob"
+
+//Storesund97 - Aurora
+/obj/item/clothing/accessory/solgov/department/security/aurora
+	name = "Old security insignia"
+	desc = "Insignia denoting assignment to the security department. These fit Expeditionary Corps uniforms. This one seems to be from the 2100s..."
+
+//Tigercat2000 - Shadow Larkens
+/obj/item/modular_computer/laptop/preset/custom_loadout/advanced/shadowlarkens
+	name = "Shadow's laptop computer"
+	desc = "A laptop with a different color scheme than usual!"
+	icon = 'icons/vore/custom_items_vr.dmi'
+	overlay_icon = 'icons/obj/modular_laptop.dmi'
+	icon_state_unpowered = "shadowlaptop-open"
+	icon_state = "shadowlaptop-open"
+	icon_state_closed = "shadowlaptop-closed"
+
+//Rboys2 - Clara Mali
+/obj/item/weapon/reagent_containers/food/drinks/glass2/fluff/claraflask
+	name = "Clara's Vacuum Flask"
+	desc = "A rose gold vacuum flask."
+	base_name = "Clara's Vacuum Flask"
+	base_icon = "claraflask"
+	icon = 'icons/vore/custom_items_vr.dmi'
+	center_of_mass = list("x" = 15,"y" = 4)
+	filling_states = list(15, 30, 50, 60, 80, 100)
+	volume = 60
+
+/obj/item/weapon/reagent_containers/food/drinks/glass2/fluff/claraflask/Initialize()
+	. = ..()
+	reagents.add_reagent("tea", 40)
+	reagents.add_reagent("milk", 20)
+
+/obj/item/weapon/reagent_containers/food/drinks/glass2/fluff/claraflask/update_icon()
+	..()
+	name = initial(name)
+	desc = initial(desc)

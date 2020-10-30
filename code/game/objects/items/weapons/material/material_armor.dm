@@ -27,7 +27,7 @@ Protectiveness | Armor %
 
 // Putting these at /clothing/ level saves a lot of code duplication in armor/helmets/gauntlets/etc
 /obj/item/clothing
-	var/material/material = null // Why isn't this a datum?
+	var/datum/material/material = null // Why isn't this a datum?
 	var/applies_material_color = TRUE
 	var/unbreakable = FALSE
 	var/default_material = null // Set this to something else if you want material attributes on init.
@@ -125,7 +125,7 @@ Protectiveness | Armor %
 		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 		spark_system.set_up(5, 0, user.loc)
 		spark_system.start()
-		playsound(user.loc, 'sound/effects/teleport.ogg', 50, 1)
+		playsound(src, 'sound/effects/teleport.ogg', 50, 1)
 
 		user.loc = picked
 		return PROJECTILE_FORCE_MISS

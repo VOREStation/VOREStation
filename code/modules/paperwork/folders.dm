@@ -5,6 +5,8 @@
 	icon_state = "folder"
 	w_class = ITEMSIZE_SMALL
 	pressure_resistance = 2
+	drop_sound = 'sound/items/drop/paper.ogg'
+	pickup_sound = 'sound/items/pickup/paper.ogg'
 
 /obj/item/weapon/folder/blue
 	desc = "A blue folder."
@@ -23,7 +25,7 @@
 	icon_state = "folder_white"
 
 /obj/item/weapon/folder/blue_captain
-	desc = "A blue folder with Colony Director markings."
+	desc = "A blue folder with Site Manager markings."
 	icon_state = "folder_captain"
 
 /obj/item/weapon/folder/blue_hop

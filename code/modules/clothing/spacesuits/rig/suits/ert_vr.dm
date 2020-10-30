@@ -6,7 +6,7 @@
 
 	initial_modules = list(
 		/obj/item/rig_module/maneuvering_jets,
-		/obj/item/rig_module/grenade_launcher/cleaner,
+		/obj/item/rig_module/cleaner_launcher,
 		)
 
 /obj/item/weapon/rig/ert/assetprotection

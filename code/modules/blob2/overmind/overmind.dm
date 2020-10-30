@@ -23,7 +23,7 @@ var/list/overminds = list()
 	var/ai_controlled = TRUE
 	var/auto_pilot = FALSE // If true, and if a client is attached, the AI routine will continue running.
 
-/mob/observer/blob/New(var/newloc, pre_placed = 0, starting_points = 60, desired_blob_type = null)
+/mob/observer/blob/Initialize(newloc, pre_placed = 0, starting_points = 60, desired_blob_type = null)
 	blob_points = starting_points
 	if(pre_placed) //we already have a core!
 		placed = 1
@@ -40,12 +40,11 @@ var/list/overminds = list()
 	color = blob_type.complementary_color
 	if(blob_core)
 		blob_core.update_icon()
-		level_seven_blob_announcement(blob_core)
 
-	..(newloc)
+	return ..(newloc)
 
 /mob/observer/blob/Destroy()
-	for(var/BL in blobs)
+	for(var/BL in GLOB.all_blobs)
 		var/obj/structure/blob/B = BL
 		if(B && B.overmind == src)
 			B.overmind = null
@@ -66,7 +65,7 @@ var/list/overminds = list()
 		if(blob_core)
 			stat(null, "Core Health: [blob_core.integrity]")
 		stat(null, "Power Stored: [blob_points]/[max_blob_points]")
-		stat(null, "Total Blobs: [blobs.len]")
+		stat(null, "Total Blobs: [GLOB.all_blobs.len]")
 
 /mob/observer/blob/Move(NewLoc, Dir = 0)
 	if(placed)

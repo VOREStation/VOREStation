@@ -11,6 +11,8 @@
 	throw_range = 5
 	origin_tech = list(TECH_MATERIAL = 1)
 	matter = list(DEFAULT_WALL_MATERIAL = 500)
+	drop_sound = 'sound/items/drop/accessory.ogg'
+	pickup_sound = 'sound/items/pickup/accessory.ogg'
 	var/elastic
 	var/dispenser = 0
 	var/breakouttime = 1200 //Deciseconds = 120s = 2 minutes
@@ -59,7 +61,7 @@
 	return 0
 
 /obj/item/weapon/handcuffs/proc/place_handcuffs(var/mob/living/carbon/target, var/mob/user)
-	playsound(src.loc, cuff_sound, 30, 1, -2)
+	playsound(src, cuff_sound, 30, 1, -2)
 
 	var/mob/living/carbon/human/H = target
 	if(!istype(H))
@@ -97,7 +99,7 @@
 		user.drop_from_inventory(cuffs)
 	cuffs.loc = target
 	target.handcuffed = cuffs
-	target.update_inv_handcuffed()
+	target.update_handcuffed()
 	target.drop_r_hand()
 	target.drop_l_hand()
 	target.stop_pulling()
@@ -243,7 +245,7 @@ var/last_chew = 0
 			to_chat(user, "<span class='danger'>You need to have a firm grip on [C] before you can put \the [src] on!</span>")
 
 /obj/item/weapon/handcuffs/legcuffs/proc/place_legcuffs(var/mob/living/carbon/target, var/mob/user)
-	playsound(src.loc, cuff_sound, 30, 1, -2)
+	playsound(src, cuff_sound, 30, 1, -2)
 
 	var/mob/living/carbon/human/H = target
 	if(!istype(H))
@@ -314,7 +316,7 @@ var/last_chew = 0
 	qdel(src)
 
 /obj/item/weapon/handcuffs/legcuffs/bola/place_legcuffs(var/mob/living/carbon/target, var/mob/user)
-	playsound(src.loc, cuff_sound, 30, 1, -2)
+	playsound(src, cuff_sound, 30, 1, -2)
 
 	var/mob/living/carbon/human/H = target
 	if(!istype(H))

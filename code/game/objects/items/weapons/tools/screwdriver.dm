@@ -6,6 +6,7 @@
 	desc = "You can be totally screwwy with this."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "screwdriver"
+	center_of_mass = list("x" = 13,"y" = 7)
 	slot_flags = SLOT_BELT | SLOT_EARS
 	force = 6
 	w_class = ITEMSIZE_TINY
@@ -14,6 +15,8 @@
 	throw_range = 5
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	usesound = 'sound/items/screwdriver.ogg'
+	drop_sound = 'sound/items/drop/screwdriver.ogg'
+	pickup_sound = 'sound/items/pickup/screwdriver.ogg'
 	matter = list(DEFAULT_WALL_MATERIAL = 75)
 	attack_verb = list("stabbed")
 	sharp  = 1
@@ -105,14 +108,6 @@
 	random_color = FALSE
 	reach = 2
 
-/obj/item/weapon/tool/screwdriver/hybrid/is_screwdriver()
-	if(prob(10))
-		var/turf/T = get_turf(src)
-		SSradiation.radiate(get_turf(src), 5)
-		T.visible_message("<span class='alien'>\The [src] shudders!</span>")
-		return FALSE
-	return TRUE
-
 /obj/item/weapon/tool/screwdriver/cyborg
 	name = "powered screwdriver"
 	desc = "An electrical screwdriver, designed to be both precise and quick."
@@ -152,7 +147,7 @@
 	return ..()
 
 /obj/item/weapon/tool/screwdriver/power/attack_self(mob/user)
-	playsound(get_turf(user),'sound/items/change_drill.ogg',50,1)
+	playsound(src,'sound/items/change_drill.ogg',50,1)
 	user.drop_item(src)
 	counterpart.forceMove(get_turf(src))
 	src.forceMove(counterpart)

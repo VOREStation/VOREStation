@@ -288,7 +288,7 @@
 			id.icon_state = "gold"
 			id.access = get_all_accesses().Copy()
 			id.registered_name = H.real_name
-			id.assignment = "Colony Director"
+			id.assignment = "Site Manager"
 			id.name = "[id.registered_name]'s ID Card ([id.assignment])"
 			H.equip_to_slot_or_del(id, slot_wear_id)
 			H.update_inv_wear_id()
@@ -303,7 +303,7 @@
 	set name = "Assume direct control"
 	set desc = "Direct intervention"
 
-	if(!check_rights(R_DEBUG|R_ADMIN))	return
+	if(!check_rights(R_DEBUG|R_ADMIN|R_EVENT))	return
 	if(M.ckey)
 		if(alert("This mob is being controlled by [M.ckey]. Are you sure you wish to assume control of it? [M.ckey] will be made a ghost.",,"Yes","No") != "Yes")
 			return
@@ -341,11 +341,11 @@
 	var/list/areas_with_intercom = list()
 	var/list/areas_with_camera = list()
 
-	for(var/area/A in all_areas)
+	for(var/area/A in world)
 		if(!(A.type in areas_all))
 			areas_all.Add(A.type)
 
-	for(var/obj/machinery/power/apc/APC in machines)
+	for(var/obj/machinery/power/apc/APC in GLOB.apcs)
 		var/area/A = get_area(APC)
 		if(A && !(A.type in areas_with_APC))
 			areas_with_APC.Add(A.type)
@@ -539,7 +539,7 @@
 					Pump.air2.gas["nitrogen"] = 3750	//The contents of 2 canisters.
 					Pump.air2.temperature = 50
 					Pump.air2.update_values()
-				Pump.use_power=1
+				Pump.update_use_power(USE_POWER_IDLE)
 				Pump.target_pressure = 4500
 				Pump.update_icon()
 
@@ -582,17 +582,17 @@
 
 	switch(input("Which list?") in list("Players","Admins","Mobs","Living Mobs","Dead Mobs", "Clients"))
 		if("Players")
-			usr << jointext(player_list,",")
+			to_chat(usr, span("filter_debuglogs", jointext(player_list,",")))
 		if("Admins")
-			usr << jointext(admins,",")
+			to_chat(usr, span("filter_debuglogs", jointext(GLOB.admins,",")))
 		if("Mobs")
-			usr << jointext(mob_list,",")
+			to_chat(usr, span("filter_debuglogs", jointext(mob_list,",")))
 		if("Living Mobs")
-			usr << jointext(living_mob_list,",")
+			to_chat(usr, span("filter_debuglogs", jointext(living_mob_list,",")))
 		if("Dead Mobs")
-			usr << jointext(dead_mob_list,",")
+			to_chat(usr, span("filter_debuglogs", jointext(dead_mob_list,",")))
 		if("Clients")
-			usr << jointext(GLOB.clients,",")
+			to_chat(usr, span("filter_debuglogs", jointext(GLOB.clients,",")))
 
 /client/proc/cmd_debug_using_map()
 	set category = "Debug"
@@ -638,13 +638,14 @@
 		return
 
 	var/datum/planet/planet = input(usr, "Which planet do you want to modify the weather on?", "Change Weather") in SSplanets.planets
-	var/datum/weather/new_weather = input(usr, "What weather do you want to change to?", "Change Weather") as null|anything in planet.weather_holder.allowed_weather_types
-	if(new_weather)
-		planet.weather_holder.change_weather(new_weather)
-		planet.weather_holder.rebuild_forecast()
-		var/log = "[key_name(src)] changed [planet.name]'s weather to [new_weather]."
-		message_admins(log)
-		log_admin(log)
+	if(istype(planet))
+		var/datum/weather/new_weather = input(usr, "What weather do you want to change to?", "Change Weather") as null|anything in planet.weather_holder.allowed_weather_types
+		if(new_weather)
+			planet.weather_holder.change_weather(new_weather)
+			planet.weather_holder.rebuild_forecast()
+			var/log = "[key_name(src)] changed [planet.name]'s weather to [new_weather]."
+			message_admins(log)
+			log_admin(log)
 
 /datum/admins/proc/change_time()
 	set category = "Debug"
@@ -655,20 +656,20 @@
 		return
 
 	var/datum/planet/planet = input(usr, "Which planet do you want to modify time on?", "Change Time") in SSplanets.planets
+	if(istype(planet))
+		var/datum/time/current_time_datum = planet.current_time
+		var/new_hour = input(usr, "What hour do you want to change to?", "Change Time", text2num(current_time_datum.show_time("hh"))) as null|num
+		if(!isnull(new_hour))
+			var/new_minute = input(usr, "What minute do you want to change to?", "Change Time", text2num(current_time_datum.show_time("mm")) ) as null|num
+			if(!isnull(new_minute))
+				var/type_needed = current_time_datum.type
+				var/datum/time/new_time = new type_needed()
+				new_time = new_time.add_hours(new_hour)
+				new_time = new_time.add_minutes(new_minute)
+				planet.current_time = new_time
+				spawn(1)
+					planet.update_sun()
 
-	var/datum/time/current_time_datum = planet.current_time
-	var/new_hour = input(usr, "What hour do you want to change to?", "Change Time", text2num(current_time_datum.show_time("hh"))) as null|num
-	if(!isnull(new_hour))
-		var/new_minute = input(usr, "What minute do you want to change to?", "Change Time", text2num(current_time_datum.show_time("mm")) ) as null|num
-		if(!isnull(new_minute))
-			var/type_needed = current_time_datum.type
-			var/datum/time/new_time = new type_needed()
-			new_time = new_time.add_hours(new_hour)
-			new_time = new_time.add_minutes(new_minute)
-			planet.current_time = new_time
-			spawn(1)
-				planet.update_sun()
-
-			var/log = "[key_name(src)] changed [planet.name]'s time to [planet.current_time.show_time("hh:mm")]."
-			message_admins(log)
-			log_admin(log)
+				var/log = "[key_name(src)] changed [planet.name]'s time to [planet.current_time.show_time("hh:mm")]."
+				message_admins(log)
+				log_admin(log)

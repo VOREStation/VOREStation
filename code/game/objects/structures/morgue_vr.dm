@@ -55,5 +55,5 @@
 		sleep(30)
 		cremating = 0
 		locked = 0
-		playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
+		playsound(src, 'sound/machines/ding.ogg', 50, 1)
 	return

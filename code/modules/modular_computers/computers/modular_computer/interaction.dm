@@ -99,8 +99,8 @@
 
 /obj/item/modular_computer/attack_ghost(var/mob/observer/ghost/user)
 	if(enabled)
-		ui_interact(user)
-	else if(check_rights(R_ADMIN, 0, user))
+		tgui_interact(user)
+	else if(check_rights(R_ADMIN|R_EVENT, 0, user))
 		var/response = alert(user, "This computer is turned off. Would you like to turn it on?", "Admin Override", "Yes", "No")
 		if(response == "Yes")
 			turn_on(user)
@@ -116,7 +116,7 @@
 // On-click handling. Turns on the computer if it's off and opens the GUI.
 /obj/item/modular_computer/attack_self(var/mob/user)
 	if(enabled && screen_on)
-		ui_interact(user)
+		tgui_interact(user)
 	else if(!enabled && screen_on)
 		turn_on(user)
 

@@ -52,8 +52,8 @@
 		tag_interior_door = controller.tag_interior_door? controller.tag_interior_door : "[id_tag]_inner"
 		tag_airpump = controller.tag_airpump? controller.tag_airpump : "[id_tag]_pump"
 		tag_chamber_sensor = controller.tag_chamber_sensor? controller.tag_chamber_sensor : "[id_tag]_sensor"
-		tag_exterior_sensor = controller.tag_exterior_sensor
-		tag_interior_sensor = controller.tag_interior_sensor
+		tag_exterior_sensor = controller.tag_exterior_sensor || "[id_tag]_exterior_sensor"
+		tag_interior_sensor = controller.tag_interior_sensor || "[id_tag]_interior_sensor"
 		tag_airlock_mech_sensor = controller.tag_airlock_mech_sensor? controller.tag_airlock_mech_sensor : "[id_tag]_airlock_mech"
 		tag_shuttle_mech_sensor = controller.tag_shuttle_mech_sensor? controller.tag_shuttle_mech_sensor : "[id_tag]_shuttle_mech"
 		memory["secure"] = controller.tag_secure
@@ -117,6 +117,7 @@
 
 /datum/computer/file/embedded_program/airlock/receive_user_command(command)
 	var/shutdown_pump = 0
+	. = TRUE
 	switch(command)
 		if("cycle_ext")
 			//If airlock is already cycled in this direction, just toggle the doors.
@@ -163,6 +164,8 @@
 			else
 				signalDoor(tag_interior_door, "unlock")
 				signalDoor(tag_exterior_door, "unlock")
+		else
+			. = FALSE
 
 	if(shutdown_pump)
 		signalPump(tag_airpump, 0)		//send a signal to stop pressurizing
@@ -207,6 +210,7 @@
 					//purge apparently means clearing the airlock chamber to vacuum (then refilling, handled later)
 					target_pressure = 0
 					state = STATE_DEPRESSURIZE
+					playsound(master, 'sound/AI/airlockout.ogg', 100, 0) //VOREStation Add - TTS
 					if(!cycle_to_external_air || target_state == TARGET_OUTOPEN) // if going outside, pump internal air into air tank
 						signalPump(tag_airpump, 1, 0, target_pressure)	//send a signal to start depressurizing
 					else
@@ -215,6 +219,7 @@
 
 				else if(chamber_pressure <= target_pressure)
 					state = STATE_PRESSURIZE
+					playsound(master, 'sound/AI/airlockin.ogg', 100, 0) //VOREStation Add - TTS
 					if(!cycle_to_external_air || target_state == TARGET_INOPEN) // if going inside, pump air into airlock
 						signalPump(tag_airpump, 1, 1, target_pressure)	//send a signal to start pressurizing
 					else
@@ -224,6 +229,7 @@
 				else if(chamber_pressure > target_pressure)
 					if(!cycle_to_external_air)
 						state = STATE_DEPRESSURIZE
+						playsound(master, 'sound/AI/airlockout.ogg', 100, 0) //VOREStation Add - TTS
 						signalPump(tag_airpump, 1, 0, target_pressure)	//send a signal to start depressurizing
 					else
 						memory["purge"] = 1 // should always purge first if using external air, chamber pressure should never be higher than target pressure here
@@ -231,6 +237,7 @@
 				memory["target_pressure"] = max(target_pressure, MIN_TARGET_PRESSURE)
 
 		if(STATE_PRESSURIZE)
+			playsound(master, 'sound/machines/2beep.ogg', 100, 0) //VOREStation Add - TTS
 			if(memory["chamber_sensor_pressure"] >= memory["target_pressure"] * 0.95)
 				//not done until the pump has reported that it's off
 				if(memory["pump_status"] != "off")
@@ -242,9 +249,11 @@
 					cycleDoors(target_state)
 					state = STATE_IDLE
 					target_state = TARGET_NONE
+					playsound(master, 'sound/AI/airlockdone.ogg', 100, 0) //VOREStation Add - TTS
 
 
 		if(STATE_DEPRESSURIZE)
+			playsound(master, 'sound/machines/2beep.ogg', 100, 0) //VOREStation Add - TTS
 			if(memory["chamber_sensor_pressure"] <= max(memory["target_pressure"] * 1.05, MIN_TARGET_PRESSURE))
 				if(memory["pump_status"] != "off")
 					signalPump(tag_airpump, 0)
@@ -260,6 +269,7 @@
 					cycleDoors(target_state)
 					state = STATE_IDLE
 					target_state = TARGET_NONE
+					playsound(master, 'sound/AI/airlockdone.ogg', 100, 0) //VOREStation Add - TTS
 
 
 	memory["processing"] = (state != target_state)
@@ -273,6 +283,9 @@
 	target_state = TARGET_INOPEN
 	memory["purge"] = cycle_to_external_air
 
+/datum/computer/file/embedded_program/airlock/proc/begin_dock_cycle()
+	state = STATE_IDLE
+	target_state = TARGET_INOPEN
 /datum/computer/file/embedded_program/airlock/proc/begin_cycle_out()
 	state = STATE_IDLE
 	target_state = TARGET_OUTOPEN

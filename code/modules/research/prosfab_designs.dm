@@ -1,30 +1,31 @@
 /datum/design/item/prosfab
 	build_type = PROSFAB
-	category = "Misc"
+	category = list("Misc")
 	req_tech = list(TECH_MATERIAL = 1)
 
 /datum/design/item/prosfab/pros
-	category = "Prosthetics"
+	category = list("Prosthetics")
 
 // Make new external organs and make 'em robotish
 /datum/design/item/prosfab/pros/Fabricate(var/newloc, var/fabricator)
-	if(istype(fabricator, /obj/machinery/pros_fabricator))
-		var/obj/machinery/pros_fabricator/prosfab = fabricator
+	if(istype(fabricator, /obj/machinery/mecha_part_fabricator/pros))
+		var/obj/machinery/mecha_part_fabricator/pros/prosfab = fabricator
 		var/obj/item/organ/O = new build_path(newloc)
-		//VOREStation Edit - Suggesting a species
-		var/newspecies = "Human"
 		if(prosfab.manufacturer)
 			var/datum/robolimb/manf = all_robolimbs[prosfab.manufacturer]
-			newspecies = manf.suggested_species
-		O.species = GLOB.all_species[newspecies]
-		if(istype(O,/obj/item/organ/external))
-			var/obj/item/organ/external/EO = O
-			if(EO.species.base_color)
-				var/r_skin = hex2num(copytext(EO.species.base_color,2,4))
-				var/g_skin = hex2num(copytext(EO.species.base_color,4,6))
-				var/b_skin = hex2num(copytext(EO.species.base_color,6,8))
-				EO.s_col = list(r_skin, g_skin, b_skin)
-		//VOREStation Edit End
+
+			if(!(O.organ_tag in manf.parts))	// Make sure we're using an actually present icon.
+				manf = all_robolimbs["Unbranded"]
+
+			if(prosfab.species in manf.species_alternates)	// If the prosthetics fab is set to say, Unbranded, and species set to 'Tajaran', it will make the Taj variant of Unbranded, if it exists.
+				manf = manf.species_alternates[prosfab.species]
+
+			if(!prosfab.species || (prosfab.species in manf.species_cannot_use))	// Fabricator ensures the manufacturer can make parts for the species we're set to.
+				O.species = GLOB.all_species["[manf.suggested_species]"]
+			else
+				O.species = GLOB.all_species[prosfab.species]
+		else
+			O.species = GLOB.all_species["Human"]
 		O.robotize(prosfab.manufacturer)
 		O.dna = new/datum/dna() //Uuughhhh... why do I have to do this?
 		O.dna.ResetUI()
@@ -36,16 +37,23 @@
 
 // Deep Magic for the torso since it needs to be a new mob
 /datum/design/item/prosfab/pros/torso/Fabricate(var/newloc, var/fabricator)
-	if(istype(fabricator, /obj/machinery/pros_fabricator))
-		var/obj/machinery/pros_fabricator/prosfab = fabricator
-		//VOREStation Edit - Suggesting a species
+	if(istype(fabricator, /obj/machinery/mecha_part_fabricator/pros))
+		var/obj/machinery/mecha_part_fabricator/pros/prosfab = fabricator
 		var/newspecies = "Human"
-		if(prosfab.manufacturer)
-			var/datum/robolimb/manf = all_robolimbs[prosfab.manufacturer]
-			newspecies = manf.suggested_species
+
+		var/datum/robolimb/manf = all_robolimbs[prosfab.manufacturer]
+
+		if(manf)
+			if(prosfab.species in manf.species_alternates)	// If the prosthetics fab is set to say, Unbranded, and species set to 'Tajaran', it will make the Taj variant of Unbranded, if it exists.
+				manf = manf.species_alternates[prosfab.species]
+
+			if(!prosfab.species || (prosfab.species in manf.species_cannot_use))
+				newspecies = manf.suggested_species
+			else
+				newspecies = prosfab.species
+
 		var/mob/living/carbon/human/H = new(newloc,newspecies)
-		//VOREStation Edit End
-		H.stat = DEAD
+		H.set_stat(DEAD)
 		H.gender = gender
 		for(var/obj/item/organ/external/EO in H.organs)
 			if(EO.organ_tag == BP_TORSO || EO.organ_tag == BP_GROIN)
@@ -55,10 +63,25 @@
 
 		for(var/obj/item/organ/external/O in H.organs)
 			O.species = GLOB.all_species[newspecies]
-			O.robotize(prosfab.manufacturer)
+
+			if(!(O.organ_tag in manf.parts))	// Make sure we're using an actually present icon.
+				manf = all_robolimbs["Unbranded"]
+
+			O.robotize(manf.company)
 			O.dna = new/datum/dna()
 			O.dna.ResetUI()
 			O.dna.ResetSE()
+
+			// Skincolor weirdness.
+			O.s_col[1] = 0
+			O.s_col[2] = 0
+			O.s_col[3] = 0
+
+		// Resetting the UI does strange things for the skin of a non-human robot, which should be controlled by a whole different thing.
+		H.r_skin = 0
+		H.g_skin = 0
+		H.b_skin = 0
+		H.dna.ResetUIFrom(H)
 
 		H.real_name = "Synthmorph #[rand(100,999)]"
 		H.name = H.real_name
@@ -152,7 +175,7 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 2813)
 
 /datum/design/item/prosfab/pros/internal
-	category = "Prosthetics, Internal"
+	category = list("Prosthetics, Internal")
 
 /datum/design/item/prosfab/pros/internal/cell
 	name = "Prosthetic Powercell"
@@ -169,6 +192,34 @@
 	time = 15
 	materials = list(DEFAULT_WALL_MATERIAL = 5625, "glass" = 5625)
 //	req_tech = list(TECH_ENGINEERING = 2, TECH_MATERIAL = 2)
+
+/datum/design/item/prosfab/pros/internal/hydraulic
+	name = "Hydraulic Hub"
+	id = "pros_hydraulic"
+	build_path = /obj/item/organ/internal/heart/machine
+	time = 15
+	materials = list(DEFAULT_WALL_MATERIAL = 7500, MAT_PLASTIC = 3000)
+
+/datum/design/item/prosfab/pros/internal/reagcycler
+	name = "Reagent Cycler"
+	id = "pros_reagcycler"
+	build_path = /obj/item/organ/internal/stomach/machine
+	time = 15
+	materials = list(DEFAULT_WALL_MATERIAL = 7500, MAT_PLASTIC = 3000)
+
+/datum/design/item/prosfab/pros/internal/heatsink
+	name = "Heatsink"
+	id = "pros_heatsink"
+	build_path = /obj/item/organ/internal/robotic/heatsink
+	time = 15
+	materials = list(DEFAULT_WALL_MATERIAL = 7500, MAT_PLASTIC = 3000)
+
+/datum/design/item/prosfab/pros/internal/diagnostic
+	name = "Diagnostic Controller"
+	id = "pros_diagnostic"
+	build_path = /obj/item/organ/internal/robotic/diagnostic
+	time = 15
+	materials = list(DEFAULT_WALL_MATERIAL = 7500, MAT_PLASTIC = 3000)
 
 /datum/design/item/prosfab/pros/internal/heart
 	name = "Prosthetic Heart"
@@ -219,7 +270,7 @@
 
 //////////////////// Cyborg Parts ////////////////////
 /datum/design/item/prosfab/cyborg
-	category = "Cyborg Parts"
+	category = list("Cyborg Parts")
 	time = 20
 	materials = list(DEFAULT_WALL_MATERIAL = 3750)
 
@@ -275,7 +326,7 @@
 
 //////////////////// Cyborg Internals ////////////////////
 /datum/design/item/prosfab/cyborg/component
-	category = "Cyborg Internals"
+	category = list("Cyborg Internals")
 	build_type = PROSFAB
 	time = 12
 	materials = list(DEFAULT_WALL_MATERIAL = 7500)
@@ -317,7 +368,7 @@
 
 //////////////////// Cyborg Modules ////////////////////
 /datum/design/item/prosfab/robot_upgrade
-	category = "Cyborg Modules"
+	category = list("Cyborg Modules")
 	build_type = PROSFAB
 	time = 12
 	materials = list(DEFAULT_WALL_MATERIAL = 7500)

@@ -14,6 +14,8 @@
 #define VANTAG_KIDNAP  "vantag_kidnap"
 #define VANTAG_KILL    "vantag_kill"
 
+#define DEPARTMENT_OFFDUTY			"Off-Duty"
+
 #define ANNOUNCER_NAME "Facility PA"
 
 //For custom species
@@ -46,3 +48,20 @@
 #define SHELTER_DEPLOY_BAD_TURFS "bad turfs"
 #define SHELTER_DEPLOY_BAD_AREA "bad area"
 #define SHELTER_DEPLOY_ANCHORED_OBJECTS "anchored objects"
+#define SHELTER_DEPLOY_SHIP_SPACE "ship not in space"
+
+#define PTO_SECURITY		"Security"
+#define PTO_MEDICAL			"Medical"
+#define PTO_ENGINEERING 	"Engineering"
+#define PTO_SCIENCE			"Science"
+#define PTO_EXPLORATION 	"Exploration"
+#define PTO_CARGO			"Cargo"
+#define PTO_CIVILIAN		"Civilian"
+#define PTO_CYBORG			"Cyborg"
+
+#define DEPARTMENT_TALON	"ITV Talon"
+
+#define MAT_TITANIUMGLASS		"ti-glass"
+#define MAT_PLASTITANIUM		"plastitanium"
+#define MAT_PLASTITANIUMHULL		"plastitanium hull"
+#define MAT_PLASTITANIUMGLASS	"plastitanium glass"

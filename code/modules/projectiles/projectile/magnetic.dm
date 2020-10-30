@@ -22,6 +22,13 @@
 	damage = 20
 	armor_penetration = 100
 
+/obj/item/projectile/bullet/magnetic/flechette/small
+	name = "small flechette"
+	icon_state = "flechette"
+	fire_sound = 'sound/weapons/rapidslice.ogg'
+	damage = 12
+	armor_penetration = 100
+
 /obj/item/projectile/bullet/magnetic/flechette/hunting
 	name = "shredder slug"
 	armor_penetration = 30
@@ -36,13 +43,16 @@
 	damage = 30
 	damage_type = SEARING
 	embed_chance = 0
+	armor_penetration = 40
+	penetrating = 1
 
 /obj/item/projectile/bullet/magnetic/heated/weak
 	icon_state = "gauss_silenced"
 	damage = 15
 	agony = 5
 	embed_chance = 0
-	armor_penetration = 50
+	armor_penetration = 30
+	penetrating = 0
 
 /obj/item/projectile/bullet/magnetic/fuelrod
 	name = "fuel rod"
@@ -134,7 +144,7 @@
 /obj/item/projectile/bullet/magnetic/fuelrod/supermatter/on_hit(var/atom/target, var/blocked = 0, var/def_zone = null) //You cannot touch the supermatter without disentigrating. Assumedly, this is true for condensed rods of it flying at relativistic speeds.
 	if(istype(target,/turf/simulated/wall) || istype(target,/mob/living))
 		target.visible_message("<span class='danger'>The [src] burns a perfect hole through \the [target] with a blinding flash!</span>")
-		playsound(target.loc, 'sound/effects/teleport.ogg', 40, 0)
+		playsound(target, 'sound/effects/teleport.ogg', 40, 0)
 	return ..(target, blocked, def_zone)
 
 /obj/item/projectile/bullet/magnetic/fuelrod/supermatter/check_penetrate()
@@ -151,6 +161,9 @@
 	irradiate = 20
 	range = 6
 
+/obj/item/projectile/bullet/magnetic/bore/get_structure_damage()
+	return damage * 3 //made for boring holes
+
 /obj/item/projectile/bullet/magnetic/bore/Bump(atom/A, forced=0)
 	if(istype(A, /turf/simulated/mineral))
 		var/turf/simulated/mineral/MI = A
@@ -160,7 +173,6 @@
 		return 0
 	else if(istype(A, /turf/simulated/wall) || istype(A, /turf/simulated/shuttle/wall))	// Cause a loud, but relatively minor explosion on the wall it hits.
 		explosion(A, -1, -1, 1, 3)
-		qdel(src)
-		return 1
+		return ..()
 	else
 		..()

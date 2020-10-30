@@ -9,7 +9,7 @@
 	power_channel = ENVIRON
 	var/frequency = 0
 	var/id
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 15
 
 /obj/machinery/meter/Initialize()
@@ -67,7 +67,7 @@
 
 		var/datum/signal/signal = new
 		signal.source = src
-		signal.transmission_method = 1
+		signal.transmission_method = TRANSMISSION_RADIO
 		signal.data = list(
 			"tag" = id,
 			"device" = "AM",
@@ -77,24 +77,22 @@
 		radio_connection.post_signal(src, signal)
 
 /obj/machinery/meter/examine(mob/user)
-	var/t = "A gas flow meter. "
+	. = ..()
 
 	if(get_dist(user, src) > 3 && !(istype(user, /mob/living/silicon/ai) || istype(user, /mob/observer/dead)))
-		t += "<span class='warning'>You are too far away to read it.</span>"
+		. += "<span class='warning'>You are too far away to read it.</span>"
 
 	else if(stat & (NOPOWER|BROKEN))
-		t += "<span class='warning'>The display is off.</span>"
+		. += "<span class='warning'>The display is off.</span>"
 
-	else if(src.target)
+	else if(target)
 		var/datum/gas_mixture/environment = target.return_air()
 		if(environment)
-			t += "The pressure gauge reads [round(environment.return_pressure(), 0.01)] kPa; [round(environment.temperature,0.01)]K ([round(environment.temperature-T0C,0.01)]&deg;C)"
+			. += "The pressure gauge reads [round(environment.return_pressure(), 0.01)] kPa; [round(environment.temperature,0.01)]K ([round(environment.temperature-T0C,0.01)]&deg;C)"
 		else
-			t += "The sensor error light is blinking."
+			. += "The sensor error light is blinking."
 	else
-		t += "The connect error light is blinking."
-
-	to_chat(user,t)
+		. += "The connect error light is blinking."
 
 /obj/machinery/meter/Click()
 

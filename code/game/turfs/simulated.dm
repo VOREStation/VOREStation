@@ -55,8 +55,8 @@
 		B.clean_blood()
 	..()
 
-/turf/simulated/New()
-	..()
+/turf/simulated/Initialize(mapload)
+	. = ..()
 	if(istype(loc, /area/chapel))
 		holy = 1
 	levelupdate()
@@ -83,7 +83,7 @@
 
 	if (istype(A,/mob/living))
 		var/mob/living/M = A
-		if(M.lying)
+		if(M.lying || M.flying) //VOREStation Edit
 			return ..()
 
 		if(M.dirties_floor())

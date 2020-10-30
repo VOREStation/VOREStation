@@ -20,11 +20,12 @@ var/list/ai_verbs_default = list(
 	/mob/living/silicon/ai/proc/ai_call_shuttle,
 	/mob/living/silicon/ai/proc/ai_camera_track,
 	/mob/living/silicon/ai/proc/ai_camera_list,
-	/mob/living/silicon/ai/proc/ai_roster,
 	/mob/living/silicon/ai/proc/ai_checklaws,
 	/mob/living/silicon/ai/proc/toggle_camera_light,
 	/mob/living/silicon/ai/proc/take_image,
-	/mob/living/silicon/ai/proc/view_images
+	/mob/living/silicon/ai/proc/view_images,
+	/mob/living/silicon/ai/proc/toggle_multicam_verb,
+	/mob/living/silicon/ai/proc/add_multicam_verb
 )
 
 //Not sure why this is necessary...
@@ -46,7 +47,7 @@ var/list/ai_verbs_default = list(
 	anchored = 1 // -- TLE
 	density = 1
 	status_flags = CANSTUN|CANPARALYSE|CANPUSH
-	shouldnt_see = list(/obj/effect/rune)
+	shouldnt_see = list(/mob/observer/eye, /obj/effect/rune)
 	var/list/network = list(NETWORK_DEFAULT)
 	var/obj/machinery/camera/camera = null
 	var/aiRestorePowerRoutine = 0
@@ -85,6 +86,14 @@ var/list/ai_verbs_default = list(
 	var/datum/ai_icon/selected_sprite			// The selected icon set
 	var/custom_sprite 	= 0 					// Whether the selected icon is custom
 	var/carded
+	
+	// Multicam Vars
+	var/multicam_allowed = TRUE
+	var/multicam_on = FALSE
+	var/obj/screen/movable/pic_in_pic/ai/master_multicam
+	var/list/multicam_screens = list()
+	var/list/all_eyes = list()
+	var/max_multicams = 6
 
 	can_be_antagged = TRUE
 
@@ -297,7 +306,7 @@ var/list/ai_verbs_default = list(
 /obj/machinery/ai_powersupply
 	name="Power Supply"
 	active_power_usage=50000 // Station AIs use significant amounts of power. This, when combined with charged SMES should mean AI lasts for 1hr without external power.
-	use_power = 2
+	use_power = USE_POWER_ACTIVE
 	power_channel = EQUIP
 	var/mob/living/silicon/ai/powered_ai = null
 	invisibility = 100
@@ -325,14 +334,14 @@ var/list/ai_verbs_default = list(
 		qdel(src)
 		return
 	if(powered_ai.APU_power)
-		use_power = 0
+		update_use_power(USE_POWER_OFF)
 		return
 	if(!powered_ai.anchored)
 		loc = powered_ai.loc
-		use_power = 0
+		update_use_power(USE_POWER_OFF)
 		use_power(50000) // Less optimalised but only called if AI is unwrenched. This prevents usage of wrenching as method to keep AI operational without power. Intellicard is for that.
 	if(powered_ai.anchored)
-		use_power = 2
+		update_use_power(USE_POWER_ACTIVE)
 
 /mob/living/silicon/ai/proc/pick_icon()
 	set category = "AI Settings"
@@ -344,12 +353,6 @@ var/list/ai_verbs_default = list(
 		var/new_sprite = input("Select an icon!", "AI", selected_sprite) as null|anything in ai_icons
 		if(new_sprite) selected_sprite = new_sprite
 	updateicon()
-
-// this verb lets the ai see the stations manifest
-/mob/living/silicon/ai/proc/ai_roster()
-	set category = "AI Commands"
-	set name = "Show Crew Manifest"
-	show_station_manifest()
 
 /mob/living/silicon/ai/var/message_cooldown = 0
 /mob/living/silicon/ai/proc/ai_announcement()
@@ -389,9 +392,7 @@ var/list/ai_verbs_default = list(
 
 	// hack to display shuttle timer
 	if(emergency_shuttle.online())
-		var/obj/machinery/computer/communications/C = locate() in machines
-		if(C)
-			C.post_status("shuttle")
+		post_status(src, "shuttle", user = src)
 
 /mob/living/silicon/ai/proc/ai_recall_shuttle()
 	set category = "AI Commands"
@@ -475,15 +476,43 @@ var/list/ai_verbs_default = list(
 		else
 			to_chat(src, "<font color='red'>System error. Cannot locate [html_decode(href_list["trackname"])].</font>")
 		return
+		
+	if(href_list["trackbot"])
+		var/mob/living/bot/target = locate(href_list["trackbot"]) in mob_list
+		if(target)
+			ai_actual_track(target)
+		else
+			to_chat(src, "<span class='warning'>Target is not on or near any active cameras on the station.</span>")
+		return
+
+	if(href_list["open"])
+		var/mob/target = locate(href_list["open"]) in mob_list
+		if(target)
+			open_nearest_door(target)
 
 	return
+
+/mob/living/silicon/ai/proc/camera_visibility(mob/observer/eye/aiEye/moved_eye)
+	cameranet.visibility(moved_eye, client, all_eyes)
+
+/mob/living/silicon/ai/forceMove(atom/destination)
+	. = ..()
+	if(.)
+		end_multicam()
 
 /mob/living/silicon/ai/reset_view(atom/A)
 	if(camera)
 		camera.set_light(0)
 	if(istype(A,/obj/machinery/camera))
 		camera = A
-	..()
+	if(A != GLOB.ai_camera_room_landmark)
+		end_multicam()
+	. = ..()
+	if(.)
+		if(!A && isturf(loc) && eyeobj)
+			end_multicam()
+			client.eye = eyeobj
+			client.perspective = MOB_PERSPECTIVE
 	if(istype(A,/obj/machinery/camera))
 		if(camera_light_on)	A.set_light(AI_CAMERA_LUMINOSITY)
 		else				A.set_light(0)
@@ -802,6 +831,39 @@ var/list/ai_verbs_default = list(
 /mob/living/silicon/ai/proc/is_in_chassis()
 	return istype(loc, /turf)
 
+/mob/living/silicon/ai/proc/open_nearest_door(mob/living/target) // Rykka ports AI opening doors
+	if(!istype(target))
+		return
+
+	if(target && ai_actual_track(target))
+		var/obj/machinery/door/airlock/A = null
+
+		var/dist = -1
+		for(var/obj/machinery/door/airlock/D in range(3, target))
+			if(!D.density)
+				continue
+
+			var/curr_dist = get_dist(D, target)
+
+			if(dist < 0)
+				dist = curr_dist
+				A = D
+			else if(dist > curr_dist)
+				dist = curr_dist
+				A = D
+
+		if(istype(A))
+			switch(alert(src, "Do you want to open \the [A] for [target]?", "Doorknob_v2a.exe", "Yes", "No"))
+				if("Yes")
+					A.AIShiftClick()
+					to_chat(src, "<span class='notice'>You open \the [A] for [target].</span>")
+				else
+					to_chat(src, "<span class='warning'>You deny the request.</span>")
+		else
+			to_chat(src, "<span class='warning'>Unable to locate an airlock near [target].</span>")
+
+	else
+		to_chat(src, "<span class='warning'>Target is not on or near any active cameras on the station.</span>")
 
 /mob/living/silicon/ai/ex_act(var/severity)
 	if(severity == 1.0)
@@ -837,6 +899,84 @@ var/list/ai_verbs_default = list(
 	// If that is ever fixed please update this proc.
 	return TRUE
 
+
+/mob/living/silicon/ai/handle_track(message, verb = "says", mob/speaker = null, speaker_name, hard_to_hear)
+	if(hard_to_hear)
+		return
+
+	var/jobname // the mob's "job"
+	var/mob/living/carbon/human/impersonating //The crew member being impersonated, if any.
+	var/changed_voice
+
+	if(ishuman(speaker))
+		var/mob/living/carbon/human/H = speaker
+
+		if(H.wear_mask && istype(H.wear_mask,/obj/item/clothing/mask/gas/voice))
+			changed_voice = 1
+			var/list/impersonated = new()
+			var/mob/living/carbon/human/I = impersonated[speaker_name]
+
+			if(!I)
+				for(var/mob/living/carbon/human/M in mob_list)
+					if(M.real_name == speaker_name)
+						I = M
+						impersonated[speaker_name] = I
+						break
+
+			// If I's display name is currently different from the voice name and using an agent ID then don't impersonate
+			// as this would allow the AI to track I and realize the mismatch.
+			if(I && !(I.name != speaker_name && I.wear_id && istype(I.wear_id,/obj/item/weapon/card/id/syndicate)))
+				impersonating = I
+				jobname = impersonating.get_assignment()
+			else
+				jobname = "Unknown"
+		else
+			jobname = H.get_assignment()
+
+	else if(iscarbon(speaker)) // Nonhuman carbon mob
+		jobname = "No id"
+	else if(isAI(speaker))
+		jobname = "AI"
+	else if(isrobot(speaker))
+		jobname = "Cyborg"
+	else if(istype(speaker, /mob/living/silicon/pai))
+		jobname = "Personal AI"
+	else
+		jobname = "Unknown"
+
+	var/track = ""
+	if(changed_voice)  // They have a fake name
+		if(impersonating) // And we found a mob with that name above, track them instead
+			track = "<a href='byond://?src=\ref[src];trackname=[html_encode(speaker_name)];track=\ref[impersonating]'>[speaker_name] ([jobname])</a>"
+			track += "<a href='byond://?src=\ref[src];trackname=[html_encode(speaker_name)];open=\ref[impersonating]'>\[OPEN\]</a>" // Rykka ports AI opening doors
+		else // We couldn't find a mob with their fake name, don't track at all
+			track = "[speaker_name] ([jobname])"
+	else // Not faking their name
+		if(istype(speaker, /mob/living/bot)) // It's a bot, and no fake name! (That'd be kinda weird.) :p
+			track = "<a href='byond://?src=\ref[src];trackbot=\ref[speaker]'>[speaker_name] ([jobname])</a>"
+		else // It's not a bot, and no fake name!
+			track = "<a href='byond://?src=\ref[src];trackname=[html_encode(speaker_name)];track=\ref[speaker]'>[speaker_name] ([jobname])</a>"
+			track += "<a href='byond://?src=\ref[src];trackname=[html_encode(speaker_name)];open=\ref[speaker]'>\[OPEN\]</a>" // Rykka ports AI opening doors
+
+	return track // Feed variable back to AI
+
+/mob/living/silicon/ai/proc/relay_speech(mob/living/M, list/message_pieces, verb)
+	var/message = combine_message(message_pieces, verb, M)
+	var/name_used = M.GetVoice()
+	//This communication is imperfect because the holopad "filters" voices and is only designed to connect to the master only.
+	var/rendered = "<i><span class='game say'>Relayed Speech: <span class='name'>[name_used]</span> [message]</span></i>"
+	show_message(rendered, 2)
+	
+/mob/living/silicon/ai/proc/toggle_multicam_verb()
+	set name = "Toggle Multicam"
+	set category = "AI Commands"
+	toggle_multicam()
+
+/mob/living/silicon/ai/proc/add_multicam_verb()
+	set name = "Add Multicam Viewport"
+	set category = "AI Commands"
+	drop_new_multicam()
+
 //Special subtype kept around for global announcements
 /mob/living/silicon/ai/announcer/
 	is_dummy = 1
@@ -848,9 +988,15 @@ var/list/ai_verbs_default = list(
 	dead_mob_list -= src
 	ai_list -= src
 	silicon_mob_list -= src
+	QDEL_NULL(eyeobj)
 
 /mob/living/silicon/ai/announcer/Life()
-	return
+	mob_list -= src
+	living_mob_list -= src
+	dead_mob_list -= src
+	ai_list -= src
+	silicon_mob_list -= src
+	QDEL_NULL(eyeobj)
 
 #undef AI_CHECK_WIRELESS
 #undef AI_CHECK_RADIO

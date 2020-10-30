@@ -121,9 +121,7 @@
 
 	if(check_alien_ability(50,1,O_RESIN))
 		visible_message("<span class='alium'><B>[src] has planted some alien weeds!</B></span>")
-		var/obj/O = new /obj/effect/alien/weeds/node(loc)
-		if(O)
-			O.color = "#321D37"
+		new /obj/effect/alien/weeds/node(get_turf(src), null, "#321D37")
 	return
 
 /mob/living/carbon/human/proc/Spit(var/atom/A)
@@ -146,7 +144,7 @@
 		P.firer = src
 		P.old_style_target(A)
 		P.fire()
-		playsound(loc, 'sound/weapons/pierce.ogg', 25, 0)
+		playsound(src, 'sound/weapons/pierce.ogg', 25, 0)
 	else
 		..()
 
@@ -174,6 +172,8 @@
 /*			var/turf/simulated/floor/F = O							//Turfs are qdel'd to space (Even asteroid tiles), will need to be touched by someone smarter than myself. -Mech
 			if(F.flooring && (F.flooring.flags & TURF_ACID_IMMUNE))
 */
+			cannot_melt = 1
+		else
 			cannot_melt = 1
 
 	if(cannot_melt)
@@ -297,7 +297,7 @@
 
 	src.visible_message("<span class='danger'>\The [src] leaps at [T]!</span>")
 	src.throw_at(get_step(get_turf(T),get_turf(src)), 4, 1, src)
-	playsound(src.loc, 'sound/voice/hiss5.ogg', 50, 1)
+	playsound(src, 'sound/voice/hiss5.ogg', 50, 1)
 
 	sleep(5)
 

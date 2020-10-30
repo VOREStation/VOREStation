@@ -12,3 +12,7 @@
 		list(mode_name="endothermic beam", projectile_type = /obj/item/projectile/temp, charge_cost = 240),
 		list(mode_name="exothermic beam", projectile_type = /obj/item/projectile/temp/hot, charge_cost = 240),
 		)
+
+/obj/item/weapon/gun/energy/temperature/mounted
+	self_recharge = 1
+	use_external_power = 1

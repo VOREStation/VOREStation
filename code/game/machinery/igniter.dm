@@ -6,7 +6,7 @@
 	var/id = null
 	var/on = 1.0
 	anchored = 1.0
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 2
 	active_power_usage = 4
 
@@ -48,12 +48,13 @@
 	desc = "A wall-mounted ignition device."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "migniter"
+	layer = ABOVE_WINDOW_LAYER
 	var/id = null
 	var/disable = 0
 	var/last_spark = 0
 	var/base_state = "migniter"
 	anchored = 1
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 2
 	active_power_usage = 4
 

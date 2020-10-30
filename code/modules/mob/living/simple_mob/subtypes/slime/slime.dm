@@ -221,5 +221,5 @@
 	return "slime"
 
 /mob/living/simple_mob/slime/proc/squish()
-	playsound(src.loc, 'sound/effects/slime_squish.ogg', 50, 0)
+	playsound(src, 'sound/effects/slime_squish.ogg', 50, 0)
 	visible_message("<b>\The [src]</b> squishes!")

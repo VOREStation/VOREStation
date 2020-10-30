@@ -24,10 +24,22 @@
 	item_cost = 10
 	path = /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/clotting
 
+/datum/uplink_item/item/medical/clotting_case
+	name = "Clotting Medicine case"
+	item_cost = 20
+	desc = "A case of three myelamine injectors. Can rapidly remove and stow up to six injectors."
+	path = /obj/item/weapon/storage/quickdraw/syringe_case/clotting
+
 /datum/uplink_item/item/medical/bonemeds
 	name = "Bone Repair injector"
 	item_cost = 10
 	path = /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/bonemed
+
+/datum/uplink_item/item/medical/bonemeds_case
+	name = "Bone Repair case"
+	item_cost = 20
+	desc = "A case of three osteodaxon injectors. Can rapidly remove and stow up to six injectors."
+	path = /obj/item/weapon/storage/quickdraw/syringe_case/bonemed
 
 /datum/uplink_item/item/medical/ambrosiadeusseeds
 	name = "Box of 7x ambrosia deus seed packets"

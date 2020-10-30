@@ -1,8 +1,7 @@
 // Handles hunger, starvation, growth, and eatting humans.
 
-// Might be best to make this a /mob/living proc and override.
-/mob/living/simple_mob/slime/xenobio/proc/adjust_nutrition(input, var/heal = 1)
-	nutrition = between(0, nutrition + input, get_max_nutrition())
+/mob/living/simple_mob/slime/xenobio/adjust_nutrition(input, var/heal = 1)
+	..(input)
 
 	if(input > 0)
 		// Gain around one level per 50 nutrition.
@@ -18,10 +17,6 @@
 			adjustToxLoss(-input * 0.2)
 			adjustOxyLoss(-input * 0.2)
 			adjustCloneLoss(-input * 0.2)
-
-
-/mob/living/simple_mob/slime/xenobio/proc/get_max_nutrition() // Can't go above it
-	return is_adult ? 1200 : 1000
 
 /mob/living/simple_mob/slime/xenobio/proc/get_grow_nutrition() // Above it we grow, below it we can eat
 	return is_adult ? 1000 : 800

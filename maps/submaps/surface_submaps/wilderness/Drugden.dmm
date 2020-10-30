@@ -45,6 +45,8 @@
 "S" = (/obj/item/weapon/material/shard,/turf/simulated/floor,/area/submap/Drugd)
 "T" = (/obj/structure/table/woodentable,/obj/item/device/flashlight/lamp,/turf/simulated/floor/carpet,/area/submap/Drugd)
 "U" = (/obj/structure/table/woodentable,/obj/item/weapon/reagent_containers/syringe/drugs,/turf/simulated/floor/carpet,/area/submap/Drugd)
+"V" = (/obj/structure/closet/cabinet,/obj/random/projectile/scrapped_gun,/obj/random/toy,/turf/simulated/floor/carpet,/area/submap/Drugd)
+"W" = (/obj/structure/closet/cabinet,/obj/random/mre,/obj/random/medical/lite,/turf/simulated/floor/carpet,/area/submap/Drugd)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaa
@@ -64,9 +66,9 @@ abcccccccccdllldvwxydccba
 acccccddddddzlgmoooAdccba
 acccccdBCDEdllfdFGHIdccba
 acccccdJKgLdlfMddddddccba
-abccccdNllOdhlgdqPwwdccca
+abccccdNllOdhlgdVPwwdccca
 abbcccdlQllelllmoooodccca
-abbcccdRlSldllhdqTUndccca
+abbcccdRlSldllhdWTUndccca
 abbcccddddddludddddddccca
 abbccccccccccccccccccccba
 abbbcccccccccccccccccccba

@@ -184,7 +184,7 @@
 		if(ishuman(holder))
 			var/mob/living/carbon/human/H = holder
 			var/starting_nutrition = H.nutrition
-			H.nutrition = max(0, H.nutrition - 10)
+			H.adjust_nutrition(-10)
 			var/healing_amount = starting_nutrition - H.nutrition
 			if(healing_amount < 0) // If you are eating enough to somehow outpace this, congratulations, you are gluttonous enough to gain a boon.
 				healing_amount *= -2

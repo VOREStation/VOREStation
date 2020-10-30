@@ -10,11 +10,11 @@
 
 		if(prob(fail_odds))
 			visible_message(span("warning", "\The [L] attempts to wrestle \the [name] off!"))
-			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+			playsound(src, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 
 		else
 			visible_message(span("warning", "\The [L] manages to wrestle \the [name] off!"))
-			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+			playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 
 			if(prob(40))
 				adjust_discipline(1) // Do this here so that it will be justified discipline.

@@ -10,7 +10,7 @@ Slime specific life events go here.
 			if(is_child)
 				if(nutrition >= 275)
 					growthcounter++
-					nutrition -= hunger_factor
+					adjust_nutrition(-hunger_factor)
 				if(nutrition <= 75)
 					growthcounter--
 				if(growthcounter >= growthpoint)

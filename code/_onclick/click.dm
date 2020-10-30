@@ -38,18 +38,21 @@
 	* mob/RangedAttack(atom,params) - used only ranged, only used for tk and laser eyes but could be changed
 */
 /mob/proc/ClickOn(var/atom/A, var/params)
-	if(world.time <= next_click) // Hard check, before anything else, to avoid crashing
+	if(!checkClickCooldown()) // Hard check, before anything else, to avoid crashing
 		return
 
-	next_click = world.time + 1
+	setClickCooldown(1)
 
-	if(client.buildmode)
+	if(client && client.buildmode)
 		build_click(src, client.buildmode, params, A)
 		return
 
 	var/list/modifiers = params2list(params)
 	if(modifiers["shift"] && modifiers["ctrl"])
 		CtrlShiftClickOn(A)
+		return 1
+	if(modifiers["shift"] && modifiers["middle"])
+		ShiftMiddleClickOn(A)
 		return 1
 	if(modifiers["middle"])
 		MiddleClickOn(A)
@@ -68,9 +71,6 @@
 		return
 
 	face_atom(A) // change direction to face what you clicked on
-
-	if(!canClick()) // in the year 2000...
-		return
 
 	if(istype(loc, /obj/mecha))
 		if(!locate(/turf) in list(A, A.loc)) // Prevents inventory from being drilled
@@ -103,7 +103,7 @@
 	var/sdepth = A.storage_depth(src)
 	if((!isturf(A) && A == loc) || (sdepth != -1 && sdepth <= 1))
 		if(W)
-			var/resolved = W.resolve_attackby(A, src)
+			var/resolved = W.resolve_attackby(A, src, click_parameters = params)
 			if(!resolved && A && W)
 				W.afterattack(A, src, 1, params) // 1 indicates adjacency
 		else
@@ -114,12 +114,11 @@
 		trigger_aiming(TARGET_CAN_CLICK)
 		return 1
 
-	// VOREStation Addition Start: inbelly item interaction
+	// VOREStation Addition Start: inbelly interaction
 	if(isbelly(loc) && (loc == A.loc))
 		if(W)
-			var/resolved = W.resolve_attackby(A,src)
-			if(!resolved && A && W)
-				W.afterattack(A, src, 1, params) // 1: clicking something Adjacent
+			to_chat(src, "The firm confines prevent that kind of dexterity!")	//Only hand-based interactions in bellies
+			return
 		else
 			if(ismob(A)) // No instant mob attacking
 				setClickCooldown(get_attack_speed())
@@ -134,16 +133,10 @@
 	// A is a turf or is on a turf, or in something on a turf (pen in a box); but not something in something on a turf (pen in a box in a backpack)
 	sdepth = A.storage_depth_turf()
 	if(isturf(A) || isturf(A.loc) || (sdepth != -1 && sdepth <= 1))
-		//VOREStation Edit begin: SHADEKIN
-		var/mob/SK = src
-		if(istype(SK))
-			if(SK.shadekin_phasing_check())
-				return
-		//VOREStation Edit end: SHADEKIN
 		if(A.Adjacent(src) || (W && W.attack_can_reach(src, A, W.reach)) ) // see adjacent.dm
 			if(W)
 				// Return 1 in attackby() to prevent afterattack() effects (when safely moving items for example)
-				var/resolved = W.resolve_attackby(A,src)
+				var/resolved = W.resolve_attackby(A,src, click_parameters = params)
 				if(!resolved && A && W)
 					W.afterattack(A, src, 1, params) // 1: clicking something Adjacent
 			else
@@ -162,12 +155,12 @@
 	return 1
 
 /mob/proc/setClickCooldown(var/timeout)
-	next_move = max(world.time + timeout, next_move)
+	next_click = max(world.time + timeout, next_click)
 
-/mob/proc/canClick()
-	if(config.no_click_cooldown || next_move <= world.time)
-		return 1
-	return 0
+/mob/proc/checkClickCooldown()
+	if(next_click > world.time && !config.no_click_cooldown)
+		return FALSE
+	return TRUE
 
 // Default behavior: ignore double clicks, the second click that makes the doubleclick call already calls for a normal click
 /mob/proc/DblClickOn(var/atom/A, var/params)
@@ -187,6 +180,9 @@
 	return
 
 /mob/living/UnarmedAttack(var/atom/A, var/proximity_flag)
+
+	if(is_incorporeal())
+		return 0
 
 	if(!ticker)
 		to_chat(src, "You cannot attack people before the game has started.")
@@ -237,6 +233,15 @@
 */
 
 /*
+	Shift middle click
+	Used for pointing.
+*/
+
+/mob/proc/ShiftMiddleClickOn(atom/A)
+	pointed(A)
+	return
+
+/*
 	Shift click
 	For most mobs, examine.
 	This is overridden in ai.dm
@@ -263,6 +268,9 @@
 	if(Adjacent(user))
 		user.start_pulling(src)
 
+/turf/CtrlClick(var/mob/user)
+	user.stop_pulling()
+
 /*
 	Alt click
 	Unused except for AI
@@ -274,12 +282,15 @@
 /atom/proc/AltClick(var/mob/user)
 	var/turf/T = get_turf(src)
 	if(T && user.TurfAdjacent(T))
-		if(user.listed_turf == T)
-			user.listed_turf = null
-		else
-			user.listed_turf = T
-			user.client.statpanel = "Turf"
+		user.ToggleTurfTab(T)
 	return 1
+	
+/mob/proc/ToggleTurfTab(var/turf/T)
+	if(listed_turf == T)
+		listed_turf = null
+	else
+		listed_turf = T
+		client.statpanel = "Turf"
 
 /mob/proc/TurfAdjacent(var/turf/T)
 	return T.AdjacentQuick(src)
@@ -311,7 +322,7 @@
 	var/obj/item/projectile/beam/LE = new (T)
 	LE.icon = 'icons/effects/genetics.dmi'
 	LE.icon_state = "eyelasers"
-	playsound(usr.loc, 'sound/weapons/taser2.ogg', 75, 1)
+	playsound(src, 'sound/weapons/taser2.ogg', 75, 1)
 	LE.firer = src
 	LE.preparePixelProjectile(A, src, params)
 	LE.fire()

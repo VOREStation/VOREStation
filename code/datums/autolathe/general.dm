@@ -6,37 +6,48 @@
 	name = "water-cooler bottle"
 	path =/obj/item/weapon/reagent_containers/glass/cooler_bottle
 
-/datum/category_item/autolathe/general/drinkingglass_square
+/datum/category_item/autolathe/general/drinkingglass
+	is_stack = TRUE
+
+/datum/category_item/autolathe/general/drinkingglass/square
 	name = "half-pint glass"
 	path =/obj/item/weapon/reagent_containers/food/drinks/glass2/square
 
-/datum/category_item/autolathe/general/drinkingglass_rocks
+/datum/category_item/autolathe/general/drinkingglass/rocks
 	name = "rocks glass"
 	path =/obj/item/weapon/reagent_containers/food/drinks/glass2/rocks
 
-/datum/category_item/autolathe/general/drinkingglass_shake
+/datum/category_item/autolathe/general/drinkingglass/shake
 	name = "milkshake glass"
 	path =/obj/item/weapon/reagent_containers/food/drinks/glass2/shake
 
-/datum/category_item/autolathe/general/drinkingglass_cocktail
+/datum/category_item/autolathe/general/drinkingglass/cocktail
 	name = "cocktail glass"
 	path =/obj/item/weapon/reagent_containers/food/drinks/glass2/cocktail
 
-/datum/category_item/autolathe/general/drinkingglass_shot
+/datum/category_item/autolathe/general/drinkingglass/shot
 	name = "shot glass"
 	path =/obj/item/weapon/reagent_containers/food/drinks/glass2/shot
 
-/datum/category_item/autolathe/general/drinkingglass_pint
+/datum/category_item/autolathe/general/drinkingglass/pint
 	name = "pint glass"
 	path =/obj/item/weapon/reagent_containers/food/drinks/glass2/pint
 
-/datum/category_item/autolathe/general/drinkingglass_mug
+/datum/category_item/autolathe/general/drinkingglass/mug
 	name = "glass mug"
 	path =/obj/item/weapon/reagent_containers/food/drinks/glass2/mug
 
-/datum/category_item/autolathe/general/drinkingglass_wine
+/datum/category_item/autolathe/general/drinkingglass/wine
 	name = "wine glass"
 	path =/obj/item/weapon/reagent_containers/food/drinks/glass2/wine
+
+/datum/category_item/autolathe/general/drinkingglass/metaglass
+	name = "metamorphic glass"
+	path =/obj/item/weapon/reagent_containers/food/drinks/metaglass
+
+/datum/category_item/autolathe/general/drinkingglass/metaglass/metapint
+	name = "metamorphic pint glass"
+	path =/obj/item/weapon/reagent_containers/food/drinks/metaglass/metapint
 
 /datum/category_item/autolathe/general/flashlight
 	name = "flashlight"
@@ -52,6 +63,10 @@
 
 /datum/category_item/autolathe/general/jar
 	name = "jar"
+	path =/obj/item/glass_jar
+
+/datum/category_item/autolathe/general/fishtank
+	name = "fish tank"
 	path =/obj/item/glass_jar
 
 /datum/category_item/autolathe/general/radio_headset
@@ -94,6 +109,20 @@
 	is_stack = TRUE
 	no_scale = TRUE //prevents material duplication exploits
 
+/datum/category_item/autolathe/general/plasteel
+	name = "plasteel sheets"
+	path =/obj/item/stack/material/plasteel
+	is_stack = TRUE
+	no_scale = TRUE //prevents material duplication exploits
+	resources = list(MAT_PLASTEEL = 2000)
+
+/datum/category_item/autolathe/general/plastic
+	name = "plastic sheets"
+	path =/obj/item/stack/material/plastic
+	is_stack = TRUE
+	no_scale = TRUE //prevents material duplication exploits
+	resources = list(MAT_PLASTIC = 2000)
+
 //TFF 24/12/19 - Let people print more spray bottles if needed.
 /datum/category_item/autolathe/general/spraybottle
 	name = "spray bottle"
@@ -128,6 +157,12 @@
 /datum/category_item/autolathe/general/maglight
 	name = "maglight"
 	path =/obj/item/device/flashlight/maglight
+
+/datum/category_item/autolathe/general/idcard
+	name = "ID Card"
+	path = /obj/item/weapon/card/id
+	resources = list(DEFAULT_WALL_MATERIAL = 100, MAT_GLASS = 100, MAT_PLASTIC = 300)
+	man_rating = 2
 
 /datum/category_item/autolathe/general/handcuffs
 	name = "handcuffs"

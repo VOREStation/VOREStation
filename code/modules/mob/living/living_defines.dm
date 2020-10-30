@@ -18,6 +18,9 @@
 	var/brainloss = 0	//'Retardation' damage caused by someone hitting you in the head with a bible or being infected with brainrot.
 	var/halloss = 0		//Hallucination damage. 'Fake' damage obtained through hallucinating or the holodeck. Sleeping should cause it to wear off.
 
+	var/nutrition = 400
+	var/max_nutrition = MAX_NUTRITION
+
 	var/hallucination = 0 //Directly affects how long a mob will hallucinate for
 	var/list/atom/hallucinations = list() //A list of hallucinated people that try to attack the mob. See /obj/effect/fake_attacker in hallucinations.dm
 
@@ -69,3 +72,6 @@
 	var/looking_elsewhere = FALSE //If the mob's view has been relocated to somewhere else, like via a camera or with binocs
 
 	var/image/selected_image = null // Used for buildmode AI control stuff.
+
+	var/inventory_panel_type = /datum/inventory_panel
+	var/datum/inventory_panel/inventory_panel

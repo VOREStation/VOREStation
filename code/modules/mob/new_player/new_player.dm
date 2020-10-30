@@ -19,6 +19,7 @@
 
 /mob/new_player/New()
 	mob_list += src
+	initialized = TRUE // Explicitly don't use Initialize().  New players join super early and use New()
 
 /mob/new_player/verb/new_player_panel()
 	set src = usr
@@ -66,9 +67,11 @@
 	else
 		output += "<p><a href='byond://?src=\ref[src];shownews=1'>Show News</A></p>"
 
+	if(SSsqlite.can_submit_feedback(client))
+		output += "<p>[href(src, list("give_feedback" = 1), "Give Feedback")]</p>"
 	output += "</div>"
 
-	panel = new(src, "Welcome","Welcome", 210, 280, src)
+	panel = new(src, "Welcome","Welcome", 210, 300, src)
 	panel.set_window_options("can_close=0")
 	panel.set_content(output)
 	panel.open()
@@ -77,20 +80,24 @@
 /mob/new_player/Stat()
 	..()
 
-	if(statpanel("Lobby") && ticker)
-		if(ticker.hide_mode)
-			stat("Game Mode:", "Secret")
-		else
-			if(ticker.hide_mode == 0)
-				stat("Game Mode:", "[config.mode_names[master_mode]]") // Old setting for showing the game mode
+	if(statpanel("Lobby") && SSticker)
+		stat("Game Mode:", SSticker.hide_mode ? "Secret" : "[config.mode_names[master_mode]]")
 
-		if(ticker.current_state == GAME_STATE_PREGAME)
-			stat("Time To Start:", "[ticker.pregame_timeleft][round_progressing ? "" : " (DELAYED)"]")
+		if(SSvote.mode)
+			stat("Vote: [capitalize(SSvote.mode)]", "Time Left: [SSvote.time_remaining] s")
+
+		if(SSticker.current_state == GAME_STATE_INIT)
+			stat("Time To Start:", "Server Initializing")
+
+		else if(SSticker.current_state == GAME_STATE_PREGAME)
+			stat("Time To Start:", "[round(SSticker.pregame_timeleft,1)][round_progressing ? "" : " (DELAYED)"]")
 			stat("Players: [totalPlayers]", "Players Ready: [totalPlayersReady]")
 			totalPlayers = 0
 			totalPlayersReady = 0
+			var/datum/job/refJob = null
 			for(var/mob/new_player/player in player_list)
-				stat("[player.key]", (player.ready)?("(Playing)"):(null))
+				refJob = player.client.prefs.get_highest_job()
+				stat("[player.key]", (player.ready)?("(Playing as: [(refJob)?(refJob.title):("Unknown")])"):(null))
 				totalPlayers++
 				if(player.ready)totalPlayersReady++
 
@@ -113,8 +120,9 @@
 		new_player_panel_proc()
 
 	if(href_list["observe"])
+		var/alert_time = ticker?.current_state <= GAME_STATE_SETTING_UP ? 1 : round(config.respawn_time/10/60)
 
-		if(alert(src,"Are you sure you wish to observe? You will have to wait 60 seconds before being able to respawn!","Player Setup","Yes","No") == "Yes") //Vorestation edit - Rykka corrected to 60 seconds to match current spawn time
+		if(alert(src,"Are you sure you wish to observe? You will have to wait up to [alert_time] minute\s before being able to spawn into the game!","Player Setup","Yes","No") == "Yes")
 			if(!client)	return 1
 
 			//Make a new mannequin quickly, and allow the observer to take the appearance
@@ -136,7 +144,6 @@
 				observer.forceMove(O.loc)
 			else
 				to_chat(src, "<span class='danger'>Could not locate an observer spawn point. Use the Teleport verb to jump to the station map.</span>")
-			observer.timeofdeath = world.time // Set the time of death so that the respawn timer works correctly.
 
 			announce_ghost_joinleave(src)
 
@@ -147,6 +154,7 @@
 			if(!client.holder && !config.antag_hud_allowed)           // For new ghosts we remove the verb from even showing up if it's not allowed.
 				observer.verbs -= /mob/observer/dead/verb/toggle_antagHUD        // Poor guys, don't know what they are missing!
 			observer.key = key
+			observer.set_respawn_timer(time_till_respawn()) // Will keep their existing time if any, or return 0 and pass 0 into set_respawn_timer which will use the defaults
 			qdel(src)
 
 			return 1
@@ -155,6 +163,13 @@
 
 		if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
 			to_chat(usr, "<font color='red'>The round is either not ready, or has already finished...</font>")
+			return
+		
+		var/time_till_respawn = time_till_respawn()
+		if(time_till_respawn == -1) // Special case, never allowed to respawn
+			to_chat(usr, "<span class='warning'>Respawning is not allowed!</span>")
+		else if(time_till_respawn) // Nonzero time to respawn
+			to_chat(usr, "<span class='warning'>You can't respawn yet! You need to wait another [round(time_till_respawn/10/60, 0.1)] minutes.</span>")
 			return
 /*
 		if(client.prefs.species != "Human" && !check_rights(R_ADMIN, 0)) //VORESTATION EDITS: THE COMMENTED OUT AREAS FROM LINE 154 TO 178
@@ -306,6 +321,15 @@
 		show_hidden_jobs = !show_hidden_jobs
 		LateChoices()
 
+	if(href_list["give_feedback"])
+		if(!SSsqlite.can_submit_feedback(my_client))
+			return
+
+		if(client.feedback_form)
+			client.feedback_form.display() // In case they closed the form early.
+		else
+			client.feedback_form = new(client)
+
 /mob/new_player/proc/handle_server_news()
 	if(!client)
 		return
@@ -325,14 +349,35 @@
 		popup.set_content(dat)
 		popup.open()
 
+/mob/new_player/proc/time_till_respawn()
+	if(!ckey)
+		return -1 // What?
+		
+	var/timer = GLOB.respawn_timers[ckey]
+	// No timer at all
+	if(!timer)
+		return 0
+	// Special case, infinite timer
+	if(timer == -1)
+		return -1
+	// Timer expired
+	if(timer <= world.time)
+		GLOB.respawn_timers -= ckey
+		return 0
+	// Timer still going
+	return timer - world.time
+
 /mob/new_player/proc/IsJobAvailable(rank)
 	var/datum/job/job = job_master.GetJob(rank)
 	if(!job)	return 0
 	if(!job.is_position_available()) return 0
 	if(jobban_isbanned(src,rank))	return 0
 	if(!job.player_old_enough(src.client))	return 0
-	if(!is_job_whitelisted(src,rank))	return 0 //VOREStation Code
-	if(!job.player_has_enough_pto(src.client)) return 0 //VOREStation Code
+	//VOREStation Add
+	if(!job.player_has_enough_playtime(src.client))	return 0
+	if(!is_job_whitelisted(src,rank))	return 0
+	if(!job.player_has_enough_pto(src.client)) return 0
+	//VOREStation Add End
 	return 1
 
 
@@ -348,14 +393,19 @@
 	if(!IsJobAvailable(rank))
 		alert(src,"[rank] is not available. Please try another.")
 		return 0
-	if(!attempt_vr(src,"spawn_checks_vr",list())) return 0 // VOREStation Insert
+	if(!spawn_checks_vr(rank)) return 0 // VOREStation Insert
 	if(!client)
 		return 0
 
 	//Find our spawning point.
 	var/list/join_props = job_master.LateSpawn(client, rank)
+
+	if(!join_props)
+		return
+
 	var/turf/T = join_props["turf"]
 	var/join_message = join_props["msg"]
+	var/announce_channel = join_props["channel"] || "Common"
 
 	if(!T || !join_message)
 		return 0
@@ -368,11 +418,14 @@
 	var/mob/living/character = create_character(T)	//creates the human and transfers vars and mind
 	character = job_master.EquipRank(character, rank, 1)					//equips the human
 	UpdateFactionList(character)
+	if(character && character.client)
+		var/obj/screen/splash/Spl = new(character.client, TRUE)
+		Spl.Fade(TRUE)
+
+	var/datum/job/J = SSjob.get_job(rank)
 
 	// AIs don't need a spawnpoint, they must spawn at an empty core
-	if(character.mind.assigned_role == "AI")
-
-		character = character.AIize(move=0) // AIize the character, but don't move them yet
+	if(J.mob_type & JOB_SILICON_AI)
 
 		// IsJobAvailable for AI checks that there is an empty core available in this list
 		var/obj/structure/AIcore/deactivated/C = empty_playable_ai_cores[1]
@@ -380,11 +433,14 @@
 
 		character.loc = C.loc
 
+		// AIize the character, but don't move them yet
+		character = character.AIize(move = FALSE) // Dupe of code in /datum/controller/subsystem/ticker/proc/create_characters() for non-latespawn, unify?
+
 		AnnounceCyborg(character, rank, "has been transferred to the empty core in \the [character.loc.loc]")
 		ticker.mode.latespawn(character)
 
-		qdel(C)
-		qdel(src)
+		qdel(C) //Deletes empty core (really?)
+		qdel(src) //Deletes new_player
 		return
 
 	// Equip our custom items only AFTER deploying to spawn points eh?
@@ -399,24 +455,22 @@
 
 	ticker.mode.latespawn(character)
 
-	if(character.mind.assigned_role != "Cyborg")
+	if(J.mob_type & JOB_SILICON)
+		AnnounceCyborg(character, rank, join_message, announce_channel, character.z)
+	else
+		AnnounceArrival(character, rank, join_message, announce_channel, character.z)
 		data_core.manifest_inject(character)
 		ticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
 
-		//Grab some data from the character prefs for use in random news procs.
+	qdel(src) // Delete new_player mob
 
-		AnnounceArrival(character, rank, join_message)
-	else
-		AnnounceCyborg(character, rank, join_message)
-
-	qdel(src)
-
-/mob/new_player/proc/AnnounceCyborg(var/mob/living/character, var/rank, var/join_message)
+/mob/new_player/proc/AnnounceCyborg(var/mob/living/character, var/rank, var/join_message, var/channel, var/zlevel)
 	if (ticker.current_state == GAME_STATE_PLAYING)
+		var/list/zlevels = zlevel ? using_map.get_map_levels(zlevel, TRUE, om_range = DEFAULT_OVERMAP_RANGE) : null
 		if(character.mind.role_alt_title)
 			rank = character.mind.role_alt_title
 		// can't use their name here, since cyborg namepicking is done post-spawn, so we'll just say "A new Cyborg has arrived"/"A new Android has arrived"/etc.
-		global_announcer.autosay("A new[rank ? " [rank]" : " visitor" ] [join_message ? join_message : "has arrived on the station"].", "Arrivals Announcement Computer")
+		global_announcer.autosay("A new[rank ? " [rank]" : " visitor" ] [join_message ? join_message : "has arrived on the station"].", "Arrivals Announcement Computer", channel, zlevels)
 
 /mob/new_player/proc/LateChoices()
 	var/name = client.prefs.be_random_name ? "friend" : client.prefs.real_name
@@ -436,6 +490,8 @@
 
 	dat += "Choose from the following open/valid positions:<br>"
 	dat += "<a href='byond://?src=\ref[src];hidden_jobs=1'>[show_hidden_jobs ? "Hide":"Show"] Hidden Jobs.</a><br>"
+
+	var/deferred = ""
 	for(var/datum/job/job in job_master.occupations)
 		if(job && IsJobAvailable(job.title))
 			// Checks for jobs with minimum age requirements
@@ -449,16 +505,23 @@
 							continue
 			var/active = 0
 			// Only players with the job assigned and AFK for less than 10 minutes count as active
-			for(var/mob/M in player_list) if(M.mind && M.client && M.mind.assigned_role == job.title && M.client.inactivity <= 10 * 60 * 10)
+			for(var/mob/M in player_list) if(M.mind && M.client && M.mind.assigned_role == job.title && M.client.inactivity <= 10 MINUTES)
 				active++
-			dat += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]) (Active: [active])</a><br>"
+
+			var/string = "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]) (Active: [active])</a><br>"
+
+			if(job.offmap_spawn) //At the bottom
+				deferred += string
+			else
+				dat += string
+
+	dat += deferred
 
 	dat += "</center>"
 	src << browse(dat, "window=latechoices;size=300x640;can_close=1")
 
 
 /mob/new_player/proc/create_character(var/turf/T)
-	if (!attempt_vr(src,"spawn_checks_vr",list())) return 0 // VOREStation Insert
 	spawning = 1
 	close_spawn_windows()
 
@@ -477,8 +540,6 @@
 
 	if(!new_character)
 		new_character = new(T)
-
-	new_character.lastarea = get_area(T)
 
 	if(ticker.random_players)
 		new_character.gender = pick(MALE, FEMALE)
@@ -524,7 +585,6 @@
 	// Do the initial caching of the player's body icons.
 	new_character.force_update_limbs()
 	new_character.update_icons_body()
-	new_character.update_eyes()
 
 	new_character.key = key		//Manually transfer the key to log them in
 
@@ -545,7 +605,7 @@
 /mob/new_player/proc/close_spawn_windows()
 
 	src << browse(null, "window=latechoices") //closes late choices window
-	//src << browse(null, "window=playersetup") //closes the player setup window
+	src << browse(null, "window=preferences_window") //closes the player setup window
 	panel.close()
 
 /mob/new_player/proc/has_admin_rights()
@@ -572,7 +632,13 @@
 	return ready && ..()
 
 // Prevents lobby players from seeing say, even with ghostears
-/mob/new_player/hear_say(var/message, var/verb = "says", var/datum/language/language = null, var/alt_name = "",var/italics = 0, var/mob/speaker = null)
+/mob/new_player/hear_say(var/list/message_pieces, var/verb = "says", var/italics = 0, var/mob/speaker = null)
+	return
+
+/mob/new_player/hear_holopad_talk(list/message_pieces, var/verb = "says", var/mob/speaker = null)
+	return
+
+/mob/new_player/hear_holopad_talk(list/message_pieces, var/verb = "says", var/mob/speaker = null)
 	return
 
 // Prevents lobby players from seeing emotes, even with ghosteyes

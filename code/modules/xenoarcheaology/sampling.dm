@@ -3,14 +3,14 @@
 	desc = "It looks extremely delicate."
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "sliver1"
+	randpixel = 8
 	w_class = ITEMSIZE_TINY
 	sharp = 1
 	var/datum/geosample/geological_data
 
 /obj/item/weapon/rocksliver/New()
 	icon_state = "sliver[rand(1, 3)]"
-	pixel_x = rand(-8, 8)
-	pixel_y = rand(-8 ,0)
+	randpixel_xy()
 
 /datum/geosample
 	var/age = 0
@@ -93,8 +93,9 @@
 	var/obj/item/weapon/evidencebag/filled_bag
 
 /obj/item/device/core_sampler/examine(var/mob/user)
-	if(..(user, 2))
-		to_chat(user, "<span class='notice'>Used to extract geological core samples - this one is [sampled_turf ? "full" : "empty"], and has [num_stored_bags] bag[num_stored_bags != 1 ? "s" : ""] remaining.</span>")
+	. = ..()
+	if(get_dist(user, src) <= 2)
+		. += "<span class='notice'>Used to extract geological core samples - this one is [sampled_turf ? "full" : "empty"], and has [num_stored_bags] bag[num_stored_bags != 1 ? "s" : ""] remaining.</span>"
 
 /obj/item/device/core_sampler/attackby(var/obj/item/I, var/mob/living/user)
 	if(istype(I, /obj/item/weapon/evidencebag))

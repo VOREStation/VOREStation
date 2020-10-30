@@ -79,3 +79,21 @@
 		/obj/item/weapon/reagent_containers/syringe,
 		/obj/item/weapon/reagent_containers/syringe
 	)
+
+/obj/item/weapon/storage/quickdraw/syringe_case/clotting
+	desc = "A small case for safely carrying sharps around. This one is deluxe!"
+	max_w_class = ITEMSIZE_SMALL
+	starts_with = list(
+		/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/clotting,
+		/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/clotting,
+		/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/clotting
+	)
+
+/obj/item/weapon/storage/quickdraw/syringe_case/bonemed
+	desc = "A small case for safely carrying sharps around. This one is deluxe!"
+	max_w_class = ITEMSIZE_SMALL
+	starts_with = list(
+		/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/bonemed,
+		/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/bonemed,
+		/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/bonemed
+	)

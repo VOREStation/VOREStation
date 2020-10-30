@@ -23,7 +23,7 @@
 	var/digspeed = 40 //moving the delay to an item var so R&D can make improved picks. --NEO
 	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
 	attack_verb = list("hit", "pierced", "sliced", "attacked")
-	var/drill_sound = 'sound/weapons/Genhit.ogg'
+	var/drill_sound = "pickaxe"
 	var/drill_verb = "drilling"
 	sharp = 1
 
@@ -138,11 +138,8 @@
 /obj/structure/closet/crate/miningcar
 	desc = "A mining car. This one doesn't work on rails, but has to be dragged."
 	name = "Mining car (not for rails)"
-	icon = 'icons/obj/storage.dmi'
-	icon_state = "miningcar"
+	icon = 'icons/obj/closets/miningcar.dmi'
 	density = 1
-	icon_opened = "miningcaropen"
-	icon_closed = "miningcar"
 
 // Flags.
 

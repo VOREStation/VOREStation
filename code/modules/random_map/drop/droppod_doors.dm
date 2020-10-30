@@ -10,11 +10,10 @@
 	var/deploying
 	var/deployed
 
-/obj/structure/droppod_door/New(var/newloc, var/autoopen)
-	..(newloc)
+/obj/structure/droppod_door/Initialize(var/mapload, var/autoopen)
+	. = ..()
 	if(autoopen)
-		spawn(100)
-			deploy()
+		addtimer(CALLBACK(src, .proc/deploy), 10 SECONDS)
 
 /obj/structure/droppod_door/attack_ai(var/mob/user)
 	if(!user.Adjacent(src))
@@ -36,7 +35,7 @@
 
 	deployed = 1
 	visible_message("<span class='danger'>The explosive bolts on \the [src] detonate, throwing it open!</span>")
-	playsound(src.loc, 'sound/effects/bang.ogg', 50, 1, 5)
+	playsound(src, 'sound/effects/bang.ogg', 50, 1, 5)
 
 	// This is shit but it will do for the sake of testing.
 	for(var/obj/structure/droppod_door/D in orange(1,src))

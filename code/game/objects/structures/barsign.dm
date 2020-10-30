@@ -6,7 +6,7 @@
 	var/cult = 0
 
 /obj/structure/sign/double/barsign/proc/get_valid_states(initial=1)
-	. = icon_states(icon)
+	. = cached_icon_states(icon)
 	. -= "on"
 	. -= "narsiebistro"
 	. -= "empty"
@@ -14,16 +14,16 @@
 		. -= "Off"
 
 /obj/structure/sign/double/barsign/examine(mob/user)
-	..()
+	. = ..()
 	switch(icon_state)
 		if("Off")
-			to_chat(user, "It appears to be switched off.")
+			. += "It appears to be switched off."
 		if("narsiebistro")
-			to_chat(user, "It shows a picture of a large black and red being. Spooky!")
+			. += "It shows a picture of a large black and red being. Spooky!"
 		if("on", "empty")
-			to_chat(user, "The lights are on, but there's no picture.")
+			. += "The lights are on, but there's no picture."
 		else
-			to_chat(user, "It says '[icon_state]'")
+			. += "It says '[icon_state]'"
 
 /obj/structure/sign/double/barsign/New()
 	..()

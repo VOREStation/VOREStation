@@ -13,11 +13,11 @@
 	icon = 'icons/obj/status_display.dmi'
 	icon_state = "frame"
 	plane = TURF_PLANE
-	layer = ABOVE_TURF_LAYER
+	layer = ABOVE_WINDOW_LAYER
 	name = "status display"
 	anchored = 1
 	density = 0
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
 	circuit =  /obj/item/weapon/circuitboard/status_display
 	var/mode = 1	// 0 = Blank
@@ -148,9 +148,9 @@
 	return 0
 
 /obj/machinery/status_display/examine(mob/user)
-	. = ..(user)
+	. = ..()
 	if(mode != STATUS_DISPLAY_BLANK && mode != STATUS_DISPLAY_ALERT)
-		to_chat(user, "The display says:<br>\t[sanitize(message1)]<br>\t[sanitize(message2)]")
+		. += "The display says:<br>\t[sanitize(message1)]<br>\t[sanitize(message2)]"
 
 /obj/machinery/status_display/proc/set_message(m1, m2)
 	if(m1)
@@ -181,6 +181,18 @@
 		if("delta")	set_light(l_range = 4, l_power = 0.9, l_color = "#FF6633")
 	set_picture("status_display_[seclevel]")
 
+// Called when the alert level is changed.
+/obj/machinery/status_display/proc/on_alert_changed(new_level)
+	// On most alerts, this will change to a flashing alert picture in a specific color.
+	// Doing that for green alert automatically doesn't really make sense, but it is still available on the comm consoles/PDAs.
+	if(seclevel2num(new_level) == SEC_LEVEL_GREEN)
+		mode = STATUS_DISPLAY_TIME
+		set_light(0) // Remove any glow we had from the alert previously.
+		update()
+		return
+	mode = STATUS_DISPLAY_ALERT
+	display_alert(new_level)
+
 /obj/machinery/status_display/proc/set_picture(state)
 	remove_display()
 	if(!picture || picture_state != state)
@@ -210,7 +222,7 @@
 	return "[add_zero(num2text((timeleft / 60) % 60),2)]:[add_zero(num2text(timeleft % 60), 2)]"
 
 /obj/machinery/status_display/proc/get_supply_shuttle_timer()
-	var/datum/shuttle/ferry/supply/shuttle = supply_controller.shuttle
+	var/datum/shuttle/autodock/ferry/supply/shuttle = SSsupply.shuttle
 	if(!shuttle)
 		return "Error"
 
@@ -231,13 +243,16 @@
 	switch(signal.data["command"])
 		if("blank")
 			mode = STATUS_DISPLAY_BLANK
+			set_light(0)
 
 		if("shuttle")
 			mode = STATUS_DISPLAY_TRANSFER_SHUTTLE_TIME
+			set_light(0)
 
 		if("message")
 			mode = STATUS_DISPLAY_MESSAGE
 			set_message(signal.data["msg1"], signal.data["msg2"])
+			set_light(0)
 
 		if("alert")
 			mode = STATUS_DISPLAY_ALERT
@@ -245,6 +260,7 @@
 
 		if("time")
 			mode = STATUS_DISPLAY_TIME
+			set_light(0)
 	update()
 
 #undef CHARS_PER_LINE

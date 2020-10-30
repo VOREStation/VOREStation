@@ -198,7 +198,7 @@
 	home worlds and speak a variety of languages, especially Siik and Akhani."
 	catalogue_data = list(/datum/category_item/catalogue/fauna/tajaran)
 
-	body_temperature = 320.15	//Even more cold resistant, even more flammable
+	body_temperature = 280.15	//Even more cold resistant, even more flammable
 
 	cold_level_1 = 200 //Default 260
 	cold_level_2 = 140 //Default 200
@@ -235,7 +235,7 @@
 		"Your overheated skin itches."
 		)
 
-	cold_discomfort_level = 275
+	cold_discomfort_level = 215
 
 	has_organ = list(    //No appendix.
 		O_HEART =    /obj/item/organ/internal/heart,
@@ -292,7 +292,7 @@
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR
 
 	flesh_color = "#8CD7A3"
-	blood_color = "#1D2CBF"
+	blood_color = "#0081CD"
 	base_color = "#006666"
 
 	cold_level_1 = 280 //Default 260 - Lower is better
@@ -482,6 +482,7 @@
 	has_organ = list(
 		O_NUTRIENT = /obj/item/organ/internal/diona/nutrients,
 		O_STRATA =   /obj/item/organ/internal/diona/strata,
+		O_BRAIN = /obj/item/organ/internal/brain/cephalon,
 		O_RESPONSE = /obj/item/organ/internal/diona/node,
 		O_GBLADDER = /obj/item/organ/internal/diona/bladder,
 		O_POLYP =    /obj/item/organ/internal/diona/polyp,
@@ -520,7 +521,7 @@
 
 	body_temperature = T0C + 15		//make the plant people have a bit lower body temperature, why not
 
-	flags = NO_SCAN | IS_PLANT | NO_PAIN | NO_SLIP | NO_MINOR_CUT
+	flags = NO_SCAN | IS_PLANT | NO_PAIN | NO_SLIP | NO_MINOR_CUT | NO_DEFIB
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED
 
 	blood_color = "#004400"
@@ -531,10 +532,9 @@
 	genders = list(PLURAL)
 
 /datum/species/diona/can_understand(var/mob/other)
-	var/mob/living/carbon/alien/diona/D = other
-	if(istype(D))
-		return 1
-	return 0
+	if(istype(other, /mob/living/carbon/alien/diona))
+		return TRUE
+	return FALSE
 
 /datum/species/diona/equip_survival_gear(var/mob/living/carbon/human/H)
 	if(H.backbag == 1)
@@ -555,6 +555,16 @@
 
 	if(H.isSynthetic())
 		H.visible_message("<span class='danger'>\The [H] collapses into parts, revealing a solitary diona nymph at the core.</span>")
+
+		H.species = GLOB.all_species[SPECIES_HUMAN] // This is hard-set to default the body to a normal FBP, without changing anything.
+
+		for(var/obj/item/organ/internal/diona/Org in H.internal_organs) // Remove Nymph organs.
+			qdel(Org)
+
+		// Purge the diona verbs.
+		H.verbs -= /mob/living/carbon/human/proc/diona_split_nymph
+		H.verbs -= /mob/living/carbon/human/proc/regenerate
+
 		return
 
 	for(var/mob/living/carbon/alien/diona/D in H.contents)
@@ -576,11 +586,9 @@
 		if(isturf(H.loc)) //else, there's considered to be no light
 			var/turf/T = H.loc
 			light_amount = T.get_lumcount() * 10
-		H.nutrition += light_amount
+		H.adjust_nutrition(light_amount)
 		H.shock_stage -= light_amount
 
-		if(H.nutrition > 450)
-			H.nutrition = 450
 		if(light_amount >= 3) //if there's enough light, heal
 			H.adjustBruteLoss(-(round(light_amount/2)))
 			H.adjustFireLoss(-(round(light_amount/2)))

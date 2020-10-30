@@ -1,6 +1,6 @@
 /obj/item/clothing/gloves/captain
 	desc = "Regal blue gloves, with a nice gold trim. Swanky."
-	name = "colony director's gloves"
+	name = "site manager's gloves"
 	icon_state = "captain"
 	item_state_slots = list(slot_r_hand_str = "blue", slot_l_hand_str = "blue")
 
@@ -56,6 +56,8 @@
 	permeability_coefficient = 0.01
 	germ_level = 0
 	fingerprint_chance = 25
+	drop_sound = 'sound/items/drop/rubber.ogg'
+	pickup_sound = 'sound/items/pickup/rubber.ogg'
 //	var/balloonPath = /obj/item/latexballon
 
 //TODO: Make inflating gloves a thing
@@ -81,6 +83,8 @@
 	item_state_slots = list(slot_r_hand_str = "lightbrown", slot_l_hand_str = "lightbrown")
 	permeability_coefficient = 0.05
 	siemens_coefficient = 0.75 //thick work gloves
+	drop_sound = 'sound/items/drop/leather.ogg'
+	pickup_sound = 'sound/items/pickup/leather.ogg'
 
 /obj/item/clothing/gloves/duty
 	desc = "These brown duty gloves are made from a durable synthetic."
@@ -109,6 +113,8 @@
 	siemens_coefficient = 0
 	permeability_coefficient = 0.05
 	species_restricted = list("Vox")
+	drop_sound = 'sound/items/drop/metalboots.ogg'
+	pickup_sound = 'sound/items/pickup/toolbox.ogg'
 
 	cold_protection = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
@@ -127,6 +133,8 @@
 	overgloves = 1
 	force = 5
 	punch_force = 5
+	drop_sound = 'sound/items/drop/metalboots.ogg'
+	pickup_sound = 'sound/items/pickup/toolbox.ogg'
 
 /obj/item/clothing/gloves/ranger
 	var/glovecolor = "white"

@@ -55,7 +55,7 @@
 
 	return new_dest
 
-/obj/landed_holder/proc/leave_turf()
+/obj/landed_holder/proc/leave_turf(var/turf/base_turf = null)
 	var/turf/new_source
 	//Change our source to whatever it was before
 	if(turf_type)
@@ -67,7 +67,7 @@
 		new_source.underlays = underlays
 		new_source.decals = decals
 	else
-		new_source = my_turf.ChangeTurf(get_base_turf_by_area(my_turf),,1)
+		new_source = my_turf.ChangeTurf(base_turf ? base_turf : get_base_turf_by_area(my_turf),,1)
 
 	return new_source
 
@@ -83,10 +83,30 @@
 	var/turf/under_turf //Underlay override turf path.
 	var/join_flags = 0 //Bitstring to represent adjacency of joining walls
 	var/join_group = "shuttle" //A tag for what other walls to join with. Null if you don't want them to.
+	var/static/list/antilight_cache
+
+/turf/simulated/shuttle/Initialize(mapload)
+	..()
+	if(!antilight_cache)
+		antilight_cache = list()
+		for(var/diag in cornerdirs)
+			var/image/I = image(LIGHTING_ICON, null, icon_state = "diagonals", layer = 10, dir = diag)
+			I.plane = PLANE_LIGHTING
+			antilight_cache["[diag]"] = I
 
 /turf/simulated/shuttle/Destroy()
 	landed_holder = null
 	..()
+
+// For joined corners touching static lighting turfs, add an overlay to cancel out that part of our lighting overlay.
+/turf/simulated/shuttle/proc/update_breaklights()
+	if(join_flags in cornerdirs) //We're joined at an angle
+		//Dynamic lighting dissolver
+		var/turf/T = get_step(src, turn(join_flags,180))
+		if(!T || !T.dynamic_lighting || !get_area(T).dynamic_lighting)
+			add_overlay(antilight_cache["[join_flags]"], TRUE)
+			return
+	cut_overlay(antilight_cache["[join_flags]"], TRUE)
 
 /turf/simulated/shuttle/proc/underlay_update()
 	if(!takes_underlays)
@@ -103,11 +123,19 @@
 
 	//Well if this isn't our first rodeo, we know EXACTLY what we landed on, and it looks like this.
 	if(landed_holder && !interior_corner)
-		var/mutable_appearance/landed_on = new(landed_holder)
-		landed_on.layer = FLOAT_LAYER //Not turf
-		landed_on.plane = FLOAT_PLANE //Not turf
-		us.underlays = list(landed_on)
-		appearance = us
+		//Space gets special treatment
+		if(ispath(landed_holder.turf_type, /turf/space))
+			var/image/spaceimage = image(landed_holder.icon, landed_holder.icon_state)
+			spaceimage.plane = SPACE_PLANE
+			underlays = list(spaceimage)
+		else
+			var/mutable_appearance/landed_on = new(landed_holder)
+			landed_on.layer = FLOAT_LAYER //Not turf
+			landed_on.plane = FLOAT_PLANE //Not turf
+			us.underlays = list(landed_on)
+			appearance = us
+
+		spawn update_breaklights() //So that we update the breaklight overlays only after turfs are connected
 		return
 
 	if(!under)
@@ -143,11 +171,14 @@
 		under_ma = new(under)
 
 	if(under_ma)
-		if(ispath(under,/turf/space)) //Scramble space turfs
-			under_ma.icon_state = "[rand(1,25)]"
+		if(ispath(under,/turf/space) || istype(under,/turf/space)) //Space gets weird treatment
+			under_ma.icon_state = "white"
+			under_ma.plane = SPACE_PLANE
 		us.underlays = list(under_ma)
 
 	appearance = us
+
+	spawn update_breaklights() //So that we update the breaklight overlays only after turfs are connected
 
 	return under
 

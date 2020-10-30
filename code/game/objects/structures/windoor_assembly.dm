@@ -91,7 +91,7 @@ obj/structure/windoor_assembly/Destroy()
 				var/obj/item/weapon/weldingtool/WT = W
 				if (WT.remove_fuel(0,user))
 					user.visible_message("[user] disassembles the windoor assembly.", "You start to disassemble the windoor assembly.")
-					playsound(src.loc, WT.usesound, 50, 1)
+					playsound(src, WT.usesound, 50, 1)
 
 					if(do_after(user, 40 * WT.toolspeed))
 						if(!src || !WT.isOn()) return
@@ -157,7 +157,7 @@ obj/structure/windoor_assembly/Destroy()
 
 			//Adding airlock electronics for access. Step 6 complete.
 			else if(istype(W, /obj/item/weapon/airlock_electronics))
-				playsound(src.loc, 'sound/items/Screwdriver.ogg', 100, 1)
+				playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
 				user.visible_message("[user] installs the electronics into the airlock assembly.", "You start to install electronics into the airlock assembly.")
 
 				if(do_after(user, 40))
@@ -192,7 +192,7 @@ obj/structure/windoor_assembly/Destroy()
 				if(src.electronics && istype(src.electronics, /obj/item/weapon/circuitboard/broken))
 					to_chat(usr,"<span class='warning'>The assembly has broken airlock electronics.</span>")
 					return
-				to_chat(usr,browse(null, "window=windoor_access")) //Not sure what this actually does... -Ner
+				usr << browse(null, "window=windoor_access") //Not sure what this actually does... -Ner
 				playsound(src, W.usesound, 100, 1)
 				user.visible_message("[user] pries the windoor into the frame.", "You start prying the windoor into the frame.")
 

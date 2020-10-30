@@ -65,8 +65,8 @@ something, make sure it's not in one of the other lists.*/
 				prob(1);/obj/item/clothing/shoes/syndigaloshes,
 				prob(4);/obj/item/clothing/shoes/black,
 				prob(4);/obj/item/clothing/shoes/laceup,
-				prob(4);/obj/item/clothing/shoes/black,
-				prob(4);/obj/item/clothing/shoes/leather,
+				prob(4);/obj/item/clothing/shoes/laceup/grey,
+				prob(4);/obj/item/clothing/shoes/laceup/brown,
 				prob(1);/obj/item/clothing/gloves/yellow,
 				prob(3);/obj/item/clothing/gloves/botanic_leather,
 				prob(2);/obj/item/clothing/gloves/sterile/latex,
@@ -101,13 +101,23 @@ something, make sure it's not in one of the other lists.*/
 				prob(1);/obj/item/clothing/under/tactical,
 				prob(3);/obj/item/clothing/accessory/storage/webbing,
 				prob(3);/obj/item/weapon/camera_assembly,
-				prob(4);/obj/item/weapon/caution,
-				prob(3);/obj/item/weapon/caution/cone,
+				prob(4);/obj/item/clothing/suit/caution,
+				prob(3);/obj/item/clothing/head/cone,
 				prob(1);/obj/item/weapon/card/emag_broken,
 				prob(2);/obj/item/device/camera,
 				prob(3);/obj/item/device/pda,
 				prob(3);/obj/item/device/radio/headset,
-				prob(1);/obj/item/pizzavoucher)
+				/* VOREStation Edit Start */
+				prob(2);/obj/item/toy/tennis,
+				prob(2);/obj/item/toy/tennis/red,
+				prob(2);/obj/item/toy/tennis/yellow,
+				prob(2);/obj/item/toy/tennis/green,
+				prob(2);/obj/item/toy/tennis/cyan,
+				prob(2);/obj/item/toy/tennis/blue,
+				prob(2);/obj/item/toy/tennis/purple,
+				prob(1);/obj/item/pizzavoucher
+				/* VOREStation Edit End */
+				)
 
 /obj/random/maintenance/security
 /*Maintenance loot list. This one is for around security areas*/

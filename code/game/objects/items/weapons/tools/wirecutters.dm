@@ -6,6 +6,7 @@
 	desc = "This cuts wires."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "cutters"
+	center_of_mass = list("x" = 18,"y" = 10)
 	slot_flags = SLOT_BELT
 	force = 6
 	throw_speed = 2
@@ -16,6 +17,8 @@
 	attack_verb = list("pinched", "nipped")
 	hitsound = 'sound/items/wirecutter.ogg'
 	usesound = 'sound/items/wirecutter.ogg'
+	drop_sound = 'sound/items/drop/wirecutter.ogg'
+	pickup_sound = 'sound/items/pickup/wirecutter.ogg'
 	sharp = 1
 	edge = 1
 	toolspeed = 1
@@ -35,7 +38,7 @@
 		C.handcuffed = null
 		if(C.buckled && C.buckled.buckle_require_restraints)
 			C.buckled.unbuckle_mob()
-		C.update_inv_handcuffed()
+		C.update_handcuffed()
 		return
 	else
 		..()
@@ -85,14 +88,6 @@
 	toolspeed = 0.4
 	reach = 2
 
-/obj/item/weapon/tool/wirecutters/hybrid/is_wirecutter()
-	if(prob(10))
-		var/turf/T = get_turf(src)
-		SSradiation.radiate(get_turf(src), 5)
-		T.visible_message("<span class='alien'>\The [src] shudders!</span>")
-		return FALSE
-	return TRUE
-
 /obj/item/weapon/tool/wirecutters/power
 	name = "jaws of life"
 	desc = "A set of jaws of life, compressed through the magic of science. It's fitted with a cutting head."
@@ -119,7 +114,7 @@
 	return ..()
 
 /obj/item/weapon/tool/wirecutters/power/attack_self(mob/user)
-	playsound(get_turf(user), 'sound/items/change_jaws.ogg', 50, 1)
+	playsound(src, 'sound/items/change_jaws.ogg', 50, 1)
 	user.drop_item(src)
 	counterpart.forceMove(get_turf(src))
 	src.forceMove(counterpart)

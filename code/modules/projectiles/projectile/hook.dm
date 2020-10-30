@@ -27,13 +27,15 @@
 	var/list/help_messages = list("slaps", "pokes", "nudges", "bumps", "pinches")
 	var/done_mob_unique = FALSE	// Has the projectile already done something to a mob?
 
+	var/datum/beam/chain = null
+
 /obj/item/projectile/energy/hook/launch_projectile(atom/target, target_zone, mob/user, params, angle_override, forced_spread = 0)
 	var/expected_distance = get_dist(target, loc)
 	range = expected_distance // So the hook hits the ground if no mob is hit.
 	target_distance = expected_distance
 	if(firer)	// Needed to ensure later checks in impact and on hit function.
 		launcher_intent = firer.a_intent
-		firer.Beam(src,icon_state=beam_state,icon='icons/effects/beam.dmi',time=60, maxdistance=10,beam_type=/obj/effect/ebeam,beam_sleep_time=1)
+		chain = firer.Beam(src,icon_state=beam_state,icon='icons/effects/beam.dmi',time=60, maxdistance=10,beam_type=/obj/effect/ebeam,beam_sleep_time=1)
 
 	if(launcher_intent)
 		switch(launcher_intent)
@@ -58,9 +60,21 @@
 
 	..() // Does the regular launching stuff.
 
+/obj/item/projectile/energy/hook/after_move()
+	if(chain)
+		var/origin_turf = get_turf(firer)
+		var/target_turf = get_turf(src)
+		if(!chain.static_beam && (origin_turf != chain.origin_oldloc || target_turf != chain.target_oldloc))
+			chain.origin_oldloc = origin_turf //so we don't keep checking against their initial positions, leading to endless Reset()+Draw() calls
+			chain.target_oldloc = target_turf
+			chain.Reset()
+			chain.Draw()
+	return
+
 /obj/item/projectile/energy/hook/on_hit(var/atom/target, var/blocked = 0, var/def_zone = null)
 	if(..())
 		perform_intent_unique(target)
+
 
 /obj/item/projectile/energy/hook/on_impact(var/atom/A)
 	perform_intent_unique(get_turf(A))
@@ -82,7 +96,7 @@
 		if(!(H.species.flags & NO_SLIP) && prob(50))
 			var/armor_check = H.run_armor_check(def_zone, "melee")
 			H.apply_effect(3, WEAKEN, armor_check)
-			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+			playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 			if(armor_check < 60)
 				visible_message("<span class='danger'>\The [src] has pushed [H]!</span>")
 			else
@@ -91,19 +105,19 @@
 
 		else
 			if(H.break_all_grabs(firer))
-				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+				playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 				return
 
 			for(var/obj/item/I in holding)
 				if(I)
 					H.drop_from_inventory(I)
 					visible_message("<span class='danger'>\The [src] has disarmed [H]!</span>")
-					playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+					playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 					return
 
 
 /obj/item/projectile/energy/hook/proc/perform_intent_unique(atom/target)
-	playsound(src.loc, impact_sound, 40, 1)
+	playsound(src, impact_sound, 40, 1)
 	var/success = FALSE
 	if(istype(target,/turf))
 		if(launcher_intent)
@@ -148,7 +162,7 @@
 					var/message = pick(help_messages)
 					if(message == "slaps")
 						spawn(1)
-							playsound(loc, 'sound/effects/snap.ogg', 50, 1)
+							playsound(src, 'sound/effects/snap.ogg', 50, 1)
 					visible_message("<span class='notice'>\The [src] [message] [target].</span>")
 					done_mob_unique = TRUE
 					success = TRUE

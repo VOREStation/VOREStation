@@ -25,18 +25,15 @@
 /obj/vehicle/train/Initialize()
 	. = ..()
 	for(var/obj/vehicle/train/T in orange(1, src))
-		latch(T)
+		latch(T, null)
 
 /obj/vehicle/train/Move()
 	var/old_loc = get_turf(src)
-	if(..())
+	if((. = ..()))
 		if(tow)
 			tow.Move(old_loc)
-		return 1
-	else
-		if(lead)
-			unattach()
-		return 0
+	else if(lead)
+		unattach()
 
 /obj/vehicle/train/Bump(atom/Obstacle)
 	if(!istype(Obstacle, /atom/movable))
@@ -149,22 +146,26 @@
 //Note: there is a modified version of this in code\modules\vehicles\cargo_train.dm specifically for cargo train engines
 /obj/vehicle/train/proc/attach_to(obj/vehicle/train/T, mob/user)
 	if (get_dist(src, T) > 1)
-		to_chat(user, "<font color='red'>[src] is too far away from [T] to hitch them together.</font>")
+		if(user)
+			to_chat(user, "<font color='red'>[src] is too far away from [T] to hitch them together.</font>")
 		return
 
 	if (lead)
-		to_chat(user, "<font color='red'>[src] is already hitched to something.</font>")
+		if(user)
+			to_chat(user, "<font color='red'>[src] is already hitched to something.</font>")
 		return
 
 	if (T.tow)
-		to_chat(user, "<font color='red'>[T] is already towing something.</font>")
+		if(user)	
+			to_chat(user, "<font color='red'>[T] is already towing something.</font>")
 		return
 
 	//check for cycles.
 	var/obj/vehicle/train/next_car = T
 	while (next_car)
 		if (next_car == src)
-			to_chat(user, "<font color='red'>That seems very silly.</font>")
+			if(user)
+				to_chat(user, "<font color='red'>That seems very silly.</font>")
 			return
 		next_car = next_car.lead
 

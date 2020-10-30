@@ -4,6 +4,8 @@
 	appearance_flags = 0
 	var/obj/machinery/filler_object/filler1
 	var/obj/machinery/filler_object/filler2
+	open_sound_powered = 'sound/machines/door/WideOpen.ogg'
+	close_sound_powered = 'sound/machines/door/WideClose.ogg'
 
 /obj/machinery/door/airlock/multi_tile/New()
 	..()
@@ -16,7 +18,7 @@
 	QDEL_NULL(filler2)
 	return ..()
 
-/obj/machinery/door/airlock/multi_tile/Move()
+/obj/machinery/door/airlock/multi_tile/Moved(atom/old_loc, direction, forced = FALSE)
 	. = ..()
 	SetBounds()
 

@@ -25,6 +25,7 @@
 #include "vault3.dmm"
 #include "vault4.dmm"
 #include "vault5.dmm"
+#include "vault6.dmm"
 #include "IceCave1A.dmm"
 #include "IceCave1B.dmm"
 #include "IceCave1C.dmm"
@@ -38,6 +39,8 @@
 #include "Geyser2.dmm"
 #include "Geyser3.dmm"
 #include "Cliff1.dmm"
+#include "excavation1.dmm"
+#include "spatial_anomaly.dmm"
 #endif
 
 // The 'mountains' is the mining z-level, and has a lot of caves.
@@ -232,6 +235,13 @@
 	cost = 5
 	allow_duplicates = TRUE
 	template_group = "Underground Cliffs"
+	
+/datum/map_template/surface/mountains/normal/deadly_rabbit // VOREStation Edit
+	name = "The Killer Rabbit"
+	desc = "A cave where the Knights of the Round have fallen to a murderous Rabbit."
+	mappath = 'maps/submaps/surface_submaps/mountains/deadly_rabbit_vr.dmm'
+	cost = 5
+	allow_duplicates = FALSE
 
 /**************
  * Deep Caves *
@@ -254,8 +264,8 @@
 
 /datum/map_template/surface/mountains/normal/crashed_ufo_frigate //VOREStation Edit
 	name = "Crashed UFO Frigate"
-	desc = "A (formerly) flying saucer that is now embedded into the mountain, yet its combat protocols still seem to be running..."
-	mappath = 'maps/submaps/surface_submaps/mountains/crashed_ufo.dmm'
+	desc = "A (formerly) flying saucer that is now embedded into the mountain, yet the combat protocols still seem to be running..."
+	mappath = 'maps/submaps/surface_submaps/mountains/crashed_ufo_frigate.dmm'
 	cost = 60
 	discard_prob = 50
 
@@ -338,5 +348,18 @@
 	name = "Crashed Med Shuttle"
 	desc = "A medical response shuttle that went missing some time ago. So this is where they went."
 	mappath = 'maps/submaps/surface_submaps/mountains/CrashedMedShuttle1_vr.dmm'	//VOREStation Edit
+	cost = 20
+	fixed_orientation = TRUE
+
+/datum/map_template/surface/mountains/normal/excavation1 //VOREStation Edit
+	name = "Excavation Site"
+	desc = "An abandoned mining site."
+	mappath = 'maps/submaps/surface_submaps/mountains/excavation1.dmm'
+	cost = 20
+
+/datum/map_template/surface/mountains/deep/spatial_anomaly
+	name = "spatial anomaly"
+	desc = "A strange section of the caves that seems twist and turn in ways that shouldn't be physically possible."
+	mappath = 'maps/submaps/surface_submaps/mountains/spatial_anomaly.dmm'
 	cost = 20
 	fixed_orientation = TRUE

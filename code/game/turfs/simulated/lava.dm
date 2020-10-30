@@ -13,6 +13,7 @@
 	movement_cost = 2
 	can_build_into_floor = TRUE
 	can_dirty = FALSE
+	initial_flooring = /decl/flooring/lava // Defining this in case someone DOES step on lava and survive. Somehow.
 
 /turf/simulated/floor/lava/outdoors
 	outdoors = TRUE
@@ -32,22 +33,28 @@
 	..()
 	name = "magma"
 
-/turf/simulated/floor/lava/update_icon()
-	cut_overlays()
-	..()
-	update_icon_edge()
+/turf/simulated/floor/lava/make_plating(place_product, defer_icon_update)
+	return
+
+/turf/simulated/floor/lava/set_flooring(decl/flooring/newflooring, initializing)
+	if(newflooring?.type == initial_flooring)
+		return ..()
+	return
+
+/turf/simulated/floor/lava/ex_act(severity)
+	return
 
 /turf/simulated/floor/lava/Entered(atom/movable/AM)
 	if(burn_stuff(AM))
-		START_PROCESSING(SSobj, src)
+		START_PROCESSING(SSturfs, src)
 
 /turf/simulated/floor/lava/hitby(atom/movable/AM)
 	if(burn_stuff(AM))
-		START_PROCESSING(SSobj, src)
+		START_PROCESSING(SSturfs, src)
 
 /turf/simulated/floor/lava/process()
 	if(!burn_stuff())
-		STOP_PROCESSING(SSobj, src)
+		return PROCESS_KILL
 
 /turf/simulated/floor/lava/proc/is_safe()
 	//if anything matching this typecache is found in the lava, we don't burn things

@@ -1,0 +1,29 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/simulated/floor/outdoors/snow/sif,/area/template_noop)
+"e" = (/turf/simulated/floor/outdoors/snow/sif,/area/submap/ChemSpill1)
+"f" = (/obj/effect/decal/remains/deer,/turf/simulated/floor/outdoors/dirt/sif,/area/submap/ChemSpill1)
+"g" = (/turf/simulated/floor/outdoors/dirt/sif,/area/submap/ChemSpill1)
+"h" = (/turf/simulated/floor/outdoors/mud,/area/submap/ChemSpill1)
+"i" = (/turf/simulated/floor/water/contaminated,/area/submap/ChemSpill1)
+"j" = (/obj/structure/prop/poicanister,/turf/simulated/floor/water/contaminated,/area/submap/ChemSpill1)
+"k" = (/obj/effect/decal/remains/mouse,/turf/simulated/floor/water/contaminated,/area/submap/ChemSpill1)
+"l" = (/turf/simulated/floor/outdoors/rocks,/area/submap/ChemSpill1)
+"m" = (/obj/effect/decal/remains/ribcage,/turf/simulated/floor/outdoors/dirt/sif,/area/submap/ChemSpill1)
+"n" = (/obj/effect/decal/remains/lizard,/turf/simulated/floor/outdoors/dirt/sif,/area/submap/ChemSpill1)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaa
+aaeaaaaaegeaaa
+agggeeegeggeee
+agggggggggggee
+aegfgggeggggga
+eeggllggggegga
+gggggihhggeeea
+aggghhihhggeaa
+aeeghijiihllaa
+aeelghikhgglaa
+aeellhhihmleaa
+aeeglghhheeaab
+aagngggeggggga
+aalgeegeeaggaa
+"}

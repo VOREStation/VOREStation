@@ -5,16 +5,18 @@
 	name = "Coin"
 	desc = "A simple coin you can flip."
 	icon_state = "coin"
+	randpixel = 8
 	force = 0.0
 	throwforce = 0.0
 	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_EARS
 	var/string_attached
 	var/sides = 2
+	drop_sound = 'sound/items/drop/ring.ogg'
+	pickup_sound = 'sound/items/pickup/ring.ogg'
 
 /obj/item/weapon/coin/New()
-	pixel_x = rand(0,16)-8
-	pixel_y = rand(0,8)-8
+	randpixel_xy()
 
 /obj/item/weapon/coin/gold
 	name = "gold coin"

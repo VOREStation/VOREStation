@@ -29,6 +29,8 @@ var/global/photo_count = 0
 	icon_state = "photo"
 	item_state = "paper"
 	w_class = ITEMSIZE_SMALL
+	drop_sound = 'sound/items/drop/paper.ogg'
+	pickup_sound = 'sound/items/pickup/paper.ogg'
 	var/id
 	var/icon/img	//Big photo image
 	var/scribble	//Scribble on the back.
@@ -51,11 +53,12 @@ var/global/photo_count = 0
 	..()
 
 /obj/item/weapon/photo/examine(mob/user)
+	//This is one time we're not going to call parent, because photos are 'secret' unless you're close enough.
 	if(in_range(user, src))
 		show(user)
-		to_chat(user,desc)
+		return list(desc)
 	else
-		to_chat(user, "<span class='notice'>It is too far away.</span>")
+		return list("<span class='notice'>It is too far away to examine.</span>")
 
 /obj/item/weapon/photo/proc/show(mob/user as mob)
 	user << browse_rsc(img, "tmp_photo_[id].png")
@@ -96,7 +99,7 @@ var/global/photo_count = 0
 		var/mob/living/carbon/human/M = usr
 		if(!( istype(over_object, /obj/screen) ))
 			return ..()
-		playsound(loc, "rustle", 50, 1, -5)
+		playsound(src, "rustle", 50, 1, -5)
 		if((!( M.restrained() ) && !( M.stat ) && M.back == src))
 			switch(over_object.name)
 				if("r_hand")
@@ -192,7 +195,7 @@ var/global/photo_count = 0
 	for(var/i; i <= sorted.len; i++)
 		var/atom/A = sorted[i]
 		if(A)
-			var/icon/img = getFlatIcon(A)//, picture_planes = picture_planes)//build_composite_icon(A) //VOREStation Edit
+			var/icon/img = getFlatIcon(A, no_anim = TRUE)//, picture_planes = picture_planes)//build_composite_icon(A) //VOREStation Edit
 
 			// If what we got back is actually a picture, draw it.
 			if(istype(img, /icon))
@@ -213,7 +216,7 @@ var/global/photo_count = 0
 		// Calculate where we are relative to the center of the photo
 		var/xoff = (the_turf.x - center.x) * 32 + center_offset
 		var/yoff = (the_turf.y - center.y) * 32 + center_offset
-		res.Blend(getFlatIcon(the_turf.loc), blendMode2iconMode(the_turf.blend_mode),xoff,yoff)
+		res.Blend(getFlatIcon(the_turf.loc, no_anim = TRUE), blendMode2iconMode(the_turf.blend_mode),xoff,yoff)
 	return res
 
 
@@ -241,7 +244,7 @@ var/global/photo_count = 0
 	if(!on || !pictures_left || ismob(target.loc)) return
 	captureimage(target, user, flag)
 
-	playsound(loc, pick('sound/items/polaroid1.ogg', 'sound/items/polaroid2.ogg'), 75, 1, -3)
+	playsound(src, pick('sound/items/polaroid1.ogg', 'sound/items/polaroid2.ogg'), 75, 1, -3)
 
 	pictures_left--
 	desc = "A polaroid camera. It has [pictures_left] photos left."

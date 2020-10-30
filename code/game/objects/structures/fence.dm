@@ -32,9 +32,9 @@
 
 	switch(hole_size)
 		if(MEDIUM_HOLE)
-			user.show_message("There is a large hole in \the [src].")
+			. += "There is a large hole in it."
 		if(LARGE_HOLE)
-			user.show_message("\The [src] has been completely cut through.")
+			. += "It has been completely cut through."
 
 /obj/structure/fence/get_description_interaction()
 	var/list/results = list()

@@ -13,9 +13,9 @@
 	cable.amount = 100
 	..()
 
-/obj/machinery/cablelayer/Move(new_turf,M_Dir)
-	..()
-	layCable(new_turf,M_Dir)
+/obj/machinery/cablelayer/Moved(atom/old_loc, direction, forced = FALSE)
+	. = ..()
+	layCable(loc,direction)
 
 /obj/machinery/cablelayer/attack_hand(mob/user as mob)
 	if(!cable&&!on)
@@ -41,7 +41,7 @@
 			m = min(m, cable.amount)
 			m = min(m, 30)
 			if(m)
-				playsound(src.loc, O.usesound, 50, 1)
+				playsound(src, O.usesound, 50, 1)
 				use_cable(m)
 				var/obj/item/stack/cable_coil/CC = new (get_turf(src))
 				CC.amount = m
@@ -49,8 +49,8 @@
 			to_chat(usr, "<span class='warning'>There's no more cable on the reel.</span>")
 
 /obj/machinery/cablelayer/examine(mob/user)
-	..()
-	to_chat(user, "\The [src]'s cable reel has [cable.amount] length\s left.")
+	. = ..()
+	. += "[src]'s cable reel has [cable.amount] length\s left."
 
 /obj/machinery/cablelayer/proc/load_cable(var/obj/item/stack/cable_coil/CC)
 	if(istype(CC) && CC.amount)

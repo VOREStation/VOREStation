@@ -93,6 +93,26 @@
 	icon_connect_type = "-supply"
 	color = PIPE_COLOR_BLUE
 
+/obj/machinery/atmospherics/pipe/cap/visible/fuel
+	name = "fuel pipe endcap"
+	desc = "An endcap for fuel pipes"
+	icon_state = "cap-fuel"
+	connect_types = CONNECT_TYPE_FUEL
+	piping_layer = PIPING_LAYER_FUEL
+	layer = PIPES_FUEL_LAYER
+	icon_connect_type = "-fuel"
+	color = PIPE_COLOR_YELLOW
+
+/obj/machinery/atmospherics/pipe/cap/visible/aux
+	name = "aux pipe endcap"
+	desc = "An endcap for aux pipes"
+	icon_state = "cap-aux"
+	connect_types = CONNECT_TYPE_AUX
+	piping_layer = PIPING_LAYER_AUX
+	layer = PIPES_AUX_LAYER
+	icon_connect_type = "-aux"
+	color = PIPE_COLOR_CYAN
+
 /obj/machinery/atmospherics/pipe/cap/hidden
 	level = 1
 	icon_state = "cap"
@@ -117,3 +137,23 @@
 	layer = PIPES_SUPPLY_LAYER
 	icon_connect_type = "-supply"
 	color = PIPE_COLOR_BLUE
+
+/obj/machinery/atmospherics/pipe/cap/visible/fuel
+	name = "fuel pipe endcap"
+	desc = "An endcap for fuel pipes"
+	icon_state = "cap-f-fuel"
+	connect_types = CONNECT_TYPE_FUEL
+	piping_layer = PIPING_LAYER_FUEL
+	layer = PIPES_FUEL_LAYER
+	icon_connect_type = "-fuel"
+	color = PIPE_COLOR_YELLOW
+
+/obj/machinery/atmospherics/pipe/cap/hidden/aux
+	name = "aux pipe endcap"
+	desc = "An endcap for aux pipes"
+	icon_state = "cap-f-aux"
+	connect_types = CONNECT_TYPE_AUX
+	piping_layer = PIPING_LAYER_AUX
+	layer = PIPES_AUX_LAYER
+	icon_connect_type = "-aux"
+	color = PIPE_COLOR_CYAN

@@ -1,38 +1,23 @@
 /obj/structure/closet/cabinet
 	name = "cabinet"
 	desc = "Old will forever be in fashion."
-	icon_state = "cabinet_closed"
-	icon_closed = "cabinet_closed"
-	icon_opened = "cabinet_open"
-
-/obj/structure/closet/cabinet/update_icon()
-	if(!opened)
-		icon_state = icon_closed
-	else
-		icon_state = icon_opened
+	closet_appearance = /decl/closet_appearance/cabinet
 
 /obj/structure/closet/acloset
 	name = "strange closet"
 	desc = "It looks alien!"
-	icon_state = "acloset"
-	icon_closed = "acloset"
-	icon_opened = "aclosetopen"
-
+	closet_appearance = /decl/closet_appearance/alien
 
 /obj/structure/closet/gimmick
 	name = "administrative supply closet"
 	desc = "It's a storage unit for things that have no right being here."
-	icon_state = "syndicate1"
-	icon_closed = "syndicate1"
-	icon_opened = "syndicate1open"
+	closet_appearance = /decl/closet_appearance/tactical
 	anchored = 0
 
 /obj/structure/closet/gimmick/russian
 	name = "russian surplus closet"
 	desc = "It's a storage unit for Russian standard-issue surplus."
-	icon_state = "syndicate1"
-	icon_closed = "syndicate1"
-	icon_opened = "syndicate1open"
+	closet_appearance = /decl/closet_appearance/tactical
 
 	starts_with = list(
 		/obj/item/clothing/head/ushanka = 5,
@@ -42,9 +27,7 @@
 /obj/structure/closet/gimmick/tacticool
 	name = "tacticool gear closet"
 	desc = "It's a storage unit for Tacticool gear."
-	icon_state = "syndicate1"
-	icon_closed = "syndicate1"
-	icon_opened = "syndicate1open"
+	closet_appearance = /decl/closet_appearance/tactical
 
 	starts_with = list(
 		/obj/item/clothing/glasses/eyepatch,
@@ -60,9 +43,7 @@
 /obj/structure/closet/thunderdome
 	name = "\improper Thunderdome closet"
 	desc = "Everything you need!"
-	icon_state = "syndicate"
-	icon_closed = "syndicate"
-	icon_opened = "syndicateopen"
+	closet_appearance = /decl/closet_appearance/thunderdomered
 	anchored = 1
 
 /obj/structure/closet/thunderdome/tdred
@@ -78,9 +59,7 @@
 
 /obj/structure/closet/thunderdome/tdgreen
 	name = "green-team Thunderdome closet"
-	icon_state = "syndicate1"
-	icon_closed = "syndicate1"
-	icon_opened = "syndicate1open"
+	closet_appearance = /decl/closet_appearance/thunderdomegreen
 
 	starts_with = list(
 		/obj/item/clothing/suit/armor/tdome/green = 3,
@@ -93,8 +72,6 @@
 /obj/structure/closet/alien
 	name = "alien container"
 	desc = "Contains secrets of the universe."
-	icon = 'icons/obj/abductor.dmi'
-	icon_state = "alien_locker"
-	icon_closed = "alien_locker"
-	icon_opened = "alien_locker_open"
+	icon = 'icons/obj/closets/abductor.dmi'
 	anchored = TRUE
+	closet_appearance = null // special icons

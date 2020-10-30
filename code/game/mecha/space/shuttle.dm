@@ -41,44 +41,30 @@
 	max_universal_equip = 1
 	max_special_equip = 1
 
-/obj/mecha/working/hoverpod/Initialize()
-	..()
-	ion_trail.stop()
-
-/obj/mecha/working/hoverpod/shuttlecraft/moved_inside(var/mob/living/carbon/human/H as mob)
-	. = ..(H)
-	if(.)
-		ion_trail.start()
-
-/obj/mecha/working/hoverpod/shuttlecraft/go_out()
-	. = ..()
-	if(!occupant)
-		ion_trail.stop()
-
 /obj/mecha/working/hoverpod/shuttlecraft/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	..()
 
 	if(base_paint)
 		if(!base_paint_mask)
 			base_paint_mask = image(icon, "[initial_icon]-mask+base", src.layer + 1)
 		base_paint_mask.color = base_paint
-		overlays |= base_paint_mask
+		add_overlay(base_paint_mask)
 	if(front_paint)
 		if(!front_paint_mask)
 			front_paint_mask = image(icon, "[initial_icon]-mask+front", src.layer + 1)
 		front_paint_mask.color = front_paint
-		overlays |= front_paint_mask
+		add_overlay(front_paint_mask)
 	if(engine_paint)
 		if(!engine_paint_mask)
 			engine_paint_mask = image(icon, "[initial_icon]-mask+engine", src.layer + 1)
 		engine_paint_mask.color = engine_paint
-		overlays |= engine_paint_mask
+		add_overlay(engine_paint_mask)
 	if(central_paint)
 		if(!engine_paint_mask)
 			central_paint_mask = image(icon, "[initial_icon]-mask+central", src.layer + 2)
 		central_paint_mask.color = central_paint
-		overlays |= central_paint_mask
+		add_overlay(central_paint_mask)
 
 /obj/mecha/working/hoverpod/shuttlecraft/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/device/multitool) && state == 1)

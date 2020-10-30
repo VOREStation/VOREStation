@@ -53,7 +53,7 @@ obj/item/weapon/chainsaw/proc/turnOff(mob/user as mob)
 	if(!on) return
 	to_chat(user, "You switch the gas nozzle on the chainsaw, turning it off.")
 	attack_verb = list("bluntly hit", "beat", "knocked")
-	playsound(user, 'sound/weapons/chainsaw_turnoff.ogg',40,1)
+	playsound(src, 'sound/weapons/chainsaw_turnoff.ogg',40,1)
 	force = inactive_force
 	edge = 0
 	sharp = 0
@@ -93,7 +93,7 @@ obj/item/weapon/chainsaw/afterattack(atom/A as mob|obj|turf|area, mob/user as mo
 		to_chat(user, "<span class='notice'>You begin filling the tank on the chainsaw.</span>")
 		if(do_after(usr, 15))
 			A.reagents.trans_to_obj(src, max_fuel)
-			playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
+			playsound(src, 'sound/effects/refill.ogg', 50, 1, -6)
 			to_chat(user, "<span class='notice'>Chainsaw succesfully refueled.</span>")
 		else
 			to_chat(user, "<span class='notice'>Don't move while you're refilling the chainsaw.</span>")
@@ -113,9 +113,9 @@ obj/item/weapon/chainsaw/proc/get_fuel()
 	return reagents.get_reagent_amount("fuel")
 
 obj/item/weapon/chainsaw/examine(mob/user)
-	if(..(user,0))
-		if(max_fuel)
-			to_chat(usr, "<span class = 'notice'>The [src] feels like it contains roughtly [get_fuel()] units of fuel left.</span>")
+	. = ..()
+	if(max_fuel && get_dist(user, src) == 0)
+		. += "<span class = 'notice'>The [src] feels like it contains roughtly [get_fuel()] units of fuel left.</span>"
 
 obj/item/weapon/chainsaw/suicide_act(mob/user)
 	var/datum/gender/TU = gender_datums[user.get_visible_gender()]

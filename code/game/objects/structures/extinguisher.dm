@@ -3,8 +3,7 @@
 	desc = "A small wall mounted cabinet designed to hold a fire extinguisher."
 	icon = 'icons/obj/closet.dmi'
 	icon_state = "extinguisher_closed"
-	plane = TURF_PLANE
-	layer = ABOVE_TURF_LAYER
+	layer = ABOVE_WINDOW_LAYER
 	anchored = 1
 	density = 0
 	var/obj/item/weapon/extinguisher/has_extinguisher
@@ -38,7 +37,7 @@
 	if(O.is_wrench())
 		if(!has_extinguisher)
 			to_chat(user, "<span class='notice'>You start to unwrench the extinguisher cabinet.</span>")
-			playsound(src.loc, O.usesound, 50, 1)
+			playsound(src, O.usesound, 50, 1)
 			if(do_after(user, 15 * O.toolspeed))
 				to_chat(user, "<span class='notice'>You unwrench the extinguisher cabinet.</span>")
 				new /obj/item/frame/extinguisher_cabinet( src.loc )

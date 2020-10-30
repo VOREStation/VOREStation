@@ -8,10 +8,22 @@
 	attack_verb = list("whipped")
 	hitsound = 'sound/weapons/towelwhip.ogg'
 	desc = "A soft cotton towel."
+	drop_sound = 'sound/items/drop/cloth.ogg'
+	pickup_sound = 'sound/items/pickup/cloth.ogg'
+
+/obj/item/weapon/towel/equipped(var/M, var/slot)
+	..()
+	switch(slot)
+		if(slot_head)
+			sprite_sheets = list(SPECIES_TESHARI = 'icons/mob/species/seromi/head.dmi')
+		if(slot_wear_suit)
+			sprite_sheets = list(SPECIES_TESHARI = 'icons/mob/species/seromi/suit.dmi')
+		if(slot_belt)
+			sprite_sheets = list(SPECIES_TESHARI = 'icons/mob/species/seromi/belt.dmi')
 
 /obj/item/weapon/towel/attack_self(mob/living/user as mob)
 	user.visible_message(text("<span class='notice'>[] uses [] to towel themselves off.</span>", user, src))
-	playsound(user, 'sound/weapons/towelwipe.ogg', 25, 1)
+	playsound(src, 'sound/weapons/towelwipe.ogg', 25, 1)
 	if(user.fire_stacks > 0)
 		user.fire_stacks = (max(0, user.fire_stacks - 1.5))
 	else if(user.fire_stacks < 0)

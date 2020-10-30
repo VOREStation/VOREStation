@@ -32,13 +32,14 @@
 	req_access = list(access_syndicate)
 	shuttle_tag = "Mercenary"
 
-/datum/shuttle/web_shuttle/syndicate
+/datum/shuttle/autodock/web_shuttle/syndicate
 	name = "Mercenary"
 	visible_name = "Unknown Vessel"
 	warmup_time = 0
 	can_cloak = TRUE
 	cloaked = TRUE
-	current_area = /area/syndicate_station/start
+	shuttle_area = /area/syndicate_station/start
+	current_location = "syndie_start"
 	docking_controller_tag = "merc_shuttle"
 	web_master_type = /datum/shuttle_web_master/syndie
 	flight_time_modifier = 2	// Assumption that 'larger ship + few engines = slower'
@@ -51,10 +52,10 @@
 
 /datum/shuttle_destination/syndie/root
 	name = "Mercenary Asteroid"
-	my_area = /area/syndicate_station/start
-	preferred_interim_area = /area/syndicate_station/transit
+	my_landmark = "syndie_start"
+	preferred_interim_tag = "syndie_transit"
 
-	dock_target = "merc_base"
+	// dock_target = "merc_base"
 
 	routes_to_make = list(
 		/datum/shuttle_destination/syndie/orbit = 1.5 MINUTES,
@@ -62,8 +63,8 @@
 
 /datum/shuttle_destination/syndie/orbit
 	name = "Orbit of Sif"
-	my_area = /area/syndicate_station/orbit
-	preferred_interim_area = /area/syndicate_station/transit
+	my_landmark = "syndie_orbit"
+	preferred_interim_tag = "syndie_transit"
 
 	routes_to_make = list(
 		/datum/shuttle_destination/syndie/outside_SC_1d = 30 SECONDS,
@@ -74,8 +75,8 @@
 
 /datum/shuttle_destination/syndie/outside_SC_1d
 	name = "NLS Southern Cross - Fore Port of First Deck"
-	my_area = /area/syndicate_station/firstdeck
-	preferred_interim_area = /area/syndicate_station/transit
+	my_landmark = "syndie_firstdeck"
+	preferred_interim_tag = "syndie_transit"
 
 	routes_to_make = list(
 		/datum/shuttle_destination/syndie/outside_SC_2d = 0,
@@ -85,8 +86,8 @@
 
 /datum/shuttle_destination/syndie/outside_SC_2d
 	name = "NLS Southern Cross - Fore Starboard of Second Deck"
-	my_area = /area/syndicate_station/seconddeck
-	preferred_interim_area = /area/syndicate_station/transit
+	my_landmark = "syndie_seconddeck"
+	preferred_interim_tag = "syndie_transit"
 
 	routes_to_make = list(
 		/datum/shuttle_destination/syndie/outside_SC_1d = 0,
@@ -96,8 +97,8 @@
 
 /datum/shuttle_destination/syndie/outside_SC_3d
 	name = "NLS Southern Cross - Aft Starboard of Third Deck"
-	my_area = /area/syndicate_station/thirddeck
-	preferred_interim_area = /area/syndicate_station/transit
+	my_landmark = "syndie_thirddeck"
+	preferred_interim_tag = "syndie_transit"
 
 	routes_to_make = list(
 		/datum/shuttle_destination/syndie/outside_SC_1d = 0,
@@ -107,10 +108,10 @@
 
 /datum/shuttle_destination/syndie/docked_SC
 	name = "NLS Southern Cross - Arrivals Docking Port"
-	my_area = /area/syndicate_station/arrivals_dock
-	preferred_interim_area = /area/syndicate_station/transit
+	my_landmark = "syndie_arrivals_dock"
+	preferred_interim_tag = "syndie_transit"
 
-	dock_target = "nuke_shuttle_dock_airlock"
+	// dock_target = "nuke_shuttle_dock_airlock"
 	announcer = "Southern Cross Docking Computer"
 
 /datum/shuttle_destination/syndie/docked_SC/get_arrival_message()
@@ -121,8 +122,8 @@
 
 /datum/shuttle_destination/syndie/sky
 	name = "Skies of Sif"
-	my_area = /area/syndicate_station/sky
-	preferred_interim_area = /area/syndicate_station/sky_transit
+	my_landmark = "syndie_sky"
+	preferred_interim_tag = "syndie_sky_transit"
 
 	routes_to_make = list(
 		/datum/shuttle_destination/syndie/planet = 15 SECONDS
@@ -130,5 +131,5 @@
 
 /datum/shuttle_destination/syndie/planet
 	name = "Sif Surface"
-	my_area = /area/syndicate_station/planet
-	preferred_interim_area = /area/syndicate_station/sky_transit
+	my_landmark = "syndie_planet"
+	preferred_interim_tag = "syndie_sky_transit"

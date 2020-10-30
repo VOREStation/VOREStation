@@ -13,6 +13,8 @@
 	desc = "This shouldn't be here, ahelp it."
 	icon = 'icons/obj/surgery.dmi'
 	w_class = ITEMSIZE_SMALL
+	drop_sound = 'sound/items/drop/weldingtool.ogg'
+	pickup_sound = 'sound/items/pickup/weldingtool.ogg'
 	var/helpforce = 0	//For help intent things
 
 /obj/item/weapon/surgical/attack(mob/M, mob/user)
@@ -30,6 +32,7 @@
 	icon_state = "retractor"
 	matter = list(DEFAULT_WALL_MATERIAL = 10000, "glass" = 5000)
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
+	drop_sound = 'sound/items/drop/scrap.ogg'
 
 /*
  * Hemostat
@@ -41,6 +44,7 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 2500)
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	attack_verb = list("attacked", "pinched")
+	drop_sound = 'sound/items/drop/scrap.ogg'
 
 /*
  * Cautery
@@ -52,6 +56,7 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 2500)
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	attack_verb = list("burnt")
+	drop_sound = 'sound/items/drop/scrap.ogg'
 
 /*
  * Surgical Drill
@@ -66,6 +71,7 @@
 	w_class = ITEMSIZE_NORMAL
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	attack_verb = list("drilled")
+	drop_sound = 'sound/items/drop/accessory.ogg'
 
 	suicide_act(mob/user)
 		var/datum/gender/TU = gender_datums[user.get_visible_gender()]
@@ -91,6 +97,7 @@
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	matter = list(DEFAULT_WALL_MATERIAL = 10000, "glass" = 5000)
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	drop_sound = 'sound/items/drop/knife.ogg'
 
 	suicide_act(mob/user)
 		var/datum/gender/TU = gender_datums[user.get_visible_gender()]
@@ -145,6 +152,7 @@
 	desc = "For heavy duty cutting."
 	icon_state = "saw3"
 	hitsound = 'sound/weapons/circsawhit.ogg'
+	drop_sound = 'sound/items/drop/accessory.ogg'
 	force = 15.0
 	w_class = ITEMSIZE_NORMAL
 	throwforce = 9.0
@@ -176,6 +184,7 @@
 	icon_state = "bone-gel"
 	force = 0
 	throwforce = 1.0
+	drop_sound = 'sound/items/drop/bottle.ogg'
 
 /obj/item/weapon/surgical/FixOVein
 	name = "FixOVein"
@@ -185,6 +194,7 @@
 	throwforce = 1.0
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 3)
 	var/usage_amount = 10
+	drop_sound = 'sound/items/drop/accessory.ogg'
 
 /obj/item/weapon/surgical/bonesetter
 	name = "bone setter"
@@ -195,6 +205,7 @@
 	throw_speed = 3
 	throw_range = 5
 	attack_verb = list("attacked", "hit", "bludgeoned")
+	drop_sound = 'sound/items/drop/scrap.ogg'
 
 /obj/item/weapon/surgical/bone_clamp
 	name = "bone clamp"

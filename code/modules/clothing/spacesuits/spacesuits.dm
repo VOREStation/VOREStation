@@ -6,6 +6,8 @@
 	name = "Space helmet"
 	icon_state = "space"
 	desc = "A special helmet designed for work in a hazardous, low-pressure environment."
+	randpixel = 0
+	center_of_mass = null
 	flags = PHORONGUARD
 	item_flags = THICKMATERIAL | AIRTIGHT | ALLOW_SURVIVALFOOD
 	permeability_coefficient = 0.01
@@ -30,36 +32,36 @@
 	brightness_on = 4
 	on = 0
 
-/obj/item/clothing/head/helmet/space/verb/toggle_camera()
+/obj/item/clothing/head/helmet/space/Initialize()
+	. = ..()
+	if(camera_networks)
+		verbs |= /obj/item/clothing/head/helmet/space/proc/toggle_camera
+
+/obj/item/clothing/head/helmet/space/proc/toggle_camera()
 	set name = "Toggle Helmet Camera"
 	set desc = "Turn your helmet's camera on or off."
-	set category = "Object"
+	set category = "Hardsuit"
 	set src in usr
 	if(usr.stat || usr.restrained() || usr.incapacitated())
 		return
 
-	if(camera_networks)
-		if(!camera)
-			camera = new /obj/machinery/camera(src)
-			camera.replace_networks(camera_networks)
-			camera.set_status(FALSE) //So the camera will activate in the following check.
+	if(!camera)
+		camera = new /obj/machinery/camera(src)
+		camera.replace_networks(camera_networks)
+		camera.set_status(FALSE) //So the camera will activate in the following check.
 
-		if(camera.status == TRUE)
-			camera.set_status(FALSE)
-			to_chat(usr, "<font color='blue'>Camera deactivated.</font>")
-		else
-			camera.set_status(TRUE)
-			camera.c_tag = usr.name
-			to_chat(usr, "<font color='blue'>User scanned as [camera.c_tag]. Camera activated.</font>")
-
+	if(camera.status == TRUE)
+		camera.set_status(FALSE)
+		to_chat(usr, "<font color='blue'>Camera deactivated.</font>")
 	else
-		to_chat(usr, "This helmet does not have a built-in camera.")
-		return
+		camera.set_status(TRUE)
+		camera.c_tag = usr.name
+		to_chat(usr, "<font color='blue'>User scanned as [camera.c_tag]. Camera activated.</font>")
 
-/obj/item/clothing/head/helmet/space/examine()
-	..()
-	if(camera_networks && get_dist(usr,src) <= 1)
-		to_chat(usr, "This helmet has a built-in camera. It's [camera ? "" : "in"]active.")
+/obj/item/clothing/head/helmet/space/examine(mob/user)
+	. = ..()
+	if(camera_networks && Adjacent(user))
+		. += "This helmet has a built-in camera. It's [camera ? "" : "in"]active."
 
 /obj/item/clothing/suit/space
 	name = "Space suit"

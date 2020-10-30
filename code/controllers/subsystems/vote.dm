@@ -13,6 +13,7 @@ SUBSYSTEM_DEF(vote)
 	var/duration
 	var/mode
 	var/question
+	var/gamemode_vote_called = FALSE // Have we had a gamemode vote this round?  Only auto-call if we haven't
 	var/list/choices = list()
 	var/list/gamemode_names = list()
 	var/list/voted = list()
@@ -191,7 +192,7 @@ SUBSYSTEM_DEF(vote)
 
 /datum/controller/subsystem/vote/proc/initiate_vote(vote_type, initiator_key, automatic = FALSE, time = config.vote_period)
 	if(!mode)
-		if(started_time != null && !(check_rights(R_ADMIN) || automatic))
+		if(started_time != null && !(check_rights(R_ADMIN|R_EVENT) || automatic))
 			var/next_allowed_time = (started_time + config.vote_delay)
 			if(next_allowed_time > world.time)
 				return 0
@@ -213,7 +214,7 @@ SUBSYSTEM_DEF(vote)
 					additional_text.Add("<td align = 'center'>[M.required_players]</td>")
 				gamemode_names["secret"] = "Secret"
 			if(VOTE_CREW_TRANSFER)
-				if(!check_rights(R_ADMIN|R_MOD, 0)) // The gods care not for the affairs of the mortals
+				if(!check_rights(R_ADMIN|R_MOD|R_EVENT, 0)) // The gods care not for the affairs of the mortals
 					if(get_security_level() == "red" || get_security_level() == "delta")
 						to_chat(initiator_key, "The current alert status is too high to call for a crew transfer!")
 						return 0
@@ -257,6 +258,7 @@ SUBSYSTEM_DEF(vote)
 			world << sound('sound/ambience/alarm4.ogg', repeat = 0, wait = 0, volume = 50, channel = 3)
 
 		if(mode == VOTE_GAMEMODE && round_progressing)
+			gamemode_vote_called = TRUE
 			round_progressing = 0
 			to_world("<font color='red'><b>Round start has been delayed.</b></font>")
 
@@ -269,7 +271,7 @@ SUBSYSTEM_DEF(vote)
 		return
 	var/admin = FALSE
 	if(C.holder)
-		if(C.holder.rights & R_ADMIN)
+		if(C.holder.rights & R_ADMIN|R_EVENT)
 			admin = TRUE
 
 	. = "<html><head><title>Voting Panel</title></head><body>"
@@ -350,7 +352,8 @@ SUBSYSTEM_DEF(vote)
 
 		if("cancel")
 			if(usr.client.holder)
-				reset()
+				if("Yes" == alert(usr, "You are about to cancel this vote. Are you sure?", "Cancel Vote", "No", "Yes"))
+					reset()
 		if("toggle_restart")
 			if(usr.client.holder)
 				config.allow_vote_restart = !config.allow_vote_restart

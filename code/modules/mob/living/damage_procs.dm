@@ -8,7 +8,7 @@
 	Returns
 	standard 0 if fail
 */
-/mob/living/proc/apply_damage(var/damage = 0,var/damagetype = BRUTE, var/def_zone = null, var/blocked = 0, var/soaked = 0, var/used_weapon = null, var/sharp = 0, var/edge = 0)
+/mob/living/proc/apply_damage(var/damage = 0,var/damagetype = BRUTE, var/def_zone = null, var/blocked = 0, var/soaked = 0, var/used_weapon = null, var/sharp = 0, var/edge = 0, var/obj/used_weapon = null)
 	if(Debug2)
 		to_world_log("## DEBUG: apply_damage() was called on [src], with [damage] damage, and an armor value of [blocked].")
 	if(!damage || (blocked >= 100))
@@ -18,6 +18,9 @@
 			damage -= round(damage*0.8)
 		else
 			damage -= soaked
+
+	var/initial_blocked = blocked
+
 	blocked = (100-blocked)/100
 	switch(damagetype)
 		if(BRUTE)
@@ -27,8 +30,8 @@
 				damage = 0
 			adjustFireLoss(damage * blocked)
 		if(SEARING)
-			apply_damage(damage / 3, BURN, def_zone, blocked, soaked, used_weapon, sharp, edge)
-			apply_damage(damage / 3 * 2, BRUTE, def_zone, blocked, soaked, used_weapon, sharp, edge)
+			apply_damage(round(damage / 3), BURN, def_zone, initial_blocked, soaked, used_weapon, sharp, edge)
+			apply_damage(round(damage / 3 * 2), BRUTE, def_zone, initial_blocked, soaked, used_weapon, sharp, edge)
 		if(TOX)
 			adjustToxLoss(damage * blocked)
 		if(OXY)
@@ -41,7 +44,7 @@
 			electrocute_act(damage, used_weapon, 1.0, def_zone)
 		if(BIOACID)
 			if(isSynthetic())
-				adjustFireLoss(damage * blocked)
+				apply_damage(damage, BURN, def_zone, initial_blocked, soaked, used_weapon, sharp, edge)	// Handle it as normal burn.
 			else
 				adjustToxLoss(damage * blocked)
 	flash_weak_pain()
@@ -109,5 +112,9 @@
 	if(drowsy)		apply_effect(drowsy, DROWSY, blocked)
 	if(agony)		apply_effect(agony, AGONY, blocked)
 	if(flammable)	adjust_fire_stacks(flammable)
-	if(ignite)		IgniteMob()
+	if(ignite)
+		if(ignite >= 3)
+			add_modifier(/datum/modifier/fire/stack_managed/intense, 60 SECONDS)
+		else
+			add_modifier(/datum/modifier/fire/stack_managed, 45 * ignite SECONDS)
 	return 1

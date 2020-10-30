@@ -18,12 +18,24 @@
 /datum/artifact_effect/celldrain/DoEffectAura()
 	if(holder)
 		var/turf/T = get_turf(holder)
-		for (var/obj/machinery/power/apc/C in range(200, T))
+		for (var/obj/machinery/power/apc/C in GLOB.apcs)
+			if(T.z != C.z)
+				continue
+			if(get_dist(T, C) > 200)
+				continue
 			for (var/obj/item/weapon/cell/B in C.contents)
 				B.charge = max(B.charge - 50,0)
-		for (var/obj/machinery/power/smes/S in range (src.effectrange,src))
+		for (var/obj/machinery/power/smes/S in GLOB.smeses)
+			if(T.z != S.z)
+				continue
+			if(get_dist(T, S) > src.effectrange)
+				continue
 			S.charge = max(S.charge - 100,0)
-		for (var/mob/living/silicon/robot/M in range(50, T))
+		for (var/mob/living/silicon/robot/M in silicon_mob_list)
+			if(T.z != M.z)
+				continue
+			if(get_dist(T, M) > 50)
+				continue
 			for (var/obj/item/weapon/cell/D in M.contents)
 				D.charge = max(D.charge - 50,0)
 				if(world.time - last_message > 200)
@@ -34,12 +46,24 @@
 /datum/artifact_effect/celldrain/DoEffectPulse()
 	if(holder)
 		var/turf/T = get_turf(holder)
-		for (var/obj/machinery/power/apc/C in range(200, T))
+		for (var/obj/machinery/power/apc/C in GLOB.apcs)
+			if(T.z != C.z)
+				continue
+			if(get_dist(T, C) > 200)
+				continue
 			for (var/obj/item/weapon/cell/B in C.contents)
 				B.charge = max(B.charge - rand() * 150,0)
-		for (var/obj/machinery/power/smes/S in range (src.effectrange,src))
+		for (var/obj/machinery/power/smes/S in GLOB.smeses)
+			if(T.z != S.z)
+				continue
+			if(get_dist(T, S) > src.effectrange)
+				continue
 			S.charge = max(S.charge - 250,0)
-		for (var/mob/living/silicon/robot/M in range(100, T))
+		for (var/mob/living/silicon/robot/M in silicon_mob_list)
+			if(T.z != M.z) 
+				continue
+			if(get_dist(T, M) > 100)
+				continue
 			for (var/obj/item/weapon/cell/D in M.contents)
 				D.charge = max(D.charge - rand() * 150,0)
 				if(world.time - last_message > 200)

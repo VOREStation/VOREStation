@@ -20,7 +20,7 @@
 	movement_cooldown = 0
 	hovering = TRUE
 
-	attacktext = list("slams into")
+	attacktext = list("slammed into")
 	attack_sound = 'sound/effects/slime_squish.ogg'
 	say_list_type = /datum/say_list/spore
 
@@ -75,6 +75,10 @@
 		color = overmind.blob_type.complementary_color
 		glow_color = color
 		glow_toggle = TRUE
+	else if(blob_type)
+		color = blob_type.complementary_color
+		glow_color = color
+		glow_toggle = TRUE
 	else
 		color = null
 		glow_color = null
@@ -102,6 +106,9 @@
 			infest(H)
 			break
 
+	if(overmind)
+		overmind.blob_type.on_spore_lifetick(src)
+
 	if(factory && z != factory.z) // This is to prevent spores getting lost in space and making the factory useless.
 		qdel(src)
 
@@ -118,7 +125,7 @@
 	desc = "A parasitic organism attached to a deceased body, controlling it directly as if it were a puppet."
 	melee_damage_lower += 8  // 10 total.
 	melee_damage_upper += 11 // 15 total.
-	attacktext = list("claws")
+	attacktext = list("clawed")
 
 	H.forceMove(src)
 	infested = H

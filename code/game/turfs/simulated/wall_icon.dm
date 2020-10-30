@@ -31,7 +31,7 @@
 	update_icon()
 
 
-/turf/simulated/wall/proc/set_material(var/material/newmaterial, var/material/newrmaterial, var/material/newgmaterial)
+/turf/simulated/wall/proc/set_material(var/datum/material/newmaterial, var/datum/material/newrmaterial, var/datum/material/newgmaterial)
 	material = newmaterial
 	reinf_material = newrmaterial
 	if(!newgmaterial)
@@ -67,7 +67,7 @@
 			I.color = reinf_material.icon_colour
 			add_overlay(I)
 		else
-			if("[reinf_material.icon_reinf]0" in icon_states('icons/turf/wall_masks.dmi'))
+			if("[reinf_material.icon_reinf]0" in cached_icon_states('icons/turf/wall_masks.dmi'))
 				// Directional icon
 				for(var/i = 1 to 4)
 					I = image('icons/turf/wall_masks.dmi', "[reinf_material.icon_reinf][wall_connections[i]]", dir = 1<<(i-1))
@@ -116,6 +116,15 @@
 	wall_connections = dirs_to_corner_states(dirs)
 
 /turf/simulated/wall/proc/can_join_with(var/turf/simulated/wall/W)
-	if(material && W.material && material.icon_base == W.material.icon_base)
+	//VOREStation Edit Start
+	//No blending if no material
+	if(!material || !W.material)
+		return 0
+	//We can blend if either is the same, or a subtype, of the other one
+	if(istype(W.material, material.type) || istype(material, W.material.type))
 		return 1
+	//Also blend if they have the same iconbase
+	if(material.icon_base == W.material.icon_base)
+		return 1
+	//VOREStation Edit End
 	return 0

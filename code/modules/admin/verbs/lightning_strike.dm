@@ -1,6 +1,6 @@
 /client/proc/admin_lightning_strike()
 	set name = "Lightning Strike"
-	set desc = "Causes lightning to strike on your tile. This will hurt things on or nearby it severely."
+	set desc = "Causes lightning to strike on your tile. This can be made to hurt things on or nearby it severely."
 	set category = "Fun"
 
 	if(!check_rights(R_FUN))
@@ -28,7 +28,7 @@
 
 	// Do a lightning flash for the whole planet, if the turf belongs to a planet.
 	var/datum/planet/P = null
-	P = SSplanets.z_to_planet[T.z]
+	P = LAZYACCESS(SSplanets.z_to_planet, T.z)
 	if(P)
 		var/datum/weather_holder/holder = P.weather_holder
 		flick("lightning_flash", holder.special_visuals)
@@ -64,7 +64,7 @@
 	// Otherwise only those on the current z-level will hear it.
 	var/sound = get_sfx("thunder")
 	for(var/mob/M in player_list)
-		if((P && M.z in P.expected_z_levels) || M.z == T.z)
+		if( (P && (M.z in P.expected_z_levels)) || M.z == T.z)
 			if(M.is_preference_enabled(/datum/client_preference/weather_sounds))
 				M.playsound_local(get_turf(M), soundin = sound, vol = 70, vary = FALSE, is_global = TRUE)
 

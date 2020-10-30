@@ -25,6 +25,7 @@ The proc you're attemping should return nonzero values on success.
 	catch(var/exception/e)
 		error("attempt_vr runtimed when calling [procname] on [callon].")
 		error("attempt_vr catch: [e] on [e.file]:[e.line]")
+		log_runtime(e)
 		return 0
 
 /*

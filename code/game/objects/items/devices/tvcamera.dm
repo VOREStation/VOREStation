@@ -22,9 +22,9 @@
 	..()
 
 /obj/item/device/tvcamera/examine()
-	..()
-	to_chat(usr, "Video feed is [camera.status ? "on" : "off"]")
-	to_chat(usr, "Audio feed is [radio.broadcasting ? "on" : "off"]")
+	. = ..()
+	. += "Video feed is [camera.status ? "on" : "off"]"
+	. += "Audio feed is [radio.broadcasting ? "on" : "off"]"
 
 /obj/item/device/tvcamera/Initialize()
 	. = ..()
@@ -38,9 +38,9 @@
 	radio.icon_state = src.icon_state
 	update_icon()
 
-/obj/item/device/tvcamera/hear_talk(mob/living/M, msg, var/verb="says", datum/language/speaking=null)
-	radio.hear_talk(M,msg,verb,speaking)
-	..()
+/obj/item/device/tvcamera/hear_talk(mob/M, list/message_pieces, verb)
+	radio.hear_talk(M, message_pieces, verb)
+	. = ..()
 
 /obj/item/device/tvcamera/attack_self(mob/user)
 	add_fingerprint(user)
@@ -54,7 +54,7 @@
 	popup.set_content(jointext(dat,null))
 	popup.open()
 
-/obj/item/device/tvcamera/Topic(bred, href_list, state = physical_state)
+/obj/item/device/tvcamera/Topic(bred, href_list, state = GLOB.tgui_physical_state)
 	if(..())
 		return 1
 	if(href_list["channel"])

@@ -100,13 +100,22 @@
 	sort_string = "MABBA"
 
 /datum/design/item/weapon/ballistic/ammo/stunshell
-	name = "stun shell"
+	name = "stun shells"
 	desc = "A stunning shell for a shotgun."
 	id = "stunshell"
 	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3)
 	materials = list(DEFAULT_WALL_MATERIAL = 4000)
-	build_path = /obj/item/ammo_casing/a12g/stunshell
+	build_path = /obj/item/weapon/storage/box/stunshells
 	sort_string = "MABBB"
+
+/datum/design/item/weapon/ballistic/ammo/empshell
+	name = "emp shells"
+	desc = "An electromagnetic shell for a shotgun."
+	id = "empshell"
+	req_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 3)
+	materials = list(DEFAULT_WALL_MATERIAL = 4000, MAT_URANIUM = 1000)
+	build_path = /obj/item/weapon/storage/box/empshells
+	sort_string = "MABBC"
 
 // Phase weapons
 
@@ -205,6 +214,13 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 80, "gold" = 40, "silver" = 40, "glass" = 60)
 	build_path = /obj/item/ammo_casing/chemdart
 	sort_string = "MADBD"
+
+/datum/design/item/weapon/ammo/flechette
+	id = "magnetic_ammo"
+	req_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4, TECH_MAGNET = 4)
+	materials = list(DEFAULT_WALL_MATERIAL = 500, "gold" = 300, "glass" = 150, MAT_PHORON = 100)
+	build_path = /obj/item/weapon/magnetic_ammo
+	sort_string = "MADBE"
 
 // Melee weapons
 

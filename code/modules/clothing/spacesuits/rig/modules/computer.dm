@@ -23,7 +23,7 @@
 		to_chat(usr, "Your module is not installed in a hardsuit.")
 		return
 
-	module.holder.ui_interact(usr, nano_state = contained_state)
+	module.holder.tgui_interact(usr, custom_state = GLOB.tgui_contained_state)
 
 /obj/item/rig_module/ai_container
 
@@ -405,7 +405,7 @@
 	drain_loc = interfaced_with.loc
 
 	holder.spark_system.start()
-	playsound(H.loc, 'sound/effects/sparks2.ogg', 50, 1)
+	playsound(H, 'sound/effects/sparks2.ogg', 50, 1)
 
 	return 1
 
@@ -429,7 +429,7 @@
 		return 0
 
 	holder.spark_system.start()
-	playsound(H.loc, 'sound/effects/sparks2.ogg', 50, 1)
+	playsound(H, 'sound/effects/sparks2.ogg', 50, 1)
 
 	H.break_cloak()
 

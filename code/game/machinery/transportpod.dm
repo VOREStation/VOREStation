@@ -6,7 +6,7 @@
 
 	density = 1 //thicc
 	anchored = 1
-	use_power = 0
+	use_power = USE_POWER_OFF
 
 	var/in_transit = 0
 	var/mob/occupant = null

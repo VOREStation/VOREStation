@@ -6,7 +6,7 @@
 /obj/machinery/portable_atmospherics/powered/reagent_distillery
 	name = "chemical distillery"
 	desc = "A complex machine utilizing state-of-the-art components to mix chemicals at different temperatures."
-	use_power = 1
+	use_power = USE_POWER_IDLE
 
 	icon = 'icons/obj/machines/reagent.dmi'
 	icon_state = "distiller"
@@ -19,7 +19,7 @@
 
 	var/target_temp = T20C
 
-	var/max_temp = T20C + 300
+	var/max_temp = T0C + 300
 	var/min_temp = T0C - 10
 
 	var/current_temp = T20C
@@ -86,6 +86,16 @@
 
 	update_icon()
 
+/obj/machinery/portable_atmospherics/powered/reagent_distillery/RefreshParts()
+	var/total_laser_rating = 0
+	for(var/obj/item/weapon/stock_parts/micro_laser/ML in component_parts)
+		total_laser_rating += ML.rating
+
+	max_temp = initial(max_temp) + (50 * (total_laser_rating - 1))
+	min_temp = max(1, initial(min_temp) - (30 * (total_laser_rating - 1)))
+
+	return
+
 /obj/machinery/portable_atmospherics/powered/reagent_distillery/proc/setup_overlay_vars()
 	overlay_output_beaker = image(icon = src.icon, icon_state = "[base_state]-output")
 	overlay_input_beaker = image(icon = src.icon, icon_state = "[base_state]-input")
@@ -107,6 +117,57 @@
 		OutputBeaker = null
 
 	..()
+
+/obj/machinery/portable_atmospherics/powered/reagent_distillery/examine(mob/user)
+	. = ..()
+	if(get_dist(user, src) <= 2)
+		. += "<span class='notice'>\The [src] is powered [on ? "on" : "off"].</span>"
+
+		. += "<span class='notice'>\The [src]'s gauges read:</span>"
+		if(!use_atmos)
+			. += "<span class='notice'>- Target Temperature:</span> <span class='warning'>[target_temp]</span>"
+		. += "<span class='notice'>- Temperature:</span> <span class='warning'>[current_temp]</span>"
+
+		if(InputBeaker)
+			if(InputBeaker.reagents.reagent_list.len)
+				. += "<span class='notice'>\The [src]'s input beaker holds [InputBeaker.reagents.total_volume] units of liquid.</span>"
+			else
+				. += "<span class='notice'>\The [src]'s input beaker is empty!</span>"
+
+		if(Reservoir.reagents.reagent_list.len)
+			. += "<span class='notice'>\The [src]'s internal buffer holds [Reservoir.reagents.total_volume] units of liquid.</span>"
+		else
+			. += "<span class='notice'>\The [src]'s internal buffer is empty!</span>"
+
+		if(OutputBeaker)
+			if(OutputBeaker.reagents.reagent_list.len)
+				. += "<span class='notice'>\The [src]'s output beaker holds [OutputBeaker.reagents.total_volume] units of liquid.</span>"
+			else
+				. += "<span class='notice'>\The [src]'s output beaker is empty!</span>"
+
+/obj/machinery/portable_atmospherics/powered/reagent_distillery/verb/toggle_power(mob/user = usr)
+	set name = "Toggle Distillery Heating"
+	set category = "Object"
+	set src in view(1)
+
+	if(powered())
+		on = !on
+		to_chat(user, "<span class='notice'>You turn \the [src] [on ? "on" : "off"].</span>")
+	else
+		to_chat(user, "<span class='notice'> Nothing happens.</span>")
+
+/obj/machinery/portable_atmospherics/powered/reagent_distillery/verb/toggle_mixing(mob/user = usr)
+	set name = "Start Distillery Mixing"
+	set category = "Object"
+	set src in view(1)
+
+	to_chat(user, "<span class='notice'>You press \the [src]'s chamber agitator button.</span>")
+	if(on)
+		visible_message("<span class='notice'>\The [src] rattles to life.</span>")
+		Reservoir.reagents.handle_reactions()
+	else
+		spawn(1 SECOND)
+			to_chat(user, "<span class='notice'>Nothing happens..</span>")
 
 /obj/machinery/portable_atmospherics/powered/reagent_distillery/attack_hand(mob/user)
 	var/list/options = list()
@@ -135,12 +196,10 @@
 
 	switch(choice)
 		if("examine")
-			examine(user)
+			user.examinate(src)
 
 		if("use")
-			if(powered())
-				on = !on
-				to_chat(user, "<span class='notice'>You turn \the [src] [on ? "on" : "off"].</span>")
+			toggle_power(user)
 
 		if("inspect gauges")
 			to_chat(user, "<span class='notice'>\The [src]'s gauges read:</span>")
@@ -149,13 +208,7 @@
 			to_chat(user, "<span class='notice'>- Temperature:</span> <span class='warning'>[current_temp]</span>")
 
 		if("pulse agitator")
-			to_chat(user, "<span class='notice'>You press \the [src]'s chamber agitator button.</span>")
-			if(on)
-				visible_message("<span class='notice'>\The [src] rattles to life.</span>")
-				Reservoir.reagents.handle_reactions()
-			else
-				spawn(1 SECOND)
-					to_chat(user, "<span class='notice'>Nothing happens..</span>")
+			toggle_mixing(user)
 
 		if("eject input")
 			if(InputBeaker)
@@ -224,7 +277,7 @@
 		return
 	if(chan == -1)
 		chan = power_channel
-	A.use_power(amount, chan)
+	A.use_power_oneoff(amount, chan)
 
 /obj/machinery/portable_atmospherics/powered/reagent_distillery/process()
 	..()
@@ -252,19 +305,36 @@
 	if(!powered())
 		on = FALSE
 
-	if(!on || (use_atmos && (!connected_port || avg_pressure < 1000)))
+	if(!on || (use_atmos && (!connected_port || (avg_pressure / avg_temp) < (1000 / T20C)))) // This mostly respects gas laws by ignoring volume but it should make it usable at low temps
 		current_temp = round((current_temp + T20C) / 2)
 
 	else if(on)
 		if(!use_atmos)
 			if(current_temp != round(target_temp))
-				var/shift_mod = 0
-				if(current_temp < target_temp)
-					shift_mod = 1
-				else if(current_temp > target_temp)
-					shift_mod = -1
-				current_temp = CLAMP(round((current_temp + 1 * shift_mod) + (rand(-5, 5) / 10)), min_temp, max_temp)
+				// Some horrible bastardized attempt at approximating the values of a logistic function, bounded by (max_temp, target_temp, min_temp)
+				// So we can attempt to estimate the change in temperature for this process() step
+
+				// Apply inverse of the logistic function to fetch our x value
+				var/x = -1 * log((current_temp < target_temp ? (target_temp - min_temp) / (current_temp - min_temp) : (max_temp - target_temp) / (max_temp - current_temp)) - 1)
+				if(!x)
+					x = 0 // Keep null from propagating into the temp
+
+				// Apply the derivative of the logistic function to get the slope
+				var/dy = (NUM_E ** (-1 * x)) / ((1 + (NUM_E ** (-1 * x))) ** 2)
+
+				// Compute temperature diff, being farther from the target should result in larger steps
+				// IMPORTANT: If you want to tweak how quickly this changes, tweak this *10!
+				// As of initial testing, a *10 gives ~5-6 minutes to go from room temp to 500C (+/-0.5C)
+				var/temp_diff = (current_temp < target_temp ? dy * 10 * target_temp / current_temp : dy * -10 * current_temp / target_temp)
+
+				current_temp = CLAMP(round((current_temp + temp_diff), 0.01), min_temp, max_temp)
 				use_power(power_rating * CELLRATE)
+
+				if(target_temp == round(current_temp, 1.0))
+					current_temp = target_temp // Hard set it so we don't need to worry about exact decimals any more, after we've been keeping track of it all this time
+					playsound(src, 'sound/machines/ping.ogg', 50, 0)
+					src.visible_message("<span class='notice'>\The [src] pings as it reaches the target temperature.</span>")
+
 		else if(connected_port && avg_pressure > 1000)
 			current_temp = round((current_temp + avg_temp) / 2)
 		else if(!run_pump)

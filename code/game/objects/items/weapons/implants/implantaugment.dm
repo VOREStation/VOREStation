@@ -75,12 +75,12 @@
 
 		var/obj/item/organ/external/E = setup_augment_slots(H, NewOrgan)
 		to_chat(H, "<span class='notice'>You feel a tingling sensation in your [part].</span>")
-		if(E && istype(E) && !(H.internal_organs_by_name[NewOrgan.organ_tag]))
+		NewOrgan.forceMove(H)
+		NewOrgan.owner = H
+		if(E && istype(E) && !(H.internal_organs_by_name[NewOrgan.organ_tag]) && NewOrgan.check_verb_compatability())
 			spawn(rand(1 SECONDS, 30 SECONDS))
 				to_chat(H, "<span class='alien'>You feel a pressure in your [E] as the tingling fades, the lump caused by the implant now gone.</span>")
 
-			NewOrgan.forceMove(H)
-			NewOrgan.owner = H
 			if(E.internal_organs == null)
 				E.internal_organs = list()
 			E.internal_organs |= NewOrgan
@@ -169,6 +169,10 @@
 	organ_to_implant = /obj/item/organ/internal/augment/armmounted/hand/sword
 	organ_display_name = "weapon augment"
 
+/obj/item/weapon/implant/organ/limbaugment/wrist/blade
+	organ_to_implant = /obj/item/organ/internal/augment/armmounted/hand/blade
+	organ_display_name = "weapon augment"
+
 // Fore-arm
 /obj/item/weapon/implant/organ/limbaugment/laser
 	organ_to_implant = /obj/item/organ/internal/augment/armmounted
@@ -184,6 +188,10 @@
 
 /obj/item/weapon/implant/organ/limbaugment/upperarm/surge
 	organ_to_implant = /obj/item/organ/internal/augment/armmounted/shoulder/surge
+
+/obj/item/weapon/implant/organ/limbaugment/upperarm/blade
+	organ_to_implant = /obj/item/organ/internal/augment/armmounted/shoulder/blade
+	organ_display_name = "weapon augment"
 
 /*
  * Others

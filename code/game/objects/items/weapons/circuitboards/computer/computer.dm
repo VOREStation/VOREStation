@@ -177,6 +177,30 @@
 	build_path = /obj/machinery/computer/aifixer
 	origin_tech = list(TECH_DATA = 3, TECH_BIO = 2)
 
+
+/obj/item/weapon/circuitboard/helm
+	name = T_BOARD("helm control console")
+	build_path = /obj/machinery/computer/ship/helm
+
+/obj/item/weapon/circuitboard/engine
+	name = T_BOARD("engine control console")
+	build_path = /obj/machinery/computer/ship/engines
+
+/obj/item/weapon/circuitboard/nav
+	name = T_BOARD("navigation console")
+	build_path = /obj/machinery/computer/ship/navigation
+
+/obj/item/weapon/circuitboard/nav/tele
+	name = T_BOARD("navigation telescreen")
+	build_path = /obj/machinery/computer/ship/navigation/telescreen
+
+/obj/item/weapon/circuitboard/sensors
+	name = T_BOARD("sensors console")
+	build_path = /obj/machinery/computer/ship/sensors
+
+
+
+
 /obj/item/weapon/circuitboard/area_atmos
 	name = T_BOARD("area air control console")
 	build_path = /obj/machinery/computer/area_atmos

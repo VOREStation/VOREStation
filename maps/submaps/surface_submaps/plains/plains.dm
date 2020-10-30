@@ -28,6 +28,15 @@
 #include "SupplyDrop2.dmm"
 #include "RationCache.dmm"
 #include "Oldhouse.dmm"
+#include "PlainsKururak.dmm"
+#include "BuriedTreasure.dmm"
+#include "BuriedTreasure2.dmm"
+#include "BuriedTreasure3.dmm"
+#include "methlab.dmm"
+#include "hotspring.dmm"
+#include "lonehome.dmm"
+#include "priderock.dmm"
+#include "oldhotel.dmm"
 #endif
 
 
@@ -84,7 +93,7 @@
 	cost = 5
 
 /datum/map_template/surface/plains/normal/Rocky2
-	name =  "Rocky2"
+	name =  "Rocky 2"
 	desc = "More rocks."
 	mappath = 'maps/submaps/surface_submaps/wilderness/Rocky2.dmm'
 	allow_duplicates = TRUE
@@ -109,7 +118,7 @@
 	cost = 5
 
 /datum/map_template/surface/plains/Shakden
-	name = "Shakden"
+	name = "Shantak Den"
 	desc = "Not to be confused with Shaq Den"
 	mappath = 'maps/submaps/surface_submaps/plains/Shakden_vr.dmm' //VOREStation Edit
 	cost = 10
@@ -163,31 +172,31 @@
 	cost = 25
 
 /datum/map_template/surface/plains/snow1
-	name = "Snow1"
+	name = "Snow 1"
 	desc = "Snow"
 	mappath = 'maps/submaps/surface_submaps/plains/snow1.dmm'
 	cost = 5
 
 /datum/map_template/surface/plains/snow2
-	name = "Snow2"
+	name = "Snow 2"
 	desc = "More snow"
 	mappath = 'maps/submaps/surface_submaps/plains/snow2.dmm'
 	cost = 5
 
 /datum/map_template/surface/plains/snow3
-	name = "Snow3"
+	name = "Snow 3"
 	desc = "Snow Snow Snow"
 	mappath = 'maps/submaps/surface_submaps/plains/snow3.dmm'
 	cost = 5
 
 /datum/map_template/surface/plains/snow4
-	name = "Snow4"
+	name = "Snow 4"
 	desc = "Too much snow"
 	mappath = 'maps/submaps/surface_submaps/plains/snow4.dmm'
 	cost = 5
 
 /datum/map_template/surface/plains/snow5
-	name = "Snow5"
+	name = "Snow 5"
 	desc = "Please stop the snow"
 	mappath = 'maps/submaps/surface_submaps/plains/snow5.dmm'
 	cost = 5
@@ -199,13 +208,76 @@
 	cost = 5
 
 /datum/map_template/surface/plains/SupplyDrop2
-	name = "Supply Drop 2"
+	name = "Old Supply Drop"
 	desc = "A drop pod that's clearly been here a while, most of the things inside are rusted and worthless."
 	mappath = 'maps/submaps/surface_submaps/plains/SupplyDrop2.dmm'
 	cost = 8
 
 /datum/map_template/surface/plains/Oldhouse
-	name = "Oldhouse"
+	name = "Old House"
 	desc = "Someones old library it seems.."
 	mappath = 'maps/submaps/surface_submaps/plains/Oldhouse_vr.dmm' //VOREStation Edit
+	cost = 15
+
+/datum/map_template/surface/plains/ChemSpill1
+	name = "Ruptured Canister"
+	desc = "A dumped chemical canister. Looks dangerous."
+	mappath = 'maps/submaps/surface_submaps/plains/chemspill1_vr.dmm' //VOREStation Edit
+	cost = 10
+
+/datum/map_template/surface/plains/PlainsKururak
+	name = "Lone Kururak"
+	desc = "A lone Kururak's den."
+	mappath = 'maps/submaps/surface_submaps/plains/PlainsKururak.dmm'
+	cost = 10
+
+/datum/map_template/surface/plains/BuriedTreasure1
+	name = "Buried Treasure 1"
+	desc = "A hole in the ground, who knows what might be inside!"
+	mappath = 'maps/submaps/surface_submaps/plains/BuriedTreasure.dmm'
+	cost = 10
+	template_group = "Shallow Grave"
+
+/datum/map_template/surface/plains/BuriedTreasure2
+	name = "Buried Treasure 2"
+	desc = "A hole in the ground, who knows what might be inside!"
+	mappath = 'maps/submaps/surface_submaps/plains/BuriedTreasure2.dmm'
+	cost = 10
+	template_group = "Shallow Grave"
+
+/datum/map_template/surface/plains/BuriedTreasure3
+	name = "Buried Treasure 3"
+	desc = "A hole in the ground, who knows what might be inside!"
+	mappath = 'maps/submaps/surface_submaps/plains/BuriedTreasure3.dmm'
+	cost = 10
+	template_group = "Shallow Grave"
+
+/datum/map_template/surface/plains/oldhotel
+	name = "Old Hotel"
+	desc = "A abandoned hotel of sort, wonder why it was left behind."
+	mappath = 'maps/submaps/surface_submaps/plains/oldhotel.dmm'
+	cost = 15
+
+/datum/map_template/surface/plains/priderock
+	name = "Pride Rock"
+	desc = "A quite steep petruding rock from the earth, looks like a good hike."
+	mappath = 'maps/submaps/surface_submaps/plains/priderock.dmm'
+	cost = 10
+
+/datum/map_template/surface/plains/lonehome
+	name = "Lone Home"
+	desc = "A quite inoffensive looking home, damaged but still holding up."
+	mappath = 'maps/submaps/surface_submaps/plains/lonehome.dmm'
+	cost = 15
+
+/datum/map_template/surface/plains/hotspring
+	name = "Hot Spring"
+	desc = "Wait what, a hotspring in a frost planet?"
+	mappath = 'maps/submaps/surface_submaps/plains/hotspring.dmm'
+	cost = 5
+
+/datum/map_template/surface/plains/methlab
+	name = "Meth Lab"
+	desc = "A broken down greenhouse lab?, this does not look safe."
+	mappath = 'maps/submaps/surface_submaps/plains/methlab.dmm'
 	cost = 15

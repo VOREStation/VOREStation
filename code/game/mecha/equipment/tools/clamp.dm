@@ -33,7 +33,7 @@
 					if(FD.blocked)
 						FD.visible_message("<span class='danger'>\The [chassis] begins prying on \the [FD]!</span>")
 						if(do_after(chassis.occupant,10 SECONDS,FD))
-							playsound(FD.loc, 'sound/machines/airlock_creaking.ogg', 100, 1)
+							playsound(FD, 'sound/machines/door/airlock_creaking.ogg', 100, 1)
 							FD.blocked = 0
 							FD.update_icon()
 							FD.open(1)
@@ -41,7 +41,7 @@
 					else if(FD.density)
 						FD.visible_message("<span class='warning'>\The [chassis] begins forcing \the [FD] open!</span>")
 						if(do_after(chassis.occupant, 5 SECONDS,FD))
-							playsound(FD.loc, 'sound/machines/airlock_creaking.ogg', 100, 1)
+							playsound(FD, 'sound/machines/door/airlock_creaking.ogg', 100, 1)
 							FD.visible_message("<span class='danger'>\The [chassis] forces \the [FD] open!</span>")
 							FD.open(1)
 					else
@@ -57,7 +57,7 @@
 							if(do_after(chassis.occupant, 15 SECONDS,AD) && chassis.Adjacent(AD))
 								AD.welded = FALSE
 								AD.update_icon()
-								playsound(AD.loc, 'sound/machines/airlock_creaking.ogg', 100, 1)
+								playsound(AD, 'sound/machines/door/airlock_creaking.ogg', 100, 1)
 								AD.visible_message("<span class='danger'>\The [chassis] tears \the [AD] open!</span>")
 						if(!AD.welded)
 							if(density)
@@ -100,15 +100,15 @@
 			M.adjustOxyLoss(round(dam_force/2))
 			M.updatehealth()
 			occupant_message("<span class='warning'>You squeeze [target] with [src.name]. Something cracks.</span>")
-			playsound(src.loc, "fracture", 5, 1, -2) //CRACK
+			playsound(src, "fracture", 5, 1, -2) //CRACK
 			chassis.visible_message("<span class='warning'>[chassis] squeezes [target].</span>")
 		else if(chassis.occupant.a_intent == I_DISARM && enable_special)
-			playsound(src.loc, 'sound/mecha/hydraulic.ogg', 10, 1, -2)
+			playsound(src, 'sound/mecha/hydraulic.ogg', 10, 1, -2)
 			M.take_overall_damage(dam_force/2)
 			M.adjustOxyLoss(round(dam_force/3))
 			M.updatehealth()
 			occupant_message("<span class='warning'>You slam [target] with [src.name]. Something cracks.</span>")
-			playsound(src.loc, "fracture", 3, 1, -2) //CRACK 2
+			playsound(src, "fracture", 3, 1, -2) //CRACK 2
 			chassis.visible_message("<span class='warning'>[chassis] slams [target].</span>")
 			M.throw_at(get_step(M,get_dir(src, M)), 14, 1.5, chassis)
 		else

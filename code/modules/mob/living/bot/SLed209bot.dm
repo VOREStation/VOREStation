@@ -21,6 +21,7 @@
 	xeno_harm_strength = 9
 	req_one_access = list(access_research, access_robotics)
 	botcard_access = list(access_research, access_robotics, access_xenobiology, access_xenoarch, access_tox, access_tox_storage, access_maint_tunnels)
+	retaliates = FALSE
 	var/xeno_stun_strength = 6
 
 /mob/living/bot/secbot/ed209/slime/update_icons()
@@ -40,7 +41,7 @@
 	if(emagged)
 		projectile = /obj/item/projectile/beam/shock
 
-	playsound(loc, emagged ? 'sound/weapons/laser3.ogg' : 'sound/weapons/Taser.ogg', 50, 1)
+	playsound(src, emagged ? 'sound/weapons/laser3.ogg' : 'sound/weapons/Taser.ogg', 50, 1)
 	var/obj/item/projectile/P = new projectile(loc)
 
 	P.firer = src

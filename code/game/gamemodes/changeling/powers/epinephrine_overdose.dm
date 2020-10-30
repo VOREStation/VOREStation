@@ -29,7 +29,7 @@
 
 	var/mob/living/carbon/human/C = src
 	to_chat(C, "<span class='notice'>Energy rushes through us.  [C.lying ? "We arise." : ""]</span>")
-	C.stat = 0
+	C.set_stat(CONSCIOUS)
 	C.SetParalysis(0)
 	C.SetStunned(0)
 	C.SetWeakened(0)

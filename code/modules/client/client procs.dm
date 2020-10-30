@@ -34,11 +34,22 @@
 
 	#endif
 
+	// asset_cache
+	var/asset_cache_job
+	if(href_list["asset_cache_confirm_arrival"])
+		asset_cache_job = asset_cache_confirm_arrival(href_list["asset_cache_confirm_arrival"])
+		if (!asset_cache_job)
+			return
+
 	//search the href for script injection
 	if( findtext(href,"<script",1,0) )
 		to_world_log("Attempted use of scripts within a topic call, by [src]")
 		message_admins("Attempted use of scripts within a topic call, by [src]")
 		//del(usr)
+		return
+
+	// Tgui Topic middleware
+	if(!tgui_Topic(href_list))
 		return
 
 	//Admin PM
@@ -60,17 +71,66 @@
 		send2adminirc(href_list["irc_msg"])
 		return
 
+	//VOREStation Add
+	if(href_list["discord_reg"])
+		var/their_id = html_decode(href_list["discord_reg"])
+		var/sane = FALSE
+		for(var/item in GLOB.pending_discord_registrations)
+			var/list/L = item
+			if(!islist(L))
+				GLOB.pending_discord_registrations -= item
+				continue
+			if(L["ckey"] == ckey && L["id"] == their_id)
+				GLOB.pending_discord_registrations -= list(item)
+				var/time = L["time"]
+				if((world.realtime - time) > 10 MINUTES)
+					to_chat(src, "<span class='warning'>Sorry, that link has expired. Please request another on Discord.</span>")
+					return
+				sane = TRUE
+				break
+		
+		if(!sane)
+			to_chat(src, "<span class='warning'>Sorry, that link doesn't appear to be valid. Please try again.</span>")
+			return
 
+		var/sql_discord = sql_sanitize_text(their_id)
+		var/sql_ckey = sql_sanitize_text(ckey)
+		var/DBQuery/query = dbcon.NewQuery("UPDATE erro_player SET discord_id = '[sql_discord]' WHERE ckey = '[sql_ckey]'")
+		if(query.Execute())
+			to_chat(src, "<span class='notice'>Registration complete! Thank you for taking the time to register your Discord ID.</span>")
+			log_and_message_admins("[ckey] has registered their Discord ID to obtain the Crew Member role. Their Discord snowflake ID is: [their_id]")
+			admin_chat_message(message = "[ckey] has registered their Discord ID to obtain the Crew Member role. Their Discord is: <@[their_id]>", color = "#4eff22")
+			notes_add(ckey, "Discord ID: [their_id]")
+			world.VgsAddMemberRole(their_id)
+		else
+			to_chat(src, "<span class='warning'>There was an error registering your Discord ID in the database. Contact an administrator.</span>")
+			log_and_message_admins("[ckey] failed to register their Discord ID. Their Discord snowflake ID is: [their_id]. Is the database connected?")
+		return
+	//VOREStation Add End
 
 	//Logs all hrefs
 	if(config && config.log_hrefs && href_logfile)
 		WRITE_LOG(href_logfile, "[src] (usr:[usr])</small> || [hsrc ? "[hsrc] " : ""][href]")
+
+	//byond bug ID:2256651
+	if (asset_cache_job && (asset_cache_job in completed_asset_jobs))
+		to_chat(src, "<span class='danger'>An error has been detected in how your client is receiving resources. Attempting to correct.... (If you keep seeing these messages you might want to close byond and reconnect)</span>")
+		src << browse("...", "window=asset_cache_browser")
+		return
+	if (href_list["asset_cache_preload_data"])
+		asset_cache_preload_data(href_list["asset_cache_preload_data"])
+		return
 
 	switch(href_list["_src_"])
 		if("holder")	hsrc = holder
 		if("usr")		hsrc = mob
 		if("prefs")		return prefs.process_link(usr,href_list)
 		if("vars")		return view_var_Topic(href,href_list,hsrc)
+		if("chat")		return chatOutput.Topic(href, href_list)
+
+	switch(href_list["action"])
+		if("openLink")
+			src << link(href_list["link"])
 
 	..()	//redirect to hsrc.Topic()
 
@@ -105,8 +165,14 @@
 		del(src)
 		return
 
-	to_chat(src, "<font color='red'>If the title screen is black, resources are still downloading. Please be patient until the title screen appears.</font>")
+	chatOutput = new /datum/chatOutput(src) //veechat
+	chatOutput.send_resources()
+	spawn()
+		chatOutput.start()
 
+	//Only show this if they are put into a new_player mob. Otherwise, "what title screen?"
+	if(isnewplayer(src.mob))
+		to_chat(src, "<font color='red'>If the title screen is black, resources are still downloading. Please be patient until the title screen appears.</font>")
 
 	GLOB.clients += src
 	GLOB.directory[ckey] = src
@@ -116,7 +182,7 @@
 	//Admin Authorisation
 	holder = admin_datums[ckey]
 	if(holder)
-		admins += src
+		GLOB.admins += src
 		holder.owner = src
 
 	//preferences datum - also holds some persistant data for the client (because we may as well keep these datums to a minimum)
@@ -130,12 +196,18 @@
 	. = ..()	//calls mob.Login()
 	prefs.sanitize_preferences()
 
+	connection_time = world.time
+	connection_realtime = world.realtime
+	connection_timeofday = world.timeofday
+
 	if(custom_event_msg && custom_event_msg != "")
 		to_chat(src, "<h1 class='alert'>Custom Event</h1>")
 		to_chat(src, "<h2 class='alert'>A custom event is taking place. OOC Info:</h2>")
 		to_chat(src, "<span class='alert'>[custom_event_msg]</span>")
 		to_chat(src, "<br>")
 
+	if(!winexists(src, "asset_cache_browser")) // The client is using a custom skin, tell them.
+		to_chat(src, "<span class='warning'>Unable to access asset cache browser, if you are using a custom skin file, please allow DS to download the updated version, if you are not, then make a bug report. This is not a critical issue but can cause issues with resource downloading, as it is impossible to know when extra resources arrived to you.</span>")
 
 	if(holder)
 		add_admin_verbs()
@@ -152,21 +224,20 @@
 	log_client_to_db()
 
 	send_resources()
-	SSnanoui.send_resources(src)
 
 	if(!void)
 		void = new()
 		void.MakeGreed()
 	screen += void
 
-	if(prefs.lastchangelog != changelog_hash) //bolds the changelog button on the interface so we know there are updates.
+	if((prefs.lastchangelog != changelog_hash) && isnewplayer(src.mob)) //bolds the changelog button on the interface so we know there are updates.
 		to_chat(src, "<span class='info'>You have unread updates in the changelog.</span>")
 		winset(src, "rpane.changelog", "background-color=#eaeaea;font-style=bold")
 		if(config.aggressive_changelog)
 			src.changes()
 
 	hook_vr("client_new",list(src)) //VOREStation Code
-	
+
 	if(config.paranoia_logging)
 		var/alert = FALSE //VOREStation Edit start.
 		if(isnum(player_age) && player_age == 0)
@@ -176,7 +247,7 @@
 			log_and_message_admins("PARANOIA: [key_name(src)] has a very new BYOND account ([account_age] days).")
 			alert = TRUE
 		if(alert)
-			for(var/client/X in admins)
+			for(var/client/X in GLOB.admins)
 				if(X.is_preference_enabled(/datum/client_preference/holder/play_adminhelp_ping))
 					X << 'sound/voice/bcriminal.ogg'
 				window_flash(X)
@@ -188,7 +259,7 @@
 /client/Del()
 	if(holder)
 		holder.owner = null
-		admins -= src
+		GLOB.admins -= src
 	GLOB.ahelp_tickets.ClientLogout(src)
 	GLOB.directory -= ckey
 	GLOB.clients -= src
@@ -273,13 +344,14 @@
 	var/sql_computerid = sql_sanitize_text(src.computer_id)
 	var/sql_admin_rank = sql_sanitize_text(admin_rank)
 
+	// If you're about to disconnect the player, you have to use to_chat_immediate otherwise they won't get the message (SSchat will queue it)
+
 	//Panic bunker code
 	if (isnum(player_age) && player_age == 0) //first connection
 		if (config.panic_bunker && !holder && !deadmin_holder)
 			log_adminwarn("Failed Login: [key] - New account attempting to connect during panic bunker")
 			message_admins("<span class='adminnotice'>Failed Login: [key] - New account attempting to connect during panic bunker</span>")
-			to_chat(src, "Sorry but the server is currently not accepting connections from never before seen players.")
-			qdel(src)
+			disconnect_with_message("Sorry but the server is currently not accepting connections from never before seen players.")
 			return 0
 
 	// IP Reputation Check
@@ -297,23 +369,25 @@
 
 				//Take action if required
 				if(config.ipr_block_bad_ips && config.ipr_allow_existing) //We allow players of an age, but you don't meet it
-					to_chat(src, "Sorry, we only allow VPN/Proxy/Tor usage for players who have spent at least [config.ipr_minimum_age] days on the server. If you are unable to use the internet without your VPN/Proxy/Tor, please contact an admin out-of-game to let them know so we can accommodate this.")
-					qdel(src)
+					disconnect_with_message("Sorry, we only allow VPN/Proxy/Tor usage for players who have spent at least [config.ipr_minimum_age] days on the server. If you are unable to use the internet without your VPN/Proxy/Tor, please contact an admin out-of-game to let them know so we can accommodate this.")
 					return 0
 				else if(config.ipr_block_bad_ips) //We don't allow players of any particular age
-					to_chat(src, "Sorry, we do not accept connections from users via VPN/Proxy/Tor connections.")
-					qdel(src)
+					disconnect_with_message("Sorry, we do not accept connections from users via VPN/Proxy/Tor connections. If you believe this is in error, contact an admin out-of-game.")
 					return 0
 		else
 			log_admin("Couldn't perform IP check on [key] with [address]")
 
 	// VOREStation Edit Start - Department Hours
-	if(config.time_off)
-		var/DBQuery/query_hours = dbcon.NewQuery("SELECT department, hours FROM vr_player_hours WHERE ckey = '[sql_ckey]'")
-		query_hours.Execute()
+	var/DBQuery/query_hours = dbcon.NewQuery("SELECT department, hours, total_hours FROM vr_player_hours WHERE ckey = '[sql_ckey]'")
+	if(query_hours.Execute())
 		while(query_hours.NextRow())
-			LAZYINITLIST(department_hours)
 			department_hours[query_hours.item[1]] = text2num(query_hours.item[2])
+			play_hours[query_hours.item[1]] = text2num(query_hours.item[3])
+	else
+		var/error_message = query_hours.ErrorMsg() // Need this out here since the spawn below will split the stack and who knows what'll happen by the time it runs
+		log_debug("Error loading play hours for [ckey]: [error_message]")
+		spawn(0)
+			alert(src, "The query to load your existing playtime failed. Screenshot this, give the screenshot to a developer, and reconnect, otherwise you may lose any recorded play hours (which may limit access to jobs). ERROR: [error_message]", "PROBLEMS!!")
 	// VOREStation Edit End - Department Hours
 
 	if(sql_id)
@@ -340,72 +414,25 @@
 	if(inactivity > duration)	return inactivity
 	return 0
 
-// Byond seemingly calls stat, each tick.
-// Calling things each tick can get expensive real quick.
-// So we slow this down a little.
-// See: http://www.byond.com/docs/ref/info.html#/client/proc/Stat
-/client/Stat()
-	. = ..()
-	if (holder)
-		sleep(1)
+//Called when the client performs a drag-and-drop operation.
+/client/MouseDrop(start_object,end_object,start_location,end_location,start_control,end_control,params)
+	if(buildmode && start_control == "mapwindow.map" && start_control == end_control)
+		build_drag(src,buildmode,start_object,end_object,start_location,end_location,start_control,end_control,params)
 	else
-		stoplag(5)
+		. = ..()
 
 /client/proc/last_activity_seconds()
 	return inactivity / 10
 
 //send resources to the client. It's here in its own proc so we can move it around easiliy if need be
 /client/proc/send_resources()
+	spawn (10) //removing this spawn causes all clients to not get verbs.
 
-	getFiles(
-		'html/search.js',
-		'html/panels.css',
-		'html/images/loading.gif',
-		'html/images/ntlogo.png',
-		'html/images/sglogo.png',
-		'html/images/talisman.png',
-		'html/images/paper_bg.png',
-		'html/images/no_image32.png',
-		'icons/pda_icons/pda_atmos.png',
-		'icons/pda_icons/pda_back.png',
-		'icons/pda_icons/pda_bell.png',
-		'icons/pda_icons/pda_blank.png',
-		'icons/pda_icons/pda_boom.png',
-		'icons/pda_icons/pda_bucket.png',
-		'icons/pda_icons/pda_crate.png',
-		'icons/pda_icons/pda_cuffs.png',
-		'icons/pda_icons/pda_eject.png',
-		'icons/pda_icons/pda_exit.png',
-		'icons/pda_icons/pda_flashlight.png',
-		'icons/pda_icons/pda_honk.png',
-		'icons/pda_icons/pda_mail.png',
-		'icons/pda_icons/pda_medical.png',
-		'icons/pda_icons/pda_menu.png',
-		'icons/pda_icons/pda_mule.png',
-		'icons/pda_icons/pda_notes.png',
-		'icons/pda_icons/pda_power.png',
-		'icons/pda_icons/pda_rdoor.png',
-		'icons/pda_icons/pda_reagent.png',
-		'icons/pda_icons/pda_refresh.png',
-		'icons/pda_icons/pda_scanner.png',
-		'icons/pda_icons/pda_signaler.png',
-		'icons/pda_icons/pda_status.png',
-		'icons/spideros_icons/sos_1.png',
-		'icons/spideros_icons/sos_2.png',
-		'icons/spideros_icons/sos_3.png',
-		'icons/spideros_icons/sos_4.png',
-		'icons/spideros_icons/sos_5.png',
-		'icons/spideros_icons/sos_6.png',
-		'icons/spideros_icons/sos_7.png',
-		'icons/spideros_icons/sos_8.png',
-		'icons/spideros_icons/sos_9.png',
-		'icons/spideros_icons/sos_10.png',
-		'icons/spideros_icons/sos_11.png',
-		'icons/spideros_icons/sos_12.png',
-		'icons/spideros_icons/sos_13.png',
-		'icons/spideros_icons/sos_14.png'
-		)
+		//load info on what assets the client has
+		src << browse('code/modules/asset_cache/validate_assets.html', "window=asset_cache_browser")
 
+		//Precache the client with all other assets slowly, so as to not block other browse() calls
+		addtimer(CALLBACK(GLOBAL_PROC, /proc/getFilesSlow, src, SSassets.preload, FALSE), 5 SECONDS)
 
 mob/proc/MayRespawn()
 	return 0
@@ -440,6 +467,29 @@ client/verb/character_setup()
 	if(var_name == NAMEOF(src, holder))
 		return FALSE
 	return ..()
+
+/client/verb/reload_vchat()
+	set name = "Reload VChat"
+	set category = "OOC"
+
+	//Timing
+	if(src.chatOutputLoadedAt > (world.time - 10 SECONDS))
+		alert(src, "You can only try to reload VChat every 10 seconds at most.")
+		return
+
+	verbs -= /client/proc/vchat_export_log
+
+	//Log, disable
+	log_debug("[key_name(src)] reloaded VChat.")
+	winset(src, null, "outputwindow.htmloutput.is-visible=false;outputwindow.oldoutput.is-visible=false;outputwindow.chatloadlabel.is-visible=true")
+
+	//The hard way
+	qdel_null(src.chatOutput)
+	chatOutput = new /datum/chatOutput(src) //veechat
+	chatOutput.send_resources()
+	spawn()
+		chatOutput.start()
+
 
 //This is for getipintel.net.
 //You're welcome to replace this proc with your own that does your own cool stuff.
@@ -500,3 +550,9 @@ client/verb/character_setup()
 	else
 		ip_reputation = score
 		return TRUE
+
+/client/proc/disconnect_with_message(var/message = "You have been intentionally disconnected by the server.<br>This may be for security or administrative reasons.")
+	message = "<head><title>You Have Been Disconnected</title></head><body><hr><center><b>[message]</b></center><hr><br>If you feel this is in error, you can contact an administrator out-of-game (for example, on Discord).</body>"
+	window_flash(src)
+	src << browse(message,"window=dropmessage;size=480x360;can_close=1")
+	qdel(src)

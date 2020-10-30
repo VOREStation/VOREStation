@@ -1,5 +1,10 @@
 /datum/power/shadekin
 
+/mob/living/carbon/human/is_incorporeal()
+	if(ability_flags & AB_PHASE_SHIFTED) //Shadekin
+		return TRUE
+	return ..()
+
 /////////////////////
 ///  PHASE SHIFT  ///
 /////////////////////
@@ -62,6 +67,7 @@
 	//Shifting in
 	if(ability_flags & AB_PHASE_SHIFTED)
 		ability_flags &= ~AB_PHASE_SHIFTED
+		mouse_opacity = 1
 		name = real_name
 		for(var/belly in vore_organs)
 			var/obj/belly/B = belly
@@ -89,7 +95,7 @@
 			var/list/potentials = living_mobs(0)
 			if(potentials.len)
 				var/mob/living/target = pick(potentials)
-				if(istype(target) && vore_selected)
+				if(istype(target) && target.devourable && target.can_be_drop_prey && vore_selected)
 					target.forceMove(vore_selected)
 					to_chat(target,"<span class='warning'>\The [src] phases in around you, [vore_selected.vore_verb]ing you into their [vore_selected.name]!</span>")
 
@@ -108,6 +114,7 @@
 	//Shifting out
 	else
 		ability_flags |= AB_PHASE_SHIFTED
+		mouse_opacity = 0
 		custom_emote(1,"phases out!")
 		name = "Something"
 
@@ -129,47 +136,6 @@
 		incorporeal_move = TRUE
 		density = FALSE
 		force_max_speed = TRUE
-
-/mob/living/carbon/human/UnarmedAttack()
-	if(shadekin_phasing_check())
-		return FALSE	//Nope.
-
-	. = ..()
-
-/mob/living/carbon/human/can_fall()
-	if(shadekin_phasing_check())
-		return FALSE	//Nope!
-
-	return ..()
-
-/mob/living/carbon/human/zMove(direction)
-	if(shadekin_phasing_check())
-		var/turf/destination = (direction == UP) ? GetAbove(src) : GetBelow(src)
-		if(destination)
-			forceMove(destination)
-		return TRUE		//Yup.
-
-	return ..()
-
-/mob/proc/shadekin_phasing_check()
-	var/mob/living/simple_mob/shadekin/s_SK = src
-	if(istype(s_SK))
-		if(s_SK.ability_flags & AB_PHASE_SHIFTED)
-			return TRUE
-	var/mob/living/carbon/human/h_SK = src
-	if(istype(h_SK))
-		if(h_SK.ability_flags & AB_PHASE_SHIFTED)
-			return TRUE
-	return FALSE
-
-/*
-/mob/living/carbon/human/MouseDrop_T(atom/dropping, mob/user)
-	if(ability_flags & AB_PHASE_SHIFTED)
-		return FALSE	//Nope!
-
-	return ..()
-*/
-
 
 //////////////////////////
 ///  REGENERATE OTHER  ///

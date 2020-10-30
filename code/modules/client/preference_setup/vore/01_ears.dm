@@ -1,7 +1,7 @@
 // Global stuff that will put us on the map
 /datum/category_group/player_setup_category/vore
 	name = "VORE"
-	sort_order = 7
+	sort_order = 8
 	category_item_type = /datum/category_item/player_setup_item/vore
 
 // Define a place to save appearance in character setup
@@ -24,7 +24,9 @@
 	var/r_wing = 30		// Wing color
 	var/g_wing = 30		// Wing color
 	var/b_wing = 30		// Wing color
-	var/dress_mob = TRUE
+	var/r_wing2 = 30	// Wing extra color
+	var/g_wing2 = 30	// Wing extra color
+	var/b_wing2 = 30	// Wing extra color
 
 // Definition of the stuff for Ears
 /datum/category_item/player_setup_item/vore/ears
@@ -50,6 +52,9 @@
 	S["r_wing"]			>> pref.r_wing
 	S["g_wing"]			>> pref.g_wing
 	S["b_wing"]			>> pref.b_wing
+	S["r_wing2"]		>> pref.r_wing2
+	S["g_wing2"]		>> pref.g_wing2
+	S["b_wing2"]		>> pref.b_wing2
 
 /datum/category_item/player_setup_item/vore/ears/save_character(var/savefile/S)
 	S["ear_style"]		<< pref.ear_style
@@ -70,6 +75,9 @@
 	S["r_wing"]			<< pref.r_wing
 	S["g_wing"]			<< pref.g_wing
 	S["b_wing"]			<< pref.b_wing
+	S["r_wing2"]		<< pref.r_wing2
+	S["g_wing2"]		<< pref.g_wing2
+	S["b_wing2"]		<< pref.b_wing2
 
 /datum/category_item/player_setup_item/vore/ears/sanitize_character()
 	pref.r_ears		= sanitize_integer(pref.r_ears, 0, 255, initial(pref.r_ears))
@@ -87,6 +95,9 @@
 	pref.r_wing		= sanitize_integer(pref.r_wing, 0, 255, initial(pref.r_wing))
 	pref.g_wing		= sanitize_integer(pref.g_wing, 0, 255, initial(pref.g_wing))
 	pref.b_wing		= sanitize_integer(pref.b_wing, 0, 255, initial(pref.b_wing))
+	pref.r_wing2	= sanitize_integer(pref.r_wing2, 0, 255, initial(pref.r_wing2))
+	pref.g_wing2	= sanitize_integer(pref.g_wing2, 0, 255, initial(pref.g_wing2))
+	pref.b_wing2	= sanitize_integer(pref.b_wing2, 0, 255, initial(pref.b_wing2))
 	if(pref.ear_style)
 		pref.ear_style	= sanitize_inlist(pref.ear_style, ear_styles_list, initial(pref.ear_style))
 		var/datum/sprite_accessory/temp_ear_style = ear_styles_list[pref.ear_style]
@@ -122,19 +133,14 @@
 	character.r_wing			= pref.r_wing
 	character.b_wing			= pref.b_wing
 	character.g_wing			= pref.g_wing
+	character.r_wing2			= pref.r_wing2
+	character.b_wing2			= pref.b_wing2
+	character.g_wing2			= pref.g_wing2
 
 
 
 /datum/category_item/player_setup_item/vore/ears/content(var/mob/user)
 	. += "<h2>VORE Station Settings</h2>"
-
-	if(!pref.preview_icon)
-		pref.update_preview_icon()
- 	user << browse_rsc(pref.preview_icon, "previewicon.png")
-
-	. += "<b>Preview</b><br>"
-	. += "<div class='statusDisplay'><center><img src=previewicon.png width=[pref.preview_icon.Width()] height=[pref.preview_icon.Height()]></center></div>"
-	. += "<br><a href='?src=\ref[src];toggle_clothing=1'>[pref.dress_mob ? "Hide equipment" : "Show equipment"]</a><br>"
 
 	var/ear_display = "Normal"
 	if(pref.ear_style && (pref.ear_style in ear_styles_list))
@@ -148,9 +154,9 @@
 	if(ear_styles_list[pref.ear_style])
 		var/datum/sprite_accessory/ears/ear = ear_styles_list[pref.ear_style]
 		if (ear.do_colouration)
-			. += "<a href='?src=\ref[src];ear_color=1'>Change Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.r_ears, 2)][num2hex(pref.g_ears, 2)][num2hex(pref.b_ears, 2)]'><table style='display:inline;' bgcolor='#[num2hex(pref.r_ears, 2)][num2hex(pref.g_ears, 2)][num2hex(pref.b_ears, 2)]'><tr><td>__</td></tr></table> </font><br>"
+			. += "<a href='?src=\ref[src];ear_color=1'>Change Color</a> [color_square(pref.r_ears, pref.g_ears, pref.b_ears)]<br>"
 		if (ear.extra_overlay)
-			. += "<a href='?src=\ref[src];ear_color2=1'>Change Secondary Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.r_ears2, 2)][num2hex(pref.g_ears2, 2)][num2hex(pref.b_ears2, 2)]'><table style='display:inline;' bgcolor='#[num2hex(pref.r_ears2, 2)][num2hex(pref.g_ears2, 2)][num2hex(pref.b_ears2, 2)]'><tr><td>__</td></tr></table> </font><br>"
+			. += "<a href='?src=\ref[src];ear_color2=1'>Change Secondary Color</a> [color_square(pref.r_ears2, pref.g_ears2, pref.b_ears2)]<br>"
 
 	var/tail_display = "Normal"
 	if(pref.tail_style && (pref.tail_style in tail_styles_list))
@@ -164,9 +170,9 @@
 	if(tail_styles_list[pref.tail_style])
 		var/datum/sprite_accessory/tail/T = tail_styles_list[pref.tail_style]
 		if (T.do_colouration)
-			. += "<a href='?src=\ref[src];tail_color=1'>Change Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.r_tail, 2)][num2hex(pref.g_tail, 2)][num2hex(pref.b_tail, 2)]'><table style='display:inline;' bgcolor='#[num2hex(pref.r_tail, 2)][num2hex(pref.g_tail, 2)][num2hex(pref.b_tail, 2)]'><tr><td>__</td></tr></table> </font><br>"
+			. += "<a href='?src=\ref[src];tail_color=1'>Change Color</a> [color_square(pref.r_tail, pref.g_tail, pref.b_tail)]<br>"
 		if (T.extra_overlay)
-			. += "<a href='?src=\ref[src];tail_color2=1'>Change Secondary Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.r_tail2, 2)][num2hex(pref.g_tail2, 2)][num2hex(pref.b_tail2, 2)]'><table style='display:inline;' bgcolor='#[num2hex(pref.r_tail2, 2)][num2hex(pref.g_tail2, 2)][num2hex(pref.b_tail2, 2)]'><tr><td>__</td></tr></table> </font><br>"
+			. += "<a href='?src=\ref[src];tail_color2=1'>Change Secondary Color</a> [color_square(pref.r_tail2, pref.g_tail2, pref.b_tail2)]<br>"
 
 	var/wing_display = "Normal"
 	if(pref.wing_style && (pref.wing_style in wing_styles_list))
@@ -178,9 +184,11 @@
 	. += " Style: <a href='?src=\ref[src];wing_style=1'>[wing_display]</a><br>"
 
 	if(wing_styles_list[pref.wing_style])
-		var/datum/sprite_accessory/wing/T = wing_styles_list[pref.wing_style]
-		if (T.do_colouration)
-			. += "<a href='?src=\ref[src];wing_color=1'>Change Color</a> <font face='fixedsys' size='3' color='#[num2hex(pref.r_wing, 2)][num2hex(pref.g_wing, 2)][num2hex(pref.b_wing, 2)]'><table style='display:inline;' bgcolor='#[num2hex(pref.r_wing, 2)][num2hex(pref.g_wing, 2)][num2hex(pref.b_wing, 2)]'><tr><td>__</td></tr></table> </font><br>"
+		var/datum/sprite_accessory/wing/W = wing_styles_list[pref.wing_style]
+		if (W.do_colouration)
+			. += "<a href='?src=\ref[src];wing_color=1'>Change Color</a> [color_square(pref.r_wing, pref.g_wing, pref.b_wing)]<br>"
+		if (W.extra_overlay)
+			. += "<a href='?src=\ref[src];wing_color2=1'>Change Secondary Color</a> [color_square(pref.r_wing2, pref.g_wing2, pref.b_wing2)]<br>"
 
 /datum/category_item/player_setup_item/vore/ears/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(!CanUseTopic(user))
@@ -276,8 +284,13 @@
 			pref.b_wing = hex2num(copytext(new_wingc, 6, 8))
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
-	else if(href_list["toggle_clothing"])
-		pref.dress_mob = !pref.dress_mob
-		return TOPIC_REFRESH_UPDATE_PREVIEW
+	else if(href_list["wing_color2"])
+		var/new_wingc2 = input(user, "Choose your character's secondary wing colour:", "Character Preference",
+			rgb(pref.r_wing2, pref.g_wing2, pref.b_wing2)) as color|null
+		if(new_wingc2)
+			pref.r_wing2 = hex2num(copytext(new_wingc2, 2, 4))
+			pref.g_wing2 = hex2num(copytext(new_wingc2, 4, 6))
+			pref.b_wing2 = hex2num(copytext(new_wingc2, 6, 8))
+			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	return ..()

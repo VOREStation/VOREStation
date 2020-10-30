@@ -121,10 +121,8 @@ SUBSYSTEM_DEF(machines)
 	while(current_run.len)
 		var/obj/machinery/M = current_run[current_run.len]
 		current_run.len--
-		if(istype(M) && !QDELETED(M) && !(M.process(wait) == PROCESS_KILL))
-			if(M.use_power)
-				M.auto_use_power()
-		else
+
+		if(!istype(M) || QDELETED(M) || (M.process(wait) == PROCESS_KILL))
 			global.processing_machines.Remove(M)
 			if(!QDELETED(M))
 				DISABLE_BITFIELD(M.datum_flags, DF_ISPROCESSING)

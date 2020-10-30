@@ -15,39 +15,23 @@
 	var/datum/reagents/R = new/datum/reagents(1000)
 	reagents = R
 	R.my_atom = src
+	default_language = GLOB.all_languages[LANGUAGE_GALCOM]
 
 /mob/living/carbon/brain/Destroy()
 	if(key)				//If there is a mob connected to this thing. Have to check key twice to avoid false death reporting.
-		if(stat!=DEAD)	//If not dead.
+		if(stat != DEAD)	//If not dead.
 			death(1)	//Brains can die again. AND THEY SHOULD AHA HA HA HA HA HA
 		ghostize()		//Ghostize checks for key so nothing else is necessary.
 	return ..()
 
 /mob/living/carbon/brain/say_understands(var/other)//Goddamn is this hackish, but this say code is so odd
-	if (istype(other, /mob/living/silicon/ai))
-		if(!(container && istype(container, /obj/item/device/mmi)))
-			return 0
-		else
-			return 1
-	if (istype(other, /mob/living/silicon/decoy))
-		if(!(container && istype(container, /obj/item/device/mmi)))
-			return 0
-		else
-			return 1
-	if (istype(other, /mob/living/silicon/pai))
-		if(!(container && istype(container, /obj/item/device/mmi)))
-			return 0
-		else
-			return 1
-	if (istype(other, /mob/living/silicon/robot))
-		if(!(container && istype(container, /obj/item/device/mmi)))
-			return 0
-		else
-			return 1
-	if (istype(other, /mob/living/carbon/human))
-		return 1
-	if (istype(other, /mob/living/simple_mob/slime))
-		return 1
+	if(istype(container, /obj/item/device/mmi))
+		if(issilicon(other))
+			return TRUE
+	if(ishuman(other))
+		return TRUE
+	if(isslime(other))
+		return TRUE
 	return ..()
 
 /mob/living/carbon/brain/update_canmove()
@@ -61,5 +45,24 @@
 /mob/living/carbon/brain/isSynthetic()
 	return istype(loc, /obj/item/device/mmi)
 
-///mob/living/carbon/brain/binarycheck()//No binary without a binary communication device
-//	return isSynthetic()
+/mob/living/carbon/brain/set_typing_indicator(var/state)
+	if(isturf(loc))
+		return ..()
+
+	if(!is_preference_enabled(/datum/client_preference/show_typing_indicator))
+		loc.cut_overlay(typing_indicator, TRUE)
+		return
+
+	if(!typing_indicator)
+		typing_indicator = new
+		typing_indicator.icon = 'icons/mob/talk_vr.dmi' //VOREStation Edit - talk_vr.dmi instead of talk.dmi for right-side icons
+		typing_indicator.icon_state = "[speech_bubble_appearance()]_typing"
+
+	if(state && !typing)
+		loc.add_overlay(typing_indicator, TRUE)
+		typing = TRUE
+	else if(typing)
+		loc.cut_overlay(typing_indicator, TRUE)
+		typing = FALSE
+
+	return state

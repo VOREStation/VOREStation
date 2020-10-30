@@ -8,7 +8,7 @@
 	..()
 	var/datum/playingcard/P
 	var/i
-	var/year = 554 + text2num(time2text(world.timeofday, "YYYY"))
+	var/year = 300 + text2num(time2text(world.timeofday, "YYYY")) //VOREStation Edit
 	for(i=0;i<5;i++)
 		P = new()
 		if(prob(1))

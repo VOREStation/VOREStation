@@ -48,7 +48,7 @@
 "aV" = (/obj/item/weapon/flame/candle/candelabra,/obj/structure/table/sifwoodentable,/turf/simulated/floor/wood/sif/broken,/area/submap/Chapel1)
 "aW" = (/obj/structure/table/sifwoodentable,/obj/item/weapon/flame/candle/candelabra,/turf/simulated/floor/wood/sif,/area/submap/Chapel1)
 "aX" = (/obj/structure/table/sifwoodentable,/obj/item/glass_jar,/turf/simulated/floor/wood/sif,/area/submap/Chapel1)
-"aY" = (/obj/structure/closet/coffin,/obj/random/maintenance/cargo,/obj/effect/decal/remains/human,/turf/simulated/floor/wood/sif,/area/submap/Chapel1)
+"aY" = (/obj/structure/closet/coffin,/obj/random/maintenance/cargo,/obj/effect/decal/remains/human,/obj/random/projectile/scrapped_gun,/turf/simulated/floor/wood/sif,/area/submap/Chapel1)
 "aZ" = (/obj/structure/simple_door/sifwood,/turf/simulated/floor/wood/sif,/area/submap/Chapel1)
 "ba" = (/obj/structure/bed/padded,/turf/simulated/floor/wood/sif,/area/submap/Chapel1)
 "bb" = (/obj/structure/closet/coffin,/obj/random/cash,/obj/effect/decal/remains/xeno,/turf/simulated/floor/wood/sif,/area/submap/Chapel1)

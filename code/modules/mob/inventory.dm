@@ -99,6 +99,10 @@ var/list/slot_equipment_priority = list( \
 /mob/proc/is_holding_item_of_type(typepath)
 	return FALSE
 
+// Override for your specific mob's hands or lack thereof.
+/mob/proc/get_all_held_items()
+	return list()
+
 //Puts the item into your l_hand if possible and calls all necessary triggers/updates. returns 1 on success.
 /mob/proc/put_in_l_hand(var/obj/item/W)
 	if(lying || !istype(W))
@@ -133,7 +137,7 @@ var/list/slot_equipment_priority = list( \
 // Removes an item from inventory and places it in the target atom.
 // If canremove or other conditions need to be checked then use unEquip instead.
 
-/mob/proc/drop_from_inventory(var/obj/item/W, var/atom/target = null)
+/mob/proc/drop_from_inventory(var/obj/item/W, var/atom/target)
 	if(W)
 		remove_from_mob(W, target)
 		if(!(W && W.loc))
@@ -152,7 +156,6 @@ var/list/slot_equipment_priority = list( \
 //Drops the item in our active hand. TODO: rename this to drop_active_hand or something
 /mob/proc/drop_item(var/atom/Target)
 	return
-
 /*
 	Removes the object from any slots the mob might have, calling the appropriate icon update proc.
 	Does nothing else.
@@ -175,7 +178,7 @@ var/list/slot_equipment_priority = list( \
 	if(!I) //If there's nothing to drop, the drop is automatically successful.
 		return 1
 	var/slot = get_inventory_slot(I)
-	return slot && I.mob_can_unequip(src, slot)
+	return I.mob_can_unequip(src, slot)
 
 /mob/proc/get_inventory_slot(obj/item/I)
 	var/slot = 0
@@ -187,11 +190,11 @@ var/list/slot_equipment_priority = list( \
 
 
 //This differs from remove_from_mob() in that it checks if the item can be unequipped first.
-/mob/proc/unEquip(obj/item/I, force = 0) //Force overrides NODROP for things like wizarditis and admin undress.
+/mob/proc/unEquip(obj/item/I, force = 0, var/atom/target) //Force overrides NODROP for things like wizarditis and admin undress.
 	if(!(force || canUnEquip(I)))
-		return
-	drop_from_inventory(I)
-	return 1
+		return FALSE
+	drop_from_inventory(I, target)
+	return TRUE
 
 
 //Attemps to remove an object on a mob.

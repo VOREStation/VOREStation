@@ -23,8 +23,8 @@
 	uses = 1
 
 /obj/item/weapon/disposable_teleporter/examine(mob/user)
-	..()
-	to_chat(user, "[uses] uses remaining.")
+	. = ..()
+	. += "[uses] uses remaining."
 
 /obj/item/weapon/disposable_teleporter/attack_self(mob/user as mob)
 	if(!uses)

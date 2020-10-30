@@ -48,6 +48,9 @@ Pipelines + Other Objects -> Pipe network
 		pipe_color = null
 	init_dir()
 
+/obj/machinery/atmospherics/examine_icon()
+	return icon(icon=initial(icon),icon_state=initial(icon_state))
+
 // This is used to set up what directions pipes will connect to.  Should be called inside New() and whenever a dir changes.
 /obj/machinery/atmospherics/proc/init_dir()
 	return
@@ -209,8 +212,18 @@ Pipelines + Other Objects -> Pipe network
 			connect_types = CONNECT_TYPE_SUPPLY
 			layer = PIPES_SUPPLY_LAYER
 			icon_connect_type = "-supply"
+		if(PIPING_LAYER_FUEL)
+			icon_state = "[icon_state]-fuel"
+			connect_types = CONNECT_TYPE_FUEL
+			layer = PIPES_FUEL_LAYER
+			icon_connect_type = "-fuel"
+		if(PIPING_LAYER_AUX)
+			icon_state = "[icon_state]-aux"
+			connect_types = CONNECT_TYPE_AUX
+			layer = PIPES_AUX_LAYER
+			icon_connect_type = "-aux"
 	if(pipe_flags & PIPING_ALL_LAYER)
-		connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_SUPPLY|CONNECT_TYPE_SCRUBBER
+		connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_SUPPLY|CONNECT_TYPE_SCRUBBER|CONNECT_TYPE_FUEL|CONNECT_TYPE_AUX
 	// Or if we were to do it the TG way...
 	// pixel_x = PIPE_PIXEL_OFFSET_X(piping_layer)
 	// pixel_y = PIPE_PIXEL_OFFSET_Y(piping_layer)

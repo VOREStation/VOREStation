@@ -18,6 +18,22 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	var/clone_source = FALSE
 	var/mob/living/carbon/brain/brainmob = null
 	var/can_assist = TRUE
+	var/defib_timer = -1
+
+/obj/item/organ/internal/brain/process()
+	..()
+	if(owner && owner.stat != DEAD) // So there's a lower risk of ticking twice.
+		tick_defib_timer()
+
+// This is called by `process()` when the owner is alive, or brain is not in a body, and by `Life()` directly when dead.
+/obj/item/organ/internal/brain/proc/tick_defib_timer()
+	if(preserved) // In an MMI/ice box/etc.
+		return
+
+	if(!owner || owner.stat == DEAD)
+		defib_timer = max(--defib_timer, 0)
+	else
+		defib_timer = min(++defib_timer, (config.defib_timer MINUTES) / 2)
 
 /obj/item/organ/internal/brain/proc/can_assist()
 	return can_assist
@@ -65,6 +81,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 /obj/item/organ/internal/brain/New()
 	..()
 	health = config.default_brain_health
+	defib_timer = (config.defib_timer MINUTES) / 2
 	spawn(5)
 		if(brainmob && brainmob.client)
 			brainmob.client.screen.len = null //clear the hud
@@ -81,6 +98,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 		brainmob.real_name = H.real_name
 		brainmob.dna = H.dna.Clone()
 		brainmob.timeofhostdeath = H.timeofdeath
+		brainmob.ooc_notes = H.ooc_notes //VOREStation Edit 
 
 		// Copy modifiers.
 		for(var/datum/modifier/M in H.modifiers)
@@ -96,11 +114,11 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	callHook("debrain", list(brainmob))
 
 /obj/item/organ/internal/brain/examine(mob/user) // -- TLE
-	..(user)
+	. = ..()
 	if(brainmob && brainmob.client)//if thar be a brain inside... the brain.
-		to_chat(user, "You can feel the small spark of life still left in this one.")
+		. += "You can feel the small spark of life still left in this one."
 	else
-		to_chat(user, "This one seems particularly lifeless. Perhaps it will regain some of its luster later..")
+		. += "This one seems particularly lifeless. Perhaps it will regain some of its luster later..."
 
 /obj/item/organ/internal/brain/removed(var/mob/living/user)
 
@@ -161,6 +179,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	parent_organ = BP_TORSO
 	clone_source = TRUE
 	flags = OPENCONTAINER
+	var/list/owner_flavor_text = list()
 
 /obj/item/organ/internal/brain/slime/is_open_container()
 	return 1
@@ -174,6 +193,11 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 			H = owner
 			color = rgb(min(H.r_skin + 40, 255), min(H.g_skin + 40, 255), min(H.b_skin + 40, 255))
 
+/obj/item/organ/internal/brain/slime/removed(var/mob/living/user)
+	if(istype(owner))
+		owner_flavor_text = owner.flavor_texts.Copy()
+	..()
+
 /obj/item/organ/internal/brain/slime/proc/reviveBody()
 	var/datum/dna2/record/R = new /datum/dna2/record()
 	R.dna = brainmob.dna
@@ -183,6 +207,8 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	R.types = DNA2_BUF_UI|DNA2_BUF_UE|DNA2_BUF_SE
 	R.languages = brainmob.languages
 	R.flavor = list()
+	if(islist(owner_flavor_text))
+		R.flavor = owner_flavor_text.Copy()
 	for(var/datum/modifier/mod in brainmob.modifiers)
 		if(mod.flags & MODIFIER_GENETIC)
 			R.genetic_modifiers.Add(mod.type)
@@ -221,6 +247,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	if(!R.dna.real_name)	//to prevent null names
 		R.dna.real_name = "promethean ([rand(0,999)])"
 	H.real_name = R.dna.real_name
+	H.ooc_notes = brainmob.ooc_notes // VOREStation Edit
 
 	H.nutrition = 260 //Enough to try to regenerate ONCE.
 	H.adjustBruteLoss(40)

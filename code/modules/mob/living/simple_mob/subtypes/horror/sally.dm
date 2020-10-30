@@ -22,7 +22,7 @@
 	response_help = "pets the"
 	response_disarm = "bops the"
 	response_harm = "hits the"
-	attacktext = list("smashes")
+	attacktext = list("smashed")
 	friendly = list("nuzzles", "boops", "headbumps against", "leans on")
 
 

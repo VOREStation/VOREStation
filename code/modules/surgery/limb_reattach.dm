@@ -28,6 +28,8 @@
 	max_duration = 70
 
 /datum/surgery_step/limb/attach/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	if(!istype(tool))
+		return 0
 	var/obj/item/organ/external/E = tool
 	var/obj/item/organ/external/P = target.organs_by_name[E.parent_organ]
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -117,7 +119,7 @@
 	max_duration = 100
 
 /datum/surgery_step/limb/mechanize/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if(..())
+	if(..() && istype(tool))
 		var/obj/item/robot_parts/p = tool
 		if (p.part)
 			if (!(target_zone in p.part))

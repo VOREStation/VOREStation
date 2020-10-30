@@ -76,12 +76,17 @@
 					var/start_nutrition = H.nutrition
 					var/end_nutrition = 0
 
-					H.nutrition -= rechargeamt / 10
+					H.adjust_nutrition(-rechargeamt / 15)
 
 					end_nutrition = H.nutrition
 
-					if(start_nutrition - max(0, end_nutrition) < rechargeamt / 10)
-						H.remove_blood((rechargeamt / 10) - (start_nutrition - max(0, end_nutrition)))
+					if(start_nutrition - max(0, end_nutrition) < rechargeamt / 15)
+
+						if(H.isSynthetic())
+							H.adjustToxLoss((rechargeamt / 15) - (start_nutrition - max(0, end_nutrition)))
+
+						else
+							H.remove_blood((rechargeamt / 15) - (start_nutrition - max(0, end_nutrition)))
 
 			power_supply.give(rechargeamt) //... to recharge 1/5th the battery
 			update_icon()
@@ -122,7 +127,7 @@
 					power_supply = P
 					P.loc = src
 					user.visible_message("[user] inserts [P] into [src].", "<span class='notice'>You insert [P] into [src].</span>")
-					playsound(src.loc, 'sound/weapons/flipblade.ogg', 50, 1)
+					playsound(src, 'sound/weapons/flipblade.ogg', 50, 1)
 					update_icon()
 					update_held_icon()
 		else
@@ -138,7 +143,7 @@
 		power_supply.update_icon()
 		user.visible_message("[user] removes [power_supply] from [src].", "<span class='notice'>You remove [power_supply] from [src].</span>")
 		power_supply = null
-		playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
+		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 		update_icon()
 		update_held_icon()
 	else
@@ -162,8 +167,8 @@
 		var/obj/item/rig_module/module = src.loc
 		if(module.holder && module.holder.wearer)
 			var/mob/living/carbon/human/H = module.holder.wearer
-			if(istype(H) && H.back)
-				var/obj/item/weapon/rig/suit = H.back
+			if(istype(H) && H.get_rig())
+				var/obj/item/weapon/rig/suit = H.get_rig()
 				if(istype(suit))
 					return suit.cell
 	return null
@@ -173,12 +178,11 @@
 	if(power_supply)
 		if(charge_cost)
 			var/shots_remaining = round(power_supply.charge / max(1, charge_cost))	// Paranoia
-			to_chat(user, "Has [shots_remaining] shot\s remaining.")
+			. += "Has [shots_remaining] shot\s remaining."
 		else
-			to_chat(user, "Has infinite shots remaining.")
+			. += "Has infinite shots remaining."
 	else
-		to_chat(user, "Does not have a power cell.")
-	return
+		. += "Does not have a power cell."
 
 /obj/item/weapon/gun/energy/update_icon(var/ignore_inhands)
 	if(power_supply == null)

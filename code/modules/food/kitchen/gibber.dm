@@ -14,7 +14,7 @@
 	var/gib_time = 40        // Time from starting until meat appears
 	var/gib_throw_dir = WEST // Direction to spit meat and gibs in.
 
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 2
 	active_power_usage = 500
 
@@ -22,21 +22,27 @@
 /obj/machinery/gibber/autogibber
 	var/turf/input_plate
 
-/obj/machinery/gibber/autogibber/New()
-	..()
-	spawn(5)
-		for(var/i in cardinal)
-			var/obj/machinery/mineral/input/input_obj = locate( /obj/machinery/mineral/input, get_step(src.loc, i) )
-			if(input_obj)
-				if(isturf(input_obj.loc))
-					input_plate = input_obj.loc
-					gib_throw_dir = i
-					qdel(input_obj)
-					break
+/obj/machinery/gibber/autogibber/Initialize()
+	. = ..()
+	for(var/i in cardinal)
+		var/obj/machinery/mineral/input/input_obj = locate( /obj/machinery/mineral/input, get_step(src.loc, i) )
+		if(input_obj)
+			if(isturf(input_obj.loc))
+				input_plate = input_obj.loc
+				gib_throw_dir = i
+				qdel(input_obj)
+				break
 
-		if(!input_plate)
-			log_misc("a [src] didn't find an input plate.")
-			return
+	if(!input_plate)
+		log_misc("a [src] didn't find an input plate.")
+
+/obj/machinery/gibber/Destroy()
+	occupant = null
+	return ..()
+
+/obj/machinery/gibber/autogibber/Destroy()
+	input_plate = null
+	return ..()
 
 /obj/machinery/gibber/autogibber/Bumped(var/atom/A)
 	if(!input_plate) return
@@ -81,8 +87,8 @@
 		src.startgibbing(user)
 
 /obj/machinery/gibber/examine()
-	..()
-	to_chat(usr, "The safety guard is [emagged ? "<span class='danger'>disabled</span>" : "enabled"].")
+	. = ..()
+	. += "The safety guard is [emagged ? "<span class='danger'>disabled</span>" : "enabled"]."
 
 /obj/machinery/gibber/emag_act(var/remaining_charges, var/mob/user)
 	emagged = !emagged
@@ -221,7 +227,7 @@
 		occupant.gib()
 		occupant = null
 
-		playsound(src.loc, 'sound/effects/splat.ogg', 50, 1)
+		playsound(src, 'sound/effects/splat.ogg', 50, 1)
 		operating = 0
 		for (var/obj/thing in contents)
 			// There's a chance that the gibber will fail to destroy some evidence.

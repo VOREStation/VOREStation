@@ -1,17 +1,20 @@
 /obj/effect/mineral
 	name = "mineral vein"
-	icon = 'icons/obj/mining.dmi'
+	icon = 'icons/obj/mining_vr.dmi' //VOREStation Edit
 	desc = "Shiny."
 	mouse_opacity = 0
 	density = 0
 	anchored = 1
 	var/ore_key
 	var/image/scanner_image
+	var/ore_reagent	// Reagent from pumping water near this ore.
 
 /obj/effect/mineral/New(var/newloc, var/ore/M)
 	..(newloc)
 	name = "[M.display_name] deposit"
 	ore_key = M.name
+	if(M.reagent)
+		ore_reagent = M.reagent
 	icon_state = "rock_[ore_key]"
 	var/turf/T = get_turf(src)
 	layer = T.layer+0.1

@@ -19,8 +19,8 @@ GLOBAL_LIST_BOILERPLATE(all_seed_packs, /obj/item/seeds)
 
 //Grabs the appropriate seed datum from the global list.
 /obj/item/seeds/proc/update_seed()
-	if(!seed && seed_type && !isnull(plant_controller.seeds) && plant_controller.seeds[seed_type])
-		seed = plant_controller.seeds[seed_type]
+	if(!seed && seed_type && !isnull(SSplants.seeds) && SSplants.seeds[seed_type])
+		seed = SSplants.seeds[seed_type]
 	update_appearance()
 
 //Updates strings and icon appropriately based on seed datum.
@@ -60,9 +60,9 @@ GLOBAL_LIST_BOILERPLATE(all_seed_packs, /obj/item/seeds)
 		src.desc = "It's labelled as coming from [seed.display_name]."
 
 /obj/item/seeds/examine(mob/user)
-	..(user)
+	. = ..()
 	if(seed && !seed.roundstart)
-		to_chat(user, "It's tagged as variety #[seed.uid].")
+		. += "It's tagged as variety #[seed.uid]."
 
 /obj/item/seeds/cutting
 	name = "cuttings"
@@ -76,7 +76,7 @@ GLOBAL_LIST_BOILERPLATE(all_seed_packs, /obj/item/seeds)
 	seed_type = null
 
 /obj/item/seeds/random/Initialize()
-	seed = plant_controller.create_random_seed()
+	seed = SSplants.create_random_seed()
 	seed_type = seed.name
 	. = ..()
 
@@ -334,3 +334,9 @@ GLOBAL_LIST_BOILERPLATE(all_seed_packs, /obj/item/seeds)
 
 /obj/item/seeds/gnomes
 	seed_type = "gnomes"
+
+/obj/item/seeds/sifbulb
+	seed_type = "sifbulb"
+
+/obj/item/seeds/wurmwoad
+	seed_type = "wurmwoad"

@@ -30,7 +30,7 @@ SUBSYSTEM_DEF(xenoarch)
 	. = ..()
 
 /datum/controller/subsystem/xenoarch/proc/SetupXenoarch()
-	for(var/turf/simulated/mineral/M in turfs)
+	for(var/turf/simulated/mineral/M in world)
 		if(!M.density || M.z in using_map.xenoarch_exempt_levels)
 			continue
 
@@ -98,6 +98,9 @@ SUBSYSTEM_DEF(xenoarch)
 			//have a chance for an artifact to spawn here, but not in animal or plant digsites
 			if(isnull(M.artifact_find) && digsite != DIGSITE_GARDEN && digsite != DIGSITE_ANIMAL)
 				artifact_spawning_turfs.Add(archeo_turf)
+
+		//Larger maps will convince byond this is an infinite loop, so let go for a second
+		CHECK_TICK
 
 	//create artifact machinery
 	var/num_artifacts_spawn = rand(ARTIFACTSPAWNNUM_LOWER, ARTIFACTSPAWNNUM_UPPER)

@@ -17,28 +17,28 @@
 #define SLOT_BELT       0x200
 #define SLOT_BACK       0x400
 #define SLOT_POCKET     0x800  // This is to allow items with a w_class of 3 or 4 to fit in pockets.
-#define SLOT_DENYPOCKET 0x1000  // This is to  deny items with a w_class of 2 or 1 from fitting in pockets.
+#define SLOT_DENYPOCKET 0x1000  // This is to deny items with a w_class of 2 or 1 from fitting in pockets.
 #define SLOT_TWOEARS    0x2000
 #define SLOT_TIE        0x4000
-#define SLOT_HOLSTER	0x8000 //16th bit - higher than this will overflow
+#define SLOT_HOLSTER	0x8000 //24 bit - higher than 0x80000 will overflow
 
-#define ACCESSORY_SLOT_UTILITY	0x1
-#define ACCESSORY_SLOT_WEAPON	0x2
+#define ACCESSORY_SLOT_UTILITY  0x1
+#define ACCESSORY_SLOT_WEAPON   0x2
 #define ACCESSORY_SLOT_ARMBAND  0x4
-#define ACCESSORY_SLOT_DECOR    0x8
-#define ACCESSORY_SLOT_MEDAL    0x20
-#define ACCESSORY_SLOT_TIE		0x40
-#define ACCESSORY_SLOT_INSIGNIA 0x80
-#define ACCESSORY_SLOT_OVER		0x100
+#define ACCESSORY_SLOT_RANK     0x8
+#define ACCESSORY_SLOT_DEPT     0x20
+#define ACCESSORY_SLOT_DECOR    0x40
+#define ACCESSORY_SLOT_MEDAL    0x80
+#define ACCESSORY_SLOT_TIE      0x100
+#define ACCESSORY_SLOT_INSIGNIA 0x200
+#define ACCESSORY_SLOT_OVER     0x400
 //Should these really be 'accessory' accessories
-#define ACCESSORY_SLOT_ARMOR_C  0x200
-#define ACCESSORY_SLOT_ARMOR_A  0x400
-#define ACCESSORY_SLOT_ARMOR_L  0x800
-#define ACCESSORY_SLOT_ARMOR_S  0x1000
-#define ACCESSORY_SLOT_ARMOR_M  0x2000
-#define ACCESSORY_SLOT_HELM_C	0x4000
-
-#define ACCESSORY_SLOT_TORSO 	(ACCESSORY_SLOT_UTILITY|ACCESSORY_SLOT_WEAPON)
+#define ACCESSORY_SLOT_ARMOR_C  0x800
+#define ACCESSORY_SLOT_ARMOR_A  0x1000
+#define ACCESSORY_SLOT_ARMOR_L  0x2000
+#define ACCESSORY_SLOT_ARMOR_S  0x4000
+#define ACCESSORY_SLOT_ARMOR_M  0x8000
+#define ACCESSORY_SLOT_HELM_C   0x10000 //24 bit - higher than 0x80000 will overflow
 
 // Bitmasks for the /obj/item/var/flags_inv variable. These determine when a piece of clothing hides another, i.e. a helmet hiding glasses.
 // WARNING: The following flags apply only to the external suit!

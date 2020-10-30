@@ -19,6 +19,11 @@
 	if (reagents.reagent_list.len > 0)
 		var/datum/reagent/R = reagents.get_master_reagent()
 
+		if(R.glass_icon_file)
+			icon = R.glass_icon_file
+		else
+			icon = initial(icon)
+		
 		if(R.glass_icon_state)
 			icon_state = R.glass_icon_state
 		else
@@ -62,6 +67,7 @@ Drinks Data
 */
 
 /datum/reagent
+	var/glass_icon_file = null
 	var/glass_icon_state = null
 	var/glass_center_of_mass = null
 
@@ -645,6 +651,10 @@ Drinks Data
 
 /datum/reagent/drink/soda/appleade
 	glass_icon_state = "appleade"
+	glass_center_of_mass = list("x"=16, "y"=8)
+
+/datum/reagent/drink/mintapplesparkle
+	glass_icon_state = "mintapplesparkle"
 	glass_center_of_mass = list("x"=16, "y"=8)
 
 /datum/reagent/drink/soda/pineappleade

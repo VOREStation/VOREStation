@@ -27,7 +27,7 @@
 			source.handcuffed = null
 			if(source.buckled && source.buckled.buckle_require_restraints)
 				source.buckled.unbuckle_mob()
-			source.update_inv_handcuffed()
+			source.update_handcuffed()
 			if (source.client)
 				source.client.screen -= W
 			if (W)

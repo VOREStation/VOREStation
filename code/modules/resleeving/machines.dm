@@ -147,7 +147,7 @@
 			return
 
 		else if(((occupant.health == occupant.maxHealth)) && (!eject_wait))
-			playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
+			playsound(src, 'sound/machines/ding.ogg', 50, 1)
 			audible_message("\The [src] signals that the growing process is complete.")
 			connected_message("Growing Process Complete.")
 			locked = 0
@@ -161,6 +161,11 @@
 		return
 
 	return
+
+/obj/machinery/clonepod/transhuman/get_completion()
+	if(occupant)
+		return 100 * ((occupant.health + abs(config.health_threshold_dead)) / (occupant.maxHealth + abs(config.health_threshold_dead)))
+	return 0
 
 //Synthetic version
 /obj/machinery/transhuman/synthprinter
@@ -437,28 +442,40 @@
 	sickness_duration = (45 - (total_rating-4)*1.875) MINUTES		// 45 minutes default, 30 minutes with max non-anomaly upgrades, 15 minutes with max anomaly ones
 
 /obj/machinery/transhuman/resleever/attack_hand(mob/user as mob)
-	user.set_machine(src)
-	var/health_text = ""
-	var/mind_text = ""
-	if(src.occupant)
-		if(src.occupant.stat >= DEAD)
-			health_text = "<FONT color=red>DEAD</FONT>"
-		else if(src.occupant.health < 0)
-			health_text = "<FONT color=red>[round(src.occupant.health,0.1)]</FONT>"
-		else
-			health_text = "[round(src.occupant.health,0.1)]"
+	tgui_interact(user)
 
-		if(src.occupant.mind)
-			mind_text = "Mind present: [occupant.mind.name]"
-		else
-			mind_text = "Mind absent."
+/obj/machinery/transhuman/resleever/tgui_interact(mob/user, datum/tgui/ui = null)
+	if(stat & (NOPOWER|BROKEN))
+		return
 
-	var/dat ="<B>Resleever Status</B><BR>"
-	dat +="<B>Current occupant:</B> [src.occupant ? "<BR>Name: [src.occupant]<BR>Health: [health_text]<BR>" : "<FONT color=red>None</FONT>"]<BR>"
-	dat +="<B>Mind status:</B> [mind_text]<BR>"
-	user.set_machine(src)
-	user << browse(dat, "window=resleever")
-	onclose(user, "resleever")
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "ResleevingPod", "Resleever")
+		ui.open()
+
+/obj/machinery/transhuman/resleever/tgui_data(mob/user)
+	var/list/data = list()
+
+	data["occupied"] = !!occupant
+	if(occupant)
+		data["name"] = occupant.name
+		data["health"] = occupant.health
+		data["maxHealth"] = occupant.maxHealth
+		data["stat"] = occupant.stat
+		data["mindStatus"] = !!occupant.mind
+		data["mindName"] = occupant.mind?.name
+
+		if(occupant.has_modifier_of_type(/datum/modifier/resleeving_sickness) || occupant.has_modifier_of_type(/datum/modifier/faux_resleeving_sickness))
+			data["resleeveSick"] = TRUE
+		else
+			data["resleeveSick"] = FALSE
+
+		if(occupant.confused || occupant.eye_blurry)
+			data["initialSick"] = TRUE
+		else
+			data["initialSick"] = FALSE
+
+	return data
 
 /obj/machinery/transhuman/resleever/attackby(obj/item/W as obj, mob/user as mob)
 	src.add_fingerprint(user)
@@ -472,10 +489,6 @@
 		var/obj/item/weapon/grab/G = W
 		if(!ismob(G.affecting))
 			return
-		for(var/mob/living/carbon/slime/M in range(1, G.affecting))
-			if(M.Victim == G.affecting)
-				to_chat(usr, "[G.affecting:name] will not fit into the [src.name] because they have a slime latched onto their head.")
-				return
 		var/mob/M = G.affecting
 		if(put_mob(M))
 			qdel(G)
@@ -584,11 +597,17 @@
 
 	occupant.confused = max(occupant.confused, confuse_amount)									// Apply immedeate effects
 	occupant.eye_blurry = max(occupant.eye_blurry, blur_amount)
-	if(!(occupant.mind.vore_death))
-		occupant.add_modifier(/datum/modifier/faux_resleeving_sickness, sickness_duration/3)	// And more longterm, though purely visual ones
+	
+	// Vore deaths get a fake modifier labeled as such
+	if(!occupant.mind)
+		log_debug("[occupant] didn't have a mind to check for vore_death, which may be problematic.")
+
+	if(occupant.mind?.vore_death)
+		occupant.add_modifier(/datum/modifier/faux_resleeving_sickness, sickness_duration)
+		occupant.mind.vore_death = FALSE
+	// Normal ones get a normal modifier to nerf charging into combat
 	else
-		occupant.add_modifier(/datum/modifier/resleeving_sickness, sickness_duration)			// Much more serious if it wasn't a death by vore though
-	occupant.mind.vore_death = FALSE		// Reset our death type. Just in case
+		occupant.add_modifier(/datum/modifier/resleeving_sickness, sickness_duration)
 
 	if(occupant.mind && occupant.original_player && ckey(occupant.mind.key) != occupant.original_player)
 		log_and_message_admins("is now a cross-sleeved character. Body originally belonged to [occupant.real_name]. Mind is now [occupant.mind.name].",occupant)
@@ -596,6 +615,7 @@
 	if(original_occupant)
 		occupant = original_occupant
 
+	playsound(src, 'sound/machines/medbayscanner1.ogg', 100, 1) // Play our sound at the end of the mind injection!
 	return 1
 
 /obj/machinery/transhuman/resleever/proc/go_out(var/mob/M)

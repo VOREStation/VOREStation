@@ -4,13 +4,15 @@
 	desc = "A SalonPro Nano-Mirror(TM) brand mirror! The leading technology in hair salon products, utilizing nano-machinery to style your hair just right."
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "mirror"
+	layer = ABOVE_WINDOW_LAYER
 	density = 0
 	anchored = 1
 	var/shattered = 0
-	var/list/ui_users = list()
 	var/glass = 1
+	var/datum/tgui_module/appearance_changer/mirror/M
 
 /obj/structure/mirror/New(var/loc, var/dir, var/building = 0, mob/user as mob)
+	M = new(src, null)
 	if(building)
 		glass = 0
 		icon_state = "mirror_frame"
@@ -18,17 +20,16 @@
 		pixel_y = (dir & 3)? (dir == 1 ? -30 : 30) : 0
 	return
 
+/obj/structure/mirror/Destroy()
+	QDEL_NULL(M)
+	. = ..()
+
 /obj/structure/mirror/attack_hand(mob/user as mob)
 	if(!glass) return
 	if(shattered)	return
 
 	if(ishuman(user))
-		var/datum/nano_module/appearance_changer/AC = ui_users[user]
-		if(!AC)
-			AC = new(src, user)
-			AC.name = "SalonPro Nano-Mirror&trade;"
-			ui_users[user] = AC
-		AC.ui_interact(user)
+		M.tgui_interact(user)
 
 /obj/structure/mirror/proc/shatter()
 	if(!glass) return
@@ -51,7 +52,7 @@
 /obj/structure/mirror/attackby(obj/item/I as obj, mob/user as mob)
 	if(I.is_wrench())
 		if(!glass)
-			playsound(src.loc, I.usesound, 50, 1)
+			playsound(src, I.usesound, 50, 1)
 			if(do_after(user, 20 * I.toolspeed))
 				to_chat(user, "<span class='notice'>You unfasten the frame.</span>")
 				new /obj/item/frame/mirror( src.loc )
@@ -65,7 +66,7 @@
 			new /obj/item/weapon/material/shard( src.loc )
 			return
 		if(!shattered && glass)
-			playsound(src.loc, I.usesound, 50, 1)
+			playsound(src, I.usesound, 50, 1)
 			to_chat(user, "<span class='notice'>You remove the glass.</span>")
 			glass = !glass
 			icon_state = "mirror_frame"
@@ -88,7 +89,7 @@
 			return
 
 	if(shattered && glass)
-		playsound(src.loc, 'sound/effects/hit_on_shattered_glass.ogg', 70, 1)
+		playsound(src, 'sound/effects/hit_on_shattered_glass.ogg', 70, 1)
 		return
 
 	if(prob(I.force * 2))
@@ -97,13 +98,13 @@
 			shatter()
 	else
 		visible_message("<span class='warning'>[user] hits [src] with [I]!</span>")
-		playsound(src.loc, 'sound/effects/Glasshit.ogg', 70, 1)
+		playsound(src, 'sound/effects/Glasshit.ogg', 70, 1)
 
 /obj/structure/mirror/attack_generic(var/mob/user, var/damage)
 
 	user.do_attack_animation(src)
 	if(shattered && glass)
-		playsound(src.loc, 'sound/effects/hit_on_shattered_glass.ogg', 70, 1)
+		playsound(src, 'sound/effects/hit_on_shattered_glass.ogg', 70, 1)
 		return 0
 
 	if(damage)

@@ -57,7 +57,6 @@
 	for(var/organ in organs)
 		qdel(organ)
 	QDEL_NULL(nif)	//VOREStation Add
-	QDEL_LIST_NULL(vore_organs) //VOREStation Add
 	return ..()
 
 /mob/living/carbon/human/Stat()
@@ -101,6 +100,15 @@
 	if(!blinded)
 		flash_eyes()
 
+	for(var/datum/modifier/M in modifiers)
+		if(!isnull(M.explosion_modifier))
+			severity = CLAMP(severity + M.explosion_modifier, 1, 4)
+
+	severity = round(severity)
+
+	if(severity > 3)
+		return
+
 	var/shielded = 0
 	var/b_loss = null
 	var/f_loss = null
@@ -142,6 +150,11 @@
 				ear_deaf += 60
 			if (prob(50) && !shielded)
 				Paralyse(10)
+
+	var/blastsoak = getsoak(null, "bomb")
+
+	b_loss = max(1, b_loss - blastsoak)
+	f_loss = max(1, f_loss - blastsoak)
 
 	var/update = 0
 
@@ -190,74 +203,15 @@
 /mob/living/carbon/human/var/co2overloadtime = null
 /mob/living/carbon/human/var/temperature_resistance = T0C+75
 
-
-/mob/living/carbon/human/show_inv(mob/user as mob)
-	if(user.incapacitated()  || !user.Adjacent(src))
+// called when something steps onto a human
+// this handles mobs on fire - mulebot and vehicle code has been relocated to /mob/living/Crossed()
+/mob/living/carbon/human/Crossed(var/atom/movable/AM)
+	if(AM.is_incorporeal())
 		return
 
-	var/obj/item/clothing/under/suit = null
-	if (istype(w_uniform, /obj/item/clothing/under))
-		suit = w_uniform
-
-	user.set_machine(src)
-	var/dat = "<B><HR><FONT size=3>[name]</FONT></B><BR><HR>"
-
-	for(var/entry in species.hud.gear)
-		var/list/slot_ref = species.hud.gear[entry]
-		if((slot_ref["slot"] in list(slot_l_store, slot_r_store)))
-			continue
-		var/obj/item/thing_in_slot = get_equipped_item(slot_ref["slot"])
-		dat += "<BR><B>[slot_ref["name"]]:</b> <a href='?src=\ref[src];item=[slot_ref["slot"]]'>[istype(thing_in_slot) ? thing_in_slot : "nothing"]</a>"
-
-	dat += "<BR><HR>"
-
-	if(species.hud.has_hands)
-		dat += "<BR><b>Left hand:</b> <A href='?src=\ref[src];item=[slot_l_hand]'>[istype(l_hand) ? l_hand : "nothing"]</A>"
-		dat += "<BR><b>Right hand:</b> <A href='?src=\ref[src];item=[slot_r_hand]'>[istype(r_hand) ? r_hand : "nothing"]</A>"
-
-	// Do they get an option to set internals?
-	if(istype(wear_mask, /obj/item/clothing/mask) || istype(head, /obj/item/clothing/head/helmet/space))
-		if(istype(back, /obj/item/weapon/tank) || istype(belt, /obj/item/weapon/tank) || istype(s_store, /obj/item/weapon/tank))
-			dat += "<BR><A href='?src=\ref[src];item=internals'>Toggle internals.</A>"
-
-	// Other incidentals.
-	if(istype(suit) && suit.has_sensor == 1)
-		dat += "<BR><A href='?src=\ref[src];item=sensors'>Set sensors</A>"
-	if(handcuffed)
-		dat += "<BR><A href='?src=\ref[src];item=[slot_handcuffed]'>Handcuffed</A>"
-	if(legcuffed)
-		dat += "<BR><A href='?src=\ref[src];item=[slot_legcuffed]'>Legcuffed</A>"
-
-	if(suit && LAZYLEN(suit.accessories))
-		dat += "<BR><A href='?src=\ref[src];item=tie'>Remove accessory</A>"
-	dat += "<BR><A href='?src=\ref[src];item=splints'>Remove splints</A>"
-	dat += "<BR><A href='?src=\ref[src];item=pockets'>Empty pockets</A>"
-	dat += "<BR><A href='?src=\ref[user];refresh=1'>Refresh</A>"
-	dat += "<BR><A href='?src=\ref[user];mach_close=mob[name]'>Close</A>"
-
-	user << browse(dat, text("window=mob[name];size=340x540"))
-	onclose(user, "mob[name]")
-	return
-
-// called when something steps onto a human
-// this handles mulebots and vehicles
-// and now mobs on fire
-/mob/living/carbon/human/Crossed(var/atom/movable/AM)
-	//VOREStation Edit begin: SHADEKIN
-	var/mob/SK = AM
-	if(istype(SK))
-		if(SK.shadekin_phasing_check())
-			return
-	//VOREStation Edit end: SHADEKIN
-	if(istype(AM, /mob/living/bot/mulebot))
-		var/mob/living/bot/mulebot/MB = AM
-		MB.runOver(src)
-
-	if(istype(AM, /obj/vehicle))
-		var/obj/vehicle/V = AM
-		V.RunOver(src)
-
 	spread_fire(AM)
+
+	..() // call parent because we moved behavior to parent
 
 // Get rank from ID, ID inside PDA, PDA, ID in wallet, etc.
 /mob/living/carbon/human/proc/get_authentification_rank(var/if_no_id = "No id", var/if_no_job = "No job")
@@ -266,7 +220,7 @@
 		if (pda.id)
 			return pda.id.rank ? pda.id.rank : if_no_job
 		else
-			return pda.ownrank
+			return pda.ownrank ? pda.ownrank : if_no_job
 	else
 		var/obj/item/weapon/card/id/id = get_idcard()
 		if(id)
@@ -282,7 +236,7 @@
 		if (pda.id)
 			return pda.id.assignment
 		else
-			return pda.ownjob
+			return pda.ownjob ? pda.ownjob : if_no_job
 	else
 		var/obj/item/weapon/card/id/id = get_idcard()
 		if(id)
@@ -298,7 +252,7 @@
 		if (pda.id)
 			return pda.id.registered_name
 		else
-			return pda.owner
+			return pda.owner ? pda.owner : if_no_id
 	else
 		var/obj/item/weapon/card/id/id = get_idcard()
 		if(id)
@@ -331,7 +285,7 @@
 	. = if_no_id
 	if(istype(wear_id,/obj/item/device/pda))
 		var/obj/item/device/pda/P = wear_id
-		return P.owner
+		return P.owner ? P.owner : if_no_id
 	if(wear_id)
 		var/obj/item/weapon/card/id/I = wear_id.GetID()
 		if(I)
@@ -368,18 +322,14 @@
 
 
 /mob/living/carbon/human/Topic(href, href_list)
-
-	if (href_list["refresh"])
-		if((machine)&&(in_range(src, usr)))
-			show_inv(machine)
-
-	if (href_list["mach_close"])
+	if (href_list["mach_close"]) // This is horrible.
 		var/t1 = text("window=[]", href_list["mach_close"])
 		unset_machine()
 		src << browse(null, t1)
 
 	if(href_list["item"])
-		handle_strip(href_list["item"],usr)
+		log_runtime(EXCEPTION("Warning: human/Topic was called with item [href_list["item"]], but the item Topic is deprecated!"))
+		// handle_strip(href_list["item"],usr)
 
 	// VOREStation Start
 	if(href_list["ooc_notes"])
@@ -414,7 +364,7 @@
 											BITSET(hud_updateflag, WANTED_HUD)
 											if(istype(usr,/mob/living/carbon/human))
 												var/mob/living/carbon/human/U = usr
-												U.handle_regular_hud_updates()
+												U.handle_hud_list()
 											if(istype(usr,/mob/living/silicon/robot))
 												var/mob/living/silicon/robot/U = usr
 												U.handle_regular_hud_updates()
@@ -748,7 +698,7 @@
 		var/datum/gender/T = gender_datums[get_visible_gender()]
 		visible_message("<font color='red'>\The [src] begins playing [T.his] ribcage like a xylophone. It's quite spooky.</font>","<font color='blue'>You begin to play a spooky refrain on your ribcage.</font>","<font color='red'>You hear a spooky xylophone melody.</font>")
 		var/song = pick('sound/effects/xylophone1.ogg','sound/effects/xylophone2.ogg','sound/effects/xylophone3.ogg')
-		playsound(loc, song, 50, 1, -1)
+		playsound(src, song, 50, 1, -1)
 		xylophone = 1
 		spawn(1200)
 			xylophone=0
@@ -1137,6 +1087,7 @@
 		// Clear out their species abilities.
 		species.remove_inherent_verbs(src)
 		holder_type = null
+		hunger_rate = initial(hunger_rate) //VOREStation Add
 
 	species = GLOB.all_species[new_species]
 
@@ -1180,6 +1131,7 @@
 
 
 	maxHealth = species.total_health
+	hunger_rate = species.hunger_factor //VOREStation Add
 
 	if(LAZYLEN(descriptors))
 		descriptors = null
@@ -1392,7 +1344,7 @@
 	set desc = "Pop a joint back into place. Extremely painful."
 	set src in view(1)
 
-	if(!isliving(usr) || !usr.canClick())
+	if(!isliving(usr) || !usr.checkClickCooldown())
 		return
 
 	usr.setClickCooldown(20)
@@ -1585,6 +1537,13 @@
 		else
 			layer = HIDING_LAYER
 
+/mob/living/carbon/human/examine_icon()
+	var/icon/I = get_cached_examine_icon(src)
+	if(!I)
+		I = getFlatIcon(src, defdir = SOUTH, no_anim = TRUE)
+		set_cached_examine_icon(src, I, 50 SECONDS)
+	return I
+
 /mob/living/carbon/human/proc/get_display_species()
 	//Shows species in tooltip
 	if(src.custom_species) //VOREStation Add
@@ -1633,3 +1592,63 @@
 
 	msg += get_display_species()
 	return msg
+
+/mob/living/carbon/human/reduce_cuff_time()
+	if(istype(gloves, /obj/item/clothing/gloves/gauntlets/rig))
+		return 2
+	return ..()
+
+/mob/living/carbon/human/pull_damage()
+	if(((health - halloss) <= config.health_threshold_softcrit))
+		for(var/name in organs_by_name)
+			var/obj/item/organ/external/e = organs_by_name[name]
+			if(!e)
+				continue
+			if((e.status & ORGAN_BROKEN && (!e.splinted || (e.splinted in e.contents && prob(30))) || e.status & ORGAN_BLEEDING) && (getBruteLoss() + getFireLoss() >= 100))
+				return 1
+	else
+		return ..()
+
+// Drag damage is handled in a parent
+/mob/living/carbon/human/dragged(var/mob/living/dragger, var/oldloc)
+	var/area/A = get_area(src)
+	if(lying && !buckled && A.has_gravity() && prob(getBruteLoss() * 200 / maxHealth))
+		var/bloodtrail = 1
+		if(species?.flags & NO_BLOOD)
+			bloodtrail = 0
+		else
+			var/blood_volume = vessel.get_reagent_amount("blood")
+			if(blood_volume < species?.blood_volume*species?.blood_level_fatal)
+				bloodtrail = 0	//Most of it's gone already, just leave it be
+			else
+				vessel.remove_reagent("blood", 1)
+		if(bloodtrail)
+			if(istype(loc, /turf/simulated))
+				var/turf/T = loc
+				T.add_blood(src)
+	. = ..()
+
+// Tries to turn off item-based things that let you see through walls, like mesons.
+// Certain stuff like genetic xray vision is allowed to be kept on.
+/mob/living/carbon/human/disable_spoiler_vision()
+	// Glasses.
+	if(istype(glasses, /obj/item/clothing/glasses))
+		var/obj/item/clothing/glasses/goggles = glasses
+		if(goggles.active && (goggles.vision_flags & (SEE_TURFS|SEE_OBJS)))
+			goggles.toggle_active(src)
+			to_chat(src, span("warning", "Your [goggles.name] have suddenly turned off!"))
+
+	// RIGs.
+	var/obj/item/weapon/rig/rig = get_rig()
+	if(istype(rig) && rig.visor?.active && rig.visor.vision?.glasses)
+		var/obj/item/clothing/glasses/rig_goggles = rig.visor.vision.glasses
+		if(rig_goggles.vision_flags & (SEE_TURFS|SEE_OBJS))
+			rig.visor.deactivate()
+			to_chat(src, span("warning", "\The [rig]'s visor has shuddenly deactivated!"))
+
+	..()
+
+/mob/living/carbon/human/reduce_cuff_time()
+	if(istype(gloves, /obj/item/clothing/gloves/gauntlets/rig))
+		return 2
+	return ..()

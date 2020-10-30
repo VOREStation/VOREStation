@@ -18,7 +18,7 @@ var/global/list/limb_icon_cache = list()
 	h_col = null
 	if(robotic >= ORGAN_ROBOT)
 		var/datum/robolimb/franchise = all_robolimbs[model]
-		if(!(franchise && franchise.skin_tone))
+		if(!(franchise && franchise.skin_tone) && !(franchise && franchise.skin_color))
 			if(human.synth_color)
 				s_col = list(human.r_synth, human.g_synth, human.b_synth)
 			return
@@ -36,7 +36,7 @@ var/global/list/limb_icon_cache = list()
 	h_col = null
 	if(robotic >= ORGAN_ROBOT)
 		var/datum/robolimb/franchise = all_robolimbs[model]
-		if(!(franchise && franchise.skin_tone))
+		if(!(franchise && franchise.skin_tone) && !(franchise && franchise.skin_color))
 			return
 	if(!isnull(dna.GetUIValue(DNA_UI_SKIN_TONE)) && (species.appearance_flags & HAS_SKIN_TONE))
 		s_tone = dna.GetUIValue(DNA_UI_SKIN_TONE)
@@ -131,9 +131,9 @@ var/global/list/limb_icon_cache = list()
 
 /obj/item/organ/external/proc/get_icon(var/skeletal)
 
-	var/gender = "f"
-	if(owner && owner.gender == MALE)
-		gender = "m"
+	var/gender = "m"
+	if(owner && owner.gender == FEMALE)
+		gender = "f"
 
 	icon_cache_key = "[icon_name]_[species ? species.get_bodytype() : SPECIES_HUMAN]" //VOREStation Edit
 
@@ -206,7 +206,7 @@ var/global/list/limb_icon_cache = list()
 
 /obj/item/organ/external/proc/apply_colouration(var/icon/applying)
 
-	if(nonsolid)
+	if(transparent) //VOREStation edit
 		applying.MapColors("#4D4D4D","#969696","#1C1C1C", "#000000")
 		if(species && species.get_bodytype(owner) != SPECIES_HUMAN)
 			applying.SetIntensity(1) // Unathi, Taj and Skrell have -very- dark base icons. VOREStation edit fixes this and brings the number back to 1
@@ -235,7 +235,7 @@ var/global/list/limb_icon_cache = list()
 		//VOREStation Edit End
 
 	// Translucency.
-	if(nonsolid) applying += rgb(,,,180) // SO INTUITIVE TY BYOND
+	if(transparent) applying += rgb(,,,180) // SO INTUITIVE TY BYOND //VOREStation Edit
 
 	return applying
 

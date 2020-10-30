@@ -14,13 +14,14 @@
 				if( (client.connection != "web") && (M.computer_id == client.computer_id) )
 					if(matches)	matches += " and "
 					matches += "ID ([client.computer_id])"
-					spawn() alert("You have logged in already with another key this round, please log out of this one NOW or risk being banned!")
+					if(!config.disable_cid_warn_popup)
+						spawn() alert("You appear to have logged in with another key this round, which is not permitted. Please contact an administrator if you believe this message to be in error.")
 				if(matches)
 					if(M.client)
-						message_admins("<font color='red'><B>Notice: </B></font><font color='blue'><A href='?src=\ref[usr];priv_msg=\ref[src]'>[key_name_admin(src)]</A> has the same [matches] as <A href='?src=\ref[usr];priv_msg=\ref[M]'>[key_name_admin(M)]</A>.</font>", 1)
+						message_admins("<font color='red'><B>Notice: </B></font><font color='blue'>[key_name_admin(src)] has the same [matches] as [key_name_admin(M)].</font>", 1)
 						log_adminwarn("Notice: [key_name(src)] has the same [matches] as [key_name(M)].")
 					else
-						message_admins("<font color='red'><B>Notice: </B></font><font color='blue'><A href='?src=\ref[usr];priv_msg=\ref[src]'>[key_name_admin(src)]</A> has the same [matches] as [key_name_admin(M)] (no longer logged in). </font>", 1)
+						message_admins("<font color='red'><B>Notice: </B></font><font color='blue'>[key_name_admin(src)] has the same [matches] as [key_name_admin(M)] (no longer logged in). </font>", 1)
 						log_adminwarn("Notice: [key_name(src)] has the same [matches] as [key_name(M)] (no longer logged in).")
 
 /mob/Login()
@@ -50,7 +51,6 @@
 	else
 		client.eye = src
 		client.perspective = MOB_PERSPECTIVE
-	reload_fullscreen() // Reload any fullscreen overlays this mob has.
 	add_click_catcher()
 	update_client_color()
 
@@ -66,6 +66,10 @@
 	plane_holder.set_ao(VIS_OBJS, ao_enabled)
 	plane_holder.set_ao(VIS_MOBS, ao_enabled)
 
+	// Status indicators
+	var/status_enabled = client.is_preference_enabled(/datum/client_preference/status_indicators)
+	plane_holder.set_vis(VIS_STATUS, status_enabled)
+
 	//set macro to normal incase it was overriden (like cyborg currently does)
 	client.set_hotkeys_macro("macro", "hotkeymode")
 
@@ -75,3 +79,6 @@
 	var/turf/T = get_turf(src)
 	if(isturf(T))
 		update_client_z(T.z)
+
+	if(cloaked && cloaked_selfimage)
+		client.images += cloaked_selfimage

@@ -37,7 +37,7 @@
 	..()
 
 /obj/item/integrated_circuit/reagent/smoke/do_work()
-	playsound(src.loc, 'sound/effects/smoke.ogg', 50, 1, -3)
+	playsound(src, 'sound/effects/smoke.ogg', 50, 1, -3)
 	var/datum/effect/effect/system/smoke_spread/chem/smoke_system = new()
 	smoke_system.set_up(reagents, 10, 0, get_turf(src))
 	spawn(0)

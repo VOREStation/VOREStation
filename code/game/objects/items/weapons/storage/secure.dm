@@ -26,10 +26,12 @@
 	w_class = ITEMSIZE_NORMAL
 	max_w_class = ITEMSIZE_SMALL
 	max_storage_space = ITEMSIZE_SMALL * 7
+	use_sound = 'sound/items/storage/briefcase.ogg'
 
 	examine(mob/user)
-		if(..(user, 1))
-			to_chat(user, "The service panel is [src.open ? "open" : "closed"].")
+		. = ..()
+		if(Adjacent(user))
+			. += "The service panel is [src.open ? "open" : "closed"]."
 
 	attackby(obj/item/weapon/W as obj, mob/user as mob)
 		if(locked)
@@ -37,8 +39,8 @@
 				var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 				spark_system.set_up(5, 0, src.loc)
 				spark_system.start()
-				playsound(src.loc, 'sound/weapons/blade1.ogg', 50, 1)
-				playsound(src.loc, "sparks", 50, 1)
+				playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
+				playsound(src, "sparks", 50, 1)
 				return
 
 			if (W.is_screwdriver())
@@ -176,6 +178,7 @@
 	desc = "It doesn't seem all that secure. Oh well, it'll do."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "safe"
+	layer = ABOVE_WINDOW_LAYER
 	icon_opened = "safe0"
 	icon_locking = "safeb"
 	icon_sparking = "safespark"

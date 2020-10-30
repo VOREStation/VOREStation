@@ -1,12 +1,7 @@
 /obj/structure/closet/secure_closet/engineering_chief
 	name = "chief engineer's locker"
-	icon_state = "securece1"
-	icon_closed = "securece"
-	icon_locked = "securece1"
-	icon_opened = "secureceopen"
-	icon_broken = "securecebroken"
-	icon_off = "secureceoff"
 	req_access = list(access_ce)
+	closet_appearance = /decl/closet_appearance/secure_closet/engineering/ce
 
 	starts_with = list(
 		/obj/item/clothing/accessory/storage/brown_vest,
@@ -46,13 +41,8 @@
 
 /obj/structure/closet/secure_closet/engineering_electrical
 	name = "electrical supplies"
-	icon_state = "secureengelec1"
-	icon_closed = "secureengelec"
-	icon_locked = "secureengelec1"
-	icon_opened = "toolclosetopen"
-	icon_broken = "secureengelecbroken"
-	icon_off = "secureengelecoff"
 	req_access = list(access_engine_equip)
+	closet_appearance = /decl/closet_appearance/secure_closet/engineering/electrical
 
 	starts_with = list(
 		/obj/item/clothing/gloves/yellow = 2,
@@ -63,13 +53,8 @@
 
 /obj/structure/closet/secure_closet/engineering_welding
 	name = "welding supplies"
-	icon_state = "secureengweld1"
-	icon_closed = "secureengweld"
-	icon_locked = "secureengweld1"
-	icon_opened = "toolclosetopen"
-	icon_broken = "secureengweldbroken"
-	icon_off = "secureengweldoff"
 	req_access = list(access_construction)
+	closet_appearance = /decl/closet_appearance/secure_closet/engineering/welding
 
 	starts_with = list(
 		/obj/item/clothing/head/welding = 3,
@@ -79,13 +64,8 @@
 
 /obj/structure/closet/secure_closet/engineering_personal
 	name = "engineer's locker"
-	icon_state = "secureeng1"
-	icon_closed = "secureeng"
-	icon_locked = "secureeng1"
-	icon_opened = "secureengopen"
-	icon_broken = "secureengbroken"
-	icon_off = "secureengoff"
 	req_access = list(access_engine_equip)
+	closet_appearance = /decl/closet_appearance/secure_closet/engineering
 
 	starts_with = list(
 		/obj/item/clothing/accessory/storage/brown_vest,
@@ -115,13 +95,8 @@
 
 /obj/structure/closet/secure_closet/atmos_personal
 	name = "technician's locker"
-	icon_state = "secureatm1"
-	icon_closed = "secureatm"
-	icon_locked = "secureatm1"
-	icon_opened = "secureatmopen"
-	icon_broken = "secureatmbroken"
-	icon_off = "secureatmoff"
 	req_access = list(access_atmospherics)
+	closet_appearance = /decl/closet_appearance/secure_closet/engineering/atmos
 
 	starts_with = list(
 		/obj/item/clothing/accessory/storage/brown_vest,

@@ -25,8 +25,8 @@
 		"Glass Shattering"		=	"shatter",
 		"Grille Damage"			=	'sound/effects/grillehit.ogg',
 		"Energy Pulse"			=	'sound/effects/EMPulse.ogg',
-		"Airlock"				=	'sound/machines/airlock.ogg',
-		"Airlock Creak"			=	'sound/machines/airlock_creaking.ogg',
+		"Airlock"				=	'sound/machines/door/old_airlock.ogg',
+		"Airlock Creak"			=	'sound/machines/door/airlock_creaking.ogg',
 
 		"Shotgun Pumping"		=	'sound/weapons/shotgunpump.ogg',
 		"Flash"					=	'sound/weapons/flash.ogg',
@@ -75,7 +75,7 @@
 /obj/item/weapon/spell/audible_deception/on_ranged_cast(atom/hit_atom, mob/living/user)
 	var/turf/T = get_turf(hit_atom)
 	if(selected_sound && pay_energy(200))
-		playsound(T, selected_sound, 80, 1, -1)
+		playsound(src, selected_sound, 80, 1, -1)
 		adjust_instability(1)
 		// Air Horn time.
 		if(selected_sound == 'sound/items/AirHorn.ogg' && pay_energy(3800))
@@ -83,7 +83,7 @@
 			for(var/mob/living/carbon/M in ohearers(6, T))
 				if(M.get_ear_protection() >= 2)
 					continue
-				M.sleeping = 0
+				M.SetSleeping(0)
 				M.stuttering += 20
 				M.ear_deaf += 30
 				M.Weaken(3)

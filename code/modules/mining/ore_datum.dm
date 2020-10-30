@@ -17,6 +17,7 @@ var/global/list/ore_data = list()
 		"million" = 999
 		)
 	var/xarch_source_mineral = "iron"
+	var/reagent = "silicate"
 
 /ore/New()
 	. = ..()
@@ -36,6 +37,7 @@ var/global/list/ore_data = list()
 		"million" = 704
 		)
 	xarch_source_mineral = "potassium"
+	reagent = "uranium"
 
 /ore/hematite
 	name = "hematite"
@@ -46,16 +48,19 @@ var/global/list/ore_data = list()
 	spread_chance = 25
 	ore = /obj/item/weapon/ore/iron
 	scan_icon = "mineral_common"
+	reagent = "iron"
 
 /ore/coal
 	name = "carbon"
 	display_name = "raw carbon"
 	smelts_to = "plastic"
+	compresses_to = "graphite"
 	alloy = 1
 	result_amount = 5
 	spread_chance = 25
 	ore = /obj/item/weapon/ore/coal
 	scan_icon = "mineral_common"
+	reagent = "carbon"
 
 /ore/glass
 	name = "sand"
@@ -80,6 +85,7 @@ var/global/list/ore_data = list()
 		"billion_lower" = 10
 		)
 	xarch_source_mineral = "phoron"
+	reagent = "phoron"
 
 /ore/silver
 	name = "silver"
@@ -89,6 +95,7 @@ var/global/list/ore_data = list()
 	spread_chance = 10
 	ore = /obj/item/weapon/ore/silver
 	scan_icon = "mineral_uncommon"
+	reagent = "silver"
 
 /ore/gold
 	smelts_to = "gold"
@@ -104,6 +111,7 @@ var/global/list/ore_data = list()
 		"billion" = 4,
 		"billion_lower" = 3
 		)
+	reagent = "gold"
 
 /ore/diamond
 	name = "diamond"
@@ -115,6 +123,7 @@ var/global/list/ore_data = list()
 	ore = /obj/item/weapon/ore/diamond
 	scan_icon = "mineral_rare"
 	xarch_source_mineral = "nitrogen"
+	reagent = "carbon"
 
 /ore/platinum
 	name = "platinum"
@@ -126,6 +135,7 @@ var/global/list/ore_data = list()
 	spread_chance = 10
 	ore = /obj/item/weapon/ore/osmium
 	scan_icon = "mineral_rare"
+	reagent = "platinum"
 
 /ore/hydrogen
 	name = "mhydrogen"
@@ -133,6 +143,7 @@ var/global/list/ore_data = list()
 	smelts_to = "tritium"
 	compresses_to = "mhydrogen"
 	scan_icon = "mineral_rare"
+	reagent = "hydrogen"
 
 /ore/verdantium
 	name = MAT_VERDANTIUM
@@ -155,6 +166,7 @@ var/global/list/ore_data = list()
 	spread_chance = 10
 	ore = /obj/item/weapon/ore/marble
 	scan_icon = "mineral_common"
+	reagent = "calciumcarbonate"
 
 /ore/lead
 	name = MAT_LEAD
@@ -164,3 +176,4 @@ var/global/list/ore_data = list()
 	spread_chance = 20
 	ore = /obj/item/weapon/ore/lead
 	scan_icon = "mineral_rare"
+	reagent = "lead"

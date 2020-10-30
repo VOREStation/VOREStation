@@ -16,8 +16,8 @@
 		return
 
 	gravity_is_on = !gravity_is_on
-	for(var/area/A in all_areas)
-		A.gravitychange(gravity_is_on,A)
+	for(var/area/A in world)
+		A.gravitychange(gravity_is_on)
 
 	feedback_inc("admin_secrets_fun_used",1)
 	feedback_add_details("admin_secrets_fun_used","Grav")

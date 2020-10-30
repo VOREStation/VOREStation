@@ -63,7 +63,7 @@
 			return
 		path = 1
 		to_chat(user, "<span class='notice'>You add [W] to the metal casing.</span>")
-		playsound(src.loc, 'sound/items/Screwdriver2.ogg', 25, -3)
+		playsound(src, 'sound/items/Screwdriver2.ogg', 25, -3)
 		user.remove_from_mob(det)
 		det.loc = src
 		detonator = det
@@ -96,7 +96,7 @@
 				return
 			else
 				to_chat(user, "<span class='notice'>You unlock the assembly.</span>")
-				playsound(src.loc, W.usesound, 50, -3)
+				playsound(src, W.usesound, 50, -3)
 				name = "unsecured grenade with [beakers.len] containers[detonator?" and detonator":""]"
 				icon_state = initial(icon_state) + (detonator?"_ass":"")
 				stage = 1
@@ -118,9 +118,9 @@
 				to_chat(user, "<span class='warning'>\The [W] is empty.</span>")
 
 /obj/item/weapon/grenade/chem_grenade/examine(mob/user)
-	..(user)
+	. = ..()
 	if(detonator)
-		to_chat(user, "With attached [detonator.name]")
+		. += "It has [detonator.name] attached to it."
 
 /obj/item/weapon/grenade/chem_grenade/activate(mob/user as mob)
 	if(active) return
@@ -154,7 +154,7 @@
 	active = 0
 	if(!has_reagents)
 		icon_state = initial(icon_state) +"_locked"
-		playsound(src.loc, 'sound/items/Screwdriver2.ogg', 50, 1)
+		playsound(src, 'sound/items/Screwdriver2.ogg', 50, 1)
 		spawn(0) //Otherwise det_time is erroneously set to 0 after this
 			if(istimer(detonator.a_left)) //Make sure description reflects that the timer has been reset
 				var/obj/item/device/assembly/timer/T = detonator.a_left
@@ -164,7 +164,7 @@
 				det_time = 10*T.time
 		return
 
-	playsound(src.loc, 'sound/effects/bamf.ogg', 50, 1)
+	playsound(src, 'sound/effects/bamf.ogg', 50, 1)
 
 	for(var/obj/item/weapon/reagent_containers/glass/G in beakers)
 		G.reagents.trans_to_obj(src, G.reagents.total_volume)

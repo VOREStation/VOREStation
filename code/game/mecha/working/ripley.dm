@@ -7,10 +7,22 @@
 	step_energy_drain = 5 // vorestation edit because 10 drained a significant chunk of its cell before you even got out the airlock
 	max_temperature = 20000
 	health = 200
-	maxhealth = 200
+	maxhealth = 200		//Don't forget to update the /old variant if  you change this number.
 	wreckage = /obj/effect/decal/mecha_wreckage/ripley
 	cargo_capacity = 10
 	var/obj/item/weapon/mining_scanner/orescanner // vorestation addition
+
+	minimum_penetration = 10
+
+	encumbrance_gap = 2
+
+	starting_components = list(
+		/obj/item/mecha_parts/component/hull/durable,
+		/obj/item/mecha_parts/component/actuator,
+		/obj/item/mecha_parts/component/armor/mining,
+		/obj/item/mecha_parts/component/gas,
+		/obj/item/mecha_parts/component/electrical
+		)
 
 /obj/mecha/working/ripley/Destroy()
 	for(var/atom/movable/A in src.cargo)
@@ -81,7 +93,7 @@
 		qdel (B)
 
 
-// VORESTATION EDIT BEGIN
+//Vorestation Edit Start
 
 /obj/mecha/working/ripley/New()
 	..()
@@ -95,5 +107,14 @@
 
 	orescanner.attack_self(usr)
 
-// VORESTATION EDIT END
+//Vorestation Edit End
 
+//Meant for random spawns.
+/obj/mecha/working/ripley/mining/old
+	desc = "An old, dusty mining ripley."
+
+/obj/mecha/working/ripley/mining/old/New()
+	..()
+	health = 25
+	maxhealth = 190	//Just slightly worse.
+	cell.charge = rand(0, cell.charge)

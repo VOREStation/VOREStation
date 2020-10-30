@@ -6,30 +6,28 @@
 // This might be laggy, comment it out if there are problems.
 /mob/living/silicon/var/updating = 0
 
-/mob/living/silicon/robot/Move()
-	var/oldLoc = src.loc
+/mob/living/silicon/robot/Moved(atom/old_loc, direction, forced = FALSE)
 	. = ..()
-	if(.)
-		if(provides_camera_vision())
-			if(!updating)
-				updating = 1
-				spawn(BORG_CAMERA_BUFFER)
-					if(oldLoc != src.loc)
-						cameranet.updatePortableCamera(src.camera)
-					updating = 0
+	if(!provides_camera_vision())
+		return
+	if(!updating)
+		updating = 1
+		spawn(BORG_CAMERA_BUFFER)
+			if(old_loc != src.loc)
+				cameranet.updatePortableCamera(src.camera)
+			updating = 0
 
-/mob/living/silicon/AI/Move()
-	var/oldLoc = src.loc
+/mob/living/silicon/ai/Moved(atom/old_loc, direction, forced = FALSE)
 	. = ..()
-	if(.)
-		if(provides_camera_vision())
-			if(!updating)
-				updating = 1
-				spawn(BORG_CAMERA_BUFFER)
-					if(oldLoc != src.loc)
-						cameranet.updateVisibility(oldLoc, 0)
-						cameranet.updateVisibility(loc, 0)
-					updating = 0
+	if(!provides_camera_vision())
+		return
+	if(!updating)
+		updating = 1
+		spawn(BORG_CAMERA_BUFFER)
+			if(old_loc != src.loc)
+				cameranet.updateVisibility(old_loc, 0)
+				cameranet.updateVisibility(loc, 0)
+			updating = 0
 
 #undef BORG_CAMERA_BUFFER
 
@@ -39,7 +37,6 @@
 
 /obj/machinery/camera/deactivate(user as mob, var/choice = 1)
 	..(user, choice)
-	invalidateCameraCache()
 	if(src.can_use())
 		cameranet.addCamera(src)
 	else

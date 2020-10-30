@@ -36,11 +36,12 @@
 	update_icon()
 
 /obj/item/weapon/gun/launcher/grenade/examine(mob/user)
-	if(..(user, 2))
+	. = ..()
+	if(get_dist(user, src) <= 2)
 		var/grenade_count = grenades.len + (chambered? 1 : 0)
-		to_chat(user, "Has [grenade_count] grenade\s remaining.")
+		. += "Has [grenade_count] grenade\s remaining."
 		if(chambered)
-			to_chat(user, "\A [chambered] is chambered.")
+			. += "\A [chambered] is chambered."
 
 /obj/item/weapon/gun/launcher/grenade/proc/load(obj/item/weapon/grenade/G, mob/user)
 	if(G.loadable)
@@ -60,7 +61,7 @@
 		grenades.len--
 		user.put_in_hands(G)
 		user.visible_message("[user] removes \a [G] from [src].", "<span class='notice'>You remove \a [G] from [src].</span>")
-		playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
+		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 	else
 		to_chat(user, "<span class='warning'>[src] is empty.</span>")
 
@@ -118,7 +119,7 @@
 	if(chambered)
 		user.put_in_hands(chambered)
 		user.visible_message("[user] removes \a [chambered] from [src].", "<span class='notice'>You remove \a [chambered] from [src].</span>")
-		playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
+		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 		chambered = null
 	else
 		to_chat(user, "<span class='warning'>[src] is empty.</span>")

@@ -39,6 +39,27 @@ var/global/ntnet_card_uid = 1
 	icon_state = "netcard_advanced"
 	hardware_size = 1
 
+/obj/item/weapon/computer_hardware/network_card/quantum
+	name = "quantum NTNet network card"
+	desc = "A network card that can connect to NTnet from anywhere, using quantum entanglement."
+	long_range = 1
+	origin_tech = list(TECH_DATA = 6, TECH_ENGINEERING = 7)
+	power_usage = 200 // Infinite range but higher power usage.
+	icon_state = "netcard_advanced"
+	hardware_size = 1
+
+/obj/item/weapon/computer_hardware/network_card/quantum/get_signal(var/specific_action = 0)
+	if(!holder2)
+		return 0
+
+	if(!enabled)
+		return 0
+
+	if(!check_functionality() || !ntnet_global || is_banned())
+		return 0
+
+	return 2
+
 /obj/item/weapon/computer_hardware/network_card/wired
 	name = "wired NTNet network card"
 	desc = "An advanced network card for usage with standard NTNet frequencies. This one also supports wired connection."
@@ -79,20 +100,31 @@ var/global/ntnet_card_uid = 1
 		return 0
 
 	if(holder2)
-		var/turf/T = get_turf(holder2)
-		if(!istype(T)) //no reception in nullspace
+		var/holderz = get_z(holder2)
+		if(!holderz) //no reception in nullspace
 			return 0
-		if(T.z in using_map.station_levels)
-			// Computer is on station. Low/High signal depending on what type of network card you have
-			if(long_range)
-				return 2
-			else
-				return 1
-		if(T.z in using_map.contact_levels) //not on station, but close enough for radio signal to travel
-			if(long_range) // Computer is not on station, but it has upgraded network card. Low signal.
-				return 1
-
-	return 0 // Computer is not on station and does not have upgraded network card. No signal.
+		var/list/zlevels_in_range = using_map.get_map_levels(holderz, FALSE)
+		var/list/zlevels_in_long_range = using_map.get_map_levels(holderz, TRUE, om_range = DEFAULT_OVERMAP_RANGE) - zlevels_in_range
+		var/best = 0
+		for(var/relay in ntnet_global.relays)
+			var/obj/machinery/ntnet_relay/R = relay
+			//Relay is down
+			if(!R.operable())
+				continue
+			//We're on the same z
+			if(R.z == holderz)
+				best = 2 //Every network card gets high signal on the same z as the relay
+				break // No point in going further
+			//Not on the same z but within range anyway
+			if(R.z in zlevels_in_range)
+				best = long_range ? 2 : 1 //High-power network cards get good signal further away
+				break
+			//Only in long range
+			if(long_range && (R.z in zlevels_in_long_range))
+				best = 1 //High-power network cards can get low signal even at long range
+				break
+		return best
+	return 0 // No computer!
 
 /obj/item/weapon/computer_hardware/network_card/Destroy()
 	if(holder2 && (holder2.network_card == src))

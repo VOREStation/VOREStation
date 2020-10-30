@@ -84,9 +84,9 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 		..()
 
 	examine(mob/user)
-		..()
+		. = ..()
 		if(iscultist(user))
-			to_chat(user, "This spell circle reads: <i>[word1] [word2] [word3]</i>.")
+			. += "This spell circle reads: <i>[word1] [word2] [word3]</i>."
 
 
 	attackby(I as obj, user as mob)
@@ -180,7 +180,12 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 /obj/item/weapon/book/tome
 	name = "arcane tome"
 	icon = 'icons/obj/weapons.dmi'
+	item_icons = list(
+		icon_l_hand = 'icons/mob/items/lefthand_books.dmi',
+		icon_r_hand = 'icons/mob/items/righthand_books.dmi',
+		)
 	icon_state ="tome"
+	item_state = "tome"
 	throw_speed = 1
 	throw_range = 5
 	w_class = ITEMSIZE_SMALL
@@ -422,10 +427,11 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 			return
 
 	examine(mob/user)
+		. = ..()
 		if(!iscultist(user))
-			to_chat(user, "An old, dusty tome with frayed edges and a sinister looking cover.")
+			. += "An old, dusty tome with frayed edges and a sinister looking cover."
 		else
-			to_chat(user, "The scriptures of Nar-Sie, The One Who Sees, The Geometer of Blood. Contains the details of every ritual his followers could think of. Most of these are useless, though.")
+			. += "The scriptures of Nar-Sie, The One Who Sees, The Geometer of Blood. Contains the details of every ritual his followers could think of. Most of these are useless, though."
 
 /obj/item/weapon/book/tome/cultify()
 	return

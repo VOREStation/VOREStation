@@ -11,7 +11,6 @@
 	..()
 	icon_state = "snowgrass[rand(1, 3)]bb"
 
-
 /obj/structure/flora/grass/green
 	icon_state = "snowgrass1gb"
 

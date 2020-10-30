@@ -21,6 +21,8 @@
 	origin_tech = list(TECH_MATERIAL = 2, TECH_COMBAT = 1)
 	attack_verb = list("chopped", "torn", "cut")
 	applies_material_colour = 0
+	drop_sound = 'sound/items/drop/axe.ogg'
+	pickup_sound = 'sound/items/pickup/axe.ogg'
 
 /obj/item/weapon/material/knife/machete/hatchet/unathiknife
 	name = "duelling knife"
@@ -72,12 +74,14 @@
 
 /obj/item/weapon/material/snow/snowball/attack_self(mob/user as mob)
 	if(user.a_intent == I_HURT)
-		visible_message("[user] has smashed the snowball in their hand!", "You smash the snowball in your hand.")
+		//visible_message("[user] has smashed the snowball in their hand!", "You smash the snowball in your hand.")
+		to_chat(user, "<span class='notice'>You smash the snowball in your hand.</span>")
 		var/atom/S = new /obj/item/stack/material/snow(user.loc)
 		del(src)
 		user.put_in_hands(S)
 	else
-		visible_message("[user] starts compacting the snowball.", "You start compacting the snowball.")
+		//visible_message("[user] starts compacting the snowball.", "You start compacting the snowball.")
+		to_chat(user, "<span class='notice'>You start compacting the snowball.</span>")
 		if(do_after(user, 2 SECONDS))
 			var/atom/S = new /obj/item/weapon/material/snow/snowball/reinforced(user.loc)
 			del(src)

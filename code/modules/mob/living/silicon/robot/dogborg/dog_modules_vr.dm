@@ -22,7 +22,7 @@
 	var/emagged = 0
 
 /obj/item/weapon/dogborg/jaws/small/attack_self(mob/user)
-	var/mob/living/silicon/robot.R = user
+	var/mob/living/silicon/robot/R = user
 	if(R.emagged || R.emag_items)
 		emagged = !emagged
 		if(emagged)
@@ -167,7 +167,7 @@
 //Tongue stuff
 /obj/item/device/dogborg/tongue
 	name = "synthetic tongue"
-	desc = "Useful for slurping mess off the floor before affectionally licking the crew members in the face."
+	desc = "Useful for slurping mess off the floor before affectionately licking the crew members in the face."
 	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "synthtongue"
 	hitsound = 'sound/effects/attackblob.ogg'
@@ -179,15 +179,15 @@
 	flags |= NOBLUDGEON //No more attack messages
 
 /obj/item/device/dogborg/tongue/examine(user)
-	if(!..(user, 1))
-		return
-	if(water.energy)
-		to_chat(user, "<span class='notice'>[src] is wet. Just like it should be.</span>")
-	if(water.energy < 5)
-		to_chat(user, "<span class='notice'>[src] is dry.</span>")
+	. = ..()
+	if(Adjacent(user))
+		if(water.energy)
+			. += "<span class='notice'>[src] is wet. Just like it should be.</span>"
+		if(water.energy < 5)
+			. += "<span class='notice'>[src] is dry.</span>"
 
 /obj/item/device/dogborg/tongue/attack_self(mob/user)
-	var/mob/living/silicon/robot.R = user
+	var/mob/living/silicon/robot/R = user
 	if(R.emagged || R.emag_items)
 		emagged = !emagged
 		if(emagged)
@@ -197,7 +197,7 @@
 			icon_state = "syndietongue"
 		else
 			name = "synthetic tongue"
-			desc = "Useful for slurping mess off the floor before affectionally licking the crew members in the face."
+			desc = "Useful for slurping mess off the floor before affectionately licking the crew members in the face."
 			icon = 'icons/mob/dogborg_vr.dmi'
 			icon_state = "synthtongue"
 		update_icon()
@@ -213,6 +213,7 @@
 		user.visible_message("[user] begins to lap up water from [target.name].", "<span class='notice'>You begin to lap up water from [target.name].</span>")
 		if(do_after (user, 50))
 			water.add_charge(50)
+			to_chat(src, "You refill some of your water reserves.")
 	else if(water.energy < 5)
 		to_chat(user, "<span class='notice'>Your mouth feels dry. You should drink up some water .</span>")
 		return
@@ -222,7 +223,7 @@
 			to_chat(user, "<span class='notice'>You finish licking off \the [target.name].</span>")
 			water.use_charge(5)
 			qdel(target)
-			var/mob/living/silicon/robot.R = user
+			var/mob/living/silicon/robot/R = user
 			R.cell.charge += 50
 	else if(istype(target,/obj/item))
 		if(istype(target,/obj/item/trash))
@@ -231,7 +232,7 @@
 				user.visible_message("[user] finishes eating \the [target.name].", "<span class='notice'>You finish eating \the [target.name].</span>")
 				to_chat(user, "<span class='notice'>You finish off \the [target.name].</span>")
 				qdel(target)
-				var/mob/living/silicon/robot.R = user
+				var/mob/living/silicon/robot/R = user
 				R.cell.charge += 250
 				water.use_charge(5)
 			return
@@ -240,9 +241,9 @@
 			if(do_after (user, 50))
 				user.visible_message("[user] finishes gulping down \the [target.name].", "<span class='notice'>You finish swallowing \the [target.name].</span>")
 				to_chat(user, "<span class='notice'>You finish off \the [target.name], and gain some charge!</span>")
-				var/mob/living/silicon/robot.R = user
-				var/obj/item/weapon/cell.C = target
-				R.cell.charge += C.maxcharge / 3
+				var/mob/living/silicon/robot/R = user
+				var/obj/item/weapon/cell/C = target
+				R.cell.charge += C.charge / 3
 				water.use_charge(5)
 				qdel(target)
 			return
@@ -255,7 +256,7 @@
 			target.clean_blood()
 	else if(ishuman(target))
 		if(src.emagged)
-			var/mob/living/silicon/robot.R = user
+			var/mob/living/silicon/robot/R = user
 			var/mob/living/L = target
 			if(R.cell.charge <= 666)
 				return
@@ -264,11 +265,11 @@
 			L.apply_effect(STUTTER, 1)
 			L.visible_message("<span class='danger'>[user] has shocked [L] with its tongue!</span>", \
 								"<span class='userdanger'>[user] has shocked you with its tongue! You can feel the betrayal.</span>")
-			playsound(loc, 'sound/weapons/Egloves.ogg', 50, 1, -1)
+			playsound(src, 'sound/weapons/Egloves.ogg', 50, 1, -1)
 			R.cell.charge -= 666
 		else
-			user.visible_message("<span class='notice'>\the [user] affectionally licks all over \the [target]'s face!</span>", "<span class='notice'>You affectionally lick all over \the [target]'s face!</span>")
-			playsound(src.loc, 'sound/effects/attackblob.ogg', 50, 1)
+			user.visible_message("<span class='notice'>\the [user] affectionately licks all over \the [target]'s face!</span>", "<span class='notice'>You affectionately lick all over \the [target]'s face!</span>")
+			playsound(src, 'sound/effects/attackblob.ogg', 50, 1)
 			water.use_charge(5)
 			var/mob/living/carbon/human/H = target
 			if(H.species.lightweight == 1)
@@ -298,7 +299,7 @@
 	flags |= NOBLUDGEON
 
 /obj/item/pupscrubber/attack_self(mob/user)
-	var/mob/living/silicon/robot.R = user
+	var/mob/living/silicon/robot/R = user
 	if(!enabled)
 		R.scrubbing = TRUE
 		enabled = TRUE
@@ -415,7 +416,7 @@
 
 	src.visible_message("<span class='danger'>\The [src] leaps at [T]!</span>")
 	src.throw_at(get_step(get_turf(T),get_turf(src)), 4, 1, src)
-	playsound(src.loc, 'sound/mecha/mechstep2.ogg', 50, 1)
+	playsound(src, 'sound/mecha/mechstep2.ogg', 50, 1)
 	pixel_y = default_pixel_y
 	cell.charge -= 750
 

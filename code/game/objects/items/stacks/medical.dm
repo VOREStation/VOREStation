@@ -10,6 +10,8 @@
 	var/heal_brute = 0
 	var/heal_burn = 0
 	var/apply_sounds
+	drop_sound = 'sound/items/drop/cardboardbox.ogg'
+	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
 	var/upgrade_to	// The type path this stack can be upgraded to.
 
@@ -21,6 +23,11 @@
 	if ( ! (istype(user, /mob/living/carbon/human) || \
 			istype(user, /mob/living/silicon)) )
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
+		return 1
+
+	var/available = get_amount()
+	if(!available)
+		to_chat(user, "<span class='warning'>There's not enough [uses_charge ? "charge" : "items"] left to use that!</span>")
 		return 1
 
 	if (istype(M, /mob/living/carbon/human))
@@ -100,17 +107,18 @@
 			to_chat(user, "<span class='warning'>The wounds on [M]'s [affecting.name] have already been bandaged.</span>")
 			return 1
 		else
+			var/available = get_amount()
 			user.visible_message("<span class='notice'>\The [user] starts bandaging [M]'s [affecting.name].</span>", \
 					             "<span class='notice'>You start bandaging [M]'s [affecting.name].</span>" )
 			var/used = 0
 			for (var/datum/wound/W in affecting.wounds)
-				if (W.internal)
+				if(W.internal)
 					continue
 				if(W.bandaged)
 					continue
 				if(used == amount)
 					break
-				if(!do_mob(user, M, W.damage/3))
+				if(!do_mob(user, M, W.damage/3, exclusive = TRUE))
 					to_chat(user, "<span class='notice'>You must stand still to bandage wounds.</span>")
 					break
 
@@ -118,6 +126,10 @@
 					to_chat(user, "<span class='warning'>The wounds on [M]'s [affecting.name] have already been bandaged.</span>")
 					return 1
 
+				if(used >= available)
+					to_chat(user, "<span class='warning'>You run out of [src]!</span>")
+					break
+				
 				if (W.current_stage <= W.max_bleeding_stage)
 					user.visible_message("<span class='notice'>\The [user] bandages \a [W.desc] on [M]'s [affecting.name].</span>", \
 					                              "<span class='notice'>You bandage \a [W.desc] on [M]'s [affecting.name].</span>" )
@@ -143,6 +155,8 @@
 	origin_tech = list(TECH_BIO = 1)
 	no_variants = FALSE
 	apply_sounds = list('sound/effects/rip1.ogg','sound/effects/rip2.ogg')
+	drop_sound = 'sound/items/drop/gloves.ogg'
+	pickup_sound = 'sound/items/pickup/gloves.ogg'
 
 	upgrade_to = /obj/item/stack/medical/advanced/bruise_pack
 
@@ -162,6 +176,7 @@
 			to_chat(user, "<span class='warning'>The wounds on [M]'s [affecting.name] have already been bandaged.</span>")
 			return 1
 		else
+			var/available = get_amount()
 			user.visible_message("<span class='notice'>\The [user] starts treating [M]'s [affecting.name].</span>", \
 					             "<span class='notice'>You start treating [M]'s [affecting.name].</span>" )
 			var/used = 0
@@ -172,13 +187,17 @@
 					continue
 				if(used == amount)
 					break
-				if(!do_mob(user, M, W.damage/5))
+				if(!do_mob(user, M, W.damage/5, exclusive = TRUE))
 					to_chat(user, "<span class='notice'>You must stand still to bandage wounds.</span>")
 					break
 
 				if(affecting.is_bandaged()) // We do a second check after the delay, in case it was bandaged after the first check.
 					to_chat(user, "<span class='warning'>The wounds on [M]'s [affecting.name] have already been bandaged.</span>")
 					return 1
+
+				if(used >= available)
+					to_chat(user, "<span class='warning'>You run out of [src]!</span>")
+					break
 
 				if (W.current_stage <= W.max_bleeding_stage)
 					user.visible_message("<span class='notice'>\The [user] bandages \a [W.desc] on [M]'s [affecting.name].</span>", \
@@ -212,6 +231,8 @@
 	origin_tech = list(TECH_BIO = 1)
 	no_variants = FALSE
 	apply_sounds = list('sound/effects/ointment.ogg')
+	drop_sound = 'sound/items/drop/herb.ogg'
+	pickup_sound = 'sound/items/pickup/herb.ogg'
 
 /obj/item/stack/medical/ointment/attack(mob/living/carbon/M as mob, mob/user as mob)
 	if(..())
@@ -231,7 +252,7 @@
 		else
 			user.visible_message("<span class='notice'>\The [user] starts salving wounds on [M]'s [affecting.name].</span>", \
 					             "<span class='notice'>You start salving the wounds on [M]'s [affecting.name].</span>" )
-			if(!do_mob(user, M, 10))
+			if(!do_mob(user, M, 10, exclusive = TRUE))
 				to_chat(user, "<span class='notice'>You must stand still to salve wounds.</span>")
 				return 1
 			if(affecting.is_salved()) // We do a second check after the delay, in case it was bandaged after the first check.
@@ -268,6 +289,7 @@
 			to_chat(user, "<span class='warning'>The wounds on [M]'s [affecting.name] have already been treated.</span>")
 			return 1
 		else
+			var/available = get_amount()
 			user.visible_message("<span class='notice'>\The [user] starts treating [M]'s [affecting.name].</span>", \
 					             "<span class='notice'>You start treating [M]'s [affecting.name].</span>" )
 			var/used = 0
@@ -278,12 +300,17 @@
 					continue
 				//if(used == amount) //VOREStation Edit
 				//	break //VOREStation Edit
-				if(!do_mob(user, M, W.damage/5))
+				if(!do_mob(user, M, W.damage/5, exclusive = TRUE))
 					to_chat(user, "<span class='notice'>You must stand still to bandage wounds.</span>")
 					break
 				if(affecting.is_bandaged() && affecting.is_disinfected()) // We do a second check after the delay, in case it was bandaged after the first check.
 					to_chat(user, "<span class='warning'>The wounds on [M]'s [affecting.name] have already been bandaged.</span>")
 					return 1
+
+				if(used >= available)
+					to_chat(user, "<span class='warning'>You run out of [src]!</span>")
+					break
+
 				if (W.current_stage <= W.max_bleeding_stage)
 					user.visible_message("<span class='notice'>\The [user] cleans \a [W.desc] on [M]'s [affecting.name] and seals the edges with bioglue.</span>", \
 					                     "<span class='notice'>You clean and seal \a [W.desc] on [M]'s [affecting.name].</span>" )
@@ -333,7 +360,7 @@
 		else
 			user.visible_message("<span class='notice'>\The [user] starts salving wounds on [M]'s [affecting.name].</span>", \
 					             "<span class='notice'>You start salving the wounds on [M]'s [affecting.name].</span>" )
-			if(!do_mob(user, M, 10))
+			if(!do_mob(user, M, 10, exclusive = TRUE))
 				to_chat(user, "<span class='notice'>You must stand still to salve wounds.</span>")
 				return 1
 			if(affecting.is_salved()) // We do a second check after the delay, in case it was bandaged after the first check.
@@ -354,6 +381,8 @@
 	icon_state = "splint"
 	amount = 5
 	max_amount = 5
+	drop_sound = 'sound/items/drop/hat.ogg'
+	pickup_sound = 'sound/items/pickup/hat.ogg'
 
 	var/list/splintable_organs = list(BP_HEAD, BP_L_HAND, BP_R_HAND, BP_L_ARM, BP_R_ARM, BP_L_FOOT, BP_R_FOOT, BP_L_LEG, BP_R_LEG, BP_GROIN, BP_TORSO)	//List of organs you can splint, natch.
 
@@ -379,7 +408,7 @@
 				to_chat(user, "<span class='danger'>You can't apply a splint to the arm you're using!</span>")
 				return
 			user.visible_message("<span class='danger'>[user] starts to apply \the [src] to their [limb].</span>", "<span class='danger'>You start to apply \the [src] to your [limb].</span>", "<span class='danger'>You hear something being wrapped.</span>")
-		if(do_after(user, 50, M))
+		if(do_after(user, 50, M, exclusive = TRUE))
 			if(affecting.splinted)
 				to_chat(user, "<span class='danger'>[M]'s [limb] is already splinted!</span>")
 				return

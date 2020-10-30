@@ -16,6 +16,8 @@ LINEN BINS
 	throw_speed = 1
 	throw_range = 2
 	w_class = ITEMSIZE_SMALL
+	drop_sound = 'sound/items/drop/clothing.ogg'
+	pickup_sound = 'sound/items/pickup/clothing.ogg'
 
 /obj/item/weapon/bedsheet/attack_self(mob/user as mob)
 	user.drop_item()
@@ -169,16 +171,14 @@ LINEN BINS
 
 
 /obj/structure/bedsheetbin/examine(mob/user)
-	..(user)
+	. = ..()
 
 	if(amount < 1)
-		to_chat(user, "There are no bed sheets in the bin.")
-		return
-	if(amount == 1)
-		to_chat(user, "There is one bed sheet in the bin.")
-		return
-	to_chat(user, "There are [amount] bed sheets in the bin.")
-
+		. += "There are no bed sheets in the bin."
+	else if(amount == 1)
+		. += "There is one bed sheet in the bin."
+	else
+		. += "There are [amount] bed sheets in the bin."
 
 /obj/structure/bedsheetbin/update_icon()
 	switch(amount)

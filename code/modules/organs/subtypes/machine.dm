@@ -5,6 +5,7 @@
 	organ_tag = O_CELL
 	parent_organ = BP_TORSO
 	vital = 1
+	var/defib_timer = 1 // This sits in the brain organ slot, but is not a brain.
 
 /obj/item/organ/internal/cell/New()
 	robotize()
@@ -14,12 +15,19 @@
 	..()
 	// This is very ghetto way of rebooting an IPC. TODO better way.
 	if(owner && owner.stat == DEAD)
-		owner.stat = 0
+		owner.set_stat(CONSCIOUS)
 		owner.visible_message("<span class='danger'>\The [owner] twitches visibly!</span>")
 
 /obj/item/organ/internal/cell/emp_act(severity)
-	// ..() // VOREStation Edit - Don't take damage
-	owner.nutrition = max(0, owner.nutrition - rand(10/severity, 50/severity))
+	..()
+	owner.adjust_nutrition(-rand(10 / severity, 50 / severity))
+
+/obj/item/organ/internal/cell/machine/handle_organ_proc_special()
+	..()
+	if(owner && owner.stat != DEAD)
+		owner.bodytemperature += round(owner.robobody_count * 0.5, 0.1)
+
+	return
 
 // Used for an MMI or posibrain being installed into a human.
 /obj/item/organ/internal/mmi_holder
@@ -46,6 +54,15 @@
 	sleep(-1)
 	update_from_mmi()
 
+// This sits in the brain organ slot, but is not a brain. Posibrains and dronecores aren't brains either.
+/obj/item/organ/internal/mmi_holder/proc/tick_defib_timer()
+	return
+
+/obj/item/organ/internal/mmi_holder/proc/get_control_efficiency()
+	. = max(0, 1 - round(damage / max_damage, 0.1))
+
+	return .
+
 /obj/item/organ/internal/mmi_holder/proc/update_from_mmi()
 
 	if(!stored_mmi.brainmob)
@@ -68,7 +85,7 @@
 	stored_mmi.brainmob.languages = owner.languages
 
 	if(owner && owner.stat == DEAD)
-		owner.stat = 0
+		owner.set_stat(CONSCIOUS)
 		dead_mob_list -= owner
 		living_mob_list |= owner
 		owner.visible_message("<span class='danger'>\The [owner] twitches visibly!</span>")
@@ -89,7 +106,7 @@
 
 /obj/item/organ/internal/mmi_holder/emp_act(severity)
 	// ..() // VOREStation Edit - Don't take damage
-	owner.adjustToxLoss(rand(6/severity, 12/severity))
+	owner?.adjustToxLoss(rand(6/severity, 12/severity))
 
 /obj/item/organ/internal/mmi_holder/posibrain
 	name = "positronic brain interface"

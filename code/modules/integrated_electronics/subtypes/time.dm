@@ -86,10 +86,10 @@
 	power_draw_per_use = 4
 
 /obj/item/integrated_circuit/time/clock/do_work()
-	set_pin_data(IC_OUTPUT, 1, time2text(station_time_in_ticks, "hh:mm:ss") )
-	set_pin_data(IC_OUTPUT, 2, text2num(time2text(station_time_in_ticks, "hh") ) )
-	set_pin_data(IC_OUTPUT, 3, text2num(time2text(station_time_in_ticks, "mm") ) )
-	set_pin_data(IC_OUTPUT, 4, text2num(time2text(station_time_in_ticks, "ss") ) )
+	set_pin_data(IC_OUTPUT, 1, time2text(station_time_in_ds, "hh:mm:ss") )
+	set_pin_data(IC_OUTPUT, 2, text2num(time2text(station_time_in_ds, "hh") ) )
+	set_pin_data(IC_OUTPUT, 3, text2num(time2text(station_time_in_ds, "mm") ) )
+	set_pin_data(IC_OUTPUT, 4, text2num(time2text(station_time_in_ds, "ss") ) )
 
 	push_data()
 	activate_pin(2)

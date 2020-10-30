@@ -22,11 +22,11 @@
 				return
 			if("")
 				F.dir.Remove(ckey)
-				to_chat(src, "<b>Memo removed</b>")
+				to_chat(src, "<span class='filter_adminlog'><b>Memo removed</b></span>")
 				return
 		if( findtext(memo,"<script",1,0) )
 			return
-		to_chat(F[ckey], "[key] on [time2text(world.realtime,"(DDD) DD MMM hh:mm")]<br>[memo]")
+		to_chat(F[ckey], "<span class='filter_adminlog'>[key] on [time2text(world.realtime,"(DDD) DD MMM hh:mm")]<br>[memo]</span>")
 		message_admins("[key] set an admin memo:<br>[memo]")
 
 //show all memos
@@ -35,7 +35,7 @@
 		var/savefile/F = new(MEMOFILE)
 		if(F)
 			for(var/ckey in F.dir)
-				to_chat(src, "<center><span class='motd'><b>Admin Memo</b><i> by [F[ckey]]</i></span></center>")
+				to_chat(src, "<span class='filter_adminlog'><center><span class='motd'><b>Admin Memo</b><i> by [F[ckey]]</i></span></center></span>")
 
 //delete your own or somebody else's memo
 /client/proc/admin_memo_delete()
@@ -48,7 +48,7 @@
 			ckey = src.ckey
 		if(ckey)
 			F.dir.Remove(ckey)
-			to_chat(src, "<b>Removed Memo created by [ckey].</b>")
+			to_chat(src, "<span class='filter_adminlog'><b>Removed Memo created by [ckey].</b></span>")
 
 #undef MEMOFILE
 #undef ENABLE_MEMOS

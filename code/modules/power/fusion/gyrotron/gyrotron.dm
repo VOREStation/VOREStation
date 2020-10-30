@@ -6,7 +6,7 @@ var/list/gyrotrons = list()
 	desc = "It is a heavy duty industrial gyrotron suited for powering fusion reactors."
 	icon_state = "emitter-off"
 	req_access = list(access_engine)
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	active_power_usage = 50000
 
 	circuit = /obj/item/weapon/circuitboard/gyrotron
@@ -22,7 +22,7 @@ var/list/gyrotrons = list()
 
 /obj/machinery/power/emitter/gyrotron/Initialize()
 	gyrotrons += src
-	active_power_usage = mega_energy * 50000
+	update_active_power_usage(mega_energy * 50000)
 	default_apply_parts()
 	. = ..()
 
@@ -31,7 +31,7 @@ var/list/gyrotrons = list()
 	return ..()
 
 /obj/machinery/power/emitter/gyrotron/process()
-	active_power_usage = mega_energy * 50000
+	update_active_power_usage(mega_energy * 50000)
 	. = ..()
 
 /obj/machinery/power/emitter/gyrotron/get_rand_burst_delay()

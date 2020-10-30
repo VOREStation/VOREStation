@@ -10,6 +10,8 @@
 	action_button_name = "Toggle Head-light"
 	w_class = ITEMSIZE_NORMAL
 	ear_protection = 1
+	drop_sound = 'sound/items/drop/helm.ogg'
+	pickup_sound = 'sound/items/pickup/helm.ogg'
 
 /obj/item/clothing/head/hardhat/orange
 	icon_state = "hardhat0_orange"

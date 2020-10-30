@@ -3,7 +3,7 @@
 /////////////////////////////////////////////
 /obj/effect/effect/smoke/chem
 	icon = 'icons/effects/chemsmoke.dmi'
-	opacity = 0
+	opacity = TRUE
 	time_to_live = 300
 	pass_flags = PASSTABLE | PASSGRILLE | PASSGLASS //PASSGLASS is fine here, it's just so the visual effect can "flow" around glass
 
@@ -15,6 +15,9 @@
 /obj/effect/effect/smoke/chem/Destroy()
 	walk(src, 0) // Because we might have called walk_to, we must stop the walk loop or BYOND keeps an internal reference to us forever.
 	return ..()
+
+/obj/effect/effect/smoke/chem/transparent
+	opacity = FALSE
 
 /datum/effect/effect/system/smoke_spread/chem
 	smoke_type = /obj/effect/effect/smoke/chem
@@ -29,12 +32,15 @@
 	show_log = 0
 	var/datum/seed/seed
 
-/datum/effect/effect/system/smoke_spread/chem/spores/New(seed_name)
-	if(seed_name && plant_controller)
-		seed = plant_controller.seeds[seed_name]
-	if(!seed)
-		qdel(src)
+/datum/effect/effect/system/smoke_spread/chem/spores/New(_seed)
+	seed = _seed
+	if(!istype(seed))
+		CRASH("Invalid seed datum passed! [seed] ([seed?.type])")
 	..()
+
+/datum/effect/effect/system/smoke_spread/chem/blob
+	show_log = 0
+	smoke_type = /obj/effect/effect/smoke/chem/transparent
 
 /datum/effect/effect/system/smoke_spread/chem/New()
 	..()
@@ -156,7 +162,7 @@
 	if(passed_smoke)
 		smoke = passed_smoke
 	else
-		smoke = new /obj/effect/effect/smoke/chem(location)
+		smoke = new smoke_type(location)
 
 	if(chemholder.reagents.reagent_list.len)
 		chemholder.reagents.trans_to_obj(smoke, chemholder.reagents.total_volume / dist, copy = 1) //copy reagents to the smoke so mob/breathe() can handle inhaling the reagents
@@ -166,11 +172,13 @@
 	smoke.pixel_x = -32 + rand(-8, 8)
 	smoke.pixel_y = -32 + rand(-8, 8)
 	walk_to(smoke, T)
-	smoke.set_opacity(1)		//switching opacity on after the smoke has spawned, and then
-	sleep(150+rand(0,20))	// turning it off before it is deleted results in cleaner
-	smoke.set_opacity(0)		// lighting and view range updates
-	fadeOut(smoke)
-	qdel(smoke)
+	if(initial(smoke.opacity))
+		smoke.set_opacity(1)		//switching opacity on after the smoke has spawned, and then
+	spawn()
+		sleep(150+rand(0,20))	// turning it off before it is deleted results in cleaner
+		smoke.set_opacity(0)		// lighting and view range updates
+		fadeOut(smoke)
+		qdel(smoke)
 
 /datum/effect/effect/system/smoke_spread/chem/spores/spawnSmoke(var/turf/T, var/icon/I, var/dist = 1)
 	var/obj/effect/effect/smoke/chem/spores = new /obj/effect/effect/smoke/chem(location)

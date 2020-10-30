@@ -9,6 +9,8 @@
 	var/obj/item/weapon/nozzle = null //Attached welder, or other spray device.
 	var/nozzle_type = /obj/item/weapon/weldingtool/tubefed
 	var/nozzle_attached = 0
+	drop_sound = 'sound/items/drop/backpack.ogg'
+	pickup_sound = 'sound/items/pickup/backpack.ogg'
 
 /obj/item/weapon/weldpack/Initialize()
 	. = ..()
@@ -67,7 +69,7 @@
 				to_chat(user, "<span class='danger'>That was close!</span>")
 			src.reagents.trans_to_obj(W, T.max_fuel)
 			to_chat(user, "<span class='notice'>Welder refilled!</span>")
-			playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
+			playsound(src, 'sound/effects/refill.ogg', 50, 1, -6)
 			return
 	else if(nozzle)
 		if(nozzle == W)
@@ -104,7 +106,7 @@
 	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && src.reagents.total_volume < max_fuel)
 		O.reagents.trans_to_obj(src, max_fuel)
 		to_chat(user, "<span class='notice'>You crack the cap off the top of the pack and fill it back up again from the tank.</span>")
-		playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
+		playsound(src, 'sound/effects/refill.ogg', 50, 1, -6)
 		return
 	else if (istype(O, /obj/structure/reagent_dispensers/fueltank) && src.reagents.total_volume == max_fuel)
 		to_chat(user, "<span class='warning'>The pack is already full!</span>")
@@ -143,9 +145,8 @@
 		src.add_fingerprint(usr)
 
 /obj/item/weapon/weldpack/examine(mob/user)
-	..(user)
-	to_chat(user, "\icon[src] [src.reagents.total_volume] units of fuel left!")
-	return
+	. = ..()
+	. += "It has [src.reagents.total_volume] units of fuel left!"
 
 /obj/item/weapon/weldpack/survival
 	name = "emergency welding kit"

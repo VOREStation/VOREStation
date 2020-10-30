@@ -27,7 +27,7 @@
 
 	slots = 3
 
-/obj/item/clothing/accessory/storage/vox/New()
+/obj/item/clothing/accessory/storage/vox/Initialize()
 	..()
 	hold.max_storage_space = slots * ITEMSIZE_COST_NORMAL
 	hold.max_w_class = ITEMSIZE_NORMAL

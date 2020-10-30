@@ -43,7 +43,7 @@
 			playsound(src, "shatter", 70, 1)
 			update_icon()
 	else
-		playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, 1)
+		playsound(src, 'sound/effects/Glasshit.ogg', 75, 1)
 	return
 
 /obj/structure/displaycase/update_icon()
@@ -57,7 +57,7 @@
 /obj/structure/displaycase/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	user.setClickCooldown(user.get_attack_speed(W))
 	user.do_attack_animation(src)
-	playsound(loc, 'sound/effects/Glasshit.ogg', 50, 1)
+	playsound(src, 'sound/effects/Glasshit.ogg', 50, 1)
 	src.health -= W.force
 	src.healthcheck()
 	..()

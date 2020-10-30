@@ -6,8 +6,8 @@
 	step_in = 1
 	dir_in = 1 //Facing North.
 	step_energy_drain = 3
-	health = 200
-	maxhealth = 200
+	health = 200		//God this is low
+	maxhealth = 200		//Don't forget to update the /old variant if  you change this number.
 	deflect_chance = 30
 	damage_absorption = list("brute"=0.7,"fire"=0.7,"bullet"=0.7,"laser"=0.7,"energy"=0.7,"bomb"=0.7)
 	max_temperature = 25000
@@ -17,8 +17,6 @@
 	//operation_req_access = list()
 	internal_damage_threshold = 25
 	force = 15
-	var/phasing = 0
-	var/phasing_energy_drain = 200
 	max_equip = 4
 
 	max_hull_equip = 3
@@ -27,56 +25,44 @@
 	max_universal_equip = 3
 	max_special_equip = 4
 
+	encumbrance_gap = 2
+
+	starting_components = list(
+		/obj/item/mecha_parts/component/hull/durable,
+		/obj/item/mecha_parts/component/actuator,
+		/obj/item/mecha_parts/component/armor/alien,
+		/obj/item/mecha_parts/component/gas,
+		/obj/item/mecha_parts/component/electrical
+		)
+
+	cloak_possible = TRUE
+	phasing_possible = TRUE
+	switch_dmg_type_possible = TRUE
+
 /obj/mecha/combat/phazon/equipped/Initialize()
 	..()
-	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/tool/rcd
-	ME.attach(src)
-	ME = new /obj/item/mecha_parts/mecha_equipment/gravcatapult
-	ME.attach(src)
+	starting_equipment = list(
+		/obj/item/mecha_parts/mecha_equipment/tool/rcd,
+		/obj/item/mecha_parts/mecha_equipment/gravcatapult
+		)
 	return
 
+/* Leaving this until we are really sure we don't need it for reference.
 /obj/mecha/combat/phazon/Bump(var/atom/obstacle)
 	if(phasing && get_charge()>=phasing_energy_drain)
 		spawn()
-			if(can_move)
-				can_move = 0
+			if(can_phase)
+				can_phase = FALSE
 				flick("[initial_icon]-phase", src)
 				src.loc = get_step(src,src.dir)
 				src.use_power(phasing_energy_drain)
 				sleep(step_in*3)
-				can_move = 1
+				can_phase = TRUE
 	else
 		. = ..()
 	return
+*/
 
-/obj/mecha/combat/phazon/click_action(atom/target,mob/user)
-	if(phasing)
-		src.occupant_message("Unable to interact with objects while phasing")
-		return
-	else
-		return ..()
-
-/obj/mecha/combat/phazon/verb/switch_damtype()
-	set category = "Exosuit Interface"
-	set name = "Change melee damage type"
-	set src = usr.loc
-	set popup_menu = 0
-	if(usr!=src.occupant)
-		return
-
-	query_damtype()
-
-/obj/mecha/combat/phazon/proc/query_damtype()
-	var/new_damtype = alert(src.occupant,"Melee Damage Type",null,"Brute","Fire","Toxic")
-	switch(new_damtype)
-		if("Brute")
-			damtype = "brute"
-		if("Fire")
-			damtype = "fire"
-		if("Toxic")
-			damtype = "tox"
-	src.occupant_message("Melee damage type switched to [new_damtype ]")
-	return
 
 /obj/mecha/combat/phazon/get_commands()
 	var/output = {"<div class='wr'>
@@ -90,15 +76,7 @@
 	output += ..()
 	return output
 
-/obj/mecha/combat/phazon/Topic(href, href_list)
-	..()
-	if (href_list["switch_damtype"])
-		src.switch_damtype()
-	if (href_list["phasing"])
-		phasing = !phasing
-		send_byjax(src.occupant,"exosuit.browser","phasing_command","[phasing?"Dis":"En"]able phasing")
-		src.occupant_message("<font color=\"[phasing?"#00f\">En":"#f00\">Dis"]abled phasing.</font>")
-	return
+
 
 /obj/mecha/combat/phazon/janus
 	name = "Phazon Prototype Janus Class"
@@ -120,7 +98,6 @@
 	wreckage = /obj/effect/decal/mecha_wreckage/janus
 	internal_damage_threshold = 25
 	force = 20
-	phasing = FALSE
 	phasing_energy_drain = 300
 
 	max_hull_equip = 2
@@ -128,6 +105,10 @@
 	max_utility_equip = 2
 	max_universal_equip = 2
 	max_special_equip = 2
+
+	phasing_possible = TRUE
+	switch_dmg_type_possible = TRUE
+	cloak_possible = FALSE
 
 /obj/mecha/combat/phazon/janus/take_damage(amount, type="brute")
 	..()
@@ -172,3 +153,13 @@
 			damtype = "halloss"
 	src.occupant_message("Melee damage type switched to [new_damtype]")
 	return
+
+//Meant for random spawns.
+/obj/mecha/combat/phazon/old
+	desc = "An exosuit which can only be described as 'WTF?'. This one is particularly worn looking and likely isn't as sturdy."
+
+/obj/mecha/combat/phazon/old/New()
+	..()
+	health = 25
+	maxhealth = 150	//Just slightly worse.
+	cell.charge = rand(0, (cell.charge/2))

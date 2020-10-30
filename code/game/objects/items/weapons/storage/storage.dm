@@ -141,8 +141,8 @@
 	is_seeing -= user
 
 /obj/item/weapon/storage/proc/open(mob/user as mob)
-	if (src.use_sound && !isobserver(user))
-		playsound(src.loc, src.use_sound, 50, 1, -5)
+	if (use_sound)
+		playsound(src, src.use_sound, 50, 0, -5)
 
 	orient2hud(user)
 	if (user.s_active)
@@ -362,6 +362,8 @@
 			usr.client.screen -= W
 		W.dropped(usr)
 		add_fingerprint(usr)
+		if (use_sound)
+			playsound(src, src.use_sound, 50, 0, -5) //Something broke "add item to container" sounds, this is a hacky fix.
 
 		if(!prevent_warning)
 			for(var/mob/M in viewers(usr, null))
@@ -722,10 +724,19 @@
 	..()
 
 /obj/item/weapon/storage/trinketbox/examine(mob/user)
-	..()
+	. = ..()
 	if(open && contents.len)
 		var/display_item = contents[1]
-		to_chat(user, "<span class='notice'>\The [src] contains \the [display_item]!</span>")
+		. += "<span class='notice'>\The [src] contains \the [display_item]!</span>"
 
 /obj/item/weapon/storage/AllowDrop()
 	return TRUE
+
+//Useful for spilling the contents of containers all over the floor
+/obj/item/weapon/storage/proc/spill(var/dist = 2, var/turf/T = null)
+	if (!istype(T))//If its not on the floor this might cause issues
+		T = get_turf(src)
+
+	for (var/obj/O in contents)
+		remove_from_storage(O, T)
+		O.tumble(2)

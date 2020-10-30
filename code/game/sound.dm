@@ -1,4 +1,4 @@
-/proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff, is_global, frequency = null, channel = 0, pressure_affected = TRUE, ignore_walls = TRUE, preference = null)
+/proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff, is_global, frequency = null, channel = 0, pressure_affected = TRUE, ignore_walls = TRUE, preference = null, volume_channel = null)
 	if(isarea(source))
 		throw EXCEPTION("playsound(): source is an area")
 		return
@@ -10,7 +10,7 @@
 
  	// Looping through the player list has the added bonus of working for mobs inside containers
 	var/sound/S = sound(get_sfx(soundin))
-	var/maxdistance = (world.view + extrarange) * 3
+	var/maxdistance = (world.view + extrarange) * 2  //VOREStation Edit - 3 to 2
 	var/list/listeners = player_list
 	if(!ignore_walls) //these sounds don't carry through walls
 		listeners = listeners & hearers(maxdistance,turf_source)
@@ -23,9 +23,9 @@
 
 		if(distance <= maxdistance)
 			if(T && T.z == turf_source.z)
-				M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, pressure_affected, S, preference)
+				M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, pressure_affected, S, preference, volume_channel)
 
-/mob/proc/playsound_local(turf/turf_source, soundin, vol as num, vary, frequency, falloff, is_global, channel = 0, pressure_affected = TRUE, sound/S, preference)
+/mob/proc/playsound_local(turf/turf_source, soundin, vol as num, vary, frequency, falloff, is_global, channel = 0, pressure_affected = TRUE, sound/S, preference, volume_channel = null)
 	if(!client || ear_deaf > 0)
 		return
 	if(preference && !client.is_preference_enabled(preference))
@@ -36,6 +36,11 @@
 
 	S.wait = 0 //No queue
 	S.channel = channel || open_sound_channel()
+
+	// I'm not sure if you can modify S.volume, but I'd rather not try to find out what
+	// horrible things lurk in BYOND's internals, so we're just gonna do vol *=
+	vol *= client.get_preference_volume_channel(volume_channel)
+	vol *= client.get_preference_volume_channel(VOLUME_CHANNEL_MASTER)
 	S.volume = vol
 
 	if(vary)
@@ -137,6 +142,82 @@
 			if ("button") soundin = pick('sound/machines/button1.ogg','sound/machines/button2.ogg','sound/machines/button3.ogg','sound/machines/button4.ogg')
 			if ("switch") soundin = pick('sound/machines/switch1.ogg','sound/machines/switch2.ogg','sound/machines/switch3.ogg','sound/machines/switch4.ogg')
 			if ("casing_sound") soundin = pick('sound/weapons/casingfall1.ogg','sound/weapons/casingfall2.ogg','sound/weapons/casingfall3.ogg')
+			if ("pickaxe") soundin = pick('sound/weapons/mine/pickaxe1.ogg', 'sound/weapons/mine/pickaxe2.ogg','sound/weapons/mine/pickaxe3.ogg','sound/weapons/mine/pickaxe4.ogg')
+			if("shatter")
+				soundin = pick('sound/effects/Glassbr1.ogg','sound/effects/Glassbr2.ogg','sound/effects/Glassbr3.ogg')
+			if("explosion")
+				soundin = pick(
+					'sound/effects/Explosion1.ogg',
+					'sound/effects/Explosion2.ogg',
+					'sound/effects/Explosion3.ogg',
+					'sound/effects/Explosion4.ogg',
+					'sound/effects/Explosion5.ogg',
+					'sound/effects/Explosion6.ogg')
+			if("sparks")
+				soundin = pick(
+					'sound/effects/sparks1.ogg',
+					'sound/effects/sparks2.ogg',
+					'sound/effects/sparks3.ogg',
+					'sound/effects/sparks5.ogg',
+					'sound/effects/sparks6.ogg',
+					'sound/effects/sparks7.ogg')
+			if("rustle")
+				soundin = pick('sound/effects/rustle1.ogg','sound/effects/rustle2.ogg','sound/effects/rustle3.ogg','sound/effects/rustle4.ogg','sound/effects/rustle5.ogg')
+			if("punch")
+				soundin = pick('sound/weapons/punch1.ogg','sound/weapons/punch2.ogg','sound/weapons/punch3.ogg','sound/weapons/punch4.ogg')
+			if("clownstep")
+				soundin = pick('sound/effects/clownstep1.ogg','sound/effects/clownstep2.ogg')
+			if("swing_hit")
+				soundin = pick('sound/weapons/genhit1.ogg', 'sound/weapons/genhit2.ogg', 'sound/weapons/genhit3.ogg')
+			if("hiss")
+				soundin = pick('sound/voice/hiss1.ogg','sound/voice/hiss2.ogg','sound/voice/hiss3.ogg','sound/voice/hiss4.ogg')
+			if("pageturn")
+				soundin = pick('sound/effects/pageturn1.ogg', 'sound/effects/pageturn2.ogg','sound/effects/pageturn3.ogg')
+			if("fracture")
+				soundin = pick('sound/effects/bonebreak1.ogg','sound/effects/bonebreak2.ogg','sound/effects/bonebreak3.ogg','sound/effects/bonebreak4.ogg')
+			if("canopen")
+				soundin = pick('sound/effects/can_open1.ogg','sound/effects/can_open2.ogg','sound/effects/can_open3.ogg','sound/effects/can_open4.ogg')
+			if("mechstep")
+				soundin = pick('sound/mecha/mechstep1.ogg', 'sound/mecha/mechstep2.ogg')
+			if("thunder")
+				soundin = pick(
+					'sound/effects/thunder/thunder1.ogg',
+					'sound/effects/thunder/thunder2.ogg',
+					'sound/effects/thunder/thunder3.ogg',
+					'sound/effects/thunder/thunder4.ogg',
+					'sound/effects/thunder/thunder5.ogg',
+					'sound/effects/thunder/thunder6.ogg',
+					'sound/effects/thunder/thunder7.ogg',
+					'sound/effects/thunder/thunder8.ogg',
+					'sound/effects/thunder/thunder9.ogg',
+					'sound/effects/thunder/thunder10.ogg')
+			if("keyboard")
+				soundin = pick(
+					'sound/effects/keyboard/keyboard1.ogg',
+					'sound/effects/keyboard/keyboard2.ogg',
+					'sound/effects/keyboard/keyboard3.ogg',
+					'sound/effects/keyboard/keyboard4.ogg')
+			if("button")
+				soundin = pick('sound/machines/button1.ogg','sound/machines/button2.ogg','sound/machines/button3.ogg','sound/machines/button4.ogg')
+			if("switch")
+				soundin = pick('sound/machines/switch1.ogg','sound/machines/switch2.ogg','sound/machines/switch3.ogg','sound/machines/switch4.ogg')
+			if("casing_sound")
+				soundin = pick('sound/weapons/casingfall1.ogg','sound/weapons/casingfall2.ogg','sound/weapons/casingfall3.ogg')
+			if("ricochet")
+				soundin = pick(
+					'sound/weapons/effects/ric1.ogg',
+					'sound/weapons/effects/ric2.ogg',
+					'sound/weapons/effects/ric3.ogg',
+					'sound/weapons/effects/ric4.ogg',
+					'sound/weapons/effects/ric5.ogg')
+			if("bullet_miss")
+				soundin = pick('sound/weapons/bulletflyby.ogg', 'sound/weapons/bulletflyby2.ogg', 'sound/weapons/bulletflyby3.ogg')
+			if ("pickaxe")
+				soundin = pick(
+					'sound/weapons/mine/pickaxe1.ogg',
+					'sound/weapons/mine/pickaxe2.ogg',
+					'sound/weapons/mine/pickaxe3.ogg',
+					'sound/weapons/mine/pickaxe4.ogg')
 			//VORESTATION EDIT - vore sounds for better performance
 			if ("hunger_sounds") soundin = pick('sound/vore/growl1.ogg','sound/vore/growl2.ogg','sound/vore/growl3.ogg','sound/vore/growl4.ogg','sound/vore/growl5.ogg')
 
@@ -177,6 +258,23 @@
 					'sound/vore/sunesound/prey/death_07.ogg','sound/vore/sunesound/prey/death_08.ogg','sound/vore/sunesound/prey/death_09.ogg',
 					'sound/vore/sunesound/prey/death_10.ogg')
 			//END VORESTATION EDIT
+			if ("terminal_type")
+				soundin = pick('sound/machines/terminal_button01.ogg', 'sound/machines/terminal_button02.ogg', 'sound/machines/terminal_button03.ogg', \
+								'sound/machines/terminal_button04.ogg', 'sound/machines/terminal_button05.ogg', 'sound/machines/terminal_button06.ogg', \
+								'sound/machines/terminal_button07.ogg', 'sound/machines/terminal_button08.ogg')
+			if("smcalm")
+				soundin = pick('sound/machines/sm/accent/normal/1.ogg', 'sound/machines/sm/accent/normal/2.ogg', 'sound/machines/sm/accent/normal/3.ogg', 'sound/machines/sm/accent/normal/4.ogg', 'sound/machines/sm/accent/normal/5.ogg', 'sound/machines/sm/accent/normal/6.ogg', 'sound/machines/sm/accent/normal/7.ogg', 'sound/machines/sm/accent/normal/8.ogg', 'sound/machines/sm/accent/normal/9.ogg', 'sound/machines/sm/accent/normal/10.ogg', 'sound/machines/sm/accent/normal/11.ogg', 'sound/machines/sm/accent/normal/12.ogg', 'sound/machines/sm/accent/normal/13.ogg', 'sound/machines/sm/accent/normal/14.ogg', 'sound/machines/sm/accent/normal/15.ogg', 'sound/machines/sm/accent/normal/16.ogg', 'sound/machines/sm/accent/normal/17.ogg', 'sound/machines/sm/accent/normal/18.ogg', 'sound/machines/sm/accent/normal/19.ogg', 'sound/machines/sm/accent/normal/20.ogg', 'sound/machines/sm/accent/normal/21.ogg', 'sound/machines/sm/accent/normal/22.ogg', 'sound/machines/sm/accent/normal/23.ogg', 'sound/machines/sm/accent/normal/24.ogg', 'sound/machines/sm/accent/normal/25.ogg', 'sound/machines/sm/accent/normal/26.ogg', 'sound/machines/sm/accent/normal/27.ogg', 'sound/machines/sm/accent/normal/28.ogg', 'sound/machines/sm/accent/normal/29.ogg', 'sound/machines/sm/accent/normal/30.ogg', 'sound/machines/sm/accent/normal/31.ogg', 'sound/machines/sm/accent/normal/32.ogg', 'sound/machines/sm/accent/normal/33.ogg', 'sound/machines/sm/supermatter1.ogg', 'sound/machines/sm/supermatter2.ogg', 'sound/machines/sm/supermatter3.ogg')
+			if("smdelam")
+				soundin = pick('sound/machines/sm/accent/delam/1.ogg', 'sound/machines/sm/accent/normal/2.ogg', 'sound/machines/sm/accent/normal/3.ogg', 'sound/machines/sm/accent/normal/4.ogg', 'sound/machines/sm/accent/normal/5.ogg', 'sound/machines/sm/accent/normal/6.ogg', 'sound/machines/sm/accent/normal/7.ogg', 'sound/machines/sm/accent/normal/8.ogg', 'sound/machines/sm/accent/normal/9.ogg', 'sound/machines/sm/accent/normal/10.ogg', 'sound/machines/sm/accent/normal/11.ogg', 'sound/machines/sm/accent/normal/12.ogg', 'sound/machines/sm/accent/normal/13.ogg', 'sound/machines/sm/accent/normal/14.ogg', 'sound/machines/sm/accent/normal/15.ogg', 'sound/machines/sm/accent/normal/16.ogg', 'sound/machines/sm/accent/normal/17.ogg', 'sound/machines/sm/accent/normal/18.ogg', 'sound/machines/sm/accent/normal/19.ogg', 'sound/machines/sm/accent/normal/20.ogg', 'sound/machines/sm/accent/normal/21.ogg', 'sound/machines/sm/accent/normal/22.ogg', 'sound/machines/sm/accent/normal/23.ogg', 'sound/machines/sm/accent/normal/24.ogg', 'sound/machines/sm/accent/normal/25.ogg', 'sound/machines/sm/accent/normal/26.ogg', 'sound/machines/sm/accent/normal/27.ogg', 'sound/machines/sm/accent/normal/28.ogg', 'sound/machines/sm/accent/normal/29.ogg', 'sound/machines/sm/accent/normal/30.ogg', 'sound/machines/sm/accent/normal/31.ogg', 'sound/machines/sm/accent/normal/32.ogg', 'sound/machines/sm/accent/normal/33.ogg', 'sound/machines/sm/supermatter1.ogg', 'sound/machines/sm/supermatter2.ogg', 'sound/machines/sm/supermatter3.ogg')
+			if ("generic_drop")
+				soundin = pick(
+					'sound/items/drop/generic1.ogg',
+					'sound/items/drop/generic2.ogg' )
+			if ("generic_pickup")
+				soundin = pick(
+					'sound/items/pickup/generic1.ogg',
+					'sound/items/pickup/generic2.ogg',
+					'sound/items/pickup/generic3.ogg')
 	return soundin
 
 //Are these even used?

@@ -31,8 +31,17 @@
 	if(client.buildmode)
 		build_click(src, client.buildmode, params, A)
 		return
-	if(!canClick()) return
+	if(!checkClickCooldown()) return
 	setClickCooldown(4)
+	var/list/modifiers = params2list(params)
+	if(modifiers["shift"])
+		examinate(A)
+		return
+	if(modifiers["alt"]) // alt and alt-gr (rightalt)
+		var/turf/T = get_turf(A)
+		if(T && TurfAdjacent(T))
+			ToggleTurfTab(T)
+			return
 	// You are responsible for checking config.ghost_interaction when you override this function
 	// Not all of them require checking, see below
 	A.attack_ghost(src)
@@ -50,8 +59,8 @@
 /obj/machinery/teleport/hub/attack_ghost(mob/user as mob)
 	var/atom/l = loc
 	var/obj/machinery/computer/teleporter/com = locate(/obj/machinery/computer/teleporter, locate(l.x - 2, l.y, l.z))
-	if(com.locked)
-		user.loc = get_turf(com.locked)
+	if(com?.teleport_control.locked)
+		user.loc = get_turf(com.teleport_control.locked)
 
 /obj/effect/portal/attack_ghost(mob/user as mob)
 	if(target)

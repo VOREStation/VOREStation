@@ -42,9 +42,9 @@ var/list/marker_beacon_colors = list(
 	update_icon()
 
 /obj/item/stack/marker_beacon/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>Use in-hand to place a [singular_name].</span>")
-	to_chat(user, "<span class='notice'>Alt-click to select a color. Current color is [picked_color].</span>")
+	. = ..()
+	. += "<span class='notice'>Use in-hand to place a [singular_name].</span>"
+	. += "<span class='notice'>Alt-click to select a color. Current color is [picked_color].</span>"
 
 /obj/item/stack/marker_beacon/update_icon()
 	icon_state = "[initial(icon_state)][lowertext(picked_color)]"
@@ -58,7 +58,7 @@ var/list/marker_beacon_colors = list(
 		return
 	if(use(1))
 		to_chat(user, "<span class='notice'>You activate and anchor [amount ? "a":"the"] [singular_name] in place.</span>")
-		playsound(user, 'sound/machines/click.ogg', 50, 1)
+		playsound(src, 'sound/machines/click.ogg', 50, 1)
 		var/obj/structure/marker_beacon/M = new(user.loc, picked_color)
 		transfer_fingerprints_to(M)
 
@@ -93,8 +93,8 @@ var/list/marker_beacon_colors = list(
 	update_icon()
 
 /obj/structure/marker_beacon/examine(mob/user)
-	..()
-	to_chat(user, "<span class='notice'>Alt-click to select a color. Current color is [picked_color].</span>")
+	. = ..()
+	. += "<span class='notice'>Alt-click to select a color. Current color is [picked_color].</span>"
 
 /obj/structure/marker_beacon/update_icon()
 	while(!picked_color || !marker_beacon_colors[picked_color])

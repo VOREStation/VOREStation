@@ -60,12 +60,13 @@
 <b>Function:</b> Resizes the host whenever specific verbal command is received<BR>"}
 	return dat
 
-/obj/item/weapon/implant/sizecontrol/hear_talk(mob/M, msg)
+/obj/item/weapon/implant/sizecontrol/hear_talk(mob/M, list/message_pieces)
 	if(M == imp_in)
 		return
 	if(owner)
 		if(M != owner)
 			return
+	var/msg = multilingual_to_message(message_pieces)
 	if(findtext(msg,"ignore"))
 		return
 	var/list/replacechars = list("&#39;" = "",">" = "","<" = "","(" = "",")" = "", "~" = "")

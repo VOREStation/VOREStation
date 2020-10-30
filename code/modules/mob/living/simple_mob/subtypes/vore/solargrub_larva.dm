@@ -223,7 +223,7 @@ var/global/list/grub_machine_overlays = list()
 		actual_targets += M
 	return actual_targets
 
-/datum/ai_holder/simple_mob/solargrub_larva/can_attack(atom/movable/the_target)
+/datum/ai_holder/simple_mob/solargrub_larva/can_attack(atom/movable/the_target, var/vision_required = TRUE)
 	.=..()
 	var/obj/machinery/M = the_target
 	if(!istype(M))

@@ -306,7 +306,7 @@ var/global/list/additional_antag_types = list()
 	var/escaped_on_pod_5 = 0
 	var/escaped_on_shuttle = 0
 
-	var/list/area/escape_locations = list(/area/shuttle/escape/centcom, /area/shuttle/escape_pod1/centcom, /area/shuttle/escape_pod2/centcom, /area/shuttle/escape_pod3/centcom, /area/shuttle/escape_pod5/centcom)
+	var/list/area/escape_locations = list(/area/shuttle/escape, /area/shuttle/escape_pod1/centcom, /area/shuttle/escape_pod2/centcom, /area/shuttle/escape_pod3/centcom, /area/shuttle/escape_pod5/centcom) //VOREStation Edit
 
 	for(var/mob/M in player_list)
 		if(M.client)
@@ -538,15 +538,15 @@ proc/get_nt_opposed()
 	set category = "OOC"
 
 	if(!ticker || !ticker.mode)
-		to_chat(usr, "Something is terribly wrong; there is no gametype.")
+		to_chat(usr, "<span class='warning'>Something is terribly wrong; there is no gametype.</span>")
 		return
 
 	if(master_mode != "secret")
-		to_chat(usr, "<b>The roundtype is [capitalize(ticker.mode.name)]</b>")
+		to_chat(usr, "<span class='notice'><b>The roundtype is [capitalize(ticker.mode.name)]</b></span>")
 		if(ticker.mode.round_description)
-			to_chat(usr, "<i>[ticker.mode.round_description]</i>")
+			to_chat(usr, "<span class='notice'><i>[ticker.mode.round_description]</i></span>")
 		if(ticker.mode.extended_round_description)
-			to_chat(usr, "[ticker.mode.extended_round_description]")
+			to_chat(usr, "<span class='notice'>[ticker.mode.extended_round_description]</span>")
 	else
-		to_chat(usr, "<i>Shhhh</i>. It's a secret.")
+		to_chat(usr, "<span class='notice'><i>Shhhh</i>. It's a secret.</span>")
 	return

@@ -5,7 +5,7 @@
 
 	name = "Air Scrubber"
 	desc = "Has a valve and pump attached to it"
-	use_power = 0
+	use_power = USE_POWER_OFF
 	idle_power_usage = 150		//internal circuitry, friction losses and stuff
 	power_rating = 7500			//7500 W ~ 10 HP
 
@@ -29,7 +29,7 @@
 	var/radio_filter_in
 
 /obj/machinery/atmospherics/unary/vent_scrubber/on
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	icon_state = "map_scrubber_on"
 
 /obj/machinery/atmospherics/unary/vent_scrubber/New()
@@ -38,7 +38,7 @@
 
 	icon = null
 	initial_loc = get_area(loc)
-	area_uid = initial_loc.uid
+	area_uid = "\ref[initial_loc]"
 	if (!id_tag)
 		assign_uid()
 		id_tag = num2text(uid)
@@ -93,7 +93,7 @@
 		return 0
 
 	var/datum/signal/signal = new
-	signal.transmission_method = 1 //radio signal
+	signal.transmission_method = TRANSMISSION_RADIO //radio signal
 	signal.source = src
 	signal.data = list(
 		"area" = area_uid,
@@ -107,7 +107,7 @@
 		"filter_n2" = ("nitrogen" in scrubbing_gas),
 		"filter_co2" = ("carbon_dioxide" in scrubbing_gas),
 		"filter_phoron" = ("phoron" in scrubbing_gas),
-		"filter_n2o" = ("sleeping_agent" in scrubbing_gas),
+		"filter_n2o" = ("nitrous_oxide" in scrubbing_gas),
 		"filter_fuel" = ("volatile_fuel" in scrubbing_gas),
 		"sigtype" = "status"
 	)
@@ -135,7 +135,7 @@
 		return 1
 
 	if (!node)
-		use_power = 0
+		update_use_power(USE_POWER_OFF)
 	//broadcast_status()
 	if(!use_power || (stat & (NOPOWER|BROKEN)))
 		return 0
@@ -180,21 +180,21 @@
 		return 0
 
 	if(signal.data["power"] != null)
-		use_power = text2num(signal.data["power"])
+		update_use_power(text2num(signal.data["power"]))
 	if(signal.data["power_toggle"] != null)
-		use_power = !use_power
+		update_use_power(!use_power)
 
 	if(signal.data["panic_siphon"]) //must be before if("scrubbing" thing
 		panic = text2num(signal.data["panic_siphon"])
 		if(panic)
-			use_power = 1
+			update_use_power(USE_POWER_IDLE)
 			scrubbing = 0
 		else
 			scrubbing = 1
 	if(signal.data["toggle_panic_siphon"] != null)
 		panic = !panic
 		if(panic)
-			use_power = 1
+			update_use_power(USE_POWER_IDLE)
 			scrubbing = 0
 		else
 			scrubbing = 1
@@ -230,10 +230,10 @@
 	else if(signal.data["toggle_tox_scrub"])
 		toggle += "phoron"
 
-	if(!isnull(signal.data["n2o_scrub"]) && text2num(signal.data["n2o_scrub"]) != ("sleeping_agent" in scrubbing_gas))
-		toggle += "sleeping_agent"
+	if(!isnull(signal.data["n2o_scrub"]) && text2num(signal.data["n2o_scrub"]) != ("nitrous_oxide" in scrubbing_gas))
+		toggle += "nitrous_oxide"
 	else if(signal.data["toggle_n2o_scrub"])
-		toggle += "sleeping_agent"
+		toggle += "nitrous_oxide"
 
 	if(!isnull(signal.data["fuel_scrub"]) && text2num(signal.data["fuel_scrub"]) != ("volatile_fuel" in scrubbing_gas))
 		toggle += "volatile_fuel"
@@ -287,7 +287,8 @@
 		deconstruct()
 
 /obj/machinery/atmospherics/unary/vent_scrubber/examine(mob/user)
-	if(..(user, 1))
-		to_chat(user, "A small gauge in the corner reads [round(last_flow_rate, 0.1)] L/s; [round(last_power_draw)] W")
+	. = ..()
+	if(Adjacent(user))
+		. += "A small gauge in the corner reads [round(last_flow_rate, 0.1)] L/s; [round(last_power_draw)] W"
 	else
-		to_chat(user, "You are too far away to read the gauge.")
+		. += "You are too far away to read the gauge."

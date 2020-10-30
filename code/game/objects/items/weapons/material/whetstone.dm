@@ -41,7 +41,8 @@
 
 /obj/item/weapon/material/sharpeningkit/examine(mob/user, distance)
 	. = ..()
-	to_chat(user, "There [uses == 1 ? "is" : "are"] [uses] [material] [uses == 1 ? src.material.sheet_singular_name : src.material.sheet_plural_name] left for use.")
+	. += "There [uses == 1 ? "is" : "are"] [uses] [material] [uses == 1 ? src.material.sheet_singular_name : src.material.sheet_plural_name] left for use."
+
 /obj/item/weapon/material/sharpeningkit/Initialize()
 	. = ..()
 	setrepair()

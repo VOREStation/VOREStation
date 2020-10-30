@@ -3,7 +3,7 @@
 /obj/item/ammo_magazine/smart
 	name = "smart magazine"
 	icon_state = "smartmag-empty"
-	desc = "A Hephaistos Industries brand Smart Magazine. It uses advanced matter manipulation technology to create bullets from energy. Simply present your loaded gun or magazine to the Smart Magazine."
+	desc = "A Hephaestus Industries brand Smart Magazine. It uses advanced matter manipulation technology to create bullets from energy. Simply present your loaded gun or magazine to the Smart Magazine."
 	multiple_sprites = 1
 	max_ammo = 5
 	mag_type = MAGAZINE
@@ -50,12 +50,12 @@
 			produce()
 
 /obj/item/ammo_magazine/smart/examine(mob/user)
-	..()
+	. = ..()
 
 	if(attached_cell)
-		to_chat(user, "<span class='notice'>\The [src] is loaded with a [attached_cell.name]. It is [round(attached_cell.percent())]% charged.</span>")
+		. += "<span class='notice'>\The [src] is loaded with a [attached_cell.name]. It is [round(attached_cell.percent())]% charged.</span>"
 	else
-		to_chat(user, "<span class='warning'>\The [src] does not appear to have a power source installed.</span>")
+		. += "<span class='warning'>\The [src] does not appear to have a power source installed.</span>"
 
 /obj/item/ammo_magazine/smart/update_icon()
 	if(attached_cell)

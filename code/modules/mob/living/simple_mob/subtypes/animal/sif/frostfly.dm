@@ -81,7 +81,7 @@
 	return 1	// It literally produces a cryogenic mist inside itself. Cold doesn't bother it.
 
 /mob/living/simple_mob/animal/sif/frostfly/Initialize()
-	..()
+	. = ..() //VOREStation Edit
 	smoke_special = new
 	verbs += /mob/living/proc/ventcrawl
 	verbs += /mob/living/proc/hide
@@ -167,3 +167,4 @@
 		holder.face_atom(A)
 
 	F.energy = max(0, F.energy - 1)	// The AI will eventually flee.
+

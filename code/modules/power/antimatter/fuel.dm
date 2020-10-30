@@ -68,8 +68,9 @@
 
 
 /obj/item/weapon/fuel/examine(mob/user)
-	if(get_dist(src, user) <= 1)
-		to_chat(user, "A magnetic storage ring, it contains [fuel]kg of [content ? content : "nothing"].")
+	. = ..()
+	if(Adjacent(user))
+		. += "It contains [fuel]kg of [content ? content : "nothing"]."
 
 /obj/item/weapon/fuel/proc/injest(mob/M as mob)
 	switch(content)

@@ -37,6 +37,12 @@
 	default_pixel_x = -16
 	pixel_x = -16
 	pixel_y = 0
+	mount_offset_y = 15
+	mount_offset_x = -12
+	max_buckled_mobs = 1
+	can_buckle = TRUE
+	buckle_movable = TRUE
+	buckle_lying = FALSE
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 	say_list_type = /datum/say_list/dragonboss
@@ -57,9 +63,16 @@
 	vore_icons = SA_ICON_LIVING
 
 /mob/living/simple_mob/vore/aggressive/dragon/virgo3b
-	maxHealth = 200
-	health = 200
+	name = "phoron dragon"
+	maxHealth = 300
+	health = 300
 	faction = "virgo3b"
+	icon_dead = "phoron_dragon_dead"
+	icon_living = "phoron_dragon"
+	icon_state = "phoron_dragon"
+	mount_offset_y = 24
+	mount_offset_x = -9
+	has_eye_glow = TRUE
 
 /mob/living/simple_mob/vore/aggressive/dragon/Login()
 	. = ..()
@@ -67,7 +80,7 @@
 		riding_datum = new /datum/riding/simple_mob(src)
 	verbs |= /mob/living/simple_mob/proc/animal_mount
 	verbs |= /mob/living/proc/toggle_rider_reins
-	movement_cooldown = 0
+	movement_cooldown = 3
 
 /mob/living/simple_mob/vore/aggressive/dragon/MouseDrop_T(mob/living/M, mob/living/user)
 	return

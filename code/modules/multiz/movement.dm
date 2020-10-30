@@ -15,6 +15,10 @@
 /mob/proc/zMove(direction)
 	if(eyeobj)
 		return eyeobj.zMove(direction)
+	if(istype(loc,/obj/mecha))
+		var/obj/mecha/mech = loc
+		return mech.relaymove(src,direction)
+
 	if(!can_ztravel())
 		to_chat(src, "<span class='warning'>You lack means of travel in that direction.</span>")
 		return
@@ -29,6 +33,15 @@
 		to_chat(src, "<span class='notice'>There is nothing of interest in this direction.</span>")
 		return 0
 
+	if(is_incorporeal())
+		forceMove(destination)
+		return 1
+
+	var/obj/structure/ladder/ladder = locate() in start.contents
+	if((direction == UP ? ladder?.target_up : ladder?.target_down) && (ladder?.allowed_directions & direction))
+		if(src.may_climb_ladders(ladder))
+			return ladder.climbLadder(src, (direction == UP ? ladder.target_up : ladder.target_down))
+
 	if(!start.CanZPass(src, direction))
 		to_chat(src, "<span class='warning'>\The [start] is in the way.</span>")
 		return 0
@@ -38,39 +51,59 @@
 		return 0
 
 	var/area/area = get_area(src)
-	if(direction == UP && area.has_gravity() && !can_overcome_gravity())
-		var/obj/structure/lattice/lattice = locate() in destination.contents
-		if(lattice)
-			var/pull_up_time = max(5 SECONDS + (src.movement_delay() * 10), 1)
-			to_chat(src, "<span class='notice'>You grab \the [lattice] and start pulling yourself upward...</span>")
-			destination.audible_message("<span class='notice'>You hear something climbing up \the [lattice].</span>")
-			if(do_after(src, pull_up_time))
-				to_chat(src, "<span class='notice'>You pull yourself up.</span>")
-			else
-				to_chat(src, "<span class='warning'>You gave up on pulling yourself up.</span>")
-				return 0
-		else if(ismob(src)) //VOREStation Edit Start. Are they a mob, and are they currently flying??
-			var/mob/H = src
-			if(H.flying)
-				if(H.incapacitated(INCAPACITATION_ALL))
-					to_chat(src, "<span class='notice'>You can't fly in your current state.</span>")
-					H.stop_flying() //Should already be done, but just in case.
-					return 0
-				var/fly_time = max(7 SECONDS + (H.movement_delay() * 10), 1) //So it's not too useful for combat. Could make this variable somehow, but that's down the road.
-				to_chat(src, "<span class='notice'>You begin to fly upwards...</span>")
-				destination.audible_message("<span class='notice'>You hear the flapping of wings.</span>")
-				H.audible_message("<span class='notice'>[H] begins to flap \his wings, preparing to move upwards!</span>")
-				if(do_after(H, fly_time) && H.flying)
-					to_chat(src, "<span class='notice'>You fly upwards.</span>")
+	if(area.has_gravity() && !can_overcome_gravity())
+		if(direction == UP)
+			var/obj/structure/lattice/lattice = locate() in destination.contents
+			var/obj/structure/catwalk/catwalk = locate() in destination.contents
+
+			if(lattice)
+				var/pull_up_time = max(5 SECONDS + (src.movement_delay() * 10), 1)
+				to_chat(src, "<span class='notice'>You grab \the [lattice] and start pulling yourself upward...</span>")
+				destination.audible_message("<span class='notice'>You hear something climbing up \the [lattice].</span>")
+				if(do_after(src, pull_up_time))
+					to_chat(src, "<span class='notice'>You pull yourself up.</span>")
 				else
-					to_chat(src, "<span class='warning'>You stopped flying upwards.</span>")
+					to_chat(src, "<span class='warning'>You gave up on pulling yourself up.</span>")
 					return 0
+
+			else if(catwalk?.hatch_open)
+				var/pull_up_time = max(5 SECONDS + (src.movement_delay() * 10), 1)
+				to_chat(src, "<span class='notice'>You grab the edge of \the [catwalk] and start pulling yourself upward...</span>")
+				var/old_dest = destination
+				destination = get_step(destination, dir) // mob's dir
+				if(!destination?.Enter(src, old_dest))
+					to_chat(src, "<span class='notice'>There's something in the way up above in that direction, try another.</span>")
+					return 0
+				destination.audible_message("<span class='notice'>You hear something climbing up \the [catwalk].</span>")
+				if(do_after(src, pull_up_time))
+					to_chat(src, "<span class='notice'>You pull yourself up.</span>")
+				else
+					to_chat(src, "<span class='warning'>You gave up on pulling yourself up.</span>")
+					return 0
+
+			else if(ismob(src)) //VOREStation Edit Start. Are they a mob, and are they currently flying??
+				var/mob/H = src
+				if(H.flying)
+					if(H.incapacitated(INCAPACITATION_ALL))
+						to_chat(src, "<span class='notice'>You can't fly in your current state.</span>")
+						H.stop_flying() //Should already be done, but just in case.
+						return 0
+					var/fly_time = max(7 SECONDS + (H.movement_delay() * 10), 1) //So it's not too useful for combat. Could make this variable somehow, but that's down the road.
+					to_chat(src, "<span class='notice'>You begin to fly upwards...</span>")
+					destination.audible_message("<span class='notice'>You hear the flapping of wings.</span>")
+					H.audible_message("<span class='notice'>[H] begins to flap \his wings, preparing to move upwards!</span>")
+					if(do_after(H, fly_time) && H.flying)
+						to_chat(src, "<span class='notice'>You fly upwards.</span>")
+					else
+						to_chat(src, "<span class='warning'>You stopped flying upwards.</span>")
+						return 0
+				else
+					to_chat(src, "<span class='warning'>Gravity stops you from moving upward.</span>")
+					return 0 //VOREStation Edit End.
+
 			else
 				to_chat(src, "<span class='warning'>Gravity stops you from moving upward.</span>")
-				return 0 //VOREStation Edit End.
-		else
-			to_chat(src, "<span class='warning'>Gravity stops you from moving upward.</span>")
-			return 0
+				return 0
 
 	for(var/atom/A in destination)
 		if(!A.CanPass(src, start, 1.5, 0))
@@ -124,13 +157,13 @@
 /mob/living/can_ztravel()
 	if(incapacitated())
 		return FALSE
-	return hovering
+	return (hovering || is_incorporeal())
 
 /mob/living/carbon/human/can_ztravel()
 	if(incapacitated())
 		return FALSE
 
-	if(hovering)
+	if(hovering || is_incorporeal())
 		return TRUE
 
 	if(flying) //VOREStation Edit. Allows movement up/down with wings.
@@ -197,38 +230,33 @@
 
 	if(throwing)
 		return
-	if(ismob(src))
-		var/mob/H = src //VOREStation Edit Start. Flight on mobs.
-		if(H.flying) //Some other checks are done in the wings_toggle proc
-			if(H.nutrition > 2)
-				H.nutrition -= 2 //You use up 2 nutrition per TILE and tick of flying above open spaces. If people wanna flap their wings in the hallways, shouldn't penalize them for it.
-			if(H.incapacitated(INCAPACITATION_ALL))
-				H.stop_flying()
+	//VOREStation Edit Start. Flight on mobs.
+	if(isliving(src))
+		var/mob/living/L = src //VOREStation Edit Start. Flight on mobs.
+		if(L.flying) //Some other checks are done in the wings_toggle proc
+			if(L.nutrition > 0.5)
+				L.adjust_nutrition(-0.5) //You use up -0.5 nutrition per TILE and tick of flying above open spaces. If people wanna flap their wings in the hallways, shouldn't penalize them for it.
+			if(L.incapacitated(INCAPACITATION_ALL))
+				L.stop_flying()
 				//Just here to see if the person is KO'd, stunned, etc. If so, it'll move onto can_fall.
-			else if (H.nutrition > 1000) //Eat too much while flying? Get fat and fall.
-				to_chat(H, "<span class='danger'>You're too heavy! Your wings give out and you plummit to the ground!</span>")
-				H.stop_flying() //womp womp.
-			else if(H.nutrition < 300 && H.nutrition > 289) //290 would be risky, as metabolism could mess it up. Let's do 289.
-				to_chat(H, "<span class='danger'>You are starting to get fatigued... You probably have a good minute left in the air, if that. Even less if you continue to fly around! You should get to the ground soon!</span>") //Ticks are, on average, 3 seconds. So this would most likely be 90 seconds, but lets just say 60.
-				H.nutrition -= 10
+			else if (L.nutrition > 1000) //Eat too much while flying? Get fat and fall.
+				to_chat(L, "<span class='danger'>You're too heavy! Your wings give out and you plummit to the ground!</span>")
+				L.stop_flying() //womp womp.
+			else if(L.nutrition < 300 && L.nutrition > 299.4) //290 would be risky, as metabolism could mess it up. Let's do 289.
+				to_chat(L, "<span class='danger'>You are starting to get fatigued... You probably have a good minute left in the air, if that. Even less if you continue to fly around! You should get to the ground soon!</span>") //Ticks are, on average, 3 seconds. So this would most likely be 90 seconds, but lets just say 60.
+				L.adjust_nutrition(-0.5)
 				return
-			else if(H.nutrition < 100 && H.nutrition > 89)
-				to_chat(H, "<span class='danger'>You're seriously fatigued! You need to get to the ground immediately and eat before you fall!</span>")
+			else if(L.nutrition < 100 && L.nutrition > 99.4)
+				to_chat(L, "<span class='danger'>You're seriously fatigued! You need to get to the ground immediately and eat before you fall!</span>")
 				return
-			else if(H.nutrition < 2) //Should have listened to the warnings!
-				to_chat(H, "<span class='danger'>You lack the strength to keep yourself up in the air...</span>")
-				H.stop_flying()
+			else if(L.nutrition < 10) //Should have listened to the warnings!
+				to_chat(L, "<span class='danger'>You lack the strength to keep yourself up in the air...</span>")
+				L.stop_flying()
 			else
 				return
-		else if(ishuman(H)) //Needed to prevent 2 people from grabbing eachother in the air.
-			var/mob/living/carbon/human/F = H
-			if(F.grabbed_by.len) //If you're grabbed (presumably by someone flying) let's not have you fall. This also allows people to grab onto you while you jump over a railing to prevent you from falling!
-				var/obj/item/weapon/grab/G = F.get_active_hand()
-				var/obj/item/weapon/grab/J = F.get_inactive_hand()
-				if(istype(G) || istype(J))
-					//fall
-				else
-					return
+		if(LAZYLEN(L.grabbed_by)) //If you're grabbed (presumably by someone flying) let's not have you fall. This also allows people to grab onto you while you jump over a railing to prevent you from falling!
+			return
+	//VOREStation Edit End
 
 	if(can_fall())
 		// We spawn here to let the current move operation complete before we start falling. fall() is normally called from
@@ -273,6 +301,8 @@
 		return FALSE
 
 /mob/living/can_fall()
+	if(is_incorporeal())
+		return FALSE
 	if(hovering)
 		return FALSE
 	return ..()
@@ -289,7 +319,7 @@
 
 // Things that prevent objects standing on them from falling into turf below
 /obj/structure/catwalk/CanFallThru(atom/movable/mover as mob|obj, turf/target as turf)
-	if(target.z < z)
+	if((target.z < z) && !hatch_open)
 		return FALSE // TODO - Technically should be density = 1 and flags |= ON_BORDER
 	if(!isturf(mover.loc))
 		return FALSE // Only let loose floor items fall. No more snatching things off people's hands.
@@ -472,7 +502,7 @@
 				visible_message("<span class='warning'>\The [src] falls from above and slams into \the [landing]!</span>", \
 					"<span class='danger'>You fall off and hit \the [landing]!</span>", \
 					"You hear something slam into \the [landing].")
-			playsound(loc, "punch", 25, 1, -1)
+			playsound(src, "punch", 25, 1, -1)
 
 		// Because wounds heal rather quickly, 10 (the default for this proc) should be enough to discourage jumping off but not be enough to ruin you, at least for the first time.
 		// Hits 10 times, because apparently targeting individual limbs lets certain species survive the fall from atmosphere
@@ -569,7 +599,7 @@
 				visible_message("<span class='warning'>\The [src] falls from above and slams into \the [landing]!</span>", \
 					"<span class='danger'>You fall off and hit \the [landing]!</span>", \
 					"You hear something slam into \the [landing].")
-			playsound(loc, "punch", 25, 1, -1)
+			playsound(src, "punch", 25, 1, -1)
 
 	// And now to hurt the mech.
 	if(!planetary)

@@ -47,16 +47,17 @@
 		existing.clear(source)
 		return check_alarm_cleared(existing)
 
-/datum/alarm_handler/proc/major_alarms()
-	return visible_alarms()
+/datum/alarm_handler/proc/major_alarms(var/z)
+	return visible_alarms(z)
 
-/datum/alarm_handler/proc/has_major_alarms()
-	if(alarms && alarms.len)
-		return 1
-	return 0
+/datum/alarm_handler/proc/has_major_alarms(var/z)
+	if(!LAZYLEN(alarms))
+		return 0
 
-/datum/alarm_handler/proc/minor_alarms()
-	return visible_alarms()
+	return LAZYLEN(major_alarms(z))
+
+/datum/alarm_handler/proc/minor_alarms(var/z)
+	return visible_alarms(z)
 
 /datum/alarm_handler/proc/check_alarm_cleared(var/datum/alarm/alarm)
 	if ((alarm.end_time && world.time > alarm.end_time) || !alarm.sources.len)
@@ -101,9 +102,15 @@
 	for(var/listener in listeners)
 		call(listener, listeners[listener])(src, alarm, was_raised)
 
-/datum/alarm_handler/proc/visible_alarms()
+/datum/alarm_handler/proc/visible_alarms(var/z)
+	if(!LAZYLEN(alarms))
+		return list()
+
+	var/list/map_levels = using_map.get_map_levels(z)
+
 	var/list/visible_alarms = new()
 	for(var/datum/alarm/A in alarms)
-		if(!A.hidden)
-			visible_alarms.Add(A)
+		if(A.hidden || (z && !(A.origin?.z in map_levels)))
+			continue
+		visible_alarms.Add(A)
 	return visible_alarms

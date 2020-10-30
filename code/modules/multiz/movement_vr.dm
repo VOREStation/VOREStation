@@ -58,7 +58,7 @@
 			else if(prey.can_be_drop_pred && pred.can_be_drop_prey) //Is person being fallen onto pred & person falling prey
 				pred.feed_grabbed_to_self_falling_nom(prey,pred) //oh, how the tables have turned.
 			else
-				playsound(loc, "punch", 25, 1, -1)
+				playsound(src, "punch", 25, 1, -1)
 				prey.Weaken(8) //Just fall onto them if neither of the above apply.
 				var/tdamage
 				for(var/i = 1 to 10)
@@ -85,7 +85,7 @@
 	else
 		prey.Weaken(8)
 		pred.loc = prey.loc
-		playsound(loc, "punch", 25, 1, -1)
+		playsound(src, "punch", 25, 1, -1)
 		var/tdamage
 		for(var/i = 1 to 10)
 			tdamage = rand(0, 10)/2

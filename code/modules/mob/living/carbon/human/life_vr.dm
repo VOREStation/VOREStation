@@ -58,22 +58,15 @@
 	nif.life()
 
 //Overriding carbon move proc that forces default hunger factor
-/mob/living/carbon/Move(NewLoc, direct)
+/mob/living/carbon/Moved(atom/old_loc, direction, forced = FALSE)
 	. = ..()
-	if(.)
-		if(src.nutrition && src.stat != 2)
-			if(ishuman(src))
-				var/mob/living/carbon/human/M = src
-				if(M.stat != 2 && M.nutrition > 0)
-					M.nutrition -= M.species.hunger_factor/10
-					if(M.m_intent == "run")
-						M.nutrition -= M.species.hunger_factor/10
-					if(M.nutrition < 0)
-						M.nutrition = 0
-			else
-				src.nutrition -= DEFAULT_HUNGER_FACTOR/10
-				if(src.m_intent == "run")
-					src.nutrition -= DEFAULT_HUNGER_FACTOR/10
-		// Moving around increases germ_level faster
-		if(germ_level < GERM_LEVEL_MOVE_CAP && prob(8))
-			germ_level++
+	
+	// Technically this does mean being dragged takes nutrition
+	if(stat != DEAD)
+		adjust_nutrition(hunger_rate/-10)
+		if(m_intent == "run")
+			adjust_nutrition(hunger_rate/-10)
+	
+	// Moving around increases germ_level faster
+	if(germ_level < GERM_LEVEL_MOVE_CAP && prob(8))
+		germ_level++

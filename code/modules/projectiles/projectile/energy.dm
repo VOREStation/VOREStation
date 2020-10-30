@@ -4,6 +4,11 @@
 	damage = 0
 	damage_type = BURN
 	check_armour = "energy"
+
+	impact_effect_type = /obj/effect/temp_visual/impact_effect
+	hitsound_wall = 'sound/weapons/effects/searwall.ogg'
+	hitsound = 'sound/weapons/zapbang.ogg'
+
 	var/flash_strength = 10
 
 //releases a burst of light on impact or after travelling a distance
@@ -11,6 +16,7 @@
 	name = "chemical shell"
 	icon_state = "bullet"
 	fire_sound = 'sound/weapons/gunshot_pathetic.ogg'
+	hitsound_wall = null
 	damage = 5
 	range = 15 //if the shell hasn't hit anything after travelling this far it just explodes.
 	var/flash_range = 0
@@ -91,7 +97,21 @@
 	light_range = 2
 	light_power = 0.5
 	light_color = "#33CC00"
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/monochrome_laser
 
+	combustion = FALSE
+
+/obj/item/projectile/energy/excavate
+	name = "kinetic blast"
+	icon_state = "kinetic_blast"
+	fire_sound = 'sound/weapons/pulse3.ogg'
+	damage_type = BRUTE
+	damage = 30
+	armor_penetration = 60
+	excavation_amount = 200
+	check_armour = "melee"
+
+	vacuum_traversal = 0
 	combustion = FALSE
 
 /obj/item/projectile/energy/dart
@@ -157,6 +177,7 @@
 	light_range = 2
 	light_power = 0.5
 	light_color = "#33CC00"
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/monochrome_laser
 
 	combustion = FALSE
 
@@ -174,7 +195,7 @@
 /obj/item/projectile/energy/plasmastun/proc/bang(var/mob/living/carbon/M)
 
 	to_chat(M, "<span class='danger'>You hear a loud roar.</span>")
-	playsound(M.loc, 'sound/effects/bang.ogg', 50, 1)
+	playsound(src, 'sound/effects/bang.ogg', 50, 1)
 	var/ear_safety = 0
 	ear_safety = M.get_ear_protection()
 	if(ear_safety == 1)
@@ -209,10 +230,11 @@
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 	damage_type = BURN
 	check_armour = "energy"
-	light_color = "#0000FF"
+	light_color = "#00AAFF"
 
 	embed_chance = 0
 	muzzle_type = /obj/effect/projectile/muzzle/pulse
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/monochrome_laser
 
 /obj/item/projectile/energy/phase
 	name = "phase wave"

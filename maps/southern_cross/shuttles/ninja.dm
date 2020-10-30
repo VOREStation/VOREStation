@@ -3,13 +3,14 @@
 	req_access = list(access_syndicate)
 	shuttle_tag = "Ninja"
 
-/datum/shuttle/web_shuttle/ninja
+/datum/shuttle/autodock/web_shuttle/ninja
 	name = "Ninja"
 	visible_name = "Unknown Vessel"
 	warmup_time = 0
 	can_cloak = TRUE
 	cloaked = TRUE
-	current_area = /area/ninja_dojo/start
+	shuttle_area = /area/ninja_dojo/start
+	current_location = "ninja_start"
 	docking_controller_tag = "ninja_shuttle"
 	web_master_type = /datum/shuttle_web_master/ninja
 	flight_time_modifier = 0.5	// Nippon steel.
@@ -20,10 +21,8 @@
 
 /datum/shuttle_destination/ninja/root
 	name = "Dojo Outpost"
-	my_area = /area/ninja_dojo/start
-	preferred_interim_area = /area/ninja_dojo/sky_transit
-
-	dock_target = "ninja_base"
+	my_landmark = "ninja_start"
+	preferred_interim_tag = "ninja_sky_transit"
 
 	routes_to_make = list(
 		/datum/shuttle_destination/ninja/sky = 15 SECONDS,
@@ -31,8 +30,8 @@
 
 /datum/shuttle_destination/ninja/orbit
 	name = "Orbit of Sif"
-	my_area = /area/ninja_dojo/orbit
-	preferred_interim_area = /area/ninja_dojo/transit
+	my_landmark = "ninja_orbit"
+	preferred_interim_tag = "ninja_transit"
 
 	routes_to_make = list(
 		/datum/shuttle_destination/ninja/outside_SC_1d = 30 SECONDS,
@@ -43,8 +42,8 @@
 
 /datum/shuttle_destination/ninja/outside_SC_1d
 	name = "NLS Southern Cross - Aft of First Deck"
-	my_area = /area/ninja_dojo/firstdeck
-	preferred_interim_area = /area/ninja_dojo/transit
+	my_landmark = "ninja_firstdeck"
+	preferred_interim_tag = "ninja_transit"
 
 	routes_to_make = list(
 		/datum/shuttle_destination/ninja/outside_SC_2d = 0,
@@ -54,8 +53,8 @@
 
 /datum/shuttle_destination/ninja/outside_SC_2d
 	name = "NLS Southern Cross - Fore of Second Deck"
-	my_area = /area/ninja_dojo/seconddeck
-	preferred_interim_area = /area/ninja_dojo/transit
+	my_landmark = "ninja_seconddeck"
+	preferred_interim_tag = "ninja_transit"
 
 	routes_to_make = list(
 		/datum/shuttle_destination/ninja/outside_SC_1d = 0,
@@ -65,8 +64,8 @@
 
 /datum/shuttle_destination/ninja/outside_SC_3d
 	name = "NLS Southern Cross - Port of Third Deck"
-	my_area = /area/ninja_dojo/thirddeck
-	preferred_interim_area = /area/ninja_dojo/transit
+	my_landmark = "ninja_thirddeck"
+	preferred_interim_tag = "ninja_transit"
 
 	routes_to_make = list(
 		/datum/shuttle_destination/ninja/outside_SC_1d = 0,
@@ -77,10 +76,9 @@
 
 /datum/shuttle_destination/ninja/docked_SC
 	name = "NLS Southern Cross - Arrivals Docking Port"
-	my_area = /area/ninja_dojo/arrivals_dock
-	preferred_interim_area = /area/ninja_dojo/transit
+	my_landmark = "ninja_arrivals_dock"
+	preferred_interim_tag = "ninja_transit"
 
-	dock_target = "ninja_shuttle_dock_airlock"
 	announcer = "Southern Cross Docking Computer"
 
 /datum/shuttle_destination/syndie/docked_SC/get_arrival_message()
@@ -91,8 +89,8 @@
 
 /datum/shuttle_destination/ninja/sky
 	name = "Skies of Sif"
-	my_area = /area/ninja_dojo/sky
-	preferred_interim_area = /area/ninja_dojo/sky_transit
+	my_landmark = "ninja_sky"
+	preferred_interim_tag = "ninja_sky_transit"
 
 	routes_to_make = list(
 		/datum/shuttle_destination/ninja/planet = 15 SECONDS
@@ -100,5 +98,5 @@
 
 /datum/shuttle_destination/ninja/planet
 	name = "Sif Surface"
-	my_area = /area/ninja_dojo/planet
-	preferred_interim_area = /area/ninja_dojo/sky_transit
+	my_landmark = "ninja_planet"
+	preferred_interim_tag = "ninja_sky_transit"

@@ -16,7 +16,7 @@
 		new_projectile.fire()
 		log_and_message_admins("has casted [src] at \the [hit_atom].")
 		if(fire_sound)
-			playsound(get_turf(src), fire_sound, 75, 1)
+			playsound(src, fire_sound, 75, 1)
 		adjust_instability(instability_per_shot)
 		return 1
 	return 0

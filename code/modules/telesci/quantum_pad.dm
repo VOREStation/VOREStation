@@ -4,7 +4,7 @@
 	icon = 'icons/obj/telescience.dmi'
 	icon_state = "qpad-idle"
 	anchored = TRUE
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 200
 	active_power_usage = 5000
 	circuit = /obj/item/weapon/circuitboard/quantumpad
@@ -135,7 +135,7 @@
 /obj/machinery/power/quantumpad/proc/doteleport(mob/user)
 	if(!linked_pad)
 		return
-	playsound(get_turf(src), 'sound/weapons/flash.ogg', 25, 1)
+	playsound(src, 'sound/weapons/flash.ogg', 25, 1)
 	teleporting = 1
 
 	spawn(teleport_speed)
@@ -163,9 +163,9 @@
 		linked_pad.sparks()
 
 		flick("qpad-beam", src)
-		playsound(get_turf(src), 'sound/weapons/emitter2.ogg', 25, 1, extrarange = 3, falloff = 5)
+		playsound(src, 'sound/weapons/emitter2.ogg', 25, 1, extrarange = 3, falloff = 5)
 		flick("qpad-beam", linked_pad)
-		playsound(get_turf(linked_pad), 'sound/weapons/emitter2.ogg', 25, 1, extrarange = 3, falloff = 5)
+		playsound(linked_pad, 'sound/weapons/emitter2.ogg', 25, 1, extrarange = 3, falloff = 5)
 		for(var/atom/movable/ROI in get_turf(src))
 			// if is anchored, don't let through
 			if(ROI.anchored)

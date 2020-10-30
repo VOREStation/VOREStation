@@ -63,6 +63,8 @@
 		for(var/obj/item/rig_module/stealth_field/cloaker in suit.installed_modules)
 			if(cloaker.active)
 				cloaker.deactivate()
+	for(var/obj/item/weapon/deadringer/dr in src)
+		dr.uncloak()
 
 /mob/living/carbon/human/is_cloaked()
 	if(mind && mind.changeling && mind.changeling.cloaked) // Ling camo.
@@ -72,6 +74,9 @@
 		for(var/obj/item/rig_module/stealth_field/cloaker in suit.installed_modules)
 			if(cloaker.active)
 				return TRUE
+	for(var/obj/item/weapon/deadringer/dr in src)
+		if(dr.timer > 20)
+			return TRUE
 	return ..()
 
 /mob/living/carbon/human/get_ear_protection()
@@ -98,6 +103,7 @@
 	if(T && T.robotic >= ORGAN_ROBOT)
 		src.verbs += /mob/living/carbon/human/proc/self_diagnostics
 		src.verbs += /mob/living/carbon/human/proc/reagent_purge //VOREStation Add
+		src.verbs += /mob/living/carbon/human/proc/setmonitor_state
 		var/datum/robolimb/R = all_robolimbs[T.model]
 		synthetic = R
 		return synthetic
@@ -173,7 +179,7 @@
 			compiled_vis |= O.enables_planes
 
 	//Check to see if we have a rig (ugh, blame rigs, desnowflake this)
-	var/obj/item/weapon/rig/rig = back
+	var/obj/item/weapon/rig/rig = get_rig()
 	if(istype(rig) && rig.visor)
 		if(!rig.helmet || (head && rig.helmet == head))
 			if(rig.visor && rig.visor.vision && rig.visor.active && rig.visor.vision.glasses)

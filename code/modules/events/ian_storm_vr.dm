@@ -4,8 +4,8 @@
 	endWhen = 3
 
 /datum/event/ianstorm/announce()
-	command_announcement.Announce("It has come to our attention that the station passed through an ion storm.  Please monitor all electronic equipment for malfunctions.", "Anomaly Alert")
-	spawn(rand(50, 300))
+	command_announcement.Announce("It has come to our attention that the station passed through an ion storm.  Please monitor all electronic equipment for malfunctions.", "Anomaly Alert", 'sound/AI/ian_storm.ogg')
+	spawn(7 SECONDS)
 		command_announcement.Announce("Wait. No, thats wrong.  The station passed through an IAN storm!.", "Ian Alert")
 
 /datum/event/ianstorm/start()

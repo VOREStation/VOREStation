@@ -2,7 +2,7 @@
 	set category = "Admin"
 	set name = "Fix Atmospherics Grief"
 
-	if(!check_rights(R_ADMIN|R_DEBUG)) return
+	if(!check_rights(R_ADMIN|R_DEBUG|R_EVENT)) return
 
 
 	if(alert("WARNING: Executing this command will perform a full reset of atmosphere. All pipelines will lose any gas that may be in them, and all zones will be reset to contain air mix as on roundstart. The supermatter engine will also be stopped (to prevent overheat due to removal of coolant). Do not use unless the station is suffering serious atmospheric issues due to grief or bug.", "Full Atmosphere Reboot", "No", "Yes") == "No")
@@ -38,7 +38,7 @@
 		unsorted_overlays |= gas_data.tile_overlay[id]
 
 
-	for(var/turf/simulated/T in turfs)
+	for(var/turf/simulated/T in world)
 		T.air = null
 		T.overlays.Remove(unsorted_overlays)
 		T.zone = null

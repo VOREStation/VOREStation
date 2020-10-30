@@ -4,22 +4,26 @@
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "taperoll"
 	w_class = ITEMSIZE_TINY
+	drop_sound = 'sound/items/drop/cardboardbox.ogg'
+	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
 	toolspeed = 2 //It is now used in surgery as a not awful, but probably dangerous option, due to speed.
+
+/obj/item/weapon/tape_roll/proc/can_place(var/mob/living/carbon/human/H, var/mob/user)
+	if(istype(user, /mob/living/silicon/robot) || user == H)
+		return TRUE
+		
+	for (var/obj/item/weapon/grab/G in H.grabbed_by)
+		if (G.loc == user && G.state >= GRAB_AGGRESSIVE)
+			return TRUE
+			
+	return FALSE
 
 /obj/item/weapon/tape_roll/attack(var/mob/living/carbon/human/H, var/mob/user)
 	if(istype(H))
 		if(user.a_intent == I_HELP)
 			return
-		var/can_place = 0
-		if(istype(user, /mob/living/silicon/robot))
-			can_place = 1
-		else
-			for (var/obj/item/weapon/grab/G in H.grabbed_by)
-				if (G.loc == user && G.state >= GRAB_AGGRESSIVE)
-					can_place = 1
-					break
-		if(!can_place)
+		if(!can_place(H, user))
 			to_chat(user, "<span class='danger'>You need to have a firm grip on [H] before you can use \the [src]!</span>")
 			return
 		else
@@ -42,16 +46,7 @@
 				if(!do_after(user, 30))
 					return
 
-				can_place = 0
-
-				if(istype(user, /mob/living/silicon/robot))
-					can_place = 1
-				else
-					for (var/obj/item/weapon/grab/G in H.grabbed_by)
-						if (G.loc == user && G.state >= GRAB_AGGRESSIVE)
-							can_place = 1
-
-				if(!can_place)
+				if(!can_place(H, user))
 					return
 
 				if(!H || !src || !H.organs_by_name[BP_HEAD] || !H.has_eyes() || H.glasses || (H.head && (H.head.body_parts_covered & FACE)))
@@ -80,16 +75,7 @@
 				if(!do_after(user, 30))
 					return
 
-				can_place = 0
-
-				if(istype(user, /mob/living/silicon/robot))
-					can_place = 1
-				else
-					for (var/obj/item/weapon/grab/G in H.grabbed_by)
-						if (G.loc == user && G.state >= GRAB_AGGRESSIVE)
-							can_place = 1
-
-				if(!can_place)
+				if(!can_place(H, user))
 					return
 
 				if(!H || !src || !H.organs_by_name[BP_HEAD] || !H.check_has_mouth() || (H.head && (H.head.body_parts_covered & FACE)))
@@ -102,16 +88,7 @@
 				playsound(src, 'sound/effects/tape.ogg',25)
 
 			else if(user.zone_sel.selecting == "r_hand" || user.zone_sel.selecting == "l_hand")
-				can_place = 0
-
-				if(istype(user, /mob/living/silicon/robot))
-					can_place = 1
-				else
-					for (var/obj/item/weapon/grab/G in H.grabbed_by)
-						if (G.loc == user && G.state >= GRAB_AGGRESSIVE)
-							can_place = 1
-
-				if(!can_place)
+				if(!can_place(H, user))
 					return
 
 				var/obj/item/weapon/handcuffs/cable/tape/T = new(user)
@@ -125,7 +102,7 @@
 			return 1
 
 /obj/item/weapon/tape_roll/proc/stick(var/obj/item/weapon/W, mob/user)
-	if(!istype(W, /obj/item/weapon/paper))
+	if(!istype(W, /obj/item/weapon/paper) || istype(W, /obj/item/weapon/paper/sticky) || !user.unEquip(W))
 		return
 	user.drop_from_inventory(W)
 	var/obj/item/weapon/ducttape/tape = new(get_turf(src))
@@ -141,6 +118,7 @@
 	w_class = ITEMSIZE_TINY
 	plane = MOB_PLANE
 	anchored = FALSE
+	drop_sound = null
 
 	var/obj/item/weapon/stuck = null
 

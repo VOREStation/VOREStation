@@ -1,13 +1,13 @@
 #undef VIS_COUNT
 
-#define VIS_CH_STATUS_R		22
-#define VIS_CH_HEALTH_VR	23
-#define VIS_CH_BACKUP		24
-#define VIS_CH_VANTAG		25
+#define VIS_CH_STATUS_R		24
+#define VIS_CH_HEALTH_VR	25
+#define VIS_CH_BACKUP		26
+#define VIS_CH_VANTAG		27
 
-#define VIS_AUGMENTED		26
+#define VIS_AUGMENTED		28
 
-#define VIS_COUNT			26
+#define VIS_COUNT			28
 
 //Protean organs
 #define O_ORCH		"orchestrator"
@@ -29,9 +29,7 @@
 #define SPECIES_VASILISSAN		"Vasilissan"
 #define SPECIES_VULPKANIN		"Vulpkanin"
 #define SPECIES_XENOCHIMERA		"Xenochimera"
-#define SPECIES_XENOHYBRID		"Xenomorph Hybrid"
-#define SPECIES_ZORREN_FLAT		"Flatland Zorren"
-#define SPECIES_ZORREN_HIGH		"Highlander Zorren"
+#define SPECIES_ZORREN_HIGH		"Zorren"
 #define SPECIES_CUSTOM			"Custom Species"
 //monkey species
 #define SPECIES_MONKEY_AKULA		"Sobaka"
@@ -41,3 +39,6 @@
 //event species
 #define SPECIES_WEREBEAST			"Werebeast"
 #define SPECIES_SHADEKIN			"Shadekin"
+//custom species base sprites
+#define SPECIES_FENNEC				"Fennec"
+#define SPECIES_XENOHYBRID			"Xenohybrid"

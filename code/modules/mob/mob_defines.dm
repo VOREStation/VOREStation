@@ -3,12 +3,10 @@
 	layer = MOB_LAYER
 	plane = MOB_PLANE
 	animate_movement = 2
-	flags = PROXMOVE
 	var/datum/mind/mind
 
 	var/stat = 0 //Whether a mob is alive or dead. TODO: Move this to living - Nodrak
-	var/move_delay = null // For movement speed delays.
-	var/next_move = null // For click delay, despite the misleading name.
+	var/next_move = null // world.time when mob is next allowed to self-move.
 
 	//Not in use yet
 	var/obj/effect/organstructure/organStructure = null
@@ -17,16 +15,10 @@
 	var/obj/screen/pullin = null
 	var/obj/screen/purged = null
 	var/obj/screen/internals = null
-	var/obj/screen/oxygen = null
 	var/obj/screen/i_select = null
 	var/obj/screen/m_select = null
-	var/obj/screen/toxin = null
-	var/obj/screen/fire = null
-	var/obj/screen/bodytemp = null
 	var/obj/screen/healths = null
 	var/obj/screen/throw_icon = null
-	var/obj/screen/nutrition_icon = null
-	var/obj/screen/pressure = null
 	var/obj/screen/pain = null
 	var/obj/screen/gun/item/item_use_icon = null
 	var/obj/screen/gun/radio/radio_use_icon = null
@@ -112,9 +104,7 @@
 	var/bodytemperature = 310.055	//98.7 F
 	var/drowsyness = 0.0//Carbon
 	var/charges = 0.0
-	var/nutrition = 400.0//Carbon
 
-	var/overeatduration = 0		// How long this guy is overeating //Carbon
 	var/paralysis = 0.0
 	var/stunned = 0.0
 	var/weakened = 0.0
@@ -191,6 +181,7 @@
 	var/status_flags = CANSTUN|CANWEAKEN|CANPARALYSE|CANPUSH	//bitflags defining which status effects can be inflicted (replaces canweaken, canstun, etc)
 
 	var/area/lastarea = null
+	var/lastareachange = null
 
 	var/digitalcamo = 0 // Can they be tracked by the AI?
 
@@ -211,7 +202,7 @@
 	var/mob/teleop = null
 
 	var/turf/listed_turf = null  	//the current turf being examined in the stat panel
-	var/list/shouldnt_see = list()	//list of objects that this mob shouldn't see in the stat panel. this silliness is needed because of AI alt+click and cult blood runes
+	var/list/shouldnt_see = list(/mob/observer/eye)	//list of objects that this mob shouldn't see in the stat panel. this silliness is needed because of AI alt+click and cult blood runes
 
 	var/list/active_genes=list()
 	var/mob_size = MOB_MEDIUM
@@ -233,3 +224,7 @@
 	var/attack_icon_state //State for above
 
 	var/registered_z
+
+	var/in_enclosed_vehicle = 0	//For mechs and fighters ambiance. Can be used in other cases.
+
+	var/list/progressbars = null //VOREStation Edit

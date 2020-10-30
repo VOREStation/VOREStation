@@ -72,7 +72,7 @@
 	else
 		failed = 1
 
-	playsound(loc, 'sound/weapons/pierce.ogg', 25, 1, -1)
+	playsound(src, 'sound/weapons/pierce.ogg', 25, 1, -1)
 	if(failed)
 		src.Weaken(rand(2,4))
 
@@ -178,9 +178,28 @@
 	for(var/obj/item/W in src)
 		drop_from_inventory(W)
 
-	visible_message("<span class='warning'>\The [src] quivers slightly, then splits apart with a wet slithering noise.</span>")
+	var/obj/item/organ/external/Chest = organs_by_name[BP_TORSO]
 
-	qdel(src)
+	if(Chest.robotic >= 2)
+		visible_message("<span class='warning'>\The [src] shudders slightly, then ejects a cluster of nymphs with a wet slithering noise.</span>")
+		species = GLOB.all_species[SPECIES_HUMAN] // This is hard-set to default the body to a normal FBP, without changing anything.
+
+		// Bust it
+		src.death()
+
+		for(var/obj/item/organ/internal/diona/Org in internal_organs) // Remove Nymph organs.
+			qdel(Org)
+
+		// Purge the diona verbs.
+		verbs -= /mob/living/carbon/human/proc/diona_split_nymph
+		verbs -= /mob/living/carbon/human/proc/regenerate
+
+		for(var/obj/item/organ/external/E in organs) // Just fall apart.
+			E.droplimb(TRUE)
+
+	else
+		visible_message("<span class='warning'>\The [src] quivers slightly, then splits apart with a wet slithering noise.</span>")
+		qdel(src)
 
 /mob/living/carbon/human/proc/self_diagnostics()
 	set name = "Self-Diagnostics"
@@ -190,32 +209,37 @@
 	if(stat == DEAD) return
 
 	to_chat(src, "<span class='notice'>Performing self-diagnostic, please wait...</span>")
-	sleep(50)
-	var/output = "<span class='notice'>Self-Diagnostic Results:\n</span>"
 
-	output += "Internal Temperature: [convert_k2c(bodytemperature)] Degrees Celsius\n"
+	spawn(50)
+		var/output = "<span class='notice'>Self-Diagnostic Results:\n</span>"
 
-	output += "Current Battery Charge: [nutrition]\n"
+		output += "Internal Temperature: [convert_k2c(bodytemperature)] Degrees Celsius\n"
 
-	var/toxDam = getToxLoss()
-	if(toxDam)
-		output += "System Instability: <span class='warning'>[toxDam > 25 ? "Severe" : "Moderate"]</span>. Seek charging station for cleanup.\n"
-	else
-		output += "System Instability: <span style='color:green;'>OK</span>\n"
+		if(isSynthetic())
+			output += "Current Battery Charge: [nutrition]\n"
 
-	for(var/obj/item/organ/external/EO in organs)
-		if(EO.brute_dam || EO.burn_dam)
-			output += "[EO.name] - <span class='warning'>[EO.burn_dam + EO.brute_dam > EO.min_broken_damage ? "Heavy Damage" : "Light Damage"]</span>\n" //VOREStation Edit - Makes robotic limb damage scalable
-		else
-			output += "[EO.name] - <span style='color:green;'>OK</span>\n"
+		if(isSynthetic())
+			var/toxDam = getToxLoss()
+			if(toxDam)
+				output += "System Instability: <span class='warning'>[toxDam > 25 ? "Severe" : "Moderate"]</span>. Seek charging station for cleanup.\n"
+			else
+				output += "System Instability: <span style='color:green;'>OK</span>\n"
 
-	for(var/obj/item/organ/IO in internal_organs)
-		if(IO.damage)
-			output += "[IO.name] - <span class='warning'>[IO.damage > 10 ? "Heavy Damage" : "Light Damage"]</span>\n"
-		else
-			output += "[IO.name] - <span style='color:green;'>OK</span>\n"
+		for(var/obj/item/organ/external/EO in organs)
+			if(EO.robotic >= ORGAN_ASSISTED)
+				if(EO.brute_dam || EO.burn_dam)
+					output += "[EO.name] - <span class='warning'>[EO.burn_dam + EO.brute_dam > EO.min_broken_damage ? "Heavy Damage" : "Light Damage"]</span>\n" //VOREStation Edit - Makes robotic limb damage scalable
+				else
+					output += "[EO.name] - <span style='color:green;'>OK</span>\n"
 
-	to_chat(src,output)
+		for(var/obj/item/organ/IO in internal_organs)
+			if(IO.robotic >= ORGAN_ASSISTED)
+				if(IO.damage)
+					output += "[IO.name] - <span class='warning'>[IO.damage > 10 ? "Heavy Damage" : "Light Damage"]</span>\n"
+				else
+					output += "[IO.name] - <span style='color:green;'>OK</span>\n"
+
+		to_chat(src,output)
 
 /mob/living/carbon/human
 	var/next_sonar_ping = 0
@@ -283,7 +307,7 @@
 
 	var/delay_length = round(active_regen_delay * species.active_regen_mult)
 	if(do_after(src,delay_length))
-		nutrition -= 200
+		adjust_nutrition(-200)
 
 		for(var/obj/item/organ/I in internal_organs)
 			if(I.robotic >= ORGAN_ROBOT) // No free robofix.
@@ -326,5 +350,30 @@
 		active_regen = FALSE
 	else
 		to_chat(src, "<span class='critical'>Your regeneration is interrupted!</span>")
-		nutrition -= 75
+		adjust_nutrition(-75)
 		active_regen = FALSE
+
+/mob/living/carbon/human/proc/setmonitor_state()
+	set name = "Set monitor display"
+	set desc = "Set your monitor display"
+	set category = "IC"
+	if(stat)
+		to_chat(src,"<span class='warning'>You must be awake and standing to perform this action!</span>")
+		return
+	var/obj/item/organ/external/head/E = organs_by_name[BP_HEAD]
+	if(!E)
+		to_chat(src,"<span class='warning'>You don't seem to have a head!</span>")
+		return
+	var/datum/robolimb/robohead = all_robolimbs[E.model]
+	if(!robohead.monitor_styles || !robohead.monitor_icon)
+		to_chat(src,"<span class='warning'>Your head doesn't have a monitor or it doens't support to be changed!</span>")
+		return
+	var/list/states
+	if(!states)
+		states = params2list(robohead.monitor_styles)
+	var/choice = input("Select a screen icon.") as null|anything in states
+	if(choice)
+		E.eye_icon_location = robohead.monitor_icon
+		E.eye_icon = states[choice]
+		to_chat(src,"<span class='warning'>You set your monitor to display [choice]!</span>")
+		update_icons_body()

@@ -66,6 +66,10 @@
 	taste_description = "pennies"
 	color = "#6E3B08"
 
+/datum/reagent/copper/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien == IS_SKRELL)
+		M.add_chemical_effect(CE_BLOODRESTORE, 8 * removed)
+
 /datum/reagent/ethanol
 	name = "Ethanol" //Parent class for all alcoholic reagents.
 	id = "ethanol"
@@ -94,7 +98,7 @@
 
 /datum/reagent/ethanol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed) //This used to do just toxin. That's boring. Let's make this FUN.
 	if(issmall(M)) removed *= 2
-	var/strength_mod = 3 //Alcohol is 3x stronger when injected into the veins.
+	var/strength_mod = 3 * M.species.alcohol_mod //Alcohol is 3x stronger when injected into the veins.
 	if(alien == IS_SKRELL)
 		strength_mod *= 5
 	if(alien == IS_TAJARA)
@@ -122,8 +126,8 @@
 	if(effective_dose >= strength * 6) // Toxic dose
 		M.add_chemical_effect(CE_ALCOHOL_TOXIC, toxicity*3)
 	if(effective_dose >= strength * 7) // Pass out
-		M.paralysis = max(M.paralysis, 60)
-		M.sleeping  = max(M.sleeping, 90)
+		M.Paralyse(60)
+		M.Sleeping(90)
 
 	if(druggy != 0)
 		M.druggy = max(M.druggy, druggy*3)
@@ -138,8 +142,8 @@
 
 /datum/reagent/ethanol/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	if(issmall(M)) removed *= 2
-	M.nutrition += nutriment_factor * removed
-	var/strength_mod = 1
+	M.adjust_nutrition(nutriment_factor * removed)
+	var/strength_mod = 1 * M.species.alcohol_mod
 	if(alien == IS_SKRELL)
 		strength_mod *= 5
 	if(alien == IS_TAJARA)
@@ -166,8 +170,8 @@
 	if(dose * strength_mod >= strength * 6) // Toxic dose
 		M.add_chemical_effect(CE_ALCOHOL_TOXIC, toxicity)
 	if(dose * strength_mod >= strength * 7) // Pass out
-		M.paralysis = max(M.paralysis, 20)
-		M.sleeping  = max(M.sleeping, 30)
+		M.Paralyse(20)
+		M.Sleeping(30)
 
 	if(druggy != 0)
 		M.druggy = max(M.druggy, druggy)
@@ -228,7 +232,7 @@
 	color = "#353535"
 
 /datum/reagent/iron/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien != IS_DIONA)
+	if(alien != IS_DIONA && alien != IS_SKRELL)
 		M.add_chemical_effect(CE_BLOODRESTORE, 8 * removed)
 
 /datum/reagent/lithium
@@ -260,7 +264,7 @@
 			step(M, pick(cardinal))
 		if(prob(5))
 			M.emote(pick("twitch", "drool", "moan"))
-		M.adjustBrainLoss(0.1)
+		M.adjustBrainLoss(0.5 * removed)
 
 /datum/reagent/nitrogen
 	name = "Nitrogen"
@@ -448,7 +452,7 @@
 	glass_icon = DRINK_ICON_NOISY
 
 /datum/reagent/sugar/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.nutrition += removed * 3
+	M.adjust_nutrition(removed * 3)
 
 	var/effective_dose = dose
 	if(issmall(M))
@@ -465,7 +469,7 @@
 				M.Weaken(2)
 			M.drowsyness = max(M.drowsyness, 20)
 		else
-			M.sleeping = max(M.sleeping, 20)
+			M.Sleeping(20)
 			M.drowsyness = max(M.drowsyness, 60)
 
 /datum/reagent/sulfur

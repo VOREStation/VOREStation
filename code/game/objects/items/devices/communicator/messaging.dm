@@ -34,7 +34,7 @@
 			if(src in comm.voice_invites)
 				comm.open_connection(src)
 				return
-			to_chat(src, "<span class='notice'>\icon[origin_atom] Receiving communicator request from [origin_atom].  To answer, use the <b>Call Communicator</b> \
+			to_chat(src, "<span class='notice'>[bicon(origin_atom)] Receiving communicator request from [origin_atom].  To answer, use the <b>Call Communicator</b> \
 			verb, and select that name to answer the call.</span>")
 			src << 'sound/machines/defib_SafetyOn.ogg'
 			comm.voice_invites |= src
@@ -44,7 +44,7 @@
 			random = random / 10
 			exonet.send_message(origin_address, "64 bytes received from [exonet.address] ecmp_seq=1 ttl=51 time=[random] ms")
 	if(message == "text")
-		to_chat(src, "<span class='notice'>\icon[origin_atom] Received text message from [origin_atom]: <b>\"[text]\"</b></span>")
+		to_chat(src, "<span class='notice'>[bicon(origin_atom)] Received text message from [origin_atom]: <b>\"[text]\"</b></span>")
 		src << 'sound/machines/defib_safetyOff.ogg'
 		exonet_messages.Add("<b>From [origin_atom]:</b><br>[text]")
 		return
@@ -76,9 +76,9 @@
 		return
 
 	if(ringer)
-		playsound(loc, 'sound/machines/twobeep.ogg', 50, 1)
+		playsound(src, 'sound/machines/twobeep.ogg', 50, 1)
 		for (var/mob/O in hearers(2, loc))
-			O.show_message(text("\icon[src] *beep*"))
+			O.show_message(text("[bicon(src)] *beep*"))
 
 	alert_called = 1
 	update_icon()
@@ -89,7 +89,7 @@
 		L = loc
 
 	if(L)
-		to_chat(L, "<span class='notice'>\icon[src] Message from [who].</span>")
+		to_chat(L, "<span class='notice'>[bicon(src)] Message from [who].</span>")
 
 // Verb: text_communicator()
 // Parameters: None

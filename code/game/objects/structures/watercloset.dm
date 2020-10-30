@@ -46,7 +46,7 @@
 /obj/structure/toilet/attackby(obj/item/I as obj, mob/living/user as mob)
 	if(I.is_crowbar())
 		to_chat(user, "<span class='notice'>You start to [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"].</span>")
-		playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 50, 1)
+		playsound(src, 'sound/effects/stonedoor_openclose.ogg', 50, 1)
 		if(do_after(user, 30))
 			user.visible_message("<span class='notice'>[user] [cistern ? "replaces the lid on the cistern" : "lifts the lid off the cistern"]!</span>", "<span class='notice'>You [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"]!</span>", "You hear grinding porcelain.")
 			cistern = !cistern
@@ -124,7 +124,7 @@
 	icon_state = "shower"
 	density = 0
 	anchored = 1
-	use_power = 0
+	use_power = USE_POWER_OFF
 	var/on = 0
 	var/obj/effect/mist/mymist = null
 	var/ismist = 0				//needs a var so we can make it linger~
@@ -172,7 +172,7 @@
 	if(I.is_wrench())
 		var/newtemp = input(user, "What setting would you like to set the temperature valve to?", "Water Temperature Valve") in temperature_settings
 		to_chat(user, "<span class='notice'>You begin to adjust the temperature valve with \the [I].</span>")
-		playsound(src.loc, I.usesound, 50, 1)
+		playsound(src, I.usesound, 50, 1)
 		if(do_after(user, 50 * I.toolspeed))
 			watertemp = newtemp
 			user.visible_message("<span class='notice'>[user] adjusts the shower with \the [I].</span>", "<span class='notice'>You adjust the shower with \the [I].</span>")
@@ -384,12 +384,14 @@
 		return
 
 	to_chat(usr, "<span class='notice'>You start washing your hands.</span>")
+	playsound(src, 'sound/effects/sink_long.ogg', 75, 1)
 
 	busy = 1
-	sleep(40)
+	if(!do_after(user, 40, src))
+		busy = 0
+		to_chat(usr, "<span class='notice'>You stop washing your hands.</span>")
+		return
 	busy = 0
-
-	if(!Adjacent(user)) return		//Person has moved away from the sink
 
 	user.clean_blood()
 	if(ishuman(user))
@@ -406,6 +408,7 @@
 	if (istype(RG) && RG.is_open_container())
 		RG.reagents.add_reagent("water", min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
 		user.visible_message("<span class='notice'>[user] fills \the [RG] using \the [src].</span>","<span class='notice'>You fill \the [RG] using \the [src].</span>")
+		playsound(src, 'sound/effects/sink.ogg', 75, 1)
 		return 1
 
 	else if (istype(O, /obj/item/weapon/melee/baton))
@@ -429,7 +432,7 @@
 	else if(istype(O, /obj/item/weapon/mop))
 		O.reagents.add_reagent("water", 5)
 		to_chat(user, "<span class='notice'>You wet \the [O] in \the [src].</span>")
-		playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
+		playsound(src, 'sound/effects/slosh.ogg', 25, 1)
 		return
 
 	var/turf/location = user.loc
@@ -441,12 +444,11 @@
 	to_chat(usr, "<span class='notice'>You start washing \the [I].</span>")
 
 	busy = 1
-	sleep(40)
+	if(!do_after(user, 40, src))
+		busy = 0
+		to_chat(usr, "<span class='notice'>You stop washing \the [I].</span>")
+		return
 	busy = 0
-
-	if(user.loc != location) return				//User has moved
-	if(!I) return 								//Item's been destroyed while washing
-	if(user.get_active_hand() != I) return		//Person has switched hands or the item in their hands
 
 	O.clean_blood()
 	user.visible_message( \

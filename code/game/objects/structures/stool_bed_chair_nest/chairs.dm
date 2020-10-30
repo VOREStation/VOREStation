@@ -9,11 +9,9 @@
 	buckle_lying = 0 //force people to sit up in chairs when buckled
 	var/propelled = 0 // Check for fire-extinguisher-driven chairs
 
-/obj/structure/bed/chair/New()
-	..() //Todo make metal/stone chairs display as thrones
-	spawn(3)	//sorry. i don't think there's a better way to do this.
-		update_layer()
-	return
+/obj/structure/bed/chair/Initialize()
+	. = ..()
+	update_layer()
 
 /obj/structure/bed/chair/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
@@ -24,7 +22,7 @@
 			return
 		user.drop_item()
 		var/obj/structure/bed/chair/e_chair/E = new (src.loc, material.name)
-		playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+		playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 		E.set_dir(dir)
 		E.part = SK
 		SK.loc = E
@@ -47,13 +45,12 @@
 		var/cache_key = "[base_icon]-armrest-[padding_material ? padding_material.name : "no_material"]"
 		if(isnull(stool_cache[cache_key]))
 			var/image/I = image(icon, "[base_icon]_armrest")
-			I.layer = MOB_LAYER + 0.1
 			I.plane = MOB_PLANE
+			I.layer = ABOVE_MOB_LAYER
 			if(padding_material)
 				I.color = padding_material.icon_colour
-			 stool_cache[cache_key] = I
-		overlays |= stool_cache[cache_key]
-
+			stool_cache[cache_key] = I
+		add_overlay(stool_cache[cache_key])
 
 /obj/structure/bed/chair/proc/update_layer()
 	if(src.dir == NORTH)
@@ -125,6 +122,12 @@
 /obj/structure/bed/chair/comfy/lime/New(var/newloc,var/newmaterial)
 	..(newloc,"steel","lime")
 
+/obj/structure/bed/chair/comfy/yellow/New(var/newloc,var/newmaterial)
+	..(newloc,"steel","yellow")
+
+/obj/structure/bed/chair/comfy/orange/New(var/newloc,var/newmaterial)
+	..(newloc,"steel","orange")
+
 /obj/structure/bed/chair/office
 	anchored = 0
 	buckle_movable = 1
@@ -137,21 +140,24 @@
 		return
 	..()
 
-/obj/structure/bed/chair/office/Move()
-	..()
-	if(has_buckled_mobs())
-		for(var/A in buckled_mobs)
-			var/mob/living/occupant = A
-			occupant.buckled = null
-			occupant.Move(src.loc)
-			occupant.buckled = src
-			if (occupant && (src.loc != occupant.loc))
-				if (propelled)
-					for (var/mob/O in src.loc)
-						if (O != occupant)
-							Bump(O)
-				else
-					unbuckle_mob()
+/obj/structure/bed/chair/office/Moved(atom/old_loc, direction, forced = FALSE)
+	. = ..()
+	
+	playsound(src, 'sound/effects/roll.ogg', 100, 1)
+
+/obj/structure/bed/chair/office/handle_buckled_mob_movement(atom/new_loc, direction, movetime)
+	for(var/A in buckled_mobs)
+		var/mob/living/occupant = A
+		occupant.buckled = null
+		occupant.Move(loc, direction, movetime)
+		occupant.buckled = src
+		if (occupant && (loc != occupant.loc))
+			if (propelled)
+				for (var/mob/O in src.loc)
+					if (O != occupant)
+						Bump(O)
+			else
+				unbuckle_mob()
 
 /obj/structure/bed/chair/office/Bump(atom/A)
 	..()
@@ -169,7 +175,7 @@
 			occupant.apply_effect(6, WEAKEN, blocked)
 			occupant.apply_effect(6, STUTTER, blocked)
 			occupant.apply_damage(10, BRUTE, def_zone, blocked, soaked)
-			playsound(src.loc, 'sound/weapons/punch1.ogg', 50, 1, -1)
+			playsound(src, 'sound/weapons/punch1.ogg', 50, 1, -1)
 			if(istype(A, /mob/living))
 				var/mob/living/victim = A
 				def_zone = ran_zone()
@@ -220,13 +226,21 @@
 
 /obj/structure/bed/chair/sofa/update_icon()
 	if(applies_material_colour && sofa_material)
-		material = get_material_by_name(sofa_material)
-		color = material.icon_colour
+		var/datum/material/color_material = get_material_by_name(sofa_material)
+		color = color_material.icon_colour
 
 		if(sofa_material == "carpet")
 			name = "red [initial(name)]"
 		else
 			name = "[sofa_material] [initial(name)]"
+
+/obj/structure/bed/chair/update_layer()
+	// Corner east/west should be on top of mobs, any other state's north should be.
+	if((icon_state == "sofacorner" && ((dir & EAST) || (dir & WEST))) || (icon_state != "sofacorner" && (dir & NORTH)))
+		plane = MOB_PLANE
+		layer = MOB_LAYER + 0.1
+	else
+		reset_plane_and_layer()
 
 /obj/structure/bed/chair/sofa/left
 	icon_state = "sofaend_left"
@@ -271,6 +285,9 @@
 
 /obj/structure/bed/chair/sofa/yellow
 	sofa_material = "yellow"
+
+/obj/structure/bed/chair/sofa/orange
+	sofa_material = "orange"
 
 //sofa directions
 
@@ -362,4 +379,13 @@
 	icon_state = "sofaend_right"
 
 /obj/structure/bed/chair/sofa/yellow/corner
+	icon_state = "sofacorner"
+
+/obj/structure/bed/chair/sofa/orange/left
+	icon_state = "sofaend_left"
+
+/obj/structure/bed/chair/sofa/orange/right
+	icon_state = "sofaend_right"
+
+/obj/structure/bed/chair/sofa/orange/corner
 	icon_state = "sofacorner"

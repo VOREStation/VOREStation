@@ -95,12 +95,12 @@
 		if(instant || do_after(user, 50))
 			new /obj/effect/decal/cleanable/crayon(target,colour,shadeColour,drawtype)
 			to_chat(user, "You finish drawing.")
-			
+
 			if(config.log_graffiti)
 				var/msg = "[user.client.key] ([user]) has drawn [drawtype] (with [src]) at [target.x],[target.y],[target.z]."
 				message_admins(msg)
 				log_game(msg)
-			
+
 			target.add_fingerprint(user)		// Adds their fingerprints to the floor the crayon is drawn on.
 			if(uses)
 				uses--
@@ -109,7 +109,7 @@
 					qdel(src)
 	return
 
-/obj/item/weapon/pen/crayon/attack(mob/M as mob, mob/user as mob)
+/obj/item/weapon/pen/crayon/attack(mob/living/M as mob, mob/living/user as mob)
 	if(M == user)
 		to_chat(user, "You take a bite of the crayon and swallow it.")
 		user.nutrition += 1
@@ -195,7 +195,7 @@
 	shadeColour = input(user, "Please select the shade colour.", "Marker colour") as color
 	return
 
-/obj/item/weapon/pen/crayon/marker/attack(mob/M as mob, mob/user as mob)
+/obj/item/weapon/pen/crayon/marker/attack(mob/living/M as mob, mob/living/user as mob)
 	if(M == user)
 		to_chat(user, "You take a bite of the marker and swallow it.")
 		user.nutrition += 1
@@ -207,3 +207,6 @@
 				qdel(src)
 	else
 		..()
+
+/obj/item/weapon/pen/crayon/attack_self(var/mob/user)
+	return

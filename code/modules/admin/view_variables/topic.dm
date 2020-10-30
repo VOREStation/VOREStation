@@ -4,8 +4,10 @@
 	if((usr.client != src) || !src.holder)
 		return
 	var/datum/target = locate(href_list["target"])
-	if(target)
+	if(istype(target))
 		target.vv_do_topic(href_list)
+	else if(islist(target))
+		vv_do_list(target, href_list)
 
 	if(href_list["Vars"])
 		debug_variables(locate(href_list["Vars"]))
@@ -68,7 +70,7 @@
 		href_list["datumrefresh"] = href_list["mob_player_panel"]
 
 	else if(href_list["give_spell"])
-		if(!check_rights(R_ADMIN|R_FUN))	return
+		if(!check_rights(R_ADMIN|R_FUN|R_EVENT))	return
 
 		var/mob/M = locate(href_list["give_spell"])
 		if(!istype(M))
@@ -79,7 +81,7 @@
 		href_list["datumrefresh"] = href_list["give_spell"]
 
 	else if(href_list["give_modifier"])
-		if(!check_rights(R_ADMIN|R_FUN|R_DEBUG))
+		if(!check_rights(R_ADMIN|R_FUN|R_DEBUG|R_EVENT))
 			return
 
 		var/mob/living/M = locate(href_list["give_modifier"])
@@ -91,7 +93,7 @@
 		href_list["datumrefresh"] = href_list["give_modifier"]
 
 	else if(href_list["give_disease2"])
-		if(!check_rights(R_ADMIN|R_FUN))	return
+		if(!check_rights(R_ADMIN|R_FUN|R_EVENT))	return
 
 		var/mob/M = locate(href_list["give_disease2"])
 		if(!istype(M))
@@ -134,7 +136,7 @@
 		href_list["datumrefresh"] = href_list["build_mode"]
 
 	else if(href_list["drop_everything"])
-		if(!check_rights(R_DEBUG|R_ADMIN))	return
+		if(!check_rights(R_DEBUG|R_ADMIN|R_EVENT))	return
 
 		var/mob/M = locate(href_list["drop_everything"])
 		if(!istype(M))
@@ -366,7 +368,7 @@
 		if(istype(H,/mob/living/silicon/ai))
 			possibleverbs += typesof(/mob/living/silicon/proc,/mob/living/silicon/ai/proc,/mob/living/silicon/ai/verb)
 		if(istype(H,/mob/living/simple_mob))
-			possibleverbs += typesof(/mob/living/simple_mob/proc,/mob/living/simple_mob/verb) //VOREStation edit, Apparently polaris simplemobs have no verbs at all.
+			possibleverbs += typesof(/mob/living/simple_mob/proc)
 		possibleverbs -= H.verbs
 		possibleverbs += "Cancel" 								// ...And one for the bottom
 
@@ -449,7 +451,7 @@
 			to_chat(usr, "This can only be done on mobs with clients")
 			return
 
-		SSnanoui.send_resources(H.client)
+		H.client.send_resources()
 
 		to_chat(usr, "Resource files sent")
 		to_chat(H, "Your NanoUI Resource files have been refreshed")
@@ -466,7 +468,7 @@
 		M.regenerate_icons()
 
 	else if(href_list["adjustDamage"] && href_list["mobToDamage"])
-		if(!check_rights(R_DEBUG|R_ADMIN|R_FUN))	return
+		if(!check_rights(R_DEBUG|R_ADMIN|R_FUN|R_EVENT))	return
 
 		var/mob/living/L = locate(href_list["mobToDamage"])
 		if(!istype(L)) return
@@ -519,6 +521,6 @@
 
 	if(href_list["datumrefresh"])
 		var/datum/DAT = locate(href_list["datumrefresh"])
-		if(istype(DAT, /datum) || istype(DAT, /client))
+		if(istype(DAT, /datum) || istype(DAT, /client) || islist(DAT))
 			debug_variables(DAT)
 

@@ -2,7 +2,7 @@
 ////////////////////SUBTLE COMMAND////////////////////
 //////////////////////////////////////////////////////
 
-/mob/verb/me_verb_subtle(message as text) //This would normally go in say.dm
+/mob/verb/me_verb_subtle(message as message) //This would normally go in say.dm
 	set name = "Subtle"
 	set category = "IC"
 	set desc = "Emote to nearby people (and your pred/prey)"
@@ -37,11 +37,12 @@
 
 	if(input)
 		log_subtle(message,src)
-		message = "<B>[src]</B> <I>[input]</I>"
+		message = "<span class='emote'><B>[src]</B> <I>[input]</I></span>"
 	else
 		return
 
 	if (message)
+		var/undisplayed_message = "<span class='emote'><B>[src]</B> <I>does something too subtle for you to see.</I></span>"
 		message = encode_html_emphasis(message)
 
 		var/list/vis = get_mobs_and_objs_in_view_fast(get_turf(src),1,2) //Turf, Range, and type 2 is emote
@@ -50,8 +51,12 @@
 
 		for(var/vismob in vis_mobs)
 			var/mob/M = vismob
-			spawn(0)
-				M.show_message(message, 2)
+			if(isobserver(M) && !is_preference_enabled(/datum/client_preference/whisubtle_vis) && !M.client?.holder)
+				spawn(0)
+					M.show_message(undisplayed_message, 2)
+			else
+				spawn(0)
+					M.show_message(message, 2)
 
 		for(var/visobj in vis_objs)
 			var/obj/O = visobj
@@ -78,6 +83,13 @@
 		return null
 	else
 		return message
+
+// returns true if it failed
+/proc/reflect_if_needed(message, user)
+	if(length(message) > MAX_HUGE_MESSAGE_LEN)
+		fail_to_chat(user)
+		return TRUE
+	return FALSE
 
 /proc/fail_to_chat(user,message)
 	if(!message)

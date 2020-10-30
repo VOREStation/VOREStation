@@ -9,13 +9,14 @@
 	var/home_low_priority = FALSE		// If true, the mob will not go home unless it has nothing better to do, e.g. its following someone.
 	var/max_home_distance = 3			// How far the mob can go away from its home before being told to go_home().
 										// Note that there is a 'BYOND cap' of 14 due to limitations of get_/step_to().
-
 	// Wandering.
 	var/wander = FALSE					// If true, the mob will randomly move in the four cardinal directions when idle.
 	var/wander_delay = 0				// How many ticks until the mob can move a tile in handle_wander_movement().
 	var/base_wander_delay = 2			// What the above var gets set to when it wanders. Note that a tick happens every half a second.
 	var/wander_when_pulled = FALSE		// If the mob will refrain from wandering if someone is pulling it.
 
+	// Breakthrough
+	var/failed_breakthroughs = 0		// How many times we've failed to breakthrough something lately
 
 /datum/ai_holder/proc/walk_to_destination()
 	ai_log("walk_to_destination() : Entering.",AI_LOG_TRACE)
@@ -42,6 +43,8 @@
 	ai_log("walk_to_destination() : Exiting.",AI_LOG_TRACE)
 
 /datum/ai_holder/proc/should_go_home()
+	if(stance != STANCE_IDLE)
+		return FALSE
 	if(!returns_home || !home_turf)
 		return FALSE
 	if(get_dist(holder, home_turf) > max_home_distance)
@@ -90,7 +93,9 @@
 		//	step_to(holder, A)
 			if(holder.IMove(get_step_to(holder, A)) == MOVEMENT_FAILED)
 				ai_log("walk_path() : Failed to move, attempting breakthrough.", AI_LOG_INFO)
-				breakthrough(A) // We failed to move, time to smash things.
+				if(!breakthrough(A) && failed_breakthroughs++ >= 5) // We failed to move, time to smash things.
+					give_up_movement()
+					failed_breakthroughs = 0
 			return
 
 		if(move_once() == FALSE) // Start walking the path.
@@ -106,7 +111,9 @@
 		ai_log("walk_path() : Going to IMove().", AI_LOG_TRACE)
 		if(holder.IMove(get_step_to(holder, A)) == MOVEMENT_FAILED )
 			ai_log("walk_path() : Failed to move, attempting breakthrough.", AI_LOG_INFO)
-			breakthrough(A) // We failed to move, time to smash things.
+			if(!breakthrough(A) && failed_breakthroughs++ >= 5) // We failed to move, time to smash things.
+				give_up_movement()
+				failed_breakthroughs = 0
 
 	ai_log("walk_path() : Exited.", AI_LOG_TRACE)
 
@@ -134,7 +141,7 @@
 	return MOVEMENT_ON_COOLDOWN
 
 /datum/ai_holder/proc/should_wander()
-	return wander && !leader
+	return (stance == STANCE_IDLE) && wander && !leader
 
 // Wanders randomly in cardinal directions.
 /datum/ai_holder/proc/handle_wander_movement()

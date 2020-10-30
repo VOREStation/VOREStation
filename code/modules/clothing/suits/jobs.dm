@@ -13,17 +13,23 @@
 	allowed = list (/obj/item/weapon/reagent_containers/spray/plantbgone, /obj/item/device/analyzer/plant_analyzer, /obj/item/seeds,
 	/obj/item/weapon/reagent_containers/glass/bottle, /obj/item/weapon/material/minihoe)
 
+/obj/item/clothing/suit/storage/apron/white
+	name = "white apron"
+	desc = "A basic white apron."
+	icon_state = "apron_white"
+	item_state_slots = list(slot_r_hand_str = "apronchef", slot_l_hand_str = "apronchef")
+
 //Captain
 /obj/item/clothing/suit/captunic
-	name = "colony director's parade tunic"
-	desc = "Worn by a Colony Director to show their class."
+	name = "site manager's parade tunic"
+	desc = "Worn by a Site Manager to show their class."
 	icon_state = "captunic"
 	body_parts_covered = UPPER_TORSO|ARMS
 	flags_inv = HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 
 /obj/item/clothing/suit/captunic/capjacket
-	name = "colony director's uniform jacket"
-	desc = "A less formal jacket for everyday Colony Director use."
+	name = "site manager's uniform jacket"
+	desc = "A less formal jacket for everyday Site Manager use."
 	icon_state = "capjacket"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	flags_inv = HIDEHOLSTER

@@ -11,6 +11,7 @@
 	my_mob = this_guy
 
 	//It'd be nice to lazy init these but some of them are important to just EXIST. Like without ghost planemaster, you can see ghosts. Go figure.
+	//Note, if you're adding a new plane master, please update code\modules\tgui\modules\camera.dm.
 
 	// 'Utility' planes
 	plane_masters[VIS_FULLBRIGHT] 	= new /obj/screen/plane_master/fullbright						//Lighting system (lighting_overlay objects)
@@ -29,16 +30,21 @@
 	plane_masters[VIS_CH_SPECIAL] 	= new /obj/screen/plane_master{plane = PLANE_CH_SPECIAL}		//"Special" role stuff
 	plane_masters[VIS_CH_STATUS_OOC]= new /obj/screen/plane_master{plane = PLANE_CH_STATUS_OOC}		//OOC status HUD
 
+	plane_masters[VIS_STATUS]		= new /obj/screen/plane_master{plane = PLANE_STATUS}			//Status indicators that show over mob heads.
+
 	plane_masters[VIS_ADMIN1] 		= new /obj/screen/plane_master{plane = PLANE_ADMIN1}			//For admin use
 	plane_masters[VIS_ADMIN2] 		= new /obj/screen/plane_master{plane = PLANE_ADMIN2}			//For admin use
 	plane_masters[VIS_ADMIN3] 		= new /obj/screen/plane_master{plane = PLANE_ADMIN3}			//For admin use
 
 	plane_masters[VIS_MESONS]		= new /obj/screen/plane_master{plane = PLANE_MESONS} 			//Meson-specific things like open ceilings.
 
+	plane_masters[VIS_BUILDMODE]	= new /obj/screen/plane_master{plane = PLANE_BUILDMODE}			//Things that only show up while in build mode
+
 	// Real tangible stuff planes
 	plane_masters[VIS_TURFS]	= new /obj/screen/plane_master/main{plane = TURF_PLANE}
 	plane_masters[VIS_OBJS]		= new /obj/screen/plane_master/main{plane = OBJ_PLANE}
 	plane_masters[VIS_MOBS]		= new /obj/screen/plane_master/main{plane = MOB_PLANE}
+	plane_masters[VIS_CLOAKED]	= new /obj/screen/plane_master/cloaked								//Cloaked atoms!
 
 	..()
 
@@ -175,6 +181,13 @@
 /obj/screen/plane_master/ghosts
 	plane = PLANE_GHOSTS
 	desired_alpha = 127 //When enabled, they're like half-transparent
+
+/////////////////
+//Cloaked atoms are visible to ghosts (or for other reasons?)
+/obj/screen/plane_master/cloaked
+	plane = CLOAKED_PLANE
+	desired_alpha = 80
+	color = "#0000FF"
 
 /////////////////
 //The main game planes start normal and visible

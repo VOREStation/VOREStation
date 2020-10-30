@@ -12,7 +12,7 @@
             clear_fullscreen(category, FALSE)
             screen = null
         else if(!severity || severity == screen.severity)
-            return null
+            return screen
 
     if(!screen)
         screen = new type()
@@ -123,8 +123,3 @@
 
 /obj/screen/fullscreen/fishbed
 	icon_state = "fishbed" 
-
-#undef FULLSCREEN_LAYER
-#undef BLIND_LAYER
-#undef DAMAGE_LAYER
-#undef CRIT_LAYER

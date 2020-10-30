@@ -23,6 +23,7 @@
 	var/declare_arrests = FALSE // If true, announces arrests over sechuds.
 	var/threat = 0 // How much of a threat something is. Set upon acquiring a target.
 	var/attacked = FALSE // If true, gives the bot enough threat assessment to attack immediately.
+	var/retaliates = TRUE //If this type of secbot should retaliate at all - so that slime securitrons don't go ballistic the second they get glomped.
 
 	var/is_ranged = FALSE
 	var/awaiting_surrender = 0
@@ -63,6 +64,7 @@
 	desc = "A little security robot, with a slime baton subsituted for the regular one."
 	default_icon_state = "slimesecbot"
 	stun_strength = 10 // Slimebatons aren't meant for humans.
+	retaliates = FALSE // No, you're not allowed to beat the slimes to death just because they scratched you.
 
 	xeno_harm_strength = 9 // Weaker than regular slimesky but they can stun.
 	baton_glow = "#33CCFF"
@@ -88,53 +90,78 @@
 	else
 		set_light(0)
 
-/mob/living/bot/secbot/attack_hand(var/mob/user)
-	user.set_machine(src)
-	var/list/dat = list()
-	dat += "<TT><B>Automatic Security Unit</B></TT><BR><BR>"
-	dat += "Status: <A href='?src=\ref[src];power=1'>[on ? "On" : "Off"]</A><BR>"
-	dat += "Behaviour controls are [locked ? "locked" : "unlocked"]<BR>"
-	dat += "Maintenance panel is [open ? "opened" : "closed"]"
-	if(!locked || issilicon(user))
-		dat += "<BR>Check for Weapon Authorization: <A href='?src=\ref[src];operation=idcheck'>[idcheck ? "Yes" : "No"]</A><BR>"
-		dat += "Check Security Records: <A href='?src=\ref[src];operation=ignorerec'>[check_records ? "Yes" : "No"]</A><BR>"
-		dat += "Check Arrest Status: <A href='?src=\ref[src];operation=ignorearr'>[check_arrest ? "Yes" : "No"]</A><BR>"
-		dat += "Operating Mode: <A href='?src=\ref[src];operation=switchmode'>[arrest_type ? "Detain" : "Arrest"]</A><BR>"
-		dat += "Report Arrests: <A href='?src=\ref[src];operation=declarearrests'>[declare_arrests ? "Yes" : "No"]</A><BR>"
-		if(using_map.bot_patrolling)
-			dat += "Auto Patrol: <A href='?src=\ref[src];operation=patrol'>[will_patrol ? "On" : "Off"]</A>"
-	var/datum/browser/popup = new(user, "autosec", "Securitron controls")
-	popup.set_content(jointext(dat,null))
-	popup.open()
+/mob/living/bot/secbot/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Secbot", name)
+		ui.open()
 
-/mob/living/bot/secbot/Topic(href, href_list)
+/mob/living/bot/secbot/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
+
+	data["on"] = on
+	data["open"] = open
+	data["locked"] = locked
+
+	data["idcheck"] = null
+	data["check_records"] = null
+	data["check_arrest"] = null
+	data["arrest_type"] = null
+	data["declare_arrests"] = null
+	data["will_patrol"] = null
+
+	if(!locked || issilicon(user))
+		data["idcheck"] = idcheck
+		data["check_records"] = check_records
+		data["check_arrest"] = check_arrest
+		data["arrest_type"] = arrest_type
+		data["declare_arrests"] = declare_arrests
+		if(using_map.bot_patrolling)
+			data["will_patrol"] = will_patrol
+
+	return data
+
+/mob/living/bot/secbot/attack_hand(var/mob/user)
+	tgui_interact(user)
+
+/mob/living/bot/secbot/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return
 
-	usr.set_machine(src)
 	add_fingerprint(usr)
 
-	if((href_list["power"]) && (access_scanner.allowed(usr)))
-		if(on)
-			turn_off()
-		else
-			turn_on()
-		return
+	switch(action)
+		if("power")
+			if(!access_scanner.allowed(usr))
+				return FALSE
+			if(on)
+				turn_off()
+			else
+				turn_on()
+			. = TRUE
 
-	switch(href_list["operation"])
+	if(locked && !issilicon(usr))
+		return TRUE
+
+	switch(action)
 		if("idcheck")
 			idcheck = !idcheck
+			. = TRUE
 		if("ignorerec")
 			check_records = !check_records
+			. = TRUE
 		if("ignorearr")
 			check_arrest = !check_arrest
+			. = TRUE
 		if("switchmode")
 			arrest_type = !arrest_type
+			. = TRUE
 		if("patrol")
 			will_patrol = !will_patrol
+			. = TRUE
 		if("declarearrests")
 			declare_arrests = !declare_arrests
-	attack_hand(usr)
+			. = TRUE
 
 /mob/living/bot/secbot/emag_act(var/remaining_uses, var/mob/user)
 	. = ..()
@@ -168,11 +195,11 @@
 	..()
 
 /mob/living/bot/secbot/proc/react_to_attack(mob/attacker)
-	if(!on)		// We don't want it to react if it's off
+	if(!on || !retaliates)		// We don't want it to react if it's off or doesn't care
 		return
 
 	if(!target)
-		playsound(src.loc, pick(threat_found_sounds), 50)
+		playsound(src, pick(threat_found_sounds), 50)
 		global_announcer.autosay("[src] was attacked by a hostile <b>[target_name(attacker)]</b> in <b>[get_area(src)]</b>.", "[src]", "Security")
 	target = attacker
 	attacked = TRUE
@@ -183,7 +210,7 @@
 	if(declare_arrests)
 		global_announcer.autosay("[src] is [arrest_type ? "detaining" : "arresting"] a level [threat] suspect <b>[suspect_name]</b> in <b>[get_area(src)]</b>.", "[src]", "Security")
 	say("Down on the floor, [suspect_name]! You have [SECBOT_WAIT_TIME*2] seconds to comply.")
-	playsound(src.loc, pick(preparing_arrest_sounds), 50)
+	playsound(src, pick(preparing_arrest_sounds), 50)
 	// Register to be told when the target moves
 	GLOB.moved_event.register(target, src, /mob/living/bot/secbot/proc/target_moved)
 
@@ -221,7 +248,7 @@
 			awaiting_surrender = 0
 			say("Level [threat] infraction alert!")
 			custom_emote(1, "points at [M.name]!")
-			playsound(src.loc, pick(threat_found_sounds), 50)
+			playsound(src, pick(threat_found_sounds), 50)
 			return
 
 /mob/living/bot/secbot/handleAdjacentTarget()
@@ -270,10 +297,10 @@
 	if(can_next_insult > world.time)
 		return
 	if(threat >= 10)
-		playsound(src.loc, 'sound/voice/binsult.ogg', 75)
+		playsound(src, 'sound/voice/binsult.ogg', 75)
 		can_next_insult = world.time + 20 SECONDS
 	else
-		playsound(src.loc, pick(fighting_sounds), 75)
+		playsound(src, pick(fighting_sounds), 75)
 		can_next_insult = world.time + 5 SECONDS
 
 
@@ -292,7 +319,7 @@
 			cuff = FALSE
 		if(!cuff)
 			H.stun_effect_act(0, stun_strength, null)
-			playsound(loc, 'sound/weapons/Egloves.ogg', 50, 1, -1)
+			playsound(src, 'sound/weapons/Egloves.ogg', 50, 1, -1)
 			do_attack_animation(H)
 			busy = TRUE
 			update_icons()
@@ -302,7 +329,7 @@
 			visible_message("<span class='warning'>\The [H] was prodded by \the [src] with a stun baton!</span>")
 			insult(H)
 		else
-			playsound(loc, 'sound/weapons/handcuffs.ogg', 30, 1, -2)
+			playsound(src, 'sound/weapons/handcuffs.ogg', 30, 1, -2)
 			visible_message("<span class='warning'>\The [src] is trying to put handcuffs on \the [H]!</span>")
 			busy = TRUE
 			if(do_mob(src, H, 60))
@@ -311,13 +338,13 @@
 						H.handcuffed = new /obj/item/weapon/handcuffs/cable(H) // Better to be cable cuffed than stun-locked
 					else
 						H.handcuffed = new /obj/item/weapon/handcuffs(H)
-					H.update_inv_handcuffed()
+					H.update_handcuffed()
 			busy = FALSE
 	else if(istype(M, /mob/living))
 		var/mob/living/L = M
 		L.adjustBruteLoss(xeno_harm_strength)
 		do_attack_animation(M)
-		playsound(loc, "swing_hit", 50, 1, -1)
+		playsound(src, "swing_hit", 50, 1, -1)
 		busy = TRUE
 		update_icons()
 		spawn(2)

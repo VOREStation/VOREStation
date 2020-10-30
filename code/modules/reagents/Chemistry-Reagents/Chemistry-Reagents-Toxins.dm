@@ -14,12 +14,13 @@
 	var/skin_danger = 0.2 // The multiplier for how effective the toxin is when making skin contact.
 
 /datum/reagent/toxin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	strength *= M.species.chem_strength_tox
 	if(strength && alien != IS_DIONA)
 		if(issmall(M)) removed *= 2 // Small bodymass, more effect from lower volume.
 		if(alien == IS_SLIME)
 			removed *= 0.25 // Results in half the standard tox as normal. Prometheans are 'Small' for flaps.
 			if(dose >= 10)
-				M.nutrition += strength * removed //Body has to deal with the massive influx of toxins, rather than try using them to repair.
+				M.adjust_nutrition(strength * removed) // Body has to deal with the massive influx of toxins, rather than try using them to repair.
 			else
 				M.heal_organ_damage((10/strength) * removed, (10/strength) * removed) //Doses of toxins below 10 units, and 10 strength, are capable of providing useful compounds for repair.
 		M.adjustToxLoss(strength * removed)
@@ -45,6 +46,11 @@
 	color = "#792300"
 	strength = 10
 
+/datum/reagent/toxin/amatoxin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	// Trojan horse. Waits until most of the toxin has gone through the body before dealing the bulk of it in one big strike.
+	if(volume < max_dose * 0.2)
+		M.adjustToxLoss(max_dose * strength * removed / (max_dose * 0.2))
+
 /datum/reagent/toxin/carpotoxin
 	name = "Carpotoxin"
 	id = "carpotoxin"
@@ -53,6 +59,10 @@
 	reagent_state = LIQUID
 	color = "#003333"
 	strength = 10
+
+/datum/reagent/toxin/carpotoxin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	M.adjustBrainLoss(strength / 4 * removed)
 
 /datum/reagent/toxin/neurotoxic_protein
 	name = "toxic protein"
@@ -109,6 +119,13 @@
 			to_chat(M, "<span class='critical'>You feel something boiling within you!</span>")
 			spawn(rand(30, 60))
 				M.IgniteMob()
+
+/datum/reagent/toxin/lead
+	name = "lead"
+	id = "lead"
+	description = "Elemental Lead."
+	color = "#273956"
+	strength = 4
 
 /datum/reagent/toxin/spidertoxin
 	name = "Spidertoxin"
@@ -169,7 +186,7 @@
 /datum/reagent/toxin/cyanide/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 	M.adjustOxyLoss(20 * removed)
-	M.sleeping += 1
+	M.Sleeping(1)
 
 /datum/reagent/toxin/mold
 	name = "Mold"
@@ -211,6 +228,7 @@
 	color = "#d0583a"
 	metabolism = REM * 3
 	overdose = 10
+	overdose_mod = 0.5
 	strength = 3
 
 /datum/reagent/toxin/stimm/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -223,6 +241,13 @@
 		M.visible_message("[M] shudders violently.", "You shudder uncontrollably, it hurts.")
 		M.take_organ_damage(6 * removed, 0)
 	M.add_chemical_effect(CE_SPEEDBOOST, 1)
+
+/datum/reagent/toxin/stimm/overdose(var/mob/living/carbon/M, var/alient, var/removed)
+	..()
+	if(prob(10)) // 1 in 10. This thing's made with welder fuel and fertilizer, what do you expect?
+		var/mob/living/carbon/human/H = M
+		H.internal_organs_by_name[O_HEART].take_damage(1)
+		to_chat(M, "<span class='warning'>Huh... Is this what a heart attack feels like?</span>")
 
 /datum/reagent/toxin/potassium_chloride
 	name = "Potassium Chloride"
@@ -396,7 +421,7 @@
 
 /datum/reagent/toxin/sifslurry/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA) // Symbiotic bacteria.
-		M.nutrition += strength * removed
+		M.adjust_nutrition(strength * removed)
 		return
 	else
 		M.add_modifier(/datum/modifier/slow_pulse, 30 SECONDS)
@@ -615,7 +640,7 @@
 	if(alien == IS_DIONA)
 		return
 
-	var/threshold = 1
+	var/threshold = 1 * M.species.chem_strength_tox
 	if(alien == IS_SKRELL)
 		threshold = 1.2
 
@@ -644,7 +669,7 @@
 			else
 				M.Weaken(2)
 		else
-			M.sleeping = max(M.sleeping, 20)
+			M.Sleeping(20)
 		M.drowsyness = max(M.drowsyness, 60)
 
 /datum/reagent/chloralhydrate
@@ -657,13 +682,13 @@
 	metabolism = REM * 0.5
 	ingest_met = REM * 1.5
 	overdose = REAGENTS_OVERDOSE * 0.5
-	overdose_mod = 5	//For that good, lethal feeling
+	overdose_mod = 2	//For that good, lethal feeling // Reduced with overdose changes. Slightly stronger than before
 
 /datum/reagent/chloralhydrate/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
 
-	var/threshold = 1
+	var/threshold = 1 * M.species.chem_strength_tox
 	if(alien == IS_SKRELL)
 		threshold = 1.2
 
@@ -688,7 +713,7 @@
 			M.Weaken(30)
 			M.Confuse(40)
 		else
-			M.sleeping = max(M.sleeping, 30)
+			M.Sleeping(30)
 
 	if(effective_dose > 1 * threshold)
 		M.adjustToxLoss(removed)
@@ -726,7 +751,7 @@
 	if(alien == IS_DIONA)
 		return
 
-	var/drug_strength = 15
+	var/drug_strength = 15 * M.species.chem_strength_tox
 	if(alien == IS_SKRELL)
 		drug_strength = drug_strength * 0.8
 
@@ -785,7 +810,7 @@
 /datum/reagent/cryptobiolin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
-	var/drug_strength = 4
+	var/drug_strength = 4 * M.species.chem_strength_tox
 
 	if(alien == IS_SKRELL)
 		drug_strength = drug_strength * 0.8
@@ -831,7 +856,7 @@
 	if(alien == IS_DIONA)
 		return
 
-	var/drug_strength = 100
+	var/drug_strength = 100 * M.species.chem_strength_tox
 
 	if(alien == IS_SKRELL)
 		drug_strength *= 0.8
@@ -854,7 +879,7 @@
 	if(alien == IS_DIONA)
 		return
 
-	var/threshold = 1
+	var/threshold = 1 * M.species.chem_strength_tox
 	if(alien == IS_SKRELL)
 		threshold = 1.2
 
@@ -908,7 +933,7 @@ datum/reagent/talum_quem/affect_blood(var/mob/living/carbon/M, var/alien, var/re
 	if(alien == IS_DIONA)
 		return
 
-	var/drug_strength = 29
+	var/drug_strength = 29 * M.species.chem_strength_tox
 	if(alien == IS_SKRELL)
 		drug_strength = drug_strength * 0.8
 	else
@@ -995,6 +1020,7 @@ datum/reagent/talum_quem/affect_blood(var/mob/living/carbon/M, var/alien, var/re
 	reagent_state = SOLID
 	color = "#555555"
 	metabolism = REM * 4 // Nanomachines. Fast.
+	affects_robots = TRUE
 
 /datum/reagent/shredding_nanites/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.adjustBruteLoss(4 * removed)
@@ -1008,6 +1034,7 @@ datum/reagent/talum_quem/affect_blood(var/mob/living/carbon/M, var/alien, var/re
 	reagent_state = SOLID
 	color = "#555555"
 	metabolism = REM * 4
+	affects_robots = TRUE
 
 /datum/reagent/irradiated_nanites/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	SSradiation.radiate(get_turf(M), 20)	// Irradiate people around you.
@@ -1022,6 +1049,7 @@ datum/reagent/talum_quem/affect_blood(var/mob/living/carbon/M, var/alien, var/re
 	color = "#555555"
 	metabolism = REM * 4
 	filtered_organs = list(O_SPLEEN)
+	affects_robots = TRUE
 
 /datum/reagent/neurophage_nanites/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.adjustBrainLoss(2 * removed)	// Their job is to give you a bad time.

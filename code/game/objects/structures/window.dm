@@ -3,7 +3,7 @@
 	desc = "A window."
 	icon = 'icons/obj/structures_vr.dmi' // VOREStation Edit - New icons
 	density = 1
-	can_atmos_pass = ATMOS_PASS_DENSITY
+	can_atmos_pass = ATMOS_PASS_PROC
 	w_class = ITEMSIZE_NORMAL
 
 	layer = WINDOW_LAYER
@@ -25,27 +25,30 @@
 	var/fulltile = FALSE // Set to true on full-tile variants.
 
 /obj/structure/window/examine(mob/user)
-	. = ..(user)
+	. = ..()
 
 	if(health == maxhealth)
-		to_chat(user, "<span class='notice'>It looks fully intact.</span>")
+		. += "<span class='notice'>It looks fully intact.</span>"
 	else
 		var/perc = health / maxhealth
 		if(perc > 0.75)
-			to_chat(user, "<span class='notice'>It has a few cracks.</span>")
+			. += "<span class='notice'>It has a few cracks.</span>"
 		else if(perc > 0.5)
-			to_chat(user, "<span class='warning'>It looks slightly damaged.</span>")
+			. += "<span class='warning'>It looks slightly damaged.</span>"
 		else if(perc > 0.25)
-			to_chat(user, "<span class='warning'>It looks moderately damaged.</span>")
+			. += "<span class='warning'>It looks moderately damaged.</span>"
 		else
-			to_chat(user, "<span class='danger'>It looks heavily damaged.</span>")
+			. += "<span class='danger'>It looks heavily damaged.</span>"
 	if(silicate)
 		if (silicate < 30)
-			to_chat(user, "<span class='notice'>It has a thin layer of silicate.</span>")
+			. += "<span class='notice'>It has a thin layer of silicate.</span>"
 		else if (silicate < 70)
-			to_chat(user, "<span class='notice'>It is covered in silicate.</span>")
+			. += "<span class='notice'>It is covered in silicate.</span>"
 		else
-			to_chat(user, "<span class='notice'>There is a thick layer of silicate covering it.</span>")
+			. += "<span class='notice'>There is a thick layer of silicate covering it.</span>"
+
+/obj/structure/window/examine_icon()
+	return icon(icon=initial(icon),icon_state=initial(icon_state))
 
 /obj/structure/window/take_damage(var/damage = 0,  var/sound_effect = 1)
 	var/initialhealth = health
@@ -59,7 +62,7 @@
 		shatter()
 	else
 		if(sound_effect)
-			playsound(loc, 'sound/effects/Glasshit.ogg', 100, 1)
+			playsound(src, 'sound/effects/Glasshit.ogg', 100, 1)
 		if(health < maxhealth / 4 && initialhealth >= maxhealth / 4)
 			visible_message("[src] looks like it's about to shatter!" )
 			update_icon()
@@ -144,8 +147,8 @@
 
 /obj/structure/window/CanZASPass(turf/T, is_zone)
 	if(is_fulltile() || get_dir(T, loc) == turn(dir, 180)) // Make sure we're handling the border correctly.
-		return anchored ? ATMOS_PASS_NO : ATMOS_PASS_YES // If it's anchored, it'll block air.
-	return ATMOS_PASS_YES // Don't stop airflow from the other sides.
+		return !anchored // If it's anchored, it'll block air.
+	return TRUE // Don't stop airflow from the other sides.
 
 /obj/structure/window/CheckExit(atom/movable/O as mob|obj, target as turf)
 	if(istype(O) && O.checkpass(PASSGLASS))
@@ -173,7 +176,7 @@
 
 /obj/structure/window/attack_tk(mob/user as mob)
 	user.visible_message("<span class='notice'>Something knocks on [src].</span>")
-	playsound(loc, 'sound/effects/Glasshit.ogg', 50, 1)
+	playsound(src, 'sound/effects/Glasshit.ogg', 50, 1)
 
 /obj/structure/window/attack_hand(mob/user as mob)
 	user.setClickCooldown(user.get_attack_speed())
@@ -191,13 +194,13 @@
 				attack_generic(H,25)
 				return
 
-		playsound(src.loc, 'sound/effects/glassknock.ogg', 80, 1)
+		playsound(src, 'sound/effects/glassknock.ogg', 80, 1)
 		user.do_attack_animation(src)
 		usr.visible_message("<span class='danger'>\The [usr] bangs against \the [src]!</span>",
 							"<span class='danger'>You bang against \the [src]!</span>",
 							"You hear a banging sound.")
 	else
-		playsound(src.loc, 'sound/effects/glassknock.ogg', 80, 1)
+		playsound(src, 'sound/effects/glassknock.ogg', 80, 1)
 		usr.visible_message("[usr.name] knocks on the [src.name].",
 							"You knock on the [src.name].",
 							"You hear a knocking sound.")
@@ -298,13 +301,13 @@
 	else if(istype(W, /obj/item/stack/cable_coil) && reinf && state == 0 && !istype(src, /obj/structure/window/reinforced/polarized))
 		var/obj/item/stack/cable_coil/C = W
 		if (C.use(1))
-			playsound(src.loc, 'sound/effects/sparks1.ogg', 75, 1)
+			playsound(src, 'sound/effects/sparks1.ogg', 75, 1)
 			user.visible_message( \
 				"<span class='notice'>\The [user] begins to wire \the [src] for electrochromic tinting.</span>", \
 				"<span class='notice'>You begin to wire \the [src] for electrochromic tinting.</span>", \
 				"You hear sparks.")
 			if(do_after(user, 20 * C.toolspeed, src) && state == 0)
-				playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+				playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 				var/obj/structure/window/reinforced/polarized/P = new(loc, dir)
 				if(is_fulltile())
 					P.fulltile = TRUE
@@ -327,7 +330,7 @@
 				update_nearby_icons()
 				step(src, get_dir(user, src))
 		else
-			playsound(loc, 'sound/effects/Glasshit.ogg', 75, 1)
+			playsound(src, 'sound/effects/Glasshit.ogg', 75, 1)
 		..()
 	return
 
@@ -413,13 +416,18 @@
 /obj/structure/window/Move()
 	var/ini_dir = dir
 	update_nearby_tiles(need_rebuild=1)
-	..()
+	. = ..()
 	set_dir(ini_dir)
 	update_nearby_tiles(need_rebuild=1)
 
 //checks if this window is full-tile one
 /obj/structure/window/proc/is_fulltile()
 	return fulltile
+
+/obj/structure/window/is_between_turfs(var/turf/origin, var/turf/target)
+	if(fulltile)
+		return TRUE
+	return ..()
 
 //This proc is used to update the icons of nearby windows. It should not be confused with update_nearby_tiles(), which is an atmos proc!
 /obj/structure/window/proc/update_nearby_icons()
@@ -442,6 +450,13 @@
 	//this way it will only update full-tile ones
 	overlays.Cut()
 	if(!is_fulltile())
+		// Rotate the sprite somewhat so non-fulltiled windows can be seen as needing repair.
+		var/full_tilt_degrees = 15
+		var/tilt_to_apply = abs((health / maxhealth) - 1)
+		if(tilt_to_apply && prob(50))
+			tilt_to_apply = -tilt_to_apply
+		adjust_rotation(LERP(0, full_tilt_degrees, tilt_to_apply))
+
 		icon_state = "[basestate]"
 		return
 	var/list/dirs = list()

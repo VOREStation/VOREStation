@@ -74,9 +74,9 @@
 																			   "uses their tongue to disinfect \a [W.desc] on [M]'s [affecting.name].",
 																			   "licks \a [W.desc] on [M]'s [affecting.name], cleaning it.")]</span>", \
 					                        	"<span class='notice'>You treat \a [W.desc] on [M]'s [affecting.name] with your antiseptic saliva.</span>" )
-					nutrition -= 20
+					adjust_nutrition(-20)
 					W.salve()
 					W.bandage()
 					W.disinfect()
 					H.UpdateDamageIcon()
-					playsound(src.loc, 'sound/effects/ointment.ogg', 25)
+					playsound(src, 'sound/effects/ointment.ogg', 25)

@@ -5,22 +5,33 @@
 	initial_icon = "durand"
 	step_in = 4
 	dir_in = 1 //Facing North.
-	health = 400
-	maxhealth = 400
+	health = 300
+	maxhealth = 300			//Don't forget to update the /old variant if  you change this number.
 	deflect_chance = 20
 	damage_absorption = list("brute"=0.5,"fire"=1.1,"bullet"=0.65,"laser"=0.85,"energy"=0.9,"bomb"=0.8)
 	max_temperature = 30000
 	infra_luminosity = 8
 	force = 40
-	var/defence = 0
-	var/defence_deflect = 35
 	wreckage = /obj/effect/decal/mecha_wreckage/durand
+
+	damage_minimum = 15			//Big stompy
+	minimum_penetration = 25
 
 	max_hull_equip = 2
 	max_weapon_equip = 1
 	max_utility_equip = 2
 	max_universal_equip = 1
 	max_special_equip = 1
+
+	starting_components = list(
+		/obj/item/mecha_parts/component/hull/durable,
+		/obj/item/mecha_parts/component/actuator,
+		/obj/item/mecha_parts/component/armor/military,
+		/obj/item/mecha_parts/component/gas,
+		/obj/item/mecha_parts/component/electrical
+		)
+
+	defence_mode_possible = 1
 
 /*
 /obj/mecha/combat/durand/New()
@@ -31,40 +42,9 @@
 	return
 */
 
-/obj/mecha/combat/durand/relaymove(mob/user,direction)
-	if(defence)
-		if(world.time - last_message > 20)
-			src.occupant_message("<font color='red'>Unable to move while in defence mode</font>")
-			last_message = world.time
-		return 0
-	. = ..()
-	return
 
 
-/obj/mecha/combat/durand/verb/defence_mode()
-	set category = "Exosuit Interface"
-	set name = "Toggle defence mode"
-	set src = usr.loc
-	set popup_menu = 0
-	if(usr!=src.occupant)
-		return
-	playsound(src, 'sound/mecha/duranddefencemode.ogg', 50, 1)
-	defence = !defence
-	if(defence)
-		deflect_chance = defence_deflect
-		src.occupant_message("<font color='blue'>You enable [src] defence mode.</font>")
-	else
-		deflect_chance = initial(deflect_chance)
-		src.occupant_message("<font color='red'>You disable [src] defence mode.</font>")
-	src.log_message("Toggled defence mode.")
-	return
-
-
-/obj/mecha/combat/durand/get_stats_part()
-	var/output = ..()
-	output += "<b>Defence mode: [defence?"on":"off"]</b>"
-	return output
-
+//This is for the Mech stats / Menu system. To be moved later on.
 /obj/mecha/combat/durand/get_commands()
 	var/output = {"<div class='wr'>
 						<div class='header'>Special</div>
@@ -76,8 +56,30 @@
 	output += ..()
 	return output
 
+
+//Not needed anymore but left for reference.
+/*
+/obj/mecha/combat/durand/get_stats_part()
+	var/output = ..()
+	output += "<b>Defence mode: [defence?"on":"off"]</b>"
+	return output
+*/
+
+/*
+
 /obj/mecha/combat/durand/Topic(href, href_list)
 	..()
 	if (href_list["toggle_defence_mode"])
 		src.defence_mode()
 	return
+*/
+
+//Meant for random spawns.
+/obj/mecha/combat/durand/old
+	desc = "An aging combat exosuit utilized by many corporations. Originally developed to combat hostile alien lifeforms. This one is particularly worn looking and likely isn't as sturdy."
+
+/obj/mecha/combat/durand/old/New()
+	..()
+	health = 25
+	maxhealth = 250	//Just slightly worse.
+	cell.charge = rand(0, (cell.charge/2))

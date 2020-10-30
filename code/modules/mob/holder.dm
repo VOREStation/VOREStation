@@ -5,6 +5,8 @@ var/list/holder_mob_icon_cache = list()
 	name = "holder"
 	desc = "You shouldn't ever see this."
 	icon = 'icons/obj/objects.dmi'
+	randpixel = 0
+	center_of_mass = null
 	slot_flags = SLOT_HEAD | SLOT_HOLSTER
 	show_messages = 1
 
@@ -24,6 +26,19 @@ var/list/holder_mob_icon_cache = list()
 /obj/item/weapon/holder/New()
 	..()
 	START_PROCESSING(SSobj, src)
+
+/obj/item/weapon/holder/throw_at(atom/target, range, speed, thrower)
+	if(held_mob)
+		held_mob.forceMove(loc)
+		var/thrower_mob_size = 1
+		if(ismob(thrower))
+			var/mob/M = thrower
+			thrower_mob_size = M.mob_size
+		var/mob_range = round(range * min(thrower_mob_size / held_mob.mob_size, 1))
+		held_mob.throw_at(target, mob_range, speed, thrower)
+		held_mob = null
+	drop_items()
+	qdel(src)
 
 /obj/item/weapon/holder/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -86,6 +101,22 @@ var/list/holder_mob_icon_cache = list()
 			H.update_inv_l_hand()
 		else if(H.r_hand == src)
 			H.update_inv_r_hand()
+
+/obj/item/weapon/holder/container_resist(mob/living/held)
+	var/mob/M = loc
+	if(istype(M))
+		M.drop_from_inventory(src)
+		to_chat(M, "<span class='warning'>\The [held] wriggles out of your grip!</span>")
+		to_chat(held, "<span class='warning'>You wiggle out of [M]'s grip!</span>")
+	else if(istype(loc, /obj/item/clothing/accessory/holster))
+		var/obj/item/clothing/accessory/holster/holster = loc
+		if(holster.holstered == src)
+			holster.clear_holster()			
+		to_chat(held, "<span class='warning'>You extricate yourself from [holster].</span>")
+		held.forceMove(get_turf(held))
+	else if(isitem(loc))
+		to_chat(held, "<span class='warning'>You struggle free of [loc].</span>")
+		held.forceMove(get_turf(held))
 
 //Mob specific holders.
 /obj/item/weapon/holder/diona
@@ -167,6 +198,7 @@ var/list/holder_mob_icon_cache = list()
 		to_chat(grabber, "<span class='notice'>You scoop up \the [src]!</span>")
 		to_chat(src, "<span class='notice'>\The [grabber] scoops you up!</span>")
 
+	add_attack_logs(grabber, H.held_mob, "Scooped up", FALSE) // Not important enough to notify admins, but still helpful.
 	H.sync(src)
 	return H
 

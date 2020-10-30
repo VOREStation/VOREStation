@@ -123,7 +123,7 @@
 	if(modifiers["shift"])
 		moved = 0
 		return 1
-	if(usr.next_move >= world.time) // Is this needed ?
+	if(!usr.checkClickCooldown())
 		return
 	owner.Trigger()
 	return 1
@@ -223,3 +223,7 @@
 #undef AB_WEST_OFFSET
 #undef AB_NORTH_OFFSET
 #undef AB_MAX_COLUMNS
+
+
+/datum/action/innate/
+	action_type = AB_INNATE

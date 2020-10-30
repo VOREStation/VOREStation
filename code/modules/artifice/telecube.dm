@@ -43,11 +43,8 @@
 	var/image/glow = null
 	var/image/charge = null
 
-	var/shell_color = "#FFFFFF"
-	var/image/shell = null
-
 	var/cooldown_time = 30 SECONDS
-	var/last_teleport = 0
+	var/ready = TRUE
 
 // How far the cube will search for things to teleport. 0 = only contacting objects / mobs.
 	var/teleport_range = 0 // For all that is holy, do not change this unless you know what you're doing.
@@ -56,14 +53,11 @@
 
 /obj/item/weapon/telecube/Initialize()
 	. = ..()
-	START_PROCESSING(SSobj, src)
-	last_teleport = world.time
 
-	glow = image(icon = icon, icon_state = "[icon_state]-ready")
-	glow.plane = PLANE_LIGHTING_ABOVE
-	charge = image(icon = icon, icon_state = "[icon_state]-charging")
-	charge.plane = PLANE_LIGHTING_ABOVE
-	shell = image(icon = icon, icon_state = "[icon_state]")
+	glow = image("[icon_state]-ready")
+	glow.appearance_flags = KEEP_APART
+	charge = image("[icon_state]-charging")
+	charge.appearance_flags = KEEP_APART
 
 	if(teleport_range)
 		description_info += "<br>"
@@ -71,49 +65,42 @@
 
 	if(randomize_colors)
 		glow_color = rgb(rand(0, 255),rand(0, 255),rand(0, 255))
-		shell_color = rgb(rand(0, 255),rand(0, 255),rand(0, 255))
+		color = rgb(rand(30, 255),rand(30, 255),rand(30, 255))
 
 	if(start_paired)
 		mate = new(src.loc)
 		if(mirror_colors)
-			mate.glow_color = shell_color
-			mate.shell_color = glow_color
+			mate.glow_color = color
+			mate.color = glow_color
 		else
 			mate.glow_color = glow_color
-			mate.shell_color = shell_color
+			mate.color = color
 		mate.pair_cube(src)
 
-	glow.color = glow_color
-	charge.color = glow_color
-	shell.color = shell_color
-
-	return
-
-/obj/item/weapon/telecube/process()
-	..()
 	update_icon()
 
 /obj/item/weapon/telecube/update_icon()
 	. = ..()
-	glow.color = glow_color
-	charge.color = glow_color
-	shell.color = shell_color
 
-	if(shell.color != initial(shell.color))
-		cut_overlay(shell)
-		add_overlay(shell)
+	if(isturf(loc))
+		glow.plane = PLANE_LIGHTING_ABOVE
+		charge.plane = PLANE_LIGHTING_ABOVE
+	else //So it shows up in inventory looking ok
+		glow.plane = initial(glow.plane)
+		charge.plane = initial(glow.plane)
 
-	if(world.time < (last_teleport + cooldown_time))
-		cut_overlay(charge)
-		cut_overlay(glow)
+	if(glow_color != glow.color)
+		glow.color = glow_color
+		charge.color = glow_color
+
+	if(!ready)
+		cut_overlays()
 		add_overlay(charge)
 	else
-		cut_overlay(glow)
-		cut_overlay(charge)
+		cut_overlays()
 		add_overlay(glow)
 
 /obj/item/weapon/telecube/Destroy()
-	STOP_PROCESSING(SSobj, src)
 	if(mate)
 		var/turf/T = get_turf(mate)
 		mate.visible_message("<span class='critical'>\The [mate] collapses into itself!</span>")
@@ -121,7 +108,15 @@
 		mate = null
 		explosion(T,1,3,7)
 
-	..()
+	return ..()
+
+/obj/item/weapon/telecube/equipped()
+	. = ..()
+	update_icon()
+
+/obj/item/weapon/telecube/dropped()
+	. = ..()
+	update_icon()
 
 /obj/item/weapon/telecube/proc/pair_cube(var/obj/item/weapon/telecube/M)
 	if(mate)
@@ -139,19 +134,24 @@
 
 	if(A == src || A == mate)
 		A.visible_message("<span class='alien'>\The [A] distorts and fades, before popping back into existence.</span>")
+		animate_out(A)
+		animate_in(A)
 		return .
 
 	var/mob/living/L = src.loc
 
 	if(istype(L))
+		L << 'sound/effects/singlebeat.ogg'
 		L.drop_from_inventory(src)
 		forceMove(get_turf(src))
 
-	if(world.time < (last_teleport + cooldown_time))
+	if(!ready)
 		return .
 
 	if((A.anchored && !omniteleport) || !mate)
 		A.visible_message("<span class='alien'>\The [A] distorts for a moment, before reforming in the same position.</span>")
+		animate_out(A)
+		animate_in(A)
 		return .
 
 	var/turf/TLocate = get_turf(mate)
@@ -160,7 +160,9 @@
 
 	if(T1)
 		A.visible_message("<span class='alien'>\The [A] fades out of existence.</span>")
+		animate_out(A)
 		A.forceMove(T1)
+		animate_in(A)
 		. = TRUE
 		A.visible_message("<span class='alien'>\The [A] fades into existence.</span>")
 	else
@@ -188,27 +190,58 @@
 	. = TRUE
 	return .
 
+/obj/item/weapon/telecube/proc/cooldown(var/mate_too = FALSE)
+	if(!ready)
+		return
+	
+	ready = FALSE
+	update_icon()
+	addtimer(CALLBACK(src, .proc/ready), cooldown_time)
+	if(mate_too && mate)
+		mate.cooldown(mate_too = FALSE) //No infinite recursion pls
+
+/obj/item/weapon/telecube/proc/ready()
+	ready = TRUE
+	update_icon()
+
+/obj/item/weapon/telecube/proc/animate_out(var/atom/movable/AM)
+	//See atom cloak/uncloak animations for comments
+	var/atom/movable/target = AM
+	var/our_filter_index = target.filters.len+1
+	AM.filters += filter(type="blur", size = 0)
+
+	animate(target, alpha = 0, time = 5) //Out
+	animate(target.filters[our_filter_index], size = 2, time = 5, flags = ANIMATION_PARALLEL)
+	sleep(5)
+	target.filters -= filter(type="blur", size = 2)
+
+/obj/item/weapon/telecube/proc/animate_in(var/atom/movable/AM)
+	//See atom cloak/uncloak animations for comments
+	var/atom/movable/target = AM
+	var/our_filter_index = target.filters.len+1
+	AM.filters += filter(type="blur", size = 2)
+
+	animate(target, alpha = 255, time = 5) //In
+	animate(target.filters[our_filter_index], size = 0, time = 5, flags = ANIMATION_PARALLEL)
+	sleep(5)
+	target.filters -= filter(type="blur", size = 0)
+
 /obj/item/weapon/telecube/CtrlClick(mob/user)
-	if(Adjacent(user))
-		if(teleport_to_mate(user))
-			last_teleport = world.time
-	return
+	if(Adjacent(user) && teleport_to_mate(user))
+		cooldown(mate_too = FALSE)
 
 /obj/item/weapon/telecube/AltClick(mob/user)
-	if(Adjacent(user))
-		if(swap_with_mate())
-			last_teleport = world.time
-			mate.last_teleport = world.time
-	return
+	if(Adjacent(user) && swap_with_mate())
+		cooldown(mate_too = TRUE)
 
-/obj/item/weapon/telecube/Bump(atom/movable/AM)
+/obj/item/weapon/telecube/Bump(var/atom/movable/AM)
 	if(teleport_to_mate(AM))
-		last_teleport = world.time
+		cooldown(mate_too = FALSE)
 	. = ..()
 
-/obj/item/weapon/telecube/Bumped(atom/movable/M as mob|obj)
+/obj/item/weapon/telecube/Bumped(var/atom/movable/M)
 	if(teleport_to_mate(M))
-		last_teleport = world.time
+		cooldown(mate_too = FALSE)
 	. = ..()
 
 // Subtypes
@@ -224,7 +257,7 @@
 
 /obj/item/weapon/telecube/precursor
 	glow_color = "#FF1D8E"
-	shell_color = "#2F1B26"
+	color = "#2F1B26"
 
 /obj/item/weapon/telecube/precursor/mated
 	start_paired = TRUE

@@ -10,7 +10,7 @@
 	name = "air injector"
 	desc = "Passively injects air into its surroundings. Has a valve attached to it that can control flow rate."
 
-	use_power = 0
+	use_power = USE_POWER_OFF
 	idle_power_usage = 150		//internal circuitry, friction losses and stuff
 	power_rating = 15000	//15000 W ~ 20 HP
 
@@ -107,7 +107,7 @@
 		return 0
 
 	var/datum/signal/signal = new
-	signal.transmission_method = 1 //radio signal
+	signal.transmission_method = TRANSMISSION_RADIO //radio signal
 	signal.source = src
 
 	signal.data = list(
@@ -132,10 +132,10 @@
 		return 0
 
 	if(signal.data["power"])
-		use_power = text2num(signal.data["power"])
+		update_use_power(text2num(signal.data["power"]))
 
 	if(signal.data["power_toggle"])
-		use_power = !use_power
+		update_use_power(!use_power)
 
 	if(signal.data["inject"])
 		spawn inject()
@@ -160,7 +160,7 @@
 /obj/machinery/atmospherics/unary/outlet_injector/attack_hand(mob/user as mob)
 	to_chat(user, "<span class='notice'>You toggle \the [src].</span>")
 	injecting = !injecting
-	use_power = injecting
+	update_use_power(injecting ? USE_POWER_IDLE : USE_POWER_OFF)
 	update_icon()
 
 /obj/machinery/atmospherics/unary/outlet_injector/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)

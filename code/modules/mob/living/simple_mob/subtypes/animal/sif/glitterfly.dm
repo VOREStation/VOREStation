@@ -52,6 +52,12 @@
 
 	attacktext = list("bit", "buffeted", "slashed")
 
+	tame_items = list(
+	/obj/item/weapon/reagent_containers/food/snacks/grown = 90,
+	/obj/item/weapon/reagent_containers/food/snacks/meat/crab = 10,
+	/obj/item/weapon/reagent_containers/food/snacks/meat = 5
+	)
+
 	say_list_type = /datum/say_list/glitterfly
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive/glitterfly
 
@@ -80,6 +86,17 @@
 
 /mob/living/simple_mob/animal/sif/glitterfly/rare/Initialize()
 	..()
+
+/mob/living/simple_mob/animal/sif/glitterfly/unique_tame_check(var/obj/O, var/mob/user)
+	. = ..()
+
+	if(.)
+		if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/grown))
+			var/obj/item/weapon/reagent_containers/food/snacks/grown/G = O
+
+			if(G.seed && G.seed.kitchen_tag == "berries")
+				return TRUE
+			return FALSE
 
 /datum/say_list/glitterfly
 	speak = list("Pi..","Po...", "Pa...")

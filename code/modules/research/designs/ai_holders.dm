@@ -10,7 +10,7 @@
 	build_type = PROTOLATHE | PROSFAB
 	materials = list(DEFAULT_WALL_MATERIAL = 1000, "glass" = 500)
 	build_path = /obj/item/device/mmi
-	category = "Misc"
+	category = list("Misc")
 	sort_string = "SAAAA"
 
 /datum/design/item/ai_holder/posibrain
@@ -20,7 +20,7 @@
 	build_type = PROTOLATHE | PROSFAB
 	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 1000, "silver" = 1000, "gold" = 500, "phoron" = 500, "diamond" = 100)
 	build_path = /obj/item/device/mmi/digital/posibrain
-	category = "Misc"
+	category = list("Misc")
 	sort_string = "SAAAB"
 
 /datum/design/item/ai_holder/dronebrain
@@ -30,7 +30,7 @@
 	build_type = PROTOLATHE | PROSFAB
 	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 1000, "silver" = 1000, "gold" = 500)
 	build_path = /obj/item/device/mmi/digital/robot
-	category = "Misc"
+	category = list("Misc")
 	sort_string = "SAAAC"
 
 /datum/design/item/ai_holder/paicard

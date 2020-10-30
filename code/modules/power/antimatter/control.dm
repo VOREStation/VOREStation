@@ -5,7 +5,7 @@
 	icon_state = "control"
 	anchored = 1
 	density = 1
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 100
 	active_power_usage = 1000
 
@@ -69,7 +69,7 @@
 
 
 /obj/machinery/power/am_control_unit/proc/produce_power()
-	playsound(src.loc, 'sound/effects/bang.ogg', 25, 1)
+	playsound(src, 'sound/effects/bang.ogg', 25, 1)
 	var/core_power = reported_core_efficiency//Effectively how much fuel we can safely deal with
 	if(core_power <= 0) return 0//Something is wrong
 	var/core_damage = 0
@@ -85,7 +85,7 @@
 		for(var/obj/machinery/am_shielding/AMS in linked_cores)
 			AMS.stability -= core_damage
 			AMS.check_stability(1)
-		playsound(src.loc, 'sound/effects/bang.ogg', 50, 1)
+		playsound(src, 'sound/effects/bang.ogg', 50, 1)
 	return
 
 
@@ -211,10 +211,10 @@
 /obj/machinery/power/am_control_unit/proc/toggle_power()
 	active = !active
 	if(active)
-		use_power = 2
+		update_use_power(USE_POWER_ACTIVE)
 		visible_message("The [src.name] starts up.")
 	else
-		use_power = 1
+		update_use_power(USE_POWER_IDLE)
 		visible_message("The [src.name] shuts down.")
 	update_icon()
 	return

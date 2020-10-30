@@ -10,6 +10,8 @@
 	w_class = ITEMSIZE_SMALL
 	attack_verb = list("called", "rang")
 	hitsound = 'sound/weapons/ring.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
+	pickup_sound = 'sound/items/pickup/device.ogg'
 
 /obj/item/weapon/rsp
 	name = "\improper Rapid-Seed-Producer (RSP)"
@@ -22,6 +24,8 @@
 	var/stored_matter = 0
 	var/mode = 1
 	w_class = ITEMSIZE_NORMAL
+	drop_sound = 'sound/items/drop/device.ogg'
+	pickup_sound = 'sound/items/pickup/device.ogg'
 
 /obj/item/weapon/soap
 	name = "soap"
@@ -65,7 +69,6 @@
 	attack_verb = list("HONKED")
 	var/spam_flag = 0
 
-
 /obj/item/weapon/c_tube
 	name = "cardboard tube"
 	desc = "A tube... of cardboard."
@@ -76,143 +79,11 @@
 	throw_speed = 4
 	throw_range = 5
 
-/obj/item/weapon/cane
-	name = "cane"
-	desc = "A cane used by a true gentleman."
-	icon = 'icons/obj/weapons.dmi'
-	icon_state = "cane"
-	item_icons = list(
-			slot_l_hand_str = 'icons/mob/items/lefthand_melee.dmi',
-			slot_r_hand_str = 'icons/mob/items/righthand_melee.dmi',
-			)
-	force = 5.0
-	throwforce = 7.0
-	w_class = ITEMSIZE_NORMAL
-	matter = list(DEFAULT_WALL_MATERIAL = 50)
-	attack_verb = list("bludgeoned", "whacked", "disciplined", "thrashed")
-
-/obj/item/weapon/cane/concealed
-	var/concealed_blade
-
-/obj/item/weapon/cane/concealed/New()
-	..()
-	var/obj/item/weapon/material/butterfly/switchblade/temp_blade = new(src)
-	concealed_blade = temp_blade
-	temp_blade.attack_self()
-
-/obj/item/weapon/cane/concealed/attack_self(var/mob/user)
-	var/datum/gender/T = gender_datums[user.get_visible_gender()]
-	if(concealed_blade)
-		user.visible_message("<span class='warning'>[user] has unsheathed \a [concealed_blade] from [T.his] [src]!</span>", "You unsheathe \the [concealed_blade] from \the [src].")
-		// Calling drop/put in hands to properly call item drop/pickup procs
-		playsound(user.loc, 'sound/weapons/flipblade.ogg', 50, 1)
-		user.drop_from_inventory(src)
-		user.put_in_hands(concealed_blade)
-		user.put_in_hands(src)
-		user.update_inv_l_hand(0)
-		user.update_inv_r_hand()
-		concealed_blade = null
-	else
-		..()
-
-/obj/item/weapon/cane/concealed/attackby(var/obj/item/weapon/material/butterfly/W, var/mob/user)
-	if(!src.concealed_blade && istype(W))
-		var/datum/gender/T = gender_datums[user.get_visible_gender()]
-		user.visible_message("<span class='warning'>[user] has sheathed \a [W] into [T.his] [src]!</span>", "You sheathe \the [W] into \the [src].")
-		user.drop_from_inventory(W)
-		W.loc = src
-		src.concealed_blade = W
-		update_icon()
-	else
-		..()
-
-/obj/item/weapon/cane/concealed/update_icon()
-	if(concealed_blade)
-		name = initial(name)
-		icon_state = initial(icon_state)
-		item_state = initial(icon_state)
-	else
-		name = "cane shaft"
-		icon_state = "nullrod"
-		item_state = "foldcane"
-
-/obj/item/weapon/cane/whitecane
-	name = "white cane"
-	desc = "A white cane. They are commonly used by the blind or visually impaired as a mobility tool or as a courtesy to others."
-	icon = 'icons/obj/weapons.dmi'
-	icon_state = "whitecane"
-
-/obj/item/weapon/cane/whitecane/attack(mob/M as mob, mob/user as mob)
-    if(user.a_intent == I_HELP)
-        user.visible_message("<span class='notice'>\The [user] has lightly tapped [M] on the ankle with their white cane!</span>")
-        return
-    else
-        ..()
-
-/obj/item/weapon/cane/crutch
-	name ="crutch"
-	desc = "A long stick with a crosspiece at the top, used to help with walking."
-	icon_state = "crutch"
-	item_state = "crutch"
-
-//Code for Telescopic White Cane writen by Gozulio
-
-/obj/item/weapon/melee/collapsable_whitecane
-	name = "telescopic white cane"
-	desc = "A telescoping white cane. They are commonly used by the blind or visually impaired as a mobility tool or as a courtesy to others."
-	icon = 'icons/obj/weapons.dmi'
-	icon_state = "whitecane1in"
-	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items/lefthand_melee.dmi',
-		slot_r_hand_str = 'icons/mob/items/righthand_melee.dmi',
-	)
-	slot_flags = SLOT_BELT
-	w_class = ITEMSIZE_SMALL
-	force = 3
-	var/on = 0
-
-/obj/item/weapon/melee/collapsable_whitecane/attack_self(mob/user as mob)
-	on = !on
-	if(on)
-		user.visible_message("<span class='notice'>\The [user] extends the white cane.</span>",\
-		"<span class='warning'>You extend the white cane.</span>",\
-		"You hear an ominous click.")
-		icon_state = "whitecane1out"
-		item_state_slots = list(slot_r_hand_str = "whitecane", slot_l_hand_str = "whitecane")
-		w_class = ITEMSIZE_NORMAL
-		force = 5
-		attack_verb = list("smacked", "struck", "cracked", "beaten")
-	else
-		user.visible_message("<span class='notice'>\The [user] collapses the white cane.</span>",\
-		"<span class='notice'>You collapse the white cane.</span>",\
-		"You hear a click.")
-		icon_state = "whitecane1in"
-		item_state_slots = list(slot_r_hand_str = null, slot_l_hand_str = null)
-		w_class = ITEMSIZE_SMALL
-		force = 3
-		attack_verb = list("hit", "poked")
-
-	if(istype(user,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = user
-		H.update_inv_l_hand()
-		H.update_inv_r_hand()
-
-	playsound(src.loc, 'sound/weapons/empty.ogg', 50, 1)
-	add_fingerprint(user)
-
-	return
-
-/obj/item/weapon/melee/collapsable_whitecane/attack(mob/M as mob, mob/user as mob)
-	if(user.a_intent == I_HELP)
-		user.visible_message("<span class='notice'>\The [user] has lightly tapped [M] on the ankle with their white cane!</span>")
-		return
-	else
-		..()
-
-
 /obj/item/weapon/disk
 	name = "disk"
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/discs_vr.dmi' //VOREStation Edit
+	drop_sound = 'sound/items/drop/disk.ogg'
+	pickup_sound =  'sound/items/pickup/disk.ogg'
 
 /obj/item/weapon/disk/nuclear
 	name = "nuclear authentication disk"
@@ -243,28 +114,6 @@
 	var/obj/item/gift = null
 	item_state = "gift"
 	w_class = ITEMSIZE_LARGE
-
-/obj/item/weapon/caution
-	desc = "Caution! Wet Floor!"
-	name = "wet floor sign"
-	icon = 'icons/obj/janitor.dmi'
-	icon_state = "caution"
-	force = 1.0
-	throwforce = 3.0
-	throw_speed = 1
-	throw_range = 5
-	w_class = ITEMSIZE_SMALL
-	attack_verb = list("warned", "cautioned", "smashed")
-
-/obj/item/weapon/caution/cone
-	desc = "This cone is trying to warn you of something!"
-	name = "warning cone"
-	icon_state = "cone"
-
-/obj/item/weapon/caution/cone/candy
-	desc = "This cone is trying to warn you of something! It has been painted to look like candy corn."
-	name = "candy cone"
-	icon_state = "candycone"
 
 /*/obj/item/weapon/syndicate_uplink
 	name = "station bounced radio"
@@ -303,6 +152,8 @@
 	throw_range = 20
 	matter = list(DEFAULT_WALL_MATERIAL = 100)
 	origin_tech = list(TECH_MAGNET = 1)
+	drop_sound = 'sound/items/drop/device.ogg'
+	pickup_sound = 'sound/items/pickup/device.ogg'
 
 /obj/item/weapon/staff
 	name = "wizards staff"
@@ -350,6 +201,8 @@
 	item_state = "std_mod"
 	w_class = ITEMSIZE_SMALL
 	var/mtype = 1						// 1=electronic 2=hardware
+	drop_sound = 'sound/items/drop/component.ogg'
+	pickup_sound = 'sound/items/pickup/component.ogg'
 
 /obj/item/weapon/module/card_reader
 	name = "card reader module"
@@ -363,13 +216,6 @@
 	item_state = "std_mod"
 	desc = "Heavy-duty switching circuits for power control."
 	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
-
-/obj/item/weapon/module/power_control/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if (istype(W, /obj/item/device/multitool))
-		var/obj/item/weapon/circuitboard/ghettosmes/newcircuit = new/obj/item/weapon/circuitboard/ghettosmes(user.loc)
-		qdel(src)
-		user.put_in_hands(newcircuit)
-
 
 /obj/item/weapon/module/id_auth
 	name = "\improper ID authentication module"
@@ -387,7 +233,6 @@
 	icon_state = "power_mod"
 	item_state = "std_mod"
 	desc = "Charging circuits for power cells."
-
 
 /obj/item/device/camera_bug
 	name = "camera bug"
@@ -464,6 +309,8 @@
 	display_contents_with_number = 1
 	max_w_class = ITEMSIZE_NORMAL
 	max_storage_space = 100
+	drop_sound = 'sound/items/drop/device.ogg'
+	pickup_sound = 'sound/items/pickup/device.ogg'
 
 /obj/item/weapon/storage/part_replacer/adv
 	name = "advanced rapid part exchange device"
@@ -487,6 +334,8 @@
 	icon = 'icons/obj/stock_parts.dmi'
 	w_class = ITEMSIZE_SMALL
 	var/rating = 1
+	drop_sound = 'sound/items/drop/component.ogg'
+	pickup_sound = 'sound/items/pickup/component.ogg'
 
 /obj/item/weapon/stock_parts/New()
 	src.pixel_x = rand(-5.0, 5)

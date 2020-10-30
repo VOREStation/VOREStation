@@ -44,6 +44,12 @@
 	player_msg = "You have the ability to <b>berserk at will</b>, which will grant strong physical bonuses for \
 	a short period of time, however it will tire you and you will be much weaker for awhile after it expires."
 
+	tame_items = list(
+	/obj/item/organ = 70,
+	/obj/item/weapon/reagent_containers/food/snacks/meat/crab = 30,
+	/obj/item/weapon/reagent_containers/food/snacks/meat = 20
+	)
+
 	say_list_type = /datum/say_list/savik
 	ai_holder_type = /datum/ai_holder/simple_mob/savik
 
@@ -56,6 +62,12 @@
 	if((get_AI_stance() in list(STANCE_APPROACH, STANCE_FIGHT)) && !is_AI_busy() && isturf(loc))
 		if(health <= (maxHealth * 0.5)) // At half health, and fighting someone currently.
 			berserk()
+
+/mob/living/simple_mob/animal/sif/savik/fail_tame(var/obj/O, var/mob/user)
+	..()
+
+	if(prob(30))	// They don't like people messing with them and their food.
+		berserk()
 
 /datum/ai_holder/simple_mob/savik
 	mauling = TRUE

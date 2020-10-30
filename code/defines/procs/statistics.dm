@@ -1,7 +1,7 @@
 proc/sql_poll_population()
 	if(!sqllogging)
 		return
-	var/admincount = admins.len
+	var/admincount = GLOB.admins.len
 	var/playercount = 0
 	for(var/mob/M in player_list)
 		if(M.client)
@@ -94,6 +94,7 @@ proc/sql_report_cyborg_death(var/mob/living/silicon/robot/H)
 
 
 proc/statistic_cycle()
+	set waitfor = 0
 	if(!sqllogging)
 		return
 	while(1)

@@ -18,7 +18,7 @@
 
 	var/on = 0				//is it turned on?
 	var/cover_open = 0		//is the cover open?
-	var/obj/item/weapon/cell/cell
+	var/obj/item/weapon/cell/cell = /obj/item/weapon/cell/high
 	var/max_cooling = 15				// in degrees per second - probably don't need to mess with heat capacity here
 	var/charge_consumption = 3			// charge per second at max_cooling
 	var/thermostat = T20C
@@ -28,14 +28,18 @@
 /obj/item/device/suit_cooling_unit/ui_action_click()
 	toggle(usr)
 
-/obj/item/device/suit_cooling_unit/New()
-	START_PROCESSING(SSobj, src)
-	cell = new/obj/item/weapon/cell/high()	//comes not with the crappy default power cell - because this is dedicated EVA equipment
-	cell.loc = src
+/obj/item/device/suit_cooling_unit/Initialize()
+	. = ..()
+	if(ispath(cell))
+		cell = new cell(src)
+
+/obj/item/device/suit_cooling_unit/Destroy()
+	qdel_null(cell)
+	return ..()
 
 /obj/item/device/suit_cooling_unit/process()
 	if (!on || !cell)
-		return
+		return PROCESS_KILL
 
 	if (!ismob(loc))
 		return
@@ -106,11 +110,13 @@
 		return
 
 	on = 1
+	START_PROCESSING(SSobj, src)
 	updateicon()
 
 /obj/item/device/suit_cooling_unit/proc/turn_off(var/failed)
 	if(failed) visible_message("\The [src] clicks and whines as it powers down.")
 	on = 0
+	STOP_PROCESSING(SSobj, src)
 	updateicon()
 
 /obj/item/device/suit_cooling_unit/attack_self(var/mob/user)
@@ -173,24 +179,45 @@
 		icon_state = "suitcooler0"
 
 /obj/item/device/suit_cooling_unit/examine(mob/user)
-	if(!..(user, 1))
+	. = ..()
+
+	if(Adjacent(user))
+
+		if (on)
+			if (attached_to_suit(src.loc))
+				. += "It's switched on and running."
+			else
+				. += "It's switched on, but not attached to anything."
+		else
+			. += "It is switched off."
+
+		if (cover_open)
+			if(cell)
+				. += "The panel is open, exposing the [cell]."
+			else
+				. += "The panel is open."
+
+		if (cell)
+			. += "The charge meter reads [round(cell.percent())]%."
+		else
+			. += "It doesn't have a power cell installed."
+
+/obj/item/device/suit_cooling_unit/emergency
+	icon_state = "esuitcooler"
+	cell = /obj/item/weapon/cell
+	w_class = ITEMSIZE_NORMAL
+
+/obj/item/device/suit_cooling_unit/emergency/updateicon()
+	return
+
+/obj/item/device/suit_cooling_unit/emergency/get_cell()
+	if(on)
+		return null // Don't let recharging happen while we're on
+	return cell
+
+/obj/item/device/suit_cooling_unit/emergency/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if (W.is_screwdriver())
+		to_chat(user, "<span class='warning'>This model has the cell permanently installed!</span>")
 		return
 
-	if (on)
-		if (attached_to_suit(src.loc))
-			to_chat(user, "It's switched on and running.")
-		else
-			to_chat(user, "It's switched on, but not attached to anything.")
-	else
-		to_chat(user, "It is switched off.")
-
-	if (cover_open)
-		if(cell)
-			to_chat(user, "The panel is open, exposing the [cell].")
-		else
-			to_chat(user, "The panel is open.")
-
-	if (cell)
-		to_chat(user, "The charge meter reads [round(cell.percent())]%.")
-	else
-		to_chat(user, "It doesn't have a power cell installed.")
+	return ..()

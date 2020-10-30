@@ -51,7 +51,9 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	var/allowmobvore = TRUE
 	var/list/belly_prefs = list()
 	var/vore_taste = "nothing in particular"
+	var/vore_smell = "nothing in particular"
 	var/permit_healbelly = TRUE
+	var/show_vore_fx = TRUE
 	var/can_be_drop_prey = FALSE
 	var/can_be_drop_pred = FALSE
 
@@ -70,7 +72,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 //
 //	Check if an object is capable of eating things, based on vore_organs
 //
-/proc/is_vore_predator(var/mob/living/O)
+/proc/is_vore_predator(mob/living/O)
 	if(istype(O,/mob/living))
 		if(O.vore_organs.len > 0)
 			return TRUE
@@ -87,8 +89,9 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 //
 // Save/Load Vore Preferences
 //
-/datum/vore_preferences/proc/load_path(ckey,slot,filename="character",ext="json")
-	if(!ckey || !slot)	return
+/datum/vore_preferences/proc/load_path(ckey, slot, filename="character", ext="json")
+	if(!ckey || !slot)
+		return
 	path = "data/player_saves/[copytext(ckey,1,2)]/[ckey]/vore/[filename][slot].[ext]"
 
 
@@ -102,7 +105,8 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 
 	load_path(client_ckey,slot)
 
-	if(!path) return FALSE //Path couldn't be set?
+	if(!path)
+		return FALSE //Path couldn't be set?
 	if(!fexists(path)) //Never saved before
 		save_vore() //Make the file first
 		return TRUE
@@ -121,7 +125,9 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	digest_leave_remains = json_from_file["digest_leave_remains"]
 	allowmobvore = json_from_file["allowmobvore"]
 	vore_taste = json_from_file["vore_taste"]
+	vore_smell = json_from_file["vore_smell"]
 	permit_healbelly = json_from_file["permit_healbelly"]
+	show_vore_fx = json_from_file["show_vore_fx"]
 	can_be_drop_prey = json_from_file["can_be_drop_prey"]
 	can_be_drop_pred = json_from_file["can_be_drop_pred"]
 	belly_prefs = json_from_file["belly_prefs"]
@@ -141,6 +147,8 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 		allowmobvore = TRUE
 	if(isnull(permit_healbelly))
 		permit_healbelly = TRUE
+	if(isnull(show_vore_fx))
+		show_vore_fx = TRUE
 	if(isnull(can_be_drop_prey))
 		can_be_drop_prey = FALSE
 	if(isnull(can_be_drop_pred))
@@ -151,7 +159,8 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	return TRUE
 
 /datum/vore_preferences/proc/save_vore()
-	if(!path)				return FALSE
+	if(!path)
+		return FALSE
 
 	var/version = VORE_VERSION	//For "good times" use in the future
 	var/list/settings_list = list(
@@ -163,7 +172,9 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 			"digest_leave_remains"	= digest_leave_remains,
 			"allowmobvore"			= allowmobvore,
 			"vore_taste"			= vore_taste,
+			"vore_smell"			= vore_smell,
 			"permit_healbelly"		= permit_healbelly,
+			"show_vore_fx"		= show_vore_fx,
 			"can_be_drop_prey"		= can_be_drop_prey,
 			"can_be_drop_pred"		= can_be_drop_pred,
 			"belly_prefs"			= belly_prefs,
@@ -176,14 +187,8 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 		return FALSE
 
 	//Write it out
-#ifdef RUST_G
-	call(RUST_G, "file_write")(json_to_file, path)
-#else
-	// Fall back to using old format if we are not using rust-g
-	if(fexists(path))
-		fdel(path) //Byond only supports APPENDING to files, not replacing.
-	text2file(json_to_file, path)
-#endif
+	rustg_file_write(json_to_file, path)
+
 	if(!fexists(path))
 		log_debug("Saving: [path] failed file write")
 		return FALSE

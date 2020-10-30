@@ -1,30 +1,7 @@
-/mob/living/carbon/human/process_resist()
-	//drop && roll
-	if(on_fire && !buckled)
-		adjust_fire_stacks(-1.2)
-		Weaken(3)
-		spin(32,2)
-		visible_message(
-			"<span class='danger'>[src] rolls on the floor, trying to put themselves out!</span>",
-			"<span class='notice'>You stop, drop, and roll!</span>"
-			)
-		sleep(30)
-		if(fire_stacks <= 0)
-			visible_message(
-				"<span class='danger'>[src] has successfully extinguished themselves!</span>",
-				"<span class='notice'>You extinguish yourself.</span>"
-				)
-			ExtinguishMob()
-		return TRUE
-
-	if(handcuffed)
-		spawn() escape_handcuffs()
-	else if(legcuffed)
-		spawn() escape_legcuffs()
-	else if(wear_suit && istype(wear_suit, /obj/item/clothing/suit/straight_jacket))
-		spawn() escape_straight_jacket()
-	else
-		..()
+/mob/living/carbon/human/resist_restraints()
+	if(wear_suit && istype(wear_suit, /obj/item/clothing/suit/straight_jacket))
+		return escape_straight_jacket()
+	return ..()
 
 #define RESIST_ATTACK_DEFAULT	0
 #define RESIST_ATTACK_CLAWS		1

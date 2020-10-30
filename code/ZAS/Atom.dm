@@ -16,13 +16,19 @@
 // Inputs: The turf the airflow is from, which may not be the same as loc. is_zone is for conditionally disallowing merging.
 // Outputs: Boolean if airflow can pass.
 /atom/proc/CanZASPass(turf/T, is_zone)
+	// Behaviors defined here so when people directly call c_airblock it will still obey can_atmos_pass
 	switch(can_atmos_pass)
+		if(ATMOS_PASS_YES)
+			return TRUE
+		if(ATMOS_PASS_NO)
+			return FALSE
 		if(ATMOS_PASS_DENSITY)
 			return !density
+		if(ATMOS_PASS_PROC)
+			// Cowardly refuse to recursively self-call CanZASPass. The hero BYOND needs?
+			CRASH("can_atmos_pass = ATMOS_PASS_PROC but CanZASPass not overridden on [src] ([type])")
 		else
-			return can_atmos_pass
-
-/turf/can_atmos_pass = ATMOS_PASS_NO
+			CRASH("Invalid can_atmos_pass = [can_atmos_pass] on [src] ([type])")
 
 /turf/CanPass(atom/movable/mover, turf/target)
 	if(!target) return FALSE
@@ -89,6 +95,15 @@ turf/c_airblock(turf/other)
 	var/result = 0
 	for(var/mm in contents)
 		var/atom/movable/M = mm
-		result |= M.c_airblock(other)
+		switch(M.can_atmos_pass)
+			if(ATMOS_PASS_YES)
+				continue
+			if(ATMOS_PASS_NO)
+				return BLOCKED
+			if(ATMOS_PASS_DENSITY)
+				if(M.density)
+					return BLOCKED
+			if(ATMOS_PASS_PROC)
+				result |= M.c_airblock(other)
 		if(result == BLOCKED) return BLOCKED
 	return result

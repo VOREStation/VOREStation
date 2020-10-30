@@ -20,7 +20,7 @@ field_generator power level display
 	icon_state = "Field_Gen"
 	anchored = 0
 	density = 1
-	use_power = 0
+	use_power = USE_POWER_OFF
 	var/const/num_power_levels = 6	// Total number of power level icon has
 	var/Varedit_start = 0
 	var/Varpower = 0
@@ -130,7 +130,7 @@ field_generator power level display
 				return
 			if(1)
 				if (WT.remove_fuel(0,user))
-					playsound(loc, WT.usesound, 50, 1)
+					playsound(src, WT.usesound, 50, 1)
 					user.visible_message("[user.name] starts to weld the [src.name] to the floor.", \
 						"You start to weld the [src] to the floor.", \
 						"You hear welding")
@@ -142,7 +142,7 @@ field_generator power level display
 					return
 			if(2)
 				if (WT.remove_fuel(0,user))
-					playsound(loc, WT.usesound, 50, 1)
+					playsound(src, WT.usesound, 50, 1)
 					user.visible_message("[user.name] starts to cut the [src.name] free from the floor.", \
 						"You start to cut the [src] free from the floor.", \
 						"You hear welding")
@@ -285,11 +285,10 @@ field_generator power level display
 		var/field_dir = get_dir(T,get_step(G.loc, NSEW))
 		T = get_step(T, NSEW)
 		if(!locate(/obj/machinery/containment_field) in T)
-			var/obj/machinery/containment_field/CF = new/obj/machinery/containment_field()
+			var/obj/machinery/containment_field/CF = new/obj/machinery/containment_field(T)
 			CF.set_master(src,G)
 			fields += CF
 			G.fields += CF
-			CF.loc = T
 			CF.set_dir(field_dir)
 	var/listcheck = 0
 	for(var/obj/machinery/field_generator/FG in connected_gens)

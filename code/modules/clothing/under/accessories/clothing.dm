@@ -176,8 +176,8 @@
 	item_state = "hoscloak"
 
 /obj/item/clothing/accessory/poncho/roles/cloak/captain
-	name = "colony director's cloak"
-	desc = "An elaborate cloak meant to be worn by the colony director."
+	name = "site manager's cloak"
+	desc = "An elaborate cloak meant to be worn by the site manager."
 	icon_state = "capcloak"
 	item_state = "capcloak"
 
@@ -383,7 +383,7 @@
 
 /obj/item/clothing/accessory/cowledvest
 	name = "cowled vest"
-	desc = "A body warmer for the 26th century."
+	desc = "A body warmer for the 24th century." //VOREStation Edit
 	icon_state = "cowled_vest"
 
 /obj/item/clothing/accessory/asymmetric
@@ -400,3 +400,8 @@
 	name = "green asymmetrical jacket"
 	desc = "Insultingly avant-garde in aqua."
 	icon_state = "asym_green"
+
+/obj/item/clothing/accessory/asymovercoat
+	name = "orange asymmetrical overcoat"
+	desc = "An asymmetrical orange overcoat in a 2560's fashion."
+	icon_state = "asymovercoat"

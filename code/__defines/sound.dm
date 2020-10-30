@@ -70,7 +70,9 @@
 // Restricted, military, or mercenary aligned locations like the armory, the merc ship/base, BSD, etc.
 #define AMBIENCE_HIGHSEC list(\
 	'sound/ambience/highsec/highsec1.ogg',\
-	'sound/ambience/highsec/highsec2.ogg'\
+	'sound/ambience/highsec/highsec2.ogg',\
+	'sound/ambience/highsec/highsec3.ogg',\
+	'sound/ambience/highsec/highsec4.ogg'\
 	)
 
 // Ruined structures found on the surface or in the caves.
@@ -108,14 +110,19 @@
 #define AMBIENCE_GENERIC list(\
 	'sound/ambience/generic/generic1.ogg',\
 	'sound/ambience/generic/generic2.ogg',\
-	'sound/ambience/generic/generic3.ogg',\
-	'sound/ambience/generic/generic4.ogg'\
+	'sound/ambience/generic/generic3.ogg'\
 	)
+// 'sound/ambience/generic/generic4.ogg'\ // VOREStation Edit: Comment out entry 4 as this doesn't fit on Virgo, and we have our own weather system.
 
 // Sounds of PA announcements, presumably involving shuttles?
 #define AMBIENCE_ARRIVALS list(\
 	'sound/ambience/arrivals/arrivals1.ogg',\
-	'sound/ambience/arrivals/arrivals2.ogg'\
+	'sound/ambience/arrivals/arrivals2.ogg',\
+	'sound/ambience/arrivals/arrivals3.ogg',\
+	'sound/ambience/arrivals/arrivals4.ogg',\
+	'sound/ambience/arrivals/arrivals5.ogg',\
+	'sound/ambience/arrivals/arrivals6.ogg',\
+	'sound/ambience/arrivals/arrivals7.ogg'\
 	)
 
 // Sounds suitable for being inside dark, tight corridors in the underbelly of the station.
@@ -125,7 +132,10 @@
 	'sound/ambience/maintenance/maintenance3.ogg',\
 	'sound/ambience/maintenance/maintenance4.ogg',\
 	'sound/ambience/maintenance/maintenance5.ogg',\
-	'sound/ambience/maintenance/maintenance6.ogg'\
+	'sound/ambience/maintenance/maintenance6.ogg',\
+	'sound/ambience/maintenance/maintenance7.ogg',\
+	'sound/ambience/maintenance/maintenance8.ogg',\
+	'sound/ambience/maintenance/maintenance9.ogg'\
 	)
 
 // Life support machinery at work, keeping everyone breathing.
@@ -137,7 +147,9 @@
 
 // Creepy AI/borg stuff.
 #define AMBIENCE_AI list(\
-	'sound/ambience/ai/ai1.ogg'\
+	'sound/ambience/ai/ai1.ogg',\
+	'sound/ambience/ai/ai2.ogg',\
+	'sound/ambience/ai/ai3.ogg'\
 	)
 
 // Peaceful sounds when floating in the void.
@@ -155,7 +167,11 @@
 // Concerning sounds, for when one discovers something horrible happened in a PoI.
 #define AMBIENCE_FOREBODING list(\
 	'sound/ambience/foreboding/foreboding1.ogg',\
-	'sound/ambience/foreboding/foreboding2.ogg'\
+	'sound/ambience/foreboding/foreboding2.ogg',\
+	'sound/ambience/foreboding/foreboding3.ogg',\
+	'sound/ambience/foreboding/foreboding4.ogg',\
+	'sound/ambience/foreboding/foreboding5.ogg',\
+	'sound/ambience/foreboding/foreboding6.ogg'\
 	)
 
 // Ambience heard when aboveground on Sif and not in a Point of Interest.
@@ -176,4 +192,32 @@
 // For the memes.
 #define AMBIENCE_AESTHETIC list(\
 	'sound/ambience/vaporwave.ogg'\
+	)
+	
+#define AMBIENCE_OUTPOST list(\
+	'sound/ambience/expoutpost/expoutpost1.ogg',\
+	'sound/ambience/expoutpost/expoutpost2.ogg',\
+	'sound/ambience/expoutpost/expoutpost3.ogg',\
+	'sound/ambience/expoutpost/expoutpost4.ogg'\
+	)
+	
+#define AMBIENCE_SUBSTATION list(\
+	'sound/ambience/substation/substation1.ogg',\
+	'sound/ambience/substation/substation2.ogg'\
+	)
+	
+#define AMBIENCE_HANGAR list(\
+	'sound/ambience/hangar/hangar1.ogg',\
+	'sound/ambience/hangar/hangar2.ogg',\
+	'sound/ambience/hangar/hangar3.ogg',\
+	'sound/ambience/hangar/hangar4.ogg',\
+	'sound/ambience/hangar/hangar5.ogg',\
+	'sound/ambience/hangar/hangar6.ogg'\
+	)
+	
+#define AMBIENCE_ATMOS list(\
+	'sound/ambience/engineering/engineering1.ogg',\
+	'sound/ambience/engineering/engineering2.ogg',\
+	'sound/ambience/engineering/engineering3.ogg',\
+	'sound/ambience/atmospherics/atmospherics1.ogg'\
 	)

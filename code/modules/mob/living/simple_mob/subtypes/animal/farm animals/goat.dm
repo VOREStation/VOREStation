@@ -54,8 +54,8 @@
 				var/step = get_step_to(src, food, 0)
 				Move(step)
 
-/mob/living/simple_mob/animal/goat/Move()
-	..()
+/mob/living/simple_mob/animal/goat/Moved(atom/old_loc, direction, forced = FALSE)
+	. = ..()
 	if(!stat)
 		for(var/obj/effect/plant/SV in loc)
 			SV.die_off(1)

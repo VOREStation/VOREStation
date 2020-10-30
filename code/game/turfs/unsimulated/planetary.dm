@@ -9,6 +9,7 @@
 	density = 1
 	alpha = 0
 	blocks_air = 0
+	initialized = FALSE
 
 	// Set these to get your desired planetary atmosphere.
 	oxygen = 0
@@ -17,8 +18,8 @@
 	phoron = 0
 	temperature = T20C
 
-/turf/unsimulated/wall/planetary/New()
-	..()
+/turf/unsimulated/wall/planetary/Initialize()
+	. = ..()
 	SSplanets.addTurf(src)
 
 /turf/unsimulated/wall/planetary/Destroy()

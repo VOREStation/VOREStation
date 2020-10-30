@@ -130,5 +130,18 @@
 	used = TRUE
 	desc += " This one has already been used."
 	overlays.Cut()
-	target.nutrition += amount
+	target.adjust_nutrition(amount)
 	user.custom_emote(message = "connects \the [src] to [user == target ? "their" : "[target]'s"] charging port, expending it.")
+
+/obj/item/weapon/cell/emergency_light
+	name = "miniature power cell"
+	desc = "A tiny power cell with a very low power capacity. Used in light fixtures to power them in the event of an outage."
+	maxcharge = 120 //Emergency lights use 0.2 W per tick, meaning ~10 minutes of emergency power from a cell
+	matter = list("glass" = 20)
+	w_class = ITEMSIZE_TINY
+
+/obj/item/weapon/cell/emergency_light/Initialize()
+	. = ..()
+	var/area/A = get_area(src)
+	if(!A.lightswitch || !A.light_power)
+		charge = 0 //For naturally depowered areas, we start with no power

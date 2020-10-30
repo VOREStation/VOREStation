@@ -188,6 +188,8 @@
 
 	if(!istype(shade_organ))
 		return 0
+	if(shade_organ.dark_energy_infinite)
+		return shade_organ.max_dark_energy
 
 	return shade_organ.dark_energy
 
@@ -215,14 +217,6 @@
 
 	shade_organ.max_dark_energy = new_max_energy
 
-/datum/species/shadekin/proc/check_infinite_energy(var/mob/living/carbon/human/H)
-	var/obj/item/organ/internal/brain/shadekin/shade_organ = H.internal_organs_by_name[O_BRAIN]
-
-	if(!istype(shade_organ))
-		return 0
-
-	return shade_organ.dark_energy_infinite
-
 /datum/species/shadekin/proc/update_shadekin_hud(var/mob/living/carbon/human/H)
 	var/turf/T = get_turf(H)
 	if(!T)
@@ -230,15 +224,15 @@
 	if(H.shadekin_energy_display)
 		H.shadekin_energy_display.invisibility = 0
 		switch(get_energy(H))
-			if(80 to INFINITY)
+			if(100 to INFINITY)
 				H.shadekin_energy_display.icon_state = "energy0"
-			if(60 to 80)
+			if(75 to 100)
 				H.shadekin_energy_display.icon_state = "energy1"
-			if(40 to 60)
+			if(50 to 75)
 				H.shadekin_energy_display.icon_state = "energy2"
-			if(20 to 40)
+			if(25 to 50)
 				H.shadekin_energy_display.icon_state = "energy3"
-			if(0 to 20)
+			if(0 to 25)
 				H.shadekin_energy_display.icon_state = "energy4"
 	if(H.shadekin_dark_display)
 		H.shadekin_dark_display.invisibility = 0

@@ -24,6 +24,7 @@
 	return selected
 
 #define CLONE_BIOMASS 30 //VOREstation Edit
+#define MINIMUM_HEAL_LEVEL 40
 
 /obj/machinery/clonepod
 	name = "cloning pod"
@@ -46,17 +47,12 @@
 	var/list/containers = list()	// Beakers for our liquid biomass
 	var/container_limit = 3			// How many beakers can the machine hold?
 
-/obj/machinery/clonepod/New()
-	..()
-	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
-	component_parts += new /obj/item/weapon/stock_parts/scanning_module(src)
-	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)
-	component_parts += new /obj/item/stack/cable_coil(src, 2)
+	var/speed_coeff
+	var/efficiency
 
-	RefreshParts()
+/obj/machinery/clonepod/Initialize()
+	. = ..()
+	default_apply_parts()
 	update_icon()
 
 /obj/machinery/clonepod/attack_ai(mob/user as mob)
@@ -209,7 +205,7 @@
 			return
 
 		else if((occupant.health >= heal_level || occupant.health == occupant.getMaxHealth()) && (!eject_wait))
-			playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
+			playsound(src, 'sound/machines/medbayscanner1.ogg', 50, 1)
 			audible_message("\The [src] signals that the cloning process is complete.")
 			connected_message("Cloning Process Complete.")
 			locked = 0
@@ -299,13 +295,16 @@
 
 /obj/machinery/clonepod/RefreshParts()
 	..()
-	var/rating = 0
-	for(var/obj/item/weapon/stock_parts/P in component_parts)
-		if(istype(P, /obj/item/weapon/stock_parts/scanning_module) || istype(P, /obj/item/weapon/stock_parts/manipulator))
-			rating += P.rating
+	speed_coeff = 0
+	efficiency = 0
+	for(var/obj/item/weapon/stock_parts/scanning_module/S in component_parts)
+		efficiency += S.rating
+	for(var/obj/item/weapon/stock_parts/manipulator/P in component_parts)
+		speed_coeff += P.rating
+	heal_level = max(min((efficiency * 15) + 10, 100), MINIMUM_HEAL_LEVEL)
 
-	heal_level = rating * 10 - 20
-	heal_rate = round(rating / 4)
+/obj/machinery/clonepod/proc/get_completion()
+	. = (100 * ((occupant.health + 100) / (heal_level + 100)))
 
 /obj/machinery/clonepod/verb/eject()
 	set name = "Eject Cloner"
@@ -484,8 +483,8 @@
 //TO-DO: Make the genetics machine accept them.
 /obj/item/weapon/disk/data
 	name = "Cloning Data Disk"
-	icon = 'icons/obj/cloning.dmi'
-	icon_state = "datadisk0" //Gosh I hope syndies don't mistake them for the nuke disk.
+	icon = 'icons/obj/discs_vr.dmi' //VOREStation Edit
+	icon_state = "data-red" //VOREStation Edit
 	item_state = "card-id"
 	w_class = ITEMSIZE_SMALL
 	var/datum/dna2/record/buf = null
@@ -534,9 +533,8 @@
 	to_chat(user, "You flip the write-protect tab to [read_only ? "protected" : "unprotected"].")
 
 /obj/item/weapon/disk/data/examine(mob/user)
-	..(user)
-	to_chat(user, text("The write-protect tab is set to [read_only ? "protected" : "unprotected"]."))
-	return
+	. = ..()
+	. += "The write-protect tab is set to [read_only ? "protected" : "unprotected"]."
 
 /*
  *	Diskette Box

@@ -10,7 +10,7 @@
 	density = 1
 	anchored = 0
 
-	use_power = 0 //is powered directly from cables
+	use_power = USE_POWER_OFF //is powered directly from cables
 	active_power_usage = 150 KILOWATTS  //BIG POWER
 	idle_power_usage = 500
 
@@ -25,8 +25,9 @@
 	default_apply_parts()
 
 /obj/machinery/power/thermoregulator/examine(mob/user)
-	if(..(user,2))
-		to_chat(user, "There is a small display that reads \"[convert_k2c(target_temp)]C\".")
+	. = ..()
+	if(get_dist(user, src) <= 2)
+		. += "There is a small display that reads \"[convert_k2c(target_temp)]C\"."
 
 /obj/machinery/power/thermoregulator/attackby(obj/item/I, mob/user)
 	if(I.is_screwdriver())

@@ -6,12 +6,14 @@ var/global/list/stool_cache = list() //haha stool
 	desc = "Apply butt."
 	icon = 'icons/obj/furniture_vr.dmi' //VOREStation Edit - new Icons
 	icon_state = "stool_preview" //set for the map
+	randpixel = 0
+	center_of_mass = null
 	force = 10
 	throwforce = 10
 	w_class = ITEMSIZE_HUGE
 	var/base_icon = "stool_base"
-	var/material/material
-	var/material/padding_material
+	var/datum/material/material
+	var/datum/material/padding_material
 
 /obj/item/weapon/stool/padded
 	icon_state = "stool_padded_preview" //set for the map
@@ -35,22 +37,22 @@ var/global/list/stool_cache = list() //haha stool
 /obj/item/weapon/stool/update_icon()
 	// Prep icon.
 	icon_state = ""
-	overlays.Cut()
+	cut_overlays()
 	// Base icon.
 	var/cache_key = "stool-[material.name]"
 	if(isnull(stool_cache[cache_key]))
 		var/image/I = image(icon, base_icon)
 		I.color = material.icon_colour
 		stool_cache[cache_key] = I
-	overlays |= stool_cache[cache_key]
+	add_overlay(stool_cache[cache_key])
 	// Padding overlay.
 	if(padding_material)
 		var/padding_cache_key = "stool-padding-[padding_material.name]"
 		if(isnull(stool_cache[padding_cache_key]))
-			var/image/I =  image(icon, "stool_padding")
+			var/image/I =  image(icon, "[base_icon]_padding") //VOREStation Edit
 			I.color = padding_material.icon_colour
 			stool_cache[padding_cache_key] = I
-		overlays |= stool_cache[padding_cache_key]
+		add_overlay(stool_cache[padding_cache_key])
 	// Strings.
 	if(padding_material)
 		name = "[padding_material.display_name] [initial(name)]" //this is not perfect but it will do for now.
@@ -143,7 +145,7 @@ var/global/list/stool_cache = list() //haha stool
 			to_chat(user, "\The [src] has no padding to remove.")
 			return
 		to_chat(user, "You remove the padding from \the [src].")
-		playsound(src.loc, W.usesound, 50, 1)
+		playsound(src, W.usesound, 50, 1)
 		remove_padding()
 	else
 		..()

@@ -205,7 +205,7 @@
 	return
 
 // This is awful but its literally say code.
-/mob/living/simple_mob/animal/borer/say(message)
+/mob/living/simple_mob/animal/borer/say(var/message, var/datum/language/speaking = null, var/whispering = 0)
 	message = sanitize(message)
 	message = capitalize(message)
 
@@ -224,10 +224,11 @@
 	if(copytext(message, 1, 2) == "*")
 		return emote(copytext(message, 2))
 
-	var/datum/language/L = parse_language(message)
-	if(L && L.flags & HIVEMIND)
-		L.broadcast(src,trim(copytext(message,3)), src.true_name)
-		return
+	var/list/message_pieces = parse_languages(message)
+	for(var/datum/multilingual_say_piece/S in message_pieces)
+		if(S.speaking && S.speaking.flags & HIVEMIND)
+			S.speaking.broadcast(src, trim(copytext(message, 3)), src.true_name)
+			return
 
 	if(!host)
 		if(chemicals >= 30)

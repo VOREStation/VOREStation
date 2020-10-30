@@ -92,7 +92,7 @@
 			user.visible_message("<span class='danger'>\The [user] cut [src]'s neck with \the [W]!</span>")
 
 		if(W.hitsound)
-			playsound(loc, W.hitsound, 50, 1, -1)
+			playsound(src, W.hitsound, 50, 1, -1)
 
 	G.last_action = world.time
 	flick(G.hud.icon_state, G.hud)
@@ -112,7 +112,7 @@
 	apply_damage(damage, W.damtype, "torso", 0, sharp=W.sharp, edge=W.edge)
 
 	if(W.hitsound)
-		playsound(loc, W.hitsound, 50, 1, -1)
+		playsound(src, W.hitsound, 50, 1, -1)
 
 	add_attack_logs(user,src,"Knifed (shanked)")
 

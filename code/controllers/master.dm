@@ -156,11 +156,14 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 // Please don't stuff random bullshit here,
 // 	Make a subsystem, give it the SS_NO_FIRE flag, and do your work in it's Initialize()
-/datum/controller/master/Initialize(delay, init_sss)
+/datum/controller/master/Initialize(delay, init_sss, tgs_prime)
 	set waitfor = 0
 
 	if(delay)
 		sleep(delay)
+
+	if(tgs_prime)
+		world.TgsInitializationComplete()
 
 	if(init_sss)
 		init_subtypes(/datum/controller/subsystem, subsystems)
@@ -188,6 +191,8 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	if (!current_runlevel)
 		SetRunLevel(RUNLEVEL_LOBBY)
 
+	GLOB.revdata = new // It can load revdata now, from tgs or .git or whatever
+
 	// Sort subsystems by display setting for easy access.
 	sortTim(subsystems, /proc/cmp_subsystem_display)
 	// Set world options.
@@ -196,7 +201,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	#else
 	world.sleep_offline = 1
 	#endif
-	world.fps = config.fps
+	world.change_fps(config.fps)
 	var/initialized_tod = REALTIMEOFDAY
 	sleep(1)
 	initializations_finished_with_no_players_logged_in = initialized_tod < REALTIMEOFDAY - 10
@@ -221,10 +226,12 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	//loop ended, restart the mc
 	log_game("MC crashed or runtimed, restarting")
 	message_admins("MC crashed or runtimed, restarting")
+	log_world("MC crashed or runtimed, restarting")
 	var/rtn2 = Recreate_MC()
 	if (rtn2 <= 0)
 		log_game("Failed to recreate MC (Error code: [rtn2]), it's up to the failsafe now")
 		message_admins("Failed to recreate MC (Error code: [rtn2]), it's up to the failsafe now")
+		log_world("Failed to recreate MC (Error code: [rtn2]), it's up to the failsafe now")
 		Failsafe.defcon = 2
 
 // Main loop.
@@ -336,6 +343,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 			subsystems_to_check = tickersubsystems
 
 		if (CheckQueue(subsystems_to_check) <= 0)
+			log_world("MC: CheckQueue(subsystems_to_check) exited uncleanly, SoftReset (error_level=[error_level]")
 			if (!SoftReset(tickersubsystems, runlevel_sorted_subsystems))
 				log_world("MC: SoftReset() failed, crashing")
 				return
@@ -348,6 +356,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 		if (queue_head)
 			if (RunQueue() <= 0)
+				log_world("MC: RunQueue() exited uncleanly, running SoftReset (error_level=[error_level]")
 				if (!SoftReset(tickersubsystems, runlevel_sorted_subsystems))
 					log_world("MC: SoftReset() failed, crashing")
 					return

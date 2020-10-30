@@ -8,7 +8,7 @@
 				name = DA[name] //name is really the index until this line
 			else
 				value = DA[name]
-			header = "<li style='backgroundColor:white'>(<a href='?_src_=vars;listedit=\ref[DA];index=[index]'>E</a>) (<a href='?_src_=vars;listchange=\ref[DA];index=[index]'>C</a>) (<a href='?_src_=vars;listremove=\ref[DA];index=[index]'>-</a>) "
+			header = "<li style='backgroundColor:white'>(<a href='?_src_=vars;[VV_HK_LIST_EDIT]=1;target=\ref[DA];index=[index]'>E</a>) (<a href='?_src_=vars;[VV_HK_LIST_CHANGE]=1;target=\ref[DA];index=[index]'>C</a>) (<a href='?_src_=vars;[VV_HK_LIST_REMOVE]=1;target=\ref[DA];index=[index]'>-</a>) "
 		else
 			header = "<li style='backgroundColor:white'>(<a href='?_src_=vars;datumedit=\ref[DA];varnameedit=[name]'>E</a>) (<a href='?_src_=vars;datumchange=\ref[DA];varnamechange=[name]'>C</a>) (<a href='?_src_=vars;datummass=\ref[DA];varnamemass=[name]'>M</a>) "
 	else

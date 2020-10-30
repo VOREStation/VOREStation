@@ -1,6 +1,10 @@
 /obj/item/weapon/gun/projectile/revolver
 	name = "revolver"
-	desc = "The Lumoco Arms HE Colt is a choice revolver for when you absolutely, positively need to put a hole in the other guy. Uses .357 rounds."
+	desc = "The MarsTech HE Colt is a choice revolver for when you absolutely, positively need to put a hole in the other guy. Uses .357 rounds."
+	description_fluff = "MarsTech first made their name in the Second Cold War as the 'Lunar Arms Company' providing home-grown arms to the Selene Federation, \
+	but after the formation of the SCG rebranded and relocated to Mars where they remain based to this day. \
+	The company was acquired by Hephaestus in the mid 23rd century, and its branding used to present an image of historical prestige and Solar unity for their latest product line. \
+	MarsTech operates production facilities out of many of the SCG’s larger colonies."
 	icon_state = "revolver"
 	item_state = "revolver"
 	caliber = ".357"
@@ -19,7 +23,7 @@
 	chamber_offset = 0
 	visible_message("<span class='warning'>\The [usr] spins the cylinder of \the [src]!</span>", \
 	"<span class='notice'>You hear something metallic spin and click.</span>")
-	playsound(src.loc, 'sound/weapons/revolver_spin.ogg', 100, 1)
+	playsound(src, 'sound/weapons/revolver_spin.ogg', 100, 1)
 	loaded = shuffle(loaded)
 	if(rand(1,max_shells) > loaded.len)
 		chamber_offset = rand(0,max_shells - loaded.len)
@@ -36,13 +40,14 @@
 
 /obj/item/weapon/gun/projectile/revolver/mateba
 	name = "mateba"
-	desc = "This unique looking handgun is named after an Italian company famous for the manufacture of these revolvers, and pasta kneading machines. Uses .357 rounds." // Yes I'm serious. -Spades
+	desc = "This unique looking handgun is named after an Italian company famous for the original manufacture of these revolvers, and pasta kneading machines. Uses .357 rounds." // Yes I'm serious. -Spades
 	icon_state = "mateba"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 
 /obj/item/weapon/gun/projectile/revolver/detective
 	name = "revolver"
-	desc = "A cheap Martian knock-off of a Smith & Wesson Model 10. Uses .38-Special rounds."
+	desc = "A standard MarsTech R1 snubnose revolver, popular among some law enforcement agencies for its simple, long-lasting construction. Uses .38-Special rounds."
+	description_fluff = "The leading civilian-sector high-quality small arms brand of Hephaestus Industries, MarsTech has been the provider of choice for law enforcement and security forces for over 300 years."
 	icon_state = "detective"
 	caliber = ".38"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
@@ -68,7 +73,7 @@
 
 /obj/item/weapon/gun/projectile/revolver/detective45
 	name = ".45 revolver"
-	desc = "A fancy replica of an old revolver, modified for .45 rounds and a seven-shot cylinder."
+	desc = "A basic revolver, popular among some law enforcement agencies for its simple, long-lasting construction, modified for .45 rounds and a seven-shot cylinder."
 	icon_state = "detective"
 	caliber = ".45"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
@@ -102,15 +107,15 @@ obj/item/weapon/gun/projectile/revolver/detective45/verb/rename_gun()
 
 	var/mob/M = usr
 	var/list/options = list()
-	options["Colt Detective Special"] = "detective"
-	options["Ruger GP100"] = "GP100"
-	options["Colt Single Action Army"] = "detective_peacemaker"
-	options["Colt Single Action Army, Dark"] = "detective_peacemaker_dark"
-	options["H&K PT"] = "detective_panther"
-	options["Vintage LeMat"] = "lemat_old"
-	options["Webley MKVI "] = "webley"
+	options["MarsTech R1 Snubnose"] = "detective"
+	options["ProTek Cowboy"] = "GP100"
+	options["MarsTech Frontiersman Classic"] = "detective_peacemaker"
+	options["MarsTech Frontiersman Shadow"] = "detective_peacemaker_dark"
+	options["MarsTech Panther"] = "detective_panther"
+	options["Jindal Duke"] = "lemat_old"
+	options["H-H Sindri"] = "webley"
 	options["Lombardi Buzzard"] = "detective_buzzard"
-	options["Constable Deluxe 2502"] = "detective_constable"
+	options["Lombardi Constable Deluxe 2502"] = "detective_constable"
 	var/choice = input(M,"Choose your sprite!","Resprite Gun") in options
 	if(src && choice && !M.stat && in_range(M,src))
 		icon_state = options[choice]
@@ -157,7 +162,9 @@ obj/item/weapon/gun/projectile/revolver/detective45/verb/rename_gun()
 
 /obj/item/weapon/gun/projectile/revolver/judge
 	name = "\"The Judge\""
-	desc = "A revolving hand-shotgun by Cybersun Industries that packs the power of a 12 guage in the palm of your hand (if you don't break your wrist). Uses 12g rounds."
+	desc = "A revolving hand-shotgun by Jindal Arms that packs the power of a 12 guage in the palm of your hand (if you don't break your wrist). Uses 12g rounds."
+	description_fluff = "While wholly owned by Hephaestus Industries, the Jindal Arms brand does not appear prominently in most company catalogues (Perhaps owing to its less than prestigious image), \
+	instead being sold almost exclusively through retailers and advertising platforms targeting the 'independent roughneck' demographic."
 	icon_state = "judge"
 	caliber = "12g"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ILLEGAL = 4)
@@ -169,9 +176,13 @@ obj/item/weapon/gun/projectile/revolver/detective45/verb/rename_gun()
 	// ToDo: Remove accuracy debuf in exchange for slightly injuring your hand every time you fire it.
 
 /obj/item/weapon/gun/projectile/revolver/lemat
-	name = "LeMat Revolver"
-	desc = "The LeMat Revolver is a 9 shot revolver with a secondary firing barrel loading shotgun shells. For when you really need something dead. Uses .38-Special and 12g rounds depending on the barrel."
-	icon_state = "lemat"
+	name = "Mako Revolver"
+	desc = "The Bishamonten P100 Mako is a 9 shot revolver with a secondary firing barrel loading shotgun shells. For when you really need something dead. A rare yet deadly collector's item. Uses .38-Special and 12g rounds depending on the barrel."
+	description_fluff = "The Bishamonten Company operated from roughly 2150-2280 - the height of the first extrasolar colonisation boom - before filing for bankruptcy and selling off its assets to various companies that would go on to become today’s TSCs. \
+	Focused on sleek ‘futurist’ designs which have largely fallen out of fashion but remain popular with collectors and people hoping to make some quick thalers from replica weapons. \
+	Bishamonten weapons tended to be form over function - despite their flashy looks, most were completely unremarkable one way or another as weapons and used very standard firing mechanisms - \
+	the Mako was a notable exception, and original examples are much sought after."
+	icon_state = "combatrevolver"
 	item_state = "revolver"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	handle_casings = CYCLE_CASINGS
@@ -242,27 +253,29 @@ obj/item/weapon/gun/projectile/revolver/detective45/verb/rename_gun()
 	chamber_offset = 0
 	visible_message("<span class='warning'>\The [usr] spins the cylinder of \the [src]!</span>", \
 	"<span class='notice'>You hear something metallic spin and click.</span>")
-	playsound(src.loc, 'sound/weapons/revolver_spin.ogg', 100, 1)
+	playsound(src, 'sound/weapons/revolver_spin.ogg', 100, 1)
 	if(!flipped_firing)
 		loaded = shuffle(loaded)
 		if(rand(1,max_shells) > loaded.len)
 			chamber_offset = rand(0,max_shells - loaded.len)
 
 /obj/item/weapon/gun/projectile/revolver/lemat/examine(mob/user)
-	..()
+	. = ..()
 	if(secondary_loaded)
 		var/to_print
 		for(var/round in secondary_loaded)
 			to_print += round
-		to_chat(user, "\The [src] has a secondary barrel loaded with \a [to_print]")
+		. += "It has a secondary barrel loaded with \a [to_print]"
 	else
-		to_chat(user, "\The [src] has a secondary barrel that is empty.")
+		. += "It has a secondary barrel that is empty."
 
 
 //Ported from Bay
 /obj/item/weapon/gun/projectile/revolver/webley
-	name = "service revolver"
-	desc = "A rugged top break revolver based on the Webley Mk. VI model, with modern improvements. Uses .44 magnum rounds."
+	name = "patrol revolver"
+	desc = "A rugged top break revolver commonly issued to members of the SifGuard. Uses .44 magnum rounds."
+	description_fluff = "The Heberg-Hammarstrom Althing is a simple, head-wearing revolver made with an anti-corrosive alloy. \
+	The Althing is advertised as being 'able to survive six months on the bottom of a frozen river and emerge full ready to save a life'. Issued as standard sidearms to SifGuard frontier patrol."
 	icon_state = "webley2"
 	item_state = "webley2"
 	caliber = ".44"
@@ -274,7 +287,7 @@ obj/item/weapon/gun/projectile/revolver/detective45/verb/rename_gun()
 /obj/item/weapon/gun/projectile/revolver/webley/auto
 	name = "autorevolver"
 	icon_state = "mosley"
-	desc = "A shiny Mosley Autococker automatic revolver, with black accents. Marketed as the 'Revolver for the Modern Era'. Uses .44 magnum rounds."
+	desc = "A shiny Fosbery Autococker automatic revolver, with black accents. Marketed as the 'Revolver for the Modern Era'. Uses .44 magnum rounds."
 	fire_delay = 5.7 //Autorevolver. Also synced with the animation
 	fire_anim = "mosley_fire"
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 2)

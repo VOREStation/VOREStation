@@ -49,7 +49,7 @@
 
 // tucker0666 : Frost
 /datum/robolimb/zenghu_frost
-    company = "Zeng-Hu"
+    company = "Zeng-Hu (Custom)"
     desc = "This limb has realistic synthetic flesh covering with 'blue accents'."
     icon = 'icons/mob/human_races/cyberlimbs/_fluff_vr/Frosty.dmi'
     blood_color = "#45ccff"
@@ -204,6 +204,7 @@
 /datum/robolimb/dsi_teshari/New()
 	species_cannot_use = GLOB.all_species.Copy()
 	species_cannot_use -= SPECIES_TESHARI
+	species_cannot_use -= SPECIES_CUSTOM
 	..()
 
 /obj/item/weapon/disk/limb/dsi_teshari

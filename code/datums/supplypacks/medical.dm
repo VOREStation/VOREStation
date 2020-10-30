@@ -22,28 +22,35 @@
 			/obj/item/weapon/storage/box/autoinjectors
 			)
 	cost = 10
-	containertype = /obj/structure/closet/crate/medical
+	containertype = /obj/structure/closet/crate/zenghu
 	containername = "Medical crate"
 
 /datum/supply_pack/med/bloodpack
 	name = "BloodPack crate"
 	contains = list(/obj/item/weapon/storage/box/bloodpacks = 3)
 	cost = 10
-	containertype = /obj/structure/closet/crate/medical
+	containertype = /obj/structure/closet/crate/nanomed
 	containername = "BloodPack crate"
+
+/datum/supply_pack/med/synthplas
+	name = "BloodPack (Synthplas) crate"
+	contains = list(/obj/item/weapon/reagent_containers/blood/synthplas = 6)
+	cost = 80
+	containertype = /obj/structure/closet/crate/nanomed
+	containername = "SynthPlas crate"
 
 /datum/supply_pack/med/bodybag
 	name = "Body bag crate"
 	contains = list(/obj/item/weapon/storage/box/bodybags = 3)
 	cost = 10
-	containertype = /obj/structure/closet/crate/medical
+	containertype = /obj/structure/closet/crate/nanomed
 	containername = "Body bag crate"
 
 /datum/supply_pack/med/cryobag
 	name = "Stasis bag crate"
 	contains = list(/obj/item/bodybag/cryobag = 3)
 	cost = 40
-	containertype = /obj/structure/closet/crate/medical
+	containertype = /obj/structure/closet/crate/nanomed
 	containername = "Stasis bag crate"
 
 /datum/supply_pack/med/surgery
@@ -62,7 +69,7 @@
 			/obj/item/weapon/surgical/circular_saw
 			)
 	cost = 25
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/veymed
 	containername = "Surgery crate"
 	access = access_medical
 
@@ -73,7 +80,7 @@
 			/obj/item/weapon/storage/box/cdeathalarm_kit
 			)
 	cost = 40
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/ward
 	containername = "Death Alarm crate"
 	access = access_medical
 
@@ -83,7 +90,7 @@
 			/obj/item/weapon/storage/firstaid/clotting
 			)
 	cost = 100
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/zenghu
 	containername = "Clotting Medicine crate"
 	access = access_medical
 
@@ -97,7 +104,7 @@
 			/obj/item/weapon/storage/belt/medical = 3
 			)
 	cost = 10
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/veymed
 	containername = "Sterile equipment crate"
 
 /datum/supply_pack/med/extragear
@@ -109,7 +116,7 @@
 			/obj/item/clothing/suit/storage/hooded/wintercoat/medical = 3
 			)
 	cost = 10
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/nanomed
 	containername = "Medical surplus equipment"
 	access = access_medical
 
@@ -133,7 +140,7 @@
 			/obj/item/weapon/reagent_containers/syringe
 			)
 	cost = 50
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/nanomed
 	containername = "Chief medical officer equipment"
 	access = access_cmo
 
@@ -156,7 +163,7 @@
 			/obj/item/weapon/reagent_containers/syringe
 			)
 	cost = 20
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/nanomed
 	containername = "Medical Doctor equipment"
 	access = access_medical_equip
 
@@ -179,7 +186,7 @@
 			/obj/item/weapon/reagent_containers/syringe
 			)
 	cost = 20
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/nanomed
 	containername = "Chemist equipment"
 	access = access_chemistry
 
@@ -207,7 +214,7 @@
 			/obj/item/clothing/accessory/storage/white_vest
 			)
 	cost = 20
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/nanomed
 	containername = "Paramedic equipment"
 	access = access_medical_equip
 
@@ -226,7 +233,7 @@
 			/obj/item/weapon/cartridge/medical
 			)
 	cost = 20
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/nanomed
 	containername = "Psychiatrist equipment"
 	access = access_psychiatrist
 
@@ -247,7 +254,7 @@
 			/obj/item/weapon/storage/box/gloves
 			)
 	cost = 10
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/nanomed
 	containername = "Medical scrubs crate"
 	access = access_medical_equip
 
@@ -264,7 +271,7 @@
 			/obj/item/weapon/pen
 			)
 	cost = 20
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/veymed
 	containername = "Autopsy equipment crate"
 	access = access_morgue
 
@@ -291,7 +298,7 @@
 			/obj/item/weapon/storage/box/gloves
 			)
 	cost = 10
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/nanomed
 	containername = "Medical uniform crate"
 	access = access_medical_equip
 
@@ -309,7 +316,7 @@
 			/obj/item/weapon/storage/box/gloves
 			)
 	cost = 50
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/nanomed
 	containername = "Medical biohazard equipment"
 	access = access_medical_equip
 
@@ -317,7 +324,7 @@
 	name = "Portable freezers crate"
 	contains = list(/obj/item/weapon/storage/box/freezer = 7)
 	cost = 25
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/veymed
 	containername = "Portable freezers"
 	access = access_medical_equip
 
@@ -325,7 +332,7 @@
 	name = "Virus sample crate"
 	contains = list(/obj/item/weapon/virusdish/random = 4)
 	cost = 25
-	containertype = /obj/structure/closet/crate/secure
+	containertype = /obj/structure/closet/crate/secure/zenghu
 	containername = "Virus sample crate"
 	access = access_cmo
 
@@ -333,40 +340,40 @@
 	name = "Defibrillator crate"
 	contains = list(/obj/item/device/defib_kit = 2)
 	cost = 30
-	containertype = /obj/structure/closet/crate/medical
+	containertype = /obj/structure/closet/crate/veymed
 	containername = "Defibrillator crate"
 
 /datum/supply_pack/med/distillery
 	name = "Chemical distiller crate"
 	contains = list(/obj/machinery/portable_atmospherics/powered/reagent_distillery = 1)
-	cost = 175
-	containertype = /obj/structure/largecrate
+	cost = 50
+	containertype = /obj/structure/closet/crate/large/nanotrasen
 	containername = "Chemical distiller crate"
 
 /datum/supply_pack/med/advdistillery
 	name = "Industrial Chemical distiller crate"
 	contains = list(/obj/machinery/portable_atmospherics/powered/reagent_distillery/industrial = 1)
-	cost = 250
-	containertype = /obj/structure/largecrate
+	cost = 150
+	containertype = /obj/structure/closet/crate/large/xion
 	containername = "Industrial Chemical distiller crate"
 
 /datum/supply_pack/med/oxypump
 	name = "Oxygen pump crate"
 	contains = list(/obj/machinery/oxygen_pump/mobile = 1)
 	cost = 125
-	containertype = /obj/structure/largecrate
+	containertype = /obj/structure/closet/crate/large/xion
 	containername = "Oxygen pump crate"
 
 /datum/supply_pack/med/anestheticpump
 	name = "Anesthetic pump crate"
 	contains = list(/obj/machinery/oxygen_pump/mobile/anesthetic = 1)
 	cost = 130
-	containertype = /obj/structure/largecrate
+	containertype = /obj/structure/closet/crate/large/nanotrasen
 	containername = "Anesthetic pump crate"
 
 /datum/supply_pack/med/stablepump
 	name = "Portable stabilizer crate"
 	contains = list(/obj/machinery/oxygen_pump/mobile/stabilizer = 1)
 	cost = 175
-	containertype = /obj/structure/largecrate
+	containertype = /obj/structure/closet/crate/large/nanotrasen
 	containername = "Portable stabilizer crate"

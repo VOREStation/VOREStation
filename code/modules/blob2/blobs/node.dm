@@ -34,3 +34,5 @@ var/list/blob_nodes = list()
 	set waitfor = FALSE
 	if(overmind) // This check is so that if the core is killed, the nodes stop.
 		pulse_area(overmind, 10, BLOB_NODE_PULSE_RANGE, BLOB_NODE_EXPAND_RANGE)
+
+		overmind.blob_type.on_node_process(src)

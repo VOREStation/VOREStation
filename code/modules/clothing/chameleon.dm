@@ -214,6 +214,18 @@
 		var/mob/M = src.loc
 		M.update_inv_back()
 
+/obj/item/weapon/storage/backpack/chameleon/full
+	starts_with = list(
+		/obj/item/clothing/under/chameleon,
+		/obj/item/clothing/head/chameleon,
+		/obj/item/clothing/suit/chameleon,
+		/obj/item/clothing/shoes/chameleon,
+		/obj/item/clothing/gloves/chameleon,
+		/obj/item/clothing/mask/chameleon,
+		/obj/item/clothing/glasses/chameleon,
+		/obj/item/clothing/accessory/chameleon
+	)
+
 //********************
 //**Chameleon Gloves**
 //********************

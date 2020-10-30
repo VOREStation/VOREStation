@@ -114,7 +114,7 @@
 
 /turf/simulated/floor/tiled/techfloor
 	name = "floor"
-	icon = 'icons/turf/flooring/techfloor_vr.dmi'
+	icon = 'icons/turf/flooring/techfloor.dmi'
 	icon_state = "techfloor_gray"
 	initial_flooring = /decl/flooring/tiling/tech
 
@@ -247,7 +247,7 @@
 /turf/simulated/floor/reinforced/n20/Initialize()
 	. = ..()
 	if(!air) make_air()
-	air.adjust_gas("sleeping_agent", ATMOSTANK_NITROUSOXIDE)
+	air.adjust_gas("nitrous_oxide", ATMOSTANK_NITROUSOXIDE)
 
 /turf/simulated/floor/cult
 	name = "engraved floor"
@@ -317,12 +317,25 @@
 	name = "tiles"
 	icon_state = "freezer"
 	initial_flooring = /decl/flooring/tiling/freezer
+	temperature = T0C - 5 // VOREStation Edit: Chillier Freezer Tiles on-start
 
 /turf/simulated/floor/lino
 	name = "lino"
 	icon = 'icons/turf/flooring/linoleum.dmi'
 	icon_state = "lino"
 	initial_flooring = /decl/flooring/linoleum
+
+/turf/simulated/floor/wmarble
+	name = "marble"
+	icon = 'icons/turf/flooring/misc.dmi'
+	icon_state = "lightmarble"
+	initial_flooring = /decl/flooring/wmarble
+
+/turf/simulated/floor/bmarble
+	name = "marble"
+	icon = 'icons/turf/flooring/misc.dmi'
+	icon_state = "darkmarble"
+	initial_flooring = /decl/flooring/bmarble
 
 //ATMOS PREMADES
 /turf/simulated/floor/reinforced/airless
@@ -386,6 +399,7 @@
 	name = "snow"
 	icon = 'icons/turf/snow_new.dmi'
 	icon_state = "snow"
+	initial_flooring = /decl/flooring/snow
 	var/list/crossed_dirs = list()
 
 /turf/simulated/floor/snow/snow2

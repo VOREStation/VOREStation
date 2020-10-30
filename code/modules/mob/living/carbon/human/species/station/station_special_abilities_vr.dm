@@ -250,7 +250,7 @@
 					//Strange audio
 					//to_chat(src, "Strange Audio")
 					switch(rand(1,12))
-						if(1) src << 'sound/machines/airlock.ogg'
+						if(1) src << 'sound/machines/door/old_airlock.ogg'
 						if(2)
 							if(prob(50))src << 'sound/effects/Explosion1.ogg'
 							else src << 'sound/effects/Explosion2.ogg'
@@ -259,7 +259,7 @@
 						if(5) src << 'sound/effects/Glassbr2.ogg'
 						if(6) src << 'sound/effects/Glassbr3.ogg'
 						if(7) src << 'sound/machines/twobeep.ogg'
-						if(8) src << 'sound/machines/windowdoor.ogg'
+						if(8) src << 'sound/machines/door/windowdoor.ogg'
 						if(9)
 							//To make it more realistic, I added two gunshots (enough to kill)
 							src << 'sound/weapons/Gunshot1.ogg'
@@ -390,7 +390,7 @@
 		src.visible_message("<font color='red'><b>[src] suddenly extends their fangs and plunges them down into [B]'s neck!</b></font>")
 		B.apply_damage(5, BRUTE, BP_HEAD) //You're getting fangs pushed into your neck. What do you expect????
 		B.drip(80) //Remove enough blood to make them a bit woozy, but not take oxyloss.
-		src.nutrition += 400
+		adjust_nutrition(400)
 		sleep(50)
 		B.drip(1)
 		sleep(50)
@@ -836,7 +836,7 @@
 
 	if(!C.anchored && !C.pulledby) //Not currently anchored, and not pulled by anyone.
 		C.anchored = 1 //This is the only way to stop the inertial_drift.
-		C.nutrition -= 25
+		C.adjust_nutrition(-25)
 		update_floating()
 		to_chat(C, "<span class='notice'>You hover in place.</span>")
 		spawn(6) //.6 seconds.

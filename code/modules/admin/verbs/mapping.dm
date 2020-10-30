@@ -139,7 +139,7 @@ var/list/debug_verbs = list (
         ,/client/proc/cmd_assume_direct_control
         ,/client/proc/jump_to_dead_group
         ,/client/proc/startSinglo
-        ,/client/proc/ticklag
+        ,/client/proc/set_server_fps
         ,/client/proc/cmd_admin_grantfullaccess
         ,/client/proc/kaboom
         ,/client/proc/cmd_admin_areatest
@@ -164,7 +164,6 @@ var/list/debug_verbs = list (
         ,/datum/admins/proc/setup_supermatter
 		,/client/proc/atmos_toggle_debug
 		,/client/proc/spawn_tanktransferbomb
-		,/client/proc/debug_process_scheduler // VOREStation Edit - Nice
 		,/client/proc/take_picture
 	)
 

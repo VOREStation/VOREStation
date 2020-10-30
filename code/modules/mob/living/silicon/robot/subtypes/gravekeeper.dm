@@ -24,4 +24,4 @@
 
 	laws = new /datum/ai_laws/gravekeeper()
 
-	playsound(loc, 'sound/mecha/nominalsyndi.ogg', 75, 0)
+	playsound(src, 'sound/mecha/nominalsyndi.ogg', 75, 0)

@@ -1,5 +1,0 @@
-author: leshana
-delete-after: True
-changes: 
-  - bugfix: "NTNet Quantum Relay can be constructed/deconstructed without runtimes."
-  - bugfix: "Missing qdel hints or calls to parent in New/Initialize for NTNet items."

@@ -8,6 +8,14 @@ PROCESSING_SUBSYSTEM_DEF(chemistry)
 	var/list/chemical_reagents = list()
 
 /datum/controller/subsystem/processing/chemistry/Recover()
+	log_debug("[name] subsystem Recover().")
+	if(SSchemistry.current_thing)
+		log_debug("current_thing was: (\ref[SSchemistry.current_thing])[SSchemistry.current_thing]([SSchemistry.current_thing.type]) - currentrun: [SSchemistry.currentrun.len] vs total: [SSchemistry.processing.len]")
+	var/list/old_processing = SSchemistry.processing.Copy()
+	for(var/datum/D in old_processing)
+		if(CHECK_BITFIELD(D.datum_flags, DF_ISPROCESSING))
+			processing |= D
+
 	chemical_reactions = SSchemistry.chemical_reactions
 	chemical_reagents = SSchemistry.chemical_reagents
 

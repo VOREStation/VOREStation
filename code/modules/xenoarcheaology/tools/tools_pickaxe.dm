@@ -195,6 +195,5 @@
 			icon_state = "excavationdrill5" //The other 2 sprites are comically long. Let's just cut it at 5.
 
 /obj/item/weapon/pickaxe/excavationdrill/examine(mob/user)
-	..()
-	var/depth = excavation_amount
-	to_chat(user, "<span class='info'>It is currently set at [depth]cms.</span>")
+	. = ..()
+	. += "<span class='info'>It is currently set at [excavation_amount]cms.</span>"

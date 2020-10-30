@@ -3,12 +3,13 @@
 	req_access = list(access_syndicate)
 	shuttle_tag = "Skipjack"
 
-/datum/shuttle/web_shuttle/heist
+/datum/shuttle/autodock/web_shuttle/heist
 	name = "Skipjack"
 	warmup_time = 0
 	can_cloak = TRUE
 	cloaked = TRUE
-	current_area = /area/skipjack_station/start
+	shuttle_area = /area/skipjack_station/start
+	current_location = "skipjack_start"
 //	docking_controller_tag = "skipjack_shuttle"
 	web_master_type = /datum/shuttle_web_master/heist
 
@@ -20,8 +21,8 @@
 
 /datum/shuttle_destination/heist/root
 	name = "Raider Outpost"
-	my_area = /area/skipjack_station/start
-	preferred_interim_area = /area/skipjack_station/transit
+	my_landmark = "skipjack_start"
+	preferred_interim_tag = "skipjack_transit"
 
 //	dock_target = "skipjack_base"
 
@@ -31,8 +32,8 @@
 
 /datum/shuttle_destination/heist/orbit
 	name = "Orbit of Sif"
-	my_area = /area/skipjack_station/orbit
-	preferred_interim_area = /area/skipjack_station/transit
+	my_landmark = "skipjack_orbit"
+	preferred_interim_tag = "skipjack_transit"
 
 	routes_to_make = list(
 		/datum/shuttle_destination/heist/outside_SC_1d = 30 SECONDS,
@@ -43,8 +44,8 @@
 
 /datum/shuttle_destination/heist/outside_SC_1d
 	name = "NLS Southern Cross - Aft of First Deck"
-	my_area = /area/skipjack_station/firstdeck
-	preferred_interim_area = /area/skipjack_station/transit
+	my_landmark = "skipjack_firstdeck"
+	preferred_interim_tag = "skipjack_transit"
 
 	routes_to_make = list(
 		/datum/shuttle_destination/heist/outside_SC_2d = 0,
@@ -54,8 +55,8 @@
 
 /datum/shuttle_destination/heist/outside_SC_2d
 	name = "NLS Southern Cross - Fore of Second Deck"
-	my_area = /area/skipjack_station/seconddeck
-	preferred_interim_area = /area/skipjack_station/transit
+	my_landmark = "skipjack_seconddeck"
+	preferred_interim_tag = "skipjack_transit"
 
 	routes_to_make = list(
 		/datum/shuttle_destination/heist/outside_SC_1d = 0,
@@ -65,8 +66,8 @@
 
 /datum/shuttle_destination/heist/outside_SC_3d
 	name = "NLS Southern Cross - Starboard of Third Deck"
-	my_area = /area/skipjack_station/thirddeck
-	preferred_interim_area = /area/skipjack_station/transit
+	my_landmark = "skipjack_thirddeck"
+	preferred_interim_tag = "skipjack_transit"
 
 	routes_to_make = list(
 		/datum/shuttle_destination/heist/outside_SC_1d = 0,
@@ -77,8 +78,8 @@
 
 /datum/shuttle_destination/heist/docked_SC
 	name = "NLS Southern Cross - Arrivals Docking Port"
-	my_area = /area/skipjack_station/arrivals_dock
-	preferred_interim_area = /area/skipjack_station/transit
+	my_landmark = "skipjack_arrivals_dock"
+	preferred_interim_tag = "skipjack_transit"
 
 //	dock_target = "skipjack_shuttle_dock_airlock"
 	announcer = "Southern Cross Docking Computer"
@@ -91,8 +92,8 @@
 
 /datum/shuttle_destination/heist/sky
 	name = "Skies of Sif"
-	my_area = /area/skipjack_station/sky
-	preferred_interim_area = /area/skipjack_station/sky_transit
+	my_landmark = "skipjack_sky"
+	preferred_interim_tag = "skipjack_sky_transit"
 
 	routes_to_make = list(
 		/datum/shuttle_destination/heist/planet = 15 SECONDS
@@ -100,5 +101,5 @@
 
 /datum/shuttle_destination/heist/planet
 	name = "Sif Surface"
-	my_area = /area/skipjack_station/planet
-	preferred_interim_area = /area/skipjack_station/sky_transit
+	my_landmark = "skipjack_planet"
+	preferred_interim_tag = "skipjack_sky_transit"

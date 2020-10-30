@@ -2,6 +2,7 @@
 	name = "small rock"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "ore2"
+	randpixel = 8
 	w_class = ITEMSIZE_SMALL
 	var/datum/geosample/geologic_data
 	var/material
@@ -113,8 +114,7 @@
 	material = null
 
 /obj/item/weapon/ore/New()
-	pixel_x = rand(0,16)-8
-	pixel_y = rand(0,8)-8
+	randpixel_xy()
 
 /obj/item/weapon/ore/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/device/core_sampler))
@@ -122,3 +122,15 @@
 		C.sample_item(src, user)
 	else
 		return ..()
+
+//VOREStation Add
+/obj/item/weapon/ore/attack(mob/living/M as mob, mob/living/user as mob)
+	if(M.handle_eat_minerals(src, user))
+		return
+	..()
+
+/obj/item/weapon/ore/attack_generic(var/mob/living/user) //Allow adminbussed mobs to eat ore if they click it while NOT on help intent.
+	if(user.handle_eat_minerals(src))
+		return
+	..()
+//VOREStation Add End

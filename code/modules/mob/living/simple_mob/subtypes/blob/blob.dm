@@ -23,6 +23,7 @@
 
 	var/mob/observer/blob/overmind = null
 	var/obj/structure/blob/factory/factory = null
+	var/datum/blob_type/blob_type = null	// Used for the blob core items, as they have no overmind mob.
 
 	mob_class = MOB_CLASS_SLIME
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
@@ -33,6 +34,8 @@
 /mob/living/simple_mob/blob/update_icons()
 	if(overmind)
 		color = overmind.blob_type.complementary_color
+	else if(blob_type)
+		color = blob_type.complementary_color
 	else
 		color = null
 	..()
@@ -40,6 +43,8 @@
 /mob/living/simple_mob/blob/Destroy()
 	if(overmind)
 		overmind.blob_mobs -= src
+	if(blob_type)
+		blob_type = null
 	return ..()
 
 /mob/living/simple_mob/blob/blob_act(obj/structure/blob/B)
@@ -60,3 +65,16 @@
 	for(var/obj/structure/blob/B in range(1, src))
 		return TRUE
 	return ..()
+
+/mob/living/simple_mob/blob/IIsAlly(mob/living/L)
+	var/ally = ..(L)
+	if(!ally)
+		var/list/items = L.get_all_held_items()
+		for(var/obj/item/I in items)
+			if(istype(I, /obj/item/weapon/blobcore_chunk))
+				var/obj/item/weapon/blobcore_chunk/BC = I
+				if(!overmind || (BC.blob_type && overmind.blob_type.type == BC.blob_type.type))
+					ally = TRUE
+				break
+
+	return ally

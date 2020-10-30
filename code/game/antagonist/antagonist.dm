@@ -4,9 +4,11 @@
 	var/list/restricted_jobs =     list()   // Jobs that cannot be this antagonist (depending on config)
 	var/list/protected_jobs =      list()   // As above.
 	var/list/roundstart_restricted =      list()	//Jobs that can be this antag, but not at roundstart
+	var/avoid_silicons = FALSE				// If we won't hand this antag role to silicons (AI, borg, etc)
 
 	// Strings.
 	var/welcome_text = "Cry havoc and let slip the dogs of war!"
+	var/antag_sound = 'sound/effects/antag_notice/general_baddie_alert.ogg' // The sound file to play when someone gets this role. Only they can hear it.
 	var/leader_welcome_text                 // Text shown to the leader, if any.
 	var/victory_text                        // World output at roundend for victory.
 	var/loss_text                           // As above for loss.

@@ -84,6 +84,9 @@
 	damage = 0
 	nodamage = TRUE
 
+	impact_effect_type = /obj/effect/temp_visual/impact_effect
+	hitsound_wall = 'sound/weapons/effects/searwall.ogg'
+
 
 // Close to mid-ranged shooter that arcs over other things, ideal if allies are in front of it.
 // Difference from siege hivebots is that siege hivebots have limited charges for their attacks, are very long range, and \

@@ -9,22 +9,46 @@
 	var/datum/artifact_effect/secondary_effect
 	var/being_used = 0
 
+	var/predefined_effects = FALSE
+
+	var/predefined_primary
+	var/predefined_secondary
+
+	var/predefined_icon_num
+
+	var/predefined_triggers = FALSE
+
+	var/predefined_trig_primary
+	var/predefined_trig_secondary
+
 /obj/machinery/artifact/New()
 	..()
 
-	var/effecttype = pick(typesof(/datum/artifact_effect) - /datum/artifact_effect)
-	my_effect = new effecttype(src)
+	if(predefined_effects && predefined_primary)
+		my_effect = new predefined_primary(src)
 
-	if(prob(75))
-		effecttype = pick(typesof(/datum/artifact_effect) - /datum/artifact_effect)
-		secondary_effect = new effecttype(src)
+		if(predefined_secondary)
+			secondary_effect = new predefined_secondary(src)
+			if(prob(75))
+				secondary_effect.ToggleActivate(0)
+
+	else
+		var/effecttype = pick(typesof(/datum/artifact_effect) - /datum/artifact_effect)
+		my_effect = new effecttype(src)
+
 		if(prob(75))
-			secondary_effect.ToggleActivate(0)
+			effecttype = pick(typesof(/datum/artifact_effect) - /datum/artifact_effect)
+			secondary_effect = new effecttype(src)
+			if(prob(75))
+				secondary_effect.ToggleActivate(0)
 
-	icon_num = rand(0, 14)
+	if(!isnull(predefined_icon_num))
+		icon_num = predefined_icon_num
+	else
+		icon_num = rand(0, 15)
 
 	icon_state = "ano[icon_num]0"
-	if(icon_num == 7 || icon_num == 8)
+	if(icon_num == 7 || icon_num == 8 || icon_num == 15)
 		name = "large crystal"
 		desc = pick("It shines faintly as it catches the light.",
 		"It appears to have a faint inner glow.",
@@ -33,7 +57,7 @@
 		"It's mesmerizing to behold.")
 		if(prob(50))
 			my_effect.trigger = TRIGGER_ENERGY
-	else if(icon_num == 9)
+	else if(icon_num == 9 || icon_num == 17 || icon_num == 19)
 		name = "alien computer"
 		desc = "It is covered in strange markings."
 		if(prob(75))
@@ -52,6 +76,13 @@
 		desc = "A strange statue."
 		if(prob(60))
 			my_effect.trigger = pick(TRIGGER_TOUCH, TRIGGER_HEAT, TRIGGER_COLD, TRIGGER_PHORON, TRIGGER_OXY, TRIGGER_CO2, TRIGGER_NITRO)
+
+	if(predefined_triggers)
+		if(predefined_trig_primary && my_effect)
+			my_effect.trigger = predefined_trig_primary
+
+		if(predefined_trig_secondary && secondary_effect)
+			secondary_effect.trigger = predefined_trig_secondary
 
 /obj/machinery/artifact/proc/choose_effect()
 	var/effect_type = input(usr, "What type do you want?", "Effect Type") as null|anything in typesof(/datum/artifact_effect) - /datum/artifact_effect
@@ -271,7 +302,36 @@
 			warn = 1
 
 		if(warn)
-			to_chat(M, "<b>You accidentally touch [src].</b>")
+			to_chat(M, "<b>You accidentally touch \the [src].</b>")
+	..()
+
+/obj/machinery/artifact/Bump(var/atom/bumped)
+	if(istype(bumped,/obj))
+		if(bumped:throwforce >= 10)
+			if(my_effect.trigger == TRIGGER_FORCE)
+				my_effect.ToggleActivate()
+			if(secondary_effect && secondary_effect.trigger == TRIGGER_FORCE && prob(25))
+				secondary_effect.ToggleActivate(0)
+	else if(ishuman(bumped) && GetAnomalySusceptibility(bumped) >= 0.5)
+		var/warn = 0
+
+		if (my_effect.trigger == TRIGGER_TOUCH && prob(50))
+			my_effect.ToggleActivate()
+			warn = 1
+		if(secondary_effect && secondary_effect.trigger == TRIGGER_TOUCH && prob(25))
+			secondary_effect.ToggleActivate(0)
+			warn = 1
+
+		if (my_effect.effect == EFFECT_TOUCH && prob(50))
+			my_effect.DoEffectTouch(bumped)
+			warn = 1
+		if(secondary_effect && secondary_effect.effect == EFFECT_TOUCH && secondary_effect.activated && prob(50))
+			secondary_effect.DoEffectTouch(bumped)
+			warn = 1
+
+		if(warn)
+			to_chat(bumped, "<b>You accidentally touch \the [src] as it hits you.</b>")
+
 	..()
 
 /obj/machinery/artifact/bullet_act(var/obj/item/projectile/P)
@@ -307,8 +367,8 @@
 				secondary_effect.ToggleActivate(0)
 	return
 
-/obj/machinery/artifact/Move()
-	..()
+/obj/machinery/artifact/Moved()
+	. = ..()
 	if(my_effect)
 		my_effect.UpdateMove()
 	if(secondary_effect)

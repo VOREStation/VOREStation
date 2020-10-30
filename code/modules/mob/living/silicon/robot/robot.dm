@@ -34,7 +34,6 @@
 
 //Hud stuff
 
-	var/obj/screen/cells = null
 	var/obj/screen/inv1 = null
 	var/obj/screen/inv2 = null
 	var/obj/screen/inv3 = null
@@ -125,7 +124,7 @@
 		camera = new /obj/machinery/camera(src)
 		camera.c_tag = real_name
 		camera.replace_networks(list(NETWORK_DEFAULT,NETWORK_ROBOTS))
-		if(wires.IsIndexCut(BORG_WIRE_CAMERA))
+		if(wires.is_cut(WIRE_BORG_CAMERA))
 			camera.status = 0
 
 	init()
@@ -337,6 +336,7 @@
 /mob/living/silicon/robot/verb/Namepick()
 	set category = "Robot Commands"
 	if(custom_name)
+		to_chat(usr, "You can't pick another custom name. Go ask for a name change.")
 		return 0
 
 	spawn(0)
@@ -348,12 +348,6 @@
 
 		updatename()
 		updateicon()
-
-// this verb lets cyborgs see the stations manifest
-/mob/living/silicon/robot/verb/cmd_station_manifest()
-	set category = "Robot Commands"
-	set name = "Show Crew Manifest"
-	show_station_manifest()
 
 /mob/living/silicon/robot/proc/self_diagnosis()
 	if(!is_component_functioning("diagnosis unit"))
@@ -416,6 +410,7 @@
 /mob/living/silicon/robot/verb/spark_plug() //So you can still sparkle on demand without violence.
 	set category = "Robot Commands"
 	set name = "Emit Sparks"
+	to_chat(src, "You harmlessly spark.")
 	spark_system.start()
 
 // this function displays jetpack pressure in the stat panel
@@ -537,7 +532,7 @@
 				to_chat(user, "You close the cover.")
 				opened = 0
 				updateicon()
-			else if(wiresexposed && wires.IsAllCut())
+			else if(wiresexposed && wires.is_all_cut())
 				//Cell is out, wires are exposed, remove MMI, produce damaged chassis, baleet original mob.
 				if(!mmi)
 					to_chat(user, "\The [src] has no brain to remove.")
@@ -685,32 +680,6 @@
 
 	add_fingerprint(user)
 
-	if(istype(user,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = user
-		//VOREStation Removal
-		//if(H.species.can_shred(H))
-		//	attack_generic(H, rand(30,50), "slashed")
-		//	return
-		//VOREStation Edit: Adding borg petting.  Help intent pets, Disarm intent taps, Grab should remove the battery for replacement, and Harm is punching(no damage)
-		switch(H.a_intent)
-			if(I_HELP)
-				visible_message("<span class='notice'>[H] pets [src].</span>")
-				return
-			if(I_HURT)
-				H.do_attack_animation(src)
-				if(H.species.can_shred(H))
-					attack_generic(H, rand(30,50), "slashed")
-					return
-				else
-					playsound(src.loc, 'sound/effects/bang.ogg', 10, 1)
-					visible_message("<span class='warning'>[H] punches [src], but doesn't leave a dent.</span>")
-					return
-			if(I_DISARM)
-				H.do_attack_animation(src)
-				playsound(src.loc, 'sound/effects/clang1.ogg', 10, 1)
-				visible_message("<span class='warning'>[H] taps [src].</span>")
-				return
-		//VOREStation Edit: Addition of borg petting end
 	if(opened && !wiresexposed && (!istype(user, /mob/living/silicon)))
 		var/datum/robot_component/cell_component = components["power cell"]
 		if(cell)
@@ -727,6 +696,28 @@
 			var/obj/item/broken_device = cell_component.wrapped
 			to_chat(user, "You remove \the [broken_device].")
 			user.put_in_active_hand(broken_device)
+
+	if(istype(user,/mob/living/carbon/human) && !opened)
+		var/mob/living/carbon/human/H = user
+		//Adding borg petting.  Help intent pets, Disarm intent taps and Harm is punching(no damage)
+		switch(H.a_intent)
+			if(I_HELP)
+				visible_message("<span class='notice'>[H] pets [src].</span>")
+				return
+			if(I_HURT)
+				H.do_attack_animation(src)
+				if(H.species.can_shred(H))
+					attack_generic(H, rand(30,50), "slashed")
+					return
+				else
+					playsound(src.loc, 'sound/effects/bang.ogg', 10, 1)
+					visible_message("<span class='warning'>[H] punches [src], but doesn't leave a dent.</span>")
+					return
+			if(I_DISARM)
+				H.do_attack_animation(src)
+				playsound(src.loc, 'sound/effects/clang2.ogg', 10, 1)
+				visible_message("<span class='warning'>[H] taps [src].</span>")
+				return
 
 //Robots take half damage from basic attacks.
 /mob/living/silicon/robot/attack_generic(var/mob/user, var/damage, var/attack_message)
@@ -933,21 +924,21 @@
 
 /mob/living/silicon/robot/proc/SetLockdown(var/state = 1)
 	// They stay locked down if their wire is cut.
-	if(wires.LockedCut())
+	if(wires.is_cut(WIRE_BORG_LOCKED))
 		state = 1
+	if(state)
+		throw_alert("locked", /obj/screen/alert/locked)
+	else
+		clear_alert("locked")
 	lockdown = state
 	lockcharge = state
 	update_canmove()
 
 /mob/living/silicon/robot/mode()
-	set name = "Activate Held Object"
-	set category = "IC"
-	set src = usr
-
-	if(world.time <= next_click) // Hard check, before anything else, to avoid crashing
+	if(!checkClickCooldown())
 		return
 
-	next_click = world.time + 1
+	setClickCooldown(1)
 
 	var/obj/item/W = get_active_hand()
 	if (W)
@@ -1141,3 +1132,19 @@
 	if(module_active && istype(module_active,/obj/item/weapon/gripper))
 		var/obj/item/weapon/gripper/G = module_active
 		G.drop_item_nm()
+
+/mob/living/silicon/robot/disable_spoiler_vision()
+	if(sight_mode & (BORGMESON|BORGMATERIAL|BORGXRAY)) // Whyyyyyyyy have seperate defines.
+		var/i = 0
+		// Borg inventory code is very . . interesting and as such, unequiping a specific item requires jumping through some (for) loops.
+		var/current_selection_index = get_selected_module() // Will be 0 if nothing is selected.
+		for(var/thing in list(module_state_1, module_state_2, module_state_3))
+			i++
+			if(istype(thing, /obj/item/borg/sight))
+				var/obj/item/borg/sight/S = thing
+				if(S.sight_mode & (BORGMESON|BORGMATERIAL|BORGXRAY))
+					select_module(i)
+					uneq_active()
+
+		if(current_selection_index) // Select what the player had before if possible.
+			select_module(current_selection_index)

@@ -16,6 +16,9 @@
 	var/obj/item/device/encryptionkey/keyslot2 = null
 	var/ks1type = null
 	var/ks2type = null
+	
+	drop_sound = 'sound/items/drop/component.ogg'
+	pickup_sound = 'sound/items/pickup/component.ogg'
 
 /obj/item/device/radio/headset/New()
 	..()
@@ -37,21 +40,23 @@
 	return list_secure_channels()
 
 /obj/item/device/radio/headset/examine(mob/user)
-	if(!(..(user, 1) && radio_desc))
-		return
+	. = ..()
 
-	to_chat(user, "The following channels are available:")
-	to_chat(user, radio_desc)
+	if(radio_desc && Adjacent(user))
+		. += "The following channels are available:"
+		. += radio_desc
 
-/obj/item/device/radio/headset/handle_message_mode(mob/living/M as mob, message, channel)
-	if (channel == "special")
-		if (translate_binary)
+/obj/item/device/radio/headset/handle_message_mode(mob/living/M as mob, list/message_pieces, channel)
+	if(channel == "special")
+		if(translate_binary)
 			var/datum/language/binary = GLOB.all_languages["Robot Talk"]
-			binary.broadcast(M, message)
-		if (translate_hive)
+			binary.broadcast(M, M.strip_prefixes(multilingual_to_message(message_pieces)))
+			return RADIO_CONNECTION_NON_SUBSPACE
+		if(translate_hive)
 			var/datum/language/hivemind = GLOB.all_languages["Hivemind"]
-			hivemind.broadcast(M, message)
-		return null
+			hivemind.broadcast(M, M.strip_prefixes(multilingual_to_message(message_pieces)))
+			return RADIO_CONNECTION_NON_SUBSPACE
+		return RADIO_CONNECTION_FAIL
 
 	return ..()
 
@@ -74,6 +79,9 @@
 				append = "_r"
 
 	return "[..()][append]"
+
+/obj/item/device/radio/headset/tgui_state(mob/user)
+	return GLOB.tgui_inventory_state
 
 /obj/item/device/radio/headset/syndicate
 	origin_tech = list(TECH_ILLEGAL = 3)
@@ -168,13 +176,13 @@
 
 
 /obj/item/device/radio/headset/heads/captain
-	name = "colony director's headset"
+	name = "site manager's headset"
 	desc = "The headset of the boss."
 	icon_state = "com_headset"
 	ks2type = /obj/item/device/encryptionkey/heads/captain
 
 /obj/item/device/radio/headset/heads/captain/alt
-	name = "colony director's bowman headset"
+	name = "site manager's bowman headset"
 	desc = "The headset of the boss."
 	icon_state = "com_headset_alt"
 	ks2type = /obj/item/device/encryptionkey/heads/captain
@@ -250,13 +258,13 @@
 
 /obj/item/device/radio/headset/heads/hop
 	name = "head of personnel's headset"
-	desc = "The headset of the guy who will one day be Colony Director."
+	desc = "The headset of the guy who will one day be Site Manager."
 	icon_state = "com_headset"
 	ks2type = /obj/item/device/encryptionkey/heads/hop
 
 /obj/item/device/radio/headset/heads/hop/alt
 	name = "head of personnel's bowman headset"
-	desc = "The headset of the guy who will one day be Colony Director."
+	desc = "The headset of the guy who will one day be Site Manager."
 	icon_state = "com_headset_alt"
 	ks2type = /obj/item/device/encryptionkey/heads/hop
 
@@ -380,7 +388,7 @@
 	return
 
 
-/obj/item/device/radio/headset/proc/recalculateChannels(var/setDescription = 0)
+/obj/item/device/radio/headset/recalculateChannels(var/setDescription = 0)
 	src.channels = list()
 	src.translate_binary = 0
 	src.translate_hive = 0

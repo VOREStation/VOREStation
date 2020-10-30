@@ -2,7 +2,7 @@
 // Turf-only flags.
 #define NOJAUNT 1 // This is used in literally one place, turf.dm, to block ethereal jaunt.
 
-#define TRANSITIONEDGE 7 // Distance from edge to move to another z-level.
+#define TRANSITIONEDGE 1 // Distance from edge to move to another z-level.
 
 // Invisibility constants. These should only be used for TRUE invisibility, AKA nothing living players touch
 #define INVISIBILITY_LIGHTING             20
@@ -44,42 +44,11 @@
 #define 	  LIFE_HUD 10 // STATUS_HUD that only reports dead or alive
 #define     TOTAL_HUDS 10 // Total number of HUDs. Like body layers, and other things, it comes up sometimes.
 
-//some colors
-#define COLOR_WHITE   			"#FFFFFF"
-#define COLOR_SILVER  			"#C0C0C0"
-#define COLOR_GRAY    			"#808080"
-#define COLOR_BLACK   			"#000000"
-#define COLOR_RED     			"#FF0000"
-#define COLOR_MAROON 			"#800000"
-#define COLOR_YELLOW  			"#FFFF00"
-#define COLOR_OLIVE  			"#808000"
-#define COLOR_LIME   			"#00FF00"
-#define COLOR_GREEN   			"#008000"
-#define COLOR_CYAN    			"#00FFFF"
-#define COLOR_TEAL    			"#008080"
-#define COLOR_BLUE    			"#0000FF"
-#define COLOR_NAVY    			"#000080"
-#define COLOR_PINK    			"#FF00FF"
-#define COLOR_PURPLE  			"#800080"
-#define COLOR_ORANGE  			"#FF9900"
-#define COLOR_LUMINOL 			"#66FFFF"
-#define COLOR_BEIGE 			"#CEB689"
-#define COLOR_BLUE_GRAY 		"#6A97B0"
-#define COLOR_BROWN 			"#B19664"
-#define COLOR_DARK_BROWN 		"#917448"
-#define COLOR_DARK_ORANGE 		"#B95A00"
-#define COLOR_GREEN_GRAY 		"#8DAF6A"
-#define COLOR_RED_GRAY 			"#AA5F61"
-#define COLOR_PALE_BLUE_GRAY	"#8BBBD5"
-#define COLOR_PALE_GREEN_GRAY 	"#AED18B"
-#define COLOR_PALE_RED_GRAY		"#CC9090"
-#define COLOR_PALE_PURPLE_GRAY	"#BDA2BA"
-#define COLOR_PURPLE_GRAY 		"#A2819E"
-#define COLOR_RED_LIGHT         "#FF3333"
-#define COLOR_DEEP_SKY_BLUE     "#00e1ff"
+#define CLIENT_FROM_VAR(I) (ismob(I) ? I:client : (isclient(I) ? I : null))
 
 
-
+//Persistence
+#define AREA_FLAG_IS_NOT_PERSISTENT 8 // SSpersistence will not track values from this area.
 
 //	Shuttles.
 
@@ -105,6 +74,7 @@
 #define FORCE_LAUNCH 2
 #define WAIT_ARRIVE  3
 #define WAIT_FINISH  4
+#define DO_AUTOPILOT 5
 
 // Setting this much higher than 1024 could allow spammers to DOS the server easily.
 #define MAX_MESSAGE_LEN       2048 //VOREStation Edit - I'm not sure about "easily". It can be a little longer.
@@ -113,6 +83,7 @@
 #define MAX_RECORD_LENGTH	  24576
 #define MAX_LNAME_LEN         64
 #define MAX_NAME_LEN          52
+#define MAX_FEEDBACK_LENGTH      4096
 #define MAX_TEXTFILE_LENGTH 128000		// 512GQ file
 
 // Event defines.
@@ -128,6 +99,13 @@
 //Area flags, possibly more to come
 #define RAD_SHIELDED 1 //shielded from radiation, clearly
 
+// OnTopic return values
+#define TOPIC_NOACTION 0
+#define TOPIC_HANDLED 1
+#define TOPIC_REFRESH 2
+#define TOPIC_UPDATE_PREVIEW 4
+#define TOPIC_REFRESH_UPDATE_PREVIEW (TOPIC_REFRESH|TOPIC_UPDATE_PREVIEW)
+
 // Convoluted setup so defines can be supplied by Bay12 main server compile script.
 // Should still work fine for people jamming the icons into their repo.
 #ifndef CUSTOM_ITEM_OBJ
@@ -137,7 +115,7 @@
 #define CUSTOM_ITEM_MOB 'icons/mob/custom_items_mob.dmi'
 #endif
 #ifndef CUSTOM_ITEM_SYNTH
-#define CUSTOM_ITEM_SYNTH 'icons/mob/custom_synthetic.dmi'
+#define CUSTOM_ITEM_SYNTH 'icons/mob/custom_synthetic_vr.dmi' //Vorestation edit
 #endif
 
 #define WALL_CAN_OPEN 1
@@ -176,6 +154,7 @@
 #define MAT_SUPERMATTER		"supermatter"
 #define MAT_METALHYDROGEN	"mhydrogen"
 #define MAT_OSMIUM			"osmium"
+#define MAT_GRAPHITE		"graphite"
 
 #define SHARD_SHARD "shard"
 #define SHARD_SHRAPNEL "shrapnel"
@@ -236,17 +215,20 @@
 #define ANTAG_SHARED	"Shared"
 #define ANTAG_KNOWN		"Known"
 
-// Job groups
-#define ROLE_COMMAND			"command"
-#define ROLE_SECURITY			"security"
-#define ROLE_ENGINEERING		"engineering"
-#define ROLE_MEDICAL			"medical"
-#define ROLE_RESEARCH			"research"
-#define ROLE_CARGO				"cargo"
-#define ROLE_CIVILIAN			"civilian"
-#define ROLE_SYNTHETIC			"synthetic"
-#define ROLE_UNKNOWN			"unknown"
-#define ROLE_EVERYONE			"everyone"
+// Departments.
+#define DEPARTMENT_COMMAND			"Command"
+#define DEPARTMENT_SECURITY			"Security"
+#define DEPARTMENT_ENGINEERING		"Engineering"
+#define DEPARTMENT_MEDICAL			"Medical"
+#define DEPARTMENT_RESEARCH			"Research"
+#define DEPARTMENT_CARGO			"Cargo"
+#define DEPARTMENT_CIVILIAN			"Civilian"
+#define DEPARTMENT_PLANET			"Exploration" //VOREStation Edit // I hate having this be here and not in a SC file. Hopefully someday the manifest can be rewritten to be map-agnostic.
+#define DEPARTMENT_SYNTHETIC		"Synthetic"
+
+// These are mostly for the department guessing code and event system.
+#define DEPARTMENT_UNKNOWN			"Unknown"
+#define DEPARTMENT_EVERYONE			"Everyone"
 
 // Canonical spellings of TSCs, so typos never have to happen again due to human error.
 #define TSC_NT		"NanoTrasen"
@@ -263,6 +245,7 @@
 
 #define WORLD_ICON_SIZE 32 //Needed for the R-UST port
 #define PIXEL_MULTIPLIER WORLD_ICON_SIZE/32 //Needed for the R-UST port
+#define MAX_CLIENT_VIEW	34  // Maximum effective value of client.view (According to DM references)
 
 // Maploader bounds indices
 #define MAP_MINX 1
@@ -361,3 +344,138 @@ var/global/list/##LIST_NAME = list();\
 #define MOUSE_OPACITY_TRANSPARENT 0
 #define MOUSE_OPACITY_ICON 1
 #define MOUSE_OPACITY_OPAQUE 2
+
+// Used by radios to indicate that they have sent a message via something other than subspace
+#define RADIO_CONNECTION_FAIL 0
+#define RADIO_CONNECTION_NON_SUBSPACE 1
+
+#define JOB_CARBON			0x1
+#define JOB_SILICON_ROBOT	0x2
+#define JOB_SILICON_AI		0x4
+#define JOB_SILICON			0x6 // 2|4, probably don't set jobs to this, but good for checking
+
+#define DEFAULT_OVERMAP_RANGE 0 // Makes general computers and devices be able to connect to other overmap z-levels on the same tile.
+
+/*
+	Used for wire name appearances. Replaces the color name on the left with the one on the right.
+	The color on the left is the one used as the actual color of the wire, but it doesn't look good when written.
+	So, we need to replace the name to something that looks better.
+*/
+#define LIST_COLOR_RENAME 				\
+	list(								\
+		"rebeccapurple" = "dark purple",\
+		"darkslategrey" = "dark grey",	\
+		"darkolivegreen"= "dark green",	\
+		"darkslateblue" = "dark blue",	\
+		"darkkhaki" 	= "khaki",		\
+		"darkseagreen" 	= "light green",\
+		"midnightblue" 	= "blue",		\
+		"lightgrey" 	= "light grey",	\
+		"darkgrey" 		= "dark grey",	\
+		"darkmagenta"	= "dark magenta",\
+		"steelblue" 	= "blue",		\
+		"goldenrod"	 	= "gold"		\
+	)
+
+/// Pure Black and white colorblindness. Every species except Vulpkanins and Tajarans will have this.
+#define GREYSCALE_COLOR_REPLACE		\
+	list(							\
+		"red"		= "grey",		\
+		"blue"		= "grey",		\
+		"green"		= "grey",		\
+		"orange"	= "light grey",	\
+		"brown"		= "grey",		\
+		"gold"		= "light grey",	\
+		"cyan"		= "silver",		\
+		"magenta"	= "grey",		\
+		"purple"	= "grey",		\
+		"pink"		= "light grey"	\
+	)
+
+/// Red colorblindness. Vulpkanins/Wolpins have this.
+#define PROTANOPIA_COLOR_REPLACE		\
+	list(								\
+		"red"		= "darkolivegreen",	\
+		"darkred"	= "darkolivegreen",	\
+		"green"		= "yellow",			\
+		"orange"	= "goldenrod",		\
+		"gold"		= "goldenrod", 		\
+		"brown"		= "darkolivegreen",	\
+		"cyan"		= "steelblue",		\
+		"magenta"	= "blue",			\
+		"purple"	= "darkslategrey",	\
+		"pink"		= "beige"			\
+	)
+
+/// Green colorblindness.
+#define DEUTERANOPIA_COLOR_REPLACE		\
+	list(								\
+		"red"			= "goldenrod",	\
+		"green"			= "tan",		\
+		"yellow"		= "tan",		\
+		"orange"		= "goldenrod",	\
+		"gold"			= "burlywood",	\
+		"brown"			= "saddlebrown",\
+		"cyan"			= "lavender",	\
+		"magenta"		= "blue",		\
+		"darkmagenta"	= "darkslateblue",	\
+		"purple"		= "slateblue",	\
+		"pink"			= "thistle"		\
+	)
+
+/// Yellow-Blue colorblindness. Tajarans/Farwas have this.
+#define TRITANOPIA_COLOR_REPLACE		\
+	list(								\
+		"red"		= "rebeccapurple",	\
+		"blue"		= "darkslateblue",	\
+		"green"		= "darkolivegreen",	\
+		"orange"	= "darkkhaki",		\
+		"gold"		= "darkkhaki",		\
+		"brown"		= "rebeccapurple",	\
+		"cyan"		= "darkseagreen",	\
+		"magenta"	= "darkslateblue",	\
+		"navy"		= "darkslateblue",	\
+		"purple"	= "darkslateblue",	\
+		"pink"		= "lightgrey"		\
+	)
+
+//Various stuff used in Persistence
+
+#define send_output(target, msg, control) target << output(msg, control)
+
+#define send_link(target, url) target << link(url)
+
+#define SPAN_NOTICE(X) "<span class='notice'>[X]</span>"
+
+#define SPAN_WARNING(X) "<span class='warning'>[X]</span>"
+
+#define SPAN_DANGER(X) "<span class='danger'>[X]</span>"
+
+#define SPAN_OCCULT(X) "<span class='cult'>[X]</span>"
+
+#define FONT_SMALL(X) "<font size='1'>[X]</font>"
+
+#define FONT_NORMAL(X) "<font size='2'>[X]</font>"
+
+#define FONT_LARGE(X) "<font size='3'>[X]</font>"
+
+#define FONT_HUGE(X) "<font size='4'>[X]</font>"
+
+#define FONT_GIANT(X) "<font size='5'>[X]</font>"
+
+// Volume Channel Defines
+
+#define VOLUME_CHANNEL_MASTER "Master"
+#define VOLUME_CHANNEL_AMBIENCE "Ambience"
+#define VOLUME_CHANNEL_ALARMS "Alarms"
+#define VOLUME_CHANNEL_VORE "Vore"
+#define VOLUME_CHANNEL_DOORS "Doors"
+
+// Make sure you update this or clients won't be able to adjust the channel
+GLOBAL_LIST_INIT(all_volume_channels, list(
+	VOLUME_CHANNEL_MASTER,
+	VOLUME_CHANNEL_AMBIENCE,
+	VOLUME_CHANNEL_ALARMS,
+	VOLUME_CHANNEL_VORE,
+	VOLUME_CHANNEL_DOORS,
+))

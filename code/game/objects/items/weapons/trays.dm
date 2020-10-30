@@ -14,6 +14,7 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 3000)
 	var/list/carrying = list() // List of things on the tray. - Doohl
 	var/max_carry = 10
+	drop_sound = 'sound/items/trayhit1.ogg'
 
 /obj/item/weapon/tray/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	user.setClickCooldown(user.get_attack_speed(src))
@@ -35,10 +36,10 @@
 		M.Weaken(1)
 		user.take_organ_damage(2)
 		if(prob(50))
-			playsound(M, 'sound/items/trayhit1.ogg', 50, 1)
+			playsound(src, 'sound/items/trayhit1.ogg', 50, 1)
 			return
 		else
-			playsound(M, 'sound/items/trayhit2.ogg', 50, 1) //sound playin'
+			playsound(src, 'sound/items/trayhit2.ogg', 50, 1) //sound playin'
 			return //it always returns, but I feel like adding an extra return just for safety's sakes. EDIT; Oh well I won't :3
 
 	var/mob/living/carbon/human/H = M      ///////////////////////////////////// /Let's have this ready for later.
@@ -59,12 +60,12 @@
 		else
 			M.take_organ_damage(5)
 		if(prob(50))
-			playsound(M, 'sound/items/trayhit1.ogg', 50, 1)
+			playsound(src, 'sound/items/trayhit1.ogg', 50, 1)
 			for(var/mob/O in viewers(M, null))
 				O.show_message(text("<span class='danger'>[] slams [] with the tray!</span>", user, M), 1)
 			return
 		else
-			playsound(M, 'sound/items/trayhit2.ogg', 50, 1)  //we applied the damage, we played the sound, we showed the appropriate messages. Time to return and stop the proc
+			playsound(src, 'sound/items/trayhit2.ogg', 50, 1)  //we applied the damage, we played the sound, we showed the appropriate messages. Time to return and stop the proc
 			for(var/mob/O in viewers(M, null))
 				O.show_message(text("<span class='danger'>[] slams [] with the tray!</span>", user, M), 1)
 			return
@@ -92,11 +93,11 @@
 				location.add_blood(H)
 
 		if(prob(50))
-			playsound(M, 'sound/items/trayhit1.ogg', 50, 1)
+			playsound(src, 'sound/items/trayhit1.ogg', 50, 1)
 			for(var/mob/O in viewers(M, null))
 				O.show_message(text("<span class='danger'>[] slams [] with the tray!</span>", user, M), 1)
 		else
-			playsound(M, 'sound/items/trayhit2.ogg', 50, 1)  //sound playin'
+			playsound(src, 'sound/items/trayhit2.ogg', 50, 1)  //sound playin'
 			for(var/mob/O in viewers(M, null))
 				O.show_message(text("<span class='danger'>[] slams [] with the tray!</span>", user, M), 1)
 		if(prob(10))
@@ -116,11 +117,11 @@
 				location.add_blood(H)
 
 		if(prob(50))
-			playsound(M, 'sound/items/trayhit1.ogg', 50, 1)
+			playsound(src, 'sound/items/trayhit1.ogg', 50, 1)
 			for(var/mob/O in viewers(M, null))
 				O.show_message(text("<span class='danger'>[] slams [] in the face with the tray!</span>", user, M), 1)
 		else
-			playsound(M, 'sound/items/trayhit2.ogg', 50, 1)  //sound playin' again
+			playsound(src, 'sound/items/trayhit2.ogg', 50, 1)  //sound playin' again
 			for(var/mob/O in viewers(M, null))
 				O.show_message(text("<span class='danger'>[] slams [] in the face with the tray!</span>", user, M), 1)
 		if(prob(30))
@@ -140,7 +141,7 @@
 	if(istype(W, /obj/item/weapon/material/kitchen/rollingpin))
 		if(cooldown < world.time - 25)
 			user.visible_message("<span class='warning'>[user] bashes [src] with [W]!</span>")
-			playsound(user.loc, 'sound/effects/shieldbash.ogg', 50, 1)
+			playsound(src, 'sound/effects/shieldbash.ogg', 50, 1)
 			cooldown = world.time
 	else
 		..()

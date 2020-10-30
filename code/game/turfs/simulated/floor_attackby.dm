@@ -1,4 +1,4 @@
-/turf/simulated/floor/attackby(obj/item/C as obj, mob/user as mob)
+/turf/simulated/floor/attackby(var/obj/item/C, var/mob/user)
 
 	if(!C || !user)
 		return 0
@@ -8,6 +8,9 @@
 		if(L.a_intent != I_HELP)
 			attack_tile(C, L) // Be on help intent if you want to decon something.
 			return
+
+	if(!(C.is_screwdriver() && flooring && (flooring.flags & TURF_REMOVE_SCREWDRIVER)) && try_graffiti(user, C))
+		return
 
 	if(istype(C, /obj/item/stack/tile/roofing))
 		var/expended_tile = FALSE // To track the case. If a ceiling is built in a multiz zlevel, it also necessarily roofs it against weather
@@ -53,7 +56,7 @@
 					break
 		return
 
-	if(flooring)
+	if(!is_plating())
 		if(istype(C, /obj/item/weapon))
 			try_deconstruct_tile(C, user)
 			return
@@ -64,7 +67,6 @@
 			try_replace_tile(C, user)
 			return
 	else
-
 		if(istype(C, /obj/item/stack/cable_coil))
 			if(broken || burnt)
 				to_chat(user, "<span class='warning'>This section is too damaged to support anything. Use a welder to fix the damage.</span>")
@@ -94,7 +96,7 @@
 			// Stay still and focus...
 			if(use_flooring.build_time && !do_after(user, use_flooring.build_time))
 				return
-			if(flooring || !S || !user || !use_flooring)
+			if(!is_plating() || !S || !user || !use_flooring)
 				return
 			if(S.use(use_flooring.build_cost))
 				set_flooring(use_flooring)
@@ -152,6 +154,8 @@
 	if(T.type == flooring.build_type)
 		return
 	var/obj/item/weapon/W = user.is_holding_item_of_type(/obj/item/weapon)
+	if(!istype(W))
+		return
 	if(!try_deconstruct_tile(W, user))
 		return
 	if(flooring)

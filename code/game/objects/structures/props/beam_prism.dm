@@ -197,16 +197,18 @@
 		P.rotate_auto(new_bearing)
 
 /obj/structure/prop/prismcontrol/Initialize()
-	..()
+	. = ..()
 	if(my_turrets.len) //Preset controls.
 		for(var/obj/structure/prop/prism/P in my_turrets)
 			P.remote_dial = src
-		return
-	spawn()
-		for(var/obj/structure/prop/prism/P in orange(src, world.view)) //Don't search a huge area.
-			if(P.dialID == dialID && !P.remote_dial && P.external_control_lock)
-				my_turrets |= P
-				P.remote_dial = src
+	else
+		. = INITIALIZE_HINT_LATELOAD
+
+/obj/structure/prop/prismcontrol/LateInitialize()
+	for(var/obj/structure/prop/prism/P in orange(src, world.view)) //Don't search a huge area.
+		if(P.dialID == dialID && !P.remote_dial && P.external_control_lock)
+			my_turrets |= P
+			P.remote_dial = src
 
 /obj/structure/prop/prismcontrol/Destroy()
 	for(var/obj/structure/prop/prism/P in my_turrets)

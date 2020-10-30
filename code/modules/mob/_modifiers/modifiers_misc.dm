@@ -83,7 +83,7 @@ the artifact triggers the rage.
 
 /datum/modifier/berserk/on_applied()
 	if(ishuman(holder)) // Most other mobs don't really use nutrition and can't get it back.
-		holder.nutrition = max(0, holder.nutrition - nutrition_cost)
+		holder.adjust_nutrition(-nutrition_cost)
 	holder.visible_message("<span class='critical'>\The [holder] descends into an all consuming rage!</span>")
 
 	// End all stuns.
@@ -112,16 +112,18 @@ the artifact triggers the rage.
 			var/mob/living/carbon/human/H = holder
 			H.shock_stage = last_shock_stage
 
-/datum/modifier/berserk/can_apply(var/mob/living/L)
+/datum/modifier/berserk/can_apply(var/mob/living/L, var/suppress_failure = FALSE)
 	if(L.stat)
-		to_chat(L, "<span class='warning'>You can't be unconscious or dead to berserk.</span>")
+		if(!suppress_failure)
+			to_chat(L, "<span class='warning'>You can't be unconscious or dead to berserk.</span>")
 		return FALSE // It would be weird to see a dead body get angry all of a sudden.
 
 	if(!L.is_sentient())
 		return FALSE // Drones don't feel anything.
 
 	if(L.has_modifier_of_type(/datum/modifier/berserk_exhaustion))
-		to_chat(L, "<span class='warning'>You recently berserked, and cannot do so again while exhausted.</span>")
+		if(!suppress_failure)
+			to_chat(L, "<span class='warning'>You recently berserked, and cannot do so again while exhausted.</span>")
 		return FALSE // On cooldown.
 
 	if(L.isSynthetic())
@@ -135,7 +137,8 @@ the artifact triggers the rage.
 			return FALSE // Happy trees aren't affected by blood rages.
 
 	if(L.nutrition < nutrition_cost)
-		to_chat(L, "<span class='warning'>You are too hungry to berserk.</span>")
+		if(!suppress_failure)
+			to_chat(L, "<span class='warning'>You are too hungry to berserk.</span>")
 		return FALSE // Too hungry to enrage.
 
 	return ..()
@@ -223,28 +226,6 @@ the artifact triggers the rage.
 	bleeding_rate_percent = 1.20	// 20% more bleeding.
 
 	accuracy_dispersion = 2			// A combination of fear and immense pain or damage reults in a twitching firing arm. Flee.
-
-
-
-// Ignition, but confined to the modifier system.
-// This makes it more predictable and thus, easier to balance.
-/datum/modifier/fire
-	name = "on fire"
-	desc = "You are on fire! You will be harmed until the fire goes out or you extinguish it with water."
-	mob_overlay_state = "on_fire"
-
-	on_created_text = "<span class='danger'>You combust into flames!</span>"
-	on_expired_text = "<span class='warning'>The fire starts to fade.</span>"
-	stacks = MODIFIER_STACK_ALLOWED // Multiple instances will hurt a lot.
-	var/damage_per_tick = 5
-
-/datum/modifier/fire/intense
-	mob_overlay_state = "on_fire_intense"
-	damage_per_tick = 10
-
-/datum/modifier/fire/tick()
-	holder.inflict_heat_damage(damage_per_tick)
-
 
 // Applied when near something very cold.
 // Reduces mobility, attack speed.
@@ -343,3 +324,106 @@ the artifact triggers the rage.
 /datum/modifier/homeothermic/tick()
 	..()
 	holder.bodytemperature = round((holder.bodytemperature + T20C) / 2)
+
+/datum/modifier/exothermic
+	name = "heat resistance"
+	desc = "Your body lowers to room temperature."
+
+	on_created_text = "<span class='notice'>You feel comfortable.</span>"
+	on_expired_text = "<span class='notice'>You feel.. still probably comfortable.</span>"
+	stacks = MODIFIER_STACK_EXTEND
+
+/datum/modifier/exothermic/tick()
+	..()
+	if(holder.bodytemperature > T20C)
+		holder.bodytemperature = round((holder.bodytemperature + T20C) / 2)
+
+/datum/modifier/endothermic
+	name = "cold resistance"
+	desc = "Your body rises to room temperature."
+
+	on_created_text = "<span class='notice'>You feel comfortable.</span>"
+	on_expired_text = "<span class='notice'>You feel.. still probably comfortable.</span>"
+	stacks = MODIFIER_STACK_EXTEND
+
+/datum/modifier/endothermic/tick()
+	..()
+	if(holder.bodytemperature < T20C)
+		holder.bodytemperature = round((holder.bodytemperature + T20C) / 2)
+
+// Nullifies EMP.
+/datum/modifier/faraday
+	name = "EMP shielding"
+	desc = "You are covered in some form of faraday shielding. EMPs have no effect."
+	mob_overlay_state = "electricity"
+
+	on_created_text = "<span class='notice'>You feel a surge of energy, that fades to a calm tide.</span>"
+	on_expired_text = "<span class='warning'>You feel a longing for the flow of energy.</span>"
+	stacks = MODIFIER_STACK_EXTEND
+
+	emp_modifier = 5
+
+// Nullifies explosions.
+/datum/modifier/blastshield
+	name = "Blast Shielding"
+	desc = "You are protected from explosions somehow."
+	mob_overlay_state = "electricity"
+
+	on_created_text = "<span class='notice'>You feel a surge of energy, that fades to a stalwart hum.</span>"
+	on_expired_text = "<span class='warning'>You feel a longing for the flow of energy.</span>"
+	stacks = MODIFIER_STACK_EXTEND
+
+	explosion_modifier = 3
+
+// Kills on expiration.
+/datum/modifier/doomed
+	name = "Doomed"
+	desc = "You are doomed."
+
+	on_created_text = "<span class='notice'>You feel an overwhelming sense of dread.</span>"
+	on_expired_text = "<span class='warning'>You feel the life drain from your body.</span>"
+	stacks = MODIFIER_STACK_EXTEND
+
+/datum/modifier/doomed/on_expire()
+	if(holder.stat != DEAD)
+		holder.visible_message("<span class='alien'>\The [holder] collapses, the life draining from their body.</span>")
+		holder.death()
+
+/datum/modifier/outline_test
+	name = "Outline Test"
+	desc = "This only exists to prove filter effects work and gives an example of how to animate() the resulting filter object."
+
+	filter_parameters = list(type = "outline", size = 1, color = "#FFFFFF", flags = OUTLINE_SHARP)
+
+/datum/modifier/outline_test/tick()
+	animate(filter_instance, size = 3, time = 0.25 SECONDS)
+	animate(size = 1, 0.25 SECONDS)
+
+
+// Acts as a psuedo-godmode, yet probably is more reliable than the actual var for it nowdays.
+// Can't protect from instantly killing things like singulos.
+/datum/modifier/invulnerable
+	name = "invulnerable"
+	desc = "You are almost immune to harm, for a little while at least."
+	stacks = MODIFIER_STACK_EXTEND
+
+	disable_duration_percent = 0
+	incoming_damage_percent = 0
+//	bleeding_rate_percent = 0
+	pain_immunity = TRUE
+	armor_percent = list("melee" = 2000, "bullet" = 2000, "laser" = 2000, "bomb" = 2000, "energy" = 2000, "bio" = 2000, "rad" = 2000)
+	heat_protection = 1.0
+	cold_protection = 1.0
+	siemens_coefficient = 0.0
+
+// Reduces resistance to "elements".
+// Note that most things that do give resistance gives 100% protection,
+// and due to multiplicitive stacking, this modifier won't do anything to change that.
+/datum/modifier/elemental_vulnerability
+	name = "elemental vulnerability"
+	desc = "You're more vulnerable to extreme temperatures and electricity."
+	stacks = MODIFIER_STACK_EXTEND
+
+	heat_protection = -0.5
+	cold_protection = -0.5
+	siemens_coefficient = 1.5

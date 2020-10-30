@@ -39,11 +39,11 @@
 		else
 			name = ("bookcase ([newname])")
 	else if(O.is_wrench())
-		playsound(loc, O.usesound, 100, 1)
+		playsound(src, O.usesound, 100, 1)
 		to_chat(user, (anchored ? "<span class='notice'>You unfasten \the [src] from the floor.</span>" : "<span class='notice'>You secure \the [src] to the floor.</span>"))
 		anchored = !anchored
 	else if(O.is_screwdriver())
-		playsound(loc, O.usesound, 75, 1)
+		playsound(src, O.usesound, 75, 1)
 		to_chat(user, "<span class='notice'>You begin dismantling \the [src].</span>")
 		if(do_after(user,25 * O.toolspeed))
 			to_chat(user, "<span class='notice'>You dismantle \the [src].</span>")
@@ -167,6 +167,11 @@ Book Cart End
 	name = "book"
 	icon = 'icons/obj/library.dmi'
 	icon_state ="book"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items/lefthand_books.dmi',
+		slot_r_hand_str = 'icons/mob/items/righthand_books.dmi'
+		)
+	item_state = "book"
 	throw_speed = 1
 	throw_range = 5
 	flags = NOCONDUCT
@@ -180,6 +185,8 @@ Book Cart End
 	var/title		 // The real name of the book.
 	var/carved = 0	 // Has the book been hollowed out for use as a secret storage item?
 	var/obj/item/store	//What's in the book?
+	drop_sound = 'sound/items/drop/book.ogg'
+	pickup_sound = 'sound/items/pickup/book.ogg'
 
 /obj/item/weapon/book/attack_self(var/mob/user as mob)
 	if(carved)
@@ -194,7 +201,9 @@ Book Cart End
 	if(src.dat)
 		user << browse("<TT><I>Penned by [author].</I></TT> <BR>" + "[dat]", "window=book")
 		user.visible_message("[user] opens a book titled \"[src.title]\" and begins reading intently.")
+		playsound(src, 'sound/bureaucracy/bookopen.ogg', 50, 1)
 		onclose(user, "book")
+		playsound(src, 'sound/bureaucracy/bookclose.ogg', 50, 1)
 	else
 		to_chat(user, "This book is completely blank!")
 
@@ -277,6 +286,8 @@ Book Cart End
 		to_chat(user, "<span class='notice'>You begin to carve out [title].</span>")
 		if(do_after(user, 30))
 			to_chat(user, "<span class='notice'>You carve out the pages from [title]! You didn't want to read it anyway.</span>")
+			playsound(src, 'sound/bureaucracy/papercrumple.ogg', 50, 1)
+			new /obj/item/weapon/shreddedp(get_turf(src))
 			carved = 1
 			return
 	else
@@ -348,11 +359,11 @@ Book Cart End
 		if(href_list["next_page"])
 			if(page != pages.len)
 				page++
-				playsound(src.loc, "pageturn", 50, 1)
+				playsound(src, "pageturn", 50, 1)
 		if(href_list["prev_page"])
 			if(page > 1)
 				page--
-				playsound(src.loc, "pageturn", 50, 1)
+				playsound(src, "pageturn", 50, 1)
 		src.attack_self(usr)
 		updateUsrDialog()
 	else

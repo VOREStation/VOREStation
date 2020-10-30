@@ -98,7 +98,6 @@
 
 	var/turf/destturf
 	var/turf/curturf = get_turf(teleatom)
-	var/area/destarea = get_area(destination)
 	if(precision)
 		var/list/posturfs = circlerangeturfs(destination,precision)
 		destturf = safepick(posturfs)
@@ -124,8 +123,6 @@
 			playSpecials(destturf,effectout,soundout)
 	if(C)
 		C.forceMove(destturf)
-
-	destarea.Entered(teleatom)
 
 	return 1
 
@@ -205,7 +202,9 @@
 		var/obj/belly/destination_belly = destination.loc
 		var/mob/living/telenommer = destination_belly.owner
 		if(istype(telenommer))
-			if(!isliving(teleatom))
+			if(istype(teleatom, /obj/machinery) || istype(teleatom, /obj/structure))
+				return 0
+			else if(!isliving(teleatom))
 				return 1
 			else
 				var/mob/living/telemob = teleatom

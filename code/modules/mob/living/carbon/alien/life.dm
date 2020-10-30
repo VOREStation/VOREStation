@@ -28,7 +28,7 @@
 
 	var/rads = radiation/25
 	radiation -= rads
-	nutrition += rads
+	adjust_nutrition(rads)
 	heal_overall_damage(rads,rads)
 	adjustOxyLoss(-(rads))
 	adjustToxLoss(-(rads))
@@ -51,7 +51,7 @@
 
 		if(paralysis && paralysis > 0)
 			blinded = 1
-			stat = UNCONSCIOUS
+			set_stat(UNCONSCIOUS)
 			if(halloss > 0)
 				adjustHalLoss(-3)
 
@@ -59,15 +59,15 @@
 			adjustHalLoss(-3)
 			if (mind)
 				if(mind.active && client != null)
-					sleeping = max(sleeping-1, 0)
+					AdjustSleeping(-1)
 			blinded = 1
-			stat = UNCONSCIOUS
+			set_stat(UNCONSCIOUS)
 		else if(resting)
 			if(halloss > 0)
 				adjustHalLoss(-3)
 
 		else
-			stat = CONSCIOUS
+			set_stat(CONSCIOUS)
 			if(halloss > 0)
 				adjustHalLoss(-1)
 
@@ -148,11 +148,11 @@
 
 	if(environment.temperature > (T0C+66))
 		adjustFireLoss((environment.temperature - (T0C+66))/5) // Might be too high, check in testing.
-		if (fire) fire.icon_state = "fire2"
+		throw_alert("alien_fire", /obj/screen/alert/alien_fire)
 		if(prob(20))
 			to_chat(src, "<font color='red'>You feel a searing heat!</font>")
 	else
-		if (fire) fire.icon_state = "fire0"
+		clear_alert("alien_fire")
 
 /mob/living/carbon/alien/handle_fire()
 	if(..())

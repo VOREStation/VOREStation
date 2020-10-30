@@ -71,8 +71,8 @@
 		return 0
 
 	if(add_data(A))
-		to_chat(user, "<span class='notice'>Object already in internal memory. Consolidating data...</span>")
-		flick("[icon_state]2",src)
+		to_chat(user,"<span class='notice'>Object already in internal memory. Consolidating data...</span>")
+		flick("[icon_state]1",src)
 		return
 
 	//PRINTS
@@ -104,8 +104,8 @@
 
 	//FIBERS
 	if(A.suit_fibers && A.suit_fibers.len)
-		to_chat(user, "<span class='notice'>Fibers/Materials detected.[reveal_fibers ? " Analysing..." : " Acquisition of fibers for H.R.F.S. analysis advised."]</span>")
-		flick("[icon_state]2",src)
+		to_chat(user,"<span class='notice'>Fibers/Materials detected.[reveal_fibers ? " Analysing..." : " Acquisition of fibers for H.R.F.S. analysis advised."]</span>")
+		flick("[icon_state]1",src)
 		if(reveal_fibers && do_after(user, 5 SECONDS))
 			to_chat(user, "<span class='notice'>Apparel samples scanned:</span>")
 			for(var/sample in A.suit_fibers)
@@ -115,14 +115,14 @@
 	if (A.blood_DNA && A.blood_DNA.len)
 		to_chat(user, "<span class='notice'>Blood detected.[reveal_blood ? " Analysing..." : " Acquisition of swab for H.R.F.S. analysis advised."]</span>")
 		if(reveal_blood && do_after(user, 5 SECONDS))
-			flick("[icon_state]2",src)
+			flick("[icon_state]1",src)
 			for(var/blood in A.blood_DNA)
 				to_chat(user, "Blood type: <span class='warning'>[A.blood_DNA[blood]]</span> DNA: <span class='warning'>[blood]</span>")
 
 	user.visible_message("\The [user] scans \the [A] with \a [src], the air around [user.gender == MALE ? "him" : "her"] humming[prob(70) ? " gently." : "."]" ,\
 	"<span class='notice'>You finish scanning \the [A].</span>",\
 	"You hear a faint hum of electrical equipment.")
-	flick("[icon_state]2",src)
+	flick("[icon_state]1",src)
 	return 0
 
 /obj/item/device/detective_scanner/proc/add_data(atom/A as mob|obj|turf|area)
@@ -139,7 +139,7 @@
 	set category = "Object"
 	set src in view(1)
 
-	to_world("usr is [usr]")
+	//to_world("usr is [usr]") //why was this a thing? -KK.
 	display_data(usr)
 
 /obj/item/device/detective_scanner/proc/display_data(var/mob/user)

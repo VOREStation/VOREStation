@@ -58,17 +58,19 @@
 
 /turf/simulated/floor/holofloor/space
 	icon = 'icons/turf/space.dmi'
+	plane = SPACE_PLANE
 	name = "\proper space"
-	icon_state = "0"
+	icon_state = "white"
+
+/turf/simulated/floor/holofloor/space/update_icon()
+	. = ..()
+	add_overlay(SSskybox.dust_cache["[((x + y) ^ ~(x * y) + z) % 25]"])
 
 /turf/simulated/floor/holofloor/reinforced
 	icon = 'icons/turf/flooring/tiles.dmi'
 	initial_flooring = /decl/flooring/reinforced
 	name = "reinforced holofloor"
 	icon_state = "reinforced"
-
-/turf/simulated/floor/holofloor/space/New()
-	icon_state = "[((x + y) ^ ~(x * y) + z) % 25]"
 
 /turf/simulated/floor/holofloor/beach
 	desc = "Uncomfortably gritty for a hologram."
@@ -109,6 +111,18 @@
 	if(prob(10))
 		add_overlay("asteroid[rand(0,9)]")
 
+/turf/simulated/floor/holofloor/bmarble
+	name = "marble"
+	icon = 'icons/turf/flooring/misc.dmi'
+	icon_state = "darkmarble"
+	initial_flooring = /decl/flooring/bmarble
+
+/turf/simulated/floor/holofloor/wmarble
+	name = "marble"
+	icon = 'icons/turf/flooring/misc.dmi'
+	icon_state = "lightmarble"
+	initial_flooring = /decl/flooring/wmarble
+
 /obj/structure/holostool
 	name = "stool"
 	desc = "Apply butt."
@@ -135,7 +149,7 @@ datum/unarmed_attack/holopugilism/unarmed_override(var/mob/living/carbon/human/u
 	user.do_attack_animation(src)
 	var/damage = rand(0, 9)
 	if(!damage)
-		playsound(target.loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+		playsound(target, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 		target.visible_message("<font color='red'><B>[user] has attempted to punch [target]!</B></font>")
 		return TRUE
 	var/obj/item/organ/external/affecting = target.get_organ(ran_zone(user.zone_sel.selecting))
@@ -145,7 +159,7 @@ datum/unarmed_attack/holopugilism/unarmed_override(var/mob/living/carbon/human/u
 	if(HULK in user.mutations)
 		damage += 5
 
-	playsound(target.loc, "punch", 25, 1, -1)
+	playsound(target, "punch", 25, 1, -1)
 
 	target.visible_message("<font color='red'><B>[user] has punched [target]!</B></font>")
 
@@ -202,7 +216,7 @@ datum/unarmed_attack/holopugilism/unarmed_override(var/mob/living/carbon/human/u
 				update_nearby_icons()
 				step(src, get_dir(user, src))
 		else
-			playsound(loc, 'sound/effects/Glasshit.ogg', 75, 1)
+			playsound(src, 'sound/effects/Glasshit.ogg', 75, 1)
 		..()
 	return
 
@@ -220,7 +234,7 @@ datum/unarmed_attack/holopugilism/unarmed_override(var/mob/living/carbon/human/u
 
 	if(src.density && istype(I, /obj/item/weapon) && !istype(I, /obj/item/weapon/card))
 		var/aforce = I.force
-		playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, 1)
+		playsound(src, 'sound/effects/Glasshit.ogg', 75, 1)
 		visible_message("<font color='red'><B>[src] was hit by [I].</B></font>")
 		if(I.damtype == BRUTE || I.damtype == BURN)
 			take_damage(aforce)
@@ -292,7 +306,7 @@ datum/unarmed_attack/holopugilism/unarmed_override(var/mob/living/carbon/human/u
 		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 		spark_system.set_up(5, 0, user.loc)
 		spark_system.start()
-		playsound(user.loc, 'sound/weapons/blade1.ogg', 50, 1)
+		playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
 		return TRUE
 	return FALSE
 
@@ -302,13 +316,13 @@ datum/unarmed_attack/holopugilism/unarmed_override(var/mob/living/carbon/human/u
 		force = 30
 		item_state = "[icon_state]_blade"
 		w_class = ITEMSIZE_LARGE
-		playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
+		playsound(src, 'sound/weapons/saberon.ogg', 50, 1)
 		to_chat(user, "<span class='notice'>[src] is now active.</span>")
 	else
 		force = 3
 		item_state = "[icon_state]"
 		w_class = ITEMSIZE_SMALL
-		playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
+		playsound(src, 'sound/weapons/saberoff.ogg', 50, 1)
 		to_chat(user, "<span class='notice'>[src] can now be concealed.</span>")
 
 	update_icon()
@@ -345,6 +359,8 @@ datum/unarmed_attack/holopugilism/unarmed_override(var/mob/living/carbon/human/u
 	name = "basketball"
 	desc = "Here's your chance, do your dance at the Space Jam."
 	w_class = ITEMSIZE_LARGE //Stops people from hiding it in their bags/pockets
+	drop_sound = 'sound/items/drop/basketball.ogg'
+	pickup_sound = 'sound/items/pickup/basketball.ogg'
 
 /obj/structure/holohoop
 	name = "basketball hoop"
@@ -390,12 +406,13 @@ datum/unarmed_attack/holopugilism/unarmed_override(var/mob/living/carbon/human/u
 	desc = "This device is used to declare ready. If all devices in an area are ready, the event will begin!"
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "auth_off"
+	layer = ABOVE_WINDOW_LAYER
 	var/ready = 0
 	var/area/currentarea = null
 	var/eventstarted = 0
 
 	anchored = 1.0
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 2
 	active_power_usage = 6
 	power_channel = ENVIRON

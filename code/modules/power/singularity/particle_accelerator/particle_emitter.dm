@@ -12,11 +12,11 @@
 	icon_state = "emitter_center"
 	reference = "emitter_center"
 
-/obj/structure/particle_accelerator/particle_emitter/left
+/obj/structure/particle_accelerator/particle_emitter/right // It's looking for these in opposite directions.
 	icon_state = "emitter_left"
 	reference = "emitter_left"
 
-/obj/structure/particle_accelerator/particle_emitter/right
+/obj/structure/particle_accelerator/particle_emitter/left
 	icon_state = "emitter_right"
 	reference = "emitter_right"
 

@@ -1,0 +1,282 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/turf/simulated/wall/virgo2,
+/area/submap/virgo2/Shack1)
+"c" = (
+/turf/template_noop,
+/area/submap/virgo2/Shack1)
+"d" = (
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/submap/virgo2/Shack1)
+"e" = (
+/obj/effect/decal/cleanable/cobweb,
+/turf/simulated/floor/holofloor/wood{
+	icon_state = "wood_broken1"
+	},
+/area/submap/virgo2/Shack1)
+"f" = (
+/obj/structure/table/wooden_reinforced,
+/turf/simulated/floor/wood,
+/area/submap/virgo2/Shack1)
+"g" = (
+/obj/structure/closet/cabinet,
+/obj/item/clothing/suit/storage/apron/overalls,
+/obj/item/clothing/under/overalls,
+/turf/simulated/floor/wood,
+/area/submap/virgo2/Shack1)
+"h" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/wood,
+/area/submap/virgo2/Shack1)
+"i" = (
+/turf/simulated/floor/wood,
+/area/submap/virgo2/Shack1)
+"j" = (
+/turf/simulated/floor/holofloor/wood{
+	icon_state = "wood_broken0"
+	},
+/area/submap/virgo2/Shack1)
+"k" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/holofloor/wood{
+	icon_state = "wood_broken5"
+	},
+/area/submap/virgo2/Shack1)
+"l" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/random/multiple/voidsuit,
+/obj/structure/salvageable/personal,
+/turf/simulated/floor/wood,
+/area/submap/virgo2/Shack1)
+"m" = (
+/obj/machinery/door/airlock/external,
+/turf/simulated/floor/wood,
+/area/submap/virgo2/Shack1)
+"n" = (
+/turf/simulated/floor/holofloor/wood{
+	icon_state = "wood_broken3"
+	},
+/area/submap/virgo2/Shack1)
+"o" = (
+/obj/structure/table/bench/wooden,
+/turf/simulated/floor/wood,
+/area/submap/virgo2/Shack1)
+"p" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table/wooden_reinforced,
+/obj/item/weapon/storage/toolbox,
+/turf/simulated/floor/wood,
+/area/submap/virgo2/Shack1)
+"q" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table/wooden_reinforced,
+/obj/item/weapon/material/twohanded/fireaxe/scythe,
+/turf/simulated/floor/wood,
+/area/submap/virgo2/Shack1)
+"r" = (
+/obj/effect/decal/cleanable/spiderling_remains,
+/turf/simulated/floor/wood,
+/area/submap/virgo2/Shack1)
+"s" = (
+/turf/simulated/floor/holofloor/wood{
+	icon_state = "wood_broken6"
+	},
+/area/submap/virgo2/Shack1)
+"t" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table/wooden_reinforced,
+/obj/item/device/flashlight/lamp,
+/turf/simulated/floor/wood,
+/area/submap/virgo2/Shack1)
+"v" = (
+/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/template_noop)
+"O" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/random/multiple/voidsuit,
+/turf/simulated/floor/wood,
+/area/submap/virgo2/Shack1)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(3,1,1) = {"
+a
+b
+e
+h
+i
+n
+h
+p
+b
+a
+"}
+(4,1,1) = {"
+a
+b
+f
+i
+i
+i
+o
+q
+b
+a
+"}
+(5,1,1) = {"
+a
+b
+g
+j
+i
+i
+i
+r
+b
+a
+"}
+(6,1,1) = {"
+a
+b
+l
+h
+i
+i
+i
+s
+b
+a
+"}
+(7,1,1) = {"
+a
+b
+O
+k
+i
+i
+i
+t
+b
+a
+"}
+(8,1,1) = {"
+a
+b
+b
+b
+m
+m
+b
+b
+b
+a
+"}
+(9,1,1) = {"
+a
+c
+c
+c
+d
+d
+c
+c
+c
+a
+"}
+(10,1,1) = {"
+a
+c
+c
+c
+d
+d
+c
+c
+c
+a
+"}
+(11,1,1) = {"
+a
+c
+c
+c
+d
+d
+c
+c
+c
+a
+"}
+(12,1,1) = {"
+v
+d
+d
+d
+d
+d
+d
+d
+d
+v
+"}
+(13,1,1) = {"
+v
+d
+d
+d
+d
+d
+d
+d
+d
+v
+"}
+(14,1,1) = {"
+a
+c
+c
+c
+c
+c
+c
+c
+c
+a
+"}
+(15,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}

@@ -20,11 +20,11 @@
 	var/nonhuman_prey_swallow_time = 30		// Time in deciseconds to swallow anything else
 	var/emote_time = 60 SECONDS				// How long between stomach emotes at prey
 	var/nutrition_percent = 100				// Nutritional percentage per tick in digestion mode
-	var/digest_brute = 2					// Brute damage per tick in digestion mode
-	var/digest_burn = 2						// Burn damage per tick in digestion mode
+	var/digest_brute = 0.5					// Brute damage per tick in digestion mode
+	var/digest_burn = 0.5					// Burn damage per tick in digestion mode
 	var/immutable = FALSE					// Prevents this belly from being deleted
 	var/escapable = FALSE					// Belly can be resisted out of at any time
-	var/escapetime = 60 SECONDS				// Deciseconds, how long to escape this belly
+	var/escapetime = 20 SECONDS				// Deciseconds, how long to escape this belly
 	var/digestchance = 0					// % Chance of stomach beginning to digest if prey struggles
 	var/absorbchance = 0					// % Chance of stomach beginning to absorb if prey struggles
 	var/escapechance = 0 					// % Chance of prey beginning to escape if prey struggles.
@@ -54,12 +54,9 @@
 
 	var/tmp/mob/living/owner					// The mob whose belly this is.
 	var/tmp/digest_mode = DM_HOLD				// Current mode the belly is set to from digest_modes (+transform_modes if human)
-	var/tmp/tf_mode = DM_TRANSFORM_REPLICA		// Current transformation mode.
-	var/tmp/next_process = 0					// Waiting for this SSbellies times_fired to process again.
 	var/tmp/list/items_preserved = list()		// Stuff that wont digest so we shouldn't process it again.
-	var/tmp/next_emote = 0						// When we're supposed to print our next emote, as a belly controller tick #
+	var/tmp/next_emote = 0						// When we're supposed to print our next emote, as a world.time
 	var/tmp/recent_sound = FALSE				// Prevent audio spam
-	var/tmp/list/hearing_mobs
 
 	// Don't forget to watch your commas at the end of each line if you change these.
 	var/list/struggle_messages_outside = list(
@@ -120,6 +117,10 @@
 	//List has indexes that are the digestion mode strings, and keys that are lists of strings.
 	var/tmp/list/emote_lists = list()
 
+	// Lets you do a fullscreen overlay. Set to an icon_state string.
+	var/belly_fullscreen = ""
+	var/disable_hud = FALSE
+
 //For serialization, keep this updated, required for bellies to save correctly.
 /obj/belly/vars_to_save()
 	return ..() + list(
@@ -158,26 +159,27 @@
 		"release_sound",
 		"fancy_vore",
 		"is_wet",
-		"wet_loop"
+		"wet_loop",
+		"belly_fullscreen",
+		"disable_hud"
 		)
 
-/obj/belly/New(var/newloc)
-	..(newloc)
+/obj/belly/Initialize()
+	. = ..()
 	//If not, we're probably just in a prefs list or something.
-	if(isliving(newloc))
+	if(isliving(loc))
 		owner = loc
 		owner.vore_organs |= src
-		SSbellies.belly_list += src
+		START_PROCESSING(SSbellies, src)
 
 /obj/belly/Destroy()
-	SSbellies.belly_list -= src
-	if(owner)
-		owner.vore_organs -= src
-		owner = null
-	. = ..()
+	STOP_PROCESSING(SSbellies, src)
+	owner?.vore_organs?.Remove(src)
+	owner = null
+	return ..()
 
 // Called whenever an atom enters this belly
-/obj/belly/Entered(var/atom/movable/thing,var/atom/OldLoc)
+/obj/belly/Entered(atom/movable/thing, atom/OldLoc)
 	if(OldLoc in contents)
 		return //Someone dropping something (or being stripdigested)
 
@@ -192,7 +194,7 @@
 		else
 			soundfile = fancy_vore_sounds[vore_sound]
 		if(soundfile)
-			playsound(src, soundfile, vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, preference = /datum/client_preference/eating_noises)
+			playsound(src, soundfile, vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, preference = /datum/client_preference/eating_noises, volume_channel = VOLUME_CHANNEL_VORE)
 			recent_sound = TRUE
 
 	//Messages if it's a mob
@@ -203,12 +205,46 @@
 		var/taste
 		if(can_taste && (taste = M.get_taste_message(FALSE)))
 			to_chat(owner, "<span class='notice'>[M] tastes of [taste].</span>")
+		vore_fx(M)
+		//Stop AI processing in bellies
+		if(M.ai_holder)
+			M.ai_holder.go_sleep()
+
+// Called whenever an atom leaves this belly
+/obj/belly/Exited(atom/movable/thing, atom/OldLoc)
+	. = ..()
+	if(isliving(thing) && !isbelly(thing.loc))
+		var/mob/living/L = thing
+		L.clear_fullscreen("belly")
+		if(L.hud_used)
+			if(!L.hud_used.hud_shown)
+				L.toggle_hud_vis()
+		if((L.stat != DEAD) && L.ai_holder)
+			L.ai_holder.go_wake()
+
+/obj/belly/proc/vore_fx(mob/living/L)
+	if(!istype(L))
+		return
+	if(!L.show_vore_fx)
+		L.clear_fullscreen("belly")
+		return
+
+	if(belly_fullscreen)
+		var/obj/screen/fullscreen/F = L.overlay_fullscreen("belly", /obj/screen/fullscreen/belly)
+		F.icon_state = belly_fullscreen
+		// F.color = belly_fullscreen_color
+	else
+		L.clear_fullscreen("belly")
+
+	if(disable_hud)
+		if(L?.hud_used?.hud_shown)
+			to_chat(L, "<span class='notice'>((Your pred has disabled huds in their belly. Turn off vore FX and hit F12 to get it back; or relax, and enjoy the serenity.))</span>")
+			L.toggle_hud_vis(TRUE)
 
 // Release all contents of this belly into the owning mob's location.
 // If that location is another mob, contents are transferred into whichever of its bellies the owning mob is in.
 // Returns the number of mobs so released.
-/obj/belly/proc/release_all_contents(var/include_absorbed = FALSE, var/silent = FALSE)
-
+/obj/belly/proc/release_all_contents(include_absorbed = FALSE, silent = FALSE)
 	//Don't bother if we don't have contents
 	if(!contents.len)
 		return FALSE
@@ -239,14 +275,14 @@
 		else
 			soundfile = fancy_release_sounds[release_sound]
 		if(soundfile)
-			playsound(src, soundfile, vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, preference = /datum/client_preference/eating_noises)
+			playsound(src, soundfile, vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, preference = /datum/client_preference/eating_noises, volume_channel = VOLUME_CHANNEL_VORE)
 
 	return count
 
 // Release a specific atom from the contents of this belly into the owning mob's location.
 // If that location is another mob, the atom is transferred into whichever of its bellies the owning mob is in.
 // Returns the number of atoms so released.
-/obj/belly/proc/release_specific_contents(var/atom/movable/M, var/silent = FALSE)
+/obj/belly/proc/release_specific_contents(atom/movable/M, silent = FALSE)
 	if (!(M in contents))
 		return 0 // They weren't in this belly anyway
 
@@ -287,21 +323,23 @@
 		else
 			soundfile = fancy_release_sounds[release_sound]
 		if(soundfile)
-			playsound(src, soundfile, vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, preference = /datum/client_preference/eating_noises)
+			playsound(src, soundfile, vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, preference = /datum/client_preference/eating_noises, volume_channel = VOLUME_CHANNEL_VORE)
 
 	return 1
 
 // Actually perform the mechanics of devouring the tasty prey.
 // The purpose of this method is to avoid duplicate code, and ensure that all necessary
 // steps are taken.
-/obj/belly/proc/nom_mob(var/mob/prey, var/mob/user)
+/obj/belly/proc/nom_mob(mob/prey, mob/user)
 	if(owner.stat == DEAD)
 		return
-	if (prey.buckled)
+	if(prey.buckled)
 		prey.buckled.unbuckle_mob()
 
 	prey.forceMove(src)
 	owner.updateVRPanel()
+	if(isanimal(owner))
+		owner.update_icon()
 
 	for(var/mob/living/M in contents)
 		M.updateVRPanel()
@@ -316,24 +354,24 @@
 		var/raw_message = pick(examine_messages)
 		var/total_bulge = 0
 
-		formatted_message = replacetext(raw_message,"%belly",lowertext(name))
-		formatted_message = replacetext(formatted_message,"%pred",owner)
-		formatted_message = replacetext(formatted_message,"%prey",english_list(contents))
+		formatted_message = replacetext(raw_message, "%belly" ,lowertext(name))
+		formatted_message = replacetext(formatted_message, "%pred" ,owner)
+		formatted_message = replacetext(formatted_message, "%prey" ,english_list(contents))
 		for(var/mob/living/P in contents)
 			if(!P.absorbed) //This is required first, in case there's a person absorbed and not absorbed in a stomach.
 				total_bulge += P.size_multiplier
 		if(total_bulge >= bulge_size && bulge_size != 0)
-			return("<span class='warning'>[formatted_message]</span><BR>")
+			return("<span class='warning'>[formatted_message]</span>")
 		else
 			return ""
 
 // The next function gets the messages set on the belly, in human-readable format.
 // This is useful in customization boxes and such. The delimiter right now is \n\n so
 // in message boxes, this looks nice and is easily delimited.
-/obj/belly/proc/get_messages(var/type, var/delim = "\n\n")
+/obj/belly/proc/get_messages(type, delim = "\n\n")
 	ASSERT(type == "smo" || type == "smi" || type == "dmo" || type == "dmp" || type == "em")
+	
 	var/list/raw_messages
-
 	switch(type)
 		if("smo")
 			raw_messages = struggle_messages_outside
@@ -346,13 +384,13 @@
 		if("em")
 			raw_messages = examine_messages
 
-	var/messages = list2text(raw_messages,delim)
+	var/messages = list2text(raw_messages, delim)
 	return messages
 
 // The next function sets the messages on the belly, from human-readable var
 // replacement strings and linebreaks as delimiters (two \n\n by default).
 // They also sanitize the messages.
-/obj/belly/proc/set_messages(var/raw_text, var/type, var/delim = "\n\n")
+/obj/belly/proc/set_messages(raw_text, type, delim = "\n\n")
 	ASSERT(type == "smo" || type == "smi" || type == "dmo" || type == "dmp" || type == "em")
 
 	var/list/raw_list = text2list(html_encode(raw_text),delim)
@@ -389,12 +427,8 @@
 // Called from the process_Life() methods of bellies that digest prey.
 // Default implementation calls M.death() and removes from internal contents.
 // Indigestable items are removed, and M is deleted.
-/obj/belly/proc/digestion_death(var/mob/living/M)
-	//M.death(1) // "Stop it he's already dead..." Basically redundant and the reason behind screaming mouse carcasses.
-	if(M.ckey)
-		message_admins("[key_name(owner)] has digested [key_name(M)] in their [lowertext(name)] ([owner ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[owner.x];Y=[owner.y];Z=[owner.z]'>JMP</a>" : "null"])")
-		if(M.mind)
-			M.mind.vore_death = TRUE
+/obj/belly/proc/digestion_death(mob/living/M)
+	add_attack_logs(owner, M, "Digested in [lowertext(name)]")
 
 	// If digested prey is also a pred... anyone inside their bellies gets moved up.
 	if(is_vore_predator(M))
@@ -403,7 +437,7 @@
 	//Drop all items into the belly.
 	if(config.items_survive_digestion)
 		for(var/obj/item/W in M)
-			if(istype(W,/obj/item/organ/internal/mmi_holder/posibrain))
+			if(istype(W, /obj/item/organ/internal/mmi_holder/posibrain))
 				var/obj/item/organ/internal/mmi_holder/MMI = W
 				var/atom/movable/brain = MMI.removed()
 				if(brain)
@@ -414,7 +448,7 @@
 				var/obj/item/I = M.get_equipped_item(slot = slot)
 				if(I)
 					M.unEquip(I,force = TRUE)
-					if(contaminates || istype(I,/obj/item/weapon/card/id))
+					if(contaminates || istype(I, /obj/item/weapon/card/id))
 						I.gurgle_contaminate(contents, contamination_flavor, contamination_color) //We do an initial contamination pass to get stuff like IDs wet.
 					if(item_digest_mode == IM_HOLD)
 						items_preserved |= I
@@ -436,13 +470,14 @@
 	//Incase they have the loop going, let's double check to stop it.
 	M.stop_sound_channel(CHANNEL_PREYLOOP)
 	// Delete the digested mob
+	M.ghostize() // Make sure they're out, so we can copy attack logs and such.
 	qdel(M)
 
 // Handle a mob being absorbed
-/obj/belly/proc/absorb_living(var/mob/living/M)
+/obj/belly/proc/absorb_living(mob/living/M)
 	M.absorbed = 1
-	to_chat(M,"<span class='notice'>[owner]'s [lowertext(name)] absorbs your body, making you part of them.</span>")
-	to_chat(owner,"<span class='notice'>Your [lowertext(name)] absorbs [M]'s body, making them part of you.</span>")
+	to_chat(M, "<span class='notice'>[owner]'s [lowertext(name)] absorbs your body, making you part of them.</span>")
+	to_chat(owner, "<span class='notice'>Your [lowertext(name)] absorbs [M]'s body, making them part of you.</span>")
 	if(M.noisy) //Mute drained absorbee hunger if enabled.
 		M.noisy = FALSE
 
@@ -450,9 +485,9 @@
 		var/mob/living/carbon/human/Prey = M
 		var/mob/living/carbon/human/Pred = owner
 		//Reagent sharing for absorbed with pred - Copy so both pred and prey have these reagents.
-		Prey.bloodstr.trans_to_holder(Pred.bloodstr, Prey.bloodstr.total_volume, copy = TRUE)
-		Prey.ingested.trans_to_holder(Pred.bloodstr, Prey.ingested.total_volume, copy = TRUE)
-		Prey.touching.trans_to_holder(Pred.bloodstr, Prey.touching.total_volume, copy = TRUE)
+		Prey.bloodstr.trans_to_holder(Pred.ingested, Prey.bloodstr.total_volume, copy = TRUE)
+		Prey.ingested.trans_to_holder(Pred.ingested, Prey.ingested.total_volume, copy = TRUE)
+		Prey.touching.trans_to_holder(Pred.ingested, Prey.touching.total_volume, copy = TRUE)
 		// TODO - Find a way to make the absorbed prey share the effects with the pred.
 		// Currently this is infeasible because reagent containers are designed to have a single my_atom, and we get
 		// problems when A absorbs B, and then C absorbs A,  resulting in B holding onto an invalid reagent container.
@@ -473,19 +508,22 @@
 
 	//Update owner
 	owner.updateVRPanel()
+	if(isanimal(owner))
+		owner.update_icon()
 
 //Digest a single item
 //Receives a return value from digest_act that's how much nutrition
 //the item should be worth
-/obj/belly/proc/digest_item(var/obj/item/item)
+/obj/belly/proc/digest_item(obj/item/item)
 	var/digested = item.digest_act(src, owner)
 	if(!digested)
 		items_preserved |= item
 	else
-		owner.nutrition += ((nutrition_percent / 100) * 5 * digested)
+		owner.adjust_nutrition((nutrition_percent / 100) * 5 * digested)
 		if(isrobot(owner))
 			var/mob/living/silicon/robot/R = owner
 			R.cell.charge += (50 * digested)
+	return digested
 
 //Determine where items should fall out of us into.
 //Typically just to the owner's location.
@@ -503,20 +541,20 @@
 /obj/belly/AllowDrop()
 	return TRUE
 
-/obj/belly/onDropInto(var/atom/movable/AM)
+/obj/belly/onDropInto(atom/movable/AM)
 	return null
 
 //Handle a mob struggling
 // Called from /mob/living/carbon/relaymove()
-/obj/belly/proc/relay_resist(var/mob/living/R)
+/obj/belly/proc/relay_resist(mob/living/R)
 	if (!(R in contents))
 		return  // User is not in this belly
 
 	R.setClickCooldown(50)
 
 	if(owner.stat) //If owner is stat (dead, KO) we can actually escape
-		to_chat(R,"<span class='warning'>You attempt to climb out of \the [lowertext(name)]. (This will take around [escapetime/10] seconds.)</span>")
-		to_chat(owner,"<span class='warning'>Someone is attempting to climb out of your [lowertext(name)]!</span>")
+		to_chat(R, "<span class='warning'>You attempt to climb out of \the [lowertext(name)]. (This will take around [escapetime/10] seconds.)</span>")
+		to_chat(owner, "<span class='warning'>Someone is attempting to climb out of your [lowertext(name)]!</span>")
 
 		if(do_after(R, escapetime, owner, incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_RESTRAINED))
 			if((owner.stat || escapable) && (R.loc == src)) //Can still escape?
@@ -532,20 +570,20 @@
 	var/struggle_outer_message = pick(struggle_messages_outside)
 	var/struggle_user_message = pick(struggle_messages_inside)
 
-	struggle_outer_message = replacetext(struggle_outer_message,"%pred",owner)
-	struggle_outer_message = replacetext(struggle_outer_message,"%prey",R)
-	struggle_outer_message = replacetext(struggle_outer_message,"%belly",lowertext(name))
+	struggle_outer_message = replacetext(struggle_outer_message, "%pred", owner)
+	struggle_outer_message = replacetext(struggle_outer_message, "%prey", R)
+	struggle_outer_message = replacetext(struggle_outer_message, "%belly", lowertext(name))
 
-	struggle_user_message = replacetext(struggle_user_message,"%pred",owner)
-	struggle_user_message = replacetext(struggle_user_message,"%prey",R)
-	struggle_user_message = replacetext(struggle_user_message,"%belly",lowertext(name))
+	struggle_user_message = replacetext(struggle_user_message, "%pred", owner)
+	struggle_user_message = replacetext(struggle_user_message, "%prey", R)
+	struggle_user_message = replacetext(struggle_user_message, "%belly", lowertext(name))
 
-	struggle_outer_message = "<span class='alert'>" + struggle_outer_message + "</span>"
-	struggle_user_message = "<span class='alert'>" + struggle_user_message + "</span>"
+	struggle_outer_message = "<span class='alert'>[struggle_outer_message]</span>"
+	struggle_user_message = "<span class='alert'>[struggle_user_message]</span>"
 
 	for(var/mob/M in hearers(4, owner))
 		M.show_message(struggle_outer_message, 2) // hearable
-	to_chat(R,struggle_user_message)
+	to_chat(R, struggle_user_message)
 
 	var/sound/struggle_snuggle
 	var/sound/struggle_rustle = sound(get_sfx("rustle"))
@@ -555,14 +593,14 @@
 			struggle_snuggle = sound(get_sfx("classic_struggle_sounds"))
 		else
 			struggle_snuggle = sound(get_sfx("fancy_prey_struggle"))
-		playsound(src, struggle_snuggle, vary = 1, vol = 75, falloff = VORE_SOUND_FALLOFF, preference = /datum/client_preference/digestion_noises)
+		playsound(src, struggle_snuggle, vary = 1, vol = 75, falloff = VORE_SOUND_FALLOFF, preference = /datum/client_preference/digestion_noises, volume_channel = VOLUME_CHANNEL_VORE)
 	else
-		playsound(src, struggle_rustle, vary = 1, vol = 75, falloff = VORE_SOUND_FALLOFF, preference = /datum/client_preference/digestion_noises)
+		playsound(src, struggle_rustle, vary = 1, vol = 75, falloff = VORE_SOUND_FALLOFF, preference = /datum/client_preference/digestion_noises, volume_channel = VOLUME_CHANNEL_VORE)
 
 	if(escapable) //If the stomach has escapable enabled.
 		if(prob(escapechance)) //Let's have it check to see if the prey escapes first.
-			to_chat(R,"<span class='warning'>You start to climb out of \the [lowertext(name)].</span>")
-			to_chat(owner,"<span class='warning'>Someone is attempting to climb out of your [lowertext(name)]!</span>")
+			to_chat(R, "<span class='warning'>You start to climb out of \the [lowertext(name)].</span>")
+			to_chat(owner, "<span class='warning'>Someone is attempting to climb out of your [lowertext(name)]!</span>")
 			if(do_after(R, escapetime))
 				if((escapable) && (R.loc == src) && !R.absorbed) //Does the owner still have escapable enabled?
 					release_specific_contents(R)
@@ -592,26 +630,26 @@
 				transferlocation = null
 				return
 
-			to_chat(R,"<span class='warning'>Your attempt to escape [lowertext(name)] has failed and your struggles only results in you sliding into [owner]'s [transferlocation]!</span>")
-			to_chat(owner,"<span class='warning'>Someone slid into your [transferlocation] due to their struggling inside your [lowertext(name)]!</span>")
+			to_chat(R, "<span class='warning'>Your attempt to escape [lowertext(name)] has failed and your struggles only results in you sliding into [owner]'s [transferlocation]!</span>")
+			to_chat(owner, "<span class='warning'>Someone slid into your [transferlocation] due to their struggling inside your [lowertext(name)]!</span>")
 			transfer_contents(R, dest_belly)
 			return
 
 		else if(prob(absorbchance) && digest_mode != DM_ABSORB) //After that, let's have it run the absorb chance.
-			to_chat(R,"<span class='warning'>In response to your struggling, \the [lowertext(name)] begins to cling more tightly...</span>")
-			to_chat(owner,"<span class='warning'>You feel your [lowertext(name)] start to cling onto its contents...</span>")
+			to_chat(R, "<span class='warning'>In response to your struggling, \the [lowertext(name)] begins to cling more tightly...</span>")
+			to_chat(owner, "<span class='warning'>You feel your [lowertext(name)] start to cling onto its contents...</span>")
 			digest_mode = DM_ABSORB
 			return
 
 		else if(prob(digestchance) && digest_mode != DM_DIGEST) //Finally, let's see if it should run the digest chance.
-			to_chat(R,"<span class='warning'>In response to your struggling, \the [lowertext(name)] begins to get more active...</span>")
-			to_chat(owner,"<span class='warning'>You feel your [lowertext(name)] beginning to become active!</span>")
+			to_chat(R, "<span class='warning'>In response to your struggling, \the [lowertext(name)] begins to get more active...</span>")
+			to_chat(owner, "<span class='warning'>You feel your [lowertext(name)] beginning to become active!</span>")
 			digest_mode = DM_DIGEST
 			return
 
 		else //Nothing interesting happened.
-			to_chat(R,"<span class='warning'>You make no progress in escaping [owner]'s [lowertext(name)].</span>")
-			to_chat(owner,"<span class='warning'>Your prey appears to be unable to make any progress in escaping your [lowertext(name)].</span>")
+			to_chat(R, "<span class='warning'>You make no progress in escaping [owner]'s [lowertext(name)].</span>")
+			to_chat(owner, "<span class='warning'>Your prey appears to be unable to make any progress in escaping your [lowertext(name)].</span>")
 			return
 
 /obj/belly/proc/get_mobs_and_objs_in_belly()
@@ -628,7 +666,7 @@
 	return see
 
 //Transfers contents from one belly to another
-/obj/belly/proc/transfer_contents(var/atom/movable/content, var/obj/belly/target, silent = 0)
+/obj/belly/proc/transfer_contents(atom/movable/content, obj/belly/target, silent = 0)
 	if(!(content in src) || !istype(target))
 		return
 	content.forceMove(target)
@@ -640,17 +678,9 @@
 			I.decontaminate()
 			I.gurgle_contaminate(target.contents, target.contamination_flavor, target.contamination_color)
 	items_preserved -= content
-	/* Disabling this part due to redundancy. Entered() on target belly will make the sound anyway.
-	if(!silent && target.vore_sound && !recent_sound)
-		var/soundfile
-		if(!target.fancy_vore)
-			soundfile = classic_vore_sounds[target.vore_sound]
-		else
-			soundfile = fancy_vore_sounds[target.vore_sound]
-		if(soundfile)
-			playsound(src, soundfile, vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, preference = /datum/client_preference/digestion_noises)
-	*/
 	owner.updateVRPanel()
+	if(isanimal(owner))
+		owner.update_icon()
 	for(var/mob/living/M in contents)
 		M.updateVRPanel()
 
@@ -690,6 +720,8 @@
 	dupe.fancy_vore = fancy_vore
 	dupe.is_wet = is_wet
 	dupe.wet_loop = wet_loop
+	dupe.belly_fullscreen = belly_fullscreen
+	dupe.disable_hud = disable_hud
 
 	//// Object-holding variables
 	//struggle_messages_outside - strings
@@ -725,3 +757,6 @@
 			dupe.emote_lists[K] += I
 
 	return dupe
+
+/obj/belly/container_resist(mob/M)
+	return relay_resist(M)

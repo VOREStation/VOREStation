@@ -4,6 +4,7 @@ var/global/list/ashtray_cache = list()
 	name = "ashtray"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "blank"
+	randpixel = 5
 	force_divisor = 0.1
 	thrown_force_divisor = 0.1
 	var/image/base_image
@@ -15,8 +16,7 @@ var/global/list/ashtray_cache = list()
 		qdel(src)
 		return
 	max_butts = round(material.hardness/5) //This is arbitrary but whatever.
-	src.pixel_y = rand(-5, 5)
-	src.pixel_x = rand(-6, 6)
+	randpixel_xy()
 	update_icon()
 	return
 
@@ -46,7 +46,7 @@ var/global/list/ashtray_cache = list()
 /obj/item/weapon/material/ashtray/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (health <= 0)
 		return
-	if (istype(W,/obj/item/weapon/cigbutt) || istype(W,/obj/item/clothing/mask/smokable/cigarette) || istype(W, /obj/item/weapon/flame/match))
+	if (istype(W,/obj/item/trash/cigbutt) || istype(W,/obj/item/clothing/mask/smokable/cigarette) || istype(W, /obj/item/weapon/flame/match))
 		if (contents.len >= max_butts)
 			to_chat(user, "\The [src] is full.")
 			return

@@ -9,6 +9,8 @@
 	throw_range = 4
 	throwforce = 10
 	w_class = ITEMSIZE_SMALL
+	drop_sound = 'sound/items/drop/sword.ogg'
+	pickup_sound = 'sound/items/pickup/sword.ogg'
 
 	suicide_act(mob/user)
 		var/datum/gender/T = gender_datums[user.get_visible_gender()]
@@ -98,7 +100,6 @@
 	anchored = 0
 
 	can_buckle = 1
-	buckle_movable = 1
 	buckle_lying = 0
 	buckle_dir = SOUTH
 
@@ -120,18 +121,6 @@
 /obj/effect/energy_net/process()
 	if(!has_buckled_mobs())
 		qdel(src)
-
-/obj/effect/energy_net/Move()
-	..()
-	if(has_buckled_mobs())
-		for(var/A in buckled_mobs)
-			var/mob/living/occupant = A
-			occupant.buckled = null
-			occupant.forceMove(src.loc)
-			occupant.buckled = src
-			if (occupant && (src.loc != occupant.loc))
-				unbuckle_mob(occupant)
-				qdel(src)
 
 /obj/effect/energy_net/user_unbuckle_mob(mob/living/buckled_mob, mob/user)
 	user.setClickCooldown(user.get_attack_speed())

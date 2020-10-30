@@ -25,7 +25,7 @@
 		str += " by [artist]"
 	return str
 
-/datum/track/proc/toNanoList()
+/datum/track/proc/toTguiList()
 	return list("ref" = "\ref[src]", "title" = title, "artist" = artist, "duration" = duration)
 
 
@@ -38,7 +38,7 @@ var/global/list/all_lobby_tracks = list()
 	var/jukebox_track_file = "config/jukebox.json"
 	if(!fexists(jukebox_track_file))
 		warning("File not found: [jukebox_track_file]")
-		return
+		return 1
 	var/list/jsonData = json_decode(file2text(jukebox_track_file))
 	if(!istype(jsonData))
 		warning("Failed to read tracks from [jukebox_track_file], json_decode failed.")

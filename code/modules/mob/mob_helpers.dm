@@ -83,7 +83,7 @@ proc/getsensorlevel(A)
 
 
 /proc/is_admin(var/mob/user)
-	return check_rights(R_ADMIN, 0, user) != 0
+	return check_rights(R_ADMIN|R_EVENT, 0, user) != 0
 
 
 /proc/hsl2rgb(h, s, l)
@@ -183,6 +183,12 @@ proc/getsensorlevel(A)
 			intag = !intag
 		p++
 	return t
+
+/proc/stars_all(list/message_pieces, pr)
+	// eugh, we have to clone the list to avoid collateral damage due to the nature of these messages
+	. = list()
+	for(var/datum/multilingual_say_piece/S in message_pieces)
+		. += new /datum/multilingual_say_piece(S.speaking, stars(S.message))
 
 proc/slur(phrase)
 	phrase = html_decode(phrase)

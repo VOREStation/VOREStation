@@ -16,21 +16,19 @@
 	max_storage_space = INVENTORY_STANDARD_SPACE
 	var/flippable = 0
 	var/side = 0 //0 = right, 1 = left
+	drop_sound = 'sound/items/drop/backpack.ogg'
+	pickup_sound = 'sound/items/pickup/backpack.ogg'
 
-/obj/item/weapon/storage/backpack/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (src.use_sound)
-		playsound(src.loc, src.use_sound, 50, 1, -5)
-	..()
 
 /obj/item/weapon/storage/backpack/equipped(var/mob/user, var/slot)
 	if (slot == slot_back && src.use_sound)
-		playsound(src.loc, src.use_sound, 50, 1, -5)
+		playsound(src, src.use_sound, 50, 1, -5)
 	..(user, slot)
 
 /*
 /obj/item/weapon/storage/backpack/dropped(mob/user as mob)
 	if (loc == user && src.use_sound)
-		playsound(src.loc, src.use_sound, 50, 1, -5)
+		playsound(src, src.use_sound, 50, 1, -5)
 	..(user)
 */
 
@@ -95,7 +93,7 @@
 	icon_state = "securitypack"
 
 /obj/item/weapon/storage/backpack/captain
-	name = "colony director's backpack"
+	name = "site manager's backpack"
 	desc = "It's a special backpack made exclusively for officers."
 	icon_state = "captainpack"
 
@@ -157,7 +155,7 @@
 	icon_state = "duffle_syndieammo"
 
 /obj/item/weapon/storage/backpack/dufflebag/captain
-	name = "colony director's dufflebag"
+	name = "site manager's dufflebag"
 	desc = "A large dufflebag for holding extra captainly goods."
 	icon_state = "duffle_captain"
 
@@ -252,7 +250,7 @@
 	icon_state = "satchel_hyd"
 
 /obj/item/weapon/storage/backpack/satchel/cap
-	name = "colony director's satchel"
+	name = "site manager's satchel"
 	desc = "An exclusive satchel for officers."
 	icon_state = "satchel-cap"
 	item_state_slots = list(slot_r_hand_str = "captainpack", slot_l_hand_str = "captainpack")
@@ -366,13 +364,12 @@
 	max_storage_space = ITEMSIZE_COST_NORMAL * 5
 
 /obj/item/weapon/storage/backpack/parachute/examine(mob/user)
-	var/msg = desc
-	if(get_dist(src, user) <= 1)
+	. = ..()
+	if(Adjacent(user))
 		if(parachute)
-			msg += " It seems to be packed."
+			. += "It seems to be packed."
 		else
-			msg += " It seems to be unpacked."
-	to_chat(user, msg)
+			. += "It seems to be unpacked."
 
 /obj/item/weapon/storage/backpack/parachute/handleParachute()
 	parachute = FALSE	//If you parachute in, the parachute has probably been used.

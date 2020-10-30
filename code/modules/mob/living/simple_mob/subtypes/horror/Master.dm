@@ -24,7 +24,7 @@
 	response_help = "pets the"
 	response_disarm = "bops the"
 	response_harm = "hits the"
-	attacktext = list("smushes")
+	attacktext = list("smushed")
 	friendly = list("nuzzles", "boops", "bumps against", "leans on")
 
 

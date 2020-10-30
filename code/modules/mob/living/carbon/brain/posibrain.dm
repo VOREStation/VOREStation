@@ -85,25 +85,6 @@
 		M.show_message("<font color='blue'>The positronic brain buzzes and beeps, and the golden lights fade away. Perhaps you could try again?</font>")
 	playsound(src, 'sound/misc/buzzbeep.ogg', 50, 1)
 
-/obj/item/device/mmi/digital/posibrain/examine(mob/user)
-	if(!..(user))
-		return
-
-	var/msg = "<span class='info'>*---------*</span>\nThis is \icon[src] \a <EM>[src]</EM>!\n[desc]\n"
-	msg += "<span class='warning'>"
-
-	if(src.brainmob && src.brainmob.key)
-		switch(src.brainmob.stat)
-			if(CONSCIOUS)
-				if(!src.brainmob.client)	msg += "It appears to be in stand-by mode.\n" //afk
-			if(UNCONSCIOUS)		msg += "<span class='warning'>It doesn't seem to be responsive.</span>\n"
-			if(DEAD)			msg += "<span class='deadsay'>It appears to be completely inactive.</span>\n"
-	else
-		msg += "<span class='deadsay'>It appears to be completely inactive.</span>\n"
-	msg += "</span><span class='info'>*---------*</span>"
-	to_chat(user,msg)
-	return
-
 /obj/item/device/mmi/digital/posibrain/emp_act(severity)
 	if(!src.brainmob)
 		return

@@ -17,7 +17,7 @@
 		return
 	if(perm && (target_permissions & perm))
 		return
-	if(!owner.canClick())
+	if(!owner.checkClickCooldown())
 		return
 	owner.setClickCooldown(5) // Spam prevention, essentially.
 	if(owner.a_intent == I_HELP && owner.is_preference_enabled(/datum/client_preference/safefiring))

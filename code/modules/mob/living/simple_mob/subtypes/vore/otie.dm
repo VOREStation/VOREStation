@@ -19,8 +19,8 @@
 	maxHealth = 150
 	health = 150
 	minbodytemp = 200
-	melee_damage_lower = 2
-	melee_damage_upper = 7 //Don't break my bones bro
+	melee_damage_lower = 10
+	melee_damage_upper = 20 //Don't break my bones bro
 	see_in_dark = 8
 	response_help = "pets"
 	response_disarm = "bops"
@@ -54,6 +54,11 @@
 	vore_capacity = 1
 	vore_pounce_chance = 20
 	vore_icons = SA_ICON_LIVING | SA_ICON_REST
+	vore_stomach_name = "Grut"
+	vore_stomach_flavor = "You have ended up in the otie's primary stomach. The end of the line for the solidness of the most of its food. It is very hot and humid here, and it doesn't help that the little air left is saturated with pungent fumes of digesting food. The slimy folds of this powerful belly knead and squeeze firmly against your form, the globs and strands of the dark, almost tar-like internal slop within feel rather thick compared to the usual. The muscular walls seem awfully eager to cling and rub against you, while oozing numbingly thick and dense juices against your body."
+	vore_default_contamination_flavor = "Acrid"
+	vore_default_contamination_color = "black"
+	vore_default_item_mode = IM_DIGEST
 
 /mob/living/simple_mob/otie/feral //gets the pet2tame feature. starts out hostile tho so get gamblin'
 	name = "mutated feral otie"
@@ -110,6 +115,13 @@
 	faction = "neutral"
 	tamed = 1
 
+/mob/living/simple_mob/otie/friendly/chubby
+	name = "chubby otie"
+	desc = "The classic bioengineered longdog. This one might even tolerate you! What an absolute unit"
+	icon_state = "fotie"
+	icon_living = "fotie"
+	icon_rest = "fotie_rest"
+
 /mob/living/simple_mob/otie/cotie //same as above but has a little collar :v
 	name = "tamed otie"
 	desc = "The classic bioengineered longdog. This one has a nice little collar on its neck. However a proper domesticated otie is an oxymoron and the collar is likely just a decoration."
@@ -118,6 +130,13 @@
 	icon_rest = "cotie_rest"
 	faction = "neutral"
 	tamed = 1
+
+/mob/living/simple_mob/otie/cotie/chubby
+	name = "chubby tamed otie"
+	desc = "The classic bioengineered longdog. This one has a nice little collar on its neck. What an absolute unit."
+	icon_state = "fcotie"
+	icon_living = "fcotie"
+	icon_rest = "fcotie_rest"
 
 /mob/living/simple_mob/otie/cotie/phoron //friendly phoron pup with collar
 	name = "mutated otie"
@@ -155,6 +174,14 @@
 	var/check_records = 0 // If true, arrests people without a record.
 	var/check_arrest = 1 // If true, arrests people who are set to arrest.
 
+/mob/living/simple_mob/otie/security/chubby
+	name = "chubby guard otie"
+	desc = "The VARMAcorp bioengineering division flagship product on trained optimal snowflake guard dogs. What an absolute unit."
+	icon_state = "fsotie"
+	icon_living = "fsotie"
+	icon_rest = "fsotie_rest"
+	icon_dead = "fsotie-dead"
+
 /mob/living/simple_mob/otie/security/phoron
 	name = "mutated guard otie"
 	desc = "An extra rare phoron resistant version of the VARMAcorp trained snowflake guard dogs for infernal environments."
@@ -185,7 +212,7 @@
 /mob/living/simple_mob/otie/attackby(var/obj/item/O, var/mob/user) // Trade donuts for bellybrig victims.
 	if(istype(O, /obj/item/weapon/reagent_containers/food))
 		qdel(O)
-		playsound(src.loc,'sound/items/eatfood.ogg', rand(10,50), 1)
+		playsound(src,'sound/items/eatfood.ogg', rand(10,50), 1)
 		if(!has_AI())//No autobarf on player control.
 			return
 		if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/donut) && istype(src, /mob/living/simple_mob/otie/security))
@@ -201,7 +228,7 @@
 	if(ishuman(prey))
 		vore_selected.digest_mode = DM_HOLD
 		if(check_threat(prey) >= 4)
-			global_announcer.autosay("[src] has detained suspect <b>[target_name(prey)]</b> in <b>[get_area(src)]</b>.", "SmartCollar oversight", "Security")
+			global_announcer.autosay("[src] is detaining suspect <b>[target_name(prey)]</b> in <b>[get_area(src)]</b>.", "SmartCollar oversight", "Security")
 	if(istype(prey,/mob/living/simple_mob/animal/passive/mouse))
 		vore_selected.digest_mode = DM_DIGEST
 	. = ..()
@@ -263,7 +290,7 @@
 		riding_datum = new /datum/riding/simple_mob(src)
 	verbs |= /mob/living/simple_mob/proc/animal_mount
 	verbs |= /mob/living/proc/toggle_rider_reins
-	movement_cooldown = 0
+	movement_cooldown = 3
 
 /mob/living/simple_mob/otie/MouseDrop_T(mob/living/M, mob/living/user)
 	return

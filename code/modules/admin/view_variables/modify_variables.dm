@@ -97,9 +97,10 @@ GLOBAL_PROTECT(VVpixelmovement)
 
 	L += var_value
 
-	switch(alert("Would you like to associate a value with the list entry?",,"Yes","No"))
-		if("Yes")
-			L[var_value] = mod_list_add_ass(O) //hehe
+	if(IS_VALID_ASSOC_KEY(var_value))
+		switch(alert("Would you like to associate a value with the list entry?",,"Yes","No"))
+			if("Yes")
+				L[var_value] = mod_list_add_ass(O) //hehe
 	if (O)
 		if (O.vv_edit_var(objectvar, L) == FALSE)
 			to_chat(src, "Your edit was rejected by the object.")
@@ -179,12 +180,13 @@ GLOBAL_PROTECT(VVpixelmovement)
 	if (index == null)
 		return
 	var/assoc = 0
-	var/prompt = alert(src, "Do you want to edit the key or its assigned value?", "Associated List", "Key", "Assigned Value", "Cancel")
-	if (prompt == "Cancel")
-		return
-	if (prompt == "Assigned Value")
-		assoc = 1
-		assoc_key = L[index]
+	if(IS_VALID_ASSOC_KEY(L[index]))
+		var/prompt = alert(src, "Do you want to edit the key or its assigned value?", "Associated List", "Key", "Assigned Value", "Cancel")
+		if (prompt == "Cancel")
+			return
+		if (prompt == "Assigned Value")
+			assoc = 1
+			assoc_key = L[index]
 	var/default
 	var/variable
 	var/old_assoc_value		//EXPERIMENTAL - Keep old associated value while modifying key, if any
@@ -193,9 +195,10 @@ GLOBAL_PROTECT(VVpixelmovement)
 	else
 		variable = L[index]
 		//EXPERIMENTAL - Keep old associated value while modifying key, if any
-		var/found = L[variable]
-		if(!isnull(found))
-			old_assoc_value = found
+		if(IS_VALID_ASSOC_KEY(variable))		
+			var/found = L[variable]
+			if(!isnull(found))
+				old_assoc_value = found
 		//
 
 	default = vv_get_class(objectvar, variable)
@@ -308,6 +311,13 @@ GLOBAL_PROTECT(VVpixelmovement)
 
 		variable = input("Which var?","Var") as null|anything in names
 		if(!variable)
+			return
+
+	if(variable in GLOB.VVpixelmovement)
+		if(!check_rights(R_DEBUG))
+			return
+		var/prompt = alert(src, "Editing this var may irreparably break tile gliding for the rest of the round. THIS CAN'T BE UNDONE", "DANGER", "ABORT ", "Continue", " ABORT")
+		if (prompt != "Continue")
 			return
 
 	if(!O.can_vv_get(variable))

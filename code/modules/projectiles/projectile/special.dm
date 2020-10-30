@@ -11,6 +11,9 @@
 	light_color = "#55AAFF"
 
 	combustion = FALSE
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/ion
+	hitsound_wall = 'sound/weapons/effects/searwall.ogg'
+	hitsound = 'sound/weapons/ionrifle.ogg'
 
 	var/sev1_range = 0
 	var/sev2_range = 1
@@ -18,8 +21,8 @@
 	var/sev4_range = 1
 
 /obj/item/projectile/ion/on_impact(var/atom/target)
-		empulse(target, sev1_range, sev2_range, sev3_range, sev4_range)
-		return 1
+	empulse(target, sev1_range, sev2_range, sev3_range, sev4_range)
+	..()
 
 /obj/item/projectile/ion/small
 	sev1_range = -1
@@ -58,6 +61,7 @@
 	light_range = 2
 	light_power = 0.5
 	light_color = "#55AAFF"
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/monochrome_laser
 
 	combustion = FALSE
 
@@ -112,7 +116,7 @@
 		if(A)
 
 			A.ex_act(2)
-			playsound(src.loc, 'sound/effects/meteorimpact.ogg', 40, 1)
+			playsound(src, 'sound/effects/meteorimpact.ogg', 40, 1)
 
 			for(var/mob/M in range(10, src))
 				if(!M.stat && !istype(M, /mob/living/silicon/ai))\
@@ -133,6 +137,7 @@
 	light_range = 2
 	light_power = 0.5
 	light_color = "#33CC00"
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/monochrome_laser
 
 	combustion = FALSE
 
@@ -189,13 +194,14 @@
 	light_range = 2
 	light_power = 0.5
 	light_color = "#FFFFFF"
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/monochrome_laser
 
 /obj/item/projectile/energy/florayield/on_hit(var/atom/target, var/blocked = 0)
-	var/mob/M = target
+	var/mob/living/M = target
 	if(ishuman(target)) //These rays make plantmen fat.
 		var/mob/living/carbon/human/H = M
 		if((H.species.flags & IS_PLANT) && (M.nutrition < 500))
-			M.nutrition += 30
+			M.adjust_nutrition(30)
 	else if (istype(target, /mob/living/carbon/))
 		M.show_message("<font color='blue'>The radiation beam dissipates harmlessly through your body.</font>")
 	else
@@ -211,6 +217,7 @@
 	if(ishuman(target))
 		var/mob/living/carbon/human/M = target
 		M.Confuse(rand(5,8))
+	..()
 
 /obj/item/projectile/chameleon
 	name = "bullet"
@@ -270,9 +277,9 @@
 	light_power = 3
 	light_color = "#3300ff"
 
-	muzzle_type = /obj/effect/projectile/tungsten/muzzle
-	tracer_type = /obj/effect/projectile/tungsten/tracer
-	impact_type = /obj/effect/projectile/tungsten/impact
+	muzzle_type = /obj/effect/projectile/muzzle/tungsten
+	tracer_type = /obj/effect/projectile/tracer/tungsten
+	impact_type = /obj/effect/projectile/impact/tungsten
 
 /obj/item/projectile/beam/tungsten/on_hit(var/atom/target, var/blocked = 0)
 	if(isliving(target))

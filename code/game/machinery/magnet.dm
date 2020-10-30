@@ -11,7 +11,7 @@
 	desc = "A device that uses station power to create points of magnetic energy."
 	plane = PLATING_PLANE
 	anchored = 1
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 50
 
 	var/freq = 1449		// radio frequency
@@ -142,10 +142,10 @@
 
 	// Update power usage:
 	if(on)
-		use_power = 2
-		active_power_usage = electricity_level*15
+		update_use_power(USE_POWER_ACTIVE)
+		update_active_power_usage(electricity_level * 15)
 	else
-		use_power = 0
+		update_use_power(USE_POWER_OFF)
 
 	// Overload conditions:
 	/* // Eeeehhh kinda stupid
@@ -190,7 +190,7 @@
 	icon_state = "airlock_control_standby"
 	density = 1
 	anchored = 1.0
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 45
 	var/frequency = 1449
 	var/code = 0
@@ -275,7 +275,7 @@
 
 		// Prepare signal beforehand, because this is a radio operation
 		var/datum/signal/signal = new
-		signal.transmission_method = 1 // radio transmission
+		signal.transmission_method = TRANSMISSION_RADIO // radio transmission
 		signal.source = src
 		signal.frequency = frequency
 		signal.data["code"] = code
@@ -341,7 +341,7 @@
 
 		// Prepare the radio signal
 		var/datum/signal/signal = new
-		signal.transmission_method = 1 // radio transmission
+		signal.transmission_method = TRANSMISSION_RADIO // radio transmission
 		signal.source = src
 		signal.frequency = frequency
 		signal.data["code"] = code

@@ -54,7 +54,7 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 	desc = "Facilitates both PDA messages and request console functions."
 	density = 1
 	anchored = 1.0
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
 	active_power_usage = 100
 
@@ -82,9 +82,8 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 	return
 
 /obj/machinery/message_server/examine(mob/user, distance, infix, suffix)
-	if(..())
-		to_chat(user, "It appears to be [active ? "online" : "offline"].")
-	
+	. = ..()
+	. += "It appears to be [active ? "online" : "offline"]."	
 
 /obj/machinery/message_server/proc/GenerateKey()
 	//Feel free to move to Helpers.
@@ -114,15 +113,15 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 
 /obj/machinery/message_server/proc/send_rc_message(var/recipient = "",var/sender = "",var/message = "",var/stamp = "", var/id_auth = "", var/priority = 1)
 	rc_msgs += new/datum/data_rc_msg(recipient,sender,message,stamp,id_auth)
-	var/authmsg = "[message]<br>"
+	var/authmsg = "[message]\n"
 	if (id_auth)
-		authmsg += "[id_auth]<br>"
+		authmsg += "([id_auth])\n"
 	if (stamp)
-		authmsg += "[stamp]<br>"
+		authmsg += "([stamp])\n"
 	for (var/obj/machinery/requests_console/Console in allConsoles)
 		if (ckey(Console.department) == ckey(recipient))
 			if(Console.inoperable())
-				Console.message_log += "<B>Message lost due to console failure.</B><BR>Please contact [station_name()] system adminsitrator or AI for technical assistance.<BR>"
+				Console.message_log += list(list("Message lost due to console failure.","Please contact [station_name()] system adminsitrator or AI for technical assistance."))
 				continue
 			if(Console.newmessagepriority < priority)
 				Console.newmessagepriority = priority
@@ -130,14 +129,14 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 			switch(priority)
 				if(2)
 					if(!Console.silent)
-						playsound(Console.loc, 'sound/machines/twobeep.ogg', 50, 1)
-						Console.audible_message(text("\icon[Console] *The Requests Console beeps: 'PRIORITY Alert in [sender]'"),,5)
-					Console.message_log += "<B><FONT color='red'>High Priority message from <A href='?src=\ref[Console];write=[sender]'>[sender]</A></FONT></B><BR>[authmsg]"
+						playsound(Console, 'sound/machines/twobeep.ogg', 50, 1)
+						Console.audible_message(text("[bicon(Console)] *The Requests Console beeps: 'PRIORITY Alert in [sender]'"),,5)
+					Console.message_log += list(list("High Priority message from [sender]", "[authmsg]"))
 				else
 					if(!Console.silent)
-						playsound(Console.loc, 'sound/machines/twobeep.ogg', 50, 1)
-						Console.audible_message(text("\icon[Console] *The Requests Console beeps: 'Message from [sender]'"),,4)
-					Console.message_log += "<B>Message from <A href='?src=\ref[Console];write=[sender]'>[sender]</A></B><BR>[authmsg]"
+						playsound(Console, 'sound/machines/twobeep.ogg', 50, 1)
+						Console.audible_message(text("[bicon(Console)] *The Requests Console beeps: 'Message from [sender]'"),,4)
+					Console.message_log += list(list("Message from [sender]", "[authmsg]"))
 			Console.set_light(2)
 
 
@@ -240,7 +239,7 @@ var/obj/machinery/blackbox_recorder/blackbox
 	desc = "Records all radio communications, as well as various other information in case of the worst."
 	density = 1
 	anchored = 1.0
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
 	active_power_usage = 100
 	var/list/messages = list()		//Stores messages of non-standard frequencies

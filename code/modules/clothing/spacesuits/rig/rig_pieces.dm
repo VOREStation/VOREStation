@@ -23,7 +23,8 @@
 
 /obj/item/clothing/gloves/gauntlets/rig
 	name = "gauntlets"
-	item_flags = THICKMATERIAL|PHORONGUARD
+	flags = PHORONGUARD
+	item_flags = THICKMATERIAL
 	body_parts_covered = HANDS
 	heat_protection =    HANDS
 	cold_protection =    HANDS
@@ -69,7 +70,7 @@
 		tacknife.loc = get_turf(src)
 		if(M.put_in_active_hand(tacknife))
 			to_chat(M, "<span class='notice'>You slide \the [tacknife] out of [src].</span>")
-			playsound(M, 'sound/weapons/flipblade.ogg', 40, 1)
+			playsound(src, 'sound/weapons/flipblade.ogg', 40, 1)
 			tacknife = null
 			update_icon()
 		return
@@ -83,7 +84,7 @@
 		tacknife = I
 		I.loc = src
 		to_chat(M, "<span class='notice'>You slide the [I] into [src].</span>")
-		playsound(M, 'sound/weapons/flipblade.ogg', 40, 1)
+		playsound(src, 'sound/weapons/flipblade.ogg', 40, 1)
 		update_icon()
 	..()
 

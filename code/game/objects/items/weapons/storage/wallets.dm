@@ -43,6 +43,9 @@
 
 	var/obj/item/weapon/card/id/front_id = null
 
+	drop_sound = 'sound/items/drop/leather.ogg'
+	pickup_sound = 'sound/items/pickup/leather.ogg'
+
 /obj/item/weapon/storage/wallet/remove_from_storage(obj/item/W as obj, atom/new_location)
 	. = ..(W, new_location)
 	if(.)
@@ -63,7 +66,7 @@
 	overlays.Cut()
 	if(front_id)
 		var/tiny_state = "id-generic"
-		if("id-"+front_id.icon_state in icon_states(icon))
+		if("id-"+front_id.icon_state in cached_icon_states(icon))
 			tiny_state = "id-"+front_id.icon_state
 		var/image/tiny_image = new/image(icon, icon_state = tiny_state)
 		tiny_image.appearance_flags = RESET_COLOR

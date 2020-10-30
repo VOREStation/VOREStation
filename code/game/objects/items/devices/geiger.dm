@@ -13,7 +13,6 @@
 	var/datum/looping_sound/geiger/soundloop
 
 /obj/item/device/geiger/Initialize()
-	START_PROCESSING(SSobj, src)
 	soundloop = new(list(src), FALSE)
 	return ..()
 
@@ -33,9 +32,9 @@
 	update_sound()
 
 /obj/item/device/geiger/examine(mob/user)
-	..(user)
+	. = ..()
 	get_radiation()
-	to_chat(user, "<span class='warning'>[scanning ? "Ambient" : "Stored"] radiation level: [radiation_count ? radiation_count : "0"]Bq.</span>")
+	. += "<span class='warning'>[scanning ? "Ambient" : "Stored"] radiation level: [radiation_count ? radiation_count : "0"]Bq.</span>"
 
 /obj/item/device/geiger/rad_act(amount)
 	if(!amount || !scanning)
@@ -60,9 +59,13 @@
 
 /obj/item/device/geiger/attack_self(var/mob/user)
 	scanning = !scanning
+	if(scanning)
+		START_PROCESSING(SSobj, src)
+	else
+		STOP_PROCESSING(SSobj, src)
 	update_icon()
 	update_sound()
-	to_chat(user, "<span class='notice'>\icon[src] You switch [scanning ? "on" : "off"] \the [src].</span>")
+	to_chat(user, "<span class='notice'>[bicon(src)] You switch [scanning ? "on" : "off"] \the [src].</span>")
 
 /obj/item/device/geiger/update_icon()
 	if(!scanning)

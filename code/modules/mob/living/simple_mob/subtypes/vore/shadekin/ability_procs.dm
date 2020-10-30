@@ -19,6 +19,7 @@
 	//Shifting in
 	if(ability_flags & AB_PHASE_SHIFTED)
 		ability_flags &= ~AB_PHASE_SHIFTED
+		mouse_opacity = 2
 		name = real_name
 		for(var/belly in vore_organs)
 			var/obj/belly/B = belly
@@ -43,7 +44,7 @@
 			var/list/potentials = living_mobs(0)
 			if(potentials.len)
 				var/mob/living/target = pick(potentials)
-				if(istype(target) && vore_selected)
+				if(istype(target) && target.devourable && target.can_be_drop_prey && vore_selected)
 					target.forceMove(vore_selected)
 					to_chat(target,"<span class='warning'>\The [src] phases in around you, [vore_selected.vore_verb]ing you into their [vore_selected.name]!</span>")
 
@@ -70,6 +71,7 @@
 	//Shifting out
 	else
 		ability_flags |= AB_PHASE_SHIFTED
+		mouse_opacity = 0
 		custom_emote(1,"phases out!")
 		real_name = name
 		name = "Something"

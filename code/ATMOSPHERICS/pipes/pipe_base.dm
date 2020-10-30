@@ -9,7 +9,7 @@
 	var/leaking = FALSE // Do not set directly, use set_leaking(TRUE/FALSE)
 
 	layer = PIPES_LAYER
-	use_power = 0
+	use_power = USE_POWER_OFF
 
 	pipe_flags = 0 // Does not have PIPING_DEFAULT_LAYER_ONLY flag.
 
@@ -128,7 +128,7 @@
 		return 1
 	playsound(src, W.usesound, 50, 1)
 	to_chat(user, "<span class='notice'>You begin to unfasten \the [src]...</span>")
-	if (do_after(user, 40 * W.toolspeed))
+	if (do_after(user, 10 * W.toolspeed))
 		user.visible_message( \
 			"<span class='notice'>\The [user] unfastens \the [src].</span>", \
 			"<span class='notice'>You have unfastened \the [src].</span>", \

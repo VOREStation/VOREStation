@@ -7,24 +7,36 @@
 
 	var/list/Lines = list()
 
-	if(holder && (R_ADMIN & holder.rights || R_MOD & holder.rights))
+	if(holder)
 		for(var/client/C in GLOB.clients)
-			var/entry = "\t[C.key]"
+			var/entry = "<tr><td>[C.key]"
 			if(C.holder && C.holder.fakekey)
 				entry += " <i>(as [C.holder.fakekey])</i>"
-			entry += " - Playing as [C.mob.real_name]"
-			switch(C.mob.stat)
-				if(UNCONSCIOUS)
-					entry += " - <font color='darkgray'><b>Unconscious</b></font>"
-				if(DEAD)
-					if(isobserver(C.mob))
-						var/mob/observer/dead/O = C.mob
-						if(O.started_as_observer)
-							entry += " - <font color='gray'>Observing</font>"
-						else
-							entry += " - <font color='black'><b>DEAD</b></font>"
+
+			entry += "</td><td>"
+
+			if(C.mob.real_name)
+				switch(C.mob.stat)
+					if(UNCONSCIOUS)
+						entry += "<span class='darkgray'><b>Unconscious</b></span>" // these are literally all spans so I can apply .inverted to them because black on dark grey isn't legible
+
+					if(DEAD)
+						if(isobserver(C.mob))
+							var/mob/observer/dead/O = C.mob
+							if(O.started_as_observer)
+								entry += "<span class='gray'>Observing</span>"
+							else
+								entry += "<span class='black'><b>Died</b></span>"
+
 					else
-						entry += " - <font color='black'><b>DEAD</b></font>"
+						entry += "<span class='green'>Playing</span>"
+
+				entry += " as [C.mob.real_name]"
+
+			else if(isnewplayer(C.mob))
+				entry += "<span class='blue'><b>In lobby</b></span>"
+
+			entry += "</td><td>"
 
 			var/age
 			if(isnum(C.player_age))
@@ -33,14 +45,20 @@
 				age = 0
 
 			if(age <= 1)
-				age = "<font color='#ff0000'><b>[age]</b></font>"
+				age = "<span class='red'><b>[age]</b></span>"
 			else if(age < 10)
-				age = "<font color='#ff8c00'><b>[age]</b></font>"
+				age = "<span class='orange'><b>[age]</b></span>"
 
-			entry += " - [age]"
+			entry += "Age: [age]"
+			entry += "</td><td>"
 
 			if(is_special_character(C.mob))
-				entry += " - <b><font color='red'>Antagonist</font></b>"
+				if(C.mob?.mind?.special_role)
+					entry += "<b><span class='red'>[C.mob.mind.special_role]</span></b>"
+				else
+					entry += "<b><span class='red'>Antagonist</span></b>"
+
+			entry += "</td><td>"
 
 			if(C.is_afk())
 				var/seconds = C.last_activity_seconds()
@@ -48,7 +66,9 @@
 				entry += "[round(seconds / 60)] minutes, "
 				entry += "[seconds % 60] seconds)"
 
+			entry += "</td><td>"
 			entry += " (<A HREF='?_src_=holder;adminmoreinfo=\ref[C.mob]'>?</A>)"
+			entry += "</td></tr>"
 
 			Lines += entry
 	else
@@ -60,15 +80,17 @@
 				entry += "[C.key]"
 			var/mob/observer/dead/O = C.mob
 			if(isobserver(O))
-				entry += " - <font color='gray'>Observing</font>"
+				entry += " - <span class='gray'>Observing</span><br>"
 			else if(istype(O,/mob/new_player))
-				entry += " - <font color='blue'>In Lobby</font>"
+				entry += " - <span class='blue'>In Lobby</span><br>"
 			else
-				entry += " - <font color='green'>Playing</font>"
+				entry += " - <span class='green'>Playing</span><br>"
 			Lines += entry
 
+	msg += "<table>"
 	for(var/line in sortList(Lines))
-		msg += "[line]\n"
-
+		msg += "[line]"
+	msg += "</table>"
 	msg += "<b>Total Players: [length(Lines)]</b>"
+	msg = "<span class='filter_info'>" + msg + "</span>"
 	to_chat(src, msg)

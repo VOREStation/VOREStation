@@ -16,10 +16,12 @@
 	layer = OBJ_LAYER - 0.1
 	var/amount = 30					//How much paper is in the bin.
 	var/list/papers = new/list()	//List of papers put in the bin for reference.
+	drop_sound = 'sound/items/drop/cardboardbox.ogg'
+	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
 
 /obj/item/weapon/paper_bin/MouseDrop(mob/user as mob)
-	if((user == usr && (!( usr.restrained() ) && (!( usr.stat ) && (usr.contents.Find(src) || in_range(src, usr))))))
+	if(user == usr && !(usr.restrained() || usr.stat) && (usr.contents.Find(src) || in_range(src, usr)))
 		if(!istype(usr, /mob/living/simple_mob))
 			if( !usr.get_active_hand() )		//if active hand is empty
 				var/mob/living/carbon/human/H = user
@@ -94,13 +96,12 @@
 
 
 /obj/item/weapon/paper_bin/examine(mob/user)
-	if(get_dist(src, user) <= 1)
+	. = ..()
+	if(Adjacent(user))
 		if(amount)
-			to_chat(user, "<span class='notice'>There " + (amount > 1 ? "are [amount] papers" : "is one paper") + " in the bin.</span>")
+			. += "<span class='notice'>There " + (amount > 1 ? "are [amount] papers" : "is one paper") + " in the bin.</span>"
 		else
-			to_chat(user, "<span class='notice'>There are no papers in the bin.</span>")
-	return
-
+			. += "<span class='notice'>There are no papers in the bin.</span>"
 
 /obj/item/weapon/paper_bin/update_icon()
 	if(amount < 1)

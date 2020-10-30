@@ -4,7 +4,7 @@
 
 	if(href_list["info"])
 		// spawn or admin privileges to see info about viruses
-		if(!check_rights(R_ADMIN|R_SPAWN)) return
+		if(!check_rights(R_ADMIN|R_SPAWN|R_EVENT)) return
 
 		to_chat(usr, "Infection chance: [infectionchance]; Speed: [speed]; Spread type: [spreadtype]")
 		to_chat(usr, "Affected species: [english_list(affected_species)]")

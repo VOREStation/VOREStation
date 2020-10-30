@@ -29,4 +29,5 @@ var/global/list/empty_playable_ai_cores = list()
 	global_announcer.autosay("[src] has been moved to intelligence storage.", "Artificial Intelligence Oversight")
 
 	//Handle job slot/tater cleanup.
+	set_respawn_timer()
 	clear_client()

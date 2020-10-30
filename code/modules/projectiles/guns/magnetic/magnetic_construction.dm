@@ -11,7 +11,7 @@
 
 	if(istype(thing, /obj/item/stack/material) && construction_stage == 1)
 		var/obj/item/stack/material/reinforcing = thing
-		var/material/reinforcing_with = reinforcing.get_material()
+		var/datum/material/reinforcing_with = reinforcing.get_material()
 		if(reinforcing_with.name == DEFAULT_WALL_MATERIAL) // Steel
 			if(reinforcing.get_amount() < 5)
 				to_chat(user, "<span class='warning'>You need at least 5 [reinforcing.singular_name]\s for this task.</span>")
@@ -45,7 +45,7 @@
 			return
 
 		user.visible_message("<span class='notice'>\The [user] welds the barrel of \the [src] into place.</span>")
-		playsound(src.loc, 'sound/items/Welder2.ogg', 100, 1)
+		playsound(src, 'sound/items/Welder2.ogg', 100, 1)
 		increment_construction_stage()
 		return
 
@@ -68,7 +68,7 @@
 
 	if(thing.is_screwdriver() && construction_stage >= 9)
 		user.visible_message("<span class='notice'>\The [user] secures \the [src] and finishes it off.</span>")
-		playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
+		playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 		var/obj/item/weapon/gun/magnetic/coilgun = new(loc)
 		var/put_in_hands
 		var/mob/M = src.loc
@@ -88,14 +88,22 @@
 	icon_state = "coilgun_construction_[construction_stage]"
 
 /obj/item/weapon/coilgun_assembly/examine(var/mob/user)
-	. = ..(user,2)
-	if(.)
+	. = ..()
+	if(get_dist(user, src) <= 2)
 		switch(construction_stage)
-			if(2) to_chat(user, "<span class='notice'>It has a metal frame loosely shaped around the stock.</span>")
-			if(3) to_chat(user, "<span class='notice'>It has a metal frame duct-taped to the stock.</span>")
-			if(4) to_chat(user, "<span class='notice'>It has a length of pipe attached to the body.</span>")
-			if(4) to_chat(user, "<span class='notice'>It has a length of pipe welded to the body.</span>")
-			if(6) to_chat(user, "<span class='notice'>It has a cable mount and capacitor jack wired to the frame.</span>")
-			if(7) to_chat(user, "<span class='notice'>It has a single superconducting coil threaded onto the barrel.</span>")
-			if(8) to_chat(user, "<span class='notice'>It has a pair of superconducting coils threaded onto the barrel.</span>")
-			if(9) to_chat(user, "<span class='notice'>It has three superconducting coils attached to the body, waiting to be secured.</span>")
+			if(2)
+				. += "<span class='notice'>It has a metal frame loosely shaped around the stock.</span>"
+			if(3)
+				. += "<span class='notice'>It has a metal frame duct-taped to the stock.</span>"
+			if(4)
+				. += "<span class='notice'>It has a length of pipe attached to the body.</span>"
+			if(4)
+				. += "<span class='notice'>It has a length of pipe welded to the body.</span>"
+			if(6)
+				. += "<span class='notice'>It has a cable mount and capacitor jack wired to the frame.</span>"
+			if(7)
+				. += "<span class='notice'>It has a single superconducting coil threaded onto the barrel.</span>"
+			if(8)
+				. += "<span class='notice'>It has a pair of superconducting coils threaded onto the barrel.</span>"
+			if(9)
+				. += "<span class='notice'>It has three superconducting coils attached to the body, waiting to be secured.</span>"

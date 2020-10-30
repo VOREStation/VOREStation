@@ -1,6 +1,7 @@
 /datum/category_item/player_setup_item/general/language
 	name = "Language"
 	sort_order = 2
+	var/static/list/forbidden_prefixes = list(";", ":", ".", "!", "*", "^", "-")
 
 /datum/category_item/player_setup_item/general/language/load_character(var/savefile/S)
 	S["language"]			>> pref.alternate_languages
@@ -18,6 +19,9 @@
 			pref.alternate_languages.len = S.num_alternate_languages // Truncate to allowed length
 	if(isnull(pref.language_prefixes) || !pref.language_prefixes.len)
 		pref.language_prefixes = config.language_prefixes.Copy()
+	for(var/prefix in pref.language_prefixes)
+		if(prefix in forbidden_prefixes)
+			pref.language_prefixes -= prefix
 
 /datum/category_item/player_setup_item/general/language/content()
 	. += "<b>Languages</b><br>"
@@ -79,7 +83,7 @@
 					alert(user, "Only single characters allowed.", "Error", "Ok")
 				else if(char in list(";", ":", "."))
 					alert(user, "Radio character. Rejected.", "Error", "Ok")
-				else if(char in list("!","*", "^"))
+				else if(char in list("!","*","^","-"))
 					alert(user, "Say character. Rejected.", "Error", "Ok")
 				else if(contains_az09(char))
 					alert(user, "Non-special character. Rejected.", "Error", "Ok")

@@ -28,6 +28,9 @@
 	var/r_wing = 30
 	var/g_wing = 30
 	var/b_wing = 30
+	var/r_wing2 = 30
+	var/g_wing2 = 30
+	var/b_wing2 = 30
 
 	// Custom Species Name
 	var/custom_species

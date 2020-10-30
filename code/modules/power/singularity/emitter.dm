@@ -10,7 +10,7 @@
 	req_access = list(access_engine_equip)
 	var/id = null
 
-	use_power = 0	//uses powernet power, not APC power
+	use_power = USE_POWER_OFF	//uses powernet power, not APC power
 	active_power_usage = 30000	//30 kW laser. I guess that means 30 kJ per shot.
 
 	var/active = 0
@@ -134,7 +134,7 @@
 		var/burst_time = (min_burst_delay + max_burst_delay)/2 + 2*(burst_shots-1)
 		var/power_per_shot = active_power_usage * (burst_time/10) / burst_shots
 
-		playsound(src.loc, 'sound/weapons/emitter.ogg', 25, 1)
+		playsound(src, 'sound/weapons/emitter.ogg', 25, 1)
 		if(prob(35))
 			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 			s.set_up(5, 1, src)
@@ -181,7 +181,7 @@
 				to_chat(user, "<span class='warning'>\The [src] needs to be wrenched to the floor.</span>")
 			if(1)
 				if (WT.remove_fuel(0,user))
-					playsound(loc, WT.usesound, 50, 1)
+					playsound(src, WT.usesound, 50, 1)
 					user.visible_message("[user.name] starts to weld [src] to the floor.", \
 						"You start to weld [src] to the floor.", \
 						"You hear welding")
@@ -194,7 +194,7 @@
 					to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 			if(2)
 				if (WT.remove_fuel(0,user))
-					playsound(loc, WT.usesound, 50, 1)
+					playsound(src, WT.usesound, 50, 1)
 					user.visible_message("[user.name] starts to cut [src] free from the floor.", \
 						"You start to cut [src] free from the floor.", \
 						"You hear welding")
@@ -267,15 +267,15 @@
 			qdel(src)
 
 /obj/machinery/power/emitter/examine(mob/user)
-	..()
+	. = ..()
 	var/integrity_percentage = round((integrity / initial(integrity)) * 100)
 	switch(integrity_percentage)
 		if(0 to 30)
-			to_chat(user, "<span class='danger'>\The [src] is close to falling apart!</span>")
+			. += "<span class='danger'>It is close to falling apart!</span>"
 		if(31 to 70)
-			to_chat(user, "<span class='danger'>\The [src] is damaged.</span>")
+			. += "<span class='danger'>It is damaged.</span>"
 		if(77 to 99)
-			to_chat(user, "<span class='warning'>\The [src] is slightly damaged.</span>")
+			. += "<span class='warning'It is slightly damaged.</span>"
 
 //R-UST port
 /obj/machinery/power/emitter/proc/get_initial_fire_delay()

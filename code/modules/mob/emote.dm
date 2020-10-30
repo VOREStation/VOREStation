@@ -16,7 +16,7 @@
 		input = message
 	if(input)
 		log_emote(message,src) //Log before we add junk
-		message = "<B>[src]</B> [input]"
+		message = "<span class='emote'><B>[src]</B> [input]</span>"
 	else
 		return
 

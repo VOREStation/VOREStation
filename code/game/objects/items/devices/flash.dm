@@ -48,7 +48,7 @@
 				user.visible_message("<span class='notice'>\The [user] successfully repairs \the [src]!</span>")
 				broken = FALSE
 				update_icon()
-			playsound(src.loc, W.usesound, 50, 1)
+			playsound(src, W.usesound, 50, 1)
 		else
 			user.visible_message("<span class='notice'>\The [user] fails to repair \the [src].</span>")
 		repairing = FALSE
@@ -78,8 +78,8 @@
 		var/obj/item/rig_module/module = src.loc
 		if(module.holder && module.holder.wearer)
 			var/mob/living/carbon/human/H = module.holder.wearer
-			if(istype(H) && H.back)
-				var/obj/item/weapon/rig/suit = H.back
+			if(istype(H) && H.get_rig())
+				var/obj/item/weapon/rig/suit = H.get_rig()
 				if(istype(suit))
 					return suit.cell
 	return null
@@ -138,7 +138,7 @@
 		if(user)
 			update_icon()
 			to_chat(user, "<span class='warning'><i>click</i></span>")
-			playsound(src.loc, 'sound/weapons/empty.ogg', 80, 1)
+			playsound(src, 'sound/weapons/empty.ogg', 80, 1)
 		return FALSE
 	else if(battery && battery.checked_use(charge_cost + (round(charge_cost / 4) * max(0, times_used - max_flashes)))) // Using over your maximum flashes starts taking more charge per added flash.
 		times_used++
@@ -164,7 +164,7 @@
 	if(!check_capacitor(user))
 		return
 
-	playsound(src.loc, 'sound/weapons/flash.ogg', 100, 1)
+	playsound(src, 'sound/weapons/flash.ogg', 100, 1)
 	var/flashfail = 0
 
 	//VOREStation Add - NIF
@@ -253,7 +253,7 @@
 	if(!check_capacitor(user))
 		return
 
-	playsound(src.loc, 'sound/weapons/flash.ogg', 100, 1)
+	playsound(src, 'sound/weapons/flash.ogg', 100, 1)
 	flick("flash2", src)
 	if(user && isrobot(user))
 		spawn(0)

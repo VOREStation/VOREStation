@@ -1,6 +1,7 @@
 /obj/vehicle/bike
 	name = "space-bike"
 	desc = "Space wheelies! Woo!"
+	description_info = "Use ctrl-click to quickly toggle the engine if you're adjacent (only when vehicle is stationary). Alt-click will similarly toggle the kickstand."
 	icon = 'icons/obj/bike.dmi'
 	icon_state = "bike_off"
 	dir = SOUTH
@@ -54,6 +55,12 @@
 			return
 	..()
 
+/obj/vehicle/bike/CtrlClick(var/mob/user)
+	if(Adjacent(user) && anchored)
+		toggle()
+	else
+		return ..()
+
 /obj/vehicle/bike/verb/toggle()
 	set name = "Toggle Engine"
 	set category = "Vehicle"
@@ -71,7 +78,13 @@
 		turn_off()
 		src.visible_message("\The [src] putters before turning off.", "You hear something putter slowly.")
 
-/obj/vehicle/bike/verb/kickstand()
+/obj/vehicle/bike/AltClick(var/mob/user)
+	if(Adjacent(user))
+		kickstand(user)
+	else
+		return ..()
+
+/obj/vehicle/bike/verb/kickstand(var/mob/user as mob)
 	set name = "Toggle Kickstand"
 	set category = "Vehicle"
 	set src in view(0)
@@ -82,12 +95,12 @@
 	if(usr.incapacitated()) return
 
 	if(kickstand)
-		src.visible_message("You put up \the [src]'s kickstand.")
+		visible_message("[user] puts up \the [src]'s kickstand.")
 	else
 		if(istype(src.loc,/turf/space) || istype(src.loc, /turf/simulated/floor/water))
 			to_chat(usr, "<span class='warning'> You don't think kickstands work here...</span>")
 			return
-		src.visible_message("You put down \the [src]'s kickstand.")
+		visible_message("[user] puts down \the [src]'s kickstand.")
 		if(pulledby)
 			pulledby.stop_pulling()
 

@@ -307,5 +307,5 @@
 		deconstruct()
 
 /obj/machinery/atmospherics/valve/examine(mob/user)
-	..()
-	to_chat(user, "It is [open ? "open" : "closed"].")
+	. = ..()
+	. += "It is [open ? "open" : "closed"]."

@@ -109,7 +109,7 @@
 		to_chat(user, "<span class='notice'>You feed \the [SM] the agent, calming it.</span>")
 
 	playsound(src, 'sound/effects/bubbles.ogg', 50, 1)
-	AI.lost_target() // So hostile things stop attacking people even if not hostile anymore.
+	AI.remove_target() // So hostile things stop attacking people even if not hostile anymore.
 	var/newname = copytext(sanitize(input(user, "Would you like to give \the [M] a name?", "Name your new pet", M.name) as null|text),1,MAX_NAME_LEN)
 
 	if(newname)
@@ -202,7 +202,7 @@
 	to_chat(user, "<span class='notice'>You feed \the [M] the agent. It will now try to murder things that want to murder you instead.</span>")
 	to_chat(M, "<span class='notice'>\The [user] feeds you \the [src], and feel that the others will regard you as an outsider now.</span>")
 	M.faction = user.faction
-	AI.lost_target() // So hostile things stop attacking people even if not hostile anymore.
+	AI.remove_target() // So hostile things stop attacking people even if not hostile anymore.
 	playsound(src, 'sound/effects/bubbles.ogg', 50, 1)
 	qdel(src)
 
@@ -237,7 +237,7 @@
 	to_chat(user, "<span class='notice'>You feed \the [M] the agent. It will now be your best friend.</span>")
 	to_chat(M, "<span class='notice'>\The [user] feeds you \the [src], and feel that \the [user] wants to be best friends with you.</span>")
 	M.friends.Add(user)
-	AI.lost_target() // So hostile things stop attacking people even if not hostile anymore.
+	AI.remove_target() // So hostile things stop attacking people even if not hostile anymore.
 	playsound(src, 'sound/effects/bubbles.ogg', 50, 1)
 	qdel(src)
 

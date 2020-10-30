@@ -1,30 +1,25 @@
 /obj/structure/closet/coffin
 	name = "coffin"
 	desc = "It's a burial receptacle for the dearly departed."
-	icon_state = "coffin"
-	icon_closed = "coffin"
-	icon_opened = "coffin_open"
+	icon = 'icons/obj/closets/coffin.dmi'
+	
+	icon_state = "closed_unlocked"
 	seal_tool = /obj/item/weapon/tool/screwdriver
 	breakout_sound = 'sound/weapons/tablehit1.ogg'
-
-/obj/structure/closet/coffin/update_icon()
-	if(!opened)
-		icon_state = icon_closed
-	else
-		icon_state = icon_opened
+	closet_appearance = null // Special icon for us
 
 /* Graves */
 /obj/structure/closet/grave
 	name = "grave"
 	desc = "Dirt."
-	icon_state = "grave"
-	icon_closed = "grave"
-	icon_opened = "grave_open"
+	icon = 'icons/obj/closets/grave.dmi'
+	icon_state = "closed_unlocked"
 	seal_tool = null
 	breakout_sound = 'sound/weapons/thudswoosh.ogg'
 	anchored = 1
 	max_closets = 1
 	opened = 1
+	closet_appearance = null // Special icon for us
 
 /obj/structure/closet/grave/attack_hand(mob/user as mob)
 	if(opened)
@@ -162,3 +157,6 @@
 	grave_breath.adjust_gas(gasid, BREATH_MOLES)
 	grave_breath.temperature = (above_air.temperature) - 30	//Underground
 	return grave_breath
+
+/obj/structure/closet/grave/dirthole
+	name = "hole"

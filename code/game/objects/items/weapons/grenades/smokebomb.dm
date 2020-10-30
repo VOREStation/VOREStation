@@ -21,7 +21,7 @@
 	return ..()
 
 /obj/item/weapon/grenade/smokebomb/detonate()
-	playsound(src.loc, 'sound/effects/smoke.ogg', 50, 1, -3)
+	playsound(src, 'sound/effects/smoke.ogg', 50, 1, -3)
 	src.smoke.set_up(10, 0, usr.loc)
 	spawn(0)
 		for(var/i = 1 to smoke_strength)

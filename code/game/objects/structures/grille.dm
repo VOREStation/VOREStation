@@ -27,7 +27,7 @@
 /obj/structure/grille/attack_hand(mob/user as mob)
 
 	user.setClickCooldown(user.get_attack_speed())
-	playsound(loc, 'sound/effects/grillehit.ogg', 80, 1)
+	playsound(src, 'sound/effects/grillehit.ogg', 80, 1)
 	user.do_attack_animation(src)
 
 	var/damage_dealt = 1
@@ -153,7 +153,7 @@
 	else if((W.flags & NOCONDUCT) || !shock(user, 70))
 		user.setClickCooldown(user.get_attack_speed(W))
 		user.do_attack_animation(src)
-		playsound(loc, 'sound/effects/grillehit.ogg', 80, 1)
+		playsound(src, 'sound/effects/grillehit.ogg', 80, 1)
 		switch(W.damtype)
 			if("fire")
 				health -= W.force

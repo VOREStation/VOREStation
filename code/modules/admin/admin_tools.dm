@@ -9,18 +9,18 @@
 	if(M.mind)
 		dat += "<b>Current Antag?:</b> [(M.mind.special_role)?"Yes":"No"]<br>"
 	dat += "<br><b>Note:</b> This is arranged from earliest to latest. <br><br>"
-	
+
 
 	if(!isemptylist(M.attack_log))
-		dat += "<fieldset style='border: 2px solid white; display: inline'>"	
+		dat += "<fieldset style='border: 2px solid white; display: inline'>"
 		for(var/l in M.attack_log)
 			dat += "[l]<br>"
-		
+
 		dat += "</fieldset>"
-		
+
 	else
 		dat += "<i>No attack logs found for [M].</i>"
-			
+
 	var/datum/browser/popup = new(usr, "admin_attack_log", "[src]", 650, 650, src)
 	popup.set_content(jointext(dat,null))
 	popup.open()
@@ -43,13 +43,13 @@
 
 	if(!isemptylist(M.dialogue_log))
 		dat += "<fieldset style='border: 2px solid white; display: inline'>"
-		
+
 		for(var/d in M.dialogue_log)
 			dat += "[d]<br>"
-			
+
 		dat += "</fieldset>"
 	else
-		dat += "<i>No dialogue logs found for [M].</i>"	
+		dat += "<i>No dialogue logs found for [M].</i>"
 	var/datum/browser/popup = new(usr, "admin_dialogue_log", "[src]", 650, 650, src)
 	popup.set_content(jointext(dat,null))
 	popup.open()
@@ -58,5 +58,8 @@
 
 
 	feedback_add_details("admin_verb","PDL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	
 
+
+// Used to get `atom/O as obj|mob|turf in view()` to match against strings containing apostrophes immediately after substrings that match to other objects. Somehow. - Ater
+/proc/admin_atom_validate(atom/A)
+	return view()

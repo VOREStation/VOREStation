@@ -17,9 +17,9 @@
 	var/list/rockets = new/list()
 
 /obj/item/weapon/gun/launcher/rocket/examine(mob/user)
-	if(!..(user, 2))
-		return
-	to_chat(user, "<font color='blue'>[rockets.len] / [max_rockets] rockets.</font>")
+	. = ..()
+	if(get_dist(user, src) <= 2)
+		. += "<font color='blue'>[rockets.len] / [max_rockets] rockets.</font>"
 
 /obj/item/weapon/gun/launcher/rocket/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/ammo_casing/rocket))
@@ -35,10 +35,8 @@
 /obj/item/weapon/gun/launcher/rocket/consume_next_projectile()
 	if(rockets.len)
 		var/obj/item/ammo_casing/rocket/I = rockets[1]
-		var/obj/item/missile/M = new (src)
-		M.primed = 1
 		rockets -= I
-		return M
+		return
 	return null
 
 /obj/item/weapon/gun/launcher/rocket/handle_post_fire(mob/user, atom/target)

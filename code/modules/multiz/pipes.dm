@@ -79,7 +79,7 @@ obj/machinery/atmospherics/pipe/zpipe/check_pressure(pressure)
 
 obj/machinery/atmospherics/pipe/zpipe/proc/burst()
 	src.visible_message("<span class='warning'>\The [src] bursts!</span>");
-	playsound(src.loc, 'sound/effects/bang.ogg', 25, 1)
+	playsound(src, 'sound/effects/bang.ogg', 25, 1)
 	var/datum/effect/effect/system/smoke_spread/smoke = new
 	smoke.set_up(1,0, src.loc, 0)
 	smoke.start()
@@ -214,6 +214,26 @@ obj/machinery/atmospherics/pipe/zpipe/up/supply
 	icon_connect_type = "-supply"
 	color = PIPE_COLOR_BLUE
 
+obj/machinery/atmospherics/pipe/zpipe/up/fuel
+	icon_state = "up-fuel"
+	name = "upwards fuel pipe"
+	desc = "A fuel pipe segment to connect upwards."
+	connect_types = CONNECT_TYPE_FUEL
+	piping_layer = PIPING_LAYER_FUEL
+	layer = PIPES_FUEL_LAYER
+	icon_connect_type = "-fuel"
+	color = PIPE_COLOR_YELLOW
+
+obj/machinery/atmospherics/pipe/zpipe/up/aux
+	icon_state = "up-aux"
+	name = "upwards aux pipe"
+	desc = "A aux pipe segment to connect upwards."
+	connect_types = CONNECT_TYPE_AUX
+	piping_layer = PIPING_LAYER_AUX
+	layer = PIPES_AUX_LAYER
+	icon_connect_type = "-aux"
+	color = PIPE_COLOR_CYAN
+
 obj/machinery/atmospherics/pipe/zpipe/down/scrubbers
 	icon_state = "down-scrubbers"
 	name = "downwards scrubbers pipe"
@@ -233,3 +253,23 @@ obj/machinery/atmospherics/pipe/zpipe/down/supply
 	layer = PIPES_SUPPLY_LAYER
 	icon_connect_type = "-supply"
 	color = PIPE_COLOR_BLUE
+
+obj/machinery/atmospherics/pipe/zpipe/down/fuel
+	icon_state = "down-fuel"
+	name = "downwards fuel pipe"
+	desc = "A fuel pipe segment to connect downwards."
+	connect_types = CONNECT_TYPE_FUEL
+	piping_layer = PIPING_LAYER_FUEL
+	layer = PIPES_FUEL_LAYER
+	icon_connect_type = "-fuel"
+	color = PIPE_COLOR_YELLOW
+
+obj/machinery/atmospherics/pipe/zpipe/down/aux
+	icon_state = "down-aux"
+	name = "upwards aux pipe"
+	desc = "A aux pipe segment to connect upwards."
+	connect_types = CONNECT_TYPE_AUX
+	piping_layer = PIPING_LAYER_AUX
+	layer = PIPES_AUX_LAYER
+	icon_connect_type = "-aux"
+	color = PIPE_COLOR_CYAN

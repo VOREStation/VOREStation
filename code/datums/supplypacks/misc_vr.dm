@@ -96,3 +96,18 @@
 				  access_explorer,
 				  access_pilot)
 	one_access = TRUE
+
+/datum/supply_pack/randomised/misc/explorer_shield
+	name = "Explorer shield"
+	num_contained = 2
+	contains = list(
+			/obj/item/weapon/shield/riot/explorer,
+			/obj/item/weapon/shield/riot/explorer/purple
+			)
+	cost = 75
+	containertype = /obj/structure/closet/crate/secure/gear
+	containername = "exploration shield crate"
+	access = list(access_explorer,
+				  access_eva,
+				  access_pilot)
+	one_access = TRUE

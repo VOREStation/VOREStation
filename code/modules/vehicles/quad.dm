@@ -45,19 +45,18 @@
 	icon_state = "quad_keys"
 	w_class = ITEMSIZE_TINY
 
-/obj/vehicle/train/engine/quadbike/Move(var/turf/destination)
-	var/turf/T = get_turf(src)
-	..() //Move it move it, so we can test it test it.
-	if(T != get_turf(src) && !istype(destination, T.type))	//Did we move at all, and are we changing turf types?
-		if(istype(destination, /turf/simulated/floor/water))
+/obj/vehicle/train/engine/quadbike/Moved(atom/old_loc, direction, forced = FALSE)
+	. = ..() //Move it move it, so we can test it test it.
+	if(!istype(loc, old_loc.type) && !istype(old_loc, loc.type))	//Did we move at all, and are we changing turf types?
+		if(istype(loc, /turf/simulated/floor/water))
 			speed_mod = outdoors_speed_mod * 4 //It kind of floats due to its tires, but it is slow.
-		else if(istype(destination, /turf/simulated/floor/outdoors/rocks))
+		else if(istype(loc, /turf/simulated/floor/outdoors/rocks))
 			speed_mod = initial(speed_mod) //Rocks are good, rocks are solid.
-		else if(istype(destination, /turf/simulated/floor/outdoors/dirt) || istype(destination, /turf/simulated/floor/outdoors/grass))
+		else if(istype(loc, /turf/simulated/floor/outdoors/dirt) || istype(loc, /turf/simulated/floor/outdoors/grass))
 			speed_mod = outdoors_speed_mod //Dirt and grass are the outdoors bench mark.
-		else if(istype(destination, /turf/simulated/floor/outdoors/mud))
+		else if(istype(loc, /turf/simulated/floor/outdoors/mud))
 			speed_mod = outdoors_speed_mod * 1.5 //Gets us roughly 1. Mud may be fun, but it's not the best.
-		else if(istype(destination, /turf/simulated/floor/outdoors/snow))
+		else if(istype(loc, /turf/simulated/floor/outdoors/snow))
 			speed_mod = outdoors_speed_mod * 1.7 //Roughly a 1.25. Snow is coarse and wet and gets everywhere, especially your electric motors.
 		else
 			speed_mod = initial(speed_mod)
@@ -143,15 +142,15 @@
 			add_attack_logs(D,M,"Ran over with [src.name]")
 
 
-/obj/vehicle/train/engine/quadbike/RunOver(var/mob/living/carbon/human/H)
+/obj/vehicle/train/engine/quadbike/RunOver(var/mob/living/M)
 	..()
 	var/list/throw_dirs = list(1, 2, 4, 8, 5, 6, 9, 10)
 	if(!emagged)
 		throw_dirs -= dir
 		if(tow)
-			throw_dirs -= get_dir(H, tow) //Don't throw it at the trailer either.
-	var/turf/T = get_step(H, pick(throw_dirs))
-	H.throw_at(T, 1, 1, src)
+			throw_dirs -= get_dir(M, tow) //Don't throw it at the trailer either.
+	var/turf/T = get_step(M, pick(throw_dirs))
+	M.throw_at(T, 1, 1, src)
 
 /*
  * Trailer bits and bobs.
@@ -193,8 +192,8 @@
 	..()
 	update_icon()
 
-/obj/vehicle/train/trolley/trailer/Move()
-	..()
+/obj/vehicle/train/trolley/trailer/Moved(atom/old_loc, direction, forced = FALSE)
+	. = ..()
 	if(lead)
 		switch(dir) //Due to being a Big Boy sprite, it has to have special pixel shifting to look 'normal'.
 			if(1)

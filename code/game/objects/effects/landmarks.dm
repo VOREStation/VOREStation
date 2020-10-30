@@ -24,6 +24,7 @@
 			return
 		if("JoinLate") // Bit difference, since we need the spawn point to move.
 			latejoin += src
+			simulated = 1
 		//	delete_me = 1
 			return
 		if("JoinLateGateway")

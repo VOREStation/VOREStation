@@ -10,6 +10,8 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "combitool"
 	w_class = ITEMSIZE_SMALL
+	drop_sound = 'sound/items/drop/multitool.ogg'
+	pickup_sound = 'sound/items/pickup/multitool.ogg'
 
 	var/list/spawn_tools = list(
 		/obj/item/weapon/tool/screwdriver,
@@ -22,12 +24,12 @@
 	var/list/tools = list()
 	var/current_tool = 1
 
-/obj/item/weapon/combitool/examine()
-	..()
-	if(loc == usr && tools.len)
-		to_chat(usr, "It has the following fittings:")
+/obj/item/weapon/combitool/examine(mob/user)
+	. = ..()
+	if(loc == user && tools.len)
+		. += "It has the following fittings:"
 		for(var/obj/item/tool in tools)
-			to_chat(usr, "\icon[tool] - [tool.name][tools[current_tool]==tool?" (selected)":""]")
+			. += "[bicon(tool)] - [tool.name][tools[current_tool]==tool?" (selected)":""]")
 
 /obj/item/weapon/combitool/New()
 	..()

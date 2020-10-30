@@ -73,7 +73,7 @@
 		if(A in component_parts)
 			continue
 		A.loc = src.loc
-	update_use_power(1)
+	update_use_power(USE_POWER_IDLE)
 	update_icon()
 
 /obj/machinery/vr_sleeper/alien/enter_vr()

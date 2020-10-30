@@ -74,13 +74,8 @@
 /obj/structure/closet/secure_closet/sar
 	name = "search and rescue locker"
 	desc = "Supplies for a wilderness first responder."
-	icon_state = "medical1"
-	icon_closed = "medical"
-	icon_locked = "medical1"
-	icon_opened = "medicalopen"
-	icon_broken = "medicalbroken"
-	icon_off = "medicaloff"
 	req_access = list(access_medical_equip)
+	closet_appearance = /decl/closet_appearance/secure_closet/medical
 
 	starts_with = list(
 		/obj/item/weapon/storage/backpack/dufflebag/emt,

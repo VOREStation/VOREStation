@@ -35,12 +35,13 @@
 	var/instability_power = 5
 	var/instability_range = 6
 
-/obj/effect/temporary_effect/destablize/New()
-	..()
-	spawn(0)
-		radiate_loop()
+/obj/effect/temporary_effect/destablize/Initialize()
+	. = ..()
+	radiate_loop()
 
 /obj/effect/temporary_effect/destablize/proc/radiate_loop()
+	set waitfor = FALSE
+
 	while(pulses_remaining)
 		sleep(5)
 		for(var/mob/living/L in range(src, instability_range) )

@@ -5,6 +5,7 @@
  * /obj/item/rig_module/device/drill
  * /obj/item/rig_module/device/orescanner
  * /obj/item/rig_module/device/rcd
+ * /obj/item/rig_module/device/arch_drill
  * /obj/item/rig_module/device/anomaly_scanner
  * /obj/item/rig_module/maneuvering_jets
  * /obj/item/rig_module/foam_sprayer
@@ -96,6 +97,17 @@
 
 	device_type = /obj/item/weapon/rcd/electric/mounted/rig
 
+/obj/item/rig_module/device/arch_drill
+	name = "archaeology drill mount"
+	desc = "A cell-powered fine-excavation device for a hardsuit."
+	icon_state = "exdrill"
+	interface_name = "mounted excavation tool"
+	interface_desc = "A device for excavating ancient relics."
+	usable = 1
+	engage_string = "Configure Drill Depth"
+
+	device_type = /obj/item/weapon/pickaxe/excavationdrill
+
 /obj/item/rig_module/device/New()
 	..()
 	if(device_type) device = new device_type(src)
@@ -116,8 +128,6 @@
 	if(!resolved && device && target)
 		device.afterattack(target,holder.wearer,1)
 	return 1
-
-
 
 /obj/item/rig_module/chem_dispenser
 	name = "mounted chemical dispenser"
@@ -418,29 +428,14 @@
 	interface_name = "mop projector"
 	interface_desc = "A mop that can be deployed from the hand of the wearer."
 
-	usable = 0
+	usable = 1
 	selectable = 1
 	toggleable = 1
-	use_power_cost = 0
+	use_power_cost = 5
 	active_power_cost = 0
 	passive_power_cost = 0
 
-	gun = /obj/item/weapon/reagent_containers/spray/cleaner
-
-//obj/item/weapon/reagent_containers/spray/cleaner
-//	spary =
-
-/obj/item/rig_module/mounted/engage(atom/target)
-
-	if(!..())
-		return 0
-
-	if(!target)
-		gun.attack_self(holder.wearer)
-		return 1
-
-	gun.Fire(target,holder.wearer)
-	return 1
+	gun_type = /obj/item/weapon/gun/energy/temperature/mounted
 
 /obj/item/rig_module/mounted/mop/process()
 

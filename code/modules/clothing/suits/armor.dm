@@ -9,7 +9,7 @@
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.6
 
-/obj/item/clothing/suit/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+/obj/item/clothing/suit/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = FALSE)
 	if(..()) //This will only run if no other problems occured when equiping.
 		for(var/obj/item/clothing/I in list(H.gloves, H.shoes))
 			if(I && (src.body_parts_covered & ARMS && I.body_parts_covered & ARMS) )
@@ -189,7 +189,7 @@
 		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 		spark_system.set_up(5, 0, user.loc)
 		spark_system.start()
-		playsound(user.loc, "sparks", 50, 1)
+		playsound(src, "sparks", 50, 1)
 
 		user.loc = picked
 		return PROJECTILE_FORCE_MISS
@@ -278,6 +278,7 @@
 	name = "armor vest"
 	desc = "A simple kevlar plate carrier."
 	icon_state = "kvest"
+	blood_overlay_type = "armor"
 	item_state_slots = list(slot_r_hand_str = "armor", slot_l_hand_str = "armor")
 	armor = list(melee = 40, bullet = 30, laser = 30, energy = 10, bomb = 10, bio = 0, rad = 0)
 	allowed = list(/obj/item/weapon/gun,/obj/item/weapon/reagent_containers/spray/pepper,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/device/flashlight/maglight,/obj/item/clothing/head/helmet)
@@ -311,6 +312,7 @@
 	name = "Warden's jacket"
 	desc = "An armoured jacket with silver rank pips and livery."
 	icon_state = "warden_jacket"
+	blood_overlay_type = "suit"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	flags_inv = HIDETIE|HIDEHOLSTER
 
@@ -332,6 +334,7 @@
 	name = "armored coat"
 	desc = "A greatcoat enhanced with a special alloy for some protection and style."
 	icon_state = "hos"
+	blood_overlay_type = "suit"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	flags_inv = HIDETIE|HIDEHOLSTER
 
@@ -520,7 +523,7 @@
 		|ACCESSORY_SLOT_ARMOR_M)
 	blood_overlay_type = "armor"
 
-/obj/item/clothing/suit/armor/pcarrier/mob_can_equip(var/mob/living/carbon/human/H, slot)
+/obj/item/clothing/suit/armor/pcarrier/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = FALSE)
 	if(..()) //This will only run if no other problems occured when equiping.
 		if(H.gloves)
 			if(H.gloves.body_parts_covered & ARMS)

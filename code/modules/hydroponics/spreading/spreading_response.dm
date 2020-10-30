@@ -1,4 +1,4 @@
-/obj/effect/plant/HasProximity(var/atom/movable/AM)
+/obj/effect/plant/HasProximity(turf/T, atom/movable/AM, old_loc)
 
 	if(!is_mature() || seed.get_trait(TRAIT_SPREAD) != 2)
 		return
@@ -13,6 +13,14 @@
 		spawn(1)
 			entangle(M)
 
+/obj/effect/plant/Moved(atom/old_loc, direction, forced = FALSE)
+	. = ..()
+	if(seed.get_trait(TRAIT_SPREAD)==2)
+		if(isturf(old_loc))
+			unsense_proximity(callback = .HasProximity, center = old_loc)
+		if(isturf(loc))
+			sense_proximity(callback = .HasProximity)
+
 /obj/effect/plant/attack_hand(var/mob/user)
 	manual_unbuckle(user)
 
@@ -20,12 +28,8 @@
 	manual_unbuckle(user)
 
 /obj/effect/plant/Crossed(atom/movable/O)
-	//VOREStation Edit begin: SHADEKIN
-	var/mob/SK = O
-	if(istype(SK))
-		if(SK.shadekin_phasing_check())
-			return
-	//VOREStation Edit end: SHADEKIN
+	if(O.is_incorporeal())
+		return
 	if(isliving(O))
 		trodden_on(O)
 

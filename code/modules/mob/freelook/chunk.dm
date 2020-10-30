@@ -25,12 +25,12 @@
 
 // Add an eye to the chunk, then update if changed.
 
-/datum/chunk/proc/add(mob/observer/eye/eye)
-	if(!eye.owner)
-		return
+/datum/chunk/proc/add(mob/observer/eye/eye, add_images = TRUE)
+	if(add_images)
+		var/client/client = eye.GetViewerClient()
+		if(client)
+			client.images += obscured
 	eye.visibleChunks += src
-	if(eye.owner.client)
-		eye.owner.client.images += obscured
 	visible++
 	seenby += eye
 	if(changed && !updating)
@@ -38,12 +38,12 @@
 
 // Remove an eye from the chunk, then update if changed.
 
-/datum/chunk/proc/remove(mob/observer/eye/eye)
-	if(!eye.owner)
-		return
+/datum/chunk/proc/remove(mob/observer/eye/eye, remove_images = TRUE)
+	if(remove_images)
+		var/client/client = eye.GetViewerClient()
+		if(client)
+			client.images -= obscured
 	eye.visibleChunks -= src
-	if(eye.owner.client)
-		eye.owner.client.images -= obscured
 	seenby -= eye
 	if(visible > 0)
 		visible--
@@ -92,10 +92,11 @@
 			obscured -= t.obfuscations[obfuscation.type]
 			for(var/eye in seenby)
 				var/mob/observer/eye/m = eye
-				if(!m || !m.owner)
+				if(!m)
 					continue
-				if(m.owner.client)
-					m.owner.client.images -= t.obfuscations[obfuscation.type]
+				var/client/client = m.GetViewerClient()
+				if(client)
+					client.images -= t.obfuscations[obfuscation.type]
 
 	for(var/turf in visRemoved)
 		var/turf/t = turf
@@ -109,11 +110,12 @@
 			obscured += t.obfuscations[obfuscation.type]
 			for(var/eye in seenby)
 				var/mob/observer/eye/m = eye
-				if(!m || !m.owner)
+				if(!m)
 					seenby -= m
 					continue
-				if(m.owner.client)
-					m.owner.client.images += t.obfuscations[obfuscation.type]
+				var/client/client = m.GetViewerClient()
+				if(client)
+					client.images += t.obfuscations[obfuscation.type]
 
 /datum/chunk/proc/acquireVisibleTurfs(var/list/visible)
 

@@ -3,14 +3,14 @@
 //
 
 /datum/configuration
-	var/list/engine_map	// Comma separated list of engines to choose from.  Blank means fully random.
-	var/time_off = FALSE
-	var/pto_job_change = FALSE
-	var/limit_interns = -1 //Unlimited by default
-	var/limit_visitors = -1 //Unlimited by default
-	var/pto_cap = 100 //Hours
-	var/require_flavor = FALSE
-	var/ipqualityscore_apikey //API key for ipqualityscore.com
+	var/static/time_off = FALSE
+	var/static/pto_job_change = FALSE
+	var/static/limit_interns = -1 //Unlimited by default
+	var/static/limit_visitors = -1 //Unlimited by default
+	var/static/pto_cap = 100 //Hours
+	var/static/require_flavor = FALSE
+	var/static/ipqualityscore_apikey //API key for ipqualityscore.com
+	var/static/use_playtime_restriction_for_jobs = FALSE
 
 /hook/startup/proc/read_vs_config()
 	var/list/Lines = file2list("config/config.txt")
@@ -41,8 +41,6 @@
 				config.chat_webhook_url = value
 			if ("chat_webhook_key")
 				config.chat_webhook_key = value
-			if ("engine_map")
-				config.engine_map = splittext(value, ",")
 			if ("fax_export_dir")
 				config.fax_export_dir = value
 			if ("items_survive_digestion")
@@ -61,4 +59,6 @@
 				config.require_flavor = TRUE
 			if ("ipqualityscore_apikey")
 				config.ipqualityscore_apikey = value
+			if ("use_playtime_restriction_for_jobs")
+				config.use_playtime_restriction_for_jobs = TRUE
 	return 1

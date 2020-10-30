@@ -53,6 +53,12 @@ Changes desitnation area depending on current sector ship is in.
 Currently updating is called in attack_hand(), until a better place is found.
 Currently no modifications were made to interface to display availability of landing area in sector.
 
+*************************************************************
+Landable Ships
+*************************************************************
+Ship - Vessel that can move around on the overmap. It's entire z-level(s) "move" conceptually.
+Shuttles - Vessel that can jump to shuttle landmarks.  Its areas move by transition_turfs.
+Landable Ship - Vessel that can do both.  Sits at a special shuttle landmark for overmap movement mode.
 
 *************************************************************
 Guide to how make new sector

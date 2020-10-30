@@ -11,7 +11,7 @@ GLOBAL_LIST_EMPTY(robot_custom_icons)
 	GLOB.robot_custom_icons = list()
 	for(var/line in lines)
 		//split entry into ckey and real_name
-		var/list/split_idx = splittext(line, "-") //this works if ckeys and borg names cannot contain dashes, and splittext starts from the beginning ~Mech
+		var/list/split_idx = splittext(line, "|") //this was set to a - before, even though a good 30% of the borgs I see have a - in their name, set it to | instead
 		if(!split_idx || !split_idx.len)
 			continue //bad entry
 
@@ -32,3 +32,9 @@ GLOBAL_LIST_EMPTY(robot_custom_icons)
 		icon = CUSTOM_ITEM_SYNTH
 		if(icon_state == "robot")
 			icon_state = "[ckey]-[sprite_name]-Standard" //Compliant with robot.dm line 236 ~Mech
+// To summarize, if you want to add a whitelisted borg sprite, you have to
+// 1. Add ckey and character name to config/custom_sprites, separated by a |
+// 2. Add your custom sprite to custom_synthetic.dmi under icon/mob/custom_synthetic.dmi
+// 3. Name the sprite, and all of its components, as ckey-charname-module
+// Note that, due to the last couple lines of code, your sprite may appear invisible until you select a module.
+// You can fix this by adding a 'standard' configuration, or you could probably just ignore it if you're lazy.

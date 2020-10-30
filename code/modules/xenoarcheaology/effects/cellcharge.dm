@@ -6,7 +6,7 @@
 
 /datum/artifact_effect/cellcharge/DoEffectTouch(var/mob/user)
 	if(user)
-		if(istype(user, /mob/living/silicon/robot))
+		if(isrobot(user))
 			var/mob/living/silicon/robot/R = user
 			for (var/obj/item/weapon/cell/D in R.contents)
 				D.charge += rand() * 100 + 50
@@ -16,12 +16,24 @@
 /datum/artifact_effect/cellcharge/DoEffectAura()
 	if(holder)
 		var/turf/T = get_turf(holder)
-		for (var/obj/machinery/power/apc/C in range(200, T))
+		for (var/obj/machinery/power/apc/C in GLOB.apcs)
+			if(T.z != C.z)
+				continue
+			if(get_dist(T, C) > 200)
+				continue
 			for (var/obj/item/weapon/cell/B in C.contents)
 				B.charge += 25
-		for (var/obj/machinery/power/smes/S in range (src.effectrange,src))
+		for (var/obj/machinery/power/smes/S in GLOB.smeses)
+			if(T.z != S.z)
+				continue
+			if(get_dist(T, S) > src.effectrange)
+				continue
 			S.charge += 25
-		for (var/mob/living/silicon/robot/M in range(50, T))
+		for (var/mob/living/silicon/robot/M in silicon_mob_list)
+			if(T.z != M.z)
+				continue
+			if(get_dist(T, M) > 50)
+				continue
 			for (var/obj/item/weapon/cell/D in M.contents)
 				D.charge += 25
 				if(world.time - last_message > 200)
@@ -32,12 +44,24 @@
 /datum/artifact_effect/cellcharge/DoEffectPulse()
 	if(holder)
 		var/turf/T = get_turf(holder)
-		for (var/obj/machinery/power/apc/C in range(200, T))
+		for (var/obj/machinery/power/apc/C in GLOB.apcs)
+			if(T.z != C.z)
+				continue
+			if(get_dist(T, C) > 200)
+				continue
 			for (var/obj/item/weapon/cell/B in C.contents)
 				B.charge += rand() * 100
-		for (var/obj/machinery/power/smes/S in range (src.effectrange,src))
+		for (var/obj/machinery/power/smes/S in GLOB.smeses)
+			if(T.z != S.z)
+				continue
+			if(get_dist(T, S) > src.effectrange)
+				continue
 			S.charge += 250
-		for (var/mob/living/silicon/robot/M in range(100, T))
+		for (var/mob/living/silicon/robot/M in silicon_mob_list)
+			if(T.z != M.z) 
+				continue
+			if(get_dist(T, M) > 100)
+				continue
 			for (var/obj/item/weapon/cell/D in M.contents)
 				D.charge += rand() * 100
 				if(world.time - last_message > 200)

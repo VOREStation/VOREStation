@@ -9,11 +9,12 @@
 	maxhealth = 150 //If you change this, consiter changing ../door/window/brigdoor/ health at the bottom of this .dm file
 	health = 150
 	visible = 0.0
-	use_power = 0
+	use_power = USE_POWER_OFF
 	flags = ON_BORDER
 	opacity = 0
 	var/obj/item/weapon/airlock_electronics/electronics = null
 	explosion_resistance = 5
+	can_atmos_pass = ATMOS_PASS_PROC
 	air_properties_vary_with_direction = 1
 
 /obj/machinery/door/window/New()
@@ -94,9 +95,9 @@
 /obj/machinery/door/window/CanZASPass(turf/T, is_zone)
 	if(get_dir(T, loc) == turn(dir, 180))
 		if(is_zone) // No merging allowed.
-			return ATMOS_PASS_NO
-		return ..() // Air can flow if open (density == FALSE).
-	return ATMOS_PASS_YES // Windoors don't block if not facing the right way.
+			return FALSE
+		return !density  // Air can flow if open (density == FALSE).
+	return TRUE // Windoors don't block if not facing the right way.
 
 /obj/machinery/door/window/CheckExit(atom/movable/mover as mob|obj, turf/target as turf)
 	if(istype(mover) && mover.checkpass(PASSGLASS))
@@ -114,7 +115,7 @@
 	if (!operating) //in case of emag
 		operating = 1
 	flick(text("[src.base_state]opening"), src)
-	playsound(src.loc, 'sound/machines/windowdoor.ogg', 100, 1)
+	playsound(src, 'sound/machines/door/windowdoor.ogg', 100, 1)
 	sleep(10)
 
 	explosion_resistance = 0
@@ -131,7 +132,7 @@
 		return FALSE
 	operating = TRUE
 	flick(text("[]closing", src.base_state), src)
-	playsound(src.loc, 'sound/machines/windowdoor.ogg', 100, 1)
+	playsound(src, 'sound/machines/door/windowdoor.ogg', 100, 1)
 
 	density = TRUE
 	update_icon()
@@ -157,7 +158,7 @@
 	if(istype(user,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user
 		if(H.species.can_shred(H))
-			playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, 1)
+			playsound(src, 'sound/effects/Glasshit.ogg', 75, 1)
 			visible_message("<span class='danger'>[user] smashes against the [src.name].</span>", 1)
 			user.do_attack_animation(src)
 			user.setClickCooldown(user.get_attack_speed())
@@ -211,8 +212,8 @@
 				var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 				spark_system.set_up(5, 0, src.loc)
 				spark_system.start()
-				playsound(src.loc, "sparks", 50, 1)
-				playsound(src.loc, 'sound/weapons/blade1.ogg', 50, 1)
+				playsound(src, "sparks", 50, 1)
+				playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
 				visible_message("<span class='warning'>The glass door was sliced open by [user]!</span>")
 			return 1
 
@@ -258,7 +259,7 @@
 		if(src.density && istype(I, /obj/item/weapon) && !istype(I, /obj/item/weapon/card))
 			user.setClickCooldown(user.get_attack_speed(I))
 			var/aforce = I.force
-			playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, 1)
+			playsound(src, 'sound/effects/Glasshit.ogg', 75, 1)
 			visible_message("<span class='danger'>[src] was hit by [I].</span>")
 			if(I.damtype == BRUTE || I.damtype == BURN)
 				take_damage(aforce)

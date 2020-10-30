@@ -7,7 +7,7 @@
 	icon = 'icons/obj/doors/material_doors.dmi'
 	icon_state = "metal"
 
-	var/material/material
+	var/datum/material/material
 	var/state = 0 //closed, 1 == open
 	var/isSwitchingStates = 0
 	var/hardness = 1
@@ -95,7 +95,7 @@
 
 /obj/structure/simple_door/proc/Open()
 	isSwitchingStates = 1
-	playsound(loc, material.dooropen_noise, 100, 1)
+	playsound(src, material.dooropen_noise, 100, 1)
 	flick("[material.door_icon_base]opening",src)
 	sleep(10)
 	density = 0
@@ -107,7 +107,7 @@
 
 /obj/structure/simple_door/proc/Close()
 	isSwitchingStates = 1
-	playsound(loc, material.dooropen_noise, 100, 1)
+	playsound(src, material.dooropen_noise, 100, 1)
 	flick("[material.door_icon_base]closing",src)
 	sleep(10)
 	density = 1
@@ -135,9 +135,9 @@
 		hardness -= W.force/10
 		visible_message("<span class='danger'>[user] hits [src] with [W]!</span>")
 		if(material == get_material_by_name("resin"))
-			playsound(loc, 'sound/effects/attackblob.ogg', 100, 1)
+			playsound(src, 'sound/effects/attackblob.ogg', 100, 1)
 		else if(material == (get_material_by_name(MAT_WOOD) || get_material_by_name(MAT_SIFWOOD)))
-			playsound(loc, 'sound/effects/woodcutting.ogg', 100, 1)
+			playsound(src, 'sound/effects/woodcutting.ogg', 100, 1)
 		else
 			playsound(src, 'sound/weapons/smash.ogg', 50, 1)
 		CheckHardness()
@@ -160,9 +160,9 @@
 /obj/structure/simple_door/attack_generic(var/mob/user, var/damage, var/attack_verb)
 	visible_message("<span class='danger'>[user] [attack_verb] the [src]!</span>")
 	if(material == get_material_by_name("resin"))
-		playsound(loc, 'sound/effects/attackblob.ogg', 100, 1)
+		playsound(src, 'sound/effects/attackblob.ogg', 100, 1)
 	else if(material == (get_material_by_name(MAT_WOOD) || get_material_by_name(MAT_SIFWOOD)))
-		playsound(loc, 'sound/effects/woodcutting.ogg', 100, 1)
+		playsound(src, 'sound/effects/woodcutting.ogg', 100, 1)
 	else
 		playsound(src, 'sound/weapons/smash.ogg', 50, 1)
 	user.do_attack_animation(src)

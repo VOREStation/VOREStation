@@ -41,19 +41,27 @@
 
 	return src
 
-/mob/new_player/AIize()
+/mob/new_player/AIize(var/move = TRUE)
 	spawning = 1
 	return ..()
 
-/mob/living/carbon/human/AIize(move=1) // 'move' argument needs defining here too because BYOND is dumb
+/mob/living/carbon/human/AIize(var/move = TRUE) // 'move' argument needs defining here too because BYOND is dumb
 	if (transforming)
 		return
 	for(var/t in organs)
 		qdel(t)
+	
+	//VOREStation Edit Start - Hologram examine flavor
+	var/mob/living/silicon/ai/O = ..(move)
+	if(O)
+		O.flavor_text = O.client?.prefs?.flavor_texts["general"]
+	
+	return O
+	//VOREStation Edit End
 
 	return ..(move)
 
-/mob/living/carbon/AIize()
+/mob/living/carbon/AIize(var/move = TRUE)
 	if (transforming)
 		return
 	for(var/obj/item/W in src)
@@ -64,10 +72,34 @@
 	invisibility = 101
 	return ..()
 
-/mob/proc/AIize(move=1)
+/mob/proc/AIize(var/move = TRUE)
 	if(client)
 		src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // stop the jams for AIs
-	var/mob/living/silicon/ai/O = new (loc, using_map.default_law_type,,1)//No MMI but safety is in effect.
+
+	var/newloc = loc
+	if(move)
+		var/obj/loc_landmark
+		for(var/obj/effect/landmark/start/sloc in landmarks_list)
+			if (sloc.name != "AI")
+				continue
+			if ((locate(/mob/living) in sloc.loc) || (locate(/obj/structure/AIcore) in sloc.loc))
+				continue
+			loc_landmark = sloc
+		if (!loc_landmark)
+			for(var/obj/effect/landmark/tripai in landmarks_list)
+				if (tripai.name == "tripai")
+					if((locate(/mob/living) in tripai.loc) || (locate(/obj/structure/AIcore) in tripai.loc))
+						continue
+					loc_landmark = tripai
+		if (!loc_landmark)
+			to_chat(src, "Oh god sorry we can't find an unoccupied AI spawn location, so we're spawning you on top of someone.")
+			for(var/obj/effect/landmark/start/sloc in landmarks_list)
+				if (sloc.name == "AI")
+					loc_landmark = sloc
+
+		newloc = loc_landmark.loc
+
+	var/mob/living/silicon/ai/O = new (newloc, using_map.default_law_type,,1)//No MMI but safety is in effect.
 	O.invisibility = 0
 	O.aiRestorePowerRoutine = 0
 
@@ -100,28 +132,6 @@
 			O.add_language(LANGUAGE_ROOTGLOBAL, 1)
 		if(LANGUAGE_ROOTLOCAL in B.alternate_languages)
 			O.add_language(LANGUAGE_ROOTLOCAL, 1)
-
-	if(move)
-		var/obj/loc_landmark
-		for(var/obj/effect/landmark/start/sloc in landmarks_list)
-			if (sloc.name != "AI")
-				continue
-			if ((locate(/mob/living) in sloc.loc) || (locate(/obj/structure/AIcore) in sloc.loc))
-				continue
-			loc_landmark = sloc
-		if (!loc_landmark)
-			for(var/obj/effect/landmark/tripai in landmarks_list)
-				if (tripai.name == "tripai")
-					if((locate(/mob/living) in tripai.loc) || (locate(/obj/structure/AIcore) in tripai.loc))
-						continue
-					loc_landmark = tripai
-		if (!loc_landmark)
-			to_chat(O, "Oh god sorry we can't find an unoccupied AI spawn location, so we're spawning you on top of someone.")
-			for(var/obj/effect/landmark/start/sloc in landmarks_list)
-				if (sloc.name == "AI")
-					loc_landmark = sloc
-
-		O.loc = loc_landmark.loc
 
 	O.on_mob_init()
 

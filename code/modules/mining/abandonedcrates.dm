@@ -1,9 +1,7 @@
 /obj/structure/closet/crate/secure/loot
 	name = "abandoned crate"
 	desc = "What could be inside?"
-	icon_state = "securecrate"
-	icon_opened = "securecrateopen"
-	icon_closed = "securecrate"
+	closet_appearance = /decl/closet_appearance/crate/secure
 	var/list/code = list()
 	var/list/lastattempt = list()
 	var/attempts = 10
@@ -60,12 +58,12 @@
 		if(53 to 54)
 			new/obj/item/latexballon(src)
 		if(55 to 56)
-			var/newitem = pick(typesof(/obj/item/toy/prize) - /obj/item/toy/prize)
+			var/newitem = pick(typesof(/obj/item/toy/mecha) - /obj/item/toy/mecha)
 			new newitem(src)
 		if(57 to 58)
 			new/obj/item/toy/syndicateballoon(src)
 		if(59 to 60)
-			new/obj/item/weapon/rig(src)
+			new/obj/item/weapon/rig/industrial(src)
 		if(61 to 62)
 			for(var/i = 0, i < 12, ++i)
 				new/obj/item/clothing/head/kitty(src)
@@ -122,7 +120,7 @@
 			new/obj/item/weapon/bikehorn(src)
 			//new/obj/item/weapon/stamp/clown(src) I'd add it, but only clowns can use it
 			new/obj/item/weapon/pen/crayon/rainbow(src)
-			new/obj/item/toy/waterflower(src)
+			new/obj/item/weapon/reagent_containers/spray/waterflower(src)
 		if(95)
 			new/obj/item/clothing/under/mime(src)
 			new/obj/item/clothing/shoes/black(src)
@@ -164,7 +162,7 @@
 		to_chat(user, "<span class='notice'>You leave the crate alone.</span>")
 	else if(check_input(input))
 		to_chat(user, "<span class='notice'>The crate unlocks!</span>")
-		playsound(user, 'sound/machines/lockreset.ogg', 50, 1)
+		playsound(src, 'sound/machines/lockreset.ogg', 50, 1)
 		set_locked(0)
 	else
 		visible_message("<span class='warning'>A red light on \the [src]'s control panel flashes briefly.</span>")

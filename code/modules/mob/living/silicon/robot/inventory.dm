@@ -52,6 +52,7 @@
 		module_state_3 = null
 		inv3.icon_state = "inv3"
 	updateicon()
+	hud_used.update_robot_modules_display()
 
 /mob/living/silicon/robot/proc/uneq_all()
 	module_active = null
@@ -262,3 +263,13 @@
 		if(istype(I, typepath))
 			return I
 	return FALSE
+
+// Returns a list of all held items in a borg's 'hands'.
+/mob/living/silicon/robot/get_all_held_items()
+	. = list()
+	if(module_state_1)
+		. += module_state_1
+	if(module_state_2)
+		. += module_state_2
+	if(module_state_3)
+		. += module_state_3

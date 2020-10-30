@@ -6,7 +6,7 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "mass_driver"
 	anchored = 1.0
-	use_power = 1
+	use_power = USE_POWER_IDLE
 	idle_power_usage = 2
 	active_power_usage = 50
 	circuit = /obj/item/weapon/circuitboard/mass_driver
@@ -17,16 +17,8 @@
 	var/drive_range = 50 //this is mostly irrelevant since current mass drivers throw into space, but you could make a lower-range mass driver for interstation transport or something I guess.
 
 /obj/machinery/mass_driver/New()
-	..()
-	component_parts = list()
-	component_parts += new /obj/item/weapon/stock_parts/motor(src)
-	component_parts += new /obj/item/weapon/stock_parts/motor(src)
-	component_parts += new /obj/item/weapon/stock_parts/gear(src)
-	component_parts += new /obj/item/weapon/stock_parts/gear(src)
-	component_parts += new /obj/item/weapon/stock_parts/spring(src)
-	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
-	component_parts += new /obj/item/stack/cable_coil(src, 5)
-	RefreshParts()
+	. = ..()
+	default_apply_parts()
 
 /obj/machinery/mass_driver/attackby(var/obj/item/I, mob/user)
 	if(default_deconstruction_screwdriver(user, I))

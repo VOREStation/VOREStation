@@ -106,7 +106,9 @@
 	if (!holder)
 		return
 
-	var/msg = sanitize(input("Message:", text("Enter the text you wish to appear to everyone:")) as text)
+	var/msg = input("Message:", text("Enter the text you wish to appear to everyone:")) as text
+	if(!(msg[1] == "<" && msg[length(msg)] == ">")) //You can use HTML but only if the whole thing is HTML. Tries to prevent admin 'accidents'.
+		msg = sanitize(msg)
 
 	if (!msg)
 		return
@@ -128,7 +130,9 @@
 	if(!M)
 		return
 
-	var/msg = sanitize(input("Message:", text("Enter the text you wish to appear to your target:")) as text)
+	var/msg = input("Message:", text("Enter the text you wish to appear to your target:")) as text
+	if(msg && !(msg[1] == "<" && msg[length(msg)] == ">")) //You can use HTML but only if the whole thing is HTML. Tries to prevent admin 'accidents'.
+		msg = sanitize(msg)
 
 	if( !msg )
 		return
@@ -143,10 +147,10 @@
 /client/proc/cmd_admin_godmode(mob/M as mob in mob_list)
 	set category = "Special Verbs"
 	set name = "Godmode"
-	
+
 	if(!holder)
 		return
-	
+
 	M.status_flags ^= GODMODE
 	to_chat(usr, "<font color='blue'> Toggled [(M.status_flags & GODMODE) ? "ON" : "OFF"]</font>")
 
@@ -215,7 +219,7 @@ proc/cmd_admin_mute(mob/M as mob, mute_type, automute = 0)
 
 	if(!holder)
 		return
-	
+
 	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
 	if(confirm != "Yes") return
 	log_admin("[key_name(src)] has added a random AI law.")
@@ -261,32 +265,39 @@ Ccomp's first proc.
 /client/proc/allow_character_respawn()
 	set category = "Special Verbs"
 	set name = "Allow player to respawn"
-	set desc = "Let's the player bypass the wait to respawn or allow them to re-enter their corpse."
-	
+	set desc = "Let a player bypass the wait to respawn or allow them to re-enter their corpse."
+
 	if(!holder)
 		return
-	
-	var/list/ghosts= get_ghosts(1,1)
 
-	var/target = input("Please, select a ghost!", "COME BACK TO LIFE!", null, null) as null|anything in ghosts
+	var/target = input("Select a ckey to allow to rejoin", "Allow Respawn Selector") as null|anything in GLOB.respawn_timers
 	if(!target)
-		to_chat(src, "Hrm, appears you didn't select a ghost")		// Sanity check, if no ghosts in the list we don't want to edit a null variable and cause a runtime error.
 		return
+	
+	if(GLOB.respawn_timers[target] == -1) // Their respawn timer is set to -1, which is 'not allowed to respawn'
+		var/response = alert(src, "Are you sure you wish to allow this individual to respawn? They would normally not be able to.","Allow impossible respawn?","No","Yes")
+		if(response == "No")
+			return
+	
+	GLOB.respawn_timers -= target
 
-	var/mob/observer/dead/G = ghosts[target]
-	if(G.has_enabled_antagHUD && config.antag_hud_restricted)
-		var/response = alert(src, "Are you sure you wish to allow this individual to play?","Ghost has used AntagHUD","Yes","No")
-		if(response == "No") return
-	G.timeofdeath=-19999						/* time of death is checked in /mob/verb/abandon_mob() which is the Respawn verb.
-									   timeofdeath is used for bodies on autopsy but since we're messing with a ghost I'm pretty sure
-									   there won't be an autopsy.
-									*/
-	G.has_enabled_antagHUD = 2
-	G.can_reenter_corpse = 1
+	var/found_client = FALSE
+	for(var/c in GLOB.clients)
+		var/client/C = c
+		if(C.ckey == target)
+			found_client = C
+			to_chat(C, "<span class='notice'><B>You may now respawn. You should roleplay as if you learned nothing about the round during your time with the dead.</B></span>")
+			if(isobserver(C.mob))
+				var/mob/observer/dead/G = C.mob
+				G.can_reenter_corpse = 1
+				to_chat(C, "<span class='notice'><B>You can also re-enter your corpse, if you still have one!</B></span>")
+			break
 
-	G:show_message(text("<font color='blue'><B>You may now respawn.  You should roleplay as if you learned nothing about the round during your time with the dead.</B></font>"), 1)
-	log_admin("[key_name(usr)] allowed [key_name(G)] to bypass the respawn time limit")
-	message_admins("Admin [key_name_admin(usr)] allowed [key_name_admin(G)] to bypass the respawn time limit", 1)
+	if(!found_client)
+		to_chat(src, "<span class='notice'>The associated client didn't appear to be connected, so they couldn't be notified, but they can now respawn if they reconnect.</span>")
+	
+	log_admin("[key_name(usr)] allowed [found_client ? key_name(found_client) : target] to bypass the respawn time limit")
+	message_admins("Admin [key_name_admin(usr)] allowed [found_client ? key_name_admin(found_client) : target] to bypass the respawn time limit", 1)
 
 
 /client/proc/toggle_antagHUD_use()
@@ -328,10 +339,10 @@ Ccomp's first proc.
 	set category = "Server"
 	set name = "Toggle antagHUD Restrictions"
 	set desc = "Restricts players that have used antagHUD from being able to join this round."
-	
+
 	if(!holder)
 		return
-	
+
 	var/action=""
 	if(config.antag_hud_restricted)
 		for(var/mob/observer/dead/g in get_ghosts())
@@ -361,16 +372,22 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set category = "Special Verbs"
 	set name = "Spawn Character"
 	set desc = "(Re)Spawn a client's loaded character."
-	
+
 	if(!holder)
 		return
 
-	//I frontload all the questions so we don't have a half-done process while you're reading.
 	var/client/picked_client = input(src, "Please specify which client's character to spawn.", "Client", "") as null|anything in GLOB.clients
 	if(!picked_client)
 		return
 
-	var/location = alert(src,"Please specify where to spawn them.", "Location", "Right Here", "Arrivals", "Cancel")
+	respawn_character_proper(picked_client)
+
+/client/proc/respawn_character_proper(client/picked_client)
+	if(!istype(picked_client))
+		return
+
+	//I frontload all the questions so we don't have a half-done process while you're reading.
+	var/location = alert(src, "Please specify where to spawn them.", "Location", "Right Here", "Arrivals", "Cancel")
 	if(location == "Cancel" || !location)
 		return
 
@@ -441,15 +458,17 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	var/mob/living/carbon/human/new_character
 	var/spawnloc
+	var/sparks
 
 	//Where did you want to spawn them?
 	switch(location)
 		if("Right Here") //Spawn them on your turf
-			if(!src.mob)
-				to_chat(src, "You can't use 'Right Here' when you are not 'Right Anywhere'!")
-				return
-
 			spawnloc = get_turf(src.mob)
+			sparks = alert(src,"Sparks like they teleported in?", "Showy", "Yes", "No", "Cancel")
+			if(sparks == "Cancel")
+				return
+			if(sparks == "No")
+				sparks = FALSE
 
 		if("Arrivals") //Spawn them at a latejoin spawnpoint
 			spawnloc = pick(latejoin)
@@ -464,6 +483,14 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 
 	new_character = new(spawnloc)
+	
+	if(sparks)
+		anim(spawnloc,new_character,'icons/mob/mob.dmi',,"phasein",,new_character.dir)
+		playsound(spawnloc, "sparks", 50, 1)
+		var/datum/effect/effect/system/spark_spread/spk = new(new_character)
+		spk.set_up(5, 0, new_character)
+		spk.attach(new_character)
+		spk.start()
 
 	//We were able to spawn them, right?
 	if(!new_character)
@@ -505,7 +532,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	//If we're announcing their arrival
 	if(announce)
-		AnnounceArrival(new_character, new_character.mind.assigned_role)
+		AnnounceArrival(new_character, new_character.mind.assigned_role, "Common", new_character.z)
 
 	log_admin("[admin] has spawned [player_key]'s character [new_character.real_name].")
 	message_admins("[admin] has spawned [player_key]'s character [new_character.real_name].", 1)
@@ -522,7 +549,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	if(!holder)
 		return
-	
+
 	var/input = sanitize(input(usr, "Please enter anything you want the AI to do. Anything. Serious.", "What?", "") as text|null)
 	if(!input)
 		return
@@ -551,7 +578,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	if(!holder)
 		return
-	
+
 	if(!mob)
 		return
 	if(!istype(M))
@@ -596,7 +623,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	message_admins("[key_name_admin(src)] has created a command report", 1)
 	feedback_add_details("admin_verb","CCR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_delete(atom/O as obj|mob|turf in view())
+/client/proc/cmd_admin_delete(atom/O as obj|mob|turf in admin_atom_validate(O)) // I don't understand precisely how this fixes the string matching against a substring, but it does - Ater
 	set category = "Admin"
 	set name = "Delete"
 
@@ -823,10 +850,12 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!holder)
 		return
 
+	var/view = src.view
 	if(view == world.view)
 		view = input("Select view range:", "FUCK YE", 7) in list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,128)
 	else
 		view = world.view
+	mob.set_viewsize(view)
 
 	log_admin("[key_name(usr)] changed their view range to [view].")
 	//message_admins("<font color='blue'>[key_name_admin(usr)] changed their view range to [view].</font>", 1)	//why? removed by order of XSI
@@ -964,7 +993,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set desc = "Removes a player from the round as if they'd cryo'd."
 	set popup_menu = FALSE
 
-	if(!check_rights(R_ADMIN))
+	if(!check_rights(R_ADMIN|R_EVENT))
 		return
 
 	if(!M)

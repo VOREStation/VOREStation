@@ -112,20 +112,17 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 	return 1
 
 /obj/structure/particle_accelerator/examine(mob/user)
-	switch(src.construction_state)
+	. = ..()
+	
+	switch(construction_state)
 		if(0)
-			src.desc = text("A [name], looks like it's not attached to the flooring")
+			. += "Looks like it's not attached to the flooring."
 		if(1)
-			src.desc = text("A [name], it is missing some cables")
+			. += "It is missing some cables."
 		if(2)
-			src.desc = text("A [name], the panel is open")
+			. += "The panel is open."
 		if(3)
-			src.desc = text("The [name] is assembled")
-			if(powered)
-				src.desc = src.desc_holder
-	..()
-	return
-
+			. += "It is assembled."
 
 /obj/structure/particle_accelerator/attackby(obj/item/W, mob/user)
 	if(istool(W))
@@ -135,9 +132,9 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 	return
 
 
-/obj/structure/particle_accelerator/Move()
-	..()
-	if(master && master.active)
+/obj/structure/particle_accelerator/Moved(atom/old_loc, direction, forced = FALSE)
+	. = ..()
+	if(master?.active)
 		master.toggle_power()
 		log_game("PACCEL([x],[y],[z]) Was moved while active and turned off.")
 		investigate_log("was moved whilst active; it <font color='red'>powered down</font>.","singulo")
@@ -258,7 +255,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 	icon_state = "none"
 	anchored = 0
 	density = 1
-	use_power = 0
+	use_power = USE_POWER_OFF
 	idle_power_usage = 0
 	active_power_usage = 0
 	var/construction_state = 0
@@ -295,19 +292,17 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 	return
 
 /obj/machinery/particle_accelerator/examine(mob/user)
-	switch(src.construction_state)
+	. = ..()
+	
+	switch(construction_state)
 		if(0)
-			src.desc = text("A [name], looks like it's not attached to the flooring")
+			. += "Looks like it's not attached to the flooring."
 		if(1)
-			src.desc = text("A [name], it is missing some cables")
+			. += "It is missing some cables."
 		if(2)
-			src.desc = text("A [name], the panel is open")
+			. += "The panel is open."
 		if(3)
-			src.desc = text("The [name] is assembled")
-			if(powered)
-				src.desc = src.desc_holder
-	..()
-	return
+			. += "It is assembled."
 
 
 /obj/machinery/particle_accelerator/attackby(obj/item/W, mob/user)
@@ -383,10 +378,10 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 		if(src.construction_state < 3)//Was taken apart, update state
 			update_state()
 			if(use_power)
-				use_power = 0
+				update_use_power(USE_POWER_OFF)
 		src.construction_state = temp_state
 		if(src.construction_state >= 3)
-			use_power = 1
+			update_use_power(USE_POWER_IDLE)
 		update_icon()
 		return 1
 	return 0

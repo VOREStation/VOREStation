@@ -1,5 +1,5 @@
 /datum/gear/shoes/boots/winter/science
-	allowed_roles = list("Research Director","Scientist", "Roboticist", "Xenobiologist", "Explorer", "Pathfinder")
+	allowed_roles = list("Research Director","Scientist", "Roboticist", "Xenobiologist", "Xenobotanist", "Explorer", "Pathfinder")
 
 /datum/gear/shoes/boots/winter/medical
 	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist", "Field Medic")
@@ -19,3 +19,7 @@
 /datum/gear/shoes/siren
 	display_name = "boots, Siren"
 	path = /obj/item/clothing/shoes/boots/fluff/siren
+
+/datum/gear/shoes/toeless
+	display_name = "toe-less jackboots"
+	path = /obj/item/clothing/shoes/boots/jackboots/toeless

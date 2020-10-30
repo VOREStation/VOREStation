@@ -60,6 +60,10 @@
 /obj/effect/decal/remains,
 /turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
 /area/mine/explored/underdark)
+"B" = (
+/obj/structure/salvageable/data,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
 
 (1,1,1) = {"
 a
@@ -148,7 +152,7 @@ b
 (8,1,1) = {"
 b
 d
-b
+B
 b
 b
 b

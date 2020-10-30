@@ -7,7 +7,7 @@
 	icon_state = "box_0"
 	density = 1
 	anchored = 1
-	use_power = 0
+	use_power = USE_POWER_OFF
 	var/obj/item/weapon/circuitboard/circuit = null
 	var/list/components = null
 	var/list/req_components = null
@@ -33,7 +33,7 @@
 					if (C.get_amount() < 5)
 						to_chat(user, "<span class='warning'>You need five lengths of cable to add them to the frame.</span>")
 						return
-					playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+					playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 					to_chat(user, "<span class='notice'>You start to add cables to the frame.</span>")
 					if(do_after(user, 20) && state == 1)
 						if(C.use(5))
@@ -50,7 +50,7 @@
 				if(istype(P, /obj/item/weapon/circuitboard))
 					var/obj/item/weapon/circuitboard/B = P
 					if(B.board_type == "machine")
-						playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+						playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 						to_chat(user, "<span class='notice'>You add the circuit board to the frame.</span>")
 						circuit = P
 						user.drop_item()
@@ -72,7 +72,7 @@
 						to_chat(user, "<span class='warning'>This frame does not accept circuit boards of this type!</span>")
 				else
 					if(P.is_wirecutter())
-						playsound(src.loc, P.usesound, 50, 1)
+						playsound(src, P.usesound, 50, 1)
 						to_chat(user, "<span class='notice'>You remove the cables.</span>")
 						state = 1
 						icon_state = "box_0"
@@ -103,7 +103,7 @@
 								component_check = 0
 								break
 						if(component_check)
-							playsound(src.loc, P.usesound, 50, 1)
+							playsound(src, P.usesound, 50, 1)
 							var/obj/machinery/new_machine = new src.circuit.build_path(src.loc, src.dir)
 
 							if(new_machine.component_parts)
@@ -131,7 +131,7 @@
 						if(istype(P, /obj/item))
 							for(var/I in req_components)
 								if(istype(P, text2path(I)) && (req_components[I] > 0))
-									playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
+									playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 									if(P.is_cable_coil))
 										var/obj/item/stack/cable_coil/CP = P
 										if(CP.get_amount() > 1)

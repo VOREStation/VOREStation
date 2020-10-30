@@ -12,12 +12,13 @@
 	metabolism = REM
 
 	var/modifier_to_add = /datum/modifier/berserk
-	var/modifier_duration = 2 SECONDS	// How long, per unit dose, will this last?
+	var/modifier_duration = 3 SECONDS	// How long, per unit dose, will this last?
+										// 2 SECONDS is the resolution of life code, and the modifier will expire before chemical processing tries to re-add it
 
 /datum/reagent/modapplying/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
-	M.add_modifier(modifier_to_add, dose * modifier_duration)
+	M.add_modifier(modifier_to_add, modifier_duration, suppress_failure = TRUE)
 
 /datum/reagent/modapplying/cryofluid
 	name = "cryogenic slurry"
@@ -56,3 +57,14 @@
 			var/turf/simulated/S = T
 			S.freeze_floor()
 	return
+
+/datum/reagent/modapplying/vatstabilizer
+	name = "clone growth inhibitor"
+	id = "vatstabilizer"
+	description = "A compound produced by NanoTrasen using a secret blend of phoron and toxins to stop the rampant growth of a clone beyond intended states."
+	taste_description = "sour glue"
+	color = "#060501"
+	metabolism = REM * 0.2
+
+	modifier_to_add = /datum/modifier/clone_stabilizer
+	modifier_duration = 30 SECONDS

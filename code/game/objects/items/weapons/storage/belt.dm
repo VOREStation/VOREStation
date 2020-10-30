@@ -8,6 +8,9 @@
 	max_w_class = ITEMSIZE_NORMAL
 	slot_flags = SLOT_BELT
 	attack_verb = list("whipped", "lashed", "disciplined")
+	equip_sound = 'sound/items/toolbelt_equip.ogg'
+	drop_sound = 'sound/items/drop/toolbelt.ogg'
+	pickup_sound = 'sound/items/pickup/toolbelt.ogg'
 	sprite_sheets = list(SPECIES_TESHARI = 'icons/mob/species/seromi/belt.dmi')
 
 	var/show_above_suit = 0
@@ -162,6 +165,7 @@
 		/obj/item/weapon/melee/baton,
 		/obj/item/weapon/gun/energy/taser,
 		/obj/item/weapon/gun/energy/stunrevolver,
+		/obj/item/weapon/gun/magnetic/railgun/heater/pistol,
 		/obj/item/weapon/gun/energy/gun,
 		/obj/item/weapon/flame/lighter,
 		/obj/item/device/flashlight,

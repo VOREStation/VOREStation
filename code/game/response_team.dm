@@ -131,6 +131,7 @@ proc/trigger_armed_response_team(var/force = 0)
 
 	can_call_ert = 0 // Only one call per round, gentleman.
 	send_emergency_team = 1
+	consider_ert_load() //VOREStation Add
 
 	sleep(600 * 5)
 	send_emergency_team = 0 // Can no longer join the ERT.

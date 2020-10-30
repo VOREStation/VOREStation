@@ -35,8 +35,8 @@
 /turf/simulated/flesh/attackby()
 	return
 
-/turf/simulated/flesh/New()
-	..()
+/turf/simulated/flesh/Initialize(mapload)
+	. = ..()
 	update_icon(1)
 
 var/list/flesh_overlay_cache = list()
@@ -60,3 +60,56 @@ var/list/flesh_overlay_cache = list()
 			if(istype(get_step(src, direction), /turf/simulated/flesh))
 				var/turf/simulated/flesh/F = get_step(src, direction)
 				F.update_icon()
+
+/turf/simulated/gore
+	name = "wall of viscera"
+	desc = "Its veins pulse in a sickeningly rapid fashion, while certain spots of the wall rise and fall gently, much like slow, deliberate breathing."
+	icon = 'icons/goonstation/turf/meatland.dmi'
+	icon_state = "bloodwall_2"
+	opacity = 1
+	density = 1
+	blocks_air = 1
+
+/turf/simulated/goreeyes
+	name = "wall of viscera"
+	desc = "Strangely observant eyes dot the wall. Getting too close has the eyes fixate on you, while their pupils shake violently. Each socket is connected by a series of winding, writhing veins."
+	icon = 'icons/goonstation/turf/meatland.dmi'
+	icon_state = "bloodwall_4"
+	opacity = 1
+	density = 1
+	blocks_air = 1
+
+/turf/simulated/shuttle/wall/flock
+	icon = 'icons/goonstation/featherzone.dmi'
+	icon_state = "flockwall0"
+	base_state = "flockwall"
+	hard_corner = 1 //They're all HC
+	true_name = "wall"
+
+/turf/simulated/shuttle/wall/flock/Initialize()
+	. = ..()
+	set_light(3,3,"#26c5a9")
+
+/turf/simulated/wall/rplastitanium
+	icon_state = "rwall-plastitanium"
+	icon = 'icons/turf/wall_masks_vr.dmi'
+/turf/simulated/wall/rplastitanium/Initialize(mapload)
+	. = ..(mapload, MAT_PLASTITANIUM,MAT_PLASTITANIUM,MAT_PLASTITANIUM)
+
+/turf/simulated/wall/plastitanium
+	icon_state = "wall-plastitanium"
+	icon = 'icons/turf/wall_masks_vr.dmi'
+/turf/simulated/wall/plastitanium/Initialize(mapload)
+	. = ..(mapload, MAT_PLASTITANIUM, null,MAT_PLASTITANIUM)
+
+/turf/simulated/wall/rplastihull
+	icon_state = "rhull-plastitanium"
+	icon = 'icons/turf/wall_masks_vr.dmi'
+/turf/simulated/wall/rplastihull/Initialize(mapload)
+	. = ..(mapload, MAT_PLASTITANIUMHULL,MAT_PLASTITANIUMHULL,MAT_PLASTITANIUMHULL)
+
+/turf/simulated/wall/plastihull
+	icon_state = "hull-plastitanium"
+	icon = 'icons/turf/wall_masks_vr.dmi'
+/turf/simulated/wall/plastihull/Initialize(mapload)
+	. = ..(mapload, MAT_PLASTITANIUMHULL, null,MAT_PLASTITANIUMHULL)

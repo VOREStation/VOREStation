@@ -58,9 +58,9 @@
 		damage_to_do = round(damage_to_do / 4)
 	if(damage_to_do > 0)
 		if(W.sharp && W.edge)
-			playsound(get_turf(src), 'sound/effects/woodcutting.ogg', 50, 1)
+			playsound(src, 'sound/effects/woodcutting.ogg', 50, 1)
 		else
-			playsound(get_turf(src), W.hitsound, 50, 1)
+			playsound(src, W.hitsound, 50, 1)
 		if(damage_to_do > 5 && !indestructable)
 			adjust_health(-damage_to_do)
 		else
@@ -273,7 +273,9 @@
 	max_harvests = 2
 	min_harvests = -4
 	harvest_loot = list(
-		/obj/item/weapon/reagent_containers/food/snacks/siffruit = 5
+		/obj/item/weapon/reagent_containers/food/snacks/siffruit = 20,
+		/obj/item/weapon/reagent_containers/food/snacks/grown/sifpod = 5,
+		/obj/item/seeds/sifbulb = 1
 		)
 
 	var/light_shift = 0

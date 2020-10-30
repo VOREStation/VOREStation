@@ -231,34 +231,42 @@
 	. = list()
 	// Returns a list of mobs who can hear any of the radios given in @radios
 	var/list/speaker_coverage = list()
-	for(var/obj/item/device/radio/R in radios)
-		if(R)
-			//Cyborg checks. Receiving message uses a bit of cyborg's charge.
-			var/obj/item/device/radio/borg/BR = R
-			if(istype(BR) && BR.myborg)
-				var/mob/living/silicon/robot/borg = BR.myborg
-				var/datum/robot_component/CO = borg.get_component("radio")
-				if(!CO)
-					continue //No radio component (Shouldn't happen)
-				if(!borg.is_component_functioning("radio") || !borg.cell_use_power(CO.active_usage))
-					continue //No power.
-
-			var/turf/speaker = get_turf(R)
-			if(speaker)
-				for(var/turf/T in hear(R.canhear_range,speaker))
-					speaker_coverage[T] = T
+	for(var/r in radios)
+		var/obj/item/device/radio/R = r // You better fucking be a radio.
+		var/turf/speaker = get_turf(R)
+		if(speaker)
+			for(var/turf/T in hear(R.canhear_range,speaker))
+				speaker_coverage[T] = R
 
 
 	// Try to find all the players who can hear the message
 	for(var/i = 1; i <= player_list.len; i++)
 		var/mob/M = player_list[i]
-		if(M)
-			var/turf/ear = get_turf(M)
-			if(ear)
-				// Ghostship is magic: Ghosts can hear radio chatter from anywhere
-				if(speaker_coverage[ear] || (istype(M, /mob/observer/dead) && M.is_preference_enabled(/datum/client_preference/ghost_radio)))
-					. |= M		// Since we're already looping through mobs, why bother using |= ? This only slows things down.
+		if(M.can_hear_radio(speaker_coverage))
+			. += M
 	return .
+
+/mob/proc/can_hear_radio(var/list/hearturfs)
+	return FALSE
+
+/mob/living/can_hear_radio(var/list/hearturfs)
+	return get_turf(src) in hearturfs
+
+/mob/living/silicon/robot/can_hear_radio(var/list/hearturfs)
+	var/turf/T = get_turf(src)
+	var/obj/item/device/radio/borg/R = hearturfs[T] // this should be an assoc list of turf-to-radio
+	
+	// We heard it on our own radio? We use power for that.
+	if(istype(R) && R.myborg == src)
+		var/datum/robot_component/CO = get_component("radio")
+		if(!CO || !is_component_functioning("radio") || !cell_use_power(CO.active_usage))
+			return FALSE // Sorry, couldn't hear
+	
+	return R // radio, true, false, what's the difference
+
+/mob/observer/dead/can_hear_radio(var/list/hearturfs)
+	return is_preference_enabled(/datum/client_preference/ghost_radio)
+
 
 //Uses dview to quickly return mobs and objects in view,
 // then adds additional mobs or objects if they are in range 'smartly',
@@ -272,19 +280,17 @@
 	var/list/hearturfs = list()
 
 	for(var/thing in hear)
-		if(istype(thing,/obj))
+		if(istype(thing, /obj)) //Can't use isobj() because /atom/movable returns true in that, and so lighting overlays would be included
 			objs += thing
 			hearturfs |= get_turf(thing)
-		else if(istype(thing,/mob))
+		if(ismob(thing))
 			mobs += thing
 			hearturfs |= get_turf(thing)
 
 	//A list of every mob with a client
 	for(var/mob in player_list)
-		//VOREStation Edit - Trying to fix some vorestation bug.
-		if(!istype(mob, /mob))
+		if(!ismob(mob))
 			player_list -= mob
-			crash_with("There is a null or non-mob reference inside player_list ([mob]).")
 			continue
 		//VOREStation Edit End - Trying to fix some vorestation bug.
 		if(get_turf(mob) in hearturfs)
@@ -610,3 +616,82 @@ datum/projectile_data
 	if (!client_or_usr)
 		return
 	winset(client_or_usr, "mainwindow", "flash=5")
+
+/**
+ * Get a bounding box of a list of atoms.
+ *
+ * Arguments:
+ * - atoms - List of atoms. Can accept output of view() and range() procs.
+ *
+ * Returns: list(x1, y1, x2, y2)
+ */
+/proc/get_bbox_of_atoms(list/atoms)
+	var/list/list_x = list()
+	var/list/list_y = list()
+	for(var/_a in atoms)
+		var/atom/a = _a
+		list_x += a.x
+		list_y += a.y
+	return list(
+		min(list_x),
+		min(list_y),
+		max(list_x),
+		max(list_y))
+
+// Will recursively loop through an atom's contents and check for mobs, then it will loop through every atom in that atom's contents.
+// It will keep doing this until it checks every content possible. This will fix any problems with mobs, that are inside objects,
+// being unable to hear people due to being in a box within a bag.
+
+/proc/recursive_mob_check(var/atom/O,  var/list/L = list(), var/recursion_limit = 3, var/client_check = 1, var/sight_check = 1, var/include_radio = 1)
+
+	//GLOB.debug_mob += O.contents.len
+	if(!recursion_limit)
+		return L
+	for(var/atom/A in O.contents)
+
+		if(ismob(A))
+			var/mob/M = A
+			if(client_check && !M.client)
+				L |= recursive_mob_check(A, L, recursion_limit - 1, client_check, sight_check, include_radio)
+				continue
+			if(sight_check && !isInSight(A, O))
+				continue
+			L |= M
+			//log_world("[recursion_limit] = [M] - [get_turf(M)] - ([M.x], [M.y], [M.z])")
+
+		else if(include_radio && istype(A, /obj/item/radio))
+			if(sight_check && !isInSight(A, O))
+				continue
+			L |= A
+
+		if(isobj(A) || ismob(A))
+			L |= recursive_mob_check(A, L, recursion_limit - 1, client_check, sight_check, include_radio)
+	return L
+
+// The old system would loop through lists for a total of 5000 per function call, in an empty server.
+// This new system will loop at around 1000 in an empty server.
+
+/proc/get_mobs_in_view(var/R, var/atom/source, var/include_clientless = FALSE)
+	// Returns a list of mobs in range of R from source. Used in radio and say code.
+
+	var/turf/T = get_turf(source)
+	var/list/hear = list()
+
+	if(!T)
+		return hear
+
+	var/list/range = hear(R, T)
+
+	for(var/atom/A in range)
+		if(ismob(A))
+			var/mob/M = A
+			if(M.client || include_clientless)
+				hear += M
+			//log_world("Start = [M] - [get_turf(M)] - ([M.x], [M.y], [M.z])")
+		else if(istype(A, /obj/item/radio))
+			hear += A
+
+		if(isobj(A) || ismob(A))
+			hear |= recursive_mob_check(A, hear, 3, 1, 0, 1)
+
+	return hear

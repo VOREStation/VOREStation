@@ -19,19 +19,19 @@
 	var_changes = list("metabolic_rate" = 1.4, "hunger_factor" = 0.4, "metabolism" = 0.012) // +40% rate and 8x hunger (Double Teshari)
 	excludes = list(/datum/trait/metabolism_up, /datum/trait/metabolism_down)
 
-/datum/trait/cold_discomfort
-	name = "Hot-Blooded"
-	desc = "You are too hot at the standard 20C. 18C is more suitable. Rolling down your jumpsuit or being unclothed helps."
+/datum/trait/coldadapt
+	name = "Cold-Adapted"
+	desc = "You are able to withstand much colder temperatures than other species, and can even be comfortable in extremely cold environments. You are also more vulnerable to hot environments, and have a lower body temperature as a consequence of these adaptations."
 	cost = 0
-	var_changes = list("heat_discomfort_level" = T0C+19)
-	excludes = list(/datum/trait/hot_discomfort)
-
-/datum/trait/hot_discomfort
-	name = "Cold-Blooded"
-	desc = "You are too cold at the standard 20C. 22C is more suitable. Wearing clothing that covers your legs and torso helps."
+	var_changes = list("cold_level_1" = 200,  "cold_level_2" = 150, "cold_level_3" = 90, "breath_cold_level_1" = 180, "breath_cold_level_2" = 100, "breath_cold_level_3" = 60, "cold_discomfort_level" = 210, "heat_level_1" = 305, "heat_level_2" = 360, "heat_level_3" = 700, "breath_heat_level_1" = 345, "breath_heat_level_2" = 380, "breath_heat_level_3" = 780, "heat_discomfort_level" = 295, "body_temperature" = 290)
+	excludes = list(/datum/trait/hotadapt)
+	
+/datum/trait/hotadapt
+	name = "Heat-Adapted"
+	desc = "You are able to withstand much hotter temperatures than other species, and can even be comfortable in extremely hot environments. You are also more vulnerable to cold environments, and have a higher body temperature as a consequence of these adaptations."
 	cost = 0
-	var_changes = list("cold_discomfort_level" = T0C+21)
-	excludes = list(/datum/trait/cold_discomfort)
+	var_changes = list("heat_level_1" = 420, "heat_level_2" = 460, "heat_level_3" = 1100, "breath_heat_level_1" = 440, "breath_heat_level_2" = 510, "breath_heat_level_3" = 1500, "heat_discomfort_level" = 390, "cold_level_1" = 280, "cold_level_2" = 220, "cold_level_3" = 140, "breath_cold_level_1" = 260, "breath_cold_level_2" = 240, "breath_cold_level_3" = 120, "cold_discomfort_level" = 280, "body_temperature" = 330)
+	excludes = list(/datum/trait/coldadapt)
 
 /datum/trait/autohiss_unathi
 	name = "Autohiss (Unathi)"
@@ -80,6 +80,15 @@
 	H.verbs |= /mob/living/carbon/human/proc/succubus_drain_finalize
 	H.verbs |= /mob/living/carbon/human/proc/succubus_drain_lethal
 
+/datum/trait/feeder
+	name = "Feeder"
+	desc = "Allows you to feed your prey using your own body."
+	cost = 0
+
+/datum/trait/feeder/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..(S,H)
+	H.verbs |= /mob/living/carbon/human/proc/slime_feed
+
 /datum/trait/hard_vore
 	name = "Brutal Predation"
 	desc = "Allows you to tear off limbs & tear out internal organs."
@@ -99,6 +108,16 @@
 	..(S,H)
 	H.verbs |= /mob/living/proc/eat_trash
 
+/datum/trait/gem_eater
+	name = "Expensive Taste"
+	desc = "You only gain nutrition from raw ore and refined minerals. There's nothing that sates the appetite better than precious gems, exotic or rare minerals and you have damn fine taste. Anything else is beneath you."
+	cost = 0
+	var_changes = list("gets_food_nutrition" = 0, "eat_minerals" = 1)
+
+/datum/trait/gem_eater/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..(S,H)
+	H.verbs |= /mob/living/proc/eat_minerals
+
 /datum/trait/glowing_eyes
 	name = "Glowing Eyes"
 	desc = "Your eyes show up above darkness. SPOOKY! And kinda edgey too."
@@ -113,3 +132,78 @@
 	..(S,H)
 	H.verbs |= /mob/living/proc/glow_toggle
 	H.verbs |= /mob/living/proc/glow_color
+
+// Spicy Food Traits, from negative to positive.
+/datum/trait/spice_intolerance_extreme
+	name = "Extreme Spice Intolerance"
+	desc = "Spicy (and chilly) peppers are three times as strong. (This does not affect pepperspray.)"
+	cost = 0
+	var_changes = list("spice_mod" = 3) // 300% as effective if spice_mod is set to 1. If it's not 1 in species.dm, update this!
+	
+/datum/trait/spice_intolerance_basic
+	name = "Heavy Spice Intolerance"
+	desc = "Spicy (and chilly) peppers are twice as strong. (This does not affect pepperspray.)"
+	cost = 0
+	var_changes = list("spice_mod" = 2) // 200% as effective if spice_mod is set to 1. If it's not 1 in species.dm, update this!
+
+/datum/trait/spice_intolerance_slight
+	name = "Slight Spice Intolerance"
+	desc = "You have a slight struggle with spicy foods. Spicy (and chilly) peppers are one and a half times stronger. (This does not affect pepperspray.)"
+	cost = 0
+	var_changes = list("spice_mod" = 1.5) // 150% as effective if spice_mod is set to 1. If it's not 1 in species.dm, update this!
+
+/datum/trait/spice_tolerance_basic
+	name = "Spice Tolerance"
+	desc = "Spicy (and chilly) peppers are only three-quarters as strong. (This does not affect pepperspray.)"
+	cost = 0
+	var_changes = list("spice_mod" = 0.75) // 75% as effective if spice_mod is set to 1. If it's not 1 in species.dm, update this!
+	
+/datum/trait/spice_tolerance_advanced
+	name = "Strong Spice Tolerance"
+	desc = "Spicy (and chilly) peppers are only half as strong. (This does not affect pepperspray.)"
+	cost = 0
+	var_changes = list("spice_mod" = 0.5) // 50% as effective if spice_mod is set to 1. If it's not 1 in species.dm, update this!
+
+/datum/trait/spice_immunity
+	name = "Extreme Spice Tolerance"
+	desc = "Spicy (and chilly) peppers are basically ineffective! (This does not affect pepperspray.)"
+	cost = 0
+	var_changes = list("spice_mod" = 0.25) // 25% as effective if spice_mod is set to 1. If it's not 1 in species.dm, update this!
+
+// Alcohol Traits Start Here, from negative to positive.
+/datum/trait/alcohol_intolerance_advanced
+	name = "Liver of Air"
+	desc = "The only way you can hold a drink is if it's in your own two hands, and even then you'd best not inhale too deeply near it. Drinks are three times as strong."
+	cost = 0
+	var_changes = list("alcohol_mod" = 3) // 300% as effective if alcohol_mod is set to 1. If it's not 1 in species.dm, update this!
+
+/datum/trait/alcohol_intolerance_basic
+	name = "Liver of Lilies"
+	desc = "You have a hard time with alcohol. Maybe you just never took to it, or maybe it doesn't agree with you... either way, drinks are twice as strong."
+	cost = 0
+	var_changes = list("alcohol_mod" = 2) // 200% as effective if alcohol_mod is set to 1. If it's not 1 in species.dm, update this!
+
+/datum/trait/alcohol_intolerance_slight
+	name = "Liver of Tulips"
+	desc = "You have a slight struggle with alcohol. Drinks are one and a half times stronger."
+	cost = 0
+	var_changes = list("alcohol_mod" = 1.5) // 150% as effective if alcohol_mod is set to 1. If it's not 1 in species.dm, update this!
+
+/datum/trait/alcohol_tolerance_basic
+	name = "Liver of Iron"
+	desc = "You can hold drinks much better than those lily-livered land-lubbers! Arr! Drinks are only three-quarters as strong."
+	cost = 0
+	var_changes = list("alcohol_mod" = 0.75) // 75% as effective if alcohol_mod is set to 1. If it's not 1 in species.dm, update this!
+	
+/datum/trait/alcohol_tolerance_advanced
+	name = "Liver of Steel"
+	desc = "Drinks tremble before your might! You can hold your alcohol twice as well as those blue-bellied barnacle boilers! Drinks are only half as strong."
+	cost = 0
+	var_changes = list("alcohol_mod" = 0.5) // 50% as effective if alcohol_mod is set to 1. If it's not 1 in species.dm, update this!
+
+/datum/trait/alcohol_immunity
+	name = "Liver of Durasteel"
+	desc = "You've drunk so much that most booze doesn't even faze you. It takes something like a Pan-Galactic or a pint of Deathbell for you to even get slightly buzzed."
+	cost = 0
+	var_changes = list("alcohol_mod" = 0.25) // 25% as effective if alcohol_mod is set to 1. If it's not 1 in species.dm, update this!
+// Alcohol Traits End Here.

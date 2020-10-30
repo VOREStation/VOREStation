@@ -125,6 +125,8 @@ var/const/EXP_FREQ = 1361
 var/const/MED_I_FREQ = 1485
 var/const/SEC_I_FREQ = 1475
 
+var/const/TALON_FREQ = 1363 //VOREStation Add
+
 var/list/radiochannels = list(
 	"Common"		= PUB_FREQ,
 	"Science"		= SCI_FREQ,
@@ -142,8 +144,44 @@ var/list/radiochannels = list(
 	"AI Private"	= AI_FREQ,
 	"Entertainment" = ENT_FREQ,
 	"Medical(I)"	= MED_I_FREQ,
-	"Security(I)"	= SEC_I_FREQ
+	"Security(I)"	= SEC_I_FREQ,
+	"Talon"			= TALON_FREQ //VOREStation Add
 )
+
+// Hey, if anyone ever needs to update tgui/packages/tgui/constants.js with new radio channels
+// I've kept this around just for you.
+/* /client/verb/generate_tgui_radio_constants()
+	set name = "Generate TGUI Radio Constants"
+	set category = "Generate TGUI Radio Constants"
+
+	var/list/channel_info = list()
+	
+	for(var/i in RADIO_LOW_FREQ to RADIO_HIGH_FREQ)
+		for(var/key in radiochannels)
+			if(i == radiochannels[key])
+				channel_info.Add(list(list("name" = key, "freq" = i, "color" = frequency_span_class(i))))
+
+	for(var/list/channel in channel_info)
+		switch(channel["color"])
+			if("deadsay") channel["color"] = "#530FAD"
+			if("radio") channel["color"] = "#008000"
+			if("deptradio") channel["color"] = "#ff00ff"
+			if("newscaster") channel["color"] = "#750000"
+			if("comradio") channel["color"] = "#193A7A"
+			if("syndradio") channel["color"] = "#6D3F40"
+			if("centradio") channel["color"] = "#5C5C8A"
+			if("airadio") channel["color"] = "#FF00FF"
+			if("entradio") channel["color"] = "#339966"
+			if("secradio") channel["color"] = "#A30000"
+			if("engradio") channel["color"] = "#A66300"
+			if("medradio") channel["color"] = "#008160"
+			if("sciradio") channel["color"] = "#993399"
+			if("supradio") channel["color"] = "#5F4519"
+			if("srvradio") channel["color"] = "#6eaa2c"
+			if("expradio") channel["color"] = "#555555"
+
+	to_chat(src, json_encode(channel_info)) */
+
 
 // central command channels, i.e deathsquid & response teams
 var/list/CENT_FREQS = list(ERT_FREQ, DTH_FREQ)
@@ -153,6 +191,8 @@ var/list/ANTAG_FREQS = list(SYND_FREQ, RAID_FREQ)
 
 //Department channels, arranged lexically
 var/list/DEPT_FREQS = list(AI_FREQ, COMM_FREQ, ENG_FREQ, ENT_FREQ, MED_FREQ, SEC_FREQ, SCI_FREQ, SRV_FREQ, SUP_FREQ)
+
+var/list/OFFMAP_FREQS = list(TALON_FREQ) //VOREStation Add
 
 #define TRANSMISSION_WIRE	0
 #define TRANSMISSION_RADIO	1
@@ -189,7 +229,10 @@ var/list/DEPT_FREQS = list(AI_FREQ, COMM_FREQ, ENG_FREQ, ENT_FREQ, MED_FREQ, SEC
 		return "entradio"
 	if(frequency in DEPT_FREQS)
 		return "deptradio"
-
+	//VOREStation Add
+	if(frequency in OFFMAP_FREQS)
+		return "expradio"
+	//VOREStation Add End
 	return "radio"
 
 /* filters */

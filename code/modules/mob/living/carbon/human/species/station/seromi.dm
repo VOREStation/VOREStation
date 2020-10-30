@@ -64,6 +64,8 @@
 	swap_flags = MONKEY|SLIME|SIMPLE_ANIMAL
 	push_flags = MONKEY|SLIME|SIMPLE_ANIMAL|ALIEN
 
+	body_temperature = 270
+
 	cold_level_1 = 180	//Default 260
 	cold_level_2 = 130	//Default 200
 	cold_level_3 = 70	//Default 120
@@ -84,8 +86,16 @@
 	heat_discomfort_strings = list(
 		"Your feathers prickle in the heat.",
 		"You feel uncomfortably warm.",
+		"Your hands and feet feel hot as your body tries to regulate heat",
 		)
 	cold_discomfort_level = 180
+	cold_discomfort_strings = list(
+		"You feel a bit chilly.",
+		"You fluff up your feathers against the cold.",
+		"You move your arms closer to your body to shield yourself from the cold.",
+		"You press your ears against your head to conserve heat",
+		"You start to feel the cold on your skin",
+		)
 
 	minimum_breath_pressure = 12	//Smaller, so needs less air
 
@@ -116,8 +126,8 @@
 		)
 
 	unarmed_types = list(
-		/datum/unarmed_attack/bite/sharp,
 		/datum/unarmed_attack/claws,
+		/datum/unarmed_attack/bite/sharp,
 		/datum/unarmed_attack/stomp/weak
 		)
 

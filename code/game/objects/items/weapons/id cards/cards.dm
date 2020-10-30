@@ -20,6 +20,8 @@
 	var/associated_account_number = 0
 
 	var/list/files = list(  )
+	drop_sound = 'sound/items/drop/card.ogg'
+	pickup_sound = 'sound/items/pickup/card.ogg'
 
 /obj/item/weapon/card/data
 	name = "data disk"
@@ -29,6 +31,8 @@
 	var/data = "null"
 	var/special = null
 	item_state = "card-id"
+	drop_sound = 'sound/items/drop/disk.ogg'
+	pickup_sound = 'sound/items/pickup/disk.ogg'
 
 /obj/item/weapon/card/data/verb/label(t as text)
 	set name = "Label Disk"
@@ -70,10 +74,10 @@
 	origin_tech = list(TECH_MAGNET = 2, TECH_ILLEGAL = 2)
 	var/uses = 10
 
-/obj/item/weapon/card/emag/resolve_attackby(atom/A, mob/user)
+/obj/item/weapon/card/emag/resolve_attackby(atom/A, mob/user, var/click_parameters)
 	var/used_uses = A.emag_act(uses, user, src)
 	if(used_uses < 0)
-		return ..(A, user)
+		return ..(A, user, click_parameters)
 
 	uses -= used_uses
 	A.add_fingerprint(user)

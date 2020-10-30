@@ -1,3 +1,11 @@
+//Generic Ring
+
+/obj/item/clothing/gloves/ring
+	name = "generic ring"
+	desc = "Torus shaped finger decoration."
+	icon_state = "material"
+	drop_sound = 'sound/items/drop/ring.ogg'
+
 /////////////////////////////////////////
 //Standard Rings
 /obj/item/clothing/gloves/ring/engagement

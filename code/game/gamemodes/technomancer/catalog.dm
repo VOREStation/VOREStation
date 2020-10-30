@@ -25,7 +25,7 @@ var/list/all_technomancer_assistance = typesof(/datum/technomancer/assistance) -
 /obj/item/weapon/technomancer_catalog
 	name = "catalog"
 	desc = "A \"book\" featuring a holographic display, metal cover, and miniaturized teleportation device, allowing the user to \
-	requisition various things from.. where ever they came from."
+	requisition various things from... wherever they came from."
 	icon = 'icons/obj/storage.dmi'
 	icon_state ="scientology" //placeholder
 	w_class = ITEMSIZE_SMALL
@@ -40,6 +40,7 @@ var/list/all_technomancer_assistance = typesof(/datum/technomancer/assistance) -
 	var/tab = 4 // Info tab, so new players can read it before doing anything.
 	var/spell_tab = ALL_SPELLS
 	var/show_scepter_text = 0
+	var/universal = FALSE //VOREStation Add - Allows non-technomancers to use this catalog
 
 /obj/item/weapon/technomancer_catalog/apprentice
 	name = "apprentice's catalog"
@@ -51,12 +52,22 @@ var/list/all_technomancer_assistance = typesof(/datum/technomancer/assistance) -
 	budget = 2000
 	max_budget = 2000
 
+//VOREStation Add
+/obj/item/weapon/technomancer_catalog/universal
+	name = "universal catalog"
+	desc = "A catalog to be used with the KHI 'Universal Core', shamelessly \
+	copied by a Kitsuhana designer from some group of 'technomancers' or another.<br>\
+	The back of the book has <i>'Export Edition'</i> stamped on it."
+	budget = 700
+	max_budget = 700
+	universal = TRUE
+//VOREStation Add End
 
 // Proc: bind_to_owner()
 // Parameters: 1 (new_owner - mob that the book is trying to bind to)
 // Description: Links the catalog to hopefully the technomancer, so that only they can access it.
 /obj/item/weapon/technomancer_catalog/proc/bind_to_owner(var/mob/living/carbon/human/new_owner)
-	if(!owner && technomancers.is_antagonist(new_owner.mind))
+	if(!owner && (technomancers.is_antagonist(new_owner.mind) || universal)) //VOREStation Edit - Universal catalogs
 		owner = new_owner
 
 // Proc: New()

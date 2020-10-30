@@ -67,7 +67,7 @@
 	if(istype(M,/mob/living))
 		var/mob/living/L = M
 		L.apply_effect(rand(5,20), IRRADIATE, check_protection = 0)
-		L.apply_damage(max(2,L.getCloneLoss()), CLONE) 
+		L.apply_damage(max(2,L.getCloneLoss()), CLONE)
 
 	if (!(NOCLONE in M.mutations)) // prevents drained people from having their DNA changed
 		if (buf.types & DNA2_BUF_UI)
@@ -158,7 +158,7 @@
 
 /obj/item/weapon/dnainjector/xraymut
 	name = "\improper DNA injector (Xray)"
-	desc = "Finally you can see what the Colony Director does."
+	desc = "Finally you can see what the Site Manager does."
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 	//block = 8
