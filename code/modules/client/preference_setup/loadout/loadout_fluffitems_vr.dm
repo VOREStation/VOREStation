@@ -25,7 +25,7 @@
 
 /datum/gear/fluff/collar/New()
 	..()
-	gear_tweaks = list(gear_tweak_collar_tag)
+	gear_tweaks += gear_tweak_collar_tag
 
 //  0-9 CKEYS
 /datum/gear/fluff/malady_crop
@@ -135,6 +135,12 @@
 	display_name = "Nolan's Unity Medal"
 	ckeywhitelist = list("blakeryan")
 	character_name = list("Nolan Conaway")
+
+/datum/gear/fluff/charles_hat
+	path = /obj/item/clothing/head/that/fluff/gettler
+	display_name = "Charles' Top-Hat"
+	ckeywhitelist = list("bobofboblandia")
+	character_name = list("Charles Gettler")
 
 /datum/gear/fluff/xin_sovietuniform
 	path = /obj/item/clothing/under/soviet
@@ -411,7 +417,7 @@
 	display_name = "Ace's Holster"
 	ckeywhitelist = list("jertheace")
 	character_name = list("Jeremiah Acacius")
-	allowed_roles = list("Colony Director", "Warden", "Head of Security")
+	allowed_roles = list("Site Manager", "Warden", "Head of Security")
 
 /datum/gear/fluff/jeremiah_boots
 	path = /obj/item/clothing/shoes/boots/combat
@@ -439,7 +445,7 @@
 	display_name = "Katarina's Backpack"
 	ckeywhitelist = list("joanrisu")
 	character_name = list("Katarina Eine")
-	allowed_roles = list("Colony Director", "Warden", "Head of Security")
+	allowed_roles = list("Site Manager", "Warden", "Head of Security")
 
 /datum/gear/fluff/emoticon_box
 	path = /obj/item/weapon/storage/box/fluff/emoticon
@@ -726,6 +732,13 @@
 	character_name = list("Tiemli Kroto")
 	allowed_roles = list("Roboticist")
 
+/datum/gear/fluff/clara_flask
+	path = /obj/item/weapon/reagent_containers/food/drinks/glass2/fluff/claraflask
+	display_name = "Clara's Vacuum Flask"
+	ckeywhitelist = list("rboys2")
+	character_name = list("Clara Mali")
+	cost = 1
+
 //  S CKEYS
 /datum/gear/fluff/brynhild_medal
 	path = /obj/item/clothing/accessory/medal/silver/valor
@@ -759,7 +772,7 @@
 	slot = slot_wear_suit
 	ckeywhitelist = list("samanthafyre")
 	character_name = list("Kateryna Petrovitch")
-	allowed_roles = list("Security Officer", "Warden", "Head of Security", "Colony Director", "Head of Personnel")
+	allowed_roles = list("Security Officer", "Warden", "Head of Security", "Site Manager", "Head of Personnel")
 
 /datum/gear/fluff/viktor_flask
 	path = /obj/item/weapon/reagent_containers/food/drinks/flask/vacuumflask/fluff/viktor
@@ -792,14 +805,14 @@
 	display_name = "NT-HASD 556's Modkit"
 	ckeywhitelist = list("silencedmp5a5")
 	character_name = list("NT-HASD #556")
-	allowed_roles = list("Colony Director", "Head of Personnel", "Security Officer", "Warden", "Head of Security","Detective")
+	allowed_roles = list("Site Manager", "Head of Personnel", "Security Officer", "Warden", "Head of Security","Detective")
 
 /datum/gear/fluff/serdykov_modkit //Also converts a Security suit's sprite
 	path = /obj/item/device/modkit_conversion/fluff/serdykit
 	display_name = "Serdykov Antoz's Modkit"
 	ckeywhitelist = list("silencedmp5a5")
 	character_name = list("Serdykov Antoz")
-	allowed_roles = list("Colony Director", "Head of Personnel", "Security Officer", "Warden", "Head of Security","Detective")
+	allowed_roles = list("Site Manager", "Head of Personnel", "Security Officer", "Warden", "Head of Security","Detective")
 
 /datum/gear/fluff/tasy_clownuniform
 	path = /obj/item/clothing/under/sexyclown
@@ -910,6 +923,13 @@
 	slot = slot_wear_mask
 	ckeywhitelist = list("theskringdinger")
 	character_name = list("Monty Kopic")
+
+/datum/gear/fluff/shadow_laptop
+	path = /obj/item/modular_computer/laptop/preset/custom_loadout/advanced/shadowlarkens
+	display_name = "Shadow's Laptop"
+	ckeywhitelist = list("tigercat2000")
+	character_name = list("Shadow Larkens")
+	cost = 5
 
 /datum/gear/fluff/konor_medal
 	path = /obj/item/clothing/accessory/medal/silver/unity

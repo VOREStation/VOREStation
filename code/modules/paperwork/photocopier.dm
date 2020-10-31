@@ -33,33 +33,71 @@
 /obj/machinery/photocopier/attack_hand(mob/user as mob)
 	user.set_machine(src)
 
-	ui_interact(user)
+	tgui_interact(user)
 
-/**
- *  Display the NanoUI window for the photocopier.
- *
- *  See NanoUI documentation for details.
- */
-/obj/machinery/photocopier/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	user.set_machine(src)
-
-	var/list/data = list()
-	data["copyItem"] = copyitem
-	data["assPresent"] = has_buckled_mobs()
-	data["toner"] = toner
-	data["copies"] = copies
-	data["maxCopies"] = maxcopies
-	if(istype(user,/mob/living/silicon))
-		data["isSilicon"] = 1
-	else
-		data["isSilicon"] = null
-
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "photocopier.tmpl", src.name, 300, 250)
-		ui.set_initial_data(data)
+/obj/machinery/photocopier/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Photocopier", name)
 		ui.open()
-		ui.set_auto_update(10)
+
+/obj/machinery/photocopier/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
+
+	data["has_item"] = copyitem || has_buckled_mobs() // VOREStation Edit: Ass copying
+	data["isAI"] = issilicon(user)
+	data["can_AI_print"] = (toner >= 5)
+	data["has_toner"] =	!!toner
+	data["current_toner"] = toner
+	data["max_toner"] = 40
+	data["num_copies"] = copies
+	data["max_copies"] = maxcopies
+
+	return data
+
+/obj/machinery/photocopier/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	if(..())
+		return TRUE
+
+	switch(action)
+		if("make_copy")
+			addtimer(CALLBACK(src, .proc/copy_operation, usr), 0)
+			. = TRUE
+		if("remove")
+			if(copyitem)
+				copyitem.loc = usr.loc
+				usr.put_in_hands(copyitem)
+				to_chat(usr, "<span class='notice'>You take \the [copyitem] out of \the [src].</span>")
+				copyitem = null
+			else if(has_buckled_mobs())
+				to_chat(buckled_mobs[1], "<span class='notice'>You feel a slight pressure on your ass.</span>") // It can't eject your asscheeks, but it'll try.
+			. = TRUE
+		if("set_copies")
+			copies = clamp(text2num(params["num_copies"]), 1, maxcopies)
+			. = TRUE
+		if("ai_photo")
+			if(!issilicon(usr))
+				return
+			if(stat & (BROKEN|NOPOWER))
+				return
+
+			if(toner >= 5)
+				var/mob/living/silicon/tempAI = usr
+				var/obj/item/device/camera/siliconcam/camera = tempAI.aiCamera
+
+				if(!camera)
+					return
+				var/obj/item/weapon/photo/selection = camera.selectpicture()
+				if (!selection)
+					return
+
+				var/obj/item/weapon/photo/p = photocopy(selection)
+				if (p.desc == "")
+					p.desc += "Copied by [tempAI.name]"
+				else
+					p.desc += " - Copied by [tempAI.name]"
+				toner -= 5
+			. = TRUE
 
 /obj/machinery/photocopier/proc/copy_operation(var/mob/user)
 	if(copying)
@@ -103,51 +141,6 @@
 
 		use_power(active_power_usage)
 	copying = FALSE
-
-/obj/machinery/photocopier/Topic(href, href_list)
-	if(href_list["copy"])
-		if(stat & (BROKEN|NOPOWER))
-			return
-		addtimer(CALLBACK(src, .proc/copy_operation, usr), 0)
-
-	else if(href_list["remove"])
-		if(copyitem)
-			copyitem.loc = usr.loc
-			usr.put_in_hands(copyitem)
-			to_chat(usr, "<span class='notice'>You take \the [copyitem] out of \the [src].</span>")
-			copyitem = null
-		else if(has_buckled_mobs())
-			to_chat(buckled_mobs[1], "<span class='notice'>You feel a slight pressure on your ass.</span>") // It can't eject your asscheeks, but it'll try.
-			return TOPIC_REFRESH
-	else if(href_list["min"])
-		if(copies > 1)
-			copies--
-	else if(href_list["add"])
-		if(copies < maxcopies)
-			copies++
-	else if(href_list["aipic"])
-		if(!istype(usr,/mob/living/silicon)) return
-		if(stat & (BROKEN|NOPOWER)) return
-
-		if(toner >= 5)
-			var/mob/living/silicon/tempAI = usr
-			var/obj/item/device/camera/siliconcam/camera = tempAI.aiCamera
-
-			if(!camera)
-				return
-			var/obj/item/weapon/photo/selection = camera.selectpicture()
-			if (!selection)
-				return
-
-			var/obj/item/weapon/photo/p = photocopy(selection)
-			if (p.desc == "")
-				p.desc += "Copied by [tempAI.name]"
-			else
-				p.desc += " - Copied by [tempAI.name]"
-			toner -= 5
-			sleep(15)
-
-	SSnanoui.update_uis(src)
 
 /obj/machinery/photocopier/attackby(obj/item/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/weapon/paper) || istype(O, /obj/item/weapon/photo) || istype(O, /obj/item/weapon/paper_bundle))

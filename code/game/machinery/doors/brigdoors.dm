@@ -22,6 +22,7 @@
 	name = "Door Timer"
 	icon = 'icons/obj/status_display.dmi'
 	icon_state = "frame"
+	layer = ABOVE_WINDOW_LAYER
 	desc = "A remote control for a door."
 	req_access = list(access_brig)
 	anchored = 1.0		// can't pick it up

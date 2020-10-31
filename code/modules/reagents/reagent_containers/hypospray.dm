@@ -14,6 +14,8 @@
 	possible_transfer_amounts = null
 	flags = OPENCONTAINER
 	slot_flags = SLOT_BELT
+	drop_sound = 'sound/items/drop/gun.ogg'
+	pickup_sound = 'sound/items/pickup/gun.ogg'
 	preserve_item = 1
 	var/filled = 0
 	var/list/filled_reagents = list()
@@ -40,9 +42,11 @@
 		if(!affected)
 			to_chat(user, "<span class='danger'>\The [H] is missing that limb!</span>")
 			return
+		/* since synths have oil/coolant streams now, it only makes sense that you should be able to inject stuff. preserved for posterity.
 		else if(affected.robotic >= ORGAN_ROBOT)
 			to_chat(user, "<span class='danger'>You cannot inject a robotic limb.</span>")
 			return
+		*/
 
 		//VOREStation Add Start - Adds Prototype Hypo functionality
 		if(H != user && prototype)

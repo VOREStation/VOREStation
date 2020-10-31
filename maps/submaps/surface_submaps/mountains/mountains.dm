@@ -25,6 +25,7 @@
 #include "vault3.dmm"
 #include "vault4.dmm"
 #include "vault5.dmm"
+#include "vault6.dmm"
 #include "IceCave1A.dmm"
 #include "IceCave1B.dmm"
 #include "IceCave1C.dmm"
@@ -234,6 +235,13 @@
 	cost = 5
 	allow_duplicates = TRUE
 	template_group = "Underground Cliffs"
+	
+/datum/map_template/surface/mountains/normal/deadly_rabbit // VOREStation Edit
+	name = "The Killer Rabbit"
+	desc = "A cave where the Knights of the Round have fallen to a murderous Rabbit."
+	mappath = 'maps/submaps/surface_submaps/mountains/deadly_rabbit_vr.dmm'
+	cost = 5
+	allow_duplicates = FALSE
 
 /**************
  * Deep Caves *

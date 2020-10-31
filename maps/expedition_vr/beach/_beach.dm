@@ -9,6 +9,7 @@
 [b]Notice[/b]: Request authorization from planetary authorities before attempting to construct settlements"}
 	icon_state = "globe"
 	color = "#ffd300" //Sandy
+	in_space = 0
 	initial_generic_waypoints = list("beach_e", "beach_c", "beach_nw")
 	extra_z_levels = list(Z_LEVEL_BEACH_CAVE)
 
@@ -99,11 +100,12 @@
 	prob_fall = 40
 	//guard = 20
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/vore/aggressive/frog = 3, //Frogs are 3x more likely to spawn than,
-		/mob/living/simple_mob/vore/aggressive/deathclaw = 1, //these deathclaws are, with these values,
-		/mob/living/simple_mob/animal/giant_spider = 2,
-		/mob/living/simple_mob/vore/aggressive/giant_snake = 1,
-		/mob/living/simple_mob/animal/giant_spider/webslinger = 1
+		/mob/living/simple_mob/vore/aggressive/frog = 6, //Frogs are 3x more likely to spawn than,
+		/mob/living/simple_mob/vore/aggressive/deathclaw = 2, //these deathclaws are, with these values,
+		/mob/living/simple_mob/animal/giant_spider = 4,
+		/mob/living/simple_mob/vore/aggressive/giant_snake = 2,
+		/mob/living/simple_mob/animal/giant_spider/webslinger = 2,
+		/mob/living/simple_mob/vore/oregrub = 1
 	)
 
 // These are step-teleporters, for map edge transitions

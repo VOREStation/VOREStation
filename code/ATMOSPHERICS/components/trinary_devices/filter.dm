@@ -24,7 +24,7 @@
 	 1: Oxygen: Oxygen ONLY
 	 2: Nitrogen: Nitrogen ONLY
 	 3: Carbon Dioxide: Carbon Dioxide ONLY
-	 4: Sleeping Agent (N2O)
+	 4: Nitrous Oxide (Formerly called Sleeping Agent) (N2O)
 	*/
 	var/filter_type = -1
 	var/list/filtered_out = list()
@@ -51,7 +51,7 @@
 		if(3) //removing CO2
 			filtered_out = list("carbon_dioxide")
 		if(4)//removing N2O
-			filtered_out = list("sleeping_agent")
+			filtered_out = list("nitrous_oxide")
 
 	air1.volume = ATMOS_DEFAULT_VOLUME_FILTER
 	air2.volume = ATMOS_DEFAULT_VOLUME_FILTER
@@ -216,7 +216,7 @@
 				if(3) //removing CO2
 					filtered_out += "carbon_dioxide"
 				if(4)//removing N2O
-					filtered_out += "sleeping_agent"
+					filtered_out += "nitrous_oxide"
 
 	add_fingerprint(usr)
 	update_icon()

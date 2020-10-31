@@ -16,7 +16,7 @@
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 5			// Power used when turned on, but not processing anything
 	active_power_usage = 1000		// Power used when turned on and actively cooking something
-	
+
 	var/cooking_power = 0			// Effectiveness/speed at cooking
 	var/cooking_coeff = 0			// Optimal power * proximity to optimal temp; used to calc. cooking power.
 	var/heating_power = 1000		// Effectiveness at heating up; not used for mixers, should be equal to active_power_usage
@@ -44,9 +44,9 @@
 
 /obj/machinery/appliance/Initialize()
 	. = ..()
-	
+
 	default_apply_parts()
-	
+
 	if(output_options.len)
 		verbs += /obj/machinery/appliance/proc/choose_output
 
@@ -80,6 +80,30 @@
 		return string
 	else
 		to_chat(user, "<span class='notice>'It is empty.</span>")
+
+/obj/machinery/appliance/proc/report_progress_tgui(datum/cooking_item/CI)
+	if(!CI || !CI.max_cookwork)
+		return list("average", "Not Cooking.")
+
+	if(!CI.cookwork)
+		return list("blue", "Cold.")
+
+	var/progress = CI.cookwork / CI.max_cookwork
+
+	if (progress < 0.25)
+		return list("blue", "It's barely started cooking.")
+	if (progress < 0.75)
+		return list("average", "It's cooking away nicely.")
+	if (progress < 1)
+		return list("good", "It's almost ready!")
+
+	var/half_overcook = (CI.overcook_mult - 1)*0.5
+	if (progress < 1+half_overcook)
+		return list("good", "It's done!")
+	if (progress < CI.overcook_mult)
+		return list("bad", "It looks overcooked, get it out!")
+	else
+		return list("bad", "It is burning!")
 
 /obj/machinery/appliance/proc/report_progress(var/datum/cooking_item/CI)
 	if (!CI || !CI.max_cookwork)
@@ -182,7 +206,7 @@
 
 //Handles all validity checking and error messages for inserting things
 /obj/machinery/appliance/proc/can_insert(var/obj/item/I, var/mob/user)
-	if (istype(I, /obj/item/weapon/gripper))
+	if(istype(I.loc, /mob/living/silicon))
 		return 0
 	else if (istype(I.loc, /obj/item/rig_module))
 		return 0
@@ -240,27 +264,53 @@
 /obj/machinery/appliance/attackby(var/obj/item/I, var/mob/user)
 	if(!cook_type || (stat & (BROKEN)))
 		to_chat(user, "<span class='warning'>\The [src] is not working.</span>")
-		return
+		return FALSE
 
-	var/result = can_insert(I, user)
-	if(!result)
-		if(!(default_deconstruction_screwdriver(user, I)))
-			default_part_replacement(user, I)
-		return
+	var/obj/item/ToCook = I
 
-	if(result == 2)
-		var/obj/item/weapon/grab/G = I
-		if (G && istype(G) && G.affecting)
-			cook_mob(G.affecting, user)
+	if(istype(I, /obj/item/weapon/gripper))
+		var/obj/item/weapon/gripper/GR = I
+		var/obj/item/Wrap = GR.wrapped
+		if(Wrap)
+			Wrap.loc = get_turf(src)
+			var/result = can_insert(Wrap, user)
+			if(!result)
+				Wrap.forceMove(GR)
+				if(!(default_deconstruction_screwdriver(user, I)))
+					default_part_replacement(user, I)
+				return
+
+			if(QDELETED(GR.wrapped))
+				GR.wrapped = null
+
+			if(GR?.wrapped.loc != src)
+				GR.drop_item_nm()
+
+			ToCook = Wrap
+		else
+			attack_hand(user)
 			return
 
+	else
+		var/result = can_insert(I, user)
+		if(!result)
+			if(!(default_deconstruction_screwdriver(user, I)))
+				default_part_replacement(user, I)
+			return
+
+		if(result == 2)
+			var/obj/item/weapon/grab/G = I
+			if (G && istype(G) && G.affecting)
+				cook_mob(G.affecting, user)
+				return
+
 	//From here we can start cooking food
-	add_content(I, user)
+	add_content(ToCook, user)
 	update_icon()
 
 //Override for container mechanics
 /obj/machinery/appliance/proc/add_content(var/obj/item/I, var/mob/user)
-	if(!user.unEquip(I))
+	if(!user.unEquip(I) && !isturf(I.loc))
 		return
 
 	var/datum/cooking_item/CI = has_space(I)
@@ -271,13 +321,13 @@
 		cooking_objs.Add(CI)
 		user.visible_message("<span class='notice'>\The [user] puts \the [I] into \the [src].</span>")
 		if (CC.check_contents() == 0)//If we're just putting an empty container in, then dont start any processing.
-			return
+			return TRUE
 	else
 		if (CI && istype(CI))
 			I.forceMove(CI.container)
 
 		else //Something went wrong
-			return
+			return FALSE
 
 	if (selected_option)
 		CI.combine_target = selected_option
@@ -434,7 +484,7 @@
 	//Final step. Cook function just cooks batter for now.
 	for (var/obj/item/weapon/reagent_containers/food/snacks/S in CI.container)
 		S.cook()
-		
+
 
 //Combination cooking involves combining the names and reagents of ingredients into a predefined output object
 //The ingredients represent flavours or fillings. EG: donut pizza, cheese bread
@@ -480,7 +530,8 @@
 	CI.container.reagents.trans_to_holder(buffer, CI.container.reagents.total_volume)
 
 	var/obj/item/weapon/reagent_containers/food/snacks/result = new cook_path(CI.container)
-	buffer.trans_to(result, buffer.total_volume)
+	buffer.trans_to_holder(result.reagents, buffer.total_volume) //trans_to doesn't handle food items well, so
+																 //just call trans_to_holder instead
 
 	//Filling overlay
 	var/image/I = image(result.icon, "[result.icon_state]_filling")
@@ -541,18 +592,18 @@
 	smoke.attach(src)
 	smoke.set_up(10, 0, get_turf(src), 300)
 	smoke.start()
-	
+
 	// Set off fire alarms!
 	var/obj/machinery/firealarm/FA = locate() in get_area(src)
 	if(FA)
 		FA.alarm()
 
 /obj/machinery/appliance/attack_hand(var/mob/user)
-	if (cooking_objs.len)
-		if (removal_menu(user))
-			return
-		else
-			..()
+	if(..())
+		return
+	
+	if(cooking_objs.len)
+		removal_menu(user)
 
 /obj/machinery/appliance/proc/removal_menu(var/mob/user)
 	if (can_remove_items(user))
@@ -570,7 +621,7 @@
 		return TRUE
 	return FALSE
 
-/obj/machinery/appliance/proc/can_remove_items(var/mob/user)
+/obj/machinery/appliance/proc/can_remove_items(var/mob/user, show_warning = TRUE)
 	if (!Adjacent(user))
 		return FALSE
 

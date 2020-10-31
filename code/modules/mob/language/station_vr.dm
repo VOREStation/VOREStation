@@ -125,6 +125,16 @@
 		"roar", "hyaa", "ma", "ha", "ya", "shi", "yo", "go"
 	)
 
+/datum/language/spacer
+	name = LANGUAGE_SPACER
+	desc = "A rough pidgin-language comprised of Tradeband, Gutter, and Sol Common used by various space-born communities unique to Humanity."
+	key = "J"
+	syllables = list(
+		"ada", "zir", "bian", "ach", "usk", "ado", "ich", "cuan", "iga", "qing", "le", "que", "ki", "qaf", "dei", "eta"
+	)
+	colour = "spacer"
+	machine_understands = TRUE
+
 /datum/language/unathi
 	flags = 0
 /datum/language/tajaran

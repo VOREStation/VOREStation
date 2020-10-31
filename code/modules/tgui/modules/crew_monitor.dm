@@ -2,6 +2,11 @@
 	name = "Crew monitor"
 	tgui_id = "CrewMonitor"
 
+/datum/tgui_module/crew_monitor/ui_assets(mob/user)
+	return list(
+		get_asset_datum(/datum/asset/simple/nanomaps),
+	)
+
 /datum/tgui_module/crew_monitor/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return TRUE
@@ -52,9 +57,15 @@
 	var/list/map_levels = uniquelist(using_map.get_map_levels(z, TRUE, om_range = DEFAULT_OVERMAP_RANGE))
 	data["map_levels"] = map_levels
 
-	data["crewmembers"] = list()
+	var/list/crewmembers = list()
 	for(var/zlevel in map_levels)
-		data["crewmembers"] += crew_repository.health_data(zlevel)
+		crewmembers += crew_repository.health_data(zlevel)
+
+	// This is apparently necessary, because the above loop produces an emergent behavior
+	// of telling you what coordinates someone is at even without sensors on,
+	// because it strictly sorts by zlevel from bottom to top, and by coordinates from top left to bottom right.
+	shuffle_inplace(crewmembers) 
+	data["crewmembers"] = crewmembers
 
 	return data
 

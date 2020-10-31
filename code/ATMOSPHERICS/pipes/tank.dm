@@ -70,10 +70,6 @@
 	if(istype(W, /obj/item/device/pipe_painter))
 		return
 
-	if(istype(W, /obj/item/device/analyzer) && in_range(user, src))
-		var/obj/item/device/analyzer/A = W
-		A.analyze_gases(src, user)
-
 /obj/machinery/atmospherics/pipe/tank/air
 	name = "Pressure Tank (Air)"
 	icon_state = "air_map"
@@ -157,7 +153,7 @@
 	air_temporary.volume = volume
 	air_temporary.temperature = T0C
 
-	air_temporary.adjust_gas("sleeping_agent", (start_pressure)*(air_temporary.volume)/(R_IDEAL_GAS_EQUATION*air_temporary.temperature))
+	air_temporary.adjust_gas("nitrous_oxide", (start_pressure)*(air_temporary.volume)/(R_IDEAL_GAS_EQUATION*air_temporary.temperature))
 
 	..()
 	icon_state = "n2o"

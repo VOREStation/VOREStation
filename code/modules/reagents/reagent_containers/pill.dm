@@ -8,6 +8,7 @@
 	icon_state = null
 	item_state = "pill"
 	drop_sound = 'sound/items/drop/food.ogg'
+	pickup_sound = 'sound/items/pickup/food.ogg'
 
 	var/base_state = "pill"
 

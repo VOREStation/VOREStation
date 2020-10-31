@@ -5,6 +5,16 @@
 	slot = slot_glasses
 	sort_category = "Glasses and Eyewear"
 
+/datum/gear/eyes/eyepatchwhite
+	display_name = "eyepatch (recolorable)"
+	path = /obj/item/clothing/glasses/eyepatchwhite
+	slot = slot_glasses
+	sort_category = "Glasses and Eyewear"
+
+/datum/gear/eyes/eyepatchwhite/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
 /datum/gear/eyes/glasses
 	display_name = "Glasses, prescription"
 	path = /obj/item/clothing/glasses/regular
@@ -108,7 +118,7 @@
 /datum/gear/eyes/sun
 	display_name = "Sunglasses (Security/Command)"
 	path = /obj/item/clothing/glasses/sunglasses
-	allowed_roles = list("Security Officer","Head of Security","Warden","Colony Director","Head of Personnel","Quartermaster","Internal Affairs Agent","Detective")
+	allowed_roles = list("Security Officer","Head of Security","Warden","Site Manager","Head of Personnel","Quartermaster","Internal Affairs Agent","Detective")
 
 /datum/gear/eyes/sun/shades
 	display_name = "Sunglasses, fat (Security/Command)"

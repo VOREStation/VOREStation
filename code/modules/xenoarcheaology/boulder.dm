@@ -77,6 +77,7 @@
 					var/obj/machinery/artifact/X = O
 					if(X.my_effect)
 						X.my_effect.artifact_id = artifact_find.artifact_id
+				O.anchored = FALSE	// Anchored finds are lame.
 				src.visible_message("<span class='warning'>\The [src] suddenly crumbles away.</span>")
 			else
 				user.visible_message("<span class='warning'>\The [src] suddenly crumbles away.</span>", "<span class='notice'>\The [src] has been whittled away under your careful excavation, but there was nothing of interest inside.</span>")

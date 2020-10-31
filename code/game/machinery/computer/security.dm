@@ -148,7 +148,7 @@
 					fields[++fields.len] = FIELD("ID", active1.fields["id"], "id")
 					fields[++fields.len] = FIELD("Entity Classification", active1.fields["brain_type"], "brain_type")
 					fields[++fields.len] = FIELD("Sex", active1.fields["sex"], "sex")
-					fields[++fields.len] = FIELD("Age", active1.fields["age"], "age")
+					fields[++fields.len] = FIELD("Age", "[active1.fields["age"]]", "age")
 					fields[++fields.len] = FIELD("Rank", active1.fields["rank"], "rank")
 					fields[++fields.len] = FIELD("Fingerprint", active1.fields["fingerprint"], "fingerprint")
 					fields[++fields.len] = FIELD("Physical Status", active1.fields["p_stat"], null)

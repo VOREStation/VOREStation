@@ -28,6 +28,7 @@ BLIND     // can't see anything
 	var/obj/screen/overlay = null
 	var/list/away_planes //Holder for disabled planes
 	drop_sound = 'sound/items/drop/accessory.ogg'
+	pickup_sound = 'sound/items/pickup/accessory.ogg'
 
 	sprite_sheets = list(
 		"Teshari" = 'icons/mob/species/seromi/eyes.dmi',
@@ -182,8 +183,33 @@ BLIND     // can't see anything
 	body_parts_covered = 0
 	var/eye = null
 	drop_sound = 'sound/items/drop/gloves.ogg'
+	pickup_sound = 'sound/items/pickup/gloves.ogg'
 
 /obj/item/clothing/glasses/eyepatch/verb/switcheye()
+	set name = "Switch Eyepatch"
+	set category = "Object"
+	set src in usr
+	if(!istype(usr, /mob/living)) return
+	if(usr.stat) return
+
+	eye = !eye
+	if(eye)
+		icon_state = "[icon_state]_1"
+	else
+		icon_state = initial(icon_state)
+	update_clothing_icon()
+
+/obj/item/clothing/glasses/eyepatchwhite
+	name = "eyepatch"
+	desc = "A simple eyepatch made of a strip of cloth tied around the head."
+	icon_state = "eyepatch_white"
+	item_state_slots = list(slot_r_hand_str = "blindfold", slot_l_hand_str = "blindfold")
+	body_parts_covered = 0
+	var/eye = null
+	drop_sound = 'sound/items/drop/gloves.ogg'
+	pickup_sound = 'sound/items/pickup/gloves.ogg'
+
+/obj/item/clothing/glasses/eyepatchwhite/verb/switcheye()
 	set name = "Switch Eyepatch"
 	set category = "Object"
 	set src in usr
@@ -364,6 +390,7 @@ BLIND     // can't see anything
 	flash_protection = FLASH_PROTECTION_MAJOR
 	tint = BLIND
 	drop_sound = 'sound/items/drop/gloves.ogg'
+	pickup_sound = 'sound/items/pickup/gloves.ogg'
 
 /obj/item/clothing/glasses/sunglasses/blindfold/tape
 	name = "length of tape"

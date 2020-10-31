@@ -22,7 +22,7 @@
 	if(!Adjacent(usr)) return
 	if(isAI(M)) return
 	for(var/mob/living/carbon/human/O in contents)
-		O.show_inv(usr)
+		O.show_inventory_panel(usr, state = GLOB.tgui_deep_inventory_state)
 
 /obj/item/weapon/holder/micro/attack_self(mob/living/carbon/user) //reworked so it works w/ nonhumans
 	user.setClickCooldown(user.get_attack_speed())

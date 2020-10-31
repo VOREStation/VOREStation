@@ -68,8 +68,13 @@
 	var/mob/living/carbon/human/H = M
 
 	if(isTaurTail(H.tail_style))
-		to_chat(src,"<span class='warning'>Too many legs. TOO MANY LEGS!!</span>")
-		return FALSE
+		var/datum/sprite_accessory/tail/taur/ridertype = H.tail_style
+		if(ridertype.can_ride)
+			if(istype(ridertype, /datum/sprite_accessory/tail/taur/naga) || istype(ridertype, /datum/sprite_accessory/tail/taur/slug))
+				to_chat(src,"<span class='warning'>Too few legs. TOO FEW LEGS!!</span>")
+				return FALSE
+			to_chat(src,"<span class='warning'>Too many legs. TOO MANY LEGS!!</span>")
+			return FALSE
 
 	. = ..()
 	if(.)
@@ -126,7 +131,7 @@
 	var/icon/suit_sprites = null //File for suit sprites, if any.
 	var/icon/under_sprites = null
 
-	var/icon_sprite_tag			// This is where we put stuff like _Horse, so we can assign icons easier. 
+	var/icon_sprite_tag			// This is where we put stuff like _Horse, so we can assign icons easier.
 
 	var/can_ride = 1			//whether we're real rideable taur or just in that category
 
@@ -195,6 +200,12 @@
 	icon_state = "synthwolf_s"
 	extra_overlay = "synthwolf_markings"
 	//icon_sprite_tag = "synthwolf"
+
+/datum/sprite_accessory/tail/taur/skunk
+	name = "Skunk (Taur)"
+	icon_state = "skunk_s"
+	extra_overlay = "skunk_markings"
+	icon_sprite_tag = "skunk"
 
 /datum/sprite_accessory/tail/taur/naga
 	name = "Naga (Taur)"

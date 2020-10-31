@@ -131,7 +131,10 @@
 		//Get out list of viable PDAs
 		var/list/obj/item/device/pda/sendPDAs = list()
 		for(var/obj/item/device/pda/P in PDAs)
-			if(!P.owner || P.toff || P.hidden)
+			if(!P.owner || P.hidden)
+				continue
+			var/datum/data/pda/app/messenger/M = P.find_program(/datum/data/pda/app/messenger)
+			if(!M || M.toff)
 				continue
 			sendPDAs["[P.name]"] = "\ref[P]"
 		data["possibleRecipients"] = sendPDAs
@@ -265,7 +268,11 @@
 		if("set_recipient")
 			var/ref = params["val"]
 			var/obj/item/device/pda/P = locate(ref)
-			if(!istype(P) || !P.owner || P.toff || P.hidden)
+			if(!istype(P) || !P.owner || P.hidden)
+				return FALSE
+				
+			var/datum/data/pda/app/messenger/M = P.find_program(/datum/data/pda/app/messenger)
+			if(!M || M.toff)
 				return FALSE
 			customrecepient = P
 			. = TRUE
@@ -286,22 +293,26 @@
 
 			var/obj/item/device/pda/PDARec = null
 			for(var/obj/item/device/pda/P in PDAs)
-				if(!P.owner || P.toff || P.hidden)	continue
+				if(!P.owner || P.hidden)
+					continue
+				var/datum/data/pda/app/messenger/M = P.find_program(/datum/data/pda/app/messenger)
+				if(!M || M.toff)
+					continue
 				if(P.owner == customsender)
 					PDARec = P
 			//Sender isn't faking as someone who exists
 			if(isnull(PDARec))
 				linkedServer.send_pda_message("[customrecepient.owner]", "[customsender]","[custommessage]")
-				customrecepient.new_message(customsender, customsender, customjob, custommessage)
+				var/datum/data/pda/app/messenger/M = customrecepient.find_program(/datum/data/pda/app/messenger)
+				if(M)
+					M.receive_message(list("sent" = 0, "owner" = customsender, "job" = customjob, "message" = custommessage), null)
 			//Sender is faking as someone who exists
 			else
 				linkedServer.send_pda_message("[customrecepient.owner]", "[PDARec.owner]","[custommessage]")
-				customrecepient.tnote.Add(list(list("sent" = 0, "owner" = "[PDARec.owner]", "job" = "[customjob]", "message" = "[custommessage]", "target" ="\ref[PDARec]")))
-
-				if(!customrecepient.conversations.Find("\ref[PDARec]"))
-					customrecepient.conversations.Add("\ref[PDARec]")
-
-				customrecepient.new_message(PDARec, custommessage)
+				
+				var/datum/data/pda/app/messenger/M = customrecepient.find_program(/datum/data/pda/app/messenger)
+				if(M)
+					M.receive_message(list("sent" = 0, "owner" = "[PDARec.owner]", "job" = "[customjob]", "message" = "[custommessage]", "target" = "\ref[PDARec]"), "\ref[PDARec]")
 			//Finally..
 			ResetMessage()
 			. = TRUE

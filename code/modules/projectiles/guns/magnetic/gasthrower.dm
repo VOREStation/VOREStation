@@ -37,7 +37,7 @@
 	var/phoron_amt = Tank.air_contents.gas["phoron"]
 	var/co2_amt = Tank.air_contents.gas["carbon_dioxide"]
 	var/oxy_amt = Tank.air_contents.gas["oxygen"]
-	var/n2o_amt = Tank.air_contents.gas["sleeping_agent"]
+	var/n2o_amt = Tank.air_contents.gas["nitrous_oxide"]
 
 	if(isnull(co2_amt))
 		co2_amt = 0

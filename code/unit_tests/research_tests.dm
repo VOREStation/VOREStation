@@ -54,7 +54,7 @@
 		design = new design_type() // Unfortunately we have to actually instantiate to get a list.
 
 		for(var/material_name in design.materials)
-			var/material/material = get_material_by_name(material_name)
+			var/datum/material/material = get_material_by_name(material_name)
 			if(!material)
 				log_unit_test("The entry [design_type] has invalid material type [material_name]")
 				number_of_issues++

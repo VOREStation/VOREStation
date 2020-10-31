@@ -26,6 +26,7 @@
 	var/time = 30
 	var/drawing = 0
 	drop_sound = 'sound/items/drop/glass.ogg'
+	pickup_sound = 'sound/items/pickup/glass.ogg'
 
 /obj/item/weapon/reagent_containers/syringe/on_reagent_change()
 	update_icon()
@@ -169,9 +170,11 @@
 				if(!affected)
 					to_chat(user, "<span class='danger'>\The [H] is missing that limb!</span>")
 					return
+				/* since synths have oil/coolant streams now, it only makes sense that you should be able to inject stuff. preserved for posterity.
 				else if(affected.robotic >= ORGAN_ROBOT)
 					to_chat(user, "<span class='danger'>You cannot inject a robotic limb.</span>")
 					return
+				*/
 
 			var/cycle_time = injtime*0.33 //33% of the time slept between 5u doses
 			var/warmup_time = 0	//0 for containers
@@ -298,7 +301,8 @@
 	var/trans = reagents.trans_to_mob(target, syringestab_amount_transferred, CHEM_BLOOD)
 	if(isnull(trans)) trans = 0
 	add_attack_logs(user,target,"Stabbed with [src.name] containing [contained], trasferred [trans] units")
-	break_syringe(target, user)
+	if(!issilicon(user))
+		break_syringe(target, user)
 
 /obj/item/weapon/reagent_containers/syringe/proc/break_syringe(mob/living/carbon/target, mob/living/carbon/user)
 	desc += " It is broken."

@@ -5,6 +5,8 @@
 	icon = 'icons/obj/forensics.dmi'
 	icon_state = "case"
 	storage_slots = 14
+	drop_sound = 'sound/items/drop/toolbox.ogg'
+	pickup_sound = 'sound/items/pickup/toolbox.ogg'
 
 /obj/item/weapon/storage/briefcase/crimekit/New()
 	..()

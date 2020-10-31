@@ -280,6 +280,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/centcom/bathroom
 	name = "\improper CentCom Bathroom"
 	icon_state = "centcom_crew"
+	sound_env = SMALL_ENCLOSED
 
 //SYNDICATES
 
@@ -347,6 +348,13 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/tdome/tdomeobserve
 	name = "\improper Thunderdome (Observer.)"
 	icon_state = "purple"
+
+/area/virtual_reality
+	name = "Virtual Reality"
+	icon_state = "Virtual_Reality"
+	dynamic_lighting = 0
+	requires_power = 0
+	flags = AREA_FLAG_IS_NOT_PERSISTENT
 
 //ENEMY
 
@@ -736,6 +744,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "Substation"
 	icon_state = "substation"
 	sound_env = SMALL_ENCLOSED
+	ambience = AMBIENCE_SUBSTATION
 
 /area/maintenance/substation/engineering // Probably will be connected to engineering SMES room, as wires cannot be crossed properly without them sharing powernets.
 	name = "Engineering Substation"
@@ -950,7 +959,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	sound_env = MEDIUM_SOFTFLOOR
 
 /area/crew_quarters/captain
-	name = "\improper Command - Colony Director's Office"
+	name = "\improper Command - Site Manager's Office"
 	icon_state = "captain"
 	sound_env = MEDIUM_SOFTFLOOR
 
@@ -1207,6 +1216,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/crew_quarters/recreation_area_restroom
 	name = "\improper Recreation Area Restroom"
 	icon_state = "recreation_area_restroom"
+	sound_env = SMALL_ENCLOSED
 
 /area/crew_quarters/pool
 	name = "\improper Pool"
@@ -1232,6 +1242,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/crew_quarters/barrestroom
 	name = "\improper Cafeteria Restroom"
 	icon_state = "bar"
+	sound_env = SMALL_ENCLOSED
 
 /area/crew_quarters/theatre
 	name = "\improper Theatre"
@@ -1381,6 +1392,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
  	name = "\improper Atmospherics"
  	icon_state = "atmos"
  	sound_env = LARGE_ENCLOSED
+	 ambience = AMBIENCE_ATMOS
 
 /area/engineering/atmos/monitoring
 	name = "\improper Atmospherics Monitoring Room"
@@ -1603,6 +1615,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/crew_quarters/medical_restroom
 	name = "\improper Medbay Restroom"
 	icon_state = "medbay_restroom"
+	sound_env = SMALL_ENCLOSED
 
 /area/medical/patients_rooms
 	name = "\improper Patient's Rooms"
@@ -1796,6 +1809,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/security/security_bathroom
 	name = "\improper Security - Restroom"
 	icon_state = "security_bathroom"
+	sound_env = SMALL_ENCLOSED
 
 /area/security/security_cell_hallway
 	name = "\improper Security - Cell Hallway"
@@ -1944,6 +1958,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/rnd/research_restroom
 	name = "\improper Research Restroom"
 	icon_state = "research_restroom"
+	sound_env = SMALL_ENCLOSED
 
 /area/rnd/research_storage
 	name = "\improper Research Storage"

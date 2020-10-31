@@ -28,6 +28,7 @@
 
 	melee_damage_lower = 10
 	melee_damage_upper = 25
+	attack_armor_pen = 15
 
 	heat_resist = 0.75
 	cold_resist = -0.50

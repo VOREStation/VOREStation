@@ -59,6 +59,7 @@ var/list/ai_status_emotions = list(
 /obj/machinery/ai_status_display
 	icon = 'icons/obj/status_display.dmi'
 	icon_state = "frame"
+	layer = ABOVE_WINDOW_LAYER
 	name = "AI display"
 	anchored = 1
 	density = 0

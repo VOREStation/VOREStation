@@ -138,7 +138,7 @@
 					prob(4);/obj/item/clothing/shoes/black,
 					prob(4);/obj/item/clothing/shoes/black,
 					prob(4);/obj/item/clothing/shoes/laceup,
-					prob(4);/obj/item/clothing/shoes/leather,
+					prob(4);/obj/item/clothing/shoes/laceup/brown,
 					prob(4);/obj/item/clothing/suit/storage/hazardvest,
 					prob(4);/obj/item/clothing/under/color/grey,
 					prob(4);/obj/item/clothing/suit/caution,
@@ -251,6 +251,7 @@
 					prob(1);/obj/item/weapon/material/knife/tacknife,
 					prob(1);/obj/item/weapon/storage/box/survival/space,
 					prob(1);/obj/item/weapon/storage/secure/briefcase/trashmoney,
+					prob(1);/obj/item/device/survivalcapsule/popcabin,
 					prob(1);/obj/item/weapon/reagent_containers/syringe/steroid)
 
 	var/obj/item/I = new path()

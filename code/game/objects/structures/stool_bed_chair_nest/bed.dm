@@ -17,8 +17,8 @@
 	can_buckle = 1
 	buckle_dir = SOUTH
 	buckle_lying = 1
-	var/material/material
-	var/material/padding_material
+	var/datum/material/material
+	var/datum/material/padding_material
 	var/base_icon = "bed"
 	var/applies_material_colour = 1
 
@@ -236,6 +236,8 @@
 	w_class = ITEMSIZE_LARGE
 	var/rollertype = /obj/item/roller
 	var/bedtype = /obj/structure/bed/roller
+	drop_sound = 'sound/items/drop/axe.ogg'
+	pickup_sound = 'sound/items/pickup/axe.ogg'
 
 /obj/item/roller/attack_self(mob/user)
 	var/obj/structure/bed/roller/R = new bedtype(user.loc)

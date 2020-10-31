@@ -1052,16 +1052,17 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/trash_pit)
 "abK" = (
-/obj/machinery/door/airlock/glass_mining{
-	name = "Warehouse"
+/obj/machinery/door/airlock/glass{
+	name = "Looking Glass"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable{
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/steel_grid,
-/area/tether/surfacebase/cargo/warehouse)
+/obj/machinery/door/firedoor,
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/public_garden_one)
 "abL" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -1170,11 +1171,21 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/trash_pit)
 "abY" = (
-/obj/machinery/door/airlock/glass_mining{
-	name = "Warehouse"
+/obj/machinery/door/airlock/maintenance/cargo{
+	name = "Mining Maintenance Access";
+	req_one_access = list(48)
 	},
-/turf/simulated/floor/tiled/steel_grid,
-/area/tether/surfacebase/cargo/warehouse)
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/cyan,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/cargo/mining)
 "abZ" = (
 /obj/structure/closet/crate,
 /turf/simulated/floor/tiled/steel_dirty,
@@ -2081,19 +2092,16 @@
 /area/tether/surfacebase/cargo)
 "adC" = (
 /obj/machinery/door/airlock/glass_mining{
-	id_tag = "cargodoor";
-	name = "Cargo Office";
-	req_access = list();
-	req_one_access = list(48,50)
+	name = "Warehouse"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/cargo/office)
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/tiled/steel_grid,
+/area/tether/surfacebase/cargo/warehouse)
 "adD" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8;
@@ -3268,12 +3276,11 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/cargo)
 "afm" = (
-/obj/machinery/door/airlock/maintenance/cargo{
-	name = "Mining Maintenance Access";
-	req_one_access = list(48)
+/obj/machinery/door/airlock/glass_mining{
+	name = "Warehouse"
 	},
-/obj/structure/disposalpipe/segment,
-/turf/simulated/floor/plating,
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/tiled/steel_grid,
 /area/tether/surfacebase/cargo/warehouse)
 "afn" = (
 /obj/machinery/door/firedoor/glass,
@@ -5451,16 +5458,10 @@
 	name = "Mining Maintenance Access";
 	req_one_access = list(48)
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/plating,
-/area/tether/surfacebase/cargo/mining)
+/area/tether/surfacebase/cargo/warehouse)
 "ajc" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 4
@@ -7651,7 +7652,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/mining_eva)
 "amN" = (
-/obj/machinery/portable_atmospherics/canister/sleeping_agent,
+/obj/machinery/portable_atmospherics/canister/nitrous_oxide,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/rnd/tankstorage)
 "amO" = (
@@ -8209,11 +8210,20 @@
 /turf/simulated/wall/r_wall,
 /area/crew_quarters/sleep/Dorm_1)
 "anF" = (
-/obj/machinery/door/airlock/maintenance/cargo{
-	name = "Mining Maintenance Access";
+/obj/machinery/door/airlock/glass_mining{
+	id_tag = "cargodoor";
+	name = "Cargo Office";
+	req_access = list();
 	req_one_access = list(48,50)
 	},
-/turf/simulated/floor/plating,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/tiled,
 /area/tether/surfacebase/cargo/office)
 "anG" = (
 /obj/machinery/door/airlock/maintenance/rnd{
@@ -10776,6 +10786,7 @@
 "arR" = (
 /obj/structure/table/glass,
 /obj/random/medical/lite,
+/obj/item/device/radio/intercom/department/medbay,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/first_aid_west)
 "arS" = (
@@ -11363,6 +11374,14 @@
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/tether/surfacebase/outside/outside1)
+"asT" = (
+/obj/machinery/door/airlock/maintenance/cargo{
+	name = "Mining Maintenance Access";
+	req_one_access = list(48,50)
+	},
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/cargo/office)
 "asU" = (
 /turf/simulated/floor/tiled,
 /area/crew_quarters/locker)
@@ -11429,6 +11448,29 @@
 /obj/item/weapon/pickaxe,
 /turf/simulated/floor/plating,
 /area/vacant/vacant_site)
+"atc" = (
+/obj/machinery/door/airlock/maintenance/common{
+	name = "Mining Maintenance Access"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/mining_eva)
+"atd" = (
+/obj/machinery/door/airlock{
+	id_tag = "lg_1";
+	name = "Looking Glass"
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/door/firedoor,
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/public_garden_one)
 "ate" = (
 /obj/structure/railing{
 	dir = 1
@@ -11494,6 +11536,16 @@
 	},
 /turf/simulated/floor/water/pool,
 /area/tether/surfacebase/surface_one_hall)
+"atm" = (
+/obj/structure/bed/chair/wood,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/lino,
+/area/crew_quarters/visitor_dining)
 "atn" = (
 /obj/machinery/status_display{
 	pixel_x = 32;
@@ -17310,17 +17362,6 @@
 	},
 /turf/simulated/floor/lino,
 /area/crew_quarters/visitor_dining)
-"aIs" = (
-/obj/structure/bed/chair/wood,
-/obj/structure/bed/chair/wood,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/turf/simulated/floor/lino,
-/area/crew_quarters/visitor_dining)
 "aIt" = (
 /obj/structure/bed/chair/wood,
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
@@ -19915,7 +19956,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/atmos/gas_storage)
 "aNA" = (
-/obj/machinery/portable_atmospherics/canister/sleeping_agent,
+/obj/machinery/portable_atmospherics/canister/nitrous_oxide,
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/atmos/gas_storage)
@@ -20379,7 +20420,7 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/sleep/Dorm_6)
 "aOw" = (
-/obj/machinery/portable_atmospherics/canister/sleeping_agent,
+/obj/machinery/portable_atmospherics/canister/nitrous_oxide,
 /obj/machinery/light/small,
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/techmaint,
@@ -27122,15 +27163,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled,
 /area/hallway/lower/first_west)
-"bbL" = (
-/obj/machinery/door/airlock/maintenance/common{
-	name = "Mining Maintenance Access"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/simulated/floor/plating,
-/area/maintenance/lower/mining_eva)
 "bbN" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -28696,17 +28728,6 @@
 /obj/random/cutout,
 /turf/simulated/floor/plating,
 /area/construction/vacant_mining_ops)
-"gaK" = (
-/obj/machinery/door/airlock/glass{
-	name = "Looking Glass"
-	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/tether/surfacebase/public_garden_one)
 "ghg" = (
 /obj/effect/floor_decal/steeldecal/steel_decals6{
 	dir = 5
@@ -29546,18 +29567,6 @@
 	pixel_y = 30
 	},
 /turf/simulated/floor/tiled,
-/area/tether/surfacebase/public_garden_one)
-"mdP" = (
-/obj/machinery/door/airlock{
-	id_tag = "lg_1";
-	name = "Looking Glass"
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/public_garden_one)
 "mon" = (
 /obj/effect/floor_decal/borderfloor{
@@ -35556,7 +35565,7 @@ ajS
 ajS
 ajS
 ajS
-mdP
+atd
 ajS
 ajS
 ajS
@@ -35697,7 +35706,7 @@ bdC
 akU
 ali
 sbD
-gaK
+abK
 orF
 ajS
 aah
@@ -41798,7 +41807,7 @@ aaG
 aaM
 aaP
 aaY
-ajb
+abY
 ecq
 nDD
 jPk
@@ -41951,7 +41960,7 @@ amM
 abT
 abT
 abT
-bbL
+atc
 abT
 ahX
 aiY
@@ -42935,7 +42944,7 @@ aar
 aaX
 kxe
 sNu
-abK
+adC
 abP
 acd
 acy
@@ -43077,14 +43086,14 @@ aar
 abj
 abo
 abV
-abY
+afm
 ace
 ach
 acH
 acF
 adS
 aeJ
-afm
+ajb
 aIA
 agM
 ahc
@@ -43227,7 +43236,7 @@ acG
 adS
 agj
 acc
-anF
+asT
 amc
 amc
 amc
@@ -43652,7 +43661,7 @@ acL
 acP
 adv
 adB
-adC
+anF
 adQ
 aea
 aeg
@@ -46106,7 +46115,7 @@ aEK
 aEK
 aEK
 aDu
-aIs
+atm
 aCQ
 aJV
 aDu

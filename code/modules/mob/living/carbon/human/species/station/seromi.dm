@@ -64,6 +64,8 @@
 	swap_flags = MONKEY|SLIME|SIMPLE_ANIMAL
 	push_flags = MONKEY|SLIME|SIMPLE_ANIMAL|ALIEN
 
+	body_temperature = 270
+
 	cold_level_1 = 180	//Default 260
 	cold_level_2 = 130	//Default 200
 	cold_level_3 = 70	//Default 120
@@ -124,8 +126,8 @@
 		)
 
 	unarmed_types = list(
-		/datum/unarmed_attack/bite/sharp,
 		/datum/unarmed_attack/claws,
+		/datum/unarmed_attack/bite/sharp,
 		/datum/unarmed_attack/stomp/weak
 		)
 

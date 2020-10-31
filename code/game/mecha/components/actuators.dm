@@ -19,7 +19,7 @@
 
 	internal_damage_flag = MECHA_INT_CONTROL_LOST
 
-	var/strafing_multiplier = 1.5
+	var/strafing_multiplier = 1
 
 /obj/item/mecha_parts/component/actuator/get_step_delay()
 	return step_delay

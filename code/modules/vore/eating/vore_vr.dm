@@ -187,14 +187,8 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 		return FALSE
 
 	//Write it out
-#ifdef RUST_G
-	call(RUST_G, "file_write")(json_to_file, path)
-#else
-	// Fall back to using old format if we are not using rust-g
-	if(fexists(path))
-		fdel(path) //Byond only supports APPENDING to files, not replacing.
-	text2file(json_to_file, path)
-#endif
+	rustg_file_write(json_to_file, path)
+
 	if(!fexists(path))
 		log_debug("Saving: [path] failed file write")
 		return FALSE

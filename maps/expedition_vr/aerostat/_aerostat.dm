@@ -9,9 +9,10 @@
 [b]Notice[/b]: Planetary environment not suitable for life. Landing may be hazardous."}
 	icon_state = "globe"
 	color = "#dfff3f" //Bright yellow
+	in_space = 0
 	initial_generic_waypoints = list("aerostat_west","aerostat_east","aerostat_south","aerostat_northwest","aerostat_northeast")
 	extra_z_levels = list(Z_LEVEL_AEROSTAT_SURFACE)
-	
+
 // -- Datums -- //
 
 /datum/shuttle/autodock/ferry/aerostat
@@ -57,9 +58,11 @@
 	prob_fall = 30
 	//guard = 20
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/animal/space/jelly = 1,
-		/mob/living/simple_mob/mechanical/viscerator = 1,
-		/mob/living/simple_mob/vore/aggressive/corrupthound = 1
+		/mob/living/simple_mob/animal/space/jelly = 6,
+		/mob/living/simple_mob/mechanical/viscerator = 6,
+		/mob/living/simple_mob/vore/aggressive/corrupthound = 3,
+		/mob/living/simple_mob/vore/oregrub = 2,
+		/mob/living/simple_mob/vore/oregrub/lava = 1
 	)
 
 /obj/structure/old_roboprinter

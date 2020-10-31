@@ -318,6 +318,7 @@
 	nutriment_amt = 1
 	nutriment_desc = list("candy" = 1)
 
+
 /obj/item/weapon/reagent_containers/food/snacks/candy/Initialize()
 	. = ..()
 	reagents.add_reagent("sugar", 3)
@@ -342,7 +343,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/candy/gummy
 	name = "\improper AlliCo Gummies"
 	desc = "Somehow, there's never enough cola bottles."
-	description_fluff = "AlliCo's grab-bags of gummy candies come in over a thousand novelty shapes and dozens of flavours. Shoes, astronauts, bunny rabbits and singularities all made an appearance."
+	description_fluff = "AlliCo's grab-bags of gummy candies come in over a thousand novelty shapes and dozens of flavours. Shoes, astronauts, bunny rabbits and singularities all make an appearance."
 	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "candy_gums"
 	trash = /obj/item/trash/candy/gums
@@ -369,6 +370,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/candy_corn
 	name = "candy corn"
 	desc = "It's a handful of candy corn. Cannot be stored in a detective's hat, alas."
+	description_fluff = "Nobody knows why Nanotrasen keeps making these waxy pieces of sugar and bone glue, but a handful of people swear by them. Purportedly popular with Skrell children, dubiously enough."
 	icon_state = "candy_corn"
 	filling_color = "#FFFCB0"
 	center_of_mass = list("x"=14, "y"=10)
@@ -383,7 +385,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/chips
 	name = "\improper What-The-Crisps"
 	desc = "Commander Riker's What-The-Crisps, lightly salted."
-	description_fluff = "What-The-Crisps' retro-styled starship commander has been a marketing staple for almost 200 years."
+	description_fluff = "What-The-Crisps' retro-styled starship commander has been a marketing staple for almost 200 years. Actual potatos haven't been used in potato chips for centuries. They're mostly a denatured nutrient slurry pressed into a chip-shaped mold and salted. Still tastes the same."
 	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "chips"
 	trash = /obj/item/trash/chips
@@ -510,6 +512,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/donut
 	name = "donut"
 	desc = "Goes great with Robust Coffee."
+	description_fluff = "These donuts claim to be made fresh daily in a boutique bakery in New Reykjavik and delivered to Nanotrasen's hardworking asset protection crew. They're probably synthesized."
 	icon_state = "donut1"
 	filling_color = "#D9C386"
 	var/overlay_state = "box-donut1"
@@ -1146,6 +1149,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/donkpocket
 	name = "Donk-pocket"
 	desc = "The food of choice for the seasoned traitor."
+	description_fluff = "DONKpockets were originally a Nanotrasen product, an attempt to break into the food market controlled by Centauri Provisions. Somehow, Centauri wound up with the rights to the DONK brand, ending Nanotrasen's ambitions. They taste pretty okay."
 	icon_state = "donkpocket"
 	filling_color = "#DEDEAB"
 	center_of_mass = list("x"=16, "y"=10)
@@ -1381,6 +1385,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/pie
 	name = "Banana Cream Pie"
 	desc = "Just like back home, on clown planet! HONK!"
+	description_fluff = "One of the more esoteric terms of the Nanotrasen-Centauri Noncompetition Agreement of 2545 was a requirement that Nanotrasen stock these pies on all their stations. They're calibrated for comedic value, not taste."
 	icon_state = "pie"
 	trash = /obj/item/trash/plate
 	filling_color = "#FBFFB8"
@@ -1663,7 +1668,7 @@
 	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "4no_raisins"
 	desc = "Best raisins in the universe. Not sure why."
-	description_fluff = "The popularity of dried foods across the galaxy is either a direct result of ease of shipping, or a clever marketing ploy by corporations trying to cut back costs. Whatever it is, there must be SOME reason?"
+	description_fluff = "Originally Raisin Blend no. 4, 4noraisins obtained their current name in the Skadi Positronic Exclusion Crisis of 2442, where they were rebranded as part of the protests. The exclusion crisis, so the story goes, involved positronic immigration being banned for no raisin."
 	trash = /obj/item/trash/raisins
 	filling_color = "#343834"
 	center_of_mass = list("x"=15, "y"=4)
@@ -1997,7 +2002,7 @@
 	filling_color = "#AFC4B5"
 	center_of_mass = list("x"=16, "y"=8)
 	nutriment_amt = 8
-	nutriment_desc = list("carot" = 2, "corn" = 2, "eggplant" = 2, "potato" = 2)
+	nutriment_desc = list("carrot" = 2, "corn" = 2, "eggplant" = 2, "potato" = 2)
 
 /obj/item/weapon/reagent_containers/food/snacks/vegetablesoup/Initialize()
 	. = ..()
@@ -2400,6 +2405,8 @@
 	center_of_mass = list("x"=16, "y"=5)
 	nutriment_amt = 6
 	nutriment_desc = list("tomato" = 2, "potato" = 2, "carrot" = 2, "eggplant" = 2, "mushroom" = 2)
+	drop_sound = 'sound/items/drop/shovel.ogg'
+	pickup_sound = 'sound/items/pickup/shovel.ogg'
 
 /obj/item/weapon/reagent_containers/food/snacks/stew/Initialize()
 	. = ..()
@@ -2651,6 +2658,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/twobread
 	name = "Two Bread"
 	desc = "It is very bitter and winy."
+	description_fluff = "The most popular recipe from the Morpheus Cyberkinetics cookbook 'Calories for Organics'"
 	icon_state = "twobread"
 	filling_color = "#DBCC9A"
 	center_of_mass = list("x"=15, "y"=12)
@@ -4054,6 +4062,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/liquidfood
 	name = "\improper LiquidFood Ration"
 	desc = "A prepackaged grey slurry of all the essential nutrients for a spacefarer on the go. Should this be crunchy?"
+	description_fluff = "A survival food commonly packed onto short-distance bluespace shuttles and similar vessels. Tastes like chalk, but is packed full of nutrients and will keep you alive."
 	icon_state = "liquidfood"
 	trash = /obj/item/trash/liquidfood
 	filling_color = "#A8A8A8"
@@ -4115,7 +4124,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/tastybread
 	name = "bread tube"
 	desc = "Bread in a tube. Chewy...and surprisingly tasty."
-	description_fluff = "Due to the high-fructose corn syrup content of NanoTrasen's own-brand bread tubes, many jurisdictions classify them as a confectionary."
+	description_fluff = "This is the product that brought Centauri Provisions into the limelight. A product of the earliest extrasolar colony of Heaven, the Bread Tube, while bland, contains all the nutrients a spacer needs to get through the day and is decidedly edible when compared to some of its competitors. Due to the high-fructose corn syrup content of NanoTrasen's own-brand bread tubes, many jurisdictions classify them as a confectionary."
 	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "tastybread"
 	trash = /obj/item/trash/tastybread
@@ -4131,9 +4140,10 @@
 /obj/item/weapon/reagent_containers/food/snacks/skrellsnacks
 	name = "\improper SkrellSnax"
 	desc = "Cured fungus shipped all the way from Qerr'balak, almost like jerky! Almost."
-	description_fluff = "Despite the packaging, most SkrellSnax sold in Vir are produced using locally-grown fungi in controversial Skrell-owned biodomes on the suface of Sif."
+	description_fluff = "Despite the packaging, most SkrellSnax sold in Vir are produced using locally-grown, Qerr'Balak-native Go'moa fungi in controversial Skrell-owned biodomes on the suface of Sif. SkrellSnax were originally a product of Natuna, designed to welcome Ue-Katish refugees to their colony. The brand was recreated by Centauri Provisions after Natuna and SolGov broke off diplomatic relations."
 	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "skrellsnacks"
+	trash = /obj/item/trash/skrellsnax
 	filling_color = "#A66829"
 	center_of_mass = list("x"=15, "y"=12)
 	nutriment_amt = 10
@@ -4148,10 +4158,12 @@
 	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "unathitinred"
 	desc = "An incredibly well made jerky, shipped in all the way from Moghes."
-	description_fluff = "The exact meat and spices used in the curing of Sissalik Jerky are a well-kept secret, and thought to not exist at all outside of Hegemony space. Many have tried to replicate the flavour, but none have come close, so the brand remains a highly prized import."
+	description_fluff = "The exact meat and spices used in the curing of Sissalik Jerky are a well-kept secret, and thought to not exist at all outside of Hegemony space. Many have tried to replicate the flavour, but none have come close, so the brand remains a highly prized import. "
 	trash = /obj/item/trash/unajerky
 	filling_color = "#631212"
 	center_of_mass = list("x"=15, "y"=9)
+	drop_sound = 'sound/items/drop/soda.ogg'
+	pickup_sound = 'sound/items/pickup/soda.ogg'
 
 /obj/item/weapon/reagent_containers/food/snacks/unajerky/Initialize()
 	. =..()

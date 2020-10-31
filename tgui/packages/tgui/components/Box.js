@@ -104,6 +104,7 @@ const styleMapperByPropName = {
   verticalAlign: mapRawPropTo('vertical-align'),
   textTransform: mapRawPropTo('text-transform'),
   wordWrap: mapRawPropTo('word-wrap'),
+  unselectable: mapRawPropTo('unselectable'),
   // Boolean props
   inline: mapBooleanPropTo('display', 'inline-block'),
   bold: mapBooleanPropTo('font-weight', 'bold'),
