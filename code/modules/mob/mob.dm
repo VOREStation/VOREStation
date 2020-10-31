@@ -1021,6 +1021,7 @@ mob/proc/yank_out_object()
 	set hidden = 1
 	set_face_dir(client.client_dir(WEST))
 
+// Begin VOREstation edit
 /mob/verb/shiftnorth()
 	set hidden = TRUE
 	if(!canface())
@@ -1052,6 +1053,7 @@ mob/verb/shifteast()
 	if(pixel_x <= 16)
 		pixel_x++
 		is_shifted = TRUE
+// End VOREstation edit
 
 /mob/proc/adjustEarDamage()
 	return
