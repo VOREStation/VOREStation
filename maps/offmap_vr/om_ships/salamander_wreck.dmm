@@ -1274,7 +1274,7 @@
 /obj/machinery/power/pointdefense{
 	id_tag = "salamander_wreck_pd"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/airless,
 /area/shuttle/salamander_wreck_engineering)
 "tL" = (
 /obj/structure/girder,
