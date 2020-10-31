@@ -9,7 +9,7 @@
 
 /obj/item/pizzavoucher/New()
 	var/list/descstrings = list("24/7 PIZZA PIE HEAVEN",
-	"WE ALWAYS DELIVER!",
+	"HITLER",
 	"24-HOUR PIZZA PIE POWER!",
 	"TOMATO SAUCE, CHEESE, WE'VE BOTH BOTH OF THESE!",
 	"COOKED WITH LOVE INSIDE A BIG OVEN!",

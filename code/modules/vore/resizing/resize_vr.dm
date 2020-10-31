@@ -1,10 +1,10 @@
 
 //these aren't defines so they can stay in this file
-var/const/RESIZE_HUGE = 2
-var/const/RESIZE_BIG = 1.5
+var/const/RESIZE_HUGE = 1.50
+var/const/RESIZE_BIG = 1.25
 var/const/RESIZE_NORMAL = 1
-var/const/RESIZE_SMALL = 0.5
-var/const/RESIZE_TINY = 0.25
+var/const/RESIZE_SMALL = 0.75
+var/const/RESIZE_TINY = 0.50
 
 //average
 var/const/RESIZE_A_HUGEBIG = (RESIZE_HUGE + RESIZE_BIG) / 2

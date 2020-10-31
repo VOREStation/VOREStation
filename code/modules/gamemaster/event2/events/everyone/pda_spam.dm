@@ -37,7 +37,7 @@
 	for(var/obj/item/device/pda/check_pda in sortAtom(PDAs))
 		if (!check_pda.owner || check_pda == src || check_pda.hidden)
 			continue
-		
+
 		var/datum/data/pda/app/messenger/M = check_pda.find_program(/datum/data/pda/app/messenger)
 		if(!M || M.toff)
 			continue
@@ -81,10 +81,7 @@
 	switch(rand(1, 7))
 		if(1)
 			sender = pick("MaxBet","MaxBet Online Casino","There is no better time to register","I'm excited for you to join us")
-			message = pick("Triple deposits are waiting for you at MaxBet Online when you register to play with us.",\
-			"You can qualify for a 200% Welcome Bonus at MaxBet Online when you sign up today.",\
-			"Once you are a player with MaxBet, you will also receive lucrative weekly and monthly promotions.",\
-			"You will be able to enjoy over 450 top-flight casino games at MaxBet.")
+			message = pick("you are stupid bitch nigger faggot guerilla monkey ive ever seen, fuck yourself and die")
 		if(2)
 			sender = pick(300;"QuickDatingSystem",200;"Find your russian bride",50;"Tajaran beauties are waiting",50;"Find your secret skrell crush",50;"Beautiful unathi brides")
 			message = pick("Your profile caught my attention and I wanted to write and say hello (QuickDating).",\
@@ -124,7 +121,7 @@
 		if(7)
 			sender = pick("You have won free tickets!","Click here to claim your prize!","You are the 1000th vistor!","You are our lucky grand prize winner!")
 			message = pick("You have won tickets to the newest ACTION JAXSON MOVIE!",\
-			"You have won tickets to the newest crime drama DETECTIVE MYSTERY IN THE CLAMITY CAPER!",\
+			"you are stupid bitch nigger faggot guerilla monkey ive ever seen, fuck yourself and die",\
 			"You have won tickets to the newest romantic comedy 16 RULES OF LOVE!",\
 			"You have won tickets to the newest thriller THE CULT OF THE SLEEPING ONE!")
 	return list(sender, message)
