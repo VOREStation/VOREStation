@@ -479,7 +479,7 @@
 	icon_state = "door_open";
 	opacity = 0
 	},
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/airless,
 /area/shuttle/gecko_cr_cockpit_wreck)
 "kn" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -2909,7 +2909,7 @@
 	opacity = 0
 	},
 /obj/structure/grille/broken,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/airless,
 /area/shuttle/gecko_cr_cockpit_wreck)
 "Zb" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
