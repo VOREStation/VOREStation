@@ -349,9 +349,11 @@
 				to_chat(user, "<span class='danger'>You go blind!</span>")
 				user.Blind(5)
 				user.eye_blurry = 5
-				user.disabilities |= NEARSIGHTED
-				spawn(100)
-					user.disabilities &= ~NEARSIGHTED
+				// Don't cure being nearsighted
+				if(!(H.disabilities & NEARSIGHTED))
+					user.disabilities |= NEARSIGHTED
+					spawn(100)
+						user.disabilities &= ~NEARSIGHTED
 	return
 
 /obj/item/weapon/weldingtool/is_hot()
