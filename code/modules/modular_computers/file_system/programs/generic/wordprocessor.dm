@@ -71,7 +71,7 @@
 
 	switch(action)
 		if("PRG_txtrpeview")
-			show_browser(usr,"<HTML><HEAD><TITLE>[open_file]</TITLE></HEAD>[pencode2html(loaded_data)]</BODY></HTML>", "window=[open_file]")
+			show_browser(usr,"<HTML><meta charset=\"UTF-8\"><HEAD><TITLE>[open_file]</TITLE></HEAD>[pencode2html(loaded_data)]</BODY></HTML>", "window=[open_file]")
 			return TRUE
 
 		if("PRG_taghelp")

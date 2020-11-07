@@ -154,20 +154,20 @@ proc/get_radio_key_from_channel(var/channel)
 	var/message_mode = parse_message_mode(message, "headset")
 
 	//Maybe they are using say/whisper to do a quick emote, so do those
-	switch(copytext(message, 1, 2))
-		if("*") return emote(copytext(message, 2))
-		if("^") return custom_emote(1, copytext(message, 2))
+	switch(copytext_char(message, 1, 2))
+		if("*") return emote(copytext_char(message, 2))
+		if("^") return custom_emote(1, copytext_char(message, 2))
 
 	//Parse the radio code and consume it
 	if(message_mode)
 		if(message_mode == "headset")
-			message = copytext(message, 2)	//it would be really nice if the parse procs could do this for us.
+			message = copytext_char(message, 2)	//it would be really nice if the parse procs could do this for us.
 		else if(message_mode == "whisper")
 			whispering = 1
 			message_mode = null
-			message = copytext(message, 3)
+			message = copytext_char(message, 3)
 		else
-			message = copytext(message, 3)
+			message = copytext_char(message, 3)
 
 	//Clean up any remaining space on the left
 	message = trim_left(message)
@@ -271,7 +271,7 @@ proc/get_radio_key_from_channel(var/channel)
 
 	//VOREStation edit - allows for custom say verbs, overriding all other say-verb types- e.g. "says loudly" instead of "shouts"
 	//You'll still stammer if injured or slur if drunk, but it won't have those specific words
-	var/ending = copytext(message, length(message))
+	var/ending = copytext_char(message, length(message))
 
 	if(custom_whisper && whispering)
 		verb = "[custom_whisper]"
