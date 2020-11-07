@@ -53,6 +53,18 @@ macro "borghotkeymode"
 	elem 
 		name = "SOUTH+REP"
 		command = ".movedown"
+	elem
+		name = "CTRL+SHIFT+NORTH"
+		command = "shiftnorth"
+	elem
+		name = "CTRL+SHIFT+SOUTH"
+		command = "shiftsouth"
+	elem
+		name = "CTRL+SHIFT+WEST"
+		command = "shiftwest"
+	elem
+		name = "CTRL+SHIFT+EAST"
+		command = "shifteast"
 	elem 
 		name = "INSERT"
 		command = "a-intent right"
@@ -274,6 +286,18 @@ macro "macro"
 	elem 
 		name = "SOUTH+REP"
 		command = ".movedown"
+	elem
+		name = "CTRL+SHIFT+NORTH"
+		command = "shiftnorth"
+	elem
+		name = "CTRL+SHIFT+SOUTH"
+		command = "shiftsouth"
+	elem
+		name = "CTRL+SHIFT+WEST"
+		command = "shiftwest"
+	elem
+		name = "CTRL+SHIFT+EAST"
+		command = "shifteast"
 	elem 
 		name = "INSERT"
 		command = "a-intent right"
@@ -441,6 +465,18 @@ macro "hotkeymode"
 	elem 
 		name = "SOUTH+REP"
 		command = ".movedown"
+	elem
+		name = "CTRL+SHIFT+NORTH"
+		command = "shiftnorth"
+	elem
+		name = "CTRL+SHIFT+SOUTH"
+		command = "shiftsouth"
+	elem
+		name = "CTRL+SHIFT+WEST"
+		command = "shiftwest"
+	elem
+		name = "CTRL+SHIFT+EAST"
+		command = "shifteast"
 	elem 
 		name = "INSERT"
 		command = "a-intent right"
@@ -680,6 +716,18 @@ macro "borgmacro"
 	elem 
 		name = "SOUTH+REP"
 		command = ".movedown"
+	elem
+		name = "CTRL+SHIFT+NORTH"
+		command = "shiftnorth"
+	elem
+		name = "CTRL+SHIFT+SOUTH"
+		command = "shiftsouth"
+	elem
+		name = "CTRL+SHIFT+WEST"
+		command = "shiftwest"
+	elem
+		name = "CTRL+SHIFT+EAST"
+		command = "shifteast"
 	elem 
 		name = "INSERT"
 		command = "a-intent right"
