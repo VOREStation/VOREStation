@@ -57,8 +57,6 @@
 	var/response_harm   = "tries to hurt"	// If clicked on harm intent
 	var/list/friends = list()		// Mobs on this list wont get attacked regardless of faction status.
 	var/harm_intent_damage = 3		// How much an unarmed harm click does to this mob.
-	var/meat_amount = 0				// How much meat to drop from this mob when butchered
-	var/obj/meat_type				// The meat object to drop
 	var/list/loot_list = list()		// The list of lootable objects to drop, with "/path = prob%" structure
 	var/obj/item/weapon/card/id/myid// An ID card if they have one to give them access to stuff.
 
@@ -156,8 +154,15 @@
 	// contained in a cage
 	var/in_stasis = 0
 
+<<<<<<< HEAD
 	// don't process me if there's nobody around to see it
 	low_priority = TRUE
+=======
+	// Used for if the mob can drop limbs. Overrides species dmi.
+	var/limb_icon
+	// Used for if the mob can drop limbs. Overrides the icon cache key, so it doesn't keep remaking the icon needlessly.
+	var/limb_icon_key
+>>>>>>> 68b370b... Fresh Meat, Leatherworking (#7629)
 
 /mob/living/simple_mob/Initialize()
 	verbs -= /mob/verb/observe
@@ -170,8 +175,31 @@
 
 	if(has_eye_glow)
 		add_eyes()
-	return ..()
 
+	if(LAZYLEN(organs))
+		for(var/path in organs)
+			if(ispath(path))
+				var/obj/item/organ/external/neworg = new path(src)
+				neworg.name = "[name] [neworg.name]"
+				neworg.meat_type = meat_type
+
+				if(limb_icon)
+					neworg.force_icon = limb_icon
+					neworg.force_icon_key = limb_icon_key
+
+				organs |= neworg
+				organs -= path
+
+	if(LAZYLEN(internal_organs))
+		for(var/path in internal_organs)
+			if(ispath(path))
+				var/obj/item/organ/neworg = new path(src)
+				neworg.name = "[name] [neworg.name]"
+				neworg.meat_type = meat_type
+				internal_organs |= neworg
+				internal_organs -= path
+
+	return ..()
 
 /mob/living/simple_mob/Destroy()
 	default_language = null
@@ -189,7 +217,6 @@
 /mob/living/simple_mob/death()
 	update_icon()
 	..()
-
 
 //Client attached
 /mob/living/simple_mob/Login()
@@ -268,27 +295,6 @@
 
 /mob/living/simple_mob/get_speech_ending(verb, var/ending)
 	return verb
-
-
-// Harvest an animal's delicious byproducts
-/mob/living/simple_mob/proc/harvest(var/mob/user, var/invisible)
-	var/actual_meat_amount = max(1,(meat_amount/2))
-	var/attacker_name = user.name
-	if(invisible)
-		attacker_name = "someone"
-	
-	if(meat_type && actual_meat_amount>0 && (stat == DEAD))
-		for(var/i=0;i<actual_meat_amount;i++)
-			var/obj/item/meat = new meat_type(get_turf(src))
-			meat.name = "[src.name] [meat.name]"
-		if(issmall(src))
-			user.visible_message("<span class='danger'>[attacker_name] chops up \the [src]!</span>")
-			new/obj/effect/decal/cleanable/blood/splatter(get_turf(src))
-			qdel(src)
-		else
-			user.visible_message("<span class='danger'>[attacker_name] butchers \the [src] messily!</span>")
-			gib()
-
 
 /mob/living/simple_mob/is_sentient()
 	return mob_class & MOB_CLASS_HUMANOID|MOB_CLASS_ANIMAL|MOB_CLASS_SLIME // Update this if needed.

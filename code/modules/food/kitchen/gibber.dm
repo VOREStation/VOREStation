@@ -188,18 +188,13 @@
 	update_icon()
 
 	var/slab_name = occupant.name
-	var/slab_count = 3
-	var/slab_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	var/slab_count = 2 + occupant.meat_amount
+	var/slab_type = occupant.meat_type ? occupant.meat_type : /obj/item/weapon/reagent_containers/food/snacks/meat
 	var/slab_nutrition = src.occupant.nutrition / 15
 
-	// Some mobs have specific meat item types.
-	if(istype(src.occupant,/mob/living/simple_mob))
-		var/mob/living/simple_mob/critter = src.occupant
-		if(critter.meat_amount)
-			slab_count = critter.meat_amount
-		if(critter.meat_type)
-			slab_type = critter.meat_type
-	else if(istype(src.occupant,/mob/living/carbon/human))
+	var/list/byproducts = occupant?.butchery_loot?.Copy()
+
+	if(istype(src.occupant,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = occupant
 		slab_name = src.occupant.real_name
 		slab_type = H.isSynthetic() ? /obj/item/stack/material/steel : H.species.meat_type
@@ -209,7 +204,8 @@
 		slab_nutrition *= 0.5
 	slab_nutrition /= slab_count
 
-	for(var/i=1 to slab_count)
+	while(slab_count)
+		slab_count--
 		var/obj/item/weapon/reagent_containers/food/snacks/meat/new_meat = new slab_type(src, rand(3,8))
 		if(istype(new_meat))
 			new_meat.name = "[slab_name] [new_meat.name]"
@@ -222,17 +218,26 @@
 	src.occupant.ghostize()
 
 	spawn(gib_time)
-
-		operating = 0
 		occupant.gib()
 		occupant = null
-
 		playsound(src, 'sound/effects/splat.ogg', 50, 1)
 		operating = 0
+		if(LAZYLEN(byproducts))
+			for(var/path in byproducts)
+				while(byproducts[path])
+					if(prob(min(90,30 * byproducts[path])))
+						new path(src)
+
+					byproducts[path] -= 1
+
 		for (var/obj/thing in contents)
-			// There's a chance that the gibber will fail to destroy some evidence.
+			// There's a chance that the gibber will fail to destroy or butcher some evidence.
 			if(istype(thing,/obj/item/organ) && prob(80))
-				qdel(thing)
+				var/obj/item/organ/OR = thing
+				if(OR.can_butcher(src))
+					OR.butcher(src, null, src)	// Butcher it, and add it to our list of things to launch.
+				else
+					qdel(thing)
 				continue
 			thing.forceMove(get_turf(thing)) // Drop it onto the turf for throwing.
 			thing.throw_at(get_edge_target_turf(src,gib_throw_dir),rand(0,3),emagged ? 100 : 50) // Being pelted with bits of meat and bone would hurt.

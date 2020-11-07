@@ -31,9 +31,28 @@
 		nest = null
 	if(buckled)
 		buckled.unbuckle_mob(src, TRUE)
+
 	qdel(selected_image)
+<<<<<<< HEAD
 	QDEL_NULL(vorePanel) //VOREStation Add
 	QDEL_LIST_NULL(vore_organs) //VOREStation Add
+=======
+
+	if(LAZYLEN(organs))
+		organs_by_name.Cut()
+		while(organs.len)
+			var/obj/item/OR = organs[1]
+			organs -= OR
+			qdel(OR)
+
+	if(LAZYLEN(internal_organs))
+		internal_organs_by_name.Cut()
+		while(internal_organs.len)
+			var/obj/item/OR = internal_organs[1]
+			internal_organs -= OR
+			qdel(OR)
+
+>>>>>>> 68b370b... Fresh Meat, Leatherworking (#7629)
 	return ..()
 
 //mob verbs are faster than object verbs. See mob/verb/examine.
