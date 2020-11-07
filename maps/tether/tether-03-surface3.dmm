@@ -30938,10 +30938,10 @@
 /turf/simulated/floor/lino,
 /area/tether/surfacebase/entertainment/backstage)
 "bcj" = (
-/obj/machinery/vending/loadout/costume,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
+/obj/machinery/vending/entertainer,
 /turf/simulated/floor/lino,
 /area/tether/surfacebase/entertainment/backstage)
 "bck" = (
