@@ -48,6 +48,9 @@
 		return 0
 	if(world.time < last_spawn + spawn_delay)
 		return 0
+	for(var/mob/living/L in view(src,world.view))
+		if(L.client)
+			return 0
 	return 1
 
 /obj/structure/mob_spawner/proc/choose_spawn()
