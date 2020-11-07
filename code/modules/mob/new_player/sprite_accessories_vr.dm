@@ -1185,3 +1185,9 @@
 		name = "bee stripes"
 		icon_state = "beestripes"
 		body_parts = list(BP_TORSO,BP_GROIN)
+
+	vas_toes
+		name = "Bug Paws (Vasilissan)"
+		icon_state = "vas_toes"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_L_FOOT,BP_R_FOOT)
