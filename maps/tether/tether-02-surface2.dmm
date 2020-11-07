@@ -1757,8 +1757,8 @@
 	pixel_y = 0
 	},
 /obj/machinery/camera/network/research/xenobio{
-	icon_state = "camera";
-	dir = 4
+	dir = 4;
+	icon_state = "camera"
 	},
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
@@ -1914,8 +1914,8 @@
 	req_access = list(55)
 	},
 /obj/machinery/camera/network/research/xenobio{
-	icon_state = "camera";
-	dir = 9
+	dir = 9;
+	icon_state = "camera"
 	},
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
@@ -4657,8 +4657,10 @@
 /area/chapel/chapel_morgue)
 "ajr" = (
 /obj/structure/grille,
-/obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor,
+/obj/structure/window/reinforced/polarized/full{
+	id = "chaplainwindow"
+	},
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -6333,8 +6335,17 @@
 /obj/machinery/button/windowtint{
 	dir = 1;
 	id = "chaplainpet";
+	name = "interior window tint";
 	pixel_x = -10;
 	pixel_y = 30
+	},
+/obj/machinery/button/windowtint{
+	dir = 1;
+	id = "chaplainwindow";
+	name = "exterior window tint";
+	pixel_x = 10;
+	pixel_y = 30;
+	range = 8
 	},
 /turf/simulated/floor/carpet,
 /area/chapel/main)
@@ -14290,8 +14301,8 @@
 	name = "Chaplain"
 	},
 /obj/structure/bed/chair/wood/wings{
-	icon_state = "wooden_chair_wings";
-	dir = 1
+	dir = 1;
+	icon_state = "wooden_chair_wings"
 	},
 /turf/simulated/floor/lino,
 /area/chapel/office)
@@ -18242,10 +18253,10 @@
 /area/maintenance/lower/atmos)
 "aId" = (
 /obj/machinery/mecha_part_fabricator/pros{
+	component_coeff = 0.9;
 	desc = "A machine used for construction of legit prosthetics. You weren't sure if cardboard was considered an engineering material until now.";
 	dir = 4;
 	emagged = 0;
-	component_coeff = 0.9;
 	name = "Legitimate Prosthetics Fabricator";
 	req_access = list();
 	res_max_amount = 150000;
@@ -28339,7 +28350,10 @@
 /obj/effect/floor_decal/corner_techfloor_grid{
 	dir = 10
 	},
-/mob/living/simple_mob/animal/passive/lizard,
+/mob/living/simple_mob/animal/passive/lizard{
+	desc = "It's the secret head of Janitoria!";
+	name = "Bucket"
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/south)
 "bau" = (
@@ -46110,7 +46124,7 @@ aiJ
 ajo
 ajR
 ajT
-aYp
+aro
 aro
 aro
 aZE
