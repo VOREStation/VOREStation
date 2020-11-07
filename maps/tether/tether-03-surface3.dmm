@@ -13707,15 +13707,9 @@
 /turf/simulated/floor/carpet,
 /area/tether/surfacebase/library/study)
 "axX" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/mob/living/simple_mob/vore/rabbit/white/lennie,
-/turf/simulated/floor/grass,
-/area/hydroponics)
+/obj/structure/sign/department/chapel,
+/turf/simulated/wall/r_wall,
+/area/vacant/vacant_shop)
 "axY" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/wood,
@@ -31338,10 +31332,15 @@
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/entertainment)
 "bcN" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tether)
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/mob/living/simple_mob/vore/rabbit/white/lennie,
+/turf/simulated/floor/tiled,
+/area/hydroponics)
 "bcO" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -31564,12 +31563,10 @@
 /turf/simulated/floor/lino,
 /area/tether/surfacebase/entertainment/backstage)
 "bde" = (
-/obj/machinery/atmospherics/unary/engine{
-	dir = 1
-	},
+/obj/structure/shuttle/engine/propulsion,
 /turf/simulated/floor/reinforced,
 /turf/simulated/shuttle/plating/carry,
-/area/shuttle/tourbus/engines)
+/area/shuttle/tether)
 "bdf" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8
@@ -32430,14 +32427,12 @@
 /turf/simulated/floor/tiled,
 /area/hydroponics)
 "beN" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
+/obj/machinery/atmospherics/unary/engine{
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
-	},
-/turf/simulated/floor/tiled,
-/area/hydroponics)
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tourbus/engines)
 "beO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -47804,7 +47799,7 @@ jML
 jHw
 jpB
 qWU
-bde
+beN
 aKU
 aOI
 aPb
@@ -48656,7 +48651,7 @@ caw
 jHw
 gHh
 qWU
-bde
+beN
 aKU
 aOI
 aPb
@@ -50641,7 +50636,7 @@ aNk
 uSA
 aNJ
 aNP
-bcN
+bde
 aKU
 abg
 aOk
@@ -50783,7 +50778,7 @@ aNl
 aNl
 aNK
 aNP
-bcN
+bde
 aKU
 abg
 aOk
@@ -50925,7 +50920,7 @@ aNm
 aNl
 aNK
 aNP
-bcN
+bde
 aKU
 abg
 aOk
@@ -51163,7 +51158,7 @@ amc
 aio
 rXW
 lXv
-aol
+axX
 alY
 alY
 agw
@@ -52310,7 +52305,7 @@ aTF
 bdC
 beC
 beK
-beN
+bcN
 bcg
 anN
 atA
@@ -53153,9 +53148,9 @@ axq
 atg
 aSy
 aop
-arZ
+aop
 bdk
-axX
+ask
 aVy
 aLg
 aFM
@@ -54000,7 +53995,7 @@ acV
 avb
 awu
 arL
-aop
+arZ
 aop
 asQ
 auk
