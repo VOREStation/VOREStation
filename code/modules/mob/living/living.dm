@@ -33,10 +33,8 @@
 		buckled.unbuckle_mob(src, TRUE)
 
 	qdel(selected_image)
-<<<<<<< HEAD
 	QDEL_NULL(vorePanel) //VOREStation Add
 	QDEL_LIST_NULL(vore_organs) //VOREStation Add
-=======
 
 	if(LAZYLEN(organs))
 		organs_by_name.Cut()
@@ -52,7 +50,6 @@
 			internal_organs -= OR
 			qdel(OR)
 
->>>>>>> 68b370b... Fresh Meat, Leatherworking (#7629)
 	return ..()
 
 //mob verbs are faster than object verbs. See mob/verb/examine.
