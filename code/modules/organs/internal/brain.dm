@@ -99,15 +99,11 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 		brainmob = new(src)
 		brainmob.name = H.real_name
 		brainmob.real_name = H.real_name
-<<<<<<< HEAD
-		brainmob.dna = H.dna.Clone()
-		brainmob.timeofhostdeath = H.timeofdeath
-		brainmob.ooc_notes = H.ooc_notes //VOREStation Edit 
-=======
+
 		if(istype(H))
 			brainmob.dna = H.dna.Clone()
 			brainmob.timeofhostdeath = H.timeofdeath
->>>>>>> 68b370b... Fresh Meat, Leatherworking (#7629)
+			brainmob.ooc_notes = H.ooc_notes //VOREStation Edit 
 
 		// Copy modifiers.
 		for(var/datum/modifier/M in H.modifiers)
