@@ -93,13 +93,8 @@ var/list/organ_cache = list()
 		var/mob/living/carbon/C = holder
 		species = GLOB.all_species[SPECIES_HUMAN]
 		if(holder.dna)
-<<<<<<< HEAD
 			dna = holder.dna.Clone()
 			species = holder.species //VOREStation Edit - For custom species
-=======
-			dna = C.dna.Clone()
-			species = GLOB.all_species[dna.species]
->>>>>>> 68b370b... Fresh Meat, Leatherworking (#7629)
 		else
 			log_debug("[src] at [loc] spawned without a proper DNA.")
 		var/mob/living/carbon/human/H = C
@@ -246,19 +241,12 @@ var/list/organ_cache = list()
 
 	//Level 1 qualifies for specific organ processing effects
 	if(germ_level >= INFECTION_LEVEL_ONE)
-<<<<<<< HEAD
-		. = 1
-		var/fever_temperature = owner.species.heat_discomfort_level * 1.10 //Heat discomfort level plus 10%
-		if(owner.bodytemperature < fever_temperature)
-			owner.bodytemperature += min(0.2,(fever_temperature - owner.bodytemperature) / 10) //Will usually climb by 0.2, else 10% of the difference if less
-=======
 		. = 1 //Organ qualifies for effect-specific processing
 		//var/fever_temperature = (owner.species.heat_level_1 - owner.species.body_temperature - 5)* min(germ_level/INFECTION_LEVEL_TWO, 1) + owner.species.body_temperature
 		//owner.bodytemperature += between(0, (fever_temperature - T20C)/BODYTEMP_COLD_DIVISOR + 1, fever_temperature - owner.bodytemperature)
 		var/fever_temperature = owner?.species.heat_discomfort_level * 1.10 //Heat discomfort level plus 10%
 		if(owner?.bodytemperature < fever_temperature)
 			owner?.bodytemperature += min(0.2,(fever_temperature - owner?.bodytemperature) / 10) //Will usually climb by 0.2, else 10% of the difference if less
->>>>>>> 68b370b... Fresh Meat, Leatherworking (#7629)
 
 	//Level two qualifies for further processing effects
 	if (germ_level >= INFECTION_LEVEL_TWO)
@@ -275,11 +263,7 @@ var/list/organ_cache = list()
 	// immunosuppressant that changes transplant data to make it match.
 	if(dna && can_reject)
 		if(!rejecting)
-<<<<<<< HEAD
 			if(blood_incompatible(dna.b_type, owner.dna.b_type, species.name, owner.species.name)) //VOREStation Edit - Process species by name.
-=======
-			if(blood_incompatible(dna.b_type, owner?.dna.b_type, species, owner?.species))
->>>>>>> 68b370b... Fresh Meat, Leatherworking (#7629)
 				rejecting = 1
 		else
 			rejecting++ //Rejection severity increases over time.
