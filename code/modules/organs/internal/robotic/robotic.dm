@@ -9,3 +9,4 @@
 	decays = FALSE	// Ditto. Rust takes a while.
 
 	robotic = ORGAN_ROBOT
+	butcherable = FALSE

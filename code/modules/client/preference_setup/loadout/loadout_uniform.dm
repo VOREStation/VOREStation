@@ -589,3 +589,59 @@
 /datum/gear/uniform/cyberpunkharness
 	display_name = "cyberpunk strapped harness"
 	path = /obj/item/clothing/under/cyberpunkharness
+
+/datum/gear/uniform/whitegown
+	display_name = "white gown"
+	path = /obj/item/clothing/under/wedding/whitegown
+
+/datum/gear/uniform/floofdress
+	display_name = "floofy dress"
+	path = /obj/item/clothing/under/wedding/floofdress
+
+/datum/gear/uniform/floofdress/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/uniform/blackngold
+	display_name = "black and gold gown"
+	path = /obj/item/clothing/under/blackngold
+
+/datum/gear/uniform/sheerblue
+	display_name = "sheer blue dress"
+	path = /obj/item/clothing/under/sheerblue
+
+/datum/gear/uniform/disheveled
+	display_name = "disheveled suit"
+	path = /obj/item/clothing/under/disheveled
+
+/datum/gear/uniform/orangedress
+	display_name = "orange dress"
+	path = /obj/item/clothing/under/dress/dress_orange
+
+/datum/gear/uniform/sundress_pink
+	display_name = "pink sundress"
+	path = /obj/item/clothing/under/dress/sundress_pink
+
+/datum/gear/uniform/sundress_white
+	display_name = "white sundress"
+	path = /obj/item/clothing/under/dress/sundress_white
+
+/datum/gear/uniform/sundress_pinkbow
+	display_name = "bowed pink sundress"
+	path = /obj/item/clothing/under/dress/sundress_pinkbow
+
+/datum/gear/uniform/sundress_blue
+	display_name = "long blue sundress"
+	path = /obj/item/clothing/under/dress/sundress_blue
+
+/datum/gear/uniform/sundress_pinkshort
+	display_name = "short pink sundress"
+	path = /obj/item/clothing/under/dress/sundress_pinkshort
+
+/datum/gear/uniform/twopiece
+	display_name = "two-piece dress"
+	path = /obj/item/clothing/under/dress/twopiece
+
+/datum/gear/uniform/gothic2
+	display_name = "lacey gothic dress"
+	path = /obj/item/clothing/under/dress/gothic2

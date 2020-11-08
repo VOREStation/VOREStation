@@ -1,25 +1,17 @@
 //print an error message to world.log
 
-// Fall back to using old format if we are not using rust-g
-#ifdef RUST_G
-	#define WRITE_LOG(log, text) call(RUST_G, "log_write")(log, text)
-#else
-	#define WRITE_LOG(log, text) log << "\[[time_stamp()]][text]"
-#endif
+//This is an external call, "true" and "false" are how rust parses out booleans
+#define WRITE_LOG(log, text) rustg_log_write(log, text, "true")
+#define WRITE_LOG_NO_FORMAT(log, text) rustg_log_write(log, text, "false")
 
 /* For logging round startup. */
 /proc/start_log(log)
-	#ifndef RUST_G
-	log = file(log)
-	#endif
 	WRITE_LOG(log, "START: Starting up [log_path].")
 	return log
 
 /* Close open log handles. This should be called as late as possible, and no logging should hapen after. */
 /proc/shutdown_logging()
-	#ifdef RUST_G
-	call(RUST_G, "log_close_all")()
-	#endif
+	rustg_log_close_all()
 
 /proc/error(msg)
 	to_world_log("## ERROR: [msg]")

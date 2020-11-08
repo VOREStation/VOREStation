@@ -1427,10 +1427,15 @@
 	var/body_parts = list() //A list of bodyparts this covers, in organ_tag defines
 	//Reminder: BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN,BP_HEAD
 
-/datum/sprite_accessory/marking/tat_heart
-	name = "Tattoo (Heart, Torso)"
-	icon_state = "tat_heart"
-	body_parts = list(BP_TORSO)
+/datum/sprite_accessory/marking/tat_rheart
+	name = "Tattoo (Heart, R. Arm)"
+	icon_state = "tat_rheart"
+	body_parts = list(BP_R_ARM)
+
+/datum/sprite_accessory/marking/tat_lheart
+	name = "Tattoo (Heart, L. Arm)"
+	icon_state = "tat_lheart"
+	body_parts = list(BP_L_ARM)
 
 /datum/sprite_accessory/marking/tat_hive
 	name = "Tattoo (Hive, Back)"

@@ -300,8 +300,8 @@ var/global/list/datum/dna/gene/dna_genes[0]
 // Getter version of above.
 /datum/dna/proc/GetUIValueRange(var/block,var/maxvalue)
 	if (block<=0) return 0
-	var/value = GetUIValue(block)
-	return round(0.5 + (value / 4095) * maxvalue)
+	var/value = ((GetUIValue(block) / 4095) * maxvalue)
+	return round(0.5 + value)
 
 // Is the UI gene "on" or "off"?
 // For UI, this is simply a check of if the value is > 2050.
@@ -386,8 +386,8 @@ var/global/list/datum/dna/gene/dna_genes[0]
 // Getter version of above.
 /datum/dna/proc/GetSEValueRange(var/block,var/maxvalue)
 	if (block<=0) return 0
-	var/value = GetSEValue(block)
-	return round(1 +(value / 4095)*maxvalue)
+	var/value = ((GetSEValue(block) / 4095) * maxvalue)
+	return round(0.5 + value)
 
 // Is the block "on" (1) or "off" (0)? (Un-assigned genes are always off.)
 /datum/dna/proc/GetSEState(var/block)

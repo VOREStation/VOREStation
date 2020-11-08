@@ -13,7 +13,7 @@
 	icon = 'icons/obj/status_display.dmi'
 	icon_state = "frame"
 	plane = TURF_PLANE
-	layer = ABOVE_TURF_LAYER
+	layer = ABOVE_WINDOW_LAYER
 	name = "status display"
 	anchored = 1
 	density = 0

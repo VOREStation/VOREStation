@@ -81,7 +81,7 @@ const CommunicationsConsoleMain = (props, context) => {
         key={slevel.name}
         icon={slevel.icon}
         content={slevel.name}
-        disabled={!authmax}
+        disabled={!authenticated}
         selected={slevel.id === security_level}
         onClick={() => act('newalertlevel', { level: slevel.id })} />
     );
@@ -89,15 +89,8 @@ const CommunicationsConsoleMain = (props, context) => {
 
   return (
     <Fragment>
-      <Section title="Site Director-Only Actions">
+      <Section title="Site Manager-Only Actions">
         <LabeledList>
-          <LabeledList.Item label="Current Alert"
-            color={security_level_color}>
-            {alertLevelText}
-          </LabeledList.Item>
-          <LabeledList.Item label="Change Alert">
-            {alertLevelButtons}
-          </LabeledList.Item>
           <LabeledList.Item label="Announcement">
             <Button
               icon="bullhorn"
@@ -132,6 +125,13 @@ const CommunicationsConsoleMain = (props, context) => {
       </Section>
       <Section title="Command Staff Actions">
         <LabeledList>
+          <LabeledList.Item label="Current Alert"
+            color={security_level_color}>
+            {alertLevelText}
+          </LabeledList.Item>
+          <LabeledList.Item label="Change Alert">
+            {alertLevelButtons}
+          </LabeledList.Item>
           <LabeledList.Item label="Displays">
             <Button
               icon="tv"

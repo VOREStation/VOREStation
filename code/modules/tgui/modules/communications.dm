@@ -104,9 +104,10 @@
 		"line_2" = (stat_msg2 ? stat_msg2 : "-----"),
 
 		"presets" = list(
-			list("name" = "blank",    "label" = "Clear",       "desc" = "Blank slate"),
-			list("name" = "shuttle",  "label" = "Shuttle ETA", "desc" = "Display how much time is left."),
-			list("name" = "message",  "label" = "Message",     "desc" = "A custom message.")
+			list("name" = "blank",    "label" = "Clear",        "desc" = "Blank slate."),
+			list("name" = "time",     "label" = "Station Time", "desc" = "The current time according to the station's clock."),
+			list("name" = "shuttle",  "label" = "Tram ETA",     "desc" = "Display how much time is left."),  //VOREStation Edit - Shuttle ETA -> Tram ETA because we use trams
+			list("name" = "message",  "label" = "Message",      "desc" = "A custom message.")
 		),
 	)
 
@@ -248,7 +249,7 @@
 				to_chat(usr, "<span class='warning'>Security measures prevent you from changing the alert level.</span>")
 				return
 
-			if(check_access(usr, access_captain))
+			if(is_authenticated(usr))
 				change_security_level(text2num(params["level"]))
 			else
 				to_chat(usr, "<span class='warning'>You are not authorized to do this.</span>")
