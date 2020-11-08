@@ -93,8 +93,8 @@ var/list/organ_cache = list()
 		var/mob/living/carbon/C = holder
 		species = GLOB.all_species[SPECIES_HUMAN]
 		if(holder.dna)
-			dna = holder.dna.Clone()
-			species = holder.species //VOREStation Edit - For custom species
+			dna = C.dna.Clone()
+			species = C.species //VOREStation Edit - For custom species
 		else
 			log_debug("[src] at [loc] spawned without a proper DNA.")
 		var/mob/living/carbon/human/H = C
