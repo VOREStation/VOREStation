@@ -154,15 +154,12 @@
 	// contained in a cage
 	var/in_stasis = 0
 
-<<<<<<< HEAD
 	// don't process me if there's nobody around to see it
 	low_priority = TRUE
-=======
 	// Used for if the mob can drop limbs. Overrides species dmi.
 	var/limb_icon
 	// Used for if the mob can drop limbs. Overrides the icon cache key, so it doesn't keep remaking the icon needlessly.
 	var/limb_icon_key
->>>>>>> 68b370b... Fresh Meat, Leatherworking (#7629)
 
 /mob/living/simple_mob/Initialize()
 	verbs -= /mob/verb/observe
