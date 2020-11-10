@@ -92,6 +92,9 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 
 	//Free civilian AR included
 	new /datum/nifsoft/ar_civ(src)
+	
+	//Free soulcatcher because why not
+	new /datum/nifsoft/soulcatcher(src)
 
 	//If given wear (like when spawned) then done
 	if(wear)
