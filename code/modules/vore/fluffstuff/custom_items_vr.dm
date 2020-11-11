@@ -1254,6 +1254,11 @@
       else
          return 1
 
+//Ryumi - Nikki Yumeno
+obj/item/weapon/rig/nikki
+	name = "weird necklace"
+	desc = ""
+
 //Nickcrazy - Damon Bones Xrim
 /obj/item/clothing/suit/storage/toggle/bomber/bombersec
     name = "Security Bomber Jacket"
