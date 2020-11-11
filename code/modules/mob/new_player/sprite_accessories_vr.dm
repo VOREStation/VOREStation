@@ -36,6 +36,12 @@
 		ckeys_allowed = list("liquidfirefly")
 		do_colouration = 0
 
+	crescent_moon
+		name = "Crescent-Moon"
+		icon = 'icons/mob/human_face_vr.dmi'
+		icon_add = 'icons/mob/human_face_vr_add.dmi'
+		icon_state = "momijihair"
+	
 	citheronia_colorable
 		name = "Citheronia Hair"
 		icon = 'icons/mob/human_face_vr.dmi'
