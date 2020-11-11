@@ -1255,9 +1255,43 @@
          return 1
 
 //Ryumi - Nikki Yumeno
-obj/item/weapon/rig/nikki
+/obj/item/weapon/rig/nikki
 	name = "weird necklace"
-	desc = ""
+	desc = "A necklace with a brilliantly blue gem encased in protective glass."
+	icon = 'icons/mob/custom_items_rig_suit'
+	suit_type = "probably not magical"
+	icon_state = "nikki"
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0) // this isn't armor, it's a dorky frickin cape
+	siemens_coefficient = 0.9
+	slowdown = 0
+	offline_slowdown = 0
+	offline_vision_restriction = 0 
+	siemens_coefficient = 0.9
+	chest_type = /obj/item/clothing/suit/space/rig/fluff/nikki
+
+	req_access = list()
+	req_one_access = list()
+
+	helm_type = null
+	glove_type = null
+	boot_type = null
+
+	allowed = list(
+		/obj/item/device/flashlight,
+		/obj/item/weapon/tank,
+		/obj/item/device/suit_cooling_unit,
+		/obj/item/weapon/storage,
+		)
+
+/obj/item/weapon/rig/nikki/mob_can_equip(var/mob/living/carbon/human/M, slot, disable_warning = 0)
+	if(..())
+		if (M.ckey == "ryumi")
+			return 1
+		else
+			to_chat(H, "<span class='warning'>For some reason, the necklace seems to never quite get past your head when you try to put it on...</span>")
+			return 0
+
+/obj/item/clothing/head/fluff
 
 //Nickcrazy - Damon Bones Xrim
 /obj/item/clothing/suit/storage/toggle/bomber/bombersec

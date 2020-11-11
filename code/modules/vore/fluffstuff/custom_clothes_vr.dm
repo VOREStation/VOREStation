@@ -2006,3 +2006,12 @@ Departamental Swimsuits, for general use
 /obj/item/clothing/head/that/fluff/gettler
 	name = "Charles' Top-Hat"
 	desc = "A special hat, removed from its owner."
+
+//Ryumi: Nikki Yumeno
+/obj/item/clothing/suit/space/rig/fluff/nikki //don't believe the path name, this ain't spaceworthy at all. see /obj/item/weapon/rig/nikki
+	name = "cape"
+	desc = "Snazzy!"
+	icon = 'icons/mob/custom_items_rig_suit'
+	icon_state = "nikki"
+	item_flags = 0 // NO SPACE TRAVEL, IT'S JUST A CAPE
+	breach_threshold = 1 // see above
