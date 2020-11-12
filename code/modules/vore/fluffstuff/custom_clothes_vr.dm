@@ -2017,46 +2017,99 @@ Departamental Swimsuits, for general use
 	breach_threshold = 1 // see above
 
 /obj/item/clothing/head/fluff/nikki
-	item_icons = list(slot_l_hand_str = 'icons/vore/custom_clothes_left_hand_vr.dmi', slot_r_hand_str = 'icons/vore/custom_clothes_right_hand_vr.dmi')
+	// I have never tryharded so much just to accomplish something so stupid as "Vore By Hat" in my entire life, and I apologize to each and every one of you.
 	name = "oversized witch hat"
-	desc = "A dork-shaped hat. Its long, pointed tip reaches far more than most hats had ought to, its wide rim complementing this with its tendency to droop at the ends under its own weight."
+	desc = "A dork-shaped hat. Its long, pointed tip reaches far more than most hats had ought to, its wide brim complementing \
+	this with its tendency to droop at the ends under its own weight."
+	description_fluff = "Despite what Nikki Yumeno may believe, her hat is not in fact a magical artifact of teleportation magicks. \
+	It is however the result of clever utilization of bluespace technology combined with style. Like a classic magician's trick, \
+	the power of this hat lies in the hidden compartment hidden on the inside, into which a personal translocation device can be \
+	snapped inside. Once installed, bluespace electronics inside the hat sync with the translocator and utilize its teleportation \
+	technology to create a localized bluespace portal within the hole of the hat. This tiny portal will warp anything or anyone \
+	who makes physical contact with it to whatever beacon the translocator within is locked onto."
 	icon = 'icons/vore/custom_clothes_vr.dmi'
-	icon_override = 'icons/vore/custom_onmob_32x48_vr.dmi'
 	icon_state = "nikki-hat"
+	item_state = "nikki-hat"
+	item_icons = list(
+		slot_l_hand_str = 'icons/vore/custom_clothes_left_hand_vr.dmi', 
+		slot_r_hand_str = 'icons/vore/custom_clothes_right_hand_vr.dmi',
+		slot_head_str = 'icons/vore/custom_onmob_32x48_vr.dmi'
+		)
+	flags_inv = HIDEEARS
 	var/owner = "ryumi"
 	var/obj/item/device/perfect_tele/translocator = null // The translocator installed inside, if there is one. Gotta go out and get it first!
 	var/disaster_chance = 75 // The % chance that, if someone who isn't Nikki puts on the hat, they will be involuntarily teleported to... well, where the hat normally leads to.
-	var/warned_users = list() // The ckeys of users who have been warned about the potentially disastrous consequences of putting on the dork's hat. See the above comment.
 
+	verb/verb_translocator_unequip()
+		set category = "Object"
+		set name = "Nikki's Hat - Unequip Translocator"
+		set src in usr
+		translocator_unequip(translocator, usr)
+	
+	proc/translocator_equip(var/obj/item/device/perfect_tele/T, var/mob/living/carbon/human/user)
+		if (do_after(user, 2 SECONDS, T))
+			user.unEquip(T)
+			translocator_unequip(translocator, user)
+			T.forceMove(src)
+			translocator = T
+			user.show_message("[bicon(src)]*click!*")
+			playsound(src, 'sound/machines/click.ogg', 30, 1)
+	
+	proc/translocator_unequip(var/obj/item/device/perfect_tele/T, var/mob/living/carbon/human/user)
+		if (translocator)
+			if (user)
+				user.put_in_hands(T)
+				user.show_message("[bicon(src)]*click!*")
+			else
+				translocator.forceMove(get_turf(src))
+			translocator = null
+			playsound(src, 'sound/machines/click.ogg', 30, 1)
+
+	proc/teleport_fail(mob/user, mob/target)
+		if (target)
+			user.visible_message("<span class='notice'>[user] harmlessly bops [target] with \the [src].</span>", \
+			"<span class='notice'>\The [src] harmlessly bops [target]. The hat seems... unwilling?</span>")
+		else
+			user.visible_message("<span class='notice'>\The [src] flops over [user]'s' head for a moment, but they seem alright.</span>", \
+			"<span class='notice'>\The [src] flops over your head for a moment, but you correct it without issue. There we go!</span>")
+	
 	attackby(obj/item/weapon/I as obj, mob/user as mob)
 		if (istype(I, /obj/item/device/perfect_tele) && user.get_inactive_hand() == src)
 			// Swapping one translocator for another, in case we need to do that for whatever reason?
 			if (translocator)
-				visible_message("[user] pulls \a [translocator] out of \the [src] and swaps it out with \the [I].")
-				to_chat(user, "<span class='notice'>\The [translocator] pops out of its compartment with a soft 'click' as you replace it with \the [I].</span>")
-				user.unEquip(I)
-				user.put_in_hands(translocator)
-				I.forceMove(src)
-				translocator = I
+				visible_message("<span class='notice'>[user] starts to pull \a [translocator] out of \the [src] to swap it out with \the [I]...</span>", \
+				"<span class='notice'>You start pulling \the [translocator] pops out of its compartment with a soft 'click' as you replace it with \the [I]....</span>")
+				translocator_equip(I, user)
 				return
 			// If it's empty, slip the translocator on inside!
 			else
-				visible_message("[user] slips \the [I] into \the [src].")
-				to_chat(user, "<span class='notice'>You hear a quiet 'click' as \the [I] snaps into a small, hidden compartment inside.</span>")
-				user.unEquip(I)
-				I.forceMove(src)
-				translocator = I
+				visible_message("<span class='notice'>[user] begins slipping \the [I] into \the [src]...</span>", \
+				"<span class='notice'>You begin to snap \the [I] into a small, hidden compartment inside \the [src]...</span>")
+				translocator_equip(I, user)
 				return
-		if (translocator)
+		else if (translocator)
 			translocator.attackby(I, user)
 			return
-		..()
-		
+	
+	get_description_interaction()
+		. = ..()
+		if (translocator)
+			. += "It has \a [translocator] inside of it. Alt-click while holding it on your inactive hand to remove it."
+			. += "Otherwise, this hat functions exactly as the translocator it has inside while still being a sweet head accessory."
+		else
+			. += "A translocator can be placed inside of it! While holding the hat in your inactive hand, use a translocator on it to slip it inside."
+			. += "After doing this, it will function as both a head accessory and teleportation device."
+
+
 	attack_hand(mob/user)
 		if (translocator && (user.get_inactive_hand() == src))
 			translocator.unload_ammo(user, ignore_inactive_hand_check = 1)
 			return
 		..()
+	
+	AltClick(mob/user)
+		if (translocator)
+			translocator_unequip(translocator, user)
 	
 	attack_self(mob/user)
 		if (translocator)
@@ -2070,39 +2123,50 @@ Departamental Swimsuits, for general use
 	examine(mob/user) // If it has a translocator installed, make it very obvious to viewers that something WEIRD is going on with this hat. 
 		. = ..()
 		if (translocator)
-			. += "Weird... <font color='red'>You can't see the bottom of the hole inside the hat...</font>"
+			. += "Weird... <span class='danger'>You can't see the bottom of the hole inside the hat...</span>"
 	
-	mob_can_equip(var/mob/living/carbon/human/M, slot, disable_warning = 0)
-		if(..())
-			if(!istype(M))//Error, non HUMAN.
-				log_runtime("[M] was not a valid human!")
+	equipped(mob/living/carbon/human/user, slot)
+		if (user.can_be_drop_prey && translocator && user.ckey != owner)
+			if (prob(disaster_chance) && \
+			translocator.beacons && \
+			translocator.power_source.check_charge(translocator.charge_cost))
+				src.forceMove(get_turf(user))
+				src.visible_message("<span class='danger'>\The [src] falls over [user]'s head... and somehow falls over the rest of their body, causing them to vanish inside. Where did they go?!</span>", \
+				"<span class='danger'>The hat falls over your head as you put it on, enveloping you in a bright green light! <b>Uh oh.</b></span>")
+				translocator.destination = pick(translocator.beacons)
+				translocator.afterattack(user, user, proximity = 1, ignore_fail_chance = 1)
 				return
-			// Warn new users about the potential consequnces of trying to put the hat on.
-			if(!(M.ckey in warned_users) && translocator && (M.ckey != owner))
-				warned_users |= M.ckey
-				var/choice = alert(M,"YOU WILL ONLY SEE THIS WARNING ONCE, SO READ IT CAREFULLY. Before you put this hat on, you must understand that there is a chance you will be involuntarily tele-vore'd by pure RNG upon equipping it. You can hold it in your hand and use it all you'd like, but if you try to actually	put it on without being Nikki herself, you invite disaster. Like translocators, This hat records who has seen this warning in case admins need to know.", "OOC WARNING","Put it on!","Leave It")
-				if(choice == "Leave It")
-					return 0
-			// And this is where the FUN happens.
-			if (translocator && prob(disaster_chance) && M.ckey != owner)
-				if (translocator.beacons)
-					to_chat(M, "<span class='warning'>The hat falls over your head as you put it on, enveloping you in a bright green light! <b>Uh oh.</b></span>")
-					src.forceMove(get_turf(M))
-					src.visible_message("\The [src] falls over [M]'s head... and somehow falls over the rest of their body, causing them to seemingly vanish inside. Where did they go?!")
-					translocator.destination = pick(translocator.beacons)
-					translocator.afterattack(M, M, proximity = 1, ignore_fail_chance = 1)
-					return 0
-				else
-					to_chat(M, "<span class='notice'>\The [src] flops over your head for a moment, but you correct it without issue. There we go!</span>")
-					return 1
-			else
-				return 1
-	
+			else teleport_fail(user)
+
+
+
 	afterattack(var/mob/living/target, mob/user, proximity_flag, click_parameters)
-		if (translocator && istype(target))
-			user.visible_message("<span class='warning'>[user] swipes \the [src] over \the [target]!</span>")
-			translocator.afterattack(target, user, proximity_flag)
+		if (!proximity_flag)
 			return
-		else
+
+		if (!translocator)
 			to_chat(user, "<span class='warning'>\The [src] doesn't have a translocator inside it yet, you goof!</span>")
 			return
+
+		if (!(translocator.power_source.check_charge(translocator.charge_cost)) && istype(target)) // If the translocator inside actually has enough charge to do the warp thing
+			if (target.can_be_drop_prey)
+				switch (user.a_intent)
+					if (I_HURT)
+						user.visible_message("<span class='danger'>[user] swipes \the [src] over \the [target]!</span>")
+						translocator.afterattack(target, user, proximity_flag)
+						return
+					if (I_GRAB)
+						user.visible_message("<span class='danger'>[user] begins stuffing [target] into \the [src]!</span>")
+						if (do_after(user, target, 5 SECONDS))
+							translocator.afterattack(target, user, proximity_flag)
+							return
+			else
+				teleport_fail(user, target)
+
+			add_attack_logs(user, target, "Teleported [target] with \the [src] (via the hat's [translocator])!")
+
+		else
+			to_chat(user, "<span class='warning'>\The [translocator] doesn't enough charge to warp anyone!</span>")
+
+
+		
