@@ -2011,7 +2011,98 @@ Departamental Swimsuits, for general use
 /obj/item/clothing/suit/space/rig/fluff/nikki //don't believe the path name, this ain't spaceworthy at all. see /obj/item/weapon/rig/nikki
 	name = "cape"
 	desc = "Snazzy!"
-	icon = 'icons/mob/custom_items_rig_suit'
+	icon = 'icons/vore/custom_onmob_vr.dmi'
 	icon_state = "nikki"
 	item_flags = 0 // NO SPACE TRAVEL, IT'S JUST A CAPE
 	breach_threshold = 1 // see above
+
+/obj/item/clothing/head/fluff/nikki
+	item_icons = list(slot_l_hand_str = 'icons/vore/custom_clothes_left_hand_vr.dmi', slot_r_hand_str = 'icons/vore/custom_clothes_right_hand_vr.dmi')
+	name = "oversized witch hat"
+	desc = "A dork-shaped hat. Its long, pointed tip reaches far more than most hats had ought to, its wide rim complementing this with its tendency to droop at the ends under its own weight."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_onmob_32x48_vr.dmi'
+	icon_state = "nikki-hat"
+	var/owner = "ryumi"
+	var/obj/item/device/perfect_tele/translocator = null // The translocator installed inside, if there is one. Gotta go out and get it first!
+	var/disaster_chance = 75 // The % chance that, if someone who isn't Nikki puts on the hat, they will be involuntarily teleported to... well, where the hat normally leads to.
+	var/warned_users = list() // The ckeys of users who have been warned about the potentially disastrous consequences of putting on the dork's hat. See the above comment.
+
+	attackby(obj/item/weapon/I as obj, mob/user as mob)
+		if (istype(I, /obj/item/device/perfect_tele) && user.get_inactive_hand() == src)
+			// Swapping one translocator for another, in case we need to do that for whatever reason?
+			if (translocator)
+				visible_message("[user] pulls \a [translocator] out of \the [src] and swaps it out with \the [I].")
+				to_chat(user, "<span class='notice'>\The [translocator] pops out of its compartment with a soft 'click' as you replace it with \the [I].</span>")
+				user.unEquip(I)
+				user.put_in_hands(translocator)
+				I.forceMove(src)
+				translocator = I
+				return
+			// If it's empty, slip the translocator on inside!
+			else
+				visible_message("[user] slips \the [I] into \the [src].")
+				to_chat(user, "<span class='notice'>You hear a quiet 'click' as \the [I] snaps into a small, hidden compartment inside.</span>")
+				user.unEquip(I)
+				I.forceMove(src)
+				translocator = I
+				return
+		if (translocator)
+			translocator.attackby(I, user)
+			return
+		..()
+		
+	attack_hand(mob/user)
+		if (translocator && (user.get_inactive_hand() == src))
+			translocator.unload_ammo(user, ignore_inactive_hand_check = 1)
+			return
+		..()
+	
+	attack_self(mob/user)
+		if (translocator)
+			translocator.attack_self(user, user)
+			return
+		else
+			to_chat(user, "<span_class='warning'>\The [src] doesn't have a translocator inside it right now.</span>")
+			return
+		..()
+
+	examine(mob/user) // If it has a translocator installed, make it very obvious to viewers that something WEIRD is going on with this hat. 
+		. = ..()
+		if (translocator)
+			. += "Weird... <font color='red'>You can't see the bottom of the hole inside the hat...</font>"
+	
+	mob_can_equip(var/mob/living/carbon/human/M, slot, disable_warning = 0)
+		if(..())
+			if(!istype(M))//Error, non HUMAN.
+				log_runtime("[M] was not a valid human!")
+				return
+			// Warn new users about the potential consequnces of trying to put the hat on.
+			if(!(M.ckey in warned_users) && translocator && (M.ckey != owner))
+				warned_users |= M.ckey
+				var/choice = alert(M,"YOU WILL ONLY SEE THIS WARNING ONCE, SO READ IT CAREFULLY. Before you put this hat on, you must understand that there is a chance you will be involuntarily tele-vore'd by pure RNG upon equipping it. You can hold it in your hand and use it all you'd like, but if you try to actually	put it on without being Nikki herself, you invite disaster. Like translocators, This hat records who has seen this warning in case admins need to know.", "OOC WARNING","Put it on!","Leave It")
+				if(choice == "Leave It")
+					return 0
+			// And this is where the FUN happens.
+			if (translocator && prob(disaster_chance) && M.ckey != owner)
+				if (translocator.beacons)
+					to_chat(M, "<span class='warning'>The hat falls over your head as you put it on, enveloping you in a bright green light! <b>Uh oh.</b></span>")
+					src.forceMove(get_turf(M))
+					src.visible_message("\The [src] falls over [M]'s head... and somehow falls over the rest of their body, causing them to seemingly vanish inside. Where did they go?!")
+					translocator.destination = pick(translocator.beacons)
+					translocator.afterattack(M, M, proximity = 1, ignore_fail_chance = 1)
+					return 0
+				else
+					to_chat(M, "<span class='notice'>\The [src] flops over your head for a moment, but you correct it without issue. There we go!</span>")
+					return 1
+			else
+				return 1
+	
+	afterattack(var/mob/living/target, mob/user, proximity_flag, click_parameters)
+		if (translocator && istype(target))
+			user.visible_message("<span class='warning'>[user] swipes \the [src] over \the [target]!</span>")
+			translocator.afterattack(target, user, proximity_flag)
+			return
+		else
+			to_chat(user, "<span class='warning'>\The [src] doesn't have a translocator inside it yet, you goof!</span>")
+			return

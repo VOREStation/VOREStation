@@ -1258,7 +1258,8 @@
 /obj/item/weapon/rig/nikki
 	name = "weird necklace"
 	desc = "A necklace with a brilliantly blue gem encased in protective glass."
-	icon = 'icons/mob/custom_items_rig_suit'
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_override = 'icons/vore/custom_onmob_vr.dmi'
 	suit_type = "probably not magical"
 	icon_state = "nikki"
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0) // this isn't armor, it's a dorky frickin cape
@@ -1283,15 +1284,13 @@
 		/obj/item/weapon/storage,
 		)
 
-/obj/item/weapon/rig/nikki/mob_can_equip(var/mob/living/carbon/human/M, slot, disable_warning = 0)
-	if(..())
-		if (M.ckey == "ryumi")
-			return 1
-		else
-			to_chat(H, "<span class='warning'>For some reason, the necklace seems to never quite get past your head when you try to put it on...</span>")
-			return 0
-
-/obj/item/clothing/head/fluff
+	mob_can_equip(var/mob/living/carbon/human/M, slot, disable_warning = 0) // Feel free to try to put Nikki's hat on! The necklace though is a no-go.
+		if(..())
+			if (M.ckey == "ryumi")
+				return 1
+			else
+				to_chat(M, "<span class='warning'>For some reason, the necklace seems to never quite get past your head when you try to put it on... Weird, it looked like it would fit.</span>")
+				return 0
 
 //Nickcrazy - Damon Bones Xrim
 /obj/item/clothing/suit/storage/toggle/bomber/bombersec
