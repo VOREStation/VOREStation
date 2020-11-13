@@ -39,6 +39,7 @@
 	var/datum/matter_synth/water = null
 	var/digest_brute = 2
 	var/digest_burn = 3
+	var/digest_multiplier = 1
 	var/recycles = FALSE
 	var/medsensor = TRUE //Does belly sprite come with patient ok/dead light?
 
@@ -541,8 +542,8 @@
 			else
 				var/old_brute = T.getBruteLoss()
 				var/old_burn = T.getFireLoss()
-				T.adjustBruteLoss(digest_brute)
-				T.adjustFireLoss(digest_burn)
+				T.adjustBruteLoss(digest_brute * digest_multiplier)
+				T.adjustFireLoss(digest_burn * digest_multiplier)
 				var/actual_brute = T.getBruteLoss() - old_brute
 				var/actual_burn = T.getFireLoss() - old_burn
 				var/damage_gain = actual_brute + actual_burn
@@ -709,6 +710,6 @@
 	desc = "A mounted survival unit with fuel processor."
 	icon_state = "sleeperc"
 	injection_chems = list("glucose","inaprovaline","tricordrazine")
-	max_item_count = 1
+	max_item_count = 10
 
 #undef SLEEPER_INJECT_COST

@@ -27,6 +27,11 @@
 	reagent_mix = RECIPE_REAGENT_REPLACE //Simplify end product
 	result = /obj/item/weapon/reagent_containers/food/snacks/risottoballs
 
+/datum/recipe/bellefritter
+	appliance = FRYER
+	reagents = list("sugar" = 5, "batter" = 10)
+	items = list(/obj/item/weapon/reagent_containers/food/snacks/frostbelle)
+	result = /obj/item/weapon/reagent_containers/food/snacks/bellefritter
 
 //Meaty Recipes
 //====================
@@ -93,7 +98,7 @@
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/donut/jelly
 	result_quantity = 2
-	
+
 /datum/recipe/jellydonut/poisonberry
 	reagents = list("poisonberryjuice" = 5, "sugar" = 5)
 	items = list(

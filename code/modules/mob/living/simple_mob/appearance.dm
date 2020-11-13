@@ -71,6 +71,5 @@
 /mob/living/simple_mob/proc/remove_eyes()
 	cut_overlay(eye_layer)
 
-
 /mob/living/simple_mob/gib()
 	..(icon_gib,1,icon) // we need to specify where the gib animation is stored
