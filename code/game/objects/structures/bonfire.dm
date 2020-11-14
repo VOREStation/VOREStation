@@ -240,6 +240,16 @@
 
 						removed.add_thermal_energy(heat_transfer)
 
+				for(var/mob/living/L in view(3, src))
+					L.add_modifier(/datum/modifier/endothermic, 10 SECONDS, null, TRUE)
+
+				for(var/obj/item/stack/wetleather/WL in view(2, src))
+					if(WL.wetness >= 0)
+						WL.dry()
+						continue
+
+					WL.wetness = max(0, WL.wetness - rand(1, 4))
+
 				env.merge(removed)
 
 /obj/structure/bonfire/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)

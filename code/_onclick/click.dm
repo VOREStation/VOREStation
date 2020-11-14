@@ -114,11 +114,12 @@
 		trigger_aiming(TARGET_CAN_CLICK)
 		return 1
 
-	// VOREStation Addition Start: inbelly interaction
+	// VOREStation Addition Start: inbelly item interaction
 	if(isbelly(loc) && (loc == A.loc))
 		if(W)
-			to_chat(src, "The firm confines prevent that kind of dexterity!")	//Only hand-based interactions in bellies
-			return
+			var/resolved = W.resolve_attackby(A,src)
+			if(!resolved && A && W)
+				W.afterattack(A, src, 1, params) // 1: clicking something Adjacent
 		else
 			if(ismob(A)) // No instant mob attacking
 				setClickCooldown(get_attack_speed())

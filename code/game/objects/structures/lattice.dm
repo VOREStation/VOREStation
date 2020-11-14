@@ -11,12 +11,12 @@
 /obj/structure/lattice/Initialize()
 	. = ..()
 
-	if(!(istype(src.loc, /turf/space) || istype(src.loc, /turf/simulated/open) || istype(src.loc, /turf/simulated/mineral)))
+	if(!(istype(src.loc, /turf/space) || istype(src.loc, /turf/simulated/open) || istype(src.loc, /turf/simulated/mineral) || istype(src.loc, /turf/simulated/shuttle/plating/airless/carry)))
 		return INITIALIZE_HINT_QDEL
 
 	for(var/obj/structure/lattice/LAT in src.loc)
 		if(LAT != src)
-			crash_with("Found multiple lattices at '[log_info_line(loc)]'")
+			log_debug("Found multiple lattices at '[log_info_line(loc)]'") //VOREStation Edit, why was this a runtime, it's harmless
 			return INITIALIZE_HINT_QDEL
 	icon = 'icons/obj/smoothlattice.dmi'
 	icon_state = "latticeblank"

@@ -58,7 +58,7 @@ var/global/list/limb_icon_cache = list()
 	cut_overlays()
 
 	//Every 'addon' below requires information from species
-	if(!owner || !owner.species)
+	if(!iscarbon(owner) || !owner.species)
 		return
 
 	//Eye color/icon
@@ -135,7 +135,10 @@ var/global/list/limb_icon_cache = list()
 	if(owner && owner.gender == FEMALE)
 		gender = "f"
 
-	icon_cache_key = "[icon_name]_[species ? species.get_bodytype() : SPECIES_HUMAN]" //VOREStation Edit
+	if(!force_icon_key)
+		icon_cache_key = "[icon_name]_[species ? species.get_bodytype() : SPECIES_HUMAN]" //VOREStation Edit
+	else
+		icon_cache_key = "[icon_name]_[force_icon_key]"
 
 	if(force_icon)
 		mob_icon = new /icon(force_icon, "[icon_name][gendered_icon ? "_[gender]" : ""]")
