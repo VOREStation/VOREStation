@@ -31,9 +31,25 @@
 		nest = null
 	if(buckled)
 		buckled.unbuckle_mob(src, TRUE)
+
 	qdel(selected_image)
 	QDEL_NULL(vorePanel) //VOREStation Add
 	QDEL_LIST_NULL(vore_organs) //VOREStation Add
+
+	if(LAZYLEN(organs))
+		organs_by_name.Cut()
+		while(organs.len)
+			var/obj/item/OR = organs[1]
+			organs -= OR
+			qdel(OR)
+
+	if(LAZYLEN(internal_organs))
+		internal_organs_by_name.Cut()
+		while(internal_organs.len)
+			var/obj/item/OR = internal_organs[1]
+			internal_organs -= OR
+			qdel(OR)
+
 	return ..()
 
 //mob verbs are faster than object verbs. See mob/verb/examine.
@@ -924,6 +940,12 @@ default behaviour is:
 /mob/living/Moved(var/atom/oldloc, direct, forced, movetime)
 	. = ..()
 	handle_footstep(loc)
+	// Begin VOREstation edit
+	if(is_shifted)
+		is_shifted = FALSE
+		pixel_x = 0
+		pixel_y = 0
+	// End VOREstation edit
 
 	if(pulling) // we were pulling a thing and didn't lose it during our move.
 		var/pull_dir = get_dir(src, pulling)

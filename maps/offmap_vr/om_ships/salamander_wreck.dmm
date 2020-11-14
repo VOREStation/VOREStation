@@ -38,7 +38,7 @@
 /obj/machinery/power/pointdefense{
 	id_tag = "salamander_wreck_pd"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/airless,
 /area/shuttle/salamander_wreck_q2)
 "br" = (
 /obj/structure/window/reinforced/tinted,
@@ -1274,7 +1274,7 @@
 /obj/machinery/power/pointdefense{
 	id_tag = "salamander_wreck_pd"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/airless,
 /area/shuttle/salamander_wreck_engineering)
 "tL" = (
 /obj/structure/girder,
@@ -1525,7 +1525,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/airless,
 /area/shuttle/salamander_wreck_cockpit)
 "Il" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{

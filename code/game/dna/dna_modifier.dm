@@ -331,7 +331,7 @@
 		connected = locate(/obj/machinery/dna_scannernew, get_step(src, dir))
 		if(connected)
 			break
-		VARSET_IN(src, injector_ready, TRUE, 25 SECONDS)
+	VARSET_IN(src, injector_ready, TRUE, 25 SECONDS)
 
 /obj/machinery/computer/scan_consolenew/proc/all_dna_blocks(var/list/buffer)
 	var/list/arr = list()
