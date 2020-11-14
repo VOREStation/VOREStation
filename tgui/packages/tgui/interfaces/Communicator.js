@@ -536,6 +536,21 @@ const enforceLengthLimit = (prefix, name, length) => {
   return prefix + name;
 };
 
+const findClassMessage = (im, targetAddress, lastIndex, filterArray) => {
+  if (lastIndex < 0 || lastIndex > filterArray.length) {
+    return IsIMOurs(im, targetAddress) ? "TinderMessage_First_Sent" : "TinderMessage_First_Received";
+  }
+
+  let thisSent = IsIMOurs(im, targetAddress);
+  let lastSent = IsIMOurs(filterArray[lastIndex], targetAddress);
+  if (thisSent && lastSent) {
+    return "TinderMessage_Subsequent_Sent";
+  } else if (!thisSent && !lastSent) {
+    return "TinderMessage_Subsequent_Received";
+  }
+  return thisSent ? "TinderMessage_First_Sent" : "TinderMessage_First_Received";
+};
+
 const MessagingThreadTab = (props, context) => {
   const { act, data } = useBackend(context);
 
@@ -578,7 +593,7 @@ const MessagingThreadTab = (props, context) => {
           {imList.map((im, i) => (
             <Box
               key={i}
-              color={IsIMOurs(im, targetAddress) ? "#4d9121" : "#cd7a0d"}>
+              className={IsIMOurs(im, targetAddress) ? "ClassicMessage_Sent" : "ClassicMessage_Received"}>
               {IsIMOurs(im, targetAddress) ? "You" : "Them"}: {im.im}
             </Box>
           ))}
@@ -618,37 +633,16 @@ const MessagingThreadTab = (props, context) => {
         "height": "95%",
         "overflow-y": "auto",
       }}>
-        {imList.map((im, i) => (
+        {imList.map((im, i, filterArr) => (
           <Box
             textAlign={IsIMOurs(im, targetAddress) ? "right" : "left"}
-            position="relative"
             mb={1}
             key={i}>
-            <Icon
-              fontSize={2.5}
-              color={IsIMOurs(im, targetAddress) ? "#4d9121" : "#cd7a0d"}
-              position="absolute"
-              left={IsIMOurs(im, targetAddress) ? null : "0px"}
-              right={IsIMOurs(im, targetAddress) ? "0px" : null}
-              bottom="-4px"
-              style={{
-                "z-index": "0",
-                "transform": IsIMOurs(im, targetAddress) ? "scale(-1, 1)" : null,
-              }}
-              name="comment" />
             <Box
-              inline
-              backgroundColor={IsIMOurs(im, targetAddress) ? "#4d9121" : "#cd7a0d"}
-              p={1}
-              maxWidth="100%"
-              position="relative"
-              textAlign={IsIMOurs(im, targetAddress) ? "left" : "right"}
-              style={{
-                "z-index": "1",
-                "border-radius": "10px",
-                "word-break": "break-all",
-              }}>
-              {IsIMOurs(im, targetAddress) ? "You:" : "Them:"} {decodeHtmlEntities(im.im)}
+              maxWidth="75%"
+              className={findClassMessage(im, targetAddress, i - 1, filterArr)}
+              inline>
+              {decodeHtmlEntities(im.im)}
             </Box>
           </Box>
         ))}
