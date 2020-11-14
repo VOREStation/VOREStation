@@ -4039,6 +4039,40 @@
 /obj/item/weapon/reagent_containers/food/snacks/rawsunflower/Initialize()
 	. = ..()
 
+/obj/item/weapon/reagent_containers/food/snacks/frostbelle
+	name = "frostbelle bud"
+	desc = "A frostbelle flower from Sif. Its petals shimmer with an inner light."
+	icon = 'icons/obj/food_ingredients.dmi'
+	icon_state = "frostbelle"
+	bitesize = 1
+	nutriment_amt = 1
+	nutriment_desc = list("another world" = 2)
+	catalogue_data = list(/datum/category_item/catalogue/flora/frostbelle)
+	filling_color = "#5dadcf"
+
+/obj/item/weapon/reagent_containers/food/snacks/frostbelle/Initialize()
+	. = ..()
+	set_light(1, 1, "#5dadcf")
+
+	reagents.add_reagent("oxycodone", 1)
+	reagents.add_reagent("sifsap", 5)
+	reagents.add_reagent("space_drugs", 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/bellefritter
+	name = "frostbelle fritters"
+	desc = "Frostbelles, prepared traditionally."
+	icon = 'icons/obj/food_syn.dmi'
+	icon_state = "bellefritter"
+	filling_color = "#5dadcf"
+	center_of_mass = list("x"=16, "y"=12)
+	do_coating_prefix = 0
+
+/obj/item/weapon/reagent_containers/food/snacks/bellefritter/Initialize()
+	. = ..()
+	reagents.add_reagent("batter", 10)
+	reagents.add_reagent("sugar", 5)
+	bitesize = 2
+
 /obj/item/weapon/reagent_containers/food/snacks/roastedsunflower
 	name = "sunflower seeds"
 	desc = "Sunflower seeds!"

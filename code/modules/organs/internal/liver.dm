@@ -8,7 +8,7 @@
 
 /obj/item/organ/internal/liver/process()
 	..()
-	if(!owner) return
+	if(!iscarbon(owner)) return
 
 	if(owner.life_tick % PROCESS_ACCURACY == 0)
 

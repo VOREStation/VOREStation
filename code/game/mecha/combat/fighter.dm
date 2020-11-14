@@ -13,6 +13,8 @@
 	icon_state = ""
 	initial_icon = ""
 
+	dir_in = null //Don't reset direction when empty
+
 	step_in = 2 //Fast
 
 	health = 400

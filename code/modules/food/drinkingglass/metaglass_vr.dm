@@ -123,6 +123,31 @@
 	glass_center_of_mass = list("x"=16, "y"=9)
 	glass_icon_file = 'icons/obj/drinks_vr.dmi'
 
+/datum/reagent/ethanol/originalsin
+	glass_icon_state = "originalsinglass"
+	glass_center_of_mass = list("x"=16, "y"=9)
+	glass_icon_file = 'icons/obj/drinks_vr.dmi'
+
+/datum/reagent/ethanol/whiskeysour
+	glass_icon_state = "whiskeysourglass"
+	glass_center_of_mass = list("x"=16, "y"=9)
+	glass_icon_file = 'icons/obj/drinks_vr.dmi'
+
+/datum/reagent/ethanol/newyorksour
+	glass_icon_state = "newyorksourglass"
+	glass_center_of_mass = list("x"=16, "y"=9)
+	glass_icon_file = 'icons/obj/drinks_vr.dmi'
+
+/datum/reagent/ethanol/mudslide
+	glass_icon_state = "mudslideglass"
+	glass_center_of_mass = list("x"=16, "y"=9)
+	glass_icon_file = 'icons/obj/drinks_vr.dmi'
+
+/datum/reagent/ethanol/windgarita
+	glass_icon_state = "windgaritaglass"
+	glass_center_of_mass = list("x"=16, "y"=9)
+	glass_icon_file = 'icons/obj/drinks_vr.dmi'
+
 /datum/reagent/drink/soda/kiraspecial
 	glass_icon_file = 'icons/obj/drinks_vr.dmi'
 

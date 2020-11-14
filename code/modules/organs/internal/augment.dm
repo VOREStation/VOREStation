@@ -14,6 +14,8 @@
 	target_parent_classes = list()	// Is the parent supposed to be organic, robotic, assisted?
 	forgiving_class = TRUE	// Will the organ give its verbs when it isn't a perfect match? I.E., assisted in organic, synthetic in organic.
 
+	butcherable = FALSE
+
 	var/obj/item/integrated_object	// Objects held by the organ, used for re-usable, deployable things.
 	var/integrated_object_type	// Object type the organ will spawn.
 	var/target_slot = null
