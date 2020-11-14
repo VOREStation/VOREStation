@@ -1258,10 +1258,11 @@
 /obj/item/weapon/rig/nikki
 	name = "weird necklace"
 	desc = "A necklace with a brilliantly blue gem encased in protective glass."
-	icon = 'icons/vore/custom_items_vr.dmi'
+	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_override = 'icons/vore/custom_onmob_vr.dmi'
 	suit_type = "probably not magical"
 	icon_state = "nikki"
+	w_class = ITEMSIZE_SMALL // It is after all only a necklace
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0) // this isn't armor, it's a dorky frickin cape
 	siemens_coefficient = 0.9
 	slowdown = 0
@@ -1288,7 +1289,7 @@
 		if(..())
 			if (M.ckey == "ryumi")
 				return 1
-			else
+			else if (M.get_active_hand == src)
 				to_chat(M, "<span class='warning'>For some reason, the necklace seems to never quite get past your head when you try to put it on... Weird, it looked like it would fit.</span>")
 				return 0
 

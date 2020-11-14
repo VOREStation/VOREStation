@@ -2011,7 +2011,6 @@ Departamental Swimsuits, for general use
 /obj/item/clothing/suit/space/rig/fluff/nikki //don't believe the path name, this ain't spaceworthy at all. see /obj/item/weapon/rig/nikki
 	name = "cape"
 	desc = "Snazzy!"
-	icon = 'icons/vore/custom_onmob_vr.dmi'
 	icon_state = "nikki"
 	item_flags = 0 // NO SPACE TRAVEL, IT'S JUST A CAPE
 	breach_threshold = 1 // see above
@@ -2107,7 +2106,7 @@ Departamental Swimsuits, for general use
 	..()
 
 /obj/item/clothing/head/fluff/nikki/AltClick(mob/user)
-	if (translocator)
+	if (translocator && (user.get_inactive_hand() == src))
 		translocator_unequip(translocator, user)
 
 /obj/item/clothing/head/fluff/nikki/attack_self(mob/user)
