@@ -1,14 +1,20 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /turf/simulated/mineral/vacuum,
-/area/tether_away/debrisfield/explored)
+/area/space)
 "b" = (
 /turf/template_noop,
-/area/tether_away/debrisfield/explored)
+/area/space)
 "c" = (
 /obj/tether_away_spawner/debrisfield/carp,
 /turf/template_noop,
-/area/tether_away/debrisfield/explored)
+/area/tether_away/debrisfield/shuttle_buffer)
+"d" = (
+/turf/simulated/mineral/vacuum,
+/area/tether_away/debrisfield/shuttle_buffer)
+"e" = (
+/turf/template_noop,
+/area/tether_away/debrisfield/shuttle_buffer)
 
 (1,1,1) = {"
 a
@@ -31,81 +37,81 @@ a
 (3,1,1) = {"
 a
 a
-a
-b
-b
+d
+e
+e
 b
 b
 "}
 (4,1,1) = {"
 b
 b
-b
-b
-b
+e
+e
+e
 c
 b
 "}
 (5,1,1) = {"
 b
 b
-a
-a
-b
+d
+d
+e
 b
 b
 "}
 (6,1,1) = {"
 b
 a
-a
-a
-a
+d
+d
+d
 b
 b
 "}
 (7,1,1) = {"
 b
 a
-a
-a
-a
+d
+d
+d
 b
 b
 "}
 (8,1,1) = {"
 b
 c
-a
-a
-b
+d
+d
+e
 b
 b
 "}
 (9,1,1) = {"
 b
 b
-a
-b
-b
+d
+e
+e
 b
 b
 "}
 (10,1,1) = {"
 b
 b
-b
-b
-b
+e
+e
+e
 b
 b
 "}
 (11,1,1) = {"
 b
 b
-b
-b
-a
+e
+e
+d
 a
 b
 "}
