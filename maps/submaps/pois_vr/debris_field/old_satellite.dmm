@@ -1,0 +1,224 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/space)
+"b" = (
+/obj/structure/lattice,
+/turf/space,
+/area/space)
+"c" = (
+/obj/machinery/doppler_array,
+/obj/structure/lattice,
+/turf/space,
+/area/submap/debrisfield/old_sat)
+"d" = (
+/obj/structure/window/phoronbasic{
+	dir = 1
+	},
+/obj/structure/window/phoronbasic{
+	dir = 8
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/old_sat)
+"e" = (
+/obj/structure/window/phoronbasic{
+	dir = 1
+	},
+/obj/structure/salvageable/server,
+/turf/simulated/floor/bluegrid/airless,
+/area/submap/debrisfield/old_sat)
+"f" = (
+/obj/structure/window/phoronbasic{
+	dir = 1
+	},
+/obj/structure/window/phoronbasic{
+	dir = 4
+	},
+/obj/random/tech_supply/component,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/old_sat)
+"g" = (
+/obj/item/weapon/material/shard,
+/turf/template_noop,
+/area/space)
+"h" = (
+/obj/structure/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/power/solar/fake{
+	adir = 135
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/old_sat)
+"i" = (
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/structure/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/power/solar/fake{
+	adir = 135
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/old_sat)
+"j" = (
+/obj/structure/window/phoronbasic{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/random/tech_supply/component,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/old_sat)
+"k" = (
+/obj/structure/AIcore{
+	anchored = 1;
+	icon_state = "3";
+	state = 3
+	},
+/obj/structure/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/bluegrid/airless,
+/area/submap/debrisfield/old_sat)
+"l" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/random/tech_supply/component,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/old_sat)
+"m" = (
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/machinery/power/solar/fake{
+	stat = 1
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/old_sat)
+"n" = (
+/obj/structure/window/phoronbasic{
+	dir = 8
+	},
+/obj/structure/window/phoronbasic,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/old_sat)
+"o" = (
+/obj/structure/lattice,
+/obj/item/weapon/material/shard,
+/turf/space,
+/area/space)
+"p" = (
+/obj/structure/window/phoronbasic,
+/obj/machinery/telecomms/broadcaster,
+/turf/simulated/floor/bluegrid/airless,
+/area/submap/debrisfield/old_sat)
+"q" = (
+/obj/item/weapon/material/shard/phoron,
+/obj/item/weapon/ore/iron,
+/obj/random/tech_supply/component,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/old_sat)
+"r" = (
+/obj/item/weapon/ore/iron,
+/obj/item/weapon/ore/iron,
+/turf/template_noop,
+/area/space)
+"s" = (
+/obj/item/weapon/ore/glass,
+/turf/template_noop,
+/area/space)
+"t" = (
+/obj/item/stack/cable_coil/cut,
+/turf/template_noop,
+/area/space)
+
+(1,1,1) = {"
+a
+a
+a
+h
+a
+a
+"}
+(2,1,1) = {"
+a
+a
+a
+i
+a
+a
+"}
+(3,1,1) = {"
+a
+a
+a
+i
+a
+a
+"}
+(4,1,1) = {"
+a
+c
+d
+j
+n
+a
+"}
+(5,1,1) = {"
+a
+a
+e
+k
+p
+a
+"}
+(6,1,1) = {"
+b
+b
+f
+l
+q
+a
+"}
+(7,1,1) = {"
+a
+a
+t
+m
+r
+s
+"}
+(8,1,1) = {"
+a
+a
+a
+o
+t
+a
+"}
+(9,1,1) = {"
+a
+a
+g
+t
+s
+a
+"}
+(10,1,1) = {"
+a
+a
+a
+a
+g
+a
+"}

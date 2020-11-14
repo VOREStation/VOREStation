@@ -7,61 +7,76 @@
 /turf/space,
 /area/space)
 "c" = (
-/obj/structure/girder,
 /turf/simulated/floor/airless,
 /area/space)
 "d" = (
-/turf/simulated/shuttle/wall,
+/turf/simulated/wall/lead,
 /area/space)
 "e" = (
-/turf/simulated/floor/airless,
+/turf/simulated/mineral/vacuum,
 /area/space)
 "f" = (
-/turf/simulated/shuttle/floor/white/airless,
+/obj/structure/closet/crate/radiation,
+/turf/simulated/floor/airless,
 /area/tether_away/debrisfield/shuttle_buffer)
 "g" = (
+/obj/structure/table/rack,
 /turf/simulated/floor/airless,
+/area/tether_away/debrisfield/shuttle_buffer)
+"h" = (
+/turf/simulated/wall/lead,
+/area/tether_away/debrisfield/shuttle_buffer)
+"i" = (
+/obj/structure/sign/warning/radioactive,
+/turf/simulated/wall/lead,
 /area/tether_away/debrisfield/shuttle_buffer)
 
 (1,1,1) = {"
 a
 b
+d
 a
-b
-b
+a
 "}
 (2,1,1) = {"
 a
-c
-e
-e
+f
+h
+a
 a
 "}
 (3,1,1) = {"
 a
-d
-f
-e
-b
+g
+h
+a
+a
 "}
 (4,1,1) = {"
-a
-d
-g
 b
+c
+i
+a
 a
 "}
 (5,1,1) = {"
 b
 c
+h
 e
-b
 a
 "}
 (6,1,1) = {"
-b
-b
-b
 a
+c
+e
+e
+a
+"}
+(7,1,1) = {"
+a
+b
+e
+e
 a
 "}
