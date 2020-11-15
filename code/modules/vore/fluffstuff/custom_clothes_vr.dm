@@ -2011,7 +2011,10 @@ Departamental Swimsuits, for general use
 /obj/item/clothing/suit/space/rig/fluff/nikki //don't believe the path name, this ain't spaceworthy at all. see /obj/item/weapon/rig/nikki
 	name = "cape"
 	desc = "Snazzy!"
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_onmob_vr.dmi'
 	icon_state = "nikki"
+	sprite_sheets = list() // so that our onmob icon doesn't get overridden
 	item_flags = 0 // NO SPACE TRAVEL, IT'S JUST A CAPE
 	breach_threshold = 1 // see above
 
@@ -2128,15 +2131,16 @@ Departamental Swimsuits, for general use
 	if (slot == slot_head)
 		if (user.can_be_drop_prey && translocator && user.ckey != owner)
 			// hey, is our translocator actually able to teleport this poor person?
-			if (translocator.beacons && \
-			translocator.power_source.check_charge(translocator.charge_cost))
+			if (translocator.beacons && translocator.teleport_checks(user, user))
 				// YOU FOOL! YOU HAVE ACTIVATED MY STAND, 「ＶＯＲＥ　ＢＹ　ＨＡＴ」！
 				var/turf_2_warp_to = get_turf(user)
 				src.visible_message("<span class='danger'>\The [src] falls over [user]'s head... and somehow falls over the rest of their body, causing them to vanish inside. Where did they go?!</span>", \
 				"<span class='danger'>The hat falls over your head as you put it on, enveloping you in a bright green light! <b>Uh oh.</b></span>")
-				translocator.destination = pick(translocator.beacons)
+				var/uh_oh = pick(translocator.beacons)
+				translocator.destination = translocator.beacons[uh_oh]
 				translocator.afterattack(user, user, proximity = 1, ignore_fail_chance = 1)
 				user.remove_from_mob(src, turf_2_warp_to)
+				add_attack_logs(user, user, "Tried to put on \the [src] and was involuntarily teleported (via the hat's [translocator])!")
 				return
 			// understandable have a nice day
 			else teleport_fail(user)
@@ -2149,22 +2153,22 @@ Departamental Swimsuits, for general use
 		to_chat(user, "<span class='warning'>\The [src] doesn't have a translocator inside it yet, you goof!</span>")
 		return
 
-	if (translocator.power_source.check_charge(translocator.charge_cost) && istype(target)) // If the translocator inside actually has enough charge to do the warp thing
-		if (target.can_be_drop_prey)
+	if (istype(target) && translocator.teleport_checks(target, user)) // If the translocator inside actually has enough charge to do the warp thing
+		if (target.can_be_drop_prey && target.ckey != owner) // ur not getting me that easily sonny jim....
+			// Silly fluffed up styles of teleporting people based on user intent.
 			switch (user.a_intent)
 				if (I_HURT)
 					user.visible_message("<span class='danger'>[user] swipes \the [src] over \the [target]!</span>")
 					translocator.afterattack(target, user, proximity_flag)
-					return
 				if (I_GRAB)
 					user.visible_message("<span class='danger'>[user] begins stuffing [target] into \the [src]!</span>")
-					if (do_after(user, target, 5 SECONDS))
+					if (do_after(user, 5 SECONDS, target))
 						translocator.afterattack(target, user, proximity_flag)
-						return
+				
+			add_attack_logs(user, target, "Teleported [target] with \the [src] (via the hat's [translocator])!")
+			return
 		else
 			teleport_fail(user, target)
+			return
 
-		add_attack_logs(user, target, "Teleported [target] with \the [src] (via the hat's [translocator])!")
-
-	else
-		to_chat(user, "<span class='warning'>\The [translocator] doesn't enough charge to warp anyone!</span>")
+	else return

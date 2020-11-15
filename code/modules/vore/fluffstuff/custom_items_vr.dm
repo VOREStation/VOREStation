@@ -1257,7 +1257,7 @@
 //Ryumi - Nikki Yumeno
 /obj/item/weapon/rig/nikki
 	name = "weird necklace"
-	desc = "A necklace with a brilliantly blue gem encased in protective glass."
+	desc = "A necklace with a brilliantly blue crystal encased in protective glass."
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_override = 'icons/vore/custom_onmob_vr.dmi'
 	suit_type = "probably not magical"
@@ -1285,11 +1285,11 @@
 		/obj/item/weapon/storage,
 		)
 
-	mob_can_equip(var/mob/living/carbon/human/M, slot, disable_warning = 0) // Feel free to try to put Nikki's hat on! The necklace though is a no-go.
+	mob_can_equip(var/mob/living/carbon/human/M, slot, disable_warning = 0) // Feel free to try to put Nikki's hat on! The necklace though is a flat-out no-go.
 		if(..())
 			if (M.ckey == "ryumi")
 				return 1
-			else if (M.get_active_hand == src)
+			else if (M.get_active_hand() == src)
 				to_chat(M, "<span class='warning'>For some reason, the necklace seems to never quite get past your head when you try to put it on... Weird, it looked like it would fit.</span>")
 				return 0
 
