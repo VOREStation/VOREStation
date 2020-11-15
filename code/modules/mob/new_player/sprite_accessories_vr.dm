@@ -82,6 +82,12 @@
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_add = 'icons/mob/human_face_vr_add.dmi'
 		icon_state = "hair_twincurl"
+	
+	crescent_moon
+		name = "Crescent-Moon"
+		icon = 'icons/mob/human_face_vr.dmi'
+		icon_add = 'icons/mob/human_face_vr_add.dmi'
+		icon_state = "crescent_moon"
 
 	bald
 		name = "Bald"
