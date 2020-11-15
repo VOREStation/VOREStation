@@ -1191,3 +1191,70 @@
 		icon_state = "vas_toes"
 		color_blend_mode = ICON_MULTIPLY
 		body_parts = list(BP_L_FOOT,BP_R_FOOT)
+
+	//CitRP stuff
+	vox_alt
+		name = "Vox Alternate"
+		icon_state = "bay_vox"
+		body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN,BP_HEAD)
+		species_allowed = list(SPECIES_VOX)
+
+	vox_alt_eyes
+		name = "Alternate Vox Eyes"
+		icon_state = "bay_vox_eyes"
+		body_parts = list(BP_HEAD)
+		species_allowed = list(SPECIES_VOX)
+
+	c_beast_body
+		name = "Cyber Body"
+		icon_state = "c_beast_body"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_TORSO,BP_GROIN)
+
+	c_beast_plating
+		name = "Cyber Plating (Use w/ Cyber Body)"
+		icon_state = "c_beast_plating"
+		body_parts = list(BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM)
+
+	c_beast_band
+		name = "Cyber Band (Use w/ Cybertech head)"
+		icon_state = "c_beast_band"
+		body_parts = list(BP_HEAD)
+
+	c_beast_cheek_a
+		name = "Cyber Beast Cheeks A (Use A and B)"
+		icon_state = "c_beast_add_a"
+		body_parts = list(BP_HEAD)
+
+	c_beast_cheek_b
+		name = "Cyber Beast Cheeks B (Use A and B)"
+		icon_state = "c_beast_add_b"
+		body_parts = list(BP_HEAD)
+
+	teshari_large_eyes
+		name = "Teshari large eyes"
+		icon_state = "teshlarge_eyes"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_HEAD)
+		species_allowed = list(SPECIES_TESHARI)
+
+	teshari_coat
+		name = "Teshari coat"
+		icon_state = "tesh_coat"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_TORSO,BP_HEAD)
+		species_allowed = list(SPECIES_TESHARI)
+
+	teshari_pattern_male
+		name = "Teshari male pattern"
+		icon_state = "tesh-pattern-male"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN,BP_HEAD)
+		species_allowed = list(SPECIES_TESHARI)
+
+	teshari_pattern_female
+		name = "Teshari female pattern"
+		icon_state = "tesh-pattern-fem"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_L_LEG,BP_R_LEG,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN,BP_HEAD)
+		species_allowed = list(SPECIES_TESHARI)
