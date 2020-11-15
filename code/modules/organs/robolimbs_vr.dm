@@ -18,7 +18,8 @@ var/const/cyberbeast_monitor_styles = "blank=cyber_blank;\
 	uwu=cyber_uwu;\
 	question=cyber_question;\
 	lowpower=cyber_lowpower;\
-	idle=cyber_idle"
+	idle=cyber_idle;\
+	nwn=cyber_nwn"
 
 //////////////// For-specific-character fluff ones /////////////////
 // arokha : Aronai Sieyes
