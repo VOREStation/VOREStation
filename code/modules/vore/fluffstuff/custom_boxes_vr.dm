@@ -224,7 +224,8 @@
 	has_items = list(
 		/obj/item/weapon/rig/nikki,
 		/obj/item/clothing/head/fluff/nikki,
-		/obj/item/device/perfect_tele)
+		/obj/item/clothing/under/fluff/nikki,
+		/obj/item/clothing/shoes/fluff/nikki)
 
 /*
 Swimsuits, for general use, to avoid arriving to work with your swimsuit.

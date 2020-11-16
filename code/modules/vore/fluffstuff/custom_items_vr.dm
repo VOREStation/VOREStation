@@ -1269,7 +1269,7 @@
 	offline_slowdown = 0
 	offline_vision_restriction = 0 
 	siemens_coefficient = 0.9
-	chest_type = /obj/item/clothing/suit/space/rig/fluff/nikki
+	chest_type = /obj/item/clothing/suit/fluff/nikki
 
 	req_access = list()
 	req_one_access = list()
@@ -1277,6 +1277,8 @@
 	helm_type = null
 	glove_type = null
 	boot_type = null
+
+	initial_modules = list()
 
 	allowed = list(
 		/obj/item/device/flashlight,

@@ -2008,15 +2008,29 @@ Departamental Swimsuits, for general use
 	desc = "A special hat, removed from its owner."
 
 //Ryumi: Nikki Yumeno
-/obj/item/clothing/suit/space/rig/fluff/nikki //don't believe the path name, this ain't spaceworthy at all. see /obj/item/weapon/rig/nikki
+/obj/item/clothing/under/skirt/outfit/fluff/nikki
+	name = "dorky outfit"
+	desc = "A little witch costume that looks like it's been worn as ordinary clothes. Who in their right mind would(n't)...??"
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	item_icons = list(slot_w_uniform_str = 'icons/vore/custom_onmob_vr.dmi')
+	icon_state = "nikki_outfit"
+	item_state = "nikki_outfit"
+	sensor_mode = 3 // I'm a dumbass and forget these all the time please understand :(
+
+/obj/item/clothing/shoes/fluff/nikki
+	name = "non-magical boots"
+	desc = "Boots optimally built for a dork. They don't sparkle or anything, but you can imagine them doing that when you click the heels together."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_onmob_vr.dmi'
+	icon_state = "nikki_boots"
+	item_state = "nikki_boots"
+
+/obj/item/clothing/suit/fluff/nikki //see /obj/item/weapon/rig/nikki
 	name = "cape"
 	desc = "Snazzy!"
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_override = 'icons/vore/custom_onmob_vr.dmi'
 	icon_state = "nikki"
-	sprite_sheets = list() // so that our onmob icon doesn't get overridden
-	item_flags = 0 // NO SPACE TRAVEL, IT'S JUST A CAPE
-	breach_threshold = 1 // see above
 
 /obj/item/clothing/head/fluff/nikki
 	// I have never tryharded so much just to accomplish something so stupid as "Vore By Hat" in my entire life, and I apologize to each and every one of you.
@@ -2133,14 +2147,13 @@ Departamental Swimsuits, for general use
 			// hey, is our translocator actually able to teleport this poor person?
 			if (translocator.beacons && translocator.teleport_checks(user, user))
 				// YOU FOOL! YOU HAVE ACTIVATED MY STAND, 「ＶＯＲＥ　ＢＹ　ＨＡＴ」！
-				var/turf_2_warp_to = get_turf(user)
 				src.visible_message("<span class='danger'>\The [src] falls over [user]'s head... and somehow falls over the rest of their body, causing them to vanish inside. Where did they go?!</span>", \
 				"<span class='danger'>The hat falls over your head as you put it on, enveloping you in a bright green light! <b>Uh oh.</b></span>")
 				var/uh_oh = pick(translocator.beacons)
+				user.remove_from_mob(src, get_turf(user))
 				translocator.destination = translocator.beacons[uh_oh]
 				translocator.afterattack(user, user, proximity = 1, ignore_fail_chance = 1)
-				user.remove_from_mob(src, turf_2_warp_to)
-				add_attack_logs(user, user, "Tried to put on \the [src] and was involuntarily teleported (via the hat's [translocator])!")
+				add_attack_logs(user, user, "Tried to put on \the [src] and was involuntarily teleported by it (via \the [translocator]) within!")
 				return
 			// understandable have a nice day
 			else teleport_fail(user)
@@ -2154,7 +2167,7 @@ Departamental Swimsuits, for general use
 		return
 
 	if (istype(target) && translocator.teleport_checks(target, user)) // If the translocator inside actually has enough charge to do the warp thing
-		if (target.can_be_drop_prey && target.ckey != owner) // ur not getting me that easily sonny jim....
+		if (target.ckey != owner && (target.type == mob/living/carbon/human && target.can_be_drop_prey)) // ur not getting me that easily sonny jim....
 			// Silly fluffed up styles of teleporting people based on user intent.
 			switch (user.a_intent)
 				if (I_HURT)
