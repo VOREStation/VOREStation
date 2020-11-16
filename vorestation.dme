@@ -1960,6 +1960,8 @@
 #include "code\modules\clothing\suits\utility_vr.dm"
 #include "code\modules\clothing\suits\wiz_robe.dm"
 #include "code\modules\clothing\suits\aliens\seromi.dm"
+#include "code\modules\clothing\suits\aliens\seromi_ch.dm"
+#include "code\modules\clothing\suits\aliens\seromi_cit.dm"
 #include "code\modules\clothing\suits\aliens\tajara.dm"
 #include "code\modules\clothing\suits\aliens\unathi.dm"
 #include "code\modules\clothing\suits\aliens\vox.dm"
