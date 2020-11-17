@@ -1964,7 +1964,7 @@
 /area/tether/surfacebase/lowernorthhall)
 "adt" = (
 /turf/simulated/wall,
-/area/maintenance/cargostoresubstation)
+/area/maintenance/substation/cargostoresubstation)
 "adu" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -3763,7 +3763,7 @@
 	RCon_tag = "CargoShop Substation Bypass"
 	},
 /turf/simulated/floor,
-/area/maintenance/cargostoresubstation)
+/area/maintenance/substation/cargostoresubstation)
 "age" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -20968,6 +20968,10 @@
 /obj/effect/floor_decal/corner/brown/border{
 	dir = 4
 	},
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 24
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/cargostore/office)
 "aHU" = (
@@ -31233,13 +31237,13 @@
 	dir = 1
 	},
 /turf/simulated/floor,
-/area/maintenance/cargostoresubstation)
+/area/maintenance/substation/cargostoresubstation)
 "bbh" = (
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
 /turf/simulated/floor,
-/area/maintenance/cargostoresubstation)
+/area/maintenance/substation/cargostoresubstation)
 "bbi" = (
 /obj/machinery/door/airlock/engineering{
 	name = "CargoShop Substation";
@@ -31250,10 +31254,10 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor,
-/area/maintenance/cargostoresubstation)
+/area/maintenance/substation/cargostoresubstation)
 "bbj" = (
 /turf/simulated/wall,
-/area/maintenance/medbaysubstation)
+/area/maintenance/substation/SurfMedsubstation)
 "bbk" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -31401,7 +31405,7 @@
 	req_one_access = list(11,24,5)
 	},
 /turf/simulated/floor,
-/area/maintenance/medbaysubstation)
+/area/maintenance/substation/SurfMedsubstation)
 "bbs" = (
 /obj/structure/cable/green,
 /obj/structure/cable/green{
@@ -31413,7 +31417,7 @@
 	output_attempt = 0
 	},
 /turf/simulated/floor,
-/area/maintenance/cargostoresubstation)
+/area/maintenance/substation/cargostoresubstation)
 "bbt" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 5
@@ -31445,7 +31449,7 @@
 	},
 /obj/structure/cable,
 /turf/simulated/floor,
-/area/maintenance/cargostoresubstation)
+/area/maintenance/substation/cargostoresubstation)
 "bbv" = (
 /obj/machinery/power/apc{
 	dir = 4;
@@ -31457,7 +31461,7 @@
 	icon_state = "0-2"
 	},
 /turf/simulated/floor,
-/area/maintenance/cargostoresubstation)
+/area/maintenance/substation/cargostoresubstation)
 "bbw" = (
 /obj/structure/table/rack,
 /obj/random/maintenance/cargo,
@@ -31467,10 +31471,10 @@
 /area/maintenance/lower/mining_eva)
 "bbx" = (
 /obj/machinery/power/breakerbox/activated{
-	RCon_tag = "Medical2 Substation Bypass"
+	RCon_tag = "SurfMed Substation Bypass"
 	},
 /turf/simulated/floor,
-/area/maintenance/medbaysubstation)
+/area/maintenance/substation/SurfMedsubstation)
 "bby" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
@@ -31487,7 +31491,7 @@
 	dir = 1
 	},
 /turf/simulated/floor,
-/area/maintenance/medbaysubstation)
+/area/maintenance/substation/SurfMedsubstation)
 "bbz" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -31498,7 +31502,7 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/floor,
-/area/maintenance/medbaysubstation)
+/area/maintenance/substation/SurfMedsubstation)
 "bbA" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -31509,7 +31513,7 @@
 	req_one_access = list(11,24,5)
 	},
 /turf/simulated/floor,
-/area/maintenance/medbaysubstation)
+/area/maintenance/substation/SurfMedsubstation)
 "bbB" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -31536,7 +31540,7 @@
 	name_tag = "CargoShop Subgrid"
 	},
 /turf/simulated/floor,
-/area/maintenance/cargostoresubstation)
+/area/maintenance/substation/cargostoresubstation)
 "bbD" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 1
@@ -31550,7 +31554,7 @@
 	dir = 1
 	},
 /turf/simulated/floor,
-/area/maintenance/cargostoresubstation)
+/area/maintenance/substation/cargostoresubstation)
 "bbE" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -31567,7 +31571,7 @@
 	pixel_y = -25
 	},
 /turf/simulated/floor,
-/area/maintenance/cargostoresubstation)
+/area/maintenance/substation/cargostoresubstation)
 "bbF" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/green{
@@ -31580,7 +31584,7 @@
 	req_one_access = list(11,24,50)
 	},
 /turf/simulated/floor,
-/area/maintenance/cargostoresubstation)
+/area/maintenance/substation/cargostoresubstation)
 "bbG" = (
 /obj/machinery/door/airlock/maintenance/common,
 /obj/structure/disposalpipe/segment,
@@ -31607,7 +31611,7 @@
 	icon_state = "warning"
 	},
 /turf/simulated/floor/plating,
-/area/maintenance/medbaysubstation)
+/area/maintenance/substation/SurfMedsubstation)
 "bbJ" = (
 /obj/structure/cable/green,
 /obj/structure/cable/green{
@@ -31615,11 +31619,11 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Medical2";
+	RCon_tag = "Substation - SurfMed";
 	output_attempt = 0
 	},
 /turf/simulated/floor,
-/area/maintenance/medbaysubstation)
+/area/maintenance/substation/SurfMedsubstation)
 "bbK" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
@@ -31629,7 +31633,7 @@
 	},
 /obj/structure/cable,
 /turf/simulated/floor,
-/area/maintenance/medbaysubstation)
+/area/maintenance/substation/SurfMedsubstation)
 "bbL" = (
 /obj/machinery/power/apc{
 	dir = 4;
@@ -31646,14 +31650,14 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/floor,
-/area/maintenance/medbaysubstation)
+/area/maintenance/substation/SurfMedsubstation)
 "bbM" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 4;
 	icon_state = "warningcorner"
 	},
 /turf/simulated/floor/plating,
-/area/maintenance/medbaysubstation)
+/area/maintenance/substation/SurfMedsubstation)
 "bbN" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -31767,11 +31771,11 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/power/sensor{
-	name = "Powernet Sensor - Medical2 Subgrid";
-	name_tag = "Medical2 Subgrid"
+	name = "Powernet Sensor - SurfMed Subgrid";
+	name_tag = "SurfMed Subgrid"
 	},
 /turf/simulated/floor,
-/area/maintenance/medbaysubstation)
+/area/maintenance/substation/SurfMedsubstation)
 "bbW" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 1
@@ -31785,7 +31789,7 @@
 	dir = 1
 	},
 /turf/simulated/floor,
-/area/maintenance/medbaysubstation)
+/area/maintenance/substation/SurfMedsubstation)
 "bbX" = (
 /obj/machinery/door/airlock/maintenance/common,
 /obj/structure/disposalpipe/segment,
@@ -31803,7 +31807,7 @@
 	pixel_y = -25
 	},
 /turf/simulated/floor,
-/area/maintenance/medbaysubstation)
+/area/maintenance/substation/SurfMedsubstation)
 "bbZ" = (
 /obj/machinery/power/apc{
 	dir = 4;

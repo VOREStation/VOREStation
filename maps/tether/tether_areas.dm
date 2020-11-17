@@ -344,14 +344,13 @@
 	name = "\improper Tether Midpoint Maint"
 /area/maintenance/commandmaint
 	name = "\improper Command Maintenance"
-
 /area/maintenance/lowmedbaymaint
 	name = "\improper Lower Medbay Maintenance"
 	icon_state = "green"
-/area/maintenance/medbaysubstation
-	name = "\improper Medbay Substation"
+/area/maintenance/substation/SurfMedsubstation
+	name = "\improper SurfMed Substation"
 	icon_state = "green"
-/area/maintenance/cargostoresubstation
+/area/maintenance/substation/cargostoresubstation
 	name = "\improper Cargo Store Substation"
 	icon_state = "green"
 
