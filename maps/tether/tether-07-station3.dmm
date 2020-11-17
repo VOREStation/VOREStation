@@ -30263,6 +30263,10 @@
 /obj/structure/barricade/cutout/ntsec,
 /turf/simulated/floor/tiled/dark,
 /area/security/nuke_storage)
+"ufG" = (
+/obj/structure/barricade,
+/turf/simulated/floor/airless,
+/area/maintenance/station/cargo)
 "uiP" = (
 /obj/structure/cable/green{
 	d1 = 2;
@@ -39629,8 +39633,8 @@ aQs
 aQs
 aPK
 aPK
-aQa
-aQa
+ufG
+ufG
 aPK
 aPK
 aaa
@@ -39916,7 +39920,7 @@ aQs
 aQs
 aQs
 aQs
-aQa
+ufG
 aaa
 aaa
 aaa
@@ -40058,7 +40062,7 @@ aQs
 aQs
 aQs
 aQs
-aQa
+ufG
 aaa
 aaa
 aaa
@@ -40200,7 +40204,7 @@ aQs
 aQs
 aQs
 aQs
-aQa
+ufG
 aaa
 aaa
 aaa
