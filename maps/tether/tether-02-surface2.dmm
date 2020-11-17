@@ -1360,7 +1360,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor,
-/area/maintenance/surfacebase/lowmedbaymaint)
+/area/maintenance/lowmedbaymaint)
 "acD" = (
 /turf/simulated/wall,
 /area/tether/surfacebase/outside/outside2)
@@ -21506,7 +21506,7 @@
 	dir = 8
 	},
 /turf/simulated/open,
-/area/maintenance/surfacebase/lowmedbaymaint)
+/area/maintenance/lowmedbaymaint)
 "aNA" = (
 /obj/structure/catwalk,
 /obj/structure/table/steel,
@@ -28465,10 +28465,10 @@
 /area/tether/surfacebase/medical/stairwell)
 "aYC" = (
 /turf/simulated/wall,
-/area/maintenance/surfacebase/lowmedbaymaint)
+/area/maintenance/lowmedbaymaint)
 "aYD" = (
 /turf/simulated/floor/tiled/techfloor,
-/area/maintenance/surfacebase/lowmedbaymaint)
+/area/maintenance/lowmedbaymaint)
 "aYE" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
