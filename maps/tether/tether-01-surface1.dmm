@@ -1340,7 +1340,7 @@
 	use_power = 1
 	},
 /turf/simulated/floor/virgo3b,
-/area/medical/virology)
+/area/tether/surfacebase/mining_main/external)
 "acl" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -1638,7 +1638,7 @@
 "acM" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/black,
 /turf/simulated/floor/virgo3b,
-/area/medical/virology)
+/area/tether/surfacebase/mining_main/external)
 "acN" = (
 /obj/structure/cable/ender{
 	icon_state = "1-2";
@@ -33133,9 +33133,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_one_hall)
-"dXe" = (
-/turf/simulated/wall/r_wall,
-/area/medical/virologyisolation)
 "dYd" = (
 /obj/machinery/firealarm{
 	dir = 2;
@@ -35925,6 +35922,9 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/looking_glass/lg_1)
+"xUo" = (
+/turf/simulated/wall/r_wall,
+/area/medical/virologyisolation)
 "xYn" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 4
@@ -52640,14 +52640,14 @@ aad
 aad
 aah
 aah
-dXe
+xUo
 ajb
 awu
 lMK
 ayx
 ayN
 azA
-dXe
+xUo
 aah
 aah
 aah
@@ -52782,14 +52782,14 @@ aad
 aad
 aah
 aah
-dXe
+xUo
 amc
 arB
 arB
 ayy
 ayO
 azB
-dXe
+xUo
 aah
 aah
 aah
@@ -52924,14 +52924,14 @@ aad
 aad
 aah
 aah
-dXe
+xUo
 amP
 awv
 awv
 ayz
 ayP
 azC
-dXe
+xUo
 aah
 aah
 aah
@@ -53066,14 +53066,14 @@ aad
 aad
 aad
 aah
-dXe
+xUo
 aAC
 avY
 axJ
 ayA
 ayX
 azD
-dXe
+xUo
 aah
 aah
 aah
@@ -53208,14 +53208,14 @@ aad
 aad
 aad
 aad
-dXe
-dXe
-dXe
-dXe
-dXe
-dXe
-dXe
-dXe
+xUo
+xUo
+xUo
+xUo
+xUo
+xUo
+xUo
+xUo
 aah
 aah
 aah
