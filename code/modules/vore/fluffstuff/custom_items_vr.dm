@@ -1271,6 +1271,7 @@
 	siemens_coefficient = 0.9
 	chest_type = /obj/item/clothing/suit/fluff/nikki
 
+	initial_modules = list()
 	req_access = list()
 	req_one_access = list()
 
@@ -1278,7 +1279,9 @@
 	glove_type = null
 	boot_type = null
 
-	initial_modules = list()
+	initial_modules = list(
+		/obj/item/rig_module/mounted/sizegun
+	)
 
 	allowed = list(
 		/obj/item/device/flashlight,
@@ -1287,13 +1290,13 @@
 		/obj/item/weapon/storage,
 		)
 
-	mob_can_equip(var/mob/living/carbon/human/M, slot, disable_warning = 0) // Feel free to try to put Nikki's hat on! The necklace though is a flat-out no-go.
-		if(..())
-			if (M.ckey == "ryumi")
-				return 1
-			else if (M.get_active_hand() == src)
-				to_chat(M, "<span class='warning'>For some reason, the necklace seems to never quite get past your head when you try to put it on... Weird, it looked like it would fit.</span>")
-				return 0
+/obj/item/weapon/rig/nikki/mob_can_equip(var/mob/living/carbon/human/M, slot, disable_warning = 0) // Feel free to (try to) put Nikki's hat on! The necklace though is a flat-out no-go.
+	if(..())
+		if (M.ckey == "ryumi")
+			return 1
+		else if (M.get_active_hand() == src)
+			to_chat(M, "<span class='warning'>For some reason, the necklace seems to never quite get past your head when you try to put it on... Weird, it looked like it would fit.</span>")
+			return 0
 
 //Nickcrazy - Damon Bones Xrim
 /obj/item/clothing/suit/storage/toggle/bomber/bombersec
