@@ -519,10 +519,6 @@
 	if(!ishuman(user))
 		user.update_icons()
 
-	// Flavor handling
-	if(belly.can_taste && prey.get_taste_message(FALSE))
-		to_chat(belly.owner, "<span class='notice'>[prey] tastes of [prey.get_taste_message(FALSE)].</span>")
-
 	// Inform Admins
 	if(pred == user)
 		add_attack_logs(pred, prey, "Eaten via [belly.name]")
