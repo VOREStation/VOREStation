@@ -345,13 +345,13 @@
 /area/maintenance/commandmaint
 	name = "\improper Command Maintenance"
 
-/area/maintenance/surfacebase/lowmedbaymaint
+/area/maintenance/lowmedbaymaint
 	name = "\improper Lower Medbay Maintenance"
 	icon_state = "green"
-/area/maintenance/surfacebase/medbaysubstation
+/area/maintenance/medbaysubstation
 	name = "\improper Medbay Substation"
 	icon_state = "green"
-/area/maintenance/surfacebase/cargostoresubstation
+/area/maintenance/cargostoresubstation
 	name = "\improper Cargo Store Substation"
 	icon_state = "green"
 

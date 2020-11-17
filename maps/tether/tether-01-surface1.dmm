@@ -1964,7 +1964,7 @@
 /area/tether/surfacebase/lowernorthhall)
 "adt" = (
 /turf/simulated/wall,
-/area/maintenance/surfacebase/cargostoresubstation)
+/area/maintenance/cargostoresubstation)
 "adu" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -3763,7 +3763,7 @@
 	RCon_tag = "CargoShop Substation Bypass"
 	},
 /turf/simulated/floor,
-/area/maintenance/surfacebase/cargostoresubstation)
+/area/maintenance/cargostoresubstation)
 "age" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -15555,7 +15555,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/plating,
-/area/maintenance/surfacebase/lowmedbaymaint)
+/area/maintenance/lowmedbaymaint)
 "azc" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -15960,7 +15960,7 @@
 	sort_tag = "Void"
 	},
 /turf/simulated/floor/plating,
-/area/maintenance/surfacebase/lowmedbaymaint)
+/area/maintenance/lowmedbaymaint)
 "azH" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -16626,7 +16626,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/plating,
-/area/maintenance/surfacebase/lowmedbaymaint)
+/area/maintenance/lowmedbaymaint)
 "aAA" = (
 /obj/structure/cable/green{
 	d1 = 2;
@@ -16640,7 +16640,7 @@
 	dir = 10
 	},
 /turf/simulated/floor/plating,
-/area/maintenance/surfacebase/lowmedbaymaint)
+/area/maintenance/lowmedbaymaint)
 "aAB" = (
 /obj/machinery/power/apc{
 	dir = 4;
@@ -16677,7 +16677,7 @@
 /area/tether/surfacebase/medical/viro/viroward)
 "aAD" = (
 /turf/simulated/wall,
-/area/maintenance/surfacebase/lowmedbaymaint)
+/area/maintenance/lowmedbaymaint)
 "aAE" = (
 /turf/simulated/wall,
 /area/tether/surfacebase/medical/bathroom)
@@ -16698,7 +16698,7 @@
 /area/tether/surfacebase/medical/bathroom)
 "aAG" = (
 /turf/simulated/mineral,
-/area/maintenance/surfacebase/lowmedbaymaint)
+/area/maintenance/lowmedbaymaint)
 "aAH" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -16708,10 +16708,10 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/plating,
-/area/maintenance/surfacebase/lowmedbaymaint)
+/area/maintenance/lowmedbaymaint)
 "aAI" = (
 /turf/simulated/floor/plating,
-/area/maintenance/surfacebase/lowmedbaymaint)
+/area/maintenance/lowmedbaymaint)
 "aAJ" = (
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/phoronlock{
 	frequency = 1379;
@@ -16838,7 +16838,7 @@
 	icon_state = "2-4"
 	},
 /turf/simulated/floor,
-/area/maintenance/surfacebase/lowmedbaymaint)
+/area/maintenance/lowmedbaymaint)
 "aAX" = (
 /obj/structure/cable/green{
 	icon_state = "16-0"
@@ -16858,7 +16858,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/plating,
-/area/maintenance/surfacebase/lowmedbaymaint)
+/area/maintenance/lowmedbaymaint)
 "aAY" = (
 /obj/machinery/power/apc{
 	cell_type = /obj/item/weapon/cell/super;
@@ -16973,13 +16973,13 @@
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/plating,
-/area/maintenance/surfacebase/lowmedbaymaint)
+/area/maintenance/lowmedbaymaint)
 "aBi" = (
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/plating,
-/area/maintenance/surfacebase/lowmedbaymaint)
+/area/maintenance/lowmedbaymaint)
 "aBj" = (
 /obj/machinery/recharge_station,
 /obj/machinery/light/small{
@@ -17061,13 +17061,13 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/plating,
-/area/maintenance/surfacebase/lowmedbaymaint)
+/area/maintenance/lowmedbaymaint)
 "aBp" = (
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/plating,
-/area/maintenance/surfacebase/lowmedbaymaint)
+/area/maintenance/lowmedbaymaint)
 "aBq" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -17078,7 +17078,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/plating,
-/area/maintenance/surfacebase/lowmedbaymaint)
+/area/maintenance/lowmedbaymaint)
 "aBr" = (
 /obj/machinery/button/remote/airlock{
 	desc = "A remote control switch for the medbay recovery room door.";
@@ -22153,6 +22153,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
+	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/cargostore)
@@ -31229,13 +31233,13 @@
 	dir = 1
 	},
 /turf/simulated/floor,
-/area/maintenance/surfacebase/cargostoresubstation)
+/area/maintenance/cargostoresubstation)
 "bbh" = (
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
 /turf/simulated/floor,
-/area/maintenance/surfacebase/cargostoresubstation)
+/area/maintenance/cargostoresubstation)
 "bbi" = (
 /obj/machinery/door/airlock/engineering{
 	name = "CargoShop Substation";
@@ -31246,10 +31250,10 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor,
-/area/maintenance/surfacebase/cargostoresubstation)
+/area/maintenance/cargostoresubstation)
 "bbj" = (
 /turf/simulated/wall,
-/area/maintenance/surfacebase/medbaysubstation)
+/area/maintenance/medbaysubstation)
 "bbk" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -31397,7 +31401,7 @@
 	req_one_access = list(11,24,5)
 	},
 /turf/simulated/floor,
-/area/maintenance/surfacebase/medbaysubstation)
+/area/maintenance/medbaysubstation)
 "bbs" = (
 /obj/structure/cable/green,
 /obj/structure/cable/green{
@@ -31409,7 +31413,7 @@
 	output_attempt = 0
 	},
 /turf/simulated/floor,
-/area/maintenance/surfacebase/cargostoresubstation)
+/area/maintenance/cargostoresubstation)
 "bbt" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 5
@@ -31441,7 +31445,7 @@
 	},
 /obj/structure/cable,
 /turf/simulated/floor,
-/area/maintenance/surfacebase/cargostoresubstation)
+/area/maintenance/cargostoresubstation)
 "bbv" = (
 /obj/machinery/power/apc{
 	dir = 4;
@@ -31453,7 +31457,7 @@
 	icon_state = "0-2"
 	},
 /turf/simulated/floor,
-/area/maintenance/surfacebase/cargostoresubstation)
+/area/maintenance/cargostoresubstation)
 "bbw" = (
 /obj/structure/table/rack,
 /obj/random/maintenance/cargo,
@@ -31466,7 +31470,7 @@
 	RCon_tag = "Medical2 Substation Bypass"
 	},
 /turf/simulated/floor,
-/area/maintenance/surfacebase/medbaysubstation)
+/area/maintenance/medbaysubstation)
 "bby" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
@@ -31483,7 +31487,7 @@
 	dir = 1
 	},
 /turf/simulated/floor,
-/area/maintenance/surfacebase/medbaysubstation)
+/area/maintenance/medbaysubstation)
 "bbz" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -31494,7 +31498,7 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/floor,
-/area/maintenance/surfacebase/medbaysubstation)
+/area/maintenance/medbaysubstation)
 "bbA" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -31505,7 +31509,7 @@
 	req_one_access = list(11,24,5)
 	},
 /turf/simulated/floor,
-/area/maintenance/surfacebase/medbaysubstation)
+/area/maintenance/medbaysubstation)
 "bbB" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -31532,7 +31536,7 @@
 	name_tag = "CargoShop Subgrid"
 	},
 /turf/simulated/floor,
-/area/maintenance/surfacebase/cargostoresubstation)
+/area/maintenance/cargostoresubstation)
 "bbD" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 1
@@ -31546,7 +31550,7 @@
 	dir = 1
 	},
 /turf/simulated/floor,
-/area/maintenance/surfacebase/cargostoresubstation)
+/area/maintenance/cargostoresubstation)
 "bbE" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -31563,7 +31567,7 @@
 	pixel_y = -25
 	},
 /turf/simulated/floor,
-/area/maintenance/surfacebase/cargostoresubstation)
+/area/maintenance/cargostoresubstation)
 "bbF" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/green{
@@ -31576,7 +31580,7 @@
 	req_one_access = list(11,24,50)
 	},
 /turf/simulated/floor,
-/area/maintenance/surfacebase/cargostoresubstation)
+/area/maintenance/cargostoresubstation)
 "bbG" = (
 /obj/machinery/door/airlock/maintenance/common,
 /obj/structure/disposalpipe/segment,
@@ -31603,7 +31607,7 @@
 	icon_state = "warning"
 	},
 /turf/simulated/floor/plating,
-/area/maintenance/surfacebase/medbaysubstation)
+/area/maintenance/medbaysubstation)
 "bbJ" = (
 /obj/structure/cable/green,
 /obj/structure/cable/green{
@@ -31615,7 +31619,7 @@
 	output_attempt = 0
 	},
 /turf/simulated/floor,
-/area/maintenance/surfacebase/medbaysubstation)
+/area/maintenance/medbaysubstation)
 "bbK" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
@@ -31625,7 +31629,7 @@
 	},
 /obj/structure/cable,
 /turf/simulated/floor,
-/area/maintenance/surfacebase/medbaysubstation)
+/area/maintenance/medbaysubstation)
 "bbL" = (
 /obj/machinery/power/apc{
 	dir = 4;
@@ -31642,14 +31646,14 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/floor,
-/area/maintenance/surfacebase/medbaysubstation)
+/area/maintenance/medbaysubstation)
 "bbM" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 4;
 	icon_state = "warningcorner"
 	},
 /turf/simulated/floor/plating,
-/area/maintenance/surfacebase/medbaysubstation)
+/area/maintenance/medbaysubstation)
 "bbN" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -31767,7 +31771,7 @@
 	name_tag = "Medical2 Subgrid"
 	},
 /turf/simulated/floor,
-/area/maintenance/surfacebase/medbaysubstation)
+/area/maintenance/medbaysubstation)
 "bbW" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 1
@@ -31781,7 +31785,7 @@
 	dir = 1
 	},
 /turf/simulated/floor,
-/area/maintenance/surfacebase/medbaysubstation)
+/area/maintenance/medbaysubstation)
 "bbX" = (
 /obj/machinery/door/airlock/maintenance/common,
 /obj/structure/disposalpipe/segment,
@@ -31799,7 +31803,7 @@
 	pixel_y = -25
 	},
 /turf/simulated/floor,
-/area/maintenance/surfacebase/medbaysubstation)
+/area/maintenance/medbaysubstation)
 "bbZ" = (
 /obj/machinery/power/apc{
 	dir = 4;
@@ -31811,7 +31815,7 @@
 	icon_state = "0-8"
 	},
 /turf/simulated/floor/plating,
-/area/maintenance/surfacebase/lowmedbaymaint)
+/area/maintenance/lowmedbaymaint)
 "bca" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/brown/border,
@@ -32755,7 +32759,7 @@
 	pixel_y = 0
 	},
 /turf/simulated/floor/plating,
-/area/maintenance/surfacebase/lowmedbaymaint)
+/area/maintenance/lowmedbaymaint)
 "bMs" = (
 /obj/machinery/door/airlock/glass_external/public,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -33134,9 +33138,14 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_one_hall)
 "dYd" = (
-/obj/structure/catwalk,
-/turf/simulated/floor/plating,
-/area/tether/surfacebase/outside/outside1)
+/obj/machinery/firealarm{
+	dir = 2;
+	layer = 3.3;
+	pixel_x = 0;
+	pixel_y = 26
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/tether/surfacebase/cargostore/warehouse)
 "dZW" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 4
@@ -34660,7 +34669,7 @@
 	scrub_id = "atrium"
 	},
 /turf/simulated/floor/tiled/techmaint,
-/area/tether/surfacebase/outside/outside1)
+/area/maintenance/lower/vacant_site)
 "ofS" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/mauve/border,
@@ -34847,7 +34856,7 @@
 	pixel_y = 0
 	},
 /turf/simulated/floor/plating,
-/area/maintenance/surfacebase/lowmedbaymaint)
+/area/maintenance/lowmedbaymaint)
 "poN" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/catwalk,
@@ -35917,12 +35926,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/looking_glass/lg_1)
-"xSa" = (
-/obj/machinery/door/airlock/maintenance/common,
-/obj/machinery/door/firedoor/glass,
-/obj/structure/catwalk,
-/turf/simulated/floor/tiled/techfloor,
-/area/tether/surfacebase/outside/outside1)
 "xYn" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 4
@@ -48390,7 +48393,7 @@ cPX
 afO
 aBB
 aCr
-aDt
+dYd
 aEh
 aDC
 aCr
@@ -49972,7 +49975,7 @@ apF
 ahc
 apF
 nKz
-adK
+apF
 ash
 ast
 asU
@@ -50113,8 +50116,8 @@ apG
 apF
 aqN
 apF
-xSa
-adK
+aqN
+apF
 ash
 ast
 asU
@@ -50255,8 +50258,8 @@ aaW
 aqi
 aqO
 mRY
-dYd
-dYd
+aql
+aql
 ash
 asu
 asU
