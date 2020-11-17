@@ -345,39 +345,113 @@
 /area/maintenance/commandmaint
 	name = "\improper Command Maintenance"
 
+/area/maintenance/surfacebase/lowmedbaymaint
+	name = "\improper Lower Medbay Maintenance"
+	icon_state = "green"
+/area/maintenance/surfacebase/medbaysubstation
+	name = "\improper Medbay Substation"
+	icon_state = "green"
+/area/maintenance/surfacebase/cargostoresubstation
+	name = "\improper Cargo Store Substation"
+	icon_state = "green"
+
+/area/tether/surfacebase/lowernorthhall
+	name = "\improper Lower North Hallway"
+	icon_state = "green"
+/area/tether/surfacebase/lowernortheva
+	name = "\improper Lower North EVA"
+	icon_state = "green"
+
+/area/tether/surfacebase/cargostore
+	name = "\improper Cargo Store"
+	icon_state = "yellow"
+/area/tether/surfacebase/cargostore/office
+	name = "\improper Cargo Store Office"
+	icon_state = "yellow"
+	lightswitch = 0
+/area/tether/surfacebase/cargostore/warehouse
+	name = "\improper Cargo Store Warehouse"
+	icon_state = "yellow"
+	lightswitch = 0
+
 /area/tether/surfacebase/medical
 	icon_state = "medical"
 /area/tether/surfacebase/medical/lobby
-	name = "\improper Surface Medical Lobby"
+	name = "\improper Medical Lobby"
 /area/tether/surfacebase/medical/triage
-	name = "\improper Surface Triage"
+	name = "\improper Triage"
+/area/tether/surfacebase/medical/admin
+	name = "\improper Medical Admin"
 /area/tether/surfacebase/medical/first_aid_west
 	name = "\improper First Aid West"
 /area/tether/surfacebase/medical/chemistry
-	name = "\improper Surface Chemistry"
+	name = "\improper Chemistry"
 	lightswitch = 0
 /area/tether/surfacebase/medical/resleeving
-	name = "\improper Surface Resleeving"
+	name = "\improper Resleeving"
 	lightswitch = 0
-/area/tether/surfacebase/medical/surgery
-	name = "\improper Surface Surgery"
+/area/tether/surfacebase/medical/surgery1
+	name = "\improper Surgery OR 1"
+	lightswitch = 0
+/area/tether/surfacebase/medical/surgery2
+	name = "\improper Surgery OR 2"
+	lightswitch = 0
+/area/tether/surfacebase/medical/patient
+	name = "\improper Surface Patient Recovery Rooms"
 	lightswitch = 0
 /area/tether/surfacebase/medical/patient_a
-	name = "\improper Surface Patient Room A"
+	name = "\improper Patient Room A"
 	lightswitch = 0
 /area/tether/surfacebase/medical/patient_b
-	name = "\improper Surface Patient Room B"
+	name = "\improper Patient Room B"
 	lightswitch = 0
+/area/tether/surfacebase/medical/recoveryward
+	name = "\improper Medbay Recovery Ward"
+	lightswitch = 0
+/area/tether/surfacebase/medical/recoveryward/storage
+	name = "\improper Medbay Recovery Storage"
+	lightswitch = 0
+/area/tether/surfacebase/medical/bathroom
+	name = "\improper Medbay Bathroom"
+	lightswitch = 0
+/area/tether/surfacebase/medical/mentalhealth
+	name = "\improper Mental Health"
+	lightswitch = 0
+/area/tether/surfacebase/medical/mentalhealthwaiting
+	name = "\improper Mental Health Waiting Room"
+/area/tether/surfacebase/medical/cmo
+	name = "\improper Chief Medical Officer's Office"
+	lightswitch = 0
+/area/tether/surfacebase/medical/morgue
+	name = "\improper Morgue"
+	lightswitch = 0
+/area/tether/surfacebase/medical/viro
+	name = "\improper Virology"
+	lightswitch = 0
+/area/tether/surfacebase/medical/viroairlock
+	name = "\improper Virology Airlock"
+/area/tether/surfacebase/medical/viro/viroward
+	name = "\improper Virology Ward"
+	lightswitch = 0
+/area/tether/surfacebase/medical/upperhall
+	name = "\improper Medical Upper Hall"
+/area/tether/surfacebase/medical/centralhall
+	name = "\improper Medical Central Hall"
 /area/tether/surfacebase/medical/lowerhall
-	name = "\improper Surface Medical Lower Hall"
+	name = "\improper Medical Lower Hall"
+/area/tether/surfacebase/medical/stairwell
+	name = "\improper Medical Stairwell"
 /area/tether/surfacebase/medical/storage
-	name = "\improper Surface Medical Storage"
+	name = "\improper Medical Storage"
+	lightswitch = 0
+/area/tether/surfacebase/medical/outfitting
+	name = "\improper Medical Outfitting"
 	lightswitch = 0
 /area/tether/surfacebase/medical/paramed
-	name = "\improper Surface Paramedic Closet"
+	name = "\improper Emergency Medical Bay"
 	lightswitch = 0
 /area/tether/surfacebase/medical/breakroom
-	name = "\improper Surface Medical Break Room"
+	name = "\improper Medical Break Room"
 	lightswitch = 0
 /area/tether/surfacebase/medical/maints
 	name = "\improper Mining Upper Maintenance"
@@ -455,6 +529,26 @@
 	name = "\improper Surface Security Upper Hallway"
 /area/maintenance/lower/security
 	name = "\improper Surface Security Maintenance"
+
+/area/maintenance/readingrooms
+	name = "\improper Southeast Maintenance"
+	icon = 'icons/turf/areas_vr.dmi'
+	icon_state = "green"
+	sound_env = SMALL_SOFTFLOOR
+
+/area/tether/surfacebase/cafeteria
+	name = "\improper Surface Cafeteria"
+	icon_state = "blueold"
+	lightswitch = 0
+/area/tether/surfacebase/southhall
+	name = "\improper Surface South Central Hallway"
+	icon_state = "blueold"
+/area/tether/surfacebase/southhall/readingroomaccess
+	name = "\improper Reading Room Access"
+	icon_state = "blueold"
+/area/tether/surfacebase/topairlock
+	name = "\improper Surface Upper Airlock"
+	icon_state = "blueold"
 
 /area/engineering/atmos/processing
 	name = "Atmospherics Processing"
@@ -721,6 +815,10 @@
 	name = "\improper Tether Shuttle Pad"
 /area/tether/surfacebase/reading_room
 	name = "\improper Reading Room"
+	icon = 'icons/turf/areas_vr.dmi'
+	icon_state = "green"
+	flags = RAD_SHIELDED
+	lightswitch = 0
 /area/tether/surfacebase/vacant_site
 	name = "\improper Vacant Site"
 	flags = null
