@@ -859,9 +859,14 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/random/cigarettes,
 /obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_x = 0;
+	pixel_y = 28
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/trash_pit)
@@ -872,9 +877,6 @@
 	dir = 1
 	},
 /obj/random/junk,
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/trash_pit)
 "abu" = (
@@ -882,11 +884,6 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/random/junk,
 /obj/random/maintenance/clean,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/trash_pit)
 "abv" = (
@@ -1168,11 +1165,6 @@
 /obj/machinery/door/airlock/medical{
 	name = "EMT Bay"
 	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
@@ -1214,7 +1206,7 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled,
-/area/tether/surfacebase/lowernortheva)
+/area/tether/surfacebase/lowernorthhall)
 "aca" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -1238,7 +1230,7 @@
 	dir = 9
 	},
 /turf/simulated/floor/tiled,
-/area/tether/surfacebase/lowernortheva)
+/area/tether/surfacebase/lowernorthhall)
 "acb" = (
 /turf/simulated/mineral,
 /area/rnd/testingroom)
@@ -1499,7 +1491,7 @@
 	dir = 6
 	},
 /turf/simulated/floor/tiled,
-/area/tether/surfacebase/lowernortheva)
+/area/tether/surfacebase/lowernorthhall)
 "acz" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1;
@@ -1536,7 +1528,7 @@
 	pixel_x = 32
 	},
 /turf/simulated/floor/tiled,
-/area/tether/surfacebase/lowernortheva)
+/area/tether/surfacebase/lowernorthhall)
 "acC" = (
 /obj/structure/table/woodentable,
 /obj/item/device/flashlight/lamp/green{
@@ -20836,6 +20828,9 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
+/obj/machinery/door/window/westleft{
+	req_access = list(31)
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/cargostore)
 "aHG" = (
@@ -21731,6 +21726,9 @@
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/machinery/door/window/westleft{
+	req_access = list(31)
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/cargostore)
@@ -31132,7 +31130,7 @@
 /area/tether/surfacebase/outside/outside1)
 "baX" = (
 /obj/machinery/door/airlock/multi_tile/glass{
-	name = "Surface Cargo"
+	name = "Cargo Shop"
 	},
 /obj/machinery/door/firedoor/multi_tile,
 /turf/simulated/floor/tiled,
@@ -31172,7 +31170,7 @@
 /area/tether/surfacebase/cargostore/office)
 "bbb" = (
 /obj/machinery/door/airlock/multi_tile/glass{
-	name = "Surface Cargo"
+	name = "Mental Health and North EVA"
 	},
 /obj/machinery/door/firedoor/glass,
 /obj/effect/floor_decal/steeldecal/steel_decals_central1{
@@ -32747,6 +32745,17 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_one_hall)
+"bHK" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24;
+	pixel_y = 0
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/surfacebase/lowmedbaymaint)
 "bMs" = (
 /obj/machinery/door/airlock/glass_external/public,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -33094,7 +33103,7 @@
 /obj/item/clothing/suit/storage/hooded/wintercoat,
 /obj/item/weapon/tank/emergency/oxygen/engi,
 /turf/simulated/floor/tiled/techfloor,
-/area/tether/surfacebase/lowernortheva)
+/area/tether/surfacebase/lowernorthhall)
 "dCc" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -33206,7 +33215,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/techfloor,
-/area/tether/surfacebase/lowernortheva)
+/area/tether/surfacebase/lowernorthhall)
 "evF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -34832,8 +34841,13 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_one_hall)
 "pdo" = (
-/turf/simulated/mineral,
-/area/tether/surfacebase/lowernortheva)
+/obj/machinery/alarm{
+	dir = 8;
+	pixel_x = 25;
+	pixel_y = 0
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/surfacebase/lowmedbaymaint)
 "poN" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/catwalk,
@@ -46380,8 +46394,8 @@ aaq
 aaq
 aaq
 aaq
-pdo
-pdo
+aah
+aah
 aah
 aah
 abT
@@ -46522,8 +46536,8 @@ aaq
 aaz
 aaM
 aaq
-aaq
-aaq
+aef
+aef
 aef
 aef
 abT
@@ -47090,8 +47104,8 @@ aaq
 aAB
 aAJ
 aaq
-aaq
-aaq
+aef
+aef
 aef
 aef
 aeS
@@ -52074,7 +52088,7 @@ aAI
 aBh
 aBi
 aBi
-aBi
+bHK
 aBi
 aBi
 aBi
@@ -52212,7 +52226,7 @@ aem
 aAI
 aAI
 aAI
-aAI
+pdo
 aAI
 aAI
 aAI

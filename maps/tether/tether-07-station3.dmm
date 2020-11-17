@@ -19444,6 +19444,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/cyan,
 /turf/simulated/floor/tiled/white,
 /area/medical/sleeper)
 "aId" = (
@@ -22482,7 +22483,7 @@
 /area/quartermaster/belterdock)
 "aOl" = (
 /obj/structure/grille,
-/obj/structure/window/reinforced/full,
+/obj/structure/foamedmetal,
 /turf/simulated/floor/plating,
 /area/maintenance/station/cargo)
 "aOu" = (
@@ -22717,14 +22718,6 @@
 "aPK" = (
 /turf/simulated/wall/r_wall,
 /area/maintenance/station/cargo)
-"aPM" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/simulated/floor/plating,
-/area/maintenance/station/cargo)
 "aPP" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -22750,9 +22743,7 @@
 /turf/simulated/floor/tiled/monotile,
 /area/tether/exploration)
 "aQa" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced,
+/obj/structure/barricade,
 /turf/simulated/floor/plating,
 /area/maintenance/station/cargo)
 "aQb" = (
@@ -30306,6 +30297,10 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/shuttle/securiship/cockpit)
+"ukV" = (
+/obj/structure/firedoor_assembly,
+/turf/simulated/floor/plating,
+/area/maintenance/station/cargo)
 "upC" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -39634,8 +39629,8 @@ aQs
 aQs
 aPK
 aPK
-aPM
-aPM
+aQa
+aQa
 aPK
 aPK
 aaa
@@ -41163,13 +41158,13 @@ mqv
 tzx
 aCk
 aAH
+aQa
 aSo
 aSo
 aSo
 aSo
 aSo
-aSo
-aSo
+ukV
 aAH
 aHM
 aIl
@@ -41305,13 +41300,13 @@ dFr
 aoh
 auN
 aAH
+aQa
 aSo
 aSo
 aSo
 aSo
 aSo
-aSo
-aSo
+aQa
 aAH
 aAH
 aAH
@@ -41455,11 +41450,11 @@ aAH
 aQC
 aAH
 aAH
+aQa
+ukV
+ukV
 aSo
-aSo
-aSo
-aSo
-aSo
+aQa
 aAH
 aLs
 aLV
@@ -41596,8 +41591,8 @@ aEP
 aAH
 aSo
 aSo
-aSo
-aSo
+aQa
+aQa
 aSo
 aSo
 aSo

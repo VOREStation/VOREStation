@@ -3808,6 +3808,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/exploration/staircase)
+"fD" = (
+/obj/structure/firedoor_assembly,
+/turf/simulated/floor,
+/area/medical/morgue)
 "fE" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 8
@@ -14524,6 +14528,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/exploration/equipment)
+"yB" = (
+/obj/structure/barricade,
+/turf/simulated/floor,
+/area/medical/psych)
 "yH" = (
 /obj/structure/closet/secure_closet/pilot,
 /obj/effect/floor_decal/borderfloor,
@@ -14610,6 +14618,10 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery)
+"zc" = (
+/obj/structure/firedoor_assembly,
+/turf/simulated/floor,
+/area/medical/psych)
 "zd" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -18664,6 +18676,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/security/brig)
+"Jb" = (
+/obj/structure/barricade,
+/turf/simulated/floor/airless,
+/area/medical/patient_c)
 "Jc" = (
 /obj/machinery/seed_storage/brig{
 	dir = 8
@@ -18874,6 +18890,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/security/security_cell_hallway)
+"KS" = (
+/obj/structure/barricade,
+/turf/simulated/floor,
+/area/maintenance/station/medbay)
 "KT" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
@@ -20288,6 +20308,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/white,
 /area/maintenance/station/sec_lower)
+"Ta" = (
+/obj/structure/frame,
+/turf/simulated/floor,
+/area/medical/morgue)
 "Tb" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -20950,6 +20974,10 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/maintenance/station/sec_lower)
+"WH" = (
+/obj/structure/barricade,
+/turf/simulated/floor,
+/area/medical/morgue)
 "WJ" = (
 /obj/structure/catwalk,
 /obj/effect/decal/cleanable/dirt,
@@ -29738,9 +29766,9 @@ AH
 AX
 Bm
 BC
+Jb
 CD
-CD
-CD
+Jb
 CO
 aP
 ab
@@ -30567,8 +30595,8 @@ rW
 rk
 fM
 po
-wz
-wz
+zc
+zc
 wz
 wz
 wz
@@ -30851,7 +30879,7 @@ rW
 Dh
 Yy
 po
-wz
+zc
 wz
 wz
 wz
@@ -31139,12 +31167,12 @@ qL
 wb
 rD
 pp
+zc
 wz
 wz
 wz
-wz
-wz
-wz
+yB
+yB
 xb
 xv
 ye
@@ -31987,11 +32015,11 @@ ac
 ac
 uW
 KV
+Ta
 KV
 KV
-KV
-KV
-KV
+fD
+WH
 tu
 tU
 vd
@@ -32129,11 +32157,11 @@ ac
 ac
 uW
 KV
+Ta
 KV
 KV
 KV
-KV
-KV
+WH
 tu
 tV
 ve
@@ -32417,7 +32445,7 @@ KV
 KV
 KV
 KV
-KV
+fD
 tu
 tX
 vh
@@ -32559,7 +32587,7 @@ KV
 KV
 KV
 KV
-KV
+fD
 tu
 uq
 vw
@@ -32570,7 +32598,7 @@ zP
 zP
 xg
 zP
-zP
+KS
 xg
 pp
 pp
@@ -32839,7 +32867,7 @@ ac
 ac
 uW
 KV
-KV
+Ta
 KV
 KV
 KV
@@ -32981,7 +33009,7 @@ ac
 ac
 uW
 KV
-KV
+Ta
 KV
 KV
 KV

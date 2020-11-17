@@ -923,7 +923,7 @@
 	},
 /obj/machinery/door/airlock/multi_tile/metal{
 	dir = 1;
-	name = "Medical Airlock";
+	name = "Triage";
 	req_access = list(5);
 	req_one_access = list(5)
 	},
@@ -3426,7 +3426,6 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lobby)
 "agn" = (
-/obj/machinery/door/airlock/glass_medical,
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
@@ -3435,6 +3434,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/glass_medical{
+	name = "Medical Outfitting"
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/outfitting)
 "ago" = (
@@ -26027,7 +26029,7 @@
 	},
 /obj/machinery/door/airlock/multi_tile/metal{
 	dir = 1;
-	name = "Medical Airlock";
+	name = "Triage";
 	req_access = list(5);
 	req_one_access = list(5)
 	},
@@ -35262,7 +35264,6 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/outfitting)
 "bjD" = (
-/obj/machinery/door/airlock/medical,
 /obj/structure/cable/green{
 	d1 = 4;
 	d2 = 8;
@@ -35275,6 +35276,9 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/glass_medical{
+	name = "Medical Outfitting"
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/outfitting)
 "bjE" = (
@@ -36498,7 +36502,9 @@
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
 "ffg" = (
-/obj/machinery/door/airlock/medical,
+/obj/machinery/door/airlock/medical{
+	name = "Medical Admin Access"
+	},
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/admin)
