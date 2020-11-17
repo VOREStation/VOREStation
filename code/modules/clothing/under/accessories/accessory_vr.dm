@@ -12,12 +12,12 @@
 	item_state = "choker_cst"
 	overlay_state = "choker_cst"
 	var/customized = 0
-	var/icon_previous_override //yw addition
+	var/icon_previous_override
 	sprite_sheets = list(
 		SPECIES_TESHARI = 'icons/mob/species/seromi/ties_vr.dmi'
 		)
 
-//ywedit start. forces different sprite sheet on equip
+//Forces different sprite sheet on equip
 /obj/item/clothing/accessory/choker/New()
 	..()
 	icon_previous_override = icon_override
@@ -28,9 +28,8 @@
 
 /obj/item/clothing/accessory/choker/proc/setUniqueSpeciesSprite()
 	var/mob/living/carbon/human/H = loc
-	if(!istype(H))
-		if(istype(has_suit) && ishuman(has_suit.loc))
-			H = has_suit.loc
+	if(!istype(H) && istype(has_suit) && ishuman(has_suit.loc))
+		H = has_suit.loc
 	if(sprite_sheets && istype(H) && H.species.get_bodytype(H) && (H.species.get_bodytype(H) in sprite_sheets))
 		icon_override = sprite_sheets[H.species.get_bodytype(H)]
 		update_clothing_icon()
@@ -44,7 +43,6 @@
 
 /obj/item/clothing/accessory/choker/dropped()
 	icon_override = icon_previous_override
-//ywedit end
 
 /obj/item/clothing/accessory/choker/attack_self(mob/user as mob)
 	if(!customized)
@@ -64,12 +62,12 @@
 	icon_override = 'icons/mob/ties_vr.dmi'
 	icon_state = "collar_blk"
 	var/writtenon = 0
-	var/icon_previous_override //yw addition
+	var/icon_previous_override
 	sprite_sheets = list(
 		SPECIES_TESHARI = 'icons/mob/species/seromi/ties_vr.dmi'
 		)
 
-//ywedit start. forces different sprite sheet on equip
+//Forces different sprite sheet on equip
 /obj/item/clothing/accessory/collar/New()
 	..()
 	icon_previous_override = icon_override
@@ -80,9 +78,8 @@
 
 /obj/item/clothing/accessory/collar/proc/setUniqueSpeciesSprite()
 	var/mob/living/carbon/human/H = loc
-	if(!istype(H))
-		if(istype(has_suit) && ishuman(has_suit.loc))
-			H = has_suit.loc
+	if(!istype(H) && istype(has_suit) && ishuman(has_suit.loc))
+		H = has_suit.loc
 	if(sprite_sheets && istype(H) && H.species.get_bodytype(H) && (H.species.get_bodytype(H) in sprite_sheets))
 		icon_override = sprite_sheets[H.species.get_bodytype(H)]
 		update_clothing_icon()
@@ -96,7 +93,6 @@
 
 /obj/item/clothing/accessory/collar/dropped()
 	icon_override = icon_previous_override
-//ywedit end
 
 /obj/item/clothing/accessory/collar/silver
 	name = "Silver tag collar"

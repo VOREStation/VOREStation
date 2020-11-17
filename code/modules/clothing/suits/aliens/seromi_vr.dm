@@ -3,22 +3,22 @@
 	name = "dark aesthetic cloak"
 	icon_state = "tesh_cloak_dretrowave"
 	item_state = "tesh_cloak_dretrowave"
-	icon = 'icons/mob/species/seromi/teshari_cloak_ch.dmi'
-	icon_override = 'icons/mob/species/seromi/teshari_cloak_ch.dmi'
+	icon = 'icons/mob/species/seromi/teshari_cloak_vr.dmi'
+	icon_override = 'icons/mob/species/seromi/teshari_cloak_vr.dmi'
 
 /obj/item/clothing/suit/storage/seromi/cloak/standard/black_glow
 	name = "black and glowing cloak"
 	icon_state = "tesh_cloak_bglowing"
 	item_state = "tesh_cloak_bglowing"
-	icon = 'icons/mob/species/seromi/teshari_cloak_ch.dmi'
-	icon_override = 'icons/mob/species/seromi/teshari_cloak_ch.dmi'
+	icon = 'icons/mob/species/seromi/teshari_cloak_vr.dmi'
+	icon_override = 'icons/mob/species/seromi/teshari_cloak_vr.dmi'
 
 //Hooded teshari cloaks
 /obj/item/clothing/suit/storage/hooded/teshari
 	name = "Hooded Teshari Cloak"
 	desc = "A soft teshari cloak with an added hood."
-	icon_override = 'icons/mob/species/seromi/teshari_hood_ch.dmi'
-	icon = 'icons/mob/species/seromi/teshari_hood_ch.dmi'
+	icon_override = 'icons/mob/species/seromi/teshari_hood_vr.dmi'
+	icon = 'icons/mob/species/seromi/teshari_hood_vr.dmi'
 	icon_state = "tesh_hcloak_bo"
 	item_state_slots = list(slot_r_hand_str = "tesh_hcloak_bo", slot_l_hand_str = "tesh_hcloak_bo")
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
@@ -31,8 +31,8 @@
 /obj/item/clothing/head/tesh_hood
 	name = "Cloak Hood"
 	desc = "A hood attached to a teshari cloak."
-	icon_override = 'icons/mob/species/seromi/teshari_hood_ch.dmi'
-	icon = 'icons/mob/species/seromi/teshari_hood_ch.dmi'
+	icon_override = 'icons/mob/species/seromi/teshari_hood_vr.dmi'
+	icon = 'icons/mob/species/seromi/teshari_hood_vr.dmi'
 	icon_state = "tesh_hood_bo"
 	item_state_slots = list(slot_r_hand_str = "tesh_hood_bo", slot_l_hand_str = "tesh_hood_bo")
 	flags_inv = BLOCKHAIR
@@ -318,8 +318,8 @@
 /obj/item/clothing/suit/storage/seromi/beltcloak
 	name = "belted cloak"
 	desc = "A more ridged and stylized Teshari cloak."
-	icon = 'icons/mob/species/seromi/teshari_cloak_ch.dmi'
-	icon_override = 'icons/mob/species/seromi/teshari_cloak_ch.dmi'
+	icon = 'icons/mob/species/seromi/teshari_cloak_vr.dmi'
+	icon_override = 'icons/mob/species/seromi/teshari_cloak_vr.dmi'
 	icon_state = "tesh_beltcloak_bo"
 	item_state = "tesh_beltcloak_bo"
 	species_restricted = list(SPECIES_TESHARI)
@@ -452,8 +452,8 @@
 
 //Belted job cloaks
 /obj/item/clothing/suit/storage/seromi/beltcloak/jobs
-	icon = 'icons/mob/species/seromi/teshari_cloak_ch.dmi'
-	icon_override = 'icons/mob/species/seromi/teshari_cloak_ch.dmi'
+	icon = 'icons/mob/species/seromi/teshari_cloak_vr.dmi'
+	icon_override = 'icons/mob/species/seromi/teshari_cloak_vr.dmi'
 
 /obj/item/clothing/suit/storage/seromi/beltcloak/jobs/cargo
 	name = "cargo belted cloak"
@@ -506,8 +506,8 @@
 /obj/item/clothing/suit/storage/seromi/beltcloak/jobs/chemistry
 	name = "chemist belted cloak"
 	desc = "A soft Teshari cloak made for the Chemist"
-	icon_state = "tesh_beltcloak_chem"
-	item_state = "tesh_beltcloak_chem"
+	icon_state = "tesh_beltcloak_vrem"
+	item_state = "tesh_beltcloak_vrem"
 
 /obj/item/clothing/suit/storage/seromi/beltcloak/jobs/viro
 	name = "virologist belted cloak"
@@ -574,3 +574,279 @@
 	desc = "A soft Teshari cloak made for the Janitor"
 	icon_state = "tesh_beltcloak_jani"
 	item_state = "tesh_beltcloak_jani"
+
+//Alternate standard & job cloaks.
+/obj/item/clothing/suit/storage/teshari/cloak_vr
+	name = "black cloak (VR)"
+	desc = "It drapes over a Teshari's shoulders and closes at the neck with pockets convienently placed inside."
+	icon = 'icons/mob/species/seromi/teshari_cloak_vr.dmi'
+	icon_override = 'icons/mob/species/seromi/teshari_cloak_vr.dmi'
+	icon_state = "tesh_cloak_bn"
+	item_state = "tesh_cloak_bn"
+	species_restricted = list(SPECIES_TESHARI)
+	body_parts_covered = UPPER_TORSO|ARMS
+
+/obj/item/clothing/suit/storage/teshari/cloak_vr/standard/black_red
+	name = "black and red cloak (VR)"
+	icon_state = "tesh_cloak_br"
+	item_state = "tesh_cloak_br"
+
+/obj/item/clothing/suit/storage/teshari/cloak_vr/standard/black_orange
+	name = "black and orange cloak (VR)"
+	icon_state = "tesh_cloak_bo"
+	item_state = "tesh_cloak_bo"
+
+/obj/item/clothing/suit/storage/teshari/cloak_vr/standard/black_yellow
+	name = "black and yellow cloak (VR)"
+	icon_state = "tesh_cloak_by"
+	item_state = "tesh_cloak_by"
+
+/obj/item/clothing/suit/storage/teshari/cloak_vr/standard/black_green
+	name = "black and green cloak (VR)"
+	icon_state = "tesh_cloak_bgr"
+	item_state = "tesh_cloak_bgr"
+
+/obj/item/clothing/suit/storage/teshari/cloak_vr/standard/black_blue
+	name = "black and blue cloak (VR)"
+	icon_state = "tesh_cloak_bbl"
+	item_state = "tesh_cloak_bbl"
+
+/obj/item/clothing/suit/storage/teshari/cloak_vr/standard/black_purple
+	name = "black and purple cloak (VR)"
+	icon_state = "tesh_cloak_bp"
+	item_state = "tesh_cloak_bp"
+
+/obj/item/clothing/suit/storage/teshari/cloak_vr/standard/black_pink
+	name = "black and pink cloak (VR)"
+	icon_state = "tesh_cloak_bpi"
+	item_state = "tesh_cloak_bpi"
+
+/obj/item/clothing/suit/storage/teshari/cloak_vr/standard/black_brown
+	name = "black and brown cloak (VR)"
+	icon_state = "tesh_cloak_bbr"
+	item_state = "tesh_cloak_bbr"
+
+/obj/item/clothing/suit/storage/teshari/cloak_vr/standard/black_grey
+	name = "black and grey cloak (VR)"
+	icon_state = "tesh_cloak_bg"
+	item_state = "tesh_cloak_bg"
+
+/obj/item/clothing/suit/storage/teshari/cloak_vr/standard/black_white
+	name = "black and white cloak (VR)"
+	icon_state = "tesh_cloak_bw"
+	item_state = "tesh_cloak_bw"
+
+/obj/item/clothing/suit/storage/teshari/cloak_vr/standard/white
+	name = "white cloak (VR)"
+	icon_state = "tesh_cloak_wn"
+	item_state = "tesh_cloak_wn"
+
+/obj/item/clothing/suit/storage/teshari/cloak_vr/standard/white_grey
+	name = "white and grey cloak (VR)"
+	icon_state = "tesh_cloak_wg"
+	item_state = "tesh_cloak_wg"
+
+/obj/item/clothing/suit/storage/teshari/cloak_vr/standard/red_grey
+	name = "red and grey cloak (VR)"
+	icon_state = "tesh_cloak_rg"
+	item_state = "tesh_cloak_rg"
+
+/obj/item/clothing/suit/storage/teshari/cloak_vr/standard/orange_grey
+	name = "orange and grey cloak (VR)"
+	icon_state = "tesh_cloak_og"
+	item_state = "tesh_cloak_og"
+
+/obj/item/clothing/suit/storage/teshari/cloak_vr/standard/yellow_grey
+	name = "yellow and grey cloak (VR)"
+	icon_state = "tesh_cloak_yg"
+	item_state = "tesh_cloak_yg"
+
+/obj/item/clothing/suit/storage/teshari/cloak_vr/standard/green_grey
+	name = "green and grey cloak (VR)"
+	icon_state = "tesh_cloak_gg"
+	item_state = "tesh_cloak_gg"
+
+/obj/item/clothing/suit/storage/teshari/cloak_vr/standard/blue_grey
+	name = "blue and grey cloak (VR)"
+	icon_state = "tesh_cloak_blug"
+	item_state = "tesh_cloak_blug"
+
+/obj/item/clothing/suit/storage/teshari/cloak_vr/standard/purple_grey
+	name = "purple and grey cloak (VR)"
+	icon_state = "tesh_cloak_pg"
+	item_state = "tesh_cloak_pg"
+
+/obj/item/clothing/suit/storage/teshari/cloak_vr/standard/pink_grey
+	name = "pink and grey cloak (VR)"
+	icon_state = "tesh_cloak_pig"
+	item_state = "tesh_cloak_pig"
+
+/obj/item/clothing/suit/storage/teshari/cloak_vr/standard/brown_grey
+	name = "brown and grey cloak (VR)"
+	icon_state = "tesh_cloak_brg"
+	item_state = "tesh_cloak_brg"
+
+/obj/item/clothing/suit/storage/teshari/cloak_vr/standard/rainbow
+	name = "rainbow cloak (VR)"
+	icon_state = "tesh_cloak_rainbow"
+	item_state = "tesh_cloak_rainbow"
+
+/obj/item/clothing/suit/storage/teshari/cloak_vr/standard/orange
+	name = "orange cloak (VR)"
+	icon_state = "tesh_cloak_on"
+	item_state = "tesh_cloak_on"
+
+//Alternate Job Cloaks - subpathed for ease of access in loadouts. Net new get a unique _vr path.
+/obj/item/clothing/suit/storage/seromi/cloak/jobs/cap_vr
+	name = "facility director cloak (VR)"
+	desc = "A soft Teshari cloak made for the Facility Director"
+	icon_state = "tesh_cloak_cap"
+	item_state = "tesh_cloak_cap"
+	icon = 'icons/mob/species/seromi/deptcloak_vr.dmi'
+	icon_override = 'icons/mob/species/seromi/deptcloak_vr.dmi'
+
+//Cargo
+
+/obj/item/clothing/suit/storage/seromi/cloak/jobs/qm/VR
+	name = "quartermaster cloak (VR)"
+	desc = "A soft Teshari cloak made for the Quartermaster"
+	icon = 'icons/mob/species/seromi/deptcloak_vr.dmi'
+	icon_override = 'icons/mob/species/seromi/deptcloak_vr.dmi'
+
+/obj/item/clothing/suit/storage/seromi/cloak/jobs/cargo/VR
+	name = "cargo cloak (VR)"
+	desc = "A soft Teshari cloak made for the Cargo department"
+	icon = 'icons/mob/species/seromi/deptcloak_vr.dmi'
+	icon_override = 'icons/mob/species/seromi/deptcloak_vr.dmi'
+
+/obj/item/clothing/suit/storage/seromi/cloak/jobs/mining/VR
+	name = "mining cloak (VR)"
+	desc = "A soft Teshari cloak made for Mining"
+	icon = 'icons/mob/species/seromi/deptcloak_vr.dmi'
+	icon_override = 'icons/mob/species/seromi/deptcloak_vr.dmi'
+
+/obj/item/clothing/suit/storage/seromi/cloak/jobs/command/VR
+	name = "command cloak (VR)"
+	desc = "A soft Teshari cloak made for the Command department"
+	icon = 'icons/mob/species/seromi/deptcloak_vr.dmi'
+	icon_override = 'icons/mob/species/seromi/deptcloak_vr.dmi'
+
+//Engineering
+
+/obj/item/clothing/suit/storage/seromi/cloak/jobs/ce/VR
+	name = "chief engineer cloak (VR)"
+	desc = "A soft Teshari cloak made the Chief Engineer"
+	icon = 'icons/mob/species/seromi/deptcloak_vr.dmi'
+	icon_override = 'icons/mob/species/seromi/deptcloak_vr.dmi'
+
+/obj/item/clothing/suit/storage/seromi/cloak/jobs/eningeer/VR
+	name = "engineering cloak (VR)"
+	desc = "A soft Teshari cloak made for the Engineering department"
+	icon = 'icons/mob/species/seromi/deptcloak_vr.dmi'
+	icon_override = 'icons/mob/species/seromi/deptcloak_vr.dmi'
+
+/obj/item/clothing/suit/storage/seromi/cloak/jobs/atmos/VR
+	name = "atmospherics cloak (VR)"
+	desc = "A soft Teshari cloak made for the Atmospheric Technician"
+	icon = 'icons/mob/species/seromi/deptcloak_vr.dmi'
+	icon_override = 'icons/mob/species/seromi/deptcloak_vr.dmi'
+
+//Medical
+
+/obj/item/clothing/suit/storage/seromi/cloak/jobs/cmo/VR
+	name = "chief medical officer cloak (VR)"
+	desc = "A soft Teshari cloak made the Cheif Medical Officer"
+	icon = 'icons/mob/species/seromi/deptcloak_vr.dmi'
+	icon_override = 'icons/mob/species/seromi/deptcloak_vr.dmi'
+
+/obj/item/clothing/suit/storage/seromi/cloak/jobs/medical/VR
+	name = "medical cloak (VR)"
+	desc = "A soft Teshari cloak made for the Medical department"
+	icon = 'icons/mob/species/seromi/deptcloak_vr.dmi'
+	icon_override = 'icons/mob/species/seromi/deptcloak_vr.dmi'
+
+/obj/item/clothing/suit/storage/seromi/cloak/jobs/chemistry/VR
+	name = "chemist cloak (VR)"
+	desc = "A soft Teshari cloak made for the Chemist"
+	icon = 'icons/mob/species/seromi/deptcloak_vr.dmi'
+	icon_override = 'icons/mob/species/seromi/deptcloak_vr.dmi'
+
+/obj/item/clothing/suit/storage/seromi/cloak/jobs/viro/VR
+	name = "virologist cloak (VR)"
+	desc = "A soft Teshari cloak made for the Virologist"
+	icon = 'icons/mob/species/seromi/deptcloak_vr.dmi'
+	icon_override = 'icons/mob/species/seromi/deptcloak_vr.dmi'
+
+/obj/item/clothing/suit/storage/seromi/cloak/jobs/para/VR
+	name = "paramedic cloak (VR)"
+	desc = "A soft Teshari cloak made for the Paramedic"
+	icon = 'icons/mob/species/seromi/deptcloak_vr.dmi'
+	icon_override = 'icons/mob/species/seromi/deptcloak_vr.dmi'
+
+/obj/item/clothing/suit/storage/seromi/cloak/jobs/psych_vr
+	name = "psychiatrist cloak (VR)"
+	desc = "A soft Teshari cloak made for the Psychiatrist"
+	icon_state = "tesh_cloak_psych"
+	item_state = "tesh_cloak_psych"
+	icon = 'icons/mob/species/seromi/deptcloak_vr.dmi'
+	icon_override = 'icons/mob/species/seromi/deptcloak_vr.dmi'
+
+//Science
+
+/obj/item/clothing/suit/storage/seromi/cloak/jobs/rd_vr
+	name = "research director cloak (VR)"
+	desc = "A soft Teshari cloak made for the Research Director"
+	icon_state = "tesh_cloak_rd"
+	item_state = "tesh_cloak_rd"
+	icon = 'icons/mob/species/seromi/deptcloak_vr.dmi'
+	icon_override = 'icons/mob/species/seromi/deptcloak_vr.dmi'
+
+/obj/item/clothing/suit/storage/seromi/cloak/jobs/sci/VR
+	name = "scientist cloak (VR)"
+	desc = "A soft Teshari cloak made for the Science department"
+	icon = 'icons/mob/species/seromi/deptcloak_vr.dmi'
+	icon_override = 'icons/mob/species/seromi/deptcloak_vr.dmi'
+
+/obj/item/clothing/suit/storage/seromi/cloak/jobs/robo/VR
+	name = "roboticist cloak (VR)"
+	desc = "A soft Teshari cloak made for the Roboticist"
+	icon = 'icons/mob/species/seromi/deptcloak_vr.dmi'
+	icon_override = 'icons/mob/species/seromi/deptcloak_vr.dmi'
+
+//Security
+
+/obj/item/clothing/suit/storage/seromi/cloak/jobs/hos_vr
+	name = "head of security cloak (VR)"
+	desc = "A soft Teshari cloak made for the Head of Security"
+	icon_state = "tesh_cloak_hos"
+	item_state = "tesh_cloak_hos"
+	icon = 'icons/mob/species/seromi/deptcloak_vr.dmi'
+	icon_override = 'icons/mob/species/seromi/deptcloak_vr.dmi'
+
+/obj/item/clothing/suit/storage/seromi/cloak/jobs/sec/VR
+	name = "security cloak (VR)"
+	desc = "A soft Teshari cloak made for the Security department"
+	icon = 'icons/mob/species/seromi/deptcloak_vr.dmi'
+	icon_override = 'icons/mob/species/seromi/deptcloak_vr.dmi'
+
+/obj/item/clothing/suit/storage/seromi/cloak/jobs/iaa/VR
+	name = "internal affairs cloak (VR)"
+	desc = "A soft Teshari cloak made for the Internal Affairs Agent"
+	icon = 'icons/mob/species/seromi/deptcloak_vr.dmi'
+	icon_override = 'icons/mob/species/seromi/deptcloak_vr.dmi'
+
+//Service
+
+/obj/item/clothing/suit/storage/seromi/cloak/jobs/hop_vr
+	name = "head of personnel cloak (VR)"
+	desc = "A soft Teshari cloak made for the Head of Personnel"
+	icon_state = "tesh_cloak_hop"
+	item_state = "tesh_cloak_hop"
+	icon = 'icons/mob/species/seromi/deptcloak_vr.dmi'
+	icon_override = 'icons/mob/species/seromi/deptcloak_vr.dmi'
+
+/obj/item/clothing/suit/storage/seromi/cloak/jobs/service/VR
+	name = "service cloak (VR)"
+	desc = "A soft Teshari cloak made for the Service department"
+	icon = 'icons/mob/species/seromi/deptcloak_vr.dmi'
+	icon_override = 'icons/mob/species/seromi/deptcloak_vr.dmi'
