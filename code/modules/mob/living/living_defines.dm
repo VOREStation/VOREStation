@@ -73,5 +73,9 @@
 
 	var/image/selected_image = null // Used for buildmode AI control stuff.
 
+<<<<<<< HEAD
 	var/inventory_panel_type = /datum/inventory_panel
 	var/datum/inventory_panel/inventory_panel
+=======
+	var/allow_self_surgery = FALSE	// Used to determine if the mob can perform surgery on itself.
+>>>>>>> b411c75... Self-Surgery (#7671)
