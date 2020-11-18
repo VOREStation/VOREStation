@@ -43,12 +43,35 @@
 		if(LAZYLEN(organs))
 			organs_by_name.Cut()
 
+			for(var/path in organs)
+				if(ispath(path))
+					var/obj/item/organ/external/neworg = new path(src)
+					neworg.name = "[name] [neworg.name]"
+					neworg.meat_type = meat_type
+
+					if(istype(src, /mob/living/simple_mob))
+						var/mob/living/simple_mob/SM = src
+						if(SM.limb_icon)
+							neworg.force_icon = SM.limb_icon
+							neworg.force_icon_key = SM.limb_icon_key
+
+					organs |= neworg
+					organs -= path
+
 			for(var/obj/item/organ/OR in organs)
 				OR.removed()
 				organs -= OR
 
 		if(LAZYLEN(internal_organs))
 			internal_organs_by_name.Cut()
+
+			for(var/path in internal_organs)
+				if(ispath(path))
+					var/obj/item/organ/neworg = new path(src, TRUE)
+					neworg.name = "[name] [neworg.name]"
+					neworg.meat_type = meat_type
+					internal_organs |= neworg
+					internal_organs -= path
 
 			for(var/obj/item/organ/OR in internal_organs)
 				OR.removed()
