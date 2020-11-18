@@ -696,7 +696,7 @@
 	icon_state = "tesh_cloak_on"
 	item_state = "tesh_cloak_on"
 
-//Alternate Job Cloaks - subpathed for ease of access in loadouts. Net new get a unique _vr path.
+//Alternate Job Cloaks - subpathed for ease of access in loadouts. If the path ends in _vr not /vr it's net-new.
 /obj/item/clothing/suit/storage/seromi/cloak/jobs/cap_vr
 	name = "facility director cloak (VR)"
 	desc = "A soft Teshari cloak made for the Facility Director"
@@ -707,79 +707,67 @@
 
 //Cargo
 
-/obj/item/clothing/suit/storage/seromi/cloak/jobs/qm/VR
+/obj/item/clothing/suit/storage/seromi/cloak/jobs/qm/vr
 	name = "quartermaster cloak (VR)"
-	desc = "A soft Teshari cloak made for the Quartermaster"
 	icon = 'icons/mob/species/seromi/deptcloak_vr.dmi'
 	icon_override = 'icons/mob/species/seromi/deptcloak_vr.dmi'
 
-/obj/item/clothing/suit/storage/seromi/cloak/jobs/cargo/VR
+/obj/item/clothing/suit/storage/seromi/cloak/jobs/cargo/vr
 	name = "cargo cloak (VR)"
-	desc = "A soft Teshari cloak made for the Cargo department"
 	icon = 'icons/mob/species/seromi/deptcloak_vr.dmi'
 	icon_override = 'icons/mob/species/seromi/deptcloak_vr.dmi'
 
-/obj/item/clothing/suit/storage/seromi/cloak/jobs/mining/VR
+/obj/item/clothing/suit/storage/seromi/cloak/jobs/mining/vr
 	name = "mining cloak (VR)"
-	desc = "A soft Teshari cloak made for Mining"
 	icon = 'icons/mob/species/seromi/deptcloak_vr.dmi'
 	icon_override = 'icons/mob/species/seromi/deptcloak_vr.dmi'
 
-/obj/item/clothing/suit/storage/seromi/cloak/jobs/command/VR
+/obj/item/clothing/suit/storage/seromi/cloak/jobs/command/vr
 	name = "command cloak (VR)"
-	desc = "A soft Teshari cloak made for the Command department"
 	icon = 'icons/mob/species/seromi/deptcloak_vr.dmi'
 	icon_override = 'icons/mob/species/seromi/deptcloak_vr.dmi'
 
 //Engineering
 
-/obj/item/clothing/suit/storage/seromi/cloak/jobs/ce/VR
+/obj/item/clothing/suit/storage/seromi/cloak/jobs/ce/vr
 	name = "chief engineer cloak (VR)"
-	desc = "A soft Teshari cloak made the Chief Engineer"
 	icon = 'icons/mob/species/seromi/deptcloak_vr.dmi'
 	icon_override = 'icons/mob/species/seromi/deptcloak_vr.dmi'
 
-/obj/item/clothing/suit/storage/seromi/cloak/jobs/eningeer/VR
+/obj/item/clothing/suit/storage/seromi/cloak/jobs/eningeer/vr
 	name = "engineering cloak (VR)"
-	desc = "A soft Teshari cloak made for the Engineering department"
 	icon = 'icons/mob/species/seromi/deptcloak_vr.dmi'
 	icon_override = 'icons/mob/species/seromi/deptcloak_vr.dmi'
 
-/obj/item/clothing/suit/storage/seromi/cloak/jobs/atmos/VR
+/obj/item/clothing/suit/storage/seromi/cloak/jobs/atmos/vr
 	name = "atmospherics cloak (VR)"
-	desc = "A soft Teshari cloak made for the Atmospheric Technician"
 	icon = 'icons/mob/species/seromi/deptcloak_vr.dmi'
 	icon_override = 'icons/mob/species/seromi/deptcloak_vr.dmi'
 
 //Medical
 
-/obj/item/clothing/suit/storage/seromi/cloak/jobs/cmo/VR
+/obj/item/clothing/suit/storage/seromi/cloak/jobs/cmo/vr
 	name = "chief medical officer cloak (VR)"
-	desc = "A soft Teshari cloak made the Cheif Medical Officer"
 	icon = 'icons/mob/species/seromi/deptcloak_vr.dmi'
 	icon_override = 'icons/mob/species/seromi/deptcloak_vr.dmi'
 
-/obj/item/clothing/suit/storage/seromi/cloak/jobs/medical/VR
+/obj/item/clothing/suit/storage/seromi/cloak/jobs/medical/vr
 	name = "medical cloak (VR)"
-	desc = "A soft Teshari cloak made for the Medical department"
 	icon = 'icons/mob/species/seromi/deptcloak_vr.dmi'
 	icon_override = 'icons/mob/species/seromi/deptcloak_vr.dmi'
 
-/obj/item/clothing/suit/storage/seromi/cloak/jobs/chemistry/VR
+/obj/item/clothing/suit/storage/seromi/cloak/jobs/chemistry/vr
 	name = "chemist cloak (VR)"
-	desc = "A soft Teshari cloak made for the Chemist"
 	icon = 'icons/mob/species/seromi/deptcloak_vr.dmi'
 	icon_override = 'icons/mob/species/seromi/deptcloak_vr.dmi'
 
-/obj/item/clothing/suit/storage/seromi/cloak/jobs/viro/VR
+/obj/item/clothing/suit/storage/seromi/cloak/jobs/viro/vr
 	name = "virologist cloak (VR)"
-	desc = "A soft Teshari cloak made for the Virologist"
 	icon = 'icons/mob/species/seromi/deptcloak_vr.dmi'
 	icon_override = 'icons/mob/species/seromi/deptcloak_vr.dmi'
 
-/obj/item/clothing/suit/storage/seromi/cloak/jobs/para/VR
+/obj/item/clothing/suit/storage/seromi/cloak/jobs/para/vr
 	name = "paramedic cloak (VR)"
-	desc = "A soft Teshari cloak made for the Paramedic"
 	icon = 'icons/mob/species/seromi/deptcloak_vr.dmi'
 	icon_override = 'icons/mob/species/seromi/deptcloak_vr.dmi'
 
@@ -801,15 +789,13 @@
 	icon = 'icons/mob/species/seromi/deptcloak_vr.dmi'
 	icon_override = 'icons/mob/species/seromi/deptcloak_vr.dmi'
 
-/obj/item/clothing/suit/storage/seromi/cloak/jobs/sci/VR
+/obj/item/clothing/suit/storage/seromi/cloak/jobs/sci/vr
 	name = "scientist cloak (VR)"
-	desc = "A soft Teshari cloak made for the Science department"
 	icon = 'icons/mob/species/seromi/deptcloak_vr.dmi'
 	icon_override = 'icons/mob/species/seromi/deptcloak_vr.dmi'
 
-/obj/item/clothing/suit/storage/seromi/cloak/jobs/robo/VR
+/obj/item/clothing/suit/storage/seromi/cloak/jobs/robo/vr
 	name = "roboticist cloak (VR)"
-	desc = "A soft Teshari cloak made for the Roboticist"
 	icon = 'icons/mob/species/seromi/deptcloak_vr.dmi'
 	icon_override = 'icons/mob/species/seromi/deptcloak_vr.dmi'
 
@@ -823,15 +809,13 @@
 	icon = 'icons/mob/species/seromi/deptcloak_vr.dmi'
 	icon_override = 'icons/mob/species/seromi/deptcloak_vr.dmi'
 
-/obj/item/clothing/suit/storage/seromi/cloak/jobs/sec/VR
+/obj/item/clothing/suit/storage/seromi/cloak/jobs/sec/vr
 	name = "security cloak (VR)"
-	desc = "A soft Teshari cloak made for the Security department"
 	icon = 'icons/mob/species/seromi/deptcloak_vr.dmi'
 	icon_override = 'icons/mob/species/seromi/deptcloak_vr.dmi'
 
-/obj/item/clothing/suit/storage/seromi/cloak/jobs/iaa/VR
+/obj/item/clothing/suit/storage/seromi/cloak/jobs/iaa/vr
 	name = "internal affairs cloak (VR)"
-	desc = "A soft Teshari cloak made for the Internal Affairs Agent"
 	icon = 'icons/mob/species/seromi/deptcloak_vr.dmi'
 	icon_override = 'icons/mob/species/seromi/deptcloak_vr.dmi'
 
@@ -845,8 +829,7 @@
 	icon = 'icons/mob/species/seromi/deptcloak_vr.dmi'
 	icon_override = 'icons/mob/species/seromi/deptcloak_vr.dmi'
 
-/obj/item/clothing/suit/storage/seromi/cloak/jobs/service/VR
+/obj/item/clothing/suit/storage/seromi/cloak/jobs/service/vr
 	name = "service cloak (VR)"
-	desc = "A soft Teshari cloak made for the Service department"
 	icon = 'icons/mob/species/seromi/deptcloak_vr.dmi'
 	icon_override = 'icons/mob/species/seromi/deptcloak_vr.dmi'

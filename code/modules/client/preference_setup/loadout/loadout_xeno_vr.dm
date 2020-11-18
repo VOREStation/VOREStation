@@ -128,7 +128,7 @@
 	..()
 	var/list/undercoats = list()
 	for(var/undercoat in typesof(path))
-		var/obj/item/clothing/under/seromi/undercoat/standard/undercoat_type = undercoat
+		var/obj/item/clothing/under/seromi/undercoat/jobs/undercoat_type = undercoat
 		undercoats[initial(undercoat_type.name)] = undercoat_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(undercoats))
 
@@ -136,7 +136,7 @@
 	..()
 	var/list/undercoats = list()
 	for(var/undercoat in typesof(path))
-		var/obj/item/clothing/under/seromi/undercoat/standard/undercoat_type = undercoat
+		var/obj/item/clothing/under/seromi/undercoat/jobs/undercoat_type = undercoat
 		undercoats[initial(undercoat_type.name)] = undercoat_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(undercoats))
 
@@ -144,7 +144,7 @@
 	..()
 	var/list/undercoats = list()
 	for(var/undercoat in typesof(path))
-		var/obj/item/clothing/under/seromi/undercoat/standard/undercoat_type = undercoat
+		var/obj/item/clothing/under/seromi/undercoat/jobs/undercoat_type = undercoat
 		undercoats[initial(undercoat_type.name)] = undercoat_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(undercoats))
 
@@ -152,7 +152,7 @@
 	..()
 	var/list/undercoats = list()
 	for(var/undercoat in typesof(path))
-		var/obj/item/clothing/under/seromi/undercoat/standard/undercoat_type = undercoat
+		var/obj/item/clothing/under/seromi/undercoat/jobs/undercoat_type = undercoat
 		undercoats[initial(undercoat_type.name)] = undercoat_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(undercoats))
 
@@ -160,7 +160,7 @@
 	..()
 	var/list/undercoats = list()
 	for(var/undercoat in typesof(path))
-		var/obj/item/clothing/under/seromi/undercoat/standard/undercoat_type = undercoat
+		var/obj/item/clothing/under/seromi/undercoat/jobs/undercoat_type = undercoat
 		undercoats[initial(undercoat_type.name)] = undercoat_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(undercoats))
 
@@ -168,7 +168,7 @@
 	..()
 	var/list/undercoats = list()
 	for(var/undercoat in typesof(path))
-		var/obj/item/clothing/under/seromi/undercoat/standard/undercoat_type = undercoat
+		var/obj/item/clothing/under/seromi/undercoat/jobs/undercoat_type = undercoat
 		undercoats[initial(undercoat_type.name)] = undercoat_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(undercoats))
 
@@ -176,7 +176,7 @@
 	..()
 	var/list/undercoats = list()
 	for(var/undercoat in typesof(path))
-		var/obj/item/clothing/under/seromi/undercoat/standard/undercoat_type = undercoat
+		var/obj/item/clothing/under/seromi/undercoat/jobs/undercoat_type = undercoat
 		undercoats[initial(undercoat_type.name)] = undercoat_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(undercoats))
 
@@ -184,7 +184,7 @@
 	..()
 	var/list/undercoats = list()
 	for(var/undercoat in typesof(path))
-		var/obj/item/clothing/under/seromi/undercoat/standard/undercoat_type = undercoat
+		var/obj/item/clothing/under/seromi/undercoat/jobs/undercoat_type = undercoat
 		undercoats[initial(undercoat_type.name)] = undercoat_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(undercoats))
 
@@ -192,7 +192,7 @@
 	..()
 	var/list/undercoats = list()
 	for(var/undercoat in typesof(path))
-		var/obj/item/clothing/under/seromi/undercoat/standard/undercoat_type = undercoat
+		var/obj/item/clothing/under/seromi/undercoat/jobs/undercoat_type = undercoat
 		undercoats[initial(undercoat_type.name)] = undercoat_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(undercoats))
 
@@ -200,7 +200,7 @@
 	..()
 	var/list/undercoats = list()
 	for(var/undercoat in typesof(path))
-		var/obj/item/clothing/under/seromi/undercoat/standard/undercoat_type = undercoat
+		var/obj/item/clothing/under/seromi/undercoat/jobs/undercoat_type = undercoat
 		undercoats[initial(undercoat_type.name)] = undercoat_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(undercoats))
 
@@ -208,7 +208,7 @@
 	..()
 	var/list/undercoats = list()
 	for(var/undercoat in typesof(path))
-		var/obj/item/clothing/under/seromi/undercoat/standard/undercoat_type = undercoat
+		var/obj/item/clothing/under/seromi/undercoat/jobs/undercoat_type = undercoat
 		undercoats[initial(undercoat_type.name)] = undercoat_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(undercoats))
 
@@ -216,7 +216,7 @@
 	..()
 	var/list/undercoats = list()
 	for(var/undercoat in typesof(path))
-		var/obj/item/clothing/under/seromi/undercoat/standard/undercoat_type = undercoat
+		var/obj/item/clothing/under/seromi/undercoat/jobs/undercoat_type = undercoat
 		undercoats[initial(undercoat_type.name)] = undercoat_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(undercoats))
 
@@ -224,7 +224,7 @@
 	..()
 	var/list/undercoats = list()
 	for(var/undercoat in typesof(path))
-		var/obj/item/clothing/under/seromi/undercoat/standard/undercoat_type = undercoat
+		var/obj/item/clothing/under/seromi/undercoat/jobs/undercoat_type = undercoat
 		undercoats[initial(undercoat_type.name)] = undercoat_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(undercoats))
 
@@ -232,7 +232,7 @@
 	..()
 	var/list/undercoats = list()
 	for(var/undercoat in typesof(path))
-		var/obj/item/clothing/under/seromi/undercoat/standard/undercoat_type = undercoat
+		var/obj/item/clothing/under/seromi/undercoat/jobs/undercoat_type = undercoat
 		undercoats[initial(undercoat_type.name)] = undercoat_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(undercoats))
 
@@ -240,7 +240,7 @@
 	..()
 	var/list/undercoats = list()
 	for(var/undercoat in typesof(path))
-		var/obj/item/clothing/under/seromi/undercoat/standard/undercoat_type = undercoat
+		var/obj/item/clothing/under/seromi/undercoat/jobs/undercoat_type = undercoat
 		undercoats[initial(undercoat_type.name)] = undercoat_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(undercoats))
 
@@ -248,7 +248,7 @@
 	..()
 	var/list/undercoats = list()
 	for(var/undercoat in typesof(path))
-		var/obj/item/clothing/under/seromi/undercoat/standard/undercoat_type = undercoat
+		var/obj/item/clothing/under/seromi/undercoat/jobs/undercoat_type = undercoat
 		undercoats[initial(undercoat_type.name)] = undercoat_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(undercoats))
 
