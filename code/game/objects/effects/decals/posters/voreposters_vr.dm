@@ -86,3 +86,23 @@
 	icon_state = "dwposter11"
 	name = "Secgun"
 	desc = "A striking, wordless advertisement for NanoTrasen's security department. It wasn't very effective and just seems to be used as a warning sign."
+/datum/poster/vore_25
+	icon_state = "sbsposter14"
+	name = "Awoo"
+	desc = "A top contender for 'images you can hear'."
+/datum/poster/vore_26
+	icon_state = "sbsposter15"
+	name = "LikeEmSmall"
+	desc = "An advertisement for a defunct dating service for normal-sized individuals to find micro partners."
+/datum/poster/vore_27
+	icon_state = "sbsposter16"
+	name = "Borgar"
+	desc = "What do you want from Space McDonalds?"
+/datum/poster/vore_28
+	icon_state = "sbsposter17"
+	name = "DiveIn"
+	desc = "A limited edition holographic poster that seems to feature subliminal suggestions and conditioning."
+/datum/poster/vore_29
+	icon_state = "sbsposter18"
+	name = "Perdition"
+	desc = "You get the feeling that whomever made this intended for you to feel very differently than you do when you look at it."
