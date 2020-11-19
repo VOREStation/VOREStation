@@ -101,6 +101,11 @@
 	build_path = /obj/machinery/computer/arcade/orion_trail
 	origin_tech = list(TECH_DATA = 1)
 
+/obj/item/weapon/circuitboard/arcade/clawmachine
+	name = T_BOARD("grab-a-gift arcade machine")
+	build_path = /obj/machinery/computer/arcade/clawmachine
+	origin_tech = list(TECH_DATA = 1)
+
 /obj/item/weapon/circuitboard/turbine_control
 	name = T_BOARD("turbine control console")
 	build_path = /obj/machinery/computer/turbine_computer

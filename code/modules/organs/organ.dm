@@ -84,8 +84,8 @@ var/list/organ_cache = list()
 			if(!LAZYLEN(holder.organs_by_name))
 				holder.organs_by_name = list()
 
-			holder.internal_organs |= src
-			holder.internal_organs_by_name[organ_tag] = src
+			holder.organs |= src
+			holder.organs_by_name[organ_tag] = src
 
 	if(!max_damage)
 		max_damage = min_broken_damage * 2

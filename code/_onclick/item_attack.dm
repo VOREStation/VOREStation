@@ -49,7 +49,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 /mob/living/attackby(obj/item/I, mob/user, var/attack_modifier, var/click_parameters)
 	if(!ismob(user))
 		return 0
-	if(can_operate(src) && I.do_surgery(src,user))
+	if(can_operate(src, user) && I.do_surgery(src,user))
 		return 1
 	if(attempt_vr(src,"vore_attackby",args)) return //VOREStation Add - The vore, of course.
 	return I.attack(src, user, user.zone_sel.selecting, attack_modifier)
