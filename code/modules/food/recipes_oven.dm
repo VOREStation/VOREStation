@@ -558,3 +558,21 @@
 		/obj/item/weapon/reagent_containers/food/snacks/cheesewedge
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/macncheese
+	
+/datum/recipe/suppermatter
+	appliance = OVEN
+	reagents = list("radium" = 5, "milk" = 5)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/sliceable/cheesecake
+		)
+	reagent_mix = RECIPE_REAGENT_REPLACE
+	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/suppermatter
+
+/datum/recipe/excitingsuppermatter
+	appliance = OVEN
+	reagents = list("radium" = 5, "spacespice" = 5)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/sliceable/cheesecake
+		)
+	reagent_mix = RECIPE_REAGENT_REPLACE
+	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/excitingsuppermatter
