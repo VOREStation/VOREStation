@@ -1,18 +1,3 @@
-//Chompstation teshari cloaks
-/obj/item/clothing/suit/storage/seromi/cloak/standard/dark_retrowave
-	name = "dark aesthetic cloak"
-	icon_state = "tesh_cloak_dretrowave"
-	item_state = "tesh_cloak_dretrowave"
-	icon = 'icons/mob/species/seromi/teshari_cloak_vr.dmi'
-	icon_override = 'icons/mob/species/seromi/teshari_cloak_vr.dmi'
-
-/obj/item/clothing/suit/storage/seromi/cloak/standard/black_glow
-	name = "black and glowing cloak"
-	icon_state = "tesh_cloak_bglowing"
-	item_state = "tesh_cloak_bglowing"
-	icon = 'icons/mob/species/seromi/teshari_cloak_vr.dmi'
-	icon_override = 'icons/mob/species/seromi/teshari_cloak_vr.dmi'
-
 //Hooded teshari cloaks
 /obj/item/clothing/suit/storage/hooded/teshari
 	name = "Hooded Teshari Cloak"
@@ -635,6 +620,16 @@
 	name = "black and white cloak (VR)"
 	icon_state = "tesh_cloak_bw"
 	item_state = "tesh_cloak_bw"
+
+/obj/item/clothing/suit/storage/teshari/cloak_vr/standard/black_glow
+	name = "black and glowing cloak (VR)"
+	icon_state = "tesh_cloak_bglowing"
+	item_state = "tesh_cloak_bglowing"
+
+/obj/item/clothing/suit/storage/teshari/cloak_vr/standard/dark_retrowave
+	name = "dark aesthetic cloak (VR)"
+	icon_state = "tesh_cloak_dretrowave"
+	item_state = "tesh_cloak_dretrowave"
 
 /obj/item/clothing/suit/storage/teshari/cloak_vr/standard/white
 	name = "white cloak (VR)"
