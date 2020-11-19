@@ -250,6 +250,27 @@
 		/datum/mob_descriptor/build
 		)
 
+	//This is used in character setup preview generation (prefences_setup.dm) and human mob
+	//rendering (update_icons.dm)
+	var/color_mult = 0
+
+	//This is for overriding tail rendering with a specific icon in icobase, for static
+	//tails only, since tails would wag when dead if you used this
+	var/icobase_tail = 0
+
+	var/wing_hair
+	var/wing
+	var/wing_animation
+	var/icobase_wing
+	var/wikilink = null //link to wiki page for species
+	var/icon_height = 32
+	var/agility = 20 //prob() to do agile things
+
+/datum/species/proc/update_attack_types()
+	unarmed_attacks = list()
+	for(var/u_type in unarmed_types)
+		unarmed_attacks += new u_type()
+
 /datum/species/New()
 	if(hud_type)
 		hud = new hud_type()
@@ -375,7 +396,11 @@
 				t_him = "him"
 			if(FEMALE)
 				t_him = "her"
+<<<<<<< HEAD
 	//VOREStation Edit Start - Headpats and Handshakes.
+=======
+
+>>>>>>> 576d065... Kaleidoscope 2: The Retabbening (#7697)
 	if(H.zone_sel.selecting == "head")
 		H.visible_message( \
 			"<span class='notice'>[H] pats [target] on the head.</span>", \
@@ -389,9 +414,16 @@
 		H.visible_message( \
 			"<span class='notice'>[H] boops [target]'s nose.</span>", \
 			"<span class='notice'>You boop [target] on the nose.</span>", )
+<<<<<<< HEAD
 	//VOREStation Edit End
 	else H.visible_message("<span class='notice'>[H] hugs [target] to make [t_him] feel better!</span>", \
 					"<span class='notice'>You hug [target] to make [t_him] feel better!</span>") //End VOREStation Edit
+=======
+
+	else
+		H.visible_message("<span class='notice'>[H] hugs [target] to make [t_him] feel better!</span>", \
+						"<span class='notice'>You hug [target] to make [t_him] feel better!</span>")
+>>>>>>> 576d065... Kaleidoscope 2: The Retabbening (#7697)
 
 /datum/species/proc/remove_inherent_verbs(var/mob/living/carbon/human/H)
 	if(inherent_verbs)

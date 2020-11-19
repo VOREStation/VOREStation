@@ -252,8 +252,12 @@
 
 /datum/preferences/proc/update_preview_icon()
 	var/mob/living/carbon/human/dummy/mannequin/mannequin = get_mannequin(client_ckey)
+	if(!mannequin.dna) // Special handling for preview icons before SSAtoms has initailized.
+		mannequin.dna = new /datum/dna(null)
 	mannequin.delete_inventory(TRUE)
 	dress_preview_mob(mannequin)
+	mannequin.toggle_tail(setting = TRUE)
+	mannequin.toggle_wing(setting = TRUE)
 	COMPILE_OVERLAYS(mannequin)
 
 	update_character_previews(new /mutable_appearance(mannequin))

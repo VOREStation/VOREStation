@@ -29,6 +29,7 @@
 
 	// Appearance vars.
 	var/nonsolid                       // Snowflake warning, reee. Used for slime limbs.
+	var/transparent                    // As above, so below. Used for transparent limbs.
 	var/icon_name = null               // Icon state base.
 	var/body_part = null               // Part flag
 	var/icon_position = 0              // Used in mob overlay layering calculations.
@@ -1389,5 +1390,14 @@ Note that amputating the affected organ does in fact remove the infection from t
 	. = 0
 	for(var/obj/item/organ/external/L in organs)
 		for(var/obj/item/I in L.implants)
+<<<<<<< HEAD
 			if(!istype(I,/obj/item/weapon/implant) && !istype(I,/obj/item/device/nif)) //VOREStation Add - NIFs
 				return 1
+=======
+			if(!istype(I,/obj/item/weapon/implant))
+				return 1
+
+/obj/item/organ/external/proc/is_hidden_by_tail()
+	if(owner && owner.tail_style && owner.tail_style.hide_body_parts && (organ_tag in owner.tail_style.hide_body_parts))
+		return 1
+>>>>>>> 576d065... Kaleidoscope 2: The Retabbening (#7697)

@@ -75,5 +75,11 @@
 
 	var/allow_self_surgery = FALSE	// Used to determine if the mob can perform surgery on itself.
 
+<<<<<<< HEAD
 	var/inventory_panel_type = /datum/inventory_panel
 	var/datum/inventory_panel/inventory_panel
+=======
+	var/tail_alt = 0
+	var/flying = 0				// Allows flight
+
+>>>>>>> 576d065... Kaleidoscope 2: The Retabbening (#7697)
