@@ -151,13 +151,10 @@
 		/area/engineering/atmos_intake, // Outside,
 		/area/rnd/external, //  Outside,
 		/area/tether/surfacebase/emergency_storage/rnd,
-		/area/tether/surfacebase/emergency_storage/atrium)
-
-//Medical Move
-	unit_test_exempt_from_atmos = list(
+		/area/tether/surfacebase/emergency_storage/atrium,
 		/area/tether/surfacebase/lowernortheva, // it airlock
-		/area/tether/surfacebase/lowernortheva/external //it outside
-		)
+		/area/tether/surfacebase/lowernortheva/external) //it outside
+
 
 	lateload_z_levels = list(
 		list("Tether - Misc","Tether - Underdark","Tether - Plains"), //Stock Tether lateload maps
