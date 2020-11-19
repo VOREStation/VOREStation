@@ -288,7 +288,7 @@
 	icon_state = "outpost_mine_main"
 /area/tether/surfacebase/mining_main/eva
 	name = "\improper Mining EVA"
-/area/tether/surfacebase/mining_main/external	//TODO: repath for medical move
+/area/tether/surfacebase/lowernortheva/external
 	name = "\improper Mining External"
 /area/tether/surfacebase/mining_main/break_room
 	name = "\improper Mining Crew Area"
