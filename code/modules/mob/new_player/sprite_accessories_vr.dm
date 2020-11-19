@@ -82,7 +82,7 @@
 		icon = 'icons/mob/human_face_vr.dmi'
 		icon_add = 'icons/mob/human_face_vr_add.dmi'
 		icon_state = "hair_twincurl"
-	
+
 	crescent_moon
 		name = "Crescent-Moon"
 		icon = 'icons/mob/human_face_vr.dmi'
@@ -1220,21 +1220,31 @@
 	c_beast_plating
 		name = "Cyber Plating (Use w/ Cyber Body)"
 		icon_state = "c_beast_plating"
+		color_blend_mode = ICON_MULTIPLY
 		body_parts = list(BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM)
 
 	c_beast_band
 		name = "Cyber Band (Use w/ Cybertech head)"
 		icon_state = "c_beast_band"
+		color_blend_mode = ICON_MULTIPLY
 		body_parts = list(BP_HEAD)
 
 	c_beast_cheek_a
-		name = "Cyber Beast Cheeks A (Use A and B)"
-		icon_state = "c_beast_add_a"
+		name = "Cyber Beast Cheeks A (Use A, B and C)"
+		icon_state = "c_beast_a"
+		color_blend_mode = ICON_MULTIPLY
 		body_parts = list(BP_HEAD)
 
 	c_beast_cheek_b
-		name = "Cyber Beast Cheeks B (Use A and B)"
-		icon_state = "c_beast_add_b"
+		name = "Cyber Beast Cheeks B (Use A, B and C)"
+		icon_state = "c_beast_b"
+		color_blend_mode = ICON_MULTIPLY
+		body_parts = list(BP_HEAD)
+
+	c_beast_cheek_c
+		name = "Cyber Beast Cheeks C (Use A, B and C)"
+		icon_state = "c_beast_c"
+		color_blend_mode = ICON_MULTIPLY
 		body_parts = list(BP_HEAD)
 
 	teshari_large_eyes
