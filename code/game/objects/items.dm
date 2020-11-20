@@ -789,11 +789,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	drop_sound = 'sound/items/drop/device.ogg'
 
 //Worn icon generation for on-mob sprites
-<<<<<<< HEAD
-/obj/item/proc/make_worn_icon(var/body_type,var/slot_name,var/inhands,var/default_icon,var/default_layer,var/icon/clip_mask = null) //VOREStation edit - add 'clip mask' argument.
-=======
 /obj/item/proc/make_worn_icon(var/body_type,var/slot_name,var/inhands,var/default_icon,var/default_layer,var/icon/clip_mask = null)
->>>>>>> 576d065... Kaleidoscope 2: The Retabbening (#7697)
 	//Get the required information about the base icon
 	var/icon/icon2use = get_worn_icon_file(body_type = body_type, slot_name = slot_name, default_icon = default_icon, inhands = inhands)
 	var/state2use = get_worn_icon_state(slot_name = slot_name)
