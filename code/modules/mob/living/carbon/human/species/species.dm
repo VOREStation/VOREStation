@@ -396,11 +396,7 @@
 				t_him = "him"
 			if(FEMALE)
 				t_him = "her"
-<<<<<<< HEAD
 	//VOREStation Edit Start - Headpats and Handshakes.
-=======
-
->>>>>>> 576d065... Kaleidoscope 2: The Retabbening (#7697)
 	if(H.zone_sel.selecting == "head")
 		H.visible_message( \
 			"<span class='notice'>[H] pats [target] on the head.</span>", \
@@ -414,16 +410,10 @@
 		H.visible_message( \
 			"<span class='notice'>[H] boops [target]'s nose.</span>", \
 			"<span class='notice'>You boop [target] on the nose.</span>", )
-<<<<<<< HEAD
 	//VOREStation Edit End
-	else H.visible_message("<span class='notice'>[H] hugs [target] to make [t_him] feel better!</span>", \
-					"<span class='notice'>You hug [target] to make [t_him] feel better!</span>") //End VOREStation Edit
-=======
-
 	else
 		H.visible_message("<span class='notice'>[H] hugs [target] to make [t_him] feel better!</span>", \
 						"<span class='notice'>You hug [target] to make [t_him] feel better!</span>")
->>>>>>> 576d065... Kaleidoscope 2: The Retabbening (#7697)
 
 /datum/species/proc/remove_inherent_verbs(var/mob/living/carbon/human/H)
 	if(inherent_verbs)
