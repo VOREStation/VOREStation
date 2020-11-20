@@ -379,6 +379,7 @@
 /datum/gear/suit/cloakcolor/New()
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
+
 /datum/gear/suit/labcoat_tesh
 	display_name = "labcoat, colorable (Teshari)"
 	path = /obj/item/clothing/suit/storage/toggle/labcoat/teshari
@@ -397,7 +398,6 @@
 
 /datum/gear/suit/teshcoat/New()
 	..()
-
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/suit/teshcoatwhite
@@ -424,7 +424,6 @@
 	display_name = "toe-less jackboots"
 	path = /obj/item/clothing/shoes/boots/jackboots/toeless
 
-
 /datum/gear/shoes/toelessknee
 	display_name = "toe-less jackboots, knee-length"
 	path = /obj/item/clothing/shoes/boots/jackboots/toeless/knee
@@ -432,3 +431,9 @@
 /datum/gear/shoes/toelessthigh
 	display_name = "toe-less jackboots, thigh-length"
 	path = /obj/item/clothing/shoes/boots/jackboots/toeless/thigh
+
+/datum/gear/eyes/aerogelgoggles
+	display_name = "airtight orange goggles (Teshari)"
+	path = /obj/item/clothing/glasses/aerogelgoggles
+	whitelisted = SPECIES_TESHARI
+	sort_category = "Xenowear"
