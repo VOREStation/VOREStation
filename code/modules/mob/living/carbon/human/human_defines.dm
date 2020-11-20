@@ -115,11 +115,8 @@
 	var/mob/living/carbon/human/vr_link = null
 
 	var/obj/machinery/machine_visual //machine that is currently applying visual effects to this mob. Only used for camera monitors currently.
-<<<<<<< HEAD
 
 	inventory_panel_type = /datum/inventory_panel/human
-	butchery_loot = list(/obj/item/stack/animalhide/human = 1)
-=======
 	butchery_loot = list(/obj/item/stack/animalhide/human = 1)
 
 	// Horray Furries!
@@ -151,4 +148,3 @@
 	// Custom Species Name
 	var/custom_species
 
->>>>>>> 576d065... Kaleidoscope 2: The Retabbening (#7697)
