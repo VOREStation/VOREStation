@@ -219,14 +219,6 @@ var/global/list/string_slot_flags = list(
 		var/decl/closet_appearance/app = new T()
 		GLOB.closet_appearances[T] = app
 
-<<<<<<< HEAD
-	// VOREStation Add - Vore Modes!
-	paths = typesof(/datum/digest_mode) - /datum/digest_mode/transform
-	for(var/T in paths)
-		var/datum/digest_mode/DM = new T
-		GLOB.digest_modes[DM.id] = DM
-	// VOREStation Add End
-=======
 	paths = typesof(/datum/sprite_accessory/ears) - /datum/sprite_accessory/ears
 	for(var/path in paths)
 		var/obj/item/clothing/head/instance = new path()
@@ -243,6 +235,13 @@ var/global/list/string_slot_flags = list(
 	for(var/path in paths)
 		var/datum/sprite_accessory/wing/instance = new path()
 		wing_styles_list[path] = instance
+
+	// VOREStation Add - Vore Modes!
+	paths = typesof(/datum/digest_mode) - /datum/digest_mode/transform
+	for(var/T in paths)
+		var/datum/digest_mode/DM = new T
+		GLOB.digest_modes[DM.id] = DM
+	// VOREStation Add End
 
 /*
 	// Custom species traits
@@ -278,7 +277,6 @@ var/global/list/string_slot_flags = list(
 
 	return 1 // Hooks must return 1
 
->>>>>>> 576d065... Kaleidoscope 2: The Retabbening (#7697)
 
 	return 1
 
