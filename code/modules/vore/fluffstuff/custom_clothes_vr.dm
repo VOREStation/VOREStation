@@ -2018,7 +2018,7 @@ Departamental Swimsuits, for general use
 	item_icons = list()
 	sensor_mode = 3 // I'm a dumbass and forget these all the time please understand :(
 
-/obj/item/clothing/under/skirt/outfit/fluff/nikki/mob_can_equip(var/mob/living/carbon/human/M, slot, disable_warning = 0) // Feel free to (try to) put Nikki's hat on! The necklace though is a flat-out no-go.
+/obj/item/clothing/under/skirt/outfit/fluff/nikki/mob_can_equip(var/mob/living/carbon/human/M, slot, disable_warning = 0)
 	if(..())
 		if (M.ckey == "ryumi")
 			return 1
@@ -2034,7 +2034,7 @@ Departamental Swimsuits, for general use
 	icon_state = "nikki_boots"
 	item_state = "nikki_boots"
 
-/obj/item/clothing/shoes/fluff/nikki/mob_can_equip(var/mob/living/carbon/human/M, slot, disable_warning = 0) // Feel free to (try to) put Nikki's hat on! The necklace though is a flat-out no-go.
+/obj/item/clothing/shoes/fluff/nikki/mob_can_equip(var/mob/living/carbon/human/M, slot, disable_warning = 0) 
 	if(..())
 		if (M.ckey == "ryumi")
 			return 1
@@ -2045,6 +2045,10 @@ Departamental Swimsuits, for general use
 /obj/item/clothing/suit/fluff/nikki //see /obj/item/weapon/rig/nikki
 	name = "cape"
 	desc = "Snazzy!"
+	flags = null
+	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0) // It's not armor, it's a dorky frickin cape
+	body_parts_covered = null // Cape ain't gonna cover a THING
+	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS // It will keep you toasty tho, it's more than big enough to help with that! Just wrap the thing around you when on the surface, idk
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_override = 'icons/vore/custom_onmob_vr.dmi'
 	icon_state = "nikki"
@@ -2184,8 +2188,8 @@ Departamental Swimsuits, for general use
 		. += "Weird... <span class='danger'>You can't see the bottom of the hole inside the hat...</span>"
 
 /obj/item/clothing/head/fluff/nikki/equipped(mob/living/carbon/human/user, slot)
-	..()
-	if (slot == slot_head && translocator) // This way we don't spam the poor person's chat
+	. = ..()
+	if (slot == slot_head && translocator && user.ckey != owner) // This way we don't unnecessarily spam the chat with hat/translocator errors
 		// hey, are we actually able to teleport this poor person?
 		if (hat_warp_checks(user, user, proximity_flag = 1))
 			// YOU FOOL! YOU HAVE ACTIVATED MY STAND, 「ＶＯＲＥ　ＢＹ　ＨＡＴ」！
@@ -2195,7 +2199,7 @@ Departamental Swimsuits, for general use
 			user.remove_from_mob(src, get_turf(user))
 			translocator.destination = translocator.beacons[uh_oh]
 			translocator.afterattack(user, user, proximity = 1, ignore_fail_chance = 1)
-			add_attack_logs(user, user, "Tried to put on \the [src] and was involuntarily teleported by it (via \the [translocator]) within!")
+			add_attack_logs(user, user, "Tried to put on \the [src] and was involuntarily teleported by it (via \the [translocator] within)!")
 			return
 
 /obj/item/clothing/head/fluff/nikki/afterattack(var/mob/living/target, mob/user, proximity_flag, click_parameters)
@@ -2203,12 +2207,20 @@ Departamental Swimsuits, for general use
 	if (hat_warp_checks(target, user, proximity_flag))
 		// Silly fluffed up styles of teleporting people based on user intent.
 		switch (user.a_intent)
-			if (I_HURT)
-				user.visible_message("<span class='danger'>[user] swipes \the [src] over \the [target]!</span>")
+			if (I_HELP)
+				user.visible_message("<span class='notice'>[user] guides \the [target] to the bottomless hole within \the [src]. They begin to climb inside...</span>")
+				if (do_after(user, 5 SECONDS, target))
+					translocator.afterattack(target, user, proximity_flag)
+			if (I_DISARM)
+				user.visible_message("<span class='danger'>[user] plops \the [src] onto \the [target]'s head!</span>")
 				translocator.afterattack(target, user, proximity_flag)
 			if (I_GRAB)
 				user.visible_message("<span class='danger'>[user] begins stuffing [target] into \the [src]!</span>")
 				if (do_after(user, 5 SECONDS, target))
 					translocator.afterattack(target, user, proximity_flag)
+			if (I_HURT)
+				user.visible_message("<span class='danger'>[user] swipes \the [src] over \the [target]!</span>")
+				translocator.afterattack(target, user, proximity_flag)
 			
 		add_attack_logs(user, target, "Teleported [target] with via \the [src]'s [translocator]!")
+	else ..()
