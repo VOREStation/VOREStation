@@ -1263,7 +1263,7 @@
 	suit_type = "probably not magical"
 	icon_state = "nikki"
 	w_class = ITEMSIZE_SMALL // It is after all only a necklace
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0) // this isn't armor, it's a dorky frickin cape
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0) // this isn't armor, it's a dorky frickin cape
 	siemens_coefficient = 0.9
 	slowdown = 0
 	offline_slowdown = 0
@@ -1271,7 +1271,6 @@
 	siemens_coefficient = 0.9
 	chest_type = /obj/item/clothing/suit/fluff/nikki
 
-	initial_modules = list()
 	req_access = list()
 	req_one_access = list()
 
@@ -1279,16 +1278,19 @@
 	glove_type = null
 	boot_type = null
 
-	initial_modules = list(
-		/obj/item/rig_module/mounted/sizegun
-	)
-
 	allowed = list(
 		/obj/item/device/flashlight,
 		/obj/item/weapon/tank,
 		/obj/item/device/suit_cooling_unit,
 		/obj/item/weapon/storage,
 		)
+
+/obj/item/weapon/rig/nikki/attackby(obj/item/W, mob/living/user)
+	//This thing accepts ONLY mounted sizeguns. That's IT. Nothing else!
+	if(open && istype(W,/obj/item/rig_module) && !istype(W,/obj/item/rig_module/mounted/sizegun))
+		to_chat(user, "<span class='danger'>\The [src] only accepts mounted size gun modules.</span>")
+		return
+	..()
 
 /obj/item/weapon/rig/nikki/mob_can_equip(var/mob/living/carbon/human/M, slot, disable_warning = 0) // Feel free to (try to) put Nikki's hat on! The necklace though is a flat-out no-go.
 	if(..())
