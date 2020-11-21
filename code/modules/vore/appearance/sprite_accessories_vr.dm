@@ -1998,7 +1998,7 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
-/datum/sprite_accessory/tail/xenotail_fullcolour
+/datum/sprite_accessory/tail/xenotailalt_fullcolour
 	name = "xenomorph tail alt. (fully colourable)"
 	desc = ""
 	icon_state = "xenotailalt_fullcolour"
