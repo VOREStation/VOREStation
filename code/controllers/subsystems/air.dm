@@ -27,7 +27,7 @@ SUBSYSTEM_DEF(air)
 	// Updating zone tiles requires temporary storage location of self-zone-blocked turfs across resumes. Used only by process_tiles_to_update.
 	var/list/selfblock_deferred = null
 
-	// This is used to tell Travis WHERE the edges are.
+	// This is used to tell CI WHERE the edges are.
 	var/list/startup_active_edge_log = list()
 
 /datum/controller/subsystem/air/PreInit()
