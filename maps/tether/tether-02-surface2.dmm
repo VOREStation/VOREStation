@@ -176,7 +176,7 @@
 /area/maintenance/lower/south)
 "aaw" = (
 /obj/machinery/power/breakerbox/activated{
-	RCon_tag = "MedSec Substation Bypass"
+	RCon_tag = "Surfsec Substation Bypass"
 	},
 /turf/simulated/floor,
 /area/maintenance/substation/medsec)
@@ -322,10 +322,8 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - MedSec";
-	charge = 0;
-	output_attempt = 0;
-	outputting = 0
+	RCon_tag = "Substation - Surfsec";
+	output_attempt = 0
 	},
 /turf/simulated/floor,
 /area/maintenance/substation/medsec)
@@ -26154,8 +26152,8 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/power/sensor{
-	name = "Powernet Sensor - MedSec Subgrid";
-	name_tag = "MedSec Subgrid"
+	name = "Powernet Sensor - Surfsec Subgrid";
+	name_tag = "Surfsec Subgrid"
 	},
 /turf/simulated/floor,
 /area/maintenance/substation/medsec)
