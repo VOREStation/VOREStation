@@ -1936,6 +1936,9 @@
 	dir = 8;
 	icon_state = "tube1"
 	},
+/obj/effect/landmark/start{
+	name = "Internal Affairs Agent"
+	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/iaa/officea)
 "adl" = (
@@ -41129,6 +41132,9 @@
 	id = "iaar";
 	pixel_x = -25;
 	pixel_y = 7
+	},
+/obj/effect/landmark/start{
+	name = "Internal Affairs Agent"
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/iaa/officeb)

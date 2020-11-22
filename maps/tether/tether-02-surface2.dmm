@@ -32767,6 +32767,9 @@
 	},
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/red/border,
+/obj/effect/landmark/start{
+	name = "Warden"
+	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/warden)
 "pbf" = (
@@ -33139,6 +33142,9 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment,
+/obj/effect/landmark/start{
+	name = "Detective"
+	},
 /turf/simulated/floor/carpet,
 /area/tether/surfacebase/security/detective/officeb)
 "qfL" = (
@@ -34778,6 +34784,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
+	},
+/obj/effect/landmark/start{
+	name = "Detective"
 	},
 /turf/simulated/floor/carpet,
 /area/tether/surfacebase/security/detective/officea)
