@@ -380,6 +380,9 @@ var/global/list/disallowed_protean_accessories = list(
 		var/obj/belly/B = belly
 		B.forceMove(blob)
 		B.owner = blob
+	
+	//We can still speak our languages!
+	blob.languages = languages
 
 	//Flip them to the protean panel
 	if(panel_was_up)
