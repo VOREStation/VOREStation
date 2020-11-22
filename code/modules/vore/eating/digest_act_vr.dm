@@ -29,7 +29,7 @@
 			g_damage = digest_stage
 		digest_stage -= g_damage
 	if(digest_stage <= 0)
-		if(istype(src, /obj/item/device/pda)
+		if(istype(src, /obj/item/device/pda))
 			var/obj/item/device/pda/P = src
 			if(P.id)
 				P.id = null
