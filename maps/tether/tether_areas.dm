@@ -488,14 +488,14 @@
 /area/tether/surfacebase/security/common
 	name = "\improper Surface Security Room"
 /area/tether/surfacebase/security/armory
-	name = "\improper Surface Equipment Storage"
+	name = "\improper Armory"
 	lightswitch = 0
 /area/tether/surfacebase/security/checkpoint
 	name = "\improper Surface Checkpoint Office"
 /area/tether/surfacebase/security/hallway
 	name = "\improper Surface Checkpoint Hallway"
 /area/tether/surfacebase/security/warden
-	name = "\improper Surface Security Warden's Office"
+	name = "\improper Warden's Office"
 	lightswitch = 0
 /area/tether/surfacebase/security/lowerhallway
 	name = "\improper Surface Security Lower Hallway"
@@ -504,7 +504,11 @@
 	lightswitch = 0
 /area/tether/surfacebase/security/brig
 	name = "\improper Surface Security Brig"
+/area/tether/surfacebase/security/brig/storage
+	name = "\improper Brig Storage"
 	lightswitch = 0
+/area/tether/surfacebase/security/brig/bathroom
+	name = "\improper Brig Bathroom"
 /area/tether/surfacebase/security/solitary
 	name = "\improper Surface Security Solitary Confinement"
 	lightswitch = 0
@@ -525,9 +529,54 @@
 	name = "\improper Surface Security Front Desk"
 	lightswitch = 0
 /area/tether/surfacebase/security/upperhall
-	name = "\improper Surface Security Upper Hallway"
+	name = "\improper Security Upper Hallway"
+/area/tether/surfacebase/security/middlehall
+	name = "\improper Security Middle Hallway"
+/area/tether/surfacebase/security/lowerhall
+	name = "\improper Security Lower Hallway"
 /area/maintenance/lower/security
 	name = "\improper Surface Security Maintenance"
+/area/tether/surfacebase/security/hos
+	name = "\improper Head of Security Office"
+	lightswitch = 0
+/area/tether/surfacebase/security/briefingroom
+	name = "\improper Security Briefing Room"
+	lightswitch = 0
+/area/tether/surfacebase/security/iaa
+	name = "\improper Internal Affairs"
+/area/tether/surfacebase/security/iaa/officea
+	name = "\improper Internal Affairs Office A"
+	lightswitch = 0
+/area/tether/surfacebase/security/iaa/officeb
+	name = "\improper Internal Affairs Office B"
+	lightswitch = 0
+/area/tether/surfacebase/security/iaa/officecommon
+	name = "\improper Internal Affairs Common Office"
+	lightswitch = 0
+/area/tether/surfacebase/security/outfitting
+	name = "\improper Security Outfitting"
+	lightswitch = 0
+/area/tether/surfacebase/security/outfitting/storage
+	name = "\improper Security Equipment Storage"
+	lightswitch = 0
+/area/tether/surfacebase/security/detective
+	name = "\improper Forensics Lab"
+	lightswitch = 0
+/area/tether/surfacebase/security/detective/officea
+	name = "\improper Detective Office A"
+	lightswitch = 0
+/area/tether/surfacebase/security/detective/officeb
+	name = "\improper Detective Office B"
+	lightswitch = 0
+/area/tether/surfacebase/security/bathroom
+	name = "\improper Security Bathroom"
+	lightswitch = 0
+/area/tether/surfacebase/security/evastorage
+	name = "\improper Security EVA Equipment Storage"
+	lightswitch = 0
+/area/tether/surfacebase/security/weaponsrange
+	name = "\improper Security Weapons Range"
+	lightswitch = 0
 
 /area/maintenance/readingrooms
 	name = "\improper Southeast Maintenance"
@@ -666,6 +715,23 @@
 /area/rnd/tankstorage
 	name = "\improper Research Tank Storage"
 	icon_state = "research"
+
+// Robotics + Associated Areas
+/area/rnd/robotics
+    name = "\improper Robotics Lab"
+    icon_state = "robotics"
+
+/area/rnd/robotics/mechbay
+    name = "\improper Mech Bay"
+    icon_state = "mechbay"
+/area/rnd/robotics/surgeryroom1
+    name = "\improper Robotics Surgery Room 1"
+
+/area/rnd/robotics/surgeryroom2
+    name = "\improper Robotics Surgery Room 2"
+
+/area/rnd/robotics/resleeving
+    name = "\improper Robotics Resleeving"
 
 //TFF 28/8/19 - cleanup of areas placement
 /area/rnd/research/testingrange
