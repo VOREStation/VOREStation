@@ -1458,11 +1458,17 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
+/obj/effect/landmark{
+	name = "Commando"
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/barracks)
 "mq" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
+	},
+/obj/effect/landmark{
+	name = "Commando"
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/barracks)
@@ -2023,6 +2029,12 @@
 /obj/effect/landmark/map_data/ert_ship,
 /turf/space,
 /area/space)
+"pg" = (
+/obj/effect/landmark{
+	name = "Commando"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/ert/barracks)
 "pm" = (
 /obj/effect/floor_decal/corner/yellow{
 	dir = 9
@@ -5851,6 +5863,18 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/bridge)
+"OU" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/effect/landmark{
+	name = "Commando"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/ship/ert/barracks)
 "OW" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -6022,6 +6046,13 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/teleporter)
+"PZ" = (
+/obj/structure/table/bench/steel,
+/obj/effect/landmark{
+	name = "Commando"
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/space)
 "Qc" = (
 /obj/machinery/power/apc/hyper{
 	alarms_hidden = 1;
@@ -6836,6 +6867,9 @@
 	dir = 1
 	},
 /obj/effect/catwalk_plated,
+/obj/effect/landmark{
+	name = "Commando"
+	},
 /turf/simulated/floor/plating,
 /area/ship/ert/barracks)
 "Xg" = (
@@ -15877,7 +15911,7 @@ Zo
 Bo
 ia
 ip
-WH
+pg
 Kk
 lv
 ZM
@@ -16302,8 +16336,8 @@ Ye
 Zo
 Gw
 Kk
-Jd
-WH
+OU
+pg
 Kk
 lv
 ZM
@@ -16444,8 +16478,8 @@ Ye
 yY
 lv
 Kk
-Jd
-WH
+OU
+pg
 Kk
 sz
 ZM
@@ -16586,8 +16620,8 @@ Ye
 yY
 lv
 Kk
-Jd
-WH
+OU
+pg
 Kk
 lv
 ZM
@@ -16612,7 +16646,7 @@ Ci
 yz
 yz
 yz
-yz
+PZ
 yz
 yz
 yz
@@ -16728,7 +16762,7 @@ Ye
 yY
 lv
 Kk
-Jd
+OU
 mr
 WH
 sF
@@ -17012,7 +17046,7 @@ ab
 Zo
 Gw
 Kk
-Jd
+OU
 mF
 ip
 ip
