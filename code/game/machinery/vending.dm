@@ -458,13 +458,9 @@ GLOBAL_LIST_EMPTY(vending_products)
 			
 			if(!can_buy(R, usr))
 				return
-
-			vend_ready = FALSE // From this point onwards, vendor is locked to performing this transaction only, until it is resolved.
-
 			if(R.price <= 0)
 				vend(R, usr)
 				add_fingerprint(usr)
-				vend_ready = TRUE
 				return TRUE
 			
 			if(issilicon(usr)) //If the item is not free, provide feedback if a synth is trying to buy something.
@@ -472,6 +468,9 @@ GLOBAL_LIST_EMPTY(vending_products)
 				return
 			if(!ishuman(usr))
 				return
+
+
+			vend_ready = FALSE // From this point onwards, vendor is locked to performing this transaction only, until it is resolved.
 
 			var/mob/living/carbon/human/H = usr
 			var/obj/item/weapon/card/id/C = H.GetIdCard()
