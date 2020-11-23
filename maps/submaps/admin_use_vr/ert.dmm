@@ -14,7 +14,7 @@
 /turf/simulated/floor/reinforced/airless,
 /area/ship/ert/dock_port)
 "ad" = (
-/obj/machinery/porta_turret/industrial/military,
+/obj/machinery/porta_turret/stationary/CIWS,
 /turf/simulated/floor/reinforced/airless,
 /area/ship/ert/dock_port)
 "ae" = (
@@ -42,7 +42,7 @@
 /turf/simulated/floor/reinforced/airless,
 /area/ship/ert/mech_bay)
 "ai" = (
-/obj/machinery/porta_turret/industrial/military,
+/obj/machinery/porta_turret/stationary/CIWS,
 /turf/simulated/floor/reinforced/airless,
 /area/ship/ert/mech_bay)
 "aj" = (
@@ -236,7 +236,7 @@
 /turf/simulated/floor/reinforced/airless,
 /area/ship/ert/atmos)
 "bW" = (
-/obj/machinery/porta_turret/industrial/military,
+/obj/machinery/porta_turret/stationary/CIWS,
 /turf/simulated/floor/reinforced/airless,
 /area/ship/ert/atmos)
 "ch" = (
@@ -565,7 +565,7 @@
 /turf/simulated/floor/plating,
 /area/ship/ert/engine)
 "eD" = (
-/obj/machinery/porta_turret/industrial/military,
+/obj/machinery/porta_turret/stationary/CIWS,
 /turf/simulated/floor/reinforced/airless,
 /area/ship/ert/med)
 "eF" = (
@@ -995,7 +995,7 @@
 /turf/simulated/floor/reinforced/airless,
 /area/ship/ert/hangar)
 "hY" = (
-/obj/machinery/porta_turret/industrial/military,
+/obj/machinery/porta_turret/stationary/CIWS,
 /turf/simulated/floor/reinforced/airless,
 /area/ship/ert/dock_star)
 "ia" = (
@@ -1279,7 +1279,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/barracks)
 "kO" = (
-/obj/machinery/porta_turret/industrial/military,
+/obj/machinery/porta_turret/stationary/CIWS,
 /turf/simulated/floor/reinforced/airless,
 /area/ship/ert/barracks)
 "kP" = (
@@ -3472,6 +3472,11 @@
 	dir = 4
 	},
 /obj/effect/catwalk_plated,
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
 /turf/simulated/floor/plating,
 /area/ship/ert/hallways)
 "zB" = (
@@ -3772,7 +3777,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/armoury_st)
 "BI" = (
-/obj/machinery/porta_turret/industrial/military,
+/obj/machinery/porta_turret/stationary/CIWS,
 /turf/simulated/floor/reinforced/airless,
 /area/ship/ert/engineering)
 "BU" = (
@@ -3811,6 +3816,10 @@
 	emagged = 1;
 	name = "ERT NIFSoft Vendor"
 	},
+/obj/structure/cable/yellow{
+	d2 = 8;
+	icon_state = "0-8"
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/hallways)
 "Cq" = (
@@ -3831,7 +3840,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/med)
 "Cr" = (
-/obj/machinery/porta_turret/industrial/military,
+/obj/machinery/porta_turret/stationary/CIWS,
 /turf/simulated/floor/reinforced/airless,
 /area/ship/ert/med_surg)
 "Cx" = (
@@ -3943,7 +3952,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/atmos)
 "Do" = (
-/obj/machinery/porta_turret/industrial/military,
+/obj/machinery/porta_turret/stationary/CIWS,
 /turf/simulated/floor/reinforced/airless,
 /area/ship/ert/engine)
 "Dt" = (
@@ -4437,7 +4446,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/engine)
 "GJ" = (
-/obj/machinery/porta_turret/industrial/military,
+/obj/machinery/porta_turret/stationary/CIWS,
 /turf/simulated/floor/reinforced/airless,
 /area/ship/ert/eng_storage)
 "GK" = (
@@ -17012,7 +17021,7 @@ Bc
 BW
 Js
 BW
-BW
+sX
 BW
 VP
 sX
