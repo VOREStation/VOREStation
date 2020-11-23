@@ -6,7 +6,8 @@
 name: 'Render Nanomaps'
 on:
   push:
-    branches: master
+    branches:
+      - master
     paths:
       - 'maps/**'
 
@@ -19,6 +20,10 @@ jobs:
       uses: actions/checkout@v2
       with:
         fetch-depth: 1
+
+    - name: Ensure +x on github-actions directory
+      run: |
+        chmod -R +x ./tools/github-actions
 
     - name: 'Generate Maps'
       run: './tools/github-actions/nanomap-renderer-invoker.sh'
