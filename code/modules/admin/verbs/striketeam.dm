@@ -47,6 +47,7 @@ var/const/commandos_possible = 6 //if more Commandos are needed in the future
 		if(!choice)
 			if(alert("Error, no mission set. Do you want to exit the setup process?",,"Yes","No")=="Yes")
 				return
+	consider_ert_load() //VOREStation Add
 
 	if(team.deployed)
 		to_chat(usr, "Looks like someone beat you to it.")
