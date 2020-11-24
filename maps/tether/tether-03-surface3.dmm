@@ -2935,6 +2935,10 @@
 	},
 /obj/structure/disposalpipe/trunk,
 /obj/machinery/disposal,
+/obj/machinery/camera/network/medbay{
+	dir = 8;
+	icon_state = "camera"
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lobby)
 "aeO" = (
@@ -5118,6 +5122,9 @@
 	},
 /obj/machinery/alarm{
 	pixel_y = 32
+	},
+/obj/machinery/camera/network/medbay{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
 /area/maintenance/lower/medsec_maintenance)
@@ -27657,6 +27664,7 @@
 	dir = 1
 	},
 /obj/effect/floor_decal/borderfloorwhite,
+/obj/effect/floor_decal/corner/paleblue/border,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lobby)
 "aVX" = (
@@ -37012,6 +37020,18 @@
 /obj/effect/floor_decal/corner/red/border,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/upperhall)
+"dVp" = (
+/obj/machinery/papershredder,
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/red/border,
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/red/bordercorner2{
+	dir = 9
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/security/upperhall)
 "dVE" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -37848,18 +37868,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_hallway)
-"hib" = (
-/obj/machinery/papershredder,
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/corner/red/border,
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 9
-	},
-/obj/effect/floor_decal/corner/red/bordercorner2{
-	dir = 9
-	},
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/security/upperhall)
 "hlF" = (
 /obj/structure/bed/chair/bay/chair{
 	dir = 1
@@ -38103,9 +38111,6 @@
 	},
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 1
-	},
-/obj/machinery/camera/network/medbay{
-	dir = 4
 	},
 /obj/machinery/firealarm{
 	pixel_y = 25
@@ -40225,6 +40230,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
+/obj/effect/floor_decal/corner/paleblue/border,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lobby)
 "qem" = (
@@ -52546,7 +52552,7 @@ ahJ
 aiP
 ajP
 aUx
-hib
+dVp
 adR
 aWq
 ajM
