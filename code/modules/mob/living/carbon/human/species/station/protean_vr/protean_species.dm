@@ -97,7 +97,8 @@
 		/mob/living/carbon/human/proc/shapeshifter_select_wings,
 		/mob/living/carbon/human/proc/shapeshifter_select_tail,
 		/mob/living/carbon/human/proc/shapeshifter_select_ears,
-		/mob/living/proc/eat_trash
+		/mob/living/proc/eat_trash,
+		/mob/living/carbon/human/proc/slime_feed
 		)
 
 	var/global/list/abilities = list()

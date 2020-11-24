@@ -7,3 +7,4 @@
 	density = 0
 	pixel_y = -224
 	pixel_x = -224
+	plane = -44

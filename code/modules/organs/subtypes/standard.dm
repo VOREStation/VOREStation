@@ -269,6 +269,7 @@
 	var/eye_icon = "eyes_s"
 	force = 3
 	throwforce = 7
+	var/eyes_over_markings = FALSE //VOREStation edit
 
 	var/eye_icon_location = 'icons/mob/human_face.dmi'
 

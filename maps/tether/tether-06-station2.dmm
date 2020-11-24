@@ -1079,18 +1079,14 @@
 /turf/simulated/floor/tiled/steel_dirty,
 /area/security/brig)
 "bL" = (
-/obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/regular{
 	density = 0;
 	dir = 1;
@@ -1098,14 +1094,6 @@
 	id = "brig_lockdown";
 	name = "Security Blast Doors";
 	opacity = 0
-	},
-/obj/effect/floor_decal/industrial/hatch/yellow,
-/obj/machinery/door/window/brigdoor/southleft{
-	dir = 4;
-	icon_state = "leftsecure";
-	id = "Cell 4";
-	name = "Cell 4";
-	req_access = list(2)
 	},
 /turf/simulated/floor/tiled/dark,
 /area/security/brig)
@@ -1361,9 +1349,6 @@
 	dir = 1;
 	icon_state = "bulb1"
 	},
-/obj/structure/bed/padded,
-/obj/item/weapon/bedsheet,
-/obj/item/weapon/pen/crayon/green,
 /turf/simulated/floor/tiled/dark,
 /area/security/brig)
 "cb" = (
@@ -1913,9 +1898,6 @@
 	icon_state = "corner_white"
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/structure/closet/secure_closet/brig{
-	id = "Cell 4"
-	},
 /turf/simulated/floor/tiled/dark,
 /area/security/brig)
 "cN" = (
@@ -12854,6 +12836,11 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/station/stairs_two)
+"vu" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/maintenance/sec,
+/turf/simulated/floor/tiled,
+/area/security/security_cell_hallway)
 "vv" = (
 /obj/structure/closet/emcloset,
 /turf/simulated/floor/tiled,
@@ -14547,6 +14534,16 @@
 "yJ" = (
 /turf/simulated/wall/r_wall,
 /area/maintenance/station/micro)
+"yL" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/camera/network/security{
+	dir = 10;
+	icon_state = "camera"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/security/brig)
 "yV" = (
 /obj/structure/table/standard,
 /obj/item/device/glasses_kit,
@@ -18283,6 +18280,12 @@
 /obj/structure/table/steel,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/security/brig)
+"GM" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/turf/simulated/floor/tiled/dark,
+/area/security/brig)
 "GW" = (
 /obj/structure/table/reinforced,
 /turf/simulated/floor,
@@ -19482,6 +19485,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled,
 /area/hallway/station/starboard)
+"Ou" = (
+/turf/simulated/floor,
+/area/security/security_cell_hallway)
 "Ov" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 5
@@ -19554,13 +19560,6 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8"
-	},
-/obj/machinery/button/remote/blast_door{
-	dir = 8;
-	id = "Cell 4";
-	name = "Cell 4 Door";
-	pixel_x = -28;
-	req_access = list(1,2)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 1
@@ -20703,11 +20702,6 @@
 /obj/effect/floor_decal/corner/red/border{
 	dir = 8
 	},
-/obj/machinery/door_timer/cell_3{
-	id = "Cell 4";
-	name = "Cell 4";
-	pixel_x = -32
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
 	},
@@ -20965,6 +20959,15 @@
 /obj/random/maintenance/engineering,
 /turf/simulated/floor,
 /area/maintenance/station/sec_lower)
+"Wy" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark,
+/area/security/brig)
 "WE" = (
 /obj/structure/sink{
 	dir = 8;
@@ -21117,11 +21120,6 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
 /turf/simulated/floor/tiled,
 /area/security/security_cell_hallway)
 "XH" = (
@@ -21187,20 +21185,22 @@
 /turf/simulated/floor/tiled,
 /area/security/brig/visitation)
 "XT" = (
-/obj/machinery/door/firedoor/glass,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/machinery/door/blast/regular{
+/obj/effect/floor_decal/borderfloor/shifted{
 	dir = 1;
-	id = "Cell 4";
-	name = "Cell 4"
+	icon_state = "borderfloor_shifted"
 	},
-/obj/effect/floor_decal/industrial/loading{
-	dir = 8
+/obj/effect/floor_decal/corner/lightorange/border/shifted{
+	dir = 1;
+	icon_state = "bordercolor_shifted"
 	},
+/obj/effect/floor_decal/corner/lightorange{
+	dir = 5;
+	icon_state = "corner_white"
+	},
+/obj/machinery/alarm{
+	pixel_y = 22
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled/dark,
 /area/security/brig)
 "Yd" = (
@@ -29427,8 +29427,8 @@ aS
 aS
 aS
 aS
-Ld
-XT
+aS
+aS
 aS
 Ld
 VF
@@ -29569,8 +29569,8 @@ aS
 am
 aF
 aS
-aY
-cO
+XT
+GM
 aS
 aY
 cO
@@ -29712,7 +29712,7 @@ Ew
 am
 aS
 ca
-cQ
+yL
 aS
 cc
 cQ
@@ -29854,7 +29854,7 @@ Gw
 am
 aS
 cM
-cR
+Wy
 aS
 dq
 cR
@@ -30423,7 +30423,7 @@ aj
 ba
 aj
 aj
-ba
+vu
 cA
 cU
 cU
@@ -30564,8 +30564,8 @@ aj
 cw
 cB
 aj
-cw
-cB
+hV
+hV
 cA
 Ds
 du
@@ -30706,8 +30706,8 @@ aj
 bY
 cC
 aj
-bY
-cC
+Ou
+hV
 cA
 cV
 dv
@@ -30848,8 +30848,8 @@ aj
 lp
 aI
 aj
-lp
-aI
+hV
+Ou
 cA
 as
 az
