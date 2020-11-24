@@ -1,7 +1,7 @@
 "a" = (/turf/template_noop,/area/template_noop)
 "b" = (/turf/template_noop,/area/submap/VRDen)
 "c" = (/turf/simulated/wall,/area/submap/VRDen)
-"d" = (/obj/structure/extinguisher_cabinet{step_y = 27},/turf/simulated/floor/tiled/steel,/area/submap/VRDen)
+"d" = (/obj/structure/extinguisher_cabinet{pixel_y = 28},/turf/simulated/floor/tiled/steel,/area/submap/VRDen)
 "e" = (/obj/machinery/power/apc{dir = 1; name = "north bump"; operating = 0; pixel_x = 0; pixel_y = 24},/obj/effect/decal/cleanable/dirt,/obj/structure/cable/green{d2 = 2; icon_state = "0-2"},/turf/simulated/floor,/area/submap/VRDen)
 "f" = (/obj/effect/decal/cleanable/dirt,/obj/structure/cable/green{d1 = 2; d2 = 4; icon_state = "2-4"},/obj/machinery/light{icon_state = "tube1"; dir = 1},/turf/simulated/floor/tiled/steel,/area/submap/VRDen)
 "g" = (/obj/machinery/power/port_gen/pacman,/obj/structure/cable/green{d2 = 8; icon_state = "0-8"},/turf/simulated/floor,/area/submap/VRDen)
