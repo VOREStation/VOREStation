@@ -12,7 +12,7 @@ var/list/ventcrawl_machinery = list(
 	/obj/belly,
 	/obj/screen
 	)
-	//VOREStation Edit : added /obj/belly, to this list, travis is complaining about this in his indentation check
+	//VOREStation Edit : added /obj/belly, to this list, CI is complaining about this in his indentation check
 	//mob/living/simple_mob/borer, //VORESTATION AI TEMPORARY REMOVAL REPLACE BACK IN LIST WHEN RESOLVED //VOREStation Edit
 
 /mob/living/var/list/icon/pipes_shown = list()
