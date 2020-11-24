@@ -943,8 +943,8 @@ default behaviour is:
 	// Begin VOREstation edit
 	if(is_shifted)
 		is_shifted = FALSE
-		pixel_x = 0
-		pixel_y = 0
+		pixel_x = default_pixel_x
+		pixel_y = default_pixel_y
 	// End VOREstation edit
 
 	if(pulling) // we were pulling a thing and didn't lose it during our move.
