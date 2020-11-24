@@ -6402,6 +6402,11 @@
 /obj/effect/floor_decal/corner/lightgrey/border{
 	dir = 9
 	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_one)
 "akV" = (
@@ -6581,6 +6586,11 @@
 	},
 /obj/effect/floor_decal/corner/lightgrey/border{
 	dir = 10
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_one)
@@ -32377,6 +32387,11 @@
 	dir = 8;
 	icon_state = "techfloororange_corners"
 	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/holodeck_control)
 "bdb" = (
@@ -32453,6 +32468,11 @@
 	dir = 1;
 	icon_state = "techfloororange_corners"
 	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/holodeck_control)
 "bdj" = (
@@ -32485,6 +32505,11 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/holodeck_control)
 "bdm" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/holodeck_control)
 "bdn" = (
@@ -32501,6 +32526,11 @@
 	dir = 9
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/holodeck_control)
 "bdp" = (
@@ -32523,6 +32553,11 @@
 	pixel_x = 22;
 	pixel_y = 0;
 	report_danger_level = 0
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/holodeck_control)
@@ -32558,6 +32593,11 @@
 "bdu" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/holodeck_control)
 "bdv" = (
@@ -32587,6 +32627,11 @@
 	dir = 8;
 	icon_state = "techfloororange_corners"
 	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/holodeck_control)
 "bdy" = (
@@ -32599,6 +32644,11 @@
 /obj/effect/floor_decal/techfloor/orange/corner{
 	dir = 1;
 	icon_state = "techfloororange_corners"
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/holodeck_control)
@@ -32625,6 +32675,11 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/door/firedoor,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/holodeck_control)
 "bdB" = (
@@ -32659,6 +32714,11 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_one)
@@ -37256,6 +37316,11 @@
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4"
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_one)

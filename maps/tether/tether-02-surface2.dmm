@@ -164,7 +164,8 @@
 	},
 /obj/structure/disposalpipe/sortjunction{
 	dir = 4;
-	name = "Reading Rooms"
+	name = "Reading Rooms";
+	sortType = "Reading Rooms"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -26537,6 +26538,10 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
+/obj/machinery/light_switch{
+	dir = 1;
+	pixel_y = -28
+	},
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/reading_room)
 "aVs" = (
@@ -26666,7 +26671,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled,
-/area/tether/surfacebase/reading_room)
+/area/tether/surfacebase/southhall)
 "aVC" = (
 /obj/machinery/power/apc{
 	name = "south bump";
@@ -30448,6 +30453,9 @@
 	pixel_y = 0
 	},
 /obj/effect/floor_decal/corner/red/border{
+	dir = 1
+	},
+/obj/machinery/light{
 	dir = 1
 	},
 /turf/simulated/floor/tiled,

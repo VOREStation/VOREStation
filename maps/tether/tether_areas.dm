@@ -883,7 +883,6 @@
 	icon = 'icons/turf/areas_vr.dmi'
 	icon_state = "green"
 	flags = RAD_SHIELDED
-	lightswitch = 0
 /area/tether/surfacebase/vacant_site
 	name = "\improper Vacant Site"
 	flags = null
