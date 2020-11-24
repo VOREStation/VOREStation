@@ -36892,6 +36892,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
+"dyV" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/cafeteria)
 "dDQ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -56298,7 +56304,7 @@ bhv
 bhz
 bhC
 biH
-biL
+dyV
 bja
 biL
 biL
