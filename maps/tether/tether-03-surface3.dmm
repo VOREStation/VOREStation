@@ -27274,7 +27274,6 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/chemistry)
 "aVj" = (
-/obj/machinery/chemical_dispenser/full,
 /obj/structure/table/reinforced,
 /obj/item/device/radio/intercom/department/medbay{
 	pixel_y = -24
@@ -27284,6 +27283,7 @@
 	},
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/paleblue/border,
+/obj/machinery/chemical_dispenser/biochemistry/full,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/chemistry)
 "aVk" = (
