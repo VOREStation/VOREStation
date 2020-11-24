@@ -27119,7 +27119,7 @@
 	layer = 3.1;
 	name = "Chemistry Shutters"
 	},
-/obj/structure/table/glass,
+/obj/structure/table/reinforced,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/chemistry)
 "aUY" = (
@@ -27229,7 +27229,7 @@
 	layer = 3.1;
 	name = "Chemistry Shutters"
 	},
-/obj/structure/table/glass,
+/obj/structure/table/reinforced,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/chemistry)
 "aVg" = (
@@ -36389,18 +36389,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
-"bHz" = (
-/obj/machinery/papershredder,
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/corner/red/border,
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 9
-	},
-/obj/effect/floor_decal/corner/red/bordercorner2{
-	dir = 9
-	},
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/security/upperhall)
 "bJV" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -37860,6 +37848,18 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_hallway)
+"hib" = (
+/obj/machinery/papershredder,
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/red/border,
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/red/bordercorner2{
+	dir = 9
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/security/upperhall)
 "hlF" = (
 /obj/structure/bed/chair/bay/chair{
 	dir = 1
@@ -52546,7 +52546,7 @@ ahJ
 aiP
 ajP
 aUx
-bHz
+hib
 adR
 aWq
 ajM
