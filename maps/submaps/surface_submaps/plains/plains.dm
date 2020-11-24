@@ -37,6 +37,7 @@
 #include "lonehome.dmm"
 #include "priderock.dmm"
 #include "oldhotel.dmm"
+#include "VRDen.dmm"
 #endif
 
 
@@ -281,3 +282,9 @@
 	desc = "A broken down greenhouse lab?, this does not look safe."
 	mappath = 'maps/submaps/surface_submaps/plains/methlab.dmm'
 	cost = 15
+
+/datum/map_template/surface/plains/VRDen
+	name = "VR Den"
+	desc = "A temporarily abandoned VR den, still functional."
+	mappath = 'maps/submaps/surface_submaps/plains/VRDen.dmm'
+	cost = 10
