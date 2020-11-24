@@ -5127,7 +5127,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
-/area/maintenance/lower/medsec_maintenance)
+/area/tether/surfacebase/medical/lobby)
 "aig" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 4
@@ -26732,7 +26732,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/white,
-/area/maintenance/lower/medsec_maintenance)
+/area/tether/surfacebase/medical/lobby)
 "aUt" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -37020,18 +37020,6 @@
 /obj/effect/floor_decal/corner/red/border,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/upperhall)
-"dVp" = (
-/obj/machinery/papershredder,
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/corner/red/border,
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 9
-	},
-/obj/effect/floor_decal/corner/red/bordercorner2{
-	dir = 9
-	},
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/security/upperhall)
 "dVE" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -38091,7 +38079,7 @@
 	},
 /obj/structure/window/reinforced,
 /turf/simulated/floor/tiled/white,
-/area/maintenance/lower/medsec_maintenance)
+/area/tether/surfacebase/medical/lobby)
 "ieb" = (
 /obj/effect/floor_decal/borderfloorblack,
 /obj/effect/floor_decal/industrial/danger,
@@ -40893,6 +40881,18 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/iaa/officeb)
+"sOr" = (
+/obj/machinery/papershredder,
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/red/border,
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/red/bordercorner2{
+	dir = 9
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/security/upperhall)
 "sPd" = (
 /obj/machinery/door/airlock/multi_tile/glass{
 	dir = 1;
@@ -40969,7 +40969,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
-/area/maintenance/lower/medsec_maintenance)
+/area/tether/surfacebase/medical/lobby)
 "sWR" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -41068,7 +41068,7 @@
 	pixel_x = -24
 	},
 /turf/simulated/floor/tiled/white,
-/area/maintenance/lower/medsec_maintenance)
+/area/tether/surfacebase/medical/lobby)
 "ttH" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -52552,7 +52552,7 @@ ahJ
 aiP
 ajP
 aUx
-dVp
+sOr
 adR
 aWq
 ajM
@@ -54251,13 +54251,13 @@ aaE
 dYX
 orc
 agL
-aaE
-aaE
-aaE
-aaE
-aaE
-aaE
-aaE
+aeG
+aeG
+aeG
+aeG
+aeG
+aeG
+aeG
 aWz
 ajR
 akn
@@ -54393,13 +54393,13 @@ aaE
 ehN
 uOc
 agM
-aaE
+aeG
 aif
 sWs
 hYK
 trA
 aUs
-aaE
+aeG
 aix
 aWL
 aNp
