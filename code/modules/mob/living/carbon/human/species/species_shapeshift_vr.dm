@@ -41,6 +41,15 @@
 			g_ears2 = new_color_rgb_list[2]
 			b_ears2 = new_color_rgb_list[3]
 
+		var/current_ter_color = rgb(r_ears3,g_ears3,b_ears3)
+
+		var/new_ter_color = input("Pick tertiary ear color (only applies to some ears):","Ear Color (sec)", current_ter_color) as null|color
+		if(new_ter_color)
+			new_color_rgb_list = hex2rgb(new_sec_color)
+			r_ears3 = new_color_rgb_list[1]
+			g_ears3 = new_color_rgb_list[2]
+			b_ears3 = new_color_rgb_list[3]
+
 	update_hair() //Includes Virgo ears
 
 /mob/living/carbon/human/proc/shapeshifter_select_tail()
@@ -86,6 +95,15 @@
 			g_tail2 = new_color_rgb_list[2]
 			b_tail2 = new_color_rgb_list[3]
 
+		var/current_ter_color = rgb(r_tail3,g_tail3,b_tail3)
+
+		var/new_ter_color = input("Pick tertiary tail color (only applies to some tails):","Tail Color (sec)", current_ter_color) as null|color
+		if(new_ter_color)
+			new_color_rgb_list = hex2rgb(new_ter_color)
+			r_tail3 = new_color_rgb_list[1]
+			g_tail3 = new_color_rgb_list[2]
+			b_tail3 = new_color_rgb_list[3]
+
 	update_tail_showing()
 
 /mob/living/carbon/human/proc/shapeshifter_select_wings()
@@ -130,6 +148,16 @@
 			r_wing2 = new_color_rgb_list[1]
 			g_wing2 = new_color_rgb_list[2]
 			b_wing2 = new_color_rgb_list[3]
+
+		var/current_ter_color = rgb(r_wing3,g_wing3,b_wing3)
+
+		var/new_ter_color = input("Pick tertiary wing color (only applies to some wings):","Wing Color (sec)", current_ter_color) as null|color
+		if(new_ter_color)
+			new_color_rgb_list = hex2rgb(new_ter_color)
+			r_wing3 = new_color_rgb_list[1]
+			g_wing3 = new_color_rgb_list[2]
+			b_wing3 = new_color_rgb_list[3]
+
 
 	update_wing_showing()
 
