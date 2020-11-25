@@ -26004,11 +26004,11 @@
 	dir = 10
 	},
 /obj/machinery/button/remote/blast_door{
-	id = "surfbriglockdown";
-	name = "Brig Lockdown";
-	pixel_x = 7;
+	id = "armoryaccess";
+	name = "Armory Access";
+	pixel_x = 8;
 	pixel_y = 27;
-	req_access = list(2)
+	req_access = list(3)
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/middlehall)
@@ -26353,11 +26353,11 @@
 	pixel_y = 37
 	},
 /obj/machinery/button/remote/blast_door{
-	id = "surfbriglockdown";
-	name = "Brig Lockdown";
-	pixel_x = -9;
+	id = "armoryaccess";
+	name = "Armory Access";
+	pixel_x = -8;
 	pixel_y = 27;
-	req_access = list(2)
+	req_access = list(3)
 	},
 /turf/simulated/floor,
 /area/tether/surfacebase/security/armory)
@@ -26407,7 +26407,8 @@
 	},
 /obj/machinery/door/window/brigdoor/eastleft{
 	dir = 1;
-	name = "Warden's Desk"
+	name = "Warden's Desk";
+	req_access = list(3)
 	},
 /obj/structure/cable/green{
 	d1 = 1;
@@ -26474,7 +26475,7 @@
 /area/tether/surfacebase/security/middlehall)
 "aVl" = (
 /obj/machinery/door/airlock/security{
-	name = "Evidence Storage";
+	name = "Warden's Office";
 	req_access = list(3);
 	req_one_access = list()
 	},
@@ -29966,7 +29967,7 @@
 	name = "Brig Lockdown";
 	pixel_x = 7;
 	pixel_y = 27;
-	req_access = list(2)
+	req_access = list(3)
 	},
 /obj/effect/floor_decal/borderfloor/corner2{
 	dir = 4
