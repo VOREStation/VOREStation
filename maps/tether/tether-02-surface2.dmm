@@ -25999,11 +25999,12 @@
 	dir = 10
 	},
 /obj/machinery/button/remote/blast_door{
-	id = "surfbriglockdown";
-	name = "Brig Lockdown";
+	dir = 0;
+	id = "armoryaccess";
+	name = "Armory Access";
 	pixel_x = 7;
 	pixel_y = 27;
-	req_access = list(2)
+	req_access = list(3)
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/middlehall)
@@ -26468,12 +26469,11 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/middlehall)
 "aVl" = (
-/obj/machinery/door/airlock/security{
-	name = "Evidence Storage";
-	req_access = list(3);
-	req_one_access = list()
-	},
 /obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/glass_security{
+	name = "Warden's Office";
+	req_access = list(3)
+	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/warden)
 "aVm" = (
