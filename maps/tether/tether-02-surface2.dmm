@@ -25999,7 +25999,6 @@
 	dir = 10
 	},
 /obj/machinery/button/remote/blast_door{
-	dir = 0;
 	id = "armoryaccess";
 	name = "Armory Access";
 	pixel_x = 7;
@@ -26349,11 +26348,11 @@
 	pixel_y = 37
 	},
 /obj/machinery/button/remote/blast_door{
-	id = "surfbriglockdown";
-	name = "Brig Lockdown";
+	id = "armoryaccess";
+	name = "Armory Access";
 	pixel_x = -9;
 	pixel_y = 27;
-	req_access = list(2)
+	req_access = list(3)
 	},
 /turf/simulated/floor,
 /area/tether/surfacebase/security/armory)
