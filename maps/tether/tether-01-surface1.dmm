@@ -34101,6 +34101,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
+/obj/item/weapon/beach_ball/holoball,
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/brig/storage)
 "guV" = (
