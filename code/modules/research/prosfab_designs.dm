@@ -102,7 +102,7 @@
 	build_path = /obj/item/organ/external/chest
 	gender = MALE
 
-/obj/item/organ/external/chest/f //To satisfy Travis. :|
+/obj/item/organ/external/chest/f //To satisfy CI. :|
 
 /datum/design/item/prosfab/pros/torso/female
 	name = "FBP Torso (F)"

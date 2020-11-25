@@ -44,7 +44,7 @@
 
 	var/age = 30		//Player's age (pure fluff)
 	var/b_type = "A+"	//Player's bloodtype
-	var/datum/robolimb/synthetic		//If they are a synthetic (aka synthetic torso)
+	var/datum/robolimb/synthetic		//If they are a synthetic (aka synthetic torso). Also holds the datum for the type of robolimb.
 
 	var/list/all_underwear = list()
 	var/list/all_underwear_metadata = list()
@@ -85,7 +85,6 @@
 	var/special_voice = "" // For changing our voice. Used by a symptom.
 
 	var/last_dam = -1	//Used for determining if we need to process all organs or just some or even none.
-	var/list/bad_external_organs = list()// organs we check until they are good.
 
 	var/xylophone = 0 //For the spoooooooky xylophone cooldown
 
@@ -118,3 +117,4 @@
 	var/obj/machinery/machine_visual //machine that is currently applying visual effects to this mob. Only used for camera monitors currently.
 
 	inventory_panel_type = /datum/inventory_panel/human
+	butchery_loot = list(/obj/item/stack/animalhide/human = 1)

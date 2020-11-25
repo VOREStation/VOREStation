@@ -152,4 +152,4 @@
 	..(loc, "steel")
 
 /obj/item/weapon/material/shard/phoron/New(loc)
-	..(loc, "phglass")
+	..(loc, "borosilicate glass")

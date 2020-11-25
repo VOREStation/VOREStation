@@ -644,7 +644,7 @@
 /turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
 "bo" = (
-/obj/machinery/atmospherics/pipe/tank/phoron,
+/obj/machinery/atmospherics/pipe/tank/phoron/full,
 /obj/effect/floor_decal/industrial/outline/red,
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/tether_away/fueldepot)
@@ -1124,7 +1124,7 @@
 /turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
 "cn" = (
-/obj/machinery/atmospherics/pipe/tank/air{
+/obj/machinery/atmospherics/pipe/tank/air/full{
 	icon_state = "air_map";
 	dir = 1
 	},

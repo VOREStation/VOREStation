@@ -45,7 +45,7 @@ var/list/name_to_material
 
 //mostly for convenience
 /obj/proc/get_material_name()
-	var/material/material = get_material()
+	var/datum/material/material = get_material()
 	if(material)
 		return material.name
 
@@ -53,8 +53,8 @@ var/list/name_to_material
 /proc/populate_material_list(force_remake=0)
 	if(name_to_material && !force_remake) return // Already set up!
 	name_to_material = list()
-	for(var/type in typesof(/material) - /material)
-		var/material/new_mineral = new type
+	for(var/type in typesof(/datum/material) - /datum/material)
+		var/datum/material/new_mineral = new type
 		if(!new_mineral.name)
 			continue
 		name_to_material[lowertext(new_mineral.name)] = new_mineral
@@ -67,13 +67,13 @@ var/list/name_to_material
 	return name_to_material[name]
 
 /proc/material_display_name(name)
-	var/material/material = get_material_by_name(name)
+	var/datum/material/material = get_material_by_name(name)
 	if(material)
 		return material.display_name
 	return null
 
 // Material definition and procs follow.
-/material
+/datum/material
 	var/name	                          // Unique name for use in indexing the list.
 	var/display_name                      // Prettier name for display.
 	var/use_name
@@ -137,7 +137,7 @@ var/list/name_to_material
 	var/rotting_touch_message = "crumbles under your touch"
 
 // Placeholders for light tiles and rglass.
-/material/proc/build_rod_product(var/mob/user, var/obj/item/stack/used_stack, var/obj/item/stack/target_stack)
+/datum/material/proc/build_rod_product(var/mob/user, var/obj/item/stack/used_stack, var/obj/item/stack/target_stack)
 	if(!rod_product)
 		to_chat(user, "<span class='warning'>You cannot make anything out of \the [target_stack]</span>")
 		return
@@ -150,7 +150,7 @@ var/list/name_to_material
 	S.add_fingerprint(user)
 	S.add_to_stacks(user)
 
-/material/proc/build_wired_product(var/mob/living/user, var/obj/item/stack/used_stack, var/obj/item/stack/target_stack)
+/datum/material/proc/build_wired_product(var/mob/living/user, var/obj/item/stack/used_stack, var/obj/item/stack/target_stack)
 	if(!wire_product)
 		to_chat(user, "<span class='warning'>You cannot make anything out of \the [target_stack]</span>")
 		return
@@ -165,7 +165,7 @@ var/list/name_to_material
 	user.put_in_hands(product)
 
 // Make sure we have a display name and shard icon even if they aren't explicitly set.
-/material/New()
+/datum/material/New()
 	..()
 	if(!display_name)
 		display_name = name
@@ -175,15 +175,15 @@ var/list/name_to_material
 		shard_icon = shard_type
 
 // This is a placeholder for proper integration of windows/windoors into the system.
-/material/proc/build_windows(var/mob/living/user, var/obj/item/stack/used_stack)
+/datum/material/proc/build_windows(var/mob/living/user, var/obj/item/stack/used_stack)
 	return 0
 
 // Weapons handle applying a divisor for this value locally.
-/material/proc/get_blunt_damage()
+/datum/material/proc/get_blunt_damage()
 	return weight //todo
 
 // Return the matter comprising this material.
-/material/proc/get_matter()
+/datum/material/proc/get_matter()
 	var/list/temp_matter = list()
 	if(islist(composite_material))
 		for(var/material_string in composite_material)
@@ -193,61 +193,61 @@ var/list/name_to_material
 	return temp_matter
 
 // As above.
-/material/proc/get_edge_damage()
+/datum/material/proc/get_edge_damage()
 	return hardness //todo
 
 // Snowflakey, only checked for alien doors at the moment.
-/material/proc/can_open_material_door(var/mob/living/user)
+/datum/material/proc/can_open_material_door(var/mob/living/user)
 	return 1
 
 // Currently used for weapons and objects made of uranium to irradiate things.
-/material/proc/products_need_process()
+/datum/material/proc/products_need_process()
 	return (radioactivity>0) //todo
 
 // Used by walls when qdel()ing to avoid neighbor merging.
-/material/placeholder
+/datum/material/placeholder
 	name = "placeholder"
 
 // Places a girder object when a wall is dismantled, also applies reinforced material.
-/material/proc/place_dismantled_girder(var/turf/target, var/material/reinf_material, var/material/girder_material)
+/datum/material/proc/place_dismantled_girder(var/turf/target, var/datum/material/reinf_material, var/datum/material/girder_material)
 	var/obj/structure/girder/G = new(target)
 	if(reinf_material)
 		G.reinf_material = reinf_material
 		G.reinforce_girder()
 	if(girder_material)
-		if(istype(girder_material, /material))
+		if(istype(girder_material, /datum/material))
 			girder_material = girder_material.name
 		G.set_material(girder_material)
 
 
 // General wall debris product placement.
 // Not particularly necessary aside from snowflakey cult girders.
-/material/proc/place_dismantled_product(var/turf/target)
+/datum/material/proc/place_dismantled_product(var/turf/target)
 	place_sheet(target)
 
 // Debris product. Used ALL THE TIME.
-/material/proc/place_sheet(var/turf/target)
+/datum/material/proc/place_sheet(var/turf/target)
 	if(stack_type)
 		return new stack_type(target)
 
 // As above.
-/material/proc/place_shard(var/turf/target)
+/datum/material/proc/place_shard(var/turf/target)
 	if(shard_type)
 		return new /obj/item/weapon/material/shard(target, src.name)
 
 // Used by walls and weapons to determine if they break or not.
-/material/proc/is_brittle()
+/datum/material/proc/is_brittle()
 	return !!(flags & MATERIAL_BRITTLE)
 
-/material/proc/combustion_effect(var/turf/T, var/temperature)
+/datum/material/proc/combustion_effect(var/turf/T, var/temperature)
 	return
 
 // Used by walls to do on-touch things, after checking for crumbling and open-ability.
-/material/proc/wall_touch_special(var/turf/simulated/wall/W, var/mob/living/L)
+/datum/material/proc/wall_touch_special(var/turf/simulated/wall/W, var/mob/living/L)
 	return
 
 // Datum definitions follow.
-/material/uranium
+/datum/material/uranium
 	name = "uranium"
 	stack_type = /obj/item/stack/material/uranium
 	radioactivity = 12
@@ -259,7 +259,7 @@ var/list/name_to_material
 	door_icon_base = "stone"
 	supply_conversion_value = 2
 
-/material/diamond
+/datum/material/diamond
 	name = "diamond"
 	stack_type = /obj/item/stack/material/diamond
 	flags = MATERIAL_UNMELTABLE
@@ -275,7 +275,7 @@ var/list/name_to_material
 	stack_origin_tech = list(TECH_MATERIAL = 6)
 	supply_conversion_value = 8
 
-/material/gold
+/datum/material/gold
 	name = "gold"
 	stack_type = /obj/item/stack/material/gold
 	icon_colour = "#EDD12F"
@@ -287,11 +287,11 @@ var/list/name_to_material
 	sheet_plural_name = "ingots"
 	supply_conversion_value = 2
 
-/material/gold/bronze //placeholder for ashtrays
+/datum/material/gold/bronze //placeholder for ashtrays
 	name = "bronze"
 	icon_colour = "#EDD12F"
 
-/material/silver
+/datum/material/silver
 	name = "silver"
 	stack_type = /obj/item/stack/material/silver
 	icon_colour = "#D1E6E3"
@@ -304,7 +304,7 @@ var/list/name_to_material
 	supply_conversion_value = 2
 
 //R-UST port
-/material/supermatter
+/datum/material/supermatter
 	name = "supermatter"
 	icon_colour = "#FFFF00"
 	stack_type = /obj/item/stack/material/supermatter
@@ -322,7 +322,7 @@ var/list/name_to_material
 	is_fusion_fuel = 1
 	stack_origin_tech = list(TECH_MATERIAL = 8, TECH_PHORON = 5, TECH_BLUESPACE = 4)
 
-/material/phoron
+/datum/material/phoron
 	name = "phoron"
 	stack_type = /obj/item/stack/material/phoron
 	ignition_point = PHORON_MINIMUM_BURN_TEMPERATURE
@@ -338,7 +338,7 @@ var/list/name_to_material
 
 /*
 // Commenting this out while fires are so spectacularly lethal, as I can't seem to get this balanced appropriately.
-/material/phoron/combustion_effect(var/turf/T, var/temperature, var/effect_multiplier)
+/datum/material/phoron/combustion_effect(var/turf/T, var/temperature, var/effect_multiplier)
 	if(isnull(ignition_point))
 		return 0
 	if(temperature < ignition_point)
@@ -353,7 +353,7 @@ var/list/name_to_material
 	return round(totalPhoron/100)
 */
 
-/material/stone
+/datum/material/stone
 	name = "sandstone"
 	stack_type = /obj/item/stack/material/sandstone
 	icon_base = "stone"
@@ -369,7 +369,7 @@ var/list/name_to_material
 	sheet_singular_name = "brick"
 	sheet_plural_name = "bricks"
 
-/material/stone/marble
+/datum/material/stone/marble
 	name = "marble"
 	icon_colour = "#AAAAAA"
 	weight = 26
@@ -378,7 +378,7 @@ var/list/name_to_material
 	stack_type = /obj/item/stack/material/marble
 	supply_conversion_value = 2
 
-/material/steel
+/datum/material/steel
 	name = DEFAULT_WALL_MATERIAL
 	stack_type = /obj/item/stack/material/steel
 	integrity = 150
@@ -388,7 +388,7 @@ var/list/name_to_material
 	icon_reinf = "reinf_over"
 	icon_colour = "#666666"
 
-/material/steel/hull
+/datum/material/steel/hull
 	name = MAT_STEELHULL
 	stack_type = /obj/item/stack/material/steel/hull
 	integrity = 250
@@ -397,10 +397,10 @@ var/list/name_to_material
 	icon_reinf = "reinf_mesh"
 	icon_colour = "#666677"
 
-/material/steel/hull/place_sheet(var/turf/target) //Deconstructed into normal steel sheets.
+/datum/material/steel/hull/place_sheet(var/turf/target) //Deconstructed into normal steel sheets.
 	new /obj/item/stack/material/steel(target)
 
-/material/diona
+/datum/material/diona
 	name = "biomass"
 	icon_colour = null
 	stack_type = null
@@ -408,19 +408,19 @@ var/list/name_to_material
 	icon_base = "diona"
 	icon_reinf = "noreinf"
 
-/material/diona/place_dismantled_product()
+/datum/material/diona/place_dismantled_product()
 	return
 
-/material/diona/place_dismantled_girder(var/turf/target)
+/datum/material/diona/place_dismantled_girder(var/turf/target)
 	spawn_diona_nymph(target)
 
-/material/steel/holographic
+/datum/material/steel/holographic
 	name = "holo" + DEFAULT_WALL_MATERIAL
 	display_name = DEFAULT_WALL_MATERIAL
 	stack_type = null
 	shard_type = SHARD_NONE
 
-/material/plasteel
+/datum/material/plasteel
 	name = "plasteel"
 	stack_type = /obj/item/stack/material/plasteel
 	integrity = 400
@@ -437,7 +437,7 @@ var/list/name_to_material
 	composite_material = list(DEFAULT_WALL_MATERIAL = SHEET_MATERIAL_AMOUNT, "platinum" = SHEET_MATERIAL_AMOUNT) //todo
 	supply_conversion_value = 6
 
-/material/plasteel/hull
+/datum/material/plasteel/hull
 	name = MAT_PLASTEELHULL
 	stack_type = /obj/item/stack/material/plasteel/hull
 	integrity = 600
@@ -446,11 +446,11 @@ var/list/name_to_material
 	icon_colour = "#777788"
 	explosion_resistance = 40
 
-/material/plasteel/hull/place_sheet(var/turf/target) //Deconstructed into normal plasteel sheets.
+/datum/material/plasteel/hull/place_sheet(var/turf/target) //Deconstructed into normal plasteel sheets.
 	new /obj/item/stack/material/plasteel(target)
 
 // Very rare alloy that is reflective, should be used sparingly.
-/material/durasteel
+/datum/material/durasteel
 	name = "durasteel"
 	stack_type = /obj/item/stack/material/durasteel/hull
 	integrity = 600
@@ -467,7 +467,7 @@ var/list/name_to_material
 	composite_material = list("plasteel" = SHEET_MATERIAL_AMOUNT, "diamond" = SHEET_MATERIAL_AMOUNT) //shrug
 	supply_conversion_value = 9
 
-/material/durasteel/hull //The 'Hardball' of starship hulls.
+/datum/material/durasteel/hull //The 'Hardball' of starship hulls.
 	name = MAT_DURASTEELHULL
 	icon_base = "hull"
 	icon_reinf = "reinf_mesh"
@@ -475,10 +475,10 @@ var/list/name_to_material
 	explosion_resistance = 90
 	reflectivity = 0.9
 
-/material/durasteel/hull/place_sheet(var/turf/target) //Deconstructed into normal durasteel sheets.
+/datum/material/durasteel/hull/place_sheet(var/turf/target) //Deconstructed into normal durasteel sheets.
 	new /obj/item/stack/material/durasteel(target)
 
-/material/plasteel/titanium
+/datum/material/plasteel/titanium
 	name = MAT_TITANIUM
 	stack_type = /obj/item/stack/material/titanium
 	conductivity = 2.38
@@ -487,16 +487,16 @@ var/list/name_to_material
 	icon_colour = "#D1E6E3"
 	icon_reinf = "reinf_metal"
 
-/material/plasteel/titanium/hull
+/datum/material/plasteel/titanium/hull
 	name = MAT_TITANIUMHULL
 	stack_type = /obj/item/stack/material/titanium/hull
 	icon_base = "hull"
 	icon_reinf = "reinf_mesh"
 
-/material/plasteel/titanium/hull/place_sheet(var/turf/target) //Deconstructed into normal titanium sheets.
+/datum/material/plasteel/titanium/hull/place_sheet(var/turf/target) //Deconstructed into normal titanium sheets.
 	new /obj/item/stack/material/titanium(target)
 
-/material/glass
+/datum/material/glass
 	name = "glass"
 	stack_type = /obj/item/stack/material/glass
 	flags = MATERIAL_BRITTLE
@@ -517,7 +517,7 @@ var/list/name_to_material
 	created_fulltile_window = /obj/structure/window/basic/full
 	rod_product = /obj/item/stack/material/glass/reinforced
 
-/material/glass/build_windows(var/mob/living/user, var/obj/item/stack/used_stack)
+/datum/material/glass/build_windows(var/mob/living/user, var/obj/item/stack/used_stack)
 
 	if(!user || !used_stack || !created_window || !created_fulltile_window || !window_options.len)
 		return 0
@@ -588,10 +588,10 @@ var/list/name_to_material
 	new build_path(T, build_dir, 1)
 	return 1
 
-/material/glass/proc/is_reinforced()
+/datum/material/glass/proc/is_reinforced()
 	return (hardness > 35) //todo
 
-/material/glass/reinforced
+/datum/material/glass/reinforced
 	name = "rglass"
 	display_name = "reinforced glass"
 	stack_type = /obj/item/stack/material/glass/reinforced
@@ -611,7 +611,7 @@ var/list/name_to_material
 	wire_product = null
 	rod_product = null
 
-/material/glass/phoron
+/datum/material/glass/phoron
 	name = "borosilicate glass"
 	display_name = "borosilicate glass"
 	stack_type = /obj/item/stack/material/glass/phoronglass
@@ -625,7 +625,7 @@ var/list/name_to_material
 	wire_product = null
 	rod_product = /obj/item/stack/material/glass/phoronrglass
 
-/material/glass/phoron/reinforced
+/datum/material/glass/phoron/reinforced
 	name = "reinforced borosilicate glass"
 	display_name = "reinforced borosilicate glass"
 	stack_type = /obj/item/stack/material/glass/phoronrglass
@@ -640,7 +640,7 @@ var/list/name_to_material
 	composite_material = list() //todo
 	rod_product = null
 
-/material/plastic
+/datum/material/plastic
 	name = "plastic"
 	stack_type = /obj/item/stack/material/plastic
 	flags = MATERIAL_BRITTLE
@@ -655,13 +655,13 @@ var/list/name_to_material
 	melting_point = T0C+371 //assuming heat resistant plastic
 	stack_origin_tech = list(TECH_MATERIAL = 3)
 
-/material/plastic/holographic
+/datum/material/plastic/holographic
 	name = "holoplastic"
 	display_name = "plastic"
 	stack_type = null
 	shard_type = SHARD_NONE
 
-/material/graphite
+/datum/material/graphite
 	name = MAT_GRAPHITE
 	stack_type = /obj/item/stack/material/graphite
 	flags = MATERIAL_BRITTLE
@@ -677,7 +677,7 @@ var/list/name_to_material
 	radiation_resistance = 15
 	stack_origin_tech = list(TECH_MATERIAL = 2, TECH_MAGNET = 2)
 
-/material/osmium
+/datum/material/osmium
 	name = "osmium"
 	stack_type = /obj/item/stack/material/osmium
 	icon_colour = "#9999FF"
@@ -687,7 +687,7 @@ var/list/name_to_material
 	conductivity = 100
 	supply_conversion_value = 6
 
-/material/tritium
+/datum/material/tritium
 	name = "tritium"
 	stack_type = /obj/item/stack/material/tritium
 	icon_colour = "#777777"
@@ -697,7 +697,7 @@ var/list/name_to_material
 	is_fusion_fuel = 1
 	conductive = 0
 
-/material/deuterium
+/datum/material/deuterium
 	name = "deuterium"
 	stack_type = /obj/item/stack/material/deuterium
 	icon_colour = "#999999"
@@ -707,7 +707,7 @@ var/list/name_to_material
 	is_fusion_fuel = 1
 	conductive = 0
 
-/material/mhydrogen
+/datum/material/mhydrogen
 	name = "mhydrogen"
 	stack_type = /obj/item/stack/material/mhydrogen
 	icon_colour = "#E6C5DE"
@@ -716,7 +716,7 @@ var/list/name_to_material
 	is_fusion_fuel = 1
 	supply_conversion_value = 6
 
-/material/platinum
+/datum/material/platinum
 	name = "platinum"
 	stack_type = /obj/item/stack/material/platinum
 	icon_colour = "#9999FF"
@@ -727,7 +727,7 @@ var/list/name_to_material
 	sheet_plural_name = "ingots"
 	supply_conversion_value = 5
 
-/material/iron
+/datum/material/iron
 	name = "iron"
 	stack_type = /obj/item/stack/material/iron
 	icon_colour = "#5C5454"
@@ -736,7 +736,7 @@ var/list/name_to_material
 	sheet_singular_name = "ingot"
 	sheet_plural_name = "ingots"
 
-/material/lead
+/datum/material/lead
 	name = MAT_LEAD
 	stack_type = /obj/item/stack/material/lead
 	icon_colour = "#273956"
@@ -749,7 +749,7 @@ var/list/name_to_material
 
 // Particle Smasher and other exotic materials.
 
-/material/verdantium
+/datum/material/verdantium
 	name = MAT_VERDANTIUM
 	stack_type = /obj/item/stack/material/verdantium
 	icon_base = "metal"
@@ -770,7 +770,7 @@ var/list/name_to_material
 	sheet_plural_name = "sheets"
 	supply_conversion_value = 8
 
-/material/morphium
+/datum/material/morphium
 	name = MAT_MORPHIUM
 	stack_type = /obj/item/stack/material/morphium
 	icon_base = "metal"
@@ -791,13 +791,13 @@ var/list/name_to_material
 	stack_origin_tech = list(TECH_MATERIAL = 8, TECH_ILLEGAL = 1, TECH_PHORON = 4, TECH_BLUESPACE = 4, TECH_ARCANE = 1)
 	supply_conversion_value = 13
 
-/material/morphium/hull
+/datum/material/morphium/hull
 	name = MAT_MORPHIUMHULL
 	stack_type = /obj/item/stack/material/morphium/hull
 	icon_base = "hull"
 	icon_reinf = "reinf_mesh"
 
-/material/valhollide
+/datum/material/valhollide
 	name = MAT_VALHOLLIDE
 	stack_type = /obj/item/stack/material/valhollide
 	icon_base = "stone"
@@ -820,7 +820,7 @@ var/list/name_to_material
 
 
 // Adminspawn only, do not let anyone get this.
-/material/alienalloy
+/datum/material/alienalloy
 	name = "alienalloy"
 	display_name = "durable alloy"
 	stack_type = null
@@ -834,31 +834,31 @@ var/list/name_to_material
 	protectiveness = 80 // 80%
 
 // Likewise.
-/material/alienalloy/elevatorium
+/datum/material/alienalloy/elevatorium
 	name = "elevatorium"
 	display_name = "elevator panelling"
 	icon_colour = "#666666"
 
 // Ditto.
-/material/alienalloy/dungeonium
+/datum/material/alienalloy/dungeonium
 	name = "dungeonium"
 	display_name = "ultra-durable"
 	icon_base = "dungeon"
 	icon_colour = "#FFFFFF"
 
-/material/alienalloy/bedrock
+/datum/material/alienalloy/bedrock
 	name = "bedrock"
 	display_name = "impassable rock"
 	icon_base = "rock"
 	icon_colour = "#FFFFFF"
 
-/material/alienalloy/alium
+/datum/material/alienalloy/alium
 	name = "alium"
 	display_name = "alien"
 	icon_base = "alien"
 	icon_colour = "#FFFFFF"
 
-/material/resin
+/datum/material/resin
 	name = "resin"
 	icon_colour = "#35343a"
 	icon_base = "resin"
@@ -874,13 +874,13 @@ var/list/name_to_material
 	stack_origin_tech = list(TECH_MATERIAL = 8, TECH_PHORON = 4, TECH_BLUESPACE = 4, TECH_BIO = 7)
 	stack_type = /obj/item/stack/material/resin
 
-/material/resin/can_open_material_door(var/mob/living/user)
+/datum/material/resin/can_open_material_door(var/mob/living/user)
 	var/mob/living/carbon/M = user
 	if(istype(M) && locate(/obj/item/organ/internal/xenos/hivenode) in M.internal_organs)
 		return 1
 	return 0
 
-/material/resin/wall_touch_special(var/turf/simulated/wall/W, var/mob/living/L)
+/datum/material/resin/wall_touch_special(var/turf/simulated/wall/W, var/mob/living/L)
 	var/mob/living/carbon/M = L
 	if(istype(M) && locate(/obj/item/organ/internal/xenos/hivenode) in M.internal_organs)
 		to_chat(M, "<span class='alien'>\The [W] shudders under your touch, starting to become porous.</span>")
@@ -892,7 +892,7 @@ var/list/name_to_material
 		return 1
 	return 0
 
-/material/wood
+/datum/material/wood
 	name = MAT_WOOD
 	stack_type = /obj/item/stack/material/wood
 	icon_colour = "#9c5930"
@@ -915,33 +915,34 @@ var/list/name_to_material
 	sheet_singular_name = "plank"
 	sheet_plural_name = "planks"
 
-/material/wood/log
+/datum/material/wood/log
 	name = MAT_LOG
 	icon_base = "log"
 	stack_type = /obj/item/stack/material/log
 	sheet_singular_name = null
 	sheet_plural_name = "pile"
 	pass_stack_colors = TRUE
+	supply_conversion_value = 1
 
-/material/wood/log/sif
+/datum/material/wood/log/sif
 	name = MAT_SIFLOG
 	icon_colour = "#0099cc" // Cyan-ish
 	stack_origin_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2)
 	stack_type = /obj/item/stack/material/log/sif
 
-/material/wood/holographic
+/datum/material/wood/holographic
 	name = "holowood"
 	display_name = "wood"
 	stack_type = null
 	shard_type = SHARD_NONE
 
-/material/wood/sif
+/datum/material/wood/sif
 	name = MAT_SIFWOOD
 	stack_type = /obj/item/stack/material/wood/sif
 	icon_colour = "#0099cc" // Cyan-ish
 	stack_origin_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2) // Alien wood would presumably be more interesting to the analyzer.
 
-/material/cardboard
+/datum/material/cardboard
 	name = "cardboard"
 	stack_type = /obj/item/stack/material/cardboard
 	flags = MATERIAL_BRITTLE
@@ -961,7 +962,7 @@ var/list/name_to_material
 	radiation_resistance = 1
 	pass_stack_colors = TRUE
 
-/material/snow
+/datum/material/snow
 	name = MAT_SNOW
 	stack_type = /obj/item/stack/material/snow
 	flags = MATERIAL_BRITTLE
@@ -979,7 +980,7 @@ var/list/name_to_material
 	sheet_plural_name = "pile" //Just a bigger pile
 	radiation_resistance = 1
 
-/material/snowbrick //only slightly stronger than snow, used to make igloos mostly
+/datum/material/snowbrick //only slightly stronger than snow, used to make igloos mostly
 	name = "packed snow"
 	flags = MATERIAL_BRITTLE
 	stack_type = /obj/item/stack/material/snowbrick
@@ -997,7 +998,7 @@ var/list/name_to_material
 	sheet_plural_name = "bricks"
 	radiation_resistance = 1
 
-/material/cloth //todo
+/datum/material/cloth //todo
 	name = "cloth"
 	stack_origin_tech = list(TECH_MATERIAL = 2)
 	door_icon_base = "wood"
@@ -1007,8 +1008,9 @@ var/list/name_to_material
 	flags = MATERIAL_PADDING
 	conductive = 0
 	pass_stack_colors = TRUE
+	supply_conversion_value = 2
 
-/material/cult
+/datum/material/cult
 	name = "cult"
 	display_name = "disturbing stone"
 	icon_base = "cult"
@@ -1019,31 +1021,47 @@ var/list/name_to_material
 	sheet_plural_name = "bricks"
 	conductive = 0
 
-/material/cult/place_dismantled_girder(var/turf/target)
+/datum/material/cult/place_dismantled_girder(var/turf/target)
 	new /obj/structure/girder/cult(target, "cult")
 
-/material/cult/place_dismantled_product(var/turf/target)
+/datum/material/cult/place_dismantled_product(var/turf/target)
 	new /obj/effect/decal/cleanable/blood(target)
 
-/material/cult/reinf
+/datum/material/cult/reinf
 	name = "cult2"
 	display_name = "human remains"
 
-/material/cult/reinf/place_dismantled_product(var/turf/target)
+/datum/material/cult/reinf/place_dismantled_product(var/turf/target)
 	new /obj/effect/decal/remains/human(target)
 
+/datum/material/chitin
+	name = MAT_CHITIN
+	icon_colour = "#8d6653"
+	stack_type = /obj/item/stack/material/chitin
+	stack_origin_tech = list(TECH_MATERIAL = 3, TECH_BIO = 4)
+	icon_base = "solid"
+	icon_reinf = "reinf_mesh"
+	integrity = 60
+	ignition_point = T0C+400
+	melting_point = T0C+500
+	protectiveness = 25
+	conductive = 0
+	supply_conversion_value = 4
+
 //TODO PLACEHOLDERS:
-/material/leather
-	name = "leather"
+/datum/material/leather
+	name = MAT_LEATHER
 	icon_colour = "#5C4831"
-	stack_origin_tech = list(TECH_MATERIAL = 2)
+	stack_type = /obj/item/stack/material/leather
+	stack_origin_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2)
 	flags = MATERIAL_PADDING
 	ignition_point = T0C+300
 	melting_point = T0C+300
 	protectiveness = 3 // 13%
 	conductive = 0
+	supply_conversion_value = 3
 
-/material/carpet
+/datum/material/carpet
 	name = "carpet"
 	display_name = "comfy"
 	use_name = "red upholstery"
@@ -1056,7 +1074,7 @@ var/list/name_to_material
 	protectiveness = 1 // 4%
 	conductive = 0
 
-/material/cotton
+/datum/material/cotton
 	name = "cotton"
 	display_name ="cotton"
 	icon_colour = "#FFFFFF"
@@ -1067,7 +1085,7 @@ var/list/name_to_material
 	conductive = 0
 
 // This all needs to be OOP'd and use inheritence if its ever used in the future.
-/material/cloth_teal
+/datum/material/cloth_teal
 	name = "teal"
 	display_name ="teal"
 	use_name = "teal cloth"
@@ -1078,7 +1096,7 @@ var/list/name_to_material
 	protectiveness = 1 // 4%
 	conductive = 0
 
-/material/cloth_black
+/datum/material/cloth_black
 	name = "black"
 	display_name = "black"
 	use_name = "black cloth"
@@ -1089,7 +1107,7 @@ var/list/name_to_material
 	protectiveness = 1 // 4%
 	conductive = 0
 
-/material/cloth_green
+/datum/material/cloth_green
 	name = "green"
 	display_name = "green"
 	use_name = "green cloth"
@@ -1100,7 +1118,7 @@ var/list/name_to_material
 	protectiveness = 1 // 4%
 	conductive = 0
 
-/material/cloth_puple
+/datum/material/cloth_puple
 	name = "purple"
 	display_name = "purple"
 	use_name = "purple cloth"
@@ -1111,7 +1129,7 @@ var/list/name_to_material
 	protectiveness = 1 // 4%
 	conductive = 0
 
-/material/cloth_blue
+/datum/material/cloth_blue
 	name = "blue"
 	display_name = "blue"
 	use_name = "blue cloth"
@@ -1122,7 +1140,7 @@ var/list/name_to_material
 	protectiveness = 1 // 4%
 	conductive = 0
 
-/material/cloth_beige
+/datum/material/cloth_beige
 	name = "beige"
 	display_name = "beige"
 	use_name = "beige cloth"
@@ -1133,7 +1151,7 @@ var/list/name_to_material
 	protectiveness = 1 // 4%
 	conductive = 0
 
-/material/cloth_lime
+/datum/material/cloth_lime
 	name = "lime"
 	display_name = "lime"
 	use_name = "lime cloth"
@@ -1144,7 +1162,7 @@ var/list/name_to_material
 	protectiveness = 1 // 4%
 	conductive = 0
 
-/material/cloth_yellow
+/datum/material/cloth_yellow
 	name = "yellow"
 	display_name = "yellow"
 	use_name = "yellow cloth"
@@ -1155,7 +1173,7 @@ var/list/name_to_material
 	protectiveness = 1 // 4%
 	conductive = 0
 
-/material/cloth_orange
+/datum/material/cloth_orange
 	name = "orange"
 	display_name = "orange"
 	use_name = "orange cloth"
@@ -1166,7 +1184,7 @@ var/list/name_to_material
 	protectiveness = 1 // 4%
 	conductive = 0
 
-/material/toy_foam
+/datum/material/toy_foam
 	name = "foam"
 	display_name = "foam"
 	use_name = "foam"

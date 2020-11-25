@@ -1932,6 +1932,10 @@
 /obj/item/toy/chess/rook_white,
 /turf/simulated/floor/holofloor/wmarble,
 /area/holodeck/source_chess)
+"nn" = (
+/obj/machinery/telecomms/allinone/antag,
+/turf/unsimulated/floor/steel,
+/area/centcom/control)
 "nV" = (
 /obj/item/toy/chess/rook_black,
 /turf/simulated/floor/holofloor/wmarble,
@@ -19086,7 +19090,7 @@ ae
 wy
 HQ
 Ga
-Ga
+nn
 wl
 Up
 Vj

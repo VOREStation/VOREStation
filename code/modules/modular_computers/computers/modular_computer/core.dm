@@ -42,6 +42,8 @@
 	return 1
 
 /obj/item/modular_computer/Initialize()
+	if(!overlay_icon)
+		overlay_icon = icon
 	START_PROCESSING(SSobj, src)
 	install_default_hardware()
 	if(hard_drive)
@@ -72,20 +74,20 @@
 
 	overlays.Cut()
 	if(bsod)
-		overlays.Add("bsod")
+		overlays += image(icon = overlay_icon, icon_state = "bsod")
 		return
 	if(!enabled)
 		if(icon_state_screensaver)
-			overlays.Add(icon_state_screensaver)
+			overlays += image(icon = overlay_icon, icon_state = icon_state_screensaver)
 		set_light(0)
 		return
 	set_light(light_strength)
 	if(active_program)
-		overlays.Add(active_program.program_icon_state ? active_program.program_icon_state : icon_state_menu)
+		overlays += image(icon = overlay_icon, icon_state = active_program.program_icon_state ? active_program.program_icon_state : icon_state_menu)
 		if(active_program.program_key_state)
-			overlays.Add(active_program.program_key_state)
+			overlays += image(icon = overlay_icon, icon_state = active_program.program_key_state)
 	else
-		overlays.Add(icon_state_menu)
+		overlays += image(icon = overlay_icon, icon_state = icon_state_menu)
 
 /obj/item/modular_computer/proc/turn_on(var/mob/user)
 	if(bsod)

@@ -2,17 +2,20 @@
 "a" = (
 /obj/structure/lattice,
 /turf/space,
-/area/tether_away/debrisfield/explored)
+/area/space)
 "b" = (
 /turf/template_noop,
-/area/tether_away/debrisfield/explored)
+/area/space)
 "c" = (
 /turf/simulated/floor/airless,
-/area/tether_away/debrisfield/explored)
+/area/space)
 "d" = (
 /obj/structure/girder,
 /turf/simulated/floor/airless,
-/area/tether_away/debrisfield/explored)
+/area/space)
+"e" = (
+/turf/simulated/floor/airless,
+/area/tether_away/debrisfield/shuttle_buffer)
 
 (1,1,1) = {"
 a
@@ -25,16 +28,16 @@ c
 (2,1,1) = {"
 a
 a
-c
-c
+e
+e
 c
 b
 "}
 (3,1,1) = {"
 a
 a
-c
-c
+e
+e
 b
 b
 "}

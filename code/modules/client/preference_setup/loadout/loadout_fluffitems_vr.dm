@@ -25,7 +25,7 @@
 
 /datum/gear/fluff/collar/New()
 	..()
-	gear_tweaks = list(gear_tweak_collar_tag)
+	gear_tweaks += gear_tweak_collar_tag
 
 //  0-9 CKEYS
 /datum/gear/fluff/malady_crop
@@ -65,6 +65,12 @@
 	display_name = "Lynn's Penlight"
 	ckeywhitelist = list("argobargsoup")
 	character_name = list("Lynn Shady")
+
+/datum/gear/fluff/felina_witchhat
+	path = /obj/item/clothing/head/wizard/marisa/fake
+	display_name = "Felina's Witch Hat"
+	ckeywhitelist = list("argobargsoup")
+	character_name = list("Felina Belliger")
 
 /datum/gear/fluff/aronai_ccmeduniform
 	path = /obj/item/clothing/under/solgov/utility/sifguard/officer/medical
@@ -135,6 +141,12 @@
 	display_name = "Nolan's Unity Medal"
 	ckeywhitelist = list("blakeryan")
 	character_name = list("Nolan Conaway")
+
+/datum/gear/fluff/charles_hat
+	path = /obj/item/clothing/head/that/fluff/gettler
+	display_name = "Charles' Top-Hat"
+	ckeywhitelist = list("bobofboblandia")
+	character_name = list("Charles Gettler")
 
 /datum/gear/fluff/xin_sovietuniform
 	path = /obj/item/clothing/under/soviet
@@ -726,6 +738,13 @@
 	character_name = list("Tiemli Kroto")
 	allowed_roles = list("Roboticist")
 
+/datum/gear/fluff/clara_flask
+	path = /obj/item/weapon/reagent_containers/food/drinks/glass2/fluff/claraflask
+	display_name = "Clara's Vacuum Flask"
+	ckeywhitelist = list("rboys2")
+	character_name = list("Clara Mali")
+	cost = 1
+
 //  S CKEYS
 /datum/gear/fluff/brynhild_medal
 	path = /obj/item/clothing/accessory/medal/silver/valor
@@ -910,6 +929,13 @@
 	slot = slot_wear_mask
 	ckeywhitelist = list("theskringdinger")
 	character_name = list("Monty Kopic")
+
+/datum/gear/fluff/shadow_laptop
+	path = /obj/item/modular_computer/laptop/preset/custom_loadout/advanced/shadowlarkens
+	display_name = "Shadow's Laptop"
+	ckeywhitelist = list("tigercat2000")
+	character_name = list("Shadow Larkens")
+	cost = 5
 
 /datum/gear/fluff/konor_medal
 	path = /obj/item/clothing/accessory/medal/silver/unity

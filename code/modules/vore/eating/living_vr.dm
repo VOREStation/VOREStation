@@ -411,7 +411,7 @@
 	if(isbelly(loc))
 		var/obj/belly/B = loc
 		var/confirm = alert(src, "You're in a mob. Don't use this as a trick to get out of hostile animals. This is for escaping from preference-breaking and if you're otherwise unable to escape from endo (pred AFK for a long time).", "Confirmation", "Okay", "Cancel")
-		if(!confirm == "Okay" || loc != B)
+		if(confirm != "Okay" || loc != B)
 			return
 		//Actual escaping
 		absorbed = 0	//Make sure we're not absorbed
@@ -430,7 +430,7 @@
 		var/obj/item/device/dogborg/sleeper/belly = loc //The belly!
 
 		var/confirm = alert(src, "You're in a dogborg sleeper. This is for escaping from preference-breaking or if your predator disconnects/AFKs. If your preferences were being broken, please admin-help as well.", "Confirmation", "Okay", "Cancel")
-		if(!confirm == "Okay" || loc != belly)
+		if(confirm != "Okay" || loc != belly)
 			return
 		//Actual escaping
 		log_and_message_admins("[key_name(src)] used the OOC escape button to get out of [key_name(pred)] (BORG) ([pred ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[pred.x];Y=[pred.y];Z=[pred.z]'>JMP</a>" : "null"])")
@@ -518,10 +518,6 @@
 	belly.nom_mob(prey, user)
 	if(!ishuman(user))
 		user.update_icons()
-
-	// Flavor handling
-	if(belly.can_taste && prey.get_taste_message(FALSE))
-		to_chat(belly.owner, "<span class='notice'>[prey] tastes of [prey.get_taste_message(FALSE)].</span>")
 
 	// Inform Admins
 	if(pred == user)
@@ -717,7 +713,7 @@
 		return
 
 	var/list/nom = null
-	var/material/M = null
+	var/datum/material/M = null
 	if(istype(I, /obj/item/weapon/ore)) //Raw unrefined ore. Some things are just better untempered!
 		var/obj/item/weapon/ore/O = I
 		//List in list, define by material property of ore in code/mining/modules/ore.dm.

@@ -161,6 +161,9 @@
 	irradiate = 20
 	range = 6
 
+/obj/item/projectile/bullet/magnetic/bore/get_structure_damage()
+	return damage * 3 //made for boring holes
+
 /obj/item/projectile/bullet/magnetic/bore/Bump(atom/A, forced=0)
 	if(istype(A, /turf/simulated/mineral))
 		var/turf/simulated/mineral/MI = A
@@ -170,7 +173,6 @@
 		return 0
 	else if(istype(A, /turf/simulated/wall) || istype(A, /turf/simulated/shuttle/wall))	// Cause a loud, but relatively minor explosion on the wall it hits.
 		explosion(A, -1, -1, 1, 3)
-		qdel(src)
-		return 1
+		return ..()
 	else
 		..()

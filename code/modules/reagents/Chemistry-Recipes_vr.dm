@@ -77,13 +77,22 @@
 
 /datum/chemical_reaction/foam/softdrink
 	required_reagents = list("cola" = 1, "mint" = 1)
-	
+
 /datum/chemical_reaction/firefightingfoam //TODO: Make it so we can add this to the foam tanks to refill them
     name = "Firefighting Foam"
     id = "firefighting foam"
     result = "firefoam"
     required_reagents = list("water" = 1)
     catalysts = list("fluorine" = 10)
+    result_amount = 1
+	
+/datum/chemical_reaction/firefightingfoamqol //Please don't abuse this and make us remove it. Seriously.
+    name = "Firefighting Foam EZ"
+    id = "firefighting foam ez"
+    result = "firefoam"
+    required_reagents = list("water" = 1)
+    catalysts = list("firefoam" = 5)
+    inhibitors = list("fluorine" = 0.01)
     result_amount = 1
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -289,6 +298,35 @@
 	result = "pinkmoo"
 	required_reagents = list("blackrussian" = 2, "berryshake" = 1)
 	result_amount = 3
+
+/datum/chemical_reaction/drinks/originalsin
+	name = "Original Sin"
+	id = "originalsin"
+	result = "originalsin"
+	required_reagents = list("holywine" = 1)
+	catalysts = list("applejuice" = 1)
+	result_amount = 1
+
+/datum/chemical_reaction/drinks/windgarita
+	name = "WND-Garita"
+	id = "windgarita"
+	result = "windgarita"
+	required_reagents = list("margarita" = 3, "spacemountainwind" = 2, "melonliquor" = 1)
+	result_amount = 6
+
+/datum/chemical_reaction/drinks/newyorksour
+	name = "New York Sour"
+	id = "newyorksour"
+	result = "newyorksour"
+	required_reagents = list("whiskeysour" = 3, "wine" = 2, "egg" = 1)
+	result_amount = 6
+
+/datum/chemical_reaction/drinks/mudslide
+	name = "Mudslide"
+	id = "mudslide"
+	result = "mudslide"
+	required_reagents = list("blackrussian" = 1, "irishcream" = 1)
+	result_amount = 2
 
 ///////////////////////////////////////////////////////////////////////////////////
 /// Reagent colonies.

@@ -17,7 +17,6 @@
 
 	var/obj/item/weapon/cell/cell                              // Currently installed powercell.
 	var/obj/item/weapon/stock_parts/capacitor/capacitor        // Installed capacitor. Higher rating == faster charge between shots. Set to a path to spawn with one of that type.
-	var/obj/item/weapon/stock_parts/manipulator/manipulator    // Installed manipulator. Mostly for Phoron Bore, higher rating == less mats consumed upon firing. Set to a path to spawn with one of that type.
 	var/removable_components = TRUE                            // Whether or not the gun can be dismantled.
 	var/gun_unreliable = 15                                    // Percentage chance of detonating in your hands.
 
@@ -38,16 +37,14 @@
 	if(ispath(capacitor))
 		capacitor = new capacitor(src)
 		capacitor.charge = capacitor.max_charge
-	if(ispath(manipulator))
-		manipulator = new manipulator(src)
 	if(ispath(loaded))
 		loaded = new loaded(src)
-	
+
 	START_PROCESSING(SSobj, src)
-	
+
 	if(capacitor)
 		power_per_tick = (power_cost*0.15) * capacitor.rating
-	
+
 	update_icon()
 
 /obj/item/weapon/gun/magnetic/Destroy()
@@ -55,7 +52,6 @@
 	QDEL_NULL(cell)
 	QDEL_NULL(loaded)
 	QDEL_NULL(capacitor)
-	QDEL_NULL(manipulator)
 	. = ..()
 
 /obj/item/weapon/gun/magnetic/get_cell()
@@ -68,7 +64,7 @@
 				capacitor.charge(power_per_tick)
 		else
 			capacitor.use(capacitor.charge * 0.05)
-	
+
 	update_state() // May update icon, only if things changed.
 
 /obj/item/weapon/gun/magnetic/proc/update_state()
@@ -80,7 +76,7 @@
 			newstate |= ICON_CELL
 		if(capacitor)
 			newstate |= ICON_CAP
-	
+
 	// Functional state
 	if(!cell || !capacitor)
 		newstate |= ICON_BAD
@@ -88,7 +84,7 @@
 		newstate |= ICON_CHARGE
 	else
 		newstate |= ICON_READY
-	
+
 	// Ammo indicator
 	if(loaded)
 		newstate |= ICON_LOADED
@@ -99,7 +95,7 @@
 		needs_update = TRUE
 
 	state = newstate
-	
+
 	if(needs_update)
 		update_icon()
 
@@ -153,8 +149,7 @@
 				to_chat(user, "<span class='warning'>\The [src] already has \a [cell] installed.</span>")
 				return
 			cell = thing
-			user.drop_from_inventory(cell)
-			cell.forceMove(src)
+			user.drop_from_inventory(cell, src)
 			playsound(src, 'sound/machines/click.ogg', 10, 1)
 			user.visible_message("<span class='notice'>\The [user] slots \the [cell] into \the [src].</span>")
 			update_icon()
@@ -164,10 +159,9 @@
 			if(!capacitor)
 				to_chat(user, "<span class='warning'>\The [src] has no capacitor installed.</span>")
 				return
-			capacitor.forceMove(get_turf(src))
 			user.put_in_hands(capacitor)
 			user.visible_message("<span class='notice'>\The [user] unscrews \the [capacitor] from \the [src].</span>")
-			playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
+			playsound(src, thing.usesound, 50, 1)
 			capacitor = null
 			update_icon()
 			return
@@ -177,8 +171,7 @@
 				to_chat(user, "<span class='warning'>\The [src] already has \a [capacitor] installed.</span>")
 				return
 			capacitor = thing
-			user.drop_from_inventory(capacitor)
-			capacitor.forceMove(src)
+			user.drop_from_inventory(capacitor, src)
 			playsound(src, 'sound/machines/click.ogg', 10, 1)
 			power_per_tick = (power_cost*0.15) * capacitor.rating
 			user.visible_message("<span class='notice'>\The [user] slots \the [capacitor] into \the [src].</span>")

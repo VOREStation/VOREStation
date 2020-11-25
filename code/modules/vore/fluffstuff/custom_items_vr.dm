@@ -1278,3 +1278,34 @@
 /obj/item/clothing/accessory/solgov/department/security/aurora
 	name = "Old security insignia"
 	desc = "Insignia denoting assignment to the security department. These fit Expeditionary Corps uniforms. This one seems to be from the 2100s..."
+
+//Tigercat2000 - Shadow Larkens
+/obj/item/modular_computer/laptop/preset/custom_loadout/advanced/shadowlarkens
+	name = "Shadow's laptop computer"
+	desc = "A laptop with a different color scheme than usual!"
+	icon = 'icons/vore/custom_items_vr.dmi'
+	overlay_icon = 'icons/obj/modular_laptop.dmi'
+	icon_state_unpowered = "shadowlaptop-open"
+	icon_state = "shadowlaptop-open"
+	icon_state_closed = "shadowlaptop-closed"
+
+//Rboys2 - Clara Mali
+/obj/item/weapon/reagent_containers/food/drinks/glass2/fluff/claraflask
+	name = "Clara's Vacuum Flask"
+	desc = "A rose gold vacuum flask."
+	base_name = "Clara's Vacuum Flask"
+	base_icon = "claraflask"
+	icon = 'icons/vore/custom_items_vr.dmi'
+	center_of_mass = list("x" = 15,"y" = 4)
+	filling_states = list(15, 30, 50, 60, 80, 100)
+	volume = 60
+
+/obj/item/weapon/reagent_containers/food/drinks/glass2/fluff/claraflask/Initialize()
+	. = ..()
+	reagents.add_reagent("tea", 40)
+	reagents.add_reagent("milk", 20)
+
+/obj/item/weapon/reagent_containers/food/drinks/glass2/fluff/claraflask/update_icon()
+	..()
+	name = initial(name)
+	desc = initial(desc)

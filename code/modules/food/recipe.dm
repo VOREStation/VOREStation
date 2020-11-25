@@ -208,7 +208,7 @@
 			var/obj/item/I = locate(i) in container
 			if (I && I.reagents)
 				I.reagents.trans_to_holder(buffer,I.reagents.total_volume)
-				qdel(I)
+			qdel(I)
 
 	//Find fruits
 	if (fruit && fruit.len)

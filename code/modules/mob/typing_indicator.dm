@@ -39,7 +39,7 @@
 	set hidden = 1
 
 	set_typing_indicator(TRUE)
-	var/message = input("","me (text)") as text
+	var/message = input("","me (text)") as message //VOREStation Edit
 	set_typing_indicator(FALSE)
 
 	if(message)

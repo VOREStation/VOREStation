@@ -33,23 +33,29 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 	QDEL_NULL(radio)
 	return ..()
 
-/obj/item/device/paicard/attack_ghost(mob/observer/dead/user)
-	if(istype(user) && user.can_admin_interact())
-		switch(alert(user, "Would you like to become a pAI by force? (Admin)", "pAI Creation", "Yes", "No"))
-			if("Yes")
-				// Copied from paiController/Topic
-				var/mob/living/silicon/pai/pai = new(src)
-				pai.name = user.name
-				pai.real_name = pai.name
-				pai.key = user.key
+// VOREStation Edit - Allow everyone to become a pAI
+/obj/item/device/paicard/attack_ghost(mob/user as mob)
+	if(pai != null) //Have a person in them already?
+		return ..()
 
-				setPersonality(pai)
-				looking_for_personality = FALSE
+	var/choice = input(user, "You sure you want to inhabit this PAI?") in list("Yes", "No")
+	if(choice == "No")
+		return ..()
 
-				if(pai.mind)
-					update_antag_icons(pai.mind)
+	var/pai_name = input(user, "Choose your character's name", "Character Name") as text
+	var/actual_pai_name = sanitize_name(pai_name)
+	if(isnull(actual_pai_name))
+		return ..()
+
+	var/turf/location = get_turf(src)
+	var/obj/item/device/paicard/card = new(location)
+	var/mob/living/silicon/pai/new_pai = new(card)
+	qdel(src)
+	new_pai.key = user.key
+	card.setPersonality(new_pai)
+	new_pai.SetName(actual_pai_name)
 	return ..()
-
+// VOREStation Edit End
 
 /obj/item/device/paicard/attack_self(mob/user)
 	if (!in_range(src, user))

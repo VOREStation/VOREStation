@@ -98,12 +98,13 @@
 
 			if(module.charges && module.charges.len)
 				module_data["charges"] = list()
-				var/datum/rig_charge/selected = module.charges[module.charge_selected]
+				var/datum/rig_charge/selected = module.charges["[module.charge_selected]"]
+				module_data["realchargetype"] = module.charge_selected
 				module_data["chargetype"] = selected ? "[selected.display_name]" : "none"
 
 				for(var/chargetype in module.charges)
 					var/datum/rig_charge/charge = module.charges[chargetype]
-					module_data["charges"] += list(list("caption" = "[chargetype] ([charge.charges])", "index" = "[chargetype]"))
+					module_data["charges"] += list(list("caption" = "[charge.display_name] ([charge.charges])", "index" = "[chargetype]"))
 
 			module_list += list(module_data)
 			i++

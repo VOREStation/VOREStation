@@ -96,9 +96,20 @@ var/list/flesh_overlay_cache = list()
 /turf/simulated/wall/rplastitanium/Initialize(mapload)
 	. = ..(mapload, MAT_PLASTITANIUM,MAT_PLASTITANIUM,MAT_PLASTITANIUM)
 
-	/turf/simulated/wall/plastitanium
+/turf/simulated/wall/plastitanium
 	icon_state = "wall-plastitanium"
 	icon = 'icons/turf/wall_masks_vr.dmi'
 /turf/simulated/wall/plastitanium/Initialize(mapload)
 	. = ..(mapload, MAT_PLASTITANIUM, null,MAT_PLASTITANIUM)
 
+/turf/simulated/wall/rplastihull
+	icon_state = "rhull-plastitanium"
+	icon = 'icons/turf/wall_masks_vr.dmi'
+/turf/simulated/wall/rplastihull/Initialize(mapload)
+	. = ..(mapload, MAT_PLASTITANIUMHULL,MAT_PLASTITANIUMHULL,MAT_PLASTITANIUMHULL)
+
+/turf/simulated/wall/plastihull
+	icon_state = "hull-plastitanium"
+	icon = 'icons/turf/wall_masks_vr.dmi'
+/turf/simulated/wall/plastihull/Initialize(mapload)
+	. = ..(mapload, MAT_PLASTITANIUMHULL, null,MAT_PLASTITANIUMHULL)

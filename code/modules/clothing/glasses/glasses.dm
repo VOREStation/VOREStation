@@ -199,6 +199,30 @@ BLIND     // can't see anything
 		icon_state = initial(icon_state)
 	update_clothing_icon()
 
+/obj/item/clothing/glasses/eyepatchwhite
+	name = "eyepatch"
+	desc = "A simple eyepatch made of a strip of cloth tied around the head."
+	icon_state = "eyepatch_white"
+	item_state_slots = list(slot_r_hand_str = "blindfold", slot_l_hand_str = "blindfold")
+	body_parts_covered = 0
+	var/eye = null
+	drop_sound = 'sound/items/drop/gloves.ogg'
+	pickup_sound = 'sound/items/pickup/gloves.ogg'
+
+/obj/item/clothing/glasses/eyepatchwhite/verb/switcheye()
+	set name = "Switch Eyepatch"
+	set category = "Object"
+	set src in usr
+	if(!istype(usr, /mob/living)) return
+	if(usr.stat) return
+
+	eye = !eye
+	if(eye)
+		icon_state = "[icon_state]_1"
+	else
+		icon_state = initial(icon_state)
+	update_clothing_icon()
+
 /obj/item/clothing/glasses/monocle
 	name = "monocle"
 	desc = "Such a dapper eyepiece!"
@@ -519,3 +543,38 @@ BLIND     // can't see anything
 	desc = "A set of implantable lenses designed to augment your vision"
 	icon_state = "thermalimplants"
 	item_state_slots = list(slot_r_hand_str = "sunglasses", slot_l_hand_str = "sunglasses")
+
+/obj/item/clothing/glasses/aerogelgoggles
+	name = "orange goggles"
+	desc = "Teshari designed lightweight goggles."
+	icon_state = "orange-g"
+	item_state_slots = list(slot_r_hand_str = "glasses", slot_l_hand_str = "glasses")
+	action_button_name = "Adjust Orange Goggles"
+	var/up = 0
+	item_flags = AIRTIGHT
+	body_parts_covered = EYES
+	species_restricted = list(SPECIES_TESHARI)
+
+/obj/item/clothing/glasses/aerogelgoggles/attack_self()
+	toggle()
+
+/obj/item/clothing/glasses/aerogelgoggles/verb/toggle()
+	set category = "Object"
+	set name = "Adjust Orange Goggles"
+	set src in usr
+
+	if(usr.canmove && !usr.stat && !usr.restrained())
+		if(src.up)
+			src.up = !src.up
+			flags_inv |= HIDEEYES
+			body_parts_covered |= EYES
+			icon_state = initial(icon_state)
+			to_chat(usr, "You flip \the [src] down to protect your eyes.")
+		else
+			src.up = !src.up
+			flags_inv &= ~HIDEEYES
+			body_parts_covered &= ~EYES
+			icon_state = "[initial(icon_state)]up"
+			to_chat(usr, "You push \the [src] up from in front of your eyes.")
+		update_clothing_icon()
+		usr.update_action_buttons()

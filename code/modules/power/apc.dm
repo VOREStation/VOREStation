@@ -80,8 +80,7 @@ GLOBAL_LIST_EMPTY(apcs)
 	desc = "A control terminal for the area electrical systems."
 	icon = 'icons/obj/power.dmi'
 	icon_state = "apc0"
-	plane = TURF_PLANE
-	layer = ABOVE_TURF_LAYER
+	layer = ABOVE_WINDOW_LAYER
 	anchored = 1
 	use_power = USE_POWER_OFF
 	clicksound = "switch"

@@ -37,7 +37,7 @@
 						var/res_name = ""
 						if(ispath(res,/obj/item/stack/material))
 							var/obj/item/stack/material/mat_stack = res
-							var/material/mat = get_material_by_name("[initial(mat_stack.default_type)]")
+							var/datum/material/mat = get_material_by_name("[initial(mat_stack.default_type)]")
 							if(material_needs[resource]>1)
 								res_name = "[mat.use_name] [mat.sheet_plural_name]"
 							else
