@@ -635,9 +635,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/dock_star)
-"fw" = (
-/turf/simulated/floor/tiled/techmaint,
-/area/space)
 "fx" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/rig_module/sprinter,
@@ -6046,13 +6043,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/teleporter)
-"PZ" = (
-/obj/structure/table/bench/steel,
-/obj/effect/landmark{
-	name = "Commando"
-	},
-/turf/simulated/floor/tiled/steel_grid,
-/area/space)
 "Qc" = (
 /obj/machinery/power/apc/hyper{
 	alarms_hidden = 1;
@@ -16646,7 +16636,7 @@ Ci
 yz
 yz
 yz
-PZ
+yz
 yz
 yz
 yz
@@ -18472,7 +18462,7 @@ pn
 tH
 xv
 Ce
-fw
+FR
 FR
 Mt
 Pl

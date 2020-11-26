@@ -72,6 +72,7 @@
 	var/obj/machinery/portable_atmospherics/hydroponics/soil/invisible/plant
 
 /obj/effect/plant/Destroy()
+	neighbors.Cut()
 	if(seed.get_trait(TRAIT_SPREAD)==2)
 		unsense_proximity(callback = .HasProximity, center = get_turf(src))
 	SSplants.remove_plant(src)
