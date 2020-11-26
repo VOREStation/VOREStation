@@ -330,7 +330,10 @@
 #include "code\datums\autolathe\medical.dm"
 #include "code\datums\autolathe\medical_vr.dm"
 #include "code\datums\autolathe\tools.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\datums\autolathe\tools_vr.dm"
+=======
+>>>>>>> 39b179b... Merge pull request #7739 from ShadowLarkens/dcs:polaris.dme
 #include "code\datums\components\_component.dm"
 #include "code\datums\elements\_element.dm"
 #include "code\datums\game_masters\_common.dm"

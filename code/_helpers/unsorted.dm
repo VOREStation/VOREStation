@@ -1615,4 +1615,8 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 
 /proc/CallAsync(datum/source, proctype, list/arguments)
 	set waitfor = FALSE
+<<<<<<< HEAD
 	return call(source, proctype)(arglist(arguments))
+=======
+	return call(source, proctype)(arglist(arguments))
+>>>>>>> 39b179b... Merge pull request #7739 from ShadowLarkens/dcs
