@@ -385,53 +385,40 @@
 	name = "\improper First Aid West"
 /area/tether/surfacebase/medical/chemistry
 	name = "\improper Chemistry"
-	lightswitch = 0
 /area/tether/surfacebase/medical/resleeving
 	name = "\improper Resleeving"
-	lightswitch = 0
 /area/tether/surfacebase/medical/surgery1
 	name = "\improper Surgery OR 1"
-	lightswitch = 0
 /area/tether/surfacebase/medical/surgery2
 	name = "\improper Surgery OR 2"
-	lightswitch = 0
 /area/tether/surfacebase/medical/patient
 	name = "\improper Surface Patient Recovery Rooms"
-	lightswitch = 0
 /area/tether/surfacebase/medical/patient_a
 	name = "\improper Patient Room A"
-	lightswitch = 0
 /area/tether/surfacebase/medical/patient_b
 	name = "\improper Patient Room B"
-	lightswitch = 0
+/area/tether/surfacebase/medical/patient_c
+	name = "\improper Patient Room C"
 /area/tether/surfacebase/medical/recoveryward
 	name = "\improper Medbay Recovery Ward"
-	lightswitch = 0
 /area/tether/surfacebase/medical/recoveryward/storage
 	name = "\improper Medbay Recovery Storage"
-	lightswitch = 0
 /area/tether/surfacebase/medical/bathroom
-	name = "\improper Medbay Bathroom"
-	lightswitch = 0
+	name = "\improper Medbay Staff Bathroom"
 /area/tether/surfacebase/medical/mentalhealth
 	name = "\improper Mental Health"
-	lightswitch = 0
 /area/tether/surfacebase/medical/mentalhealthwaiting
 	name = "\improper Mental Health Waiting Room"
 /area/tether/surfacebase/medical/cmo
 	name = "\improper Chief Medical Officer's Office"
-	lightswitch = 0
 /area/tether/surfacebase/medical/morgue
 	name = "\improper Morgue"
-	lightswitch = 0
 /area/tether/surfacebase/medical/viro
 	name = "\improper Virology"
-	lightswitch = 0
 /area/tether/surfacebase/medical/viroairlock
 	name = "\improper Virology Airlock"
 /area/tether/surfacebase/medical/viro/viroward
 	name = "\improper Virology Ward"
-	lightswitch = 0
 /area/tether/surfacebase/medical/upperhall
 	name = "\improper Medical Upper Hall"
 /area/tether/surfacebase/medical/centralhall
@@ -442,16 +429,12 @@
 	name = "\improper Medical Stairwell"
 /area/tether/surfacebase/medical/storage
 	name = "\improper Medical Storage"
-	lightswitch = 0
-/area/tether/surfacebase/medical/outfitting
-	name = "\improper Medical Outfitting"
-	lightswitch = 0
+/area/tether/surfacebase/medical/examroom
+	name = "\improper Medical Exam Room"
 /area/tether/surfacebase/medical/paramed
 	name = "\improper Emergency Medical Bay"
-	lightswitch = 0
 /area/tether/surfacebase/medical/breakroom
 	name = "\improper Medical Break Room"
-	lightswitch = 0
 /area/tether/surfacebase/medical/maints
 	name = "\improper Mining Upper Maintenance"
 
