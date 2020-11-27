@@ -229,7 +229,8 @@
 	var/turf/our_tile = get_turf(src)
 	var/obj/visual = new /obj/effect/decal/point(our_tile)
 	visual.invisibility = invisibility
-	visual.plane = plane
+	visual.plane = ABOVE_PLANE
+	visual.layer = FLY_LAYER
 
 	animate(visual,
 		pixel_x = (tile.x - our_tile.x) * world.icon_size + A.pixel_x,
@@ -237,9 +238,7 @@
 		time = 1.7,
 		easing = EASE_OUT)
 
-	spawn(20)
-		if(visual)
-			qdel(visual)	// qdel
+	QDEL_IN(visual, 2 SECONDS) //Better qdel
 
 	face_atom(A)
 	return 1
