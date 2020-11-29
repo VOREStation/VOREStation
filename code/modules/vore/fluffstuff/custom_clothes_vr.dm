@@ -2222,5 +2222,5 @@ Departamental Swimsuits, for general use
 				user.visible_message("<span class='danger'>[user] swipes \the [src] over \the [target]!</span>")
 				translocator.afterattack(target, user, proximity_flag)
 			
-		add_attack_logs(user, target, "Teleported [target] with via \the [src]'s [translocator]!")
+		add_attack_logs(user, target, "Teleported [target] with via \the [src]'s \improper [translocator]!")
 	else ..()
