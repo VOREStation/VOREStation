@@ -69,32 +69,6 @@
 	glass = 1
 	assembly_type = /obj/structure/door_assembly/multi_tile
 
-// VOREStation Edit Start
-/obj/machinery/door/airlock/multi_tile/glass/polarized
-	name = "Electrochromic Glass Airlock"
-	icon_tinted = 'icons/obj/doors/Door2x1tinted_vr.dmi'
-
-/obj/machinery/door/airlock/multi_tile/glass/polarized/New()
-	..()
-	create_fillers()
-
-/obj/machinery/door/airlock/multi_tile/glass/polarized/toggle()
-	. = ..()
-	if(!operating)
-		if(filler1)
-			filler1.set_opacity(opacity)
-			if(filler2)
-				filler2.set_opacity(opacity)
-
-/obj/machinery/door/airlock/multi_tile/glass/polarized/close()
-	. = ..()
-	if(filler1)
-		filler1.set_opacity(!glass)
-		if(filler2)
-			filler2.set_opacity(!glass)
-
-// VOREStation Edit End
-
 /obj/machinery/door/airlock/multi_tile/metal
 	name = "Airlock"
 	icon = 'icons/obj/doors/Door2x1metal.dmi'
