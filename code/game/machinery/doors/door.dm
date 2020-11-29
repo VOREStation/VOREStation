@@ -30,6 +30,11 @@
 	var/repairing = 0
 	var/block_air_zones = 1 //If set, air zones cannot merge across the door even when it is opened.
 	var/close_door_at = 0 //When to automatically close the door, if possible
+	// VOREStation Edit Start
+	var/tintable = 0
+	var/icon_tinted
+	var/id_tint
+	// VOREStation Edit End
 
 	//Multi-tile doors
 	dir = EAST
@@ -508,3 +513,34 @@
 
 /obj/machinery/door/morgue
 	icon = 'icons/obj/doors/doormorgue.dmi'
+
+// VOREStation Edit Start
+
+/obj/machinery/door/proc/toggle()
+	if(glass)
+		icon = icon_tinted
+		glass = 0
+		if(!operating)
+			set_opacity(1)
+	else
+		icon = initial(icon)
+		glass = 1
+		if(!operating)
+			set_opacity(0)
+
+/obj/machinery/button/windowtint/doortint
+	name = "door tint control"
+	desc = "A remote control switch for polarized glass doors."
+
+/obj/machinery/button/windowtint/doortint/toggle_tint()
+	use_power(5)
+	active = !active
+	update_icon()
+
+	for(var/obj/machinery/door/D in range(src,range))
+		if(D.icon_tinted && (D.id_tint == src.id || !D.id_tint))
+			spawn(0)
+				D.toggle()
+				return
+
+// VOREStation Edit End
