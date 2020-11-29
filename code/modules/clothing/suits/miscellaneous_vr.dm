@@ -2,7 +2,7 @@
 	desc = "A standard SolCom Customs formal jacket."
 
 /obj/item/clothing/suit/chiton
-	name = "drake cloak"
+	name = "chiton"
 	desc = "A traditional piece of clothing from Greece."
 	icon = 'icons/mob/suit_vr.dmi'
 	icon_state = "chiton"
