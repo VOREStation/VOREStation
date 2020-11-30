@@ -20,3 +20,11 @@
 	req_one_access = list()
 	normalspeed = FALSE // So it closes faster and hopefully keeps the warm air inside.
 	hackProof = TRUE //VOREStation Edit - No borgos
+
+/obj/machinery/door/airlock/glass_security/polarized
+	name = "Electrochromic Security Airlock"
+	icon_tinted = 'icons/obj/doors/Doorsectinted_vr.dmi'
+
+/obj/machinery/door/airlock/glass_medical/polarized
+	name = "Electrochromic Medical Airlock"
+	icon_tinted = 'icons/obj/doors/doormedtinted_vr.dmi'
