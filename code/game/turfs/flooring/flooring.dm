@@ -140,6 +140,13 @@ var/list/flooring_types
 		'sound/effects/footstep/grass3.ogg',
 		'sound/effects/footstep/grass4.ogg'))
 
+/decl/flooring/grass/outdoors // VOREStation Edit
+	flags = TURF_REMOVE_SHOVEL // VOREStation Edit
+
+/decl/flooring/grass/outdoors/forest // VOREStation Edit
+	icon = 'icons/turf/outdoors.dmi' // VOREStation Edit
+	icon_base = "grass-dark" // VOREStation Edit
+
 /decl/flooring/grass/sif // Subtype for Sif's grass.
 	name = "growth"
 	desc = "A natural moss that has adapted to the sheer cold climate."
