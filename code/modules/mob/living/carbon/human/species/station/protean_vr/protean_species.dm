@@ -313,7 +313,7 @@
 	material_name = MAT_STEEL
 
 /datum/modifier/protean/steel/tick()
-	holder.adjustBruteLoss(-10,include_robo = TRUE) //Looks high, but these ARE modified by species resistances, so this is really 20% of this
+	holder.adjustBruteLoss(-2,include_robo = TRUE) //Looks high, but these ARE modified by species resistances, so this is really 20% of this
 	holder.adjustFireLoss(-1,include_robo = TRUE) //And this is really double this
 	var/mob/living/carbon/human/H = holder
 	for(var/organ in H.internal_organs)
