@@ -8,24 +8,24 @@
 
 	var/temperature_range = 40			// How close will they get to environmental temperature before their body stops changing its heat
 
-	var/vore_active = 0					// If vore behavior is enabled for this mob
+	var/vore_active = 1					// If vore behavior is enabled for this mob
 
 	var/vore_capacity = 1				// The capacity (in people) this person can hold
 	var/vore_max_size = RESIZE_HUGE		// The max size this mob will consider eating
 	var/vore_min_size = RESIZE_TINY 	// The min size this mob will consider eating
-	var/vore_bump_chance = 0			// Chance of trying to eat anyone that bumps into them, regardless of hostility
+	var/vore_bump_chance = 20			// Chance of trying to eat anyone that bumps into them, regardless of hostility
 	var/vore_bump_emote	= "grabs hold of"				// Allow messages for bumpnom mobs to have a flavorful bumpnom
-	var/vore_pounce_chance = 5			// Chance of this mob knocking down an opponent
+	var/vore_pounce_chance = 15			// Chance of this mob knocking down an opponent
 	var/vore_pounce_cooldown = 0		// Cooldown timer - if it fails a pounce it won't pounce again for a while
 	var/vore_pounce_successrate	= 100	// Chance of a pounce succeeding against a theoretical 0-health opponent
-	var/vore_pounce_falloff = 1			// Success rate falloff per %health of target mob.
-	var/vore_pounce_maxhealth = 80		// Mob will not attempt to pounce targets above this %health
+	var/vore_pounce_falloff = 0.3			// Success rate falloff per %health of target mob.
+	var/vore_pounce_maxhealth = 100		// Mob will not attempt to pounce targets above this %health
 	var/vore_standing_too = 0			// Can also eat non-stunned mobs
 	var/vore_ignores_undigestable = FALSE	// If set to true, will refuse to eat mobs who are undigestable by the prefs toggle.
 	var/swallowsound = null				// What noise plays when you succeed in eating the mob.
 
-	var/vore_default_mode = DM_DIGEST	// Default bellymode (DM_DIGEST, DM_HOLD, DM_ABSORB)
-	var/vore_default_flags = 0			// No flags
+	var/vore_default_mode = DM_HOLD	// Default bellymode (DM_DIGEST, DM_HOLD, DM_ABSORB)
+	var/vore_default_flags = 13			// No flags
 	var/vore_digest_chance = 25			// Chance to switch to digest mode if resisted
 	var/vore_absorb_chance = 0			// Chance to switch to absorb mode if resisted
 	var/vore_escape_chance = 25			// Chance of resisting out of mob
