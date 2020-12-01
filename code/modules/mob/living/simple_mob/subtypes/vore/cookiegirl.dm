@@ -8,8 +8,8 @@
 	icon_dead = "cookiegirl-dead"
 	icon = 'icons/mob/vore.dmi'
 
-	maxHealth = 10
-	health = 10
+	maxHealth = 150
+	health = 150
 
 	harm_intent_damage = 2
 	melee_damage_lower = 2
@@ -21,7 +21,7 @@
 	// Activate Noms!
 /mob/living/simple_mob/vore/cookiegirl
 	vore_active = 1
-	vore_bump_chance = 2
+	vore_bump_chance = 25
 	vore_pounce_chance = 25
 	vore_standing_too = 1
 	vore_ignores_undigestable = 0 // Do they look like they care?
