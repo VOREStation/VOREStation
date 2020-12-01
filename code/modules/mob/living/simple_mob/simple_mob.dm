@@ -5,8 +5,8 @@
 	name = "animal"
 	desc = ""
 	icon = 'icons/mob/animal.dmi'
-	health = 20
-	maxHealth = 20
+	health = 60
+	maxHealth = 60
 
 	// Generally we don't want simple_mobs to get displaced when bumped into due to it trivializing combat with windup attacks.
 	// Some subtypes allow displacement, like passive animals.
