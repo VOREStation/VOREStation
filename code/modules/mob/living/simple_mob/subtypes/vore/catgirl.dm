@@ -7,8 +7,8 @@
 	icon = 'icons/mob/vore.dmi'
 
 	harm_intent_damage = 5
-	melee_damage_lower = 2
-	melee_damage_upper = 5
+	melee_damage_lower = 0
+	melee_damage_upper = 0
 
 	response_help = "pets"
 	response_disarm = "gently baps"
@@ -46,12 +46,12 @@
 // Activate Noms!
 /mob/living/simple_mob/vore/catgirl
 	vore_active = 1
-	vore_bump_chance = 5
+	vore_bump_chance = 25
 	vore_pounce_chance = 50
 	vore_standing_too = 1
 	vore_ignores_undigestable = 0 // Catgirls just want to eat yoouuu
 	vore_default_mode = DM_HOLD // Chance that catgirls just wanna bellycuddle yoouuuu!
-	vore_digest_chance = 25 // But squirming might make them gurgle...
+	vore_digest_chance = 20 // But squirming might make them gurgle...
 	vore_icons = SA_ICON_LIVING | SA_ICON_REST
 
 /datum/say_list/catgirl
