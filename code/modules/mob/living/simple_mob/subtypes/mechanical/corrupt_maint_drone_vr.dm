@@ -49,6 +49,7 @@
 	var/poison_per_bite = 5			// Amount added per injection.
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive
+	vore_active = 0
 
 
 /mob/living/simple_mob/mechanical/corrupt_maint_drone/apply_melee_effects(var/atom/A)
