@@ -15,7 +15,7 @@
 	The simplistic AI inside compensates for this by using the tendency to bounce away after \
 	slicing as an evasive tactic to avoid harm. This allows the viscerator to cut up the target, \
 	fly to the side, and then repeat, potentially causing the target to die from many seperate wounds."
-	value = CATALOGUER_REWARD_EASY
+	value = CATALOGUER_REWARD_HARD
 
 /mob/living/simple_mob/mechanical/viscerator
 	name = "viscerator"
@@ -46,7 +46,6 @@
 	attacktext = list("cut", "sliced")
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive
-	vore_active = 0
 
 /mob/living/simple_mob/mechanical/viscerator/death()
 	..(null,"is smashed into pieces!")
