@@ -14,7 +14,7 @@
 	it to **ERROR** inject it's targets, in addition to the small slashes from it's skittering claws. \
 	The simplistic AI inside attempts to attack and then run, as it is aware that it is fairly weak, \
 	using evasive tactics to avoid harm."
-	value = CATALOGUER_REWARD_EASY
+	value = CATALOGUER_REWARD_HARD
 
 /mob/living/simple_mob/mechanical/corrupt_maint_drone
 	name = "Corrupt Maintenance Drone"
@@ -49,7 +49,6 @@
 	var/poison_per_bite = 5			// Amount added per injection.
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive
-	vore_active = 0
 
 
 /mob/living/simple_mob/mechanical/corrupt_maint_drone/apply_melee_effects(var/atom/A)
