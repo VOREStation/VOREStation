@@ -9,8 +9,8 @@
 	icon = 'icons/mob/vore.dmi'
 
 	faction = "horse"
-	maxHealth = 60
-	health = 60
+	maxHealth = 160
+	health = 160
 
 	movement_cooldown = 1.5 //horses are fast mkay.
 	see_in_dark = 6
@@ -19,8 +19,8 @@
 	response_disarm = "gently pushes aside"
 	response_harm   = "kicks"
 
-	melee_damage_lower = 1
-	melee_damage_upper = 5
+	melee_damage_lower = 0
+	melee_damage_upper = 0
 	attacktext = list("kicked")
 
 	meat_amount = 4
@@ -42,11 +42,11 @@
 	icon_dead = "horse-dead"
 	icon = 'icons/mob/vore64x64.dmi'
 
-	maxHealth = 120
-	health = 120
+	maxHealth = 250
+	health = 250
 
-	melee_damage_lower = 5
-	melee_damage_upper = 15
+	melee_damage_lower = 0
+	melee_damage_upper = 0
 	attacktext = list("kicked")
 
 	meat_amount = 6
