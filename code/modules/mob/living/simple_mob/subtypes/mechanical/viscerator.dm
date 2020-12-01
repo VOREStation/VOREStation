@@ -46,6 +46,7 @@
 	attacktext = list("cut", "sliced")
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive
+	vore_active = 0
 
 /mob/living/simple_mob/mechanical/viscerator/death()
 	..(null,"is smashed into pieces!")
