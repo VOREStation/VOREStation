@@ -52,7 +52,7 @@
 	//None, they stay as their defaults.
 	vore_digest_chance = 0
 	vore_absorb_chance = 0
-	vore_bump_chance = 0 //They follow people, this would be DENGEROUS
+	vore_bump_chance = 20 //They follow people, this would be DENGEROUS
 
 	var/eye_state = RED_EYES //Eye color/energy gain/loss mode
 	var/eye_icon_state = null //Default, changed in init
