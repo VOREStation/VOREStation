@@ -71,7 +71,7 @@
 		Z_LEVEL_SPACE_MID,
 		Z_LEVEL_SPACE_HIGH))
 
-	station_name  = "NSB Adephagia"
+	station_name  = "EU Vore Test"
 	station_short = "Tether"
 	dock_name     = "Virgo-3B Colony"
 	dock_type     = "surface"
