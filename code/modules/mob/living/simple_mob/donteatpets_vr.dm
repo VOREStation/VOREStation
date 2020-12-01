@@ -1,32 +1,32 @@
 //I figured since it's basically always frowned upon to eat the station pets, it would probably be a good idea to just make that not possible normally.
 
 /mob/living/simple_mob/animal/passive/dog/corgi/Ian
-	digestable = 0
-	devourable = 0
+	digestable = 1
+	devourable = 1
 
 /mob/living/simple_mob/animal/passive/dog/corgi/Lisa
-	digestable = 0
-	devourable = 0
+	digestable = 1
+	devourable = 1
 
 /mob/living/simple_mob/animal/passive/dog/corgi/puppy
-	digestable = 0
-	devourable = 0
+	digestable = 1
+	devourable = 1
 
 /mob/living/simple_mob/animal/passive/cat/runtime
 	digestable = 0
-	devourable = 0
+	devourable = 1
 
 /mob/living/simple_mob/animal/passive/cat/kitten
-	digestable = 0
-	devourable = 0
+	digestable = 1
+	devourable = 1
 
 /mob/living/simple_mob/animal/passive/bird/parrot/poly
 	digestable = 0
-	devourable = 0
+	devourable = 1
 
 /mob/living/carbon/human/monkey/punpun
-	digestable = 0
-	devourable = 0
+	digestable = 1
+	devourable = 1
 
 /mob/living/simple_mob/animal/passive/snake/noodle
 	digestable = 0
@@ -44,8 +44,8 @@
 	devourable = 0
 
 /mob/living/simple_mob/animal/sif/fluffy
-	digestable = 0
-	devourable = 0
+	digestable = 1
+	devourable = 1
 
 /mob/living/simple_mob/slime/xenobio/rainbow/kendrick
 	digestable = 0
