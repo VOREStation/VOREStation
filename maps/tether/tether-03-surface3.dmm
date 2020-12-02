@@ -2545,6 +2545,11 @@
 	dir = 10
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals4,
+/obj/machinery/button/windowtint/doortint{
+	id = "medbayfoyer";
+	pixel_x = -8;
+	pixel_y = -24
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/triage)
 "adB" = (
@@ -36919,6 +36924,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/door/airlock/multi_tile/glass/polarized{
 	id_tag = "MedbayFoyer";
+	id_tint = "medbayfoyer";
 	name = "Medbay Airlock";
 	req_one_access = list(5)
 	},
