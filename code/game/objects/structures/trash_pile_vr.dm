@@ -161,7 +161,7 @@
 					prob(1);/obj/item/device/perfect_tele,
 					prob(1);/obj/item/weapon/bluespace_harpoon,
 					prob(1);/obj/item/clothing/glasses/thermal/syndi,
-					prob(1);/obj/item/weapon/gun/energy/netgun,
+					prob(1);/obj/item/weapon/gun/energy/netgun)
 
 	var/obj/item/I = new path()
 	return I
