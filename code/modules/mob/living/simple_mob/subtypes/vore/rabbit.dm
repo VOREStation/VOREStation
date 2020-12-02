@@ -15,8 +15,8 @@
 	icon = 'icons/mob/vore.dmi'
 
 	faction = "rabbit"
-	maxHealth = 30
-	health = 30
+	maxHealth = 60
+	health = 60
 
 	response_help = "pats"
 	response_disarm = "gently pushes aside"
@@ -34,7 +34,7 @@
 
 	// Vore vars
 	vore_active = 1
-	vore_bump_chance = 10
+	vore_bump_chance = 15
 	vore_bump_emote	= "playfully lunges at"
 	vore_pounce_chance = 40
 	vore_pounce_maxhealth = 100 // They won't pounce by default, as they're passive. This is just so the nom check succeeds. :u
