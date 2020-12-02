@@ -157,7 +157,7 @@
 					prob(1);/obj/item/weapon/spacecash/c100,
 					prob(1);/obj/item/weapon/spacecash/c50,
 					prob(4);/obj/item/weapon/storage/backpack/dufflebag/syndie,
-					prob(4);/obj/item/pizzavoucher),
+					prob(4);/obj/item/pizzavoucher,
 					prob(1);/obj/item/device/perfect_tele,
 					prob(1);/obj/item/weapon/bluespace_harpoon,
 					prob(1);/obj/item/clothing/glasses/thermal/syndi,
@@ -192,6 +192,7 @@
 					prob(4);/obj/item/weapon/storage/secure/briefcase/trashmoney,
 					prob(1);/obj/item/weapon/reagent_containers/syringe/steroid,
 					prob(3);/obj/item/device/perfect_tele,
+					prob(1);/obj/item/device/survivalcapsule/popcabin,
 					prob(3);/obj/item/weapon/gun/energy/netgun)
 
 	var/obj/item/I = new path()
