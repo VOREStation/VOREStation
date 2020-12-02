@@ -1313,6 +1313,7 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/porkbowl
 
+<<<<<<< HEAD
 /datum/recipe/sushi
 	fruit = list("cabbage" = 1)
 	reagents = list("rice" = 20)
@@ -1392,6 +1393,8 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/makaroni
 
+=======
+>>>>>>> 7ee6465... Merge pull request #7757 from Jwguy/FoodAdds
 /datum/recipe/gigapuddi
 	reagents = list("milk" = 15)
 	items = list(

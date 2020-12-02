@@ -229,7 +229,11 @@
 		/obj/item/weapon/reagent_containers/food/snacks/bacon
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/burger/bacon
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> 7ee6465... Merge pull request #7757 from Jwguy/FoodAdds
 /datum/recipe/omurice
 	appliance = GRILL
 	reagents = list("rice" = 5, "ketchup" = 5, "egg" = 3)
@@ -243,4 +247,8 @@
 /datum/recipe/omurice/face
 	appliance = GRILL
 	reagents = list("rice" = 5, "ketchup" = 5, "sodiumchloride" = 5, "egg" = 3)
+<<<<<<< HEAD
 	result = /obj/item/weapon/reagent_containers/food/snacks/omurice/face
+=======
+	result = /obj/item/weapon/reagent_containers/food/snacks/omurice/face
+>>>>>>> 7ee6465... Merge pull request #7757 from Jwguy/FoodAdds
