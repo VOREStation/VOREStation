@@ -45,6 +45,7 @@
 	grab_resist = 50 // they're still slippery buggers!
 
 	vore_active = 1
+	vore_capacity = 2
 	vore_pounce_chance = 50
 	vore_icons = SA_ICON_LIVING
 
