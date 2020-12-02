@@ -3116,7 +3116,8 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/security{
+/obj/machinery/door/airlock/glass_security/polarized{
+	id_tint = "sec_processing";
 	name = "Security Processing";
 	req_access = list(63)
 	},
@@ -36913,15 +36914,14 @@
 /obj/structure/sign/department/medbay{
 	pixel_x = -32
 	},
-/obj/machinery/door/airlock/multi_tile/glass{
-	id_tag = "MedbayFoyer";
-	name = "Medbay Airlock";
-	req_access = newlist();
-	req_one_access = list(5)
-	},
 /obj/machinery/door/firedoor/multi_tile,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/door/airlock/multi_tile/glass/polarized{
+	id_tag = "MedbayFoyer";
+	name = "Medbay Airlock";
+	req_one_access = list(5)
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lobby)
 "bou" = (
@@ -37399,7 +37399,7 @@
 /obj/effect/landmark/start{
 	name = "Security Officer"
 	},
-/obj/machinery/button/windowtint{
+/obj/machinery/button/windowtint/multitint{
 	id = "sec_processing";
 	pixel_x = 26;
 	pixel_y = 6;
