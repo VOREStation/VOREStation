@@ -41883,12 +41883,10 @@
 	name = "Security Blast Doors";
 	opacity = 0
 	},
-/obj/structure/window/reinforced/polarized/full{
-	id = "sec_processing"
-	},
 /obj/structure/cable/green{
 	icon_state = "0-2"
 	},
+/obj/structure/window/reinforced/full,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/security/upperhall)
 "vrU" = (
