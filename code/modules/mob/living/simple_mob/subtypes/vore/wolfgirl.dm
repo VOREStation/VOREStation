@@ -9,16 +9,16 @@
 	icon = 'icons/mob/vore.dmi'
 
 	faction = "wolfgirl"
-	maxHealth = 30
-	health = 30
+	maxHealth = 130
+	health = 130
 
 	response_help = "pats"
 	response_disarm = "gently pushes aside"
 	response_harm = "hits"
 
 	harm_intent_damage = 8
-	melee_damage_lower = 7
-	melee_damage_upper = 7
+	melee_damage_lower = 0
+	melee_damage_upper = 0
 	attacktext = list("slashed")
 
 	say_list_type = /datum/say_list/wolfgirl
@@ -58,6 +58,21 @@
 
 	if(findtext(message, "Awoo."))
 		delayed_say(pick("Awoo?"), speaker)
+
+	if(findtext(message, "Nice hat"))
+		delayed_say(pick("Thanks my grandma made it for me."), speaker)
+
+	if(findtext(message, "What's your phone number?"))
+		delayed_say(pick("Five six seven oh nine! Wait, who are you?"), speaker)
+
+	if(findtext(message, "Are you horny?"))
+		delayed_say(pick("No! I'm just hyperactive!"), speaker)
+
+	if(findtext(message, "Good girl"))
+		delayed_say(pick("Aww thanks... Wait, I'm not a dog!"), speaker)
+
+	if(findtext(message, "Fuyu"))
+		delayed_say(pick("You know my sister?!", "Is she causing problems again?"), speaker)
 
 /datum/say_list/wolfgirl
 	speak = list("AwoooOOOOoooo!","Awoo~","I'll protect the forest! ... Where's the forest again?","All I need is my sword!","Awoo?","Anyone else smell that?")
