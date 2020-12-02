@@ -38,15 +38,15 @@
 	vore_default_mode = DM_HOLD
 	vore_digest_chance = 0
 	vore_pounce_chance = 65
-	vore_bump_chance = 50
+	vore_bump_chance = 20
 	vore_standing_too = TRUE
 	vore_escape_chance = 25
 
 	// Special lamia vore tags
-	var/vore_upper_transfer_chance = 50
-	var/vore_tail_digest_chance = 25
-	var/vore_tail_absorb_chance = 0
-	var/vore_tail_transfer_chance = 50
+	var/vore_upper_transfer_chance = 40
+	var/vore_tail_digest_chance = 20
+	var/vore_tail_absorb_chance = 5
+	var/vore_tail_transfer_chance = 40
 
 	say_list_type = /datum/say_list/lamia
 	ai_holder_type = /datum/ai_holder/simple_mob/passive
