@@ -1633,6 +1633,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel,
 /turf/simulated/wall/shull,
 /area/itglight/starboardengi)
+"ln" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/turf/simulated/floor/tiled/eris/steel/gray_platform,
+/area/itglight/starboardhighsec)
 "lo" = (
 /turf/simulated/floor/airless,
 /area/itglight/readyroom)
@@ -2479,6 +2485,7 @@
 "rq" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/dispenser/oxygen,
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/itglight/starboardhighsec)
 "rw" = (
@@ -18925,7 +18932,7 @@ VU
 fg
 hn
 rq
-rq
+ln
 jB
 mq
 nx
