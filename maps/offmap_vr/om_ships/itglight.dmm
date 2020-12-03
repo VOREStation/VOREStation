@@ -1074,7 +1074,7 @@
 "hF" = (
 /obj/structure/table/steel_reinforced,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/item/weapon/paper/dockingcodes,
+/obj/item/weapon/paper/Dauntless,
 /turf/simulated/floor/tiled/eris/dark/monofloor,
 /area/itglight/cockpit)
 "hG" = (
@@ -1437,6 +1437,7 @@
 	dir = 1;
 	pixel_y = -26
 	},
+/obj/machinery/photocopier/faxmachine/itglight,
 /turf/simulated/floor/tiled/eris/dark/monofloor,
 /area/itglight/cockpit)
 "jF" = (
@@ -1633,12 +1634,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel,
 /turf/simulated/wall/shull,
 /area/itglight/starboardengi)
-"ln" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/portable_atmospherics/canister/oxygen,
-/turf/simulated/floor/tiled/eris/steel/gray_platform,
-/area/itglight/starboardhighsec)
 "lo" = (
 /turf/simulated/floor/airless,
 /area/itglight/readyroom)
@@ -1790,6 +1785,12 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/turf/simulated/floor/tiled/eris/steel/gray_platform,
+/area/itglight/starboardhighsec)
+"mF" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/itglight/starboardhighsec)
 "mL" = (
@@ -2371,6 +2372,14 @@
 /area/itglight/metingroom)
 "qR" = (
 /obj/structure/table/rack/shelf/steel,
+/obj/fiftyspawner/steel,
+/obj/fiftyspawner/steel,
+/obj/fiftyspawner/steel/hull,
+/obj/fiftyspawner/steel/hull,
+/obj/fiftyspawner/rglass,
+/obj/fiftyspawner/rglass,
+/obj/fiftyspawner/grass,
+/obj/fiftyspawner/grass,
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/itglight/starboardhighsec)
 "qU" = (
@@ -2612,6 +2621,12 @@
 "te" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
+	},
+/obj/structure/closet/crate/bin{
+	anchored = 1;
+	density = 0;
+	name = "trash bin";
+	pixel_y = 1
 	},
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/metingroom)
@@ -3560,6 +3575,17 @@
 	},
 /turf/simulated/floor,
 /area/itglight/portengi)
+"Ae" = (
+/obj/structure/closet/crate/bin{
+	anchored = 1;
+	density = 0;
+	name = "trash bin";
+	pixel_x = -8;
+	pixel_y = 17;
+	plane = -34
+	},
+/turf/simulated/floor/tiled/eris/cafe,
+/area/itglight/kitchen)
 "Ar" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
@@ -5133,6 +5159,13 @@
 "Jt" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 8
+	},
+/obj/structure/closet/crate/bin{
+	anchored = 1;
+	density = 0;
+	name = "trash bin";
+	pixel_x = 10;
+	pixel_y = 1
 	},
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/common)
@@ -7519,6 +7552,9 @@
 /obj/machinery/light,
 /turf/simulated/floor,
 /area/itglight/portengi)
+"YG" = (
+/turf/simulated/shuttle/wall/voidcraft/hard_corner,
+/area/shuttle/itglightshuttle)
 "YL" = (
 /obj/structure/sink{
 	pixel_y = 21;
@@ -16124,7 +16160,7 @@ WN
 WN
 WN
 OT
-Pg
+Ae
 Pg
 Zp
 qU
@@ -17557,7 +17593,7 @@ XH
 tq
 dE
 zg
-zg
+YG
 rC
 LI
 ii
@@ -17841,7 +17877,7 @@ Lr
 tq
 dE
 zg
-zg
+YG
 rC
 aQ
 EX
@@ -18932,7 +18968,7 @@ VU
 fg
 hn
 rq
-ln
+mF
 jB
 mq
 nx

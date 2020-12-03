@@ -23,6 +23,7 @@
 	name = "Dauntless - Meeting Room"
 /area/itglight/forehall
 	name = "Dauntless - Fore Hall"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 /area/itglight/starboardcargo
 	name = "Dauntless - Starboard Cargo Bay"
 /area/itglight/starboardhighsec
@@ -47,22 +48,25 @@
 	name = "Dauntless - Restrooms"
 /area/itglight/afthall
 	name = "Dauntless - Aft Hall"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 /area/itglight/medbay
 	name = "Dauntless - Medbay"
 /area/itglight/kitchen
 	name = "Dauntless - Kitchen"
 /area/itglight/crew1
 	name = "Dauntless - Crew Quarters - 1"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 /area/itglight/crew2
 	name = "Dauntless - Crew Quarters - 2"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 /area/itglight/crew3
 	name = "Dauntless - Crew Quarters - 3"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 /area/itglight/crew4
 	name = "Dauntless - Crew Quarters - 4"
+	flags = RAD_SHIELDED | BLUE_SHIELDED
 /area/itglight/shuttlebay
 	name = "Dauntless - Shuttle Bay"
-/area/itglight/shuttledeck
-	name = "Dauntless - Shuttle Deck"
 /area/itglight/starboardengi
 	name = "Dauntless - Starboard Engineering"
 	flags = RAD_SHIELDED | BLUE_SHIELDED
@@ -85,8 +89,9 @@
 	desc = "Spacefaring vessel. Friendly IFF detected."
 	scanner_name = "ITG Dauntless"
 	scanner_desc = @{"[i]Registration[/i]: ITG Dauntless
-[i]Class[/i]: Small Frigate (Low Displacement)
-[i]Transponder[/i]: Transmitting (CIV), non-hostile"}
+[i]Class[/i]: Small Cargo Frigate (Low Displacement)
+[i]Transponder[/i]: Transmitting (CIV), non-hostile"
+[b]Notice[/b]: May carry passengers"}
 	color = "#d98c1a" //orng
 	vessel_mass = 8000
 	vessel_size = SHIP_SIZE_SMALL
@@ -94,10 +99,10 @@
 	initial_restricted_waypoints = list("ITG Shuttlecraft" = list("omship_spawn_itglightshuttle"))
 	fore_dir = NORTH
 
-	skybox_icon = 'aro2.dmi' //Art by Nia Tahl, see ATTRIBUTIONS.md
+	skybox_icon = 'itglight.dmi'
 	skybox_icon_state = "skybox"
-	skybox_pixel_x = 80
-	skybox_pixel_y = 100
+	skybox_pixel_x = 425
+	skybox_pixel_y = 200
 
 /obj/effect/overmap/visitable/ship/itglight/build_skybox_representation()
 	..()
@@ -127,3 +132,20 @@
 	shuttle_area = /area/shuttle/itglightshuttle
 	fuel_consumption = 0
 	defer_initialisation = TRUE
+
+/obj/machinery/photocopier/faxmachine/itglight
+	department = "ITG Dauntless"
+	desc = "The ship's fax machine! It's a safe assumption that most of the departments listed aren't on your ship, since the ship only has one."
+
+/obj/item/weapon/paper/Dauntless
+	name = "Notes about Dauntless"
+	info = {"<font size=1>Welcome to the Ironcrest Transport Group</font><br><br>
+	<h4>ITG Dauntless</h4>
+	Welcome to the Dauntless, there are a few things you should know.<br><br>
+	WRITE DOWN THE DOCKING CODES<br>
+	You can find them on the Shuttle's computer. In case you don't however, you can fax Central Command for a copy of the docking codes.<br><br>
+	<h4>DON'T OVERDO IT</h4>
+	The Dauntless is FAST, but if you get her up to interstellar speeds, it's hard to slow back down again.<br><br>
+	Additionally, exercise extreme caution around rocks and dust. <br>
+	She has six point defense turrets, but her armor is thin, and she hasn't got any fancy shields. <br>
+	She's not a combat ship, and she demands a competent pilot to treat her right."}
