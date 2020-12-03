@@ -109,7 +109,7 @@
 	if(glass)
 		icon = icon_tinted
 		glass = 0
-		if(!operating)
+		if(!operating && density)
 			set_opacity(1)
 	else
 		icon = initial(icon)

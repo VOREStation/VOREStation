@@ -28,3 +28,7 @@
 /obj/machinery/door/airlock/glass_medical/polarized
 	name = "Electrochromic Medical Airlock"
 	icon_tinted = 'icons/obj/doors/doormedtinted_vr.dmi'
+
+/obj/machinery/door/airlock/glass_command/polarized
+	name = "Electrochormic Command Airlock"
+	icon_tinted = 'icons/obj/doors/Doorcomtinted_vr.dmi'

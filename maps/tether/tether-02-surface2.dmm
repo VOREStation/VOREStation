@@ -1775,7 +1775,7 @@
 	pixel_x = 28;
 	pixel_y = -4
 	},
-/obj/machinery/button/windowtint{
+/obj/machinery/button/windowtint/multitint{
 	dir = 8;
 	id = "surfresleeving";
 	pixel_x = 28;
@@ -2114,11 +2114,6 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/resleeving)
 "acY" = (
-/obj/machinery/door/airlock/medical{
-	id_tag = "SurfMedicalResleeving";
-	name = "Resleeving Lab";
-	req_access = list(5)
-	},
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -2131,6 +2126,11 @@
 	},
 /obj/structure/cable/green{
 	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/glass_medical/polarized{
+	id_tag = "SurfMedicalResleeving";
+	name = "Resleeving Lab";
+	req_access = list(5)
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/resleeving)
@@ -4273,23 +4273,25 @@
 /area/tether/surfacebase/security/detective/officea)
 "ags" = (
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock/glass_security{
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/door/airlock/glass_security/polarized{
 	id_tag = "detdoor";
+	id_tint = "detoffice1";
 	name = "Forensics Lab";
 	req_access = list(4)
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/security/detective)
 "agt" = (
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock/glass_security{
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/airlock/glass_security/polarized{
 	id_tag = "detdoor";
+	id_tint = "detoffice0";
 	name = "Forensics Lab";
 	req_access = list(4)
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/security/detective)
 "agu" = (
@@ -6371,6 +6373,11 @@
 "ajW" = (
 /obj/structure/table/woodentable,
 /obj/item/device/flashlight/lamp/green,
+/obj/machinery/button/windowtint/multitint{
+	id = "detoffice1";
+	pixel_x = -24;
+	pixel_y = 8
+	},
 /turf/simulated/floor/carpet,
 /area/tether/surfacebase/security/detective/officea)
 "ajX" = (
@@ -6445,6 +6452,11 @@
 "akd" = (
 /obj/structure/table/woodentable,
 /obj/item/device/flashlight/lamp/green,
+/obj/machinery/button/windowtint/multitint{
+	id = "detoffice0";
+	pixel_x = 24;
+	pixel_y = 8
+	},
 /turf/simulated/floor/carpet,
 /area/tether/surfacebase/security/detective/officeb)
 "ake" = (
@@ -7855,11 +7867,6 @@
 /area/maintenance/lower/public_garden_maintenence/upper)
 "ank" = (
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock/glass_security{
-	id_tag = "detdoor";
-	name = "Detective";
-	req_access = list(4)
-	},
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
@@ -7868,15 +7875,16 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/disposalpipe/segment,
+/obj/machinery/door/airlock/glass_security/polarized{
+	id_tag = "detdoor";
+	id_tint = "detoffice1";
+	name = "Detective";
+	req_access = list(4)
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/detective/officea)
 "anl" = (
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock/glass_security{
-	id_tag = "detdoor";
-	name = "Detective";
-	req_access = list(4)
-	},
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
@@ -7885,6 +7893,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/disposalpipe/segment,
+/obj/machinery/door/airlock/glass_security/polarized{
+	id_tag = "detdoor";
+	id_tint = "detoffice0";
+	name = "Detective";
+	req_access = list(4)
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/detective/officeb)
 "anm" = (
