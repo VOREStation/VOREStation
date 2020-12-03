@@ -633,6 +633,24 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
+
+/datum/sprite_accessory/ears/forward_curled_demon_horns_bony
+	name = "Succubus horns, colourable"
+	desc = ""
+	icon_state = "succu-horns_b"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/forward_curled_demon_horns_bony_with_colorable_ears
+	name = "Succubus horns with pointy ears, colourable"
+	desc = ""
+	icon_state = "elfs"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "succu-horns_b"
+
+
+
 /*
 ////////////////////////////
 /  =--------------------=  /

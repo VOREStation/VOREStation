@@ -16,25 +16,37 @@ jobs:
     name: 'Generate NanoMaps'
     runs-on: ubuntu-18.04
     steps:
-    - name: 'Update Branch'
+    - name: Clone
       uses: actions/checkout@v2
-      with:
-        fetch-depth: 1
+
+    - name: Branch
+      run: |
+        git fetch origin
+        git branch -f nanomaps_generation
+        git checkout nanomaps_generation
+        git reset --hard origin/master
 
     - name: Ensure +x on github-actions directory
-      run: |
-        chmod -R +x ./tools/github-actions
+      run: chmod -R +x ./tools/github-actions
 
-    - name: 'Generate Maps'
+    - name: Generate Maps
       run: './tools/github-actions/nanomap-renderer-invoker.sh'
 
-    - name: 'Commit Maps'
+    - name: Commit Maps
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "NanoMap Generation"
-        git pull origin master
+        git add .
         git commit -m "NanoMap Auto-Update (`date`)" -a || true
-    - name: 'Push Maps'
-      uses: ad-m/github-push-action@master
+        git push -f -u origin nanomaps_generation
+
+    - name: Create Pull Request
+      uses: repo-sync/pull-request@v2
       with:
+        source_branch: "nanomaps_generation"
+        destination_branch: "master"
+        pr_title: "Automatic NanoMap Update"
+        pr_body: "This pull request updates the nanomap images to the latest version of the map."
+        pr_label: "Infrastructure"
+        pr_allow_empty: false
         github_token: ${{ secrets.GITHUB_TOKEN }}
