@@ -12,7 +12,10 @@
 								  "Fennec" = /mob/living/simple_mob/vore/fennec,
 								  "Fennix" = /mob/living/simple_mob/vore/fennix,
 								  "Jelly Blob" = /mob/living/simple_mob/animal/space/jelly,
-								  "Wolf" = /mob/living/simple_mob/animal/wolf)
+								  "Wolf" = /mob/living/simple_mob/animal/wolf,
+								  "Sect Queen" = /mob/living/simple_mob/vore/sect_queen,
+								  "Defanged Xenomorph" = /mob/living/simple_mob/vore/xeno_defanged,
+								  )
 
 /datum/event/maintenance_predator/start()
 
