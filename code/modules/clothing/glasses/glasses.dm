@@ -392,6 +392,11 @@ BLIND     // can't see anything
 	drop_sound = 'sound/items/drop/gloves.ogg'
 	pickup_sound = 'sound/items/pickup/gloves.ogg'
 
+/obj/item/clothing/glasses/sunglasses/blindfold/whiteblindfold
+	name = "white blindfold"
+	desc = "A white blindfold that covers the eyes, preventing sight."
+	icon_state = "blindfoldwhite"
+
 /obj/item/clothing/glasses/sunglasses/blindfold/tape
 	name = "length of tape"
 	desc = "It's a robust DIY blindfold!"
