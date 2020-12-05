@@ -1933,7 +1933,9 @@
 /turf/simulated/floor/holofloor/wmarble,
 /area/holodeck/source_chess)
 "nn" = (
-/obj/machinery/telecomms/allinone/antag,
+/obj/machinery/telecomms/allinone/antag{
+	intercept = 1
+	},
 /turf/unsimulated/floor/steel,
 /area/centcom/control)
 "nV" = (
@@ -4460,7 +4462,7 @@
 /area/beach)
 "XP" = (
 /obj/machinery/oxygen_pump/anesthetic,
-/turf/simulated/floor/tiled/white,
+/turf/unsimulated/wall,
 /area/centcom/simulated/medical)
 "XQ" = (
 /obj/machinery/optable,
@@ -19657,7 +19659,7 @@ ae
 ae
 wy
 wy
-wy
+Ga
 wy
 wl
 Up
@@ -19798,9 +19800,9 @@ ae
 ae
 ae
 ae
-ae
-ae
-ae
+wy
+wy
+wy
 wl
 Up
 Vj

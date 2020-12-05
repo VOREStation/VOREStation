@@ -929,6 +929,7 @@
 #include "code\game\machinery\pipe\pipelayer.dm"
 #include "code\game\machinery\reagents\pump.dm"
 #include "code\game\machinery\telecomms\broadcaster.dm"
+#include "code\game\machinery\telecomms\broadcaster_vr.dm"
 #include "code\game\machinery\telecomms\logbrowser.dm"
 #include "code\game\machinery\telecomms\machine_interactions.dm"
 #include "code\game\machinery\telecomms\presets.dm"
