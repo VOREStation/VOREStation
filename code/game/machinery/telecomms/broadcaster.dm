@@ -142,7 +142,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	machinetype = 6
 	produces_heat = 0
 	var/intercept = 0 // if nonzero, broadcasts all messages to syndicate channel
-	var/overmap_range = 1 //Same turf
+	var/overmap_range = 0 //Same turf
 
 	var/list/linked_radios_weakrefs = list()
 
@@ -161,8 +161,8 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	if(!using_map.use_overmap)
 		return
 
-	// Someone else handling it?
-	if(signal.data["done"])
+	// Is there a valid signal
+	if(!signal)
 		return
 
 	// Where are we able to hear from (and talk to, since we're AIO) anyway?
