@@ -4263,14 +4263,6 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/surface_one_hall)
 "ahd" = (
-/obj/machinery/door/blast/regular{
-	density = 0;
-	dir = 4;
-	icon_state = "pdoor0";
-	id = "shuttle blast";
-	name = "Shuttle Blast Doors";
-	opacity = 0
-	},
 /obj/machinery/door/window/northleft{
 	req_access = list(47)
 	},
@@ -11409,8 +11401,8 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals4,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
-	dir = 5
+	dir = 5;
+	icon_state = "intact-supply"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5;
