@@ -9,17 +9,19 @@
 
 	if(is_freq_listening(signal)) // detect subspace signals
 
-		signal.data["done"] = 1 // mark the signal as being broadcasted
+		//signal.data["done"] = 1 // mark the signal as being broadcasted since we're a broadcaster
 		signal.data["compression"] = 0
 
+		/*
 		// Search for the original signal and mark it as done as well
 		var/datum/signal/original = signal.data["original"]
 		if(original)
 			original.data["done"] = 1
+		*/
 
 		// For some reason level is both used as a list and not a list, and now it needs to be a list.
 		// Because this is a 'all in one' machine, we're gonna just cheat.
-		signal.data["level"] = using_map.contact_levels.Copy()
+		//signal.data["level"] = using_map.contact_levels.Copy()
 
 		if(signal.data["slow"] > 0)
 			sleep(signal.data["slow"]) // simulate the network lag if necessary
