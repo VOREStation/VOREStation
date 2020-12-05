@@ -143,9 +143,11 @@
 	<h4>ITG Dauntless</h4>
 	Welcome to the Dauntless, there are a few things you should know.<br><br>
 	WRITE DOWN THE DOCKING CODES<br>
-	You can find them on the Shuttle's computer. In case you don't however, you can fax Central Command for a copy of the docking codes.<br><br>
+	You can find them in the Captain's Quarters, and on the shuttle control computers. Keep them handy, just in case.<br><br>
 	<h4>DON'T OVERDO IT</h4>
 	The Dauntless is FAST, but if you get her up to interstellar speeds, it's hard to slow back down again.<br><br>
 	Additionally, exercise extreme caution around rocks and dust. <br>
 	She has six point defense turrets, but her armor is thin, and she hasn't got any fancy shields. <br>
-	She's not a combat ship, and she demands a competent pilot to treat her right."}
+	She's not a combat ship, and she demands a competent pilot to treat her right.<br><br>
+	Also d1a2 is best port, just saying.<br><br>
+	Also the ship is 150 meters long and 92 meters wide, in case that is ever relevent."}
