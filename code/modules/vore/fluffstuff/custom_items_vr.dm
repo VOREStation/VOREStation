@@ -1355,3 +1355,36 @@
 	..()
 	name = initial(name)
 	desc = initial(desc)
+
+//Vitoras: Verie
+/obj/item/weapon/fluff/verie
+	name = "glowy hairbrush"
+	desc = "A pulse of light periodically zips across the top of this blue brush. This... is not an ordinary hair care tool. \
+	A small inscription can be seen in one side of the brush: \"THIS DEVICE IS ONLY COMPATIBLE WITH MODEL <b>RI</b> \
+	POSITRONICS IN A MODEL <b>E</b> CHASSIS.\""
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "verie_brush"
+
+	var/owner = "vitoras"
+
+/obj/item/weapon/fluff/verie/attack_self(mob/living/carbon/human/user)
+	if (istype(user))
+		// It's only made for Verie's chassis silly!
+		if (user.ckey != owner)
+			to_chat(user, "<span class='warning'>The brush's teeth are far too rough to even comb your hair. Apparently, \
+			this device was not made for people like you.</span>")
+			return
+		
+		user.hair_accessory_style = /datum/sprite_accessory/hair_accessory/verie_hair_glow
+		user.update_hair()
+		user.visible_message("[user] combs her hair. \The [src] leaves behind glowing cyan highlights as it passes through \
+		her black strands.", \
+		"<span class='notice'>You brush your hair. The teeth react to your nanites and stimulate them into giving off a brillian cyan glow!</span>")
+		return
+	else
+		to_chat(user, "<span class='warning'>\The [src] isn't compatible with your body as it is now.</span>")
+	
+		
+
+
+	
