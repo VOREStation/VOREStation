@@ -2240,3 +2240,51 @@ Departamental Swimsuits, for general use
 			
 		add_attack_logs(user, target, "Teleported [target] with via \the [src]'s [translocator]!")
 	else ..()
+
+//Vitoras: Verie
+/obj/item/clothing/suit/storage/hooded/fluff/verie
+	name = "distressingly cyan hoodie"
+	desc = "A cute, brightly colored hoodie perfect for occasional concealment of a verie silly nerd. A little tag inside \
+	the collar bears only the letters \"VW.\""
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "verie_hoodie"
+
+	icon_override = 'icons/vore/custom_onmob_vr.dmi'
+	item_state = "verie_hoodie"
+
+	hoodtype = /obj/item/clothing/head/hood/winter/fluff/verie
+
+/obj/item/clothing/suit/storage/hooded/fluff/verie/ToggleHood()
+	// If you ain't the robutt, you probably don't have the hair style that the hooded icon states are made for. sorry!
+	var/mob/living/carbon/human/H = src.loc
+	if (H.ckey != "vitoras")
+		to_user(H, "Strange... the hood doesn't go over your head no matter how you try to put it up.")
+		return
+	..()
+
+/obj/item/clothing/head/hood/winter/fluff/verie
+	name = "not-so-cyan hood"
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "verie_hood"
+
+	icon_override = 'icons/vore/custom_onmob_vr.dmi'
+	item_state = "verie_hood"
+
+/obj/item/clothing/under/fluff/verie
+	name = "salaciously stylised suit"
+	desc = "It's kind of difficult to identify the type of material that makes up this form-fitting suit. It is stretchy and flexible, but \
+	is firm in its toughness, and clings tightly to the skin. Come to think of it, it glistens quite a bit in the light and- \
+	oh god it's latex."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "veriesuit"
+
+	icon_override = 'icons/vore/custom_onmob_vr.dmi'
+	item_state = "veriesuit"
+
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|FEET|ARMS|HANDS
+
+/obj/item/clothing/under/fluff/verie/examine(mob/user)
+	//the wordplay never ends
+	. = ..()
+	. += "... A <b>Verie</b> appropriate material choice indeed."
+
