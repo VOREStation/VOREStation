@@ -6521,6 +6521,10 @@
 /area/itglight/shuttlebay)
 "PN" = (
 /obj/machinery/power/tracker,
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
 /turf/simulated/floor/airless,
 /area/itglight/starboardsolars)
 "PO" = (
