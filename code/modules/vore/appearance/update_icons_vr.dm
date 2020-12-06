@@ -21,55 +21,29 @@ var/global/list/wing_icon_cache = list()
 	return null
 
 /mob/living/carbon/human/proc/get_hair_accessory_overlay()
+	to_chat(src, "starting get_hair_accessory_overlay()...")
 	if(hair_accessory_style && !(head && (head.flags_inv & BLOCKHEADHAIR)))
-		if(hair_accessory_style.ignores_lighting)
-			var/image/hair_acc_s = get_hair_accessory_glow_image()
-			hair_acc_s.plane = PLANE_LIGHTING_ABOVE
-			return hair_acc_s
-		else
-			var/icon/hair_acc_s = get_hair_accessory_icon()
-			return hair_acc_s
-	
+		to_chat(src, "found hair accessory style! and ur head's intact. nice")
+		var/icon/hair_acc_s = new/icon("icon" = hair_accessory_style.icon, "icon_state" = hair_accessory_style.icon_state)
+		to_chat(src, "hair_acc_s set!")
+		if(hair_accessory_style.do_colouration)
+			hair_acc_s.Blend(rgb(src.r_ears, src.g_ears, src.b_ears), hair_accessory_style.color_blend_mode)
+
+		if(hair_accessory_style.extra_overlay)
+			var/icon/overlay = new/icon("icon" = hair_accessory_style.icon, "icon_state" = hair_accessory_style.extra_overlay)
+			overlay.Blend(rgb(src.r_ears2, src.g_ears2, src.b_ears2), hair_accessory_style.color_blend_mode)
+			hair_acc_s.Blend(overlay, ICON_OVERLAY)
+			qdel(overlay)
+
+		if(hair_accessory_style.extra_overlay2) //MORE COLOURS IS BETTERER
+			var/icon/overlay = new/icon("icon" = hair_accessory_style.icon, "icon_state" = hair_accessory_style.extra_overlay2)
+			overlay.Blend(rgb(src.r_ears3, src.g_ears3, src.b_ears3), hair_accessory_style.color_blend_mode)
+			hair_acc_s.Blend(overlay, ICON_OVERLAY)
+			qdel(overlay)
+		to_chat(src, "<span class='notice'>get_hair_accessory_overlay() completed!</span>")
+		return hair_acc_s
 	return null
 
-/mob/living/carbon/human/proc/get_hair_accessory_icon()
-	var/icon/hair_acc_s = new/icon("icon" = hair_accessory_style.icon, "icon_state" = hair_accessory_style.icon_state)
-	if(hair_accessory_style.do_colouration)
-		hair_acc_s.Blend(rgb(src.r_ears, src.g_ears, src.b_ears), hair_accessory_style.color_blend_mode)
-
-	if(hair_accessory_style.extra_overlay)
-		var/icon/overlay = new/icon("icon" = hair_accessory_style.icon, "icon_state" = hair_accessory_style.extra_overlay)
-		overlay.Blend(rgb(src.r_ears2, src.g_ears2, src.b_ears2), hair_accessory_style.color_blend_mode)
-		hair_acc_s.Blend(overlay, ICON_OVERLAY)
-		qdel(overlay)
-
-	if(hair_accessory_style.extra_overlay2) //MORE COLOURS IS BETTERER
-		var/icon/overlay = new/icon("icon" = hair_accessory_style.icon, "icon_state" = hair_accessory_style.extra_overlay2)
-		overlay.Blend(rgb(src.r_ears3, src.g_ears3, src.b_ears3), hair_accessory_style.color_blend_mode)
-		hair_acc_s.Blend(overlay, ICON_OVERLAY)
-		qdel(overlay)
-	return hair_acc_s
-
-/mob/living/carbon/human/proc/get_hair_accessory_glow_image()
-	var/image/hair_acc_s = new/image("icon" = hair_accessory_style.icon, "icon_state" = hair_accessory_style.icon_state)
-	if(hair_accessory_style.do_colouration)
-		hair_acc_s.Blend(rgb(src.r_ears, src.g_ears, src.b_ears), hair_accessory_style.color_blend_mode)
-	hair_accessory_style.plane = PLANE_LIGHTING_ABOVE
-
-	if(hair_accessory_style.extra_overlay)
-		var/image/overlay = new/image("icon" = hair_accessory_style.icon, "icon_state" = hair_accessory_style.extra_overlay)
-		overlay.Blend(rgb(src.r_ears2, src.g_ears2, src.b_ears2), hair_accessory_style.color_blend_mode)
-		overlay.plane = PLANE_LIGHTING_ABOVE
-		hair_acc_s.Blend(overlay, ICON_OVERLAY)
-		qdel(overlay)
-
-	if(hair_accessory_style.extra_overlay2) //MORE COLOURS IS BETTERER
-		var/image/overlay = new/image("icon" = hair_accessory_style.icon, "icon_state" = hair_accessory_style.extra_overlay2)
-		overlay.Blend(rgb(src.r_ears3, src.g_ears3, src.b_ears3), hair_accessory_style.color_blend_mode)
-		overlay.plane = PLANE_LIGHTING_ABOVE
-		hair_acc_s.Blend(overlay, ICON_OVERLAY)
-		qdel(overlay)
-	return hair_acc_s
 
 /mob/living/carbon/human/proc/get_tail_image()
 	//If you are FBP with tail style and didn't set a custom one

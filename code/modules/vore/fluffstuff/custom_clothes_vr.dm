@@ -2258,7 +2258,7 @@ Departamental Swimsuits, for general use
 	// If you ain't the robutt, you probably don't have the hair style that the hooded icon states are made for. sorry!
 	var/mob/living/carbon/human/H = src.loc
 	if (H.ckey != "vitoras")
-		to_user(H, "Strange... the hood doesn't go over your head no matter how you try to put it up.")
+		to_chat(H, "Strange... the hood doesn't go over your head no matter how you try to put it up.")
 		return
 	..()
 

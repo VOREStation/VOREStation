@@ -1364,8 +1364,9 @@
 	POSITRONICS IN A MODEL <b>E</b> CHASSIS.\""
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "verie_brush"
+	w_class = ITEMSIZE_TINY
 
-	var/owner = "vitoras"
+	var/owner = "ryumi"
 
 /obj/item/weapon/fluff/verie/attack_self(mob/living/carbon/human/user)
 	if (istype(user))
@@ -1379,8 +1380,10 @@
 		user.update_hair()
 		user.visible_message("[user] combs her hair. \The [src] leaves behind glowing cyan highlights as it passes through \
 		her black strands.", \
-		"<span class='notice'>You brush your hair. The teeth react to your nanites and stimulate them into giving off a brillian cyan glow!</span>")
-		return
+		"<span class='notice'>You brush your hair. \The [src]'s teeth begin to vibrate and glow as they react to your nanites. \
+		The teeth stimulate the nanites in your hair strands until your hair give off a brilliant, faintly pulsing \
+		cyan glow!</span>")
+	
 	else
 		to_chat(user, "<span class='warning'>\The [src] isn't compatible with your body as it is now.</span>")
 	

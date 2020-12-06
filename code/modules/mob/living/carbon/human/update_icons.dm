@@ -78,21 +78,22 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 #define SUIT_STORE_LAYER		17		//Suit storage-slot item
 #define BACK_LAYER				18		//Back-slot item
 #define HAIR_LAYER				19		//The human's hair
-#define EARS_LAYER				20		//Both ear-slot items (combined image)
-#define EYES_LAYER				21		//Mob's eyes (used for glowing eyes)
-#define FACEMASK_LAYER			22		//Mask-slot item
-#define HEAD_LAYER				23		//Head-slot item
-#define HANDCUFF_LAYER			24		//Handcuffs, if the human is handcuffed, in a secret inv slot
-#define LEGCUFF_LAYER			25		//Same as handcuffs, for legcuffs
-#define L_HAND_LAYER			26		//Left-hand item
-#define R_HAND_LAYER			27		//Right-hand item
-#define WING_LAYER				28		//VOREStation edit. Simply move this up a number if things are added.
-#define TAIL_LAYER_ALT			29		//VOREStation edit. Simply move this up a number if things are added.
-#define MODIFIER_EFFECTS_LAYER	30		//Effects drawn by modifiers
-#define FIRE_LAYER				31		//'Mob on fire' overlay layer
-#define WATER_LAYER				32		//'Mob submerged' overlay layer
-#define TARGETED_LAYER			33		//'Aimed at' overlay layer
-#define TOTAL_LAYERS			33		//VOREStation edit. <---- KEEP THIS UPDATED, should always equal the highest number here, used to initialize a list.
+#define HAIR_ACCESSORY_LAYER	20		//VOREStation edit. Simply move this up a number if things are added.
+#define EARS_LAYER				21		//Both ear-slot items (combined image)
+#define EYES_LAYER				22		//Mob's eyes (used for glowing eyes)
+#define FACEMASK_LAYER			23		//Mask-slot item
+#define HEAD_LAYER				24		//Head-slot item
+#define HANDCUFF_LAYER			25		//Handcuffs, if the human is handcuffed, in a secret inv slot
+#define LEGCUFF_LAYER			26		//Same as handcuffs, for legcuffs
+#define L_HAND_LAYER			27		//Left-hand item
+#define R_HAND_LAYER			28		//Right-hand item
+#define WING_LAYER				29		//VOREStation edit. Simply move this up a number if things are added.
+#define TAIL_LAYER_ALT			30		//VOREStation edit. Simply move this up a number if things are added.
+#define MODIFIER_EFFECTS_LAYER	31		//Effects drawn by modifiers
+#define FIRE_LAYER				32		//'Mob on fire' overlay layer
+#define WATER_LAYER				33		//'Mob submerged' overlay layer
+#define TARGETED_LAYER			34		//'Aimed at' overlay layer
+#define TOTAL_LAYERS			35		//VOREStation edit. <---- KEEP THIS UPDATED, should always equal the highest number here, used to initialize a list.
 //////////////////////////////////
 
 /mob/living/carbon/human
@@ -455,13 +456,34 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	var/icon/ears_s = get_ears_overlay()
 	if(ears_s)
 		face_standing.Blend(ears_s, ICON_OVERLAY)
+	to_chat(src, "getting hair accessory...")
 	var/icon/hair_acc_s = get_hair_accessory_overlay()
+	var/image/hair_acc_s_image = null
+	to_chat(src, "checking for hair_acc_s...")
 	if(hair_acc_s)
-		face_standing.Blend(hair_acc_s, ICON_OVERLAY)
+		to_chat(src, "hair_acc_s found!")
+		if(hair_accessory_style.ignores_lighting)
+			to_chat(src, "setting image and plane...")
+			hair_acc_s_image = image(hair_acc_s)
+			hair_acc_s_image.plane = PLANE_LIGHTING_ABOVE
+			hair_acc_s_image.appearance_flags = appearance_flags
 	if(istype(head_organ,/obj/item/organ/external/head/vr))
 		var/obj/item/organ/external/head/vr/head_organ_vr = head_organ
 		overlays_standing[HAIR_LAYER] = image(face_standing, layer = BODY_LAYER+HAIR_LAYER, "pixel_y" = head_organ_vr.head_offset)
 		apply_layer(HAIR_LAYER)
+		to_chat(src, "checking for hair_acc_s <b>in the head organ check</b>...")
+		if(hair_acc_s)
+			to_chat(src, "hair_acc_s found!")
+			to_chat(src, "checking for hair_acc_s_image...")
+			if (hair_acc_s_image)
+				to_chat(src, "hair_acc_s_image found!")
+				overlays_standing[HAIR_ACCESSORY_LAYER] = hair_acc_s_image
+				apply_layer(HAIR_ACCESSORY_LAYER)
+				return
+			to_chat(src, "<span class='danger'>no hair_acc_s_image! wat.")
+			overlays_standing[HAIR_ACCESSORY_LAYER] = hair_acc_s
+			to_chat(src, "applying hair_acc_s!")
+			apply_layer(HAIR_ACCESSORY_LAYER)
 		return
 	// VOREStation Edit - END
 
