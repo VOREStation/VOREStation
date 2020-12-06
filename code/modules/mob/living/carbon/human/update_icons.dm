@@ -93,7 +93,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 #define FIRE_LAYER				32		//'Mob on fire' overlay layer
 #define WATER_LAYER				33		//'Mob submerged' overlay layer
 #define TARGETED_LAYER			34		//'Aimed at' overlay layer
-#define TOTAL_LAYERS			35		//VOREStation edit. <---- KEEP THIS UPDATED, should always equal the highest number here, used to initialize a list.
+#define TOTAL_LAYERS			34		//VOREStation edit. <---- KEEP THIS UPDATED, should always equal the highest number here, used to initialize a list.
 //////////////////////////////////
 
 /mob/living/carbon/human
