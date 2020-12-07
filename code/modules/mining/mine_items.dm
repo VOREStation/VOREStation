@@ -21,6 +21,7 @@
 	w_class = ITEMSIZE_LARGE
 	matter = list(DEFAULT_WALL_MATERIAL = 3750)
 	var/digspeed = 40 //moving the delay to an item var so R&D can make improved picks. --NEO
+	var/sand_dig = FALSE // does this thing dig sand?
 	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
 	attack_verb = list("hit", "pierced", "sliced", "attacked")
 	var/drill_sound = "pickaxe"
@@ -43,6 +44,7 @@
 	icon_state = "handdrill"
 	item_state = "jackhammer"
 	digspeed = 30
+	sand_dig = TRUE
 	origin_tech = list(TECH_MATERIAL = 2, TECH_POWER = 3, TECH_ENGINEERING = 2)
 	desc = "Yours is the drill that will pierce through the rock walls."
 	drill_verb = "drilling"
@@ -93,6 +95,7 @@
 	icon_state = "diamonddrill"
 	item_state = "jackhammer"
 	digspeed = 5 //Digs through walls, girders, and can dig up sand
+	sand_dig = TRUE
 	origin_tech = list(TECH_MATERIAL = 6, TECH_POWER = 4, TECH_ENGINEERING = 5)
 	desc = "Yours is the drill that will pierce the heavens!"
 	drill_verb = "drilling"
@@ -102,6 +105,7 @@
 	icon_state = "jackhammer"
 	item_state = "jackhammer"
 	digspeed = 15
+	sand_dig = TRUE
 	desc = "Cracks rocks with sonic blasts. This one seems like an improved design."
 	drill_verb = "hammering"
 
@@ -122,6 +126,7 @@
 	attack_verb = list("bashed", "bludgeoned", "thrashed", "whacked")
 	sharp = 0
 	edge = 1
+	var/digspeed = 40
 
 /obj/item/weapon/shovel/spade
 	name = "spade"
