@@ -7,11 +7,11 @@
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/machinery/teleport/hub,
 /turf/simulated/shuttle/floor/voidcraft,
-/area/abductor)
+/area/abductor/interior)
 "bP" = (
 /obj/machinery/transhuman/synthprinter,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "cF" = (
 /turf/space,
 /area/space)
@@ -20,7 +20,7 @@
 	dir = 8
 	},
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "dN" = (
 /obj/structure/closet/alien,
 /obj/item/weapon/storage/firstaid/combat,
@@ -36,21 +36,21 @@
 /obj/item/weapon/storage/firstaid/toxin,
 /obj/item/weapon/storage/firstaid/toxin,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "ed" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
 	dir = 6
 	},
 /turf/simulated/shuttle/wall/alien,
-/area/abductor)
+/area/abductor/interior)
 "eu" = (
 /obj/structure/table/alien,
 /turf/simulated/shuttle/floor/alien,
-/area/abductor)
+/area/abductor/interior)
 "eS" = (
 /obj/machinery/vending/abductor,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "eV" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -68,16 +68,16 @@
 	icon_state = "1-8"
 	},
 /turf/simulated/shuttle/floor/alien,
-/area/abductor)
+/area/abductor/interior)
 "fo" = (
-/turf/simulated/shuttle/floor/alien,
+/turf/simulated/shuttle/floor/alienplating,
 /area/abductor/exterior)
 "fw" = (
 /obj/structure/table/alien,
 /obj/item/device/radio_jammer/admin,
 /obj/item/device/radio_jammer/admin,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "fz" = (
 /obj/structure/table/alien,
 /obj/item/weapon/implanter,
@@ -87,7 +87,7 @@
 /obj/item/weapon/implant/sizecontrol,
 /obj/item/weapon/implant/sizecontrol,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "fQ" = (
 /obj/item/weapon/storage/box/flashbangs,
 /obj/item/weapon/storage/box/teargas,
@@ -98,17 +98,17 @@
 /obj/item/clothing/mask/gas,
 /obj/structure/closet/alien,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "gA" = (
 /obj/machinery/atmospherics/pipe/tank/phoron/full,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "hj" = (
 /obj/structure/table/alien,
 /obj/item/device/paicard,
 /obj/item/device/paicard,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "hq" = (
 /obj/structure/fans/hardlight/colorable/abductor,
 /obj/machinery/door/airlock/alien{
@@ -116,64 +116,69 @@
 	req_one_access = list(777)
 	},
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "hQ" = (
-/obj/item/device/perfect_tele_beacon/stationary{
-	tele_name = "Unknown";
-	tele_network = "abd3"
-	},
-/obj/item/device/perfect_tele/frontier/unknown/abductor/three,
-/turf/simulated/shuttle/floor/alien,
-/area/abductor)
+/obj/machinery/porta_turret/alien/abductor,
+/turf/simulated/shuttle/floor/alienplating,
+/area/abductor/interior)
 "ib" = (
 /obj/structure/table/alien,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "iF" = (
 /obj/machinery/shipsensors{
 	dir = 1
 	},
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/exterior)
 "iH" = (
 /obj/item/weapon/paper/alien/abductor,
 /obj/structure/table/alien,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "ja" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
 	dir = 10
 	},
 /turf/simulated/shuttle/wall/alien,
-/area/abductor)
+/area/abductor/interior)
 "jI" = (
 /obj/machinery/clonepod/transhuman/full/abductor{
 	name = "grower pod"
 	},
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "kf" = (
-/obj/item/device/perfect_tele_beacon/stationary{
-	tele_name = "Unknown";
-	tele_network = "abd2"
+/obj/machinery/turretid/stun{
+	ailock = 1;
+	check_arrest = 0;
+	check_down = 0;
+	check_records = 0;
+	control_area = /area/abductor/interior;
+	desc = "A firewall prevents AIs from interacting with this device.";
+	name = "Ship interior turret control";
+	pixel_x = 32;
+	pixel_y = 64;
+	req_access = list(777);
+	req_one_access = list(777)
 	},
-/obj/item/device/perfect_tele/frontier/unknown/abductor/two,
-/turf/simulated/shuttle/floor/alien,
-/area/abductor)
+/turf/simulated/shuttle/floor/alienplating,
+/area/abductor/interior)
 "kT" = (
-/obj/item/device/perfect_tele_beacon/stationary{
-	tele_name = "Unknown";
-	tele_network = "abd6"
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
-/obj/item/device/perfect_tele/frontier/unknown/abductor/six,
-/turf/simulated/shuttle/floor/alien,
-/area/abductor)
+/obj/machinery/porta_turret/alien/abductor,
+/turf/simulated/shuttle/floor/alienplating,
+/area/abductor/interior)
 "mh" = (
 /obj/machinery/transhuman/resleever/abductor{
 	dir = 1
 	},
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "nv" = (
 /obj/structure/table/alien,
 /obj/item/clothing/mask/gas/voice,
@@ -181,39 +186,45 @@
 /obj/item/device/universal_translator/ear,
 /obj/item/device/universal_translator/ear,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "nw" = (
 /obj/machinery/chemical_dispenser/ert/specialops/abductor{
 	density = 1
 	},
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "nx" = (
-/obj/effect/shuttle_landmark{
-	landmark_tag = "abductor_starboard";
-	name = "Unknown vessel - Starboard"
+/obj/machinery/button/remote/airlock{
+	id = "abd1";
+	name = "Door Bolts";
+	pixel_y = 32;
+	req_one_access = list(777);
+	specialfunctions = 4
 	},
-/turf/space,
-/area/space)
+/turf/simulated/shuttle/floor/alienplating,
+/area/abductor/interior)
 "nA" = (
 /obj/structure/fans/hardlight/colorable/abductor,
 /obj/machinery/door/airlock/alien{
+	id_tag = "abd3";
 	name = "Experimentation 3";
 	req_one_access = list(777)
 	},
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "pa" = (
 /obj/structure/closet/alien,
 /obj/item/device/sleevemate,
+/obj/item/device/flash,
+/obj/item/weapon/storage/firstaid/toxin,
 /turf/simulated/shuttle/floor/alien,
-/area/abductor)
+/area/abductor/interior)
 "pc" = (
 /obj/structure/table/alien,
 /obj/item/weapon/gun/energy/netgun,
 /obj/item/weapon/gun/energy/netgun,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "pB" = (
 /obj/structure/fans/hardlight/colorable/abductor,
 /obj/machinery/door/airlock/alien{
@@ -221,7 +232,7 @@
 	req_one_access = list(777)
 	},
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "pC" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -229,15 +240,19 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "pG" = (
 /obj/structure/fans/hardlight/colorable/abductor,
 /obj/machinery/door/airlock/alien{
+	id_tag = "abd1";
 	name = "Experimentation 1";
 	req_one_access = list(777)
 	},
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
+"pV" = (
+/turf/simulated/shuttle/wall/alien,
+/area/abductor/interior)
 "qk" = (
 /obj/machinery/atmospherics/unary/engine/biggest{
 	dir = 1
@@ -249,25 +264,17 @@
 	dir = 9
 	},
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "qu" = (
 /obj/structure/table/alien,
 /obj/item/clothing/shoes/boots/speed,
 /obj/item/clothing/shoes/boots/speed,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "qL" = (
 /obj/structure/prop/alien/power,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
-"qN" = (
-/obj/item/device/perfect_tele_beacon/stationary{
-	tele_name = "Unknown";
-	tele_network = "abd5"
-	},
-/obj/item/device/perfect_tele/frontier/unknown/abductor/five,
-/turf/simulated/shuttle/floor/alien,
-/area/abductor)
+/area/abductor/interior)
 "rg" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -275,35 +282,30 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/shuttle/floor/alien,
-/area/abductor)
-"rk" = (
-/obj/structure/fans/hardlight/colorable/abductor,
-/obj/machinery/door/airlock/alien{
-	name = "Fore Starboard Exterior Access";
-	req_one_access = list(777)
-	},
-/turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "rB" = (
 /obj/structure/table/alien,
 /obj/item/device/perfect_tele/alien,
 /obj/item/device/perfect_tele/alien,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "rL" = (
 /obj/structure/table/alien,
 /obj/item/weapon/storage/belt/utility/alien/full,
 /obj/item/weapon/storage/belt/utility/alien/full,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
-"sr" = (
-/obj/structure/fans/hardlight/colorable/abductor,
-/obj/machinery/door/airlock/alien{
-	name = "Aft Port Exterior Access";
-	req_one_access = list(777)
+/area/abductor/interior)
+"rP" = (
+/obj/machinery/button/remote/airlock{
+	dir = 1;
+	id = "abd6";
+	name = "Door Bolts";
+	pixel_y = -25;
+	req_one_access = list(777);
+	specialfunctions = 4
 	},
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "sv" = (
 /obj/structure/window/phoronreinforced/full,
 /obj/structure/window/phoronreinforced{
@@ -314,14 +316,14 @@
 	},
 /obj/structure/fans/hardlight/colorable/abductor,
 /turf/simulated/floor/plating,
-/area/abductor)
+/area/abductor/interior)
 "td" = (
 /obj/structure/table/alien,
 /obj/item/weapon/storage/box/handcuffs,
 /obj/item/weapon/storage/box/handcuffs,
 /obj/item/device/sleevemate,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "tl" = (
 /turf/simulated/shuttle/floor/alienplating/vacuum,
 /area/abductor/exterior)
@@ -330,33 +332,57 @@
 /obj/item/weapon/reagent_containers/hypospray,
 /obj/item/weapon/reagent_containers/hypospray,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "tQ" = (
 /obj/structure/table/alien,
 /obj/item/clothing/head/helmet/alien,
 /obj/item/clothing/head/helmet/alien,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
+"uU" = (
+/obj/machinery/button/remote/airlock{
+	dir = 4;
+	id = "abd3";
+	name = "Door Bolts";
+	pixel_x = -27;
+	pixel_y = 2;
+	req_one_access = list(777);
+	specialfunctions = 4
+	},
+/turf/simulated/shuttle/floor/alienplating,
+/area/abductor/interior)
 "vk" = (
 /obj/machinery/computer/ship/helm/abductor{
 	req_one_access = list()
 	},
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
+"vm" = (
+/obj/machinery/button/remote/airlock{
+	dir = 1;
+	id = "abd5";
+	name = "Door Bolts";
+	pixel_y = -25;
+	req_one_access = list(777);
+	specialfunctions = 4
+	},
+/turf/simulated/shuttle/floor/alienplating,
+/area/abductor/interior)
 "vF" = (
 /obj/structure/closet/autolok_wall{
 	pixel_y = 32
 	},
 /obj/item/clothing/shoes/magboots,
 /obj/item/weapon/gun/energy/gun/taser,
+/obj/item/device/flash,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "vS" = (
 /obj/structure/table/alien,
 /obj/item/weapon/storage/belt/medical/alien,
 /obj/item/weapon/storage/belt/medical/alien,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "wk" = (
 /obj/structure/fans/hardlight/colorable/abductor,
 /obj/machinery/door/airlock/alien{
@@ -364,7 +390,7 @@
 	req_one_access = list(777)
 	},
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "wA" = (
 /obj/structure/fans/hardlight/colorable/abductor,
 /obj/machinery/door/airlock/alien{
@@ -372,22 +398,22 @@
 	req_one_access = list(777)
 	},
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "wZ" = (
 /turf/simulated/shuttle/wall/alien,
 /area/abductor)
 "xc" = (
 /obj/structure/prop/alien/dispenser,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "xg" = (
 /obj/machinery/vending/entertainer,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "xD" = (
 /obj/machinery/computer/transhuman/resleeving/abductor,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "yr" = (
 /obj/item/clothing/shoes/magboots,
 /obj/structure/closet/autolok_wall{
@@ -395,8 +421,9 @@
 	pixel_y = -32
 	},
 /obj/item/weapon/gun/energy/gun/taser,
+/obj/item/device/flash,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "yB" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -404,13 +431,13 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/shuttle/floor/alien,
-/area/abductor)
+/area/abductor/interior)
 "zk" = (
 /obj/machinery/vending/abductor{
 	dir = 1
 	},
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "zu" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -433,7 +460,7 @@
 	icon_state = "2-8"
 	},
 /turf/simulated/shuttle/floor/alien,
-/area/abductor)
+/area/abductor/interior)
 "AZ" = (
 /obj/structure/table/alien,
 /obj/item/weapon/gun/energy/medigun,
@@ -441,7 +468,7 @@
 /obj/item/weapon/cell/infinite,
 /obj/item/weapon/cell/infinite,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "Bv" = (
 /obj/structure/table/alien,
 /obj/item/weapon/reagent_containers/glass/bottle/adminordrazine,
@@ -449,27 +476,19 @@
 /obj/item/weapon/reagent_containers/glass/bottle/adminordrazine,
 /obj/item/weapon/reagent_containers/glass/bottle/adminordrazine,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
-"BT" = (
-/obj/structure/fans/hardlight/colorable/abductor,
-/obj/machinery/door/airlock/alien{
-	name = "Aft Starboard Exterior Access";
-	req_one_access = list(777)
-	},
-/turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "DG" = (
 /obj/structure/table/alien,
 /obj/item/weapon/bluespace_harpoon,
 /obj/item/weapon/bluespace_harpoon,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "DI" = (
 /obj/machinery/computer/teleporter{
 	dir = 2
 	},
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "EA" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -477,19 +496,20 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "Fh" = (
 /obj/structure/closet/autolok_wall{
 	pixel_x = 32
 	},
 /obj/item/clothing/shoes/magboots,
 /obj/item/weapon/gun/energy/gun/taser,
+/obj/item/device/flash,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "Fl" = (
 /obj/machinery/atmospherics/binary/pump/fuel,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "Fq" = (
 /obj/item/weapon/bikehorn,
 /obj/item/toy/bosunwhistle,
@@ -509,7 +529,7 @@
 /obj/item/weapon/stamp/chameleon,
 /obj/structure/closet/alien,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "Fw" = (
 /obj/structure/fans/hardlight/colorable/abductor,
 /obj/machinery/door/airlock/alien{
@@ -517,40 +537,35 @@
 	req_one_access = list(777)
 	},
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "Ge" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/fuel{
 	dir = 1;
 	icon_state = "map-fuel"
 	},
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "GB" = (
 /obj/structure/fans/hardlight/colorable/abductor,
 /obj/machinery/door/airlock/alien{
+	icon_state = "door_locked";
+	id_tag = "abdex";
+	locked = 1;
 	name = "Fore Port Exterior Access";
 	req_one_access = list(777)
 	},
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "GE" = (
 /obj/structure/table/alien,
 /obj/item/clothing/suit/armor/alien,
 /obj/item/clothing/suit/armor/alien,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "Hj" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/fuel,
 /turf/simulated/shuttle/wall/alien,
-/area/abductor)
-"Hn" = (
-/obj/item/device/perfect_tele_beacon/stationary{
-	tele_name = "Unknown";
-	tele_network = "abd1"
-	},
-/obj/item/device/perfect_tele/frontier/unknown/abductor/one,
-/turf/simulated/shuttle/floor/alien,
-/area/abductor)
+/area/abductor/interior)
 "Hv" = (
 /obj/effect/overmap/visitable/ship/abductor,
 /turf/space,
@@ -568,14 +583,14 @@
 /obj/item/weapon/tape_roll,
 /obj/item/weapon/tape_roll,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "Ji" = (
 /obj/machinery/teleport/station,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "JF" = (
 /turf/simulated/shuttle/floor/alien,
-/area/abductor)
+/area/abductor/interior)
 "JW" = (
 /obj/structure/fans/hardlight/colorable/abductor,
 /obj/machinery/door/airlock/alien{
@@ -583,21 +598,22 @@
 	req_one_access = list(777)
 	},
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "Ke" = (
 /obj/structure/fans/hardlight/colorable/abductor,
 /obj/machinery/door/airlock/alien{
+	id_tag = "abd5";
 	name = "Experimentation 5";
 	req_one_access = list(777)
 	},
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "Kx" = (
 /obj/structure/table/alien,
 /obj/item/clothing/glasses/thermal/syndi,
 /obj/item/clothing/glasses/thermal/syndi,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "KD" = (
 /obj/machinery/turretid/stun{
 	ailock = 1;
@@ -612,19 +628,20 @@
 	req_one_access = list(777)
 	},
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "KJ" = (
 /obj/effect/shuttle_landmark{
 	landmark_tag = "abductor_port";
-	name = "Unknown vessel - Port"
+	name = "Near Unknown Vessel - Port"
 	},
 /turf/space,
 /area/space)
 "KW" = (
 /obj/structure/table/alien,
 /obj/item/weapon/storage/box/beakers,
+/obj/item/weapon/reagent_containers/dropper,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "Lg" = (
 /obj/structure/fans/hardlight/colorable/abductor,
 /obj/machinery/door/airlock/alien{
@@ -636,50 +653,46 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "Ll" = (
-/obj/machinery/door/airlock/alien{
-	name = "experimentation 5";
-	req_one_access = list(777)
+/obj/machinery/button/remote/airlock{
+	id = "abd2";
+	name = "Door Bolts";
+	pixel_y = 32;
+	req_one_access = list(777);
+	specialfunctions = 4
 	},
-/turf/simulated/shuttle/wall/alien,
-/area/abductor)
+/turf/simulated/shuttle/floor/alienplating,
+/area/abductor/interior)
 "LH" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
 	dir = 4
 	},
 /turf/simulated/shuttle/wall/alien,
-/area/abductor)
+/area/abductor/interior)
 "LU" = (
 /obj/machinery/chem_master,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "LW" = (
 /obj/structure/fans/hardlight/colorable/abductor,
 /obj/machinery/door/airlock/alien{
+	id_tag = "abd6";
 	name = "Experimentation 6";
 	req_one_access = list(777)
 	},
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
-"Na" = (
-/obj/item/device/perfect_tele_beacon/stationary{
-	tele_name = "Unknown";
-	tele_network = "abd4"
-	},
-/obj/item/device/perfect_tele/frontier/unknown/abductor/four,
-/turf/simulated/shuttle/floor/alien,
-/area/abductor)
+/area/abductor/interior)
 "Nk" = (
 /obj/structure/bed/alien,
 /turf/simulated/shuttle/floor/alien,
-/area/abductor)
+/area/abductor/interior)
 "Nq" = (
 /obj/structure/table/alien,
 /obj/item/weapon/melee/baton,
 /obj/item/weapon/melee/baton,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "ND" = (
 /obj/structure/fans/hardlight/colorable/abductor,
 /obj/machinery/door/airlock/alien{
@@ -687,13 +700,13 @@
 	req_one_access = list(777)
 	},
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "Ov" = (
 /obj/structure/table/alien,
 /obj/item/weapon/gun/energy/sickshot,
 /obj/item/weapon/gun/energy/sickshot,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "Oz" = (
 /obj/structure/window/phoronreinforced/full,
 /obj/structure/window/phoronreinforced,
@@ -702,7 +715,7 @@
 	},
 /obj/structure/fans/hardlight/colorable/abductor,
 /turf/simulated/floor/plating,
-/area/abductor)
+/area/abductor/interior)
 "OG" = (
 /obj/structure/fans/hardlight/colorable/abductor,
 /obj/machinery/door/airlock/alien{
@@ -715,63 +728,65 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "PJ" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/fuel,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "PO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
 	dir = 5
 	},
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "Qe" = (
 /obj/structure/window/phoronreinforced/full,
 /obj/structure/fans/hardlight/colorable/abductor,
 /turf/simulated/floor/plating,
-/area/abductor)
+/area/abductor/interior)
 "Qf" = (
 /obj/machinery/atmospherics/pipe/tank/phoron/full{
 	dir = 4
 	},
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "Qy" = (
 /obj/structure/closet/autolok_wall{
 	pixel_x = -32
 	},
 /obj/item/clothing/shoes/magboots,
 /obj/item/weapon/gun/energy/gun/taser,
+/obj/item/device/flash,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "QI" = (
 /obj/structure/fans/hardlight/colorable/abductor,
 /obj/machinery/door/airlock/alien{
+	id_tag = "abd4";
 	name = "Experimentation 4";
 	req_one_access = list(777)
 	},
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "QJ" = (
 /obj/structure/prop/alien/dispenser/twoway,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "Rr" = (
 /obj/machinery/computer/ship/engines/abductor,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "RA" = (
 /obj/machinery/computer/ship/sensors/abductor,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "RQ" = (
 /obj/machinery/porta_turret/alien/abductor,
 /turf/simulated/shuttle/floor/alienplating/vacuum,
 /area/abductor/exterior)
 "SD" = (
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "Ti" = (
 /obj/structure/fans/hardlight/colorable/abductor,
 /obj/machinery/door/airlock/alien{
@@ -779,11 +794,11 @@
 	req_one_access = list(777)
 	},
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "Tm" = (
 /obj/machinery/computer/ship/navigation/abductor,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "Ty" = (
 /obj/structure/fans/hardlight/colorable/abductor,
 /obj/machinery/door/airlock/alien{
@@ -791,34 +806,52 @@
 	req_one_access = list(777)
 	},
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
+"TA" = (
+/obj/machinery/button/remote/airlock{
+	id = "abdex";
+	name = "Door Bolts";
+	pixel_y = 32;
+	req_one_access = list(777);
+	specialfunctions = 4
+	},
+/turf/simulated/shuttle/floor/alienplating,
+/area/abductor/interior)
 "Ub" = (
 /obj/structure/fans/hardlight/colorable/abductor,
 /obj/machinery/door/airlock/alien{
+	id_tag = "abd2";
 	name = "Experimentation 2";
 	req_one_access = list(777)
 	},
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
+"Uq" = (
+/obj/effect/shuttle_landmark{
+	landmark_tag = "abductor_starboard";
+	name = "Near Unknown Vessel - Starboard"
+	},
+/turf/space,
+/area/space)
 "UJ" = (
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/fuel,
 /turf/simulated/shuttle/floor/alien,
-/area/abductor)
+/area/abductor/interior)
 "UK" = (
 /obj/machinery/computer/security/abductor{
 	icon_screen = null;
 	icon_state = "camera_flipped"
 	},
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "UL" = (
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/fuel,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "Vh" = (
 /obj/structure/closet/alien,
 /turf/simulated/shuttle/floor/alien,
-/area/abductor)
+/area/abductor/interior)
 "VT" = (
 /obj/machinery/power/shield_generator/charged,
 /obj/structure/cable{
@@ -826,12 +859,12 @@
 	icon_state = "0-2"
 	},
 /turf/simulated/shuttle/floor/alien,
-/area/abductor)
+/area/abductor/interior)
 "Wl" = (
 /obj/structure/table/alien,
 /obj/item/weapon/storage/box/gloves,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "WB" = (
 /obj/structure/cable{
 	d2 = 4;
@@ -839,16 +872,28 @@
 	},
 /obj/machinery/power/rtg/abductor/built/abductor,
 /turf/simulated/shuttle/floor/alien,
-/area/abductor)
+/area/abductor/interior)
 "WC" = (
 /obj/machinery/computer/security/abductor{
 	icon_screen = null
 	},
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "WX" = (
 /turf/simulated/shuttle/wall/alien/hard_corner,
-/area/abductor)
+/area/abductor/interior)
+"Xp" = (
+/obj/machinery/button/remote/airlock{
+	dir = 8;
+	id = "abd4";
+	name = "Door Bolts";
+	pixel_x = 27;
+	pixel_y = 2;
+	req_one_access = list(777);
+	specialfunctions = 4
+	},
+/turf/simulated/shuttle/floor/alienplating,
+/area/abductor/interior)
 "XY" = (
 /obj/structure/fans/hardlight/colorable/abductor,
 /obj/machinery/door/airlock/alien{
@@ -856,7 +901,7 @@
 	req_one_access = list(777)
 	},
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "XZ" = (
 /obj/structure/fans/hardlight/colorable/abductor,
 /obj/machinery/door/airlock/alien{
@@ -864,7 +909,7 @@
 	req_one_access = list(777)
 	},
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "YA" = (
 /obj/structure/cable{
 	d2 = 8;
@@ -872,14 +917,14 @@
 	},
 /obj/machinery/power/rtg/abductor/built/abductor,
 /turf/simulated/shuttle/floor/alien,
-/area/abductor)
+/area/abductor/interior)
 "YT" = (
 /obj/structure/fans/hardlight/colorable/abductor,
 /obj/machinery/door/airlock/alien{
 	req_one_access = list(777)
 	},
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "YW" = (
 /obj/item/ammo_casing/microbattery/combat/stun,
 /obj/item/ammo_casing/microbattery/combat/stun,
@@ -913,14 +958,14 @@
 /obj/item/weapon/gun/projectile/cell_loaded,
 /obj/item/weapon/gun/projectile/cell_loaded,
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 "Zk" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
 	dir = 8;
 	icon_state = "intact-fuel"
 	},
 /turf/simulated/shuttle/floor/alienplating,
-/area/abductor)
+/area/abductor/interior)
 
 (1,1,1) = {"
 cF
@@ -7672,16 +7717,16 @@ cF
 cF
 tl
 tl
-wZ
-wZ
-wZ
-wZ
-wZ
-wZ
-wZ
-wZ
-wZ
-wZ
+pV
+pV
+pV
+pV
+pV
+pV
+pV
+pV
+pV
+pV
 tl
 RQ
 cF
@@ -7813,8 +7858,8 @@ tl
 tl
 tl
 af
-wZ
-wZ
+pV
+pV
 SD
 SD
 SD
@@ -7949,13 +7994,13 @@ tl
 tl
 tl
 cF
-tl
 RQ
 tl
 tl
 tl
 tl
-wZ
+tl
+pV
 gA
 PO
 Qf
@@ -8086,18 +8131,18 @@ cF
 cF
 tl
 tl
-wZ
-wZ
-wZ
+pV
+pV
+pV
 tl
 tl
 tl
-wZ
+pV
 sv
-wZ
+pV
 tl
 tl
-wZ
+pV
 gA
 PJ
 Zk
@@ -8227,19 +8272,19 @@ cF
 cF
 RQ
 tl
-wZ
-wZ
+pV
+pV
 qL
-wZ
-wZ
+pV
+pV
 tl
-wZ
-wZ
+pV
+pV
 eu
-wZ
-wZ
+pV
+pV
 tl
-wZ
+pV
 gA
 UL
 UJ
@@ -8247,10 +8292,10 @@ UJ
 UJ
 Fl
 Hj
-wZ
-wZ
-wZ
-wZ
+pV
+pV
+pV
+pV
 tl
 RQ
 cF
@@ -8369,19 +8414,19 @@ cF
 cF
 tl
 tl
-wZ
+pV
 bG
 SD
 SD
-wZ
-wZ
-wZ
+pV
+pV
+pV
 SD
+uU
 SD
-SD
-wZ
-wZ
-wZ
+pV
+pV
+pV
 gA
 PJ
 Zk
@@ -8511,26 +8556,26 @@ cF
 cF
 tl
 tl
-wZ
+pV
 Ji
 SD
 SD
-wZ
-wZ
+pV
+pV
 SD
 SD
-hQ
+JF
 SD
 SD
-wZ
-wZ
+pV
+pV
 gA
 qo
 db
 db
 db
 db
-wZ
+pV
 tl
 tl
 tl
@@ -8652,12 +8697,12 @@ cF
 cF
 tl
 af
-wZ
-wZ
+pV
+pV
 DI
 JF
 SD
-wZ
+pV
 Vh
 SD
 JF
@@ -8665,14 +8710,14 @@ Nk
 JF
 SD
 pa
-wZ
+pV
+JF
 SD
 SD
 SD
 SD
 SD
-SD
-wZ
+pV
 tl
 tl
 tl
@@ -8793,31 +8838,31 @@ cF
 cF
 RQ
 tl
-wZ
-wZ
-wZ
-wZ
+pV
+pV
+pV
+pV
 SD
 SD
-wZ
-wZ
+pV
+pV
 SD
 SD
 JF
 SD
 SD
-wZ
-wZ
+pV
+pV
 XY
 WX
-wZ
-wZ
-wZ
-wZ
-wZ
-wZ
-wZ
-wZ
+pV
+pV
+pV
+pV
+pV
+pV
+pV
+pV
 tl
 RQ
 cF
@@ -8934,29 +8979,29 @@ cF
 cF
 tl
 tl
-wZ
-wZ
+pV
+pV
 pa
-wZ
-wZ
+pV
+pV
 UK
 SD
+JF
+pV
+pV
 SD
-wZ
-wZ
 SD
 SD
+pV
+pV
+pV
 SD
-wZ
-wZ
-wZ
-SD
-wZ
-wZ
-wZ
+pV
+pV
+pV
 pa
-wZ
-wZ
+pV
+pV
 tl
 tl
 tl
@@ -9073,33 +9118,33 @@ cF
 cF
 cF
 cF
+RQ
 tl
-tl
-wZ
-wZ
+pV
+pV
 SD
 SD
 SD
-wZ
-wZ
+pV
+pV
 WX
 Ti
 WX
-wZ
-wZ
+pV
+pV
 JF
-wZ
-wZ
+pV
+pV
 SD
 SD
 SD
-wZ
-wZ
+pV
+pV
 SD
 SD
 SD
-wZ
-wZ
+pV
+pV
 tl
 af
 cF
@@ -9200,8 +9245,8 @@ cF
 cF
 cF
 tl
-tl
 RQ
+tl
 cF
 cF
 cF
@@ -9215,34 +9260,34 @@ cF
 cF
 cF
 tl
-RQ
-wZ
-wZ
+tl
+pV
+pV
 SD
 SD
 JF
 SD
 SD
-wZ
+pV
 WX
 SD
 SD
 SD
-wZ
+pV
 nA
-wZ
+pV
 SD
 SD
 SD
-wZ
-wZ
+pV
+pV
 SD
 SD
 JF
 SD
 SD
-wZ
-wZ
+pV
+pV
 tl
 tl
 cF
@@ -9360,8 +9405,8 @@ tl
 tl
 Oz
 eu
-SD
-Hn
+nx
+JF
 Nk
 JF
 SD
@@ -9381,8 +9426,8 @@ JF
 SD
 JF
 Nk
-qN
-SD
+JF
+vm
 eu
 Oz
 tl
@@ -9483,9 +9528,9 @@ cF
 tl
 tl
 iF
-wZ
+pV
 sv
-wZ
+pV
 tl
 tl
 cF
@@ -9500,15 +9545,15 @@ cF
 cF
 tl
 tl
-wZ
-wZ
+pV
+pV
 SD
 SD
 JF
 SD
 SD
-wZ
-wZ
+pV
+pV
 SD
 SD
 SD
@@ -9518,17 +9563,17 @@ SD
 SD
 SD
 SD
-wZ
-wZ
+pV
+pV
 SD
 SD
 JF
 SD
 SD
-wZ
-wZ
+pV
+pV
 tl
-tl
+RQ
 cF
 cF
 cF
@@ -9624,11 +9669,11 @@ cF
 cF
 tl
 tl
-wZ
-wZ
+pV
+pV
 SD
-wZ
-wZ
+pV
+pV
 tl
 RQ
 cF
@@ -9643,17 +9688,13 @@ tl
 tl
 tl
 tl
-wZ
-wZ
+pV
+pV
 SD
 SD
 SD
-wZ
-wZ
-SD
-SD
-SD
-SD
+pV
+pV
 SD
 SD
 SD
@@ -9661,17 +9702,21 @@ SD
 SD
 SD
 SD
-wZ
-wZ
 SD
 SD
 SD
-wZ
-wZ
+SD
+pV
+pV
+SD
+SD
+SD
+pV
+pV
+tl
 tl
 tl
 RQ
-tl
 cF
 tl
 RQ
@@ -9766,12 +9811,12 @@ cF
 cF
 tl
 tl
-wZ
+pV
 WC
 SD
 SD
-wZ
-wZ
+pV
+pV
 tl
 tl
 cF
@@ -9786,29 +9831,29 @@ af
 tl
 tl
 tl
-wZ
-wZ
+pV
+pV
 Vh
-wZ
-wZ
+pV
+pV
 SD
 SD
 SD
 SD
-wZ
-wZ
-wZ
-wZ
-wZ
+pV
+pV
+pV
+pV
+pV
 SD
 SD
 SD
 SD
-wZ
-wZ
+pV
+pV
 Vh
-wZ
-wZ
+pV
+pV
 tl
 tl
 tl
@@ -9913,25 +9958,25 @@ ib
 JF
 SD
 SD
-wZ
-wZ
+pV
+pV
 tl
 af
 tl
 tl
 tl
 tl
-wZ
-wZ
-wZ
-wZ
+pV
+pV
+pV
+pV
 tl
 tl
 tl
 tl
-wZ
-wZ
-wZ
+pV
+pV
+pV
 SD
 SD
 SD
@@ -9947,23 +9992,23 @@ SD
 SD
 SD
 SD
-wZ
-wZ
-wZ
+pV
+pV
+pV
 tl
 tl
 tl
-wZ
-wZ
-wZ
+pV
+pV
+pV
 tl
-wZ
-wZ
-wZ
+pV
+pV
+pV
 tl
-wZ
-wZ
-wZ
+pV
+pV
+pV
 tl
 RQ
 cF
@@ -10050,29 +10095,29 @@ cF
 cF
 tl
 tl
-wZ
+pV
 ib
 SD
 SD
 SD
 SD
-wZ
+pV
 wZ
 tl
 tl
-wZ
-wZ
-wZ
-wZ
+pV
+pV
+pV
+pV
 iH
 zk
-wZ
-wZ
-wZ
-wZ
+pV
+pV
+pV
+pV
 tl
 WX
-wZ
+pV
 SD
 SD
 SD
@@ -10090,23 +10135,23 @@ SD
 SD
 SD
 SD
-wZ
+pV
 WX
 tl
 tl
-wZ
-wZ
+pV
+pV
 WB
-wZ
-wZ
-wZ
+pV
+pV
+pV
 WB
-wZ
-wZ
-wZ
+pV
+pV
+pV
 WB
-wZ
-wZ
+pV
+pV
 tl
 tl
 cF
@@ -10192,29 +10237,29 @@ cF
 cF
 af
 tl
-wZ
-wZ
+pV
+pV
 SD
 SD
+hQ
 SD
 SD
-SD
-wZ
-wZ
+pV
+pV
 tl
-wZ
+pV
 iH
 zk
-wZ
+pV
 SD
 SD
-wZ
+pV
 iH
 zk
-wZ
+pV
 fo
 GB
-JF
+SD
 SD
 SD
 SD
@@ -10232,11 +10277,11 @@ Qe
 SD
 SD
 SD
-JF
-sr
+SD
+GB
 fo
-wZ
-wZ
+pV
+pV
 SD
 pC
 SD
@@ -10248,8 +10293,8 @@ fQ
 SD
 pC
 SD
-wZ
-wZ
+pV
+pV
 tl
 tl
 cF
@@ -10335,31 +10380,31 @@ cF
 cF
 tl
 tl
-wZ
-wZ
+pV
+pV
 SD
-SD
+kf
 JF
 SD
 SD
-wZ
+pV
 tl
-wZ
+pV
 SD
 SD
-wZ
+pV
 JW
-wZ
-wZ
+pV
+pV
 SD
 SD
-wZ
-wZ
-wZ
+pV
+pV
+pV
 SD
 SD
 SD
-wZ
+pV
 Qe
 SD
 SD
@@ -10371,27 +10416,27 @@ JF
 SD
 SD
 Qe
-wZ
+pV
 SD
 SD
 SD
-wZ
-wZ
-wZ
+pV
+pV
+pV
 SD
 SD
-pC
-SD
-JF
-SD
-pC
+kT
 SD
 JF
 SD
 pC
 SD
+JF
 SD
-wZ
+kT
+SD
+SD
+pV
 tl
 tl
 cF
@@ -10478,30 +10523,30 @@ cF
 cF
 RQ
 tl
-wZ
+pV
 QJ
 SD
 SD
 SD
 SD
-wZ
-wZ
-wZ
+pV
+pV
+pV
 ND
-wZ
-wZ
+pV
+pV
 SD
 SD
-wZ
+pV
 pB
-wZ
-wZ
-wZ
+pV
+pV
+pV
 vF
 SD
 SD
 SD
-wZ
+pV
 SD
 SD
 SD
@@ -10513,12 +10558,12 @@ SD
 SD
 SD
 SD
-wZ
+pV
 SD
 SD
 SD
 yr
-wZ
+pV
 Kx
 SD
 SD
@@ -10628,7 +10673,7 @@ SD
 SD
 SD
 Qy
-wZ
+pV
 SD
 SD
 SD
@@ -10638,12 +10683,12 @@ SD
 SD
 SD
 SD
-wZ
+pV
 SD
 SD
 SD
 SD
-wZ
+pV
 KD
 SD
 SD
@@ -10655,12 +10700,12 @@ SD
 SD
 SD
 SD
-wZ
+pV
 SD
 SD
 SD
 SD
-wZ
+pV
 fw
 SD
 SD
@@ -10766,18 +10811,18 @@ Oz
 vk
 JF
 RA
-SD
+hQ
 JF
 SD
 JF
 hq
 JF
 SD
-SD
+hQ
 JF
 JF
 JF
-SD
+hQ
 SD
 JF
 YT
@@ -10817,7 +10862,7 @@ EA
 eV
 Bv
 SD
-wZ
+pV
 tl
 af
 cF
@@ -10912,7 +10957,7 @@ SD
 SD
 SD
 Fh
-wZ
+pV
 SD
 SD
 SD
@@ -10922,13 +10967,13 @@ SD
 SD
 SD
 SD
-wZ
+pV
 SD
 SD
 SD
 SD
-wZ
-SD
+pV
+TA
 SD
 SD
 SD
@@ -10939,12 +10984,12 @@ SD
 SD
 SD
 SD
-wZ
+pV
 SD
 SD
 SD
 SD
-wZ
+pV
 xg
 SD
 SD
@@ -11046,30 +11091,30 @@ cF
 cF
 RQ
 tl
-wZ
+pV
 xc
 SD
 SD
 SD
 SD
-wZ
-wZ
-wZ
+pV
+pV
+pV
 Fw
-wZ
-wZ
+pV
+pV
 SD
 SD
-wZ
+pV
 wk
-wZ
-wZ
-wZ
+pV
+pV
+pV
 vF
 SD
 SD
 SD
-wZ
+pV
 SD
 SD
 SD
@@ -11081,12 +11126,12 @@ SD
 SD
 SD
 SD
-wZ
+pV
 SD
 SD
 SD
 yr
-wZ
+pV
 nv
 SD
 SD
@@ -11187,31 +11232,31 @@ cF
 cF
 tl
 tl
-wZ
-wZ
+pV
+pV
 SD
 SD
 JF
 SD
 SD
-wZ
+pV
 tl
-wZ
+pV
 SD
 SD
-wZ
+pV
 Ty
-wZ
-wZ
+pV
+pV
 SD
 SD
-wZ
-wZ
-wZ
+pV
+pV
+pV
 SD
 SD
 SD
-wZ
+pV
 Qe
 SD
 SD
@@ -11223,27 +11268,27 @@ JF
 SD
 SD
 Qe
-wZ
+pV
 SD
 SD
 SD
-wZ
-wZ
-Ll
+pV
+pV
+pV
 SD
 SD
-pC
-SD
-JF
-SD
-pC
+kT
 SD
 JF
 SD
 pC
 SD
+JF
 SD
-wZ
+kT
+SD
+SD
+pV
 tl
 tl
 cF
@@ -11328,29 +11373,29 @@ cF
 cF
 af
 tl
-wZ
-wZ
+pV
+pV
 SD
 SD
+hQ
 SD
 SD
-SD
-wZ
-wZ
+pV
+pV
 tl
-wZ
+pV
 iH
 eS
-wZ
+pV
 SD
 SD
-wZ
+pV
 iH
 eS
-wZ
+pV
 fo
-rk
-JF
+GB
+SD
 SD
 SD
 SD
@@ -11368,11 +11413,11 @@ Qe
 SD
 SD
 SD
-JF
-BT
+SD
+GB
 fo
-wZ
-wZ
+pV
+pV
 SD
 pC
 SD
@@ -11384,8 +11429,8 @@ Fq
 SD
 pC
 SD
-wZ
-wZ
+pV
+pV
 tl
 tl
 cF
@@ -11470,29 +11515,29 @@ cF
 cF
 tl
 tl
-wZ
+pV
 ib
 SD
 SD
 SD
 SD
-wZ
-wZ
+pV
+pV
 tl
 tl
-wZ
-wZ
-wZ
-wZ
+pV
+pV
+pV
+pV
 iH
 eS
-wZ
-wZ
-wZ
-wZ
+pV
+pV
+pV
+pV
 tl
 WX
-wZ
+pV
 SD
 SD
 SD
@@ -11510,23 +11555,23 @@ SD
 SD
 SD
 SD
-wZ
+pV
 WX
 tl
 tl
-wZ
-wZ
+pV
+pV
 YA
-wZ
-wZ
-wZ
+pV
+pV
+pV
 YA
-wZ
-wZ
-wZ
+pV
+pV
+pV
 YA
-wZ
-wZ
+pV
+pV
 tl
 tl
 cF
@@ -11617,25 +11662,25 @@ ib
 JF
 SD
 SD
-wZ
-wZ
+pV
+pV
 tl
 af
 tl
 tl
 tl
 tl
-wZ
-wZ
-wZ
-wZ
+pV
+pV
+pV
+pV
 tl
 tl
 tl
 tl
-wZ
-wZ
-wZ
+pV
+pV
+pV
 SD
 SD
 SD
@@ -11651,23 +11696,23 @@ SD
 SD
 SD
 SD
-wZ
-wZ
-wZ
+pV
+pV
+pV
 tl
 tl
 tl
-wZ
-wZ
-wZ
+pV
+pV
+pV
 tl
-wZ
-wZ
-wZ
+pV
+pV
+pV
 tl
-wZ
-wZ
-wZ
+pV
+pV
+pV
 tl
 RQ
 cF
@@ -11754,12 +11799,12 @@ cF
 cF
 tl
 tl
-wZ
+pV
 UK
 SD
 SD
-wZ
-wZ
+pV
+pV
 tl
 tl
 cF
@@ -11774,29 +11819,29 @@ af
 tl
 tl
 tl
-wZ
-wZ
+pV
+pV
 Vh
-wZ
-wZ
+pV
+pV
 SD
 SD
 SD
 SD
-wZ
-wZ
-wZ
-wZ
-wZ
+pV
+pV
+pV
+pV
+pV
 SD
 SD
 SD
 SD
-wZ
-wZ
+pV
+pV
 Vh
-wZ
-wZ
+pV
+pV
 tl
 tl
 tl
@@ -11896,11 +11941,11 @@ cF
 cF
 tl
 tl
-wZ
-wZ
+pV
+pV
 ib
-wZ
-wZ
+pV
+pV
 tl
 RQ
 cF
@@ -11916,16 +11961,12 @@ tl
 tl
 tl
 wZ
-wZ
+pV
 SD
 SD
 SD
-wZ
-wZ
-SD
-SD
-SD
-SD
+pV
+pV
 SD
 SD
 SD
@@ -11933,17 +11974,21 @@ SD
 SD
 SD
 SD
-wZ
-wZ
 SD
 SD
 SD
-wZ
-wZ
+SD
+pV
+pV
+SD
+SD
+SD
+pV
+pV
+tl
 tl
 tl
 RQ
-tl
 cF
 tl
 RQ
@@ -12039,9 +12084,9 @@ cF
 tl
 tl
 iF
-wZ
+pV
 sv
-wZ
+pV
 tl
 tl
 cF
@@ -12056,15 +12101,15 @@ cF
 cF
 tl
 tl
-wZ
-wZ
+pV
+pV
 SD
 SD
 JF
 SD
 SD
-wZ
-wZ
+pV
+pV
 SD
 SD
 SD
@@ -12074,17 +12119,17 @@ SD
 SD
 SD
 SD
-wZ
-wZ
+pV
+pV
 SD
 SD
 JF
 SD
 SD
-wZ
-wZ
+pV
+pV
 tl
-tl
+RQ
 cF
 cF
 cF
@@ -12200,8 +12245,8 @@ tl
 tl
 Oz
 eu
-SD
-kf
+Ll
+JF
 Nk
 JF
 SD
@@ -12221,8 +12266,8 @@ JF
 SD
 JF
 Nk
-kT
-SD
+JF
+rP
 eu
 Oz
 tl
@@ -12324,8 +12369,8 @@ cF
 cF
 cF
 tl
-tl
 RQ
+tl
 cF
 cF
 cF
@@ -12339,34 +12384,34 @@ cF
 cF
 cF
 tl
-RQ
-wZ
-wZ
+tl
+pV
+pV
 SD
 SD
 JF
 SD
 SD
-wZ
+pV
 WX
 SD
 SD
 SD
-wZ
+pV
 QI
-wZ
+pV
 SD
 SD
 SD
-wZ
-wZ
+pV
+pV
 SD
 SD
 JF
 SD
 SD
-wZ
-wZ
+pV
+pV
 tl
 tl
 cF
@@ -12481,33 +12526,33 @@ cF
 cF
 cF
 cF
+RQ
 tl
-tl
 wZ
-wZ
+pV
 SD
 SD
 SD
-wZ
-wZ
+pV
+pV
 WX
 XZ
 WX
-wZ
-wZ
+pV
+pV
 JF
-wZ
-wZ
+pV
+pV
 SD
 SD
 SD
-wZ
-wZ
+pV
+pV
 SD
 SD
 SD
-wZ
-wZ
+pV
+pV
 tl
 af
 cF
@@ -12626,29 +12671,29 @@ cF
 cF
 tl
 tl
-wZ
-wZ
+pV
+pV
 pa
-wZ
-wZ
+pV
+pV
 WC
 SD
+JF
+pV
+pV
 SD
-wZ
-wZ
 SD
 SD
+pV
+pV
+pV
 SD
-wZ
-wZ
-wZ
-SD
-wZ
-wZ
-wZ
+pV
+pV
+pV
 pa
-wZ
-wZ
+pV
+pV
 tl
 tl
 tl
@@ -12769,31 +12814,31 @@ cF
 cF
 RQ
 tl
-wZ
-wZ
-wZ
-wZ
+pV
+pV
+pV
+pV
 SD
 SD
-wZ
-wZ
+pV
+pV
 SD
 SD
 JF
 SD
 SD
-wZ
-wZ
+pV
+pV
 wA
 WX
-wZ
-wZ
-wZ
-wZ
-wZ
-wZ
-wZ
-wZ
+pV
+pV
+pV
+pV
+pV
+pV
+pV
+pV
 tl
 RQ
 cF
@@ -12912,12 +12957,12 @@ cF
 cF
 tl
 af
-wZ
-wZ
+pV
+pV
 bG
 SD
 SD
-wZ
+pV
 Vh
 SD
 JF
@@ -12925,8 +12970,8 @@ Nk
 JF
 SD
 pa
-wZ
-SD
+pV
+JF
 SD
 SD
 SD
@@ -13055,19 +13100,19 @@ cF
 cF
 tl
 tl
-wZ
+pV
 Ji
 SD
 SD
-wZ
-wZ
+pV
+pV
 SD
 SD
-Na
+JF
 SD
 SD
-wZ
-wZ
+pV
+pV
 gA
 PO
 Qf
@@ -13197,19 +13242,19 @@ cF
 cF
 tl
 tl
-wZ
+pV
 DI
 JF
 SD
-wZ
-wZ
-wZ
+pV
+pV
+pV
 SD
+Xp
 SD
-SD
-wZ
-wZ
-wZ
+pV
+pV
+pV
 gA
 PJ
 Zk
@@ -13339,19 +13384,19 @@ cF
 cF
 RQ
 tl
-wZ
-wZ
+pV
+pV
 qL
-wZ
-wZ
+pV
+pV
 tl
-wZ
-wZ
+pV
+pV
 eu
-wZ
-wZ
+pV
+pV
 tl
-wZ
+pV
 gA
 UL
 UJ
@@ -13359,10 +13404,10 @@ UJ
 UJ
 Fl
 Hj
-wZ
-wZ
-wZ
-wZ
+pV
+pV
+pV
+pV
 tl
 RQ
 cF
@@ -13482,18 +13527,18 @@ cF
 cF
 tl
 tl
-wZ
-wZ
-wZ
+pV
+pV
+pV
 tl
 tl
 tl
-wZ
+pV
 sv
-wZ
+pV
 tl
 tl
-wZ
+pV
 gA
 PJ
 Zk
@@ -13629,20 +13674,20 @@ tl
 tl
 tl
 cF
-tl
 RQ
 tl
 tl
 tl
 tl
-wZ
+tl
+pV
 gA
 qo
 db
 db
 db
 db
-wZ
+pV
 tl
 tl
 tl
@@ -13777,14 +13822,14 @@ tl
 tl
 tl
 af
-wZ
-wZ
+pV
+pV
 SD
 SD
 SD
 SD
 SD
-wZ
+pV
 tl
 tl
 tl
@@ -13920,16 +13965,16 @@ cF
 cF
 tl
 tl
-wZ
-wZ
-wZ
-wZ
-wZ
-wZ
-wZ
-wZ
-wZ
-wZ
+pV
+pV
+pV
+pV
+pV
+pV
+pV
+pV
+pV
+pV
 tl
 RQ
 cF
@@ -17652,7 +17697,7 @@ cF
 cF
 cF
 cF
-nx
+cF
 cF
 cF
 cF
@@ -19225,7 +19270,7 @@ cF
 cF
 cF
 cF
-cF
+Uq
 cF
 cF
 cF
