@@ -1464,14 +1464,19 @@
 	products = list(/obj/item/weapon/card/id/syndicate/station_access = 1,
 					/obj/item/weapon/storage/box/syndie_kit/chameleon = 1,
 					/obj/item/clothing/mask/bandana = 1,
+					/obj/item/clothing/glasses/sunglasses = 1,
 					/obj/item/device/radio/headset/syndicate/alt = 1,
 					/obj/item/device/pda = 1,
 					/obj/item/device/communicator = 1,
 					/obj/item/weapon/tape_roll = 2,
 					/obj/item/weapon/handcuffs = 4,
+					/obj/item/weapon/handcuffs/legcuffs = 4,
 					/obj/item/weapon/cell/device/weapon/recharge/alien = 2,
 					/obj/item/device/chameleon = 1,
-					/obj/item/weapon/storage/mre/menu11 = 2
+					/obj/item/weapon/storage/mre/menu11 = 2,
+					/obj/item/device/flash = 2,
+					/obj/item/weapon/pen/reagent/paralysis = 4,
+					/obj/item/device/perfect_tele/alien = 1
 					)
 	vend_delay = 15
 
