@@ -85,6 +85,10 @@ proc/overmap_spacetravel(var/turf/space/T, var/atom/movable/A)
 	if (!M)
 		return
 
+	// Is the landmark still on the map.
+	if(!isturf(M.loc))
+		return
+
 	// Don't let AI eyes yeet themselves off the map
 	if(istype(A, /mob/observer/eye))
 		return
