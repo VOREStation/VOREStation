@@ -286,6 +286,10 @@
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/ship/ert/hallways_aft)
+"cL" = (
+/obj/machinery/telecomms/allinone/ert,
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/ert/atmos)
 "cO" = (
 /obj/machinery/computer/operating,
 /turf/simulated/floor/tiled/white,
@@ -400,6 +404,8 @@
 /obj/structure/table/rack,
 /obj/item/weapon/storage/backpack/ert/commander,
 /obj/item/clothing/suit/space/void/responseteam/command,
+/obj/item/clothing/head/helmet/ert/command,
+/obj/item/clothing/suit/armor/vest/ert/command,
 /turf/simulated/floor/wood,
 /area/ship/ert/commander)
 "dx" = (
@@ -1138,6 +1144,10 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/mech_bay)
+"kd" = (
+/obj/item/device/multitool/tether_buffered,
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/ert/atmos)
 "kf" = (
 /obj/structure/table/rack/steel,
 /obj/item/weapon/gun/projectile/automatic/pdw,
@@ -1979,6 +1989,12 @@
 /obj/item/clothing/suit/space/void/responseteam/engineer,
 /obj/item/clothing/suit/space/void/responseteam/engineer,
 /obj/item/clothing/suit/space/void/responseteam/engineer,
+/obj/item/clothing/head/helmet/ert/engineer,
+/obj/item/clothing/head/helmet/ert/engineer,
+/obj/item/clothing/head/helmet/ert/engineer,
+/obj/item/clothing/suit/armor/vest/ert/engineer,
+/obj/item/clothing/suit/armor/vest/ert/engineer,
+/obj/item/clothing/suit/armor/vest/ert/engineer,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/barracks)
 "pa" = (
@@ -2020,6 +2036,12 @@
 /obj/item/clothing/suit/space/void/responseteam/medical,
 /obj/machinery/light/no_nightshift,
 /obj/effect/floor_decal/industrial/outline/grey,
+/obj/item/clothing/head/helmet/ert/medical,
+/obj/item/clothing/head/helmet/ert/medical,
+/obj/item/clothing/head/helmet/ert/medical,
+/obj/item/clothing/suit/armor/vest/ert/medical,
+/obj/item/clothing/suit/armor/vest/ert/medical,
+/obj/item/clothing/suit/armor/vest/ert/medical,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/barracks)
 "pf" = (
@@ -2047,6 +2069,12 @@
 /obj/item/clothing/suit/space/void/responseteam/medical,
 /obj/item/clothing/suit/space/void/responseteam/medical,
 /obj/effect/floor_decal/industrial/outline/grey,
+/obj/item/clothing/head/helmet/ert/medical,
+/obj/item/clothing/head/helmet/ert/medical,
+/obj/item/clothing/head/helmet/ert/medical,
+/obj/item/clothing/suit/armor/vest/ert/medical,
+/obj/item/clothing/suit/armor/vest/ert/medical,
+/obj/item/clothing/suit/armor/vest/ert/medical,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/barracks)
 "po" = (
@@ -2490,6 +2518,12 @@
 /obj/item/clothing/suit/space/void/responseteam/security,
 /obj/machinery/light/no_nightshift,
 /obj/effect/floor_decal/industrial/outline/grey,
+/obj/item/clothing/head/helmet/ert/security,
+/obj/item/clothing/head/helmet/ert/security,
+/obj/item/clothing/head/helmet/ert/security,
+/obj/item/clothing/suit/armor/vest/ert/security,
+/obj/item/clothing/suit/armor/vest/ert/security,
+/obj/item/clothing/suit/armor/vest/ert/security,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/barracks)
 "sp" = (
@@ -2639,10 +2673,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/hangar)
-"tb" = (
-/obj/machinery/telecomms/allinone,
-/turf/simulated/floor/tiled/techfloor,
-/area/ship/ert/teleporter)
 "tg" = (
 /obj/effect/floor_decal/corner/white{
 	dir = 6
@@ -4080,6 +4110,12 @@
 	pixel_y = -26
 	},
 /obj/effect/floor_decal/industrial/outline/grey,
+/obj/item/clothing/head/helmet/ert/security,
+/obj/item/clothing/head/helmet/ert/security,
+/obj/item/clothing/head/helmet/ert/security,
+/obj/item/clothing/suit/armor/vest/ert/security,
+/obj/item/clothing/suit/armor/vest/ert/security,
+/obj/item/clothing/suit/armor/vest/ert/security,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/barracks)
 "Ed" = (
@@ -5228,6 +5264,10 @@
 /obj/effect/floor_decal/industrial/outline/grey,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/hallways)
+"Lm" = (
+/obj/machinery/ntnet_relay,
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/ert/atmos)
 "Lq" = (
 /obj/structure/table/rack/steel,
 /obj/item/weapon/gun/energy/gun/martin{
@@ -6657,10 +6697,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/hangar)
-"VB" = (
-/obj/machinery/ntnet_relay,
-/turf/simulated/floor/tiled/techfloor,
-/area/ship/ert/teleporter)
 "VC" = (
 /obj/machinery/power/port_gen/pacman/super/potato,
 /obj/structure/cable/green,
@@ -6720,6 +6756,10 @@
 /obj/structure/curtain/open/bed,
 /turf/simulated/floor/wood,
 /area/ship/ert/commander)
+"Wd" = (
+/obj/machinery/telecomms/relay/preset/centcom/tether,
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/ert/atmos)
 "Wj" = (
 /obj/machinery/light/no_nightshift{
 	dir = 8
@@ -13348,8 +13388,8 @@ pV
 kP
 kP
 rS
-gA
-gA
+Wd
+kd
 CT
 qR
 pV
@@ -13916,8 +13956,8 @@ pV
 ls
 ls
 ls
-gA
-gA
+Lm
+cL
 DQ
 Ip
 pV
@@ -14491,7 +14531,7 @@ ds
 sp
 Oi
 Mm
-tb
+jA
 Wj
 UU
 iA
@@ -15201,7 +15241,7 @@ IZ
 sp
 Oi
 wn
-VB
+jA
 Yq
 Ys
 Yr
