@@ -268,7 +268,7 @@
 /datum/map_template/surface/plains/lonehome
 	name = "Lone Home"
 	desc = "A quite inoffensive looking home, damaged but still holding up."
-	mappath = 'maps/submaps/surface_submaps/plains/lonehome.dmm'
+	mappath = 'maps/submaps/surface_submaps/plains/lonehome_vr.dmm' //VOREStation Edit
 	cost = 15
 
 /datum/map_template/surface/plains/hotspring
