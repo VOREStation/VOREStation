@@ -2270,6 +2270,7 @@
 #include "code\modules\hydroponics\seedtypes\surik.dm"
 #include "code\modules\hydroponics\seedtypes\telriis.dm"
 #include "code\modules\hydroponics\seedtypes\thaadra.dm"
+#include "code\modules\hydroponics\seedtypes\tobacco.dm"
 #include "code\modules\hydroponics\seedtypes\tomatoes.dm"
 #include "code\modules\hydroponics\seedtypes\vale.dm"
 #include "code\modules\hydroponics\seedtypes\vanilla.dm"
