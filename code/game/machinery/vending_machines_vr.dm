@@ -1456,6 +1456,25 @@
 	req_log_access = access_cmo
 	has_logs = 1
 
+/obj/machinery/vending/abductor
+	name = "Abduct-U"
+	desc = "A mysterious machine which can fabricate many tools for acquiring test subjects."
+	icon = 'icons/obj/abductor_vr.dmi'
+	icon_state = "dispenser_2way"
+	products = list(/obj/item/weapon/card/id/syndicate/station_access = 1,
+					/obj/item/weapon/storage/box/syndie_kit/chameleon = 1,
+					/obj/item/clothing/mask/bandana = 1,
+					/obj/item/device/radio/headset/syndicate/alt = 1,
+					/obj/item/device/pda = 1,
+					/obj/item/device/communicator = 1,
+					/obj/item/weapon/tape_roll = 2,
+					/obj/item/weapon/handcuffs = 4,
+					/obj/item/weapon/cell/device/weapon/recharge/alien = 2,
+					/obj/item/device/chameleon = 1,
+					/obj/item/weapon/storage/mre/menu11 = 2
+					)
+	vend_delay = 15
+
 /obj/machinery/vending/loadout
 	name = "Fingers and Toes"
 	desc = "A special vendor for gloves and shoes!"
