@@ -331,6 +331,15 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	light_power = 1
 	light_color = "#FFFFFF"
 
+/obj/structure/fans/hardlight/colorable
+	name = "hardlight shield"
+	icon_state = "hardlight_colorable"
+
+/obj/structure/fans/hardlight/colorable/abductor
+	name = "hardlight shield"
+	icon_state = "hardlight_colorable"
+	color = "#ff0099"
+
 //Signs
 /obj/structure/sign/mining
 	name = "nanotrasen mining corps sign"
