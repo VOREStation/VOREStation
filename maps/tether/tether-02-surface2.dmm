@@ -346,30 +346,22 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/door/firedoor/glass/hidden/steel,
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lowerhall)
 "aaz" = (
 /obj/effect/floor_decal/borderfloorwhite{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/glass/hidden/steel,
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 4
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 5
-	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 5
-	},
-/obj/machinery/door/firedoor/glass/hidden/steel{
 	dir = 8
 	},
-/obj/machinery/vending/wallmed1{
-	pixel_x = 26;
-	pixel_y = 3
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lowerhall)
 "aaA" = (
@@ -4682,12 +4674,17 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/surface_two_hall)
 "agS" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable/green{
-	icon_state = "1-2"
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 4
 	},
-/obj/machinery/door/firedoor/glass/hidden/steel{
-	dir = 1
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 4
+	},
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 5
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lowerhall)
@@ -5807,6 +5804,9 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/recoveryward)
+"aiG" = (
+/turf/simulated/floor/wood,
+/area/tether/surfacebase/medical/lowerhall)
 "aiH" = (
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -5844,6 +5844,12 @@
 "aiJ" = (
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/medical/morgue)
+"aiK" = (
+/obj/machinery/vending/medical{
+	dir = 8
+	},
+/turf/simulated/floor/wood,
+/area/tether/surfacebase/medical/lowerhall)
 "aiL" = (
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 8
@@ -5888,6 +5894,10 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lowerhall)
+"aiN" = (
+/obj/structure/window/reinforced,
+/turf/simulated/floor/wood,
+/area/tether/surfacebase/medical/lowerhall)
 "aiO" = (
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -5906,6 +5916,28 @@
 /obj/effect/floor_decal/corner/paleblue/border,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lowerhall)
+"aiP" = (
+/obj/machinery/vending/coffee{
+	dir = 8;
+	icon_state = "coffee"
+	},
+/obj/structure/window/reinforced,
+/turf/simulated/floor/wood,
+/area/tether/surfacebase/medical/lowerhall)
+"aiQ" = (
+/obj/structure/table/standard,
+/obj/random/soap,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/obj/machinery/light/small,
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_x = 5;
+	pixel_y = -25
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/security/brig/bathroom)
 "aiR" = (
 /obj/structure/morgue{
 	dir = 8
@@ -7232,13 +7264,6 @@
 /obj/effect/floor_decal/corner/paleblue/diagonal,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/breakroom)
-"alG" = (
-/obj/effect/floor_decal/corner/paleblue/diagonal,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
@@ -11375,20 +11400,6 @@
 /obj/structure/cable/green,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/security/brig/bathroom)
-"aun" = (
-/obj/structure/table/standard,
-/obj/random/soap,
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
-	},
-/obj/machinery/light/small,
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_x = -15;
-	pixel_y = -28
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/security/brig/bathroom)
@@ -42839,7 +42850,7 @@ aqF
 aqF
 aqF
 atL
-aun
+aiQ
 aqF
 aqF
 ajV
@@ -48213,12 +48224,12 @@ aab
 aab
 aab
 aab
-aab
 usm
 aad
+aay
 aar
 aat
-aay
+aaz
 aaB
 aaC
 aaE
@@ -48355,12 +48366,12 @@ aab
 aab
 aab
 aab
-aab
 usm
 aae
+ahD
 ada
 aes
-agS
+aes
 aes
 aes
 agM
@@ -48497,12 +48508,12 @@ aab
 aab
 aab
 aab
-aab
 usm
 aaj
 aas
+aas
 aau
-aaz
+agS
 aet
 aet
 agN
@@ -48639,20 +48650,20 @@ aab
 aab
 aab
 aab
-aab
 wIt
 yjB
 yjB
 abs
-abs
 aet
 agd
+aiG
+aiN
 agO
 aaH
 aaT
 ajF
 ebp
-alG
+lsC
 amK
 amK
 amL
@@ -48784,17 +48795,17 @@ aab
 aab
 aab
 aab
-aab
-adt
 abs
 afa
 age
+aiK
+aiP
 agP
 ahD
 aiy
 ajG
 akw
-alG
+lsC
 fIS
 fIS
 amL
@@ -49078,7 +49089,7 @@ aet
 ahb
 ajF
 aky
-alG
+lsC
 rJc
 rJc
 aoQ
