@@ -473,25 +473,16 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	// VOREStation Edit - START
 	var/icon/hair_acc_s = get_hair_accessory_overlay()
 	var/image/hair_acc_s_image = null
-	to_chat(src, "checking for hair_acc_s...")
 	if(hair_acc_s)
-		to_chat(src, "hair_acc_s found!")
 		if(hair_accessory_style.ignores_lighting)
-			to_chat(src, "setting image and plane...")
 			hair_acc_s_image = image(hair_acc_s)
 			hair_acc_s_image.plane = PLANE_LIGHTING_ABOVE
 			hair_acc_s_image.appearance_flags = appearance_flags
-		to_chat(src, "hair_acc_s found!")
-		to_chat(src, "checking for hair_acc_s_image...")
 		if (hair_acc_s_image)
-			to_chat(src, "hair_acc_s_image found!")
 			overlays_standing[HAIR_ACCESSORY_LAYER] = hair_acc_s_image
-			to_chat(src, "applying hair_acc_s!")
 			apply_layer(HAIR_ACCESSORY_LAYER)
 			return
-		to_chat(src, "<span class='danger'>no hair_acc_s_image! wat.")
 		overlays_standing[HAIR_ACCESSORY_LAYER] = image(hair_acc_s, layer = BODY_LAYER+HAIR_ACCESSORY_LAYER)
-		to_chat(src, "applying hair_acc_s!")
 		apply_layer(HAIR_ACCESSORY_LAYER)
 	// VOREStation Edit - END
 

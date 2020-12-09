@@ -2251,13 +2251,15 @@ Departamental Swimsuits, for general use
 
 	icon_override = 'icons/vore/custom_onmob_vr.dmi'
 	item_state = "verie_hoodie"
-
+	
 	hoodtype = /obj/item/clothing/head/hood/winter/fluff/verie
+
+	var/owner = "vitoras"
 
 /obj/item/clothing/suit/storage/hooded/fluff/verie/ToggleHood()
 	// If you ain't the robutt, you probably don't have the hair style that the hooded icon states are made for. sorry!
 	var/mob/living/carbon/human/H = src.loc
-	if (H.ckey != "vitoras")
+	if (H.ckey != owner)
 		to_chat(H, "Strange... the hood doesn't go over your head no matter how you try to put it up.")
 		return
 	..()

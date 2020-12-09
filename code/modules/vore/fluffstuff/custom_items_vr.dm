@@ -1366,7 +1366,7 @@
 	icon_state = "verie_brush"
 	w_class = ITEMSIZE_TINY
 
-	var/owner = "ryumi"
+	var/owner = "vitoras"
 
 /obj/item/weapon/fluff/verie/attack_self(mob/living/carbon/human/user)
 	if (istype(user))
