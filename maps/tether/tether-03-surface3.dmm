@@ -1411,23 +1411,7 @@
 /turf/simulated/wall/r_wall,
 /area/rnd/xenobiology/xenoflora)
 "acg" = (
-/obj/structure/table/reinforced,
-/obj/item/weapon/storage/box/beakers,
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 4
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 5
-	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 5
-	},
-/obj/item/weapon/reagent_containers/glass/beaker/large,
-/obj/item/weapon/reagent_containers/dropper,
-/turf/simulated/floor/tiled/white,
+/turf/simulated/wall/r_wall,
 /area/tether/surfacebase/medical/chemistry)
 "ach" = (
 /obj/machinery/vending/wallmed1{
@@ -7001,17 +6985,38 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/triage)
 "akA" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tether)
-"akB" = (
-/obj/machinery/atmospherics/unary/engine{
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor,
+/obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tourbus/engines)
+/obj/structure/window/reinforced,
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/medical/chemistry)
+"akB" = (
+/obj/structure/table/reinforced,
+/obj/item/weapon/storage/box/beakers,
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 4
+	},
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 5
+	},
+/obj/item/weapon/reagent_containers/glass/beaker/large,
+/obj/item/weapon/reagent_containers/dropper,
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/chemistry)
 "akC" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/lightgrey/border,
@@ -7046,6 +7051,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
+"akF" = (
+/obj/structure/sign/nosmoking_1,
+/turf/simulated/wall/r_wall,
+/area/tether/surfacebase/medical/chemistry)
 "akG" = (
 /obj/effect/floor_decal/borderfloor/corner{
 	dir = 8
@@ -11533,6 +11542,11 @@
 /obj/structure/disposalpipe/junction,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
+"asA" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tether)
 "asB" = (
 /obj/effect/floor_decal/spline/plain{
 	dir = 1
@@ -20693,6 +20707,13 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
+"aHS" = (
+/obj/machinery/atmospherics/unary/engine{
+	dir = 1
+	},
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tourbus/engines)
 "aHT" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -27064,10 +27085,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lobby)
-"aVm" = (
-/obj/structure/sign/nosmoking_1,
-/turf/simulated/wall,
-/area/tether/surfacebase/medical/chemistry)
 "aVn" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -38979,12 +38996,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/wood,
 /area/library)
-"hGJ" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/machinery/door/firedoor,
-/turf/simulated/floor/plating,
-/area/tether/surfacebase/medical/chemistry)
 "hId" = (
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled,
@@ -54385,7 +54396,7 @@ jML
 jHw
 jpB
 qWU
-akB
+aHS
 aKU
 aOI
 aPb
@@ -55237,7 +55248,7 @@ caw
 jHw
 gHh
 qWU
-akB
+aHS
 aKU
 aOI
 aKj
@@ -56591,13 +56602,13 @@ bmA
 bmQ
 bmY
 bnk
-aTd
+acg
 bnI
-aTd
-aTd
+acg
+acg
 aUX
 aVf
-aVm
+akF
 aeG
 aeG
 ajh
@@ -56739,7 +56750,7 @@ ace
 aUP
 aUY
 aVg
-aTd
+acg
 ahd
 ahS
 aji
@@ -56875,13 +56886,13 @@ sJv
 aih
 jSV
 bnk
-hGJ
+akA
 bnK
 bnP
 bnS
 aUZ
 aVh
-aTd
+acg
 agw
 agw
 aei
@@ -57017,13 +57028,13 @@ afy
 blq
 abs
 bnr
-aTd
+acg
 bnL
 aUL
 aUR
 aVa
 bkk
-aTd
+acg
 aVq
 aVu
 bol
@@ -57159,13 +57170,13 @@ afA
 blq
 abt
 boa
-hGJ
+akA
 bnM
 bnP
 aUS
 aJl
 aVj
-aTd
+acg
 auS
 aVu
 bol
@@ -57222,7 +57233,7 @@ aNk
 uSA
 aNJ
 aNP
-akA
+asA
 aKU
 abg
 aOk
@@ -57301,13 +57312,13 @@ bmx
 blq
 aeT
 bob
-aTd
+acg
 bnN
 bnQ
 bnT
 xog
 aVi
-aTd
+acg
 agw
 agw
 bol
@@ -57364,7 +57375,7 @@ aNl
 aNl
 aNK
 aNP
-akA
+asA
 aKU
 abg
 aOk
@@ -57443,13 +57454,13 @@ bmy
 blq
 nuu
 boc
-aTd
-vnS
 acg
+vnS
+akB
 adB
 acQ
 uiJ
-aTd
+acg
 aVs
 agw
 bol
@@ -57506,7 +57517,7 @@ aNm
 aNl
 aNK
 aNP
-akA
+asA
 aKU
 abg
 aOk
@@ -57585,13 +57596,13 @@ bmC
 blq
 ajk
 box
-aTd
-aTd
+acg
+acg
 aTd
 bnU
-aTd
-aTd
-agw
+acg
+acg
+alo
 nKy
 agw
 bom
