@@ -631,10 +631,7 @@
 	},
 /obj/machinery/firealarm{
 	dir = 8;
-	step_x = 0;
-	step_y = 8;
-	pixel_x = -24;
-	pixel_y = -8
+	pixel_x = -24
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/storage)
@@ -2681,8 +2678,7 @@
 	dir = 8
 	},
 /obj/item/weapon/storage/box/lights/mixed{
-	step_x = 0;
-	step_y = 4
+	pixel_y = 4
 	},
 /obj/item/weapon/storage/toolbox/mechanical{
 	pixel_x = -2;
@@ -2784,30 +2780,19 @@
 "aeh" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/table/standard,
-/obj/item/clothing/accessory/stethoscope{
-	step_x = 0;
-	step_y = 0
-	},
-/obj/item/clothing/accessory/stethoscope{
-	step_x = 0;
-	step_y = 0
-	},
-/obj/item/clothing/accessory/stethoscope{
-	step_x = 0;
-	step_y = 0
+/obj/item/clothing/accessory/stethoscope,
+/obj/item/clothing/accessory/stethoscope,
+/obj/item/clothing/accessory/stethoscope,
+/obj/item/weapon/storage/box/syringes{
+	pixel_y = 9
 	},
 /obj/item/weapon/storage/box/syringes{
-	step_x = 0;
-	step_y = 9
-	},
-/obj/item/weapon/storage/box/syringes{
-	step_x = 0;
-	step_y = 9
+	pixel_y = 9
 	},
 /obj/random/medical,
 /obj/item/weapon/storage/box/beakers{
-	step_x = 14;
-	step_y = 10
+	pixel_x = 14;
+	pixel_y = 10
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/storage)
@@ -5218,7 +5203,6 @@
 	},
 /obj/machinery/firealarm{
 	dir = 8;
-	step_y = 0;
 	pixel_x = -24;
 	pixel_y = -8
 	},
@@ -25753,9 +25737,8 @@
 	},
 /obj/item/weapon/pen,
 /obj/item/device/flashlight/lamp/green{
-	step_x = 22;
-	step_y = 14;
-	pixel_x = -12
+	pixel_y = 14;
+	pixel_x = 10
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lobby)
@@ -26594,8 +26577,8 @@
 	},
 /obj/structure/table/glass,
 /obj/item/weapon/storage/box/cups{
-	step_x = 7;
-	step_y = 13
+	pixel_x = 7;
+	pixel_y = 13
 	},
 /obj/machinery/recharger,
 /turf/simulated/floor/tiled/white,
@@ -27006,8 +26989,8 @@
 	pixel_y = -2
 	},
 /obj/item/device/radio{
-	step_x = 7;
-	step_y = 8
+	pixel_x = 7;
+	pixel_y = 8
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/storage)
@@ -34609,21 +34592,18 @@
 /obj/machinery/camera/network/medbay{
 	dir = 4
 	},
-/obj/item/device/sleevemate{
-	step_x = 0;
-	step_y = 0
+/obj/item/device/sleevemate,
+/obj/item/weapon/storage/box/nifsofts_medical{
+	pixel_x = 7;
+	pixel_y = 7
 	},
 /obj/item/weapon/storage/box/nifsofts_medical{
-	step_x = 7;
-	step_y = 7
-	},
-/obj/item/weapon/storage/box/nifsofts_medical{
-	step_x = 7;
-	step_y = 7
+	pixel_x = 7;
+	pixel_y = 7
 	},
 /obj/item/device/flashlight{
-	step_x = 6;
-	step_y = 31
+	pixel_x = 6;
+	pixel_y = 31
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/storage)
@@ -39683,8 +39663,8 @@
 /obj/structure/table/glass,
 /obj/machinery/computer/med_data/laptop{
 	dir = 4;
-	step_x = 4;
-	step_y = 4
+	pixel_x = 4;
+	pixel_y = 4
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lobby)
@@ -40719,16 +40699,12 @@
 /obj/item/weapon/storage/belt/medical,
 /obj/item/weapon/storage/belt/medical,
 /obj/item/weapon/storage/firstaid/regular{
-	step_x = 0;
-	step_y = 3;
 	pixel_x = 5;
-	pixel_y = 5
+	pixel_y = 8
 	},
 /obj/item/weapon/storage/firstaid/regular{
-	step_x = 0;
-	step_y = 3;
 	pixel_x = 5;
-	pixel_y = 5
+	pixel_y = 8
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/storage)
