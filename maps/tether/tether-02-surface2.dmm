@@ -105,7 +105,6 @@
 /obj/effect/floor_decal/corner/paleblue/bordercorner2{
 	dir = 8
 	},
-/obj/machinery/door/firedoor/glass/hidden/steel,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lowerhall)
 "aaj" = (
@@ -240,23 +239,22 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lowerhall)
 "aar" = (
-/obj/machinery/door/firedoor/glass/hidden/steel{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
-"aas" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 4
 	},
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 4
 	},
-/obj/machinery/door/firedoor/glass/hidden/steel{
-	dir = 8
-	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lowerhall)
+"aas" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/tether/surfacebase/medical/stairwell{
+	name = "\improper North Medical Stairwell"
+	})
 "aat" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 8
@@ -435,34 +433,14 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lowerhall)
 "aaF" = (
-/obj/machinery/alarm{
-	pixel_y = 22
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
-	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/cable/green{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
+	icon_state = "1-2"
 	},
 /obj/structure/cable/green{
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4"
-	},
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 1
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lowerhall)
@@ -1056,20 +1034,28 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lowerhall)
 "abu" = (
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
+	},
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/glass/hidden/steel{
+	dir = 8
+	},
 /obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 2
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/stairwell{
+	name = "\improper North Medical Stairwell"
+	})
 "abv" = (
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -1505,19 +1491,31 @@
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/medical/resleeving)
 "abV" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/disposalpipe/segment,
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_x = 0;
+	pixel_y = 24
+	},
+/obj/structure/cable/green{
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/stairwell{
+	name = "\improper North Medical Stairwell"
+	})
+"abW" = (
+/obj/structure/stairs/east,
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/stairwell{
+	name = "\improper North Medical Stairwell"
+	})
+"abX" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 4
 	},
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 1
-	},
-/obj/structure/cable/green{
-	icon_state = "1-2"
 	},
 /obj/effect/floor_decal/borderfloorwhite/corner2{
 	dir = 5
@@ -1525,36 +1523,19 @@
 /obj/effect/floor_decal/corner/paleblue/bordercorner2{
 	dir = 5
 	},
+/obj/machinery/door/firedoor/glass/hidden/steel{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
-"abW" = (
-/turf/simulated/open,
-/area/tether/surfacebase/medical/lowerhall)
-"abX" = (
-/obj/machinery/camera/network/medbay,
-/turf/simulated/open,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/stairwell{
+	name = "\improper North Medical Stairwell"
+	})
 "abY" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 8
-	},
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/structure/cable/green{
-	icon_state = "1-2"
-	},
-/obj/structure/disposalpipe/junction{
-	dir = 2;
-	icon_state = "pipe-j2"
-	},
+/obj/structure/railing,
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/stairwell{
+	name = "\improper North Medical Stairwell"
+	})
 "abZ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 1
@@ -1829,15 +1810,35 @@
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/medical/resleeving)
 "acw" = (
+/obj/structure/stairs/east,
 /obj/structure/railing,
-/turf/simulated/open,
-/area/tether/surfacebase/medical/lowerhall)
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/stairwell{
+	name = "\improper North Medical Stairwell"
+	})
 "acx" = (
-/obj/effect/floor_decal/steeldecal/steel_decals4{
+/obj/machinery/vending/medical{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/obj/machinery/camera/network/medbay{
+	dir = 9;
+	icon_state = "camera"
+	},
+/obj/machinery/alarm{
+	breach_detection = 0;
+	dir = 8;
+	icon_state = "alarm0";
+	pixel_x = 25;
+	rcon_setting = 3;
+	report_danger_level = 0
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/tether/surfacebase/medical/stairwell{
+	name = "\improper North Medical Stairwell"
+	})
 "acy" = (
 /obj/structure/grille,
 /obj/machinery/door/firedoor/glass,
@@ -1935,27 +1936,8 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/resleeving)
 "acI" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/disposalpipe/segment,
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 6
-	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 1
-	},
-/obj/structure/cable/green{
-	icon_state = "1-2"
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 5
-	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 5
-	},
-/turf/simulated/floor/tiled/white,
+/obj/structure/window/reinforced,
+/turf/simulated/floor/wood,
 /area/tether/surfacebase/medical/lowerhall)
 "acJ" = (
 /obj/machinery/hologram/holopad,
@@ -2185,20 +2167,12 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/stairwell)
 "ada" = (
-/obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
+/obj/machinery/vending/coffee{
+	dir = 8;
+	icon_state = "coffee"
 	},
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/glass/hidden/steel{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/white,
+/obj/structure/window/reinforced,
+/turf/simulated/floor/wood,
 /area/tether/surfacebase/medical/lowerhall)
 "adb" = (
 /obj/structure/dogbed{
@@ -3404,7 +3378,30 @@
 /turf/simulated/wall,
 /area/tether/surfacebase/medical/patient_b)
 "afa" = (
-/obj/structure/stairs/east,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 1
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/alarm{
+	step_x = 31;
+	pixel_y = 22
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lowerhall)
 "afb" = (
@@ -4181,12 +4178,52 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lowerhall)
 "agd" = (
-/obj/structure/railing,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lowerhall)
 "age" = (
-/obj/structure/stairs/east,
-/obj/structure/railing,
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 2
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lowerhall)
 "agf" = (
@@ -4618,28 +4655,10 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lowerhall)
 "agP" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 1
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/turf/simulated/wall,
+/area/tether/surfacebase/medical/stairwell{
+	name = "\improper Central Medical Stairwell"
+	})
 "agQ" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 1
@@ -4680,23 +4699,18 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/surface_two_hall)
 "agS" = (
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 4
+/obj/structure/cable/green,
+/obj/machinery/power/apc{
+	cell_type = /obj/item/weapon/cell/apc;
+	dir = 8;
+	name = "west bump";
+	pixel_x = -28
 	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 4
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 5
-	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 5
-	},
-/obj/machinery/door/firedoor/glass/hidden/steel{
-	dir = 8
-	},
+/obj/machinery/door/firedoor/glass/hidden/steel,
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/stairwell{
+	name = "\improper Central Medical Stairwell"
+	})
 "agT" = (
 /obj/machinery/door/firedoor/glass/hidden/steel{
 	dir = 2
@@ -5817,8 +5831,10 @@
 /obj/machinery/door/firedoor/glass/hidden/steel{
 	dir = 1
 	},
-/turf/simulated/floor/wood,
-/area/tether/surfacebase/medical/lowerhall)
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/stairwell{
+	name = "\improper Central Medical Stairwell"
+	})
 "aiH" = (
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -5857,18 +5873,33 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/medical/morgue)
 "aiK" = (
-/obj/machinery/vending/medical{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/segment,
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 4
 	},
-/obj/machinery/camera/network/medbay{
-	dir = 9;
-	icon_state = "camera"
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 4
 	},
-/obj/machinery/door/firedoor/glass/hidden/steel{
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 1
 	},
-/turf/simulated/floor/wood,
-/area/tether/surfacebase/medical/lowerhall)
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 5
+	},
+/obj/machinery/door/firedoor/glass/hidden/steel{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/stairwell{
+	name = "\improper Central Medical Stairwell"
+	})
 "aiL" = (
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 8
@@ -6448,13 +6479,6 @@
 "ajG" = (
 /turf/simulated/wall,
 /area/tether/surfacebase/medical/breakroom)
-"ajH" = (
-/obj/structure/window/reinforced,
-/obj/machinery/door/firedoor/glass/hidden/steel{
-	dir = 2
-	},
-/turf/simulated/floor/wood,
-/area/tether/surfacebase/medical/lowerhall)
 "ajI" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -6531,17 +6555,6 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/recoveryward)
-"ajR" = (
-/obj/machinery/vending/coffee{
-	dir = 8;
-	icon_state = "coffee"
-	},
-/obj/structure/window/reinforced,
-/obj/machinery/door/firedoor/glass/hidden/steel{
-	dir = 2
-	},
-/turf/simulated/floor/wood,
-/area/tether/surfacebase/medical/lowerhall)
 "ajS" = (
 /obj/machinery/alarm{
 	dir = 1;
@@ -6940,6 +6953,33 @@
 /obj/structure/flora/pottedplant,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
+"akA" = (
+/turf/simulated/open,
+/area/tether/surfacebase/medical/stairwell{
+	name = "\improper Central Medical Stairwell"
+	})
+"akB" = (
+/obj/machinery/camera/network/medbay,
+/turf/simulated/open,
+/area/tether/surfacebase/medical/stairwell{
+	name = "\improper Central Medical Stairwell"
+	})
+"akC" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/stairwell{
+	name = "\improper Central Medical Stairwell"
+	})
+"akD" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/stairwell{
+	name = "\improper Central Medical Stairwell"
+	})
 "akE" = (
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -6960,6 +7000,87 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lowerhall)
+"akF" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/junction{
+	dir = 2;
+	icon_state = "pipe-j2"
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/stairwell{
+	name = "\improper Central Medical Stairwell"
+	})
+"akG" = (
+/obj/structure/railing,
+/turf/simulated/open,
+/area/tether/surfacebase/medical/stairwell{
+	name = "\improper Central Medical Stairwell"
+	})
+"akH" = (
+/obj/structure/railing,
+/obj/machinery/alarm{
+	dir = 1;
+	pixel_y = -25
+	},
+/turf/simulated/open,
+/area/tether/surfacebase/medical/stairwell{
+	name = "\improper Central Medical Stairwell"
+	})
+"akI" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/stairwell{
+	name = "\improper Central Medical Stairwell"
+	})
+"akJ" = (
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/stairwell{
+	name = "\improper Central Medical Stairwell"
+	})
+"akK" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/segment,
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 6
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 6
+	},
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/stairwell{
+	name = "\improper Central Medical Stairwell"
+	})
 "akL" = (
 /obj/structure/mirror{
 	dir = 4;
@@ -48481,9 +48602,9 @@ aab
 aab
 usm
 aae
-aar
+aet
 aay
-aes
+aaF
 aes
 aes
 aiP
@@ -48623,10 +48744,10 @@ aab
 aab
 usm
 aaj
-aas
+aar
 aaC
-ada
-agS
+abu
+abX
 aet
 ajz
 agN
@@ -48767,10 +48888,10 @@ wIt
 yjB
 yjB
 abs
-aet
-agd
-aiG
-ajH
+abV
+abY
+aas
+acI
 agO
 aaH
 aaT
@@ -48909,11 +49030,11 @@ aab
 aab
 aab
 abs
+abW
+acw
+acx
+ada
 afa
-age
-aiK
-ajR
-agP
 ahD
 aiy
 ajG
@@ -49055,7 +49176,7 @@ abz
 abz
 abz
 abz
-aaF
+agd
 aaI
 aiB
 ajF
@@ -50762,9 +50883,9 @@ agm
 aaQ
 ahG
 akE
-abs
-abW
-acw
+agP
+akA
+akG
 amV
 aqi
 abC
@@ -50904,9 +51025,9 @@ aeZ
 aah
 aet
 aiO
-abs
-abW
-acw
+agP
+akA
+akG
 amW
 aqk
 alQ
@@ -51046,9 +51167,9 @@ acC
 dik
 aha
 aaq
-abs
-abX
-acw
+agP
+akB
+akH
 vKz
 aqZ
 aoX
@@ -51187,10 +51308,10 @@ afb
 afX
 aam
 agc
-abu
-aet
-ajz
-ajz
+age
+agS
+akC
+akI
 abs
 pRR
 alQ
@@ -51330,9 +51451,9 @@ agi
 abq
 aiC
 abv
-aet
-aet
-acx
+aiG
+akD
+akJ
 ajM
 acZ
 alQ
@@ -51472,9 +51593,9 @@ afX
 aan
 aaN
 abA
-abV
-abY
-acI
+aiK
+akF
+akK
 ajK
 adn
 abD

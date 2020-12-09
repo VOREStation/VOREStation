@@ -2472,20 +2472,10 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lowerhall)
 "adZ" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock/maintenance/medical{
-	name = "Medical Maintenance Access";
-	req_access = list(5)
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/turf/simulated/wall,
+/area/tether/surfacebase/medical/stairwell{
+	name = "\improper North Medical Stairwell"
+	})
 "aea" = (
 /obj/structure/closet/secure_closet/chemical{
 	req_access = list(64);
@@ -2547,34 +2537,27 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
-/obj/machinery/alarm{
-	dir = 8;
-	pixel_x = 22;
-	pixel_y = 0
-	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lowerhall)
 "aee" = (
+/obj/machinery/door/firedoor/glass/hidden/steel,
 /obj/effect/floor_decal/borderfloorwhite{
-	dir = 6
+	dir = 8
 	},
 /obj/effect/floor_decal/corner/paleblue/border{
-	dir = 6
+	dir = 8
 	},
-/obj/machinery/alarm{
-	dir = 8;
-	pixel_x = 22;
-	pixel_y = 0
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/obj/machinery/light,
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 6
-	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 6
-	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/stairwell{
+	name = "\improper North Medical Stairwell"
+	})
 "aef" = (
 /turf/simulated/wall,
 /area/tether/surfacebase/lowernorthhall)
@@ -14777,30 +14760,25 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lowerhall)
 "axP" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 5
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals4{
+/obj/machinery/door/firedoor/glass/hidden/steel{
 	dir = 8
 	},
 /obj/effect/floor_decal/borderfloorwhite{
-	dir = 10
+	dir = 4
 	},
 /obj/effect/floor_decal/corner/paleblue/border{
-	dir = 10
+	dir = 4
 	},
-/obj/machinery/door/firedoor/glass/hidden/steel{
-	dir = 2
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 5
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/stairwell{
+	name = "\improper North Medical Stairwell"
+	})
 "axQ" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 8
@@ -15368,7 +15346,6 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/virologyisolation)
 "ayB" = (
-/obj/machinery/door/firedoor/glass/hidden/steel,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 8
 	},
@@ -15383,25 +15360,14 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/stairwell{
+	name = "\improper North Medical Stairwell"
+	})
 "ayC" = (
-/obj/machinery/door/firedoor/glass/hidden/steel{
-	dir = 8
-	},
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 4
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 5
-	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 5
-	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/stairwell{
+	name = "\improper North Medical Stairwell"
+	})
 "ayD" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/disposalpipe/segment,
@@ -15632,6 +15598,12 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/virologyisolation)
 "ayY" = (
+/obj/structure/stairs/east,
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/stairwell{
+	name = "\improper North Medical Stairwell"
+	})
+"ayZ" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 8
 	},
@@ -15643,17 +15615,22 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
-"ayZ" = (
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/stairwell{
+	name = "\improper North Medical Stairwell"
+	})
 "aza" = (
-/obj/structure/stairs/east,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/stairwell{
+	name = "\improper North Medical Stairwell"
+	})
 "azb" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/light/small{
@@ -16052,12 +16029,16 @@
 	icon_state = "camera"
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/stairwell{
+	name = "\improper North Medical Stairwell"
+	})
 "azF" = (
 /obj/structure/stairs/east,
 /obj/structure/railing,
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/stairwell{
+	name = "\improper North Medical Stairwell"
+	})
 "azG" = (
 /obj/structure/disposalpipe/tagger{
 	dir = 2;
@@ -16364,6 +16345,71 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lowmedbaymaint)
+"aAc" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 8
+	},
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 10
+	},
+/obj/machinery/door/firedoor/glass/hidden/steel{
+	dir = 2
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 8
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/stairwell{
+	name = "\improper North Medical Stairwell"
+	})
+"aAd" = (
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 6
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 6
+	},
+/obj/machinery/alarm{
+	dir = 8;
+	pixel_x = 22;
+	pixel_y = 0
+	},
+/obj/machinery/light,
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 6
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 6
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/obj/machinery/power/apc{
+	name = "south bump";
+	pixel_y = -28;
+	req_access = list(67)
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/stairwell{
+	name = "\improper North Medical Stairwell"
+	})
 "aAe" = (
 /obj/structure/bed/padded,
 /obj/machinery/alarm{
@@ -16415,6 +16461,23 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
+"aAi" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/maintenance/medical{
+	name = "Medical Maintenance Access";
+	req_access = list(5)
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/stairwell{
+	name = "\improper North Medical Stairwell"
+	})
 "aAs" = (
 /obj/structure/cable{
 	d1 = 2;
@@ -52285,11 +52348,11 @@ afb
 atO
 awz
 aeU
-aeU
-aeU
-aeU
-aeU
-aeU
+adZ
+adZ
+adZ
+adZ
+adZ
 akA
 aah
 aah
@@ -52427,11 +52490,11 @@ aan
 atQ
 awV
 axQ
+aee
 ayB
-ayY
-ayY
-axP
-adZ
+ayZ
+aAc
+aAi
 asT
 aah
 aah
@@ -52569,11 +52632,11 @@ aan
 acP
 awW
 axR
+axP
 ayC
-ayZ
-ayZ
-aee
-aeU
+aza
+aAd
+adZ
 awB
 aah
 aah
@@ -52712,10 +52775,10 @@ aff
 awX
 aff
 aff
-ayZ
+ayC
 azE
-aeU
-aeU
+adZ
+adZ
 axI
 aah
 aah
@@ -52854,9 +52917,9 @@ auq
 ady
 ayd
 aff
-aza
+ayY
 azF
-aeU
+adZ
 aeF
 axK
 aah
@@ -52996,9 +53059,9 @@ aur
 awZ
 aye
 aff
-aeU
-aeU
-aeU
+adZ
+adZ
+adZ
 aeJ
 azK
 aah
