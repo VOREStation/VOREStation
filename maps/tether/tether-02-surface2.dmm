@@ -774,37 +774,45 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lowerhall)
 "aaZ" = (
-/obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/medical,
-/obj/structure/curtain/open/privacy,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/obj/structure/sign/poster{
+	pixel_y = 32
+	},
 /obj/effect/floor_decal/borderfloorwhite{
-	dir = 5
+	dir = 9
 	},
 /obj/effect/floor_decal/corner/paleblue/border{
-	dir = 5
+	dir = 9
 	},
 /obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 5
+	dir = 10
 	},
 /obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 5
+	dir = 10
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/recoveryward)
 "aba" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+/obj/item/device/radio/intercom{
+	dir = 1;
+	name = "Station Intercom (General)";
+	pixel_y = 24
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/obj/effect/floor_decal/borderfloorwhite{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 1
 	},
+/obj/effect/floor_decal/steeldecal/steel_decals10,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/recoveryward)
 "abb" = (
@@ -2849,28 +2857,16 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/resleeving)
 "aeb" = (
-/obj/structure/bed/chair{
-	dir = 4
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 4
-	},
-/obj/structure/sign/poster{
-	pixel_y = 32
-	},
 /obj/effect/floor_decal/borderfloorwhite{
-	dir = 9
+	dir = 1
 	},
 /obj/effect/floor_decal/corner/paleblue/border{
-	dir = 9
+	dir = 1
 	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 10
+/obj/machinery/body_scanconsole{
+	dir = 4
 	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+/obj/effect/floor_decal/corner_steel_grid{
 	dir = 10
 	},
 /turf/simulated/floor/tiled/white,
@@ -5682,22 +5678,23 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/medical/morgue)
 "aix" = (
-/obj/machinery/computer/security/telescreen/entertainment{
-	desc = "Looks like it's on MTV. Now you can't blame that demi-cowgirl for working her money maker. I wonder what else is on?";
-	icon_state = "frame";
-	pixel_x = 16;
-	pixel_y = 64
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 5
 	},
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 5
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 5
+	},
+/obj/machinery/bodyscanner{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
+/obj/effect/floor_decal/corner_steel_grid{
+	dir = 10
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/recoveryward)
@@ -5715,16 +5712,22 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lowerhall)
 "aiz" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals10{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 10
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals4,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/recoveryward)
 "aiA" = (
@@ -5944,6 +5947,29 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/medical/morgue)
+"aiS" = (
+/obj/machinery/computer/security/telescreen/entertainment{
+	desc = "Looks like it's on MTV. Now you can't blame that demi-cowgirl for working her money maker. I wonder what else is on?";
+	icon_state = "frame";
+	pixel_x = 16;
+	pixel_y = 64
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner_steel_grid{
+	dir = 5
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/recoveryward)
 "aiT" = (
 /obj/machinery/door/firedoor/multi_tile,
 /obj/machinery/door/airlock/multi_tile/glass{
@@ -5953,6 +5979,22 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
+"aiU" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4,
+/obj/effect/floor_decal/corner_steel_grid{
+	dir = 5
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/recoveryward)
 "aiV" = (
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/resleeving)
@@ -6686,23 +6728,6 @@
 "akq" = (
 /turf/simulated/wall,
 /area/tether/surfacebase/medical/bathroom)
-"akt" = (
-/obj/item/device/radio/intercom{
-	dir = 1;
-	name = "Station Intercom (General)";
-	pixel_y = 24
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10
-	},
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/recoveryward)
 "aku" = (
 /obj/structure/table/steel,
 /obj/item/device/sleevemate,
@@ -6756,15 +6781,6 @@
 /obj/structure/flora/pottedplant,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
-"akC" = (
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/recoveryward)
 "akD" = (
 /obj/machinery/alarm{
 	dir = 1;
@@ -51643,7 +51659,7 @@ afY
 aaJ
 abr
 adi
-aeb
+aaZ
 amJ
 abx
 aby
@@ -51785,8 +51801,8 @@ afp
 afp
 aaP
 adi
-akt
 aba
+aiz
 anQ
 aoV
 aqW
@@ -51927,8 +51943,8 @@ afZ
 ahJ
 ais
 adi
-akC
-aix
+aeb
+aiS
 anR
 alH
 alH
@@ -52069,8 +52085,8 @@ aaD
 ahK
 ait
 adi
-aaZ
-aiz
+aix
+aiU
 abe
 aoW
 aoW
