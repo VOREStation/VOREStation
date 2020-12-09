@@ -408,6 +408,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 	//Reset our hair
 	remove_layer(HAIR_LAYER)
+	remove_layer(HAIR_ACCESSORY_LAYER) //VOREStation Edit
 	update_eyes() //Pirated out of here, for glowing eyes.
 
 	var/obj/item/organ/external/head/head_organ = get_organ(BP_HEAD)
@@ -456,7 +457,20 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	var/icon/ears_s = get_ears_overlay()
 	if(ears_s)
 		face_standing.Blend(ears_s, ICON_OVERLAY)
-	to_chat(src, "getting hair accessory...")
+	if(istype(head_organ,/obj/item/organ/external/head/vr))
+		var/obj/item/organ/external/head/vr/head_organ_vr = head_organ
+		overlays_standing[HAIR_LAYER] = image(face_standing, layer = BODY_LAYER+HAIR_LAYER, "pixel_y" = head_organ_vr.head_offset)
+		apply_layer(HAIR_LAYER)
+		return
+	// VOREStation Edit - END
+
+	if(head_organ.transparent) //VOREStation Edit. For better slime limbs.
+		face_standing += rgb(,,,120)
+	
+	overlays_standing[HAIR_LAYER] = image(face_standing, layer = BODY_LAYER+HAIR_LAYER)
+	apply_layer(HAIR_LAYER)
+
+	// VOREStation Edit - START
 	var/icon/hair_acc_s = get_hair_accessory_overlay()
 	var/image/hair_acc_s_image = null
 	to_chat(src, "checking for hair_acc_s...")
@@ -467,31 +481,19 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 			hair_acc_s_image = image(hair_acc_s)
 			hair_acc_s_image.plane = PLANE_LIGHTING_ABOVE
 			hair_acc_s_image.appearance_flags = appearance_flags
-	if(istype(head_organ,/obj/item/organ/external/head/vr))
-		var/obj/item/organ/external/head/vr/head_organ_vr = head_organ
-		overlays_standing[HAIR_LAYER] = image(face_standing, layer = BODY_LAYER+HAIR_LAYER, "pixel_y" = head_organ_vr.head_offset)
-		apply_layer(HAIR_LAYER)
-		to_chat(src, "checking for hair_acc_s <b>in the head organ check</b>...")
-		if(hair_acc_s)
-			to_chat(src, "hair_acc_s found!")
-			to_chat(src, "checking for hair_acc_s_image...")
-			if (hair_acc_s_image)
-				to_chat(src, "hair_acc_s_image found!")
-				overlays_standing[HAIR_ACCESSORY_LAYER] = hair_acc_s_image
-				apply_layer(HAIR_ACCESSORY_LAYER)
-				return
-			to_chat(src, "<span class='danger'>no hair_acc_s_image! wat.")
-			overlays_standing[HAIR_ACCESSORY_LAYER] = hair_acc_s
+		to_chat(src, "hair_acc_s found!")
+		to_chat(src, "checking for hair_acc_s_image...")
+		if (hair_acc_s_image)
+			to_chat(src, "hair_acc_s_image found!")
+			overlays_standing[HAIR_ACCESSORY_LAYER] = hair_acc_s_image
 			to_chat(src, "applying hair_acc_s!")
 			apply_layer(HAIR_ACCESSORY_LAYER)
-		return
+			return
+		to_chat(src, "<span class='danger'>no hair_acc_s_image! wat.")
+		overlays_standing[HAIR_ACCESSORY_LAYER] = image(hair_acc_s, layer = BODY_LAYER+HAIR_ACCESSORY_LAYER)
+		to_chat(src, "applying hair_acc_s!")
+		apply_layer(HAIR_ACCESSORY_LAYER)
 	// VOREStation Edit - END
-
-	if(head_organ.transparent) //VOREStation Edit. For better slime limbs.
-		face_standing += rgb(,,,120)
-
-	overlays_standing[HAIR_LAYER] = image(face_standing, layer = BODY_LAYER+HAIR_LAYER)
-	apply_layer(HAIR_LAYER)
 
 /mob/living/carbon/human/update_eyes()
 	if(QDESTROYING(src))

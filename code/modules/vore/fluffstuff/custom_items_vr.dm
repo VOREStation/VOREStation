@@ -1376,13 +1376,26 @@
 			this device was not made for people like you.</span>")
 			return
 		
-		user.hair_accessory_style = /datum/sprite_accessory/hair_accessory/verie_hair_glow
-		user.update_hair()
-		user.visible_message("[user] combs her hair. \The [src] leaves behind glowing cyan highlights as it passes through \
-		her black strands.", \
-		"<span class='notice'>You brush your hair. \The [src]'s teeth begin to vibrate and glow as they react to your nanites. \
-		The teeth stimulate the nanites in your hair strands until your hair give off a brilliant, faintly pulsing \
-		cyan glow!</span>")
+		if (!user.hair_accessory_style)
+			var/datum/sprite_accessory/hair_accessory/verie_hair_glow/V = new(user)
+			user.hair_accessory_style = V
+			user.update_hair()
+			user.visible_message("[user] combs her hair. \The [src] leaves behind glowing cyan highlights as it passes through \
+			her black strands.", \
+			"<span class='notice'>You brush your hair. \The [src]'s teeth begin to vibrate and glow as they react to your nanites. \
+			The teeth stimulate the nanites in your hair strands until your hair give off a brilliant, faintly pulsing \
+			cyan glow!</span>")
+		
+		else
+			user.visible_message("[user] combs her hair. \The [src] brushes away her glowing cyan highlights. Neat!", \
+			"<span class='notice'>You brush your hair. \The [src]'s teeth wipe away the glowing streaks in your hair \
+			like a sponge scrubbing away a stain.</span>")
+			user.hair_accessory_style = null
+			for(var/datum/sprite_accessory/hair_accessory/verie_hair_glow/V in user)
+				to_chat(user, "<span class='warning'>found a V to delete!</span>")
+				qdel(V)
+			user.update_hair()
+			
 	
 	else
 		to_chat(user, "<span class='warning'>\The [src] isn't compatible with your body as it is now.</span>")

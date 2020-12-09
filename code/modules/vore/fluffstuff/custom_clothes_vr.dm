@@ -2274,7 +2274,8 @@ Departamental Swimsuits, for general use
 	name = "salaciously stylised suit"
 	desc = "It's kind of difficult to identify the type of material that makes up this form-fitting suit. It is stretchy and flexible, but \
 	is firm in its toughness, and clings tightly to the skin. Come to think of it, it glistens quite a bit in the light and- \
-	oh god it's latex."
+	oh god it's latex.\
+	\n... A <b>Verie</b> appropriate material choice indeed." //the wordplay never ends
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "veriesuit"
 
@@ -2283,8 +2284,4 @@ Departamental Swimsuits, for general use
 
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|FEET|ARMS|HANDS
 
-/obj/item/clothing/under/fluff/verie/examine(mob/user)
-	//the wordplay never ends
-	. = ..()
-	. += "... A <b>Verie</b> appropriate material choice indeed."
 

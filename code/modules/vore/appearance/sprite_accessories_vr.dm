@@ -2041,8 +2041,6 @@
 
 	var/ignores_lighting = 0 // Whether or not this hair accessory will ignore lighting and glow in the dark.
 	var/color_blend_mode = ICON_ADD // Only appliciable if do_coloration = 1
-	var/extra_overlay // Icon state of an additional overlay to blend in.
-	var/extra_overlay2
 	var/desc = "You should not see this..."
 
 /datum/sprite_accessory/hair_accessory/verie_hair_glow

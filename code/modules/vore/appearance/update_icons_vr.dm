@@ -21,26 +21,11 @@ var/global/list/wing_icon_cache = list()
 	return null
 
 /mob/living/carbon/human/proc/get_hair_accessory_overlay()
-	to_chat(src, "starting get_hair_accessory_overlay()...")
 	if(hair_accessory_style && !(head && (head.flags_inv & BLOCKHEADHAIR)))
-		to_chat(src, "found hair accessory style! and ur head's intact. nice")
 		var/icon/hair_acc_s = icon(hair_accessory_style.icon, hair_accessory_style.icon_state)
-		to_chat(src, "hair_acc_s set!")
 		if(hair_accessory_style.do_colouration)
 			hair_acc_s.Blend(rgb(src.r_ears, src.g_ears, src.b_ears), hair_accessory_style.color_blend_mode)
 
-		if(hair_accessory_style.extra_overlay)
-			var/icon/overlay = icon(hair_accessory_style.icon, hair_accessory_style.extra_overlay)
-			overlay.Blend(rgb(src.r_ears2, src.g_ears2, src.b_ears2), hair_accessory_style.color_blend_mode)
-			hair_acc_s.Blend(overlay, ICON_OVERLAY)
-			qdel(overlay)
-
-		if(hair_accessory_style.extra_overlay2) //MORE COLOURS IS BETTERER
-			var/icon/overlay = icon(hair_accessory_style.icon, hair_accessory_style.extra_overlay2)
-			overlay.Blend(rgb(src.r_ears3, src.g_ears3, src.b_ears3), hair_accessory_style.color_blend_mode)
-			hair_acc_s.Blend(overlay, ICON_OVERLAY)
-			qdel(overlay)
-		to_chat(src, "<span class='notice'>get_hair_accessory_overlay() completed!</span>")
 		return hair_acc_s
 	return null
 
