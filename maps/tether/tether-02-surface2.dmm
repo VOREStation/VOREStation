@@ -3399,7 +3399,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/alarm{
-	step_x = 31;
+	pixel_x = 31;
 	pixel_y = 22
 	},
 /turf/simulated/floor/tiled/white,
