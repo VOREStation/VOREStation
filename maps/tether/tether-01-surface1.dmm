@@ -170,10 +170,6 @@
 /obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 4
 	},
-/obj/machinery/camera/network/medbay{
-	dir = 9;
-	icon_state = "camera"
-	},
 /obj/machinery/light{
 	dir = 1
 	},
