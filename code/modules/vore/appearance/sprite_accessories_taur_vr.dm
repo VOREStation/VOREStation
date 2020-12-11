@@ -207,6 +207,10 @@
 	extra_overlay = "skunk_markings"
 	icon_sprite_tag = "skunk"
 
+/datum/sprite_accessory/tail/taur/skunk/nb
+	name = "Skunk (Taur, no belly)"
+	extra_overlay = "skunk_markings_nb"
+
 /datum/sprite_accessory/tail/taur/naga
 	name = "Naga (Taur)"
 	icon_state = "naga_s"
