@@ -407,6 +407,7 @@
 	name = "Feline dual-color (Taur)"
 	icon_state = "feline_s"
 	extra_overlay = "feline_markings"
+	extra_overlay2 = "feline_markings_2"
 	//icon_sprite_tag = "feline2c"
 
 //TFF 22/11/19 - CHOMPStation port of fat taur sprites
@@ -414,6 +415,7 @@
 	name = "Fat Feline dual-color (Taur)"
 	icon_state = "fatfeline_s"
 	extra_overlay = "fatfeline_markings"
+	extra_overlay2 = "feline_markings_2"
 	//icon_sprite_tag = "fatfeline2c"
 
 /datum/sprite_accessory/tail/taur/feline/synthfeline
