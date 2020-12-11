@@ -397,7 +397,8 @@
 /area/tether/surfacebase/security/breakroom)
 "aaH" = (
 /obj/structure/catwalk,
-/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/obj/structure/catwalk,
+/turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/tether/surfacebase/outside/outside3)
 "aaI" = (
 /obj/machinery/portable_atmospherics/canister/oxygen/prechilled,
@@ -950,10 +951,15 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/storage)
 "abv" = (
-/obj/structure/catwalk,
-/obj/structure/catwalk,
-/turf/simulated/floor/outdoors/grass/sif/virgo3b,
-/area/tether/surfacebase/outside/outside3)
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/triage)
 "abw" = (
 /obj/machinery/door/airlock/medical,
 /obj/machinery/door/firedoor/glass,
@@ -1654,18 +1660,32 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/medsec_maintenance)
 "acx" = (
-/obj/effect/floor_decal/steeldecal/steel_decals6{
-	dir = 1
+/obj/structure/table/glass,
+/obj/item/device/radio{
+	pixel_x = -4;
+	pixel_y = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9;
-	pixel_y = 0
+/obj/item/device/radio{
+	pixel_x = 4;
+	pixel_y = -4
 	},
-/obj/machinery/door/firedoor/glass/hidden/steel{
-	dir = 1
+/obj/machinery/camera/network/medbay{
+	dir = 8;
+	icon_state = "camera"
+	},
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 4
+	},
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	pixel_x = 28
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/triage)
+/area/tether/surfacebase/medical/admin)
 "acy" = (
 /turf/simulated/wall,
 /area/tether/surfacebase/medical/surgery2)
@@ -35590,28 +35610,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/admin)
-"bjK" = (
-/obj/structure/table/glass,
-/obj/item/device/radio{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/item/device/radio{
-	pixel_x = 4;
-	pixel_y = -4
-	},
-/obj/machinery/camera/network/medbay{
-	dir = 8;
-	icon_state = "camera"
-	},
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/admin)
 "bjO" = (
 /obj/machinery/status_display{
 	density = 0;
@@ -54723,7 +54721,7 @@ aab
 aaq
 aaq
 bou
-aaH
+ajG
 aac
 aac
 aac
@@ -54865,7 +54863,7 @@ aab
 aab
 aaq
 bou
-aaH
+ajG
 aac
 aac
 aac
@@ -55007,7 +55005,7 @@ aab
 aab
 aaq
 bou
-aaH
+ajG
 aac
 aac
 aac
@@ -55149,7 +55147,7 @@ aab
 aab
 aaq
 bou
-aaH
+ajG
 aac
 aac
 aac
@@ -55291,7 +55289,7 @@ aab
 aab
 aaq
 bou
-aaH
+ajG
 aac
 aac
 aac
@@ -55433,7 +55431,7 @@ aab
 aab
 aaq
 bou
-abv
+aaH
 aac
 aac
 aac
@@ -55859,7 +55857,7 @@ aab
 aab
 aas
 ajG
-aaH
+ajG
 aad
 aat
 aat
@@ -56567,7 +56565,7 @@ aab
 aab
 aab
 bou
-aaH
+ajG
 ajG
 ajG
 aag
@@ -56709,9 +56707,9 @@ aab
 aab
 aab
 bou
-aaH
-aaH
-aaH
+ajG
+ajG
+ajG
 aag
 abq
 abq
@@ -56852,13 +56850,13 @@ aab
 aab
 bou
 ajG
-aaH
-aaH
+ajG
+ajG
 aag
 abs
 aSi
 aaA
-acx
+abv
 acR
 agY
 acR
@@ -56994,8 +56992,8 @@ aab
 aab
 bou
 ajG
-aaH
-aaH
+ajG
+ajG
 aag
 acc
 aSk
@@ -57136,8 +57134,8 @@ aab
 aab
 aaq
 aaU
-aaH
-aaH
+ajG
+ajG
 aar
 acy
 acy
@@ -57279,8 +57277,8 @@ aab
 aaq
 aac
 aaU
-aaH
-aac
+ajG
+aaq
 uWw
 aTs
 aUH
@@ -57421,8 +57419,8 @@ aaq
 aaq
 aac
 abn
-aaH
-aac
+ajG
+aaq
 acy
 aTL
 aUI
@@ -57563,8 +57561,8 @@ aaq
 aaq
 aaq
 abn
-aaH
-aac
+ajG
+aaq
 acy
 aTM
 aUJ
@@ -57703,10 +57701,10 @@ aab
 aab
 aaq
 aac
-aac
+aaq
 abn
-aaH
-aac
+ajG
+aaq
 uWw
 aTN
 aUK
@@ -57847,8 +57845,8 @@ aaq
 aac
 aac
 abn
-aaH
-aac
+ajG
+aaq
 uWw
 aaZ
 abp
@@ -57988,8 +57986,8 @@ aab
 aaq
 aac
 aac
-abn
-aaH
+bou
+ajG
 oJw
 acy
 acy
@@ -58131,7 +58129,7 @@ aaq
 aaq
 aac
 abn
-aaH
+ajG
 iUu
 aaB
 aUj
@@ -58273,7 +58271,7 @@ aab
 aab
 aac
 abn
-aaH
+ajG
 iUu
 aaC
 aUt
@@ -58415,7 +58413,7 @@ aab
 aab
 aab
 abn
-aaH
+ajG
 aaz
 aaD
 abb
@@ -58855,7 +58853,7 @@ bml
 fLx
 aTj
 bjy
-bjK
+acx
 bjU
 bke
 xZw
@@ -59128,11 +59126,11 @@ aOm
 ajG
 ajG
 ajG
-aaH
-aaH
-aaH
-aac
-aac
+ajG
+ajG
+ajG
+aaq
+aaq
 afS
 afp
 bfT
@@ -59271,10 +59269,10 @@ aNM
 bov
 bov
 aaU
-aaH
-aaH
-aaH
-aac
+ajG
+ajG
+ajG
+aaq
 afS
 afr
 acn
@@ -59414,7 +59412,7 @@ aac
 aac
 aac
 aaU
-aaH
+ajG
 ajG
 aaq
 afS
@@ -59555,10 +59553,10 @@ aab
 aac
 aac
 aac
-abn
-aaH
+bou
 ajG
-aac
+ajG
+aaq
 afS
 ait
 aeE
@@ -59696,11 +59694,11 @@ aab
 aab
 aac
 aac
-aac
+aaq
 abn
-aaH
-aaH
-aac
+ajG
+ajG
+aaq
 afS
 ack
 aeF
@@ -59840,9 +59838,9 @@ aab
 aac
 aac
 abn
-aaH
-aaH
-aac
+ajG
+ajG
+aaq
 afS
 bet
 bet
@@ -59982,9 +59980,9 @@ aab
 aac
 aac
 abn
-aaH
-aaH
-aaH
+ajG
+ajG
+ajG
 afS
 bay
 afq
@@ -60125,8 +60123,8 @@ aac
 aac
 aac
 aaU
-aaH
-aaH
+ajG
+ajG
 afS
 afq
 afq
@@ -60265,10 +60263,10 @@ aab
 aab
 aac
 aac
-aac
+aaq
 aac
 aaU
-aaH
+ajG
 afS
 afq
 afq
@@ -60408,9 +60406,9 @@ aab
 aac
 aac
 aac
-aac
+aaq
 abn
-aaH
+ajG
 afS
 aby
 afq
@@ -60552,7 +60550,7 @@ aac
 aac
 aac
 abn
-aaH
+ajG
 afS
 afp
 afq
@@ -60694,7 +60692,7 @@ aab
 aab
 aac
 abn
-aaH
+ajG
 afS
 afS
 afS
@@ -60836,7 +60834,7 @@ aab
 aab
 aab
 aOm
-adG
+ajG
 adG
 adG
 adG
