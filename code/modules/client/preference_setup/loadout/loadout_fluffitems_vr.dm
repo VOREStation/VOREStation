@@ -91,7 +91,7 @@
 /datum/gear/fluff/astraether_ritualknife
     path = /obj/item/weapon/material/knife/ritual
     display_name = "Astra's Ritual Knife"
-    description = "A well kept strange ritual knife, There is a small tag with the name "Astra Ether" on it. They are probably looking for this."
+    description = "A well kept strange ritual knife, There is a small tag with the name 'Astra Ether' on it. They are probably looking for this."
     ckeywhitelist = list("astraether")
     character_name = list("Astra Ether")
 
