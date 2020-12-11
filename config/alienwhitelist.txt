@@ -28,6 +28,7 @@ khanivore - Protean
 killjaden - Protean
 ktccd - Diona
 magpiemayhem - Vox
+marco_barko - Protean
 mewchild - Diona
 mewchild - Vox
 mrsebbi - Xenochimera
@@ -37,6 +38,7 @@ ontejbjoav - Diona
 oreganovulgaris - Xenochimera
 paradoxspace - Xenochimera
 pearlprophet - Protean
+pemdesos - Protean
 phoenixx0 - Vox
 radiantaurora - Protean
 rapidvalj - Vox
