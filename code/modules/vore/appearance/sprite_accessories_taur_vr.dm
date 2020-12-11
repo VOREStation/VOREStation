@@ -186,6 +186,7 @@
 	name = "Wolf dual-color (Taur)"
 	icon_state = "wolf_s"
 	extra_overlay = "wolf_markings"
+	extra_overlay2 = "wolf_markings_2"
 	//icon_sprite_tag = "wolf2c"
 
 //TFF 22/11/19 - CHOMPStation port of fat taur sprites
@@ -193,6 +194,7 @@
 	name = "Fat Wolf dual-color (Taur)"
 	icon_state = "fatwolf_s"
 	extra_overlay = "fatwolf_markings"
+	extra_overlay2 = "wolf_markings_2"
 	//icon_sprite_tag = "fatwolf2c"
 
 /datum/sprite_accessory/tail/taur/wolf/synthwolf
@@ -205,11 +207,8 @@
 	name = "Skunk (Taur)"
 	icon_state = "skunk_s"
 	extra_overlay = "skunk_markings"
+	extra_overlay2 = "skunk_markings_2"
 	icon_sprite_tag = "skunk"
-
-/datum/sprite_accessory/tail/taur/skunk/nb
-	name = "Skunk (Taur, no belly)"
-	extra_overlay = "skunk_markings_nb"
 
 /datum/sprite_accessory/tail/taur/naga
 	name = "Naga (Taur)"
@@ -499,6 +498,7 @@
 	name = "Otie (Taur)"
 	icon_state = "otie_s"
 	extra_overlay = "otie_markings"
+	extra_overlay2 = "otie_markings_2"
 	suit_sprites = 'icons/mob/taursuits_otie_vr.dmi'
 	icon_sprite_tag = "otie"
 
