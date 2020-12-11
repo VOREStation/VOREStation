@@ -9,6 +9,50 @@
 /turf/simulated/wall,
 /area/tether/surfacebase/outside/outside2)
 "aad" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/machinery/door/blast/shutters{
+	closed_layer = 10;
+	density = 0;
+	dir = 2;
+	icon_state = "shutter0";
+	id = "medbayquar";
+	layer = 1;
+	name = "Medbay Emergency Lockdown Shutters";
+	opacity = 0;
+	open_layer = 1
+	},
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/medical/centralhall)
+"aae" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/machinery/door/blast/shutters{
+	closed_layer = 10;
+	density = 0;
+	dir = 2;
+	icon_state = "shutter0";
+	id = "medbayquar";
+	layer = 1;
+	name = "Medbay Emergency Lockdown Shutters";
+	opacity = 0;
+	open_layer = 1
+	},
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/medical/centralhall)
+"aaf" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 9
 	},
@@ -28,40 +72,7 @@
 	pixel_y = 0
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
-"aae" = (
-/obj/machinery/camera/network/medbay,
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
-"aaf" = (
-/obj/item/device/radio/intercom{
-	dir = 1;
-	pixel_y = 24;
-	req_access = list()
-	},
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 1
-	},
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 4
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/centralhall)
 "aag" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -78,36 +89,16 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/resleeving)
 "aah" = (
+/obj/machinery/camera/network/medbay,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 1
 	},
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 1
 	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 4
-	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/centralhall)
 "aai" = (
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 8
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 8
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 8
-	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
-"aaj" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 5
 	},
@@ -116,7 +107,31 @@
 	},
 /obj/structure/flora/pottedplant/minitree,
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/centralhall)
+"aaj" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/machinery/door/blast/shutters{
+	closed_layer = 10;
+	density = 0;
+	dir = 2;
+	icon_state = "shutter0";
+	id = "medbayquar";
+	layer = 1;
+	name = "Medbay Emergency Lockdown Shutters";
+	opacity = 0;
+	open_layer = 1
+	},
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8;
+	health = 1e+006
+	},
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/medical/centralhall)
 "aak" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 5
@@ -128,131 +143,85 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/examroom)
 "aal" = (
-/obj/machinery/atmospherics/unary/vent_pump/on,
 /obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
+	dir = 8
 	},
 /obj/effect/floor_decal/corner/paleblue/border{
-	dir = 1
+	dir = 8
 	},
 /obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 1
+	dir = 8
 	},
 /obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 1
+	dir = 8
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/centralhall)
 "aam" = (
-/obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 1
-	},
-/obj/machinery/alarm{
-	pixel_y = 22
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 1
-	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/centralhall)
 "aan" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/effect/floor_decal/borderfloorwhite{
-	dir = 5
+	dir = 4
 	},
 /obj/effect/floor_decal/corner/paleblue/border{
-	dir = 5
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 5
-	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 5
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/centralhall)
 "aao" = (
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
-"aap" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable/green{
-	icon_state = "1-2"
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 9
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals4{
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
-	},
-/obj/structure/disposalpipe/segment,
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
-"aaq" = (
-/obj/machinery/door/firedoor/glass/hidden/steel{
-	dir = 1
 	},
 /obj/structure/cable/green{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 6
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/floor_decal/borderfloorwhite,
-/obj/effect/floor_decal/corner/paleblue/border,
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 9
-	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 9
-	},
-/obj/structure/sign/poster{
-	pixel_x = 0;
-	pixel_y = -32
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
-"aar" = (
+/area/tether/surfacebase/medical/centralhall)
+"aap" = (
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/centralhall)
+"aaq" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 4
 	},
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 4
 	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/centralhall)
+"aar" = (
+/turf/simulated/wall,
+/area/tether/surfacebase/medical/centralhall)
 "aas" = (
 /obj/structure/window/reinforced{
 	dir = 1
 	},
 /turf/simulated/floor/wood,
-/area/tether/surfacebase/medical/stairwell{
+/area/tether/surfacebase/medical/uppernorthstairwell{
 	name = "\improper North Medical Stairwell"
 	})
 "aat" = (
@@ -274,25 +243,19 @@
 	pixel_x = -24
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/centralhall)
 "aau" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	icon_state = "1-2"
 	},
 /obj/structure/cable/green{
-	icon_state = "4-8"
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 1
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 1
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/centralhall)
 "aav" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 1
@@ -334,20 +297,6 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/resleeving)
 "aay" = (
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 1
-	},
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
-"aaz" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 8
 	},
@@ -356,7 +305,14 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/centralhall)
+"aaz" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/centralhall)
 "aaA" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 4
@@ -381,19 +337,20 @@
 	pixel_y = 0
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/centralhall)
 "aaC" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
 /obj/effect/floor_decal/borderfloorwhite{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 4
-	},
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/glass/hidden/steel,
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/centralhall)
 "aaD" = (
 /obj/machinery/light{
 	dir = 4
@@ -411,6 +368,34 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/examroom)
 "aaE" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/firedoor/glass/hidden/steel{
+	dir = 2
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/centralhall)
+"aaF" = (
+/obj/machinery/door/firedoor/glass/hidden/steel{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/centralhall)
+"aaG" = (
+/obj/structure/window/reinforced,
+/turf/simulated/floor/wood,
+/area/tether/surfacebase/medical/centralhall)
+"aaH" = (
+/obj/machinery/vending/coffee{
+	dir = 8;
+	icon_state = "coffee"
+	},
+/obj/structure/window/reinforced,
+/turf/simulated/floor/wood,
+/area/tether/surfacebase/medical/centralhall)
+"aaI" = (
 /obj/structure/cable/green{
 	icon_state = "2-4"
 	},
@@ -431,48 +416,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
-"aaF" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable/green{
-	icon_state = "1-2"
-	},
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
-"aaG" = (
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 1
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
-"aaH" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
-"aaI" = (
-/obj/machinery/hologram/holopad,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable/green{
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/centralhall)
 "aaJ" = (
 /obj/item/device/radio/intercom/department/medbay{
 	dir = 8;
@@ -503,74 +447,100 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/medical/morgue)
 "aaL" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 1
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/cable/green{
-	icon_state = "1-2"
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
 	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
-"aaM" = (
-/obj/machinery/button/remote/airlock{
-	desc = "A remote control switch for the medbay recovery room door.";
-	dir = 2;
-	id = "SurfMedicalResleevingMaintExit";
-	name = "Exit Button";
-	pixel_x = 28;
-	pixel_y = -28
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 8
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
-"aaN" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
-	},
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
 	},
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals4,
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 10
-	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
-"aaO" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 4;
-	icon_state = "map-scrubbers"
+/area/tether/surfacebase/medical/centralhall)
+"aaM" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/centralhall)
+"aaN" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 1
+	},
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/centralhall)
+"aaO" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
 	dir = 1
 	},
 /obj/structure/cable/green{
-	icon_state = "1-2"
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 4
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 9
+/obj/machinery/alarm{
+	pixel_x = 31;
+	pixel_y = 22
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/centralhall)
 "aaP" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -592,7 +562,161 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/examroom)
 "aaQ" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/centralhall)
+"aaR" = (
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 1
+	},
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_x = 0;
+	pixel_y = 24
+	},
+/obj/structure/cable/green{
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/centralhall)
+"aaS" = (
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 1
+	},
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/centralhall)
+"aaT" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment,
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/centralhall)
+"aaU" = (
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 1
+	},
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/centralhall)
+"aaV" = (
+/obj/machinery/door/firedoor/glass/hidden/steel{
+	dir = 2
+	},
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 1
+	},
+/obj/machinery/vending/wallmed1{
+	emagged = 1;
+	pixel_y = 32;
+	shut_up = 0
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/centralhall)
+"aaW" = (
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 1
+	},
+/obj/structure/extinguisher_cabinet{
+	dir = 1;
+	icon_state = "extinguisher_closed";
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/centralhall)
+"aaX" = (
+/obj/item/device/radio/intercom{
+	dir = 1;
+	pixel_y = 24;
+	req_access = list()
+	},
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 1
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/centralhall)
+"aaY" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 4;
+	icon_state = "map-scrubbers"
+	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 1
 	},
@@ -606,146 +730,7 @@
 	dir = 9
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
-"aaR" = (
-/obj/effect/landmark{
-	name = "lightsout"
-	},
-/obj/structure/cable/green{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 5
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 8
-	},
-/obj/structure/disposalpipe/segment,
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
-"aaS" = (
-/obj/effect/floor_decal/borderfloorwhite,
-/obj/effect/floor_decal/corner/paleblue/border,
-/obj/effect/floor_decal/borderfloorwhite/corner2,
-/obj/effect/floor_decal/corner/paleblue/bordercorner2,
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
-"aaT" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
-	},
-/obj/effect/floor_decal/borderfloorwhite,
-/obj/effect/floor_decal/corner/paleblue/border,
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
-"aaU" = (
-/obj/structure/cable/green{
-	icon_state = "1-2"
-	},
-/obj/structure/disposalpipe/segment,
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 8
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 8
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 10
-	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 10
-	},
-/obj/machinery/camera/network/medbay{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
-"aaV" = (
-/obj/structure/cable/green{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/light,
-/obj/effect/floor_decal/borderfloorwhite,
-/obj/effect/floor_decal/corner/paleblue/border,
-/obj/structure/disposalpipe/segment{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
-"aaW" = (
-/obj/structure/cable/green{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 1
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 8
-	},
-/obj/effect/floor_decal/borderfloorwhite,
-/obj/effect/floor_decal/corner/paleblue/border,
-/obj/structure/disposalpipe/segment{
-	dir = 8
-	},
-/obj/structure/sign/poster{
-	pixel_x = 0;
-	pixel_y = -32
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
-"aaX" = (
-/obj/structure/cable/green{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
-/obj/effect/floor_decal/borderfloorwhite,
-/obj/effect/floor_decal/corner/paleblue/border,
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
-/obj/structure/cable/green{
-	icon_state = "1-4"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
-"aaY" = (
-/obj/structure/cable/green{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/effect/floor_decal/borderfloorwhite,
-/obj/effect/floor_decal/corner/paleblue/border,
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_x = 0;
-	pixel_y = -24
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 8
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/centralhall)
 "aaZ" = (
 /obj/machinery/light{
 	dir = 8
@@ -968,21 +953,21 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/bathroom)
 "abq" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/effect/floor_decal/borderfloorwhite{
 	dir = 1
 	},
-/obj/structure/cable/green{
-	icon_state = "1-2"
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 1
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 9
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 1
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 4
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/centralhall)
 "abr" = (
 /obj/machinery/button/windowtint{
 	id = "patient_room_a";
@@ -1015,24 +1000,38 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/patient_a)
 "abs" = (
-/turf/simulated/wall,
-/area/tether/surfacebase/medical/lowerhall)
-"abt" = (
-/obj/structure/cable/green{
-	icon_state = "1-8"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 8
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals4{
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 1
 	},
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 9
+	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/centralhall)
+"abt" = (
+/obj/machinery/door/firedoor/glass/hidden/steel{
+	dir = 2
+	},
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 1
+	},
+/obj/structure/extinguisher_cabinet{
+	dir = 1;
+	icon_state = "extinguisher_closed";
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/centralhall)
 "abu" = (
 /obj/machinery/light{
 	dir = 4;
@@ -1053,27 +1052,28 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell{
+/area/tether/surfacebase/medical/uppernorthstairwell{
 	name = "\improper North Medical Stairwell"
 	})
 "abv" = (
-/obj/structure/cable/green{
-	icon_state = "4-8"
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
+/obj/machinery/alarm{
+	pixel_y = 22
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 1
 	},
-/obj/structure/cable/green{
-	icon_state = "1-4"
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/centralhall)
 "abw" = (
 /obj/machinery/power/apc{
 	dir = 1;
@@ -1128,37 +1128,21 @@
 /turf/simulated/wall,
 /area/tether/surfacebase/medical/cmo)
 "abA" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 4;
-	icon_state = "map-scrubbers"
-	},
-/obj/structure/disposalpipe/junction,
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	icon_state = "2-8"
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
 	},
 /obj/structure/cable/green{
 	icon_state = "1-2"
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 5
+	dir = 9
 	},
-/obj/effect/floor_decal/borderfloorwhite{
+/obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 4
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 4
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 6
-	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 6
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/centralhall)
 "abB" = (
 /obj/structure/table/glass,
 /obj/item/weapon/folder/white,
@@ -1176,38 +1160,23 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/recoveryward)
 "abC" = (
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 6
+/obj/structure/cable/green,
+/obj/machinery/power/apc{
+	cell_type = /obj/item/weapon/cell/apc;
+	dir = 8;
+	name = "west bump";
+	pixel_x = -28
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals4{
+/obj/machinery/door/firedoor/glass/hidden/steel,
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/centralhall)
+"abD" = (
+/obj/machinery/door/firedoor/glass/hidden/steel{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell)
-"abD" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell)
+/area/tether/surfacebase/medical/centralhall)
 "abE" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/disposalpipe/segment,
 /obj/effect/floor_decal/borderfloorwhite{
@@ -1216,26 +1185,26 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 4
 	},
-/obj/machinery/firealarm{
-	dir = 4;
-	layer = 3.3;
-	pixel_x = 26
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
 	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell)
-"abF" = (
-/obj/machinery/light,
-/obj/effect/floor_decal/borderfloorwhite,
-/obj/effect/floor_decal/corner/paleblue/border,
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
 /obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 9
+	dir = 5
 	},
 /obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 9
+	dir = 5
 	},
-/obj/structure/flora/pottedplant/stoutbush,
+/obj/machinery/door/firedoor/glass/hidden/steel{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell)
+/area/tether/surfacebase/medical/centralhall)
+"abF" = (
+/turf/simulated/open,
+/area/tether/surfacebase/medical/centralstairwell)
 "abG" = (
 /obj/machinery/button/windowtint{
 	id = "patient_room_b";
@@ -1268,35 +1237,9 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/patient_b)
 "abH" = (
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 6
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 6
-	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2,
-/obj/effect/floor_decal/corner/paleblue/bordercorner2,
-/obj/machinery/vending/wallmed1{
-	dir = 1;
-	pixel_y = -30
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell)
+/obj/machinery/camera/network/medbay,
+/turf/simulated/open,
+/area/tether/surfacebase/medical/centralstairwell)
 "abI" = (
 /obj/structure/catwalk,
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
@@ -1501,13 +1444,13 @@
 	icon_state = "0-8"
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell{
+/area/tether/surfacebase/medical/uppernorthstairwell{
 	name = "\improper North Medical Stairwell"
 	})
 "abW" = (
 /obj/structure/stairs/east,
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell{
+/area/tether/surfacebase/medical/uppernorthstairwell{
 	name = "\improper North Medical Stairwell"
 	})
 "abX" = (
@@ -1527,13 +1470,13 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell{
+/area/tether/surfacebase/medical/uppernorthstairwell{
 	name = "\improper North Medical Stairwell"
 	})
 "abY" = (
 /obj/structure/railing,
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell{
+/area/tether/surfacebase/medical/uppernorthstairwell{
 	name = "\improper North Medical Stairwell"
 	})
 "abZ" = (
@@ -1813,7 +1756,7 @@
 /obj/structure/stairs/east,
 /obj/structure/railing,
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell{
+/area/tether/surfacebase/medical/uppernorthstairwell{
 	name = "\improper North Medical Stairwell"
 	})
 "acx" = (
@@ -1836,7 +1779,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/wood,
-/area/tether/surfacebase/medical/stairwell{
+/area/tether/surfacebase/medical/uppernorthstairwell{
 	name = "\improper North Medical Stairwell"
 	})
 "acy" = (
@@ -1936,9 +1879,27 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/resleeving)
 "acI" = (
-/obj/structure/window/reinforced,
-/turf/simulated/floor/wood,
-/area/tether/surfacebase/medical/lowerhall)
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 5
+	},
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 5
+	},
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/centralhall)
 "acJ" = (
 /obj/machinery/hologram/holopad,
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
@@ -2155,25 +2116,33 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/resleeving)
 "acZ" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 9
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell)
+/area/tether/surfacebase/medical/centralstairwell)
 "ada" = (
-/obj/machinery/vending/coffee{
-	dir = 8;
-	icon_state = "coffee"
+/obj/structure/cable/green{
+	icon_state = "1-2"
 	},
-/obj/structure/window/reinforced,
-/turf/simulated/floor/wood,
-/area/tether/surfacebase/medical/lowerhall)
+/obj/structure/disposalpipe/segment,
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 8
+	},
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 10
+	},
+/obj/machinery/camera/network/medbay{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/centralhall)
 "adb" = (
 /obj/structure/dogbed{
 	desc = "Runtime's bed. Some of her disappointment seems to have rubbed off on it.";
@@ -2342,43 +2311,11 @@
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/medical/patient_c)
 "adn" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 4;
-	icon_state = "map-scrubbers"
-	},
-/obj/machinery/light{
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
-	},
-/obj/structure/disposalpipe/segment,
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "east bump";
-	pixel_x = 24
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	icon_state = "1-2"
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 6
-	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 6
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell)
+/area/tether/surfacebase/medical/centralstairwell)
 "ado" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/grille,
@@ -2740,18 +2677,24 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/examroom)
 "adV" = (
-/obj/structure/window/reinforced,
-/obj/machinery/vending/fitness{
-	dir = 1
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
 	},
-/obj/effect/floor_decal/corner/paleblue{
-	dir = 9
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
 	},
-/obj/effect/floor_decal/corner/paleblue{
-	dir = 6
+/obj/structure/cable/green{
+	icon_state = "1-2"
 	},
+/obj/structure/disposalpipe/junction{
+	dir = 2;
+	icon_state = "pipe-j2"
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell)
+/area/tether/surfacebase/medical/centralstairwell)
 "adW" = (
 /obj/machinery/door/airlock/multi_tile/glass{
 	name = "Medbay Breakroom";
@@ -3000,28 +2943,18 @@
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/medical/cmo)
 "aer" = (
-/obj/structure/window/reinforced,
-/obj/effect/floor_decal/corner/paleblue{
-	dir = 9
-	},
-/obj/effect/floor_decal/corner/paleblue{
-	dir = 6
-	},
-/obj/machinery/vending/coffee{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell)
+/obj/structure/railing,
+/turf/simulated/open,
+/area/tether/surfacebase/medical/centralstairwell)
 "aes" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable/green{
-	icon_state = "1-2"
-	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/centralhall)
 "aet" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/centralhall)
 "aeu" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/white,
@@ -3378,32 +3311,9 @@
 /turf/simulated/wall,
 /area/tether/surfacebase/medical/patient_b)
 "afa" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 1
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/alarm{
-	pixel_x = 31;
-	pixel_y = 22
-	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/centralhall)
 "afb" = (
 /obj/structure/table/glass,
 /obj/machinery/computer/med_data/laptop{
@@ -4172,60 +4082,36 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/cmo)
 "agc" = (
+/obj/machinery/hologram/holopad,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/centralhall)
+"agd" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
-"agd" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
-	},
+/area/tether/surfacebase/medical/centralhall)
+"age" = (
 /obj/structure/disposalpipe/segment{
 	dir = 2;
 	icon_state = "pipe-c"
 	},
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 1
-	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
-"age" = (
-/obj/structure/cable/green{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 2
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/centralhall)
 "agf" = (
 /turf/simulated/wall/r_wall,
 /area/tether/surfacebase/medical/cmo)
@@ -4339,19 +4225,9 @@
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/medical/examroom)
 "agq" = (
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 1
-	},
-/obj/structure/extinguisher_cabinet{
-	dir = 1;
-	icon_state = "extinguisher_closed";
-	pixel_y = 32
-	},
+/obj/machinery/door/firedoor/glass/hidden/steel,
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/centralhall)
 "agr" = (
 /turf/simulated/wall,
 /area/tether/surfacebase/security/detective/officea)
@@ -4587,99 +4463,61 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/tether/surfacebase/surface_two_hall)
 "agM" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
 	},
 /obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	icon_state = "1-2"
 	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/centralhall)
+"agN" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
-"agN" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/centralhall)
 "agO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
+	dir = 5
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/centralhall)
+"agP" = (
+/obj/structure/railing,
+/obj/machinery/alarm{
+	dir = 1;
+	pixel_y = -25
+	},
+/turf/simulated/open,
+/area/tether/surfacebase/medical/centralstairwell)
+"agQ" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 1
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 4
-	},
 /obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4,
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 10
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
-"agP" = (
-/turf/simulated/wall,
-/area/tether/surfacebase/medical/stairwell{
-	name = "\improper Central Medical Stairwell"
-	})
-"agQ" = (
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 1
-	},
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "north bump";
-	pixel_x = 0;
-	pixel_y = 24
-	},
-/obj/structure/cable/green{
-	icon_state = "0-8"
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/centralhall)
 "agR" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -4699,35 +4537,27 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/surface_two_hall)
 "agS" = (
-/obj/structure/cable/green,
-/obj/machinery/power/apc{
-	cell_type = /obj/item/weapon/cell/apc;
-	dir = 8;
-	name = "west bump";
-	pixel_x = -28
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
 	},
-/obj/machinery/door/firedoor/glass/hidden/steel,
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell{
-	name = "\improper Central Medical Stairwell"
-	})
+/area/tether/surfacebase/medical/centralstairwell)
 "agT" = (
-/obj/machinery/door/firedoor/glass/hidden/steel{
-	dir = 2
+/obj/structure/cable/green{
+	icon_state = "1-8"
 	},
-/obj/effect/floor_decal/borderfloorwhite{
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 1
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 1
-	},
-/obj/machinery/vending/wallmed1{
-	emagged = 1;
-	pixel_y = 32;
-	shut_up = 0
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/centralhall)
 "agU" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -4800,26 +4630,28 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/surface_two_hall)
 "aha" = (
-/obj/machinery/door/firedoor/glass/hidden/steel,
+/obj/machinery/button/remote/airlock{
+	desc = "A remote control switch for the medbay recovery room door.";
+	dir = 2;
+	id = "SurfMedicalResleevingMaintExit";
+	name = "Exit Button";
+	pixel_x = 28;
+	pixel_y = -28
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/centralhall)
 "ahb" = (
-/obj/structure/cable/green{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/paleblue/border,
+/obj/effect/floor_decal/borderfloorwhite/corner2,
+/obj/effect/floor_decal/corner/paleblue/bordercorner2,
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/centralhall)
 "ahc" = (
 /turf/simulated/wall,
 /area/tether/surfacebase/medical/resleeving)
@@ -5141,9 +4973,13 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/surface_two_hall)
 "ahD" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/obj/effect/floor_decal/borderfloorwhite,
+/obj/effect/floor_decal/corner/paleblue/border,
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/centralhall)
 "ahE" = (
 /obj/effect/floor_decal/corner/paleblue/diagonal,
 /obj/effect/floor_decal/steeldecal/steel_decals4{
@@ -5187,15 +5023,18 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
 "ahG" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
-/obj/structure/cable/green{
-	icon_state = "1-2"
+/obj/effect/floor_decal/borderfloorwhite,
+/obj/effect/floor_decal/corner/paleblue/border,
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -24
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/centralhall)
 "ahH" = (
 /obj/structure/disposalpipe/sortjunction{
 	dir = 4;
@@ -5278,30 +5117,23 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/surface_two_hall)
 "ahQ" = (
-/obj/machinery/door/firedoor/glass/hidden/steel{
-	dir = 1
-	},
-/obj/structure/cable/green{
-	icon_state = "4-8"
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
+	dir = 5
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
 	},
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/paleblue/border,
-/obj/effect/floor_decal/borderfloorwhite/corner2,
-/obj/effect/floor_decal/corner/paleblue/bordercorner2,
-/obj/structure/disposalpipe/segment{
-	dir = 8
-	},
-/obj/machinery/camera/network/medbay{
-	dir = 1
+/obj/structure/cable/green{
+	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/centralhall)
 "ahR" = (
 /obj/machinery/computer/security/wooden_tv,
 /turf/simulated/floor/carpet,
@@ -5589,20 +5421,14 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/substation/medsec)
 "air" = (
-/obj/machinery/door/airlock/maintenance/medical{
-	name = "Medical Maintenance Access"
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 8
 	},
-/obj/machinery/door/firedoor/glass,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell)
+/area/tether/surfacebase/medical/centralstairwell)
 "ais" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8;
@@ -5719,18 +5545,22 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/recoveryward)
 "aiy" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 1
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/paleblue/border,
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_x = 0;
-	pixel_y = -24
-	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/centralhall)
 "aiz" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -5763,35 +5593,52 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/medical/morgue)
 "aiB" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
+/obj/structure/cable/green{
+	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 5
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
+	dir = 4
 	},
+/obj/machinery/light,
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/paleblue/border,
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/centralhall)
+"aiC" = (
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 8
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/junction{
+	dir = 4;
+	icon_state = "pipe-j1"
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
 /obj/structure/cable/green{
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
-"aiC" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 5
-	},
-/obj/structure/cable/green{
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/centralhall)
 "aiD" = (
 /obj/machinery/washing_machine,
 /turf/simulated/floor/tiled/white,
@@ -5828,14 +5675,32 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/recoveryward)
 "aiG" = (
-/obj/machinery/door/firedoor/glass/hidden/steel{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/segment,
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 6
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 6
+	},
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell{
-	name = "\improper Central Medical Stairwell"
-	})
+/area/tether/surfacebase/medical/centralstairwell)
 "aiH" = (
+/obj/effect/landmark{
+	name = "lightsout"
+	},
 /obj/structure/cable/green{
 	icon_state = "4-8"
 	},
@@ -5845,20 +5710,15 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 5
+	},
 /obj/structure/disposalpipe/segment{
-	dir = 4
+	dir = 8
 	},
-/obj/machinery/light,
-/obj/effect/floor_decal/borderfloorwhite,
-/obj/effect/floor_decal/corner/paleblue/border,
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 9
-	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 9
-	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/centralhall)
 "aiI" = (
 /obj/structure/toilet{
 	dir = 8
@@ -5873,57 +5733,52 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/medical/morgue)
 "aiK" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/disposalpipe/segment,
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 1
-	},
-/obj/structure/cable/green{
-	icon_state = "1-2"
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 5
-	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 5
-	},
-/obj/machinery/door/firedoor/glass/hidden/steel{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell{
-	name = "\improper Central Medical Stairwell"
-	})
+/turf/simulated/wall,
+/area/tether/surfacebase/medical/uppersouthstairwell)
 "aiL" = (
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 8
-	},
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
+/obj/machinery/door/firedoor/glass/hidden/steel{
+	dir = 1
 	},
 /obj/structure/cable/green{
 	icon_state = "4-8"
 	},
-/obj/structure/disposalpipe/junction{
-	dir = 4;
-	icon_state = "pipe-j1"
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
-/obj/structure/cable/green{
-	icon_state = "1-4"
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/effect/floor_decal/borderfloorwhite,
+/obj/effect/floor_decal/corner/paleblue/border,
+/obj/effect/floor_decal/borderfloorwhite/corner2,
+/obj/effect/floor_decal/corner/paleblue/bordercorner2,
+/obj/structure/disposalpipe/segment{
+	dir = 8
+	},
+/obj/machinery/camera/network/medbay{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/centralhall)
 "aiM" = (
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/light,
+/obj/effect/floor_decal/borderfloorwhite,
+/obj/effect/floor_decal/corner/paleblue/border,
+/obj/structure/disposalpipe/segment{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/centralhall)
+"aiN" = (
 /obj/structure/cable/green{
 	icon_state = "4-8"
 	},
@@ -5931,60 +5786,60 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 2
+	dir = 1
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 8
 	},
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/paleblue/border,
-/obj/machinery/vending/wallmed1{
-	dir = 1;
-	pixel_y = -30
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
-"aiN" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 1
-	},
-/obj/effect/floor_decal/borderfloorwhite{
+/obj/structure/disposalpipe/segment{
 	dir = 8
 	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 8
+/obj/structure/sign/poster{
+	pixel_x = 0;
+	pixel_y = -32
 	},
-/obj/machinery/door/firedoor/glass/hidden/steel,
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/centralhall)
 "aiO" = (
 /obj/structure/cable/green{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+/obj/effect/floor_decal/borderfloorwhite,
+/obj/effect/floor_decal/corner/paleblue/border,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/structure/cable/green{
+	icon_state = "1-4"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/centralhall)
+"aiP" = (
+/obj/structure/cable/green{
+	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/light,
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/paleblue/border,
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
-"aiP" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable/green{
-	icon_state = "1-2"
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -24
 	},
-/obj/machinery/door/firedoor/glass/hidden/steel{
-	dir = 2
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/centralhall)
 "aiQ" = (
 /obj/structure/table/standard,
 /obj/random/soap,
@@ -6423,11 +6278,26 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
 "ajz" = (
-/obj/machinery/door/firedoor/glass/hidden/steel{
-	dir = 8
+/obj/machinery/alarm{
+	dir = 1;
+	pixel_y = -25
+	},
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/floor_decal/borderfloorwhite,
+/obj/effect/floor_decal/corner/paleblue/border,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/centralhall)
 "ajA" = (
 /obj/structure/mirror{
 	dir = 4;
@@ -6479,6 +6349,27 @@
 "ajG" = (
 /turf/simulated/wall,
 /area/tether/surfacebase/medical/breakroom)
+"ajH" = (
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 2
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/floor_decal/borderfloorwhite,
+/obj/effect/floor_decal/corner/paleblue/border,
+/obj/machinery/vending/wallmed1{
+	dir = 1;
+	pixel_y = -30
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/centralhall)
 "ajI" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -6496,26 +6387,39 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/medical/morgue)
 "ajK" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable/green{
-	icon_state = "1-2"
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/vending/snack,
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/effect/floor_decal/corner/paleblue{
+	dir = 6
+	},
+/obj/effect/floor_decal/corner/paleblue{
+	dir = 9
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell)
+/area/tether/surfacebase/medical/uppersouthstairwell)
 "ajL" = (
-/turf/simulated/wall,
-/area/tether/surfacebase/medical/stairwell)
-"ajM" = (
-/obj/machinery/door/airlock/multi_tile/glass{
-	name = "Medbay Airlock";
-	req_access = list(5);
-	req_one_access = list(5)
+/obj/machinery/vending/cola/soft,
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/effect/floor_decal/corner/paleblue{
+	dir = 6
 	},
-/obj/machinery/door/firedoor/multi_tile,
+/obj/effect/floor_decal/corner/paleblue{
+	dir = 9
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell)
+/area/tether/surfacebase/medical/uppersouthstairwell)
+"ajM" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/medical/uppersouthstairwell)
 "ajN" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 8
@@ -6555,27 +6459,44 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/recoveryward)
-"ajS" = (
-/obj/machinery/alarm{
-	dir = 1;
-	pixel_y = -25
+"ajR" = (
+/obj/structure/cable/green{
+	icon_state = "4-8"
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/camera/network/medbay{
+	dir = 10;
+	icon_state = "camera"
+	},
+/obj/effect/floor_decal/borderfloorwhite,
+/obj/effect/floor_decal/corner/paleblue/border,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+/obj/structure/cable/green{
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/centralhall)
+"ajS" = (
 /obj/structure/cable/green{
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/effect/floor_decal/borderfloorwhite,
-/obj/effect/floor_decal/corner/paleblue/border,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/light,
+/obj/effect/floor_decal/borderfloorwhite,
+/obj/effect/floor_decal/corner/paleblue/border,
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
+/area/tether/surfacebase/medical/centralhall)
 "ajT" = (
 /obj/machinery/door/airlock/multi_tile/glass{
 	name = "Infirmary Lobby"
@@ -6868,38 +6789,23 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
 "aks" = (
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
+/obj/machinery/door/airlock/multi_tile/glass{
+	name = "Medbay Airlock";
+	req_access = list(5);
+	req_one_access = list(5)
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 5
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/glass/hidden/steel{
-	dir = 2
-	},
+/obj/machinery/door/firedoor/multi_tile,
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell)
+/area/tether/surfacebase/medical/uppersouthstairwell)
 "akt" = (
-/obj/machinery/door/firedoor/glass/hidden/steel{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable/green{
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell)
+/area/tether/surfacebase/medical/uppersouthstairwell)
 "aku" = (
 /obj/structure/table/steel,
 /obj/item/device/sleevemate,
@@ -6954,133 +6860,146 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
 "akA" = (
-/turf/simulated/open,
-/area/tether/surfacebase/medical/stairwell{
-	name = "\improper Central Medical Stairwell"
-	})
-"akB" = (
-/obj/machinery/camera/network/medbay,
-/turf/simulated/open,
-/area/tether/surfacebase/medical/stairwell{
-	name = "\improper Central Medical Stairwell"
-	})
-"akC" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell{
-	name = "\improper Central Medical Stairwell"
-	})
-"akD" = (
+/area/tether/surfacebase/medical/uppersouthstairwell)
+"akB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell{
-	name = "\improper Central Medical Stairwell"
-	})
-"akE" = (
-/obj/structure/cable/green{
-	icon_state = "4-8"
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
 	},
-/obj/structure/disposalpipe/segment{
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/uppersouthstairwell)
+"akC" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
-	},
-/obj/machinery/camera/network/medbay{
-	dir = 10;
-	icon_state = "camera"
-	},
-/obj/effect/floor_decal/borderfloorwhite,
-/obj/effect/floor_decal/corner/paleblue/border,
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
-/obj/structure/cable/green{
-	icon_state = "1-4"
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
-"akF" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 8
-	},
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/structure/cable/green{
-	icon_state = "1-2"
-	},
-/obj/structure/disposalpipe/junction{
-	dir = 2;
-	icon_state = "pipe-j2"
-	},
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell{
-	name = "\improper Central Medical Stairwell"
-	})
-"akG" = (
-/obj/structure/railing,
-/turf/simulated/open,
-/area/tether/surfacebase/medical/stairwell{
-	name = "\improper Central Medical Stairwell"
-	})
-"akH" = (
-/obj/structure/railing,
-/obj/machinery/alarm{
-	dir = 1;
-	pixel_y = -25
-	},
-/turf/simulated/open,
-/area/tether/surfacebase/medical/stairwell{
-	name = "\improper Central Medical Stairwell"
-	})
-"akI" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell{
-	name = "\improper Central Medical Stairwell"
-	})
-"akJ" = (
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell{
-	name = "\improper Central Medical Stairwell"
-	})
-"akK" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/disposalpipe/segment,
+/area/tether/surfacebase/medical/uppersouthstairwell)
+"akD" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/extinguisher_cabinet{
+	dir = 1;
+	icon_state = "extinguisher_closed";
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/uppersouthstairwell)
+"akE" = (
+/obj/machinery/door/firedoor/glass/hidden/steel{
+	dir = 1
+	},
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/floor_decal/borderfloorwhite,
+/obj/effect/floor_decal/corner/paleblue/border,
 /obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 6
+	dir = 9
 	},
 /obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 6
+	dir = 9
+	},
+/obj/structure/sign/poster{
+	pixel_x = 0;
+	pixel_y = -32
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/centralhall)
+"akF" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/uppersouthstairwell)
+"akG" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 4;
+	icon_state = "map-scrubbers"
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment,
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	pixel_x = 24
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
 	},
 /obj/structure/cable/green{
 	icon_state = "1-2"
 	},
 /obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 5
+	dir = 6
 	},
 /obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 4
+	dir = 6
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell{
-	name = "\improper Central Medical Stairwell"
-	})
+/area/tether/surfacebase/medical/uppersouthstairwell)
+"akH" = (
+/obj/machinery/door/airlock{
+	name = "Restroom"
+	},
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/uppersouthstairwell)
+"akI" = (
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 6
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/uppersouthstairwell)
+"akJ" = (
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/uppersouthstairwell)
+"akK" = (
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/uppersouthstairwell)
 "akL" = (
 /obj/structure/mirror{
 	dir = 4;
@@ -7099,6 +7018,157 @@
 "akM" = (
 /turf/simulated/wall,
 /area/tether/surfacebase/medical/morgue)
+"akN" = (
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 2
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/centralhall)
+"akO" = (
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/centralhall)
+"akP" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 4;
+	icon_state = "map-scrubbers"
+	},
+/obj/structure/disposalpipe/junction,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	icon_state = "2-8"
+	},
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 5
+	},
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 4
+	},
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 6
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/centralhall)
+"akQ" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/uppersouthstairwell)
+"akR" = (
+/turf/simulated/wall/r_wall,
+/area/tether/surfacebase/medical/uppersouthstairwell)
+"akS" = (
+/obj/structure/window/reinforced,
+/obj/machinery/vending/fitness{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/paleblue{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/uppersouthstairwell)
+"akT" = (
+/obj/structure/window/reinforced,
+/obj/effect/floor_decal/corner/paleblue{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/paleblue{
+	dir = 6
+	},
+/obj/machinery/vending/coffee{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/uppersouthstairwell)
+"akU" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/segment,
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 4
+	},
+/obj/machinery/firealarm{
+	dir = 4;
+	layer = 3.3;
+	pixel_x = 26
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/uppersouthstairwell)
+"akV" = (
+/obj/structure/stairs/west,
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/uppersouthstairwell)
+"akW" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/uppersouthstairwell)
 "akX" = (
 /turf/simulated/wall,
 /area/tether/surfacebase/public_garden_two)
@@ -7537,6 +7607,12 @@
 "alD" = (
 /turf/simulated/wall,
 /area/maintenance/substation/medsec)
+"alE" = (
+/obj/machinery/door/firedoor/glass/hidden/steel{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/uppersouthstairwell)
 "alF" = (
 /obj/effect/floor_decal/corner/paleblue/diagonal,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -7544,6 +7620,28 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
+"alG" = (
+/obj/machinery/alarm{
+	dir = 8;
+	pixel_x = 25;
+	pixel_y = 0
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/segment,
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/uppersouthstairwell)
 "alH" = (
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/recoveryward)
@@ -7586,6 +7684,10 @@
 /obj/effect/floor_decal/techfloor,
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/medical/morgue)
+"alM" = (
+/obj/structure/stairs/west,
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/uppersouthstairwell)
 "alN" = (
 /obj/machinery/optable,
 /turf/simulated/floor/tiled/techfloor,
@@ -7594,9 +7696,81 @@
 /obj/machinery/washing_machine,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/bathroom)
-"alQ" = (
+"alP" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment,
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell)
+/area/tether/surfacebase/medical/uppersouthstairwell)
+"alQ" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/paleblue{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/paleblue{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/uppersouthstairwell)
+"alR" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/paleblue{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/paleblue{
+	dir = 6
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4,
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 10
+	},
+/obj/structure/extinguisher_cabinet{
+	dir = 1;
+	icon_state = "extinguisher_closed";
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/uppersouthstairwell)
 "alS" = (
 /obj/machinery/door/airlock{
 	name = "Restroom"
@@ -7614,6 +7788,161 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/bathroom)
+"alU" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/holoplant,
+/obj/effect/floor_decal/corner/paleblue{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/paleblue{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/uppersouthstairwell)
+"alV" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/paleblue{
+	dir = 6
+	},
+/obj/structure/sign/poster{
+	pixel_x = 0;
+	pixel_y = -32
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/uppersouthstairwell)
+"alW" = (
+/obj/machinery/camera/network/medbay{
+	dir = 10;
+	icon_state = "camera"
+	},
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 10
+	},
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 8
+	},
+/obj/machinery/vending/nifsoft_shop{
+	pixel_x = -9;
+	pixel_y = -15
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/uppersouthstairwell)
+"alX" = (
+/obj/machinery/light,
+/obj/effect/floor_decal/borderfloorwhite,
+/obj/effect/floor_decal/corner/paleblue/border,
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 9
+	},
+/obj/structure/flora/pottedplant/stoutbush,
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/uppersouthstairwell)
+"alY" = (
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/glass/hidden/steel{
+	dir = 2
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/uppersouthstairwell)
+"alZ" = (
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 6
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 6
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/obj/effect/floor_decal/borderfloorwhite/corner2,
+/obj/effect/floor_decal/corner/paleblue/bordercorner2,
+/obj/machinery/vending/wallmed1{
+	dir = 1;
+	pixel_y = -30
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/uppersouthstairwell)
+"ama" = (
+/obj/structure/table/glass,
+/obj/random/mre,
+/obj/random/coin,
+/obj/random/maintenance/medical,
+/obj/random/medical,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/paleblue{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/uppersouthstairwell)
+"amb" = (
+/obj/structure/table/glass,
+/obj/random/contraband,
+/obj/random/firstaid,
+/obj/random/maintenance/medical,
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/paleblue{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/uppersouthstairwell)
 "amc" = (
 /obj/structure/table/standard{
 	name = "plastic table frame"
@@ -8056,6 +8385,21 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/recoveryward)
+"amJ" = (
+/obj/machinery/door/airlock/maintenance/medical{
+	name = "Medical Maintenance Access"
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/uppersouthstairwell)
 "amK" = (
 /obj/effect/floor_decal/corner/paleblue/diagonal,
 /obj/effect/landmark/start{
@@ -8097,34 +8441,6 @@
 /obj/effect/floor_decal/corner/paleblue/diagonal,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
-"amV" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/machinery/vending/snack,
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/effect/floor_decal/corner/paleblue{
-	dir = 6
-	},
-/obj/effect/floor_decal/corner/paleblue{
-	dir = 9
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell)
-"amW" = (
-/obj/machinery/vending/cola/soft,
-/obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/effect/floor_decal/corner/paleblue{
-	dir = 6
-	},
-/obj/effect/floor_decal/corner/paleblue{
-	dir = 9
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell)
 "amX" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 4
@@ -8392,11 +8708,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/bathroom)
-"anB" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
 "anC" = (
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/north)
@@ -9072,10 +9383,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/recoveryward)
-"aoX" = (
-/obj/machinery/hologram/holopad,
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell)
 "aoZ" = (
 /turf/simulated/wall/r_wall,
 /area/tether/surfacebase/medical/recoveryward)
@@ -9670,44 +9977,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/bathroom)
-"aqh" = (
-/obj/machinery/camera/network/medbay{
-	dir = 10;
-	icon_state = "camera"
-	},
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 10
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 10
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 8
-	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 8
-	},
-/obj/machinery/vending/nifsoft_shop{
-	pixel_x = -9;
-	pixel_y = -15
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell)
-"aqi" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell)
-"aqk" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 5
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell)
 "aqt" = (
 /obj/structure/sign/poster,
 /turf/simulated/wall,
@@ -10106,28 +10375,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/medical/breakroom)
-"aqZ" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell)
-"ara" = (
-/obj/structure/stairs/west,
-/obj/structure/railing{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell)
-"arb" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell)
 "arc" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/structure/table/standard,
@@ -10531,92 +10778,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining)
-"arV" = (
-/obj/machinery/door/airlock{
-	name = "Restroom"
-	},
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell)
-"arX" = (
-/obj/structure/stairs/west,
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell)
-"arY" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 8
-	},
-/obj/structure/disposalpipe/segment,
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell)
-"arZ" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/paleblue{
-	dir = 9
-	},
-/obj/effect/floor_decal/corner/paleblue{
-	dir = 6
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell)
-"asa" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/paleblue{
-	dir = 9
-	},
-/obj/effect/floor_decal/corner/paleblue{
-	dir = 6
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals4,
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 10
-	},
-/obj/structure/extinguisher_cabinet{
-	dir = 1;
-	icon_state = "extinguisher_closed";
-	pixel_y = 32
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell)
 "asb" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /obj/structure/undies_wardrobe,
@@ -11170,35 +11331,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/recoveryward)
-"atf" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/machinery/holoplant,
-/obj/effect/floor_decal/corner/paleblue{
-	dir = 9
-	},
-/obj/effect/floor_decal/corner/paleblue{
-	dir = 6
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell)
-"atg" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/paleblue{
-	dir = 9
-	},
-/obj/effect/floor_decal/corner/paleblue{
-	dir = 6
-	},
-/obj/structure/sign/poster{
-	pixel_x = 0;
-	pixel_y = -32
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell)
 "ath" = (
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 6
@@ -11215,39 +11347,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/recoveryward)
-"atk" = (
-/obj/structure/table/glass,
-/obj/random/mre,
-/obj/random/coin,
-/obj/random/maintenance/medical,
-/obj/random/medical,
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/paleblue{
-	dir = 9
-	},
-/obj/effect/floor_decal/corner/paleblue{
-	dir = 6
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell)
-"atl" = (
-/obj/structure/table/glass,
-/obj/random/contraband,
-/obj/random/firstaid,
-/obj/random/maintenance/medical,
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/paleblue{
-	dir = 9
-	},
-/obj/effect/floor_decal/corner/paleblue{
-	dir = 6
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell)
 "atm" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
@@ -35504,9 +35603,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/north)
-"boJ" = (
-/turf/simulated/wall/r_wall,
-/area/tether/surfacebase/medical/stairwell)
 "boL" = (
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 1
@@ -35833,28 +35929,6 @@
 /obj/random/trash_pile,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/north)
-"bpS" = (
-/obj/machinery/alarm{
-	dir = 8;
-	pixel_x = 25;
-	pixel_y = 0
-	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/disposalpipe/segment,
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell)
 "bpV" = (
 /obj/structure/window/reinforced/polarized/full{
 	id = "ward_tint"
@@ -35903,23 +35977,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
-"dik" = (
-/obj/machinery/door/firedoor/glass/hidden/steel{
-	dir = 2
-	},
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 1
-	},
-/obj/structure/extinguisher_cabinet{
-	dir = 1;
-	icon_state = "extinguisher_closed";
-	pixel_y = 32
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/lowerhall)
 "djt" = (
 /obj/effect/floor_decal/corner/paleblue/diagonal,
 /obj/structure/flora/pottedplant,
@@ -36031,20 +36088,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/north)
-"pRR" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/structure/extinguisher_cabinet{
-	dir = 1;
-	icon_state = "extinguisher_closed";
-	pixel_y = 32
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/stairwell)
 "rJc" = (
 /obj/effect/floor_decal/corner/paleblue/diagonal,
 /obj/effect/landmark/start{
@@ -36086,27 +36129,6 @@
 /obj/structure/table/glass,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
-"usm" = (
-/obj/machinery/door/firedoor/glass,
-/obj/structure/grille,
-/obj/machinery/door/blast/shutters{
-	closed_layer = 10;
-	density = 0;
-	dir = 2;
-	icon_state = "shutter0";
-	id = "medbayquar";
-	layer = 1;
-	name = "Medbay Emergency Lockdown Shutters";
-	opacity = 0;
-	open_layer = 1
-	},
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced,
-/turf/simulated/floor/plating,
-/area/tether/surfacebase/medical/lowerhall)
 "uKv" = (
 /obj/effect/floor_decal/corner/paleblue/diagonal,
 /obj/machinery/light{
@@ -36141,35 +36163,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/white,
 /area/maintenance/lower/north)
-"vKz" = (
-/obj/machinery/door/firedoor/glass,
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/turf/simulated/floor/plating,
-/area/tether/surfacebase/medical/stairwell)
-"wIt" = (
-/obj/machinery/door/firedoor/glass,
-/obj/structure/grille,
-/obj/machinery/door/blast/shutters{
-	closed_layer = 10;
-	density = 0;
-	dir = 2;
-	icon_state = "shutter0";
-	id = "medbayquar";
-	layer = 1;
-	name = "Medbay Emergency Lockdown Shutters";
-	opacity = 0;
-	open_layer = 1
-	},
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/turf/simulated/floor/plating,
-/area/tether/surfacebase/medical/lowerhall)
 "xbt" = (
 /obj/effect/floor_decal/corner/paleblue/diagonal,
 /obj/structure/sign/poster{
@@ -36200,30 +36193,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/north)
-"yjB" = (
-/obj/machinery/door/firedoor/glass,
-/obj/structure/grille,
-/obj/machinery/door/blast/shutters{
-	closed_layer = 10;
-	density = 0;
-	dir = 2;
-	icon_state = "shutter0";
-	id = "medbayquar";
-	layer = 1;
-	name = "Medbay Emergency Lockdown Shutters";
-	opacity = 0;
-	open_layer = 1
-	},
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
-	},
-/turf/simulated/floor/plating,
-/area/tether/surfacebase/medical/lowerhall)
 "ylZ" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -48458,17 +48427,17 @@ aab
 aab
 aab
 aab
-usm
 aad
-aai
-aau
+aaf
+aal
+aao
 aat
-aaz
+aay
 aaB
-aiN
-aaE
-aaU
-abt
+aaC
+aaI
+ada
+agT
 aiT
 afW
 aoJ
@@ -48600,17 +48569,17 @@ aab
 aab
 aab
 aab
-usm
-aae
-aet
-aay
-aaF
+aad
+aah
+aam
+aap
+aau
+aaz
+aaz
+aaE
+aaL
 aes
-aes
-aiP
-agM
-anB
-aaM
+aha
 abj
 agX
 cJE
@@ -48742,17 +48711,17 @@ aab
 aab
 aab
 aab
-usm
-aaj
-aar
-aaC
+aad
+aai
+aan
+aaq
 abu
 abX
-aet
-ajz
-agN
-aet
-aaS
+aam
+aaF
+aaM
+aam
+ahb
 ajF
 djt
 alF
@@ -48884,17 +48853,17 @@ aab
 aab
 aab
 aab
-wIt
-yjB
-yjB
-abs
+aae
+aaj
+aaj
+aar
 abV
 abY
 aas
-acI
-agO
-aaH
-aaT
+aaG
+aaN
+aet
+ahD
 ajF
 ebp
 lsC
@@ -49029,14 +48998,14 @@ aab
 aab
 aab
 aab
-abs
+aar
 abW
 acw
 acx
-ada
+aaH
+aaO
 afa
-ahD
-aiy
+ahG
 ajG
 akw
 lsC
@@ -49176,9 +49145,9 @@ abz
 abz
 abz
 abz
-agd
-aaI
-aiB
+aaQ
+agc
+ahQ
 ajF
 akx
 xpO
@@ -49318,9 +49287,9 @@ adI
 aeo
 afc
 abz
-agQ
-aet
-ahb
+aaR
+aam
+aiy
 ajF
 aky
 lsC
@@ -49460,9 +49429,9 @@ ach
 ach
 afd
 acy
-aaG
-aet
-aiH
+aaS
+aam
+aiB
 ajG
 akz
 lsC
@@ -49602,9 +49571,9 @@ adK
 aep
 afe
 agb
-aap
-aaL
-aiL
+aaT
+agd
+aiC
 adW
 ahE
 anN
@@ -49744,9 +49713,9 @@ adL
 ach
 abP
 acy
-aah
-aao
-aaR
+aaU
+age
+aiH
 ajy
 ahF
 abc
@@ -49886,9 +49855,9 @@ adM
 aeq
 aff
 abz
-agT
-aha
-ahQ
+aaV
+agq
+aiL
 akq
 akq
 any
@@ -50028,9 +49997,9 @@ abz
 abz
 abz
 agf
-agq
-aet
-aaV
+aaW
+aam
+aiM
 akq
 alO
 abd
@@ -50170,9 +50139,9 @@ adN
 aev
 afh
 aem
-aaf
-aet
-aaW
+aaX
+aam
+aiN
 akq
 alO
 anA
@@ -50312,9 +50281,9 @@ adO
 aew
 abr
 agg
-aaO
-ahG
-aaX
+aaY
+agM
+aiO
 akq
 abw
 anK
@@ -50454,9 +50423,9 @@ adP
 aex
 afj
 agh
-aah
-aet
-aaY
+aaU
+aam
+aiP
 akq
 alS
 akq
@@ -50596,9 +50565,9 @@ aeZ
 aeZ
 aeZ
 aeZ
-agq
-aet
-ajS
+aaW
+aam
+ajz
 akq
 alT
 akq
@@ -50738,20 +50707,20 @@ adQ
 aey
 afl
 agk
-aal
-agc
-aiM
-abs
-abs
-abs
-ajL
-ajL
-arV
-boJ
-boJ
-boJ
-boJ
-ajL
+abq
+agN
+ajH
+aar
+aar
+aar
+aiK
+aiK
+akH
+akR
+akR
+akR
+akR
+aiK
 auX
 asV
 atY
@@ -50880,20 +50849,20 @@ adR
 aez
 abG
 agm
-aaQ
-ahG
-akE
-agP
+abs
+agM
+ajR
+aar
+abF
+aer
+ajK
 akA
-akG
-amV
-aqi
-abC
-adV
-ara
-arX
-atf
-ajL
+akI
+akS
+akV
+alM
+alU
+aiK
 auX
 asV
 atY
@@ -51022,20 +50991,20 @@ adS
 aeA
 afn
 aeZ
-aah
-aet
-aiO
-agP
-akA
-akG
-amW
-aqk
-alQ
+aaU
+aam
+ajS
+aar
+abF
 aer
-arb
-alQ
-atg
 ajL
+akB
+akJ
+akT
+akW
+akJ
+alV
+aiK
 auY
 avJ
 ard
@@ -51164,20 +51133,20 @@ acC
 acC
 acC
 acC
-dik
-aha
-aaq
+abt
+agq
+akE
+aar
+abH
 agP
-akB
-akH
-vKz
-aqZ
-aoX
-alQ
-akt
-akt
-aqh
-ajL
+ajM
+akC
+akK
+akJ
+alE
+alE
+alW
+aiK
 auY
 avJ
 awl
@@ -51306,20 +51275,20 @@ adp
 aec
 afb
 afX
-aam
-agc
-age
+abv
+agN
+akN
+abC
+acZ
 agS
-akC
-akI
-abs
-pRR
-alQ
-alQ
-alQ
-alQ
-abF
-ajL
+aiK
+akD
+akJ
+akJ
+akJ
+akJ
+alX
+aiK
 auZ
 avJ
 awm
@@ -51448,20 +51417,20 @@ adq
 aeu
 afi
 agi
-abq
-aiC
-abv
-aiG
-akD
-akJ
-ajM
-acZ
-alQ
-alQ
-alQ
-alQ
-aks
+abA
+agO
+akO
+abD
+adn
 air
+aks
+akF
+akJ
+akJ
+akJ
+akJ
+alY
+amJ
 ava
 avK
 awn
@@ -51590,20 +51559,20 @@ adT
 aeB
 afk
 afX
-aan
-aaN
-abA
-aiK
-akF
-akK
-ajK
-adn
-abD
+acI
+agQ
+akP
 abE
-bpS
-arY
-abH
-ajL
+adV
+aiG
+akt
+akG
+akQ
+akU
+alG
+alP
+alZ
+aiK
 avb
 avL
 awo
@@ -51743,9 +51712,9 @@ ahN
 ahN
 ahN
 ahN
-arZ
-atk
-ajL
+alQ
+ama
+aiK
 avc
 avL
 awp
@@ -51885,9 +51854,9 @@ abB
 abR
 boF
 ahN
-asa
-atl
-ajL
+alR
+amb
+aiK
 avb
 avL
 awq
