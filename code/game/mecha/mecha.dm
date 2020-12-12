@@ -321,6 +321,8 @@
 	if(smoke_possible)	//Just making sure nothing is running.
 		qdel(smoke_system)
 
+	GLOB.mech_destroyed_roundstat++
+
 	QDEL_NULL(pr_int_temp_processor)
 	QDEL_NULL(pr_inertial_movement)
 	QDEL_NULL(pr_give_air)
