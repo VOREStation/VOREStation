@@ -689,6 +689,7 @@
 	max_item_count = 10
 	startdrain = 100
 	analyzer = TRUE
+	recycles = FALSE
 
 /obj/item/device/dogborg/sleeper/compactor/decompiler
 	name = "Matter Decompiler"
@@ -704,6 +705,7 @@
 	icon_state = "decompiler"
 	max_item_count = 20
 	delivery = TRUE
+	recycles = FALSE
 
 /obj/item/device/dogborg/sleeper/compactor/supply //Miner borg belly
 	name = "Supply Satchel"
@@ -711,5 +713,6 @@
 	icon_state = "sleeperc"
 	injection_chems = list("glucose","inaprovaline","tricordrazine")
 	max_item_count = 10
+	recycles = FALSE
 
 #undef SLEEPER_INJECT_COST
