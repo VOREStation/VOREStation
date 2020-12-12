@@ -63,6 +63,7 @@ tastypred - Black-Eyed Shadekin
 tastypred - Xenochimera
 tastypred - Protean
 timidvi - Diona
+trikonei - Protean
 varonis - Xenochimera
 verkister - Xenochimera
 vitoras - Protean
@@ -73,3 +74,4 @@ xioen - Xenochimera
 xonkon - Protean
 zalvine - Shadekin Empathy
 zammyman215 - Vox
+
