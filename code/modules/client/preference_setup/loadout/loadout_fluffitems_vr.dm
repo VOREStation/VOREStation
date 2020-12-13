@@ -88,6 +88,13 @@
 	ckeywhitelist = list("arokha")
 	character_name = list("Aronai Sieyes")
 
+/datum/gear/fluff/astraether_ritualknife
+    path = /obj/item/weapon/material/knife/ritual
+    display_name = "Astra's Ritual Knife"
+    description = "A well kept strange ritual knife, There is a small tag with the name 'Astra Ether' on it. They are probably looking for this."
+    ckeywhitelist = list("astraether")
+    character_name = list("Astra Ether")
+
 /datum/gear/fluff/collar/azura
 	path = /obj/item/clothing/accessory/collar/azura
 	display_name = "collar, Azura"
@@ -744,6 +751,12 @@
 	ckeywhitelist = list("rboys2")
 	character_name = list("Clara Mali")
 	cost = 1
+
+/datum/gear/fluff/nikki_dorky_outfit
+	path = /obj/item/weapon/storage/box/fluff
+	display_name = "Nikki's Witchy Outfit"
+	ckeywhitelist = list("ryumi")
+	character_name = list("Nikki Yumeno")
 
 //  S CKEYS
 /datum/gear/fluff/brynhild_medal

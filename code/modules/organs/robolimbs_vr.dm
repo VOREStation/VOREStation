@@ -6,6 +6,7 @@
 //CitRP Port
 var/const/cyberbeast_monitor_styles = "blank=cyber_blank;\
 	default=cyber_default;\
+	eyes=eyes;\
 	static=cyber_static;\
 	alert=cyber_alert;\
 	happy=cyber_happ;\
@@ -63,7 +64,6 @@ var/const/cyberbeast_monitor_styles = "blank=cyber_blank;\
 	company = "Eggnerd Prototyping Ltd."
 	icon = 'icons/obj/items_vr.dmi'
 	icon_state = "verkdisk"
-
 
 // tucker0666 : Frost
 /datum/robolimb/zenghu_frost

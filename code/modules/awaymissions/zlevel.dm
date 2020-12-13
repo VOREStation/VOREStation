@@ -1,5 +1,5 @@
 proc/createRandomZlevel()
-	if(awaydestinations.len || UNIT_TEST)	//crude, but it saves another var! //VOREStation Edit - No loading away missions during Travis testing
+	if(awaydestinations.len || UNIT_TEST)	//crude, but it saves another var! //VOREStation Edit - No loading away missions during CI testing
 		return
 
 	var/list/potentialRandomZlevels = list()

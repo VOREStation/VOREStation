@@ -42,20 +42,29 @@
 #define DNA_UI_TAIL2_R     23
 #define DNA_UI_TAIL2_G     24
 #define DNA_UI_TAIL2_B     25
-#define DNA_UI_EARS_R      26
-#define DNA_UI_EARS_G      27
-#define DNA_UI_EARS_B      28
-#define DNA_UI_EARS2_R     29
-#define DNA_UI_EARS2_G     30
-#define DNA_UI_EARS2_B     31
-#define DNA_UI_WING_STYLE  32
-#define DNA_UI_WING_R      33
-#define DNA_UI_WING_G      34
-#define DNA_UI_WING_B      35
-#define DNA_UI_WING2_R     36
-#define DNA_UI_WING2_G     37
-#define DNA_UI_WING2_B     38 // VOREStation snippet end.
-#define DNA_UI_LENGTH      38 // VOREStation Edit - Needs to match the highest number above.
+#define DNA_UI_TAIL3_R     26
+#define DNA_UI_TAIL3_G     27
+#define DNA_UI_TAIL3_B     28
+#define DNA_UI_EARS_R      29
+#define DNA_UI_EARS_G      30
+#define DNA_UI_EARS_B      31
+#define DNA_UI_EARS2_R     32
+#define DNA_UI_EARS2_G     33
+#define DNA_UI_EARS2_B     34
+#define DNA_UI_EARS3_R     35
+#define DNA_UI_EARS3_G     36
+#define DNA_UI_EARS3_B     37
+#define DNA_UI_WING_STYLE  38
+#define DNA_UI_WING_R      39
+#define DNA_UI_WING_G      40
+#define DNA_UI_WING_B      41
+#define DNA_UI_WING2_R     42
+#define DNA_UI_WING2_G     43
+#define DNA_UI_WING2_B     44
+#define DNA_UI_WING3_R     45
+#define DNA_UI_WING3_G     46
+#define DNA_UI_WING3_B     47 // VOREStation snippet end.
+#define DNA_UI_LENGTH      47 // VOREStation Edit - Needs to match the highest number above.
 
 #define DNA_SE_LENGTH 49 // VOREStation Edit (original was UI+11)
 // For later:
@@ -225,6 +234,10 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	SetUIValueRange(DNA_UI_TAIL2_G,   character.g_tail2,   255,    1)
 	SetUIValueRange(DNA_UI_TAIL2_B,   character.b_tail2,   255,    1)
 
+	SetUIValueRange(DNA_UI_TAIL3_R,   character.r_tail3,   255,    1)
+	SetUIValueRange(DNA_UI_TAIL3_G,   character.g_tail3,   255,    1)
+	SetUIValueRange(DNA_UI_TAIL3_B,   character.b_tail3,   255,    1)
+
 	SetUIValueRange(DNA_UI_WING_R,    character.r_wing,    255,    1)
 	SetUIValueRange(DNA_UI_WING_G,    character.g_wing,    255,    1)
 	SetUIValueRange(DNA_UI_WING_B,    character.b_wing,    255,    1)
@@ -233,6 +246,10 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	SetUIValueRange(DNA_UI_WING2_G,    character.g_wing2,  255,    1)
 	SetUIValueRange(DNA_UI_WING2_B,    character.b_wing2,  255,    1)
 
+	SetUIValueRange(DNA_UI_WING3_R,    character.r_wing3,  255,    1)
+	SetUIValueRange(DNA_UI_WING3_G,    character.g_wing3,  255,    1)
+	SetUIValueRange(DNA_UI_WING3_B,    character.b_wing3,  255,    1)
+
 	SetUIValueRange(DNA_UI_EARS_R,    character.r_ears,    255,    1)
 	SetUIValueRange(DNA_UI_EARS_G,    character.g_ears,    255,    1)
 	SetUIValueRange(DNA_UI_EARS_B,    character.b_ears,    255,    1)
@@ -240,6 +257,10 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	SetUIValueRange(DNA_UI_EARS2_R,   character.r_ears2,   255,    1)
 	SetUIValueRange(DNA_UI_EARS2_G,   character.g_ears2,   255,    1)
 	SetUIValueRange(DNA_UI_EARS2_B,   character.b_ears2,   255,    1)
+
+	SetUIValueRange(DNA_UI_EARS3_R,   character.r_ears3,   255,    1)
+	SetUIValueRange(DNA_UI_EARS3_G,   character.g_ears3,   255,    1)
+	SetUIValueRange(DNA_UI_EARS3_B,   character.b_ears3,   255,    1)
 
 	// VORE Station Edit End
 

@@ -12,6 +12,11 @@
 	light_power = 0.8
 	light_color = "#66ffff" // Bright cyan.
 
+/turf/simulated/shuttle/floor/alienplating/vacuum
+	oxygen = 0
+	nitrogen = 0
+	temperature = TCMB
+
 /turf/simulated/floor/flesh
 	name = "flesh"
 	desc = "This slick flesh ripples and squishes under your touch"
@@ -83,3 +88,4 @@
 	desc = "It is entirely made of sick, gurgling flesh. It is releasing a sickly odour."
 	icon_state = "bloodfloor_2"
 	icon = 'icons/goonstation/turf/meatland.dmi'
+

@@ -183,16 +183,18 @@
 	icon_sprite_tag = "wolf"	//This could be modified later.
 
 /datum/sprite_accessory/tail/taur/wolf/wolf_2c
-	name = "Wolf dual-color (Taur)"
+	name = "Wolf 3-color (Taur)"
 	icon_state = "wolf_s"
 	extra_overlay = "wolf_markings"
+	extra_overlay2 = "wolf_markings_2"
 	//icon_sprite_tag = "wolf2c"
 
 //TFF 22/11/19 - CHOMPStation port of fat taur sprites
 /datum/sprite_accessory/tail/taur/wolf/fatwolf_2c
-	name = "Fat Wolf dual-color (Taur)"
+	name = "Fat Wolf 3-color (Taur)"
 	icon_state = "fatwolf_s"
 	extra_overlay = "fatwolf_markings"
+	extra_overlay2 = "wolf_markings_2"
 	//icon_sprite_tag = "fatwolf2c"
 
 /datum/sprite_accessory/tail/taur/wolf/synthwolf
@@ -205,6 +207,7 @@
 	name = "Skunk (Taur)"
 	icon_state = "skunk_s"
 	extra_overlay = "skunk_markings"
+	extra_overlay2 = "skunk_markings_2"
 	icon_sprite_tag = "skunk"
 
 /datum/sprite_accessory/tail/taur/naga
@@ -401,16 +404,18 @@
 	ani_state = "fatfeline_w"
 
 /datum/sprite_accessory/tail/taur/feline/feline_2c
-	name = "Feline dual-color (Taur)"
+	name = "Feline 3-color (Taur)"
 	icon_state = "feline_s"
 	extra_overlay = "feline_markings"
+	extra_overlay2 = "feline_markings_2"
 	//icon_sprite_tag = "feline2c"
 
 //TFF 22/11/19 - CHOMPStation port of fat taur sprites
 /datum/sprite_accessory/tail/taur/feline/fatfeline_2c
-	name = "Fat Feline dual-color (Taur)"
+	name = "Fat Feline 3-color (Taur)"
 	icon_state = "fatfeline_s"
 	extra_overlay = "fatfeline_markings"
+	extra_overlay2 = "feline_markings_2"
 	//icon_sprite_tag = "fatfeline2c"
 
 /datum/sprite_accessory/tail/taur/feline/synthfeline
@@ -495,6 +500,7 @@
 	name = "Otie (Taur)"
 	icon_state = "otie_s"
 	extra_overlay = "otie_markings"
+	extra_overlay2 = "otie_markings_2"
 	suit_sprites = 'icons/mob/taursuits_otie_vr.dmi'
 	icon_sprite_tag = "otie"
 

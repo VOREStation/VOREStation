@@ -22,14 +22,6 @@ if [ $retVal -ne 0 ]; then
   FAILED=1
 fi
 
-#Checking for duplicate nanoui templates
-(! find nano/templates/ -type f -exec md5sum {} + | sort | uniq -D -w 32 | grep nano)
-retVal=$?
-if [ $retVal -ne 0 ]; then
-  echo -e "${RED}There are identical nanoui template files present.${NC}"
-  FAILED=1
-fi
-
 #Checking for broken HTML tags (didn't close the quote for class)
 (! grep -En "<\s*span\s+class\s*=\s*('[^'>]+|[^'>]+')\s*>" **/*.dm)
 retVal=$?

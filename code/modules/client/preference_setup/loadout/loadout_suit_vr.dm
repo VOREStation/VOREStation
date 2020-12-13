@@ -67,3 +67,8 @@
 	display_name = "paramedic vest"
 	path = /obj/item/clothing/suit/storage/toggle/paramedic
 	allowed_roles = list("Chief Medical Officer","Paramedic","Medical Doctor")
+
+//greek thing
+/datum/gear/suit/chiton
+	display_name = "chiton"
+	path = /obj/item/clothing/suit/chiton

@@ -10,7 +10,7 @@ things, such as areas, elevators, or shuttles.  Generally, the layout is that yo
 	(optional) [map_name]_areas/structures/whatever.dm - Files for unique things to that map.
 	[map_name]-1.dmm - Your actual map files.  Z-levels should be ordered correctly if you seperate your z-levels across map files.
 
--HOW TO LOAD A SPECIFIC MAP-
+- HOW TO LOAD A SPECIFIC MAP -
 Say you want to load southern_cross,
 First, uncheck your current loaded map, presumably northern_star.  Uncheck northern_star.dm inside northern_star folder.
 Then go open southern_cross folder, and check southern_cross.dm, don't check any other folders below, and compile.
