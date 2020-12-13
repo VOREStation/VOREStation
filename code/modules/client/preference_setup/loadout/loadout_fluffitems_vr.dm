@@ -513,10 +513,10 @@
 
 /datum/gear/fluff/ketrai_hat
 	path = /obj/item/clothing/head/fluff/ketrai
-	display_name = "Ketrai's Hat"
+	display_name = "Drigliht's Hat"
 	slot = slot_head
-	ckeywhitelist = list("ketrai")
-	character_name = list("Ketrai")
+	ckeywhitelist = list("GoldKingNoPing2")
+	character_name = list("Drigliht Tekch")
 
 /datum/gear/fluff/amaya_id
 	path = /obj/item/weapon/card/id/fluff/amaya
@@ -560,8 +560,9 @@
 	path = /obj/item/clothing/under/fluff/taiga
 	display_name = "Taifa's Uniform"
 	slot = slot_w_uniform
-	ckeywhitelist = list("kiwidaninja")
-	character_name = list("Chakat Taiga")
+	ckeywhitelist = list("GoldKingNoPing2")
+	character_name = list("Drigliht Tekch")
+
 
 /datum/gear/fluff/ashley_medal
 	path = /obj/item/clothing/accessory/medal/nobel_science/fluff/ashley
@@ -572,9 +573,9 @@
 //  L CKEYS
 /datum/gear/fluff/kenzie_hypospray
 	path = /obj/item/weapon/reagent_containers/hypospray/vial/kenzie
-	display_name = "Kenzie's Hypospray"
-	ckeywhitelist = list("lm40")
-	character_name = list("Kenzie Houser")
+	display_name = "Chloe's Hypospray"
+	ckeywhitelist = list("def0lt")
+	character_name = list("Chloe Parker")
 	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic", "Field Medic")
 
 /datum/gear/fluff/brianna_backpack
