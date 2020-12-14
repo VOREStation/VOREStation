@@ -74,6 +74,7 @@
 	usr.visible_message("<b>[src]</b> points to [A]")
 	return 1
 
+<<<<<<< HEAD
 /*one proc, four uses
 swapping: if it's 1, the mobs are trying to switch, if 0, non-passive is pushing passive
 default behaviour is:
@@ -282,6 +283,8 @@ default behaviour is:
 		var/obj/vehicle/V = AM
 		V.RunOver(src)
 
+=======
+>>>>>>> 47f71b2... Reworks stairs to be sensible (#7783)
 /mob/living/verb/succumb()
 	set hidden = 1
 	if ((src.health < 0 && src.health > (5-src.getMaxHealth()))) // Health below Zero but above 5-away-from-death, as before, but variable
@@ -682,36 +685,6 @@ default behaviour is:
 
 // ++++ROCKDTBEN++++ MOB PROCS //END
 
-// Applies direct "cold" damage while checking protection against the cold.
-/mob/living/proc/inflict_cold_damage(amount)
-	amount *= 1 - get_cold_protection(50) // Within spacesuit protection.
-	if(amount > 0)
-		adjustFireLoss(amount)
-
-// Ditto, but for "heat".
-/mob/living/proc/inflict_heat_damage(amount)
-	amount *= 1 - get_heat_protection(10000) // Within firesuit protection.
-	if(amount > 0)
-		adjustFireLoss(amount)
-
-// and one for electricity because why not
-/mob/living/proc/inflict_shock_damage(amount)
-	electrocute_act(amount, null, 1 - get_shock_protection(), pick(BP_HEAD, BP_TORSO, BP_GROIN))
-
-// also one for water (most things resist it entirely, except for slimes)
-/mob/living/proc/inflict_water_damage(amount)
-	amount *= 1 - get_water_protection()
-	if(amount > 0)
-		adjustToxLoss(amount)
-
-// one for abstracted away ""poison"" (mostly because simplemobs shouldn't handle reagents)
-/mob/living/proc/inflict_poison_damage(amount)
-	if(isSynthetic())
-		return
-	amount *= 1 - get_poison_protection()
-	if(amount > 0)
-		adjustToxLoss(amount)
-
 /mob/proc/get_contents()
 
 
@@ -761,50 +734,6 @@ default behaviour is:
 		if(B.type == A)
 			return 1
 	return 0
-
-
-/mob/living/proc/can_inject()
-	return 1
-
-/mob/living/proc/get_organ_target()
-	var/mob/shooter = src
-	var/t = shooter:zone_sel.selecting
-	if ((t in list( O_EYES, O_MOUTH )))
-		t = BP_HEAD
-	var/obj/item/organ/external/def_zone = ran_zone(t)
-	return def_zone
-
-
-// heal ONE external organ, organ gets randomly selected from damaged ones.
-/mob/living/proc/heal_organ_damage(var/brute, var/burn)
-	adjustBruteLoss(-brute)
-	adjustFireLoss(-burn)
-	src.updatehealth()
-
-// damage ONE external organ, organ gets randomly selected from damaged ones.
-/mob/living/proc/take_organ_damage(var/brute, var/burn, var/emp=0)
-	if(status_flags & GODMODE)	return 0	//godmode
-	adjustBruteLoss(brute)
-	adjustFireLoss(burn)
-	src.updatehealth()
-
-// heal MANY external organs, in random order
-/mob/living/proc/heal_overall_damage(var/brute, var/burn)
-	adjustBruteLoss(-brute)
-	adjustFireLoss(-burn)
-	src.updatehealth()
-
-// damage MANY external organs, in random order
-/mob/living/proc/take_overall_damage(var/brute, var/burn, var/used_weapon = null)
-	if(status_flags & GODMODE)	return 0	//godmode
-	adjustBruteLoss(brute)
-	adjustFireLoss(burn)
-	src.updatehealth()
-
-/mob/living/proc/restore_all_organs()
-	return
-
-
 
 /mob/living/proc/revive()
 	rejuvenate()
@@ -903,6 +832,7 @@ default behaviour is:
 
 	return
 
+<<<<<<< HEAD
 // Almost all of this handles pulling movables behind us
 /mob/living/Move(atom/newloc, direct, movetime)
 	if(buckled && buckled.loc != newloc) //not updating position
@@ -1000,6 +930,8 @@ default behaviour is:
 /mob/living/proc/handle_footstep(turf/T)
 	return FALSE
 
+=======
+>>>>>>> 47f71b2... Reworks stairs to be sensible (#7783)
 /mob/living/verb/resist()
 	set name = "Resist"
 	set category = "IC"
