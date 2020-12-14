@@ -133,13 +133,13 @@
 		return FALSE
 
 	if(istype(consumed_fuel, /obj/item/stack/material/log))
-		next_fuel_consumption = world.time + 2 MINUTES
+		next_fuel_consumption = world.time + 6 MINUTES	//VOREStation Edit
 		qdel(consumed_fuel)
 		update_icon()
 		return TRUE
 
 	else if(istype(consumed_fuel, /obj/item/stack/material/wood)) // One log makes two planks of wood.
-		next_fuel_consumption = world.time + 1 MINUTE
+		next_fuel_consumption = world.time + 3 MINUTE	//VOREStation Edit
 		qdel(consumed_fuel)
 		update_icon()
 		return TRUE
@@ -330,13 +330,13 @@
 		return FALSE
 
 	if(istype(consumed_fuel, /obj/item/stack/material/log))
-		next_fuel_consumption = world.time + 2 MINUTES
+		next_fuel_consumption = world.time + 6 MINUTES	//VOREStation Edit
 		qdel(consumed_fuel)
 		update_icon()
 		return TRUE
 
 	else if(istype(consumed_fuel, /obj/item/stack/material/wood)) // One log makes two planks of wood.
-		next_fuel_consumption = world.time + 1 MINUTE
+		next_fuel_consumption = world.time + 3 MINUTES	//VOREStation Edit
 		qdel(consumed_fuel)
 		update_icon()
 		return TRUE

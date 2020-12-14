@@ -327,7 +327,10 @@ Class Procs:
 		return 0
 	if(!component_parts)
 		return 0
-	if(panel_open)
+	to_chat(user, "<span class='notice'>Following parts detected in [src]:</span>")
+	for(var/obj/item/C in component_parts)
+		to_chat(user, "<span class='notice'>    [C.name]</span>")
+	if(panel_open || !R.panel_req)
 		var/obj/item/weapon/circuitboard/CB = circuit
 		var/P
 		for(var/obj/item/weapon/stock_parts/A in component_parts)
@@ -347,10 +350,6 @@ Class Procs:
 						break
 			update_icon()
 			RefreshParts()
-	else
-		to_chat(user, "<span class='notice'>Following parts detected in the machine:</span>")
-		for(var/var/obj/item/C in component_parts) //var/var/obj/item/C?
-			to_chat(user, "<span class='notice'>    [C.name]</span>")
 	return 1
 
 // Default behavior for wrenching down machines.  Supports both delay and instant modes.

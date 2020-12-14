@@ -17,6 +17,9 @@
 	name = "Abductor Ship"
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 
+/area/abductor/interior
+	name = "Abductor Ship Interior"
+
 /area/abductor/exterior
 	name = "Abductor Ship Exterior"
 	has_gravity = 0
@@ -78,19 +81,6 @@ You will find a dispenser within the room you started in which contains some bas
 	name = "anti-personnel turret"
 	installation = /obj/item/weapon/gun/energy/ionrifle/weak
 	lethal = TRUE
-
-/obj/item/device/perfect_tele/frontier/unknown/abductor/one
-	loc_network = "abd1"
-/obj/item/device/perfect_tele/frontier/unknown/abductor/two
-	loc_network = "abd2"
-/obj/item/device/perfect_tele/frontier/unknown/abductor/three
-	loc_network = "abd3"
-/obj/item/device/perfect_tele/frontier/unknown/abductor/four
-	loc_network = "abd4"
-/obj/item/device/perfect_tele/frontier/unknown/abductor/five
-	loc_network = "abd5"
-/obj/item/device/perfect_tele/frontier/unknown/abductor/six
-	loc_network = "abd6"
 
 /obj/machinery/power/rtg/abductor/built/abductor
 	name = "Void Core"

@@ -181,6 +181,7 @@
 
 /datum/ai_holder/simple_mob/woof/cass
 	retaliate = 0
+	violent_breakthrough = 0
 
 /datum/ai_holder/simple_mob/ranged/kiting/threatening/woof
 	hostile = 1

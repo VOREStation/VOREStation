@@ -3,6 +3,7 @@
 */
 
 var/global/list/ear_styles_list = list()	// Stores /datum/sprite_accessory/ears indexed by type
+var/global/list/hair_accesories_list= list()// Stores /datum/sprite_accessory/hair_accessory indexed by type
 var/global/list/tail_styles_list = list()	// Stores /datum/sprite_accessory/tail indexed by type
 var/global/list/wing_styles_list = list()	// Stores /datum/sprite_accessory/wing indexed by type
 var/global/list/negative_traits = list()	// Negative custom species traits, indexed by path
@@ -451,6 +452,12 @@ var/global/list/remainless_species = list(SPECIES_PROMETHEAN,
 		var/datum/sprite_accessory/wing/instance = new path()
 		wing_styles_list[path] = instance
 
+	// Custom Hair Accessories
+	paths = typesof(/datum/sprite_accessory/hair_accessory) - /datum/sprite_accessory/hair_accessory
+	for(var/path in paths)
+		var/datum/sprite_accessory/hair_accessory/instance = new path()
+		hair_accesories_list[path] = instance
+	
 	// Custom species traits
 	paths = typesof(/datum/trait) - /datum/trait
 	for(var/path in paths)
