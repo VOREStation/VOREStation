@@ -41041,8 +41041,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/camera/network/security{
-	dir = 10
+/obj/machinery/newscaster/security_unit{
+	pixel_y = -32
 	},
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/security/hos)
@@ -41663,6 +41663,10 @@
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
 	dir = 8
+	},
+/obj/machinery/camera/network/security{
+	dir = 8;
+	icon_state = "camera"
 	},
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/security/hos)
