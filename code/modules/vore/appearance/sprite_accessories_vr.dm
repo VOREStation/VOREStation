@@ -2022,3 +2022,30 @@
 	icon_state = "xenotailalt_fullcolour"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+
+/*
+////////////////////////////
+/  =--------------------=  /
+/  == Misc Definitions ==  /
+/  =--------------------=  /
+////////////////////////////
+*/
+
+// Yes, I have to add all of this just to make some glowy hair. 
+// No, this isn't a character creation option, but... I guess in the future it could be, if anyone wants that? 
+           
+/datum/sprite_accessory/hair_accessory
+	name = "You should not see this..."
+	icon = 'icons/mob/vore/hair_accessories_vr.dmi'
+	do_colouration = 0 // Set to 1 to blend (ICON_ADD) hair color
+
+	var/ignores_lighting = 0 // Whether or not this hair accessory will ignore lighting and glow in the dark.
+	var/color_blend_mode = ICON_ADD // Only appliciable if do_coloration = 1
+	var/desc = "You should not see this..."
+
+/datum/sprite_accessory/hair_accessory/verie_hair_glow
+	name = "verie's hair glow"
+	desc = ""
+	icon_state = "verie_hair_glow"
+	ignores_lighting = 1
+	//ckeys_allowed = list("vitoras") // This probably won't come into play EVER but better safe than sorry

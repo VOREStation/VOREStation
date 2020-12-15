@@ -3101,6 +3101,12 @@
 	},
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/shuttlebay)
+"vR" = (
+/obj/machinery/newscaster{
+	pixel_y = 28
+	},
+/turf/simulated/floor/tiled/eris/steel/brown_platform,
+/area/itglight/metingroom)
 "vX" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -7344,6 +7350,13 @@
 	},
 /turf/simulated/floor,
 /area/itglight/starboardengi)
+"Vz" = (
+/obj/machinery/newscaster{
+	pixel_x = -12;
+	pixel_y = -26
+	},
+/turf/simulated/floor/tiled/eris/steel/brown_platform,
+/area/itglight/common)
 "VB" = (
 /obj/machinery/light{
 	dir = 1
@@ -17920,7 +17933,7 @@ Nn
 Sh
 UF
 UF
-Ji
+Vz
 Xu
 Ud
 YT
@@ -18599,7 +18612,7 @@ VU
 iJ
 VU
 VU
-vf
+vR
 oz
 qN
 qN
