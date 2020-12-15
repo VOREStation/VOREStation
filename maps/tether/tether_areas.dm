@@ -377,81 +377,108 @@
 	icon_state = "medical"
 /area/tether/surfacebase/medical/lobby
 	name = "\improper Medical Lobby"
+	icon = 'icons/turf/areas.dmi'
+	icon_state = "medbay3"
 /area/tether/surfacebase/medical/triage
 	name = "\improper Triage"
+	icon = 'icons/turf/areas.dmi'
+	icon_state = "medbay_triage"
 /area/tether/surfacebase/medical/admin
 	name = "\improper Medical Admin"
 /area/tether/surfacebase/medical/first_aid_west
 	name = "\improper First Aid West"
 /area/tether/surfacebase/medical/chemistry
 	name = "\improper Chemistry"
-	lightswitch = 0
+	icon = 'icons/turf/areas.dmi'
+	icon_state = "chem"
 /area/tether/surfacebase/medical/resleeving
 	name = "\improper Resleeving"
-	lightswitch = 0
+	icon = 'icons/turf/areas.dmi'
+	icon_state = "cloning"
 /area/tether/surfacebase/medical/surgery1
 	name = "\improper Surgery OR 1"
-	lightswitch = 0
+	icon = 'icons/turf/areas.dmi'
+	icon_state = "surgery_1"
 /area/tether/surfacebase/medical/surgery2
 	name = "\improper Surgery OR 2"
-	lightswitch = 0
+	icon = 'icons/turf/areas.dmi'
+	icon_state = "surgery_2"
 /area/tether/surfacebase/medical/patient
 	name = "\improper Surface Patient Recovery Rooms"
-	lightswitch = 0
 /area/tether/surfacebase/medical/patient_a
 	name = "\improper Patient Room A"
-	lightswitch = 0
+	icon = 'icons/turf/areas.dmi'
+	icon_state = "medbay_patient_room_a"
 /area/tether/surfacebase/medical/patient_b
 	name = "\improper Patient Room B"
-	lightswitch = 0
+	icon = 'icons/turf/areas.dmi'
+	icon_state = "medbay_patient_room_b"
+/area/tether/surfacebase/medical/patient_c
+	name = "\improper Patient Room C"
+	icon = 'icons/turf/areas.dmi'
+	icon_state = "medbay_patient_room_c"
 /area/tether/surfacebase/medical/recoveryward
 	name = "\improper Medbay Recovery Ward"
-	lightswitch = 0
+	icon = 'icons/turf/areas.dmi'
+	icon_state = "Sleep"
 /area/tether/surfacebase/medical/recoveryward/storage
 	name = "\improper Medbay Recovery Storage"
-	lightswitch = 0
 /area/tether/surfacebase/medical/bathroom
-	name = "\improper Medbay Bathroom"
-	lightswitch = 0
+	name = "\improper Medbay Staff Bathroom"
+	icon = 'icons/turf/areas.dmi'
+	icon_state = "medbay_restroom"
 /area/tether/surfacebase/medical/mentalhealth
 	name = "\improper Mental Health"
-	lightswitch = 0
+	icon = 'icons/turf/areas.dmi'
+	icon_state = "medbay_mentalhealth"
 /area/tether/surfacebase/medical/mentalhealthwaiting
 	name = "\improper Mental Health Waiting Room"
 /area/tether/surfacebase/medical/cmo
 	name = "\improper Chief Medical Officer's Office"
-	lightswitch = 0
+	icon = 'icons/turf/areas.dmi'
+	icon_state = "CMO"
 /area/tether/surfacebase/medical/morgue
 	name = "\improper Morgue"
-	lightswitch = 0
 /area/tether/surfacebase/medical/viro
 	name = "\improper Virology"
-	lightswitch = 0
 /area/tether/surfacebase/medical/viroairlock
 	name = "\improper Virology Airlock"
 /area/tether/surfacebase/medical/viro/viroward
 	name = "\improper Virology Ward"
-	lightswitch = 0
 /area/tether/surfacebase/medical/upperhall
 	name = "\improper Medical Upper Hall"
 /area/tether/surfacebase/medical/centralhall
 	name = "\improper Medical Central Hall"
 /area/tether/surfacebase/medical/lowerhall
 	name = "\improper Medical Lower Hall"
-/area/tether/surfacebase/medical/stairwell
+	//North SurfMed3-2 Stairwell
+/area/tether/surfacebase/medical/uppernorthstairwell
 	name = "\improper Medical Stairwell"
+	icon_state = "north"
+	///South SufMed3-2 Stairwell
+/area/tether/surfacebase/medical/uppersouthstairwell
+	name = "\improper Upper Medical Stairwell"
+	icon_state = "south"
+	//Central Surfmet2-1 Stairwell
+/area/tether/surfacebase/medical/centralstairwell
+	name = "\improper Central Medical Stairwell"
+	icon_state = "center"
 /area/tether/surfacebase/medical/storage
 	name = "\improper Medical Storage"
-	lightswitch = 0
-/area/tether/surfacebase/medical/outfitting
-	name = "\improper Medical Outfitting"
-	lightswitch = 0
+	icon = 'icons/turf/areas.dmi'
+	icon_state = "medbay_primary_storage"
+/area/tether/surfacebase/medical/examroom
+	name = "\improper Medical Exam Room"
+	icon = 'icons/turf/areas.dmi'
+	icon_state = "exam_room"
 /area/tether/surfacebase/medical/paramed
 	name = "\improper Emergency Medical Bay"
-	lightswitch = 0
+	icon = 'icons/turf/areas.dmi'
+	icon_state = "medbay_emt_bay"
 /area/tether/surfacebase/medical/breakroom
 	name = "\improper Medical Break Room"
-	lightswitch = 0
+	icon = 'icons/turf/areas.dmi'
+	icon_state = "medbay_breakroom"
 /area/tether/surfacebase/medical/maints
 	name = "\improper Mining Upper Maintenance"
 

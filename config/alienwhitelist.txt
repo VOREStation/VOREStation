@@ -1,5 +1,4 @@
 some~user - Species
-
 admiraldragon - Vox
 aetherelemental - Daemon
 alphaprime1 - Protean
@@ -28,6 +27,7 @@ khanivore - Protean
 killjaden - Protean
 ktccd - Diona
 magpiemayhem - Vox
+marco_barko - Protean
 mewchild - Diona
 mewchild - Vox
 mrsebbi - Xenochimera
@@ -35,8 +35,11 @@ natje - Xenochimera
 nerdass - Protean
 ontejbjoav - Diona
 oreganovulgaris - Xenochimera
+owwy - Black-Eyed Shadekin
+oxenfree - Protean
 paradoxspace - Xenochimera
 pearlprophet - Protean
+pemdesos - Protean
 phoenixx0 - Vox
 radiantaurora - Protean
 rapidvalj - Vox
@@ -61,6 +64,7 @@ tastypred - Black-Eyed Shadekin
 tastypred - Xenochimera
 tastypred - Protean
 timidvi - Diona
+trikonei - Protean
 varonis - Xenochimera
 verkister - Xenochimera
 vitoras - Protean
@@ -71,3 +75,4 @@ xioen - Xenochimera
 xonkon - Protean
 zalvine - Shadekin Empathy
 zammyman215 - Vox
+

@@ -22,6 +22,18 @@
 		if(output)
 			break
 
+/obj/machinery/mineral/unloading_machine/proc/toggle_speed(var/forced)
+	if(forced)
+		speed_process = forced
+	else
+		speed_process = !speed_process // switching gears
+	if(speed_process) // high gear
+		STOP_MACHINE_PROCESSING(src)
+		START_PROCESSING(SSfastprocess, src)
+	else // low gear
+		STOP_PROCESSING(SSfastprocess, src)
+		START_MACHINE_PROCESSING(src)
+
 /obj/machinery/mineral/unloading_machine/process()
 	if (src.output && src.input)
 		if (locate(/obj/structure/ore_box, input.loc))

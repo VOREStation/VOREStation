@@ -1025,7 +1025,7 @@ mob/proc/yank_out_object()
 	set hidden = TRUE
 	if(!canface())
 		return FALSE
-	if(pixel_y <= 16)
+	if(pixel_y <= (default_pixel_y + 16))
 		pixel_y++
 		is_shifted = TRUE
 
@@ -1033,7 +1033,7 @@ mob/proc/yank_out_object()
 	set hidden = TRUE
 	if(!canface())
 		return FALSE
-	if(pixel_y >= -16)
+	if(pixel_y >= (default_pixel_y - 16))
 		pixel_y--
 		is_shifted = TRUE
 
@@ -1041,7 +1041,7 @@ mob/proc/yank_out_object()
 	set hidden = TRUE
 	if(!canface())
 		return FALSE
-	if(pixel_x >= -16)
+	if(pixel_x >= (default_pixel_x - 16))
 		pixel_x--
 		is_shifted = TRUE
 
@@ -1049,7 +1049,7 @@ mob/verb/shifteast()
 	set hidden = TRUE
 	if(!canface())
 		return FALSE
-	if(pixel_x <= 16)
+	if(pixel_x <= (default_pixel_x + 16))
 		pixel_x++
 		is_shifted = TRUE
 // End VOREstation edit

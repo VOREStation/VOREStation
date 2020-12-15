@@ -6,7 +6,7 @@ var/list/grass_types = list(
 	name = "grass"
 	icon_state = "grass0"
 	edge_blending_priority = 4
-	initial_flooring = /decl/flooring/grass
+	initial_flooring = /decl/flooring/grass/outdoors // VOREStation Edit
 	turf_layers = list(
 		/turf/simulated/floor/outdoors/rocks,
 		/turf/simulated/floor/outdoors/dirt
@@ -81,6 +81,7 @@ var/list/grass_types = list(
 	grass_chance = 80
 	//tree_chance = 20
 	edge_blending_priority = 5
+	initial_flooring = /decl/flooring/grass/outdoors/forest // VOREStation Edit
 
 /turf/simulated/floor/outdoors/grass/sif/forest
 	name = "thick growth"
@@ -94,3 +95,4 @@ var/list/grass_types = list(
 		/obj/structure/flora/sif/eyes = 5,
 		/obj/structure/flora/sif/tendrils = 30
 		)
+

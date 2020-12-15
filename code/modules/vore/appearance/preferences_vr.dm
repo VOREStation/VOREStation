@@ -10,6 +10,16 @@
 /mob/living/carbon/human
 
 	// Horray Furries!
+	var/datum/sprite_accessory/hair_accessory/hair_accessory_style = null
+	var/r_acc = 30
+	var/g_acc = 30
+	var/b_acc = 30
+	var/r_acc2 = 30
+	var/g_acc2 = 30
+	var/b_acc2 = 30
+	var/r_acc3 = 30
+	var/g_acc3 = 30
+	var/b_acc3 = 30
 	var/datum/sprite_accessory/ears/ear_style = null
 	var/r_ears = 30
 	var/g_ears = 30
