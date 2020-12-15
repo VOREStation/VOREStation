@@ -3206,9 +3206,6 @@
 /area/tether/surfacebase/surface_three_hall)
 "aeI" = (
 /obj/structure/table/bench/steel,
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 8
-	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 5
 	},

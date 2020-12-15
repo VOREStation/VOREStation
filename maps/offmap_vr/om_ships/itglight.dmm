@@ -3102,32 +3102,11 @@
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/shuttlebay)
 "vR" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 1
-	},
-/obj/structure/cable/pink{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable/pink{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/structure/cable/pink{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
 /obj/machinery/newscaster{
 	pixel_y = 28
 	},
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
-/area/itglight/afthall)
+/area/itglight/metingroom)
 "vX" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -18529,7 +18508,7 @@ Zf
 UL
 YM
 Qi
-vR
+uf
 Ga
 Nc
 Gc
@@ -18633,7 +18612,7 @@ VU
 iJ
 VU
 VU
-vf
+vR
 oz
 qN
 qN
