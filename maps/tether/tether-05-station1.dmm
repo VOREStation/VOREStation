@@ -20983,6 +20983,20 @@
 	},
 /turf/simulated/floor/plating,
 /area/tether/station/dock_two)
+"crl" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 4
+	},
+/obj/machinery/vending/nifsoft_shop,
+/turf/simulated/floor/tiled,
+/area/hallway/station/atrium)
 "cto" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -22331,20 +22345,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/station/dock_one)
-"kqv" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/lightgrey/border{
-	dir = 1
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7,
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 4
-	},
-/obj/machinery/vending/nifsoft_shop,
-/turf/simulated/floor/tiled,
-/area/hallway/station/atrium)
 "kth" = (
 /obj/effect/floor_decal/borderfloor/corner{
 	dir = 4
@@ -34651,7 +34651,7 @@ alT
 aFe
 alT
 alT
-kqv
+crl
 acm
 acm
 acm

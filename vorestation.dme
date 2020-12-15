@@ -3003,6 +3003,7 @@
 #include "code\modules\modular_computers\NTNet\NTNRC\conversation.dm"
 #include "code\modules\multi-tile\multi-tile.dm"
 #include "code\modules\multiz\_stubs.dm"
+#include "code\modules\multiz\admin_upload.dm"
 #include "code\modules\multiz\basic.dm"
 #include "code\modules\multiz\hoist.dm"
 #include "code\modules\multiz\ladder_assembly_vr.dm"

@@ -9576,6 +9576,11 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_x = -28;
+	pixel_y = 26
+	},
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/bar_backroom)
 "api" = (
@@ -13548,6 +13553,13 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/captain)
 "awm" = (
+/obj/machinery/button/remote/airlock{
+	id = "barbackdoor";
+	name = "Back Door Locks";
+	pixel_x = -29;
+	pixel_y = 30;
+	specialfunctions = 4
+	},
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/bar_backroom)
 "awn" = (
@@ -14219,6 +14231,10 @@
 	name = "Bartender"
 	},
 /obj/structure/disposalpipe/segment,
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24
+	},
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/bar_backroom)
 "axp" = (
@@ -14228,9 +14244,6 @@
 /obj/item/weapon/paper{
 	info = "This permit signifies that the Bartender is permitted to posess this firearm in the bar, and ONLY the bar. Failure to adhere to this permit will result in confiscation of the weapon and possibly arrest.";
 	name = "Shotgun permit"
-	},
-/obj/machinery/light_switch{
-	pixel_x = 25
 	},
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/bar_backroom)
@@ -18577,6 +18590,10 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_x = -28
+	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
 "aEm" = (
@@ -18926,6 +18943,9 @@
 /obj/machinery/chemical_dispenser/bar_soft/full{
 	dir = 8
 	},
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/simulated/floor/lino,
 /area/crew_quarters/bar)
 "aEX" = (
@@ -19005,9 +19025,19 @@
 /turf/simulated/floor/wood,
 /area/library)
 "aFf" = (
-/obj/effect/decal/cleanable/blood,
-/turf/simulated/floor/outdoors/grass/sif/virgo3b,
-/area/tether/surfacebase/outside/outside3)
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7,
+/obj/machinery/vending/nifsoft_shop,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_three_hall)
 "aFg" = (
 /obj/structure/cable/green{
 	d1 = 2;
@@ -19022,11 +19052,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/botanystorage)
-"aFh" = (
-/obj/effect/decal/cleanable/blood,
-/obj/effect/decal/remains/deer,
-/turf/simulated/floor/outdoors/grass/sif/virgo3b,
-/area/tether/surfacebase/outside/outside3)
 "aFi" = (
 /obj/structure/table/glass,
 /obj/machinery/cell_charger,
@@ -31355,6 +31380,11 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_x = -28;
+	pixel_y = -25
+	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/barrestroom)
 "bbY" = (
@@ -33404,7 +33434,6 @@
 /area/tether/surfacebase/southhall)
 "bfK" = (
 /obj/structure/table/gamblingtable,
-/obj/structure/table/gamblingtable,
 /obj/item/weapon/deck/cards,
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/tether/surfacebase/barbackmaintenance)
@@ -33518,9 +33547,6 @@
 /obj/structure/table/marble,
 /obj/machinery/chemical_dispenser/bar_alc/full{
 	dir = 8
-	},
-/obj/machinery/light{
-	dir = 4
 	},
 /obj/machinery/light{
 	dir = 1
@@ -33892,6 +33918,7 @@
 /area/tether/surfacebase/servicebackroom)
 "bgJ" = (
 /obj/machinery/door/airlock{
+	id_tag = "barbackdoor";
 	name = "Service";
 	req_access = list(25)
 	},
@@ -33949,10 +33976,6 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/camera/network/civilian{
 	dir = 4
-	},
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = -24
 	},
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/bar_backroom)
@@ -42218,20 +42241,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lobby)
-"uBR" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/lightgrey/border{
-	dir = 1
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 4
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7,
-/obj/machinery/vending/nifsoft_shop,
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/surface_three_hall)
 "uFI" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -47168,7 +47177,7 @@ aac
 aac
 aac
 aac
-aFf
+aac
 aac
 aac
 aac
@@ -47309,9 +47318,9 @@ aac
 aac
 aac
 aac
-aFf
-aFh
-aFf
+aac
+aac
+aac
 aac
 aac
 aac
@@ -47452,7 +47461,7 @@ aac
 aac
 aac
 aac
-aFf
+aac
 aac
 aac
 aac
@@ -55229,7 +55238,7 @@ agk
 trA
 aUs
 aeG
-uBR
+aFf
 aWL
 aNp
 alj

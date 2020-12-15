@@ -28722,7 +28722,7 @@
 	icon_state = "bordercolorcorner2"
 	},
 /obj/machinery/vending/nifsoft_shop{
-	pixel_y = -20
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_laundry)
@@ -39905,7 +39905,7 @@ aad
 aad
 aad
 aad
-aad
+bcV
 aad
 aad
 aad
@@ -40336,7 +40336,7 @@ aad
 aad
 aad
 aad
-bcV
+aad
 aad
 aad
 aad
@@ -53395,7 +53395,7 @@ aad
 aad
 aad
 aad
-bcV
+aad
 aad
 aad
 aad
@@ -56374,7 +56374,7 @@ aad
 aad
 aad
 aad
-aad
+bcV
 aad
 aad
 aad
