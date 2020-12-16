@@ -1995,6 +1995,7 @@
 #include "code\modules\clothing\under\accessories\permits_vr.dm"
 #include "code\modules\clothing\under\accessories\shiny_vr.dm"
 #include "code\modules\clothing\under\accessories\storage.dm"
+#include "code\modules\clothing\under\accessories\storage_vr.dm"
 #include "code\modules\clothing\under\accessories\torch.dm"
 #include "code\modules\clothing\under\accessories\torch_vr.dm"
 #include "code\modules\clothing\under\accessories\temperature\poncho.dm"
