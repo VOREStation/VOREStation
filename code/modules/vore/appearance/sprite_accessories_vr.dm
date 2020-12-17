@@ -1,6 +1,6 @@
 /*
 	Hello and welcome to VOREStation sprite_accessories: For a more general overview
-	please read sprite_accessories.dm. This file is for ears, tails, and taur bodies!
+	please read sprite_accessories.dm. This file is for ears and tails.
 	This is intended to be friendly for people with little to no actual coding experience.
 	!!WARNING!!: changing existing accessory information can be VERY hazardous to savefiles,
 	to the point where you may completely corrupt a server's savefiles. Please refrain
@@ -12,6 +12,7 @@
 /datum/sprite_accessory
 	// Ckey of person allowed to use this, if defined.
 	var/list/ckeys_allowed = null
+	var/apply_restrictions = FALSE		//whether to apply restrictions for specific tails/ears/wings
 
 /*
 ////////////////////////////
@@ -27,9 +28,36 @@
 
 	var/color_blend_mode = ICON_ADD // Only appliciable if do_coloration = 1
 	var/extra_overlay // Icon state of an additional overlay to blend in.
+	var/extra_overlay2
 	var/desc = "You should not see this..."
 
+// Species-unique ears
+
+/datum/sprite_accessory/ears/shadekin
+	name = "Shadekin Ears, colorable"
+	desc = ""
+	icon_state = "shadekin"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	apply_restrictions = TRUE
+	species_allowed = list(SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW)
+
 // Ears avaliable to anyone
+
+/datum/sprite_accessory/ears/hyena
+	name = "hyena ears, dual-color"
+	desc = ""
+	icon_state = "hyena"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "hyena-inner"
+
+/datum/sprite_accessory/ears/moth
+	name = "moth antennae"
+	desc = ""
+	icon_state = "moth"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/ears/squirrel_orange
 	name = "squirel, orange"
@@ -88,20 +116,69 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
+/datum/sprite_accessory/ears/curly_bug
+	name = "curly antennae, colorable"
+	desc = ""
+	icon_state = "curly_bug"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/dual_robot
+	name = "synth antennae, colorable"
+	desc = ""
+	icon_state = "dual_robot_antennae"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/right_robot
+	name = "right synth, colorable"
+	desc = ""
+	icon_state = "right_robot_antennae"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/left_robot
+	name = "left synth, colorable"
+	desc = ""
+	icon_state = "left_robot_antennae"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/ears/oni_h1
 	name = "oni horns"
 	desc = ""
 	icon_state = "oni-h1"
+
+/datum/sprite_accessory/ears/oni_h1_c
+	name = "oni horns, colorable"
+	desc = ""
+	icon_state = "oni-h1_c"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/ears/demon_horns1
 	name = "demon horns"
 	desc = ""
 	icon_state = "demon-horns1"
 
+/datum/sprite_accessory/ears/demon_horns1_c
+	name = "demon horns, colorable"
+	desc = ""
+	icon_state = "demon-horns1_c"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/ears/demon_horns2
 	name = "demon horns, colorable(outward)"
 	desc = ""
 	icon_state = "demon-horns2"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/dragon_horns
+	name = "dragon horns, colorable"
+	desc = ""
+	icon_state = "dragon-horns"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
@@ -170,6 +247,13 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
+/datum/sprite_accessory/ears/smallbear
+	name = "small bear"
+	desc = ""
+	icon_state = "smallbear"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/ears/squirrelhc
 	name = "squirrel, colorable"
 	desc = ""
@@ -207,6 +291,28 @@
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "antlers_mark"
 
+/datum/sprite_accessory/ears/smallantlers
+	name = "small antlers"
+	desc = ""
+	icon_state = "smallantlers"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/smallantlers_e
+	name = "small antlers with ears"
+	desc = ""
+	icon_state = "smallantlers"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "deer"
+
+/datum/sprite_accessory/ears/deer
+	name = "deer ears"
+	desc = ""
+	icon_state = "deer"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/ears/cow
 	name = "cow, horns"
 	desc = ""
@@ -226,10 +332,25 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
+/datum/sprite_accessory/ears/caprahorns
+	name = "caprine horns"
+	desc = ""
+	icon_state = "caprahorns"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/ears/otie
 	name = "otie, colorable"
 	desc = ""
 	icon_state = "otie"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "otie-inner"
+
+/datum/sprite_accessory/ears/donkey
+	name = "donkey, colorable"
+	desc = ""
+	icon_state = "donkey"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "otie-inner"
@@ -255,6 +376,13 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
+/datum/sprite_accessory/ears/drake
+	name = "drake frills"
+	desc = ""
+	icon_state = "drake"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/ears/vulp
 	name = "vulpkanin, dual-color"
 	desc = ""
@@ -263,10 +391,88 @@
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "vulp-inner"
 
+/datum/sprite_accessory/ears/vulp_short
+	name = "vulpkanin short"
+	desc = ""
+	icon_state = "vulp_terrier"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/vulp_short_dc
+	name = "vulpkanin short, dual-color"
+	desc = ""
+	icon_state = "vulp_terrier"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "vulp_terrier-inner"
+
+/datum/sprite_accessory/ears/vulp_jackal
+	name = "vulpkanin thin, dual-color"
+	desc = ""
+	icon_state = "vulp_jackal"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "vulp_jackal-inner"
+
 /datum/sprite_accessory/ears/bunny_floppy
 	name = "floopy bunny ears (colorable)"
 	desc = ""
 	icon_state = "floppy_bun"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/teshari
+	name = "Teshari (colorable)"
+	desc = ""
+	icon_state = "teshari"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "teshariinner"
+
+/datum/sprite_accessory/ears/tesharihigh
+	name = "Teshari upper ears (colorable)"
+	desc = ""
+	icon_state = "tesharihigh"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "tesharihighinner"
+
+/datum/sprite_accessory/ears/tesharilow
+	name = "Teshari lower ears (colorable)"
+	desc = ""
+	icon_state = "tesharilow"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "tesharilowinner"
+
+/datum/sprite_accessory/ears/tesh_pattern_ear_male
+	name = "Teshari male ear pattern (colorable)"
+	desc = ""
+	icon_state = "teshari"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "teshari_male_pattern"
+
+/datum/sprite_accessory/ears/tesh_pattern_ear_female
+	name = "Teshari female ear pattern (colorable)"
+	desc = ""
+	icon_state = "teshari"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "teshari_female_pattern"
+
+/datum/sprite_accessory/ears/inkling
+	name = "colorable mature inkling hair"
+	desc = ""
+	icon = 'icons/mob/human_face_vr.dmi'
+	icon_state = "inkling-colorable"
+	color_blend_mode = ICON_MULTIPLY
+	do_colouration = 1
+
+/datum/sprite_accessory/ears/large_dragon
+	name = "Large dragon horns"
+	desc = ""
+	icon_state = "big_liz"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
@@ -318,6 +524,8 @@
 	name = "tritail kitsune ears (Rosey)"
 	desc = ""
 	icon_state = "rosey"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 	ckeys_allowed = list("joey4298")
 
 /datum/sprite_accessory/ears/aronai
@@ -350,6 +558,99 @@
 	icon_state = "alurane-ears"
 	ckeys_allowed = list("natje")
 
+/datum/sprite_accessory/ears/frost
+    name = "Frost antenna"
+    desc = ""
+    icon_state = "frosted_tips"
+    ckeys_allowed = list("tucker0666")
+
+/datum/sprite_accessory/ears/sylv_pip
+    name = "sylveon ears and ribbons (Pip Shyner)"
+    desc = ""
+    icon_state = "pipears"
+    ckeys_allowed = list("phoaly")
+
+/datum/sprite_accessory/ears/elf_caprine_colorable
+	name = "Caprine horns with pointy ears, colorable"
+	desc = ""
+	icon_state = "elfs"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "caprahorns"
+
+/datum/sprite_accessory/ears/elf_oni_colorable
+	name = "oni horns with pointy ears, colorable"
+	desc = ""
+	icon_state = "elfs"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "oni-h1_c"
+
+/datum/sprite_accessory/ears/elf_demon_colorable
+	name = "Demon horns with pointy ears, colorable"
+	desc = ""
+	icon_state = "elfs"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "demon-horns1_c"
+
+/datum/sprite_accessory/ears/elf_demon_outwards_colorable
+	name = "Demon horns with pointy ears, outwards, colourable"
+	desc = ""
+	icon_state = "elfs"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "demon-horns2"
+
+/datum/sprite_accessory/ears/elf_dragon_colorable
+	name = "Dragon horns with pointy ears, colourable"
+	desc = ""
+	icon_state = "elfs"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "dragon-horns"
+
+/datum/sprite_accessory/ears/synthhorns_plain
+	name = "Synth horns, plain"
+	desc = ""
+	icon_state = "synthhorns_plain"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "synthhorns_plain_light"
+
+/datum/sprite_accessory/ears/synthhorns_thick
+	name = "Synth horns, thick"
+	desc = ""
+	icon_state = "synthhorns_thick"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "synthhorns_thick_light"
+
+/datum/sprite_accessory/ears/synthhorns_curly
+	name = "Synth horns, curly"
+	desc = ""
+	icon_state = "synthhorns_curled"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+
+/datum/sprite_accessory/ears/forward_curled_demon_horns_bony
+	name = "Succubus horns, colourable"
+	desc = ""
+	icon_state = "succu-horns_b"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/forward_curled_demon_horns_bony_with_colorable_ears
+	name = "Succubus horns with pointy ears, colourable"
+	desc = ""
+	icon_state = "elfs"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "succu-horns_b"
+
+
+
 /*
 ////////////////////////////
 /  =--------------------=  /
@@ -364,11 +665,13 @@
 
 	var/color_blend_mode = ICON_ADD // Only appliciable if do_coloration = 1
 	var/extra_overlay // Icon state of an additional overlay to blend in.
+	var/extra_overlay2 //Tertiary.
 	var/clothing_can_hide = 1 // If true, clothing with HIDETAIL hides it. If the clothing is bulky enough to hide a tail, it should also hide wings.
 	// var/show_species_tail = 1 // Just so // TODO - Seems not needed ~Leshana
 	var/desc = "You should not see this..."
 	var/ani_state // State when flapping/animated
 	var/extra_overlay_w // Flapping state for extra overlay
+	var/extra_overlay2_w
 
 /datum/sprite_accessory/wing/shock //Unable to split the tail from the wings in the sprite, so let's just classify it as wings.
 	name = "pharoah hound tail (Shock Diamond)"
@@ -387,7 +690,9 @@
 	name = "spider legs"
 	desc = ""
 	icon_state = "spider-legs"
+	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/wing/moth
 	name = "moth wings"
 	desc = ""
@@ -400,6 +705,12 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
+/datum/sprite_accessory/wing/dragonfly
+	name = "dragonfly"
+	desc = ""
+	icon_state = "dragonfly"
+	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/wing/citheroniamoth
 	name = "citheronia wings"
 	desc = ""
@@ -410,6 +721,13 @@
 	name = "feathered wings, colorable"
 	desc = ""
 	icon_state = "feathered"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/wing/feathered_medium
+	name = "medium feathered wings, colorable" // Keekenox made these feathery things with a little bit more shape to them than the other wings. They are medium sized wing boys.
+	desc = ""
+	icon_state = "feathered3"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
@@ -433,6 +751,47 @@
 	name = "harpy wings, colorable"
 	desc = ""
 	icon_state = "harpywings"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/wing/harpywings_alt
+	name = "harpy wings alt, archeopteryx"
+	desc = ""
+	icon_state = "harpywings_alt"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "harpywings_altmarkings"
+
+/datum/sprite_accessory/wing/harpywings_alt_neckfur
+	name = "harpy wings alt, archeopteryx & neckfur"
+	desc = ""
+	icon_state = "harpywings_alt"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "harpywings_altmarkings"
+	extra_overlay2 = "neckfur"
+
+/datum/sprite_accessory/wing/harpywings_bat
+	name = "harpy wings, bat"
+	desc = ""
+	icon_state = "harpywings_bat"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "harpywings_batmarkings"
+
+/datum/sprite_accessory/wing/harpywings_bat_neckfur
+	name = "harpy wings, bat & neckfur"
+	desc = ""
+	icon_state = "harpywings_bat"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "harpywings_batmarkings"
+	extra_overlay2 = "neckfur"
+
+/datum/sprite_accessory/wing/neckfur
+	name = "neck fur"
+	desc = ""
+	icon_state = "neckfur"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
@@ -477,6 +836,13 @@
 	desc = ""
 	icon_state = "moth_full"
 
+/datum/sprite_accessory/wing/moth_full_gray
+	name = "moth antenna and wings, colorable"
+	desc = ""
+	icon_state = "moth_full_gray"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/wing/kerena
 	name = "wingwolf wings (Kerena)"
 	desc = ""
@@ -488,12 +854,38 @@
 	desc = ""
 	icon_state = "snag-backplate"
 
-/datum/sprite_accessory/wing/nevrean
-	name = "nevrean wings/fantail"
+/datum/sprite_accessory/wing/sepulchre_c_yw
+	name = "demon wings (colorable)"
 	desc = ""
-	icon_state = "nevrean_s"
+	icon_state = "sepulchre_wingsc"
+	do_colouration = 1
+
+/datum/sprite_accessory/wing/cyberdragon
+	name = "Cyber dragon wing (colorable)"
+	desc = ""
+	icon_state = "cyberdragon_s"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/wing/cyberdragon_red
+	name = "Cyber dragon wing (red)"
+	desc = ""
+	icon_state = "cyberdragon_red_s"
+	do_colouration = 0
+
+/datum/sprite_accessory/wing/cyberdoe
+	name = "Cyber doe wing"
+	desc = ""
+	icon_state = "cyberdoe_s"
+	do_colouration = 0
+
+/datum/sprite_accessory/wing/drago_wing
+	name = "Cybernetic Dragon wings"
+	desc = ""
+	icon_state = "drago_wing"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "drago_wing_2"
 
 /*
 ////////////////////////////
@@ -509,11 +901,26 @@
 
 	var/color_blend_mode = ICON_ADD // Only appliciable if do_coloration = 1
 	var/extra_overlay // Icon state of an additional overlay to blend in.
+	var/extra_overlay2 //Tertiary.
 	var/show_species_tail = 0 // If false, do not render species' tail.
 	var/clothing_can_hide = 1 // If true, clothing with HIDETAIL hides it
 	var/desc = "You should not see this..."
 	var/ani_state // State when wagging/animated
 	var/extra_overlay_w // Wagging state for extra overlay
+	var/extra_overlay2_w // Tertiary wagging.
+	var/list/hide_body_parts = list() //Uses organ tag defines. Bodyparts in this list do not have their icons rendered, allowing for more spriter freedom when doing taur/digitigrade stuff.
+	var/icon/clip_mask_icon = null //Icon file used for clip mask.
+	var/clip_mask_state = null //Icon state to generate clip mask. Clip mask is used to 'clip' off the lower part of clothing such as jumpsuits & full suits.
+	var/icon/clip_mask = null //Instantiated clip mask of given icon and state
+
+/datum/sprite_accessory/tail/New()
+	. = ..()
+	if(clip_mask_icon && clip_mask_state)
+		clip_mask = icon(icon = clip_mask_icon, icon_state = clip_mask_state)
+
+// Species-unique tails
+
+// Everyone tails
 
 /datum/sprite_accessory/tail/invisible
 	name = "hide species-sprite tail"
@@ -571,6 +978,13 @@
 	name = "stripey taj, brown"
 	desc = ""
 	icon_state = "stripeytail-brown"
+
+/datum/sprite_accessory/tail/chameleon
+	name = "Chameleon, colorable"
+	desc = ""
+	icon_state = "chameleon"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/bunny
 	name = "bunny, colorable"
@@ -657,12 +1071,38 @@
 	icon_state = "fantail"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/tail/wagtail
 	name = "avian wagtail, colorable"
 	desc = ""
 	icon_state = "wagtail"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/nevreandc
+	name = "nevrean tail, dual-color"
+	desc = ""
+	icon_state = "nevreantail_dc"
+	extra_overlay = "nevreantail_dc_tail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/nevreanwagdc
+	name = "nevrean wagtail, dual-color"
+	desc = ""
+	icon_state = "wagtail"
+	extra_overlay = "wagtail_dc_tail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/nevreanwagdc_alt
+	name = "nevrean wagtail, marked, dual-color"
+	desc = ""
+	icon_state = "wagtail2_dc"
+	extra_overlay = "wagtail2_dc_mark"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/tail/crossfox
 	name = "cross fox"
 	desc = ""
@@ -750,6 +1190,8 @@
 	name = "pentatail kitsune tails (Rosey)" //I predict seven tails next. ~CK
 	desc = ""
 	icon_state = "rosey_five"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 	ckeys_allowed = list("joey4298")
 
 /datum/sprite_accessory/tail/scree
@@ -764,12 +1206,30 @@
 	icon_state = "aronai"
 	ckeys_allowed = list("arokha")
 
+/datum/sprite_accessory/tail/cabletail
+    name = "cabletail"
+    desc = "cabletail"
+    icon_state = "cabletail"
+    ckeys_allowed = list("tucker0666")
+
+/datum/sprite_accessory/tail/featherfluff_tail
+    name = "featherfluff_tail"
+    desc = ""
+    icon_state = "featherfluff_tail"
+    ckeys_allowed = list("tucker0666")
+
 /datum/sprite_accessory/tail/ketrai_wag
 	name = "fennix tail (vwag)"
 	desc = ""
 	icon_state = "ketraitail"
 	ani_state = "ketraitail_w"
 	//ckeys_allowed = list("ketrai") //They requested it to be enabled for everyone.
+
+/datum/sprite_accessory/tail/ketrainew_wag
+	name = "new fennix tail (vwag)"
+	desc = ""
+	icon_state = "ketraitailnew"
+	ani_state = "ketraitailnew_w"
 
 /datum/sprite_accessory/tail/redpanda
 	name = "red panda"
@@ -789,6 +1249,16 @@
 	desc = ""
 	icon_state = "tigresstail"
 	ckeys_allowed = list("hoodoo")
+
+/datum/sprite_accessory/tail/satyr
+	name = "goat legs, colorable"
+	desc = ""
+	icon_state = "satyr"
+	color_blend_mode = ICON_MULTIPLY
+	do_colouration = 1
+	hide_body_parts = list(BP_L_LEG, BP_L_FOOT, BP_R_LEG, BP_R_FOOT) //Exclude pelvis just in case.
+	clip_mask_icon = 'icons/mob/vore/taurs_vr.dmi'
+	clip_mask_state = "taur_clip_mask_def" //Used to clip off the lower part of suits & uniforms.
 
 /datum/sprite_accessory/tail/tailmaw
 	name = "tailmaw, colorable"
@@ -814,6 +1284,17 @@
 	ani_state = "straighttail_w"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/sneptail
+	name = "Snep/Furry Tail (vwag)"
+	desc = ""
+	icon_state = "sneptail"
+	ani_state = "sneptail_w"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "sneptail_mark"
+	extra_overlay_w = "sneptail_mark_w"
+
 
 /datum/sprite_accessory/tail/tiger_new
 	name = "tiger tail (vwag)"
@@ -896,6 +1377,61 @@
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "deertail_mark"
 
+/datum/sprite_accessory/tail/tesh_feathered
+	name = "Teshari tail"
+	desc = ""
+	icon_state = "teshtail_s"
+	do_colouration = 1
+	extra_overlay = "teshtail_feathers_s"
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/teshari_fluffytail
+	name = "Teshari alternative, colorable"
+	desc = ""
+	icon_state = "teshari_fluffytail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "teshari_fluffytail_mark"
+
+/datum/sprite_accessory/tail/tesh_pattern_male
+	name = "Teshari male tail pattern"
+	desc = ""
+	icon_state = "teshtail_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "teshpattern_male_tail"
+
+/datum/sprite_accessory/tail/tesh_pattern_male_alt
+	name = "Teshari male tail alt. pattern"
+	desc = ""
+	icon_state = "teshtail_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "teshpattern_male_alt"
+
+/datum/sprite_accessory/tail/tesh_pattern_fem
+	name = "Teshari female tail pattern"
+	desc = ""
+	icon_state = "teshtail_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "teshpattern_fem_tail"
+
+/datum/sprite_accessory/tail/tesh_pattern_fem_alt
+	name = "Teshari male tail alt. pattern"
+	desc = ""
+	icon_state = "teshtail_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "teshpattern_fem_alt"
+
+/datum/sprite_accessory/tail/nightstalker
+	name = "Nightstalker, colorable"
+	desc = ""
+	icon_state = "nightstalker"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 //For all species tails. Includes haircolored tails.
 /datum/sprite_accessory/tail/special
 	name = "Blank tail. Do not select."
@@ -965,20 +1501,6 @@
 	name = "monkey tail"
 	desc = ""
 	icon_state = "chimptail_s"
-
-/datum/sprite_accessory/tail/special/seromitail
-	name = "seromi tail"
-	desc = ""
-	icon_state = "seromitail_s"
-	do_colouration = 1
-	color_blend_mode = ICON_MULTIPLY
-
-/datum/sprite_accessory/tail/special/seromitailfeathered
-	name = "seromi tail w/ feathers"
-	desc = ""
-	icon_state = "seromitail_feathers_s"
-	do_colouration = 1
-	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/special/unathihc
 	name = "unathi tail, colorable"
@@ -1060,24 +1582,10 @@
 	do_colouration = 1
 
 /datum/sprite_accessory/tail/special/monkeyhc
-	name = "monkey tail, colorable, colorable"
+	name = "monkey tail, colorable"
 	desc = ""
 	icon_state = "chimptail_hc_s"
 	do_colouration = 1
-
-/datum/sprite_accessory/tail/special/seromitailhc
-	name = "seromi tail, colorable"
-	desc = ""
-	icon_state = "seromitail_hc_s"
-	do_colouration = 1
-	color_blend_mode = ICON_MULTIPLY
-
-/datum/sprite_accessory/tail/special/seromitailfeatheredhc
-	name = "seromi tail w/ feathers, colorable"
-	desc = ""
-	icon_state = "seromitail_feathers_hc_s"
-	do_colouration = 1
-	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/special/vulpan
 	name = "vulpkanin, colorable"
@@ -1092,318 +1600,452 @@
 	desc = ""
 	icon_state = "zenghu_taj"
 
+//Taurs moved to a separate file due to extra code around them
+
+//Buggo Abdomens!
+
+/datum/sprite_accessory/tail/buggo
+	name = "Bug abdomen, colorable"
+	desc = ""
+	icon_state = "buggo_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/buggobee
+	name = "Bug abdomen, bee top, dual-colorable"
+	desc = ""
+	icon_state = "buggo_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "buggobee_markings"
+
+/datum/sprite_accessory/tail/buggobeefull
+	name = "Bug abdomen, bee full, dual-colorable"
+	desc = ""
+	icon_state = "buggo_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "buggobeefull_markings"
+
+/datum/sprite_accessory/tail/buggounder
+	name = "Bug abdomen, underside, dual-colorable"
+	desc = ""
+	icon_state = "buggo_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "buggounder_markings"
+
+/datum/sprite_accessory/tail/buggofirefly
+	name = "Bug abdomen, firefly, dual-colorable"
+	desc = ""
+	icon_state = "buggo_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "buggofirefly_markings"
+
+/datum/sprite_accessory/tail/buggofat
+	name = "Fat bug abdomen, colorable"
+	desc = ""
+	icon_state = "buggofat_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/buggofatbee
+	name = "Fat bug abdomen, bee top, dual-colorable"
+	desc = ""
+	icon_state = "buggofat_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "buggofatbee_markings"
+
+/datum/sprite_accessory/tail/buggofatbeefull
+	name = "Fat bug abdomen, bee full, dual-colorable"
+	desc = ""
+	icon_state = "buggofat_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "buggofatbeefull_markings"
+
+/datum/sprite_accessory/tail/buggofatunder
+	name = "Fat bug abdomen, underside, dual-colorable"
+	desc = ""
+	icon_state = "buggofat_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "buggofatunder_markings"
+
+/datum/sprite_accessory/tail/buggofatfirefly
+	name = "Fat bug abdomen, firefly, dual-colorable"
+	desc = ""
+	icon_state = "buggofat_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "buggofatfirefly_markings"
+
+/datum/sprite_accessory/tail/buggowag
+	name = "Bug abdomen, colorable, vwag change"
+	desc = ""
+	icon_state = "buggo_s"
+	ani_state = "buggofat_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/buggobeewag
+	name = "Bug abdomen, bee top, dual color, vwag"
+	desc = ""
+	icon_state = "buggo_s"
+	ani_state = "buggofat_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "buggobee_markings"
+	extra_overlay_w = "buggofatbee_markings"
+
+/datum/sprite_accessory/tail/buggobeefullwag
+	name = "Bug abdomen, bee full, dual color, vwag"
+	desc = ""
+	icon_state = "buggo_s"
+	ani_state = "buggofat_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "buggobeefull_markings"
+	extra_overlay_w = "buggofatbeefull_markings"
+
+/datum/sprite_accessory/tail/buggounderwag
+	name = "Bug abdomen, underside, dual color, vwag"
+	desc = ""
+	icon_state = "buggo_s"
+	ani_state = "buggofat_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "buggounder_markings"
+	extra_overlay_w = "buggofatunder_markings"
+
+/datum/sprite_accessory/tail/buggofireflywag
+	name = "Bug abdomen, firefly, dual color, vwag"
+	desc = ""
+	icon_state = "buggo_s"
+	ani_state = "buggofat_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "buggofirefly_markings"
+	extra_overlay_w = "buggofatfirefly_markings"
+
+//Vass buggo variants!
+
+/datum/sprite_accessory/tail/buggovass
+	name = "Bug abdomen, vass, colorable"
+	desc = ""
+	icon_state = "buggo_vass_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/buggovassbee
+	name = "Bug abdomen, bee top, dc, vass"
+	desc = ""
+	icon_state = "buggo_vass_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "buggobee_vass_markings"
+
+/datum/sprite_accessory/tail/buggovassbeefull
+	name = "Bug abdomen, bee full, dc, vass"
+	desc = ""
+	icon_state = "buggo_vass_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "buggobeefull_vass_markings"
+
+/datum/sprite_accessory/tail/buggovassunder
+	name = "Bug abdomen, underside, dc, vass"
+	desc = ""
+	icon_state = "buggo_vass_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "buggounder_vass_markings"
+
+/datum/sprite_accessory/tail/buggovassfirefly
+	name = "Bug abdomen, firefly, dc, vass"
+	desc = ""
+	icon_state = "buggo_vass_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "buggofirefly_vass_markings"
+
+/datum/sprite_accessory/tail/buggovassfat
+	name = "Fat bug abdomen, vass, colorable"
+	desc = ""
+	icon_state = "buggofat_vass_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/buggovassfatbee
+	name = "Fat bug abdomen, bee top, dc, vass"
+	desc = ""
+	icon_state = "buggofat_vass_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "buggofatbee_vass_markings"
+
+/datum/sprite_accessory/tail/buggovassfatbeefull
+	name = "Fat bug abdomen, bee full, dc, vass"
+	desc = ""
+	icon_state = "buggofat_vass_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "buggofatbeefull_vass_markings"
+
+/datum/sprite_accessory/tail/buggovassfatunder
+	name = "Fat bug abdomen, underside, dc, vass"
+	desc = ""
+	icon_state = "buggofat_vass_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "buggofatunder_vass_markings"
+
+/datum/sprite_accessory/tail/buggovassfatfirefly
+	name = "Fat bug abdomen, firefly, dc, vass"
+	desc = ""
+	icon_state = "buggofat_vass_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "buggofatfirefly_vass_markings"
+
+/datum/sprite_accessory/tail/buggovasswag
+	name = "Bug abdomen, vass, colorable, vwag change"
+	desc = ""
+	icon_state = "buggo_vass_s"
+	ani_state = "buggofat_vass_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/buggovassbeewag
+	name = "Bug abdomen, bee top, dc, vass, vwag"
+	desc = ""
+	icon_state = "buggo_vass_s"
+	ani_state = "buggofat_vass_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "buggobee_vass_markings"
+	extra_overlay_w = "buggofatbee_vass_markings"
+
+/datum/sprite_accessory/tail/buggovassbeefullwag
+	name = "Bug abdomen, bee full, dc, vass, vwag"
+	desc = ""
+	icon_state = "buggo_vass_s"
+	ani_state = "buggofat_vass_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "buggobeefull_vass_markings"
+	extra_overlay_w = "buggofatbeefull_vass_markings"
+
+/datum/sprite_accessory/tail/buggovassunderwag
+	name = "Bug abdomen, underside, dc, vass, vwag"
+	desc = ""
+	icon_state = "buggo_vass_s"
+	ani_state = "buggofat_vass_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "buggounder_vass_markings"
+	extra_overlay_w = "buggofatunder_vass_markings"
+
+/datum/sprite_accessory/tail/buggovassfireflywag
+	name = "Bug abdomen, firefly, dc, vass, vwag"
+	desc = ""
+	icon_state = "buggo_vass_s"
+	ani_state = "buggofat_vass_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "buggofirefly_vass_markings"
+	extra_overlay_w = "buggofatfirefly_vass_markings"
+
+/datum/sprite_accessory/tail/tail_smooth
+	name = "Smooth Lizard Tail, colorable"
+	desc = ""
+	icon_state = "tail_smooth"
+	ani_state = "tail_smooth_w"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/triplekitsune_colorable
+	name = "Kitsune 3 tails, colorable"
+	desc = ""
+	icon_state = "triplekitsune"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "triplekitsune_tips"
+
+/datum/sprite_accessory/tail/ninekitsune_colorable
+	name = "Kitsune 9 tails, colorable"
+	desc = ""
+	icon_state = "ninekitsune"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "ninekitsune-tips"
+
+/datum/sprite_accessory/tail/shadekin_short
+	name = "Shadekin Short Tail, colorable"
+	desc = ""
+	icon_state = "shadekin-short"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	//apply_restrictions = TRUE
+	//species_allowed = list(SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW)
+
+/datum/sprite_accessory/tail/wartacosushi_tail //brightened +20RGB from matching roboparts
+	name = "Ward-Takahashi Tail"
+	desc = ""
+	icon_state = "wardtakahashi_vulp"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/wartacosushi_tail_dc
+	name = "Ward-Takahashi Tail, dual-color"
+	desc = ""
+	icon_state = "wardtakahashi_vulp_dc"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "wardtakahashi_vulp_dc_mark"
+
+/datum/sprite_accessory/tail/Easterntail
+	name = "Eastern Dragon (Animated)"
+	desc = ""
+	icon_state = "Easterntail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "EasterntailColorTip"
+	ani_state = "Easterntail_w"
+	extra_overlay_w = "EasterntailColorTip_w"
+
+/datum/sprite_accessory/tail/synthtail_static
+	name = "Synthetic lizard tail"
+	desc = ""
+	icon_state = "synthtail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/synthtail_vwag
+	name = "Synthetic lizard tail (vwag)"
+	desc = ""
+	icon_state = "synthtail"
+	ani_state = "synthtail_w"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/Plugtail
+	name = "Synthetic plug tail"
+	desc = ""
+	icon_state = "Plugtail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "PlugtailMarking"
+	extra_overlay2 = "PlugtailMarking2"
+
+/datum/sprite_accessory/tail/Segmentedtail
+	name = "Segmented tail, animated"
+	desc = ""
+	icon_state = "Segmentedtail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "Segmentedtailmarking"
+	ani_state = "Segmentedtail_w"
+	extra_overlay_w = "Segmentedtailmarking_w"
+
+/datum/sprite_accessory/tail/Segmentedlights
+	name = "Segmented tail, animated synth"
+	desc = ""
+	icon_state = "Segmentedtail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "Segmentedlights"
+	ani_state = "Segmentedtail_w"
+	extra_overlay_w = "Segmentedlights_w"
+
+/datum/sprite_accessory/tail/fox_tail
+	name = "Fox tail"
+	desc = ""
+	icon_state = "fox_tail_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/fox_tail_plain
+	name = "Fox tail"
+	desc = ""
+	icon_state = "fox_tail_plain_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/fennec_tail
+	name = "Fennec tail"
+	desc = ""
+	icon_state = "fennec_tail_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/lizard_tail_smooth
+	name = "Lizard Tail (Smooth)"
+	desc = ""
+	icon_state = "lizard_tail_smooth"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/lizard_tail_dark_tiger
+	name = "Lizard Tail (Dark Tiger)"
+	desc = ""
+	icon_state = "lizard_tail_dark_tiger"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/lizard_tail_light_tiger
+	name = "Lizard Tail (Light Tiger)"
+	desc = ""
+	icon_state = "lizard_tail_light_tiger"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/lizard_tail_spiked
+	name = "Lizard Tail (Spiked)"
+	desc = ""
+	icon_state = "lizard_tail_spiked"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/xenotail_fullcolour
+	name = "xenomorph tail (fully colourable)"
+	desc = ""
+	icon_state = "xenotail_fullcolour"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/xenotailalt_fullcolour
+	name = "xenomorph tail alt. (fully colourable)"
+	desc = ""
+	icon_state = "xenotailalt_fullcolour"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 /*
 ////////////////////////////
 /  =--------------------=  /
-/  == Taur Definitions ==  /
+/  == Misc Definitions ==  /
 /  =--------------------=  /
 ////////////////////////////
 */
 
-// Taur sprites are now a subtype of tail since they are mutually exclusive anyway.
-
-/datum/sprite_accessory/tail/taur
+// Yes, I have to add all of this just to make some glowy hair. 
+// No, this isn't a character creation option, but... I guess in the future it could be, if anyone wants that? 
+           
+/datum/sprite_accessory/hair_accessory
 	name = "You should not see this..."
-	icon = 'icons/mob/vore/taurs_vr.dmi'
-	do_colouration = 1 // Yes color, using tail color
-	color_blend_mode = ICON_MULTIPLY  // The sprites for taurs are designed for ICON_MULTIPLY
-
-	//Could do nested lists but it started becoming a nightmare. It'd be more fun for lookups of a_intent and m_intent, but then subtypes need to
-	//duplicate all the messages, and it starts getting awkward. These are singletons, anyway!
-
-	//Messages to owner when stepping on/over
-	var/msg_owner_help_walk		= "You carefully step over %prey."
-	var/msg_owner_help_run		= "You carefully step over %prey."
-	var/msg_owner_harm_walk		= "You methodically place your foot down upon %prey's body, slowly applying pressure, crushing them against the floor below!"
-	var/msg_owner_harm_run		= "You carelessly step down onto %prey, crushing them!"
-	var/msg_owner_disarm_walk	= "You firmly push your foot down on %prey, painfully but harmlessly pinning them to the ground!"
-	var/msg_owner_disarm_run	= "You quickly push %prey to the ground with your foot!"
-	var/msg_owner_grab_fail		= "You step down onto %prey, squishing them and forcing them down to the ground!"
-	var/msg_owner_grab_success	= "You pin %prey down onto the floor with your foot and curl your toes up around their body, trapping them inbetween them!"
-
-	//Messages to prey when stepping on/over
-	var/msg_prey_help_walk		= "%owner steps over you carefully!"
-	var/msg_prey_help_run		= "%owner steps over you carefully!"
-	var/msg_prey_harm_walk		= "%owner methodically places their foot upon your body, slowly applying pressure, crushing you against the floor below!"
-	var/msg_prey_harm_run		= "%owner steps carelessly on your body, crushing you!"
-	var/msg_prey_disarm_walk	= "%owner firmly pushes their foot down on you, quite painfully but harmlessly pinning you to the ground!"
-	var/msg_prey_disarm_run		= "%owner pushes you down to the ground with their foot!"
-	var/msg_prey_grab_fail		= "%owner steps down and squishes you with their foot, forcing you down to the ground!"
-	var/msg_prey_grab_success	= "%owner pins you down to the floor with their foot and curls their toes up around your body, trapping you inbetween them!"
-
-	//Messages for smalls moving under larges
-	var/msg_owner_stepunder		= "%owner runs between your legs." //Weird becuase in the case this is used, %owner is the 'bumper' (src)
-	var/msg_prey_stepunder		= "You run between %prey's legs." //Same, inverse
-
-/datum/sprite_accessory/tail/taur/roiz_long_lizard // Not ACTUALLY a taur, but it uses 32x64 so it wouldn't fit in tails.dmi, and having it as a tail bugs up the sprite.
-	name = "Long Lizard Tail (Roiz Lizden)"
-	icon_state = "roiz_tail_s"
-	do_colouration = 0
-	ckeys_allowed = list("spoopylizz")
-
-/datum/sprite_accessory/tail/taur/wolf
-	name = "Wolf (Taur)"
-	icon_state = "wolf_s"
-
-/datum/sprite_accessory/tail/taur/wolf/wolf_2c
-	name = "Wolf dual-color (Taur)"
-	icon_state = "wolf_s"
-	extra_overlay = "wolf_markings"
-
-/datum/sprite_accessory/tail/taur/wolf/synthwolf
-	name = "SynthWolf dual-color (Taur)"
-	icon_state = "synthwolf_s"
-	extra_overlay = "synthwolf_markings"
-
-/datum/sprite_accessory/tail/taur/naga
-	name = "Naga (Taur)"
-	icon_state = "naga_s"
-
-	msg_owner_help_walk = "You carefully slither around %prey."
-	msg_prey_help_walk = "%owner's huge tail slithers past beside you!"
-
-	msg_owner_help_run = "You carefully slither around %prey."
-	msg_prey_help_run = "%owner's huge tail slithers past beside you!"
-
-	msg_owner_disarm_run = "Your tail slides over %prey, pushing them down to the ground!"
-	msg_prey_disarm_run = "%owner's tail slides over you, forcing you down to the ground!"
-
-	msg_owner_disarm_walk = "You push down on %prey with your tail, pinning them down under you!"
-	msg_prey_disarm_walk = "%owner pushes down on you with their tail, pinning you down below them!"
-
-	msg_owner_harm_run = "Your heavy tail carelessly slides past %prey, crushing them!"
-	msg_prey_harm_run = "%owner quickly goes over your body, carelessly crushing you with their heavy tail!"
-
-	msg_owner_harm_walk = "Your heavy tail slowly and methodically slides down upon %prey, crushing against the floor below!"
-	msg_prey_harm_walk = "%owner's thick, heavy tail slowly and methodically slides down upon your body, mercilessly crushing you into the floor below!"
-
-	msg_owner_grab_success = "You slither over %prey with your large, thick tail, smushing them against the ground before coiling up around them, trapping them within the tight confines of your tail!"
-	msg_prey_grab_success = "%owner slithers over you with their large, thick tail, smushing you against the ground before coiling up around you, trapping you within the tight confines of their tail!"
-
-	msg_owner_grab_fail = "You squish %prey under your large, thick tail, forcing them onto the ground!"
-	msg_prey_grab_fail = "%owner pins you under their large, thick tail, forcing you onto the ground!"
-
-	msg_prey_stepunder = "You jump over %prey's thick tail."
-	msg_owner_stepunder = "%owner bounds over your tail."
-
-/datum/sprite_accessory/tail/taur/naga/naga_2c
-	name = "Naga dual-color (Taur)"
-	icon_state = "naga_s"
-	extra_overlay = "naga_markings"
-
-/datum/sprite_accessory/tail/taur/horse
-	name = "Horse (Taur)"
-	icon_state = "horse_s"
-
-	msg_owner_disarm_run = "You quickly push %prey to the ground with your hoof!"
-	msg_prey_disarm_run = "%owner pushes you down to the ground with their hoof!"
-
-	msg_owner_disarm_walk = "You firmly push your hoof down on %prey, painfully but harmlessly pinning them to the ground!"
-	msg_prey_disarm_walk = "%owner firmly pushes their hoof down on you, quite painfully but harmlessly pinning you to the ground!"
-
-	msg_owner_harm_walk = "You methodically place your hoof down upon %prey's body, slowly applying pressure, crushing them against the floor below!"
-	msg_prey_harm_walk = "%owner methodically places their hoof upon your body, slowly applying pressure, crushing you against the floor below!"
-
-	msg_owner_grab_success = "You pin %prey to the ground before scooping them up with your hooves!"
-	msg_prey_grab_success = "%owner pins you to the ground before scooping you up with their hooves!"
-
-	msg_owner_grab_fail = "You step down onto %prey, squishing them and forcing them down to the ground!"
-	msg_prey_grab_fail = "%owner steps down and squishes you with their hoof, forcing you down to the ground!"
-
-/datum/sprite_accessory/tail/taur/horse/synthhorse
-	name = "SynthHorse dual-color (Taur)"
-	icon_state = "synthhorse_s"
-	extra_overlay = "synthhorse_markings"
-
-/datum/sprite_accessory/tail/taur/cow
-	name = "Cow (Taur)"
-	icon_state = "cow_s"
-
-	msg_owner_disarm_run = "You quickly push %prey to the ground with your hoof!"
-	msg_prey_disarm_run = "%owner pushes you down to the ground with their hoof!"
-
-	msg_owner_disarm_walk = "You firmly push your hoof down on %prey, painfully but harmlessly pinning them to the ground!"
-	msg_prey_disarm_walk = "%owner firmly pushes their hoof down on you, quite painfully but harmlessly pinning you to the ground!"
-
-	msg_owner_harm_walk = "You methodically place your hoof down upon %prey's body, slowly applying pressure, crushing them against the floor below!"
-	msg_prey_harm_walk = "%owner methodically places their hoof upon your body, slowly applying pressure, crushing you against the floor below!"
-
-	msg_owner_grab_success = "You pin %prey to the ground before scooping them up with your hooves!"
-	msg_prey_grab_success = "%owner pins you to the ground before scooping you up with their hooves!"
-
-	msg_owner_grab_fail = "You step down onto %prey, squishing them and forcing them down to the ground!"
-	msg_prey_grab_fail = "%owner steps down and squishes you with their hoof, forcing you down to the ground!"
-
-/datum/sprite_accessory/tail/taur/lizard
-	name = "Lizard (Taur)"
-	icon_state = "lizard_s"
-
-/datum/sprite_accessory/tail/taur/lizard/lizard_2c
-	name = "Lizard dual-color (Taur)"
-	icon_state = "lizard_s"
-	extra_overlay = "lizard_markings"
-
-/datum/sprite_accessory/tail/taur/lizard/synthlizard
-	name = "SynthLizard dual-color (Taur)"
-	icon_state = "synthlizard_s"
-	extra_overlay = "synthlizard_markings"
-
-/datum/sprite_accessory/tail/taur/spider
-	name = "Spider (Taur)"
-	icon_state = "spider_s"
-
-	msg_owner_disarm_run = "You quickly push %prey to the ground with your leg!"
-	msg_prey_disarm_run = "%owner pushes you down to the ground with their leg!"
-
-	msg_owner_disarm_walk = "You firmly push your leg down on %prey, painfully but harmlessly pinning them to the ground!"
-	msg_prey_disarm_walk = "%owner firmly pushes their leg down on you, quite painfully but harmlessly pinning you to the ground!"
-
-	msg_owner_harm_walk = "You methodically place your leg down upon %prey's body, slowly applying pressure, crushing them against the floor below!"
-	msg_prey_harm_walk = "%owner methodically places their leg upon your body, slowly applying pressure, crushing you against the floor below!"
-
-	msg_owner_grab_success = "You pin %prey down on the ground with your front leg before using your other leg to pick them up, trapping them between two of your front legs!"
-	msg_prey_grab_success = "%owner pins you down on the ground with their front leg before using their other leg to pick you up, trapping you between two of their front legs!"
-
-	msg_owner_grab_fail = "You step down onto %prey, squishing them and forcing them down to the ground!"
-	msg_prey_grab_fail = "%owner steps down and squishes you with their leg, forcing you down to the ground!"
-
-/datum/sprite_accessory/tail/taur/tents
-	name = "Tentacles (Taur)"
-	icon_state = "tent_s"
-
-	msg_prey_stepunder = "You run between %prey's tentacles."
-	msg_owner_stepunder = "%owner runs between your tentacles."
-
-	msg_owner_disarm_run = "You quickly push %prey to the ground with some of your tentacles!"
-	msg_prey_disarm_run = "%owner pushes you down to the ground with some of their tentacles!"
-
-	msg_owner_disarm_walk = "You push down on %prey with some of your tentacles, pinning them down firmly under you!"
-	msg_prey_disarm_walk = "%owner pushes down on you with some of their tentacles, pinning you down firmly below them!"
-
-	msg_owner_harm_run = "Your tentacles carelessly slide past %prey, crushing them!"
-	msg_prey_harm_run = "%owner quickly goes over your body, carelessly crushing you with their tentacles!"
-
-	msg_owner_harm_walk = "Your tentacles methodically apply pressure on %prey's body, crushing them against the floor below!"
-	msg_prey_harm_walk = "%owner's thick tentacles methodically apply pressure on your body, crushing you into the floor below!"
-
-	msg_owner_grab_success = "You slide over %prey with your tentacles, smushing them against the ground before wrapping one up around them, trapping them within the tight confines of your tentacles!"
-	msg_prey_grab_success = "%owner slides over you with their tentacles, smushing you against the ground before wrapping one up around you, trapping you within the tight confines of their tentacles!"
-
-	msg_owner_grab_fail = "You step down onto %prey with one of your tentacles, forcing them onto the ground!"
-	msg_prey_grab_fail = "%owner steps down onto you with one of their tentacles, squishing you and forcing you onto the ground!"
-
-/datum/sprite_accessory/tail/taur/feline
-	name = "Feline (Taur)"
-	icon_state = "feline_s"
-
-/datum/sprite_accessory/tail/taur/feline/feline_2c
-	name = "Feline dual-color (Taur)"
-	icon_state = "feline_s"
-	extra_overlay = "feline_markings"
-
-/datum/sprite_accessory/tail/taur/feline/synthfeline
-	name = "SynthFeline dual-color (Taur)"
-	icon_state = "synthfeline_s"
-	extra_overlay = "synthfeline_markings"
-
-/datum/sprite_accessory/tail/taur/slug
-	name = "Slug (Taur)"
-	icon_state = "slug_s"
-
-	msg_owner_help_walk = "You carefully slither around %prey."
-	msg_prey_help_walk = "%owner's huge tail slithers past beside you!"
-
-	msg_owner_help_run = "You carefully slither around %prey."
-	msg_prey_help_run = "%owner's huge tail slithers past beside you!"
-
-	msg_owner_disarm_run = "Your tail slides over %prey, pushing them down to the ground!"
-	msg_prey_disarm_run = "%owner's tail slides over you, forcing you down to the ground!"
-
-	msg_owner_disarm_walk = "You push down on %prey with your tail, pinning them down under you!"
-	msg_prey_disarm_walk = "%owner pushes down on you with their tail, pinning you down below them!"
-
-	msg_owner_harm_run = "Your heavy tail carelessly slides past %prey, crushing them!"
-	msg_prey_harm_run = "%owner quickly goes over your body, carelessly crushing you with their heavy tail!"
-
-	msg_owner_harm_walk = "Your heavy tail slowly and methodically slides down upon %prey, crushing against the floor below!"
-	msg_prey_harm_walk = "%owner's thick, heavy tail slowly and methodically slides down upon your body, mercilessly crushing you into the floor below!"
-
-	msg_owner_grab_success = "You slither over %prey with your large, thick tail, smushing them against the ground before coiling up around them, trapping them within the tight confines of your tail!"
-	msg_prey_grab_success = "%owner slithers over you with their large, thick tail, smushing you against the ground before coiling up around you, trapping you within the tight confines of their tail!"
-
-	msg_owner_grab_fail = "You squish %prey under your large, thick tail, forcing them onto the ground!"
-	msg_prey_grab_fail = "%owner pins you under their large, thick tail, forcing you onto the ground!"
-
-	msg_prey_stepunder = "You jump over %prey's thick tail."
-	msg_owner_stepunder = "%owner bounds over your tail."
-
-/datum/sprite_accessory/tail/taur/frog
-	name = "Frog (Taur)"
-	icon_state = "frog_s"
-
-/datum/sprite_accessory/tail/taur/drake //Enabling on request, no suit compatibility but then again see 2 above.
-	name = "Drake (Taur)"
-	icon_state = "drake_s"
-	extra_overlay = "drake_markings"
-
-/datum/sprite_accessory/tail/taur/otie
-	name = "Otie (Taur)"
-	icon_state = "otie_s"
-	extra_overlay = "otie_markings"
-
-//wickedtemp: Chakat Tempest
-/datum/sprite_accessory/tail/taur/feline/tempest
-	name = "Feline (wickedtemp) (Taur)"
-	icon_state = "tempest_s"
-	ckeys_allowed = list("wickedtemp")
-
-//silencedmp5a5: Serdykov Antoz
-/datum/sprite_accessory/tail/taur/wolf/serdy
-	name = "CyberSerdy (silencedmp5a5) (Taur)"
-	icon_state = "serdy_s"
-	ckeys_allowed = list("silencedmp5a5")
-
-//liquidfirefly: Ariana Scol
-/datum/sprite_accessory/tail/taur/centipede
-	name = "Centipede (liquidfirefly) (Taur)"
-	icon_state = "ariana_s"
-	ckeys_allowed = list("liquidfirefly")
-	do_colouration = 0
-
-	msg_owner_disarm_run = "You quickly push %prey to the ground with your leg!"
-	msg_prey_disarm_run = "%owner pushes you down to the ground with their leg!"
-
-	msg_owner_disarm_walk = "You firmly push your leg down on %prey, painfully but harmlessly pinning them to the ground!"
-	msg_prey_disarm_walk = "%owner firmly pushes their leg down on you, quite painfully but harmlessly pinning you to the ground!"
-
-	msg_owner_harm_walk = "You methodically place your leg down upon %prey's body, slowly applying pressure, crushing them against the floor below!"
-	msg_prey_harm_walk = "%owner methodically places their leg upon your body, slowly applying pressure, crushing you against the floor below!"
-
-	msg_owner_grab_success = "You pin %prey down on the ground with your front leg before using your other leg to pick them up, trapping them between two of your front legs!"
-	msg_prey_grab_success = "%owner pins you down on the ground with their front leg before using their other leg to pick you up, trapping you between two of their front legs!"
-
-	msg_owner_grab_fail = "You step down onto %prey, squishing them and forcing them down to the ground!"
-	msg_prey_grab_fail = "%owner steps down and squishes you with their leg, forcing you down to the ground!"
-
-//liquidfirefly: Ariana Scol
-/datum/sprite_accessory/tail/taur/alraune
-	name = "Alraune (natje) (Taur)"
-	icon_state = "alraune_s"
-	ani_state = "alraune_closed_s"
-	ckeys_allowed = list("natje")
-	do_colouration = 0
-
-	msg_owner_disarm_run = "You quickly push %prey to the ground with your leg!"
-	msg_prey_disarm_run = "%owner pushes you down to the ground with their leg!"
-
-	msg_owner_disarm_walk = "You firmly push your leg down on %prey, painfully but harmlessly pinning them to the ground!"
-	msg_prey_disarm_walk = "%owner firmly pushes their leg down on you, quite painfully but harmlessly pinning you to the ground!"
-
-	msg_owner_harm_walk = "You methodically place your leg down upon %prey's body, slowly applying pressure, crushing them against the floor below!"
-	msg_prey_harm_walk = "%owner methodically places their leg upon your body, slowly applying pressure, crushing you against the floor below!"
-
-	msg_owner_grab_success = "You pin %prey down on the ground with your front leg before using your other leg to pick them up, trapping them between two of your front legs!"
-	msg_prey_grab_success = "%owner pins you down on the ground with their front leg before using their other leg to pick you up, trapping you between two of their front legs!"
-
-	msg_owner_grab_fail = "You step down onto %prey, squishing them and forcing them down to the ground!"
-	msg_prey_grab_fail = "%owner steps down and squishes you with their leg, forcing you down to the ground!"
+	icon = 'icons/mob/vore/hair_accessories_vr.dmi'
+	do_colouration = 0 // Set to 1 to blend (ICON_ADD) hair color
+
+	var/ignores_lighting = 0 // Whether or not this hair accessory will ignore lighting and glow in the dark.
+	var/color_blend_mode = ICON_ADD // Only appliciable if do_coloration = 1
+	var/desc = "You should not see this..."
+
+/datum/sprite_accessory/hair_accessory/verie_hair_glow
+	name = "verie's hair glow"
+	desc = ""
+	icon_state = "verie_hair_glow"
+	ignores_lighting = 1
+	//ckeys_allowed = list("vitoras") // This probably won't come into play EVER but better safe than sorry
