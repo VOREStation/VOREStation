@@ -29,7 +29,7 @@
 
 /obj/item/device/integrated_circuit_printer/attack_robot(mob/user as mob)
 	if(Adjacent(user))
-		return interact(user)
+		return attack_self(user)
 	else
 		return ..()
 
@@ -86,11 +86,10 @@
 	return ..()
 
 /obj/item/device/integrated_circuit_printer/attack_self(var/mob/user)
-	interact(user)
 	tgui_interact(user)
 
 /obj/item/device/integrated_circuit_printer/tgui_state(mob/user)
-	return GLOB.tgui_inventory_state
+	return GLOB.tgui_physical_state
 
 /obj/item/device/integrated_circuit_printer/tgui_interact(mob/user, datum/tgui/ui)
 	if(dirty_items)
