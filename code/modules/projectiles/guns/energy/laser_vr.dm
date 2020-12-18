@@ -199,7 +199,7 @@
 	item_icons = list(slot_l_hand_str = 'icons/mob/items/lefthand_guns_vr.dmi', slot_r_hand_str = 'icons/mob/items/righthand_guns_vr.dmi', "slot_belt" = 'icons/mob/belt_vr.dmi')
 	fire_sound = 'sound/weapons/laser2.ogg'
 	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 2, TECH_POWER = 4)
-	charge_cost = 300
+	charge_cost = 400
 
 	battery_lock = 1
 	unacidable = 1
@@ -287,7 +287,7 @@
 	phase_power = 100
 
 	w_class = ITEMSIZE_SMALL
-	charge_cost = 600
+	charge_cost = 800
 	modifystate = "holdoutkill"
 	firemodes = list(
 		list(mode_name="lethal", fire_delay=12, projectile_type=/obj/item/projectile/beam, modifystate="holdoutkill", charge_cost = 600),
