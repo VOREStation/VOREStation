@@ -176,13 +176,13 @@ obj/machinery/gateway/centerstation/process()
 									MI.drop_from_inventory(II, loc)
 							var/obj/effect/landmark/finaldest = pick(awayabductors)
 							MI.Paralyse(10)
-							MI.forceMove(finaldest)
+							MI.forceMove(finaldest.loc)
 							MI << 'sound/effects/bamf.ogg'
 							to_chat(MI,"<span class='warning'>You're starting to come to. You feel like you've been out for a few minutes, at least...</span>")
 						L.drop_from_inventory(I, loc)
 				L.Paralyse(10)
 				var/obj/effect/landmark/finaldest = pick(awayabductors)
-				L.forceMove(finaldest)
+				L.forceMove(finaldest.loc)
 				L << 'sound/effects/bamf.ogg'
 				to_chat(L,"<span class='warning'>You're starting to come to. You feel like you've been out for a few minutes, at least...</span>")
 			//VOREStation Addition End
