@@ -148,6 +148,8 @@ obj/machinery/gateway/centerstation/process()
 			//VOREStation Addition Start: Abduction!
 			if(istype(M, /mob/living) && dest.abductor)
 				var/mob/living/L = M
+				L.Paralyse(10)
+				sleep(5)
 				//Situations to get the mob out of
 				if(L.buckled)
 					L.buckled.unbuckle_mob()
@@ -180,7 +182,6 @@ obj/machinery/gateway/centerstation/process()
 							MI << 'sound/effects/bamf.ogg'
 							to_chat(MI,"<span class='warning'>You're starting to come to. You feel like you've been out for a few minutes, at least...</span>")
 						L.drop_from_inventory(I, loc)
-				L.Paralyse(10)
 				var/obj/effect/landmark/finaldest = pick(awayabductors)
 				L.forceMove(finaldest.loc)
 				L << 'sound/effects/bamf.ogg'
