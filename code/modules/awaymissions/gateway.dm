@@ -169,15 +169,16 @@ obj/machinery/gateway/centerstation/process()
 							var/obj/item/weapon/holder/H = I
 							var/mob/living/MI = H.held_mob
 							MI.forceMove(get_turf(H))
-							for(var/obj/item/II in MI)
-								if(istype(II,/obj/item/weapon/implant) || istype(II,/obj/item/device/nif))
-									continue
-								MI.drop_from_inventory(II, loc)
-								MI.Paralyse(10)
-								var/obj/effect/landmark/finaldest = pick(awayabductors)
-								MI.forceMove(finaldest)
-								MI << 'sound/effects/bamf.ogg'
-								to_chat(MI,"<span class='warning'>You're starting to come to. You feel like you've been out for a few minutes, at least...</span>")
+							if(!issilicon(MI)) //Don't drop borg modules...
+								for(var/obj/item/II in MI)
+									if(istype(II,/obj/item/weapon/implant) || istype(II,/obj/item/device/nif))
+										continue
+									MI.drop_from_inventory(II, loc)
+							var/obj/effect/landmark/finaldest = pick(awayabductors)
+							MI.Paralyse(10)
+							MI.forceMove(finaldest)
+							MI << 'sound/effects/bamf.ogg'
+							to_chat(MI,"<span class='warning'>You're starting to come to. You feel like you've been out for a few minutes, at least...</span>")
 						L.drop_from_inventory(I, loc)
 				L.Paralyse(10)
 				var/obj/effect/landmark/finaldest = pick(awayabductors)
