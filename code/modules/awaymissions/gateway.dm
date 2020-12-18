@@ -145,11 +145,11 @@ obj/machinery/gateway/centerstation/process()
 		if(dest)
 			M.forceMove(dest.loc)
 			M.set_dir(SOUTH)
+			sleep(100)
 			//VOREStation Addition Start: Abduction!
 			if(istype(M, /mob/living) && dest.abductor)
 				var/mob/living/L = M
 				L.Paralyse(10)
-				sleep(5)
 				//Situations to get the mob out of
 				if(L.buckled)
 					L.buckled.unbuckle_mob()
