@@ -29,7 +29,7 @@
 
 /obj/item/device/integrated_circuit_printer/attack_robot(mob/user as mob)
 	if(Adjacent(user))
-		return attack_self(user)
+		return tgui_interact(user)
 	else
 		return ..()
 
