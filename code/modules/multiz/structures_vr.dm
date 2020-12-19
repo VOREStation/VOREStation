@@ -90,25 +90,28 @@
 			else if(istype(L.loc,/obj/machinery/recharge_station))
 				var/obj/machinery/recharge_station/RS = L.loc
 				RS.go_out()
-				if(!issilicon(L)) //Don't drop borg modules...
+			if(!issilicon(L)) //Don't drop borg modules...
+				var/list/mob_contents = list() //Things which are actually drained as a result of the above not being null.
+				mob_contents |= L // The recursive check below does not add the object being checked to its list.
+				mob_contents |= recursive_content_check(L, mob_contents, recursion_limit = 3, client_check = 0, sight_check = 0, include_mobs = 1, include_objects = 1, ignore_show_messages = 1)
+				for(var/obj/item/weapon/holder/I in mob_contents)
+					var/obj/item/weapon/holder/H = I
+					var/mob/living/MI = H.held_mob
+					MI.forceMove(get_turf(H))
+					if(!issilicon(MI)) //Don't drop borg modules...
+						for(var/obj/item/II in MI)
+							if(istype(II,/obj/item/weapon/implant) || istype(II,/obj/item/device/nif))
+								continue
+							MI.drop_from_inventory(II, loc)
+					var/obj/effect/landmark/finaldest = pick(awayabductors)
+					MI.forceMove(finaldest.loc)
+					sleep(1)
+					MI.Paralyse(10)
+					MI << 'sound/effects/bamf.ogg'
+					to_chat(MI,"<span class='warning'>You're starting to come to. You feel like you've been out for a few minutes, at least...</span>")
 				for(var/obj/item/I in L)
 					if(istype(I,/obj/item/weapon/implant) || istype(I,/obj/item/device/nif))
 						continue
-					if(istype(I,/obj/item/weapon/holder))
-						var/obj/item/weapon/holder/H = I
-						var/mob/living/MI = H.held_mob
-						MI.forceMove(get_turf(H))
-						if(!issilicon(MI)) //Don't drop borg modules...
-							for(var/obj/item/II in MI)
-								if(istype(II,/obj/item/weapon/implant) || istype(II,/obj/item/device/nif))
-									continue
-								MI.drop_from_inventory(II, loc)
-						var/obj/effect/landmark/finaldest = pick(awayabductors)
-						MI.forceMove(finaldest.loc)
-						sleep(1)
-						MI.Paralyse(10)
-						MI << 'sound/effects/bamf.ogg'
-						to_chat(MI,"<span class='warning'>You're starting to come to. You feel like you've been out for a few minutes, at least...</span>")
 					L.drop_from_inventory(I, dest.loc)
 			var/obj/effect/landmark/finaldest = pick(awayabductors)
 			L.forceMove(finaldest.loc)
