@@ -145,7 +145,6 @@ obj/machinery/gateway/centerstation/process()
 		if(dest)
 			M.forceMove(dest.loc)
 			M.set_dir(SOUTH)
-			sleep(100)
 			//VOREStation Addition Start: Abduction!
 			if(istype(M, /mob/living) && dest.abductor)
 				var/mob/living/L = M
@@ -181,7 +180,7 @@ obj/machinery/gateway/centerstation/process()
 							MI.forceMove(finaldest.loc)
 							MI << 'sound/effects/bamf.ogg'
 							to_chat(MI,"<span class='warning'>You're starting to come to. You feel like you've been out for a few minutes, at least...</span>")
-						L.drop_from_inventory(I, loc)
+						L.drop_from_inventory(I, dest.loc)
 				var/obj/effect/landmark/finaldest = pick(awayabductors)
 				L.forceMove(finaldest.loc)
 				L << 'sound/effects/bamf.ogg'
