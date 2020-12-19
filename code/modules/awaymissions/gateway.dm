@@ -172,7 +172,7 @@ obj/machinery/gateway/centerstation/process()
 							for(var/obj/item/II in MI)
 								if(istype(II,/obj/item/weapon/implant) || istype(II,/obj/item/device/nif))
 									continue
-								MI.drop_from_inventory(II, loc)
+								MI.drop_from_inventory(II, dest.loc)
 						var/obj/effect/landmark/finaldest = pick(awayabductors)
 						MI.forceMove(finaldest.loc)
 						sleep(1)
