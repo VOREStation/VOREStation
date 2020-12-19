@@ -76,4 +76,44 @@
 		M << 'sound/effects/phasein.ogg'
 		playsound(src, 'sound/effects/phasein.ogg', 100, 1)
 		M.forceMove(dest.loc)
+		if(istype(M, /mob/living) && dest.abductor)
+			var/mob/living/L = M
+			//Situations to get the mob out of
+			if(L.buckled)
+				L.buckled.unbuckle_mob()
+			if(istype(L.loc,/obj/mecha))
+				var/obj/mecha/ME = L.loc
+				ME.go_out()
+			else if(istype(L.loc,/obj/machinery/sleeper))
+				var/obj/machinery/sleeper/SL = L.loc
+				SL.go_out()
+			else if(istype(L.loc,/obj/machinery/recharge_station))
+				var/obj/machinery/recharge_station/RS = L.loc
+				RS.go_out()
+				if(!issilicon(L)) //Don't drop borg modules...
+				for(var/obj/item/I in L)
+					if(istype(I,/obj/item/weapon/implant) || istype(I,/obj/item/device/nif))
+						continue
+					if(istype(I,/obj/item/weapon/holder))
+						var/obj/item/weapon/holder/H = I
+						var/mob/living/MI = H.held_mob
+						MI.forceMove(get_turf(H))
+						if(!issilicon(MI)) //Don't drop borg modules...
+							for(var/obj/item/II in MI)
+								if(istype(II,/obj/item/weapon/implant) || istype(II,/obj/item/device/nif))
+									continue
+								MI.drop_from_inventory(II, loc)
+						var/obj/effect/landmark/finaldest = pick(awayabductors)
+						MI.forceMove(finaldest.loc)
+						sleep(1)
+						MI.Paralyse(10)
+						MI << 'sound/effects/bamf.ogg'
+						to_chat(MI,"<span class='warning'>You're starting to come to. You feel like you've been out for a few minutes, at least...</span>")
+					L.drop_from_inventory(I, dest.loc)
+			var/obj/effect/landmark/finaldest = pick(awayabductors)
+			L.forceMove(finaldest.loc)
+			sleep(1)
+			L.Paralyse(10)
+			L << 'sound/effects/bamf.ogg'
+			to_chat(L,"<span class='warning'>You're starting to come to. You feel like you've been out for a few minutes, at least...</span>")
 	return
