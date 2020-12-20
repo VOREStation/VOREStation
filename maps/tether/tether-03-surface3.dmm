@@ -2460,7 +2460,7 @@
 	dir = 10
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals4,
-/obj/machinery/button/windowtint/doortint{
+/obj/machinery/button/windowtint/multitint{
 	id = "medbayfoyer";
 	pixel_x = -8;
 	pixel_y = -24
@@ -26246,33 +26246,9 @@
 /area/tether/surfacebase/medical/storage)
 "aSM" = (
 /obj/structure/grille,
-/obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/simulated/floor/plating,
-/area/tether/surfacebase/medical/triage)
-"aSN" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/machinery/door/firedoor,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 4
+/obj/structure/window/reinforced/polarized/full{
+	id = "medbayfoyer"
 	},
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/medical/triage)
@@ -55536,7 +55512,7 @@ acR
 aap
 akb
 aFC
-aSN
+aSM
 ahY
 afz
 bnX
