@@ -39,7 +39,7 @@
 	economic_modifier = 20
 	whitelist_only = 1
 	latejoin_only = 1
-	outfit_type = /decl/hierarchy/outfit/job/centcom_officer
+	outfit_type = /decl/hierarchy/outfit/job/emergency_responder
 	job_description = "Emergency Responders are usually called in to deal with on-station emergencies that the crew require assistance to deal with."
 
 	minimum_character_age = 18
