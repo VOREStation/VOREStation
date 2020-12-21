@@ -59,7 +59,7 @@
 /mob/living/simple_mob/vore/aggressive/dragon
 	vore_active = 1
 	vore_capacity = 2
-	vore_pounce_chance = 0 // Beat them into crit before eating.
+	vore_pounce_chance = 50 // Beat them into crit before eating.
 	vore_icons = SA_ICON_LIVING
 
 /mob/living/simple_mob/vore/aggressive/dragon/virgo3b
@@ -87,3 +87,32 @@
 
 /datum/say_list/dragonboss
 	say_got_target = list("roars and snaps it jaws!")
+	
+/mob/living/simple_mob/vore/dragon/virgob3b/init_vore()
+	. = ..()
+	var/obj/belly/B = vore_selected
+	B.name = "Belly"
+	B.desc = "The phoron dragon tackles you to the ground with a mighty roar, swiftly gobbling up your head! You feel the gravity shift as it raises it's head up in pride, bobbing you up and down as it busily swallowed around your form. You start to realise that the warm fluid that you mistook for it's saliva has a strong and somewhat familiar scent, but before you can identify it, your ride is over - with a powerful swallow, the dragon pushes the entirety of your body down into it's stomach, with more of that strange liquid pooling up on the bottom. As you push out in protest against the surrounding walls, you realise that the flesh feels squishy and sponge-like under your digits, coating them in dark, pink substance... A pleased rumble from above tells you that the dragon clearly doesn't seem to mind your futile struggles, clenching its stomach around you possessively!"
+
+	B.emote_lists[DM_HOLD] = list(
+		"The sway of the dragon's belly sloshes the purple tinted fluid around you, splashing it all over your body.",
+		"You can feel a small prod from the outside as the dragon accidentally brushes his gut against a wall. The soft flesh cushions it just enough for it to be barely noticeable...",
+		"You briefly get lost in thoughts as you listen to the noises the dragon's body emits... A slightly muffled snort from above that is enough for you to snap back.",
+		"A sizeable paw smacks on the side of the dragon's belly, kneading into you through the thick layer of flesh while a low, ominous chuckle can be heard.",
+		"A low, guttural grumble can be heard all around you as the dragon idly flumps down, bringing its weight down to smoosh you against the bottom of its gut!",
+		"You can feel a faint, rythmic thumping coming off from the sides of the belly - it doesn't take long to realise that the dragon is drumming on its stuffed gut with its wings.",
+		"The dragon sways its hips briefly, making its stomach - and by extension, you - sway along, letting out an ammused rumble!",
+		"You can feel the stomach clench around you, briefly pushing you out towards the dragon's gullet, but before you can gather your wits, it simply swallows you back down with a taunting rumble.",
+		"You sigh and idly drag your hand over the stomach walls, silently pondering your life choices. It surprises you to feel a large paw tracing your movements from outside!")
+
+	B.emote_lists[DM_DIGEST] = list(
+		"The sway of the dragon's belly sloshes the purple tinted fluid around you, splashing it all over your body.",
+		"You can feel a small prod from the outside as the dragon accidentally brushes his gut against a wall. The soft flesh cushions it just enough for it to be barely noticeable...",
+		"A sizeable paw smacks on the side of the dragon's belly, kneading into you through the thick layer of flesh while a low, ominous chuckle can be heard.",
+		"A low, guttural grumble can be heard all around you as the dragon idly flumps down, bringing its weight down to smoosh you against the bottom of its gut!",
+		"You can feel a faint, rythmic thumping coming off from the sides of the belly - it doesn't take long to realise that the dragon is drumming on its stuffed gut with its wings.",
+		"The dragon sways its hips briefly, making its stomach - and by extension, you - sway along, letting out an ammused rumble!",
+		"You can feel the stomach clench around you, briefly pushing you out towards the dragon's gullet, but before you can gather your wits, it simply swallows you back down with a taunting rumble.")
+
+ //Didnt put in since it works better as active struggle messages, but not gonna write any at the moment :c
+ //You struggle to push out against the surrounding flesh, but as soon as you ease up on the pressure, the dragon's gut simply pushes back to hide the bulge.
