@@ -235,7 +235,7 @@ datum/preferences
 		to_chat(user, "<span class='danger'>No mob exists for the given client!</span>")
 		close_load_dialog(user)
 		return
-	
+
 	if(!char_render_holders)
 		update_preview_icon()
 	show_character_previews()
@@ -280,7 +280,7 @@ datum/preferences
 		client.screen |= BG
 	BG.icon_state = bgstate
 	BG.screen_loc = preview_screen_locs["BG"]
-	
+
 	for(var/D in global.cardinal)
 		var/obj/screen/setup_preview/O = LAZYACCESS(char_render_holders, "[D]")
 		if(!O)
@@ -400,13 +400,15 @@ datum/preferences
 	if(S)
 		dat += "<b>Select a character slot to load</b><hr>"
 		var/name
+		var/nickname //vorestation edit - This set appends nicknames to the save slot
 		for(var/i=1, i<= config.character_slots, i++)
 			S.cd = "/character[i]"
 			S["real_name"] >> name
+			S["nickname"] >> nickname //vorestation edit
 			if(!name)	name = "Character[i]"
 			if(i==default_slot)
 				name = "<b>[name]</b>"
-			dat += "<a href='?src=\ref[src];changeslot=[i]'>[name]</a><br>"
+			dat += "<a href='?src=\ref[src];changeslot=[i]'>[name][nickname ? " ([nickname])" : ""]</a><br>" //vorestation edit
 
 	dat += "<hr>"
 	dat += "</center></tt>"
