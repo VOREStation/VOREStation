@@ -433,6 +433,7 @@
 						qdel(W)
 
 		if(!preserve)
+			GLOB.moved_event.unregister(src, W) // Unregisters the /decl/observ/moved event so it doesn't produce a debug log on deletion
 			qdel(W)
 		else
 			log_special_item(W,to_despawn) //VOREStation Add

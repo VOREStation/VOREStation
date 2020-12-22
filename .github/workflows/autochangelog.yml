@@ -1,0 +1,35 @@
+name: Autochangelog
+on: pull_request:
+    branches:
+        - master
+        
+env:
+    BASENAME: "polaris"
+
+jobs:
+    autochangelog:
+        if: github.event.pull_request.merged == 'true'
+        steps:
+          - uses: /actions/checkout@v2
+          - name: Ensure +x on CI directory
+          - run: |
+                chmod -R +x ./tools/ci
+          - uses: actions/setup-python@v2
+                with:
+                    python-version: '3.6.4'
+                    architecture: 'x64'
+          - name: Generate Changelog
+            run: |
+                python tools/GenerateChangelog/autochangelog.py \
+                    html/changelogs \
+                    ${{ github.event.pull_request.author }}\
+                    ${{ github.event.pull_request.body }}\
+                    ${{ github.event.pull_request.number }}
+                python tools/GenerateChangelog/genchangelog.py \
+                    html/changelog.html \
+                    html/changelogs
+          - uses: stefanzweifel/git-auto-commit-action@v4
+            with:
+                commit_message: Automatic changelog generation for ${{ github.events.pull_request.number }}
+                branch: ${{ github.events.pull_request.base }}
+                commit_user_name: Autochangelog Bot
