@@ -99,8 +99,13 @@
 				H.adjustBrainLoss(-(rand(1,3)))
 
 			// Also recharge their internal battery.
+<<<<<<< HEAD
 			if(H.isSynthetic() && H.nutrition < 500) //VOREStation Edit
 				H.nutrition = min(H.nutrition+10, 500) //VOREStation Edit
+=======
+			if(H.isSynthetic() && H.nutrition < MAX_NUTRITION)
+				H.nutrition = min(H.nutrition+10, MAX_NUTRITION)
+>>>>>>> f1cd1d5... cyborg charger hardsuit functionality (#7785)
 				cell.use(7000/450*10)
 
 			// And clear up radiation
