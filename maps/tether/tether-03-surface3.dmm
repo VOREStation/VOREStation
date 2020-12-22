@@ -3008,9 +3008,15 @@
 /obj/effect/floor_decal/corner/red/border{
 	dir = 5
 	},
-/obj/structure/sign/poster{
-	pixel_x = 32
+/obj/structure/closet/walllocker_double{
+	dir = 4;
+	pixel_x = 28
 	},
+/obj/item/device/flash,
+/obj/item/device/flash,
+/obj/random/drinkbottle,
+/obj/item/device/camera_film,
+/obj/item/device/tape/random,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/iaa/officecommon)
 "aeu" = (
@@ -30675,10 +30681,6 @@
 	dir = 1;
 	pixel_y = -25
 	},
-/obj/machinery/computer/security/telescreen/entertainment{
-	icon_state = "frame";
-	pixel_x = 32
-	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
 "baX" = (
@@ -37136,7 +37138,7 @@
 	},
 /obj/structure/window/reinforced/polarized{
 	dir = 8;
-	id = "cmo_office"
+	id = "iaar"
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/iaa/officeb)
@@ -37151,7 +37153,7 @@
 	},
 /obj/structure/window/reinforced/polarized{
 	dir = 8;
-	id = "cmo_office"
+	id = "iaar"
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/iaa/officeb)
@@ -37161,7 +37163,7 @@
 	},
 /obj/structure/window/reinforced/polarized{
 	dir = 8;
-	id = "cmo_office"
+	id = "iaar"
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/iaa/officeb)
@@ -37171,7 +37173,7 @@
 	},
 /obj/structure/window/reinforced/polarized{
 	dir = 8;
-	id = "cmo_office"
+	id = "iaar"
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/iaa/officeb)
@@ -37364,10 +37366,16 @@
 /obj/effect/floor_decal/spline/plain{
 	dir = 8
 	},
-/obj/machinery/alarm{
-	dir = 4;
-	pixel_x = -22
+/obj/structure/closet/walllocker_double{
+	dir = 8;
+	pixel_x = -28
 	},
+/obj/item/device/camera,
+/obj/item/device/camera_film,
+/obj/item/device/taperecorder,
+/obj/item/device/tape/random,
+/obj/item/device/tape/random,
+/obj/item/weapon/storage/secure/briefcase,
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/iaa/officea)
 "ceN" = (
@@ -39959,6 +39967,9 @@
 /obj/effect/floor_decal/spline/plain{
 	dir = 5
 	},
+/obj/machinery/alarm{
+	pixel_y = 22
+	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/iaa/officeb)
 "mDf" = (
@@ -41216,6 +41227,9 @@
 /obj/effect/floor_decal/spline/plain{
 	dir = 9
 	},
+/obj/machinery/alarm{
+	pixel_y = 22
+	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/iaa/officea)
 "rEZ" = (
@@ -41604,6 +41618,13 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/breakroom)
+"taN" = (
+/obj/machinery/computer/security/telescreen/entertainment{
+	icon_state = "frame";
+	pixel_x = -64
+	},
+/turf/simulated/floor/wood,
+/area/crew_quarters/bar)
 "tcW" = (
 /obj/effect/shuttle_landmark{
 	base_area = /area/tether/surfacebase/shuttle_pad;
@@ -42122,6 +42143,16 @@
 /obj/effect/floor_decal/spline/plain,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
+	},
+/obj/item/weapon/paper_bin,
+/obj/item/weapon/pen,
+/obj/item/weapon/pen/blue{
+	pixel_x = 2;
+	pixel_y = 3
+	},
+/obj/item/weapon/pen/blade/red{
+	pixel_x = -2;
+	pixel_y = -2
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/iaa/officea)
@@ -42805,10 +42836,16 @@
 /obj/effect/floor_decal/spline/plain{
 	dir = 4
 	},
-/obj/machinery/alarm{
-	dir = 8;
-	pixel_x = 22
+/obj/structure/closet/walllocker_double{
+	dir = 4;
+	pixel_x = 28
 	},
+/obj/item/device/camera,
+/obj/item/device/camera_film,
+/obj/item/device/taperecorder,
+/obj/item/device/tape/random,
+/obj/item/device/tape/random,
+/obj/item/weapon/storage/secure/briefcase,
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/iaa/officeb)
 "xHg" = (
@@ -42959,6 +42996,16 @@
 /obj/effect/floor_decal/spline/plain,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
+	},
+/obj/item/weapon/paper_bin,
+/obj/item/weapon/pen,
+/obj/item/weapon/pen/blade/red{
+	pixel_x = -2;
+	pixel_y = -2
+	},
+/obj/item/weapon/pen/blue{
+	pixel_x = 2;
+	pixel_y = 3
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/iaa/officeb)
@@ -57539,7 +57586,7 @@ bfe
 avy
 bgf
 avM
-asX
+taN
 asX
 aIl
 aHB
