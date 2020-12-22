@@ -10,7 +10,6 @@
 	var/obj/machinery/mineral/input = null
 	var/obj/machinery/mineral/output = null
 
-
 /obj/machinery/mineral/unloading_machine/Initialize()
 	. = ..()
 	for(var/dir in cardinal)

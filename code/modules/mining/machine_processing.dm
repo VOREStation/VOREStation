@@ -67,7 +67,13 @@
 			"points" = inserted_id.mining_points,
 		)
 	else
+<<<<<<< HEAD
 		data["has_id"] = FALSE
+=======
+		dat += "No ID inserted.  <A href='?src=\ref[src];choice=insert'>Insert ID.</A><br>"
+	dat += "High-speed processing is <A href='?src=\ref[src];toggle_speed=1'>[(machine.speed_process ? "<font color='green'>active</font>" : "<font color='red'>inactive</font>")]."
+	dat += "<hr><table>"
+>>>>>>> 8c790d9... A Thing About Digging Sand and Mineral Processor Speed (#7778)
 
 	data["ores"] = list()
 	for(var/ore in machine.ores_processing)
@@ -89,6 +95,7 @@
 
 	return data
 
+<<<<<<< HEAD
 /obj/machinery/mineral/processing_unit_console/tgui_act(action, list/params)
 	if(..())
 		return TRUE
@@ -123,6 +130,18 @@
 			. = TRUE
 		if("claim")
 			if(istype(inserted_id))
+=======
+	if(href_list["toggle_speed"])
+
+		machine.toggle_speed()
+
+	if(href_list["choice"])
+		if(istype(inserted_id))
+			if(href_list["choice"] == "eject")
+				usr.put_in_hands(inserted_id)
+				inserted_id = null
+			if(href_list["choice"] == "claim")
+>>>>>>> 8c790d9... A Thing About Digging Sand and Mineral Processor Speed (#7778)
 				if(access_mining_station in inserted_id.access)
 					inserted_id.mining_points += machine.points
 					machine.points = 0
@@ -162,6 +181,7 @@
 	var/list/ores_stored[0]
 	var/static/list/alloy_data
 	var/active = FALSE
+	var/tick = 0
 
 	var/points = 0
 	var/static/list/ore_values = list(
@@ -227,7 +247,10 @@
 	for(var/obj/machinery/mineral/stacking_machine/stacker in refinery_area.contents)
 		stacker.toggle_speed()
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8c790d9... A Thing About Digging Sand and Mineral Processor Speed (#7778)
 /obj/machinery/mineral/processing_unit/process()
 
 	if (!src.output || !src.input)
@@ -237,6 +260,8 @@
 		return
 
 	var/list/tick_alloys = list()
+	if(speed_process)
+		tick++
 
 	//Grab some more ore to process this tick.
 	for(var/obj/item/weapon/ore/O in input.loc)
@@ -327,7 +352,11 @@
 		else
 			continue
 
-	console.updateUsrDialog()
+	if(!(tick % 10) && speed_process)
+		console.updateUsrDialog()
+		tick = 0
+	else
+		console.updateUsrDialog()
 
 #undef PROCESS_NONE
 #undef PROCESS_SMELT
