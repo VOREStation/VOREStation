@@ -231,6 +231,34 @@
 	allow_duplicates = FALSE
 	discard_prob = 50
 
+/datum/map_template/debrisfield/new_escape_pod
+	name = "Escape Pod"
+	mappath = 'new_escapepod.dmm'
+	cost = 10
+	allow_duplicates = FALSE
+	discard_prob = 10
+	
+/datum/map_template/debrisfield/new_escape_pod_infested_xeno
+	name = "Xeno-Infested Escape Pod"
+	mappath = 'new_escapepod_xeno.dmm'
+	cost = 20
+	allow_duplicates = FALSE
+	discard_prob = 25
+	
+/datum/map_template/debrisfield/new_escape_pod_infested_carp
+	name = "Carp-Infested Escape Pod"
+	mappath = 'new_escapepod_carp.dmm'
+	cost = 20
+	allow_duplicates = FALSE
+	discard_prob = 25
+
+/datum/map_template/debrisfield/new_escape_pod_infested_robo
+	name = "Robo-Infested Escape Pod"
+	mappath = 'new_escapepod_robo.dmm'
+	cost = 20
+	allow_duplicates = FALSE
+	discard_prob = 25
+
 /datum/map_template/debrisfield/gutted_mackerel
 	name = "Gutted Mackerel LC"
 	mappath = 'maps/offmap_vr/om_ships/mackerel_lc_wreck.dmm'
