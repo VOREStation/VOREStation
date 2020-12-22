@@ -448,6 +448,10 @@
 	},
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/shuttle/salamander_wreck_cockpit)
+"gx" = (
+/obj/structure/prop/blackbox/salamander_wreck,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_wreck)
 "gC" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled/techfloor{
@@ -2322,7 +2326,7 @@ ON
 mO
 VT
 Vs
-qQ
+gx
 VT
 WP
 "}
