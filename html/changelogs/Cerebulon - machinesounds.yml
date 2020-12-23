@@ -1,3 +1,4 @@
+<<<<<<< HEAD:html/changelogs/Cerebulon - machinesounds.yml
 ################################
 # Example Changelog File
 #
@@ -25,12 +26,9 @@
 author: Cerebulon
 
 # Optional: Remove this file after generating master changelog.  Useful for PR changelogs that won't get used again.
+=======
+author: RunaDacino
+>>>>>>> 969dc94... Experimental: adds workflow to autoupdate changelog (#7799):html/changelogs/Runa Dacino - trauma mod.yml
 delete-after: True
-
-# Any changes you've made.  See valid prefix list above.
-# INDENT WITH TWO SPACES.  NOT TABS.  SPACES.
-# SCREW THIS UP AND IT WON'T WORK.
-# Also, all entries are changed into a single [] after a master changelog generation. Just remove the brackets when you add new entries.
-# Please surround your changes in  double quotes ("), as certain characters otherwise screws up compiling. The quotes will not show up in the changelog.
 changes: 
   - soundadd: "Added button sounds to various machines."
