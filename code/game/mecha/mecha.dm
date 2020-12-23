@@ -1803,6 +1803,14 @@
 	set src in oview(1)
 	move_inside()
 
+//returns an equipment object if we have one of that type, useful since is_type_in_list won't return the object
+//since is_type_in_list uses caching, this is a slower operation, so only use it if needed
+/obj/mecha/proc/get_equipment(var/equip_type)
+	for(var/obj/item/mecha_parts/mecha_equipment/ME in equipment)
+		if(istype(ME,equip_type))
+			return ME
+	return null
+
 /obj/mecha/proc/move_inside()
 	if (usr.stat || !ishuman(usr))
 		return
@@ -1843,18 +1851,22 @@
 			return
 
 //	to_chat(usr, "You start climbing into [src.name]")
-
-	visible_message("<span class='notice'>\The [usr] starts to climb into [src.name]</span>")
-
-	if(enter_after(40,usr))
-		if(!src.occupant)
-			moved_inside(usr)
-			if(ishuman(occupant)) //Aeiou
-				GrantActions(occupant, 1)
-		else if(src.occupant!=usr)
-			to_chat(usr, "[src.occupant] was faster. Try better next time, loser.")
+	if(get_equipment(/obj/item/mecha_parts/mecha_equipment/runningboard))
+		visible_message("<span class='notice'>\The [usr] is instantly lifted into [src.name] by the running board!</span>")
+		moved_inside(usr)
+		if(ishuman(occupant))
+			GrantActions(occupant, 1)
 	else
-		to_chat(usr, "You stop entering the exosuit.")
+		visible_message("<span class='notice'>\The [usr] starts to climb into [src.name]</span>")
+		if(enter_after(40,usr))
+			if(!src.occupant)
+				moved_inside(usr)
+				if(ishuman(occupant)) //Aeiou
+					GrantActions(occupant, 1)
+			else if(src.occupant!=usr)
+				to_chat(usr, "[src.occupant] was faster. Try better next time, loser.")
+		else
+			to_chat(usr, "You stop entering the exosuit.")
 	return
 
 /obj/mecha/proc/moved_inside(var/mob/living/carbon/human/H as mob)
