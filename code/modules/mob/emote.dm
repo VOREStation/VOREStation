@@ -37,6 +37,7 @@
 			var/mob/M = mob
 			spawn(0) // It's possible that it could be deleted in the meantime, or that it runtimes.
 				if(M)
+<<<<<<< HEAD
 					//VOREStation edit
 					if(istype(M, /mob/observer/dead/))
 						var/mob/observer/dead/D = M
@@ -45,6 +46,11 @@
 					else
 						M.show_message(message, m_type)
 					//End VOREStation edit
+=======
+					if(isobserver(M))
+						message = "<span class='emote'><B>[src]</B> ([ghost_follow_link(src, M)]) [input]</span>"
+					M.show_message(message, m_type)
+>>>>>>> 47c1641... Merge pull request #7796 from Atermonera/ghost_emote
 
 		for(var/obj in o_viewers)
 			var/obj/O = obj
