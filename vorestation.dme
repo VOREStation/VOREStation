@@ -988,6 +988,7 @@
 #include "code\game\mecha\equipment\tools\powertool.dm"
 #include "code\game\mecha\equipment\tools\rcd.dm"
 #include "code\game\mecha\equipment\tools\repair_droid.dm"
+#include "code\game\mecha\equipment\tools\running_board.dm"
 #include "code\game\mecha\equipment\tools\shield.dm"
 #include "code\game\mecha\equipment\tools\shield_omni.dm"
 #include "code\game\mecha\equipment\tools\sleeper.dm"
