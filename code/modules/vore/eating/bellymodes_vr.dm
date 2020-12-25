@@ -56,7 +56,7 @@
 
 	var/datum/digest_mode/DM = GLOB.digest_modes["[digest_mode]"]
 	if(!DM)
-		log_debug("Digest mode [digest_mode] didn't exist in the digest_modes list!!")	
+		log_debug("Digest mode [digest_mode] didn't exist in the digest_modes list!!")
 		return FALSE
 
 	if(!digestion_noise_chance)
@@ -89,7 +89,7 @@
 				else
 					M.playsound_local(owner.loc, play_sound, vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF)
 				 //these are all external sound triggers now, so it's ok.
-	
+
 	if(to_update)
 		updateVRPanels()
 
@@ -146,7 +146,7 @@
 							digestion_noise_chance = 25
 							to_update = TRUE
 							break // Digest off one by one, not all at once
-							
+
 		//get rid of things like blood drops and gibs that end up in there
 		else if(istype(A, /obj/effect/decal/cleanable))
 			qdel(A)
@@ -215,7 +215,7 @@
 	if(compensation > 0)
 		if(isrobot(owner))
 			var/mob/living/silicon/robot/R = owner
-			R.cell.charge += 25*compensation
+			R.cell.charge += 25*compensation*(nutrition_percent / 100)
 		else
 			owner.adjust_nutrition((nutrition_percent / 100)*4.5*compensation)
 
