@@ -79,7 +79,7 @@
 /obj/item/toy/plushie/vox/attack_self(mob/user as mob)
 	if(!cooldown)
 		playsound(user, 'sound/voice/shriek1.ogg', 10, 0)
-		visible_message("<span class='danger'>Skreee!</span>")
+		src.visible_message("<span class='danger'>Skreee!</span>")
 		cooldown = 1
 		addtimer(CALLBACK(src, .proc/cooldownreset), 50)
 	return ..()
