@@ -1,3 +1,9 @@
+/obj/item/toy/mistletoe
+	name = "mistletoe"
+	desc = "You are supposed to kiss someone under these"
+	icon = 'icons/obj/toy_vr.dmi'
+	icon_state = "mistletoe"
+
 /obj/item/toy/plushie/lizardplushie
 	name = "lizard plushie"
 	desc = "An adorable stuffed toy that resembles a lizardperson."
@@ -68,3 +74,22 @@
 	desc = "A perfectly sized snuggable river weasel! Keep away from Clams."
 	icon = 'icons/obj/toy_vr.dmi'
 	icon_state = "plushie_otter"
+
+/obj/item/toy/plushie/vox
+	name = "vox plushie"
+	desc = "A stitched-together vox, fresh from the skipjack. Press its belly to hear it skree!"
+	icon = 'icons/obj/toy_vr.dmi'
+	icon_state = "plushie_vox"
+	var/cooldown = 0
+
+/obj/item/toy/plushie/vox/attack_self(mob/user as mob)
+	if(!cooldown)
+		playsound(user, 'sound/voice/shriek1.ogg', 10, 0)
+		src.visible_message("<span class='danger'>Skreee!</span>")
+		cooldown = 1
+		addtimer(CALLBACK(src, .proc/cooldownreset), 50)
+	return ..()
+
+/obj/item/toy/plushie/vox/proc/cooldownreset()
+	cooldown = 0
+
