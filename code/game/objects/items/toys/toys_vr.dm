@@ -1,3 +1,9 @@
+/obj/item/toy/mistletoe
+	name = "mistletoe"
+	desc = "You are supposed to kiss someone under these"
+	icon = 'icons/obj/toy_vr.dmi'
+	icon_state = "mistletoe"
+
 /obj/item/toy/plushie/lizardplushie
 	name = "lizard plushie"
 	desc = "An adorable stuffed toy that resembles a lizardperson."

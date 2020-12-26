@@ -753,7 +753,9 @@
 					/obj/item/toy/plushie/borgplushie/scrubpuppy = 1,
 					/obj/item/toy/plushie/foxbear = 1,
 					/obj/item/toy/plushie/nukeplushie = 1,
-					/obj/item/toy/plushie/otter = 1)
+					/obj/item/toy/plushie/otter = 1,
+					/obj/item/toy/plushie/vox = 1,
+					/obj/item/toy/mistletoe = 1)
 					//VOREStation Add End
 	premium = list(/obj/item/weapon/reagent_containers/food/drinks/bottle/champagne = 1,
 					/obj/item/weapon/storage/trinketbox = 2)
@@ -793,7 +795,9 @@
 					/obj/item/toy/plushie/borgplushie/scrubpuppy = 50,
 					/obj/item/toy/plushie/foxbear = 50,
 					/obj/item/toy/plushie/nukeplushie = 50,
-					/obj/item/toy/plushie/otter = 50)
+					/obj/item/toy/plushie/otter = 50,
+					/obj/item/toy/plushie/vox = 50,
+					/obj/item/toy/mistletoe = 50)
 					//VOREStation Add End
 
 
