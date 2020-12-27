@@ -219,34 +219,37 @@
 
 /datum/species/shadekin/proc/update_shadekin_hud(var/mob/living/carbon/human/H)
 	var/turf/T = get_turf(H)
-	if(!T)
-		return
-	if(H.shadekin_energy_display)
-		H.shadekin_energy_display.invisibility = 0
+	if(H.shadekin_display)
+		var/l_icon = 0
+		var/e_icon = 0
+
+		H.shadekin_display.invisibility = 0
+		if(T)
+			var/brightness = T.get_lumcount() //Brightness in 0.0 to 1.0
+			var/darkness = 1-brightness //Invert
+			switch(darkness)
+				if(0.80 to 1.00)
+					l_icon = 0
+				if(0.60 to 0.80)
+					l_icon = 1
+				if(0.40 to 0.60)
+					l_icon = 2
+				if(0.20 to 0.40)
+					l_icon = 3
+				if(0.00 to 0.20)
+					l_icon = 4
+
 		switch(get_energy(H))
+			if(0 to 24)
+				e_icon = 0
+			if(25 to 49)
+				e_icon = 1
+			if(50 to 74)
+				e_icon = 2
+			if(75 to 99)
+				e_icon = 3
 			if(100 to INFINITY)
-				H.shadekin_energy_display.icon_state = "energy0"
-			if(75 to 100)
-				H.shadekin_energy_display.icon_state = "energy1"
-			if(50 to 75)
-				H.shadekin_energy_display.icon_state = "energy2"
-			if(25 to 50)
-				H.shadekin_energy_display.icon_state = "energy3"
-			if(0 to 25)
-				H.shadekin_energy_display.icon_state = "energy4"
-	if(H.shadekin_dark_display)
-		H.shadekin_dark_display.invisibility = 0
-		var/brightness = T.get_lumcount() //Brightness in 0.0 to 1.0
-		var/darkness = 1-brightness //Invert
-		switch(darkness)
-			if(0.80 to 1.00)
-				H.shadekin_dark_display.icon_state = "dark2"
-			if(0.60 to 0.80)
-				H.shadekin_dark_display.icon_state = "dark1"
-			if(0.40 to 0.60)
-				H.shadekin_dark_display.icon_state = "dark"
-			if(0.20 to 0.40)
-				H.shadekin_dark_display.icon_state = "dark-1"
-			if(0.00 to 0.20)
-				H.shadekin_dark_display.icon_state = "dark-2"
+				e_icon = 4
+
+		H.shadekin_display.icon_state = "shadekin-[l_icon]-[e_icon]"
 	return
