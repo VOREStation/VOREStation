@@ -149,33 +149,35 @@ GLOBAL_LIST_INIT(digest_modes, list())
 		if(B.owner.nutrition > 400 && H.nutrition < 400)
 			B.owner.adjust_nutrition(-2)
 			H.adjust_nutrition(1.5)
-	if(changes_eyes && B.check_eyes(H))
-		B.change_eyes(H, 1)
-		return null
-	if(changes_hair_solo && B.check_hair(H))
-		B.change_hair(H)
-		return null
-	if(changes_hairandskin && (B.check_hair(H) || B.check_skin(H)))
-		B.change_hair(H)
-		B.change_skin(H, 1)
-		return null
-	if(changes_species)
-		if(changes_ears_tail_wing_nocolor && (B.check_ears(H) || B.check_tail_nocolor(H) || B.check_wing_nocolor(H) || B.check_species(H)))
-			B.change_ears(H)
-			B.change_tail_nocolor(H)
-			B.change_wing_nocolor(H)
-			B.change_species(H, 1, 1) // ,1) preserves coloring
-			H.species.create_organs(H)
-			H.sync_organ_dna()
+	var/datum/species/target_species = H.species
+	if(!((target_species.spawn_flags & SPECIES_IS_WHITELISTED) || (target_species.spawn_flags & SPECIES_IS_RESTRICTED)))
+		if(changes_eyes && B.check_eyes(H))
+			B.change_eyes(H, 1)
 			return null
-		if(changes_ears_tail_wing_color && (B.check_ears(H) || B.check_tail(H) || B.check_wing(H) || B.check_species(H)))
-			B.change_ears(H)
-			B.change_tail(H)
-			B.change_wing(H)
-			B.change_species(H, 1, 2) // ,2) does not preserve coloring.
-			H.species.create_organs(H)
-			H.sync_organ_dna()
+		if(changes_hair_solo && B.check_hair(H))
+			B.change_hair(H)
 			return null
+		if(changes_hairandskin && (B.check_hair(H) || B.check_skin(H)))
+			B.change_hair(H)
+			B.change_skin(H, 1)
+			return null
+		if(changes_species)
+			if(changes_ears_tail_wing_nocolor && (B.check_ears(H) || B.check_tail_nocolor(H) || B.check_wing_nocolor(H) || B.check_species(H)))
+				B.change_ears(H)
+				B.change_tail_nocolor(H)
+				B.change_wing_nocolor(H)
+				B.change_species(H, 1, 1) // ,1) preserves coloring
+				H.species.create_organs(H)
+				H.sync_organ_dna()
+				return null
+			if(changes_ears_tail_wing_color && (B.check_ears(H) || B.check_tail(H) || B.check_wing(H) || B.check_species(H)))
+				B.change_ears(H)
+				B.change_tail(H)
+				B.change_wing(H)
+				B.change_species(H, 1, 2) // ,2) does not preserve coloring.
+				H.species.create_organs(H)
+				H.sync_organ_dna()
+				return null
 	if(changes_gender && B.check_gender(H, changes_gender_to))
 		B.change_gender(H, changes_gender_to, 1)
 		return null
