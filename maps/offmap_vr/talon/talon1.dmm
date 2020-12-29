@@ -118,13 +118,13 @@
 /turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/deckone_port)
 "an" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/white/golden,
 /area/talon/deckone/bridge)
@@ -462,15 +462,6 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/eris/under/airless,
 /area/talon/maintenance/deckone_starboard_fore_wing)
-"bb" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 4
-	},
-/obj/structure/closet/hydrant{
-	pixel_y = 32
-	},
-/turf/simulated/floor/tiled/eris/dark/cyancorner,
-/area/talon/deckone/bridge)
 "bc" = (
 /obj/structure/catwalk,
 /obj/structure/handrail{
@@ -739,6 +730,9 @@
 /obj/structure/closet/autolok_wall{
 	pixel_y = -24
 	},
+/obj/structure/closet/hydrant{
+	pixel_x = -26
+	},
 /turf/simulated/floor/tiled/eris/dark/cyancorner,
 /area/talon/deckone/bridge)
 "bE" = (
@@ -798,12 +792,7 @@
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/deckone/central_hallway)
 "bI" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 8
-	},
-/obj/structure/closet/hydrant{
-	pixel_y = 32
-	},
+/obj/structure/flora/pottedplant/minitree,
 /turf/simulated/floor/tiled/eris/dark/cyancorner,
 /area/talon/deckone/bridge)
 "bJ" = (
@@ -957,6 +946,9 @@
 	dir = 8;
 	id = "talon_sensor";
 	name = "sensor blast shields"
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark/cyancorner,
 /area/talon/deckone/bridge)
@@ -1929,6 +1921,9 @@
 /area/talon/deckone/starboard_eng)
 "hQ" = (
 /obj/structure/table/steel,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/eris/dark/cyancorner,
 /area/talon/deckone/bridge)
 "id" = (
@@ -2525,9 +2520,13 @@
 /turf/simulated/floor/plating/eris/under,
 /area/talon/maintenance/deckone_starboard)
 "nT" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/effect/floor_decal/emblem/talon,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
 /turf/simulated/floor/tiled/eris/white/golden,
 /area/talon/deckone/bridge)
 "nW" = (
@@ -2698,6 +2697,9 @@
 	},
 /obj/structure/closet/autolok_wall{
 	pixel_y = -24
+	},
+/obj/structure/closet/hydrant{
+	pixel_x = 26
 	},
 /turf/simulated/floor/tiled/eris/dark/cyancorner,
 /area/talon/deckone/bridge)
@@ -4075,9 +4077,6 @@
 /obj/machinery/computer/ship/helm{
 	req_one_access = list(301)
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
 /turf/simulated/floor/tiled/eris/dark/cyancorner,
 /area/talon/deckone/bridge)
 "Gb" = (
@@ -4248,9 +4247,6 @@
 /area/talon/deckone/bridge_hallway)
 "HW" = (
 /obj/machinery/computer/ship/sensors,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
 /turf/simulated/floor/tiled/eris/dark/cyancorner,
 /area/talon/deckone/bridge)
 "Id" = (
@@ -5140,13 +5136,11 @@
 /turf/simulated/floor/hull/airless,
 /area/talon/maintenance/deckone_starboard_aft_wing)
 "RS" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10
-	},
+/obj/structure/table/steel,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6
+	dir = 4
 	},
-/turf/simulated/floor/tiled/eris/white/golden,
+/turf/simulated/floor/tiled/eris/dark/cyancorner,
 /area/talon/deckone/bridge)
 "RV" = (
 /obj/structure/cable/green{
@@ -5417,6 +5411,9 @@
 	dir = 8;
 	id = "talon_windows";
 	name = "window blast shields"
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark/cyancorner,
 /area/talon/deckone/bridge)
@@ -15410,7 +15407,7 @@ aa
 af
 ab
 ac
-bb
+bI
 Nz
 bW
 tw
@@ -15694,9 +15691,9 @@ aa
 ag
 ae
 al
+ao
+ao
 an
-ao
-ao
 ao
 ao
 as
@@ -15836,8 +15833,8 @@ aa
 aa
 ai
 IM
-RS
-on
+LH
+LH
 nT
 on
 uy
@@ -15978,9 +15975,9 @@ aa
 aa
 ai
 IM
+LH
+LH
 wm
-LH
-LH
 LH
 cC
 zy
@@ -16122,7 +16119,7 @@ ab
 ac
 HW
 oS
-hQ
+RS
 Os
 VU
 YT
