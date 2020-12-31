@@ -35,6 +35,7 @@
 		"Fox" = "pai-fox",
 		"Parrot" = "pai-parrot",
 		"Rabbit" = "pai-rabbit",
+<<<<<<< HEAD
 		//VOREStation Addition Start
 		"Bear" = "pai-bear",
 		"Fennec" = "pai-fen",
@@ -44,6 +45,8 @@
 		"Rat" = "rat",
 		"Panther" = "panther"
 		//VOREStation Addition End
+=======
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 		)
 
 	var/global/list/possible_say_verbs = list(
@@ -53,7 +56,10 @@
 		"Chirp" = list("chirps","chirrups","cheeps"),
 		"Feline" = list("purrs","yowls","meows"),
 		"Canine" = list("yaps","barks","woofs"),
+<<<<<<< HEAD
 		"Rodent" = list("squeaks", "SQUEAKS", "sqiks")	//VOREStation Edit - TFF 22/11/19 - CHOMPStation port of pAI additions,
+=======
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 		)
 
 	var/obj/item/weapon/pai_cable/cable		// The cable we produce and use when door or camera jacking
@@ -128,6 +134,7 @@
 			M.toff = TRUE
 	..()
 
+<<<<<<< HEAD
 /mob/living/silicon/pai/Login()
 	..()
 	// Vorestation Edit: Meta Info for pAI
@@ -135,6 +142,8 @@
 		ooc_notes = client.prefs.metadata
 
 
+=======
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 // this function shows the information about being silenced as a pAI in the Status panel
 /mob/living/silicon/pai/proc/show_silenced()
 	if(src.silence_time)
@@ -375,8 +384,11 @@
 			rig.force_rest(src)
 	else
 		resting = !resting
+<<<<<<< HEAD
 		icon_state = resting ? "[chassis]_rest" : "[chassis]"
 		update_icon() //VOREStation edit
+=======
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 		to_chat(src, "<span class='notice'>You are now [resting ? "resting" : "getting up"]</span>")
 
 	canmove = !resting

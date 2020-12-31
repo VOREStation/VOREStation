@@ -41,20 +41,37 @@
 	error = "Invalid Login"
 	return 0
 
+<<<<<<< HEAD
 // Returns 0 if no new messages were received, 1 if there is an unread message but notification has already been sent.
 // and 2 if there is a new message that appeared in this tick (and therefore notification should be sent by the program).
 /datum/tgui_module/email_client/proc/check_for_new_messages(var/messages_read = FALSE)
 	if(!current_account)
 		return 0
+=======
+// Returns NTOS_EMAIL_NONEWMESSAGES if no new messages were received
+// NTOS_EMAIL_NOTIFALREADY if there is an unread message but notification has already been sent.
+// NTOS_EMAIL_NEWMESSAGE if there is a new message that appeared in this tick (and therefore notification should be sent by the program).
+/datum/tgui_module/email_client/proc/check_for_new_messages(var/messages_read = FALSE)
+	if(!current_account)
+		return NTOS_EMAIL_NONEWMESSAGES
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 
 	var/list/allmails = current_account.all_emails()
 
 	if(allmails.len > last_message_count)
+<<<<<<< HEAD
 		. = 2
 	else if(allmails.len > read_message_count)
 		. = 1
 	else
 		. = 0
+=======
+		. = NTOS_EMAIL_NEWMESSAGE
+	else if(allmails.len > read_message_count)
+		. = NTOS_EMAIL_NOTIFALREADY
+	else
+		. = NTOS_EMAIL_NONEWMESSAGES
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 
 	last_message_count = allmails.len
 	if(messages_read)
@@ -233,11 +250,16 @@
 		return TRUE
 	
 	var/mob/living/user = usr
+<<<<<<< HEAD
 	check_for_new_messages(1)		// Any actual interaction (button pressing) is considered as acknowledging received message, for the purpose of notification icons.
+=======
+	check_for_new_messages(TRUE)		// Any actual interaction (button pressing) is considered as acknowledging received message, for the purpose of notification icons.
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 	
 	switch(action)
 		if("login")
 			log_in()
+<<<<<<< HEAD
 			return 1
 
 		if("logout")
@@ -251,28 +273,59 @@
 		if("new_message")
 			new_message = TRUE
 			return 1
+=======
+			return TRUE
+
+		if("logout")
+			log_out()
+			return TRUE
+
+		if("reset")
+			error = ""
+			return TRUE
+
+		if("new_message")
+			new_message = TRUE
+			return TRUE
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 
 		if("cancel")
 			if(addressbook)
 				addressbook = FALSE
 			else
 				clear_message()
+<<<<<<< HEAD
 			return 1
 
 		if("addressbook")
 			addressbook = TRUE
 			return 1
+=======
+			return TRUE
+
+		if("addressbook")
+			addressbook = TRUE
+			return TRUE
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 
 		if("set_recipient")
 			msg_recipient = sanitize(params["set_recipient"])
 			addressbook = FALSE
+<<<<<<< HEAD
 			return 1
+=======
+			return TRUE
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 
 		if("edit_title")
 			var/newtitle = sanitize(params["val"], 100)
 			if(newtitle)
 				msg_title = newtitle
+<<<<<<< HEAD
 			return 1
+=======
+			return TRUE
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 
 		// This uses similar editing mechanism as the FileManager program, therefore it supports various paper tags and remembers formatting.
 		if("edit_body")
@@ -282,24 +335,37 @@
 			var/newtext = sanitize(replacetext(input(usr, "Enter your message. You may use most tags from paper formatting", "Message Editor", oldtext) as message|null, "\n", "\[editorbr\]"), 20000)
 			if(newtext)
 				msg_body = newtext
+<<<<<<< HEAD
 			return 1
+=======
+			return TRUE
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 
 		if("edit_recipient")
 			var/newrecipient = sanitize(params["val"], 100)
 			if(newrecipient)
 				msg_recipient = newrecipient
+<<<<<<< HEAD
 			return 1
+=======
+			return TRUE
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 
 		if("edit_login")
 			var/newlogin = sanitize(params["val"], 100)
 			if(newlogin)
 				stored_login = newlogin
+<<<<<<< HEAD
 			return 1
+=======
+			return TRUE
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 
 		if("edit_password")
 			var/newpass = sanitize(params["val"], 100)
 			if(newpass)
 				stored_password = newpass
+<<<<<<< HEAD
 			return 1
 
 		if("delete")
@@ -308,6 +374,16 @@
 			var/datum/computer_file/data/email_message/M = find_message_by_fuid(params["delete"])
 			if(!istype(M))
 				return 1
+=======
+			return TRUE
+
+		if("delete")
+			if(!istype(current_account))
+				return TRUE
+			var/datum/computer_file/data/email_message/M = find_message_by_fuid(params["delete"])
+			if(!istype(M))
+				return TRUE
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 			if(folder == "Deleted")
 				current_account.deleted.Remove(M)
 				qdel(M)
@@ -317,6 +393,7 @@
 				current_account.spam.Remove(M)
 			if(current_message == M)
 				current_message = null
+<<<<<<< HEAD
 			return 1
 
 		if("send")
@@ -325,6 +402,16 @@
 			if((msg_title == "") || (msg_body == "") || (msg_recipient == ""))
 				error = "Error sending mail: Title or message body is empty!"
 				return 1
+=======
+			return TRUE
+
+		if("send")
+			if(!current_account)
+				return TRUE
+			if((msg_title == "") || (msg_body == "") || (msg_recipient == ""))
+				error = "Error sending mail: Title or message body is empty!"
+				return TRUE
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 
 			var/datum/computer_file/data/email_message/message = new()
 			message.title = msg_title
@@ -333,6 +420,7 @@
 			message.attachment = msg_attachment
 			if(!current_account.send_mail(msg_recipient, message))
 				error = "Error sending email: this address doesn't exist."
+<<<<<<< HEAD
 				return 1
 			else
 				error = "Email successfully sent."
@@ -342,28 +430,52 @@
 		if("set_folder")
 			folder = params["set_folder"]
 			return 1
+=======
+				return TRUE
+			else
+				error = "Email successfully sent."
+				clear_message()
+				return TRUE
+
+		if("set_folder")
+			folder = params["set_folder"]
+			return TRUE
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 
 		if("reply")
 			var/datum/computer_file/data/email_message/M = find_message_by_fuid(params["reply"])
 			if(!istype(M))
+<<<<<<< HEAD
 				return 1
+=======
+				return TRUE
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 
 			new_message = TRUE
 			msg_recipient = M.source
 			msg_title = "Re: [M.title]"
 			msg_body = "\[editorbr\]\[editorbr\]\[editorbr\]\[br\]==============================\[br\]\[editorbr\]"
 			msg_body += "Received by [current_account.login] at [M.timestamp]\[br\]\[editorbr\][M.stored_data]"
+<<<<<<< HEAD
 			return 1
+=======
+			return TRUE
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 
 		if("view")
 			var/datum/computer_file/data/email_message/M = find_message_by_fuid(params["view"])
 			if(istype(M))
 				current_message = M
+<<<<<<< HEAD
 			return 1
+=======
+			return TRUE
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 
 		if("changepassword")
 			var/oldpassword = sanitize(input(user,"Please enter your old password:", "Password Change"), 100)
 			if(!oldpassword)
+<<<<<<< HEAD
 				return 1
 			var/newpassword1 = sanitize(input(user,"Please enter your new password:", "Password Change"), 100)
 			if(!newpassword1)
@@ -383,11 +495,36 @@
 			if(newpassword1 != newpassword2)
 				error = "The entered passwords do not match."
 				return 1
+=======
+				return TRUE
+			var/newpassword1 = sanitize(input(user,"Please enter your new password:", "Password Change"), 100)
+			if(!newpassword1)
+				return TRUE
+			var/newpassword2 = sanitize(input(user,"Please re-enter your new password:", "Password Change"), 100)
+			if(!newpassword2)
+				return TRUE
+
+			if(!istype(current_account))
+				error = "Please log in before proceeding."
+				return TRUE
+
+			if(current_account.password != oldpassword)
+				error = "Incorrect original password"
+				return TRUE
+
+			if(newpassword1 != newpassword2)
+				error = "The entered passwords do not match."
+				return TRUE
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 
 			current_account.password = newpassword1
 			stored_password = newpassword1
 			error = "Your password has been successfully changed!"
+<<<<<<< HEAD
 			return 1
+=======
+			return TRUE
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 
 		// The following entries are Modular Computer framework only, and therefore won't do anything in other cases (like AI View)
 
@@ -397,22 +534,38 @@
 
 			if(!istype(MC) || !MC.hard_drive || !MC.hard_drive.check_functionality())
 				error = "Error exporting file. Are you using a functional and NTOS-compliant device?"
+<<<<<<< HEAD
 				return 1
 
 			var/filename = sanitize(input(user,"Please specify file name:", "Message export"), 100)
 			if(!filename)
 				return 1
+=======
+				return TRUE
+
+			var/filename = sanitize(input(user,"Please specify file name:", "Message export"), 100)
+			if(!filename)
+				return TRUE
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 
 			var/datum/computer_file/data/email_message/M = find_message_by_fuid(params["save"])
 			var/datum/computer_file/data/mail = istype(M) ? M.export() : null
 			if(!istype(mail))
+<<<<<<< HEAD
 				return 1
+=======
+				return TRUE
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 			mail.filename = filename
 			if(!MC.hard_drive || !MC.hard_drive.store_file(mail))
 				error = "Internal I/O error when writing file, the hard drive may be full."
 			else
 				error = "Email exported successfully"
+<<<<<<< HEAD
 			return 1
+=======
+			return TRUE
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 
 		if("addattachment")
 			var/obj/item/modular_computer/MC = tgui_host()
@@ -420,7 +573,11 @@
 
 			if(!istype(MC) || !MC.hard_drive || !MC.hard_drive.check_functionality())
 				error = "Error uploading file. Are you using a functional and NTOSv2-compliant device?"
+<<<<<<< HEAD
 				return 1
+=======
+				return TRUE
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 
 			var/list/filenames = list()
 			for(var/datum/computer_file/CF in MC.hard_drive.stored_files)
@@ -430,11 +587,19 @@
 			var/picked_file = input(user, "Please pick a file to send as attachment (max 32GQ)") as null|anything in filenames
 
 			if(!picked_file)
+<<<<<<< HEAD
 				return 1
 
 			if(!istype(MC) || !MC.hard_drive || !MC.hard_drive.check_functionality())
 				error = "Error uploading file. Are you using a functional and NTOSv2-compliant device?"
 				return 1
+=======
+				return TRUE
+
+			if(!istype(MC) || !MC.hard_drive || !MC.hard_drive.check_functionality())
+				error = "Error uploading file. Are you using a functional and NTOSv2-compliant device?"
+				return TRUE
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 
 			for(var/datum/computer_file/CF in MC.hard_drive.stored_files)
 				if(CF.unsendable)
@@ -445,13 +610,18 @@
 			if(!istype(msg_attachment))
 				msg_attachment = null
 				error = "Unknown error when uploading attachment."
+<<<<<<< HEAD
 				return 1
+=======
+				return TRUE
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 
 			if(msg_attachment.size > 32)
 				error = "Error uploading attachment: File exceeds maximal permitted file size of 32GQ."
 				msg_attachment = null
 			else
 				error = "File [msg_attachment.filename].[msg_attachment.filetype] has been successfully uploaded."
+<<<<<<< HEAD
 			return 1
 
 		if("downloadattachment")
@@ -465,12 +635,35 @@
 			downloading = current_message.attachment.clone()
 			download_progress = 0
 			return 1
+=======
+			return TRUE
+
+		if("downloadattachment")
+			if(!current_account || !current_message || !current_message.attachment)
+				return TRUE
+			var/obj/item/modular_computer/MC = tgui_host()
+			if(!istype(MC) || !MC.hard_drive || !MC.hard_drive.check_functionality())
+				error = "Error downloading file. Are you using a functional and NTOSv2-compliant device?"
+				return TRUE
+
+			downloading = current_message.attachment.clone()
+			download_progress = 0
+			return TRUE
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 
 		if("canceldownload")
 			downloading = null
 			download_progress = 0
+<<<<<<< HEAD
 			return 1
 
 		if("remove_attachment")
 			msg_attachment = null
 			return 1
+=======
+			return TRUE
+
+		if("remove_attachment")
+			msg_attachment = null
+			return TRUE
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering

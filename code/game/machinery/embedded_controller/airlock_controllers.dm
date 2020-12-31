@@ -16,6 +16,7 @@
 	var/cycle_to_external_air = 0
 	valid_actions = list("cycle_ext", "cycle_int", "force_ext", "force_int", "abort", "purge", "secure")
 	layer = ABOVE_WINDOW_LAYER
+	valid_actions = list("cycle_ext", "cycle_int", "force_ext", "force_int", "abort", "purge", "secure")
 
 /obj/machinery/embedded_controller/radio/airlock/Destroy()
 	// TODO - Leshana - Implement dummy terminals

@@ -342,11 +342,17 @@
 /obj/item/device/destTagger/tgui_state(mob/user)
 	return GLOB.tgui_inventory_state
 
+<<<<<<< HEAD
 /obj/item/device/destTagger/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "DestinationTagger", name)
 		ui.open()
+=======
+		dat += "<table style='width:100%; padding:4px;'><tr>"
+		for(var/i = 1, i <= GLOB.tagger_locations.len, i++)
+			dat += "<td><a href='?src=\ref[src];nextTag=[GLOB.tagger_locations[i]]'>[GLOB.tagger_locations[i]]</a></td>"
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 
 /obj/item/device/destTagger/tgui_data(mob/user, datum/tgui/ui)
 	var/list/data = ..()
@@ -359,6 +365,7 @@
 /obj/item/device/destTagger/attack_self(mob/user as mob)
 	tgui_interact(user)
 
+<<<<<<< HEAD
 /obj/item/device/destTagger/tgui_act(action, params)
 	if(..())
 		return TRUE
@@ -370,6 +377,13 @@
 				return FALSE
 			currTag = new_tag
 			. = TRUE
+=======
+	Topic(href, href_list)
+		src.add_fingerprint(usr)
+		if(href_list["nextTag"] && href_list["nextTag"] in GLOB.tagger_locations)
+			src.currTag = href_list["nextTag"]
+		openwindow(usr)
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 
 /obj/machinery/disposal/deliveryChute
 	name = "Delivery chute"

@@ -34,11 +34,14 @@
 			ui.set_map_z_level(params["mapZLevel"])
 			return TRUE
 
+<<<<<<< HEAD
 /datum/tgui_module/atmos_control/ui_assets(mob/user)
 	return list(
 		get_asset_datum(/datum/asset/simple/nanomaps),
 	)
 
+=======
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 /datum/tgui_module/atmos_control/tgui_interact(mob/user, datum/tgui/ui = null)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)

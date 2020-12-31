@@ -109,7 +109,11 @@
 
 // Specifically here for the chat message.
 /datum/data/pda/app/messenger/Topic(href, href_list)
+<<<<<<< HEAD
 	if(!pda.can_use(usr))
+=======
+	if(!pda.can_use())
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 		return
 	unnotify()
 
@@ -140,7 +144,11 @@
 	if(last_text && world.time < last_text + 5)
 		return
 
+<<<<<<< HEAD
 	if(!pda.can_use(usr))
+=======
+	if(!pda.can_use())
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 		return
 
 	last_text = world.time

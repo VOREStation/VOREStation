@@ -88,7 +88,11 @@ var/warrant_uid = 0
 					W.fields["auth"] = "Unauthorized"
 					W.fields["arrestsearch"] = "arrest"
 				if(temp == "search")
+<<<<<<< HEAD
 					W.fields["namewarrant"] = "No suspect/location given" // VOREStation edit
+=======
+					W.fields["namewarrant"] = "No suspect/location given"
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 					W.fields["charges"] = "No reason given"
 					W.fields["auth"] = "Unauthorized"
 					W.fields["arrestsearch"] = "search"
@@ -133,7 +137,11 @@ var/warrant_uid = 0
 
 		if("editwarrantauth")
 			. = TRUE
+<<<<<<< HEAD
 			if(!(access_hos in I.access)) // VOREStation edit begin
 				to_chat(usr, "<span class='warning'>You don't have the access to do this!</span>")
 				return // VOREStation edit end
+=======
+
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 			activewarrant.fields["auth"] = "[I.registered_name] - [I.assignment ? I.assignment : "(Unknown)"]"

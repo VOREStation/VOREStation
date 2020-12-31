@@ -98,13 +98,21 @@
 
 			if(module.charges && module.charges.len)
 				module_data["charges"] = list()
+<<<<<<< HEAD
 				var/datum/rig_charge/selected = module.charges["[module.charge_selected]"]
 				module_data["realchargetype"] = module.charge_selected
+=======
+				var/datum/rig_charge/selected = module.charges[module.charge_selected]
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 				module_data["chargetype"] = selected ? "[selected.display_name]" : "none"
 
 				for(var/chargetype in module.charges)
 					var/datum/rig_charge/charge = module.charges[chargetype]
+<<<<<<< HEAD
 					module_data["charges"] += list(list("caption" = "[charge.display_name] ([charge.charges])", "index" = "[chargetype]"))
+=======
+					module_data["charges"] += list(list("caption" = "[chargetype] ([charge.charges])", "index" = "[chargetype]"))
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 
 			module_list += list(module_data)
 			i++

@@ -34,7 +34,10 @@
 		"smmon_4.gif" 				= 'icons/program_icons/smmon_4.gif',
 		"smmon_5.gif" 				= 'icons/program_icons/smmon_5.gif',
 		"smmon_6.gif" 				= 'icons/program_icons/smmon_6.gif',
+<<<<<<< HEAD
 		// "borg_mon.gif"				= 'icons/program_icons/borg_mon.gif'
+=======
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 	)
 
 // /datum/asset/simple/radar_assets
@@ -355,6 +358,10 @@
 // 		Insert(initial(D.id), I)
 // 	return ..()
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 /datum/asset/spritesheet/vending
 	name = "vending"
 

@@ -100,8 +100,13 @@
 /obj/item/device/pda/syndicate
 	default_cartridge = /obj/item/weapon/cartridge/syndicate
 	icon_state = "pda-syn"
+<<<<<<< HEAD
 //	name = "Military PDA" // Vorestation Edit
 //	owner = "John Doe"
+=======
+	name = "Military PDA"
+	owner = "John Doe"
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 	hidden = 1
 
 /obj/item/device/pda/chaplain

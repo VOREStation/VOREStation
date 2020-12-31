@@ -293,7 +293,10 @@ Turf and target are seperate in case you want to teleport some distance from a t
 /proc/unformat_frequency(frequency)
 	frequency = text2num(frequency)
 	return frequency * 10
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 
 
 //This will update a mob's name, real_name, mind.name, data_core records, pda and id

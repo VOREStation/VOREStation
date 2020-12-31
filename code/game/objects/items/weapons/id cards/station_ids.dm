@@ -262,6 +262,22 @@
 	assignment = "Quartermaster"
 	rank = "Quartermaster"
 
+/obj/item/weapon/card/id/civilian
+	name = "identification card"
+	desc = "A card issued to station civilian staff."
+	icon_state = "civ"
+	primary_color = rgb(0,94,142)
+	secondary_color = rgb(95,159,191)
+	assignment = "Civilian"
+	rank = "Assistant"
+
+/obj/item/weapon/card/id/civilian/head //This is not the HoP. There's no position that uses this right now.
+	name = "identification card"
+	desc = "A card which represents common sense and responsibility."
+	icon_state = "civGold"
+	primary_color = rgb(0,94,142)
+	secondary_color = rgb(255,223,127)
+
 /obj/item/weapon/card/id/assistant
 	assignment = USELESS_JOB //VOREStation Edit - Visitor not Assistant
 	rank = USELESS_JOB //VOREStation Edit - Visitor not Assistant

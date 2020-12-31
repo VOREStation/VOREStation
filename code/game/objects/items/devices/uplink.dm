@@ -99,6 +99,7 @@ GLOBAL_LIST_BOILERPLATE(world_uplinks, /obj/item/device/uplink)
 // Legacy
 /obj/item/device/uplink/hidden/interact(mob/user)
 	tgui_interact(user)
+<<<<<<< HEAD
 
 /*****************
  * Uplink TGUI
@@ -135,6 +136,43 @@ GLOBAL_LIST_BOILERPLATE(world_uplinks, /obj/item/device/uplink)
 	data["discount_amount"] = (1-discount_amount)*100
 	data["offer_expiry"] = worldtime2stationtime(next_offer_time)
 
+=======
+
+/*****************
+ * Uplink TGUI
+ *****************/
+/obj/item/device/uplink/tgui_host()
+	return loc
+
+/obj/item/device/uplink/hidden/tgui_state(mob/user)
+	return GLOB.tgui_inventory_state
+
+/obj/item/device/uplink/hidden/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+	if(!active)
+		toggle()
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Uplink", "Remote Uplink")
+		// This UI is only ever opened by one person,
+		// and never is updated outside of user input.
+		ui.set_autoupdate(FALSE)
+		ui.open()
+
+/obj/item/device/uplink/hidden/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	if(!user.mind)
+		return
+
+	var/list/data = ..()
+
+	data["telecrystals"] = uses
+	data["lockable"] = TRUE
+	data["compactMode"] = compact_mode
+
+	data["discount_name"] = discount_item ? discount_item.name : ""
+	data["discount_amount"] = (1-discount_amount)*100
+	data["offer_expiry"] = worldtime2stationtime(next_offer_time)
+
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 	data["exploit"] = null
 	data["locked_records"] = null
 

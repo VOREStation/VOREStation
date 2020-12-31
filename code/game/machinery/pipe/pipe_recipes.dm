@@ -124,7 +124,11 @@ GLOBAL_LIST_INIT(disposal_pipe_recipes, list(
 //
 /datum/pipe_recipe/pipe
 	var/obj/item/pipe/construction_type 		// The type PATH to the type of pipe fitting object the recipe makes.
+<<<<<<< HEAD
 	var/paintable = FALSE						// If TRUE, allow the RPD to paint this pipe.	// VOREStation Add
+=======
+	var/paintable = FALSE						// If TRUE, allow the RPD to paint this pipe.
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 
 /datum/pipe_recipe/pipe/New(var/label, var/obj/machinery/atmospherics/path)
 	name = label
@@ -134,7 +138,11 @@ GLOBAL_LIST_INIT(disposal_pipe_recipes, list(
 	dirtype = initial(construction_type.dispenser_class)
 	if (dirtype == PIPE_TRIN_M)
 		icon_state_m = "[icon_state]m"
+<<<<<<< HEAD
 	paintable = ispath(path, /obj/machinery/atmospherics/pipe) && !(ispath(path, /obj/machinery/atmospherics/pipe/vent))	// VOREStation Add
+=======
+	paintable = ispath(path, /obj/machinery/atmospherics/pipe) && !(ispath(path, /obj/machinery/atmospherics/pipe/vent))
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 
 
 //

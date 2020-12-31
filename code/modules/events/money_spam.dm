@@ -105,6 +105,7 @@
 
 			last_spam_time = world.time
 
+<<<<<<< HEAD
 			/*	//VOREStation Removal: no need to spam the AI tenfold
 			if (prob(50)) //Give the AI an increased chance to intercept the message
 				for(var/mob/living/silicon/ai/ai in mob_list)
@@ -116,5 +117,7 @@
 			//Commented out because we don't send messages like this anymore.  Instead it will just popup in their chat window.
 			//P.tnote += "<i><b>&larr; From [sender] (Unknown / spam?):</b></i><br>[message]<br>"
 
+=======
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 			var/datum/data/pda/app/messenger/PM = P.find_program(/datum/data/pda/app/messenger)
 			PM.notify("<b>Message from [sender] (Unknown / spam?), </b>\"[message]\" (Unable to Reply)", 0)

@@ -38,6 +38,12 @@
 	computer = null
 	. = ..()
 
+<<<<<<< HEAD
+=======
+/datum/computer_file/program/tgui_host()
+	return computer.tgui_host()
+
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 /datum/computer_file/program/tgui_host()
 	return computer.tgui_host()
 
@@ -200,6 +206,8 @@
 				var/mob/user = usr
 				if(!computer.active_program)
 					return
+<<<<<<< HEAD
+=======
 
 				computer.idle_threads.Add(computer.active_program)
 				program_state = PROGRAM_STATE_BACKGROUND // Should close any existing UIs
@@ -220,6 +228,32 @@
 	else
 		return -1
 
+/obj/item/modular_computer/initial_data()
+	return get_header_data()
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
+
+				computer.idle_threads.Add(computer.active_program)
+				program_state = PROGRAM_STATE_BACKGROUND // Should close any existing UIs
+
+<<<<<<< HEAD
+				computer.active_program = null
+				computer.update_icon()
+				ui.close()
+
+				if(user && istype(user))
+					computer.tgui_interact(user) // Re-open the UI on this computer. It should show the main screen now.
+
+
+
+// Relays the call to nano module, if we have one
+/datum/computer_file/program/proc/check_eye(var/mob/user)
+	if(TM)
+		return TM.check_eye(user)
+	else
+		return -1
+
+=======
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 /datum/computer_file/program/apply_visual(mob/M)
 	if(TM)
 		return TM.apply_visual(M)

@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+#define UAV_SIGNAL_NONE 0
+#define UAV_SIGNAL_WEAK 1
+#define UAV_SIGNAL_STRONG 2
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 /datum/tgui_module/uav
 	name = "UAV Control"
 	tgui_id = "UAV"
@@ -24,7 +30,11 @@
 	data["current_uav"] = null
 	if(current_uav)
 		data["current_uav"] = list("status" = current_uav.get_status_string(), "power" = current_uav.state == 1 ? 1 : null)
+<<<<<<< HEAD
 	data["signal_strength"] = signal_strength ? signal_strength >= 2 ? "High" : "Low" : "None"
+=======
+	data["signal_strength"] = signal_strength ? signal_strength >= UAV_SIGNAL_STRONG ? "High" : "Low" : "None"
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 	data["in_use"] = LAZYLEN(viewers)
 
 	var/list/paired_map = list()
@@ -93,7 +103,11 @@
 	if(current_uav == U)
 		return
 
+<<<<<<< HEAD
 	signal_strength = 0
+=======
+	signal_strength = UAV_SIGNAL_NONE
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 	current_uav = U
 
 	if(LAZYLEN(viewers))
@@ -110,10 +124,13 @@
 //// Finding signal strength between us and the UAV
 ////
 /datum/tgui_module/uav/proc/get_signal_to(atom/movable/AM)
+<<<<<<< HEAD
 	// Following roughly the ntnet signal levels
 	// 0 is none
 	// 1 is weak
 	// 2 is strong
+=======
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 	var/obj/item/modular_computer/host = tgui_host() //Better not add this to anything other than modular computers.
 	if(!istype(host))
 		return
@@ -123,6 +140,7 @@
 	//If we have no NTnet connection don't bother getting theirs
 	if(!our_signal)
 		if(get_z(host) == their_z && (get_dist(host, AM) < adhoc_range))
+<<<<<<< HEAD
 			return 1 //We can connect (with weak signal) in same z without ntnet, within 30 turfs
 		else
 			return 0
@@ -130,11 +148,21 @@
 	var/list/zlevels_in_range = using_map.get_map_levels(their_z, FALSE)
 	var/list/zlevels_in_long_range = using_map.get_map_levels(their_z, TRUE, om_range = DEFAULT_OVERMAP_RANGE) - zlevels_in_range
 	var/their_signal = 0
+=======
+			return UAV_SIGNAL_WEAK //We can connect (with weak signal) in same z without ntnet, within 30 turfs
+		else
+			return UAV_SIGNAL_NONE
+
+	var/list/zlevels_in_range = using_map.get_map_levels(their_z, FALSE)
+	var/list/zlevels_in_long_range = using_map.get_map_levels(their_z, TRUE, om_range = DEFAULT_OVERMAP_RANGE) - zlevels_in_range
+	var/their_signal = UAV_SIGNAL_NONE
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 	for(var/relay in ntnet_global.relays)
 		var/obj/machinery/ntnet_relay/R = relay
 		if(!R.operable())
 			continue
 		if(R.z == their_z)
+<<<<<<< HEAD
 			their_signal = 2
 			break
 		if(R.z in zlevels_in_range)
@@ -142,13 +170,28 @@
 			break
 		if(R.z in zlevels_in_long_range)
 			their_signal = 1
+=======
+			their_signal = UAV_SIGNAL_STRONG
+			break
+		if(R.z in zlevels_in_range)
+			their_signal = UAV_SIGNAL_STRONG
+			break
+		if(R.z in zlevels_in_long_range)
+			their_signal = UAV_SIGNAL_WEAK
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 			break
 
 	if(!their_signal) //They have no NTnet at all
 		if(get_z(host) == their_z && (get_dist(host, AM) < adhoc_range))
+<<<<<<< HEAD
 			return 1 //We can connect (with weak signal) in same z without ntnet, within 30 turfs
 		else
 			return 0
+=======
+			return UAV_SIGNAL_WEAK //We can connect (with weak signal) in same z without ntnet, within 30 turfs
+		else
+			return UAV_SIGNAL_NONE
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 	else
 		return max(our_signal, their_signal)
 
@@ -239,3 +282,10 @@
 	M.clear_fullscreen("fishbed",0)
 	M.clear_fullscreen("scanlines",0)
 	M.clear_fullscreen("whitenoise",0)
+<<<<<<< HEAD
+=======
+
+#undef UAV_SIGNAL_NONE
+#undef UAV_SIGNAL_WEAK
+#undef UAV_SIGNAL_STRONG
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering

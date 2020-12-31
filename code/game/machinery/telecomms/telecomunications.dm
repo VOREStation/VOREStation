@@ -16,7 +16,11 @@
 var/global/list/obj/machinery/telecomms/telecomms_list = list()
 
 /obj/machinery/telecomms
+<<<<<<< HEAD
 	icon = 'icons/obj/stationobjs_vr.dmi' //VOREStation Add
+=======
+	icon = 'icons/obj/stationobjs.dmi'
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 	var/list/links = list() // list of machines this machine is linked to
 	var/traffic = 0 // value increases as traffic increases
 	var/netspeed = 5 // how much traffic to lose per tick (50 gigabytes/second * netspeed)

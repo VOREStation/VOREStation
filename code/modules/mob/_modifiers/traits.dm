@@ -162,4 +162,8 @@
 	desc = "You are fully colorblind. Your condition is rare, but you can see no colors at all."
 
 	client_color = MATRIX_Monochromia
+<<<<<<< HEAD
 	wire_colors_replace = GREYSCALE_COLOR_REPLACE
+=======
+	wire_colors_replace = GREYSCALE_COLOR_REPLACE 
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering

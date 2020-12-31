@@ -345,7 +345,10 @@
 	else
 		return 0
 
+<<<<<<< HEAD
 // VOREStation Add Start - Helper procs for RCD
+=======
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 /obj/structure/disposalconstruct/proc/is_pipe()
 	return (ptype != DISPOSAL_PIPE_BIN && ptype != DISPOSAL_PIPE_OUTLET && ptype != DISPOSAL_PIPE_CHUTE)
 
@@ -361,5 +364,9 @@
 		if(!DC.is_pipe()) //there's already a chute/outlet/bin there
 			return FALSE
 
+<<<<<<< HEAD
 	return TRUE
 // VOREStation Add End
+=======
+	return TRUE
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering

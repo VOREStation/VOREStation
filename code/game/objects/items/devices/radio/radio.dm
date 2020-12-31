@@ -150,6 +150,7 @@ var/global/list/default_medbay_channels = list(
 		wires.Interact(user)
 
 	return tgui_interact(user)
+<<<<<<< HEAD
 
 /obj/item/device/radio/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -157,6 +158,23 @@ var/global/list/default_medbay_channels = list(
 		ui = new(user, src, "Radio", name, parent_ui)
 		ui.open()
 
+=======
+
+/obj/item/device/radio/ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open, datum/nano_ui/master_ui, datum/topic_state/state)
+	log_runtime(EXCEPTION("Warning: [user] attempted to call ui_interact on radio [src] [type]. This is deprecated. Please update the caller to tgui_interact."))
+
+/obj/item/device/radio/Topic(href, href_list)
+	if(href_list["track"])
+		log_runtime(EXCEPTION("Warning: Topic() was improperly called on radio [src] [type], with the track href and \[[href] [json_encode(href_list)]]. Please update the caller to use tgui_act."))
+	. = ..()
+
+/obj/item/device/radio/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Radio", name, parent_ui = parent_ui)
+		ui.open()
+
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 /obj/item/device/radio/tgui_data(mob/user)
 	var/data[0]
 

@@ -2,7 +2,10 @@ import { useBackend } from "../backend";
 import { Box, Section, Table } from "../components";
 import { Window } from "../layouts";
 import { COLORS } from "../constants";
+<<<<<<< HEAD
 import { decodeHtmlEntities } from "common/string";
+=======
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 
 /*
  * Shared by the following templates (and used individually too)
@@ -55,7 +58,11 @@ export const CrewManifestContent = (props, context) => {
             </Table.Row>
             {cat.elems.map(person => (
               <Table.Row color="average" key={person.name + person.rank}>
+<<<<<<< HEAD
                 <Table.Cell>{decodeHtmlEntities(person.name)}</Table.Cell>
+=======
+                <Table.Cell>{person.name}</Table.Cell>
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
                 <Table.Cell>{person.rank}</Table.Cell>
                 <Table.Cell>{person.active}</Table.Cell>
               </Table.Row>

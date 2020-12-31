@@ -339,6 +339,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	return list(
 		get_asset_datum(/datum/asset/spritesheet/vending),
 	)
+<<<<<<< HEAD
 
 /obj/machinery/vending/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -346,6 +347,15 @@ GLOBAL_LIST_EMPTY(vending_products)
 		ui = new(user, src, "Vending", name)
 		ui.open()
 
+=======
+
+/obj/machinery/vending/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Vending", name)
+		ui.open()
+
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 /obj/machinery/vending/tgui_data(mob/user)
 	var/list/data = list()
 	var/list/listed_products = list()
@@ -407,9 +417,15 @@ GLOBAL_LIST_EMPTY(vending_products)
 				data["user"]["job"] = (istype(C) && C.rank) ? C.rank : "No Job"
 			else
 				data["guestNotice"] = "Unlinked ID detected. Present cash to pay.";
+<<<<<<< HEAD
 
 	return data
 
+=======
+
+	return data
+
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 /obj/machinery/vending/tgui_act(action, params)
 	if(stat & (BROKEN|NOPOWER))
 		return
@@ -423,11 +439,19 @@ GLOBAL_LIST_EMPTY(vending_products)
 		if("remove_coin")
 			if(issilicon(usr))
 				return FALSE
+<<<<<<< HEAD
 
 			if(!coin)
 				to_chat(usr, "There is no coin in this machine.")
 				return
 
+=======
+
+			if(!coin)
+				to_chat(usr, "There is no coin in this machine.")
+				return
+
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 			coin.forceMove(src.loc)
 			if(!usr.get_active_hand())
 				usr.put_in_hands(coin)
@@ -458,9 +482,19 @@ GLOBAL_LIST_EMPTY(vending_products)
 			
 			if(!can_buy(R, usr))
 				return
+<<<<<<< HEAD
 			if(R.price <= 0)
 				vend(R, usr)
 				add_fingerprint(usr)
+=======
+
+			vend_ready = FALSE // From this point onwards, vendor is locked to performing this transaction only, until it is resolved.
+
+			if(R.price <= 0)
+				vend(R, usr)
+				add_fingerprint(usr)
+				vend_ready = TRUE
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 				return TRUE
 			
 			if(issilicon(usr)) //If the item is not free, provide feedback if a synth is trying to buy something.
@@ -469,9 +503,12 @@ GLOBAL_LIST_EMPTY(vending_products)
 			if(!ishuman(usr))
 				return
 
+<<<<<<< HEAD
 
 			vend_ready = FALSE // From this point onwards, vendor is locked to performing this transaction only, until it is resolved.
 
+=======
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 			var/mob/living/carbon/human/H = usr
 			var/obj/item/weapon/card/id/C = H.GetIdCard()
 
@@ -523,6 +560,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 
 /obj/machinery/vending/proc/vend(datum/stored_item/vending_product/R, mob/user)
 	if(!can_buy(R, user))
+<<<<<<< HEAD
 		return
 
 	if(!R.amount)
@@ -530,6 +568,15 @@ GLOBAL_LIST_EMPTY(vending_products)
 		vend_ready = TRUE
 		return
 
+=======
+		return
+
+	if(!R.amount)
+		to_chat(user, "<span class='warning'>[src] has ran out of that product.</span>")
+		vend_ready = TRUE
+		return
+
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 	vend_ready = FALSE //One thing at a time!!
 	SStgui.update_uis(src)
 
@@ -569,6 +616,11 @@ GLOBAL_LIST_EMPTY(vending_products)
 			visible_message("<span class='notice'>\The [src] clunks as it vends an additional item.</span>")
 	playsound(src, "sound/[vending_sound]", 100, 1, 1)
 
+<<<<<<< HEAD
+=======
+	GLOB.items_sold_shift_roundstat++
+
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 	vend_ready = 1
 	currently_vending = null
 	SStgui.update_uis(src)

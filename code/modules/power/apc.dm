@@ -187,8 +187,13 @@ GLOBAL_LIST_EMPTY(apcs)
 	if(building)
 		set_dir(ndir)
 
+<<<<<<< HEAD
 	pixel_x = (dir & 3)? 0 : (dir == 4 ? 26 : -26) //VOREStation Edit -> 24 to 26
 	pixel_y = (dir & 3)? (dir ==1 ? 26 : -26) : 0 //VOREStation Edit -> 24 to 26
+=======
+	pixel_x = (dir & 3)? 0 : (dir == 4 ? 24 : -24)
+	pixel_y = (dir & 3)? (dir ==1 ? 24 : -24) : 0
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 	if(building==0)
 		init()
 	else

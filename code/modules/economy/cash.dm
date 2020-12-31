@@ -32,7 +32,11 @@
 			h_user.drop_from_inventory(src)
 			h_user.drop_from_inventory(SC)
 			h_user.put_in_hands(SC)
+<<<<<<< HEAD
 		to_chat(user, "<span class='notice'>You combine the [initial_name]s to a bundle of [SC.worth] [initial_name]s.</span>")
+=======
+		to_chat(user, "<span class='notice'>You combine the Thalers to a bundle of [SC.worth] [initial_name]s.</span>")
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 		qdel(src)
 
 /obj/item/weapon/spacecash/update_icon()

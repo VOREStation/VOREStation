@@ -3,7 +3,11 @@
 /obj/machinery/particle_accelerator/control_box
 	name = "Particle Accelerator Control Computer"
 	desc = "This controls the density of the particles."
+<<<<<<< HEAD
 	icon = 'icons/obj/machines/particle_accelerator_vr.dmi' //VOREStation Edit
+=======
+	icon = 'icons/obj/machines/particle_accelerator.dmi'
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 	icon_state = "control_box"
 	reference = "control_box"
 	anchored = 0

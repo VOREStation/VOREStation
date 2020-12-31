@@ -247,7 +247,11 @@
 			APC_entry["total_load"] = reading_to_text(A.lastused_total)
 			// Hopefully removes those goddamn \improper s which are screwing up the UI
 			var/N = A.area.name
+<<<<<<< HEAD
 			if(findtext(N, "�"))
+=======
+			if(findtext(N, "\improper"))
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 				N = copytext(N, 3)
 			APC_entry["name"] = N
 			// Add data into main list of APC data.

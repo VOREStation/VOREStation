@@ -156,7 +156,10 @@
 	var/list/data = list()
 
 	data["doors_open"] = lift.doors_are_open()
+<<<<<<< HEAD
 	data["fire_mode"] = lift.fire_mode
+=======
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 
 	data["floors"] = list()
 	for(var/i in lift.floors.len to 1 step -1)
@@ -194,10 +197,13 @@
 	if(.)
 		pressed(usr)
 
+<<<<<<< HEAD
 /obj/structure/lift/panel/update_icon()
 	if(lift.fire_mode)
 		icon_state = "panel_fire"
 	else
 		icon_state = initial(icon_state)
 
+=======
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 // End panel.

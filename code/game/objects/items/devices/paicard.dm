@@ -33,6 +33,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 	QDEL_NULL(radio)
 	return ..()
 
+<<<<<<< HEAD
 // VOREStation Edit - Allow everyone to become a pAI
 /obj/item/device/paicard/attack_ghost(mob/user as mob)
 	if(pai != null) //Have a person in them already?
@@ -56,6 +57,24 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 	new_pai.SetName(actual_pai_name)
 	return ..()
 // VOREStation Edit End
+=======
+/obj/item/device/paicard/attack_ghost(mob/observer/dead/user)
+	if(istype(user) && user.can_admin_interact())
+		switch(alert(user, "Would you like to become a pAI by force? (Admin)", "pAI Creation", "Yes", "No"))
+			if("Yes")
+				// Copied from paiController/Topic
+				var/mob/living/silicon/pai/pai = new(src)
+				pai.name = user.name
+				pai.real_name = pai.name
+				pai.key = user.key
+
+				setPersonality(pai)
+				looking_for_personality = FALSE
+
+				if(pai.mind)
+					update_antag_icons(pai.mind)
+	return ..()
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 
 /obj/item/device/paicard/attack_self(mob/user)
 	if (!in_range(src, user))

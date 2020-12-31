@@ -172,7 +172,11 @@
 			. = TRUE
 		if("terminate")
 			if(computer && program.can_run(usr, 1))
+<<<<<<< HEAD
 				id_card.assignment = "Dismissed"	//VOREStation Edit: setting adjustment
+=======
+				id_card.assignment = "Terminated"
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 				id_card.access = list()
 				callHook("terminate_employee", list(id_card))
 			. = TRUE

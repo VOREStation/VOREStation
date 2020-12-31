@@ -6,7 +6,6 @@
 /datum/event2/meta/pda_spam/get_weight()
 	return metric.count_people_in_department(DEPARTMENT_EVERYONE) * 2
 
-
 /datum/event2/event/pda_spam
 	length_lower_bound = 30 MINUTES
 	length_upper_bound = 1 HOUR

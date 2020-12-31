@@ -134,7 +134,11 @@
 	if(!target)
 		if(ai_card)
 			if(istype(ai_card,/obj/item/device/aicard))
+<<<<<<< HEAD
 				ai_card.tgui_interact(H, custom_state = GLOB.tgui_deep_inventory_state)
+=======
+				ai_card.tgui_interact(H, custom_state = deep_inventory_state)
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 			else
 				eject_ai(H)
 		update_verb_holder()

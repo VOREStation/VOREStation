@@ -1167,6 +1167,7 @@
 			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/mercenary
 			parent_suit = /obj/item/clothing/suit/space/void/refurb/mercenary
 		//BEGIN: Space for additional downstream variants
+<<<<<<< HEAD
 		//VOREStation Addition Start
 		if("Manager")
 			parent_helmet = /obj/item/clothing/head/helmet/space/void/captain
@@ -1208,6 +1209,9 @@
 			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/mercenary/talon
 			parent_suit = /obj/item/clothing/suit/space/void/refurb/mercenary/talon
 		//VOREStation Addition End
+=======
+
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 		//END: downstream variant space
 	if(target_species)
 		//Only run these checks if they have a sprite sheet defined, otherwise they use human's anyways, and there is almost definitely a sprite.

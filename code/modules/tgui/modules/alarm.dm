@@ -13,11 +13,14 @@
 	..()
 	alarm_handlers = SSalarm.all_handlers
 
+<<<<<<< HEAD
 // Subtype for glasses_state
 /datum/tgui_module/alarm_monitor/all/glasses
 /datum/tgui_module/alarm_monitor/all/glasses/tgui_state(mob/user)
 	return GLOB.tgui_glasses_state
 
+=======
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 /datum/tgui_module/alarm_monitor/all/robot
 /datum/tgui_module/alarm_monitor/all/robot/tgui_state(mob/user)
 	return GLOB.tgui_self_state
@@ -27,6 +30,7 @@
 	..()
 	alarm_handlers = list(atmosphere_alarm, fire_alarm, power_alarm)
 
+<<<<<<< HEAD
 // Subtype for glasses_state
 /datum/tgui_module/alarm_monitor/engineering/glasses
 /datum/tgui_module/alarm_monitor/engineering/glasses/tgui_state(mob/user)
@@ -37,6 +41,8 @@
 /datum/tgui_module/alarm_monitor/engineering/nif/tgui_state(mob/user)
 	return GLOB.tgui_nif_state
 
+=======
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 // Subtype for NTOS
 /datum/tgui_module/alarm_monitor/engineering/ntos
 	ntos = TRUE
@@ -46,10 +52,13 @@
 	..()
 	alarm_handlers = list(camera_alarm, motion_alarm)
 
+<<<<<<< HEAD
 // Subtype for glasses_state
 /datum/tgui_module/alarm_monitor/security/glasses
 /datum/tgui_module/alarm_monitor/security/glasses/tgui_state(mob/user)
 	return GLOB.tgui_glasses_state
+=======
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 
 // Subtype for NTOS
 /datum/tgui_module/alarm_monitor/security/ntos

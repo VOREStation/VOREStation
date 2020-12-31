@@ -19,7 +19,11 @@ export const pAIInterface = (props, context) => {
     <Window width={450} height={600} resizable>
       <Window.Content scrollable>
         <Section title="Emotion">
+<<<<<<< HEAD
           {emotions.map(emote => (
+=======
+          {!!Array.isArray(emotions) && emotions.map(emote => (
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
             <Button
               key={emote.id}
               content={emote.name}
@@ -30,7 +34,11 @@ export const pAIInterface = (props, context) => {
         <Section title={"Software (Available RAM: " + available_ram + ")"}>
           <LabeledList>
             <LabeledList.Item label="Installed">
+<<<<<<< HEAD
               {bought.map(app => (
+=======
+              {!!Array.isArray(bought) && bought.map(app => (
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
                 <Button
                   key={app.id}
                   content={app.name}
@@ -40,7 +48,11 @@ export const pAIInterface = (props, context) => {
             </LabeledList.Item>
             <LabeledList.Divider />
             <LabeledList.Item label="Downloadable">
+<<<<<<< HEAD
               {not_bought.map(app => (
+=======
+              {!!Array.isArray(not_bought) && not_bought.map(app => (
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
                 <Button
                   key={app.id}
                   content={app.name + " (" + app.ram + ")"}

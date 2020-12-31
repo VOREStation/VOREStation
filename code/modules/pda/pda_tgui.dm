@@ -2,10 +2,22 @@
 /obj/item/device/pda/tgui_state(mob/user)
 	return GLOB.tgui_inventory_state
 
+<<<<<<< HEAD
 /obj/item/device/pda/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "Pda", "Personal Data Assistant", parent_ui)
+=======
+/obj/item/device/pda/tgui_status(mob/user, datum/tgui_state/state)
+	. = ..()
+	if(!can_use())
+		. = min(., STATUS_UPDATE)
+
+/obj/item/device/pda/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Pda", "Personal Data Assistant", parent_ui = parent_ui)
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 		ui.open()
 
 /obj/item/device/pda/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
@@ -45,7 +57,10 @@
 	data["idLink"] = (id ? text("[id.registered_name], [id.assignment]") : "--------")
 
 	data["useRetro"] = retro_mode
+<<<<<<< HEAD
 	data["touch_silent"] = touch_silent
+=======
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 
 	data["cartridge_name"] = cartridge ? cartridge.name : ""
 	data["stationTime"] = stationtime2text() //worldtime2stationtime(world.time) // Aaa which fucking one is canonical there's SO MANY
@@ -64,6 +79,15 @@
 	if(..())
 		return TRUE
 
+<<<<<<< HEAD
+=======
+	if(!can_use())
+		usr.unset_machine()
+		if(ui)
+			ui.close()
+		return FALSE
+
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 	add_fingerprint(usr)
 	usr.set_machine(src)
 
@@ -103,8 +127,11 @@
 			id_check(usr, 1)
 		if("Retro")
 			retro_mode = !retro_mode
+<<<<<<< HEAD
 		if("TouchSounds")
 			touch_silent = !touch_silent
+=======
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 		if("Ringtone")
 			return set_ringtone()
 		else

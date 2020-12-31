@@ -2,7 +2,10 @@
 	var/register_alarms = 1
 	var/datum/tgui_module/alarm_monitor/all/robot/alarm_monitor
 	var/datum/tgui_module/atmos_control/robot/atmos_control
+<<<<<<< HEAD
 	var/datum/tgui_module/crew_manifest/robot/crew_manifest
+=======
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 	var/datum/tgui_module/crew_monitor/robot/crew_monitor
 	var/datum/tgui_module/law_manager/robot/law_manager
 	var/datum/tgui_module/power_monitor/robot/power_monitor
@@ -63,6 +66,7 @@
 	set name = "Atmospherics Control"
 
 	atmos_control.tgui_interact(usr)
+<<<<<<< HEAD
 
 /********************
 *	Crew Manifest	*
@@ -72,6 +76,8 @@
 	set name = "Crew Manifest"
 
 	crew_manifest.tgui_interact(usr)
+=======
+>>>>>>> 5b66310... Merge pull request #7687 from ShadowLarkens/tgui_engineering
 
 /********************
 *	Crew Monitor	*
