@@ -2265,6 +2265,7 @@ Departamental Swimsuits, for general use
 	..()
 
 /obj/item/clothing/head/hood/winter/fluff/verie
+	body_parts_covered = null // This way, Verie's hair can show through the hood!
 	name = "not-so-cyan hood"
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "verie_hood"
