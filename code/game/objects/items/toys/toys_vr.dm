@@ -56,6 +56,12 @@
 /obj/item/toy/plushie/borgplushie/scrubpuppy
 	icon_state = "scrubpuppy"
 
+/obj/item/toy/plushie/borgplushie/drakiesec
+	icon_state = "secdrake"
+
+/obj/item/toy/plushie/borgplushie/drakiemed
+	icon_state = "meddrake"
+
 /obj/item/toy/plushie/foxbear
 	name = "toy fox"
 	desc = "Issa fox!"
