@@ -57,9 +57,11 @@
 	icon_state = "scrubpuppy"
 
 /obj/item/toy/plushie/borgplushie/drakiesec
+	icon = 'icons/obj/drakietoy_vr.dmi'
 	icon_state = "secdrake"
 
 /obj/item/toy/plushie/borgplushie/drakiemed
+	icon = 'icons/obj/drakietoy_vr.dmi'
 	icon_state = "meddrake"
 
 /obj/item/toy/plushie/foxbear
