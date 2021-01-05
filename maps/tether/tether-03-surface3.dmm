@@ -14150,12 +14150,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/bar_backroom)
-"axq" = (
-/obj/machinery/camera/network/civilian{
-	dir = 4
-	},
-/turf/simulated/floor/grass,
-/area/maintenance/lower/xenoflora)
 "axr" = (
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 5
@@ -38627,6 +38621,12 @@
 /obj/machinery/computer/operating,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/surgery1)
+"hfN" = (
+/obj/machinery/camera/network/civilian{
+	dir = 4
+	},
+/turf/simulated/floor/grass,
+/area/hydroponics)
 "hgf" = (
 /obj/machinery/door/firedoor/glass/hidden{
 	dir = 2
@@ -59514,7 +59514,7 @@ acV
 acV
 axr
 ayK
-axq
+hfN
 atg
 aSy
 aop
