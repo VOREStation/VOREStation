@@ -728,9 +728,6 @@
 	dir = 8
 	},
 /obj/structure/cable/green{
-	icon_state = "2-4"
-	},
-/obj/structure/cable/green{
 	icon_state = "1-2"
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals6{
@@ -1833,14 +1830,7 @@
 	name = "\improper North Medical Stairwell"
 	})
 "acN" = (
-/obj/machinery/camera/network/medbay{
-	dir = 10
-	},
 /obj/structure/railing,
-/obj/machinery/alarm{
-	dir = 1;
-	pixel_y = -24
-	},
 /turf/simulated/open,
 /area/tether/surfacebase/medical/uppernorthstairwell{
 	name = "\improper North Medical Stairwell"
@@ -1857,6 +1847,10 @@
 /obj/structure/sink{
 	dir = 4;
 	pixel_x = 11
+	},
+/obj/machinery/alarm{
+	dir = 8;
+	pixel_x = 24
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/triage)
@@ -2585,11 +2579,6 @@
 /obj/structure/cable/green{
 	icon_state = "1-8"
 	},
-/obj/machinery/light_switch{
-	dir = 4;
-	pixel_x = -30;
-	pixel_y = -24
-	},
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 1
 	},
@@ -2795,6 +2784,9 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -10;
 	pixel_y = -30
+	},
+/obj/machinery/camera/network/medbay{
+	dir = 10
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/uppernorthstairwell{
@@ -3480,10 +3472,6 @@
 	name = "north bump";
 	pixel_y = 28
 	},
-/obj/machinery/button/windowtint{
-	id = "surfsurgery2";
-	pixel_x = -26
-	},
 /obj/structure/cable/green{
 	icon_state = "0-2"
 	},
@@ -3809,6 +3797,16 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 1
 	},
+/obj/machinery/light_switch{
+	dir = 1;
+	pixel_x = 6;
+	pixel_y = -22
+	},
+/obj/machinery/button/windowtint{
+	id = "surfsurgery2";
+	pixel_x = -3;
+	pixel_y = -22
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/surgery1)
 "afB" = (
@@ -3931,9 +3929,6 @@
 /obj/machinery/atmospherics/unary/freezer{
 	dir = 4
 	},
-/obj/machinery/alarm{
-	pixel_y = 25
-	},
 /obj/effect/floor_decal/corner/paleblue{
 	dir = 6
 	},
@@ -3942,10 +3937,6 @@
 	},
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
-	},
-/obj/machinery/firealarm{
-	layer = 3.3;
-	pixel_y = 39
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/triage)
@@ -26011,11 +26002,6 @@
 /obj/structure/cable/green{
 	icon_state = "4-8"
 	},
-/obj/machinery/alarm{
-	dir = 1;
-	pixel_x = 30;
-	pixel_y = -22
-	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
@@ -26610,6 +26596,10 @@
 /obj/item/device/flashlight/lamp/green{
 	pixel_x = 10;
 	pixel_y = 14
+	},
+/obj/item/weapon/storage/box/body_record_disk{
+	pixel_x = -3;
+	pixel_y = -3
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lobby)
@@ -27766,10 +27756,6 @@
 "aVT" = (
 /obj/structure/table/standard,
 /obj/item/device/healthanalyzer,
-/obj/machinery/button/windowtint{
-	id = "surfsurgery2";
-	pixel_x = -26
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/surgery2)
@@ -28404,6 +28390,10 @@
 	},
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk,
+/obj/machinery/button/windowtint{
+	id = "surfsurgery2";
+	pixel_x = -22
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/surgery2)
 "aXd" = (
@@ -39006,6 +38996,15 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/carpet/blue,
 /area/tether/surfacebase/security/breakroom)
+"iOL" = (
+/obj/machinery/alarm{
+	dir = 1;
+	pixel_y = -24
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/uppernorthstairwell{
+	name = "\improper North Medical Stairwell"
+	})
 "iQr" = (
 /obj/machinery/hologram/holopad,
 /obj/effect/landmark/start{
@@ -56222,7 +56221,7 @@ ajG
 ajG
 aag
 abq
-abq
+iOL
 aah
 aaI
 agj

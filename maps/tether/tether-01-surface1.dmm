@@ -322,9 +322,7 @@
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/medical/mentalhealth)
 "aaE" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6
-	},
+/obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/medical/mentalhealth)
 "aaF" = (
@@ -368,12 +366,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/medical/paramed)
-"aaI" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/turf/simulated/floor/carpet/blue,
-/area/tether/surfacebase/medical/mentalhealth)
 "aaJ" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/folder/white,
@@ -1424,12 +1416,6 @@
 /obj/machinery/vending/loadout,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_laundry)
-"acA" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 6
-	},
-/turf/simulated/floor/carpet/blue,
-/area/tether/surfacebase/medical/mentalhealth)
 "acB" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -1459,9 +1445,6 @@
 	pixel_x = 6;
 	pixel_y = 10;
 	range = 12
-	},
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
 	},
 /obj/machinery/button/windowtint{
 	id = "psych_office_inside";
@@ -1770,15 +1753,9 @@
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
+	dir = 10
 	},
 /turf/simulated/floor/wood,
-/area/tether/surfacebase/medical/mentalhealth)
-"adg" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
-	},
-/turf/simulated/floor/carpet/blue,
 /area/tether/surfacebase/medical/mentalhealth)
 "adh" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -1853,7 +1830,9 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining_eva)
 "adm" = (
-/obj/structure/bed/chair/bay/chair/padded/red/bignest,
+/obj/structure/bed/chair/bay/chair/padded/red/bignest{
+	name = "Tweeter's Bed"
+	},
 /mob/living/simple_mob/animal/passive/bird/azure_tit/tweeter,
 /turf/simulated/floor/grass,
 /area/tether/surfacebase/medical/mentalhealth)
@@ -2301,6 +2280,9 @@
 /area/tether/surfacebase/medical/lowerhall)
 "adT" = (
 /obj/structure/flora/pottedplant/fern,
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/medical/mentalhealth)
 "adU" = (
@@ -26930,19 +26912,19 @@
 /turf/simulated/wall,
 /area/crew_quarters/showers)
 "aUc" = (
-/turf/simulated/floor/tiled/freezer,
+/turf/simulated/floor/tiled/white,
 /area/crew_quarters/showers)
 "aUd" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
 	},
-/turf/simulated/floor/tiled/freezer,
+/turf/simulated/floor/tiled/white,
 /area/crew_quarters/showers)
 "aUe" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/freezer,
+/turf/simulated/floor/tiled/white,
 /area/crew_quarters/showers)
 "aUf" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
@@ -26951,13 +26933,13 @@
 /obj/machinery/alarm{
 	pixel_y = 22
 	},
-/turf/simulated/floor/tiled/freezer,
+/turf/simulated/floor/tiled/white,
 /area/crew_quarters/showers)
 "aUg" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
-/turf/simulated/floor/tiled/freezer,
+/turf/simulated/floor/tiled/white,
 /area/crew_quarters/showers)
 "aUh" = (
 /obj/effect/floor_decal/borderfloor{
@@ -27258,24 +27240,24 @@
 /obj/effect/floor_decal/steeldecal/steel_decals10{
 	dir = 5
 	},
-/turf/simulated/floor/tiled/freezer,
+/turf/simulated/floor/tiled/white,
 /area/crew_quarters/showers)
 "aUH" = (
 /obj/effect/floor_decal/steeldecal/steel_decals10{
 	dir = 6
 	},
-/turf/simulated/floor/tiled/freezer,
+/turf/simulated/floor/tiled/white,
 /area/crew_quarters/showers)
 "aUI" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
 /obj/machinery/light,
-/turf/simulated/floor/tiled/freezer,
+/turf/simulated/floor/tiled/white,
 /area/crew_quarters/showers)
 "aUJ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/freezer,
+/turf/simulated/floor/tiled/white,
 /area/crew_quarters/showers)
 "aUK" = (
 /obj/effect/floor_decal/borderfloor{
@@ -27401,13 +27383,13 @@
 /obj/machinery/shower{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/freezer,
+/turf/simulated/floor/tiled/white,
 /area/crew_quarters/showers)
 "aUX" = (
 /obj/machinery/shower{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/freezer,
+/turf/simulated/floor/tiled/white,
 /area/crew_quarters/showers)
 "aUY" = (
 /obj/effect/floor_decal/borderfloor{
@@ -27617,7 +27599,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
 	},
-/turf/simulated/floor/tiled/freezer,
+/turf/simulated/floor/tiled/white,
 /area/crew_quarters/showers)
 "aVr" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -27626,7 +27608,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/freezer,
+/turf/simulated/floor/tiled/white,
 /area/crew_quarters/showers)
 "aVs" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -27639,7 +27621,7 @@
 /obj/machinery/door/airlock{
 	name = "Unisex Showers"
 	},
-/turf/simulated/floor/tiled/freezer,
+/turf/simulated/floor/tiled/white,
 /area/crew_quarters/showers)
 "aVt" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -27887,7 +27869,7 @@
 /area/maintenance/lower/atmos)
 "aVJ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled/freezer,
+/turf/simulated/floor/tiled/white,
 /area/crew_quarters/showers)
 "aVK" = (
 /obj/effect/floor_decal/borderfloor{
@@ -28117,20 +28099,20 @@
 /obj/effect/floor_decal/steeldecal/steel_decals10{
 	dir = 10
 	},
-/turf/simulated/floor/tiled/freezer,
+/turf/simulated/floor/tiled/white,
 /area/crew_quarters/showers)
 "aWg" = (
 /obj/effect/floor_decal/steeldecal/steel_decals10{
 	dir = 9
 	},
-/turf/simulated/floor/tiled/freezer,
+/turf/simulated/floor/tiled/white,
 /area/crew_quarters/showers)
 "aWh" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/freezer,
+/turf/simulated/floor/tiled/white,
 /area/crew_quarters/showers)
 "aWi" = (
 /obj/effect/floor_decal/borderfloor{
@@ -28302,23 +28284,23 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
 	},
-/turf/simulated/floor/tiled/freezer,
+/turf/simulated/floor/tiled/white,
 /area/crew_quarters/showers)
 "aWE" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/freezer,
+/turf/simulated/floor/tiled/white,
 /area/crew_quarters/showers)
 "aWF" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
-/turf/simulated/floor/tiled/freezer,
+/turf/simulated/floor/tiled/white,
 /area/crew_quarters/showers)
 "aWG" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
 	},
-/turf/simulated/floor/tiled/freezer,
+/turf/simulated/floor/tiled/white,
 /area/crew_quarters/showers)
 "aWH" = (
 /obj/effect/floor_decal/borderfloor{
@@ -31114,9 +31096,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_one)
-"blL" = (
-/turf/simulated/floor,
-/area/tether/surfacebase/outside/outside1)
 "bqI" = (
 /turf/simulated/wall,
 /area/tether/surfacebase/security/brig/storage)
@@ -31856,6 +31835,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
+/obj/machinery/washing_machine,
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/lowernorthhall)
 "evF" = (
@@ -34496,6 +34476,9 @@
 /obj/item/device/radio/intercom{
 	pixel_y = -24
 	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/brig)
 "orf" = (
@@ -36366,11 +36349,11 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/brig)
@@ -46836,8 +46819,8 @@ agd
 bbs
 bbC
 qDR
-blL
-blL
+eQz
+eQz
 abT
 wzA
 aku
@@ -46978,8 +46961,8 @@ bbg
 bbu
 bbD
 adt
-blL
-blL
+eQz
+eQz
 abT
 tCV
 akt
@@ -47121,7 +47104,7 @@ bbv
 bbE
 adt
 eQz
-blL
+eQz
 abT
 tCV
 ahs
@@ -50648,10 +50631,10 @@ aad
 aad
 aad
 aar
-aaI
 abL
-acA
-adg
+abL
+abL
+abL
 aea
 afb
 atO
