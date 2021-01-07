@@ -52,7 +52,7 @@
 	nsay()
 
 
-/mob/living/carbon/brain/caught_soul/create_mob_hud(datum/hud/HUD, apply_to_client = TRUE)
+/mob/living/carbon/brain/caught_soul/brainmob/create_mob_hud(datum/hud/HUD, apply_to_client = TRUE)
 	..()
 
 	var/list/adding = list()
