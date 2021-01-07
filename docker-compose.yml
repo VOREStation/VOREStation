@@ -14,6 +14,7 @@ services:
       - db
     volumes:
       - ./config/:/vorestation/config
+      - gamedata:/vorestation/data
   # MariaDB/MySQL database: game 
   # (if you don't really need this, feel free to remove this section.)
   db:
@@ -31,4 +32,5 @@ services:
         - ./SQL/feedback_schema.sql:/docker-entrypoint-initdb.d/feedback_schema.sql:ro
         - database:/var/lib/mysql 
 volumes:
+  gamedata:
   database:
