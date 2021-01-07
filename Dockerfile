@@ -33,9 +33,7 @@ FROM dm_base as build
 
 COPY . .
 
-RUN DreamMaker -max_errors 0 vorestation.dme \
-    && tools/deploy.sh /deploy \
-	&& rm /deploy/*.dll
+RUN DreamMaker -max_errors 0 vorestation.dme
 
 FROM dm_base
 
@@ -55,8 +53,8 @@ RUN apt-get update \
     && mkdir -p /root/.byond/bin
 
 COPY --from=rust_g /rust_g/target/release/librust_g.so /root/.byond/bin/rust_g
-COPY --from=build /deploy ./
+COPY --from=build /vorestation/ ./
 
-VOLUME [ "/vorestation/config", "/vorestation/data" ]
+#VOLUME [ "/vorestation/config", "/vorestation/data" ]
 
 ENTRYPOINT [ "DreamDaemon", "vorestation.dmb", "-port", "2303", "-trusted", "-close", "-verbose" ]
