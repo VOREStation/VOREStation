@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  # Virgo DM server
+  dreammaker:
+    image: vorestation:latest
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports: 
+      - "2303:2303"
+    links:
+      - db
+    volumes:
+      - ./config/:/vorestation/config
+  # MariaDB/MySQL database: game 
+  # (if you don't really need this, feel free to remove this section.)
+  db:
+    image: mariadb
+    restart: unless-stopped
+    env_file:
+      - ./config/docker/mysql.env
+    environment:
+      - MYSQL_ROOT_PASSWORD=db_password
+      - MYSQL_DATABASE=db_name
+      - MYSQL_USER=dbuser_username
+      - MYSQL_PASSWORD=dbuser_password
+    volumes: 
+        - ./SQL/tgstation_schema.sql:/docker-entrypoint-initdb.d/tgstation_schema.sql:ro
+        - ./SQL/feedback_schema.sql:/docker-entrypoint-initdb.d/feedback_schema.sql:ro
+        - database:/var/lib/mysql 
+volumes:
+  database:
