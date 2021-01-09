@@ -42,7 +42,7 @@ GLOBAL_LIST_INIT(digest_modes, list())
 	L.adjustFireLoss(B.digest_burn)
 	var/actual_brute = L.getBruteLoss() - old_brute
 	var/actual_burn = L.getFireLoss() - old_burn
-	var/damage_gain = actual_brute + actual_burn
+	var/damage_gain = (actual_brute + actual_burn)*(B.nutrition_percent / 100)
 
 	var/offset = (1 + ((L.weight - 137) / 137)) // 130 pounds = .95 140 pounds = 1.02
 	var/difference = B.owner.size_multiplier / L.size_multiplier
@@ -50,9 +50,9 @@ GLOBAL_LIST_INIT(digest_modes, list())
 		var/mob/living/silicon/robot/R = B.owner
 		R.cell.charge += 25 * damage_gain
 	if(offset) // If any different than default weight, multiply the % of offset.
-		B.owner.adjust_nutrition(offset*((B.nutrition_percent / 100) * 4.5 * (damage_gain) / difference)) //4.5 nutrition points per health point. Normal same size 100+100 health prey with average weight would give 900 points if the digestion was instant. With all the size/weight offset taxes plus over time oxyloss+hunger taxes deducted with non-instant digestion, this should be enough to not leave the pred starved.
+		B.owner.adjust_nutrition(offset*(4.5 * (damage_gain) / difference)) //4.5 nutrition points per health point. Normal same size 100+100 health prey with average weight would give 900 points if the digestion was instant. With all the size/weight offset taxes plus over time oxyloss+hunger taxes deducted with non-instant digestion, this should be enough to not leave the pred starved.
 	else
-		B.owner.adjust_nutrition((B.nutrition_percent / 100) * 4.5 * (damage_gain) / difference)
+		B.owner.adjust_nutrition(4.5 * (damage_gain) / difference)
 
 /datum/digest_mode/absorb
 	id = DM_ABSORB
@@ -149,33 +149,35 @@ GLOBAL_LIST_INIT(digest_modes, list())
 		if(B.owner.nutrition > 400 && H.nutrition < 400)
 			B.owner.adjust_nutrition(-2)
 			H.adjust_nutrition(1.5)
-	if(changes_eyes && B.check_eyes(H))
-		B.change_eyes(H, 1)
-		return null
-	if(changes_hair_solo && B.check_hair(H))
-		B.change_hair(H)
-		return null
-	if(changes_hairandskin && (B.check_hair(H) || B.check_skin(H)))
-		B.change_hair(H)
-		B.change_skin(H, 1)
-		return null
-	if(changes_species)
-		if(changes_ears_tail_wing_nocolor && (B.check_ears(H) || B.check_tail_nocolor(H) || B.check_wing_nocolor(H) || B.check_species(H)))
-			B.change_ears(H)
-			B.change_tail_nocolor(H)
-			B.change_wing_nocolor(H)
-			B.change_species(H, 1, 1) // ,1) preserves coloring
-			H.species.create_organs(H)
-			H.sync_organ_dna()
+	var/datum/species/target_species = H.species
+	if(!((target_species.spawn_flags & SPECIES_IS_WHITELISTED) || (target_species.spawn_flags & SPECIES_IS_RESTRICTED)))
+		if(changes_eyes && B.check_eyes(H))
+			B.change_eyes(H, 1)
 			return null
-		if(changes_ears_tail_wing_color && (B.check_ears(H) || B.check_tail(H) || B.check_wing(H) || B.check_species(H)))
-			B.change_ears(H)
-			B.change_tail(H)
-			B.change_wing(H)
-			B.change_species(H, 1, 2) // ,2) does not preserve coloring.
-			H.species.create_organs(H)
-			H.sync_organ_dna()
+		if(changes_hair_solo && B.check_hair(H))
+			B.change_hair(H)
 			return null
+		if(changes_hairandskin && (B.check_hair(H) || B.check_skin(H)))
+			B.change_hair(H)
+			B.change_skin(H, 1)
+			return null
+		if(changes_species)
+			if(changes_ears_tail_wing_nocolor && (B.check_ears(H) || B.check_tail_nocolor(H) || B.check_wing_nocolor(H) || B.check_species(H)))
+				B.change_ears(H)
+				B.change_tail_nocolor(H)
+				B.change_wing_nocolor(H)
+				B.change_species(H, 1, 1) // ,1) preserves coloring
+				H.species.create_organs(H)
+				H.sync_organ_dna()
+				return null
+			if(changes_ears_tail_wing_color && (B.check_ears(H) || B.check_tail(H) || B.check_wing(H) || B.check_species(H)))
+				B.change_ears(H)
+				B.change_tail(H)
+				B.change_wing(H)
+				B.change_species(H, 1, 2) // ,2) does not preserve coloring.
+				H.species.create_organs(H)
+				H.sync_organ_dna()
+				return null
 	if(changes_gender && B.check_gender(H, changes_gender_to))
 		B.change_gender(H, changes_gender_to, 1)
 		return null

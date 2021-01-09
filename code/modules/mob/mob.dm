@@ -682,7 +682,7 @@
 
 // facing verbs
 /mob/proc/canface()
-	if(!canmove)						return 0
+//	if(!canmove)						return 0 //VOREStation Edit. Redundant check that only affects conscious proning, actual inability to turn and shift around handled by actual inabilities.
 	if(stat)							return 0
 	if(anchored)						return 0
 	if(transforming)						return 0
