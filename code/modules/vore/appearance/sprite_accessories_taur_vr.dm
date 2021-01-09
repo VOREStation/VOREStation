@@ -201,6 +201,7 @@
 	name = "SynthWolf dual-color (Taur)"
 	icon_state = "synthwolf_s"
 	extra_overlay = "synthwolf_markings"
+	extra_overlay2 = "synthwolf_glow"
 	//icon_sprite_tag = "synthwolf"
 
 /datum/sprite_accessory/tail/taur/skunk
@@ -275,6 +276,7 @@
 	name = "SynthHorse dual-color (Taur)"
 	icon_state = "synthhorse_s"
 	extra_overlay = "synthhorse_markings"
+	extra_overlay2 = "synthhorse_glow"
 	//icon_sprite_tag = "synthhorse"
 
 /datum/sprite_accessory/tail/taur/cow
@@ -336,6 +338,7 @@
 	name = "SynthLizard dual-color (Taur)"
 	icon_state = "synthlizard_s"
 	extra_overlay = "synthlizard_markings"
+	extra_overlay2 = "synthlizard_glow"
 	//icon_sprite_tag = "synthlizard"
 
 /datum/sprite_accessory/tail/taur/spider
@@ -422,6 +425,7 @@
 	name = "SynthFeline dual-color (Taur)"
 	icon_state = "synthfeline_s"
 	extra_overlay = "synthfeline_markings"
+	extra_overlay2 = "synthfeline_glow"
 	//icon_sprite_tag = "synthfeline"
 
 /datum/sprite_accessory/tail/taur/slug
