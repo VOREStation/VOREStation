@@ -5,9 +5,13 @@ First, open `config/docker/mysql.env.example`, open in notepad or N++, change al
 
 Then proceed to save the changed version to `mysql.env` and save it in the same directory as the `mysql.env.example` file.
 
-In order to get docker to use the database, it's suggested to change the `config/dbconfig.txt` to include the values in `.env` file, to do this, use the hostname `db` as host!
+In order to get docker to use the database, it's suggested to change the `config/dbconfig.txt` to include the values in `mysql.env` file, to do this, use the hostname `db` as host!
 
 ### Example for `config/dbconfig.txt`:
+
+The default database name is `tgstation` by default. Unless you change the SQL schemas, this cannot be changed.
+
+Keep note of the values, `*LOGIN` and `*PASSWORD`
 
 ```
 # MySQL Connection Configuration
@@ -20,7 +24,7 @@ ADDRESS db
 PORT 3306
 
 # Database the population, death, karma, etc. tables may be found in
-DATABASE virgo
+DATABASE tgstation
 
 # Username/Login used to access the database
 LOGIN sillyusername
@@ -29,9 +33,9 @@ LOGIN sillyusername
 PASSWORD somekindofpassword
 
 # The following information is for feedback tracking via the blackbox server
-FEEDBACK_DATABASE test
-FEEDBACK_LOGIN mylogin
-FEEDBACK_PASSWORD mypassword
+FEEDBACK_DATABASE tgstation
+FEEDBACK_LOGIN sillyusernane
+FEEDBACK_PASSWORD somekindofpassword
 
 # Track population and death statistics
 # Comment this out to disable
