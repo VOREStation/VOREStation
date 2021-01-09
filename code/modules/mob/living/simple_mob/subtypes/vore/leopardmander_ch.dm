@@ -11,8 +11,6 @@
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
 	old_x = -48
 	old_y = 0
-	melee_damage_lower = 20
-	melee_damage_upper = 15
 	friendly = list("nudges", "sniffs on", "rumbles softly at", "slobberlicks")
 	default_pixel_x = -48
 	pixel_x = -48
@@ -22,8 +20,8 @@
 	response_harm = "bops"
 	movement_cooldown = 2
 	harm_intent_damage = 10
-	melee_damage_lower = 10
-	melee_damage_upper = 25 //He's a lot bigger than you! Probably! Just don't be mean to him~
+	melee_damage_lower = 0
+	melee_damage_upper = 0 //He's a lot bigger than you! Probably! Just don't be mean to him~
 	maxHealth = 1500
 	attacktext = list("chomped")
 	see_in_dark = 8
@@ -63,11 +61,11 @@
 	movement_cooldown = 2
 
 /mob/living/simple_mob/vore/leopardmander/New() //Set to max nutrition on spawn since heal belly drains nutrition to work.
-	..() 
+	..()
 	src.adjust_nutrition(src.max_nutrition)
 
 /mob/living/simple_mob/vore/leopardmander/Initialize()
-	..() 
+	..()
 	src.adjust_nutrition(src.max_nutrition)
 
 /mob/living/simple_mob/vore/leopardmander/apply_melee_effects(atom/A)
@@ -85,7 +83,7 @@
 				L.reagents.add_reagent("myelamine", venom_dose)
 				L.reagents.add_reagent("osteodaxon", venom_dose)
 
-	
+
 
 /mob/living/simple_mob/vore/leopardmander
 
@@ -159,7 +157,7 @@
 
 	glow_toggle = TRUE //Glow!
 	glow_range = 2
-	glow_color = "#FF006E" 
+	glow_color = "#FF006E"
 	glow_intensity = 1.5
 
 /mob/living/simple_mob/vore/leopardmander/exotic/proc/toggle_glow()
@@ -170,7 +168,7 @@
 	glow_toggle = !glow_toggle
 
 /mob/living/simple_mob/vore/leopardmander/exotic/New()
-	..() 
+	..()
 	verbs |= /mob/living/simple_mob/vore/leopardmander/exotic/proc/toggle_glow
 
 /mob/living/simple_mob/vore/leopardmander/exotic/init_vore()
@@ -204,4 +202,4 @@
 /obj/random/mob/leopardmander/item_to_spawn() //Random map spawner
 	return pick(prob(89);/mob/living/simple_mob/vore/leopardmander,
 		prob(10);/mob/living/simple_mob/vore/leopardmander/blue,
-		prob(1);/mob/living/simple_mob/vore/leopardmander/exotic,) 
+		prob(1);/mob/living/simple_mob/vore/leopardmander/exotic,)
