@@ -17,7 +17,9 @@
 	icon_state = "reenter"
 
 /obj/screen/nifsc/reenter/Click()
-	reenter_soulcatcher()
+	..()
+	var/mob/living/carbon/brain/caught_soul/CS = usr
+	CS.reenter_soulcatcher()
 
 /obj/screen/nifsc/arproj
 	name = "AR project"
@@ -25,7 +27,9 @@
 	icon_state = "arproj"
 
 /obj/screen/nifsc/arproj/Click()
-	ar_project()
+        ..()
+        var/mob/living/carbon/brain/caught_soul/CS = usr
+        CS.ar_project()
 
 /obj/screen/nifsc/jumptoowner
 	name = "Jump back to host"
@@ -33,7 +37,9 @@
 	icon_state = "jump"
 
 /obj/screen/nifsc/jumptoowner/Click()
-	jump_to_owner()
+	..()
+	var/mob/living/carbon/brain/caught_soul/CS = usr
+	CS.jump_to_owner()
 
 /obj/screen/nifsc/nme
 	name = "Emote into Soulcatcher"
@@ -41,7 +47,9 @@
 	icon_state = "nme"
 
 /obj/screen/nifsc/nme/Click()
-	nme()
+	..()
+	var/mob/living/carbon/brain/caught_soul/CS = usr
+	CS.nme()
 
 /obj/screen/nifsc/nsay
 	name = "Speak into Soulcatcher"
@@ -49,10 +57,12 @@
 	icon_state = "nsay"
 
 /obj/screen/nifsc/nsay/Click()
-	nsay()
+	..()
+	var/mob/living/carbon/brain/caught_soul/CS = usr
+	CS.nsay()
 
 
-/mob/living/carbon/brain/caught_soul/brainmob/create_mob_hud(datum/hud/HUD, apply_to_client = TRUE)
+/mob/living/carbon/brain/caught_soul/create_mob_hud(datum/hud/HUD, apply_to_client = TRUE)
 	..()
 
 	var/list/adding = list()
