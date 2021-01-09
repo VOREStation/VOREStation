@@ -674,7 +674,9 @@
 				/obj/item/toy/plushie/foxbear,
 				/obj/item/toy/plushie/nukeplushie,
 				/obj/item/toy/plushie/otter,
-				/obj/item/toy/plushie/vox)
+				/obj/item/toy/plushie/vox,
+				/obj/item/toy/plushie/borgplushie/drakiesec,
+				/obj/item/toy/plushie/borgplushie/drakiemed)
 				//VOREStation Add End
 
 /obj/random/plushielarge
