@@ -246,18 +246,6 @@
 	corpsesuit = /obj/item/clothing/suit/space/void/mining
 	corpsemask = /obj/item/clothing/mask/breath
 	corpsehelmet = /obj/item/clothing/head/helmet/space/void/mining
-<<<<<<< HEAD
-	
-//VORESTATION ADD START
-/obj/effect/landmark/corpse/vintage/pilot
-	name = "Pilot"
-	corpseuniform = /obj/item/clothing/under/color/grey
-	corpsesuit = /obj/item/clothing/suit/space/void/refurb/pilot
-	corpsehelmet = /obj/item/clothing/head/helmet/space/void/refurb/pilot
-	corpseshoes = /obj/item/clothing/shoes/black
-	corpseback = /obj/item/weapon/tank/oxygen
-//VORESTATION ADD END
-=======
 	corpseback = /obj/item/weapon/tank/oxygen
 	
 /////////////////Vintage//////////////////////
@@ -272,7 +260,6 @@
 	corpseback = /obj/item/weapon/tank/oxygen
 	corpseid = 1
 	corpseidjob = "Crewmate"
->>>>>>> 831bd68... corpse landmarks update (#7801)
 
 /obj/effect/landmark/corpse/vintage/engineering
 	name = "Unknown Engineer"
