@@ -9,6 +9,8 @@
 	var/color = "#FFFFFF"	// The actual blob's color.
 	var/complementary_color = "#000000" //a color that's complementary to the normal blob color.  Blob mobs are colored in this.
 
+	var/faction = "blob"				// The blob's faction.
+
 	var/attack_message = "The blob attacks you" // Base message the mob gets when blob_act() gets called on them by the blob.  An exclaimation point is added to the end.
 	var/attack_message_living = null	// Appended to attack_message, if the target fails isSynthetic() check.
 	var/attack_message_synth = null		// Ditto, but if they pass isSynthetic().
