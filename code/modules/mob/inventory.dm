@@ -71,6 +71,15 @@ var/list/slot_equipment_priority = list( \
 /mob/proc/equip_to_slot_or_del(obj/item/W as obj, slot)
 	return equip_to_slot_if_possible(W, slot, 1, 1, 0)
 
+//hurgh. these feel hacky, but they're the only way I could get the damn thing to work. I guess they could be handy for antag spawners too?
+/mob/proc/equip_voidsuit_to_slot_or_del_with_refit(obj/item/clothing/suit/space/void/W as obj, slot, species = SPECIES_HUMAN)
+	W.refit_for_species(species)
+	return equip_to_slot_if_possible(W, slot, 1, 1, 0)
+	
+/mob/proc/equip_voidhelm_to_slot_or_del_with_refit(obj/item/clothing/head/helmet/space/void/W as obj, slot, species = SPECIES_HUMAN)
+	W.refit_for_species(species)
+	return equip_to_slot_if_possible(W, slot, 1, 1, 0)
+
 //Checks if a given slot can be accessed at this time, either to equip or unequip I
 /mob/proc/slot_is_accessible(var/slot, var/obj/item/I, mob/user=null)
 	return 1
