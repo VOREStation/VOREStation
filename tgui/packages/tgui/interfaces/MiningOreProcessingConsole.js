@@ -15,6 +15,7 @@ export const MiningOreProcessingConsole = (props, context) => {
     ores,
     showAllOres,
     power,
+    speed,
   } = data;
 
   return (
@@ -32,12 +33,20 @@ export const MiningOreProcessingConsole = (props, context) => {
           </Box>
         )} />
         <Section title="Status" buttons={
-          <Button
-            icon="power-off"
-            selected={power}
-            onClick={() => act("power")}>
-            {power ? "Smelting" : "Not Smelting"}
-          </Button>
+          <Fragment>
+            <Button
+              icon="bolt"
+              selected={speed}
+              onClick={() => act("speed_toggle")}>
+              {speed ? "High-Speed Active" : "High-Speed Inactive"}
+            </Button>
+            <Button
+              icon="power-off"
+              selected={power}
+              onClick={() => act("power")}>
+              {power ? "Smelting" : "Not Smelting"}
+            </Button>
+          </Fragment>
         }>
           <LabeledList>
             <LabeledList.Item label="Current unclaimed points" buttons={

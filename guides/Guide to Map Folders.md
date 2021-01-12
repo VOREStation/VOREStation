@@ -34,7 +34,7 @@ RandomZLevels: Polaris, do not touch
 southern_cross: Polaris, do not touch
 submaps: All our submaps. non _vr files are Polaris, do not touch them.
 tether: VORE, Our map, self-explanatory
-virgo_minitest: VORE, Testing map used for Travis, do not touch
+virgo_minitest: VORE, Testing map used for CI, do not touch
 
 ## What _submaps.dm (map-folder-specific, Tether uses _tether_submaps.dm) should look like:
 

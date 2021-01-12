@@ -237,8 +237,10 @@
 	opacity = 0
 	},
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock/hatch,
 /obj/structure/catwalk,
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
+	},
 /turf/simulated/floor/plating,
 /area/shuttle/gecko_sh_engineering)
 "ec" = (
@@ -289,10 +291,12 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/gecko_sh_cockpit)
 "eP" = (
-/obj/machinery/door/airlock/hatch,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/gecko_sh)
 "fe" = (
@@ -500,7 +504,6 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/gecko_sh)
 "kJ" = (
-/obj/machinery/door/airlock/hatch,
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
 	dir = 4
@@ -513,15 +516,20 @@
 	opacity = 0
 	},
 /obj/structure/catwalk,
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
+	},
 /turf/simulated/floor/plating,
 /area/shuttle/gecko_sh_engineering)
 "kU" = (
-/obj/machinery/door/airlock/hatch,
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
 	dir = 4
 	},
 /obj/structure/catwalk,
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
+	},
 /turf/simulated/floor/plating,
 /area/shuttle/gecko_sh_engineering)
 "lh" = (
@@ -738,8 +746,10 @@
 /turf/simulated/wall/rshull,
 /area/shuttle/gecko_sh)
 "qh" = (
-/obj/machinery/door/airlock/hatch,
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/gecko_sh)
 "qx" = (
@@ -860,7 +870,6 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/gecko_sh)
 "rY" = (
-/obj/machinery/door/airlock/hatch,
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/regular{
 	density = 0;
@@ -870,6 +879,9 @@
 	opacity = 0
 	},
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
+	},
 /turf/simulated/floor/plating,
 /area/shuttle/gecko_sh)
 "sB" = (
@@ -897,7 +909,6 @@
 /turf/simulated/floor/plating,
 /area/shuttle/gecko_sh_engineering)
 "sS" = (
-/obj/machinery/door/airlock/hatch,
 /obj/machinery/door/blast/regular{
 	density = 0;
 	dir = 4;
@@ -907,6 +918,9 @@
 	opacity = 0
 	},
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
+	},
 /turf/simulated/floor/plating,
 /area/shuttle/gecko_sh)
 "te" = (
@@ -925,7 +939,6 @@
 /turf/simulated/floor/plating,
 /area/shuttle/gecko_sh)
 "tM" = (
-/obj/machinery/door/airlock/hatch,
 /obj/machinery/door/blast/regular{
 	density = 0;
 	dir = 4;
@@ -935,6 +948,9 @@
 	opacity = 0
 	},
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
+	},
 /turf/simulated/floor/plating,
 /area/shuttle/gecko_sh_engineering)
 "tP" = (
@@ -1079,7 +1095,6 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/gecko_sh)
 "xc" = (
-/obj/machinery/door/airlock/hatch,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/door/firedoor/glass,
@@ -1087,6 +1102,9 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/gecko_sh)
@@ -1307,7 +1325,6 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/gecko_sh)
 "Br" = (
-/obj/machinery/door/airlock/hatch,
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/regular{
 	density = 0;
@@ -1315,6 +1332,9 @@
 	id = "gecko_sh_blast";
 	name = "Blast Shields";
 	opacity = 0
+	},
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
 	},
 /turf/simulated/floor/plating,
 /area/shuttle/gecko_sh)
@@ -1811,7 +1831,9 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/gecko_sh)
 "JE" = (
-/obj/machinery/computer/ship/helm,
+/obj/machinery/computer/ship/helm{
+	req_one_access = list()
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/gecko_sh_cockpit)
 "Kn" = (
@@ -1856,10 +1878,12 @@
 /turf/simulated/floor/plating,
 /area/shuttle/gecko_sh_engineering)
 "Lc" = (
-/obj/machinery/door/airlock/hatch,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/gecko_sh_cockpit)
 "Lf" = (
@@ -2257,7 +2281,6 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/gecko_sh)
 "RB" = (
-/obj/machinery/door/airlock/hatch,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/cable{
@@ -2266,6 +2289,9 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/gecko_sh_engineering)
 "RG" = (
@@ -2560,7 +2586,6 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/gecko_sh_engineering)
 "Xs" = (
-/obj/machinery/door/airlock/hatch,
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/regular{
 	density = 0;
@@ -2569,6 +2594,9 @@
 	id = "gecko_sh_blast";
 	name = "Blast Shields";
 	opacity = 0
+	},
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/gecko_sh_engineering)

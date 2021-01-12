@@ -523,9 +523,11 @@
 
 	if(((!(ishuman(usr) || isrobot(usr))) && (src.loc != usr)) || usr.stat || usr.restrained())
 		return
+	drop_contents()
 
-	var/turf/T = get_turf(src)
+/obj/item/weapon/storage/proc/drop_contents() // why is this a proc? literally just for RPEDs
 	hide_from(usr)
+	var/turf/T = get_turf(src)
 	for(var/obj/item/I in contents)
 		remove_from_storage(I, T)
 

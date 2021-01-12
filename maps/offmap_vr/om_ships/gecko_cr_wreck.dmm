@@ -66,10 +66,12 @@
 /turf/simulated/floor/airless,
 /area/shuttle/gecko_cr_engineering_wreck)
 "bJ" = (
-/obj/machinery/door/airlock/hatch,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/gecko_cr_cockpit_wreck)
 "bL" = (
@@ -217,7 +219,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/structure/closet/crate,
+/obj/structure/prop/blackbox/gecko_wreck,
 /turf/simulated/floor/plating,
 /area/shuttle/gecko_cr_cockpit_wreck)
 "fL" = (
@@ -233,10 +235,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
-/obj/effect/decal/remains/human,
-/obj/item/weapon/tank/air,
-/obj/item/clothing/suit/space/void/refurb/marine,
-/obj/item/clothing/head/helmet/space/void/refurb/marine,
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/gecko_cr_cockpit_wreck)
 "fR" = (
@@ -477,7 +475,7 @@
 	icon_state = "door_open";
 	opacity = 0
 	},
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/airless,
 /area/shuttle/gecko_cr_cockpit_wreck)
 "kn" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -838,13 +836,15 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/gecko_cr_cockpit_wreck)
 "qh" = (
-/obj/machinery/door/airlock/hatch,
 /obj/machinery/door/blast/regular{
 	dir = 4;
 	id = "gecko_wreck_cr_blast";
 	name = "Blast Shields"
 	},
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/gecko_cr_wreck)
 "qx" = (
@@ -1094,6 +1094,7 @@
 	dir = 1;
 	pixel_y = 42
 	},
+/obj/random/multiple/voidsuit/vintage,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/gecko_cr_cockpit_wreck)
 "vI" = (
@@ -1352,8 +1353,10 @@
 /turf/simulated/floor/airless,
 /area/shuttle/gecko_cr_wreck)
 "Br" = (
-/obj/machinery/door/airlock/hatch,
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
+	},
 /turf/simulated/floor/plating,
 /area/shuttle/gecko_cr_cockpit_wreck)
 "BC" = (
@@ -1591,6 +1594,7 @@
 	},
 /obj/effect/floor_decal/industrial/outline/grey,
 /obj/machinery/light/flicker,
+/obj/random/multiple/voidsuit/vintage,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/gecko_cr_cockpit_wreck)
 "FA" = (
@@ -1818,7 +1822,9 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/gecko_cr_cockpit_wreck)
 "JE" = (
-/obj/machinery/computer/ship/helm,
+/obj/machinery/computer/ship/helm{
+	req_one_access = list()
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/gecko_cr_cockpit_wreck)
 "JL" = (
@@ -1879,7 +1885,6 @@
 	},
 /area/shuttle/gecko_cr_cockpit_wreck)
 "KA" = (
-/obj/machinery/door/airlock/hatch,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/door/firedoor/glass,
@@ -1887,6 +1892,9 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/gecko_cr_cockpit_wreck)
@@ -1952,10 +1960,6 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 8
 	},
-/obj/effect/decal/remains,
-/obj/item/weapon/tank/oxygen/yellow,
-/obj/item/clothing/suit/space/void/refurb/engineering,
-/obj/item/clothing/head/helmet/space/void/refurb/engineering,
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/shuttle/gecko_cr_engineering_wreck)
 "LW" = (
@@ -2044,12 +2048,14 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/gecko_cr_cockpit_wreck)
 "NG" = (
-/obj/machinery/door/airlock/hatch,
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
 	dir = 4
 	},
 /obj/structure/catwalk,
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
+	},
 /turf/simulated/floor/airless,
 /area/shuttle/gecko_cr_engineering_wreck)
 "NI" = (
@@ -2232,12 +2238,14 @@
 /turf/simulated/floor/reinforced/airless,
 /area/shuttle/gecko_cr_wreck)
 "Pv" = (
-/obj/machinery/door/airlock/hatch,
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/regular{
 	dir = 4;
 	id = "gecko_wreck_cr_blast";
 	name = "Blast Shields"
+	},
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
 	},
 /turf/simulated/floor/plating,
 /area/shuttle/gecko_cr_wreck)
@@ -2410,7 +2418,6 @@
 /turf/simulated/floor/airless,
 /area/shuttle/gecko_cr_wreck)
 "RB" = (
-/obj/machinery/door/airlock/hatch,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/cable{
@@ -2424,6 +2431,9 @@
 	name = "Blast Shields"
 	},
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
+	},
 /turf/simulated/floor/tiled/techfloor{
 	nitrogen = 0;
 	oxygen = 0
@@ -2797,8 +2807,10 @@
 	},
 /area/shuttle/gecko_cr_engineering_wreck)
 "Xs" = (
-/obj/machinery/door/airlock/hatch,
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
+	},
 /turf/simulated/floor/tiled/techfloor{
 	nitrogen = 0;
 	oxygen = 0
@@ -2891,7 +2903,7 @@
 	opacity = 0
 	},
 /obj/structure/grille/broken,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/airless,
 /area/shuttle/gecko_cr_cockpit_wreck)
 "Zb" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
@@ -2951,8 +2963,10 @@
 	name = "Blast Shields"
 	},
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock/hatch,
 /obj/structure/catwalk,
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
+	},
 /turf/simulated/floor/airless,
 /area/shuttle/gecko_cr_engineering_wreck)
 "Zs" = (

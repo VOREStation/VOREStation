@@ -40,6 +40,15 @@
 	path = /obj/item/clothing/under/rank/khi/sci
 	allowed_roles = list("Research Director", "Scientist", "Roboticist", "Xenobiologist", "Xenobotanist", "Pathfinder", "Explorer")
 
+/datum/gear/uniform/job_khi/crg
+	display_name = "khi uniform, cargo"
+	path = /obj/item/clothing/under/rank/khi/crg
+	allowed_roles = list("Quartermaster", "Cargo Technician", "Shaft Miner")
+
+/datum/gear/uniform/job_khi/civ
+	display_name = "khi uniform, civ"
+	path = /obj/item/clothing/under/rank/khi/civ
+
 //Federation jackets
 /datum/gear/suit/job_fed/sec
 	display_name = "fed uniform, sec"

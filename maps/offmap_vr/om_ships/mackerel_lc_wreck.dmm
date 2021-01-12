@@ -26,7 +26,9 @@
 /turf/simulated/floor/airless,
 /area/shuttle/mackerel_lc_wreck)
 "bw" = (
-/obj/machinery/computer/ship/helm,
+/obj/machinery/computer/ship/helm{
+	req_one_access = list()
+	},
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/shuttle/mackerel_lc_wreck)
 "bI" = (
@@ -54,12 +56,14 @@
 /turf/simulated/floor/airless,
 /area/shuttle/mackerel_lc_wreck)
 "cg" = (
-/obj/machinery/door/airlock/hatch,
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/mackerel_lc_wreck)
@@ -70,8 +74,6 @@
 /area/shuttle/mackerel_lc_wreck)
 "cD" = (
 /obj/effect/floor_decal/industrial/warning,
-/obj/item/weapon/bone/skull,
-/obj/item/clothing/head/helmet/space/void/refurb/pilot,
 /obj/item/weapon/material/shard/shrapnel,
 /obj/item/weapon/material/shard/shrapnel,
 /turf/simulated/floor/tiled/techmaint/airless,
@@ -329,8 +331,10 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_lc_wreck)
 "ug" = (
-/obj/machinery/door/airlock/hatch,
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/mackerel_lc_wreck)
 "um" = (
@@ -610,6 +614,10 @@
 /obj/machinery/door/airlock/hatch,
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/mackerel_lc_wreck)
+"Iu" = (
+/obj/structure/prop/blackbox/mackerel_wreck,
+/turf/simulated/floor/airless,
+/area/shuttle/mackerel_lc_wreck)
 "Jq" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
@@ -884,9 +892,8 @@
 /turf/simulated/floor/airless,
 /area/shuttle/mackerel_lc_wreck)
 "Zp" = (
-/obj/item/weapon/bone/ribs,
-/obj/item/clothing/suit/space/void/refurb/pilot,
 /obj/effect/decal/cleanable/blood,
+/obj/effect/landmark/corpse/vintage/pilot,
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/shuttle/mackerel_lc_wreck)
 "ZJ" = (
@@ -1055,7 +1062,7 @@ ka
 ka
 tV
 ka
-WP
+ka
 WP
 WP
 "}
@@ -1079,8 +1086,8 @@ fL
 JG
 kU
 dG
+Iu
 ka
-WP
 WP
 WP
 "}
@@ -1229,8 +1236,8 @@ zo
 KZ
 rQ
 dG
+oq
 ka
-WP
 WP
 WP
 "}
@@ -1255,7 +1262,7 @@ ka
 ka
 tV
 ka
-WP
+ka
 BB
 WP
 "}

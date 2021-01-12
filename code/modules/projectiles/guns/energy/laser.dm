@@ -29,9 +29,16 @@
 	one_handed_penalty = 0 // Not sure if two-handing gets checked for mounted weapons, but better safe than sorry.
 
 /obj/item/weapon/gun/energy/laser/mounted/augment
+	name = "arm-laser"
+	desc = "A cruel malformation of a Hephaestus Industries G40E rifle, designed to kill with concentrated energy blasts, all while being stowable in the arm. This variant has the ability to \
+	switch between standard fire and a more efficent but weaker 'suppressive' fire."
 	use_external_power = FALSE
 	use_organic_power = TRUE
+	wielded_item_state = null
+	item_state = "augment_laser"
 	canremove = FALSE
+	one_handed_penalty = 5
+	battery_lock = 1
 
 /obj/item/weapon/gun/energy/laser/practice
 	name = "practice laser carbine"

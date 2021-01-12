@@ -78,21 +78,22 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 #define SUIT_STORE_LAYER		17		//Suit storage-slot item
 #define BACK_LAYER				18		//Back-slot item
 #define HAIR_LAYER				19		//The human's hair
-#define EARS_LAYER				20		//Both ear-slot items (combined image)
-#define EYES_LAYER				21		//Mob's eyes (used for glowing eyes)
-#define FACEMASK_LAYER			22		//Mask-slot item
-#define HEAD_LAYER				23		//Head-slot item
-#define HANDCUFF_LAYER			24		//Handcuffs, if the human is handcuffed, in a secret inv slot
-#define LEGCUFF_LAYER			25		//Same as handcuffs, for legcuffs
-#define L_HAND_LAYER			26		//Left-hand item
-#define R_HAND_LAYER			27		//Right-hand item
-#define WING_LAYER				28		//VOREStation edit. Simply move this up a number if things are added.
-#define TAIL_LAYER_ALT			29		//VOREStation edit. Simply move this up a number if things are added.
-#define MODIFIER_EFFECTS_LAYER	30		//Effects drawn by modifiers
-#define FIRE_LAYER				31		//'Mob on fire' overlay layer
-#define WATER_LAYER				32		//'Mob submerged' overlay layer
-#define TARGETED_LAYER			33		//'Aimed at' overlay layer
-#define TOTAL_LAYERS			33		//VOREStation edit. <---- KEEP THIS UPDATED, should always equal the highest number here, used to initialize a list.
+#define HAIR_ACCESSORY_LAYER	20		//VOREStation edit. Simply move this up a number if things are added.
+#define EARS_LAYER				21		//Both ear-slot items (combined image)
+#define EYES_LAYER				22		//Mob's eyes (used for glowing eyes)
+#define FACEMASK_LAYER			23		//Mask-slot item
+#define HEAD_LAYER				24		//Head-slot item
+#define HANDCUFF_LAYER			25		//Handcuffs, if the human is handcuffed, in a secret inv slot
+#define LEGCUFF_LAYER			26		//Same as handcuffs, for legcuffs
+#define L_HAND_LAYER			27		//Left-hand item
+#define R_HAND_LAYER			28		//Right-hand item
+#define WING_LAYER				29		//VOREStation edit. Simply move this up a number if things are added.
+#define TAIL_LAYER_ALT			30		//VOREStation edit. Simply move this up a number if things are added.
+#define MODIFIER_EFFECTS_LAYER	31		//Effects drawn by modifiers
+#define FIRE_LAYER				32		//'Mob on fire' overlay layer
+#define WATER_LAYER				33		//'Mob submerged' overlay layer
+#define TARGETED_LAYER			34		//'Aimed at' overlay layer
+#define TOTAL_LAYERS			34		//VOREStation edit. <---- KEEP THIS UPDATED, should always equal the highest number here, used to initialize a list.
 //////////////////////////////////
 
 /mob/living/carbon/human
@@ -151,7 +152,10 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	if(lying && !species.prone_icon) //Only rotate them if we're not drawing a specific icon for being prone.
 		M.Turn(90)
 		M.Scale(desired_scale_x, desired_scale_y)
-		M.Translate(1,-6)
+		if(species.icon_height == 64)//VOREStation Edit
+			M.Translate(13,-22)
+		else
+			M.Translate(1,-6)
 		layer = MOB_LAYER -0.01 // Fix for a byond bug where turf entry order no longer matters
 	else
 		M.Scale(desired_scale_x, desired_scale_y)
@@ -404,6 +408,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 	//Reset our hair
 	remove_layer(HAIR_LAYER)
+	remove_layer(HAIR_ACCESSORY_LAYER) //VOREStation Edit
 	update_eyes() //Pirated out of here, for glowing eyes.
 
 	var/obj/item/organ/external/head/head_organ = get_organ(BP_HEAD)
@@ -461,9 +466,25 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 	if(head_organ.transparent) //VOREStation Edit. For better slime limbs.
 		face_standing += rgb(,,,120)
-
+	
 	overlays_standing[HAIR_LAYER] = image(face_standing, layer = BODY_LAYER+HAIR_LAYER)
 	apply_layer(HAIR_LAYER)
+
+	// VOREStation Edit - START
+	var/icon/hair_acc_s = get_hair_accessory_overlay()
+	var/image/hair_acc_s_image = null
+	if(hair_acc_s)
+		if(hair_accessory_style.ignores_lighting)
+			hair_acc_s_image = image(hair_acc_s)
+			hair_acc_s_image.plane = PLANE_LIGHTING_ABOVE
+			hair_acc_s_image.appearance_flags = appearance_flags
+		if (hair_acc_s_image)
+			overlays_standing[HAIR_ACCESSORY_LAYER] = hair_acc_s_image
+			apply_layer(HAIR_ACCESSORY_LAYER)
+			return
+		overlays_standing[HAIR_ACCESSORY_LAYER] = image(hair_acc_s, layer = BODY_LAYER+HAIR_ACCESSORY_LAYER)
+		apply_layer(HAIR_ACCESSORY_LAYER)
+	// VOREStation Edit - END
 
 /mob/living/carbon/human/update_eyes()
 	if(QDESTROYING(src))

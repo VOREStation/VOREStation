@@ -141,3 +141,9 @@
 	..(S,H)
 	H.add_modifier(/datum/modifier/trait/colorblind_taj)
 	
+/datum/trait/neural_hypersensitivity
+	name = "Neural Hypersensitivity"
+	desc = "Your nerves are particularly sensitive to physical changes, leading to experiencing twice the intensity of pain and pleasure alike. Doubles traumatic shock."
+	cost = -1
+	var_changes = list("trauma_mod" = 2)
+	

@@ -4,6 +4,7 @@
 	name = "stacking machine console"
 	icon = 'icons/obj/machines/mining_machines_vr.dmi'  // VOREStation Edit
 	icon_state = "console"
+	layer = ABOVE_WINDOW_LAYER
 	density = 1
 	anchored = 1
 	var/obj/machinery/mineral/stacking_machine/machine = null
@@ -108,6 +109,18 @@
 			if(src.output) break
 		return
 	return
+
+/obj/machinery/mineral/stacking_machine/proc/toggle_speed(var/forced)
+	if(forced)
+		speed_process = forced
+	else
+		speed_process = !speed_process // switching gears
+	if(speed_process) // high gear
+		STOP_MACHINE_PROCESSING(src)
+		START_PROCESSING(SSfastprocess, src)
+	else // low gear
+		STOP_PROCESSING(SSfastprocess, src)
+		START_MACHINE_PROCESSING(src)
 
 /obj/machinery/mineral/stacking_machine/process()
 	if (src.output && src.input)

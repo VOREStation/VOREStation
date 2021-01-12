@@ -336,6 +336,8 @@
 
 	prey.forceMove(src)
 	owner.updateVRPanel()
+	if(isanimal(owner))
+		owner.update_icon()
 
 	for(var/mob/living/M in contents)
 		M.updateVRPanel()
@@ -366,7 +368,7 @@
 // in message boxes, this looks nice and is easily delimited.
 /obj/belly/proc/get_messages(type, delim = "\n\n")
 	ASSERT(type == "smo" || type == "smi" || type == "dmo" || type == "dmp" || type == "em")
-	
+
 	var/list/raw_messages
 	switch(type)
 		if("smo")
@@ -504,6 +506,8 @@
 
 	//Update owner
 	owner.updateVRPanel()
+	if(isanimal(owner))
+		owner.update_icon()
 
 //Digest a single item
 //Receives a return value from digest_act that's how much nutrition
@@ -516,7 +520,7 @@
 		owner.adjust_nutrition((nutrition_percent / 100) * 5 * digested)
 		if(isrobot(owner))
 			var/mob/living/silicon/robot/R = owner
-			R.cell.charge += (50 * digested)
+			R.cell.charge += ((nutrition_percent / 100) * 50 * digested)
 	return digested
 
 //Determine where items should fall out of us into.
@@ -673,6 +677,8 @@
 			I.gurgle_contaminate(target.contents, target.contamination_flavor, target.contamination_color)
 	items_preserved -= content
 	owner.updateVRPanel()
+	if(isanimal(owner))
+		owner.update_icon()
 	for(var/mob/living/M in contents)
 		M.updateVRPanel()
 

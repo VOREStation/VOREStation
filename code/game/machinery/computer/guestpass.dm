@@ -79,8 +79,7 @@
 	name = "guest pass terminal"
 	desc = "Used to print temporary passes for people. Handy!"
 	icon_state = "guest"
-	plane = TURF_PLANE
-	layer = ABOVE_TURF_LAYER
+	layer = ABOVE_WINDOW_LAYER
 	icon_keyboard = null
 	icon_screen = "pass"
 	density = 0

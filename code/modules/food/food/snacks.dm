@@ -4039,6 +4039,40 @@
 /obj/item/weapon/reagent_containers/food/snacks/rawsunflower/Initialize()
 	. = ..()
 
+/obj/item/weapon/reagent_containers/food/snacks/frostbelle
+	name = "frostbelle bud"
+	desc = "A frostbelle flower from Sif. Its petals shimmer with an inner light."
+	icon = 'icons/obj/food_ingredients.dmi'
+	icon_state = "frostbelle"
+	bitesize = 1
+	nutriment_amt = 1
+	nutriment_desc = list("another world" = 2)
+	catalogue_data = list(/datum/category_item/catalogue/flora/frostbelle)
+	filling_color = "#5dadcf"
+
+/obj/item/weapon/reagent_containers/food/snacks/frostbelle/Initialize()
+	. = ..()
+	set_light(1, 1, "#5dadcf")
+
+	reagents.add_reagent("oxycodone", 1)
+	reagents.add_reagent("sifsap", 5)
+	reagents.add_reagent("space_drugs", 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/bellefritter
+	name = "frostbelle fritters"
+	desc = "Frostbelles, prepared traditionally."
+	icon = 'icons/obj/food_syn.dmi'
+	icon_state = "bellefritter"
+	filling_color = "#5dadcf"
+	center_of_mass = list("x"=16, "y"=12)
+	do_coating_prefix = 0
+
+/obj/item/weapon/reagent_containers/food/snacks/bellefritter/Initialize()
+	. = ..()
+	reagents.add_reagent("batter", 10)
+	reagents.add_reagent("sugar", 5)
+	bitesize = 2
+
 /obj/item/weapon/reagent_containers/food/snacks/roastedsunflower
 	name = "sunflower seeds"
 	desc = "Sunflower seeds!"
@@ -6368,3 +6402,161 @@
 /obj/item/weapon/reagent_containers/food/snacks/lasagna/Initialize()
 	..()
 	reagents.add_reagent("protein", 2) //For meaty things.
+
+/obj/item/weapon/reagent_containers/food/snacks/gigapuddi
+	name = "Giga Puddi"
+	desc = "A large crème caramel"
+	icon = 'icons/obj/food.dmi'
+	icon_state = "gigapuddi"
+	trash = /obj/item/trash/plate
+
+/obj/item/weapon/reagent_containers/food/snacks/gigapuddi/New()
+	..()
+	reagents.add_reagent("nutriment", 20)
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/gigapuddi/happy
+	desc = "A large crème caramel made with extra love"
+	icon = 'icons/obj/food.dmi'
+	icon_state = "happypuddi"
+
+/obj/item/weapon/reagent_containers/food/snacks/gigapuddi/anger
+	desc = "A large crème caramel made with extra hate"
+	icon_state = "angerpuddi"
+	
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/buchedenoel
+	name = "\improper Buche de Noel"
+	desc = "Merry Christmas"
+	icon = 'icons/obj/food.dmi'
+	icon_state = "buche"
+	slice_path = /obj/item/weapon/reagent_containers/food/snacks/bucheslice
+	slices_num = 5
+	w_class = 2
+	trash = /obj/item/trash/tray
+
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/buchedenoel/New()
+	..()
+	reagents.add_reagent("nutriment", 20)
+	reagents.add_reagent("sugar", 9)
+	reagents.add_reagent("coco", 5)
+	bitesize = 3
+
+/obj/item/weapon/reagent_containers/food/snacks/bucheslice
+	name = "\improper Buche de Noel slice"
+	desc = "A slice of winter magic."
+	icon = 'icons/obj/food.dmi'
+	icon_state = "buche_slice"
+	trash = /obj/item/trash/plate
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/turkey
+	name = "turkey"
+	desc = "Tastes like chicken"
+	icon = 'icons/obj/food.dmi'
+	icon_state = "turkey"
+	slice_path = /obj/item/weapon/reagent_containers/food/snacks/turkeyslice
+	slices_num = 6
+	w_class = 2
+	trash = /obj/item/trash/tray
+
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/turkey/New()
+	..()
+	reagents.add_reagent("nutriment", 20)
+	reagents.add_reagent("blackpepper", 1)
+	reagents.add_reagent("sodiumchloride", 1)
+	reagents.add_reagent("cornoil", 1)
+	bitesize = 5
+
+/obj/item/weapon/reagent_containers/food/snacks/turkeyslice
+	name = "turkey drumstick"
+	desc = "Guaranteed vox-free"
+	icon = 'icons/obj/food.dmi'
+	icon_state = "turkey_drumstick"
+	trash = /obj/item/trash/plate
+	bitesize = 2
+	
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/suppermatter
+	name = "suppermatter"
+	desc = "Extremely dense and powerful food."
+	slice_path = /obj/item/weapon/reagent_containers/food/snacks/suppermattershard
+	slices_num = 10
+	icon = 'icons/obj/food.dmi'
+	icon_state = "suppermatter"
+	w_class = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/suppermatter/New()
+	..()
+	reagents.add_reagent("nutriment", 48)
+	bitesize = 12
+	set_light(1.4,2,"#FFFF00")
+
+/obj/item/weapon/reagent_containers/food/snacks/suppermattershard
+	name = "suppermatter shard"
+	desc = "A single portion of power."
+	icon = 'icons/obj/food.dmi'
+	icon_state = "suppermattershard"
+	bitesize = 3
+	trash = null
+
+/obj/item/weapon/reagent_containers/food/snacks/suppermattershard/New()
+	..()
+	set_light(1.4,1.4,"#FFFF00")
+
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/excitingsuppermatter
+	name = "exciting suppermatter"
+	desc = "Extremely dense, powerful and exciting food!"
+	slice_path = /obj/item/weapon/reagent_containers/food/snacks/excitingsuppermattershard
+	slices_num = 10
+	icon = 'icons/obj/food.dmi'
+	icon_state = "excitingsuppermatter"
+	w_class = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/excitingsuppermatter/New()
+	..()
+	reagents.add_reagent("nutriment", 60)
+	bitesize = 12
+	set_light(1.4,2,"#FF0000")
+
+/obj/item/weapon/reagent_containers/food/snacks/excitingsuppermattershard
+	name = "exciting suppermatter shard"
+	desc = "A single portion of exciting power!"
+	icon = 'icons/obj/food.dmi'
+	icon_state = "excitingsuppermattershard"
+	bitesize = 4
+	trash = null
+
+/obj/item/weapon/reagent_containers/food/snacks/excitingsuppermattershard/New()
+	..()
+	set_light(1.4,1.4,"#FF0000")
+
+/obj/item/weapon/reagent_containers/food/snacks/omurice
+	name = "omelette rice"
+	desc = "Just like your Japanese animes!"
+	icon = 'icons/obj/food.dmi'
+	icon_state = "omurice"
+	trash = /obj/item/trash/plate
+
+/obj/item/weapon/reagent_containers/food/snacks/omurice/New()
+	..()
+	reagents.add_reagent("nutriment", 8)
+	bitesize = 1
+
+/obj/item/weapon/reagent_containers/food/snacks/omurice/heart
+	icon = 'icons/obj/food.dmi'
+	icon_state = "omuriceheart"
+
+/obj/item/weapon/reagent_containers/food/snacks/omurice/face
+	icon = 'icons/obj/food.dmi'
+	icon_state = "omuriceface"
+	
+/obj/item/weapon/reagent_containers/food/snacks/cinnamonbun
+	name = "cinnamon bun"
+	desc = "Life needs frosting!"
+	icon = 'icons/obj/food.dmi'
+	icon_state = "cinnamonbun"
+	trash = null
+
+/obj/item/weapon/reagent_containers/food/snacks/cinnamonbun/New()
+	..()
+	reagents.add_reagent("nutriment", 8)
+	bitesize = 1

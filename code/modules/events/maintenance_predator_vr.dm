@@ -12,7 +12,10 @@
 								  "Fennec" = /mob/living/simple_mob/vore/fennec,
 								  "Fennix" = /mob/living/simple_mob/vore/fennix,
 								  "Jelly Blob" = /mob/living/simple_mob/animal/space/jelly,
-								  "Wolf" = /mob/living/simple_mob/animal/wolf)
+								  "Wolf" = /mob/living/simple_mob/animal/wolf,
+								  "Sect Queen" = /mob/living/simple_mob/vore/sect_queen,
+								  "Defanged Xenomorph" = /mob/living/simple_mob/vore/xeno_defanged,
+								  )
 
 /datum/event/maintenance_predator/start()
 
@@ -56,7 +59,7 @@
 		var/mob/living/simple_mob/newPred = new mobtype(get_turf(spawnspot))
 		qdel(newPred.ai_holder)
 		newPred.ai_holder = null
-		newPred.movement_cooldown = 0			// Remove the needless artificial speed cap
+		//newPred.movement_cooldown = 0			// The "needless artificial speed cap" exists for a reason
 		if(D.mind)
 			D.mind.transfer_to(newPred)
 		to_chat(D, "<span class='notice'>You are <b>[newPred]</b>, somehow having gotten aboard the station in search of food. \

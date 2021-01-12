@@ -1,6 +1,13 @@
 /obj/item/clothing/suit/customs
 	desc = "A standard SolCom Customs formal jacket."
 
+/obj/item/clothing/suit/chiton
+	name = "chiton"
+	desc = "A traditional piece of clothing from Greece."
+	icon = 'icons/mob/suit_vr.dmi'
+	icon_state = "chiton"
+	icon_override = 'icons/obj/clothing/suits_vr.dmi' //why won't it work without this WHY GOD PLEASE
+
 //HERE BE TAUR RELATED CLOTHES
 
 /*

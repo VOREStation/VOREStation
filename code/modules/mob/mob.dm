@@ -222,16 +222,23 @@
 	if(istype(A, /obj/effect/decal/point))
 		return 0
 
-	var/tile = get_turf(A)
+	var/turf/tile = get_turf(A)
 	if (!tile)
 		return 0
 
-	var/obj/P = new /obj/effect/decal/point(tile)
-	P.invisibility = invisibility
-	P.plane = plane
-	spawn (20)
-		if(P)
-			qdel(P)	// qdel
+	var/turf/our_tile = get_turf(src)
+	var/obj/visual = new /obj/effect/decal/point(our_tile)
+	visual.invisibility = invisibility
+	visual.plane = ABOVE_PLANE
+	visual.layer = FLY_LAYER
+
+	animate(visual,
+		pixel_x = (tile.x - our_tile.x) * world.icon_size + A.pixel_x,
+		pixel_y = (tile.y - our_tile.y) * world.icon_size + A.pixel_y,
+		time = 1.7,
+		easing = EASE_OUT)
+
+	QDEL_IN(visual, 2 SECONDS) //Better qdel
 
 	face_atom(A)
 	return 1
@@ -675,7 +682,7 @@
 
 // facing verbs
 /mob/proc/canface()
-	if(!canmove)						return 0
+//	if(!canmove)						return 0 //VOREStation Edit. Redundant check that only affects conscious proning, actual inability to turn and shift around handled by actual inabilities.
 	if(stat)							return 0
 	if(anchored)						return 0
 	if(transforming)						return 0
@@ -1012,6 +1019,40 @@ mob/proc/yank_out_object()
 /mob/verb/westfaceperm()
 	set hidden = 1
 	set_face_dir(client.client_dir(WEST))
+
+// Begin VOREstation edit
+/mob/verb/shiftnorth()
+	set hidden = TRUE
+	if(!canface())
+		return FALSE
+	if(pixel_y <= (default_pixel_y + 16))
+		pixel_y++
+		is_shifted = TRUE
+
+/mob/verb/shiftsouth()
+	set hidden = TRUE
+	if(!canface())
+		return FALSE
+	if(pixel_y >= (default_pixel_y - 16))
+		pixel_y--
+		is_shifted = TRUE
+
+/mob/verb/shiftwest()
+	set hidden = TRUE
+	if(!canface())
+		return FALSE
+	if(pixel_x >= (default_pixel_x - 16))
+		pixel_x--
+		is_shifted = TRUE
+
+mob/verb/shifteast()
+	set hidden = TRUE
+	if(!canface())
+		return FALSE
+	if(pixel_x <= (default_pixel_x + 16))
+		pixel_x++
+		is_shifted = TRUE
+// End VOREstation edit
 
 /mob/proc/adjustEarDamage()
 	return

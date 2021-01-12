@@ -130,3 +130,6 @@
 	icon_state = "talon_big"
 /obj/effect/floor_decal/emblem/talon_big/center
 	icon_state = "talon_center"
+
+/obj/effect/floor_decal/emblem/itgdauntless
+	icon_state = "itgdauntless"

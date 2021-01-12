@@ -3,6 +3,25 @@
 	var/includes_wing			//Cyberlimbs dmi includes a wing sprite to wear.
 	var/list/whitelisted_to		//List of ckeys that are allowed to pick this in charsetup.
 
+//CitRP Port
+var/const/cyberbeast_monitor_styles = "blank=cyber_blank;\
+	default=cyber_default;\
+	eyes=eyes;\
+	static=cyber_static;\
+	alert=cyber_alert;\
+	happy=cyber_happ;\
+	unhappy=cyber_unhapp;\
+	flat=cyber_flat;\
+	sad=cyber_sad;\
+	heart=cyber_heart;\
+	cross=cyber_cross;\
+	wave=cyber_wave;\
+	uwu=cyber_uwu;\
+	question=cyber_question;\
+	lowpower=cyber_lowpower;\
+	idle=cyber_idle;\
+	nwn=cyber_nwn"
+
 //////////////// For-specific-character fluff ones /////////////////
 // arokha : Aronai Sieyes
 /datum/robolimb/kitsuhana
@@ -45,7 +64,6 @@
 	company = "Eggnerd Prototyping Ltd."
 	icon = 'icons/obj/items_vr.dmi'
 	icon_state = "verkdisk"
-
 
 // tucker0666 : Frost
 /datum/robolimb/zenghu_frost
@@ -209,3 +227,16 @@
 
 /obj/item/weapon/disk/limb/dsi_teshari
 	company = "DSI - Teshari"
+
+//Ported from CitRP
+/datum/robolimb/cyber_beast
+	company = "Cyber Tech"
+	desc = "Adjusted for deep space, the material is durable and heavy."
+	icon = 'icons/mob/human_races/cyberlimbs/c-tech/c_beast.dmi'
+	unavailable_to_build = 1
+	parts = list(BP_HEAD)
+	monitor_icon = 'icons/mob/monitor_icons_vr.dmi'
+	monitor_styles = cyberbeast_monitor_styles
+
+/obj/item/weapon/disk/limb/cyber_beast
+	company = "Cyber Tech"

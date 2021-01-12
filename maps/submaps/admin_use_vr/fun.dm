@@ -152,8 +152,43 @@
 	power_environ = FALSE
 	power_light = FALSE
 
+/area/submap/admin_upload/lo
+	name = "\improper Unknown Area AA"
+	requires_power = 1
+	dynamic_lighting = 1
+	lightswitch = 0
+	power_equip = FALSE
+	power_environ = FALSE
+	power_light = FALSE
+
+/area/submap/admin_upload/lo/one
+	name = "\improper Unknown Area AB"
+
+/area/submap/admin_upload/lo/two
+	name = "\improper Unknown Area AC"
 
 
+/area/submap/admin_upload/lo/three
+	name = "\improper Unknown Area AD"
+
+/area/submap/admin_upload/lo/four
+	name = "\improper Unknown Area AE"
+
+/area/submap/admin_upload/lo/pow
+	name = "\improper Unknown Area AF"
+	requires_power = 0
+
+/area/submap/admin_upload/lo/pow/one
+	name = "\improper Unknown Area AG"
+
+/area/submap/admin_upload/lo/pow/two
+	name = "\improper Unknown Area AH"
+
+/area/submap/admin_upload/lo/pow/three
+	name = "\improper Unknown Area AI"
+
+/area/submap/admin_upload/lo/pow/four
+	name = "\improper Unknown Area AJ"
 
 
 // Adminbuse things for overmap sectors
