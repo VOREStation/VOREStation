@@ -24,9 +24,10 @@
 		var/mob/living/simple_mob/blob/spore/S = new spore_type(T)
 		if(istype(S))
 			S.overmind = O
+			S.faction = faction
 			O.blob_mobs.Add(S)
 		else
-			S.faction = "blob"
+			S.faction = faction
 		S.update_icons()
 
 /datum/blob_type/fulminant_organism/on_death(obj/structure/blob/B)
@@ -35,9 +36,10 @@
 		B.visible_message("<span class='danger'>\The [S] floats free from the [name]!</span>")
 		if(istype(S))
 			S.overmind = B.overmind
+			S.faction = faction
 			B.overmind.blob_mobs.Add(S)
 		else
-			S.faction = "blob"
+			S.faction = faction
 		S.update_icons()
 
 /datum/blob_type/fulminant_organism/on_chunk_use(obj/item/weapon/blobcore_chunk/B, mob/living/user)
