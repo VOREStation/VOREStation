@@ -3799,7 +3799,6 @@
 #include "code\ZAS\Zone.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-<<<<<<< HEAD:vorestation.dme
 #include "maps\gateway_archive_vr\blackmarketpackers.dm"
 #include "maps\offmap_vr\om_ships\abductor.dm"
 #include "maps\southern_cross\items\clothing\sc_accessory.dm"
@@ -3808,9 +3807,6 @@
 #include "maps\southern_cross\loadout\loadout_head.dm"
 #include "maps\southern_cross\loadout\loadout_suit.dm"
 #include "maps\southern_cross\loadout\loadout_uniform.dm"
-=======
-#include "maps\southern_cross\southern_cross.dm"
->>>>>>> 236524a... Merge pull request #7824 from Mechoid/FixSheetRecipes:polaris.dme
 #include "maps\submaps\_helpers.dm"
 #include "maps\submaps\_readme.dm"
 #include "maps\submaps\engine_submaps\engine.dm"
