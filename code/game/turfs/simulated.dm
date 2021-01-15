@@ -138,6 +138,8 @@
 
 			if(M.slip("the [floor_type] floor", slip_stun))
 				for(var/i = 1 to slip_dist)
+					if(M.slip_vore_in_progress)	//CHOMPEdit
+						break					//CHOMPEdit
 					step(M, M.dir)
 					sleep(1)
 			else
