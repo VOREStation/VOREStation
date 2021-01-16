@@ -59,6 +59,8 @@
 	siemens_coefficient =   1.5 //Very bad zappy times
 	rarity_value =          5
 
+	genders = list(MALE, FEMALE, PLURAL, NEUTER, HERM)
+
 	has_organ = list(
 		O_BRAIN = /obj/item/organ/internal/mmi_holder/posibrain/nano,
 		O_ORCH = /obj/item/organ/internal/nano/orchestrator,
@@ -170,7 +172,7 @@
 		H.forceMove(H.temporary_form.drop_location())
 		H.ckey = H.temporary_form.ckey
 		QDEL_NULL(H.temporary_form)
-	
+
 	to_chat(H, "<span class='warning'>You died as a Protean. Please sit out of the round for at least 60 minutes before respawning, to represent the time it would take to ship a new-you to the station.</span>")
 
 	for(var/obj/item/organ/I in H.internal_organs)
