@@ -77,7 +77,8 @@
 		if("myarp")
 			message = "lets out a myarp."
 			m_type = 2
-			playsound(src, 'sound/voice/myarp.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
+			if(user.ckey == "azurachitin")
+				playsound(src, 'sound/voice/myarp.ogg', 50, 1, -1, preference = /datum/client_preference/emote_noises)
 		if("bark")
 			message = "lets out a bark."
 			m_type = 2
