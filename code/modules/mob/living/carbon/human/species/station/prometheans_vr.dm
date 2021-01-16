@@ -13,6 +13,10 @@
 		"Rapala", "Neaera", "Stok", "Farwa", "Sobaka",
 		"Wolpin", "Saru", "Sparra")
 
+	spawn_flags = SPECIES_CAN_JOIN
+	wikilink="https://wiki.vore-station.net/Promethean"
+	genders = list(MALE, FEMALE, PLURAL, NEUTER, HERM)
+
 	color_mult = 1
 	mob_size = MOB_MEDIUM //As of writing, original was MOB_SMALL - Allows normal swapping
 	trashcan = 1 //They have goopy bodies. They can just dissolve things within them.
