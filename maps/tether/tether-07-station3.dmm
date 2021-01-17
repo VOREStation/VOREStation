@@ -15572,7 +15572,7 @@
 	dir = 4;
 	id = "QMLoad"
 	},
-/turf/simulated/floor,
+/turf/simulated/floor/tiled,
 /area/quartermaster/storage)
 "aIY" = (
 /obj/machinery/conveyor{
@@ -22662,6 +22662,13 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/upper)
+"hai" = (
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "QMLoad"
+	},
+/turf/simulated/floor/tiled,
+/area/quartermaster/storage)
 "hid" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -22923,7 +22930,7 @@
 	id = "QMLoad"
 	},
 /obj/structure/disposalpipe/segment,
-/turf/simulated/floor,
+/turf/simulated/floor/tiled,
 /area/quartermaster/storage)
 "iJT" = (
 /obj/structure/shuttle/engine/heater,
@@ -39445,7 +39452,7 @@ aCN
 aGO
 aGO
 aIv
-aGR
+hai
 azO
 tVq
 aab
