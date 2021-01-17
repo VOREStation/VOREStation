@@ -21,6 +21,8 @@
 	var/icon_height = 32
 	var/agility = 20 //prob() to do agile things
 
+	var/list/traits = list()
+
 /datum/species/proc/update_attack_types()
 	unarmed_attacks = list()
 	for(var/u_type in unarmed_types)
@@ -44,3 +46,29 @@
 		nif.nifsofts = nifsofts
 	else
 		..()
+/datum/species/proc/produceCopy(var/datum/species/to_copy,var/list/traits,var/mob/living/carbon/human/H)
+	ASSERT(to_copy)
+	ASSERT(istype(H))
+
+	if(ispath(to_copy))
+		to_copy = "[initial(to_copy.name)]"
+	if(istext(to_copy))
+		to_copy = GLOB.all_species[to_copy]
+
+	var/datum/species/new_copy = new to_copy.type()
+
+	new_copy.traits = traits
+
+	//If you had traits, apply them
+	if(new_copy.traits)
+		for(var/trait in new_copy.traits)
+			var/datum/trait/T = all_traits[trait]
+			T.apply(new_copy,H)
+
+	//Set up a mob
+	H.species = new_copy
+
+	if(H.dna)
+		H.dna.ready_dna(H)
+
+	return new_copy

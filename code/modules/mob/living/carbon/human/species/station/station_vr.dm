@@ -36,7 +36,6 @@
 
 	spawn_flags = SPECIES_CAN_JOIN
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
-	inherent_verbs = list(/mob/living/proc/shred_limb)
 
 	flesh_color = "#AFA59E"
 	base_color = "#777777"
@@ -80,7 +79,6 @@
 	secondary_langs = list(LANGUAGE_SKRELLIAN)
 	name_language = LANGUAGE_SKRELLIAN
 	color_mult = 1
-	inherent_verbs = list(/mob/living/proc/shred_limb)
 	assisted_langs = list(LANGUAGE_EAL, LANGUAGE_ROOTLOCAL, LANGUAGE_ROOTGLOBAL, LANGUAGE_VOX)
 
 	min_age = 18
@@ -129,7 +127,7 @@
 	secondary_langs = list(LANGUAGE_BIRDSONG)
 	name_language = LANGUAGE_BIRDSONG
 	color_mult = 1
-	inherent_verbs = list(/mob/living/proc/shred_limb,/mob/living/proc/flying_toggle,/mob/living/proc/start_wings_hovering)
+	inherent_verbs = list(/mob/living/proc/flying_toggle,/mob/living/proc/start_wings_hovering)
 
 	min_age = 18
 	max_age = 80
@@ -222,7 +220,7 @@
 //	gluttonous = 1
 	num_alternate_languages = 3
 	color_mult = 1
-	inherent_verbs = list(/mob/living/proc/shred_limb, /mob/living/carbon/human/proc/lick_wounds)
+	inherent_verbs = list(/mob/living/carbon/human/proc/lick_wounds)
 
 	blurb = "Vulpkanin are a species of sharp-witted canine-pideds residing on the planet Altam just barely within the \
 	dual-star Vazzend system. Their politically de-centralized society and independent natures have led them to become a species and \
@@ -256,7 +254,6 @@
 	color_mult = 1
 	min_age = 18
 	gluttonous = 0
-	inherent_verbs = list(/mob/living/proc/shred_limb)
 	genders = list(MALE, FEMALE, PLURAL, NEUTER, HERM)
 	descriptors = list()
 	wikilink="https://wiki.vore-station.net/Unathi"
@@ -269,7 +266,7 @@
 	color_mult = 1
 	min_age = 18
 	gluttonous = 0 //Moving this here so I don't have to fix this conflict every time polaris glances at station.dm
-	inherent_verbs = list(/mob/living/proc/shred_limb, /mob/living/carbon/human/proc/lick_wounds)
+	inherent_verbs = list(/mob/living/carbon/human/proc/lick_wounds)
 	heat_discomfort_level = 295 //Prevents heat discomfort spam at 20c
 	genders = list(MALE, FEMALE, PLURAL, NEUTER, HERM)
 	wikilink="https://wiki.vore-station.net/Tajaran"
@@ -327,7 +324,6 @@
 	inherent_verbs = list(
 		/mob/living/carbon/human/proc/sonar_ping,
 		/mob/living/proc/hide,
-		/mob/living/proc/shred_limb,
 		/mob/living/proc/toggle_pass_table
 		)
 
@@ -350,7 +346,6 @@
 	min_age = 18
 	icobase = 'icons/mob/human_races/r_vox_old.dmi'
 	deform = 'icons/mob/human_races/r_def_vox_old.dmi'
-	inherent_verbs = list(/mob/living/proc/shred_limb, /mob/living/proc/eat_trash)
 	descriptors = list(
 		/datum/mob_descriptor/vox_markings = 0
 		)
@@ -453,8 +448,6 @@ datum/species/harpy
 	blood_color = "#A10808"
 	base_color = "#f0f0f0"
 	color_mult = 1
-
-	inherent_verbs = list(/mob/living/proc/shred_limb)
 
 	has_glowing_eyes = TRUE
 
@@ -577,4 +570,3 @@ datum/species/harpy
 		"You feel uncomfortably warm.",
 		"Your chitin feels hot."
 		)
-	inherent_verbs = list(/mob/living/proc/shred_limb)
