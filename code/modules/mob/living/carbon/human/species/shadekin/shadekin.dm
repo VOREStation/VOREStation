@@ -66,8 +66,7 @@
 
 	speech_bubble_appearance = "ghost"
 
-	genders = list(PLURAL, NEUTER)		//no sexual dymorphism
-	ambiguous_genders = TRUE	//but just in case
+	genders = list(MALE, FEMALE, PLURAL, NEUTER, HERM)
 
 	virus_immune = 1
 
