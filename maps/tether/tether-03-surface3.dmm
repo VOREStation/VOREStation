@@ -31268,15 +31268,15 @@
 "bcf" = (
 /obj/effect/floor_decal/corner/grey/diagonal,
 /obj/structure/table/standard,
-/obj/item/frame/noticeboard{
-	pixel_x = 32
-	},
 /obj/item/weapon/paper{
 	desc = "";
 	info = "Yes hello, the goat in the freezer is named 'Spike'. Please do not fuck with Spike. He doesn't have the best temper.";
 	name = "Important notice from Rancher Jim"
 	},
 /obj/item/weapon/book/manual/chef_recipes,
+/obj/structure/noticeboard{
+	pixel_x = 32
+	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
 "bcg" = (
@@ -33396,8 +33396,8 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/servicebackroom)
 "bgf" = (
-/obj/item/frame/noticeboard{
-	pixel_y = 26
+/obj/structure/noticeboard{
+	pixel_y = 29
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
@@ -38722,7 +38722,9 @@
 "hCz" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/door/airlock/hatch,
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list()
+	},
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/shuttle_pad)
