@@ -2,4 +2,4 @@
 	outdoors = TRUE
 
 /turf/simulated/floor/beach/sand/desert/outdoors
-	outdoors = TRUE //VOREstation Edit
+	outdoors = TRUE
