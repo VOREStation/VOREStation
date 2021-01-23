@@ -15,7 +15,7 @@
 
 	spawn_flags = SPECIES_CAN_JOIN
 	wikilink="https://wiki.vore-station.net/Promethean"
-	genders = list(MALE, FEMALE, PLURAL, NEUTER, HERM)
+	genders = list(MALE, FEMALE, PLURAL, NEUTER)
 
 	color_mult = 1
 	mob_size = MOB_MEDIUM //As of writing, original was MOB_SMALL - Allows normal swapping
