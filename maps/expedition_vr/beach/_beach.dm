@@ -139,16 +139,14 @@
 /area/tether_away/beach
 	name = "\improper Away Mission - Virgo 4 Beach"
 	icon_state = "away"
-	base_turf = /turf/simulated/floor/beach/sand //This is what the ground turns into if destroyed/bombed/etc
-	//Not going to do sunlight simulations here like virgo3b
-	//So we just make the whole beach fullbright all the time
-	dynamic_lighting = 0
-	requires_power = 0
+	base_turf = /turf/simulated/floor/beach/sand/outdoors //This is what the ground turns into if destroyed/bombed/etc
+	dynamic_lighting = 1
+	requires_power = 1
 
 /area/tether_away/beach/powershed
 	name = "\improper Away Mission - Virgo 4 Coast PS"
 	icon_state = "blue2"
-	base_turf = /turf/simulated/floor/beach/sand
+	base_turf = /turf/simulated/floor/beach/sand/outdoors
 
 /area/tether_away/beach/coast
 	name = "\improper Away Mission - Virgo 4 Coast"
@@ -163,7 +161,47 @@
 /area/tether_away/beach/jungle
 	name = "\improper Away Mission - Virgo 4 Desert"
 	icon_state = "green"
-	base_turf = /turf/simulated/floor/beach/sand/desert
+	base_turf = /turf/simulated/floor/beach/sand/desert/outdoors
+
+/area/tether_away/beach/resort
+	icon = 'icons/turf/areas_vr.dmi'
+	icon_state = "yellow"
+	base_turf = /turf/simulated/floor/beach/sand/outdoors
+
+/area/tether_away/beach/resort/kitchen
+	name = "\improper Away Mission - Virgo 4 Kitchen"
+	icon_state = "grewhicir"
+
+/area/tether_away/beach/resort/lockermed
+	name = "\improper Away Mission - Virgo 4 Utility Pavilion"
+	icon_state = "cyawhicir"
+
+/area/tether_away/beach/resort/janibar
+	name = "\improper Away Mission - Virgo 4 Bar"
+	icon_state = "purwhicir"
+
+/area/tether_away/beach/resort/dorm1
+	name = "\improper Away Mission - Virgo 4 Private Room 1"
+	icon_state = "bluwhicir"
+	flags = RAD_SHIELDED
+/area/tether_away/beach/resort/dorm2
+	name = "\improper Away Mission - Virgo 4 Private Room 2"
+	icon_state = "bluwhicir"
+	flags = RAD_SHIELDED
+/area/tether_away/beach/resort/dorm3
+	name = "\improper Away Mission - Virgo 4 Private Room 3"
+	icon_state = "bluwhicir"
+	flags = RAD_SHIELDED
+/area/tether_away/beach/resort/dorm4
+	name = "\improper Away Mission - Virgo 4 Private Room 4"
+	icon_state = "bluwhicir"
+	flags = RAD_SHIELDED
+
+/area/tether_away/beach/cavebase
+	name = "\improper Away Mission - Virgo 4 Mysterious Cave"
+	icon = 'icons/turf/areas_vr.dmi'
+	icon_state = "orawhicir"
+	flags = RAD_SHIELDED
 
 //Some areas for the cave, which are referenced by our init object to seed submaps and ores
 /area/tether_away/cave
