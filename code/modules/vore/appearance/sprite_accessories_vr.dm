@@ -44,6 +44,13 @@
 
 // Ears avaliable to anyone
 
+/datum/sprite_accessory/ears/alt_ram_horns
+	name = "Solid ram horns"
+	desc = ""
+	icon_state = "ram_horns_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/ears/hyena
 	name = "hyena ears, dual-color"
 	desc = ""
