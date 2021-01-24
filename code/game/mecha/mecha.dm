@@ -209,6 +209,11 @@
 			var/obj/item/mecha_parts/mecha_equipment/ME = new path(src)
 			ME.attach(src)
 
+<<<<<<< HEAD
+=======
+	update_transform()
+
+>>>>>>> 95ea4f6... Mech Appearance Update (#7818)
 /obj/mecha/drain_power(var/drain_check)
 
 	if(drain_check)
@@ -1576,11 +1581,12 @@
 		src.verbs += /obj/mecha/verb/eject
 		src.Entered(mmi_as_oc)
 		src.Move(src.loc)
-		src.icon_state = src.reset_icon()
+		update_icon()
 		set_dir(dir_in)
 		src.log_message("[mmi_as_oc] moved in as pilot.")
 		if(!hasInternalDamage())
 			src.occupant << sound('sound/mecha/nominal.ogg',volume=50)
+		update_icon()
 		return 1
 	else
 		return 0
@@ -1883,11 +1889,15 @@
 		src.forceMove(src.loc)
 		src.verbs += /obj/mecha/verb/eject
 		src.log_append_to_last("[H] moved in as pilot.")
+<<<<<<< HEAD
 		src.icon_state = src.reset_icon()
 		//VOREStation Edit Add
 		if(occupant.hud_used)
 			minihud = new (occupant.hud_used, src)
 		//VOREStation Edit Add End
+=======
+		update_icon()
+>>>>>>> 95ea4f6... Mech Appearance Update (#7818)
 
 //This part removes all the verbs if you don't have them the _possible on your mech. This is a little clunky, but it lets you just add that to any mech.
 //And it's not like this 10yo code wasn't clunky before.
@@ -2003,7 +2013,7 @@
 		occupant.clear_alert("mech damage")
 		occupant.in_enclosed_vehicle = 0
 		occupant = null
-		icon_state = src.reset_icon()+"-open"
+		update_icon()
 		set_dir(dir_in)
 		verbs -= /obj/mecha/verb/eject
 
@@ -2662,13 +2672,6 @@
 		cell.give(amount)
 		return 1
 	return 0
-
-/obj/mecha/proc/reset_icon()
-	if (initial_icon)
-		icon_state = initial_icon
-	else
-		icon_state = initial(icon_state)
-	return icon_state
 
 //This is for mobs mostly.
 /obj/mecha/attack_generic(var/mob/user, var/damage, var/attack_message)
