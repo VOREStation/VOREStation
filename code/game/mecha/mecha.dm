@@ -208,12 +208,8 @@
 		for(var/path in starting_equipment)
 			var/obj/item/mecha_parts/mecha_equipment/ME = new path(src)
 			ME.attach(src)
-
-<<<<<<< HEAD
-=======
 	update_transform()
 
->>>>>>> 95ea4f6... Mech Appearance Update (#7818)
 /obj/mecha/drain_power(var/drain_check)
 
 	if(drain_check)
