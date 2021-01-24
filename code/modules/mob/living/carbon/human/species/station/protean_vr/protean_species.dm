@@ -59,7 +59,7 @@
 	siemens_coefficient =   1.5 //Very bad zappy times
 	rarity_value =          5
 
-	genders = list(MALE, FEMALE, PLURAL, NEUTER, HERM)
+	genders = list(MALE, FEMALE, PLURAL, NEUTER)
 
 	has_organ = list(
 		O_BRAIN = /obj/item/organ/internal/mmi_holder/posibrain/nano,

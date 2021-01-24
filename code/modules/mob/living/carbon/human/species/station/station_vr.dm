@@ -40,7 +40,7 @@
 	flesh_color = "#AFA59E"
 	base_color = "#777777"
 
-	genders = list(MALE, FEMALE, PLURAL, NEUTER, HERM)
+	genders = list(MALE, FEMALE, PLURAL, NEUTER)
 
 	heat_discomfort_strings = list(
 		"Your fur prickles in the heat.",
@@ -98,7 +98,7 @@
 
 	primitive_form = "Sobaka"
 
-	genders = list(MALE, FEMALE, PLURAL, NEUTER, HERM)
+	genders = list(MALE, FEMALE, PLURAL, NEUTER)
 
 	spawn_flags = SPECIES_CAN_JOIN
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
@@ -144,7 +144,7 @@
 
 	primitive_form = "Sparra"
 
-	genders = list(MALE, FEMALE, PLURAL, NEUTER, HERM)
+	genders = list(MALE, FEMALE, PLURAL, NEUTER)
 
 	spawn_flags = SPECIES_CAN_JOIN
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
@@ -194,7 +194,7 @@
 	blood_color = "#240bc4"
 	color_mult = 1
 
-	genders = list(MALE, FEMALE, PLURAL, NEUTER, HERM)
+	genders = list(MALE, FEMALE, PLURAL, NEUTER)
 
 	heat_discomfort_strings = list(
 		"Your fur prickles in the heat.",
@@ -237,7 +237,7 @@
 	spawn_flags = SPECIES_CAN_JOIN
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 
-	genders = list(MALE, FEMALE, PLURAL, NEUTER, HERM)
+	genders = list(MALE, FEMALE, PLURAL, NEUTER)
 
 	flesh_color = "#966464"
 	base_color = "#B43214"
@@ -254,7 +254,7 @@
 	color_mult = 1
 	min_age = 18
 	gluttonous = 0
-	genders = list(MALE, FEMALE, PLURAL, NEUTER, HERM)
+	genders = list(MALE, FEMALE, PLURAL, NEUTER)
 	descriptors = list()
 	wikilink="https://wiki.vore-station.net/Unathi"
 
@@ -268,7 +268,7 @@
 	gluttonous = 0 //Moving this here so I don't have to fix this conflict every time polaris glances at station.dm
 	inherent_verbs = list(/mob/living/carbon/human/proc/lick_wounds)
 	heat_discomfort_level = 295 //Prevents heat discomfort spam at 20c
-	genders = list(MALE, FEMALE, PLURAL, NEUTER, HERM)
+	genders = list(MALE, FEMALE, PLURAL, NEUTER)
 	wikilink="https://wiki.vore-station.net/Tajaran"
 	agility = 90
 
@@ -280,14 +280,14 @@
 	min_age = 18
 	reagent_tag = null
 	assisted_langs = list(LANGUAGE_EAL, LANGUAGE_ROOTLOCAL, LANGUAGE_ROOTGLOBAL, LANGUAGE_VOX)
-	genders = list(MALE, FEMALE, PLURAL, NEUTER, HERM)
+	genders = list(MALE, FEMALE, PLURAL, NEUTER)
 	wikilink="https://wiki.vore-station.net/Skrell"
 
 /datum/species/zaddat
 	spawn_flags = SPECIES_CAN_JOIN
 	min_age = 18
 	gluttonous = 0
-	genders = list(MALE, FEMALE, PLURAL, NEUTER, HERM)
+	genders = list(MALE, FEMALE, PLURAL, NEUTER)
 	descriptors = list()
 	// no wiki link exists for Zaddat yet
 
@@ -302,7 +302,7 @@
 /datum/species/diona
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED | SPECIES_WHITELIST_SELECTABLE
 	min_age = 18
-	genders = list(MALE, FEMALE, PLURAL, NEUTER, HERM)
+	genders = list(MALE, FEMALE, PLURAL, NEUTER)
 	wikilink="https://wiki.vore-station.net/Diona"
 
 /datum/species/teshari
@@ -316,7 +316,7 @@
 	push_flags = ~HEAVY //Allows them to use micro step code.
 	swap_flags = ~HEAVY
 	gluttonous = 0
-	genders = list(MALE, FEMALE, PLURAL, NEUTER, HERM)
+	genders = list(MALE, FEMALE, PLURAL, NEUTER)
 	descriptors = list()
 	wikilink="https://wiki.vore-station.net/Teshari"
 	agility = 90
@@ -333,7 +333,7 @@
 	deform = 'icons/mob/human_races/r_def_human_vr.dmi'
 	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR
 	min_age = 18
-	genders = list(MALE, FEMALE, PLURAL, NEUTER, HERM)
+	genders = list(MALE, FEMALE, PLURAL, NEUTER)
 	base_color = "#EECEB3"
 	wikilink="https://wiki.vore-station.net/Human"
 
@@ -363,7 +363,7 @@ datum/species/harpy
 	secondary_langs = list(LANGUAGE_BIRDSONG)
 	name_language = null
 	color_mult = 1
-	genders = list(MALE, FEMALE, PLURAL, NEUTER, HERM)
+	genders = list(MALE, FEMALE, PLURAL, NEUTER)
 	inherent_verbs = list(/mob/living/proc/flying_toggle,/mob/living/proc/start_wings_hovering)
 
 	min_age = 18
@@ -458,7 +458,7 @@ datum/species/harpy
 
 	speech_bubble_appearance = "ghost"
 
-	genders = list(MALE, FEMALE, PLURAL, NEUTER, HERM)
+	genders = list(MALE, FEMALE, PLURAL, NEUTER)
 
 	breath_type = null
 	poison_type = null
@@ -519,7 +519,7 @@ datum/species/harpy
 	//primitive_form = "" //We don't have fennec-monkey sprites.
 	spawn_flags = SPECIES_IS_RESTRICTED
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
-	genders = list(MALE, FEMALE, PLURAL, NEUTER, HERM)
+	genders = list(MALE, FEMALE, PLURAL, NEUTER)
 
 	flesh_color = "#AFA59E"
 	base_color = "#333333"
@@ -559,7 +559,7 @@ datum/species/harpy
 
 	spawn_flags = SPECIES_IS_RESTRICTED
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
-	genders = list(MALE, FEMALE, PLURAL, NEUTER, HERM)
+	genders = list(MALE, FEMALE, PLURAL, NEUTER)
 
 	blood_color = "#12ff12"
 	flesh_color = "#201730"
