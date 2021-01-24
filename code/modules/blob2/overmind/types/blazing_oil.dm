@@ -33,6 +33,8 @@
 		env.add_thermal_energy(10 * 1000)
 
 /datum/blob_type/blazing_oil/on_chunk_tick(obj/item/weapon/blobcore_chunk/B)
+	B.reagents.add_reagent("thermite_v", 0.5)
+
 	var/turf/T = get_turf(B)
 	if(!T)
 		return

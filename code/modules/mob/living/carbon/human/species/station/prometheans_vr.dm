@@ -13,6 +13,10 @@
 		"Rapala", "Neaera", "Stok", "Farwa", "Sobaka",
 		"Wolpin", "Saru", "Sparra")
 
+	spawn_flags = SPECIES_CAN_JOIN
+	wikilink="https://wiki.vore-station.net/Promethean"
+	genders = list(MALE, FEMALE, PLURAL, NEUTER)
+
 	color_mult = 1
 	mob_size = MOB_MEDIUM //As of writing, original was MOB_SMALL - Allows normal swapping
 	trashcan = 1 //They have goopy bodies. They can just dissolve things within them.
@@ -30,10 +34,5 @@
 		/mob/living/carbon/human/proc/shapeshifter_select_tail,
 		/mob/living/carbon/human/proc/shapeshifter_select_ears,
 		/mob/living/proc/set_size,
-		/mob/living/carbon/human/proc/succubus_drain,
-		/mob/living/carbon/human/proc/succubus_drain_finalize,
-		/mob/living/carbon/human/proc/succubus_drain_lethal,
-		/mob/living/carbon/human/proc/slime_feed,
-		/mob/living/proc/eat_trash,
 		/mob/living/carbon/human/proc/promethean_select_opaqueness,
 		)

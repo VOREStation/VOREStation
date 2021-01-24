@@ -509,8 +509,10 @@
 	var/atom/movable/target = locate(params["pick"])
 	if(!(target in host.vore_selected))
 		return TRUE // Not in our X anymore, update UI
-	intent = "Examine"
-	intent = alert("Examine, Eject, Move? Examine if you want to leave this box.","Query","Examine","Eject","Move")
+	var/list/available_options = list("Examine", "Eject", "Move")
+	if(ishuman(target))
+		available_options += "Transform"
+	intent = input(user, "What would you like to do with [target]?", "Vore Pick", "Examine") as null|anything in available_options
 	switch(intent)
 		if("Examine")
 			var/list/results = target.examine(host)
@@ -525,6 +527,7 @@
 				return TRUE
 
 			host.vore_selected.release_specific_contents(target)
+			return TRUE
 
 		if("Move")
 			if(host.stat)
@@ -537,6 +540,20 @@
 
 			to_chat(target,"<span class='warning'>You're squished from [host]'s [lowertext(host.vore_selected.name)] to their [lowertext(choice.name)]!</span>")
 			host.vore_selected.transfer_contents(target, choice)
+			return TRUE
+
+		if("Transform")
+			if(host.stat)
+				to_chat(user,"<span class='warning'>You can't do that in your state!</span>")
+				return TRUE
+
+			var/mob/living/carbon/human/H = target
+			if(!istype(H))
+				return
+
+			var/datum/tgui_module/appearance_changer/vore/V = new(host, H)
+			V.tgui_interact(user)
+			return TRUE
 
 /datum/vore_look/proc/set_attr(mob/user, params)
 	if(!host.vore_selected)
@@ -573,20 +590,9 @@
 			. = TRUE
 		if("b_mode")
 			var/list/menu_list = host.vore_selected.digest_modes.Copy()
-			if(istype(usr,/mob/living/carbon/human))
-				menu_list += DM_TRANSFORM
-
 			var/new_mode = input("Choose Mode (currently [host.vore_selected.digest_mode])") as null|anything in menu_list
 			if(!new_mode)
 				return FALSE
-
-			if(new_mode == DM_TRANSFORM) //Snowflek submenu
-				var/list/tf_list = host.vore_selected.transform_modes
-				var/new_tf_mode = input("Choose TF Mode (currently [host.vore_selected.digest_mode])") as null|anything in tf_list
-				if(!new_tf_mode)
-					return FALSE
-				host.vore_selected.digest_mode = new_tf_mode
-				return
 
 			host.vore_selected.digest_mode = new_mode
 			. = TRUE
