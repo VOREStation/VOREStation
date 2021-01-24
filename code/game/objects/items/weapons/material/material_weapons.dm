@@ -97,6 +97,8 @@
 
 /obj/item/weapon/material/proc/check_health(var/consumed)
 	if(health<=0)
+		health = 0
+
 		if(fragile)
 			shatter(consumed)
 		else if(!dulled && can_dull)
