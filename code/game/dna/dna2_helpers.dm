@@ -237,20 +237,9 @@
 
 		// Technically custom_species is not part of the UI, but this place avoids merge problems.
 		H.custom_species = dna.custom_species
-		if(istype(H.species,/datum/species/custom))
-			var/datum/species/custom/CS = H.species
-			var/datum/species/custom/new_CS = CS.produceCopy(dna.base_species,dna.species_traits,src)
-			new_CS.blood_color = dna.blood_color
-
-		if(istype(H.species,/datum/species/xenochimera))
-			var/datum/species/xenochimera/CS = H.species
-			var/datum/species/xenochimera/new_CS = CS.produceCopy(dna.base_species,dna.species_traits,src)
-			new_CS.blood_color = dna.blood_color
-
-		if(istype(H.species,/datum/species/alraune))
-			var/datum/species/alraune/CS = H.species
-			var/datum/species/alraune/new_CS = CS.produceCopy(dna.base_species,dna.species_traits,src)
-			new_CS.blood_color = dna.blood_color
+		H.species.blood_color = dna.blood_color
+		var/datum/species/S = H.species
+		S.produceCopy(dna.base_species,dna.species_traits,src)
 		// VOREStation Edit End
 
 		H.force_update_organs() //VOREStation Add - Gotta do this too
