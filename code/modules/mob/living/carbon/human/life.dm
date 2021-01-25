@@ -1322,7 +1322,12 @@
 					var/obj/item/clothing/glasses/welding/O = glasses
 					if(!O.up)
 						found_welder = 1
+<<<<<<< HEAD
 				if(!found_welder && nif && nif.flag_check(NIF_V_UVFILTER,NIF_FLAGS_VISION))	found_welder = 1 //VOREStation Add - NIF
+=======
+				if(istype(glasses, /obj/item/clothing/glasses/sunglasses/thinblindfold))
+					found_welder = 1
+>>>>>>> 49562f4... Merge pull request #7834 from Greenjoe12345/spriteandfold
 				if(!found_welder && istype(head, /obj/item/clothing/head/welding))
 					var/obj/item/clothing/head/welding/O = head
 					if(!O.up)
