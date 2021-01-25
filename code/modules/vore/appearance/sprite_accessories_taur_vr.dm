@@ -250,6 +250,17 @@
 	extra_overlay = "naga_markings"
 	//icon_sprite_tag = "naga2c"
 
+/datum/sprite_accessory/tail/taur/naga/alternate
+	name = "Naga alt (Taur)"
+	icon_state = "naga_alt_s"
+	suit_sprites = null
+
+/datum/sprite_accessory/tail/taur/naga/alternate_2c
+	name = "Naga alt dual-color (Taur)"
+	icon_state = "naga_alt_s"
+	suit_sprites = null
+	extra_overlay = "naga_alt_markings"
+
 /datum/sprite_accessory/tail/taur/horse
 	name = "Horse (Taur)"
 	icon_state = "horse_s"
@@ -388,6 +399,13 @@
 
 	msg_owner_grab_fail = "You step down onto %prey with one of your tentacles, forcing them onto the ground!"
 	msg_prey_grab_fail = "%owner steps down onto you with one of their tentacles, squishing you and forcing you onto the ground!"
+
+/datum/sprite_accessory/tail/taur/scolipede
+	name = "scolipede (taur)"
+	icon_state = "scolipede_s"
+	extra_overlay = "scolipede_markings"
+	extra_overlay2 = "scolipede_markings2"
+
 
 /datum/sprite_accessory/tail/taur/feline
 	name = "Feline (Taur)"
