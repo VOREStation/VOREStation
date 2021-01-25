@@ -88,9 +88,9 @@
 	ckeywhitelist = list("arokha")
 	character_name = list("Aronai Sieyes")
 
-/datum/gear/fluff/astraether_ritualknife
-    path = /obj/item/weapon/material/knife/ritual
-    display_name = "Astra's Ritual Knife"
+/datum/gear/fluff/astra_ritualknife
+    path = /obj/item/weapon/material/knife/ritual/fluff/astra
+    display_name = "Polished Ritual Knife"
     description = "A well kept strange ritual knife, There is a small tag with the name 'Astra Ether' on it. They are probably looking for this."
     ckeywhitelist = list("astraether")
     character_name = list("Astra Ether")
