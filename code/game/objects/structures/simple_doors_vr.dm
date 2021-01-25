@@ -1,4 +1,4 @@
-/material/flockium
+/datum/material/flockium
 	name = "flockium"
 	//stack_type = /obj/item/stack/material/sandstone
 	icon_base = "flock"

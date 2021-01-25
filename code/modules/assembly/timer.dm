@@ -62,43 +62,38 @@
 		holder.update_icon()
 	return
 
-
-/obj/item/device/assembly/timer/interact(mob/user as mob)//TODO: Have this use the wires
+/obj/item/device/assembly/timer/tgui_interact(mob/user, datum/tgui/ui)
 	if(!secured)
-		user.show_message("<font color='red'>The [name] is unsecured!</font>")
-		return 0
-	var/second = time % 60
-	var/minute = (time - second) / 60
-	var/dat = text("<TT><B>Timing Unit</B>\n[] []:[]\n<A href='?src=\ref[];tp=-30'>-</A> <A href='?src=\ref[];tp=-1'>-</A> <A href='?src=\ref[];tp=1'>+</A> <A href='?src=\ref[];tp=30'>+</A>\n</TT>", (timing ? text("<A href='?src=\ref[];time=0'>Timing</A>", src) : text("<A href='?src=\ref[];time=1'>Not Timing</A>", src)), minute, second, src, src, src, src)
-	dat += "<BR><BR><A href='?src=\ref[src];refresh=1'>Refresh</A>"
-	dat += "<BR><BR><A href='?src=\ref[src];close=1'>Close</A>"
-	user << browse(dat, "window=timer")
-	onclose(user, "timer")
-	return
+		to_chat(user, "<span class='warning'>[src] is unsecured!</span>")
+		return FALSE
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "AssemblyTimer", name)
+		ui.open()
 
+/obj/item/device/assembly/timer/tgui_data(mob/user)
+	var/list/data = ..()
+	data["time"] = time * 10
+	data["timing"] = timing
+	return data
 
-/obj/item/device/assembly/timer/Topic(href, href_list, state = deep_inventory_state)
-	if(..()) return 1
-	if(!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
-		usr << browse(null, "window=timer")
-		onclose(usr, "timer")
-		return
+/obj/item/device/assembly/timer/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	if(..())
+		return TRUE
 
-	if(href_list["time"])
-		var/new_timing = text2num(href_list["time"])
-		set_state(new_timing)
-		update_icon()
-
-	if(href_list["tp"])
-		var/tp = text2num(href_list["tp"])
-		time += tp
-		time = min(max(round(time), 0), 600)
-
-	if(href_list["close"])
-		usr << browse(null, "window=timer")
-		return
-
-	if(usr)
-		attack_self(usr)
-
-	return
+	switch(action)
+		if("timing")
+			timing = !timing
+			update_icon()
+			return TRUE
+		if("set_time")
+			var/real_new_time = 0
+			var/new_time = params["time"]
+			var/list/L = splittext(new_time, ":")
+			if(LAZYLEN(L))
+				for(var/i in 1 to LAZYLEN(L))
+					real_new_time += text2num(L[i]) * (60 ** (LAZYLEN(L) - i))
+			else
+				real_new_time = text2num(new_time)
+			time = clamp(real_new_time, 0, 600)
+			return TRUE

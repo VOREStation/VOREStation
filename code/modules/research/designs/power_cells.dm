@@ -22,7 +22,7 @@
 	req_tech = list(TECH_POWER = 1)
 	materials = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 50)
 	build_path = /obj/item/weapon/cell
-	category = "Misc"
+	category = list("Misc")
 	sort_string = "BAAAA"
 
 /datum/design/item/powercell/high
@@ -32,7 +32,7 @@
 	req_tech = list(TECH_POWER = 2)
 	materials = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 60)
 	build_path = /obj/item/weapon/cell/high
-	category = "Misc"
+	category = list("Misc")
 	sort_string = "BAAAB"
 
 /datum/design/item/powercell/super
@@ -41,7 +41,7 @@
 	req_tech = list(TECH_POWER = 3, TECH_MATERIAL = 2)
 	materials = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 70)
 	build_path = /obj/item/weapon/cell/super
-	category = "Misc"
+	category = list("Misc")
 	sort_string = "BAAAC"
 
 /datum/design/item/powercell/hyper
@@ -50,7 +50,7 @@
 	req_tech = list(TECH_POWER = 5, TECH_MATERIAL = 4)
 	materials = list(DEFAULT_WALL_MATERIAL = 400, "gold" = 150, "silver" = 150, "glass" = 70)
 	build_path = /obj/item/weapon/cell/hyper
-	category = "Misc"
+	category = list("Misc")
 	sort_string = "BAAAD"
 
 /datum/design/item/powercell/device
@@ -59,7 +59,7 @@
 	id = "device"
 	materials = list(DEFAULT_WALL_MATERIAL = 350, "glass" = 25)
 	build_path = /obj/item/weapon/cell/device
-	category = "Misc"
+	category = list("Misc")
 	sort_string = "BAABA"
 
 /datum/design/item/powercell/weapon
@@ -68,5 +68,5 @@
 	id = "weapon"
 	materials = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 50)
 	build_path = /obj/item/weapon/cell/device/weapon
-	category = "Misc"
+	category = list("Misc")
 	sort_string = "BAABB"

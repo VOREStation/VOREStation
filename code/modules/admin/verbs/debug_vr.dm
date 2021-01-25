@@ -2,6 +2,8 @@
 	set category = "Fun"
 	set name = "Quick NIF"
 	set desc = "Spawns a NIF into someone in quick-implant mode."
+	
+	var/input_NIF
 
 	if(!check_rights(R_ADMIN))
 		return
@@ -24,9 +26,27 @@
 		return
 
 	if(H.species.flags & NO_SCAN)
+		var/obj/item/device/nif/S = /obj/item/device/nif/bioadap
+		input_NIF = initial(S.name)
 		new /obj/item/device/nif/bioadap(H)
 	else
-		new /obj/item/device/nif(H)
+		var/list/NIF_types = typesof(/obj/item/device/nif)
+		var/list/NIFs = list()
 
-	log_and_message_admins("[key_name(src)] Quick NIF'd [H.real_name].")
-	feedback_add_details("admin_verb","QNIF") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+		for(var/NIF_type in NIF_types)
+			var/obj/item/device/nif/S = NIF_type
+			NIFs[capitalize(initial(S.name))] = NIF_type
+
+		var/list/show_NIFs = sortList(NIFs) // the list that will be shown to the user to pick from
+
+		input_NIF = input("Pick the NIF type","Quick NIF") in show_NIFs
+		var/chosen_NIF = NIFs[capitalize(input_NIF)]
+
+		if(chosen_NIF)
+			new chosen_NIF(H)
+		else
+			new /obj/item/device/nif(H)
+
+	log_and_message_admins("[key_name(src)] Quick NIF'd [H.real_name] with a [input_NIF].")
+	feedback_add_details("admin_verb","QNIF") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc! 
+

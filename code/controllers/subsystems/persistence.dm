@@ -19,7 +19,7 @@ SUBSYSTEM_DEF(persistence)
 
 /datum/controller/subsystem/persistence/proc/track_value(var/atom/value, var/track_type)
 
-	if(config.persistence_enabled == 0) //if the config is not set to persistent nothing will save or load.
+	if(config.persistence_disabled) //if the config is set to persistence disabled, nothing will save or load.
 		return
 
 	var/turf/T = get_turf(value)
@@ -31,7 +31,7 @@ SUBSYSTEM_DEF(persistence)
 		return
 
 //	if((!T.z in GLOB.using_map.station_levels) || !initialized)
-	if(!T.z in using_map.station_levels)
+	if(!(T.z in using_map.station_levels))
 		return
 
 	if(!tracking_values[track_type])

@@ -4,6 +4,7 @@
 	desc = "A wall-mounted flashbulb device."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "mflash1"
+	layer = ABOVE_WINDOW_LAYER
 	var/id = null
 	var/range = 2 //this is roughly the size of brig cell
 	var/disable = 0
@@ -68,6 +69,11 @@
 		var/flash_time = strength
 		if(istype(O, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = O
+			//VOREStation Edit Start
+			if(H.nif && H.nif.flag_check(NIF_V_FLASHPROT,NIF_FLAGS_VISION))
+				H.nif.notify("High intensity light detected, and blocked!",TRUE)
+				continue
+			//VOREStation Edit End
 			if(!H.eyecheck() <= 0)
 				continue
 			flash_time *= H.species.flash_mod

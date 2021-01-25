@@ -1,0 +1,67 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/space)
+"b" = (
+/obj/structure/lattice,
+/turf/space,
+/area/space)
+"c" = (
+/obj/structure/girder,
+/turf/simulated/floor/airless,
+/area/space)
+"d" = (
+/turf/simulated/shuttle/wall,
+/area/space)
+"e" = (
+/turf/simulated/floor/airless,
+/area/space)
+"f" = (
+/turf/simulated/shuttle/floor/white/airless,
+/area/tether_away/debrisfield/shuttle_buffer)
+"g" = (
+/turf/simulated/floor/airless,
+/area/tether_away/debrisfield/shuttle_buffer)
+
+(1,1,1) = {"
+a
+b
+a
+b
+b
+"}
+(2,1,1) = {"
+a
+c
+e
+e
+a
+"}
+(3,1,1) = {"
+a
+d
+f
+e
+b
+"}
+(4,1,1) = {"
+a
+d
+g
+b
+a
+"}
+(5,1,1) = {"
+b
+c
+e
+b
+a
+"}
+(6,1,1) = {"
+b
+b
+b
+a
+a
+"}

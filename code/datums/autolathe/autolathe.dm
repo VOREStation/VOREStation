@@ -1,5 +1,3 @@
-var/datum/category_collection/autolathe/autolathe_recipes
-
 /datum/category_item/autolathe/New()
 	..()
 	var/obj/item/I = new path()

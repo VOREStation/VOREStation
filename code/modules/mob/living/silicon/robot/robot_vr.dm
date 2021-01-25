@@ -53,7 +53,8 @@
 					   "zoomba-service",
 					   "zoomba-combat",
 					   "zoomba-combat-roll",
-					   "zoomba-combat-shield"
+					   "zoomba-combat-shield",
+					   "spiderscience"
 					   )					//List of all used sprites that are in robots_vr.dmi
 
 
@@ -140,7 +141,13 @@
 					to_chat(cleaned_human, "<span class='warning'>[src] cleans your face!</span>")
 
 /mob/living/silicon/robot/proc/vr_sprite_check()
+	if(custom_sprite == TRUE)
+		return
 	if(wideborg == TRUE)
+		if(icontype== "Drake") // Why, Why can't we have normal nice things
+			icon = 'icons/mob/drakeborg/drakeborg_vr.dmi' 
+		else
+			icon = 'icons/mob/widerobot_vr.dmi'
 		return
 	if((!(original_icon == icon)) && (!(icon == 'icons/mob/robots_vr.dmi')))
 		original_icon = icon

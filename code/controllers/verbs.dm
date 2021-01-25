@@ -97,7 +97,6 @@
 	options["LEGACY: cameranet"] = cameranet
 	options["LEGACY: transfer_controller"] = transfer_controller
 	options["LEGACY: gas_data"] = gas_data
-	options["LEGACY: plant_controller"] = plant_controller
 
 	var/pick = input(mob, "Choose a controller to debug/view variables of.", "VV controller:") as null|anything in options
 	if(!pick)

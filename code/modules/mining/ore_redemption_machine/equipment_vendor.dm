@@ -17,7 +17,51 @@
 	var/icon_vend = "adh-tool-vend"
 	circuit = /obj/item/weapon/circuitboard/mining_equipment_vendor
 	var/obj/item/weapon/card/id/inserted_id
-	var/list/prize_list // Initialized just below! (if you're wondering why - check CONTRIBUTING.md, look for: "hidden" init proc)
+	var/list/prize_list = list(
+		new /datum/data/mining_equipment("1 Marker Beacon",				/obj/item/stack/marker_beacon,										10),
+		new /datum/data/mining_equipment("10 Marker Beacons",			/obj/item/stack/marker_beacon/ten,									100),
+		new /datum/data/mining_equipment("30 Marker Beacons",			/obj/item/stack/marker_beacon/thirty,								300),
+		new /datum/data/mining_equipment("Whiskey",						/obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey,		125),
+		new /datum/data/mining_equipment("Absinthe",					/obj/item/weapon/reagent_containers/food/drinks/bottle/absinthe,	125),
+		new /datum/data/mining_equipment("Cigar",						/obj/item/clothing/mask/smokable/cigarette/cigar/havana,			150),
+		new /datum/data/mining_equipment("Soap",						/obj/item/weapon/soap/nanotrasen,									200),
+		new /datum/data/mining_equipment("Laser Pointer",				/obj/item/device/laser_pointer,										900),
+		new /datum/data/mining_equipment("Geiger Counter",				/obj/item/device/geiger,											750),
+		new /datum/data/mining_equipment("Plush Toy",					/obj/random/plushie,												300),
+		new /datum/data/mining_equipment("Umbrella",					/obj/item/weapon/melee/umbrella/random,								200),
+//		new /datum/data/mining_equipment("Fulton Beacon",				/obj/item/fulton_core,												500),
+		new /datum/data/mining_equipment("Point Transfer Card",			/obj/item/weapon/card/mining_point_card,							500),
+//		new /datum/data/mining_equipment("Fulton Pack",					/obj/item/extraction_pack,											1200),
+//		new /datum/data/mining_equipment("Silver Pickaxe",				/obj/item/weapon/pickaxe/silver,									1200),
+//		new /datum/data/mining_equipment("Diamond Pickaxe",				/obj/item/weapon/pickaxe/diamond,									2000),
+		new /datum/data/mining_equipment("Fishing Net",					/obj/item/weapon/material/fishing_net,								500),
+		new /datum/data/mining_equipment("Titanium Fishing Rod",		/obj/item/weapon/material/fishing_rod/modern,						1000),
+//		new /datum/data/mining_equipment("Space Cash",					/obj/item/weapon/spacecash/c1000,									2000),
+		new /datum/data/mining_equipment("Industrial Hardsuit - Control Module",	/obj/item/weapon/rig/industrial,						10000),
+		new /datum/data/mining_equipment("Industrial Hardsuit - Plasma Cutter",		/obj/item/rig_module/device/plasmacutter,				800),
+		new /datum/data/mining_equipment("Industrial Hardsuit - Drill",				/obj/item/rig_module/device/drill,						5000),
+		new /datum/data/mining_equipment("Industrial Hardsuit - Ore Scanner",		/obj/item/rig_module/device/orescanner,					1000),
+		new /datum/data/mining_equipment("Industrial Hardsuit - Advanced Optics",	/obj/item/rig_module/vision/mining,						1250),
+		new /datum/data/mining_equipment("Industrial Hardsuit - Maneuvering Jets",	/obj/item/rig_module/maneuvering_jets,					1250),
+		new /datum/data/mining_equipment("Hardsuit - Intelligence Storage",	/obj/item/rig_module/ai_container,								2500),
+		new /datum/data/mining_equipment("Hardsuit - Smoke Bomb Deployer",	/obj/item/rig_module/grenade_launcher/smoke,					2000),
+		new /datum/data/mining_equipment("Industrial Equipment - Phoron Bore",	/obj/item/weapon/gun/magnetic/matfed/phoronbore/loaded,		3000),
+		new /datum/data/mining_equipment("Industrial Equipment - Sheet-Snatcher",/obj/item/weapon/storage/bag/sheetsnatcher,					500),		new /datum/data/mining_equipment("Digital Tablet - Standard",	/obj/item/modular_computer/tablet/preset/custom_loadout/standard,	500),
+		new /datum/data/mining_equipment("Digital Tablet - Advanced",	/obj/item/modular_computer/tablet/preset/custom_loadout/advanced,	1000),
+		new /datum/data/mining_equipment("Fine Excavation Kit - Chisels",/obj/item/weapon/storage/excavation,								500),
+		new /datum/data/mining_equipment("Fine Excavation Kit - Measuring Tape",/obj/item/device/measuring_tape,							125),
+		new /datum/data/mining_equipment("Fine Excavation Kit - Hand Pick",/obj/item/weapon/pickaxe/hand,									375),
+		new /datum/data/mining_equipment("Explosive Excavation Kit - Plastic Charge",/obj/item/weapon/plastique/seismic,					1500),
+		new /datum/data/mining_equipment("Injector (L) - Glucose",/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/glucose,	500),
+		new /datum/data/mining_equipment("Injector (L) - Panacea",/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/purity,	500),
+		new /datum/data/mining_equipment("Injector (L) - Trauma",/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/brute,	500),
+		new /datum/data/mining_equipment("Nanopaste Tube",				/obj/item/stack/nanopaste,											1000),
+		new /datum/data/mining_equipment("Defense Equipment - Phase Pistol",/obj/item/weapon/gun/energy/phasegun/pistol,					400),
+		new /datum/data/mining_equipment("Defense Equipment - Smoke Bomb",/obj/item/weapon/grenade/smokebomb,								100),
+		new /datum/data/mining_equipment("Defense Equipment - Razor Drone Deployer",/obj/item/weapon/grenade/spawnergrenade/manhacks/station,	1000),
+		new /datum/data/mining_equipment("Defense Equipment - Sentry Drone Deployer",/obj/item/weapon/grenade/spawnergrenade/ward,			1500),
+		new /datum/data/mining_equipment("Defense Equipment - Steel Machete",	/obj/item/weapon/material/knife/machete,					500)
+		)
 	var/dirty_items = FALSE // Used to refresh the static/redundant data in case the machine gets VV'd
 
 /datum/data/mining_equipment
@@ -42,8 +86,8 @@
 		EQUIPMENT("Defense Equipment - Sentry Drone Deployer",	/obj/item/weapon/grenade/spawnergrenade/ward,						1500),
 		EQUIPMENT("Defense Equipment - Smoke Bomb",				/obj/item/weapon/grenade/smokebomb,									100),
 		EQUIPMENT("Durasteel Fishing Rod",						/obj/item/weapon/material/fishing_rod/modern/strong,				7500),
-		EQUIPMENT("Fishing Net",								/obj/item/weapon/material/fishing_net,								500),
 		EQUIPMENT("Titanium Fishing Rod",						/obj/item/weapon/material/fishing_rod/modern,						1000),
+		EQUIPMENT("Fishing Net",								/obj/item/weapon/material/fishing_net,								500),
 		EQUIPMENT("Fulton Beacon",								/obj/item/fulton_core,												500),
 		EQUIPMENT("Geiger Counter",								/obj/item/device/geiger,											750),
 		EQUIPMENT("GPS Device",									/obj/item/device/gps/mining,										100),
@@ -54,9 +98,9 @@
 
 	)
 	prize_list["Consumables"] = list(
-		EQUIPMENT("1 Marker Beacon",		/obj/item/stack/marker_beacon,													10),
-		EQUIPMENT("10 Marker Beacons",		/obj/item/stack/marker_beacon/ten,												100),
-		EQUIPMENT("30 Marker Beacons",		/obj/item/stack/marker_beacon/thirty,											300),
+		EQUIPMENT("1 Marker Beacon",		/obj/item/stack/marker_beacon,													1),
+		EQUIPMENT("10 Marker Beacons",		/obj/item/stack/marker_beacon/ten,												10),
+		EQUIPMENT("30 Marker Beacons",		/obj/item/stack/marker_beacon/thirty,											30),
 		EQUIPMENT("Fulton Pack",			/obj/item/extraction_pack,														1200),
 		EQUIPMENT("Injector (L) - Glucose",	/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/glucose,	500),
 		EQUIPMENT("Injector (L) - Panacea",	/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/purity,	500),
@@ -71,14 +115,14 @@
 	)
 	prize_list["Kinetic Accelerator"] = list(
 		EQUIPMENT("Kinetic Accelerator",		/obj/item/weapon/gun/energy/kinetic_accelerator,				900),
-		EQUIPMENT("KA Adjustable Tracer Rounds",/obj/item/borg/upgrade/modkit/tracer/adjustable,				175),
 		EQUIPMENT("KA AoE Damage",				/obj/item/borg/upgrade/modkit/aoe/mobs,							2000),
 		EQUIPMENT("KA Damage Increase",			/obj/item/borg/upgrade/modkit/damage,							1000),
 		EQUIPMENT("KA Efficiency Increase",		/obj/item/borg/upgrade/modkit/efficiency,						1200),
-		EQUIPMENT("KA Holster",					/obj/item/clothing/accessory/holster/waist/kinetic_accelerator,	350),
-		EQUIPMENT("KA Hyper Chassis",			/obj/item/borg/upgrade/modkit/chassis_mod/orange,				300),
 		EQUIPMENT("KA Range Increase",			/obj/item/borg/upgrade/modkit/range,							1000),
+		EQUIPMENT("KA Holster",					/obj/item/clothing/accessory/holster/waist/kinetic_accelerator,	350),
 		EQUIPMENT("KA Super Chassis",			/obj/item/borg/upgrade/modkit/chassis_mod,						250),
+		EQUIPMENT("KA Hyper Chassis",			/obj/item/borg/upgrade/modkit/chassis_mod/orange,				300),
+		EQUIPMENT("KA Adjustable Tracer Rounds",/obj/item/borg/upgrade/modkit/tracer/adjustable,				175),
 		EQUIPMENT("KA White Tracer Rounds",		/obj/item/borg/upgrade/modkit/tracer,							125),
 	)
 	prize_list["Digging Tools"] = list(
@@ -91,6 +135,9 @@
 		EQUIPMENT("Fine Excavation Kit - Measuring Tape",	/obj/item/device/measuring_tape,				125),
 		EQUIPMENT("Fine Excavation Kit - Hand Pick",		/obj/item/weapon/pickaxe/hand,					375),
 		EQUIPMENT("Explosive Excavation Kit - Plastic Charge",/obj/item/weapon/plastique/seismic/locked,	1500),
+		EQUIPMENT("Industrial Equipment - Phoron Bore",		/obj/item/weapon/gun/magnetic/matfed/phoronbore/loaded,			3000),
+		EQUIPMENT("Industrial Equipment - Inducer",			/obj/item/weapon/inducer,						900),
+		EQUIPMENT("Industrial Equipment - Sheet-Snatcher",	/obj/item/weapon/storage/bag/sheetsnatcher,		500),
 	)
 	prize_list["Hardsuit"] = list(
 		EQUIPMENT("Hardsuit - Control Module",		/obj/item/weapon/rig/industrial/vendor,		2000),
@@ -104,14 +151,12 @@
 	)
 	prize_list["Miscellaneous"] = list(
 		EQUIPMENT("Absinthe",					/obj/item/weapon/reagent_containers/food/drinks/bottle/absinthe,	125),
-		EQUIPMENT("Bar Shelter Capsule",		/obj/item/device/survivalcapsule/luxurybar,							10000),
 		EQUIPMENT("Cigar",						/obj/item/clothing/mask/smokable/cigarette/cigar/havana,			150),
-		EQUIPMENT("Digital Tablet - Advanced",	/obj/item/modular_computer/tablet/preset/custom_loadout/advanced,	1000),
 		EQUIPMENT("Digital Tablet - Standard",	/obj/item/modular_computer/tablet/preset/custom_loadout/standard,	500),
-		EQUIPMENT("Industrial Equipment - Phoron Bore",	/obj/item/weapon/gun/magnetic/matfed,						3000),
-		EQUIPMENT("Industrial Equipment - Sheet-Snatcher",/obj/item/weapon/storage/bag/sheetsnatcher,				500),
+		EQUIPMENT("Digital Tablet - Advanced",	/obj/item/modular_computer/tablet/preset/custom_loadout/advanced,	1000),
 		EQUIPMENT("Laser Pointer",				/obj/item/device/laser_pointer,										900),
 		EQUIPMENT("Luxury Shelter Capsule",		/obj/item/device/survivalcapsule/luxury,							3100),
+		EQUIPMENT("Bar Shelter Capsule",		/obj/item/device/survivalcapsule/luxurybar,							10000),
 		EQUIPMENT("Plush Toy",					/obj/random/plushie,												300),
 		EQUIPMENT("Soap",						/obj/item/weapon/soap/nanotrasen,									200),
 		EQUIPMENT("Thalers - 100",				/obj/item/weapon/spacecash/c100,									1000),

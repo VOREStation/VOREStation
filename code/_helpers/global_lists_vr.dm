@@ -3,10 +3,12 @@
 */
 
 var/global/list/ear_styles_list = list()	// Stores /datum/sprite_accessory/ears indexed by type
+var/global/list/hair_accesories_list= list()// Stores /datum/sprite_accessory/hair_accessory indexed by type
 var/global/list/tail_styles_list = list()	// Stores /datum/sprite_accessory/tail indexed by type
 var/global/list/wing_styles_list = list()	// Stores /datum/sprite_accessory/wing indexed by type
 var/global/list/negative_traits = list()	// Negative custom species traits, indexed by path
 var/global/list/neutral_traits = list()		// Neutral custom species traits, indexed by path
+var/global/list/everyone_traits = list()	// Neutral traits available to all species, indexed by path
 var/global/list/positive_traits = list()	// Positive custom species traits, indexed by path
 var/global/list/traits_costs = list()		// Just path = cost list, saves time in char setup
 var/global/list/all_traits = list()			// All of 'em at once (same instances)
@@ -451,6 +453,12 @@ var/global/list/remainless_species = list(SPECIES_PROMETHEAN,
 		var/datum/sprite_accessory/wing/instance = new path()
 		wing_styles_list[path] = instance
 
+	// Custom Hair Accessories
+	paths = typesof(/datum/sprite_accessory/hair_accessory) - /datum/sprite_accessory/hair_accessory
+	for(var/path in paths)
+		var/datum/sprite_accessory/hair_accessory/instance = new path()
+		hair_accesories_list[path] = instance
+
 	// Custom species traits
 	paths = typesof(/datum/trait) - /datum/trait
 	for(var/path in paths)
@@ -465,6 +473,8 @@ var/global/list/remainless_species = list(SPECIES_PROMETHEAN,
 				negative_traits[path] = instance
 			if(0)
 				neutral_traits[path] = instance
+				if(!(instance.custom_only))
+					everyone_traits[path] = instance
 			if(0.1 to INFINITY)
 				positive_traits[path] = instance
 

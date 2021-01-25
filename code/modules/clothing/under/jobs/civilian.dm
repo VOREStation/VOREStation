@@ -13,8 +13,8 @@
 	item_state_slots = list(slot_r_hand_str = "ba_suit", slot_l_hand_str = "ba_suit")
 
 /obj/item/clothing/under/rank/captain //Alright, technically not a 'civilian' but its better then giving a .dm file for a single define.
-	desc = "It's a blue jumpsuit with some gold markings denoting the rank of \"Colony Director\"."
-	name = "colony director's jumpsuit"
+	desc = "It's a blue jumpsuit with some gold markings denoting the rank of \"Site Manager\"."
+	name = "site manager's jumpsuit"
 	icon_state = "captain"
 	rolled_sleeves = 0
 

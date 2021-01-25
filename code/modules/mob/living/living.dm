@@ -31,9 +31,25 @@
 		nest = null
 	if(buckled)
 		buckled.unbuckle_mob(src, TRUE)
+
 	qdel(selected_image)
 	QDEL_NULL(vorePanel) //VOREStation Add
 	QDEL_LIST_NULL(vore_organs) //VOREStation Add
+
+	if(LAZYLEN(organs))
+		organs_by_name.Cut()
+		while(organs.len)
+			var/obj/item/OR = organs[1]
+			organs -= OR
+			qdel(OR)
+
+	if(LAZYLEN(internal_organs))
+		internal_organs_by_name.Cut()
+		while(internal_organs.len)
+			var/obj/item/OR = internal_organs[1]
+			internal_organs -= OR
+			qdel(OR)
+
 	return ..()
 
 //mob verbs are faster than object verbs. See mob/verb/examine.
@@ -48,7 +64,7 @@
 
 //mob verbs are faster than object verbs. See above.
 /mob/living/pointed(atom/A as mob|obj|turf in view())
-	if(src.stat || !src.canmove || src.restrained())
+	if(src.stat || src.restrained())
 		return 0
 	if(src.status_flags & FAKEDEATH)
 		return 0
@@ -132,16 +148,25 @@ default behaviour is:
 
 		if((tmob.mob_always_swap || (tmob.a_intent == I_HELP || tmob.restrained()) && (a_intent == I_HELP || src.restrained())) && tmob.canmove && canmove && !tmob.buckled && !buckled && can_swap && can_move_mob(tmob, 1, 0)) // mutual brohugs all around!
 			var/turf/oldloc = loc
+			//VOREstation Edit - Begin
+			
+			//check bumpnom chance, if it's a simplemob that's doing the bumping
+			var/mob/living/simple_mob/srcsimp = src
+			if(istype(srcsimp))
+				if(srcsimp.tryBumpNom(tmob))
+					now_pushing = 0
+					return
+			
+			//if it's a simplemob being bumped, and the above didn't make them start getting bumpnommed, they get a chance to bumpnom
+			var/mob/living/simple_mob/tmobsimp = tmob
+			if(istype(tmobsimp))
+				if(tmobsimp.tryBumpNom(src))
+					now_pushing = 0
+					return
+					
+			//VOREstation Edit - End
 			forceMove(tmob.loc)
 			//VOREstation Edit - Begin
-			if (istype(tmob, /mob/living/simple_mob)) //check bumpnom chance, if it's a simplemob that's bumped
-				tmob.Bumped(src)
-			else if(istype(src, /mob/living/simple_mob)) //otherwise, if it's a simplemob doing the bumping. Simplemob on simplemob doesn't seem to trigger but that's fine.
-				Bumped(tmob)
-			if (tmob.loc == src) //check if they got ate, and if so skip the forcemove
-				now_pushing = 0
-				return
-
 			// In case of micros, we don't swap positions; instead occupying the same square!
 			if (handle_micro_bump_helping(tmob))
 				now_pushing = 0
@@ -248,7 +273,7 @@ default behaviour is:
 /mob/living/Crossed(var/atom/movable/AM) // Transplanting this from /mob/living/carbon/human/Crossed()
 	if(AM == src || AM.is_incorporeal()) // We're not going to run over ourselves or ghosts
 		return
-	
+
 	if(istype(AM, /mob/living/bot/mulebot))
 		var/mob/living/bot/mulebot/MB = AM
 		MB.runOver(src)
@@ -915,6 +940,12 @@ default behaviour is:
 /mob/living/Moved(var/atom/oldloc, direct, forced, movetime)
 	. = ..()
 	handle_footstep(loc)
+	// Begin VOREstation edit
+	if(is_shifted)
+		is_shifted = FALSE
+		pixel_x = default_pixel_x
+		pixel_y = default_pixel_y
+	// End VOREstation edit
 
 	if(pulling) // we were pulling a thing and didn't lose it during our move.
 		var/pull_dir = get_dir(src, pulling)

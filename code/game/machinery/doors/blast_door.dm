@@ -19,14 +19,14 @@
 	icon = 'icons/obj/doors/rapid_pdoor.dmi'
 	icon_state = null
 	min_force = 20 //minimum amount of force needed to damage the door with a melee weapon
-	var/material/implicit_material
+	var/datum/material/implicit_material
 	// Icon states for different shutter types. Simply change this instead of rewriting the update_icon proc.
 	var/icon_state_open = null
 	var/icon_state_opening = null
 	var/icon_state_closed = null
 	var/icon_state_closing = null
-	var/open_sound = 'sound/machines/blastdooropen.ogg'
-	var/close_sound = 'sound/machines/blastdoorclose.ogg'
+	var/open_sound = 'sound/machines/door/blastdooropen.ogg'
+	var/close_sound = 'sound/machines/door/blastdoorclose.ogg'
 	var/damage = BLAST_DOOR_CRUSH_DAMAGE
 	var/multiplier = 1 // The multiplier for how powerful our YEET is.
 
@@ -125,7 +125,7 @@
 // Description: Opens or closes the door, depending on current state. No checks are done inside this proc.
 /obj/machinery/door/blast/proc/force_toggle(var/forced = 0, mob/user as mob)
 	if (forced)
-		playsound(src, 'sound/machines/airlock_creaking.ogg', 100, 1)
+		playsound(src, 'sound/machines/door/airlock_creaking.ogg', 100, 1)
 
 	if(src.density)
 		src.force_open()
@@ -219,13 +219,13 @@
 			if(src.density)
 				visible_message("<span class='alium'>\The [user] begins forcing \the [src] open!</span>")
 				if(do_after(user, 15 SECONDS,src))
-					playsound(src, 'sound/machines/airlock_creaking.ogg', 100, 1)
+					playsound(src, 'sound/machines/door/airlock_creaking.ogg', 100, 1)
 					visible_message("<span class='danger'>\The [user] forces \the [src] open!</span>")
 					force_open(1)
 			else
 				visible_message("<span class='alium'>\The [user] begins forcing \the [src] closed!</span>")
 				if(do_after(user, 5 SECONDS,src))
-					playsound(src, 'sound/machines/airlock_creaking.ogg', 100, 1)
+					playsound(src, 'sound/machines/door/airlock_creaking.ogg', 100, 1)
 					visible_message("<span class='danger'>\The [user] forces \the [src] closed!</span>")
 					force_close(1)
 		else

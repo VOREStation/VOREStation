@@ -119,18 +119,14 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		if (size[SPRSZ_STRIPPED])
 			continue
 
-		#ifdef RUST_G
 		// save flattened version
 		var/fname = "data/spritesheets/[name]_[size_id].png"
 		fcopy(size[SPRSZ_ICON], fname)
-		var/error = call(RUST_G, "dmi_strip_metadata")(fname)
+		var/error = rustg_dmi_strip_metadata(fname)
 		if(length(error))
 			stack_trace("Failed to strip [name]_[size_id].png: [error]")
 		size[SPRSZ_STRIPPED] = icon(fname)
 		fdel(fname)
-		#else
-		#warn It looks like you don't have RUST_G enabled. Without RUST_G, the RPD icons will not function, so it strongly recommended you reenable it.
-		#endif
 
 /datum/asset/spritesheet/proc/generate_css()
 	var/list/out = list()

@@ -2,11 +2,11 @@
 *	Datum that holds the instances and information about the items stored. Currently used in SmartFridges and Vending Machines.
 */
 /datum/stored_item
-		var/item_name = "name"	//Name of the item(s) displayed
-		var/item_path = null
-		var/amount = 0
-		var/list/instances		//What items are actually stored
-		var/stored				//The thing holding it is
+	var/item_name = "name"	//Name of the item(s) displayed
+	var/item_path = null
+	var/amount = 0
+	var/list/instances		//What items are actually stored
+	var/stored				//The thing holding it is
 
 /datum/stored_item/New(var/stored, var/path, var/name = null, var/amount = 0)
 	src.item_path = path

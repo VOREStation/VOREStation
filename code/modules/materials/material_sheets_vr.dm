@@ -21,7 +21,7 @@
 	type_to_spawn = /obj/item/stack/material/glass/titanium
 
 /obj/item/stack/material/plastitanium
-	name = "plas-tanium sheets"
+	name = "plastitanium sheets"
 	icon = 'icons/obj/stacks_vr.dmi'
 	icon_state = "sheet-plastitanium"
 	item_state = "sheet-silver"
@@ -32,8 +32,20 @@
 	name = "stack of plastitanium"
 	type_to_spawn = /obj/item/stack/material/plastitanium
 
+/obj/item/stack/material/plastitanium/hull
+	name = "plastitanium hull sheets"
+	icon = 'icons/obj/stacks_vr.dmi'
+	icon_state = "sheet-plastitanium"
+	item_state = "sheet-silver"
+	no_variants = FALSE
+	default_type = MAT_PLASTITANIUMHULL
+
+/obj/fiftyspawner/plastitanium_hull
+	name = "stack of plastitanium"
+	type_to_spawn = /obj/item/stack/material/plastitanium/hull
+
 /obj/item/stack/material/glass/plastitanium
-	name = "plas-tanium glass sheets"
+	name = "plastitanium glass sheets"
 	icon = 'icons/obj/stacks_vr.dmi'
 	icon_state = "sheet-plastitaniumglass"
 	item_state = "sheet-silver"

@@ -33,7 +33,8 @@
 	var/body_part = null               // Part flag
 	var/icon_position = 0              // Used in mob overlay layering calculations.
 	var/model                          // Used when caching robolimb icons.
-	var/force_icon                     // Used to force override of species-specific limb icons (for prosthetics).
+	var/force_icon                     // Used to force override of species-specific limb icons (for prosthetics). Also used for any limbs chopped from a simple mob, and then attached to humans.
+	var/force_icon_key                 // Used to force the override of the icon-key generated using the species. Must be used in tandem with the above.
 	var/icon/mob_icon                  // Cached icon for use in mob overlays.
 	var/gendered_icon = 0              // Whether or not the icon state appends a gender.
 	var/s_tone                         // Skin tone.
@@ -96,7 +97,7 @@
 		qdel(splinted)
 	splinted = null
 
-	if(owner)
+	if(istype(owner))
 		owner.organs -= src
 		owner.organs_by_name[organ_tag] = null
 		owner.organs_by_name -= organ_tag
@@ -198,7 +199,7 @@
 		return
 
 	dislocated = 1
-	if(owner)
+	if(istype(owner))
 		owner.verbs |= /mob/living/carbon/human/proc/relocate
 
 /obj/item/organ/external/proc/relocate()
@@ -206,7 +207,7 @@
 		return
 
 	dislocated = 0
-	if(owner)
+	if(istype(owner))
 		owner.shock_stage += 20
 
 		//check to see if we still need the verb
@@ -220,7 +221,7 @@
 
 /obj/item/organ/external/New(var/mob/living/carbon/holder)
 	..(holder, 0)
-	if(owner)
+	if(istype(owner))
 		replaced(owner)
 		sync_colour_to_human(owner)
 	spawn(1)
@@ -884,11 +885,11 @@ Note that amputating the affected organ does in fact remove the infection from t
 	var/mob/living/carbon/human/victim = owner //Keep a reference for post-removed().
 	var/obj/item/organ/external/parent_organ = parent
 
-	var/use_flesh_colour = species.get_flesh_colour(owner)
-	var/use_blood_colour = species.get_blood_colour(owner)
+	var/use_flesh_colour = species?.get_flesh_colour(owner) ? species.get_flesh_colour(owner) : "#C80000"
+	var/use_blood_colour = species?.get_blood_colour(owner) ? species.get_blood_colour(owner) : "#C80000"
 
 	removed(null, ignore_children)
-	victim.traumatic_shock += 60
+	victim?.traumatic_shock += 60
 
 	if(parent_organ)
 		var/datum/wound/lost_limb/W = new (src, disintegrate, clean)
@@ -904,9 +905,12 @@ Note that amputating the affected organ does in fact remove the infection from t
 			stump.update_damages()
 
 	spawn(1)
-		victim.updatehealth()
-		victim.UpdateDamageIcon()
-		victim.update_icons_body()
+		if(istype(victim))
+			victim.updatehealth()
+			victim.UpdateDamageIcon()
+			victim.update_icons_body()
+		else
+			victim.update_icons()
 		dir = 2
 
 	var/atom/droploc = victim.drop_location()
@@ -1133,6 +1137,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 	remove_splint()
 	get_icon()
 	unmutate()
+	drop_sound = 'sound/items/drop/weldingtool.ogg'
+	pickup_sound = 'sound/items/pickup/weldingtool.ogg'
 
 	for(var/obj/item/organ/external/T in children)
 		T.robotize(company, keep_organs = keep_organs)
@@ -1229,7 +1235,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		organ.loc = src
 
 	// Remove parent references
-	parent.children -= src
+	parent?.children -= src
 	parent = null
 
 	release_restraints(victim)

@@ -24,6 +24,7 @@
 	use_to_pickup = 1
 	slot_flags = SLOT_BELT
 	drop_sound = 'sound/items/drop/backpack.ogg'
+	pickup_sound = 'sound/items/pickup/backpack.ogg'
 
 // -----------------------------
 //          Trash bag
@@ -35,6 +36,7 @@
 	icon_state = "trashbag0"
 	item_state_slots = list(slot_r_hand_str = "trashbag", slot_l_hand_str = "trashbag")
 	drop_sound = 'sound/items/drop/wrapper.ogg'
+	pickup_sound = 'sound/items/pickup/wrapper.ogg'
 
 	w_class = ITEMSIZE_LARGE
 	max_w_class = ITEMSIZE_SMALL
@@ -62,6 +64,7 @@
 	icon = 'icons/obj/trash.dmi'
 	icon_state = "plasticbag"
 	drop_sound = 'sound/items/drop/wrapper.ogg'
+	pickup_sound = 'sound/items/pickup/wrapper.ogg'
 
 	w_class = ITEMSIZE_LARGE
 	max_w_class = ITEMSIZE_SMALL
@@ -121,7 +124,7 @@
 		to_chat(user, "<span class='notice'>You fill the [src].</span>")
 	else if(!silent)
 		to_chat(user, "<span class='notice'>You fail to pick anything up with \the [src].</span>")
-	if(istype(user.pulling, /obj/structure/ore_box/)) //Bit of a crappy way to do this, as it doubles spam for the user, but it works.
+	if(istype(user.pulling, /obj/structure/ore_box)) //Bit of a crappy way to do this, as it doubles spam for the user, but it works.
 		var/obj/structure/ore_box/O = user.pulling
 		O.attackby(src, user)
 

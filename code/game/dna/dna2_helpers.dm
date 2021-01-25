@@ -177,7 +177,7 @@
 
 		// Ears
 		var/ears = dna.GetUIValueRange(DNA_UI_EAR_STYLE, ear_styles_list.len + 1) - 1
-		if(ears <= 1)
+		if(ears < 1)
 			H.ear_style = null
 		else if((0 < ears) && (ears <= ear_styles_list.len))
 			H.ear_style = ear_styles_list[ear_styles_list[ears]]
@@ -189,17 +189,21 @@
 		H.r_ears2 = dna.GetUIValueRange(DNA_UI_EARS2_R,   255)
 		H.g_ears2 = dna.GetUIValueRange(DNA_UI_EARS2_G,   255)
 		H.b_ears2 = dna.GetUIValueRange(DNA_UI_EARS2_B,	  255)
+		H.r_ears3 = dna.GetUIValueRange(DNA_UI_EARS3_R,   255)
+		H.g_ears3 = dna.GetUIValueRange(DNA_UI_EARS3_G,   255)
+		H.b_ears3 = dna.GetUIValueRange(DNA_UI_EARS3_B,	  255)
+
 
 		//Tail
 		var/tail = dna.GetUIValueRange(DNA_UI_TAIL_STYLE, tail_styles_list.len + 1) - 1
-		if(tail <= 1)
+		if(tail < 1)
 			H.tail_style = null
 		else if((0 < tail) && (tail <= tail_styles_list.len))
 			H.tail_style = tail_styles_list[tail_styles_list[tail]]
 
 		//Wing
 		var/wing = dna.GetUIValueRange(DNA_UI_WING_STYLE, wing_styles_list.len + 1) - 1
-		if(wing <= 1)
+		if(wing < 1)
 			H.wing_style = null
 		else if((0 < wing) && (wing <= wing_styles_list.len))
 			H.wing_style = wing_styles_list[wing_styles_list[wing]]
@@ -208,6 +212,12 @@
 		H.r_wing   = dna.GetUIValueRange(DNA_UI_WING_R,    255)
 		H.g_wing   = dna.GetUIValueRange(DNA_UI_WING_G,    255)
 		H.b_wing   = dna.GetUIValueRange(DNA_UI_WING_B,    255)
+		H.r_wing2  = dna.GetUIValueRange(DNA_UI_WING2_R,    255)
+		H.g_wing2  = dna.GetUIValueRange(DNA_UI_WING2_G,    255)
+		H.b_wing2  = dna.GetUIValueRange(DNA_UI_WING2_B,    255)
+		H.r_wing3  = dna.GetUIValueRange(DNA_UI_WING3_R,    255)
+		H.g_wing3  = dna.GetUIValueRange(DNA_UI_WING3_G,    255)
+		H.b_wing3  = dna.GetUIValueRange(DNA_UI_WING3_B,    255)
 
 		// Playerscale
 		var/size = dna.GetUIValueRange(DNA_UI_PLAYERSCALE, player_sizes_list.len)
@@ -221,23 +231,15 @@
 		H.r_tail2  = dna.GetUIValueRange(DNA_UI_TAIL2_R,   255)
 		H.g_tail2  = dna.GetUIValueRange(DNA_UI_TAIL2_G,   255)
 		H.b_tail2  = dna.GetUIValueRange(DNA_UI_TAIL2_B,   255)
+		H.r_tail3  = dna.GetUIValueRange(DNA_UI_TAIL3_R,   255)
+		H.g_tail3  = dna.GetUIValueRange(DNA_UI_TAIL3_G,   255)
+		H.b_tail3  = dna.GetUIValueRange(DNA_UI_TAIL3_B,   255)
 
 		// Technically custom_species is not part of the UI, but this place avoids merge problems.
 		H.custom_species = dna.custom_species
-		if(istype(H.species,/datum/species/custom))
-			var/datum/species/custom/CS = H.species
-			var/datum/species/custom/new_CS = CS.produceCopy(dna.base_species,dna.species_traits,src)
-			new_CS.blood_color = dna.blood_color
-
-		if(istype(H.species,/datum/species/xenochimera))
-			var/datum/species/xenochimera/CS = H.species
-			var/datum/species/xenochimera/new_CS = CS.produceCopy(dna.base_species,dna.species_traits,src)
-			new_CS.blood_color = dna.blood_color
-
-		if(istype(H.species,/datum/species/alraune))
-			var/datum/species/alraune/CS = H.species
-			var/datum/species/alraune/new_CS = CS.produceCopy(dna.base_species,dna.species_traits,src)
-			new_CS.blood_color = dna.blood_color
+		H.species.blood_color = dna.blood_color
+		var/datum/species/S = H.species
+		S.produceCopy(dna.base_species,dna.species_traits,src)
 		// VOREStation Edit End
 
 		H.force_update_organs() //VOREStation Add - Gotta do this too

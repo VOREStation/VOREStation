@@ -24,6 +24,7 @@ import './styles/themes/hackerman.scss';
 import './styles/themes/malfunction.scss';
 import './styles/themes/ntos.scss';
 import './styles/themes/paper.scss';
+import './styles/themes/pda-retro.scss';
 import './styles/themes/retro.scss';
 import './styles/themes/syndicate.scss';
 
@@ -43,6 +44,10 @@ let reactRoot;
 let initialRender = true;
 
 const renderLayout = () => {
+  let loadingRoot = document.getElementById('tgui-loading');
+  if (loadingRoot) {
+    loadingRoot.style.display = 'none';
+  }
   perf.mark('render/start');
   const state = store.getState();
   const { suspended, assets } = selectBackend(state);

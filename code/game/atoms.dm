@@ -210,6 +210,7 @@
 	if(user.client?.prefs.examine_text_mode == EXAMINE_MODE_SWITCH_TO_PANEL)
 		user.client.statpanel = "Examine" // Switch to stat panel
 
+	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, output)
 	return output
 
 // Don't make these call bicon or anything, these are what bicon uses. They need to return an icon.
@@ -223,6 +224,7 @@
 
 //called to set the atom's dir and used to add behaviour to dir-changes
 /atom/proc/set_dir(new_dir)
+	SEND_SIGNAL(src, COMSIG_ATOM_DIR_CHANGE, dir, new_dir)
 	. = new_dir != dir
 	dir = new_dir
 
@@ -488,7 +490,7 @@
 // Use for objects performing visible actions
 // message is output to anyone who can see, e.g. "The [src] does something!"
 // blind_message (optional) is what blind people will hear e.g. "You hear something!"
-/atom/proc/visible_message(var/message, var/blind_message)
+/atom/proc/visible_message(var/message, var/blind_message, var/list/exclude_mobs = null)
 
 	//VOREStation Edit
 	var/list/see
@@ -501,6 +503,8 @@
 
 	var/list/seeing_mobs = see["mobs"]
 	var/list/seeing_objs = see["objs"]
+	if(LAZYLEN(exclude_mobs))
+		seeing_mobs -= exclude_mobs
 
 	for(var/obj in seeing_objs)
 		var/obj/O = obj
@@ -629,3 +633,17 @@
 
 /atom/proc/speech_bubble(bubble_state = "", bubble_loc = src, list/bubble_recipients = list())
 	return
+
+/atom/Entered(atom/movable/AM, atom/old_loc)
+	. = ..()
+	GLOB.moved_event.raise_event(AM, old_loc, AM.loc)
+	SEND_SIGNAL(src, COMSIG_ATOM_ENTERED, AM, old_loc)
+
+/atom/Exit(atom/movable/AM, atom/new_loc)
+	. = ..()
+	if(SEND_SIGNAL(src, COMSIG_ATOM_EXIT, AM, new_loc) & COMPONENT_ATOM_BLOCK_EXIT)
+		return FALSE
+
+/atom/Exited(atom/movable/AM, atom/new_loc)
+	. = ..()
+	SEND_SIGNAL(src, COMSIG_ATOM_EXITED, AM, new_loc)

@@ -51,6 +51,9 @@
 	if(modifiers["shift"] && modifiers["ctrl"])
 		CtrlShiftClickOn(A)
 		return 1
+	if(modifiers["shift"] && modifiers["middle"])
+		ShiftMiddleClickOn(A)
+		return 1
 	if(modifiers["middle"])
 		MiddleClickOn(A)
 		return 1
@@ -231,6 +234,15 @@
 */
 
 /*
+	Shift middle click
+	Used for pointing.
+*/
+
+/mob/proc/ShiftMiddleClickOn(atom/A)
+	pointed(A)
+	return
+
+/*
 	Shift click
 	For most mobs, examine.
 	This is overridden in ai.dm
@@ -271,12 +283,15 @@
 /atom/proc/AltClick(var/mob/user)
 	var/turf/T = get_turf(src)
 	if(T && user.TurfAdjacent(T))
-		if(user.listed_turf == T)
-			user.listed_turf = null
-		else
-			user.listed_turf = T
-			user.client.statpanel = "Turf"
+		user.ToggleTurfTab(T)
 	return 1
+	
+/mob/proc/ToggleTurfTab(var/turf/T)
+	if(listed_turf == T)
+		listed_turf = null
+	else
+		listed_turf = T
+		client.statpanel = "Turf"
 
 /mob/proc/TurfAdjacent(var/turf/T)
 	return T.AdjacentQuick(src)
@@ -339,19 +354,13 @@
 		facedir(direction)
 
 /obj/screen/click_catcher
+	name = "Darkness"
 	icon = 'icons/mob/screen_gen.dmi'
 	icon_state = "click_catcher"
 	plane = CLICKCATCHER_PLANE
+	layer = LAYER_HUD_UNDER
 	mouse_opacity = 2
-	screen_loc = "CENTER-7,CENTER-7"
-
-/obj/screen/click_catcher/proc/MakeGreed()
-	. = list()
-	for(var/i = 0, i<15, i++)
-		for(var/j = 0, j<15, j++)
-			var/obj/screen/click_catcher/CC = new()
-			CC.screen_loc = "NORTH-[i],EAST-[j]"
-			. += CC
+	screen_loc = "SOUTHWEST to NORTHEAST"
 
 /obj/screen/click_catcher/Click(location, control, params)
 	var/list/modifiers = params2list(params)
@@ -359,7 +368,8 @@
 		var/mob/living/carbon/C = usr
 		C.swap_hand()
 	else
-		var/turf/T = screen_loc2turf(screen_loc, get_turf(usr))
+		var/list/P = params2list(params)
+		var/turf/T = screen_loc2turf(P["screen-loc"], get_turf(usr))
 		if(T)
 			T.Click(location, control, params)
 	. = 1

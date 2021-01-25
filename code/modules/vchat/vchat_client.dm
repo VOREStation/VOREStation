@@ -82,7 +82,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 		become_broken()
 		return FALSE
 
-	if(!owner.is_preference_enabled(/datum/client_preference/vchat_enable))
+	if(!owner?.is_preference_enabled(/datum/client_preference/vchat_enable))
 		become_broken()
 		return FALSE
 
@@ -298,12 +298,12 @@ GLOBAL_LIST_EMPTY(bicon_cache) // Cache of the <img> tag results, not the icons
 	var/atom/A = obj
 	var/key
 	var/changes_often = ishuman(A) || isobserver(A) // If this ends up with more, move it into a proc or var on atom.
-	
+
 	if(changes_often)
 		key = "\ref[A]"
 	else
 		key = "[istype(A.icon, /icon) ? "\ref[A.icon]" : A.icon]:[A.icon_state]"
-	
+
 	var/base64 = GLOB.bicon_cache[key]
 	// Non-human atom, no cache
 	if(!base64) // Doesn't exist, make it.
@@ -397,22 +397,22 @@ var/to_chat_src
 		to_chat(src, "<span class='warning'>Error: Your chat log is already being prepared. Please wait until it's been downloaded before trying to export it again.</span>")
 		return
 
-	o_file = file(o_file)
-
 	// Write the CSS file to the log
-	o_file << "<html><head><style>"
-	o_file << file2text(file("code/modules/vchat/css/ss13styles.css"))
-	o_file << "</style></head><body>"
+	var/text_blob = "<html><head><style>"
+	text_blob += file2text(file("code/modules/vchat/css/ss13styles.css"))
+	text_blob += "</style></head><body>"
 
 	// Write the messages to the log
 	for(var/list/result in results)
-		o_file << "[result["message"]]<br>"
+		text_blob += "[result["message"]]<br>"
 		CHECK_TICK
 
-	o_file << "</body></html>"
+	text_blob += "</body></html>"
+
+	rustg_file_write(text_blob, o_file)
 
 	// Send the log to the client
-	src << ftp(o_file, "log_[time2text(world.timeofday, "YYYY_MM_DD_(hh_mm)")].html")
+	src << ftp(file(o_file), "log_[time2text(world.timeofday, "YYYY_MM_DD_(hh_mm)")].html")
 
 	// clean up the file on our end
 	spawn(10 SECONDS)

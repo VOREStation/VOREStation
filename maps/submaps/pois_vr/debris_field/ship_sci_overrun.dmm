@@ -1,0 +1,991 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/turf/template_noop,
+/area/space)
+"ab" = (
+/turf/simulated/wall/thull,
+/area/submap/debrisfield/sci_overrun)
+"ac" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/sci_overrun)
+"ad" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/sci_overrun)
+"ae" = (
+/obj/structure/table/rack,
+/obj/random/tool,
+/obj/random/tool,
+/obj/random/tool,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/sci_overrun)
+"af" = (
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/sci_overrun)
+"ag" = (
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"ah" = (
+/obj/structure/closet/secure_closet/scientist{
+	name = "scientist locker";
+	req_access = list(0)
+	},
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"ai" = (
+/obj/structure/bed,
+/obj/item/weapon/bedsheet/blue,
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"aj" = (
+/obj/machinery/portable_atmospherics/hydroponics,
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"ak" = (
+/obj/machinery/botany/editor,
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"al" = (
+/obj/machinery/vending/hydronutrients,
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"am" = (
+/obj/machinery/seed_extractor,
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"an" = (
+/obj/machinery/seed_storage/xenobotany,
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"ao" = (
+/obj/machinery/botany/extractor,
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"ap" = (
+/obj/item/weapon/reagent_containers/spray/plantbgone,
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"aq" = (
+/obj/item/seeds/killertomatoseed,
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"ar" = (
+/mob/living/simple_mob/tomato/space,
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"as" = (
+/obj/structure/railing,
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"at" = (
+/obj/item/weapon/reagent_containers/spray/chemsprayer,
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"au" = (
+/obj/structure/salvageable/autolathe,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/sci_overrun)
+"av" = (
+/obj/machinery/door/airlock/maintenance/rnd{
+	name = "Research Airlock";
+	req_one_access = list(0)
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/sci_overrun)
+"aw" = (
+/obj/structure/bed,
+/obj/item/weapon/bedsheet/green,
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"ax" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"ay" = (
+/obj/structure/reagent_dispensers/watertank/high,
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"az" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"aA" = (
+/obj/effect/decal/remains,
+/obj/item/clothing/under/rank/hydroponics,
+/obj/item/clothing/suit/storage/toggle/labcoat/green,
+/obj/item/clothing/head/greenbandana,
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"aB" = (
+/obj/structure/table/rack,
+/obj/item/weapon/shovel/spade,
+/obj/item/weapon/shovel/spade,
+/obj/item/weapon/material/minihoe,
+/obj/item/weapon/material/minihoe,
+/obj/item/weapon/material/knife/machete/hatchet,
+/obj/item/weapon/material/knife/machete/hatchet,
+/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/item/device/analyzer/plant_analyzer,
+/obj/item/device/analyzer/plant_analyzer,
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"aC" = (
+/obj/structure/table/rack,
+/obj/random/firstaid,
+/obj/random/firstaid,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/sci_overrun)
+"aD" = (
+/mob/living/simple_mob/slime/feral/dark_blue,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/sci_overrun)
+"aE" = (
+/obj/machinery/door/airlock/science{
+	req_one_access = list(0)
+	},
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"aF" = (
+/obj/item/clothing/head/collectable/slime,
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"aG" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"aH" = (
+/obj/tether_away_spawner/debrisfield/carp,
+/turf/template_noop,
+/area/tether_away/debrisfield/shuttle_buffer)
+"aI" = (
+/obj/structure/table/rack,
+/obj/random/unidentified_medicine/scientific,
+/obj/random/unidentified_medicine/scientific,
+/obj/random/unidentified_medicine/scientific,
+/obj/random/unidentified_medicine/scientific,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/sci_overrun)
+"aJ" = (
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = -12
+	},
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"aK" = (
+/obj/structure/bed,
+/obj/item/weapon/bedsheet/rd,
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"aL" = (
+/obj/structure/table/rack,
+/obj/item/slime_extract/rainbow,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"aM" = (
+/obj/structure/sign/hydro,
+/turf/simulated/wall/thull,
+/area/submap/debrisfield/sci_overrun)
+"aN" = (
+/obj/item/weapon/gun/energy/temperature,
+/obj/structure/table/rack,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"aO" = (
+/obj/structure/window/reinforced/full,
+/obj/structure/grille,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/sci_overrun)
+"aP" = (
+/obj/item/weapon/tool/prybar/red,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/sci_overrun)
+"aQ" = (
+/obj/structure/closet/emcloset,
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"aR" = (
+/obj/structure/closet/firecloset,
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"aS" = (
+/obj/machinery/computer/shuttle{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"aT" = (
+/obj/machinery/door/unpowered/shuttle,
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"aU" = (
+/obj/machinery/door/airlock/command{
+	name = "Research Airlock";
+	req_one_access = list(0)
+	},
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"aV" = (
+/obj/structure/bed/chair/comfy/purp{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"aW" = (
+/obj/structure/sign/xenobio,
+/turf/simulated/wall/thull,
+/area/submap/debrisfield/sci_overrun)
+"aX" = (
+/obj/item/weapon/gun/energy/decloner,
+/obj/structure/table/rack,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"aY" = (
+/obj/item/clothing/suit/storage/toggle/labcoat/purple,
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"aZ" = (
+/obj/structure/closet/crate,
+/obj/item/stack/material/uranium{
+	amount = 11
+	},
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/sci_overrun)
+"ba" = (
+/obj/structure/closet/crate,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/sci_overrun)
+"bb" = (
+/obj/structure/filingcabinet/filingcabinet,
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"bc" = (
+/obj/structure/table/reinforced,
+/obj/item/stack/material/phoron{
+	amount = 10
+	},
+/obj/item/device/flashlight/pen,
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"bd" = (
+/obj/structure/table/reinforced,
+/obj/item/weapon/paper_bin,
+/obj/item/weapon/pen/blue,
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"be" = (
+/obj/structure/table/reinforced,
+/obj/item/weapon/folder/white,
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"bf" = (
+/obj/structure/table/reinforced,
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"bg" = (
+/obj/structure/salvageable/machine,
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"bh" = (
+/obj/item/device/slime_scanner,
+/obj/item/device/slime_scanner,
+/obj/structure/table/reinforced,
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"bi" = (
+/obj/structure/table/rack,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/item/weapon/material/shard,
+/obj/item/clothing/mask/breath,
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"bj" = (
+/obj/structure/bed/chair/office/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"bk" = (
+/obj/effect/decal/remains,
+/obj/item/clothing/under/rank/scientist,
+/obj/item/clothing/suit/storage/toggle/labcoat/blue,
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"bl" = (
+/obj/structure/table/reinforced,
+/obj/item/weapon/gun/energy/taser/xeno,
+/obj/item/weapon/melee/baton/slime/loaded,
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"bm" = (
+/obj/item/weapon/airlock_electronics,
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"bn" = (
+/mob/living/simple_mob/slime/feral/dark_blue,
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"bo" = (
+/obj/item/weapon/material/shard,
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"bp" = (
+/obj/structure/table/reinforced,
+/obj/random/slimecore,
+/obj/random/slimecore,
+/obj/random/slimecore,
+/obj/random/slimecore,
+/obj/random/slimecore,
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"bq" = (
+/obj/structure/table/reinforced,
+/obj/item/weapon/reagent_containers/food/snacks/monkeycube,
+/obj/item/weapon/reagent_containers/food/snacks/monkeycube/farwacube,
+/obj/item/weapon/reagent_containers/food/snacks/monkeycube/neaeracube,
+/obj/item/weapon/reagent_containers/food/snacks/monkeycube/sarucube,
+/obj/item/weapon/reagent_containers/food/snacks/monkeycube/sobakacube,
+/obj/item/weapon/reagent_containers/food/snacks/monkeycube/sparracube,
+/obj/item/weapon/reagent_containers/food/snacks/monkeycube/stokcube,
+/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wolpincube,
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"br" = (
+/obj/machinery/power/port_gen/pacman/super,
+/turf/simulated/floor/airless,
+/area/submap/debrisfield/sci_overrun)
+"bs" = (
+/obj/structure/salvageable/implant_container,
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+"bt" = (
+/obj/machinery/processor,
+/obj/item/slime_extract/dark_blue,
+/turf/simulated/floor/tiled/white/airless,
+/area/submap/debrisfield/sci_overrun)
+
+(1,1,1) = {"
+ab
+ad
+ad
+ab
+ab
+ad
+ad
+ab
+aa
+aa
+aa
+ab
+ad
+ad
+ab
+ab
+ad
+ad
+ab
+"}
+(2,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aP
+af
+af
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(3,1,1) = {"
+ab
+ae
+ae
+au
+af
+aC
+aI
+ab
+ab
+aT
+ab
+ab
+aZ
+af
+af
+af
+af
+ba
+ab
+"}
+(4,1,1) = {"
+ab
+af
+af
+af
+af
+aD
+af
+ab
+aQ
+ag
+aQ
+ab
+ba
+af
+af
+af
+af
+br
+ab
+"}
+(5,1,1) = {"
+ab
+ab
+ab
+av
+ab
+ab
+ab
+ab
+ab
+aT
+ab
+ab
+ab
+ab
+ab
+av
+ab
+ab
+ab
+"}
+(6,1,1) = {"
+ab
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ab
+"}
+(7,1,1) = {"
+ab
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ab
+"}
+(8,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+aE
+ab
+ab
+ag
+ag
+ag
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(9,1,1) = {"
+ab
+ah
+ah
+ah
+ag
+ag
+aJ
+ab
+ag
+ag
+ag
+ab
+bb
+ag
+ag
+ab
+ag
+ag
+ab
+"}
+(10,1,1) = {"
+ac
+ag
+ag
+ag
+ag
+aF
+ag
+ab
+ag
+ag
+ag
+ab
+bc
+ag
+bm
+bo
+ag
+ag
+ab
+"}
+(11,1,1) = {"
+ac
+ag
+ag
+ag
+ag
+ag
+ag
+ab
+ag
+ag
+ag
+ab
+bd
+bj
+ag
+ab
+ab
+ab
+ab
+"}
+(12,1,1) = {"
+ab
+ai
+ag
+aw
+ag
+ag
+aK
+ab
+ag
+ag
+ag
+ab
+be
+ag
+ag
+ab
+ag
+ag
+ab
+"}
+(13,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ag
+ag
+ag
+ab
+bf
+ag
+bn
+bo
+ag
+ag
+ab
+"}
+(14,1,1) = {"
+ab
+aj
+aj
+aj
+aj
+aj
+aj
+ab
+ag
+ag
+ag
+ab
+bg
+ag
+ag
+ab
+ab
+ab
+ab
+"}
+(15,1,1) = {"
+ab
+ag
+aq
+ag
+ag
+ar
+ag
+ab
+ag
+ag
+ag
+ab
+bg
+ag
+bo
+ab
+ag
+ag
+ab
+"}
+(16,1,1) = {"
+ab
+ak
+ar
+ag
+ag
+ag
+ag
+ab
+ag
+ag
+ag
+ab
+ag
+ag
+bm
+ag
+ag
+ag
+ab
+"}
+(17,1,1) = {"
+ab
+al
+ag
+ax
+ax
+ag
+ar
+aM
+ag
+ag
+ag
+ab
+ag
+ag
+ag
+ab
+ab
+ab
+ab
+"}
+(18,1,1) = {"
+ab
+am
+as
+ay
+aB
+aG
+ag
+aE
+ag
+ag
+ag
+ab
+ag
+ag
+ag
+aR
+aR
+aR
+ab
+"}
+(19,1,1) = {"
+ab
+an
+ag
+az
+az
+ag
+ag
+ab
+ag
+ag
+ag
+aW
+ag
+bk
+ag
+ag
+ag
+ag
+ab
+"}
+(20,1,1) = {"
+ab
+ao
+ap
+ar
+ag
+ag
+ag
+ab
+ag
+ag
+ag
+aE
+ag
+ag
+ag
+ag
+ag
+bs
+ab
+"}
+(21,1,1) = {"
+ab
+ap
+at
+aA
+ag
+ar
+aq
+ab
+ag
+ag
+ag
+ab
+ag
+ag
+ag
+ag
+ag
+ag
+ab
+"}
+(22,1,1) = {"
+ab
+aj
+aj
+aj
+aj
+aj
+aj
+ab
+aR
+ag
+aR
+ab
+bh
+bl
+bp
+bp
+bq
+bt
+ab
+"}
+(23,1,1) = {"
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aU
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+"}
+(24,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+ab
+ag
+aN
+ag
+ag
+ag
+aX
+ag
+ab
+aa
+aa
+aa
+aa
+aa
+"}
+(25,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+ac
+ag
+ag
+ag
+ag
+ag
+ag
+ag
+ac
+aa
+aa
+aa
+aa
+aa
+"}
+(26,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+ac
+aL
+ag
+ag
+aV
+ag
+aY
+bi
+ac
+aa
+aa
+aa
+aa
+aa
+"}
+(27,1,1) = {"
+aa
+aa
+aH
+aa
+aa
+ab
+ag
+ag
+aS
+aS
+aS
+ag
+ag
+ab
+aa
+aa
+aa
+aa
+aa
+"}
+(28,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+aO
+ac
+ac
+ac
+ac
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+"}

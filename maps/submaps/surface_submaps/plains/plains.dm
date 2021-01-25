@@ -1,5 +1,5 @@
 // This causes PoI maps to get 'checked' and compiled, when undergoing a unit test.
-// This is so Travis can validate PoIs, and ensure future changes don't break PoIs, as PoIs are loaded at runtime and the compiler can't catch errors.
+// This is so CI can validate PoIs, and ensure future changes don't break PoIs, as PoIs are loaded at runtime and the compiler can't catch errors.
 // When adding a new PoI, please add it to this list.
 #if MAP_TEST
 #include "farm1.dmm"
@@ -32,6 +32,12 @@
 #include "BuriedTreasure.dmm"
 #include "BuriedTreasure2.dmm"
 #include "BuriedTreasure3.dmm"
+#include "methlab.dmm"
+#include "hotspring.dmm"
+#include "lonehome.dmm"
+#include "priderock.dmm"
+#include "oldhotel.dmm"
+#include "VRDen.dmm"
 #endif
 
 
@@ -246,3 +252,39 @@
 	mappath = 'maps/submaps/surface_submaps/plains/BuriedTreasure3.dmm'
 	cost = 10
 	template_group = "Shallow Grave"
+
+/datum/map_template/surface/plains/oldhotel
+	name = "Old Hotel"
+	desc = "A abandoned hotel of sort, wonder why it was left behind."
+	mappath = 'maps/submaps/surface_submaps/plains/oldhotel.dmm'
+	cost = 15
+
+/datum/map_template/surface/plains/priderock
+	name = "Pride Rock"
+	desc = "A quite steep petruding rock from the earth, looks like a good hike."
+	mappath = 'maps/submaps/surface_submaps/plains/priderock.dmm'
+	cost = 10
+
+/datum/map_template/surface/plains/lonehome
+	name = "Lone Home"
+	desc = "A quite inoffensive looking home, damaged but still holding up."
+	mappath = 'maps/submaps/surface_submaps/plains/lonehome_vr.dmm' //VOREStation Edit
+	cost = 15
+
+/datum/map_template/surface/plains/hotspring
+	name = "Hot Spring"
+	desc = "Wait what, a hotspring in a frost planet?"
+	mappath = 'maps/submaps/surface_submaps/plains/hotspring.dmm'
+	cost = 5
+
+/datum/map_template/surface/plains/methlab
+	name = "Meth Lab"
+	desc = "A broken down greenhouse lab?, this does not look safe."
+	mappath = 'maps/submaps/surface_submaps/plains/methlab.dmm'
+	cost = 15
+
+/datum/map_template/surface/plains/VRDen
+	name = "VR Den"
+	desc = "A temporarily abandoned VR den, still functional."
+	mappath = 'maps/submaps/surface_submaps/plains/VRDen.dmm'
+	cost = 10

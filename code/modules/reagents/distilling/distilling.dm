@@ -19,7 +19,7 @@
 
 	var/target_temp = T20C
 
-	var/max_temp = T20C + 300
+	var/max_temp = T0C + 300
 	var/min_temp = T0C - 10
 
 	var/current_temp = T20C
@@ -85,6 +85,16 @@
 	setup_overlay_vars()
 
 	update_icon()
+
+/obj/machinery/portable_atmospherics/powered/reagent_distillery/RefreshParts()
+	var/total_laser_rating = 0
+	for(var/obj/item/weapon/stock_parts/micro_laser/ML in component_parts)
+		total_laser_rating += ML.rating
+
+	max_temp = initial(max_temp) + (50 * (total_laser_rating - 1))
+	min_temp = max(1, initial(min_temp) - (30 * (total_laser_rating - 1)))
+
+	return
 
 /obj/machinery/portable_atmospherics/powered/reagent_distillery/proc/setup_overlay_vars()
 	overlay_output_beaker = image(icon = src.icon, icon_state = "[base_state]-output")

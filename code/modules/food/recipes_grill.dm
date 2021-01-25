@@ -229,3 +229,18 @@
 		/obj/item/weapon/reagent_containers/food/snacks/bacon
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/burger/bacon
+	
+/datum/recipe/omurice
+	appliance = GRILL
+	reagents = list("rice" = 5, "ketchup" = 5, "egg" = 3)
+	result = /obj/item/weapon/reagent_containers/food/snacks/omurice
+
+/datum/recipe/omurice/heart
+	appliance = GRILL
+	reagents = list("rice" = 5, "ketchup" = 5, "sugar" = 5, "egg" = 3)
+	result = /obj/item/weapon/reagent_containers/food/snacks/omurice/heart
+
+/datum/recipe/omurice/face
+	appliance = GRILL
+	reagents = list("rice" = 5, "ketchup" = 5, "sodiumchloride" = 5, "egg" = 3)
+	result = /obj/item/weapon/reagent_containers/food/snacks/omurice/face

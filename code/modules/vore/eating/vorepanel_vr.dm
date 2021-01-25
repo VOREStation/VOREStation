@@ -30,6 +30,7 @@
 /datum/vore_look
 	var/mob/living/host // Note, we do this in case we ever want to allow people to view others vore panels
 	var/unsaved_changes = FALSE
+	var/show_pictures = TRUE
 
 /datum/vore_look/New(mob/living/new_host)
 	if(istype(new_host))
@@ -39,6 +40,10 @@
 /datum/vore_look/Destroy()
 	host = null
 	. = ..()
+
+/datum/vore_look/ui_assets(mob/user)
+	. = ..()
+	. += get_asset_datum(/datum/asset/spritesheet/vore)
 
 /datum/vore_look/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -80,6 +85,7 @@
 		return data
 
 	data["unsaved_changes"] = unsaved_changes
+	data["show_pictures"] = show_pictures
 
 	data["inside"] = list()
 	var/atom/hostloc = host.loc
@@ -103,12 +109,13 @@
 
 			var/list/info = list(
 				"name" = "[O]",
-				"icon" = cached_nom_icon(O),
 				"absorbed" = FALSE,
 				"stat" = 0,
 				"ref" = "\ref[O]",
 				"outside" = FALSE,
 			)
+			if(show_pictures)
+				info["icon"] = cached_nom_icon(O)
 			if(isliving(O))
 				var/mob/living/M = O
 				info["stat"] = M.stat
@@ -148,6 +155,8 @@
 			"digest_burn" = selected.digest_burn,
 			"bulge_size" = selected.bulge_size,
 			"shrink_grow_size" = selected.shrink_grow_size,
+			"belly_fullscreen" = selected.belly_fullscreen,
+			"possible_fullscreens" = icon_states('icons/mob/screen_full_vore.dmi'),
 		)
 
 		data["selected"]["addons"] = list()
@@ -172,16 +181,19 @@
 			data["selected"]["interacts"]["absorbchance"] = selected.absorbchance
 			data["selected"]["interacts"]["digestchance"] = selected.digestchance
 
+		data["selected"]["disable_hud"] = selected.disable_hud
+
 		data["selected"]["contents"] = list()
 		for(var/O in selected)
 			var/list/info = list(
 				"name" = "[O]",
-				"icon" = cached_nom_icon(O),
 				"absorbed" = FALSE,
 				"stat" = 0,
 				"ref" = "\ref[O]",
 				"outside" = TRUE,
 			)
+			if(show_pictures)
+				info["icon"] = cached_nom_icon(O)
 			if(isliving(O))
 				var/mob/living/M = O
 				info["stat"] = M.stat
@@ -197,6 +209,7 @@
 		"digest_leave_remains" = host.digest_leave_remains,
 		"allowmobvore" = host.allowmobvore,
 		"permit_healbelly" = host.permit_healbelly,
+		"show_vore_fx" = host.show_vore_fx,
 		"can_be_drop_prey" = host.can_be_drop_prey,
 		"can_be_drop_pred" = host.can_be_drop_pred,
 		"noisy" = host.noisy,
@@ -209,6 +222,9 @@
 		return TRUE
 
 	switch(action)
+		if("show_pictures")
+			show_pictures = !show_pictures
+			return TRUE
 		if("int_help")
 			alert("These control how your belly responds to someone using 'resist' while inside you. The percent chance to trigger each is listed below, \
 					and you can change them to whatever you see fit. Setting them to 0% will disable the possibility of that interaction. \
@@ -254,6 +270,18 @@
 		
 		if("bellypick")
 			host.vore_selected = locate(params["bellypick"])
+			return TRUE
+		if("move_belly")
+			var/dir = text2num(params["dir"])
+			if(LAZYLEN(host.vore_organs) <= 1)
+				to_chat(usr, "<span class='warning'>You can't sort bellies with only one belly to sort...</span>")
+				return TRUE
+
+			var/current_index = host.vore_organs.Find(host.vore_selected)
+			if(current_index)
+				var/new_index = clamp(current_index + dir, 1, LAZYLEN(host.vore_organs))
+				host.vore_organs.Swap(current_index, new_index)
+				unsaved_changes = TRUE
 			return TRUE
 
 		if("set_attribute")
@@ -352,6 +380,16 @@
 			host.permit_healbelly = !host.permit_healbelly
 			if(host.client.prefs_vr)
 				host.client.prefs_vr.permit_healbelly = host.permit_healbelly
+			unsaved_changes = TRUE
+			return TRUE
+		if("toggle_fx")
+			host.show_vore_fx = !host.show_vore_fx
+			if(host.client.prefs_vr)
+				host.client.prefs_vr.show_vore_fx = host.show_vore_fx
+			if(!host.show_vore_fx)
+				host.clear_fullscreen("belly")
+				if(!host.hud_used.hud_shown)
+					host.toggle_hud_vis()
 			unsaved_changes = TRUE
 			return TRUE
 		if("toggle_noisy")
@@ -471,8 +509,10 @@
 	var/atom/movable/target = locate(params["pick"])
 	if(!(target in host.vore_selected))
 		return TRUE // Not in our X anymore, update UI
-	intent = "Examine"
-	intent = alert("Examine, Eject, Move? Examine if you want to leave this box.","Query","Examine","Eject","Move")
+	var/list/available_options = list("Examine", "Eject", "Move")
+	if(ishuman(target))
+		available_options += "Transform"
+	intent = input(user, "What would you like to do with [target]?", "Vore Pick", "Examine") as null|anything in available_options
 	switch(intent)
 		if("Examine")
 			var/list/results = target.examine(host)
@@ -487,6 +527,7 @@
 				return TRUE
 
 			host.vore_selected.release_specific_contents(target)
+			return TRUE
 
 		if("Move")
 			if(host.stat)
@@ -499,6 +540,20 @@
 
 			to_chat(target,"<span class='warning'>You're squished from [host]'s [lowertext(host.vore_selected.name)] to their [lowertext(choice.name)]!</span>")
 			host.vore_selected.transfer_contents(target, choice)
+			return TRUE
+
+		if("Transform")
+			if(host.stat)
+				to_chat(user,"<span class='warning'>You can't do that in your state!</span>")
+				return TRUE
+
+			var/mob/living/carbon/human/H = target
+			if(!istype(H))
+				return
+
+			var/datum/tgui_module/appearance_changer/vore/V = new(host, H)
+			V.tgui_interact(user)
+			return TRUE
 
 /datum/vore_look/proc/set_attr(mob/user, params)
 	if(!host.vore_selected)
@@ -535,20 +590,9 @@
 			. = TRUE
 		if("b_mode")
 			var/list/menu_list = host.vore_selected.digest_modes.Copy()
-			if(istype(usr,/mob/living/carbon/human))
-				menu_list += DM_TRANSFORM
-
 			var/new_mode = input("Choose Mode (currently [host.vore_selected.digest_mode])") as null|anything in menu_list
 			if(!new_mode)
 				return FALSE
-
-			if(new_mode == DM_TRANSFORM) //Snowflek submenu
-				var/list/tf_list = host.vore_selected.transform_modes
-				var/new_tf_mode = input("Choose TF Mode (currently [host.vore_selected.digest_mode])") as null|anything in tf_list
-				if(!new_tf_mode)
-					return FALSE
-				host.vore_selected.digest_mode = new_tf_mode
-				return
 
 			host.vore_selected.digest_mode = new_mode
 			. = TRUE
@@ -785,6 +829,12 @@
 			var/digest_chance_input = input(user, "Set belly digest mode chance on resist (as %)", "Prey Digest Chance") as num|null
 			if(!isnull(digest_chance_input))
 				host.vore_selected.digestchance = sanitize_integer(digest_chance_input, 0, 100, initial(host.vore_selected.digestchance))
+			. = TRUE
+		if("b_fullscreen")
+			host.vore_selected.belly_fullscreen = params["val"]
+			. = TRUE
+		if("b_disable_hud")
+			host.vore_selected.disable_hud = !host.vore_selected.disable_hud
 			. = TRUE
 		if("b_del")
 			var/alert = alert("Are you sure you want to delete your [lowertext(host.vore_selected.name)]?","Confirmation","Delete","Cancel")

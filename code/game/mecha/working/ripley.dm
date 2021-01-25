@@ -14,6 +14,8 @@
 
 	minimum_penetration = 10
 
+	encumbrance_gap = 2
+
 	starting_components = list(
 		/obj/item/mecha_parts/component/hull/durable,
 		/obj/item/mecha_parts/component/actuator,
@@ -21,6 +23,9 @@
 		/obj/item/mecha_parts/component/gas,
 		/obj/item/mecha_parts/component/electrical
 		)
+
+	icon_scale_x = 1.2
+	icon_scale_y = 1.2
 
 /obj/mecha/working/ripley/Destroy()
 	for(var/atom/movable/A in src.cargo)
@@ -90,6 +95,20 @@
 	for(var/obj/item/mecha_parts/mecha_tracking/B in src.contents)//Deletes the beacon so it can't be found easily
 		qdel (B)
 
+/obj/mecha/working/ripley/antique
+	name = "APLU \"Geiger\""
+	desc = "You can't beat the classics."
+	icon_state = "ripley-old"
+	initial_icon = "ripley-old"
+
+	show_pilot = TRUE
+	pilot_lift = 5
+
+	max_utility_equip = 1
+	max_universal_equip = 3
+
+	icon_scale_x = 1
+	icon_scale_y = 1
 
 //Vorestation Edit Start
 

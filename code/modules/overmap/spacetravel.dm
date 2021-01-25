@@ -47,13 +47,35 @@ proc/get_deepspace(x,y)
 	for(var/atom/movable/AM in contents)
 		if(!AM.lost_in_space())
 			return FALSE
+	if(has_buckled_mobs())
+		for(var/mob/M in buckled_mobs)
+			if(!M.lost_in_space())
+				return FALSE
+
 	return TRUE
+
+/obj/item/device/uav/lost_in_space()
+	if(state == 1)
+		return FALSE
+	return ..()
+
+/obj/machinery/power/supermatter/lost_in_space()
+	return FALSE
+
+/obj/singularity/lost_in_space()
+	return FALSE
+
+/obj/vehicle/lost_in_space()
+	if(load && !load.lost_in_space())
+		return FALSE
+	return ..()
 
 /mob/lost_in_space()
 	return isnull(client)
 
-/mob/living/carbon/human/lost_in_space()
-	return isnull(client) && !key && stat == DEAD
+/mob/living/lost_in_space()
+	return FALSE
+	// return isnull(client) && !key && stat == DEAD // Allows bodies that players have ghosted from to be deleted - Ater
 
 proc/overmap_spacetravel(var/turf/space/T, var/atom/movable/A)
 	if (!T || !A)
@@ -61,6 +83,10 @@ proc/overmap_spacetravel(var/turf/space/T, var/atom/movable/A)
 
 	var/obj/effect/overmap/visitable/M = get_overmap_sector(T.z)
 	if (!M)
+		return
+
+	// Is the landmark still on the map.
+	if(!isturf(M.loc))
 		return
 
 	// Don't let AI eyes yeet themselves off the map

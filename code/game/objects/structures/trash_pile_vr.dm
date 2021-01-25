@@ -138,10 +138,10 @@
 					prob(4);/obj/item/clothing/shoes/black,
 					prob(4);/obj/item/clothing/shoes/black,
 					prob(4);/obj/item/clothing/shoes/laceup,
-					prob(4);/obj/item/clothing/shoes/leather,
+					prob(4);/obj/item/clothing/shoes/laceup/brown,
 					prob(4);/obj/item/clothing/suit/storage/hazardvest,
 					prob(4);/obj/item/clothing/under/color/grey,
-					prob(4);/obj/item/weapon/caution,
+					prob(4);/obj/item/clothing/suit/caution,
 					prob(4);/obj/item/weapon/cell,
 					prob(4);/obj/item/weapon/cell/device,
 					prob(4);/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
@@ -164,7 +164,7 @@
 					prob(3);/obj/item/device/pda,
 					prob(3);/obj/item/device/radio/headset,
 					prob(3);/obj/item/weapon/camera_assembly,
-					prob(3);/obj/item/weapon/caution/cone,
+					prob(3);/obj/item/clothing/head/cone,
 					prob(3);/obj/item/weapon/cell/high,
 					prob(3);/obj/item/weapon/spacecash/c10,
 					prob(3);/obj/item/weapon/spacecash/c20,
@@ -251,6 +251,7 @@
 					prob(1);/obj/item/weapon/material/knife/tacknife,
 					prob(1);/obj/item/weapon/storage/box/survival/space,
 					prob(1);/obj/item/weapon/storage/secure/briefcase/trashmoney,
+					prob(1);/obj/item/device/survivalcapsule/popcabin,
 					prob(1);/obj/item/weapon/reagent_containers/syringe/steroid)
 
 	var/obj/item/I = new path()

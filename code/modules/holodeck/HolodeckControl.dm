@@ -79,60 +79,59 @@
 		return
 	user.set_machine(src)
 
-	ui_interact(user)
+	tgui_interact(user)
 
 /**
- *  Display the NanoUI window for the Holodeck Computer.
- *
- *  See NanoUI documentation for details.
+ * Open the UI!
  */
-/obj/machinery/computer/HolodeckControl/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	user.set_machine(src)
+/obj/machinery/computer/HolodeckControl/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Holodeck", name)
+		ui.open()
 
-	var/list/data = list()
-	var/program_list[0]
-	var/restricted_program_list[0]
+/**
+ * Data for the TGUI UI
+ */
+/obj/machinery/computer/HolodeckControl/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
+	var/list/program_list = list()
+	var/list/restricted_program_list = list()
 
 	for(var/P in supported_programs)
-		program_list[++program_list.len] = P
+		program_list.Add(P)
 
 	for(var/P in restricted_programs)
-		restricted_program_list[++restricted_program_list.len] = P
+		restricted_program_list.Add(P)
 
 	data["supportedPrograms"] = program_list
 	data["restrictedPrograms"] = restricted_program_list
 	data["currentProgram"] = current_program
+	data["isSilicon"] = FALSE
 	if(issilicon(user))
-		data["isSilicon"] = 1
-	else
-		data["isSilicon"] = null
+		data["isSilicon"] = TRUE
+
 	data["safetyDisabled"] = safety_disabled
 	data["emagged"] = emagged
+	data["gravity"] = FALSE
 	if(linkedholodeck.has_gravity)
-		data["gravity"] = 1
-	else
-		data["gravity"] = null
+		data["gravity"] = TRUE
 
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		ui = new(user, src, ui_key, "holodeck.tmpl", src.name, 400, 550)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(20)
+	return data
 
-/obj/machinery/computer/HolodeckControl/Topic(href, href_list)
+/obj/machinery/computer/HolodeckControl/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
-		return 1
-	if((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon)))
-		usr.set_machine(src)
+		return TRUE
 
-		if(href_list["program"])
-			var/prog = href_list["program"]
+	switch(action)
+		if("program")
+			var/prog = params["program"]
 			if(prog in (supported_programs + restricted_programs))
 				if(loadProgram(prog))
 					current_program = prog
+			return TRUE
 
-		else if(href_list["AIoverride"])
+		if("AIoverride")
 			if(!issilicon(usr))
 				return
 
@@ -147,13 +146,13 @@
 			else
 				message_admins("[key_name_admin(usr)] restored the holodeck's safeties")
 				log_game("[key_name(usr)] restored the holodeck's safeties")
+			return TRUE
 
-		else if(href_list["gravity"])
+		if("gravity")
 			toggleGravity(linkedholodeck)
+			return TRUE
 
-		src.add_fingerprint(usr)
-
-	SSnanoui.update_uis(src)
+	add_fingerprint(usr)
 
 /obj/machinery/computer/HolodeckControl/emag_act(var/remaining_charges, var/mob/user as mob)
 	playsound(src, 'sound/effects/sparks4.ogg', 75, 1)

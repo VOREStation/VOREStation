@@ -15,7 +15,7 @@
 
 
 /datum/event2/event/gas_leak
-	var/potential_gas_choices = list("carbon_dioxide", "sleeping_agent", "phoron", "volatile_fuel")
+	var/potential_gas_choices = list("carbon_dioxide", "nitrous_oxide", "phoron", "volatile_fuel")
 	var/chosen_gas = null
 	var/turf/chosen_turf = null
 

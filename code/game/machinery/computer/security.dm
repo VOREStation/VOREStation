@@ -148,7 +148,7 @@
 					fields[++fields.len] = FIELD("ID", active1.fields["id"], "id")
 					fields[++fields.len] = FIELD("Entity Classification", active1.fields["brain_type"], "brain_type")
 					fields[++fields.len] = FIELD("Sex", active1.fields["sex"], "sex")
-					fields[++fields.len] = FIELD("Age", active1.fields["age"], "age")
+					fields[++fields.len] = FIELD("Age", "[active1.fields["age"]]", "age")
 					fields[++fields.len] = FIELD("Rank", active1.fields["rank"], "rank")
 					fields[++fields.len] = FIELD("Fingerprint", active1.fields["fingerprint"], "fingerprint")
 					fields[++fields.len] = FIELD("Physical Status", active1.fields["p_stat"], null)
@@ -317,16 +317,16 @@
 				if(!length(t1))
 					return
 
-				for(var/datum/data/record/R in data_core.security)
-					if(t1 == lowertext(R.fields["name"]) || t1 == lowertext(R.fields["id"]) || t1 == lowertext(R.fields["b_dna"]))
-						active2 = R
+				for(var/datum/data/record/R in data_core.general)
+					if(t1 == lowertext(R.fields["name"]) || t1 == lowertext(R.fields["id"]) || t1 == lowertext(R.fields["fingerprint"]))
+						active1 = R
 						break
-				if(!active2)
-					set_temp("Security record not found. You must enter the person's exact name, ID or DNA.", "danger")
+				if(!active1)
+					set_temp("Security record not found. You must enter the person's exact name, ID, or fingerprint.", "danger")
 					return
-				for(var/datum/data/record/E in data_core.general)
-					if(E.fields["name"] == active2.fields["name"] && E.fields["id"] == active2.fields["id"])
-						active1 = E
+				for(var/datum/data/record/E in data_core.security)
+					if(E.fields["name"] == active1.fields["name"] && E.fields["id"] == active1.fields["id"])
+						active2 = E
 						break
 				screen = SEC_DATA_RECORD
 			if("print_p")
