@@ -948,6 +948,7 @@
 #include "code\game\mecha\mech_sensor.dm"
 #include "code\game\mecha\mecha.dm"
 #include "code\game\mecha\mecha_actions.dm"
+#include "code\game\mecha\mecha_appearance.dm"
 #include "code\game\mecha\mecha_construction_paths.dm"
 #include "code\game\mecha\mecha_control_console.dm"
 #include "code\game\mecha\mecha_helpers.dm"

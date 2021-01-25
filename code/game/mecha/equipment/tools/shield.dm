@@ -37,15 +37,19 @@
 	my_shield = null
 	..()
 
+/obj/item/mecha_parts/mecha_equipment/combat_shield/add_equip_overlay(obj/mecha/M as obj)
+	..()
+	if(!drone_overlay)
+		drone_overlay = new(src.icon, icon_state = "shield_droid")
+	M.overlays += drone_overlay
+	return
+
 /obj/item/mecha_parts/mecha_equipment/combat_shield/attach(obj/mecha/M as obj)
 	..()
 	if(chassis)
 		my_shield.shield_health = 0
 		my_shield.my_mecha = chassis
 		my_shield.forceMove(chassis)
-
-		drone_overlay = new(src.icon, icon_state = "shield_droid")
-		M.overlays += drone_overlay
 	return
 
 /obj/item/mecha_parts/mecha_equipment/combat_shield/detach()
