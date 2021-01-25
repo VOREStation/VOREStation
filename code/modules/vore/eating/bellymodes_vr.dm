@@ -141,10 +141,11 @@
 				if(mode_flags & DM_FLAG_AFFECTWORN)
 					for(var/slot in slots)
 						var/obj/item/I = H.get_equipped_item(slot = slot)
-						if(I && handle_digesting_item(I))
-							digestion_noise_chance = 25
-							to_update = TRUE
-							break
+						if(I && I.canremove)
+							if(handle_digesting_item(I))
+								digestion_noise_chance = 25
+								to_update = TRUE
+								break
 
 				//Stripping flag
 				if(mode_flags & DM_FLAG_STRIPPING)
