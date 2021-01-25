@@ -52,16 +52,7 @@
 		to_chat(M, "<span class='notice'>You fail to reach \the [src].</span>")
 		return
 
-	var/direction = target_ladder == target_up ? "up" : "down"
-
-	M.visible_message("<span class='notice'>\The [M] begins climbing [direction] \the [src]!</span>",
-	"You begin climbing [direction] \the [src]!",
-	"You hear the grunting and clanging of a metal ladder being used.")
-
-	target_ladder.audible_message("<span class='notice'>You hear something coming [direction] \the [src]</span>")
-
-	if(do_after(M, climb_time, src))
-		climbLadder(M, target_ladder)
+	climbLadder(M, target_ladder)
 
 /obj/structure/ladder/attack_ghost(var/mob/M)
 	var/target_ladder = getTargetLadder(M)
@@ -105,13 +96,21 @@
 /mob/observer/ghost/may_climb_ladders(var/ladder)
 	return TRUE
 
-/obj/structure/ladder/proc/climbLadder(var/mob/M, var/target_ladder)
-	var/turf/T = get_turf(target_ladder)
-	for(var/atom/A in T)
-		if(!A.CanPass(M, M.loc, 1.5, 0))
-			to_chat(M, "<span class='notice'>\The [A] is blocking \the [src].</span>")
-			return FALSE
-	return M.forceMove(T) //VOREStation Edit - Fixes adminspawned ladders
+/obj/structure/ladder/proc/climbLadder(var/mob/M, var/obj/target_ladder)
+	var/direction = (target_ladder == target_up ? "up" : "down")
+	M.visible_message("<span class='notice'>\The [M] begins climbing [direction] \the [src]!</span>",
+		"You begin climbing [direction] \the [src]!",
+		"You hear the grunting and clanging of a metal ladder being used.")
+
+	target_ladder.audible_message("<span class='notice'>You hear something coming [direction] \the [src]</span>")
+
+	if(do_after(M, climb_time, src))
+		var/turf/T = get_turf(target_ladder)
+		for(var/atom/A in T)
+			if(!A.CanPass(M, M.loc, 1.5, 0))
+				to_chat(M, "<span class='notice'>\The [A] is blocking \the [src].</span>")
+				return FALSE
+		return M.forceMove(T) //VOREStation Edit - Fixes adminspawned ladders
 
 /obj/structure/ladder/CanPass(obj/mover, turf/source, height, airflow)
 	return airflow || !density

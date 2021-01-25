@@ -233,6 +233,9 @@
 		. += "<span class='filter_notice'><i>You can see something in there...</i></span>"
 
 /obj/structure/flora/pottedplant/attackby(obj/item/I, mob/user)
+	if(issilicon(user))
+		return // Don't try to put modules in here, you're a borg. TODO: Inventory refactor to not be ass.
+
 	if(stored_item)
 		to_chat(user, "<span class='notice'>[I] won't fit in. There already appears to be something in here...</span>")
 		return
@@ -491,3 +494,47 @@
 
 /obj/structure/flora/sif/tendrils/get_harvestable_desc()
 	return "<span class='notice'>\The [src] seems to be growing over something.</span>"
+
+/datum/category_item/catalogue/flora/frostbelle
+	name = "Sivian Flora - Frostbelle"
+	desc = "A rare plant native to Sif, with very peculiar growing requirements. Rarely seen outside of their original habitat,\
+	or the homes of the wealthy, the plant's unique vein structure is actually used to carry the plant's reproductive material \
+	to forming buds, the petals of which secrete the luminescent sap containing the pollen at the time of blooming. Certain \
+	horticulturists have found ways of halting this process prior to the secretion of the sap, leaving the flower's petals \
+	bright, at the cost of making that bud sterile."
+	value = CATALOGUER_REWARD_HARD
+
+/obj/structure/flora/sif/frostbelle
+	name = "gnarly shrub"
+	desc = "A stocky plant with fins bearing luminescent veins along its branches."
+	icon_state = "grass"
+	randomize_size = TRUE
+	catalogue_data = list(/datum/category_item/catalogue/flora/frostbelle)
+
+	harvest_tool = /obj/item/weapon/material/knife
+	max_harvests = 2
+	min_harvests = -4
+	harvest_loot = list(
+		/obj/item/weapon/reagent_containers/food/snacks/frostbelle = 1
+		)
+
+	var/variantnum = null
+
+/obj/structure/flora/sif/frostbelle/Initialize()
+	. = ..()
+
+	variantnum = rand(1,3)
+
+	update_icon()
+
+/obj/structure/flora/sif/frostbelle/update_icon()
+	..()
+
+	if(max_harvests > 0 && harvest_count < max_harvests)
+		icon_state = "[initial(icon_state)][variantnum]"
+
+	else
+		icon_state = initial(icon_state)
+
+/obj/structure/flora/sif/frostbelle/get_harvestable_desc()
+	return "<span class='notice'>\The [src] seems to be budding.</span>"

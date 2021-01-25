@@ -5,12 +5,14 @@
 /obj/item/weapon/gun/energy/hooklauncher
 	name = "gravity whip"
 	desc = "A large, strange gauntlet."
+	icon = 'icons/obj/gun2.dmi'
 	icon_state = "gravwhip"
 	item_state = "gravwhip"
 	fire_sound_text = "laser blast"
 
 	fire_delay = 15
 	charge_cost = 300
+	charge_meter = FALSE
 
 	cell_type = /obj/item/weapon/cell/device/weapon
 	projectile_type = /obj/item/projectile/energy/hook
@@ -29,7 +31,6 @@
 	cell_type = /obj/item/weapon/cell/device/weapon/recharge/alien
 	battery_lock = TRUE
 	charge_cost = 400
-	charge_meter = FALSE
 
 	projectile_type = /obj/item/projectile/energy/hook/ring
 

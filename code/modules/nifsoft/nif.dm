@@ -101,6 +101,9 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	//Draw me yo.
 	update_icon()
 
+	if(!our_statclick)
+		our_statclick = new(null, "Open", src)
+
 //Destructor cleans up references
 /obj/item/device/nif/Destroy()
 	human = null
@@ -356,6 +359,8 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 /obj/item/device/nif/proc/notify(var/message,var/alert = 0)
 	if(!human || stat == NIF_TEMPFAIL) return
 
+	last_notification = message // TGUI Hook
+
 	to_chat(human,"<b>\[[bicon(src.big_icon)]NIF\]</b> displays, \"<span class='[alert ? "danger" : "notice"]'>[message]</span>\"")
 	if(prob(1)) human.visible_message("<span class='notice'>\The [human] [pick(look_messages)].</span>")
 	if(alert)
@@ -377,6 +382,29 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 
 	//Was enough, reduce and return.
 	human.adjust_nutrition(-use_charge)
+	return TRUE
+
+// This operates on a nifsoft *path*, not an instantiation.
+// It tells the nifsoft shop if it's installation will succeed, to prevent it
+// from charging the user for incompatible software.
+/obj/item/device/nif/proc/can_install(var/datum/nifsoft/path)
+	if(stat == NIF_TEMPFAIL)
+		return FALSE
+
+	if(nifsofts[initial(path.list_pos)])
+		notify("The software \"[initial(path.name)]\" is already installed.", TRUE)
+		return FALSE
+
+	if(human)
+		var/applies_to = initial(path.applies_to)
+		var/synth = human.isSynthetic()
+		if(synth && !(applies_to & NIF_SYNTHETIC))
+			notify("The software \"[initial(path.name)]\" is not supported on your chassis type.",TRUE)
+			return FALSE
+		if(!synth && !(applies_to & NIF_ORGANIC))
+			notify("The software \"[initial(path.name)]\" is not supported in organic life.",TRUE)
+			return FALSE
+
 	return TRUE
 
 //Install a piece of software

@@ -15,7 +15,6 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 	anchored = TRUE
 	circuit = /obj/item/weapon/circuitboard/pointdefense_control
 	var/list/targets = list()  // Targets being engaged by associated batteries
-	var/ui_template = "pointdefense_control.tmpl"
 	var/id_tag = null
 
 /obj/machinery/pointdefense_control/Initialize(mapload)
@@ -37,48 +36,42 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 	if(!id_tag)
 		. += "[desc_panel_image("multitool")]to set ident tag"
 
-/obj/machinery/pointdefense_control/ui_interact(var/mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	if(ui_template)
-		var/list/data = build_ui_data()
-		ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-		if (!ui)
-			ui = new(user, src, ui_key, ui_template, name, 400, 600)
-			ui.set_initial_data(data)
-			ui.open()
-			ui.set_auto_update(1)
+/obj/machinery/pointdefense_control/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "PointDefenseControl") // 400, 600
+		ui.open()
 
 /obj/machinery/pointdefense_control/attack_hand(mob/user)
-	if((. = ..()))
-		return
-	if(CanUseTopic(user, global.default_state) > STATUS_CLOSE)
-		ui_interact(user)
+	if(..())
+		return TRUE
+	tgui_interact(user)
+	return TRUE
+
+/obj/machinery/pointdefense_control/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	if(..())
 		return TRUE
 
-/obj/machinery/pointdefense_control/Topic(var/mob/user, var/href_list)
-	if((. = ..()))
-		return
-
-	if(href_list["toggle_active"])
-		var/obj/machinery/power/pointdefense/PD = locate(href_list["toggle_active"])
+	if(action == "toggle_active")
+		var/obj/machinery/power/pointdefense/PD = locate(params["target"])
 		if(!istype(PD))
-			return TOPIC_NOACTION
+			return FALSE
 
 		//if(!lan || !lan.is_connected(PD))
 		if(PD.id_tag != id_tag)
-			return TOPIC_NOACTION
+			return FALSE
 
 		if(!(get_z(PD) in GetConnectedZlevels(get_z(src))))
-			to_chat(user, "<span class='warning'>[PD] is not within control range.</span>")
-			return TOPIC_NOACTION
+			to_chat(usr, "<span class='warning'>[PD] is not within control range.</span>")
+			return FALSE
 
 		if(!PD.Activate()) //Activate() whilst the device is active will return false.
 			PD.Deactivate()
-		return TOPIC_REFRESH
+		return TRUE
 
-/obj/machinery/pointdefense_control/proc/build_ui_data()
+/obj/machinery/pointdefense_control/tgui_data(mob/user)
 	var/list/data = list()
 	data["id"] = id_tag
-	data["name"] = name
 	var/list/turrets = list()
 	if(id_tag)
 		var/list/connected_z_levels = GetConnectedZlevels(get_z(src))
@@ -102,7 +95,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 /obj/machinery/pointdefense_control/attackby(var/obj/item/W, var/mob/user)
 	if(W?.is_multitool())
 		var/new_ident = input(user, "Enter a new ident tag.", "[src]", id_tag) as null|text
-		if(new_ident && new_ident != id_tag && user.Adjacent(src) && CanInteract(user, physical_state))
+		if(new_ident && new_ident != id_tag && user.Adjacent(src) && CanInteract(user, GLOB.tgui_physical_state))
 			// Check for duplicate controllers with this ID
 			for(var/thing in pointdefense_controllers)
 				var/obj/machinery/pointdefense_control/PC = thing
@@ -218,7 +211,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 /obj/machinery/power/pointdefense/attackby(var/obj/item/W, var/mob/user)
 	if(W?.is_multitool())
 		var/new_ident = input(user, "Enter a new ident tag.", "[src]", id_tag) as null|text
-		if(new_ident && new_ident != id_tag && user.Adjacent(src) && CanInteract(user, physical_state))
+		if(new_ident && new_ident != id_tag && user.Adjacent(src) && CanInteract(user, GLOB.tgui_physical_state))
 			to_chat(user, "<span class='notice'>You register [src] with the [new_ident] network.</span>")
 			id_tag = new_ident
 		return

@@ -451,6 +451,7 @@
 	busy = 0
 
 	O.clean_blood()
+	O.water_act(rand(1,10))
 	user.visible_message( \
 		"<span class='notice'>[user] washes \a [I] using \the [src].</span>", \
 		"<span class='notice'>You wash \a [I] using \the [src].</span>")

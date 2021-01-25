@@ -24,6 +24,7 @@
 							//Note that this is not a reliable way to determine if admins started as observers, since they change mobs a lot.
 	var/has_enabled_antagHUD = 0
 	var/medHUD = 0
+	var/secHUD = 0
 	var/antagHUD = 0
 	universal_speak = 1
 	var/atom/movable/following = null
@@ -295,6 +296,19 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	plane_holder.set_vis(VIS_CH_HEALTH, medHUD)
 	plane_holder.set_vis(VIS_CH_STATUS_OOC, medHUD)
 	to_chat(src, "<font color='blue'><B>Medical HUD [medHUD ? "Enabled" : "Disabled"]</B></font>")
+
+/mob/observer/dead/verb/toggle_secHUD()
+	set category = "Ghost"
+	set name = "Toggle Security HUD"
+	set desc = "Toggles Security HUD allowing you to see people's displayed ID's job, wanted status, etc"
+
+	secHUD = !secHUD
+	plane_holder.set_vis(VIS_CH_ID, secHUD)
+	plane_holder.set_vis(VIS_CH_WANTED, secHUD)
+	plane_holder.set_vis(VIS_CH_IMPTRACK, secHUD)
+	plane_holder.set_vis(VIS_CH_IMPLOYAL, secHUD)
+	plane_holder.set_vis(VIS_CH_IMPCHEM, secHUD)
+	to_chat(src, "<font color='blue'><B>Security HUD [secHUD ? "Enabled" : "Disabled"]</B></font>")
 
 /mob/observer/dead/verb/toggle_antagHUD()
 	set category = "Ghost"

@@ -8,6 +8,7 @@
 	name = "production machine console"
 	icon = 'icons/obj/machines/mining_machines_vr.dmi' // VOREStation Edit
 	icon_state = "console"
+	layer = ABOVE_WINDOW_LAYER
 	density = TRUE
 	anchored = TRUE
 
@@ -84,6 +85,7 @@
 
 	data["showAllOres"] = show_all_ores
 	data["power"] = machine.active
+	data["speed"] = machine.speed_process
 
 	return data
 
@@ -135,6 +137,9 @@
 				inserted_id = I
 			else
 				to_chat(usr, "<span class='warning'>No valid ID.</span>")
+			. = TRUE
+		if("speed_toggle")
+			machine.toggle_speed()
 			. = TRUE
 		else
 			return FALSE
@@ -203,6 +208,26 @@
 		if(src.output) break
 	return
 
+/obj/machinery/mineral/processing_unit/proc/toggle_speed(var/forced)
+	var/area/refinery_area = get_area(src)
+	if(forced)
+		speed_process = forced
+	else
+		speed_process = !speed_process // switching gears
+	if(speed_process) // high gear
+		STOP_MACHINE_PROCESSING(src)
+		START_PROCESSING(SSfastprocess, src)
+	else // low gear
+		STOP_PROCESSING(SSfastprocess, src)
+		START_MACHINE_PROCESSING(src)
+	for(var/obj/machinery/mineral/unloading_machine/unloader in refinery_area.contents)
+		unloader.toggle_speed()
+	for(var/obj/machinery/conveyor_switch/cswitch in refinery_area.contents)
+		cswitch.toggle_speed()
+	for(var/obj/machinery/mineral/stacking_machine/stacker in refinery_area.contents)
+		stacker.toggle_speed()
+
+
 /obj/machinery/mineral/processing_unit/process()
 
 	if (!src.output || !src.input)
@@ -214,9 +239,7 @@
 	var/list/tick_alloys = list()
 
 	//Grab some more ore to process this tick.
-	for(var/i = 0,i<sheets_per_tick,i++)
-		var/obj/item/weapon/ore/O = locate() in input.loc
-		if(!O) break
+	for(var/obj/item/weapon/ore/O in input.loc)
 		if(!isnull(ores_stored[O.material]))
 			ores_stored[O.material]++
 			points += ore_values[O.material] // Give Points!
@@ -275,7 +298,7 @@
 				var/can_make = CLAMP(ores_stored[metal],0,sheets_per_tick-sheets)
 				if(can_make%2>0) can_make--
 
-				var/material/M = get_material_by_name(O.compresses_to)
+				var/datum/material/M = get_material_by_name(O.compresses_to)
 
 				if(!istype(M) || !can_make || ores_stored[metal] < 1)
 					continue
@@ -289,7 +312,7 @@
 
 				var/can_make = CLAMP(ores_stored[metal],0,sheets_per_tick-sheets)
 
-				var/material/M = get_material_by_name(O.smelts_to)
+				var/datum/material/M = get_material_by_name(O.smelts_to)
 				if(!istype(M) || !can_make || ores_stored[metal] < 1)
 					continue
 

@@ -24,6 +24,7 @@
 	harm_intent_damage = 5
 	melee_damage_lower = 15		//Tac Knife damage
 	melee_damage_upper = 15
+	attack_armor_pen = 20
 	attack_sharp = 1
 	attack_edge = 1
 	attacktext = list("slashed", "stabbed")
@@ -83,6 +84,8 @@
 	threaten = TRUE
 	returns_home = TRUE		// Stay close to the base...
 	wander = TRUE			// ... but "patrol" a little.
+	intelligence_level = AI_SMART // Also knows not to walk while confused if it risks death.
+	threaten_delay = 30 SECONDS // Mercs will give you 30 seconds to leave or get shot.
 
 /datum/ai_holder/simple_mob/merc/ranged
 	pointblank = TRUE		// They get close? Just shoot 'em!

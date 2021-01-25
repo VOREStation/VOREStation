@@ -43,6 +43,7 @@ research holder datum.
 **						Master Types						  **
 **	Includes all the helper procs and basic tech processing.  **
 ***************************************************************/
+GLOBAL_LIST_INIT(design_datums, list())
 
 /datum/research								//Holder for all the existing, archived, and known tech. Individual to console.
 	var/list/known_tech = list()			//List of locally known tech. Datum/tech go here.
@@ -50,28 +51,33 @@ research holder datum.
 	var/list/known_designs = list()			//List of available designs.
 
 /datum/research/New()		//Insert techs into possible_tech here. Known_tech automatically updated.
-	for(var/T in typesof(/datum/tech) - /datum/tech)
-		known_tech += new T(src)
-	for(var/D in typesof(/datum/design) - /datum/design)
-		possible_designs += new D(src)
-//	generate_integrated_circuit_designs()
+	if(!LAZYLEN(GLOB.design_datums))
+		for(var/T in typesof(/datum/design) - /datum/design)
+			GLOB.design_datums += new T
+	possible_designs = GLOB.design_datums
+
+	if(!LAZYLEN(known_tech))
+		for(var/T in typesof(/datum/tech) - /datum/tech)
+			known_tech += new T
 	RefreshResearch()
 
 /datum/research/techonly
-
 /datum/research/techonly/New()
-	for(var/T in typesof(/datum/tech) - /datum/tech)
-		known_tech += new T(src)
-	RefreshResearch()
+	. = ..()
+	possible_designs = list()
+	known_designs = list()
+
+/datum/research/techonly/RefreshResearch()
+	. = ..()
+	known_designs = list() // Just in case
 
 //Checks to see if design has all the required pre-reqs.
 //Input: datum/design; Output: 0/1 (false/true)
 /datum/research/proc/DesignHasReqs(var/datum/design/D)
-	if(D.req_tech.len == 0)
-		return 1
+	if(!LAZYLEN(D.req_tech))
+		return TRUE
 
 	var/list/k_tech = list()
-
 	for(var/datum/tech/known in known_tech)
 		k_tech[known.id] = known.level
 
@@ -79,7 +85,7 @@ research holder datum.
 		if(isnull(k_tech[req]) || k_tech[req] < D.req_tech[req])
 			return 0
 
-	return 1
+	return TRUE
 
 //Adds a tech to known_tech list. Checks to make sure there aren't duplicates and updates existing tech's levels if needed.
 //Input: datum/tech; Output: Null
@@ -92,18 +98,7 @@ research holder datum.
 	return
 
 /datum/research/proc/AddDesign2Known(var/datum/design/D)
-	if(!known_designs.len) // Special case
-		known_designs.Add(D)
-		return
-	for(var/i = 1 to known_designs.len)
-		var/datum/design/A = known_designs[i]
-		if(A.id == D.id) // We are guaranteed to reach this if the ids are the same, because sort_string will also be the same
-			return
-		if(A.sort_string > D.sort_string)
-			known_designs.Insert(i, D)
-			return
-	known_designs.Add(D)
-	return
+	LAZYDISTINCTADD(known_designs, D)
 
 //Refreshes known_tech and known_designs list
 //Input/Output: n/a
@@ -112,7 +107,7 @@ research holder datum.
 		if(DesignHasReqs(PD))
 			AddDesign2Known(PD)
 	for(var/datum/tech/T in known_tech)
-		T = between(0, T.level, 20)
+		T.level = between(0, T.level, 20)
 	return
 
 //Refreshes the levels of a given tech.
@@ -129,21 +124,6 @@ research holder datum.
 		var/datum/tech/check_tech = T
 		if(initial(check_tech.id) == ID)
 			return  initial(check_tech.name)
-/*
-/datum/research/proc/generate_integrated_circuit_designs()
-	spawn(2 SECONDS) // So the list has time to initialize.
-		for(var/obj/item/integrated_circuit/IC in all_integrated_circuits)
-			if(IC.spawn_flags & IC_SPAWN_RESEARCH)
-				var/datum/design/D = new /datum/design/circuit(src)
-				D.name = "Custom circuitry \[[IC.category_text]\] ([IC.name])"
-				D.id = "ic-[lowertext(IC.name)]"
-				if(IC.origin_tech && IC.origin_tech.len)
-					D.req_tech = IC.origin_tech.Copy()
-				else
-					D.req_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2)
-				D.build_path = IC.type
-				possible_designs += D
-*/
 
 /***************************************************************
 **						Technology Datums					  **

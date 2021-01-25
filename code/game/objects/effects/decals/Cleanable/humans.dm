@@ -53,7 +53,11 @@ var/global/list/image/splatter_cache=list()
 /obj/effect/decal/cleanable/blood/update_icon()
 	if(basecolor == "rainbow") basecolor = "#[get_random_colour(1)]"
 	color = basecolor
-	if(synthblood)
+
+	if(basecolor == SYNTH_BLOOD_COLOUR)
+		name = "oil"
+		desc = "It's quite oily."
+	else if(synthblood)
 		name = "synthetic blood"
 		desc = "It's quite greasy."
 	else

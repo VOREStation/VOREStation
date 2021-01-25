@@ -1,0 +1,630 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/turf/template_noop,
+/area/space)
+"ab" = (
+/turf/simulated/shuttle/wall,
+/area/submap/debrisfield/misc_debris)
+"ac" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 1
+	},
+/turf/simulated/shuttle/plating/airless,
+/area/submap/debrisfield/misc_debris)
+"ad" = (
+/turf/template_noop,
+/area/submap/debrisfield/misc_debris)
+"ae" = (
+/turf/simulated/shuttle/wall/hard_corner,
+/area/submap/debrisfield/misc_debris)
+"af" = (
+/obj/structure/girder,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/shuttle/plating/airless,
+/area/submap/debrisfield/misc_debris)
+"ag" = (
+/obj/structure/closet/crate/trashcart,
+/turf/template_noop,
+/area/submap/debrisfield/misc_debris)
+"ah" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/shuttle/plating/airless,
+/area/submap/debrisfield/misc_debris)
+"ai" = (
+/obj/structure/lattice,
+/obj/structure/girder/displaced,
+/turf/template_noop,
+/area/submap/debrisfield/misc_debris)
+"aj" = (
+/obj/structure/girder/displaced,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/shuttle/plating/airless,
+/area/submap/debrisfield/misc_debris)
+"ak" = (
+/obj/structure/closet/crate/secure/engineering,
+/obj/item/weapon/tool/screwdriver/power,
+/obj/item/weapon/tool/crowbar/power,
+/obj/item/weapon/tool/screwdriver/power,
+/obj/item/weapon/tool/crowbar/power,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/shuttle/plating/airless,
+/area/submap/debrisfield/misc_debris)
+"al" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/oil,
+/turf/simulated/shuttle/plating/airless,
+/area/submap/debrisfield/misc_debris)
+"am" = (
+/obj/structure/lattice,
+/turf/template_noop,
+/area/submap/debrisfield/misc_debris)
+"an" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/generic,
+/turf/simulated/shuttle/plating/airless,
+/area/submap/debrisfield/misc_debris)
+"ao" = (
+/obj/item/stack/material/steel,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/shuttle/plating/airless,
+/area/submap/debrisfield/misc_debris)
+"ap" = (
+/turf/simulated/shuttle/floor/airless,
+/area/submap/debrisfield/misc_debris)
+"aq" = (
+/obj/structure/salvageable/bliss,
+/turf/simulated/shuttle/floor/airless,
+/area/submap/debrisfield/misc_debris)
+"ar" = (
+/obj/structure/lattice,
+/obj/item/stack/material/steel,
+/obj/item/weapon/material/shard/shrapnel,
+/turf/template_noop,
+/area/submap/debrisfield/misc_debris)
+"as" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/weapon/material/shard/shrapnel,
+/turf/simulated/shuttle/plating/airless,
+/area/submap/debrisfield/misc_debris)
+"at" = (
+/obj/structure/lattice,
+/obj/item/weapon/material/shard/shrapnel,
+/turf/template_noop,
+/area/submap/debrisfield/misc_debris)
+"au" = (
+/obj/structure/lattice,
+/obj/item/stack/material/steel,
+/turf/template_noop,
+/area/submap/debrisfield/misc_debris)
+"av" = (
+/obj/item/weapon/material/shard/shrapnel,
+/turf/template_noop,
+/area/submap/debrisfield/misc_debris)
+"aw" = (
+/obj/structure/lattice,
+/obj/effect/decal/cleanable/molten_item,
+/obj/item/weapon/material/shard/shrapnel,
+/turf/template_noop,
+/area/submap/debrisfield/misc_debris)
+"ax" = (
+/obj/structure/closet/crate/secure/engineering,
+/obj/item/weapon/weldingtool/experimental,
+/obj/item/weapon/weldingtool/electric,
+/obj/item/weapon/weldingtool/electric,
+/turf/template_noop,
+/area/submap/debrisfield/misc_debris)
+"ay" = (
+/obj/item/stack/rods,
+/turf/template_noop,
+/area/submap/debrisfield/misc_debris)
+"az" = (
+/obj/structure/girder/displaced,
+/turf/template_noop,
+/area/submap/debrisfield/misc_debris)
+"aA" = (
+/obj/structure/lattice,
+/obj/effect/decal/cleanable/molten_item,
+/turf/template_noop,
+/area/submap/debrisfield/misc_debris)
+"aB" = (
+/obj/structure/lattice,
+/obj/structure/closet/crate/secure/engineering,
+/obj/fiftyspawner/plasteel,
+/turf/template_noop,
+/area/submap/debrisfield/misc_debris)
+"aC" = (
+/turf/simulated/shuttle/floor/white/airless,
+/area/submap/debrisfield/misc_debris)
+"aD" = (
+/obj/structure/girder/displaced,
+/turf/simulated/shuttle/floor/white/airless,
+/area/submap/debrisfield/misc_debris)
+"aE" = (
+/obj/structure/ghost_pod/manual/lost_drone/dogborg,
+/turf/simulated/shuttle/floor/airless,
+/area/submap/debrisfield/misc_debris)
+"aF" = (
+/obj/structure/grille,
+/obj/item/weapon/material/shard,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/shuttle/plating/airless,
+/area/submap/debrisfield/misc_debris)
+"aG" = (
+/obj/item/weapon/material/shard,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/shuttle/plating/airless,
+/area/submap/debrisfield/misc_debris)
+"aH" = (
+/turf/simulated/shuttle/plating/airless,
+/area/submap/debrisfield/misc_debris)
+"aI" = (
+/obj/item/inflatable/torn,
+/turf/simulated/shuttle/floor/white/airless,
+/area/submap/debrisfield/misc_debris)
+"aJ" = (
+/obj/structure/shuttle/window,
+/obj/structure/grille,
+/turf/simulated/shuttle/plating/airless,
+/area/submap/debrisfield/misc_debris)
+"aK" = (
+/obj/item/inflatable/torn,
+/obj/effect/decal/remains,
+/obj/item/clothing/under/rank/cargotech,
+/obj/item/clothing/head/soft,
+/turf/simulated/shuttle/floor/white/airless,
+/area/submap/debrisfield/misc_debris)
+"aL" = (
+/obj/item/inflatable/door/torn,
+/turf/simulated/shuttle/floor/white/airless,
+/area/submap/debrisfield/misc_debris)
+"aM" = (
+/obj/structure/inflatable,
+/turf/simulated/shuttle/floor/white/airless,
+/area/submap/debrisfield/misc_debris)
+"aN" = (
+/obj/structure/girder,
+/turf/simulated/shuttle/floor/white/airless,
+/area/submap/debrisfield/misc_debris)
+"aO" = (
+/obj/structure/closet/secure_closet/cargotech{
+	name = "cargotech locker";
+	req_access = list()
+	},
+/turf/simulated/shuttle/floor/airless,
+/area/submap/debrisfield/misc_debris)
+"aP" = (
+/obj/structure/closet/emcloset,
+/turf/simulated/shuttle/floor/airless,
+/area/submap/debrisfield/misc_debris)
+"aQ" = (
+/obj/structure/salvageable/server,
+/turf/simulated/shuttle/floor/white/airless,
+/area/submap/debrisfield/misc_debris)
+"aR" = (
+/obj/item/inflatable/door/torn,
+/obj/effect/decal/remains,
+/obj/item/clothing/under/rank/cargotech,
+/obj/item/clothing/head/soft,
+/turf/simulated/shuttle/floor/white/airless,
+/area/submap/debrisfield/misc_debris)
+"aS" = (
+/obj/structure/door_assembly/door_assembly_com,
+/turf/simulated/shuttle/floor/white/airless,
+/area/submap/debrisfield/misc_debris)
+"aT" = (
+/obj/machinery/computer/shuttle{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/airless,
+/area/submap/debrisfield/misc_debris)
+"aU" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/white/airless,
+/area/submap/debrisfield/misc_debris)
+"aV" = (
+/obj/structure/closet/secure_closet/quartermaster{
+	name = "quartermaster locker";
+	req_access = list()
+	},
+/obj/item/clothing/under/mbill,
+/obj/item/clothing/head/soft/mbill,
+/turf/simulated/shuttle/floor/white/airless,
+/area/submap/debrisfield/misc_debris)
+"aW" = (
+/obj/structure/closet/crate/secure/bin,
+/turf/simulated/shuttle/floor/white/airless,
+/area/submap/debrisfield/misc_debris)
+"aX" = (
+/obj/structure/closet/emcloset,
+/turf/simulated/shuttle/floor/white/airless,
+/area/submap/debrisfield/misc_debris)
+"aY" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/white/airless,
+/area/submap/debrisfield/misc_debris)
+"aZ" = (
+/obj/machinery/computer/shuttle{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/airless,
+/area/submap/debrisfield/misc_debris)
+"ba" = (
+/obj/structure/salvageable/data,
+/turf/simulated/shuttle/floor/airless,
+/area/submap/debrisfield/misc_debris)
+"bb" = (
+/obj/effect/decal/remains,
+/obj/item/clothing/under/mbill,
+/obj/item/clothing/head/soft/mbill,
+/turf/simulated/shuttle/floor/white/airless,
+/area/submap/debrisfield/misc_debris)
+"bc" = (
+/obj/structure/bed/chair,
+/turf/simulated/shuttle/floor/airless,
+/area/submap/debrisfield/misc_debris)
+"bd" = (
+/obj/structure/bed/chair/comfy/teal,
+/turf/simulated/shuttle/floor/white/airless,
+/area/submap/debrisfield/misc_debris)
+"be" = (
+/obj/machinery/computer/shuttle{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/airless,
+/area/submap/debrisfield/misc_debris)
+
+(1,1,1) = {"
+ab
+ab
+ab
+ab
+ah
+as
+ad
+ad
+ad
+am
+at
+am
+am
+af
+aF
+aJ
+ab
+ab
+aJ
+aJ
+ab
+aa
+aa
+aa
+aa
+"}
+(2,1,1) = {"
+ac
+ae
+ah
+ak
+al
+at
+ad
+ad
+am
+am
+am
+am
+am
+an
+aG
+ap
+aP
+ab
+aT
+aT
+ab
+ab
+aa
+aa
+aa
+"}
+(3,1,1) = {"
+ad
+af
+ah
+al
+am
+au
+aw
+ad
+ad
+ad
+ad
+aB
+am
+am
+aH
+aC
+aQ
+ab
+aU
+aU
+ba
+ab
+ab
+aa
+aa
+"}
+(4,1,1) = {"
+ad
+ad
+ai
+ad
+ad
+ad
+ad
+ad
+ad
+av
+ad
+ay
+am
+ah
+af
+ab
+ab
+ab
+aC
+aC
+aC
+ba
+ab
+aJ
+ab
+"}
+(5,1,1) = {"
+ad
+ac
+ae
+al
+am
+ad
+au
+ad
+ad
+ad
+ad
+at
+am
+ah
+ah
+aI
+aM
+ab
+aV
+aC
+aC
+aC
+bc
+be
+aJ
+"}
+(6,1,1) = {"
+ad
+ag
+ab
+al
+ar
+am
+am
+ad
+ad
+az
+am
+am
+al
+ah
+aI
+aK
+aM
+ab
+aC
+aC
+aC
+aC
+aC
+be
+aJ
+"}
+(7,1,1) = {"
+ad
+ad
+aj
+am
+ad
+ad
+ad
+ad
+ad
+ad
+am
+am
+ah
+an
+aC
+aL
+aR
+aS
+aC
+aC
+aC
+bb
+bd
+be
+aJ
+"}
+(8,1,1) = {"
+ad
+ad
+ab
+am
+am
+ad
+ad
+ad
+ad
+ad
+am
+ah
+ah
+aC
+aI
+aM
+aM
+ab
+aW
+aC
+aC
+aC
+aC
+be
+aJ
+"}
+(9,1,1) = {"
+ad
+ac
+ab
+an
+am
+av
+ax
+ad
+ad
+av
+aA
+an
+ah
+aD
+aC
+aI
+aM
+ab
+aX
+aC
+aC
+aC
+bc
+be
+aJ
+"}
+(10,1,1) = {"
+ad
+ac
+ab
+ao
+ah
+at
+ad
+ad
+ad
+av
+ah
+ao
+ah
+aD
+aC
+aN
+ab
+ab
+aC
+aC
+aC
+ba
+ab
+aJ
+ab
+"}
+(11,1,1) = {"
+ad
+ac
+ab
+ap
+aj
+am
+ad
+ay
+ad
+ah
+ah
+ah
+ab
+aC
+aC
+aC
+aC
+ab
+aY
+aY
+ba
+ab
+ab
+aa
+aa
+"}
+(12,1,1) = {"
+ad
+ac
+ab
+aq
+ap
+ah
+ah
+am
+am
+ah
+ah
+al
+ab
+aE
+ap
+aO
+aO
+ab
+aZ
+aZ
+ab
+ab
+aa
+aa
+aa
+"}
+(13,1,1) = {"
+ad
+ab
+ae
+af
+af
+aj
+ah
+ah
+af
+af
+af
+ab
+ab
+ab
+aJ
+aJ
+ab
+ab
+aJ
+aJ
+ab
+aa
+aa
+aa
+aa
+"}

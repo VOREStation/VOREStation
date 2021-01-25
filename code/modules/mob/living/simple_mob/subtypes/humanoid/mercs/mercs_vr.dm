@@ -23,6 +23,3 @@
 	min_n2 = 0
 	max_n2 = 0
 	minbodytemp = 0
-
-/datum/ai_holder/simple_mob/merc
-	intelligence_level = AI_SMART // Also knows not to walk while confused if it risks death.

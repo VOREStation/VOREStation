@@ -197,7 +197,7 @@
 			return result
 
 	// Can't control ourselves when drifting
-	if((isspace(loc) || my_mob.lastarea?.has_gravity == 0) && !my_mob.in_enclosed_vehicle)	//If(In space or last area had no gravity) or(you in vehicle)
+	if((isspace(loc) || my_mob.lastarea?.has_gravity == 0) && isturf(loc))
 		if(!my_mob.Process_Spacemove(0))
 			return 0
 
@@ -289,7 +289,7 @@
 
 	// If we have a grab
 	var/list/grablist = my_mob.ret_grab()
-	if(grablist.len)
+	if(LAZYLEN(grablist))
 		grablist -= my_mob // Just in case we're in a circular grab chain
 
 		// It's just us and another person
@@ -388,6 +388,9 @@
 	return 1
 
 /mob/proc/Post_Incorpmove()
+	return
+
+/mob/proc/get_jetpack()
 	return
 
 ///Process_Spacemove

@@ -5,6 +5,7 @@
 	var/obj/item/weapon/material/twohanded/fireaxe/fireaxe
 	icon = 'icons/obj/closet.dmi'	//Not bothering to move icons out for now. But its dumb still.
 	icon_state = "fireaxe1000"
+	layer = ABOVE_WINDOW_LAYER
 	anchored = 1
 	density = 0
 	var/open = 0

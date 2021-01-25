@@ -257,7 +257,7 @@
 			var/list/potentials = living_mobs(0)
 			if(potentials.len)
 				var/mob/living/target = pick(potentials)
-				if(istype(target) && vore_selected)
+				if(istype(target) && target.devourable && target.can_be_drop_prey && vore_selected)
 					if(target.buckled)
 						target.buckled.unbuckle_mob(target, force = TRUE)
 					target.forceMove(vore_selected)
@@ -380,6 +380,9 @@ var/global/list/disallowed_protean_accessories = list(
 		var/obj/belly/B = belly
 		B.forceMove(blob)
 		B.owner = blob
+	
+	//We can still speak our languages!
+	blob.languages = languages.Copy()
 
 	//Flip them to the protean panel
 	if(panel_was_up)

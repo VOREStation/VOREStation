@@ -4,9 +4,6 @@ import { useBackend } from '../backend';
 import { Box, Button, Section, Table, LabeledList } from '../components';
 import { Window } from '../layouts';
 
-const VENDING_MODE_PRODUCTS = 0;
-const VENDING_MODE_PURCHASESCREEN = 1;
-
 const VendingRow = (props, context) => {
   const { act, data } = useBackend(context);
   const {
@@ -15,11 +12,21 @@ const VendingRow = (props, context) => {
   const {
     product,
   } = props;
-  const free = (
-    product.price === 0
-  );
   return (
     <Table.Row>
+      <Table.Cell collapsing>
+        {product.isatom && (
+          <span
+            className={classes([
+              'vending32x32',
+              product.path,
+            ])}
+            style={{
+              'vertical-align': 'middle',
+              'horizontal-align': 'middle',
+            }} />
+        ) || null}
+      </Table.Cell>
       <Table.Cell bold color={product.color}>
         {product.name}
       </Table.Cell>
@@ -51,17 +58,8 @@ const VendingRow = (props, context) => {
 export const Vending = (props, context) => {
   const { act, data } = useBackend(context);
   const {
-    mode,
     panel,
   } = data;
-
-  let body = null;
-  
-  if (mode === VENDING_MODE_PRODUCTS) {
-    body = <VendingProducts />;
-  } else if (mode === VENDING_MODE_PURCHASESCREEN) {
-    body = <VendingPurchaseScreen />;
-  }
 
   return (
     <Window
@@ -69,7 +67,7 @@ export const Vending = (props, context) => {
       height={600}
       resizable>
       <Window.Content scrollable>
-        {body}
+        <VendingProducts />
         {panel ? (
           <VendingMaintenance />
         ) : null}
@@ -82,6 +80,10 @@ export const VendingProducts = (props, context) => {
   const { act, data } = useBackend(context);
   const {
     coin,
+    chargesMoney,
+    user,
+    userMoney,
+    guestNotice,
     products,
   } = data;
 
@@ -89,6 +91,23 @@ export const VendingProducts = (props, context) => {
   let myproducts = products.filter(item => !!item);
   return (
     <Fragment>
+      {!!chargesMoney && (
+        <Section title="User">
+          {user && (
+            <Box>
+              Welcome, <b>{user.name}</b>,
+              {' '}
+              <b>{user.job || 'Unemployed'}</b>!
+              <br />
+              Your balance is <b>{userMoney}₮ Thalers</b>.
+            </Box>
+          ) || (
+            <Box color="light-grey">
+              {guestNotice}
+            </Box>
+          )}
+        </Section>
+      )}
       <Section title="Products">
         <Table>
           {myproducts.map(product => (
@@ -109,37 +128,6 @@ export const VendingProducts = (props, context) => {
           )} />
       )}
     </Fragment>
-  );
-};
-
-export const VendingPurchaseScreen = (props, context) => {
-  const { act, data } = useBackend(context);
-  const {
-    product,
-    price,
-    message,
-    message_err,
-  } = data;
-
-  return (
-    <Section title="Payment Confirmation" buttons={(
-      <Button
-        icon="undo"
-        content="Cancel"
-        onClick={() => act('cancelpurchase')} />
-    )}>
-      <LabeledList>
-        <LabeledList.Item label="Item selected">
-          {product}
-        </LabeledList.Item>
-        <LabeledList.Item label="Charge">
-          {price}₮
-        </LabeledList.Item>
-      </LabeledList>
-      <Section mt={1} label="Message" color={message_err ? 'bad' : ''}>
-        {message}
-      </Section>
-    </Section>
   );
 };
 

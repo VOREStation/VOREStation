@@ -137,7 +137,7 @@ I said no!
 	fruit = list("potato" = 1)
 	items = list(/obj/item/weapon/reagent_containers/food/snacks/cheesewedge)
 	result = /obj/item/weapon/reagent_containers/food/snacks/loadedbakedpotato
-	
+
 /datum/recipe/microchips
 	appliance = MICROWAVE
 	items = list(
@@ -186,7 +186,7 @@ I said no!
 	reagents = list("sodiumchloride" = 1, "blackpepper" = 1)
 	items = list(/obj/item/weapon/reagent_containers/food/snacks/meat)
 	result = /obj/item/weapon/reagent_containers/food/snacks/meatsteak
-	
+
 /datum/recipe/syntisteak
 	reagents = list("sodiumchloride" = 1, "blackpepper" = 1)
 	items = list(/obj/item/weapon/reagent_containers/food/snacks/meat/syntiflesh)
@@ -208,7 +208,7 @@ I said no!
 /datum/recipe/amanitajelly
 	reagents = list("water" = 5, "vodka" = 5, "amatoxin" = 5)
 	result = /obj/item/weapon/reagent_containers/food/snacks/amanitajelly
-	
+
 /datum/recipe/amanitajelly/make_food(var/obj/container as obj)
 	. = ..(container)
 	for(var/obj/item/weapon/reagent_containers/food/snacks/amanitajelly/being_cooked in .)
@@ -532,7 +532,7 @@ I said no!
 	fruit = list("potato" = 1, "ambrosia" = 3)
 	items = list(/obj/item/weapon/reagent_containers/food/snacks/meatball)
 	result = /obj/item/weapon/reagent_containers/food/snacks/validsalad
-	
+
 /datum/recipe/validsalad/make_food(var/obj/container as obj)
 	. = ..(container)
 	for (var/obj/item/weapon/reagent_containers/food/snacks/validsalad/being_cooked in .)
@@ -552,7 +552,7 @@ I said no!
 		/obj/item/weapon/reagent_containers/food/snacks/stuffing,
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/tofurkey
-	
+
 /datum/recipe/mashedpotato
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/spreads/butter // to prevent conflicts with yellow curry
@@ -860,7 +860,7 @@ I said no!
 		/obj/item/device/soulstone
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/bageltwo
-	
+
 /////////////////////////////////////////////////////////////
 //Synnono Meme Foods
 //
@@ -940,6 +940,20 @@ I said no!
 		/obj/item/weapon/reagent_containers/food/snacks/bun
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/chickenfillet
+	
+/datum/recipe/chickennoodlesoup
+	fruit = list("carrot" = 1)
+	reagents = list("water" = 10)
+	items = list( /obj/item/weapon/reagent_containers/food/snacks/spagetti, /obj/item/weapon/reagent_containers/food/snacks/rawcutlet)
+	reagent_mix = RECIPE_REAGENT_REPLACE //Simplify end product
+	result = /obj/item/weapon/reagent_containers/food/snacks/chickennoodlesoup
+
+/datum/recipe/chickennoodlesoup
+	fruit = list("carrot" = 1)
+	reagents = list("water" = 10)
+	items = list( /obj/item/weapon/reagent_containers/food/snacks/spagetti, /obj/item/weapon/reagent_containers/food/snacks/rawcutlet)
+	reagent_mix = RECIPE_REAGENT_REPLACE //Simplify end product
+	result = /obj/item/weapon/reagent_containers/food/snacks/chickennoodlesoup
 
 /datum/recipe/chilicheesefries
 	items = list(
@@ -1392,3 +1406,48 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/makaroni
 
+/datum/recipe/gigapuddi
+	reagents = list("milk" = 15)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/egg,
+		/obj/item/weapon/reagent_containers/food/snacks/egg
+		)
+	result = /obj/item/weapon/reagent_containers/food/snacks/gigapuddi
+
+/datum/recipe/gigapuddi/happy
+	reagents = list("milk" = 15, "sugar" = 5)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/egg,
+		/obj/item/weapon/reagent_containers/food/snacks/egg
+		)
+	result = /obj/item/weapon/reagent_containers/food/snacks/gigapuddi/happy
+
+/datum/recipe/gigapuddi/anger
+	reagents = list("milk" = 15, "sodiumchloride" = 5)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/egg,
+		/obj/item/weapon/reagent_containers/food/snacks/egg
+		)
+	result = /obj/item/weapon/reagent_containers/food/snacks/gigapuddi/anger
+
+/datum/recipe/buchedenoel
+	fruit = list("berries" = 2)
+	reagents = list("milk" = 5, "flour" = 15, "cream" = 10, "coco" = 5, "egg" = 6)
+	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/buchedenoel
+
+/datum/recipe/turkey
+	fruit = list("carrot" = 2)
+	reagents = list("sodiumchloride" = 1, "blackpepper" = 1)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/meat/chicken,
+		/obj/item/weapon/reagent_containers/food/snacks/slice/bread,
+		)
+	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/turkey
+
+/datum/recipe/cinnamonbun
+	reagents = list("sugar" = 15, "cream" = 10)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/dough
+		)
+	result = /obj/item/weapon/reagent_containers/food/snacks/cinnamonbun
+	result_quantity = 4

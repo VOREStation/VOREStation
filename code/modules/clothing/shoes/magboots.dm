@@ -2,7 +2,7 @@
 	desc = "Magnetic boots, often used during extravehicular activity to ensure the user remains safely attached to the vehicle. They're large enough to be worn over other footwear."
 	name = "magboots"
 	icon_state = "magboots0"
-	item_flags = PHORONGUARD
+	flags = PHORONGUARD
 	item_state_slots = list(slot_r_hand_str = "magboots", slot_l_hand_str = "magboots")
 	species_restricted = null
 	center_of_mass = list("x" = 17,"y" = 12)
@@ -17,6 +17,7 @@
 	var/mob/living/carbon/human/wearer = null	//For shoe procs
 	step_volume_mod = 1.3
 	drop_sound = 'sound/items/drop/metalboots.ogg'
+	pickup_sound = 'sound/items/pickup/toolbox.ogg'
 
 /obj/item/clothing/shoes/magboots/proc/set_slowdown()
 	slowdown = shoes? max(SHOES_SLOWDOWN, shoes.slowdown): SHOES_SLOWDOWN	//So you can't put on magboots to make you walk faster.

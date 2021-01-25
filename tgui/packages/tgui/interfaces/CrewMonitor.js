@@ -1,10 +1,29 @@
 import { sortBy } from 'common/collections';
+import { flow } from 'common/fp';
 import { useBackend, useLocalState } from "../backend";
 import { Window } from "../layouts";
 import { NanoMap, Box, Table, Button, Tabs, Icon, NumberInput } from "../components";
-import { TableCell } from '../components/Table';
-import { COLORS } from '../constants.js';
 import { Fragment } from 'inferno';
+
+const getStatText = cm => {
+  if (cm.dead) {
+    return "Deceased";
+  }
+  if (parseInt(cm.stat, 10) === 1) { // Unconscious
+    return "Unconscious";
+  }
+  return "Living";
+};
+
+const getStatColor = cm => {
+  if (cm.dead) {
+    return "red";
+  }
+  if (parseInt(cm.stat, 10) === 1) { // Unconscious
+    return "orange";
+  }
+  return "green";
+};
 
 export const CrewMonitor = () => {
   return (
@@ -22,14 +41,16 @@ export const CrewMonitor = () => {
 export const CrewMonitorContent = (props, context) => {
   const { act, data, config } = useBackend(context);
   const [tabIndex, setTabIndex] = useLocalState(context, 'tabIndex', 0);
-  const crew = sortBy(
-    cm => cm.name,
-  )(data.crewmembers || []);
 
-  const [
-    mapZoom,
-    setZoom,
-  ] = useLocalState(context, 'number', 1);
+  const crew = flow([
+    sortBy(cm => cm.name),
+    sortBy(cm => cm?.x),
+    sortBy(cm => cm?.y),
+    sortBy(cm => cm?.realZ),
+  ])(data.crewmembers || []);
+
+  const [zoom, setZoom] = useLocalState(context, 'zoom', 1);
+
   let body;
   // Data view
   if (tabIndex === 0) {
@@ -47,14 +68,14 @@ export const CrewMonitorContent = (props, context) => {
           </Table.Cell>
         </Table.Row>
         {crew.map(cm => (
-          <Table.Row key={cm.name}>
-            <TableCell>
+          <Table.Row key={cm.ref}>
+            <Table.Cell>
               {cm.name} ({cm.assignment})
-            </TableCell>
-            <TableCell>
+            </Table.Cell>
+            <Table.Cell>
               <Box inline
-                color={cm.dead ? 'red' : 'green'}>
-                {cm.dead ? 'Deceased' : 'Living'}
+                color={getStatColor(cm)}>
+                {getStatText(cm)}
               </Box>
               {cm.sensor_type >= 2 ? (
                 <Box inline>
@@ -81,8 +102,8 @@ export const CrewMonitorContent = (props, context) => {
                   {')'}
                 </Box>
               ) : null}
-            </TableCell>
-            <TableCell>
+            </Table.Cell>
+            <Table.Cell>
               {cm.sensor_type === 3 ? (
                 data.isAI ? (
                   <Button fluid
@@ -97,7 +118,7 @@ export const CrewMonitorContent = (props, context) => {
                   cm.area+" ("+cm.x+", "+cm.y+", "+cm.z+")"
                 )
               ) : "Not Available"}
-            </TableCell>
+            </Table.Cell>
           </Table.Row>
         ))}
       </Table>
@@ -106,48 +127,7 @@ export const CrewMonitorContent = (props, context) => {
     // Please note, if you ever change the zoom values,
     // you MUST update styles/components/Tooltip.scss
     // and change the @for scss to match.
-    body = (
-      <Box textAlign="center">
-        Zoom Level:
-        <NumberInput
-          animated
-          width="40px"
-          step={0.5}
-          stepPixelSize="5"
-          value={mapZoom}
-          minValue={1}
-          maxValue={8} 
-          onChange={(e, value) => setZoom(value)} />
-        Z-Level:
-        {data.map_levels
-          .sort((a, b) => Number(a) - Number(b))
-          .map(level => (
-            <Button
-              key={level}
-              selected={~~level === ~~config.mapZLevel}
-              content={level}
-              onClick={() => {
-                act("setZLevel", { "mapZLevel": level });
-              }} />
-          ))}
-        <NanoMap zoom={mapZoom}>
-          {crew
-            .filter(x => 
-              (x.sensor_type === 3 && ~~x.realZ === ~~config.mapZLevel)
-            ).map(cm => (
-              <NanoMap.Marker
-                key={cm.ref}
-                x={cm.x}
-                y={cm.y}
-                zoom={mapZoom}
-                icon="circle"
-                tooltip={cm.name}
-                color={cm.dead ? 'red' : 'green'}
-              />
-            ))}
-        </NanoMap>
-      </Box>
-    );
+    body = <CrewMonitorMapView />;
   } else {
     body = "ERROR";
   }
@@ -172,5 +152,29 @@ export const CrewMonitorContent = (props, context) => {
         {body}
       </Box>
     </Fragment>
+  );
+};
+
+const CrewMonitorMapView = (props, context) => {
+  const { act, config, data } = useBackend(context);
+  const [zoom, setZoom] = useLocalState(context, 'zoom', 1);
+  return (
+    <Box height="526px" mb="0.5rem" overflow="hidden">
+      <NanoMap onZoom={v => setZoom(v)}>
+        {data.crewmembers.filter(x => 
+          (x.sensor_type === 3 && ~~x.realZ === ~~config.mapZLevel)
+        ).map(cm => (
+          <NanoMap.Marker
+            key={cm.ref}
+            x={cm.x}
+            y={cm.y}
+            zoom={zoom}
+            icon="circle"
+            tooltip={cm.name + " (" + cm.assignment + ")"}
+            color={getStatColor(cm)}
+          />
+        ))}
+      </NanoMap>
+    </Box>
   );
 };

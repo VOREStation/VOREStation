@@ -63,6 +63,14 @@
 		else
 			return blood_color
 
+/datum/species/proc/get_blood_name(var/mob/living/carbon/human/H)
+	if(H)
+		var/datum/robolimb/company = H.isSynthetic()
+		if(company)
+			return company.blood_name
+		else
+			return blood_name
+
 /datum/species/proc/get_virus_immune(var/mob/living/carbon/human/H)
 	return ((H && H.isSynthetic()) ? 1 : virus_immune)
 

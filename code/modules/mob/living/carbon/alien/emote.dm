@@ -6,6 +6,7 @@
 		act = copytext(act, 1, t1)
 
 	var/muzzled = is_muzzled()
+	act = lowertext(act)
 
 	switch(act)
 		if("sign")

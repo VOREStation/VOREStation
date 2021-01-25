@@ -119,6 +119,11 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	unique_id = "shelter_5"
 	is_ship = TRUE
 
+/obj/item/device/survivalcapsule/popcabin
+	name = "pop-out cabin shelter capsule"
+	desc = "A cozy cabin; crammed into a survival capsule."
+	template_id = "shelter_cab"
+
 /obj/item/device/survivalcapsule/dropship
 	name = "dropship surfluid shelter capsule"
 	desc = "A military dropship in a capsule. Contains everything an assault squad would need, minus the squad itself. This capsule is significantly larger than most. There's a license for use printed on the bottom."
@@ -325,6 +330,15 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	light_range = 3
 	light_power = 1
 	light_color = "#FFFFFF"
+
+/obj/structure/fans/hardlight/colorable
+	name = "hardlight shield"
+	icon_state = "hardlight_colorable"
+
+/obj/structure/fans/hardlight/colorable/abductor
+	name = "hardlight shield"
+	icon_state = "hardlight_colorable"
+	color = "#ff0099"
 
 //Signs
 /obj/structure/sign/mining

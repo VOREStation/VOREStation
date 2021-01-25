@@ -84,7 +84,8 @@
 			/obj/item/toy/plushie/borgplushie/scrubpuppy,
 			/obj/item/toy/plushie/foxbear,
 			/obj/item/toy/plushie/nukeplushie,
-			/obj/item/toy/plushie/otter)
+			/obj/item/toy/plushie/otter,
+			/obj/item/toy/plushie/vox)
 			//VOREStation Add End
 	name = "Plushies Crate"
 	cost = 15
@@ -189,3 +190,12 @@
 	cost = 40
 	containertype = /obj/structure/closet/crate/zenghu
 	containername = "emergency rations"
+
+/datum/supply_pack/misc/reagentpump
+	name = "Machine - Pump"
+	contains = list(
+			/obj/machinery/pump = 1
+			)
+	cost = 60
+	containertype = /obj/structure/closet/crate/large/xion
+	containername = "pump crate"

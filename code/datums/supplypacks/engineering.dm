@@ -151,6 +151,13 @@
 	containername = "Singularity Generator crate"
 	access = access_ce
 
+/datum/supply_pack/eng/engine/tesla_gen
+	name = "Tesla Generator crate"
+	contains = list(/obj/machinery/the_singularitygen/tesla)
+	containertype = /obj/structure/closet/crate/secure/einstein
+	containername = "Tesla Generator crate"
+	access = access_ce
+
 /datum/supply_pack/eng/engine/collector
 	name = "Collector crate"
 	contains = list(/obj/machinery/power/rad_collector = 3)

@@ -28,6 +28,10 @@
 		// Give them fancy new organs.
 		owner.internal_organs_by_name[O_CELL] = new /obj/item/organ/internal/cell(owner,1)
 		owner.internal_organs_by_name[O_VOICE] = new /obj/item/organ/internal/voicebox/robot(owner, 1)
+		owner.internal_organs_by_name[O_PUMP] = new /obj/item/organ/internal/heart/machine(owner,1)
+		owner.internal_organs_by_name[O_CYCLER] = new /obj/item/organ/internal/stomach/machine(owner,1)
+		owner.internal_organs_by_name[O_HEATSINK] = new /obj/item/organ/internal/robotic/heatsink(owner,1)
+		owner.internal_organs_by_name[O_DIAGNOSTIC] = new /obj/item/organ/internal/robotic/diagnostic(owner,1)
 
 /obj/item/organ/external/chest/handle_germ_effects()
 	. = ..() //Should return an infection level
@@ -265,6 +269,7 @@
 	var/eye_icon = "eyes_s"
 	force = 3
 	throwforce = 7
+	var/eyes_over_markings = FALSE //VOREStation edit
 
 	var/eye_icon_location = 'icons/mob/human_face.dmi'
 
@@ -278,14 +283,15 @@
 
 /obj/item/organ/external/head/removed()
 	if(owner)
-		name = "[owner.real_name]'s head"
-		owner.drop_from_inventory(owner.glasses)
-		owner.drop_from_inventory(owner.head)
-		owner.drop_from_inventory(owner.l_ear)
-		owner.drop_from_inventory(owner.r_ear)
-		owner.drop_from_inventory(owner.wear_mask)
-		spawn(1)
-			owner.update_hair()
+		if(iscarbon(owner))
+			name = "[owner.real_name]'s head"
+			owner.drop_from_inventory(owner.glasses)
+			owner.drop_from_inventory(owner.head)
+			owner.drop_from_inventory(owner.l_ear)
+			owner.drop_from_inventory(owner.r_ear)
+			owner.drop_from_inventory(owner.wear_mask)
+			spawn(1)
+				owner.update_hair()
 	get_icon()
 	..()
 

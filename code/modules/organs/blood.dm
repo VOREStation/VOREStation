@@ -36,8 +36,13 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 	for(var/datum/reagent/blood/B in vessel.reagent_list)
 		if(B.id == "blood")
 			B.data = list(	"donor"=src,"viruses"=null,"species"=species.name,"blood_DNA"=dna.unique_enzymes,"blood_colour"= species.get_blood_colour(src),"blood_type"=dna.b_type,	\
-							"resistances"=null,"trace_chem"=null, "virus2" = null, "antibodies" = list())
+							"resistances"=null,"trace_chem"=null, "virus2" = null, "antibodies" = list(), "blood_name" = species.get_blood_name(src))
+
+			if(isSynthetic())
+				B.data["species"] = "synthetic"
+
 			B.color = B.data["blood_colour"]
+			B.name = B.data["blood_name"]
 
 // Takes care blood loss and regeneration
 /mob/living/carbon/human/handle_blood()
@@ -368,6 +373,9 @@ proc/blood_splatter(var/target,var/datum/reagent/blood/source,var/large)
 		B.basecolor = source.data["blood_colour"]
 		B.synthblood = synth
 		B.update_icon()
+
+	if(source.data["blood_name"])
+		B.name = source.data["blood_name"]
 
 	// Update blood information.
 	if(source.data["blood_DNA"])

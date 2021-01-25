@@ -1,0 +1,625 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/space)
+"b" = (
+/turf/simulated/mineral/vacuum,
+/area/space)
+"c" = (
+/obj/tether_away_spawner/debrisfield/carp,
+/turf/template_noop,
+/area/tether_away/debrisfield/shuttle_buffer)
+"d" = (
+/turf/simulated/mineral/vacuum,
+/area/submap/debrisfield/misc_debris)
+"e" = (
+/turf/simulated/shuttle/wall,
+/area/submap/debrisfield/misc_debris)
+"f" = (
+/obj/structure/shuttle/window,
+/obj/structure/grille,
+/turf/simulated/shuttle/plating/airless,
+/area/submap/debrisfield/misc_debris)
+"g" = (
+/obj/effect/decal/cleanable/generic,
+/turf/simulated/mineral/floor/vacuum,
+/area/submap/debrisfield/misc_debris)
+"h" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/salvageable/personal,
+/turf/simulated/shuttle/plating/airless,
+/area/submap/debrisfield/misc_debris)
+"i" = (
+/obj/structure/salvageable/implant_container,
+/turf/simulated/shuttle/floor/airless,
+/area/submap/debrisfield/misc_debris)
+"j" = (
+/turf/simulated/shuttle/floor/airless,
+/area/submap/debrisfield/misc_debris)
+"k" = (
+/obj/structure/closet/secure_closet/sar{
+	name = "sar locker";
+	req_access = list()
+	},
+/turf/simulated/shuttle/floor/airless,
+/area/submap/debrisfield/misc_debris)
+"l" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 4
+	},
+/turf/simulated/shuttle/plating/airless,
+/area/submap/debrisfield/misc_debris)
+"m" = (
+/obj/item/weapon/material/shard/shrapnel,
+/turf/simulated/mineral/floor/vacuum,
+/area/submap/debrisfield/misc_debris)
+"n" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/bot/medbot{
+	name = "Dr. Crusty"
+	},
+/turf/simulated/shuttle/plating/airless,
+/area/submap/debrisfield/misc_debris)
+"o" = (
+/obj/structure/table/standard,
+/obj/random/unidentified_medicine/fresh_medicine,
+/obj/random/unidentified_medicine/fresh_medicine,
+/obj/random/unidentified_medicine/old_medicine,
+/turf/simulated/shuttle/floor/airless,
+/area/submap/debrisfield/misc_debris)
+"p" = (
+/obj/item/stack/material/steel,
+/turf/simulated/mineral/floor/vacuum,
+/area/submap/debrisfield/misc_debris)
+"q" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/generic,
+/turf/simulated/shuttle/plating/airless,
+/area/submap/debrisfield/misc_debris)
+"r" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/random/firstaid,
+/turf/simulated/shuttle/plating/airless,
+/area/submap/debrisfield/misc_debris)
+"s" = (
+/obj/structure/table/standard,
+/obj/random/unidentified_medicine/fresh_medicine,
+/obj/random/unidentified_medicine/fresh_medicine,
+/obj/random/unidentified_medicine/viral,
+/turf/simulated/shuttle/floor/airless,
+/area/submap/debrisfield/misc_debris)
+"t" = (
+/obj/structure/closet/secure_closet/medical3{
+	name = "medical locker";
+	req_access = list()
+	},
+/turf/simulated/shuttle/floor/airless,
+/area/submap/debrisfield/misc_debris)
+"u" = (
+/obj/item/stack/rods,
+/turf/simulated/mineral/floor/vacuum,
+/area/submap/debrisfield/misc_debris)
+"v" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/molten_item,
+/turf/simulated/shuttle/plating/airless,
+/area/submap/debrisfield/misc_debris)
+"w" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/shuttle/wall,
+/area/submap/debrisfield/misc_debris)
+"x" = (
+/turf/simulated/shuttle/wall/hard_corner,
+/area/submap/debrisfield/misc_debris)
+"y" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/oil,
+/turf/simulated/shuttle/plating/airless,
+/area/submap/debrisfield/misc_debris)
+"z" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/remains/posi,
+/turf/simulated/shuttle/plating/airless,
+/area/submap/debrisfield/misc_debris)
+"A" = (
+/obj/machinery/door/unpowered/shuttle,
+/turf/simulated/shuttle/floor/airless,
+/area/submap/debrisfield/misc_debris)
+"B" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/stack/material/steel,
+/turf/simulated/shuttle/plating/airless,
+/area/submap/debrisfield/misc_debris)
+"C" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/weapon/storage/firstaid/adv,
+/turf/simulated/shuttle/plating/airless,
+/area/submap/debrisfield/misc_debris)
+"D" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/stack/rods,
+/turf/simulated/shuttle/plating/airless,
+/area/submap/debrisfield/misc_debris)
+"E" = (
+/obj/structure/closet/emcloset,
+/turf/simulated/shuttle/floor/airless,
+/area/submap/debrisfield/misc_debris)
+"F" = (
+/obj/structure/table/rack,
+/turf/simulated/shuttle/floor/airless,
+/area/submap/debrisfield/misc_debris)
+"G" = (
+/turf/simulated/mineral/floor/vacuum,
+/area/submap/debrisfield/misc_debris)
+"H" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/weapon/material/shard/shrapnel,
+/turf/simulated/shuttle/plating/airless,
+/area/submap/debrisfield/misc_debris)
+"I" = (
+/obj/effect/decal/cleanable/generic,
+/turf/simulated/shuttle/floor/airless,
+/area/submap/debrisfield/misc_debris)
+"J" = (
+/obj/item/weapon/material/shard/shrapnel,
+/turf/simulated/shuttle/floor/airless,
+/area/submap/debrisfield/misc_debris)
+"K" = (
+/obj/structure/dispenser/oxygen{
+	oxygentanks = 7
+	},
+/turf/simulated/shuttle/floor/airless,
+/area/submap/debrisfield/misc_debris)
+"L" = (
+/obj/effect/decal/cleanable/blood/oil,
+/turf/simulated/shuttle/floor/airless,
+/area/submap/debrisfield/misc_debris)
+"M" = (
+/obj/structure/salvageable/data,
+/turf/simulated/shuttle/floor/airless,
+/area/submap/debrisfield/misc_debris)
+"N" = (
+/obj/machinery/suit_cycler/medical,
+/turf/simulated/shuttle/floor/airless,
+/area/submap/debrisfield/misc_debris)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+b
+b
+b
+b
+b
+b
+b
+b
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+a
+a
+b
+b
+b
+b
+d
+d
+d
+d
+d
+d
+b
+b
+b
+b
+a
+"}
+(3,1,1) = {"
+a
+b
+b
+b
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+b
+b
+"}
+(4,1,1) = {"
+b
+b
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+b
+"}
+(5,1,1) = {"
+b
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+b
+"}
+(6,1,1) = {"
+b
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+b
+"}
+(7,1,1) = {"
+b
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+b
+"}
+(8,1,1) = {"
+b
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+b
+"}
+(9,1,1) = {"
+b
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+b
+"}
+(10,1,1) = {"
+b
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+b
+"}
+(11,1,1) = {"
+b
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+d
+b
+b
+"}
+(12,1,1) = {"
+b
+b
+d
+d
+d
+d
+p
+u
+m
+m
+u
+G
+d
+d
+b
+b
+b
+a
+"}
+(13,1,1) = {"
+a
+b
+b
+e
+g
+m
+q
+v
+y
+B
+C
+H
+g
+e
+b
+a
+a
+a
+"}
+(14,1,1) = {"
+a
+a
+a
+e
+h
+n
+r
+w
+z
+q
+D
+I
+L
+e
+a
+a
+a
+a
+"}
+(15,1,1) = {"
+a
+a
+a
+e
+e
+e
+e
+x
+j
+j
+j
+J
+M
+e
+a
+a
+a
+a
+"}
+(16,1,1) = {"
+a
+a
+a
+e
+i
+o
+s
+e
+j
+j
+e
+e
+e
+e
+a
+a
+a
+a
+"}
+(17,1,1) = {"
+a
+a
+a
+e
+j
+j
+j
+j
+j
+j
+E
+K
+N
+e
+a
+a
+a
+a
+"}
+(18,1,1) = {"
+a
+a
+a
+f
+j
+j
+j
+e
+j
+j
+j
+j
+j
+f
+a
+a
+a
+a
+"}
+(19,1,1) = {"
+a
+a
+a
+f
+j
+j
+j
+e
+j
+j
+j
+j
+j
+f
+a
+a
+a
+a
+"}
+(20,1,1) = {"
+a
+a
+a
+e
+k
+k
+t
+e
+A
+e
+F
+F
+F
+e
+a
+a
+a
+a
+"}
+(21,1,1) = {"
+a
+a
+a
+e
+e
+e
+e
+e
+j
+e
+e
+e
+e
+e
+a
+a
+a
+a
+"}
+(22,1,1) = {"
+c
+a
+a
+e
+l
+l
+l
+x
+A
+x
+l
+l
+l
+e
+a
+a
+a
+c
+"}

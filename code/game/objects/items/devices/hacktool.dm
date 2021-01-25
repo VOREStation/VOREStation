@@ -5,7 +5,7 @@
 	var/in_hack_mode = 0
 	var/list/known_targets
 	var/list/supported_types
-	var/datum/topic_state/default/must_hack/hack_state
+	var/datum/tgui_state/default/must_hack/hack_state
 
 /obj/item/device/multitool/hacktool/New()
 	..()
@@ -30,7 +30,7 @@
 	else
 		..()
 
-/obj/item/device/multitool/hacktool/resolve_attackby(atom/A, mob/user)
+/obj/item/device/multitool/hacktool/afterattack(atom/A, mob/user)
 	sanity_check()
 
 	if(!in_hack_mode)
@@ -39,7 +39,8 @@
 	if(!attempt_hack(user, A))
 		return 0
 
-	A.ui_interact(user, state = hack_state)
+	// Note, if you ever want to expand supported_types, you must manually add the custom state argument to their tgui_interact
+	A.tgui_interact(user, custom_state = hack_state)
 	return 1
 
 /obj/item/device/multitool/hacktool/proc/attempt_hack(var/mob/user, var/atom/target)
@@ -83,18 +84,18 @@
 /obj/item/device/multitool/hacktool/proc/on_target_destroy(var/target)
 	known_targets -= target
 
-/datum/topic_state/default/must_hack
+/datum/tgui_state/default/must_hack
 	var/obj/item/device/multitool/hacktool/hacktool
 
-/datum/topic_state/default/must_hack/New(var/hacktool)
+/datum/tgui_state/default/must_hack/New(var/hacktool)
 	src.hacktool = hacktool
 	..()
 
-/datum/topic_state/default/must_hack/Destroy()
+/datum/tgui_state/default/must_hack/Destroy()
 	hacktool = null
 	return ..()
 
-/datum/topic_state/default/must_hack/can_use_topic(var/src_object, var/mob/user)
+/datum/tgui_state/default/must_hack/can_use_topic(src_object, mob/user)
 	if(!hacktool || !hacktool.in_hack_mode || !(src_object in hacktool.known_targets))
 		return STATUS_CLOSE
 	return ..()

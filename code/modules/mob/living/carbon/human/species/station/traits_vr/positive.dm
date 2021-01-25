@@ -42,13 +42,13 @@
 	name = "Darksight"
 	desc = "Allows you to see a short distance in the dark."
 	cost = 1
-	var_changes = list("darksight" = 3, "flash_mod" = 2.0)
+	var_changes = list("darksight" = 5, "flash_mod" = 2.0)
 
 /datum/trait/darksight_plus
 	name = "Darksight (Major)"
 	desc = "Allows you to see in the dark for the whole screen."
 	cost = 2
-	var_changes = list("darksight" = 7, "flash_mod" = 3.0)
+	var_changes = list("darksight" = 8, "flash_mod" = 3.0)
 
 /datum/trait/melee_attack
 	name = "Sharp Melee"
@@ -61,6 +61,12 @@
 	desc = "Provides sharp melee attacks that do slightly more damage, along with fangs that makes the person bit unable to feel their body or pain."
 	cost = 2
 	var_changes = list("unarmed_types" = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp, /datum/unarmed_attack/bite/sharp/numbing))
+
+/datum/trait/fangs
+	name = "Numbing Fangs"
+	desc = "Provides fangs that makes the person bit unable to feel their body or pain."
+	cost = 1
+	var_changes = list("unarmed_types" = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/punch, /datum/unarmed_attack/bite/sharp/numbing))
 
 /datum/trait/minor_brute_resist
 	name = "Minor Brute Resist"

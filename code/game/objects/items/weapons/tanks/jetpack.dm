@@ -59,21 +59,27 @@
 
 	to_chat(usr, "You toggle the thrusters [on? "on":"off"].")
 
-/obj/item/weapon/tank/jetpack/proc/allow_thrust(num, mob/living/user as mob)
+/obj/item/weapon/tank/jetpack/proc/get_gas_supply()
+	return air_contents
+
+/obj/item/weapon/tank/jetpack/proc/can_thrust(num)
 	if(!on)
 		return 0
-	if((num < 0.005 || air_contents.total_moles < num))
+
+	var/datum/gas_mixture/fuel = get_gas_supply()
+	if(num < 0.005 || !fuel || fuel.total_moles < num)
 		ion_trail.stop()
 		return 0
 
-	var/datum/gas_mixture/G = air_contents.remove(num)
+	return 1
 
-	var/allgases = G.gas["carbon_dioxide"] + G.gas["nitrogen"] + G.gas["oxygen"] + G.gas["phoron"]
-	if(allgases >= 0.005)
-		return 1
+/obj/item/weapon/tank/jetpack/proc/do_thrust(num, mob/living/user)
+	if(!can_thrust(num))
+		return 0
 
-	qdel(G)
-	return
+	var/datum/gas_mixture/fuel = get_gas_supply()
+	fuel.remove(num)
+	return 1
 
 /obj/item/weapon/tank/jetpack/ui_action_click()
 	toggle()
@@ -117,24 +123,5 @@
 	. = ..()
 	. += "It's a jetpack. If you can see this, report it on the bug tracker."
 
-/obj/item/weapon/tank/jetpack/rig/allow_thrust(num, mob/living/user as mob)
-
-	if(!(src.on))
-		return 0
-
-	if(!istype(holder) || !holder.air_supply)
-		return 0
-
-	var/obj/item/weapon/tank/pressure_vessel = holder.air_supply
-
-	if((num < 0.005 || pressure_vessel.air_contents.total_moles < num))
-		src.ion_trail.stop()
-		return 0
-
-	var/datum/gas_mixture/G = pressure_vessel.air_contents.remove(num)
-
-	var/allgases = G.gas["carbon_dioxide"] + G.gas["nitrogen"] + G.gas["oxygen"] + G.gas["phoron"]
-	if(allgases >= 0.005)
-		return 1
-	qdel(G)
-	return
+/obj/item/weapon/tank/jetpack/rig/get_gas_supply()
+	return holder?.air_supply?.air_contents
