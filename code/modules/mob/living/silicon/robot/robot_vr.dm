@@ -15,6 +15,7 @@
 	var/sitting = FALSE
 	var/bellyup = FALSE
 	does_spin = FALSE
+	var/wideborg_dept = 'icons/mob/widerobot_vr.dmi'
 	var/vr_icons = list(
 					   "handy-hydro",
 					   "handy-service",
@@ -145,9 +146,9 @@
 		return
 	if(wideborg == TRUE)
 		if(icontype== "Drake") // Why, Why can't we have normal nice things
-			icon = 'icons/mob/drakeborg/drakeborg_vr.dmi' 
+			icon = 'icons/mob/drakeborg/drakeborg_vr.dmi'
 		else
-			icon = 'icons/mob/widerobot_vr.dmi'
+			icon = wideborg_dept
 		return
 	if((!(original_icon == icon)) && (!(icon == 'icons/mob/robots_vr.dmi')))
 		original_icon = icon
