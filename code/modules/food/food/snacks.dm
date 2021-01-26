@@ -6048,7 +6048,7 @@
 	. = ..()
 	reagents.add_reagent("protein", 8)
 	bitesize = 3
-	
+
 /obj/item/weapon/reagent_containers/food/snacks/chickennoodlesoup
 	name = "chicken noodle soup"
 	gender = PLURAL
@@ -6438,8 +6438,8 @@
 	reagents.add_reagent("protein", 2) //For meaty things.
 
 /obj/item/weapon/reagent_containers/food/snacks/gigapuddi
-	name = "Giga Puddi"
-	desc = "A large crème caramel"
+	name = "Astro-Pudding"
+	desc = "A crème caramel of astronomical size."
 	icon = 'icons/obj/food.dmi'
 	icon_state = "gigapuddi"
 	trash = /obj/item/trash/plate
@@ -6450,17 +6450,17 @@
 	bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/gigapuddi/happy
-	desc = "A large crème caramel made with extra love"
+	desc = "A crème caramel of astronomical size, made with extra love."
 	icon = 'icons/obj/food.dmi'
 	icon_state = "happypuddi"
 
 /obj/item/weapon/reagent_containers/food/snacks/gigapuddi/anger
-	desc = "A large crème caramel made with extra hate"
+	desc = "A crème caramel of astronomical size, made with extra hate."
 	icon_state = "angerpuddi"
-	
+
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/buchedenoel
 	name = "\improper Buche de Noel"
-	desc = "Merry Christmas"
+	desc = "Yule love it!"
 	icon = 'icons/obj/food.dmi'
 	icon_state = "buche"
 	slice_path = /obj/item/weapon/reagent_containers/food/snacks/bucheslice
@@ -6485,7 +6485,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/turkey
 	name = "turkey"
-	desc = "Tastes like chicken"
+	desc = "Tastes like chicken."
 	icon = 'icons/obj/food.dmi'
 	icon_state = "turkey"
 	slice_path = /obj/item/weapon/reagent_containers/food/snacks/turkeyslice
@@ -6503,12 +6503,12 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/turkeyslice
 	name = "turkey drumstick"
-	desc = "Guaranteed vox-free"
+	desc = "Forsooth!"
 	icon = 'icons/obj/food.dmi'
 	icon_state = "turkey_drumstick"
 	trash = /obj/item/trash/plate
 	bitesize = 2
-	
+
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/suppermatter
 	name = "suppermatter"
 	desc = "Extremely dense and powerful food."
@@ -6582,7 +6582,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/omurice/face
 	icon = 'icons/obj/food.dmi'
 	icon_state = "omuriceface"
-	
+
 /obj/item/weapon/reagent_containers/food/snacks/cinnamonbun
 	name = "cinnamon bun"
 	desc = "Life needs frosting!"
