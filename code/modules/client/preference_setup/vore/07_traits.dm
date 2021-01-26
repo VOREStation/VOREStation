@@ -58,21 +58,21 @@
 
 	if(pref.species != SPECIES_CUSTOM)
 		pref.pos_traits.Cut()
-		pref.neu_traits.Cut()
 		pref.neg_traits.Cut()
-	else
-		// Clean up positive traits
-		for(var/path in pref.pos_traits)
-			if(!(path in positive_traits))
-				pref.pos_traits -= path
-		//Neutral traits
-		for(var/path in pref.neu_traits)
-			if(!(path in neutral_traits))
-				pref.neu_traits -= path
-		//Negative traits
-		for(var/path in pref.neg_traits)
-			if(!(path in negative_traits))
-				pref.neg_traits -= path
+	// Clean up positive traits
+	for(var/path in pref.pos_traits)
+		if(!(path in positive_traits))
+			pref.pos_traits -= path
+	//Neutral traits
+	for(var/path in pref.neu_traits)
+		if(!(path in neutral_traits))
+			pref.neu_traits -= path
+		if(!(pref.species == SPECIES_CUSTOM) && !(path in everyone_traits))
+			pref.neu_traits -= path
+	//Negative traits
+	for(var/path in pref.neg_traits)
+		if(!(path in negative_traits))
+			pref.neg_traits -= path
 
 	var/datum/species/selected_species = GLOB.all_species[pref.species]
 	if(selected_species.selects_bodytype)
@@ -82,23 +82,27 @@
 
 /datum/category_item/player_setup_item/vore/traits/copy_to_mob(var/mob/living/carbon/human/character)
 	character.custom_species	= pref.custom_species
-	var/datum/species/selected_species = GLOB.all_species[pref.species]
 
 	if(character.isSynthetic())	//Checking if we have a synth on our hands, boys.
 		pref.dirty_synth = 1
 
-	if(selected_species.selects_bodytype)
-		var/datum/species/custom/CS = character.species
-		var/S = pref.custom_base ? pref.custom_base : "Human"
-		var/datum/species/custom/new_CS = CS.produceCopy(S, pref.pos_traits + pref.neu_traits + pref.neg_traits, character)
+	var/datum/species/S = character.species
+	var/SB
+	if(S.selects_bodytype)
+		SB = pref.custom_base ? pref.custom_base : "Human"
+	else
+		SB = S.name
+	var/datum/species/new_S = S.produceCopy(SB, pref.pos_traits + pref.neu_traits + pref.neg_traits, character)
 
-		//Any additional non-trait settings can be applied here
-		new_CS.blood_color = pref.blood_color
+	//Any additional non-trait settings can be applied here
+	new_S.blood_color = pref.blood_color
 
-		if(pref.species == SPECIES_CUSTOM)
-			//Statistics for this would be nice
-			var/english_traits = english_list(new_CS.traits, and_text = ";", comma_text = ";")
-			log_game("TRAITS [pref.client_ckey]/([character]) with: [english_traits]") //Terrible 'fake' key_name()... but they aren't in the same entity yet
+	if(pref.species == SPECIES_CUSTOM)
+		//Statistics for this would be nice
+		var/english_traits = english_list(new_S.traits, and_text = ";", comma_text = ";")
+		log_game("TRAITS [pref.client_ckey]/([character]) with: [english_traits]") //Terrible 'fake' key_name()... but they aren't in the same entity yet
+	else
+
 
 /datum/category_item/player_setup_item/vore/traits/content(var/mob/user)
 	. += "<b>Custom Species Name:</b> "
@@ -109,15 +113,16 @@
 		. += "<b>Icon Base: </b> "
 		. += "<a href='?src=\ref[src];custom_base=1'>[pref.custom_base ? pref.custom_base : "Human"]</a><br>"
 
+	var/traits_left = pref.max_traits
+	. += "<b>Traits Left:</b> [traits_left]<br>"
 	if(pref.species == SPECIES_CUSTOM)
 		var/points_left = pref.starting_trait_points
-		var/traits_left = pref.max_traits
+
 		for(var/T in pref.pos_traits + pref.neg_traits)
 			points_left -= traits_costs[T]
 			traits_left--
 
 		. += "<b>Points Left:</b> [points_left]<br>"
-		. += "<b>Traits Left:</b> [traits_left]<br>"
 		if(points_left < 0 || traits_left < 0 || !pref.custom_species)
 			. += "<span style='color:red;'><b>^ Fix things! ^</b></span><br>"
 
@@ -128,19 +133,18 @@
 			. += "<li>- <a href='?src=\ref[src];clicked_pos_trait=[T]'>[trait.name] ([trait.cost])</a></li>"
 		. += "</ul>"
 
-		. += "<a href='?src=\ref[src];add_trait=[NEUTRAL_MODE]'>Neutral Trait +</a><br>"
-		. += "<ul>"
-		for(var/T in pref.neu_traits)
-			var/datum/trait/trait = neutral_traits[T]
-			. += "<li>- <a href='?src=\ref[src];clicked_neu_trait=[T]'>[trait.name] ([trait.cost])</a></li>"
-		. += "</ul>"
-
 		. += "<a href='?src=\ref[src];add_trait=[NEGATIVE_MODE]'>Negative Trait +</a><br>"
 		. += "<ul>"
 		for(var/T in pref.neg_traits)
 			var/datum/trait/trait = negative_traits[T]
 			. += "<li>- <a href='?src=\ref[src];clicked_neg_trait=[T]'>[trait.name] ([trait.cost])</a></li>"
 		. += "</ul>"
+	. += "<a href='?src=\ref[src];add_trait=[NEUTRAL_MODE]'>Neutral Trait +</a><br>"
+	. += "<ul>"
+	for(var/T in pref.neu_traits)
+		var/datum/trait/trait = neutral_traits[T]
+		. += "<li>- <a href='?src=\ref[src];clicked_neu_trait=[T]'>[trait.name] ([trait.cost])</a></li>"
+	. += "</ul>"
 	. += "<b>Blood Color: </b>" //People that want to use a certain species to have that species traits (xenochimera/promethean/spider) should be able to set their own blood color.
 	. += "<a href='?src=\ref[src];blood_color=1'>Set Color</a>"
 	. += "<a href='?src=\ref[src];blood_reset=1'>R</a><br>"
@@ -213,8 +217,12 @@
 				picklist = positive_traits.Copy() - pref.pos_traits
 				mylist = pref.pos_traits
 			if(NEUTRAL_MODE)
-				picklist = neutral_traits.Copy() - pref.neu_traits
-				mylist = pref.neu_traits
+				if(pref.species == SPECIES_CUSTOM)
+					picklist = neutral_traits.Copy() - pref.neu_traits
+					mylist = pref.neu_traits
+				else
+					picklist = everyone_traits.Copy() - pref.neu_traits
+					mylist = pref.neu_traits
 			if(NEGATIVE_MODE)
 				picklist = negative_traits.Copy() - pref.neg_traits
 				mylist = pref.neg_traits

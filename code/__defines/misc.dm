@@ -157,6 +157,8 @@
 #define MAT_GRAPHITE		"graphite"
 #define MAT_LEATHER			"leather"
 #define MAT_CHITIN			"chitin"
+#define MAT_CLOTH			"cloth"
+#define MAT_SYNCLOTH		"syncloth"
 
 #define SHARD_SHARD "shard"
 #define SHARD_SHRAPNEL "shrapnel"

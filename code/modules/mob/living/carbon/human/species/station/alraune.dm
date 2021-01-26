@@ -46,10 +46,6 @@
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 
 	inherent_verbs = list(
-		/mob/living/carbon/human/proc/succubus_drain,
-		/mob/living/carbon/human/proc/succubus_drain_finalize,
-		/mob/living/carbon/human/proc/succubus_drain_lethal,
-		/mob/living/carbon/human/proc/bloodsuck,
 		/mob/living/carbon/human/proc/alraune_fruit_select) //Give them the voremodes related to wrapping people in vines and sapping their fluids
 
 	color_mult = 1
@@ -58,7 +54,7 @@
 	flesh_color = "#9ee02c"
 	blood_color = "#edf4d0" //sap!
 	base_color = "#1a5600"
-	
+
 	reagent_tag = IS_ALRAUNE
 
 	blurb = "Alraunes are a rare sight in space. Their bodies are reminiscent of that of plants, and yet they share many\
@@ -449,7 +445,7 @@
 
 //End of fruit gland code.
 
-/datum/species/alraune/proc/produceCopy(var/datum/species/to_copy,var/list/traits,var/mob/living/carbon/human/H)
+/datum/species/alraune/produceCopy(var/datum/species/to_copy,var/list/traits,var/mob/living/carbon/human/H)
 	ASSERT(to_copy)
 	ASSERT(istype(H))
 
@@ -475,6 +471,13 @@
 	new_copy.blood_mask = to_copy.blood_mask
 	new_copy.damage_mask = to_copy.damage_mask
 	new_copy.damage_overlays = to_copy.damage_overlays
+	new_copy.traits = traits
+
+	//If you had traits, apply them
+	if(new_copy.traits)
+		for(var/trait in new_copy.traits)
+			var/datum/trait/T = all_traits[trait]
+			T.apply(new_copy,H)
 
 	//Set up a mob
 	H.species = new_copy

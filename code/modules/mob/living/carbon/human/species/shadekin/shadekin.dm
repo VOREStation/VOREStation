@@ -54,8 +54,6 @@
 	base_color = "#f0f0f0"
 	color_mult = 1
 
-	inherent_verbs = list(/mob/living/proc/shred_limb)
-
 	has_glowing_eyes = TRUE
 
 	death_message = "phases to somewhere far away!"
@@ -66,7 +64,7 @@
 
 	speech_bubble_appearance = "ghost"
 
-	genders = list(MALE, FEMALE, PLURAL, NEUTER, HERM)
+	genders = list(MALE, FEMALE, PLURAL, NEUTER)
 
 	virus_immune = 1
 

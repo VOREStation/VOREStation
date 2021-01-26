@@ -427,3 +427,13 @@ the artifact triggers the rage.
 	heat_protection = -0.5
 	cold_protection = -0.5
 	siemens_coefficient = 1.5
+
+/datum/modifier/entangled
+	name = "entangled"
+	desc = "Its hard to move."
+
+	on_created_text = "<span class='danger'>You're caught in something! It's hard to move.</span>"
+	on_expired_text = "<span class='warning'>Your movement is freed.</span>"
+	stacks = MODIFIER_STACK_EXTEND
+
+	slowdown = 2

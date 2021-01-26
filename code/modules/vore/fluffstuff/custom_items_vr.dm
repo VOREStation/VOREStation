@@ -1439,7 +1439,9 @@
 	else
 		to_chat(user, "<span class='warning'>\The [src] isn't compatible with your body as it is now.</span>")
 
-
-
-
-
+// Astra - // Astra
+/obj/item/weapon/material/knife/ritual/fluff/astra
+	name = "Polished Ritual Knife"
+	desc = "A well kept strange ritual knife, There is a small tag with the name 'Astra Ether' on it. They are probably looking for this."
+	icon = 'icons/obj/wizard.dmi'
+	icon_state = "render"
