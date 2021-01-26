@@ -9,6 +9,7 @@ aruis - Diona
 aruis - Protean
 aruis - Xenochimera
 azmodan412 - Xenochimera
+beyondmylife - Protean
 bothnevarbackwards - Diona
 bricker98 - Protean
 cgr - Protean
@@ -22,11 +23,13 @@ flurriee - Protean
 funnyman2003 - Xenochimera
 hawkerthegreat - Vox
 hollifex - Diona
+h0lysquirr3l - Protean
 inuzari - Diona
 jademanique - Xenochimera
 khanivore - Protean
 killjaden - Protean
 ktccd - Diona
+liache - Black-Eyed Shadekin
 magpiemayhem - Vox
 marco_barko - Protean
 mewchild - Diona
@@ -42,6 +45,7 @@ paradoxspace - Xenochimera
 pearlprophet - Protean
 pemdesos - Protean
 phoenixx0 - Vox
+qrocakes - Black-Eyed Shadekin
 radiantaurora - Protean
 rikaru19xjenkins - Xenochimera
 rixunie - Diona
@@ -68,6 +72,7 @@ timidvi - Diona
 trikonei - Protean
 varonis - Xenochimera
 verkister - Xenochimera
+verysoft - Black-Eyed Shadekin
 vitoras - Protean
 voidalynx - Protean
 wickedtemp - Shadekin Empathy
@@ -76,29 +81,3 @@ xioen - Xenochimera
 xonkon - Protean
 zalvine - Shadekin Empathy
 zammyman215 - Vox
-hurttoto - Shadekin
-hurttoto - Black-Eyed Shadekin
-hurttoto - Xenochimera
-hurttoto - Protean
-luxyleatherhat - Shadekin
-luxyleatherhat - Black-Eyed Shadekin
-luxyleatherhat - Xenochimera
-luxyleatherhat - Protean
-RockNevada7 - Shadekin
-RockNevada7 - Protean
-RockNevada7 - Shadekin Empathy
-Zeldazackman - Shadekin Empathy
-EvaRaptor225 - Shadekin
-EvaRaptor225 - Protean
-EvaRaptor225 - Diona
-EvaRaptor225 - Xenochimera
-EvaRaptor225 - Xenos
-lizehrd - Shadekin
-lizehrd - Protean
-lizehrd - Diona
-lizehrd - Xenochimera
-
-
-
-
-
