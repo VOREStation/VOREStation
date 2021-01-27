@@ -86,6 +86,7 @@ var/list/grass_types = list(
 /turf/simulated/floor/outdoors/grass/sif/forest
 	name = "thick growth"
 	icon_state = "grass_sif_dark0"
+	initial_flooring = /decl/flooring/grass/sif/forest
 	edge_blending_priority = 5
 	tree_chance = 10
 	grass_chance = 1
