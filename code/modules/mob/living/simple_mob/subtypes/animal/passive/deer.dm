@@ -49,7 +49,7 @@
 	emote_see = list("wiggles its tail", "suddenly pauses trying to listen for something")
 
 // Start Defining the mob here
-/mob/living/simple_mob/animal/passive/deer\kyle
+/mob/living/simple_mob/animal/passive/deer/kyle
 
 	name = "Kyle" //Extra stresso with a mix of aaaa
 	desc = "A deer with no antlers and a very skittish personality, it seems to be a male even though its a doe."
