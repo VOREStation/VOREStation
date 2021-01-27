@@ -1487,6 +1487,7 @@
 #include "code\game\objects\structures\flora\flora_vr.dm"
 #include "code\game\objects\structures\flora\grass.dm"
 #include "code\game\objects\structures\flora\trees.dm"
+#include "code\game\objects\structures\ghost_pods\event_vr.dm"
 #include "code\game\objects\structures\ghost_pods\ghost_pods.dm"
 #include "code\game\objects\structures\ghost_pods\ghost_pods_vr.dm"
 #include "code\game\objects\structures\ghost_pods\human.dm"

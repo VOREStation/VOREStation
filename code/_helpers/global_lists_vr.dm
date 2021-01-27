@@ -12,6 +12,7 @@ var/global/list/everyone_traits = list()	// Neutral traits available to all spec
 var/global/list/positive_traits = list()	// Positive custom species traits, indexed by path
 var/global/list/traits_costs = list()		// Just path = cost list, saves time in char setup
 var/global/list/all_traits = list()			// All of 'em at once (same instances)
+var/global/list/active_ghost_pods = list()
 
 var/global/list/sensorpreflist = list("Off", "Binary", "Vitals", "Tracking", "No Preference")	//TFF 5/8/19 - Suit Sensors global list
 
