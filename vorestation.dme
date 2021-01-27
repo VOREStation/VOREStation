@@ -269,6 +269,7 @@
 #include "code\controllers\subsystems\overlays.dm"
 #include "code\controllers\subsystems\persist_vr.dm"
 #include "code\controllers\subsystems\persistence.dm"
+#include "code\controllers\subsystems\ping.dm"
 #include "code\controllers\subsystems\planets.dm"
 #include "code\controllers\subsystems\plants.dm"
 #include "code\controllers\subsystems\radiation.dm"
@@ -1564,12 +1565,14 @@
 #include "code\game\turfs\unsimulated\shuttle.dm"
 #include "code\game\turfs\unsimulated\sky_vr.dm"
 #include "code\game\turfs\unsimulated\walls.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\game\verbs\advanced_who.dm"
 #include "code\game\verbs\character_directory.dm"
 #include "code\game\verbs\ignore.dm"
 #include "code\game\verbs\ooc.dm"
+=======
+>>>>>>> f7fec4f... Ports ping verb from /tg/ (#7837):polaris.dme
 #include "code\game\verbs\suicide.dm"
-#include "code\game\verbs\who.dm"
 #include "code\js\byjax.dm"
 #include "code\js\menus.dm"
 #include "code\modules\admin\admin.dm"
@@ -1699,7 +1702,10 @@
 #include "code\modules\ai\interfaces.dm"
 #include "code\modules\ai\say_list.dm"
 #include "code\modules\ai\ai_holder_subtypes\simple_mob_ai.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\modules\ai\ai_holder_subtypes\simple_mob_ai_vr.dm"
+=======
+>>>>>>> f7fec4f... Ports ping verb from /tg/ (#7837):polaris.dme
 #include "code\modules\ai\ai_holder_subtypes\slime_xenobio_ai.dm"
 #include "code\modules\alarm\alarm.dm"
 #include "code\modules\alarm\alarm_handler.dm"
@@ -1837,6 +1843,7 @@
 #include "code\modules\client\preference_setup\occupation\occupation.dm"
 #include "code\modules\client\preference_setup\skills\skills.dm"
 #include "code\modules\client\preference_setup\volume_sliders\01_volume.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\modules\client\preference_setup\volume_sliders\02_media.dm"
 #include "code\modules\client\preference_setup\vore\01_ears.dm"
 #include "code\modules\client\preference_setup\vore\02_size.dm"
@@ -1847,6 +1854,13 @@
 #include "code\modules\client\preference_setup\vore\07_traits.dm"
 #include "code\modules\client\preference_setup\vore\08_nif.dm"
 #include "code\modules\client\preference_setup\vore\09_misc.dm"
+=======
+#include "code\modules\client\verbs\advanced_who.dm"
+#include "code\modules\client\verbs\ignore.dm"
+#include "code\modules\client\verbs\ooc.dm"
+#include "code\modules\client\verbs\ping.dm"
+#include "code\modules\client\verbs\who.dm"
+>>>>>>> f7fec4f... Ports ping verb from /tg/ (#7837):polaris.dme
 #include "code\modules\clothing\chameleon.dm"
 #include "code\modules\clothing\clothing.dm"
 #include "code\modules\clothing\clothing_accessories.dm"

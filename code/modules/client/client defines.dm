@@ -75,3 +75,6 @@
 	var/connection_realtime
  	///world.timeofday they connected
 	var/connection_timeofday
+
+	var/lastping = 0
+	var/avgping = 0

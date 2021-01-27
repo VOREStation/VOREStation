@@ -548,6 +548,7 @@ client/verb/character_setup()
 	//Went fine
 	else
 		ip_reputation = score
+<<<<<<< HEAD
 		return TRUE
 
 /client/proc/disconnect_with_message(var/message = "You have been intentionally disconnected by the server.<br>This may be for security or administrative reasons.")
@@ -555,3 +556,6 @@ client/verb/character_setup()
 	window_flash(src)
 	src << browse(message,"window=dropmessage;size=480x360;can_close=1")
 	qdel(src)
+=======
+		return TRUE
+>>>>>>> f7fec4f... Ports ping verb from /tg/ (#7837)
