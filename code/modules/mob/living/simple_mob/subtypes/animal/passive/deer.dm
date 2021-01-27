@@ -1,4 +1,4 @@
-//Straight import from Mexico and a direct hit to your heart
+//Prepare to have your lawns trampled on and your veggies munched
 /mob/living/simple_mob/animal/passive/deer
 	name = "Deer"
 	desc = "An animal with impressive antlers and skittish personality, though this one seems domesticated."
