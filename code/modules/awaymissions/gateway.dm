@@ -137,7 +137,6 @@ obj/machinery/gateway/centerstation/process()
 		if(istype(M, /obj/item/device/uav))
 			var/obj/item/device/uav/L = M
 			L.power_down()
-			L.cell.charge = 0
 		if(istype(M, /mob/living))
 			var/mob/living/L = M
 			if(LAZYLEN(L.buckled_mobs))
