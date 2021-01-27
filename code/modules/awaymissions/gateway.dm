@@ -136,7 +136,8 @@ obj/machinery/gateway/centerstation/process()
 		//VOREStation Addition Start: Prevent abuse
 		if(istype(M, /obj/item/device/uav))
 			var/obj/item/device/uav/L = M
-			L.LAZYCLEARLIST(masters)
+			L.power_down()
+			L.cell.charge = 0
 		if(istype(M, /mob/living))
 			var/mob/living/L = M
 			if(LAZYLEN(L.buckled_mobs))
