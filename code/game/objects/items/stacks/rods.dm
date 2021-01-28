@@ -14,6 +14,8 @@
 	max_amount = 60
 	attack_verb = list("hit", "bludgeoned", "whacked")
 
+	color = "#666666"
+
 /obj/item/stack/rods/cyborg
 	name = "metal rod synthesizer"
 	desc = "A device that makes metal rods."

@@ -36,6 +36,14 @@
 	if(!autolathe_recipes)
 		autolathe_recipes = new()
 	wires = new(src)
+
+	for(var/Name in name_to_material)
+		if(Name in stored_material)
+			continue
+
+		stored_material[Name] = 0
+		storage_capacity[Name] = 0
+
 	default_apply_parts()
 	RefreshParts()
 
@@ -67,6 +75,7 @@
 				continue
 			if(M.man_rating > man_rating)
 				continue
+<<<<<<< HEAD
 			recipes.Add(list(list(
 				"category" = A.name,
 				"name" = M.name,
@@ -106,6 +115,46 @@
 /obj/machinery/autolathe/interact(mob/user)
 	if(panel_open)
 		return wires.Interact(user)
+=======
+
+			var/can_make = 1
+			var/list/material_string = list()
+			var/list/multiplier_string = list()
+			var/max_sheets
+			var/comma
+			if(!R.resources || !R.resources.len)
+				material_string += "No resources required.</td>"
+			else
+				//Make sure it's buildable and list requires resources.
+				for(var/material in R.resources)
+					var/coeff = (R.no_scale ? 1 : mat_efficiency) //stacks are unaffected by production coefficient
+					var/sheets = round(stored_material[material]/round(R.resources[material]*coeff))
+					if(isnull(max_sheets) || max_sheets > sheets)
+						max_sheets = sheets
+					if(!isnull(stored_material[material]) && stored_material[material] < round(R.resources[material]*coeff))
+						can_make = 0
+					if(!comma)
+						comma = 1
+					else
+						material_string += ", "
+					material_string += "[round(R.resources[material] * coeff)] [material]"
+
+				if(!can_make && istype(R, /datum/category_item/autolathe/materials))	// Don't show material sheets unless we can make them. It gets cluttered, and weird.
+					material_string = null
+					continue
+
+				material_string += ".<br></td>"
+				//Build list of multipliers for sheets.
+				if(R.is_stack)
+					if(max_sheets && max_sheets > 0)
+						max_sheets = min(max_sheets, R.max_stack) // Limit to the max allowed by stack type.
+						multiplier_string += "<br>"
+						for(var/i = 5;i<max_sheets;i*=2) //5,10,20,40...
+							multiplier_string  += "<a href='?src=\ref[src];make=\ref[R];multiplier=[i]'>\[x[i]\]</a>"
+						multiplier_string += "<a href='?src=\ref[src];make=\ref[R];multiplier=[max_sheets]'>\[x[max_sheets]\]</a>"
+
+			dat += "<tr><td width = 180>[R.hidden ? "<font color = 'red'>*</font>" : ""]<b>[can_make ? "<a href='?src=\ref[src];make=\ref[R];multiplier=1'>" : "<span class='linkOff'>"][R.name][can_make ? "</a>" : "</span>"]</b>[R.hidden ? "<font color = 'red'>*</font>" : ""][multiplier_string.Join()]</td><td align = right>[material_string.Join()]</tr>"
+>>>>>>> 1de8bc1... Industrial Expansion (#7811)
 
 	if(disabled)
 		to_chat(user, "<span class='danger'>\The [src] is disabled!</span>")
@@ -303,10 +352,9 @@
 	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
 		man_rating += M.rating
 
-	storage_capacity[DEFAULT_WALL_MATERIAL] = mb_rating  * 25000
-	storage_capacity[MAT_PLASTIC] = mb_rating * 20000
-	storage_capacity[MAT_PLASTEEL] = mb_rating * 16250
-	storage_capacity["glass"] = mb_rating  * 12500
+	for(var/mat_name in storage_capacity)
+		storage_capacity[mat_name] = mb_rating * 25000
+
 	build_time = 50 / man_rating
 	mat_efficiency = 1.1 - man_rating * 0.1// Normally, price is 1.25 the amount of material, so this shouldn't go higher than 0.6. Maximum rating of parts is 5
 	update_tgui_static_data(usr)
