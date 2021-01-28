@@ -119,7 +119,7 @@
 			create_message(usr, P)
 			if(href_list["target"] in conversations)            // Need to make sure the message went through, if not welp.
 				active_conversation = href_list["target"]
-	
+
 
 /datum/data/pda/app/messenger/proc/create_message(var/mob/living/U, var/obj/item/device/pda/P)
 	var/t = input(U, "Please enter message", name, null) as text|null
@@ -227,7 +227,7 @@
 /datum/data/pda/app/messenger/multicast
 /datum/data/pda/app/messenger/multicast/receive_message(list/data, ref)
 	. = ..()
-	
+
 	var/obj/item/device/pda/multicaster/M = pda
 	if(!istype(M))
 		return

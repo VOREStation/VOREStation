@@ -455,21 +455,28 @@ GLOBAL_LIST_EMPTY(vending_products)
 			// This should not happen unless the request from NanoUI was bad
 			if(!(R.category & categories))
 				return
-			
+
 			if(!can_buy(R, usr))
 				return
+<<<<<<< HEAD
+=======
+
+>>>>>>> 541dd85... TGUI Fixes, including aghost interaction. (#7843)
 			if(R.price <= 0)
 				vend(R, usr)
 				add_fingerprint(usr)
 				return TRUE
-			
+
 			if(issilicon(usr)) //If the item is not free, provide feedback if a synth is trying to buy something.
 				to_chat(usr, "<span class='danger'>Lawed unit recognized.  Lawed units cannot complete this transaction.  Purchase canceled.</span>")
 				return
 			if(!ishuman(usr))
 				return
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 541dd85... TGUI Fixes, including aghost interaction. (#7843)
 			vend_ready = FALSE // From this point onwards, vendor is locked to performing this transaction only, until it is resolved.
 
 			var/mob/living/carbon/human/H = usr
@@ -482,7 +489,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 				return
 
 			currently_vending = R
-			
+
 			var/paid = FALSE
 
 			if(istype(usr.get_active_hand(), /obj/item/weapon/spacecash))
