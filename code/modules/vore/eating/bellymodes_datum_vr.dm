@@ -132,8 +132,8 @@ GLOBAL_LIST_INIT(digest_modes, list())
 // E G G
 /datum/digest_mode/egg
 	id = DM_EGG
-
+/*
 /datum/digest_mode/egg/process_mob(obj/belly/B, mob/living/carbon/human/H)
 	if(!istype(H) || H.stat == DEAD || H.absorbed)
 		return null
-	B.put_in_egg(H, 1)
+	B.put_in_egg(H, 1)*/

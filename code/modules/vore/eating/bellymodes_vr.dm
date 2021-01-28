@@ -99,6 +99,62 @@
 	var/digestion_noise_chance = 0
 	var/list/touchable_mobs = list()
 
+	if(digest_mode == DM_EGG)
+		var/list/egg_contents = list()
+		for(var/E in touchable_atoms)
+			if(istype(E, /obj/item/weapon/storage/vore_egg)) // Don't egg other eggs.
+				continue
+			if(isliving(E))
+				var/mob/living/L = E
+				if(L.absorbed)
+					continue
+				egg_contents += L
+			if(isitem(E))
+				egg_contents += E
+		if(egg_contents.len)
+			if(!ownegg)
+				if(owner.vore_egg_type in tf_vore_egg_types)
+					egg_type = owner.vore_egg_type
+					egg_path = tf_vore_egg_types[egg_type]
+				ownegg = new egg_path(src)
+			for(var/atom/movable/C in egg_contents)
+				if(isitem(C) && egg_contents.len == 1) //Only egging one item
+					var/obj/item/I = C
+					ownegg.w_class = I.w_class
+					ownegg.max_storage_space = ownegg.w_class
+					I.forceMove(ownegg)
+					ownegg.icon_scale_x = 0.2 * ownegg.w_class
+					ownegg.icon_scale_y = 0.2 * ownegg.w_class
+					ownegg.update_transform()
+					egg_contents -= I
+					ownegg = null
+					break
+				if(isliving(C))
+					var/mob/living/M = C
+					ownegg.w_class = M.size_multiplier * 4 //Egg size and weight scaled to match occupant.
+					var/obj/item/weapon/holder/H = new M.holder_type(ownegg)
+					H.held_mob = M
+					M.forceMove(H)
+					ownegg.max_storage_space = H.w_class
+					ownegg.icon_scale_x = 0.25 * ownegg.w_class
+					ownegg.icon_scale_y = 0.25 * ownegg.w_class
+					ownegg.update_transform()
+					egg_contents -= M
+					ownegg = null
+					break
+				C.forceMove(ownegg)
+				if(isitem(C))
+					var/obj/item/I = C
+					ownegg.w_class += I.w_class //Let's assume a regular outfit can reach total w_class of 20.
+			ownegg.calibrate_size()
+			ownegg.orient2hud()
+			ownegg.w_class = clamp(ownegg.w_class * 0.2, 1, 8) //A total w_class of 20 will result in a backpack sized egg.
+			ownegg.icon_scale_x = 0.2 * ownegg.w_class
+			ownegg.icon_scale_y = 0.2 * ownegg.w_class
+			ownegg.update_transform()
+			ownegg = null
+		return list("to_update" = to_update, "touchable_mobs" = touchable_mobs, "digestion_noise_chance" = digestion_noise_chance)
+
 	for(var/A in touchable_atoms)
 		//Handle stray items
 		if(isitem(A) && !did_an_item)

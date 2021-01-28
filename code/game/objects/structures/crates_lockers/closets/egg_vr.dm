@@ -37,10 +37,10 @@
 
 /obj/structure/closet/secure_closet/egg/nevrean
 	name = "nevarean egg"
-	desc = "Most Nevareans lay hard-shelled eggs!"
-	icon_state = "egg_nevarean"
-	icon_closed = "egg_nevarean"
-	icon_opened = "egg_nevarean_open"
+	desc = "Most Nevreans lay hard-shelled eggs!"
+	icon_state = "egg_nevrean"
+	icon_closed = "egg_nevrean"
+	icon_opened = "egg_nevrean_open"
 
 /obj/structure/closet/secure_closet/egg/human
 	name = "human egg"

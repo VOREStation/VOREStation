@@ -38,6 +38,9 @@
 	var/fancy_vore = FALSE					// Using the new sounds?
 	var/is_wet = TRUE						// Is this belly's insides made of slimy parts?
 	var/wet_loop = TRUE						// Does the belly have a fleshy loop playing?
+	var/obj/item/weapon/storage/vore_egg/ownegg	// Is this belly creating an egg?
+	var/egg_type = "egg"					// Default egg type and path.
+	var/egg_path = /obj/item/weapon/storage/vore_egg
 
 	//I don't think we've ever altered these lists. making them static until someone actually overrides them somewhere.
 	//Actual full digest modes
