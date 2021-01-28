@@ -36,7 +36,7 @@
 	icon_opened = "egg_unathi_open"
 
 /obj/structure/closet/secure_closet/egg/nevrean
-	name = "nevarean egg"
+	name = "nevrean egg"
 	desc = "Most Nevreans lay hard-shelled eggs!"
 	icon_state = "egg_nevrean"
 	icon_closed = "egg_nevrean"
