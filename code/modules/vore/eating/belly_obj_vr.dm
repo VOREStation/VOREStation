@@ -287,12 +287,13 @@
 	if (!(M in contents))
 		return 0 // They weren't in this belly anyway
 
-	//Place them into our drop_location
-	M.forceMove(drop_location())
 	for(var/mob/living/L in M.contents)
 		L.muffled = 0
 	for(var/obj/item/weapon/holder/H in M.contents)
 		H.held_mob.muffled = 0
+
+	//Place them into our drop_location
+	M.forceMove(drop_location())
 
 	items_preserved -= M
 
