@@ -20,6 +20,22 @@
 	icon = open_egg_icon
 	..()
 
+/obj/item/weapon/storage/vore_egg/proc/hatch(mob/living/user as mob)
+	visible_message("<span class='danger'>\The [src] begins to shake as something pushes out from within!</span>")
+	animate_shake()
+	if(do_after(user, 50))
+		if(use_sound)
+			playsound(src, src.use_sound, 50, 0, -5)
+		animate_shake()
+		drop_contents()
+		icon = open_egg_icon
+
+/obj/item/weapon/storage/vore_egg/proc/animate_shake()
+	var/init_px = pixel_x
+	var/shake_dir = pick(-1, 1)
+	animate(src, transform=turn(matrix(), 8*shake_dir), pixel_x=init_px + 2*shake_dir, time=1)
+	animate(transform=null, pixel_x=init_px, time=6, easing=ELASTIC_EASING)
+
 /obj/item/weapon/storage/vore_egg/unathi
 	name = "unathi egg"
 	desc = "Some species of Unathi apparently lay soft-shelled eggs!"
@@ -164,3 +180,24 @@
 	name = "spotted pink egg"
 	desc = "It is a cute pink egg with white spots."
 	icon_state = "egg_pinkspots"
+
+/obj/item/weapon/holder/attack_hand(mob/living/user as mob)
+	if(istype(src.loc, /obj/item/weapon/storage/vore_egg)) //Don't scoop up the egged mob
+		src.pickup(user)
+		user.drop_from_inventory(src)
+		return
+	..()
+
+/obj/item/weapon/holder/container_resist(mob/living/held)
+	if(istype(src.loc, /obj/item/weapon/storage/vore_egg))
+		var/obj/item/weapon/storage/vore_egg/E = src.loc
+		if(isbelly(E.loc))
+			var/confirm = alert(held,
+			"Are you sure you wish to hatch inside your captor?",
+			"Confirmation",
+			"Proceed", "Cancel")
+			if(!confirm == "Proceed")
+				return
+		E.hatch(held)
+		return
+	..()

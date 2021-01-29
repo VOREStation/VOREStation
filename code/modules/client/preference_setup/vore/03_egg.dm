@@ -1,33 +1,3 @@
-var/UNATHI_EGG 		= "Unathi"
-var/TAJARAN_EGG 	= "Tajaran"
-var/AKULA_EGG 		= "Akula"
-var/SKRELL_EGG		= "Skrell"
-var/SERGAL_EGG 		= "Sergal"
-var/HUMAN_EGG 		= "Human"
-var/NEVREAN_EGG		= "nevrean"
-var/SLIME_EGG 		= "Slime"
-var/EGG_EGG 		= "Egg"
-var/XENOCHIMERA_EGG	= "Xenochimera"
-var/XENOMORPH_EGG 	= "Xenomorph"
-var/CHOCOLATE_EGG	= "Chocolate"
-var/BONEY_EGG		= "Boney"
-var/SLIMEGLOB_EGG	= "Slime glob"
-var/CHICKEN_EGG		= "Chicken"
-var/SYNTHETIC_EGG	= "Synthetic"
-var/BADRECIPE_EGG	= "Cooking error"
-var/ESCAPEPOD_EGG	= "Escape pod"
-var/COCOON_EGG		= "Web cocoon"
-var/BUGCOCOON_EGG	= "Bug cocoon"
-var/ROCK_EGG		= "Rock"
-var/YELLOW_EGG		= "Yellow"
-var/BLUE_EGG		= "Blue"
-var/GREEN_EGG		= "Green"
-var/ORANGE_EGG		= "Orange"
-var/PURPLE_EGG		= "Purple"
-var/RED_EGG			= "Red"
-var/RAINBOW_EGG		= "Rainbow"
-var/PINKSPOTS_EGG	= "Spotted pink"
-
 // Define a place to save appearance in character setup
 /datum/preferences
 	var/vore_egg_type = "Egg" //The egg type they have.
@@ -44,8 +14,7 @@ var/PINKSPOTS_EGG	= "Spotted pink"
 	S["vore_egg_type"]		<< pref.vore_egg_type
 
 /datum/category_item/player_setup_item/vore/egg/sanitize_character()
-	var/valid_vore_egg_types = global_vore_egg_types
-	pref.vore_egg_type	 = sanitize_inlist(pref.vore_egg_type, valid_vore_egg_types, initial(pref.vore_egg_type))
+	pref.vore_egg_type	 = sanitize_inlist(pref.vore_egg_type, tf_vore_egg_types, initial(pref.vore_egg_type))
 
 /datum/category_item/player_setup_item/vore/egg/copy_to_mob(var/mob/living/carbon/human/character)
 	character.vore_egg_type	= pref.vore_egg_type
@@ -59,7 +28,7 @@ var/PINKSPOTS_EGG	= "Spotted pink"
 		return TOPIC_NOACTION
 
 	else if(href_list["vore_egg_type"])
-		var/list/vore_egg_types = global_vore_egg_types
+		var/list/vore_egg_types = tf_vore_egg_types
 		var/selection = input(user, "Choose your character's egg type:", "Character Preference", pref.vore_egg_type) as null|anything in vore_egg_types
 		if(selection)
 			pref.vore_egg_type = vore_egg_types[selection]

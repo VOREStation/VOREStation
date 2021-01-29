@@ -107,37 +107,6 @@ var/global/list/fancy_release_sounds = list(
 		"None" = null
 		)
 
-var/global/list/global_vore_egg_types = list(
-		"Unathi" 		= UNATHI_EGG,
-		"Tajaran" 		= TAJARAN_EGG,
-		"Akula" 		= AKULA_EGG,
-		"Skrell" 		= SKRELL_EGG,
-		"Nevrean"		= NEVREAN_EGG,
-		"Sergal" 		= SERGAL_EGG,
-		"Human"			= HUMAN_EGG,
-		"Slime"			= SLIME_EGG,
-		"Egg"			= EGG_EGG,
-		"Xenochimera" 	= XENOCHIMERA_EGG,
-		"Xenomorph"		= XENOMORPH_EGG,
-		"Chocolate"		= CHOCOLATE_EGG,
-		"Boney"			= BONEY_EGG,
-		"Slime glob"	= SLIMEGLOB_EGG,
-		"Chicken"		= CHICKEN_EGG,
-		"Synthetic"		= SYNTHETIC_EGG,
-		"Cooking error"	= BADRECIPE_EGG,
-		"Escape pod"	= ESCAPEPOD_EGG,
-		"Web cocoon"	= COCOON_EGG,
-		"Bug cocoon"	= BUGCOCOON_EGG,
-		"Rock"			= ROCK_EGG,
-		"Yellow"		= YELLOW_EGG,
-		"Blue"			= BLUE_EGG,
-		"Green"			= GREEN_EGG,
-		"Orange"		= ORANGE_EGG,
-		"Purple"		= PURPLE_EGG,
-		"Red"			= RED_EGG,
-		"Rainbow"		= RAINBOW_EGG,
-		"Spotted pink"	= PINKSPOTS_EGG)
-
 var/global/list/tf_vore_egg_types = list(
 	"Unathi" 		= /obj/item/weapon/storage/vore_egg/unathi,
 	"Tajara" 		= /obj/item/weapon/storage/vore_egg/tajaran,
