@@ -3671,6 +3671,7 @@
 #include "code\modules\virus2\items_devices.dm"
 #include "code\modules\vore\hook-defs_vr.dm"
 #include "code\modules\vore\trycatch_vr.dm"
+#include "code\modules\vore\microitems_vr.dm"
 #include "code\modules\vore\appearance\preferences_vr.dm"
 #include "code\modules\vore\appearance\spider_taur_powers_vr.dm"
 #include "code\modules\vore\appearance\sprite_accessories_taur_vr.dm"
