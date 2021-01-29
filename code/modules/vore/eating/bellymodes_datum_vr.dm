@@ -183,6 +183,8 @@ GLOBAL_LIST_INIT(digest_modes, list())
 				B.ownegg.icon_scale_y = 0.25 * B.ownegg.w_class
 				B.ownegg.update_transform()
 				egg_contents -= M
+				if(B.ownegg.w_class > 4)
+					B.ownegg.slowdown = B.ownegg.w_class - 4
 				B.ownegg = null
 				break
 			C.forceMove(B.ownegg)
@@ -195,5 +197,7 @@ GLOBAL_LIST_INIT(digest_modes, list())
 		B.ownegg.icon_scale_x = 0.25 * B.ownegg.w_class
 		B.ownegg.icon_scale_y = 0.25 * B.ownegg.w_class
 		B.ownegg.update_transform()
+		if(B.ownegg.w_class > 4)
+			B.ownegg.slowdown = B.ownegg.w_class - 4
 		B.ownegg = null
 	return
