@@ -30,5 +30,12 @@
 			return
 	return ..()
 
+/obj/structure/toilet/attack_ai(mob/user as mob)
+	if(isrobot(user))
+		if(user.client && user.client.eye == user)
+			return attack_hand(user)
+	else
+		return attack_hand(user)
+
 /obj/effect/landmark/teleplumb_exit
 	name = "teleplumbing exit"
