@@ -168,9 +168,9 @@
 			if(reas)
 				reason = reas
 		if("duration")
-			var/dur = input("Duration (in minutes) during which pass is valid (up to 120 minutes).", "Duration") as num|null
+			var/dur = input("Duration (in minutes) during which pass is valid (up to 360 minutes).", "Duration") as num|null //VOREStation Edit
 			if(dur)
-				if(dur > 0 && dur <= 120)
+				if(dur > 0 && dur <= 360) //VOREStation Edit
 					duration = dur
 				else
 					to_chat(usr, "<span class='warning'>Invalid duration.</span>")
