@@ -88,7 +88,7 @@
 /datum/say_list/dragonboss
 	say_got_target = list("roars and snaps it jaws!")
 	
-/mob/living/simple_mob/vore/dragon/virgob3b/init_vore()
+/mob/living/simple_mob/vore/aggressive/dragon/virgob3b/init_vore()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "Belly"
