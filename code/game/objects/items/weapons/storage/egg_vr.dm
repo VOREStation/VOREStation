@@ -10,7 +10,7 @@
 		slot_l_hand_str = 'icons/mob/items/lefthand_storage.dmi',
 		slot_r_hand_str = 'icons/mob/items/righthand_storage.dmi',
 		)
-	w_class = 0
+	w_class = 2
 	max_w_class = 0
 	show_messages = 0
 	allow_quick_empty = TRUE
@@ -180,24 +180,3 @@
 	name = "spotted pink egg"
 	desc = "It is a cute pink egg with white spots."
 	icon_state = "egg_pinkspots"
-
-/obj/item/weapon/holder/attack_hand(mob/living/user as mob)
-	if(istype(src.loc, /obj/item/weapon/storage/vore_egg)) //Don't scoop up the egged mob
-		src.pickup(user)
-		user.drop_from_inventory(src)
-		return
-	..()
-
-/obj/item/weapon/holder/container_resist(mob/living/held)
-	if(istype(src.loc, /obj/item/weapon/storage/vore_egg))
-		var/obj/item/weapon/storage/vore_egg/E = src.loc
-		if(isbelly(E.loc))
-			var/confirm = alert(held,
-			"Are you sure you wish to hatch inside your captor?",
-			"Confirmation",
-			"Proceed", "Cancel")
-			if(!confirm == "Proceed")
-				return
-		E.hatch(held)
-		return
-	..()

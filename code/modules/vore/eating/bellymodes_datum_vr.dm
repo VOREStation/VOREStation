@@ -170,7 +170,7 @@ GLOBAL_LIST_INIT(digest_modes, list())
 				B.ownegg.update_transform()
 				egg_contents -= I
 				B.ownegg = null
-				break
+				return
 			if(isliving(C))
 				var/mob/living/M = C
 				B.ownegg.w_class = M.size_multiplier * 4 //Egg size and weight scaled to match occupant.
@@ -186,7 +186,7 @@ GLOBAL_LIST_INIT(digest_modes, list())
 				if(B.ownegg.w_class > 4)
 					B.ownegg.slowdown = B.ownegg.w_class - 4
 				B.ownegg = null
-				break
+				return
 			C.forceMove(B.ownegg)
 			if(isitem(C))
 				var/obj/item/I = C
