@@ -5787,6 +5787,7 @@
 /obj/random/junk,
 /obj/random/junk,
 /obj/random/tool,
+/obj/effect/landmark/teleplumb_exit,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/trash_pit)
 "ajS" = (
