@@ -3105,6 +3105,7 @@
 #include "code\modules\overmap\ships\computers\helm.dm"
 #include "code\modules\overmap\ships\computers\sensors.dm"
 #include "code\modules\overmap\ships\computers\ship.dm"
+#include "code\modules\overmap\ships\computers\ship_vr.dm"
 #include "code\modules\overmap\ships\computers\shuttle.dm"
 #include "code\modules\overmap\ships\engines\engine.dm"
 #include "code\modules\overmap\ships\engines\gas_thruster.dm"
