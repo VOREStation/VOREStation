@@ -19,6 +19,7 @@
 #define DM_FLAG_STRIPPING		0x2
 #define DM_FLAG_LEAVEREMAINS	0x4
 #define DM_FLAG_THICKBELLY		0x8
+#define DM_FLAG_AFFECTWORN		0x10
 
 //Item related modes
 #define IM_HOLD									"Hold"

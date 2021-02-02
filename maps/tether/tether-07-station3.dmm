@@ -22638,7 +22638,7 @@
 /obj/structure/bed/chair/shuttle{
 	dir = 4
 	},
-/obj/structure/closet/autolok_wall{
+/obj/structure/closet/emergsuit_wall{
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/eris/white,
@@ -23161,7 +23161,7 @@
 	health = 1e+006
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/aux,
-/obj/structure/closet/autolok_wall{
+/obj/structure/closet/emergsuit_wall{
 	pixel_x = 27
 	},
 /turf/simulated/floor/tiled/eris/steel/gray_perforated,

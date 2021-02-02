@@ -123,7 +123,7 @@
 				"max_charge" = C.max_charge,
 				"failing" = (C.time_since_fail <= 2),
 			)))
-		
+
 		data["lockedData"]["active"] = active
 		data["lockedData"]["failing"] = (time_since_fail <= 2)
 		data["lockedData"]["radius"] = field_radius
@@ -201,7 +201,7 @@
 /obj/machinery/shield_gen/tgui_act(action, params)
 	if(..())
 		return TRUE
-	
+
 	switch(action)
 		if("toggle")
 			if (!active && !anchored)
