@@ -3296,7 +3296,7 @@
 /area/space)
 "Sl" = (
 /obj/structure/sign/nanotrasen,
-/turf/simulated/wall/rshull,
+/turf/simulated/wall/thull,
 /area/shuttle/escape)
 "Sm" = (
 /turf/simulated/shuttle/wall/alien/blue/hard_corner,
@@ -4675,7 +4675,7 @@
 	name = "\improper CentCom Security Arrivals"
 	})
 "XE" = (
-/turf/simulated/wall/rshull,
+/turf/simulated/wall/thull,
 /area/shuttle/escape)
 "XH" = (
 /obj/structure/bed/chair{
