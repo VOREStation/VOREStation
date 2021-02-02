@@ -100,3 +100,10 @@
 	name = "Healing Nanite pill bottle"
 	item_cost = 30
 	path = /obj/item/weapon/storage/pill_bottle/healing_nanites
+
+/datum/uplink_item/item/medical/defib
+	name = "Combat Defibrilator"
+	item_cost = 90
+	path = /obj/item/device/defib_kit/compact/combat
+	antag_roles = list("mercenary", "ert")
+	blacklisted = 1

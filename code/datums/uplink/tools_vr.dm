@@ -26,6 +26,11 @@
 	item_cost = 5
 	path = /obj/item/device/survivalcapsule
 
+/datum/uplink_item/item/tools/popcabin
+	name = "Cabin Capsule"
+	item_cost = 5
+	path = /obj/item/device/survivalcapsule/popcabin
+
 /datum/uplink_item/item/tools/nanopaste
 	name = "Nanopaste (Advanced)"
 	item_cost = 10
