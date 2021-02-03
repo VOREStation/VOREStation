@@ -14,6 +14,9 @@ GLOBAL_LIST_INIT(digest_modes, list())
 /datum/digest_mode/proc/process_mob(obj/belly/B, mob/living/L)
 	return null
 
+/datum/digest_mode/proc/handle_atoms(obj/belly/B, list/touchable_atoms)
+    return FALSE
+
 /datum/digest_mode/digest
 	id = DM_DIGEST
 	noise_chance = 50
@@ -132,8 +135,69 @@ GLOBAL_LIST_INIT(digest_modes, list())
 // E G G
 /datum/digest_mode/egg
 	id = DM_EGG
-
+/*
 /datum/digest_mode/egg/process_mob(obj/belly/B, mob/living/carbon/human/H)
 	if(!istype(H) || H.stat == DEAD || H.absorbed)
 		return null
-	B.put_in_egg(H, 1)
+	B.put_in_egg(H, 1)*/
+
+/datum/digest_mode/egg/handle_atoms(obj/belly/B, list/touchable_atoms)
+	var/list/egg_contents = list()
+	for(var/E in touchable_atoms)
+		if(istype(E, /obj/item/weapon/storage/vore_egg)) // Don't egg other eggs.
+			continue
+		if(isliving(E))
+			var/mob/living/L = E
+			if(L.absorbed)
+				continue
+			egg_contents += L
+		if(isitem(E))
+			egg_contents += E
+	if(egg_contents.len)
+		if(!B.ownegg)
+			if(B.owner.vore_egg_type in tf_vore_egg_types)
+				B.egg_type = B.owner.vore_egg_type
+				B.egg_path = tf_vore_egg_types[B.egg_type]
+			B.ownegg = new B.egg_path(B)
+		for(var/atom/movable/C in egg_contents)
+			if(isitem(C) && egg_contents.len == 1) //Only egging one item
+				var/obj/item/I = C
+				B.ownegg.w_class = I.w_class
+				B.ownegg.max_storage_space = B.ownegg.w_class
+				I.forceMove(B.ownegg)
+				B.ownegg.icon_scale_x = 0.2 * B.ownegg.w_class
+				B.ownegg.icon_scale_y = 0.2 * B.ownegg.w_class
+				B.ownegg.update_transform()
+				egg_contents -= I
+				B.ownegg = null
+				return
+			if(isliving(C))
+				var/mob/living/M = C
+				B.ownegg.w_class = M.size_multiplier * 4 //Egg size and weight scaled to match occupant.
+				var/obj/item/weapon/holder/H = new M.holder_type(B.ownegg)
+				H.held_mob = M
+				M.forceMove(H)
+				H.sync(M)
+				B.ownegg.max_storage_space = H.w_class
+				B.ownegg.icon_scale_x = 0.25 * B.ownegg.w_class
+				B.ownegg.icon_scale_y = 0.25 * B.ownegg.w_class
+				B.ownegg.update_transform()
+				egg_contents -= M
+				if(B.ownegg.w_class > 4)
+					B.ownegg.slowdown = B.ownegg.w_class - 4
+				B.ownegg = null
+				return
+			C.forceMove(B.ownegg)
+			if(isitem(C))
+				var/obj/item/I = C
+				B.ownegg.w_class += I.w_class //Let's assume a regular outfit can reach total w_class of 16.
+		B.ownegg.calibrate_size()
+		B.ownegg.orient2hud()
+		B.ownegg.w_class = clamp(B.ownegg.w_class * 0.25, 1, 8) //A total w_class of 16 will result in a backpack sized egg.
+		B.ownegg.icon_scale_x = 0.25 * B.ownegg.w_class
+		B.ownegg.icon_scale_y = 0.25 * B.ownegg.w_class
+		B.ownegg.update_transform()
+		if(B.ownegg.w_class > 4)
+			B.ownegg.slowdown = B.ownegg.w_class - 4
+		B.ownegg = null
+	return
