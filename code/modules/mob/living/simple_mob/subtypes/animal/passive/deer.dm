@@ -36,7 +36,6 @@
 	cold_damage_per_tick = 3
 
 	meat_amount = 5
-	ai_holder_type = /datum/ai_holder/simple_mob/deer
 
 	speak_emote = list("bellows","bellows loudly")
 
@@ -61,12 +60,25 @@
 
 
 	response_help  = "softly pets"
-	response_disarm = "barely manages to push aside
+	response_disarm = "barely manages to push aside"
 	response_harm   = "smacks"
 
 	melee_damage_lower = 1
 	melee_damage_upper = 1
 	attacktext = list("nibbled")
+
+	// Vore tags
+	vore_capacity = 3
+	vore_bump_chance = 12
+	vore_bump_emote = "meekly engulf"
+	vore_icons = 0
+	vore_pounce_chance = 35
+	vore_pounce_maxhealth = 90
+	vore_standing_too = 1 // no need to graze
+
+	vore_default_mode = DM_HOLD
+	vore_digest_chance = 10
+	vore_escape_chance = 8 // He's not used to eating living creatures, so it's a bit of a chore to get them back out
 
 	speak_emote = list("Bleats","Bleats loudly","Wh-s","Flails","Flails a lot")
 
@@ -78,26 +90,18 @@
 	emote_hear = list("Bleats", "Bleats loudly","Wh-s")
 	emote_see = list("wiggles his tail","Flails around","Flails","Runs around in a circle")
 
-	// Vore tags
-	vore_active = 1
-	vore_capacity = 3
-	vore_bump_chance = 12
-	vore_bump_emote = "meekly engulf"
-	vore_icons = 0
-	vore_pounce_chance = 35
-	vore_pounce_maxhealth = 90
-	vore_standing_too = 1 // no need to graze
-	swallowsound = 'sound/vore/sunesound/pred/taurswallow.ogg'
 
-	vore_default_mode = DM_HOLD
-	vore_digest_chance = 10
-	vore_escape_chance = 8 // He's not used to eating living creatures, so it's a bit of a chore to get them back out
 
-	vore_stomach_name = "Stomach"
-	vore_stomach_flavor = "You somehow managed to wind up curled inside Kyle's belly, and he doesnt seem very quite eager about the idea judging from all the bleating... Best not squirm around too much, since your bashful pred isn't digesting you... yet."
 
-	vore_default_contamination_flavor = "Acrid"
-	vore_default_contamination_color = "green"
+/mob/living/simple_mob/animal/passive/deer/kyle/init_vore()
+	..()
+	var/obj/belly/B = vore_selected
+	B.name = "Stomach"
+	B.desc = "You somehow managed to wind up curled inside Kyle's belly, and he doesnt seem very quite eager about the idea judging from all the bleating... Best not squirm around too much, since your bashful pred isn't digesting you... yet."
+	B.vore_sound = 'sound/vore/sunesound/pred/taurswallow.ogg'
+	B.release_sound = "Pred Escape"
+	B.contamination_flavor = "Acrid"
+	B.contamination_color = "green"
 	B.emote_lists[DM_HOLD] = list(
 		"The tight belly rubs your body as the panicking deer runs around.",
 		"You hear the sounds of his stomach squishing your form and his heart thundering away nearby.",

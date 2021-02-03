@@ -27,7 +27,7 @@
 	vore_pounce_chance = 35
 
 
-	say_list_type = /datum/say_list/raccon
+	say_list_type = /datum/say_list/raccoon
 	ai_holder_type = /datum/ai_holder/simple_mob/animal/passive/raccoon
 
 
