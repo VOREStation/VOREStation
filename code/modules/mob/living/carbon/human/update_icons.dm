@@ -287,7 +287,8 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 				icon_key += "_t" //VOREStation Edit.
 
 			if(istype(tail_style, /datum/sprite_accessory/tail/taur))
-				icon_key += tail_style.clip_mask_state
+				if(tail_style.clip_mask) //VOREStation Edit.
+					icon_key += tail_style.clip_mask_state
 
 	icon_key = "[icon_key][husk ? 1 : 0][fat ? 1 : 0][hulk ? 1 : 0][skeleton ? 1 : 0]"
 	var/icon/base_icon
@@ -301,14 +302,15 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		var/icon/Cutter = null
 
 		if(istype(tail_style, /datum/sprite_accessory/tail/taur))	// Tail icon 'cookie cutters' are filled in where icons are preserved. We need to invert that.
-			Cutter = new(icon = tail_style.icon, icon_state = tail_style.clip_mask)
+			if(tail_style.clip_mask) //VOREStation Edit.
+				Cutter = new(icon = tail_style.icon, icon_state = tail_style.clip_mask_state)
 
-			Cutter.Blend("#000000", ICON_MULTIPLY)	// Make it all black.
+				Cutter.Blend("#000000", ICON_MULTIPLY)	// Make it all black.
 
-			Cutter.SwapColor("#00000000", "#FFFFFFFF")	// Everywhere empty, make white.
-			Cutter.SwapColor("#000000FF", "#00000000")	// Everywhere black, make empty.
+				Cutter.SwapColor("#00000000", "#FFFFFFFF")	// Everywhere empty, make white.
+				Cutter.SwapColor("#000000FF", "#00000000")	// Everywhere black, make empty.
 
-			Cutter.Blend("#000000", ICON_MULTIPLY)	// Black again.
+				Cutter.Blend("#000000", ICON_MULTIPLY)	// Black again.
 
 		for(var/obj/item/organ/external/part in organs)
 			if(isnull(part) || part.is_stump() || part.is_hidden_by_tail()) //VOREStation Edit allowing tails to prevent bodyparts rendering, granting more spriter freedom for taur/digitigrade stuff.
