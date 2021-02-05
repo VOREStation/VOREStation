@@ -31,6 +31,14 @@
 	if(!length(touchable_atoms))
 		return
 
+	var/datum/digest_mode/DM = GLOB.digest_modes["[digest_mode]"]
+	if(!DM)
+		log_debug("Digest mode [digest_mode] didn't exist in the digest_modes list!!")
+		return FALSE
+	if(DM.handle_atoms(src, touchable_atoms))
+		updateVRPanels()
+		return
+
 	var/list/touchable_mobs = null
 
 	var/list/hta_returns = handle_touchable_atoms(touchable_atoms)
@@ -53,11 +61,6 @@
 			if(digest_mode == DM_DIGEST && !M.digestable)
 				continue // don't give digesty messages to indigestible people
 			to_chat(M, "<span class='notice'>[pick(EL)]</span>")
-
-	var/datum/digest_mode/DM = GLOB.digest_modes["[digest_mode]"]
-	if(!DM)
-		log_debug("Digest mode [digest_mode] didn't exist in the digest_modes list!!")
-		return FALSE
 
 	if(!digestion_noise_chance)
 		digestion_noise_chance = DM.noise_chance
