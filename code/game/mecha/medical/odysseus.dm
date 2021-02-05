@@ -17,6 +17,9 @@
 	step_energy_drain = 6
 	var/obj/item/clothing/glasses/hud/health/mech/hud
 
+	icon_scale_x = 1.2
+	icon_scale_y = 1.2
+
 /obj/mecha/medical/odysseus/New()
 	..()
 	hud = new /obj/item/clothing/glasses/hud/health/mech(src)

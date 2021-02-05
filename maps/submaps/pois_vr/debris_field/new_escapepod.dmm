@@ -1,0 +1,91 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/simulated/wall/rshull,
+/area/submap/debrisfield/misc_debris)
+"n" = (
+/turf/simulated/floor/reinforced/airless,
+/area/submap/debrisfield/misc_debris)
+"z" = (
+/obj/structure/closet/walllocker/emerglocker/south,
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 1
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/submap/debrisfield/misc_debris)
+"D" = (
+/obj/structure/bed/chair/bay/shuttle,
+/obj/structure/closet/walllocker/emerglocker/north,
+/turf/simulated/floor/reinforced/airless,
+/area/submap/debrisfield/misc_debris)
+"O" = (
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 1
+	},
+/obj/structure/closet/walllocker/emerglocker/south,
+/turf/simulated/floor/reinforced/airless,
+/area/submap/debrisfield/misc_debris)
+"P" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/submap/debrisfield/misc_debris)
+"R" = (
+/obj/structure/closet/walllocker/emerglocker/north,
+/obj/structure/bed/chair/bay/shuttle,
+/turf/simulated/floor/reinforced/airless,
+/area/submap/debrisfield/misc_debris)
+"Y" = (
+/obj/machinery/door/airlock/external{
+	name = "Escape Pod Door"
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/submap/debrisfield/misc_debris)
+
+(1,1,1) = {"
+a
+P
+P
+P
+a
+"}
+(2,1,1) = {"
+a
+D
+n
+O
+a
+"}
+(3,1,1) = {"
+a
+D
+n
+O
+a
+"}
+(4,1,1) = {"
+a
+R
+n
+z
+a
+"}
+(5,1,1) = {"
+a
+D
+n
+O
+a
+"}
+(6,1,1) = {"
+a
+a
+Y
+a
+a
+"}

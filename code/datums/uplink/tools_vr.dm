@@ -26,6 +26,11 @@
 	item_cost = 5
 	path = /obj/item/device/survivalcapsule
 
+/datum/uplink_item/item/tools/popcabin
+	name = "Cabin Capsule"
+	item_cost = 5
+	path = /obj/item/device/survivalcapsule/popcabin
+
 /datum/uplink_item/item/tools/nanopaste
 	name = "Nanopaste (Advanced)"
 	item_cost = 10
@@ -40,6 +45,16 @@
 	name = "Tablet (Advanced)"
 	item_cost = 15
 	path = /obj/item/modular_computer/tablet/preset/custom_loadout/advanced
+
+/datum/uplink_item/item/tools/metal
+	name = "Metal (50 sheets)"
+	item_cost = 15
+	path = /obj/fiftyspawner/steel
+
+/datum/uplink_item/item/tools/glass
+	name = "Glass (50 sheets)"
+	item_cost = 15
+	path = /obj/fiftyspawner/glass
 
 /datum/uplink_item/item/tools/elitelaptop
 	name = "Laptop (Advanced)"

@@ -1,7 +1,7 @@
 var/datum/planet/virgo3b/planet_virgo3b = null
 
 /datum/time/virgo3b
-	seconds_in_day = 3 HOURS
+	seconds_in_day = 6 HOURS
 
 /datum/planet/virgo3b
 	name = "Virgo-3B"

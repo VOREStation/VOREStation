@@ -1290,6 +1290,9 @@ var/mob/dview/dview_mob = new
 /proc/dview(var/range = world.view, var/center, var/invis_flags = 0)
 	if(!center)
 		return
+	if(!dview_mob) //VOREStation Add: Debugging
+		dview_mob = new
+		log_error("Had to recreate the dview mob!")
 
 	dview_mob.loc = center
 	
