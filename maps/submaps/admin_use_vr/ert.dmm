@@ -5270,25 +5270,13 @@
 /area/ship/ert/atmos)
 "Lq" = (
 /obj/structure/table/rack/steel,
-/obj/item/weapon/gun/energy/gun/martin{
-	battery_lock = 0
-	},
-/obj/item/weapon/gun/energy/gun/martin{
-	battery_lock = 0
-	},
-/obj/item/weapon/gun/energy/gun/martin{
-	battery_lock = 0
-	},
-/obj/item/weapon/gun/energy/gun/martin{
-	battery_lock = 0
-	},
-/obj/item/weapon/gun/energy/gun/martin{
-	battery_lock = 0
-	},
-/obj/item/weapon/gun/energy/gun/martin{
-	battery_lock = 0
-	},
 /obj/effect/floor_decal/industrial/outline/grey,
+/obj/item/weapon/gun/energy/locked/frontier/holdout/unlocked,
+/obj/item/weapon/gun/energy/locked/frontier/holdout/unlocked,
+/obj/item/weapon/gun/energy/locked/frontier/holdout/unlocked,
+/obj/item/weapon/gun/energy/locked/frontier/holdout/unlocked,
+/obj/item/weapon/gun/energy/locked/frontier/holdout/unlocked,
+/obj/item/weapon/gun/energy/locked/frontier/holdout/unlocked,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/armoury_st)
 "LA" = (
@@ -5601,6 +5589,7 @@
 "NI" = (
 /obj/structure/table/rack,
 /obj/item/weapon/storage/secure/briefcase/nsfw_pack_hybrid,
+/obj/item/weapon/storage/belt/explorer/pathfinder,
 /turf/simulated/floor/wood,
 /area/ship/ert/commander)
 "NJ" = (
@@ -6757,7 +6746,7 @@
 /turf/simulated/floor/wood,
 /area/ship/ert/commander)
 "Wd" = (
-/obj/machinery/telecomms/relay/preset/centcom/tether,
+/obj/machinery/telecomms/relay,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/atmos)
 "Wj" = (

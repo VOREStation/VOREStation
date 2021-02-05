@@ -8,9 +8,11 @@ var/global/list/tail_styles_list = list()	// Stores /datum/sprite_accessory/tail
 var/global/list/wing_styles_list = list()	// Stores /datum/sprite_accessory/wing indexed by type
 var/global/list/negative_traits = list()	// Negative custom species traits, indexed by path
 var/global/list/neutral_traits = list()		// Neutral custom species traits, indexed by path
+var/global/list/everyone_traits = list()	// Neutral traits available to all species, indexed by path
 var/global/list/positive_traits = list()	// Positive custom species traits, indexed by path
 var/global/list/traits_costs = list()		// Just path = cost list, saves time in char setup
 var/global/list/all_traits = list()			// All of 'em at once (same instances)
+var/global/list/active_ghost_pods = list()
 
 var/global/list/sensorpreflist = list("Off", "Binary", "Vitals", "Tracking", "No Preference")	//TFF 5/8/19 - Suit Sensors global list
 
@@ -106,30 +108,66 @@ var/global/list/fancy_release_sounds = list(
 		)
 
 var/global/list/global_vore_egg_types = list(
-		"Unathi" 		= UNATHI_EGG,
-		"Tajaran" 		= TAJARAN_EGG,
-		"Akula" 		= AKULA_EGG,
-		"Skrell" 		= SKRELL_EGG,
-		"Nevrean"		= NEVREAN_EGG,
-		"Sergal" 		= SERGAL_EGG,
-		"Human"			= HUMAN_EGG,
-		"Slime"			= SLIME_EGG,
-		"Egg"			= EGG_EGG,
-		"Xenochimera" 		= XENOCHIMERA_EGG,
-		"Xenomorph"		= XENOMORPH_EGG)
+	"Unathi",
+	"Tajara",
+	"Akula",
+	"Skrell",
+	"Sergal",
+	"Nevrean",
+	"Human",
+	"Slime",
+	"Egg",
+	"Xenochimera",
+	"Xenomorph",
+	"Chocolate",
+	"Boney",
+	"Slime glob",
+	"Chicken",
+	"Synthetic",
+	"Cooking error",
+	"Escape pod",
+	"Web cocoon",
+	"Bug cocoon",
+	"Rock",
+	"Yellow",
+	"Blue",
+	"Green",
+	"Orange",
+	"Purple",
+	"Red",
+	"Rainbow",
+	"Spotted pink")
 
 var/global/list/tf_vore_egg_types = list(
-	"Unathi" 		= /obj/structure/closet/secure_closet/egg/unathi,
-	"Tajara" 		= /obj/structure/closet/secure_closet/egg/tajaran,
-	"Akula" 		= /obj/structure/closet/secure_closet/egg/shark,
-	"Skrell" 		= /obj/structure/closet/secure_closet/egg/skrell,
-	"Sergal"		= /obj/structure/closet/secure_closet/egg/sergal,
-	"Nevrean"		= /obj/structure/closet/secure_closet/egg/nevrean,
-	"Human"			= /obj/structure/closet/secure_closet/egg/human,
-	"Slime"			= /obj/structure/closet/secure_closet/egg/slime,
-	"Egg"			= /obj/structure/closet/secure_closet/egg,
-	"Xenochimera"		= /obj/structure/closet/secure_closet/egg/scree,
-	"Xenomorph"		= /obj/structure/closet/secure_closet/egg/xenomorph)
+	"Unathi" 		= /obj/item/weapon/storage/vore_egg/unathi,
+	"Tajara" 		= /obj/item/weapon/storage/vore_egg/tajaran,
+	"Akula" 		= /obj/item/weapon/storage/vore_egg/shark,
+	"Skrell" 		= /obj/item/weapon/storage/vore_egg/skrell,
+	"Sergal"		= /obj/item/weapon/storage/vore_egg/sergal,
+	"Nevrean"		= /obj/item/weapon/storage/vore_egg/nevrean,
+	"Human"			= /obj/item/weapon/storage/vore_egg/human,
+	"Slime"			= /obj/item/weapon/storage/vore_egg/slime,
+	"Egg"			= /obj/item/weapon/storage/vore_egg,
+	"Xenochimera"	= /obj/item/weapon/storage/vore_egg/scree,
+	"Xenomorph"		= /obj/item/weapon/storage/vore_egg/xenomorph,
+	"Chocolate"		= /obj/item/weapon/storage/vore_egg/chocolate,
+	"Boney"			= /obj/item/weapon/storage/vore_egg/owlpellet,
+	"Slime glob"	= /obj/item/weapon/storage/vore_egg/slimeglob,
+	"Chicken"		= /obj/item/weapon/storage/vore_egg/chicken,
+	"Synthetic"		= /obj/item/weapon/storage/vore_egg/synthetic,
+	"Cooking error"	= /obj/item/weapon/storage/vore_egg/badrecipe,
+	"Escape pod"	= /obj/item/weapon/storage/vore_egg/escapepod,
+	"Web cocoon"	= /obj/item/weapon/storage/vore_egg/cocoon,
+	"Bug cocoon"	= /obj/item/weapon/storage/vore_egg/bugcocoon,
+	"Rock"			= /obj/item/weapon/storage/vore_egg/rock,
+	"Yellow"		= /obj/item/weapon/storage/vore_egg/yellow,
+	"Blue"			= /obj/item/weapon/storage/vore_egg/blue,
+	"Green"			= /obj/item/weapon/storage/vore_egg/green,
+	"Orange"		= /obj/item/weapon/storage/vore_egg/orange,
+	"Purple"		= /obj/item/weapon/storage/vore_egg/purple,
+	"Red"			= /obj/item/weapon/storage/vore_egg/red,
+	"Rainbow"		= /obj/item/weapon/storage/vore_egg/rainbow,
+	"Spotted pink"	= /obj/item/weapon/storage/vore_egg/pinkspots)
 
 var/global/list/edible_trash = list(/obj/item/broken_device,
 				/obj/item/clothing/accessory/collar,	//TFF 10/7/19 - add option to nom collars,
@@ -180,7 +218,8 @@ var/global/list/edible_trash = list(/obj/item/broken_device,
 				/obj/item/weapon/storage/fancy/cigarettes,
 				/obj/item/weapon/storage/fancy/crayons,
 				/obj/item/weapon/storage/fancy/egg_box,
-				/obj/item/weapon/storage/wallet)
+				/obj/item/weapon/storage/wallet,
+				/obj/item/weapon/storage/vore_egg)
 
 var/global/list/contamination_flavors = list(
 				"Generic" = contamination_flavors_generic,
@@ -457,7 +496,7 @@ var/global/list/remainless_species = list(SPECIES_PROMETHEAN,
 	for(var/path in paths)
 		var/datum/sprite_accessory/hair_accessory/instance = new path()
 		hair_accesories_list[path] = instance
-	
+
 	// Custom species traits
 	paths = typesof(/datum/trait) - /datum/trait
 	for(var/path in paths)
@@ -472,6 +511,8 @@ var/global/list/remainless_species = list(SPECIES_PROMETHEAN,
 				negative_traits[path] = instance
 			if(0)
 				neutral_traits[path] = instance
+				if(!(instance.custom_only))
+					everyone_traits[path] = instance
 			if(0.1 to INFINITY)
 				positive_traits[path] = instance
 

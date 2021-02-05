@@ -5,7 +5,8 @@
 	var/cost = 0			// 0 is neutral, negative cost means negative, positive cost means positive.
 	var/list/var_changes	// A list to apply to the custom species vars.
 	var/list/excludes		// Store a list of paths of traits to exclude, but done automatically if they change the same vars.
-	var/not_for_synths = 0	// Can freaking synths use those.
+	var/not_for_synths = FALSE	// Can freaking synths use those.
+	var/custom_only = TRUE		// Trait only available for custom species
 
 //Proc can be overridden lower to include special changes, make sure to call up though for the vars changes
 /datum/trait/proc/apply(var/datum/species/S,var/mob/living/carbon/human/H)

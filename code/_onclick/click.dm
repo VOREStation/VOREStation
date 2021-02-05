@@ -354,19 +354,13 @@
 		facedir(direction)
 
 /obj/screen/click_catcher
+	name = "Darkness"
 	icon = 'icons/mob/screen_gen.dmi'
 	icon_state = "click_catcher"
 	plane = CLICKCATCHER_PLANE
+	layer = LAYER_HUD_UNDER
 	mouse_opacity = 2
-	screen_loc = "CENTER-7,CENTER-7"
-
-/obj/screen/click_catcher/proc/MakeGreed()
-	. = list()
-	for(var/i = 0, i<15, i++)
-		for(var/j = 0, j<15, j++)
-			var/obj/screen/click_catcher/CC = new()
-			CC.screen_loc = "NORTH-[i],EAST-[j]"
-			. += CC
+	screen_loc = "SOUTHWEST to NORTHEAST"
 
 /obj/screen/click_catcher/Click(location, control, params)
 	var/list/modifiers = params2list(params)
@@ -374,7 +368,8 @@
 		var/mob/living/carbon/C = usr
 		C.swap_hand()
 	else
-		var/turf/T = screen_loc2turf(screen_loc, get_turf(usr))
+		var/list/P = params2list(params)
+		var/turf/T = screen_loc2turf(P["screen-loc"], get_turf(usr))
 		if(T)
 			T.Click(location, control, params)
 	. = 1
