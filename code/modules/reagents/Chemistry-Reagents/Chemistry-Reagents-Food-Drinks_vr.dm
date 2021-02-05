@@ -125,7 +125,7 @@
 /datum/reagent/ethanol/monstertamer/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 
-	if(M.species.gets_food_nutrition) //it's still food!
+	if(M.species.organic_food_coeff) //it's still food!
 		switch(alien)
 			if(IS_DIONA) //Diona don't get any nutrition from nutriment or protein.
 			if(IS_SKRELL)
@@ -151,7 +151,7 @@
 	..()
 	if(alien == IS_SKRELL)
 		M.adjustToxLoss(removed)  //Equivalent to half as much protein, since it's half protein.
-	if(M.species.gets_food_nutrition)
+	if(M.species.organic_food_coeff)
 		if(alien == IS_SLIME || alien == IS_CHIMERA) //slimes and chimera can get nutrition from injected nutriment and protein
 			M.adjust_nutrition(alt_nutriment_factor * removed)
 
@@ -430,7 +430,7 @@
 /datum/reagent/ethanol/hairoftherat/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 
-	if(M.species.gets_food_nutrition) //it's still food!
+	if(M.species.organic_food_coeff) //it's still food!
 		switch(alien)
 			if(IS_DIONA) //Diona don't get any nutrition from nutriment or protein.
 			if(IS_SKRELL)
@@ -456,31 +456,6 @@
 	..()
 	if(alien == IS_SKRELL)
 		M.adjustToxLoss(removed)  //Equivalent to half as much protein, since it's half protein.
-	if(M.species.gets_food_nutrition)
+	if(M.species.organic_food_coeff)
 		if(alien == IS_SLIME || alien == IS_CHIMERA) //slimes and chimera can get nutrition from injected nutriment and protein
 			M.nutrition += (alt_nutriment_factor * removed)
-
-/datum/reagent/nutriment
-	affects_robots = 1	//fbps can get energy from food, but;
-	var/fbp_factor = 1.5	//divisor for how much it's worth (so, two-thirds normal)
-
-/datum/reagent/nutriment/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(!injectable && alien != IS_SLIME && alien != IS_CHIMERA && !M.isSynthetic())
-		M.adjustToxLoss(0.1 * removed)
-		return
-	affect_ingest(M, alien, removed)
-
-/datum/reagent/nutriment/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	switch(alien)
-		if(IS_DIONA) return
-		if(IS_UNATHI) removed *= 0.5
-		if(IS_CHIMERA) removed *= 0.25 //VOREStation Edit
-	if(issmall(M)) removed *= 2 // Small bodymass, more effect from lower volume.
-	if(M.species.gets_food_nutrition) //VOREStation edit. If this is set to 0, they don't get nutrition from food.
-		if(M.isSynthetic() && M.nutrition < 500)	//cap us off at the limit just like a charger
-			M.adjust_nutrition((nutriment_factor / fbp_factor) * removed)
-		else if(!M.isSynthetic())
-			M.adjust_nutrition(nutriment_factor * removed)
-	if(!M.isSynthetic())	//only meatbags get healing and blood from nutriment
-		M.heal_organ_damage(0.5 * removed, 0)
-		M.add_chemical_effect(CE_BLOODRESTORE, 4 * removed)
