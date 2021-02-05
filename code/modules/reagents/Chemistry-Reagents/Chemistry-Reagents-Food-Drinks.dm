@@ -11,6 +11,7 @@
 	var/nutriment_factor = 30 // Per unit
 	var/injectable = 0
 	color = "#664330"
+	affects_robots = 1	//VOREStation Edit
 
 /datum/reagent/nutriment/mix_data(var/list/newdata, var/newamount)
 
@@ -37,10 +38,14 @@
 				data -= taste
 
 /datum/reagent/nutriment/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(!injectable && alien != IS_SLIME && alien != IS_CHIMERA) //VOREStation Edit
+	if(!injectable && alien != IS_SLIME && alien != IS_CHIMERA && !M.isSynthetic()) //VOREStation Edit
 		M.adjustToxLoss(0.1 * removed)
 		return
 	affect_ingest(M, alien, removed)
+	//VOREStation Edits Start
+	if(M.isSynthetic() && M.nutrition < 500)
+		M.adjust_nutrition((nutriment_factor * removed) * M.species.synthetic_food_coeff)
+	//VOREStation Edits End
 
 /datum/reagent/nutriment/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	switch(alien)
@@ -48,10 +53,11 @@
 		if(IS_UNATHI) removed *= 0.5
 		if(IS_CHIMERA) removed *= 0.25 //VOREStation Edit
 	if(issmall(M)) removed *= 2 // Small bodymass, more effect from lower volume.
-	M.heal_organ_damage(0.5 * removed, 0)
-	if(M.species.gets_food_nutrition) //VOREStation edit. If this is set to 0, they don't get nutrition from food.
-		M.adjust_nutrition(nutriment_factor * removed) // For hunger and fatness
-	M.add_chemical_effect(CE_BLOODRESTORE, 4 * removed)
+	//VOREStation Edits Start
+	if(!M.isSynthetic())
+		M.adjust_nutrition((nutriment_factor * removed) * M.species.organic_food_coeff)
+		M.heal_organ_damage(0.5 * removed, 0)
+		M.add_chemical_effect(CE_BLOODRESTORE, 4 * removed)
 
 // Aurora Cooking Port Insertion Begin
 
