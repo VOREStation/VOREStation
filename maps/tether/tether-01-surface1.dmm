@@ -16620,15 +16620,11 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/plating,
-/area/maintenance/lower/trash_pit)
+/area/maintenance/lowmedbaymaint)
 "aBi" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/door/airlock/maintenance/common,
 /turf/simulated/floor/plating,
-/area/maintenance/lower/trash_pit)
+/area/maintenance/lowmedbaymaint)
 "aBj" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -16714,6 +16710,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
 	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/trash_pit)
 "aBq" = (
@@ -16721,15 +16720,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8"
-	},
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "east bump";
-	pixel_x = 24
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
@@ -31195,7 +31185,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/plating,
-/area/maintenance/lower/trash_pit)
+/area/maintenance/lowmedbaymaint)
 "bHR" = (
 /obj/effect/floor_decal/borderfloor/corner{
 	dir = 4
@@ -31541,12 +31531,11 @@
 /turf/simulated/floor/tiled,
 /area/rnd/hallway)
 "cNL" = (
-/obj/structure/catwalk,
-/obj/machinery/alarm{
-	pixel_y = 22
+/obj/machinery/light/small{
+	dir = 8
 	},
 /turf/simulated/floor/plating,
-/area/maintenance/lower/vacant_site)
+/area/maintenance/lowmedbaymaint)
 "cOq" = (
 /obj/random/cutout,
 /turf/simulated/floor/plating,
@@ -31626,6 +31615,14 @@
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/locker/laundry_arrival)
+"cZF" = (
+/obj/structure/catwalk,
+/obj/machinery/alarm{
+	dir = 1;
+	pixel_y = -22
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/vacant_site)
 "cZL" = (
 /obj/structure/railing{
 	dir = 4
@@ -32327,7 +32324,7 @@
 /obj/item/weapon/storage/toolbox/lunchbox/mars/filled,
 /obj/item/weapon/storage/belt/fannypack/red,
 /turf/simulated/floor/plating,
-/area/maintenance/lower/trash_pit)
+/area/maintenance/lowmedbaymaint)
 "fVG" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -34877,7 +34874,7 @@
 /obj/item/weapon/storage/toolbox/lunchbox/filled,
 /obj/random/plushielarge,
 /turf/simulated/floor/plating,
-/area/maintenance/lower/trash_pit)
+/area/maintenance/lowmedbaymaint)
 "nOB" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -35179,7 +35176,7 @@
 /obj/item/weapon/storage/toolbox/lunchbox/heart,
 /obj/random/plushie,
 /turf/simulated/floor/plating,
-/area/maintenance/lower/trash_pit)
+/area/maintenance/lowmedbaymaint)
 "oKn" = (
 /turf/simulated/mineral,
 /area/tether/surfacebase/funny/clownoffice)
@@ -35400,7 +35397,7 @@
 /obj/item/clothing/head/cakehat,
 /obj/random/mech_toy,
 /turf/simulated/floor/plating,
-/area/maintenance/lower/trash_pit)
+/area/maintenance/lowmedbaymaint)
 "qbw" = (
 /obj/structure/bed/chair/bar_stool,
 /obj/machinery/alarm{
@@ -35672,6 +35669,18 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_one_hall)
+"qSJ" = (
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	pixel_x = 24
+	},
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/trash_pit)
 "qVi" = (
 /obj/structure/railing{
 	dir = 1
@@ -36934,7 +36943,7 @@
 /obj/item/weapon/storage/toolbox/lunchbox/cat/filled,
 /obj/item/clothing/head/chefhat,
 /turf/simulated/floor/plating,
-/area/maintenance/lower/trash_pit)
+/area/maintenance/lowmedbaymaint)
 "vHP" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -53326,7 +53335,7 @@ nbj
 mnN
 mnN
 mnN
-mnN
+qSJ
 aBp
 nmA
 fvL
@@ -53604,12 +53613,12 @@ dSg
 wvV
 fVG
 aBh
-aBi
-aBi
+fVG
+fVG
 bHK
-aBi
-aBi
-aBi
+fVG
+fVG
+fVG
 pIG
 aBq
 lry
@@ -53618,7 +53627,7 @@ fkx
 vBy
 lry
 aqj
-aql
+cZF
 apF
 aah
 aah
@@ -53746,20 +53755,20 @@ uwD
 gYx
 pdo
 gVF
-aaU
-qJl
-aaU
-aaU
-aaU
-aaU
-aaU
-aaU
+aAD
+aBi
+aAD
+aAD
+aAD
+aAD
+lry
+lry
 lry
 oMv
 rIU
 biK
-apF
-cNL
+lry
+aql
 sJX
 apF
 aah
@@ -53889,11 +53898,11 @@ fAv
 fWT
 fWT
 fWT
-mnN
-mnN
-mnN
-haw
-mnN
+aAI
+aAI
+aAI
+cNL
+aAI
 lry
 uaa
 lry
@@ -54036,8 +54045,8 @@ oId
 fRJ
 qaa
 vHE
-aaU
-aaU
+lry
+lry
 lry
 iWa
 fkx
@@ -54173,12 +54182,12 @@ gIt
 wvv
 tXi
 fWT
-aaU
-aaU
-aaU
-aaU
-aaU
-aaU
+aAD
+aAD
+aAD
+aAD
+aAD
+aAD
 aah
 lry
 kuT
