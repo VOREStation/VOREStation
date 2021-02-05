@@ -289,7 +289,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 				icon_key += "_t" //VOREStation Edit.
 
 			if(istype(tail_style, /datum/sprite_accessory/tail/taur))
-				if(tail_style.clip_mask_state)
+				if(tail_style.clip_mask) //VOREStation Edit.
 					icon_key += tail_style.clip_mask_state
 
 	icon_key = "[icon_key][husk ? 1 : 0][fat ? 1 : 0][hulk ? 1 : 0][skeleton ? 1 : 0]"
@@ -304,7 +304,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		var/icon/Cutter = null
 
 		if(istype(tail_style, /datum/sprite_accessory/tail/taur))	// Tail icon 'cookie cutters' are filled in where icons are preserved. We need to invert that.
-			if(tail_style.clip_mask_state)
+			if(tail_style.clip_mask) //VOREStation Edit.
 				Cutter = new(icon = tail_style.icon, icon_state = tail_style.clip_mask_state)
 
 				Cutter.Blend("#000000", ICON_MULTIPLY)	// Make it all black.

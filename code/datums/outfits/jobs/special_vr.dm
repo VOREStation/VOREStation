@@ -15,11 +15,14 @@
 	shoes = /obj/item/clothing/shoes/boots/swat
 	gloves = /obj/item/clothing/gloves/swat
 	l_ear = /obj/item/device/radio/headset/ert
-	belt = /obj/item/weapon/gun/energy/gun
 	glasses = /obj/item/clothing/glasses/sunglasses
 	back = /obj/item/weapon/storage/backpack/satchel
 	id_type = /obj/item/weapon/card/id/centcom/ERT
 	pda_type = /obj/item/device/pda/centcom
+	
+	post_equip(var/mob/living/carbon/human/H)
+		..()
+		ert.add_antagonist(H.mind)
 
 /decl/hierarchy/outfit/job/clown
 	name = OUTFIT_JOB_NAME("Clown")
