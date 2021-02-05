@@ -83,3 +83,23 @@
 				prob(2);/obj/item/slime_extract/light_pink,
 				prob(1);/obj/item/slime_extract/grey,
 				prob(1);/obj/item/slime_extract/rainbow)
+
+/obj/item/weapon/paper/robo_escape_pod
+	name = "faded note"
+	info = {"<i>This paper is old and the shaky writing has faded, rendering it difficult to read.</i><br>\
+whichever poor bastard finds this pod<br>\
+<br>\
+im sorry<br>\
+we tried to do everything we could for her<br>\
+but in the end the virus was too much<br>\
+rnd wanted to take her apart and document what happened<br>\
+but after watching her tear through three of my men like they were nothing<br>\
+i just. i couldnt. they might fire me, but fuck the suits. the safety of the other staff here matter more.<br>\
+her fucking dignity matters more.<br>\
+<br>\
+we managed to bait her into one of the escape pods. fired her out into the black.<br>\
+<br>\
+hope nobody ever has to read this. has to find her.<br>\
+if you do, im sorry.<br>\
+i just hope whatever happens, she finds the mercy we werent equipped to give her.<br>\
+<i>The author's signature is smudged beyond recognition.</i>"}

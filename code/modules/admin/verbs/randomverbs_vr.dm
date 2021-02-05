@@ -72,3 +72,28 @@
 	feedback_add_details("admin_verb","SCAM") //heh
 
 	return new_mob
+
+/client/proc/cmd_admin_z_narrate() // Allows administrators to fluff events a little easier -- TLE
+	set category = "Special Verbs"
+	set name = "Z Narrate"
+	set desc = "Narrates to your Z level."
+
+	if (!holder)
+		return
+
+	var/msg = input("Message:", text("Enter the text you wish to appear to everyone:")) as text
+	if(!(msg[1] == "<" && msg[length(msg)] == ">")) //You can use HTML but only if the whole thing is HTML. Tries to prevent admin 'accidents'.
+		msg = sanitize(msg)
+
+	if (!msg)
+		return
+
+	var/pos_z = get_z(src.mob)
+	if (!pos_z)
+		return
+	for(var/mob/M in player_list)
+		if(M.z == pos_z)
+			to_chat(M, msg)
+	log_admin("ZNarrate: [key_name(usr)] : [msg]")
+	message_admins("<font color='blue'><B> ZNarrate: [key_name_admin(usr)] : [msg]<BR></B></font>", 1)
+	feedback_add_details("admin_verb","GLNA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

@@ -28,6 +28,7 @@
 
 	var/color_blend_mode = ICON_ADD // Only appliciable if do_coloration = 1
 	var/extra_overlay // Icon state of an additional overlay to blend in.
+	var/extra_overlay2
 	var/desc = "You should not see this..."
 
 // Species-unique ears
@@ -42,6 +43,13 @@
 	species_allowed = list(SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW)
 
 // Ears avaliable to anyone
+
+/datum/sprite_accessory/ears/alt_ram_horns
+	name = "Solid ram horns"
+	desc = ""
+	icon_state = "ram_horns_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/ears/hyena
 	name = "hyena ears, dual-color"
@@ -421,7 +429,7 @@
 	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/ears/teshari
-	name = "Teshari (colorable fluff)"
+	name = "Teshari (colorable)"
 	desc = ""
 	icon_state = "teshari"
 	do_colouration = 1
@@ -429,7 +437,7 @@
 	extra_overlay = "teshariinner"
 
 /datum/sprite_accessory/ears/tesharihigh
-	name = "Teshari upper ears (colorable fluff)"
+	name = "Teshari upper ears (colorable)"
 	desc = ""
 	icon_state = "tesharihigh"
 	do_colouration = 1
@@ -437,12 +445,28 @@
 	extra_overlay = "tesharihighinner"
 
 /datum/sprite_accessory/ears/tesharilow
-	name = "Teshari lower ears (colorable fluff)"
+	name = "Teshari lower ears (colorable)"
 	desc = ""
 	icon_state = "tesharilow"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "tesharilowinner"
+
+/datum/sprite_accessory/ears/tesh_pattern_ear_male
+	name = "Teshari male ear pattern (colorable)"
+	desc = ""
+	icon_state = "teshari"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "teshari_male_pattern"
+
+/datum/sprite_accessory/ears/tesh_pattern_ear_female
+	name = "Teshari female ear pattern (colorable)"
+	desc = ""
+	icon_state = "teshari"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "teshari_female_pattern"
 
 /datum/sprite_accessory/ears/inkling
 	name = "colorable mature inkling hair"
@@ -592,6 +616,48 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "dragon-horns"
+
+/datum/sprite_accessory/ears/synthhorns_plain
+	name = "Synth horns, plain"
+	desc = ""
+	icon_state = "synthhorns_plain"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "synthhorns_plain_light"
+
+/datum/sprite_accessory/ears/synthhorns_thick
+	name = "Synth horns, thick"
+	desc = ""
+	icon_state = "synthhorns_thick"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "synthhorns_thick_light"
+
+/datum/sprite_accessory/ears/synthhorns_curly
+	name = "Synth horns, curly"
+	desc = ""
+	icon_state = "synthhorns_curled"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+
+/datum/sprite_accessory/ears/forward_curled_demon_horns_bony
+	name = "Succubus horns, colourable"
+	desc = ""
+	icon_state = "succu-horns_b"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/forward_curled_demon_horns_bony_with_colorable_ears
+	name = "Succubus horns with pointy ears, colourable"
+	desc = ""
+	icon_state = "elfs"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "succu-horns_b"
+
+
+
 /*
 ////////////////////////////
 /  =--------------------=  /
@@ -606,11 +672,13 @@
 
 	var/color_blend_mode = ICON_ADD // Only appliciable if do_coloration = 1
 	var/extra_overlay // Icon state of an additional overlay to blend in.
+	var/extra_overlay2 //Tertiary.
 	var/clothing_can_hide = 1 // If true, clothing with HIDETAIL hides it. If the clothing is bulky enough to hide a tail, it should also hide wings.
 	// var/show_species_tail = 1 // Just so // TODO - Seems not needed ~Leshana
 	var/desc = "You should not see this..."
 	var/ani_state // State when flapping/animated
 	var/extra_overlay_w // Flapping state for extra overlay
+	var/extra_overlay2_w
 
 /datum/sprite_accessory/wing/shock //Unable to split the tail from the wings in the sprite, so let's just classify it as wings.
 	name = "pharoah hound tail (Shock Diamond)"
@@ -690,6 +758,47 @@
 	name = "harpy wings, colorable"
 	desc = ""
 	icon_state = "harpywings"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/wing/harpywings_alt
+	name = "harpy wings alt, archeopteryx"
+	desc = ""
+	icon_state = "harpywings_alt"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "harpywings_altmarkings"
+
+/datum/sprite_accessory/wing/harpywings_alt_neckfur
+	name = "harpy wings alt, archeopteryx & neckfur"
+	desc = ""
+	icon_state = "harpywings_alt"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "harpywings_altmarkings"
+	extra_overlay2 = "neckfur"
+
+/datum/sprite_accessory/wing/harpywings_bat
+	name = "harpy wings, bat"
+	desc = ""
+	icon_state = "harpywings_bat"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "harpywings_batmarkings"
+
+/datum/sprite_accessory/wing/harpywings_bat_neckfur
+	name = "harpy wings, bat & neckfur"
+	desc = ""
+	icon_state = "harpywings_bat"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "harpywings_batmarkings"
+	extra_overlay2 = "neckfur"
+
+/datum/sprite_accessory/wing/neckfur
+	name = "neck fur"
+	desc = ""
+	icon_state = "neckfur"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
@@ -777,6 +886,14 @@
 	icon_state = "cyberdoe_s"
 	do_colouration = 0
 
+/datum/sprite_accessory/wing/drago_wing
+	name = "Cybernetic Dragon wings"
+	desc = ""
+	icon_state = "drago_wing"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "drago_wing_2"
+
 /*
 ////////////////////////////
 /  =--------------------=  /
@@ -791,11 +908,13 @@
 
 	var/color_blend_mode = ICON_ADD // Only appliciable if do_coloration = 1
 	var/extra_overlay // Icon state of an additional overlay to blend in.
+	var/extra_overlay2 //Tertiary.
 	var/show_species_tail = 0 // If false, do not render species' tail.
 	var/clothing_can_hide = 1 // If true, clothing with HIDETAIL hides it
 	var/desc = "You should not see this..."
 	var/ani_state // State when wagging/animated
 	var/extra_overlay_w // Wagging state for extra overlay
+	var/extra_overlay2_w // Tertiary wagging.
 	var/list/hide_body_parts = list() //Uses organ tag defines. Bodyparts in this list do not have their icons rendered, allowing for more spriter freedom when doing taur/digitigrade stuff.
 	var/icon/clip_mask_icon = null //Icon file used for clip mask.
 	var/clip_mask_state = null //Icon state to generate clip mask. Clip mask is used to 'clip' off the lower part of clothing such as jumpsuits & full suits.
@@ -1265,13 +1384,53 @@
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "deertail_mark"
 
+/datum/sprite_accessory/tail/tesh_feathered
+	name = "Teshari tail"
+	desc = ""
+	icon_state = "teshtail_s"
+	do_colouration = 1
+	extra_overlay = "teshtail_feathers_s"
+	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/tail/teshari_fluffytail
 	name = "Teshari alternative, colorable"
 	desc = ""
 	icon_state = "teshari_fluffytail"
-	extra_overlay = "teshari_fluffytail_mark"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "teshari_fluffytail_mark"
+
+/datum/sprite_accessory/tail/tesh_pattern_male
+	name = "Teshari male tail pattern"
+	desc = ""
+	icon_state = "teshtail_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "teshpattern_male_tail"
+
+/datum/sprite_accessory/tail/tesh_pattern_male_alt
+	name = "Teshari male tail alt. pattern"
+	desc = ""
+	icon_state = "teshtail_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "teshpattern_male_alt"
+
+/datum/sprite_accessory/tail/tesh_pattern_fem
+	name = "Teshari female tail pattern"
+	desc = ""
+	icon_state = "teshtail_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "teshpattern_fem_tail"
+
+/datum/sprite_accessory/tail/tesh_pattern_fem_alt
+	name = "Teshari male tail alt. pattern"
+	desc = ""
+	icon_state = "teshtail_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "teshpattern_fem_alt"
 
 /datum/sprite_accessory/tail/nightstalker
 	name = "Nightstalker, colorable"
@@ -1349,21 +1508,6 @@
 	name = "monkey tail"
 	desc = ""
 	icon_state = "chimptail_s"
-
-/datum/sprite_accessory/tail/special/seromitail
-	name = "seromi tail"
-	desc = ""
-	icon_state = "seromitail_s"
-	do_colouration = 1
-	color_blend_mode = ICON_MULTIPLY
-
-/datum/sprite_accessory/tail/special/seromitailfeathered
-	name = "seromi tail w/ feathers"
-	desc = ""
-	icon_state = "seromitail_s"
-	extra_overlay = "seromitail_feathers_s"
-	do_colouration = 1
-	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/special/unathihc
 	name = "unathi tail, colorable"
@@ -1449,20 +1593,6 @@
 	desc = ""
 	icon_state = "chimptail_hc_s"
 	do_colouration = 1
-
-/datum/sprite_accessory/tail/special/seromitailhc
-	name = "seromi tail, colorable"
-	desc = ""
-	icon_state = "seromitail_hc_s"
-	do_colouration = 1
-	color_blend_mode = ICON_MULTIPLY
-
-/datum/sprite_accessory/tail/special/seromitailfeatheredhc
-	name = "seromi tail w/ feathers, colorable"
-	desc = ""
-	icon_state = "seromitail_feathers_hc_s"
-	do_colouration = 1
-	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/special/vulpan
 	name = "vulpkanin, colorable"
@@ -1783,3 +1913,146 @@
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "wardtakahashi_vulp_dc_mark"
 
+/datum/sprite_accessory/tail/Easterntail
+	name = "Eastern Dragon (Animated)"
+	desc = ""
+	icon_state = "Easterntail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "EasterntailColorTip"
+	ani_state = "Easterntail_w"
+	extra_overlay_w = "EasterntailColorTip_w"
+
+/datum/sprite_accessory/tail/synthtail_static
+	name = "Synthetic lizard tail"
+	desc = ""
+	icon_state = "synthtail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/synthtail_vwag
+	name = "Synthetic lizard tail (vwag)"
+	desc = ""
+	icon_state = "synthtail"
+	ani_state = "synthtail_w"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/Plugtail
+	name = "Synthetic plug tail"
+	desc = ""
+	icon_state = "Plugtail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "PlugtailMarking"
+	extra_overlay2 = "PlugtailMarking2"
+
+/datum/sprite_accessory/tail/Segmentedtail
+	name = "Segmented tail, animated"
+	desc = ""
+	icon_state = "Segmentedtail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "Segmentedtailmarking"
+	ani_state = "Segmentedtail_w"
+	extra_overlay_w = "Segmentedtailmarking_w"
+
+/datum/sprite_accessory/tail/Segmentedlights
+	name = "Segmented tail, animated synth"
+	desc = ""
+	icon_state = "Segmentedtail"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "Segmentedlights"
+	ani_state = "Segmentedtail_w"
+	extra_overlay_w = "Segmentedlights_w"
+
+/datum/sprite_accessory/tail/fox_tail
+	name = "Fox tail"
+	desc = ""
+	icon_state = "fox_tail_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/fox_tail_plain
+	name = "Fox tail"
+	desc = ""
+	icon_state = "fox_tail_plain_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/fennec_tail
+	name = "Fennec tail"
+	desc = ""
+	icon_state = "fennec_tail_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/lizard_tail_smooth
+	name = "Lizard Tail (Smooth)"
+	desc = ""
+	icon_state = "lizard_tail_smooth"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/lizard_tail_dark_tiger
+	name = "Lizard Tail (Dark Tiger)"
+	desc = ""
+	icon_state = "lizard_tail_dark_tiger"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/lizard_tail_light_tiger
+	name = "Lizard Tail (Light Tiger)"
+	desc = ""
+	icon_state = "lizard_tail_light_tiger"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/lizard_tail_spiked
+	name = "Lizard Tail (Spiked)"
+	desc = ""
+	icon_state = "lizard_tail_spiked"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/xenotail_fullcolour
+	name = "xenomorph tail (fully colourable)"
+	desc = ""
+	icon_state = "xenotail_fullcolour"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/xenotailalt_fullcolour
+	name = "xenomorph tail alt. (fully colourable)"
+	desc = ""
+	icon_state = "xenotailalt_fullcolour"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/*
+////////////////////////////
+/  =--------------------=  /
+/  == Misc Definitions ==  /
+/  =--------------------=  /
+////////////////////////////
+*/
+
+// Yes, I have to add all of this just to make some glowy hair. 
+// No, this isn't a character creation option, but... I guess in the future it could be, if anyone wants that? 
+           
+/datum/sprite_accessory/hair_accessory
+	name = "You should not see this..."
+	icon = 'icons/mob/vore/hair_accessories_vr.dmi'
+	do_colouration = 0 // Set to 1 to blend (ICON_ADD) hair color
+
+	var/ignores_lighting = 0 // Whether or not this hair accessory will ignore lighting and glow in the dark.
+	var/color_blend_mode = ICON_ADD // Only appliciable if do_coloration = 1
+	var/desc = "You should not see this..."
+
+/datum/sprite_accessory/hair_accessory/verie_hair_glow
+	name = "verie's hair glow"
+	desc = ""
+	icon_state = "verie_hair_glow"
+	ignores_lighting = 1
+	//ckeys_allowed = list("vitoras") // This probably won't come into play EVER but better safe than sorry

@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/space,
+/turf/template_noop,
 /area/space)
 "b" = (
 /obj/structure/lattice,
@@ -8,10 +8,13 @@
 /area/space)
 "c" = (
 /turf/simulated/floor/airless,
-/area/space)
+/area/tether_away/debrisfield/shuttle_buffer)
 "d" = (
 /turf/simulated/shuttle/wall/dark,
 /area/space)
+"e" = (
+/turf/simulated/shuttle/wall/dark,
+/area/tether_away/debrisfield/shuttle_buffer)
 
 (1,1,1) = {"
 a
@@ -27,8 +30,8 @@ d
 "}
 (3,1,1) = {"
 a
-d
-d
+e
+e
 b
 "}
 (4,1,1) = {"

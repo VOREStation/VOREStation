@@ -366,7 +366,7 @@ var/global/list/latejoin_tram   = list()
 
 /obj/structure/closet/secure_closet/guncabinet/excursion/New()
 	..()
-	for(var/i = 1 to 3)
+	for(var/i = 1 to 2)
 		new /obj/item/weapon/gun/energy/locked/frontier(src)
 
 // Used at centcomm for the elevator
