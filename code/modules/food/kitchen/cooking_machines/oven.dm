@@ -104,11 +104,7 @@
 		cooking = FALSE
 
 	playsound(src, 'sound/machines/hatch_open.ogg', 20, 1)
-<<<<<<< HEAD
-	to_chat(user, "<span class='notice'>You [open ? "open" : "close"] the oven door.</span>")
-=======
 	to_chat(user, "<span class='notice'>You [open? "open":"close"] the oven door</span>")
->>>>>>> 65f48cd... Merge pull request #7845 from Cerebulon/foodfixes
 	update_icon()
 
 /obj/machinery/appliance/cooker/oven/proc/manip(var/obj/item/I)
