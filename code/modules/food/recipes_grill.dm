@@ -258,8 +258,6 @@
 	appliance = GRILL
 	reagents = list("rice" = 5, "ketchup" = 5, "sodiumchloride" = 5, "egg" = 3)
 	result = /obj/item/weapon/reagent_containers/food/snacks/omurice/face
-<<<<<<< HEAD
-=======
 
 /datum/recipe/meatsteak
 	appliance = GRILL
@@ -332,4 +330,3 @@
 		/obj/item/weapon/reagent_containers/food/snacks/bun
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/chickenfillet
->>>>>>> 65f48cd... Merge pull request #7845 from Cerebulon/foodfixes
