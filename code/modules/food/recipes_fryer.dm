@@ -177,25 +177,7 @@
 	result = /obj/item/weapon/reagent_containers/food/snacks/pisanggoreng
 	coating = /datum/reagent/nutriment/coating/batter
 
-<<<<<<< HEAD
-/datum/recipe/corn_dog
-	appliance = FRYER
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/sausage
-	)
-	fruit = list("corn" = 1)
-	coating = /datum/reagent/nutriment/coating/batter
-	result = /obj/item/weapon/reagent_containers/food/snacks/corn_dog
-
-/datum/recipe/sweet_and_sour
-	appliance = FRYER
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/bacon,
-		/obj/item/weapon/reagent_containers/food/snacks/cutlet
-	)
-	reagents = list("soysauce" = 5, "batter" = 10)
-	result = /obj/item/weapon/reagent_containers/food/snacks/sweet_and_sour
-
+//VOREStation Add Start
 /datum/recipe/generalschicken
 	appliance = FRYER
 	reagents = list("capsaicin" = 2, "sugar" = 2, "batter" = 10)
@@ -215,5 +197,4 @@
 		/obj/item/weapon/reagent_containers/food/snacks/meat
 	)
 	result = /obj/item/weapon/storage/box/wings //This is kinda like the donut box.
-=======
->>>>>>> 65f48cd... Merge pull request #7845 from Cerebulon/foodfixes
+//VOREStation Add End
