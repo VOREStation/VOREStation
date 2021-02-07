@@ -20,9 +20,15 @@
 		return
 
 	if(isobserver(user))
+<<<<<<< HEAD
 		// // If they turn on ghost AI control, admins can always interact.
 		// if(user.client.advanced_admin_interaction)
 		// 	. = max(., STATUS_INTERACTIVE)
+=======
+		// Admins can always interact.
+		if(check_rights(R_ADMIN|R_EVENT, 0, src))
+			. = max(., STATUS_INTERACTIVE)
+>>>>>>> 5daee31... Merge pull request #7847 from Cerebulon/aghostfixEM
 
 		// Regular ghosts can always at least view if in range.
 		if(user.client)
