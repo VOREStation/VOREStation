@@ -229,9 +229,6 @@
 		/obj/item/weapon/reagent_containers/food/snacks/bacon
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/burger/bacon
-<<<<<<< HEAD
-	
-=======
 
 /datum/recipe/omelette
 	appliance = GRILL
@@ -243,7 +240,6 @@
 	reagent_mix = RECIPE_REAGENT_REPLACE
 	result = /obj/item/weapon/reagent_containers/food/snacks/omelette
 
->>>>>>> 65f48cd... Merge pull request #7845 from Cerebulon/foodfixes
 /datum/recipe/omurice
 	appliance = GRILL
 	reagents = list("rice" = 5, "ketchup" = 5, "egg" = 3)
