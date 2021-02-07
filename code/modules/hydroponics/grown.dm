@@ -219,6 +219,11 @@
 					new /obj/item/weapon/reagent_containers/food/snacks/carrotfries(get_turf(src))
 					qdel(src)
 					return
+				else if(!isnull(seed.chems["pineapplejuice"]))
+					to_chat(user, "You slice \the [src] into rings.")
+					new /obj/item/weapon/reagent_containers/food/snacks/pineapple_ring(get_turf(src))
+					qdel(src)
+					return
 				else if(!isnull(seed.chems["soymilk"]))
 					to_chat(user, "You roughly chop up \the [src].")
 					new /obj/item/weapon/reagent_containers/food/snacks/soydope(get_turf(src))
