@@ -161,14 +161,6 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/fortunecookie
 
-<<<<<<< HEAD
-/datum/recipe/meatsteak
-	reagents = list("sodiumchloride" = 1, "blackpepper" = 1)
-	items = list(/obj/item/weapon/reagent_containers/food/snacks/meat)
-	result = /obj/item/weapon/reagent_containers/food/snacks/meatsteak
-
-=======
->>>>>>> 65f48cd... Merge pull request #7845 from Cerebulon/foodfixes
 /datum/recipe/syntisteak
 	reagents = list("sodiumchloride" = 1, "blackpepper" = 1)
 	items = list(/obj/item/weapon/reagent_containers/food/snacks/meat/syntiflesh)
@@ -472,17 +464,6 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/stuffing
 
-<<<<<<< HEAD
-/datum/recipe/tofurkey
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/tofu,
-		/obj/item/weapon/reagent_containers/food/snacks/tofu,
-		/obj/item/weapon/reagent_containers/food/snacks/stuffing,
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/tofurkey
-
-=======
->>>>>>> 65f48cd... Merge pull request #7845 from Cerebulon/foodfixes
 /datum/recipe/mashedpotato
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/spreads
@@ -716,17 +697,8 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/bageltwo
 
-<<<<<<< HEAD
-/////////////////////////////////////////////////////////////
-//Synnono Meme Foods
-//
-//Most recipes replace reagents with RECIPE_REAGENT_REPLACE
-//to simplify the end product and balance the amount of reagents
-=======
-
 //Recipes that use RECIPE_REAGENT_REPLACE will
 //simplify the end product and balance the amount of reagents
->>>>>>> 65f48cd... Merge pull request #7845 from Cerebulon/foodfixes
 //in some foods. Many require the space spice reagent/condiment
 //to reduce the risk of future recipe conflicts.
 
@@ -830,17 +802,7 @@ I said no!
 	reagent_mix = RECIPE_REAGENT_REPLACE //Get that water outta here
 	result = /obj/item/weapon/reagent_containers/food/snacks/poachedegg
 
-<<<<<<< HEAD
-/datum/recipe/honeytoast
-	reagents = list("honey" = 5)
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/slice/bread
-	)
-	reagent_mix = RECIPE_REAGENT_REPLACE //Simplify end product
-	result = /obj/item/weapon/reagent_containers/food/snacks/honeytoast
-
-
-/datum/recipe/donerkebab
+/datum/recipe/donerkebab //VOREStation Add
 	fruit = list("tomato" = 1, "cabbage" = 1)
 	reagents = list("sodiumchloride" = 1)
 	items = list(
@@ -849,16 +811,6 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/donerkebab
 
-
-/datum/recipe/sashimi
-	reagents = list("soysauce" = 5)
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/carpmeat
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/sashimi
-
-=======
->>>>>>> 65f48cd... Merge pull request #7845 from Cerebulon/foodfixes
 /datum/recipe/nugget
 	reagents = list("flour" = 5)
 	items = list(
@@ -1117,37 +1069,7 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/blt
 
-<<<<<<< HEAD
-/datum/recipe/onionrings
-	fruit = list("onion" = 1)
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/doughslice
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/onionrings
-
-/datum/recipe/berrymuffin
-	reagents = list("milk" = 5, "sugar" = 5)
-	reagent_mix = RECIPE_REAGENT_REPLACE
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/dough
-	)
-	fruit = list("berries" = 1)
-	result = /obj/item/weapon/reagent_containers/food/snacks/muffin
-
-/datum/recipe/onionsoup
-	fruit = list("onion" = 1)
-	reagents = list("water" = 10)
-	result = /obj/item/weapon/reagent_containers/food/snacks/soup/onion
-
-/datum/recipe/porkbowl
-	reagents = list("water" = 5, "rice" = 10)
-	reagent_mix = RECIPE_REAGENT_REPLACE
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/bacon
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/porkbowl
-
-/datum/recipe/sushi
+/datum/recipe/sushi //VOREStation Add
 	fruit = list("cabbage" = 1)
 	reagents = list("rice" = 20)
 	items = list(
@@ -1157,7 +1079,7 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/sushi
 
-/datum/recipe/goulash
+/datum/recipe/goulash //VOREStation Add
 	fruit = list("tomato" = 1)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/cutlet,
@@ -1165,7 +1087,7 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/goulash
 
-/datum/recipe/donerkebab
+/datum/recipe/donerkebab //VOREStation Add
 	fruit = list("tomato" = 1, "cabbage" = 1)
 	reagents = list("sodiumchloride" = 1)
 	items = list(
@@ -1174,21 +1096,21 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/donerkebab
 
-/datum/recipe/roastbeef
+/datum/recipe/roastbeef //VOREStation Add
 	fruit = list("carrot" = 2, "potato" = 2)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/meat
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/roastbeef
 
-/datum/recipe/reishicup
+/datum/recipe/reishicup //VOREStation Add
 	reagents = list("psilocybin" = 3, "sugar" = 3)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/chocolatebar
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/reishicup
 
-/datum/recipe/hotandsoursoup
+/datum/recipe/hotandsoursoup //VOREStation Add
 	fruit = list("cabbage" = 1, "mushroom" = 1)
 	reagents = list("sodiumchloride" = 2, "blackpepper" = 2, "water" = 10)
 	items = list(
@@ -1196,7 +1118,7 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/hotandsoursoup
 
-/datum/recipe/kitsuneudon
+/datum/recipe/kitsuneudon //VOREStation Add
 	reagents = list("egg" = 3)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/spagetti,
@@ -1204,19 +1126,19 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/kitsuneudon
 
-/datum/recipe/pillbugball
+/datum/recipe/pillbugball //VOREStation Add
 	reagents = list("carbon" = 5)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/meat/grubmeat
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/bugball
 
-/datum/recipe/mammi
+/datum/recipe/mammi //VOREStation Add
 	fruit = list("orange" = 1)
 	reagents = list("water" = 10, "flour" = 10, "milk" = 5, "sodiumchloride" = 1)
 	result = /obj/item/weapon/reagent_containers/food/snacks/mammi
 
-/datum/recipe/makaroni
+/datum/recipe/makaroni //VOREStation Add
 	reagents = list("flour" = 15, "milk" = 5)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/meat/grubmeat,
@@ -1226,8 +1148,6 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/makaroni
 
-=======
->>>>>>> 65f48cd... Merge pull request #7845 from Cerebulon/foodfixes
 /datum/recipe/gigapuddi
 	reagents = list("milk" = 15)
 	items = list(
