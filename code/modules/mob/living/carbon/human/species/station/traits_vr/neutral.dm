@@ -1,3 +1,6 @@
+#define ORGANICS	1
+#define SYNTHETICS	2
+
 /datum/trait/metabolism_up
 	name = "Fast Metabolism"
 	desc = "You process ingested and injected reagents faster, but get hungry faster (Teshari speed)."
