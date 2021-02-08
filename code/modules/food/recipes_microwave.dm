@@ -802,15 +802,6 @@ I said no!
 	reagent_mix = RECIPE_REAGENT_REPLACE //Get that water outta here
 	result = /obj/item/weapon/reagent_containers/food/snacks/poachedegg
 
-/datum/recipe/donerkebab //VOREStation Add
-	fruit = list("tomato" = 1, "cabbage" = 1)
-	reagents = list("sodiumchloride" = 1)
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/meatsteak,
-		/obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/donerkebab
-
 /datum/recipe/nugget
 	reagents = list("flour" = 5)
 	items = list(
@@ -1068,85 +1059,6 @@ I said no!
 		/obj/item/weapon/reagent_containers/food/snacks/bacon
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/blt
-
-/datum/recipe/sushi //VOREStation Add
-	fruit = list("cabbage" = 1)
-	reagents = list("rice" = 20)
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/meat,
-		/obj/item/weapon/reagent_containers/food/snacks/meat,
-		/obj/item/weapon/reagent_containers/food/snacks/meat
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/sliceable/sushi
-
-/datum/recipe/goulash //VOREStation Add
-	fruit = list("tomato" = 1)
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/cutlet,
-		/obj/item/weapon/reagent_containers/food/snacks/spagetti
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/goulash
-
-/datum/recipe/donerkebab //VOREStation Add
-	fruit = list("tomato" = 1, "cabbage" = 1)
-	reagents = list("sodiumchloride" = 1)
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/meatsteak,
-		/obj/item/weapon/reagent_containers/food/snacks/sliceable/flatdough
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/donerkebab
-
-/datum/recipe/roastbeef //VOREStation Add
-	fruit = list("carrot" = 2, "potato" = 2)
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/meat
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/roastbeef
-
-/datum/recipe/reishicup //VOREStation Add
-	reagents = list("psilocybin" = 3, "sugar" = 3)
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/chocolatebar
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/reishicup
-
-/datum/recipe/hotandsoursoup //VOREStation Add
-	fruit = list("cabbage" = 1, "mushroom" = 1)
-	reagents = list("sodiumchloride" = 2, "blackpepper" = 2, "water" = 10)
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/tofu
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/hotandsoursoup
-
-/datum/recipe/kitsuneudon //VOREStation Add
-	reagents = list("egg" = 3)
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/spagetti,
-		/obj/item/weapon/reagent_containers/food/snacks/tofu
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/kitsuneudon
-
-/datum/recipe/pillbugball //VOREStation Add
-	reagents = list("carbon" = 5)
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/meat/grubmeat
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/bugball
-
-/datum/recipe/mammi //VOREStation Add
-	fruit = list("orange" = 1)
-	reagents = list("water" = 10, "flour" = 10, "milk" = 5, "sodiumchloride" = 1)
-	result = /obj/item/weapon/reagent_containers/food/snacks/mammi
-
-/datum/recipe/makaroni //VOREStation Add
-	reagents = list("flour" = 15, "milk" = 5)
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/meat/grubmeat,
-		/obj/item/weapon/reagent_containers/food/snacks/egg,
-		/obj/item/weapon/reagent_containers/food/snacks/cheesewedge,
-		/obj/item/weapon/reagent_containers/food/snacks/cheesewedge
-	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/makaroni
 
 /datum/recipe/gigapuddi
 	reagents = list("milk" = 15)

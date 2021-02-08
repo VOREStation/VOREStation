@@ -2123,6 +2123,7 @@
 #include "code\modules\food\recipe.dm"
 #include "code\modules\food\recipe_dump.dm"
 #include "code\modules\food\recipes_fryer.dm"
+#include "code\modules\food\recipes_fryer_vr.dm"
 #include "code\modules\food\recipes_grill.dm"
 #include "code\modules\food\recipes_microwave.dm"
 #include "code\modules\food\recipes_microwave_vr.dm"

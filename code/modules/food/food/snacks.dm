@@ -5898,23 +5898,6 @@
 	reagents.add_reagent("water", 5)
 	bitesize = 6
 
-/obj/item/weapon/reagent_containers/food/snacks/chickennoodlesoup
-	name = "chicken noodle soup"
-	gender = PLURAL
-	desc = "A bright bowl of yellow broth with cuts of meat, noodles and carrots."
-	icon = 'icons/obj/food_custom.dmi'
-	icon_state = "chickennoodlesoup"
-	filling_color = "#ead90c"
-	nutriment_amt = 6
-	nutriment_desc = list("warm soup" = 6)
-	center_of_mass = list("x"=16, "y"=5)
-
-/obj/item/weapon/reagent_containers/food/snacks/chickennoodlesoup/Initialize()
-	. = ..()
-	reagents.add_reagent("protein", 4)
-	reagents.add_reagent("water", 5)
-	bitesize = 6
-
 /obj/item/weapon/reagent_containers/food/snacks/chilicheesefries
 	name = "chili cheese fries"
 	gender = PLURAL
