@@ -656,6 +656,77 @@
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "succu-horns_b"
 
+/datum/sprite_accessory/ears/chorns_nubbydogs
+	name = "Nubby Chorns"
+	desc = ""
+	icon_state = "chorn_nubby"
+	do_colouration = 0
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/chorns_herk
+	name = "Herk Chorns"
+	desc = ""
+	icon_state = "chorn_herk"
+	do_colouration = 0
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/chorns_bork
+	name = "Bork Chorns"
+	desc = ""
+	icon_state = "chorn_bork"
+	do_colouration = 0
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/chorns_bull
+	name = "Bull Chorns"
+	desc = ""
+	icon_state = "chorn_bull"
+	do_colouration = 0
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/chorns_bicarrot
+	name = "Bicarrot Chorns"
+	desc = ""
+	icon_state = "chorn_bicarrot"
+	do_colouration = 0
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/chorns_longcarrot
+	name = "Long Carrot Chorns"
+	desc = ""
+	icon_state = "chorn_longcarrot"
+	do_colouration = 0
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/chorns_shortcarrot
+	name = "Short Carrot Chorns"
+	desc = ""
+	icon_state = "chorn_shortcarrot"
+	do_colouration = 0
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/chorns_scorp
+	name = "Scorp Chorns"
+	desc = ""
+	icon_state = "chorn_scorp"
+	do_colouration = 0
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/chorns_ocean
+	name = "Ocean Chorns"
+	desc = ""
+	icon_state = "chorn_ocean"
+	do_colouration = 0
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/chorns_chub
+	name = "Chub Chorns"
+	desc = ""
+	icon_state = "chorn_chub"
+	do_colouration = 0
+	color_blend_mode = ICON_MULTIPLY
+
+
 
 
 /*
@@ -2038,9 +2109,9 @@
 ////////////////////////////
 */
 
-// Yes, I have to add all of this just to make some glowy hair. 
-// No, this isn't a character creation option, but... I guess in the future it could be, if anyone wants that? 
-           
+// Yes, I have to add all of this just to make some glowy hair.
+// No, this isn't a character creation option, but... I guess in the future it could be, if anyone wants that?
+
 /datum/sprite_accessory/hair_accessory
 	name = "You should not see this..."
 	icon = 'icons/mob/vore/hair_accessories_vr.dmi'
