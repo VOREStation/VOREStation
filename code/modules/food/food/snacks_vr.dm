@@ -759,3 +759,45 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/bun/Initialize()
 	. = ..()
+
+//Readded Polaris Foods
+/obj/item/weapon/reagent_containers/food/snacks/nachos
+	name = "nachos"
+	desc = "Chips from Old Mexico."
+	icon_state = "nachos"
+	nutriment_amt = 2
+	nutriment_desc = list("salt" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/nachos/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 1)
+	bitesize = 1
+
+/obj/item/weapon/reagent_containers/food/snacks/cheesenachos
+	name = "cheesy nachos"
+	desc = "The delicious combination of nachos and melting cheese."
+	icon_state = "cheesenachos"
+	nutriment_amt = 5
+	nutriment_desc = list("salt" = 2, "cheese" = 3)
+
+/obj/item/weapon/reagent_containers/food/snacks/cheesenachos/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 5)
+	reagents.add_reagent("protein", 2)
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/onionsoup
+	name = "Onion Soup"
+	desc = "A soup with layers."
+	icon_state = "onionsoup"
+	trash = /obj/item/trash/snack_bowl
+	filling_color = "#E0C367"
+	center_of_mass = list("x"=16, "y"=7)
+	nutriment_amt = 5
+	nutriment_desc = list("onion" = 2, "soup" = 2)
+
+/obj/item/weapon/reagent_containers/food/snacks/onionsoup/Initialize()
+	. = ..()
+	bitesize = 3
+
+
