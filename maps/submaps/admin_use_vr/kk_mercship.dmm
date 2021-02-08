@@ -276,10 +276,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/armoury_st)
-"bg" = (
-/turf/space,
-/turf/space,
-/area/space)
 "bh" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 8
@@ -562,7 +558,7 @@
 /turf/simulated/floor/reinforced,
 /area/ship/manta/hangar)
 "ch" = (
-/turf/simulated/wall/rplastihull,
+/turf/simulated/wall/rshull,
 /area/ship/manta/holding)
 "cl" = (
 /obj/effect/shuttle_landmark/premade/manta_ship_near_aft,
@@ -628,7 +624,7 @@
 /area/ship/manta/bridge)
 "cA" = (
 /obj/machinery/atmospherics/pipe/simple/visible,
-/turf/simulated/wall/rplastihull,
+/turf/simulated/wall/rshull,
 /area/ship/manta/radiator_star)
 "cG" = (
 /obj/structure/cable/orange{
@@ -818,7 +814,7 @@
 /turf/simulated/floor/reinforced,
 /area/ship/manta/hangar)
 "dl" = (
-/turf/simulated/wall/rplastihull,
+/turf/simulated/wall/rshull,
 /area/ship/manta/med)
 "dn" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -963,7 +959,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/fuel{
 	dir = 8
 	},
-/turf/simulated/wall/rplastihull,
+/turf/simulated/wall/rshull,
 /area/shuttle/manta_ship_boat)
 "ee" = (
 /obj/effect/floor_decal/techfloor{
@@ -1126,13 +1122,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/hallways_port)
-"fh" = (
-/obj/item/device/perfect_tele_beacon/stationary{
-	tele_name = "Mercenary Cruiser Teleporter Room";
-	tele_network = "syndicate"
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/ship/manta/teleporter)
 "fj" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 4
@@ -1141,7 +1130,7 @@
 /area/ship/manta/teleporter)
 "fp" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/fuel,
-/turf/simulated/wall/rplastihull,
+/turf/simulated/wall/rshull,
 /area/shuttle/manta_ship_boat)
 "fr" = (
 /obj/item/modular_computer/console/preset/mercenary{
@@ -1322,7 +1311,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/recreation)
 "ge" = (
-/turf/simulated/wall/plastihull,
+/turf/simulated/wall/shull,
 /area/ship/manta/barracks/bed_1)
 "gf" = (
 /obj/effect/floor_decal/techfloor/corner{
@@ -1429,7 +1418,7 @@
 /obj/structure/sign/department/telecoms{
 	name = "TELEPORTER"
 	},
-/turf/simulated/wall/rplastihull,
+/turf/simulated/wall/rshull,
 /area/ship/manta/bridge)
 "gJ" = (
 /obj/effect/floor_decal/techfloor{
@@ -1556,7 +1545,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/bridge)
 "ht" = (
-/turf/simulated/wall/rplastihull,
+/turf/simulated/wall/rshull,
 /area/ship/manta/hallways_port)
 "hu" = (
 /obj/structure/catwalk,
@@ -1687,6 +1676,9 @@
 /obj/machinery/light/no_nightshift{
 	dir = 8
 	},
+/obj/item/weapon/gun/projectile/automatic/c20r,
+/obj/item/ammo_magazine/m10mm,
+/obj/item/ammo_magazine/m10mm,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/armoury_st)
 "hV" = (
@@ -2028,7 +2020,7 @@
 /turf/simulated/floor/reinforced,
 /area/shuttle/manta_ship_boat)
 "je" = (
-/turf/simulated/wall/rplastihull,
+/turf/simulated/wall/rshull,
 /area/shuttle/manta_ship_boat)
 "jg" = (
 /obj/machinery/power/apc/hyper{
@@ -2436,35 +2428,36 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 8
 	},
+/obj/item/weapon/gun/projectile/automatic/c20r,
+/obj/item/ammo_magazine/m10mm,
+/obj/item/ammo_magazine/m10mm,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/armoury_st)
 "lk" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 9
 	},
-/turf/simulated/wall/rplastihull,
+/turf/simulated/wall/rshull,
 /area/ship/manta/radiator_port)
 "lm" = (
-/turf/simulated/wall/rplastihull,
+/turf/simulated/wall/rshull,
 /area/ship/manta/recreation)
 "lo" = (
-/obj/structure/table/rack,
-/obj/item/weapon/gun/projectile/silenced,
-/obj/item/weapon/gun/projectile/silenced,
-/obj/item/ammo_magazine/m45,
-/obj/item/ammo_magazine/m45,
-/obj/item/ammo_magazine/m45/ap,
-/obj/item/ammo_magazine/m45/hp,
-/obj/item/ammo_magazine/m45/rubber,
 /obj/effect/floor_decal/techfloor{
 	dir = 4
 	},
-/obj/item/weapon/gun/projectile/sec/wood,
-/obj/item/weapon/gun/projectile/sec/wood,
+/obj/structure/table/rack,
+/obj/item/weapon/gun/projectile/automatic/sts35,
+/obj/item/weapon/gun/projectile/automatic/sts35,
+/obj/item/ammo_magazine/m545,
+/obj/item/ammo_magazine/m545,
+/obj/item/ammo_magazine/m545,
+/obj/item/ammo_magazine/m545,
+/obj/item/ammo_magazine/m545/ap,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/armoury_st)
 "lq" = (
-/turf/simulated/wall/plastihull,
+/turf/simulated/wall/shull,
 /area/ship/manta/recreation)
 "lw" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
@@ -2768,7 +2761,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/bridge)
 "mT" = (
-/turf/simulated/wall/rplastihull,
+/turf/simulated/wall/rshull,
 /area/ship/manta/hallways_star)
 "mW" = (
 /obj/structure/cable{
@@ -2796,7 +2789,7 @@
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 10
 	},
-/turf/simulated/wall/rplastihull,
+/turf/simulated/wall/rshull,
 /area/ship/manta/radiator_port)
 "na" = (
 /obj/structure/catwalk,
@@ -2887,7 +2880,7 @@
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 6
 	},
-/turf/simulated/wall/rplastihull,
+/turf/simulated/wall/rshull,
 /area/ship/manta/radiator_star)
 "nu" = (
 /obj/structure/cable{
@@ -3056,7 +3049,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/bridge)
 "oc" = (
-/turf/simulated/wall/rplastihull,
+/turf/simulated/wall/rshull,
 /area/ship/manta/mech_bay)
 "oe" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -3123,7 +3116,7 @@
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 4
 	},
-/turf/simulated/wall/rplastihull,
+/turf/simulated/wall/rshull,
 /area/ship/manta/radiator_port)
 "ot" = (
 /obj/structure/catwalk,
@@ -3296,7 +3289,7 @@
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 4
 	},
-/turf/simulated/wall/rplastihull,
+/turf/simulated/wall/rshull,
 /area/ship/manta/radiator_star)
 "oY" = (
 /obj/machinery/scale,
@@ -3340,7 +3333,7 @@
 /turf/simulated/floor/plating,
 /area/ship/manta/radiator_port)
 "py" = (
-/turf/simulated/wall/plastihull,
+/turf/simulated/wall/shull,
 /area/ship/manta/barracks/bed_2)
 "pA" = (
 /obj/structure/bed/chair/bay/shuttle{
@@ -3359,7 +3352,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 5
 	},
-/turf/simulated/wall/rplastihull,
+/turf/simulated/wall/rshull,
 /area/ship/manta/radiator_port)
 "pD" = (
 /obj/machinery/atmospherics/pipe/simple/visible{
@@ -3460,7 +3453,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/fuel{
 	dir = 4
 	},
-/turf/simulated/wall/rplastihull,
+/turf/simulated/wall/rshull,
 /area/shuttle/manta_ship_boat)
 "qg" = (
 /obj/machinery/atmospherics/unary/engine{
@@ -3558,7 +3551,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 9
 	},
-/turf/simulated/wall/rplastihull,
+/turf/simulated/wall/rshull,
 /area/ship/manta/radiator_star)
 "qH" = (
 /obj/machinery/alarm/alarms_hidden{
@@ -3614,7 +3607,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/hallways_aft)
 "qQ" = (
-/turf/simulated/wall/rplastihull,
+/turf/simulated/wall/rshull,
 /area/ship/manta/radiator_star)
 "qR" = (
 /obj/machinery/bodyscanner{
@@ -3718,7 +3711,7 @@
 /turf/simulated/floor/plating,
 /area/ship/manta/radiator_port)
 "rA" = (
-/turf/simulated/wall/plastihull,
+/turf/simulated/wall/shull,
 /area/ship/manta/radiator_port)
 "rC" = (
 /obj/structure/cable/orange{
@@ -3771,7 +3764,7 @@
 /turf/simulated/floor/plating,
 /area/ship/manta/atmos)
 "rJ" = (
-/turf/simulated/wall/plastihull,
+/turf/simulated/wall/shull,
 /area/ship/manta/dock_star)
 "rK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -3781,7 +3774,7 @@
 /turf/simulated/floor/plating,
 /area/ship/manta/atmos)
 "rM" = (
-/turf/simulated/wall/plastihull,
+/turf/simulated/wall/shull,
 /area/ship/manta/med)
 "rQ" = (
 /obj/structure/bed/chair/bay/comfy/red,
@@ -3888,7 +3881,7 @@
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 5
 	},
-/turf/simulated/wall/rplastihull,
+/turf/simulated/wall/rshull,
 /area/ship/manta/radiator_star)
 "su" = (
 /obj/structure/bed/chair/comfy/black{
@@ -3950,7 +3943,7 @@
 /turf/simulated/floor/plating,
 /area/ship/manta/radiator_port)
 "sN" = (
-/turf/simulated/wall/plastihull,
+/turf/simulated/wall/shull,
 /area/ship/manta/bridge)
 "sS" = (
 /obj/structure/cable/orange{
@@ -3980,7 +3973,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
-/turf/simulated/wall/plastihull,
+/turf/simulated/wall/shull,
 /area/ship/manta/engineering)
 "sY" = (
 /obj/effect/floor_decal/techfloor{
@@ -4061,6 +4054,10 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/hallways_port)
+"tv" = (
+/obj/item/ammo_magazine/m762m/ap,
+/turf/simulated/wall/rshull,
+/area/ship/manta/armoury_st)
 "tx" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 1
@@ -4210,13 +4207,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/manta_ship_boat)
-"ui" = (
-/obj/item/device/perfect_tele_beacon/stationary{
-	tele_name = "Mercenary Boarding Craft";
-	tele_network = "syndicate"
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/shuttle/manta_ship_boat)
 "uk" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/structure/grille,
@@ -4278,7 +4268,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
-/turf/simulated/wall/plastihull,
+/turf/simulated/wall/shull,
 /area/ship/manta/radiator_port)
 "uC" = (
 /obj/effect/floor_decal/industrial/warning/corner{
@@ -4946,7 +4936,7 @@
 /area/ship/manta/engineering)
 "xc" = (
 /obj/structure/sign/nosmoking_1,
-/turf/simulated/wall/plastihull,
+/turf/simulated/wall/shull,
 /area/ship/manta/engine)
 "xd" = (
 /obj/machinery/atmospherics/pipe/tank/air{
@@ -5561,7 +5551,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/hallways_port)
 "zl" = (
-/turf/simulated/wall/rplastihull,
+/turf/simulated/wall/rshull,
 /area/ship/manta/armoury_as)
 "zm" = (
 /obj/machinery/door/airlock/vault{
@@ -5613,9 +5603,6 @@
 "zv" = (
 /obj/structure/table/rack,
 /obj/item/weapon/gun/energy/plasmastun,
-/obj/item/weapon/gun/energy/plasmastun,
-/obj/item/weapon/gun/energy/plasmastun,
-/obj/item/weapon/gun/energy/plasmastun,
 /obj/effect/floor_decal/techfloor{
 	dir = 8
 	},
@@ -5627,6 +5614,9 @@
 /obj/item/weapon/cell/device/weapon,
 /obj/item/weapon/cell/device/weapon,
 /obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/gun/energy/netgun,
+/obj/item/weapon/gun/energy/netgun,
+/obj/item/weapon/gun/energy/plasmastun,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/armoury_st)
 "zx" = (
@@ -5685,7 +5675,7 @@
 /area/ship/manta/armoury_st)
 "zE" = (
 /obj/machinery/atmospherics/pipe/simple/visible,
-/turf/simulated/wall/rplastihull,
+/turf/simulated/wall/rshull,
 /area/ship/manta/radiator_port)
 "zH" = (
 /obj/structure/table/rack,
@@ -5722,7 +5712,7 @@
 /turf/simulated/floor/plating,
 /area/ship/manta/engine)
 "zR" = (
-/turf/simulated/wall/plastihull,
+/turf/simulated/wall/shull,
 /area/ship/manta/engineering)
 "zS" = (
 /obj/structure/bed/chair/comfy/black{
@@ -5980,7 +5970,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
-/turf/simulated/wall/plastihull,
+/turf/simulated/wall/shull,
 /area/ship/manta/atmos)
 "Bw" = (
 /obj/effect/floor_decal/techfloor{
@@ -6309,7 +6299,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 5
 	},
-/turf/simulated/wall/rplastihull,
+/turf/simulated/wall/rshull,
 /area/ship/manta/dock_port)
 "Dg" = (
 /obj/structure/table/rack,
@@ -6407,10 +6397,6 @@
 /area/ship/manta/radiator_star)
 "Du" = (
 /obj/structure/table/rack,
-/obj/item/weapon/gun/energy/netgun,
-/obj/item/weapon/gun/energy/netgun,
-/obj/item/weapon/gun/energy/netgun,
-/obj/item/weapon/gun/energy/netgun,
 /obj/effect/floor_decal/techfloor{
 	dir = 8
 	},
@@ -6525,7 +6511,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/hallways_star)
 "DY" = (
-/turf/simulated/wall/plastihull,
+/turf/simulated/wall/shull,
 /area/ship/manta/teleporter)
 "DZ" = (
 /obj/structure/flora/pottedplant/large,
@@ -6555,7 +6541,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
 	dir = 6
 	},
-/turf/simulated/wall/rplastihull,
+/turf/simulated/wall/rshull,
 /area/shuttle/manta_ship_boat)
 "Eh" = (
 /obj/effect/floor_decal/techfloor,
@@ -6638,7 +6624,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/hallways_aft)
 "EA" = (
-/turf/simulated/wall/rplastihull,
+/turf/simulated/wall/rshull,
 /area/ship/manta/hallways_aft)
 "EE" = (
 /obj/structure/table/rack,
@@ -7033,7 +7019,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 9
 	},
-/turf/simulated/wall/rplastihull,
+/turf/simulated/wall/rshull,
 /area/ship/manta/dock_star)
 "Ha" = (
 /obj/machinery/door/airlock/external,
@@ -7311,7 +7297,7 @@
 /area/ship/manta/bridge)
 "IE" = (
 /obj/machinery/atmospherics/pipe/manifold/visible,
-/turf/simulated/wall/rplastihull,
+/turf/simulated/wall/rshull,
 /area/ship/manta/dock_port)
 "IF" = (
 /obj/machinery/computer/ship/engines{
@@ -7396,7 +7382,7 @@
 /turf/simulated/floor/wood,
 /area/ship/manta/barracks)
 "IV" = (
-/turf/simulated/wall/rplastihull,
+/turf/simulated/wall/rshull,
 /area/ship/manta/commander)
 "Jb" = (
 /obj/structure/table/rack,
@@ -7620,15 +7606,15 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/bridge)
 "Kd" = (
-/mob/living/simple_mob/animal/passive/fox/syndicate{
-	name = "Rick"
-	},
 /obj/structure/dogbed,
 /obj/machinery/alarm/alarms_hidden{
 	pixel_y = 26
 	},
 /obj/machinery/light/no_nightshift{
 	dir = 1
+	},
+/mob/living/simple_mob/animal/passive/fox/syndicate{
+	name = "Rick"
 	},
 /turf/simulated/floor/wood,
 /area/ship/manta/commander)
@@ -7713,7 +7699,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 6
 	},
-/turf/simulated/wall/plastihull,
+/turf/simulated/wall/shull,
 /area/ship/manta/dock_star)
 "KA" = (
 /obj/structure/table/rack/shelf/steel,
@@ -7769,7 +7755,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/dock_port)
 "KJ" = (
-/turf/simulated/wall/rplastihull,
+/turf/simulated/wall/rshull,
 /area/ship/manta/teleporter)
 "KL" = (
 /obj/effect/floor_decal/techfloor{
@@ -7882,7 +7868,7 @@
 /area/ship/manta/bridge)
 "Lm" = (
 /obj/machinery/atmospherics/pipe/manifold/visible,
-/turf/simulated/wall/rplastihull,
+/turf/simulated/wall/rshull,
 /area/ship/manta/dock_star)
 "Lp" = (
 /obj/effect/floor_decal/industrial/warning/corner{
@@ -8017,7 +8003,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/dock_star)
 "LZ" = (
-/turf/simulated/wall/plastihull,
+/turf/simulated/wall/shull,
 /area/ship/manta/hallways_star)
 "Mb" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -8052,7 +8038,7 @@
 /area/ship/manta/hallways_aft)
 "Mg" = (
 /obj/structure/sign/nosmoking_1,
-/turf/simulated/wall/plastihull,
+/turf/simulated/wall/shull,
 /area/ship/manta/engineering)
 "Mh" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
@@ -8379,7 +8365,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/engineering)
 "NQ" = (
-/turf/simulated/wall/plastihull,
+/turf/simulated/wall/shull,
 /area/ship/manta/barracks)
 "NT" = (
 /obj/effect/floor_decal/techfloor/corner{
@@ -8440,7 +8426,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/armoury_st)
 "Oq" = (
-/turf/simulated/wall/rplastihull,
+/turf/simulated/wall/rshull,
 /area/ship/manta/radiator_port)
 "Or" = (
 /obj/machinery/chemical_dispenser/bar_coffee/full{
@@ -8453,22 +8439,7 @@
 /turf/simulated/floor/wood,
 /area/ship/manta/barracks)
 "Ou" = (
-/obj/structure/table/rack,
-/obj/item/device/camera_film,
-/obj/item/device/camera_film,
-/obj/item/device/camera_film,
-/obj/item/device/camera_film,
-/obj/item/device/camera_film,
-/obj/item/device/camera_film,
-/obj/item/device/camera,
-/obj/item/device/camera,
-/obj/item/device/camera,
-/obj/item/device/camera,
-/obj/item/device/camera,
-/obj/item/device/camera,
-/obj/effect/floor_decal/techfloor{
-	dir = 8
-	},
+/obj/item/weapon/gun/projectile/automatic/bullpup,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/armoury_st)
 "Ox" = (
@@ -8530,7 +8501,7 @@
 /area/ship/manta/holding)
 "OO" = (
 /obj/structure/sign/warning/radioactive,
-/turf/simulated/wall/plastihull,
+/turf/simulated/wall/shull,
 /area/ship/manta/engineering)
 "OP" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
@@ -8655,7 +8626,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/ship/manta/holding)
 "Pn" = (
-/turf/simulated/wall/plastihull,
+/turf/simulated/wall/shull,
 /area/ship/manta/hangar)
 "Py" = (
 /obj/machinery/door/blast/shutters{
@@ -8691,7 +8662,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/hallways_aft)
 "PK" = (
-/turf/simulated/wall/rplastihull,
+/turf/simulated/wall/rshull,
 /area/ship/manta/dock_star)
 "PL" = (
 /obj/machinery/door/blast/shutters{
@@ -8942,7 +8913,7 @@
 /turf/simulated/floor/reinforced/airless,
 /area/ship/manta/radiator_star)
 "QT" = (
-/turf/simulated/wall/plastihull,
+/turf/simulated/wall/shull,
 /area/ship/manta/radiator_star)
 "QU" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -9448,6 +9419,9 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 4
 	},
+/obj/item/weapon/plastique,
+/obj/item/weapon/plastique,
+/obj/item/weapon/plastique,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/recreation)
 "Tn" = (
@@ -9602,7 +9576,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/dock_star)
 "Ue" = (
-/turf/simulated/wall/plastihull,
+/turf/simulated/wall/shull,
 /area/ship/manta/engine)
 "Ug" = (
 /obj/machinery/vending/wallmed1/public{
@@ -9795,7 +9769,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
 	dir = 10
 	},
-/turf/simulated/wall/rplastihull,
+/turf/simulated/wall/rshull,
 /area/shuttle/manta_ship_boat)
 "Va" = (
 /obj/machinery/atmospherics/pipe/tank/phoron,
@@ -9839,25 +9813,33 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/armoury_as)
 "Vp" = (
-/turf/simulated/wall/rplastihull,
+/turf/simulated/wall/rshull,
 /area/ship/manta/hangar)
 "Vr" = (
 /obj/structure/table/rack,
-/obj/item/ammo_magazine/m545,
-/obj/item/ammo_magazine/m545,
-/obj/item/ammo_magazine/m545,
-/obj/item/ammo_magazine/m545,
-/obj/item/ammo_magazine/m545,
-/obj/item/ammo_magazine/m545,
-/obj/item/ammo_magazine/m545/ap,
-/obj/item/ammo_magazine/m545/ap,
-/obj/item/ammo_magazine/m545/ap,
-/obj/item/ammo_magazine/m545/ap,
-/obj/item/weapon/gun/projectile/automatic/sts35,
-/obj/item/weapon/gun/projectile/automatic/sts35,
 /obj/effect/floor_decal/techfloor{
 	dir = 4
 	},
+/obj/item/weapon/gun/projectile/automatic/bullpup,
+/obj/item/weapon/gun/projectile/automatic/bullpup,
+/obj/item/weapon/gun/projectile/automatic/bullpup,
+/obj/item/weapon/gun/projectile/automatic/bullpup,
+/obj/item/ammo_magazine/m762m,
+/obj/item/ammo_magazine/m762m,
+/obj/item/ammo_magazine/m762m,
+/obj/item/ammo_magazine/m762m,
+/obj/item/ammo_magazine/m762m,
+/obj/item/ammo_magazine/m762m,
+/obj/item/ammo_magazine/m762m,
+/obj/item/ammo_magazine/m762m,
+/obj/item/ammo_magazine/m762m/ap,
+/obj/item/ammo_magazine/m762m/ap,
+/obj/item/ammo_magazine/m762m/ap,
+/obj/item/ammo_magazine/m762m/ap,
+/obj/item/ammo_magazine/m762m,
+/obj/item/ammo_magazine/m762m,
+/obj/item/ammo_magazine/m762m,
+/obj/item/ammo_magazine/m762m,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/armoury_as)
 "Vx" = (
@@ -9942,7 +9924,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
-/turf/simulated/wall/plastihull,
+/turf/simulated/wall/shull,
 /area/ship/manta/radiator_star)
 "VL" = (
 /obj/structure/table/rack,
@@ -10080,7 +10062,7 @@
 /turf/simulated/floor/wood,
 /area/ship/manta/barracks)
 "WF" = (
-/turf/simulated/wall/rplastihull,
+/turf/simulated/wall/rshull,
 /area/ship/manta/dock_port)
 "WN" = (
 /obj/machinery/door/firedoor/multi_tile,
@@ -10240,7 +10222,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 10
 	},
-/turf/simulated/wall/plastihull,
+/turf/simulated/wall/shull,
 /area/ship/manta/dock_port)
 "Xx" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
@@ -10316,7 +10298,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/barracks)
 "XE" = (
-/turf/simulated/wall/rplastihull,
+/turf/simulated/wall/rshull,
 /area/ship/manta/engine)
 "XF" = (
 /obj/structure/cable/orange{
@@ -10669,7 +10651,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/teleporter)
 "Zr" = (
-/turf/simulated/wall/plastihull,
+/turf/simulated/wall/shull,
 /area/ship/manta/hallways_aft)
 "Zv" = (
 /obj/machinery/door/firedoor,
@@ -10688,7 +10670,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/ship/manta/holding)
 "Zy" = (
-/turf/simulated/wall/plastihull,
+/turf/simulated/wall/shull,
 /area/ship/manta/dock_port)
 "Zz" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/black{
@@ -10778,7 +10760,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/recreation)
 "ZQ" = (
-/turf/simulated/wall/rplastihull,
+/turf/simulated/wall/rshull,
 /area/ship/manta/bridge)
 "ZS" = (
 /obj/structure/catwalk,
@@ -10788,10 +10770,10 @@
 /turf/simulated/floor/plating,
 /area/ship/manta/radiator_port)
 "ZT" = (
-/turf/simulated/wall/rplastihull,
+/turf/simulated/wall/rshull,
 /area/ship/manta/armoury_st)
 "ZU" = (
-/turf/simulated/wall/plastihull,
+/turf/simulated/wall/shull,
 /area/ship/manta/atmos)
 "ZV" = (
 /obj/structure/table/woodentable,
@@ -16633,10 +16615,10 @@ yz
 yz
 yz
 yz
-bg
-bg
-bg
-bg
+yz
+yz
+yz
+yz
 yz
 yz
 yz
@@ -16910,10 +16892,6 @@ yz
 yz
 yz
 yz
-bg
-bg
-bg
-bg
 yz
 yz
 yz
@@ -16924,10 +16902,14 @@ yz
 yz
 yz
 yz
-bg
-bg
-bg
-bg
+yz
+yz
+yz
+yz
+yz
+yz
+yz
+yz
 yz
 yz
 yz
@@ -18560,7 +18542,7 @@ ZT
 ZT
 ZT
 ZT
-ZT
+tv
 ZT
 ZT
 ZT
@@ -19703,7 +19685,7 @@ bR
 HS
 DY
 RO
-fh
+Fd
 QU
 uc
 KJ
@@ -20824,7 +20806,7 @@ jE
 lZ
 pH
 pH
-ui
+pH
 pH
 AD
 En

@@ -28,3 +28,21 @@ var/const/access_pilot = 67
 	id = access_entertainment
 	desc = "Entertainment Backstage"
 	region = ACCESS_REGION_GENERAL
+
+/var/const/access_mime = 138
+/datum/access/mime
+	id = access_mime
+	desc = "Mime Office"
+	region = ACCESS_REGION_GENERAL
+
+/var/const/access_clown = 136
+/datum/access/clown
+	id = access_clown
+	desc = "Clown Office"
+	region = ACCESS_REGION_GENERAL
+
+/var/const/access_tomfoolery = 137
+/datum/access/tomfoolery
+	id = access_tomfoolery
+	desc = "Tomfoolery Closet"
+	region = ACCESS_REGION_GENERAL

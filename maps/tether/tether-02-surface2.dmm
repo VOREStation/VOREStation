@@ -34431,6 +34431,22 @@
 /obj/machinery/vending/snack,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
+"etU" = (
+/obj/machinery/door/airlock/maintenance_hatch{
+	req_one_access = list(746)
+	},
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/funny/hideyhole)
+"eKn" = (
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/funny/hideyhole)
+"frf" = (
+/obj/item/weapon/paper{
+	info = "I finally got them. The last pair of Shitty Tim's Shitty Timbs. I waited in line at the cargo shop for what seemed like hours. It probably was hours quite frankly. Well after I got my box, someone ran by and jacked my heels! Well I needed shoes so I snuck inside and stole what they had left. Just a pair of NT worshoes. But atleast I'm not walking away barefooted. If only I wasn't caught by a security. I feel like I've been in this hole for days. Good thing I managed to pilfer some provisions on the way here.";
+	name = "Pilferer's note"
+	},
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/funny/hideyhole)
 "fxr" = (
 /obj/machinery/light{
 	dir = 8
@@ -34442,6 +34458,23 @@
 /obj/structure/table/glass,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
+"gwn" = (
+/obj/item/trash/snack_bowl,
+/obj/item/trash/sosjerky,
+/obj/item/trash/sosjerky,
+/obj/item/trash/sosjerky,
+/obj/item/trash/unajerky,
+/obj/item/trash/waffles,
+/obj/structure/closet/crate/trashcart,
+/obj/item/trash/cheesie,
+/obj/item/trash/cheesie,
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/funny/hideyhole)
+"jCz" = (
+/turf/simulated/wall{
+	can_open = 1
+	},
+/area/tether/surfacebase/public_garden_two)
 "kPb" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -34513,6 +34546,10 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/surface_two_hall)
+"mCl" = (
+/obj/machinery/floodlight,
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/funny/hideyhole)
 "mUP" = (
 /obj/structure/bed/padded,
 /obj/effect/floor_decal/techfloor,
@@ -34539,6 +34576,13 @@
 /obj/item/weapon/deck/cah,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
+"olc" = (
+/obj/item/weapon/grenade/chem_grenade/cleaner{
+	pixel_x = -10
+	},
+/obj/item/weapon/grenade/anti_photon,
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/funny/hideyhole)
 "pah" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock{
@@ -34591,6 +34635,15 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
+"shd" = (
+/obj/item/weapon/storage/rollingpapers,
+/obj/item/clothing/mask/smokable/cigarette/joint,
+/obj/item/clothing/mask/smokable/cigarette/joint,
+/obj/item/clothing/mask/smokable/cigarette/cigar/cohiba,
+/obj/item/clothing/mask/smokable/cigarette/cigar/cohiba,
+/obj/item/weapon/flame/lighter/zippo/moff,
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/funny/hideyhole)
 "sVf" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -34652,6 +34705,13 @@
 "tPB" = (
 /turf/simulated/floor/grass,
 /area/chapel/main)
+"uay" = (
+/obj/item/clothing/shoes/syndigaloshes{
+	desc = "A pair of Nanotrasen Saf-T-Stride brown, nonslip, shoes.";
+	name = "NT nonslips"
+	},
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/funny/hideyhole)
 "unM" = (
 /obj/effect/floor_decal/corner/paleblue/diagonal,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -34659,6 +34719,13 @@
 /obj/structure/table/glass,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
+"uHy" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/obj/effect/decal/remains/human,
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/funny/hideyhole)
 "uKv" = (
 /obj/effect/floor_decal/corner/paleblue/diagonal,
 /obj/machinery/light{
@@ -39049,9 +39116,9 @@ adt
 adt
 adt
 adt
-adt
-adt
-adt
+frf
+shd
+uHy
 adt
 adt
 adt
@@ -39191,9 +39258,9 @@ adt
 adt
 adt
 adt
-adt
-adt
-adt
+olc
+eKn
+eKn
 adt
 adt
 adt
@@ -39329,12 +39396,12 @@ adt
 adt
 adt
 adt
-adt
-adt
-adt
-adt
-adt
-adt
+eKn
+eKn
+etU
+etU
+eKn
+uay
 adt
 adt
 adt
@@ -39470,13 +39537,13 @@ adt
 adt
 adt
 adt
+eKn
+eKn
 adt
 adt
 adt
-adt
-adt
-adt
-adt
+gwn
+mCl
 adt
 adt
 adt
@@ -39607,12 +39674,12 @@ apn
 anf
 aro
 asr
-akX
-akX
-adt
-adt
-adt
-adt
+jCz
+jCz
+eKn
+eKn
+eKn
+eKn
 adt
 adt
 adt

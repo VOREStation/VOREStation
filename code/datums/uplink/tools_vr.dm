@@ -41,6 +41,11 @@
 	item_cost = 10
 	path = /obj/item/clothing/suit/space/void/autolok
 
+/datum/uplink_item/item/tools/inflatable
+	name = "Inflatables"
+	item_cost = 10
+	path = /obj/item/weapon/storage/briefcase/inflatable
+
 /datum/uplink_item/item/tools/elitetablet
 	name = "Tablet (Advanced)"
 	item_cost = 15

@@ -41,7 +41,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 	. = ..()
 	ASSERT(!ishuman(src))
 	var/matrix/M = matrix()
-	M.Scale(size_multiplier)
+	M.Scale(size_multiplier * icon_scale_x, size_multiplier * icon_scale_y)
 	M.Translate(0, (vis_height/2)*(size_multiplier-1))
 	transform = M
 
@@ -70,7 +70,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 		var/change = new_size - size_multiplier
 		var/duration = (abs(change)+0.25) SECONDS
 		var/matrix/resize = matrix() // Defines the matrix to change the player's size
-		resize.Scale(new_size) //Change the size of the matrix
+		resize.Scale(new_size * icon_scale_x, new_size * icon_scale_y) //Change the size of the matrix
 		resize.Translate(0, (vis_height/2) * (new_size - 1)) //Move the player up in the tile so their feet align with the bottom
 		animate(src, transform = resize, time = duration) //Animate the player resizing
 
