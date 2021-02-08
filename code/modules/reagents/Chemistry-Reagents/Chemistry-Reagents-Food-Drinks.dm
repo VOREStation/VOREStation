@@ -433,7 +433,7 @@
 	color = "#c07c40"
 
 /datum/reagent/nutriment/soysauce
-	name = "Soysauce"
+	name = "Soy Sauce"
 	id = "soysauce"
 	description = "A salty sauce made from the soy plant."
 	taste_description = "umami"
@@ -450,6 +450,15 @@
 	reagent_state = LIQUID
 	nutriment_factor = 5
 	color = "#731008"
+
+/datum/reagent/nutriment/barbecue
+	name = "Barbeque Sauce"
+	id = "barbecue"
+	description = "Barbecue sauce for barbecues and long shifts."
+	taste_description = "barbeque"
+	reagent_state = LIQUID
+	nutriment_factor = 5
+	color = "#4F330F"
 
 /datum/reagent/nutriment/rice
 	name = "Rice"
@@ -1505,13 +1514,13 @@
 /datum/reagent/drink/soda/pineappleade
 	name = "Pineappleade"
 	id = "pineappleade"
-	description = "Spineapple, juiced up."
+	description = "Pineapple, juiced up."
 	taste_description = "sweet`n`sour pineapples"
 	color = "#FFFF00"
 	adj_temp = -5
 
 	glass_name = "pineappleade"
-	glass_desc = "Spineapple, juiced up."
+	glass_desc = "Pineapple, juiced up."
 	glass_special = list(DRINK_FIZZ)
 
 /datum/reagent/drink/soda/kiraspecial
