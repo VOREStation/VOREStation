@@ -958,8 +958,6 @@
 	icon_state = "hair_ziegler"
 	flags = HAIR_TIEABLE
 
-<<<<<<< HEAD
-=======
 /datum/sprite_accessory/hair/una_hood
 	name = "Cobra Hood"
 	icon = 'icons/mob/human_face_alt.dmi'
@@ -1283,7 +1281,6 @@ shaved
 	gender = NEUTER
 	color_blend_mode = ICON_MULTIPLY
 
->>>>>>> 1f610af... Alphabetized new hairstyles (#7819)
 /*
 ///////////////////////////////////
 /  =---------------------------=  /
