@@ -465,8 +465,6 @@
 		clear_alert("handcuffed")
 	update_action_buttons() //some of our action buttons might be unusable when we're handcuffed.
 	update_inv_handcuffed()
-<<<<<<< HEAD
-=======
 
 // Clears blood overlays
 /mob/living/carbon/clean_blood()
@@ -546,4 +544,3 @@
 		if(src.wear_mask)						//if the mob is not human, it cleans the mask without asking for bitflags
 			if(src.wear_mask.clean_blood())
 				src.update_inv_wear_mask(0)
->>>>>>> 4fe3275... Space cleaner cleans mobs (#7802)
