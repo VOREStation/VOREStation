@@ -1,3 +1,6 @@
+#define ORGANICS	1
+#define SYNTHETICS	2
+
 /datum/trait/speed_fast
 	name = "Haste"
 	desc = "Allows you to move faster on average than baseline."

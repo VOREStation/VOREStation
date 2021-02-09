@@ -922,6 +922,7 @@ var/list/name_to_material
 	sheet_singular_name = null
 	sheet_plural_name = "pile"
 	pass_stack_colors = TRUE
+	supply_conversion_value = 1
 
 /datum/material/wood/log/sif
 	name = MAT_SIFLOG
@@ -1007,6 +1008,20 @@ var/list/name_to_material
 	flags = MATERIAL_PADDING
 	conductive = 0
 	pass_stack_colors = TRUE
+	supply_conversion_value = 2
+
+/datum/material/cloth/syncloth
+	name = "syncloth"
+	stack_origin_tech = list(TECH_MATERIAL = 3, TECH_BIO = 2)
+	door_icon_base = "wood"
+	ignition_point = T0C+532
+	melting_point = T0C+600
+	integrity = 200
+	protectiveness = 15 // 4%
+	flags = MATERIAL_PADDING
+	conductive = 0
+	pass_stack_colors = TRUE
+	supply_conversion_value = 3
 
 /datum/material/cult
 	name = "cult"
@@ -1032,16 +1047,33 @@ var/list/name_to_material
 /datum/material/cult/reinf/place_dismantled_product(var/turf/target)
 	new /obj/effect/decal/remains/human(target)
 
+/datum/material/chitin
+	name = MAT_CHITIN
+	icon_colour = "#8d6653"
+	stack_type = /obj/item/stack/material/chitin
+	stack_origin_tech = list(TECH_MATERIAL = 3, TECH_BIO = 4)
+	icon_base = "solid"
+	icon_reinf = "reinf_mesh"
+	integrity = 60
+	ignition_point = T0C+400
+	melting_point = T0C+500
+	protectiveness = 25
+	conductive = 0
+	supply_conversion_value = 4
+
 //TODO PLACEHOLDERS:
 /datum/material/leather
-	name = "leather"
+	name = MAT_LEATHER
+	display_name = "plainleather"
 	icon_colour = "#5C4831"
-	stack_origin_tech = list(TECH_MATERIAL = 2)
+	stack_type = /obj/item/stack/material/leather
+	stack_origin_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2)
 	flags = MATERIAL_PADDING
 	ignition_point = T0C+300
 	melting_point = T0C+300
 	protectiveness = 3 // 13%
 	conductive = 0
+	supply_conversion_value = 3
 
 /datum/material/carpet
 	name = "carpet"

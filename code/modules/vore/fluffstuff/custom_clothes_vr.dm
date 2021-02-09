@@ -110,8 +110,8 @@
 
 //ketrai:Ketrai
 /obj/item/clothing/head/fluff/ketrai
-	name = "Pink Bear Hat"
-	desc = "A pink space bear hat, the origins are unknown"
+	name = "Bear Pelt"
+	desc = "A luxury space bear pelt, its origins unknown."
 
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "bearpelt"
@@ -934,6 +934,22 @@
 	item_state = "khi_uniform_sci"
 	worn_state = "khi_uniform_sci"
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 10, bio = 0, rad = 0)
+
+/obj/item/clothing/under/rank/khi/crg //Cargo version
+	name = "KHI cargo suit"
+	desc = "Kitsuhana Heavy Industries uniform. Looks like it's in supply and cargo division colors. Even post-scarcity societies need things moved and mined sometimes."
+	icon_state = "khi_uniform_crg_i"
+	item_state = "khi_uniform_crg"
+	worn_state = "khi_uniform_crg"
+	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
+
+/obj/item/clothing/under/rank/khi/civ //Science version
+	name = "KHI civilian suit"
+	desc = "Kitsuhana Heavy Industries uniform. Snazzy silver trim marks this is as the general civilian branch. Smells like paperwork and bureaucracy."
+	icon_state = "khi_uniform_civ_i"
+	item_state = "khi_uniform_civ"
+	worn_state = "khi_uniform_civ"
+	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 
 /obj/item/clothing/under/rank/khi/fluff/aronai //Aro fluff version
 	name = "KHI meditech suit"
@@ -2006,3 +2022,269 @@ Departamental Swimsuits, for general use
 /obj/item/clothing/head/that/fluff/gettler
 	name = "Charles' Top-Hat"
 	desc = "A special hat, removed from its owner."
+
+//Ryumi: Nikki Yumeno
+/obj/item/clothing/under/skirt/outfit/fluff/nikki
+	name = "dorky outfit"
+	desc = "A little witch costume that looks like it's been worn as ordinary clothes. Who in their right mind would...??"
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_onmob_vr.dmi'
+	icon_state = "nikki_outfit"
+	item_state = "nikki_outfit"
+	item_icons = list()
+	sensor_mode = 3 // I'm a dumbass and forget these all the time please understand :(
+
+/obj/item/clothing/under/skirt/outfit/fluff/nikki/mob_can_equip(var/mob/living/carbon/human/M, slot, disable_warning = 0)
+	if(..())
+		if (M.ckey == "ryumi")
+			return 1
+		else if (M.get_active_hand() == src)
+			to_chat(M, "<span class='warning'>What the heck? \The [src] doesn't fit!</span>")
+			return 0
+
+/obj/item/clothing/shoes/fluff/nikki
+	name = "non-magical boots"
+	desc = "Boots optimally built for a dork. They don't sparkle or anything, but you can imagine them doing that when you click the heels together."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_onmob_vr.dmi'
+	icon_state = "nikki_boots"
+	item_state = "nikki_boots"
+
+/obj/item/clothing/shoes/fluff/nikki/mob_can_equip(var/mob/living/carbon/human/M, slot, disable_warning = 0)
+	if(..())
+		if (M.ckey == "ryumi")
+			return 1
+		else if (M.get_active_hand() == src)
+			to_chat(M, "<span class='warning'>What the heck? \The [src] doesn't fit!</span>")
+			return 0
+
+/obj/item/clothing/suit/fluff/nikki //see /obj/item/weapon/rig/nikki
+	name = "cape"
+	desc = "Snazzy!"
+	flags = null
+	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0) // It's not armor, it's a dorky frickin cape
+	body_parts_covered = null // Cape ain't gonna cover a THING
+	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS // It will keep you toasty tho, it's more than big enough to help with that! Just wrap the thing around you when on the surface, idk
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_onmob_vr.dmi'
+	icon_state = "nikki"
+
+/obj/item/clothing/head/fluff/nikki
+	// I have never tryharded so much just to accomplish something so stupid as "Vore By Hat" in my entire life, and I apologize to each and every one of you.
+	name = "oversized witch hat"
+	desc = "A dork-shaped hat. Its long, pointed tip reaches far more than most hats had ought to, its wide brim complementing \
+	this with its tendency to droop at the ends under its own weight."
+	description_fluff = "Despite what Nikki Yumeno may believe, her hat is not in fact a magical artifact of teleportation magicks. \
+	It is however the result of clever utilization of bluespace technology combined with style. Like a classic magician's trick, \
+	the power of this hat lies in the hidden compartment hidden on the inside, into which a personal translocation device can be \
+	snapped inside. Once installed, bluespace electronics inside the hat sync with the translocator and utilize its teleportation \
+	technology to create a localized bluespace portal within the hole of the hat. This tiny portal will warp anything or anyone \
+	who makes physical contact with it to whatever beacon the translocator within is locked onto."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "nikki-hat"
+	item_state = "nikki-hat"
+	item_icons = list(
+		slot_l_hand_str = 'icons/vore/custom_clothes_left_hand_vr.dmi',
+		slot_r_hand_str = 'icons/vore/custom_clothes_right_hand_vr.dmi',
+		slot_head_str = 'icons/vore/custom_onmob_32x48_vr.dmi'
+		)
+	flags_inv = HIDEEARS
+	w_class = ITEMSIZE_LARGE // THIS HAT IS FUCKIN HUGE YO
+	var/owner = "ryumi"
+	var/obj/item/device/perfect_tele/translocator = null // The translocator installed inside, if there is one. Gotta go out and get it first!
+
+/obj/item/clothing/head/fluff/nikki/verb/verb_translocator_unequip()
+	set category = "Object"
+	set name = "Nikki's Hat - Unequip Translocator"
+	set src in usr
+	translocator_unequip(translocator, usr)
+
+/obj/item/clothing/head/fluff/nikki/proc/translocator_equip(var/obj/item/device/perfect_tele/T, var/mob/living/carbon/human/user)
+	if (do_after(user, 2 SECONDS, T))
+		user.unEquip(T)
+		translocator_unequip(translocator, user)
+		T.forceMove(src)
+		translocator = T
+		user.show_message("[bicon(src)]*click!*")
+		playsound(src, 'sound/machines/click.ogg', 30, 1)
+
+/obj/item/clothing/head/fluff/nikki/proc/translocator_unequip(var/obj/item/device/perfect_tele/T, var/mob/living/carbon/human/user)
+	if (translocator)
+		if (user)
+			user.put_in_hands(T)
+			user.show_message("[bicon(src)]*click!*")
+		else
+			translocator.forceMove(get_turf(src))
+		translocator = null
+		playsound(src, 'sound/machines/click.ogg', 30, 1)
+
+/obj/item/clothing/head/fluff/nikki/proc/teleport_fail(mob/user, mob/target)
+	if (target != user)
+		user.visible_message("<span class='notice'>[user] harmlessly bops [target] with \the [src].</span>", \
+		"<span class='notice'>\The [src] harmlessly bops [target]. The hat seems... unwilling?</span>")
+	else
+		user.visible_message("<span class='notice'>\The [src] flops over [user]'s' head for a moment, but they seem alright.</span>", \
+		"<span class='notice'>\The [src] flops over your head for a moment, but you correct it without issue. There we go!</span>")
+
+/obj/item/clothing/head/fluff/nikki/proc/hat_warp_checks(var/mob/living/target, mob/user, proximity_flag)
+	if (!proximity_flag)
+		return 0
+
+	if (!translocator)
+		to_chat(user, "<span class='warning'>\The [src] doesn't have a translocator inside it yet, you goof!</span>")
+		return 0
+
+	if (target.ckey == owner && target != user) // ur not getting me that easy sonny jim......
+		to_chat(user, "<span class='warning'>You think to turn \the [src] on its creator?! <b>FOOOOOOOOL.</b></span>")
+		to_chat(user, "<span class='notice'>From seemingly nowhere you hear echoing, derisive laughter, accompanied by a stock laugh track and... Are those bike horns?</span>")
+		return 0
+
+	if (!istype(target))
+		to_chat(user, "<span class='warning'>\The [src] isn't a valid target!</span>")
+		return 0
+
+	// Because other mobs (i.e. monkeys) apparently have dropnom prey set to 0, we check SPECIFICALLY for humans' dropnom setting.
+	if (target.type == /mob/living/carbon/human && !target.can_be_drop_prey)
+		teleport_fail(user, target)
+		return 0
+
+	if (!translocator.teleport_checks(target, user))
+		return 0
+
+	else return 1
+
+/obj/item/clothing/head/fluff/nikki/attackby(obj/item/weapon/I as obj, mob/user as mob)
+	if (istype(I, /obj/item/device/perfect_tele) && user.get_inactive_hand() == src)
+		if (translocator)
+			visible_message("<span class='notice'>[user] starts to pull \a [translocator] out of \the [src] to swap it out with \the [I]...</span>", \
+			"<span class='notice'>You start pulling \the [translocator] pops out of its compartment with a soft 'click' as you replace it with \the [I]....</span>")
+		else
+			visible_message("<span class='notice'>[user] begins slipping \the [I] into \the [src]...</span>", \
+			"<span class='notice'>You begin to snap \the [I] into a small, hidden compartment inside \the [src]...</span>")
+		// This works for both adding and replacing a translocator
+		translocator_equip(I, user)
+		return
+	else if (translocator)
+		translocator.attackby(I, user)
+		return
+	..()
+
+/obj/item/clothing/head/fluff/nikki/get_description_interaction()
+	. = ..()
+	if (translocator)
+		. += "It has \a [translocator] inside of it. Alt-click while holding it on your inactive hand to remove it."
+		. += "Otherwise, this hat functions exactly as the translocator it has inside while still being a sweet head accessory."
+	else
+		. += "A translocator can be placed inside of it! While holding the hat in your inactive hand, use a translocator on it to slip it inside."
+		. += "After doing this, it will function as both a head accessory and teleportation device."
+
+
+/obj/item/clothing/head/fluff/nikki/attack_hand(mob/user)
+	if (translocator && (user.get_inactive_hand() == src))
+		translocator.unload_ammo(user, ignore_inactive_hand_check = 1)
+		return
+	..()
+
+/obj/item/clothing/head/fluff/nikki/AltClick(mob/user)
+	if (translocator && (user.get_inactive_hand() == src))
+		translocator_unequip(translocator, user)
+
+/obj/item/clothing/head/fluff/nikki/attack_self(mob/user)
+	..()
+	if (translocator)
+		translocator.attack_self(user, user)
+		return
+	else
+		to_chat(user, "<span_class='warning'>\The [src] doesn't have a translocator inside it right now.</span>")
+		return
+
+/obj/item/clothing/head/fluff/nikki/examine(mob/user) // If it has a translocator installed, make it very obvious to viewers that something WEIRD is going on with this hat.
+	. = ..()
+	if (translocator)
+		. += "Weird... <span class='danger'>You can't see the bottom of the hole inside the hat...</span>"
+
+/obj/item/clothing/head/fluff/nikki/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
+	if (slot == slot_head && translocator && user.ckey != owner) // This way we don't unnecessarily spam the chat with hat/translocator errors
+		// hey, are we actually able to teleport this poor person?
+		if (hat_warp_checks(user, user, proximity_flag = 1))
+			// YOU FOOL! YOU HAVE ACTIVATED MY STAND, 「ＶＯＲＥ　ＢＹ　ＨＡＴ」！
+			src.visible_message("<span class='danger'>\The [src] falls over [user]'s head... and somehow falls over the rest of their body, causing them to vanish inside. Where did they go?!</span>", \
+			"<span class='danger'>The hat falls over your head as you put it on, enveloping you in a bright green light! <b>Uh oh.</b></span>")
+			var/uh_oh = pick(translocator.beacons)
+			user.remove_from_mob(src, get_turf(user))
+			translocator.destination = translocator.beacons[uh_oh]
+			translocator.afterattack(user, user, proximity = 1, ignore_fail_chance = 1)
+			add_attack_logs(user, user, "Tried to put on \the [src] and was involuntarily teleported by it (via \the [translocator] within)!")
+			return
+
+/obj/item/clothing/head/fluff/nikki/afterattack(var/mob/living/target, mob/user, proximity_flag, click_parameters)
+	// If the hat is willing to cooperate with the holder...
+	if (hat_warp_checks(target, user, proximity_flag))
+		// Silly fluffed up styles of teleporting people based on user intent.
+		switch (user.a_intent)
+			if (I_HELP)
+				user.visible_message("<span class='notice'>[user] guides \the [target] to the bottomless hole within \the [src]. They begin to climb inside...</span>")
+				if (do_after(user, 5 SECONDS, target))
+					translocator.afterattack(target, user, proximity_flag)
+			if (I_DISARM)
+				user.visible_message("<span class='danger'>[user] plops \the [src] onto \the [target]'s head!</span>")
+				translocator.afterattack(target, user, proximity_flag)
+			if (I_GRAB)
+				user.visible_message("<span class='danger'>[user] begins stuffing [target] into \the [src]!</span>")
+				if (do_after(user, 5 SECONDS, target))
+					translocator.afterattack(target, user, proximity_flag)
+			if (I_HURT)
+				user.visible_message("<span class='danger'>[user] swipes \the [src] over \the [target]!</span>")
+				translocator.afterattack(target, user, proximity_flag)
+
+		add_attack_logs(user, target, "Teleported [target] with via \the [src]'s [translocator]!")
+	else ..()
+
+//Vitoras: Verie
+/obj/item/clothing/suit/storage/hooded/fluff/verie
+	name = "distressingly cyan hoodie"
+	desc = "A cute, brightly colored hoodie perfect for occasional concealment of a verie silly nerd. A little tag inside \
+	the collar bears only the letters \"VW.\""
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "verie_hoodie"
+
+	icon_override = 'icons/vore/custom_onmob_vr.dmi'
+	item_state = "verie_hoodie"
+
+	hoodtype = /obj/item/clothing/head/hood/winter/fluff/verie
+
+	var/owner = "vitoras"
+
+/obj/item/clothing/suit/storage/hooded/fluff/verie/ToggleHood()
+	// If you ain't the robutt, you probably don't have the hair style that the hooded icon states are made for. sorry!
+	var/mob/living/carbon/human/H = src.loc
+	if (H.ckey != owner)
+		to_chat(H, "Strange... the hood doesn't go over your head no matter how you try to put it up.")
+		return
+	..()
+
+/obj/item/clothing/head/hood/winter/fluff/verie
+	body_parts_covered = null // This way, Verie's hair can show through the hood!
+	name = "not-so-cyan hood"
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "verie_hood"
+
+	icon_override = 'icons/vore/custom_onmob_vr.dmi'
+	item_state = "verie_hood"
+
+/obj/item/clothing/under/fluff/verie
+	name = "salaciously stylised suit"
+	desc = "It's kind of difficult to identify the type of material that makes up this form-fitting suit. It is stretchy and flexible, but \
+	is firm in its toughness, and clings tightly to the skin. Come to think of it, it glistens quite a bit in the light and- \
+	oh god it's latex.\
+	\n... A <b>Verie</b> appropriate material choice indeed." //the wordplay never ends
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "veriesuit"
+
+	icon_override = 'icons/vore/custom_onmob_vr.dmi'
+	item_state = "veriesuit"
+
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|FEET|ARMS|HANDS
+
+

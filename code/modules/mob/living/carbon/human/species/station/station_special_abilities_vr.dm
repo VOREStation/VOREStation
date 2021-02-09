@@ -566,7 +566,7 @@
 		return
 
 	var/mob/living/carbon/human/T = G.affecting // I must say, this is a quite ingenious way of doing it. Props to the original coders.
-	if(!istype(T) || T.isSynthetic())
+	if(!istype(T))
 		to_chat(src, "<span class='warning'>\The [T] is not able to be fed.</span>")
 		return
 

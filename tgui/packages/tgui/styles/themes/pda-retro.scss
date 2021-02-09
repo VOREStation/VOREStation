@@ -34,6 +34,12 @@
     'color-background': rgba(0, 0, 0, 0.1),
   ));
 
+  // Interfaces
+  @include meta.load-css('../interfaces/TinderMessaging.scss', $with: (
+    'color-sent': #9faa91,
+    'color-received': #b8b37b,
+  ));
+
   // Layouts
   @include meta.load-css('../layouts/Layout.scss');
   @include meta.load-css('../layouts/Window.scss');

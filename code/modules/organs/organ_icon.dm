@@ -58,8 +58,10 @@ var/global/list/limb_icon_cache = list()
 	cut_overlays()
 
 	//Every 'addon' below requires information from species
-	if(!owner || !owner.species)
+	if(!iscarbon(owner) || !owner.species)
 		return
+
+	var/icon/eyecon //VOREStation Edit -- holds eye icon to render over markings later.
 
 	//Eye color/icon
 	var/should_have_eyes = owner.should_have_organ(O_EYES)
@@ -79,8 +81,14 @@ var/global/list/limb_icon_cache = list()
 		//We have weird other-sorts of eyes (as we're not supposed to have eye organ, but we have HAS_EYE_COLOR species)
 		else
 			eyes_icon.Blend(rgb(owner.r_eyes, owner.g_eyes, owner.b_eyes), ICON_ADD)
-		add_overlay(eyes_icon)
-		mob_icon.Blend(eyes_icon, ICON_OVERLAY)
+
+		//VOREStation edit -- allow rendering of eyes over markings.
+		if(eyes_over_markings)
+			eyecon = eyes_icon
+		else
+			add_overlay(eyes_icon)
+			mob_icon.Blend(eyes_icon, ICON_OVERLAY)
+			icon_cache_key += "[eye_icon]"
 
 	//Lip color/icon
 	if(owner.lip_style && (species && (species.appearance_flags & HAS_LIPS)))
@@ -96,6 +104,11 @@ var/global/list/limb_icon_cache = list()
 		add_overlay(mark_s) //So when it's not on your body, it has icons
 		mob_icon.Blend(mark_s, ICON_OVERLAY) //So when it's on your body, it has icons
 		icon_cache_key += "[M][markings[M]["color"]]"
+
+	if(eyes_over_markings && eyecon) //VOREStation edit -- toggle to render eyes above markings.
+		add_overlay(eyecon)
+		mob_icon.Blend(eyecon, ICON_OVERLAY)
+		icon_cache_key += "[eye_icon]"
 
 	add_overlay(get_hair_icon())
 
@@ -135,7 +148,10 @@ var/global/list/limb_icon_cache = list()
 	if(owner && owner.gender == FEMALE)
 		gender = "f"
 
-	icon_cache_key = "[icon_name]_[species ? species.get_bodytype() : SPECIES_HUMAN]" //VOREStation Edit
+	if(!force_icon_key)
+		icon_cache_key = "[icon_name]_[species ? species.get_bodytype() : SPECIES_HUMAN]" //VOREStation Edit
+	else
+		icon_cache_key = "[icon_name]_[force_icon_key]"
 
 	if(force_icon)
 		mob_icon = new /icon(force_icon, "[icon_name][gendered_icon ? "_[gender]" : ""]")

@@ -2589,9 +2589,6 @@
 	dir = 4
 	},
 /obj/structure/table/bench/steel,
-/obj/effect/landmark{
-	name = "Commando"
-	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/security)
 "fk" = (
@@ -2599,9 +2596,6 @@
 	dir = 8
 	},
 /obj/structure/table/bench/steel,
-/obj/effect/landmark{
-	name = "Commando"
-	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/security)
 "fl" = (
@@ -2767,9 +2761,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/effect/landmark{
-	name = "Commando"
-	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/security)
 "fF" = (
@@ -2779,9 +2770,6 @@
 /obj/structure/table/bench/steel,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
-	},
-/obj/effect/landmark{
-	name = "Commando"
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/security)
@@ -2988,9 +2976,6 @@
 /area/mothership/security)
 "fZ" = (
 /obj/structure/table/bench/steel,
-/obj/effect/landmark{
-	name = "Commando"
-	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/security)
 "ga" = (
@@ -3198,18 +3183,6 @@
 "gz" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
-	},
-/obj/effect/landmark{
-	name = "Commando"
-	},
-/turf/simulated/floor/tiled/steel_grid,
-/area/mothership/security)
-"gA" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/effect/landmark{
-	name = "Commando"
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/security)
@@ -8925,7 +8898,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/black{
 	dir = 4
 	},
-/obj/machinery/portable_atmospherics/canister/empty/sleeping_agent,
+/obj/machinery/portable_atmospherics/canister/empty/nitrous_oxide,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/engineering)
 "sj" = (
@@ -21633,7 +21606,7 @@ fh
 fD
 fX
 gn
-gA
+gB
 fY
 hi
 TE

@@ -1,23 +1,23 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /turf/template_noop,
-/area/tether_away/debrisfield/explored)
+/area/space)
 "b" = (
 /turf/simulated/mineral/vacuum,
-/area/tether_away/debrisfield/explored)
+/area/submap/debrisfield/foodstand)
 "c" = (
 /turf/simulated/mineral/floor/vacuum,
-/area/tether_away/debrisfield/explored)
+/area/submap/debrisfield/foodstand)
 "d" = (
 /turf/simulated/wall/wood,
-/area/tether_away/debrisfield/explored)
+/area/submap/debrisfield/foodstand)
 "e" = (
 /obj/structure/closet/secure_closet/freezer/meat,
 /obj/item/weapon/reagent_containers/food/snacks/carpmeat,
 /obj/item/weapon/reagent_containers/food/snacks/carpmeat,
 /obj/item/weapon/reagent_containers/food/snacks/carpmeat,
 /turf/simulated/floor/wood,
-/area/tether_away/debrisfield/explored)
+/area/submap/debrisfield/foodstand)
 "f" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/reagent_containers/food/condiment/coldsauce,
@@ -25,19 +25,19 @@
 /obj/item/weapon/reagent_containers/food/condiment/hotsauce,
 /obj/item/weapon/reagent_containers/food/condiment/soysauce,
 /turf/simulated/floor/wood,
-/area/tether_away/debrisfield/explored)
+/area/submap/debrisfield/foodstand)
 "g" = (
 /obj/structure/table/woodentable,
 /obj/machinery/microwave,
 /turf/simulated/floor/wood,
-/area/tether_away/debrisfield/explored)
+/area/submap/debrisfield/foodstand)
 "h" = (
 /obj/structure/simple_door/wood,
 /turf/simulated/floor/wood,
-/area/tether_away/debrisfield/explored)
+/area/submap/debrisfield/foodstand)
 "i" = (
 /turf/simulated/floor/wood,
-/area/tether_away/debrisfield/explored)
+/area/submap/debrisfield/foodstand)
 "j" = (
 /obj/structure/closet/crate/freezer,
 /obj/item/weapon/reagent_containers/food/snacks/taco,
@@ -48,23 +48,23 @@
 /obj/item/weapon/reagent_containers/food/snacks/cheeseburrito,
 /obj/item/weapon/reagent_containers/food/snacks/cheeseburrito,
 /turf/simulated/floor/wood,
-/area/tether_away/debrisfield/explored)
+/area/submap/debrisfield/foodstand)
 "k" = (
-/obj/structure/table/woodentable,
-/turf/simulated/floor/wood,
-/area/tether_away/debrisfield/explored)
-"l" = (
-/obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/snacks/taco,
-/turf/simulated/floor/wood,
-/area/tether_away/debrisfield/explored)
-"m" = (
 /obj/structure/table/woodentable,
 /obj/machinery/cash_register{
 	dir = 1
 	},
 /turf/simulated/floor/wood,
-/area/tether_away/debrisfield/explored)
+/area/submap/debrisfield/foodstand)
+"l" = (
+/obj/structure/table/woodentable,
+/obj/item/weapon/reagent_containers/food/snacks/taco,
+/turf/simulated/floor/wood,
+/area/submap/debrisfield/foodstand)
+"m" = (
+/obj/structure/table/woodentable,
+/turf/simulated/floor/wood,
+/area/submap/debrisfield/foodstand)
 
 (1,1,1) = {"
 a
@@ -121,7 +121,7 @@ a
 (5,1,1) = {"
 b
 b
-b
+c
 c
 d
 d
@@ -133,20 +133,20 @@ a
 "}
 (6,1,1) = {"
 b
-b
+c
 c
 c
 d
 e
 i
-m
+k
 c
 c
 c
 "}
 (7,1,1) = {"
-a
 b
+c
 c
 c
 d
@@ -165,7 +165,7 @@ c
 d
 g
 j
-k
+m
 c
 c
 c

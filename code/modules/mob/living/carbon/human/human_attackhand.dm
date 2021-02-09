@@ -1,3 +1,6 @@
+/mob/living/carbon/human
+	var/datum/unarmed_attack/default_attack
+
 /mob/living/carbon/human/proc/get_unarmed_attack(var/mob/living/carbon/human/target, var/hit_zone)
 	// VOREStation Edit - Begin
 	if(nif && nif.flag_check(NIF_C_HARDCLAWS,NIF_FLAGS_COMBAT)){return unarmed_hardclaws}
@@ -16,6 +19,12 @@
 				if(soft_type)
 					return soft_type
 			return G.special_attack
+	if(src.default_attack && src.default_attack.is_usable(src, target, hit_zone))
+		if(pulling_punches)
+			var/datum/unarmed_attack/soft_type = src.default_attack.get_sparring_variant()
+			if(soft_type)
+				return soft_type
+		return src.default_attack
 	for(var/datum/unarmed_attack/u_attack in species.unarmed_attacks)
 		if(u_attack.is_usable(src, target, hit_zone))
 			if(pulling_punches)
@@ -434,3 +443,37 @@
 			user.visible_message("\The [user] stops applying pressure to [src]'s [organ.name]!", "You stop applying pressure to [src]'s [organ.name]!")
 
 	return TRUE
+
+/mob/living/carbon/human/verb/check_attacks()
+	set name = "Check Attacks"
+	set category = "IC"
+	set src = usr
+
+	var/dat = "<b><font size = 5>Known Attacks</font></b><br/><br/>"
+
+	if(default_attack)
+		dat += "Current default attack: [default_attack.attack_name] - <a href='byond://?src=\ref[src];default_attk=reset_attk'>reset</a><br/><br/>"
+
+	for(var/datum/unarmed_attack/u_attack in species.unarmed_attacks)
+		if(u_attack == default_attack)
+			dat += "<b>Primarily [u_attack.attack_name]</b> - default - <a href='byond://?src=\ref[src];default_attk=reset_attk'>reset</a><br/><br/><br/>"
+		else
+			dat += "<b>Primarily [u_attack.attack_name]</b> - <a href='byond://?src=\ref[src];default_attk=\ref[u_attack]'>set default</a><br/><br/><br/>"
+
+	src << browse(dat, "window=checkattack")
+
+/mob/living/carbon/human/Topic(href, href_list)
+	if(href_list["default_attk"])
+		if(href_list["default_attk"] == "reset_attk")
+			set_default_attack(null)
+		else
+			var/datum/unarmed_attack/u_attack = locate(href_list["default_attk"])
+			if(u_attack && (u_attack in species.unarmed_attacks))
+				set_default_attack(u_attack)
+		check_attacks()
+		return 1
+	else
+		return ..()
+
+/mob/living/carbon/human/proc/set_default_attack(var/datum/unarmed_attack/u_attack)
+	default_attack = u_attack

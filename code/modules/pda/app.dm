@@ -41,14 +41,14 @@
 		pda.play_ringtone()
 
 	if(blink && !(src in pda.notifying_programs))
-		pda.overlays += image('icons/obj/pda.dmi', "pda-r")
+		pda.overlays += image(icon, "pda-r")
 		pda.notifying_programs |= src
 
 /datum/data/pda/proc/unnotify()
 	if(src in pda.notifying_programs)
 		pda.notifying_programs -= src
 		if(!pda.notifying_programs.len)
-			pda.overlays -= image('icons/obj/pda.dmi', "pda-r")
+			pda.overlays -= image(icon, "pda-r")
 
 // An app has a button on the home screen and its own UI
 /datum/data/pda/app

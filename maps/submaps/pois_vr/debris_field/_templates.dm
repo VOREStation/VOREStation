@@ -18,6 +18,41 @@
 	mappath = 'asteroids3.dmm'
 	cost = 2
 
+/datum/map_template/debrisfield/asteroids4
+	name = "Asteroids 4"
+	mappath = 'asteroids4.dmm'
+	cost = 2
+
+/datum/map_template/debrisfield/asteroids5
+	name = "Asteroids 5"
+	mappath = 'asteroids5.dmm'
+	cost = 2
+
+/datum/map_template/debrisfield/asteroids6
+	name = "Asteroids 6"
+	mappath = 'asteroids6.dmm'
+	cost = 2
+
+/datum/map_template/debrisfield/asteroids7
+	name = "Asteroids 7"
+	mappath = 'asteroids7.dmm'
+	cost = 2
+
+/datum/map_template/debrisfield/asteroids8
+	name = "Asteroids 8"
+	mappath = 'asteroids8.dmm'
+	cost = 2
+
+/datum/map_template/debrisfield/asteroids9
+	name = "Asteroids 9"
+	mappath = 'asteroids9.dmm'
+	cost = 2
+
+/datum/map_template/debrisfield/asteroids10
+	name = "Asteroids 10"
+	mappath = 'asteroids10.dmm'
+	cost = 2
+
 /datum/map_template/debrisfield/carp_asteroids1
 	name = "Carp Asteroids 1"
 	mappath = 'carp_asteroids1.dmm'
@@ -36,6 +71,21 @@
 /datum/map_template/debrisfield/carp_asteroids4
 	name = "Carp Asteroids 4"
 	mappath = 'carp_asteroids4.dmm'
+	cost = 5
+
+/datum/map_template/debrisfield/carp_asteroids5
+	name = "Carp Asteroids 5"
+	mappath = 'carp_asteroids5.dmm'
+	cost = 5
+
+/datum/map_template/debrisfield/carp_asteroids6
+	name = "Carp Asteroids 6"
+	mappath = 'carp_asteroids6.dmm'
+	cost = 5
+
+/datum/map_template/debrisfield/carp_asteroids7
+	name = "Carp Asteroids 7"
+	mappath = 'carp_asteroids7.dmm'
 	cost = 5
 
 /datum/map_template/debrisfield/foodstand
@@ -74,6 +124,76 @@
 	mappath = 'debris6.dmm'
 	cost = 2
 
+/datum/map_template/debrisfield/debris7
+	name = "Debris 7"
+	mappath = 'debris7.dmm'
+	cost = 2
+
+/datum/map_template/debrisfield/debris8
+	name = "Debris 8"
+	mappath = 'debris8.dmm'
+	cost = 2
+
+/datum/map_template/debrisfield/debris9
+	name = "Debris 9"
+	mappath = 'debris9.dmm'
+	cost = 2
+
+/datum/map_template/debrisfield/debris10
+	name = "Debris 10"
+	mappath = 'debris10.dmm'
+	cost = 2
+
+/datum/map_template/debrisfield/debris11
+	name = "Debris 11"
+	mappath = 'debris11.dmm'
+	cost = 2
+
+/datum/map_template/debrisfield/debris12
+	name = "Debris 12"
+	mappath = 'debris12.dmm'
+	cost = 2
+
+/datum/map_template/debrisfield/debris13
+	name = "Debris 13"
+	mappath = 'debris13.dmm'
+	cost = 2
+
+/datum/map_template/debrisfield/debris14
+	name = "Debris 14"
+	mappath = 'debris14.dmm'
+	cost = 2
+
+/datum/map_template/debrisfield/escape_pod
+	name = "Ancient Escape Pod"
+	mappath = 'escape_pod.dmm'
+	cost = 5
+	allow_duplicates = FALSE
+
+/datum/map_template/debrisfield/old_satellite
+	name = "Old Satellite"
+	mappath = 'old_satellite.dmm'
+	cost = 10
+	allow_duplicates = FALSE
+
+/datum/map_template/debrisfield/old_teleporter
+	name = "Old Teleporter"
+	mappath = 'old_teleporter.dmm'
+	cost = 10
+	allow_duplicates = FALSE
+
+/datum/map_template/debrisfield/old_mining_outpost
+	name = "Old Drone Mining Outpost"
+	mappath = 'mining_drones.dmm'
+	cost = 20
+	allow_duplicates = FALSE
+
+/datum/map_template/debrisfield/ship_mining_drone
+	name = "Disabled Mining Drone Ship"
+	mappath = 'ship_mining_drone.dmm'
+	cost = 35
+	allow_duplicates = FALSE
+
 /datum/map_template/debrisfield/ship_sup_exploded
 	name = "Exploded Cargo Ship"
 	mappath = 'ship_sup_exploded.dmm'
@@ -98,6 +218,12 @@
 	cost = 30
 	allow_duplicates = FALSE
 
+/datum/map_template/debrisfield/tinycarrier
+	name = "Disabled Tiny Carrier"
+	mappath = 'tinycarrier.dmm'
+	cost = 30
+	allow_duplicates = FALSE
+
 /datum/map_template/debrisfield/alien_massive_derelict
 	name = "Alien Derelict"
 	mappath = 'derelict.dmm'
@@ -105,12 +231,47 @@
 	allow_duplicates = FALSE
 	discard_prob = 50
 
+/datum/map_template/debrisfield/new_escape_pod
+	name = "Escape Pod"
+	mappath = 'new_escapepod.dmm'
+	cost = 10
+	allow_duplicates = FALSE
+	discard_prob = 10
+	
+/datum/map_template/debrisfield/new_escape_pod_infested_xeno
+	name = "Xeno-Infested Escape Pod"
+	mappath = 'new_escapepod_xeno.dmm'
+	cost = 20
+	allow_duplicates = FALSE
+	discard_prob = 25
+	
+/datum/map_template/debrisfield/new_escape_pod_infested_carp
+	name = "Carp-Infested Escape Pod"
+	mappath = 'new_escapepod_carp.dmm'
+	cost = 20
+	allow_duplicates = FALSE
+	discard_prob = 25
+
+/datum/map_template/debrisfield/new_escape_pod_infested_robo
+	name = "Robo-Infested Escape Pod"
+	mappath = 'new_escapepod_robo.dmm'
+	cost = 20
+	allow_duplicates = FALSE
+	discard_prob = 25
+
 /datum/map_template/debrisfield/gutted_mackerel
 	name = "Gutted Mackerel LC"
 	mappath = 'maps/offmap_vr/om_ships/mackerel_lc_wreck.dmm'
 	cost = 35
 	allow_duplicates = FALSE
 	discard_prob = 25
+
+/datum/map_template/debrisfield/gutted_mackerel
+	name = "Wrecked Salamander"
+	mappath = 'maps/offmap_vr/om_ships/salamander_wreck.dmm'
+	cost = 35
+	allow_duplicates = FALSE
+	discard_prob = 34
 
 /datum/map_template/debrisfield/ruined_gecko
 	name = "Ruined Gecko CR"

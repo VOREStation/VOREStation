@@ -627,10 +627,58 @@ Uniforms and such
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 
 /obj/item/clothing/under/sundress_white
-	name = "white sundress"
+	name = "flowery white sundress"
 	desc = "A white sundress decorated with purple lilies."
 	icon_state = "sundress_white"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+
+/obj/item/clothing/under/dress/sundress_pink
+	name = "pink stripied sundress"
+	desc = "A cute pink sundress."
+	icon_state = "pinksun"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	index = 1
+
+/obj/item/clothing/under/dress/sundress_white
+	name = "white sundress"
+	desc = "A white sundress, it's short."
+	icon_state = "whitesun"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	index = 1
+
+/obj/item/clothing/under/dress/sundress_pinkbow
+	name = "bowed pink sundress"
+	desc = "A cute pink sundress with a bow."
+	icon_state = "bowsun"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	index = 1
+
+/obj/item/clothing/under/dress/sundress_blue
+	name = "long blue sundress"
+	desc = "A long blue sun dress with white frills towards the bottom."
+	icon_state = "bluesun"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
+	index = 1
+
+/obj/item/clothing/under/dress/sundress_pinkshort
+	name = "short pink sundress"
+	desc = "A very short pink sundress, it's more like a chemise."
+	icon_state = "shortpink"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	index = 1
+
+/obj/item/clothing/under/dress/twopiece
+	name = "two-piece dress"
+	desc = "A fancy two-piece dress, the pieces are sewn together."
+	icon_state = "twopiece"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	index = 1
+
+/obj/item/clothing/under/dress/gothic2
+	name = "lacey gothic dress"
+	desc = "An elegant gothic dress with lace decorations."
+	icon_state = "gothic2"
+	index = 1
 
 /obj/item/clothing/under/captainformal
 	name = "site manager's formal uniform"

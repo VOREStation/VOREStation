@@ -59,6 +59,8 @@
 	siemens_coefficient =   1.5 //Very bad zappy times
 	rarity_value =          5
 
+	genders = list(MALE, FEMALE, PLURAL, NEUTER)
+
 	has_organ = list(
 		O_BRAIN = /obj/item/organ/internal/mmi_holder/posibrain/nano,
 		O_ORCH = /obj/item/organ/internal/nano/orchestrator,
@@ -96,8 +98,7 @@
 		/mob/living/carbon/human/proc/shapeshifter_select_gender,
 		/mob/living/carbon/human/proc/shapeshifter_select_wings,
 		/mob/living/carbon/human/proc/shapeshifter_select_tail,
-		/mob/living/carbon/human/proc/shapeshifter_select_ears,
-		/mob/living/proc/eat_trash
+		/mob/living/carbon/human/proc/shapeshifter_select_ears
 		)
 
 	var/global/list/abilities = list()
@@ -169,7 +170,7 @@
 		H.forceMove(H.temporary_form.drop_location())
 		H.ckey = H.temporary_form.ckey
 		QDEL_NULL(H.temporary_form)
-	
+
 	to_chat(H, "<span class='warning'>You died as a Protean. Please sit out of the round for at least 60 minutes before respawning, to represent the time it would take to ship a new-you to the station.</span>")
 
 	for(var/obj/item/organ/I in H.internal_organs)
@@ -312,7 +313,7 @@
 	material_name = MAT_STEEL
 
 /datum/modifier/protean/steel/tick()
-	holder.adjustBruteLoss(-10,include_robo = TRUE) //Looks high, but these ARE modified by species resistances, so this is really 20% of this
+	holder.adjustBruteLoss(-2,include_robo = TRUE) //Looks high, but these ARE modified by species resistances, so this is really 20% of this
 	holder.adjustFireLoss(-1,include_robo = TRUE) //And this is really double this
 	var/mob/living/carbon/human/H = holder
 	for(var/organ in H.internal_organs)
