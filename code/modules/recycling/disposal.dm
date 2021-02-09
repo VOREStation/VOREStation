@@ -260,33 +260,19 @@
 
 /obj/machinery/disposal/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
-<<<<<<< HEAD
-		return TRUE
-	
-	if(usr.loc == src && !issilicon(usr))
-=======
 		return
 
 	if(usr.loc == src)
->>>>>>> 119bd1f... Wall Disposals (#7816)
 		to_chat(usr, "<span class='warning'>You cannot reach the controls from inside.</span>")
 		return TRUE
 
 	if(mode==-1 && action != "eject") // If the mode is -1, only allow ejection
 		to_chat(usr, "<span class='warning'>The disposal units power is disabled.</span>")
-<<<<<<< HEAD
-		return TRUE 
-	
-	if(stat & BROKEN)
-		return TRUE
-	
-=======
 		return
 
 	if(stat & BROKEN)
 		return
 
->>>>>>> 119bd1f... Wall Disposals (#7816)
 	add_fingerprint(usr)
 
 	if(flushing)
@@ -307,15 +293,9 @@
 			flush = 0
 			update()
 
-<<<<<<< HEAD
 		if(action == "eject")
 			eject()
-	
-=======
-			if(action == "eject")
-				eject()
 
->>>>>>> 119bd1f... Wall Disposals (#7816)
 	return TRUE
 
 
