@@ -50,18 +50,16 @@
 			src.attach_accessory(null, tie)
 	set_clothing_index()
 
-<<<<<<< HEAD
 	//VOREStation edit start
 	if(polychromic)
 		verbs |= /obj/item/clothing/proc/change_color
 	//VOREStation edit start
-=======
+
 /obj/item/clothing/update_icon()
 	overlays.Cut() //This removes all the overlays on the sprite and then goes down a checklist adding them as required.
 	if(blood_DNA)
 		add_blood()
 	. = ..()
->>>>>>> 4fe3275... Space cleaner cleans mobs (#7802)
 
 /obj/item/clothing/equipped(var/mob/user,var/slot)
 	..()
@@ -701,14 +699,11 @@
 	. = ..()
 	if(holding)
 		overlays += image(icon, "[icon_state]_knife")
-<<<<<<< HEAD
 	if(contaminated)
 		overlays += contamination_overlay
 	if(gurgled) //VOREStation Edit Start
 		decontaminate()
 		gurgle_contaminate() //VOREStation Edit End
-=======
->>>>>>> 4fe3275... Space cleaner cleans mobs (#7802)
 	if(ismob(usr))
 		var/mob/M = usr
 		M.update_inv_shoes()
