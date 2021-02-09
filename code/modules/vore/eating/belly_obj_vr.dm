@@ -39,7 +39,7 @@
 	var/is_wet = TRUE						// Is this belly's insides made of slimy parts?
 	var/wet_loop = TRUE						// Does the belly have a fleshy loop playing?
 	var/obj/item/weapon/storage/vore_egg/ownegg	// Is this belly creating an egg?
-	var/egg_type = "egg"					// Default egg type and path.
+	var/egg_type = "Egg"					// Default egg type and path.
 	var/egg_path = /obj/item/weapon/storage/vore_egg
 
 	//I don't think we've ever altered these lists. making them static until someone actually overrides them somewhere.
@@ -162,7 +162,8 @@
 		"is_wet",
 		"wet_loop",
 		"belly_fullscreen",
-		"disable_hud"
+		"disable_hud",
+		"egg_type"
 		)
 
 /obj/belly/Initialize()
@@ -743,6 +744,7 @@
 	dupe.wet_loop = wet_loop
 	dupe.belly_fullscreen = belly_fullscreen
 	dupe.disable_hud = disable_hud
+	dupe.egg_type = egg_type
 
 	//// Object-holding variables
 	//struggle_messages_outside - strings
