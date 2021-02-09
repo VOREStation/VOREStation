@@ -215,7 +215,6 @@ This saves us from having to call add_fingerprint() any time something is put in
 		if(slot_back)
 			src.back = W
 			W.equipped(src, slot)
-			worn_clothing += back
 			update_inv_back()
 		if(slot_wear_mask)
 			src.wear_mask = W
@@ -223,7 +222,6 @@ This saves us from having to call add_fingerprint() any time something is put in
 				update_hair()	//rebuild hair
 				update_inv_ears()
 			W.equipped(src, slot)
-			worn_clothing += wear_mask
 			update_inv_wear_mask()
 		if(slot_handcuffed)
 			src.handcuffed = W
@@ -243,7 +241,6 @@ This saves us from having to call add_fingerprint() any time something is put in
 		if(slot_belt)
 			src.belt = W
 			W.equipped(src, slot)
-			worn_clothing += belt
 			update_inv_belt()
 		if(slot_wear_id)
 			src.wear_id = W
@@ -276,7 +273,6 @@ This saves us from having to call add_fingerprint() any time something is put in
 		if(slot_gloves)
 			src.gloves = W
 			W.equipped(src, slot)
-			worn_clothing += glasses
 			update_inv_gloves()
 		if(slot_head)
 			src.head = W
@@ -287,22 +283,18 @@ This saves us from having to call add_fingerprint() any time something is put in
 			if(istype(W,/obj/item/clothing/head/kitty))
 				W.update_icon(src)
 			W.equipped(src, slot)
-			worn_clothing += head
 			update_inv_head()
 		if(slot_shoes)
 			src.shoes = W
 			W.equipped(src, slot)
-			worn_clothing += shoes
 			update_inv_shoes()
 		if(slot_wear_suit)
 			src.wear_suit = W
 			W.equipped(src, slot)
-			worn_clothing += wear_suit
 			update_inv_wear_suit()
 		if(slot_w_uniform)
 			src.w_uniform = W
 			W.equipped(src, slot)
-			worn_clothing += w_uniform
 			update_inv_w_uniform()
 		if(slot_l_store)
 			src.l_store = W
