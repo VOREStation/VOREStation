@@ -16522,6 +16522,15 @@
 /obj/machinery/atmospherics/pipe/zpipe/up/scrubbers{
 	dir = 1
 	},
+/obj/structure/cable/green{
+	d1 = 16;
+	d2 = 0;
+	icon_state = "16-0"
+	},
+/obj/structure/cable/green{
+	d2 = 8;
+	icon_state = "0-8"
+	},
 /turf/simulated/floor/plating,
 /area/maintenance/lowmedbaymaint)
 "aAY" = (
@@ -16623,6 +16632,7 @@
 /area/maintenance/lowmedbaymaint)
 "aBi" = (
 /obj/machinery/door/airlock/maintenance/common,
+/obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/plating,
 /area/maintenance/lowmedbaymaint)
 "aBj" = (
@@ -16709,9 +16719,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
-	},
-/obj/structure/cable{
-	icon_state = "1-4"
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/trash_pit)
@@ -31834,6 +31841,7 @@
 	name = "Clown's Office";
 	req_one_access = list(136)
 	},
+/obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/funny/clownoffice)
 "dPC" = (
@@ -32179,11 +32187,13 @@
 /turf/simulated/floor/tiled/freezer,
 /area/tether/surfacebase/security/brig/bathroom)
 "fvL" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/tether/surfacebase/funny/mimeoffice)
 "fyp" = (
@@ -32206,6 +32216,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
+/obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/funny/hideyhole)
 "fAW" = (
@@ -33260,14 +33271,16 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_one_hall)
 "jnN" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/tether/surfacebase/funny/mimeoffice)
@@ -34576,6 +34589,7 @@
 	name = "Medbay Substation";
 	req_one_access = list(11,24,5)
 	},
+/obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/plating,
 /area/maintenance/substation/SurfMedsubstation)
 "ndH" = (
@@ -34668,6 +34682,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/funny/clownoffice)
 "nlT" = (
@@ -34705,11 +34720,14 @@
 	name = "Mime's Office";
 	req_one_access = list(138)
 	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/funny/mimeoffice)
 "nmD" = (
@@ -35350,6 +35368,7 @@
 /obj/machinery/door/airlock/maintenance/common,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/trash_pit)
 "pKE" = (
@@ -35542,6 +35561,7 @@
 /area/maintenance/substation/cargostoresubstation)
 "qJl" = (
 /obj/machinery/door/airlock/maintenance/common,
+/obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/trash_pit)
 "qJT" = (
@@ -35670,17 +35690,15 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_one_hall)
 "qSJ" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "east bump";
-	pixel_x = 24
-	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/cable{
+	d1 = 1;
 	d2 = 2;
-	icon_state = "0-2"
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/plating,
-/area/maintenance/lower/trash_pit)
+/area/maintenance/lowmedbaymaint)
 "qVi" = (
 /obj/structure/railing{
 	dir = 1
@@ -35770,6 +35788,7 @@
 	name = "Mime's Office";
 	req_one_access = list(138)
 	},
+/obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/funny/mimeoffice)
 "rww" = (
@@ -36835,6 +36854,7 @@
 	pixel_y = -25
 	},
 /obj/structure/cable{
+	d2 = 4;
 	icon_state = "0-4"
 	},
 /turf/simulated/floor/carpet/bcarpet,
@@ -50041,8 +50061,8 @@ aad
 aad
 aad
 aad
-aad
-aad
+adK
+adK
 aad
 aad
 aad
@@ -50183,8 +50203,8 @@ aad
 aad
 aad
 aad
-aad
-aad
+adK
+adK
 aad
 aad
 aad
@@ -53335,7 +53355,7 @@ nbj
 mnN
 mnN
 mnN
-qSJ
+mnN
 aBp
 nmA
 fvL
@@ -53618,7 +53638,7 @@ fVG
 bHK
 fVG
 fVG
-fVG
+qSJ
 pIG
 aBq
 lry
