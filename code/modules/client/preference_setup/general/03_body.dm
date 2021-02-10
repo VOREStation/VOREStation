@@ -140,8 +140,6 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	character.g_synth	= pref.g_synth
 	character.b_synth	= pref.b_synth
 	character.synth_markings = pref.synth_markings
-<<<<<<< HEAD
-=======
 	character.ear_style			= ear_styles_list[pref.ear_style]
 	character.r_ears	= pref.r_ears
 	character.b_ears	= pref.b_ears
@@ -164,7 +162,6 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	character.b_wing2	= pref.b_wing2
 	character.g_wing2	= pref.g_wing2
 	character.set_gender( pref.biological_gender)
->>>>>>> c58fb16... Adds proc to properly update human icon gender (#7813)
 
 	// Destroy/cyborgize organs and limbs.
 	for(var/name in list(BP_HEAD, BP_L_HAND, BP_R_HAND, BP_L_ARM, BP_R_ARM, BP_L_FOOT, BP_R_FOOT, BP_L_LEG, BP_R_LEG, BP_GROIN, BP_TORSO))
