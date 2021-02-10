@@ -25,6 +25,7 @@ export const CharacterDirectory = (props, context) => {
   const {
     personalVisibility,
     personalTag,
+    personalErpTag,
   } = data;
 
   const [overlay, setOverlay] = useLocalState(context, "overlay", null);
@@ -44,11 +45,17 @@ export const CharacterDirectory = (props, context) => {
                     content={personalVisibility ? "Shown" : "Not Shown"}
                     onClick={() => act("setVisible")} />
                 </LabeledList.Item>
-                <LabeledList.Item label="Tag">
+                <LabeledList.Item label="Vore Tag">
                   <Button
                     fluid
                     content={personalTag}
                     onClick={() => act("setTag")} />
+                </LabeledList.Item>
+                <LabeledList.Item label="ERP Tag">
+                  <Button
+                    fluid
+                    content={personalErpTag}
+                    onClick={() => act("setErpTag")} />
                 </LabeledList.Item>
                 <LabeledList.Item label="Advertisement">
                   <Button
@@ -76,9 +83,14 @@ const ViewCharacter = (props, context) => {
         content="Back"
         onClick={() => setOverlay(null)} />
     }>
-      <Section level={2} title="Tag">
+      <Section level={2} title="Vore Tag">
         <Box p={1} backgroundColor={getTagColor(overlay.tag)}>
           {overlay.tag}
+        </Box>
+      </Section>
+      <Section level={2} title="ERP Tag">
+        <Box>
+          {overlay.erptag}
         </Box>
       </Section>
       <Section level={2} title="Character Ad">
@@ -121,7 +133,8 @@ const CharacterDirectoryList = (props, context) => {
       <Table>
         <Table.Row bold>
           <SortButton id="name">Name</SortButton>
-          <SortButton id="tag">Tag</SortButton>
+          <SortButton id="tag">Vore Tag</SortButton>
+          <SortButton id="erptag">ERP Tag</SortButton>
           <Table.Cell collapsing textAlign="right">View</Table.Cell>
         </Table.Row>
         {directory
@@ -133,6 +146,7 @@ const CharacterDirectoryList = (props, context) => {
             <Table.Row key={i} backgroundColor={getTagColor(character.tag)}>
               <Table.Cell p={1}>{character.name}</Table.Cell>
               <Table.Cell>{character.tag}</Table.Cell>
+              <Table.Cell>{character.erptag}</Table.Cell>
               <Table.Cell collapsing textAlign="right">
                 <Button
                   onClick={() => setOverlay(character)}
