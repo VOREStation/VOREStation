@@ -20599,12 +20599,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
-"aHJ" = (
-/obj/effect/floor_decal/industrial/warning/corner{
-	dir = 8
-	},
-/turf/simulated/floor/tiled,
-/area/hallway/lower/third_south)
 "aHK" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -21481,15 +21475,6 @@
 /obj/effect/floor_decal/steeldecal/steel_decals4,
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
-"aJg" = (
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/blast/regular{
-	dir = 4;
-	id = "mechbay";
-	name = "Mech Bay"
-	},
-/turf/simulated/floor/tiled/steel_grid,
-/area/rnd/robotics/mechbay)
 "aJh" = (
 /obj/structure/table/standard,
 /obj/machinery/cell_charger,
@@ -21884,16 +21869,6 @@
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
 "aJT" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 1
-	},
-/turf/simulated/floor/bluegrid,
-/area/rnd/robotics/mechbay)
-"aJU" = (
-/obj/machinery/alarm{
-	dir = 8;
-	pixel_x = 24
-	},
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
@@ -37641,31 +37616,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
-"dbk" = (
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/blast/regular{
-	dir = 4;
-	id = "mechbay";
-	name = "Mech Bay"
-	},
-/obj/machinery/button/remote/blast_door{
-	id = "mechbay-inner";
-	name = "Mech Bay";
-	pixel_x = 27;
-	pixel_y = -5;
-	req_access = list(29,47);
-	req_one_access = list(47)
-	},
-/obj/machinery/button/remote/blast_door{
-	id = "mechbay";
-	name = "Mech Bay";
-	pixel_x = 27;
-	pixel_y = 6;
-	req_access = list(29,47);
-	req_one_access = list(47)
-	},
-/turf/simulated/floor/tiled/steel_grid,
-/area/rnd/robotics/mechbay)
 "ddl" = (
 /obj/effect/floor_decal/corner_steel_grid{
 	dir = 5
@@ -39925,6 +39875,20 @@
 /obj/machinery/camera/network/security,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/processing)
+"mdK" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 8
+	},
+/obj/machinery/button/remote/blast_door{
+	id = "mechbay-outter";
+	name = "Mech Bay";
+	pixel_x = 0;
+	pixel_y = -25;
+	req_access = list(29,47);
+	req_one_access = list(47)
+	},
+/turf/simulated/floor/tiled,
+/area/hallway/lower/third_south)
 "mel" = (
 /obj/machinery/hologram/holopad,
 /obj/structure/cable/green{
@@ -40173,6 +40137,24 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
+"nnn" = (
+/obj/machinery/alarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/obj/machinery/button/remote/blast_door{
+	id = "mechbay-outter";
+	name = "Mech Bay";
+	pixel_x = 25;
+	pixel_y = 25;
+	req_access = list(29,47);
+	req_one_access = list(47)
+	},
+/turf/simulated/floor/bluegrid,
+/area/rnd/robotics/mechbay)
 "nnY" = (
 /obj/item/device/radio/intercom{
 	dir = 4;
@@ -42100,6 +42082,15 @@
 "uNt" = (
 /turf/simulated/open,
 /area/tether/surfacebase/security/upperhall)
+"uOq" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/regular{
+	dir = 4;
+	id = "mechbay-outter";
+	name = "Mech Bay"
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/rnd/robotics/mechbay)
 "uOL" = (
 /obj/structure/table/standard,
 /obj/item/clothing/gloves/sterile/nitrile,
@@ -53163,7 +53154,7 @@ bbG
 aXd
 aHQ
 aIx
-aJg
+uOq
 aJT
 aKO
 aLU
@@ -53305,7 +53296,7 @@ lYT
 aGU
 aGV
 aAs
-aJg
+uOq
 aJT
 aKP
 aLU
@@ -53447,8 +53438,8 @@ fgW
 aGW
 aHR
 aAs
-dbk
-aJU
+uOq
+nnn
 aKQ
 aLV
 aKQ
@@ -53588,7 +53579,7 @@ axg
 aXk
 aGX
 aHR
-aHJ
+mdK
 aIw
 aIw
 aIw
