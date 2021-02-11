@@ -407,11 +407,6 @@
 			lethal_shot_sound = 'sound/weapons/eluger.ogg'
 			shot_sound = 'sound/weapons/Taser.ogg'
 
-<<<<<<< HEAD
-/obj/machinery/porta_turret/proc/HasController()
-	var/area/A = get_area(src)
-	return A && A.turret_controls.len > 0
-=======
 		if(/obj/item/weapon/gun/energy/mininglaser)
 			lethal_icon_color = "green"
 			lethal_projectile = /obj/item/projectile/beam/mininglaser
@@ -428,7 +423,6 @@
 	if(locked && !issilicon(user))
 		to_chat(user, "<span class='notice'>Controls locked.</span>")
 		return 1
->>>>>>> 997b440... Merge pull request #7765 from Mechoid/PointDefense
 
 /obj/machinery/porta_turret/proc/isLocked(mob/user)
 	if(HasController())
@@ -456,47 +450,11 @@
 	tgui_interact(user)
 
 /obj/machinery/porta_turret/attack_hand(mob/user)
-<<<<<<< HEAD
 	tgui_interact(user)
-=======
-	if(isLocked(user))
-		return
-
-	ui_interact(user)
-
-/obj/machinery/porta_turret/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	var/data[0]
-	data["access"] = !isLocked(user)
-	data["locked"] = locked
-	data["enabled"] = enabled
-	data["is_lethal"] = 1
-	data["lethal"] = lethal
-
-	if(data["access"])
-		var/settings[0]
-		settings[++settings.len] = list("category" = "Neutralize All Non-Synthetics", "setting" = "check_synth", "value" = check_synth)
-		settings[++settings.len] = list("category" = "Check Weapon Authorization", "setting" = "check_weapons", "value" = check_weapons)
-		settings[++settings.len] = list("category" = "Check Security Records", "setting" = "check_records", "value" = check_records)
-		settings[++settings.len] = list("category" = "Check Arrest Status", "setting" = "check_arrest", "value" = check_arrest)
-		settings[++settings.len] = list("category" = "Check Access Authorization", "setting" = "check_access", "value" = check_access)
-		settings[++settings.len] = list("category" = "Check misc. Lifeforms", "setting" = "check_anomalies", "value" = check_anomalies)
-		settings[++settings.len] = list("category" = "Neutralize All Entities", "setting" = "check_all", "value" = check_all)
-		settings[++settings.len] = list("category" = "Neutralize Downed Entities", "setting" = "check_down", "value" = check_down)
-		settings[++settings.len] = list("category" = "Remain Deployed", "setting" = "stay_up", "value" = stay_up)
-		settings[++settings.len] = list("category" = "Fire At Movement", "setting" = "fire_at_movement", "value" = fire_at_movement)
-		data["settings"] = settings
-
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if(!ui)
-		ui = new(user, src, ui_key, "turret_control.tmpl", "Turret Controls", 500, 300)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(1)
 
 /obj/machinery/porta_turret/proc/HasController()
 	var/area/A = get_area(src)
 	return A && A.turret_controls.len > 0
->>>>>>> 997b440... Merge pull request #7765 from Mechoid/PointDefense
 
 /obj/machinery/porta_turret/tgui_interact(mob/user, datum/tgui/ui = null)
 	if(HasController())
@@ -530,7 +488,6 @@
 
 /obj/machinery/porta_turret/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
-<<<<<<< HEAD
 		return TRUE
 	if(isLocked(usr))
 		return TRUE
@@ -560,38 +517,6 @@
 				check_all = !check_all
 			if("authdown")
 				check_down = !check_down
-=======
-		return 1
-
-	if(href_list["command"] && href_list["value"])
-		var/value = text2num(href_list["value"])
-		if(href_list["command"] == "enable")
-			enabled = value
-		else if(href_list["command"] == "lethal")
-			lethal = value
-		else if(href_list["command"] == "check_synth")
-			check_synth = value
-		else if(href_list["command"] == "check_weapons")
-			check_weapons = value
-		else if(href_list["command"] == "check_records")
-			check_records = value
-		else if(href_list["command"] == "check_arrest")
-			check_arrest = value
-		else if(href_list["command"] == "check_access")
-			check_access = value
-		else if(href_list["command"] == "check_anomalies")
-			check_anomalies = value
-		else if(href_list["command"] == "check_all")
-			check_all = value
-		else if(href_list["command"] == "check_down")
-			check_down = value
-		else if(href_list["command"] == "stay_up")
-			stay_up = value
-		else if(href_list["command"] == "fire_at_movement")
-			fire_at_movement = value
-
-		return 1
->>>>>>> 997b440... Merge pull request #7765 from Mechoid/PointDefense
 
 /obj/machinery/porta_turret/power_change()
 	if(powered())
@@ -1038,11 +963,8 @@
 	var/check_anomalies
 	var/check_all
 	var/check_down
-<<<<<<< HEAD
-=======
 	var/fire_at_movement
 	var/stay_up
->>>>>>> 997b440... Merge pull request #7765 from Mechoid/PointDefense
 	var/ailock
 
 /obj/machinery/porta_turret/proc/setState(var/datum/turret_checks/TC)
@@ -1059,11 +981,8 @@
 	check_anomalies = TC.check_anomalies
 	check_all = TC.check_all
 	check_down = TC.check_down
-<<<<<<< HEAD
-=======
 	fire_at_movement = TC.fire_at_movement
 	stay_up = TC.stay_up
->>>>>>> 997b440... Merge pull request #7765 from Mechoid/PointDefense
 	ailock = TC.ailock
 
 	power_change()
