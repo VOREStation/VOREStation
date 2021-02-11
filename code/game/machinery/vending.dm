@@ -557,7 +557,6 @@ GLOBAL_LIST_EMPTY(vending_products)
 
 	use_power(vend_power_usage)	//actuators and stuff
 	flick("[icon_state]-vend",src)
-<<<<<<< HEAD
 	addtimer(CALLBACK(src, .proc/delayed_vend, R, user), vend_delay)
 
 /obj/machinery/vending/proc/delayed_vend(datum/stored_item/vending_product/R, mob/user)
@@ -573,7 +572,6 @@ GLOBAL_LIST_EMPTY(vending_products)
 	vend_ready = 1
 	currently_vending = null
 	SStgui.update_uis(src)
-=======
 	spawn(vend_delay)
 		R.get_product(get_turf(src))
 		if(has_logs)
@@ -590,8 +588,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 		status_error = 0
 		vend_ready = 1
 		currently_vending = null
-		SSnanoui.update_uis(src)
->>>>>>> 2018d76... Department and Round Goals (#7369)
+		SStgui.update_uis(src)
 
 
 /obj/machinery/vending/proc/do_logging(datum/stored_item/vending_product/R, mob/user, var/vending = 0)
