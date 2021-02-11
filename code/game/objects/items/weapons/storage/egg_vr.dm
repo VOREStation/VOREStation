@@ -113,23 +113,43 @@
 
 /obj/item/weapon/storage/vore_egg/synthetic
 	name = "synthetic egg"
-	desc = "Can robots lay eggs?"
+	desc = "Smells like Easter morning."
 	icon_state = "egg_synthetic"
-
-/obj/item/weapon/storage/vore_egg/badrecipe
-	name = "Burned mess"
-	desc = "Someone didn't cook this egg quite right..."
-	icon_state = "egg_badrecipe"
 
 /obj/item/weapon/storage/vore_egg/escapepod
 	name = "small escape pod"
 	desc = "Someone left in a hurry."
 	icon_state = "egg_escapepod"
 
+/obj/item/weapon/storage/vore_egg/floppy
+	name = "blue space floppy disc"
+	desc = "Probably shouldn't copy THIS floppy."
+	icon_state = "egg_floppy"
+
+/obj/item/weapon/storage/vore_egg/cd
+	name = "blue space cd"
+	desc = "What could even be on this?!"
+	icon_state = "egg_cd"
+
+/obj/item/weapon/storage/vore_egg/file
+	name = "blue space file"
+	desc = "Gotta wonder how much is compressed in there."
+	icon_state = "egg_file"
+
+/obj/item/weapon/storage/vore_egg/badrecipe
+	name = "Burned mess"
+	desc = "Someone didn't cook this egg quite right..."
+	icon_state = "egg_badrecipe"
+
 /obj/item/weapon/storage/vore_egg/cocoon
 	name = "web cocoon"
 	desc = "It straight up smells like spiders in here."
 	icon_state = "egg_cocoon"
+
+/obj/item/weapon/storage/vore_egg/honeycomb
+	name = "honeycomb"
+	desc = "Smells delicious!"
+	icon_state = "egg_honeycomb"
 
 /obj/item/weapon/storage/vore_egg/bugcocoon
 	name = "bug cocoon"
