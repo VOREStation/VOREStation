@@ -332,13 +332,6 @@
 	icon_state = "hair_celebcurls"
 	flags = HAIR_TIEABLE
 
-/datum/sprite_accessory/hair/citheronia_colorable
-	name = "Citheronia"
-	icon = 'icons/mob/human_face_alt.dmi'
-	icon_add = 'icons/mob/human_face_alt_add.dmi'
-	icon_state = "citheronia_hair_c"
-	do_colouration = 1
-
 /datum/sprite_accessory/hair/crono
 	name = "Chrono"
 	icon_state = "hair_toriyama"
