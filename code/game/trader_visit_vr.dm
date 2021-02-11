@@ -3,7 +3,7 @@ GLOBAL_VAR(trader_loaded)
 /proc/consider_trader_load()
 	if(!GLOB.trader_loaded)
 		GLOB.trader_loaded = TRUE
-		var/datum/map_template/MT = SSmapping.map_templates["Special Area - Trader"]
+		var/datum/map_template/MT = SSmapping.map_templates["Special Area - Salamander Trader"] //was: "Special Area - Trader"
 		if(!istype(MT))
 			error("Trader is not a valid map template!")
 		else

@@ -82,3 +82,8 @@
 
 /obj/item/projectile/beam/sizelaser/grow
 	set_size = 2.0 //200% of current size
+
+/obj/item/weapon/gun/energy/sizegun/mounted
+	name = "mounted size gun"
+	self_recharge = 1
+	use_external_power = 1

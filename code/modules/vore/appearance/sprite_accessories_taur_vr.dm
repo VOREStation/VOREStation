@@ -183,28 +183,32 @@
 	icon_sprite_tag = "wolf"	//This could be modified later.
 
 /datum/sprite_accessory/tail/taur/wolf/wolf_2c
-	name = "Wolf dual-color (Taur)"
+	name = "Wolf 3-color (Taur)"
 	icon_state = "wolf_s"
 	extra_overlay = "wolf_markings"
+	extra_overlay2 = "wolf_markings_2"
 	//icon_sprite_tag = "wolf2c"
 
 //TFF 22/11/19 - CHOMPStation port of fat taur sprites
 /datum/sprite_accessory/tail/taur/wolf/fatwolf_2c
-	name = "Fat Wolf dual-color (Taur)"
+	name = "Fat Wolf 3-color (Taur)"
 	icon_state = "fatwolf_s"
 	extra_overlay = "fatwolf_markings"
+	extra_overlay2 = "wolf_markings_2"
 	//icon_sprite_tag = "fatwolf2c"
 
 /datum/sprite_accessory/tail/taur/wolf/synthwolf
 	name = "SynthWolf dual-color (Taur)"
 	icon_state = "synthwolf_s"
 	extra_overlay = "synthwolf_markings"
+	extra_overlay2 = "synthwolf_glow"
 	//icon_sprite_tag = "synthwolf"
 
 /datum/sprite_accessory/tail/taur/skunk
 	name = "Skunk (Taur)"
 	icon_state = "skunk_s"
 	extra_overlay = "skunk_markings"
+	extra_overlay2 = "skunk_markings_2"
 	icon_sprite_tag = "skunk"
 
 /datum/sprite_accessory/tail/taur/naga
@@ -272,6 +276,7 @@
 	name = "SynthHorse dual-color (Taur)"
 	icon_state = "synthhorse_s"
 	extra_overlay = "synthhorse_markings"
+	extra_overlay2 = "synthhorse_glow"
 	//icon_sprite_tag = "synthhorse"
 
 /datum/sprite_accessory/tail/taur/cow
@@ -333,6 +338,7 @@
 	name = "SynthLizard dual-color (Taur)"
 	icon_state = "synthlizard_s"
 	extra_overlay = "synthlizard_markings"
+	extra_overlay2 = "synthlizard_glow"
 	//icon_sprite_tag = "synthlizard"
 
 /datum/sprite_accessory/tail/taur/spider
@@ -401,22 +407,25 @@
 	ani_state = "fatfeline_w"
 
 /datum/sprite_accessory/tail/taur/feline/feline_2c
-	name = "Feline dual-color (Taur)"
+	name = "Feline 3-color (Taur)"
 	icon_state = "feline_s"
 	extra_overlay = "feline_markings"
+	extra_overlay2 = "feline_markings_2"
 	//icon_sprite_tag = "feline2c"
 
 //TFF 22/11/19 - CHOMPStation port of fat taur sprites
 /datum/sprite_accessory/tail/taur/feline/fatfeline_2c
-	name = "Fat Feline dual-color (Taur)"
+	name = "Fat Feline 3-color (Taur)"
 	icon_state = "fatfeline_s"
 	extra_overlay = "fatfeline_markings"
+	extra_overlay2 = "feline_markings_2"
 	//icon_sprite_tag = "fatfeline2c"
 
 /datum/sprite_accessory/tail/taur/feline/synthfeline
 	name = "SynthFeline dual-color (Taur)"
 	icon_state = "synthfeline_s"
 	extra_overlay = "synthfeline_markings"
+	extra_overlay2 = "synthfeline_glow"
 	//icon_sprite_tag = "synthfeline"
 
 /datum/sprite_accessory/tail/taur/slug
@@ -495,6 +504,7 @@
 	name = "Otie (Taur)"
 	icon_state = "otie_s"
 	extra_overlay = "otie_markings"
+	extra_overlay2 = "otie_markings_2"
 	suit_sprites = 'icons/mob/taursuits_otie_vr.dmi'
 	icon_sprite_tag = "otie"
 
@@ -581,6 +591,28 @@
 /datum/sprite_accessory/tail/taur/shadekin_tail/shadekin_tail_long
 	name = "Shadekin Long Tail"
 	icon_state = "shadekin_long_s"
+
+/datum/sprite_accessory/tail/taur/pawcow // this grabs suit sprites from the normal cow, the outline is the same except for the tail
+	name = "Cow w/ paws (Taur)"
+	icon_state = "pawcow_s"
+	extra_overlay = "pawcow_markings"
+	suit_sprites = 'icons/mob/taursuits_cow_vr.dmi'
+	icon_sprite_tag = "pawcow"
+
+	msg_owner_disarm_run = "You quickly push %prey to the ground with your paw!"
+	msg_prey_disarm_run = "%owner pushes you down to the ground with their paw!"
+
+	msg_owner_disarm_walk = "You firmly push your paw down on %prey, painfully but harmlessly pinning them to the ground!"
+	msg_prey_disarm_walk = "%owner firmly pushes their paw down on you, quite painfully but harmlessly pinning you to the ground!"
+
+	msg_owner_harm_walk = "You methodically place your paw down upon %prey's body, slowly applying pressure, crushing them against the floor below!"
+	msg_prey_harm_walk = "%owner methodically places their paw upon your body, slowly applying pressure, crushing you against the floor below!"
+
+	msg_owner_grab_success = "You pin %prey to the ground before scooping them up with your paws!"
+	msg_prey_grab_success = "%owner pins you to the ground before scooping you up with their paws!"
+
+	msg_owner_grab_fail = "You step down onto %prey, squishing them and forcing them down to the ground!"
+	msg_prey_grab_fail = "%owner steps down and squishes you with their paw, forcing you down to the ground!"
 
 // Special snowflake tails/taurhalves
 

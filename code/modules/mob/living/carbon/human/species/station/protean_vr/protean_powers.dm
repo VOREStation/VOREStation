@@ -176,7 +176,7 @@
 		to_chat(src,  "<span class='critical'>Your refactoring is interrupted.</span>")
 		to_chat(blob, "<span class='critical'>Your refactoring is interrupted!</span>")
 	active_regen = FALSE
-	nano_outofblob()
+	nano_outofblob(blob)
 
 
 ////

@@ -14,6 +14,8 @@
 
 	handle_special()
 
+	handle_guts()
+
 	return TRUE
 
 
@@ -94,7 +96,7 @@
 				throw_alert("oxy", /obj/screen/alert/too_much_oxy)
 			else
 				clear_alert("oxy")
-			
+
 			if(min_tox && Environment.gas["phoron"] < min_tox)
 				atmos_unsuitable = 2
 				throw_alert("tox_in_air", /obj/screen/alert/not_enough_tox)
@@ -137,6 +139,12 @@
 	else
 		adjustOxyLoss(-unsuitable_atoms_damage)
 
+/mob/living/simple_mob/proc/handle_guts()
+	for(var/obj/item/organ/OR in internal_organs)
+		OR.process()
+
+	for(var/obj/item/organ/OR in organs)
+		OR.process()
 
 /mob/living/simple_mob/proc/handle_supernatural()
 	if(purge)

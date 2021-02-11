@@ -679,6 +679,14 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 5000, "osmium" = 3000, "silver" = 1000)
 	build_path = /obj/item/mecha_parts/mecha_equipment/tool/orescanner/advanced
 
+/datum/design/item/mecha/runningboard
+	name = "Powered Exosuit Running Board"
+	desc = "A running board with a power-lifter attachment, to quickly catapult exosuit pilots into the cockpit. Only fits to working exosuits."
+	id = "mech_runningboard"
+	req_tech = list(TECH_MATERIAL = 6)
+	materials = list(DEFAULT_WALL_MATERIAL = 10000)
+	build_path = /obj/item/mecha_parts/mecha_equipment/runningboard/limited
+
 /datum/design/item/mecha/powerwrench
 	name = "hydraulic wrench"
 	desc = "A large, hydraulic wrench."

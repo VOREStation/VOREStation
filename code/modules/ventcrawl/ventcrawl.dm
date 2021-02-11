@@ -12,7 +12,7 @@ var/list/ventcrawl_machinery = list(
 	/obj/belly,
 	/obj/screen
 	)
-	//VOREStation Edit : added /obj/belly, to this list, travis is complaining about this in his indentation check
+	//VOREStation Edit : added /obj/belly, to this list, CI is complaining about this in his indentation check
 	//mob/living/simple_mob/borer, //VORESTATION AI TEMPORARY REMOVAL REPLACE BACK IN LIST WHEN RESOLVED //VOREStation Edit
 
 /mob/living/var/list/icon/pipes_shown = list()
@@ -64,8 +64,8 @@ var/list/ventcrawl_machinery = list(
 			listed = TRUE
 			break
 
-	//Only allow it if it's "IN" the mob, not equipped on/being held
-	if(listed && !get_inventory_slot(carried_item))
+	//Only allow it if it's "IN" the mob, not equipped on/being held. //Disabled, as it's very annoying that, for example, Pun Pun has no way to ventcrawl with his suit if given the verb, since the list of allowed items is ignored for worn items.
+	if(listed/* && !get_inventory_slot(carried_item)*/)
 		return 1
 
 /mob/living/carbon/is_allowed_vent_crawl_item(var/obj/item/carried_item)

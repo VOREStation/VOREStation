@@ -126,8 +126,8 @@
 		)
 
 	unarmed_types = list(
-		/datum/unarmed_attack/bite/sharp,
 		/datum/unarmed_attack/claws,
+		/datum/unarmed_attack/bite/sharp,
 		/datum/unarmed_attack/stomp/weak
 		)
 

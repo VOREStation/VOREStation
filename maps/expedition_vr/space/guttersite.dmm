@@ -3083,9 +3083,6 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 4
 	},
-/mob/living/simple_mob/humanoid/merc/ranged/laser{
-	faction = "wolfgirl"
-	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "hj" = (
@@ -3259,19 +3256,6 @@
 "hD" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
-	},
-/mob/living/simple_mob/humanoid/merc/ranged/smg/poi{
-	faction = "wolfgirl"
-	},
-/mob/living/simple_mob/vore/wolfgirl,
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/security)
-"hE" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 1
-	},
-/mob/living/simple_mob/humanoid/merc/melee/poi{
-	faction = "wolfgirl"
 	},
 /mob/living/simple_mob/vore/wolfgirl,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
@@ -3736,10 +3720,6 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/vault)
-"iN" = (
-/obj/structure/table/rack/steel,
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/tether_away/guttersite/security)
 "iO" = (
 /obj/structure/grille,
 /obj/machinery/door/firedoor/glass,
@@ -3820,7 +3800,7 @@
 /area/tether_away/guttersite/bridge)
 "jd" = (
 /obj/structure/table/rack/steel,
-/obj/random/firstaid,
+/obj/random/tetheraid,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/tether_away/guttersite/security)
 "jg" = (
@@ -12102,7 +12082,7 @@ fw
 fw
 fw
 fw
-iN
+jd
 fu
 ag
 ag
@@ -12244,7 +12224,7 @@ fw
 fw
 hg
 fw
-iN
+jd
 fu
 ag
 ag
@@ -12372,7 +12352,7 @@ fw
 fw
 fw
 kE
-hE
+hD
 fw
 gX
 fu

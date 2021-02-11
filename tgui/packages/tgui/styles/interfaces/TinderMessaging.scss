@@ -1,0 +1,55 @@
+// Kind of a weirdly named SCSS file, but this is used for both pda/pda_messenger.js
+// as well as Communicator.js, and it implements a CSS scheme to produce results similar to Tinder.
+
+@use '../base.scss';
+
+$color-sent: #4d9121 !default;
+$color-received: #cd7a0d !default;
+
+.TinderMessage_First_Sent,
+.TinderMessage_Subsequent_Sent,
+.TinderMessage_First_Received,
+.TinderMessage_Subsequent_Received {
+  padding: 6px;
+  z-index: 1;
+  word-break: break-all;
+  max-width: 100%;
+}
+
+.TinderMessage_First_Sent, .TinderMessage_Subsequent_Sent {
+  text-align: right;
+  background-color: $color-sent;
+}
+
+.TinderMessage_First_Sent {
+  border-radius: 10px 10px 0px 10px;
+}
+
+.TinderMessage_Subsequent_Sent {
+  border-radius: 10px 0px 0px 10px;
+}
+
+.TinderMessage_First_Received, .TinderMessage_Subsequent_Received {
+  text-align: left;
+  background-color: $color-received;
+}
+
+.TinderMessage_First_Received {
+  border-radius: 10px 10px 10px 0px;
+}
+
+.TinderMessage_Subsequent_Received {
+  border-radius: 0px 10px 10px 0px;
+}
+
+.ClassicMessage_Sent, .ClassicMessage_Received {
+  word-break: break-all;
+}
+
+.ClassicMessage_Sent {
+  color: $color-sent;
+}
+
+.ClassicMessage_Received {
+  color: $color-received;
+}

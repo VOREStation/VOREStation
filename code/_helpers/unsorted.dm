@@ -1178,12 +1178,19 @@ proc/is_hot(obj/item/W as obj)
 
 // check if mob is lying down on something we can operate him on.
 // The RNG with table/rollerbeds comes into play in do_surgery() so that fail_step() can be used instead.
-/proc/can_operate(mob/living/carbon/M)
-	return M.lying
+/proc/can_operate(mob/living/carbon/M, mob/living/user)
+	. = M.lying
+
+	if(user && M == user && user.allow_self_surgery && user.a_intent == I_HELP)	// You can, technically, always operate on yourself after standing still. Inadvised, but you can.
+
+		if(!M.isSynthetic())
+			. = TRUE
+
+	return .
 
 // Returns an instance of a valid surgery surface.
-/mob/living/proc/get_surgery_surface()
-	if(!lying)
+/mob/living/proc/get_surgery_surface(mob/living/user)
+	if(!lying && user != src)
 		return null // Not lying down means no surface.
 	var/obj/surface = null
 	for(var/obj/O in loc) // Looks for the best surface.
@@ -1283,6 +1290,9 @@ var/mob/dview/dview_mob = new
 /proc/dview(var/range = world.view, var/center, var/invis_flags = 0)
 	if(!center)
 		return
+	if(!dview_mob) //VOREStation Add: Debugging
+		dview_mob = new
+		log_error("Had to recreate the dview mob!")
 
 	dview_mob.loc = center
 	
