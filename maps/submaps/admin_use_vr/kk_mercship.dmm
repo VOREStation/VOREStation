@@ -4054,10 +4054,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/hallways_port)
-"tv" = (
-/obj/item/ammo_magazine/m762m/ap,
-/turf/simulated/wall/rshull,
-/area/ship/manta/armoury_st)
 "tx" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 1
@@ -8439,7 +8435,22 @@
 /turf/simulated/floor/wood,
 /area/ship/manta/barracks)
 "Ou" = (
-/obj/item/weapon/gun/projectile/automatic/bullpup,
+/obj/effect/floor_decal/techfloor{
+	dir = 8
+	},
+/obj/structure/table/rack,
+/obj/item/device/camera_film,
+/obj/item/device/camera_film,
+/obj/item/device/camera_film,
+/obj/item/device/camera_film,
+/obj/item/device/camera_film,
+/obj/item/device/camera_film,
+/obj/item/device/camera,
+/obj/item/device/camera,
+/obj/item/device/camera,
+/obj/item/device/camera,
+/obj/item/device/camera,
+/obj/item/device/camera,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/armoury_st)
 "Ox" = (
@@ -18542,7 +18553,7 @@ ZT
 ZT
 ZT
 ZT
-tv
+ZT
 ZT
 ZT
 ZT
