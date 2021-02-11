@@ -416,15 +416,9 @@
 			shot_sound = 'sound/weapons/Laser.ogg'
 
 /obj/machinery/porta_turret/proc/isLocked(mob/user)
-	if(ailock && issilicon(user))
-		to_chat(user, "<span class='notice'>There seems to be a firewall preventing you from accessing this device.</span>")
-		return 1
-
 	if(locked && !issilicon(user))
 		to_chat(user, "<span class='notice'>Controls locked.</span>")
 		return 1
-
-/obj/machinery/porta_turret/proc/isLocked(mob/user)
 	if(HasController())
 		return TRUE
 	if(isrobot(user) || isAI(user))
