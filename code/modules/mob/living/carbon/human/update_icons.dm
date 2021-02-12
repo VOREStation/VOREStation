@@ -235,10 +235,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	//Create a new, blank icon for our mob to use.
 	var/icon/stand_icon = new(species.icon_template ? species.icon_template : 'icons/mob/human.dmi', icon_state = "blank")
 
-	var/g = "male"
-	if(gender == FEMALE)
-		g = "female"
-
+	var/g = (gender == MALE ? "male" : "female")
 	var/icon_key = "[species.get_race_key(src)][g][s_tone][r_skin][g_skin][b_skin]"
 	if(lip_style)
 		icon_key += "[lip_style]"

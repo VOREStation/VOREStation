@@ -88,6 +88,11 @@
 	display_name = "cap, grey"
 	path = /obj/item/clothing/head/soft/grey
 
+/datum/gear/head/cap/med
+	display_name = "cap, medical (Medical)"
+	path = /obj/item/clothing/head/soft/med
+	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic","Search and Rescue")
+
 /datum/gear/head/cap/orange
 	display_name = "cap, orange"
 	path = /obj/item/clothing/head/soft/orange

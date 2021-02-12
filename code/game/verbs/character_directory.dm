@@ -32,6 +32,7 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 	
 	data["personalVisibility"] = user?.client?.prefs?.show_in_directory
 	data["personalTag"] = user?.client?.prefs?.directory_tag
+	data["personalErpTag"] = user?.client?.prefs?.directory_erptag
 
 	return data
 
@@ -50,6 +51,7 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 		var/ooc_notes = null
 		var/flavor_text = null
 		var/tag = C.prefs.directory_tag
+		var/erptag = C.prefs.directory_erptag
 		var/character_ad = C.prefs.directory_ad
 
 		if(ishuman(C.mob))
@@ -85,6 +87,7 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 			"name" = name,
 			"ooc_notes" = ooc_notes,
 			"tag" = tag,
+			"erptag" = erptag,
 			"character_ad" = character_ad,
 			"flavor_text" = flavor_text,
 		)))
@@ -109,10 +112,16 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 			update_tgui_static_data(usr, ui)
 			return TRUE
 		if("setTag")
-			var/list/new_tag = input(usr, "Pick a new tag for the character directory", "Character Tag", usr?.client?.prefs?.directory_tag) as null|anything in GLOB.char_directory_tags
+			var/list/new_tag = input(usr, "Pick a new Vore tag for the character directory", "Character Tag", usr?.client?.prefs?.directory_tag) as null|anything in GLOB.char_directory_tags
 			if(!new_tag)
 				return
 			usr?.client?.prefs?.directory_tag = new_tag
+			return TRUE
+		if("setErpTag")
+			var/list/new_erptag = input(usr, "Pick a new ERP tag for the character directory", "Character ERP Tag", usr?.client?.prefs?.directory_erptag) as null|anything in GLOB.char_directory_erptags
+			if(!new_erptag)
+				return
+			usr?.client?.prefs?.directory_erptag = new_erptag
 			return TRUE
 		if("setVisible")
 			usr?.client?.prefs?.show_in_directory = !usr?.client?.prefs?.show_in_directory

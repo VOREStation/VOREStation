@@ -201,7 +201,7 @@
 				if(T.density) // No walls.
 					continue
 				for(var/atom/movable/AM in T)
-					if(AM.density)
+					if(AM.density || istype(AM, /mob/living/simple_mob/slime))
 						free = FALSE
 						break
 
