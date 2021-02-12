@@ -9,30 +9,21 @@
 	icon = 'icons/mob/vore.dmi'
 
 	faction = "wolfgirl"
-	maxHealth = 130
-	health = 130
+	maxHealth = 30
+	health = 30
 
 	response_help = "pats"
 	response_disarm = "gently pushes aside"
 	response_harm = "hits"
 
 	harm_intent_damage = 8
-	melee_damage_lower = 0
-	melee_damage_upper = 0
+	melee_damage_lower = 7
+	melee_damage_upper = 7
 	attacktext = list("slashed")
 
 	say_list_type = /datum/say_list/wolfgirl
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate/cooperative/wolfgirl
 
-	var/loopstop = 0 //To prevent circular awoooos.
-/*
-/mob/living/simple_mob/retaliate/wolfgirl/hear_say()
-	if(world.time - loopstop < 5 SECONDS)
-		return
-	else
-		loopstop = world.time
-		..()
-*/
 // Activate Noms!
 /mob/living/simple_mob/vore/wolfgirl
 	vore_active = 1
@@ -73,6 +64,7 @@
 
 	if(findtext(message, "Fuyu"))
 		delayed_say(pick("You know my sister?!", "Is she causing problems again?"), speaker)
+
 
 /datum/say_list/wolfgirl
 	speak = list("AwoooOOOOoooo!","Awoo~","I'll protect the forest! ... Where's the forest again?","All I need is my sword!","Awoo?","Anyone else smell that?")
