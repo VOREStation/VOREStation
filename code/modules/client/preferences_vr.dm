@@ -1,7 +1,7 @@
 /datum/preferences
 	var/show_in_directory = 1	//Show in Character Directory
 	var/directory_tag = "Unset" //Sorting tag to use in character directory
-	var/directory_erptag = "No ERP"	//ditto, but for non-vore scenes
+	var/directory_erptag = "Unset"	//ditto, but for non-vore scenes
 	var/directory_ad = ""		//Advertisement stuff to show in character directory.
 	var/sensorpref = 5			//Set character's suit sensor level
 
