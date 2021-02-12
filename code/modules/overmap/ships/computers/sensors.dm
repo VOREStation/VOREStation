@@ -105,7 +105,7 @@
 				if(nrange)
 					sensors.set_range(CLAMP(nrange, 1, world.view))
 				. = TRUE
-			if("toggle")
+			if("toggle_sensor")
 				sensors.toggle()
 				. = TRUE
 

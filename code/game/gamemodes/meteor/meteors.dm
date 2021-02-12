@@ -13,7 +13,7 @@
 	/obj/effect/meteor/big=3,
 	/obj/effect/meteor/flaming=1,
 	/obj/effect/meteor/irradiated=3
-	) 
+	)
 
 //for threatening meteor event
 /var/list/meteors_threatening = list(
@@ -205,6 +205,21 @@
 		qdel(src)
 		return
 	..()
+
+/obj/effect/meteor/bullet_act(var/obj/item/projectile/Proj)
+	if(Proj.excavation_amount)
+		get_hit()
+		if(!QDELETED(src))
+			wall_power -= Proj.excavation_amount + Proj.damage + (Proj.hitscan * 25)	// Instant-impact projectiles are inherently better at dealing with meteors.
+			wall_power = max(1, wall_power)
+
+			if(wall_power < Proj.excavation_amount)
+				if(prob(min(90, 100 - Proj.damage)))
+					die(TRUE)
+				else
+					die(FALSE)
+				return
+	return
 
 /obj/effect/meteor/proc/make_debris()
 	for(var/throws = dropamt, throws > 0, throws--)

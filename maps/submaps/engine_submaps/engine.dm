@@ -18,7 +18,7 @@
 
 /obj/effect/landmark/engine_loader/proc/annihilate_bounds()
 	var/deleted_atoms = 0
-	admin_notice("<span class='danger'>Annihilating objects in engine loading locatation.</span>", R_DEBUG)
+	admin_notice("<span class='danger'>Annihilating objects in engine loading location.</span>", R_DEBUG)
 	var/list/turfs_to_clean = get_turfs_to_clean()
 	if(turfs_to_clean.len)
 		for(var/x in 1 to 2) // Requires two passes to get everything.
