@@ -20487,13 +20487,13 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
 	},
-/obj/structure/cable/cyan{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
+	},
+/obj/structure/cable/cyan{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/excursion/general)
@@ -21806,9 +21806,9 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
 /obj/structure/cable/cyan{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/excursion/general)
@@ -22393,11 +22393,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
-	},
-/obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9;
@@ -23812,10 +23807,6 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/aux{
-	dir = 8;
-	icon_state = "intact-aux"
-	},
 /obj/structure/cable/cyan{
 	d1 = 2;
 	d2 = 8;
@@ -23823,6 +23814,9 @@
 	},
 /obj/structure/closet/emergsuit_wall{
 	pixel_y = 32
+	},
+/obj/machinery/atmospherics/binary/pump/aux{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/excursion/general)
@@ -24801,6 +24795,11 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
+/obj/structure/cable/cyan{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/excursion/general)
 "rIS" = (
@@ -25748,12 +25747,12 @@
 /turf/simulated/floor/plating,
 /area/shuttle/excursion/general)
 "ydG" = (
+/obj/machinery/atmospherics/binary/pump/fuel{
+	dir = 8
+	},
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
 	dir = 8;
 	icon_state = "intact-aux"
-	},
-/obj/machinery/atmospherics/binary/pump/fuel{
-	dir = 8
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/excursion/general)
