@@ -297,12 +297,9 @@
 	icon_state = "ntposter04"
 	name = "Beware Aetotheans"
 	desc = "This poster displays a distinctly hostile-looking red Promethean in a black coat. The fine-print around the edges warns the reader about the dangers posed by Almachi Prometheans."
-<<<<<<< HEAD
+	listing_name = "Safety - Aetothean Danger"
 */
 //VOREstation Removal End
-=======
-	listing_name = "Safety - Aetothean Danger"
->>>>>>> 3cad364... Merge pull request #7865 from Cerebulon/individualposters
 
 /datum/poster/nanotrasen/nt_5
 	icon_state = "ntposter05"
