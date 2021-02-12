@@ -1,4 +1,4 @@
-/*
+ing /*
 	Hello and welcome to VOREStation sprite_accessories: For a more general overview
 	please read sprite_accessories.dm. This file is for ears and tails.
 	This is intended to be friendly for people with little to no actual coding experience.
@@ -2101,7 +2101,7 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
-/datum/sprite_accessory/tail/peacocktail_red
+/datum/sprite_accessory/tail/peacocktail_red //this is ckey locked for now, but prettiebyrd wants these tails to be unlocked at a later date
 	name = "Peacock tail (vwag)"
 	desc = ""
 	icon = "icons/mob/vore/tails_vr.dmi"
@@ -2109,7 +2109,7 @@
 	ani_state = "peacocktail_red_w"
 	ckeys_allowed = list("prettiebyrd")
 
-/datum/sprite_accessory/tail/peacocktail
+/datum/sprite_accessory/tail/peacocktail //ditto
 	name = "Peacock tail, colorable (vwag)"
 	desc = ""
 	icon = "icons/mob/vore/tails_vr.dmi"
