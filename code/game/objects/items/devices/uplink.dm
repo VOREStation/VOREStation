@@ -100,7 +100,6 @@
 /obj/item/device/uplink/hidden/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
 	if(!active)
 		toggle()
-	uses = user.mind.tcrystals
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "Uplink", "Remote Uplink")
