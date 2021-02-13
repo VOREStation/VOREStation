@@ -452,3 +452,31 @@
 	icon_state = "blackngoldheaddress"
 	flags_inv = HIDEEYES
 	body_parts_covered = HEAD|EYES
+
+//Corporate Berets
+
+/obj/item/clothing/head/beret/corp/saare
+	name = "\improper SAARE beret"
+	desc = "A red beret denoting service with Stealth Assault Enterprises. For mercenaries that are more inclined towards style than safety."
+	icon_state = "beret_red"
+
+/obj/item/clothing/head/beret/corp/saare/officer
+	name = "\improper SAARE officer beret"
+	desc = "A red beret with a gold insignia, denoting senior service with Stealth Assault Enterprises. For mercenaries who are more inclined towards style than safety."
+	icon_state = "beret_redgold"
+
+/obj/item/clothing/head/beret/corp/pcrc
+	name = "\improper PCRC beret"
+	desc = "A black beret with a PCRC logo insignia, denoting service with Proxima Centauri Risk Control. For private security personnel that are more inclined towards style than safety."
+	icon_state = "beret_black_observatory"
+
+
+/obj/item/clothing/head/beret/corp/hedberg
+	name = "\improper Hedberg-Hammarstrom beret"
+	desc = "A tan beret denoting service with Hedberg-Hammarstrom private security. For mercenaries who are more inclined towards style than safety."
+	icon_state = "beret_tan"
+
+/obj/item/clothing/head/beret/corp/xion
+	name = "\improper Xion beret"
+	desc = "An orange beret denoting employment with Xion Manufacturing. For personnel that are more inclined towards style than safety."
+	icon_state = "beret_orange"

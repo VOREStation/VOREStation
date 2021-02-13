@@ -335,7 +335,7 @@
 	path = /obj/item/clothing/head/welding/engie
 
 /datum/gear/head/beret/solgov
-	display_name = "beret sol, selection"
+	display_name = "beret government, selection"
 	path = /obj/item/clothing/head/beret/solgov
 
 /datum/gear/head/beret/solgov/New()
