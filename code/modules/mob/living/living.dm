@@ -43,7 +43,7 @@
 			organs -= OR
 			qdel(OR)
 
-	if(LAZYLEN(internal_organs))
+	if(LAZYLEN(internal_organs) && !istype(src, /mob/living/simple_mob/animal))
 		internal_organs_by_name.Cut()
 		while(internal_organs.len)
 			var/obj/item/OR = internal_organs[1]
