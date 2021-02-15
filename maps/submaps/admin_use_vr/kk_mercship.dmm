@@ -455,11 +455,6 @@
 /area/ship/manta/armoury_st)
 "bL" = (
 /obj/structure/table/rack,
-/obj/item/borg/sight/thermal,
-/obj/item/borg/sight/thermal,
-/obj/item/borg/sight/thermal,
-/obj/item/borg/sight/thermal,
-/obj/item/borg/sight/thermal,
 /obj/effect/floor_decal/techfloor{
 	dir = 5
 	},
@@ -469,6 +464,12 @@
 /obj/machinery/light_switch{
 	pixel_y = 23
 	},
+/obj/item/clothing/glasses/thermal,
+/obj/item/clothing/glasses/thermal,
+/obj/item/clothing/glasses/thermal,
+/obj/item/clothing/glasses/thermal,
+/obj/item/clothing/glasses/thermal,
+/obj/item/clothing/glasses/thermal,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/armoury_st)
 "bP" = (
