@@ -657,15 +657,6 @@
 	},
 /turf/simulated/floor/reinforced,
 /area/ship/manta/med)
-"cJ" = (
-/obj/machinery/sleeper{
-	desc = "A stasis pod with built-in injectors, a dialysis machine, and a limited health scanner. This one is preconfigured to stasis levels, for keeping captives (or teammates) alive as long as possible.";
-	dir = 1;
-	name = "stasis cell";
-	stasis_level = 10
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/shuttle/manta_ship_boat)
 "cK" = (
 /obj/structure/cable/orange{
 	d1 = 1;
@@ -2192,6 +2183,13 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/bridge)
+"jK" = (
+/obj/machinery/sleep_console{
+	dir = 2;
+	name = "stasis cell console"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/manta_ship_boat)
 "jP" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
@@ -2764,6 +2762,7 @@
 	dir = 4
 	},
 /obj/machinery/light/no_nightshift,
+/obj/structure/closet/walllocker/emerglocker/south,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/manta_ship_boat)
 "mO" = (
@@ -3357,6 +3356,7 @@
 /obj/structure/bed/chair/bay/shuttle{
 	dir = 4
 	},
+/obj/structure/closet/walllocker/emerglocker/west,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/manta_ship_boat)
 "pB" = (
@@ -3415,6 +3415,7 @@
 /obj/structure/bed/chair/bay/shuttle{
 	dir = 8
 	},
+/obj/structure/closet/walllocker/emerglocker/east,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/manta_ship_boat)
 "pV" = (
@@ -3654,12 +3655,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/ship/manta/med)
-"rd" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/fuel{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/shuttle/manta_ship_boat)
 "rl" = (
 /obj/machinery/power/apc/hyper{
 	alarms_hidden = 1;
@@ -3868,6 +3863,7 @@
 /obj/structure/bed/chair/bay/shuttle{
 	dir = 4
 	},
+/obj/structure/closet/walllocker/emerglocker/west,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/manta_ship_boat)
 "sq" = (
@@ -3916,11 +3912,25 @@
 	},
 /turf/simulated/floor/wood,
 /area/ship/manta/barracks)
+"sw" = (
+/obj/machinery/portable_atmospherics/canister/phoron/engine_setup,
+/obj/machinery/atmospherics/portables_connector/fuel{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/outline/red,
+/obj/machinery/door/window/brigdoor/northright{
+	dir = 8;
+	req_access = list(150);
+	req_one_access = list(150)
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/manta_ship_boat)
 "sx" = (
 /obj/effect/floor_decal/industrial/warning/corner,
 /obj/structure/bed/chair/bay/shuttle{
 	dir = 8
 	},
+/obj/structure/closet/walllocker/emerglocker/east,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/manta_ship_boat)
 "sy" = (
@@ -5029,19 +5039,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/hangar)
-"xs" = (
-/obj/machinery/portable_atmospherics/canister/phoron/engine_setup,
-/obj/machinery/atmospherics/portables_connector/fuel{
-	dir = 8
-	},
-/obj/effect/floor_decal/industrial/outline/red,
-/obj/machinery/door/window/brigdoor/northright{
-	dir = 8;
-	req_access = list(150);
-	req_one_access = list(150)
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/shuttle/manta_ship_boat)
 "xt" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -5872,6 +5869,7 @@
 /obj/structure/bed/chair/bay/shuttle{
 	dir = 8
 	},
+/obj/structure/closet/walllocker/emerglocker/east,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/manta_ship_boat)
 "AO" = (
@@ -8110,6 +8108,15 @@
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging,
 /turf/simulated/floor/plating,
 /area/ship/manta/radiator_star)
+"Ms" = (
+/obj/machinery/sleeper{
+	desc = "A stasis pod with built-in injectors, a dialysis machine, and a limited health scanner. This one is preconfigured to stasis levels, for keeping captives (or teammates) alive as long as possible.";
+	dir = 1;
+	name = "stasis cell";
+	stasis_level = 10
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/manta_ship_boat)
 "Mt" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 1
@@ -8166,13 +8173,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/ship/manta/hallways_star)
-"MO" = (
-/obj/machinery/sleep_console{
-	dir = 2;
-	name = "stasis cell console"
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/shuttle/manta_ship_boat)
 "MQ" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
@@ -9235,6 +9235,12 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /turf/simulated/floor/wood,
 /area/ship/manta/barracks)
+"Sh" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/fuel{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/manta_ship_boat)
 "Sl" = (
 /obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor/plating,
@@ -20858,8 +20864,8 @@ pH
 pH
 AD
 pH
-cJ
-MO
+Ms
+jK
 je
 fp
 ag
@@ -21000,8 +21006,8 @@ pH
 pH
 AE
 pH
-cJ
-MO
+Ms
+jK
 je
 fp
 ag
@@ -21142,7 +21148,7 @@ ur
 ur
 AJ
 Eu
-rd
+Sh
 EJ
 ed
 qa
@@ -21283,7 +21289,7 @@ je
 uu
 xo
 je
-xs
+sw
 Kv
 je
 UY
