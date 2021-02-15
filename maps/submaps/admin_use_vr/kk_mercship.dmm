@@ -1129,7 +1129,9 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/teleporter)
 "fp" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/fuel,
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 8
+	},
 /turf/simulated/wall/rshull,
 /area/shuttle/manta_ship_boat)
 "fr" = (
@@ -2048,20 +2050,19 @@
 /turf/simulated/floor/reinforced,
 /area/ship/manta/recreation)
 "jl" = (
-/obj/structure/grille,
-/obj/structure/window/titanium/full,
-/obj/structure/window/titanium{
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
-/obj/machinery/door/blast/regular{
-	closed_layer = 4;
-	dir = 4;
+/obj/machinery/button/remote/blast_door{
+	dir = 8;
 	id = "Merc_Shuttle_Fore";
-	layer = 4
+	name = "Boarding Shuttle Fore Ramp";
+	pixel_x = -24;
+	req_access = list(150)
 	},
-/obj/machinery/shield_diffuser,
-/obj/machinery/door/firedoor/border_only,
-/obj/structure/window/titanium,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/manta_ship_boat)
 "jo" = (
@@ -2145,17 +2146,11 @@
 /turf/simulated/floor/tiled/dark,
 /area/ship/manta/recreation)
 "jE" = (
-/obj/machinery/door/blast/regular{
-	closed_layer = 4;
-	dir = 4;
-	id = "Merc_Shuttle_Fore";
-	layer = 4
-	},
-/obj/machinery/shield_diffuser,
-/obj/machinery/door/firedoor/border_only,
+/obj/effect/shuttle_landmark/shuttle_initializer/manta_ship_boat,
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
+/obj/effect/overmap/visitable/ship/landable/manta_ship_boat,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/manta_ship_boat)
 "jF" = (
@@ -2188,6 +2183,13 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/bridge)
+"jK" = (
+/obj/machinery/sleep_console{
+	dir = 2;
+	name = "stasis cell console"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/manta_ship_boat)
 "jP" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
@@ -2363,7 +2365,7 @@
 /turf/simulated/floor/plating,
 /area/ship/manta/hallways_port)
 "kT" = (
-/obj/structure/closet/crate,
+/obj/machinery/portable_atmospherics/canister/phoron/engine_setup,
 /turf/simulated/floor/plating,
 /area/ship/manta/hallways_port)
 "kW" = (
@@ -2609,15 +2611,12 @@
 /obj/structure/bed/chair/bay/shuttle{
 	dir = 4
 	},
-/obj/effect/floor_decal/industrial/warning{
-	dir = 1
+/obj/machinery/light/no_nightshift{
+	dir = 8
 	},
-/obj/machinery/button/remote/blast_door{
-	dir = 8;
-	id = "Merc_Shuttle_Fore";
-	name = "Boarding Shuttle Fore Ramp";
-	pixel_x = -24;
-	req_access = list(150)
+/obj/machinery/alarm/alarms_hidden{
+	dir = 4;
+	pixel_x = -26
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/manta_ship_boat)
@@ -2632,11 +2631,19 @@
 /turf/simulated/floor/wood,
 /area/ship/manta/barracks)
 "lZ" = (
-/obj/effect/shuttle_landmark/shuttle_initializer/manta_ship_boat,
-/obj/effect/floor_decal/industrial/warning{
+/obj/structure/grille,
+/obj/structure/window/titanium/full,
+/obj/structure/window/titanium{
 	dir = 1
 	},
-/obj/effect/overmap/visitable/ship/landable/manta_ship_boat,
+/obj/machinery/shield_diffuser,
+/obj/structure/window/titanium,
+/obj/machinery/door/blast/regular{
+	closed_layer = 4;
+	dir = 4;
+	id = "Merc_Shuttle_Fore";
+	layer = 4
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/manta_ship_boat)
 "mb" = (
@@ -2646,8 +2653,15 @@
 /turf/space,
 /area/ship/manta/radiator_port)
 "me" = (
+/obj/machinery/shield_diffuser,
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
+	},
+/obj/machinery/door/blast/regular{
+	closed_layer = 4;
+	dir = 4;
+	id = "Merc_Shuttle_Fore";
+	layer = 4
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/manta_ship_boat)
@@ -2679,15 +2693,12 @@
 /obj/structure/bed/chair/bay/shuttle{
 	dir = 8
 	},
-/obj/effect/floor_decal/industrial/warning{
-	dir = 1
+/obj/machinery/light/no_nightshift{
+	dir = 4
 	},
-/obj/machinery/button/remote/blast_door{
+/obj/machinery/firealarm/alarms_hidden{
 	dir = 4;
-	id = "Merc_Shuttle_Fore";
-	name = "Boarding Shuttle Fore Ramp";
-	pixel_x = 24;
-	req_access = list(150)
+	pixel_x = 26
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/manta_ship_boat)
@@ -2743,9 +2754,15 @@
 /turf/simulated/floor/plating,
 /area/ship/manta/engine)
 "mN" = (
-/obj/machinery/computer/ship/engines{
-	dir = 1
+/obj/machinery/firealarm/alarms_hidden{
+	dir = 8;
+	pixel_x = -26
 	},
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 4
+	},
+/obj/machinery/light/no_nightshift,
+/obj/structure/closet/walllocker/emerglocker/south,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/manta_ship_boat)
 "mO" = (
@@ -3339,13 +3356,7 @@
 /obj/structure/bed/chair/bay/shuttle{
 	dir = 4
 	},
-/obj/machinery/light/no_nightshift{
-	dir = 8
-	},
-/obj/machinery/alarm/alarms_hidden{
-	dir = 4;
-	pixel_x = -26
-	},
+/obj/structure/closet/walllocker/emerglocker/west,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/manta_ship_boat)
 "pB" = (
@@ -3404,13 +3415,7 @@
 /obj/structure/bed/chair/bay/shuttle{
 	dir = 8
 	},
-/obj/machinery/light/no_nightshift{
-	dir = 4
-	},
-/obj/machinery/firealarm/alarms_hidden{
-	dir = 4;
-	pixel_x = 26
-	},
+/obj/structure/closet/walllocker/emerglocker/east,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/manta_ship_boat)
 "pV" = (
@@ -3795,6 +3800,7 @@
 /area/ship/manta/mech_bay)
 "rU" = (
 /obj/machinery/door/airlock/engineering{
+	name = "Lander Fuel Storage";
 	req_one_access = list(150)
 	},
 /obj/structure/cable/orange{
@@ -3851,12 +3857,13 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/armoury_st)
 "sn" = (
-/obj/structure/bed/chair/bay/shuttle{
-	dir = 4
-	},
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 8
 	},
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 4
+	},
+/obj/structure/closet/walllocker/emerglocker/west,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/manta_ship_boat)
 "sq" = (
@@ -3905,11 +3912,25 @@
 	},
 /turf/simulated/floor/wood,
 /area/ship/manta/barracks)
+"sw" = (
+/obj/machinery/portable_atmospherics/canister/phoron/engine_setup,
+/obj/machinery/atmospherics/portables_connector/fuel{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/outline/red,
+/obj/machinery/door/window/brigdoor/northright{
+	dir = 8;
+	req_access = list(150);
+	req_one_access = list(150)
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/manta_ship_boat)
 "sx" = (
+/obj/effect/floor_decal/industrial/warning/corner,
 /obj/structure/bed/chair/bay/shuttle{
 	dir = 8
 	},
-/obj/effect/floor_decal/industrial/warning/corner,
+/obj/structure/closet/walllocker/emerglocker/east,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/manta_ship_boat)
 "sy" = (
@@ -4186,14 +4207,14 @@
 	id = "Merc_Shuttle_Boarding";
 	opacity = 0
 	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
 /obj/machinery/button/remote/blast_door{
 	id = "Merc_Shuttle_Boarding";
 	name = "Boarding Shuttle Access";
 	pixel_y = 24;
 	req_access = list(150)
-	},
-/obj/effect/floor_decal/industrial/warning{
-	dir = 8
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/manta_ship_boat)
@@ -4239,14 +4260,14 @@
 	id = "Merc_Shuttle_Boarding";
 	opacity = 0
 	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
 /obj/machinery/button/remote/blast_door{
-	id = "ERT_Shuttle_Rear";
+	id = "Merc_Shuttle_Boarding";
 	name = "Boarding Shuttle Access";
 	pixel_y = 24;
 	req_access = list(150)
-	},
-/obj/effect/floor_decal/industrial/warning{
-	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/manta_ship_boat)
@@ -4948,12 +4969,6 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/hangar)
 "xf" = (
-/obj/machinery/door/blast/regular{
-	density = 0;
-	icon_state = "pdoor0";
-	id = "Merc_Shuttle_Boarding";
-	opacity = 0
-	},
 /obj/machinery/button/remote/blast_door{
 	dir = 1;
 	id = "Merc_Shuttle_Boarding";
@@ -4961,11 +4976,14 @@
 	pixel_y = -24;
 	req_access = list(150)
 	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "Merc_Shuttle_Boarding";
+	opacity = 0
+	},
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
-	},
-/obj/machinery/door/firedoor/multi_tile{
-	dir = 1
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/manta_ship_boat)
@@ -4981,12 +4999,6 @@
 /turf/simulated/floor/plating,
 /area/ship/manta/engine)
 "xo" = (
-/obj/machinery/door/blast/regular{
-	density = 0;
-	icon_state = "pdoor0";
-	id = "Merc_Shuttle_Boarding";
-	opacity = 0
-	},
 /obj/machinery/button/remote/blast_door{
 	dir = 1;
 	id = "Merc_Shuttle_Boarding";
@@ -4994,11 +5006,14 @@
 	pixel_y = -24;
 	req_access = list(150)
 	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "Merc_Shuttle_Boarding";
+	opacity = 0
+	},
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
-	},
-/obj/machinery/door/firedoor/multi_tile{
-	dir = 1
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/manta_ship_boat)
@@ -5781,9 +5796,11 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/hangar)
 "Au" = (
-/obj/machinery/door/window/brigdoor/northleft{
-	req_access = list(150);
+/obj/machinery/computer/ship/helm{
 	req_one_access = list(150)
+	},
+/obj/structure/window/titanium{
+	dir = 1
 	},
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 1
@@ -5829,35 +5846,30 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/hallways_aft)
 "AD" = (
-/obj/machinery/computer/shuttle_control/explore/manta_ship_boat,
-/obj/structure/window/titanium{
-	dir = 1
-	},
-/obj/structure/window/titanium{
-	dir = 8
+/obj/machinery/door/window/brigdoor/northleft{
+	req_access = list(150);
+	req_one_access = list(150)
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/manta_ship_boat)
 "AE" = (
-/obj/structure/window/titanium{
-	dir = 1
-	},
-/obj/structure/window/titanium{
-	dir = 4
-	},
-/obj/machinery/computer/ship/helm{
+/obj/machinery/door/window/brigdoor/northright{
+	req_access = list(150);
 	req_one_access = list(150)
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/manta_ship_boat)
 "AJ" = (
-/obj/machinery/door/window/brigdoor/northright{
-	req_access = list(150);
-	req_one_access = list(150)
-	},
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 4
 	},
+/obj/structure/window/titanium{
+	dir = 1
+	},
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 8
+	},
+/obj/structure/closet/walllocker/emerglocker/east,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/manta_ship_boat)
 "AO" = (
@@ -6524,12 +6536,22 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/armoury_st)
 "Ec" = (
-/obj/machinery/light/no_nightshift{
-	dir = 8
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 1
 	},
-/obj/machinery/alarm/alarms_hidden{
-	dir = 4;
-	pixel_x = -26
+/obj/machinery/button/remote/blast_door{
+	id = "Merc_Shuttle_Fore";
+	name = "Boarding Shuttle Fore Ramp";
+	pixel_x = -24;
+	pixel_y = 25;
+	req_access = list(150)
+	},
+/obj/machinery/button/remote/blast_door{
+	id = "Merc_Shuttle_Boarding";
+	name = "Boarding Shuttle Side Hatches";
+	pixel_x = -41;
+	pixel_y = 25;
+	req_access = list(150)
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/manta_ship_boat)
@@ -6569,31 +6591,30 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/hangar)
 "En" = (
-/obj/structure/bed/chair/bay/shuttle{
+/obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/manta_ship_boat)
 "Et" = (
 /obj/structure/bed/chair/bay/shuttle{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
 /obj/machinery/button/remote/blast_door{
+	dir = 4;
 	id = "Merc_Shuttle_Fore";
 	name = "Boarding Shuttle Fore Ramp";
-	pixel_x = -17;
-	pixel_y = 42;
+	pixel_x = 24;
 	req_access = list(150)
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/manta_ship_boat)
 "Eu" = (
-/obj/machinery/light/no_nightshift{
-	dir = 4
-	},
-/obj/machinery/firealarm/alarms_hidden{
-	dir = 4;
-	pixel_x = 26
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 6
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/manta_ship_boat)
@@ -6653,12 +6674,18 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/hallways_aft)
 "EJ" = (
-/obj/structure/bed/chair/bay/shuttle{
-	dir = 1
-	},
 /obj/structure/fuel_port{
 	pixel_y = -29
 	},
+/obj/machinery/alarm/alarms_hidden{
+	dir = 8;
+	pixel_x = 26
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel,
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 8
+	},
+/obj/machinery/light/no_nightshift,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/manta_ship_boat)
 "EN" = (
@@ -6749,6 +6776,10 @@
 /obj/machinery/light_switch{
 	dir = 1;
 	pixel_y = -23
+	},
+/obj/machinery/vending/fitness{
+	dir = 1;
+	prices = list()
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/hangar)
@@ -7615,10 +7646,9 @@
 /turf/simulated/floor/wood,
 /area/ship/manta/commander)
 "Ki" = (
-/obj/machinery/sleeper{
+/obj/machinery/computer/ship/engines{
 	dir = 4;
-	name = "Stasis Cell";
-	stasis_level = 10
+	req_one_access = list(150)
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/manta_ship_boat)
@@ -7684,10 +7714,15 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/engineering)
 "Kv" = (
-/obj/machinery/sleeper{
+/obj/machinery/portable_atmospherics/canister/phoron/engine_setup,
+/obj/machinery/atmospherics/portables_connector/fuel{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/outline/red,
+/obj/machinery/door/window/brigdoor/northleft{
 	dir = 8;
-	name = "Stasis Cell";
-	stasis_level = 10
+	req_access = list(150);
+	req_one_access = list(150)
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/manta_ship_boat)
@@ -8073,6 +8108,15 @@
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging,
 /turf/simulated/floor/plating,
 /area/ship/manta/radiator_star)
+"Ms" = (
+/obj/machinery/sleeper{
+	desc = "A stasis pod with built-in injectors, a dialysis machine, and a limited health scanner. This one is preconfigured to stasis levels, for keeping captives (or teammates) alive as long as possible.";
+	dir = 1;
+	name = "stasis cell";
+	stasis_level = 10
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/manta_ship_boat)
 "Mt" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 1
@@ -9191,6 +9235,12 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /turf/simulated/floor/wood,
 /area/ship/manta/barracks)
+"Sh" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/fuel{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/manta_ship_boat)
 "Sl" = (
 /obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor/plating,
@@ -9238,15 +9288,12 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/armoury_st)
 "SF" = (
-/obj/machinery/door/window/brigdoor/northleft{
-	req_access = list(150);
-	req_one_access = list(150)
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
 	},
-/obj/machinery/atmospherics/portables_connector/fuel,
-/obj/machinery/portable_atmospherics/canister/phoron/engine_setup,
-/obj/effect/floor_decal/industrial/outline/red,
 /turf/simulated/floor/tiled/techfloor,
-/area/shuttle/manta_ship_boat)
+/area/ship/manta/hangar)
 "SG" = (
 /obj/machinery/atmospherics/pipe/manifold/visible,
 /turf/simulated/floor/plating,
@@ -9258,13 +9305,9 @@
 /turf/simulated/floor/plating,
 /area/ship/manta/atmos)
 "SJ" = (
-/obj/machinery/door/window/brigdoor/northright{
-	req_access = list(150);
-	req_one_access = list(150)
+/obj/machinery/computer/shuttle_control/explore/manta_ship_boat{
+	dir = 4
 	},
-/obj/machinery/atmospherics/portables_connector/fuel,
-/obj/machinery/portable_atmospherics/canister/phoron/engine_setup,
-/obj/effect/floor_decal/industrial/outline/red,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/manta_ship_boat)
 "SO" = (
@@ -20248,7 +20291,7 @@ fy
 jc
 lR
 jc
-jc
+SF
 tV
 wZ
 Al
@@ -20393,7 +20436,7 @@ je
 ag
 tW
 xe
-ag
+je
 je
 je
 je
@@ -20528,7 +20571,7 @@ yz
 ce
 dk
 ec
-ag
+je
 je
 je
 je
@@ -20536,7 +20579,7 @@ je
 ud
 xf
 je
-je
+SJ
 Ki
 je
 Eg
@@ -20670,7 +20713,7 @@ yz
 ce
 dk
 ec
-ag
+lZ
 jl
 lX
 pA
@@ -20812,18 +20855,18 @@ yz
 ce
 dk
 ec
-ag
+me
 jE
-lZ
+pH
 pH
 pH
 pH
 pH
 AD
-En
 pH
-pH
-SF
+Ms
+jK
+je
 fp
 ag
 aJ
@@ -20954,18 +20997,18 @@ yz
 ce
 dk
 ec
-ag
-jE
 me
+En
+pH
 pH
 pH
 pH
 pH
 AE
-Et
 pH
-pH
-SJ
+Ms
+jK
+je
 fp
 ag
 aJ
@@ -21096,8 +21139,8 @@ yz
 ce
 dk
 ec
-ag
-jl
+lZ
+Et
 ms
 pS
 sx
@@ -21105,9 +21148,9 @@ ur
 ur
 AJ
 Eu
-pH
+Sh
 EJ
-Eg
+ed
 qa
 qg
 aJ
@@ -21238,7 +21281,7 @@ yz
 ce
 dk
 ec
-ag
+je
 je
 je
 je
@@ -21246,7 +21289,7 @@ je
 uu
 xo
 je
-je
+sw
 Kv
 je
 UY
@@ -21387,7 +21430,7 @@ je
 ag
 uy
 xq
-ag
+je
 je
 je
 je
