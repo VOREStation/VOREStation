@@ -114,6 +114,7 @@
 	material = null
 
 /obj/item/weapon/ore/New()
+	..()
 	randpixel_xy()
 
 /obj/item/weapon/ore/attackby(obj/item/weapon/W as obj, mob/user as mob)
