@@ -350,8 +350,8 @@
 /area/maintenance/substation/SurfMedsubstation
 	name = "\improper SurfMed Substation"
 	icon_state = "green"
-/area/maintenance/substation/cargostoresubstation
-	name = "\improper Cargo Store Substation"
+/area/maintenance/substation/surfaceservicesubstation
+	name = "\improper Surface Services Substation"
 	icon_state = "green"
 
 /area/tether/surfacebase/lowernorthhall
