@@ -6168,6 +6168,9 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/recoveryward)
 "ajD" = (
@@ -6519,6 +6522,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/door/firedoor,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/outfitting/storage)
 "akk" = (
@@ -6633,9 +6637,6 @@
 	name = "Autopsy Camera";
 	pixel_x = -2;
 	pixel_y = 7
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
 	},
 /obj/machinery/camera/network/medbay{
 	dir = 10
@@ -7384,7 +7385,9 @@
 /area/tether/surfacebase/security/armory)
 "alz" = (
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/armory)
 "alA" = (
@@ -9429,9 +9432,6 @@
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
@@ -13964,12 +13964,6 @@
 /obj/structure/cable/green{
 	icon_state = "0-4"
 	},
-/obj/machinery/atmospherics/pipe/zpipe/up/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/zpipe/up/supply{
-	dir = 4
-	},
 /obj/structure/cable/green{
 	d2 = 8;
 	icon_state = "0-8"
@@ -14010,19 +14004,9 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/tether/surfacebase/surface_two_hall)
 "awN" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/visible/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
-	dir = 4
-	},
+/obj/structure/catwalk,
 /turf/simulated/floor/plating,
-/area/maintenance/asmaint2)
+/area/tether/surfacebase/fish_farm)
 "awO" = (
 /obj/structure/grille,
 /obj/structure/railing,
@@ -14051,12 +14035,6 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/visible/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
-	dir = 4
-	},
 /obj/structure/railing{
 	dir = 4
 	},
@@ -14073,13 +14051,9 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/manifold/visible/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/visible/scrubbers{
-	dir = 4
-	},
 /obj/structure/catwalk,
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/visible/supply,
 /turf/simulated/floor/plating,
 /area/maintenance/asmaint2)
 "awT" = (
@@ -14572,13 +14546,10 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/south)
 "axO" = (
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock/maintenance/common,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/maintenance/lower/bar)
+/obj/structure/railing,
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/fish_farm)
 "axP" = (
 /obj/machinery/recharge_station,
 /turf/simulated/floor/tiled/techfloor,
@@ -21309,9 +21280,6 @@
 /area/maintenance/lower/atmos)
 "aLG" = (
 /obj/machinery/door/airlock/maintenance/engi,
-/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
-	dir = 4
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -21463,12 +21431,6 @@
 /area/chapel/office)
 "aLW" = (
 /obj/structure/catwalk,
-/obj/machinery/atmospherics/pipe/manifold/visible/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/visible/supply{
-	dir = 4
-	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
@@ -21477,6 +21439,8 @@
 	icon_state = "pipe-c"
 	},
 /obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/visible/supply,
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "aLX" = (
@@ -29324,7 +29288,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/turf/simulated/floor/plating,
 /area/maintenance/readingrooms)
 "bdk" = (
 /obj/machinery/light/small{
@@ -31419,14 +31383,12 @@
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/reading_room)
 "bhJ" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/machinery/door/firedoor,
-/obj/structure/window/reinforced{
+/obj/structure/railing{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/grass/sif/virgo3b,
-/area/tether/surfacebase/reading_room)
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/fish_farm)
 "bhK" = (
 /obj/machinery/door/blast/regular{
 	density = 0;
@@ -33279,12 +33241,6 @@
 	dir = 8
 	},
 /obj/structure/window/phoronreinforced,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 6
-	},
 /obj/structure/window/phoronreinforced{
 	dir = 1
 	},
@@ -33688,9 +33644,6 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
 /obj/machinery/door/blast/regular{
 	density = 0;
 	icon_state = "pdoor0";
@@ -33745,9 +33698,6 @@
 	},
 /obj/structure/window/reinforced{
 	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
 	},
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/reinforced,
@@ -34253,11 +34203,13 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/medical/breakroom)
 "bpL" = (
-/obj/machinery/light{
-	dir = 4
+/obj/effect/decal/cleanable/filth,
+/obj/item/weapon/bone/skull,
+/mob/living/simple_mob/vore/aggressive/rat{
+	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
 	},
-/turf/simulated/wall,
-/area/tether/surfacebase/medical/breakroom)
+/turf/simulated/floor/water/indoors,
+/area/tether/surfacebase/fish_farm)
 "bpO" = (
 /obj/structure/railing{
 	dir = 4
@@ -34281,9 +34233,6 @@
 /obj/structure/cable/green{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4;
 	icon_state = "pipe-c"
@@ -34300,15 +34249,26 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 4
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 8;
 	icon_state = "pipe-c"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
+"bCs" = (
+/obj/effect/floor_decal/techfloor{
+	dir = 8
+	},
+/turf/simulated/floor/beach/sand/desert,
+/area/tether/surfacebase/fish_farm)
+"bOW" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/fish_farm)
 "cJE" = (
 /obj/effect/floor_decal/corner/paleblue/diagonal,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -34400,6 +34360,13 @@
 	},
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/reading_room)
+"flk" = (
+/obj/structure/catwalk,
+/obj/effect/floor_decal/techfloor{
+	dir = 4
+	},
+/turf/simulated/floor/beach/sand/desert,
+/area/tether/surfacebase/fish_farm)
 "frf" = (
 /obj/item/weapon/paper{
 	info = "I finally got them. The last pair of Shitty Tim's Shitty Timbs. I waited in line at the cargo shop for what seemed like hours. It probably was hours quite frankly. Well after I got my box, someone ran by and jacked my heels! Well I needed shoes so I snuck inside and stole what they had left. Just a pair of NT worshoes. But atleast I'm not walking away barefooted. If only I wasn't caught by a security. I feel like I've been in this hole for days. Good thing I managed to pilfer some provisions on the way here.";
@@ -34413,11 +34380,33 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/north)
+"fFF" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/catwalk,
+/obj/effect/decal/cleanable/filth,
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/fish_farm)
 "fIS" = (
 /obj/effect/floor_decal/corner/paleblue/diagonal,
 /obj/structure/table/glass,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
+"fLW" = (
+/obj/machinery/door/airlock/maintenance/common{
+	name = "Sewage Processing"
+	},
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/fish_farm)
+"fWy" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/catwalk,
+/obj/structure/closet/crate/trashcart,
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/fish_farm)
 "glx" = (
 /obj/structure/cable/orange{
 	d1 = 16;
@@ -34428,6 +34417,14 @@
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/reading_room)
+"grL" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/catwalk,
+/obj/machinery/light/small,
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/fish_farm)
 "gwn" = (
 /obj/item/trash/snack_bowl,
 /obj/item/trash/sosjerky,
@@ -34440,6 +34437,11 @@
 /obj/item/trash/cheesie,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/funny/hideyhole)
+"gGm" = (
+/obj/structure/catwalk,
+/obj/machinery/light/small,
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/fish_farm)
 "jCz" = (
 /turf/simulated/wall{
 	can_open = 1
@@ -34601,6 +34603,10 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/chapel/main)
+"pqb" = (
+/obj/structure/sink/puddle,
+/turf/simulated/floor/beach/sand/desert,
+/area/tether/surfacebase/fish_farm)
 "pLH" = (
 /obj/effect/floor_decal/corner_techfloor_grid{
 	dir = 10
@@ -34645,6 +34651,11 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
+"sgu" = (
+/obj/structure/grille,
+/obj/structure/plasticflaps,
+/turf/simulated/floor/water/indoors,
+/area/tether/surfacebase/fish_farm)
 "shd" = (
 /obj/item/weapon/storage/rollingpapers,
 /obj/item/clothing/mask/smokable/cigarette/joint,
@@ -34654,6 +34665,26 @@
 /obj/item/weapon/flame/lighter/zippo/moff,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/funny/hideyhole)
+"sKR" = (
+/obj/structure/disposalpipe/broken,
+/obj/effect/decal/cleanable/filth,
+/obj/effect/landmark/teleplumb_exit,
+/turf/simulated/floor/water/indoors,
+/area/tether/surfacebase/fish_farm)
+"sLx" = (
+/obj/effect/decal/cleanable/filth,
+/obj/item/weapon/bone,
+/obj/effect/floor_decal/techfloor{
+	dir = 4
+	},
+/obj/effect/floor_decal/techfloor/hole{
+	dir = 4
+	},
+/obj/effect/floor_decal/techfloor/hole/right{
+	dir = 4
+	},
+/turf/simulated/floor/water/indoors,
+/area/tether/surfacebase/fish_farm)
 "sVf" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -34706,9 +34737,6 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/south)
 "tHa" = (
-/obj/structure/railing{
-	dir = 4
-	},
 /obj/structure/catwalk,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/mining)
@@ -34729,6 +34757,17 @@
 /obj/structure/table/glass,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
+"uFL" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/catwalk,
+/obj/effect/decal/cleanable/filth,
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/fish_farm)
 "uHy" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -34753,6 +34792,16 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
+"viY" = (
+/obj/effect/floor_decal/techfloor{
+	dir = 8
+	},
+/turf/simulated/floor/water/indoors,
+/area/tether/surfacebase/fish_farm)
+"vje" = (
+/obj/structure/sign/biohazard,
+/turf/simulated/wall,
+/area/tether/surfacebase/fish_farm)
 "voE" = (
 /obj/effect/floor_decal/corner_techfloor_grid,
 /obj/effect/floor_decal/corner_techfloor_grid{
@@ -39976,11 +40025,11 @@ adt
 adt
 adt
 adt
-adt
-adt
-adt
-adt
-adt
+azs
+azs
+azs
+azs
+azs
 adt
 adt
 adt
@@ -40118,11 +40167,11 @@ adt
 adt
 adt
 adt
-adt
-adt
-adt
-adt
-adt
+azs
+awN
+bhJ
+fFF
+azs
 adt
 adt
 adt
@@ -40260,11 +40309,11 @@ adt
 adt
 adt
 adt
-adt
-adt
-adt
-adt
-adt
+azs
+axO
+bpL
+sKR
+vje
 adt
 adt
 adt
@@ -40402,11 +40451,11 @@ adt
 adt
 adt
 adt
-adt
-adt
-adt
-adt
-adt
+azs
+axO
+sLx
+uFL
+azs
 adt
 adt
 adt
@@ -40544,10 +40593,10 @@ adt
 adt
 adt
 adt
-adt
-adt
-adt
-adt
+azs
+axO
+bCs
+grL
 azs
 azs
 azs
@@ -40686,11 +40735,11 @@ adt
 adt
 adt
 adt
-adt
-adt
-adt
-adt
 azs
+axO
+pqb
+bOW
+fLW
 aBB
 aCm
 aDj
@@ -40828,11 +40877,11 @@ adt
 adt
 adt
 adt
-adt
-adt
-adt
-adt
 azs
+awN
+flk
+gGm
+vje
 aBd
 aCn
 aDk
@@ -40970,10 +41019,10 @@ ajV
 adt
 adt
 adt
-adt
-adt
-adt
-adt
+azs
+axO
+viY
+fWy
 azs
 azq
 aAw
@@ -41112,10 +41161,10 @@ ajV
 adt
 adt
 adt
-awY
-awY
-awY
-awY
+azs
+azs
+sgu
+azs
 azs
 azq
 aAw
@@ -41257,7 +41306,7 @@ awY
 awY
 azq
 azq
-awY
+azq
 aBb
 aBC
 aCo
@@ -41857,7 +41906,7 @@ aQy
 aSu
 aQv
 aHE
-awN
+aSu
 aHE
 adt
 adt
@@ -47207,7 +47256,7 @@ unM
 nPO
 axv
 adJ
-bpL
+ajG
 anC
 sZp
 anC
@@ -47778,7 +47827,7 @@ apZ
 ajG
 arS
 asV
-amV
+awj
 anD
 anD
 anO
@@ -50907,7 +50956,7 @@ ard
 avN
 ard
 ard
-axO
+aDb
 ard
 ard
 ard
@@ -51541,8 +51590,8 @@ aab
 aab
 abn
 bgU
-bhJ
-bhJ
+bjj
+bjj
 bgU
 bjj
 bjj

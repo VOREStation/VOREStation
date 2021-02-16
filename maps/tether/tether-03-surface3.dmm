@@ -2305,9 +2305,6 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 8
-	},
 /obj/structure/cable/green{
 	d1 = 2;
 	d2 = 4;
@@ -2315,6 +2312,9 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/vacant/vacant_shop)
@@ -4561,8 +4561,6 @@
 /turf/simulated/open,
 /area/maintenance/lower/medsec_maintenance)
 "agK" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/cable/green{
 	d1 = 4;
 	d2 = 8;
@@ -4637,6 +4635,7 @@
 	dir = 5
 	},
 /obj/machinery/recharger,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/lobby)
 "agQ" = (
@@ -4775,6 +4774,9 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/triage)
@@ -5163,8 +5165,6 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/effect/floor_decal/techfloor{
 	dir = 4
 	},
@@ -5215,12 +5215,6 @@
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/green{
 	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
 	},
 /obj/machinery/door/blast/regular{
 	density = 0;
@@ -5505,8 +5499,6 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/lower/medsec_maintenance)
 "aid" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/effect/floor_decal/techfloor/corner{
 	dir = 8
 	},
@@ -6112,8 +6104,6 @@
 /obj/effect/floor_decal/techfloor/hole/right{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/lower/medsec_maintenance)
 "aiZ" = (
@@ -7686,7 +7676,7 @@
 	health = 1e+006
 	},
 /obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/plating,
 /area/rnd/outpost/xenobiology/outpost_hallway)
 "alI" = (
 /obj/structure/cable/green{
@@ -9244,8 +9234,6 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
 "aoH" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
@@ -10254,7 +10242,6 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/vacant/vacant_shop)
 "aqj" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
@@ -10268,8 +10255,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/vacant/vacant_shop)
@@ -13667,8 +13654,6 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
 "aww" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
@@ -15870,7 +15855,9 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
 "azJ" = (
@@ -18262,6 +18249,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/public_garden_three)
 "aDG" = (
@@ -20154,16 +20143,8 @@
 /obj/structure/window/basic/full,
 /obj/structure/grille,
 /obj/structure/window/basic,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/plating,
 /area/rnd/outpost/xenobiology/outpost_north_airlock)
-"aGO" = (
-/obj/structure/window/basic/full,
-/obj/structure/grille,
-/obj/structure/window/basic{
-	dir = 4
-	},
-/turf/simulated/floor/tiled,
-/area/rnd/outpost/xenobiology/outpost_hallway)
 "aGP" = (
 /obj/structure/sign/nanotrasen,
 /turf/simulated/wall,
@@ -20619,7 +20600,7 @@
 /obj/structure/window/basic{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel,
+/turf/simulated/floor/plating,
 /area/rnd/outpost/xenobiology/outpost_hallway)
 "aHF" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
@@ -23906,7 +23887,7 @@
 /obj/structure/window/basic{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel,
+/turf/simulated/floor/plating,
 /area/rnd/outpost/xenobiology/outpost_hallway)
 "aNM" = (
 /obj/structure/railing{
@@ -26583,12 +26564,6 @@
 	},
 /obj/effect/floor_decal/techfloor{
 	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/lower/medsec_maintenance)
@@ -29862,9 +29837,6 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor/glass,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/machinery/door/airlock/command{
 	name = "Head of Personnel";
 	req_access = list(57)
@@ -35944,7 +35916,7 @@
 /obj/structure/window/reinforced/polarized{
 	id = "robo_surg_1"
 	},
-/turf/simulated/floor/tiled/steel_grid,
+/turf/simulated/floor/plating,
 /area/rnd/robotics/surgeryroom1)
 "bld" = (
 /obj/machinery/door/firedoor,
@@ -36245,11 +36217,11 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/lower/medsec_maintenance)
 "blU" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/lower/medsec_maintenance)
@@ -38275,6 +38247,18 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/crew_quarters/panic_shelter)
+"eHY" = (
+/obj/machinery/door/firedoor,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/shuttle_pad)
 "eIs" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
@@ -38952,10 +38936,12 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenobiology/outpost_hallway)
 "hLd" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/maintenance/lower/medsec_maintenance)
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/security/briefingroom)
 "hQl" = (
 /obj/machinery/newscaster{
 	pixel_y = -29
@@ -49278,16 +49264,16 @@ aqw
 aFL
 aBK
 aiE
-aGO
+aNL
 acj
 acj
-aGO
+aNL
 acj
 acj
-aGO
+aNL
 acj
 acj
-aGO
+aNL
 acj
 acj
 aNL
@@ -54478,7 +54464,7 @@ adO
 uyz
 aIF
 ngL
-afl
+hLd
 rQp
 pHl
 afl
@@ -55050,7 +55036,7 @@ acw
 acw
 blT
 blU
-hLd
+orc
 agK
 ahE
 aid
@@ -56537,7 +56523,7 @@ aKf
 aKj
 aKj
 aKj
-aKf
+eHY
 aKf
 aPs
 aPs
