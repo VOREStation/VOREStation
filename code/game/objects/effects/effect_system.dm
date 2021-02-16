@@ -33,7 +33,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 
 	proc/start()
 
-	proc/Destroy()
+	Destroy()
 		holder = null
 		return ..()
 
