@@ -369,9 +369,6 @@
 "aaJ" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/folder/white,
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 8
-	},
 /turf/simulated/floor/carpet/blue,
 /area/tether/surfacebase/medical/mentalhealth)
 "aaK" = (
@@ -3422,6 +3419,9 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/lowernorthhall)
 "afF" = (
@@ -5789,7 +5789,6 @@
 /obj/random/junk,
 /obj/random/junk,
 /obj/random/tool,
-/obj/effect/landmark/teleplumb_exit,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/trash_pit)
 "ajS" = (
@@ -11834,9 +11833,6 @@
 /obj/item/clothing/suit/space/anomaly,
 /obj/item/clothing/head/helmet/space/anomaly,
 /obj/item/clothing/mask/breath,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
-	},
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "east bump";
@@ -34868,6 +34864,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/funny/mimeoffice)
 "nmD" = (
@@ -36674,7 +36671,6 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/xenoflora)
 "tNJ" = (
