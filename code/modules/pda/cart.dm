@@ -307,5 +307,4 @@ var/list/civilian_cartridges = list(
 	name = "F.R.A.M.E. cartridge"
 	icon_state = "cart"
 	charges = 5
-	var/telecrystals = 0
 	messenger_plugins = list(new/datum/data/pda/messenger_plugin/virus/frame)

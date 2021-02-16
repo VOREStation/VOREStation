@@ -70,7 +70,14 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 		var/change = new_size - size_multiplier
 		var/duration = (abs(change)+0.25) SECONDS
 		var/matrix/resize = matrix() // Defines the matrix to change the player's size
-		resize.Scale(new_size * icon_scale_x, new_size * icon_scale_y) //Change the size of the matrix
+		var/special_x = 1
+		var/special_y = 1
+		if(ishuman(src))
+			var/mob/living/carbon/human/H = src
+			var/datum/species/S = H.species
+			special_x = S.icon_scale_x
+			special_y = S.icon_scale_y
+		resize.Scale(new_size * icon_scale_x * special_x, new_size * icon_scale_y * special_y) //Change the size of the matrix
 		resize.Translate(0, (vis_height/2) * (new_size - 1)) //Move the player up in the tile so their feet align with the bottom
 		animate(src, transform = resize, time = duration) //Animate the player resizing
 

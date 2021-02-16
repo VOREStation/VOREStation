@@ -350,7 +350,7 @@
 	var/obj/item/projectile/P = initial(E.projectile_type)
 	//var/obj/item/ammo_casing/shottype = E.projectile_type
 
-	GLOB.moved_event.register_global(src, /obj/machinery/porta_turret/proc/point_defense)
+	//GLOB.moved_event.register_global(src, /obj/machinery/porta_turret/proc/point_defense) //VOREStation Removal
 
 	projectile = P
 	lethal_projectile = projectile

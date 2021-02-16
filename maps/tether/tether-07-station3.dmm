@@ -2273,16 +2273,16 @@
 /turf/simulated/floor/tiled,
 /area/security/hallwayaux)
 "aes" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/random/junk,
+/turf/simulated/floor,
+/area/maintenance/cargo)
+"aet" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8;
 	icon_state = "propulsion_l"
-	},
-/turf/simulated/floor/tiled/asteroid_steel/airless,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/mining_outpost/shuttle)
-"aet" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8
 	},
 /turf/simulated/floor/tiled/asteroid_steel/airless,
 /turf/simulated/shuttle/plating/airless/carry,
@@ -2342,8 +2342,7 @@
 /area/security/security_bathroom)
 "aex" = (
 /obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_r"
+	dir = 8
 	},
 /turf/simulated/floor/tiled/asteroid_steel/airless,
 /turf/simulated/shuttle/plating/airless/carry,
@@ -2351,6 +2350,14 @@
 "aey" = (
 /turf/simulated/floor/carpet,
 /area/security/breakroom)
+"aez" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_r"
+	},
+/turf/simulated/floor/tiled/asteroid_steel/airless,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/mining_outpost/shuttle)
 "aeA" = (
 /obj/effect/floor_decal/corner/red{
 	dir = 10;
@@ -19008,14 +19015,6 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/cargo)
-"aRU" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/random/junk,
-/obj/structure/closet/secure_closet/pilot,
-/turf/simulated/floor,
-/area/maintenance/cargo)
 "aRX" = (
 /obj/structure/table/rack/shelf,
 /obj/item/weapon/tank/oxygen,
@@ -22148,10 +22147,12 @@
 "doD" = (
 /obj/effect/floor_decal/industrial/warning/corner,
 /obj/effect/floor_decal/industrial/outline/yellow,
-/obj/structure/handrail,
 /obj/item/device/radio/intercom{
 	dir = 4;
 	pixel_x = 24
+	},
+/obj/structure/handrail{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/excursion/cargo)
@@ -23008,12 +23009,12 @@
 /obj/structure/bed/chair/shuttle{
 	dir = 8
 	},
-/obj/structure/closet/emergsuit_wall{
-	dir = 1;
-	pixel_y = -32
-	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/excursion/general)
+"hBg" = (
+/obj/effect/floor_decal/industrial/outline/yellow,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/excursion/cargo)
 "hIb" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -24569,7 +24570,9 @@
 /area/shuttle/excursion/general)
 "qEn" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
-/obj/structure/handrail,
+/obj/structure/handrail{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/excursion/cargo)
 "qJK" = (
@@ -36528,9 +36531,9 @@ abY
 acE
 acK
 acK
-adj
-adj
-adj
+acK
+acK
+acK
 acK
 acK
 acK
@@ -36831,7 +36834,7 @@ ams
 aXq
 abe
 aor
-aRU
+aes
 aqb
 aSf
 aiV
@@ -37378,7 +37381,7 @@ aaa
 abe
 acs
 acF
-adj
+qxW
 qEn
 oYj
 qTB
@@ -37520,8 +37523,8 @@ aaa
 abe
 abY
 acE
-adj
-qEn
+qxW
+hBg
 fQo
 lSD
 eQX
@@ -37662,7 +37665,7 @@ aaa
 abe
 acA
 acG
-adj
+qxW
 doD
 vpU
 utX
@@ -40283,11 +40286,11 @@ avt
 avt
 adD
 aZS
-aes
-aet
-aet
 aet
 aex
+aex
+aex
+aez
 baB
 adD
 avt
