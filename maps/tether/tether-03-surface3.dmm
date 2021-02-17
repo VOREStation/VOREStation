@@ -33656,6 +33656,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
+/obj/item/weapon/book/manual/cook_guide,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
 "bgq" = (
@@ -33936,6 +33937,7 @@
 /obj/machinery/camera/network/civilian{
 	dir = 4
 	},
+/obj/item/weapon/book/manual/bar_guide,
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/bar_backroom)
 "bgP" = (
