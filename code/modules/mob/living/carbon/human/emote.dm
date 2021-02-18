@@ -729,32 +729,23 @@
 
 		if("whistle" || "whistles")
 			if(!muzzled)
-<<<<<<< HEAD
-				message = "whistles a tune."
-				playsound(src, 'sound/misc/longwhistle.ogg', preference = /datum/client_preference/emote_noises) //VOREStation Add
-=======
 				if(!isSynthetic())
 					message = "whistles a tune."
-					playsound(src, 'sound/voice/longwhistle.ogg', 50, 1) //praying this doesn't get abused
+					playsound(src, 'sound/voice/longwhistle.ogg', 50, 1, preference = /datum/client_preference/emote_noises) //praying this doesn't get abused
 				else
 					message = "whistles a robotic tune."
-					playsound(src, 'sound/voice/longwhistle_robot.ogg', 50, 1)
->>>>>>> b41ffcb... Merge pull request #7894 from Cerebulon/dancedancerevolution
+					playsound(src, 'sound/voice/longwhistle_robot.ogg', 50, 1, preference = /datum/client_preference/emote_noises)
 			else
 				message = "makes a light spitting noise, a poor attempt at a whistle."
 
 		if("qwhistle")
 			if(!muzzled)
-<<<<<<< HEAD
-				message = "whistles quietly."
-				playsound(src, 'sound/misc/shortwhistle.ogg', preference = /datum/client_preference/emote_noises) //VOREStation Add
-=======
 				if(!isSynthetic())
 					message = "whistles quietly."
-					playsound(src, 'sound/voice/shortwhistle.ogg', 50, 1)
+					playsound(src, 'sound/voice/shortwhistle.ogg', 50, 1, preference = /datum/client_preference/emote_noises)
 				else
 					message = "whistles robotically."
-					playsound(src, 'sound/voice/shortwhistle_robot.ogg', 50, 1)
+					playsound(src, 'sound/voice/shortwhistle_robot.ogg', 50, 1, preference = /datum/client_preference/emote_noises)
 			else
 				message = "makes a light spitting noise, a poor attempt at a whistle."
 
@@ -762,10 +753,10 @@
 			if(!muzzled)
 				if(!isSynthetic())
 					message = "whistles inappropriately."
-					playsound(src, 'sound/voice/wolfwhistle.ogg', 50, 1)
+					playsound(src, 'sound/voice/wolfwhistle.ogg', 50, 1, preference = /datum/client_preference/emote_noises)
 				else
 					message = "beeps inappropriately."
-					playsound(src, 'sound/voice/wolfwhistle_robot.ogg', 50, 1)
+					playsound(src, 'sound/voice/wolfwhistle_robot.ogg', 50, 1, preference = /datum/client_preference/emote_noises)
 			else
 				message = "makes a light spitting noise, a poor attempt at a whistle."
 
@@ -773,11 +764,10 @@
 			if(!muzzled)
 				if(!isSynthetic())
 					message = "summon whistles."
-					playsound(src, 'sound/voice/summon_whistle.ogg', 50, 1)
+					playsound(src, 'sound/voice/summon_whistle.ogg', 50, 1, preference = /datum/client_preference/emote_noises)
 				else
 					message = "summon whistles robotically."
-					playsound(src, 'sound/voice/summon_whistle_robot.ogg', 50, 1)
->>>>>>> b41ffcb... Merge pull request #7894 from Cerebulon/dancedancerevolution
+					playsound(src, 'sound/voice/summon_whistle_robot.ogg', 50, 1, preference = /datum/client_preference/emote_noises)
 			else
 				message = "makes a light spitting noise, a poor attempt at a whistle."
 
