@@ -948,23 +948,7 @@
 	if(issmall(M))
 		effective_dose *= 2
 
-/* //VOREStation Removal - Assuming all juice has sugar is silly
 	if(alien == IS_UNATHI)
-<<<<<<< HEAD
-		if(effective_dose < 2)
-			if(effective_dose == metabolism * 2 || prob(5))
-				M.emote("yawn")
-		else if(effective_dose < 5)
-			M.eye_blurry = max(M.eye_blurry, 10)
-		else if(effective_dose < 20)
-			if(prob(50))
-				M.Weaken(2)
-			M.drowsyness = max(M.drowsyness, 20)
-		else
-			M.Sleeping(20)
-			M.drowsyness = max(M.drowsyness, 60)
-*/
-=======
 		if(sugary == TRUE)
 			if(effective_dose < 2)
 				if(effective_dose == metabolism * 2 || prob(5))
@@ -978,7 +962,6 @@
 			else
 				M.Sleeping(20)
 				M.drowsyness = max(M.drowsyness, 60)
->>>>>>> 83e0c14... adds sugary var (#7897)
 
 /datum/reagent/drink/juice/lemon
 	name = "Lemon Juice"
