@@ -88,7 +88,7 @@
 		Alternatively, Flat Dough can be cut with a Knife to make Dough Slices, and those can be cut to make Spaghetti.
 		<h3>Cheese Creation:</h3> 
 		A common topping. Take a bottle of Universal Enzyme, put it in a Beaker or Measuring Cup, and add Milk until a Cheese Wheel pops out. Then cut the Cheese Wheel with a Knife to make Cheese Wedges, all recipes use Wedges not the full Wheel.
-		<h3>Tofu Creation:</h3> 
+		<h3>Tofu Creation:</h3>
 		Same as cheese, but with Soymilk!
 		<h3>Meatball Creation:</h3> 
 		Mix Animal protein and Flour, to create Animal Protein grind down some Meat in the grinder, then remove the beaker and add Flour.
