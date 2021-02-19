@@ -360,16 +360,19 @@
 /obj/structure/cable/green{
 	icon_state = "2-4"
 	},
+/obj/machinery/atmospherics/pipe/simple/visible/fuel{
+	dir = 6
+	},
 /obj/structure/catwalk,
 /turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
 "aR" = (
-/obj/machinery/atmospherics/pipe/simple/visible/fuel{
-	dir = 6
-	},
 /obj/structure/cable/green{
 	dir = 1;
 	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/fuel{
+	dir = 8
 	},
 /obj/structure/catwalk,
 /turf/simulated/shuttle/plating/airless,
@@ -413,6 +416,9 @@
 "aV" = (
 /obj/structure/cable/green{
 	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/aux{
+	dir = 10
 	},
 /obj/structure/catwalk,
 /turf/simulated/shuttle/plating/airless,
@@ -460,30 +466,13 @@
 	icon_state = "2-8"
 	},
 /obj/structure/catwalk,
-/turf/simulated/shuttle/plating/airless,
-/area/tether_away/fueldepot)
-"bb" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
 /obj/machinery/atmospherics/pipe/simple/visible/fuel,
-/obj/structure/catwalk,
 /turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
 "bc" = (
-/obj/structure/cable{
-	icon_state = "4-8"
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 10
 	},
-/obj/structure/catwalk,
-/turf/simulated/shuttle/plating/airless,
-/area/tether_away/fueldepot)
-"bd" = (
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/visible/aux,
 /obj/structure/catwalk,
 /turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
@@ -563,52 +552,55 @@
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/tether_away/fueldepot)
 "bm" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/structure/catwalk,
-/turf/simulated/shuttle/plating/airless,
-/area/tether_away/fueldepot)
-"bn" = (
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/visible/fuel,
 /obj/structure/catwalk,
 /turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
-"bo" = (
-/obj/machinery/atmospherics/pipe/tank/phoron/full,
+"bn" = (
+/obj/machinery/atmospherics/pipe/tank/phoron/full{
+	dir = 4;
+	start_pressure = 30000
+	},
 /obj/effect/floor_decal/industrial/outline/red,
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/tether_away/fueldepot)
-"bp" = (
-/obj/structure/cable{
-	icon_state = "1-4"
+"bo" = (
+/obj/machinery/atmospherics/pipe/manifold/visible{
+	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/visible/aux,
 /obj/structure/catwalk,
 /turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
-"bq" = (
-/obj/structure/cable{
-	icon_state = "4-8"
+"bp" = (
+/obj/machinery/atmospherics/pipe/tank/phoron/full{
+	dir = 8;
+	start_pressure = 30000
 	},
+/obj/effect/floor_decal/industrial/outline/red,
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/tether_away/fueldepot)
+"bq" = (
+/obj/structure/cable/green{
+	dir = 1;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/aux{
+	dir = 8
+	},
+/obj/structure/catwalk,
+/turf/simulated/shuttle/plating/airless,
+/area/tether_away/fueldepot)
 "br" = (
-/obj/structure/cable{
-	icon_state = "1-8"
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 6
 	},
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/turf/simulated/floor/tiled/techmaint/airless,
+/obj/structure/catwalk,
+/turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
 "bs" = (
 /obj/machinery/light/small{
@@ -705,9 +697,6 @@
 /turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
 "bB" = (
-/obj/machinery/atmospherics/pipe/simple/visible/fuel{
-	dir = 8
-	},
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
@@ -718,28 +707,36 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
+/obj/machinery/atmospherics/pipe/manifold/visible/fuel{
+	dir = 4
+	},
 /obj/structure/catwalk,
 /turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
 "bC" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/fuel,
+/obj/machinery/atmospherics/pipe/simple/visible/universal{
+	dir = 1
+	},
 /obj/structure/catwalk,
 /turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
 "bD" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/fuel{
-	dir = 1
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/aux,
 /obj/structure/catwalk,
 /turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
 "bE" = (
-/obj/machinery/atmospherics/pipe/simple/visible/fuel{
-	dir = 8
-	},
 /obj/structure/cable/green{
 	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/aux,
+/obj/machinery/atmospherics/pipe/simple/visible/fuel{
+	dir = 6
 	},
 /obj/structure/catwalk,
 /turf/simulated/shuttle/plating/airless,
@@ -858,12 +855,24 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/fuel{
+	dir = 5
+	},
 /obj/structure/catwalk,
 /turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
 "bQ" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/aux{
 	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/fuel{
+	dir = 8
 	},
 /obj/structure/catwalk,
 /turf/simulated/shuttle/plating/airless,
@@ -889,8 +898,15 @@
 /turf/space,
 /area/space)
 "bW" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/aux,
-/obj/machinery/atmospherics/pipe/simple/visible/fuel,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/aux{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/visible/fuel{
+	dir = 1
+	},
 /obj/structure/catwalk,
 /turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
@@ -1239,10 +1255,28 @@
 /obj/effect/catwalk_plated/dark,
 /turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
+"es" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/visible/aux,
+/obj/machinery/atmospherics/pipe/simple/visible/fuel{
+	dir = 9
+	},
+/obj/structure/catwalk,
+/turf/simulated/shuttle/plating/airless,
+/area/tether_away/fueldepot)
 "fl" = (
 /obj/structure/table/steel_reinforced,
 /obj/random/toolbox,
 /turf/simulated/floor/tiled/techmaint/airless,
+/area/tether_away/fueldepot)
+"ft" = (
+/obj/machinery/atmospherics/pipe/manifold/visible{
+	dir = 8
+	},
+/obj/structure/catwalk,
+/turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
 "ja" = (
 /obj/structure/catwalk,
@@ -1251,10 +1285,70 @@
 /obj/item/weapon/tool/wrench,
 /turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
+"om" = (
+/obj/machinery/atmospherics/pipe/simple/visible/aux{
+	dir = 8
+	},
+/obj/structure/catwalk,
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/turf/simulated/shuttle/plating/airless,
+/area/tether_away/fueldepot)
+"rE" = (
+/obj/machinery/atmospherics/pipe/manifold/visible/aux{
+	dir = 1
+	},
+/obj/structure/catwalk,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/visible/fuel,
+/turf/simulated/shuttle/plating/airless,
+/area/tether_away/fueldepot)
+"BA" = (
+/obj/machinery/atmospherics/pipe/simple/visible/aux{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/structure/catwalk,
+/turf/simulated/shuttle/plating/airless,
+/area/tether_away/fueldepot)
+"DC" = (
+/obj/machinery/atmospherics/pipe/simple/visible/fuel{
+	dir = 8
+	},
+/obj/structure/cable/green{
+	dir = 1;
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/catwalk,
+/turf/simulated/shuttle/plating/airless,
+/area/tether_away/fueldepot)
 "FK" = (
 /obj/structure/table/rack/shelf/steel,
 /obj/random/powercell,
 /turf/simulated/floor/tiled/techmaint/airless,
+/area/tether_away/fueldepot)
+"IR" = (
+/obj/machinery/atmospherics/pipe/simple/visible/aux{
+	dir = 8
+	},
+/obj/structure/catwalk,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
 "Nq" = (
 /obj/structure/table/rack/shelf/steel,
@@ -1271,6 +1365,13 @@
 /obj/structure/table/rack/steel,
 /obj/item/weapon/storage/toolbox/mechanical,
 /turf/simulated/floor/tiled/techmaint/airless,
+/area/tether_away/fueldepot)
+"Vy" = (
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/structure/catwalk,
+/turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
 "Ys" = (
 /obj/structure/table/steel_reinforced,
@@ -10718,9 +10819,9 @@ aG
 aF
 aF
 aZ
-bc
-bz
-bN
+Vy
+DC
+om
 aj
 cm
 aF
@@ -11001,9 +11102,9 @@ aH
 aG
 aG
 aR
-bb
 bn
-bC
+bn
+aj
 bQ
 ap
 ap
@@ -11146,7 +11247,7 @@ aS
 bc
 bo
 bC
-bQ
+rE
 cc
 cn
 aU
@@ -11285,10 +11386,10 @@ ap
 ap
 ap
 cp
-bc
-bo
+br
+ft
 bC
-bQ
+rE
 cc
 cn
 cq
@@ -11426,10 +11527,10 @@ aF
 aH
 aG
 aG
-aU
-bd
+bq
 bp
-bD
+bp
+aj
 bW
 cd
 cd
@@ -11569,10 +11670,10 @@ FK
 aG
 aG
 aV
-be
-bm
+bD
+bD
 bE
-bN
+es
 aj
 aj
 aj
@@ -11712,9 +11813,9 @@ aG
 aF
 aF
 bf
-bc
+aj
 bz
-bN
+IR
 aj
 cm
 aF
@@ -11854,9 +11955,9 @@ aG
 aa
 aF
 aG
-bq
+aG
 bz
-bN
+IR
 aG
 aG
 aF
@@ -11996,9 +12097,9 @@ aL
 aP
 aP
 aP
-br
+aP
 bA
-bO
+BA
 aP
 aP
 aP
