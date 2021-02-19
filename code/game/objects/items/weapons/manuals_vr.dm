@@ -60,9 +60,9 @@
                 <html>
                 <head>
                 <style>
-                h1 {font-size: 18px; margin: 15px 0px 5px; text-align: center;}
-                h2 {font-size: 15px; margin: 15px 0px 5px;}
-                h3 {font-size: 13px; margin: 15px 0px 5px;}
+  		h1 {font-size: 23px; margin: 15px 0px 5px; text-align: center;}
+                h2 {font-size: 20px; margin: 15px 0px 5px;}
+                h3 {font-size: 18px; margin: 15px 0px 5px;}
 		h4 {font-size: 14px; margin: 15px 0px 5px;}
 		h5 {font-size: 10px; margin: 15px 0px 5px; text-align: center;}
                 li {margin: 2px 0px 2px 15px;}
