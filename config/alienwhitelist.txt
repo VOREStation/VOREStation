@@ -33,7 +33,7 @@ khanivore - Protean
 killjaden - Protean
 ktccd - Diona
 liache - Black-Eyed Shadekin
-Lizehrd - Xenochimera
+lizehrd - Xenochimera
 magpiemayhem - Vox
 marco_barko - Protean
 mewchild - Diona
