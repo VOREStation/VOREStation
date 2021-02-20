@@ -6,8 +6,13 @@
 	var/lightweight = FALSE //Oof! Nonhelpful bump stumbles.
 	var/trashcan = FALSE //It's always sunny in the wrestling ring.
 	var/eat_minerals = FALSE //HEAVY METAL DIET
-	var/base_species = null // Unused outside of a few species
+	var/base_species = null //Used in every UpdateAppearance call.
 	var/selects_bodytype = FALSE // Allows the species to choose from body types intead of being forced to be just one.
+
+/datum/species/New()
+	if(!base_species)
+		base_species = name
+	..()
 
 /datum/species/custom
 	name = SPECIES_CUSTOM
