@@ -511,17 +511,23 @@ Traitors and the like can also be revived with the previous role mostly intact.
 				antag_data.add_antagonist(new_character.mind)
 				antag_data.place_mob(new_character)
 
+<<<<<<< HEAD
 	//VOREStation Add - Required for persistence
 	if(new_character.mind)
 		new_character.mind.loaded_from_ckey = picked_ckey
 		new_character.mind.loaded_from_slot = picked_slot
 
+=======
+>>>>>>> e47f39e... Porting Fixes (#7891)
 	for(var/lang in picked_client.prefs.alternate_languages)
 		var/datum/language/chosen_language = GLOB.all_languages[lang]
 		if(chosen_language)
 			if(is_lang_whitelisted(src,chosen_language) || (new_character.species && (chosen_language.name in new_character.species.secondary_langs)))
 				new_character.add_language(lang)
+<<<<<<< HEAD
 	//VOREStation Add End
+=======
+>>>>>>> e47f39e... Porting Fixes (#7891)
 
 	//If desired, apply equipment.
 	if(equipment)
