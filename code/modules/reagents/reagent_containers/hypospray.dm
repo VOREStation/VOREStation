@@ -55,13 +55,14 @@
 			if(!do_after(user, 30, H))
 				return
 		//VOREstation Add End
-		else if(!H.stat && !prototype) //VOREStation Edit
+	/*	else if(!H.stat && !prototype) //VOREStation Edit
 			if(H != user)
 				if(H.a_intent != I_HELP)
 					to_chat(user, "<span class='notice'>[H] is resisting your attempt to inject them with \the [src].</span>")
 					to_chat(H, "<span class='danger'> [user] is trying to inject you with \the [src]!</span>")
 					if(!do_after(user, 30, H))
 						return
+	*/ //VOREStation Edit: We don't have antags, and we don't use hyposprays or injectors as weapons, so we've no need for a delay.
 
 	do_injection(H, user)
 	return
