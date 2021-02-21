@@ -1704,10 +1704,7 @@
 #include "code\modules\ai\interfaces.dm"
 #include "code\modules\ai\say_list.dm"
 #include "code\modules\ai\ai_holder_subtypes\simple_mob_ai.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\modules\ai\ai_holder_subtypes\simple_mob_ai_vr.dm"
-=======
->>>>>>> 47f71b2... Reworks stairs to be sensible (#7783):polaris.dme
 #include "code\modules\ai\ai_holder_subtypes\slime_xenobio_ai.dm"
 #include "code\modules\alarm\alarm.dm"
 #include "code\modules\alarm\alarm_handler.dm"
