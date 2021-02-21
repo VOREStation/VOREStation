@@ -113,7 +113,7 @@
 	icon_state = "slag"
 	material = null
 
-/obj/item/weapon/ore/New()
+/obj/item/weapon/ore/Initialize()
 	..()
 	randpixel_xy()
 
