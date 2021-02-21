@@ -3023,20 +3023,13 @@
 #include "code\modules\multiz\admin_upload.dm"
 #include "code\modules\multiz\basic.dm"
 #include "code\modules\multiz\hoist.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\modules\multiz\ladder_assembly_vr.dm"
-=======
 #include "code\modules\multiz\ladders.dm"
->>>>>>> 47f71b2... Reworks stairs to be sensible (#7783):polaris.dme
+#include "code\modules\multiz\ladders_vr.dm"
 #include "code\modules\multiz\movement.dm"
 #include "code\modules\multiz\movement_vr.dm"
 #include "code\modules\multiz\pipes.dm"
-<<<<<<< HEAD:vorestation.dme
-#include "code\modules\multiz\structures.dm"
-#include "code\modules\multiz\structures_vr.dm"
-=======
 #include "code\modules\multiz\stairs.dm"
->>>>>>> 47f71b2... Reworks stairs to be sensible (#7783):polaris.dme
 #include "code\modules\multiz\turf.dm"
 #include "code\modules\multiz\zshadow.dm"
 #include "code\modules\nifsoft\nif.dm"
