@@ -56,77 +56,76 @@
 /obj/item/weapon/book/manual/cook_guide/New()
 	..()
 	dat = {"
-
 		<html>
+                <html>
                 <head>
                 <style>
-                h1 {font-size: 23px; margin: 15px 0px 5px; text-align: center;}
+  		h1 {font-size: 23px; margin: 15px 0px 5px; text-align: center;}
                 h2 {font-size: 20px; margin: 15px 0px 5px;}
                 h3 {font-size: 18px; margin: 15px 0px 5px;}
-				h4 {font-size: 14px; margin: 15px 0px 5px;}
-				h5 {font-size: 10px; margin: 15px 0px 5px; text-align: center;}
+		h4 {font-size: 14px; margin: 15px 0px 5px;}
+		h5 {font-size: 10px; margin: 15px 0px 5px; text-align: center;}
                 li {margin: 2px 0px 2px 15px;}
                 ul {margin: 5px; padding: 0px;}
                 ol {margin: 5px; padding: 0px 15px;}
-                body {font-size: 13px; font-family: arial;}
+                body {font-size: 13px; font-family: Garamond;}
                 </style>
                 </head>
                 <body>
                 <center><h1>Food for Dummies 2</h1></center>
 		<h5>Penned by Ali Big</h5>
                 <p><b>Hello Newbie</b>, congratz on deciding to make food! This guide assumes you know absolutely nothing, so fret not, the information here will help you prepare food for your hungry crewmates!</p>
-		<h3>Workspace prep:</h3>
+		<h3>Workspace prep:</h3> 
 		This step is simple: merely go to the Grill, Oven, and Fryer and turn everything on so you do not need to wait for them to warm up later; they won’t start a fire unless food is left in them unchecked. It is also highly suggested to lay out at least a few Measuring Cups on the counters for ease of use.
-                <h3>Basic ingredient prep:</h3>
+                <h3>Basic ingredient prep:</h3> 
 		In the lockers and fridges, you have all your needed supplies for this guide, so look through them and familiarize yourself! This guide will only use ingredients you already have access to, so don't worry about missing items!
                 <h2>Part 1: How to Create Various Essential Ingredients with What You Have</h2>
-                <h3>Dough Creation:</h3>
+                <h3>Dough Creation:</h3> 
 		The basis for a large quantity of meals. Simply take an Egg, crack it into a Beaker or Measuring Cup, and then add 10 units of Flour to create Dough.
-		<h3>Dough Creation part 2:</h3>
+		<h3>Dough Creation part 2:</h3> 
 		With Dough, you can make a wide variety of base ingredients. Flattening it with a Rolling Pin makes Flat Dough. Flat Dough can be cooked in a Microwave for Flatbread, or if one adds Water and Flour in with the Flat Dough in the Microwave you get a Tortilla. Water can be obtained by filling a Cup at the Sink or Soda Machine.
-		<h3>Dough Creation Part 3:</h3>
+		<h3>Dough Creation Part 3:</h3> 
 		Alternatively, Flat Dough can be cut with a Knife to make Dough Slices, and those can be cut to make Spaghetti.
-		<h3>Cheese Creation:</h3>
+		<h3>Cheese Creation:</h3> 
 		A common topping. Take a bottle of Universal Enzyme, put it in a Beaker or Measuring Cup, and add Milk until a Cheese Wheel pops out. Then cut the Cheese Wheel with a Knife to make Cheese Wedges, all recipes use Wedges not the full Wheel.
 		<h3>Tofu Creation:</h3>
 		Same as cheese, but with Soymilk!
-		<h3>Meatball Creation:</h3>
+		<h3>Meatball Creation:</h3> 
 		Mix Animal protein and Flour, to create Animal Protein grind down some Meat in the grinder, then remove the beaker and add Flour.
-		<h3>Meat Uses:</h3>
+		<h3>Meat Uses:</h3> 
 		Full pieces of Meat can be cut for Raw Cutlets, which can be cut once more to make Raw Bacon. Though be sure not to cut all of your meat, plenty of recipes need a full uncut piece!
                 <h2>Part 2: Putting It All Together</h2>
 		<p>Now that you know the fundamentals of how to make the base ingredients, here are some fairly easy recipes to put them together into something enjoyable for the crew.</p>
-		<h4>Warning: recipes are upscale able, so you can add multiple of the same ingredients in the same ratio to cook lots of food at once!</h4>
+		<h4>Warning: recipes are upscale able, so you can add multiple of the same ingredients in the same ratio to cook lots of food at once!</h4> 
 		<h4>Warning: do not try and cook multiple recipes at once as it is very likely it will default to a different recipe or will just cook the one and just "grill, bake, etc." the rest of the ingredients.</h4>
-		<h2>Burgers:</h2>
+		<h2>Burgers:</h2> 
 		<b>The cornerstone of basic food:</b> to prepare these, microwave a piece of Dough to get a bun and grab a piece of Meat. Open the Grill, remove the Rack, and add both Bun and Meat to the Rack. Then, place the Rack back into the Grill to cook and remove it once finished. If you feel fancy, you can add cheese afterwards for a cheeseburger.
-		<h2>Meat Pie:</h2>
+		<h2>Meat Pie:</h2> 
 		Flat Dough and Meat in an Oven Pan, same way you use the Grill; take the Pan out, put the ingredients in, and place it back to cook. Simple, but very good looking and tasty!
-		<h2>Burritos:</h2>
-		A personal favorite due to flexibility of options: Use a Tortilla as a base for all of these. For a meaty one, add 2 cooked cutlets to the Microwave; very simple and filling! To add some cheese to that meaty burrito use 2 meatballs and 1 cheese wedge <b>((For some reason only the base meaty burrito uses cutlets all the other recipies uses meatballs... please let someone in #wiki or #dev know if this changes.))</b> For a Breakfast Wrap, add a whole Egg, Cooked Bacon (Raw Bacon cooked in the Microwave), and Cheese in with the Tortilla. For Vegan Burritos, just cook a Tortilla and Tofu together in the Microwave.
-		<h2>Tacos:</h2>
-		Either a Tortilla or Dough Slice as the base, then 1 cooked Cutlet, and a Cheese Wedge. Very easy to mass produce, great in a pinch!
-		<h2>Cheesy Nachos:</h2>
+		<h2>Burritos:</h2> 
+		Burritos: A personal favorite due to flexibility of options: Use a Tortilla as a base for all of these. For a Chili one, add 2 Meatballs and 1 Space Spice (found near the Flour) to the Microwave; very simple and filling! Add a Cheese Wedge instead of the spice to make a queso burrito. For a Breakfast Wrap, add a whole Egg, Cooked Bacon (Raw Bacon cooked in the Microwave), and Cheese in with the Tortilla. For Vegan Burritos, just cook a Tortilla and Tofu together in the Microwave.
+		<h2>Tacos:</h2> 
+		Use a tortilla then 1 cooked Cutlet, and a Cheese Wedge. Very easy to mass produce, great in a pinch!
+		<h2>Cheesy Nachos:</h2> 
 		Tortilla, Cheese and 1 unit of Salt in the microwave, the perfect Finger Food!
-		<h2>Spaghetti:</h2>
+		<h2>Spaghetti:</h2> 
 		Without Tomato’s from Botany it's not going to be the flashiest, but one can make Boiled Spaghetti with Spaghetti and Water in the Microwave. Kitsune Udon can be made with Spaghetti, Egg Yolk (crack egg in beaker then add to microwave), and Tofu. Spaghetti and Meatballs can be made by doing the Boiled Spaghetti Recipe and adding 2 Meatballs; adding 4 Meatballs into the initial mix makes Spesslaw. Lastly, Spaghetti, Milk, and Cheese in the Oven makes Macaroni and Cheese.
 		<h2>Steak:</h2>
 		For the pure meat eaters, just add Meat, 1 Salt, and 1 Pepper into the grill for them, and try not to cry as they use up all your Meat quickly. (There's a second Meat Locker in the freezer room if you do run out!)
-		<h2>Donk Pockets:</h2>
+		<h2>Donk Pockets:</h2> 
 		Dough and Meatball in the Microwave, though we already have plenty lying around the station.
-		<h2>Eggs:</h2>
+		<h2>Eggs:</h2> 
 		Fried Egg, 1 Egg 1 Salt, 1 Pepper in a Microwave. Bacon and Eggs if you combine Cooked Bacon and Fried Egg in the Microwave. Great way to start the shift!
 		<h2>Part 3: Final Notes</h2>
-		<p>These recipes only scratch the surface, but it's all things that can be done with what is pre-provided. If you have a partner in Botany, feel free to request more meat or any other supplies to try new recipes!</p>
+		<p>These recipes only scratch the surface, but it's all things that can be done with what is pre-provided. If you have a partner in Botany, feel free to request more meat or any other supplies to try new recipes!</p> 
 		<p>The Fryer, CondiMaster3000, and other nearby devices have been deliberately left out of this guide; as you get more advanced feel free to experiment with them, though be careful with the Fryer especially as it's the #1 source of fires for learning chefs, myself included. The one other machine that is worth understanding is the <b>Gibber</b> in the freezer room. If you are delivered fish or such they can be gibbed for extra Meat, though you may need to butcher the parts with a Knife afterwards to get usable Meat! Though if the meat is purple or comes from Koi or Spacecarp <b>do not directly serve it to crew!</b> It contains toxins that are better taken care of by other departments. </p>
 		<p>Some wonderful websites share recipes and tips for learning chefs on the Extranet! Look on your PDA or preferred device at https://wiki.vore-station.net/Guide_to_Food_and_Drink and https://vore-station.net/infodump/recipes_food.html for further tips, though do note the latter is more accurate in regard to recipes. Happy cooking!</p>
 		<h4>Pro Tips:</h4>
-		<h4>((The Food Bags in the Chef's Closet are great for moving a lot of food at once!))</h4>
+		<h4>((The Food Bags in the Chef's Closet are great for moving a lot of food at once!))</h4> 
 		<h4>((Stay out of the Freezer if you're Cold Blooded!))</h4>
 		<h4>((The websites linked above are also on our stations wiki. Which is always in need of helping heads to fix it up. The recipes listed on the web link may not be fully accurate so please don't be afraid to pop into the discord wiki channel and lend a hand!))</h4>
                 </body>
             </html>
-
 		"}
 
 //accurate as of 2/17/21

@@ -4709,9 +4709,6 @@
 /mob/living/simple_mob/adultslime
 	composition_reagent = "slimejelly"
 
-/mob/living/carbon/slime
-	composition_reagent = "slimejelly"
-
 /mob/living/carbon/alien/diona
 	composition_reagent = "nutriment"//Dionae are plants, so eating them doesn't give animal protein
 
