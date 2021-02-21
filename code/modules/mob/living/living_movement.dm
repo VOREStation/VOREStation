@@ -258,6 +258,12 @@ default behaviour is:
 /mob/living/Moved(var/atom/oldloc, direct, forced, movetime)
 	. = ..()
 	handle_footstep(loc)
+	// Begin VOREstation edit
+	if(is_shifted)
+		is_shifted = FALSE
+		pixel_x = default_pixel_x
+		pixel_y = default_pixel_y
+	// End VOREstation edit
 
 	if(pulling) // we were pulling a thing and didn't lose it during our move.
 		var/pull_dir = get_dir(src, pulling)
@@ -283,6 +289,11 @@ default behaviour is:
 		return
 	else if(lastarea?.has_gravity == 0)
 		inertial_drift()
+	//VOREStation Edit Start
+	else if(flying)
+		inertial_drift()
+		make_floating(1)
+	//VOREStation Edit End
 	else if(!isspace(loc))
 		inertia_dir = 0
 		make_floating(0)
