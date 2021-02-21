@@ -55,12 +55,9 @@
 		GLOB.turf_entered_event.register(T, src, .proc/BelowOpenUpdated)
 		GLOB.turf_exited_event.register(T, src, .proc/BelowOpenUpdated)
 
-<<<<<<< HEAD
-/turf/simulated/open/Entered(var/atom/movable/mover)
-	. = ..()
-=======
+
 /turf/simulated/open/Entered(var/atom/movable/mover, var/atom/oldloc)
-	..()
+	. = ..()
 
 	// Going down stairs from the topstair piece
 	var/obj/structure/stairs/top/T = locate(/obj/structure/stairs/top) in oldloc
@@ -68,7 +65,6 @@
 		T.use_stairs(mover, oldloc)
 		return
 
->>>>>>> 47f71b2... Reworks stairs to be sensible (#7783)
 	mover.fall()
 
 /turf/simulated/open/proc/BelowOpenUpdated(turf/T, atom/movable/AM, old_loc)
