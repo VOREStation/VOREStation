@@ -175,9 +175,13 @@
 		return
 
 /obj/machinery/portable_atmospherics/hydroponics/Initialize()
+<<<<<<< HEAD
 	. = ..()
 	if(!ov_lowhealth)
 		setup_overlays()
+=======
+	..()
+>>>>>>> b22a056... Sideports a couple of init unit tests from Neb. (#7893)
 	temp_chem_holder = new()
 	temp_chem_holder.create_reagents(10)
 	create_reagents(200)

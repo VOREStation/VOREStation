@@ -19,19 +19,12 @@
 	var/can_speak = 0 //For MMIs and admin trickery. If an object has a brainmob in its contents, set this to 1 to allow it to speak.
 
 	var/show_examine = TRUE	// Does this pop up on a mob when the mob is examined?
-	var/register_as_dangerous_object = FALSE // Should this tell its turf that it is dangerous automatically?
-
-/obj/Initialize()
-	if(register_as_dangerous_object)
-		register_dangerous_to_step()
-	return ..()
 
 /obj/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	if(register_as_dangerous_object)
-		unregister_dangerous_to_step()
 	return ..()
 
+<<<<<<< HEAD
 /obj/Moved(atom/oldloc)
 	. = ..()
 	if(register_as_dangerous_object)
@@ -43,6 +36,9 @@
 			new_turf.register_dangerous_object(src)
 
 /obj/Topic(href, href_list, var/datum/tgui_state/state = GLOB.tgui_default_state)
+=======
+/obj/Topic(href, href_list, var/datum/topic_state/state = default_state)
+>>>>>>> b22a056... Sideports a couple of init unit tests from Neb. (#7893)
 	if(usr && ..())
 		return 1
 

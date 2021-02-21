@@ -513,8 +513,14 @@
 
 //HUMAN
 /mob/living/carbon/human/mind_initialize()
+<<<<<<< HEAD
 	..()
 	if(!mind.assigned_role)	mind.assigned_role = USELESS_JOB	//defualt //VOREStation Edit - Visitor not Assistant
+=======
+	. = ..()
+	if(!mind.assigned_role)
+		mind.assigned_role = "Assistant"	//defualt
+>>>>>>> b22a056... Sideports a couple of init unit tests from Neb. (#7893)
 
 //slime
 /mob/living/simple_mob/slime/mind_initialize()
