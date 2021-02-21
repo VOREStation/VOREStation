@@ -113,11 +113,7 @@
 	icon_state = "slag"
 	material = null
 
-<<<<<<< HEAD
-/obj/item/weapon/ore/New()
-=======
 /obj/item/weapon/ore/Initialize()
->>>>>>> e47f39e... Porting Fixes (#7891)
 	..()
 	randpixel_xy()
 
@@ -127,7 +123,6 @@
 		C.sample_item(src, user)
 	else
 		return ..()
-<<<<<<< HEAD
 
 //VOREStation Add
 /obj/item/weapon/ore/attack(mob/living/M as mob, mob/living/user as mob)
@@ -140,5 +135,3 @@
 		return
 	..()
 //VOREStation Add End
-=======
->>>>>>> e47f39e... Porting Fixes (#7891)
