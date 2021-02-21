@@ -94,10 +94,40 @@ default behaviour is:
 
 		if((tmob.mob_always_swap || (tmob.a_intent == I_HELP || tmob.restrained()) && (a_intent == I_HELP || src.restrained())) && tmob.canmove && canmove && !tmob.buckled && !buckled && can_swap && can_move_mob(tmob, 1, 0)) // mutual brohugs all around!
 			var/turf/oldloc = loc
+			//VOREstation Edit - Begin
+			
+			//check bumpnom chance, if it's a simplemob that's doing the bumping
+			var/mob/living/simple_mob/srcsimp = src
+			if(istype(srcsimp))
+				if(srcsimp.tryBumpNom(tmob))
+					now_pushing = 0
+					return
+			
+			//if it's a simplemob being bumped, and the above didn't make them start getting bumpnommed, they get a chance to bumpnom
+			var/mob/living/simple_mob/tmobsimp = tmob
+			if(istype(tmobsimp))
+				if(tmobsimp.tryBumpNom(src))
+					now_pushing = 0
+					return
+					
+			//VOREstation Edit - End
 			forceMove(tmob.loc)
+			//VOREstation Edit - Begin
+			// In case of micros, we don't swap positions; instead occupying the same square!
+			if (handle_micro_bump_helping(tmob))
+				now_pushing = 0
+				return
+			// TODO - Check if we need to do something about the slime.UpdateFeed() we are skipping below.
+			// VOREStation Edit - End
 			tmob.forceMove(oldloc)
 			now_pushing = 0
 			return
+		//VOREStation Edit - Begin
+		else if((tmob.mob_always_swap || (tmob.a_intent == I_HELP || tmob.restrained()) && (a_intent == I_HELP || src.restrained())) && canmove && can_swap && handle_micro_bump_helping(tmob))
+			forceMove(tmob.loc)
+			now_pushing = 0
+			return
+		//VOREStation Edit - End
 
 		if(!can_move_mob(tmob, 0, 0))
 			now_pushing = 0
@@ -105,6 +135,18 @@ default behaviour is:
 		if(a_intent == I_HELP || src.restrained())
 			now_pushing = 0
 			return
+		// VOREStation Edit - Begin
+		// Plow that nerd.
+		if(ishuman(tmob))
+			var/mob/living/carbon/human/H = tmob
+			if(H.species.lightweight == 1 && prob(50))
+				H.visible_message("<span class='warning'>[src] bumps into [H], knocking them off balance!</span>")
+				H.Weaken(5)
+				now_pushing = 0
+				return
+		// Handle grabbing, stomping, and such of micros!
+		if(handle_micro_bump_other(tmob)) return
+		// VOREStation Edit - End
 		if(istype(tmob, /mob/living/carbon/human) && (FAT in tmob.mutations))
 			if(prob(40) && !(FAT in src.mutations))
 				to_chat(src, "<span class='danger'>You fail to push [tmob]'s fat ass out of the way.</span>")
@@ -127,12 +169,18 @@ default behaviour is:
 	now_pushing = 0
 	. = ..()
 	if (!istype(AM, /atom/movable) || AM.anchored)
+		//VOREStation Edit - object-specific proc for running into things
+		if(((confused || is_blind()) && stat == CONSCIOUS && prob(50) && m_intent=="run") || flying)
+			AM.stumble_into(src)
+		//VOREStation Edit End
+		/* VOREStation Removal - See above
 		if(confused && prob(50) && m_intent=="run")
 			Weaken(2)
 			playsound(src, "punch", 25, 1, -1)
 			visible_message("<span class='warning'>[src] [pick("ran", "slammed")] into \the [AM]!</span>")
 			src.apply_damage(5, BRUTE)
 			to_chat(src, "<span class='warning'>You just [pick("ran", "slammed")] into \the [AM]!</span>")
+			*/ // VOREStation Removal End
 		return
 	if (!now_pushing)
 		if(isobj(AM))
