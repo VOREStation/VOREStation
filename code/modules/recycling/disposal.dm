@@ -31,7 +31,7 @@
 // find the attached trunk (if present) and init gas resvr.
 /obj/machinery/disposal/Initialize()
 	. = ..()
-	
+
 	trunk = locate() in loc
 	if(!trunk)
 		mode = 0
@@ -480,6 +480,7 @@
 		playsound(src, 'sound/machines/disposalflush.ogg', 50, 0, 0)
 		last_sound = world.time
 	sleep(5) // wait for animation to finish
+	GLOB.disposals_flush_shift_roundstat++
 
 
 	H.init(src, air_contents)	// copy the contents of disposer to holder
