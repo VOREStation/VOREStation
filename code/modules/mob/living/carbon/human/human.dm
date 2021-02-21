@@ -324,19 +324,27 @@
 
 
 /mob/living/carbon/human/Topic(href, href_list)
+<<<<<<< HEAD
 	if (href_list["mach_close"]) // This is horrible.
+=======
+
+	if (href_list["mach_close"])
+>>>>>>> 928d928... Merge pull request #7903 from Cerebulon/TGUIequip
 		var/t1 = text("window=[]", href_list["mach_close"])
 		unset_machine()
 		src << browse(null, t1)
 
 	if(href_list["item"])
 		log_runtime(EXCEPTION("Warning: human/Topic was called with item [href_list["item"]], but the item Topic is deprecated!"))
+<<<<<<< HEAD
 		// handle_strip(href_list["item"],usr)
 
 	// VOREStation Start
 	if(href_list["ooc_notes"])
 		src.Examine_OOC()
 	// VOREStation End
+=======
+>>>>>>> 928d928... Merge pull request #7903 from Cerebulon/TGUIequip
 
 	if (href_list["criminal"])
 		if(hasHUD(usr,"security"))

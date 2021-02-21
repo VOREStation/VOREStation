@@ -8,7 +8,11 @@
 	maxHealth = 100
 	mob_size = 4
 
+<<<<<<< HEAD
 	inventory_panel_type = null // Disable inventory
+=======
+	inventory_panel_type = null // Disable inventory by default
+>>>>>>> 928d928... Merge pull request #7903 from Cerebulon/TGUIequip
 
 	var/adult_form
 	var/dead_icon
