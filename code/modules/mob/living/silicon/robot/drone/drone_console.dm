@@ -36,11 +36,13 @@
 
 	data["drones"] = list()
 	for(var/mob/living/silicon/robot/drone/D in mob_list)
+		/*			//VOREStation Removal - multiz lol
 		if(D.z != z)
 			continue
+		*/			//VOREStation Removal - multiz lol
 		if(D.foreign_droid)
 			continue
-		
+
 		data["drones"].Add(list(list(
 			"name" = D.real_name,
 			"active" = D.stat != 2,
