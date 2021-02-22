@@ -4015,6 +4015,9 @@
 	name = "north bump";
 	pixel_y = 28
 	},
+/mob/living/simple_mob/vore/aggressive/rat{
+	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
+	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/trash_pit)
 "agR" = (
@@ -6865,6 +6868,15 @@
 /obj/structure/railing{
 	dir = 4
 	},
+/obj/structure/disposalpipe/broken,
+/obj/effect/floor_decal/techfloor/hole{
+	dir = 4
+	},
+/obj/effect/floor_decal/techfloor/hole/right{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/filth,
+/obj/effect/landmark/teleplumb_exit,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/trash_pit)
 "alE" = (
@@ -7781,6 +7793,11 @@
 /obj/random/maintenance/cargo,
 /obj/structure/cable{
 	icon_state = "1-4"
+	},
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = -12;
+	pixel_y = 2
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/trash_pit)
@@ -31969,7 +31986,6 @@
 /turf/simulated/floor/tiled/freezer,
 /area/tether/surfacebase/security/brig/bathroom)
 "emK" = (
-/mob/living/simple_mob/animal/passive/mimepet,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
@@ -31978,6 +31994,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/mob/living/simple_mob/animal/passive/mimepet,
 /turf/simulated/floor/carpet/bcarpet,
 /area/tether/surfacebase/funny/mimeoffice)
 "eow" = (
@@ -32191,6 +32208,10 @@
 	dir = 10
 	},
 /area/looking_glass/lg_1)
+"fgm" = (
+/obj/structure/sign/biohazard,
+/turf/simulated/wall,
+/area/tether/surfacebase/funny/mimeoffice)
 "fiP" = (
 /obj/machinery/door/airlock/engineering{
 	name = "Civilian West Substation";
@@ -32314,6 +32335,15 @@
 /obj/machinery/door/firedoor,
 /turf/simulated/floor,
 /area/tether/surfacebase/security/gasstorage)
+"fDO" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/maintenance/common,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/trash_pit)
 "fFb" = (
 /obj/machinery/fitness/punching_bag/clown,
 /turf/simulated/floor/plating,
@@ -37629,6 +37659,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/hallway)
+"xik" = (
+/obj/structure/sign/biohazard,
+/turf/simulated/wall,
+/area/maintenance/lower/trash_pit)
 "xnn" = (
 /obj/machinery/holoposter,
 /turf/simulated/wall,
@@ -53019,7 +53053,7 @@ ahq
 ajP
 akY
 anq
-aaU
+xik
 gnH
 aaU
 aaU
@@ -53161,7 +53195,7 @@ ahr
 ajR
 alu
 anr
-abJ
+fDO
 abM
 abJ
 abJ
@@ -53303,7 +53337,7 @@ ahz
 ajZ
 alD
 anL
-lry
+fgm
 ruj
 lry
 lry
@@ -53585,7 +53619,7 @@ bbj
 aaU
 aaU
 aaU
-aaU
+xik
 aBo
 lry
 tHb
