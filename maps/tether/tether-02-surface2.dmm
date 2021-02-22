@@ -31382,13 +31382,6 @@
 /obj/item/device/flashlight/lamp/green,
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/reading_room)
-"bhJ" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/structure/catwalk,
-/turf/simulated/floor/plating,
-/area/tether/surfacebase/fish_farm)
 "bhK" = (
 /obj/machinery/door/blast/regular{
 	density = 0;
@@ -34202,14 +34195,6 @@
 /obj/machinery/door/airlock/maintenance/medical,
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/medical/breakroom)
-"bpL" = (
-/obj/effect/decal/cleanable/filth,
-/obj/item/weapon/bone/skull,
-/mob/living/simple_mob/vore/aggressive/rat{
-	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
-	},
-/turf/simulated/floor/water/indoors,
-/area/tether/surfacebase/fish_farm)
 "bpO" = (
 /obj/structure/railing{
 	dir = 4
@@ -34380,14 +34365,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/north)
-"fFF" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/structure/catwalk,
-/obj/effect/decal/cleanable/filth,
-/turf/simulated/floor/plating,
-/area/tether/surfacebase/fish_farm)
 "fIS" = (
 /obj/effect/floor_decal/corner/paleblue/diagonal,
 /obj/structure/table/glass,
@@ -34397,14 +34374,6 @@
 /obj/machinery/door/airlock/maintenance/common{
 	name = "Sewage Processing"
 	},
-/turf/simulated/floor/plating,
-/area/tether/surfacebase/fish_farm)
-"fWy" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/structure/catwalk,
-/obj/structure/closet/crate/trashcart,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/fish_farm)
 "glx" = (
@@ -34665,15 +34634,15 @@
 /obj/item/weapon/flame/lighter/zippo/moff,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/funny/hideyhole)
-"sKR" = (
-/obj/structure/disposalpipe/broken,
-/obj/effect/decal/cleanable/filth,
-/obj/effect/landmark/teleplumb_exit,
-/turf/simulated/floor/water/indoors,
+"swg" = (
+/obj/structure/railing,
+/obj/structure/catwalk,
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
 /area/tether/surfacebase/fish_farm)
 "sLx" = (
-/obj/effect/decal/cleanable/filth,
-/obj/item/weapon/bone,
 /obj/effect/floor_decal/techfloor{
 	dir = 4
 	},
@@ -34765,7 +34734,6 @@
 	dir = 8
 	},
 /obj/structure/catwalk,
-/obj/effect/decal/cleanable/filth,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/fish_farm)
 "uHy" = (
@@ -34797,10 +34765,6 @@
 	dir = 8
 	},
 /turf/simulated/floor/water/indoors,
-/area/tether/surfacebase/fish_farm)
-"vje" = (
-/obj/structure/sign/biohazard,
-/turf/simulated/wall,
 /area/tether/surfacebase/fish_farm)
 "voE" = (
 /obj/effect/floor_decal/corner_techfloor_grid,
@@ -40168,9 +40132,9 @@ adt
 adt
 adt
 azs
-awN
-bhJ
-fFF
+ayw
+ayw
+ayw
 azs
 adt
 adt
@@ -40310,10 +40274,10 @@ adt
 adt
 adt
 azs
-axO
-bpL
-sKR
-vje
+ayw
+ayw
+ayw
+azs
 adt
 adt
 adt
@@ -40452,7 +40416,7 @@ adt
 adt
 adt
 azs
-axO
+swg
 sLx
 uFL
 azs
@@ -40881,7 +40845,7 @@ azs
 awN
 flk
 gGm
-vje
+azs
 aBd
 aCn
 aDk
@@ -41022,7 +40986,7 @@ adt
 azs
 axO
 viY
-fWy
+bOW
 azs
 azq
 aAw
