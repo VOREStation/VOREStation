@@ -131,12 +131,11 @@
 	siemens_coefficient = 0.5
 	icon = 'icons/obj/clothing/hats_vr.dmi'
 	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_AUGMENTED)
-	flash_protection = FLASH_PROTECTION_MODERATE
 	plane_slots = list(slot_head)
 
 /obj/item/clothing/head/helmet/space/void/responseteam/command
 	name = "Mark VII-C Emergency Response Team Commander Helmet"
-	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_STATUS_R,VIS_CH_BACKUP,VIS_CH_WANTED)
+	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_STATUS_R,VIS_CH_BACKUP,VIS_CH_WANTED,VIS_AUGMENTED)
 
 /obj/item/clothing/head/helmet/space/void/responseteam/medical
 	name = "Mark VII-M Emergency Medical Response Helmet"
@@ -148,13 +147,12 @@
 	name = "Mark VII-E Emergency Engineering Response Helmet"
 	icon_state = "erthelmet_e"
 	item_state = "erthelmet_e"
-	flash_protection = FLASH_PROTECTION_MAJOR
 
 /obj/item/clothing/head/helmet/space/void/responseteam/security
 	name = "Mark VII-S Emergency Security Response Helmet"
 	icon_state = "erthelmet_s"
 	item_state = "erthelmet_s"
-	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_WANTED,VIS_AUGMENTED,VIS_CLOAKED)
+	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_WANTED,VIS_AUGMENTED)
 
 /obj/item/clothing/head/helmet/space/void/responseteam/janitor
 	name = "Mark VII-J Emergency Cleanup Response Helmet"
