@@ -537,4 +537,79 @@ var/global/list/remainless_species = list(SPECIES_PROMETHEAN,
 	for(var/species_name in whitelisted_icons)
 		custom_species_bases += species_name
 
+	// Weaver recipe stuff
+	paths = typesof(/datum/weaver_recipe/structure) - /datum/weaver_recipe/structure
+	for(var/path in paths)
+		var/datum/weaver_recipe/instance = new path()
+		if(!instance.title)
+			continue //A prototype or something
+		weavable_structures[instance.title] = instance
+
+	paths = typesof(/datum/weaver_recipe/item) - /datum/weaver_recipe/item
+	for(var/path in paths)
+		var/datum/weaver_recipe/instance = new path()
+		if(!instance.title)
+			continue //A prototype or something
+		weavable_items[instance.title] = instance
+
 	return 1 // Hooks must return 1
+
+var/global/list/weavable_structures = list()
+/*
+floor web
+nest
+wall
+trap
+*/
+var/global/list/weavable_items = list()
+/*
+jumpsuit
+suit
+dress
+skirt
+shorts
+pants
+socks (shoes)
+footwraps
+toeless socks (toesless boots)
+sole covers (sandals)
+thick socks (winter boots)
+gloves
+fingerless gloves
+evening gloves
+cap
+top-hat
+bowler hat
+bandana
+veil
+beret
+headband
+waistcoast
+poncho
+cloak
+jacket
+labcoat
+overcoat
+winter coat
+hoodie
+robe/kimono
+apron
+hand bindings
+foot bindings
+overall bindings
+blindfold
+blindfold(fake)
+muzzle
+muzzle(fake)
+earmuffs
+earmuffs(fake)
+bandages
+bedsheet
+bedsheet(large)
+towel
+teshari cloak
+teshari undercoat
+scarf
+sweater
+collar?
+*/
