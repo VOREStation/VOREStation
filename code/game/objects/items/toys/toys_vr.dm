@@ -98,6 +98,9 @@
 		addtimer(CALLBACK(src, .proc/cooldownreset), 50)
 	return ..()
 
+/obj/item/toy/plushie/vox/proc/cooldownreset()
+	cooldown = 0
+
 //Below are additions made on 02/22/2021
 
 /*
