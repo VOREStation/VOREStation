@@ -153,3 +153,21 @@
 	src.forceMove(counterpart)
 	user.put_in_active_hand(counterpart)
 	to_chat(user, "<span class='notice'>You attach the bolt driver bit to [src].</span>")
+
+//Below are additions made on 02/23/2021
+
+/obj/item/weapon/tool/screwdriver/sonic
+	name = "sonic screwdriver"
+	desc = "The official 'Professor Who' Sonic Screwdriver replica! Now able to function as a REAL screwdriver!"
+	icon = 'icons/obj/tools_vr.dmi'
+	icon_state = "sonic_screwdriver"
+	center_of_mass = list("x" = 13,"y" = 7)
+	slot_flags = SLOT_BELT | SLOT_EARS
+	force = 6
+	w_class = ITEMSIZE_TINY
+	usesound = 'sound/items/sonicscrew1.ogg'
+	drop_sound = 'sound/items/drop/screwdriver.ogg'
+	pickup_sound = 'sound/items/pickup/screwdriver.ogg'
+	matter = list(DEFAULT_WALL_MATERIAL = 75)
+	toolspeed = 1
+	random_color = FALSE
