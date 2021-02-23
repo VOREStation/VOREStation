@@ -2587,7 +2587,11 @@
 #include "code\modules\mob\living\carbon\human\human_defines.dm"
 #include "code\modules\mob\living\carbon\human\human_defines_vr.dm"
 #include "code\modules\mob\living\carbon\human\human_helpers.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\modules\mob\living\carbon\human\human_helpers_vr.dm"
+=======
+#include "code\modules\mob\living\carbon\human\human_modular_limbs.dm"
+>>>>>>> c31a3e7... Merge pull request #7905 from MistakeNot4892/beepboop:polaris.dme
 #include "code\modules\mob\living\carbon\human\human_movement.dm"
 #include "code\modules\mob\living\carbon\human\human_organs.dm"
 #include "code\modules\mob\living\carbon\human\human_powers.dm"
