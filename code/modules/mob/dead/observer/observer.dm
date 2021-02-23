@@ -913,3 +913,8 @@ mob/observer/dead/MayRespawn(var/feedback = 0)
 	to_chat(src, "<span class='ghostalert'><a href=?src=[REF(src)];reenter=1>(Click to re-enter)</a></span>")
 	if(sound)
 		SEND_SOUND(src, sound(sound))
+
+/mob/observer/dead/verb/respawn()
+	set name = "Respawn"
+	set category = "Ghost"
+	src.abandon_mob()
