@@ -79,6 +79,7 @@ export const AppearanceChanger = (props, context) => {
                 </LabeledList.Item>
                 <LabeledList.Item label="Facial Hair Style" color={!change_facial_hair ? "grey" : null}>
                   {facial_hair_style ? capitalize(facial_hair_style) : "Not Set"}
+<<<<<<< HEAD
                 </LabeledList.Item>
                 <LabeledList.Item label="Ear Style" color={!change_hair ? "grey" : null}>
                   {ear_style ? capitalize(ear_style) : "Not Set"}
@@ -88,6 +89,8 @@ export const AppearanceChanger = (props, context) => {
                 </LabeledList.Item>
                 <LabeledList.Item label="Wing Style" color={!change_hair ? "grey" : null}>
                   {wing_style ? capitalize(wing_style) : "Not Set"}
+=======
+>>>>>>> 135a750... Merge pull request #7915 from PrismaticGynoid/tguifixes
                 </LabeledList.Item>
               </LabeledList>
             </Flex.Item>
