@@ -416,6 +416,7 @@
 	base_color 	= "#333333" //Blackish-gray
 	blood_color = "#0952EF" //Spiders have blue blood.
 
+	is_weaver = TRUE
 	silk_reserve = 500
 	silk_max_reserve = 1000
 
