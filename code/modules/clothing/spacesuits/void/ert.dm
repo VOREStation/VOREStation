@@ -131,7 +131,29 @@
 	siemens_coefficient = 0.5
 	icon = 'icons/obj/clothing/hats_vr.dmi'
 	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_AUGMENTED)
+	var/away_planes = null
 	plane_slots = list(slot_head)
+	var/hud_active = 1
+	var/activation_sound = 'sound/items/nif_click.ogg'
+
+/obj/item/clothing/head/helmet/space/void/responseteam/verb/toggle()
+	set category = "Object"
+	set name = "Toggle Mark 7 Suit HUD"
+	set src in usr
+
+	if(usr.canmove && !usr.stat && !usr.restrained())
+		if(src.hud_active)
+			away_planes = enables_planes
+			enables_planes = null
+			to_chat(usr, "You disable the inbuilt heads-up display.")
+			hud_active = 0
+		else
+			enables_planes = away_planes
+			away_planes = null
+			to_chat(usr, "You enable the inbuilt heads-up display.")
+			hud_active = 1
+		usr << activation_sound
+		usr.recalculate_vis()
 
 /obj/item/clothing/head/helmet/space/void/responseteam/command
 	name = "Mark VII-C Emergency Response Team Commander Helmet"
