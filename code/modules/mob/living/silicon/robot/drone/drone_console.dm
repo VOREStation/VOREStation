@@ -36,10 +36,10 @@
 
 	data["drones"] = list()
 	for(var/mob/living/silicon/robot/drone/D in mob_list)
-		/*			//VOREStation Removal - multiz lol
-		if(D.z != z)
+		//VOREStation Edit - multiz lol
+		if(!(D.z in using_map.get_map_levels(z, TRUE, 0)))
 			continue
-		*/			//VOREStation Removal - multiz lol
+		//VOREStation Edit - multiz lol
 		if(D.foreign_droid)
 			continue
 
