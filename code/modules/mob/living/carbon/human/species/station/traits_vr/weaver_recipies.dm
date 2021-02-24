@@ -33,4 +33,4 @@
 
 /datum/weaver_recipe/item/bindings
 	title = "bindings"
-	result_type = /obj/item/clothing/suit/web_bindings
+	result_type = /obj/item/clothing/suit/weaversilk_bindings

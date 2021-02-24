@@ -97,10 +97,10 @@
 
 // TODO: Spidersilk clothing and actual bindings, once sprites are ready.
 
-/obj/item/clothing/suit/web_bindings
+/obj/item/clothing/suit/weaversilk_bindings
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
-	name = "web bindings"
+	name = "weaversilk bindings"
 	desc = "A webbed cocoon that completely restrains the wearer."
 	icon_state = "web_bindings"
 	item_state = "web_bindings_mob"
