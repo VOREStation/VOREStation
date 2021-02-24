@@ -152,3 +152,4 @@
 	H.verbs |= /mob/living/carbon/human/proc/toggle_silk_production
 	H.verbs |= /mob/living/carbon/human/proc/weave_structure
 	H.verbs |= /mob/living/carbon/human/proc/weave_item
+	H.verbs |= /mob/living/carbon/human/proc/set_silk_color

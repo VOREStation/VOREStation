@@ -555,12 +555,6 @@ var/global/list/remainless_species = list(SPECIES_PROMETHEAN,
 	return 1 // Hooks must return 1
 
 var/global/list/weavable_structures = list()
-/*
-floor web
-nest
-wall
-trap
-*/
 var/global/list/weavable_items = list()
 /*
 jumpsuit

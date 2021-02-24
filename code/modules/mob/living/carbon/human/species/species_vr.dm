@@ -24,6 +24,7 @@
 	var/silk_production = FALSE
 	var/silk_reserve = 100
 	var/silk_max_reserve = 500
+	var/silk_color = "#FFFFFF"
 
 	var/list/traits = list()
 

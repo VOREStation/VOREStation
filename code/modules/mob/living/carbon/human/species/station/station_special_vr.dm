@@ -380,7 +380,11 @@
 	icobase_tail = 1
 
 	inherent_verbs = list(
-		/mob/living/proc/weaveWebBindings)
+		/mob/living/carbon/human/proc/check_silk_amount,
+		/mob/living/carbon/human/proc/toggle_silk_production,
+		/mob/living/carbon/human/proc/weave_structure,
+		/mob/living/carbon/human/proc/weave_item,
+		/mob/living/carbon/human/proc/set_silk_color)
 
 	min_age = 18
 	max_age = 80

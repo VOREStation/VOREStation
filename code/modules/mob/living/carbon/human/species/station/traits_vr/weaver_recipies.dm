@@ -2,26 +2,31 @@
 	var/title = null
 	var/result_type
 	var/cost = 0
-	var/time = 50
-	var/one_per_turf = FALSE
+	var/time = 5 SECONDS
 
 /datum/weaver_recipe/structure
-	one_per_turf = TRUE
 
 /datum/weaver_recipe/structure/floor
-	title = "Floor"
+	title = "floor"
 	result_type = /obj/effect/weaversilk/floor
 	cost = 25
+	time = 1 SECOND
 
 /datum/weaver_recipe/structure/wall
-	title = "Wall"
+	title = "wall"
 	result_type = /obj/effect/weaversilk/wall
 	cost = 100
 
 /datum/weaver_recipe/structure/nest
-	title = "Wall"
+	title = "nest"
 	result_type = /obj/structure/bed/double/weaversilk_nest
 	cost = 100
 
+/datum/weaver_recipe/structure/trap
+	title = "trap"
+	result_type = /obj/effect/weaversilk/trap
+	cost = 250
+	time = 15 SECONDS
+
 /datum/weaver_recipe/item
-	one_per_turf = FALSE
+	time = 10 SECONDS
