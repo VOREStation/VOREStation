@@ -416,6 +416,9 @@
 	base_color 	= "#333333" //Blackish-gray
 	blood_color = "#0952EF" //Spiders have blue blood.
 
+	silk_reserve = 500
+	silk_max_reserve = 1000
+
 /datum/species/spider/handle_environment_special(var/mob/living/carbon/human/H)
 	if(H.stat == DEAD) // If they're dead they won't need anything.
 		return

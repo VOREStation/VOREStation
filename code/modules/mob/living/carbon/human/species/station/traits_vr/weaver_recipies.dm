@@ -29,4 +29,8 @@
 	time = 15 SECONDS
 
 /datum/weaver_recipe/item
-	time = 10 SECONDS
+	cost = 50
+
+/datum/weaver_recipe/item/bindings
+	title = "bindings"
+	result_type = /obj/item/clothing/suit/web_bindings
