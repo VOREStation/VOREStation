@@ -138,6 +138,68 @@
 	cooldown = 0
 
 /*
+ * Dog the Plush
+ */
+
+/obj/item/toy/plushie/columdog
+	name = "Dog"
+	desc = "Columbo's faithful basset hound. His name is Dog."
+	icon = 'icons/obj/toy_vr.dmi'
+	icon_state = "basset_plush"
+	var/cooldown = 0
+
+/obj/item/toy/plushie/columdog/attack_self(mob/user as mob)
+	if(!cooldown)
+		playsound(user, 'sound/voice/woof.ogg', 10, 0)
+		src.visible_message("<span class='danger'>Worf!</span>")
+		cooldown = 1
+		addtimer(CALLBACK(src, .proc/cooldownreset), 50)
+	return ..()
+
+/obj/item/toy/plushie/columdog/proc/cooldownreset()
+	cooldown = 0
+
+/*
+ * Action Figures
+ */
+
+/obj/item/toy/figure/actionabe
+	name = "Action Abe"
+	desc = "A \"PAD\" brand Action Abe Lincolin action figure - with included katana!"
+	icon = 'icons/obj/toy_vr.dmi'
+	icon_state = "actionabe"
+	cooldown = 0
+	toysay = "Fourty score and seven hundred years ago..."
+	drop_sound = 'sound/items/drop/accessory.ogg'
+
+/obj/item/toy/figure/badbandit
+	name = "Bandit"
+	desc = "A \"PAD\" brand Bad Boy Bandit action figure."
+	icon = 'icons/obj/toy_vr.dmi'
+	icon_state = "bandit"
+	cooldown = 0
+	toysay = "Who am I? I'm the scariest guy you're ever gonna meet."
+	drop_sound = 'sound/items/drop/accessory.ogg'
+
+/obj/item/toy/figure/badbandit
+	name = "Bandit Leader"
+	desc = "A \"PAD\" brand Big Bad Bandit Leader action figure."
+	icon = 'icons/obj/toy_vr.dmi'
+	icon_state = "bandit_lead"
+	cooldown = 0
+	toysay = "I'm not here to talk. I'm here for business. Either do some or get out of here."
+	drop_sound = 'sound/items/drop/accessory.ogg'
+
+/obj/item/toy/figure/badbandit
+	name = "Ranger"
+	desc = "A \"PAD\" brand Desert Ranger action figure."
+	icon = 'icons/obj/toy_vr.dmi'
+	icon_state = "ranger"
+	cooldown = 0
+	toysay = "*agressive breathing*"
+	drop_sound = 'sound/items/drop/accessory.ogg'
+
+/*
  * Toy Big Iron
  */
 
@@ -167,7 +229,7 @@
 				user.drop_item()
 				qdel(I)
 				bullets++
-				to_chat(user, "<span class='notice'>You load the foam dart into the crossbow.</span>")
+				to_chat(user, "<span class='notice'>You load the foam dart into the Big Iron.</span>")
 			else
 				to_chat(usr, "<span class='warning'>It's already fully loaded.</span>")
 

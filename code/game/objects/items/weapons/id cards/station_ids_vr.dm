@@ -100,3 +100,14 @@
 	icon_state = "itg_blue"
 	item_state = "itg_blue_id"
 	access = list(777, 778)
+
+//additions below this line made on 02/24/2021
+
+/obj/item/weapon/card/id/fake_id
+	name = "Universal ID Card"
+	desc = "A card made from Psychic Paper that induce people to see whatever the user wishes them to see printed on it.... cept this one is just a prop from the hit TV series Professor Who."
+	icon = 'icons/obj/card_vr.dmi'
+	icon_state = "uni_id"
+	item_state = "itg_blue_id"
+	assignment = "Civilian"
+	rank = "Assistant"
