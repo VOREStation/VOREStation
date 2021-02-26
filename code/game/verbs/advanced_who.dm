@@ -85,10 +85,7 @@
 				entry += " - <span class='blue'>In Lobby</span><br>"
 			else
 				entry += " - <span class='green'>Playing</span><br>"
-<<<<<<< HEAD:code/game/verbs/advanced_who.dm
-=======
 
->>>>>>> ebc5263... Merge pull request #7920 from Atermonera/ping_verb_fix:code/modules/client/verbs/advanced_who.dm
 			Lines += entry
 
 	msg += "<table>"
