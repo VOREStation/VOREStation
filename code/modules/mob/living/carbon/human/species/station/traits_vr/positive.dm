@@ -143,7 +143,7 @@
 /datum/trait/weaver
 	name = "Weaver"
 	desc = "You can produce silk and create various articles of clothing and objects."
-	cost = 1
+	cost = 2
 	var_changes = list("is_weaver" = 1)
 
 /datum/trait/weaver/apply(var/datum/species/S,var/mob/living/carbon/human/H)
