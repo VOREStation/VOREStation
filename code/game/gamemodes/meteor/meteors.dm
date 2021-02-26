@@ -147,11 +147,7 @@
 		get_hit()
 
 /obj/effect/meteor/Destroy()
-<<<<<<< HEAD
-	walk(src,0) //this cancels the walk_towards() proc
-=======
 	walk(src,FALSE) //this cancels the walk_towards() proc
->>>>>>> 031f8a7... Merge pull request #7919 from Atermonera/point_defense_targeting
 	GLOB.meteor_list -= src
 	return ..()
 
