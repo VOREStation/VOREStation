@@ -74,7 +74,6 @@
 	var/check_anomalies = TRUE	//checks if it can shoot at unidentified lifeforms (ie xenos)
 	var/check_synth	 = FALSE 	//if active, will shoot at anything not an AI or cyborg
 	var/check_all = FALSE		//If active, will fire on anything, including synthetics.
-	var/fire_at_movement = FALSE	// If active, will fire on the most recent thing to move in range, as soon as possible.
 	var/ailock = FALSE 			// AI cannot use this
 	var/check_down = FALSE		//If active, will shoot to kill when lethals are also on
 	var/faction = null			//if set, will not fire at people in the same faction for any reason.
@@ -95,8 +94,6 @@
 	var/last_target			//last target fired at, prevents turrets from erratically firing at all valid targets in range
 	var/timeout = 10		// When a turret pops up, then finds nothing to shoot at, this number decrements until 0, when it pops down.
 	var/can_salvage = TRUE	// If false, salvaging doesn't give you anything.
-
-	var/stay_up = FALSE		// If true, the turret will remain open while it is powered.
 
 /obj/machinery/porta_turret/crescent
 	req_one_access = list(access_cent_specops)
@@ -279,31 +276,6 @@
 	)
 	return data
 
-/obj/machinery/porta_turret/pointdefense
-	name = "point-defense turret"
-	turret_type = "core"
-	desc = "A basic ship-mounted rock-breaker."
-	description_info = "This turret is capable of blasting incoming meteors into gravel, but it is very limited in range."
-
-	installation = /obj/item/weapon/gun/energy/mininglaser
-
-	check_arrest = FALSE
-	check_records = FALSE
-	check_weapons = FALSE
-	check_access = FALSE
-	check_anomalies = FALSE
-	check_synth	 = FALSE
-	check_all = FALSE
-	fire_at_movement = TRUE
-	stay_up = TRUE
-	ailock = FALSE
-	check_down = FALSE
-
-/obj/machinery/porta_turret/pointdefense/orderable
-	enabled = FALSE
-	anchored = FALSE
-	locked = FALSE
-
 /obj/machinery/porta_turret/Initialize()
 	//Sets up a spark system
 	spark_system = new /datum/effect/effect/system/spark_spread
@@ -350,8 +322,11 @@
 	var/obj/item/projectile/P = initial(E.projectile_type)
 	//var/obj/item/ammo_casing/shottype = E.projectile_type
 
+<<<<<<< HEAD
 	//GLOB.moved_event.register_global(src, /obj/machinery/porta_turret/proc/point_defense) //VOREStation Removal
 
+=======
+>>>>>>> 031f8a7... Merge pull request #7919 from Atermonera/point_defense_targeting
 	projectile = P
 	lethal_projectile = projectile
 	shot_sound = initial(P.fire_sound)
@@ -407,14 +382,6 @@
 			lethal_shot_sound = 'sound/weapons/eluger.ogg'
 			shot_sound = 'sound/weapons/Taser.ogg'
 
-		if(/obj/item/weapon/gun/energy/mininglaser)
-			lethal_icon_color = "green"
-			lethal_projectile = /obj/item/projectile/beam/mininglaser
-			lethal_shot_sound = 'sound/weapons/eluger.ogg'
-			icon_color = "red"
-			projectile = /obj/item/projectile/beam/weaklaser
-			shot_sound = 'sound/weapons/Laser.ogg'
-
 /obj/machinery/porta_turret/proc/isLocked(mob/user)
 	if(locked && !issilicon(user))
 		to_chat(user, "<span class='notice'>Controls locked.</span>")
@@ -444,7 +411,41 @@
 	tgui_interact(user)
 
 /obj/machinery/porta_turret/attack_hand(mob/user)
+<<<<<<< HEAD
 	tgui_interact(user)
+=======
+	if(isLocked(user))
+		return
+
+	ui_interact(user)
+
+/obj/machinery/porta_turret/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+	var/data[0]
+	data["access"] = !isLocked(user)
+	data["locked"] = locked
+	data["enabled"] = enabled
+	data["is_lethal"] = 1
+	data["lethal"] = lethal
+
+	if(data["access"])
+		var/settings[0]
+		settings[++settings.len] = list("category" = "Neutralize All Non-Synthetics", "setting" = "check_synth", "value" = check_synth)
+		settings[++settings.len] = list("category" = "Check Weapon Authorization", "setting" = "check_weapons", "value" = check_weapons)
+		settings[++settings.len] = list("category" = "Check Security Records", "setting" = "check_records", "value" = check_records)
+		settings[++settings.len] = list("category" = "Check Arrest Status", "setting" = "check_arrest", "value" = check_arrest)
+		settings[++settings.len] = list("category" = "Check Access Authorization", "setting" = "check_access", "value" = check_access)
+		settings[++settings.len] = list("category" = "Check misc. Lifeforms", "setting" = "check_anomalies", "value" = check_anomalies)
+		settings[++settings.len] = list("category" = "Neutralize All Entities", "setting" = "check_all", "value" = check_all)
+		settings[++settings.len] = list("category" = "Neutralize Downed Entities", "setting" = "check_down", "value" = check_down)
+		data["settings"] = settings
+
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if(!ui)
+		ui = new(user, src, ui_key, "turret_control.tmpl", "Turret Controls", 500, 300)
+		ui.set_initial_data(data)
+		ui.open()
+		ui.set_auto_update(1)
+>>>>>>> 031f8a7... Merge pull request #7919 from Atermonera/point_defense_targeting
 
 /obj/machinery/porta_turret/proc/HasController()
 	var/area/A = get_area(src)
@@ -482,6 +483,7 @@
 
 /obj/machinery/porta_turret/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
+<<<<<<< HEAD
 		return TRUE
 	if(isLocked(usr))
 		return TRUE
@@ -511,6 +513,34 @@
 				check_all = !check_all
 			if("authdown")
 				check_down = !check_down
+=======
+		return 1
+
+	if(href_list["command"] && href_list["value"])
+		var/value = text2num(href_list["value"])
+		if(href_list["command"] == "enable")
+			enabled = value
+		else if(href_list["command"] == "lethal")
+			lethal = value
+		else if(href_list["command"] == "check_synth")
+			check_synth = value
+		else if(href_list["command"] == "check_weapons")
+			check_weapons = value
+		else if(href_list["command"] == "check_records")
+			check_records = value
+		else if(href_list["command"] == "check_arrest")
+			check_arrest = value
+		else if(href_list["command"] == "check_access")
+			check_access = value
+		else if(href_list["command"] == "check_anomalies")
+			check_anomalies = value
+		else if(href_list["command"] == "check_all")
+			check_all = value
+		else if(href_list["command"] == "check_down")
+			check_down = value
+
+		return 1
+>>>>>>> 031f8a7... Merge pull request #7919 from Atermonera/point_defense_targeting
 
 /obj/machinery/porta_turret/power_change()
 	if(powered())
@@ -712,10 +742,6 @@
 		popDown()
 		return
 
-	if(stay_up)
-		timeout = 10
-		popUp()
-
 	var/list/targets = list()			//list of primary targets
 	var/list/secondarytargets = list()	//targets that are least important
 
@@ -738,21 +764,13 @@
 	if(!tryToShootAt(targets))
 		if(!tryToShootAt(secondarytargets)) // if no valid targets, go for secondary targets
 			timeout--
-			if(timeout <= 0 && !stay_up)
+			if(timeout <= 0)
 				spawn()
 					popDown() // no valid targets, close the cover
 
 	if(auto_repair && (health < maxhealth))
 		use_power(20000)
 		health = min(health+1, maxhealth) // 1HP for 20kJ
-
-// We're expecting the first arg to be a target, for this we don't care about previous and next turfs.
-/obj/machinery/porta_turret/proc/point_defense(var/atom/movable/Targ)
-	if((stat & (NOPOWER|BROKEN)) || !fire_at_movement)	// Are we even able or supposed to fire at non-moving targets?
-		return
-
-	if((isliving(Targ) && assess_living(Targ)) || ((istype(Targ, /obj/item) || istype(Targ, /obj/effect/meteor)) && Targ.invisibility < INVISIBILITY_LEVEL_ONE && Targ in view(7,src)))	// Is the target a living thing, if so, is it a valid target? Or if it's not living, is it in sight?
-		target(Targ)	// Yes? Blast it.
 
 /obj/machinery/porta_turret/proc/assess_and_assign(var/mob/living/L, var/list/targets, var/list/secondarytargets)
 	switch(assess_living(L))
@@ -780,10 +798,10 @@
 	if(L.stat == DEAD && !emagged)		//if the perp is dead, no need to bother really
 		return TURRET_NOT_TARGET	//move onto next potential victim!
 
-	if(get_dist(src, get_turf(L)) > 7)	//if it's too far away, why bother?
+	if(get_dist(src, L) > 7)	//if it's too far away, why bother?
 		return TURRET_NOT_TARGET
 
-	if(!(L in check_trajectory(get_turf(L), src)))	//check if we have true line of sight
+	if(!(L in check_trajectory(L, src)))	//check if we have true line of sight
 		return TURRET_NOT_TARGET
 
 	if(emagged)		// If emagged not even the dead get a rest
@@ -890,9 +908,8 @@
 		last_target = target
 		spawn()
 			popUp()				//pop the turret up if it's not already up.
-		if(dir != get_dir(src, target))
-			set_dir(get_dir(src, target))	//even if you can't shoot, follow the target
-			playsound(src, 'sound/machines/turrets/turret_rotate.ogg', 100, 1) // Play rotating sound
+		set_dir(get_dir(src, target))	//even if you can't shoot, follow the target
+		playsound(src, 'sound/machines/turrets/turret_rotate.ogg', 100, 1) // Play rotating sound
 		spawn()
 			shootAt(target)
 		return 1
@@ -956,9 +973,6 @@
 	var/check_weapons
 	var/check_anomalies
 	var/check_all
-	var/check_down
-	var/fire_at_movement
-	var/stay_up
 	var/ailock
 
 /obj/machinery/porta_turret/proc/setState(var/datum/turret_checks/TC)
@@ -974,9 +988,6 @@
 	check_weapons = TC.check_weapons
 	check_anomalies = TC.check_anomalies
 	check_all = TC.check_all
-	check_down = TC.check_down
-	fire_at_movement = TC.fire_at_movement
-	stay_up = TC.stay_up
 	ailock = TC.ailock
 
 	power_change()

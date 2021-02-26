@@ -1,0 +1,54 @@
+<h2>Fire Assist Mainframe: {{:data.id || "[no tag]"}}</h2>
+{{if !(data.id)}}
+		<div class="notice">
+			<span class='bad'>This system has not been assigned an ident tag. Please contact your system administrator or conduct a manual update with a standard multitool.</span>
+		</div>
+	{{/if}}
+{{for data.turrets}}
+	<h3>{{:value.id}}</h3>
+	<div class="item">
+		<div class="itemLabelWide">
+			Battery status
+		</div>
+		<div class="itemContentMedium">
+            {{if value.active}}
+				<span class="fixedLeft good">Online</span> {{:helper.link('Shut down', null, {'toggle_active': value.ref})}}
+			 {{else}}
+				<span class="fixedLeft average">Offline</span> {{:helper.link('Start up', null, {'toggle_active': value.ref})}}
+			{{/if}}
+		</div>
+	</div>
+	<div class="item">
+		<div class="itemLabelWide">
+			Effective range
+		</div>
+		<div class="itemContentMedium">
+			{{:value.effective_range}}
+		</div>
+	</div>
+	<div class="item">
+		<div class="itemLabelWide">
+			Reaction wheel delay
+		</div>
+		<div class="itemContentMedium">
+			{{:value.reaction_wheel_delay}}
+		</div>
+	</div>
+	<div class="item">
+		<div class="itemLabelWide">
+			Recharge time
+		</div>
+		<div class="itemContentMedium">
+			{{:value.recharge_time}}
+		</div>
+{{empty}}
+	<div class="item">
+		<div class="itemLabel">
+			Error:
+		</div>
+		<div class="itemContent">
+			No weapon systems detected. Please check network connection.
+		</div>
+	</div>
+    <hr/>
+{{/for}}
