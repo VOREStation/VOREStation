@@ -57,10 +57,7 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 #define INIT_ORDER_SKYBOX		30
 #define INIT_ORDER_MAPPING		25
 #define INIT_ORDER_DECALS		20
-<<<<<<< HEAD
 #define INIT_ORDER_PLANTS		18 // Must initialize before atoms.
-=======
->>>>>>> ebc5263... Merge pull request #7920 from Atermonera/ping_verb_fix
 #define INIT_ORDER_JOB			17
 #define INIT_ORDER_ALARM		16 // Must initialize before atoms.
 #define INIT_ORDER_ATOMS		15
