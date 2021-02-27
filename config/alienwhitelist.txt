@@ -82,6 +82,7 @@ varonis - Xenochimera
 verkister - Xenochimera
 verysoft - Black-Eyed Shadekin
 vitoras - Protean
+voidalynx - Black-Eyed Shadekin
 voidalynx - Protean
 wickedtemp - Shadekin Empathy
 xioen - Diona

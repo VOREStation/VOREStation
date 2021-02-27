@@ -69,7 +69,8 @@
 		//Organs and blood
 		handle_organs()
 		stabilize_body_temperature() //Body temperature adjusts itself (self-regulation)
-		weightgain() //VORESTATION EDIT
+		weightgain() 			//VOREStation Addition
+		process_weaver_silk()	//VOREStation Addition
 		handle_shock()
 
 		handle_pain()
@@ -77,7 +78,7 @@
 		handle_medical_side_effects()
 
 		handle_heartbeat()
-		handle_nif() //VOREStation Add
+		handle_nif() 			//VOREStation Addition
 		if(!client)
 			species.handle_npc(src)
 
@@ -1291,7 +1292,7 @@
 			clear_alert("blind")
 
 		var/apply_nearsighted_overlay = FALSE
-		if(disabilities & NEARSIGHTED)	
+		if(disabilities & NEARSIGHTED)
 			apply_nearsighted_overlay = TRUE
 
 			if(glasses)
