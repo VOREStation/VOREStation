@@ -153,7 +153,7 @@
 	H.verbs |= /mob/living/proc/glow_toggle
 	H.verbs |= /mob/living/proc/glow_color
 
-/*
+
 //Allergen traits! Not available to any species with a base allergens var.
 /datum/trait/allergy_gluten
 	name = "Allergy: Gluten"
@@ -178,7 +178,7 @@
 	custom_only = FALSE
 	var_changes = list("allergens" = 32)
 	excludes = list(/datum/trait/allergy_gluten,/datum/trait/allergy_nuts)
-*/
+
 
 // Spicy Food Traits, from negative to positive.
 /datum/trait/spice_intolerance_extreme
