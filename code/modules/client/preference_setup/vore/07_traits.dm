@@ -286,6 +286,9 @@
 				pref.gross_meatbag = 0	//Just to be sure
 				return TOPIC_REFRESH
 
+			if(pref.species in instance.banned_species)
+				alert("The trait you've selected cannot be taken by the species you've chosen!","Error")
+				return TOPIC_REFRESH
 
 			if(trait_choice in pref.pos_traits + pref.neu_traits + pref.neg_traits)
 				conflict = instance.name
