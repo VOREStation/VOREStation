@@ -358,24 +358,16 @@
 	for(var/atom/A in landing)
 		if(!A.CanPass(src, src.loc, 1, 0))
 			return FALSE
-	// TODO - Stairs should operate thru a different mechanism, not falling, to allow side-bumping.
 
 	// Now lets move there!
 	if(!Move(landing))
 		return 1
 
 	// Detect if we made a silent landing.
-	if(locate(/obj/structure/stairs) in landing)
-		if(isliving(src))
-			var/mob/living/L = src
-			if(L.pulling)
-				L.pulling.forceMove(landing)
-		return 1
-	else
-		var/atom/A = find_fall_target(oldloc, landing)
-		if(special_fall_handle(A) || !A || !A.check_impact(src))
-			return
-		fall_impact(A)
+	var/atom/A = find_fall_target(oldloc, landing)
+	if(special_fall_handle(A) || !A || !A.check_impact(src))
+		return
+	fall_impact(A)
 
 /atom/movable/proc/special_fall_handle(var/atom/A)
 	return FALSE
@@ -444,14 +436,6 @@
 	return FALSE
 
 /turf/space/check_impact(var/atom/movable/falling_atom)
-	return FALSE
-
-// We return 1 without calling fall_impact in order to provide a soft landing. So nice.
-// Note this really should never even get this far
-/obj/structure/stairs/CheckFall(var/atom/movable/falling_atom)
-	return TRUE
-
-/obj/structure/stairs/check_impact(var/atom/movable/falling_atom)
 	return FALSE
 
 // Can't fall onto ghosts

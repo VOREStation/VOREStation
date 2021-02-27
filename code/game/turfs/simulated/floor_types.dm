@@ -86,7 +86,7 @@
 	var/static/list/antilight_cache
 
 /turf/simulated/shuttle/Initialize(mapload)
-	..()
+	. = ..()
 	if(!antilight_cache)
 		antilight_cache = list()
 		for(var/diag in cornerdirs)

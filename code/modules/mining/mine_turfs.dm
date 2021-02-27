@@ -556,6 +556,8 @@ turf/simulated/mineral/floor/light_corner
 		for (var/i = 1 to mineral.result_amount - mined_ore)
 			DropMineral()
 
+	GLOB.rocks_drilled_roundstat++
+
 	//destroyed artifacts have weird, unpleasant effects
 	//make sure to destroy them before changing the turf though
 	if(artifact_find && artifact_fail)

@@ -2,7 +2,13 @@
 	name = "command"
 	oxygen = MOLES_O2STANDARD
 	nitrogen = MOLES_N2STANDARD
-	initialized = TRUE // Don't call init on unsimulated turfs (at least not yet)
+	var/skip_init = TRUE // Don't call down the chain, apparently for performance when loading maps at runtime.
+
+/turf/unsimulated/Initialize(mapload)
+	if(skip_init)
+		initialized = TRUE
+		return INITIALIZE_HINT_NORMAL
+	. = ..()
 
 //VOREStation Add
 /turf/unsimulated/fake_space

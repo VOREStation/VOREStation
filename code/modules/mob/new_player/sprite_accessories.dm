@@ -34,6 +34,11 @@
 	// Whether or not the accessory can be affected by colouration
 	var/do_colouration = 1
 
+	var/color_blend_mode = ICON_MULTIPLY	// If checked.
+
+	// Ckey of person allowed to use this, if defined.
+	var/list/ckeys_allowed = null
+	var/apply_restrictions = FALSE		//whether to apply restrictions for specific tails/ears/wings
 
 /*
 ////////////////////////////
@@ -64,9 +69,44 @@
 	flags = HAIR_TIEABLE
 
 /datum/sprite_accessory/hair/afro_large
-	name = "Big Afro"
+	name = "Afro, Big"
 	icon_state = "hair_bigafro"
 	flags = HAIR_TIEABLE
+
+/datum/sprite_accessory/hair/afropuffdouble
+	name = "Afropuff, Double"
+	icon_state = "hair_afropuffdouble"
+	flags = HAIR_TIEABLE
+
+/datum/sprite_accessory/hair/afropuffleft
+	name = "Afropuff, Left"
+	icon_state = "hair_afropuffleft"
+	flags = HAIR_TIEABLE
+
+/datum/sprite_accessory/hair/afropuffright
+	name = "Afropuff, Right"
+	icon_state = "hair_afropuffright"
+	flags = HAIR_TIEABLE
+
+/datum/sprite_accessory/hair/angelique
+	name = "Angelique"
+	icon_state = "hair_angelique"
+	flags = HAIR_TIEABLE
+
+/datum/sprite_accessory/hair/antonio
+	name = "Antonio"
+	icon_state = "hair_antonio"
+	flags = HAIR_VERY_SHORT
+
+/datum/sprite_accessory/hair/aradia
+	name = "Aradia"
+	icon_state = "hair_aradia"
+	flags = HAIR_TIEABLE
+
+/datum/sprite_accessory/hair/messyhair
+	name = "All Up"
+	icon_state = "hair_messyhair"
+	flags = HAIR_VERY_SHORT
 
 /datum/sprite_accessory/hair/amazon
 	name = "Amazon"
@@ -76,6 +116,17 @@
 /datum/sprite_accessory/hair/antenna
 	name = "Antenna"
 	icon_state = "hair_antenna"
+
+/datum/sprite_accessory/hair/astolfo
+	name = "Astolfo"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_add = 'icons/mob/human_face_alt_add.dmi'
+	icon_state = "hair_astolfo"
+
+/datum/sprite_accessory/hair/averagejoe
+	name = "Average Joe"
+	icon_state = "hair_averagejoe"
+	flags = HAIR_VERY_SHORT
 
 /datum/sprite_accessory/hair/bald
 	name = "Bald"
@@ -92,6 +143,11 @@
 	name = "Balding Hair"
 	icon_state = "hair_e"
 	flags = HAIR_VERY_SHORT
+
+/datum/sprite_accessory/hair/band
+	name = "Band"
+	icon_state = "hair_band"
+	flags = HAIR_TIEABLE
 
 /datum/sprite_accessory/hair/beachwave
 	name = "Beach Waves"
@@ -133,6 +189,10 @@
 	icon_state = "hair_beehive2"
 	flags = HAIR_TIEABLE
 
+/datum/sprite_accessory/hair/bieber
+	name = "Bieber"
+	icon_state = "hair_bieb"
+
 /datum/sprite_accessory/hair/belenko
 	name = "Belenko"
 	icon_state = "hair_belenko"
@@ -141,6 +201,11 @@
 /datum/sprite_accessory/hair/belenkotied
 	name = "Belenko Tied"
 	icon_state = "hair_belenkotied"
+	flags = HAIR_TIEABLE
+
+/datum/sprite_accessory/hair/bigcurls
+	name = "Big Curls"
+	icon_state = "hair_bigcurls"
 	flags = HAIR_TIEABLE
 
 /datum/sprite_accessory/hair/bob
@@ -152,6 +217,11 @@
 /datum/sprite_accessory/hair/bobcutalt
 	name = "Bob Chin Length"
 	icon_state = "hair_bobcutalt"
+	flags = HAIR_TIEABLE
+
+/datum/sprite_accessory/hair/midb
+	name = "Bob, Mid-length"
+	icon_state = "hair_midb"
 	flags = HAIR_TIEABLE
 
 /datum/sprite_accessory/hair/bobcurl
@@ -180,6 +250,16 @@
 /datum/sprite_accessory/hair/braid2
 	name = "Braid Long"
 	icon_state = "hair_hbraid"
+	flags = HAIR_TIEABLE
+
+/datum/sprite_accessory/hair/longbraid
+	name = "Braid Long, Alt"
+	icon_state = "hair_longbraid"
+	flags = HAIR_TIEABLE
+
+/datum/sprite_accessory/hair/longbraidalt
+	name = "Braid Long, Alt 2"
+	icon_state = "hair_braidalt"
 	flags = HAIR_TIEABLE
 
 /datum/sprite_accessory/hair/mbraid
@@ -263,6 +343,13 @@
 	icon_state = "hair_celebcurls"
 	flags = HAIR_TIEABLE
 
+/datum/sprite_accessory/hair/citheronia_colorable
+	name = "Citheronia"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_add = 'icons/mob/human_face_alt_add.dmi'
+	icon_state = "citheronia_hair_c"
+	do_colouration = 1
+
 /datum/sprite_accessory/hair/crono
 	name = "Chrono"
 	icon_state = "hair_toriyama"
@@ -281,6 +368,11 @@
 /datum/sprite_accessory/hair/combover
 	name = "Combover"
 	icon_state = "hair_combover"
+
+/datum/sprite_accessory/hair/cornbun
+	name = "Cornbun"
+	icon_state = "hair_cornbun"
+	flags = HAIR_TIEABLE
 
 /datum/sprite_accessory/hair/country
 	name = "Country"
@@ -302,6 +394,11 @@
 	icon_state = "hair_c"
 	flags = HAIR_VERY_SHORT
 
+/datum/sprite_accessory/hair/darcy
+	name = "Darcy"
+	icon_state = "hair_darcy"
+	flags = HAIR_VERY_SHORT
+
 /datum/sprite_accessory/hair/dave
 	name = "Dave"
 	icon_state = "hair_dave"
@@ -309,6 +406,11 @@
 /datum/sprite_accessory/hair/devillock
 	name = "Devil Lock"
 	icon_state = "hair_devilock"
+
+/datum/sprite_accessory/hair/dirk
+	name = "Dirk"
+	icon_state = "hair_dirk"
+	flags = HAIR_VERY_SHORT
 
 /datum/sprite_accessory/hair/donutbun
 	name = "Donut Bun"
@@ -319,10 +421,24 @@
 	icon_state = "hair_dreads"
 	flags = HAIR_TIEABLE
 
+/datum/sprite_accessory/hair/dreadslong
+	name = "Dreads Long"
+	icon_state = "hair_dreadslong"
+	flags = HAIR_TIEABLE
+
+/datum/sprite_accessory/hair/dreadslongalt
+	name = "Dreads Long, Alt"
+	icon_state = "hair_dreadlongalt"
+	flags = HAIR_TIEABLE
+
 /datum/sprite_accessory/hair/mahdrills
 	name = "Drillruru"
 	icon_state = "hair_drillruru"
 	flags = HAIR_TIEABLE
+
+/datum/sprite_accessory/hair/elize
+	name = "Elize"
+	icon_state = "hair_elize"
 
 /datum/sprite_accessory/hair/emo
 	name = "Emo"
@@ -344,9 +460,26 @@
 	icon_state = "hair_halfshaved"
 	flags = HAIR_TIEABLE
 
+/datum/sprite_accessory/hair/halfshavedlong
+	name = "Emo Half-Shaved Long"
+	icon_state = "hair_halfshavedL"
+
+/datum/sprite_accessory/hair/emoright
+	name = "Emo Mid-length"
+	icon_state = "hair_emoright"
+
 /datum/sprite_accessory/hair/longemo
 	name = "Emo Long"
 	icon_state = "hair_emolong"
+	flags = HAIR_TIEABLE
+
+/datum/sprite_accessory/hair/equius
+	name = "Equius"
+	icon_state = "hair_equius"
+
+/datum/sprite_accessory/hair/fabio
+	name = "Fabio"
+	icon_state = "hair_fabio"
 	flags = HAIR_TIEABLE
 
 /datum/sprite_accessory/hair/highfade
@@ -385,15 +518,30 @@
 	icon_state = "hair_feather"
 	flags = HAIR_TIEABLE
 
+/datum/sprite_accessory/hair/feferi
+	name = "Feferi"
+	icon_state = "hair_feferi"
+	flags = HAIR_TIEABLE
+
 /datum/sprite_accessory/hair/flair
 	name = "Flaired Hair"
 	icon_state = "hair_flair"
 	flags = HAIR_TIEABLE
 
+/datum/sprite_accessory/hair/flipped
+	name = "Flipped"
+	icon_state = "hair_flipped"
+
 /datum/sprite_accessory/hair/sargeant
 	name = "Flat Top"
 	icon_state = "hair_sargeant"
 	flags = HAIR_VERY_SHORT
+
+/datum/sprite_accessory/hair/braid
+	name = "Floorlength Braid"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_add = 'icons/mob/human_face_alt_add.dmi'
+	icon_state = "hair_braid"
 
 /datum/sprite_accessory/hair/flowhair
 	name = "Flow Hair"
@@ -414,6 +562,15 @@
 	icon_state = "hair_fringetail"
 	flags = HAIR_TIEABLE|HAIR_VERY_SHORT
 
+/datum/sprite_accessory/hair/froofy_long
+	name = "Froofy Long"
+	icon_state = "hair_froofy_long"
+	flags = HAIR_TIEABLE
+
+/datum/sprite_accessory/hair/gamzee
+	name = "Gamzee"
+	icon_state = "hair_gamzee"
+
 /datum/sprite_accessory/hair/gelled
 	name = "Gelled Back"
 	icon_state = "hair_gelled"
@@ -427,6 +584,11 @@
 /datum/sprite_accessory/hair/gentle2
 	name = "Gentle 2, Long"
 	icon_state = "hair_gentle2long"
+	flags = HAIR_TIEABLE
+
+/datum/sprite_accessory/hair/glammetal
+	name = "Glam Metal Long"
+	icon_state = "hair_glammetal"
 	flags = HAIR_TIEABLE
 
 /datum/sprite_accessory/hair/glossy
@@ -471,10 +633,13 @@
 	icon_state = "hair_jade"
 	flags = HAIR_TIEABLE
 
+/datum/sprite_accessory/hair/jane
+	name = "Jane"
+	icon_state = "hair_jane"
+
 /datum/sprite_accessory/hair/jensen
 	name = "Jensen"
 	icon_state = "hair_jensen"
-
 
 /datum/sprite_accessory/hair/jessica
 	name = "Jessica"
@@ -485,10 +650,19 @@
 	name = "Joestar"
 	icon_state = "hair_joestar"
 
+/datum/sprite_accessory/hair/judge
+	name = "Judge"
+	icon_state = "hair_judge"
+	flags = HAIR_TIEABLE
+
 /datum/sprite_accessory/hair/kagami
 	name = "Kagami"
 	icon_state = "hair_kagami"
 	flags = HAIR_TIEABLE
+
+/datum/sprite_accessory/hair/kanaya
+	name = "Kanaya"
+	icon_state = "hair_kanaya"
 
 /datum/sprite_accessory/hair/keanu
 	name = "Keanu Hair"
@@ -543,6 +717,15 @@
 	name = "Mary Sue"
 	icon_state = "hair_marysue"
 
+/datum/sprite_accessory/hair/mia
+	name = "Mia"
+	icon_state = "hair_mia"
+
+/datum/sprite_accessory/hair/mialong
+	name = "Mia Long"
+	icon_state = "hair_mialong"
+	flags = HAIR_TIEABLE
+
 /datum/sprite_accessory/hair/miles
 	name = "Miles Hair"
 	icon_state = "hair_miles"
@@ -573,6 +756,10 @@
 /datum/sprite_accessory/hair/mulder
 	name = "Mulder"
 	icon_state = "hair_mulder"
+
+/datum/sprite_accessory/hair/nepeta
+	name = "Nepeta"
+	icon_state = "hair_nepeta"
 
 /datum/sprite_accessory/hair/newyou
 	name = "New You"
@@ -713,6 +900,16 @@
 	icon_state = "hair_newyou"
 	flags = HAIR_TIEABLE
 
+/datum/sprite_accessory/hair/rockandroll
+	name = "Rock and Roll"
+	icon_state = "hair_rockandroll"
+	flags = HAIR_TIEABLE
+
+/datum/sprite_accessory/hair/rockstarcurls
+	name = "Rockstar Curls"
+	icon_state = "hair_rockstarcurls"
+	flags = HAIR_TIEABLE
+
 /datum/sprite_accessory/hair/ronin
 	name = "Ronin"
 	icon_state = "hair_ronin"
@@ -722,6 +919,10 @@
 	name = "Rosa"
 	icon_state = "hair_rosa"
 	flags = HAIR_TIEABLE
+
+/datum/sprite_accessory/hair/rose
+	name = "Rose"
+	icon_state = "hair_rose"
 
 /datum/sprite_accessory/hair/rows
 	name = "Rows"
@@ -748,6 +949,10 @@
 	icon_state = "hair_rowbraid"
 	flags = HAIR_TIEABLE
 
+/datum/sprite_accessory/hair/roxy
+	name = "Roxy"
+	icon_state = "hair_roxy"
+
 /datum/sprite_accessory/hair/sabitsuki
 	name = "Sabitsuki"
 	icon_state = "hair_sabitsuki"
@@ -766,6 +971,11 @@
 	name = "Short Bangs"
 	icon_state = "hair_shortbangs"
 
+/datum/sprite_accessory/hair/shortflip
+	name = "Short Flip"
+	icon_state = "hair_shortflip"
+	flags = HAIR_VERY_SHORT
+
 /datum/sprite_accessory/hair/short
 	name = "Short Hair"	  // try to capatilize the names please~
 	icon_state = "hair_a" // you do not need to define _s or _l sub-states, game automatically does this for you
@@ -781,6 +991,12 @@
 	icon_state = "hair_shorthair4"
 	flags = HAIR_VERY_SHORT
 
+/datum/sprite_accessory/hair/awoohair
+	name = "Shoulder-length Messy"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_add = 'icons/mob/human_face_alt_add.dmi'
+	icon_state = "momijihair"
+
 /datum/sprite_accessory/hair/shy
 	name = "Shy"
 	icon_state = "hair_shy"
@@ -794,6 +1010,16 @@
 /datum/sprite_accessory/hair/sideponytail4 //Not happy about this... but it's for the save files.
 	name = "Side Ponytail 2"
 	icon_state = "hair_ponytailf"
+	flags = HAIR_TIEABLE
+
+/datum/sprite_accessory/hair/sideponytail5
+	name = "Side Ponytail 3"
+	icon_state = "hair_sidetail"
+	flags = HAIR_TIEABLE
+
+/datum/sprite_accessory/hair/sideponytail6
+	name = "Side Ponytail 4"
+	icon_state = "hair_sidetail2"
 	flags = HAIR_TIEABLE
 
 /datum/sprite_accessory/hair/sideponytail2
@@ -836,9 +1062,27 @@
 	icon_state = "hair_straightlong"
 	flags = HAIR_TIEABLE
 
+/datum/sprite_accessory/hair/suave
+	name = "Suave"
+	icon_state = "hair_suave"
+
+/datum/sprite_accessory/hair/suavetwo
+	name = "Suave 2"
+	icon_state = "hair_suave2"
+
 /datum/sprite_accessory/hair/sweepshave
 	name = "Sweep Shave"
 	icon_state = "hair_sweepshave"
+
+/datum/sprite_accessory/hair/sweptfringe
+	name = "Swept Fringe"
+	icon_state = "hair_sweptfringe"
+	flags = HAIR_TIEABLE
+
+/datum/sprite_accessory/hair/terezi
+	name = "Terezi"
+	icon_state = "hair_terezi"
+	flags = HAIR_TIEABLE
 
 /datum/sprite_accessory/hair/thinning
 	name = "Thinning"
@@ -872,9 +1116,20 @@
 	gender = MALE
 	flags = HAIR_VERY_SHORT
 
+/datum/sprite_accessory/hair/twindrills
+	name = "Twin Drills"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_add = 'icons/mob/human_face_alt_add.dmi'
+	icon_state = "hair_twincurl"
+
 /datum/sprite_accessory/hair/twintail
 	name = "Twintail"
 	icon_state = "hair_twintail"
+	flags = HAIR_TIEABLE
+
+/datum/sprite_accessory/hair/twinbob
+	name = "Twinbun Bob"
+	icon_state = "hair_bunbob"
 	flags = HAIR_TIEABLE
 
 /datum/sprite_accessory/hair/undercut1
@@ -895,6 +1150,11 @@
 	gender = MALE
 	flags = HAIR_VERY_SHORT
 
+/datum/sprite_accessory/hair/longundercut
+	name = "Undercut Long"
+	icon_state = "hair_undercutlong"
+	flags = HAIR_VERY_SHORT
+
 /datum/sprite_accessory/hair/unkept
 	name = "Unkept"
 	icon_state = "hair_unkept"
@@ -908,6 +1168,11 @@
 /datum/sprite_accessory/hair/vegeta
 	name = "Vegeta"
 	icon_state = "hair_toriyama2"
+
+/datum/sprite_accessory/hair/vriska
+	name = "Vriska"
+	icon_state = "hair_vriska"
+	flags = HAIR_TIEABLE
 
 /datum/sprite_accessory/hair/vivi
 	name = "Vivi"
@@ -927,6 +1192,322 @@
 	name = "Zieglertail"
 	icon_state = "hair_ziegler"
 	flags = HAIR_TIEABLE
+
+/datum/sprite_accessory/hair/una_hood
+	name = "Cobra Hood"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_add = 'icons/mob/human_face_alt_add.dmi'
+	icon_state = "soghun_hood"
+	species_allowed = list(SPECIES_UNATHI, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+
+/datum/sprite_accessory/hair/una_doublehorns
+	name = "Double Unathi Horns"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_add = 'icons/mob/human_face_alt_add.dmi'
+	icon_state = "soghun_dubhorns"
+	species_allowed = list(SPECIES_UNATHI, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+
+/datum/sprite_accessory/hair/sergal_plain
+	name = "Sergal Plain"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_add = 'icons/mob/human_face_alt_add.dmi'
+	icon_state = "serg_plain"
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+
+/datum/sprite_accessory/hair/sergal_medicore
+	name = "Sergal Medicore"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_add = 'icons/mob/human_face_alt_add.dmi'
+	icon_state = "serg_medicore"
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+
+/datum/sprite_accessory/hair/sergal_tapered
+	name = "Sergal Tapered"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_add = 'icons/mob/human_face_alt_add.dmi'
+	icon_state = "serg_tapered"
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+
+/datum/sprite_accessory/hair/sergal_fairytail
+	name = "Sergal Fairytail"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_add = 'icons/mob/human_face_alt_add.dmi'
+	icon_state = "serg_fairytail"
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+
+// Vulpa stuffs
+
+/datum/sprite_accessory/hair/vulp_hair_none
+	name = "None"
+	icon_state = "bald"
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	gender = NEUTER
+
+/datum/sprite_accessory/hair/vulp_hair_kajam
+	name = "Kajam"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_add = 'icons/mob/human_face_alt_add.dmi'
+	icon_state = "kajam"
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	gender = NEUTER
+
+/datum/sprite_accessory/hair/vulp_hair_keid
+	name = "Keid"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_add = 'icons/mob/human_face_alt_add.dmi'
+	icon_state = "keid"
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	gender = NEUTER
+
+/datum/sprite_accessory/hair/vulp_hair_adhara
+	name = "Adhara"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_add = 'icons/mob/human_face_alt_add.dmi'
+	icon_state = "adhara"
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	gender = NEUTER
+
+/datum/sprite_accessory/hair/vulp_hair_kleeia
+	name = "Kleeia"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_add = 'icons/mob/human_face_alt_add.dmi'
+	icon_state = "kleeia"
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	gender = NEUTER
+
+/datum/sprite_accessory/hair/vulp_hair_mizar
+	name = "Mizar"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_add = 'icons/mob/human_face_alt_add.dmi'
+	icon_state = "mizar"
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	gender = NEUTER
+
+/datum/sprite_accessory/hair/vulp_hair_apollo
+	name = "Apollo"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_add = 'icons/mob/human_face_alt_add.dmi'
+	icon_state = "apollo"
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	gender = NEUTER
+
+/datum/sprite_accessory/hair/vulp_hair_belle
+	name = "Belle"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_add = 'icons/mob/human_face_alt_add.dmi'
+	icon_state = "belle"
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	gender = NEUTER
+
+/datum/sprite_accessory/hair/vulp_hair_bun
+	name = "Vulp Bun"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_add = 'icons/mob/human_face_alt_add.dmi'
+	icon_state = "bun"
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	gender = NEUTER
+
+/datum/sprite_accessory/hair/vulp_hair_jagged
+	name = "Jagged"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_add = 'icons/mob/human_face_alt_add.dmi'
+	icon_state = "jagged"
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	gender = NEUTER
+
+/datum/sprite_accessory/hair/vulp_hair_curl
+	name = "Curl"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_add = 'icons/mob/human_face_alt_add.dmi'
+	icon_state = "curl"
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	gender = NEUTER
+
+/datum/sprite_accessory/hair/vulp_hair_hawk
+	name = "Hawk"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_add = 'icons/mob/human_face_alt_add.dmi'
+	icon_state = "hawk"
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	gender = NEUTER
+
+/datum/sprite_accessory/hair/vulp_hair_anita
+	name = "Anita"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_add = 'icons/mob/human_face_alt_add.dmi'
+	icon_state = "anita"
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	gender = NEUTER
+
+/datum/sprite_accessory/hair/vulp_hair_short
+	name = "Short"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_add = 'icons/mob/human_face_alt_add.dmi'
+	icon_state = "short"
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	gender = NEUTER
+
+/datum/sprite_accessory/hair/vulp_hair_spike
+	name = "Spike"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_add = 'icons/mob/human_face_alt_add.dmi'
+	icon_state = "spike"
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	gender = NEUTER
+
+//xeno stuffs
+/datum/sprite_accessory/hair/xeno_head_drone_color
+	name = "Drone dome"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_add = 'icons/mob/human_face_alt_add.dmi'
+	icon_state = "cxeno_drone"
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	gender = NEUTER
+// figure this one out for better coloring
+/datum/sprite_accessory/hair/xeno_head_sentinel_color
+	name = "Sentinal dome"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_add = 'icons/mob/human_face_alt_add.dmi'
+	icon_state = "cxeno_sentinel"
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	gender = NEUTER
+
+/datum/sprite_accessory/hair/xeno_head_queen_color
+	name = "Queen dome"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_add = 'icons/mob/human_face_alt_add.dmi'
+	icon_state = "cxeno_queen"
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	gender = NEUTER
+
+/datum/sprite_accessory/hair/xeno_head_hunter_color
+	name = "Hunter dome"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_add = 'icons/mob/human_face_alt_add.dmi'
+	icon_state = "cxeno_hunter"
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	gender = NEUTER
+
+/datum/sprite_accessory/hair/xeno_head_praetorian_color
+	name = "Praetorian dome"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_add = 'icons/mob/human_face_alt_add.dmi'
+	icon_state = "cxeno_praetorian"
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	gender = NEUTER
+
+// Shadekin stuffs
+
+/datum/sprite_accessory/hair/shadekin_hair_short
+	name = "Shadekin Short Hair"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_add = 'icons/mob/human_face_alt_add.dmi'
+	icon_state = "shadekin_short"
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	gender = NEUTER
+
+/datum/sprite_accessory/hair/shadekin_hair_poofy
+	name = "Shadekin Poofy Hair"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_add = 'icons/mob/human_face_alt_add.dmi'
+	icon_state = "shadekin_poofy"
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	gender = NEUTER
+
+/datum/sprite_accessory/hair/shadekin_hair_long
+	name = "Shadekin Long Hair"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_add = 'icons/mob/human_face_alt_add.dmi'
+	icon_state = "shadekin_long"
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	gender = NEUTER
+
+/*
+shaved
+	name = "Shaved"
+	icon_state = "bald"
+	gender = NEUTER
+	species_allowed = list(SPECIES_HUMAN, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+*/
+/datum/sprite_accessory/facial_hair/neck_fluff
+	name = "Neck Fluff"
+	icon = 'icons/mob/human_face_or_alt.dmi'
+	icon_state = "facial_neckfluff"
+	gender = NEUTER
+	species_allowed = list(SPECIES_TAJ, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/facial_hair/vulp_none
+	name = "None"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_state = "none"
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	gender = NEUTER
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/facial_hair/vulp_blaze
+	name = "Blaze"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_state = "vulp_facial_blaze"
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	gender = NEUTER
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/facial_hair/vulp_vulpine
+	name = "Vulpine"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_state = "vulp_facial_vulpine"
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	gender = NEUTER
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/facial_hair/vulp_earfluff
+	name = "Earfluff"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_state = "vulp_facial_earfluff"
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	gender = NEUTER
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/facial_hair/vulp_mask
+	name = "Mask"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_state = "vulp_facial_mask"
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	gender = NEUTER
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/facial_hair/vulp_patch
+	name = "Patch"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_state = "vulp_facial_patch"
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	gender = NEUTER
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/facial_hair/vulp_ruff
+	name = "Ruff"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_state = "vulp_facial_ruff"
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	gender = NEUTER
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/facial_hair/vulp_kita
+	name = "Kita"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_state = "vulp_facial_kita"
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	gender = NEUTER
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/facial_hair/vulp_swift
+	name = "Swift"
+	icon = 'icons/mob/human_face_alt.dmi'
+	icon_state = "vulp_facial_swift"
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	gender = NEUTER
+	color_blend_mode = ICON_MULTIPLY
 
 /*
 ///////////////////////////////////

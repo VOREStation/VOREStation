@@ -31,6 +31,14 @@
 	if(!length(touchable_atoms))
 		return
 
+	var/datum/digest_mode/DM = GLOB.digest_modes["[digest_mode]"]
+	if(!DM)
+		log_debug("Digest mode [digest_mode] didn't exist in the digest_modes list!!")
+		return FALSE
+	if(DM.handle_atoms(src, touchable_atoms))
+		updateVRPanels()
+		return
+
 	var/list/touchable_mobs = null
 
 	var/list/hta_returns = handle_touchable_atoms(touchable_atoms)
@@ -54,11 +62,6 @@
 				continue // don't give digesty messages to indigestible people
 			to_chat(M, "<span class='notice'>[pick(EL)]</span>")
 
-	var/datum/digest_mode/DM = GLOB.digest_modes["[digest_mode]"]
-	if(!DM)
-		log_debug("Digest mode [digest_mode] didn't exist in the digest_modes list!!")	
-		return FALSE
-
 	if(!digestion_noise_chance)
 		digestion_noise_chance = DM.noise_chance
 
@@ -80,16 +83,16 @@
 		play_sound = pred_digest
 
 	if(play_sound)
-		for(var/mob/M in hearers(VORE_SOUND_RANGE, owner)) //so we don't fill the whole room with the sound effect
+		for(var/mob/M in hearers(VORE_SOUND_RANGE, get_turf(owner))) //so we don't fill the whole room with the sound effect
 			if(!M.is_preference_enabled(/datum/client_preference/digestion_noises))
 				continue
 			if(isturf(M.loc) || (M.loc != src)) //to avoid people on the inside getting the outside sounds and their direct sounds + built in sound pref check
 				if(fancy_vore)
-					M.playsound_local(owner.loc, play_sound, vol = 75, vary = 1, falloff = VORE_SOUND_FALLOFF)
+					M.playsound_local(get_turf(owner), play_sound, vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF)
 				else
-					M.playsound_local(owner.loc, play_sound, vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF)
+					M.playsound_local(get_turf(owner), play_sound, vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF)
 				 //these are all external sound triggers now, so it's ok.
-	
+
 	if(to_update)
 		updateVRPanels()
 
@@ -137,6 +140,16 @@
 				if((mode_flags & DM_FLAG_THICKBELLY) && !H.muffled)
 					H.muffled = TRUE
 
+				//Worn items flag
+				if(mode_flags & DM_FLAG_AFFECTWORN)
+					for(var/slot in slots)
+						var/obj/item/I = H.get_equipped_item(slot = slot)
+						if(I && I.canremove)
+							if(handle_digesting_item(I))
+								digestion_noise_chance = 25
+								to_update = TRUE
+								break
+
 				//Stripping flag
 				if(mode_flags & DM_FLAG_STRIPPING)
 					for(var/slot in slots)
@@ -146,7 +159,7 @@
 							digestion_noise_chance = 25
 							to_update = TRUE
 							break // Digest off one by one, not all at once
-							
+
 		//get rid of things like blood drops and gibs that end up in there
 		else if(istype(A, /obj/effect/decal/cleanable))
 			qdel(A)
@@ -215,7 +228,7 @@
 	if(compensation > 0)
 		if(isrobot(owner))
 			var/mob/living/silicon/robot/R = owner
-			R.cell.charge += 25*compensation
+			R.cell.charge += 25*compensation*(nutrition_percent / 100)
 		else
 			owner.adjust_nutrition((nutrition_percent / 100)*4.5*compensation)
 

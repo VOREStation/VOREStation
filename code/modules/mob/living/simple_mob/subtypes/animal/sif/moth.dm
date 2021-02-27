@@ -116,7 +116,7 @@
 			return FALSE
 
 /mob/living/simple_mob/animal/sif/tymisian/Initialize()
-	..()
+	. = ..()
 	smoke_spore = new
 	verbs += /mob/living/proc/ventcrawl
 	verbs += /mob/living/proc/hide

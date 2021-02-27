@@ -22,6 +22,7 @@ PROCESSING_SUBSYSTEM_DEF(chemistry)
 /datum/controller/subsystem/processing/chemistry/Initialize()
 	initialize_chemical_reactions()
 	initialize_chemical_reagents()
+	..()
 
 //Chemical Reactions - Initialises all /datum/chemical_reaction into a list
 // It is filtered into multiple lists within a list.

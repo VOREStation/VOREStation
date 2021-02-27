@@ -27,11 +27,10 @@
 	return FALSE
 
 /obj/effect/wingrille_spawn/Initialize()
-	. = ..()
-	if(!win_path)
-		return
-	if(ticker && ticker.current_state < GAME_STATE_PLAYING)
+	if(win_path && ticker && ticker.current_state < GAME_STATE_PLAYING)
 		activate()
+	..()
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/wingrille_spawn/proc/activate()
 	if(activated) return
@@ -58,7 +57,8 @@
 	activated = 1
 	for(var/obj/effect/wingrille_spawn/other in neighbours)
 		if(!other.activated) other.activate()
-	qdel(src)
+	if(initialized && !QDELETED(src))
+		qdel(src)
 
 /obj/effect/wingrille_spawn/proc/handle_window_spawn(var/obj/structure/window/W)
 	return

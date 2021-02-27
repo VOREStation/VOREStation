@@ -18,7 +18,7 @@
 		setup_repair_needs()
 
 /obj/item/weapon/broken_gun/Initialize()
-	..()
+	. = ..()
 	spawn(30 SECONDS)
 		if(!my_guntype && !QDELETED(src))
 			qdel(src)

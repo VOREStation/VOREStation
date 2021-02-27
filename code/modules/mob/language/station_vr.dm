@@ -110,6 +110,20 @@
 		"ver", "stv", "pro", "ski"
 	)
 
+/datum/language/clownish
+	name = LANGUAGE_CLOWNISH
+	desc = "A special elective language course for those studying at the Clown Planet Institute."
+	speech_verb = "honks"
+	ask_verb = "seins"
+	exclaim_verb = "crenks"
+	whisper_verb = "squeaks"
+	colour = "#F785F2" // Pink for the clown.
+	key = "<"
+	flags = WHITELISTED | CLOWN
+	syllables = list(
+		"honk", "knock", "salt", "slip", "lube", "banana", "flower", "pie", "did you hear", "🅱️", "haha", "bully", "going up",
+	)
+
 /datum/language/drudakar
 	name = LANGUAGE_DRUDAKAR
 	desc = "The native language of the D'Rudak'Ar, a loosely tied together community of dragons and demi-dragons based in the Diul system. Features include many hard consonants and rolling 'r's."
