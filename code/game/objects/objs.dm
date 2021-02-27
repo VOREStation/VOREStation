@@ -24,21 +24,7 @@
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-<<<<<<< HEAD
-/obj/Moved(atom/oldloc)
-	. = ..()
-	if(register_as_dangerous_object)
-		var/turf/old_turf = get_turf(oldloc)
-		var/turf/new_turf = get_turf(src)
-
-		if(old_turf != new_turf)
-			old_turf.unregister_dangerous_object(src)
-			new_turf.register_dangerous_object(src)
-
 /obj/Topic(href, href_list, var/datum/tgui_state/state = GLOB.tgui_default_state)
-=======
-/obj/Topic(href, href_list, var/datum/topic_state/state = default_state)
->>>>>>> b22a056... Sideports a couple of init unit tests from Neb. (#7893)
 	if(usr && ..())
 		return 1
 
