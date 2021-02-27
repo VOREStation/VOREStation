@@ -15,8 +15,6 @@ jobs:
         if: github.event.pull_request.merged == true
         steps:
           - uses: /actions/checkout@v2
-            with:
-                ref: ${{ github.head_ref }}
           - name: Ensure +x on CI directory
             run: |
                 chmod -R +x ./tools/ci
