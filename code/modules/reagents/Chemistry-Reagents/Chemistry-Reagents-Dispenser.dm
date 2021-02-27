@@ -82,6 +82,8 @@
 
 	var/nutriment_factor = 0
 	var/strength = 10 // This is, essentially, units between stages - the lower, the stronger. Less fine tuning, more clarity.
+	var/allergen_type = GENERIC	// What potential allergens does this contain?
+	var/allergen_factor = 0.5	// If the potential allergens are mixed and low-volume, they're a bit less dangerous. Needed for drinks because they're a single reagent compared to food which contains multiple seperate reagents.
 	var/toxicity = 1
 
 	var/druggy = 0
@@ -139,6 +141,9 @@
 
 	if(halluci)
 		M.hallucination = max(M.hallucination, halluci*3)
+	
+	if(M.species.allergens & allergen_type)
+		M.adjustToxLoss(((M.species.allergen_severity*allergen_factor)*4) * removed)
 
 /datum/reagent/ethanol/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	if(issmall(M)) removed *= 2
@@ -183,6 +188,9 @@
 
 	if(halluci)
 		M.hallucination = max(M.hallucination, halluci)
+	
+	if(M.species.allergens & allergen_type)
+		M.adjustToxLoss((M.species.allergen_severity*allergen_factor) * removed)
 
 /datum/reagent/ethanol/touch_obj(var/obj/O)
 	if(istype(O, /obj/item/weapon/paper))
