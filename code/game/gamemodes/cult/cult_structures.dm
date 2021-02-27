@@ -34,7 +34,7 @@
 	var/last_activation = 0
 
 /obj/structure/cult/pylon/Initialize()
-	..()
+	. = ..()
 	START_PROCESSING(SSobj, src)
 
 /obj/structure/cult/pylon/attack_hand(mob/M as mob)

@@ -307,7 +307,7 @@
 	projectile_type = /obj/item/projectile/bullet/rifle/a145
 
 /obj/item/ammo_casing/a145/spent/Initialize()
-	..()
+	. = ..()
 	expend()
 
 /*

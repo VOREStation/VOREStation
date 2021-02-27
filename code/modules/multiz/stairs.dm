@@ -11,9 +11,9 @@
 	layer = STAIRS_LAYER
 
 /obj/structure/stairs/Initialize()
+	. = ..()
 	if(check_integrity())
 		update_icon()
-	return INITIALIZE_HINT_NORMAL
 
 // Returns TRUE if the stairs are a complete and connected unit, FALSE if a piece is missing or obstructed
 // Will attempt to reconnect broken pieces
@@ -70,10 +70,10 @@
 	var/obj/structure/stairs/middle/middle = null
 
 /obj/structure/stairs/bottom/Initialize()
+	. = ..()
 	if(!GetAbove(src))
 		warning("Stair created without level above: ([loc.x], [loc.y], [loc.z])")
 		return INITIALIZE_HINT_QDEL
-	. = ..()
 
 /obj/structure/stairs/bottom/Destroy()
 	if(top)
@@ -246,10 +246,10 @@
 	var/obj/structure/stairs/bottom/bottom = null
 
 /obj/structure/stairs/middle/Initialize()
+	. = ..()
 	if(!GetAbove(src))
 		warning("Stair created without level above: ([loc.x], [loc.y], [loc.z])")
 		return INITIALIZE_HINT_QDEL
-	. = ..()
 
 /obj/structure/stairs/middle/Destroy()
 	if(top)
@@ -329,10 +329,10 @@
 	var/obj/structure/stairs/bottom/bottom = null
 
 /obj/structure/stairs/top/Initialize()
+	. = ..()
 	if(!GetBelow(src))
 		warning("Stair created without level below: ([loc.x], [loc.y], [loc.z])")
 		return INITIALIZE_HINT_QDEL
-	. = ..()
 
 /obj/structure/stairs/top/Destroy()
 	if(middle)
@@ -499,7 +499,7 @@
 	icon_state = ""
 
 /obj/structure/stairs/spawner/Initialize()
-	. = ..()
+	..()
 	var/turf/B1 = get_step(get_turf(src), turn(dir, 180))
 	var/turf/B2 = get_turf(src)
 	var/turf/T1 = GetAbove(B1)

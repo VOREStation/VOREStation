@@ -175,9 +175,9 @@
 		return
 
 /obj/machinery/portable_atmospherics/hydroponics/Initialize()
-	. = ..()
-	if(!ov_lowhealth)
-		setup_overlays()
+	..()
+	if(!ov_lowhealth)	 //VOREStation Add
+		setup_overlays() //VOREStation Add
 	temp_chem_holder = new()
 	temp_chem_holder.create_reagents(10)
 	create_reagents(200)
