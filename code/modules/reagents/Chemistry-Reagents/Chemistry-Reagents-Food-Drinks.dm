@@ -63,16 +63,13 @@
 		M.adjust_nutrition((nutriment_factor * removed) * M.species.organic_food_coeff)
 		M.heal_organ_damage(0.5 * removed, 0)
 		M.add_chemical_effect(CE_BLOODRESTORE, 4 * removed)
-	M.heal_organ_damage(0.5 * removed, 0)
-	if(M.species.gets_food_nutrition) //VOREStation edit. If this is set to 0, they don't get nutrition from food.
-		M.adjust_nutrition(nutriment_factor * removed) // For hunger and fatness
-	M.add_chemical_effect(CE_BLOODRESTORE, 4 * removed)
-	if(M.species.allergens & allergen_type)	//uhoh, we can't digest this!
+	else if(M.species.allergens & allergen_type)	//uhoh, we can't digest this! - VOREStation Edited
 		M.adjustToxLoss(M.species.allergen_severity * removed)
 	else	//delicious
 		M.heal_organ_damage(0.5 * removed, 0)
-		M.adjust_nutrition(nutriment_factor * removed)
+		M.adjust_nutrition((nutriment_factor * removed) * M.species.organic_food_coeff)
 		M.add_chemical_effect(CE_BLOODRESTORE, 4 * removed)
+	//VOREStation Edits Stop
 
 // Aurora Cooking Port Insertion Begin
 
