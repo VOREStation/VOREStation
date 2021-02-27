@@ -1,3 +1,11 @@
+/obj/structure/ghost_pod/Destroy()
+	if(src in active_ghost_pods)
+		active_ghost_pods -= src
+	..()
+
+/obj/structure/ghost_pod
+	var/spawn_active = FALSE
+
 /obj/structure/ghost_pod/manual
 	var/remains_active = FALSE
 	var/activated = FALSE
@@ -29,3 +37,13 @@
 	busy = FALSE
 
 	create_occupant(user)
+
+/obj/structure/ghost_pod/proc/ghostpod_startup(var/notify = FALSE)
+	if(!(src in active_ghost_pods))
+		active_ghost_pods += src
+	if(notify)
+		trigger()
+
+/obj/structure/ghost_pod/ghost_activated/Initialize()
+	. = ..()
+	ghostpod_startup(spawn_active)

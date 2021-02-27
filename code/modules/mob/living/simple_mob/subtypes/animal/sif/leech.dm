@@ -115,7 +115,7 @@
 	emote_hear = list("chitters", "clicks", "gurgles")
 
 /mob/living/simple_mob/animal/sif/leech/Initialize()
-	..()
+	. = ..()
 
 	verbs += /mob/living/proc/ventcrawl
 	verbs += /mob/living/proc/hide

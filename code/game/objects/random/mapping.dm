@@ -92,6 +92,8 @@
 	return pick(prob(30);/obj/effect/mine,
 				prob(25);/obj/effect/mine/frag,
 				prob(25);/obj/effect/mine/emp,
+				prob(15);/obj/effect/mine/camo,
+				prob(15);/obj/effect/mine/emp/camo,
 				prob(10);/obj/effect/mine/stun,
 				prob(10);/obj/effect/mine/incendiary,)
 

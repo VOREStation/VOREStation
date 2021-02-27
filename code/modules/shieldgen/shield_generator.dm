@@ -4,7 +4,7 @@
 /obj/machinery/power/shield_generator
 	name = "advanced shield generator"
 	desc = "A heavy-duty shield generator and capacitor, capable of generating energy shields at large distances."
-	icon = 'icons/obj/machines/shielding.dmi'
+	icon = 'icons/obj/machines/shielding_vr.dmi'
 	icon_state = "generator0"
 	circuit = /obj/item/weapon/circuitboard/shield_generator
 	density = 1
@@ -105,7 +105,7 @@
 // Generates the field objects. Deletes existing field, if applicable.
 /obj/machinery/power/shield_generator/proc/regenerate_field()
 	for(var/obj/effect/shield/S in field_segments)
-		qdel(S)	
+		qdel(S)
 	var/list/shielded_turfs
 
 	if(check_flag(MODEFLAG_HULL))

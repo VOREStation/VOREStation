@@ -161,6 +161,13 @@
 #define ui_ghost_pai "SOUTH: 6,CENTER+2:24"
 #define ui_ghost_updown "SOUTH: 6,CENTER+3:24"
 
+// NIF Soulcatcher guest ones
+#define ui_nifsc_reenter "SOUTH:6,CENTER-3:24"
+#define ui_nifsc_arproj "SOUTH:6,CENTER-2:24"
+#define ui_nifsc_jumptoowner "SOUTH:6,CENTER-1:24"
+#define ui_nifsc_nme "SOUTH:6,CENTER:24"
+#define ui_nifsc_nsay "SOUTH:6,CENTER+1:24"
+
 // Rig panel
 #define ui_rig_deco1 "WEST:-7, SOUTH+5"
 #define ui_rig_deco2 "WEST:-7, SOUTH+6"

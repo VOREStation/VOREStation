@@ -289,7 +289,6 @@
 	new /obj/item/weapon/storage/bag/circuits/mini/transfer(src)
 	new /obj/item/weapon/storage/bag/circuits/mini/converter(src)
 	new /obj/item/weapon/storage/bag/circuits/mini/power(src)
-
 	new /obj/item/device/electronic_assembly(src)
 	new /obj/item/device/assembly/electronic_assembly(src)
 	new /obj/item/device/assembly/electronic_assembly(src)

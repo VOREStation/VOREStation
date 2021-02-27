@@ -207,7 +207,7 @@
 	var/recharging = 0
 	var/phase_power = 75
 
-	projectile_type = /obj/item/projectile/beam
+	projectile_type = /obj/item/projectile/beam/blue
 	firemodes = list(
 		list(mode_name="lethal", fire_delay=12, projectile_type=/obj/item/projectile/beam/blue, charge_cost = 300),
 		list(mode_name="low-power", fire_delay=8, projectile_type=/obj/item/projectile/beam/weaklaser/blue, charge_cost = 80),

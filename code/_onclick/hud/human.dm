@@ -14,7 +14,7 @@
 	var/other = list()
 	var/hotkeybuttons = list()
 	var/slot_info = list()
-	
+
 	HUD.adding = adding
 	HUD.other = other
 	HUD.hotkeybuttons = hotkeybuttons //These can be disabled for hotkey users
@@ -258,15 +258,10 @@
 		hud_elements |= healths
 
 	//VOREStation Addition begin
-	shadekin_dark_display = new /obj/screen/shadekin/darkness()
-	shadekin_dark_display.screen_loc = ui_shadekin_dark_display
-	shadekin_dark_display.icon_state = "dark"
-	hud_elements |= shadekin_dark_display
-
-	shadekin_energy_display = new /obj/screen/shadekin/energy()
-	shadekin_energy_display.screen_loc = ui_shadekin_energy_display
-	shadekin_energy_display.icon_state = "energy0"
-	hud_elements |= shadekin_energy_display
+	shadekin_display = new /obj/screen/shadekin()
+	shadekin_display.screen_loc = ui_shadekin_display
+	shadekin_display.icon_state = "shadekin"
+	hud_elements |= shadekin_display
 
 	xenochimera_danger_display = new /obj/screen/xenochimera/danger_level()
 	xenochimera_danger_display.screen_loc = ui_xenochimera_danger_display

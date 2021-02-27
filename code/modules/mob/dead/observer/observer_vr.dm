@@ -74,3 +74,30 @@
 			to_chat(src, "<span class='notice'>New notification has been sent.</span>")
 	else
 		to_chat(src, "<span class='warning'>No mind record found!</span>")
+
+/mob/observer/dead/verb/findghostpod() //Moves the ghost instead of just changing the ghosts's eye -Nodrak
+	set category = "Ghost"
+	set name = "Find Ghost Pod"
+	set desc = "Find an active ghost pod"
+	set popup_menu = FALSE
+
+	if(!istype(usr, /mob/observer/dead)) //Make sure they're an observer!
+		return
+
+	var/input = input(usr, "Select a ghost pod:", "Ghost Jump") as null|anything in observe_list_format(active_ghost_pods)
+	if(!input)
+		to_chat(src, "No active ghost pods detected.")
+		return
+
+	var/target = observe_list_format(active_ghost_pods)[input]
+	if (!target)//Make sure we actually have a target
+		return
+	else
+		var/obj/O = target //Destination mob
+		var/turf/T = get_turf(O) //Turf of the destination mob
+
+		if(T && isturf(T))	//Make sure the turf exists, then move the source to that destination.
+			forceMove(T)
+			stop_following()
+		else
+			to_chat(src, "This ghost pod is not located in the game world.")

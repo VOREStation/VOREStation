@@ -1292,6 +1292,13 @@
 	required_reagents = list("tomatojuice" = 2, "water" = 1, "sugar" = 1)
 	result_amount = 4
 
+/datum/chemical_reaction/food/barbecue
+	name = "Barbeque Sauce"
+	id = "barbecue"
+	result = "barbecue"
+	required_reagents = list("tomatojuice" = 2, "applejuice" = 1, "sugar" = 1, "spacespice" = 1)
+	result_amount = 4
+
 /datum/chemical_reaction/food/peanutbutter
 	name = "Peanut Butter"
 	id = "peanutbutter"
