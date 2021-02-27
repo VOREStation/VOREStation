@@ -212,7 +212,7 @@
 	vital = TRUE
 
 /obj/item/organ/internal/brain/cephalon/Initialize()
-	..()
+	. = ..()
 	spawn(30 SECONDS)	// FBP Dionaea need some way to be disassembled through surgery, if absolutely necessary.
 		if(!owner.isSynthetic())
 			vital = FALSE

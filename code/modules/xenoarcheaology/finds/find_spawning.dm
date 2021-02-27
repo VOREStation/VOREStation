@@ -295,7 +295,7 @@
 			if(spawn_type)
 				var/obj/item/weapon/gun/energy/new_gun = new spawn_type(src.loc)
 				new_item = new_gun
-				new_item.icon_state = "egun[rand(1,12)]"
+				new_item.icon_state = "egun[rand(1,6)]" //VOREStation Edit: max value is 6 since xenoarcheoloy_vr only has 6 egun variants
 				new_gun.desc = "This is an antique energy weapon, you're not sure if it will fire or not."
 
 				//5% chance to explode when first fired

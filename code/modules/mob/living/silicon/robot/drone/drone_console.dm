@@ -36,11 +36,13 @@
 
 	data["drones"] = list()
 	for(var/mob/living/silicon/robot/drone/D in mob_list)
-		if(D.z != z)
+		//VOREStation Edit - multiz lol
+		if(!(D.z in using_map.get_map_levels(z, TRUE, 0)))
 			continue
+		//VOREStation Edit - multiz lol
 		if(D.foreign_droid)
 			continue
-		
+
 		data["drones"].Add(list(list(
 			"name" = D.real_name,
 			"active" = D.stat != 2,

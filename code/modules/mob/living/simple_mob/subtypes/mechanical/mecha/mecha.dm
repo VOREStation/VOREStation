@@ -57,7 +57,7 @@
 	return ..()
 
 /mob/living/simple_mob/mechanical/mecha/Destroy()
-	qdel(sparks)
+	qdel_null(sparks)
 	return ..()
 
 /mob/living/simple_mob/mechanical/mecha/death()

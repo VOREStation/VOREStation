@@ -471,7 +471,7 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	var/species = SPECIES_HUMAN
 
 /obj/item/weapon/disk/species/Initialize()
-	..()
+	. = ..()
 	if(species)
 		name = "[species] [initial(name)]"
 

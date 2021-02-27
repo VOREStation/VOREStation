@@ -427,7 +427,7 @@
 	color = "#c07c40"
 
 /datum/reagent/nutriment/soysauce
-	name = "Soysauce"
+	name = "Soy Sauce"
 	id = "soysauce"
 	description = "A salty sauce made from the soy plant."
 	taste_description = "umami"
@@ -444,6 +444,15 @@
 	reagent_state = LIQUID
 	nutriment_factor = 5
 	color = "#731008"
+
+/datum/reagent/nutriment/barbecue
+	name = "Barbeque Sauce"
+	id = "barbecue"
+	description = "Barbecue sauce for barbecues and long shifts."
+	taste_description = "barbeque"
+	reagent_state = LIQUID
+	nutriment_factor = 5
+	color = "#4F330F"
 
 /datum/reagent/nutriment/rice
 	name = "Rice"
@@ -927,6 +936,7 @@
 	description = "It's grrrrrape!"
 	taste_description = "grapes"
 	color = "#863333"
+	var/sugary = TRUE ///So non-sugary juices don't make Unathi snooze.
 
 	glass_name = "grape juice"
 	glass_desc = "It's grrrrrape!"
@@ -938,21 +948,20 @@
 	if(issmall(M))
 		effective_dose *= 2
 
-/* //VOREStation Removal - Assuming all juice has sugar is silly
 	if(alien == IS_UNATHI)
-		if(effective_dose < 2)
-			if(effective_dose == metabolism * 2 || prob(5))
-				M.emote("yawn")
-		else if(effective_dose < 5)
-			M.eye_blurry = max(M.eye_blurry, 10)
-		else if(effective_dose < 20)
-			if(prob(50))
-				M.Weaken(2)
-			M.drowsyness = max(M.drowsyness, 20)
-		else
-			M.Sleeping(20)
-			M.drowsyness = max(M.drowsyness, 60)
-*/
+		if(sugary == TRUE)
+			if(effective_dose < 2)
+				if(effective_dose == metabolism * 2 || prob(5))
+					M.emote("yawn")
+			else if(effective_dose < 5)
+				M.eye_blurry = max(M.eye_blurry, 10)
+			else if(effective_dose < 20)
+				if(prob(50))
+					M.Weaken(2)
+				M.drowsyness = max(M.drowsyness, 20)
+			else
+				M.Sleeping(20)
+				M.drowsyness = max(M.drowsyness, 60)
 
 /datum/reagent/drink/juice/lemon
 	name = "Lemon Juice"
@@ -1027,6 +1036,7 @@
 	taste_description = "potatoes"
 	nutrition = 2
 	color = "#302000"
+	sugary = FALSE
 
 	glass_name = "potato juice"
 	glass_desc = "Juice from a potato. Bleh."
@@ -1037,6 +1047,7 @@
 	description = "Tomatoes made into juice. What a waste of big, juicy tomatoes, huh?"
 	taste_description = "tomatoes"
 	color = "#731008"
+	sugary = FALSE
 
 	glass_name = "tomato juice"
 	glass_desc = "Are you sure this is tomato juice?"
@@ -1499,13 +1510,13 @@
 /datum/reagent/drink/soda/pineappleade
 	name = "Pineappleade"
 	id = "pineappleade"
-	description = "Spineapple, juiced up."
+	description = "Pineapple, juiced up."
 	taste_description = "sweet`n`sour pineapples"
 	color = "#FFFF00"
 	adj_temp = -5
 
 	glass_name = "pineappleade"
-	glass_desc = "Spineapple, juiced up."
+	glass_desc = "Pineapple, juiced up."
 	glass_special = list(DRINK_FIZZ)
 
 /datum/reagent/drink/soda/kiraspecial

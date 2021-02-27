@@ -88,9 +88,9 @@
 	ckeywhitelist = list("arokha")
 	character_name = list("Aronai Sieyes")
 
-/datum/gear/fluff/astraether_ritualknife
-    path = /obj/item/weapon/material/knife/ritual
-    display_name = "Astra's Ritual Knife"
+/datum/gear/fluff/astra_ritualknife
+    path = /obj/item/weapon/material/knife/ritual/fluff/astra
+    display_name = "Polished Ritual Knife"
     description = "A well kept strange ritual knife, There is a small tag with the name 'Astra Ether' on it. They are probably looking for this."
     ckeywhitelist = list("astraether")
     character_name = list("Astra Ether")
@@ -959,6 +959,25 @@
 //  U CKEYS
 
 //  V CKEYS
+/datum/gear/fluff/verie_suit
+	path = /obj/item/clothing/under/fluff/verie
+	display_name = "Verie's Salacious Suit"
+	ckeywhitelist = list("vitoras")
+	character_name = list("Verie")
+
+/datum/gear/fluff/verie_hoodie
+	path = /obj/item/clothing/suit/storage/hooded/fluff/verie
+	display_name = "Verie's Helluva Hoodie"
+	ckeywhitelist = list("vitoras")
+	character_name = list("Verie")
+
+/datum/gear/fluff/verie_comb
+	path = /obj/item/weapon/fluff/verie
+	display_name = "Verie's Crazy Comb"
+	description = "(Note: The highlights this gives you will be placed above EVERYTHING... including mobs!)"
+	ckeywhitelist = list("vitoras")
+	character_name = list("Verie")
+
 /datum/gear/fluff/cameron_glasses
 	path = /obj/item/clothing/glasses/fluff/science_proper
 	display_name = "Cameron's Science Glasses"

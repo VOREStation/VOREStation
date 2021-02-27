@@ -18,3 +18,5 @@
 	name = "Void cell"
 	path = /obj/item/weapon/cell/device/weapon/recharge/alien/hybrid
 	item_cost = DEFAULT_TELECRYSTAL_AMOUNT * 1.5
+	antag_roles = list("ert")
+	blacklisted = 1

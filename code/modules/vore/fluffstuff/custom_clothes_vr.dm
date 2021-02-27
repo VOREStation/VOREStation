@@ -110,8 +110,8 @@
 
 //ketrai:Ketrai
 /obj/item/clothing/head/fluff/ketrai
-	name = "Pink Bear Hat"
-	desc = "A pink space bear hat, the origins are unknown"
+	name = "Bear Pelt"
+	desc = "A luxury space bear pelt, its origins unknown."
 
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "bearpelt"
@@ -2024,7 +2024,7 @@ Departamental Swimsuits, for general use
 	desc = "A special hat, removed from its owner."
 
 //Ryumi: Nikki Yumeno
-/obj/item/clothing/under/skirt/outfit/fluff/nikki 
+/obj/item/clothing/under/skirt/outfit/fluff/nikki
 	name = "dorky outfit"
 	desc = "A little witch costume that looks like it's been worn as ordinary clothes. Who in their right mind would...??"
 	icon = 'icons/vore/custom_clothes_vr.dmi'
@@ -2050,7 +2050,7 @@ Departamental Swimsuits, for general use
 	icon_state = "nikki_boots"
 	item_state = "nikki_boots"
 
-/obj/item/clothing/shoes/fluff/nikki/mob_can_equip(var/mob/living/carbon/human/M, slot, disable_warning = 0) 
+/obj/item/clothing/shoes/fluff/nikki/mob_can_equip(var/mob/living/carbon/human/M, slot, disable_warning = 0)
 	if(..())
 		if (M.ckey == "ryumi")
 			return 1
@@ -2084,7 +2084,7 @@ Departamental Swimsuits, for general use
 	icon_state = "nikki-hat"
 	item_state = "nikki-hat"
 	item_icons = list(
-		slot_l_hand_str = 'icons/vore/custom_clothes_left_hand_vr.dmi', 
+		slot_l_hand_str = 'icons/vore/custom_clothes_left_hand_vr.dmi',
 		slot_r_hand_str = 'icons/vore/custom_clothes_right_hand_vr.dmi',
 		slot_head_str = 'icons/vore/custom_onmob_32x48_vr.dmi'
 		)
@@ -2138,19 +2138,19 @@ Departamental Swimsuits, for general use
 		to_chat(user, "<span class='warning'>You think to turn \the [src] on its creator?! <b>FOOOOOOOOL.</b></span>")
 		to_chat(user, "<span class='notice'>From seemingly nowhere you hear echoing, derisive laughter, accompanied by a stock laugh track and... Are those bike horns?</span>")
 		return 0
-	
+
 	if (!istype(target))
 		to_chat(user, "<span class='warning'>\The [src] isn't a valid target!</span>")
 		return 0
-	
+
 	// Because other mobs (i.e. monkeys) apparently have dropnom prey set to 0, we check SPECIFICALLY for humans' dropnom setting.
 	if (target.type == /mob/living/carbon/human && !target.can_be_drop_prey)
 		teleport_fail(user, target)
 		return 0
-	
+
 	if (!translocator.teleport_checks(target, user))
 		return 0
-	
+
 	else return 1
 
 /obj/item/clothing/head/fluff/nikki/attackby(obj/item/weapon/I as obj, mob/user as mob)
@@ -2237,7 +2237,7 @@ Departamental Swimsuits, for general use
 			if (I_HURT)
 				user.visible_message("<span class='danger'>[user] swipes \the [src] over \the [target]!</span>")
 				translocator.afterattack(target, user, proximity_flag)
-			
+
 		add_attack_logs(user, target, "Teleported [target] with via \the [src]'s [translocator]!")
 	else ..()
 
@@ -2251,7 +2251,7 @@ Departamental Swimsuits, for general use
 
 	icon_override = 'icons/vore/custom_onmob_vr.dmi'
 	item_state = "verie_hoodie"
-	
+
 	hoodtype = /obj/item/clothing/head/hood/winter/fluff/verie
 
 	var/owner = "vitoras"
@@ -2265,6 +2265,7 @@ Departamental Swimsuits, for general use
 	..()
 
 /obj/item/clothing/head/hood/winter/fluff/verie
+	body_parts_covered = null // This way, Verie's hair can show through the hood!
 	name = "not-so-cyan hood"
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "verie_hood"

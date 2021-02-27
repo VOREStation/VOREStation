@@ -159,7 +159,6 @@
 
 /obj/effect/spawner/newbomb/Initialize(newloc)
 	..(newloc)
-
 	var/obj/item/device/transfer_valve/V = new(src.loc)
 	var/obj/item/weapon/tank/phoron/PT = new(V)
 	var/obj/item/weapon/tank/oxygen/OT = new(V)
@@ -183,19 +182,14 @@
 	OT.air_contents.temperature = PHORON_MINIMUM_BURN_TEMPERATURE+1
 	OT.air_contents.update_values()
 
-
 	var/obj/item/device/assembly/S = new assembly_type(V)
-
-
 	V.attached_device = S
 
 	S.holder = V
 	S.toggle_secure()
 
 	V.update_icon()
-
-	qdel(src)
-
+	return INITIALIZE_HINT_QDEL
 
 
 ///////////////////////
