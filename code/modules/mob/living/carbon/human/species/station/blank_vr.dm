@@ -1,3 +1,8 @@
+/datum/species/New()
+	if(!base_species)
+		base_species = name
+	..()
+
 /datum/species/custom
 	name = SPECIES_CUSTOM
 	name_plural = "Custom"

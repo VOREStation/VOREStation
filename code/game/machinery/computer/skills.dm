@@ -30,7 +30,7 @@
 	var/static/list/field_edit_choices
 
 /obj/machinery/computer/skills/Initialize()
-	..()
+	. = ..()
 	field_edit_questions = list(
 		// General
 		"name" = "Please input new name:",

@@ -115,8 +115,7 @@ var/list/organ_cache = list()
 	handle_organ_mod_special()
 
 /obj/item/organ/Initialize()
-	..()
-
+	. = ..()
 	if(owner)
 		if(!meat_type)
 			if(owner.isSynthetic())

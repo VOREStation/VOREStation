@@ -179,7 +179,7 @@
 		)
 
 /obj/item/clothing/suit/space/void/autolok/Initialize()
-	..()
+	. = ..()
 	helmet = new /obj/item/clothing/head/helmet/space/void/autolok //autoinstall the helmet
 
 //override the attackby screwdriver proc so that people can't remove the helmet

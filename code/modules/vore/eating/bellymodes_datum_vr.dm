@@ -155,8 +155,7 @@ GLOBAL_LIST_INIT(digest_modes, list())
 			egg_contents += E
 	if(egg_contents.len)
 		if(!B.ownegg)
-			if(B.owner.vore_egg_type in tf_vore_egg_types)
-				B.egg_type = B.owner.vore_egg_type
+			if(B.egg_type in tf_vore_egg_types)
 				B.egg_path = tf_vore_egg_types[B.egg_type]
 			B.ownegg = new B.egg_path(B)
 		for(var/atom/movable/C in egg_contents)

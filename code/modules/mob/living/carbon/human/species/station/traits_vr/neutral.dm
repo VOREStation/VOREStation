@@ -153,6 +153,36 @@
 	H.verbs |= /mob/living/proc/glow_toggle
 	H.verbs |= /mob/living/proc/glow_color
 
+/*
+//Allergen traits! Not available to any species with a base allergens var.
+/datum/trait/allergy_gluten
+	name = "Allergy: Gluten"
+	desc = "You're highly allergic to gluten proteins, which are found in most common grains. This trait cannot be taken by skrell or tajara."
+	cost = 0
+	custom_only = FALSE
+	banned_species = list(SPECIES_SKRELL,SPECIES_TAJ)
+	var_changes = list("allergens" = 16)
+	excludes = list(/datum/trait/allergy_nuts,/datum/trait/allergy_soy)
+
+/datum/trait/allergy_nuts
+	name = "Allergy: Nuts"
+	desc = "You're highly allergic to hard-shell seeds, such as peanuts. This trait cannot be taken by skrell or tajara."
+	cost = 0
+	custom_only = FALSE
+	banned_species = list(SPECIES_SKRELL,SPECIES_TAJ)
+	var_changes = list("allergens" = 64)
+	excludes = list(/datum/trait/allergy_gluten,/datum/trait/allergy_soy)
+
+/datum/trait/allergy_soy
+	name = "Allergy: Soy"
+	desc = "You're highly allergic to soybeans, and some other kinds of bean. This trait cannot be taken by skrell or tajara."
+	cost = 0
+	custom_only = FALSE
+	banned_species = list(SPECIES_SKRELL,SPECIES_TAJ)
+	var_changes = list("allergens" = 32)
+	excludes = list(/datum/trait/allergy_gluten,/datum/trait/allergy_nuts)
+*/
+
 // Spicy Food Traits, from negative to positive.
 /datum/trait/spice_intolerance_extreme
 	name = "Extreme Spice Intolerance"
@@ -242,7 +272,7 @@
 
 // Body shape traits
 /datum/trait/taller
-	name = "Taller"
+	name = "Tall"
 	desc = "Your body is taller than average."
 	cost = 0
 	custom_only = FALSE
@@ -254,7 +284,7 @@
 	H.update_transform()
 
 /datum/trait/tall
-	name = "Tall"
+	name = "Slightly Tall"
 	desc = "Your body is a bit taller than average."
 	cost = 0
 	custom_only = FALSE
@@ -266,7 +296,7 @@
 	H.update_transform()
 
 /datum/trait/short
-	name = "Short"
+	name = "Slightly Short"
 	desc = "Your body is a bit shorter than average."
 	cost = 0
 	custom_only = FALSE
@@ -278,8 +308,8 @@
 	H.update_transform()
 
 /datum/trait/shorter
-	name = "Shorter"
-	desc = "You are shorter than average."
+	name = "Short"
+	desc = "Your body is shorter than average."
 	cost = 0
 	custom_only = FALSE
 	var_changes = list("icon_scale_y" = 0.915)
@@ -289,21 +319,9 @@
 	..(S,H)
 	H.update_transform()
 
-/datum/trait/fat
-	name = "Overweight"
-	desc = "You are heavier than average."
-	cost = 0
-	custom_only = FALSE
-	var_changes = list("icon_scale_x" = 1.054)
-	excludes = list(/datum/trait/obese, /datum/trait/thin, /datum/trait/thinner)
-
-/datum/trait/fat/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..(S,H)
-	H.update_transform()
-
 /datum/trait/obese
-	name = "Obese"
-	desc = "You are much heavier than average."
+	name = "Very Bulky"
+	desc = "Your body is much wider than average."
 	cost = 0
 	custom_only = FALSE
 	var_changes = list("icon_scale_x" = 1.095)
@@ -313,9 +331,21 @@
 	..(S,H)
 	H.update_transform()
 
+/datum/trait/fat
+	name = "Bulky"
+	desc = "Your body is wider than average."
+	cost = 0
+	custom_only = FALSE
+	var_changes = list("icon_scale_x" = 1.054)
+	excludes = list(/datum/trait/obese, /datum/trait/thin, /datum/trait/thinner)
+
+/datum/trait/fat/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..(S,H)
+	H.update_transform()
+
 /datum/trait/thin
 	name = "Thin"
-	desc = "You are skinnier than average."
+	desc = "Your body is thinner than average."
 	cost = 0
 	custom_only = FALSE
 	var_changes = list("icon_scale_x" = 0.945)
@@ -327,7 +357,7 @@
 
 /datum/trait/thinner
 	name = "Very Thin"
-	desc = "You are much skinnier than average."
+	desc = "Your body is much thinner than average."
 	cost = 0
 	custom_only = FALSE
 	var_changes = list("icon_scale_x" = 0.905)

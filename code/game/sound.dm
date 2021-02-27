@@ -4,6 +4,9 @@
 		return
 
 	var/turf/turf_source = get_turf(source)
+	if(!turf_source)
+		return
+	var/area/area_source = turf_source.loc
 
 	//allocate a channel if necessary now so its the same for everyone
 	channel = channel || open_sound_channel()
@@ -19,6 +22,11 @@
 		if(!M || !M.client)
 			continue
 		var/turf/T = get_turf(M)
+		if(!T)
+			continue
+		var/area/A = T.loc
+		if((A.soundproofed || area_source.soundproofed) && (A != area_source))
+			continue
 		var/distance = get_dist(T, turf_source)
 
 		if(distance <= maxdistance)

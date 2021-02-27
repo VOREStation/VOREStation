@@ -198,7 +198,7 @@
 	var/weapons_only_cycle = FALSE	//So combat mechs don't switch to their equipment at times.
 
 /obj/mecha/Initialize()
-	..()
+	. = ..()
 
 	for(var/path in starting_components)
 		var/obj/item/mecha_parts/component/C = new path(src)
@@ -321,6 +321,8 @@
 
 	if(smoke_possible)	//Just making sure nothing is running.
 		qdel(smoke_system)
+
+	GLOB.mech_destroyed_roundstat++
 
 	QDEL_NULL(pr_int_temp_processor)
 	QDEL_NULL(pr_inertial_movement)

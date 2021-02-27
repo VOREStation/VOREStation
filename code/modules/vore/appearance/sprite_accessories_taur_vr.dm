@@ -592,6 +592,28 @@
 	name = "Shadekin Long Tail"
 	icon_state = "shadekin_long_s"
 
+/datum/sprite_accessory/tail/taur/pawcow // this grabs suit sprites from the normal cow, the outline is the same except for the tail
+	name = "Cow w/ paws (Taur)"
+	icon_state = "pawcow_s"
+	extra_overlay = "pawcow_markings"
+	suit_sprites = 'icons/mob/taursuits_cow_vr.dmi'
+	icon_sprite_tag = "pawcow"
+
+	msg_owner_disarm_run = "You quickly push %prey to the ground with your paw!"
+	msg_prey_disarm_run = "%owner pushes you down to the ground with their paw!"
+
+	msg_owner_disarm_walk = "You firmly push your paw down on %prey, painfully but harmlessly pinning them to the ground!"
+	msg_prey_disarm_walk = "%owner firmly pushes their paw down on you, quite painfully but harmlessly pinning you to the ground!"
+
+	msg_owner_harm_walk = "You methodically place your paw down upon %prey's body, slowly applying pressure, crushing them against the floor below!"
+	msg_prey_harm_walk = "%owner methodically places their paw upon your body, slowly applying pressure, crushing you against the floor below!"
+
+	msg_owner_grab_success = "You pin %prey to the ground before scooping them up with your paws!"
+	msg_prey_grab_success = "%owner pins you to the ground before scooping you up with their paws!"
+
+	msg_owner_grab_fail = "You step down onto %prey, squishing them and forcing them down to the ground!"
+	msg_prey_grab_fail = "%owner steps down and squishes you with their paw, forcing you down to the ground!"
+
 // Special snowflake tails/taurhalves
 
 //spoopylizz: Roiz Lizden

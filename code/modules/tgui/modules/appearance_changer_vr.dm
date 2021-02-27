@@ -10,7 +10,7 @@
 		return STATUS_CLOSE
 	return ..()
 
-/datum/tgui_module/appearance_changer/vore/reload_cameraview()
+/datum/tgui_module/appearance_changer/vore/update_active_camera_screen()
 	cam_screen.vis_contents = list(owner)
 	cam_background.icon_state = "clear"
 	cam_background.fill_rect(1, 1, 1, 1)

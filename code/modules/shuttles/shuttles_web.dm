@@ -131,14 +131,14 @@
 			return
 		autopilot = TRUE
 		autopilot_delay = initial(autopilot_delay)
-		shuttle_controller.process_shuttles |= src
+		SSshuttles.process_shuttles |= src
 		if(process_state == IDLE_STATE)
 			process_state = DO_AUTOPILOT
 	else
 		if(!autopilot)
 			return
 		autopilot = FALSE
-		shuttle_controller.process_shuttles -= src
+		SSshuttles.process_shuttles -= src
 		if (process_state == DO_AUTOPILOT)
 			process_state = initial(process_state)
 
@@ -196,7 +196,7 @@
 			log_shuttle("[my_area] shuttle computer couldn't find [lost] sensor!")
 
 /obj/machinery/computer/shuttle_control/web/attackby(obj/I, mob/user)
-	var/datum/shuttle/autodock/web_shuttle/shuttle = shuttle_controller.shuttles[shuttle_tag]
+	var/datum/shuttle/autodock/web_shuttle/shuttle = SSshuttles.shuttles[shuttle_tag]
 	if(shuttle && istype(I,/obj/item/clothing/head/pilot))
 		var/obj/item/clothing/head/pilot/H = I
 		H.shuttle_comp = src
@@ -418,7 +418,7 @@
 
 // This is called whenever a shuttle is initialized.  If its our shuttle, do our thing!
 /obj/shuttle_connector/proc/setup_routes(var/new_shuttle)
-	var/datum/shuttle/autodock/web_shuttle/ES = shuttle_controller.shuttles[shuttle_name]
+	var/datum/shuttle/autodock/web_shuttle/ES = SSshuttles.shuttles[shuttle_name]
 	if(ES != new_shuttle)
 		return // Its not our shuttle! Ignore!
 	if(destinations && istype(ES))
