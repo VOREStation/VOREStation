@@ -160,10 +160,8 @@
 
 		// If the object is pulling or grabbing anything, we'll want to move those too. A grab chain may be disrupted in doing so.
 		if(L.pulling && !L.pulling.anchored)
-			to_world("adding [L.pulling] to pulling")
 			pulling |= L.pulling
 		for(var/obj/item/weapon/grab/G in list(L.l_hand, L.r_hand))
-			to_world("adding [G.affecting] to pulling")
 			pulling |= G.affecting
 	
 	// If the stairs aren't broken, go up.
@@ -182,7 +180,6 @@
 
 		// Bring the pulled/grabbed object(s) along behind us
 		for(var/atom/movable/P in pulling)
-			to_world("attempting to move [P]")
 			P.forceMove(get_turf(src)) // They will move onto the turf but won't get past the check earlier in crossed. Aligns animation more cleanly
 			switch(src.dir)
 				if(NORTH)
@@ -422,10 +419,8 @@
 
 		// If the object is pulling or grabbing anything, we'll want to move those too. A grab chain may be disrupted in doing so.
 		if(L.pulling && !L.pulling.anchored)
-			to_world("adding [L.pulling] to pulling")
 			pulling |= L.pulling
 		for(var/obj/item/weapon/grab/G in list(L.l_hand, L.r_hand))
-			to_world("adding [G.affecting] to pulling")
 			pulling |= G.affecting
 	
 	// If the stairs aren't broken, go up.
@@ -444,7 +439,6 @@
 
 		// Bring the pulled/grabbed object(s) along behind us
 		for(var/atom/movable/P in pulling)
-			to_world("attempting to move [P]")
 			P.forceMove(get_turf(src)) // They will move onto the turf but won't get past the check earlier in crossed. Aligns animation more cleanly
 			switch(src.dir)
 				if(NORTH)
