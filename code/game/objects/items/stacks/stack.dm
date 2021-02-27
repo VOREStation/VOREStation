@@ -29,14 +29,13 @@
 	var/pass_color = FALSE // Will the item pass its own color var to the created item? Dyed cloth, wood, etc.
 	var/strict_color_stacking = FALSE // Will the stack merge with other stacks that are different colors? (Dyed cloth, wood, etc)
 
-/obj/item/stack/New(var/loc, var/amount=null)
-	..()
-	if (!stacktype)
+/obj/item/stack/Initialize(var/ml, var/amount)
+	. = ..()
+	if(!stacktype)
 		stacktype = type
-	if (amount)
+	if(amount)
 		src.amount = amount
 	update_icon()
-	return
 
 /obj/item/stack/Destroy()
 	if(uses_charge)

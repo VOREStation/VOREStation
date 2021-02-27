@@ -20,8 +20,8 @@
 	drop_sound = 'sound/items/drop/axe.ogg'
 	pickup_sound = 'sound/items/pickup/axe.ogg'
 
-/obj/item/stack/tile/New()
-	..()
+/obj/item/stack/tile/Initialize()
+	. = ..()
 	randpixel_xy()
 
 /*

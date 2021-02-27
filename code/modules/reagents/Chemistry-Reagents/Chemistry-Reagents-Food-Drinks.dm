@@ -12,6 +12,7 @@
 	var/allergen_type = GENERIC	// What potential allergens does this contain?
 	var/injectable = 0
 	color = "#664330"
+	affects_robots = 1	//VOREStation Edit
 
 /datum/reagent/nutriment/mix_data(var/list/newdata, var/newamount)
 
@@ -38,13 +39,17 @@
 				data -= taste
 
 /datum/reagent/nutriment/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(!injectable && alien != IS_SLIME && alien != IS_CHIMERA) //VOREStation Edit
+	if(!injectable && alien != IS_SLIME && alien != IS_CHIMERA && !M.isSynthetic()) //VOREStation Edit
 		M.adjustToxLoss(0.1 * removed)
 		return
 	if(M.species.allergens & allergen_type)
 		M.adjustToxLoss((M.species.allergen_severity*4) * removed)
 		return
 	affect_ingest(M, alien, removed)
+	//VOREStation Edits Start
+	if(M.isSynthetic() && M.nutrition < 500)
+		M.adjust_nutrition((nutriment_factor * removed) * M.species.synthetic_food_coeff)
+	//VOREStation Edits End
 	..()
 
 /datum/reagent/nutriment/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
@@ -53,20 +58,21 @@
 		if(IS_UNATHI) removed *= 0.5
 		if(IS_CHIMERA) removed *= 0.25 //VOREStation Edit
 	if(issmall(M)) removed *= 2 // Small bodymass, more effect from lower volume.
-<<<<<<< HEAD
+	//VOREStation Edits Start
+	if(!M.isSynthetic())
+		M.adjust_nutrition((nutriment_factor * removed) * M.species.organic_food_coeff)
+		M.heal_organ_damage(0.5 * removed, 0)
+		M.add_chemical_effect(CE_BLOODRESTORE, 4 * removed)
 	M.heal_organ_damage(0.5 * removed, 0)
 	if(M.species.gets_food_nutrition) //VOREStation edit. If this is set to 0, they don't get nutrition from food.
 		M.adjust_nutrition(nutriment_factor * removed) // For hunger and fatness
 	M.add_chemical_effect(CE_BLOODRESTORE, 4 * removed)
-=======
 	if(M.species.allergens & allergen_type)	//uhoh, we can't digest this!
 		M.adjustToxLoss(M.species.allergen_severity * removed)
 	else	//delicious
 		M.heal_organ_damage(0.5 * removed, 0)
 		M.adjust_nutrition(nutriment_factor * removed)
 		M.add_chemical_effect(CE_BLOODRESTORE, 4 * removed)
-
->>>>>>> 2fcec80... Merge pull request #7864 from KillianKirilenko/kk-diet
 
 // Aurora Cooking Port Insertion Begin
 
@@ -966,6 +972,7 @@
 	description = "It's grrrrrape!"
 	taste_description = "grapes"
 	color = "#863333"
+	var/sugary = TRUE ///So non-sugary juices don't make Unathi snooze.
 
 	glass_name = "grape juice"
 	glass_desc = "It's grrrrrape!"
@@ -978,21 +985,20 @@
 	if(issmall(M))
 		effective_dose *= 2
 
-/* //VOREStation Removal - Assuming all juice has sugar is silly
 	if(alien == IS_UNATHI)
-		if(effective_dose < 2)
-			if(effective_dose == metabolism * 2 || prob(5))
-				M.emote("yawn")
-		else if(effective_dose < 5)
-			M.eye_blurry = max(M.eye_blurry, 10)
-		else if(effective_dose < 20)
-			if(prob(50))
-				M.Weaken(2)
-			M.drowsyness = max(M.drowsyness, 20)
-		else
-			M.Sleeping(20)
-			M.drowsyness = max(M.drowsyness, 60)
-*/
+		if(sugary == TRUE)
+			if(effective_dose < 2)
+				if(effective_dose == metabolism * 2 || prob(5))
+					M.emote("yawn")
+			else if(effective_dose < 5)
+				M.eye_blurry = max(M.eye_blurry, 10)
+			else if(effective_dose < 20)
+				if(prob(50))
+					M.Weaken(2)
+				M.drowsyness = max(M.drowsyness, 20)
+			else
+				M.Sleeping(20)
+				M.drowsyness = max(M.drowsyness, 60)
 
 /datum/reagent/drink/juice/lemon
 	name = "Lemon Juice"
@@ -1067,6 +1073,7 @@
 	taste_description = "potatoes"
 	nutrition = 2
 	color = "#302000"
+	sugary = FALSE
 
 	glass_name = "potato juice"
 	glass_desc = "Juice from a potato. Bleh."
@@ -1078,6 +1085,7 @@
 	description = "Tomatoes made into juice. What a waste of big, juicy tomatoes, huh?"
 	taste_description = "tomatoes"
 	color = "#731008"
+	sugary = FALSE
 
 	glass_name = "tomato juice"
 	glass_desc = "Are you sure this is tomato juice?"
@@ -1344,29 +1352,20 @@
 	if(alien == IS_DIONA)
 		return
 	..()
-<<<<<<< HEAD
+
 	//if(alien == IS_TAJARA) //VOREStation Edit Begin
 		//M.adjustToxLoss(0.5 * removed)
 		//M.make_jittery(4) //extra sensitive to caffine
-=======
-	if(alien == IS_TAJARA)
-		M.make_jittery(4) //extra sensitive to caffine
->>>>>>> 2fcec80... Merge pull request #7864 from KillianKirilenko/kk-diet
 	if(adj_temp > 0)
 		holder.remove_reagent("frostoil", 10 * removed)
 
 /datum/reagent/drink/coffee/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-<<<<<<< HEAD
+
 	//if(alien == IS_TAJARA)
 		//M.adjustToxLoss(2 * removed)
 		//M.make_jittery(4)
 		//return
-=======
-	if(alien == IS_TAJARA)
-		M.make_jittery(4)
-		return
->>>>>>> 2fcec80... Merge pull request #7864 from KillianKirilenko/kk-diet
 
 /datum/reagent/drink/coffee/overdose(var/mob/living/carbon/M, var/alien)
 	if(alien == IS_DIONA)
@@ -2362,7 +2361,7 @@
 	M.AdjustSleeping(-2)
 	if(M.bodytemperature > 310)
 		M.bodytemperature = max(310, M.bodytemperature - (5 * TEMPERATURE_DAMAGE_COEFFICIENT))
-<<<<<<< HEAD
+
 	//if(alien == IS_TAJARA)
 		//M.adjustToxLoss(0.5 * removed)
 		//M.make_jittery(4) //extra sensitive to caffine
@@ -2372,16 +2371,11 @@
 		//M.adjustToxLoss(2 * removed)
 		//M.make_jittery(4)
 		//return
-=======
-	if(alien == IS_TAJARA)
-		M.make_jittery(4) //extra sensitive to caffine
 
 /datum/reagent/ethanol/coffee/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_TAJARA)
 		M.make_jittery(4)
 		return
->>>>>>> 2fcec80... Merge pull request #7864 from KillianKirilenko/kk-diet
-	..()
 
 /datum/reagent/ethanol/coffee/overdose(var/mob/living/carbon/M, var/alien)
 	if(alien == IS_DIONA)

@@ -32,7 +32,7 @@
 			sleep(2)
 			go_out()
 			sleep(2)
-			del(src)
+			qdel(src)
 
 /obj/machinery/transportpod/relaymove(mob/user as mob)
 	if(user.stat)

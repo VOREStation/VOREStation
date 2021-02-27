@@ -3720,26 +3720,32 @@
 /obj/item/pizzabox/margherita/Initialize()
 	pizza = new /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/margherita(src)
 	boxtag = "Margherita Deluxe"
+	. = ..()
 
 /obj/item/pizzabox/vegetable/Initialize()
 	pizza = new /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/vegetablepizza(src)
 	boxtag = "Gourmet Vegatable"
+	. = ..()
 
 /obj/item/pizzabox/mushroom/Initialize()
 	pizza = new /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/mushroompizza(src)
 	boxtag = "Mushroom Special"
+	. = ..()
 
 /obj/item/pizzabox/meat/Initialize()
 	pizza = new /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/meatpizza(src)
 	boxtag = "Meatlover's Supreme"
+	. = ..()
 
 /obj/item/pizzabox/pineapple/Initialize()
 	pizza = new /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/pineapple(src)
 	boxtag = "Hawaiian Sunrise"
+	. = ..()
 
 /obj/item/pizzabox/old/Initialize()
 	pizza = new /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/oldpizza(src)
 	boxtag = "Deluxe Gourmet"
+	. = ..()
 
 /obj/item/weapon/reagent_containers/food/snacks/dionaroast
 	name = "roast diona"
@@ -4547,7 +4553,7 @@
 	icon_state = "bagelplain"
 
 /obj/item/weapon/reagent_containers/food/snacks/bageltwo/Initialize()
-	..() //Not returning . because asking to be qdel'd below.
+	..()
 	spawn_bagels()
 	spawn_bagels()
 	return INITIALIZE_HINT_QDEL
@@ -4707,9 +4713,6 @@
 	var/composition_reagent_quantity
 
 /mob/living/simple_mob/adultslime
-	composition_reagent = "slimejelly"
-
-/mob/living/carbon/slime
 	composition_reagent = "slimejelly"
 
 /mob/living/carbon/alien/diona
@@ -6264,7 +6267,7 @@
 	nutriment_desc = list("tomato" = 4, "meat" = 2)
 
 /obj/item/weapon/reagent_containers/food/snacks/lasagna/Initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("protein", 2) //For meaty things.
 
 /obj/item/weapon/reagent_containers/food/snacks/gigapuddi
