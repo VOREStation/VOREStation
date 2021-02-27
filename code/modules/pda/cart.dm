@@ -154,7 +154,7 @@ var/list/civilian_cartridges = list(
 
 /obj/item/weapon/cartridge/signal/Initialize()
 	radio = new /obj/item/radio/integrated/signal(src)
-	..()
+	. = ..()
 
 /obj/item/weapon/cartridge/signal/science
 	name = "\improper Signal Ace 2 cartridge"

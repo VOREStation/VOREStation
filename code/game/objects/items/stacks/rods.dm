@@ -24,8 +24,8 @@
 	stacktype = /obj/item/stack/rods
 	no_variants = TRUE
 
-/obj/item/stack/rods/New()
-	..()
+/obj/item/stack/rods/Initialize()
+	. = ..()
 	recipes = rods_recipes
 	update_icon()
 

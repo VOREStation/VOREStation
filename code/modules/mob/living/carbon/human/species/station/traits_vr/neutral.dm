@@ -67,7 +67,7 @@
 	desc = "Makes you unable to gain nutrition from anything but blood. To compenstate, you get fangs that can be used to drain blood from prey."
 	cost = 0
 	custom_only = FALSE
-	var_changes = list("gets_food_nutrition" = 0) //The verb is given in human.dm
+	var_changes = list("organic_food_coeff" = 0) //The verb is given in human.dm
 
 /datum/trait/bloodsucker/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..(S,H)
@@ -121,11 +121,19 @@
 	desc = "You only gain nutrition from raw ore and refined minerals. There's nothing that sates the appetite better than precious gems, exotic or rare minerals and you have damn fine taste. Anything else is beneath you."
 	cost = 0
 	custom_only = FALSE
-	var_changes = list("gets_food_nutrition" = 0, "eat_minerals" = 1)
+	var_changes = list("organic_food_coeff" = 0, "eat_minerals" = 1)
 
 /datum/trait/gem_eater/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..(S,H)
 	H.verbs |= /mob/living/proc/eat_minerals
+	
+/datum/trait/synth_chemfurnace
+	name = "Biofuel Processor"
+	desc = "You are able to gain energy through consuming and processing normal food. Energy-dense foods such as protein bars and survival food will yield the best results."
+	cost = 0
+	custom_only = FALSE
+	can_take = SYNTHETICS
+	var_changes = list("organic_food_coeff" = 0, "synthetic_food_coeff" = 0.25)
 
 /datum/trait/glowing_eyes
 	name = "Glowing Eyes"
@@ -144,6 +152,36 @@
 	..(S,H)
 	H.verbs |= /mob/living/proc/glow_toggle
 	H.verbs |= /mob/living/proc/glow_color
+
+/*
+//Allergen traits! Not available to any species with a base allergens var.
+/datum/trait/allergy_gluten
+	name = "Allergy: Gluten"
+	desc = "You're highly allergic to gluten proteins, which are found in most common grains. This trait cannot be taken by skrell or tajara."
+	cost = 0
+	custom_only = FALSE
+	banned_species = list(SPECIES_SKRELL,SPECIES_TAJ)
+	var_changes = list("allergens" = 16)
+	excludes = list(/datum/trait/allergy_nuts,/datum/trait/allergy_soy)
+
+/datum/trait/allergy_nuts
+	name = "Allergy: Nuts"
+	desc = "You're highly allergic to hard-shell seeds, such as peanuts. This trait cannot be taken by skrell or tajara."
+	cost = 0
+	custom_only = FALSE
+	banned_species = list(SPECIES_SKRELL,SPECIES_TAJ)
+	var_changes = list("allergens" = 64)
+	excludes = list(/datum/trait/allergy_gluten,/datum/trait/allergy_soy)
+
+/datum/trait/allergy_soy
+	name = "Allergy: Soy"
+	desc = "You're highly allergic to soybeans, and some other kinds of bean. This trait cannot be taken by skrell or tajara."
+	cost = 0
+	custom_only = FALSE
+	banned_species = list(SPECIES_SKRELL,SPECIES_TAJ)
+	var_changes = list("allergens" = 32)
+	excludes = list(/datum/trait/allergy_gluten,/datum/trait/allergy_nuts)
+*/
 
 // Spicy Food Traits, from negative to positive.
 /datum/trait/spice_intolerance_extreme

@@ -21,6 +21,22 @@
 	var/icon_height = 32
 	var/agility = 20 //prob() to do agile things
 
+	var/organic_food_coeff = 1
+	var/synthetic_food_coeff = 0
+	//var/vore_numbing = 0
+	var/metabolism = 0.0015
+	var/lightweight = FALSE //Oof! Nonhelpful bump stumbles.
+	var/trashcan = FALSE //It's always sunny in the wrestling ring.
+	var/eat_minerals = FALSE //HEAVY METAL DIET
+	var/base_species = null // Unused outside of a few species
+	var/selects_bodytype = FALSE // Allows the species to choose from body types like custom species can, affecting suit fitting and etcetera as you would expect.
+
+	var/is_weaver = FALSE
+	var/silk_production = FALSE
+	var/silk_reserve = 100
+	var/silk_max_reserve = 500
+	var/silk_color = "#FFFFFF"
+
 	var/list/traits = list()
 
 /datum/species/proc/update_attack_types()

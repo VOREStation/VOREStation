@@ -37,7 +37,6 @@
 
 /obj/structure/closet/Initialize()
 	..()
-	// Closets need to come later because of spawners potentially creating objects during init.
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/structure/closet/LateInitialize()
