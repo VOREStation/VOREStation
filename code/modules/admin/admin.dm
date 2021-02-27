@@ -946,7 +946,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	log_admin("[key_name(usr)] toggled persistence to [config.persistence_disabled ? "Off" : "On"].")
 	world.update_status()
 	feedback_add_details("admin_verb","TPD") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	
+
 /datum/admins/proc/togglemaploadpersistence()
 	set category = "Server"
 	set desc="Whether mapload persistent data will be saved from now on."

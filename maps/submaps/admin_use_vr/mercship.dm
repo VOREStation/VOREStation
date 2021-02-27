@@ -173,7 +173,7 @@
 /obj/effect/shuttle_landmark/shuttle_initializer/manta_ship_boat
 	name = "Mercenary Cruiser's Bay"
 	base_area = /area/ship/manta/hangar
-	base_turf = /turf/simulated/floor/plating
+	base_turf = /turf/simulated/floor/reinforced
 	landmark_tag = "omship_spawn_manta_lander"
 	docking_controller = "manta_boarding_shuttle_dock"
 	shuttle_type = /datum/shuttle/autodock/overmap/manta_ship_boat
@@ -243,7 +243,9 @@ Finally, over in the port wing you'll find the recreation area and kitchen along
 <br>\
 You don't want to know how long it's going to take to pay off.<br>\
 <br>\
-<i>Capt. Thorne</i>"}
+<i>Capt. Thorne</i><br>\
+<br>
+P.S. If you need to refuel the lander for some reason, there's a pair of spare fuel canisters in that closet space in the port fore wing edge, opposite the assault armory."}
 
 /obj/item/weapon/paper/manta_approach_tactics
 	name = "Installation Approach"

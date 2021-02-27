@@ -373,6 +373,11 @@
 	color = "#A5F0EE"
 	touch_met = 50
 
+/datum/reagent/space_cleaner/touch_mob(var/mob/M)
+	if(iscarbon(M))
+		var/mob/living/carbon/C = M
+		C.clean_blood()
+
 /datum/reagent/space_cleaner/touch_obj(var/obj/O)
 	O.clean_blood()
 

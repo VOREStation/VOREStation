@@ -164,7 +164,7 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 	securityCaster = 1
 
 /obj/machinery/newscaster/Initialize()
-	..() //Not returning . because lateload below
+	..()
 	allCasters += src
 	unit_no = ++unit_no_cur
 	paper_remaining = 15

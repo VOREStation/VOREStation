@@ -26,6 +26,12 @@
 	name = "mechanical trap"
 	path =/obj/item/weapon/beartrap
 
+/datum/category_item/autolathe/devices/barbedwire
+	name = "barbed wire"
+	path = /obj/item/weapon/material/barbedwire
+	hidden = 1
+	resources = list(DEFAULT_WALL_MATERIAL = 10000)
+
 /datum/category_item/autolathe/devices/electropack
 	name = "electropack"
 	path =/obj/item/device/radio/electropack

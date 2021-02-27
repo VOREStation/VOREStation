@@ -105,6 +105,9 @@ var/list/gurgled_overlays = list(
 /obj/item/weapon/reagent_containers/food/gurgle_contaminate(var/atom/movable/item_storage = null)
 	return FALSE
 
+/obj/item/weapon/storage/vore_egg/gurgle_contaminate(var/atom/movable/item_storage = null)
+	return FALSE
+
 /obj/item/weapon/holder/gurgle_contaminate(var/atom/movable/item_storage = null)
 	if(isbelly(loc))
 		digest_act(item_storage)

@@ -8,6 +8,7 @@
 	w_class = ITEMSIZE_SMALL
 
 /obj/item/pizzavoucher/New()
+	..()
 	var/list/descstrings = list("24/7 PIZZA PIE HEAVEN",
 	"WE ALWAYS DELIVER!",
 	"24-HOUR PIZZA PIE POWER!",

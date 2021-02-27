@@ -64,6 +64,28 @@
 	item_state = "lrifle"
 	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 3)
 
+/obj/item/weapon/gun/energy/mininglaser
+	name = "mining-laser rifle"
+	desc = "A Hephaestus Industries G22T rifle, now only produced for its impeccable ability to break stone with its pulsating blasts."
+	description_fluff = "The leading arms producer in the SCG, Hephaestus typically only uses its 'top level' branding for its military-grade equipment used by armed forces across human space."
+	icon = 'icons/obj/gun2.dmi'
+	icon_state = "mininglaser"
+	item_state = "laser"
+	wielded_item_state = "laser-wielded"
+	fire_delay = 8
+	slot_flags = SLOT_BELT|SLOT_BACK
+	w_class = ITEMSIZE_LARGE
+	force = 15
+	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
+	matter = list(DEFAULT_WALL_MATERIAL = 2000)
+	projectile_type = /obj/item/projectile/beam/mininglaser
+	one_handed_penalty = 30
+
+	firemodes = list(
+		list(mode_name="mining", fire_delay=8, projectile_type=/obj/item/projectile/beam/mininglaser, charge_cost = 200),
+		list(mode_name="deter", fire_delay=5, projectile_type=/obj/item/projectile/beam/weaklaser, charge_cost = 80),
+		)
+
 /obj/item/weapon/gun/energy/retro
 	name = "retro laser"
 	icon_state = "retro"

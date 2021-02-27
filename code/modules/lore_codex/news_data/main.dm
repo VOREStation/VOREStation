@@ -321,7 +321,7 @@
 	<br><br>\
 	Sources within the Vir Governmental Authority have reported that a full scale recall of remote drone craft under their operation has been initiated in order to improve security measures and prevent future exploitation of government systems, statements that eerily echo those of Occulum Broadcast following emergent drone attacks earlier this year. Investigations are reportedly \"well underway\" to determine the whereabouts of those responsible for the apparent manual modification of these short-range remote craft.\
 	<br><br>\
-	Erkki Laukkanen, Chief of Fleet Staff for the Vir Defense Force has commended all patrol crews involved, and has promised \"swift retribution\" for the attempted bombings."
+	Erkki Laukkanen, Chief of Fleet Staff for the Sif Defense Force has commended all patrol crews involved, and has promised \"swift retribution\" for the attempted bombings."
 /datum/lore/codex/page/article26
 	name = "11/24/62 - Boiling Point Stronghold Seized in Vir"
 	data = "Combined forces from the SCG Fleet and Almach Militia have today struck a powerful blow to Boiling Point terrorist operations in the Vir system. With close cooperation from the crew of NanoTrasen facilities in the region, special forces were able to infiltrate what is believed to have been a major stronghold for the radical Mercurial group, located deep in the remote Ullran Expanse region of Sif. The raid closely follows the thwarted Boiling Point attack on the Radiance Energy Chain, a major energy collection array in the system which is now known to have been masterminded from the concealed bunker complex on Sif.\
@@ -354,7 +354,7 @@
 	<br><br>\
 	No more! Shall the people of this great nation have to fear the machinations of radicals! No more! Shall these twisted minds impose their perversion of humanity through violence! No more!\
 	<br><br>\
-	This Assembly... Nay, this nation expresses its thanks the noble members of our military who joined together to make this outcome possible. We thank the Fleet, of course for their tireless action hunting down these killers, and their heroic action over this past weekend. We thank the Vir Defense Force, without whom we could never have located the intelligence that led to these decisive victories... The Almach Militia, for their cooperation in the apprehension of these so-called \"revolutionaries\". \[West clears their throat\] And of course, we thank the local forces - the police and reserves who dealt firsthand with the chaos sewn by Boiling Point in their vicious crusade.\
+	This Assembly... Nay, this nation expresses its thanks the noble members of our military who joined together to make this outcome possible. We thank the Fleet, of course for their tireless action hunting down these killers, and their heroic action over this past weekend. We thank the Sif Defense Force, without whom we could never have located the intelligence that led to these decisive victories... The Almach Militia, for their cooperation in the apprehension of these so-called \"revolutionaries\". \[West clears their throat\] And of course, we thank the local forces - the police and reserves who dealt firsthand with the chaos sewn by Boiling Point in their vicious crusade.\
 	<br><br>\
 	\[Mackenzie West shifts at the podium, setting down the List of Dissidents.\]\
 	<br><br>\

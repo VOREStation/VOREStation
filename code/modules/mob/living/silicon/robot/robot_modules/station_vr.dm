@@ -167,7 +167,8 @@
 					"K9 Alternative" = "k92",
 					"Secborg model V-2" = "secborg",
 					"Borgi" = "borgi-sec",
-					"Otieborg" = "oties"
+					"Otieborg" = "oties",
+					"Drake" = "drakesec"
 					)
 	channels = list("Security" = 1)
 	networks = list(NETWORK_SECURITY)
@@ -198,7 +199,8 @@
 	B.water = water
 	src.modules += B
 
-	R.icon 		 = 'icons/mob/widerobot_vr.dmi'
+	R.icon 		 = 'icons/mob/widerobot_sec_vr.dmi'
+	R.wideborg_dept = 'icons/mob/widerobot_sec_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
 	R.ui_style_vr = TRUE
 	R.pixel_x 	 = -16
@@ -243,7 +245,8 @@
 					"Medical Hound" = "medihound",
 					"Dark Medical Hound (Static)" = "medihounddark",
 					"Mediborg model V-2" = "vale",
-					"Borgi" = "borgi-medi"
+					"Borgi" = "borgi-medi",
+					"Drake" = "drakemed"
 					)
 
 /obj/item/weapon/robot_module/robot/medihound/New(var/mob/living/silicon/robot/R)
@@ -283,7 +286,8 @@
 	B.water = water
 	src.modules += B
 
-	R.icon = 'icons/mob/widerobot_vr.dmi'
+	R.icon = 'icons/mob/widerobot_med_vr.dmi'
+	R.wideborg_dept = 'icons/mob/widerobot_med_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
 	R.ui_style_vr = TRUE
 	R.pixel_x 	 = -16
@@ -352,7 +356,8 @@
 	sprites = list(
 					"Custodial Hound" = "scrubpup",
 					"Borgi" = "borgi-jani",
-					"Otieborg" = "otiej"
+					"Otieborg" = "otiej",
+					"Drake" = "drakejanit"
 					)
 	channels = list("Service" = 1)
 	pto_type = PTO_CIVILIAN
@@ -416,7 +421,8 @@
 	G.recipes += new/datum/stack_recipe("glass sheet", /obj/item/stack/material/glass, 1, 1, 20)
 	src.modules += G
 
-	R.icon 		 = 'icons/mob/widerobot_vr.dmi'
+	R.icon 		 = 'icons/mob/widerobot_jan_vr.dmi'
+	R.wideborg_dept  = 'icons/mob/widerobot_jan_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
 	R.ui_style_vr = TRUE
 	R.pixel_x 	 = -16
@@ -437,7 +443,8 @@
 					"Research Hound" = "science",
 					"Borgi" = "borgi-sci",
 					"SciHound" = "scihound",
-					"SciHoundDark" = "scihounddark"
+					"SciHoundDark" = "scihounddark",
+					"Drake" = "drakesci"
 					)
 	channels = list("Science" = 1)
 	pto_type = PTO_SCIENCE
@@ -490,7 +497,8 @@
 	C.synths = list(wire)
 	src.modules += C
 
-	R.icon 		 = 'icons/mob/widerobot_vr.dmi'
+	R.icon 		 = 'icons/mob/widerobot_sci_vr.dmi'
+	R.wideborg_dept  = 'icons/mob/widerobot_sci_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
 	R.ui_style_vr = TRUE
 	R.pixel_x 	 = -16
@@ -512,7 +520,8 @@
 					"Borgi" = "borgi-eng",
 					"V2 Engidog" = "thottbot",
 					"EngiHound" = "engihound",
-					"EngiHoundDark" = "engihounddark"
+					"EngiHoundDark" = "engihounddark",
+					"Drake" = "drakeeng"
 					)
 	channels = list("Engineering" = 1)
 	networks = list(NETWORK_ENGINEERING)
@@ -639,7 +648,8 @@
 	PS.synths = list(plasteel)
 	src.modules += PS
 
-	R.icon 		 = 'icons/mob/widerobot_vr.dmi'
+	R.icon 		 = 'icons/mob/widerobot_eng_vr.dmi'
+	R.wideborg_dept  = 'icons/mob/widerobot_eng_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
 	R.ui_style_vr = TRUE
 	R.pixel_x 	 = -16
@@ -662,6 +672,7 @@
 					"Pinkhound" = "k69",
 					"ServicehoundV2" = "serve2",
 					"ServicehoundV2 Darkmode" = "servedark",
+					"Drake" = "drakemine"
 					)
 	channels = list("Service" = 1)
 	pto_type = PTO_CIVILIAN
@@ -715,7 +726,8 @@
 	src.modules += B
 */
 
-	R.icon 		 = 'icons/mob/widerobot_vr.dmi'
+	R.icon 		 = 'icons/mob/widerobot_ser_vr.dmi'
+	R.wideborg_dept  = 'icons/mob/widerobot_ser_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
 	R.ui_style_vr = TRUE
 	R.pixel_x 	 = -16
@@ -733,7 +745,8 @@
 	sprites = list(
 					"KMine" = "kmine",
 					"CargoHound" = "cargohound",
-					"CargoHoundDark" = "cargohounddark"
+					"CargoHoundDark" = "cargohounddark",
+					"Drake" = "drakemine"
 					)
 	channels = list("Supply" = 1)
 	pto_type = PTO_CARGO
@@ -766,7 +779,8 @@
 	B.water = water
 	src.modules += B
 
-	R.icon = 'icons/mob/widerobot_vr.dmi'
+	R.icon = 'icons/mob/widerobot_car_vr.dmi'
+	R.wideborg_dept = 'icons/mob/widerobot_car_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
 	R.ui_style_vr = TRUE
 	R.pixel_x 	 = -16

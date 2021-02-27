@@ -92,15 +92,7 @@
 
 	var/new_gender = alert(usr, "Please select gender.", "Character Generation", "Male", "Female", "Neuter")
 	if (new_gender)
-		if(new_gender == "Male")
-			M.gender = MALE
-			M.dna.SetUIState(DNA_UI_GENDER, FALSE)
-		else if (new_gender == "Female")
-			M.gender = FEMALE
-			M.dna.SetUIState(DNA_UI_GENDER, TRUE)
-		else
-			M.gender = NEUTER
-			M.dna.SetUIState(DNA_UI_GENDER, FALSE)
+		M.set_gender(new_gender)
 
 	M.update_dna(M)
 	M.update_hair(FALSE)

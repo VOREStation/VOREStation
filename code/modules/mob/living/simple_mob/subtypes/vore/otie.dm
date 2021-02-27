@@ -81,6 +81,13 @@
 	max_n2 = 0
 	has_eye_glow = TRUE
 
+/mob/living/simple_mob/otie/feral/chubby
+	name = "chubby mutated feral otie"
+	desc = "The classic bioengineered longdog. No pets. Only bite. This one has mutated from too much time out on the surface of Virgo-3B. What an absolute unit."
+	icon_state = "photiec"
+	icon_living = "photiec"
+	icon_rest = "photiec_rest"
+
 /mob/living/simple_mob/otie/red
 	name = "feral red otie"
 	desc = "Seems this ominous looking longdog has been infused with wicked infernal forces."
@@ -106,6 +113,15 @@
 /mob/living/simple_mob/otie/red/friendly //gets the pet2tame feature and doesn't kill you right away
 	name = "red otie"
 	desc = "Seems this ominous looking longdog has been infused with wicked infernal forces. This one seems rather peaceful though."
+	faction = "neutral"
+	tamed = 1
+
+/mob/living/simple_mob/otie/red/chubby //gets the pet2tame feature and doesn't kill you right away
+	name = "chubby red otie"
+	desc = "Seems this ominous looking longdog has been infused with wicked infernal forces. What an absolute unit."
+	icon_state = "hotiec"
+	icon_living = "hotiec"
+	icon_rest = "hotiec_rest"
 	faction = "neutral"
 	tamed = 1
 
@@ -158,7 +174,7 @@
 
 /mob/living/simple_mob/otie/security //tame by default unless you're a marked crimester. can be befriended to follow with pets tho.
 	name = "guard otie"
-	desc = "The VARMAcorp bioengineering division flagship product on trained optimal snowflake guard dogs."
+	desc = "The VARMAcorp bioengineering division flagship product on big mean guard dogs."
 	icon_state = "sotie"
 	icon_living = "sotie"
 	icon_rest = "sotie_rest"
@@ -176,7 +192,7 @@
 
 /mob/living/simple_mob/otie/security/chubby
 	name = "chubby guard otie"
-	desc = "The VARMAcorp bioengineering division flagship product on trained optimal snowflake guard dogs. What an absolute unit."
+	desc = "The VARMAcorp bioengineering division flagship product on big mean guard dogs. What an absolute unit."
 	icon_state = "fsotie"
 	icon_living = "fsotie"
 	icon_rest = "fsotie_rest"
@@ -184,7 +200,7 @@
 
 /mob/living/simple_mob/otie/security/phoron
 	name = "mutated guard otie"
-	desc = "An extra rare phoron resistant version of the VARMAcorp trained snowflake guard dogs for infernal environments."
+	desc = "An extra rare phoron resistant version of the VARMAcorp trained guard dogs adapted for hostile environments."
 	tt_desc = "Otus phoronis"
 	icon_state = "secphotie"
 	icon_living = "secphotie"
@@ -201,13 +217,20 @@
 
 /mob/living/simple_mob/otie/security/phoron/red
 	name = "red guard otie"
-	desc = "An ominous looking version of the VARMAcorp trained snowflake guard dogs."
+	desc = "An ominous looking version of the big mean VARMAcorp guard dogs."
 	tt_desc = "Otus infernalis"
 	icon_state = "sechotie"
 	icon_living = "sechotie"
 	icon_rest = "sechotie_rest"
 	icon_dead = "sechotie-dead"
 	maxbodytemp = 1000
+
+/mob/living/simple_mob/otie/security/phoron/red/chubby
+	name = "chubby red guard otie"
+	desc = "An ominous looking version of the big mean VARMAcorp guard dogs. What an absolute unit."
+	icon_state = "hotiesc"
+	icon_living = "hotiesc"
+	icon_rest = "hotiesc_rest"
 
 /mob/living/simple_mob/otie/attackby(var/obj/item/O, var/mob/user) // Trade donuts for bellybrig victims.
 	if(istype(O, /obj/item/weapon/reagent_containers/food))

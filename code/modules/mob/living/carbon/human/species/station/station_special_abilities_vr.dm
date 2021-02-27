@@ -566,7 +566,7 @@
 		return
 
 	var/mob/living/carbon/human/T = G.affecting // I must say, this is a quite ingenious way of doing it. Props to the original coders.
-	if(!istype(T) || T.isSynthetic())
+	if(!istype(T))
 		to_chat(src, "<span class='warning'>\The [T] is not able to be fed.</span>")
 		return
 
@@ -850,3 +850,150 @@
 	set category = "Abilities"
 	pass_flags ^= PASSTABLE //I dunno what this fancy ^= is but Aronai gave it to me.
 	to_chat(src, "You [pass_flags&PASSTABLE ? "will" : "will NOT"] move over tables/railings/trays!")
+
+/mob/living/carbon/human/proc/check_silk_amount()
+	set name = "Check Silk Amount"
+	set category = "Abilities"
+
+	if(species.is_weaver)
+		to_chat(src, "Your silk reserves are at [species.silk_reserve]/[species.silk_max_reserve].")
+	else
+		to_chat(src, "<span class='warning'>You are not a weaver! How are you doing this? Tell a developer!</span>")
+
+/mob/living/carbon/human/proc/toggle_silk_production()
+	set name = "Toggle Silk Production"
+	set category = "Abilities"
+
+	if(species.is_weaver)
+		species.silk_production = !(species.silk_production)
+		to_chat(src, "You are [species.silk_production ? "now" : "no longer"] producing silk.")
+	else
+		to_chat(src, "<span class='warning'>You are not a weaver! How are you doing this? Tell a developer!</span>")
+
+/mob/living/carbon/human/proc/weave_structure()
+	set name = "Weave Structure"
+	set category = "Abilities"
+
+	if(!(species.is_weaver))
+		to_chat(src, "<span class='warning'>You are not a weaver! How are you doing this? Tell a developer!</span>")
+		return
+
+	var/choice
+	var/datum/weaver_recipe/structure/desired_result
+	var/finalized = "No"
+
+	while(finalized == "No" && src.client)
+		choice = input(src,"What would you like to weave?") as null|anything in weavable_structures
+		desired_result  = weavable_structures[choice]
+		if(!desired_result || !istype(desired_result))
+			return
+
+		if(choice)
+			finalized = alert(src, "Are you sure you want to weave [desired_result.title]? It will cost you [desired_result.cost] silk.","Confirmation","Yes","No")
+
+	if(!desired_result || !istype(desired_result))
+		return
+
+	if(desired_result.cost > species.silk_reserve)
+		to_chat(src, "<span class='warning'>You don't have enough silk to weave that!</span>")
+		return
+
+	if(stat)
+		to_chat(src, "<span class='warning'>You can't do that in your current state!</span>")
+		return
+
+	if(locate(desired_result.result_type) in src.loc)
+		to_chat(src, "<span class='warning'>You can't create another weaversilk [desired_result.title] here!</span>")
+		return
+
+	if(!isturf(src.loc))
+		to_chat(src, "<span class='warning'>You can't weave here!</span>")
+		return
+
+	if(do_after(src, desired_result.time, exclusive = TRUE))
+		if(desired_result.cost > species.silk_reserve)
+			to_chat(src, "<span class='warning'>You don't have enough silk to weave that!</span>")
+			return
+
+		if(locate(desired_result.result_type) in src.loc)
+			to_chat(src, "<span class='warning'>You can't create another weaversilk [desired_result.title] here!</span>")
+			return
+
+		if(!isturf(src.loc))
+			to_chat(src, "<span class='warning'>You can't weave here!</span>")
+			return
+
+		species.silk_reserve = max(species.silk_reserve - desired_result.cost, 0)
+
+		//new desired_result.result_type(src.loc)
+		var/atom/O = new desired_result.result_type(src.loc)
+		O.color = species.silk_color
+
+
+/mob/living/carbon/human/proc/weave_item()
+	set name = "Weave Item"
+	set category = "Abilities"
+
+	if(!(species.is_weaver))
+		return
+
+	var/choice
+	var/datum/weaver_recipe/item/desired_result
+	var/finalized = "No"
+
+	while(finalized == "No" && src.client)
+		choice = input(src,"What would you like to weave?") as null|anything in weavable_items
+		desired_result  = weavable_items[choice]
+		if(!desired_result || !istype(desired_result))
+			return
+
+		if(choice)
+			finalized = alert(src, "Are you sure you want to weave [desired_result.title]? It will cost you [desired_result.cost] silk.","Confirmation","Yes","No")
+
+	if(!desired_result || !istype(desired_result))
+		return
+
+	if(!(species.is_weaver))
+		to_chat(src, "<span class='warning'>You are not a weaver! How are you doing this? Tell a developer!</span>")
+		return
+
+	if(desired_result.cost > species.silk_reserve)
+		to_chat(src, "<span class='warning'>You don't have enough silk to weave that!</span>")
+		return
+
+	if(stat)
+		to_chat(src, "<span class='warning'>You can't do that in your current state!</span>")
+		return
+
+	if(!isturf(src.loc))
+		to_chat(src, "<span class='warning'>You can't weave here!</span>")
+		return
+
+	if(do_after(src, desired_result.time, exclusive = TRUE))
+		if(desired_result.cost > species.silk_reserve)
+			to_chat(src, "<span class='warning'>You don't have enough silk to weave that!</span>")
+			return
+
+		if(!isturf(src.loc))
+			to_chat(src, "<span class='warning'>You can't weave here!</span>")
+			return
+
+		species.silk_reserve = max(species.silk_reserve - desired_result.cost, 0)
+
+		//new desired_result.result_type(src.loc)
+		var/atom/O = new desired_result.result_type(src.loc)
+		O.color = species.silk_color
+
+/mob/living/carbon/human/proc/set_silk_color()
+	set name = "Set Silk Color"
+	set category = "Abilities"
+
+	if(!(species.is_weaver))
+		to_chat(src, "<span class='warning'>You are not a weaver! How are you doing this? Tell a developer!</span>")
+		return
+
+	var/new_silk_color = input("Pick a color for your woven products:","Silk Color", species.silk_color) as null|color
+	if(new_silk_color)
+		species.silk_color = new_silk_color
+
+
