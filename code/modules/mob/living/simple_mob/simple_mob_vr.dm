@@ -7,6 +7,8 @@
 	melee_attack_delay = 1
 	base_attack_cooldown = 10
 	melee_miss_chance = 25
+	
+	makes_dirt = FALSE
 
 	var/temperature_range = 40			// How close will they get to environmental temperature before their body stops changing its heat
 
