@@ -81,11 +81,7 @@
 	return 1	// It literally produces a cryogenic mist inside itself. Cold doesn't bother it.
 
 /mob/living/simple_mob/animal/sif/frostfly/Initialize()
-<<<<<<< HEAD
-	. = ..() //VOREStation Edit
-=======
 	. = ..()
->>>>>>> b22a056... Sideports a couple of init unit tests from Neb. (#7893)
 	smoke_special = new
 	verbs += /mob/living/proc/ventcrawl
 	verbs += /mob/living/proc/hide
