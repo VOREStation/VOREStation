@@ -130,14 +130,40 @@
 	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 100, rad = 100)
 	siemens_coefficient = 0.5
 	icon = 'icons/obj/clothing/hats_vr.dmi'
+	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_AUGMENTED)
+	var/away_planes = null
+	plane_slots = list(slot_head)
+	var/hud_active = 1
+	var/activation_sound = 'sound/items/nif_click.ogg'
+
+/obj/item/clothing/head/helmet/space/void/responseteam/verb/toggle()
+	set category = "Object"
+	set name = "Toggle Mark 7 Suit HUD"
+	set src in usr
+
+	if(usr.canmove && !usr.stat && !usr.restrained())
+		if(src.hud_active)
+			away_planes = enables_planes
+			enables_planes = null
+			to_chat(usr, "You disable the inbuilt heads-up display.")
+			hud_active = 0
+		else
+			enables_planes = away_planes
+			away_planes = null
+			to_chat(usr, "You enable the inbuilt heads-up display.")
+			hud_active = 1
+		usr << activation_sound
+		usr.recalculate_vis()
 
 /obj/item/clothing/head/helmet/space/void/responseteam/command
 	name = "Mark VII-C Emergency Response Team Commander Helmet"
+	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_STATUS_R,VIS_CH_BACKUP,VIS_CH_WANTED,VIS_AUGMENTED)
 
 /obj/item/clothing/head/helmet/space/void/responseteam/medical
 	name = "Mark VII-M Emergency Medical Response Helmet"
 	icon_state = "erthelmet_m"
 	item_state = "erthelmet_m"
+	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_STATUS_R,VIS_CH_BACKUP,VIS_AUGMENTED)
 
 /obj/item/clothing/head/helmet/space/void/responseteam/engineer
 	name = "Mark VII-E Emergency Engineering Response Helmet"
@@ -148,6 +174,7 @@
 	name = "Mark VII-S Emergency Security Response Helmet"
 	icon_state = "erthelmet_s"
 	item_state = "erthelmet_s"
+	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_WANTED,VIS_AUGMENTED)
 
 /obj/item/clothing/head/helmet/space/void/responseteam/janitor
 	name = "Mark VII-J Emergency Cleanup Response Helmet"

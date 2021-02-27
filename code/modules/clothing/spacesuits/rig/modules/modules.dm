@@ -267,12 +267,18 @@
 
 /stat_rig_module/Click()
 	if(CanUse())
-		var/list/href_list = list(
-							"interact_module" = module.holder.installed_modules.Find(module),
-							"module_mode" = module_mode
-							)
-		AddHref(href_list)
-		module.holder.Topic(usr, href_list)
+		switch(module_mode)
+			if("select")
+				module.holder.selected_module = module
+			if("engage")
+				module.engage()
+			if("toggle")
+				if(module.active)
+					module.deactivate()
+				else
+					module.activate()
+			if("select_charge_type")
+				module.charge_selected = module.charges[module.charges.Find(module.charge_selected)]
 
 /stat_rig_module/DblClick()
 	return Click()

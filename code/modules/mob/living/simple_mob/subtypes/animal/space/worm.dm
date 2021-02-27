@@ -108,7 +108,7 @@
 		icon_state = "[icon_state]_dead"
 
 /mob/living/simple_mob/animal/space/space_worm/head/Initialize()
-	..()
+	. = ..()
 
 	var/mob/living/simple_mob/animal/space/space_worm/current = src
 

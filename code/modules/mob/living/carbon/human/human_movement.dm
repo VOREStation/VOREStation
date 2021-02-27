@@ -252,6 +252,7 @@
 		return
 
 	var/S = pick(footstep_sounds)
+	GLOB.step_taken_shift_roundstat++
 	if(!S) return
 
 	// Play every 20 steps while walking, for the sneak

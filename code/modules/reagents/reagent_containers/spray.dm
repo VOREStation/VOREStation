@@ -226,7 +226,7 @@
 	var/obj/item/hose_connector/input/active/InputSocket
 
 /obj/item/weapon/reagent_containers/spray/chemsprayer/hosed/Initialize()
-	..()
+	. = ..()
 
 	InputSocket = new(src)
 

@@ -1010,6 +1010,19 @@ var/list/name_to_material
 	pass_stack_colors = TRUE
 	supply_conversion_value = 2
 
+/datum/material/cloth/syncloth
+	name = "syncloth"
+	stack_origin_tech = list(TECH_MATERIAL = 3, TECH_BIO = 2)
+	door_icon_base = "wood"
+	ignition_point = T0C+532
+	melting_point = T0C+600
+	integrity = 200
+	protectiveness = 15 // 4%
+	flags = MATERIAL_PADDING
+	conductive = 0
+	pass_stack_colors = TRUE
+	supply_conversion_value = 3
+
 /datum/material/cult
 	name = "cult"
 	display_name = "disturbing stone"

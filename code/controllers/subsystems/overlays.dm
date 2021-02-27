@@ -5,7 +5,6 @@ SUBSYSTEM_DEF(overlays)
 	priority = FIRE_PRIORITY_OVERLAYS
 	init_order = INIT_ORDER_OVERLAY
 
-	var/initialized = FALSE
 	var/list/queue						// Queue of atoms needing overlay compiling (TODO-VERIFY!)
 	var/list/stats
 	var/list/overlay_icon_state_caches	// Cache thing
@@ -22,7 +21,6 @@ var/global/image/appearance_bro = new() // Temporarily super-global because of B
 	stats = list()
 
 /datum/controller/subsystem/overlays/Initialize()
-	initialized = TRUE
 	fire(mc_check = FALSE)
 	..()
 

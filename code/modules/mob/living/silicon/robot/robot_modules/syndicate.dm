@@ -37,6 +37,12 @@
 	src.modules += new /obj/item/weapon/pinpointer/shuttle/merc(src)
 	src.modules += new /obj/item/weapon/melee/energy/sword(src)
 
+	var/datum/matter_synth/cloth = new /datum/matter_synth/cloth(40000)
+	synths += cloth
+
+	var/obj/item/stack/sandbags/cyborg/SB = new /obj/item/stack/sandbags/cyborg(src)
+	SB.synths += list(cloth)
+
 	var/jetpack = new/obj/item/weapon/tank/jetpack/carbondioxide(src)
 	src.modules += jetpack
 	R.internals = jetpack

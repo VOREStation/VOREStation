@@ -68,7 +68,7 @@
 #define LANGUAGE_ALAI "Alai"
 #define LANGUAGE_ZADDAT "Vedahq"
 #define LANGUAGE_PROMETHEAN "Promethean Biolinguistics"
-#define LANGUAGE_BLOB "Blob"
+#define LANGUAGE_BLOB "Chemosense Transmission"
 #define LANGUAGE_GIBBERISH "Babel"
 
 // Language flags.

@@ -187,3 +187,13 @@
 /datum/category_item/underwear/undershirt/pinkblack_tshirt
 	name = "Pink and Black T-Shirt"
 	icon_state = "pinkblack_tshirt"
+
+/datum/category_item/underwear/undershirt/turtle
+	name = "Turtleneck"
+	icon_state = "turtleneck"
+	has_color = TRUE
+
+/datum/category_item/underwear/undershirt/sleevelessturtle
+	name = "Turtleneck, Sleeveless"
+	icon_state = "sleevelessturtle"
+	has_color = TRUE
