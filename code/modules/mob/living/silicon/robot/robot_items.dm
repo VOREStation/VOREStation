@@ -171,7 +171,7 @@
 		else if(T.dead) //It's probably dead otherwise.
 			T.remove_dead(user)
 	else
-		to_chat(user, "Harvesting \a [target] is not the purpose of this tool.  The [src] is for plants being grown.")
+		to_chat(user, "Harvesting \a [target] is not the purpose of this tool. [src] is for plants being grown.")
 
 // A special tray for the service droid. Allow droid to pick up and drop items as if they were using the tray normally
 // Click on table to unload, click on item to load. Otherwise works identically to a tray.
