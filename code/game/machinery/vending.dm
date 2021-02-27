@@ -572,7 +572,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	vend_ready = 1
 	currently_vending = null
 	SStgui.update_uis(src)
-
+	GLOB.items_sold_shift_roundstat++
 
 /obj/machinery/vending/proc/do_logging(datum/stored_item/vending_product/R, mob/user, var/vending = 0)
 	if(user.GetIdCard())

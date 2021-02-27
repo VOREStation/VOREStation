@@ -8,18 +8,14 @@
 /obj/effect/spawner/lootdrop/Initialize()
 	..()
 	var/list/things = params2list(loot)
-
 	if(things && things.len)
 		for(var/i = lootcount, i > 0, i--)
 			if(!things.len)
 				return
-
 			var/loot_spawn = pick(things)
 			var/loot_path = text2path(loot_spawn)
-
 			if(!loot_path || !lootdoubles)
 				things.Remove(loot_spawn)
 				continue
-
 			new loot_path(get_turf(src))
 	return INITIALIZE_HINT_QDEL

@@ -31,6 +31,15 @@
 	build_path = /obj/item/weapon/tool/crowbar/power
 	sort_string = "NAAAC"
 
+/datum/design/item/tool/rpd
+	name = "Rapid Pipe Dispenser"
+	desc = "A counterpart to the rapid construction device that allows creating and placing atmospheric and disposal pipes."
+	id = "rapidpipedispenser"
+	req_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 2)
+	materials = list(DEFAULT_WALL_MATERIAL = 4000, MAT_GLASS = 2000)
+	build_path = /obj/item/weapon/pipe_dispenser
+	sort_string = "NAAAD"
+
 // Other devices
 
 /datum/design/item/engineering/AssembleDesignName()
