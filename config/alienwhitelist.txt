@@ -3,14 +3,17 @@ admiraldragon - Vox
 aetherelemental - Daemon
 alphaprime1 - Protean
 amarewolf - Xenochimera
+amshaegaar - Vox
 arandomalien - Xenochimera
 arokha - Protean
 aruis - Diona
 aruis - Protean
 aruis - Xenochimera
 azmodan412 - Xenochimera
+beyondmylife - Protean
 bothnevarbackwards - Diona
 bricker98 - Protean
+camanis - Protean
 cgr - Protean
 chargae - Protean
 chillyfang - Black-Eyed Shadekin
@@ -20,13 +23,18 @@ draycu - Vox
 flaktual - Vox
 flurriee - Protean
 funnyman2003 - Xenochimera
+greennyy - Protean
 hawkerthegreat - Vox
 hollifex - Diona
+h0lysquirr3l - Protean
 inuzari - Diona
+jademanique - Black-Eyed Shadekin
 jademanique - Xenochimera
 khanivore - Protean
 killjaden - Protean
 ktccd - Diona
+liache - Black-Eyed Shadekin
+lizehrd - Xenochimera
 magpiemayhem - Vox
 marco_barko - Protean
 mewchild - Diona
@@ -34,6 +42,7 @@ mewchild - Vox
 mrsebbi - Xenochimera
 natje - Xenochimera
 nerdass - Protean
+newyorks - Protean
 ontejbjoav - Diona
 oreganovulgaris - Xenochimera
 owwy - Black-Eyed Shadekin
@@ -42,7 +51,9 @@ paradoxspace - Xenochimera
 pearlprophet - Protean
 pemdesos - Protean
 phoenixx0 - Vox
+qrocakes - Black-Eyed Shadekin
 radiantaurora - Protean
+residentcody - Protean
 rikaru19xjenkins - Xenochimera
 rixunie - Diona
 rubyflamewing - Protean
@@ -58,6 +69,7 @@ silvertalismen - Xenochimera
 skylarks - Black-Eyed Shadekin
 stackerrobot - Protean
 storesund97 - Protean
+syzygyrior - Black-Eyed Shadekin
 tastypred - Black-Eyed Shadekin
 tastypred - Xenochimera
 tastypred - Protean
@@ -68,6 +80,7 @@ timidvi - Diona
 trikonei - Protean
 varonis - Xenochimera
 verkister - Xenochimera
+verysoft - Black-Eyed Shadekin
 vitoras - Protean
 voidalynx - Protean
 wickedtemp - Shadekin Empathy
@@ -76,4 +89,3 @@ xioen - Xenochimera
 xonkon - Protean
 zalvine - Shadekin Empathy
 zammyman215 - Vox
-

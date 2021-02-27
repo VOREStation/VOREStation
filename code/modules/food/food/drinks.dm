@@ -10,6 +10,7 @@
 	icon_state = null
 	flags = OPENCONTAINER
 	amount_per_transfer_from_this = 5
+	possible_transfer_amounts = list(5,10,15,25,30)
 	volume = 50
 	var/trash = null
 
@@ -43,6 +44,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/proc/open(mob/user)
 	playsound(src,"canopen", rand(10,50), 1)
+	GLOB.cans_opened_roundstat++
 	to_chat(user, "<span class='notice'>You open [src] with an audible pop!</span>")
 	flags |= OPENCONTAINER
 

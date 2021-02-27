@@ -55,6 +55,9 @@
 
 	var/rev_cooldown = 0
 	var/tcrystals = 0
+	var/list/purchase_log = new
+	var/used_TC = 0
+
 
 	// the world.time since the mob has been brigged, or -1 if not at all
 	var/brigged_since = -1
@@ -73,7 +76,7 @@
 
 /datum/mind/New(var/key)
 	src.key = key
-
+	purchase_log = list()
 	..()
 
 /datum/mind/proc/transfer_to(mob/living/new_character)

@@ -7798,9 +7798,6 @@
 	dir = 8;
 	layer = 2.9
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
 /obj/item/weapon/circuitboard/transhuman_synthprinter{
 	pixel_x = -3;
 	pixel_y = 4

@@ -1,3 +1,6 @@
+#define ORGANICS	1
+#define SYNTHETICS	2
+
 /datum/trait/speed_slow
 	name = "Slowdown"
 	desc = "Allows you to move slower on average than baseline."
@@ -92,10 +95,10 @@
 
 /datum/trait/haemophilia
 	name = "Haemophilia - Organics only"
-	desc = "When you bleed, you bleed a LOT. This trait is only for organics, buggy with synths!"
+	desc = "When you bleed, you bleed a LOT."
 	cost = -2
 	var_changes = list("bloodloss_rate" = 2)
-	not_for_synths = 1
+	can_take = ORGANICS
 
 /datum/trait/hollow
 	name = "Hollow Bones/Aluminum Alloy"
@@ -145,5 +148,5 @@
 	name = "Neural Hypersensitivity"
 	desc = "Your nerves are particularly sensitive to physical changes, leading to experiencing twice the intensity of pain and pleasure alike. Doubles traumatic shock."
 	cost = -1
-	var_changes = list("traumatic_mod" = 2)
+	var_changes = list("trauma_mod" = 2)
 	

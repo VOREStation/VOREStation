@@ -341,6 +341,8 @@ var/list/global/tank_gauge_cache = list()
 	return remove_air(moles_needed)
 
 /obj/item/weapon/tank/process()
+	if(!air_contents)
+		return
 	//Allow for reactions
 	air_contents.react() //cooking up air tanks - add phoron and oxygen, then heat above PHORON_MINIMUM_BURN_TEMPERATURE
 	if(gauge_icon)

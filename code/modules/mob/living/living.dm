@@ -43,7 +43,7 @@
 			organs -= OR
 			qdel(OR)
 
-	if(LAZYLEN(internal_organs))
+	if(LAZYLEN(internal_organs) && !istype(src, /mob/living/simple_mob/animal))
 		internal_organs_by_name.Cut()
 		while(internal_organs.len)
 			var/obj/item/OR = internal_organs[1]
@@ -149,21 +149,21 @@ default behaviour is:
 		if((tmob.mob_always_swap || (tmob.a_intent == I_HELP || tmob.restrained()) && (a_intent == I_HELP || src.restrained())) && tmob.canmove && canmove && !tmob.buckled && !buckled && can_swap && can_move_mob(tmob, 1, 0)) // mutual brohugs all around!
 			var/turf/oldloc = loc
 			//VOREstation Edit - Begin
-			
+
 			//check bumpnom chance, if it's a simplemob that's doing the bumping
 			var/mob/living/simple_mob/srcsimp = src
 			if(istype(srcsimp))
 				if(srcsimp.tryBumpNom(tmob))
 					now_pushing = 0
 					return
-			
+
 			//if it's a simplemob being bumped, and the above didn't make them start getting bumpnommed, they get a chance to bumpnom
 			var/mob/living/simple_mob/tmobsimp = tmob
 			if(istype(tmobsimp))
 				if(tmobsimp.tryBumpNom(src))
 					now_pushing = 0
 					return
-					
+
 			//VOREstation Edit - End
 			forceMove(tmob.loc)
 			//VOREstation Edit - Begin
@@ -1281,8 +1281,8 @@ default behaviour is:
 
 /mob/living/update_transform()
 	// First, get the correct size.
-	var/desired_scale_x = size_multiplier //VOREStation edit
-	var/desired_scale_y = size_multiplier //VOREStation edit
+	var/desired_scale_x = size_multiplier * icon_scale_x //VOREStation edit
+	var/desired_scale_y = size_multiplier * icon_scale_y //VOREStation edit
 
 	// Now for the regular stuff.
 	var/matrix/M = matrix()

@@ -33,7 +33,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	if(!owner || owner.stat == DEAD)
 		defib_timer = max(--defib_timer, 0)
 	else
-		defib_timer = min(++defib_timer, (config.defib_timer MINUTES) / 2)
+		defib_timer = min(++defib_timer, (config.defib_timer MINUTES) / 20)		// Time vars measure things in ticks. Life tick happens every ~2 seconds, therefore dividing by 20
 
 /obj/item/organ/internal/brain/proc/can_assist()
 	return can_assist
@@ -81,7 +81,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 /obj/item/organ/internal/brain/New()
 	..()
 	health = config.default_brain_health
-	defib_timer = (config.defib_timer MINUTES) / 2
+	defib_timer = (config.defib_timer MINUTES) / 20				// Time vars measure things in ticks. Life tick happens every ~2 seconds, therefore dividing by 20
 	spawn(5)
 		if(brainmob)
 			butcherable = FALSE
@@ -103,7 +103,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 		if(istype(H))
 			brainmob.dna = H.dna.Clone()
 			brainmob.timeofhostdeath = H.timeofdeath
-			brainmob.ooc_notes = H.ooc_notes //VOREStation Edit 
+			brainmob.ooc_notes = H.ooc_notes //VOREStation Edit
 
 		// Copy modifiers.
 		for(var/datum/modifier/M in H.modifiers)
@@ -137,7 +137,8 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 
 	var/obj/item/organ/internal/brain/B = src
 	if(istype(B) && owner)
-		B.transfer_identity(owner)
+		if(istype(owner, /mob/living/carbon))
+			B.transfer_identity(owner)
 
 	..()
 
