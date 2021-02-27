@@ -318,7 +318,7 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /obj/machinery/computer/turbine_computer/Initialize()
-	. = ..()
+	..()
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/computer/turbine_computer/LateInitialize()

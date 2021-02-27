@@ -13,7 +13,7 @@
 	var/title = "Mass Driver Controls"
 
 /obj/machinery/computer/pod/Initialize()
-	..() //Not returning parent because lateload
+	..()
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/computer/pod/LateInitialize()

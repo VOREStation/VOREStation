@@ -92,7 +92,7 @@
 	instinct = 50
 
 /mob/living/simple_mob/animal/sif/kururak/Initialize()
-	..()
+	. = ..()
 	if(!instinct)
 		if(prob(20))
 			instinct = rand(6, 10)
@@ -331,7 +331,7 @@
 		remove_modifiers_of_type(/datum/modifier/ace)
 
 /mob/living/simple_mob/animal/sif/kururak/hibernate/Initialize()
-	..()
+	. = ..()
 	lay_down()
 	instinct = 0
 

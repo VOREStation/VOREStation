@@ -38,14 +38,15 @@
 	var/fancy_vore = FALSE					// Using the new sounds?
 	var/is_wet = TRUE						// Is this belly's insides made of slimy parts?
 	var/wet_loop = TRUE						// Does the belly have a fleshy loop playing?
+	var/obj/item/weapon/storage/vore_egg/ownegg	// Is this belly creating an egg?
+	var/egg_type = "Egg"					// Default egg type and path.
+	var/egg_path = /obj/item/weapon/storage/vore_egg
 
 	//I don't think we've ever altered these lists. making them static until someone actually overrides them somewhere.
 	//Actual full digest modes
-	var/tmp/static/list/digest_modes = list(DM_HOLD,DM_DIGEST,DM_ABSORB,DM_DRAIN,DM_UNABSORB,DM_HEAL,DM_SHRINK,DM_GROW,DM_SIZE_STEAL)
+	var/tmp/static/list/digest_modes = list(DM_HOLD,DM_DIGEST,DM_ABSORB,DM_DRAIN,DM_UNABSORB,DM_HEAL,DM_SHRINK,DM_GROW,DM_SIZE_STEAL,DM_EGG)
 	//Digest mode addon flags
-	var/tmp/static/list/mode_flag_list = list("Numbing" = DM_FLAG_NUMBING, "Stripping" = DM_FLAG_STRIPPING, "Leave Remains" = DM_FLAG_LEAVEREMAINS, "Muffles" = DM_FLAG_THICKBELLY)
-	//Transformation modes
-	var/tmp/static/list/transform_modes = list(DM_TRANSFORM_MALE,DM_TRANSFORM_FEMALE,DM_TRANSFORM_KEEP_GENDER,DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR,DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR_EGG,DM_TRANSFORM_REPLICA,DM_TRANSFORM_REPLICA_EGG,DM_TRANSFORM_KEEP_GENDER_EGG,DM_TRANSFORM_MALE_EGG,DM_TRANSFORM_FEMALE_EGG, DM_EGG)
+	var/tmp/static/list/mode_flag_list = list("Numbing" = DM_FLAG_NUMBING, "Stripping" = DM_FLAG_STRIPPING, "Leave Remains" = DM_FLAG_LEAVEREMAINS, "Muffles" = DM_FLAG_THICKBELLY, "Affect Worn Items" = DM_FLAG_AFFECTWORN)
 	//Item related modes
 	var/tmp/static/list/item_digest_modes = list(IM_HOLD,IM_DIGEST_FOOD,IM_DIGEST)
 
@@ -161,7 +162,8 @@
 		"is_wet",
 		"wet_loop",
 		"belly_fullscreen",
-		"disable_hud"
+		"disable_hud",
+		"egg_type"
 		)
 
 /obj/belly/Initialize()
@@ -286,6 +288,11 @@
 	if (!(M in contents))
 		return 0 // They weren't in this belly anyway
 
+	for(var/mob/living/L in M.contents)
+		L.muffled = 0
+	for(var/obj/item/weapon/holder/H in M.contents)
+		H.held_mob.muffled = 0
+
 	//Place them into our drop_location
 	M.forceMove(drop_location())
 
@@ -370,7 +377,7 @@
 // in message boxes, this looks nice and is easily delimited.
 /obj/belly/proc/get_messages(type, delim = "\n\n")
 	ASSERT(type == "smo" || type == "smi" || type == "dmo" || type == "dmp" || type == "em")
-	
+
 	var/list/raw_messages
 	switch(type)
 		if("smo")
@@ -522,7 +529,7 @@
 		owner.adjust_nutrition((nutrition_percent / 100) * 5 * digested)
 		if(isrobot(owner))
 			var/mob/living/silicon/robot/R = owner
-			R.cell.charge += (50 * digested)
+			R.cell.charge += ((nutrition_percent / 100) * 50 * digested)
 	return digested
 
 //Determine where items should fall out of us into.
@@ -546,9 +553,10 @@
 
 //Handle a mob struggling
 // Called from /mob/living/carbon/relaymove()
-/obj/belly/proc/relay_resist(mob/living/R)
+/obj/belly/proc/relay_resist(mob/living/R, obj/item/C)
 	if (!(R in contents))
-		return  // User is not in this belly
+		if(!C)
+			return  // User is not in this belly
 
 	R.setClickCooldown(50)
 
@@ -557,9 +565,13 @@
 		to_chat(owner, "<span class='warning'>Someone is attempting to climb out of your [lowertext(name)]!</span>")
 
 		if(do_after(R, escapetime, owner, incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_RESTRAINED))
-			if((owner.stat || escapable) && (R.loc == src)) //Can still escape?
-				release_specific_contents(R)
-				return
+			if((owner.stat || escapable)) //Can still escape?
+				if(C)
+					release_specific_contents(C)
+					return
+				if(R.loc == src)
+					release_specific_contents(R)
+					return
 			else if(R.loc != src) //Aren't even in the belly. Quietly fail.
 				return
 			else //Belly became inescapable or mob revived
@@ -602,6 +614,13 @@
 			to_chat(R, "<span class='warning'>You start to climb out of \the [lowertext(name)].</span>")
 			to_chat(owner, "<span class='warning'>Someone is attempting to climb out of your [lowertext(name)]!</span>")
 			if(do_after(R, escapetime))
+				if(escapable && C)
+					release_specific_contents(C)
+					to_chat(R,"<span class='warning'>Your struggles successfully cause [owner] to squeeze your container out of their \the [lowertext(name)].</span>")
+					to_chat(owner,"<span class='warning'>[C] suddenly slips out of your [lowertext(name)]!</span>")
+					for(var/mob/M in hearers(4, owner))
+						M.show_message("<span class='warning'>[C] suddenly slips out of [owner]'s [lowertext(name)]!</span>", 2)
+					return
 				if((escapable) && (R.loc == src) && !R.absorbed) //Does the owner still have escapable enabled?
 					release_specific_contents(R)
 					to_chat(R,"<span class='warning'>You climb out of \the [lowertext(name)].</span>")
@@ -632,6 +651,9 @@
 
 			to_chat(R, "<span class='warning'>Your attempt to escape [lowertext(name)] has failed and your struggles only results in you sliding into [owner]'s [transferlocation]!</span>")
 			to_chat(owner, "<span class='warning'>Someone slid into your [transferlocation] due to their struggling inside your [lowertext(name)]!</span>")
+			if(C)
+				transfer_contents(C, dest_belly)
+				return
 			transfer_contents(R, dest_belly)
 			return
 
@@ -722,6 +744,7 @@
 	dupe.wet_loop = wet_loop
 	dupe.belly_fullscreen = belly_fullscreen
 	dupe.disable_hud = disable_hud
+	dupe.egg_type = egg_type
 
 	//// Object-holding variables
 	//struggle_messages_outside - strings

@@ -154,7 +154,7 @@
 /obj/effect/shuttle_landmark/shuttle_initializer/ert_ship_boat
 	name = "NRV Von Braun's Bay"
 	base_area = /area/ship/ert/hangar
-	base_turf = /turf/simulated/floor/plating
+	base_turf = /turf/simulated/floor/reinforced
 	landmark_tag = "omship_spawn_ert_lander"
 	docking_controller = "ert_boarding_shuttle_dock"
 	shuttle_type = /datum/shuttle/autodock/overmap/ert_ship_boat

@@ -335,7 +335,7 @@
 	name = "Monitor Decryption Key"
 
 /obj/item/weapon/paper/monitorkey/Initialize()
-	..() //Late init
+	..()
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/item/weapon/paper/monitorkey/LateInitialize()

@@ -2481,7 +2481,7 @@
 /turf/simulated/wall,
 /area/maintenance/evahallway)
 "dB" = (
-/obj/structure/stairs/north,
+/obj/structure/stairs/spawner/north,
 /turf/simulated/floor/tiled,
 /area/tether/exploration/staircase)
 "dC" = (
@@ -2894,11 +2894,11 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 8
 	},
-/obj/structure/stairs/north,
+/obj/structure/stairs/spawner/north,
 /turf/simulated/floor/bluegrid,
 /area/ai_upload)
 "el" = (
-/obj/structure/stairs/north,
+/obj/structure/stairs/spawner/north,
 /turf/simulated/floor/bluegrid,
 /area/ai_upload)
 "em" = (
@@ -3100,7 +3100,7 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 4
 	},
-/obj/structure/stairs/north,
+/obj/structure/stairs/spawner/north,
 /turf/simulated/floor/bluegrid,
 /area/ai_upload)
 "eB" = (
@@ -3615,14 +3615,9 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ai_upload)
 "fo" = (
-/obj/effect/floor_decal/techfloor{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/zpipe/up/supply{
-	dir = 8
-	},
-/turf/simulated/floor/bluegrid,
-/area/ai_upload)
+/obj/structure/stairs/spawner/south,
+/turf/simulated/floor/tiled,
+/area/security/brig/visitation)
 "fp" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -3767,9 +3762,9 @@
 /turf/simulated/floor/tiled,
 /area/tether/exploration/staircase)
 "fB" = (
-/obj/structure/stairs/south,
+/obj/structure/stairs/spawner/west,
 /turf/simulated/floor/tiled,
-/area/security/brig/visitation)
+/area/security/security_cell_hallway)
 "fC" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -5270,9 +5265,13 @@
 /turf/simulated/floor/tiled,
 /area/tether/exploration/staircase)
 "hU" = (
-/obj/structure/stairs/west,
-/turf/simulated/floor/tiled,
-/area/security/security_cell_hallway)
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_l"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1)
 "hV" = (
 /turf/simulated/floor/tiled,
 /area/security/security_cell_hallway)
@@ -7798,9 +7797,6 @@
 	dir = 8;
 	layer = 2.9
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
 /obj/item/weapon/circuitboard/transhuman_synthprinter{
 	pixel_x = -3;
 	pixel_y = 4
@@ -9096,8 +9092,7 @@
 /area/ai_upload_foyer)
 "nk" = (
 /obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
+	dir = 8
 	},
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
@@ -9243,19 +9238,16 @@
 /area/storage/tech)
 "nx" = (
 /obj/structure/shuttle/engine/propulsion{
-	dir = 8
-	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1)
-"ny" = (
-/obj/structure/shuttle/engine/propulsion{
 	dir = 8;
 	icon_state = "propulsion_r"
 	},
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/large_escape_pod1)
+"ny" = (
+/obj/structure/stairs/spawner/north,
+/turf/simulated/floor/tiled,
+/area/tether/station/stairs_two)
 "nz" = (
 /obj/machinery/light_switch{
 	dir = 8;
@@ -9359,6 +9351,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/starboard)
+"nK" = (
+/obj/structure/stairs/spawner/west,
+/turf/simulated/floor/tiled/white,
+/area/medical/surgery_hallway)
 "nM" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
@@ -12371,10 +12367,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/ai_monitored/storage/eva)
-"un" = (
-/obj/structure/stairs/north,
-/turf/simulated/floor/tiled,
-/area/tether/station/stairs_two)
 "uo" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -14258,7 +14250,7 @@
 /turf/simulated/floor/tiled/white,
 /area/medical/biostorage)
 "xQ" = (
-/obj/structure/stairs/west,
+/turf/simulated/sky/virgo3b/west,
 /turf/simulated/floor/tiled/white,
 /area/medical/biostorage)
 "xR" = (
@@ -15311,10 +15303,6 @@
 	dir = 4
 	},
 /turf/simulated/floor/wood,
-/area/medical/surgery_hallway)
-"Ak" = (
-/obj/structure/stairs/west,
-/turf/simulated/floor/tiled/white,
 /area/medical/surgery_hallway)
 "Al" = (
 /obj/effect/floor_decal/borderfloorwhite/corner{
@@ -27839,7 +27827,7 @@ af
 XR
 UT
 BV
-fB
+fo
 fX
 gw
 gw
@@ -27981,7 +27969,7 @@ af
 bN
 ep
 BV
-fB
+fo
 fX
 gw
 gw
@@ -28006,7 +27994,7 @@ rO
 sw
 tc
 sw
-un
+ny
 uP
 vn
 vN
@@ -28148,7 +28136,7 @@ rP
 sw
 tc
 sw
-un
+ny
 uP
 vo
 eP
@@ -29548,8 +29536,8 @@ cR
 aS
 gW
 gV
-hU
-hU
+fB
+fB
 aj
 ja
 kj
@@ -30861,8 +30849,8 @@ ze
 zt
 zL
 xb
-Ak
-Ak
+nK
+nK
 AK
 Ba
 Bv
@@ -35807,11 +35795,11 @@ hl
 DI
 RX
 DL
+hU
+nk
+nk
 nk
 nx
-nx
-nx
-ny
 oY
 sW
 ef
@@ -35932,7 +35920,7 @@ ac
 ac
 dZ
 eA
-fo
+fS
 fS
 gr
 dZ

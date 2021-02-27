@@ -31,6 +31,9 @@
 
 	overload_possible = 1
 
+	icon_scale_x = 1.35
+	icon_scale_y = 1.35
+
 //Not quite sure how to move those yet.
 /obj/mecha/combat/gygax/get_commands()
 	var/output = {"<div class='wr'>

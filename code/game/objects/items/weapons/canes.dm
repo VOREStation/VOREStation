@@ -22,11 +22,12 @@
 /obj/item/weapon/cane/concealed
 	var/concealed_blade
 
-/obj/item/weapon/cane/concealed/New()
-	..()
+/obj/item/weapon/cane/concealed/Initialize()
+	. = ..()
 	var/obj/item/weapon/material/butterfly/switchblade/temp_blade = new(src)
 	concealed_blade = temp_blade
-	temp_blade.attack_self()
+	temp_blade.active = TRUE
+	temp_blade.update_force()
 
 /obj/item/weapon/cane/concealed/attack_self(var/mob/user)
 	var/datum/gender/T = gender_datums[user.get_visible_gender()]

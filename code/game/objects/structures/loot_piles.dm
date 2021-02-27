@@ -254,8 +254,8 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/stack/material/steel{amount = 5},
 		/obj/item/stack/material/cardboard{amount = 5},
 		/obj/item/weapon/contraband/poster,
+		/obj/item/weapon/contraband/poster/custom,
 		/obj/item/weapon/material/wirerod,
-		/obj/item/weapon/contraband/poster,
 		/obj/item/weapon/newspaper,
 		/obj/item/weapon/paper/crumpled,
 		/obj/item/weapon/paper/crumpled/bloody

@@ -224,6 +224,7 @@
 				mannequin.real_name = "Stock [S.name] Body"
 				mannequin.name = mannequin.real_name
 				mannequin.dna.real_name = mannequin.real_name
+				mannequin.dna.base_species = mannequin.species
 				active_br = new(mannequin, FALSE, FALSE)
 				active_br.speciesname = "Custom Sleeve"
 				update_preview_icon()

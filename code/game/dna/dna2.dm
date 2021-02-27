@@ -202,23 +202,9 @@ var/global/list/datum/dna/gene/dna_genes[0]
 
 	// Technically custom_species is not part of the UI, but this place avoids merge problems.
 	src.custom_species = character.custom_species
-	if(istype(character.species,/datum/species/custom))
-		var/datum/species/custom/CS = character.species
-		src.species_traits = CS.traits.Copy()
-		src.base_species = CS.base_species
-		src.blood_color = CS.blood_color
-
-	if(istype(character.species,/datum/species/xenochimera))
-		var/datum/species/xenochimera/CS = character.species
-		//src.species_traits = CS.traits.Copy() //No traits
-		src.base_species = CS.base_species
-		src.blood_color = CS.blood_color
-
-	if(istype(character.species,/datum/species/alraune))
-		var/datum/species/alraune/CS = character.species
-		//src.species_traits = CS.traits.Copy() //No traits
-		src.base_species = CS.base_species
-		src.blood_color = CS.blood_color
+	src.base_species = character.species.base_species
+	src.blood_color = character.species.blood_color
+	src.species_traits = character.species.traits.Copy()
 
 	// +1 to account for the none-of-the-above possibility
 	SetUIValueRange(DNA_UI_EAR_STYLE,	ear_style + 1,     ear_styles_list.len  + 1,  1)

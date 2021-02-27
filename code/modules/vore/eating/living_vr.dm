@@ -105,11 +105,6 @@
 
 			///// If user clicked on themselves
 			if(src == G.assailant && is_vore_predator(src))
-				if(!G.affecting.devourable)
-					to_chat(user, "<span class='notice'>They aren't able to be devoured.</span>")
-					log_and_message_admins("[key_name_admin(src)] attempted to devour [key_name_admin(G.affecting)] against their prefs ([G.affecting ? ADMIN_JMP(G.affecting) : "null"])")
-					return FALSE
-
 				if(feed_grabbed_to_self(src, G.affecting))
 					qdel(G)
 					return TRUE
@@ -487,6 +482,11 @@
 	var/user_to_prey = get_dist(get_turf(user),get_turf(prey))
 
 	if(user_to_pred > 1 || user_to_prey > 1)
+		return FALSE
+
+	if(!prey.devourable)
+		to_chat(user, "<span class='notice'>They aren't able to be devoured.</span>")
+		log_and_message_admins("[key_name_admin(src)] attempted to devour [key_name_admin(prey)] against their prefs ([prey ? ADMIN_JMP(prey) : "null"])")
 		return FALSE
 
 	// Prepare messages
