@@ -63,7 +63,7 @@ new = 0
 print('Reading changelogs...')
 for line in args.pr_body.splitlines():
 	print(f"Checking line '{line}'")
-	if line[0] == "🆑": # Find the start of the changelog
+	if line[:1] == "??": # Find the start of the changelog
 		print("Found opening :cl: tag")
 		if incltag == True: # If we're already reading logs, skip
 			continue
@@ -81,7 +81,7 @@ for line in args.pr_body.splitlines():
 		continue
 		
 	# If we hit a /cl, we're no longer reading logs
-	elif line == "/🆑":
+	elif line == "/??":
 		print("Found closing /:cl: tag")
 		incltag = False
 
