@@ -35,7 +35,7 @@
 		listclearnulls(active_beams)
 		var/atom/movable/beam_origin = B
 		for(var/mob/living/L in oview(world.view, B))
-			if(L.stat == DEAD || L.faction == "blob")
+			if(L.stat == DEAD || L.faction == faction)
 				continue
 			if(prob(5))
 				var/beamtarget_exists = FALSE
@@ -82,7 +82,7 @@
 	if(nearby_mobs.len)
 		listclearnulls(active_beams)
 		for(var/mob/living/L in nearby_mobs)
-			if(L.stat == DEAD || L.faction == "blob")
+			if(L.stat == DEAD || L.faction == faction)
 				continue
 			if(prob(5))
 				var/beamtarget_exists = FALSE

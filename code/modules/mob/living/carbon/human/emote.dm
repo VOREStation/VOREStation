@@ -255,7 +255,7 @@
 						var/obj/item/organ/internal/lungs/L = internal_organs_by_name[O_LUNGS]
 						if(L && L.robotic == 2)	//Hard-coded to 2, incase we add lifelike robotic lungs
 							robotic = 1
-					if(!robotic)
+					if(!robotic && !isSynthetic())
 						message = "coughs!"
 						if(get_gender() == FEMALE)
 							if(species.female_cough_sounds)
@@ -535,7 +535,7 @@
 						var/obj/item/organ/internal/lungs/L = internal_organs_by_name[O_LUNGS]
 						if(L && L.robotic == 2)	//Hard-coded to 2, incase we add lifelike robotic lungs
 							robotic = 1
-					if(!robotic)
+					if(!robotic && !isSynthetic())
 						message = "sneezes."
 						if(get_gender() == FEMALE)
 							playsound(src, species.female_sneeze_sound, 70, preference = /datum/client_preference/emote_noises) //VOREStation Add
@@ -729,23 +729,99 @@
 
 		if("whistle" || "whistles")
 			if(!muzzled)
-				message = "whistles a tune."
-				playsound(src, 'sound/misc/longwhistle.ogg', preference = /datum/client_preference/emote_noises) //VOREStation Add
+				if(!isSynthetic())
+					message = "whistles a tune."
+					playsound(src, 'sound/voice/longwhistle.ogg', 50, 1, preference = /datum/client_preference/emote_noises) //praying this doesn't get abused
+				else
+					message = "whistles a robotic tune."
+					playsound(src, 'sound/voice/longwhistle_robot.ogg', 50, 1, preference = /datum/client_preference/emote_noises)
 			else
 				message = "makes a light spitting noise, a poor attempt at a whistle."
 
 		if("qwhistle")
 			if(!muzzled)
-				message = "whistles quietly."
-				playsound(src, 'sound/misc/shortwhistle.ogg', preference = /datum/client_preference/emote_noises) //VOREStation Add
+				if(!isSynthetic())
+					message = "whistles quietly."
+					playsound(src, 'sound/voice/shortwhistle.ogg', 50, 1, preference = /datum/client_preference/emote_noises)
+				else
+					message = "whistles robotically."
+					playsound(src, 'sound/voice/shortwhistle_robot.ogg', 50, 1, preference = /datum/client_preference/emote_noises)
 			else
 				message = "makes a light spitting noise, a poor attempt at a whistle."
+
+		if("wwhistle")
+			if(!muzzled)
+				if(!isSynthetic())
+					message = "whistles inappropriately."
+					playsound(src, 'sound/voice/wolfwhistle.ogg', 50, 1, preference = /datum/client_preference/emote_noises)
+				else
+					message = "beeps inappropriately."
+					playsound(src, 'sound/voice/wolfwhistle_robot.ogg', 50, 1, preference = /datum/client_preference/emote_noises)
+			else
+				message = "makes a light spitting noise, a poor attempt at a whistle."
+
+		if("swhistle")
+			if(!muzzled)
+				if(!isSynthetic())
+					message = "summon whistles."
+					playsound(src, 'sound/voice/summon_whistle.ogg', 50, 1, preference = /datum/client_preference/emote_noises)
+				else
+					message = "summon whistles robotically."
+					playsound(src, 'sound/voice/summon_whistle_robot.ogg', 50, 1, preference = /datum/client_preference/emote_noises)
+			else
+				message = "makes a light spitting noise, a poor attempt at a whistle."
+
+		if("flip")
+			m_type = 1
+			if (!src.restrained())
+				//message = "performs an amazing, gravity-defying backflip before landing skillfully back to the ground."
+				playsound(src.loc, 'sound/effects/bodyfall4.ogg', 50, 1)
+				src.SpinAnimation(7,1)
+			else
+				to_chat(usr, "You can't quite do something as difficult as a backflip while so... restricted.")
+
+		if("spin")
+			m_type = 1
+			if (!src.restrained())
+				//message = "spins in a dance smoothly on their feet. Wow!"
+				src.spin(20, 1)
+			else
+				to_chat(usr, "You can't quite do something as difficult as a spin while so... restricted.")
+
+		if("floorspin")
+			m_type = 1
+			if (!src.restrained())
+				//message = "gets down on the floor and spins their entire body around!"
+				spawn(0)
+					for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
+						set_dir(i)
+						sleep(1)
+				src.SpinAnimation(20,1)
+			else
+				to_chat(usr, "You can't quite do something as difficult as a spin while so... restricted.")
+
+		if("sidestep")
+			m_type = 1
+			if (!src.restrained())
+				//message = "steps rhymatically and conservatively as they move side to side."
+				playsound(src.loc, 'sound/effects/bodyfall4.ogg', 50, 1)
+				var/default_pixel_x = initial(pixel_x)
+				var/default_pixel_y = initial(pixel_y)
+				default_pixel_x = src.default_pixel_x
+				default_pixel_y = src.default_pixel_y
+
+				animate(src, pixel_x = 5, time = 20)
+				sleep(3)
+				animate(src, pixel_x = -5, time = 20)
+				animate(pixel_x = default_pixel_x, pixel_y = default_pixel_y, time = 2)
+			else
+				to_chat(usr, "Sidestepping sure seems unachieveable when you're this restricted.")
 
 		if("help")
 			to_chat(src, "<span class='filter_say'>blink, blink_r, blush, bow-(none)/mob, burp, choke, chuckle, clap, collapse, cough, cry, custom, deathgasp, drool, eyebrow, fastsway/qwag, \
 					frown, gasp, giggle, glare-(none)/mob, grin, groan, grumble, handshake, hug-(none)/mob, laugh, look-(none)/mob, moan, mumble, nod, pale, point-atom, \
-					raise, salute, scream, sneeze, shake, shiver, shrug, sigh, signal-#1-10, slap-(none)/mob, smile, sneeze, sniff, snore, stare-(none)/mob, stopsway/swag, sway/wag, swish, tremble, twitch, \
-					twitch_v, vomit, whimper, wink, yawn. Prometheans: squish Synthetics: beep, buzz, dwoop, yes, no, rcough, rsneeze, ping. Skrell: warble</span>")
+					qwhistle, raise, salute, scream, sneeze, shake, shiver, shrug, sigh, signal-#1-10, slap-(none)/mob, smile, sneeze, sniff, snore, stare-(none)/mob, stopsway/swag, sway/wag, swish, swhistle, \
+					tremble, twitch, twitch_v, vomit, whimper, wink, whistle, wwhistle, yawn. Prometheans: squish Synthetics: beep, buzz, dwoop, yes, no, rcough, rsneeze, ping. Skrell: warble</span>")
 
 		else
 			to_chat(src, "<span class='filter_say'><font color='blue'>Unusable emote '[act]'. Say *help or *vhelp for a list.</font></span>") //VOREStation Edit, mention *vhelp for Virgo-specific emotes located in emote_vr.dm.

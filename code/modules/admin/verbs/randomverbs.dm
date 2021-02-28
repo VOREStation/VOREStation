@@ -517,6 +517,12 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		new_character.mind.loaded_from_slot = picked_slot
 	//VOREStation Add End
 
+	for(var/lang in picked_client.prefs.alternate_languages)
+		var/datum/language/chosen_language = GLOB.all_languages[lang]
+		if(chosen_language)
+			if(is_lang_whitelisted(src,chosen_language) || (new_character.species && (chosen_language.name in new_character.species.secondary_langs)))
+				new_character.add_language(lang)
+
 	//If desired, apply equipment.
 	if(equipment)
 		if(charjob)

@@ -1,5 +1,5 @@
  // This causes tether submap maps to get 'checked' and compiled, when undergoing a unit test.
-// This is so Travis can validate PoIs, and ensure future changes don't break PoIs, as PoIs are loaded at runtime and the compiler can't catch errors.
+// This is so CI can validate PoIs, and ensure future changes don't break PoIs, as PoIs are loaded at runtime and the compiler can't catch errors.
 
 //////////////////////////////////////////////////////////////////////////////
 /// Static Load
@@ -538,6 +538,8 @@
 #include "../../offmap_vr/om_ships/mercenarybase.dm"
 #include "../../offmap_vr/om_ships/mercship.dm"
 #include "../../offmap_vr/om_ships/curashuttle.dm"
+#include "../../offmap_vr/om_ships/itglight.dm"
+#include "../../offmap_vr/om_ships/abductor.dm"
 
 //////////////////////////////////////////////////////////////////////////////
 //Capsule deployed ships

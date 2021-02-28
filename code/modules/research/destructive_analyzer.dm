@@ -15,6 +15,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 30
 	active_power_usage = 2500
+	var/rped_recycler_ready = TRUE
 
 /obj/machinery/r_n_d/destructive_analyzer/Initialize()
 	. = ..()
@@ -22,7 +23,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 
 /obj/machinery/r_n_d/destructive_analyzer/RefreshParts()
 	var/T = 0
-	for(var/obj/item/weapon/stock_parts/S in src)
+	for(var/obj/item/weapon/stock_parts/S in component_parts)
 		T += S.rating
 	decon_mod = T * 0.1
 
@@ -76,3 +77,44 @@ Note: Must be placed within 3 tiles of the R&D Console
 			busy = 0
 		return 1
 	return
+
+/obj/machinery/r_n_d/destructive_analyzer/MouseDrop_T(atom/dropping, mob/living/user)
+	if(istype(dropping, /obj/item/weapon/storage/part_replacer))
+		var/obj/item/weapon/storage/part_replacer/replacer = dropping
+		replacer.hide_from(user)
+		if(!linked_console)
+			to_chat(user, "<span class='notice'>\The [src] must be linked to an R&D console first.</span>")
+			return 0
+		if(!linked_console.linked_lathe)
+			to_chat(user, "<span class='notice'>Link a protolathe to [src]'s R&D console first.</span>")
+			return 0
+		if(!rped_recycler_ready)
+			to_chat(user, "<span class='notice'>\The [src]'s stock parts recycler isn't ready yet.</span>")
+			return 0
+		var/obj/machinery/r_n_d/protolathe/lathe_to_fill = linked_console.linked_lathe
+		var/lowest_rating = INFINITY // We want the lowest-part tier rating in the RPED so we only recycle the lowest-tier parts.
+		for(var/obj/item/B in replacer.contents)
+			if(B.rped_rating() < lowest_rating)
+				lowest_rating = B.rped_rating()
+		if(lowest_rating == INFINITY)
+			to_chat(user, "<span class='notice'>Mass part deconstruction attempt canceled - no valid parts for recycling detected.</span>")
+			return 0
+		for(var/obj/item/B in replacer.contents)
+			if(B.rped_rating() > lowest_rating)
+				continue
+			if(lathe_to_fill && B.matter) // Sending salvaged materials to the lathe...
+				for(var/t in B.matter)
+					if(t in lathe_to_fill.materials)
+						lathe_to_fill.materials[t] += B.matter[t] * src.decon_mod
+			qdel(B)
+		playsound(get_turf(src), 'sound/machines/click.ogg', 50, 1)
+		rped_recycler_ready = FALSE
+		addtimer(CALLBACK(src, .proc/rped_ready), 5 SECONDS)
+		to_chat(user, "<span class='notice'>You deconstruct all the parts of rating [lowest_rating] in [replacer] with [src].</span>")
+		return 1
+	else
+		..()
+
+/obj/machinery/r_n_d/destructive_analyzer/proc/rped_ready()
+	rped_recycler_ready = TRUE
+	playsound(get_turf(src), 'sound/machines/chime.ogg', 50, 1)

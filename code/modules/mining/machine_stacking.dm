@@ -87,11 +87,11 @@
 /obj/machinery/mineral/stacking_machine/New()
 	..()
 
-	for(var/stacktype in typesof(/obj/item/stack/material)-/obj/item/stack/material)
-		var/obj/item/stack/S = new stacktype(src)
-		stack_storage[S.name] = 0
-		stack_paths[S.name] = stacktype
-		qdel(S)
+	for(var/stacktype in subtypesof(/obj/item/stack/material))
+		var/obj/item/stack/S = stacktype
+		var/s_name = initial(S.name)
+		stack_storage[s_name] = 0
+		stack_paths[s_name] = stacktype
 
 	stack_storage["glass"] = 0
 	stack_paths["glass"] = /obj/item/stack/material/glass
@@ -109,6 +109,18 @@
 			if(src.output) break
 		return
 	return
+
+/obj/machinery/mineral/stacking_machine/proc/toggle_speed(var/forced)
+	if(forced)
+		speed_process = forced
+	else
+		speed_process = !speed_process // switching gears
+	if(speed_process) // high gear
+		STOP_MACHINE_PROCESSING(src)
+		START_PROCESSING(SSfastprocess, src)
+	else // low gear
+		STOP_PROCESSING(SSfastprocess, src)
+		START_MACHINE_PROCESSING(src)
 
 /obj/machinery/mineral/stacking_machine/process()
 	if (src.output && src.input)

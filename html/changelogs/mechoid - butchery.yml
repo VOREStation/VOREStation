@@ -34,4 +34,4 @@ delete-after: True
 # Please surround your changes in  double quotes ("), as certain characters otherwise screws up compiling. The quotes will not show up in the changelog.
 changes: 
   - rscadd: "Animals can be butchered for organs and hide. Requires scraping (sharp), washing (water or washing machine), and then drying (bonfire or drying rack)."
-  - rscadd: "Organs can be butchered for meat, named "[organ] meat". Heart meat, liver meat, etc. Brains from player mobs cannot be butchered."
+  - rscadd: "Organs can be butchered for meat, named \"[organ] meat\". Heart meat, liver meat, etc. Brains from player mobs cannot be butchered."

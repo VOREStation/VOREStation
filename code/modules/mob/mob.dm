@@ -229,7 +229,8 @@
 	var/turf/our_tile = get_turf(src)
 	var/obj/visual = new /obj/effect/decal/point(our_tile)
 	visual.invisibility = invisibility
-	visual.plane = plane
+	visual.plane = ABOVE_PLANE
+	visual.layer = FLY_LAYER
 
 	animate(visual,
 		pixel_x = (tile.x - our_tile.x) * world.icon_size + A.pixel_x,
@@ -237,9 +238,7 @@
 		time = 1.7,
 		easing = EASE_OUT)
 
-	spawn(20)
-		if(visual)
-			qdel(visual)	// qdel
+	QDEL_IN(visual, 2 SECONDS) //Better qdel
 
 	face_atom(A)
 	return 1
@@ -683,7 +682,7 @@
 
 // facing verbs
 /mob/proc/canface()
-	if(!canmove)						return 0
+//	if(!canmove)						return 0 //VOREStation Edit. Redundant check that only affects conscious proning, actual inability to turn and shift around handled by actual inabilities.
 	if(stat)							return 0
 	if(anchored)						return 0
 	if(transforming)						return 0
@@ -1026,7 +1025,7 @@ mob/proc/yank_out_object()
 	set hidden = TRUE
 	if(!canface())
 		return FALSE
-	if(pixel_y <= 16)
+	if(pixel_y <= (default_pixel_y + 16))
 		pixel_y++
 		is_shifted = TRUE
 
@@ -1034,7 +1033,7 @@ mob/proc/yank_out_object()
 	set hidden = TRUE
 	if(!canface())
 		return FALSE
-	if(pixel_y >= -16)
+	if(pixel_y >= (default_pixel_y - 16))
 		pixel_y--
 		is_shifted = TRUE
 
@@ -1042,7 +1041,7 @@ mob/proc/yank_out_object()
 	set hidden = TRUE
 	if(!canface())
 		return FALSE
-	if(pixel_x >= -16)
+	if(pixel_x >= (default_pixel_x - 16))
 		pixel_x--
 		is_shifted = TRUE
 
@@ -1050,7 +1049,7 @@ mob/verb/shifteast()
 	set hidden = TRUE
 	if(!canface())
 		return FALSE
-	if(pixel_x <= 16)
+	if(pixel_x <= (default_pixel_x + 16))
 		pixel_x++
 		is_shifted = TRUE
 // End VOREstation edit

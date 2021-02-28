@@ -529,5 +529,5 @@
 	stasis_level = 100 //Just one setting
 
 /obj/machinery/sleeper/survival_pod/Initialize()
-	..()
+	. = ..()
 	RefreshParts(1)

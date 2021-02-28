@@ -14,7 +14,7 @@
 	var/obj/item/weapon/inflatable_dispenser/my_deployer = null
 
 /obj/item/mecha_parts/mecha_equipment/tool/powertool/inflatables/Initialize()
-	..()
+	. = ..()
 	my_deployer = my_tool
 
 /obj/item/mecha_parts/mecha_equipment/tool/powertool/inflatables/Topic(href, href_list)

@@ -72,8 +72,8 @@
 		teleport_y = src.y
 
 /obj/effect/step_trigger/teleporter/to_underdark
-	icon = 'icons/obj/stairs.dmi'
-	icon_state = "stairs"
+	icon = 'icons/obj/structures/multiz.dmi'
+	icon_state = "stair"
 	invisibility = 0
 /obj/effect/step_trigger/teleporter/to_underdark/Initialize()
 	. = ..()
@@ -85,8 +85,8 @@
 			teleport_z = Z.z
 
 /obj/effect/step_trigger/teleporter/from_underdark
-	icon = 'icons/obj/stairs.dmi'
-	icon_state = "stairs"
+	icon = 'icons/obj/structures/multiz.dmi'
+	icon_state = "stair"
 	invisibility = 0
 /obj/effect/step_trigger/teleporter/from_underdark/Initialize()
 	. = ..()
@@ -366,7 +366,7 @@ var/global/list/latejoin_tram   = list()
 
 /obj/structure/closet/secure_closet/guncabinet/excursion/New()
 	..()
-	for(var/i = 1 to 3)
+	for(var/i = 1 to 2)
 		new /obj/item/weapon/gun/energy/locked/frontier(src)
 
 // Used at centcomm for the elevator

@@ -73,7 +73,7 @@
 	spleen_efficiency = 0.5
 
 /obj/item/organ/internal/spleen/skrell/Initialize()
-	..()
+	. = ..()
 	adjust_scale(0.8,0.7)
 
 /obj/item/organ/internal/spleen/minor
@@ -83,5 +83,5 @@
 	spleen_tick = 15
 
 /obj/item/organ/internal/spleen/minor/Initialize()
-	..()
+	. = ..()
 	adjust_scale(0.7)

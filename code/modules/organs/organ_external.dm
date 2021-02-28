@@ -857,6 +857,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 	else if(disintegrate == DROPLIMB_EDGE && nonsolid) //VOREStation Add End
 		disintegrate = DROPLIMB_BLUNT //splut
 
+	GLOB.lost_limbs_shift_roundstat++
+
 	switch(disintegrate)
 		if(DROPLIMB_EDGE)
 			if(!clean)

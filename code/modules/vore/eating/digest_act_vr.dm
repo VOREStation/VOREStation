@@ -5,6 +5,10 @@
 // Ye default implementation.
 /obj/item/proc/digest_act(atom/movable/item_storage = null)
 	if(istype(item_storage, /obj/item/device/dogborg/sleeper))
+		if(istype(src, /obj/item/device/pda))
+			var/obj/item/device/pda/P = src
+			if(P.id)
+				P.id = null
 		for(var/obj/item/O in contents)
 			if(istype(O, /obj/item/weapon/storage/internal)) //Dump contents from dummy pockets.
 				for(var/obj/item/SO in O)
@@ -29,6 +33,10 @@
 			g_damage = digest_stage
 		digest_stage -= g_damage
 	if(digest_stage <= 0)
+		if(istype(src, /obj/item/device/pda))
+			var/obj/item/device/pda/P = src
+			if(P.id)
+				P.id = null
 		for(var/obj/item/O in contents)
 			if(istype(O,/obj/item/weapon/storage/internal)) //Dump contents from dummy pockets.
 				for(var/obj/item/SO in O)
@@ -69,12 +77,6 @@
 /////////////
 // Some special treatment
 /////////////
-//PDAs need to lose their ID to not take it with them, so we can get a digested ID
-/obj/item/device/pda/digest_act(atom/movable/item_storage = null)
-	if(id)
-		if(istype(item_storage, /obj/item/device/dogborg/sleeper) || (!isnull(digest_stage) && digest_stage <= 0))
-			id = null
-	. = ..()
 
 /obj/item/weapon/card/id
 	var/lost_access = list()

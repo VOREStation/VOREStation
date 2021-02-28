@@ -4,6 +4,9 @@
 
 /obj/machinery/door
 	var/reinforcing = 0	//vorestation addition
+	var/tintable = 0
+	var/icon_tinted
+	var/id_tint
 
 /obj/machinery/door/firedoor
 	heat_proof = 1
@@ -102,4 +105,29 @@
 /obj/machinery/door/blast/regular/
 	heat_proof = 1 //just so repairing them doesn't try to fireproof something that never takes fire damage
 
+/obj/machinery/door/proc/toggle()
+	if(glass)
+		icon = icon_tinted
+		glass = 0
+		if(!operating && density)
+			set_opacity(1)
+	else
+		icon = initial(icon)
+		glass = 1
+		if(!operating)
+			set_opacity(0)
 
+/obj/machinery/button/windowtint/doortint
+	name = "door tint control"
+	desc = "A remote control switch for polarized glass doors."
+
+/obj/machinery/button/windowtint/doortint/toggle_tint()
+	use_power(5)
+	active = !active
+	update_icon()
+
+	for(var/obj/machinery/door/D in range(src,range))
+		if(D.icon_tinted && (D.id_tint == src.id || !D.id_tint))
+			spawn(0)
+				D.toggle()
+				return

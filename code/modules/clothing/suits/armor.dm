@@ -353,6 +353,11 @@
 	icon_badge = "pcrcvest_badge"
 	icon_nobadge = "pcrcvest_nobadge"
 
+/obj/item/clothing/suit/storage/vest/solgov/hedberg
+	name = "Hedberg-Hammarstrom armor vest"
+	desc = "A simple kevlar plate carrier belonging to Hedberg-Hammarstrom. The company logo is clearly visible."
+	icon_state = "secwebvest"
+
 /obj/item/clothing/suit/storage/vest/solgov
 	name = "\improper Solar Confederate Government armored vest"
 	desc = "A synthetic armor vest. This one is marked with the crest of the Solar Confederate Government."
@@ -361,13 +366,8 @@
 
 /obj/item/clothing/suit/storage/vest/solgov/heavy
 	name = "\improper Solar Confederate Government heavy armored vest"
-	desc = "A synthetic armor vest with PEACEKEEPER printed in distinctive blue lettering on the chest. This one has added webbing and ballistic plates."
+	desc = "A synthetic armor vest with Solar Confederate Government printed in distinctive blue lettering on the chest. This one has added webbing and ballistic plates."
 	icon_state = "solwebvest"
-
-/obj/item/clothing/suit/storage/vest/solgov/security
-	name = "master at arms heavy armored vest"
-	desc = "A synthetic armor vest with MASTER AT ARMS printed in silver lettering on the chest. This one has added webbing and ballistic plates."
-	icon_state = "secwebvest"
 
 /obj/item/clothing/suit/storage/vest/solgov/command
 	name = "command heavy armored vest"

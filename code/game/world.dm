@@ -57,12 +57,8 @@
 	// Create robolimbs for chargen.
 	populate_robolimb_list()
 
-	//Must be done now, otherwise ZAS zones and lighting overlays need to be recreated.
-	//createRandomZlevel()	//VOREStation Removal: Deprecated
-
 	master_controller = new /datum/controller/game_controller()
-
-	Master.Initialize(10, FALSE, TRUE)
+	Master.Initialize(10, FALSE)
 
 	spawn(1)
 		master_controller.setup()
@@ -408,7 +404,6 @@ var/world_topic_spam_protect_time = world.timeofday
 			to_world("<span class='boldannounce'>Rebooting world immediately due to host request</span>")
 	else
 		Master.Shutdown()	//run SS shutdowns
-		//processScheduler.stop() //VOREStation Removal
 		for(var/client/C in GLOB.clients)
 			if(config.server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
 				C << link("byond://[config.server]")

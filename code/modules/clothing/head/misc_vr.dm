@@ -47,3 +47,43 @@
 	name = "polychromic closed shiny hood"
 	icon_state = "hood_col_o"
 	polychromic = TRUE
+
+/obj/item/clothing/head/pelt
+	name = "Bear pelt"
+	desc = "A luxurious bear pelt, good to keep warm in winter. Or to sleep through winter."
+	icon = 'icons/obj/clothing/hats_vr.dmi'
+	icon_override = 'icons/mob/head_vr.dmi'
+	icon_state = "bearpelt_brown"
+	item_state = "bearpelt_brown"
+
+/obj/item/clothing/head/pelt/wolfpelt
+	name = "Wolf pelt"
+	desc = "A fuzzy wolf pelt, demanding respect as a hunter, well if it isn't synthetic or anything at least. Or bought."
+	icon_override = 'icons/mob/wolfpelt_vr.dmi'
+	icon_state = "wolfpelt_brown"
+	item_state = "wolfpelt_brown"
+
+/obj/item/clothing/head/pelt/wolfpeltblack
+	name = "Wolf pelt"
+	desc = "A fuzzy wolf pelt, demanding respect as a hunter, well if it isn't synthetic or anything at least. Or bought."
+	icon_override = 'icons/mob/wolfpelt_vr.dmi'
+	icon_state = "wolfpelt_gray"
+	item_state = "wolfpelt_gray"
+
+/obj/item/clothing/head/pelt/tigerpelt
+	name = "Shiny tiger pelt"
+	desc = "A vibrant tiger pelt, particularly fabulous."
+	icon_state = "tigerpelt_shiny"
+	item_state = "tigerpelt_shiny"
+
+/obj/item/clothing/head/pelt/tigerpeltsnow
+	name = "Snow tiger pelt"
+	desc = "A pelt of a less vibrant tiger, but rather warm."
+	icon_state = "tigerpelt_snow"
+	item_state = "tigerpelt_snow"
+
+/obj/item/clothing/head/pelt/tigerpeltpink
+	name = "Pink tiger pelt"
+	desc = "A particularly vibrant tiger pelt, for those who want to be the most fabulous at parties."
+	icon_state = "tigerpelt_pink"
+	item_state = "tigerpelt_pink"

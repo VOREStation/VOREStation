@@ -38,7 +38,7 @@
 
 // Aurora forensics port.
 /obj/item/clothing/clean_blood()
-	..()
+	. = ..()
 	gunshot_residue = null
 
 
@@ -54,6 +54,12 @@
 	if(polychromic)
 		verbs |= /obj/item/clothing/proc/change_color
 	//VOREStation edit start
+
+/obj/item/clothing/update_icon()
+	overlays.Cut() //This removes all the overlays on the sprite and then goes down a checklist adding them as required.
+	if(blood_DNA)
+		add_blood()
+	. = ..()
 
 /obj/item/clothing/equipped(var/mob/user,var/slot)
 	..()
@@ -365,6 +371,11 @@
 			species_restricted -= SPECIES_TAJ
 		return
 */
+
+/obj/item/clothing/gloves/clean_blood()
+	. = ..()
+	transfer_blood = 0
+	update_icon()
 
 /obj/item/clothing/gloves/mob_can_equip(mob/user, slot, disable_warning = FALSE)
 	var/mob/living/carbon/human/H = user
@@ -685,9 +696,7 @@
 	update_icon()
 
 /obj/item/clothing/shoes/update_icon()
-	overlays.Cut() //This removes all the overlays on the sprite and then goes down a checklist adding them as required.
-	if(blood_DNA)
-		add_blood()
+	. = ..()
 	if(holding)
 		overlays += image(icon, "[icon_state]_knife")
 	if(contaminated)
@@ -698,7 +707,6 @@
 	if(ismob(usr))
 		var/mob/M = usr
 		M.update_inv_shoes()
-	return ..()
 
 /obj/item/clothing/shoes/clean_blood()
 	update_icon()

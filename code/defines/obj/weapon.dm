@@ -297,7 +297,7 @@
 
 /obj/item/weapon/storage/part_replacer
 	name = "rapid part exchange device"
-	desc = "Special mechanical module made to store, sort, and apply standard machine parts."
+	desc = "A special mechanical module made to store, sort, and apply standard machine parts."
 	icon_state = "RPED"
 	w_class = ITEMSIZE_HUGE
 	can_hold = list(/obj/item/weapon/stock_parts)
@@ -311,10 +311,11 @@
 	max_storage_space = 100
 	drop_sound = 'sound/items/drop/device.ogg'
 	pickup_sound = 'sound/items/pickup/device.ogg'
+	var/panel_req = TRUE
 
 /obj/item/weapon/storage/part_replacer/adv
 	name = "advanced rapid part exchange device"
-	desc = "Special mechanical module made to store, sort, and apply standard machine parts.  This one has a greatly upgraded storage capacity"
+	desc = "A special mechanical module made to store, sort, and apply standard machine parts.  This one has a greatly upgraded storage capacity."
 	icon_state = "RPED"
 	w_class = ITEMSIZE_HUGE
 	can_hold = list(/obj/item/weapon/stock_parts)
@@ -327,6 +328,31 @@
 	max_w_class = ITEMSIZE_NORMAL
 	max_storage_space = 400
 
+/obj/item/weapon/storage/part_replacer/adv/discount_bluespace
+	name = "discount bluespace rapid part exchange device"
+	desc = "A special mechanical module made to store, sort, and apply standard machine parts.  This one has a further increased storage capacity, \
+	and the ability to work on machines with closed maintenance panels."
+	storage_slots = 400
+	max_storage_space = 800
+	panel_req = FALSE
+
+/obj/item/weapon/storage/part_replacer/drop_contents() // hacky-feeling tier-based drop system
+	hide_from(usr)
+	var/turf/T = get_turf(src)
+	var/lowest_rating = INFINITY // We want the lowest-part tier rating in the RPED so we only drop the lowest-tier parts.
+	/*
+	* Why not just use the stock part's rating variable?
+	* Future-proofing for a potential future where stock parts aren't the only thing that can fit in an RPED.
+	* see: /tg/ and /vg/'s RPEDs fitting power cells, beakers, etc.
+	*/
+	for(var/obj/item/B in contents)
+		if(B.rped_rating() < lowest_rating)
+			lowest_rating = B.rped_rating()
+	for(var/obj/item/B in contents)
+		if(B.rped_rating() > lowest_rating)
+			continue
+		remove_from_storage(B, T)
+	
 /obj/item/weapon/stock_parts
 	name = "stock part"
 	desc = "What?"
@@ -341,6 +367,9 @@
 	src.pixel_x = rand(-5.0, 5)
 	src.pixel_y = rand(-5.0, 5)
 	..()
+
+/obj/item/weapon/stock_parts/get_rating()
+	return rating
 
 //Rank 1
 
