@@ -64,6 +64,10 @@
 		else
 			return
 
+	if(robotic && owner.get_restraining_bolt())
+		to_chat(owner, "<span class='warning'>\The [src] doesn't respond.</span>")
+		return
+
 	var/item_to_equip = integrated_object
 	if(!item_to_equip && integrated_object_type)
 		item_to_equip = integrated_object_type
