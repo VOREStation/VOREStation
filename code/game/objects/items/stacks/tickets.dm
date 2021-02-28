@@ -7,7 +7,7 @@
 	w_class = ITEMSIZE_TINY
 	max_amount = 30
 
-/obj/item/stack/arcadeticket/New(loc, amount = null)
+/obj/item/stack/arcadeticket/Initialize()
 	. = ..()
 	update_icon()
 

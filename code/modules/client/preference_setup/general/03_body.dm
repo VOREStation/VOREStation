@@ -140,6 +140,28 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	character.g_synth	= pref.g_synth
 	character.b_synth	= pref.b_synth
 	character.synth_markings = pref.synth_markings
+	character.ear_style			= ear_styles_list[pref.ear_style]
+	character.r_ears	= pref.r_ears
+	character.b_ears	= pref.b_ears
+	character.g_ears			= pref.g_ears
+	character.r_ears2	= pref.r_ears2
+	character.b_ears2	= pref.b_ears2
+	character.g_ears2	= pref.g_ears2
+	character.tail_style = tail_styles_list[pref.tail_style]
+	character.r_tail	= pref.r_tail
+	character.b_tail	= pref.b_tail
+	character.g_tail	= pref.g_tail
+	character.r_tail2	= pref.r_tail2
+	character.b_tail2	= pref.b_tail2
+	character.g_tail2	= pref.g_tail2
+	character.wing_style = wing_styles_list[pref.wing_style]
+	character.r_wing	= pref.r_wing
+	character.b_wing	= pref.b_wing
+	character.g_wing	= pref.g_wing
+	character.r_wing2	= pref.r_wing2
+	character.b_wing2	= pref.b_wing2
+	character.g_wing2	= pref.g_wing2
+	character.set_gender( pref.biological_gender)
 
 	// Destroy/cyborgize organs and limbs.
 	for(var/name in list(BP_HEAD, BP_L_HAND, BP_R_HAND, BP_L_ARM, BP_R_ARM, BP_L_FOOT, BP_R_FOOT, BP_L_LEG, BP_R_LEG, BP_GROIN, BP_TORSO))

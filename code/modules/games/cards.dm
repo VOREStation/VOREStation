@@ -343,7 +343,8 @@
 		H.update_icon()
 		src.update_icon()
 		usr.visible_message("<span class = 'notice'>\The [usr] plays \the [discarding].</span>")
-		H.loc = get_step(usr,usr.dir)
+		H.loc = get_turf(usr)
+		H.Move(get_step(usr,usr.dir))
 
 	if(!cards.len)
 		qdel(src)

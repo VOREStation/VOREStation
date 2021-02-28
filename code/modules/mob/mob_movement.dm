@@ -289,7 +289,7 @@
 
 	// If we have a grab
 	var/list/grablist = my_mob.ret_grab()
-	if(grablist.len)
+	if(LAZYLEN(grablist))
 		grablist -= my_mob // Just in case we're in a circular grab chain
 
 		// It's just us and another person

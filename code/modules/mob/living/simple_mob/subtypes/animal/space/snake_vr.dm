@@ -140,7 +140,7 @@
 	nutriment_desc = list("sugar" = 1)
 
 /obj/item/weapon/reagent_containers/food/snacks/snakesnack/Initialize()
-	..()
+	. = ..()
 	if(!snack_colour)
 		snack_colour = pick( list("yellow","green","pink","blue") )
 	icon_state = "snack_[snack_colour]"

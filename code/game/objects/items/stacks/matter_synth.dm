@@ -56,3 +56,6 @@
 	name = "Bandage Synthesizer"
 	max_energy = 10
 	recharge_rate = 1
+
+/datum/matter_synth/cloth
+	name = "Cloth Synthesizer"

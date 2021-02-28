@@ -21,6 +21,24 @@
 	var/icon_height = 32
 	var/agility = 20 //prob() to do agile things
 
+	var/organic_food_coeff = 1
+	var/synthetic_food_coeff = 0
+	//var/vore_numbing = 0
+	var/metabolism = 0.0015
+	var/lightweight = FALSE //Oof! Nonhelpful bump stumbles.
+	var/trashcan = FALSE //It's always sunny in the wrestling ring.
+	var/eat_minerals = FALSE //HEAVY METAL DIET
+	var/base_species = null // Unused outside of a few species
+	var/selects_bodytype = FALSE // Allows the species to choose from body types like custom species can, affecting suit fitting and etcetera as you would expect.
+
+	var/is_weaver = FALSE
+	var/silk_production = FALSE
+	var/silk_reserve = 100
+	var/silk_max_reserve = 500
+	var/silk_color = "#FFFFFF"
+
+	var/list/traits = list()
+
 /datum/species/proc/update_attack_types()
 	unarmed_attacks = list()
 	for(var/u_type in unarmed_types)
@@ -44,3 +62,29 @@
 		nif.nifsofts = nifsofts
 	else
 		..()
+/datum/species/proc/produceCopy(var/datum/species/to_copy,var/list/traits,var/mob/living/carbon/human/H)
+	ASSERT(to_copy)
+	ASSERT(istype(H))
+
+	if(ispath(to_copy))
+		to_copy = "[initial(to_copy.name)]"
+	if(istext(to_copy))
+		to_copy = GLOB.all_species[to_copy]
+
+	var/datum/species/new_copy = new to_copy.type()
+
+	new_copy.traits = traits
+
+	//If you had traits, apply them
+	if(new_copy.traits)
+		for(var/trait in new_copy.traits)
+			var/datum/trait/T = all_traits[trait]
+			T.apply(new_copy,H)
+
+	//Set up a mob
+	H.species = new_copy
+
+	if(H.dna)
+		H.dna.ready_dna(H)
+
+	return new_copy
