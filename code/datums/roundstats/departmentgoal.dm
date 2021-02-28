@@ -35,6 +35,7 @@ GLOBAL_LIST(active_department_goals)
 				cat_goals -= G
 
 				GLOB.active_department_goals[category] |= G
+	return 1
 
 /hook/roundend/proc/checkDepartmentGoals()
 	for(var/category in GLOB.active_department_goals)
@@ -50,6 +51,7 @@ GLOBAL_LIST(active_department_goals)
 				var/success = G.check_completion()
 				to_world("<span class='filter_system'>[success ? "<span class='notice'>[G.name]</span>" : "<span class='warning'>[G.name]</span>"]</span>")
 				to_world("<span class='filter_system'>[G.goal_text]</span>")
+	return 1
 
 /datum/goal
 	var/name = "goal"

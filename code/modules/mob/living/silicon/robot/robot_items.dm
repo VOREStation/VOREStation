@@ -131,7 +131,7 @@
 	var/dummy_card_type = /obj/item/weapon/card/id/science/roboticist/dummy_cyborg
 
 /obj/item/weapon/card/robot/Initialize()
-	..()
+	. = ..()
 	dummy_card = new dummy_card_type(src)
 
 /obj/item/weapon/card/robot/Destroy()
@@ -149,7 +149,7 @@
 	access = list(access_robotics)
 
 /obj/item/weapon/card/id/syndicate/dummy_cyborg/Initialize()
-	..()
+	. = ..()
 	access |= access_robotics
 
 //A harvest item for serviceborgs.

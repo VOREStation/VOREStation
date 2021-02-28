@@ -537,4 +537,22 @@ var/global/list/remainless_species = list(SPECIES_PROMETHEAN,
 	for(var/species_name in whitelisted_icons)
 		custom_species_bases += species_name
 
+	// Weaver recipe stuff
+	paths = typesof(/datum/weaver_recipe/structure) - /datum/weaver_recipe/structure
+	for(var/path in paths)
+		var/datum/weaver_recipe/instance = new path()
+		if(!instance.title)
+			continue //A prototype or something
+		weavable_structures[instance.title] = instance
+
+	paths = typesof(/datum/weaver_recipe/item) - /datum/weaver_recipe/item
+	for(var/path in paths)
+		var/datum/weaver_recipe/instance = new path()
+		if(!instance.title)
+			continue //A prototype or something
+		weavable_items[instance.title] = instance
+
 	return 1 // Hooks must return 1
+
+var/global/list/weavable_structures = list()
+var/global/list/weavable_items = list()

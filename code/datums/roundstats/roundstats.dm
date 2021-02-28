@@ -32,7 +32,7 @@ GLOBAL_VAR_INIT(mech_destroyed_roundstat, 0)
 	else if(GLOB.mech_destroyed_roundstat > 1)
 		valid_stats_list.Add("[GLOB.mech_destroyed_roundstat] mechs were destroyed this shift. What did you do?")
 	else if(GLOB.seed_planted_shift_roundstat > 20)
-		valid_stats_list.Add("[GLOB.seed_planted_shift_roundstat] were planted according to our sensors this shift.")
+		valid_stats_list.Add("[GLOB.seed_planted_shift_roundstat] seeds were planted according to our sensors this shift.")
 
 	if(GLOB.rocks_drilled_roundstat > 80)
 		valid_stats_list.Add("Our strong miners pulverized a whole [GLOB.rocks_drilled_roundstat] piles of pathetic rubble.")

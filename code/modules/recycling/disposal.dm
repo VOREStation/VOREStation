@@ -548,7 +548,7 @@
 	density = FALSE
 
 /obj/machinery/disposal/wall/Initialize()
-	..()
+	. = ..()
 
 	spawn(1 SECOND)	// Fixfix for weird interaction with buildmode or other late-spawning.
 		update()
@@ -1394,7 +1394,7 @@
 	var/obj/linked 	// the linked obj/machinery/disposal or obj/disposaloutlet
 
 /obj/structure/disposalpipe/trunk/Initialize()
-	..() //Lateload below
+	..()
 	dpdir = dir
 	return INITIALIZE_HINT_LATELOAD
 

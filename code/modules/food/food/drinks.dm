@@ -239,7 +239,7 @@
 	pickup_sound = 'sound/items/pickup/papercup.ogg'
 
 /obj/item/weapon/reagent_containers/food/drinks/h_chocolate/Initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("hot_coco", 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/greentea
@@ -298,7 +298,7 @@
 	pickup_sound = 'sound/items/pickup/papercup.ogg'
 
 /obj/item/weapon/reagent_containers/food/drinks/dry_ramen/Initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("dry_ramen", 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/sillycup

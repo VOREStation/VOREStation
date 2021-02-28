@@ -29,7 +29,7 @@
 
 
 /obj/machinery/computer/med_data/Initialize()
-	..()
+	. = ..()
 	field_edit_questions = list(
 		// General
 		"sex" = "Please select new sex:",
