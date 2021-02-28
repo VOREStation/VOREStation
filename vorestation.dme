@@ -1321,7 +1321,11 @@
 #include "code\game\objects\items\weapons\implants\implantfreedom.dm"
 #include "code\game\objects\items\weapons\implants\implantlanguage.dm"
 #include "code\game\objects\items\weapons\implants\implantpad.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\game\objects\items\weapons\implants\implantreagent_vr.dm"
+=======
+#include "code\game\objects\items\weapons\implants\implantrestrainingbolt.dm"
+>>>>>>> 8dc0404... Adds the Restraining Bolt. (#7820):polaris.dme
 #include "code\game\objects\items\weapons\implants\implantuplink.dm"
 #include "code\game\objects\items\weapons\implants\neuralbasic.dm"
 #include "code\game\objects\items\weapons\material\ashtray.dm"
