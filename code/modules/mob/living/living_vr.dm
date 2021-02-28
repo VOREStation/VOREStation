@@ -1,3 +1,8 @@
+/mob/living/Check_Shoegrip()
+	if(flying)
+		return 1
+	..()
+
 /mob/living/verb/customsay()
 	set category = "IC"
 	set name = "Customise Speech Verbs"

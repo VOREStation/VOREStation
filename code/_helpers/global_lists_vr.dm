@@ -501,10 +501,6 @@ var/global/list/remainless_species = list(SPECIES_PROMETHEAN,
 			if(0.1 to INFINITY)
 				positive_traits[path] = instance
 
-	// Custom species icon bases
-	blacklisted_icons = list(SPECIES_CUSTOM,SPECIES_PROMETHEAN) //Just ones that won't work well.
-	whitelisted_icons = list(SPECIES_FENNEC,SPECIES_XENOHYBRID) //Include these anyway
-
 	// Weaver recipe stuff
 	paths = typesof(/datum/weaver_recipe/structure) - /datum/weaver_recipe/structure
 	for(var/path in paths)

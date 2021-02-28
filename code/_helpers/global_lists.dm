@@ -263,8 +263,8 @@ GLOBAL_LIST_EMPTY(mannequins)
 */
 
 	// Custom species icon bases
-	var/list/blacklisted_icons = list(/*SPECIES_CUSTOM,*/SPECIES_PROMETHEAN) //Just ones that won't work well.
-	var/list/whitelisted_icons = list(/*SPECIES_FENNEC,SPECIES_XENOHYBRID*/) //Include these anyway
+	var/list/blacklisted_icons = list(SPECIES_CUSTOM,SPECIES_PROMETHEAN) //VOREStation Edit
+	var/list/whitelisted_icons = list(SPECIES_FENNEC,SPECIES_XENOHYBRID) //VOREStation Edit
 	for(var/species_name in GLOB.playable_species)
 		if(species_name in blacklisted_icons)
 			continue
