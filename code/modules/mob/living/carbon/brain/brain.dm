@@ -54,9 +54,13 @@
 		return
 
 	if(!typing_indicator)
+<<<<<<< HEAD
 		typing_indicator = new
 		typing_indicator.icon = 'icons/mob/talk_vr.dmi' //VOREStation Edit - talk_vr.dmi instead of talk.dmi for right-side icons
 		typing_indicator.icon_state = "[speech_bubble_appearance()]_typing"
+=======
+		init_typing_indicator("[speech_bubble_appearance()]_typing")
+>>>>>>> e67c35e... Removes transform from speech bubbles when speaker is scaled at less than 2x. (#7927)
 
 	if(state && !typing)
 		loc.add_overlay(typing_indicator, TRUE)

@@ -121,9 +121,13 @@
 
 /mob/zshadow/set_typing_indicator(var/state)
 	if(!typing_indicator)
+<<<<<<< HEAD
 		typing_indicator = new
 		typing_indicator.icon = 'icons/mob/talk_vr.dmi' // Looks better on the right with job icons. //VOREStation Edit - talk_vr.dmi instead of talk.dmi for right-side icons
 		typing_indicator.icon_state = "typing"
+=======
+		init_typing_indicator("typing")
+>>>>>>> e67c35e... Removes transform from speech bubbles when speaker is scaled at less than 2x. (#7927)
 	if(state && !typing)
 		overlays += typing_indicator
 		typing = 1
