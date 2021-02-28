@@ -431,6 +431,8 @@
 	name = "snow"
 	desc = "The temptation to build a snowman rises."
 	icon_state = "sheet-snow"
+	drop_sound = 'sound/items/drop/gloves.ogg'
+	pickup_sound = 'sound/items/pickup/clothing.ogg'
 	default_type = "snow"
 
 /obj/item/stack/material/snowbrick
@@ -438,6 +440,8 @@
 	desc = "For all of your igloo building needs."
 	icon_state = "sheet-snowbrick"
 	default_type = "packed snow"
+	drop_sound = 'sound/items/drop/gloves.ogg'
+	pickup_sound = 'sound/items/pickup/clothing.ogg'
 
 /obj/item/stack/material/leather
 	name = "leather"
