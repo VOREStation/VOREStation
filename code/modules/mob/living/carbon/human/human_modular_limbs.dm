@@ -154,7 +154,12 @@
 	last_special = world.time
 	drop_from_inventory(E)
 	E.replaced(src)
+
+	// Reconnect the organ and children as normally this is done with surgery.
 	E.status &= ~ORGAN_CUT_AWAY
+	for(var/obj/item/organ/external/child in E.children)
+		child.status &= ~ORGAN_CUT_AWAY
+
 	var/datum/gender/G = gender_datums[gender]
 	visible_message(
 		SPAN_NOTICE("\The [src] attaches \the [E] to [G.his] body!"),
