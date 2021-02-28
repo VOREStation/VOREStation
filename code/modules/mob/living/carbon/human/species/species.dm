@@ -349,6 +349,9 @@
 		var/limb_path = organ_data["path"]
 		var/obj/item/organ/O = new limb_path(H)
 		organ_data["descriptor"] = O.name
+		if(O.parent_organ)
+			organ_data = has_limbs[O.parent_organ]
+			organ_data["has_children"] = organ_data["has_children"]+1
 
 	for(var/organ_tag in has_organ)
 		var/organ_type = has_organ[organ_tag]
