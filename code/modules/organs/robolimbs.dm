@@ -47,24 +47,6 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	var/icon = 'icons/mob/human_races/robotic.dmi'       // Icon base to draw from.
 	var/monitor_icon = 'icons/mob/monitor_icons.dmi'     // Where it draws the monitor icon from.
 	var/unavailable_at_chargen                           // If set, not available at chargen.
-<<<<<<< HEAD
-	var/unavailable_to_build							 // If set, can't be constructed.
-	var/lifelike										 // If set, appears organic.
-	var/skin_tone										 // If set, applies skin tone rather than part color Overrides color.
-	var/skin_color										 // If set, applies skin color rather than part color.
-	var/blood_color = "#030303"
-	var/blood_name = "oil"
-	var/list/species_cannot_use = list(SPECIES_TESHARI, SPECIES_PROMETHEAN, SPECIES_DIONA, SPECIES_XENOCHIMERA)  //VOREStation Edit
-	var/list/species_alternates = list(SPECIES_TAJ = "Unbranded - Tajaran", SPECIES_UNATHI = "Unbranded - Unathi")				 //"Species Name" = "Robolimb Company" , List, when initialized, will become "Species Name" = RobolimbDatum, used for alternate species sprites.
-	var/list/monitor_styles			 		 			 //If empty, the model of limbs offers a head compatible with monitors.
-	var/parts = BP_ALL						 			 //Defines what parts said brand can replace on a body.
-	var/health_hud_intensity = 1						 // Intensity modifier for the health GUI indicator.
-	var/suggested_species = "Human"						 //If it should make the torso a species
-	var/speech_bubble_appearance = "synthetic"			 // What icon_state to use for speech bubbles when talking.  Check talk.dmi for all the icons.
-
-	var/robo_brute_mod = 1								 // Multiplier for incoming brute damage.
-	var/robo_burn_mod = 1								 // As above for burn.
-=======
 	var/unavailable_to_build                             // If set, can't be constructed.
 	var/lifelike                                         // If set, appears organic.
 	var/skin_tone                                        // If set, applies skin tone rather than part color Overrides color.
@@ -80,10 +62,9 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	var/robo_brute_mod = 1                               // Multiplier for incoming brute damage.
 	var/robo_burn_mod = 1                                // As above for burn.
 	// Species in this list cannot take these prosthetics.
-	var/list/species_cannot_use = list(SPECIES_TESHARI, SPECIES_PROMETHEAN, SPECIES_DIONA)
+	var/list/species_cannot_use = list(SPECIES_TESHARI, SPECIES_PROMETHEAN, SPECIES_DIONA, SPECIES_XENOCHIMERA)  //VOREStation Edit
 	// "Species Name" = "Robolimb Company", List, when initialized, will become "Species Name" = RobolimbDatum, used for alternate species sprites.
 	var/list/species_alternates = list(SPECIES_TAJ = "Unbranded - Tajaran", SPECIES_UNATHI = "Unbranded - Unathi")
->>>>>>> c31a3e7... Merge pull request #7905 from MistakeNot4892/beepboop
 
 /datum/robolimb/unbranded_monitor
 	company = "Unbranded Monitor"
