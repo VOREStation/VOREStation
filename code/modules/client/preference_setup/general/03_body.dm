@@ -13,6 +13,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	var/r_ears2 = 30	// Ear extra color.
 	var/g_ears2 = 30	// Ear extra color
 	var/b_ears2 = 30	// Ear extra color
+	var/r_ears3 = 30	// Ear tertiary color.
+	var/g_ears3 = 30	// Ear tertiary color
+	var/b_ears3 = 30	// Ear tertiary color
 	var/tail_style		// Type of selected tail style
 	var/r_tail = 30		// Tail/Taur color
 	var/g_tail = 30		// Tail/Taur color
@@ -20,6 +23,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	var/r_tail2 = 30 	// For extra overlay.
 	var/g_tail2 = 30	// For extra overlay.
 	var/b_tail2 = 30	// For extra overlay.
+	var/r_tail3 = 30 	// For tertiary overlay.
+	var/g_tail3 = 30	// For tertiary overlay.
+	var/b_tail3 = 30	// For tertiary overlay.
 	var/wing_style		// Type of selected wing style
 	var/r_wing = 30		// Wing color
 	var/g_wing = 30		// Wing color
@@ -27,6 +33,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	var/r_wing2 = 30	// Wing extra color
 	var/g_wing2 = 30	// Wing extra color
 	var/b_wing2 = 30	// Wing extra color
+	var/r_wing3 = 30	// Wing tertiary color
+	var/g_wing3 = 30	// Wing tertiary color
+	var/b_wing3 = 30	// Wing tertiary color
 
 /datum/category_item/player_setup_item/general/body
 	name = "Body"
@@ -72,6 +81,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	S["r_ears2"]		>> pref.r_ears2
 	S["g_ears2"]		>> pref.g_ears2
 	S["b_ears2"]		>> pref.b_ears2
+	S["r_ears3"]		>> pref.r_ears3
+	S["g_ears3"]		>> pref.g_ears3
+	S["b_ears3"]		>> pref.b_ears3
 	S["tail_style"]		>> pref.tail_style
 	S["r_tail"]			>> pref.r_tail
 	S["g_tail"]			>> pref.g_tail
@@ -79,6 +91,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	S["r_tail2"]		>> pref.r_tail2
 	S["g_tail2"]		>> pref.g_tail2
 	S["b_tail2"]		>> pref.b_tail2
+	S["r_tail3"]		>> pref.r_tail3
+	S["g_tail3"]		>> pref.g_tail3
+	S["b_tail3"]		>> pref.b_tail3
 	S["wing_style"]		>> pref.wing_style
 	S["r_wing"]			>> pref.r_wing
 	S["g_wing"]			>> pref.g_wing
@@ -86,6 +101,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	S["r_wing2"]		>> pref.r_wing2
 	S["g_wing2"]		>> pref.g_wing2
 	S["b_wing2"]		>> pref.b_wing2
+	S["r_wing3"]		>> pref.r_wing3
+	S["g_wing3"]		>> pref.g_wing3
+	S["b_wing3"]		>> pref.b_wing3
 
 /datum/category_item/player_setup_item/general/body/save_character(var/savefile/S)
 	S["species"]			<< pref.species
@@ -127,6 +145,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	S["r_ears2"]		<< pref.r_ears2
 	S["g_ears2"]		<< pref.g_ears2
 	S["b_ears2"]		<< pref.b_ears2
+	S["r_ears3"]		<< pref.r_ears3
+	S["g_ears3"]		<< pref.g_ears3
+	S["b_ears3"]		<< pref.b_ears3
 	S["tail_style"]		<< pref.tail_style
 	S["r_tail"]			<< pref.r_tail
 	S["g_tail"]			<< pref.g_tail
@@ -134,6 +155,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	S["r_tail2"]		<< pref.r_tail2
 	S["g_tail2"]		<< pref.g_tail2
 	S["b_tail2"]		<< pref.b_tail2
+	S["r_tail3"]		<< pref.r_tail3
+	S["g_tail3"]		<< pref.g_tail3
+	S["b_tail3"]		<< pref.b_tail3
 	S["wing_style"]		<< pref.wing_style
 	S["r_wing"]			<< pref.r_wing
 	S["g_wing"]			<< pref.g_wing
@@ -141,6 +165,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	S["r_wing2"]		<< pref.r_wing2
 	S["g_wing2"]		<< pref.g_wing2
 	S["b_wing2"]		<< pref.b_wing2
+	S["r_wing3"]		<< pref.r_wing3
+	S["g_wing3"]		<< pref.g_wing3
+	S["b_wing3"]		<< pref.b_wing3
 
 /datum/category_item/player_setup_item/general/body/sanitize_character(var/savefile/S)
 	if(!pref.species || !(pref.species in GLOB.playable_species))
@@ -180,18 +207,27 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	pref.r_ears2	= sanitize_integer(pref.r_ears2, 0, 255, initial(pref.r_ears2))
 	pref.g_ears2	= sanitize_integer(pref.g_ears2, 0, 255, initial(pref.g_ears2))
 	pref.b_ears2	= sanitize_integer(pref.b_ears2, 0, 255, initial(pref.b_ears2))
+	pref.r_ears3	= sanitize_integer(pref.r_ears3, 0, 255, initial(pref.r_ears3))
+	pref.g_ears3	= sanitize_integer(pref.g_ears3, 0, 255, initial(pref.g_ears3))
+	pref.b_ears3	= sanitize_integer(pref.b_ears3, 0, 255, initial(pref.b_ears3))
 	pref.r_tail		= sanitize_integer(pref.r_tail, 0, 255, initial(pref.r_tail))
 	pref.g_tail		= sanitize_integer(pref.g_tail, 0, 255, initial(pref.g_tail))
 	pref.b_tail		= sanitize_integer(pref.b_tail, 0, 255, initial(pref.b_tail))
 	pref.r_tail2	= sanitize_integer(pref.r_tail2, 0, 255, initial(pref.r_tail2))
 	pref.g_tail2	= sanitize_integer(pref.g_tail2, 0, 255, initial(pref.g_tail2))
 	pref.b_tail2	= sanitize_integer(pref.b_tail2, 0, 255, initial(pref.b_tail2))
+	pref.r_tail3	= sanitize_integer(pref.r_tail3, 0, 255, initial(pref.r_tail3))
+	pref.g_tail3	= sanitize_integer(pref.g_tail3, 0, 255, initial(pref.g_tail3))
+	pref.b_tail3	= sanitize_integer(pref.b_tail3, 0, 255, initial(pref.b_tail3))
 	pref.r_wing		= sanitize_integer(pref.r_wing, 0, 255, initial(pref.r_wing))
 	pref.g_wing		= sanitize_integer(pref.g_wing, 0, 255, initial(pref.g_wing))
 	pref.b_wing		= sanitize_integer(pref.b_wing, 0, 255, initial(pref.b_wing))
 	pref.r_wing2	= sanitize_integer(pref.r_wing2, 0, 255, initial(pref.r_wing2))
 	pref.g_wing2	= sanitize_integer(pref.g_wing2, 0, 255, initial(pref.g_wing2))
 	pref.b_wing2	= sanitize_integer(pref.b_wing2, 0, 255, initial(pref.b_wing2))
+	pref.r_wing3	= sanitize_integer(pref.r_wing3, 0, 255, initial(pref.r_wing3))
+	pref.g_wing3	= sanitize_integer(pref.g_wing3, 0, 255, initial(pref.g_wing3))
+	pref.b_wing3	= sanitize_integer(pref.b_wing3, 0, 255, initial(pref.b_wing3))
 	if(pref.ear_style)
 		pref.ear_style	= sanitize_inlist(pref.ear_style, ear_styles_list, initial(pref.ear_style))
 		var/datum/sprite_accessory/temp_ear_style = ear_styles_list[pref.ear_style]
@@ -245,6 +281,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	character.r_ears2	= pref.r_ears2
 	character.b_ears2	= pref.b_ears2
 	character.g_ears2	= pref.g_ears2
+	character.r_ears3			= pref.r_ears3
+	character.b_ears3			= pref.b_ears3
+	character.g_ears3			= pref.g_ears3
 	character.tail_style = tail_styles_list[pref.tail_style]
 	character.r_tail	= pref.r_tail
 	character.b_tail	= pref.b_tail
@@ -252,6 +291,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	character.r_tail2	= pref.r_tail2
 	character.b_tail2	= pref.b_tail2
 	character.g_tail2	= pref.g_tail2
+	character.r_tail3			= pref.r_tail3
+	character.b_tail3			= pref.b_tail3
+	character.g_tail3			= pref.g_tail3
 	character.wing_style = wing_styles_list[pref.wing_style]
 	character.r_wing	= pref.r_wing
 	character.b_wing	= pref.b_wing
@@ -259,6 +301,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	character.r_wing2	= pref.r_wing2
 	character.b_wing2	= pref.b_wing2
 	character.g_wing2	= pref.g_wing2
+	character.r_wing3			= pref.r_wing3
+	character.b_wing3			= pref.b_wing3
+	character.g_wing3			= pref.g_wing3
 	character.set_gender( pref.biological_gender)
 
 	// Destroy/cyborgize organs and limbs.
@@ -485,10 +530,12 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	. += " Style: <a href='?src=\ref[src];ear_style=1'>[ear_display]</a><br>"
 	if(ear_styles_list[pref.ear_style])
 		var/datum/sprite_accessory/ears/ear = ear_styles_list[pref.ear_style]
-		if (ear.do_colouration)
+		if(ear.do_colouration)
 			. += "<a href='?src=\ref[src];ear_color=1'>Change Color</a> [color_square(pref.r_ears, pref.g_ears, pref.b_ears)]<br>"
-		if (ear.extra_overlay)
+		if(ear.extra_overlay)
 			. += "<a href='?src=\ref[src];ear_color2=1'>Change Secondary Color</a> [color_square(pref.r_ears2, pref.g_ears2, pref.b_ears2)]<br>"
+		if(ear.extra_overlay2)
+			. += "<a href='?src=\ref[src];ear_color3=1'>Change Tertiary Color</a> [color_square(pref.r_ears3, pref.g_ears3, pref.b_ears3)]<br>"
 
 	var/tail_display = "Normal"
 	if(pref.tail_style && (pref.tail_style in tail_styles_list))
@@ -501,10 +548,12 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	if(tail_styles_list[pref.tail_style])
 		var/datum/sprite_accessory/tail/T = tail_styles_list[pref.tail_style]
-		if (T.do_colouration)
+		if(T.do_colouration)
 			. += "<a href='?src=\ref[src];tail_color=1'>Change Color</a> [color_square(pref.r_tail, pref.g_tail, pref.b_tail)]<br>"
-		if (T.extra_overlay)
+		if(T.extra_overlay)
 			. += "<a href='?src=\ref[src];tail_color2=1'>Change Secondary Color</a> [color_square(pref.r_tail2, pref.g_tail2, pref.b_tail2)]<br>"
+		if(T.extra_overlay2)
+			. += "<a href='?src=\ref[src];tail_color3=1'>Change Tertiary Color</a> [color_square(pref.r_tail3, pref.g_tail3, pref.b_tail3)]<br>"
 
 	var/wing_display = "Normal"
 	if(pref.wing_style && (pref.wing_style in wing_styles_list))
@@ -517,10 +566,12 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	if(wing_styles_list[pref.wing_style])
 		var/datum/sprite_accessory/wing/W = wing_styles_list[pref.wing_style]
-		if (W.do_colouration)
+		if(W.do_colouration)
 			. += "<a href='?src=\ref[src];wing_color=1'>Change Color</a> [color_square(pref.r_wing, pref.g_wing, pref.b_wing)]<br>"
-		if (W.extra_overlay)
+		if(W.extra_overlay)
 			. += "<a href='?src=\ref[src];wing_color2=1'>Change Secondary Color</a> [color_square(pref.r_wing2, pref.g_wing2, pref.b_wing2)]<br>"
+		if(W.extra_overlay2)
+			. += "<a href='?src=\ref[src];wing_color3=1'>Change Secondary Color</a> [color_square(pref.r_wing3, pref.g_wing3, pref.b_wing3)]<br>"
 
 	. += "<br><a href='?src=\ref[src];marking_style=1'>Body Markings +</a><br>"
 	. += "<table>"
@@ -1063,6 +1114,15 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			pref.b_ears2 = hex2num(copytext(new_earc2, 6, 8))
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
+	else if(href_list["ear_color3"])
+		var/new_earc3 = input(user, "Choose your character's tertiary ear colour:", "Character Preference",
+			rgb(pref.r_ears3, pref.g_ears3, pref.b_ears3)) as color|null
+		if(new_earc3)
+			pref.r_ears3 = hex2num(copytext(new_earc3, 2, 4))
+			pref.g_ears3 = hex2num(copytext(new_earc3, 4, 6))
+			pref.b_ears3 = hex2num(copytext(new_earc3, 6, 8))
+			return TOPIC_REFRESH_UPDATE_PREVIEW
+
 	else if(href_list["tail_style"])
 		// Construct the list of names allowed for this user.
 		var/list/pretty_tail_styles = list("Normal" = null)
@@ -1096,6 +1156,15 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			pref.b_tail2 = hex2num(copytext(new_tailc2, 6, 8))
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
+	else if(href_list["tail_color3"])
+		var/new_tailc3 = input(user, "Choose your character's tertiary tail/taur colour:", "Character Preference",
+			rgb(pref.r_tail3, pref.g_tail3, pref.b_tail3)) as color|null
+		if(new_tailc3)
+			pref.r_tail3 = hex2num(copytext(new_tailc3, 2, 4))
+			pref.g_tail3 = hex2num(copytext(new_tailc3, 4, 6))
+			pref.b_tail3 = hex2num(copytext(new_tailc3, 6, 8))
+			return TOPIC_REFRESH_UPDATE_PREVIEW
+
 	else if(href_list["wing_style"])
 		// Construct the list of names allowed for this user.
 		var/list/pretty_wing_styles = list("Normal" = null)
@@ -1127,6 +1196,15 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			pref.r_wing2 = hex2num(copytext(new_wingc2, 2, 4))
 			pref.g_wing2 = hex2num(copytext(new_wingc2, 4, 6))
 			pref.b_wing2 = hex2num(copytext(new_wingc2, 6, 8))
+			return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if(href_list["wing_color3"])
+		var/new_wingc3 = input(user, "Choose your character's tertiary wing colour:", "Character Preference",
+			rgb(pref.r_wing3, pref.g_wing3, pref.b_wing3)) as color|null
+		if(new_wingc3)
+			pref.r_wing3 = hex2num(copytext(new_wingc3, 2, 4))
+			pref.g_wing3 = hex2num(copytext(new_wingc3, 4, 6))
+			pref.b_wing3 = hex2num(copytext(new_wingc3, 6, 8))
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	return ..()

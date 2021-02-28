@@ -27,9 +27,6 @@
 	do_colouration = 0 // Set to 1 to blend (ICON_ADD) hair color
 
 	color_blend_mode = ICON_ADD // Only appliciable if do_coloration = 1
-	var/extra_overlay // Icon state of an additional overlay to blend in.
-	var/extra_overlay2
-	var/desc = "You should not see this..."
 
 // Species-unique ears
 
@@ -742,14 +739,6 @@
 	do_colouration = 0 //Set to 1 to enable coloration using the tail color.
 
 	color_blend_mode = ICON_ADD // Only appliciable if do_coloration = 1
-	var/extra_overlay // Icon state of an additional overlay to blend in.
-	var/extra_overlay2 //Tertiary.
-	var/clothing_can_hide = 1 // If true, clothing with HIDETAIL hides it. If the clothing is bulky enough to hide a tail, it should also hide wings.
-	// var/show_species_tail = 1 // Just so // TODO - Seems not needed ~Leshana
-	var/desc = "You should not see this..."
-	var/ani_state // State when flapping/animated
-	var/extra_overlay_w // Flapping state for extra overlay
-	var/extra_overlay2_w
 
 /datum/sprite_accessory/wing/shock //Unable to split the tail from the wings in the sprite, so let's just classify it as wings.
 	name = "pharoah hound tail (Shock Diamond)"
@@ -976,20 +965,6 @@
 	name = "You should not see this..."
 	icon = 'icons/mob/vore/tails_vr.dmi'
 	do_colouration = 0 //Set to 1 to enable coloration using the tail color.
-
-	color_blend_mode = ICON_ADD // Only appliciable if do_coloration = 1
-	var/extra_overlay // Icon state of an additional overlay to blend in.
-	var/extra_overlay2 //Tertiary.
-	var/show_species_tail = 0 // If false, do not render species' tail.
-	var/clothing_can_hide = 1 // If true, clothing with HIDETAIL hides it
-	var/desc = "You should not see this..."
-	var/ani_state // State when wagging/animated
-	var/extra_overlay_w // Wagging state for extra overlay
-	var/extra_overlay2_w // Tertiary wagging.
-	var/list/hide_body_parts = list() //Uses organ tag defines. Bodyparts in this list do not have their icons rendered, allowing for more spriter freedom when doing taur/digitigrade stuff.
-	var/icon/clip_mask_icon = null //Icon file used for clip mask.
-	var/clip_mask_state = null //Icon state to generate clip mask. Clip mask is used to 'clip' off the lower part of clothing such as jumpsuits & full suits.
-	var/icon/clip_mask = null //Instantiated clip mask of given icon and state
 
 /datum/sprite_accessory/tail/New()
 	. = ..()
