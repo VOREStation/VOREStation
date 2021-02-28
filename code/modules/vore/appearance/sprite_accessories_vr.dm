@@ -1,4 +1,4 @@
-ing /*
+/*
 	Hello and welcome to VOREStation sprite_accessories: For a more general overview
 	please read sprite_accessories.dm. This file is for ears and tails.
 	This is intended to be friendly for people with little to no actual coding experience.
