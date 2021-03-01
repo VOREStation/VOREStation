@@ -41,8 +41,8 @@
 	set category = "Object"
 	set src in view(1)
 
-	var/size_select = input("Put the desired size (25-200%)", "Set Size", size_set_to * 100) as num
-	if(size_select > 200 || size_select < 25)
+	var/size_select = input("Put the desired size (25-200%), (1-600%) in dormitory areas.", "Set Size", size_set_to * 100) as num
+	if(!size_range_check(size_select))
 		to_chat(usr, "<span class='notice'>Invalid size.</span>")
 		return
 	size_set_to = (size_select/100)
@@ -51,6 +51,21 @@
 /obj/item/weapon/gun/energy/sizegun/examine(mob/user)
 	. = ..()
 	. += "<span class='info'>It is currently set at [size_set_to*100]%</span>"
+
+/obj/item/weapon/gun/energy/sizegun/admin
+	name = "modified size gun"
+	desc = "Sizegun, without limits on minimum/maximum size, and with unlimited charge. Time to show 'em that size does matter."
+	charge_cost = 0
+	projectile_type = /obj/item/projectile/beam/sizelaser/admin
+
+/obj/item/weapon/gun/energy/sizegun/admin/select_size()
+	set name = "Select Size"
+	set category = "Object"
+	set src in view(1)
+
+	var/size_select = input("Put the desired size", "Set Size", size_set_to * 100) as num
+	size_set_to = max(1,size_select/100)		//No negative numbers
+	to_chat(usr, "<span class='notice'>You set the size to [size_set_to]%</span>")
 
 //
 // Beams for size gun
@@ -71,8 +86,21 @@
 /obj/item/projectile/beam/sizelaser/on_hit(var/atom/target)
 	var/mob/living/M = target
 	if(istype(M))
-		M.resize(set_size)
-		to_chat(M, "<font color='blue'> The beam fires into your body, changing your size!</font>")
+		if(!M.in_dorms() || !istype(M, /mob/living/carbon/human))
+			if(!M.resize(clamp(set_size,0.25,2)))
+				to_chat(M, "<font color='blue'>The beam fires into your body, changing your size!</font>")
+		else
+			if(!M.resize(clamp(set_size,0.01,6)))
+				to_chat(M, "<font color='blue'>The beam fires into your body, changing your size!</font>")
+		M.updateicon()
+		return
+	return 1
+
+/obj/item/projectile/beam/sizelaser/admin/on_hit(var/atom/target)
+	var/mob/living/M = target
+	if(istype(M))
+		M.resize(set_size, TRUE, FALSE)
+		to_chat(M, "<font color='blue'>The beam fires into your body, changing your size!</font>")
 		M.updateicon()
 		return
 	return 1
