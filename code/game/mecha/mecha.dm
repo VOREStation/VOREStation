@@ -198,7 +198,7 @@
 	var/weapons_only_cycle = FALSE	//So combat mechs don't switch to their equipment at times.
 
 /obj/mecha/Initialize()
-	..()
+	. = ..()
 
 	for(var/path in starting_components)
 		var/obj/item/mecha_parts/component/C = new path(src)

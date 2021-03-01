@@ -32,19 +32,15 @@
 
 	bag_material = MAT_SYNCLOTH
 
-/obj/item/stack/sandbags/New(var/newloc, var/amt, var/bag_mat)
-	..()
+/obj/item/stack/sandbags/Initialize(var/ml, var/amt, var/bag_mat)
+	. = ..(ml, amt)
 	recipes = sandbag_recipes
 	update_icon()
-
 	if(bag_mat)
 		bag_material = bag_mat
-
 	var/datum/material/M = get_material_by_name("[bag_material]")
 	if(!M)
-		qdel(src)
-		return
-
+		return INITIALIZE_HINT_QDEL
 	color = M.icon_colour
 
 /obj/item/stack/sandbags/update_icon()
@@ -136,17 +132,13 @@ var/global/list/datum/stack_recipe/sandbag_recipes = list( \
 
 	var/bag_material = "cloth"
 
-/obj/item/stack/emptysandbag/New(var/newloc, var/amt, var/bag_mat)
-	..(newloc, amt)
-
+/obj/item/stack/emptysandbag/Initialize(var/ml, var/amt, var/bag_mat)
+	. = ..(ml, amt)
 	if(bag_mat)
 		bag_material = bag_mat
-
 	var/datum/material/M = get_material_by_name("[bag_material]")
 	if(!M)
-		qdel(src)
-		return
-
+		return INITIALIZE_HINT_QDEL
 	color = M.icon_colour
 
 /obj/item/stack/emptysandbag/attack_self(var/mob/user)

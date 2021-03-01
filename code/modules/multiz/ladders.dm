@@ -1,12 +1,8 @@
-//////////////////////////////
-//Contents: Ladders, Stairs.//
-//////////////////////////////
-
 /obj/structure/ladder
 	name = "ladder"
 	desc = "A ladder. You can climb it up and down."
 	icon_state = "ladder01"
-	icon = 'icons/obj/structures.dmi'
+	icon = 'icons/obj/structures/multiz.dmi'
 	density = 0
 	opacity = 0
 	anchored = 1
@@ -125,65 +121,3 @@
 /obj/structure/ladder/updown
 	allowed_directions = UP|DOWN
 	icon_state = "ladder11"
-
-/obj/structure/stairs
-	name = "Stairs"
-	desc = "Stairs leading to another deck.  Not too useful if the gravity goes out."
-	icon = 'icons/obj/stairs.dmi'
-	density = 0
-	opacity = 0
-	anchored = 1
-	flags = ON_BORDER
-	layer = STAIRS_LAYER
-
-/obj/structure/stairs/Initialize()
-	. = ..()
-	for(var/turf/turf in locs)
-		var/turf/simulated/open/above = GetAbove(turf)
-		if(!above)
-			warning("Stair created without level above: ([loc.x], [loc.y], [loc.z])")
-			return qdel(src)
-		if(!istype(above))
-			above.ChangeTurf(/turf/simulated/open)
-
-/obj/structure/stairs/CheckExit(atom/movable/mover as mob|obj, turf/target as turf)
-	if(get_dir(loc, target) == dir && upperStep(mover.loc))
-		return FALSE
-	. = ..()
-
-/obj/structure/stairs/Bumped(atom/movable/A)
-	// This is hackish but whatever.
-	var/turf/target = get_step(GetAbove(A), dir)
-	if(target.Enter(A, src)) // Pass src to be ignored to avoid infinate loop
-		A.forceMove(target)
-		if(isliving(A))
-			var/mob/living/L = A
-			if(L.pulling && !L.pulling.anchored)
-				L.pulling.forceMove(target)
-
-/obj/structure/stairs/proc/upperStep(var/turf/T)
-	return (T == loc)
-
-/obj/structure/stairs/CanPass(obj/mover, turf/source, height, airflow)
-	return airflow || !density
-
-// type paths to make mapping easier.
-/obj/structure/stairs/north
-	dir = NORTH
-	bound_height = 64
-	bound_y = -32
-	pixel_y = -32
-
-/obj/structure/stairs/south
-	dir = SOUTH
-	bound_height = 64
-
-/obj/structure/stairs/east
-	dir = EAST
-	bound_width = 64
-	bound_x = -32
-	pixel_x = -32
-
-/obj/structure/stairs/west
-	dir = WEST
-	bound_width = 64

@@ -33,7 +33,7 @@
 	var/cell_type = /obj/item/weapon/cell/device
 
 /obj/item/device/flash/Initialize()
-	..()
+	. = ..()
 	power_supply = new cell_type(src)
 
 /obj/item/device/flash/attackby(var/obj/item/W, var/mob/user)
