@@ -349,8 +349,8 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	blood_color = "#4451cf"
 	blood_name = "coolant"
 	speech_bubble_appearance = "normal"
-	robo_brute_mod = 1.05
-	robo_burn_mod = 1.05
+	//robo_brute_mod = 1.05	//VOREStation Edit
+	//robo_burn_mod = 1.05	//VOREStation Edit
 
 /datum/robolimb/wardtakahashi
 	company = "Ward-Takahashi"
