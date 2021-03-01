@@ -31,7 +31,8 @@
 		to_chat(user, "<span class='notice'>You begin to remove \the [src] with your [W].</span>")
 		if(do_after(user, 4 SECONDS * W.toolspeed))
 			to_chat(user, "<span class='notice'>\The [src] has been dug up, and now lies in a pile nearby.</span>")
-			new /obj/item/stack/material/snow(src)
+			var/obj/item/stack/material/snow/S = new(src)
+			S.amount = 10
 			demote()
 		else
 			to_chat(user, "<span class='notice'>You decide to not finish removing \the [src].</span>")
