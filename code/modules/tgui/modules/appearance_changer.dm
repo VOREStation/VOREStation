@@ -42,7 +42,7 @@
 	cam_screen.assigned_map = map_name
 	cam_screen.del_on_map_removal = FALSE
 	cam_screen.screen_loc = "[map_name]:1,1"
-	
+
 	cam_plane_masters = get_tgui_plane_masters()
 
 	for(var/plane in cam_plane_masters)
@@ -283,7 +283,7 @@
 		if(!ishuman(user))
 			return TRUE
 		target = user
-	
+
 	if(!target || !target.species)
 		return
 
@@ -334,7 +334,7 @@
 /datum/tgui_module/appearance_changer/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
 
-	generate_data(check_whitelist, whitelist, blacklist)
+	generate_data(user)
 
 	var/mob/living/carbon/human/target = owner
 	if(customize_usr)
@@ -377,11 +377,11 @@
 	data["change_skin_color"] = can_change_skin_color()
 	if(data["change_skin_color"])
 		data["skin_color"] = rgb(target.r_skin, target.g_skin, target.b_skin)
-	
+
 	data["change_eye_color"] = can_change(APPEARANCE_EYE_COLOR)
 	if(data["change_eye_color"])
 		data["eye_color"] = rgb(target.r_eyes, target.g_eyes, target.b_eyes)
-	
+
 	data["change_hair_color"] = can_change(APPEARANCE_HAIR_COLOR)
 	if(data["change_hair_color"])
 		data["hair_color"] = rgb(target.r_hair, target.g_hair, target.b_hair)
@@ -393,7 +393,7 @@
 		data["wing_color"] = rgb(target.r_wing, target.g_wing, target.b_wing)
 		data["wing2_color"] = rgb(target.r_wing2, target.g_wing2, target.b_wing2)
 		// VOREStation Add End
-	
+
 	data["change_facial_hair_color"] = can_change(APPEARANCE_FACIAL_HAIR_COLOR)
 	if(data["change_facial_hair_color"])
 		data["facial_hair_color"] = rgb(target.r_facial, target.g_facial, target.b_facial)
@@ -479,10 +479,10 @@
 		target = user
 	if(!target)
 		return
-	
+
 	if(!LAZYLEN(valid_species))
 		valid_species = target.generate_valid_species(check_whitelist, whitelist, blacklist)
-	
+
 	if(!LAZYLEN(valid_hairstyles) || !LAZYLEN(valid_facial_hairstyles))
 		valid_hairstyles = target.generate_valid_hairstyles(check_gender = 0)
 		valid_facial_hairstyles = target.generate_valid_facial_hairstyles()
