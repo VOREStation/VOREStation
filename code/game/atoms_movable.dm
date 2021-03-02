@@ -462,6 +462,8 @@
 		minor_dir = dx
 		minor_dist = dist_x
 
+	range = min(dist_x + dist_y, range)
+
 	while(src && target && src.throwing && istype(src.loc, /turf) \
 		  && ((abs(target.x - src.x)+abs(target.y - src.y) > 0 && dist_travelled < range) \
 		  	   || (a && a.has_gravity == 0) \

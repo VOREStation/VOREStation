@@ -62,7 +62,7 @@
 	// Going down stairs from the topstair piece
 	var/obj/structure/stairs/top/T = locate(/obj/structure/stairs/top) in oldloc
 	if(T && mover.dir == turn(T.dir, 180) && T.check_integrity())
-		T.use_stairs(mover, oldloc)
+		T.instant_stairs(mover)
 		return
 
 	mover.fall()
