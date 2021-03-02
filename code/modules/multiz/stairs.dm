@@ -181,8 +181,10 @@
 		for(var/atom/movable/P in pulling)
 			P.forceMove(get_turf(src)) // They will move onto the turf but won't get past the check earlier in crossed. Aligns animation more cleanly
 
+
 		// Move to Top
 		AM.forceMove(get_turf(top))
+
 		// If something is being pulled, bring it along directly to avoid the mob being torn away from it due to movement delays
 		for(var/atom/movable/P in pulling)
 			P.forceMove(get_turf(top)) // Just bring it along directly, no fussing with animation timing
@@ -421,8 +423,10 @@
 		for(var/atom/movable/P in pulling)
 			P.forceMove(get_turf(src)) // They will move onto the turf but won't get past the check earlier in crossed. Aligns animation more cleanly
 
+
 		// Move to Top
 		AM.forceMove(get_turf(bottom))
+
 		// If something is being pulled, bring it along directly to avoid the mob being torn away from it due to movement delays
 		for(var/atom/movable/P in pulling)
 			P.forceMove(get_turf(bottom)) // Just bring it along directly, no fussing with animation timing
