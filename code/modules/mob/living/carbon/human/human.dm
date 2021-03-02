@@ -1078,7 +1078,7 @@
 
 	if(species)
 
-		if(species.name && species.name == new_species)
+		if(species.name && species.name == new_species && species.name != "Custom Species") //VOREStation Edit
 			return
 		if(species.language)
 			remove_language(species.language)
