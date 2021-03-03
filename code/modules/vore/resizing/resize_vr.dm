@@ -61,11 +61,28 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
  * Resizes the mob immediately to the desired mod, animating it growing/shrinking.
  * It can be used by anything that calls it.
  */
-/mob/living/proc/resize(var/new_size, var/animate = TRUE)
+/atom/movable/proc/in_dorms()
+	var/area/A = get_area(src)
+	return istype(A, /area/crew_quarters/sleep)
+
+/atom/movable/proc/size_range_check(size_select)		//both objects and mobs needs to have that
+	if((!in_dorms() && (size_select > 200 || size_select < 25)) || (size_select > 600 || size_select <1))
+		return FALSE
+	return TRUE
+
+/mob/living/proc/resize(var/new_size, var/animate = TRUE, var/mark_unnatural_size = TRUE)
 	if(size_multiplier == new_size)
 		return 1
 
 	size_multiplier = new_size //Change size_multiplier so that other items can interact with them
+
+	if(ishuman(src))
+		var/mob/living/carbon/human/H = src
+		if(new_size > 2 || new_size < 0.25)
+			if(mark_unnatural_size)		//Will target size be reverted to ordinary bounds when out of dorms or not?
+				H.unnaturally_resized = TRUE
+		else
+			H.unnaturally_resized = FALSE
 	if(animate)
 		var/change = new_size - size_multiplier
 		var/duration = (abs(change)+0.25) SECONDS
@@ -92,6 +109,8 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 		update_transform() //Lame way
 
 /mob/living/carbon/human/resize(var/new_size, var/animate = TRUE)
+	if(!resizable)
+		return 1
 	if(species)
 		vis_height = species.icon_height
 	. = ..()
@@ -116,7 +135,11 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 	set name = "Adjust Mass"
 	set category = "Abilities" //Seeing as prometheans have an IC reason to be changing mass.
 
-	var/nagmessage = "Adjust your mass to be a size between 25 to 200% (DO NOT ABUSE)"
+	if(!resizable)
+		to_chat(src, "<span class='warning'>You are immune to resizing!</span>")
+		return
+
+	var/nagmessage = "Adjust your mass to be a size between 25 to 200% (or 1% to 600% in dormitories). (DO NOT ABUSE)"
 	var/new_size = input(nagmessage, "Pick a Size") as num|null
 	if(new_size && ISINRANGE(new_size, 25, 200))
 		resize(new_size/100)
