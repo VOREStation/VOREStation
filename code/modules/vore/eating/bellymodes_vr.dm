@@ -205,14 +205,22 @@
 	var/digest_alert_prey = pick(digest_messages_prey)
 	var/compensation = M.getOxyLoss() //How much of the prey's damage was caused by passive crit oxyloss to compensate the lost nutrition.
 
+	var/living_count = 0
+	for(var/mob/living/L in contents)
+		living_count++
+
 	//Replace placeholder vars
 	digest_alert_owner = replacetext(digest_alert_owner, "%pred", owner)
 	digest_alert_owner = replacetext(digest_alert_owner, "%prey", M)
 	digest_alert_owner = replacetext(digest_alert_owner, "%belly", lowertext(name))
+	digest_alert_owner = replacetext(digest_alert_owner, "%count", contents.len)
+	digest_alert_owner = replacetext(digest_alert_owner, "%countprey", living_count)
 
 	digest_alert_prey = replacetext(digest_alert_prey, "%pred", owner)
 	digest_alert_prey = replacetext(digest_alert_prey, "%prey", M)
 	digest_alert_prey = replacetext(digest_alert_prey, "%belly", lowertext(name))
+	digest_alert_prey = replacetext(digest_alert_prey, "%count", contents.len)
+	digest_alert_prey = replacetext(digest_alert_prey, "%countprey", living_count)
 
 	//Send messages
 	to_chat(owner, "<span class='notice'>[digest_alert_owner]</span>")
