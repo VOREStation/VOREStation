@@ -31,8 +31,8 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 	var/list/data = ..()
 	
 	data["personalVisibility"] = user?.client?.prefs?.show_in_directory
-	data["personalTag"] = user?.client?.prefs?.directory_tag
-	data["personalErpTag"] = user?.client?.prefs?.directory_erptag
+	data["personalTag"] = user?.client?.prefs?.directory_tag || "Unset"
+	data["personalErpTag"] = user?.client?.prefs?.directory_erptag || "Unset"
 
 	return data
 
@@ -50,8 +50,8 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 		var/name = null
 		var/ooc_notes = null
 		var/flavor_text = null
-		var/tag = C.prefs.directory_tag
-		var/erptag = C.prefs.directory_erptag
+		var/tag = C.prefs.directory_tag || "Unset"
+		var/erptag = C.prefs.directory_erptag || "Unset"
 		var/character_ad = C.prefs.directory_ad
 
 		if(ishuman(C.mob))
