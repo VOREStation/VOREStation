@@ -155,30 +155,30 @@
 
 
 //Allergen traits! Not available to any species with a base allergens var.
-/datum/trait/allergy_gluten
+/datum/trait/allergy
 	name = "Allergy: Gluten"
 	desc = "You're highly allergic to gluten proteins, which are found in most common grains."
 	cost = 0
 	custom_only = FALSE
-	var_changes = list("allergens" = 16)
-	excludes = list(/datum/trait/allergy_nuts,/datum/trait/allergy_soy)
+	var/allergen = 16
 
-/datum/trait/allergy_nuts
+/datum/trait/allergy/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	S.allergens |= allergen
+	..(S,H)
+
+/datum/trait/allergy/nuts
 	name = "Allergy: Nuts"
 	desc = "You're highly allergic to hard-shell seeds, such as peanuts."
 	cost = 0
 	custom_only = FALSE
-	var_changes = list("allergens" = 64)
-	excludes = list(/datum/trait/allergy_gluten,/datum/trait/allergy_soy)
+	allergen = 64
 
-/datum/trait/allergy_soy
+/datum/trait/allergy/soy
 	name = "Allergy: Soy"
 	desc = "You're highly allergic to soybeans, and some other kinds of bean."
 	cost = 0
 	custom_only = FALSE
-	var_changes = list("allergens" = 32)
-	excludes = list(/datum/trait/allergy_gluten,/datum/trait/allergy_nuts)
-
+	allergen = 32
 
 // Spicy Food Traits, from negative to positive.
 /datum/trait/spice_intolerance_extreme
