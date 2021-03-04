@@ -141,14 +141,14 @@
 		. += "<a href='?src=\ref[src];custom_base=1'>[pref.custom_base ? pref.custom_base : "Human"]</a><br>"
 
 	var/traits_left = pref.max_traits
-	. += "<b>Traits Left:</b> [traits_left]<br>"
+	
 	if(pref.species == SPECIES_CUSTOM)
 		var/points_left = pref.starting_trait_points
 
 		for(var/T in pref.pos_traits + pref.neg_traits)
 			points_left -= traits_costs[T]
 			traits_left--
-
+		. += "<b>Traits Left:</b> [traits_left]<br>"
 		. += "<b>Points Left:</b> [points_left]<br>"
 		if(points_left < 0 || traits_left < 0 || !pref.custom_species)
 			. += "<span style='color:red;'><b>^ Fix things! ^</b></span><br>"
