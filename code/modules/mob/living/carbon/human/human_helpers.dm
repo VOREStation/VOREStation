@@ -190,6 +190,10 @@
 	if(nif)
 		compiled_vis |= nif.planes_visible()
 	//VOREStation Add End
+	//VOREStation Add - event hud
+	if(vantag_hud)
+		compiled_vis |= VIS_CH_VANTAG
+	//VOREStation Add End
 
 	if(!compiled_vis.len && !vis_enabled.len)
 		return //Nothin' doin'.
