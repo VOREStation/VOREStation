@@ -149,6 +149,9 @@
 			var/available_in_hours = job.available_in_playhours(user.client)
 			. += "<del>[rank]</del></td></a><td> \[IN [round(available_in_hours, 0.1)] DEPTHOURS]</td></tr>"
 			continue
+		if(!is_job_whitelisted(user,rank))
+			. += "<del>[rank]</del></td></a><td><b> \[WHITELIST ONLY]</b></td></tr>"
+			continue
 		//VOREStation Add End
 		if(job.minimum_character_age && user.client && (user.client.prefs.age < job.minimum_character_age))
 			. += "<del>[rank]</del></td></a><td> \[MINIMUM CHARACTER AGE: [job.minimum_character_age]]</td></tr>"
