@@ -57,6 +57,7 @@
 
 
 /turf/simulated/open/Entered(var/atom/movable/mover, var/atom/oldloc)
+<<<<<<< HEAD
 	. = ..()
 
 	// Going down stairs from the topstair piece
@@ -65,6 +66,9 @@
 		T.instant_stairs(mover)
 		return
 
+=======
+	..()
+>>>>>>> 1367d38... Merge pull request #7943 from Atermonera/stair_tweaks
 	mover.fall()
 
 /turf/simulated/open/proc/BelowOpenUpdated(turf/T, atom/movable/AM, old_loc)

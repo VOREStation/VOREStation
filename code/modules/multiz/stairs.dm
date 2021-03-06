@@ -61,7 +61,11 @@
 /obj/structure/stairs/proc/use_stairs(var/atom/movable/AM, var/atom/oldloc)
 	return
 
+<<<<<<< HEAD
 /obj/structure/stairs/proc/instant_stairs(var/atom/movable/AM)
+=======
+/obj/structure/stairs/proc/use_stairs_instant(var/atom/movable/AM)
+>>>>>>> 1367d38... Merge pull request #7943 from Atermonera/stair_tweaks
 	return
 
 //////////////////////////////////////////////////////////////////////
@@ -184,7 +188,11 @@
 
 		// Move to Top
 		AM.forceMove(get_turf(top))
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> 1367d38... Merge pull request #7943 from Atermonera/stair_tweaks
 		// If something is being pulled, bring it along directly to avoid the mob being torn away from it due to movement delays
 		for(var/atom/movable/P in pulling)
 			P.forceMove(get_turf(top)) // Just bring it along directly, no fussing with animation timing
@@ -195,6 +203,7 @@
 
 	return TRUE
 
+<<<<<<< HEAD
 /obj/structure/stairs/bottom/instant_stairs(var/atom/movable/AM)
 	if(isliving(AM))
 		var/mob/living/L = AM
@@ -202,23 +211,54 @@
 		if(L.grabbed_by.len) // Same as pulledby, whoever's holding you will keep you from going down stairs.
 			return
 
+=======
+/obj/structure/stairs/bottom/use_stairs_instant(var/atom/movable/AM)
+	if(isobserver(AM)) // Ghosts have their own methods for going up and down
+		return
+
+	if(isliving(AM))
+		var/mob/living/L = AM
+	
+		if(L.grabbed_by.len) // Same as pulledby, whoever's holding you will keep you from going down stairs.
+			return
+		
+>>>>>>> 1367d38... Merge pull request #7943 from Atermonera/stair_tweaks
 		if(L.has_buckled_mobs())
 			return
 
 		if(L.buckled)
 			L.buckled.forceMove(get_turf(top))
+<<<<<<< HEAD
 
 		// If the object is pulling or grabbing anything, we'll want to move those too. A grab chain may be disrupted in doing so.
 		if(L.pulling && !L.pulling.anchored)
 			L.pulling.forceMove(get_turf(top))
+=======
+		
+		// If the object is pulling or grabbing anything, we'll want to move those too. A grab chain may be disrupted in doing so.
+		if(L.pulling && !L.pulling.anchored)
+			var/atom/movable/P = L.pulling
+			P.forceMove(get_turf(top))
+			L.start_pulling(P)
+>>>>>>> 1367d38... Merge pull request #7943 from Atermonera/stair_tweaks
 
 		for(var/obj/item/weapon/grab/G in list(L.l_hand, L.r_hand))
 			G.affecting.forceMove(get_turf(top))
 
+<<<<<<< HEAD
 		if(L.client)
 			L.client.Process_Grab()
 
 	AM.forceMove(get_turf(top))
+=======
+		L.forceMove(get_turf(top))
+		
+		if(L.client)
+			L.client.Process_Grab()
+	else
+		AM.forceMove(get_turf(top))
+
+>>>>>>> 1367d38... Merge pull request #7943 from Atermonera/stair_tweaks
 
 //////////////////////////////////////////////////////////////////////
 // Middle piece that you are animated onto/off of ////////////////////
@@ -305,7 +345,11 @@
 
 /obj/structure/stairs/middle/Bumped(mob/user)
 	if(check_integrity() && bottom && (bottom in get_turf(user))) // Bottom must be enforced because the middle stairs don't actually need the bottom
+<<<<<<< HEAD
 		bottom.instant_stairs(user)
+=======
+		bottom.use_stairs_instant(user)
+>>>>>>> 1367d38... Merge pull request #7943 from Atermonera/stair_tweaks
 
 //////////////////////////////////////////////////////////////////////
 // Top piece that you step onto //////////////////////////////////////
@@ -383,6 +427,15 @@
 		if(L.has_AI())
 			use_stairs(AM, oldloc)
 	..()
+<<<<<<< HEAD
+=======
+
+/obj/structure/stairs/top/Uncrossed(var/atom/movable/AM)
+	// Going down stairs from the topstair piece
+	if(AM.dir == turn(dir, 180) && check_integrity())
+		use_stairs_instant(AM)
+		return
+>>>>>>> 1367d38... Merge pull request #7943 from Atermonera/stair_tweaks
 
 /obj/structure/stairs/top/use_stairs(var/atom/movable/AM, var/atom/oldloc)
 	// If we're coming from the bottom of the stairs, don't trap us in an infinite staircase
@@ -395,10 +448,16 @@
 	
 	if(AM.pulledby) // Animating the movement of pulled things is handled when the puller goes up the stairs
 		return
-
+	
 	if(AM.has_buckled_mobs()) // Similarly, the rider entering the turf will bring along whatever they're buckled to
 		return
 
+<<<<<<< HEAD
+	if(AM.has_buckled_mobs()) // Similarly, the rider entering the turf will bring along whatever they're buckled to
+		return
+
+=======
+>>>>>>> 1367d38... Merge pull request #7943 from Atermonera/stair_tweaks
 	var/list/atom/movable/pulling = list() // Will also include grabbed mobs
 	if(isliving(AM))
 		var/mob/living/L = AM
@@ -418,15 +477,24 @@
 	// If the stairs aren't broken, go up.
 	if(check_integrity())
 		AM.dir = turn(src.dir, 180)
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1367d38... Merge pull request #7943 from Atermonera/stair_tweaks
 		// Bring the pulled/grabbed object(s) along behind us
 		for(var/atom/movable/P in pulling)
 			P.forceMove(get_turf(src)) // They will move onto the turf but won't get past the check earlier in crossed. Aligns animation more cleanly
 
+<<<<<<< HEAD
 
 		// Move to Top
 		AM.forceMove(get_turf(bottom))
 
+=======
+		// Move to Top
+		AM.forceMove(get_turf(bottom))
+		
+>>>>>>> 1367d38... Merge pull request #7943 from Atermonera/stair_tweaks
 		// If something is being pulled, bring it along directly to avoid the mob being torn away from it due to movement delays
 		for(var/atom/movable/P in pulling)
 			P.forceMove(get_turf(bottom)) // Just bring it along directly, no fussing with animation timing
@@ -437,6 +505,7 @@
 
 	return TRUE
 
+<<<<<<< HEAD
 /obj/structure/stairs/top/instant_stairs(var/atom/movable/AM)
 	if(isliving(AM))
 		var/mob/living/L = AM
@@ -444,11 +513,24 @@
 		if(L.grabbed_by.len) // Same as pulledby, whoever's holding you will keep you from going down stairs.
 			return
 
+=======
+/obj/structure/stairs/top/use_stairs_instant(var/atom/movable/AM)
+	if(isobserver(AM)) // Ghosts have their own methods for going up and down
+		return
+
+	if(isliving(AM))
+		var/mob/living/L = AM
+	
+		if(L.grabbed_by.len) // Same as pulledby, whoever's holding you will keep you from going down stairs.
+			return
+		
+>>>>>>> 1367d38... Merge pull request #7943 from Atermonera/stair_tweaks
 		if(L.has_buckled_mobs())
 			return
 
 		if(L.buckled)
 			L.buckled.forceMove(get_turf(bottom))
+<<<<<<< HEAD
 
 		// If the object is pulling or grabbing anything, we'll want to move those too. A grab chain may be disrupted in doing so.
 		if(L.pulling && !L.pulling.anchored)
@@ -461,6 +543,25 @@
 			L.client.Process_Grab()
 
 	AM.forceMove(get_turf(bottom))
+=======
+		
+		// If the object is pulling or grabbing anything, we'll want to move those too. A grab chain may be disrupted in doing so.
+		if(L.pulling && !L.pulling.anchored)
+			var/atom/movable/P = L.pulling
+			P.forceMove(get_turf(bottom))
+			L.start_pulling(P)
+
+		for(var/obj/item/weapon/grab/G in list(L.l_hand, L.r_hand))
+			G.affecting.forceMove(get_turf(bottom))
+		
+		L.forceMove(get_turf(bottom))
+
+		if(L.client)
+			L.client.Process_Grab()
+	else
+		AM.forceMove(get_turf(bottom))
+
+>>>>>>> 1367d38... Merge pull request #7943 from Atermonera/stair_tweaks
 
 // Mapping pieces, placed at the bottommost part of the stairs
 /obj/structure/stairs/spawner
