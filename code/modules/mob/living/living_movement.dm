@@ -95,28 +95,29 @@ default behaviour is:
 		if((tmob.mob_always_swap || (tmob.a_intent == I_HELP || tmob.restrained()) && (a_intent == I_HELP || src.restrained())) && tmob.canmove && canmove && !tmob.buckled && !buckled && can_swap && can_move_mob(tmob, 1, 0)) // mutual brohugs all around!
 			var/turf/oldloc = loc
 			//VOREstation Edit - Begin
-			
+
 			//check bumpnom chance, if it's a simplemob that's doing the bumping
 			var/mob/living/simple_mob/srcsimp = src
 			if(istype(srcsimp))
 				if(srcsimp.tryBumpNom(tmob))
 					now_pushing = 0
 					return
-			
+
 			//if it's a simplemob being bumped, and the above didn't make them start getting bumpnommed, they get a chance to bumpnom
 			var/mob/living/simple_mob/tmobsimp = tmob
 			if(istype(tmobsimp))
 				if(tmobsimp.tryBumpNom(src))
 					now_pushing = 0
 					return
-					
+
 			//VOREstation Edit - End
 			forceMove(tmob.loc)
 			//VOREstation Edit - Begin
 			// In case of micros, we don't swap positions; instead occupying the same square!
-			if (handle_micro_bump_helping(tmob))
-				now_pushing = 0
-				return
+			if(step_mechanics_pref && tmob.step_mechanics_pref)
+				if(handle_micro_bump_helping(tmob))
+					now_pushing = 0
+					return
 			// TODO - Check if we need to do something about the slime.UpdateFeed() we are skipping below.
 			// VOREStation Edit - End
 			tmob.forceMove(oldloc)
@@ -145,7 +146,8 @@ default behaviour is:
 				now_pushing = 0
 				return
 		// Handle grabbing, stomping, and such of micros!
-		if(handle_micro_bump_other(tmob)) return
+		if(step_mechanics_pref && tmob.step_mechanics_pref)
+			if(handle_micro_bump_other(tmob)) return
 		// VOREStation Edit - End
 		if(istype(tmob, /mob/living/carbon/human) && (FAT in tmob.mutations))
 			if(prob(40) && !(FAT in src.mutations))

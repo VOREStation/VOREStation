@@ -32,7 +32,7 @@
 	var/adminbus_trash = FALSE			// For abusing trash eater for event shenanigans.
 	var/adminbus_eat_minerals = FALSE	// This creature subsists on a diet of pure adminium.
 	var/vis_height = 32					// Sprite height used for resize features.
-	var/show_vore_fx = TRUE			// Show belly fullscreens
+	var/show_vore_fx = TRUE				// Show belly fullscreens
 
 //
 // Hook for generic creation of stuff on new creatures

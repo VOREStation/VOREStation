@@ -214,6 +214,8 @@
 		"show_vore_fx" = host.show_vore_fx,
 		"can_be_drop_prey" = host.can_be_drop_prey,
 		"can_be_drop_pred" = host.can_be_drop_pred,
+		"step_mechanics_active" = host.step_mechanics_pref,
+		"pickup_mechanics_active" = host.pickup_pref,
 		"noisy" = host.noisy,
 	)
 
@@ -376,6 +378,18 @@
 			host.allowmobvore = !host.allowmobvore
 			if(host.client.prefs_vr)
 				host.client.prefs_vr.allowmobvore = host.allowmobvore
+			unsaved_changes = TRUE
+			return TRUE
+		if("toggle_steppref")
+			host.step_mechanics_pref = !host.step_mechanics_pref
+			if(host.client.prefs_vr)
+				host.client.prefs_vr.step_mechanics_pref = host.step_mechanics_pref
+			unsaved_changes = TRUE
+			return TRUE
+		if("toggle_pickuppref")
+			host.pickup_pref = !host.pickup_pref
+			if(host.client.prefs_vr)
+				host.client.prefs_vr.pickup_pref = host.pickup_pref
 			unsaved_changes = TRUE
 			return TRUE
 		if("toggle_healbelly")
