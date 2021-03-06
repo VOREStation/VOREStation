@@ -67,7 +67,8 @@
 		SPECIES_SERGAL			= 'icons/mob/species/sergal/suit_vr.dmi',
 		SPECIES_VULPKANIN		= 'icons/mob/species/vulpkanin/suit_vr.dmi',
 		SPECIES_ZORREN_HIGH		= 'icons/mob/species/vulpkanin/suit_vr.dmi',
-		SPECIES_FENNEC			= 'icons/mob/species/vulpkanin/suit_vr.dmi'
+		SPECIES_FENNEC			= 'icons/mob/species/vulpkanin/suit_vr.dmi',
+		SPECIES_VASILISSAN		= 'icons/mob/spacesuit_vr.dmi'
 		)
 	sprite_sheets_obj = list(
 		SPECIES_TAJ			= 'icons/obj/clothing/suits_vr.dmi',
@@ -78,7 +79,8 @@
 		SPECIES_SERGAL			= 'icons/obj/clothing/suits_vr.dmi',
 		SPECIES_VULPKANIN		= 'icons/obj/clothing/suits_vr.dmi',
 		SPECIES_ZORREN_HIGH		= 'icons/obj/clothing/suits_vr.dmi',
-		SPECIES_FENNEC			= 'icons/obj/clothing/suits_vr.dmi'
+		SPECIES_FENNEC			= 'icons/obj/clothing/suits_vr.dmi',
+		SPECIES_VASILISSAN		= 'icons/obj/clothing/suits_vr.dmi'
 		)
 
 
@@ -192,7 +194,8 @@
 		SPECIES_SERGAL			= 'icons/mob/species/unathi/helmet_vr.dmi',
 		SPECIES_VULPKANIN		= 'icons/mob/species/vulpkanin/helmet_vr.dmi',
 		SPECIES_ZORREN_HIGH		= 'icons/mob/species/vulpkanin/helmet_vr.dmi',
-		SPECIES_FENNEC			= 'icons/mob/species/vulpkanin/helmet_vr.dmi'
+		SPECIES_FENNEC			= 'icons/mob/species/vulpkanin/helmet_vr.dmi',
+		SPECIES_VASILISSAN		= 'icons/mob/head_vr.dmi'
 		)
 	sprite_sheets_obj = list(
 		SPECIES_TAJ 			= 'icons/obj/clothing/hats_vr.dmi',
@@ -203,6 +206,7 @@
 		SPECIES_SERGAL			= 'icons/obj/clothing/hats_vr.dmi',
 		SPECIES_VULPKANIN		= 'icons/obj/clothing/hats_vr.dmi',
 		SPECIES_ZORREN_HIGH		= 'icons/obj/clothing/hats_vr.dmi',
-		SPECIES_FENNEC			= 'icons/obj/clothing/hats_vr.dmi'
+		SPECIES_FENNEC			= 'icons/obj/clothing/hats_vr.dmi',
+		SPECIES_VASILISSAN		= 'icons/obj/clothing/hats_vr.dmi'
 		)
 	sprite_sheets_refit = list()	//have to nullify this as well just to be thorough
