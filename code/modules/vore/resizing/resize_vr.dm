@@ -310,8 +310,8 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 		tail = pred.tail_style
 
 	if(a_intent == I_GRAB)
-		// You can only grab prey if you have no shoes on.
-		if(pred.shoes)
+		// You can only grab prey if you have no shoes on. And both of you are cool with it.
+		if(pred.shoes || !(pickup_pref && tmob.pickup_pref))
 			message_pred = "You step down onto [prey], squishing them and forcing them down to the ground!"
 			message_prey = "[pred] steps down and squishes you with their foot, forcing you down to the ground!"
 			if(tail)
