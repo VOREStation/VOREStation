@@ -17,7 +17,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 /mob/living
 	var/size_multiplier = 1 //multiplier for the mob's icon size
 	var/holder_default
-	var/step_mechanics_pref = FALSE		// Allow participation in macro-micro step mechanics
+	var/step_mechanics_pref = TRUE		// Allow participation in macro-micro step mechanics
 	var/pickup_pref = TRUE				// Allow participation in macro-micro pickup mechanics
 	var/pickup_active = TRUE			// Toggle whether your help intent picks up micros or pets them
 

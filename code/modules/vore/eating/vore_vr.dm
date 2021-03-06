@@ -158,7 +158,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	if(isnull(can_be_drop_pred))
 		can_be_drop_pred = FALSE
 	if(isnull(step_mechanics_pref))
-		step_mechanics_pref = FALSE
+		step_mechanics_pref = TRUE
 	if(isnull(pickup_pref))
 		pickup_pref = TRUE
 	if(isnull(belly_prefs))
