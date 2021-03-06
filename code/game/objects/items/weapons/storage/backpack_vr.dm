@@ -44,11 +44,6 @@
 				log_runtime("[H] was not a valid human!")
 				return
 
-			if(H.size_multiplier >= RESIZE_BIG) //Are they a macro? If yes, they get no slowdown.
-				slowdown = 0
-			else
-				slowdown = initial(slowdown)
-
 			var/datum/sprite_accessory/tail/taur/TT = H.tail_style
 			item_state = "[icon_base]_[TT.icon_sprite_tag]"	//icon_sprite_tag is something like "deer"
 			return 1
