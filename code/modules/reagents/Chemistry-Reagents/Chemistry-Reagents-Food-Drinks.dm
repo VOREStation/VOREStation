@@ -54,23 +54,13 @@
 		if(IS_UNATHI) removed *= 0.5
 		if(IS_CHIMERA) removed *= 0.25 //VOREStation Edit
 	if(issmall(M)) removed *= 2 // Small bodymass, more effect from lower volume.
-<<<<<<< HEAD
 	//VOREStation Edits Start
 	if(!M.isSynthetic())
-		if(M.species.allergens & allergen_type)
-			M.adjustToxLoss(M.species.allergen_severity * removed)
-		else
+		if(!(M.species.allergens & allergen_type))	//assuming it doesn't cause a horrible reaction, we'll be ok!
 			M.heal_organ_damage(0.5 * removed, 0)
 			M.adjust_nutrition((nutriment_factor * removed) * M.species.organic_food_coeff)
 			M.add_chemical_effect(CE_BLOODRESTORE, 4 * removed)
 	//VOREStation Edits Stop
-=======
-	if(!(M.species.allergens & allergen_type))	//assuming it doesn't cause a horrible reaction, we'll be ok!
-		M.heal_organ_damage(0.5 * removed, 0)
-		M.adjust_nutrition(nutriment_factor * removed)
-		M.add_chemical_effect(CE_BLOODRESTORE, 4 * removed)
-
->>>>>>> 948d43a... Diet/Allergy Rework & Refactor Pt2 (#7940)
 
 // Aurora Cooking Port Insertion Begin
 
