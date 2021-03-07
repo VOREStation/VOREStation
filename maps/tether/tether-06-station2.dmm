@@ -7054,8 +7054,7 @@
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/science{
 	name = "Pathfinder";
-	req_access = list(62);
-	req_one_access = newlist()
+	req_access = list(62,43,67)
 	},
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable/green{
@@ -7937,7 +7936,9 @@
 /obj/effect/floor_decal/corner/purple/bordercorner2{
 	dir = 1
 	},
-/obj/structure/closet/secure_closet/pathfinder,
+/obj/structure/closet/secure_closet/pathfinder{
+	req_access = list(62,43,67)
+	},
 /turf/simulated/floor/tiled,
 /area/tether/exploration/pathfinder_office)
 "lI" = (
