@@ -539,6 +539,14 @@
 						return 0
 		return 1
 
+/obj/item/clothing/suit/armor/pcarrier/explorer
+	name = "explorer suit"
+	desc = "A lightweight explorer plate carrier. It can be equipped with armor plates, but only protects from the cold on it's own."
+	icon_state = "explorer"
+	flags = THICKMATERIAL
+	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
+	cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+
 /obj/item/clothing/suit/armor/pcarrier/light
 	starting_accessories = list(/obj/item/clothing/accessory/armor/armorplate)
 
@@ -593,6 +601,30 @@
 	desc = "A lightweight tan plate carrier vest. It can be equipped with armor plates, but provides no protection of its own."
 	icon_state = "pcarrier_tan"
 
+/obj/item/clothing/suit/armor/pcarrier/laserproof
+	name = "ablative plate carrier"
+	desc = "A specialist laser resistant plate carrier. It can be equipped with armour plates, but provides very little protection of its own."
+	icon_state = "ablative"
+	armor = list(melee = 0, bullet = 0, laser = 5, energy = 5, bomb = 0, bio = 0, rad = 0)
+	starting_accessories = list(/obj/item/clothing/accessory/armor/armorplate/laserproof)
+
+/obj/item/clothing/suit/armor/pcarrier/bulletproof
+	name = "ballistic plate carrier"
+	desc = "A specialist bullet resistant plate carrier. It can be equipped with armour plates, but provides very little protection of its own."
+	icon_state = "ballistic"
+	armor = list(melee = 0, bullet = 5, laser = 0, energy = 0, bomb = 5, bio = 0, rad = 0)
+	starting_accessories = list(/obj/item/clothing/accessory/armor/armorplate/bulletproof)
+
+/obj/item/clothing/suit/armor/pcarrier/riot
+	name = "riot plate carrier"
+	desc = "A specialist melee resistant plate carrier. It can be equipped with armour plates, but provides very little protection of its own."
+	icon_state = "riot"
+	armor = list(melee = 5, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
+	starting_accessories = list(/obj/item/clothing/accessory/armor/armorplate/riot)
+
+/obj/item/clothing/suit/armor/pcarrier/explorer/light
+	starting_accessories = list(/obj/item/clothing/accessory/armor/armorplate/explorer, /obj/item/clothing/accessory/armor/armguards/explorer, /obj/item/clothing/accessory/armor/legguards/explorer, /obj/item/clothing/accessory/storage/pouches/green)
+
 /obj/item/clothing/suit/armor/pcarrier/tan/tactical
 	name = "tactical plate carrier"
 	starting_accessories = list(/obj/item/clothing/accessory/armor/armorplate/tactical, /obj/item/clothing/accessory/storage/pouches/large/tan)
@@ -600,3 +632,11 @@
 /obj/item/clothing/suit/armor/pcarrier/merc
 	starting_accessories = list(/obj/item/clothing/accessory/armor/armorplate/merc, /obj/item/clothing/accessory/armor/armguards/merc, /obj/item/clothing/accessory/armor/legguards/merc, /obj/item/clothing/accessory/storage/pouches/large)
 
+/obj/item/clothing/suit/armor/pcarrier/laserproof/full
+	starting_accessories = list(/obj/item/clothing/accessory/armor/armorplate/laserproof, /obj/item/clothing/accessory/armor/armguards/laserproof, /obj/item/clothing/accessory/armor/legguards/laserproof, /obj/item/clothing/accessory/storage/pouches/blue)
+
+/obj/item/clothing/suit/armor/pcarrier/bulletproof/full
+	starting_accessories = list(/obj/item/clothing/accessory/armor/armorplate/bulletproof, /obj/item/clothing/accessory/armor/armguards/bulletproof, /obj/item/clothing/accessory/armor/legguards/bulletproof, /obj/item/clothing/accessory/storage/pouches)
+
+/obj/item/clothing/suit/armor/pcarrier/riot/full
+	starting_accessories = list(/obj/item/clothing/accessory/armor/armorplate/riot, /obj/item/clothing/accessory/armor/armguards/riot, /obj/item/clothing/accessory/armor/legguards/riot, /obj/item/clothing/accessory/storage/pouches)
