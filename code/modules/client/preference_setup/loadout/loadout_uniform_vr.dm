@@ -211,3 +211,4 @@ Bluespace jumpsuit
 /datum/gear/uniform/bsjumpsuit
 	display_name = "bluespace jumpsuit"
 	path = /obj/item/clothing/under/bluespace
+	cost = 2
