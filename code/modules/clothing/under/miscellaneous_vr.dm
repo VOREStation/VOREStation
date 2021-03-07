@@ -18,24 +18,23 @@
 
 /obj/item/clothing/under/bluespace
 	name = "bluespace jumpsuit"
-	icon_state = "lingchameleon"
+	icon = 'icons/obj/clothing/uniforms_vr.dmi'
+	icon_override = 'icons/mob/uniform_vr.dmi'
+	icon_state = "bluespace"
 	item_icons = list(
 			slot_l_hand_str = 'icons/mob/items/lefthand_uniforms.dmi',
 			slot_r_hand_str = 'icons/mob/items/righthand_uniforms.dmi',
 			)
-	item_state = "lingchameleon"
-	worn_state = "lingchameleon"
-	desc = "Do you feel like warping spacetime today? Because it seems like that's on the agenda, now. \
-			Allows one to resize themselves at will, and conceals their true weight."
+	item_state = "bluespace"
+	worn_state = "bluespace"
+	desc = "Got a lot to hide on your body? Well, this seems perfect for you. \
+			Hides any bulges on your body, as well as conceals your true weight."
 	hides_bulges = TRUE
-	var/original_size
-
-
 
 /obj/item/clothing/under/bluespace/verb/toggle_fibers()
 		set category = "Object"
-		set name = "Adjust fibers"
-		set desc = "Adjust your suit fibers. This makes it so your stomach(s) will show or not."
+		set name = "Adjust Bluespace Fibers"
+		set desc = "Adjust your suit's bluespace fibers. Activating it hides your stomach(s) and your general body-build. Good if you have a lot to hide."
 		set src in usr
 
 		adjust_fibers(usr)
@@ -44,23 +43,29 @@
 /obj/item/clothing/under/bluespace/proc/adjust_fibers(mob/user)
 	if(hides_bulges == FALSE)
 		hides_bulges = TRUE
-		to_chat(user, "You tense the suit fibers, hiding your stomach(s).")
+		to_chat(user, "You tense the suit fibers, hiding your stomach(s) and weight.")
 	else
 		hides_bulges = FALSE
-		to_chat(user, "You relax the suit fibers, showing your stomach(s).")
+		to_chat(user, "You relax the suit fibers, revealing your stomach(s) and weight.")
 
+/obj/item/clothing/under/bluespace/redspace
+	name = "redspace jumpsuit"
+	icon_state = "redspace"
+	item_state = "redspace"
+	worn_state = "redspace"
+	desc = "Do you feel like warping spacetime today? Because it seems like that's on the agenda, now. \
+			Allows one to resize themselves at will, and conceals their true weight as well as any bulges or protrusions on their body."
+	var/original_size
 
-
-/obj/item/clothing/under/bluespace/verb/resize()
-	set name = "Adjust Size"
+/obj/item/clothing/under/bluespace/redspace/verb/resize()
+	set name = "Adjust Redspace Fibers"
+	set desc = "Adjust your suit's redspace fibers. Activating it allows you to expand your own body or reduce it in size! Effect is limited to when you have the suit on."
 	set category = "Object"
 	set src in usr
 	bluespace_size(usr)
 	..()
 
-
-
-/obj/item/clothing/under/bluespace/proc/bluespace_size(mob/usr as mob)
+/obj/item/clothing/under/bluespace/redspace/proc/bluespace_size(mob/usr as mob)
 	if (!ishuman(usr))
 		return
 
@@ -102,7 +107,7 @@
 		else //They chose their current size.
 			return
 
-/obj/item/clothing/under/bluespace/mob_can_unequip(mob/M, slot, disable_warning = 0)
+/obj/item/clothing/under/bluespace/redspace/mob_can_unequip(mob/M, slot, disable_warning = 0)
 	. = ..()
 	if(. && ishuman(M) && original_size)
 		var/mob/living/carbon/human/H = M

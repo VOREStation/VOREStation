@@ -307,13 +307,13 @@
 	//A uniform could hide it.
 	if(istype(w_uniform,/obj/item/clothing))
 		var/obj/item/clothing/under = w_uniform
-		if(under.hides_bulges)
+		if(istype(under) && under.hides_bulges)
 			return FALSE
 
 	//We return as soon as we find one, no need for 'else' really.
 	if(istype(wear_suit,/obj/item/clothing))
 		var/obj/item/clothing/suit = wear_suit
-		if(suit.hides_bulges)
+		if(istype(suit) && suit.hides_bulges)
 			return FALSE
 
 	return ..()

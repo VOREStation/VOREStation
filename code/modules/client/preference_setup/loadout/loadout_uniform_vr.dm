@@ -204,3 +204,10 @@ Qipao
 /datum/gear/uniform/qipao_white
 	display_name = "qipao, white"
 	path = /obj/item/clothing/under/dress/qipao/white
+
+/*
+Bluespace jumpsuit
+*/
+/datum/gear/uniform/bsjumpsuit
+	display_name = "bluespace jumpsuit"
+	path = /obj/item/clothing/under/bluespace
