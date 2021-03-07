@@ -17,6 +17,9 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 /mob/living
 	var/size_multiplier = 1 //multiplier for the mob's icon size
 	var/holder_default
+	var/step_mechanics_pref = TRUE		// Allow participation in macro-micro step mechanics
+	var/pickup_pref = TRUE				// Allow participation in macro-micro pickup mechanics
+	var/pickup_active = TRUE			// Toggle whether your help intent picks up micros or pets them
 
 // Define holder_type on types we want to be scoop-able
 /mob/living/carbon/human
@@ -159,6 +162,10 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
  * @return false if normal code should continue, 1 to prevent normal code.
  */
 /mob/living/proc/attempt_to_scoop(mob/living/M, mob/living/G) //second one is for the Grabber, only exists for animals to self-grab
+	if(!(pickup_pref && M.pickup_pref && pickup_active))
+		return 0
+	if(!(M.a_intent == I_HELP))
+		return 0
 	var/size_diff = M.get_effective_size() - get_effective_size()
 	if(!holder_default && holder_type)
 		holder_default = holder_type
@@ -303,8 +310,8 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 		tail = pred.tail_style
 
 	if(a_intent == I_GRAB)
-		// You can only grab prey if you have no shoes on.
-		if(pred.shoes)
+		// You can only grab prey if you have no shoes on. And both of you are cool with it.
+		if(pred.shoes || !(pred.pickup_pref && prey.pickup_pref))
 			message_pred = "You step down onto [prey], squishing them and forcing them down to the ground!"
 			message_prey = "[pred] steps down and squishes you with their foot, forcing you down to the ground!"
 			if(tail)
@@ -366,6 +373,14 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 	to_chat(pred, "<span class='danger'>[message_pred]</span>")
 	to_chat(prey, "<span class='danger'>[message_prey]</span>")
 	return TRUE
+
+/mob/living/verb/toggle_pickups()
+	set name = "Toggle Micro Pick-up"
+	set desc = "Toggles whether your help-intent action attempts to pick up the micro or pet/hug/help them. Does not disable participation in pick-up mechanics entirely, refer to Vore Panel preferences for that."
+	set category = "IC"
+
+	pickup_active = !pickup_active
+	to_chat(src, "You will [pickup_active ? "now" : "no longer"] attempt to pick up mobs when clicking them with help intent.")
 
 #undef STEP_TEXT_OWNER
 #undef STEP_TEXT_PREY
