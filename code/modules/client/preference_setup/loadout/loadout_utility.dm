@@ -115,6 +115,7 @@
 	display_name = "cell, device"
 	path = /obj/item/weapon/cell/device
 
+<<<<<<< HEAD
 /datum/gear/utility/implant
 	slot = "implant"
 	exploitable = 1
@@ -156,6 +157,8 @@
 	description = "A surgically implanted vocal synthesizer which allows the owner to speak Common Skrellian, if they know it."
 	path = /obj/item/weapon/implant/language/skrellian
 
+=======
+>>>>>>> e997171... Merge pull request #7953 from MistakeNot4892/fixes2
 /datum/gear/utility/pen
 	display_name = "Fountain Pen"
 	path = /obj/item/weapon/pen/fountain

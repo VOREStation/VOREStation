@@ -1815,6 +1815,7 @@
 #include "code\modules\client\preference_setup\loadout\loadout_accessories.dm"
 #include "code\modules\client\preference_setup\loadout\loadout_accessories_vr.dm"
 #include "code\modules\client\preference_setup\loadout\loadout_cosmetics.dm"
+#include "code\modules\client\preference_setup\loadout\loadout_cyberware.dm"
 #include "code\modules\client\preference_setup\loadout\loadout_ears.dm"
 #include "code\modules\client\preference_setup\loadout\loadout_eyes.dm"
 #include "code\modules\client\preference_setup\loadout\loadout_eyes_vr.dm"
