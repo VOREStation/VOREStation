@@ -10019,6 +10019,11 @@
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/large_escape_pod1)
+"oH" = (
+/obj/structure/stairs/spawner/west,
+/turf/simulated/sky/virgo3b/west,
+/turf/simulated/floor/tiled/white,
+/area/medical/biostorage)
 "oM" = (
 /turf/simulated/open,
 /area/engineering/foyer_mezzenine)
@@ -14364,10 +14369,6 @@
 /obj/effect/floor_decal/corner/paleblue/bordercorner2{
 	dir = 9
 	},
-/turf/simulated/floor/tiled/white,
-/area/medical/biostorage)
-"xQ" = (
-/turf/simulated/sky/virgo3b/west,
 /turf/simulated/floor/tiled/white,
 /area/medical/biostorage)
 "xR" = (
@@ -28993,7 +28994,7 @@ vE
 wm
 ws
 xj
-xQ
+oH
 vT
 aP
 aP
