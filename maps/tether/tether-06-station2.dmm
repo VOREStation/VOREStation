@@ -7054,8 +7054,7 @@
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/science{
 	name = "Pathfinder";
-	req_access = list(62);
-	req_one_access = newlist()
+	req_access = list(62,43,67)
 	},
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable/green{
@@ -7937,7 +7936,9 @@
 /obj/effect/floor_decal/corner/purple/bordercorner2{
 	dir = 1
 	},
-/obj/structure/closet/secure_closet/pathfinder,
+/obj/structure/closet/secure_closet/pathfinder{
+	req_access = list(62,43,67)
+	},
 /turf/simulated/floor/tiled,
 /area/tether/exploration/pathfinder_office)
 "lI" = (
@@ -9964,13 +9965,13 @@
 	dir = 5
 	},
 /obj/structure/table/bench/wooden,
-/obj/effect/landmark/start{
-	name = "Pilot"
-	},
 /obj/machinery/alarm{
 	dir = 4;
 	icon_state = "alarm0";
 	pixel_x = -22
+	},
+/obj/effect/landmark/start{
+	name = "Field Medic"
 	},
 /turf/simulated/floor/tiled,
 /area/tether/exploration/equipment)
@@ -10010,13 +10011,6 @@
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/large_escape_pod1)
-"oF" = (
-/obj/structure/table/bench/wooden,
-/obj/effect/landmark/start{
-	name = "Pilot"
-	},
-/turf/simulated/floor/tiled,
-/area/tether/exploration/equipment)
 "oG" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8;
@@ -14717,7 +14711,6 @@
 /turf/simulated/floor,
 /area/maintenance/station/medbay)
 "yA" = (
-/obj/structure/closet/secure_closet/pilot,
 /obj/effect/floor_decal/borderfloor{
 	dir = 10
 	},
@@ -14728,6 +14721,7 @@
 	dir = 8;
 	icon_state = "tube1"
 	},
+/obj/structure/closet/secure_closet/sar,
 /turf/simulated/floor/tiled,
 /area/tether/exploration/equipment)
 "yB" = (
@@ -14735,7 +14729,6 @@
 /turf/simulated/floor,
 /area/medical/psych)
 "yH" = (
-/obj/structure/closet/secure_closet/pilot,
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/purple/border,
 /obj/effect/floor_decal/steeldecal/steel_decals7{
@@ -14744,6 +14737,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 8
 	},
+/obj/structure/closet/secure_closet/sar,
 /turf/simulated/floor/tiled,
 /area/tether/exploration/equipment)
 "yJ" = (
@@ -15047,7 +15041,6 @@
 /turf/simulated/floor,
 /area/maintenance/station/medbay)
 "zA" = (
-/obj/structure/closet/secure_closet/sar,
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/purple/border,
 /obj/effect/floor_decal/steeldecal/steel_decals7{
@@ -15055,6 +15048,23 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 8
+	},
+/obj/structure/table/rack/shelf,
+/obj/item/weapon/storage/backpack/parachute{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/item/weapon/storage/backpack/parachute{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/weapon/storage/backpack/parachute{
+	pixel_x = 4;
+	pixel_y = -6
+	},
+/obj/item/weapon/storage/backpack/parachute{
+	pixel_x = -4;
+	pixel_y = -6
 	},
 /turf/simulated/floor/tiled,
 /area/tether/exploration/equipment)
@@ -18264,6 +18274,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/station/stairs_two)
+"FE" = (
+/obj/structure/table/bench/wooden,
+/turf/simulated/floor/tiled,
+/area/tether/exploration/equipment)
 "FH" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -32646,7 +32660,7 @@ jr
 kp
 kE
 lV
-oF
+pu
 yH
 kp
 mW
@@ -32788,7 +32802,7 @@ iN
 kp
 kR
 lW
-pu
+FE
 zA
 kp
 mX
@@ -32930,7 +32944,7 @@ ld
 LP
 Eq
 lX
-pu
+FE
 zA
 kp
 mZ
