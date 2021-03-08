@@ -208,7 +208,7 @@ Qipao
 /*
 Bluespace jumpsuit
 */
-/datum/gear/uniform/bsjumpsuit
-	display_name = "bluespace jumpsuit"
-	path = /obj/item/clothing/under/bluespace
+/datum/gear/uniform/hfjumpsuit
+	display_name = "HYPER jumpsuit"
+	path = /obj/item/clothing/under/hyperfiber
 	cost = 2
