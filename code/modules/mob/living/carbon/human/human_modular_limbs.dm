@@ -55,7 +55,7 @@
 	. =  damage >= min_broken_damage || (status & ORGAN_BROKEN) || is_stump() // can't use is_broken() as the limb has ORGAN_CUT_AWAY
 
 // Human mob procs:
-// Checks the organ list for limbs meeting a predicate. Way overengineered for such a limited use 
+// Checks the organ list for limbs meeting a predicate. Way overengineered for such a limited use
 // case but I can see it being expanded in the future if meat limbs or doona limbs use it.
 /mob/living/carbon/human/proc/get_modular_limbs(var/return_first_found = FALSE, var/validate_proc)
 	for(var/bp in organs)
@@ -63,7 +63,7 @@
 		if(!validate_proc || call(E, validate_proc)(src) > MODULAR_BODYPART_INVALID)
 			LAZYADD(., E)
 			if(return_first_found)
-				return 
+				return
 	// Prune children so we can't remove every individual component of an entire prosthetic arm
 	// piece by piece. Technically a circular dependency here would remove the limb entirely but
 	// if there's a parent whose child is also its parent, there's something wrong regardless.
@@ -87,6 +87,11 @@
 /mob/living/carbon/human/proc/check_can_attach_modular_limb(var/obj/item/organ/external/E)
 	if(world.time < last_special + (2 SECONDS) || get_active_hand() != E)
 		return FALSE
+	//VOREStation Addition Start
+	if(species.name == SPECIES_PROTEAN)
+		to_chat(src, SPAN_WARNING("This is not compatible with your nanomachine body!"))
+		return FALSE
+	//VOREStation Addition End
 	if(incapacitated() || restrained())
 		to_chat(src, SPAN_WARNING("You can't do that in your current state!"))
 		return FALSE
@@ -119,6 +124,11 @@
 /mob/living/carbon/human/proc/check_can_detach_modular_limb(var/obj/item/organ/external/E)
 	if(world.time < last_special + (2 SECONDS))
 		return FALSE
+	//VOREStation Addition Start
+	if(species.name == SPECIES_PROTEAN)
+		to_chat(src, SPAN_WARNING("You can't just detach parts of your nanomachine body!"))
+		return FALSE
+	//VOREStation Addition End
 	if(incapacitated() || restrained())
 		to_chat(src, SPAN_WARNING("You can't do that in your current state!"))
 		return FALSE

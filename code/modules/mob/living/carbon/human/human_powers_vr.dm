@@ -30,8 +30,9 @@
 	H.eyes_over_markings = !H.eyes_over_markings
 	update_icons_body()
 
-	var/datum/robolimb/robohead = all_robolimbs[H.model]
-	if(robohead.monitor_styles && robohead.monitor_icon)
-		to_chat(src, "<span class='notice'>You reconfigure the rendering order of your facial display.</span>")
+	if(H.robotic)
+		var/datum/robolimb/robohead = all_robolimbs[H.model]
+		if(robohead.monitor_styles && robohead.monitor_icon)
+			to_chat(src, "<span class='notice'>You reconfigure the rendering order of your facial display.</span>")
 
 	return TRUE
