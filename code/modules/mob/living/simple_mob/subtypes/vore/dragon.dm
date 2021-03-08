@@ -88,7 +88,18 @@
 /datum/say_list/dragonboss
 	say_got_target = list("roars and snaps it jaws!")
 	
-/mob/living/simple_mob/vore/aggressive/dragon/virgob3b/init_vore()
+/mob/living/simple_mob/vore/aggressive/dragon/virgo3b/init_vore()
+	name = "phoron dragon"
+	maxHealth = 300
+	health = 300
+	faction = "neutral"
+	icon_dead = "phoron_dragon_dead"
+	icon_living = "phoron_dragon"
+	icon_state = "phoron_dragon"
+	mount_offset_y = 24
+	mount_offset_x = -9
+	has_eye_glow = TRUE
+	
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "Belly"
