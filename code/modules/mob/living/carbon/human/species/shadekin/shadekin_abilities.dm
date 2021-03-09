@@ -43,8 +43,10 @@
 	darkness = 1-brightness //Invert
 
 	var/watcher =-1
-	for(var/mob/living/carbon/human/watchers in view_or_range(7,get_turf(src),"range" ))
-		watcher++
+	for(var/mob/living/carbon/human/watchers in oveiw(7,src ))	// If we can see them...
+		if(watchers in oviewers(7,src))	// And they can see us...
+			if(!(watchers.stat) && !isbelly(watchers.loc) && !istype(watchers.loc, /obj/item/weapon/holder))	// And they are alive and not being held by someone...
+				watcher++	// They are watching us!
 
 	ability_cost = CLAMP(ability_cost/(0.01+darkness*2),50, 80)//This allows for 1 watcher in full light
 	if(watcher>0)
