@@ -23,7 +23,12 @@
 
 // Physical traits are what they sound like, and involve the character's physical body, as opposed to their mental state.
 /datum/trait/modifier/physical
+<<<<<<< HEAD
 	category = "Physical Quirks" //VOREStation Edit
+=======
+	name = "Physical"
+	category = "Physical"
+>>>>>>> b22a056... Sideports a couple of init unit tests from Neb. (#7893)
 
 
 /datum/trait/modifier/physical/flimsy
@@ -194,6 +199,7 @@
 // 'Mental' traits are just those that only sapients can have, for now, and generally involves fears.
 // So far, all of them are just for fluff/don't have mechanical effects.
 /datum/trait/modifier/mental
+	name = "Mental"
 	category = "Mental"
 
 /datum/trait/modifier/mental/test_for_invalidity(var/datum/category_item/player_setup_item/traits/setup)

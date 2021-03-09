@@ -24,6 +24,29 @@
 #define EMP_TOX_DMG	0x80	// EMPs inflict toxin damage
 #define EMP_OXY_DMG	0x100	// EMPs inflict oxy damage
 
+// Species allergens
+#define MEAT		0x1	// Skrell won't like this.
+#define FISH		0x2	// Seperate for completion's sake. Still bad for skrell.
+#define FRUIT		0x4	// An apple a day only keeps the doctor away if they're allergic.
+#define VEGETABLE	0x8	// Taters 'n' carrots. Potato allergy is a thing, apparently.
+#define GRAINS		0x10	// Wheat, oats, etc.
+#define BEANS		0x20	// The musical fruit! Includes soy.
+#define SEEDS		0x40	// Hope you don't have a nut allergy.
+#define DAIRY		0x80	// Lactose intolerance, ho! Also bad for skrell.
+#define FUNGI		0x100	// Delicious shrooms.
+#define COFFEE		0x200	// Mostly here for tajara.
+#define GENERIC		0x400	// Catchall for stuff that doesn't fall into the groups above. You shouldn't be allergic to this type, ever.
+#define SUGARS		0x800	// For unathi-like reactions
+
+// Allergen reactions
+#define AG_TOX_DMG	0x1	// the classic 
+#define AG_OXY_DMG	0x2	// intense airway reactions
+#define AG_EMOTE	0x4	// general emote reactions based on affect type
+#define AG_PAIN		0x8	// short-lived hurt
+#define AG_WEAKEN	0x10	// too weak to move, oof
+#define AG_BLURRY	0x20	// blurred vision!
+#define AG_SLEEPY	0x40	// fatigue/exhaustion
+
 // Species spawn flags
 #define SPECIES_IS_WHITELISTED    0x1    // Must be whitelisted to play.
 #define SPECIES_IS_RESTRICTED     0x2    // Is not a core/normally playable species. (castes, mutantraces)

@@ -1,7 +1,7 @@
 var/datum/planet/virgo3b/planet_virgo3b = null
 
 /datum/time/virgo3b
-	seconds_in_day = 3 HOURS
+	seconds_in_day = 6 HOURS
 
 /datum/planet/virgo3b
 	name = "Virgo-3B"
@@ -265,6 +265,8 @@ var/datum/planet/virgo3b/planet_virgo3b = null
 	transition_messages = list(
 		"The sky is dark, and rain falls down upon you."
 	)
+	outdoor_sounds_type = /datum/looping_sound/weather/rain
+	indoor_sounds_type = /datum/looping_sound/weather/rain/indoors
 
 /datum/weather/virgo3b/rain/process_effects()
 	..()
@@ -310,6 +312,8 @@ var/datum/planet/virgo3b/planet_virgo3b = null
 		"Loud thunder is heard in the distance.",
 		"A bright flash heralds the approach of a storm."
 	)
+	outdoor_sounds_type = /datum/looping_sound/weather/rain
+	indoor_sounds_type = /datum/looping_sound/weather/rain/indoors
 
 
 	transition_chances = list(

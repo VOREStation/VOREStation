@@ -1,8 +1,3 @@
-var/const/PATHFINDER 		=(1<<11)
-var/const/EXPLORER 			=(1<<12)
-var/const/PILOT 			=(1<<13)
-var/const/SAR 				=(1<<14)
-
 /obj/item/weapon/card/id/medical/sar
 	assignment = "Field Medic"
 	rank = "Field Medic"
@@ -64,13 +59,13 @@ var/const/SAR 				=(1<<14)
 /datum/job/pilot
 	title = "Pilot"
 	flag = PILOT
-	departments = list(DEPARTMENT_PLANET)
-	department_flag = MEDSCI
+	departments = list(DEPARTMENT_CIVILIAN)
+	department_flag = CIVILIAN
 	faction = "Station"
-	total_positions = 4
-	spawn_positions = 4
-	supervisors = "the Pathfinder and the Head of Personnel"
-	selection_color = "#999440"
+	total_positions = 5
+	spawn_positions = 5
+	supervisors = "the Head of Personnel"
+	selection_color = "#515151"
 	economic_modifier = 5
 	minimal_player_age = 3
 	pto_type = PTO_EXPLORATION

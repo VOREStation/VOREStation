@@ -123,7 +123,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	crash_with("CANARY: Old human update_icons_huds was called.")
 
 /mob/living/carbon/human/update_transform()
-	/* VOREStation Edit START - TODO - Consider switching to icon_scale
+	/* VOREStation Edit START
 	// First, get the correct size.
 	var/desired_scale_x = icon_scale_x
 	var/desired_scale_y = icon_scale_y
@@ -137,8 +137,13 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		if(!isnull(M.icon_scale_y_percent))
 			desired_scale_y *= M.icon_scale_y_percent
 	*/
-	var/desired_scale_x = size_multiplier
-	var/desired_scale_y = size_multiplier
+	var/desired_scale_x = size_multiplier * icon_scale_x
+	var/desired_scale_y = size_multiplier * icon_scale_y
+	desired_scale_x *= species.icon_scale_x
+	desired_scale_y *= species.icon_scale_y
+	appearance_flags |= PIXEL_SCALE
+	if(fuzzy)
+		appearance_flags &= ~PIXEL_SCALE
 	//VOREStation Edit End
 
 	// Regular stuff again.
@@ -151,14 +156,14 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 	if(lying && !species.prone_icon) //Only rotate them if we're not drawing a specific icon for being prone.
 		M.Turn(90)
-		M.Scale(desired_scale_x, desired_scale_y)
+		M.Scale(desired_scale_y, desired_scale_x)//VOREStation Edit
 		if(species.icon_height == 64)//VOREStation Edit
 			M.Translate(13,-22)
 		else
 			M.Translate(1,-6)
 		layer = MOB_LAYER -0.01 // Fix for a byond bug where turf entry order no longer matters
 	else
-		M.Scale(desired_scale_x, desired_scale_y)
+		M.Scale(desired_scale_x, desired_scale_y)//VOREStation Edit
 		M.Translate(0, (vis_height/2)*(desired_scale_y-1)) //VOREStation edit
 		layer = MOB_LAYER // Fix for a byond bug where turf entry order no longer matters
 
@@ -233,10 +238,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	//Create a new, blank icon for our mob to use.
 	var/icon/stand_icon = new(species.icon_template ? species.icon_template : 'icons/mob/human.dmi', icon_state = "blank")
 
-	var/g = "male"
-	if(gender == FEMALE)
-		g = "female"
-
+	var/g = (gender == MALE ? "male" : "female")
 	var/icon_key = "[species.get_race_key(src)][g][s_tone][r_skin][g_skin][b_skin]"
 	if(lip_style)
 		icon_key += "[lip_style]"
@@ -249,7 +251,8 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		icon_key += "[r_eyes], [g_eyes], [b_eyes]"
 	var/obj/item/organ/external/head/head = organs_by_name[BP_HEAD]
 	if(head)
-		icon_key += "[head.eye_icon]"
+		if(!istype(head, /obj/item/organ/external/stump))
+			icon_key += "[head.eye_icon]"
 	for(var/organ_tag in species.has_limbs)
 		var/obj/item/organ/external/part = organs_by_name[organ_tag]
 		if(isnull(part) || part.is_stump() || part.is_hidden_by_tail()) //VOREStation Edit allowing tails to prevent bodyparts rendering, granting more spriter freedom for taur/digitigrade stuff.
@@ -287,7 +290,8 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 				icon_key += "_t" //VOREStation Edit.
 
 			if(istype(tail_style, /datum/sprite_accessory/tail/taur))
-				icon_key += tail_style.clip_mask_state
+				if(tail_style.clip_mask) //VOREStation Edit.
+					icon_key += tail_style.clip_mask_state
 
 	icon_key = "[icon_key][husk ? 1 : 0][fat ? 1 : 0][hulk ? 1 : 0][skeleton ? 1 : 0]"
 	var/icon/base_icon
@@ -301,14 +305,15 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		var/icon/Cutter = null
 
 		if(istype(tail_style, /datum/sprite_accessory/tail/taur))	// Tail icon 'cookie cutters' are filled in where icons are preserved. We need to invert that.
-			Cutter = new(icon = tail_style.icon, icon_state = tail_style.clip_mask)
+			if(tail_style.clip_mask) //VOREStation Edit.
+				Cutter = new(icon = tail_style.icon, icon_state = tail_style.clip_mask_state)
 
-			Cutter.Blend("#000000", ICON_MULTIPLY)	// Make it all black.
+				Cutter.Blend("#000000", ICON_MULTIPLY)	// Make it all black.
 
-			Cutter.SwapColor("#00000000", "#FFFFFFFF")	// Everywhere empty, make white.
-			Cutter.SwapColor("#000000FF", "#00000000")	// Everywhere black, make empty.
+				Cutter.SwapColor("#00000000", "#FFFFFFFF")	// Everywhere empty, make white.
+				Cutter.SwapColor("#000000FF", "#00000000")	// Everywhere black, make empty.
 
-			Cutter.Blend("#000000", ICON_MULTIPLY)	// Black again.
+				Cutter.Blend("#000000", ICON_MULTIPLY)	// Black again.
 
 		for(var/obj/item/organ/external/part in organs)
 			if(isnull(part) || part.is_stump() || part.is_hidden_by_tail()) //VOREStation Edit allowing tails to prevent bodyparts rendering, granting more spriter freedom for taur/digitigrade stuff.
@@ -485,7 +490,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 	if(head_organ.transparent) //VOREStation Edit. For better slime limbs.
 		face_standing += rgb(,,,120)
-	
+
 	overlays_standing[HAIR_LAYER] = image(face_standing, layer = BODY_LAYER+HAIR_LAYER)
 	apply_layer(HAIR_LAYER)
 

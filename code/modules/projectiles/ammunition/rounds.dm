@@ -308,7 +308,7 @@
 	matter = list(MAT_TITANIUM = 2500, MAT_PLASTEEL = 1500)
 
 /obj/item/ammo_casing/a145/spent/Initialize()
-	..()
+	. = ..()
 	expend()
 
 /*

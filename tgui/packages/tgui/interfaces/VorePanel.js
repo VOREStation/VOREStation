@@ -171,6 +171,7 @@ const VoreSelectedBelly = (props, context) => {
     contaminates,
     contaminate_flavor,
     contaminate_color,
+    egg_type,
     escapable,
     interacts,
     contents,
@@ -267,6 +268,21 @@ const VoreSelectedBelly = (props, context) => {
               onClick={() => act("set_attribute", { attribute: "b_msgs", msgtype: "em" })}
               content="Examine Message (when full)" />
             <Button
+              onClick={() => act("set_attribute", { attribute: "b_msgs", msgtype: "im_digest" })}
+              content="Idle Messages (Digest)" />
+            <Button
+              onClick={() => act("set_attribute", { attribute: "b_msgs", msgtype: "im_hold" })}
+              content="Idle Messages (Hold)" />
+            <Button
+              onClick={() => act("set_attribute", { attribute: "b_msgs", msgtype: "im_absorb" })}
+              content="Idle Messages (Absorb)" />
+            <Button
+              onClick={() => act("set_attribute", { attribute: "b_msgs", msgtype: "im_heal" })}
+              content="Idle Messages (Heal)" />
+            <Button
+              onClick={() => act("set_attribute", { attribute: "b_msgs", msgtype: "im_drain" })}
+              content="Idle Messages (Drain)" />
+            <Button
               color="red"
               onClick={() => act("set_attribute", { attribute: "b_msgs", msgtype: "reset" })}
               content="Reset Messages" />
@@ -320,6 +336,12 @@ const VoreSelectedBelly = (props, context) => {
                   icon={can_taste ? "toggle-on" : "toggle-off"}
                   selected={can_taste}
                   content={can_taste ? "Yes" : "No"} />
+              </LabeledList.Item>
+              <LabeledList.Item label="Egg Type">
+                <Button
+                  onClick={() => act("set_attribute", { attribute: "b_egg_type" })}
+                  icon="pen"
+                  content={capitalize(egg_type)} />
               </LabeledList.Item>
             </LabeledList>
           </Flex.Item>
@@ -564,6 +586,8 @@ const VoreUserPreferences = (props, context) => {
     show_vore_fx,
     can_be_drop_prey,
     can_be_drop_pred,
+    step_mechanics_active,
+    pickup_mechanics_active,
     noisy,
   } = data.prefs;
 
@@ -697,6 +721,34 @@ const VoreUserPreferences = (props, context) => {
               : ("Regardless of Predator Setting, you will not leave remains behind."
                 + " Click this to allow leaving remains.")}
             content={digest_leave_remains ? "Allow Leaving Remains Behind" : "Do Not Allow Leaving Remains Behind"} />
+        </Flex.Item>
+        <Flex.Item basis="49%">
+          <Button
+            onClick={() => act("toggle_steppref")}
+            icon={step_mechanics_active ? "toggle-on" : "toggle-off"}
+            selected={step_mechanics_active}
+            fluid
+            tooltipPosition="top"
+            tooltip={step_mechanics_active 
+              ? "This setting controls whether or not you participate in size-based step mechanics."
+              + "Includes both stepping on others, as well as getting stepped on. Click to disable step mechanics."
+              : ("You will not participate in step mechanics."
+                + " Click to enable step mechanics.")}
+            content={step_mechanics_active ? "Step Mechanics Enabled" : "Step Mechanics Disabled"} />
+        </Flex.Item>
+        <Flex.Item basis="49%">
+          <Button
+            onClick={() => act("toggle_pickuppref")}
+            icon={pickup_mechanics_active ? "toggle-on" : "toggle-off"}
+            selected={pickup_mechanics_active}
+            fluid
+            tooltipPosition="top"
+            tooltip={pickup_mechanics_active 
+              ? "Allows macros to pick you up into their hands, and you to pick up micros."
+              + "Click to disable pick-up mechanics"
+              : ("You will not participate in pick-up mechanics."
+                + " Click this to allow picking up/being picked up.")}
+            content={pickup_mechanics_active ? "Pick-up Mechanics Enabled" : "Pick-up Mechanics Disabled"} />
         </Flex.Item>
         <Flex.Item basis="49%">
           <Button

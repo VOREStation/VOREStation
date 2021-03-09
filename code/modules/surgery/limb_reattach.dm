@@ -59,6 +59,13 @@
 	"<span class='notice'>You have attached [target]'s [E.name] to the [E.amputation_point].</span>")
 	user.drop_from_inventory(E)
 	E.replaced(target)
+
+	// Modular bodyparts (like prosthetics) do not need to be reconnected.
+	if(E.get_modular_limb_category() != MODULAR_BODYPART_INVALID)
+		E.status &= ~ORGAN_CUT_AWAY
+		for(var/obj/item/organ/external/child in E.children)
+			child.status &= ~ORGAN_CUT_AWAY
+
 	target.update_icons_body(FALSE)
 	target.updatehealth()
 	target.UpdateDamageIcon()

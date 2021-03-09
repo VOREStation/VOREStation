@@ -54,7 +54,7 @@
 /mob/living/simple_mob/Destroy()
 	release_vore_contents()
 	prey_excludes.Cut()
-	. = ..()
+	return ..()
 
 //For all those ID-having mobs
 /mob/living/simple_mob/GetIdCard()

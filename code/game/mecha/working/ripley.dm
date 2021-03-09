@@ -70,7 +70,7 @@
 	max_special_equip = 1
 
 /obj/mecha/working/ripley/deathripley/Initialize()
-	..()
+	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp/safety
 	ME.attach(src)
 	return
@@ -80,7 +80,7 @@
 	name = "APLU \"Miner\""
 
 /obj/mecha/working/ripley/mining/Initialize()
-	..()
+	. = ..()
 	//Attach drill
 	if(prob(25)) //Possible diamond drill... Feeling lucky?
 		var/obj/item/mecha_parts/mecha_equipment/tool/drill/diamonddrill/D = new /obj/item/mecha_parts/mecha_equipment/tool/drill/diamonddrill

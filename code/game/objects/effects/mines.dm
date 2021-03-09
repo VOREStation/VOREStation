@@ -10,31 +10,36 @@
 	var/obj/item/weapon/mine/mineitemtype = /obj/item/weapon/mine
 	var/panel_open = 0
 	var/datum/wires/mines/wires = null
-	register_as_dangerous_object = TRUE
-
 	var/camo_net = FALSE	// Will the mine 'cloak' on deployment?
 
 	// The trap item will be triggered in some manner when detonating. Default only checks for grenades.
 	var/obj/item/trap = null
 
-/obj/effect/mine/New()
+/obj/effect/mine/Initialize()
 	icon_state = "uglyminearmed"
 	wires = new(src)
-
+	. = ..()
 	if(ispath(trap))
 		trap = new trap(src)
-
-/obj/effect/mine/Initialize()
-	..()
-
+	register_dangerous_to_step()
 	if(camo_net)
 		alpha = 50
 
 /obj/effect/mine/Destroy()
+	unregister_dangerous_to_step()
 	if(trap)
 		QDEL_NULL(trap)
 	qdel_null(wires)
 	return ..()
+
+/obj/effect/mine/Moved(atom/oldloc)
+	. = ..()
+	if(.)
+		var/turf/old_turf = get_turf(oldloc)
+		var/turf/new_turf = get_turf(src)
+		if(old_turf != new_turf)
+			old_turf.unregister_dangerous_object(src)
+			new_turf.register_dangerous_object(src)
 
 /obj/effect/mine/proc/explode(var/mob/living/M)
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()

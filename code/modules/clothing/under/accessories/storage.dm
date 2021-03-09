@@ -12,7 +12,7 @@
 	var/hide_on_roll = FALSE
 
 /obj/item/clothing/accessory/storage/Initialize()
-	..()
+	. = ..()
 	hold = new/obj/item/weapon/storage/internal(src)
 	hold.max_storage_space = slots * 2
 	hold.max_w_class = ITEMSIZE_SMALL
@@ -95,7 +95,7 @@
 	slots = 2
 
 /obj/item/clothing/accessory/storage/knifeharness/Initialize()
-	..()
+	. = ..()
 	hold.max_storage_space = ITEMSIZE_COST_SMALL * 2
 	hold.can_hold = list(/obj/item/weapon/material/knife/machete/hatchet/unathiknife,\
 	/obj/item/weapon/material/knife,\

@@ -57,9 +57,9 @@
 	return host
 
 // Note, in order to allow others to look at others vore panels, this state would need
-// to be changed to tgui_always_state, and a custom tgui_status() implemented for true "rights" management.
+// to be modified.
 /datum/vore_look/tgui_state(mob/user)
-	return GLOB.tgui_self_state
+	return GLOB.tgui_vorepanel_state
 
 /datum/vore_look/var/static/list/nom_icons
 /datum/vore_look/proc/cached_nom_icon(atom/target)
@@ -150,6 +150,7 @@
 			"release_sound" = selected.release_sound,
 			// "messages" // TODO
 			"can_taste" = selected.can_taste,
+			"egg_type" = selected.egg_type,
 			"nutrition_percent" = selected.nutrition_percent,
 			"digest_brute" = selected.digest_brute,
 			"digest_burn" = selected.digest_burn,
@@ -164,6 +165,7 @@
 			if(selected.mode_flags & selected.mode_flag_list[flag_name])
 				data["selected"]["addons"].Add(flag_name)
 
+		data["selected"]["egg_type"] = selected.egg_type
 		data["selected"]["contaminates"] = selected.contaminates
 		data["selected"]["contaminate_flavor"] = null
 		data["selected"]["contaminate_color"] = null
@@ -212,6 +214,8 @@
 		"show_vore_fx" = host.show_vore_fx,
 		"can_be_drop_prey" = host.can_be_drop_prey,
 		"can_be_drop_pred" = host.can_be_drop_pred,
+		"step_mechanics_active" = host.step_mechanics_pref,
+		"pickup_mechanics_active" = host.pickup_pref,
 		"noisy" = host.noisy,
 	)
 
@@ -236,7 +240,7 @@
 		// Host is inside someone else, and is trying to interact with something else inside that person.
 		if("pick_from_inside")
 			return pick_from_inside(usr, params)
-			
+
 		// Host is trying to interact with something in host's belly.
 		if("pick_from_outside")
 			return pick_from_outside(usr, params)
@@ -267,7 +271,7 @@
 			host.vore_selected = NB
 			unsaved_changes = TRUE
 			return TRUE
-		
+
 		if("bellypick")
 			host.vore_selected = locate(params["bellypick"])
 			return TRUE
@@ -376,6 +380,18 @@
 				host.client.prefs_vr.allowmobvore = host.allowmobvore
 			unsaved_changes = TRUE
 			return TRUE
+		if("toggle_steppref")
+			host.step_mechanics_pref = !host.step_mechanics_pref
+			if(host.client.prefs_vr)
+				host.client.prefs_vr.step_mechanics_pref = host.step_mechanics_pref
+			unsaved_changes = TRUE
+			return TRUE
+		if("toggle_pickuppref")
+			host.pickup_pref = !host.pickup_pref
+			if(host.client.prefs_vr)
+				host.client.prefs_vr.pickup_pref = host.pickup_pref
+			unsaved_changes = TRUE
+			return TRUE
 		if("toggle_healbelly")
 			host.permit_healbelly = !host.permit_healbelly
 			if(host.client.prefs_vr)
@@ -403,11 +419,11 @@
 
 	if(!(target in OB))
 		return TRUE // Aren't here anymore, need to update menu
-	
+
 	var/intent = "Examine"
 	if(isliving(target))
 		intent = alert("What do you want to do to them?","Query","Examine","Help Out","Devour")
-	
+
 	else if(istype(target, /obj/item))
 		intent = alert("What do you want to do to that?","Query","Examine","Use Hand")
 
@@ -505,7 +521,7 @@
 					host.vore_selected.transfer_contents(target, choice, 1)
 				return TRUE
 		return
-	
+
 	var/atom/movable/target = locate(params["pick"])
 	if(!(target in host.vore_selected))
 		return TRUE // Not in our X anymore, update UI
@@ -602,7 +618,7 @@
 			if(!toggle_addon)
 				return FALSE
 			host.vore_selected.mode_flags ^= host.vore_selected.mode_flag_list[toggle_addon]
-			host.vore_selected.items_preserved.Cut() //Re-evaltuate all items in belly on 
+			host.vore_selected.items_preserved.Cut() //Re-evaltuate all items in belly on
 			. = TRUE
 		if("b_item_mode")
 			var/list/menu_list = host.vore_selected.item_digest_modes.Copy()
@@ -632,7 +648,14 @@
 			host.vore_selected.contamination_color = new_color
 			host.vore_selected.items_preserved.Cut() //To re-contaminate for new color
 			. = TRUE
-		if("b_desc")		
+		if("b_egg_type")
+			var/list/menu_list = global_vore_egg_types.Copy()
+			var/new_egg_type = input("Choose Egg Type (currently [host.vore_selected.egg_type])") as null|anything in menu_list
+			if(!new_egg_type)
+				return FALSE
+			host.vore_selected.egg_type = new_egg_type
+			. = TRUE
+		if("b_desc")
 			var/new_desc = html_encode(input(usr,"Belly Description ([BELLIES_DESC_MAX] char limit):","New Description",host.vore_selected.desc) as message|null)
 
 			if(new_desc)
@@ -643,8 +666,8 @@
 				host.vore_selected.desc = new_desc
 				. = TRUE
 		if("b_msgs")
-			alert(user,"Setting abusive or deceptive messages will result in a ban. Consider this your warning. Max 150 characters per message, max 10 messages per topic.","Really, don't.")
-			var/help = " Press enter twice to separate messages. '%pred' will be replaced with your name. '%prey' will be replaced with the prey's name. '%belly' will be replaced with your belly's name."
+			alert(user,"Setting abusive or deceptive messages will result in a ban. Consider this your warning. Max 150 characters per message (500 for idle messages), max 10 messages per topic.","Really, don't.")
+			var/help = " Press enter twice to separate messages. '%pred' will be replaced with your name. '%prey' will be replaced with the prey's name. '%belly' will be replaced with your belly's name. '%count' will be replaced with the number of anything in your belly. '%countprey' will be replaced with the number of living prey in your belly."
 			switch(params["msgtype"])
 				if("dmp")
 					var/new_message = input(user,"These are sent to prey when they expire. Write them in 2nd person ('you feel X'). Avoid using %prey in this type."+help,"Digest Message (to prey)",host.vore_selected.get_messages("dmp")) as message
@@ -671,6 +694,31 @@
 					if(new_message)
 						host.vore_selected.set_messages(new_message,"em")
 
+				if("im_digest")
+					var/new_message = input(user,"These are sent to prey every minute when you are on Digest mode. Write them in 2nd person ('%pred's %belly squishes down on you.')."+help,"Idle Message (Digest)",host.vore_selected.get_messages("im_digest")) as message
+					if(new_message)
+						host.vore_selected.set_messages(new_message,"im_digest")
+
+				if("im_hold")
+					var/new_message = input(user,"These are sent to prey every minute when you are on Hold mode. Write them in 2nd person ('%pred's %belly squishes down on you.')"+help,"Idle Message (Hold)",host.vore_selected.get_messages("im_hold")) as message
+					if(new_message)
+						host.vore_selected.set_messages(new_message,"im_hold")
+
+				if("im_absorb")
+					var/new_message = input(user,"These are sent to prey every minute when you are on Absorb mode. Write them in 2nd person ('%pred's %belly squishes down on you.')"+help,"Idle Message (Absorb)",host.vore_selected.get_messages("im_absorb")) as message
+					if(new_message)
+						host.vore_selected.set_messages(new_message,"im_absorb")
+
+				if("im_heal")
+					var/new_message = input(user,"These are sent to prey every minute when you are on Heal mode. Write them in 2nd person ('%pred's %belly squishes down on you.')"+help,"Idle Message (Heal)",host.vore_selected.get_messages("im_heal")) as message
+					if(new_message)
+						host.vore_selected.set_messages(new_message,"im_heal")
+
+				if("im_drain")
+					var/new_message = input(user,"These are sent to prey every minute when you are on Drain mode. Write them in 2nd person ('%pred's %belly squishes down on you.')"+help,"Idle Message (Drain)",host.vore_selected.get_messages("im_drain")) as message
+					if(new_message)
+						host.vore_selected.set_messages(new_message,"im_drain")
+
 				if("reset")
 					var/confirm = alert(user,"This will delete any custom messages. Are you sure?","Confirmation","DELETE","Cancel")
 					if(confirm == "DELETE")
@@ -678,6 +726,8 @@
 						host.vore_selected.digest_messages_owner = initial(host.vore_selected.digest_messages_owner)
 						host.vore_selected.struggle_messages_outside = initial(host.vore_selected.struggle_messages_outside)
 						host.vore_selected.struggle_messages_inside = initial(host.vore_selected.struggle_messages_inside)
+						host.vore_selected.examine_messages = initial(host.vore_selected.examine_messages)
+						host.vore_selected.emote_lists = initial(host.vore_selected.emote_lists)
 			. = TRUE
 		if("b_verb")
 			var/new_verb = html_encode(input(usr,"New verb when eating (infinitive tense, e.g. nom or swallow):","New Verb") as text|null)
@@ -865,6 +915,6 @@
 			qdel(host.vore_selected)
 			host.vore_selected = host.vore_organs[1]
 			. = TRUE
-	
+
 	if(.)
 		unsaved_changes = TRUE

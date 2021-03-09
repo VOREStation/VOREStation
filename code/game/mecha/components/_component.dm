@@ -43,7 +43,7 @@
 			. += "<span class='warning'><b>It is completely destroyed.</b></span>"
 
 /obj/item/mecha_parts/component/Initialize()
-	..()
+	. = ..()
 	integrity = max_integrity
 
 	if(start_damaged)

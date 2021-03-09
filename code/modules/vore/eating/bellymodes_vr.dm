@@ -31,6 +31,14 @@
 	if(!length(touchable_atoms))
 		return
 
+	var/datum/digest_mode/DM = GLOB.digest_modes["[digest_mode]"]
+	if(!DM)
+		log_debug("Digest mode [digest_mode] didn't exist in the digest_modes list!!")
+		return FALSE
+	if(DM.handle_atoms(src, touchable_atoms))
+		updateVRPanels()
+		return
+
 	var/list/touchable_mobs = null
 
 	var/list/hta_returns = handle_touchable_atoms(touchable_atoms)
@@ -52,12 +60,18 @@
 		for(var/mob/living/M in contents)
 			if(digest_mode == DM_DIGEST && !M.digestable)
 				continue // don't give digesty messages to indigestible people
-			to_chat(M, "<span class='notice'>[pick(EL)]</span>")
+			var/living_count = 0
+			for(var/mob/living/L in contents)
+				living_count++
 
-	var/datum/digest_mode/DM = GLOB.digest_modes["[digest_mode]"]
-	if(!DM)
-		log_debug("Digest mode [digest_mode] didn't exist in the digest_modes list!!")
-		return FALSE
+			var/raw_message = pick(EL)
+			var/formatted_message
+			formatted_message = replacetext(raw_message, "%belly", lowertext(name))
+			formatted_message = replacetext(formatted_message, "%pred", owner)
+			formatted_message = replacetext(formatted_message, "%prey", english_list(contents))
+			formatted_message = replacetext(formatted_message, "%count", contents.len)
+			formatted_message = replacetext(formatted_message, "%countprey", living_count)
+			to_chat(M, "<span class='notice'>[formatted_message]</span>")
 
 	if(!digestion_noise_chance)
 		digestion_noise_chance = DM.noise_chance
@@ -80,14 +94,14 @@
 		play_sound = pred_digest
 
 	if(play_sound)
-		for(var/mob/M in hearers(VORE_SOUND_RANGE, owner)) //so we don't fill the whole room with the sound effect
+		for(var/mob/M in hearers(VORE_SOUND_RANGE, get_turf(owner))) //so we don't fill the whole room with the sound effect
 			if(!M.is_preference_enabled(/datum/client_preference/digestion_noises))
 				continue
 			if(isturf(M.loc) || (M.loc != src)) //to avoid people on the inside getting the outside sounds and their direct sounds + built in sound pref check
 				if(fancy_vore)
-					M.playsound_local(owner.loc, play_sound, vol = 75, vary = 1, falloff = VORE_SOUND_FALLOFF)
+					M.playsound_local(get_turf(owner), play_sound, vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF)
 				else
-					M.playsound_local(owner.loc, play_sound, vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF)
+					M.playsound_local(get_turf(owner), play_sound, vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF)
 				 //these are all external sound triggers now, so it's ok.
 
 	if(to_update)
@@ -202,14 +216,22 @@
 	var/digest_alert_prey = pick(digest_messages_prey)
 	var/compensation = M.getOxyLoss() //How much of the prey's damage was caused by passive crit oxyloss to compensate the lost nutrition.
 
+	var/living_count = 0
+	for(var/mob/living/L in contents)
+		living_count++
+
 	//Replace placeholder vars
 	digest_alert_owner = replacetext(digest_alert_owner, "%pred", owner)
 	digest_alert_owner = replacetext(digest_alert_owner, "%prey", M)
 	digest_alert_owner = replacetext(digest_alert_owner, "%belly", lowertext(name))
+	digest_alert_owner = replacetext(digest_alert_owner, "%count", contents.len)
+	digest_alert_owner = replacetext(digest_alert_owner, "%countprey", living_count)
 
 	digest_alert_prey = replacetext(digest_alert_prey, "%pred", owner)
 	digest_alert_prey = replacetext(digest_alert_prey, "%prey", M)
 	digest_alert_prey = replacetext(digest_alert_prey, "%belly", lowertext(name))
+	digest_alert_prey = replacetext(digest_alert_prey, "%count", contents.len)
+	digest_alert_prey = replacetext(digest_alert_prey, "%countprey", living_count)
 
 	//Send messages
 	to_chat(owner, "<span class='notice'>[digest_alert_owner]</span>")

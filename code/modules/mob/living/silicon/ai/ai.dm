@@ -978,7 +978,7 @@ var/list/ai_verbs_default = list(
 	drop_new_multicam()
 
 //Special subtype kept around for global announcements
-/mob/living/silicon/ai/announcer/
+/mob/living/silicon/ai/announcer
 	is_dummy = 1
 
 /mob/living/silicon/ai/announcer/Initialize()

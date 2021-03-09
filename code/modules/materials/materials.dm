@@ -1057,9 +1057,10 @@ var/list/name_to_material
 	icon_base = "solid"
 	icon_reinf = "reinf_mesh"
 	integrity = 60
+	weight = 10
 	ignition_point = T0C+400
 	melting_point = T0C+500
-	protectiveness = 25
+	protectiveness = 20
 	conductive = 0
 	supply_conversion_value = 4
 

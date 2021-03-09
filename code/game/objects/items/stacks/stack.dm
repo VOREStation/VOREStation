@@ -29,14 +29,13 @@
 	var/pass_color = FALSE // Will the item pass its own color var to the created item? Dyed cloth, wood, etc.
 	var/strict_color_stacking = FALSE // Will the stack merge with other stacks that are different colors? (Dyed cloth, wood, etc)
 
-/obj/item/stack/New(var/loc, var/amount=null)
-	..()
-	if (!stacktype)
+/obj/item/stack/Initialize(var/ml, var/amount)
+	. = ..()
+	if(!stacktype)
 		stacktype = type
-	if (amount)
+	if(amount)
 		src.amount = amount
 	update_icon()
-	return
 
 /obj/item/stack/Destroy()
 	if(uses_charge)
@@ -170,8 +169,37 @@
 		var/atom/O
 		if(recipe.use_material)
 			O = new recipe.result_type(user.loc, recipe.use_material)
+
+			if(istype(O, /obj))
+				var/obj/Ob = O
+
+				if(LAZYLEN(Ob.matter))	// Law of equivalent exchange.
+					Ob.matter.Cut()
+
+				else
+					Ob.matter = list()
+
+				var/mattermult = istype(Ob, /obj/item) ? min(2000, 400 * Ob.w_class) : 2000
+
+				Ob.matter[recipe.use_material] = mattermult / produced * required
+
 		else
 			O = new recipe.result_type(user.loc)
+
+			if(recipe.matter_material)
+				if(istype(O, /obj))
+					var/obj/Ob = O
+
+					if(LAZYLEN(Ob.matter))	// Law of equivalent exchange.
+						Ob.matter.Cut()
+
+					else
+						Ob.matter = list()
+
+					var/mattermult = istype(Ob, /obj/item) ? min(2000, 400 * Ob.w_class) : 2000
+
+					Ob.matter[recipe.use_material] = mattermult / produced * required
+
 		O.set_dir(user.dir)
 		O.add_fingerprint(user)
 
@@ -379,8 +407,9 @@
 	var/on_floor = 0
 	var/use_material
 	var/pass_color
+	var/matter_material 	// Material type used for recycling. Default, uses use_material. For non-material-based objects however, matter_material is needed.
 
-/datum/stack_recipe/New(title, result_type, req_amount = 1, res_amount = 1, max_res_amount = 1, time = 0, one_per_turf = 0, on_floor = 0, supplied_material = null, pass_stack_color)
+/datum/stack_recipe/New(title, result_type, req_amount = 1, res_amount = 1, max_res_amount = 1, time = 0, one_per_turf = 0, on_floor = 0, supplied_material = null, pass_stack_color, recycle_material = null)
 	src.title = title
 	src.result_type = result_type
 	src.req_amount = req_amount
@@ -391,6 +420,12 @@
 	src.on_floor = on_floor
 	src.use_material = supplied_material
 	src.pass_color = pass_stack_color
+
+	if(!recycle_material && src.use_material)
+		src.matter_material = src.use_material
+
+	else if(recycle_material)
+		src.matter_material = recycle_material
 
 /*
  * Recipe list datum
