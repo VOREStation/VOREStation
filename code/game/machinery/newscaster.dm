@@ -631,7 +631,6 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 
 		photo_data = new(selection, 1)
 
-<<<<<<< HEAD
 //########################################################################################################################
 //###################################### NEWSPAPER! ######################################################################
 //########################################################################################################################
@@ -779,8 +778,6 @@ obj/item/weapon/newspaper/attackby(obj/item/weapon/W as obj, mob/user)
 			attack_self(user)
 		return
 
-=======
->>>>>>> d0b71c8... Lobby Improvements (#7856)
 ////////////////////////////////////helper procs
 /obj/machinery/newscaster/proc/tgui_user_name(mob/user)
 	if(ishuman(user))
