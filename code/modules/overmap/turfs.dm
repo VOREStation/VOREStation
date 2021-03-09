@@ -10,7 +10,6 @@ var/global/list/map_sectors = list()
 /turf/unsimulated/map
 	icon = 'icons/turf/space.dmi'
 	icon_state = "map"
-	initialized = FALSE // TODO - Fix unsimulated turf initialization so this override is not necessary!
 
 /turf/unsimulated/map/edge
 	opacity = 1

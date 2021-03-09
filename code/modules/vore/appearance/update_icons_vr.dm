@@ -20,6 +20,15 @@ var/global/list/wing_icon_cache = list()
 		return ears_s
 	return null
 
+/mob/living/carbon/human/proc/get_hair_accessory_overlay()
+	if(hair_accessory_style && !(head && (head.flags_inv & BLOCKHEADHAIR)))
+		var/icon/hair_acc_s = icon(hair_accessory_style.icon, hair_accessory_style.icon_state)
+		if(hair_accessory_style.do_colouration)
+			hair_acc_s.Blend(rgb(src.r_ears, src.g_ears, src.b_ears), hair_accessory_style.color_blend_mode)
+		return hair_acc_s
+	return null
+
+
 /mob/living/carbon/human/proc/get_tail_image()
 	//If you are FBP with tail style and didn't set a custom one
 	var/datum/robolimb/model = isSynthetic()
@@ -102,6 +111,7 @@ var/global/list/wing_icon_cache = list()
 				qdel(overlay)
 
 		return image(wing_s)
+
 
 // TODO - Move this to where it should go ~Leshana
 /mob/proc/stop_flying()

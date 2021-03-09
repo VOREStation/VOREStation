@@ -5,6 +5,7 @@
 	var/ooc_notes = null
 	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER
 	var/hunger_rate = DEFAULT_HUNGER_FACTOR
+	var/resizable = TRUE
 
 //custom say verbs
 	var/custom_say = null

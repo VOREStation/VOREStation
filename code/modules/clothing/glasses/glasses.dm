@@ -392,6 +392,18 @@ BLIND     // can't see anything
 	drop_sound = 'sound/items/drop/gloves.ogg'
 	pickup_sound = 'sound/items/pickup/gloves.ogg'
 
+/obj/item/clothing/glasses/sunglasses/blindfold/whiteblindfold
+	name = "white blindfold"
+	desc = "A white blindfold that covers the eyes, preventing sight."
+	icon_state = "blindfoldwhite"
+
+/obj/item/clothing/glasses/sunglasses/thinblindfold
+	name = "thin white blindfold"
+	desc = "A thin blindfold to help protect sensitive eyes while still allowing some sight"
+	icon_state = "blindfoldwhite"
+	flash_protection = FLASH_PROTECTION_MODERATE //not as thick, only offers some protection
+	tint = TINT_HEAVY
+
 /obj/item/clothing/glasses/sunglasses/blindfold/tape
 	name = "length of tape"
 	desc = "It's a robust DIY blindfold!"

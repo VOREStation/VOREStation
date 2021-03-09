@@ -74,6 +74,7 @@
 	var/check_anomalies = TRUE	//checks if it can shoot at unidentified lifeforms (ie xenos)
 	var/check_synth	 = FALSE 	//if active, will shoot at anything not an AI or cyborg
 	var/check_all = FALSE		//If active, will fire on anything, including synthetics.
+	var/fire_at_movement = FALSE	// If active, will fire on the most recent thing to move in range, as soon as possible.
 	var/ailock = FALSE 			// AI cannot use this
 	var/check_down = FALSE		//If active, will shoot to kill when lethals are also on
 	var/faction = null			//if set, will not fire at people in the same faction for any reason.
@@ -94,6 +95,8 @@
 	var/last_target			//last target fired at, prevents turrets from erratically firing at all valid targets in range
 	var/timeout = 10		// When a turret pops up, then finds nothing to shoot at, this number decrements until 0, when it pops down.
 	var/can_salvage = TRUE	// If false, salvaging doesn't give you anything.
+
+	var/stay_up = FALSE		// If true, the turret will remain open while it is powered.
 
 /obj/machinery/porta_turret/crescent
 	req_one_access = list(access_cent_specops)
@@ -276,6 +279,31 @@
 	)
 	return data
 
+/obj/machinery/porta_turret/pointdefense
+	name = "point-defense turret"
+	turret_type = "core"
+	desc = "A basic ship-mounted rock-breaker."
+	description_info = "This turret is capable of blasting incoming meteors into gravel, but it is very limited in range."
+
+	installation = /obj/item/weapon/gun/energy/mininglaser
+
+	check_arrest = FALSE
+	check_records = FALSE
+	check_weapons = FALSE
+	check_access = FALSE
+	check_anomalies = FALSE
+	check_synth	 = FALSE
+	check_all = FALSE
+	fire_at_movement = TRUE
+	stay_up = TRUE
+	ailock = FALSE
+	check_down = FALSE
+
+/obj/machinery/porta_turret/pointdefense/orderable
+	enabled = FALSE
+	anchored = FALSE
+	locked = FALSE
+
 /obj/machinery/porta_turret/Initialize()
 	//Sets up a spark system
 	spark_system = new /datum/effect/effect/system/spark_spread
@@ -321,6 +349,8 @@
 	var/obj/item/weapon/gun/energy/E = installation	//All energy-based weapons are applicable
 	var/obj/item/projectile/P = initial(E.projectile_type)
 	//var/obj/item/ammo_casing/shottype = E.projectile_type
+
+	//GLOB.moved_event.register_global(src, /obj/machinery/porta_turret/proc/point_defense) //VOREStation Removal
 
 	projectile = P
 	lethal_projectile = projectile
@@ -377,11 +407,18 @@
 			lethal_shot_sound = 'sound/weapons/eluger.ogg'
 			shot_sound = 'sound/weapons/Taser.ogg'
 
-/obj/machinery/porta_turret/proc/HasController()
-	var/area/A = get_area(src)
-	return A && A.turret_controls.len > 0
+		if(/obj/item/weapon/gun/energy/mininglaser)
+			lethal_icon_color = "green"
+			lethal_projectile = /obj/item/projectile/beam/mininglaser
+			lethal_shot_sound = 'sound/weapons/eluger.ogg'
+			icon_color = "red"
+			projectile = /obj/item/projectile/beam/weaklaser
+			shot_sound = 'sound/weapons/Laser.ogg'
 
 /obj/machinery/porta_turret/proc/isLocked(mob/user)
+	if(locked && !issilicon(user))
+		to_chat(user, "<span class='notice'>Controls locked.</span>")
+		return 1
 	if(HasController())
 		return TRUE
 	if(isrobot(user) || isAI(user))
@@ -408,6 +445,10 @@
 
 /obj/machinery/porta_turret/attack_hand(mob/user)
 	tgui_interact(user)
+
+/obj/machinery/porta_turret/proc/HasController()
+	var/area/A = get_area(src)
+	return A && A.turret_controls.len > 0
 
 /obj/machinery/porta_turret/tgui_interact(mob/user, datum/tgui/ui = null)
 	if(HasController())
@@ -671,6 +712,10 @@
 		popDown()
 		return
 
+	if(stay_up)
+		timeout = 10
+		popUp()
+
 	var/list/targets = list()			//list of primary targets
 	var/list/secondarytargets = list()	//targets that are least important
 
@@ -693,13 +738,21 @@
 	if(!tryToShootAt(targets))
 		if(!tryToShootAt(secondarytargets)) // if no valid targets, go for secondary targets
 			timeout--
-			if(timeout <= 0)
+			if(timeout <= 0 && !stay_up)
 				spawn()
 					popDown() // no valid targets, close the cover
 
 	if(auto_repair && (health < maxhealth))
 		use_power(20000)
 		health = min(health+1, maxhealth) // 1HP for 20kJ
+
+// We're expecting the first arg to be a target, for this we don't care about previous and next turfs.
+/obj/machinery/porta_turret/proc/point_defense(var/atom/movable/Targ)
+	if((stat & (NOPOWER|BROKEN)) || !fire_at_movement)	// Are we even able or supposed to fire at non-moving targets?
+		return
+
+	if((isliving(Targ) && assess_living(Targ)) || ((istype(Targ, /obj/item) || istype(Targ, /obj/effect/meteor)) && Targ.invisibility < INVISIBILITY_LEVEL_ONE && Targ in view(7,src)))	// Is the target a living thing, if so, is it a valid target? Or if it's not living, is it in sight?
+		target(Targ)	// Yes? Blast it.
 
 /obj/machinery/porta_turret/proc/assess_and_assign(var/mob/living/L, var/list/targets, var/list/secondarytargets)
 	switch(assess_living(L))
@@ -727,10 +780,10 @@
 	if(L.stat == DEAD && !emagged)		//if the perp is dead, no need to bother really
 		return TURRET_NOT_TARGET	//move onto next potential victim!
 
-	if(get_dist(src, L) > 7)	//if it's too far away, why bother?
+	if(get_dist(src, get_turf(L)) > 7)	//if it's too far away, why bother?
 		return TURRET_NOT_TARGET
 
-	if(!(L in check_trajectory(L, src)))	//check if we have true line of sight
+	if(!(L in check_trajectory(get_turf(L), src)))	//check if we have true line of sight
 		return TURRET_NOT_TARGET
 
 	if(emagged)		// If emagged not even the dead get a rest
@@ -837,8 +890,9 @@
 		last_target = target
 		spawn()
 			popUp()				//pop the turret up if it's not already up.
-		set_dir(get_dir(src, target))	//even if you can't shoot, follow the target
-		playsound(src, 'sound/machines/turrets/turret_rotate.ogg', 100, 1) // Play rotating sound
+		if(dir != get_dir(src, target))
+			set_dir(get_dir(src, target))	//even if you can't shoot, follow the target
+			playsound(src, 'sound/machines/turrets/turret_rotate.ogg', 100, 1) // Play rotating sound
 		spawn()
 			shootAt(target)
 		return 1
@@ -903,6 +957,8 @@
 	var/check_anomalies
 	var/check_all
 	var/check_down
+	var/fire_at_movement
+	var/stay_up
 	var/ailock
 
 /obj/machinery/porta_turret/proc/setState(var/datum/turret_checks/TC)
@@ -919,6 +975,8 @@
 	check_anomalies = TC.check_anomalies
 	check_all = TC.check_all
 	check_down = TC.check_down
+	fire_at_movement = TC.fire_at_movement
+	stay_up = TC.stay_up
 	ailock = TC.ailock
 
 	power_change()

@@ -659,12 +659,6 @@
 /obj/item/mecha_parts/chassis/gygax,
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/submap/virgo2/Rockybase)
-"co" = (
-/mob/living/simple_mob/mechanical/mecha/combat/gygax/dark/advanced{
-	faction = "syndicate"
-	},
-/turf/simulated/floor/tiled/techfloor/virgo2,
-/area/submap/virgo2/Rockybase)
 "cp" = (
 /obj/machinery/vending/robotics,
 /obj/machinery/light{
@@ -1302,7 +1296,7 @@ al
 bA
 ao
 ao
-co
+ao
 bq
 ao
 al

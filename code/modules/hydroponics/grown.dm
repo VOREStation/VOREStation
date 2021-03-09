@@ -17,10 +17,10 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/Initialize(var/mapload, var/planttype)
 	. = ..()
-	
+
 	if(!dried_type)
 		dried_type = type
-	
+
 	pixel_x = rand(-5.0, 5)
 	pixel_y = rand(-5.0, 5)
 
@@ -219,6 +219,11 @@
 					new /obj/item/weapon/reagent_containers/food/snacks/carrotfries(get_turf(src))
 					qdel(src)
 					return
+				else if(!isnull(seed.chems["pineapplejuice"]))
+					to_chat(user, "You slice \the [src] into rings.")
+					new /obj/item/weapon/reagent_containers/food/snacks/pineapple_ring(get_turf(src))
+					qdel(src)
+					return
 				else if(!isnull(seed.chems["soymilk"]))
 					to_chat(user, "You roughly chop up \the [src].")
 					new /obj/item/weapon/reagent_containers/food/snacks/soydope(get_turf(src))
@@ -287,6 +292,7 @@
 	if(seed.get_trait(TRAIT_SPREAD) > 0)
 		to_chat(user, "<span class='notice'>You plant the [src.name].</span>")
 		new /obj/machinery/portable_atmospherics/hydroponics/soil/invisible(get_turf(user),src.seed)
+		GLOB.seed_planted_shift_roundstat++
 		qdel(src)
 		return
 

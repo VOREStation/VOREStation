@@ -5,8 +5,7 @@
 
 	var/disconnect_time = null		//Time of client loss, set by Logout(), for timekeeping
 
-	var/obj/screen/shadekin/darkness/shadekin_dark_display = null
-	var/obj/screen/shadekin/energy/shadekin_energy_display = null
+	var/obj/screen/shadekin/shadekin_display = null
 	var/obj/screen/xenochimera/danger_level/xenochimera_danger_display = null
 
 /mob/drop_location()

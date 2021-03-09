@@ -34,7 +34,6 @@ two tiles on initialization, and which way a cliff is facing may change during m
 	climbable = TRUE
 	climb_delay = 10 SECONDS
 	block_turf_edges = TRUE // Don't want turf edges popping up from the cliff edge.
-	register_as_dangerous_object = TRUE
 
 	var/icon_variant = null // Used to make cliffs less repeative by having a selection of sprites to display.
 	var/corner = FALSE // Used for icon things.
@@ -43,6 +42,23 @@ two tiles on initialization, and which way a cliff is facing may change during m
 
 	var/is_double_cliff = FALSE // Set to true when making the two-tile cliffs, used for projectile checks.
 	var/uphill_penalty = 30 // Odds of a projectile not making it up the cliff.
+
+/obj/structure/cliff/Initialize()
+	. = ..()
+	register_dangerous_to_step()
+
+/obj/structure/cliff/Destroy()
+	unregister_dangerous_to_step()
+	. = ..()
+
+/obj/structure/cliff/Moved(atom/oldloc)
+	. = ..()
+	if(.)
+		var/turf/old_turf = get_turf(oldloc)
+		var/turf/new_turf = get_turf(src)
+		if(old_turf != new_turf)
+			old_turf.unregister_dangerous_object(src)
+			new_turf.register_dangerous_object(src)
 
 // These arrange their sprites at runtime, as opposed to being statically placed in the map file.
 /obj/structure/cliff/automatic

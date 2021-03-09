@@ -382,7 +382,7 @@ var/global/list/disallowed_protean_accessories = list(
 		B.owner = blob
 	
 	//We can still speak our languages!
-	blob.languages = languages
+	blob.languages = languages.Copy()
 
 	//Flip them to the protean panel
 	if(panel_was_up)
