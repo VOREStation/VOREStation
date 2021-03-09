@@ -92,10 +92,11 @@
 			m_type = 1
 
 		if("chirp")
+			/* VOREStation Removal Start - Eh. People can chirp maybe.
 			if ((species.bump_flag != SLIME) && (species.name != SPECIES_DIONA))
 				to_chat(src, "<span class='warning'>You are not a diona or slime!</span>")
 				return
-
+			*/ //VOREStation Removal End
 			playsound(src, 'sound/misc/nymphchirp.ogg', 50, 0)
 			message = "chirps."
 			m_type = 2
