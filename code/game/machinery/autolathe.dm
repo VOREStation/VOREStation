@@ -217,7 +217,6 @@
 	if(busy)
 		to_chat(usr, "<span class='notice'>The autolathe is busy. Please wait for completion of previous operation.</span>")
 		return
-<<<<<<< HEAD
 	switch(action)
 		if("make")
 			var/datum/category_item/autolathe/making = locate(params["make"])
@@ -271,6 +270,15 @@
 
 			//Create the desired item.
 			var/obj/item/I = new making.path(src.loc)
+
+			if(LAZYLEN(I.matter))	// Sadly we must obey the laws of equivalent exchange.
+				I.matter.Cut()
+			else
+				I.matter = list()
+
+			for(var/material in making.resources)	// Handle the datum's autoscaling for waste, so we're properly wasting material, but not so much if we have efficiency.
+				I.matter[material] = round(making.resources[material] / (making.no_scale ? 1 : 1.25)) * (making.no_scale ? 1 : mat_efficiency)
+
 			flick("[initial(icon_state)]_finish", src)
 			if(multiplier > 1)
 				if(istype(I, /obj/item/stack))
@@ -278,96 +286,18 @@
 					S.amount = multiplier
 				else
 					for(multiplier; multiplier > 1; --multiplier) // Create multiple items if it's not a stack.
-						new making.path(src.loc)
+						I = new making.path(src.loc)
+						// We've already deducted the cost of multiple items. Process the matter the same.
+						if(LAZYLEN(I.matter))
+							I.matter.Cut()
+
+						else
+							I.matter = list()
+
+						for(var/material in making.resources)
+							I.matter[material] = round(making.resources[material] / (making.no_scale ? 1 : 1.25)) * (making.no_scale ? 1 : mat_efficiency)
 			return TRUE
 	return FALSE
-=======
-
-	else if(href_list["setfilter"])
-		var/filterstring = input(usr, "Input a filter string, or blank to not filter:", "Design Filter", filtertext) as null|text
-		if(!Adjacent(usr))
-			return
-		if(isnull(filterstring)) //Clicked Cancel
-			return
-		if(filterstring == "") //Cleared value
-			filtertext = null
-		filtertext = sanitize(filterstring, 25)
-
-	if(href_list["change_category"])
-
-		var/choice = input("Which category do you wish to display?") as null|anything in machine_recipes.categories
-		if(!choice) return
-		current_category = choice
-
-	if(href_list["make"] && machine_recipes)
-		var/multiplier = text2num(href_list["multiplier"])
-		var/datum/category_item/autolathe/making = locate(href_list["make"]) in current_category.items
-
-		//Exploit detection, not sure if necessary after rewrite.
-		if(!making || multiplier < 0 || multiplier > 100)
-			var/turf/exploit_loc = get_turf(usr)
-			message_admins("[key_name_admin(usr)] tried to exploit an autolathe to duplicate an item! ([exploit_loc ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[exploit_loc.x];Y=[exploit_loc.y];Z=[exploit_loc.z]'>JMP</a>" : "null"])", 0)
-			log_admin("EXPLOIT : [key_name(usr)] tried to exploit an autolathe to duplicate an item!")
-			return
-
-		busy = 1
-		update_use_power(USE_POWER_ACTIVE)
-
-		//Check if we still have the materials.
-		var/coeff = (making.no_scale ? 1 : mat_efficiency) //stacks are unaffected by production coefficient
-		for(var/material in making.resources)
-			if(!isnull(stored_material[material]))
-				if(stored_material[material] < round(making.resources[material] * coeff) * multiplier)
-					return
-
-		//Consume materials.
-		for(var/material in making.resources)
-			if(!isnull(stored_material[material]))
-				stored_material[material] = max(0, stored_material[material] - round(making.resources[material] * coeff) * multiplier)
-
-		update_icon() // So lid closes
-
-		sleep(build_time)
-
-		busy = 0
-		update_use_power(USE_POWER_IDLE)
-		update_icon() // So lid opens
-
-		//Sanity check.
-		if(!making || !src) return
-
-		//Create the desired item.
-		var/obj/item/I = new making.path(src.loc)
-
-		if(LAZYLEN(I.matter))	// Sadly we must obey the laws of equivalent exchange.
-			I.matter.Cut()
-		else
-			I.matter = list()
-
-		for(var/material in making.resources)	// Handle the datum's autoscaling for waste, so we're properly wasting material, but not so much if we have efficiency.
-			I.matter[material] = round(making.resources[material] / (making.no_scale ? 1 : 1.25)) * (making.no_scale ? 1 : mat_efficiency)
-
-		flick("[initial(icon_state)]_finish", src)
-		if(multiplier > 1)
-			if(istype(I, /obj/item/stack))
-				var/obj/item/stack/S = I
-				S.amount = multiplier
-			else
-				for(multiplier; multiplier > 1; --multiplier) // Create multiple items if it's not a stack.
-					I = new making.path(src.loc)
-
-// We've already deducted the cost of multiple items. Process the matter the same.
-					if(LAZYLEN(I.matter))
-						I.matter.Cut()
-
-					else
-						I.matter = list()
-
-					for(var/material in making.resources)
-						I.matter[material] = round(making.resources[material] / (making.no_scale ? 1 : 1.25)) * (making.no_scale ? 1 : mat_efficiency)
-
-	updateUsrDialog()
->>>>>>> 09ec6d4... Matter Matters (#7756)
 
 /obj/machinery/autolathe/update_icon()
 	overlays.Cut()
