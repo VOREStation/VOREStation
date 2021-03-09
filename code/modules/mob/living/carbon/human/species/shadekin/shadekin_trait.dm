@@ -7,7 +7,7 @@
 	var_changes = list(	"total_health" = 100,
 						"energy_light" = 0.5,
 						"energy_dark" = 0.5,
-						"unarmed_types" = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick,/datum/unarmed_attack/shadekinharmbap))
+						"unarmed_types" = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws/shadekin, /datum/unarmed_attack/bite/sharp/shadekin,/datum/unarmed_attack/shadekinharmbap))
 	custom_only = FALSE
 
 /datum/trait/kintype/red
@@ -17,7 +17,8 @@
 	var_changes = list(	"total_health" = 200,
 						"energy_light" = -1,
 						"energy_dark" = 0.1,
-						"unarmed_types" = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick,/datum/unarmed_attack/shadekinharmbap))
+						"unarmed_types" = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws/shadekin, /datum/unarmed_attack/bite/sharp/shadekin,/datum/unarmed_attack/shadekinharmbap))
+
 /datum/trait/kintype/purple
 	name = "Shadekin Purple Adaptation"
 	color = PURPLE_EYES
@@ -25,7 +26,7 @@
 	var_changes = list(	"total_health" = 150,
 						"energy_light" = 1,
 						"energy_dark" = -0.5,
-						"unarmed_types" = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick,/datum/unarmed_attack/shadekinharmbap))
+						"unarmed_types" = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws/shadekin, /datum/unarmed_attack/bite/sharp/shadekin,/datum/unarmed_attack/shadekinharmbap))
 
 /datum/trait/kintype/yellow
 	name = "Shadekin Yellow Adaptation"
@@ -34,7 +35,7 @@
 	var_changes = list(	"total_health" = 100,
 						"energy_light" = 3,
 						"energy_dark" = -2,
-						"unarmed_types" = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick,/datum/unarmed_attack/shadekinharmbap))
+						"unarmed_types" = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws/shadekin, /datum/unarmed_attack/bite/sharp/shadekin,/datum/unarmed_attack/shadekinharmbap))
 
 /datum/trait/kintype/green
 	name = "Shadekin Green Adaptation"
@@ -43,7 +44,7 @@
 	var_changes = list(	"total_health" = 100,
 						"energy_light" = 2,
 						"energy_dark" = 0.125,
-						"unarmed_types" = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick,/datum/unarmed_attack/shadekinharmbap))
+						"unarmed_types" = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws/shadekin, /datum/unarmed_attack/bite/sharp/shadekin,/datum/unarmed_attack/shadekinharmbap))
 
 /datum/trait/kintype/orange
 	name = "Shadekin Orange Adaptation"
@@ -52,7 +53,7 @@
 	var_changes = list(	"total_health" = 175,
 						"energy_light" = 0.25,
 						"energy_dark" = -0.5,
-						"unarmed_types" = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick,/datum/unarmed_attack/shadekinharmbap))
+						"unarmed_types" = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws/shadekin, /datum/unarmed_attack/bite/sharp/shadekin,/datum/unarmed_attack/shadekinharmbap))
 
 /datum/trait/kintype/apply(var/datum/species/shadekin/S,var/mob/living/carbon/human/H)
 	if(color && istype(S)) //Sanity check to see if they're actually a shadekin, otherwise just don't do anything. They shouldn't be able to spawn with the trait.
