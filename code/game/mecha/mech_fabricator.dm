@@ -83,7 +83,8 @@
 
 /obj/machinery/mecha_part_fabricator/Initialize()
 	. = ..()
-
+	default_apply_parts()
+	files = new /datum/research(src) //Setup the research data holder.
 
 /obj/machinery/mecha_part_fabricator/dismantle()
 	for(var/f in materials)
