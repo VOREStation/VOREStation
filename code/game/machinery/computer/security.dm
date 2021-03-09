@@ -389,19 +389,11 @@
 
 					if(field == "age")
 						answer = text2num(answer)
-<<<<<<< HEAD
-					
-					if(field == "rank")
-						if(answer in joblist)
-							active1.fields["real_rank"] = answer
-					
-=======
 
 					if(field == "rank")
 						if(answer in joblist)
 							active1.fields["real_rank"] = answer
 
->>>>>>> 66b0338... Ports TGUI Security Stuff (#7902)
 					if(field == "criminal")
 						for(var/mob/living/carbon/human/H in player_list)
 							BITSET(H.hud_updateflag, WANTED_HUD)
@@ -517,8 +509,4 @@
 /obj/machinery/computer/secure_data/detective_computer
 	icon_state = "messyfiles"
 
-<<<<<<< HEAD
 #undef FIELD
-=======
-#undef FIELD
->>>>>>> 66b0338... Ports TGUI Security Stuff (#7902)
