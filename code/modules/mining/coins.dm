@@ -46,6 +46,18 @@
 	name = "platinum coin"
 	icon_state = "coin_adamantine"
 
+/obj/item/weapon/coin/morphium
+	name = "morphium coin"
+	icon_state = "coin_morphium"
+
+/obj/item/weapon/coin/aluminium
+	name = "aluminium coin"
+	icon_state = "coin_aluminium"
+
+/obj/item/weapon/coin/verdantium
+	name = "verdantium coin"
+	icon_state = "coin_verdantium"
+
 /obj/item/weapon/coin/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/CC = W

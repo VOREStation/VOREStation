@@ -27,7 +27,11 @@
 		"osmium" = /obj/item/weapon/ore/osmium,
 		"hydrogen" = /obj/item/weapon/ore/hydrogen,
 		"silicates" = /obj/item/weapon/ore/glass,
-		"carbon" = /obj/item/weapon/ore/coal
+		"carbon" = /obj/item/weapon/ore/coal,
+		"copper" = /obj/item/weapon/ore/copper,
+		"tin" = /obj/item/weapon/ore/tin,
+		"bauxite" = /obj/item/weapon/ore/bauxite,
+		"rutile" = /obj/item/weapon/ore/rutile
 		)
 
 	//Upgrades
@@ -40,11 +44,14 @@
 	// Found with an advanced laser. exotic_drilling >= 1
 	var/list/ore_types_uncommon = list(
 		MAT_MARBLE = /obj/item/weapon/ore/marble,
+		"painite" = /obj/item/weapon/ore/painite,
+		"quartz" = /obj/item/weapon/ore/quartz,
 		MAT_LEAD = /obj/item/weapon/ore/lead
 		)
 
 	// Found with an ultra laser. exotic_drilling >= 2
 	var/list/ore_types_rare = list(
+		"void opal" = /obj/item/weapon/ore/void_opal,
 		MAT_VERDANTIUM = /obj/item/weapon/ore/verdantium
 		)
 
@@ -60,7 +67,7 @@
 	cell = default_use_hicell()
 
 /obj/machinery/mining/drill/get_cell()
-	return cell	
+	return cell
 
 /obj/machinery/mining/drill/loaded
 	cell = /obj/item/weapon/cell/high

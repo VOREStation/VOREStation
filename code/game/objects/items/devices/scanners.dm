@@ -21,7 +21,7 @@ HALOGEN COUNTER	- Radcount on mobs
 	w_class = ITEMSIZE_SMALL
 	throw_speed = 5
 	throw_range = 10
-	matter = list(DEFAULT_WALL_MATERIAL = 200)
+	matter = list(DEFAULT_WALL_MATERIAL = 200, MAT_COPPER = 25)
 	origin_tech = list(TECH_MAGNET = 1, TECH_BIO = 1)
 	var/mode = 1;
 	var/advscan = 0
