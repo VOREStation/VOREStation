@@ -133,7 +133,6 @@
 		/obj/item/clothing/gloves/fingerless,
 		/obj/item/device/radio/headset/pilot,
 		/obj/item/device/radio/headset/pilot/alt,
-		/obj/item/weapon/cartridge/explorer,
 		/obj/item/device/flashlight,
 		/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
 		/obj/item/weapon/reagent_containers/food/snacks/liquidprotein,

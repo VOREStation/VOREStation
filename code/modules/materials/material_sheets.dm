@@ -20,16 +20,16 @@
 	drop_sound = 'sound/items/drop/axe.ogg'
 	pickup_sound = 'sound/items/pickup/axe.ogg'
 
-/obj/item/stack/material/New()
-	..()
+/obj/item/stack/material/Initialize()
+	. = ..()
+
 	randpixel_xy()
 
 	if(!default_type)
 		default_type = DEFAULT_WALL_MATERIAL
 	material = get_material_by_name("[default_type]")
 	if(!material)
-		qdel(src)
-		return 0
+		return INITIALIZE_HINT_QDEL
 
 	recipes = material.get_recipes()
 	stacktype = material.stack_type
@@ -44,7 +44,6 @@
 
 	matter = material.get_matter()
 	update_strings()
-	return 1
 
 /obj/item/stack/material/get_material()
 	return material
@@ -432,6 +431,8 @@
 	name = "snow"
 	desc = "The temptation to build a snowman rises."
 	icon_state = "sheet-snow"
+	drop_sound = 'sound/items/drop/gloves.ogg'
+	pickup_sound = 'sound/items/pickup/clothing.ogg'
 	default_type = "snow"
 
 /obj/item/stack/material/snowbrick
@@ -439,6 +440,8 @@
 	desc = "For all of your igloo building needs."
 	icon_state = "sheet-snowbrick"
 	default_type = "packed snow"
+	drop_sound = 'sound/items/drop/gloves.ogg'
+	pickup_sound = 'sound/items/pickup/clothing.ogg'
 
 /obj/item/stack/material/leather
 	name = "leather"

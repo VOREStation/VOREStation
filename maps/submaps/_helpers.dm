@@ -34,7 +34,8 @@
 //  their 'connected' friend! Try to use the appropriate top/bottom ones for good looks.
 /obj/structure/fake_stairs
 	name = "use a subtype! - stairs"
-	icon = 'icons/obj/stairs.dmi'
+	icon = 'icons/obj/structures/multiz.dmi'
+	icon_state = "stair"
 	density = 1
 	opacity = 0
 	anchored = 1

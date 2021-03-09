@@ -235,6 +235,7 @@
 		owner.organs |= src
 		for(var/obj/item/organ/organ in src)
 			organ.replaced(owner,src)
+		owner.refresh_modular_limb_verbs()
 
 	if(parent_organ)
 		parent = owner.organs_by_name[src.parent_organ]
@@ -856,6 +857,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 	else if(disintegrate == DROPLIMB_EDGE && nonsolid) //VOREStation Add End
 		disintegrate = DROPLIMB_BLUNT //splut
 
+	GLOB.lost_limbs_shift_roundstat++
+
 	switch(disintegrate)
 		if(DROPLIMB_EDGE)
 			if(!clean)
@@ -1127,6 +1130,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 			if(R.lifelike)
 				robotic = ORGAN_LIFELIKE
 				name = "[initial(name)]"
+			else if(R.modular_bodyparts == MODULAR_BODYPART_PROSTHETIC)
+				name = "prosthetic [initial(name)]"
 			else
 				name = "robotic [initial(name)]"
 			desc = "[R.desc] It looks like it was produced by [R.company]."
@@ -1158,7 +1163,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 		while(null in owner.internal_organs)
 			owner.internal_organs -= null
-
+		owner.refresh_modular_limb_verbs()
 	return 1
 
 /obj/item/organ/external/proc/mutate()
@@ -1259,6 +1264,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			qdel(spark_system)
 		qdel(src)
 
+	victim.refresh_modular_limb_verbs()
 	victim.update_icons_body()
 
 /obj/item/organ/external/proc/disfigure(var/type = "brute")

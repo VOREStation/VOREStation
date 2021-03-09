@@ -11,8 +11,8 @@
 // Add Additional variable onto sprite_accessory
 /datum/sprite_accessory
 	// Ckey of person allowed to use this, if defined.
-	var/list/ckeys_allowed = null
-	var/apply_restrictions = FALSE		//whether to apply restrictions for specific tails/ears/wings
+	list/ckeys_allowed = null
+	apply_restrictions = FALSE		//whether to apply restrictions for specific tails/ears/wings
 
 /*
 ////////////////////////////
@@ -26,7 +26,7 @@
 	icon = 'icons/mob/vore/ears_vr.dmi'
 	do_colouration = 0 // Set to 1 to blend (ICON_ADD) hair color
 
-	var/color_blend_mode = ICON_ADD // Only appliciable if do_coloration = 1
+	color_blend_mode = ICON_ADD // Only appliciable if do_coloration = 1
 	var/extra_overlay // Icon state of an additional overlay to blend in.
 	var/extra_overlay2
 	var/desc = "You should not see this..."
@@ -741,7 +741,7 @@
 	icon = 'icons/mob/vore/wings_vr.dmi'
 	do_colouration = 0 //Set to 1 to enable coloration using the tail color.
 
-	var/color_blend_mode = ICON_ADD // Only appliciable if do_coloration = 1
+	color_blend_mode = ICON_ADD // Only appliciable if do_coloration = 1
 	var/extra_overlay // Icon state of an additional overlay to blend in.
 	var/extra_overlay2 //Tertiary.
 	var/clothing_can_hide = 1 // If true, clothing with HIDETAIL hides it. If the clothing is bulky enough to hide a tail, it should also hide wings.
@@ -977,7 +977,7 @@
 	icon = 'icons/mob/vore/tails_vr.dmi'
 	do_colouration = 0 //Set to 1 to enable coloration using the tail color.
 
-	var/color_blend_mode = ICON_ADD // Only appliciable if do_coloration = 1
+	color_blend_mode = ICON_ADD // Only appliciable if do_coloration = 1
 	var/extra_overlay // Icon state of an additional overlay to blend in.
 	var/extra_overlay2 //Tertiary.
 	var/show_species_tail = 0 // If false, do not render species' tail.
@@ -2101,6 +2101,24 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
+/datum/sprite_accessory/tail/peacocktail_red //this is ckey locked for now, but prettiebyrd wants these tails to be unlocked at a later date
+	name = "Peacock tail (vwag)"
+	desc = ""
+	icon = "icons/mob/vore/tails_vr.dmi"
+	icon_state = "peacocktail_red"
+	ani_state = "peacocktail_red_w"
+	ckeys_allowed = list("prettiebyrd")
+
+/datum/sprite_accessory/tail/peacocktail //ditto
+	name = "Peacock tail, colorable (vwag)"
+	desc = ""
+	icon = "icons/mob/vore/tails_vr.dmi"
+	icon_state = "peacocktail"
+	ani_state = "peacocktail_w"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	ckeys_allowed = list("prettiebyrd")
+
 /*
 ////////////////////////////
 /  =--------------------=  /
@@ -2118,7 +2136,7 @@
 	do_colouration = 0 // Set to 1 to blend (ICON_ADD) hair color
 
 	var/ignores_lighting = 0 // Whether or not this hair accessory will ignore lighting and glow in the dark.
-	var/color_blend_mode = ICON_ADD // Only appliciable if do_coloration = 1
+	color_blend_mode = ICON_ADD // Only appliciable if do_coloration = 1
 	var/desc = "You should not see this..."
 
 /datum/sprite_accessory/hair_accessory/verie_hair_glow

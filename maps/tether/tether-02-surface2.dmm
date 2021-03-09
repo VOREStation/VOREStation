@@ -1017,6 +1017,12 @@
 /area/tether/surfacebase/medical/uppernorthstairwell{
 	name = "\improper North Medical Stairwell"
 	})
+"abv" = (
+/obj/structure/stairs/spawner/east,
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/uppernorthstairwell{
+	name = "\improper North Medical Stairwell"
+	})
 "abw" = (
 /obj/machinery/power/apc{
 	dir = 1;
@@ -1112,6 +1118,13 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/recoveryward)
+"abC" = (
+/obj/structure/railing,
+/obj/structure/stairs/spawner/east,
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/uppernorthstairwell{
+	name = "\improper North Medical Stairwell"
+	})
 "abD" = (
 /obj/machinery/door/firedoor/glass/hidden/steel{
 	dir = 1
@@ -1371,11 +1384,12 @@
 	name = "\improper North Medical Stairwell"
 	})
 "abW" = (
-/obj/structure/stairs/east,
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/uppernorthstairwell{
-	name = "\improper North Medical Stairwell"
-	})
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/stairs/spawner/east,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/security/middlehall)
 "abX" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 4
@@ -1654,12 +1668,10 @@
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/medical/resleeving)
 "acw" = (
-/obj/structure/stairs/east,
 /obj/structure/railing,
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/uppernorthstairwell{
-	name = "\improper North Medical Stairwell"
-	})
+/obj/structure/stairs/spawner/east,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/security/middlehall)
 "acx" = (
 /obj/machinery/vending/medical{
 	dir = 8
@@ -5087,12 +5099,12 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/middlehall)
 "aib" = (
-/obj/structure/stairs/east,
-/obj/structure/railing{
-	dir = 1
+/obj/structure/window/reinforced{
+	dir = 4
 	},
+/obj/structure/stairs/spawner/south,
 /turf/simulated/floor/tiled,
-/area/tether/surfacebase/security/middlehall)
+/area/tether/surfacebase/public_garden_two)
 "aic" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 8
@@ -5885,10 +5897,9 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/middlehall)
 "aji" = (
-/obj/structure/stairs/east,
-/obj/structure/railing,
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/security/middlehall)
+/obj/structure/stairs/spawner/south,
+/turf/simulated/floor/virgo3b,
+/area/tether/surfacebase/outside/outside2)
 "ajj" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 10
@@ -6974,10 +6985,10 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/uppersouthstairwell)
 "akV" = (
-/obj/structure/stairs/west,
 /obj/structure/railing{
 	dir = 1
 	},
+/obj/structure/stairs/spawner/west,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/uppersouthstairwell)
 "akW" = (
@@ -7494,7 +7505,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/medical/morgue)
 "alM" = (
-/obj/structure/stairs/west,
+/obj/structure/stairs/spawner/west,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/uppersouthstairwell)
 "alN" = (
@@ -8693,7 +8704,6 @@
 /area/maintenance/lower/mining)
 "anF" = (
 /obj/effect/floor_decal/corner/paleblue/diagonal,
-/obj/structure/table/glass,
 /obj/item/weapon/deck/cards,
 /obj/structure/table/glass,
 /turf/simulated/floor/tiled/white,
@@ -10858,12 +10868,9 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
 "arq" = (
-/obj/structure/stairs/south,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
+/obj/structure/stairs/spawner/north,
 /turf/simulated/floor/tiled,
-/area/tether/surfacebase/public_garden_two)
+/area/tether/surfacebase/north_staires_two)
 "arr" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/effect/floor_decal/borderfloor{
@@ -12551,9 +12558,9 @@
 /turf/simulated/floor/plating,
 /area/maintenance/asmaint2)
 "auh" = (
-/obj/structure/stairs/south,
-/turf/simulated/floor/virgo3b,
-/area/tether/surfacebase/outside/outside2)
+/obj/structure/stairs/spawner/north,
+/turf/simulated/floor/tiled/dark,
+/area/bridge_hallway)
 "aui" = (
 /obj/machinery/light,
 /obj/effect/floor_decal/borderfloor{
@@ -14740,6 +14747,13 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/asmaint2)
+"ayo" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/stairs/spawner/north,
+/turf/simulated/floor/tiled/dark,
+/area/bridge_hallway)
 "ayp" = (
 /obj/effect/catwalk_plated/dark,
 /turf/simulated/open,
@@ -15722,9 +15736,9 @@
 /turf/simulated/open,
 /area/tether/surfacebase/north_staires_two)
 "aAE" = (
-/obj/structure/stairs/north,
+/obj/structure/stairs/spawner/south,
 /turf/simulated/floor/tiled,
-/area/tether/surfacebase/north_staires_two)
+/area/rnd/staircase/secondfloor)
 "aAF" = (
 /obj/structure/railing{
 	dir = 8
@@ -16311,16 +16325,13 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/surface_two_hall)
 "aBT" = (
-/obj/structure/stairs/north,
-/turf/simulated/floor/tiled/dark,
-/area/bridge_hallway)
+/obj/structure/stairs/spawner/east,
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/east_stairs_two)
 "aBU" = (
-/obj/structure/stairs/north,
-/obj/structure/railing{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/dark,
-/area/bridge_hallway)
+/obj/structure/stairs/spawner/west,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/southhall)
 "aBV" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -16895,7 +16906,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/surface_two_hall)
 "aCU" = (
-/obj/structure/stairs/west,
+/obj/structure/stairs/spawner/west,
 /turf/simulated/floor/tiled/techfloor,
 /area/chapel/main)
 "aCV" = (
@@ -22898,6 +22909,19 @@
 /obj/random/trash_pile,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
+"aOv" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/window/basic{
+	dir = 1
+	},
+/obj/structure/stairs/spawner/north,
+/turf/simulated/floor/tiled/dark,
+/area/rnd/outpost/xenobiology/outpost_slimepens)
 "aOw" = (
 /obj/machinery/light_switch{
 	dir = 4;
@@ -23002,6 +23026,29 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/east_stairs_two)
+"aOJ" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/window/basic{
+	dir = 1
+	},
+/obj/structure/stairs/spawner/north,
+/turf/simulated/floor/tiled/dark,
+/area/rnd/outpost/xenobiology/outpost_slimepens)
+"aOK" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/window/basic{
+	dir = 1
+	},
+/obj/structure/stairs/spawner/north,
+/turf/simulated/floor/tiled/dark,
+/area/rnd/outpost/xenobiology/outpost_slimepens)
 "aOL" = (
 /obj/effect/floor_decal/corner_techfloor_grid{
 	dir = 9
@@ -24106,10 +24153,6 @@
 /obj/random/tool,
 /turf/simulated/floor/plating,
 /area/maintenance/asmaint2)
-"aRk" = (
-/obj/structure/stairs/south,
-/turf/simulated/floor/tiled,
-/area/rnd/staircase/secondfloor)
 "aRl" = (
 /obj/machinery/requests_console{
 	department = "Science";
@@ -28197,10 +28240,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/east_stairs_two)
-"aZv" = (
-/obj/structure/stairs/east,
-/turf/simulated/floor/tiled/techmaint,
-/area/tether/surfacebase/east_stairs_two)
 "aZC" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -31382,13 +31421,6 @@
 /obj/item/device/flashlight/lamp/green,
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/reading_room)
-"bhJ" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/structure/catwalk,
-/turf/simulated/floor/plating,
-/area/tether/surfacebase/fish_farm)
 "bhK" = (
 /obj/machinery/door/blast/regular{
 	density = 0;
@@ -33384,10 +33416,6 @@
 	temperature = 80
 	},
 /area/tcommsat/chamber)
-"blF" = (
-/obj/structure/stairs/west,
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/southhall)
 "blG" = (
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/southhall)
@@ -33566,42 +33594,6 @@
 "blV" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled/dark,
-/area/rnd/outpost/xenobiology/outpost_slimepens)
-"blW" = (
-/obj/structure/stairs/north,
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/structure/window/basic{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/dark,
-/area/rnd/outpost/xenobiology/outpost_slimepens)
-"blX" = (
-/obj/structure/stairs/north,
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/structure/window/basic{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/dark,
-/area/rnd/outpost/xenobiology/outpost_slimepens)
-"blY" = (
-/obj/structure/stairs/north,
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/structure/window/basic{
-	dir = 1
-	},
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
 "blZ" = (
@@ -34202,14 +34194,6 @@
 /obj/machinery/door/airlock/maintenance/medical,
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/medical/breakroom)
-"bpL" = (
-/obj/effect/decal/cleanable/filth,
-/obj/item/weapon/bone/skull,
-/mob/living/simple_mob/vore/aggressive/rat{
-	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
-	},
-/turf/simulated/floor/water/indoors,
-/area/tether/surfacebase/fish_farm)
 "bpO" = (
 /obj/structure/railing{
 	dir = 4
@@ -34380,14 +34364,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/north)
-"fFF" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/structure/catwalk,
-/obj/effect/decal/cleanable/filth,
-/turf/simulated/floor/plating,
-/area/tether/surfacebase/fish_farm)
 "fIS" = (
 /obj/effect/floor_decal/corner/paleblue/diagonal,
 /obj/structure/table/glass,
@@ -34397,14 +34373,6 @@
 /obj/machinery/door/airlock/maintenance/common{
 	name = "Sewage Processing"
 	},
-/turf/simulated/floor/plating,
-/area/tether/surfacebase/fish_farm)
-"fWy" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/structure/catwalk,
-/obj/structure/closet/crate/trashcart,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/fish_farm)
 "glx" = (
@@ -34665,15 +34633,15 @@
 /obj/item/weapon/flame/lighter/zippo/moff,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/funny/hideyhole)
-"sKR" = (
-/obj/structure/disposalpipe/broken,
-/obj/effect/decal/cleanable/filth,
-/obj/effect/landmark/teleplumb_exit,
-/turf/simulated/floor/water/indoors,
+"swg" = (
+/obj/structure/railing,
+/obj/structure/catwalk,
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
 /area/tether/surfacebase/fish_farm)
 "sLx" = (
-/obj/effect/decal/cleanable/filth,
-/obj/item/weapon/bone,
 /obj/effect/floor_decal/techfloor{
 	dir = 4
 	},
@@ -34765,7 +34733,6 @@
 	dir = 8
 	},
 /obj/structure/catwalk,
-/obj/effect/decal/cleanable/filth,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/fish_farm)
 "uHy" = (
@@ -34797,10 +34764,6 @@
 	dir = 8
 	},
 /turf/simulated/floor/water/indoors,
-/area/tether/surfacebase/fish_farm)
-"vje" = (
-/obj/structure/sign/biohazard,
-/turf/simulated/wall,
 /area/tether/surfacebase/fish_farm)
 "voE" = (
 /obj/effect/floor_decal/corner_techfloor_grid,
@@ -38314,7 +38277,7 @@ aac
 arl
 asq
 arl
-auh
+aji
 aac
 aac
 adt
@@ -40157,7 +40120,7 @@ anf
 aog
 apq
 aqw
-arq
+aib
 ast
 atG
 ass
@@ -40168,9 +40131,9 @@ adt
 adt
 adt
 azs
-awN
-bhJ
-fFF
+ayw
+ayw
+ayw
 azs
 adt
 adt
@@ -40310,10 +40273,10 @@ adt
 adt
 adt
 azs
-axO
-bpL
-sKR
-vje
+ayw
+ayw
+ayw
+azs
 adt
 adt
 adt
@@ -40384,7 +40347,7 @@ bfL
 bkQ
 blo
 blM
-blW
+aOv
 bme
 bfL
 bfL
@@ -40452,7 +40415,7 @@ adt
 adt
 adt
 azs
-axO
+swg
 sLx
 uFL
 azs
@@ -40526,7 +40489,7 @@ bkJ
 bkR
 blp
 blN
-blX
+aOJ
 bfL
 bfL
 bfL
@@ -40668,7 +40631,7 @@ bfL
 bkS
 blq
 blO
-blY
+aOK
 bmf
 bfL
 bfL
@@ -40881,7 +40844,7 @@ azs
 awN
 flk
 gGm
-vje
+azs
 aBd
 aCn
 aDk
@@ -41022,7 +40985,7 @@ adt
 azs
 axO
 viY
-fWy
+bOW
 azs
 azq
 aAw
@@ -42043,7 +42006,7 @@ aOg
 aOW
 aPE
 aOY
-aRk
+aAE
 aRM
 aSv
 aHE
@@ -42185,7 +42148,7 @@ aOh
 aOX
 aOY
 aOY
-aRk
+aAE
 aRM
 aty
 aug
@@ -43414,8 +43377,8 @@ aeS
 afG
 agy
 ahn
-aib
-aji
+abW
+acw
 ahn
 all
 amo
@@ -45424,7 +45387,7 @@ aoO
 ayW
 azA
 ayW
-aAE
+arq
 aBk
 aBP
 aCC
@@ -45566,7 +45529,7 @@ ayE
 ayW
 azA
 ayW
-aAE
+arq
 aBl
 aBQ
 aCD
@@ -46988,7 +46951,7 @@ azG
 aAi
 aAH
 aAJ
-aBT
+auh
 aCI
 aDz
 aEi
@@ -47130,7 +47093,7 @@ azH
 aAj
 aAI
 aAJ
-aBU
+ayo
 aCJ
 aDA
 aBo
@@ -47668,8 +47631,8 @@ aab
 aab
 aab
 aar
-abW
-acw
+abv
+abC
 acx
 aaH
 aaO
@@ -48728,8 +48691,8 @@ aXi
 aXP
 aYz
 aUc
-aZv
-aZv
+aBT
+aBT
 aNo
 aLX
 aLX
@@ -50464,8 +50427,8 @@ mDn
 ekH
 glx
 blh
-blF
-blF
+aBU
+aBU
 blh
 abn
 aab

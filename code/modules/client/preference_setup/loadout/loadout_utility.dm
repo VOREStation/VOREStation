@@ -115,59 +115,9 @@
 	display_name = "cell, device"
 	path = /obj/item/weapon/cell/device
 
-/datum/gear/utility/implant
-	slot = "implant"
-	exploitable = 1
-
-/datum/gear/utility/implant/tracking
-	display_name = "implant, tracking"
-	path = /obj/item/weapon/implant/tracking/weak
-	cost = 0 //VOREStation Edit. Changed cost to 0
-
-/datum/gear/utility/implant/neural
-	display_name = "implant, neural assistance web"
-	description = "A complex web implanted into the subject, medically in order to compensate for neurological disease."
-	path = /obj/item/weapon/implant/neural
-	cost = 6
-
-/datum/gear/utility/implant/dud1
-	display_name = "implant, head"
-	description = "An implant with no obvious purpose."
-	path = /obj/item/weapon/implant/dud
-	cost = 1
-
-/datum/gear/utility/implant/dud2
-	display_name = "implant, torso"
-	description = "An implant with no obvious purpose."
-	path = /obj/item/weapon/implant/dud/torso
-	cost = 1
-
-/datum/gear/utility/implant/language
-	cost = 2
-	exploitable = 0
-
-/datum/gear/utility/implant/language/eal
-	display_name = "vocal synthesizer, EAL"
-	description = "A surgically implanted vocal synthesizer which allows the owner to speak EAL, if they know it."
-	path = /obj/item/weapon/implant/language/eal
-
-/datum/gear/utility/implant/language/skrellian
-	display_name = "vocal synthesizer, Skrellian"
-	description = "A surgically implanted vocal synthesizer which allows the owner to speak Common Skrellian, if they know it."
-	path = /obj/item/weapon/implant/language/skrellian
-
 /datum/gear/utility/pen
 	display_name = "Fountain Pen"
 	path = /obj/item/weapon/pen/fountain
-
-/datum/gear/utility/wheelchair/color
-	display_name = "wheelchair"
-	path = /obj/item/wheelchair
-	cost = 4
-
-/datum/gear/utility/wheelchair/color/New()
-	..()
-	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/utility/umbrella
 	display_name = "Umbrella"
@@ -177,6 +127,20 @@
 /datum/gear/utility/umbrella/New()
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/utility/wheelchair
+	display_name = "wheelchair selection"
+	path = /obj/item/wheelchair
+	cost = 4
+	
+/datum/gear/utility/wheelchair/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+	var/list/wheelchairs = list(
+		"wheelchair" = /obj/item/wheelchair,
+		"motorized wheelchair" = /obj/item/wheelchair/motor
+	)
+	gear_tweaks += new/datum/gear_tweak/path(wheelchairs)
 
 /****************
 modular computers

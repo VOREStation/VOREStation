@@ -77,14 +77,14 @@
 		//visible_message("[user] has smashed the snowball in their hand!", "You smash the snowball in your hand.")
 		to_chat(user, "<span class='notice'>You smash the snowball in your hand.</span>")
 		var/atom/S = new /obj/item/stack/material/snow(user.loc)
-		del(src)
+		qdel(src)
 		user.put_in_hands(S)
 	else
 		//visible_message("[user] starts compacting the snowball.", "You start compacting the snowball.")
 		to_chat(user, "<span class='notice'>You start compacting the snowball.</span>")
 		if(do_after(user, 2 SECONDS))
 			var/atom/S = new /obj/item/weapon/material/snow/snowball/reinforced(user.loc)
-			del(src)
+			qdel(src)
 			user.put_in_hands(S)
 
 /obj/item/weapon/material/snow/snowball/reinforced

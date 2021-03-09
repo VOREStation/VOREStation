@@ -1,9 +1,11 @@
 # Job whitelist in format ckey - jobname
 # Like arokha - clown
-Akram - clown
+akram - clown
+amshaegaar - mime
 seiga - mime
 silvertalismen - clown
 suicidalpickles - mime
+joey4298 - mime
 whiskyrose - clown
 tinybear16 - clown
 chargae - mime

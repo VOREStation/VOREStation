@@ -53,7 +53,7 @@
 	..()
 
 /obj/item/hose_connector/Initialize()
-	..()
+	. = ..()
 
 	create_reagents(100)
 
@@ -105,7 +105,7 @@
 	..()
 
 /obj/item/hose_connector/input/active/Initialize()
-	..()
+	. = ..()
 	START_PROCESSING(SSobj, src)
 
 	if(!isturf(loc))
@@ -127,7 +127,7 @@
 	..()
 
 /obj/item/hose_connector/output/active/Initialize()
-	..()
+	. = ..()
 	START_PROCESSING(SSobj, src)
 
 	if(!isturf(loc))

@@ -54,10 +54,8 @@
 
 /area/Initialize()
 	. = ..()
-
 	luminosity = !(dynamic_lighting)
 	icon_state = ""
-
 	return INITIALIZE_HINT_LATELOAD // Areas tradiationally are initialized AFTER other atoms.
 
 /area/LateInitialize()
@@ -68,7 +66,6 @@
 	power_change()		// all machines set to current power level, also updates lighting icon
 	if(no_spoilers)
 		set_spoiler_obfuscation(TRUE)
-	return INITIALIZE_HINT_LATELOAD
 
 // Changes the area of T to A. Do not do this manually.
 // Area is expected to be a non-null instance.

@@ -9,6 +9,7 @@
 	var/impersonate_bodytype //For impersonating a bodytype
 	var/ability_flags = 0	//Shadekin abilities/potentially other species-based?
 	var/sensorpref = 5		//Suit sensor loadout pref
+	var/unnaturally_resized = FALSE 		//If one became larger than 200%, or smaller than 25%. This flag is needed for the case when admins want someone to be very big or very small outside of dorms.
 	var/wings_hidden = FALSE
 
 /mob/living/carbon/human/proc/shadekin_get_energy()

@@ -356,11 +356,9 @@
 
 /obj/item/integrated_circuit/input/signaler/Initialize()
 	. = ..()
-	set_frequency(frequency)
-	// Set the pins so when someone sees them, they won't show as null
 	set_pin_data(IC_INPUT, 1, frequency)
 	set_pin_data(IC_INPUT, 2, code)
-	push_data()
+	addtimer(CALLBACK(src, .proc/set_frequency, frequency), 40)
 
 /obj/item/integrated_circuit/input/signaler/Destroy()
 	if(radio_controller)
@@ -574,7 +572,7 @@
 		)
 
 /obj/item/integrated_circuit/input/microphone/sign/Initialize()
-	..()
+	. = ..()
 	for(var/lang in readable_langs)
 		var/datum/language/newlang = GLOB.all_languages[lang]
 		my_langs |= newlang

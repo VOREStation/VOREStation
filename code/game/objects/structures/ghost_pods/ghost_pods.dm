@@ -28,7 +28,7 @@
 		icon_state = icon_state_opened
 		if(needscharger)
 			new /obj/machinery/recharge_station/ghost_pod_recharger(src.loc)
-			del(src)
+			qdel(src)
 		return TRUE
 	else
 		return FALSE
