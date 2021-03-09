@@ -270,6 +270,15 @@
 
 			//Create the desired item.
 			var/obj/item/I = new making.path(src.loc)
+
+			if(LAZYLEN(I.matter))	// Sadly we must obey the laws of equivalent exchange.
+				I.matter.Cut()
+			else
+				I.matter = list()
+
+			for(var/material in making.resources)	// Handle the datum's autoscaling for waste, so we're properly wasting material, but not so much if we have efficiency.
+				I.matter[material] = round(making.resources[material] / (making.no_scale ? 1 : 1.25)) * (making.no_scale ? 1 : mat_efficiency)
+
 			flick("[initial(icon_state)]_finish", src)
 			if(multiplier > 1)
 				if(istype(I, /obj/item/stack))
@@ -277,7 +286,16 @@
 					S.amount = multiplier
 				else
 					for(multiplier; multiplier > 1; --multiplier) // Create multiple items if it's not a stack.
-						new making.path(src.loc)
+						I = new making.path(src.loc)
+						// We've already deducted the cost of multiple items. Process the matter the same.
+						if(LAZYLEN(I.matter))
+							I.matter.Cut()
+
+						else
+							I.matter = list()
+
+						for(var/material in making.resources)
+							I.matter[material] = round(making.resources[material] / (making.no_scale ? 1 : 1.25)) * (making.no_scale ? 1 : mat_efficiency)
 			return TRUE
 	return FALSE
 
