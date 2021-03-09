@@ -268,6 +268,21 @@ const VoreSelectedBelly = (props, context) => {
               onClick={() => act("set_attribute", { attribute: "b_msgs", msgtype: "em" })}
               content="Examine Message (when full)" />
             <Button
+              onClick={() => act("set_attribute", { attribute: "b_msgs", msgtype: "im_digest" })}
+              content="Idle Messages (Digest)" />
+            <Button
+              onClick={() => act("set_attribute", { attribute: "b_msgs", msgtype: "im_hold" })}
+              content="Idle Messages (Hold)" />
+            <Button
+              onClick={() => act("set_attribute", { attribute: "b_msgs", msgtype: "im_absorb" })}
+              content="Idle Messages (Absorb)" />
+            <Button
+              onClick={() => act("set_attribute", { attribute: "b_msgs", msgtype: "im_heal" })}
+              content="Idle Messages (Heal)" />
+            <Button
+              onClick={() => act("set_attribute", { attribute: "b_msgs", msgtype: "im_drain" })}
+              content="Idle Messages (Drain)" />
+            <Button
               color="red"
               onClick={() => act("set_attribute", { attribute: "b_msgs", msgtype: "reset" })}
               content="Reset Messages" />

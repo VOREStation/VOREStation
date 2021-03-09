@@ -60,7 +60,18 @@
 		for(var/mob/living/M in contents)
 			if(digest_mode == DM_DIGEST && !M.digestable)
 				continue // don't give digesty messages to indigestible people
-			to_chat(M, "<span class='notice'>[pick(EL)]</span>")
+			var/living_count = 0
+			for(var/mob/living/L in contents)
+				living_count++
+
+			var/raw_message = pick(EL)
+			var/formatted_message
+			formatted_message = replacetext(raw_message, "%belly", lowertext(name))
+			formatted_message = replacetext(formatted_message, "%pred", owner)
+			formatted_message = replacetext(formatted_message, "%prey", english_list(contents))
+			formatted_message = replacetext(formatted_message, "%count", contents.len)
+			formatted_message = replacetext(formatted_message, "%countprey", living_count)
+			to_chat(M, "<span class='notice'>[formatted_message]</span>")
 
 	if(!digestion_noise_chance)
 		digestion_noise_chance = DM.noise_chance

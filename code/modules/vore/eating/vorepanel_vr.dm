@@ -666,7 +666,7 @@
 				host.vore_selected.desc = new_desc
 				. = TRUE
 		if("b_msgs")
-			alert(user,"Setting abusive or deceptive messages will result in a ban. Consider this your warning. Max 150 characters per message, max 10 messages per topic.","Really, don't.")
+			alert(user,"Setting abusive or deceptive messages will result in a ban. Consider this your warning. Max 150 characters per message (500 for idle messages), max 10 messages per topic.","Really, don't.")
 			var/help = " Press enter twice to separate messages. '%pred' will be replaced with your name. '%prey' will be replaced with the prey's name. '%belly' will be replaced with your belly's name. '%count' will be replaced with the number of anything in your belly. '%countprey' will be replaced with the number of living prey in your belly."
 			switch(params["msgtype"])
 				if("dmp")
@@ -694,6 +694,31 @@
 					if(new_message)
 						host.vore_selected.set_messages(new_message,"em")
 
+				if("im_digest")
+					var/new_message = input(user,"These are sent to prey every minute when you are on Digest mode. Write them in 2nd person ('%pred's %belly squishes down on you.')."+help,"Idle Message (Digest)",host.vore_selected.get_messages("im_digest")) as message
+					if(new_message)
+						host.vore_selected.set_messages(new_message,"im_digest")
+
+				if("im_hold")
+					var/new_message = input(user,"These are sent to prey every minute when you are on Hold mode. Write them in 2nd person ('%pred's %belly squishes down on you.')"+help,"Idle Message (Hold)",host.vore_selected.get_messages("im_hold")) as message
+					if(new_message)
+						host.vore_selected.set_messages(new_message,"im_hold")
+
+				if("im_absorb")
+					var/new_message = input(user,"These are sent to prey every minute when you are on Absorb mode. Write them in 2nd person ('%pred's %belly squishes down on you.')"+help,"Idle Message (Absorb)",host.vore_selected.get_messages("im_absorb")) as message
+					if(new_message)
+						host.vore_selected.set_messages(new_message,"im_absorb")
+
+				if("im_heal")
+					var/new_message = input(user,"These are sent to prey every minute when you are on Heal mode. Write them in 2nd person ('%pred's %belly squishes down on you.')"+help,"Idle Message (Heal)",host.vore_selected.get_messages("im_heal")) as message
+					if(new_message)
+						host.vore_selected.set_messages(new_message,"im_heal")
+
+				if("im_drain")
+					var/new_message = input(user,"These are sent to prey every minute when you are on Drain mode. Write them in 2nd person ('%pred's %belly squishes down on you.')"+help,"Idle Message (Drain)",host.vore_selected.get_messages("im_drain")) as message
+					if(new_message)
+						host.vore_selected.set_messages(new_message,"im_drain")
+
 				if("reset")
 					var/confirm = alert(user,"This will delete any custom messages. Are you sure?","Confirmation","DELETE","Cancel")
 					if(confirm == "DELETE")
@@ -701,6 +726,8 @@
 						host.vore_selected.digest_messages_owner = initial(host.vore_selected.digest_messages_owner)
 						host.vore_selected.struggle_messages_outside = initial(host.vore_selected.struggle_messages_outside)
 						host.vore_selected.struggle_messages_inside = initial(host.vore_selected.struggle_messages_inside)
+						host.vore_selected.examine_messages = initial(host.vore_selected.examine_messages)
+						host.vore_selected.emote_lists = initial(host.vore_selected.emote_lists)
 			. = TRUE
 		if("b_verb")
 			var/new_verb = html_encode(input(usr,"New verb when eating (infinitive tense, e.g. nom or swallow):","New Verb") as text|null)
