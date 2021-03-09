@@ -1,5 +1,5 @@
 /proc/generate_speech_bubble(var/bubble_loc, var/speech_state, var/set_layer = FLOAT_LAYER)
-	var/image/I = image('icons/mob/talk.dmi', bubble_loc, speech_state, set_layer)
+	var/image/I = image('icons/mob/talk_vr.dmi', bubble_loc, speech_state, set_layer)  //VOREStation Edit - talk_vr.dmi instead of talk.dmi for right-side icons
 	I.appearance_flags |= (KEEP_APART|RESET_COLOR|PIXEL_SCALE)
 	if(istype(bubble_loc, /atom/movable))
 		var/atom/movable/AM = bubble_loc
@@ -22,15 +22,7 @@
 		return
 
 	if(!typing_indicator)
-<<<<<<< HEAD
-		typing_indicator = new
-		//typing_indicator.icon = 'icons/mob/talk_vr.dmi' //VOREStation Edit - Looks better on the right with job icons.
-		//typing_indicator.icon_state = "typing"
-		typing_indicator.icon = 'icons/mob/talk_vr.dmi' //VOREStation Edit - talk_vr.dmi instead of talk.dmi for right-side icons
-		typing_indicator.icon_state = "[speech_bubble_appearance()]_typing"
-=======
 		init_typing_indicator("[speech_bubble_appearance()]_typing")
->>>>>>> e67c35e... Removes transform from speech bubbles when speaker is scaled at less than 2x. (#7927)
 
 	if(state && !typing)
 		add_overlay(typing_indicator, TRUE)
