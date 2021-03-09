@@ -436,6 +436,10 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 			msg = sanitize(input(usr, "Write your Feed story", "Network Channel Handler", "") as message|null)
 			return TRUE
 
+		if("set_new_title")
+			title = sanitize(input(usr, "Enter your Feed title", "Network Channel Handler", "") as message|null)
+			return TRUE
+
 		if("set_attachment")
 			AttachPhoto(usr)
 			return TRUE
@@ -451,10 +455,13 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 			if(channel_name == "")
 				set_temp("Error: Could not submit feed message to network: No feed channel selected.", "danger", FALSE)
 				return TRUE
+			if(title == "")
+				set_temp("Error: Invalid Title.", "danger", FALSE)
+				return TRUE
 
 			var/image = photo_data ? photo_data.photo : null
 			feedback_inc("newscaster_stories",1)
-			news_network.SubmitArticle(msg, our_user, channel_name, image, 0)
+			news_network.SubmitArticle(msg, our_user, channel_name, image, 0, "", title)
 			set_temp("Feed message created successfully.", "success", FALSE)
 			return TRUE
 
