@@ -328,11 +328,8 @@
 #include "code\datums\autolathe\engineering.dm"
 #include "code\datums\autolathe\engineering_vr.dm"
 #include "code\datums\autolathe\general.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\datums\autolathe\general_vr.dm"
-=======
 #include "code\datums\autolathe\materials.dm"
->>>>>>> 1de8bc1... Industrial Expansion (#7811):polaris.dme
 #include "code\datums\autolathe\medical.dm"
 #include "code\datums\autolathe\medical_vr.dm"
 #include "code\datums\autolathe\tools.dm"
