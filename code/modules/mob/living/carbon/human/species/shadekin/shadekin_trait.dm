@@ -58,6 +58,7 @@
 /datum/trait/kintype/apply(var/datum/species/shadekin/S,var/mob/living/carbon/human/H)
 	if(color && istype(S)) //Sanity check to see if they're actually a shadekin, otherwise just don't do anything. They shouldn't be able to spawn with the trait.
 		S.kin_type = color
+		..(S,H)
 		switch(color)
 			if(BLUE_EYES)
 				H.shapeshifter_set_eye_color("0000FF")
