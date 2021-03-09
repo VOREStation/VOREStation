@@ -3,13 +3,6 @@
 #define FONT_COLOR "#09f"
 #define FONT_STYLE "Small Fonts"
 #define MAX_TIMER 36000
-<<<<<<< HEAD
-
-#define PRESET_SHORT 1 MINUTES
-#define PRESET_MEDIUM 5 MINUTES
-#define PRESET_LONG 10 MINUTES
-=======
->>>>>>> 66b0338... Ports TGUI Security Stuff (#7902)
 
 #define PRESET_SHORT 1 MINUTES
 #define PRESET_MEDIUM 5 MINUTES
@@ -30,25 +23,15 @@
 	layer = ABOVE_WINDOW_LAYER
 	desc = "A remote control for a door."
 	req_access = list(access_brig)
-<<<<<<< HEAD
-	anchored = 1.0		// can't pick it up
-	density = 0			// can walk through it.
-	var/id = null		// id of door it controls.
-
-=======
 	anchored = 1.0    		// can't pick it up
 	density = 0       		// can walk through it.
 	var/id = null     		// id of door it controls.
->>>>>>> 66b0338... Ports TGUI Security Stuff (#7902)
 	var/activation_time = 0
 	var/timer_duration = 0
 
 	var/timing = FALSE		// boolean, true/1 timer is on, false/0 means it's not timing
 	var/list/obj/machinery/targets = list()
-<<<<<<< HEAD
-=======
 
->>>>>>> 66b0338... Ports TGUI Security Stuff (#7902)
 
 	maptext_height = 26
 	maptext_width = 32
@@ -87,20 +70,11 @@
 /obj/machinery/door_timer/process()
 	if(stat & (NOPOWER|BROKEN))
 		return
-
-<<<<<<< HEAD
-=======
-	if(stat & (NOPOWER|BROKEN))
-		return
->>>>>>> 66b0338... Ports TGUI Security Stuff (#7902)
 	if(timing)
 		if(world.time - activation_time >= timer_duration)
 			timer_end() // open doors, reset timer, clear status screen
 		update_icon()
-<<<<<<< HEAD
-=======
 
->>>>>>> 66b0338... Ports TGUI Security Stuff (#7902)
 
 // has the door power situation changed, if so update icon.
 /obj/machinery/door_timer/power_change()
@@ -132,11 +106,7 @@
 		C.icon_state = "closed_locked"
 	return 1
 
-<<<<<<< HEAD
-// Opens and unlocks doors, power check
-=======
 /// Opens and unlocks doors, power check
->>>>>>> 66b0338... Ports TGUI Security Stuff (#7902)
 /obj/machinery/door_timer/proc/timer_end(forced = FALSE)
 	if(stat & (NOPOWER|BROKEN))
 		return 0
@@ -166,14 +136,6 @@
 	if(seconds)
 		. /= 10
 
-<<<<<<< HEAD
-=======
-/obj/machinery/door_timer/proc/time_left(seconds = FALSE)
-	. = max(0, timer_duration - (activation_time ? (world.time - activation_time) : 0))
-	if(seconds)
-		. /= 10
-
->>>>>>> 66b0338... Ports TGUI Security Stuff (#7902)
 /obj/machinery/door_timer/proc/set_timer(value)
 	var/new_time = clamp(value, 0, MAX_TIMER)
 	. = new_time == timer_duration //return 1 on no change
@@ -181,12 +143,9 @@
 	if(timer_duration && activation_time && timing) // Setting it while active will reset the activation time
 		activation_time = world.time
 
-<<<<<<< HEAD
-=======
 /obj/machinery/door_timer/attack_ai(mob/user)
 	return src.attack_hand(user)
 
->>>>>>> 66b0338... Ports TGUI Security Stuff (#7902)
 /obj/machinery/door_timer/attack_hand(mob/user)
 	if(..())
 		return TRUE
