@@ -576,8 +576,6 @@ CIRCUITS BELOW
 	build_path = /obj/item/weapon/circuitboard/telecomms/exonet_node
 	sort_string = "PAAAH"
 
-<<<<<<< HEAD
-=======
 /datum/design/circuit/shield
 	req_tech = list(TECH_BLUESPACE = 4, TECH_PHORON = 3)
 	materials = list("glass" = 2000, MAT_COPPER = 100, "gold" = 1000)
@@ -589,26 +587,25 @@ CIRCUITS BELOW
 		desc = "Allows for the construction of \a [name] shield generator."
 
 /datum/design/circuit/shield/bubble
-	name = "bubble"
+	name = "bubble (OBSOLETE)" //VOREStation Edit
 	id = "shield_gen"
 	build_path = /obj/item/weapon/circuitboard/shield_gen
 	sort_string = "VAAAZ"	// Duplicate string, really need to redo this whole thing
 
 /datum/design/circuit/shield/hull
-	name = "hull"
+	name = "hull (OBSOLETE)" //VOREStation Edit
 	id = "shield_gen_ex"
 	build_path = /obj/item/weapon/circuitboard/shield_gen_ex
 	sort_string = "VAAAB"
 
 /datum/design/circuit/shield/capacitor
-	name = "capacitor"
+	name = "capacitor (OBSOLETE)" //VOREStation Edit"
 	desc = "Allows for the construction of a shield capacitor circuit board."
 	id = "shield_cap"
 	req_tech = list(TECH_MAGNET = 3, TECH_POWER = 4)
 	build_path = /obj/item/weapon/circuitboard/shield_cap
 	sort_string = "VAAAC"
 
->>>>>>> 1de8bc1... Industrial Expansion (#7811)
 /datum/design/circuit/ntnet_relay
 	name = "NTNet Quantum Relay"
 	id = "ntnet_relay"
