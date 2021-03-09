@@ -320,11 +320,7 @@ proc/get_radio_key_from_channel(var/channel)
 	var/speech_bubble_test = say_test(message)
 	//var/image/speech_bubble = image('icons/mob/talk_vr.dmi',src,"h[speech_bubble_test]") //VOREStation Edit. Commented this out in case we need to reenable.
 	var/speech_type = speech_bubble_appearance()
-<<<<<<< HEAD
-	var/image/speech_bubble = image('icons/mob/talk_vr.dmi',src,"[speech_type][speech_bubble_test]") //VOREStation Edit - talk_vr.dmi instead of talk.dmi for right-side icons
-=======
 	var/image/speech_bubble = generate_speech_bubble(src, "[speech_type][speech_bubble_test]")
->>>>>>> e67c35e... Removes transform from speech bubbles when speaker is scaled at less than 2x. (#7927)
 	var/sb_alpha = 255
 	var/atom/loc_before_turf = src
 	//VOREStation Add
@@ -346,11 +342,7 @@ proc/get_radio_key_from_channel(var/channel)
 		var/turf/ST = get_turf(above)
 		if(ST)
 			var/list/results = get_mobs_and_objs_in_view_fast(ST, world.view)
-<<<<<<< HEAD
-			var/image/z_speech_bubble = image('icons/mob/talk_vr.dmi', above, "h[speech_bubble_test]") //VOREStation Edit - talk_vr.dmi instead of talk.dmi for right-side icons
-=======
 			var/image/z_speech_bubble = generate_speech_bubble(above, "h[speech_bubble_test]")
->>>>>>> e67c35e... Removes transform from speech bubbles when speaker is scaled at less than 2x. (#7927)
 			images_to_clients[z_speech_bubble] = list()
 			for(var/item in results["mobs"])
 				if(item != above && !(item in listening))
