@@ -91,6 +91,15 @@
 			message = "squishes."
 			m_type = 1
 
+		if("chirp")
+			if ((species.bump_flag != SLIME) && (species.name != SPECIES_DIONA))
+				to_chat(src, "<span class='warning'>You are not a diona or slime!</span>")
+				return
+
+			playsound(src, 'sound/misc/nymphchirp.ogg', 50, 0)
+			message = "chirps."
+			m_type = 2
+
 		//Skrell-only emotes
 		if("warble")
 			if(species.name != SPECIES_SKRELL)
