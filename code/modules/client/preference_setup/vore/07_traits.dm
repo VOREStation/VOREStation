@@ -41,7 +41,7 @@
 	S["traits_cheating"]	>> pref.traits_cheating
 	S["max_traits"]		>> pref.max_traits
 	S["trait_points"]	>> pref.starting_trait_points
-	
+
 	S["custom_say"]		>> pref.custom_say
 	S["custom_whisper"]	>> pref.custom_whisper
 	S["custom_ask"]		>> pref.custom_ask
@@ -58,7 +58,7 @@
 	S["traits_cheating"]	<< pref.traits_cheating
 	S["max_traits"]		<< pref.max_traits
 	S["trait_points"]	<< pref.starting_trait_points
-	
+
 	S["custom_say"]		<< pref.custom_say
 	S["custom_whisper"]	<< pref.custom_whisper
 	S["custom_ask"]		<< pref.custom_ask
@@ -141,7 +141,7 @@
 		. += "<a href='?src=\ref[src];custom_base=1'>[pref.custom_base ? pref.custom_base : "Human"]</a><br>"
 
 	var/traits_left = pref.max_traits
-	
+
 	if(pref.species == SPECIES_CUSTOM)
 		var/points_left = pref.starting_trait_points
 
@@ -176,7 +176,7 @@
 	. += "<a href='?src=\ref[src];blood_color=1'>Set Color</a>"
 	. += "<a href='?src=\ref[src];blood_reset=1'>R</a><br>"
 	. += "<br>"
-	
+
 	. += "<b>Custom Say: </b>"
 	. += "<a href='?src=\ref[src];custom_say=1'>Set Say Verb</a><br>"
 	. += "<b>Custom Whisper: </b>"
@@ -340,6 +340,10 @@
 				return TOPIC_REFRESH
 
 			if(pref.species in instance.banned_species)
+				alert("The trait you've selected cannot be taken by the species you've chosen!","Error")
+				return TOPIC_REFRESH
+
+			if( LAZYLEN(instance.allowed_species) && !(pref.species in instance.allowed_species)) //Adding white list handling -shark
 				alert("The trait you've selected cannot be taken by the species you've chosen!","Error")
 				return TOPIC_REFRESH
 

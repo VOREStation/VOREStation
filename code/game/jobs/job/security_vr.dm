@@ -6,11 +6,11 @@
 	access = list(access_security, access_eva, access_sec_doors, access_brig, access_armory,
 						access_forensics_lockers, access_morgue, access_maint_tunnels, access_all_personal_lockers,
 						access_construction,
-						access_heads, access_hos, access_RC_announce, access_keycard_auth, access_external_airlocks)
+						access_heads, access_hos, access_RC_announce, access_keycard_auth, access_gateway, access_external_airlocks)
 	minimal_access = list(access_security, access_eva, access_sec_doors, access_brig, access_armory,
 						access_forensics_lockers, access_morgue, access_maint_tunnels, access_all_personal_lockers,
 						access_construction,
-						access_heads, access_hos, access_RC_announce, access_keycard_auth, access_external_airlocks)
+						access_heads, access_hos, access_RC_announce, access_keycard_auth, access_gateway, access_external_airlocks)
 	alt_titles = list("Security Commander" = /datum/alt_title/sec_commander, "Chief of Security" = /datum/alt_title/sec_chief, "Security Manager" = /datum/alt_title/security_manager)
 
 /datum/alt_title/security_manager

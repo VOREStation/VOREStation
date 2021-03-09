@@ -204,3 +204,11 @@ Qipao
 /datum/gear/uniform/qipao_white
 	display_name = "qipao, white"
 	path = /obj/item/clothing/under/dress/qipao/white
+
+/*
+Bluespace jumpsuit
+*/
+/datum/gear/uniform/hfjumpsuit
+	display_name = "HYPER jumpsuit"
+	path = /obj/item/clothing/under/hyperfiber
+	cost = 2
