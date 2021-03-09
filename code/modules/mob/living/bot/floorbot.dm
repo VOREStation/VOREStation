@@ -109,8 +109,7 @@
 		addTiles(1)
 
 	if(prob(1))
-		custom_emote(2, "makes an excited beeping sound!")
-		playsound(src, 'sound/machines/twobeep.ogg', 50, 0)
+		playsound(src, 'sound/machines/twobeep.ogg', 10, 0)
 
 /mob/living/bot/floorbot/handleAdjacentTarget()
 	if(get_turf(target) == src.loc)
