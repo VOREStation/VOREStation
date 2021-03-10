@@ -89,8 +89,6 @@
 		if(Name in materials)
 			continue
 
-		hidden_materials |= Name
-
 		materials[Name] = 0
 
 	default_apply_parts()
