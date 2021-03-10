@@ -194,7 +194,7 @@
 
 	if (panel_open && cell && user.Adjacent(src))
 		to_chat(user, "You take out \the [cell].")
-		cell.forceMove(get_turf(user))
+		user.put_in_hands(cell)
 		component_parts -= cell
 		cell = null
 		return
