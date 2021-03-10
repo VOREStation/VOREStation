@@ -41,8 +41,8 @@ jobs:
         run: |
           sudo dpkg --add-architecture i386
           sudo apt update --fix-missing || true
-          sudo apt-get install -f
-          sudo apt install libc6:i386 libgcc1:i386 libstdc++6:i386 libssl1.0.0:i386 g++-7 g++-7-multilib gcc-multilib zlib1g:i386
+          sudo apt-get install -f || true
+          sudo apt install libc6:i386 libgcc1:i386 libstdc++6:i386 libssl1.0.0:i386 g++-7 g++-7-multilib gcc-multilib zlib1g:i386 || true
           ldd librust_g.so
       - name: Unit Tests
         run: |
