@@ -15533,6 +15533,10 @@
 /obj/effect/floor_decal/corner/mauve/border{
 	dir = 1
 	},
+/obj/fiftyspawner/copper,
+/obj/fiftyspawner/copper,
+/obj/fiftyspawner/copper,
+/obj/fiftyspawner/copper,
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/robotics)
 "azp" = (
