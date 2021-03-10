@@ -1,8 +1,8 @@
 /obj/item/weapon/mining_scanner
-	name = "ore detector"
+	name = "deep scan device"
 	desc = "A complex device used to locate ore deep underground."
 	icon = 'icons/obj/device.dmi'
-	icon_state = "forensic0-old" //GET A BETTER SPRITE.
+	icon_state = "deep_scan_device"
 	item_state = "electronic"
 	origin_tech = list(TECH_MAGNET = 1, TECH_ENGINEERING = 1)
 	matter = list(DEFAULT_WALL_MATERIAL = 150)
@@ -20,6 +20,7 @@
 /obj/item/weapon/mining_scanner/proc/ScanTurf(var/atom/target, var/mob/user, var/exact = FALSE)
 	var/list/metals = list(
 		"surface minerals" = 0,
+		"industrial metals" = 0,
 		"precious metals" = 0,
 		"precious gems" = 0,
 		"nuclear fuel" = 0,
@@ -38,12 +39,13 @@
 			var/ore_type
 
 			switch(metal)
-				if("silicates", "carbon", "hematite", "marble")	ore_type = "surface minerals"
-				if("gold", "silver", "lead")					ore_type = "precious metals"
-				if("diamond")									ore_type = "precious gems"
+				if("silicates", "carbon", "marble", "quartz")	ore_type = "surface minerals"
+				if("hematite", "tin", "copper", "bauxite", "lead")	ore_type = "industrial metals"
+				if("gold", "silver", "rutile")					ore_type = "precious metals"
+				if("diamond", "painite")	ore_type = "precious gems"
 				if("uranium")									ore_type = "nuclear fuel"
 				if("phoron", "osmium", "hydrogen")				ore_type = "exotic matter"
-				if("verdantium")				ore_type = "anomalous matter"
+				if("verdantium", "void opal")				ore_type = "anomalous matter"
 
 			if(ore_type) metals[ore_type] += T.resources[metal]
 

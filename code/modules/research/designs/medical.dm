@@ -12,7 +12,7 @@
 	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field. This one looks basic and could be improved."
 	id = "scalpel_laser1"
 	req_tech = list(TECH_BIO = 2, TECH_MATERIAL = 2, TECH_MAGNET = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 12500, "glass" = 7500)
+	materials = list(DEFAULT_WALL_MATERIAL = 12500, "glass" = 7500, MAT_COPPER = 120)
 	build_path = /obj/item/weapon/surgical/scalpel/laser1
 	sort_string = "KAAAA"
 
@@ -75,7 +75,7 @@
 	desc = "A hand-held body scanner able to distinguish vital signs of the subject."
 	id = "medical_analyzer"
 	req_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 500, "glass" = 500)
+	materials = list(DEFAULT_WALL_MATERIAL = 500, "glass" = 500, MAT_COPPER = 20)
 	build_path = /obj/item/device/healthanalyzer
 	sort_string = "KBAAA"
 
@@ -93,6 +93,6 @@
 	desc = "A more advanced version of the regular roller bed, with inbuilt surgical stabilisers and an improved folding system."
 	id = "roller_bed"
 	req_tech = list(TECH_BIO = 3, TECH_MATERIAL = 3, TECH_MAGNET = 3)
-	materials = list(DEFAULT_WALL_MATERIAL = 4000, "glass" = 2000, "phoron" = 2000)
+	materials = list(DEFAULT_WALL_MATERIAL = 4000, "glass" = 2000, "phoron" = 2000, MAT_COPPER = 100)
 	build_path = /obj/item/roller/adv
 	sort_string = "KCAAA"

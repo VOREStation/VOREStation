@@ -35,6 +35,13 @@
 	containertype = /obj/structure/closet/crate/grayson
 	containername = "Plastic sheets crate"
 
+/datum/supply_pack/materials/copper50
+	name = "50 copper ingots"
+	contains = list(/obj/fiftyspawner/copper)
+	cost = 60
+	containertype = /obj/structure/closet/crate/grayson
+	containername = "Copper ingots crate"
+
 /datum/supply_pack/materials/cardboard_sheets
 	contains = list(/obj/fiftyspawner/cardboard)
 	name = "50 cardboard sheets"

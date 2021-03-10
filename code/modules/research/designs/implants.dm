@@ -1,7 +1,7 @@
 // Implants
 
 /datum/design/item/implant
-	materials = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
+	materials = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50, MAT_COPPER = 5)
 
 /datum/design/item/implant/AssembleDesignName()
 	..()
@@ -17,6 +17,7 @@
 /datum/design/item/implant/freedom
 	name = "freedom"
 	id = "implant_free"
-	req_tech = list(TECH_ILLEGAL = 2, TECH_BIO = 3)
+	req_tech = list(TECH_MATERIAL = 3, TECH_ILLEGAL = 2, TECH_BIO = 3)
 	build_path = /obj/item/weapon/implantcase/freedom
 	sort_string = "MFAAB"
+	materials = list(MAT_TITANIUM = 50, "glass" = 50, MAT_COPPER = 5)

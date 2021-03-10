@@ -25,7 +25,7 @@
 	var/static/list/field_edit_choices
 
 /obj/machinery/computer/secure_data/Initialize()
-	..()
+	. = ..()
 	field_edit_questions = list(
 		// General
 		"name" = "Please enter new name:",
@@ -389,11 +389,11 @@
 
 					if(field == "age")
 						answer = text2num(answer)
-					
+
 					if(field == "rank")
 						if(answer in joblist)
 							active1.fields["real_rank"] = answer
-					
+
 					if(field == "criminal")
 						for(var/mob/living/carbon/human/H in player_list)
 							BITSET(H.hud_updateflag, WANTED_HUD)
