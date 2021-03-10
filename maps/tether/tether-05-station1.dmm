@@ -19530,6 +19530,10 @@
 	},
 /obj/fiftyspawner/plastic,
 /obj/fiftyspawner/plastic,
+/obj/fiftyspawner/copper,
+/obj/fiftyspawner/copper,
+/obj/fiftyspawner/copper,
+/obj/fiftyspawner/copper,
 /turf/simulated/floor/tiled,
 /area/engineering/workshop)
 "bkU" = (
