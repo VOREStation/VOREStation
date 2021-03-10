@@ -11655,6 +11655,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
+/obj/fiftyspawner/copper,
 /turf/simulated/floor/tiled,
 /area/ai_monitored/storage/eva)
 "sa" = (
