@@ -126,6 +126,11 @@
 	siemens_coefficient = 0.9
 	body_parts_covered = 0
 
+/obj/item/clothing/head/plaguedoctorhat/gold
+	name = "golden plague doctor's hat"
+	desc = "These were once used by plague doctors, allegedly. This one has gold accents."
+	icon_state = "plaguedoctor2"
+
 /obj/item/clothing/head/hasturhood
 	name = "hastur's hood"
 	desc = "It's unspeakably stylish"

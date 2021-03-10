@@ -645,3 +645,15 @@
 /datum/gear/uniform/gothic2
 	display_name = "lacey gothic dress"
 	path = /obj/item/clothing/under/dress/gothic2
+
+/datum/gear/uniform/flowerskirt
+	display_name = "flower skirt"
+	path = /obj/item/clothing/under/flower_skirt
+
+/datum/gear/uniform/flowerskirt/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/uniform/countess
+	display_name = "countess dress"
+	path = /obj/item/clothing/under/dress/countess
