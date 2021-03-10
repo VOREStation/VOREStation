@@ -37,6 +37,7 @@
 #define COFFEE		0x200	// Mostly here for tajara.
 #define GENERIC		0x400	// Catchall for stuff that doesn't fall into the groups above. You shouldn't be allergic to this type, ever.
 #define SUGARS		0x800	// For unathi-like reactions
+#define EGGS      0x1000 // For Skrell eggs allergy
 
 // Allergen reactions
 #define AG_TOX_DMG	0x1	// the classic 
