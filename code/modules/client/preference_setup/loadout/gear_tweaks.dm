@@ -512,6 +512,9 @@ var/datum/gear_tweak/custom_desc/gear_tweak_free_desc = new()
 
 /datum/gear_tweak/implant_location
 	var/static/list/bodypart_names_to_tokens = list(
+		"head" =       BP_HEAD,
+		"upper body" = BP_TORSO,
+		"lower body" = BP_GROIN,
 		"left hand" =  BP_L_HAND,
 		"left arm" =   BP_L_ARM,
 		"right hand" = BP_R_HAND,
@@ -519,12 +522,12 @@ var/datum/gear_tweak/custom_desc/gear_tweak_free_desc = new()
 		"left foot" =  BP_L_FOOT,
 		"left leg" =   BP_L_LEG,
 		"right foot" = BP_R_FOOT,
-		"right leg" =  BP_R_LEG,
-		"lower body" = BP_GROIN,
-		"upper body" = BP_TORSO,
-		"head" =       BP_HEAD
+		"right leg" =  BP_R_LEG
 	)
 	var/static/list/bodypart_tokens_to_names = list(
+		BP_HEAD =       "head",
+		BP_TORSO =      "upper body",
+		BP_GROIN =      "lower body",
 		BP_LEFT_HAND =  "left hand",
 		BP_LEFT_ARM =   "left arm",
 		BP_RIGHT_HAND = "right hand",
@@ -532,14 +535,11 @@ var/datum/gear_tweak/custom_desc/gear_tweak_free_desc = new()
 		BP_LEFT_FOOT =  "left foot",
 		BP_LEFT_LEG =   "left leg",
 		BP_RIGHT_FOOT = "right foot",
-		BP_RIGHT_LEG =  "right leg",
-		BP_GROIN =      "lower body",
-		BP_TORSO =      "upper body",
-		BP_HEAD =       "head"
+		BP_RIGHT_LEG =  "right leg"
 	)
 
 /datum/gear_tweak/implant_location/get_default()
-	return BP_TORSO
+	return bodypart_names_to_tokens[1]
 
 /datum/gear_tweak/implant_location/tweak_item(var/obj/item/weapon/implant/I, var/metadata)
 	if(istype(I))

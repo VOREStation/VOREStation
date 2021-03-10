@@ -7,6 +7,8 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "implant"
 	w_class = ITEMSIZE_TINY
+	show_messages = TRUE
+
 	var/implanted = null
 	var/mob/imp_in = null
 	var/obj/item/organ/external/part = null
@@ -14,7 +16,7 @@
 	var/allow_reagents = 0
 	var/malfunction = 0
 	var/initialize_loc = BP_TORSO
-	show_messages = 1
+	var/known_implant = FALSE
 
 /obj/item/weapon/implant/proc/trigger(emote, source as mob)
 	return
@@ -65,16 +67,17 @@
 	malfunction = MALFUNCTION_PERMANENT
 
 /obj/item/weapon/implant/proc/implant_loadout(var/mob/living/carbon/human/H)
-	if(H)
-		if(handle_implant(H, initialize_loc))
-			invisibility = initial(invisibility)
-			post_implant(H)
+	. = istype(H) && handle_implant(H, initialize_loc)
+	if(.)
+		invisibility = initial(invisibility)
+		known_implant = TRUE
+		post_implant(H)
 
 /obj/item/weapon/implant/Destroy()
 	if(part)
 		part.implants.Remove(src)
+		part = null
 	listening_objects.Remove(src)
-	part = null
 	imp_in = null
 	return ..()
 
@@ -100,6 +103,7 @@ GLOBAL_LIST_BOILERPLATE(all_tracking_implants, /obj/item/weapon/implant/tracking
 /obj/item/weapon/implant/tracking
 	name = "tracking implant"
 	desc = "An implant normally given to dangerous criminals. Allows security to track your location."
+	known_implant = TRUE
 	var/id = 1
 	var/degrade_time = 10 MINUTES	//How long before the implant stops working outside of a living body.
 
@@ -348,6 +352,7 @@ GLOBAL_LIST_BOILERPLATE(all_chem_implants, /obj/item/weapon/implant/chem)
 	name = "chemical implant"
 	desc = "Injects things."
 	allow_reagents = 1
+	known_implant = TRUE
 
 /obj/item/weapon/implant/chem/get_data()
 	var/dat = {"
@@ -418,6 +423,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 /obj/item/weapon/implant/loyalty
 	name = "loyalty implant"
 	desc = "Makes you loyal or such."
+	known_implant = TRUE
 
 /obj/item/weapon/implant/loyalty/get_data()
 	var/dat = {"
@@ -491,6 +497,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 	name = "death alarm implant"
 	desc = "An alarm which monitors host vital signs and transmits a radio message upon death."
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 2, TECH_DATA = 1)
+	known_implant = TRUE
 	var/mobname = "Will Robinson"
 
 /obj/item/weapon/implant/death_alarm/get_data()
