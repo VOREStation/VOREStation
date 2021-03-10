@@ -11478,21 +11478,8 @@
 	dir = 8;
 	layer = 2.9
 	},
-/obj/item/clothing/head/helmet/space/skrell/black,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/suit/space/skrell/black,
-/obj/item/clothing/head/helmet/space/skrell/white,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/suit/space/skrell/white,
-/turf/simulated/floor/tiled/dark,
-/area/ai_monitored/storage/eva)
-"rN" = (
-/obj/structure/table/rack{
-	dir = 8;
-	layer = 2.9
-	},
-/obj/item/weapon/rig/breacher,
-/obj/item/clothing/mask/breath,
+/obj/item/weapon/tank/jetpack/carbondioxide,
+/obj/item/weapon/tank/jetpack/carbondioxide,
 /turf/simulated/floor/tiled/dark,
 /area/ai_monitored/storage/eva)
 "rO" = (
@@ -12969,7 +12956,7 @@
 	dir = 8;
 	layer = 2.9
 	},
-/obj/item/weapon/tank/jetpack/carbondioxide,
+/obj/item/clothing/shoes/magboots,
 /obj/item/clothing/shoes/magboots,
 /turf/simulated/floor/tiled/dark,
 /area/ai_monitored/storage/eva)
@@ -35654,7 +35641,7 @@ oY
 pE
 et
 oY
-rN
+rM
 qc
 sU
 tE
