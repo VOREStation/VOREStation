@@ -376,6 +376,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/weapon/tool/wrench,
 		/obj/item/weapon/tool/screwdriver,
 		/obj/item/weapon/tool/wirecutters,
+		/obj/item/weapon/mining_scanner/advanced,
 		/obj/item/device/multitool,
 		/obj/item/mecha_parts/mecha_equipment/generator,
 		/obj/item/mecha_parts/mecha_equipment/tool/cable_layer,
