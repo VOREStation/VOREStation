@@ -560,10 +560,16 @@
 	icon_state = "pentagram"
 	index = 1
 
-obj/item/clothing/under/dress/yellowswoop
+/obj/item/clothing/under/dress/yellowswoop
 	name = "yellow swooped dress"
 	desc = "A yellow dress that swoops to the side."
 	icon_state = "yellowswoop"
+	index = 1
+
+/obj/item/clothing/under/dress/countess
+	name = "countess dress"
+	desc = "A red and black dress fit for a countess."
+	icon_state = "countess"
 	index = 1
 
 /*
@@ -893,6 +899,12 @@ Uniforms and such
 	name = "disheveled suit"
 	desc = "What might pass as well maintained formal attire. If you're blind."
 	icon_state = "disheveled"
+	index = 1
+
+/obj/item/clothing/under/flower_skirt
+	name = "flower skirt"
+	desc = "A flowery skirt that comes in a variety of colors."
+	icon_state = "flowerskirt"
 	index = 1
 
 /*

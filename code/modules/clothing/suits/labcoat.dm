@@ -105,3 +105,9 @@
 	name = "blue-edged labcoat"
 	desc = "A suit that protects against minor chemical spills. This one has blue trim."
 	icon_state = "blue_edge_labcoat"
+
+/obj/item/clothing/suit/storage/toggle/labcoat/plaguedoctor
+	name = "golden plague doctor suit"
+	desc = "If it worked then, it works now. This classic design comes in gold."
+	icon_state = "plaguedoctor2"
+	index = 1
