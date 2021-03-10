@@ -8075,6 +8075,16 @@
 "aoO" = (
 /turf/simulated/wall/r_wall,
 /area/storage/emergency_storage/emergency4)
+"aoP" = (
+/obj/structure/table/reinforced,
+/obj/item/stack/material/plasteel{
+	amount = 30
+	},
+/obj/fiftyspawner/plastic,
+/obj/fiftyspawner/plastic,
+/obj/fiftyspawner/copper,
+/turf/simulated/floor/tiled,
+/area/engineering/workshop)
 "aoR" = (
 /obj/structure/grille,
 /obj/machinery/door/firedoor/border_only,
@@ -19523,19 +19533,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/storage/tools)
-"bkx" = (
-/obj/structure/table/reinforced,
-/obj/item/stack/material/plasteel{
-	amount = 30
-	},
-/obj/fiftyspawner/plastic,
-/obj/fiftyspawner/plastic,
-/obj/fiftyspawner/copper,
-/obj/fiftyspawner/copper,
-/obj/fiftyspawner/copper,
-/obj/fiftyspawner/copper,
-/turf/simulated/floor/tiled,
-/area/engineering/workshop)
 "bkU" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 9
@@ -29932,7 +29929,7 @@ aqM
 ath
 avd
 asA
-bkx
+aoP
 aqM
 akR
 auA
