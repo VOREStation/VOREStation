@@ -15,7 +15,7 @@
 	var/extra_overlay2
 	var/desc = "You should not see this..."
 
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	//species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3) //VOREStation Removal
 
 /datum/sprite_accessory/ears/shadekin
 	name = "Shadekin Ears, colorable"

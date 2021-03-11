@@ -1,7 +1,7 @@
 /datum/sprite_accessory/marking/vr
 	icon = 'icons/mob/human_races/markings_alt.dmi'
 
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	//species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3) //VOREStation Removal
 
 /datum/sprite_accessory/marking/vr/vulp_belly
 	name = "belly fur (Vulp)"
