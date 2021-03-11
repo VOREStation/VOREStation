@@ -462,6 +462,10 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/eris/under/airless,
 /area/talon/maintenance/deckone_starboard_fore_wing)
+"bb" = (
+/obj/structure/stairs/spawner/east,
+/turf/simulated/floor/tiled/eris/steel,
+/area/talon/deckone/central_hallway)
 "bc" = (
 /obj/structure/catwalk,
 /obj/structure/handrail{
@@ -1553,6 +1557,10 @@
 	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/talon/deckone/medical)
+"dh" = (
+/obj/structure/stairs/spawner/west,
+/turf/simulated/floor/tiled/eris/steel,
+/area/talon/deckone/central_hallway)
 "dj" = (
 /obj/structure/table/standard,
 /obj/item/weapon/storage/box/handcuffs,
@@ -2227,10 +2235,6 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/cyancorner,
 /area/talon/deckone/starboard_solar)
-"kE" = (
-/obj/structure/stairs/west,
-/turf/simulated/floor/tiled/eris/steel,
-/area/talon/deckone/central_hallway)
 "kG" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
@@ -2554,10 +2558,6 @@
 /obj/item/clothing/accessory/holster/waist,
 /turf/simulated/floor/tiled/eris/white/danger,
 /area/talon/deckone/armory)
-"oe" = (
-/obj/structure/stairs/east,
-/turf/simulated/floor/tiled/eris/steel,
-/area/talon/deckone/central_hallway)
 "oh" = (
 /obj/effect/shuttle_landmark{
 	landmark_tag = "talon_aft";
@@ -15159,7 +15159,7 @@ Pg
 dH
 Bj
 Ae
-kE
+dh
 iT
 sz
 tr
@@ -15566,7 +15566,7 @@ UP
 aM
 xK
 aM
-oe
+bb
 Nc
 YK
 YK
@@ -16134,7 +16134,7 @@ gR
 aO
 nN
 aO
-kE
+dh
 DO
 yo
 yo
@@ -16579,7 +16579,7 @@ kw
 fJ
 Bj
 Jw
-oe
+bb
 AU
 IW
 Zq

@@ -357,11 +357,13 @@
 	name = "PBT \"Pacifier\" Mounted Taser"
 	id = "mech_taser"
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/taser
+	materials = list(DEFAULT_WALL_MATERIAL = 6500, MAT_COPPER = 1000)
 
 /datum/design/item/mecha/rigged_taser
 	name = "Jury-Rigged Taser"
 	id = "mech_taser-r"
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/taser/rigged
+	materials = list(DEFAULT_WALL_MATERIAL = 6500, MAT_COPPER = 200)
 
 /datum/design/item/mecha/shocker
 	name = "Exosuit Electrifier"
@@ -566,7 +568,7 @@
 	desc = "Automated repair droid, exosuits' best companion. BEEP BOOP"
 	id = "mech_repair_droid"
 	req_tech = list(TECH_MAGNET = 3, TECH_DATA = 3, TECH_ENGINEERING = 3)
-	materials = list(DEFAULT_WALL_MATERIAL = 7500, "gold" = 750, "silver" = 1500, "glass" = 3750)
+	materials = list(DEFAULT_WALL_MATERIAL = 7500, "gold" = 750, "silver" = 1500, MAT_ALUMINIUM = 3750)
 	build_path = /obj/item/mecha_parts/mecha_equipment/repair_droid
 
 /datum/design/item/mecha/combat_shield
@@ -590,7 +592,7 @@
 	desc = "Deploys a small medical drone capable of patching small wounds in order to stabilize nearby patients."
 	id = "mech_med_droid"
 	req_tech = list(TECH_PHORON = 3, TECH_MAGNET = 6, TECH_BIO = 5, TECH_DATA = 4, TECH_ARCANE = 1)
-	materials = list(DEFAULT_WALL_MATERIAL = 8000, MAT_GOLD = 2000, MAT_SILVER = 3000, MAT_VERDANTIUM = 2500, MAT_GLASS = 3000)
+	materials = list(DEFAULT_WALL_MATERIAL = 8000, MAT_GOLD = 2000, MAT_ALUMINIUM = 3750, MAT_VERDANTIUM = 2500, MAT_GLASS = 3000)
 	build_path = /obj/item/mecha_parts/mecha_equipment/crisis_drone
 
 /datum/design/item/mecha/rad_drone
@@ -598,7 +600,7 @@
 	desc = "Deploys a small hazmat drone capable of purging minor radiation damage in order to stabilize nearby patients."
 	id = "mech_rad_droid"
 	req_tech = list(TECH_PHORON = 4, TECH_MAGNET = 5, TECH_BIO = 6, TECH_DATA = 4, TECH_ARCANE = 1)
-	materials = list(DEFAULT_WALL_MATERIAL = 8000, MAT_GOLD = 2000, MAT_URANIUM = 3000, MAT_VERDANTIUM = 2500, MAT_GLASS = 3000)
+	materials = list(DEFAULT_WALL_MATERIAL = 8000, MAT_GOLD = 2000, MAT_ALUMINIUM = 2500, MAT_URANIUM = 1000, MAT_VERDANTIUM = 1000, MAT_GLASS = 3000)
 	build_path = /obj/item/mecha_parts/mecha_equipment/crisis_drone/rad
 
 /datum/design/item/mecha/medanalyzer
@@ -606,7 +608,7 @@
 	desc = "An advanced mech-mounted device that is not quite as powerful as a stationary body scanner, though still suitably powerful."
 	id = "mech_med_analyzer"
 	req_tech = list(TECH_PHORON = 4, TECH_MAGNET = 5, TECH_BIO = 5, TECH_DATA = 4)
-	materials = list(MAT_PLASTEEL = 4500, MAT_GOLD = 2000, MAT_URANIUM = 3000, MAT_GLASS = 3000)
+	materials = list(MAT_ALUMINIUM = 4500, MAT_GOLD = 2000, MAT_URANIUM = 3000, MAT_GLASS = 3000)
 	build_path = /obj/item/mecha_parts/mecha_equipment/tool/powertool/medanalyzer
 
 /datum/design/item/mecha/jetpack
@@ -615,7 +617,7 @@
 	id = "mech_jetpack"
 	req_tech = list(TECH_ENGINEERING = 3, TECH_MAGNET = 4) //One less magnet than the actual got-damn teleporter.
 	build_path = /obj/item/mecha_parts/mecha_equipment/tool/jetpack
-	materials = list(DEFAULT_WALL_MATERIAL = 7500, "silver" = 300, "glass" = 600)
+	materials = list(MAT_ALUMINIUM = 7500, "silver" = 300, "glass" = 600)
 
 /datum/design/item/mecha/phoron_generator
 	desc = "Phoron Reactor"
@@ -660,7 +662,7 @@
 	desc = "A heavy duty bore. Bigger, better, stronger than the core sampler, but not quite as good as a large drill."
 	id = "mech_ground_drill"
 	req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 2, TECH_PHORON = 1)
-	materials = list(DEFAULT_WALL_MATERIAL = 7000, "silver" = 3000, "phoron" = 2000)
+	materials = list(MAT_ALUMINIUM = 5000, "silver" = 3000, DEFAULT_WALL_MATERIAL = 2000)
 	build_path = /obj/item/mecha_parts/mecha_equipment/tool/drill/bore
 
 /datum/design/item/mecha/orescanner
@@ -668,7 +670,7 @@
 	desc = "A hefty device used to scan for subterranean veins of ore."
 	id = "mech_ore_scanner"
 	req_tech = list(TECH_MATERIAL = 2, TECH_MAGNET = 2, TECH_POWER = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 4000, "glass" = 1000)
+	materials = list(MAT_ALUMINIUM = 3000, MAT_COPPER = 1000, "glass" = 1000)
 	build_path = /obj/item/mecha_parts/mecha_equipment/tool/orescanner
 
 /datum/design/item/mecha/advorescanner
@@ -676,7 +678,7 @@
 	desc = "A hefty device used to scan for the exact volumes of subterranean veins of ore."
 	id = "mech_ore_scanner_adv"
 	req_tech = list(TECH_MATERIAL = 5, TECH_MAGNET = 4, TECH_POWER = 4, TECH_BLUESPACE = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 5000, "osmium" = 3000, "silver" = 1000)
+	materials = list(MAT_ALUMINIUM = 5000, "osmium" = 3000, "silver" = 1000)
 	build_path = /obj/item/mecha_parts/mecha_equipment/tool/orescanner/advanced
 
 /datum/design/item/mecha/runningboard
@@ -748,7 +750,7 @@
 	desc = "Exosuit-held nuclear reactor. Converts uranium and everyone's health to energy."
 	id = "mech_generator_nuclear"
 	req_tech = list(TECH_POWER= 3, TECH_ENGINEERING = 3, TECH_MATERIAL = 3)
-	materials = list(DEFAULT_WALL_MATERIAL = 7500, "silver" = 375, "glass" = 750)
+	materials = list(MAT_ALUMINIUM = 7500, "silver" = 375, MAT_LEAD = 1250)
 	build_path = /obj/item/mecha_parts/mecha_equipment/generator/nuclear
 
 /datum/design/item/mecha/speedboost_ripley
@@ -756,7 +758,7 @@
 	desc = "System enhancements and overdrives to make a mech's legs move faster."
 	id = "mech_speedboost_ripley"
 	req_tech = list( TECH_POWER = 5, TECH_MATERIAL = 4, TECH_ENGINEERING = 4)
-	materials = list(DEFAULT_WALL_MATERIAL = 10000, "silver" = 1000, "gold" = 1000)
+	materials = list(DEFAULT_WALL_MATERIAL = 10000, MAT_ALUMINIUM = 1000, "gold" = 1000)
 	build_path = /obj/item/mecha_parts/mecha_equipment/speedboost
 
 /datum/design/item/synthetic_flash
@@ -782,7 +784,7 @@
 	desc = "A space-bike's un-assembled frame."
 	id = "vehicle_chassis_spacebike"
 	req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 6, TECH_BLUESPACE = 3, TECH_PHORON = 3)
-	materials = list(DEFAULT_WALL_MATERIAL = 12000, "silver" = 3000, "phoron" = 3000, "osmium" = 1000)
+	materials = list(MAT_ALUMINIUM = 9000, "silver" = 3000, "phoron" = 3000, "osmium" = 1000)
 	build_path = /obj/item/weapon/vehicle_assembly/spacebike
 
 /datum/design/item/mechfab/vehicle/quadbike_chassis
@@ -924,7 +926,7 @@
 	desc = "A compact cleaning-foam grenade system for a hardsuit."
 	id = "rig_grenade_cleanfoam"
 	req_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 3, TECH_BIO = 2, TECH_POWER = 2)
-	materials = list(MAT_PLASTEEL = 2000, MAT_GLASS = 1000, MAT_GRAPHITE = 1500, MAT_PLASTIC = 750)
+	materials = list(MAT_ALUMINIUM = 2000, MAT_GLASS = 1000, MAT_GRAPHITE = 1500, MAT_PLASTIC = 750)
 	build_path = /obj/item/rig_module/cleaner_launcher
 
 /datum/design/item/mechfab/rigsuit/taser
@@ -932,7 +934,7 @@
 	desc = "A compact taser system for a hardsuit."
 	id = "rig_gun_taser"
 	req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 3, TECH_MAGNET = 2, TECH_POWER = 3, TECH_COMBAT = 2)
-	materials = list(MAT_PLASTEEL = 2000, MAT_GRAPHITE = 1500, MAT_PLASTIC = 500)
+	materials = list(MAT_ALUMINIUM = 2000, MAT_GRAPHITE = 1500, MAT_PLASTIC = 500)
 	build_path = /obj/item/rig_module/mounted/taser
 
 /datum/design/item/mechfab/rigsuit/egun
@@ -956,7 +958,7 @@
 	desc = "A compact overclocking system for a hardsuit."
 	id = "rig_component_sprinter"
 	req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 5, TECH_BIO = 4, TECH_POWER = 4)
-	materials = list(MAT_PLASTEEL = 2000, MAT_GRAPHITE = 1500, MAT_PLASTIC = 500, MAT_VERDANTIUM = 1000)
+	materials = list(MAT_ALUMINIUM = 2000, MAT_GRAPHITE = 1500, MAT_PLASTIC = 500, MAT_VERDANTIUM = 1000)
 	build_path = /obj/item/rig_module/sprinter
 
 /datum/design/item/mechfab/rigsuit/meson
@@ -964,7 +966,7 @@
 	desc = "A compact meson visor for a hardsuit."
 	id = "rig_component_meson"
 	req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 5, TECH_MAGNET = 3, TECH_POWER = 4)
-	materials = list(MAT_PLASTEEL = 2000, MAT_GRAPHITE = 1500, MAT_OSMIUM = 500)
+	materials = list(MAT_ALUMINIUM = 2000, MAT_GRAPHITE = 1500, MAT_OSMIUM = 500)
 	build_path = /obj/item/rig_module/vision/meson
 
 /datum/design/item/mechfab/rigsuit/material
@@ -972,7 +974,7 @@
 	desc = "A compact material visor for a hardsuit."
 	id = "rig_component_material"
 	req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 5, TECH_MAGNET = 3, TECH_POWER = 4)
-	materials = list(MAT_PLASTEEL = 2000, MAT_GRAPHITE = 1500, MAT_OSMIUM = 500)
+	materials = list(MAT_ALUMINIUM = 2000, MAT_GRAPHITE = 1500, MAT_OSMIUM = 500)
 	build_path = /obj/item/rig_module/vision/material
 
 /datum/design/item/mechfab/rigsuit/nvg
@@ -980,7 +982,7 @@
 	desc = "A compact night-vision visor for a hardsuit."
 	id = "rig_component_nvg"
 	req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 6, TECH_MAGNET = 4, TECH_POWER = 5)
-	materials = list(MAT_PLASTEEL = 2000, MAT_GRAPHITE = 1500, MAT_OSMIUM = 500, MAT_URANIUM = 1000)
+	materials = list(MAT_ALUMINIUM = 2000, MAT_GRAPHITE = 1500, MAT_OSMIUM = 500, MAT_URANIUM = 1000)
 	build_path = /obj/item/rig_module/vision/nvg
 
 /datum/design/item/mechfab/rigsuit/sechud
@@ -988,7 +990,7 @@
 	desc = "A compact security visor for a hardsuit."
 	id = "rig_component_sechud"
 	req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3, TECH_MAGNET = 3, TECH_POWER = 2)
-	materials = list(MAT_PLASTEEL = 2000, MAT_GRAPHITE = 1500, MAT_PLASTIC = 500, MAT_SILVER = 500)
+	materials = list(MAT_ALUMINIUM = 2000, MAT_GRAPHITE = 1500, MAT_PLASTIC = 500, MAT_SILVER = 500)
 	build_path = /obj/item/rig_module/vision/sechud
 
 /datum/design/item/mechfab/rigsuit/medhud
@@ -996,7 +998,7 @@
 	desc = "A compact medical visor for a hardsuit."
 	id = "rig_component_medhud"
 	req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3, TECH_MAGNET = 3, TECH_BIO = 2)
-	materials = list(MAT_PLASTEEL = 2000, MAT_GRAPHITE = 1500, MAT_PLASTIC = 500, MAT_SILVER = 500)
+	materials = list(MAT_ALUMINIUM = 2000, MAT_GRAPHITE = 1500, MAT_PLASTIC = 500, MAT_SILVER = 500)
 	build_path = /obj/item/rig_module/vision/medhud
 
 /datum/design/item/mechfab/rigsuit/voice
@@ -1028,7 +1030,7 @@
 	desc = "A compact chemical injector network for a hardsuit."
 	id = "rig_component_chemicals"
 	req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 5, TECH_MAGNET = 5, TECH_BIO = 4)
-	materials = list(MAT_PLASTEEL = 3000, MAT_GRAPHITE = 2000, MAT_PLASTIC = 3500, MAT_SILVER = 1750, MAT_GOLD = 1250)
+	materials = list(MAT_ALUMINIUM = 3000, MAT_GRAPHITE = 2000, MAT_PLASTIC = 3500, MAT_SILVER = 1750, MAT_GOLD = 1250)
 	build_path = /obj/item/rig_module/chem_dispenser/injector/advanced/empty
 
 /datum/design/item/mechfab/rigsuit/teleporter
@@ -1045,7 +1047,7 @@
 	build_path = /obj/item/device/uav
 	time = 20
 	req_tech = list(TECH_MATERIAL = 6, TECH_ENGINEERING = 5, TECH_PHORON = 3, TECH_MAGNET = 4, TECH_POWER = 6)
-	materials = list(DEFAULT_WALL_MATERIAL = 10000, "glass" = 6000, "silver" = 4000)
+	materials = list(MAT_ALUMINIUM = 5000, "glass" = 6000, MAT_COPPER = 4000)
 
 // Exosuit Internals
 
@@ -1067,7 +1069,7 @@
 	category = list("Exosuit Internals")
 	id = "exo_int_armor_lightweight"
 	req_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 3)
-	materials = list(DEFAULT_WALL_MATERIAL = 5000, MAT_PLASTIC = 3000)
+	materials = list(MAT_ALUMINIUM = 5000, MAT_PLASTIC = 3000)
 	build_path = /obj/item/mecha_parts/component/armor/lightweight
 
 /datum/design/item/mechfab/exointernal/reinf_armor

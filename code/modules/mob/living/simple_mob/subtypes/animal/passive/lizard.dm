@@ -34,7 +34,7 @@
 	attack_sharp = TRUE
 
 /mob/living/simple_mob/animal/passive/lizard/large/Initialize()
-	..()
+	. = ..()
 	adjust_scale(rand(12, 20) / 10)
 
 /mob/living/simple_mob/animal/passive/lizard/large/defensive

@@ -18,7 +18,6 @@
 	var/vore_verb = "ingest"				// Verb for eating with this in messages
 	var/human_prey_swallow_time = 100		// Time in deciseconds to swallow /mob/living/carbon/human
 	var/nonhuman_prey_swallow_time = 30		// Time in deciseconds to swallow anything else
-	var/emote_time = 60 SECONDS				// How long between stomach emotes at prey
 	var/nutrition_percent = 100				// Nutritional percentage per tick in digestion mode
 	var/digest_brute = 0.5					// Brute damage per tick in digestion mode
 	var/digest_burn = 0.5					// Burn damage per tick in digestion mode
@@ -41,6 +40,10 @@
 	var/obj/item/weapon/storage/vore_egg/ownegg	// Is this belly creating an egg?
 	var/egg_type = "Egg"					// Default egg type and path.
 	var/egg_path = /obj/item/weapon/storage/vore_egg
+	var/list/emote_lists = list()			// Idle emotes that happen on their own, depending on the bellymode. Contains lists of strings indexed by bellymode
+	var/emote_time = 60						// How long between stomach emotes at prey (in seconds)
+	var/emote_active = TRUE					// Are we even giving emotes out at all or not?
+	var/next_emote = 0						// When we're supposed to print our next emote, as a world.time
 
 	//I don't think we've ever altered these lists. making them static until someone actually overrides them somewhere.
 	//Actual full digest modes
@@ -56,7 +59,6 @@
 	var/tmp/mob/living/owner					// The mob whose belly this is.
 	var/tmp/digest_mode = DM_HOLD				// Current mode the belly is set to from digest_modes (+transform_modes if human)
 	var/tmp/list/items_preserved = list()		// Stuff that wont digest so we shouldn't process it again.
-	var/tmp/next_emote = 0						// When we're supposed to print our next emote, as a world.time
 	var/tmp/recent_sound = FALSE				// Prevent audio spam
 
 	// Don't forget to watch your commas at the end of each line if you change these.
@@ -113,11 +115,6 @@
 	var/contamination_flavor = "Generic"	// Determines descriptions of contaminated items
 	var/contamination_color = "green"		// Color of contamination overlay
 
-	//Mostly for being overridden on precreated bellies on mobs. Could be VV'd into
-	//a carbon's belly if someone really wanted. No UI for carbons to adjust this.
-	//List has indexes that are the digestion mode strings, and keys that are lists of strings.
-	var/tmp/list/emote_lists = list()
-
 	// Lets you do a fullscreen overlay. Set to an icon_state string.
 	var/belly_fullscreen = ""
 	var/disable_hud = FALSE
@@ -152,6 +149,8 @@
 		"digest_messages_prey",
 		"examine_messages",
 		"emote_lists",
+		"emote_time",
+		"emote_active",
 		"mode_flags",
 		"item_digest_mode",
 		"contaminates",
@@ -361,9 +360,15 @@
 		var/raw_message = pick(examine_messages)
 		var/total_bulge = 0
 
-		formatted_message = replacetext(raw_message, "%belly" ,lowertext(name))
-		formatted_message = replacetext(formatted_message, "%pred" ,owner)
-		formatted_message = replacetext(formatted_message, "%prey" ,english_list(contents))
+		var/living_count = 0
+		for(var/mob/living/L in contents)
+			living_count++
+
+		formatted_message = replacetext(raw_message, "%belly", lowertext(name))
+		formatted_message = replacetext(formatted_message, "%pred", owner)
+		formatted_message = replacetext(formatted_message, "%prey", english_list(contents))
+		formatted_message = replacetext(formatted_message, "%count", contents.len)
+		formatted_message = replacetext(formatted_message, "%countprey", living_count)
 		for(var/mob/living/P in contents)
 			if(!P.absorbed) //This is required first, in case there's a person absorbed and not absorbed in a stomach.
 				total_bulge += P.size_multiplier
@@ -376,7 +381,7 @@
 // This is useful in customization boxes and such. The delimiter right now is \n\n so
 // in message boxes, this looks nice and is easily delimited.
 /obj/belly/proc/get_messages(type, delim = "\n\n")
-	ASSERT(type == "smo" || type == "smi" || type == "dmo" || type == "dmp" || type == "em")
+	ASSERT(type == "smo" || type == "smi" || type == "dmo" || type == "dmp" || type == "em" || type == "im_digest" || type == "im_hold" || type == "im_absorb" || type == "im_heal" || type == "im_drain")
 
 	var/list/raw_messages
 	switch(type)
@@ -390,15 +395,27 @@
 			raw_messages = digest_messages_prey
 		if("em")
 			raw_messages = examine_messages
+		if("im_digest")
+			raw_messages = emote_lists[DM_DIGEST]
+		if("im_hold")
+			raw_messages = emote_lists[DM_HOLD]
+		if("im_absorb")
+			raw_messages = emote_lists[DM_ABSORB]
+		if("im_heal")
+			raw_messages = emote_lists[DM_HEAL]
+		if("im_drain")
+			raw_messages = emote_lists[DM_DRAIN]
 
-	var/messages = list2text(raw_messages, delim)
+	var/messages = null
+	if(raw_messages)
+		messages = list2text(raw_messages, delim)
 	return messages
 
 // The next function sets the messages on the belly, from human-readable var
 // replacement strings and linebreaks as delimiters (two \n\n by default).
 // They also sanitize the messages.
 /obj/belly/proc/set_messages(raw_text, type, delim = "\n\n")
-	ASSERT(type == "smo" || type == "smi" || type == "dmo" || type == "dmp" || type == "em")
+	ASSERT(type == "smo" || type == "smi" || type == "dmo" || type == "dmp" || type == "em" || type == "im_digest" || type == "im_hold" || type == "im_absorb" || type == "im_heal" || type == "im_drain")
 
 	var/list/raw_list = text2list(html_encode(raw_text),delim)
 	if(raw_list.len > 10)
@@ -406,9 +423,12 @@
 		log_debug("[owner] tried to set [lowertext(name)] with 11+ messages")
 
 	for(var/i = 1, i <= raw_list.len, i++)
-		if(length(raw_list[i]) > 160 || length(raw_list[i]) < 10) //160 is fudged value due to htmlencoding increasing the size
+		if((length(raw_list[i]) > 160 || length(raw_list[i]) < 10) && !(type == "im_digest" || type == "im_hold" || type == "im_absorb" || type == "im_heal" || type == "im_drain")) //160 is fudged value due to htmlencoding increasing the size
 			raw_list.Cut(i,i)
 			log_debug("[owner] tried to set [lowertext(name)] with >121 or <10 char message")
+		else if((type == "im_digest" || type == "im_hold" || type == "im_absorb" || type == "im_heal" || type == "im_drain") && (length(raw_list[i]) > 510 || length(raw_list[i]) < 10))
+			raw_list.Cut(i,i)
+			log_debug("[owner] tried to set [lowertext(name)] idle message with >501 or <10 char message")
 		else
 			raw_list[i] = readd_quotes(raw_list[i])
 			//Also fix % sign for var replacement
@@ -427,6 +447,16 @@
 			digest_messages_prey = raw_list
 		if("em")
 			examine_messages = raw_list
+		if("im_digest")
+			emote_lists[DM_DIGEST] = raw_list
+		if("im_hold")
+			emote_lists[DM_HOLD] = raw_list
+		if("im_absorb")
+			emote_lists[DM_ABSORB] = raw_list
+		if("im_heal")
+			emote_lists[DM_HEAL] = raw_list
+		if("im_drain")
+			emote_lists[DM_DRAIN] = raw_list
 
 	return
 
@@ -582,13 +612,21 @@
 	var/struggle_outer_message = pick(struggle_messages_outside)
 	var/struggle_user_message = pick(struggle_messages_inside)
 
+	var/living_count = 0
+	for(var/mob/living/L in contents)
+		living_count++
+
 	struggle_outer_message = replacetext(struggle_outer_message, "%pred", owner)
 	struggle_outer_message = replacetext(struggle_outer_message, "%prey", R)
 	struggle_outer_message = replacetext(struggle_outer_message, "%belly", lowertext(name))
+	struggle_outer_message = replacetext(struggle_outer_message, "%count", contents.len)
+	struggle_outer_message = replacetext(struggle_outer_message, "%countprey", living_count)
 
 	struggle_user_message = replacetext(struggle_user_message, "%pred", owner)
 	struggle_user_message = replacetext(struggle_user_message, "%prey", R)
 	struggle_user_message = replacetext(struggle_user_message, "%belly", lowertext(name))
+	struggle_user_message = replacetext(struggle_user_message, "%count", contents.len)
+	struggle_user_message = replacetext(struggle_user_message, "%countprey", living_count)
 
 	struggle_outer_message = "<span class='alert'>[struggle_outer_message]</span>"
 	struggle_user_message = "<span class='alert'>[struggle_user_message]</span>"
@@ -745,6 +783,8 @@
 	dupe.belly_fullscreen = belly_fullscreen
 	dupe.disable_hud = disable_hud
 	dupe.egg_type = egg_type
+	dupe.emote_time = emote_time
+	dupe.emote_active = emote_active
 
 	//// Object-holding variables
 	//struggle_messages_outside - strings

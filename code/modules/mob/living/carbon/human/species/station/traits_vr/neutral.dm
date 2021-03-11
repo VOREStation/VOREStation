@@ -67,7 +67,7 @@
 	desc = "Makes you unable to gain nutrition from anything but blood. To compenstate, you get fangs that can be used to drain blood from prey."
 	cost = 0
 	custom_only = FALSE
-	var_changes = list("gets_food_nutrition" = 0) //The verb is given in human.dm
+	var_changes = list("organic_food_coeff" = 0) //The verb is given in human.dm
 
 /datum/trait/bloodsucker/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..(S,H)
@@ -121,11 +121,19 @@
 	desc = "You only gain nutrition from raw ore and refined minerals. There's nothing that sates the appetite better than precious gems, exotic or rare minerals and you have damn fine taste. Anything else is beneath you."
 	cost = 0
 	custom_only = FALSE
-	var_changes = list("gets_food_nutrition" = 0, "eat_minerals" = 1)
+	var_changes = list("organic_food_coeff" = 0, "eat_minerals" = 1)
 
 /datum/trait/gem_eater/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..(S,H)
 	H.verbs |= /mob/living/proc/eat_minerals
+	
+/datum/trait/synth_chemfurnace
+	name = "Biofuel Processor"
+	desc = "You are able to gain energy through consuming and processing normal food. Energy-dense foods such as protein bars and survival food will yield the best results."
+	cost = 0
+	custom_only = FALSE
+	can_take = SYNTHETICS
+	var_changes = list("organic_food_coeff" = 0, "synthetic_food_coeff" = 0.25)
 
 /datum/trait/glowing_eyes
 	name = "Glowing Eyes"
@@ -144,6 +152,82 @@
 	..(S,H)
 	H.verbs |= /mob/living/proc/glow_toggle
 	H.verbs |= /mob/living/proc/glow_color
+
+
+//Allergen traits! Not available to any species with a base allergens var.
+/datum/trait/allergy
+	name = "Allergy: Gluten"
+	desc = "You're highly allergic to gluten proteins, which are found in most common grains."
+	cost = 0
+	custom_only = FALSE
+	var/allergen = GRAINS
+
+/datum/trait/allergy/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	S.allergens |= allergen
+	..(S,H)
+
+/datum/trait/allergy/meat
+	name = "Allergy: Meat"
+	desc = "You're highly allergic to just about any form of meat. You're probably better off just sticking to vegetables."
+	cost = 0
+	custom_only = FALSE
+	allergen = MEAT
+
+/datum/trait/allergy/fish
+	name = "Allergy: Fish"
+	desc = "You're highly allergic to fish. It's probably best to avoid seafood in general..."
+	cost = 0
+	custom_only = FALSE
+	allergen = FISH
+
+/datum/trait/allergy/fruit
+	name = "Allergy: Fruit"
+	desc = "You're highly allergic to fruit. Vegetables are fine, but you should probably read up on how to tell the difference."
+	cost = 0
+	custom_only = FALSE
+	allergen = FRUIT
+
+/datum/trait/allergy/vegetable
+	name = "Allergy: Vegetable"
+	desc = "You're highly allergic to vegetables. Fruit are fine, but you should probably read up on how to tell the difference."
+	cost = 0
+	custom_only = FALSE
+	allergen = VEGETABLE
+
+/datum/trait/allergy/nuts
+	name = "Allergy: Nuts"
+	desc = "You're highly allergic to hard-shell seeds, such as peanuts."
+	cost = 0
+	custom_only = FALSE
+	allergen = SEEDS
+
+/datum/trait/allergy/soy
+	name = "Allergy: Soy"
+	desc = "You're highly allergic to soybeans, and some other kinds of bean."
+	cost = 0
+	custom_only = FALSE
+	allergen = BEANS
+
+/datum/trait/allergy/dairy
+	name = "Allergy: Lactose"
+	desc = "You're highly allergic to lactose, and consequently, just about all forms of dairy."
+	cost = 0
+	custom_only = FALSE
+	allergen = DAIRY
+
+/datum/trait/allergy/fungi
+	name = "Allergy: Fungi"
+	desc = "You're highly allergic to Fungi such as mushrooms."
+	cost = 0
+	custom_only = FALSE
+	allergen = FUNGI
+
+/datum/trait/allergy/coffee
+	name = "Allergy: Coffee"
+	desc = "You're highly allergic to coffee in specific."
+	cost = 0
+	custom_only = FALSE
+	allergen = COFFEE
 
 // Spicy Food Traits, from negative to positive.
 /datum/trait/spice_intolerance_extreme

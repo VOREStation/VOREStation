@@ -5323,7 +5323,7 @@
 /turf/simulated/floor/tiled,
 /area/gateway/prep_room)
 "ajo" = (
-/obj/structure/stairs/west,
+/obj/structure/stairs/spawner/west,
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
 "ajp" = (
@@ -7948,6 +7948,10 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor,
 /area/engineering/hallway)
+"aou" = (
+/obj/structure/stairs/spawner/west,
+/turf/simulated/floor/tiled,
+/area/engineering/workshop)
 "aov" = (
 /obj/structure/disposalpipe/trunk{
 	dir = 4
@@ -7977,6 +7981,14 @@
 	},
 /turf/simulated/wall/r_wall,
 /area/engineering/hallway)
+"aoz" = (
+/obj/structure/stairs/spawner/east,
+/turf/simulated/floor/tiled,
+/area/engineering/foyer)
+"aoA" = (
+/obj/structure/stairs/spawner/south,
+/turf/simulated/floor/tiled,
+/area/tether/station/stairs_one)
 "aoB" = (
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 9
@@ -8007,6 +8019,10 @@
 /obj/structure/table,
 /turf/simulated/floor/plating,
 /area/maintenance/abandonedlibrary)
+"aoD" = (
+/obj/structure/stairs/spawner/west,
+/turf/simulated/floor,
+/area/vacant/vacant_restaurant_lower)
 "aoE" = (
 /obj/random/junk,
 /obj/effect/decal/cleanable/cobweb,
@@ -8059,6 +8075,16 @@
 "aoO" = (
 /turf/simulated/wall/r_wall,
 /area/storage/emergency_storage/emergency4)
+"aoP" = (
+/obj/structure/table/reinforced,
+/obj/item/stack/material/plasteel{
+	amount = 30
+	},
+/obj/fiftyspawner/plastic,
+/obj/fiftyspawner/plastic,
+/obj/fiftyspawner/copper,
+/turf/simulated/floor/tiled,
+/area/engineering/workshop)
 "aoR" = (
 /obj/structure/grille,
 /obj/machinery/door/firedoor/border_only,
@@ -10693,10 +10719,6 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/station/spacecommandmaint)
-"auk" = (
-/obj/structure/stairs/west,
-/turf/simulated/floor/tiled,
-/area/engineering/workshop)
 "aul" = (
 /obj/effect/floor_decal/steeldecal/steel_decals_central1{
 	dir = 4
@@ -13227,10 +13249,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/steel_grid,
-/area/tether/station/stairs_one)
-"ayy" = (
-/obj/structure/stairs/south,
-/turf/simulated/floor/tiled,
 /area/tether/station/stairs_one)
 "ayz" = (
 /obj/structure/bed/chair/comfy/brown{
@@ -19366,10 +19384,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/foyer)
-"bgF" = (
-/obj/structure/stairs/east,
-/turf/simulated/floor/tiled,
-/area/engineering/foyer)
 "bhc" = (
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
@@ -19519,15 +19533,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/storage/tools)
-"bkx" = (
-/obj/structure/table/reinforced,
-/obj/item/stack/material/plasteel{
-	amount = 30
-	},
-/obj/fiftyspawner/plastic,
-/obj/fiftyspawner/plastic,
-/turf/simulated/floor/tiled,
-/area/engineering/workshop)
 "bkU" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 9
@@ -20706,10 +20711,6 @@
 /obj/effect/landmark{
 	name = "blobstart"
 	},
-/turf/simulated/floor,
-/area/vacant/vacant_restaurant_lower)
-"bZT" = (
-/obj/structure/stairs/west,
 /turf/simulated/floor,
 /area/vacant/vacant_restaurant_lower)
 "bZZ" = (
@@ -29668,8 +29669,8 @@ bZv
 bZv
 bZH
 bYP
-bZT
-bZT
+aoD
+aoD
 awu
 awu
 awu
@@ -29928,7 +29929,7 @@ aqM
 ath
 avd
 asA
-bkx
+aoP
 aqM
 akR
 auA
@@ -30497,7 +30498,7 @@ art
 avh
 aen
 atQ
-auk
+aou
 bZi
 aJx
 aJx
@@ -31655,7 +31656,7 @@ aws
 fjd
 oFB
 axR
-ayy
+aoA
 aws
 bQa
 aws
@@ -31797,7 +31798,7 @@ aws
 iIr
 lCi
 axR
-ayy
+aoA
 aws
 bQa
 aws
@@ -32213,8 +32214,8 @@ aoJ
 ams
 aQX
 bYt
-bgF
-bgF
+aoz
+aoz
 aYg
 agU
 acp

@@ -1,4 +1,4 @@
-var/list/fuel_injectors = list()
+GLOBAL_LIST_EMPTY(fuel_injectors)
 
 /obj/machinery/fusion_fuel_injector
 	name = "fuel injector"
@@ -13,21 +13,21 @@ var/list/fuel_injectors = list()
 
 	circuit = /obj/item/weapon/circuitboard/fusion_injector
 
-	var/fuel_usage = 0.0001
+	var/fuel_usage = 30
 	var/id_tag
 	var/injecting = 0
 	var/obj/item/weapon/fuel_assembly/cur_assembly
 
 /obj/machinery/fusion_fuel_injector/Initialize()
 	. = ..()
-	fuel_injectors += src
+	GLOB.fuel_injectors += src
 	default_apply_parts()
 
 /obj/machinery/fusion_fuel_injector/Destroy()
 	if(cur_assembly)
 		cur_assembly.forceMove(get_turf(src))
 		cur_assembly = null
-	fuel_injectors -= src
+	GLOB.fuel_injectors -= src
 	return ..()
 
 /obj/machinery/fusion_fuel_injector/mapped
@@ -118,15 +118,14 @@ var/list/fuel_injectors = list()
 		var/amount_left = 0
 		for(var/reagent in cur_assembly.rod_quantities)
 			if(cur_assembly.rod_quantities[reagent] > 0)
-				var/amount = cur_assembly.rod_quantities[reagent] * fuel_usage
-				var/numparticles = round(amount * 1000)
+				var/numparticles = fuel_usage
 				if(numparticles < 1)
 					numparticles = 1
 				var/obj/effect/accelerated_particle/A = new/obj/effect/accelerated_particle(get_turf(src), dir)
 				A.particle_type = reagent
 				A.additional_particles = numparticles - 1
 				if(cur_assembly)
-					cur_assembly.rod_quantities[reagent] -= amount
+					cur_assembly.rod_quantities[reagent] -= fuel_usage
 					amount_left += cur_assembly.rod_quantities[reagent]
 		if(cur_assembly)
 			cur_assembly.percent_depleted = amount_left / cur_assembly.initial_amount

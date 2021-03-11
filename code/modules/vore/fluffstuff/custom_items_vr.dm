@@ -995,23 +995,6 @@
 /obj/item/weapon/material/twohanded/fluff/New(var/newloc)
 	..(newloc," ") //See materials_vr_dmi for more information as to why this is a blank space.
 
-//General use.
-/obj/item/weapon/material/twohanded/fluff/riding_crop
-	name = "riding crop"
-	desc = "A steel rod, a little over a foot long with a widened grip and a thick, leather patch at the end. Made to smack naughty submissives."
-	//force_wielded = 0.05 //Stings, but does jack shit for damage, provided you don't hit someone 100 times. 1 damage with hardness of 60.
-	force_divisor = 0.05 //Required in order for the X attacks Y message to pop up.
-	unwielded_force_divisor = 1 // One here, too.
-	applies_material_colour = 0
-	unbreakable = 1
-	base_icon = "riding_crop"
-	icon_state = "riding_crop0"
-	attack_verb = list("cropped","spanked","swatted","smacked","peppered")
-//1R1S: Malady Blanche
-/obj/item/weapon/material/twohanded/fluff/riding_crop/malady
-	name = "Malady's riding crop"
-	desc = "An infernum made riding crop with Malady Blanche engraved in the shaft. It's a little worn from how many butts it has spanked."
-
 //jacknoir413:Areax Third
 /obj/item/weapon/melee/baton/fluff/stunstaff
 	name = "Electrostaff"

@@ -129,7 +129,7 @@
 	var/default_icon_state
 
 /obj/item/weapon/pen/blade/Initialize()
-	..()
+	. = ..()
 	active_icon_state = "[icon_state]-x"
 	default_icon_state = icon_state
 

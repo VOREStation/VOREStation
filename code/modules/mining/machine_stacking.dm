@@ -87,18 +87,11 @@
 /obj/machinery/mineral/stacking_machine/New()
 	..()
 
-	for(var/stacktype in typesof(/obj/item/stack/material)-/obj/item/stack/material)
-		var/obj/item/stack/S = new stacktype(src)
-		stack_storage[S.name] = 0
-		stack_paths[S.name] = stacktype
-		qdel(S)
-
-	stack_storage["glass"] = 0
-	stack_paths["glass"] = /obj/item/stack/material/glass
-	stack_storage[DEFAULT_WALL_MATERIAL] = 0
-	stack_paths[DEFAULT_WALL_MATERIAL] = /obj/item/stack/material/steel
-	stack_storage["plasteel"] = 0
-	stack_paths["plasteel"] = /obj/item/stack/material/plasteel
+	for(var/stacktype in (subtypesof(/obj/item/stack/material) - typesof(/obj/item/stack/material/cyborg)))
+		var/obj/item/stack/material/S = stacktype
+		var/s_matname = initial(S.default_type)
+		stack_storage[s_matname] = 0
+		stack_paths[s_matname] = stacktype
 
 	spawn( 5 )
 		for (var/dir in cardinal)
@@ -127,10 +120,12 @@
 		var/turf/T = get_turf(input)
 		for(var/obj/item/O in T.contents)
 			if(!O) return
-			if(istype(O,/obj/item/stack))
-				if(!isnull(stack_storage[O.name]))
-					stack_storage[O.name]++
-					O.loc = null
+			if(istype(O,/obj/item/stack/material))
+				var/obj/item/stack/material/S = O
+				var/matname = S.material.name
+				if(!isnull(stack_storage[matname]))
+					stack_storage[matname] += S.amount
+					qdel(S)
 				else
 					O.loc = output.loc
 			else

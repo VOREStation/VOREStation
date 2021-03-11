@@ -29,7 +29,7 @@
 
 //  0-9 CKEYS
 /datum/gear/fluff/malady_crop
-	path = /obj/item/weapon/material/twohanded/fluff/riding_crop/malady
+	path = /obj/item/weapon/material/twohanded/riding_crop/malady
 	display_name = "Malady's Crop"
 	ckeywhitelist = list("1r1s")
 	character_name = list("Malady Blanche")
