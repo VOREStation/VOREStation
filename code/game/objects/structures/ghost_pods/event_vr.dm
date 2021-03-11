@@ -21,6 +21,7 @@
 								  "Jelly Blob" = /mob/living/simple_mob/animal/space/jelly,
 								  "Wolf" = /mob/living/simple_mob/animal/wolf,
 								  "Sect Queen" = /mob/living/simple_mob/vore/sect_queen,
+								  "Sect Drone" = /mob/living/simple_mob/vore/sect_drone,
 								  "Defanged Xenomorph" = /mob/living/simple_mob/vore/xeno_defanged,
 								  )
 
