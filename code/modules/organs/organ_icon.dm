@@ -122,11 +122,7 @@ var/global/list/limb_icon_cache = list()
 		if(facial_hair_style && facial_hair_style.species_allowed && (species.get_bodytype(owner) in facial_hair_style.species_allowed))
 			var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
 			if(facial_hair_style.do_colouration)
-<<<<<<< HEAD
-				facial_s.Blend(rgb(owner.r_facial, owner.g_facial, owner.b_facial), ICON_MULTIPLY) // VOREStation edit
-=======
 				facial_s.Blend(rgb(owner.r_facial, owner.g_facial, owner.b_facial), facial_hair_style.color_blend_mode)
->>>>>>> 928badc... Merge pull request #7788 from Atermonera/beard_color
 			res.add_overlay(facial_s)
 
 	//Head hair
