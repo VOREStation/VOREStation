@@ -62,6 +62,8 @@
 
 	//No need to update all of these procs if the guy is dead.
 	fall() //VORESTATION EDIT. Prevents people from floating
+	if(unnaturally_resized)	//VORESTATION EDIT.
+		handle_unnatural_size()
 	if(stat != DEAD && !stasis)
 		//Updates the number of stored chemicals for powers
 		handle_changeling()
@@ -69,7 +71,8 @@
 		//Organs and blood
 		handle_organs()
 		stabilize_body_temperature() //Body temperature adjusts itself (self-regulation)
-		weightgain() //VORESTATION EDIT
+		weightgain() 			//VOREStation Addition
+		process_weaver_silk()	//VOREStation Addition
 		handle_shock()
 
 		handle_pain()
@@ -77,7 +80,7 @@
 		handle_medical_side_effects()
 
 		handle_heartbeat()
-		handle_nif() //VOREStation Add
+		handle_nif() 			//VOREStation Addition
 		if(!client)
 			species.handle_npc(src)
 
@@ -1291,7 +1294,7 @@
 			clear_alert("blind")
 
 		var/apply_nearsighted_overlay = FALSE
-		if(disabilities & NEARSIGHTED)	
+		if(disabilities & NEARSIGHTED)
 			apply_nearsighted_overlay = TRUE
 
 			if(glasses)
@@ -1323,6 +1326,8 @@
 					if(!O.up)
 						found_welder = 1
 				if(!found_welder && nif && nif.flag_check(NIF_V_UVFILTER,NIF_FLAGS_VISION))	found_welder = 1 //VOREStation Add - NIF
+				if(istype(glasses, /obj/item/clothing/glasses/sunglasses/thinblindfold))
+					found_welder = 1
 				if(!found_welder && istype(head, /obj/item/clothing/head/welding))
 					var/obj/item/clothing/head/welding/O = head
 					if(!O.up)
@@ -1552,7 +1557,8 @@
 		custom_pain("[pick("It hurts so much", "You really need some painkillers", "Dear god, the pain")]!", 40)
 
 	if(shock_stage >= 30)
-		if(shock_stage == 30) emote("me",1,"is having trouble keeping their eyes open.")
+		if(shock_stage == 30 && !isbelly(loc)) //VOREStation Edit
+			emote("me",1,"is having trouble keeping their eyes open.")
 		eye_blurry = max(2, eye_blurry)
 		stuttering = max(stuttering, 5)
 
@@ -1560,7 +1566,8 @@
 		to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please&#44; just end the pain", "Your whole body is going numb")]!</span>")
 
 	if (shock_stage >= 60)
-		if(shock_stage == 60) emote("me",1,"'s body becomes limp.")
+		if(shock_stage == 60 && !isbelly(loc)) //VOREStation Edit
+			emote("me",1,"'s body becomes limp.")
 		if (prob(2))
 			to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please&#44; just end the pain", "Your whole body is going numb")]!</span>")
 			Weaken(20)
@@ -1576,7 +1583,8 @@
 			Paralyse(5)
 
 	if(shock_stage == 150)
-		emote("me",1,"can no longer stand, collapsing!")
+		if(!isbelly(loc)) //VOREStation Edit
+			emote("me",1,"can no longer stand, collapsing!")
 		Weaken(20)
 
 	if(shock_stage >= 150)

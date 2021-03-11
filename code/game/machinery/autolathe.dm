@@ -36,6 +36,14 @@
 	if(!autolathe_recipes)
 		autolathe_recipes = new()
 	wires = new(src)
+
+	for(var/Name in name_to_material)
+		if(Name in stored_material)
+			continue
+
+		stored_material[Name] = 0
+		storage_capacity[Name] = 0
+
 	default_apply_parts()
 	RefreshParts()
 
@@ -270,6 +278,15 @@
 
 			//Create the desired item.
 			var/obj/item/I = new making.path(src.loc)
+
+			if(LAZYLEN(I.matter))	// Sadly we must obey the laws of equivalent exchange.
+				I.matter.Cut()
+			else
+				I.matter = list()
+
+			for(var/material in making.resources)	// Handle the datum's autoscaling for waste, so we're properly wasting material, but not so much if we have efficiency.
+				I.matter[material] = round(making.resources[material] / (making.no_scale ? 1 : 1.25)) * (making.no_scale ? 1 : mat_efficiency)
+
 			flick("[initial(icon_state)]_finish", src)
 			if(multiplier > 1)
 				if(istype(I, /obj/item/stack))
@@ -277,7 +294,16 @@
 					S.amount = multiplier
 				else
 					for(multiplier; multiplier > 1; --multiplier) // Create multiple items if it's not a stack.
-						new making.path(src.loc)
+						I = new making.path(src.loc)
+						// We've already deducted the cost of multiple items. Process the matter the same.
+						if(LAZYLEN(I.matter))
+							I.matter.Cut()
+
+						else
+							I.matter = list()
+
+						for(var/material in making.resources)
+							I.matter[material] = round(making.resources[material] / (making.no_scale ? 1 : 1.25)) * (making.no_scale ? 1 : mat_efficiency)
 			return TRUE
 	return FALSE
 
@@ -303,10 +329,9 @@
 	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
 		man_rating += M.rating
 
-	storage_capacity[DEFAULT_WALL_MATERIAL] = mb_rating  * 25000
-	storage_capacity[MAT_PLASTIC] = mb_rating * 20000
-	storage_capacity[MAT_PLASTEEL] = mb_rating * 16250
-	storage_capacity["glass"] = mb_rating  * 12500
+	for(var/mat_name in storage_capacity)
+		storage_capacity[mat_name] = mb_rating * 25000
+
 	build_time = 50 / man_rating
 	mat_efficiency = 1.1 - man_rating * 0.1// Normally, price is 1.25 the amount of material, so this shouldn't go higher than 0.6. Maximum rating of parts is 5
 	update_tgui_static_data(usr)

@@ -178,9 +178,3 @@
 	requires_power = FALSE
 
 /area/tether_away/alienship/equip_dump
-
-// -- Turfs -- //
-/turf/simulated/shuttle/floor/alienplating/vacuum
-	oxygen = 0
-	nitrogen = 0
-	temperature = TCMB

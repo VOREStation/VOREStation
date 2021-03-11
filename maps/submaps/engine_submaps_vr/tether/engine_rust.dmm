@@ -279,9 +279,7 @@
 /turf/simulated/floor/reinforced,
 /area/engineering/engine_room)
 "aQ" = (
-/obj/machinery/computer/fusion_core_control{
-	id_tag = "engine"
-	},
+/obj/machinery/computer/fusion_core_control,
 /turf/simulated/floor,
 /area/engineering/engine_room)
 "aR" = (

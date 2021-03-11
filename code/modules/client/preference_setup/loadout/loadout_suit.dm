@@ -173,6 +173,10 @@ datum/gear/suit/duster
 	path = /obj/item/clothing/suit/storage/toggle/labcoat/emt
 	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist")
 
+/datum/gear/suit/miscellaneous/labcoat
+	display_name = "plague doctor's coat"
+	path = /obj/item/clothing/suit/storage/toggle/labcoat/plaguedoctor
+
 /datum/gear/suit/roles/surgical_apron
 	display_name = "surgical apron"
 	path = /obj/item/clothing/suit/surgicalapron

@@ -37,7 +37,6 @@
 
 /obj/structure/closet/Initialize()
 	..()
-	// Closets need to come later because of spawners potentially creating objects during init.
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/structure/closet/LateInitialize()
@@ -260,7 +259,20 @@
 	return
 
 /obj/structure/closet/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(opened)
+	if(W.is_wrench())
+		if(opened)
+			if(anchored)
+				user.visible_message("\The [user] begins unsecuring \the [src] from the floor.", "You start unsecuring \the [src] from the floor.")
+			else
+				user.visible_message("\The [user] begins securing \the [src] to the floor.", "You start securing \the [src] to the floor.")
+			if(do_after(user, 20 * W.toolspeed))
+				if(!src) return
+				to_chat(user, "<span class='notice'>You [anchored? "un" : ""]secured \the [src]!</span>")
+				anchored = !anchored
+				return
+		else
+			to_chat(user, "<span class='notice'>You can't reach the anchoring bolts when the door is closed!</span>")
+	else if(opened)
 		if(istype(W, /obj/item/weapon/grab))
 			var/obj/item/weapon/grab/G = W
 			MouseDrop_T(G.affecting, user)      //act like they were dragged onto the closet
@@ -316,17 +328,6 @@
 				update_icon()
 				for(var/mob/M in viewers(src))
 					M.show_message("<span class='warning'>[src] has been [sealed?"sealed":"unsealed"] by [user.name].</span>", 3)
-	else if(W.is_wrench())
-		if(sealed)
-			if(anchored)
-				user.visible_message("\The [user] begins unsecuring \the [src] from the floor.", "You start unsecuring \the [src] from the floor.")
-			else
-				user.visible_message("\The [user] begins securing \the [src] to the floor.", "You start securing \the [src] to the floor.")
-			playsound(src, W.usesound, 50)
-			if(do_after(user, 20 * W.toolspeed))
-				if(!src) return
-				to_chat(user, "<span class='notice'>You [anchored? "un" : ""]secured \the [src]!</span>")
-				anchored = !anchored
 	else
 		attack_hand(user)
 	return

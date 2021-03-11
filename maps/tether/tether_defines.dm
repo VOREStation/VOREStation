@@ -203,7 +203,8 @@
 
 	lateload_single_pick = null //Nothing right now.
 
-	planet_datums_to_make = list(/datum/planet/virgo3b)
+	planet_datums_to_make = list(/datum/planet/virgo3b,
+								/datum/planet/virgo4)
 
 /datum/map/tether/perform_map_generation()
 
@@ -227,6 +228,10 @@
 		Z_LEVEL_SURFACE_MINE,
 		Z_LEVEL_SOLARS,
 		Z_LEVEL_PLAINS
+		)
+/datum/planet/virgo4
+	expected_z_levels = list(
+		Z_LEVEL_BEACH
 	)
 
 // Overmap represetation of tether

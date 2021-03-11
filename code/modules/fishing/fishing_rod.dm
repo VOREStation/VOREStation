@@ -47,7 +47,7 @@
 		..()
 
 /obj/item/weapon/material/fishing_rod/Initialize()
-	..()
+	. = ..()
 	update_icon()
 
 /obj/item/weapon/material/fishing_rod/attackby(obj/item/I as obj, mob/user as mob)

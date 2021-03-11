@@ -88,6 +88,11 @@
 	display_name = "cap, grey"
 	path = /obj/item/clothing/head/soft/grey
 
+/datum/gear/head/cap/med
+	display_name = "cap, medical (Medical)"
+	path = /obj/item/clothing/head/soft/med
+	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic","Search and Rescue")
+
 /datum/gear/head/cap/orange
 	display_name = "cap, orange"
 	path = /obj/item/clothing/head/soft/orange
@@ -330,7 +335,7 @@
 	path = /obj/item/clothing/head/welding/engie
 
 /datum/gear/head/beret/solgov
-	display_name = "beret sol, selection"
+	display_name = "beret government, selection"
 	path = /obj/item/clothing/head/beret/solgov
 
 /datum/gear/head/beret/solgov/New()
@@ -387,3 +392,7 @@
 /datum/gear/head/blackngoldheaddress
 	display_name = "black and gold headdress"
 	path = /obj/item/clothing/head/blackngoldheaddress
+
+/datum/gear/head/plaguedoctor2
+	display_name = "golden plague doctor's hat"
+	path = /obj/item/clothing/head/plaguedoctorhat/gold

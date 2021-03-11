@@ -11,3 +11,7 @@
 	icon = 'icons/obj/abductor_vr.dmi'
 	icon_state = "experiment"
 	interaction_message = "<span class='warning'>You don't see any mechanism to open this thing. Probably for the best.</span>"
+
+/obj/structure/prop/alien/dispenser/twoway
+	icon = 'icons/obj/abductor_vr.dmi'
+	icon_state = "dispenser_2way"

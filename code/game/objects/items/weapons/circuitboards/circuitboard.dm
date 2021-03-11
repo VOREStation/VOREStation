@@ -23,6 +23,8 @@
 	drop_sound = 'sound/items/drop/device.ogg'
 	pickup_sound = 'sound/items/pickup/device.ogg'
 
+	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50, MAT_COPPER = 100)
+
 //Called when the circuitboard is used to contruct a new machine.
 /obj/item/weapon/circuitboard/proc/construct(var/obj/machinery/M)
 	if(istype(M, build_path))

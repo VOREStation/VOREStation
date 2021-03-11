@@ -407,7 +407,7 @@ proc/admin_notice(var/message, var/rights)
 			dat+="<B><FONT COLOR='maroon'>ERROR: Could not submit Feed story to Network.</B></FONT><HR><BR>"
 			if(src.admincaster_feed_channel.channel_name=="")
 				dat+="<FONT COLOR='maroon'>Invalid receiving channel name.</FONT><BR>"
-			if(src.admincaster_feed_message.body == "" || src.admincaster_feed_message.body == "\[REDACTED\]")
+			if(src.admincaster_feed_message.body == "" || src.admincaster_feed_message.body == "\[REDACTED\]" || admincaster_feed_message.title == "")
 				dat+="<FONT COLOR='maroon'>Invalid message body.</FONT><BR>"
 			dat+="<BR><A href='?src=\ref[src];ac_setScreen=[3]'>Return</A><BR>"
 		if(7)
@@ -436,11 +436,14 @@ proc/admin_notice(var/message, var/rights)
 					var/i = 0
 					for(var/datum/feed_message/MESSAGE in src.admincaster_feed_channel.messages)
 						i++
-						dat+="-[MESSAGE.body] <BR>"
+						//dat+="-[MESSAGE.body] <BR>"
+						var/pic_data
 						if(MESSAGE.img)
 							usr << browse_rsc(MESSAGE.img, "tmp_photo[i].png")
-							dat+="<img src='tmp_photo[i].png' width = '180'><BR><BR>"
-						dat+="<FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[MESSAGE.author]</FONT>\]</FONT><BR>"
+							pic_data+="<img src='tmp_photo[i].png' width = '180'><BR>"
+						dat+= get_newspaper_content(MESSAGE.title, MESSAGE.body, MESSAGE.author,"#d4cec1", pic_data)
+						dat+="<BR>"
+						dat+="<FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[MESSAGE.author] - [MESSAGE.time_stamp]</FONT>\]</FONT><BR>"
 			dat+={"
 				<BR><HR><A href='?src=\ref[src];ac_refresh=1'>Refresh</A>
 				<BR><A href='?src=\ref[src];ac_setScreen=[1]'>Back</A>
@@ -946,7 +949,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	log_admin("[key_name(usr)] toggled persistence to [config.persistence_disabled ? "Off" : "On"].")
 	world.update_status()
 	feedback_add_details("admin_verb","TPD") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	
+
 /datum/admins/proc/togglemaploadpersistence()
 	set category = "Server"
 	set desc="Whether mapload persistent data will be saved from now on."
@@ -1424,6 +1427,11 @@ var/datum/announcement/minor/admin_min_announcer = new
 		return 1
 	if(tomob.client) //No need to ghostize if there is no client
 		tomob.ghostize(0)
+	if(frommob.mind && frommob.mind.current) //Preserve teleop for original body when adminghosting.
+		var/mob/body = frommob.mind.current
+		if(body)
+			if(body.teleop)
+				body.teleop = tomob
 	message_admins("<span class='adminnotice'>[key_name_admin(usr)] has put [frommob.ckey] in control of [tomob.name].</span>")
 	log_admin("[key_name(usr)] stuffed [frommob.ckey] into [tomob.name].")
 	feedback_add_details("admin_verb","CGD")

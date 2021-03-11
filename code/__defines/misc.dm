@@ -157,6 +157,16 @@
 #define MAT_GRAPHITE		"graphite"
 #define MAT_LEATHER			"leather"
 #define MAT_CHITIN			"chitin"
+#define MAT_CLOTH			"cloth"
+#define MAT_SYNCLOTH		"syncloth"
+#define MAT_COPPER			"copper"
+#define MAT_QUARTZ			"quartz"
+#define MAT_TIN				"tin"
+#define MAT_VOPAL			"void opal"
+#define MAT_ALUMINIUM		"aluminium"
+#define MAT_BRONZE			"bronze"
+#define MAT_PAINITE			"painite"
+#define MAT_BOROSILICATE	"borosilicate glass"
 
 #define SHARD_SHARD "shard"
 #define SHARD_SHRAPNEL "shrapnel"
@@ -481,3 +491,14 @@ GLOBAL_LIST_INIT(all_volume_channels, list(
 	VOLUME_CHANNEL_VORE,
 	VOLUME_CHANNEL_DOORS,
 ))
+
+#define APPEARANCECHANGER_CHANGED_RACE "Race"
+#define APPEARANCECHANGER_CHANGED_GENDER "Gender"
+#define APPEARANCECHANGER_CHANGED_GENDER_ID "Gender Identity"
+#define APPEARANCECHANGER_CHANGED_SKINTONE "Skin Tone"
+#define APPEARANCECHANGER_CHANGED_SKINCOLOR "Skin Color"
+#define APPEARANCECHANGER_CHANGED_HAIRSTYLE "Hair Style"
+#define APPEARANCECHANGER_CHANGED_HAIRCOLOR "Hair Color"
+#define APPEARANCECHANGER_CHANGED_F_HAIRSTYLE "Facial Hair Style"
+#define APPEARANCECHANGER_CHANGED_F_HAIRCOLOR "Facial Hair Color"
+#define APPEARANCECHANGER_CHANGED_EYES "Eye Color"

@@ -74,7 +74,7 @@
 	..()
 
 /obj/machinery/portable_atmospherics/powered/reagent_distillery/Initialize()
-	..()
+	. = ..()
 
 	Reservoir = new (src)
 	Reservoir.Master = src

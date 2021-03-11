@@ -11,6 +11,7 @@
 						/datum/category_item/catalogue/technology/resleeving)
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "backup_implant"
+	known_implant = TRUE
 
 /obj/item/weapon/implant/backup/get_data()
 	var/dat = {"

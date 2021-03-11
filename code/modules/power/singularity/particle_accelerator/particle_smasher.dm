@@ -25,7 +25,7 @@
 	var/list/recipes	// The list containing the Particle Smasher's recipes.
 
 /obj/machinery/particle_smasher/Initialize()
-	..()
+	. = ..()
 	storage = list()
 	update_icon()
 	prepare_recipes()

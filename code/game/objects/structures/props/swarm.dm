@@ -23,7 +23,7 @@
 	return ..()
 
 /obj/structure/cult/pylon/swarm/Initialize()
-	..()
+	. = ..()
 	active_beams = list()
 
 /obj/structure/cult/pylon/swarm/Destroy()

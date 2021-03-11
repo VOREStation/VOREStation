@@ -289,7 +289,7 @@
 
 	// If we have a grab
 	var/list/grablist = my_mob.ret_grab()
-	if(grablist.len)
+	if(LAZYLEN(grablist))
 		grablist -= my_mob // Just in case we're in a circular grab chain
 
 		// It's just us and another person
@@ -460,8 +460,6 @@
 	return dense_object
 
 /mob/proc/Check_Shoegrip()
-	if(flying) //VOREStation Edit. Checks to see if they  and are flying.
-		return 1 //VOREStation Edit. Checks to see if they are flying. Mostly for this to be ported to Polaris.
 	return 0
 
 /mob/proc/Process_Spaceslipping(var/prob_slip = 5)
