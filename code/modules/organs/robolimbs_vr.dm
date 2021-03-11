@@ -48,17 +48,13 @@ var/const/cyberbeast_monitor_styles = "blank=cyber_blank;\
 
 // verkister : Rahwoof Boop
 /datum/robolimb/eggnerdltd
-	company = "Uesseka Prototyping Ltd."
-	desc = "This limb seems meticulously hand-crafted, and distinctly Unathi in design."
+	company = "Eggnerd Prototyping Ltd."
+	desc = "This limb has a slight salvaged handicraft vibe to it. The CE-marking on it is definitely not the standardized one, it looks more like a hand-written sharpie monogram."
 	icon = 'icons/mob/human_races/cyberlimbs/_fluff_vr/rahboop.dmi'
-	species_cannot_use = list(SPECIES_TESHARI, SPECIES_PROMETHEAN, SPECIES_DIONA, SPECIES_HUMAN, SPECIES_VOX, SPECIES_HUMAN_VATBORN, SPECIES_TAJ, SPECIES_SKRELL, SPECIES_ZADDAT)
-	species_alternates = list(SPECIES_HUMAN = "NanoTrasen")
-	suggested_species = SPECIES_UNATHI
 	blood_color = "#5e280d"
 	includes_tail = 1
 	unavailable_to_build = 1
 
-<<<<<<< HEAD:code/modules/organs/robolimbs_vr.dm
 /obj/item/weapon/disk/limb/eggnerdltd
 	company = "Eggnerd Prototyping Ltd."
 	icon = 'icons/obj/items_vr.dmi'
@@ -79,53 +75,38 @@ var/const/cyberbeast_monitor_styles = "blank=cyber_blank;\
 /obj/item/weapon/disk/limb/zenghu_frost
     company = "Zeng-Hu (Modified)"
     catalogue_data = list(/datum/category_item/catalogue/information/organization/zeng_hu)
-=======
-/obj/item/weapon/disk/limb/uesseka
-	company = "Uesseka Prototyping Ltd."
->>>>>>> ee968a2... Merge pull request #7907 from Cerebulon/virgoprosfix:code/modules/organs/robolimbs_custom.dm
 
-/datum/robolimb/nanotrasen_metro
-	company = "NanoTrasen - Metro"
-	desc = "This metallic limb is sleek and featuresless apart from some exposed motors around the joints."
+//////////////// General VS-only ones /////////////////
+/datum/robolimb/talon //They're buildable by default due to being extremely basic.
+	company = "Talon LLC"
+	desc = "This metallic limb is sleek and featuresless apart from some exposed motors"
 	icon = 'icons/mob/human_races/cyberlimbs/talon/talon_main.dmi' //Sprited by: Viveret
 
-/obj/item/weapon/disk/limb/nanotrasen_metro
-	company = "NanoTrasen - Metro"
-	catalogue_data = list(/datum/category_item/catalogue/information/organization/nanotrasen)
+/obj/item/weapon/disk/limb/talon
+	company = "Talon LLC"
 
-
-/datum/robolimb/zenghu_taj
+/datum/robolimb/zenghu_taj //This wasn't indented. At all. It's a miracle this didn't break literally everything.
 	company = "Zeng-Hu - Tajaran"
-	desc = "This limb has a rubbery covering with basic faux fur and visible seams."
+	desc = "This limb has a rubbery fleshtone covering with visible seams."
 	icon = 'icons/mob/human_races/cyberlimbs/zenghu/zenghu_taj.dmi'
-	species_cannot_use = list(SPECIES_TESHARI, SPECIES_PROMETHEAN, SPECIES_DIONA, SPECIES_HUMAN, SPECIES_VOX, SPECIES_HUMAN_VATBORN, SPECIES_UNATHI, SPECIES_SKRELL, SPECIES_ZADDAT)
-	suggested_species = SPECIES_TAJ
 	unavailable_to_build = 1
 	parts = list(BP_HEAD)
 
-/datum/robolimb/uessekared
-	company = "Uesseka Prototyping Ltd. - Red"
-	desc = "This limb seems meticulously hand-crafted, and distinctly Unathi in design. This one's red!"
+/datum/robolimb/eggnerdltdred
+	company = "Eggnerd Prototyping Ltd. (Red)"
+	desc = "A slightly more refined limb variant from Eggnerd Prototyping. Its got red plating instead of orange."
 	icon = 'icons/mob/human_races/cyberlimbs/rahboopred/rahboopred.dmi'
-	species_cannot_use = list(SPECIES_TESHARI, SPECIES_PROMETHEAN, SPECIES_DIONA, SPECIES_HUMAN, SPECIES_VOX, SPECIES_HUMAN_VATBORN, SPECIES_TAJ, SPECIES_SKRELL, SPECIES_ZADDAT)
-	species_alternates = list(SPECIES_HUMAN = "NanoTrasen")
-	suggested_species = SPECIES_UNATHI
 	blood_color = "#5e280d"
 	includes_tail = 1
 	unavailable_to_build = 1
 
-<<<<<<< HEAD:code/modules/organs/robolimbs_vr.dm
 /obj/item/weapon/disk/limb/eggnerdltdred
 	company = "Eggnerd Prototyping Ltd. (Red)"
 	icon = 'icons/obj/items_vr.dmi'
 	icon_state = "verkdisk"
 
-=======
-/obj/item/weapon/disk/limb/uessekared
-	company = "Uesseka Prototyping Ltd. (Red)"
->>>>>>> ee968a2... Merge pull request #7907 from Cerebulon/virgoprosfix:code/modules/organs/robolimbs_custom.dm
 
-//Downstream realistic-fluffies for adminbus:
+//Darkside Incorperated synthetic augmentation list! Many current most used fuzzy and notsofuzzy races made into synths here.
 
 /datum/robolimb/dsi_tajaran
 	company = "DSI - Tajaran"
