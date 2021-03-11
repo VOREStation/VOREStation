@@ -41,6 +41,8 @@
 
 	starts_with = list(
 		/obj/item/clothing/under/explorer,
+		/obj/item/clothing/suit/armor/pcarrier/explorer/light,
+		/obj/item/clothing/head/helmet/explorer,
 		/obj/item/clothing/suit/storage/hooded/explorer,
 		/obj/item/clothing/mask/gas/explorer,
 		/obj/item/clothing/shoes/boots/winter/explorer,

@@ -19,7 +19,7 @@
 	//Shifting in
 	if(ability_flags & AB_PHASE_SHIFTED)
 		ability_flags &= ~AB_PHASE_SHIFTED
-		mouse_opacity = 2
+		mouse_opacity = 1
 		name = real_name
 		for(var/belly in vore_organs)
 			var/obj/belly/B = belly

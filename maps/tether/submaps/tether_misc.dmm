@@ -2014,7 +2014,8 @@
 /obj/structure/closet/walllocker/emerglocker{
 	pixel_x = 32
 	},
-/obj/item/clothing/head/beret/nanotrasen,
+/obj/item/toy/nanotrasenballoon,
+/obj/item/clothing/suit/storage/toggle/leather_jacket/nanotrasen,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/escape)
 "nV" = (
@@ -2773,11 +2774,9 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/escape)
 "HX" = (
-/obj/structure/closet/walllocker/emerglocker{
-	pixel_x = -32
-	},
-/obj/random/maintenance/clean,
 /obj/structure/table/standard,
+/obj/structure/closet/walllocker/medical/west,
+/obj/item/weapon/storage/firstaid,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/escape)
 "Ic" = (
@@ -3029,10 +3028,8 @@
 /area/shuttle/escape)
 "NW" = (
 /obj/structure/table/standard,
-/obj/structure/closet/walllocker/emerglocker{
-	pixel_x = 32
-	},
-/obj/random/maintenance/clean,
+/obj/item/weapon/storage/firstaid/adv,
+/obj/structure/closet/walllocker/medical/east,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/escape)
 "Oj" = (
@@ -3405,6 +3402,7 @@
 	pixel_x = -32
 	},
 /obj/item/clothing/head/beret/nanotrasen,
+/obj/item/clothing/head/soft/nanotrasen,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/escape)
 "SH" = (

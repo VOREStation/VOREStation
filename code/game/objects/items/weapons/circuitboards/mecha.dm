@@ -8,6 +8,7 @@
 	icon = 'icons/obj/module.dmi'
 	icon_state = "std_mod"
 	board_type = "other"
+	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50, MAT_COPPER = 100)
 
 /obj/item/weapon/circuitboard/mecha/ripley
 		origin_tech = list(TECH_DATA = 3)

@@ -57,14 +57,7 @@
 
 
 /turf/simulated/open/Entered(var/atom/movable/mover, var/atom/oldloc)
-	. = ..()
-
-	// Going down stairs from the topstair piece
-	var/obj/structure/stairs/top/T = locate(/obj/structure/stairs/top) in oldloc
-	if(T && mover.dir == turn(T.dir, 180) && T.check_integrity())
-		T.instant_stairs(mover)
-		return
-
+	..()
 	mover.fall()
 
 /turf/simulated/open/proc/BelowOpenUpdated(turf/T, atom/movable/AM, old_loc)

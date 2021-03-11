@@ -56,31 +56,6 @@
 	..()
 	helmet = new /obj/item/clothing/head/helmet/space/void/responseteam/janitor //autoinstall the helmet
 
-/obj/item/clothing/suit/space/void/responseteam
-	sprite_sheets = list(
-		SPECIES_HUMAN			= 'icons/mob/spacesuit_vr.dmi',
-		SPECIES_TAJ 			= 'icons/mob/species/tajaran/suit_vr.dmi',
-		SPECIES_SKRELL 			= 'icons/mob/species/skrell/suit_vr.dmi',
-		SPECIES_UNATHI 			= 'icons/mob/species/unathi/suit_vr.dmi',
-		SPECIES_XENOHYBRID 		= 'icons/mob/species/unathi/suit_vr.dmi',
-		SPECIES_AKULA			= 'icons/mob/species/akula/suit_vr.dmi',
-		SPECIES_SERGAL			= 'icons/mob/species/sergal/suit_vr.dmi',
-		SPECIES_VULPKANIN		= 'icons/mob/species/vulpkanin/suit_vr.dmi',
-		SPECIES_ZORREN_HIGH		= 'icons/mob/species/vulpkanin/suit_vr.dmi',
-		SPECIES_FENNEC			= 'icons/mob/species/vulpkanin/suit_vr.dmi'
-		)
-	sprite_sheets_obj = list(
-		SPECIES_TAJ			= 'icons/obj/clothing/suits_vr.dmi',
-		SPECIES_SKRELL			= 'icons/obj/clothing/suits_vr.dmi',
-		SPECIES_UNATHI			= 'icons/obj/clothing/suits_vr.dmi',
-		SPECIES_XENOHYBRID		= 'icons/obj/clothing/suits_vr.dmi',
-		SPECIES_AKULA			= 'icons/obj/clothing/suits_vr.dmi',
-		SPECIES_SERGAL			= 'icons/obj/clothing/suits_vr.dmi',
-		SPECIES_VULPKANIN		= 'icons/obj/clothing/suits_vr.dmi',
-		SPECIES_ZORREN_HIGH		= 'icons/obj/clothing/suits_vr.dmi',
-		SPECIES_FENNEC			= 'icons/obj/clothing/suits_vr.dmi'
-		)
-
 
 //override the attackby screwdriver proc so that people can't remove the helmet
 /obj/item/clothing/suit/space/void/responseteam/attackby(obj/item/W as obj, mob/user as mob)
@@ -181,6 +156,43 @@
 	icon_state = "erthelmet_j"
 	item_state = "erthelmet_j"
 
+/obj/item/clothing/suit/space/void/responseteam
+	sprite_sheets = list(
+		SPECIES_HUMAN			= 'icons/mob/spacesuit_vr.dmi',
+		SPECIES_TAJ 			= 'icons/mob/species/tajaran/suit_vr.dmi',
+		SPECIES_SKRELL 			= 'icons/mob/species/skrell/suit_vr.dmi',
+		SPECIES_UNATHI 			= 'icons/mob/species/unathi/suit_vr.dmi',
+		SPECIES_XENOHYBRID 		= 'icons/mob/species/unathi/suit_vr.dmi',
+		SPECIES_AKULA			= 'icons/mob/species/akula/suit_vr.dmi',
+		SPECIES_SERGAL			= 'icons/mob/species/sergal/suit_vr.dmi',
+		SPECIES_VULPKANIN		= 'icons/mob/species/vulpkanin/suit_vr.dmi',
+		SPECIES_ZORREN_HIGH		= 'icons/mob/species/vulpkanin/suit_vr.dmi',
+		SPECIES_FENNEC			= 'icons/mob/species/vulpkanin/suit_vr.dmi',
+		SPECIES_SHADEKIN_CREW		= 'icons/mob/species/vulpkanin/suit_vr.dmi',
+		SPECIES_VASILISSAN		= 'icons/mob/spacesuit_vr.dmi',
+		SPECIES_NEVREAN			= 'icons/mob/spacesuit_vr.dmi',
+		SPECIES_RAPALA			= 'icons/mob/spacesuit_vr.dmi',
+		SPECIES_ALRAUNE			= 'icons/mob/spacesuit_vr.dmi',
+		SPECIES_ZADDAT			= 'icons/mob/spacesuit_vr.dmi'
+		)
+	sprite_sheets_obj = list(
+		SPECIES_TAJ			= 'icons/obj/clothing/suits_vr.dmi',
+		SPECIES_SKRELL			= 'icons/obj/clothing/suits_vr.dmi',
+		SPECIES_UNATHI			= 'icons/obj/clothing/suits_vr.dmi',
+		SPECIES_XENOHYBRID		= 'icons/obj/clothing/suits_vr.dmi',
+		SPECIES_AKULA			= 'icons/obj/clothing/suits_vr.dmi',
+		SPECIES_SERGAL			= 'icons/obj/clothing/suits_vr.dmi',
+		SPECIES_VULPKANIN		= 'icons/obj/clothing/suits_vr.dmi',
+		SPECIES_ZORREN_HIGH		= 'icons/obj/clothing/suits_vr.dmi',
+		SPECIES_FENNEC			= 'icons/obj/clothing/suits_vr.dmi',
+		SPECIES_SHADEKIN_CREW		= 'icons/obj/clothing/suits_vr.dmi',
+		SPECIES_VASILISSAN		= 'icons/obj/clothing/suits_vr.dmi',
+		SPECIES_NEVREAN			= 'icons/obj/clothing/suits_vr.dmi',
+		SPECIES_RAPALA			= 'icons/obj/clothing/suits_vr.dmi',
+		SPECIES_ALRAUNE			= 'icons/obj/clothing/suits_vr.dmi',
+		SPECIES_ZADDAT			= 'icons/obj/clothing/suits_vr.dmi'
+		)
+
 /obj/item/clothing/head/helmet/space/void/responseteam
 	sprite_sheets = list(
 		SPECIES_HUMAN			= 'icons/mob/head_vr.dmi',
@@ -192,7 +204,13 @@
 		SPECIES_SERGAL			= 'icons/mob/species/unathi/helmet_vr.dmi',
 		SPECIES_VULPKANIN		= 'icons/mob/species/vulpkanin/helmet_vr.dmi',
 		SPECIES_ZORREN_HIGH		= 'icons/mob/species/vulpkanin/helmet_vr.dmi',
-		SPECIES_FENNEC			= 'icons/mob/species/vulpkanin/helmet_vr.dmi'
+		SPECIES_FENNEC			= 'icons/mob/species/vulpkanin/helmet_vr.dmi',
+		SPECIES_SHADEKIN_CREW		= 'icons/mob/species/vulpkanin/helmet_vr.dmi',
+		SPECIES_VASILISSAN		= 'icons/mob/head_vr.dmi',
+		SPECIES_NEVREAN			= 'icons/mob/head_vr.dmi',
+		SPECIES_RAPALA			= 'icons/mob/head_vr.dmi',
+		SPECIES_ALRAUNE			= 'icons/mob/head_vr.dmi',
+		SPECIES_ZADDAT			= 'icons/mob/head_vr.dmi'
 		)
 	sprite_sheets_obj = list(
 		SPECIES_TAJ 			= 'icons/obj/clothing/hats_vr.dmi',
@@ -203,6 +221,12 @@
 		SPECIES_SERGAL			= 'icons/obj/clothing/hats_vr.dmi',
 		SPECIES_VULPKANIN		= 'icons/obj/clothing/hats_vr.dmi',
 		SPECIES_ZORREN_HIGH		= 'icons/obj/clothing/hats_vr.dmi',
-		SPECIES_FENNEC			= 'icons/obj/clothing/hats_vr.dmi'
+		SPECIES_FENNEC			= 'icons/obj/clothing/hats_vr.dmi',
+		SPECIES_SHADEKIN_CREW		= 'icons/obj/clothing/hats_vr.dmi',
+		SPECIES_VASILISSAN		= 'icons/obj/clothing/hats_vr.dmi',
+		SPECIES_NEVREAN			= 'icons/obj/clothing/hats_vr.dmi',
+		SPECIES_RAPALA			= 'icons/obj/clothing/hats_vr.dmi',
+		SPECIES_ALRAUNE			= 'icons/obj/clothing/hats_vr.dmi',
+		SPECIES_ZADDAT			= 'icons/obj/clothing/hats_vr.dmi'
 		)
 	sprite_sheets_refit = list()	//have to nullify this as well just to be thorough

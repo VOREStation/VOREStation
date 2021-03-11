@@ -40,14 +40,14 @@
 /datum/design/item/stock_part/hyper_matter_bin
 	id = "hyper_matter_bin"
 	req_tech = list(TECH_MATERIAL = 6, TECH_ARCANE = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 200, MAT_VERDANTIUM = 60, MAT_DURASTEEL = 75)
+	materials = list(MAT_ALUMINIUM = 200, MAT_VERDANTIUM = 60, MAT_TITANIUM = 75)
 	build_path = /obj/item/weapon/stock_parts/matter_bin/hyper
 	sort_string = "AAAAD"
 
 /datum/design/item/stock_part/omni_matter_bin
 	id = "omni_matter_bin"
 	req_tech = list(TECH_MATERIAL = 7, TECH_PRECURSOR = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 2000, MAT_PLASTEEL = 100, MAT_MORPHIUM = 100, MAT_DURASTEEL = 100)
+	materials = list(MAT_TITANIUM = 2000, MAT_PLASTEEL = 100, MAT_MORPHIUM = 100, MAT_DURASTEEL = 100)
 	build_path = /obj/item/weapon/stock_parts/matter_bin/omni
 	sort_string = "AAAAE"
 
@@ -77,14 +77,14 @@
 /datum/design/item/stock_part/hyper_mani
 	id = "hyper_mani"
 	req_tech = list(TECH_MATERIAL = 6, TECH_DATA = 3, TECH_ARCANE = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 200, MAT_VERDANTIUM = 50, MAT_DURASTEEL = 50)
+	materials = list(MAT_ALUMINIUM = 200, MAT_VERDANTIUM = 50, MAT_TITANIUM = 50)
 	build_path = /obj/item/weapon/stock_parts/manipulator/hyper
 	sort_string = "AAABD"
 
 /datum/design/item/stock_part/omni_mani
 	id = "omni_mani"
 	req_tech = list(TECH_MATERIAL = 7, TECH_DATA = 4, TECH_PRECURSOR = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 2000, MAT_PLASTEEL = 500, MAT_MORPHIUM = 100, MAT_DURASTEEL = 100)
+	materials = list(MAT_ALUMINIUM = 2000, MAT_PLASTEEL = 500, MAT_MORPHIUM = 100, MAT_DURASTEEL = 100)
 	build_path = /obj/item/weapon/stock_parts/manipulator/omni
 	sort_string = "AAABE"
 
@@ -93,14 +93,14 @@
 /datum/design/item/stock_part/basic_capacitor
 	id = "basic_capacitor"
 	req_tech = list(TECH_POWER = 1)
-	materials = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
+	materials = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50, MAT_COPPER = 10)
 	build_path = /obj/item/weapon/stock_parts/capacitor
 	sort_string = "AAACA"
 
 /datum/design/item/stock_part/adv_capacitor
 	id = "adv_capacitor"
 	req_tech = list(TECH_POWER = 3)
-	materials = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
+	materials = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50, MAT_COPPER = 10)
 	build_path = /obj/item/weapon/stock_parts/capacitor/adv
 	sort_string = "AAACB"
 
@@ -114,7 +114,7 @@
 /datum/design/item/stock_part/hyper_capacitor
 	id = "hyper_capacitor"
 	req_tech = list(TECH_POWER = 6, TECH_MATERIAL = 5, TECH_BLUESPACE = 1, TECH_ARCANE = 1)
-	materials = list(DEFAULT_WALL_MATERIAL = 200, MAT_GLASS = 100, MAT_VERDANTIUM = 30, MAT_DURASTEEL = 25)
+	materials = list(MAT_ALUMINIUM = 200, MAT_GLASS = 100, MAT_VERDANTIUM = 30, MAT_TITANIUM = 25)
 	build_path = /obj/item/weapon/stock_parts/capacitor/hyper
 	sort_string = "AAACD"
 
@@ -130,14 +130,14 @@
 /datum/design/item/stock_part/basic_sensor
 	id = "basic_sensor"
 	req_tech = list(TECH_MAGNET = 1)
-	materials = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 20)
+	materials = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 20, MAT_COPPER = 10)
 	build_path = /obj/item/weapon/stock_parts/scanning_module
 	sort_string = "AAADA"
 
 /datum/design/item/stock_part/adv_sensor
 	id = "adv_sensor"
 	req_tech = list(TECH_MAGNET = 3)
-	materials = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 20)
+	materials = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 20, MAT_COPPER = 10)
 	build_path = /obj/item/weapon/stock_parts/scanning_module/adv
 	sort_string = "AAADB"
 
@@ -151,14 +151,14 @@
 /datum/design/item/stock_part/hyper_sensor
 	id = "hyper_sensor"
 	req_tech = list(TECH_MAGNET = 6, TECH_MATERIAL = 4, TECH_ARCANE = 1)
-	materials = list(DEFAULT_WALL_MATERIAL = 50, MAT_GLASS = 20, MAT_SILVER = 50, MAT_VERDANTIUM = 40, MAT_DURASTEEL = 50)
+	materials = list(MAT_ALUMINIUM = 50, MAT_GLASS = 20, MAT_SILVER = 50, MAT_VERDANTIUM = 40, MAT_TITANIUM = 50)
 	build_path = /obj/item/weapon/stock_parts/scanning_module/hyper
 	sort_string = "AAADD"
 
 /datum/design/item/stock_part/omni_sensor
 	id = "omni_sensor"
 	req_tech = list(TECH_MAGNET = 7, TECH_MATERIAL = 5, TECH_PRECURSOR = 1)
-	materials = list(DEFAULT_WALL_MATERIAL = 1000, MAT_PLASTEEL = 500, MAT_GLASS = 750, MAT_SILVER = 500, MAT_MORPHIUM = 60, MAT_DURASTEEL = 100)
+	materials = list(MAT_ALUMINIUM = 1000, MAT_TITANIUM = 500, MAT_GLASS = 750, MAT_SILVER = 500, MAT_MORPHIUM = 60, MAT_DURASTEEL = 100)
 	build_path = /obj/item/weapon/stock_parts/scanning_module/omni
 	sort_string = "AAADE"
 
@@ -188,14 +188,14 @@
 /datum/design/item/stock_part/hyper_micro_laser
 	id = "hyper_micro_laser"
 	req_tech = list(TECH_MAGNET = 6, TECH_MATERIAL = 6, TECH_ARCANE = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 200, MAT_GLASS = 20, MAT_URANIUM = 30, MAT_VERDANTIUM = 50, MAT_DURASTEEL = 100)
+	materials = list(MAT_ALUMINIUM = 200, MAT_GLASS = 20, MAT_URANIUM = 30, MAT_VERDANTIUM = 50, MAT_TITANIUM = 100)
 	build_path = /obj/item/weapon/stock_parts/micro_laser/hyper
 	sort_string = "AAAED"
 
 /datum/design/item/stock_part/omni_micro_laser
 	id = "omni_micro_laser"
 	req_tech = list(TECH_MAGNET = 7, TECH_MATERIAL = 7, TECH_PRECURSOR = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 2000, MAT_GLASS = 500, MAT_URANIUM = 2000, MAT_MORPHIUM = 50, MAT_DURASTEEL = 100)
+	materials = list(MAT_TITANIUM = 2000, MAT_GLASS = 500, MAT_URANIUM = 2000, MAT_MORPHIUM = 50, MAT_DURASTEEL = 100)
 	build_path = /obj/item/weapon/stock_parts/micro_laser/omni
 	sort_string = "AAAEE"
 

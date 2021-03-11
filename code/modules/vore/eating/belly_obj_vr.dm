@@ -361,9 +361,15 @@
 		var/raw_message = pick(examine_messages)
 		var/total_bulge = 0
 
-		formatted_message = replacetext(raw_message, "%belly" ,lowertext(name))
-		formatted_message = replacetext(formatted_message, "%pred" ,owner)
-		formatted_message = replacetext(formatted_message, "%prey" ,english_list(contents))
+		var/living_count = 0
+		for(var/mob/living/L in contents)
+			living_count++
+
+		formatted_message = replacetext(raw_message, "%belly", lowertext(name))
+		formatted_message = replacetext(formatted_message, "%pred", owner)
+		formatted_message = replacetext(formatted_message, "%prey", english_list(contents))
+		formatted_message = replacetext(formatted_message, "%count", contents.len)
+		formatted_message = replacetext(formatted_message, "%countprey", living_count)
 		for(var/mob/living/P in contents)
 			if(!P.absorbed) //This is required first, in case there's a person absorbed and not absorbed in a stomach.
 				total_bulge += P.size_multiplier
@@ -376,7 +382,7 @@
 // This is useful in customization boxes and such. The delimiter right now is \n\n so
 // in message boxes, this looks nice and is easily delimited.
 /obj/belly/proc/get_messages(type, delim = "\n\n")
-	ASSERT(type == "smo" || type == "smi" || type == "dmo" || type == "dmp" || type == "em")
+	ASSERT(type == "smo" || type == "smi" || type == "dmo" || type == "dmp" || type == "em" || type == "im_digest" || type == "im_hold" || type == "im_absorb" || type == "im_heal" || type == "im_drain")
 
 	var/list/raw_messages
 	switch(type)
@@ -390,15 +396,27 @@
 			raw_messages = digest_messages_prey
 		if("em")
 			raw_messages = examine_messages
+		if("im_digest")
+			raw_messages = emote_lists[DM_DIGEST]
+		if("im_hold")
+			raw_messages = emote_lists[DM_HOLD]
+		if("im_absorb")
+			raw_messages = emote_lists[DM_ABSORB]
+		if("im_heal")
+			raw_messages = emote_lists[DM_HEAL]
+		if("im_drain")
+			raw_messages = emote_lists[DM_DRAIN]
 
-	var/messages = list2text(raw_messages, delim)
+	var/messages = null
+	if(raw_messages)
+		messages = list2text(raw_messages, delim)
 	return messages
 
 // The next function sets the messages on the belly, from human-readable var
 // replacement strings and linebreaks as delimiters (two \n\n by default).
 // They also sanitize the messages.
 /obj/belly/proc/set_messages(raw_text, type, delim = "\n\n")
-	ASSERT(type == "smo" || type == "smi" || type == "dmo" || type == "dmp" || type == "em")
+	ASSERT(type == "smo" || type == "smi" || type == "dmo" || type == "dmp" || type == "em" || type == "im_digest" || type == "im_hold" || type == "im_absorb" || type == "im_heal" || type == "im_drain")
 
 	var/list/raw_list = text2list(html_encode(raw_text),delim)
 	if(raw_list.len > 10)
@@ -406,9 +424,12 @@
 		log_debug("[owner] tried to set [lowertext(name)] with 11+ messages")
 
 	for(var/i = 1, i <= raw_list.len, i++)
-		if(length(raw_list[i]) > 160 || length(raw_list[i]) < 10) //160 is fudged value due to htmlencoding increasing the size
+		if((length(raw_list[i]) > 160 || length(raw_list[i]) < 10) && !(type == "im_digest" || type == "im_hold" || type == "im_absorb" || type == "im_heal" || type == "im_drain")) //160 is fudged value due to htmlencoding increasing the size
 			raw_list.Cut(i,i)
 			log_debug("[owner] tried to set [lowertext(name)] with >121 or <10 char message")
+		else if((type == "im_digest" || type == "im_hold" || type == "im_absorb" || type == "im_heal" || type == "im_drain") && (length(raw_list[i]) > 510 || length(raw_list[i]) < 10))
+			raw_list.Cut(i,i)
+			log_debug("[owner] tried to set [lowertext(name)] idle message with >501 or <10 char message")
 		else
 			raw_list[i] = readd_quotes(raw_list[i])
 			//Also fix % sign for var replacement
@@ -427,6 +448,16 @@
 			digest_messages_prey = raw_list
 		if("em")
 			examine_messages = raw_list
+		if("im_digest")
+			emote_lists[DM_DIGEST] = raw_list
+		if("im_hold")
+			emote_lists[DM_HOLD] = raw_list
+		if("im_absorb")
+			emote_lists[DM_ABSORB] = raw_list
+		if("im_heal")
+			emote_lists[DM_HEAL] = raw_list
+		if("im_drain")
+			emote_lists[DM_DRAIN] = raw_list
 
 	return
 
@@ -582,13 +613,21 @@
 	var/struggle_outer_message = pick(struggle_messages_outside)
 	var/struggle_user_message = pick(struggle_messages_inside)
 
+	var/living_count = 0
+	for(var/mob/living/L in contents)
+		living_count++
+
 	struggle_outer_message = replacetext(struggle_outer_message, "%pred", owner)
 	struggle_outer_message = replacetext(struggle_outer_message, "%prey", R)
 	struggle_outer_message = replacetext(struggle_outer_message, "%belly", lowertext(name))
+	struggle_outer_message = replacetext(struggle_outer_message, "%count", contents.len)
+	struggle_outer_message = replacetext(struggle_outer_message, "%countprey", living_count)
 
 	struggle_user_message = replacetext(struggle_user_message, "%pred", owner)
 	struggle_user_message = replacetext(struggle_user_message, "%prey", R)
 	struggle_user_message = replacetext(struggle_user_message, "%belly", lowertext(name))
+	struggle_user_message = replacetext(struggle_user_message, "%count", contents.len)
+	struggle_user_message = replacetext(struggle_user_message, "%countprey", living_count)
 
 	struggle_outer_message = "<span class='alert'>[struggle_outer_message]</span>"
 	struggle_user_message = "<span class='alert'>[struggle_user_message]</span>"
