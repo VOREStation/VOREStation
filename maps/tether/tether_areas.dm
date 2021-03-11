@@ -350,8 +350,8 @@
 /area/maintenance/substation/SurfMedsubstation
 	name = "\improper SurfMed Substation"
 	icon_state = "green"
-/area/maintenance/substation/cargostoresubstation
-	name = "\improper Cargo Store Substation"
+/area/maintenance/substation/surfaceservicesubstation
+	name = "\improper Surface Services Substation"
 	icon_state = "green"
 
 /area/tether/surfacebase/lowernorthhall
@@ -493,6 +493,22 @@
 
 /area/tether/surfacebase/entertainment/stage
 	name = "\improper Entertainment Stage"
+	icon_state = "library"
+
+/area/tether/surfacebase/funny/clownoffice
+	name = "\improper Clown's Office"
+	icon_state = "library"
+
+/area/tether/surfacebase/funny/mimeoffice
+	name = "\improper Mime's Office"
+	icon_state = "library"
+
+/area/tether/surfacebase/funny/tomfoolery
+	name = "\improper Tomfoolery Closet"
+	icon_state = "library"
+
+/area/tether/surfacebase/funny/hideyhole
+	name = "\improper Pilferer's Hole"
 	icon_state = "library"
 
 /area/tether/surfacebase/entertainment/backstage
@@ -967,157 +983,200 @@
 	name = "\improper Construction Dorm 1"
 	icon_state = "Sleep"
 	flags = RAD_SHIELDED
+	soundproofed = TRUE
 
 /area/crew_quarters/sleep/maintDorm2
 	name = "\improper Construction Dorm 2"
 	icon_state = "Sleep"
 	flags = RAD_SHIELDED
+	soundproofed = TRUE
 
 /area/crew_quarters/sleep/maintDorm3
 	name = "\improper Construction Dorm 3"
 	icon_state = "Sleep"
 	flags = RAD_SHIELDED
+	soundproofed = TRUE
 
 /area/crew_quarters/sleep/maintDorm4
 	name = "\improper Construction Dorm 4"
 	icon_state = "Sleep"
 	flags = RAD_SHIELDED
+	soundproofed = TRUE
 
 //TFF 28/8/19 - cleanup of areas placement
 /area/crew_quarters/sleep/vistor_room_1
 	flags = RAD_SHIELDED | BLUE_SHIELDED
+	soundproofed = TRUE
 
 /area/crew_quarters/sleep/vistor_room_2
 	flags = RAD_SHIELDED | BLUE_SHIELDED
+	soundproofed = TRUE
 
 /area/crew_quarters/sleep/vistor_room_3
 	flags = RAD_SHIELDED | BLUE_SHIELDED
+	soundproofed = TRUE
 
 /area/crew_quarters/sleep/vistor_room_4
 	flags = RAD_SHIELDED | BLUE_SHIELDED
+	soundproofed = TRUE
 
 /area/crew_quarters/sleep/vistor_room_5
 	flags = RAD_SHIELDED | BLUE_SHIELDED
+	soundproofed = TRUE
 
 /area/crew_quarters/sleep/vistor_room_6
 	flags = RAD_SHIELDED | BLUE_SHIELDED
+	soundproofed = TRUE
 
 /area/crew_quarters/sleep/vistor_room_7
 	flags = RAD_SHIELDED | BLUE_SHIELDED
+	soundproofed = TRUE
 
 /area/crew_quarters/sleep/vistor_room_8
 	flags = RAD_SHIELDED | BLUE_SHIELDED
+	soundproofed = TRUE
 
 /area/crew_quarters/sleep/vistor_room_9
 	flags = RAD_SHIELDED | BLUE_SHIELDED
+	soundproofed = TRUE
 
 /area/crew_quarters/sleep/vistor_room_10
 	flags = RAD_SHIELDED | BLUE_SHIELDED
+	soundproofed = TRUE
 
 /area/crew_quarters/sleep/vistor_room_11
 	flags = RAD_SHIELDED | BLUE_SHIELDED
+	soundproofed = TRUE
 
 /area/crew_quarters/sleep/vistor_room_12
 	flags = RAD_SHIELDED | BLUE_SHIELDED
+	soundproofed = TRUE
 
 /area/crew_quarters/sleep/Dorm_1
 	flags = RAD_SHIELDED | BLUE_SHIELDED
+	soundproofed = TRUE
 
 /area/crew_quarters/sleep/Dorm_2
 	flags = RAD_SHIELDED | BLUE_SHIELDED
+	soundproofed = TRUE
 
 /area/crew_quarters/sleep/Dorm_3
 	flags = RAD_SHIELDED | BLUE_SHIELDED
+	soundproofed = TRUE
 
 /area/crew_quarters/sleep/Dorm_4
 	flags = RAD_SHIELDED | BLUE_SHIELDED
+	soundproofed = TRUE
 
 /area/crew_quarters/sleep/Dorm_5
 	flags = RAD_SHIELDED | BLUE_SHIELDED
+	soundproofed = TRUE
 
 /area/crew_quarters/sleep/Dorm_6
 	flags = RAD_SHIELDED | BLUE_SHIELDED
+	soundproofed = TRUE
 
 /area/crew_quarters/sleep/Dorm_7
 	flags = RAD_SHIELDED | BLUE_SHIELDED
+	soundproofed = TRUE
 
 /area/crew_quarters/sleep/Dorm_8
 	flags = RAD_SHIELDED | BLUE_SHIELDED
+	soundproofed = TRUE
 
 /area/crew_quarters/sleep/Dorm_9
 	flags = RAD_SHIELDED | BLUE_SHIELDED
+	soundproofed = TRUE
 
 /area/crew_quarters/sleep/Dorm_10
 	flags = RAD_SHIELDED | BLUE_SHIELDED
+	soundproofed = TRUE
 
 /area/crew_quarters/sleep/Dorm_1/holo
 	name = "\improper Dorm 1 Holodeck"
 	icon_state = "dk_yellow"
 	flags = RAD_SHIELDED | BLUE_SHIELDED
+	soundproofed = TRUE
 
 /area/crew_quarters/sleep/Dorm_3/holo
 	name = "\improper Dorm 3 Holodeck"
 	icon_state = "dk_yellow"
 	flags = RAD_SHIELDED | BLUE_SHIELDED
+	soundproofed = TRUE
 
 /area/crew_quarters/sleep/Dorm_5/holo
 	name = "\improper Dorm 5 Holodeck"
 	icon_state = "dk_yellow"
 	flags = RAD_SHIELDED | BLUE_SHIELDED
+	soundproofed = TRUE
 
 /area/crew_quarters/sleep/Dorm_7/holo
 	name = "\improper Dorm 7 Holodeck"
 	icon_state = "dk_yellow"
 	flags = RAD_SHIELDED | BLUE_SHIELDED
+	soundproofed = TRUE
 
 /area/crew_quarters/sleep/spacedorm1
 	name = "\improper Visitor Lodging 1"
 	icon_state = "dk_yellow"
 	lightswitch = 0
 	flags = RAD_SHIELDED | BLUE_SHIELDED
+	soundproofed = TRUE
 /area/crew_quarters/sleep/spacedorm2
 	name = "\improper Visitor Lodging 2"
 	icon_state = "dk_yellow"
 	lightswitch = 0
 	flags = RAD_SHIELDED | BLUE_SHIELDED
+	soundproofed = TRUE
 /area/crew_quarters/sleep/spacedorm3
 	name = "\improper Visitor Lodging 3"
 	icon_state = "dk_yellow"
 	lightswitch = 0
 	flags = RAD_SHIELDED | BLUE_SHIELDED
+	soundproofed = TRUE
 /area/crew_quarters/sleep/spacedorm4
 	name = "\improper Visitor Lodging 4"
 	icon_state = "dk_yellow"
 	lightswitch = 0
 	flags = RAD_SHIELDED | BLUE_SHIELDED
+	soundproofed = TRUE
 
 /area/holodeck/holodorm/source_basic
 	name = "\improper Holodeck Source"
 	flags = RAD_SHIELDED | BLUE_SHIELDED
+	soundproofed = TRUE
 /area/holodeck/holodorm/source_desert
 	name = "\improper Holodeck Source"
 	flags = RAD_SHIELDED | BLUE_SHIELDED
+	soundproofed = TRUE
 /area/holodeck/holodorm/source_seating
 	name = "\improper Holodeck Source"
 	flags = RAD_SHIELDED | BLUE_SHIELDED
+	soundproofed = TRUE
 /area/holodeck/holodorm/source_beach
 	name = "\improper Holodeck Source"
 	flags = RAD_SHIELDED | BLUE_SHIELDED
+	soundproofed = TRUE
 /area/holodeck/holodorm/source_garden
 	name = "\improper Holodeck Source"
 	flags = RAD_SHIELDED | BLUE_SHIELDED
+	soundproofed = TRUE
 /area/holodeck/holodorm/source_boxing
 	name = "\improper Holodeck Source"
 	flags = RAD_SHIELDED | BLUE_SHIELDED
+	soundproofed = TRUE
 /area/holodeck/holodorm/source_snow
 	name = "\improper Holodeck Source"
 	flags = RAD_SHIELDED | BLUE_SHIELDED
+	soundproofed = TRUE
 /area/holodeck/holodorm/source_space
 	name = "\improper Holodeck Source"
 	flags = RAD_SHIELDED | BLUE_SHIELDED
+	soundproofed = TRUE
 /area/holodeck/holodorm/source_off
 	name = "\improper Holodeck Source"
 	flags = RAD_SHIELDED | BLUE_SHIELDED
+	soundproofed = TRUE
 
 /area/ai_core_foyer
 	name = "\improper AI Core Access"
@@ -1297,6 +1356,11 @@
 /area/tether/exploration/showers
 	name = "\improper Exploration Showers"
 	sound_env = SMALL_ENCLOSED
+	ambience = AMBIENCE_GENERIC
+
+/area/tether/exploration/pilot_office
+	name = "\improper Pilot's Office"
+	sound_env = STANDARD_STATION
 	ambience = AMBIENCE_GENERIC
 
 /area/shuttle/excursion

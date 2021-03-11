@@ -62,3 +62,7 @@
 #define INFECTION_LEVEL_TWO   500
 #define INFECTION_LEVEL_THREE 1000
 #define INFECTION_LEVEL_MAX   1500
+
+#define MODULAR_BODYPART_INVALID    0 // Cannot be detached or reattached.
+#define MODULAR_BODYPART_PROSTHETIC 1 // Can be detached or reattached freely.
+#define MODULAR_BODYPART_CYBERNETIC 2 // Can be detached or reattached to compatible parent organs.

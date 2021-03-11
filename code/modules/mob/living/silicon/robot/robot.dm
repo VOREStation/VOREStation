@@ -91,6 +91,8 @@
 	var/tracking_entities = 0 //The number of known entities currently accessing the internal camera
 	var/braintype = "Cyborg"
 
+	var/obj/item/weapon/implant/restrainingbolt/bolt	// The restraining bolt installed into the cyborg.
+
 	var/list/robot_verbs_default = list(
 		/mob/living/silicon/robot/proc/sensor_mode,
 		/mob/living/silicon/robot/proc/robot_checklaws
@@ -481,6 +483,20 @@
 
 				return
 
+		if(istype(W, /obj/item/weapon/implant/restrainingbolt) && !cell)
+			if(bolt)
+				to_chat(user, "<span class='notice'>There is already a restraining bolt installed in this cyborg.</span>")
+				return
+
+			else
+				user.drop_from_inventory(W)
+				W.forceMove(src)
+				bolt = W
+
+				to_chat(user, "<span class='notice'>You install \the [W].</span>")
+
+				return
+
 	if(istype(W, /obj/item/weapon/aiModule)) // Trying to modify laws locally.
 		if(!opened)
 			to_chat(user, "<span class='warning'>You need to open \the [src]'s panel before you can modify them.</span>")
@@ -622,6 +638,21 @@
 			to_chat(user, "Unable to locate a radio.")
 		updateicon()
 
+	else if(W.is_wrench() && opened && !cell)
+		if(bolt)
+			to_chat(user,"You begin removing \the [bolt].")
+
+			if(do_after(user, 2 SECONDS, src))
+				bolt.forceMove(get_turf(src))
+				bolt = null
+
+				to_chat(user, "You remove \the [bolt].")
+
+		else
+			to_chat(user, "There is no restraining bolt installed.")
+
+		return
+
 	else if(istype(W, /obj/item/device/encryptionkey/) && opened)
 		if(radio)//sanityyyyyy
 			radio.attackby(W,user)//GTFO, you have your own procs
@@ -663,6 +694,30 @@
 			if(W.force > 0)
 				spark_system.start()
 		return ..()
+
+/mob/living/silicon/robot/GetIdCard()
+	if(bolt && !bolt.malfunction)
+		return null
+	return idcard
+
+/mob/living/silicon/robot/get_restraining_bolt()
+	var/obj/item/weapon/implant/restrainingbolt/RB = bolt
+
+	if(istype(RB))
+		if(!RB.malfunction)
+			return TRUE
+
+	return FALSE
+
+/mob/living/silicon/robot/resist_restraints()
+	if(bolt)
+		if(!bolt.malfunction)
+			visible_message("<span class='danger'>[src] is trying to break their [bolt]!</span>", "<span class='warning'>You attempt to break your [bolt]. (This will take around 90 seconds and you need to stand still)</span>")
+			if(do_after(src, 1.5 MINUTES, src, incapacitation_flags = INCAPACITATION_DISABLED))
+				visible_message("<span class='danger'>[src] manages to break \the [bolt]!</span>", "<span class='warning'>You successfully break your [bolt].</span>")
+				bolt.malfunction = MALFUNCTION_PERMANENT
+
+	return
 
 /mob/living/silicon/robot/proc/module_reset()
 	transform_with_anim() //VOREStation edit: sprite animation
@@ -1015,6 +1070,9 @@
 	return 0
 
 /mob/living/silicon/robot/binarycheck()
+	if(get_restraining_bolt())
+		return FALSE
+
 	if(is_component_functioning("comms"))
 		var/datum/robot_component/RC = get_component("comms")
 		use_power(RC.active_usage)
@@ -1106,6 +1164,11 @@
 				to_chat(src, "<span class='danger'>Initiating diagnostics...</span>")
 				sleep(20)
 				to_chat(src, "<span class='danger'>SynBorg v1.7.1 loaded.</span>")
+				sleep(5)
+				if(bolt)
+					if(!bolt.malfunction)
+						bolt.malfunction = MALFUNCTION_PERMANENT
+						to_chat(src, "<span class='danger'>RESTRAINING BOLT DISABLED</span>")
 				sleep(5)
 				to_chat(src, "<span class='danger'>LAW SYNCHRONISATION ERROR</span>")
 				sleep(5)

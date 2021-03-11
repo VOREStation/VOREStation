@@ -40,10 +40,7 @@
 			return TRUE
 
 /atom/movable/proc/has_buckled_mobs()
-	if(!buckled_mobs)
-		return FALSE
-	if(buckled_mobs.len)
-		return TRUE
+	return LAZYLEN(buckled_mobs)
 
 /atom/movable/Destroy()
 	unbuckle_all_mobs()

@@ -85,7 +85,4 @@
 			P.lock_code = lock_code
 		// else
 			// P.hidden_uplink.hidden_crystals += P.hidden_uplink.uses //Temporarially hide the PDA's crystals, so you can't steal telecrystals.
-		var/obj/item/weapon/cartridge/frame/parent_cart = pda.cartridge
-		P.hidden_uplink.uses = parent_cart.telecrystals
-		parent_cart.telecrystals = 0
 		P.hidden_uplink.active = TRUE

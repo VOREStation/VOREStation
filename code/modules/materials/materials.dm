@@ -486,6 +486,7 @@ var/list/name_to_material
 	door_icon_base = "metal"
 	icon_colour = "#D1E6E3"
 	icon_reinf = "reinf_metal"
+	composite_material = null
 
 /datum/material/plasteel/titanium/hull
 	name = MAT_TITANIUMHULL
@@ -637,7 +638,7 @@ var/list/name_to_material
 	hardness = 40
 	weight = 30
 	stack_origin_tech = list(TECH_MATERIAL = 2)
-	composite_material = list() //todo
+	composite_material = list(DEFAULT_WALL_MATERIAL = SHEET_MATERIAL_AMOUNT / 2, "borosilicate glass" = SHEET_MATERIAL_AMOUNT)
 	rod_product = null
 
 /datum/material/plastic
@@ -1007,8 +1008,22 @@ var/list/name_to_material
 	protectiveness = 1 // 4%
 	flags = MATERIAL_PADDING
 	conductive = 0
+	integrity = 40
 	pass_stack_colors = TRUE
 	supply_conversion_value = 2
+
+/datum/material/cloth/syncloth
+	name = "syncloth"
+	stack_origin_tech = list(TECH_MATERIAL = 3, TECH_BIO = 2)
+	door_icon_base = "wood"
+	ignition_point = T0C+532
+	melting_point = T0C+600
+	integrity = 200
+	protectiveness = 15 // 4%
+	flags = MATERIAL_PADDING
+	conductive = 0
+	pass_stack_colors = TRUE
+	supply_conversion_value = 3
 
 /datum/material/cult
 	name = "cult"
@@ -1042,9 +1057,10 @@ var/list/name_to_material
 	icon_base = "solid"
 	icon_reinf = "reinf_mesh"
 	integrity = 60
+	weight = 10
 	ignition_point = T0C+400
 	melting_point = T0C+500
-	protectiveness = 25
+	protectiveness = 20
 	conductive = 0
 	supply_conversion_value = 4
 
@@ -1060,6 +1076,7 @@ var/list/name_to_material
 	melting_point = T0C+300
 	protectiveness = 3 // 13%
 	conductive = 0
+	integrity = 40
 	supply_conversion_value = 3
 
 /datum/material/carpet
@@ -1197,3 +1214,81 @@ var/list/name_to_material
 	weight = 1
 	protectiveness = 0 // 0%
 	conductive = 0
+
+/datum/material/void_opal
+	name = "void opal"
+	display_name = "void opal"
+	use_name = "void opal"
+	icon_colour = "#0f0f0f"
+	stack_type = /obj/item/stack/material/void_opal
+	flags = MATERIAL_UNMELTABLE
+	cut_delay = 60
+	reflectivity = 0
+	conductivity = 1
+	shard_type = SHARD_SHARD
+	tableslam_noise = 'sound/effects/Glasshit.ogg'
+	hardness = 100
+	stack_origin_tech = list(TECH_ARCANE = 1, TECH_MATERIAL = 6)
+	sheet_singular_name = "gem"
+	sheet_plural_name = "gems"
+	supply_conversion_value = 30	// These are hilariously rare.
+
+/datum/material/painite
+	name = "painite"
+	display_name = "painite"
+	use_name = "painite"
+	icon_colour = "#6b4947"
+	stack_type = /obj/item/stack/material/painite
+	flags = MATERIAL_UNMELTABLE
+	reflectivity = 0.3
+	tableslam_noise = 'sound/effects/Glasshit.ogg'
+	sheet_singular_name = "gem"
+	sheet_plural_name = "gems"
+	supply_conversion_value = 4
+
+/datum/material/tin
+	name = "tin"
+	display_name = "tin"
+	use_name = "tin"
+	stack_type = /obj/item/stack/material/tin
+	icon_colour = "#b2afaf"
+	sheet_singular_name = "ingot"
+	sheet_plural_name = "ingots"
+	supply_conversion_value = 1
+	hardness = 50
+	weight = 13
+
+/datum/material/copper
+	name = "copper"
+	display_name = "copper"
+	use_name = "copper"
+	stack_type = /obj/item/stack/material/copper
+	conductivity = 52
+	icon_colour = "#af633e"
+	sheet_singular_name = "ingot"
+	sheet_plural_name = "ingots"
+	supply_conversion_value = 1
+	weight = 13
+	hardness = 50
+
+/datum/material/quartz
+	name = "quartz"
+	display_name = "quartz"
+	use_name = "quartz"
+	icon_colour = "#e6d7df"
+	stack_type = /obj/item/stack/material/quartz
+	tableslam_noise = 'sound/effects/Glasshit.ogg'
+	sheet_singular_name = "crystal"
+	sheet_plural_name = "crystals"
+	supply_conversion_value = 4
+
+/datum/material/aluminium
+	name = "aluminium"
+	display_name = "aluminium"
+	use_name = "aluminium"
+	icon_colour = "#e5e2d0"
+	stack_type = /obj/item/stack/material/aluminium
+	sheet_singular_name = "ingot"
+	sheet_plural_name = "ingots"
+	supply_conversion_value = 2
+	weight = 10

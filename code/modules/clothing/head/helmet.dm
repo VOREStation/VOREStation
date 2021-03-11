@@ -117,6 +117,15 @@
 	min_cold_protection_temperature = T0C - 20
 	cold_protection = HEAD
 
+/obj/item/clothing/head/helmet/explorer
+	name = "explorer hood"
+	desc = "An armoured hood for exploring harsh environments."
+	icon_state = "explorer"
+	flags = THICKMATERIAL
+	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
+	siemens_coefficient = 0.9
+	armor = list(melee = 30, bullet = 20, laser = 20, energy = 20, bomb = 35, bio = 75, rad = 35)
+
 /obj/item/clothing/head/helmet/swat
 	name = "\improper SWAT helmet"
 	desc = "They're often used by highly trained SWAT Officers."

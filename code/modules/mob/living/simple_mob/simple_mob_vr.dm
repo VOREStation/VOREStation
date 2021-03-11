@@ -4,7 +4,9 @@
 #define SA_ICON_REST	0x04
 
 /mob/living/simple_mob
-	base_attack_cooldown = 15
+	melee_attack_delay = 1
+	base_attack_cooldown = 10
+	melee_miss_chance = 25
 
 	var/temperature_range = 40			// How close will they get to environmental temperature before their body stops changing its heat
 
@@ -52,7 +54,7 @@
 /mob/living/simple_mob/Destroy()
 	release_vore_contents()
 	prey_excludes.Cut()
-	. = ..()
+	return ..()
 
 //For all those ID-having mobs
 /mob/living/simple_mob/GetIdCard()
@@ -277,7 +279,7 @@
 
 // Riding
 /datum/riding/simple_mob
-	keytype = /obj/item/weapon/material/twohanded/fluff/riding_crop // Crack!
+	keytype = /obj/item/weapon/material/twohanded/riding_crop // Crack!
 	nonhuman_key_exemption = FALSE	// If true, nonhumans who can't hold keys don't need them, like borgs and simplemobs.
 	key_name = "a riding crop"		// What the 'keys' for the thing being rided on would be called.
 	only_one_driver = TRUE			// If true, only the person in 'front' (first on list of riding mobs) can drive.

@@ -1014,10 +1014,3 @@
 	oxygen = 0
 	nitrogen = 0
 	temperature = TCMB
-
-/*
-/turf/simulated/floor/hull/New()
-	if(icon_state != "hullcenter0")
-		overrided_icon_state = icon_state
-	..()
-*/

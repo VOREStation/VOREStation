@@ -670,3 +670,10 @@
 	path = /obj/item/clothing/glasses/aerogelgoggles
 	whitelisted = SPECIES_TESHARI
 	sort_category = "Xenowear"
+
+/datum/gear/utility/teshchair
+	display_name = "small electric wheelchair (Teshari)"
+	path = /obj/item/wheelchair/motor/small
+	whitelisted = SPECIES_TESHARI
+	sort_category = "Xenowear"
+	cost = 4

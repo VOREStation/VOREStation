@@ -6,7 +6,7 @@
 	item_state = "saddlebag"
 	icon_state = "saddlebag"
 	max_storage_space = INVENTORY_DUFFLEBAG_SPACE //Saddlebags can hold more, like dufflebags
-	slowdown = 1 //And are slower, too...Unless you're a macro, that is.
+	slowdown = 1 //And are slower, too...
 	var/taurtype = /datum/sprite_accessory/tail/taur/horse //Acceptable taur type to be wearing this
 	var/no_message = "You aren't the appropriate taur type to wear this!"
 
@@ -35,7 +35,7 @@
 	icon_state = "saddlebag"
 	var/icon_base = "saddlebag"
 	max_storage_space = INVENTORY_DUFFLEBAG_SPACE //Saddlebags can hold more, like dufflebags
-	slowdown = 1 //And are slower, too...Unless you're a macro, that is.
+	slowdown = 1 //And are slower, too...
 	var/no_message = "You aren't the appropriate taur type to wear this!"
 
 	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
@@ -43,11 +43,6 @@
 			if(!istype(H))//Error, non HUMAN.
 				log_runtime("[H] was not a valid human!")
 				return
-
-			if(H.size_multiplier >= RESIZE_BIG) //Are they a macro? If yes, they get no slowdown.
-				slowdown = 0
-			else
-				slowdown = initial(slowdown)
 
 			var/datum/sprite_accessory/tail/taur/TT = H.tail_style
 			item_state = "[icon_base]_[TT.icon_sprite_tag]"	//icon_sprite_tag is something like "deer"

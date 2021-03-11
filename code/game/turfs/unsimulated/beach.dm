@@ -14,7 +14,7 @@
 /turf/unsimulated/beach/water
 	name = "Water"
 	icon_state = "water"
-	initialized = FALSE
+	skip_init = FALSE
 	movement_cost = 4 // Water should slow you down, just like simulated turf.
 
 /turf/unsimulated/beach/water/Initialize()

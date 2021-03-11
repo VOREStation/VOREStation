@@ -1,3 +1,5 @@
+#define LOADOUT_BAN_STRING "Custom loadout"
+
 /datum/gear_tweak/proc/get_contents(var/metadata)
 	return
 
@@ -165,7 +167,7 @@ var/datum/gear_tweak/custom_name/gear_tweak_free_name = new()
 	return ""
 
 /datum/gear_tweak/custom_name/get_metadata(var/user, var/metadata)
-	if(jobban_isbanned(user, "Custom loadout"))
+	if(jobban_isbanned(user, LOADOUT_BAN_STRING))
 		to_chat(user, SPAN_WARNING("You are banned from using custom loadout names/descriptions."))
 		return
 	if(valid_custom_names)
@@ -196,7 +198,7 @@ var/datum/gear_tweak/custom_desc/gear_tweak_free_desc = new()
 	return ""
 
 /datum/gear_tweak/custom_desc/get_metadata(var/user, var/metadata)
-	if(jobban_isbanned(user, "Custom loadout"))
+	if(jobban_isbanned(user, LOADOUT_BAN_STRING))
 		to_chat(user, SPAN_WARNING("You are banned from using custom loadout names/descriptions."))
 		return
 	if(valid_custom_desc)
@@ -507,3 +509,46 @@ var/datum/gear_tweak/custom_desc/gear_tweak_free_desc = new()
 		var/t = ValidTeslaLinks[metadata[7]]
 		I.tesla_link = new t(I)
 	I.update_verbs()
+
+/datum/gear_tweak/implant_location
+	var/static/list/bodypart_names_to_tokens = list(
+		"head" =       BP_HEAD,
+		"upper body" = BP_TORSO,
+		"lower body" = BP_GROIN,
+		"left hand" =  BP_L_HAND,
+		"left arm" =   BP_L_ARM,
+		"right hand" = BP_R_HAND,
+		"right arm" =  BP_R_ARM,
+		"left foot" =  BP_L_FOOT,
+		"left leg" =   BP_L_LEG,
+		"right foot" = BP_R_FOOT,
+		"right leg" =  BP_R_LEG
+	)
+	var/static/list/bodypart_tokens_to_names = list(
+		BP_HEAD =       "head",
+		BP_TORSO =      "upper body",
+		BP_GROIN =      "lower body",
+		BP_LEFT_HAND =  "left hand",
+		BP_LEFT_ARM =   "left arm",
+		BP_RIGHT_HAND = "right hand",
+		BP_RIGHT_ARM =  "right arm",
+		BP_LEFT_FOOT =  "left foot",
+		BP_LEFT_LEG =   "left leg",
+		BP_RIGHT_FOOT = "right foot",
+		BP_RIGHT_LEG =  "right leg"
+	)
+
+/datum/gear_tweak/implant_location/get_default()
+	return bodypart_names_to_tokens[1]
+
+/datum/gear_tweak/implant_location/tweak_item(var/obj/item/weapon/implant/I, var/metadata)
+	if(istype(I))
+		I.initialize_loc = bodypart_names_to_tokens[metadata] || BP_TORSO
+
+/datum/gear_tweak/implant_location/get_contents(var/metadata)
+	return "Location: [metadata]"
+
+/datum/gear_tweak/implant_location/get_metadata(var/user, var/metadata)
+	return (input(user, "Select a bodypart for the implant to be implanted inside.", "Implant Location", metadata || "upper body") as null|anything in bodypart_names_to_tokens) || bodypart_tokens_to_names[BP_TORSO]
+
+#undef LOADOUT_BAN_STRING

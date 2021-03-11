@@ -154,3 +154,31 @@
 	key = "]"
 	flags = RESTRICTED
 	syllables = list("chan","ange","thi","se")
+
+//Bloblang.
+/datum/language/blob
+	name = LANGUAGE_BLOB
+	desc = "The massive processing power of the Blob's core gives the overmind finely tuned abilities to transmit messages to nearby life-forms through chemical signals."
+	speech_verb = "resonates"
+	ask_verb = "reverberates"
+	exclaim_verb = "shudders"
+	colour = "blob"
+	key = "}"
+	machine_understands = TRUE
+	flags = RESTRICTED
+
+	syllables = list("^", "˅", "-", "°", "~")
+
+/datum/language/corticalborer/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
+
+	var/mob/living/simple_mob/animal/borer/B
+
+	if(istype(speaker,/mob/living/carbon))
+		var/mob/living/carbon/M = speaker
+		B = M.has_brain_worms()
+	else if(istype(speaker,/mob/living/simple_mob/animal/borer))
+		B = speaker
+
+	if(B)
+		speaker_mask = B.true_name
+	..(speaker,message,speaker_mask)

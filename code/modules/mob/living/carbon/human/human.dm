@@ -1078,7 +1078,7 @@
 
 	if(species)
 
-		if(species.name && species.name == new_species)
+		if(species.name && species.name == new_species && species.name != "Custom Species") //VOREStation Edit
 			return
 		if(species.language)
 			remove_language(species.language)
@@ -1099,8 +1099,8 @@
 	if(species.default_language)
 		add_language(species.default_language)
 
-	//if(species.icon_scale_x != 1 || species.icon_scale_y != 1)	//VOREStation Removal
-	//	update_transform()											//VOREStation Removal
+	if(species.icon_scale_x != 1 || species.icon_scale_y != 1)
+		update_transform()
 
 	if(example)						//VOREStation Edit begin
 		if(!(example == src))

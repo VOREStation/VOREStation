@@ -29,7 +29,7 @@
 
 //  0-9 CKEYS
 /datum/gear/fluff/malady_crop
-	path = /obj/item/weapon/material/twohanded/fluff/riding_crop/malady
+	path = /obj/item/weapon/material/twohanded/riding_crop/malady
 	display_name = "Malady's Crop"
 	ckeywhitelist = list("1r1s")
 	character_name = list("Malady Blanche")
@@ -88,9 +88,9 @@
 	ckeywhitelist = list("arokha")
 	character_name = list("Aronai Sieyes")
 
-/datum/gear/fluff/astraether_ritualknife
-    path = /obj/item/weapon/material/knife/ritual
-    display_name = "Astra's Ritual Knife"
+/datum/gear/fluff/astra_ritualknife
+    path = /obj/item/weapon/material/knife/ritual/fluff/astra
+    display_name = "Polished Ritual Knife"
     description = "A well kept strange ritual knife, There is a small tag with the name 'Astra Ether' on it. They are probably looking for this."
     ckeywhitelist = list("astraether")
     character_name = list("Astra Ether")
@@ -959,6 +959,25 @@
 //  U CKEYS
 
 //  V CKEYS
+/datum/gear/fluff/verie_suit
+	path = /obj/item/clothing/under/fluff/verie
+	display_name = "Verie's Salacious Suit"
+	ckeywhitelist = list("vitoras")
+	character_name = list("Verie")
+
+/datum/gear/fluff/verie_hoodie
+	path = /obj/item/clothing/suit/storage/hooded/fluff/verie
+	display_name = "Verie's Helluva Hoodie"
+	ckeywhitelist = list("vitoras")
+	character_name = list("Verie")
+
+/datum/gear/fluff/verie_comb
+	path = /obj/item/weapon/fluff/verie
+	display_name = "Verie's Crazy Comb"
+	description = "(Note: The highlights this gives you will be placed above EVERYTHING... including mobs!)"
+	ckeywhitelist = list("vitoras")
+	character_name = list("Verie")
+
 /datum/gear/fluff/cameron_glasses
 	path = /obj/item/clothing/glasses/fluff/science_proper
 	display_name = "Cameron's Science Glasses"
@@ -1058,6 +1077,12 @@
 	display_name = "Roanna's Unity Medal"
 	ckeywhitelist = list("vitoras")
 	character_name = list("Roanna Ti'Rox")
+
+/datum/gear/fluff/harmony_id
+	path = /obj/item/weapon/card/id/fluff/harmony
+	display_name = "Harmony's ITG-ID card"
+	ckeywhitelist = list("verysoft")
+	character_name = list("Harmony")
 
 //  W CKEYS
 /datum/gear/fluff/sthasha_bracer

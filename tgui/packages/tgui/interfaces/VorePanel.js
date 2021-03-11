@@ -23,18 +23,6 @@ const digestModeToColor = {
   "Size Steal": "purple",
   "Heal": "purple",
   "Encase In Egg": "purple",
-  "Transform": "purple",
-  "Transform (Hair and eyes)": "purple",
-  "Transform (Male)": "purple",
-  "Transform (Female)": "purple",
-  "Transform (Keep Gender)": "purple",
-  "Transform (Replica Of Self)": "purple",
-  "Transform (Change Species and Taur)": "purple",
-  "Transform (Change Species and Taur) (EGG)": "purple",
-  "Transform (Replica Of Self) (EGG)": "purple",
-  "Transform (Keep Gender) (EGG)": "purple",
-  "Transform (Male) (EGG)": "purple",
-  "Transform (Female) (EGG)": "purple",
 };
 
 const digestModeToPreyMode = {
@@ -48,18 +36,6 @@ const digestModeToPreyMode = {
   "Size Steal": "having your size stolen.",
   "Heal": "being healed.",
   "Encase In Egg": "being encased in an egg.",
-  "Transform": "being transformed.",
-  "Transform (Hair and eyes)": "being transformed.",
-  "Transform (Male)": "being transformed.",
-  "Transform (Female)": "being transformed.",
-  "Transform (Keep Gender)": "being transformed.",
-  "Transform (Replica Of Self)": "being transformed.",
-  "Transform (Change Species and Taur)": "being transformed.",
-  "Transform (Change Species and Taur) (EGG)": "being transformed.",
-  "Transform (Replica Of Self) (EGG)": "being transformed.",
-  "Transform (Keep Gender) (EGG)": "being transformed.",
-  "Transform (Male) (EGG)": "being transformed.",
-  "Transform (Female) (EGG)": "being transformed.",
 };
 
 /**
@@ -191,10 +167,13 @@ const VoreSelectedBelly = (props, context) => {
     digest_burn,
     bulge_size,
     shrink_grow_size,
+    emote_time,
+    emote_active,
     addons,
     contaminates,
     contaminate_flavor,
     contaminate_color,
+    egg_type,
     escapable,
     interacts,
     contents,
@@ -291,6 +270,21 @@ const VoreSelectedBelly = (props, context) => {
               onClick={() => act("set_attribute", { attribute: "b_msgs", msgtype: "em" })}
               content="Examine Message (when full)" />
             <Button
+              onClick={() => act("set_attribute", { attribute: "b_msgs", msgtype: "im_digest" })}
+              content="Idle Messages (Digest)" />
+            <Button
+              onClick={() => act("set_attribute", { attribute: "b_msgs", msgtype: "im_hold" })}
+              content="Idle Messages (Hold)" />
+            <Button
+              onClick={() => act("set_attribute", { attribute: "b_msgs", msgtype: "im_absorb" })}
+              content="Idle Messages (Absorb)" />
+            <Button
+              onClick={() => act("set_attribute", { attribute: "b_msgs", msgtype: "im_heal" })}
+              content="Idle Messages (Heal)" />
+            <Button
+              onClick={() => act("set_attribute", { attribute: "b_msgs", msgtype: "im_drain" })}
+              content="Idle Messages (Drain)" />
+            <Button
               color="red"
               onClick={() => act("set_attribute", { attribute: "b_msgs", msgtype: "reset" })}
               content="Reset Messages" />
@@ -345,6 +339,12 @@ const VoreSelectedBelly = (props, context) => {
                   selected={can_taste}
                   content={can_taste ? "Yes" : "No"} />
               </LabeledList.Item>
+              <LabeledList.Item label="Egg Type">
+                <Button
+                  onClick={() => act("set_attribute", { attribute: "b_egg_type" })}
+                  icon="pen"
+                  content={capitalize(egg_type)} />
+              </LabeledList.Item>
             </LabeledList>
           </Flex.Item>
           <Flex.Item basis="49%" grow={1}>
@@ -395,6 +395,18 @@ const VoreSelectedBelly = (props, context) => {
                 <Button
                   onClick={() => act("set_attribute", { attribute: "b_grow_shrink" })}
                   content={shrink_grow_size * 100 + "%"} />
+              </LabeledList.Item>
+              <LabeledList.Item label="Idle Emotes">
+                <Button
+                  onClick={() => act("set_attribute", { attribute: "b_emoteactive" })}
+                  icon={emote_active ? "toggle-on" : "toggle-off"}
+                  selected={emote_active}
+                  content={emote_active ? "Active" : "Inactive"} />
+              </LabeledList.Item>
+              <LabeledList.Item label="Idle Emote Delay">
+                <Button
+                  onClick={() => act("set_attribute", { attribute: "b_emotetime" })}
+                  content={emote_time + " seconds"} />
               </LabeledList.Item>
             </LabeledList>
           </Flex.Item>
@@ -588,6 +600,8 @@ const VoreUserPreferences = (props, context) => {
     show_vore_fx,
     can_be_drop_prey,
     can_be_drop_pred,
+    step_mechanics_active,
+    pickup_mechanics_active,
     noisy,
   } = data.prefs;
 
@@ -721,6 +735,34 @@ const VoreUserPreferences = (props, context) => {
               : ("Regardless of Predator Setting, you will not leave remains behind."
                 + " Click this to allow leaving remains.")}
             content={digest_leave_remains ? "Allow Leaving Remains Behind" : "Do Not Allow Leaving Remains Behind"} />
+        </Flex.Item>
+        <Flex.Item basis="49%">
+          <Button
+            onClick={() => act("toggle_steppref")}
+            icon={step_mechanics_active ? "toggle-on" : "toggle-off"}
+            selected={step_mechanics_active}
+            fluid
+            tooltipPosition="top"
+            tooltip={step_mechanics_active 
+              ? "This setting controls whether or not you participate in size-based step mechanics."
+              + "Includes both stepping on others, as well as getting stepped on. Click to disable step mechanics."
+              : ("You will not participate in step mechanics."
+                + " Click to enable step mechanics.")}
+            content={step_mechanics_active ? "Step Mechanics Enabled" : "Step Mechanics Disabled"} />
+        </Flex.Item>
+        <Flex.Item basis="49%">
+          <Button
+            onClick={() => act("toggle_pickuppref")}
+            icon={pickup_mechanics_active ? "toggle-on" : "toggle-off"}
+            selected={pickup_mechanics_active}
+            fluid
+            tooltipPosition="top"
+            tooltip={pickup_mechanics_active 
+              ? "Allows macros to pick you up into their hands, and you to pick up micros."
+              + "Click to disable pick-up mechanics"
+              : ("You will not participate in pick-up mechanics."
+                + " Click this to allow picking up/being picked up.")}
+            content={pickup_mechanics_active ? "Pick-up Mechanics Enabled" : "Pick-up Mechanics Disabled"} />
         </Flex.Item>
         <Flex.Item basis="49%">
           <Button

@@ -371,10 +371,13 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 
 
 /obj/effect/projectile/tracer/pointdefense
+	icon = 'icons/obj/projectiles_vr.dmi'
 	icon_state = "beam_pointdef"
 
 /obj/effect/projectile/muzzle/pointdefense
+	icon = 'icons/obj/projectiles_vr.dmi'
 	icon_state = "muzzle_pointdef"
 
 /obj/effect/projectile/impact/pointdefense
+	icon = 'icons/obj/projectiles_vr.dmi'
 	icon_state = "impact_pointdef"
