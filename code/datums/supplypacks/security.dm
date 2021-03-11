@@ -281,10 +281,7 @@
 	name = "Armor - Riot plates"
 	contains = list(
 			/obj/item/clothing/head/helmet/riot,
-			/obj/item/clothing/suit/armor/pcarrier,
-			/obj/item/clothing/accessory/armor/armorplate/riot,
-			/obj/item/clothing/accessory/armor/armguards/riot,
-			/obj/item/clothing/accessory/armor/legguards/riot
+			/obj/item/clothing/suit/armor/pcarrier/riot/full
 			)
 	cost = 40
 	containertype = /obj/structure/closet/crate/secure/lawson
@@ -308,10 +305,7 @@
 	name = "Armor - Ablative plates"
 	contains = list(
 			/obj/item/clothing/head/helmet/laserproof,
-			/obj/item/clothing/suit/armor/pcarrier,
-			/obj/item/clothing/accessory/armor/armorplate/laserproof,
-			/obj/item/clothing/accessory/armor/armguards/laserproof,
-			/obj/item/clothing/accessory/armor/legguards/laserproof
+			/obj/item/clothing/suit/armor/pcarrier/laserproof/full
 			)
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure/lawson
@@ -336,10 +330,7 @@
 	name = "Armor - Ballistic plates"
 	contains = list(
 			/obj/item/clothing/head/helmet/bulletproof,
-			/obj/item/clothing/suit/armor/pcarrier,
-			/obj/item/clothing/accessory/armor/armorplate/bulletproof,
-			/obj/item/clothing/accessory/armor/armguards/bulletproof,
-			/obj/item/clothing/accessory/armor/legguards/bulletproof
+			/obj/item/clothing/suit/armor/pcarrier/bulletproof/full
 			)
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure/heph

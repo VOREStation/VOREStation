@@ -326,3 +326,6 @@ var/list/all_maps = list()
 	if (using_map.zlevels["[z]"] == src)
 		using_map.zlevels -= "[z]"
 	return ..()
+
+/datum/map/proc/get_map_info()
+	return "No map information available"

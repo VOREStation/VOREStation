@@ -5,8 +5,8 @@
 
 /mob/living/verb/customsay()
 	set category = "IC"
-	set name = "Customise Speech Verbs"
-	set desc = "Customise the text which appears when you type- e.g. 'says', 'asks', 'exclaims'."
+	set name = "Customize Speech Verbs"
+	set desc = "Customize the text which appears when you type- e.g. 'says', 'asks', 'exclaims'."
 
 	if(src.client)
 		var/customsaylist[] = list(
@@ -16,7 +16,7 @@
 				"Exclaim/Shout/Yell (!)",
 				"Cancel"
 			)
-		var/sayselect = input("Which say-verb do you wish to customise?") as null|anything in customsaylist //we can't use alert() for this because there's too many terms
+		var/sayselect = input("Which say-verb do you wish to customize?") as null|anything in customsaylist //we can't use alert() for this because there's too many terms
 
 		if(sayselect == "Say")
 			custom_say =  sanitize(input(usr, "This word or phrase will appear instead of 'says': [src] says, \"Hi.\"", "Custom Say", null)  as text)
@@ -39,3 +39,5 @@
 		ooc_notes = new_metadata
 		to_chat(usr, "OOC notes updated.")
 		log_admin("[key_name(usr)] updated their OOC notes mid-round.")
+
+

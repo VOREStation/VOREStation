@@ -10,6 +10,7 @@
 	var/list/excludes		// Store a list of paths of traits to exclude, but done automatically if they change the same vars.
 	var/can_take = ORGANICS|SYNTHETICS	// Can freaking synths use those.
 	var/list/banned_species		// A list of species that can't take this trait
+	var/list/allowed_species		// VORESTATION EDIT:chomp port. A list of species that CAN take this trait, use this if only a few species can use it. -shark
 	var/custom_only = TRUE		// Trait only available for custom species
 
 //Proc can be overridden lower to include special changes, make sure to call up though for the vars changes

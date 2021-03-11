@@ -26,6 +26,7 @@
 	var/datum/chatOutput/chatOutput
 	var/datum/volume_panel/volume_panel = null // Initialized by /client/verb/volume_panel()
 	var/chatOutputLoadedAt
+	var/seen_news = 0
 
 	var/adminhelped = 0
 

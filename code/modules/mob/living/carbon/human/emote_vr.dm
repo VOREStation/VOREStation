@@ -181,6 +181,14 @@
 
 	return FALSE
 
+/mob/living/carbon/human/verb/toggle_resizing_immunity()
+	set name = "Toggle Resizing Immunity"
+	set desc = "Toggles your ability to resist resizing attempts"
+	set category = "IC"
+
+	resizable = !resizable
+	to_chat(src, "<span class='notice'>You are now [resizable ? "susceptible" : "immune"] to being resized.</span>")
+
 
 /mob/living/carbon/human/proc/handle_flip_vr()
 	var/original_density = density

@@ -61,6 +61,9 @@
 /obj/structure/stairs/proc/use_stairs(var/atom/movable/AM, var/atom/oldloc)
 	return
 
+/obj/structure/stairs/proc/use_stairs_instant(var/atom/movable/AM)
+	return
+
 //////////////////////////////////////////////////////////////////////
 // Bottom piece that you step ontor //////////////////////////////////
 //////////////////////////////////////////////////////////////////////
@@ -133,7 +136,11 @@
 	return FALSE
 
 /obj/structure/stairs/bottom/Crossed(var/atom/movable/AM, var/atom/oldloc)
-	use_stairs(AM, oldloc)
+	if(isliving(AM))
+		var/mob/living/L = AM
+		if(L.has_AI())
+			use_stairs(AM, oldloc)
+	..()
 
 /obj/structure/stairs/bottom/use_stairs(var/atom/movable/AM, var/atom/oldloc)	
 	// If we're coming from the top of the stairs, don't trap us in an infinite staircase
@@ -147,7 +154,9 @@
 	if(AM.pulledby) // Animating the movement of pulled things is handled when the puller goes up the stairs
 		return
 	
-	var/animation_delay = STAIR_MOVE_DELAY // Default value
+	if(AM.has_buckled_mobs()) // Similarly, the rider entering the turf will bring along whatever they're buckled to
+		return
+
 	var/list/atom/movable/pulling = list() // Will also include grabbed mobs
 	if(isliving(AM))
 		var/mob/living/L = AM
@@ -155,8 +164,8 @@
 		if(L.grabbed_by.len) // Same as pulledby, whoever's holding you will keep you from going down stairs.
 			return
 
-		// If the object has a measurable movement delay, use that
-		animation_delay = L.movement_delay()
+		if(L.buckled)
+			pulling |= L.buckled
 
 		// If the object is pulling or grabbing anything, we'll want to move those too. A grab chain may be disrupted in doing so.
 		if(L.pulling && !L.pulling.anchored)
@@ -167,71 +176,56 @@
 	// If the stairs aren't broken, go up.
 	if(check_integrity())
 		AM.dir = src.dir
-		// Animate moving onto M
-		switch(src.dir)
-			if(NORTH)
-				animate(AM, AM.pixel_y += 32, time = animation_delay)
-			if(SOUTH)
-				animate(AM, AM.pixel_y += -32, time = animation_delay)
-			if(EAST)
-				animate(AM, AM.pixel_x += 32, time = animation_delay)
-			if(WEST)
-				animate(AM, AM.pixel_x += -32, time = animation_delay)
 
 		// Bring the pulled/grabbed object(s) along behind us
 		for(var/atom/movable/P in pulling)
 			P.forceMove(get_turf(src)) // They will move onto the turf but won't get past the check earlier in crossed. Aligns animation more cleanly
-			switch(src.dir)
-				if(NORTH)
-					animate(P, P.pixel_y += 32, time = animation_delay)
-				if(SOUTH)
-					animate(P, P.pixel_y += -32, time = animation_delay)
-				if(EAST)
-					animate(P, P.pixel_x += 32, time = animation_delay)
-				if(WEST)
-					animate(P, P.pixel_x += -32, time = animation_delay)
 
 
-		// Go up the stairs
-		spawn(animation_delay)
-			// Move to Top
-			AM.forceMove(get_turf(top))
-
-			// Animate moving from O to T
-			switch(src.dir)
-				if(NORTH)
-					AM.pixel_y -= 64
-					animate(AM, AM.pixel_y += 32, time = animation_delay)//, easing = SINE_EASING | EASE_OUT)
-				if(SOUTH)
-					AM.pixel_y -= -64
-					animate(AM, AM.pixel_y += -32, time = animation_delay)//, easing = SINE_EASING | EASE_OUT)
-				if(EAST)
-					AM.pixel_x -= 64
-					animate(AM, AM.pixel_x += 32, time = animation_delay)//, easing = SINE_EASING | EASE_OUT)
-				if(WEST)
-					AM.pixel_x -= -64
-					animate(AM, AM.pixel_x += -32, time = animation_delay)//, easing = SINE_EASING | EASE_OUT)
+		// Move to Top
+		AM.forceMove(get_turf(top))
 		
-		
-			// If something is being pulled, bring it along directly to avoid the mob being torn away from it due to movement delays
-			for(var/atom/movable/P in pulling)
-				spawn(animation_delay)
-					switch(src.dir)
-						if(NORTH)
-							P.pixel_y -= 32
-						if(SOUTH)
-							P.pixel_y -= -32
-						if(EAST)
-							P.pixel_x -= 32
-						if(WEST)
-							P.pixel_x -= -32
-					P.forceMove(get_turf(top)) // Just bring it along directly, no fussing with animation timing
-					if(isliving(P))
-						var/mob/living/L = P
-						if(L.client)
-							L.client.Process_Grab() // Update any miscellanous grabs, possibly break grab-chains
+		// If something is being pulled, bring it along directly to avoid the mob being torn away from it due to movement delays
+		for(var/atom/movable/P in pulling)
+			P.forceMove(get_turf(top)) // Just bring it along directly, no fussing with animation timing
+			if(isliving(P))
+				var/mob/living/L = P
+				if(L.client)
+					L.client.Process_Grab() // Update any miscellanous grabs, possibly break grab-chains
 
 	return TRUE
+
+/obj/structure/stairs/bottom/use_stairs_instant(var/atom/movable/AM)
+	if(isobserver(AM)) // Ghosts have their own methods for going up and down
+		return
+
+	if(isliving(AM))
+		var/mob/living/L = AM
+	
+		if(L.grabbed_by.len) // Same as pulledby, whoever's holding you will keep you from going down stairs.
+			return
+		
+		if(L.has_buckled_mobs())
+			return
+
+		if(L.buckled)
+			L.buckled.forceMove(get_turf(top))
+		
+		// If the object is pulling or grabbing anything, we'll want to move those too. A grab chain may be disrupted in doing so.
+		if(L.pulling && !L.pulling.anchored)
+			var/atom/movable/P = L.pulling
+			P.forceMove(get_turf(top))
+			L.start_pulling(P)
+
+		for(var/obj/item/weapon/grab/G in list(L.l_hand, L.r_hand))
+			G.affecting.forceMove(get_turf(top))
+		L.forceMove(get_turf(top))
+		
+		if(L.client)
+			L.client.Process_Grab()
+	else
+		AM.forceMove(get_turf(top))
+
 
 //////////////////////////////////////////////////////////////////////
 // Middle piece that you are animated onto/off of ////////////////////
@@ -318,7 +312,7 @@
 
 /obj/structure/stairs/middle/Bumped(mob/user)
 	if(check_integrity() && bottom && (bottom in get_turf(user))) // Bottom must be enforced because the middle stairs don't actually need the bottom
-		user.forceMove(get_turf(top))
+		bottom.use_stairs_instant(user)
 
 //////////////////////////////////////////////////////////////////////
 // Top piece that you step onto //////////////////////////////////////
@@ -391,8 +385,17 @@
 	return
 
 /obj/structure/stairs/top/Crossed(var/atom/movable/AM, var/atom/oldloc)
-	use_stairs(AM, oldloc)
-	. = ..()
+	if(isliving(AM))
+		var/mob/living/L = AM
+		if(L.has_AI())
+			use_stairs(AM, oldloc)
+	..()
+
+/obj/structure/stairs/top/Uncrossed(var/atom/movable/AM)
+	// Going down stairs from the topstair piece
+	if(AM.dir == turn(dir, 180) && check_integrity())
+		use_stairs_instant(AM)
+		return
 
 /obj/structure/stairs/top/use_stairs(var/atom/movable/AM, var/atom/oldloc)
 	// If we're coming from the bottom of the stairs, don't trap us in an infinite staircase
@@ -405,8 +408,10 @@
 	
 	if(AM.pulledby) // Animating the movement of pulled things is handled when the puller goes up the stairs
 		return
+	
+	if(AM.has_buckled_mobs()) // Similarly, the rider entering the turf will bring along whatever they're buckled to
+		return
 
-	var/animation_delay = STAIR_MOVE_DELAY // Default value
 	var/list/atom/movable/pulling = list() // Will also include grabbed mobs
 	if(isliving(AM))
 		var/mob/living/L = AM
@@ -414,8 +419,8 @@
 		if(L.grabbed_by.len) // Same as pulledby, whoever's holding you will keep you from going down stairs.
 			return
 
-		// If the object has a measurable movement delay, use that
-		animation_delay = L.movement_delay()
+		if(L.buckled)
+			pulling |= L.buckled
 
 		// If the object is pulling or grabbing anything, we'll want to move those too. A grab chain may be disrupted in doing so.
 		if(L.pulling && !L.pulling.anchored)
@@ -426,71 +431,54 @@
 	// If the stairs aren't broken, go up.
 	if(check_integrity())
 		AM.dir = turn(src.dir, 180)
-		// Animate moving onto M
-		switch(src.dir)
-			if(NORTH)
-				animate(AM, AM.pixel_y -= 32, time = animation_delay) // Incrementing/decrementing to preserve prior values
-			if(SOUTH)
-				animate(AM, AM.pixel_y -= -32, time = animation_delay)
-			if(EAST)
-				animate(AM, AM.pixel_x -= 32, time = animation_delay)
-			if(WEST)
-				animate(AM, AM.pixel_x -= -32, time = animation_delay)
-
 		// Bring the pulled/grabbed object(s) along behind us
 		for(var/atom/movable/P in pulling)
 			P.forceMove(get_turf(src)) // They will move onto the turf but won't get past the check earlier in crossed. Aligns animation more cleanly
-			switch(src.dir)
-				if(NORTH)
-					animate(P, P.pixel_y -= 32, time = animation_delay)
-				if(SOUTH)
-					animate(P, P.pixel_y -= -32, time = animation_delay)
-				if(EAST)
-					animate(P, P.pixel_x -= 32, time = animation_delay)
-				if(WEST)
-					animate(P, P.pixel_x -= -32, time = animation_delay)
 
-		// Go up the stairs
-		spawn(animation_delay)
-			// Move to Top
-			AM.forceMove(get_turf(bottom))
-
-			// Animate moving from O to T
-			switch(src.dir)
-				if(NORTH)
-					AM.pixel_y += 64
-					animate(AM, AM.pixel_y -= 32, time = animation_delay)//, easing = SINE_EASING | EASE_OUT)
-				if(SOUTH)
-					AM.pixel_y += -64
-					animate(AM, AM.pixel_y -= -32, time = animation_delay)//, easing = SINE_EASING | EASE_OUT)
-				if(EAST)
-					AM.pixel_x += 64
-					animate(AM, AM.pixel_x -= 32, time = animation_delay)//, easing = SINE_EASING | EASE_OUT)
-				if(WEST)
-					AM.pixel_x += -64
-					animate(AM, AM.pixel_x -= -32, time = animation_delay)//, easing = SINE_EASING | EASE_OUT)
+		// Move to Top
+		AM.forceMove(get_turf(bottom))
 		
-		
-			// If something is being pulled, bring it along directly to avoid the mob being torn away from it due to movement delays
-			for(var/atom/movable/P in pulling)
-				spawn(animation_delay)
-					switch(src.dir)
-						if(NORTH)
-							P.pixel_y += 32
-						if(SOUTH)
-							P.pixel_y += -32
-						if(EAST)
-							P.pixel_x += 32
-						if(WEST)
-							P.pixel_x += -32
-					P.forceMove(get_turf(bottom)) // Just bring it along directly, no fussing with animation timing
-					if(isliving(P))
-						var/mob/living/L = P
-						if(L.client)
-							L.client.Process_Grab() // Update any miscellanous grabs, possibly break grab-chains
+		// If something is being pulled, bring it along directly to avoid the mob being torn away from it due to movement delays
+		for(var/atom/movable/P in pulling)
+			P.forceMove(get_turf(bottom)) // Just bring it along directly, no fussing with animation timing
+			if(isliving(P))
+				var/mob/living/L = P
+				if(L.client)
+					L.client.Process_Grab() // Update any miscellanous grabs, possibly break grab-chains
 
 	return TRUE
 
+/obj/structure/stairs/top/use_stairs_instant(var/atom/movable/AM)
+	if(isobserver(AM)) // Ghosts have their own methods for going up and down
+		return
+
+	if(isliving(AM))
+		var/mob/living/L = AM
+	
+		if(L.grabbed_by.len) // Same as pulledby, whoever's holding you will keep you from going down stairs.
+			return
+		
+		if(L.has_buckled_mobs())
+			return
+
+		if(L.buckled)
+			L.buckled.forceMove(get_turf(bottom))
+		
+		// If the object is pulling or grabbing anything, we'll want to move those too. A grab chain may be disrupted in doing so.
+		if(L.pulling && !L.pulling.anchored)
+			var/atom/movable/P = L.pulling
+			P.forceMove(get_turf(bottom))
+			L.start_pulling(P)
+
+		for(var/obj/item/weapon/grab/G in list(L.l_hand, L.r_hand))
+			G.affecting.forceMove(get_turf(bottom))
+		
+		L.forceMove(get_turf(bottom))
+
+		if(L.client)
+			L.client.Process_Grab()
+	else
+		AM.forceMove(get_turf(bottom))
 
 // Mapping pieces, placed at the bottommost part of the stairs
 /obj/structure/stairs/spawner

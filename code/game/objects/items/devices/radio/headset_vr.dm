@@ -84,7 +84,6 @@
 	desc = "A headset used by pilots, has access to the explorer channel."
 	icon_state = "pilot_headset"
 	adhoc_fallback = TRUE
-	ks2type = /obj/item/device/encryptionkey/pilot
 
 /obj/item/device/radio/headset/pilot/alt
 	name = "pilot's bowman headset"
@@ -120,7 +119,7 @@
 	desc = "A headset used by volunteers to expedition teams, has access to the exploration channel."
 	icon_state = "pilot_headset"
 	adhoc_fallback = TRUE
-	ks2type = /obj/item/device/encryptionkey/pilot
+	ks2type = /obj/item/device/encryptionkey/explorer
 
 /obj/item/device/radio/headset/talon
 	name = "talon headset"

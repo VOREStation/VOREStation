@@ -326,6 +326,15 @@
 	category = list("Arms and Ammunition")
 	hidden = 1*/
 
+/*
+ * High Caliber
+ */
+
+/datum/category_item/autolathe/arms/rifle_145
+	name = "14.5mm round (sabot)"
+	path = /obj/item/ammo_casing/a145/highvel
+	hidden = 1
+
 ///////////////////////////////
 /*Ammo clips and Speedloaders*/
 ///////////////////////////////

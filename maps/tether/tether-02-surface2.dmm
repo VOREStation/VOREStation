@@ -8704,7 +8704,6 @@
 /area/maintenance/lower/mining)
 "anF" = (
 /obj/effect/floor_decal/corner/paleblue/diagonal,
-/obj/structure/table/glass,
 /obj/item/weapon/deck/cards,
 /obj/structure/table/glass,
 /turf/simulated/floor/tiled/white,

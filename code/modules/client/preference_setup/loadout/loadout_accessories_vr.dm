@@ -77,6 +77,12 @@
 	display_name = "drop pouches, white (Medical)"
 	allowed_roles = list("Paramedic","Chief Medical Officer","Medical Doctor","Chemist","Field Medic")
 
+/datum/gear/accessory/bluespace
+	display_name = "bluespace badge (Eng, Sec, Med, Exploration, Miner)"
+	path = /obj/item/clothing/accessory/storage/bluespace
+	allowed_roles = list("Station Engineer","Atmospheric Technician","Chief Engineer","Security Officer","Detective","Head of Security","Warden","Paramedic","Chief Medical Officer","Medical Doctor","Chemist","Field Medic","Explorer","Pathfinder","Shaft Miner")
+	cost = 2
+
 /datum/gear/accessory/webbing
 	cost = 1
 

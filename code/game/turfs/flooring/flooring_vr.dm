@@ -24,3 +24,6 @@
 /decl/flooring/grass/outdoors/forest
 	icon = 'icons/turf/outdoors.dmi'
 	icon_base = "grass-dark"
+
+/turf/simulated/floor/tiled/freezer/cold
+	temperature = T0C - 5

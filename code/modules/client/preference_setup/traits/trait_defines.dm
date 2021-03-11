@@ -23,12 +23,8 @@
 
 // Physical traits are what they sound like, and involve the character's physical body, as opposed to their mental state.
 /datum/trait/modifier/physical
-<<<<<<< HEAD
-	category = "Physical Quirks" //VOREStation Edit
-=======
 	name = "Physical"
 	category = "Physical"
->>>>>>> b22a056... Sideports a couple of init unit tests from Neb. (#7893)
 
 
 /datum/trait/modifier/physical/flimsy
