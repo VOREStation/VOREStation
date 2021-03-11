@@ -7,20 +7,16 @@
 */
 /datum/sprite_accessory/wing
 	name = "You should not see this..."
-	icon = 'icons/mob/human_races/sprite_accessories/wings.dmi'
+	icon = 'icons/mob/vore/wings_vr.dmi'
 	do_colouration = 0 //Set to 1 to enable coloration using the tail color.
-
+	species_allowed = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_FENNEC, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST, SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW) //This lets all races use
 	color_blend_mode = ICON_ADD // Only appliciable if do_coloration = 1
-	var/extra_overlay // Icon state of an additional overlay to blend in.
-	var/extra_overlay2 //Tertiary.
-	var/clothing_can_hide = 1 // If true, clothing with HIDETAIL hides it. If the clothing is bulky enough to hide a tail, it should also hide wings.
-	// var/show_species_tail = 1 // Just so // TODO - Seems not needed ~Leshana
-	var/desc = "You should not see this..."
-	var/ani_state // State when flapping/animated
-	var/extra_overlay_w // Flapping state for extra overlay
-	var/extra_overlay2_w
 
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+/datum/sprite_accessory/wing/shock //Unable to split the tail from the wings in the sprite, so let's just classify it as wings.
+	name = "pharoah hound tail (Shock Diamond)"
+	desc = ""
+	icon_state = "shock"
+	ckeys_allowed = list("icowom")
 
 /datum/sprite_accessory/wing/featheredlarge //Made by Natje!
 	name = "large feathered wings (colorable)"
@@ -53,6 +49,12 @@
 	desc = ""
 	icon_state = "dragonfly"
 	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/wing/citheroniamoth
+	name = "citheronia wings"
+	desc = ""
+	icon_state = "citheronia_wings"
+	ckeys_allowed = list("kira72")
 
 /datum/sprite_accessory/wing/feathered
 	name = "feathered wings, colorable"
@@ -91,6 +93,47 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
+/datum/sprite_accessory/wing/harpywings_alt
+	name = "harpy wings alt, archeopteryx"
+	desc = ""
+	icon_state = "harpywings_alt"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "harpywings_altmarkings"
+
+/datum/sprite_accessory/wing/harpywings_alt_neckfur
+	name = "harpy wings alt, archeopteryx & neckfur"
+	desc = ""
+	icon_state = "harpywings_alt"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "harpywings_altmarkings"
+	extra_overlay2 = "neckfur"
+
+/datum/sprite_accessory/wing/harpywings_bat
+	name = "harpy wings, bat"
+	desc = ""
+	icon_state = "harpywings_bat"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "harpywings_batmarkings"
+
+/datum/sprite_accessory/wing/harpywings_bat_neckfur
+	name = "harpy wings, bat & neckfur"
+	desc = ""
+	icon_state = "harpywings_bat"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "harpywings_batmarkings"
+	extra_overlay2 = "neckfur"
+
+/datum/sprite_accessory/wing/neckfur
+	name = "neck fur"
+	desc = ""
+	icon_state = "neckfur"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/wing/feathered
 	name = "feathered wings, colorable"
 	desc = ""
@@ -102,6 +145,24 @@
 	name = "bee wings"
 	desc = ""
 	icon_state = "beewings"
+
+/datum/sprite_accessory/wing/sepulchre
+	name = "demon wings (Sepulchre)"
+	desc = ""
+	icon_state = "sepulchre_wings"
+	ckeys_allowed = list("sepulchre")
+
+/datum/sprite_accessory/wing/miria_fluffdragon
+	name = "fluffdragon wings (Miria Masters)"
+	desc = ""
+	icon_state = "miria-fluffdragontail"
+	ckeys_allowed = list("miriamasters")
+
+/datum/sprite_accessory/wing/scree
+	name = "green taj wings (Scree)"
+	desc = ""
+	icon_state = "scree-wings"
+	ckeys_allowed = list("scree")
 
 /datum/sprite_accessory/wing/liquidfirefly_gazer //I g-guess this could be considered wings?
 	name = "gazer eyestalks"
@@ -120,6 +181,12 @@
 	icon_state = "moth_full_gray"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/wing/kerena
+	name = "wingwolf wings (Kerena)"
+	desc = ""
+	icon_state = "kerena-wings"
+	ckeys_allowed = list("somekindofpony")
 
 /datum/sprite_accessory/wing/snag
 	name = "xenomorph backplate"
@@ -150,3 +217,11 @@
 	desc = ""
 	icon_state = "cyberdoe_s"
 	do_colouration = 0
+
+/datum/sprite_accessory/wing/drago_wing
+	name = "Cybernetic Dragon wings"
+	desc = ""
+	icon_state = "drago_wing"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "drago_wing_2"
