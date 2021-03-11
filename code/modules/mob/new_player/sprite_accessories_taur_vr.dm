@@ -473,12 +473,12 @@
 	name = "Shadekin Long Tail"
 	icon_state = "shadekin_long_s"
 
-/datum/sprite_accessory/tail/taur/pawcow // this grabs suit sprites from the normal cow, the outline is the same except for the tail
+/datum/sprite_accessory/tail/taur/pawcow // this grabs suit sprites from the normal cow, the outline is the same
 	name = "Cow w/ paws (Taur)"
 	icon_state = "pawcow_s"
 	extra_overlay = "pawcow_markings"
 	suit_sprites = 'icons/mob/taursuits_cow_vr.dmi'
-	icon_sprite_tag = "pawcow"
+	icon_sprite_tag = "cow"
 
 	msg_owner_disarm_run = "You quickly push %prey to the ground with your paw!"
 	msg_prey_disarm_run = "%owner pushes you down to the ground with their paw!"
