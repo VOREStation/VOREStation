@@ -7054,7 +7054,8 @@
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/science{
 	name = "Pathfinder";
-	req_access = list(62,43,67)
+	req_access = list(62,43,67);
+	req_one_access = newlist()
 	},
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable/green{
