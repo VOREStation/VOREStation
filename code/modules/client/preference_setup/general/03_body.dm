@@ -1086,7 +1086,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		var/list/pretty_ear_styles = list("Normal" = null)
 		for(var/path in ear_styles_list)
 			var/datum/sprite_accessory/ears/instance = ear_styles_list[path]
-			if(((!instance.ckeys_allowed) || (usr.ckey in instance.ckeys_allowed)) && (/*(!instance.apply_restrictions) || */(pref.species in instance.species_allowed)) || check_rights(R_ADMIN | R_EVENT | R_FUN, 0, user))
+			if(((!instance.ckeys_allowed) || (usr.ckey in instance.ckeys_allowed)) && ((!instance.apply_restrictions) || (pref.species in instance.species_allowed)) || check_rights(R_ADMIN | R_EVENT | R_FUN, 0, user))	//VOREStation Edit
 				pretty_ear_styles[instance.name] = path
 
 		// Present choice to user
@@ -1128,7 +1128,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		var/list/pretty_tail_styles = list("Normal" = null)
 		for(var/path in tail_styles_list)
 			var/datum/sprite_accessory/tail/instance = tail_styles_list[path]
-			if(((!instance.ckeys_allowed) || (usr.ckey in instance.ckeys_allowed)) && (/*(!instance.apply_restrictions) || */(pref.species in instance.species_allowed)) || check_rights(R_ADMIN | R_EVENT | R_FUN, 0, user))
+			if(((!instance.ckeys_allowed) || (usr.ckey in instance.ckeys_allowed)) && ((!instance.apply_restrictions) || (pref.species in instance.species_allowed)) || check_rights(R_ADMIN | R_EVENT | R_FUN, 0, user))	//VOREStation Edit
 				pretty_tail_styles[instance.name] = path
 
 		// Present choice to user
@@ -1170,7 +1170,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		var/list/pretty_wing_styles = list("Normal" = null)
 		for(var/path in wing_styles_list)
 			var/datum/sprite_accessory/wing/instance = wing_styles_list[path]
-			if(((!instance.ckeys_allowed) || (usr.ckey in instance.ckeys_allowed)) && (/*(!instance.apply_restrictions) || */(pref.species in instance.species_allowed)) || check_rights(R_ADMIN | R_EVENT | R_FUN, 0, user))
+			if(((!instance.ckeys_allowed) || (usr.ckey in instance.ckeys_allowed)) && ((!instance.apply_restrictions) || (pref.species in instance.species_allowed)) || check_rights(R_ADMIN | R_EVENT | R_FUN, 0, user))	//VOREStation Edit
 				pretty_wing_styles[instance.name] = path
 
 		// Present choice to user
