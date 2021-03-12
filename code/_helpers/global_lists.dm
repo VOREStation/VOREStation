@@ -47,7 +47,7 @@ var/global/list/ear_styles_list = list()	// Stores /datum/sprite_accessory/ears 
 var/global/list/tail_styles_list = list()	// Stores /datum/sprite_accessory/tail indexed by type
 var/global/list/wing_styles_list = list()	// Stores /datum/sprite_accessory/wing indexed by type
 
-GLOBAL_LIST(custom_species_bases)
+GLOBAL_LIST_INIT(custom_species_bases, new) // Species that can be used for a Custom Species icon base
 	//Underwear
 var/datum/category_collection/underwear/global_underwear = new()
 
