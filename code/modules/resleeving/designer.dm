@@ -385,9 +385,6 @@
 	ASSERT(istype(B))
 	var/datum/category_item/player_setup_item/general/basic/G = CG.items_by_name["Basic"]
 	ASSERT(istype(G))
-	CG = CC.categories_by_name["VORE"]
-	var/datum/category_item/player_setup_item/vore/ears/E = CG.items_by_name["Appearance"]
-	ASSERT(istype(E))
 
 	if(params["target_href"] == "bio_gender")
 		var/new_gender = input(user, "Choose your character's biological gender:", "Character Preference", active_br.bodygender) as null|anything in G.get_genders()
@@ -405,12 +402,6 @@
 	action = B.OnTopic(list2params(href_list), href_list, user)
 	if(action & TOPIC_UPDATE_PREVIEW && mannequin && active_br)
 		B.copy_to_mob(mannequin)
-		active_br.mydna.dna.ResetUIFrom(mannequin)
-		update_preview_icon()
-		return 1
-	action = E.OnTopic(list2params(href_list), href_list, user)
-	if(action & TOPIC_UPDATE_PREVIEW && mannequin && active_br)
-		E.copy_to_mob(mannequin)
 		active_br.mydna.dna.ResetUIFrom(mannequin)
 		update_preview_icon()
 		return 1

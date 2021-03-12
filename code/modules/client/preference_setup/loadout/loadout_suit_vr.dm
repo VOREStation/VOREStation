@@ -72,3 +72,13 @@
 /datum/gear/suit/chiton
 	display_name = "chiton"
 	path = /obj/item/clothing/suit/chiton
+
+
+//oversized t-shirt
+/datum/gear/suit/oversize
+	display_name = "oversized t-shirt (colorable)"
+	path = /obj/item/clothing/suit/oversize
+
+/datum/gear/suit/oversize/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice

@@ -18,7 +18,6 @@
 	var/vore_verb = "ingest"				// Verb for eating with this in messages
 	var/human_prey_swallow_time = 100		// Time in deciseconds to swallow /mob/living/carbon/human
 	var/nonhuman_prey_swallow_time = 30		// Time in deciseconds to swallow anything else
-	var/emote_time = 60 SECONDS				// How long between stomach emotes at prey
 	var/nutrition_percent = 100				// Nutritional percentage per tick in digestion mode
 	var/digest_brute = 0.5					// Brute damage per tick in digestion mode
 	var/digest_burn = 0.5					// Burn damage per tick in digestion mode
@@ -41,6 +40,10 @@
 	var/obj/item/weapon/storage/vore_egg/ownegg	// Is this belly creating an egg?
 	var/egg_type = "Egg"					// Default egg type and path.
 	var/egg_path = /obj/item/weapon/storage/vore_egg
+	var/list/emote_lists = list()			// Idle emotes that happen on their own, depending on the bellymode. Contains lists of strings indexed by bellymode
+	var/emote_time = 60						// How long between stomach emotes at prey (in seconds)
+	var/emote_active = TRUE					// Are we even giving emotes out at all or not?
+	var/next_emote = 0						// When we're supposed to print our next emote, as a world.time
 
 	//I don't think we've ever altered these lists. making them static until someone actually overrides them somewhere.
 	//Actual full digest modes
@@ -56,7 +59,6 @@
 	var/tmp/mob/living/owner					// The mob whose belly this is.
 	var/tmp/digest_mode = DM_HOLD				// Current mode the belly is set to from digest_modes (+transform_modes if human)
 	var/tmp/list/items_preserved = list()		// Stuff that wont digest so we shouldn't process it again.
-	var/tmp/next_emote = 0						// When we're supposed to print our next emote, as a world.time
 	var/tmp/recent_sound = FALSE				// Prevent audio spam
 
 	// Don't forget to watch your commas at the end of each line if you change these.
@@ -113,11 +115,6 @@
 	var/contamination_flavor = "Generic"	// Determines descriptions of contaminated items
 	var/contamination_color = "green"		// Color of contamination overlay
 
-	//Mostly for being overridden on precreated bellies on mobs. Could be VV'd into
-	//a carbon's belly if someone really wanted. No UI for carbons to adjust this.
-	//List has indexes that are the digestion mode strings, and keys that are lists of strings.
-	var/tmp/list/emote_lists = list()
-
 	// Lets you do a fullscreen overlay. Set to an icon_state string.
 	var/belly_fullscreen = ""
 	var/disable_hud = FALSE
@@ -152,6 +149,8 @@
 		"digest_messages_prey",
 		"examine_messages",
 		"emote_lists",
+		"emote_time",
+		"emote_active",
 		"mode_flags",
 		"item_digest_mode",
 		"contaminates",
@@ -784,6 +783,8 @@
 	dupe.belly_fullscreen = belly_fullscreen
 	dupe.disable_hud = disable_hud
 	dupe.egg_type = egg_type
+	dupe.emote_time = emote_time
+	dupe.emote_active = emote_active
 
 	//// Object-holding variables
 	//struggle_messages_outside - strings

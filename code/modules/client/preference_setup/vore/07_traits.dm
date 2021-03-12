@@ -96,7 +96,7 @@
 	var/datum/species/selected_species = GLOB.all_species[pref.species]
 	if(selected_species.selects_bodytype)
 		// Allowed!
-	else if(!pref.custom_base || !(pref.custom_base in custom_species_bases))
+	else if(!pref.custom_base || !(pref.custom_base in GLOB.custom_species_bases))
 		pref.custom_base = SPECIES_HUMAN
 
 /datum/category_item/player_setup_item/vore/traits/copy_to_mob(var/mob/living/carbon/human/character)
@@ -204,7 +204,7 @@
 		return TOPIC_REFRESH
 
 	else if(href_list["custom_base"])
-		var/list/choices = custom_species_bases
+		var/list/choices = GLOB.custom_species_bases
 		if(pref.species != SPECIES_CUSTOM)
 			choices = (choices | pref.species)
 		var/text_choice = input("Pick an icon set for your species:","Icon Base") in choices

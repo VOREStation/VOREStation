@@ -9,13 +9,13 @@
 
 	switch(act)
 		if("vwag")
-			if(toggle_tail_vr(message = 1))
+			if(toggle_tail(message = 1))
 				m_type = 1
 				message = "[wagging ? "starts" : "stops"] wagging their tail."
 			else
 				return 1
 		if("vflap")
-			if(toggle_wing_vr(message = 1))
+			if(toggle_wing(message = 1))
 				m_type = 1
 				message = "[flapping ? "starts" : "stops"] flapping their wings."
 			else
@@ -214,30 +214,6 @@
 	spawn(7)
 		density = original_density
 		pass_flags = original_passflags
-
-/mob/living/carbon/human/proc/toggle_tail_vr(var/setting,var/message = 0)
-	if(!tail_style || !tail_style.ani_state)
-		if(message)
-			to_chat(src, "<span class='warning'>You don't have a tail that supports this.</span>")
-		return 0
-
-	var/new_wagging = isnull(setting) ? !wagging : setting
-	if(new_wagging != wagging)
-		wagging = new_wagging
-		update_tail_showing()
-	return 1
-
-/mob/living/carbon/human/proc/toggle_wing_vr(var/setting,var/message = 0)
-	if(!wing_style || !wing_style.ani_state)
-		if(message)
-			to_chat(src, "<span class='warning'>You don't have a tail that supports this.</span>")
-		return 0
-
-	var/new_flapping = isnull(setting) ? !flapping : setting
-	if(new_flapping != flapping)
-		flapping = setting
-		update_wing_showing()
-	return 1
 
 /mob/living/carbon/human/verb/toggle_gender_identity_vr()
 	set name = "Set Gender Identity"
