@@ -22,7 +22,7 @@
 	if(stat)
 		to_chat(src, "<span class='warning'>You must be awake and standing to perform this action!</span>")
 		return
-	var/obj/item/organ/external/head/vr/H = organs_by_name[BP_HEAD]
+	var/obj/item/organ/external/head/H = organs_by_name[BP_HEAD]
 	if(!H)
 		to_chat(src, "<span class='warning'>You don't seem to have a head!</span>")
 		return
