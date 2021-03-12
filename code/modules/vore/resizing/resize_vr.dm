@@ -144,7 +144,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 
 	var/nagmessage = "Adjust your mass to be a size between 25 to 200% (or 1% to 600% in dormitories). (DO NOT ABUSE)"
 	var/new_size = input(nagmessage, "Pick a Size") as num|null
-	if(new_size && ISINRANGE(new_size, 25, 200))
+	if(size_range_check(new_size))
 		resize(new_size/100)
 		// I'm not entirely convinced that `src ? ADMIN_JMP(src) : "null"` here does anything
 		// but just in case it does, I'm leaving the null-src checking
