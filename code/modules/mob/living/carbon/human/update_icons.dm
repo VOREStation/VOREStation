@@ -531,7 +531,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	if(!head_organ.eye_icon)
 		return
 
-	var/icon/eyes_icon = new/icon(head_organ.eye_icon_location, head_organ.eye_icon)
+	var/icon/eyes_icon = new/icon(head_organ.eye_icon_location, head_organ.eye_icon)		//VOREStation Edit
 	if(eyes)
 		eyes_icon.Blend(rgb(eyes.eye_colour[1], eyes.eye_colour[2], eyes.eye_colour[3]), ICON_ADD)
 	else
