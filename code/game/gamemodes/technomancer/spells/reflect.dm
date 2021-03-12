@@ -62,7 +62,7 @@
 				spark_system.start()
 				playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
 				// now send a log so that admins don't think they're shooting themselves on purpose.
-				log_and_message_admins("[user] reflected [attacker]'s attack back at them.")
+				add_attack_logs(user,attacker,"Reflected [attacker]'s attack")
 
 				if(!reflecting)
 					reflecting = 1
@@ -82,7 +82,7 @@
 				spark_system.start()
 				playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
 
-				log_and_message_admins("[user] reflected [attacker]'s attack back at them.")
+				add_attack_logs(user,attacker,"Reflected [attacker]'s attack")
 
 				if(!reflecting)
 					reflecting = 1
