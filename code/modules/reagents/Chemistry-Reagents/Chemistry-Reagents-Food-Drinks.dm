@@ -1140,6 +1140,16 @@
 		return
 	M.heal_organ_damage(0.5 * removed, 0)
 	holder.remove_reagent("capsaicin", 10 * removed)
+	//VOREStation Edit
+	if(ishuman(M) && rand(1,10000) == 1)
+		var/mob/living/carbon/human/H = M
+		for(var/obj/item/organ/external/O in H.bad_external_organs)
+			if(O.status & ORGAN_BROKEN)
+				O.mend_fracture()
+				H.custom_pain("You feel the agonizing power of calcium mending your bones!",60)
+				H.AdjustWeakened(1)
+				break // Only mend one bone, whichever comes first in the list
+	//VOREStation Edit End
 
 /datum/reagent/drink/milk/cream
 	name = "Cream"

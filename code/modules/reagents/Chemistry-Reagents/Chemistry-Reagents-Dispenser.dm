@@ -16,6 +16,18 @@
 	reagent_state = SOLID
 	color = "#e9e6e4"
 
+//VOREStation Edit
+/datum/reagent/calcium/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	if(ishuman(M) && rand(1,10000) == 1)
+		var/mob/living/carbon/human/H = M
+		for(var/obj/item/organ/external/O in H.bad_external_organs)
+			if(O.status & ORGAN_BROKEN)
+				O.mend_fracture()
+				H.custom_pain("You feel the agonizing power of calcium mending your bones!",60)
+				H.AdjustWeakened(1)
+				break // Only mend one bone, whichever comes first in the list
+//VOREStation Edit End
+
 /datum/reagent/carbon
 	name = "Carbon"
 	id = "carbon"
