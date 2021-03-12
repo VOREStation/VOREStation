@@ -256,6 +256,7 @@
 		mannequin.dna = new /datum/dna(null)
 	mannequin.delete_inventory(TRUE)
 	dress_preview_mob(mannequin)
+	mannequin.update_transform() //VOREStation Edit to update size/shape stuff.
 	mannequin.toggle_tail(setting = TRUE)
 	mannequin.toggle_wing(setting = TRUE)
 	COMPILE_OVERLAYS(mannequin)
