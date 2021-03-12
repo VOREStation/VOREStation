@@ -41,12 +41,7 @@ jobs:
         run: |
           sudo dpkg --add-architecture i386
           sudo apt update || true
-<<<<<<< HEAD
-          sudo apt install libc6:i386 libgcc1:i386 libstdc++6:i386 libssl1.0.0:i386 zlib1g:i386
-          ldd librust_g.so
-=======
           sudo apt install libc6:i386 libgcc1:i386 libstdc++6:i386 libssl1.1:i386 zlib1g:i386
->>>>>>> 0f00c5b... Merge pull request #7975 from Atermonera/ci_fix
       - name: Unit Tests
         run: |
           tools/ci/install_byond.sh
