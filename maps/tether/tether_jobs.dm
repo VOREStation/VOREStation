@@ -150,7 +150,6 @@
 
 /decl/hierarchy/outfit/job/talon_pilot
 	name = OUTFIT_JOB_NAME("Talon Pilot")
-	id_pda_assignment = "Pilot"
 
 	id_slot = slot_wear_id
 	pda_type = null
