@@ -3197,6 +3197,7 @@
 #include "code\modules\persistence\datum\persistence_datum.dm"
 #include "code\modules\planet\planet.dm"
 #include "code\modules\planet\time.dm"
+#include "code\modules\planet\virgo3b_better_vr.dm"
 #include "code\modules\planet\virgo3b_vr.dm"
 #include "code\modules\planet\virgo4_vr.dm"
 #include "code\modules\planet\weather.dm"
@@ -3873,6 +3874,6 @@
 #include "maps\submaps\surface_submaps\plains\plains_areas.dm"
 #include "maps\submaps\surface_submaps\wilderness\wilderness.dm"
 #include "maps\submaps\surface_submaps\wilderness\wilderness_areas.dm"
-#include "maps\tether\tether.dm"
+#include "maps\tether_better\tether.dm"
 #include "maps\~map_system\maps.dm"
 // END_INCLUDE
