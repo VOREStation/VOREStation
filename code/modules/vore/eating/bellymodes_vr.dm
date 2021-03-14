@@ -55,8 +55,8 @@
 
 ///////////////////// Early Non-Mode Handling /////////////////////
 	var/list/EL = emote_lists[digest_mode]
-	if(LAZYLEN(EL) && touchable_mobs && next_emote <= world.time)
-		next_emote = world.time + emote_time
+	if(LAZYLEN(EL) && touchable_mobs && next_emote <= world.time && emote_active)
+		next_emote = world.time + (emote_time SECONDS)
 		for(var/mob/living/M in contents)
 			if(digest_mode == DM_DIGEST && !M.digestable)
 				continue // don't give digesty messages to indigestible people

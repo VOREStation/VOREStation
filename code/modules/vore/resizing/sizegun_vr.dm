@@ -24,7 +24,10 @@
 
 /obj/item/weapon/gun/energy/sizegun/New()
 	..()
-	verbs += /obj/item/weapon/gun/energy/sizegun/proc/select_size
+	if(istype(src, /obj/item/weapon/gun/energy/sizegun/admin))
+		verbs += /obj/item/weapon/gun/energy/sizegun/admin/select_size
+	else
+		verbs += /obj/item/weapon/gun/energy/sizegun/proc/select_size
 
 /obj/item/weapon/gun/energy/sizegun/attack_self(mob/user)
 	. = ..()
@@ -65,7 +68,7 @@
 
 	var/size_select = input("Put the desired size", "Set Size", size_set_to * 100) as num
 	size_set_to = max(1,size_select/100)		//No negative numbers
-	to_chat(usr, "<span class='notice'>You set the size to [size_set_to]%</span>")
+	to_chat(usr, "<span class='notice'>You set the size to [size_select]%</span>")
 
 //
 // Beams for size gun

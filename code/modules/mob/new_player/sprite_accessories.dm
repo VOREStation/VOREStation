@@ -1519,6 +1519,7 @@ shaved
 
 /datum/sprite_accessory/facial_hair
 	icon = 'icons/mob/Human_face.dmi'
+	color_blend_mode = ICON_ADD
 
 /datum/sprite_accessory/facial_hair/shaved
 	name = "Shaved"
@@ -1707,23 +1708,23 @@ shaved
 /datum/sprite_accessory/hair/skr_tentacle_veryshort
 	name = "Skrell Short Tentacles"
 	icon_state = "skrell_hair_short"
-	species_allowed = list(SPECIES_SKRELL)
+	species_allowed = list(SPECIES_SKRELL, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 	gender = MALE
 
 /datum/sprite_accessory/hair/skr_tentacle_short
 	name = "Skrell Average Tentacles"
 	icon_state = "skrell_hair_average"
-	species_allowed = list(SPECIES_SKRELL)
+	species_allowed = list(SPECIES_SKRELL, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 
 /datum/sprite_accessory/hair/skr_tentacle_average
 	name = "Skrell Long Tentacles"
 	icon_state = "skrell_hair_long"
-	species_allowed = list(SPECIES_SKRELL)
+	species_allowed = list(SPECIES_SKRELL, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 
 /datum/sprite_accessory/hair/skr_tentacle_verylong
 	name = "Skrell Very Long Tentacles"
 	icon_state = "skrell_hair_verylong"
-	species_allowed = list(SPECIES_SKRELL)
+	species_allowed = list(SPECIES_SKRELL, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 
 //Tajaran hairstyles
 /datum/sprite_accessory/hair/taj_ears
@@ -2004,6 +2005,8 @@ shaved
 	//Empty list is unrestricted. Should only restrict the ones that make NO SENSE on other species,
 	//like Tajaran inner-ear coloring overlay stuff.
 	species_allowed = list()
+
+	color_blend_mode = ICON_ADD
 
 	var/body_parts = list() //A list of bodyparts this covers, in organ_tag defines
 	//Reminder: BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN,BP_HEAD

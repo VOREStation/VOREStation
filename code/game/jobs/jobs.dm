@@ -11,6 +11,8 @@ var/const/ENGINEER			=(1<<6)
 var/const/ATMOSTECH			=(1<<7)
 var/const/AI				=(1<<8)
 var/const/CYBORG			=(1<<9)
+var/const/CLOWN				=(1<<13) //VOREStation Add
+var/const/MIME				=(1<<14) //VOREStation Add
 var/const/INTERN			=(1<<15) //VOREStation Add
 
 var/const/MEDSCI			=(1<<1)
@@ -47,9 +49,7 @@ var/const/CHAPLAIN			=(1<<10)
 var/const/ASSISTANT			=(1<<11)
 var/const/BRIDGE			=(1<<12)
 var/const/PILOT 			=(1<<13) //VOREStation Add
-var/const/CLOWN				=(1<<14) //VOREStation Add
-var/const/MIME				=(1<<15) //VOREStation Add
-var/const/ENTERTAINER		=(1<<16) //VOREStation Add
+var/const/ENTERTAINER		=(1<<14) //VOREStation Add
 
 //VOREStation Add
 var/const/TALON				=(1<<3)

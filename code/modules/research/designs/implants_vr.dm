@@ -10,7 +10,7 @@
 	name = "Size control implant"
 	id = "implant_size"
 	req_tech = list(TECH_MATERIAL = 3, TECH_BIO = 4, TECH_DATA = 4, TECH_ENGINEERING = 3)
-	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 2000, "silver" = 3000)
+	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 2000, MAT_COPPER = 2000, "silver" = 2000)
 	build_path = /obj/item/weapon/implanter/sizecontrol
 	sort_string = "MFAVB"
 

@@ -10,7 +10,7 @@
 /datum/gear/utility/implant/tracking
 	display_name = "implant, tracking"
 	path = /obj/item/weapon/implant/tracking/weak
-	cost = 10
+	cost = 0 //VOREStation Edit. Changed cost to 0
 
 // Remove these after generic implant has been in for awhile and everyone has had a reasonable period to copy their old descs.
 /datum/gear/utility/implant/dud1

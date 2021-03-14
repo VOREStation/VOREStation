@@ -14397,6 +14397,7 @@
 /obj/effect/floor_decal/corner/mauve/bordercorner2{
 	dir = 9
 	},
+/obj/fiftyspawner/copper,
 /turf/simulated/floor/tiled,
 /area/rnd/research)
 "axD" = (
@@ -15533,6 +15534,7 @@
 /obj/effect/floor_decal/corner/mauve/border{
 	dir = 1
 	},
+/obj/fiftyspawner/copper,
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/robotics)
 "azp" = (
@@ -32562,7 +32564,9 @@
 /area/tether/surfacebase/entertainment/backstage)
 "bee" = (
 /obj/structure/disposalpipe/segment,
-/obj/machinery/computer/arcade/orion_trail,
+/obj/machinery/computer/arcade/orion_trail{
+	dir = 4
+	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
 "bef" = (
@@ -33405,7 +33409,9 @@
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/tether/surfacebase/barbackmaintenance)
 "bfR" = (
-/obj/machinery/computer/arcade/battle,
+/obj/machinery/computer/arcade/battle{
+	dir = 1
+	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
 "bfS" = (

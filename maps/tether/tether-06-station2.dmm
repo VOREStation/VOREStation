@@ -7054,7 +7054,8 @@
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/science{
 	name = "Pathfinder";
-	req_access = list(62,43,67)
+	req_access = list(62,43,67);
+	req_one_access = newlist()
 	},
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable/green{
@@ -7268,6 +7269,7 @@
 /obj/item/weapon/stock_parts/matter_bin,
 /obj/item/weapon/stock_parts/matter_bin,
 /obj/item/weapon/stock_parts/manipulator,
+/obj/item/weapon/stock_parts/console_screen,
 /obj/item/weapon/circuitboard/partslathe,
 /turf/simulated/floor/plating,
 /area/storage/tech)
@@ -7289,6 +7291,7 @@
 	},
 /obj/item/weapon/stock_parts/manipulator,
 /obj/structure/table/rack/steel,
+/obj/item/weapon/stock_parts/console_screen,
 /obj/item/weapon/circuitboard/autolathe,
 /turf/simulated/floor/plating,
 /area/storage/tech)
@@ -10011,7 +10014,7 @@
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/large_escape_pod1)
-"oG" = (
+"oF" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8;
 	icon_state = "propulsion_r"
@@ -10019,7 +10022,7 @@
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/large_escape_pod1)
-"oH" = (
+"oG" = (
 /obj/structure/stairs/spawner/west,
 /turf/simulated/sky/virgo3b/west,
 /turf/simulated/floor/tiled/white,
@@ -11478,21 +11481,8 @@
 	dir = 8;
 	layer = 2.9
 	},
-/obj/item/clothing/head/helmet/space/skrell/black,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/suit/space/skrell/black,
-/obj/item/clothing/head/helmet/space/skrell/white,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/suit/space/skrell/white,
-/turf/simulated/floor/tiled/dark,
-/area/ai_monitored/storage/eva)
-"rN" = (
-/obj/structure/table/rack{
-	dir = 8;
-	layer = 2.9
-	},
-/obj/item/weapon/rig/breacher,
-/obj/item/clothing/mask/breath,
+/obj/item/weapon/tank/jetpack/carbondioxide,
+/obj/item/weapon/tank/jetpack/carbondioxide,
 /turf/simulated/floor/tiled/dark,
 /area/ai_monitored/storage/eva)
 "rO" = (
@@ -11655,6 +11645,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
+/obj/fiftyspawner/copper,
 /turf/simulated/floor/tiled,
 /area/ai_monitored/storage/eva)
 "sa" = (
@@ -12968,7 +12959,7 @@
 	dir = 8;
 	layer = 2.9
 	},
-/obj/item/weapon/tank/jetpack/carbondioxide,
+/obj/item/clothing/shoes/magboots,
 /obj/item/clothing/shoes/magboots,
 /turf/simulated/floor/tiled/dark,
 /area/ai_monitored/storage/eva)
@@ -28994,7 +28985,7 @@ vE
 wm
 ws
 xj
-oH
+oG
 vT
 aP
 aP
@@ -35653,7 +35644,7 @@ oY
 pE
 et
 oY
-rN
+rM
 qc
 sU
 tE
@@ -35937,7 +35928,7 @@ oD
 oE
 oE
 oE
-oG
+oF
 oY
 sW
 ef
