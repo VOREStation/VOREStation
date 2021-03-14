@@ -50,7 +50,7 @@
 
 
 //Darkside Incorperated synthetic augmentation list! Many current most used fuzzy and notsofuzzy races made into synths here.
-
+/* VORESTATION EDIT - These are defined in robolimbs_vr.dm, the definition here with the species cannot_use breaks the things. May as well comment them all out.
 /datum/robolimb/dsi_tajaran
 	company = "DSI - Tajaran"
 	desc = "This limb feels soft and fluffy, realistic design and squish. By Darkside Incorperated."
@@ -86,7 +86,7 @@
 
 /obj/item/weapon/disk/limb/dsi_lizard
 	company = "DSI - Lizard"
-/*
+
 /datum/robolimb/dsi_sergal
 	company = "DSI - Sergal"
 	desc = "This limb feels soft and fluffy, realistic design and toned muscle. By Darkside Incorperated."
@@ -156,7 +156,7 @@
 
 /obj/item/weapon/disk/limb/dsi_spider
 	company = "DSI - Vasilissan"
-*/
+
 /datum/robolimb/dsi_teshari
 	company = "DSI - Teshari"
 	desc = "This limb has a thin synthflesh casing with a few connection ports."
@@ -173,3 +173,4 @@
 
 /obj/item/weapon/disk/limb/dsi_teshari
 	company = "DSI - Teshari"
+*/
