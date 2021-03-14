@@ -71,8 +71,7 @@
 	vr_sprites = list(
 						"Acheron" = "mechoid-Medical",
 						"Shellguard Noble" = "Noble-MED",
-						"ZOOM-BA" = "zoomba-medical",
-						"Equidroid" = "equidroid-MED"
+						"ZOOM-BA" = "zoomba-medical"
 					 )
 
 /obj/item/weapon/robot_module/robot/medical/crisis
@@ -81,8 +80,7 @@
 						"Handy" = "handy-med",
 						"Acheron" = "mechoid-Medical",
 						"Shellguard Noble" = "Noble-MED",
-						"ZOOM-BA" = "zoomba-crisis",
-						"Equidroid" = "equidroid-MED"
+						"ZOOM-BA" = "zoomba-crisis"
 					 )
 
 /obj/item/weapon/robot_module/robot/clerical/butler
@@ -92,8 +90,7 @@
 						"Handy - Hydro" = "handy-hydro",
 						"Acheron" = "mechoid-Service",
 						"Shellguard Noble" = "Noble-SRV",
-						"ZOOM-BA" = "zoomba-service",
-						"Equidroid" = "equidroid-STD"
+						"ZOOM-BA" = "zoomba-service"
 					 )
 
 /obj/item/weapon/robot_module/robot/clerical/general
@@ -102,8 +99,7 @@
 						"Handy" = "handy-clerk",
 						"Acheron" = "mechoid-Service",
 						"Shellguard Noble" = "Noble-SRV",
-						"ZOOM-BA" = "zoomba-clerical",
-						"Equidroid" = "equidroid-STD"
+						"ZOOM-BA" = "zoomba-clerical"
 					 )
 
 /obj/item/weapon/robot_module/robot/janitor
@@ -112,8 +108,7 @@
 						"Handy" = "handy-janitor",
 						"Acheron" = "mechoid-Janitor",
 						"Shellguard Noble" = "Noble-CLN",
-						"ZOOM-BA" = "zoomba-janitor",
-						"Equidroid" = "equidroid-JNI"
+						"ZOOM-BA" = "zoomba-janitor"
 					 )
 
 /obj/item/weapon/robot_module/robot/security/general
@@ -122,8 +117,7 @@
 						"Handy" = "handy-sec",
 						"Acheron" = "mechoid-Security",
 						"Shellguard Noble" = "Noble-SEC",
-						"ZOOM-BA" = "zoomba-security",
-						"Equidroid" = "equidroid-SEC"
+						"ZOOM-BA" = "zoomba-security"
 					 )
 
 /obj/item/weapon/robot_module/robot/miner
@@ -132,8 +126,7 @@
 						"Handy" = "handy-miner",
 						"Acheron" = "mechoid-Miner",
 						"Shellguard Noble" = "Noble-DIG",
-						"ZOOM-BA" = "zoomba-miner",
-						"Equidroid" = "equidroid-CRG"
+						"ZOOM-BA" = "zoomba-miner"
 					 )
 
 /obj/item/weapon/robot_module/robot/standard
@@ -142,16 +135,14 @@
 						"Handy" = "handy-standard",
 						"Acheron" = "mechoid-Standard",
 						"Shellguard Noble" = "Noble-STD",
-						"ZOOM-BA" = "zoomba-standard",
-						"Equidroid" = "equidroid-STD"
+						"ZOOM-BA" = "zoomba-standard"
 					 )
 /obj/item/weapon/robot_module/robot/engineering/general
 	pto_type = PTO_ENGINEERING
 	vr_sprites = list(
 						"Acheron" = "mechoid-Engineering",
 						"Shellguard Noble" = "Noble-ENG",
-						"ZOOM-BA" = "zoomba-engineering",
-						"Equidroid" = "equidroid-ENG"
+						"ZOOM-BA" = "zoomba-engineering"
 					 )
 
 /obj/item/weapon/robot_module/robot/research
@@ -159,16 +150,14 @@
 	vr_sprites = list(
 						"Acheron" = "mechoid-Science",
 						"ZOOM-BA" = "zoomba-research",
-						"XI-GUS" = "spiderscience",
-						"Equidroid" = "equidroid-SCI"
+						"XI-GUS" = "spiderscience"
 					 )
 
 /obj/item/weapon/robot_module/robot/security/combat
 	pto_type = PTO_SECURITY
 	vr_sprites = list(
 						"Acheron" = "mechoid-Combat",
-						"ZOOM-BA" = "zoomba-combat",
-						"Equidroid" = "equidroid-CMB"
+						"ZOOM-BA" = "zoomba-combat"
 					 )
 
 /obj/item/weapon/robot_module/robot/knine
