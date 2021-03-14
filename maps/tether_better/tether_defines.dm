@@ -59,8 +59,8 @@
 
 	zlevel_datum_type = /datum/map_z_level/tether
 
-	lobby_icon = 'icons/misc/title_vr.dmi'
-	lobby_screens = list("tether2_night")
+	lobby_icon = 'icons/misc/title_vr_2.dmi'
+	lobby_screens = list("tether_perfect")
 	id_hud_icons = 'icons/mob/hud_jobs_vr.dmi'
 
 	holomap_smoosh = list(list(
@@ -71,8 +71,8 @@
 		Z_LEVEL_SPACE_MID,
 		Z_LEVEL_SPACE_HIGH))
 
-	station_name  = "NSB Adephagia"
-	station_short = "Tether"
+	station_name  = "NSB Twodephagia"
+	station_short = "Tether But Better"
 	dock_name     = "Virgo-3B Colony"
 	dock_type     = "surface"
 	boss_name     = "Central Command"

@@ -26,72 +26,35 @@ var/datum/planet/virgo3b_better/planet_virgo3b_better = null
 	sun_position = distance_from_noon / noon
 	sun_position = abs(sun_position - 1)
 
-	var/low_brightness = null
-	var/high_brightness = null
+	var/new_brightness = null
 
-	var/low_color = null
-	var/high_color = null
-	var/min = 0
+	var/new_color = null
 
 	switch(sun_position)
 		if(0 to 0.40) // Night
-			low_brightness = 0.2
-			low_color = "#000066"
-
-			high_brightness = 0.5
-			high_color = "#66004D"
-			min = 0
+			new_brightness = 0.8
+			new_color = "#DDBB22"
 
 		if(0.40 to 0.50) // Twilight
-			low_brightness = 0.6
-			low_color = "#66004D"
-
-			high_brightness = 0.8
-			high_color = "#CC3300"
-			min = 0.40
+			new_brightness = 1.0
+			new_color = "#EEDD55"
 
 		if(0.50 to 0.70) // Sunrise/set
-			low_brightness = 0.8
-			low_color = "#CC3300"
-
-			high_brightness = 0.9
-			high_color = "#FF9933"
-			min = 0.50
+			new_brightness = 1.3
+			new_color = "#FFFFBB"
 
 		if(0.70 to 1.00) // Noon
-			low_brightness = 0.9
-			low_color = "#DDDDDD"
+			new_brightness = 1.5
+			new_color = "#FFFFFF"
 
-			high_brightness = 1.0
-			high_color = "#FFFFFF"
-			min = 0.70
-
-	var/interpolate_weight = (abs(min - sun_position)) * 4
 	var/weather_light_modifier = 1
 	if(weather_holder && weather_holder.current_weather)
 		weather_light_modifier = weather_holder.current_weather.light_modifier
 
-	var/new_brightness = (LERP(low_brightness, high_brightness, interpolate_weight) ) * weather_light_modifier
+	new_brightness = new_brightness * weather_light_modifier
 
-	var/new_color = null
 	if(weather_holder && weather_holder.current_weather && weather_holder.current_weather.light_color)
 		new_color = weather_holder.current_weather.light_color
-	else
-		var/list/low_color_list = hex2rgb(low_color)
-		var/low_r = low_color_list[1]
-		var/low_g = low_color_list[2]
-		var/low_b = low_color_list[3]
-
-		var/list/high_color_list = hex2rgb(high_color)
-		var/high_r = high_color_list[1]
-		var/high_g = high_color_list[2]
-		var/high_b = high_color_list[3]
-
-		var/new_r = LERP(low_r, high_r, interpolate_weight)
-		var/new_g = LERP(low_g, high_g, interpolate_weight)
-		var/new_b = LERP(low_b, high_b, interpolate_weight)
-
-		new_color = rgb(new_r, new_g, new_b)
 
 	spawn(1)
 		update_sun_deferred(2, new_brightness, new_color)
@@ -115,13 +78,7 @@ var/datum/planet/virgo3b_better/planet_virgo3b_better = null
 		)
 	roundstart_weather_chances = list(
 		WEATHER_CLEAR		= 30,
-		WEATHER_OVERCAST	= 30,
-		WEATHER_LIGHT_SNOW	= 20,
-		WEATHER_SNOW		= 5,
-		WEATHER_BLIZZARD	= 5,
-		WEATHER_RAIN		= 5,
-		WEATHER_STORM		= 2.5,
-		WEATHER_HAIL		= 2.5
+		WEATHER_OVERCAST	= 5
 		)
 
 /datum/weather/virgo3b_better
@@ -133,7 +90,7 @@ var/datum/planet/virgo3b_better/planet_virgo3b_better = null
 	name = "clear"
 	transition_chances = list(
 		WEATHER_CLEAR = 60,
-		WEATHER_OVERCAST = 40
+		WEATHER_OVERCAST = 20
 		)
 	transition_messages = list(
 		"The sky clears up.",
@@ -145,14 +102,10 @@ var/datum/planet/virgo3b_better/planet_virgo3b_better = null
 
 /datum/weather/virgo3b_better/overcast
 	name = "overcast"
-	light_modifier = 0.8
 	transition_chances = list(
 		WEATHER_CLEAR = 25,
 		WEATHER_OVERCAST = 50,
-		WEATHER_LIGHT_SNOW = 10,
-		WEATHER_SNOW = 5,
-		WEATHER_RAIN = 5,
-		WEATHER_HAIL = 5
+		WEATHER_RAIN = 10
 		)
 	observed_message = "It is overcast, all you can see are clouds."
 	transition_messages = list(
@@ -256,10 +209,7 @@ var/datum/planet/virgo3b_better/planet_virgo3b_better = null
 
 	transition_chances = list(
 		WEATHER_OVERCAST = 25,
-		WEATHER_LIGHT_SNOW = 10,
-		WEATHER_RAIN = 50,
-		WEATHER_STORM = 10,
-		WEATHER_HAIL = 5
+		WEATHER_CLEAR = 25
 		)
 	observed_message = "It is raining."
 	transition_messages = list(
