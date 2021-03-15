@@ -47,7 +47,6 @@
 	warmup_time = 10	//want some warmup time so people can cancel.
 	destination_tags = list(
 		"trade_dock",
-		"tether_dockarm_d1l",
 		"aerostat_south",
 		"beach_e",
 		"beach_c",
@@ -57,18 +56,18 @@
 	move_direction = WEST
 
 //////////////////////////////////////////////////////////////
-// Tether Shuttle
-/datum/shuttle/autodock/ferry/tether_backup
-	name = "Tether Backup"
+// Backup Shuttle
+/datum/shuttle/autodock/ferry/junglebase_backup
+	name = "Backup Shuttle"
 	location = FERRY_LOCATION_OFFSITE //Offsite is the surface hangar
 	warmup_time = 5
 	move_time = 45
-	landmark_offsite = "tether_backup_low"
-	landmark_station = "tether_dockarm_d1a3"
-	landmark_transition = "tether_backup_transit"
-	shuttle_area = /area/shuttle/tether
+	landmark_offsite = "backup_underbrush_pad"
+	landmark_station = "junglebase_backup_pad"
+	landmark_transition = "junglebase_backup_transit"
+	shuttle_area = /area/shuttle/junglebase
 	//crash_areas = list(/area/shuttle/tether/crash1, /area/shuttle/tether/crash2)
-	docking_controller_tag = "tether_shuttle"
+	docking_controller_tag = "backup_shuttle"
 	move_direction = NORTH
 
 //////////////////////////////////////////////////////////////
@@ -83,19 +82,12 @@
 		"merc_base",
 		"aerostat_south",
 		"beach_e",
-		"beach_nw",
-		"tether_solars_ne",
-		"tether_solars_sw",
-		"tether_mine_nw",
-		"tether_space_NE",
-		"tether_space_SE",
-		"tether_space_SW",
-		"tether_dockarm_d2l" //End of right docking arm
+		"beach_nw"
 		)
 	docking_controller_tag = "merc_shuttle"
 	announcer = "Automated Traffic Control"
-	arrival_message = "Attention. An unregistered vessel is approaching Virgo-3B."
-	departure_message = "Attention. A unregistered vessel is now leaving Virgo-3B."
+	arrival_message = "Attention. An unregistered vessel is approaching Torris Shuttle Pad."
+	departure_message = "Attention. A unregistered vessel is now leaving Torris Shuttle Pad."
 	defer_initialisation = TRUE
 	move_direction = WEST
 
@@ -114,19 +106,12 @@
 		"ninja_base",
 		"aerostat_northeast",
 		"beach_e",
-		"beach_nw",
-		"tether_solars_ne",
-		"tether_solars_sw",
-		"tether_mine_nw",
-		"tether_space_NE",
-		"tether_space_SE",
-		"tether_space_SW",
-		"tether_dockarm_d1a3" //Inside of left dockarm
+		"beach_nw"
 		)
 	docking_controller_tag = "ninja_shuttle"
 	announcer = "Automated Traffic Control"
-	arrival_message = "Attention. An unregistered vessel is approaching Virgo-3B."
-	departure_message = "Attention. A unregistered vessel is now leaving Virgo-3B."
+	arrival_message = "Attention. An unregistered vessel is approaching Torris Shuttle Pad."
+	departure_message = "Attention. A unregistered vessel is now leaving Torris Shuttle Pad."
 	defer_initialisation = TRUE
 	move_direction = NORTH
 
@@ -145,19 +130,12 @@
 		"skipjack_base",
 		"aerostat_south",
 		"beach_e",
-		"beach_nw",
-		"tether_solars_ne",
-		"tether_solars_sw",
-		"tether_mine_nw",
-		"tether_space_NE",
-		"tether_space_SE",
-		"tether_space_SW",
-		"tether_dockarm_d1l" //End of left dockarm
+		"beach_nw"
 		)
 	//docking_controller_tag = ??? doesn't have one?
 	announcer = "Automated Traffic Control"
-	arrival_message = "Attention. An unregistered vessel is approaching Virgo-3B."
-	departure_message = "Attention. A unregistered vessel is now leaving Virgo-3B."
+	arrival_message = "Attention. An unregistered vessel is approaching Torris Shuttle Pad."
+	departure_message = "Attention. A unregistered vessel is now leaving Torris Shuttle Pad."
 	defer_initialisation = TRUE
 	move_direction = NORTH
 
@@ -176,19 +154,12 @@
 		"specops_base",
 		"aerostat_south",
 		"beach_e",
-		"beach_nw",
-		"tether_solars_ne",
-		"tether_solars_sw",
-		"tether_mine_nw",
-		"tether_space_NE",
-		"tether_space_SE",
-		"tether_space_SW",
-		"tether_dockarm_d1l" //End of left dockarm
+		"beach_nw"
 		)
 	docking_controller_tag = "ert1_control"
 	announcer = "Automated Traffic Control"
-	arrival_message = "Attention. An NT support vessel is approaching Virgo-3B."
-	departure_message = "Attention. A NT support vessel is now leaving Virgo-3B."
+	arrival_message = "Attention. An NT support vessel is approaching Torris Shuttle Pad."
+	departure_message = "Attention. A NT support vessel is now leaving Torris Shuttle Pad."
 	defer_initialisation = TRUE
 	move_direction = WEST
 
@@ -212,7 +183,7 @@
 	..()
 
 //////////////////////////////////////////////////////////////
-//TFF 12/4/20 Surface Mining Outpost Shuttle
+// Surface Mining Outpost Shuttle
 
 /datum/shuttle/autodock/ferry/surface_mining_outpost
 	name = "Mining Outpost"

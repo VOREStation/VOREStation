@@ -36,27 +36,27 @@
 	autolinkers = list("service", "explorer")
 
 // Telecommunications Satellite
-/area/tether/surfacebase/tcomms
+/area/junglebase/tcomms
 	name = "\improper Telecomms"
 	ambience = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg')
 
-/area/tether/surfacebase/tcomms/entrance
+/area/junglebase/tcomms/entrance
 	name = "\improper Telecomms Teleporter"
 	icon_state = "tcomsatentrance"
 
-/area/tether/surfacebase/tcomms/foyer
+/area/junglebase/tcomms/foyer
 	name = "\improper Telecomms Foyer"
 	icon_state = "tcomsatfoyer"
 
-/area/tether/surfacebase/tcomms/storage
+/area/junglebase/tcomms/storage
 	name = "\improper Telecomms Storage"
 	icon_state = "tcomsatwest"
 
-/area/tether/surfacebase/tcomms/computer
+/area/junglebase/tcomms/computer
 	name = "\improper Telecomms Control Room"
 	icon_state = "tcomsatcomp"
 
-/area/tether/surfacebase/tcomms/chamber
+/area/junglebase/tcomms/chamber
 	name = "\improper Telecomms Central Compartment"
 	icon_state = "tcomsatcham"
 	flags = BLUE_SHIELDED

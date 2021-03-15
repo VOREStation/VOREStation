@@ -1,39 +1,40 @@
 //Simulated
-VIRGO3B_TURF_CREATE(/turf/simulated/open)
-/turf/simulated/open/virgo3b
+TORRIS_TURF_CREATE(/turf/simulated/open)
+/turf/simulated/open/torris
 	edge_blending_priority = 0.5 //Turfs which also have e_b_p and higher than this will plop decorative edges onto this turf
-/turf/simulated/open/virgo3b/New()
+/turf/simulated/open/torris/New()
 	..()
 	if(outdoors)
 		SSplanets.addTurf(src)
 
-VIRGO3B_TURF_CREATE(/turf/simulated/floor)
+TORRIS_TURF_CREATE(/turf/simulated/floor)
 
-/turf/simulated/floor/virgo3b_indoors
-	VIRGO3B_SET_ATMOS
-/turf/simulated/floor/virgo3b_indoors/update_graphic(list/graphic_add = null, list/graphic_remove = null)
+/turf/simulated/floor/torris_indoors
+	TORRIS_SET_ATMOS
+/turf/simulated/floor/torris_indoors/update_graphic(list/graphic_add = null, list/graphic_remove = null)
 	return 0
 
-VIRGO3B_TURF_CREATE(/turf/simulated/floor/reinforced)
+TORRIS_TURF_CREATE(/turf/simulated/floor/reinforced)
 
-VIRGO3B_TURF_CREATE(/turf/simulated/floor/tiled/steel_dirty)
+TORRIS_TURF_CREATE(/turf/simulated/floor/tiled/steel_dirty)
 
-VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/dirt)
-/turf/simulated/floor/outdoors/dirt/virgo3b
-	icon = 'icons/turf/flooring/asteroid.dmi'
-	icon_state = "asteroid"
+TORRIS_TURF_CREATE(/turf/simulated/floor/outdoors/dirt)
 
-VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/rocks)
+/turf/simulated/floor/outdoors/dirt/torris // Commenting out the below, no real need for the custom asteroid turf for jungles.
+	//icon = 'icons/turf/flooring/asteroid.dmi'
+	//icon_state = "asteroid"
 
-VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/grass/sif)
-/turf/simulated/floor/outdoors/grass/sif
+TORRIS_TURF_CREATE(/turf/simulated/floor/outdoors/rocks)
+
+TORRIS_TURF_CREATE(/turf/simulated/floor/outdoors/grass/heavy)
+/turf/simulated/floor/outdoors/grass/heavy
 	turf_layers = list(
-		/turf/simulated/floor/outdoors/rocks/virgo3b,
-		/turf/simulated/floor/outdoors/dirt/virgo3b
+		/turf/simulated/floor/outdoors/rocks/torris,
+		/turf/simulated/floor/outdoors/dirt/torris
 		)
 
 // Overriding these for the sake of submaps that use them on other planets.
-// This means that mining on tether base and space is oxygen-generating, but solars and mining should use the virgo3b subtype
+// This means that mining on tether base and space is oxygen-generating, but solars and mining should use the torris subtype
 /turf/simulated/mineral
 	oxygen = MOLES_O2STANDARD
 	nitrogen = MOLES_N2STANDARD
@@ -56,10 +57,10 @@ VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/grass/sif)
 	nitrogen = 0
 	temperature	= TCMB
 
-VIRGO3B_TURF_CREATE(/turf/simulated/mineral)
-VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor)
+TORRIS_TURF_CREATE(/turf/simulated/mineral)
+TORRIS_TURF_CREATE(/turf/simulated/mineral/floor)
 	//This proc is responsible for ore generation on surface turfs
-/turf/simulated/mineral/virgo3b/make_ore(var/rare_ore)
+/turf/simulated/mineral/torris/make_ore(var/rare_ore)
 	if(mineral || ignore_mapgen)
 		return
 	var/mineral_name
@@ -92,7 +93,7 @@ VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor)
 		UpdateMineral()
 	update_icon()
 
-/turf/simulated/mineral/virgo3b/rich/make_ore(var/rare_ore)
+/turf/simulated/mineral/torris/rich/make_ore(var/rare_ore)
 	if(mineral || ignore_mapgen)
 		return
 	var/mineral_name
@@ -126,7 +127,7 @@ VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor)
 	update_icon()
 
 //Unsimulated
-/turf/unsimulated/mineral/virgo3b
+/turf/unsimulated/mineral/torris
 	blocks_air = TRUE
 
 /turf/unsimulated/floor/steel
@@ -181,29 +182,29 @@ VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor)
 
 //Sky stuff!
 // A simple turf to fake the appearance of flying.
-/turf/simulated/sky/virgo3b
-	color = "#FFBBBB"
+/turf/simulated/sky/torris
+	color = "#224105"
 
-/turf/simulated/sky/virgo3b/Initialize()
+/turf/simulated/sky/torris/Initialize()
 	SSplanets.addTurf(src)
-	set_light(2, 2, "#FFBBBB")
+	set_light(2, 2, "#3e7708")
 
-/turf/simulated/sky/virgo3b/north
+/turf/simulated/sky/torris/north
 	dir = NORTH
-/turf/simulated/sky/virgo3b/south
+/turf/simulated/sky/torris/south
 	dir = SOUTH
-/turf/simulated/sky/virgo3b/east
+/turf/simulated/sky/torris/east
 	dir = EAST
-/turf/simulated/sky/virgo3b/west
+/turf/simulated/sky/torris/west
 	dir = WEST
 
-/turf/simulated/sky/virgo3b/moving
+/turf/simulated/sky/torris/moving
 	icon_state = "sky_fast"
-/turf/simulated/sky/virgo3b/moving/north
+/turf/simulated/sky/torris/moving/north
 	dir = NORTH
-/turf/simulated/sky/virgo3b/moving/south
+/turf/simulated/sky/torris/moving/south
 	dir = SOUTH
-/turf/simulated/sky/virgo3b/moving/east
+/turf/simulated/sky/torris/moving/east
 	dir = EAST
-/turf/simulated/sky/virgo3b/moving/west
+/turf/simulated/sky/torris/moving/west
 	dir = WEST

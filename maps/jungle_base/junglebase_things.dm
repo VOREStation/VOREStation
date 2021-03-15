@@ -1,9 +1,9 @@
 //Special map objects
-/obj/effect/landmark/map_data/virgo3b
+/obj/effect/landmark/map_data/torris
     height = 7
 
-/obj/turbolift_map_holder/tether
-	name = "Tether Climber"
+/obj/turbolift_map_holder/junglebase
+	name = "Turbolift Map Object"
 	depth = 7
 	lift_size_x = 3
 	lift_size_y = 3
@@ -11,13 +11,11 @@
 	wall_type = null // Don't make walls
 
 	areas_to_use = list(
-		/area/turbolift/t_surface/level1,
-		/area/turbolift/t_surface/level2,
-		/area/turbolift/t_surface/level3,
-		/area/turbolift/tether/transit,
-		/area/turbolift/t_station/level1,
-		/area/turbolift/t_station/level2,
-		/area/turbolift/t_station/level3
+		/area/turbolift/junglebase/undermine,
+		/area/turbolift/junglebase/underbrush,
+		/area/turbolift/junglebase/secondaryplatform,
+		/area/turbolift/junglebase/primaryplatform,
+		/area/turbolift/junglebase/shuttlepad
 		)
 
 /datum/turbolift
@@ -118,27 +116,26 @@
 
 // The tram's electrified maglev tracks
 /turf/simulated/floor/maglev
-	name = "maglev track"
-	desc = "Magnetic levitation tram tracks. Caution! Electrified!"
+	name = "maglev rail"
+	desc = "Magnetic levitation tram rail. Caution! Electrified!"
 	icon = 'icons/turf/flooring/maglevs.dmi'
 	icon_state = "maglevup"
 
-	var/area/shock_area = /area/tether/surfacebase/tram
+	var/area/shock_area = /area/junglebase/tram
 
 /turf/simulated/floor/maglev/Initialize()
 	. = ..()
 	shock_area = locate(shock_area)
 
-// Walking on maglev tracks will shock you! Horray!
+// Touching or walking on Tram Maglev Rails will shock you, period.
 /turf/simulated/floor/maglev/Entered(var/atom/movable/AM, var/atom/old_loc)
-	if(isliving(AM) && prob(50))
-		track_zap(AM)
+	track_zap(AM)
 /turf/simulated/floor/maglev/attack_hand(var/mob/user)
-	if(prob(75))
-		track_zap(user)
+	track_zap(user)
 /turf/simulated/floor/maglev/proc/track_zap(var/mob/living/user)
-	if (!istype(user)) return
-	if (electrocute_mob(user, shock_area, src))
+	if(!istype(user)) 
+		return
+	if(electrocute_mob(user, shock_area, src, 6.0)) // Very, very, very high-powered rails. You're dead, kiddo. :blep:
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		s.set_up(5, 1, src)
 		s.start()
@@ -191,6 +188,7 @@
 	on_store_visible_message_2 = "to the colony"
 	time_till_despawn = 10 SECONDS
 	spawnpoint_type = /datum/spawnpoint/tram
+
 /obj/machinery/cryopod/robot/door/tram/process()
 	if(emergency_shuttle.online() || emergency_shuttle.returned())
 		// Transform into a door!  But first despawn anyone inside
@@ -287,7 +285,7 @@ var/global/list/latejoin_tram   = list()
 //Airlock antitox vendor
 /obj/machinery/vending/wallmed_airlock
 	name = "Airlock NanoMed"
-	desc = "Wall-mounted Medical Equipment dispenser. This limited-use version dispenses antitoxins with mild painkillers for surface EVAs."
+	desc = "Wall-mounted Medical Equipment dispenser. This limited-use version dispenses antitoxins with mild painkillers."
 	icon_state = "wallmed"
 	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
 	products = list(/obj/item/weapon/reagent_containers/pill/airlock = 20)

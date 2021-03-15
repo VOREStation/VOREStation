@@ -1,25 +1,25 @@
 //Debug areas
-/area/tether/surfacebase
-	name = "Tether Debug Surface"
+/area/junglebase
+	name = "junglebase Debug Surface"
 
-/area/tether/transit
-	name = "Tether Debug Transit"
+/area/junglebase/transit
+	name = "junglebase Debug Transit"
 	requires_power = 0
 
-/area/tether/space
-	name = "Tether Debug Space"
+/area/junglebase/space
+	name = "junglebase Debug Space"
 	requires_power = 0
 
-// Tether Areas itself
-/area/tether/surfacebase/tether
+// Junglebase Areas itself
+/area/junglebase/junglebase
 	icon = 'icons/turf/areas_vr.dmi'
-	icon_state = "tether1"
-/area/tether/transit/tether
+	icon_state = "junglebase1"
+/area/junglebase/transit/junglebase
 	icon = 'icons/turf/areas_vr.dmi'
-	icon_state = "tether2"
-/area/tether/space/tether
+	icon_state = "junglebase2"
+/area/junglebase/space/junglebase
 	icon = 'icons/turf/areas_vr.dmi'
-	icon_state = "tether3"
+	icon_state = "junglebase3"
 
 // Elevator areas.
 /area/turbolift
@@ -29,49 +29,39 @@
 
 	requires_power = FALSE
 
-/area/turbolift/tether/transit
-	name = "tether (midway)"
-	lift_floor_label = "Tether Midpoint"
-	lift_floor_name = "Midpoint"
-	lift_announce_str = "Arriving at tether midway point."
-	delay_time = 5 SECONDS
+/area/turbolift/junglebase/undermine
+	name = "Undermine"
+	lift_floor_label = "Undermine"
+	lift_floor_name = "Underground Mining Area"
+	lift_announce_str = "Arriving at the Undermine. Ensure you are prepared for the temperatures."
+	base_turf = /turf/simulated/floor/plating
+	delay_time = 30 SECONDS // Very long time to get to/from this level. TODO: Elevator temporary animation.
 
-/area/turbolift/t_surface/level1
-	name = "surface (level 1)"
-	lift_floor_label = "Surface 1"
-	lift_floor_name = "Tram, Dorms, Mining, Surf. EVA"
-	lift_announce_str = "Arriving at Base Level 1."
+/area/turbolift/junglebase/underbrush
+	name = "Underbrush/Ground Level"
+	lift_floor_label = "Underbrush"
+	lift_floor_name = "Surface Access, Surface Security Outpost, Vehicle Storage"
+	lift_announce_str = "Arriving at Ground Level. Be wary of the wildlife."
 	base_turf = /turf/simulated/floor/plating
 
-/area/turbolift/t_surface/level2
-	name = "surface (level 2)"
-	lift_floor_label = "Surface 2"
-	lift_floor_name = "Atmos, Chapel, Maintenance"
-	lift_announce_str = "Arriving at Base Level 2."
+/area/turbolift/junglebase/secondaryplatform
+	name = "Civilian Platform, Recreational Level"
+	lift_floor_label = "Lower Platform, Civilian Section"
+	lift_floor_name = "Dorms, Bar, Tram"
+	lift_announce_str = "Arriving at the Civilian Platform Level. Mind the catwalks, and Tram is to your North."
 
-/area/turbolift/t_surface/level3
-	name = "surface (level 3)"
-	lift_floor_label = "Surface 3"
-	lift_floor_name = "Bridge, Science, Bar, Pool"
-	lift_announce_str = "Arriving at Base Level 3."
+/area/turbolift/junglebase/primaryplatform
+	name = "Primary Level"
+	lift_floor_label = "Primary Platform"
+	lift_floor_name = "Research, Security, Brig, Atmospherics, Cargo/Mining"
+	lift_announce_str = "Arriving at Primary Research Platform. Research is to your North, Mining South. Mind the catwalks."
 
-/area/turbolift/t_station/level1
-	name = "asteroid (level 1)"
-	lift_floor_label = "Asteroid 1"
-	lift_floor_name = "Eng, Secondary Bridge, Park, Cryo, Visitor Offices"
-	lift_announce_str = "Arriving at Station Level 1."
-
-/area/turbolift/t_station/level2
-	name = "asteroid (level 2)"
-	lift_floor_label = "Asteroid 2"
-	lift_floor_name = "Exploration, AI Core, EVA Gear"
-	lift_announce_str = "Arriving at Station Level 2."
-
-/area/turbolift/t_station/level3
-	name = "asteroid (level 3)"
-	lift_floor_label = "Asteroid 3"
-	lift_floor_name = "Medical, Security, Cargo"
-	lift_announce_str = "Arriving at Station Level 3."
+/area/turbolift/junglebase/shuttlepad
+	name = "Shuttlepad"
+	lift_floor_label = "Shuttlepad"
+	lift_floor_name = "Shuttle Pad, Docking"
+	lift_announce_str = "Arriving at Shuttlepad. Mind the exhaust, and stand well clear of landing platforms."
+	delay_time = 10 SECONDS
 
 /area/vacant/vacant_restaurant_upper
 	name = "\improper Vacant Restaurant"
@@ -148,150 +138,96 @@
 // Surface Base Z Levels
 //
 
-/area/tether/surfacebase
+/area/junglebase
 	icon = 'icons/turf/areas_vr.dmi'
 
-
-/area/tether/surfacebase/outside
-	name = "Outside - Surface"
-	sound_env = MOUNTAINS
-/area/tether/surfacebase/outside/outside1
-	icon_state = "outside1"
-/area/tether/surfacebase/outside/outside2
-	icon_state = "outside2"
-/area/tether/surfacebase/outside/outside3
-	icon_state = "outside3"
-
-/area/tether/surfacebase/outside/empty
-	name = "Outside - Empty Area"
-
-/area/tether/surfacebase/outside/wilderness
-	name = "Outside - Wilderness"
-	icon_state = "invi"
-	forced_ambience = list('sound/music/Sacred_Grove.ogg')
-
-/area/tether/surfacebase/temple
-	name = "Outside - Wilderness" // ToDo: Make a way to hide spoiler areas off the list of areas ghosts can jump to.
-	icon_state = "red"
-
-/area/tether/surfacebase/crash
-	name = "Outside - Wilderness" // ToDo: Make a way to hide spoiler areas off the list of areas ghosts can jump to.
+/area/junglebase/vehicle_storage
+	name = "\improper Vehicle Storage"
 	icon_state = "yellow"
 
-/area/tether/surfacebase/tram
+/area/junglebase/gate_control
+	name = "\improper Gate Control"
+	icon_state = "security"
+
+/area/junglebase/exterior
+	name = "Outside - Surface"
+	sound_env = MOUNTAINS
+/area/junglebase/exterior/exterior1
+	icon_state = "outside1"
+/area/junglebase/exterior/exterior2
+	icon_state = "outside2"
+/area/junglebase/exterior/exterior3
+	icon_state = "outside3"
+
+/area/junglebase/exterior/empty
+	name = "Outside - Empty Area"
+
+/area/junglebase/exterior/temple
+	name = "Outside - Wilderness"
+	icon_state = "red"
+
+/area/junglebase/exterior/crash
+	name = "Outside - Wilderness"
+	icon_state = "yellow"
+
+/area/junglebase/tram
 	name = "\improper Tram Station"
 	icon_state = "dk_yellow"
 
-/area/tether/surfacebase/surface_one_hall
-	name = "\improper First Floor Hallway"
+/area/junglebase/hallway/civilian_platform_hall
+	name = "\improper Civilian Platform Internal Hallway"
 	icon_state = "dk_yellow"
-/area/tether/surfacebase/surface_two_hall
-	name = "\improper Second Floor Hallway"
-	icon_state = "dk_yellow"
-/area/tether/surfacebase/surface_three_hall
-	name = "\improper Third Floor Hallway"
+/area/junglebase/hallway/research_platform_hall
+	name = "\improper Research Platform Hallway"
 	icon_state = "dk_yellow"
 
-/area/tether/surfacebase/north_stairs_one
-	name = "\improper North Stairwell First Floor"
-	icon_state = "dk_yellow"
-/area/tether/surfacebase/north_staires_two
-	name = "\improper North Stairwell Second Floor"
-	icon_state = "dk_yellow"
-/area/tether/surfacebase/north_stairs_three
-	name = "\improper North Stairwell Third Floor"
-	icon_state = "dk_yellow"
-
-/area/tether/surfacebase/public_garden_one
-	name = "\improper Public Garden First Floor"
-	icon_state = "green"
-/area/tether/surfacebase/public_garden_two
-	name = "\improper Public Garden Second Floor"
-	icon_state = "green"
-/area/tether/surfacebase/public_garden_three
-	name = "\improper Public Garden Third Floor"
-	icon_state = "green"
-/area/tether/surfacebase/public_garden
+/area/junglebase/civilian/public_garden
 	name = "\improper Public Garden"
 	icon_state = "purple"
-/area/tether/surfacebase/fish_farm
+/area/junglebase/civilian/fish_farm
 	name = "\improper Fish Farm"
 	icon_state = "red"
-/area/tether/surfacebase/bar_backroom
+/area/junglebase/civilian/bar_backroom
 	name = "\improper Bar Backroom"
 	icon_state = "red"
 	sound_env = SMALL_SOFTFLOOR
-/area/tether/surfacebase/servicebackroom
+/area/junglebase/civilian/servicebackroom
 	name = "\improper Service Block Backroom"
 	icon_state = "red"
-/area/tether/surfacebase/barbackmaintenance
+/area/junglebase/civilian/barbackmaintenance
 	name = "\improper Bar Back Maintenance"
 	icon_state = "red"
 
-/area/tether/surfacebase/public_garden_lg
+/area/junglebase/civilian/public_garden_lg
 	name = "\improper Public Garden Looking Glass"
 	icon_state = "green"
 
-// /area/tether/surfacebase/east_stairs_one //This is just part of a lower hallway
-
-/area/tether/surfacebase/east_stairs_two
+/area/junglebase/stairwells/east_stairs_two
 	name = "\improper East Stairwell Second Floor"
 	icon_state = "dk_yellow"
-/area/vacant/vacant_site/east
-	name = "\improper East Base Vacant Site"
-	flags = null
-/area/vacant/vacant_library
-	name = "\improper Atrium Construction Site"
-/area/vacant/vacant_bar
-	name = "\improper Vacant Bar"
-/area/vacant/vacant_bar_upper
-	name = "\improper Upper Vacant Bar"
-/area/vacant/vacant_site/gateway
-	name = "\improper Vacant Prep Area"
-/area/vacant/vacant_site/gateway/lower
-	name = "\improper Lower Vacant Prep Area"
-//TFF 5/4/20 - Mining Ops move	TODO Change all Vacant areas to construction_site per vermin event location announcement.
-/area/construction/vacant_mining_ops
-	name = "\improper Vacant Mining Operations"
 
-// /area/tether/surfacebase/east_stairs_three //This is just part of an upper hallway
-
-/area/tether/surfacebase/emergency_storage
+/area/junglebase/emergency_storage
 	icon_state = "emergencystorage"
-/area/tether/surfacebase/emergency_storage/panic_shelter
+/area/junglebase/emergency_storage/panic_shelter
 	name = "\improper Panic Shelter Emergency Storage"
-/area/tether/surfacebase/emergency_storage/rnd
+/area/junglebase/emergency_storage/rnd
 	name = "\improper RnD Emergency Storage"
-/area/tether/surfacebase/emergency_storage/atmos
+/area/junglebase/emergency_storage/atmos
 	name = "\improper Atmospherics Emergency Storage"
-/area/tether/surfacebase/emergency_storage/atrium
-	name = "\improper Atrium Emergency Storage"
 
-//TFF 7/4/20 - New areas for Surface Cargo bits as well as the Mining Outpost. Some former ones deleted. Others renamed.
-// Surface Cargo/Mining EVA/Warehouse/Mining Outpost adadditions
-/area/tether/surfacebase/cargo
-	name = "Surface Cargo Foyer"
-	icon = 'icons/turf/areas.dmi'
-	icon_state = "quartstorage"
-/area/tether/surfacebase/cargo/mining	//TODO: Change to medical airlock access
-	name = "\improper Mining Equipment Storage"
+// Cargo/Mining Areas
+/area/junglebase/cargo
+	name = "\improper Cargo"
+
+/area/junglebase/mining_main
 	icon_state = "outpost_mine_main"
-/area/tether/surfacebase/cargo/mining/airlock	//TODO: Change to medical airlock
-	name = "\improper Mining Airlock"
-/area/tether/surfacebase/cargo/warehouse
-	name = "\improper Surface Cargo Warehouse"
-/area/tether/surfacebase/cargo/office
-	name = "\improper Surface Cargo Office"
-	lightswitch = 0
-/area/tether/surfacebase/mining_main
-	icon_state = "outpost_mine_main"
-/area/tether/surfacebase/mining_main/eva
+/area/junglebase/mining_main/eva
 	name = "\improper Mining EVA"
-/area/tether/surfacebase/mining_main/external	//TODO: repath for medical move
+/area/junglebase/mining_main/external	//TODO: repath for medical move
 	name = "\improper Mining External"
-/area/tether/surfacebase/mining_main/break_room
+/area/junglebase/mining_main/break_room
 	name = "\improper Mining Crew Area"
-/area/tether/surfacebase/mining_main/bathroom
+/area/junglebase/mining_main/bathroom
 	name = "\improper Mining Bathroom"
 /area/outpost/mining_main/hangar
 	name = "\improper Mining Outpost Shuttle Hangar"
@@ -303,155 +239,64 @@
 // Mining Underdark
 /area/mine/unexplored/underdark
 	name = "\improper Mining Underdark"
-	base_turf = /turf/simulated/mineral/floor/virgo3b
+	base_turf = /turf/simulated/mineral/floor/torris
 /area/mine/explored/underdark
 	name = "\improper Mining Underdark"
-	base_turf = /turf/simulated/mineral/floor/virgo3b
+	base_turf = /turf/simulated/mineral/floor/torris
 
 // Mining outpost areas
 /area/outpost/mining_main/passage
 	name = "\improper Mining Outpost Passage"
 
-// Solars map areas
-/area/tether/outpost/solars_outside
-	name = "\improper Solar Farm"
-/area/tether/outpost/solars_shed
-	name = "\improper Solar Farm Shed"
-
-// Exploration area - Plains
-/area/tether/outpost/exploration_plains
-	name = "\improper Plains Exploration Zone"
+// Wilderness Areas
+/area/junglebase/outpost/wilderness
+	name = "\improper Wilderness Zone"
 	icon_state = "green"
-/area/tether/outpost/exploration_shed
-	name = "\improper Plains Entrance Shed"
 
-/area/maintenance/substation/medsec
-	name = "\improper MedSec Substation"
 /area/maintenance/substation/mining
 	name = "\improper Mining Substation"
 /area/maintenance/substation/bar
 	name = "\improper Bar Substation"
-/area/maintenance/substation/surface_atmos
-	name = "\improper Surface Atmos Substation"
+/area/maintenance/substation/surface_compound
+	name = "\improper Underbrush Compound Substation"
 /area/maintenance/substation/civ_west
 	name = "\improper Civilian West Substation"
 /area/maintenance/substation/exploration
 	name = "\improper Exploration Substation"
-/area/maintenance/tether_midpoint
-	name = "\improper Tether Midpoint Maint"
 /area/maintenance/commandmaint
 	name = "\improper Command Maintenance"
 
-/area/tether/surfacebase/medical
+/area/junglebase/medical
 	icon_state = "medical"
-/area/tether/surfacebase/medical/lobby
-	name = "\improper Surface Medical Lobby"
-/area/tether/surfacebase/medical/triage
-	name = "\improper Surface Triage"
-/area/tether/surfacebase/medical/first_aid_west
-	name = "\improper First Aid West"
-/area/tether/surfacebase/medical/chemistry
-	name = "\improper Surface Chemistry"
-	lightswitch = 0
-/area/tether/surfacebase/medical/resleeving
-	name = "\improper Surface Resleeving"
-	lightswitch = 0
-/area/tether/surfacebase/medical/surgery
-	name = "\improper Surface Surgery"
-	lightswitch = 0
-/area/tether/surfacebase/medical/patient_a
-	name = "\improper Surface Patient Room A"
-	lightswitch = 0
-/area/tether/surfacebase/medical/patient_b
-	name = "\improper Surface Patient Room B"
-	lightswitch = 0
-/area/tether/surfacebase/medical/lowerhall
-	name = "\improper Surface Medical Lower Hall"
-/area/tether/surfacebase/medical/storage
-	name = "\improper Surface Medical Storage"
-	lightswitch = 0
-/area/tether/surfacebase/medical/paramed
-	name = "\improper Surface Paramedic Closet"
-	lightswitch = 0
-/area/tether/surfacebase/medical/breakroom
-	name = "\improper Surface Medical Break Room"
-	lightswitch = 0
-/area/tether/surfacebase/medical/maints
-	name = "\improper Mining Upper Maintenance"
 
-/area/tether/surfacebase/library/study
+/area/junglebase/library/study
 	name = "\improper Library Private Study"
 	lightswitch = 0
 	icon_state = "library"
 
-/area/tether/surfacebase/entertainment
+/area/junglebase/civilian/entertainment
 	name = "\improper Entertainment Auditorium"
 	icon_state = "library"
 
-/area/tether/surfacebase/entertainment/stage
+/area/junglebase/entertainment/stage
 	name = "\improper Entertainment Stage"
 	icon_state = "library"
 
-/area/tether/surfacebase/entertainment/backstage
+/area/junglebase/entertainment/backstage
 	name = "\improper Entertainment Backstage"
 	icon_state = "library"
 
-/area/tether/surfacebase/botanystorage
+/area/junglebase/civilian/botanystorage
 	name = "\improper Botany Storage"
 	icon_state = "library"
 
 
-/area/tether/surfacebase/security
+/area/junglebase/security
 	icon_state = "security"
-/area/tether/surfacebase/security/breakroom
-	name = "\improper Surface Security Break Room"
-	lightswitch = 0
-	sound_env = MEDIUM_SOFTFLOOR
-/area/tether/surfacebase/security/lobby
-	name = "\improper Surface Security Lobby"
-/area/tether/surfacebase/security/common
-	name = "\improper Surface Security Room"
-/area/tether/surfacebase/security/armory
-	name = "\improper Surface Equipment Storage"
-	lightswitch = 0
-/area/tether/surfacebase/security/checkpoint
-	name = "\improper Surface Checkpoint Office"
-/area/tether/surfacebase/security/hallway
-	name = "\improper Surface Checkpoint Hallway"
-/area/tether/surfacebase/security/warden
-	name = "\improper Surface Security Warden's Office"
-	lightswitch = 0
-/area/tether/surfacebase/security/lowerhallway
-	name = "\improper Surface Security Lower Hallway"
-/area/tether/surfacebase/security/evidence
-	name = "\improper Surface Security Evidence Storage"
-	lightswitch = 0
-/area/tether/surfacebase/security/brig
-	name = "\improper Surface Security Brig"
-	lightswitch = 0
-/area/tether/surfacebase/security/solitary
-	name = "\improper Surface Security Solitary Confinement"
-	lightswitch = 0
-	sound_env =PADDED_CELL
-/area/tether/surfacebase/security/gasstorage
-	name = "\improper Surface Security Gas Storage"
-	lightswitch = 0
-/area/tether/surfacebase/security/interrogation
-	name = "\improper Surface Security Interrogation"
-	lightswitch = 0
-	sound_env = SMALL_ENCLOSED
-/area/tether/surfacebase/security/processing
-	name = "\improper Surface Security Processing"
-	lightswitch = 0
-/area/tether/surfacebase/security/lobby
-	name = "\improper Surface Security Lobby"
-/area/tether/surfacebase/security/frontdesk
-	name = "\improper Surface Security Front Desk"
-	lightswitch = 0
-/area/tether/surfacebase/security/upperhall
-	name = "\improper Surface Security Upper Hallway"
-/area/maintenance/lower/security
-	name = "\improper Surface Security Maintenance"
+
+/area/junglebase/security/exterior_checkpoint
+	name = "\improper Security Exterior Checkpoint"
+	icon_state = "security"
 
 /area/engineering/atmos/processing
 	name = "Atmospherics Processing"
@@ -462,7 +307,6 @@
 	name = "Atmospherics Gas Storage"
 	icon_state = "atmos"
 
-//TFF 11/12/19 - Minor refactor, makes mice spawn only in Atmos.
 /area/engineering/atmos_intake
 	name = "\improper Atmospherics Intake"
 	icon_state = "atmos"
@@ -470,12 +314,9 @@
 
 /area/engineering/atmos/hallway
 	name = "\improper Atmospherics Main Hallway"
-/area/engineering/lower/lobby
-	name = "\improper Enginering Surface Lobby"
-/area/engineering/lower/breakroom
-	name = "\improper Enginering Surface Break Room"
+
 /area/engineering/lower/corridor
-	name = "\improper Tether Lower Service Corridor"
+	name = "\improper Lower Service Corridor"
 /area/engineering/lower/atmos_lockers
 	name = "\improper Engineering Atmos Locker Room"
 /area/engineering/lower/atmos_eva
@@ -521,8 +362,6 @@
 	name = "\improper Public Garden Maintenence"
 /area/maintenance/lower/public_garden_maintenence/upper
 	name = "\improper Upper Public Garden Maintenence"
-/area/maintenance/lower/medsec_maintenance
-	name = "\improper Surface MedSec Maintenance"
 
 // Research
 /area/rnd/xenobiology/xenoflora/lab_atmos
@@ -570,7 +409,6 @@
 	name = "\improper Research Tank Storage"
 	icon_state = "research"
 
-//TFF 28/8/19 - cleanup of areas placement
 /area/rnd/research/testingrange
 	name = "\improper Weapons Testing Range"
 	icon_state = "firingrange"
@@ -581,7 +419,6 @@
 
 
 //Outpost areas
-//TFF 28/8/19 - cleanup of areas placement
 /area/rnd/outpost
 	name = "\improper Research Outpost Hallway"
 	icon_state = "research"
@@ -700,11 +537,11 @@
 /area/storage/surface_eva/external
 	name = "\improper Surface EVA Access"
 
-/area/tether/surfacebase/shuttle_pad
-	name = "\improper Tether Shuttle Pad"
-/area/tether/surfacebase/reading_room
+/area/junglebase/shuttle_pad
+	name = "\improper junglebase Shuttle Pad"
+/area/junglebase/civilian/reading_room
 	name = "\improper Reading Room"
-/area/tether/surfacebase/vacant_site
+/area/junglebase/vacant_site
 	name = "\improper Vacant Site"
 	flags = null
 /area/crew_quarters/freezer
@@ -713,11 +550,11 @@
 	name = "\improper Panic Shelter"
 	flags = RAD_SHIELDED	//It just makes sense
 
-/area/tether/station/public_meeting_room
+/area/junglebase/civilian/public_meeting_room
 	name = "Public Meeting Room"
 	icon_state = "blue"
 	sound_env = SMALL_SOFTFLOOR
-//TFF 28/8/19 - cleanup of areas placement
+
 /area/chapel/observation
 	name = "\improper Chapel Observation"
 	icon_state = "chapel"
@@ -727,20 +564,14 @@
 //
 // Note: Fore is NORTH
 
-/area/tether/station/stairs_one
+/area/junglebase/stairwells/stairs_one
 	name = "\improper Station Stairwell First Floor"
 	icon_state = "dk_yellow"
-/area/tether/station/stairs_two
+/area/junglebase/stairwells/stairs_two
 	name = "\improper Station Stairwell Second Floor"
 	icon_state = "dk_yellow"
-/area/tether/station/stairs_three
-	name = "\improper Station Stairwell Third Floor"
-	icon_state = "dk_yellow"
-/area/tether/station/dock_one
-	name = "\improper Dock One"
-	icon_state = "dk_yellow"
-/area/tether/station/dock_two
-	name = "\improper Dock Two"
+/area/junglebase/stairwells/stairs_three
+	name = "\improper Station Stairwell Shuttlepad"
 	icon_state = "dk_yellow"
 
 /area/maintenance/station/abandonedholodeck
@@ -748,14 +579,11 @@
 	icon_state = "dk_yellow"
 	flags = RAD_SHIELDED
 
-/area/tether/station/burial
-	name = "\improper Burial"
-	icon_state = "chapel_morgue"
-
 /area/crew_quarters/showers
 	name = "\improper Unisex Showers"
 	icon_state = "recreation_area_restroom"
 
+// Dorms Start. DO NOT TOUCH.
 /area/crew_quarters/sleep/maintDorm1
 	name = "\improper Construction Dorm 1"
 	icon_state = "Sleep"
@@ -776,7 +604,6 @@
 	icon_state = "Sleep"
 	flags = RAD_SHIELDED
 
-//TFF 28/8/19 - cleanup of areas placement
 /area/crew_quarters/sleep/vistor_room_1
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 
@@ -863,27 +690,6 @@
 	icon_state = "dk_yellow"
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 
-/area/crew_quarters/sleep/spacedorm1
-	name = "\improper Visitor Lodging 1"
-	icon_state = "dk_yellow"
-	lightswitch = 0
-	flags = RAD_SHIELDED | BLUE_SHIELDED
-/area/crew_quarters/sleep/spacedorm2
-	name = "\improper Visitor Lodging 2"
-	icon_state = "dk_yellow"
-	lightswitch = 0
-	flags = RAD_SHIELDED | BLUE_SHIELDED
-/area/crew_quarters/sleep/spacedorm3
-	name = "\improper Visitor Lodging 3"
-	icon_state = "dk_yellow"
-	lightswitch = 0
-	flags = RAD_SHIELDED | BLUE_SHIELDED
-/area/crew_quarters/sleep/spacedorm4
-	name = "\improper Visitor Lodging 4"
-	icon_state = "dk_yellow"
-	lightswitch = 0
-	flags = RAD_SHIELDED | BLUE_SHIELDED
-
 /area/holodeck/holodorm/source_basic
 	name = "\improper Holodeck Source"
 	flags = RAD_SHIELDED | BLUE_SHIELDED
@@ -911,7 +717,7 @@
 /area/holodeck/holodorm/source_off
 	name = "\improper Holodeck Source"
 	flags = RAD_SHIELDED | BLUE_SHIELDED
-
+// Dorms End. DO NOT TOUCH.
 /area/ai_core_foyer
 	name = "\improper AI Core Access"
 
@@ -963,65 +769,20 @@
 /area/engineering/foyer_mezzenine
 	name = "\improper Engineering Mezzenine"
 
-/area/hallway/station
-	icon_state = "hallC1"
-/area/hallway/station/atrium
-	name = "\improper Main Station Atrium"
-/area/hallway/station/port
-	name = "\improper Main Port Hallway"
-/area/hallway/station/starboard
-	name = "\improper Main Starboard Hallway"
-/area/hallway/station/upper
-	name = "\improper Main Upper Hallway"
-/area/hallway/station/docks
-	name = "\improper Docks Hallway"
-
-/area/bridge/secondary
-	name = "\improper Secondary Command Office"
-
-/area/bridge/secondary/hallway
-	name = "\improper Secondary Command Hallway"
-/area/bridge/secondary/meeting_room
-	name = "\improper Secondary Command Meeting Room"
-	lightswitch = 0
-/area/bridge/secondary/teleporter
-	name = "\improper Secondary Teleporter"
-	lightswitch = 0
-
-/area/tether/station/visitorhallway
-	name = "\improper Visitor Hallway"
-	icon_state = "dk_yellow"
-/area/tether/station/visitorhallway/office
-	name = "\improper Visitor Office"
-	icon_state = "dk_yellow"
-	lightswitch = 0
-/area/tether/station/visitorhallway/laundry
-	name = "\improper Space Laundry"
-	icon_state = "dk_yellow"
-	lightswitch = 0
-/area/tether/station/visitorhallway/lounge
-	name = "\improper Visitor Lounge"
-	icon_state = "dk_yellow"
-	lightswitch = 0
-
 /area/maintenance/station
 	icon_state = "fsmaint"
 /area/maintenance/station/bridge
 	name = "\improper Bridge Maintenance"
-/area/maintenance/station/eng_lower
-	name = "\improper Engineering Lower Maintenance"
-/area/maintenance/station/eng_upper
-	name = "\improper Engineering Upper Maintenance"
+/area/maintenance/station/engineering
+	name = "\improper Engineering Maintenance"
 /area/maintenance/station/medbay
 	name = "\improper Medbay Maintenance"
 /area/maintenance/station/cargo
 	name = "\improper Cargo Maintenance"
 /area/maintenance/station/elevator
 	name = "\improper Elevator Maintenance"
-/area/maintenance/station/sec_lower
-	name = "\improper Security Lower Maintenance"
-/area/maintenance/station/sec_upper
-	name = "\improper Security Upper Maintenance"
+/area/maintenance/station/security
+	name = "\improper Security Maintenance"
 /area/maintenance/station/micro
 	name = "\improper Micro Maintenance"
 /area/maintenance/station/virology
@@ -1031,51 +792,35 @@
 	sound_env = SEWER_PIPE
 /area/maintenance/station/exploration
 	name = "\improper Exploration Maintenance"
-/area/maintenance/abandonedlibrary
-	name = "\improper Abandoned Library"
-	icon_state = "library"
-/area/maintenance/abandonedlibraryconference
-	name = "\improper Abandoned Library Conference"
-	icon_state = "library"
-/area/maintenance/station/spacecommandmaint
-	name = "\improper Secondary Command Maintenance"
-	icon_state = "bridge"
-	sound_env = SEWER_PIPE
-/area/maintenance/substation/spacecommand
-	name = "\improper Secondary Command Substation"
-	icon_state = "substation"
 
-/area/shuttle/tether/crash1
+/area/shuttle/junglebase/crash1
 	name = "\improper Crash Site 1"
 	icon_state = "shuttle2"
-	base_turf = /turf/simulated/floor/outdoors/dirt/virgo3b
-/area/shuttle/tether/crash2
+	base_turf = /turf/simulated/floor/outdoors/dirt/torris
+/area/shuttle/junglebase/crash2
 	name = "\improper Crash Site 2"
 	icon_state = "shuttle2"
-	base_turf = /turf/simulated/floor/outdoors/dirt/virgo3b
+	base_turf = /turf/simulated/floor/outdoors/dirt/torris
 
 // Exploration Shuttle stuff //
-/area/tether/exploration
+/area/junglebase/exploration
 	name = "\improper Excursion Shuttle Dock"
 	icon_state = "yellow"
 	holomap_color = HOLOMAP_AREACOLOR_SCIENCE
 
-/area/tether/exploration/equipment
+/area/junglebase/exploration/equipment
 	name = "\improper Exploration Equipment Storage"
 
-/area/tether/exploration/crew
+/area/junglebase/exploration/crew
 	name = "\improper Exploration Crew Area"
 
-/area/tether/exploration/pathfinder_office
+/area/junglebase/exploration/pathfinder_office
 	name = "\improper Pathfinder's Office"
 
-/area/tether/exploration/hallway
+/area/junglebase/exploration/hallway
 	name = "\improper Exploration Hallway"
 
-/area/tether/exploration/staircase
-	name = "\improper Exploration Staircase"
-
-/area/tether/exploration/showers
+/area/junglebase/exploration/showers
 	name = "\improper Exploration Showers"
 
 /area/shuttle/excursion
@@ -1130,7 +875,6 @@
 /area/shuttle/securiship/engines
 	name = "\improper Securiship Engines"
 
-//TFF 5/4/20 - Mining Ops move
 // Asteroid Mining belter and Mining Outpost shuttles and refinery/gear areas
 /area/quartermaster/belterdock
 	name = "\improper Cargo Belter Access"
@@ -1144,18 +888,16 @@
 area/shuttle/mining_outpost/shuttle
 	name = "\improper Mining Outpost Shuttle"
 	icon_state = "shuttle2"
-// Elevator area //
 
-/area/tether/elevator
-	name = "\improper Tether Elevator"
+// Elevator (Turboshaft) areas //
+
+/area/junglebase/turboshaft
+	name = "\improper Turboshaft"
 	icon = 'icons/turf/areas_vr.dmi'
 	icon_state = "elevator"
 	dynamic_lighting = FALSE
 
 	requires_power = FALSE
-
-/area/tether/midpoint
-	name = "\improper Tether Midpoint"
 
 //////////////////////////////////
 
@@ -1179,7 +921,6 @@ area/shuttle/mining_outpost/shuttle
 	name = "\improper Ninjacraft"
 	icon_state = "shuttle2"
 
-//TFF 28/8/19 - cleanup of areas placement
 /area/teleporter/departing
 	name = "\improper Long-Range Teleporter"
 	icon_state = "teleporter"
@@ -1218,7 +959,7 @@ area/shuttle/mining_outpost/shuttle
 	icon_state = "shuttle"
 
 /area/shuttle/awaymission/home
-	name = "NSB Adephagia (AM)"
+	name = "NSB Forbearance (AM)"
 	icon_state = "shuttle2"
 
 /area/shuttle/awaymission/warp
@@ -1266,14 +1007,16 @@ area/shuttle/mining_outpost/shuttle
 /area/unknown/dorm4
 	name = "Unknown Dorm 4"
 
+// Antag Stuff, Don't touch
+
 // ERT/Deathsquad Shuttle
 /area/shuttle/specialops/centcom
 	name = "Special Operations Shuttle - Centcom"
 	icon_state = "shuttlered"
 	base_turf = /turf/unsimulated/floor/shuttle_ceiling
 
-/area/shuttle/specialops/tether
-	name = "Special Operations Shuttle - Tether"
+/area/shuttle/specialops/junglebase
+	name = "Special Operations Shuttle - junglebase"
 	icon_state = "shuttlered"
 
 /area/shuttle/specialops/transit
@@ -1281,9 +1024,9 @@ area/shuttle/mining_outpost/shuttle
 	icon_state = "shuttlered"
 	base_turf = /turf/space/transit/east
 
-// Tether Map has this shuttle
-/area/shuttle/tether
-	name = "Tether Shuttle"
+// junglebase Map has this shuttle
+/area/shuttle/junglebase
+	name = "junglebase Shuttle"
 	icon_state = "shuttle2"
 
 //Skipjack
@@ -1302,11 +1045,11 @@ area/shuttle/mining_outpost/shuttle
 	base_turf = /turf/space/transit/north
 
 /area/skipjack_station/orbit
-	name = "near the Tether"
+	name = "near the junglebase"
 	icon_state = "northwest"
 
 /area/skipjack_station/arrivals_dock
-	name = "\improper docked with Tether"
+	name = "\improper docked with junglebase"
 	icon_state = "shuttle"
 
 // Ninja areas
@@ -1327,7 +1070,7 @@ area/shuttle/mining_outpost/shuttle
 	base_turf = /turf/simulated/floor/plating
 
 /area/ninja_dojo/orbit
-	name = "near the Tether"
+	name = "near the junglebase"
 	icon_state = "south"
 
 /area/ninja_dojo/transit
@@ -1336,16 +1079,14 @@ area/shuttle/mining_outpost/shuttle
 	base_turf = /turf/space/transit/north
 
 /area/ninja_dojo/arrivals_dock
-	name = "\improper docked with Tether"
+	name = "\improper docked with junglebase"
 	icon_state = "shuttle"
 	dynamic_lighting = 0
 
 // Exclude some more areas from the atmos leak event so people don't get trapped when spawning.
 /datum/event/atmos_leak/setup()
-	excluded |= /area/tether/surfacebase/tram
-	excluded |= /area/tether/surfacebase/surface_one_hall
-	excluded |= /area/tether/surfacebase/surface_two_hall
-	excluded |= /area/tether/surfacebase/surface_three_hall
+	excluded |= /area/junglebase/tram
+	excluded |= /area/junglebase/hallway/civilian_platform_hall
+	excluded |= /area/junglebase/hallway/research_platform_hall
 	excluded |= /area/teleporter/departing
-	excluded |= /area/hallway/station/upper
 	..()

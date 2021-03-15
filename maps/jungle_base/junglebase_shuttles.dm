@@ -32,7 +32,6 @@
 	shuttle_tag = "Trade"
 	req_one_access = list(access_trader)
 
-//TFF 12/4/20 - Add console for Mining Outpost Shuttle
 /obj/machinery/computer/shuttle_control/surface_mining_outpost
 	name = "surface mining outpost shuttle control console"
 	shuttle_tag = "Mining Outpost"
@@ -191,7 +190,7 @@
 /datum/shuttle/autodock/overmap/excursion
 	name = "Excursion Shuttle"
 	warmup_time = 0
-	current_location = "tether_excursion_hangar"
+	current_location = "excursion_landing_pad"
 	docking_controller_tag = "expshuttle_docker"
 	shuttle_area = list(/area/shuttle/excursion/cockpit, /area/shuttle/excursion/general, /area/shuttle/excursion/cargo)
 	fuel_consumption = 3
@@ -216,7 +215,7 @@
 /datum/shuttle/autodock/overmap/tourbus
 	name = "Tour Bus"
 	warmup_time = 0
-	current_location = "tourbus_dock"
+	current_location = "tourbus_landing_pad"
 	docking_controller_tag = "tourbus_docker"
 	shuttle_area = list(/area/shuttle/tourbus/cockpit, /area/shuttle/tourbus/general, /area/shuttle/tourbus/engines)
 	fuel_consumption = 1
@@ -241,7 +240,7 @@
 /datum/shuttle/autodock/overmap/medivac
 	name = "Medivac Shuttle"
 	warmup_time = 0
-	current_location = "tether_medivac_dock"
+	current_location = "medivac_landing_pad"
 	docking_controller_tag = "medivac_docker"
 	shuttle_area = list(/area/shuttle/medivac/cockpit, /area/shuttle/medivac/general, /area/shuttle/medivac/engines)
 	fuel_consumption = 1
@@ -267,7 +266,7 @@
 /datum/shuttle/autodock/overmap/securiship
 	name = "Securiship Shuttle"
 	warmup_time = 0
-	current_location = "tether_securiship_dock"
+	current_location = "securiship_pad"
 	docking_controller_tag = "securiship_docker"
 	shuttle_area = list(/area/shuttle/securiship/cockpit, /area/shuttle/securiship/general, /area/shuttle/securiship/engines)
 	fuel_consumption = 1
