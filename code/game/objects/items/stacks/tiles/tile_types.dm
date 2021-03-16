@@ -52,6 +52,11 @@
 	singular_name = "sivian overgrowth floor tile"
 	desc = "A patch of dark overgrowth like those that decorate the plains of Sif."
 
+/obj/item/stack/tile/grass/amita
+	name = "amitan grass tile"
+	singular_name = "amitan grass tile"
+	desc = "A patch of lush overgrowth like those that decorate the forests of Amita."
+
 /*
  * Wood
  */
