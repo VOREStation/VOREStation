@@ -18,7 +18,7 @@
 
 //VOREStation Edit
 /datum/reagent/calcium/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	if(ishuman(M) && rand(1,10000) == 1)
+	if(ishuman(M) && rand(1,10) == 1)
 		var/mob/living/carbon/human/H = M
 		for(var/obj/item/organ/external/O in H.bad_external_organs)
 			if(O.status & ORGAN_BROKEN)
