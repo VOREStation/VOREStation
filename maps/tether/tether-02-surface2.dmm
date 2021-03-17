@@ -15895,6 +15895,15 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/bar)
+"aBb" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/alarm{
+	pixel_y = 22
+	},
+/turf/simulated/floor,
+/area/maintenance/substation/research)
 "aBc" = (
 /obj/machinery/light{
 	dir = 8
@@ -24778,15 +24787,6 @@
 /obj/machinery/shieldgen,
 /turf/simulated/floor/plating,
 /area/engineering/atmos/storage)
-"aSg" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/alarm{
-	pixel_y = 22
-	},
-/turf/simulated/floor/water/deep/indoors,
-/area/maintenance/substation/research)
 "aSh" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 4
@@ -43256,7 +43256,7 @@ aEc
 aEc
 aEc
 aJJ
-aSg
+aBb
 aKW
 aLD
 aMo
