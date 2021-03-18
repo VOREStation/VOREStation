@@ -7,6 +7,7 @@
 	item_state = "mouse_gray"
 	icon_living = "mouse_gray"
 	icon_dead = "mouse_gray_dead"
+	kitchen_tag = "rodent"
 
 	maxHealth = 5
 	health = 5
