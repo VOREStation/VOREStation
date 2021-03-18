@@ -271,10 +271,7 @@
 	var/eye_icon_location = 'icons/mob/human_face.dmi'
 	force = 3
 	throwforce = 7
-<<<<<<< HEAD
 	var/eyes_over_markings = FALSE //VOREStation edit
-=======
->>>>>>> e4962d9... Fixes Global and Fixes Eyes (#7976)
 
 /obj/item/organ/external/head/Initialize()
 	if(config.allow_headgibs)
@@ -337,11 +334,7 @@
 	if(!iscarbon(owner) || !owner.species)
 		return
 
-<<<<<<< HEAD
-	var/icon/eyecon //VOREStation Edit -- holds eye icon to render over markings later.
-=======
 	var/icon/eyecon
->>>>>>> e4962d9... Fixes Global and Fixes Eyes (#7976)
 
 	//Eye color/icon
 	var/should_have_eyes = owner.should_have_organ(O_EYES)
@@ -358,7 +351,6 @@
 			//They're gone!
 			else
 				eyes_icon.Blend(rgb(128,0,0), ICON_ADD)
-<<<<<<< HEAD
 		//We have weird other-sorts of eyes (as we're not supposed to have eye organ, but we have HAS_EYE_COLOR species)
 		else
 			eyes_icon.Blend(rgb(owner.r_eyes, owner.g_eyes, owner.b_eyes), ICON_ADD)
@@ -371,17 +363,6 @@
 			mob_icon.Blend(eyes_icon, ICON_OVERLAY)
 			icon_cache_key += "[eye_icon]"
 
-=======
-
-		//We have weird other-sorts of eyes (as we're not supposed to have eye organ, but we have HAS_EYE_COLOR species)
-		else
-			eyes_icon.Blend(rgb(owner.r_eyes, owner.g_eyes, owner.b_eyes), ICON_ADD)
-
-		add_overlay(eyes_icon)
-		mob_icon.Blend(eyes_icon, ICON_OVERLAY)
-		icon_cache_key += "[eye_icon]"
-
->>>>>>> e4962d9... Fixes Global and Fixes Eyes (#7976)
 	//Lip color/icon
 	if(owner.lip_style && (species && (species.appearance_flags & HAS_LIPS)))
 		var/icon/lip_icon = new/icon('icons/mob/human_face.dmi', "lips_[owner.lip_style]_s")
@@ -392,23 +373,16 @@
 	for(var/M in markings)
 		var/datum/sprite_accessory/marking/mark_style = markings[M]["datum"]
 		var/icon/mark_s = new/icon("icon" = mark_style.icon, "icon_state" = "[mark_style.icon_state]-[organ_tag]")
-<<<<<<< HEAD
-		mark_s.Blend(markings[M]["color"], mark_style.color_blend_mode) // VOREStation edit
-=======
 		mark_s.Blend(markings[M]["color"], mark_style.color_blend_mode)
->>>>>>> e4962d9... Fixes Global and Fixes Eyes (#7976)
 		add_overlay(mark_s) //So when it's not on your body, it has icons
 		mob_icon.Blend(mark_s, ICON_OVERLAY) //So when it's on your body, it has icons
 		icon_cache_key += "[M][markings[M]["color"]]"
 
-<<<<<<< HEAD
 	if(eyes_over_markings && eyecon) //VOREStation edit -- toggle to render eyes above markings.
 		add_overlay(eyecon)
 		mob_icon.Blend(eyecon, ICON_OVERLAY)
 		icon_cache_key += "[eye_icon]"
 
-=======
->>>>>>> e4962d9... Fixes Global and Fixes Eyes (#7976)
 	add_overlay(get_hair_icon())
 
 	return mob_icon
