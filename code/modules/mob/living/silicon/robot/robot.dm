@@ -1215,9 +1215,6 @@
 
 		if(current_selection_index) // Select what the player had before if possible.
 			select_module(current_selection_index)
-<<<<<<< HEAD
-=======
 
 /mob/living/silicon/robot/get_cell()
 	return cell
->>>>>>> f383438... Merge pull request #7935 from MistakeNot4892/tachikoma
