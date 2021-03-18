@@ -45,12 +45,11 @@
 
 /obj/item/weapon/disk/limb/eggnerdltdred
 	company = "Eggnerd Prototyping Ltd. (Red)"
-//	icon = 'icons/obj/items_vr.dmi'
-//	icon_state = "verkdisk"
+	icon = 'icons/obj/items_vr.dmi'	//VOREStation add. Use the right sprites
+	icon_state = "verkdisk"			//VOREStation add. Use the right sprites
 
 
 //Darkside Incorperated synthetic augmentation list! Many current most used fuzzy and notsofuzzy races made into synths here.
-/* VORESTATION EDIT - These are defined in robolimbs_vr.dm, the definition here with the species cannot_use breaks the things. May as well comment them all out.
 /datum/robolimb/dsi_tajaran
 	company = "DSI - Tajaran"
 	desc = "This limb feels soft and fluffy, realistic design and squish. By Darkside Incorperated."
@@ -62,9 +61,10 @@
 	skin_tone = 1
 	suggested_species = "Tajara"
 
-/datum/robolimb/dsi_tajaran/New()
+/*/datum/robolimb/dsi_tajaran/New()
 	species_cannot_use = GLOB.all_species.Copy()
-//	species_cannot_use -= SPECIES_TAJ
+	species_cannot_use -= SPECIES_TAJ
+VS Edit - anyone can select these. */
 
 /obj/item/weapon/disk/limb/dsi_tajaran
 	company = "DSI - Tajaran"
@@ -80,9 +80,10 @@
 	skin_tone = 1
 	suggested_species = "Unathi"
 
-/datum/robolimb/dsi_lizard/New()
+/* /datum/robolimb/dsi_lizard/New() //
 	species_cannot_use = GLOB.all_species.Copy()
-//	species_cannot_use -= SPECIES_UNATHI
+	species_cannot_use -= SPECIES_UNATHI
+VS Edit - anyone can select these. */
 
 /obj/item/weapon/disk/limb/dsi_lizard
 	company = "DSI - Lizard"
@@ -167,10 +168,9 @@
 
 /datum/robolimb/dsi_teshari/New()
 	species_cannot_use = GLOB.all_species.Copy()
-//	species_cannot_use -= SPECIES_TESHARI
-//	species_cannot_use -= SPECIES_CUSTOM
+	species_cannot_use -= SPECIES_TESHARI //VOREStation add - let 'em be selected.
+	species_cannot_use -= SPECIES_CUSTOM //VOREStation add - let 'em be selected.
 	..()
 
 /obj/item/weapon/disk/limb/dsi_teshari
 	company = "DSI - Teshari"
-*/
