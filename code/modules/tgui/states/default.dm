@@ -61,7 +61,7 @@ GLOBAL_DATUM_INIT(tgui_default_state, /datum/tgui_state/default, new)
 
 	return STATUS_CLOSE
 
-/mob/living/simple_animal/default_can_use_tgui_topic(src_object)
+/mob/living/simple_mob/default_can_use_tgui_topic(src_object)
 	. = shared_tgui_interaction(src_object)
 	if(. > STATUS_CLOSE)
 		. = min(., shared_living_tgui_distance(src_object)) //simple animals can only use things they're near.

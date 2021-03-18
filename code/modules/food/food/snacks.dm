@@ -4724,9 +4724,6 @@
 /mob/living/simple_mob
 	var/kitchen_tag = "animal" //Used for cooking with animals
 
-/mob/living/simple_mob/mouse
-	kitchen_tag = "rodent"
-
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/cheesewheel
 	slices_num = 8
 
