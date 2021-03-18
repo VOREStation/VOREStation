@@ -628,8 +628,6 @@
 /obj/item/weapon/reagent_containers/food/drinks/bottle/lemonadeschnapps/Initialize()
 	. = ..()
 	reagents.add_reagent("schnapps_lem", 100)
-<<<<<<< HEAD
-=======
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/jager
 	name = "Schusskonig"
@@ -640,4 +638,3 @@
 /obj/item/weapon/reagent_containers/food/drinks/bottle/jager/Initialize()
 	. = ..()
 	reagents.add_reagent("jager", 100)
->>>>>>> 81ae48b... Merge pull request #7974 from MistakeNot4892/jager
