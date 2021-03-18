@@ -691,3 +691,6 @@
 	selfimage.loc = src
 
 	return selfimage
+
+/atom/movable/proc/get_cell()
+	return
