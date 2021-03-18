@@ -102,11 +102,8 @@
 	icon_state = "cat"
 	item_state = "cat"
 	named = TRUE
-<<<<<<< HEAD
-	makes_dirt = 0 //Vorestation Edit
-=======
 	holder_type = /obj/item/weapon/holder/cat/runtime
->>>>>>> 63580fc5... Merge pull request #7956 from MistakeNot4892/poppy
+	makes_dirt = 0 //Vorestation Edit
 
 /mob/living/simple_mob/animal/passive/cat/kitten
 	name = "kitten"
