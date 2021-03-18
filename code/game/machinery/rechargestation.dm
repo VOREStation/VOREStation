@@ -71,7 +71,6 @@
 /obj/machinery/recharge_station/proc/process_occupant()
 	if(isrobot(occupant))
 		var/mob/living/silicon/robot/R = occupant
-
 		if(R.module)
 			R.module.respawn_consumable(R, charging_power * CELLRATE / 250) //consumables are magical, apparently
 		if(R.cell && !R.cell.fully_charged())
@@ -245,6 +244,10 @@
 			return
 
 		if(!R.cell)
+			return
+
+		if(R.mob_size >= MOB_LARGE)
+			to_chat(R, SPAN_WARNING("You are too large to fit into \the [src]."))
 			return
 
 		add_fingerprint(R)

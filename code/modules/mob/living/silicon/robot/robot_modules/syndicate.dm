@@ -2,7 +2,7 @@
 
 /obj/item/weapon/robot_module/robot/syndicate
 	name = "illegal robot module"
-	hide_on_manifest = 1
+	hide_on_manifest = TRUE
 	languages = list(
 					LANGUAGE_SOL_COMMON = 1,
 					LANGUAGE_TRADEBAND = 1,
