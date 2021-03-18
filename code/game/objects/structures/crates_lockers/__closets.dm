@@ -46,7 +46,7 @@
 		starts_with = null
 
 	if(!opened)		// if closed, any item at the crate's loc is put in the contents
-		if(istype(loc, /mob/living)) return //VOREStation Edit - No collecting mob organs if spawned inside mob
+		if(istype(loc, /mob/living)) return
 		var/obj/item/I
 		for(I in loc)
 			if(I.density || I.anchored || I == src) continue
