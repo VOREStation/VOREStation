@@ -39,11 +39,12 @@ Keep outfits simple. Spawn with basic uniforms and minimal gear. Gear instead go
 /decl/hierarchy/outfit/job/pilot
 	name = OUTFIT_JOB_NAME("Pilot")
 	shoes = /obj/item/clothing/shoes/black
-	uniform = /obj/item/clothing/under/rank/pilot1
+	uniform = /obj/item/clothing/under/rank/pilot1/no_webbing
 	suit = /obj/item/clothing/suit/storage/toggle/bomber/pilot
 	gloves = /obj/item/clothing/gloves/fingerless
 	glasses = /obj/item/clothing/glasses/fakesunglasses/aviator
 	l_ear = /obj/item/device/radio/headset/pilot/alt
+	uniform_accessories = list(/obj/item/clothing/accessory/storage/webbing/pilot1 = 1)
 	id_slot = slot_wear_id
 	pda_slot = slot_belt
 	pda_type = /obj/item/device/pda //VOREStation Edit - Civilian

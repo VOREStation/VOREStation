@@ -355,7 +355,7 @@
 	return
 
 // As above but for items being equipped to an active module on a robot.
-/obj/item/device/proc/equipped_robot()
+/obj/item/proc/equipped_robot(var/mob/user)
 	return
 
 //Defines which slots correspond to which slot flags
