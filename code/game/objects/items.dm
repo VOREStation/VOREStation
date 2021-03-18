@@ -354,6 +354,13 @@
 		playsound(src, pickup_sound, 20, preference = /datum/client_preference/pickup_sounds)
 	return
 
+<<<<<<< HEAD
+=======
+// As above but for items being equipped to an active module on a robot.
+/obj/item/proc/equipped_robot(var/mob/user)
+	return
+
+>>>>>>> 921ac67... Merge pull request #7980 from MistakeNot4892/gps
 //Defines which slots correspond to which slot flags
 var/list/global/slot_flags_enumeration = list(
 	"[slot_wear_mask]" = SLOT_MASK,
