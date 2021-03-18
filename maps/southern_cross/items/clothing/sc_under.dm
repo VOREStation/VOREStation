@@ -12,6 +12,9 @@
 			)
 	starting_accessories = list(/obj/item/clothing/accessory/storage/webbing/pilot1)
 
+/obj/item/clothing/under/rank/pilot1/no_webbing
+	starting_accessories = null
+
 /obj/item/clothing/under/rank/pilot2
 	name = "\improper NanoTrasen flight suit"
 	desc = "A dark blue NanoTrasen flight suit. Warm and practical, seveal patches are scattered across it."
@@ -25,3 +28,6 @@
 			"Teshari" = 'maps/southern_cross/icons/mob/species/teshari/sc_uniform.dmi'
 			)
 	starting_accessories = list(/obj/item/clothing/accessory/storage/webbing/pilot2)
+
+/obj/item/clothing/under/rank/pilot2/no_webbing
+	starting_accessories = null
