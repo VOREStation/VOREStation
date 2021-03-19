@@ -19,7 +19,6 @@
 	icon = 'icons/mob/robots_thinktank.dmi'
 	icon_state = "tachi"
 	color = "#68a2f2"
-	speed = -1 // They're meant to be viable for transport, so can't be slower than a human.
 
 	cell =        /obj/item/weapon/cell/mech
 	idcard_type = /obj/item/weapon/card/id/platform
