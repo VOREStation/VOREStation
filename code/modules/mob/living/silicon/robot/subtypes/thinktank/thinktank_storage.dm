@@ -118,7 +118,7 @@
 	else
 		to_chat(src, SPAN_WARNING("You have nothing in your cargo compartment."))
 
-/mob/living/silicon/robot/platform/MouseDrop_T(atom/movable/dropping, mob/user)
+/mob/living/silicon/robot/platform/MouseDrop_T(atom/movable/dropping, mob/living/user)
 	if(!istype(user) || !istype(dropping) || user.incapacitated())
 		return FALSE
 	if(!can_mouse_drop(dropping, user) || !can_store_atom(dropping, user))
