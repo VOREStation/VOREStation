@@ -198,7 +198,7 @@ var/world_topic_spam_protect_time = world.timeofday
 			// No combat/syndicate cyborgs, no drones, and no AI shells.
 			if(robot.shell)
 				continue
-			if(robot.module && robot.module.hide_on_manifest)
+			if(robot.module && robot.module.hide_on_manifest())
 				continue
 			if(!positions["bot"])
 				positions["bot"] = list()

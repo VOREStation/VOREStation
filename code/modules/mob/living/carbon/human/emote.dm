@@ -91,6 +91,16 @@
 			message = "squishes."
 			m_type = 1
 
+		if("chirp")
+			/* VOREStation Removal Start - Eh. People can chirp maybe.
+			if ((species.bump_flag != SLIME) && (species.name != SPECIES_DIONA))
+				to_chat(src, "<span class='warning'>You are not a diona or slime!</span>")
+				return
+			*/ //VOREStation Removal End
+			playsound(src, 'sound/misc/nymphchirp.ogg', 50, 0)
+			message = "chirps."
+			m_type = 2
+
 		//Skrell-only emotes
 		if("warble")
 			if(species.name != SPECIES_SKRELL)
@@ -475,7 +485,7 @@
 					message = "points to [M]."
 				else
 			m_type = 1
-			
+
 		if("crack")
 			if(!restrained())
 				message = "cracks [T.his] knuckles."
@@ -878,3 +888,27 @@
 	HTML +="<a href='?src=\ref[src];flavor_change=done'>\[Done\]</a>"
 	HTML += "<tt>"
 	src << browse(HTML, "window=flavor_changes;size=430x300")
+
+/mob/living/carbon/human/proc/toggle_tail(var/setting,var/message = 0)
+	if(!tail_style || !tail_style.ani_state)
+		if(message)
+			to_chat(src, "<span class='warning'>You don't have a tail that supports this.</span>")
+		return 0
+
+	var/new_wagging = isnull(setting) ? !wagging : setting
+	if(new_wagging != wagging)
+		wagging = new_wagging
+		update_tail_showing()
+	return 1
+
+/mob/living/carbon/human/proc/toggle_wing(var/setting,var/message = 0)
+	if(!wing_style || !wing_style.ani_state)
+		if(message)
+			to_chat(src, "<span class='warning'>You don't have a wingtype that supports this.</span>")
+		return 0
+
+	var/new_flapping = isnull(setting) ? !flapping : setting
+	if(new_flapping != flapping)
+		flapping = setting
+		update_wing_showing()
+	return 1

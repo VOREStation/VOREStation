@@ -1,6 +1,6 @@
 /obj/effect/mineral
 	name = "mineral vein"
-	icon = 'icons/obj/mining_vr.dmi' //VOREStation Edit
+	icon = 'icons/obj/mining.dmi'
 	desc = "Shiny."
 	mouse_opacity = 0
 	density = 0

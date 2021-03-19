@@ -22,7 +22,7 @@
 	if(stat)
 		to_chat(src, "<span class='warning'>You must be awake and standing to perform this action!</span>")
 		return
-	var/obj/item/organ/external/head/vr/H = organs_by_name[BP_HEAD]
+	var/obj/item/organ/external/head/H = organs_by_name[BP_HEAD]
 	if(!H)
 		to_chat(src, "<span class='warning'>You don't seem to have a head!</span>")
 		return
@@ -30,8 +30,9 @@
 	H.eyes_over_markings = !H.eyes_over_markings
 	update_icons_body()
 
-	var/datum/robolimb/robohead = all_robolimbs[H.model]
-	if(robohead.monitor_styles && robohead.monitor_icon)
-		to_chat(src, "<span class='notice'>You reconfigure the rendering order of your facial display.</span>")
+	if(H.robotic)
+		var/datum/robolimb/robohead = all_robolimbs[H.model]
+		if(robohead.monitor_styles && robohead.monitor_icon)
+			to_chat(src, "<span class='notice'>You reconfigure the rendering order of your facial display.</span>")
 
 	return TRUE

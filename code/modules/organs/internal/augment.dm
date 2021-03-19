@@ -31,7 +31,7 @@
 	var/last_activate = null
 
 /obj/item/organ/internal/augment/Initialize()
-	. ..()
+	. = ..()
 	setup_radial_icon()
 	if(integrated_object_type)
 		integrated_object = new integrated_object_type(src)

@@ -51,9 +51,11 @@
 	var/hunger_factor = 0.05								// Multiplier for hunger.
 	var/active_regen_mult = 1								// Multiplier for 'Regenerate' power speed, in human_powers.dm
 
-	var/taste_sensitivity = TASTE_NORMAL					// How sensitive the species is to minute tastes.
-	var/allergens = null							// Things that will make this species very sick
-	var/allergen_severity = 0.5						// How bad are reactions to the allergen? This is raw toxin damage per metabolism tick, multiplied by the amount metabolized
+	var/taste_sensitivity = TASTE_NORMAL							// How sensitive the species is to minute tastes.
+	var/allergens = null									// Things that will make this species very sick
+	var/allergen_reaction = AG_TOX_DMG|AG_OXY_DMG|AG_EMOTE|AG_PAIN|AG_WEAKEN		// What type of reactions will you have? These the 'main' options and are intended to approximate anaphylactic shock at high doses.
+	var/allergen_damage_severity = 1.2							// How bad are reactions to the allergen? Touch with extreme caution.
+	var/allergen_disable_severity = 3							// Whilst this determines how long nonlethal effects last and how common emotes are.
 
 	var/min_age = 17
 	var/max_age = 70
@@ -253,6 +255,27 @@
 		/datum/mob_descriptor/build
 		)
 
+	//This is used in character setup preview generation (prefences_setup.dm) and human mob
+	//rendering (update_icons.dm)
+	var/color_mult = 0
+
+	//This is for overriding tail rendering with a specific icon in icobase, for static
+	//tails only, since tails would wag when dead if you used this
+	var/icobase_tail = 0
+
+	var/wing_hair
+	var/wing
+	var/wing_animation
+	var/icobase_wing
+	var/wikilink = null //link to wiki page for species
+	var/icon_height = 32
+	var/agility = 20 //prob() to do agile things
+
+/datum/species/proc/update_attack_types()
+	unarmed_attacks = list()
+	for(var/u_type in unarmed_types)
+		unarmed_attacks += new u_type()
+
 /datum/species/New()
 	if(hud_type)
 		hud = new hud_type()
@@ -396,8 +419,9 @@
 			"<span class='notice'>[H] boops [target]'s nose.</span>", \
 			"<span class='notice'>You boop [target] on the nose.</span>", )
 	//VOREStation Edit End
-	else H.visible_message("<span class='notice'>[H] hugs [target] to make [t_him] feel better!</span>", \
-					"<span class='notice'>You hug [target] to make [t_him] feel better!</span>") //End VOREStation Edit
+	else
+		H.visible_message("<span class='notice'>[H] hugs [target] to make [t_him] feel better!</span>", \
+						"<span class='notice'>You hug [target] to make [t_him] feel better!</span>")
 
 /datum/species/proc/remove_inherent_verbs(var/mob/living/carbon/human/H)
 	if(inherent_verbs)

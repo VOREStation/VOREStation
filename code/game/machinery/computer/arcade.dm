@@ -1,9 +1,8 @@
 /obj/machinery/computer/arcade
 	name = "random arcade"
 	desc = "random arcade machine"
-	icon_state = "arcade"
+	icon_state = "arcade1"
 	icon_keyboard = null
-	icon_screen = "invaders"
 	clicksound = null	//Gets too spammy and makes no sense for arcade to have the console keyboard noise anyway
 	var/list/prizes = list(	/obj/item/weapon/storage/box/snappops					= 2,
 							/obj/item/toy/blink										= 2,
@@ -77,9 +76,10 @@
 ///////////////////
 
 /obj/machinery/computer/arcade/battle
-	name = "arcade machine"
-	desc = "Does not support Pinball."
-	icon_state = "arcade"
+	name = "Battler"
+	desc = "Fight through what space has to offer!"
+	icon_state = "arcade2"
+	icon_screen = "battler"
 	circuit = /obj/item/weapon/circuitboard/arcade/battle
 	var/enemy_name = "Space Villian"
 	var/temp = "Winners don't use space drugs" //Temporary message, for attack messages, etc
@@ -310,7 +310,8 @@
 /obj/machinery/computer/arcade/orion_trail
 	name = "The Orion Trail"
 	desc = "Learn how our ancestors got to Orion, and have fun in the process!"
-	icon_state = "arcade"
+	icon_state = "arcade1"
+	icon_screen = "orion"
 	circuit = /obj/item/weapon/circuitboard/arcade/orion_trail
 	var/busy = 0 //prevent clickspam that allowed people to ~speedrun~ the game.
 	var/engine = 0
@@ -1319,3 +1320,17 @@
 		gameStatus = "CLAWMACHINE_NEW"
 		emagged = 1
 		return 1
+		
+/obj/machinery/computer/arcade/attackby(obj/item/O, mob/user, params)
+	if(istype(O, /obj/item/stack/arcadeticket))
+		var/obj/item/stack/arcadeticket/T = O
+		var/amount = T.get_amount()
+		if(amount <2)
+			to_chat(user, "<span class='warning'>You need 2 tickets to claim a prize!</span>")
+			return
+		prizevend(user)
+		T.pay_tickets()
+		T.update_icon()
+		O = T
+		to_chat(user, "<span class='notice'>You turn in 2 tickets to the [src] and claim a prize!</span>")
+		return

@@ -117,7 +117,7 @@
 	name = "\improper PC-20 \"Lance\" light laser cannon"
 	id = "micro_laser_heavy"
 	req_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3, TECH_POWER = 3)
-	materials = list(DEFAULT_WALL_MATERIAL = 10000, "glass" = 1000, "diamond" = 2000)
+	materials = list(DEFAULT_WALL_MATERIAL = 10000, "glass" = 1000, MAT_COPPER = 1000, "diamond" = 1000)
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/microheavy
 
 /datum/design/item/mecha/weapon/grenade_launcher/micro
@@ -191,5 +191,5 @@
 	desc = "A portable medical system used to treat external injuries from afar."
 	id = "mech_medigun"
 	req_tech = list(TECH_MATERIAL = 5, TECH_COMBAT = 5, TECH_BIO = 6)
-	materials = list(DEFAULT_WALL_MATERIAL = 8000, "gold" = 2000, "silver" = 1750, "diamond" = 1500, "phoron" = 4000)
+	materials = list(DEFAULT_WALL_MATERIAL = 8000, MAT_COPPER = 4000, "gold" = 2000, "silver" = 1750, "diamond" = 1500)
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/medigun

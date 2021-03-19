@@ -303,6 +303,8 @@
 				if(AM == src)
 					continue
 				AM.Uncrossed(src)
+				if(loc != destination) // Uncrossed() triggered a separate movement
+					return
 
 			// Information about turf and z-levels for source and dest collected
 			var/turf/oldturf = get_turf(oldloc)
@@ -327,6 +329,8 @@
 				if(AM == src)
 					continue
 				AM.Crossed(src, oldloc)
+				if(loc != destination) // Crossed triggered a separate movement
+					return
 
 			// Call our thingy to inform everyone we moved
 			Moved(oldloc, NONE, TRUE)
@@ -461,6 +465,8 @@
 		major_dist = dist_y
 		minor_dir = dx
 		minor_dist = dist_x
+
+	range = min(dist_x + dist_y, range)
 
 	while(src && target && src.throwing && istype(src.loc, /turf) \
 		  && ((abs(target.x - src.x)+abs(target.y - src.y) > 0 && dist_travelled < range) \
@@ -685,3 +691,6 @@
 	selfimage.loc = src
 
 	return selfimage
+
+/atom/movable/proc/get_cell()
+	return

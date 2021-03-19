@@ -16,6 +16,18 @@
 	reagent_state = SOLID
 	color = "#e9e6e4"
 
+//VOREStation Edit
+/datum/reagent/calcium/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	if(ishuman(M) && rand(1,10000) == 1)
+		var/mob/living/carbon/human/H = M
+		for(var/obj/item/organ/external/O in H.bad_external_organs)
+			if(O.status & ORGAN_BROKEN)
+				O.mend_fracture()
+				H.custom_pain("You feel the agonizing power of calcium mending your bones!",60)
+				H.AdjustWeakened(1)
+				break // Only mend one bone, whichever comes first in the list
+//VOREStation Edit End
+
 /datum/reagent/carbon
 	name = "Carbon"
 	id = "carbon"
@@ -82,8 +94,6 @@
 
 	var/nutriment_factor = 0
 	var/strength = 10 // This is, essentially, units between stages - the lower, the stronger. Less fine tuning, more clarity.
-	var/allergen_type = GENERIC	// What potential allergens does this contain?
-	var/allergen_factor = 0.5	// If the potential allergens are mixed and low-volume, they're a bit less dangerous. Needed for drinks because they're a single reagent compared to food which contains multiple seperate reagents.
 	var/toxicity = 1
 
 	var/druggy = 0
@@ -93,6 +103,7 @@
 
 	glass_name = "ethanol"
 	glass_desc = "A well-known alcohol with a variety of applications."
+	allergen_factor = 0.5	//simulates mixed drinks containing less of the allergen, as they have only a single actual reagent unlike food
 
 /datum/reagent/ethanol/touch_mob(var/mob/living/L, var/amount)
 	if(istype(L))
@@ -141,13 +152,11 @@
 
 	if(halluci)
 		M.hallucination = max(M.hallucination, halluci*3)
-	
-	if(M.species.allergens & allergen_type)
-		M.adjustToxLoss(((M.species.allergen_severity*allergen_factor)*4) * removed)
 
 /datum/reagent/ethanol/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	if(issmall(M)) removed *= 2
-	M.adjust_nutrition(nutriment_factor * removed)
+	if(!(M.species.allergens & allergen_type))	//assuming it doesn't cause a horrible reaction, we get the nutrition effects
+		M.adjust_nutrition(nutriment_factor * removed)
 	var/strength_mod = 1 * M.species.alcohol_mod
 	if(alien == IS_SKRELL)
 		strength_mod *= 5
@@ -188,9 +197,6 @@
 
 	if(halluci)
 		M.hallucination = max(M.hallucination, halluci)
-	
-	if(M.species.allergens & allergen_type)
-		M.adjustToxLoss((M.species.allergen_severity*allergen_factor) * removed)
 
 /datum/reagent/ethanol/touch_obj(var/obj/O)
 	if(istype(O, /obj/item/weapon/paper))

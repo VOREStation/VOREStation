@@ -317,7 +317,6 @@
 	name = "tiles"
 	icon_state = "freezer"
 	initial_flooring = /decl/flooring/tiling/freezer
-	temperature = T0C - 5 // VOREStation Edit: Chillier Freezer Tiles on-start
 
 /turf/simulated/floor/lino
 	name = "lino"

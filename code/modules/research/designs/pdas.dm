@@ -5,7 +5,7 @@
 	desc = "Cheaper than whiny non-digital assistants."
 	id = "pda"
 	req_tech = list(TECH_ENGINEERING = 2, TECH_POWER = 3)
-	materials = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
+	materials = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50, MAT_COPPER = 10)
 	build_path = /obj/item/device/pda
 	sort_string = "WAAAA"
 

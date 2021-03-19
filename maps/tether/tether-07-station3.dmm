@@ -516,6 +516,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
 	},
+/obj/effect/landmark/start{
+	name = "Pilot"
+	},
 /turf/simulated/floor/tiled/monotile,
 /area/tether/exploration/pilot_office)
 "aaY" = (
@@ -6152,6 +6155,9 @@
 /obj/structure/cable/green{
 	d2 = 8;
 	icon_state = "0-8"
+	},
+/obj/effect/landmark/start{
+	name = "Pilot"
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/tether/exploration/pilot_office)
@@ -18138,26 +18144,6 @@
 "aOx" = (
 /turf/simulated/open,
 /area/tether/exploration)
-"aOz" = (
-/obj/structure/table/rack/shelf,
-/obj/item/weapon/storage/backpack/parachute{
-	pixel_x = -4;
-	pixel_y = -6
-	},
-/obj/item/weapon/storage/backpack/parachute{
-	pixel_x = 4;
-	pixel_y = -6
-	},
-/obj/item/weapon/storage/backpack/parachute{
-	pixel_x = -4;
-	pixel_y = 4
-	},
-/obj/item/weapon/storage/backpack/parachute{
-	pixel_x = 4;
-	pixel_y = 4
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/tether/exploration)
 "aOL" = (
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock)
@@ -19005,7 +18991,7 @@
 /turf/simulated/floor,
 /area/maintenance/station/elevator)
 "aRQ" = (
-/obj/structure/closet/secure_closet/personal,
+/obj/structure/closet/secure_closet/pilot,
 /turf/simulated/floor/tiled/monotile,
 /area/tether/exploration/pilot_office)
 "aRT" = (
@@ -22219,10 +22205,6 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/tether/exploration)
-"dIM" = (
-/obj/structure/table/steel,
-/turf/simulated/floor/tiled/monotile,
-/area/tether/exploration/pilot_office)
 "dLI" = (
 /obj/structure/disposalpipe/segment,
 /turf/simulated/wall,
@@ -23248,7 +23230,7 @@
 /turf/simulated/floor/tiled,
 /area/hallway/station/upper)
 "iPK" = (
-/obj/machinery/suit_cycler/exploration,
+/obj/machinery/suit_cycler/pilot,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/excursion/general)
 "iQS" = (
@@ -23457,6 +23439,9 @@
 	dir = 1;
 	icon_state = "alarm0";
 	pixel_y = -22
+	},
+/obj/effect/landmark/start{
+	name = "Pilot"
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/tether/exploration/pilot_office)
@@ -23912,6 +23897,9 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
+/obj/effect/landmark/start{
+	name = "Pilot"
+	},
 /turf/simulated/floor/tiled/monotile,
 /area/tether/exploration/pilot_office)
 "ndd" = (
@@ -24255,6 +24243,10 @@
 	dir = 1
 	},
 /obj/effect/floor_decal/industrial/outline/blue,
+/obj/item/weapon/storage/backpack/parachute,
+/obj/item/weapon/storage/backpack/parachute,
+/obj/item/weapon/storage/backpack/parachute,
+/obj/item/weapon/storage/backpack/parachute,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/excursion/general)
 "owU" = (
@@ -24854,6 +24846,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/landmark/start{
+	name = "Pilot"
+	},
 /turf/simulated/floor/tiled/monotile,
 /area/tether/exploration/pilot_office)
 "rLd" = (
@@ -24962,10 +24957,6 @@
 /obj/effect/map_helper/airlock/door/ext_door,
 /turf/simulated/floor/tiled/eris/techmaint_panels,
 /area/shuttle/securiship/general)
-"tmE" = (
-/obj/machinery/suit_cycler/pilot,
-/turf/simulated/floor/tiled/monotile,
-/area/tether/exploration/pilot_office)
 "tnc" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -25201,6 +25192,9 @@
 	dir = 1
 	},
 /obj/machinery/light,
+/obj/effect/landmark/start{
+	name = "Pilot"
+	},
 /turf/simulated/floor/tiled/monotile,
 /area/tether/exploration/pilot_office)
 "uRY" = (
@@ -36547,7 +36541,7 @@ adj
 acK
 acK
 ams
-aOz
+amq
 abe
 amV
 aSg
@@ -36689,7 +36683,7 @@ adj
 adj
 acK
 ams
-aOz
+amq
 abe
 aZP
 aRT
@@ -37970,7 +37964,7 @@ ams
 amq
 abe
 aRQ
-dIM
+aRQ
 aRQ
 adV
 aSi
@@ -38396,7 +38390,7 @@ ams
 eAm
 abe
 aRX
-tmE
+aRX
 aRX
 adV
 aSi

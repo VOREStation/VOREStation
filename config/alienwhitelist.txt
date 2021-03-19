@@ -27,6 +27,7 @@ greennyy - Protean
 hawkerthegreat - Vox
 hollifex - Diona
 h0lysquirr3l - Protean
+idcaboutaname - Protean
 inuzari - Diona
 jademanique - Black-Eyed Shadekin
 jademanique - Xenochimera
@@ -39,6 +40,7 @@ magpiemayhem - Vox
 marco_barko - Protean
 mewchild - Diona
 mewchild - Vox
+milu - Xenochimera
 mrsebbi - Xenochimera
 natje - Xenochimera
 nerdass - Protean
@@ -53,12 +55,14 @@ pemdesos - Protean
 phoenixx0 - Vox
 qrocakes - Black-Eyed Shadekin
 radiantaurora - Protean
+residentcody - Black-Eyed Shadekin
 residentcody - Protean
 rikaru19xjenkins - Xenochimera
 rixunie - Diona
 rubyflamewing - Protean
 rykkastormheart - Xenochimera
 ryumi - Protean
+ryumi - Xenochimera
 scoutisafolflol - Xenochimera
 seiga - Vox
 sepulchre - Vox

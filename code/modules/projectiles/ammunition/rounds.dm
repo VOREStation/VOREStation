@@ -300,11 +300,12 @@
 	icon_state = "lcasing"
 	caliber = "14.5mm"
 	projectile_type = /obj/item/projectile/bullet/rifle/a145
-	matter = list(DEFAULT_WALL_MATERIAL = 1250)
+	matter = list(MAT_TITANIUM = 2500, MAT_URANIUM = 1000, MAT_PLASTEEL = 1500)
 
 /obj/item/ammo_casing/a145/highvel
 	desc = "A 14.5mm sabot shell."
 	projectile_type = /obj/item/projectile/bullet/rifle/a145
+	matter = list(MAT_TITANIUM = 2500, MAT_PLASTEEL = 1500)
 
 /obj/item/ammo_casing/a145/spent/Initialize()
 	. = ..()

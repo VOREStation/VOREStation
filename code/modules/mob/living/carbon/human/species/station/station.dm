@@ -313,7 +313,7 @@
 	breath_heat_level_3 = 1350	//Default 1250
 
 	reagent_tag = IS_SKRELL
-	allergens = MEAT|FISH|DAIRY
+	allergens = MEAT|FISH|DAIRY|EGGS
 
 	has_limbs = list(
 		BP_TORSO =  list("path" = /obj/item/organ/external/chest),

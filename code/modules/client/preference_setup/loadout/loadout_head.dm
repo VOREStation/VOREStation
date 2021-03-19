@@ -392,3 +392,7 @@
 /datum/gear/head/blackngoldheaddress
 	display_name = "black and gold headdress"
 	path = /obj/item/clothing/head/blackngoldheaddress
+
+/datum/gear/head/plaguedoctor2
+	display_name = "golden plague doctor's hat"
+	path = /obj/item/clothing/head/plaguedoctorhat/gold
