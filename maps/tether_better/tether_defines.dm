@@ -36,12 +36,7 @@
 /datum/map/tether/New()
 	..()
 	var/choice = pickweight(list(
-		"title" = 10,
-		"tether" = 50,
-		"tether_night" = 50,
-		"tether2_night" = 50,
-		"tether2_dog" = 1,
-		"tether2_love" = 1
+		"tether_perfect" = 1
 	))
 	if(choice)
 		lobby_screens = list(choice)

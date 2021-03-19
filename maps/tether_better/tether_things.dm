@@ -498,3 +498,6 @@ var/global/list/latejoin_tram   = list()
 	max_oxy = 0
 	min_tox = 0
 	maxbodytemp = 500
+
+/mob/living/simple_mob/animal/space/goose/virgo3b_better
+	faction = "v3b"

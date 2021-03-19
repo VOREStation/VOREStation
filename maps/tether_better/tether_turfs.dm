@@ -10,7 +10,7 @@
 	grass_chance = 20
 	tree_chance = 0
 	var/tree_chance_better = 1
-/*
+
 	var/tree_types = list(
 		/obj/structure/flora/tree/jungle_small = 5,
 		/obj/structure/flora/tree/jungle = 2
@@ -30,7 +30,7 @@
 		/mob/living/simple_mob/animal/passive/snake/v3b = 5,
 		/mob/living/simple_mob/vore/bee/v3b = 10,
 		/mob/living/simple_mob/animal/passive/gaslamp/gay = 5
-		)*/
+		)
 	grass_types = list(
 		/obj/structure/flora/ausbushes = 5,
 		/obj/structure/flora/ausbushes/reedbush = 1,
@@ -54,12 +54,12 @@
 	catalogue_delay = 2 SECONDS
 
 /turf/simulated/floor/outdoors/grass/sif/Initialize()
-	/*if(animal_chance && prob(animal_chance) && !check_density())
+	if(animal_chance && prob(animal_chance) && !check_density())
 		var/animal_type = pickweight(animal_types)
 		new animal_type(src)
 	if(tree_chance_better && prob(tree_chance_better) && !check_density())
 		var/tree_type = pickweight(tree_types)
-		new tree_type(src)*/
+		new tree_type(src)
 	. = ..()
 
 //Simulated
