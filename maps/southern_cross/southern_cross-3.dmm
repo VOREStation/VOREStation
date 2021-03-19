@@ -4043,6 +4043,8 @@
 /area/surface/outpost/main/garage)
 "iI" = (
 /obj/structure/table/steel,
+/obj/item/weapon/weldingtool,
+/obj/item/device/floor_painter,
 /turf/simulated/floor/tiled/steel_grid,
 /area/surface/outpost/main/garage)
 "iJ" = (
@@ -14234,6 +14236,26 @@
 	},
 /turf/simulated/floor/tiled/freezer,
 /area/surface/outpost/main/pool)
+"GP" = (
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/mech_recharger,
+/obj/effect/landmark/robot_platform/explorer,
+/turf/simulated/floor/plating,
+/area/surface/outpost/main/garage)
+"Iw" = (
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/machinery/mech_recharger,
+/turf/simulated/floor/plating,
+/area/surface/outpost/main/garage)
+"Lz" = (
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/machinery/mech_recharger,
+/obj/effect/landmark/robot_platform/explorer,
+/turf/simulated/floor/plating,
+/area/surface/outpost/main/garage)
 
 (1,1,1) = {"
 aa
@@ -54622,11 +54644,11 @@ hq
 hG
 ii
 iG
-iH
-iH
-iH
-iH
-iH
+iG
+iG
+iG
+iG
+iG
 kJ
 hF
 lq
@@ -54880,10 +54902,10 @@ hF
 ij
 iI
 Ej
-iH
-iH
-iH
-iH
+Lz
+GP
+Iw
+iG
 kK
 hF
 lr

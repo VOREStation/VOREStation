@@ -157,6 +157,18 @@
 	. = ..()
 	access = get_all_station_access().Copy() + access_synth
 
+/obj/item/weapon/card/id/platform
+	name = "\improper Support Platform ID"
+	desc = "Access module for support platforms."
+	icon_state = "id-robot"
+	item_state = "tdgreen"
+	assignment = "Synthetic"
+	access = list(
+		access_synth, access_mining, access_mining_station, access_mining_office, access_research,
+		access_xenoarch, access_xenobiology, access_external_airlocks, access_robotics, access_tox, 
+		access_tox_storage, access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot
+	)
+
 /obj/item/weapon/card/id/centcom
 	name = "\improper CentCom. ID"
 	desc = "An ID straight from Central Command."

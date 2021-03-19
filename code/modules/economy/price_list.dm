@@ -504,6 +504,9 @@
 /obj/item/weapon/reagent_containers/food/drinks/bottle/sake
 	price_tag = 25
 
+/obj/item/weapon/reagent_containers/food/drinks/bottle/jager
+	price_tag = 25
+
 //***************//
 //---Foodstuff---//
 //***************//

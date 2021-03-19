@@ -66,15 +66,16 @@
 	return 1
 
 /turf/attack_hand(mob/user)
-	//QOL feature, clicking on turf can toogle doors
-	var/obj/machinery/door/airlock/AL = locate(/obj/machinery/door/airlock) in src.contents
-	if(AL)
-		AL.attack_hand(user)
-		return TRUE
-	var/obj/machinery/door/firedoor/FD = locate(/obj/machinery/door/firedoor) in src.contents
-	if(FD)
-		FD.attack_hand(user)
-		return TRUE
+	//QOL feature, clicking on turf can toggle doors, unless pulling something
+	if(!user.pulling)
+		var/obj/machinery/door/airlock/AL = locate(/obj/machinery/door/airlock) in src.contents
+		if(AL)
+			AL.attack_hand(user)
+			return TRUE
+		var/obj/machinery/door/firedoor/FD = locate(/obj/machinery/door/firedoor) in src.contents
+		if(FD)
+			FD.attack_hand(user)
+			return TRUE
 
 	if(!(user.canmove) || user.restrained() || !(user.pulling))
 		return 0

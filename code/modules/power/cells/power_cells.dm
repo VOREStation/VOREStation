@@ -62,6 +62,11 @@
 	charge = 0
 	update_icon()
 
+/obj/item/weapon/cell/mech
+	name = "mecha power cell"
+	charge = 15000
+	maxcharge = 15000
+
 /obj/item/weapon/cell/infinite
 	name = "infinite-capacity power cell!"
 	icon_state = "icell"
