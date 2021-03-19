@@ -1,3 +1,67 @@
+/decl/flooring/grass/sif // Subtype for Sif's grass.
+	desc = "A natural moss that has adapted to the sheer cold climate."
+	icon_base = "grass"
+	build_type = /obj/item/stack/tile/grass
+
+/turf/simulated/floor/outdoors/grass/sif
+	name = "growth"
+	icon_state = "grass0"
+	initial_flooring = /decl/flooring/grass/sif
+	grass_chance = 20
+	tree_chance = 0
+	var/tree_chance_better = 1
+/*
+	var/tree_types = list(
+		/obj/structure/flora/tree/jungle_small = 5,
+		/obj/structure/flora/tree/jungle = 2
+		)
+
+	var/animal_chance = 0.25
+
+	var/animal_types = list(
+		/mob/living/simple_mob/vore/rabbit/v3b = 15,
+		/mob/living/simple_mob/vore/redpanda/v3b = 15,
+		/mob/living/simple_mob/vore/redpanda/fae/v3b = 1,
+		/mob/living/simple_mob/vore/fennec/v3b = 15,
+		/mob/living/simple_mob/animal/passive/cow/v3b = 5,
+		/mob/living/simple_mob/animal/passive/chicken/v3b = 5,
+		/mob/living/simple_mob/vore/horse/v3b = 10,
+		/mob/living/simple_mob/vore/hippo/v3b = 5,
+		/mob/living/simple_mob/animal/passive/snake/v3b = 5,
+		/mob/living/simple_mob/vore/bee/v3b = 10,
+		/mob/living/simple_mob/animal/passive/gaslamp/gay = 5
+		)*/
+	grass_types = list(
+		/obj/structure/flora/ausbushes = 5,
+		/obj/structure/flora/ausbushes/reedbush = 1,
+		/obj/structure/flora/ausbushes/leafybush = 1,
+		/obj/structure/flora/ausbushes/palebush = 1,
+		/obj/structure/flora/ausbushes/stalkybush = 1,
+		/obj/structure/flora/ausbushes/grassybush = 1,
+		/obj/structure/flora/ausbushes/fernybush = 1,
+		/obj/structure/flora/ausbushes/sunnybush = 1,
+		/obj/structure/flora/ausbushes/genericbush = 1,
+		/obj/structure/flora/ausbushes/pointybush = 1,
+		/obj/structure/flora/ausbushes/lavendergrass = 1,
+		/obj/structure/flora/ausbushes/ywflowers = 5,
+		/obj/structure/flora/ausbushes/brflowers = 5,
+		/obj/structure/flora/ausbushes/ppflowers = 5,
+		/obj/structure/flora/ausbushes/sparsegrass = 1,
+		/obj/structure/flora/ausbushes/fullgrass = 3
+		)
+
+	catalogue_data = list(/datum/category_item/catalogue/flora/sif_grass)
+	catalogue_delay = 2 SECONDS
+
+/turf/simulated/floor/outdoors/grass/sif/Initialize()
+	/*if(animal_chance && prob(animal_chance) && !check_density())
+		var/animal_type = pickweight(animal_types)
+		new animal_type(src)
+	if(tree_chance_better && prob(tree_chance_better) && !check_density())
+		var/tree_type = pickweight(tree_types)
+		new tree_type(src)*/
+	. = ..()
+
 //Simulated
 VIRGO3BB_TURF_CREATE(/turf/simulated/open)
 /turf/simulated/open/virgo3b_better

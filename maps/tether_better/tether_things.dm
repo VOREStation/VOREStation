@@ -460,3 +460,41 @@ var/global/list/latejoin_tram   = list()
 	layer = ABOVE_WINDOW_LAYER
 /obj/structure/noticeboard
 	layer = ABOVE_WINDOW_LAYER
+
+/mob/living/simple_mob/vore/redpanda/v3b
+	faction = "v3b"
+
+/mob/living/simple_mob/vore/redpanda/fae/v3b
+	faction = "v3b"
+
+/mob/living/simple_mob/vore/rabbit/v3b
+	faction = "v3b"
+
+/mob/living/simple_mob/vore/fennec/v3b
+	faction = "v3b"
+
+/mob/living/simple_mob/animal/passive/cow/v3b
+	faction = "v3b"
+
+/mob/living/simple_mob/vore/hippo/v3b
+	faction = "v3b"
+
+/mob/living/simple_mob/animal/passive/chicken/v3b
+	faction = "v3b"
+
+/mob/living/simple_mob/vore/horse/v3b
+	faction = "v3b"
+
+/mob/living/simple_mob/animal/passive/snake/v3b
+	faction = "v3b"
+
+/mob/living/simple_mob/vore/bee/v3b
+	faction = "v3b"
+
+/mob/living/simple_mob/animal/passive/gaslamp/gay
+	name = "gaylamp"
+	faction = "v3b"
+	icon = 'icons/mob/vore32x64af.dmi'
+	max_oxy = 0
+	min_tox = 0
+	maxbodytemp = 500
