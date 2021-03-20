@@ -18,7 +18,7 @@ var/global/list/robot_modules = list(
 	icon_state = "std_module"
 	w_class = ITEMSIZE_NO_CONTAINER
 	item_state = "std_mod"
-	var/hide_on_manifest = 0
+	var/hide_on_manifest = FALSE
 	var/channels = list()
 	var/networks = list()
 	var/languages = list(LANGUAGE_SOL_COMMON = 1, LANGUAGE_TRADEBAND = 1, LANGUAGE_UNATHI = 0, LANGUAGE_SIIK = 0, LANGUAGE_AKHANI = 0, LANGUAGE_SKRELLIAN = 0, LANGUAGE_GUTTER = 0, LANGUAGE_SCHECHI = 0, LANGUAGE_SIGN = 0, LANGUAGE_TERMINUS = 1, LANGUAGE_ZADDAT = 0)
@@ -36,6 +36,9 @@ var/global/list/robot_modules = list(
 	// Bookkeeping
 	var/list/original_languages = list()
 	var/list/added_networks = list()
+
+/obj/item/weapon/robot_module/proc/hide_on_manifest()
+	. = hide_on_manifest
 
 /obj/item/weapon/robot_module/New(var/mob/living/silicon/robot/R)
 	..()
@@ -791,7 +794,7 @@ var/global/list/robot_modules = list(
 
 /obj/item/weapon/robot_module/robot/security/combat
 	name = "combat robot module"
-	hide_on_manifest = 1
+	hide_on_manifest = TRUE
 	sprites = list(
 					"Haruka" = "marinaCB",
 					"Combat Android" = "droid-combat",
@@ -814,7 +817,7 @@ var/global/list/robot_modules = list(
 
 /obj/item/weapon/robot_module/drone
 	name = "drone module"
-	hide_on_manifest = 1
+	hide_on_manifest = TRUE
 	no_slip = 1
 	networks = list(NETWORK_ENGINEERING)
 
@@ -898,7 +901,7 @@ var/global/list/robot_modules = list(
 
 /obj/item/weapon/robot_module/drone/construction
 	name = "construction drone module"
-	hide_on_manifest = 1
+	hide_on_manifest = TRUE
 	channels = list("Engineering" = 1)
 	languages = list()
 

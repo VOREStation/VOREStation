@@ -354,8 +354,16 @@
 	throwforce = 2
 	slot_flags = SLOT_BELT
 	storage_slots = 14
-	can_hold = list(/obj/item/weapon/rollingpaper)
-	starts_with = list(/obj/item/weapon/rollingpaper = 14)
+	can_hold = list(/obj/item/weapon/reagent_containers/rollingpaper)
+	starts_with = list(/obj/item/weapon/reagent_containers/rollingpaper = 14)
+
+/obj/item/weapon/storage/rollingpapers/blunt
+	name = "blunt wrap pack"
+	desc = "A small cardboard pack containing several folded blunt wraps."
+	icon_state = "bluntbox"
+	storage_slots = 7
+	can_hold = list(/obj/item/weapon/reagent_containers/rollingpaper/blunt)
+	starts_with = list(/obj/item/weapon/reagent_containers/rollingpaper/blunt = 7)
 
 /*
  * Vial Box

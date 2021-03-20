@@ -67,6 +67,10 @@ var/list/GPS_list = list()
 	. = ..()
 	update_holder()
 
+/obj/item/device/gps/equipped_robot()
+	. = ..()
+	update_holder()
+
 /obj/item/device/gps/equipped()
 	. = ..()
 	update_holder()
@@ -107,6 +111,7 @@ var/list/GPS_list = list()
 
 /obj/item/device/gps/proc/update_compass(var/update_compass_icon)
 	compass.hide_waypoints(FALSE)
+	var/turf/my_turf = get_turf(src)
 	for(var/thing in tracking_devices)
 		var/obj/item/device/gps/gps = locate(thing)
 		if(!istype(gps) || QDELETED(gps))
@@ -119,7 +124,7 @@ var/list/GPS_list = list()
 			compass.set_waypoint("\ref[gps]", gps_tag, gps_turf.x, gps_turf.y, gps_turf.z, LAZYACCESS(tracking_devices, "\ref[gps]"))
 		else
 			compass.set_waypoint("\ref[gps]", gps_tag, 0, 0, 0, LAZYACCESS(tracking_devices, "\ref[gps]"))
-		if(can_track(gps))
+		if(can_track(gps) && gps_turf && my_turf && gps_turf.z == my_turf.z)
 			compass.show_waypoint("\ref[gps]")
 	compass.rebuild_overlay_lists(update_compass_icon)
 
@@ -183,11 +188,11 @@ var/list/GPS_list = list()
 	var/turf/curr = get_turf(src)
 	var/area/my_area = get_area(src)
 
-	dat["my_area_name"] = my_area.name
+	dat["my_area_name"] = strip_improper(my_area.name)
 	dat["curr_x"] = curr.x
 	dat["curr_y"] = curr.y
 	dat["curr_z"] = curr.z
-	dat["curr_z_name"] = using_map.get_zlevel_name(curr.z)
+	dat["curr_z_name"] = strip_improper(using_map.get_zlevel_name(curr.z))
 	dat["gps_list"] = list()
 	dat["z_level_detection"] = using_map.get_map_levels(curr.z, long_range)
 	
@@ -201,10 +206,10 @@ var/list/GPS_list = list()
 		gps_data["gps_tag"] = G.gps_tag
 
 		var/area/A = get_area(G)
-		gps_data["area_name"] = A.get_name()
+		gps_data["area_name"] = strip_improper(A.get_name())
 
 		var/turf/T = get_turf(G)
-		gps_data["z_name"] = using_map.get_zlevel_name(T.z)
+		gps_data["z_name"] = strip_improper(using_map.get_zlevel_name(T.z))
 		gps_data["direction"] = get_adir(curr, T)
 		gps_data["degrees"] = round(Get_Angle(curr,T))
 		gps_data["distX"] = T.x - curr.x
@@ -221,7 +226,7 @@ var/list/GPS_list = list()
 /obj/item/device/gps/proc/display(mob/user)
 
 	if(emped)
-		to_chat(user, "It's busted!")
+		to_chat(user, SPAN_WARNING("It's busted!"))
 		return
 
 	var/list/dat = list()
@@ -229,9 +234,9 @@ var/list/GPS_list = list()
 
 	dat += "<table width = '100%'>"
 	if(!tracking)
-		dat += "<tr><td colspan = 6></td><a href='?src=\ref[src];toggle_power=1'>\[Switch On]\]</a></tr>"
+		dat += "<tr><td colspan = 6></td><a href='?src=\ref[src];toggle_power=1'>\[Switch On\]</a></tr>"
 	else
-		dat += "<tr><td colspan = 6></td><a href='?src=\ref[src];toggle_power=1'>\[Switch Off]\]</a></tr>"
+		dat += "<tr><td colspan = 6></td><a href='?src=\ref[src];toggle_power=1'>\[Switch Off\]</a></tr>"
 		dat += "<tr><td colspan = 2><b>Current location</b></td><td colspan = 2>[gps_data["my_area_name"]]</td><td colspan = 2><b>([gps_data["curr_x"]], [gps_data["curr_y"]], [gps_data["curr_z_name"]])</b></td></tr>"
 		dat += "<tr><td colspan = 4>[hide_signal ? "Tagged" : "Broadcasting"] as '[gps_tag]'.</td>"
 		dat += "<td><a href='?src=\ref[src];tag=1'>\[Change Tag\]</a><a href='?src=\ref[src];range=1'>\[Toggle Scan Range\]</a>[can_hide_signal ? "<a href='?src=\ref[src];hide=1'>\[Toggle Signal Visibility\]</a>":""]</td></tr>"
@@ -244,13 +249,12 @@ var/list/GPS_list = list()
 				dat += "<td>[gps["gps_tag"]]</td><td>[gps["area_name"]]</td>"
 				
 				if(istype(gps_data["ref"], /obj/item/device/gps/internal/poi))
-					dat += "<td>[gps["local"] ? "[gps["direction"]] Dist: [round(gps["distance"], 10)]m" : "in \the [gps["z_name"]]"]</td>"
+					dat += "<td>[gps["local"] ? "[gps["direction"]] Dist: [round(gps["distance"], 10)]m" : "[gps["z_name"]]"]</td>"
 				else
 					dat += "<td>([gps["x"]], [gps["y"]], [gps["z_name"]])</td>"
 
 				if(gps["local"])
-					dat += "<td>[gps["distance"]]m</td>"
-					dat += "<td>[gps["degrees"]]° ([gps["direction"]])</td>"
+					dat += "<td>[gps["distance"]]m</td><td>[gps["direction"]]</td>"
 				else
 					dat += "<td colspan = 2>Non-local signal.</td>"
 
@@ -471,9 +475,9 @@ var/list/GPS_list = list()
 
 	dat += "<table width = '100%'>"
 	if(!tracking)
-		dat += "<tr><td colspan = 6></td><a href='?src=\ref[src];toggle_power=1'>\[Switch On]\]</a></tr>"
+		dat += "<tr><td colspan = 6></td><a href='?src=\ref[src];toggle_power=1'>\[Switch On\]</a></tr>"
 	else
-		dat += "<tr><td colspan = 6></td><a href='?src=\ref[src];toggle_power=1'>\[Switch Off]\]</a></tr>"
+		dat += "<tr><td colspan = 6></td><a href='?src=\ref[src];toggle_power=1'>\[Switch Off\]</a></tr>"
 		dat += "<tr><td colspan = 2><b>Current location</b></td><td colspan = 2>[gps_data["my_area_name"]]</td><td colspan = 2><b>([gps_data["curr_x"]], [gps_data["curr_y"]], [gps_data["curr_z_name"]])</b></td></tr>"
 		dat += "<tr><td colspan = 4>[hide_signal ? "Tagged" : "Broadcasting"] as '[gps_tag]'.</td>"
 		dat += "<td><a href='?src=\ref[src];tag=1'>\[Change Tag\]</a><a href='?src=\ref[src];range=1'>\[Toggle Scan Range\]</a>[can_hide_signal ? "<a href='?src=\ref[src];hide=1'>\[Toggle Signal Visibility\]</a>":""]</td></tr>"
@@ -485,8 +489,7 @@ var/list/GPS_list = list()
 				var/gps_ref = "\ref[gps["ref"]]"
 				dat += "<td>[gps["gps_tag"]]</td><td>[gps["area_name"]] ([gps["x"]], [gps["y"]], [gps["z_name"]])</td>"
 				if(gps["local"])
-					dat += "<td>[gps["distance"]]m</td>"
-					dat += "<td>[gps["degrees"]]° ([gps["direction"]])</td>"
+					dat += "<td>[gps["distance"]]m</td><td>[gps["direction"]]</td>"
 				else
 					dat += "<td colspan = 2>Non-local signal.</td>"
 				if(LAZYACCESS(tracking_devices, gps_ref))
