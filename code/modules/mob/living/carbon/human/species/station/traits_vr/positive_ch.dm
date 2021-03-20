@@ -2,8 +2,6 @@
 	name = "Absorbent"
 	desc = "You are able to clean messes just by walking over them, and gain nutrition from doing so!"
 	cost = 2
-	special_env = TRUE
-	excludes = list(/datum/trait/slipperydirt)
 
 /datum/trait/absorbent/handle_environment_special(var/mob/living/carbon/human/H)
 	var/turf/T = get_turf(H)
