@@ -4,10 +4,9 @@ var/datum/planet/virgo3b_better/planet_virgo3b_better = null
 	seconds_in_day = 6 HOURS
 
 /datum/planet/virgo3b_better
-	name = "Virgo-3B"
-	desc = "A mid-sized moon of the Virgo 3 gas giant, this planet has an atmosphere mainly comprised of phoron, with trace \
-	amounts of both oxygen and nitrogen. Fortunately, the oxygen is not enough to be combustible in any meaningful way, however \
-	the phoron is desirable by many corporations, including NanoTrasen."
+	name = "Virgo-3BB"
+	desc = "A surprising discovery! Aparently there were moons around Virgo-3B! Moreover, one of them seems to be a perfect habitable paradise, with vegetation, greenery, and \
+			generally everything one could want out of the planet. So the station was simply plucked off the original spot and put on the moon's moon with minor alterations."
 	current_time = new /datum/time/virgo3b_better()
 //	expected_z_levels = list(1) // This is defined elsewhere.
 	planetary_wall_type = /turf/unsimulated/wall/planetary/virgo3b_better
@@ -31,20 +30,20 @@ var/datum/planet/virgo3b_better/planet_virgo3b_better = null
 	var/new_color = null
 
 	switch(sun_position)
-		if(0 to 0.40) // Night
+		if(0 to 0.10) // Night
 			new_brightness = 0.8
 			new_color = "#DDBB22"
 
-		if(0.40 to 0.50) // Twilight
-			new_brightness = 1.0
+		if(0.10 to 0.15) // Twilight
+			new_brightness = 1.5
 			new_color = "#EEDD55"
 
-		if(0.50 to 0.70) // Sunrise/set
-			new_brightness = 1.3
+		if(0.15 to 0.20) // Sunrise/set
+			new_brightness = 4
 			new_color = "#FFFFBB"
 
-		if(0.70 to 1.00) // Noon
-			new_brightness = 1.5
+		if(0.20 to 1.00) // Noon
+			new_brightness = 7
 			new_color = "#FFFFFF"
 
 	var/weather_light_modifier = 1

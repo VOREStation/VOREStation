@@ -3,6 +3,9 @@
 	icon_base = "grass"
 	build_type = /obj/item/stack/tile/grass
 
+var/list/tree_types = list()
+var/list/animal_types = list()
+
 /turf/simulated/floor/outdoors/grass/sif
 	name = "growth"
 	icon_state = "grass0"
@@ -18,7 +21,7 @@
 
 	var/animal_chance = 0.25
 
-	var/animal_types = list(
+	var/list/animal_types = list(
 		/mob/living/simple_mob/vore/rabbit/v3b = 15,
 		/mob/living/simple_mob/vore/redpanda/v3b = 15,
 		/mob/living/simple_mob/vore/redpanda/fae/v3b = 1,
