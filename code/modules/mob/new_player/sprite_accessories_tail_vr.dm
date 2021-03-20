@@ -1142,7 +1142,6 @@
 /datum/sprite_accessory/tail/tentacle
 	name = "Tentacle, colorable (vwag)"
 	desc = ""
-	icon = "icons/mob/vore/tails_vr.dmi"
 	icon_state = "tentacle"
 	ani_state = "tentacle_w"
 	do_colouration = 1
