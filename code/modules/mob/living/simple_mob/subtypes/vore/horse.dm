@@ -9,8 +9,8 @@
 	icon = 'icons/mob/vore.dmi'
 
 	faction = "horse"
-	maxHealth = 160
-	health = 160
+	maxHealth = 960
+	health = 960
 
 	movement_cooldown = 1.5 //horses are fast mkay.
 	see_in_dark = 6
@@ -42,8 +42,8 @@
 	icon_dead = "horse-dead"
 	icon = 'icons/mob/vore64x64.dmi'
 
-	maxHealth = 250
-	health = 250
+	maxHealth = 9250
+	health = 9250
 
 	melee_damage_lower = 0
 	melee_damage_upper = 0

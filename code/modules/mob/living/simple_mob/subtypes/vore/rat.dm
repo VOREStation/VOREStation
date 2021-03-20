@@ -20,8 +20,8 @@
 	maxHealth = 150
 	health = 150
 
-	melee_damage_lower = 8
-	melee_damage_upper = 16
+	melee_damage_lower = 1
+	melee_damage_upper = 2
 	grab_resist = 100
 	see_in_dark = 8
 
