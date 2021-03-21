@@ -26,20 +26,6 @@
 	cost = 0
 	custom_only = FALSE
 
-/datum/trait/melee_attack/xenochimera
-	allowed_species = list(SPECIES_XENOCHIMERA)
-	name = "Xenochimera: Sharp Melee"
-	desc = "Your hunting instincts manifest. Melee attacks are sharper and more dangerous."
-	cost = 0
-	custom_only = FALSE
-
-/datum/trait/melee_attack_fangs/xenochimera
-	allowed_species = list(SPECIES_XENOCHIMERA)
-	name = "Xenochimera: Sharp Melee & Numbing Fangs"
-	desc = "Your hunting instincts manifest in earnest!"
-	cost = 0
-	custom_only = FALSE
-
 /datum/trait/fangs/xenochimera
 	allowed_species = list(SPECIES_XENOCHIMERA)
 	name = "Xenochimera: Numbing Fangs"
