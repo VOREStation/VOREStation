@@ -26,10 +26,10 @@
 	cost = 0
 	custom_only = FALSE
 
-/datum/trait/fangs/xenochimera
+/datum/trait/melee_attack_fangs/xenochimera
 	allowed_species = list(SPECIES_XENOCHIMERA)
-	name = "Xenochimera: Numbing Fangs"
-	desc = "You have grown fangs that makes the person bit unable to feel their body or pain."
+	name = "Xenochimera: Sharp Melee & Numbing Fangs"
+	desc = "Your hunting instincts manifest in earnest! You have grown numbing fangs alongside your naturally grown hunting weapons."
 	cost = 0
 	custom_only = FALSE
 
