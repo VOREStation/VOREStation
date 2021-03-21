@@ -140,6 +140,11 @@
 	slot_flags = SLOT_BELT
 	default_material = "plasteel" //VOREStation Edit
 
+/obj/item/weapon/material/knife/machete/cyborg
+	name = "integrated machete"
+	desc = "A sharp machete often found attached to robots."
+	unbreakable = TRUE
+
 /obj/item/weapon/material/knife/tacknife/survival
 	name = "survival knife"
 	desc = "A hunting grade survival knife."

@@ -353,10 +353,10 @@
 		C.forceMove(src)
 		cell = C
 		return
-	cell = new(src)
-	cell.name = "mecha power cell"
-	cell.charge = 15000
-	cell.maxcharge = 15000
+	cell = new /obj/item/weapon/cell/mech(src)
+
+/obj/mecha/get_cell()
+	return cell
 
 /obj/mecha/proc/add_cabin()
 	cabin_air = new

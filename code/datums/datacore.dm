@@ -114,7 +114,7 @@
 
 	for(var/mob/living/silicon/robot/robot in mob_list)
 		// No combat/syndicate cyborgs, no drones, and no AI shells.
-		if(!robot.scrambledcodes && !robot.shell && !(robot.module && robot.module.hide_on_manifest))
+		if(!robot.scrambledcodes && !robot.shell && !(robot.module && robot.module.hide_on_manifest()))
 			bot[robot.name] = "[robot.modtype] [robot.braintype]"
 
 
@@ -275,7 +275,7 @@ var/global/list/PDA_Manifest = list()
 
 	for(var/mob/living/silicon/robot/robot in mob_list)
 		// No combat/syndicate cyborgs, no drones, and no AI shells.
-		if(robot.scrambledcodes || robot.shell || (robot.module && robot.module.hide_on_manifest))
+		if(robot.scrambledcodes || robot.shell || (robot.module && robot.module.hide_on_manifest()))
 			continue
 
 		bot[++bot.len] = list("name" = robot.real_name, "rank" = "[robot.modtype] [robot.braintype]", "active" = "Active")
@@ -329,7 +329,7 @@ var/global/list/PDA_Manifest = list()
 	if(H.mind && !player_is_antag(H.mind, only_offstation_roles = 1))
 		var/assignment = GetAssignment(H)
 		var/hidden
-		var/datum/job/J = SSjob.get_job(assignment)
+		var/datum/job/J = SSjob.get_job(H.mind.assigned_role)
 		hidden = J?.offmap_spawn
 
 		/* Note: Due to cached_character_icon, a number of emergent properties occur due to the initialization 

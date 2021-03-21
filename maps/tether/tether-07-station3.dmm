@@ -20023,6 +20023,7 @@
 /obj/machinery/camera/network/mining{
 	dir = 8
 	},
+/obj/structure/ore_box,
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock)
 "aUG" = (
@@ -21425,7 +21426,7 @@
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
 "bag" = (
-/obj/structure/ore_box,
+/obj/machinery/mech_recharger,
 /turf/simulated/floor/tiled/asteroid_steel/airless,
 /area/quartermaster/belterdock)
 "bah" = (

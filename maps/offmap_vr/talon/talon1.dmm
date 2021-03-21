@@ -1511,6 +1511,7 @@
 "db" = (
 /obj/machinery/vending/engivend{
 	products = list(/obj/item/device/geiger = 4, /obj/item/clothing/glasses/meson = 2, /obj/item/device/multitool = 4, /obj/item/weapon/cell/high = 10, /obj/item/weapon/airlock_electronics = 10, /obj/item/weapon/module/power_control = 10, /obj/item/weapon/circuitboard/airalarm = 10, /obj/item/weapon/circuitboard/firealarm = 10, /obj/item/weapon/circuitboard/status_display = 2, /obj/item/weapon/circuitboard/ai_status_display = 2, /obj/item/weapon/circuitboard/newscaster = 2, /obj/item/weapon/circuitboard/holopad = 2, /obj/item/weapon/circuitboard/intercom = 4, /obj/item/weapon/circuitboard/security/telescreen/entertainment = 4, /obj/item/weapon/stock_parts/motor = 2, /obj/item/weapon/stock_parts/spring = 2, /obj/item/weapon/stock_parts/gear = 2, /obj/item/weapon/circuitboard/atm, /obj/item/weapon/circuitboard/guestpass, /obj/item/weapon/circuitboard/keycard_auth, /obj/item/weapon/circuitboard/photocopier, /obj/item/weapon/circuitboard/fax, /obj/item/weapon/circuitboard/request, /obj/item/weapon/circuitboard/microwave, /obj/item/weapon/circuitboard/washing, /obj/item/weapon/circuitboard/scanner_console, /obj/item/weapon/circuitboard/sleeper_console, /obj/item/weapon/circuitboard/body_scanner, /obj/item/weapon/circuitboard/sleeper, /obj/item/weapon/circuitboard/dna_analyzer, /obj/item/weapon/circuitboard/partslathe);
+	req_access = list(301);
 	req_log_access = 301
 	},
 /turf/simulated/floor/tiled/eris/dark/brown_platform,
@@ -2472,6 +2473,7 @@
 "mS" = (
 /obj/structure/table/standard,
 /obj/fiftyspawner/steel,
+/obj/fiftyspawner/copper,
 /turf/simulated/floor/tiled/eris/steel/gray_perforated,
 /area/talon/deckone/workroom)
 "mT" = (

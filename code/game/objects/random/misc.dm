@@ -362,6 +362,7 @@
 				/obj/item/weapon/reagent_containers/food/drinks/bottle/peppermintschnapps,
 				/obj/item/weapon/reagent_containers/food/drinks/bottle/peachschnapps,
 				/obj/item/weapon/reagent_containers/food/drinks/bottle/lemonadeschnapps,
+				/obj/item/weapon/reagent_containers/food/drinks/bottle/jager,
 				/obj/item/weapon/reagent_containers/food/drinks/bottle/small/cider,
 				/obj/item/weapon/reagent_containers/food/drinks/bottle/small/litebeer,
 				/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,
