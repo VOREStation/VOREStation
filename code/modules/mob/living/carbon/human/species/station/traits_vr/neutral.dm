@@ -168,66 +168,73 @@
 
 /datum/trait/allergy/meat
 	name = "Allergy: Meat"
-	desc = "You're highly allergic to just about any form of meat. You're probably better off just sticking to vegetables."
+	desc = "You're highly allergic to just about any form of meat. You're probably better off just sticking to vegetables. NB: By taking this trait, you acknowledge there is a risk your character may suffer a fatal reaction if exposed to this substance."
 	cost = 0
 	custom_only = FALSE
 	allergen = MEAT
 
 /datum/trait/allergy/fish
 	name = "Allergy: Fish"
-	desc = "You're highly allergic to fish. It's probably best to avoid seafood in general..."
+	desc = "You're highly allergic to fish. It's probably best to avoid seafood in general. NB: By taking this trait, you acknowledge there is a risk your character may suffer a fatal reaction if exposed to this substance."
 	cost = 0
 	custom_only = FALSE
 	allergen = FISH
 
 /datum/trait/allergy/fruit
 	name = "Allergy: Fruit"
-	desc = "You're highly allergic to fruit. Vegetables are fine, but you should probably read up on how to tell the difference."
+	desc = "You're highly allergic to fruit. Vegetables are fine, but you should probably read up on how to tell the difference. Remember, tomatoes are a fruit. NB: By taking this trait, you acknowledge there is a risk your character may suffer a fatal reaction if exposed to this substance."
 	cost = 0
 	custom_only = FALSE
 	allergen = FRUIT
 
 /datum/trait/allergy/vegetable
 	name = "Allergy: Vegetable"
-	desc = "You're highly allergic to vegetables. Fruit are fine, but you should probably read up on how to tell the difference."
+	desc = "You're highly allergic to vegetables. Fruit are fine, but you should probably read up on how to tell the difference. NB: By taking this trait, you acknowledge there is a risk your character may suffer a fatal reaction if exposed to this substance."
 	cost = 0
 	custom_only = FALSE
 	allergen = VEGETABLE
 
 /datum/trait/allergy/nuts
 	name = "Allergy: Nuts"
-	desc = "You're highly allergic to hard-shell seeds, such as peanuts."
+	desc = "You're highly allergic to hard-shell seeds, such as peanuts. NB: By taking this trait, you acknowledge there is a risk your character may suffer a fatal reaction if exposed to this substance."
 	cost = 0
 	custom_only = FALSE
 	allergen = SEEDS
 
 /datum/trait/allergy/soy
 	name = "Allergy: Soy"
-	desc = "You're highly allergic to soybeans, and some other kinds of bean."
+	desc = "You're highly allergic to soybeans, and some other kinds of bean. NB: By taking this trait, you acknowledge there is a risk your character may suffer a fatal reaction if exposed to this substance."
 	cost = 0
 	custom_only = FALSE
 	allergen = BEANS
 
 /datum/trait/allergy/dairy
 	name = "Allergy: Lactose"
-	desc = "You're highly allergic to lactose, and consequently, just about all forms of dairy."
+	desc = "You're highly allergic to lactose, and consequently, just about all forms of dairy. NB: By taking this trait, you acknowledge there is a risk your character may suffer a fatal reaction if exposed to this substance."
 	cost = 0
 	custom_only = FALSE
 	allergen = DAIRY
 
 /datum/trait/allergy/fungi
 	name = "Allergy: Fungi"
-	desc = "You're highly allergic to Fungi such as mushrooms."
+	desc = "You're highly allergic to fungi such as mushrooms. NB: By taking this trait, you acknowledge there is a risk your character may suffer a fatal reaction if exposed to this substance."
 	cost = 0
 	custom_only = FALSE
 	allergen = FUNGI
 
 /datum/trait/allergy/coffee
 	name = "Allergy: Coffee"
-	desc = "You're highly allergic to coffee in specific."
+	desc = "You're highly allergic to coffee in specific. NB: By taking this trait, you acknowledge there is a risk your character may suffer a fatal reaction if exposed to this substance."
 	cost = 0
 	custom_only = FALSE
 	allergen = COFFEE
+	
+/datum/trait/allergen_reduced_effect
+	name = "Reduced Allergen Reaction"
+	desc = "This trait halves the lethality of allergen reactions. If you don't have any allergens set, it does nothing. It does not apply to nonlethal reactions or special reactions (such as unathi drowsiness from sugars)."
+	cost = 0
+	custom_only = FALSE
+	var_changes = list("allergen_damage_severity" = 0.6)
 
 // Spicy Food Traits, from negative to positive.
 /datum/trait/spice_intolerance_extreme

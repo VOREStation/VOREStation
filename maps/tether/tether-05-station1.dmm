@@ -13744,6 +13744,7 @@
 	dir = 4;
 	icon_state = "steel_decals_central5"
 	},
+/mob/living/simple_mob/animal/passive/opossum/poppy,
 /turf/simulated/floor/tiled/monotile,
 /area/engineering/workshop)
 "azg" = (

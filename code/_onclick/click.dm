@@ -371,5 +371,8 @@
 		var/list/P = params2list(params)
 		var/turf/T = screen_loc2turf(P["screen-loc"], get_turf(usr))
 		if(T)
+			if(modifiers["shift"])
+				usr.face_atom(T)
+				return 1
 			T.Click(location, control, params)
-	. = 1
+	return 1

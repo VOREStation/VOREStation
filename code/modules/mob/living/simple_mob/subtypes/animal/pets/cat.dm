@@ -102,6 +102,7 @@
 	icon_state = "cat"
 	item_state = "cat"
 	named = TRUE
+	holder_type = /obj/item/weapon/holder/cat/runtime
 	makes_dirt = 0 //Vorestation Edit
 
 /mob/living/simple_mob/animal/passive/cat/kitten

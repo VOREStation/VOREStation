@@ -45963,6 +45963,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
 	},
+/mob/living/simple_mob/animal/passive/opossum/poppy,
 /turf/simulated/floor/tiled,
 /area/engineering/foyer)
 "bGL" = (
@@ -72952,12 +72953,9 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/effect/floor_decal/borderfloor{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/brown/border{
-	dir = 1
-	},
+/obj/machinery/mech_recharger,
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/effect/landmark/robot_platform/cargo,
 /turf/simulated/floor/tiled/steel,
 /area/quartermaster/warehouse)
 "cHa" = (
@@ -72973,6 +72971,9 @@
 /obj/effect/floor_decal/corner/brown/border{
 	dir = 1
 	},
+/obj/structure/table/steel,
+/obj/item/device/floor_painter,
+/obj/item/weapon/weldingtool,
 /turf/simulated/floor/tiled,
 /area/quartermaster/warehouse)
 "cHb" = (

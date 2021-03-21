@@ -8,14 +8,11 @@
 	desc = "It's a g-g-g-g-ghooooost!" //jinkies!
 	icon = 'icons/mob/ghost.dmi'
 	icon_state = "ghost"
-	layer = BELOW_MOB_LAYER
-	plane = PLANE_GHOSTS
-	alpha = 127
 	stat = DEAD
 	canmove = 0
 	blinded = 0
 	anchored = 1	//  don't get pushed around
-	invisibility = INVISIBILITY_OBSERVER
+
 	var/can_reenter_corpse
 	var/datum/hud/living/carbon/hud = null // hud
 	var/bootime = 0
@@ -90,27 +87,22 @@
 	var/cleanup_timer // Refernece to a timer that will delete this mob if no client returns
 
 /mob/observer/dead/New(mob/body)
+
+	appearance = body
+	invisibility = INVISIBILITY_OBSERVER
+	layer = BELOW_MOB_LAYER
+	plane = PLANE_GHOSTS
+	alpha = 127
+
 	sight |= SEE_TURFS | SEE_MOBS | SEE_OBJS | SEE_SELF
 	see_invisible = SEE_INVISIBLE_OBSERVER
 	see_in_dark = world.view //I mean. I don't even know if byond has occlusion culling... but...
-	plane = PLANE_GHOSTS //Why doesn't the var above work...???
 	verbs += /mob/observer/dead/proc/dead_tele
 
 	var/turf/T
 	if(ismob(body))
 		T = get_turf(body)				//Where is the body located?
 		attack_log = body.attack_log	//preserve our attack logs by copying them to our ghost
-
-		if (ishuman(body))
-			var/mob/living/carbon/human/H = body
-			icon = H.icon
-			icon_state = H.icon_state
-			add_overlay(H.overlays_standing) //All our equipment sprites
-		else
-			icon = body.icon
-			icon_state = body.icon_state
-			add_overlay(body.overlays)
-
 		gender = body.gender
 		if(body.mind && body.mind.name)
 			name = body.mind.name
@@ -124,6 +116,12 @@
 					name = capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
 
 		mind = body.mind	//we don't transfer the mind but we keep a reference to it.
+
+		// Fix for naked ghosts.
+		// Unclear why this isn't being grabbed by appearance.
+		if(ishuman(body))
+			var/mob/living/carbon/human/H = body
+			overlays = H.overlays_standing
 
 	if(!T)	T = pick(latejoin)			//Safety in case we cannot find the body's position
 	forceMove(T)
