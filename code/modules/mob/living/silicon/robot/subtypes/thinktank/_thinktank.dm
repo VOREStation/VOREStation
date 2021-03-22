@@ -33,6 +33,7 @@
 	mob_push_flags =  HEAVY
 	mob_size =        MOB_LARGE
 
+	var/has_had_player = FALSE
 	var/const/platform_respawn_time = 3 MINUTES
 
 	var/tmp/last_recharge_state =     FALSE
@@ -53,6 +54,10 @@
 	var/static/list/cannot_store_types = list(
 		/obj/machinery/power/supermatter
 	)
+
+/mob/living/silicon/robot/platform/Login()
+	. = ..()
+	has_had_player = TRUE
 
 /mob/living/silicon/robot/platform/SetName(pickedName)
 	. = ..()
