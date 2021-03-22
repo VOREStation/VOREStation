@@ -211,6 +211,14 @@
 
 	return 1
 
+/datum/map/tether/get_map_info()
+	. = list()
+	. +=  "Tether? Bah! Who needs Tether. We have something better! Way better! Welcome to better tether!<br>"
+	. +=  "Virgo 3B? Phoron? Wake up, samurai, it's time to vore on new and god damn improved planet! Virgo 3BB. What does it mean? Virgo 3B BETTER!<br>"
+	. +=  "Fresh air! Green grass! Sunny days! You want it? It's yours, my friend. As long as you come to NSB Twodephagia!<br>"
+	. +=  "No elevator! Better pond! Extra original gaslamps! Now, get on and have some vore-mazing fuckin' time!"
+	return jointext(., "<br>")
+
 /datum/skybox_settings/tether
 	icon_state = "space5"
 	use_stars = FALSE
@@ -232,8 +240,8 @@
 // Overmap represetation of tether
 /obj/effect/overmap/visitable/sector/virgo3b_better
 	name = "Virgo 3B 2.0"
-	desc = "Full of phoron, and home to the NSB Adephagia, where you can dock and refuel your craft."
-	scanner_desc = @{"[i]Registration[/i]: NSB Adephagia
+	desc = "Full of not-phoron, and home to the NSB Twophagia, where you can dock and vore some booty."
+	scanner_desc = @{"[i]Registration[/i]: NSB Twophagia
 [i]Class[/i]: Installation
 [i]Transponder[/i]: Transmitting (CIV), NanoTrasen IFF
 [b]Notice[/b]: NanoTrasen Base, authorized personnel only"}
@@ -363,3 +371,4 @@
 	name = "Solar Field"
 	flags = MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_SEALED
 	base_turf = /turf/simulated/floor/outdoors/rocks/virgo3b_better
+
