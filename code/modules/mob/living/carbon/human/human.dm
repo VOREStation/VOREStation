@@ -1650,7 +1650,12 @@
 
 	..()
 
+<<<<<<< HEAD
 /mob/living/carbon/human/reduce_cuff_time()
 	if(istype(gloves, /obj/item/clothing/gloves/gauntlets/rig))
 		return 2
 	return ..()
+=======
+/mob/living/carbon/human/get_mob_riding_slots()
+	return list(back, head, wear_suit)
+>>>>>>> 0b5bb3f... Allows Teshari to glide in some multiz fall conditions. (#7990)

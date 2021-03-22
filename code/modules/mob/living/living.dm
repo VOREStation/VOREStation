@@ -848,8 +848,12 @@
 
 	if(lying)
 		density = 0
-		if(l_hand) unEquip(l_hand)
-		if(r_hand) unEquip(r_hand)
+		if(l_hand) 
+			unEquip(l_hand)
+		if(r_hand) 
+			unEquip(r_hand)
+		for(var/obj/item/weapon/holder/holder in get_mob_riding_slots())
+			unEquip(holder)
 		update_water() // Submerges the mob.
 	else
 		density = initial(density)
@@ -876,6 +880,10 @@
 		//VOREStation Add End
 
 	return canmove
+
+// Mob holders in these slots will be spilled if the mob goes prone.
+/mob/living/proc/get_mob_riding_slots()
+	return list(back)
 
 // Adds overlays for specific modifiers.
 // You'll have to add your own implementation for non-humans currently, just override this proc.
