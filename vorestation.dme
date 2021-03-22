@@ -1306,11 +1306,8 @@
 #include "code\game\objects\items\weapons\grenades\spawnergrenade_vr.dm"
 #include "code\game\objects\items\weapons\grenades\supermatter.dm"
 #include "code\game\objects\items\weapons\id cards\cards.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\game\objects\items\weapons\id cards\cards_vr.dm"
-=======
 #include "code\game\objects\items\weapons\id cards\id_stacks.dm"
->>>>>>> 47d2c55... New ID Card Design (#7815):polaris.dme
 #include "code\game\objects\items\weapons\id cards\station_ids.dm"
 #include "code\game\objects\items\weapons\id cards\station_ids_vr.dm"
 #include "code\game\objects\items\weapons\id cards\syndicate_ids.dm"
