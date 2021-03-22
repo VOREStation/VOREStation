@@ -7,3 +7,4 @@
 /obj/item/weapon/card/id/platform/Initialize()
 	. = ..()
 	access |= access_explorer
+	access |= access_pilot
