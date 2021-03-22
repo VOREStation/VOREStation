@@ -21,12 +21,12 @@
 "au" = (/obj/effect/step_trigger/teleporter/planetary_fall/virgo3b_better,/turf/simulated/sky/virgo3b_better,/area/tether/transit)
 "av" = (/obj/structure/grille,/obj/structure/window/reinforced/full,/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 4},/obj/machinery/door/firedoor/glass,/turf/simulated/floor/plating,/area/tether/midpoint)
 "aw" = (/obj/structure/grille,/obj/structure/window/reinforced/full,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/machinery/door/firedoor/glass,/turf/simulated/floor/plating,/area/tether/midpoint)
-"ax" = (/obj/machinery/atmospherics/pipe/zpipe/up/supply{dir = 1},/obj/machinery/atmospherics/pipe/zpipe/up/scrubbers{dir = 1},/obj/machinery/atmospherics/pipe/zpipe/up{dir = 1},/obj/structure/disposalpipe/up{dir = 1},/obj/structure/cable{icon_state = "16-0"},/obj/structure/cable,/obj/effect/ceiling,/turf/simulated/floor/plating,/area/maintenance/tether_midpoint)
+"ax" = (/obj/machinery/atmospherics/pipe/zpipe/up/supply{dir = 1},/obj/machinery/atmospherics/pipe/zpipe/up/scrubbers{dir = 1},/obj/machinery/atmospherics/pipe/zpipe/up{dir = 1},/obj/structure/disposalpipe/up{dir = 1},/obj/structure/cable{icon_state = "16-0"},/obj/structure/cable,/turf/simulated/floor/plating,/area/maintenance/tether_midpoint)
 "ay" = (/turf/simulated/wall/r_wall,/area/tether/midpoint)
 "az" = (/obj/machinery/power/apc{cell_type = /obj/item/weapon/cell/super; dir = 8; name = "west bump"; pixel_x = -24},/obj/structure/cable,/obj/structure/disposalpipe/segment{dir = 1; icon_state = "pipe-c"},/turf/simulated/floor/plating,/area/maintenance/tether_midpoint)
-"aA" = (/obj/structure/disposalpipe/up{dir = 8},/obj/effect/ceiling,/turf/simulated/floor/plating,/area/maintenance/tether_midpoint)
+"aA" = (/obj/structure/disposalpipe/up{dir = 8},/turf/simulated/floor/plating,/area/maintenance/tether_midpoint)
 "aB" = (/turf/simulated/floor/plating,/area/maintenance/tether_midpoint)
-"aC" = (/obj/structure/disposalpipe/up,/obj/effect/ceiling,/turf/simulated/floor/plating,/area/maintenance/tether_midpoint)
+"aC" = (/obj/structure/disposalpipe/up,/turf/simulated/floor/plating,/area/maintenance/tether_midpoint)
 "aD" = (/obj/structure/disposalpipe/down{dir = 1},/obj/machinery/light/small{dir = 4; pixel_y = 0},/obj/structure/lattice,/obj/machinery/door/firedoor/glass,/turf/simulated/open,/area/maintenance/tether_midpoint)
 "aE" = (/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/simulated/floor/wood,/area/tether/midpoint)
 "aF" = (/obj/structure/table/bench/padded,/turf/simulated/floor/wood,/area/tether/midpoint)
@@ -53,7 +53,9 @@
 "ba" = (/turf/simulated/open,/area/tether/elevator)
 "bb" = (/obj/structure/railing/grey{dir = 1},/turf/simulated/floor/holofloor/tiled/dark,/area/tether/elevator)
 "bc" = (/obj/structure/railing/grey,/turf/simulated/floor/holofloor/tiled/dark,/area/tether/elevator)
-"bd" = (/obj/structure/railing/grey{dir = 4},/turf/simulated/floor/holofloor/tiled/dark,/area/tether/elevator)
+"bd" = (/obj/structure/bed/chair/sofa/orange/left{dir = 4},/turf/simulated/floor/holofloor/tiled/dark,/area/tether/elevator)
+"be" = (/obj/structure/bed/chair/sofa/orange/right{dir = 4},/turf/simulated/floor/holofloor/tiled/dark,/area/tether/elevator)
+"bf" = (/obj/structure/railing/grey{dir = 4},/obj/structure/table/darkglass,/obj/item/device/flashlight/lamp/green,/turf/simulated/floor/holofloor/tiled/dark,/area/tether/elevator)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -120,9 +122,9 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaauauauauauauauauauauauau
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaauauauauauauauauauauauauauauauauauauauauauaQauauauauauauauauauauabacaeaeaeaeaeaeaHaYamaqaqaqaqawauauauauauauauauauauauauaQauauauauauauauauauauauauauauauauauaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaauauauauauauauauauauauauauauauauauauauauauaQauauauauauauauauauauabahaiadadadadadadaVaZaqaqaqaqawauauauauauauauauauauauauaQauauauauauauauauauauauauauauauauaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaauauauauauauauauauauauauauauauauauauauauauaQauauauauauauauauauauabajasadadaWafafadalaKaFaTaFaqawauauauauauauauauauauauauaQauauauauauauauauauauauauauauauauaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaauauauauauauauauauauauauauauauauauauauauauaQauauauauauauauauauauabataxadafbbbbafafaraKaFanaFaqawauauauauauauauauauauauauaQauauauauauauauauauauauauauauauauaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaauauauauauauauauauauauauauauauauauauauauauaQauauauauauauauauauauabazaAadafbcbcafafaraKaFanaFaqawauauauauauauauauauauauauaQauauauauauauauauauauauauauauauauaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaauauauauauauauauauauauauauauauauauauaQauauauauauauauauauauabaBaCadbdbabaafadaoaKaFaRaFaqawauauauauauauauauauauauauaQauauauauauauauauauauauauauauauauaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaauauauauauauauauauauauauauauauauauauauauauaQauauauauauauauauauauabataxadbdbbbbafafaraKaFanaFaqawauauauauauauauauauauauauaQauauauauauauauauauauauauauauauauaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaauauauauauauauauauauauauauauauauauauauauauaQauauauauauauauauauauabazaAadbebcbcafafaraKaFanaFaqawauauauauauauauauauauauauaQauauauauauauauauauauauauauauauauaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaauauauauauauauauauauauauauauauauauauaQauauauauauauauauauauabaBaCadbfbabaafadaoaKaFaRaFaqawauauauauauauauauauauauauaQauauauauauauauauauauauauauauauauaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaauauauauauauauauauauauauauauauauauauaQauauauauauauauauauauabaBaDadadadadadadaSaOaqaqaqaqawauauauauauauauauauauauauaQauauauauauauauauauauauauauauauauaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaauauauauauauauauauauauauauauauauauauaQauauauauauauauauauauabaBaBaBaGaBaBaIabaXaPaEaqaqaqawauauauauauauauauauauauauaQauauauauauauauauauauauauauauauauaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaauauauauauauauauauauauauauauauauauauaQauauauauauauauauauauabababababababababayayapaUaNaLawauauauauauauauauauauauauaQauauauauauauauauauauauauauauauauaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa

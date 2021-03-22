@@ -56,3 +56,11 @@
 /obj/fiftyspawner/plastitanium_glass
 	name = "stack of plastitanium glass"
 	type_to_spawn = /obj/item/stack/material/glass/plastitanium
+
+/obj/item/stack/material/gold/hull
+	name = "gold hull sheets"
+	icon = 'icons/obj/stacks_vr.dmi'
+	icon_state = "sheet-plastitanium"
+	item_state = "sheet-silver"
+	no_variants = FALSE
+	default_type = MAT_GOLDHULL

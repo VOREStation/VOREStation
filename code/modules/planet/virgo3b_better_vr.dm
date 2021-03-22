@@ -73,7 +73,8 @@ var/datum/planet/virgo3b_better/planet_virgo3b_better = null
 		WEATHER_BLOOD_MOON	= new /datum/weather/virgo3b_better/blood_moon(),
 		WEATHER_EMBERFALL	= new /datum/weather/virgo3b_better/emberfall(),
 		WEATHER_ASH_STORM	= new /datum/weather/virgo3b_better/ash_storm(),
-		WEATHER_FALLOUT		= new /datum/weather/virgo3b_better/fallout()
+		WEATHER_FALLOUT		= new /datum/weather/virgo3b_better/fallout(),
+		WEATHER_PARTY		= new /datum/weather/virgo3b_better/party()
 		)
 	roundstart_weather_chances = list(
 		WEATHER_CLEAR		= 30,
@@ -81,9 +82,9 @@ var/datum/planet/virgo3b_better/planet_virgo3b_better = null
 		)
 
 /datum/weather/virgo3b_better
-	name = "virgo3b_better base"
-	temp_high = 243.15 // -20c
-	temp_low = 233.15  // -30c
+	name = "virgo3bb base"
+	temp_high = 295.15 // -20c
+	temp_low = 291.15  // -30c
 
 /datum/weather/virgo3b_better/clear
 	name = "clear"
@@ -485,3 +486,21 @@ var/datum/planet/virgo3b_better/planet_virgo3b_better = null
 		return
 	if(T.outdoors)
 		SSradiation.radiate(T, rand(fallout_rad_low, fallout_rad_high))
+
+/datum/weather/virgo3b_better/party
+	name = "party"
+	icon = 'icons/effects/weather_vr.dmi'
+	icon_state = "party"
+	light_color = "#FFFFFF"
+	light_modifier = 2
+	flight_failure_modifier = 70
+	transition_chances = list(
+		WEATHER_CLEAR = 100
+		)
+	transition_messages = list(
+		"IT'S PARTY TIME!",
+		"LET'S GO! PARTY TIME!",
+		"EVERYONE, IT'S TIME TO PARTY!"
+		)
+	sky_visible = TRUE
+	observed_message = "THE PARTY IS ON!"

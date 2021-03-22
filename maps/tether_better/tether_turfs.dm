@@ -257,11 +257,11 @@ VIRGO3BB_TURF_CREATE(/turf/simulated/mineral/floor)
 //Sky stuff!
 // A simple turf to fake the appearance of flying.
 /turf/simulated/sky/virgo3b_better
-	color = "#FFBBBB"
+	color = "#88FFFF"
 
 /turf/simulated/sky/virgo3b_better/Initialize()
 	SSplanets.addTurf(src)
-	set_light(2, 2, "#FFBBBB")
+	set_light(2, 2, "#88FFFF")
 
 /turf/simulated/sky/virgo3b_better/north
 	dir = NORTH
