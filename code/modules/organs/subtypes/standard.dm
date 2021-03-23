@@ -334,8 +334,6 @@
 	if(!iscarbon(owner) || !owner.species)
 		return
 
-	var/icon/eyecon
-
 	//Eye color/icon
 	var/should_have_eyes = owner.should_have_organ(O_EYES)
 	var/has_eye_color = owner.species.appearance_flags & HAS_EYE_COLOR
