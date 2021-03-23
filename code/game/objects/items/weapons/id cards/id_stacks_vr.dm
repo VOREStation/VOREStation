@@ -24,6 +24,12 @@
 				initial_sprite_stack = list("base-stamp", "top-blue", "stamp-n")
 			hop
 				initial_sprite_stack = list("base-stamp-silver", "top-blue", "stamp-n", "pips-gold")
+		gold
+			initial_sprite_stack = list("base-stamp-gold", "top-blue", "stamp-n")
+			captain
+				initial_sprite_stack = list("base-stamp-gold", "top-blue", "stamp-n", "pips-gold")
+				spare
+					initial_sprite_stack = list("base-stamp-gold", "top-gold", "stamp-n")
 		medical
 			initial_sprite_stack = list("base-stamp", "top-medblu", "stamp-n")
 			chemist
