@@ -33,6 +33,7 @@
 			if(pay_energy(500))
 				illusion = new(T)
 				illusion.copy_appearance(copied)
+				illusion.copy_overlays(copied, TRUE)
 				to_chat(user, "<span class='notice'>An illusion of \the [copied] is made on \the [T].</span>")
 				user << 'sound/effects/pop.ogg'
 				return 1
