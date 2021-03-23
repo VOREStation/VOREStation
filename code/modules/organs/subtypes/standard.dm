@@ -334,7 +334,7 @@
 	if(!iscarbon(owner) || !owner.species)
 		return
 
-	var/icon/eyecon
+	var/icon/eyecon //VOREStation Add
 
 	//Eye color/icon
 	var/should_have_eyes = owner.should_have_organ(O_EYES)
