@@ -236,10 +236,9 @@
 			return
 		to_chat(user, "<span class='notice'>[src] was dismantaled into bricks.</span>")
 		playsound(src, 'sound/items/smolelargeunbuild.ogg', 50, 1, volume_channel = VOLUME_CHANNEL_MASTER)
-		var/turf/simulated/floor/F = get_turf(src)
-		if(istype(F))
-			new /obj/item/stack/material/smolebricks(F)
-			new /obj/item/stack/material/smolebricks(F)
+		if(!isnull(loc))
+			new /obj/item/stack/material/smolebricks(loc)
+			new /obj/item/stack/material/smolebricks(loc)
 		qdel(src)
 
 //Ruins go asplode same as buildings if attacked
