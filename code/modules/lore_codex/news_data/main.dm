@@ -4,6 +4,8 @@
 	region. Each is labeled by date of publication and title. This list is self-updating, and from time to time the publisher will push new \
 	articles. You are encouraged to check back frequently."
 	children = list(
+		/datum/lore/codex/page/article103,
+		/datum/lore/codex/page/article102,
 		/datum/lore/codex/page/article101,
 		/datum/lore/codex/page/article100,
 		/datum/lore/codex/page/article99,
@@ -1127,3 +1129,29 @@
 	Tachyons are a naturally occurring particle present in varying density which form the primary mechanism for bluespace drive operation. In simple terms, the higher the density of tachyons, the more efficiently starship engines are capable of operating. Low-density regions such as the Rarkajar Rift have long posed a challenge to interstellar trade, and the expansion of such regions could prove devastating to galactic unity.\
 	<br><br>\
 	FTL industry leaders Focal Point Energistics have already announced 'immediate investigation' into the GSA's findings after taking a blow on the stock exchange, and have guaranteed a 'commitment to future-proofing' in all forthcoming products."
+
+/datum/lore/codex/page/article102
+	name = "02/15/65 - NanoTrasen Announces First NERC Members"
+	data = "Following Saturday's internal election, NanoTrasen Vir has elected the first five members for its new Employee Representation Committee. These individuals are expected to hold the position for one month:\
+	<br><br>\
+	For the New Reykjavik Head Office Iraluq James, a remote personnel operative, won the position on a platform of employee morale, team-building and employee-employer conflict resolution.\
+	<br><br>\
+	On the NCS Northern Star, NanoTrasen's main colony station in Vir Victoria Bell, a cybernetic chef and hardshell operator won her place with promises of increased regulatory transparency and clarity, including the publication of an in-house magazine.\
+	<br><br>\
+	At the NMB Gullstrand medical science center in Kalmar, a close race between top doctors was upset by the election of a station security commander, Wish Elara-Voight who promises 'improvements to the safety and security of NanoTrasen facilities with a focus on enforcing current SoP and CorpReg policies and placing new procedure in the handbooks.'\
+	<br><br>\
+	The waypoint station NLS Southern Cross selected a cybernetic Unathi candidate, researcher Dr. Haven Rasikl to represent them on the basis of encouraging interdepartmental cooperation and communication.\
+	<br><br>\
+	Finally, the Ekmanshalvo Fabrication Plant has selected fabrication programmer Terazon Norddahl, who promises to push for overhauls and modernization of the company's internal transport and support systems, including shuttle scheduling."
+
+/datum/lore/codex/page/article103
+	name = "03/10/65 - GSA Confirms Presence Of 'New' Deep-Space Threat"
+	data = "This morning the Galactic Survey Administration released confirmation that a previously unknown deep-space dwelling species was indeed responsible for the disappearance of five Extraplanar Discovery Division vessels early last year, three of which have returned adrift over the past several days. The species, colloquially dubbed the 'Bluespace Bugs' after initial reports from the recovered EDD ships, are believed to be capable of manipulating matter in a manner reminicent of experimental bluespace technology.\
+	<br><br>\
+	The three 'returning' vessels are said to have been 'significantly off-course', with their points of galactic re-entry differing vastly from their initial points of egress, and final programmed return routes. Each ship having departed on routes from Sol, the SCG-E Bungaree was reported adrift by Almach Protectorate officials close to the Vounna system, the SCG-E Ketumati severely damaged on a collision course with the Erebus star, in the Nyx system, and the SCG-E Mag Mell collided with the garden world of Sif, in Vir. The Gagarin and Xu Fu remain unaccounted for, but due to the proximity of final contact, their disappearance has also been ascribed to the 'bugs'.\
+	<br><br>\
+	Investigation of the recovered vessels each indicated signs of a brief struggle, always following reports of unexplained equipment disappearances and equipment failure. No crew, or crew remains have been found, with the exception of a single unidentified human thumb aboard the Bungaree.\
+	<br><br>\
+	Additionally, each ship has been identified as having undergone some degree of material alteration, with elements ranging from hull plating to crew belongings having taken on a crystaline form dubbed 'Magmellite' after the ship most thoroughly 'reconstructed'. It is unclear whether the mineral is somehow secreted by the alien species, or merely a product of the same environment.\
+	<br><br>\
+	GSA sources have stated that there is no current evidence that the insectoid creatures - identified only from scattered descriptions left from missing EDD personnel - are in any way sapient or malicious, and the lost vessels are thought to have merely disturbed a scattered array of endemic populations far from the galactic plane. Precisely why the species has only been encountered in the past year, and now all at once, is not yet known."

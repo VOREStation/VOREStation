@@ -3,8 +3,8 @@
 /obj/item/clothing/accessory/permit
 	name = "permit"
 	desc = "A permit for something."
-	icon = 'icons/obj/card.dmi'
-	icon_state = "permit"
+	icon = 'icons/obj/card_new.dmi'
+	icon_state = "permit-generic"
 	w_class = ITEMSIZE_TINY
 	slot = ACCESSORY_SLOT_MEDAL
 	var/owner = 0	//To prevent people from just renaming the thing if they steal it
@@ -30,6 +30,7 @@
 /obj/item/clothing/accessory/permit/gun
 	name = "weapon permit"
 	desc = "A card indicating that the owner is allowed to carry a firearm."
+	icon_state = "permit-security"
 
 /obj/item/clothing/accessory/permit/gun/bar
 	name = "bar shotgun permit"
@@ -38,8 +39,9 @@
 /obj/item/clothing/accessory/permit/gun/planetside
 	name = "planetside gun permit"
 	desc = "A card indicating that the owner is allowed to carry a firearm while on the surface."
+	icon_state = "permit-science"
 
 /obj/item/clothing/accessory/permit/drone
 	name = "drone identification card"
 	desc = "A card issued by the EIO, indicating that the owner is a Drone Intelligence. Drones are mandated to carry this card within SolGov space, by law."
-	icon_state = "permit_drone"
+	icon_state = "permit-drone"

@@ -477,6 +477,11 @@ var/global/datum/controller/subsystem/ticker/ticker
 
 	for (var/mob/living/silicon/robot/robo in mob_list)
 
+		if(istype(robo, /mob/living/silicon/robot/platform))
+			var/mob/living/silicon/robot/platform/tank = robo
+			if(!tank.has_had_player)
+				continue
+
 		if(istype(robo,/mob/living/silicon/robot/drone) && !istype(robo,/mob/living/silicon/robot/drone/swarm))
 			dronecount++
 			continue
