@@ -2671,12 +2671,6 @@
 	initial_flooring = null
 	},
 /area/space)
-"Fv" = (
-/turf/unsimulated/mineral{
-	icon = 'icons/turf/transit_vr.dmi';
-	icon_state = "rock"
-	},
-/area/holodeck/source_smoleworld)
 "FH" = (
 /obj/structure/bed/chair,
 /obj/effect/landmark{
@@ -10506,7 +10500,7 @@ ap
 "}
 (38,1,1) = {"
 Hy
-Fv
+Hy
 FT
 FT
 FT
