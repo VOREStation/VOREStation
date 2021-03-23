@@ -1,6 +1,6 @@
 /decl/hierarchy/outfit/job/assistant
 	name = OUTFIT_JOB_NAME(USELESS_JOB) //VOREStation Edit - Visitor not Assistant
-	id_type = /obj/item/weapon/card/id/assistant
+	id_type = /obj/item/weapon/card/id/generic	//VOREStation Edit
 
 /decl/hierarchy/outfit/job/assistant/visitor
 	name = OUTFIT_JOB_NAME("Visitor")
@@ -25,7 +25,7 @@
 /decl/hierarchy/outfit/job/service/bartender
 	name = OUTFIT_JOB_NAME("Bartender")
 	uniform = /obj/item/clothing/under/rank/bartender
-	id_type = /obj/item/weapon/card/id/civilian/bartender
+	id_type = /obj/item/weapon/card/id/civilian/service/bartender		//VOREStation Edit
 	pda_type = /obj/item/device/pda/bar
 	backpack_contents = list(/obj/item/clothing/accessory/permit/gun/bar = 1)
 
@@ -44,7 +44,7 @@
 	uniform = /obj/item/clothing/under/rank/chef
 	suit = /obj/item/clothing/suit/chef
 	head = /obj/item/clothing/head/chefhat
-	id_type = /obj/item/weapon/card/id/civilian/chef
+	id_type = /obj/item/weapon/card/id/civilian/service/chef		//VOREStation Edit
 	pda_type = /obj/item/device/pda/chef
 
 /decl/hierarchy/outfit/job/service/chef/cook
@@ -68,13 +68,13 @@
 	backpack = /obj/item/weapon/storage/backpack/hydroponics
 	satchel_one = /obj/item/weapon/storage/backpack/satchel/hyd
 	messenger_bag = /obj/item/weapon/storage/backpack/messenger/hyd
-	id_type = /obj/item/weapon/card/id/civilian/botanist
+	id_type = /obj/item/weapon/card/id/civilian/service/botanist	//VOREStation Edit
 	pda_type = /obj/item/device/pda/botanist
 
 /decl/hierarchy/outfit/job/service/janitor
 	name = OUTFIT_JOB_NAME("Janitor")
 	uniform = /obj/item/clothing/under/rank/janitor
-	id_type = /obj/item/weapon/card/id/civilian/janitor
+	id_type = /obj/item/weapon/card/id/civilian/service/janitor		//VOREStation Edit
 	pda_type = /obj/item/device/pda/janitor
 
 /decl/hierarchy/outfit/job/librarian
@@ -114,7 +114,7 @@
 	gloves = /obj/item/clothing/gloves/black
 	l_ear = /obj/item/device/radio/headset
 	id_slot = slot_wear_id
-	id_type = /obj/item/weapon/card/id/science/explorer
+	id_type = /obj/item/weapon/card/id/exploration					//VOREStation Edit
 	pda_slot = slot_belt
 	pda_type = /obj/item/device/pda/cargo // Brown looks more rugged
 	r_pocket = /obj/item/device/gps/explorer
