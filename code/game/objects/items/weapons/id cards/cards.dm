@@ -20,7 +20,7 @@
 	var/associated_account_number = 0
 
 	var/list/initial_sprite_stack = list("")
-	var/base_icon = "icons/obj/card_new.dmi"
+	var/base_icon = 'icons/obj/card_new.dmi'
 	var/list/sprite_stack
 
 	var/list/files = list(  )
