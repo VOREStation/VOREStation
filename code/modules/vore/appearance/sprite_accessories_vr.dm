@@ -241,6 +241,14 @@
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "kittyinner"
 
+	/datum/sprite_accessory/ears/kittyhc
+	name = "kitty, colorable"
+	desc = ""
+	icon_state = "kittyR"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "kittyinnerR"
+
 /datum/sprite_accessory/ears/bunnyhc
 	name = "bunny, colorable"
 	desc = ""
