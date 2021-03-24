@@ -789,6 +789,9 @@
 	desc = "A New Space Pioneer's Bible. This one says it was printed in 2492. The name 'Eric Hayvers' is written on the inside of the cover, crossed out. \
 	Under it is written 'Kouri, Amina, Marine Unit 14, Fifth Echelon. Service number NTN-5528928522372'"
 
+/obj/item/weapon/card/id/fluff
+	sprite_stack = list("")
+
 //arokha:Amaya Rahl - Custom ID (Medical dept)
 /obj/item/weapon/card/id/fluff/amaya
 	registered_name = "CONFIGURE ME"
@@ -796,6 +799,7 @@
 	var/configured = 0
 	var/accessset = 0
 	icon = 'icons/vore/custom_items_vr.dmi'
+	base_icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "amayarahlwahID"
 	desc = "A primarily blue ID with a holographic 'WAH' etched onto its back. The letters do not obscure anything important on the card. It is shiny and it feels very bumpy."
 	var/title_strings = list("Amaya Rahl's Wah-identification card", "Amaya Rahl's Wah-ID card")
@@ -835,6 +839,7 @@
 	var/configured = 0
 	var/accessset = 0
 	icon = 'icons/obj/card_vr.dmi'
+	base_icon = 'icons/obj/card_vr.dmi'
 	icon_state = "itg"
 	desc = "A small card designating affiliation with the Ironcrest Transport Group. It has a NanoTrasen insignia and a lot of very small print on the back to do with practices and regulations for contractors to use."
 	var/title_strings = list("Harmony's ITG-ID card")
