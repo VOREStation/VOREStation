@@ -7,7 +7,8 @@
 	base_icon = 'icons/obj/card_new.dmi'
 
 	// New sprite stacks can be defined here. You could theoretically change icon-states as well but right now this file compiles before station_ids.dm so those wouldn't be affected.
-
+  
+/*
 /obj/item/weapon/card/id/generic
 	initial_sprite_stack = list("base-stamp", "top-generic", "stamp-silhouette", "clip")
 
@@ -144,3 +145,4 @@
 
 /obj/item/weapon/card/id/syndicate/officer
 	initial_sprite_stack = list("base-stamp-dark", "top-syndicate", "stamp-s", "pips-gold", "stripe-gold")
+*/

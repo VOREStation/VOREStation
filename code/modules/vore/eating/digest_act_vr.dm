@@ -82,9 +82,13 @@
 	var/lost_access = list()
 
 /obj/item/weapon/card/id/digest_act(atom/movable/item_storage = null)
-	desc = "A partially digested card that has seen better days. The damage appears to be only cosmetic, but the access codes need to be reprogrammed at the HoP office."
-	icon = 'icons/obj/card_vr.dmi'
-	icon_state = "[initial(icon_state)]_digested"
+	desc = "A partially digested card that has seen better days. The damage appears to be only cosmetic, but the access codes need to be reprogrammed at the HoP office or ID restoration terminal."
+	if(!sprite_stack || !istype(sprite_stack) || !(sprite_stack.len))
+		icon = 'icons/obj/card_vr.dmi'
+		icon_state = "[initial(icon_state)]_digested"
+	else
+		sprite_stack += "digested"
+	update_icon()
 	if(!(LAZYLEN(lost_access)) && LAZYLEN(access))
 		lost_access = access	//Do not forget what access we lose
 	access = list()			// Then lose it
