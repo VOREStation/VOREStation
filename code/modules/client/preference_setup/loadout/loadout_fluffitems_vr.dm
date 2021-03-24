@@ -519,7 +519,7 @@
 	character_name = list("Ketrai")
 
 /datum/gear/fluff/amaya_id
-	path = /obj/item/weapon/card/id/fluff/amaya
+	path = /obj/item/weapon/card/id/event/fluff/amaya
 	display_name = "Amaya's ID"
 	ckeywhitelist = list("kiraalitruss")
 	character_name = list("Amaya Rahl")
@@ -1079,7 +1079,7 @@
 	character_name = list("Roanna Ti'Rox")
 
 /datum/gear/fluff/harmony_id
-	path = /obj/item/weapon/card/id/fluff/harmony
+	path = /obj/item/weapon/card/id/event/fluff/harmony
 	display_name = "Harmony's ITG-ID card"
 	ckeywhitelist = list("verysoft")
 	character_name = list("Harmony")
