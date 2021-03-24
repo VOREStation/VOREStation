@@ -1,7 +1,7 @@
 /obj/item/weapon/card/id/event
 	var/configured = 0
 	var/accessset = 0
-	sprite_stack = list("")
+	initial_sprite_stack = list()
 	var/list/title_strings = list()
 	var/preset_rank = FALSE
 
@@ -9,7 +9,7 @@
 	if(configured == 1)
 		return ..()
 
-	if(preset_rank)
+	if(!preset_rank)
 		var/title
 		if(user.client.prefs.player_alt_titles[user.job])
 			title = user.client.prefs.player_alt_titles[user.job]

@@ -1,4 +1,6 @@
 /obj/item/weapon/card
+	icon = 'icons/obj/card_new_vr.dmi'
+	base_icon = 'icons/obj/card_new_vr.dmi'
 
 	id
 		initial_sprite_stack = list("base-stamp", "top-generic", "stamp-n")
