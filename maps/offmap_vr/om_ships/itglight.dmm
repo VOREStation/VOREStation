@@ -168,7 +168,7 @@
 /obj/item/clothing/suit/storage/hooded/wintercoat/security,
 /obj/item/clothing/suit/storage/trench,
 /obj/item/clothing/suit/storage/solgov/service/army/security,
-/obj/item/clothing/accessory/poncho/thermal/security,
+/obj/item/weapon/card/id/event/accessset/itg/crew/security,
 /obj/item/clothing/accessory/holster/hip,
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/metingroom)
@@ -3663,7 +3663,7 @@
 /obj/item/weapon/card/id/event/accessset/itg/crew/pilot,
 /obj/item/weapon/card/id/event/accessset/itg/crew/research,
 /obj/item/weapon/card/id/event/accessset/itg/crew/research,
-/obj/item/clothing/accessory/poncho/thermal/security,
+/obj/item/weapon/card/id/event/accessset/itg/crew/security,
 /obj/item/weapon/card/id/event/accessset/itg/crew/service,
 /obj/item/weapon/card/id/event/accessset/itg/crew/engineer,
 /obj/item/weapon/card/id/event/accessset/itg/crew/engineer,
