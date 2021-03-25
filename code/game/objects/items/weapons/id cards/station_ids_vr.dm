@@ -148,3 +148,131 @@
 	icon_state = "itg_blue"
 	item_state = "itg_blue_id"
 	access = list(777, 778)
+
+/obj/item/weapon/card/id/event/altcard
+	icon = 'icons/obj/card_alt_vr.dmi'
+	base_icon = 'icons/obj/card_alt_vr.dmi'
+	icon_state = "id"
+	item_state = "id_id"
+	sprite_stack = list("")
+
+/obj/item/weapon/card/id/event/altcard/hop
+	icon_state = "silver"
+	item_state = "silver_id"
+
+/obj/item/weapon/card/id/event/altcard/cap
+	icon_state = "cap"
+	item_state = "cap_id"
+
+/obj/item/weapon/card/id/event/altcard/centcom
+	icon_state = "centcom"
+	item_state = "centcom_id"
+
+/obj/item/weapon/card/id/event/altcard/cargo
+	icon_state = "cargo"
+	item_state = "cargo_id"
+
+/obj/item/weapon/card/id/event/altcard/qm
+	icon_state = "cargoGold"
+	item_state = "cargoGold_id"
+
+/obj/item/weapon/card/id/event/altcard/miner
+	icon_state = "miner"
+	item_state = "miner_id"
+
+/obj/item/weapon/card/id/event/altcard/sci
+	icon_state = "sci"
+	item_state = "sci_id"
+
+/obj/item/weapon/card/id/event/altcard/rd
+	icon_state = "sciGold"
+	item_state = "sciGold_id"
+
+/obj/item/weapon/card/id/event/altcard/sec
+	icon_state = "sec"
+	item_state = "sec_id"
+
+/obj/item/weapon/card/id/event/altcard/hos
+	icon_state = "secGold"
+	item_state = "secGold_id"
+
+/obj/item/weapon/card/id/event/altcard/warden
+	icon_state = "warden"
+	item_state = "warden_id"
+
+/obj/item/weapon/card/id/event/altcard/eng
+	icon_state = "eng"
+	item_state = "eng_id"
+
+/obj/item/weapon/card/id/event/altcard/ce
+	icon_state = "engGold"
+	item_state = "engGold_id"
+
+/obj/item/weapon/card/id/event/altcard/atmos
+	icon_state = "atmos"
+	item_state = "atmos_id"
+
+/obj/item/weapon/card/id/event/altcard/med
+	icon_state = "med"
+	item_state = "med_id"
+
+/obj/item/weapon/card/id/event/altcard/cmo
+	icon_state = "medGold"
+	item_state = "medGold_id"
+
+/obj/item/weapon/card/id/event/altcard/paramed
+	icon_state = "paramed"
+	item_state = "paramed_id"
+
+/obj/item/weapon/card/id/event/altcard/clown
+	icon_state = "clown"
+	item_state = "clown_id"
+
+/obj/item/weapon/card/id/event/altcard/mime
+	icon_state = "mime"
+	item_state = "mime_id"
+
+/obj/item/weapon/card/id/event/altcard/syndie
+	icon_state = "syndie"
+	item_state = "syndie_id"
+
+/obj/item/weapon/card/id/event/altcard/syndiegold
+	icon_state = "syndieGold"
+	item_state = "syndieGold_id"
+
+/obj/item/weapon/card/id/event/altcard/green
+	icon_state = "green"
+	item_state = "green_id"
+
+/obj/item/weapon/card/id/event/altcard/greengold
+	icon_state = "greenGold"
+	item_state = "greenGold_id"
+
+/obj/item/weapon/card/id/event/altcard/explo
+	icon_state = "explo"
+	item_state = "explo_id"
+
+/obj/item/weapon/card/id/event/altcard/pf
+	icon_state = "exploGold"
+	item_state = "exploGold_id"
+
+/obj/item/weapon/card/id/event/altcard/fm
+	icon_state = "fieldmed"
+	item_state = "fieldmed_id"
+
+/obj/item/weapon/card/id/event/altcard/chaplain
+	icon_state = "chaplain"
+	item_state = "chaplain_id"
+
+/obj/item/weapon/card/id/event/altcard/nanotrasen
+	icon_state = "nanotrasen"
+	item_state = "nanotrasen_id"
+
+/obj/item/weapon/card/id/event/altcard/pink
+	icon_state = "pink"
+	item_state = "pink_id"
+
+/obj/item/weapon/card/id/event/altcard/pinkgold
+	icon_state = "pinkGold"
+	item_state = "pinkGold_id"
+
