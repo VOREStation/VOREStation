@@ -53,7 +53,6 @@
 	base_icon = 'icons/obj/card_vr.dmi'
 	icon_state = "itg"
 	item_state = "itg_id"
-	sprite_stack = list("")
 
 /obj/item/weapon/card/id/event/accessset/itg/green
 	icon_state = "itg_green"
@@ -154,7 +153,6 @@
 	base_icon = 'icons/obj/card_alt_vr.dmi'
 	icon_state = "id"
 	item_state = "id_id"
-	sprite_stack = list("")
 
 /obj/item/weapon/card/id/event/altcard/hop
 	icon_state = "silver"
