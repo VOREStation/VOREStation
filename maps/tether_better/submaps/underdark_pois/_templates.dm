@@ -78,13 +78,13 @@
 	mappath = 'testsite.dmm'
 	cost = 20
 	allow_duplicates = FALSE
-
+/*
 /datum/map_template/underdark/corridor // Bob was a derp
 	name = "Underdark Corridor"
 	mappath = 'Corridor.dmm'
 	cost = 5
 	allow_duplicates = FALSE
-
+*/
 /datum/map_template/underdark/old_drone_hive
 	name = "Underdark Old Drone Hive"
 	mappath = 'old_drone_hive.dmm'
@@ -124,12 +124,12 @@
 	cost = 45
 	allow_duplicates = FALSE
 	discard_prob = 35
-
+/*
 /datum/map_template/underdark/mimicry
 	name = "Underdark Mimic Death"
 	mappath = 'mimicry.dmm'
 	cost = 15
-
+*/
 /datum/map_template/underdark/wolf_den
 	name = "Underdark Wolf Den"
 	mappath = 'wolf_den.dmm'

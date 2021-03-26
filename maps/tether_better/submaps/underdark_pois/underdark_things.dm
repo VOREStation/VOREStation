@@ -40,7 +40,7 @@
 	prob_fall = 10
 	//guard = 20
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/mechanical/corrupt_maint_drone = 3,
+		/mob/living/simple_mob/vore/oregrub = 3,
 	)
 
 /obj/tether_away_spawner/underdark_normal
@@ -51,10 +51,9 @@
 	prob_fall = 50
 	//guard = 20
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/animal/giant_spider/hunter = 3,
-		/mob/living/simple_mob/animal/giant_spider/phorogenic/weak = 3,
-		/mob/living/simple_mob/animal/giant_spider/tunneler = 3,
-		/mob/living/simple_mob/vore/oregrub = 1,
+		/mob/living/simple_mob/vore/catgirl = 4,
+		/mob/living/simple_mob/vore/cookiegirl = 1,
+		/mob/living/simple_mob/vore/oregrub = 2,
 	)
 
 /obj/tether_away_spawner/underdark_hard
@@ -65,8 +64,8 @@
 	prob_fall = 50
 	//guard = 20
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/vore/aggressive/corrupthound = 3,
-		/mob/living/simple_mob/vore/aggressive/rat/phoron = 6,
+		/mob/living/simple_mob/vore/wolfgirl = 3,
+		/mob/living/simple_mob/vore/lamia/random = 6,
 		/mob/living/simple_mob/vore/oregrub/lava = 1,
 	)
 
