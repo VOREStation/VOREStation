@@ -224,6 +224,7 @@ var/global/list/ore_data = list()
 	smelts_to = "titanium"
 	result_amount = 5
 	spread_chance = 12
+	alloy = 1
 	ore = /obj/item/weapon/ore/rutile
 	scan_icon = "mineral_uncommon"
 
