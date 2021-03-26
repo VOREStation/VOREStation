@@ -503,8 +503,4 @@ GLOBAL_LIST_INIT(all_volume_channels, list(
 #define APPEARANCECHANGER_CHANGED_F_HAIRCOLOR "Facial Hair Color"
 #define APPEARANCECHANGER_CHANGED_EYES "Eye Color"
 
-#define NTOS_EMAIL_NONEWMESSAGES	0
-#define NTOS_EMAIL_NOTIFALREADY		1
-#define NTOS_EMAIL_NEWMESSAGE		2
-
 #define GET_DECL(D) (ispath(D, /decl) ? (decls_repository.fetched_decls[D] || decls_repository.get_decl(D)) : null)
