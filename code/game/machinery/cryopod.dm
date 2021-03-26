@@ -394,6 +394,8 @@
 
 	//Drop all items into the pod.
 	for(var/obj/item/W in to_despawn)
+		if(istype(W,/obj/item/organ))
+			continue
 		to_despawn.drop_from_inventory(W)
 		W.forceMove(src)
 

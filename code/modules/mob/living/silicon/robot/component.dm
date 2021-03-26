@@ -80,7 +80,7 @@
 /datum/robot_component/armour/platform
 	name = "platform armour plating"
 	external_type = /obj/item/robot_parts/robot_component/armour_platform
-	max_damage = 180
+	max_damage = 140
 
 // ACTUATOR
 // Enables movement.

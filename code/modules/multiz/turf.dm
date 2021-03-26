@@ -39,7 +39,7 @@
 	..()
 	update()
 
-/turf/simulated/open/ChangeTurf()
+/turf/simulated/open/ChangeTurf(var/turf/N, var/tell_universe, var/force_lighting_update, var/preserve_outdoors)
 	var/turf/T = GetBelow(src)
 	if(T)
 		GLOB.turf_entered_event.unregister(T, src, .proc/BelowOpenUpdated)

@@ -13548,7 +13548,7 @@
 /obj/random/tech_supply,
 /obj/random/maintenance/research,
 /turf/simulated/floor/plating,
-/area/tether/surfacebase/outside/outside2)
+/area/maintenance/lower/public_garden_maintenence/upper)
 "avR" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -20541,7 +20541,7 @@
 /obj/structure/railing,
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating,
-/area/tether/surfacebase/outside/outside2)
+/area/maintenance/lower/public_garden_maintenence/upper)
 "aKk" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -23452,7 +23452,7 @@
 	},
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating,
-/area/tether/surfacebase/outside/outside2)
+/area/maintenance/lower/public_garden_maintenence/upper)
 "aPw" = (
 /obj/effect/floor_decal/corner_techfloor_grid{
 	dir = 9
@@ -23466,7 +23466,7 @@
 "aPx" = (
 /obj/structure/catwalk,
 /turf/simulated/floor/plating,
-/area/tether/surfacebase/outside/outside2)
+/area/maintenance/lower/public_garden_maintenence/upper)
 "aPy" = (
 /obj/structure/closet/crate,
 /obj/random/maintenance/clean,
@@ -23526,9 +23526,11 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/obj/structure/railing,
+/obj/machinery/light/small{
+	dir = 8
+	},
 /turf/simulated/floor/plating,
-/area/tether/surfacebase/outside/outside2)
+/area/maintenance/lower/public_garden_maintenence/upper)
 "aPE" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -23668,7 +23670,7 @@
 /obj/effect/floor_decal/rust,
 /obj/random/junk,
 /turf/simulated/floor/plating,
-/area/tether/surfacebase/outside/outside2)
+/area/maintenance/lower/public_garden_maintenence/upper)
 "aPV" = (
 /obj/structure/railing{
 	dir = 8
@@ -23678,7 +23680,7 @@
 	},
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating,
-/area/tether/surfacebase/outside/outside2)
+/area/maintenance/lower/public_garden_maintenence/upper)
 "aPW" = (
 /obj/machinery/light{
 	dir = 8
@@ -23861,8 +23863,16 @@
 /turf/simulated/floor,
 /area/maintenance/lower/south)
 "aQq" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
 /turf/simulated/floor/plating,
-/area/tether/surfacebase/outside/outside2)
+/area/maintenance/lower/public_garden_maintenence/upper)
 "aQr" = (
 /obj/structure/frame{
 	anchored = 1
@@ -24218,34 +24228,31 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/south)
-"aRe" = (
-/turf/simulated/wall{
-	can_open = 1
-	},
-/area/tether/surfacebase/outside/outside2)
 "aRf" = (
-/obj/structure/catwalk,
 /obj/effect/floor_decal/rust,
 /obj/random/drinkbottle,
+/obj/structure/railing{
+	dir = 4
+	},
 /turf/simulated/floor/plating,
-/area/tether/surfacebase/outside/outside2)
+/area/maintenance/lower/public_garden_maintenence/upper)
 "aRg" = (
 /obj/structure/railing{
 	dir = 8
 	},
 /turf/simulated/floor/plating,
-/area/tether/surfacebase/outside/outside2)
+/area/maintenance/lower/public_garden_maintenence/upper)
 "aRh" = (
 /obj/structure/table/rack/holorack,
 /obj/random/maintenance/clean,
 /obj/random/maintenance/clean,
 /turf/simulated/floor/plating,
-/area/tether/surfacebase/outside/outside2)
+/area/maintenance/lower/public_garden_maintenence/upper)
 "aRi" = (
 /obj/structure/catwalk,
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating,
-/area/tether/surfacebase/outside/outside2)
+/area/maintenance/lower/public_garden_maintenence/upper)
 "aRj" = (
 /obj/random/tool,
 /turf/simulated/floor/plating,
@@ -24256,7 +24263,7 @@
 	},
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating,
-/area/tether/surfacebase/outside/outside2)
+/area/maintenance/lower/public_garden_maintenence/upper)
 "aRl" = (
 /obj/machinery/requests_console{
 	department = "Science";
@@ -24464,7 +24471,7 @@
 /obj/item/weapon/storage/mre/random,
 /obj/item/weapon/storage/mre/random,
 /turf/simulated/floor/plating,
-/area/tether/surfacebase/outside/outside2)
+/area/maintenance/lower/public_garden_maintenence/upper)
 "aRC" = (
 /obj/effect/floor_decal/corner_techfloor_grid{
 	dir = 5
@@ -39967,7 +39974,7 @@ akX
 akX
 adt
 adt
-aQq
+adt
 adt
 adt
 adt
@@ -40109,7 +40116,7 @@ aui
 akX
 akX
 adt
-aQq
+adt
 adt
 adt
 azs
@@ -40251,7 +40258,7 @@ ass
 avi
 akX
 adt
-aQq
+adt
 adt
 adt
 azs
@@ -40393,7 +40400,7 @@ ars
 avj
 akX
 adt
-aQq
+adt
 adt
 adt
 azs
@@ -40534,9 +40541,9 @@ atH
 auj
 akX
 akX
-aac
-aRe
-aac
+ajV
+ajV
+ajV
 adt
 azs
 swg
@@ -40678,8 +40685,8 @@ akX
 aPv
 aPD
 aRf
-aac
-aac
+ajV
+ajV
 azs
 axO
 bCs
@@ -41242,12 +41249,12 @@ aga
 amQ
 atJ
 auk
-auk
+aQq
 aPB
 ajV
-aac
-aac
-aac
+ajV
+ajV
+ajV
 azs
 azs
 sgu
@@ -41387,7 +41394,7 @@ ajV
 ajV
 avR
 ajV
-adt
+awY
 awY
 awY
 awY
