@@ -6,7 +6,7 @@
 	icon_keyboard = "tech_key"
 	icon_screen = "core_control"
 
-//	var/id_tag
+	var/id_tag = ""
 	var/scan_range = 25
 	var/list/connected_devices = list()
 	var/obj/machinery/power/fusion_core/cur_viewed_device
@@ -15,6 +15,7 @@
 /obj/machinery/computer/fusion_core_control/New()
 	..()
 	monitor = new(src)
+	monitor.core_tag = id_tag
 
 /obj/machinery/computer/fusion_core_control/Destroy()
 	QDEL_NULL(monitor)
