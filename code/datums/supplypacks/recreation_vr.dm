@@ -86,3 +86,23 @@
 	containertype = /obj/structure/closet/crate
 	containername = "Shiny clothes crate"
 	cost = 30
+
+//3/19/21
+/datum/supply_pack/recreation/smoleworld
+	name = "Smole Bulding Bricks"
+	contains = list(
+			/obj/item/weapon/storage/smolebrickcase, /obj/item/weapon/storage/smolebrickcase,
+			)
+	cost = 200
+	containertype = /obj/structure/closet/crate
+	containername = "Smole Bulding Brick crate"
+
+/datum/supply_pack/recreation/smolesnackplanets
+	name = "Snack planets pack"
+	num_contained = 4
+	contains = list(
+			/obj/item/weapon/storage/bagoplanets, /obj/item/weapon/storage/bagoplanets
+			)
+	cost = 25
+	containertype = /obj/structure/closet/crate
+	containername = "Snack planets crate"
