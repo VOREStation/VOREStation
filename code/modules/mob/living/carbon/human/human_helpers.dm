@@ -189,8 +189,7 @@
 	//VOREStation Add - NIF Support
 	if(nif)
 		compiled_vis |= nif.planes_visible()
-	//VOREStation Add End
-	//VOREStation Add - event hud
+	//event hud
 	if(vantag_hud)
 		compiled_vis |= VIS_CH_VANTAG
 	//VOREStation Add End
