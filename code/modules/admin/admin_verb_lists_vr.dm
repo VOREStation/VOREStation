@@ -19,6 +19,7 @@ var/list/admin_verbs_default = list(
 	)
 
 var/list/admin_verbs_admin = list(
+	/client/proc/toggle_vantag_hud,
 	/datum/admins/proc/set_tcrystals,
 	/datum/admins/proc/add_tcrystals,
 	/client/proc/invisimin,				//allows our mob to go invisible/visible,
@@ -393,6 +394,7 @@ var/list/admin_verbs_mod = list(
 )
 
 var/list/admin_verbs_event_manager = list(
+	/client/proc/toggle_vantag_hud,
 	/client/proc/cmd_event_say,
 	/client/proc/cmd_admin_pm_context,
 	/client/proc/cmd_admin_pm_panel,
