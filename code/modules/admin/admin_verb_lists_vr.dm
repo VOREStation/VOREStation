@@ -19,6 +19,7 @@ var/list/admin_verbs_default = list(
 	)
 
 var/list/admin_verbs_admin = list(
+	/client/proc/toggle_vantag_hud,
 	/datum/admins/proc/set_tcrystals,
 	/datum/admins/proc/add_tcrystals,
 	/client/proc/invisimin,				//allows our mob to go invisible/visible,
