@@ -1079,7 +1079,7 @@
 	character_name = list("Roanna Ti'Rox")
 
 /datum/gear/fluff/harmony_id
-	path = /obj/item/weapon/card/id/event/fluff/harmony
+	path = /obj/item/weapon/card/id/event/polymorphic/itg
 	display_name = "Harmony's ITG-ID card"
 	ckeywhitelist = list("verysoft")
 	character_name = list("Harmony")
