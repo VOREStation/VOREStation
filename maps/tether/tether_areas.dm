@@ -1386,9 +1386,6 @@
 /area/shuttle/tourbus/cockpit
 	name = "\improper Tour Bus Cockpit"
 
-/area/shuttle/tourbus/engines
-	name = "\improper Tour Bus Engines"
-
 /area/shuttle/medivac
 	requires_power = 1
 	icon_state = "shuttle2"
