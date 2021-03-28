@@ -1553,6 +1553,12 @@ area/shuttle/mining_outpost/shuttle
 /area/unknown/dorm4
 	name = "Unknown Dorm 4"
 
+/area/unknown/dorm5
+	name = "Unknown Dorm 5"
+
+/area/unknown/dorm6
+	name = "Unknown Dorm 6"
+
 // ERT/Deathsquad Shuttle
 /area/shuttle/specialops/centcom
 	name = "Special Operations Shuttle - Centcom"
