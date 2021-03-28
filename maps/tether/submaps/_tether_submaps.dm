@@ -57,6 +57,7 @@
 
 #include "../../submaps/admin_use_vr/ert.dm"
 #include "../../submaps/admin_use_vr/mercship.dm"
+#include "../../submaps/admin_use_vr/guttersite.dm"
 
 /datum/map_template/admin_use/ert
 	name = "Special Area - ERT"
@@ -78,11 +79,6 @@
 	desc = "Prepare tae be boarded, arr!"
 	mappath = 'maps/submaps/admin_use_vr/kk_mercship.dmm'
 
-/datum/map_template/admin_use/old_mercenary
-	name = "Special Area - Old Merc Base"
-	desc = "So much red!"
-	mappath = 'maps/submaps/admin_use_vr/mercbase.dmm'
-
 /datum/map_template/admin_use/skipjack
 	name = "Special Area - Skipjack Base"
 	desc = "Stinky!"
@@ -102,6 +98,11 @@
 	name = "Special Area - Ninja Dojo"
 	desc = "Sneaky"
 	mappath = 'maps/submaps/admin_use_vr/dojo.dmm'
+
+/datum/map_template/admin_use/guttersite
+	name = "Special Area - Guttersite"
+	desc = "A space for bad guys to hang out"
+	mappath = 'maps/submaps/admin_use_vr/guttersite.dmm'
 
 //////////////////////////////////////////////////////////////////////////////
 //Rogue Mines Stuff
@@ -164,7 +165,6 @@
 #include "../../expedition_vr/aerostat/surface.dmm"
 #include "../../expedition_vr/space/debrisfield.dmm"
 #include "../../expedition_vr/space/fueldepot.dmm"
-#include "../../expedition_vr/space/guttersite.dmm"
 #endif
 
 #include "../../expedition_vr/beach/_beach.dm"
