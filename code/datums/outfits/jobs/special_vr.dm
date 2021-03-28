@@ -19,7 +19,7 @@
 	back = /obj/item/weapon/storage/backpack/satchel
 	id_type = /obj/item/weapon/card/id/centcom/ERT
 	pda_type = /obj/item/device/pda/centcom
-	
+
 	post_equip(var/mob/living/carbon/human/H)
 		..()
 		ert.add_antagonist(H.mind)
@@ -31,6 +31,7 @@
 	shoes = /obj/item/clothing/shoes/clown_shoes
 	mask = /obj/item/clothing/mask/gas/clown_hat
 	backpack_contents = list(/obj/item/weapon/stamp/clown = 1, /obj/item/weapon/bikehorn = 1)
+	id_type = /obj/item/weapon/card/id/civilian/clown
 	pda_type = /obj/item/device/pda/clown
 	flags = 0
 
@@ -41,8 +42,9 @@
 	head = /obj/item/clothing/head/soft/mime
 	mask = /obj/item/clothing/mask/gas/mime
 	backpack_contents = list(/obj/item/weapon/pen/crayon/mime = 1)
+	id_type = /obj/item/weapon/card/id/civilian/mime
 	pda_type = /obj/item/device/pda/mime
-	
+
 	post_equip(var/mob/living/carbon/human/H)
 		..()
 		if(H.backbag == 1)

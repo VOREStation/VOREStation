@@ -205,6 +205,7 @@
 // Librarian Alt Titles
 /datum/alt_title/journalist
 	title = "Journalist"
+	title_outfit = /decl/hierarchy/outfit/job/librarian/journalist
 	title_blurb = "The Journalist uses the Library as a base of operations, from which they can report the news and goings-on on the station with their camera."
 
 /datum/alt_title/writer
