@@ -131,30 +131,6 @@
 	flags = MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER
 	z = Z_LEVEL_ROGUEMINE_2
 
-/datum/map_template/tether_lateload/tether_roguemines3
-	name = "Asteroid Belt 3"
-	desc = "Mining, but rogue. Zone 3"
-	mappath = 'maps/submaps/rogue_mines_vr/rogue_mine3.dmm'
-
-	associated_map_datum = /datum/map_z_level/tether_lateload/roguemines3
-
-/datum/map_z_level/tether_lateload/roguemines3
-	name = "Belt 3"
-	flags = MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER
-	z = Z_LEVEL_ROGUEMINE_3
-
-/datum/map_template/tether_lateload/tether_roguemines4
-	name = "Asteroid Belt 4"
-	desc = "Mining, but rogue. Zone 4"
-	mappath = 'maps/submaps/rogue_mines_vr/rogue_mine4.dmm'
-
-	associated_map_datum = /datum/map_z_level/tether_lateload/roguemines4
-
-/datum/map_z_level/tether_lateload/roguemines4
-	name = "Belt 4"
-	flags = MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER
-	z = Z_LEVEL_ROGUEMINE_4
-
 //////////////////////////////////////////////////////////////////////////////
 /// Away Missions
 #if AWAY_MISSION_TEST

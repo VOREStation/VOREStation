@@ -15,15 +15,13 @@
 #define Z_LEVEL_OFFMAP2						14
 #define Z_LEVEL_ROGUEMINE_1					15
 #define Z_LEVEL_ROGUEMINE_2					16
-#define Z_LEVEL_ROGUEMINE_3					17
-#define Z_LEVEL_ROGUEMINE_4					18
-#define Z_LEVEL_BEACH						19
-#define Z_LEVEL_BEACH_CAVE					20
-#define Z_LEVEL_AEROSTAT					21
-#define Z_LEVEL_AEROSTAT_SURFACE			22
-#define Z_LEVEL_DEBRISFIELD					23
-#define Z_LEVEL_FUELDEPOT					24
-#define Z_LEVEL_GATEWAY						25
+#define Z_LEVEL_BEACH						17
+#define Z_LEVEL_BEACH_CAVE					18
+#define Z_LEVEL_AEROSTAT					19
+#define Z_LEVEL_AEROSTAT_SURFACE			20
+#define Z_LEVEL_DEBRISFIELD					21
+#define Z_LEVEL_FUELDEPOT					22
+#define Z_LEVEL_GATEWAY						23
 
 //Camera networks
 #define NETWORK_TETHER "Tether"
@@ -192,9 +190,7 @@
 	belter_docked_z = 		list(Z_LEVEL_SPACE_HIGH)
 	belter_transit_z =	 	list(Z_LEVEL_MISC)
 	belter_belt_z = 		list(Z_LEVEL_ROGUEMINE_1,
-						 		 Z_LEVEL_ROGUEMINE_2,
-						 	 	 Z_LEVEL_ROGUEMINE_3,
-								 Z_LEVEL_ROGUEMINE_4)
+						 		 Z_LEVEL_ROGUEMINE_2)
 
 //TFF 16/4/20 - mining outpost shuttle defines
 	mining_station_z =		list(Z_LEVEL_SPACE_HIGH)
