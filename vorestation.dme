@@ -2656,9 +2656,7 @@
 #include "code\modules\mob\living\carbon\human\species\station\monkey.dm"
 #include "code\modules\mob\living\carbon\human\species\station\monkey_vr.dm"
 #include "code\modules\mob\living\carbon\human\species\station\prometheans.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\modules\mob\living\carbon\human\species\station\prometheans_vr.dm"
-#include "code\modules\mob\living\carbon\human\species\station\seromi.dm"
 #include "code\modules\mob\living\carbon\human\species\station\station.dm"
 #include "code\modules\mob\living\carbon\human\species\station\station_special_abilities_vr.dm"
 #include "code\modules\mob\living\carbon\human\species\station\station_special_vr.dm"
@@ -2674,10 +2672,7 @@
 #include "code\modules\mob\living\carbon\human\species\station\traits_vr\trait.dm"
 #include "code\modules\mob\living\carbon\human\species\station\traits_vr\weaver_objs.dm"
 #include "code\modules\mob\living\carbon\human\species\station\traits_vr\weaver_recipies.dm"
-=======
-#include "code\modules\mob\living\carbon\human\species\station\station.dm"
 #include "code\modules\mob\living\carbon\human\species\station\teshari.dm"
->>>>>>> 5670946... Merge pull request #7991 from MistakeNot4892/bird2:polaris.dme
 #include "code\modules\mob\living\carbon\human\species\virtual_reality\avatar.dm"
 #include "code\modules\mob\living\carbon\human\species\virtual_reality\opaque_form.dm"
 #include "code\modules\mob\living\carbon\human\species\xenomorphs\alien_powers.dm"
@@ -3126,20 +3121,13 @@
 #include "code\modules\organs\subtypes\machine.dm"
 #include "code\modules\organs\subtypes\nano.dm"
 #include "code\modules\organs\subtypes\replicant.dm"
-<<<<<<< HEAD:vorestation.dme
-#include "code\modules\organs\subtypes\seromi.dm"
 #include "code\modules\organs\subtypes\shadekin.dm"
 #include "code\modules\organs\subtypes\shadekin_vr.dm"
-=======
->>>>>>> 5670946... Merge pull request #7991 from MistakeNot4892/bird2:polaris.dme
 #include "code\modules\organs\subtypes\slime.dm"
 #include "code\modules\organs\subtypes\slime_vr.dm"
 #include "code\modules\organs\subtypes\standard.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\modules\organs\subtypes\standard_vr.dm"
-=======
 #include "code\modules\organs\subtypes\teshari.dm"
->>>>>>> 5670946... Merge pull request #7991 from MistakeNot4892/bird2:polaris.dme
 #include "code\modules\organs\subtypes\unathi.dm"
 #include "code\modules\organs\subtypes\unbreakable.dm"
 #include "code\modules\organs\subtypes\unseverable.dm"
