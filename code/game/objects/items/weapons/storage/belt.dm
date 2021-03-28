@@ -11,7 +11,7 @@
 	equip_sound = 'sound/items/toolbelt_equip.ogg'
 	drop_sound = 'sound/items/drop/toolbelt.ogg'
 	pickup_sound = 'sound/items/pickup/toolbelt.ogg'
-	sprite_sheets = list(SPECIES_TESHARI = 'icons/mob/species/seromi/belt.dmi')
+	sprite_sheets = list(SPECIES_TESHARI = 'icons/mob/species/teshari/belt.dmi')
 
 	var/show_above_suit = 0
 

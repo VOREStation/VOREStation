@@ -186,7 +186,7 @@
 
 /obj/item/clothing/head/helmet/space/void/medical/alt/tesh
 	sprite_sheets = list(
-		SPECIES_TESHARI			= 'icons/mob/species/seromi/head.dmi'
+		SPECIES_TESHARI			= 'icons/mob/species/teshari/head.dmi'
 		)
 	sprite_sheets_obj = list(
 		SPECIES_TESHARI			= 'icons/obj/clothing/hats.dmi'
@@ -222,7 +222,7 @@
 
 /obj/item/clothing/suit/space/void/medical/alt/tesh
 	sprite_sheets = list(
-		SPECIES_TESHARI			= 'icons/mob/species/seromi/suit.dmi'
+		SPECIES_TESHARI			= 'icons/mob/species/teshari/suit.dmi'
 		)
 	sprite_sheets_obj = list(
 		SPECIES_TESHARI			= 'icons/obj/clothing/spacesuits.dmi'

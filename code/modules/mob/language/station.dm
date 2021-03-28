@@ -187,7 +187,7 @@
 	else
 		return pick(ai_names)
 
-/datum/language/seromi
+/datum/language/teshari
 	name = LANGUAGE_SCHECHI
 	desc = "A trilling language spoken by the diminutive Teshari."
 	speech_verb = "chirps"
@@ -203,7 +203,7 @@
 			"ci", "ri", "mi", "si", "ni", "ti", "li", "shi", "schi", "i", "i"
 		)
 
-/datum/language/seromi/get_random_name(gender)
+/datum/language/teshari/get_random_name(gender)
 	return ..(gender, 2, 4, 1.5)
 
 
