@@ -22,9 +22,8 @@
 #define Z_LEVEL_AEROSTAT					21
 #define Z_LEVEL_AEROSTAT_SURFACE			22
 #define Z_LEVEL_DEBRISFIELD					23
-#define Z_LEVEL_GUTTERSITE					24
-#define Z_LEVEL_FUELDEPOT					25
-#define Z_LEVEL_GATEWAY						26
+#define Z_LEVEL_FUELDEPOT					24
+#define Z_LEVEL_GATEWAY						25
 
 //Camera networks
 #define NETWORK_TETHER "Tether"

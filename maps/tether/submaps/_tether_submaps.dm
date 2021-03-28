@@ -248,7 +248,6 @@
 #include "../../expedition_vr/space/_fueldepot.dm"
 #include "../../submaps/pois_vr/debris_field/_templates.dm"
 #include "../../submaps/pois_vr/debris_field/debrisfield_things.dm"
-#include "../../expedition_vr/space/_guttersite.dm"
 /datum/map_template/tether_lateload/away_debrisfield
 	name = "Debris Field - Z1 Space"
 	desc = "The Virgo 3 Debris Field away mission."
@@ -273,17 +272,6 @@
 /datum/map_z_level/tether_lateload/away_fueldepot
 	name = "Away Mission - Fuel Depot"
 	z = Z_LEVEL_FUELDEPOT
-
-/datum/map_template/tether_lateload/away_guttersite
-	name = "Gutter Site - Z1 Space"
-	desc = "The Virgo Erigone Space Away Site."
-	mappath = 'maps/expedition_vr/space/guttersite.dmm'
-	associated_map_datum = /datum/map_z_level/tether_lateload/away_guttersite
-
-/datum/map_z_level/tether_lateload/away_guttersite
-	name = "Away Mission - Gutter Site"
-	z = Z_LEVEL_GUTTERSITE
-
 
 //////////////////////////////////////////////////////////////////////////////////////
 // Gateway submaps go here
