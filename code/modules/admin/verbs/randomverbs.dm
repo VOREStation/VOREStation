@@ -527,6 +527,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(equipment)
 		if(charjob)
 			job_master.EquipRank(new_character, charjob, 1)
+			new_character.mind.assigned_role = charjob
+			new_character.mind.role_alt_title = job_master.GetPlayerAltTitle(new_character, charjob)
 		//equip_custom_items(new_character)	//VOREStation Removal
 
 	//If desired, add records.
@@ -534,7 +536,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		data_core.manifest_inject(new_character)
 
 	//A redraw for good measure
-	new_character.update_icons_all()
+	new_character.regenerate_icons()
 
 	//If we're announcing their arrival
 	if(announce)
