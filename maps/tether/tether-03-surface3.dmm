@@ -27450,10 +27450,12 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/chemistry)
 "aUQ" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tether)
+/obj/structure/handrail{
+	dir = 8
+	},
+/obj/machinery/light/small,
+/turf/simulated/floor/plating/eris/under,
+/area/shuttle/tourbus/general)
 "aUR" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -28719,11 +28721,12 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/processing)
 "aWX" = (
-/obj/machinery/atmospherics/unary/engine{
+/obj/machinery/shipsensors{
 	dir = 1
 	},
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
+/obj/effect/floor_decal/industrial/warning/full,
+/obj/machinery/light/small,
+/turf/simulated/floor/plating/eris/under,
 /area/shuttle/tourbus/general)
 "aWY" = (
 /obj/structure/bed/chair{
@@ -28744,6 +28747,17 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/upperhall)
+"aXa" = (
+/obj/machinery/door/airlock/glass{
+	req_one_access = list(19,43,67)
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/eris/techmaint_panels,
+/area/shuttle/tourbus/general)
 "aXb" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -29206,6 +29220,11 @@
 /obj/item/weapon/implantcase/chem,
 /turf/simulated/floor/plating,
 /area/rnd/research_storage)
+"aXI" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tether)
 "aXJ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -29253,6 +29272,13 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
+"aXN" = (
+/obj/machinery/atmospherics/unary/engine{
+	dir = 1
+	},
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tourbus/general)
 "aXP" = (
 /obj/structure/disposalpipe/up{
 	dir = 8
@@ -38097,17 +38123,6 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/security/hos)
-"dJm" = (
-/obj/machinery/door/airlock/glass{
-	req_one_access = list(19,43,67)
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/tiled/eris/techmaint_panels,
-/area/shuttle/tourbus/cockpit)
 "dKj" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/floor_decal/borderfloor/corner{
@@ -40048,13 +40063,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/upperhall)
-"lCq" = (
-/obj/structure/handrail{
-	dir = 8
-	},
-/obj/machinery/light/small,
-/turf/simulated/floor/plating/eris/under,
-/area/shuttle/tourbus/cockpit)
 "lFG" = (
 /obj/structure/table/woodentable,
 /obj/item/device/flashlight/lamp/green{
@@ -43232,14 +43240,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
-"xXf" = (
-/obj/machinery/shipsensors{
-	dir = 1
-	},
-/obj/effect/floor_decal/industrial/warning/full,
-/obj/machinery/light/small,
-/turf/simulated/floor/plating/eris/under,
-/area/shuttle/tourbus/cockpit)
 "xXZ" = (
 /obj/structure/railing,
 /turf/simulated/open,
@@ -54346,17 +54346,17 @@ aJn
 aKa
 aKU
 aKU
-lCq
-jvK
-jvK
-jvK
+aUQ
+jHw
+jHw
+jHw
 bkN
 jHw
 jML
 jHw
 jpB
 aVJ
-aWX
+aXN
 aKU
 aOI
 aPb
@@ -54491,7 +54491,7 @@ aKU
 jvK
 jvK
 kdx
-jvK
+jHw
 cnN
 mDf
 eiO
@@ -54633,7 +54633,7 @@ aKU
 ddn
 eCG
 aUN
-jvK
+jHw
 oPm
 kmK
 xOa
@@ -54775,7 +54775,7 @@ aKU
 ddn
 pNk
 vrU
-dJm
+aXa
 kiw
 kcC
 eGv
@@ -54917,7 +54917,7 @@ aKU
 ddn
 pwF
 hlF
-jvK
+jHw
 uhm
 gUL
 rbR
@@ -55059,7 +55059,7 @@ aKU
 jvK
 jvK
 ivq
-jvK
+jHw
 rzV
 fcg
 tcW
@@ -55198,17 +55198,17 @@ aJn
 aKa
 aKU
 aKU
-xXf
-jvK
-jvK
-jvK
+aWX
+jHw
+jHw
+jHw
 wyi
 jHw
 caw
 jHw
 gHh
 aVJ
-aWX
+aXN
 aKU
 aOI
 aKj
@@ -57193,7 +57193,7 @@ aNk
 uSA
 aNJ
 aNP
-aUQ
+aXI
 aKU
 abg
 aOk
@@ -57335,7 +57335,7 @@ aNl
 aNl
 aNK
 aNP
-aUQ
+aXI
 aKU
 abg
 aOk
@@ -57477,7 +57477,7 @@ aNm
 aNl
 aNK
 aNP
-aUQ
+aXI
 aKU
 abg
 aOk
