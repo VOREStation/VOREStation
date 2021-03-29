@@ -222,7 +222,7 @@
 	. += "</tt>"
 	. = jointext(.,null)
 
-/datum/category_item/player_setup_item/occupation/OnTopic(href, href_list, user)
+/datum/category_item/player_setup_item/occupation/OnTopic(href, href_list, mob/user)
 	if(href_list["reset_jobs"])
 		ResetJobs()
 		return TOPIC_REFRESH
@@ -237,7 +237,13 @@
 	else if(href_list["select_alt_title"])
 		var/datum/job/job = locate(href_list["select_alt_title"])
 		if (job)
-			var/choices = list(job.title) + job.alt_titles
+			var/choices = list(job.title)
+			for(var/I in job.alt_titles)
+				var/datum/alt_title/AT = job.alt_titles[I]
+				if(!initial(AT.whitelisted_ckey))
+					choices += I
+				else if(initial(AT.whitelisted_ckey) && user.ckey == initial(AT.whitelisted_ckey))
+					choices += I
 			var/choice = input("Choose a title for [job.title].", "Choose Title", pref.GetPlayerAltTitle(job)) as anything in choices|null
 			if(choice && CanUseTopic(user))
 				SetPlayerAltTitle(job, choice)
