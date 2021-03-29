@@ -1519,19 +1519,9 @@
 /turf/simulated/floor/holofloor/wood,
 /area/holodeck/source_chess)
 "eE" = (
-/obj/effect/step_trigger/teleporter/random{
-	affect_ghosts = 1;
-	name = "escapeshuttle_leave";
-	teleport_x = 25;
-	teleport_x_offset = 245;
-	teleport_y = 25;
-	teleport_y_offset = 245;
-	teleport_z = 4;
-	teleport_z_offset = 4
-	},
-/turf/space,
-/turf/space/transit/north,
-/area/space)
+/obj/machinery/telecomms/relay/preset/tether,
+/turf/unsimulated/floor/steel,
+/area/centcom/control)
 "eF" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/machinery/teleport/hub,
@@ -1584,6 +1574,10 @@
 /obj/structure/prop/alien/power,
 /turf/simulated/shuttle/floor/alienplating,
 /area/unknown/dorm6)
+"eR" = (
+/obj/machinery/telecomms/allinone/ert,
+/turf/unsimulated/floor/steel,
+/area/centcom/control)
 "eS" = (
 /obj/effect/floor_decal/industrial/danger,
 /turf/simulated/floor/tiled/steel,
@@ -1686,6 +1680,20 @@
 	},
 /turf/simulated/floor/holofloor/tiled,
 /area/holodeck/source_thunderdomecourt)
+"fg" = (
+/obj/effect/step_trigger/teleporter/random{
+	affect_ghosts = 1;
+	name = "escapeshuttle_leave";
+	teleport_x = 25;
+	teleport_x_offset = 245;
+	teleport_y = 25;
+	teleport_y_offset = 245;
+	teleport_z = 4;
+	teleport_z_offset = 4
+	},
+/turf/space,
+/turf/space/transit/north,
+/area/space)
 "fn" = (
 /obj/structure/holostool,
 /obj/effect/floor_decal/carpet{
@@ -2216,10 +2224,6 @@
 	},
 /turf/space/transit/west,
 /area/space)
-"kh" = (
-/obj/machinery/telecomms/relay/preset/centcom/tether,
-/turf/unsimulated/floor/steel,
-/area/centcom/control)
 "kn" = (
 /obj/structure/fake_stairs/north/bottom{
 	_stair_tag = "stairtest"
@@ -15121,10 +15125,10 @@ Jz
 Jz
 Jz
 Jz
-eE
-eE
-eE
-eE
+fg
+fg
+fg
+fg
 iO
 El
 El
@@ -15266,7 +15270,7 @@ jf
 Gs
 Gs
 Gs
-eE
+fg
 iO
 El
 El
@@ -15408,7 +15412,7 @@ jf
 Gs
 Gs
 Gs
-eE
+fg
 iO
 El
 El
@@ -15550,7 +15554,7 @@ jf
 Gs
 Gs
 Gs
-eE
+fg
 iO
 El
 El
@@ -15692,7 +15696,7 @@ jf
 Gs
 Gs
 Gs
-eE
+fg
 iO
 El
 El
@@ -15834,7 +15838,7 @@ jf
 Gs
 Gs
 Gs
-eE
+fg
 iO
 El
 El
@@ -15976,7 +15980,7 @@ jf
 Gs
 Gs
 Gs
-eE
+fg
 iO
 El
 El
@@ -16118,7 +16122,7 @@ jf
 Gs
 Gs
 Gs
-eE
+fg
 iO
 El
 El
@@ -16260,7 +16264,7 @@ jf
 Gs
 Gs
 Gs
-eE
+fg
 iO
 El
 El
@@ -16402,7 +16406,7 @@ jf
 Gs
 Gs
 Gs
-eE
+fg
 iO
 El
 El
@@ -16544,7 +16548,7 @@ jf
 Gs
 Gs
 Gs
-eE
+fg
 iO
 El
 El
@@ -16686,7 +16690,7 @@ jf
 Gs
 Gs
 Gs
-eE
+fg
 iO
 El
 El
@@ -16828,7 +16832,7 @@ jf
 Gs
 Gs
 Gs
-eE
+fg
 iO
 El
 El
@@ -16970,7 +16974,7 @@ jf
 Gs
 Gs
 Gs
-eE
+fg
 iO
 El
 El
@@ -17112,7 +17116,7 @@ jf
 Gs
 Gs
 Gs
-eE
+fg
 iO
 El
 El
@@ -17254,7 +17258,7 @@ jf
 Gs
 Gs
 Gs
-eE
+fg
 iO
 El
 El
@@ -17396,7 +17400,7 @@ jf
 Gs
 Gs
 Gs
-eE
+fg
 iO
 El
 El
@@ -17538,7 +17542,7 @@ jf
 Gs
 Gs
 Gs
-eE
+fg
 iO
 El
 El
@@ -17680,7 +17684,7 @@ jf
 Gs
 Gs
 Gs
-eE
+fg
 iO
 El
 El
@@ -17822,7 +17826,7 @@ jf
 Gs
 Gs
 Gs
-eE
+fg
 iO
 El
 El
@@ -17941,30 +17945,30 @@ ae
 ap
 ap
 ap
-eE
-eE
-eE
-eE
-eE
-eE
-eE
-eE
-eE
-eE
-eE
-eE
-eE
-eE
-eE
-eE
-eE
-eE
-eE
-eE
-eE
-eE
-eE
-eE
+fg
+fg
+fg
+fg
+fg
+fg
+fg
+fg
+fg
+fg
+fg
+fg
+fg
+fg
+fg
+fg
+fg
+fg
+fg
+fg
+fg
+fg
+fg
+fg
 iO
 El
 El
@@ -19607,7 +19611,7 @@ ae
 wy
 HQ
 Ga
-nn
+eE
 wl
 Up
 Vj
@@ -20031,9 +20035,9 @@ ae
 ae
 ae
 wy
-Ct
+nn
 Ga
-kh
+eR
 wl
 Ur
 Vm
@@ -20174,7 +20178,7 @@ ae
 ae
 wy
 wy
-Ga
+Ct
 wy
 wl
 Up
