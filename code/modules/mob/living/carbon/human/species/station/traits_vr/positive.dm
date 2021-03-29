@@ -70,26 +70,26 @@
 
 /datum/trait/positive/minor_brute_resist
 	name = "Minor Brute Resist"
-	desc = "Adds 10% resistance to brute damage sources."
+	desc = "Adds 15% resistance to brute damage sources."
 	cost = 2
 	var_changes = list("brute_mod" = 0.85)
 
 /datum/trait/positive/brute_resist
 	name = "Brute Resist"
-	desc = "Adds 20% resistance to brute damage sources."
+	desc = "Adds 25% resistance to brute damage sources."
 	cost = 3
 	var_changes = list("brute_mod" = 0.75)
 	excludes = list(/datum/trait/positive/minor_burn_resist,/datum/trait/positive/burn_resist)
 
 /datum/trait/positive/minor_burn_resist
 	name = "Minor Burn Resist"
-	desc = "Adds 10% resistance to burn damage sources."
+	desc = "Adds 15% resistance to burn damage sources."
 	cost = 2
 	var_changes = list("burn_mod" = 0.85)
 
 /datum/trait/positive/burn_resist
 	name = "Burn Resist"
-	desc = "Adds 20% resistance to burn damage sources."
+	desc = "Adds 25% resistance to burn damage sources."
 	cost = 3
 	var_changes = list("burn_mod" = 0.75)
 	excludes = list(/datum/trait/positive/minor_brute_resist,/datum/trait/positive/brute_resist)
@@ -128,7 +128,7 @@
 /datum/trait/positive/traceur
 	name = "Traceur"
 	desc = "You're capable of parkour and can *flip over low objects (most of the time)."
-	cost = 1
+	cost = 2
 	var_changes = list("agility" = 90)
 
 /datum/trait/positive/snowwalker
@@ -140,7 +140,7 @@
 /datum/trait/positive/weaver
 	name = "Weaver"
 	desc = "You can produce silk and create various articles of clothing and objects."
-	cost = 1
+	cost = 2
 	var_changes = list("is_weaver" = 1)
 
 /datum/trait/positive/weaver/apply(var/datum/species/S,var/mob/living/carbon/human/H)

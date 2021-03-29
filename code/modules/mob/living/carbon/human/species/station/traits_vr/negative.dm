@@ -111,7 +111,7 @@
 /datum/trait/negative/lightweight
 	name = "Lightweight"
 	desc = "Your light weight and poor balance make you very susceptible to unhelpful bumping. Think of it like a bowling ball versus a pin."
-	cost = -1
+	cost = -2
 	var_changes = list("lightweight" = 1)
 	
 /datum/trait/negative/neural_hypersensitivity
