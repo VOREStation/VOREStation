@@ -26,6 +26,10 @@
 /obj/effect/weaversilk/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	qdel(src)
 
+/obj/effect/weaversilk/attack_generic(mob/user as mob, var/damage)
+	if(damage)
+		qdel(src)
+
 /obj/effect/weaversilk/attack_hand(mob/user as mob)
 	..()
 	if(user.a_intent == I_HURT)
