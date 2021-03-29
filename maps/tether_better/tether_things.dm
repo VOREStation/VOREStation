@@ -501,3 +501,7 @@ var/global/list/latejoin_tram   = list()
 
 /mob/living/simple_mob/animal/space/goose/virgo3b_better
 	faction = "v3b"
+
+
+/obj/effect/lobby_image
+	icon = 'icons/misc/loading_2.dmi' //VOREStation Add - Loading Screen

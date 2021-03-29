@@ -201,7 +201,7 @@
 /obj/effect/overmap/visitable/ship/landable/excursion
 	name = "Excursion Shuttle"
 	desc = "The traditional Excursion Shuttle. NT Approved!"
-	vessel_mass = 10000
+	vessel_mass = 8000
 	vessel_size = SHIP_SIZE_SMALL
 	shuttle = "Excursion Shuttle"
 
@@ -218,7 +218,7 @@
 	warmup_time = 0
 	current_location = "tourbus_dock"
 	docking_controller_tag = "tourbus_docker"
-	shuttle_area = list(/area/shuttle/tourbus/cockpit, /area/shuttle/tourbus/general, /area/shuttle/tourbus/engines)
+	shuttle_area = list(/area/shuttle/tourbus/cockpit, /area/shuttle/tourbus/general)
 	fuel_consumption = 1
 	move_direction = NORTH
 
@@ -244,14 +244,14 @@
 	current_location = "tether_medivac_dock"
 	docking_controller_tag = "medivac_docker"
 	shuttle_area = list(/area/shuttle/medivac/cockpit, /area/shuttle/medivac/general, /area/shuttle/medivac/engines)
-	fuel_consumption = 1
+	fuel_consumption = 2
 	move_direction = EAST
 
 // The 'ship' of the excursion shuttle
 /obj/effect/overmap/visitable/ship/landable/medivac
 	name = "Medivac Shuttle"
 	desc = "A medical evacuation shuttle."
-	vessel_mass = 3000
+	vessel_mass = 4000
 	vessel_size = SHIP_SIZE_SMALL
 	shuttle = "Medivac Shuttle"
 	fore_dir = EAST
@@ -269,14 +269,14 @@
 	current_location = "tether_securiship_dock"
 	docking_controller_tag = "securiship_docker"
 	shuttle_area = list(/area/shuttle/securiship/cockpit, /area/shuttle/securiship/general, /area/shuttle/securiship/engines)
-	fuel_consumption = 1
+	fuel_consumption = 2
 	move_direction = NORTH
 
 // The 'ship' of the excursion shuttle
 /obj/effect/overmap/visitable/ship/landable/securiship
 	name = "Securiship Shuttle"
 	desc = "A security transport ship."
-	vessel_mass = 3000
+	vessel_mass = 4000
 	vessel_size = SHIP_SIZE_SMALL
 	shuttle = "Securiship Shuttle"
 	fore_dir = EAST
