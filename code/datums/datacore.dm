@@ -301,7 +301,7 @@ var/global/list/PDA_Manifest = list()
 			manifest_inject(H)
 		return
 
-/datum/datacore/proc/manifest_modify(var/name, var/assignment)
+/datum/datacore/proc/manifest_modify(var/name, var/assignment, var/rank)
 	ResetPDAManifest()
 	var/datum/data/record/foundrecord
 	var/real_title = assignment
@@ -315,11 +315,18 @@ var/global/list/PDA_Manifest = list()
 	var/list/all_jobs = get_job_datums()
 
 	for(var/datum/job/J in all_jobs)
-		var/list/alttitles = get_alternate_titles(J.title)
-		if(!J)	continue
-		if(assignment in alttitles)
-			real_title = J.title
+		if(J.title == rank)					//If we have a rank, just default to using that.
+			real_title = rank
 			break
+		else if(J.title == assignment)
+			real_title = assignment
+			break
+		else
+			var/list/alttitles = get_alternate_titles(J.title)
+			if(!J)	continue
+			if(assignment in alttitles)
+				real_title = J.title
+				break
 
 	if(foundrecord)
 		foundrecord.fields["rank"] = assignment
@@ -332,7 +339,7 @@ var/global/list/PDA_Manifest = list()
 		var/datum/job/J = SSjob.get_job(H.mind.assigned_role)
 		hidden = J?.offmap_spawn
 
-		/* Note: Due to cached_character_icon, a number of emergent properties occur due to the initialization 
+		/* Note: Due to cached_character_icon, a number of emergent properties occur due to the initialization
 		* order of readied-up vs latejoiners. Namely, latejoiners will get a uniform in their datacore picture, but readied-up will
 		* not. This is due to the fact that SSticker calls data_core.manifest_inject() inside of ticker/proc/create_characters(),
 		* but does not equip them until ticker/proc/equip_characters(), which is called later. So, this proc is literally called before
