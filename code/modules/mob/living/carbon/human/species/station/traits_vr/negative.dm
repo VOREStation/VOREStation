@@ -13,7 +13,7 @@
 /datum/trait/negative/weakling
 	name = "Weakling"
 	desc = "Causes heavy equipment to slow you down more when carried."
-	cost = -3
+	cost = -2
 	var_changes = list("item_slowdown_mod" = 1.5)
 
 /datum/trait/negative/endurance_low
