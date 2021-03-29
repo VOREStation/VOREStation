@@ -8,7 +8,7 @@
 /datum/gear/head/zhan_scarf
 	display_name = "Zhan headscarf"
 	path = /obj/item/clothing/head/tajaran/scarf
-	whitelisted = SPECIES_TAJ
+	//whitelisted = SPECIES_TAJ //VOREStation Removal
 
 /datum/gear/suit/unathi_mantle
 	display_name = "hide mantle (Unathi)"
@@ -20,7 +20,7 @@
 	display_name = "headtail chain selection (Skrell)"
 	path = /obj/item/clothing/ears/skrell/chain
 	sort_category = "Xenowear"
-	whitelisted = SPECIES_SKRELL
+	//whitelisted = SPECIES_SKRELL //VOREStation Removal
 
 /datum/gear/ears/skrell/chains/New()
 	..()
@@ -34,7 +34,7 @@
 	display_name = "headtail band selection (Skrell)"
 	path = /obj/item/clothing/ears/skrell/band
 	sort_category = "Xenowear"
-	whitelisted = SPECIES_SKRELL
+	//whitelisted = SPECIES_SKRELL //VOREStation Removal
 
 /datum/gear/ears/skrell/bands/New()
 	..()
@@ -48,7 +48,7 @@
 	display_name = "short headtail cloth (Skrell)"
 	path = /obj/item/clothing/ears/skrell/cloth_male/black
 	sort_category = "Xenowear"
-	whitelisted = SPECIES_SKRELL
+	//whitelisted = SPECIES_SKRELL //VOREStation Removal
 
 /datum/gear/ears/skrell/cloth/short/New()
 	..()
@@ -62,7 +62,7 @@
 	display_name = "long headtail cloth (Skrell)"
 	path = /obj/item/clothing/ears/skrell/cloth_female/black
 	sort_category = "Xenowear"
-	whitelisted = SPECIES_SKRELL
+	//whitelisted = SPECIES_SKRELL //VOREStation Removal
 
 /datum/gear/ears/skrell/cloth/long/New()
 	..()
@@ -76,7 +76,7 @@
 	display_name = "Colored bands (Skrell)"
 	path = /obj/item/clothing/ears/skrell/colored/band
 	sort_category = "Xenowear"
-	whitelisted = SPECIES_SKRELL
+	//whitelisted = SPECIES_SKRELL //VOREStation Removal
 
 /datum/gear/ears/skrell/colored/band/New()
 	..()
@@ -86,7 +86,7 @@
 	display_name = "Colored chain (Skrell)"
 	path = /obj/item/clothing/ears/skrell/colored/chain
 	sort_category = "Xenowear"
-	whitelisted = SPECIES_SKRELL
+	//whitelisted = SPECIES_SKRELL //VOREStation Removal
 
 /datum/gear/ears/skrell/colored/chain/New()
 	..()
@@ -95,7 +95,7 @@
 /datum/gear/uniform/smock
 	display_name = "smock selection (Teshari)"
 	path = /obj/item/clothing/under/teshari/smock
-	whitelisted = SPECIES_TESHARI
+	//whitelisted = SPECIES_TESHARI //VOREStation Removal
 	sort_category = "Xenowear"
 
 /datum/gear/uniform/smock/New()
@@ -109,7 +109,7 @@
 /datum/gear/uniform/undercoat
 	display_name = "undercoat selection (Teshari)"
 	path = /obj/item/clothing/under/teshari/undercoat/standard
-	whitelisted = SPECIES_TESHARI
+	//whitelisted = SPECIES_TESHARI //VOREStation Removal
 	sort_category = "Xenowear"
 
 /datum/gear/uniform/undercoat/New()
@@ -123,7 +123,7 @@
 /datum/gear/suit/cloak
 	display_name = "cloak selection (Teshari)"
 	path = /obj/item/clothing/suit/storage/teshari/cloak/standard
-	whitelisted = SPECIES_TESHARI
+	//whitelisted = SPECIES_TESHARI //VOREStation Removal
 	sort_category = "Xenowear"
 
 /datum/gear/suit/cloak/New()
@@ -163,7 +163,7 @@
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(cohesionsuits))
 
 /datum/gear/uniform/dept
-	whitelisted = SPECIES_TESHARI
+	//whitelisted = SPECIES_TESHARI //VOREStation Removal
 	sort_category = "Xenowear"
 
 /datum/gear/uniform/dept/undercoat/cap
@@ -272,7 +272,7 @@
 	allowed_roles = list("Internal Affairs Agent")
 
 /datum/gear/suit/dept/cloak
-	whitelisted = SPECIES_TESHARI
+	//whitelisted = SPECIES_TESHARI //VOREStation Removal
 	sort_category = "Xenowear"
 
 /datum/gear/suit/dept/cloak/cap
@@ -519,7 +519,7 @@
 /datum/gear/uniform/smockcolor
 	display_name = "smock, recolorable (Teshari)"
 	path = /obj/item/clothing/under/teshari/smock/white
-	whitelisted = SPECIES_TESHARI
+	//whitelisted = SPECIES_TESHARI //VOREStation Removal
 	sort_category = "Xenowear"
 
 /datum/gear/uniform/smockcolor/New()
@@ -529,7 +529,7 @@
 /datum/gear/suit/beltcloak
 	display_name = "belted cloak selection (Teshari)"
 	path = /obj/item/clothing/suit/storage/teshari/beltcloak/standard
-	whitelisted = SPECIES_TESHARI
+	//whitelisted = SPECIES_TESHARI //VOREStation Removal
 	sort_category = "Xenowear"
 
 /datum/gear/suit/beltcloak/New()
@@ -543,7 +543,7 @@
 /datum/gear/suit/beltcloak_color
 	display_name = "belted cloak, recolorable (Teshari)"
 	path = /obj/item/clothing/suit/storage/teshari/beltcloak/standard/white_grey
-	whitelisted = SPECIES_TESHARI
+	//whitelisted = SPECIES_TESHARI //VOREStation Removal
 	sort_category = "Xenowear"
 
 /datum/gear/suit/beltcloak_color/New()
@@ -568,7 +568,7 @@
 /datum/gear/suit/cloak_hood
 	display_name = "hooded cloak selection (Teshari)"
 	path = /obj/item/clothing/suit/storage/hooded/teshari/standard
-	whitelisted = SPECIES_TESHARI
+	//whitelisted = SPECIES_TESHARI //VOREStation Removal
 	sort_category = "Xenowear"
 
 /datum/gear/suit/cloak_hood/New()
@@ -582,7 +582,7 @@
 /datum/gear/uniform/worksuit
 	display_name = "worksuit selection (Teshari)"
 	path = /obj/item/clothing/under/teshari/undercoat/standard/worksuit
-	whitelisted = SPECIES_TESHARI
+	//whitelisted = SPECIES_TESHARI //VOREStation Removal
 	sort_category = "Xenowear"
 
 /datum/gear/uniform/worksuit/New()
@@ -596,7 +596,7 @@
 /datum/gear/uniform/undercoatcolor
 	display_name = "undercoat, recolorable (Teshari)"
 	path = /obj/item/clothing/under/teshari/undercoat/standard/white_grey
-	whitelisted = SPECIES_TESHARI
+	//whitelisted = SPECIES_TESHARI //VOREStation Removal
 	sort_category = "Xenowear"
 
 /datum/gear/uniform/undercoatcolor/New()
@@ -606,7 +606,7 @@
 /datum/gear/suit/cloakcolor
 	display_name = "cloak, recolorable (Teshari)"
 	path = /obj/item/clothing/suit/storage/teshari/cloak/standard/white_grey
-	whitelisted = SPECIES_TESHARI
+	//whitelisted = SPECIES_TESHARI //VOREStation Removal
 	sort_category = "Xenowear"
 
 /datum/gear/suit/cloakcolor/New()
@@ -616,7 +616,7 @@
 /datum/gear/suit/labcoat_tesh
 	display_name = "labcoat, colorable (Teshari)"
 	path = /obj/item/clothing/suit/storage/toggle/labcoat/teshari
-	whitelisted = SPECIES_TESHARI
+	//whitelisted = SPECIES_TESHARI //VOREStation Removal
 	sort_category = "Xenowear"
 
 /datum/gear/suit/labcoat_tesh/New()
@@ -626,7 +626,7 @@
 /datum/gear/suit/teshcoat
 	display_name = "small black coat, recolorable stripes (Teshari)"
 	path = /obj/item/clothing/suit/storage/toggle/tesharicoat
-	whitelisted = SPECIES_TESHARI
+	//whitelisted = SPECIES_TESHARI //VOREStation Removal
 	sort_category = "Xenowear"
 
 /datum/gear/suit/teshcoat/New()
@@ -636,7 +636,7 @@
 /datum/gear/suit/teshcoatwhite
 	display_name = "smallcoat, recolorable (Teshari)"
 	path = /obj/item/clothing/suit/storage/toggle/tesharicoatwhite
-	whitelisted = SPECIES_TESHARI
+	//whitelisted = SPECIES_TESHARI //VOREStation Removal
 	sort_category = "Xenowear"
 
 /datum/gear/suit/teshcoatwhite/New()
@@ -646,7 +646,7 @@
 /datum/gear/accessory/teshneckscarf
 	display_name = "neckscarf, recolorable (Teshari)"
 	path = /obj/item/clothing/accessory/scarf/teshari/neckscarf
-	whitelisted = SPECIES_TESHARI
+	//whitelisted = SPECIES_TESHARI //VOREStation Removal
 	sort_category = "Xenowear"
 
 /datum/gear/accessory/teshneckscarf/New()
@@ -668,12 +668,12 @@
 /datum/gear/eyes/aerogelgoggles
 	display_name = "airtight orange goggles (Teshari)"
 	path = /obj/item/clothing/glasses/aerogelgoggles
-	whitelisted = SPECIES_TESHARI
+	//whitelisted = SPECIES_TESHARI //VOREStation Removal
 	sort_category = "Xenowear"
 
 /datum/gear/utility/teshchair
 	display_name = "small electric wheelchair (Teshari)"
 	path = /obj/item/wheelchair/motor/small
-	whitelisted = SPECIES_TESHARI
+	//whitelisted = SPECIES_TESHARI //VOREStation Removal
 	sort_category = "Xenowear"
 	cost = 4
