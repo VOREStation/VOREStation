@@ -13,7 +13,7 @@
 		TECH_COMBAT = 7, TECH_MAGNET = 9, TECH_DATA = 5
 		)
 	sprite_sheets = list(
-		"Teshari" = 'icons/mob/species/seromi/back.dmi'
+		SPECIES_TESHARI = 'icons/mob/species/teshari/back.dmi'
 		)
 	var/energy = 10000
 	var/max_energy = 10000

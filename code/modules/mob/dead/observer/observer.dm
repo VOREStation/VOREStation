@@ -121,7 +121,7 @@
 		// Unclear why this isn't being grabbed by appearance.
 		if(ishuman(body))
 			var/mob/living/carbon/human/H = body
-			overlays = H.overlays_standing
+			add_overlay(H.overlays_standing)
 
 	if(!T)	T = pick(latejoin)			//Safety in case we cannot find the body's position
 	forceMove(T)

@@ -5,7 +5,7 @@
 	var/list/title_strings = list()
 	var/preset_rank = FALSE
 
-/obj/item/weapon/card/id/event/attack_self(mob/user as mob)
+/obj/item/weapon/card/id/event/attack_self(var/mob/user)
 	if(configured == 1)
 		return ..()
 
@@ -28,10 +28,12 @@
 	configured = 1
 	to_chat(user, "<span class='notice'>Card settings set.</span>")
 
-/obj/item/weapon/card/id/event/attackby(obj/item/I as obj, mob/user as mob)
+/obj/item/weapon/card/id/event/attackby(obj/item/I as obj, var/mob/user)
 	if(istype(I, /obj/item/weapon/card/id) && !accessset)
 		var/obj/item/weapon/card/id/O = I
 		access |= O.access
+		desc = I.desc
+		rank = O.rank
 		to_chat(user, "<span class='notice'>You copy the access from \the [I] to \the [src].</span>")
 		user.drop_from_inventory(I)
 		qdel(I)
@@ -52,31 +54,24 @@
 	icon = 'icons/obj/card_vr.dmi'
 	base_icon = 'icons/obj/card_vr.dmi'
 	icon_state = "itg"
-	item_state = "itg_id"
 
 /obj/item/weapon/card/id/event/accessset/itg/green
 	icon_state = "itg_green"
-	item_state = "itg_green_id"
 
 /obj/item/weapon/card/id/event/accessset/itg/red
 	icon_state = "itg_red"
-	item_state = "itg_red_id"
 
 /obj/item/weapon/card/id/event/accessset/itg/purple
 	icon_state = "itg_purple"
-	item_state = "itg_purple_id"
 
 /obj/item/weapon/card/id/event/accessset/itg/white
 	icon_state = "itg_white"
-	item_state = "itg_white_id"
 
 /obj/item/weapon/card/id/event/accessset/itg/orange
 	icon_state = "itg_orange"
-	item_state = "itg_orange_id"
 
 /obj/item/weapon/card/id/event/accessset/itg/blue
 	icon_state = "itg_blue"
-	item_state = "itg_blue_id"
 
 /obj/item/weapon/card/id/event/accessset/itg/crew
 	name = "\improper ITG Crew ID"
@@ -97,7 +92,6 @@
 	assignment = "Cook"
 	rank = "Cook"
 	icon_state = "itg_green"
-	item_state = "itg_green_id"
 
 /obj/item/weapon/card/id/event/accessset/itg/crew/security
 	name = "\improper ITG Security's ID"
@@ -105,7 +99,6 @@
 	assignment = "Security"
 	rank = "Security"
 	icon_state = "itg_red"
-	item_state = "itg_red_id"
 
 /obj/item/weapon/card/id/event/accessset/itg/crew/research
 	name = "\improper ITG Research's ID"
@@ -113,7 +106,6 @@
 	assignment = "Research"
 	rank = "Research"
 	icon_state = "itg_purple"
-	item_state = "itg_purple_id"
 
 /obj/item/weapon/card/id/event/accessset/itg/crew/medical
 	name = "\improper ITG Medic's ID"
@@ -121,7 +113,6 @@
 	assignment = "Medic"
 	rank = "Medic"
 	icon_state = "itg_white"
-	item_state = "itg_white_id"
 
 /obj/item/weapon/card/id/event/accessset/itg/crew/engineer
 	name = "\improper ITG Engineer's ID"
@@ -129,7 +120,6 @@
 	assignment = "Engineer"
 	rank = "Engineer"
 	icon_state = "itg_orange"
-	item_state = "itg_orange_id"
 
 /obj/item/weapon/card/id/event/accessset/itg/crew/passengerliason
 	name = "\improper ITG Passenger Liason's ID"
@@ -137,7 +127,6 @@
 	assignment = "Passenger Liason"
 	rank = "Passenger Liason"
 	icon_state = "itg_blue"
-	item_state = "itg_blue_id"
 
 /obj/item/weapon/card/id/event/accessset/itg/crew/captain
 	name = "\improper ITG Captain's ID"
@@ -145,132 +134,140 @@
 	assignment = "Captain"
 	rank = "Captain"
 	icon_state = "itg_blue"
-	item_state = "itg_blue_id"
 	access = list(777, 778)
 
 /obj/item/weapon/card/id/event/altcard
 	icon = 'icons/obj/card_alt_vr.dmi'
 	base_icon = 'icons/obj/card_alt_vr.dmi'
 	icon_state = "id"
-	item_state = "id_id"
 
-/obj/item/weapon/card/id/event/altcard/hop
-	icon_state = "silver"
-	item_state = "silver_id"
-
-/obj/item/weapon/card/id/event/altcard/cap
-	icon_state = "cap"
-	item_state = "cap_id"
-
-/obj/item/weapon/card/id/event/altcard/centcom
-	icon_state = "centcom"
-	item_state = "centcom_id"
-
-/obj/item/weapon/card/id/event/altcard/cargo
-	icon_state = "cargo"
-	item_state = "cargo_id"
-
-/obj/item/weapon/card/id/event/altcard/qm
-	icon_state = "cargoGold"
-	item_state = "cargoGold_id"
-
-/obj/item/weapon/card/id/event/altcard/miner
-	icon_state = "miner"
-	item_state = "miner_id"
-
-/obj/item/weapon/card/id/event/altcard/sci
-	icon_state = "sci"
-	item_state = "sci_id"
-
-/obj/item/weapon/card/id/event/altcard/rd
-	icon_state = "sciGold"
-	item_state = "sciGold_id"
-
-/obj/item/weapon/card/id/event/altcard/sec
-	icon_state = "sec"
-	item_state = "sec_id"
-
-/obj/item/weapon/card/id/event/altcard/hos
-	icon_state = "secGold"
-	item_state = "secGold_id"
-
-/obj/item/weapon/card/id/event/altcard/warden
-	icon_state = "warden"
-	item_state = "warden_id"
-
-/obj/item/weapon/card/id/event/altcard/eng
-	icon_state = "eng"
-	item_state = "eng_id"
-
-/obj/item/weapon/card/id/event/altcard/ce
-	icon_state = "engGold"
-	item_state = "engGold_id"
-
-/obj/item/weapon/card/id/event/altcard/atmos
-	icon_state = "atmos"
-	item_state = "atmos_id"
-
-/obj/item/weapon/card/id/event/altcard/med
-	icon_state = "med"
-	item_state = "med_id"
-
-/obj/item/weapon/card/id/event/altcard/cmo
-	icon_state = "medGold"
-	item_state = "medGold_id"
-
-/obj/item/weapon/card/id/event/altcard/paramed
-	icon_state = "paramed"
-	item_state = "paramed_id"
+/obj/item/weapon/card/id/event/altcard/spare
+	icon_state = "spare"
 
 /obj/item/weapon/card/id/event/altcard/clown
-	icon_state = "clown"
-	item_state = "clown_id"
+	icon_state = "Clown"
 
 /obj/item/weapon/card/id/event/altcard/mime
-	icon_state = "mime"
-	item_state = "mime_id"
+	icon_state = "Mime"
 
-/obj/item/weapon/card/id/event/altcard/syndie
-	icon_state = "syndie"
-	item_state = "syndie_id"
+/obj/item/weapon/card/id/event/altcard/centcom
+	icon_state = "CentCom Officer"
+
+/obj/item/weapon/card/id/event/altcard/ert
+	icon_state = "Emergency Responder"
+
+/obj/item/weapon/card/id/event/altcard/nt
+	icon_state = "nanotrasen"
 
 /obj/item/weapon/card/id/event/altcard/syndiegold
 	icon_state = "syndieGold"
-	item_state = "syndieGold_id"
 
-/obj/item/weapon/card/id/event/altcard/green
-	icon_state = "green"
-	item_state = "green_id"
+/obj/item/weapon/card/id/event/altcard/syndie
+	icon_state = "syndie"
 
 /obj/item/weapon/card/id/event/altcard/greengold
 	icon_state = "greenGold"
-	item_state = "greenGold_id"
-
-/obj/item/weapon/card/id/event/altcard/explo
-	icon_state = "explo"
-	item_state = "explo_id"
-
-/obj/item/weapon/card/id/event/altcard/pf
-	icon_state = "exploGold"
-	item_state = "exploGold_id"
-
-/obj/item/weapon/card/id/event/altcard/fm
-	icon_state = "fieldmed"
-	item_state = "fieldmed_id"
-
-/obj/item/weapon/card/id/event/altcard/chaplain
-	icon_state = "chaplain"
-	item_state = "chaplain_id"
-
-/obj/item/weapon/card/id/event/altcard/nanotrasen
-	icon_state = "nanotrasen"
-	item_state = "nanotrasen_id"
 
 /obj/item/weapon/card/id/event/altcard/pink
 	icon_state = "pink"
-	item_state = "pink_id"
 
 /obj/item/weapon/card/id/event/altcard/pinkgold
 	icon_state = "pinkGold"
-	item_state = "pinkGold_id"
 
+/obj/item/weapon/card/id/event/polymorphic
+	var/base_icon_state
+
+/obj/item/weapon/card/id/event/polymorphic/digest_act(atom/movable/item_storage = null)
+	var/gimmeicon = icon
+	. = ..()
+	icon = gimmeicon
+	icon_state = base_icon_state + "_digested"
+
+/obj/item/weapon/card/id/event/polymorphic/altcard/attack_self(var/mob/user)
+	if(configured == 1)
+		return ..()
+	else
+		icon_state = user.job
+		base_icon_state = user.job
+		return ..()
+
+/obj/item/weapon/card/id/event/polymorphic/altcard
+	icon = 'icons/obj/card_alt_vr.dmi'
+	base_icon = 'icons/obj/card_alt_vr.dmi'
+	icon_state = "blank"
+	name = "contractor identification card"
+	desc = "An ID card typically used by contractors."
+
+/obj/item/weapon/card/id/event/polymorphic/itg/attack_self(var/mob/user)
+	if(!configured)
+		var/list/jobs_to_icon = list( //ITG only has a few kinds of icons so we have to group them up!
+		"Pilot" = "itg",
+		"Visitor" = "itg",
+		"Quartermaster" = "itg",
+		"Cargo Technician" = "itg",
+		"Shaft Miner" = "itg",
+		"Intern" = "itg",
+		"Talon Pilot" = "itg",
+		"Bartender" = "itg_green",
+		"Botanist" = "itg_green",
+		"Chef" = "itg_green",
+		"Janitor" = "itg_green",
+		"Chaplain" = "itg_green",
+		"Entertainer" = "itg_green",
+		"Janitor" = "itg_green",
+		"Librarian" = "itg_green",
+		"Warden" = "itg_red",
+		"Detective" = "itg_red",
+		"Security Officer" = "itg_red",
+		"Talon Guard" = "itg_red",
+		"Roboticist" = "itg_purple",
+		"Scientist" = "itg_purple",
+		"Xenobiologist" = "itg_purple",
+		"Xenobotanist" = "itg_purple",
+		"Pathfinder" = "itg_purple",
+		"Explorer" = "itg_purple",
+		"Chemist" = "itg_white",
+		"Medical Doctor" = "itg_white",
+		"Paramedic" = "itg_white",
+		"Psychiatrist" = "itg_white",
+		"Field Medic" = "itg_white",
+		"Talon Doctor" = "itg_white",
+		"Atmospheric Technician" = "itg_orange",
+		"Station Engineer" = "itg_orange",
+		"Off-duty Officer" = "itg_red",
+		"Off-duty Engineer" = "itg_orange",
+		"Off-duty Medic" = "itg_white",
+		"Off-duty Scientist" = "itg_purple",
+		"Off-duty Cargo" = "itg",
+		"Off-duty Explorer" = "itg_purple",
+		"Off-duty Worker" = "itg_green"
+		)
+		var/guess = jobs_to_icon[user.job]
+
+		if(!guess)
+			to_chat(user, "<span class='notice'>ITG Cards do not seem to be able to accept the access codes for your ID.</span>")
+			return
+		else
+			icon_state = guess
+			base_icon_state = guess
+	. = ..()
+	name = user.name + "'s ITG ID card" + " ([assignment])"
+
+
+/obj/item/weapon/card/id/event/polymorphic/itg/attackby(obj/item/I as obj, var/mob/user)
+	if(istype(I, /obj/item/weapon/card/id) && !accessset)
+		var/obj/item/weapon/card/id/O = I
+		var/list/itgdont = list("Site Manager", "Head of Personnel", "Command Secretary", "Head of Security", "Chief Engineer", "Chief Medical Officer", "Research Director", "Clown", "Mime", "Talon Captain") //If you're in as one of these you probably aren't representing ITG
+		if(O.rank in itgdont)
+			to_chat(user, "<span class='notice'>ITG Cards do not seem to be able to accept the access codes for your ID.</span>")
+			return
+	. = ..()
+	desc = "A small card designating affiliation with the Ironcrest Transport Group. It has a NanoTrasen insignia and a lot of very small print on the back to do with practices and regulations for contractors to use."
+
+
+/obj/item/weapon/card/id/event/polymorphic/itg
+	icon = 'icons/obj/card_vr.dmi'
+	base_icon = 'icons/obj/card_vr.dmi'
+	icon_state = "itg"
+	name = "\improper ITG identification card"
+	desc = "A small card designating affiliation with the Ironcrest Transport Group. It has a NanoTrasen insignia and a lot of very small print on the back to do with practices and regulations for contractors to use."

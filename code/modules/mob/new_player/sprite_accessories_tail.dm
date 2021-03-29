@@ -503,16 +503,16 @@
 	desc = ""
 	icon_state = "chimptail_s"
 
-/datum/sprite_accessory/tail/special/seromitail
-	name = "seromi tail"
+/datum/sprite_accessory/tail/special/tesharitail
+	name = "teshari tail"
 	desc = ""
 	icon_state = "seromitail_s"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	species_allowed = list(SPECIES_TESHARI, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 
-/datum/sprite_accessory/tail/special/seromitailfeathered
-	name = "seromi tail w/ feathers"
+/datum/sprite_accessory/tail/special/tesharitailfeathered
+	name = "teshari tail w/ feathers"
 	desc = ""
 	icon_state = "seromitail_s"
 	extra_overlay = "seromitail_feathers_s"
@@ -607,15 +607,15 @@
 	icon_state = "chimptail_hc_s"
 	do_colouration = 1
 
-/datum/sprite_accessory/tail/special/seromitailhc
-	name = "seromi tail, colorable"
+/datum/sprite_accessory/tail/special/tesharitailhc
+	name = "teshari tail, colorable"
 	desc = ""
 	icon_state = "seromitail_hc_s"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
-/datum/sprite_accessory/tail/special/seromitailfeatheredhc
-	name = "seromi tail w/ feathers, colorable"
+/datum/sprite_accessory/tail/special/tesharitailfeatheredhc
+	name = "teshari tail w/ feathers, colorable"
 	desc = ""
 	icon_state = "seromitail_feathers_hc_s"
 	do_colouration = 1

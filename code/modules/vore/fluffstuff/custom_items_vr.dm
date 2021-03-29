@@ -799,16 +799,6 @@
 	desc = "A primarily blue ID with a holographic 'WAH' etched onto its back. The letters do not obscure anything important on the card. It is shiny and it feels very bumpy."
 	title_strings = list("Amaya Rahl's Wah-identification card", "Amaya Rahl's Wah-ID card")
 
-//verysoft:Harmony - Custom ID (pilot)
-/obj/item/weapon/card/id/event/fluff/harmony
-	registered_name = "CONFIGURE ME"
-	assignment = "CONFIGURE ME"
-	icon = 'icons/obj/card_vr.dmi'
-	base_icon = 'icons/obj/card_vr.dmi'
-	icon_state = "itg"
-	desc = "A small card designating affiliation with the Ironcrest Transport Group. It has a NanoTrasen insignia and a lot of very small print on the back to do with practices and regulations for contractors to use."
-	title_strings = list("Harmony's ITG-ID card")
-
 //General use, Verk felt like sharing.
 /obj/item/clothing/glasses/fluff/science_proper
 	name = "Aesthetic Science Goggles"
