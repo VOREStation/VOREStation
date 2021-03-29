@@ -101,11 +101,11 @@
 				"<b>You hear a squishy noise!</b>"
 				)
 			set_dir(L.dir)
-			can_buckle = 1
+			can_buckle = TRUE
 			buckle_mob(L)
-			L.Stun(1 SECOND)
+			L.Stun(1)
 			to_chat(L, "<span class='danger'>The sticky fibers of \the [src] ensnare, trapping you in place!</span>")
-			trap_active = 0
+			trap_active = FALSE
 			can_buckle = initial(can_buckle)
 			desc += " Actually, it looks like it's been all spent."
 	..()
