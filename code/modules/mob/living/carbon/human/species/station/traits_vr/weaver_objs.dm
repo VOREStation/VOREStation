@@ -7,6 +7,29 @@
 	anchored = 1
 	density = 0
 
+/obj/effect/weaversilk/ex_act(severity)
+	qdel(src)
+	return
+
+/obj/effect/weaversilk/attackby(var/obj/item/weapon/W, var/mob/user)
+	user.setClickCooldown(user.get_attack_speed(W))
+
+	if(W.force)
+		visible_message("<span class='warning'>\The [src] has been [pick(W.attack_verb)] with \the [W][(user ? " by [user]." : ".")]</span>")
+		qdel(src)
+
+/obj/effect/weaversilk/bullet_act(var/obj/item/projectile/Proj)
+	..()
+	if(Proj.get_structure_damage())
+		qdel(src)
+
+/obj/effect/weaversilk/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+	qdel(src)
+
+/obj/effect/weaversilk/attack_generic(mob/user as mob, var/damage)
+	if(damage)
+		qdel(src)
+
 /obj/effect/weaversilk/attack_hand(mob/user as mob)
 	..()
 	if(user.a_intent == I_HURT)
@@ -82,11 +105,11 @@
 				"<b>You hear a squishy noise!</b>"
 				)
 			set_dir(L.dir)
-			can_buckle = 1
+			can_buckle = TRUE
 			buckle_mob(L)
-			L.Stun(1 SECOND)
+			L.Stun(1)
 			to_chat(L, "<span class='danger'>The sticky fibers of \the [src] ensnare, trapping you in place!</span>")
-			trap_active = 0
+			trap_active = FALSE
 			can_buckle = initial(can_buckle)
 			desc += " Actually, it looks like it's been all spent."
 	..()
