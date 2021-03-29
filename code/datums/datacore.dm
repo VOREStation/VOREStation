@@ -323,7 +323,6 @@ var/global/list/PDA_Manifest = list()
 			break
 		else
 			var/list/alttitles = get_alternate_titles(J.title)
-			if(!J)	continue
 			if(assignment in alttitles)
 				real_title = J.title
 				break
