@@ -5,11 +5,7 @@
 // Telecomms doesn't know about connected z-levels, so we need relays even for the other surface levels.
 /obj/machinery/telecomms/relay/preset/tether
 	id = "Tether Relay"
-	listening_level = Z_LEVEL_SURFACE_LOW
 	autolinkers = list("tether_relay")
-
-/obj/machinery/telecomms/relay/preset/centcom/tether
-	listening_level = Z_LEVEL_SURFACE_LOW
 
 // #### Hub ####
 /obj/machinery/telecomms/hub/preset/tether

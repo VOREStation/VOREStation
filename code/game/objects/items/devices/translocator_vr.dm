@@ -552,3 +552,7 @@ GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/device/perfect_tele_beac
 	loc_network = "unkthree"
 /obj/item/device/perfect_tele/frontier/unknown/four
 	loc_network = "unkfour"
+/obj/item/device/perfect_tele/frontier/unknown/five
+	loc_network = "unkfive"
+/obj/item/device/perfect_tele/frontier/unknown/six
+	loc_network = "unksix"

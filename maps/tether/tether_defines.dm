@@ -15,16 +15,13 @@
 #define Z_LEVEL_OFFMAP2						14
 #define Z_LEVEL_ROGUEMINE_1					15
 #define Z_LEVEL_ROGUEMINE_2					16
-#define Z_LEVEL_ROGUEMINE_3					17
-#define Z_LEVEL_ROGUEMINE_4					18
-#define Z_LEVEL_BEACH						19
-#define Z_LEVEL_BEACH_CAVE					20
-#define Z_LEVEL_AEROSTAT					21
-#define Z_LEVEL_AEROSTAT_SURFACE			22
-#define Z_LEVEL_DEBRISFIELD					23
-#define Z_LEVEL_GUTTERSITE					24
-#define Z_LEVEL_FUELDEPOT					25
-#define Z_LEVEL_GATEWAY						26
+#define Z_LEVEL_BEACH						17
+#define Z_LEVEL_BEACH_CAVE					18
+#define Z_LEVEL_AEROSTAT					19
+#define Z_LEVEL_AEROSTAT_SURFACE			20
+#define Z_LEVEL_DEBRISFIELD					21
+#define Z_LEVEL_FUELDEPOT					22
+#define Z_LEVEL_GATEWAY						23
 
 //Camera networks
 #define NETWORK_TETHER "Tether"
@@ -53,8 +50,8 @@
 
 	use_overmap = TRUE
 	overmap_z = Z_LEVEL_MISC
-	overmap_size = 35
-	overmap_event_areas = 34
+	overmap_size = 50
+	overmap_event_areas = 44
 	usable_email_tlds = list("virgo.nt")
 
 	zlevel_datum_type = /datum/map_z_level/tether
@@ -160,11 +157,10 @@
 	lateload_z_levels = list(
 		list("Tether - Misc","Tether - Underdark","Tether - Plains"), //Stock Tether lateload maps
 		list("Offmap Ship - Talon Z1","Offmap Ship - Talon Z2"),
-		list("Asteroid Belt 1","Asteroid Belt 2","Asteroid Belt 3","Asteroid Belt 4"),
+		list("Asteroid Belt 1","Asteroid Belt 2"),
 		list("Desert Planet - Z1 Beach","Desert Planet - Z2 Cave"),
 		list("Remmi Aerostat - Z1 Aerostat","Remmi Aerostat - Z2 Surface"),
 		list("Debris Field - Z1 Space"),
-		list("Gutter Site - Z1 Space"),
 		list("Fuel Depot - Z1 Space")
 		)
 
@@ -193,9 +189,7 @@
 	belter_docked_z = 		list(Z_LEVEL_SPACE_HIGH)
 	belter_transit_z =	 	list(Z_LEVEL_MISC)
 	belter_belt_z = 		list(Z_LEVEL_ROGUEMINE_1,
-						 		 Z_LEVEL_ROGUEMINE_2,
-						 	 	 Z_LEVEL_ROGUEMINE_3,
-								 Z_LEVEL_ROGUEMINE_4)
+						 		 Z_LEVEL_ROGUEMINE_2)
 
 //TFF 16/4/20 - mining outpost shuttle defines
 	mining_station_z =		list(Z_LEVEL_SPACE_HIGH)
