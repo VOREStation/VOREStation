@@ -90,6 +90,12 @@
 	cost = -1
 	var_changes = list("siemens_coefficient" = 1.5) //This makes you a lot weaker to tasers.
 
+/datum/trait/negative/conductive_plus
+	name = "Major Conductive"
+	desc = "Increases your susceptibility to electric shocks by 100%"
+	cost = -1
+	var_changes = list("siemens_coefficient" = 2.0) //This makes you extremely weak to tasers.
+
 /datum/trait/negative/haemophilia
 	name = "Haemophilia - Organics only"
 	desc = "When you bleed, you bleed a LOT."
