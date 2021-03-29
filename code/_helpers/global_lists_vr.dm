@@ -222,7 +222,9 @@ var/global/list/edible_trash = list(/obj/item/broken_device,
 				/obj/item/weapon/storage/fancy/crayons,
 				/obj/item/weapon/storage/fancy/egg_box,
 				/obj/item/weapon/storage/wallet,
-				/obj/item/weapon/storage/vore_egg)
+				/obj/item/weapon/storage/vore_egg,
+				/obj/item/weapon/bikehorn/tinytether
+				)
 
 var/global/list/contamination_flavors = list(
 				"Generic" = contamination_flavors_generic,

@@ -106,7 +106,7 @@
 	icon_state = "vacant_site"
 
 /area/centcom/simulated
-	dynamic_lighting = 1
+	dynamic_lighting = 0
 
 /area/centcom/simulated/terminal
 	name = "\improper Docking Terminal"
@@ -1386,9 +1386,6 @@
 /area/shuttle/tourbus/cockpit
 	name = "\improper Tour Bus Cockpit"
 
-/area/shuttle/tourbus/engines
-	name = "\improper Tour Bus Engines"
-
 /area/shuttle/medivac
 	requires_power = 1
 	icon_state = "shuttle2"
@@ -1552,6 +1549,12 @@ area/shuttle/mining_outpost/shuttle
 
 /area/unknown/dorm4
 	name = "Unknown Dorm 4"
+
+/area/unknown/dorm5
+	name = "Unknown Dorm 5"
+
+/area/unknown/dorm6
+	name = "Unknown Dorm 6"
 
 // ERT/Deathsquad Shuttle
 /area/shuttle/specialops/centcom

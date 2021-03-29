@@ -19,14 +19,14 @@
 
 /obj/item/clothing/head/radiation
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/mob/species/seromi/helmet_vr.dmi',
+		SPECIES_TESHARI = 'icons/mob/species/teshari/helmet_vr.dmi',
 		SPECIES_VOX = 'icons/mob/species/vox/head.dmi',
 		SPECIES_WEREBEAST = 'icons/mob/species/werebeast/head.dmi'
 		)
 
 /obj/item/clothing/suit/radiation
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/mob/species/seromi/suit_vr.dmi',
+		SPECIES_TESHARI = 'icons/mob/species/teshari/suit_vr.dmi',
 		SPECIES_VOX = 'icons/mob/species/vox/suit.dmi',
 		SPECIES_WEREBEAST = 'icons/mob/species/werebeast/suit.dmi'
 		)

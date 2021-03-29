@@ -8,12 +8,9 @@
 	if(..())
 		return TRUE
 
-	for(var/parameter in params)
-		to_world("[parameter] - [params[parameter]]")
-
 	switch(action)
 		if("toggle_active")
-			var/obj/machinery/fusion_fuel_injector/FI = locate(params["fuel"])
+			var/obj/machinery/fusion_fuel_injector/FI = locate(params["fuel"]) in GLOB.fuel_injectors
 			if(!istype(FI))
 				return FALSE
 

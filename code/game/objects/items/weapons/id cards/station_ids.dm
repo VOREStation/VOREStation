@@ -5,7 +5,7 @@
 	item_state = "card-id"
 
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/mob/species/seromi/id.dmi'
+		SPECIES_TESHARI = 'icons/mob/species/teshari/id.dmi'
 		)
 
 	var/access = list()

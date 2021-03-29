@@ -9,7 +9,7 @@
 	var/violent_breakthrough = TRUE			// If false, the AI is not allowed to destroy things like windows or other structures in the way. Requires above var to be true.
 
 	var/stand_ground = FALSE				// If true, the AI won't try to get closer to an enemy if out of range.
-	
+
 // This does the actual attacking.
 /datum/ai_holder/proc/engage_target()
 	ai_log("engage_target() : Entering.", AI_LOG_DEBUG)
@@ -293,7 +293,7 @@
 
 		// Kill common obstacle in the way like tables.
 		var/obj/structure/obstacle = locate(/obj/structure, problem_turf)
-		if(istype(obstacle, /obj/structure/window) || istype(obstacle, /obj/structure/closet) || istype(obstacle, /obj/structure/table) || istype(obstacle, /obj/structure/grille))
+		if(istype(obstacle, /obj/structure/window) || istype(obstacle, /obj/structure/closet) || istype(obstacle, /obj/structure/table) || istype(obstacle, /obj/structure/grille) || istype(obstacle, /obj/effect/weaversilk/wall))	//VOREStation Edit: spdr
 			ai_log("destroy_surroundings() : Attacking generic structure.", AI_LOG_INFO)
 			return melee_attack(obstacle)
 

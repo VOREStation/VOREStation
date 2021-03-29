@@ -14,7 +14,7 @@
 	var/customized = 0
 	var/icon_previous_override
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/mob/species/seromi/ties_vr.dmi'
+		SPECIES_TESHARI = 'icons/mob/species/teshari/ties_vr.dmi'
 		)
 
 //Forces different sprite sheet on equip
@@ -64,7 +64,7 @@
 	var/writtenon = 0
 	var/icon_previous_override
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/mob/species/seromi/ties_vr.dmi'
+		SPECIES_TESHARI = 'icons/mob/species/teshari/ties_vr.dmi'
 		)
 
 //Forces different sprite sheet on equip
