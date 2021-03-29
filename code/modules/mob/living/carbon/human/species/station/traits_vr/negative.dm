@@ -36,7 +36,7 @@
 
 	apply(var/datum/species/S,var/mob/living/carbon/human/H)
 		..(S,H)
-		H.setMaxHealth(S.total_health
+		H.setMaxHealth(S.total_health)
 
 /datum/trait/negative/endurance_very_low
 	name = "Extremely Low Endurance"
