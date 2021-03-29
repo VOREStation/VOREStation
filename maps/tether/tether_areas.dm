@@ -106,7 +106,7 @@
 	icon_state = "vacant_site"
 
 /area/centcom/simulated
-	dynamic_lighting = 1
+	dynamic_lighting = 0
 
 /area/centcom/simulated/terminal
 	name = "\improper Docking Terminal"
