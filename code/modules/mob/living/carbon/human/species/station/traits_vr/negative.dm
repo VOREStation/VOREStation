@@ -119,4 +119,4 @@
 	desc = "Your nerves are particularly sensitive to physical changes, leading to experiencing twice the intensity of pain and pleasure alike. Doubles traumatic shock."
 	cost = -1
 	var_changes = list("trauma_mod" = 2)
-	
+	can_take = ORGANICS
