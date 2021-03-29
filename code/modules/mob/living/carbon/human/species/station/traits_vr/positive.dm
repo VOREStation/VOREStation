@@ -13,14 +13,14 @@
 /datum/trait/positive/hardy
 	name = "Hardy"
 	desc = "Allows you to carry heavy equipment with less slowdown."
-	cost = 3
+	cost = 2
 	var_changes = list("item_slowdown_mod" = 0.5)
 
 /datum/trait/positive/endurance_high
 	name = "High Endurance"
-	desc = "Increases your maximum total hitpoints to 120"
-	cost = 3
-	var_changes = list("total_health" = 120)
+	desc = "Increases your maximum total hitpoints to 125"
+	cost = 4
+	var_changes = list("total_health" = 125)
 
 	apply(var/datum/species/S,var/mob/living/carbon/human/H)
 		..(S,H)
@@ -71,27 +71,27 @@
 /datum/trait/positive/minor_brute_resist
 	name = "Minor Brute Resist"
 	desc = "Adds 10% resistance to brute damage sources."
-	cost = 1
-	var_changes = list("brute_mod" = 0.9)
+	cost = 2
+	var_changes = list("brute_mod" = 0.85)
 
 /datum/trait/positive/brute_resist
 	name = "Brute Resist"
 	desc = "Adds 20% resistance to brute damage sources."
 	cost = 3
-	var_changes = list("brute_mod" = 0.8)
+	var_changes = list("brute_mod" = 0.75)
 	excludes = list(/datum/trait/positive/minor_burn_resist,/datum/trait/positive/burn_resist)
 
 /datum/trait/positive/minor_burn_resist
 	name = "Minor Burn Resist"
 	desc = "Adds 10% resistance to burn damage sources."
-	cost = 1
-	var_changes = list("burn_mod" = 0.9)
+	cost = 2
+	var_changes = list("burn_mod" = 0.85)
 
 /datum/trait/positive/burn_resist
 	name = "Burn Resist"
 	desc = "Adds 20% resistance to burn damage sources."
 	cost = 3
-	var_changes = list("burn_mod" = 0.8)
+	var_changes = list("burn_mod" = 0.75)
 	excludes = list(/datum/trait/positive/minor_brute_resist,/datum/trait/positive/brute_resist)
 
 /datum/trait/positive/photoresistant
@@ -119,7 +119,7 @@
 /datum/trait/positive/antiseptic_saliva
 	name = "Antiseptic Saliva"
 	desc = "Your saliva has especially strong antiseptic properties that can be used to heal small wounds."
-	cost = 0
+	cost = 1
 
 /datum/trait/positive/antiseptic_saliva/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
@@ -128,7 +128,7 @@
 /datum/trait/positive/traceur
 	name = "Traceur"
 	desc = "You're capable of parkour and can *flip over low objects (most of the time)."
-	cost = 2
+	cost = 1
 	var_changes = list("agility" = 90)
 
 /datum/trait/positive/snowwalker
