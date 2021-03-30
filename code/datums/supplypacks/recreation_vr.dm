@@ -93,7 +93,7 @@
 	contains = list(
 			/obj/item/weapon/storage/smolebrickcase, /obj/item/weapon/storage/smolebrickcase,
 			)
-	cost = 200
+	cost = 50
 	containertype = /obj/structure/closet/crate
 	containername = "Smole Bulding Brick crate"
 
