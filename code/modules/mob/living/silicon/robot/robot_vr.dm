@@ -55,7 +55,15 @@
 					   "zoomba-combat",
 					   "zoomba-combat-roll",
 					   "zoomba-combat-shield",
-					   "spiderscience"
+					   "spiderscience",
+					   "equidroid-STD",
+					   "equidroid-ENG",
+					   "equidroid-MED",
+					   "equidroid-CRG",
+					   "equidroid-JNI",
+					   "equidroid-SEC",
+					   "equidroid-SCI",
+					   "equidroid-CMB"
 					   )					//List of all used sprites that are in robots_vr.dmi
 
 
