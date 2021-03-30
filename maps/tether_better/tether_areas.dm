@@ -1434,9 +1434,6 @@ area/shuttle/mining_outpost/shuttle
 	name = "\improper Tether Elevator"
 	icon = 'icons/turf/areas_vr.dmi'
 	icon_state = "elevator"
-	dynamic_lighting = FALSE
-
-	requires_power = FALSE
 
 /area/tether/midpoint
 	name = "\improper Tether Midpoint"

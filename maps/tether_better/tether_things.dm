@@ -110,7 +110,7 @@
 	teleport_z = Z_LEVEL_SURFACE_LOW
 
 /obj/effect/step_trigger/teleporter/planetary_fall/virgo3b_better/find_planet()
-	planet = planet_virgo3b
+	planet = planet_virgo3b_better
 
 /obj/effect/step_trigger/lost_in_space
 	var/deathmessage = "You drift off into space, floating alone in the void until your life support runs out."
