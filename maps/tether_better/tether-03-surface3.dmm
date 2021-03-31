@@ -33592,6 +33592,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/servicebackroom)
+"bfw" = (
+/obj/structure/catwalk,
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/outside/outside3)
 "bfy" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -47533,9 +47537,9 @@ adG
 adG
 adG
 adG
-adG
-adG
-adG
+bfw
+bfw
+bfw
 aQD
 adG
 aOi
@@ -50089,9 +50093,9 @@ adG
 adG
 adG
 adG
-adG
-adG
-adG
+bfw
+bfw
+bfw
 aRh
 adG
 aOi
