@@ -1,5 +1,5 @@
 //Special map objects
-/obj/effect/landmark/map_data/virgo3b
+/obj/effect/landmark/map_data/virgo3b_better
     height = 7
 
 /obj/turbolift_map_holder/tether
@@ -109,8 +109,8 @@
 	teleport_y = 2
 	teleport_z = Z_LEVEL_SURFACE_LOW
 
-/obj/effect/step_trigger/teleporter/planetary_fall/virgo3b/find_planet()
-	planet = planet_virgo3b
+/obj/effect/step_trigger/teleporter/planetary_fall/virgo3b_better/find_planet()
+	planet = planet_virgo3b_better
 
 /obj/effect/step_trigger/lost_in_space
 	var/deathmessage = "You drift off into space, floating alone in the void until your life support runs out."
@@ -372,7 +372,7 @@ var/global/list/latejoin_tram   = list()
 // Used at centcomm for the elevator
 /obj/machinery/cryopod/robot/door/dorms
 	spawnpoint_type = /datum/spawnpoint/tram
-/*
+
 //Tether-unique network cameras
 /obj/machinery/camera/network/tether
 	network = list(NETWORK_TETHER)
@@ -388,7 +388,7 @@ var/global/list/latejoin_tram   = list()
 
 /obj/machinery/camera/network/research/xenobio
 	network = list(NETWORK_RESEARCH, NETWORK_XENOBIO)
-*/
+
 //Camera monitors
 /obj/machinery/computer/security/xenobio
 	name = "xenobiology camera monitor"
@@ -460,3 +460,48 @@ var/global/list/latejoin_tram   = list()
 	layer = ABOVE_WINDOW_LAYER
 /obj/structure/noticeboard
 	layer = ABOVE_WINDOW_LAYER
+
+/mob/living/simple_mob/vore/redpanda/v3b
+	faction = "v3b"
+
+/mob/living/simple_mob/vore/redpanda/fae/v3b
+	faction = "v3b"
+
+/mob/living/simple_mob/vore/rabbit/v3b
+	faction = "v3b"
+
+/mob/living/simple_mob/vore/fennec/v3b
+	faction = "v3b"
+
+/mob/living/simple_mob/animal/passive/cow/v3b
+	faction = "v3b"
+
+/mob/living/simple_mob/vore/hippo/v3b
+	faction = "v3b"
+
+/mob/living/simple_mob/animal/passive/chicken/v3b
+	faction = "v3b"
+
+/mob/living/simple_mob/vore/horse/v3b
+	faction = "v3b"
+
+/mob/living/simple_mob/animal/passive/snake/v3b
+	faction = "v3b"
+
+/mob/living/simple_mob/vore/bee/v3b
+	faction = "v3b"
+
+/mob/living/simple_mob/animal/passive/gaslamp/gay
+	name = "gaylamp"
+	faction = "v3b"
+	icon = 'icons/mob/vore32x64af.dmi'
+	max_oxy = 0
+	min_tox = 0
+	maxbodytemp = 500
+
+/mob/living/simple_mob/animal/space/goose/virgo3b_better
+	faction = "v3b"
+
+
+/obj/effect/lobby_image
+	icon = 'icons/misc/loading_2.dmi' //VOREStation Add - Loading Screen
