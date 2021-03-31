@@ -2664,6 +2664,7 @@
 #include "code\modules\mob\living\carbon\human\species\station\station_special_vr.dm"
 #include "code\modules\mob\living\carbon\human\species\station\station_vr.dm"
 #include "code\modules\mob\living\carbon\human\species\station\teshari.dm"
+#include "code\modules\mob\living\carbon\human\species\station\teshari_vr.dm"
 #include "code\modules\mob\living\carbon\human\species\station\xenochimera_hud_vr.dm"
 #include "code\modules\mob\living\carbon\human\species\station\xenochimera_trait_vr.dm"
 #include "code\modules\mob\living\carbon\human\species\station\protean_vr\protean_blob.dm"
