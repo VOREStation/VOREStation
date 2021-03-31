@@ -440,8 +440,5 @@
 #define MAX_NUTRITION	5000 //VOREStation Edit
 
 #define FAKE_INVIS_ALPHA_THRESHOLD 127 // If something's alpha var is at or below this number, certain things will pretend it is invisible.
-<<<<<<< HEAD
-=======
 
 #define DEATHGASP_NO_MESSAGE "no message"
->>>>>>> d40a022... Merge pull request #7987 from MistakeNot4892/chirp
