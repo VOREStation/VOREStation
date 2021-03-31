@@ -313,7 +313,8 @@
 	if(spill)
 		splash(target.loc, spill, multiplier, copy, min_spill, max_spill)
 
-	trans_to(target, amount, multiplier, copy)
+	if(!trans_to(target, amount, multiplier, copy))
+		touch(target, amount)
 
 /datum/reagents/proc/trans_type_to(var/target, var/rtype, var/amount = 1)
 	if (!target)
