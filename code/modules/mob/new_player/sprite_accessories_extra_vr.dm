@@ -97,6 +97,11 @@
 	icon_state = "eyes_sergal"
 	body_parts = list(BP_HEAD)
 
+/datum/sprite_accessory/marking/vr/closedeyes
+	name = "Closed Eyes"
+	icon_state = "eyes_closed"
+	body_parts = list(BP_HEAD)
+
 /datum/sprite_accessory/marking/vr/brows
 	name = "Eyebrows"
 	icon_state = "brows"

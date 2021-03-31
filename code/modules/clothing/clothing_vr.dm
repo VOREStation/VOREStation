@@ -5,7 +5,7 @@
 	var/list/inside_emotes = list()
 	var/recent_squish = 0
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/mob/species/seromi/shoes.dmi',
+		SPECIES_TESHARI = 'icons/mob/species/teshari/shoes.dmi',
 		SPECIES_VOX = 'icons/mob/species/vox/shoes.dmi',
 		SPECIES_WEREBEAST = 'icons/mob/species/werebeast/feet.dmi')
 
@@ -85,13 +85,13 @@
 
 /obj/item/clothing/gloves
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/mob/species/seromi/gloves.dmi',
+		SPECIES_TESHARI = 'icons/mob/species/teshari/gloves.dmi',
 		SPECIES_VOX = 'icons/mob/species/vox/gloves.dmi',
 		SPECIES_WEREBEAST = 'icons/mob/species/werebeast/hands.dmi')
 
 /obj/item/clothing/ears
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/mob/species/seromi/ears.dmi',
+		SPECIES_TESHARI = 'icons/mob/species/teshari/ears.dmi',
 		SPECIES_WEREBEAST = 'icons/mob/species/werebeast/ears.dmi')
 
 /obj/item/clothing/relaymove(var/mob/living/user,var/direction)
@@ -131,7 +131,7 @@
 		slot_wear_mask_str = 'icons/mob/mask_vr.dmi'
 		)
 	sprite_sheets = list(
-		SPECIES_TESHARI		= 'icons/mob/species/seromi/masks_vr.dmi',
+		SPECIES_TESHARI		= 'icons/mob/species/teshari/masks_vr.dmi',
 		SPECIES_VOX 		= 'icons/mob/species/vox/masks.dmi',
 		SPECIES_TAJ 		= 'icons/mob/species/tajaran/mask_vr.dmi',
 		SPECIES_UNATHI 		= 'icons/mob/species/unathi/mask_vr.dmi',
@@ -149,7 +149,7 @@
 //Switch to taur sprites if a taur equips
 /obj/item/clothing/suit
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/mob/species/seromi/suit.dmi',
+		SPECIES_TESHARI = 'icons/mob/species/teshari/suit.dmi',
 		SPECIES_VOX = 'icons/mob/species/vox/suit.dmi',
 		SPECIES_WEREBEAST = 'icons/mob/species/werebeast/suit.dmi')
 
@@ -158,7 +158,7 @@
 	sensor_mode = 3
 	var/sensorpref = 5
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/mob/species/seromi/uniform.dmi',
+		SPECIES_TESHARI = 'icons/mob/species/teshari/uniform.dmi',
 		SPECIES_VOX = 'icons/mob/species/vox/uniform.dmi',
 		SPECIES_WEREBEAST = 'icons/mob/species/werebeast/uniform.dmi')
 
@@ -178,6 +178,6 @@
 
 /obj/item/clothing/head
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/mob/species/seromi/head.dmi',
+		SPECIES_TESHARI = 'icons/mob/species/teshari/head.dmi',
 		SPECIES_VOX = 'icons/mob/species/vox/head.dmi',
 		SPECIES_WEREBEAST = 'icons/mob/species/werebeast/head.dmi')

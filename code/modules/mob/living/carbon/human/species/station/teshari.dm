@@ -33,12 +33,12 @@
 
 	move_trail = /obj/effect/decal/cleanable/blood/tracks/paw
 
-	icobase = 'icons/mob/human_races/r_seromi.dmi'
-	deform = 'icons/mob/human_races/r_seromi.dmi'
-	damage_overlays = 'icons/mob/human_races/masks/dam_seromi.dmi'
-	damage_mask = 'icons/mob/human_races/masks/dam_mask_seromi.dmi'
-	blood_mask = 'icons/mob/human_races/masks/blood_seromi.dmi'
-	suit_storage_icon = 'icons/mob/species/seromi/belt_mirror.dmi'
+	icobase = 'icons/mob/human_races/r_teshari.dmi'
+	deform = 'icons/mob/human_races/r_teshari.dmi'
+	damage_overlays = 'icons/mob/human_races/masks/dam_teshari.dmi'
+	damage_mask = 'icons/mob/human_races/masks/dam_mask_teshari.dmi'
+	blood_mask = 'icons/mob/human_races/masks/blood_teshari.dmi'
+	suit_storage_icon = 'icons/mob/species/teshari/belt_mirror.dmi'
 
 	fire_icon_state = "generic" // Humanoid is too big for them and spriting a new one is really annoying.
 
@@ -102,15 +102,15 @@
 	has_limbs = list(
 		BP_TORSO =  list("path" = /obj/item/organ/external/chest),
 		BP_GROIN =  list("path" = /obj/item/organ/external/groin),
-		BP_HEAD =   list("path" = /obj/item/organ/external/head/seromi),
+		BP_HEAD =   list("path" = /obj/item/organ/external/head/teshari),
 		BP_L_ARM =  list("path" = /obj/item/organ/external/arm),
 		BP_R_ARM =  list("path" = /obj/item/organ/external/arm/right),
 		BP_L_LEG =  list("path" = /obj/item/organ/external/leg),
 		BP_R_LEG =  list("path" = /obj/item/organ/external/leg/right),
-		BP_L_HAND = list("path" = /obj/item/organ/external/hand/seromi),
-		BP_R_HAND = list("path" = /obj/item/organ/external/hand/right/seromi),
-		BP_L_FOOT = list("path" = /obj/item/organ/external/foot/seromi),
-		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right/seromi)
+		BP_L_HAND = list("path" = /obj/item/organ/external/hand/teshari),
+		BP_R_HAND = list("path" = /obj/item/organ/external/hand/right/teshari),
+		BP_L_FOOT = list("path" = /obj/item/organ/external/foot/teshari),
+		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right/teshari)
 		)
 
 	has_organ = list(

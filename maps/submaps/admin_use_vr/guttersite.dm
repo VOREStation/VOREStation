@@ -49,40 +49,40 @@
 
 //TFF 26/12/19 - Sub-areas for the APCs.
 /area/tether_away/guttersite/engines
-	name = "POI - Gutter Engineering"
+	name = "Gutter - Gutter Engineering"
 
 /area/tether_away/guttersite/security
-	name = "POI - Gutter Security and Holding"
+	name = "Gutter - Gutter Security and Holding"
 
 /area/tether_away/guttersite/docking
-	name = "POI - Gutter Docks"
+	name = "Gutter - Gutter Docks"
 
 /area/tether_away/guttersite/office
-	name = "POI - Gutter Offices"
+	name = "Gutter - Gutter Offices"
 
 /area/tether_away/guttersite/atmos
-	name = "POI - Gutter Atmospherics"
+	name = "Gutter - Gutter Atmospherics"
 
 /area/tether_away/guttersite/maint
-	name = "POI - Gutter Maintenance"
+	name = "Gutter - Gutter Maintenance"
 
 /area/tether_away/guttersite/vault
-	name = "POI - Gutter Vault"
+	name = "Gutter - Gutter Vault"
 
 /area/tether_away/guttersite/bridge
-	name = "POI - Gutter Bridge"
+	name = "Gutter - Gutter Bridge"
 
 /area/tether_away/guttersite/walkway
-	name = "POI - Gutter Walkway"
+	name = "Gutter - Gutter Walkway"
 
 /area/tether_away/guttersite/medbay
-	name = "POI - Gutter Medbay"
+	name = "Gutter - Gutter Medbay"
 
 /area/tether_away/guttersite/commons
-	name = "POI - Gutter Commons"
+	name = "Gutter - Gutter Commons"
 
 /area/tether_away/guttersite/storage
-	name = "POI - Gutter Tool Storage"
+	name = "Gutter - Gutter Tool Storage"
 
 /area/tether_away/guttersite/teleporter
-	name = "POI - Gutter Teleporter"
+	name = "Gutter - Gutter Teleporter"

@@ -102,6 +102,10 @@
 /obj/effect/floor_decal/industrial/outline/blue,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/barracks)
+"aq" = (
+/obj/machinery/telecomms/relay/preset/tether,
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/ert/atmos)
 "ax" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 4
@@ -298,10 +302,6 @@
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/ship/ert/hallways_aft)
-"cL" = (
-/obj/machinery/telecomms/allinone/ert,
-/turf/simulated/floor/tiled/techfloor,
-/area/ship/ert/atmos)
 "cO" = (
 /obj/machinery/computer/operating,
 /turf/simulated/floor/tiled/white,
@@ -734,7 +734,7 @@
 /obj/mecha/combat/gygax/serenity,
 /obj/effect/floor_decal/industrial/outline,
 /obj/machinery/button/remote/blast_door{
-	description_fluff = "\(OOC) DO NOT TOUCH THIS BUTTON WITHOUT THE EXPLICIT PERMISSION OF AN ADMINISTRATOR.";
+	description_fluff = "\\(OOC) DO NOT TOUCH THIS BUTTON WITHOUT THE EXPLICIT PERMISSION OF AN ADMINISTRATOR.";
 	dir = 4;
 	id = "NRV_MECHS";
 	name = "MECH BAY CONTROL";
@@ -1168,10 +1168,6 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/mech_bay)
-"kd" = (
-/obj/item/device/multitool/tether_buffered,
-/turf/simulated/floor/tiled/techfloor,
-/area/ship/ert/atmos)
 "kf" = (
 /obj/structure/table/rack/steel,
 /obj/item/weapon/gun/projectile/automatic/pdw,
@@ -5402,7 +5398,7 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /obj/machinery/button/remote/blast_door{
-	description_fluff = "\(OOC) DO NOT TOUCH THIS BUTTON WITHOUT THE EXPLICIT PERMISSION OF AN ADMINISTRATOR.";
+	description_fluff = "\\(OOC) DO NOT TOUCH THIS BUTTON WITHOUT THE EXPLICIT PERMISSION OF AN ADMINISTRATOR.";
 	dir = 1;
 	id = "NRV_DELTA";
 	name = "DELTA ACCESS CONTROL";
@@ -6813,10 +6809,6 @@
 /obj/structure/curtain/open/bed,
 /turf/simulated/floor/wood,
 /area/ship/ert/commander)
-"Wd" = (
-/obj/machinery/telecomms/relay,
-/turf/simulated/floor/tiled/techfloor,
-/area/ship/ert/atmos)
 "Wj" = (
 /obj/machinery/light/no_nightshift{
 	dir = 8
@@ -13444,8 +13436,8 @@ pV
 kP
 kP
 rS
-Wd
-kd
+aq
+gA
 CT
 qR
 pV
@@ -14013,7 +14005,7 @@ ls
 ls
 ls
 Lm
-cL
+gA
 DQ
 Ip
 pV
