@@ -492,18 +492,14 @@
 // blind_message (optional) is what blind people will hear e.g. "You hear something!"
 /atom/proc/visible_message(var/message, var/blind_message, var/list/exclude_mobs, var/range = world.view)
 
-<<<<<<< HEAD
 	//VOREStation Edit
 	var/list/see
 	if(isbelly(loc))
 		var/obj/belly/B = loc
 		see = B.get_mobs_and_objs_in_belly()
 	else
-		see = get_mobs_and_objs_in_view_fast(get_turf(src),world.view,remote_ghosts = FALSE)
+		see = get_mobs_and_objs_in_view_fast(get_turf(src), range, remote_ghosts = FALSE)
 	//VOREStation Edit End
-=======
-	var/list/see = get_mobs_and_objs_in_view_fast(get_turf(src), range, remote_ghosts = FALSE)
->>>>>>> d40a022... Merge pull request #7987 from MistakeNot4892/chirp
 
 	var/list/seeing_mobs = see["mobs"]
 	var/list/seeing_objs = see["objs"]
