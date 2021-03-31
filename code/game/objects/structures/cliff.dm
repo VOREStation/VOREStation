@@ -195,27 +195,45 @@ two tiles on initialization, and which way a cliff is facing may change during m
 			displaced = TRUE
 
 	if(istype(T))
-		visible_message(span("danger", "\The [L] falls off \the [src]!"))
+
+		var/safe_fall = FALSE
+		if(ishuman(L))
+			var/mob/living/carbon/human/H = L
+			safe_fall = H.species.handle_falling(H, T, silent = TRUE, planetary = FALSE)
+
+		if(safe_fall)
+			visible_message(span("notice", "\The [L] glides down from \the [src]."))
+		else
+			visible_message(span("danger", "\The [L] falls off \the [src]!"))
 		L.forceMove(T)
 
-		// Do the actual hurting. Double cliffs do halved damage due to them most likely hitting twice.
 		var/harm = !is_double_cliff ? 1 : 0.5
-		if(istype(L.buckled, /obj/vehicle)) // People falling off in vehicles will take less damage, but will damage the vehicle severely.
-			var/obj/vehicle/vehicle = L.buckled
-			vehicle.adjust_health(40 * harm)
-			to_chat(L, span("warning", "\The [vehicle] absorbs some of the impact, damaging it."))
-			harm /= 2
+		if(!safe_fall)
+			// Do the actual hurting. Double cliffs do halved damage due to them most likely hitting twice.
+			if(istype(L.buckled, /obj/vehicle)) // People falling off in vehicles will take less damage, but will damage the vehicle severely.
+				var/obj/vehicle/vehicle = L.buckled
+				vehicle.adjust_health(40 * harm)
+				to_chat(L, span("warning", "\The [vehicle] absorbs some of the impact, damaging it."))
+				harm /= 2
 
-		playsound(L, 'sound/effects/break_stone.ogg', 70, 1)
-		L.Weaken(5 * harm)
+			playsound(L, 'sound/effects/break_stone.ogg', 70, 1)
+			L.Weaken(5 * harm)
+
 		var/fall_time = 3
 		if(displaced) // Make the fall look more natural when falling sideways.
 			L.pixel_z = 32 * 2
 			animate(L, pixel_z = 0, time = fall_time)
 		sleep(fall_time) // A brief delay inbetween the two sounds helps sell the 'ouch' effect.
+
+		if(safe_fall)
+			visible_message(span("notice", "\The [L] lands on \the [T]."))
+			playsound(L, "rustle", 25, 1)
+			return
+
 		playsound(L, "punch", 70, 1)
 		shake_camera(L, 1, 1)
-		visible_message(span("danger", "\The [L] hits the ground!"))
+
+		visible_message(span("danger", "\The [L] hits \the [T]!"))
 
 		// The bigger they are, the harder they fall.
 		// They will take at least 20 damage at the minimum, and tries to scale up to 40% of their max health.
