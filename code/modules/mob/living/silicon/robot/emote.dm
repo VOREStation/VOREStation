@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /mob/living/silicon/robot/emote(var/act,var/m_type=1,var/message = null)
 	var/param = null
 	if(findtext(act, "-", 1, null))
@@ -153,3 +154,34 @@
 			to_chat(src, "salute, bow-(none)/mob, clap, flap, aflap, twitch, twitch_s, nod, deathgasp, glare-(none)/mob, stare-(none)/mob, look, beep, ping, \nbuzz, law, halt, yes, dwoop, no")
 
 	..(act, m_type, message)
+=======
+var/list/_robot_default_emotes = list(
+	/decl/emote/audible/clap,
+	/decl/emote/visible/bow,
+	/decl/emote/visible/salute,
+	/decl/emote/visible/flap,
+	/decl/emote/visible/aflap,
+	/decl/emote/visible/twitch,
+	/decl/emote/visible/twitch_v,
+	/decl/emote/visible/dance,
+	/decl/emote/visible/nod,
+	/decl/emote/visible/shake,
+	/decl/emote/visible/glare,
+	/decl/emote/visible/look,
+	/decl/emote/visible/stare,
+	/decl/emote/visible/deathgasp_robot,
+	/decl/emote/visible/spin,
+	/decl/emote/visible/sidestep,
+	/decl/emote/audible/synth,
+	/decl/emote/audible/synth/ping,
+	/decl/emote/audible/synth/buzz,
+	/decl/emote/audible/synth/confirm,
+	/decl/emote/audible/synth/deny,
+	/decl/emote/audible/synth/dwoop,
+	/decl/emote/audible/synth/security,
+	/decl/emote/audible/synth/security/halt
+)
+
+/mob/living/silicon/robot/get_default_emotes()
+	return global._robot_default_emotes
+>>>>>>> d40a022... Merge pull request #7987 from MistakeNot4892/chirp

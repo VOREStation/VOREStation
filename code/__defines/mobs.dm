@@ -272,6 +272,10 @@
 #define TASTE_DULL 0.5 //anything below 30%
 #define TASTE_NUMB 0.1 //anything below 150%
 
+//Used by emotes
+#define VISIBLE_MESSAGE 1
+#define AUDIBLE_MESSAGE 2
+
 // If they're in an FBP, what braintype.
 #define FBP_NONE	""
 #define FBP_CYBORG	"Cyborg"
@@ -436,3 +440,8 @@
 #define MAX_NUTRITION	5000 //VOREStation Edit
 
 #define FAKE_INVIS_ALPHA_THRESHOLD 127 // If something's alpha var is at or below this number, certain things will pretend it is invisible.
+<<<<<<< HEAD
+=======
+
+#define DEATHGASP_NO_MESSAGE "no message"
+>>>>>>> d40a022... Merge pull request #7987 from MistakeNot4892/chirp

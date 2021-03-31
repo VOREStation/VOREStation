@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // All mobs should have custom emote, really..
 //m_type == 1 --> visual.
 //m_type == 2 --> audible
@@ -53,12 +54,14 @@
 				if(O)
 					O.see_emote(src, message, m_type)
 
+=======
+>>>>>>> d40a022... Merge pull request #7987 from MistakeNot4892/chirp
 // Shortcuts for above proc
 /mob/proc/visible_emote(var/act_desc)
-	custom_emote(1, act_desc)
+	custom_emote(VISIBLE_MESSAGE, act_desc)
 
 /mob/proc/audible_emote(var/act_desc)
-	custom_emote(2, act_desc)
+	custom_emote(AUDIBLE_MESSAGE, act_desc)
 
 /mob/proc/emote_dead(var/message)
 
