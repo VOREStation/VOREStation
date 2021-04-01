@@ -10225,7 +10225,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/surface_three_hall)
 "aqh" = (
-/obj/structure/bonfire/permanent,
+/obj/structure/bonfire/permanent/comfy,
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/surface_three_hall)
 "aqi" = (
@@ -12145,7 +12145,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/bonfire/permanent,
+/obj/structure/bonfire/permanent/comfy,
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/surface_three_hall)
 "atI" = (
@@ -17897,7 +17897,7 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/botanystorage)
 "aCY" = (
-/obj/structure/bonfire/permanent,
+/obj/structure/bonfire/permanent/comfy,
 /turf/simulated/floor/tiled/techmaint,
 /area/hallway/lower/third_south)
 "aCZ" = (

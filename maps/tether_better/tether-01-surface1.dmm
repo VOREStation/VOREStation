@@ -4172,7 +4172,7 @@
 /turf/simulated/floor/tiled,
 /area/rnd/testingroom)
 "ahc" = (
-/obj/structure/bonfire/permanent,
+/obj/structure/bonfire/permanent/comfy,
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/surface_one_hall)
 "ahd" = (
