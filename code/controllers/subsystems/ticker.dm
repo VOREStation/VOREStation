@@ -488,9 +488,9 @@ var/global/datum/controller/subsystem/ticker/ticker
 
 		if (!robo.connected_ai)
 			if (robo.stat != 2)
-				to_world("<span class='filter_system'><b>[robo.name] (Played by: [robo.key]) survived as an AI-less stationbound synthetic! Its laws were:</b></span>")
+				to_world("<span class='filter_system'><b>[robo.name] survived as an AI-less stationbound synthetic! Its laws were:</b></span>")
 			else
-				to_world("<span class='filter_system'><b>[robo.name] (Played by: [robo.key]) was unable to survive the rigors of being a stationbound synthetic without an AI. Its laws were:</b></span>")
+				to_world("<span class='filter_system'><b>[robo.name] was unable to survive the rigors of being a stationbound synthetic without an AI. Its laws were:</b></span>")
 
 			if(robo) //How the hell do we lose robo between here and the world messages directly above this?
 				robo.laws.show_laws(world)
