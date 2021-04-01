@@ -13664,7 +13664,7 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/north)
 "awd" = (
-/obj/structure/bonfire/permanent,
+/obj/structure/bonfire/permanent/comfy,
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/surface_two_hall)
 "awe" = (
@@ -22447,7 +22447,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/engineering/lower/breakroom)
 "aNS" = (
-/obj/structure/bonfire/permanent,
+/obj/structure/bonfire/permanent/comfy,
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/east_stairs_two)
 "aNT" = (
