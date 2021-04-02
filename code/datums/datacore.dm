@@ -319,7 +319,11 @@ var/global/list/PDA_Manifest = list()
 			real_title = rank
 			break
 		else if(J.title == assignment)
+<<<<<<< HEAD
 			real_title = assignment
+=======
+			real_title = rank
+>>>>>>> 461cfab... Merge pull request #8018 from Heroman3003/department-preservation
 			break
 		else
 			var/list/alttitles = get_alternate_titles(J.title)

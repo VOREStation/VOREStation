@@ -154,11 +154,19 @@
 	if(..())
 		return TRUE
 
+<<<<<<< HEAD
 	switch(action)
 		if("modify")
 			if(modify)
 				data_core.manifest_modify(modify.registered_name, modify.assignment, modify.rank)
 				modify.name = "[modify.registered_name]'s ID Card ([modify.assignment])"
+=======
+	switch(href_list["choice"])
+		if ("modify")
+			if (modify)
+				data_core.manifest_modify(modify.registered_name, modify.assignment, modify.rank)
+				modify.name = text("[modify.registered_name]'s ID Card ([modify.assignment])")
+>>>>>>> 461cfab... Merge pull request #8018 from Heroman3003/department-preservation
 				if(ishuman(usr))
 					modify.forceMove(get_turf(src))
 					if(!usr.get_active_hand())
