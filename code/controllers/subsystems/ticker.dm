@@ -470,7 +470,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 		if (aiPlayer.connected_robots.len)
 			var/robolist = "<b>The AI's loyal minions were:</b> "
 			for(var/mob/living/silicon/robot/robo in aiPlayer.connected_robots)
-				robolist += "[robo.name][robo.stat?" (Deactivated), ":", "]"
+				robolist += "[robo.name][robo.stat?" (Deactivated), ":", "]"  // VOREStation edit
 			to_world("<span class='filter_system'>[robolist]</span>")
 
 	var/dronecount = 0
