@@ -1019,13 +1019,16 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 					return
 				organ = "brain"
 
+		var/datum/species/current_species = GLOB.all_species[pref.species]
 		var/list/organ_choices = list("Normal")
 		if(pref.organ_data[BP_TORSO] == "cyborg")
 			organ_choices -= "Normal"
 			if(organ_name == "Brain")
 				organ_choices += "Cybernetic"
-				organ_choices += "Positronic"
-				organ_choices += "Drone"
+				if(!(current_species.spawn_flags & SPECIES_NO_POSIBRAIN))
+					organ_choices += "Positronic"
+				if(!(current_species.spawn_flags & SPECIES_NO_DRONEBRAIN))
+					organ_choices += "Drone"
 			else
 				organ_choices += "Assisted"
 				organ_choices += "Mechanical"
@@ -1043,7 +1046,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 				pref.organ_data[organ] = "assisted"
 			if("Cybernetic")
 				pref.organ_data[organ] = "assisted"
-			if ("Mechanical")
+			if("Mechanical")
 				pref.organ_data[organ] = "mechanical"
 			if("Drone")
 				pref.organ_data[organ] = "digital"
