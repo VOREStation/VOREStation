@@ -37,7 +37,7 @@
 
 	if(input)
 		log_subtle(message,src)
-		message = "<span class='emote'><B>[src]</B> <I>[input]</I></span>"
+		message = "<span class='emote_subtle'><B>[src]</B> <I>[input]</I></span>"
 	else
 		return
 

@@ -7,13 +7,13 @@
 
 	emote_type = 2 //This lets them emote through containers.  The communicator has a image feed of the person calling them so...
 
-/mob/living/voice/New(loc)
+/mob/living/voice/Initialize(loc)
 	add_language(LANGUAGE_GALCOM)
 	set_default_language(GLOB.all_languages[LANGUAGE_GALCOM])
 
 	if(istype(loc, /obj/item/device/communicator))
 		comm = loc
-	..()
+	. = ..()
 
 // Proc: transfer_identity()
 // Parameters: 1 (speaker - the mob (usually an observer) to copy information from)
@@ -110,7 +110,7 @@
 		var/speech_bubble_test = say_test(message)
 		//var/image/speech_bubble = image('icons/mob/talk_vr.dmi',comm,"h[speech_bubble_test]") //VOREStation Edit - Commented out in case of needed reenable.
 		var/speech_type = speech_bubble_appearance()
-		var/image/speech_bubble = image('icons/mob/talk_vr.dmi',comm,"[speech_type][speech_bubble_test]") //VOREStation Edit - talk_vr.dmi instead of talk.dmi for right-side icons
+		var/image/speech_bubble = generate_speech_bubble(comm, "[speech_type][speech_bubble_test]")
 		spawn(30)
 			qdel(speech_bubble)
 

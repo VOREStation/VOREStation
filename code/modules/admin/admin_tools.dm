@@ -58,8 +58,3 @@
 
 
 	feedback_add_details("admin_verb","PDL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-
-// Used to get `atom/O as obj|mob|turf in view()` to match against strings containing apostrophes immediately after substrings that match to other objects. Somehow. - Ater
-/proc/admin_atom_validate(atom/A)
-	return view()

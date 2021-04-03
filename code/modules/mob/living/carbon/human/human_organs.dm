@@ -196,3 +196,11 @@
 	var/list/all_bits = internal_organs|organs
 	for(var/obj/item/organ/O in all_bits)
 		O.set_dna(dna)
+
+/mob/living/carbon/human/proc/set_gender(var/g)
+	if(g != gender)
+		gender = g
+	
+	if(dna.GetUIState(DNA_UI_GENDER) ^ gender == FEMALE) // XOR will catch both cases where they do not match
+		dna.SetUIState(DNA_UI_GENDER, gender == FEMALE)
+		sync_organ_dna(dna)

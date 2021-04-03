@@ -1175,7 +1175,7 @@
 					/obj/item/clothing/suit/varsity/blue = 5,
 					/obj/item/clothing/suit/varsity/brown = 5,
 					/obj/item/clothing/suit/storage/hooded/wintercoat = 5,
-					/obj/item/clothing/suit/storage/seromi/cloak/standard/white_grey = 5)
+					/obj/item/clothing/suit/storage/teshari/cloak/standard/white_grey = 5)
 	prices = list(/obj/item/clothing/suit/storage/apron = 100,
 					/obj/item/clothing/suit/storage/flannel/aqua = 100,
 					/obj/item/clothing/suit/storage/toggle/bomber = 100,
@@ -1262,7 +1262,7 @@
 					/obj/item/clothing/suit/varsity/blue = 100,
 					/obj/item/clothing/suit/varsity/brown = 100,
 					/obj/item/clothing/suit/storage/hooded/wintercoat = 100,
-					/obj/item/clothing/suit/storage/seromi/cloak/standard/white_grey = 100)
+					/obj/item/clothing/suit/storage/teshari/cloak/standard/white_grey = 100)
 	premium = list(/obj/item/clothing/suit/imperium_monk = 3)
 	contraband = list(/obj/item/toy/katana = 1)
 
@@ -1446,7 +1446,7 @@
 		/obj/item/seeds/riceseed = 3,
 		/obj/item/seeds/rose = 3,
 		/obj/item/seeds/soyaseed = 3,
-		/obj/item/seeds/spineapple = 3,
+		/obj/item/seeds/pineapple = 3,
 		/obj/item/seeds/sugarcaneseed = 3,
 		/obj/item/seeds/sunflowerseed = 3,
 		/obj/item/seeds/shandseed = 2,
@@ -2536,7 +2536,7 @@
 					/obj/item/clothing/suit/varsity/blue = 5,
 					/obj/item/clothing/suit/varsity/brown = 5,
 					/obj/item/clothing/suit/storage/hooded/wintercoat = 5,
-					/obj/item/clothing/suit/storage/seromi/cloak/standard/white_grey = 5)
+					/obj/item/clothing/suit/storage/teshari/cloak/standard/white_grey = 5)
 	prices = list(/obj/item/clothing/suit/storage/apron = 100,
 					/obj/item/clothing/suit/storage/flannel/aqua = 100,
 					/obj/item/clothing/suit/storage/toggle/bomber = 100,
@@ -2623,7 +2623,7 @@
 					/obj/item/clothing/suit/varsity/blue = 100,
 					/obj/item/clothing/suit/varsity/brown = 100,
 					/obj/item/clothing/suit/storage/hooded/wintercoat = 100,
-					/obj/item/clothing/suit/storage/seromi/cloak/standard/white_grey = 100)
+					/obj/item/clothing/suit/storage/teshari/cloak/standard/white_grey = 100)
 	premium = list(/obj/item/clothing/suit/imperium_monk = 3)
 	contraband = list(/obj/item/toy/katana = 1)
 
@@ -3520,7 +3520,7 @@
 					/obj/item/clothing/suit/varsity/blue = 5,
 					/obj/item/clothing/suit/varsity/brown = 5,
 					/obj/item/clothing/suit/storage/hooded/wintercoat = 5,
-					/obj/item/clothing/suit/storage/seromi/cloak/standard/white_grey = 5,
+					/obj/item/clothing/suit/storage/teshari/cloak/standard/white_grey = 5,
 					/obj/item/clothing/suit/imperium_monk = 3,
 					/obj/item/clothing/head/helmet/space/void/engineering = 5,
 					/obj/item/clothing/suit/space/void/engineering = 5,
@@ -3940,7 +3940,7 @@
 					/obj/item/weapon/reagent_containers/food/snacks/slice/mushroompizza = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/slice/orangecake = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/slice/peanutcake = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/slice/pineapple = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/pineappleslice = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/slice/plaincake = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/slice/pumpkinpie = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/slice/tofubread = 10,
@@ -4404,7 +4404,7 @@
 					/obj/item/weapon/reagent_containers/food/snacks/slice/mushroompizza = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/slice/orangecake = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/slice/peanutcake = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/slice/pineapple = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/pineappleslice = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/slice/plaincake = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/slice/pumpkinpie = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/slice/tofubread = 10,
@@ -4576,7 +4576,7 @@
 		/obj/item/seeds/riceseed = 3,
 		/obj/item/seeds/rose = 3,
 		/obj/item/seeds/soyaseed = 3,
-		/obj/item/seeds/spineapple = 3,
+		/obj/item/seeds/pineapple = 3,
 		/obj/item/seeds/sugarcaneseed = 3,
 		/obj/item/seeds/sunflowerseed = 3,
 		/obj/item/seeds/shandseed = 2,

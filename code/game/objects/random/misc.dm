@@ -262,7 +262,7 @@
 				prob(8);/obj/item/weapon/haircomb,
 				prob(4);/obj/item/weapon/storage/pill_bottle/happy,
 				prob(4);/obj/item/weapon/storage/pill_bottle/zoom,
-				prob(10);/obj/item/weapon/contraband/poster,
+				prob(10);/obj/item/weapon/contraband/poster/custom,
 				prob(4);/obj/item/weapon/material/butterfly,
 				prob(6);/obj/item/weapon/material/butterflyblade,
 				prob(6);/obj/item/weapon/material/butterflyhandle,
@@ -362,6 +362,7 @@
 				/obj/item/weapon/reagent_containers/food/drinks/bottle/peppermintschnapps,
 				/obj/item/weapon/reagent_containers/food/drinks/bottle/peachschnapps,
 				/obj/item/weapon/reagent_containers/food/drinks/bottle/lemonadeschnapps,
+				/obj/item/weapon/reagent_containers/food/drinks/bottle/jager,
 				/obj/item/weapon/reagent_containers/food/drinks/bottle/small/cider,
 				/obj/item/weapon/reagent_containers/food/drinks/bottle/small/litebeer,
 				/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,
@@ -673,7 +674,10 @@
 				/obj/item/toy/plushie/borgplushie/scrubpuppy,
 				/obj/item/toy/plushie/foxbear,
 				/obj/item/toy/plushie/nukeplushie,
-				/obj/item/toy/plushie/otter)
+				/obj/item/toy/plushie/otter,
+				/obj/item/toy/plushie/vox,
+				/obj/item/toy/plushie/borgplushie/drakiesec,
+				/obj/item/toy/plushie/borgplushie/drakiemed)
 				//VOREStation Add End
 
 /obj/random/plushielarge

@@ -158,9 +158,10 @@
 	var/upright = 0
 	var/base_state
 
-/obj/item/stack/flag/New()
-	..()
+/obj/item/stack/flag/Initialize()
+	. = ..()
 	base_state = icon_state
+	update_icon()
 
 /obj/item/stack/flag/blue
 	name = "blue flags"

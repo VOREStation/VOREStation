@@ -22,7 +22,7 @@
 	var/list/harvest_loot = null	// Should be an associative list for things to spawn, and their weights. An example would be a branch from a tree.
 
 /obj/structure/flora/Initialize()
-	..()
+	. = ..()
 
 	if(randomize_size)
 		icon_scale_x = rand(min_x_scale * 100, max_x_scale * 100) / 100

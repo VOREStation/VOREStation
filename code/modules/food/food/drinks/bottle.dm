@@ -388,7 +388,7 @@
 	center_of_mass = list("x"=16, "y"=6)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/space_up/Initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("space_up", 100)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/space_mountain_wind
@@ -398,7 +398,7 @@
 	center_of_mass = list("x"=16, "y"=6)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/space_mountain_wind/Initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("spacemountainwind", 100)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/pwine
@@ -628,3 +628,13 @@
 /obj/item/weapon/reagent_containers/food/drinks/bottle/lemonadeschnapps/Initialize()
 	. = ..()
 	reagents.add_reagent("schnapps_lem", 100)
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/jager
+	name = "Schusskonig"
+	desc = "A complex tasting digestif. Thank god the original's trademark lapsed."
+	icon_state = "jager_bottle"
+	center_of_mass = list("x"=16, "y"=3)
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/jager/Initialize()
+	. = ..()
+	reagents.add_reagent("jager", 100)

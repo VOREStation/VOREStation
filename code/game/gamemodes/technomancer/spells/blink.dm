@@ -68,7 +68,7 @@
 			else
 				safe_blink(AM, calculate_spell_power(3))
 			adjust_instability(3)
-			log_and_message_admins("has blinked [AM] away.")
+			add_attack_logs(user,AM,"Blinked")
 		else
 			to_chat(user, "<span class='warning'>You need more energy to blink [AM] away!</span>")
 
@@ -82,7 +82,7 @@
 		else
 			safe_blink(user, calculate_spell_power(6))
 		adjust_instability(1)
-		log_and_message_admins("has blinked themselves away.")
+		add_attack_logs(user,user,"Blinked")
 	else
 		to_chat(user, "<span class='warning'>You need more energy to blink yourself away!</span>")
 
@@ -99,6 +99,6 @@
 			else
 				safe_blink(AM, 6)
 			adjust_instability(2)
-			log_and_message_admins("has blinked [AM] away.")
+			add_attack_logs(user,AM,"Blinked")
 		else
 			to_chat(user, "<span class='warning'>You need more energy to blink [AM] away!</span>")

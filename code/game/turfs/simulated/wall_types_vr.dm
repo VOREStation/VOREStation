@@ -113,3 +113,8 @@ var/list/flesh_overlay_cache = list()
 	icon = 'icons/turf/wall_masks_vr.dmi'
 /turf/simulated/wall/plastihull/Initialize(mapload)
 	. = ..(mapload, MAT_PLASTITANIUMHULL, null,MAT_PLASTITANIUMHULL)
+
+/turf/simulated/wall/ghull
+	icon_state = "hull-titanium"
+/turf/simulated/wall/ghull/Initialize(mapload)
+	. = ..(mapload, MAT_GOLDHULL, MAT_DIAMOND, MAT_GOLDHULL)

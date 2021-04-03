@@ -82,7 +82,7 @@
 					return 0
 
 			else if(ismob(src)) //VOREStation Edit Start. Are they a mob, and are they currently flying??
-				var/mob/H = src
+				var/mob/living/H = src
 				if(H.flying)
 					if(H.incapacitated(INCAPACITATION_ALL))
 						to_chat(src, "<span class='notice'>You can't fly in your current state.</span>")
@@ -104,6 +104,13 @@
 			else
 				to_chat(src, "<span class='warning'>Gravity stops you from moving upward.</span>")
 				return 0
+
+	//VOREStation Addition Start
+	for(var/atom/A in start)
+		if(!A.CheckExit(src, destination))
+			to_chat(src, "<span class='warning'>\The [A] blocks you.</span>")
+			return 0
+	//VOREStation Addition End
 
 	for(var/atom/A in destination)
 		if(!A.CanPass(src, start, 1.5, 0))
@@ -358,24 +365,16 @@
 	for(var/atom/A in landing)
 		if(!A.CanPass(src, src.loc, 1, 0))
 			return FALSE
-	// TODO - Stairs should operate thru a different mechanism, not falling, to allow side-bumping.
 
 	// Now lets move there!
 	if(!Move(landing))
 		return 1
 
 	// Detect if we made a silent landing.
-	if(locate(/obj/structure/stairs) in landing)
-		if(isliving(src))
-			var/mob/living/L = src
-			if(L.pulling)
-				L.pulling.forceMove(landing)
-		return 1
-	else
-		var/atom/A = find_fall_target(oldloc, landing)
-		if(special_fall_handle(A) || !A || !A.check_impact(src))
-			return
-		fall_impact(A)
+	var/atom/A = find_fall_target(oldloc, landing)
+	if(special_fall_handle(A) || !A || !A.check_impact(src))
+		return
+	fall_impact(A)
 
 /atom/movable/proc/special_fall_handle(var/atom/A)
 	return FALSE
@@ -446,14 +445,6 @@
 /turf/space/check_impact(var/atom/movable/falling_atom)
 	return FALSE
 
-// We return 1 without calling fall_impact in order to provide a soft landing. So nice.
-// Note this really should never even get this far
-/obj/structure/stairs/CheckFall(var/atom/movable/falling_atom)
-	return TRUE
-
-/obj/structure/stairs/check_impact(var/atom/movable/falling_atom)
-	return FALSE
-
 // Can't fall onto ghosts
 /mob/observer/dead/CheckFall()
 	return FALSE
@@ -510,8 +501,10 @@
 			adjustBruteLoss(rand(damage_min, damage_max))
 		Weaken(4)
 		updatehealth()
-		return
-	return
+
+/mob/living/carbon/human/fall_impact(atom/hit_atom, damage_min, damage_max, silent, planetary)
+	if(!species?.handle_falling(src, hit_atom, damage_min, damage_max, silent, planetary))
+		..()
 
 //Using /atom/movable instead of /obj/item because I'm not sure what all humans can pick up or wear
 /atom/movable

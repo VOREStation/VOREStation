@@ -45,13 +45,15 @@
 
 /obj/item/weapon/material/butterfly/attack_self(mob/user)
 	active = !active
-	if(active)
-		to_chat(user, "<span class='notice'>You flip out \the [src].</span>")
-		playsound(src, 'sound/weapons/flipblade.ogg', 15, 1)
-	else
-		to_chat(user, "<span class='notice'>\The [src] can now be concealed.</span>")
 	update_force()
-	add_fingerprint(user)
+
+	if(user)
+		if(active)
+			to_chat(user, "<span class='notice'>You flip out \the [src].</span>")
+			playsound(src, 'sound/weapons/flipblade.ogg', 15, 1)
+		else
+			to_chat(user, "<span class='notice'>\The [src] can now be concealed.</span>")
+		add_fingerprint(user)
 
 /*
  * Kitchen knives
@@ -137,6 +139,11 @@
 	can_cleave = TRUE //Now hatchets inherit from the machete, and thus knives. Tables turned.
 	slot_flags = SLOT_BELT
 	default_material = "plasteel" //VOREStation Edit
+
+/obj/item/weapon/material/knife/machete/cyborg
+	name = "integrated machete"
+	desc = "A sharp machete often found attached to robots."
+	unbreakable = TRUE
 
 /obj/item/weapon/material/knife/tacknife/survival
 	name = "survival knife"

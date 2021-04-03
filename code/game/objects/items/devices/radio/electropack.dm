@@ -11,7 +11,7 @@
 	slot_flags = SLOT_BACK
 	w_class = ITEMSIZE_HUGE
 
-	matter = list(DEFAULT_WALL_MATERIAL = 10000,"glass" = 2500)
+	matter = list(DEFAULT_WALL_MATERIAL = 10000,"glass" = 2500, MAT_COPPER = 1550)
 
 	var/code = 2
 

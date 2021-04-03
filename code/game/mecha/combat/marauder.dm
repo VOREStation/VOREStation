@@ -44,6 +44,9 @@
 		/obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster
 		)
 
+	icon_scale_x = 1.5
+	icon_scale_y = 1.5
+
 /obj/mecha/combat/marauder/seraph
 	desc = "Heavy-duty, command-type exosuit. This is a custom model, utilized only by high-ranking military personnel."
 	name = "Seraph"

@@ -1,6 +1,6 @@
 // Beeg bug do beeg noms. It also glows in the dark for maximum spook power.
 
-/datum/category_item/catalogue/fauna/sect_queen		//TODO: VIRGO_LORE_WRITING_WIP
+/datum/category_item/catalogue/fauna/sect_queen
 	name = "Creature - Sect Queen"
 	desc = "A massively-sized insect that is native, although rarely spotted outside of its colony, to Virgo 3B. \
 	It bears the combined physical traits of several of Earth's insects. Its forelegs have claws bearing serrated \
@@ -28,7 +28,7 @@
 	maxHealth = 200
 	health = 200
 	see_in_dark = 8
-	
+
 
 	melee_damage_lower = 8
 	melee_damage_upper = 16
@@ -61,7 +61,7 @@
 	default_pixel_x = -16
 	pixel_x = -16
 	pixel_y = 0
-	
+
 	max_buckled_mobs = 1 //Yeehaw
 	can_buckle = TRUE
 	buckle_movable = TRUE

@@ -175,6 +175,7 @@
 	icon_state = "beret_corporate_hos"
 	item_state_slots = list(slot_r_hand_str = "beret_black", slot_l_hand_str = "beret_black")
 
+
 //Medical
 /obj/item/clothing/head/surgery
 	name = "surgical cap"

@@ -55,3 +55,8 @@
 	display_name = "science dufflebag"
 	path = /obj/item/weapon/storage/backpack/dufflebag/sci
 	allowed_roles = list("Research Director","Scientist","Roboticist","Xenobiologist","Xenobotanist","Explorer","Pathfinder")
+
+/datum/gear/utility/ID
+	display_name = "contractor identification card"
+	path = /obj/item/weapon/card/id/event/polymorphic/altcard
+	cost = 1
