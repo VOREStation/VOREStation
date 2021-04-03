@@ -372,7 +372,7 @@ var/global/list/latejoin_tram   = list()
 // Used at centcomm for the elevator
 /obj/machinery/cryopod/robot/door/dorms
 	spawnpoint_type = /datum/spawnpoint/tram
-
+/*
 //Tether-unique network cameras
 /obj/machinery/camera/network/tether
 	network = list(NETWORK_TETHER)
@@ -388,7 +388,7 @@ var/global/list/latejoin_tram   = list()
 
 /obj/machinery/camera/network/research/xenobio
 	network = list(NETWORK_RESEARCH, NETWORK_XENOBIO)
-
+*/
 //Camera monitors
 /obj/machinery/computer/security/xenobio
 	name = "xenobiology camera monitor"

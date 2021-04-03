@@ -65,3 +65,4 @@
 #define MAT_PLASTITANIUM		"plastitanium"
 #define MAT_PLASTITANIUMHULL		"plastitanium hull"
 #define MAT_PLASTITANIUMGLASS	"plastitanium glass"
+#define MAT_GOLDHULL	"gold hull"
