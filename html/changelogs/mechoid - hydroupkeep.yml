@@ -1,6 +1,0 @@
-author: Mechoid
-delete-after: True
-changes: 
-  - rscadd: "Adds Wurmwoad, a suspiciously worm-like plant that produces pods of spice."
-  - rscadd: "Adds Wurmwoad to the service borg synthesizer."
-  - bugfix: "Service borgs can work with kitchenware again."
