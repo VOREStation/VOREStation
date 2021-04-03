@@ -9,12 +9,21 @@
 	desc = "Allows you to move faster on average than baseline."
 	cost = 4
 	var_changes = list("slowdown" = -0.5)
+	excludes = list(/datum/trait/positive/hardy,/datum/trait/positive/hardy_plus)
 
 /datum/trait/positive/hardy
 	name = "Hardy"
 	desc = "Allows you to carry heavy equipment with less slowdown."
 	cost = 2
 	var_changes = list("item_slowdown_mod" = 0.5)
+	excludes = list(/datum/trait/positive/speed_fast)
+
+/datum/trait/positive/hardy_plus
+	name = "Major Hardy"
+	desc = "Allows you to carry heavy equipment with almost no slowdown."
+	cost = 3
+	var_changes = list("item_slowdown_mod" = 0.25)
+	excludes = list(/datum/trait/positive/speed_fast)
 
 /datum/trait/positive/endurance_high
 	name = "High Endurance"
@@ -42,30 +51,30 @@
 	name = "Darksight"
 	desc = "Allows you to see a short distance in the dark."
 	cost = 1
-	var_changes = list("darksight" = 4, "flash_mod" = 1.1)
+	var_changes = list("darksight" = 5, "flash_mod" = 1.1)
 
 /datum/trait/positive/darksight_plus
 	name = "Darksight (Major)"
 	desc = "Allows you to see in the dark for the whole screen."
 	cost = 2
-	var_changes = list("darksight" = 7, "flash_mod" = 1.2)
+	var_changes = list("darksight" = 8, "flash_mod" = 1.2)
 
 /datum/trait/positive/melee_attack
 	name = "Sharp Melee"
 	desc = "Provides sharp melee attacks that do slightly more damage."
-	cost = 0
+	cost = 1
 	var_changes = list("unarmed_types" = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp))
 
 /datum/trait/positive/melee_attack_fangs
 	name = "Sharp Melee & Numbing Fangs"
 	desc = "Provides sharp melee attacks that do slightly more damage, along with fangs that makes the person bit unable to feel their body or pain."
-	cost = 1
+	cost = 2
 	var_changes = list("unarmed_types" = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp, /datum/unarmed_attack/bite/sharp/numbing))
 
 /datum/trait/positive/fangs
 	name = "Numbing Fangs"
 	desc = "Provides fangs that makes the person bit unable to feel their body or pain."
-	cost = 0
+	cost = 1
 	var_changes = list("unarmed_types" = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/punch, /datum/unarmed_attack/bite/sharp/numbing))
 
 /datum/trait/positive/minor_brute_resist
@@ -97,7 +106,7 @@
 /datum/trait/positive/photoresistant
 	name = "Photoresistant"
 	desc = "Decreases stun duration from flashes and other light-based stuns and disabilities by 20%"
-	cost = 0
+	cost = 1
 	var_changes = list("flash_mod" = 0.8)
 
 /datum/trait/positive/winged_flight
@@ -134,7 +143,7 @@
 /datum/trait/positive/snowwalker
 	name = "Snow Walker"
 	desc = "You are able to move unhindered on snow."
-	cost = 0
+	cost = 1
 	var_changes = list("snow_movement" = -2)
 
 /datum/trait/positive/weaver
