@@ -75,16 +75,16 @@ var/const/access_explorer = 43
 /datum/job/explorer
 	title = "Explorer"
 	flag = EXPLORER
-	departments = list(DEPARTMENT_PLANET)
-	department_flag = CIVILIAN
+	departments = list(DEPARTMENT_RESEARCH, DEPARTMENT_PLANET)
+	department_flag = MEDSCI
 	faction = "Station"
 	total_positions = 4
 	spawn_positions = 4
-	supervisors = "the Head of Personnel"
-	selection_color = "#515151"
+	supervisors = "the Research Director"
+	selection_color =  "#633D63"
 	economic_modifier = 4
-	access = list(access_explorer)
-	minimal_access = list(access_explorer)
+	access = list(access_explorer, access_research)
+	minimal_access = list(access_explorer, access_research)
 
 	outfit_type = /decl/hierarchy/outfit/job/explorer2
 	job_description = "An Explorer searches for interesting things on the surface of Sif, and returns them to the station."

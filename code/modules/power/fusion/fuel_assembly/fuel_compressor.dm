@@ -21,8 +21,8 @@
 		if(thing.reagents.reagent_list.len > 1)
 			to_chat(user, "<span class='warning'>The contents of \the [thing] are impure and cannot be used as fuel.</span>")
 			return 1
-		if(thing.reagents.total_volume < 50)
-			to_chat(user, "<span class='warning'>You need at least fifty units of material to form a fuel rod.</span>")
+		if(thing.reagents.total_volume < 300)
+			to_chat(user, "<span class='warning'>You need at least three hundred units of material to form a fuel rod.</span>")
 			return 1
 		var/datum/reagent/R = thing.reagents.reagent_list[1]
 		visible_message("<span class='notice'>\The [src] compresses the contents of \the [thing] into a new fuel assembly.</span>")
@@ -53,12 +53,12 @@
 		if(!mat.is_fusion_fuel)
 			to_chat(user, "<span class='warning'>It would be pointless to make a fuel rod out of [mat.use_name].</span>")
 			return
-		if(M.get_amount() < 25)
+		if(M.get_amount() < 15)
 			to_chat(user, "<span class='warning'>You need at least 25 [mat.sheet_plural_name] to make a fuel rod.</span>")
 			return
 		var/obj/item/weapon/fuel_assembly/F = new(get_turf(src), mat.name)
 		visible_message("<span class='notice'>\The [src] compresses the [mat.use_name] into a new fuel assembly.</span>")
-		M.use(25)
+		M.use(15)
 		user.put_in_hands(F)
 
 	else if(do_special_fuel_compression(thing, user))

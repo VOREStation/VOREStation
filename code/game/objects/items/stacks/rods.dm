@@ -14,6 +14,8 @@
 	max_amount = 60
 	attack_verb = list("hit", "bludgeoned", "whacked")
 
+	color = "#666666"
+
 /obj/item/stack/rods/cyborg
 	name = "metal rod synthesizer"
 	desc = "A device that makes metal rods."
@@ -24,8 +26,8 @@
 	stacktype = /obj/item/stack/rods
 	no_variants = TRUE
 
-/obj/item/stack/rods/New()
-	..()
+/obj/item/stack/rods/Initialize()
+	. = ..()
 	recipes = rods_recipes
 	update_icon()
 

@@ -150,3 +150,12 @@
 			S.remove_from_storage(A)
 		A.loc.contents.Remove(A)
 		update()
+
+/obj/item/weapon/implanter/restrainingbolt
+	name = "implanter (bolt)"
+
+/obj/item/weapon/implanter/restrainingbolt/New()
+	src.imp = new /obj/item/weapon/implant/restrainingbolt( src )
+	..()
+	update()
+	return

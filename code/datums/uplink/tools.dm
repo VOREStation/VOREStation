@@ -92,6 +92,12 @@
 	desc = "A device which is capable of disrupting subspace communications, preventing the use of headsets, PDAs, and communicators within \
 	a radius of seven meters.  It runs off weapon cells, which can be replaced as needed.  One cell will last for approximately ten minutes."
 
+/datum/uplink_item/item/tools/wall_elecrtifier
+	name = "Wall Electrifier"
+	item_cost = 10
+	path = /obj/item/weapon/cell/spike
+	desc = "A modified powercell which will electrify walls and reinforced floors in a 3x3 tile range around it. Always active."
+
 /datum/uplink_item/item/tools/emag
 	name = "Cryptographic Sequencer"
 	item_cost = 30

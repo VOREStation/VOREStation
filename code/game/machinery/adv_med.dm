@@ -14,7 +14,6 @@
 	active_power_usage = 10000	//10 kW. It's a big all-body scanner.
 	light_color = "#00FF00"
 	var/obj/machinery/body_scanconsole/console
-	var/known_implants = list(/obj/item/weapon/implant/health, /obj/item/weapon/implant/chem, /obj/item/weapon/implant/death_alarm, /obj/item/weapon/implant/loyalty, /obj/item/weapon/implant/tracking, /obj/item/weapon/implant/language, /obj/item/weapon/implant/language/eal, /obj/item/weapon/implant/backup, /obj/item/device/nif) //VOREStation Add - Backup Implant, NIF
 	var/printing_text = null
 
 /obj/machinery/bodyscanner/Initialize()
@@ -255,12 +254,11 @@
 			organData["broken"] = E.min_broken_damage
 
 			var/implantData[0]
-			for(var/obj/I in E.implants)
+			for(var/obj/thing in E.implants)
 				var/implantSubData[0]
-				implantSubData["name"] = I.name
-				if(is_type_in_list(I, known_implants))
-					implantSubData["known"] = 1
-
+				var/obj/item/weapon/implant/I = thing
+				implantSubData["name"] =  I.name
+				implantSubData["known"] = istype(I) && I.known_implant
 				implantData.Add(list(implantSubData))
 
 			organData["implants"] = implantData
@@ -464,8 +462,9 @@
 					infected = "Gangrene Detected:"
 
 			var/unknown_body = 0
-			for(var/I in e.implants)
-				if(is_type_in_list(I,known_implants))
+			for(var/thing in e.implants)
+				var/obj/item/weapon/implant/I = thing
+				if(istype(I) && I.known_implant)
 					imp += "[I] implanted:"
 				else
 					unknown_body++

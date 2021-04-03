@@ -86,7 +86,7 @@
 				E.set_thrust_limit(limit)
 			. = TRUE
 
-		if("toggle")
+		if("toggle_engine")
 			var/datum/ship_engine/E = locate(params["engine"])
 			if(istype(E))
 				E.toggle()

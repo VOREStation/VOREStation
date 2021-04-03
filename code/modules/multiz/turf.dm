@@ -39,7 +39,7 @@
 	..()
 	update()
 
-/turf/simulated/open/ChangeTurf()
+/turf/simulated/open/ChangeTurf(var/turf/N, var/tell_universe, var/force_lighting_update, var/preserve_outdoors)
 	var/turf/T = GetBelow(src)
 	if(T)
 		GLOB.turf_entered_event.unregister(T, src, .proc/BelowOpenUpdated)
@@ -55,8 +55,9 @@
 		GLOB.turf_entered_event.register(T, src, .proc/BelowOpenUpdated)
 		GLOB.turf_exited_event.register(T, src, .proc/BelowOpenUpdated)
 
-/turf/simulated/open/Entered(var/atom/movable/mover)
-	. = ..()
+
+/turf/simulated/open/Entered(var/atom/movable/mover, var/atom/oldloc)
+	..()
 	mover.fall()
 
 /turf/simulated/open/proc/BelowOpenUpdated(turf/T, atom/movable/AM, old_loc)
@@ -187,6 +188,4 @@
 		for(var/obj/O in contents)
 			if(!O.CanFallThru(L, GetBelow(src)))
 				return TRUE // Can't fall through this, like lattice or catwalk.
-		if(!locate(/obj/structure/stairs) in GetBelow(src))
-			return FALSE // Falling on stairs is safe.
 	return ..()

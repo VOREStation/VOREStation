@@ -75,7 +75,6 @@
 /obj/random/firstaid,
 /obj/random/firstaid,
 /obj/random/firstaid,
-/obj/random/firstaid,
 /turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},
@@ -103,7 +102,6 @@
 /obj/vehicle/train/trolley,
 /obj/random/multiple/voidsuit,
 /obj/random/multiple/voidsuit,
-/obj/random/multiple/voidsuit,
 /turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},
@@ -121,15 +119,13 @@
 /area/submap/Thiefc)
 "p" = (
 /obj/structure/closet/crate,
-/obj/item/weapon/storage/box/shotgunammo,
 /obj/item/weapon/storage/box/practiceshells,
-/obj/item/weapon/grenade/spawnergrenade/manhacks/station,
 /turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},
 /area/submap/Thiefc)
-"u" = (
-/mob/living/simple_mob/humanoid/merc/ranged/virgo,
+"B" = (
+/mob/living/simple_mob/animal/giant_spider/phorogenic,
 /turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},
@@ -322,7 +318,7 @@ a
 c
 c
 c
-u
+h
 h
 h
 h
@@ -346,7 +342,7 @@ c
 f
 h
 h
-h
+B
 h
 h
 c
@@ -387,12 +383,12 @@ a
 a
 c
 e
-h
-u
-h
+B
 h
 h
 h
+h
+B
 h
 h
 c
@@ -414,7 +410,7 @@ i
 h
 h
 h
-u
+h
 c
 c
 c

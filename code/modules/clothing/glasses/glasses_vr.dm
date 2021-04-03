@@ -125,7 +125,7 @@
 
 /obj/item/clothing/glasses
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/mob/species/seromi/eyes.dmi',
+		SPECIES_TESHARI = 'icons/mob/species/teshari/eyes.dmi',
 		SPECIES_VOX = 'icons/mob/species/vox/eyes.dmi',
 		SPECIES_WEREBEAST = 'icons/mob/species/werebeast/eyes.dmi'
 		)

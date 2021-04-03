@@ -17,6 +17,8 @@
 	hitsound = 'sound/weapons/sear.ogg'
 	hitsound_wall = 'sound/weapons/effects/searwall.ogg'
 
+	excavation_amount = 50
+
 	muzzle_type = /obj/effect/projectile/muzzle/laser
 	tracer_type = /obj/effect/projectile/tracer/laser
 	impact_type = /obj/effect/projectile/impact/laser
@@ -45,6 +47,18 @@
 /obj/item/projectile/beam/midlaser
 	damage = 40
 	armor_penetration = 10
+
+/obj/item/projectile/beam/mininglaser
+	name = "pulsating laser"
+	damage = 10
+	armor_penetration = 20
+	fire_sound = 'sound/weapons/eluger.ogg'
+
+	excavation_amount = 100
+
+	muzzle_type = /obj/effect/projectile/muzzle/emitter
+	tracer_type = /obj/effect/projectile/tracer/emitter
+	impact_type = /obj/effect/projectile/impact/emitter
 
 /obj/item/projectile/beam/heavylaser
 	name = "heavy laser"
@@ -261,3 +275,7 @@
 	agony = 15
 	eyeblur = 2
 	hitsound = 'sound/weapons/zapbang.ogg'
+
+/obj/item/projectile/beam/shock/weak
+	damage = 5
+	agony = 10

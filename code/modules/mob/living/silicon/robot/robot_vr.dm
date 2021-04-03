@@ -15,6 +15,7 @@
 	var/sitting = FALSE
 	var/bellyup = FALSE
 	does_spin = FALSE
+	var/wideborg_dept = 'icons/mob/widerobot_vr.dmi'
 	var/vr_icons = list(
 					   "handy-hydro",
 					   "handy-service",
@@ -141,7 +142,13 @@
 					to_chat(cleaned_human, "<span class='warning'>[src] cleans your face!</span>")
 
 /mob/living/silicon/robot/proc/vr_sprite_check()
+	if(custom_sprite == TRUE)
+		return
 	if(wideborg == TRUE)
+		if(icontype== "Drake") // Why, Why can't we have normal nice things
+			icon = 'icons/mob/drakeborg/drakeborg_vr.dmi'
+		else
+			icon = wideborg_dept
 		return
 	if((!(original_icon == icon)) && (!(icon == 'icons/mob/robots_vr.dmi')))
 		original_icon = icon
@@ -168,7 +175,7 @@
 
 //RIDING
 /datum/riding/dogborg
-	keytype = /obj/item/weapon/material/twohanded/fluff/riding_crop // Crack!
+	keytype = /obj/item/weapon/material/twohanded/riding_crop // Crack!
 	nonhuman_key_exemption = FALSE	// If true, nonhumans who can't hold keys don't need them, like borgs and simplemobs.
 	key_name = "a riding crop"		// What the 'keys' for the thing being rided on would be called.
 	only_one_driver = TRUE			// If true, only the person in 'front' (first on list of riding mobs) can drive.

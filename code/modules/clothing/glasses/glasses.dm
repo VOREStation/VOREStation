@@ -31,8 +31,8 @@ BLIND     // can't see anything
 	pickup_sound = 'sound/items/pickup/accessory.ogg'
 
 	sprite_sheets = list(
-		"Teshari" = 'icons/mob/species/seromi/eyes.dmi',
-		"Vox" = 'icons/mob/species/vox/eyes.dmi'
+		SPECIES_TESHARI = 'icons/mob/species/teshari/eyes.dmi',
+		SPECIES_VOX = 'icons/mob/species/vox/eyes.dmi'
 		)
 
 /obj/item/clothing/glasses/update_clothing_icon()
@@ -396,6 +396,13 @@ BLIND     // can't see anything
 	name = "white blindfold"
 	desc = "A white blindfold that covers the eyes, preventing sight."
 	icon_state = "blindfoldwhite"
+
+/obj/item/clothing/glasses/sunglasses/thinblindfold
+	name = "thin white blindfold"
+	desc = "A thin blindfold to help protect sensitive eyes while still allowing some sight"
+	icon_state = "blindfoldwhite"
+	flash_protection = FLASH_PROTECTION_MODERATE //not as thick, only offers some protection
+	tint = TINT_HEAVY
 
 /obj/item/clothing/glasses/sunglasses/blindfold/tape
 	name = "length of tape"

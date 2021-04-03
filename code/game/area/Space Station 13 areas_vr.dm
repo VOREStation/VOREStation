@@ -39,3 +39,9 @@
 /area/engineering/engine_gas
 	name = "\improper Engine Gas Storage"
 	icon_state = "engine_waste"
+
+//holodeck 3/29/21
+/area/holodeck/source_smoleworld
+	name = "\improper Holodeck - Smolworld"
+	
+	

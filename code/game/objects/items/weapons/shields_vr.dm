@@ -65,7 +65,6 @@
 		light_applied = 0
 	update_icon(user)
 	user.update_action_buttons()
-	light = !light
 	playsound(src, 'sound/weapons/empty.ogg', 15, 1, -3)
 
 /obj/item/weapon/shield/riot/explorer/update_icon()

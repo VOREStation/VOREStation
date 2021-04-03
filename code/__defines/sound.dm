@@ -112,7 +112,7 @@
 	'sound/ambience/generic/generic2.ogg',\
 	'sound/ambience/generic/generic3.ogg'\
 	)
-// 'sound/ambience/generic/generic4.ogg'\ // VOREStation Edit: Comment out entry 4 as this doesn't fit on Virgo, and we have our own weather system.
+// 'sound/ambience/generic/generic4.ogg'\
 
 // Sounds of PA announcements, presumably involving shuttles?
 #define AMBIENCE_ARRIVALS list(\

@@ -4,9 +4,6 @@
 // Also handles initialization and processing of overmap sectors.
 //
 
-// This global variable exists for legacy support so we don't have to rename every shuttle_controller to SSshuttles yet.
-var/global/datum/controller/subsystem/shuttles/shuttle_controller
-
 SUBSYSTEM_DEF(shuttles)
 	name = "Shuttles"
 	wait = 2 SECONDS
@@ -34,9 +31,6 @@ SUBSYSTEM_DEF(shuttles)
 	var/block_init_queue = TRUE                    // Block initialization of new shuttles/sectors
 
 	var/tmp/list/current_run                       // Shuttles remaining to process this fire() tick
-
-/datum/controller/subsystem/shuttles/PreInit()
-	global.shuttle_controller = src // TODO - Remove this! Change everything to point at SSshuttles intead
 
 /datum/controller/subsystem/shuttles/Initialize(timeofday)
 	last_landmark_registration_time = world.time

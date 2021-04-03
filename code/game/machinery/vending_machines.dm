@@ -71,6 +71,7 @@
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/wine = 5,
+					/obj/item/weapon/reagent_containers/food/drinks/bottle/jager = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/small/ale = 15,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/small/ale/hushedwhisper = 15,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer = 15,
@@ -302,6 +303,7 @@
 					/obj/item/weapon/storage/fancy/cigarettes/jerichos = 10,
 					/obj/item/weapon/storage/fancy/cigarettes/menthols = 10,
 					/obj/item/weapon/storage/rollingpapers = 10,
+					/obj/item/weapon/storage/rollingpapers/blunt = 10,
 					/obj/item/weapon/storage/chewables/tobacco = 5,
 					/obj/item/weapon/storage/chewables/tobacco/fine = 5,
 					/obj/item/weapon/storage/box/matches = 10,
@@ -330,6 +332,7 @@
 					/obj/item/weapon/storage/fancy/cigarettes/jerichos = 22,
 					/obj/item/weapon/storage/fancy/cigarettes/menthols = 18,
 					/obj/item/weapon/storage/rollingpapers = 10,
+					/obj/item/weapon/storage/rollingpapers/blunt = 20,
 					/obj/item/weapon/storage/chewables/tobacco = 10,
 					/obj/item/weapon/storage/chewables/tobacco/fine = 20,
 					/obj/item/weapon/storage/box/matches = 1,
@@ -753,7 +756,9 @@
 					/obj/item/toy/plushie/borgplushie/scrubpuppy = 1,
 					/obj/item/toy/plushie/foxbear = 1,
 					/obj/item/toy/plushie/nukeplushie = 1,
-					/obj/item/toy/plushie/otter = 1)
+					/obj/item/toy/plushie/otter = 1,
+					/obj/item/toy/plushie/vox = 1,
+					/obj/item/toy/mistletoe = 1)
 					//VOREStation Add End
 	premium = list(/obj/item/weapon/reagent_containers/food/drinks/bottle/champagne = 1,
 					/obj/item/weapon/storage/trinketbox = 2)
@@ -793,7 +798,9 @@
 					/obj/item/toy/plushie/borgplushie/scrubpuppy = 50,
 					/obj/item/toy/plushie/foxbear = 50,
 					/obj/item/toy/plushie/nukeplushie = 50,
-					/obj/item/toy/plushie/otter = 50)
+					/obj/item/toy/plushie/otter = 50,
+					/obj/item/toy/plushie/vox = 50,
+					/obj/item/toy/mistletoe = 50)
 					//VOREStation Add End
 
 
