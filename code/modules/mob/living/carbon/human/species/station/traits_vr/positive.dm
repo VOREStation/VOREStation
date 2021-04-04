@@ -9,21 +9,18 @@
 	desc = "Allows you to move faster on average than baseline."
 	cost = 4
 	var_changes = list("slowdown" = -0.5)
-	excludes = list(/datum/trait/positive/hardy,/datum/trait/positive/hardy_plus)
 
 /datum/trait/positive/hardy
 	name = "Hardy"
 	desc = "Allows you to carry heavy equipment with less slowdown."
 	cost = 2
 	var_changes = list("item_slowdown_mod" = 0.5)
-	excludes = list(/datum/trait/positive/speed_fast)
 
 /datum/trait/positive/hardy_plus
 	name = "Major Hardy"
 	desc = "Allows you to carry heavy equipment with almost no slowdown."
 	cost = 3
 	var_changes = list("item_slowdown_mod" = 0.25)
-	excludes = list(/datum/trait/positive/speed_fast)
 
 /datum/trait/positive/endurance_high
 	name = "High Endurance"
