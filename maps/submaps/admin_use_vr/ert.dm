@@ -210,6 +210,21 @@ The shield generator will tax the Von Braun's reserves greatly so try to use it 
 <br>\
 <i>Lt. Cmdr. Sykes</i>"}
 
+/obj/item/weapon/paper/vonbraun_cannon
+	name = "NRV Von Braun O.F.D. Console"
+	info = {"To All Current ERT Members,<br>\
+Given recent events, Central has finally cleared the paperwork that allowed us to install an Obstruction Field Disperser, or 'O.F.D.', on the Von Braun. Please note we had to get rid of the mech bay (that nobody was allowed to use anyway) so that's where you'll find it. Of course if you're reading this you already found it.<br>\
+<br>\
+They have thoughtfully provided a sensor console for aiming purposes. Check your targets before firing and for the love of all that is holy make sure the firing port is OPEN before you pull the trigger (that's the big button on the wall to your right) or the whole thing will blow up in your face.<br>\
+<br>\
+To aim the thing, input your aim direction, smack the 'PRECALIBRATE' button, and then fiddle the numbers up and down until you hit 100% accuracy. If the number is in the right spot it adds 25%, if you have a right number but it's in the wrong spot it adds 17%. A bit obtuse but you'll get the hang of it quickly.<br>\
+<br>\
+Loading it is simple. Just roll one of the big charges out of the racks and into the loading cradle, then give it a good shove. <u>Do not fall into the loading mechanism.</u> Make your shots count. Use the BLUE charges for electrical storms and ion clouds, and the RED charges for everything else (meteors, dust, critters). Don't bother trying to fire it at other ships, they have shields and maneuvering thrusters.<br>\
+<br>\
+<i>Lt. Cmdr. Sykes</i><br>\
+<br>\
+P.S. Before any of you ask, no, you cannot fire yourself or your teammates out of it for boarding purposes or 'hot drops', whatever those are. So please don't try."}
+
 /obj/machinery/computer/cryopod/ert
 	name = "responder oversight console"
 	desc = "An interface between responders and the cryo oversight systems tasked with keeping track of all responders who enter or exit cryostasis."

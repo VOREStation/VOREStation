@@ -108,7 +108,7 @@
 /area/ship/ert/atmos)
 "av" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/gunnery)
 "ax" = (
 /obj/structure/shuttle/engine/propulsion{
@@ -213,8 +213,8 @@
 /area/ship/ert/bridge)
 "bv" = (
 /obj/structure/grille,
-/obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/border_only,
+/obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
@@ -305,7 +305,11 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/eng_storage)
 "cH" = (
-/turf/simulated/floor/airless,
+/obj/machinery/computer/ship/disperser{
+	dir = 8
+	},
+/obj/item/weapon/paper/vonbraun_cannon,
+/turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/gunnery)
 "cJ" = (
 /obj/machinery/light/no_nightshift{
@@ -906,10 +910,17 @@
 /turf/simulated/wall/rshull,
 /area/ship/ert/gunnery)
 "hk" = (
-/obj/machinery/atmospherics/pipe/tank/air,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/door/firedoor/border_only,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/obj/machinery/atmospherics/pipe/simple/visible,
 /turf/simulated/floor/airless,
 /area/ship/ert/gunnery)
 "hs" = (
@@ -1810,11 +1821,11 @@
 /turf/space,
 /area/ship/ert/engine)
 "nY" = (
-/obj/structure/table/steel_reinforced,
-/obj/machinery/atmospherics/unary/vent_pump/on{
+/obj/structure/ship_munition/disperser_charge/emp,
+/obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/reinforced,
 /area/ship/ert/hallways_aft)
 "oa" = (
 /obj/structure/table/rack,
@@ -2128,9 +2139,9 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/med)
 "pA" = (
-/obj/structure/table/steel_reinforced,
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
-/turf/simulated/floor/tiled/techfloor,
+/obj/structure/ship_munition/disperser_charge/explosive,
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/reinforced,
 /area/ship/ert/hallways_aft)
 "pE" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -2424,9 +2435,9 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/engine)
 "rM" = (
-/obj/machinery/recharge_station,
-/turf/simulated/floor/tiled/techfloor,
-/area/ship/ert/hallways_aft)
+/obj/machinery/atmospherics/pipe/tank/air,
+/turf/simulated/floor/airless,
+/area/ship/ert/gunnery)
 "rO" = (
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/gunnery)
@@ -2687,10 +2698,8 @@
 /turf/simulated/wall/rshull,
 /area/ship/ert/armoury_st)
 "tK" = (
-/obj/structure/bed/chair/bay/chair/padded/blue{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/machinery/door/window/brigdoor/northleft,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/hallways_aft)
 "tL" = (
@@ -3279,9 +3288,9 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/hangar)
 "yl" = (
-/obj/structure/table/steel_reinforced,
-/obj/machinery/atmospherics/unary/vent_pump/on,
-/turf/simulated/floor/tiled/techfloor,
+/obj/structure/ship_munition/disperser_charge/emp,
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/reinforced,
 /area/ship/ert/hallways_aft)
 "yo" = (
 /obj/machinery/door/airlock/external,
@@ -3352,11 +3361,11 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/hangar)
 "yG" = (
-/obj/structure/table/steel_reinforced,
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
+/obj/structure/ship_munition/disperser_charge/explosive,
+/obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/reinforced,
 /area/ship/ert/hallways_aft)
 "yI" = (
 /obj/structure/sign/department/medbay,
@@ -3798,15 +3807,7 @@
 /turf/simulated/floor/reinforced/airless,
 /area/ship/ert/engineering)
 "BM" = (
-/obj/machinery/airlock_sensor{
-	dir = 8;
-	pixel_x = 22;
-	pixel_y = -7
-	},
-/obj/effect/map_helper/airlock/sensor/int_sensor,
-/obj/machinery/computer/ship/sensors{
-	dir = 8
-	},
+/obj/machinery/computer/ship/sensors,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/gunnery)
 "BU" = (
@@ -4473,8 +4474,10 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/eng_storage)
 "Gv" = (
-/obj/structure/bed/chair/bay/chair/padded/blue,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/obj/machinery/door/window/brigdoor/southleft,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/hallways_aft)
 "Gw" = (
@@ -4693,10 +4696,8 @@
 /turf/simulated/wall/rshull,
 /area/shuttle/ert_ship_boat)
 "HR" = (
-/obj/structure/bed/chair/bay/chair/padded/blue{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/machinery/door/window/brigdoor/northright,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/hallways_aft)
 "HZ" = (
@@ -5618,7 +5619,7 @@
 	name = "VB APC - West";
 	pixel_x = -24
 	},
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/gunnery)
 "Nz" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -5909,7 +5910,7 @@
 /area/ship/ert/gunnery)
 "ON" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/gunnery)
 "OO" = (
 /obj/structure/table/rack/steel,
@@ -6274,12 +6275,6 @@
 "QZ" = (
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/engine)
-"Ra" = (
-/obj/machinery/computer/ship/disperser{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/ship/ert/gunnery)
 "Rc" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
@@ -6635,15 +6630,14 @@
 /turf/simulated/floor/tiled/white,
 /area/ship/ert/med_surg)
 "TG" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/machinery/door/firedoor/border_only,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 1
+/obj/machinery/airlock_sensor{
+	dir = 8;
+	pixel_x = 22;
+	pixel_y = -24
 	},
+/obj/effect/map_helper/airlock/sensor/int_sensor,
 /turf/simulated/floor/tiled/techfloor,
-/area/ship/ert/hallways_aft)
+/area/ship/ert/gunnery)
 "TI" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
@@ -6799,14 +6793,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/hangar)
 "Vq" = (
-/obj/machinery/button/remote/blast_door{
-	dir = 1;
-	id = "Von_Braun_Cannon";
-	name = "Cannon Port Access";
-	pixel_y = -24;
-	req_one_access = list(103)
-	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/gunnery)
 "VC" = (
 /obj/machinery/power/port_gen/pacman/super/potato,
@@ -7023,8 +7010,10 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/engineering)
 "Xh" = (
-/obj/structure/bed/chair/bay/chair/padded/blue,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/obj/machinery/door/window/brigdoor/southright,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/hallways_aft)
 "Xo" = (
@@ -7039,16 +7028,14 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/engineering)
 "Xw" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/machinery/door/firedoor/border_only,
-/obj/structure/window/reinforced{
-	dir = 4
+/obj/machinery/button/remote/blast_door{
+	dir = 1;
+	id = "Von_Braun_Cannon";
+	name = "Cannon Port Access";
+	pixel_y = -24;
+	req_one_access = list(103)
 	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/gunnery)
 "Xx" = (
 /obj/structure/cable/yellow{
@@ -14377,7 +14364,7 @@ yz
 yz
 yz
 Ib
-TG
+DS
 yl
 tK
 Oq
@@ -14399,7 +14386,7 @@ ya
 kh
 Gv
 nY
-TG
+DS
 Ib
 yz
 yz
@@ -14519,7 +14506,7 @@ yz
 yz
 yz
 Ib
-TG
+DS
 pA
 HR
 vv
@@ -14541,7 +14528,7 @@ DS
 Ai
 Xh
 yG
-TG
+DS
 Ib
 yz
 yz
@@ -14663,7 +14650,7 @@ yz
 sB
 DS
 cS
-rM
+cS
 lu
 DS
 NI
@@ -14681,7 +14668,7 @@ jA
 jA
 DS
 lu
-rM
+cS
 cS
 DS
 sB
@@ -20912,7 +20899,7 @@ vK
 vK
 gF
 rO
-rO
+Vq
 Vq
 vK
 xO
@@ -21053,9 +21040,9 @@ PO
 vK
 vK
 gW
-rO
+TG
 BM
-Ra
+Vq
 vK
 xO
 WC
@@ -21335,7 +21322,7 @@ yz
 yz
 Om
 vK
-vK
+rM
 hk
 eO
 bv
