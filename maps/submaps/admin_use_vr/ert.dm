@@ -89,6 +89,10 @@
 	name = "\improper NRV Von Braun - Commander's Room"
 	icon_state = "head_quarters"
 
+/area/ship/ert/gunnery
+	name = "\improper NRV Von Braun - Cannon Control Room"
+	icon_state = "security_sub"
+
 /area/shuttle/ert_ship_boat
 	name = "\improper NRB Robineau"
 	icon_state = "yellow"
