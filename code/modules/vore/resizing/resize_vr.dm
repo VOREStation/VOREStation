@@ -175,10 +175,10 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 		var/mob/living/simple_mob/SA = M
 		if(!SA.has_hands)
 			return 0
-	if(buckled)
-		to_chat(usr,"<span class='notice'>You have to unbuckle \the [M] before you pick them up.</span>")
-		return 0
 	if(size_diff >= 0.50 || mob_size < MOB_SMALL)
+		if(buckled)
+			to_chat(usr,"<span class='notice'>You have to unbuckle \the [src] before you pick them up.</span>")
+			return 0
 		holder_type = /obj/item/weapon/holder/micro
 		var/obj/item/weapon/holder/m_holder = get_scooped(M, G)
 		holder_type = holder_default
