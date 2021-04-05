@@ -1360,3 +1360,14 @@
 	desc = "A well kept strange ritual knife, There is a small tag with the name 'Astra Ether' on it. They are probably looking for this."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "render"
+
+//AlFalah - Charlotte Graves
+/obj/item/weapon/storage/fancy/cigar/charlotte
+	name = "inconspicuous cigarette case"
+	desc = "A SkyTron 3000 cigarette case with no additional functions. The buttons and CRT monitor are completely for show and have no functions. Seriously. "
+	icon_state = "charlottecigs"
+	icon = 'icons/vore/custom_items_vr.dmi'
+	storage_slots = 8
+	can_hold = list(/obj/item/clothing/mask/smokable/cigarette/cigar, /obj/item/trash/cigbutt/cigarbutt)
+	icon_type = "cigar"
+	starts_with = list(/obj/item/clothing/mask/smokable/cigarette = 8)
