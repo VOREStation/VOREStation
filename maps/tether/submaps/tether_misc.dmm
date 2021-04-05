@@ -2176,9 +2176,17 @@
 	name = "\improper CentCom Security Arrivals"
 	})
 "is" = (
-/obj/machinery/vending/snack,
-/turf/simulated/floor/wood,
-/area/centcom/simulated/restaurant)
+/obj/effect/floor_decal/transit/orange{
+	dir = 4
+	},
+/obj/effect/transit/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor/grid{
+	icon = 'icons/turf/transit_vr.dmi';
+	initial_flooring = null
+	},
+/area/space)
 "ix" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 8
@@ -2592,15 +2600,15 @@
 /turf/simulated/floor/holofloor/wmarble,
 /area/holodeck/source_chess)
 "vu" = (
-/obj/effect/floor_decal/transit/orange{
-	dir = 4
+/obj/effect/step_trigger/thrower{
+	affect_ghosts = 1;
+	name = "thrower_throwdownside";
+	nostop = 1;
+	stopper = 0;
+	tiles = 0
 	},
-/obj/effect/transit/light{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/techfloor/grid{
-	icon = 'icons/turf/transit_vr.dmi';
-	initial_flooring = null
+/turf/simulated/floor/maglev{
+	icon = 'icons/turf/transit_vr.dmi'
 	},
 /area/space)
 "vz" = (
@@ -2721,9 +2729,11 @@
 /turf/simulated/sky/virgo3b/south,
 /area/space)
 "yk" = (
-/obj/machinery/vending/coffee,
-/turf/simulated/floor/wood,
-/area/centcom/simulated/restaurant)
+/obj/effect/step_trigger/lost_in_space/tram,
+/turf/simulated/floor/maglev{
+	icon = 'icons/turf/transit_vr.dmi'
+	},
+/area/space)
 "ym" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
@@ -2826,19 +2836,15 @@
 /turf/simulated/floor/tiled/steel,
 /area/shuttle/escape)
 "As" = (
-/obj/machinery/vending/sovietsoda,
-/turf/simulated/floor/wood,
-/area/centcom/simulated/restaurant)
+/turf/simulated/floor/maglev,
+/area/centcom/simulated/terminal)
 "Av" = (
-/obj/effect/step_trigger/thrower{
-	affect_ghosts = 1;
-	name = "thrower_throwdownside";
-	nostop = 1;
-	stopper = 0;
-	tiles = 0
+/obj/effect/transit/light{
+	dir = 8
 	},
-/turf/simulated/floor/maglev{
-	icon = 'icons/turf/transit_vr.dmi'
+/turf/unsimulated/mineral{
+	icon = 'icons/turf/transit_vr.dmi';
+	icon_state = "rock"
 	},
 /area/space)
 "Ax" = (
@@ -3038,9 +3044,12 @@
 /turf/simulated/wall/thull,
 /area/shuttle/escape)
 "Fp" = (
-/obj/effect/step_trigger/lost_in_space/tram,
-/turf/simulated/floor/maglev{
-	icon = 'icons/turf/transit_vr.dmi'
+/obj/effect/transit/light{
+	dir = 4
+	},
+/turf/unsimulated/mineral{
+	icon = 'icons/turf/transit_vr.dmi';
+	icon_state = "rock"
 	},
 /area/space)
 "Ft" = (
@@ -3113,10 +3122,6 @@
 /turf/unsimulated/beach/sand,
 /area/beach)
 "Gz" = (
-/obj/machinery/light,
-/turf/simulated/floor/wood,
-/area/centcom/simulated/restaurant)
-"GC" = (
 /obj/structure/table/standard,
 /obj/effect/floor_decal/borderfloor,
 /obj/random/forgotten_tram,
@@ -3163,8 +3168,9 @@
 /turf/unsimulated/floor/steel,
 /area/centcom/control)
 "HW" = (
-/turf/simulated/floor/maglev,
-/area/centcom/simulated/terminal)
+/obj/machinery/light,
+/turf/simulated/floor/wood,
+/area/centcom/simulated/restaurant)
 "HX" = (
 /obj/structure/bed/chair/shuttle{
 	dir = 4
@@ -3515,14 +3521,11 @@
 /turf/space/transit/west,
 /area/space)
 "Pq" = (
-/obj/effect/transit/light{
-	dir = 8
+/obj/machinery/vending/coffee{
+	dir = 1
 	},
-/turf/unsimulated/mineral{
-	icon = 'icons/turf/transit_vr.dmi';
-	icon_state = "rock"
-	},
-/area/space)
+/turf/simulated/floor/wood,
+/area/centcom/simulated/restaurant)
 "Py" = (
 /obj/effect/step_trigger/thrower{
 	affect_ghosts = 1;
@@ -3552,7 +3555,9 @@
 	},
 /area/space)
 "Qo" = (
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/sovietsoda{
+	dir = 1
+	},
 /turf/simulated/floor/wood,
 /area/centcom/simulated/restaurant)
 "Qs" = (
@@ -4967,6 +4972,12 @@
 /obj/effect/floor_decal/borderfloor/corner,
 /turf/simulated/floor/tiled/steel,
 /area/shuttle/escape)
+"Xv" = (
+/obj/machinery/vending/cigarette{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/centcom/simulated/restaurant)
 "Xw" = (
 /obj/effect/floor_decal/industrial/outline,
 /turf/simulated/floor/tiled/steel,
@@ -5157,14 +5168,11 @@
 /turf/simulated/floor/tiled/white,
 /area/centcom/simulated/medical)
 "Ya" = (
-/obj/effect/transit/light{
-	dir = 4
+/obj/machinery/vending/snack{
+	dir = 1
 	},
-/turf/unsimulated/mineral{
-	icon = 'icons/turf/transit_vr.dmi';
-	icon_state = "rock"
-	},
-/area/space)
+/turf/simulated/floor/wood,
+/area/centcom/simulated/restaurant)
 "Yc" = (
 /obj/structure/table/standard,
 /obj/item/stack/nanopaste,
@@ -5610,7 +5618,9 @@
 /turf/simulated/floor/tiled/steel,
 /area/shuttle/escape)
 "ZF" = (
-/obj/machinery/vending/cola,
+/obj/machinery/vending/cola{
+	dir = 1
+	},
 /turf/simulated/floor/wood,
 /area/centcom/simulated/restaurant)
 "ZQ" = (
@@ -10212,7 +10222,7 @@ in
 sN
 Mb
 dg
-Pq
+Av
 ap
 ap
 ap
@@ -10602,8 +10612,8 @@ cq
 cq
 cq
 cq
-Av
-Av
+vu
+vu
 cq
 cq
 cq
@@ -10625,8 +10635,8 @@ cq
 cq
 cq
 cq
-Av
-Av
+vu
+vu
 cq
 cq
 cq
@@ -10635,7 +10645,7 @@ cq
 cq
 cq
 cq
-Fp
+yk
 cq
 dg
 Hy
@@ -11454,8 +11464,8 @@ cq
 cq
 cq
 cq
-Av
-Av
+vu
+vu
 cq
 cq
 cq
@@ -11477,8 +11487,8 @@ cq
 cq
 cq
 cq
-Av
-Av
+vu
+vu
 cq
 cq
 cq
@@ -11487,7 +11497,7 @@ cq
 cq
 cq
 cq
-Fp
+yk
 cq
 dg
 Hy
@@ -11876,7 +11886,7 @@ Hy
 Hy
 PU
 PU
-vu
+is
 PU
 PU
 PU
@@ -11912,11 +11922,11 @@ pv
 PU
 PU
 PU
-vu
+is
 FX
 PU
 dg
-Ya
+Fp
 ap
 ap
 ap
@@ -17309,9 +17319,9 @@ ae
 ae
 ae
 sT
-HW
-HW
-HW
+As
+As
+As
 XE
 Fe
 FJ
@@ -17333,9 +17343,9 @@ Ic
 Zw
 XE
 XE
-HW
-HW
-HW
+As
+As
+As
 sT
 ae
 ae
@@ -18036,7 +18046,7 @@ WF
 iU
 RA
 iU
-GC
+Gz
 Xr
 AD
 AD
@@ -18161,9 +18171,9 @@ ae
 ae
 ae
 sT
-HW
-HW
-HW
+As
+As
+As
 XE
 Fe
 FJ
@@ -18185,9 +18195,9 @@ YY
 Zw
 XE
 XE
-HW
-HW
-HW
+As
+As
+As
 sT
 ae
 ae
@@ -19322,7 +19332,7 @@ dZ
 dZ
 dZ
 VI
-ae
+VI
 ae
 ae
 ae
@@ -21025,9 +21035,9 @@ WH
 VQ
 VQ
 VQ
-Gz
+VQ
+HW
 VM
-Om
 ae
 ae
 ae
@@ -21167,9 +21177,9 @@ WH
 VQ
 VQ
 VQ
-yk
+VQ
+Pq
 VM
-ae
 ae
 ae
 ae
@@ -21309,9 +21319,9 @@ VQ
 Xa
 Xa
 VQ
-As
+VQ
+Qo
 VM
-ae
 ae
 ae
 ae
@@ -21451,9 +21461,9 @@ WL
 Hv
 Xb
 WH
-is
+VQ
+Ya
 VM
-ae
 ae
 ae
 ae
@@ -21593,9 +21603,9 @@ WL
 ws
 Xc
 WH
+VQ
 ZF
 VM
-ae
 ae
 ae
 ae
@@ -21735,9 +21745,9 @@ VQ
 ZC
 ZC
 XX
-Qo
+VQ
+Xv
 VM
-ae
 ae
 ae
 ae
