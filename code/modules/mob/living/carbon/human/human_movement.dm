@@ -189,7 +189,7 @@
 		if(istype(back, /obj/item/weapon/tank/jetpack))
 			return back
 		else if(istype(rig))
-			for(var/obj/item/rig_module/maneuvering_jets.module in rig.installed_modules)
+			for(var/obj/item/rig_module/maneuvering_jets/module in rig.installed_modules)
 				return module.jets
 
 /mob/living/carbon/human/Process_Spacemove(var/check_drift = 0)
