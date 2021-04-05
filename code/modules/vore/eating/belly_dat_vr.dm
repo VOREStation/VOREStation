@@ -12,7 +12,7 @@
 	var/vore_sound = "Gulp"					// Sound when ingesting someone
 	var/vore_verb = "ingest"				// Verb for eating with this in messages
 	var/human_prey_swallow_time = 100		// Time in deciseconds to swallow /mob/living/carbon/human
-	var/nonhuman_prey_swallow_time = 30		// Time in deciseconds to swallow anything else
+	var/nonhuman_prey_swallow_time = 100	// Time in deciseconds to swallow anything else
 	var/emoteTime = 600						// How long between stomach emotes at prey
 	var/nutrition_percent = 100				// Nutritional percent per tick in digestion mode.
 	var/digest_brute = 2					// Brute damage per tick in digestion mode
