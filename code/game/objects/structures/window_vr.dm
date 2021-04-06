@@ -35,3 +35,7 @@
 	icon_state = "window-full"
 	maxhealth = 250
 	fulltile = TRUE
+
+/obj/structure/window/reinforced/tinted/full
+	icon_state = "window-full"
+	fulltile = TRUE

@@ -9,16 +9,7 @@
 	return
 
 // Obsolete
-/mob/proc/update_icons_layers()
-	return
-
-/mob/proc/update_icons_huds()
-	return
-
 /mob/proc/update_icons_body()
-	return
-
-/mob/proc/update_icons_all()
 	return
 // End obsolete
 
