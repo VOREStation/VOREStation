@@ -6,9 +6,9 @@
 	//Clamps mob size when entering a new area that has size limit.
 	//Mobs with size_uncapped set to TRUE or 1 will be ignored.
 	. = ..()
-	if (src.limit_mob_size && !H.size_uncapped)
+	if (src.limit_mob_size && isliving(H) && !H.size_uncapped)
 		H.resize(H.size_multiplier)
-		
+
 /area/shuttle/belter
 	name = "Belter Shuttle"
 	icon_state = "shuttle2"
