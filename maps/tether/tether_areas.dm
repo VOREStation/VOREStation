@@ -979,6 +979,9 @@
 	icon_state = "recreation_area_restroom"
 	sound_env = SMALL_ENCLOSED
 
+/area/crew_quarters/sleep
+	limit_mob_size = FALSE
+
 /area/crew_quarters/sleep/maintDorm1
 	name = "\improper Construction Dorm 1"
 	icon_state = "Sleep"
@@ -1140,6 +1143,9 @@
 	lightswitch = 0
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 	soundproofed = TRUE
+
+/area/holodeck/holodorm
+	limit_mob_size = FALSE
 
 /area/holodeck/holodorm/source_basic
 	name = "\improper Holodeck Source"
@@ -1537,6 +1543,7 @@ area/shuttle/mining_outpost/shuttle
 	requires_power = 0
 	flags = RAD_SHIELDED
 	icon_state = "red2"
+	limit_mob_size = FALSE
 
 /area/unknown/dorm1
 	name = "Unknown Dorm 1"
