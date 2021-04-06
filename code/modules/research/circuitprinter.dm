@@ -26,6 +26,16 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 
 /obj/machinery/r_n_d/circuit_imprinter/Initialize()
 	. = ..()
+
+	spawn()	// Go through all materials, and add them to the possible storage, but hide them unless we contain them.
+		for(var/Name in name_to_material)
+			if(Name in materials)
+				continue
+
+			hidden_materials |= Name
+
+			materials[Name] = 0
+
 	default_apply_parts()
 
 /obj/machinery/r_n_d/circuit_imprinter/process()

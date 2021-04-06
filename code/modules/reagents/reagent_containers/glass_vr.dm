@@ -48,3 +48,10 @@
 /obj/item/weapon/reagent_containers/glass/beaker/vial/hyronalin
 	name = "vial (hyronalin)"
 	prefill = list("hyronalin" = 30)
+
+/obj/item/weapon/reagent_containers/glass/beaker/measuring_cup
+	name = "measuring cup"
+	desc = "A measuring cup."
+	icon = 'icons/obj/chemical_vr.dmi'
+	icon_state = "measure_cup"
+	item_state = "measure_cup"

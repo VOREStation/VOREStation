@@ -22,8 +22,8 @@
 	response_harm = "hits"
 
 	harm_intent_damage = 2
-	melee_damage_lower = 10
-	melee_damage_upper = 10
+	melee_damage_lower = 5
+	melee_damage_upper = 5
 	attacktext = list("slashed")
 
 	min_oxy = 0
@@ -36,7 +36,7 @@
 	max_n2 = 0
 	minbodytemp = 0
 	maxbodytemp = 900
-	movement_cooldown = 3
+	movement_cooldown = 4
 
 	var/mob/living/carbon/human/humanform
 	var/obj/item/organ/internal/nano/refactory/refactory
@@ -380,6 +380,9 @@ var/global/list/disallowed_protean_accessories = list(
 		var/obj/belly/B = belly
 		B.forceMove(blob)
 		B.owner = blob
+	
+	//We can still speak our languages!
+	blob.languages = languages.Copy()
 
 	//Flip them to the protean panel
 	if(panel_was_up)

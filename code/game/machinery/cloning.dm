@@ -465,6 +465,7 @@
 
 /obj/item/weapon/implant/health
 	name = "health implant"
+	known_implant = TRUE
 	var/healthstring = ""
 
 /obj/item/weapon/implant/health/proc/sensehealth()

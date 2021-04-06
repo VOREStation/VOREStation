@@ -1,3 +1,6 @@
+#define ORGANICS	1
+#define SYNTHETICS	2
+
 /datum/trait/speed_fast
 	name = "Haste"
 	desc = "Allows you to move faster on average than baseline."
@@ -62,6 +65,12 @@
 	cost = 2
 	var_changes = list("unarmed_types" = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp, /datum/unarmed_attack/bite/sharp/numbing))
 
+/datum/trait/fangs
+	name = "Numbing Fangs"
+	desc = "Provides fangs that makes the person bit unable to feel their body or pain."
+	cost = 1
+	var_changes = list("unarmed_types" = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/punch, /datum/unarmed_attack/bite/sharp/numbing))
+
 /datum/trait/minor_brute_resist
 	name = "Minor Brute Resist"
 	desc = "Adds 15% resistance to brute damage sources."
@@ -117,7 +126,7 @@
 
 /datum/trait/antiseptic_saliva/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
-	H.verbs |= /mob/living/carbon/human/proc/lick_wounds 
+	H.verbs |= /mob/living/carbon/human/proc/lick_wounds
 
 /datum/trait/traceur
 	name = "Traceur"
@@ -130,3 +139,17 @@
 	desc = "You are able to move unhindered on snow."
 	cost = 1
 	var_changes = list("snow_movement" = -2)
+
+/datum/trait/weaver
+	name = "Weaver"
+	desc = "You can produce silk and create various articles of clothing and objects."
+	cost = 2
+	var_changes = list("is_weaver" = 1)
+
+/datum/trait/weaver/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..()
+	H.verbs |= /mob/living/carbon/human/proc/check_silk_amount
+	H.verbs |= /mob/living/carbon/human/proc/toggle_silk_production
+	H.verbs |= /mob/living/carbon/human/proc/weave_structure
+	H.verbs |= /mob/living/carbon/human/proc/weave_item
+	H.verbs |= /mob/living/carbon/human/proc/set_silk_color

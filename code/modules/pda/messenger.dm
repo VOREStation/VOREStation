@@ -109,7 +109,7 @@
 
 // Specifically here for the chat message.
 /datum/data/pda/app/messenger/Topic(href, href_list)
-	if(!pda.can_use())
+	if(!pda.can_use(usr))
 		return
 	unnotify()
 
@@ -140,7 +140,7 @@
 	if(last_text && world.time < last_text + 5)
 		return
 
-	if(!pda.can_use())
+	if(!pda.can_use(usr))
 		return
 
 	last_text = world.time

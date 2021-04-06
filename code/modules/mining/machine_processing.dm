@@ -8,6 +8,7 @@
 	name = "production machine console"
 	icon = 'icons/obj/machines/mining_machines_vr.dmi' // VOREStation Edit
 	icon_state = "console"
+	layer = ABOVE_WINDOW_LAYER
 	density = TRUE
 	anchored = TRUE
 
@@ -84,6 +85,7 @@
 
 	data["showAllOres"] = show_all_ores
 	data["power"] = machine.active
+	data["speed"] = machine.speed_process
 
 	return data
 
@@ -136,6 +138,9 @@
 			else
 				to_chat(usr, "<span class='warning'>No valid ID.</span>")
 			. = TRUE
+		if("speed_toggle")
+			machine.toggle_speed()
+			. = TRUE
 		else
 			return FALSE
 
@@ -163,10 +168,17 @@
 		"sand" = 1,
 		"hematite" = 1,
 		"carbon" = 1,
+		"raw copper" = 1,
+		"raw tin" = 1,
+		"void opal" = 3,
+		"painite" = 3,
+		"quartz" = 3,
+		"raw bauxite" = 5,
 		"phoron" = 15,
 		"silver" = 16,
 		"gold" = 18,
 		"marble" = 20,
+		"rutile" = 20,
 		"uranium" = 30,
 		"diamond" = 50,
 		"platinum" = 40,
@@ -203,6 +215,26 @@
 		if(src.output) break
 	return
 
+/obj/machinery/mineral/processing_unit/proc/toggle_speed(var/forced)
+	var/area/refinery_area = get_area(src)
+	if(forced)
+		speed_process = forced
+	else
+		speed_process = !speed_process // switching gears
+	if(speed_process) // high gear
+		STOP_MACHINE_PROCESSING(src)
+		START_PROCESSING(SSfastprocess, src)
+	else // low gear
+		STOP_PROCESSING(SSfastprocess, src)
+		START_MACHINE_PROCESSING(src)
+	for(var/obj/machinery/mineral/unloading_machine/unloader in refinery_area.contents)
+		unloader.toggle_speed()
+	for(var/obj/machinery/conveyor_switch/cswitch in refinery_area.contents)
+		cswitch.toggle_speed()
+	for(var/obj/machinery/mineral/stacking_machine/stacker in refinery_area.contents)
+		stacker.toggle_speed()
+
+
 /obj/machinery/mineral/processing_unit/process()
 
 	if (!src.output || !src.input)
@@ -214,9 +246,7 @@
 	var/list/tick_alloys = list()
 
 	//Grab some more ore to process this tick.
-	for(var/i = 0,i<sheets_per_tick,i++)
-		var/obj/item/weapon/ore/O = locate() in input.loc
-		if(!O) break
+	for(var/obj/item/weapon/ore/O in input.loc)
 		if(!isnull(ores_stored[O.material]))
 			ores_stored[O.material]++
 			points += ore_values[O.material] // Give Points!

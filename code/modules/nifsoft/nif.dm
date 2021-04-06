@@ -23,6 +23,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	icon_state = "nif_0"
 
 	w_class = ITEMSIZE_TINY
+	var/known_implant = TRUE
 
 	var/durability = 100					// Durability remaining
 	var/bioadap = FALSE						// If it'll work in fancy species

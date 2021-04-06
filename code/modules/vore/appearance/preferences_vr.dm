@@ -10,27 +10,13 @@
 /mob/living/carbon/human
 
 	// Horray Furries!
-	var/datum/sprite_accessory/ears/ear_style = null
-	var/r_ears = 30
-	var/g_ears = 30
-	var/b_ears = 30
-	var/r_ears2 = 30
-	var/g_ears2 = 30
-	var/b_ears2 = 30
-	var/datum/sprite_accessory/tail/tail_style = null
-	var/r_tail = 30
-	var/g_tail = 30
-	var/b_tail = 30
-	var/r_tail2 = 30
-	var/g_tail2 = 30
-	var/b_tail2 = 30
-	var/datum/sprite_accessory/wing/wing_style = null
-	var/r_wing = 30
-	var/g_wing = 30
-	var/b_wing = 30
-	var/r_wing2 = 30
-	var/g_wing2 = 30
-	var/b_wing2 = 30
-
-	// Custom Species Name
-	var/custom_species
+	var/datum/sprite_accessory/hair_accessory/hair_accessory_style = null
+	var/r_acc = 30
+	var/g_acc = 30
+	var/b_acc = 30
+	var/r_acc2 = 30
+	var/g_acc2 = 30
+	var/b_acc2 = 30
+	var/r_acc3 = 30
+	var/g_acc3 = 30
+	var/b_acc3 = 30

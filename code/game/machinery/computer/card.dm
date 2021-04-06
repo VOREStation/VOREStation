@@ -157,7 +157,7 @@
 	switch(action)
 		if("modify")
 			if(modify)
-				data_core.manifest_modify(modify.registered_name, modify.assignment)
+				data_core.manifest_modify(modify.registered_name, modify.assignment, modify.rank)
 				modify.name = "[modify.registered_name]'s ID Card ([modify.assignment])"
 				if(ishuman(usr))
 					modify.forceMove(get_turf(src))

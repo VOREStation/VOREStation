@@ -397,22 +397,22 @@ var/to_chat_src
 		to_chat(src, "<span class='warning'>Error: Your chat log is already being prepared. Please wait until it's been downloaded before trying to export it again.</span>")
 		return
 
-	o_file = file(o_file)
-
 	// Write the CSS file to the log
-	o_file << "<html><head><style>"
-	o_file << file2text(file("code/modules/vchat/css/ss13styles.css"))
-	o_file << "</style></head><body>"
+	var/text_blob = "<html><head><style>"
+	text_blob += file2text(file("code/modules/vchat/css/ss13styles.css"))
+	text_blob += "</style></head><body>"
 
 	// Write the messages to the log
 	for(var/list/result in results)
-		o_file << "[result["message"]]<br>"
+		text_blob += "[result["message"]]<br>"
 		CHECK_TICK
 
-	o_file << "</body></html>"
+	text_blob += "</body></html>"
+
+	rustg_file_write(text_blob, o_file)
 
 	// Send the log to the client
-	src << ftp(o_file, "log_[time2text(world.timeofday, "YYYY_MM_DD_(hh_mm)")].html")
+	src << ftp(file(o_file), "log_[time2text(world.timeofday, "YYYY_MM_DD_(hh_mm)")].html")
 
 	// clean up the file on our end
 	spawn(10 SECONDS)

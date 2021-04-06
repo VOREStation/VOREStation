@@ -13,7 +13,7 @@
 	desc = "The 'Protector' is an advanced energy gun that cannot be fired in lethal mode on low security alert levels, but features DNA locking and a powerful stun."
 	id = "protector"
 	req_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 3, TECH_MAGNET = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 4000, "glass" = 2000, "silver" = 1000)
+	materials = list(DEFAULT_WALL_MATERIAL = 4000, "glass" = 2000, MAT_COPPER = 500, "silver" = 1000)
 	build_path = /obj/item/weapon/gun/energy/gun/protector
 	sort_string = "MAAVA"
 
@@ -21,7 +21,7 @@
 	desc = "A 'Sickshot' is a 4-shot energy revolver that causes nausea and confusion."
 	id = "sickshot"
 	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_MAGNET = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 3000, "glass" = 2000)
+	materials = list(DEFAULT_WALL_MATERIAL = 3000, "glass" = 2000, MAT_COPPER = 500)
 	build_path = /obj/item/weapon/gun/energy/sickshot
 	sort_string = "MAAVB"
 
@@ -29,7 +29,7 @@
 	desc  = "The \"Varmint Catcher\" is an energy net projector designed to immobilize dangerous wildlife."
 	id = "netgun"
 	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 5, TECH_MAGNET = 3)
-	materials = list(DEFAULT_WALL_MATERIAL = 6000, "glass" = 3000)
+	materials = list(DEFAULT_WALL_MATERIAL = 6000, "glass" = 3000, MAT_COPPER = 500)
 	build_path = /obj/item/weapon/gun/energy/netgun
 	sort_string = "MAAVC"
 
@@ -53,7 +53,7 @@
 	name = "Advanced anti-particle rifle"
 	id = "advparticle"
 	req_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 5, TECH_POWER = 3, TECH_MAGNET = 3)
-	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 1000, "gold" = 1000, "uranium" = 750)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 1000, MAT_COPPER = 250, "gold" = 1000, "uranium" = 750)
 	build_path = /obj/item/weapon/gun/energy/particle/advanced
 	sort_string = "MAAUA"
 
@@ -61,7 +61,7 @@
 	name = "Anti-particle cannon"
 	id = "particlecannon"
 	req_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 5, TECH_POWER = 4, TECH_MAGNET = 4)
-	materials = list(DEFAULT_WALL_MATERIAL = 10000, "glass" = 1500, "gold" = 2000, "uranium" = 1000, "diamond" = 2000)
+	materials = list(DEFAULT_WALL_MATERIAL = 10000, "glass" = 1500, MAT_COPPER = 1000, "gold" = 2000, "uranium" = 1000, "diamond" = 2000)
 	build_path = /obj/item/weapon/gun/energy/particle/cannon
 	sort_string = "MAAUB"
 
@@ -82,7 +82,7 @@
 	name = "cell-loaded revolver"
 	id = "nsfw_prototype"
 	req_tech = list(TECH_MATERIAL = 6, TECH_MAGNET = 4, TECH_POWER = 4, TECH_COMBAT = 7)
-	materials = list(DEFAULT_WALL_MATERIAL = 10000, "glass" = 6000, "phoron" = 8000, "uranium" = 4000)
+	materials = list(DEFAULT_WALL_MATERIAL = 10000, "glass" = 6000, MAT_COPPER = 4000, "phoron" = 6000, "uranium" = 2000)
 	build_path = /obj/item/weapon/gun/projectile/cell_loaded/combat/prototype
 	sort_string = "MAVAA"
 
@@ -102,7 +102,7 @@
 	name = "STUN"
 	id = "nsfw_cell_stun"
 	req_tech = list(TECH_MATERIAL = 4, TECH_MAGNET = 2, TECH_POWER = 3, TECH_COMBAT = 3)
-	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, MAT_COPPER = 1000)
 	build_path = /obj/item/ammo_casing/microbattery/combat/stun
 	sort_string = "MAVCA"
 
@@ -110,7 +110,7 @@
 	name = "LETHAL"
 	id = "nsfw_cell_lethal"
 	req_tech = list(TECH_MATERIAL = 4, TECH_MAGNET = 3, TECH_POWER = 3, TECH_COMBAT = 5)
-	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "phoron" = 3000)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, MAT_COPPER = 1000, "phoron" = 2000)
 	build_path = /obj/item/ammo_casing/microbattery/combat/lethal
 	sort_string = "MAVCB"
 
@@ -118,7 +118,7 @@
 	name = "NET"
 	id = "nsfw_cell_net"
 	req_tech = list(TECH_MATERIAL = 4, TECH_MAGNET = 3, TECH_POWER = 3, TECH_COMBAT = 4)
-	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "uranium" = 3000)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, MAT_COPPER = 1000, "uranium" = 2000)
 	build_path = /obj/item/ammo_casing/microbattery/combat/net
 	sort_string = "MAVCC"
 
@@ -126,7 +126,7 @@
 	name = "ION"
 	id = "nsfw_cell_ion"
 	req_tech = list(TECH_MATERIAL = 5, TECH_MAGNET = 3, TECH_POWER = 5, TECH_COMBAT = 5)
-	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "silver" = 3000)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, MAT_COPPER = 1000, "silver" = 3000)
 	build_path = /obj/item/ammo_casing/microbattery/combat/ion
 	sort_string = "MAVCD"
 
@@ -134,7 +134,7 @@
 	name = "SCATTERSTUN"
 	id = "nsfw_cell_shotstun"
 	req_tech = list(TECH_MATERIAL = 6, TECH_MAGNET = 3, TECH_POWER = 6, TECH_COMBAT = 6)
-	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "silver" = 2000, "gold" = 2000)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, MAT_COPPER = 2000, "silver" = 2000, "gold" = 2000)
 	build_path = /obj/item/ammo_casing/microbattery/combat/shotstun
 	sort_string = "MAVCE"
 
@@ -142,7 +142,7 @@
 	name = "XRAY"
 	id = "nsfw_cell_xray"
 	req_tech = list(TECH_MATERIAL = 6, TECH_MAGNET = 4, TECH_POWER = 5, TECH_COMBAT = 7)
-	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "silver" = 1000, "gold" = 1000, "uranium" = 1000, "phoron" = 1000)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, MAT_COPPER = 2000, "silver" = 1000, "gold" = 1000, "uranium" = 1000, "phoron" = 1000)
 	build_path = /obj/item/ammo_casing/microbattery/combat/xray
 	sort_string = "MAVCF"
 
@@ -150,7 +150,7 @@
 	name = "STRIPPER"
 	id = "nsfw_cell_stripper"
 	req_tech = list(TECH_MATERIAL = 7, TECH_BIO = 4, TECH_POWER = 4, TECH_COMBAT = 4, TECH_ILLEGAL = 5)
-	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "uranium" = 2000, "phoron" = 2000, "diamond" = 500)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, MAT_COPPER = 2000, "uranium" = 2000, "phoron" = 2000, "diamond" = 500)
 	build_path = /obj/item/ammo_casing/microbattery/combat/stripper
 	sort_string = "MAVCG"
 

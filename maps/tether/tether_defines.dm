@@ -15,16 +15,13 @@
 #define Z_LEVEL_OFFMAP2						14
 #define Z_LEVEL_ROGUEMINE_1					15
 #define Z_LEVEL_ROGUEMINE_2					16
-#define Z_LEVEL_ROGUEMINE_3					17
-#define Z_LEVEL_ROGUEMINE_4					18
-#define Z_LEVEL_BEACH						19
-#define Z_LEVEL_BEACH_CAVE					20
-#define Z_LEVEL_AEROSTAT					21
-#define Z_LEVEL_AEROSTAT_SURFACE			22
-#define Z_LEVEL_DEBRISFIELD					23
-#define Z_LEVEL_GUTTERSITE					24
-#define Z_LEVEL_FUELDEPOT					25
-#define Z_LEVEL_GATEWAY						26
+#define Z_LEVEL_BEACH						17
+#define Z_LEVEL_BEACH_CAVE					18
+#define Z_LEVEL_AEROSTAT					19
+#define Z_LEVEL_AEROSTAT_SURFACE			20
+#define Z_LEVEL_DEBRISFIELD					21
+#define Z_LEVEL_FUELDEPOT					22
+#define Z_LEVEL_GATEWAY						23
 
 //Camera networks
 #define NETWORK_TETHER "Tether"
@@ -53,8 +50,8 @@
 
 	use_overmap = TRUE
 	overmap_z = Z_LEVEL_MISC
-	overmap_size = 35
-	overmap_event_areas = 34
+	overmap_size = 50
+	overmap_event_areas = 44
 	usable_email_tlds = list("virgo.nt")
 
 	zlevel_datum_type = /datum/map_z_level/tether
@@ -87,7 +84,7 @@
 	shuttle_recall_message = "The scheduled crew transfer has been cancelled."
 	shuttle_name = "Automated Tram"
 	emergency_shuttle_docked_message = "The evacuation tram has arrived at the tram station. You have approximately %ETD% to board the tram."
-	emergency_shuttle_leaving_dock = "The emergency tram has left the station. Estimate %ETA% until the shuttle arrives at %dock_name%."
+	emergency_shuttle_leaving_dock = "The emergency tram has left the station. Estimate %ETA% until the tram arrives at %dock_name%."
 	emergency_shuttle_called_message = "An emergency evacuation has begun, and an off-schedule tram has been called. It will arrive at the tram station in approximately %ETA%."
 	emergency_shuttle_recall_message = "The evacuation tram has been recalled."
 
@@ -150,19 +147,20 @@
 	unit_test_exempt_from_atmos = list(
 		/area/engineering/atmos_intake, // Outside,
 		/area/rnd/external, //  Outside,
-		/area/tether/surfacebase/mining_main/external, // Outside,
-		/area/tether/surfacebase/cargo/mining/airlock, //  It's an airlock,	TODO: repath for later Med EVA on Surface
 		/area/tether/surfacebase/emergency_storage/rnd,
-		/area/tether/surfacebase/emergency_storage/atrium)
+		/area/tether/surfacebase/emergency_storage/atrium,
+		/area/tether/surfacebase/lowernortheva, // it airlock
+		/area/tether/surfacebase/lowernortheva/external, //it outside
+		/area/tether/surfacebase/security/gasstorage) //it maint
+
 
 	lateload_z_levels = list(
 		list("Tether - Misc","Tether - Underdark","Tether - Plains"), //Stock Tether lateload maps
 		list("Offmap Ship - Talon Z1","Offmap Ship - Talon Z2"),
-		list("Asteroid Belt 1","Asteroid Belt 2","Asteroid Belt 3","Asteroid Belt 4"),
+		list("Asteroid Belt 1","Asteroid Belt 2"),
 		list("Desert Planet - Z1 Beach","Desert Planet - Z2 Cave"),
 		list("Remmi Aerostat - Z1 Aerostat","Remmi Aerostat - Z2 Surface"),
 		list("Debris Field - Z1 Space"),
-		list("Gutter Site - Z1 Space"),
 		list("Fuel Depot - Z1 Space")
 		)
 
@@ -191,9 +189,7 @@
 	belter_docked_z = 		list(Z_LEVEL_SPACE_HIGH)
 	belter_transit_z =	 	list(Z_LEVEL_MISC)
 	belter_belt_z = 		list(Z_LEVEL_ROGUEMINE_1,
-						 		 Z_LEVEL_ROGUEMINE_2,
-						 	 	 Z_LEVEL_ROGUEMINE_3,
-								 Z_LEVEL_ROGUEMINE_4)
+						 		 Z_LEVEL_ROGUEMINE_2)
 
 //TFF 16/4/20 - mining outpost shuttle defines
 	mining_station_z =		list(Z_LEVEL_SPACE_HIGH)
@@ -201,7 +197,16 @@
 
 	lateload_single_pick = null //Nothing right now.
 
-	planet_datums_to_make = list(/datum/planet/virgo3b)
+	planet_datums_to_make = list(/datum/planet/virgo3b,
+								/datum/planet/virgo4)
+
+/datum/map/tether/get_map_info()
+	. = list()
+	. +=  "The [full_name] is an ancient ruin turned workplace in the Virgo-Erigone System, deep in the midst of the Coreward Periphery.<br>"
+	. +=  "Humanity has spread across the stars and has met many species on similar or even more advanced terms than them - it's a brave new world and many try to find their place in it . <br>"
+	. +=  "Though Virgo-Erigone is not important for the great movers and shakers, it sees itself in the midst of the interests of a reviving alien species of the Zorren, corporate and subversive interests and other exciting dangers the Periphery has to face.<br>"
+	. +=  "As an employee or contractor of NanoTrasen, operators of the Adephagia and one of the galaxy's largest corporations, you're probably just here to do a job."
+	return jointext(., "<br>")
 
 /datum/map/tether/perform_map_generation()
 
@@ -225,6 +230,10 @@
 		Z_LEVEL_SURFACE_MINE,
 		Z_LEVEL_SOLARS,
 		Z_LEVEL_PLAINS
+		)
+/datum/planet/virgo4
+	expected_z_levels = list(
+		Z_LEVEL_BEACH
 	)
 
 // Overmap represetation of tether
@@ -288,8 +297,8 @@
 // For making the 6-in-1 holomap, we calculate some offsets
 #define TETHER_MAP_SIZE 140 // Width and height of compiled in tether z levels.
 #define TETHER_HOLOMAP_CENTER_GUTTER 40 // 40px central gutter between columns
-#define TETHER_HOLOMAP_MARGIN_X ((HOLOMAP_ICON_SIZE - (2*TETHER_MAP_SIZE) - TETHER_HOLOMAP_CENTER_GUTTER) / 2) // 100
-#define TETHER_HOLOMAP_MARGIN_Y ((HOLOMAP_ICON_SIZE - (3*TETHER_MAP_SIZE)) / 2) // 60
+#define TETHER_HOLOMAP_MARGIN_X ((HOLOMAP_ICON_SIZE - (2*TETHER_MAP_SIZE) - TETHER_HOLOMAP_CENTER_GUTTER) / 2) // 80
+#define TETHER_HOLOMAP_MARGIN_Y ((HOLOMAP_ICON_SIZE - (3*TETHER_MAP_SIZE)) / 2) // 30
 
 // We have a bunch of stuff common to the station z levels
 /datum/map_z_level/tether/station

@@ -12,8 +12,7 @@
 	var/deadly_hold = TRUE	// Does the stomach do damage to mobs eaten by its owner? Xenos should probably have this FALSE.
 
 /obj/item/organ/internal/stomach/Initialize()
-	..()
-
+	. = ..()
 	if(reagents)
 		reagents.maximum_volume = 30
 	else

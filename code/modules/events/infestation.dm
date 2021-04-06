@@ -57,8 +57,14 @@
 	for(var/areapath in typesof(spawn_area_type))
 		var/area/A = locate(areapath)
 		for(var/turf/simulated/floor/F in A.contents)
-			if(turf_clear(F))
+			//VOREStation Edit - Fixes event
+			var/blocked = FALSE
+			for(var/atom/movable/AM in F)
+				if(AM.density)
+					blocked = TRUE
+			if(!blocked)
 				turfs += F
+			//VOREStation Edit - Fixes event
 
 	var/list/spawn_types = list()
 	var/max_number

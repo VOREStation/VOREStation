@@ -68,9 +68,9 @@
 		else
 			var/datum/gender/T = gender_datums[src.get_visible_gender()]
 			to_chat(user, "<span class='notice'>\The [src] is dead, medical items won't bring [T.him] back to life.</span>") // the gender lookup is somewhat overkill, but it functions identically to the obsolete gender macros and future-proofs this code
-	if(meat_type && (stat == DEAD))	//if the animal has a meat, and if it is dead.
-		if(istype(O, /obj/item/weapon/material/knife))
-			harvest(user)
+	if(can_butcher(user, O))	//if the animal can be butchered, do so and return. It's likely to be gibbed.
+		harvest(user, O)
+		return
 
 	if(user.a_intent == I_HELP && harvest_tool && istype(O, harvest_tool) && stat != DEAD)
 		if(world.time > (harvest_recent + harvest_cooldown))

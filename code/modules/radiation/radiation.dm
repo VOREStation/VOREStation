@@ -45,7 +45,11 @@
 
 /turf/simulated/wall/calc_rad_resistance()
 	SSradiation.resistance_cache[src] = (length(contents) + 1)
-	cached_rad_resistance = (density ? (material.weight + material.radiation_resistance) / config.radiation_material_resistance_divisor : 0)
+	var/temp_rad_resistance
+	temp_rad_resistance += material.weight + material.radiation_resistance
+	if(reinf_material)
+		temp_rad_resistance += reinf_material.weight + reinf_material.radiation_resistance
+	cached_rad_resistance = (density ? (temp_rad_resistance) / config.radiation_material_resistance_divisor : 0)
 	return
 
 /turf/simulated/mineral/calc_rad_resistance()

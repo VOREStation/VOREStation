@@ -17,6 +17,7 @@
 			/obj/item/weapon/reagent_containers/food/drinks/bottle/patron,
 			/obj/item/weapon/reagent_containers/food/drinks/bottle/goldschlager,
 			/obj/item/weapon/reagent_containers/food/drinks/bottle/specialwhiskey,
+			/obj/item/weapon/reagent_containers/food/drinks/bottle/jager,
 			/obj/item/weapon/storage/fancy/cigarettes/dromedaryco,
 			/obj/item/weapon/lipstick/random,
 			/obj/item/weapon/reagent_containers/food/drinks/bottle/small/ale = 2,

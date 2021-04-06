@@ -43,7 +43,6 @@
 	..()
 	nif = newloc
 	nifsoft = soft
-	QDEL_NULL(camera) //Not supported on internal one.
 
 /obj/item/device/communicator/commlink/Destroy()
 	if(nif)

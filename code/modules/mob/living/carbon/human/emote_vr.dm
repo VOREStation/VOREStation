@@ -9,13 +9,13 @@
 
 	switch(act)
 		if("vwag")
-			if(toggle_tail_vr(message = 1))
+			if(toggle_tail(message = 1))
 				m_type = 1
 				message = "[wagging ? "starts" : "stops"] wagging their tail."
 			else
 				return 1
 		if("vflap")
-			if(toggle_wing_vr(message = 1))
+			if(toggle_wing(message = 1))
 				m_type = 1
 				message = "[flapping ? "starts" : "stops"] flapping their wings."
 			else
@@ -181,6 +181,14 @@
 
 	return FALSE
 
+/mob/living/carbon/human/verb/toggle_resizing_immunity()
+	set name = "Toggle Resizing Immunity"
+	set desc = "Toggles your ability to resist resizing attempts"
+	set category = "IC"
+
+	resizable = !resizable
+	to_chat(src, "<span class='notice'>You are now [resizable ? "susceptible" : "immune"] to being resized.</span>")
+
 
 /mob/living/carbon/human/proc/handle_flip_vr()
 	var/original_density = density
@@ -207,30 +215,6 @@
 		density = original_density
 		pass_flags = original_passflags
 
-/mob/living/carbon/human/proc/toggle_tail_vr(var/setting,var/message = 0)
-	if(!tail_style || !tail_style.ani_state)
-		if(message)
-			to_chat(src, "<span class='warning'>You don't have a tail that supports this.</span>")
-		return 0
-
-	var/new_wagging = isnull(setting) ? !wagging : setting
-	if(new_wagging != wagging)
-		wagging = new_wagging
-		update_tail_showing()
-	return 1
-
-/mob/living/carbon/human/proc/toggle_wing_vr(var/setting,var/message = 0)
-	if(!wing_style || !wing_style.ani_state)
-		if(message)
-			to_chat(src, "<span class='warning'>You don't have a tail that supports this.</span>")
-		return 0
-
-	var/new_flapping = isnull(setting) ? !flapping : setting
-	if(new_flapping != flapping)
-		flapping = setting
-		update_wing_showing()
-	return 1
-
 /mob/living/carbon/human/verb/toggle_gender_identity_vr()
 	set name = "Set Gender Identity"
 	set desc = "Sets the pronouns when examined and performing an emote."
@@ -247,3 +231,16 @@
 	set desc = "Switch tail layer on top."
 	tail_alt = !tail_alt
 	update_tail_showing()
+
+/mob/living/carbon/human/verb/hide_wings_vr()
+	set name = "Show/Hide wings"
+	set category = "IC"
+	set desc = "Hide your wings, or show them if you already hid them."
+	wings_hidden = !wings_hidden
+	update_wing_showing()
+	var/message = ""
+	if(!wings_hidden)
+		message = "reveals their wings!"
+	else
+		message = "hides their wings."
+	visible_message("[src] [message]")

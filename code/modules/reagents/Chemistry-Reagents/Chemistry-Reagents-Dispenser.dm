@@ -16,6 +16,18 @@
 	reagent_state = SOLID
 	color = "#e9e6e4"
 
+//VOREStation Edit
+/datum/reagent/calcium/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	if(ishuman(M) && rand(1,10000) == 1)
+		var/mob/living/carbon/human/H = M
+		for(var/obj/item/organ/external/O in H.bad_external_organs)
+			if(O.status & ORGAN_BROKEN)
+				O.mend_fracture()
+				H.custom_pain("You feel the agonizing power of calcium mending your bones!",60)
+				H.AdjustWeakened(1)
+				break // Only mend one bone, whichever comes first in the list
+//VOREStation Edit End
+
 /datum/reagent/carbon
 	name = "Carbon"
 	id = "carbon"
@@ -91,6 +103,7 @@
 
 	glass_name = "ethanol"
 	glass_desc = "A well-known alcohol with a variety of applications."
+	allergen_factor = 0.5	//simulates mixed drinks containing less of the allergen, as they have only a single actual reagent unlike food
 
 /datum/reagent/ethanol/touch_mob(var/mob/living/L, var/amount)
 	if(istype(L))
@@ -142,7 +155,8 @@
 
 /datum/reagent/ethanol/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	if(issmall(M)) removed *= 2
-	M.adjust_nutrition(nutriment_factor * removed)
+	if(!(M.species.allergens & allergen_type))	//assuming it doesn't cause a horrible reaction, we get the nutrition effects
+		M.adjust_nutrition(nutriment_factor * removed)
 	var/strength_mod = 1 * M.species.alcohol_mod
 	if(alien == IS_SKRELL)
 		strength_mod *= 5

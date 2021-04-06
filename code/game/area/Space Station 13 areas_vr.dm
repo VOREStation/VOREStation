@@ -6,6 +6,12 @@
 
 //Rouguelike Mining
 /area/asteroid/rogue
+	has_gravity = 0
+	requires_power = 1
+	always_unpowered = 1
+	power_light = 0
+	power_equip = 0
+	power_environ = 0
 	var/asteroid_spawns = list()
 	var/mob_spawns = list()
 	var/shuttle_area //It would be neat if this were more dynamic, but eh.
@@ -33,3 +39,9 @@
 /area/engineering/engine_gas
 	name = "\improper Engine Gas Storage"
 	icon_state = "engine_waste"
+
+//holodeck 3/29/21
+/area/holodeck/source_smoleworld
+	name = "\improper Holodeck - Smolworld"
+	
+	

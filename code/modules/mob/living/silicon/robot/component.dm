@@ -77,6 +77,10 @@
 	external_type = /obj/item/robot_parts/robot_component/armour
 	max_damage = 90
 
+/datum/robot_component/armour/platform
+	name = "platform armour plating"
+	external_type = /obj/item/robot_parts/robot_component/armour_platform
+	max_damage = 140
 
 // ACTUATOR
 // Enables movement.
@@ -242,6 +246,12 @@
 	name = "armour plating"
 	icon_state = "armor"
 	icon_state_broken = "armor_broken"
+
+/obj/item/robot_parts/robot_component/armour_platform
+	name = "platform armour plating"
+	icon_state = "armor"
+	icon_state_broken = "armor_broken"
+	color = COLOR_GRAY80
 
 /obj/item/robot_parts/robot_component/camera
 	name = "camera"

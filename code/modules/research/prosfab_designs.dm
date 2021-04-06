@@ -102,7 +102,7 @@
 	build_path = /obj/item/organ/external/chest
 	gender = MALE
 
-/obj/item/organ/external/chest/f //To satisfy Travis. :|
+/obj/item/organ/external/chest/f //To satisfy CI. :|
 
 /datum/design/item/prosfab/pros/torso/female
 	name = "FBP Torso (F)"
@@ -357,9 +357,14 @@
 	build_path = /obj/item/robot_parts/robot_component/camera
 
 /datum/design/item/prosfab/cyborg/component/armour
-	name = "Armour Plating"
+	name = "Armour Plating (Robot)"
 	id = "armour"
 	build_path = /obj/item/robot_parts/robot_component/armour
+
+/datum/design/item/prosfab/cyborg/component/armour_heavy
+	name = "Armour Plating (Platform)"
+	id = "platform_armour"
+	build_path = /obj/item/robot_parts/robot_component/armour_platform
 
 /datum/design/item/prosfab/cyborg/component/ai_shell
 	name = "AI Remote Interface"

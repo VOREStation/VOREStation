@@ -17,7 +17,7 @@
 	name = "SleeveMate 3700"
 	id = "sleevemate"
 	req_tech = list(TECH_MATERIAL = 3, TECH_MAGNET = 2, TECH_BIO = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 4000, "glass" = 4000)
+	materials = list(DEFAULT_WALL_MATERIAL = 3000, "glass" = 4000, MAT_COPPER = 1000)
 	build_path = /obj/item/device/sleevemate
 	sort_string = "KCAVA"
 
@@ -26,7 +26,7 @@
 	desc = "This prototype hypospray is a sterile, air-needle autoinjector for rapid administration of drugs to patients."
 	id = "protohypospray"
 	req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3, TECH_POWER = 2, TECH_BIO = 4, TECH_ILLEGAL = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 500, "glass" = 1500, "silver" = 2000, "gold" = 1500, "uranium" = 1000)
+	materials = list(DEFAULT_WALL_MATERIAL = 500, "glass" = 1500, MAT_COPPER = 500, "silver" = 2000, "gold" = 1500, "uranium" = 1000)
 	build_path = /obj/item/weapon/reagent_containers/hypospray/science
 	sort_string = "KCAVB"
 
@@ -39,7 +39,7 @@
 	name = "cell-loaded medigun"
 	id = "cell_medigun"
 	req_tech = list(TECH_MATERIAL = 6, TECH_MAGNET = 4, TECH_POWER = 3, TECH_BIO = 5)
-	materials = list(DEFAULT_WALL_MATERIAL = 8000, "plastic" = 8000, "glass" = 5000, "silver" = 1000, "gold" = 1000, "uranium" = 1000)
+	materials = list(DEFAULT_WALL_MATERIAL = 8000, "plastic" = 8000, "glass" = 5000, MAT_COPPER = 500, "silver" = 750, "gold" = 750, "uranium" = 1000)
 	build_path = /obj/item/weapon/gun/projectile/cell_loaded/medical
 	sort_string = "KVAAA"
 
@@ -95,7 +95,7 @@
 	name = "TOXIN"
 	id = "ml3m_cell_toxin"
 	req_tech = list(TECH_MATERIAL = 3, TECH_MAGNET = 3, TECH_BIO = 4)
-	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, MAT_COPPER = 500)
 	build_path = /obj/item/ammo_casing/microbattery/medical/toxin
 	sort_string = "KVCBA"
 
@@ -103,7 +103,7 @@
 	name = "OMNI"
 	id = "ml3m_cell_omni"
 	req_tech = list(TECH_MATERIAL = 3, TECH_MAGNET = 3, TECH_BIO = 4)
-	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, MAT_COPPER = 500)
 	build_path = /obj/item/ammo_casing/microbattery/medical/omni
 	sort_string = "KVCBB"
 
@@ -111,7 +111,7 @@
 	name = "ANTIRAD"
 	id = "ml3m_cell_antirad"
 	req_tech = list(TECH_MATERIAL = 3, TECH_MAGNET = 3, TECH_BIO = 4)
-	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, MAT_COPPER = 500)
 	build_path = /obj/item/ammo_casing/microbattery/medical/antirad
 	sort_string = "KVCBC"
 
@@ -121,7 +121,7 @@
 	name = "BRUTE-II"
 	id = "ml3m_cell_brute2"
 	req_tech = list(TECH_MATERIAL = 5, TECH_MAGNET = 3, TECH_POWER = 2, TECH_BIO = 5)
-	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, "gold" = 1000)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, MAT_COPPER = 500, "gold" = 1000)
 	build_path = /obj/item/ammo_casing/microbattery/medical/brute2
 	sort_string = "KVCCA"
 
@@ -129,7 +129,7 @@
 	name = "BURN-II"
 	id = "ml3m_cell_burn2"
 	req_tech = list(TECH_MATERIAL = 5, TECH_MAGNET = 3, TECH_POWER = 2, TECH_BIO = 5)
-	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, "gold" = 1000)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, MAT_COPPER = 500, "gold" = 1000)
 	build_path = /obj/item/ammo_casing/microbattery/medical/burn2
 	sort_string = "KVCCB"
 
@@ -137,7 +137,7 @@
 	name = "STABILIZE-II"
 	id = "ml3m_cell_stabilize2"
 	req_tech = list(TECH_MATERIAL = 5, TECH_MAGNET = 3, TECH_POWER = 2, TECH_BIO = 5)
-	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, "silver" = 1000)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, MAT_COPPER = 500, "silver" = 1000)
 	build_path = /obj/item/ammo_casing/microbattery/medical/stabilize2
 	sort_string = "KVCCC"
 
@@ -145,7 +145,7 @@
 	name = "OMNI-II"
 	id = "ml3m_cell_omni2"
 	req_tech = list(TECH_MATERIAL = 5, TECH_MAGNET = 3, TECH_POWER = 2, TECH_BIO = 5)
-	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, "uranium" = 1000)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, MAT_COPPER = 500, "uranium" = 1000)
 	build_path = /obj/item/ammo_casing/microbattery/medical/omni2
 	sort_string = "KVCCD"
 
@@ -155,7 +155,7 @@
 	name = "TOXIN-II"
 	id = "ml3m_cell_toxin2"
 	req_tech = list(TECH_MATERIAL = 6, TECH_MAGNET = 3, TECH_POWER = 3, TECH_BIO = 6)
-	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, "uranium" = 1000, "silver" = 1000, "diamond" = 500)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, MAT_COPPER = 500, "uranium" = 1000, "silver" = 1000, "diamond" = 500)
 	build_path = /obj/item/ammo_casing/microbattery/medical/toxin2
 	sort_string = "KVCDA"
 
@@ -163,7 +163,7 @@
 	name = "HASTE"
 	id = "ml3m_cell_haste"
 	req_tech = list(TECH_MATERIAL = 6, TECH_MAGNET = 3, TECH_POWER = 3, TECH_BIO = 6)
-	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, "gold" = 1000, "silver" = 1000, "diamond" = 1000)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, MAT_COPPER = 500, "gold" = 1000, "silver" = 1000, "diamond" = 500)
 	build_path = /obj/item/ammo_casing/microbattery/medical/haste
 	sort_string = "KVCDB"
 
@@ -171,7 +171,7 @@
 	name = "RESIST"
 	id = "ml3m_cell_resist"
 	req_tech = list(TECH_MATERIAL = 6, TECH_MAGNET = 3, TECH_POWER = 3, TECH_BIO = 6)
-	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, "gold" = 1000, "uranium" = 1000, "diamond" = 1000)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, MAT_COPPER = 500, "gold" = 1000, "uranium" = 1000, "diamond" = 500)
 	build_path = /obj/item/ammo_casing/microbattery/medical/resist
 	sort_string = "KVCDC"
 
@@ -179,7 +179,7 @@
 	name = "CORPSE MEND"
 	id = "ml3m_cell_corpse_mend"
 	req_tech = list(TECH_MATERIAL = 6, TECH_MAGNET = 3, TECH_POWER = 3, TECH_BIO = 6)
-	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, "phoron" = 3000, "diamond" = 3000)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, MAT_COPPER = 1000, "phoron" = 3000, "diamond" = 2500)
 	build_path = /obj/item/ammo_casing/microbattery/medical/corpse_mend
 	sort_string = "KVCDD"
 
@@ -189,7 +189,7 @@
 	name = "BRUTE-III"
 	id = "ml3m_cell_brute3"
 	req_tech = list(TECH_MATERIAL = 7, TECH_MAGNET = 6, TECH_POWER = 5, TECH_BIO = 7, TECH_PRECURSOR = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, "diamond" = 500, "verdantium" = 1000)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, MAT_COPPER = 1000, "diamond" = 500, "verdantium" = 1000)
 	build_path = /obj/item/ammo_casing/microbattery/medical/brute3
 	sort_string = "KVCEA"
 
@@ -197,7 +197,7 @@
 	name = "BURN-III"
 	id = "ml3m_cell_burn3"
 	req_tech = list(TECH_MATERIAL = 7, TECH_MAGNET = 6, TECH_POWER = 5, TECH_BIO = 7, TECH_PRECURSOR = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, "diamond" = 500, "verdantium" = 1000)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, MAT_COPPER = 1000, "diamond" = 500, "verdantium" = 1000)
 	build_path = /obj/item/ammo_casing/microbattery/medical/burn3
 	sort_string = "KVCEB"
 
@@ -205,7 +205,7 @@
 	name = "TOXIN-III"
 	id = "ml3m_cell_toxin3"
 	req_tech = list(TECH_MATERIAL = 7, TECH_MAGNET = 6, TECH_POWER = 5, TECH_BIO = 7, TECH_ARCANE = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, "diamond" = 500, "verdantium" = 1000)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, MAT_COPPER = 1000, "diamond" = 500, "verdantium" = 1000)
 	build_path = /obj/item/ammo_casing/microbattery/medical/toxin3
 	sort_string = "KVCEC"
 
@@ -213,7 +213,7 @@
 	name = "OMNI-III"
 	id = "ml3m_cell_omni3"
 	req_tech = list(TECH_MATERIAL = 7, TECH_MAGNET = 6, TECH_POWER = 5, TECH_BIO = 7, TECH_ARCANE = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, "diamond" = 500, "verdantium" = 1000)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, MAT_COPPER = 1000, "diamond" = 500, "verdantium" = 1000)
 	build_path = /obj/item/ammo_casing/microbattery/medical/omni3
 	sort_string = "KVCED"
 
@@ -223,7 +223,7 @@
 	name = "SHRINK"
 	id = "ml3m_cell_shrink"
 	req_tech = list(TECH_MATERIAL = 5, TECH_MAGNET = 3, TECH_BLUESPACE = 3, TECH_BIO = 5, TECH_ILLEGAL = 5)
-	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, "uranium" = 2000)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, MAT_COPPER = 2000)
 	build_path = /obj/item/ammo_casing/microbattery/medical/shrink
 	sort_string = "KVCOA"
 
@@ -231,7 +231,7 @@
 	name = "GROW"
 	id = "ml3m_cell_grow"
 	req_tech = list(TECH_MATERIAL = 5, TECH_MAGNET = 3, TECH_BLUESPACE = 3, TECH_BIO = 5, TECH_ILLEGAL = 5)
-	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, "uranium" = 2000)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, MAT_COPPER = 2000)
 	build_path = /obj/item/ammo_casing/microbattery/medical/grow
 	sort_string = "KVCOB"
 
@@ -239,6 +239,6 @@
 	name = "NORMALSIZE"
 	id = "ml3m_cell_normalsize"
 	req_tech = list(TECH_MATERIAL = 5, TECH_MAGNET = 3, TECH_BLUESPACE = 3, TECH_BIO = 5, TECH_ILLEGAL = 5)
-	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, "uranium" = 2000)
+	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 5000, "plastic" = 2500, MAT_COPPER = 2000)
 	build_path = /obj/item/ammo_casing/microbattery/medical/normalsize
 	sort_string = "KVCOC"

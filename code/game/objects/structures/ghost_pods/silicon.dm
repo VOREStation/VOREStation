@@ -89,7 +89,7 @@
 		qdel(src)
 
 /obj/structure/ghost_pod/ghost_activated/swarm_drone/event/Initialize()
-	..()
+	. = ..()
 
 	var/turf/T = get_turf(src)
 	say_dead_object("A <span class='notice'>[drone_class] swarm drone</span> shell is now available in \the [T.loc].", src)

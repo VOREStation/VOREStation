@@ -8,7 +8,7 @@
 	name = "Communicator"
 	id = "communicator"
 	req_tech = list(TECH_DATA = 2, TECH_MAGNET = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 500, "glass" = 500)
+	materials = list(DEFAULT_WALL_MATERIAL = 500, "glass" = 500, MAT_COPPER = 50)
 	build_path = /obj/item/device/communicator
 	sort_string = "TAAAA"
 
@@ -17,7 +17,7 @@ datum/design/item/general/laserpointer
 	desc = "Don't shine it in your eyes!"
 	id = "laser_pointer"
 	req_tech = list(TECH_MAGNET = 3)
-	materials = list(DEFAULT_WALL_MATERIAL = 100, "glass" = 50)
+	materials = list(DEFAULT_WALL_MATERIAL = 100, "glass" = 50, MAT_COPPER = 10)
 	build_path = /obj/item/device/laser_pointer
 	sort_string = "TAABA"
 
@@ -25,7 +25,7 @@ datum/design/item/general/laserpointer
 	name = "handheld translator"
 	id = "translator"
 	req_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 3)
-	materials = list(DEFAULT_WALL_MATERIAL = 3000, "glass" = 3000)
+	materials = list(DEFAULT_WALL_MATERIAL = 3000, "glass" = 3000, MAT_COPPER = 50)
 	build_path = /obj/item/device/universal_translator
 	sort_string = "TAACA"
 
@@ -33,7 +33,7 @@ datum/design/item/general/laserpointer
 	name = "earpiece translator"
 	id = "ear_translator"
 	req_tech = list(TECH_DATA = 5, TECH_ENGINEERING = 5)	//It's been hella miniaturized.
-	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 2000, "gold" = 1000)
+	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 2000, "gold" = 1000, MAT_COPPER = 50)
 	build_path = /obj/item/device/universal_translator/ear
 	sort_string = "TAACB"
 
@@ -51,7 +51,7 @@ datum/design/item/general/laserpointer
 	desc = "Allows for deciphering the binary channel on-the-fly."
 	id = "binaryencrypt"
 	req_tech = list(TECH_ILLEGAL = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 300, "glass" = 300)
+	materials = list(DEFAULT_WALL_MATERIAL = 300, "glass" = 300, MAT_COPPER = 30)
 	build_path = /obj/item/device/encryptionkey/binary
 	sort_string = "TBAAA"
 
@@ -60,7 +60,7 @@ datum/design/item/general/laserpointer
 	desc = "A kit of dangerous, high-tech equipment with changeable looks."
 	id = "chameleon"
 	req_tech = list(TECH_ILLEGAL = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 500)
+	materials = list(MAT_PLASTIC = 500, MAT_COPPER = 500, DEFAULT_WALL_MATERIAL = 500)
 	build_path = /obj/item/weapon/storage/box/syndie_kit/chameleon
 	sort_string = "TBAAB"
 

@@ -112,6 +112,28 @@
 	update_total()
 	amount = min(amount, get_free_space())
 
+	if(istype(my_atom,/obj/item/weapon/reagent_containers/food)) //The following code is targeted specifically at getting allergen reagents into food items, since for the most part they're not applied by default.
+		var/list/add_reagents = list()
+		var/totalnum = 0
+
+		for(var/item in data) //Try to find the ID
+			var/add_reagent_id = null
+			if(item in SSchemistry.chemical_reagents)
+				add_reagent_id = item
+			else if("[item]juice" in SSchemistry.chemical_reagents)
+				add_reagent_id = "[item]juice"
+			if(add_reagent_id) //If we did find it, add it to our list of reagents to add, and add the number to our total.
+				add_reagents[add_reagent_id] += data[item]
+			totalnum += data[item]
+
+		if(totalnum)
+			var/multconst = amount/totalnum //We're going to add these extra reagents so that they share the ratio described, but only add up to 1x the existing amount at the most
+			for(var/item in add_reagents)
+				add_reagent(item,add_reagents[item]*multconst)
+
+
+
+
 	for(var/datum/reagent/current in reagent_list)
 		if(current.id == id)
 			if(current.id == "blood")
@@ -291,7 +313,8 @@
 	if(spill)
 		splash(target.loc, spill, multiplier, copy, min_spill, max_spill)
 
-	trans_to(target, amount, multiplier, copy)
+	if(!trans_to(target, amount, multiplier, copy))
+		touch(target, amount)
 
 /datum/reagents/proc/trans_type_to(var/target, var/rtype, var/amount = 1)
 	if (!target)

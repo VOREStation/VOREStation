@@ -11,7 +11,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	item_state = "electronic"
 	w_class = ITEMSIZE_SMALL
 	slot_flags = SLOT_ID | SLOT_BELT
-	sprite_sheets = list(SPECIES_TESHARI = 'icons/mob/species/seromi/id.dmi')
+	sprite_sheets = list(SPECIES_TESHARI = 'icons/mob/species/teshari/id.dmi')
 
 	//Main variables
 	var/pdachoice = 1
@@ -139,24 +139,16 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			desc = "A portable microcomputer by Thinktronic Systems, LTD. This model is a wrist-bound version."
 			slot_flags = SLOT_ID | SLOT_BELT | SLOT_GLOVES
 			sprite_sheets = list(
-				SPECIES_TESHARI = 'icons/mob/species/seromi/pda_wrist.dmi',
-				SPECIES_VR_TESHARI = 'icons/mob/species/seromi/pda_wrist.dmi',
+				SPECIES_TESHARI = 'icons/mob/species/teshari/pda_wrist.dmi',
+				SPECIES_VR_TESHARI = 'icons/mob/species/teshari/pda_wrist.dmi',
 			)
 		else
 			icon = 'icons/obj/pda_old.dmi'
 			log_debug("Invalid switch for PDA, defaulting to old PDA icons. [pdachoice] chosen.")
 	start_program(find_program(/datum/data/pda/app/main_menu))
 
-/obj/item/device/pda/proc/can_use()
-	if(!ismob(loc))
-		return FALSE
-
-	var/mob/M = loc
-	if(M.incapacitated(INCAPACITATION_ALL))
-		return FALSE
-	if(src in M.contents)
-		return TRUE
-	return FALSE
+/obj/item/device/pda/proc/can_use(mob/user)
+	return (tgui_status(user, GLOB.tgui_inventory_state) == STATUS_INTERACTIVE)
 
 /obj/item/device/pda/GetAccess()
 	if(id)
@@ -169,7 +161,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 /obj/item/device/pda/MouseDrop(obj/over_object as obj, src_location, over_location)
 	var/mob/M = usr
-	if((!istype(over_object, /obj/screen)) && can_use())
+	if((!istype(over_object, /obj/screen)) && can_use(usr))
 		return attack_self(M)
 	return
 
@@ -308,7 +300,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	if(can_use(usr))
 		start_program(find_program(/datum/data/pda/app/main_menu))
 		notifying_programs.Cut()
-		overlays -= image('icons/obj/pda.dmi', "pda-r")
+		overlays -= image(icon, "pda-r")
 		to_chat(usr, "<span class='notice'>You press the reset button on \the [src].</span>")
 	else
 		to_chat(usr, "<span class='notice'>You cannot do this while restrained.</span>")

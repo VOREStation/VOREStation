@@ -122,7 +122,7 @@ var/list/all_maps = list()
 
 	var/id_hud_icons = 'icons/mob/hud.dmi' // Used by the ID HUD (primarily sechud) overlay.
 
-	// Some maps include areas for that map only and don't exist when not compiled, so Travis needs this to learn of new areas that are specific to a map.
+	// Some maps include areas for that map only and don't exist when not compiled, so CI needs this to learn of new areas that are specific to a map.
 	var/list/unit_test_exempt_areas = list()
 	var/list/unit_test_exempt_from_atmos = list()
 	var/list/unit_test_exempt_from_apc = list()
@@ -326,3 +326,6 @@ var/list/all_maps = list()
 	if (using_map.zlevels["[z]"] == src)
 		using_map.zlevels -= "[z]"
 	return ..()
+
+/datum/map/proc/get_map_info()
+	return "No map information available"

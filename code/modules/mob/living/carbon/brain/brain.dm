@@ -54,9 +54,7 @@
 		return
 
 	if(!typing_indicator)
-		typing_indicator = new
-		typing_indicator.icon = 'icons/mob/talk_vr.dmi' //VOREStation Edit - talk_vr.dmi instead of talk.dmi for right-side icons
-		typing_indicator.icon_state = "[speech_bubble_appearance()]_typing"
+		init_typing_indicator("[speech_bubble_appearance()]_typing")
 
 	if(state && !typing)
 		loc.add_overlay(typing_indicator, TRUE)

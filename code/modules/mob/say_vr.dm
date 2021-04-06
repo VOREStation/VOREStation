@@ -2,7 +2,7 @@
 ////////////////////SUBTLE COMMAND////////////////////
 //////////////////////////////////////////////////////
 
-/mob/verb/me_verb_subtle(message as text) //This would normally go in say.dm
+/mob/verb/me_verb_subtle(message as message) //This would normally go in say.dm
 	set name = "Subtle"
 	set category = "IC"
 	set desc = "Emote to nearby people (and your pred/prey)"
@@ -37,7 +37,7 @@
 
 	if(input)
 		log_subtle(message,src)
-		message = "<span class='emote'><B>[src]</B> <I>[input]</I></span>"
+		message = "<span class='emote_subtle'><B>[src]</B> <I>[input]</I></span>"
 	else
 		return
 

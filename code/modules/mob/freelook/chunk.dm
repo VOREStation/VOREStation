@@ -88,7 +88,7 @@
 
 	for(var/turf in visAdded)
 		var/turf/t = turf
-		if(t.obfuscations[obfuscation.type])
+		if(LAZYLEN(t.obfuscations) && t.obfuscations[obfuscation.type])
 			obscured -= t.obfuscations[obfuscation.type]
 			for(var/eye in seenby)
 				var/mob/observer/eye/m = eye

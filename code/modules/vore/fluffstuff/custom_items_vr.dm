@@ -790,43 +790,14 @@
 	Under it is written 'Kouri, Amina, Marine Unit 14, Fifth Echelon. Service number NTN-5528928522372'"
 
 //arokha:Amaya Rahl - Custom ID (Medical dept)
-/obj/item/weapon/card/id/fluff/amaya
+/obj/item/weapon/card/id/event/fluff/amaya
 	registered_name = "CONFIGURE ME"
 	assignment = "CONFIGURE ME"
-	var/configured = 0
-	var/accessset = 0
 	icon = 'icons/vore/custom_items_vr.dmi'
+	base_icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "amayarahlwahID"
 	desc = "A primarily blue ID with a holographic 'WAH' etched onto its back. The letters do not obscure anything important on the card. It is shiny and it feels very bumpy."
-	var/title_strings = list("Amaya Rahl's Wah-identification card", "Amaya Rahl's Wah-ID card")
-
-/obj/item/weapon/card/id/fluff/amaya/attack_self(mob/user as mob)
-	if(configured == 1)
-		return ..()
-
-	var/title
-	if(user.client.prefs.player_alt_titles[user.job])
-		title = user.client.prefs.player_alt_titles[user.job]
-	else
-		title = user.job
-	assignment = title
-	user.set_id_info(src)
-	if(user.mind && user.mind.initial_account)
-		associated_account_number = user.mind.initial_account.account_number
-	var/tempname = pick(title_strings)
-	name = tempname + " ([title])"
-	configured = 1
-	to_chat(user, "<span class='notice'>Card settings set.</span>")
-
-/obj/item/weapon/card/id/fluff/amaya/attackby(obj/item/I as obj, mob/user as mob)
-	if(istype(I, /obj/item/weapon/card/id) && !accessset)
-		var/obj/item/weapon/card/id/O = I
-		access |= O.access
-		to_chat(user, "<span class='notice'>You copy the access from \the [I] to \the [src].</span>")
-		user.drop_from_inventory(I)
-		qdel(I)
-		accessset = 1
-	..()
+	title_strings = list("Amaya Rahl's Wah-identification card", "Amaya Rahl's Wah-ID card")
 
 //General use, Verk felt like sharing.
 /obj/item/clothing/glasses/fluff/science_proper
@@ -955,23 +926,6 @@
 
 /obj/item/weapon/material/twohanded/fluff/New(var/newloc)
 	..(newloc," ") //See materials_vr_dmi for more information as to why this is a blank space.
-
-//General use.
-/obj/item/weapon/material/twohanded/fluff/riding_crop
-	name = "riding crop"
-	desc = "A steel rod, a little over a foot long with a widened grip and a thick, leather patch at the end. Made to smack naughty submissives."
-	//force_wielded = 0.05 //Stings, but does jack shit for damage, provided you don't hit someone 100 times. 1 damage with hardness of 60.
-	force_divisor = 0.05 //Required in order for the X attacks Y message to pop up.
-	unwielded_force_divisor = 1 // One here, too.
-	applies_material_colour = 0
-	unbreakable = 1
-	base_icon = "riding_crop"
-	icon_state = "riding_crop0"
-	attack_verb = list("cropped","spanked","swatted","smacked","peppered")
-//1R1S: Malady Blanche
-/obj/item/weapon/material/twohanded/fluff/riding_crop/malady
-	name = "Malady's riding crop"
-	desc = "An infernum made riding crop with Malady Blanche engraved in the shaft. It's a little worn from how many butts it has spanked."
 
 //jacknoir413:Areax Third
 /obj/item/weapon/melee/baton/fluff/stunstaff
@@ -1232,7 +1186,7 @@
 	desc = "A standard vacuum-flask filled with good and expensive drink."
 
 /obj/item/weapon/reagent_containers/food/drinks/flask/vacuumflask/fluff/viktor/Initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("pwine", 60)
 
 //RadiantAurora: Tiemli Kroto
@@ -1253,6 +1207,52 @@
          return 0
       else
          return 1
+
+//Ryumi - Nikki Yumeno
+/obj/item/weapon/rig/nikki
+	name = "weird necklace"
+	desc = "A necklace with a brilliantly blue crystal encased in protective glass."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_override = 'icons/vore/custom_onmob_vr.dmi'
+	suit_type = "probably not magical"
+	icon_state = "nikki"
+	w_class = ITEMSIZE_SMALL // It is after all only a necklace
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0) // this isn't armor, it's a dorky frickin cape
+	siemens_coefficient = 0.9
+	slowdown = 0
+	offline_slowdown = 0
+	offline_vision_restriction = 0
+	siemens_coefficient = 0.9
+	chest_type = /obj/item/clothing/suit/fluff/nikki
+
+	req_access = list()
+	req_one_access = list()
+
+	helm_type = null
+	glove_type = null
+	boot_type = null
+
+	allowed = list(
+		/obj/item/device/flashlight,
+		/obj/item/weapon/tank,
+		/obj/item/device/suit_cooling_unit,
+		/obj/item/weapon/storage,
+		)
+
+/obj/item/weapon/rig/nikki/attackby(obj/item/W, mob/living/user)
+	//This thing accepts ONLY mounted sizeguns. That's IT. Nothing else!
+	if(open && istype(W,/obj/item/rig_module) && !istype(W,/obj/item/rig_module/mounted/sizegun))
+		to_chat(user, "<span class='danger'>\The [src] only accepts mounted size gun modules.</span>")
+		return
+	..()
+
+/obj/item/weapon/rig/nikki/mob_can_equip(var/mob/living/carbon/human/M, slot, disable_warning = 0) // Feel free to (try to) put Nikki's hat on! The necklace though is a flat-out no-go.
+	if(..())
+		if (M.ckey == "ryumi")
+			return 1
+		else if (M.get_active_hand() == src)
+			to_chat(M, "<span class='warning'>For some reason, the necklace seems to never quite get past your head when you try to put it on... Weird, it looked like it would fit.</span>")
+			return 0
 
 //Nickcrazy - Damon Bones Xrim
 /obj/item/clothing/suit/storage/toggle/bomber/bombersec
@@ -1309,3 +1309,54 @@
 	..()
 	name = initial(name)
 	desc = initial(desc)
+
+//Vitoras: Verie
+/obj/item/weapon/fluff/verie
+	name = "glowy hairbrush"
+	desc = "A pulse of light periodically zips across the top of this blue brush. This... is not an ordinary hair care tool. \
+	A small inscription can be seen in one side of the brush: \"THIS DEVICE IS ONLY COMPATIBLE WITH MODEL <b>RI</b> \
+	POSITRONICS IN A MODEL <b>E</b> CHASSIS.\""
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "verie_brush"
+	w_class = ITEMSIZE_TINY
+
+	var/owner = "vitoras"
+
+/obj/item/weapon/fluff/verie/attack_self(mob/living/carbon/human/user)
+	if (istype(user))
+		// It's only made for Verie's chassis silly!
+		if (user.ckey != owner)
+			to_chat(user, "<span class='warning'>The brush's teeth are far too rough to even comb your hair. Apparently, \
+			this device was not made for people like you.</span>")
+			return
+
+		if (!user.hair_accessory_style)
+			var/datum/sprite_accessory/hair_accessory/verie_hair_glow/V = new(user)
+			user.hair_accessory_style = V
+			user.update_hair()
+			user.visible_message("[user] combs her hair. \The [src] leaves behind glowing cyan highlights as it passes through \
+			her black strands.", \
+			"<span class='notice'>You brush your hair. \The [src]'s teeth begin to vibrate and glow as they react to your nanites. \
+			The teeth stimulate the nanites in your hair strands until your hair give off a brilliant, faintly pulsing \
+			cyan glow!</span>")
+
+		else
+			user.visible_message("[user] combs her hair. \The [src] brushes away her glowing cyan highlights. Neat!", \
+			"<span class='notice'>You brush your hair. \The [src]'s teeth wipe away the glowing streaks in your hair \
+			like a sponge scrubbing away a stain.</span>")
+			user.hair_accessory_style = null
+			for(var/datum/sprite_accessory/hair_accessory/verie_hair_glow/V in user)
+				to_chat(user, "<span class='warning'>found a V to delete!</span>")
+				qdel(V)
+			user.update_hair()
+
+
+	else
+		to_chat(user, "<span class='warning'>\The [src] isn't compatible with your body as it is now.</span>")
+
+// Astra - // Astra
+/obj/item/weapon/material/knife/ritual/fluff/astra
+	name = "Polished Ritual Knife"
+	desc = "A well kept strange ritual knife, There is a small tag with the name 'Astra Ether' on it. They are probably looking for this."
+	icon = 'icons/obj/wizard.dmi'
+	icon_state = "render"

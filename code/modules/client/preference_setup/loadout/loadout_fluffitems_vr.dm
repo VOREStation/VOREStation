@@ -25,11 +25,11 @@
 
 /datum/gear/fluff/collar/New()
 	..()
-	gear_tweaks = list(gear_tweak_collar_tag)
+	gear_tweaks += gear_tweak_collar_tag
 
 //  0-9 CKEYS
 /datum/gear/fluff/malady_crop
-	path = /obj/item/weapon/material/twohanded/fluff/riding_crop/malady
+	path = /obj/item/weapon/material/twohanded/riding_crop/malady
 	display_name = "Malady's Crop"
 	ckeywhitelist = list("1r1s")
 	character_name = list("Malady Blanche")
@@ -66,6 +66,12 @@
 	ckeywhitelist = list("argobargsoup")
 	character_name = list("Lynn Shady")
 
+/datum/gear/fluff/felina_witchhat
+	path = /obj/item/clothing/head/wizard/marisa/fake
+	display_name = "Felina's Witch Hat"
+	ckeywhitelist = list("argobargsoup")
+	character_name = list("Felina Belliger")
+
 /datum/gear/fluff/aronai_ccmeduniform
 	path = /obj/item/clothing/under/solgov/utility/sifguard/officer/medical
 	display_name  = "centcom medical uniform"
@@ -81,6 +87,13 @@
 	slot = slot_wear_suit
 	ckeywhitelist = list("arokha")
 	character_name = list("Aronai Sieyes")
+
+/datum/gear/fluff/astra_ritualknife
+    path = /obj/item/weapon/material/knife/ritual/fluff/astra
+    display_name = "Polished Ritual Knife"
+    description = "A well kept strange ritual knife, There is a small tag with the name 'Astra Ether' on it. They are probably looking for this."
+    ckeywhitelist = list("astraether")
+    character_name = list("Astra Ether")
 
 /datum/gear/fluff/collar/azura
 	path = /obj/item/clothing/accessory/collar/azura
@@ -506,7 +519,7 @@
 	character_name = list("Ketrai")
 
 /datum/gear/fluff/amaya_id
-	path = /obj/item/weapon/card/id/fluff/amaya
+	path = /obj/item/weapon/card/id/event/fluff/amaya
 	display_name = "Amaya's ID"
 	ckeywhitelist = list("kiraalitruss")
 	character_name = list("Amaya Rahl")
@@ -739,6 +752,12 @@
 	character_name = list("Clara Mali")
 	cost = 1
 
+/datum/gear/fluff/nikki_dorky_outfit
+	path = /obj/item/weapon/storage/box/fluff
+	display_name = "Nikki's Witchy Outfit"
+	ckeywhitelist = list("ryumi")
+	character_name = list("Nikki Yumeno")
+
 //  S CKEYS
 /datum/gear/fluff/brynhild_medal
 	path = /obj/item/clothing/accessory/medal/silver/valor
@@ -940,6 +959,25 @@
 //  U CKEYS
 
 //  V CKEYS
+/datum/gear/fluff/verie_suit
+	path = /obj/item/clothing/under/fluff/verie
+	display_name = "Verie's Salacious Suit"
+	ckeywhitelist = list("vitoras")
+	character_name = list("Verie")
+
+/datum/gear/fluff/verie_hoodie
+	path = /obj/item/clothing/suit/storage/hooded/fluff/verie
+	display_name = "Verie's Helluva Hoodie"
+	ckeywhitelist = list("vitoras")
+	character_name = list("Verie")
+
+/datum/gear/fluff/verie_comb
+	path = /obj/item/weapon/fluff/verie
+	display_name = "Verie's Crazy Comb"
+	description = "(Note: The highlights this gives you will be placed above EVERYTHING... including mobs!)"
+	ckeywhitelist = list("vitoras")
+	character_name = list("Verie")
+
 /datum/gear/fluff/cameron_glasses
 	path = /obj/item/clothing/glasses/fluff/science_proper
 	display_name = "Cameron's Science Glasses"
@@ -1039,6 +1077,12 @@
 	display_name = "Roanna's Unity Medal"
 	ckeywhitelist = list("vitoras")
 	character_name = list("Roanna Ti'Rox")
+
+/datum/gear/fluff/harmony_id
+	path = /obj/item/weapon/card/id/event/polymorphic/itg
+	display_name = "Harmony's ITG-ID card"
+	ckeywhitelist = list("verysoft")
+	character_name = list("Harmony")
 
 //  W CKEYS
 /datum/gear/fluff/sthasha_bracer

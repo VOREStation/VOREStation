@@ -1,4 +1,5 @@
-var/list/gyrotrons = list()
+
+GLOBAL_LIST_EMPTY(gyrotrons)
 
 /obj/machinery/power/emitter/gyrotron
 	name = "gyrotron"
@@ -21,18 +22,17 @@ var/list/gyrotrons = list()
 	state = 2
 
 /obj/machinery/power/emitter/gyrotron/Initialize()
-	gyrotrons += src
-	update_active_power_usage(mega_energy * 50000)
+	GLOB.gyrotrons += src
 	default_apply_parts()
-	. = ..()
-
-/obj/machinery/power/emitter/gyrotron/Destroy()
-	gyrotrons -= src
 	return ..()
 
-/obj/machinery/power/emitter/gyrotron/process()
-	update_active_power_usage(mega_energy * 50000)
-	. = ..()
+/obj/machinery/power/emitter/gyrotron/Destroy()
+	GLOB.gyrotrons -= src
+	return ..()
+
+/obj/machinery/power/emitter/gyrotron/proc/set_beam_power(var/new_power)
+	mega_energy = new_power
+	update_active_power_usage(mega_energy * initial(active_power_usage))
 
 /obj/machinery/power/emitter/gyrotron/get_rand_burst_delay()
 	return rate * 10

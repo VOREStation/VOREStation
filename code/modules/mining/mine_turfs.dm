@@ -54,7 +54,13 @@ var/list/mining_overlay_cache = list()
 		"verdantium" = /obj/item/weapon/ore/verdantium,
 		"marble" = /obj/item/weapon/ore/marble,
 		"lead" = /obj/item/weapon/ore/lead,
-		"rutile" = /obj/item/weapon/ore/rutile //VOREStation Add
+		"copper" = /obj/item/weapon/ore/copper,
+		"tin" = /obj/item/weapon/ore/tin,
+		"bauxite" = /obj/item/weapon/ore/bauxite,
+//		"void opal" = /obj/item/weapon/ore/void_opal,
+//		"painite" = /obj/item/weapon/ore/painite,
+//		"quartz" = /obj/item/weapon/ore/quartz,
+		"rutile" = /obj/item/weapon/ore/rutile
 	)
 
 	has_resources = 1
@@ -304,19 +310,20 @@ turf/simulated/mineral/floor/light_corner
 		return
 
 	if(!density)
+		var/valid_tool = 0
+		var/digspeed = 40
 
-		var/list/usable_tools = list(
-			/obj/item/weapon/shovel,
-			/obj/item/weapon/pickaxe/diamonddrill,
-			/obj/item/weapon/pickaxe/drill,
-			/obj/item/weapon/pickaxe/borgdrill
-			)
+		if(istype(W, /obj/item/weapon/shovel))
+			var/obj/item/weapon/shovel/S = W
+			valid_tool = 1
+			digspeed = S.digspeed
 
-		var/valid_tool
-		for(var/valid_type in usable_tools)
-			if(istype(W,valid_type))
+		if(istype(W, /obj/item/weapon/pickaxe))
+			var/obj/item/weapon/pickaxe/P = W
+			if(P.sand_dig)
 				valid_tool = 1
-				break
+				digspeed = P.digspeed
+
 
 		if(valid_tool)
 			if (sand_dug)
@@ -330,7 +337,7 @@ turf/simulated/mineral/floor/light_corner
 			to_chat(user, "<span class='notice'>You start digging.</span>")
 			playsound(user, 'sound/effects/rustle1.ogg', 50, 1)
 
-			if(!do_after(user,40)) return
+			if(!do_after(user,digspeed)) return
 
 			to_chat(user, "<span class='notice'>You dug a hole.</span>")
 			GetDrilled()
@@ -544,7 +551,7 @@ turf/simulated/mineral/floor/light_corner
 	if(!density)
 		if(!sand_dug)
 			sand_dug = 1
-			for(var/i=0;i<(rand(3)+2);i++)
+			for(var/i=0;i<5;i++)
 				new/obj/item/weapon/ore/glass(src)
 			update_icon()
 		return
@@ -554,6 +561,8 @@ turf/simulated/mineral/floor/light_corner
 		//if the turf has already been excavated, some of it's ore has been removed
 		for (var/i = 1 to mineral.result_amount - mined_ore)
 			DropMineral()
+
+	GLOB.rocks_drilled_roundstat++
 
 	//destroyed artifacts have weird, unpleasant effects
 	//make sure to destroy them before changing the turf though
@@ -641,10 +650,10 @@ turf/simulated/mineral/floor/light_corner
 
 	var/mineral_name
 	if(rare_ore)
-		mineral_name = pickweight(list("marble" = 5, "uranium" = 10, "platinum" = 10, "hematite" = 20, "carbon" = 20, "diamond" = 2, "gold" = 10, "silver" = 10, "phoron" = 20, "lead" = 5, "verdantium" = 1, "rutile" = 4)) //VOREStation Edit
+		mineral_name = pickweight(list("marble" = 5,/* "quartz" = 15,*/ "copper" = 10, "tin" = 5, "bauxite" = 5, "uranium" = 15, "platinum" = 20, "hematite" = 15, "rutile" = 20, "carbon" = 15, "diamond" = 3, "gold" = 15, "silver" = 15, "phoron" = 25, "lead" = 5,/* "void opal" = 1,*/ "verdantium" = 2/*, "painite" = 1*/))
 
 	else
-		mineral_name = pickweight(list("marble" = 3, "uranium" = 10, "platinum" = 10, "hematite" = 70, "carbon" = 70, "diamond" = 2, "gold" = 10, "silver" = 10, "phoron" = 20, "lead" = 2, "verdantium" = 1, "rutile" = 4)) //VOREStation Edit
+		mineral_name = pickweight(list("marble" = 3,/* "quartz" = 10,*/ "copper" = 20, "tin" = 15, "bauxite" = 15, "uranium" = 10, "platinum" = 10, "hematite" = 70, "rutile" = 15, "carbon" = 70, "diamond" = 2, "gold" = 10, "silver" = 10, "phoron" = 20, "lead" = 3,/* "void opal" = 1,*/ "verdantium" = 1/*, "painite" = 1*/))
 
 	if(mineral_name && (mineral_name in ore_data))
 		mineral = ore_data[mineral_name]
