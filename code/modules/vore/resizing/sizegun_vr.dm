@@ -89,12 +89,8 @@
 /obj/item/projectile/beam/sizelaser/on_hit(var/atom/target)
 	var/mob/living/M = target
 	if(istype(M))
-		if(!M.in_dorms() || !istype(M, /mob/living/carbon/human))
-			if(!M.resize(clamp(set_size,0.25,2)))
-				to_chat(M, "<font color='blue'>The beam fires into your body, changing your size!</font>")
-		else
-			if(!M.resize(clamp(set_size,0.01,6)))
-				to_chat(M, "<font color='blue'>The beam fires into your body, changing your size!</font>")
+		if(!M.resize(set_size))
+			to_chat(M, "<font color='blue'>The beam fires into your body, changing your size!</font>")
 		M.updateicon()
 		return
 	return 1
