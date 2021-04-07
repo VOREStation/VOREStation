@@ -98,7 +98,10 @@
 /obj/item/projectile/beam/sizelaser/admin/on_hit(var/atom/target)
 	var/mob/living/M = target
 	if(istype(M))
-		M.resize(set_size, TRUE, FALSE)
+		M.resize(set_size, TRUE, TRUE)
+		if(set_size >= RESIZE_TINY && set_size <= RESIZE_HUGE)
+			M.uncapped_size = FALSE
+		M.uncapped_size = TRUE
 		to_chat(M, "<font color='blue'>The beam fires into your body, changing your size!</font>")
 		M.updateicon()
 		return
