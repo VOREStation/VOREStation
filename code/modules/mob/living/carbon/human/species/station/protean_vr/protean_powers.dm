@@ -300,14 +300,14 @@
 	//Sizing up
 	if(cost > 0)
 		if(refactory.use_stored_material(MAT_STEEL,cost))
-			user.resize(size_factor)
+			user.resize(size_factor, ignore_prefs = TRUE)
 		else
 			to_chat(user,"<span class='warning'>That size change would cost [cost] steel, which you don't have.</span>")
 	//Sizing down (or not at all)
 	else if(cost <= 0)
 		cost = abs(cost)
 		var/actually_added = refactory.add_stored_material(MAT_STEEL,cost)
-		user.resize(size_factor)
+		user.resize(size_factor, ignore_prefs = TRUE)
 		if(actually_added != cost)
 			to_chat(user,"<span class='warning'>Unfortunately, [cost-actually_added] steel was lost due to lack of storage space.</span>")
 

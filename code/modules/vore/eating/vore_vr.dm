@@ -45,6 +45,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	//Actual preferences
 	var/digestable = TRUE
 	var/devourable = TRUE
+	var/resizable = TRUE
 	var/feeding = TRUE
 	var/absorbable = TRUE	//TFF 14/12/19 - choose whether allowing absorbing
 	var/digest_leave_remains = FALSE
@@ -122,6 +123,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 
 	digestable = json_from_file["digestable"]
 	devourable = json_from_file["devourable"]
+	resizable = json_from_file["resizable"]
 	feeding = json_from_file["feeding"]
 	absorbable = json_from_file["absorbable"]	//TFF 14/12/19 - choose whether allowing absorbing
 	digest_leave_remains = json_from_file["digest_leave_remains"]
@@ -141,6 +143,8 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 		digestable = TRUE
 	if(isnull(devourable))
 		devourable = TRUE
+	if(isnull(resizable))
+		resizable = TRUE
 	if(isnull(feeding))
 		feeding = TRUE
 	if(isnull(absorbable))
@@ -175,6 +179,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 			"version"				= version,
 			"digestable"			= digestable,
 			"devourable"			= devourable,
+			"resizable"				= resizable,
 			"absorbable"			= absorbable,
 			"feeding"				= feeding,
 			"digest_leave_remains"	= digest_leave_remains,
