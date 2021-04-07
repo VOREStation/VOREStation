@@ -432,7 +432,7 @@ var/global/list/disallowed_protean_accessories = list(
 	var/atom/reform_spot = blob.drop_location()
 
 	//Size update
-	resize(blob.size_multiplier, FALSE)
+	resize(blob.size_multiplier, FALSE, ignore_prefs = TRUE)
 
 	//Move them back where the blob was
 	forceMove(reform_spot)

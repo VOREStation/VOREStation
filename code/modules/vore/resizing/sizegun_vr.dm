@@ -44,12 +44,15 @@
 	set category = "Object"
 	set src in view(1)
 
-	var/size_select = input("Put the desired size (25-200%), (1-600%) in dormitory areas.", "Set Size", size_set_to * 100) as num
-	if(!size_range_check(size_select))
-		to_chat(usr, "<span class='notice'>Invalid size.</span>")
-		return
-	size_set_to = (size_select/100)
+	var/size_select = input("Put the desired size (25-200%), (1-600%) in dormitory areas.", "Set Size", size_set_to * 100) as num|null
+	if(!size_select)
+		return //cancelled
+	//We do valid resize testing in actual firings because people move after setting these things.
+	//Just a basic clamp here to the valid ranges.
+	size_set_to = clamp((size_select/100), RESIZE_MINIMUM_DORMS, RESIZE_MAXIMUM_DORMS)
 	to_chat(usr, "<span class='notice'>You set the size to [size_select]%</span>")
+	if(size_set_to < RESIZE_MINIMUM || size_set_to > RESIZE_MAXIMUM)
+		to_chat(usr, "<span class='notice'>Note: Resizing limited to 25-200% automatically while outside dormatory areas.</span>") //hint that we clamp it in resize
 
 /obj/item/weapon/gun/energy/sizegun/examine(mob/user)
 	. = ..()
@@ -66,8 +69,10 @@
 	set category = "Object"
 	set src in view(1)
 
-	var/size_select = input("Put the desired size", "Set Size", size_set_to * 100) as num
-	size_set_to = max(1,size_select/100)		//No negative numbers
+	var/size_select = input("Put the desired size (1-600%)", "Set Size", size_set_to * 100) as num|null
+	if(!size_select)
+		return //cancelled
+	size_set_to = clamp((size_select/100), 0, 1000) //eheh
 	to_chat(usr, "<span class='notice'>You set the size to [size_select]%</span>")
 
 //
@@ -88,8 +93,10 @@
 
 /obj/item/projectile/beam/sizelaser/on_hit(var/atom/target)
 	var/mob/living/M = target
+	var/ignoring_prefs = (target == firer ? TRUE : FALSE) // Resizing yourself
+	
 	if(istype(M))
-		if(!M.resize(set_size))
+		if(!M.resize(set_size, uncapped = M.has_large_resize_bounds(), ignore_prefs = ignoring_prefs))
 			to_chat(M, "<font color='blue'>The beam fires into your body, changing your size!</font>")
 		M.updateicon()
 		return
@@ -97,11 +104,23 @@
 
 /obj/item/projectile/beam/sizelaser/admin/on_hit(var/atom/target)
 	var/mob/living/M = target
+	
 	if(istype(M))
-		M.resize(set_size, TRUE, TRUE)
-		if(set_size >= RESIZE_TINY && set_size <= RESIZE_HUGE)
+
+		var/can_be_big = M.has_large_resize_bounds()
+		var/very_big = is_extreme_size(set_size)
+
+		if(very_big && can_be_big) // made an extreme size in an area that allows it, don't assume adminbuse
+			to_chat(firer, "<span class='warning'>[M] will lose this size upon moving into an area where this size is not allowed.</span>")
+		else if(very_big) // made an extreme size in an area that doesn't allow it, assume adminbuse
+			to_chat(firer, "<span class='warning'>[M] will retain this normally unallowed size outside this area.</span>")
+			M.size_uncapped = TRUE
+		else if(M.size_uncapped) // made a normal size after having been an extreme adminbuse size
+			to_chat(firer, "<span class='warning'>[M] now returned to normal area-based size limitations.</span>")
 			M.size_uncapped = FALSE
-		M.size_uncapped = TRUE
+		
+		M.resize(set_size, uncapped = TRUE, ignoring_prefs = TRUE) // Always ignores prefs, caution is advisable
+
 		to_chat(M, "<font color='blue'>The beam fires into your body, changing your size!</font>")
 		M.updateicon()
 		return

@@ -208,6 +208,7 @@
 	data["prefs"] = list(
 		"digestable" = host.digestable,
 		"devourable" = host.devourable,
+		"resizable" = host.resizable,
 		"feeding" = host.feeding,
 		"absorbable" = host.absorbable,
 		"digest_leave_remains" = host.digest_leave_remains,
@@ -356,6 +357,12 @@
 			host.devourable = !host.devourable
 			if(host.client.prefs_vr)
 				host.client.prefs_vr.devourable = host.devourable
+			unsaved_changes = TRUE
+			return TRUE
+		if("toggle_resize")
+			host.resizable = !host.resizable
+			if(host.client.prefs_vr)
+				host.client.prefs_vr.resizable = host.resizable
 			unsaved_changes = TRUE
 			return TRUE
 		if("toggle_feed")
