@@ -7,7 +7,7 @@
     
     var/size_multiplier = input(usr, "Input size multiplier.", "Resize", 1)
     L.resize(size_multiplier, TRUE, TRUE)
-    if(size_multiplier in range(RESIZE_TINY, RESIZE_HUGE))
+    if(size_multiplier >= RESIZE_TINY && size_multiplier <= RESIZE_HUGE)
         L.size_uncapped = FALSE
     else
         L.size_uncapped = TRUE

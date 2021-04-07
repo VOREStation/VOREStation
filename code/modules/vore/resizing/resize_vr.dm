@@ -61,6 +61,8 @@ GLOBAL_VAR(size_uncapped_mobs_timer)
 	return TRUE
 
 /proc/add_to_uncapped_list(var/mob/living/L)
+	if(L.size_uncapped = TRUE)
+		return
 	if(!GLOB.size_uncapped_mobs.len)
 		GLOB.size_uncapped_mobs_timer = addtimer(CALLBACK(GLOBAL_PROC, .check_uncapped_list), 2 SECONDS, TIMER_LOOP | TIMER_UNIQUE | TIMER_STOPPABLE)
 	GLOB.size_uncapped_mobs |= weakref(L)
