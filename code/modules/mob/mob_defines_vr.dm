@@ -1,5 +1,4 @@
 /mob
-	var/size_uncapped = FALSE //Determines if a mob's size obedies the resize cap, used for adminbus resize.
 	var/vantag_hud = 0			// Do I have the HUD enabled?
 	var/mob/temporary_form		// For holding onto a temporary form
 

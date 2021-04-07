@@ -6,6 +6,7 @@
 	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER
 	var/hunger_rate = DEFAULT_HUNGER_FACTOR
 	var/resizable = TRUE
+	var/size_uncapped = FALSE //Determines if a mob's size obedies the resize cap, used for adminbus resize.
 
 //custom say verbs
 	var/custom_say = null
