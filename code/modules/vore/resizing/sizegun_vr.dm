@@ -100,8 +100,8 @@
 	if(istype(M))
 		M.resize(set_size, TRUE, TRUE)
 		if(set_size >= RESIZE_TINY && set_size <= RESIZE_HUGE)
-			M.uncapped_size = FALSE
-		M.uncapped_size = TRUE
+			M.size_uncapped = FALSE
+		M.size_uncapped = TRUE
 		to_chat(M, "<font color='blue'>The beam fires into your body, changing your size!</font>")
 		M.updateicon()
 		return
