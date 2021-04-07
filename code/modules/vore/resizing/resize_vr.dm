@@ -1,16 +1,5 @@
-
-//these aren't defines so they can stay in this file
-var/const/RESIZE_HUGE = 2
-var/const/RESIZE_BIG = 1.5
-var/const/RESIZE_NORMAL = 1
-var/const/RESIZE_SMALL = 0.5
-var/const/RESIZE_TINY = 0.25
-
-//average
-var/const/RESIZE_A_HUGEBIG = (RESIZE_HUGE + RESIZE_BIG) / 2
-var/const/RESIZE_A_BIGNORMAL = (RESIZE_BIG + RESIZE_NORMAL) / 2
-var/const/RESIZE_A_NORMALSMALL = (RESIZE_NORMAL + RESIZE_SMALL) / 2
-var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
+GLOBAL_LIST_EMPTY(size_uncapped_mobs)
+GLOBAL_VAR(size_uncapped_mobs_timer)
 
 // Adding needed defines to /mob/living
 // Note: Polaris had this on /mob/living/carbon/human We need it higher up for animals and stuff.
@@ -71,11 +60,42 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 		return FALSE
 	return TRUE
 
+/proc/add_to_uncapped_list(var/mob/living/L)
+	if(!GLOB.size_uncapped_mobs.len)
+		GLOB.size_uncapped_mobs_timer = addtimer(CALLBACK(GLOBAL_PROC, .check_uncapped_list), 2 SECONDS, TIMER_LOOP | TIMER_UNIQUE | TIMER_STOPPABLE)
+	GLOB.size_uncapped_mobs |= weakref(L)
+
+/proc/remove_from_uncapped_list(var/mob/living/L)
+	if(!GLOB.size_uncapped_mobs.len)
+		return
+
+	GLOB.size_uncapped_mobs -= weakref(L)
+
+	if(!GLOB.size_uncapped_mobs.len)
+		deltimer(GLOB.size_uncapped_mobs_timer)
+
+/proc/check_uncapped_list()
+	for(var/weakref/wr in GLOB.size_uncapped_mobs)
+		var/mob/living/L = wr.resolve()
+		var/area/A = get_area(L)
+		if(!istype(L))
+			GLOB.size_uncapped_mobs -= wr
+			continue
+		
+		if((A.limit_mob_size && !L.size_uncapped) && (L.size_multiplier <= RESIZE_TINY || L.size_multiplier >= RESIZE_HUGE))
+			L.resize(L.size_multiplier)
+			GLOB.size_uncapped_mobs -= wr
+
+	if(!GLOB.size_uncapped_mobs.len)
+		deltimer(GLOB.size_uncapped_mobs_timer)
+
 /mob/living/proc/resize(var/new_size, var/animate = TRUE, var/uncapped = FALSE)
 	if(!uncapped)
 		new_size = clamp(new_size, RESIZE_TINY, RESIZE_HUGE)
 		src.size_uncapped = FALSE
-	
+		remove_from_uncapped_list(src)
+	else
+		add_to_uncapped_list(src)
 	if(size_multiplier == new_size)
 		return 1
 
