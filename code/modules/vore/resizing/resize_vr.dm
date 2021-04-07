@@ -73,6 +73,7 @@ GLOBAL_VAR(size_uncapped_mobs_timer)
 
 	if(!GLOB.size_uncapped_mobs.len)
 		deltimer(GLOB.size_uncapped_mobs_timer)
+		GLOB.size_uncapped_mobs_timer = null
 
 /proc/check_uncapped_list()
 	for(var/weakref/wr in GLOB.size_uncapped_mobs)
@@ -88,6 +89,7 @@ GLOBAL_VAR(size_uncapped_mobs_timer)
 
 	if(!GLOB.size_uncapped_mobs.len)
 		deltimer(GLOB.size_uncapped_mobs_timer)
+		GLOB.size_uncapped_mobs_timer = null
 
 /mob/living/proc/resize(var/new_size, var/animate = TRUE, var/uncapped = FALSE)
 	if(!uncapped)
