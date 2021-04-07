@@ -1680,6 +1680,7 @@
 #include "code\modules\admin\verbs\pray.dm"
 #include "code\modules\admin\verbs\randomverbs.dm"
 #include "code\modules\admin\verbs\randomverbs_vr.dm"
+#include "code\modules\admin\verbs\resize.dm"
 #include "code\modules\admin\verbs\smite.dm"
 #include "code\modules\admin\verbs\smite_vr.dm"
 #include "code\modules\admin\verbs\striketeam.dm"

@@ -1,16 +1,5 @@
-
-//these aren't defines so they can stay in this file
-var/const/RESIZE_HUGE = 2
-var/const/RESIZE_BIG = 1.5
-var/const/RESIZE_NORMAL = 1
-var/const/RESIZE_SMALL = 0.5
-var/const/RESIZE_TINY = 0.25
-
-//average
-var/const/RESIZE_A_HUGEBIG = (RESIZE_HUGE + RESIZE_BIG) / 2
-var/const/RESIZE_A_BIGNORMAL = (RESIZE_BIG + RESIZE_NORMAL) / 2
-var/const/RESIZE_A_NORMALSMALL = (RESIZE_NORMAL + RESIZE_SMALL) / 2
-var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
+GLOBAL_LIST_EMPTY(size_uncapped_mobs)
+GLOBAL_VAR(size_uncapped_mobs_timer)
 
 // Adding needed defines to /mob/living
 // Note: Polaris had this on /mob/living/carbon/human We need it higher up for animals and stuff.
@@ -64,28 +53,58 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
  * Resizes the mob immediately to the desired mod, animating it growing/shrinking.
  * It can be used by anything that calls it.
  */
-/atom/movable/proc/in_dorms()
-	var/area/A = get_area(src)
-	return istype(A, /area/crew_quarters/sleep)
 
 /atom/movable/proc/size_range_check(size_select)		//both objects and mobs needs to have that
-	if((!in_dorms() && (size_select > 200 || size_select < 25)) || (size_select > 600 || size_select <1))
+	var/area/A = get_area(src) //Get the atom's area to check for size limit.
+	if((A.limit_mob_size && (size_select > 200 || size_select < 25)) || (size_select > 600 || size_select <1))
 		return FALSE
 	return TRUE
 
-/mob/living/proc/resize(var/new_size, var/animate = TRUE, var/mark_unnatural_size = TRUE)
+/proc/add_to_uncapped_list(var/mob/living/L)
+	if(L.size_uncapped)
+		return
+	if(!GLOB.size_uncapped_mobs.len)
+		GLOB.size_uncapped_mobs_timer = addtimer(CALLBACK(GLOBAL_PROC, .check_uncapped_list), 2 SECONDS, TIMER_LOOP | TIMER_UNIQUE | TIMER_STOPPABLE)
+	GLOB.size_uncapped_mobs |= weakref(L)
+
+/proc/remove_from_uncapped_list(var/mob/living/L)
+	if(!GLOB.size_uncapped_mobs.len)
+		return
+
+	GLOB.size_uncapped_mobs -= weakref(L)
+
+	if(!GLOB.size_uncapped_mobs.len)
+		deltimer(GLOB.size_uncapped_mobs_timer)
+		GLOB.size_uncapped_mobs_timer = null
+
+/proc/check_uncapped_list()
+	for(var/weakref/wr in GLOB.size_uncapped_mobs)
+		var/mob/living/L = wr.resolve()
+		var/area/A = get_area(L)
+		if(!istype(L))
+			GLOB.size_uncapped_mobs -= wr
+			continue
+		
+		if((A.limit_mob_size && !L.size_uncapped) && (L.size_multiplier <= RESIZE_TINY || L.size_multiplier >= RESIZE_HUGE))
+			L.resize(L.size_multiplier)
+			GLOB.size_uncapped_mobs -= wr
+
+	if(!GLOB.size_uncapped_mobs.len)
+		deltimer(GLOB.size_uncapped_mobs_timer)
+		GLOB.size_uncapped_mobs_timer = null
+
+/mob/living/proc/resize(var/new_size, var/animate = TRUE, var/uncapped = FALSE)
+	if(!uncapped)
+		new_size = clamp(new_size, RESIZE_TINY, RESIZE_HUGE)
+		src.size_uncapped = FALSE
+		remove_from_uncapped_list(src)
+	else
+		add_to_uncapped_list(src)
 	if(size_multiplier == new_size)
 		return 1
 
 	size_multiplier = new_size //Change size_multiplier so that other items can interact with them
 
-	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
-		if(new_size > 2 || new_size < 0.25)
-			if(mark_unnatural_size)		//Will target size be reverted to ordinary bounds when out of dorms or not?
-				H.unnaturally_resized = TRUE
-		else
-			H.unnaturally_resized = FALSE
 	if(animate)
 		var/change = new_size - size_multiplier
 		var/duration = (abs(change)+0.25) SECONDS

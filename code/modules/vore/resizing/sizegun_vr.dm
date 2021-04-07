@@ -89,12 +89,8 @@
 /obj/item/projectile/beam/sizelaser/on_hit(var/atom/target)
 	var/mob/living/M = target
 	if(istype(M))
-		if(!M.in_dorms() || !istype(M, /mob/living/carbon/human))
-			if(!M.resize(clamp(set_size,0.25,2)))
-				to_chat(M, "<font color='blue'>The beam fires into your body, changing your size!</font>")
-		else
-			if(!M.resize(clamp(set_size,0.01,6)))
-				to_chat(M, "<font color='blue'>The beam fires into your body, changing your size!</font>")
+		if(!M.resize(set_size))
+			to_chat(M, "<font color='blue'>The beam fires into your body, changing your size!</font>")
 		M.updateicon()
 		return
 	return 1
@@ -102,7 +98,10 @@
 /obj/item/projectile/beam/sizelaser/admin/on_hit(var/atom/target)
 	var/mob/living/M = target
 	if(istype(M))
-		M.resize(set_size, TRUE, FALSE)
+		M.resize(set_size, TRUE, TRUE)
+		if(set_size >= RESIZE_TINY && set_size <= RESIZE_HUGE)
+			M.size_uncapped = FALSE
+		M.size_uncapped = TRUE
 		to_chat(M, "<font color='blue'>The beam fires into your body, changing your size!</font>")
 		M.updateicon()
 		return
