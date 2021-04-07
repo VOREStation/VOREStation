@@ -490,10 +490,10 @@ var/global/list/remainless_species = list(SPECIES_PROMETHEAN,
 		var/datum/trait/instance = new path()
 		if(!instance.name)
 			continue //A prototype or something
-		var/cost = instance.cost
-		traits_costs[path] = cost
+		var/category = instance.category
+		traits_costs[path] = category
 		all_traits[path] = instance
-		switch(cost)
+		switch(category)
 			if(-INFINITY to -0.1)
 				negative_traits[path] = instance
 			if(0)

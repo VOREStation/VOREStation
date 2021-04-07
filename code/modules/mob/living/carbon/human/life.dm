@@ -1266,7 +1266,7 @@
 		//VOREStation Add - Vampire hunger alert
 		else if(get_species() == SPECIES_CUSTOM)
 			var/datum/species/custom/C = species
-			if(/datum/trait/bloodsucker in C.traits)
+			if(/datum/trait/neutral/bloodsucker in C.traits)
 				fat_alert = /obj/screen/alert/fat/vampire
 				hungry_alert = /obj/screen/alert/hungry/vampire
 				starving_alert = /obj/screen/alert/starving/vampire
