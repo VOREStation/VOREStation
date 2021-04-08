@@ -114,12 +114,8 @@
 			to_chat(firer, "<span class='warning'>[M] will lose this size upon moving into an area where this size is not allowed.</span>")
 		else if(very_big) // made an extreme size in an area that doesn't allow it, assume adminbuse
 			to_chat(firer, "<span class='warning'>[M] will retain this normally unallowed size outside this area.</span>")
-			M.size_uncapped = TRUE
-		else if(M.size_uncapped) // made a normal size after having been an extreme adminbuse size
-			to_chat(firer, "<span class='warning'>[M] now returned to normal area-based size limitations.</span>")
-			M.size_uncapped = FALSE
 		
-		M.resize(set_size, uncapped = TRUE, ignoring_prefs = TRUE) // Always ignores prefs, caution is advisable
+		M.resize(set_size, uncapped = TRUE, ignore_prefs = TRUE) // Always ignores prefs, caution is advisable
 
 		to_chat(M, "<font color='blue'>The beam fires into your body, changing your size!</font>")
 		M.updateicon()

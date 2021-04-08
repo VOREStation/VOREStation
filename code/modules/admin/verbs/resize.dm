@@ -17,10 +17,6 @@
         to_chat(src,"<span class='warning'>[L] will lose this size upon moving into an area where this size is not allowed.</span>")
     else if(very_big) // made an extreme size in an area that doesn't allow it, assume adminbuse
         to_chat(src,"<span class='warning'>[L] will retain this normally unallowed size outside this area.</span>")
-        L.size_uncapped = TRUE
-    else if(L.size_uncapped) // made a normal size after having been an extreme adminbuse size
-        to_chat(src,"<span class='warning'>[L] now returned to normal area-based size limitations.</span>")
-        L.size_uncapped = FALSE
 
     L.resize(size_multiplier, animate = TRUE, uncapped = TRUE, ignore_prefs = TRUE)
 
