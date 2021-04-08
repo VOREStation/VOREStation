@@ -45,20 +45,22 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	//Actual preferences
 	var/digestable = TRUE
 	var/devourable = TRUE
-	var/resizable = TRUE
+	var/absorbable = TRUE
 	var/feeding = TRUE
-	var/absorbable = TRUE	//TFF 14/12/19 - choose whether allowing absorbing
+	var/can_be_drop_prey = FALSE
+	var/can_be_drop_pred = FALSE
 	var/digest_leave_remains = FALSE
 	var/allowmobvore = TRUE
+	var/permit_healbelly = TRUE
+
+	var/resizable = TRUE
+	var/show_vore_fx = TRUE
+	var/step_mechanics_pref = FALSE
+	var/pickup_pref = TRUE
+
 	var/list/belly_prefs = list()
 	var/vore_taste = "nothing in particular"
 	var/vore_smell = "nothing in particular"
-	var/permit_healbelly = TRUE
-	var/show_vore_fx = TRUE
-	var/can_be_drop_prey = FALSE
-	var/can_be_drop_pred = FALSE
-	var/step_mechanics_pref = FALSE
-	var/pickup_pref = TRUE
 
 	//Mechanically required
 	var/path
@@ -125,7 +127,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	devourable = json_from_file["devourable"]
 	resizable = json_from_file["resizable"]
 	feeding = json_from_file["feeding"]
-	absorbable = json_from_file["absorbable"]	//TFF 14/12/19 - choose whether allowing absorbing
+	absorbable = json_from_file["absorbable"]
 	digest_leave_remains = json_from_file["digest_leave_remains"]
 	allowmobvore = json_from_file["allowmobvore"]
 	vore_taste = json_from_file["vore_taste"]
