@@ -16,7 +16,6 @@
 
 	var/list/logs = list() // Gets written to by exonet's send_message() function.
 
-//TFF 3/6/19 - Port Cit RP fix for infinite frames
 	circuit = /obj/item/weapon/circuitboard/telecomms/exonet_node
 // Proc: New()
 // Parameters: None

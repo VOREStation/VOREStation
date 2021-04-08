@@ -67,7 +67,7 @@ var/list/all_maps = list()
 	var/ai_shell_restricted = FALSE			//VOREStation Addition - are there z-levels restricted?
 	var/ai_shell_allowed_levels = list()	//VOREStation Addition - which z-levels ARE we allowed to visit?
 
-	//VOREStation Addition Start - belter stuff	TFF 16/4/20 - Mining Outpost Shuttle
+	//VOREStation Addition Start
 	var/list/belter_docked_z = list()
 	var/list/belter_transit_z = list()
 	var/list/belter_belt_z = list()
