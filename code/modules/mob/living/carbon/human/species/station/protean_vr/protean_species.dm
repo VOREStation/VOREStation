@@ -201,7 +201,7 @@
 		if(refactory.get_stored_material(MAT_GOLD) >= METAL_PER_TICK)
 			H.add_modifier(/datum/modifier/protean/gold, origin = refactory)
 
-		//Silver adds darksight
+		//Silver adds accuracy and evasion
 		if(refactory.get_stored_material(MAT_SILVER) >= METAL_PER_TICK)
 			H.add_modifier(/datum/modifier/protean/silver, origin = refactory)
 

@@ -201,9 +201,8 @@
 
 	var/obj/item/stack/material/matstack = held
 	var/substance = matstack.material.name
-	var/list/edible_materials = list(MAT_STEEL, MAT_SILVER, MAT_GOLD, MAT_URANIUM, MAT_METALHYDROGEN) //Can't eat all materials, just useful ones.
 	var allowed = FALSE
-	for(var/material in edible_materials)
+	for(var/material in PROTEAN_EDIBLE_MATERIALS)
 		if(material == substance) allowed = TRUE
 	if(!allowed)
 		to_chat(src,"<span class='warning'>You can't process [substance]!</span>")
