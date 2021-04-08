@@ -1,6 +1,3 @@
-GLOBAL_LIST_EMPTY(size_uncapped_mobs)
-GLOBAL_VAR(size_uncapped_mobs_timer)
-
 // Adding needed defines to /mob/living
 // Note: Polaris had this on /mob/living/carbon/human We need it higher up for animals and stuff.
 /mob/living
@@ -62,41 +59,6 @@ GLOBAL_VAR(size_uncapped_mobs_timer)
 /proc/is_extreme_size(size)
 	return (size < RESIZE_MINIMUM || size > RESIZE_MAXIMUM)
 
-/proc/add_to_uncapped_list(var/mob/living/L)
-	if(L.size_uncapped)
-		return
-	if(!GLOB.size_uncapped_mobs.len)
-		//Could be a subsystem but arguably a giant waste of time to make into a subsystem. A subsystem that is paused on and off all the time? Eh.
-		//If you're that worried, make metrics for how often this even runs and then decide.
-		GLOB.size_uncapped_mobs_timer = addtimer(CALLBACK(GLOBAL_PROC, .check_uncapped_list), 2 SECONDS, TIMER_LOOP | TIMER_UNIQUE | TIMER_STOPPABLE)
-	GLOB.size_uncapped_mobs |= weakref(L)
-
-/proc/remove_from_uncapped_list(var/mob/living/L)
-	if(!GLOB.size_uncapped_mobs.len)
-		return
-
-	GLOB.size_uncapped_mobs -= weakref(L)
-
-	if(!GLOB.size_uncapped_mobs.len)
-		deltimer(GLOB.size_uncapped_mobs_timer)
-		GLOB.size_uncapped_mobs_timer = null
-
-/proc/check_uncapped_list()
-	for(var/weakref/wr in GLOB.size_uncapped_mobs)
-		var/mob/living/L = wr.resolve()
-		if(!istype(L) || L.size_uncapped)
-			GLOB.size_uncapped_mobs -= wr
-			continue
-		
-		// If we get here, you're a mob, and you don't have admin exclusion (size_uncapped) to being big, and you're very likely big.
-		// If you're not abnormally big, the below will do nothing, so it's fine to run anyway.
-		if(!L.has_large_resize_bounds())
-			L.resize(L.size_multiplier, ignore_prefs = TRUE) //Calling this will have resize() clamp it
-			GLOB.size_uncapped_mobs -= wr
-
-	if(!GLOB.size_uncapped_mobs.len)
-		deltimer(GLOB.size_uncapped_mobs_timer)
-		GLOB.size_uncapped_mobs_timer = null
 
 /**
  * Resizes the mob immediately to the desired mod, animating it growing/shrinking.
@@ -107,9 +69,16 @@ GLOBAL_VAR(size_uncapped_mobs_timer)
 /mob/living/proc/resize(var/new_size, var/animate = TRUE, var/uncapped = FALSE, var/ignore_prefs = FALSE)
 	if(!uncapped)
 		new_size = clamp(new_size, RESIZE_MINIMUM, RESIZE_MAXIMUM)
-		remove_from_uncapped_list(src)
-	else if(is_extreme_size(new_size))
-		add_to_uncapped_list(src)
+		var/datum/component/resize_guard/guard = GetComponent(/datum/component/resize_guard)
+		if(guard)
+			qdel(guard)
+	else if(has_large_resize_bounds())
+		if(is_extreme_size(new_size))
+			AddComponent(/datum/component/resize_guard)
+		else
+			var/datum/component/resize_guard/guard = GetComponent(/datum/component/resize_guard)
+			if(guard)
+				qdel(guard)
 	
 	if(size_multiplier == new_size)
 		return 1
