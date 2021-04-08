@@ -260,6 +260,12 @@
 				implantSubData["name"] =  I.name
 				implantSubData["known"] = istype(I) && I.known_implant
 				implantData.Add(list(implantSubData))
+				//VOREStation Add: NIFs
+				var/obj/item/device/nif/N = thing
+				implantSubData["name"] =  N.name
+				implantSubData["known"] = istype(N) && N.known_implant
+				implantData.Add(list(implantSubData))
+				//VOREStation Add End
 
 			organData["implants"] = implantData
 			organData["implants_len"] = implantData.len
@@ -464,8 +470,11 @@
 			var/unknown_body = 0
 			for(var/thing in e.implants)
 				var/obj/item/weapon/implant/I = thing
+				var/obj/item/device/nif/N = thing //VOREStation Add: NIFs
 				if(istype(I) && I.known_implant)
 					imp += "[I] implanted:"
+				if(istype(N) && N.known_implant) //VOREStation Add: NIFs
+					imp += "[N] implanted:"
 				else
 					unknown_body++
 
