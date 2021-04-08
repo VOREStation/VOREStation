@@ -1,17 +1,3 @@
-
-//these aren't defines so they can stay in this file
-var/const/RESIZE_HUGE = 2
-var/const/RESIZE_BIG = 1.5
-var/const/RESIZE_NORMAL = 1
-var/const/RESIZE_SMALL = 0.5
-var/const/RESIZE_TINY = 0.25
-
-//average
-var/const/RESIZE_A_HUGEBIG = (RESIZE_HUGE + RESIZE_BIG) / 2
-var/const/RESIZE_A_BIGNORMAL = (RESIZE_BIG + RESIZE_NORMAL) / 2
-var/const/RESIZE_A_NORMALSMALL = (RESIZE_NORMAL + RESIZE_SMALL) / 2
-var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
-
 // Adding needed defines to /mob/living
 // Note: Polaris had this on /mob/living/carbon/human We need it higher up for animals and stuff.
 /mob/living
@@ -60,32 +46,45 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 /mob/living/get_effective_size()
 	return size_multiplier
 
+/atom/movable/proc/size_range_check(size_select)		//both objects and mobs needs to have that
+	var/area/A = get_area(src) //Get the atom's area to check for size limit.
+	if((A.limit_mob_size && (size_select > 200 || size_select < 25)) || (size_select > 600 || size_select <1))
+		return FALSE
+	return TRUE
+
+/atom/movable/proc/has_large_resize_bounds()
+	var/area/A = get_area(src) //Get the atom's area to check for size limit.
+	return !A.limit_mob_size
+
+/proc/is_extreme_size(size)
+	return (size < RESIZE_MINIMUM || size > RESIZE_MAXIMUM)
+
+
 /**
  * Resizes the mob immediately to the desired mod, animating it growing/shrinking.
  * It can be used by anything that calls it.
  */
-/atom/movable/proc/in_dorms()
-	var/area/A = get_area(src)
-	return istype(A, /area/crew_quarters/sleep)
 
-/atom/movable/proc/size_range_check(size_select)		//both objects and mobs needs to have that
-	if((!in_dorms() && (size_select > 200 || size_select < 25)) || (size_select > 600 || size_select <1))
-		return FALSE
-	return TRUE
 
-/mob/living/proc/resize(var/new_size, var/animate = TRUE, var/mark_unnatural_size = TRUE)
+/mob/living/proc/resize(var/new_size, var/animate = TRUE, var/uncapped = FALSE, var/ignore_prefs = FALSE)
+	if(!uncapped)
+		new_size = clamp(new_size, RESIZE_MINIMUM, RESIZE_MAXIMUM)
+		var/datum/component/resize_guard/guard = GetComponent(/datum/component/resize_guard)
+		if(guard)
+			qdel(guard)
+	else if(has_large_resize_bounds())
+		if(is_extreme_size(new_size))
+			AddComponent(/datum/component/resize_guard)
+		else
+			var/datum/component/resize_guard/guard = GetComponent(/datum/component/resize_guard)
+			if(guard)
+				qdel(guard)
+	
 	if(size_multiplier == new_size)
 		return 1
 
 	size_multiplier = new_size //Change size_multiplier so that other items can interact with them
 
-	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
-		if(new_size > 2 || new_size < 0.25)
-			if(mark_unnatural_size)		//Will target size be reverted to ordinary bounds when out of dorms or not?
-				H.unnaturally_resized = TRUE
-		else
-			H.unnaturally_resized = FALSE
 	if(animate)
 		var/change = new_size - size_multiplier
 		var/duration = (abs(change)+0.25) SECONDS
@@ -111,8 +110,8 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 	else
 		update_transform() //Lame way
 
-/mob/living/carbon/human/resize(var/new_size, var/animate = TRUE)
-	if(!resizable)
+/mob/living/carbon/human/resize(var/new_size, var/animate = TRUE, var/uncapped = FALSE, var/ignore_prefs = FALSE)
+	if(!resizable && !ignore_prefs)
 		return 1
 	if(species)
 		vis_height = species.icon_height
@@ -125,7 +124,7 @@ var/const/RESIZE_A_SMALLTINY = (RESIZE_SMALL + RESIZE_TINY) / 2
 			apply_hud(index, HI)
 
 // Optimize mannequins - never a point to animating or doing HUDs on these.
-/mob/living/carbon/human/dummy/mannequin/resize(var/new_size, var/animate = TRUE)
+/mob/living/carbon/human/dummy/mannequin/resize(var/new_size, var/animate = TRUE, var/uncapped = FALSE, var/ignore_prefs = FALSE)
 	size_multiplier = new_size
 
 /**

@@ -121,7 +121,7 @@
 	
 	else if(ismob(target))
 		var/mob/living/M = target
-		resize(M.size_multiplier)
+		resize(M.size_multiplier, ignore_prefs = TRUE)
 
 	//Morphed is weaker
 	melee_damage_lower = melee_damage_disguised
@@ -165,7 +165,7 @@
 	maptext = null
 
 	size_multiplier = our_size_multiplier
-	resize(size_multiplier)
+	resize(size_multiplier, ignore_prefs = TRUE)
 
 	//Baseline stats
 	melee_damage_lower = initial(melee_damage_lower)
@@ -183,7 +183,7 @@
 /mob/living/simple_mob/vore/hostile/morph/will_show_tooltip()
 	return (!morphed)
 
-/mob/living/simple_mob/vore/hostile/morph/resize(var/new_size, var/animate = TRUE)
+/mob/living/simple_mob/vore/hostile/morph/resize(var/new_size, var/animate = TRUE, var/uncapped = FALSE, var/ignore_prefs = FALSE)
 	if(morphed && !ismob(form))
 		return
 	return ..()
