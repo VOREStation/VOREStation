@@ -47,7 +47,6 @@
 	icon_state = "debrisexplored"
 	forced_ambience = list('sound/ambience/tension/tension.ogg', 'sound/ambience/tension/horror.ogg')
 
-//TFF 26/12/19 - Sub-areas for the APCs.
 /area/tether_away/guttersite/engines
 	name = "Gutter - Gutter Engineering"
 

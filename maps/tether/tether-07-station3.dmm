@@ -3325,11 +3325,14 @@
 /turf/simulated/floor/bluegrid,
 /area/ai)
 "afV" = (
-/obj/machinery/atmospherics/unary/engine{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 9
 	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 6;
+	icon_state = "intact"
+	},
+/turf/simulated/wall/rshull,
 /area/shuttle/excursion/general)
 "afW" = (
 /obj/effect/floor_decal/borderfloorblack,
@@ -3413,20 +3416,23 @@
 /turf/simulated/open,
 /area/security/brig)
 "agc" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 5;
+	icon_state = "intact-fuel"
 	},
-/turf/simulated/floor/tiled/asteroid_steel/airless,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/mining_outpost/shuttle)
+/obj/machinery/atmospherics/pipe/manifold/hidden{
+	dir = 4;
+	icon_state = "map"
+	},
+/turf/simulated/wall/rshull,
+/area/shuttle/excursion/general)
 "agd" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8
+/obj/machinery/atmospherics/unary/engine{
+	dir = 1
 	},
-/turf/simulated/floor/tiled/asteroid_steel/airless,
+/turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/mining_outpost/shuttle)
+/area/shuttle/excursion/general)
 "age" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -3451,7 +3457,7 @@
 "agf" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8;
-	icon_state = "propulsion_r"
+	icon_state = "propulsion_l"
 	},
 /turf/simulated/floor/tiled/asteroid_steel/airless,
 /turf/simulated/shuttle/plating/airless/carry,
@@ -3459,6 +3465,21 @@
 "agg" = (
 /turf/simulated/floor/airless,
 /area/space)
+"agh" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/asteroid_steel/airless,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/mining_outpost/shuttle)
+"agi" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_r"
+	},
+/turf/simulated/floor/tiled/asteroid_steel/airless,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/mining_outpost/shuttle)
 "agj" = (
 /obj/machinery/access_button{
 	command = "cycle_exterior";
@@ -21163,17 +21184,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock/refinery)
-"aXC" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
-	dir = 5;
-	icon_state = "intact-fuel"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 9;
-	icon_state = "intact"
-	},
-/turf/simulated/wall/rshull,
-/area/shuttle/excursion/general)
 "aXD" = (
 /obj/structure/bed/chair/shuttle{
 	dir = 8
@@ -21612,12 +21622,6 @@
 /obj/machinery/mineral/input,
 /turf/simulated/floor/plating,
 /area/quartermaster/belterdock/refinery)
-"aZD" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
-	dir = 9
-	},
-/turf/simulated/wall/rshull,
-/area/shuttle/excursion/general)
 "aZH" = (
 /obj/machinery/conveyor{
 	dir = 8;
@@ -22631,13 +22635,6 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled/monotile,
 /area/tether/exploration)
-"esH" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden{
-	dir = 1;
-	icon_state = "map"
-	},
-/turf/simulated/wall/rshull,
-/area/shuttle/excursion/general)
 "esK" = (
 /obj/machinery/door/firedoor/glass/hidden/steel{
 	dir = 1
@@ -22824,13 +22821,6 @@
 /obj/machinery/door/firedoor/glass/hidden/steel,
 /turf/simulated/floor/tiled,
 /area/hallway/station/upper)
-"fmc" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 6;
-	icon_state = "intact"
-	},
-/turf/simulated/wall/rshull,
-/area/shuttle/excursion/general)
 "fox" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -36827,7 +36817,7 @@ aUJ
 aXb
 afT
 aez
-afV
+agd
 ams
 aXq
 abe
@@ -36969,7 +36959,7 @@ wRt
 eug
 afT
 aeG
-afV
+agd
 ams
 aXq
 abe
@@ -37110,8 +37100,8 @@ wOI
 afO
 wOI
 aiX
-aZD
-acK
+afV
+vJd
 ams
 aXq
 abe
@@ -37252,8 +37242,8 @@ hNx
 kTn
 ckU
 aiY
-fmc
-vJd
+xiw
+acK
 ams
 ghy
 abe
@@ -37820,8 +37810,8 @@ aXS
 rLd
 opv
 uVS
-esH
-vJd
+xiw
+acK
 ams
 eof
 abe
@@ -37962,8 +37952,8 @@ uGF
 wPw
 xvO
 aRv
-aXC
-acK
+agc
+vJd
 ams
 amq
 abe
@@ -38105,7 +38095,7 @@ ikk
 efQ
 wPF
 aeG
-afV
+agd
 ams
 aSx
 krj
@@ -38247,7 +38237,7 @@ iEV
 tEV
 xiw
 aeH
-afV
+agd
 ams
 eAm
 abe
@@ -40284,11 +40274,11 @@ avt
 avt
 adD
 aZS
-agc
-agd
-agd
-agd
 agf
+agh
+agh
+agh
+agi
 baB
 adD
 avt

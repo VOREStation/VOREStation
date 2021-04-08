@@ -257,9 +257,17 @@
 			for(var/obj/thing in E.implants)
 				var/implantSubData[0]
 				var/obj/item/weapon/implant/I = thing
-				implantSubData["name"] =  I.name
-				implantSubData["known"] = istype(I) && I.known_implant
-				implantData.Add(list(implantSubData))
+			//VOREStation Block Edit Start
+				var/obj/item/device/nif/N = thing
+				if(istype(I))
+					implantSubData["name"] =  I.name
+					implantSubData["known"] = istype(I) && I.known_implant
+					implantData.Add(list(implantSubData))
+				else
+					implantSubData["name"] =  N.name
+					implantSubData["known"] = istype(N) && N.known_implant
+					implantData.Add(list(implantSubData))
+			//VOREStation Block Edit End
 
 			organData["implants"] = implantData
 			organData["implants_len"] = implantData.len
@@ -464,8 +472,11 @@
 			var/unknown_body = 0
 			for(var/thing in e.implants)
 				var/obj/item/weapon/implant/I = thing
+				var/obj/item/device/nif/N = thing //VOREStation Add: NIFs
 				if(istype(I) && I.known_implant)
 					imp += "[I] implanted:"
+				if(istype(N) && N.known_implant) //VOREStation Add: NIFs
+					imp += "[N] implanted:"
 				else
 					unknown_body++
 

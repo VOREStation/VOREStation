@@ -57,7 +57,6 @@
 	suit_sprites = 'icons/mob/taursuits_wolf_vr.dmi'
 	icon_sprite_tag = "wolf"
 
-//TFF 22/11/19 - CHOMPStation port of fat taur sprites
 /datum/sprite_accessory/tail/taur/fatwolf
 	name = "Fat Wolf (Taur)"
 	icon_state = "fatwolf_s"
@@ -70,7 +69,6 @@
 	extra_overlay2 = "wolf_markings_2"
 	//icon_sprite_tag = "wolf2c"
 
-//TFF 22/11/19 - CHOMPStation port of fat taur sprites
 /datum/sprite_accessory/tail/taur/wolf/fatwolf_2c
 	name = "Fat Wolf 3-color (Taur)"
 	icon_state = "fatwolf_s"
@@ -276,7 +274,6 @@
 	suit_sprites = 'icons/mob/taursuits_feline_vr.dmi'
 	icon_sprite_tag = "feline"
 
-//TFF 22/11/19 - CHOMPStation port of fat taur sprites
 /datum/sprite_accessory/tail/taur/fatfeline
 	name = "Fat Feline (Taur)"
 	icon_state = "fatfeline_s"
@@ -294,7 +291,6 @@
 	extra_overlay2 = "feline_markings_2"
 	//icon_sprite_tag = "feline2c"
 
-//TFF 22/11/19 - CHOMPStation port of fat taur sprites
 /datum/sprite_accessory/tail/taur/feline/fatfeline_2c
 	name = "Fat Feline 3-color (Taur)"
 	icon_state = "fatfeline_s"

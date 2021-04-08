@@ -638,6 +638,7 @@
 	. = ..()
 	GLOB.moved_event.raise_event(AM, old_loc, AM.loc)
 	SEND_SIGNAL(src, COMSIG_ATOM_ENTERED, AM, old_loc)
+	SEND_SIGNAL(AM, COMSIG_ATOM_ENTERING, src, old_loc)
 
 /atom/Exit(atom/movable/AM, atom/new_loc)
 	. = ..()
