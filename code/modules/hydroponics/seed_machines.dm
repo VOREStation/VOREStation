@@ -94,7 +94,6 @@
 			to_chat(user, "You load [W] into [src].")
 		return
 
-//TFF 3/6/19 - fix infinite frame creation, ported from Cit RP - also allow movement of hydroponic-related machines.
 	if(default_deconstruction_screwdriver(user, W))
 		return
 	if(W.is_wrench())

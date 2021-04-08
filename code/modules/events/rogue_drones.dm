@@ -22,7 +22,7 @@
 /datum/event/rogue_drone/announce()
 	var/msg
 	var/rng = rand(1,5)
-	//VOREStation Edit Start TFF 16/12/19 - Sif -> Virgo 3b
+	//VOREStation Edit Start
 	switch(rng)
 		if(1)
 			msg = "A combat drone wing operating in close orbit above Virgo 3b has failed to return from a anti-piracy sweep.  If any are sighted, \
