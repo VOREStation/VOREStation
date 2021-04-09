@@ -267,14 +267,14 @@
 /datum/map_z_level/tether_lateload/gateway_destination
 	name = "Gateway Destination"
 	z = Z_LEVEL_GATEWAY
-
+/*		//Disabled because mercs
 #include "../../gateway_vr/snow_outpost.dm"
 /datum/map_template/tether_lateload/gateway/snow_outpost
 	name = "Snow Outpost"
 	desc = "Big snowy area with various outposts."
 	mappath = 'maps/gateway_vr/snow_outpost.dmm'
 	associated_map_datum = /datum/map_z_level/tether_lateload/gateway_destination
-
+*/		//Disabled because mercs
 #include "../../gateway_vr/zoo.dm"
 /datum/map_template/tether_lateload/gateway/zoo
 	name = "Zoo"

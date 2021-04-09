@@ -164,7 +164,6 @@
 		)
 
 	lateload_single_pick = list(
-		list("Snow Outpost"),
 		list("Carp Farm"),
 		list("Snow Field"),
 		list("Listening Post")
