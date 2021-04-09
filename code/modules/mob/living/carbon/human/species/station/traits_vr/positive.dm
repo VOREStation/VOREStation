@@ -13,13 +13,13 @@
 /datum/trait/positive/hardy
 	name = "Hardy"
 	desc = "Allows you to carry heavy equipment with less slowdown."
-	cost = 2
+	cost = 1
 	var_changes = list("item_slowdown_mod" = 0.5)
 
 /datum/trait/positive/hardy_plus
 	name = "Major Hardy"
 	desc = "Allows you to carry heavy equipment with almost no slowdown."
-	cost = 3
+	cost = 2
 	var_changes = list("item_slowdown_mod" = 0.25)
 
 /datum/trait/positive/endurance_high
