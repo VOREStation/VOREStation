@@ -80,7 +80,6 @@
 	light_power = 3
 	light_color = "#3300ff"
 
-<<<<<<< HEAD
 //VOREStation edit: medigun
 /obj/effect/projectile/impact/medigun
 	icon = 'icons/obj/projectiles_vr.dmi'
@@ -89,7 +88,5 @@
 	light_power = 0.5
 	light_color = "#80F5FF"
 //VOREStation edit ends
-=======
 /obj/effect/projectile/impact/pointdefense
 	icon_state = "impact_pointdef"
->>>>>>> 031f8a7... Merge pull request #7919 from Atermonera/point_defense_targeting
