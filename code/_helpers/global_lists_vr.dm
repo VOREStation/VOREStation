@@ -491,7 +491,8 @@ var/global/list/remainless_species = list(SPECIES_PROMETHEAN,
 		if(!instance.name)
 			continue //A prototype or something
 		var/category = instance.category
-		traits_costs[path] = category
+		var/cost = instance.cost
+		traits_costs[path] = cost
 		all_traits[path] = instance
 		switch(category)
 			if(-INFINITY to -0.1)

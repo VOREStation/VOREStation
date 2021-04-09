@@ -31,6 +31,7 @@ idcaboutaname - Protean
 inuzari - Diona
 jademanique - Black-Eyed Shadekin
 jademanique - Xenochimera
+joltze - Black-Eyed Shadekin
 khanivore - Protean
 killjaden - Protean
 ktccd - Diona
