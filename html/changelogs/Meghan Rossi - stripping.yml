@@ -1,4 +1,0 @@
-author: Meghan-Rossi
-delete-after: True
-changes: 
-  - tweak: "If you try to put someone in one of their own slots using the stripping menu, now you will instead try to strip that slot."
