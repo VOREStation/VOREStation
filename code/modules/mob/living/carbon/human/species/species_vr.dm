@@ -53,6 +53,9 @@
 
 	var/datum/species/new_copy = new to_copy.type()
 
+	for(var/organ in to_copy.has_limbs)
+		var/list/organ_data = to_copy.has_limbs[organ]
+		new_copy.has_limbs[organ] = organ_data.Copy()
 	new_copy.traits = traits
 
 	//If you had traits, apply them
