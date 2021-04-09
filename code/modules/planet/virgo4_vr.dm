@@ -32,35 +32,35 @@ var/datum/planet/virgo4/planet_virgo4 = null
 	var/min = 0
 
 	switch(sun_position)
-		if(0 to 0.30) // Night
-			low_brightness = 0.1
+		if(0 to 0.20) // Night
+			low_brightness = 0.3
 			low_color = "#000066"
 
-			high_brightness = 0.2
+			high_brightness = 0.5
 			high_color = "#66004D"
 			min = 0
 
-		if(0.30 to 0.40) // Twilight
-			low_brightness = 0.4
+		if(0.20 to 0.30) // Twilight
+			low_brightness = 0.5
 			low_color = "#66004D"
 
-			high_brightness = 0.6
+			high_brightness = 0.9
 			high_color = "#CC3300"
 			min = 0.40
 
-		if(0.40 to 0.50) // Sunrise/set
-			low_brightness = 0.7
+		if(0.30 to 0.40) // Sunrise/set
+			low_brightness = 0.9
 			low_color = "#CC3300"
 
-			high_brightness = 0.9
+			high_brightness = 3.0
 			high_color = "#FF9933"
 			min = 0.50
 
-		if(0.50 to 1.00) // Noon
-			low_brightness = 1
+		if(0.40 to 1.00) // Noon
+			low_brightness = 3.0
 			low_color = "#DDDDDD"
 
-			high_brightness = 2
+			high_brightness = 10.0
 			high_color = "#FFFFFF"
 			min = 0.70
 
