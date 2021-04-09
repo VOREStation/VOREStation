@@ -31,7 +31,7 @@ SUBSYSTEM_DEF(persistence)
 		return
 
 //	if((!T.z in GLOB.using_map.station_levels) || !initialized)
-	if(!T.z in using_map.station_levels)
+	if(!(T.z in using_map.station_levels))
 		return
 
 	if(!tracking_values[track_type])

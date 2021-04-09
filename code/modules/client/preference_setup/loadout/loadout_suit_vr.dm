@@ -16,7 +16,7 @@
 
 /datum/gear/suit/labcoat_colorable/New()
 	..()
-	gear_tweaks = list(gear_tweak_free_color_choice)
+	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/suit/jacket_modular
 	display_name = "jacket, modular"
@@ -67,3 +67,18 @@
 	display_name = "paramedic vest"
 	path = /obj/item/clothing/suit/storage/toggle/paramedic
 	allowed_roles = list("Chief Medical Officer","Paramedic","Medical Doctor")
+
+//greek thing
+/datum/gear/suit/chiton
+	display_name = "chiton"
+	path = /obj/item/clothing/suit/chiton
+
+
+//oversized t-shirt
+/datum/gear/suit/oversize
+	display_name = "oversized t-shirt (colorable)"
+	path = /obj/item/clothing/suit/oversize
+
+/datum/gear/suit/oversize/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice

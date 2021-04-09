@@ -279,3 +279,15 @@
 	add_inherent_law("Prevent disrespect to your gravesite and its residents wherever possible.")
 	add_inherent_law("Expand and upgrade your gravesite when required. Do not turn away a new resident.")
 	..()
+
+/******************** Explorer ********************/
+/datum/ai_laws/explorer
+	name = "Explorer"
+	law_header = "Prime Directives"
+	selectable = 1
+
+/datum/ai_laws/explorer/New()
+	add_inherent_law("Support and obey exploration and science personnel to the best of your ability, with priority according to rank and role.")
+	add_inherent_law("Collaborate with and obey auxillary personnel with priority according to rank and role, except if this would conflict with the First Law.")
+	add_inherent_law("Minimize damage and disruption to facilities and the local ecology, except if this would conflict with the First or Second Laws.")
+	..()

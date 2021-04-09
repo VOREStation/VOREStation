@@ -1,7 +1,6 @@
 /mob/living/silicon/pai
 	var/people_eaten = 0
 	icon = 'icons/mob/pai_vr.dmi'
-	//TFF 22/11/19 - CHOMPStation port of pAI additions.
 	var/global/list/wide_chassis = list(
 		"rat",
 		"panther"
@@ -36,7 +35,6 @@
 	else if(people_eaten && resting)
 		icon_state = "[chassis]_rest_full"
 
-	//TFF 22/11/19 - CHOMPStation port of pAI additions.
 	if(chassis in wide_chassis)
 		icon = 'icons/mob/pai_vr64x64.dmi'
 		pixel_x = -16
@@ -58,7 +56,6 @@
 	else if(people_eaten && resting)
 		icon_state = "[chassis]_rest_full"
 
-	//TFF 22/11/19 - CHOMPStation port of pAI additions.
 	if(chassis in wide_chassis)
 		icon = 'icons/mob/pai_vr64x64.dmi'
 		pixel_x = -16

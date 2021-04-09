@@ -53,7 +53,7 @@
 		"Chirp" = list("chirps","chirrups","cheeps"),
 		"Feline" = list("purrs","yowls","meows"),
 		"Canine" = list("yaps","barks","woofs"),
-		"Rodent" = list("squeaks", "SQUEAKS", "sqiks")	//VOREStation Edit - TFF 22/11/19 - CHOMPStation port of pAI additions,
+		"Rodent" = list("squeaks", "SQUEAKS", "sqiks")	//VOREStation Edit
 		)
 
 	var/obj/item/weapon/pai_cable/cable		// The cable we produce and use when door or camera jacking
@@ -122,7 +122,10 @@
 		pda.ownjob = "Personal Assistant"
 		pda.owner = text("[]", src)
 		pda.name = pda.owner + " (" + pda.ownjob + ")"
-		pda.toff = 1
+		
+		var/datum/data/pda/app/messenger/M = pda.find_program(/datum/data/pda/app/messenger)
+		if(M)
+			M.toff = TRUE
 	..()
 
 /mob/living/silicon/pai/Login()
@@ -210,7 +213,7 @@
 	medicalActive1 = null
 	medicalActive2 = null
 	medical_cannotfind = 0
-	SSnanoui.update_uis(src)
+	SStgui.update_uis(src)
 	to_chat(usr, "<span class='notice'>You reset your record-viewing software.</span>")
 
 /mob/living/silicon/pai/cancel_camera()
@@ -327,8 +330,7 @@
 
 	close_up()
 
-//VOREStation Removal Start - TFF 22/11/19 - Refactored in pai_vr.dm
-/*
+/* //VOREStation Removal Start
 /mob/living/silicon/pai/proc/choose_chassis()
 	set category = "pAI Commands"
 	set name = "Choose Chassis"

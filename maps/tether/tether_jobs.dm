@@ -28,6 +28,10 @@
 	pto_type = null
 	access = list(access_talon)
 	minimal_access = list(access_talon)
+	alt_titles = list("Talon Commander" = /datum/alt_title/talon_commander)
+
+/datum/alt_title/talon_commander
+	title = "Talon Commander"
 
 /datum/job/talon_doctor
 	title = "Talon Doctor"
@@ -48,6 +52,11 @@
 	pto_type = null
 	access = list(access_talon)
 	minimal_access = list(access_talon)
+	alt_titles = list("Talon Medic" = /datum/alt_title/talon_medic)
+
+/datum/alt_title/talon_medic
+	title = "Talon Medic"
+
 
 /datum/job/talon_engineer
 	title = "Talon Engineer"
@@ -68,6 +77,11 @@
 	pto_type = null
 	access = list(access_talon)
 	minimal_access = list(access_talon)
+	alt_titles = list("Talon Technician" = /datum/alt_title/talon_tech)
+
+/datum/alt_title/talon_tech
+	title = "Talon Technician"
+
 
 /datum/job/talon_pilot
 	title = "Talon Pilot"
@@ -88,6 +102,11 @@
 	pto_type = null
 	access = list(access_talon)
 	minimal_access = list(access_talon)
+	alt_titles = list("Talon Helmsman" = /datum/alt_title/talon_helmsman)
+
+/datum/alt_title/talon_helmsman
+	title = "Talon Helmsman"
+
 
 /datum/job/talon_guard
 	title = "Talon Guard"
@@ -108,11 +127,16 @@
 	pto_type = null
 	access = list(access_talon)
 	minimal_access = list(access_talon)
+	alt_titles = list("Talon Security" = /datum/alt_title/talon_security)
+
+/datum/alt_title/talon_security
+	title = "Talon Security"
+
 
 /decl/hierarchy/outfit/job/talon_captain
 	name = OUTFIT_JOB_NAME("Talon Captain")
 
-	id_type = /obj/item/weapon/card/id/gold
+	id_type = /obj/item/weapon/card/id/talon/captain
 	id_slot = slot_wear_id
 	pda_type = null
 
@@ -126,24 +150,25 @@
 
 /decl/hierarchy/outfit/job/talon_pilot
 	name = OUTFIT_JOB_NAME("Talon Pilot")
-	id_pda_assignment = "Pilot"
 
+	id_type = /obj/item/weapon/card/id/talon/pilot
 	id_slot = slot_wear_id
 	pda_type = null
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_COMPREHENSIVE_SURVIVAL
 
 	l_ear = /obj/item/device/radio/headset/talon
 	shoes = /obj/item/clothing/shoes/black
-	uniform = /obj/item/clothing/under/rank/pilot1
+	uniform = /obj/item/clothing/under/rank/pilot1/no_webbing
 	suit = /obj/item/clothing/suit/storage/toggle/bomber/pilot
 	gloves = /obj/item/clothing/gloves/fingerless
 	glasses = /obj/item/clothing/glasses/fakesunglasses/aviator
+	uniform_accessories = list(/obj/item/clothing/accessory/storage/webbing/pilot1 = 1)
 
 /decl/hierarchy/outfit/job/talon_doctor
 	name = OUTFIT_JOB_NAME("Talon Doctor")
 	hierarchy_type = /decl/hierarchy/outfit/job
 
-	id_type = /obj/item/weapon/card/id/medical
+	id_type = /obj/item/weapon/card/id/talon/doctor
 	id_slot = slot_wear_id
 	pda_type = null
 
@@ -161,7 +186,7 @@
 	name = OUTFIT_JOB_NAME("Talon Security")
 	hierarchy_type = /decl/hierarchy/outfit/job
 
-	id_type = /obj/item/weapon/card/id/security
+	id_type = /obj/item/weapon/card/id/talon/officer
 	id_slot = slot_wear_id
 	pda_type = null
 	backpack_contents = list(/obj/item/weapon/handcuffs = 1)
@@ -179,7 +204,7 @@
 	name = OUTFIT_JOB_NAME("Talon Engineer")
 	hierarchy_type = /decl/hierarchy/outfit/job
 
-	id_type = /obj/item/weapon/card/id/engineering
+	id_type = /obj/item/weapon/card/id/talon/engineer
 	id_slot = slot_wear_id
 	pda_type = null
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL

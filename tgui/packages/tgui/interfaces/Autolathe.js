@@ -56,7 +56,7 @@ export const Autolathe = (props, context) => {
     <Window width={550} height={700}>
       <Window.Content scrollable>
         <Section title="Materials">
-          <Materials displayAllMat disableEject />
+          <Materials disableEject />
         </Section>
         <Section title="Recipes" buttons={
           <Dropdown

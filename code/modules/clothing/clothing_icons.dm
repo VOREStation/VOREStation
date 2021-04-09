@@ -29,6 +29,7 @@
 /obj/item/clothing/suit/apply_blood(var/image/standing)
 	if(blood_DNA && blood_sprite_state && ishuman(loc))
 		var/mob/living/carbon/human/H = loc
-		var/image/bloodsies	= image(icon = H.species.get_blood_mask(H), icon_state = "[blood_overlay_type]blood")
+		blood_sprite_state = "[blood_overlay_type]blood"
+		var/image/bloodsies	= image(icon = H.species.get_blood_mask(H), icon_state = blood_sprite_state)
 		bloodsies.color		= blood_color
 		standing.add_overlay(bloodsies)

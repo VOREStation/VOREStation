@@ -34,7 +34,7 @@
 	var/randomize_location = TRUE
 
 /mob/living/simple_mob/animal/passive/fish/Initialize()
-	..()
+	. = ..()
 
 	if(!default_pixel_x && randomize_location)
 		default_pixel_x = rand(-12, 12)
@@ -174,7 +174,7 @@
 	var/image/belly_image
 
 /mob/living/simple_mob/animal/passive/fish/icebass/Initialize()
-	..()
+	. = ..()
 	dorsal_color = rgb(rand(min_red,max_red), rand(min_green,max_green), rand(min_blue,max_blue))
 	belly_color = rgb(rand(min_red,max_red), rand(min_green,max_green), rand(min_blue,max_blue))
 	update_icon()
@@ -248,7 +248,7 @@
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat/sif
 
 /mob/living/simple_mob/animal/passive/fish/rockfish/Initialize()
-	..()
+	. = ..()
 	head_color = rgb(rand(min_red,max_red), rand(min_green,max_green), rand(min_blue,max_blue))
 	update_icon()
 

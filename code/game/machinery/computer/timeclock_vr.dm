@@ -55,7 +55,7 @@
 		if(!card && user.unEquip(I))
 			I.forceMove(src)
 			card = I
-			SSnanoui.update_uis(src)
+			SStgui.update_uis(src)
 			update_icon()
 		else if(card)
 			to_chat(user, "<span class='warning'>There is already ID card inside.</span>")
@@ -177,7 +177,7 @@
 		card.rank = newjob.title
 		card.assignment = newassignment
 		card.name = text("[card.registered_name]'s ID Card ([card.assignment])")
-		data_core.manifest_modify(card.registered_name, card.assignment)
+		data_core.manifest_modify(card.registered_name, card.assignment, card.rank)
 		card.last_job_switch = world.time
 		callHook("reassign_employee", list(card))
 		newjob.current_positions++
@@ -203,7 +203,7 @@
 		card.rank = ptojob.title
 		card.assignment = ptojob.title
 		card.name = text("[card.registered_name]'s ID Card ([card.assignment])")
-		data_core.manifest_modify(card.registered_name, card.assignment)
+		data_core.manifest_modify(card.registered_name, card.assignment, card.rank)
 		card.last_job_switch = world.time
 		callHook("reassign_employee", list(card))
 		var/mob/living/carbon/human/H = usr

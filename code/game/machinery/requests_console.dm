@@ -28,8 +28,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 	anchored = 1
 	icon = 'icons/obj/terminals_vr.dmi' //VOREStation Edit
 	icon_state = "req_comp0"
-	plane = TURF_PLANE
-	layer = ABOVE_TURF_LAYER
+	layer = ABOVE_WINDOW_LAYER
 	circuit = /obj/item/weapon/circuitboard/request
 	var/department = "Unknown" //The list of all departments on the station (Determined from this variable on each unit) Set this to the same thing if you want several consoles in one department
 	var/list/message_log = list() //List of all messages
@@ -104,7 +103,6 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 /obj/machinery/requests_console/attack_hand(user as mob)
 	if(..(user))
 		return
-	ui_interact(user)
 	tgui_interact(user)
 
 /obj/machinery/requests_console/tgui_interact(mob/user, datum/tgui/ui)

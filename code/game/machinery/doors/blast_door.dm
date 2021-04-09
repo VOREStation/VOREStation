@@ -19,7 +19,7 @@
 	icon = 'icons/obj/doors/rapid_pdoor.dmi'
 	icon_state = null
 	min_force = 20 //minimum amount of force needed to damage the door with a melee weapon
-	var/material/implicit_material
+	var/datum/material/implicit_material
 	// Icon states for different shutter types. Simply change this instead of rewriting the update_icon proc.
 	var/icon_state_open = null
 	var/icon_state_opening = null
@@ -29,6 +29,7 @@
 	var/close_sound = 'sound/machines/door/blastdoorclose.ogg'
 	var/damage = BLAST_DOOR_CRUSH_DAMAGE
 	var/multiplier = 1 // The multiplier for how powerful our YEET is.
+	var/istransparent = 0
 
 	closed_layer = ON_WINDOW_LAYER // Above airlocks when closed
 	var/id = 1.0
@@ -108,10 +109,13 @@
 	src.density = 1
 	update_nearby_tiles()
 	src.update_icon()
-	src.set_opacity(1)
+	if(src.istransparent)
+		src.set_opacity(0)
+	else
+		src.set_opacity(1)
 	sleep(15)
 	src.operating = 0
-	
+
 	// Blast door crushing.
 	for(var/turf/turf in locs)
 		for(var/atom/movable/AM in turf)
@@ -276,10 +280,11 @@
 // Parameters: None
 // Description: Closes the door. Does necessary checks.
 /obj/machinery/door/blast/close()
+
 	if (src.operating || (stat & BROKEN || stat & NOPOWER))
 		return
-	force_close()
 
+	force_close()
 
 // Proc: repair()
 // Parameters: None
@@ -322,6 +327,53 @@ obj/machinery/door/blast/regular/open
 	icon_state_closing = "shutterc1"
 	icon_state = "shutter1"
 	damage = SHUTTER_CRUSH_DAMAGE
+
+// SUBTYPE: Transparent
+// Not technically a blast door but operates like one. Allows air and light.
+obj/machinery/door/blast/gate
+	name = "thick gate"
+	icon_state_open = "tshutter0"
+	icon_state_opening = "tshutterc0"
+	icon_state_closed = "tshutter1"
+	icon_state_closing = "tshutterc1"
+	icon_state = "tshutter1"
+	damage = SHUTTER_CRUSH_DAMAGE
+	maxhealth = 400
+	block_air_zones = 0
+	opacity = 0
+	istransparent = 1
+
+obj/machinery/door/blast/gate/open
+	icon_state = "tshutter0"
+	density = 0
+
+/obj/machinery/door/blast/gate/thin
+	name = "thin gate"
+	icon_state_open = "shutter2_0"
+	icon_state_opening = "shutter2_c0"
+	icon_state_closed = "shutter2_1"
+	icon_state_closing = "shutter2_c1"
+	icon_state = "shutter2_1"
+	maxhealth = 200
+	opacity = 0
+
+/obj/machinery/door/blast/gate/thin/open
+	icon_state = "shutter2_1"
+	density = 0
+
+/obj/machinery/door/blast/gate/bars
+	name = "prison bars"
+	icon_state_open = "bars_0"
+	icon_state_opening = "bars_c0"
+	icon_state_closed = "bars_1"
+	icon_state_closing = "bars_c1"
+	icon_state = "bars_1"
+	maxhealth = 600
+	opacity = 0
+
+/obj/machinery/door/blast/gate/bars/open
+	icon_state = "bars_1"
+	density = 0
 
 #undef BLAST_DOOR_CRUSH_DAMAGE
 #undef SHUTTER_CRUSH_DAMAGE

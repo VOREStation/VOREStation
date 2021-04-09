@@ -2,6 +2,7 @@ var/global/list/sparring_attack_cache = list()
 
 //Species unarmed attacks
 /datum/unarmed_attack
+	var/attack_name = "fist"
 	var/attack_verb = list("attack")	// Empty hand hurt intent verb.
 	var/attack_noun = list("fist")
 	var/damage = 0						// Extra empty hand attack damage.
@@ -109,6 +110,7 @@ var/global/list/sparring_attack_cache = list()
 	return FALSE //return true if the unarmed override prevents further attacks
 
 /datum/unarmed_attack/bite
+	attack_name = "bite"
 	attack_verb = list("bit")
 	attack_sound = 'sound/weapons/bite.ogg'
 	shredding = 0
@@ -127,6 +129,7 @@ var/global/list/sparring_attack_cache = list()
 	return TRUE
 
 /datum/unarmed_attack/punch
+	attack_name = "punch"
 	attack_verb = list("punched")
 	attack_noun = list("fist")
 	eye_attack_text = "fingers"
@@ -181,6 +184,7 @@ var/global/list/sparring_attack_cache = list()
 		user.visible_message("<span class='danger'>[user] [pick("punched", "threw a punch against", "struck", "slammed [TU.his] [pick(attack_noun)] into")] [target]'s [organ]!</span>") //why do we have a separate set of verbs for lying targets?
 
 /datum/unarmed_attack/kick
+	attack_name = "kick"
 	attack_verb = list("kicked", "kicked", "kicked", "kneed")
 	attack_noun = list("kick", "kick", "kick", "knee strike")
 	attack_sound = "swing_hit"
@@ -224,6 +228,7 @@ var/global/list/sparring_attack_cache = list()
 		if(5)		user.visible_message("<span class='danger'>[user] landed a strong [pick(attack_noun)] against [target]'s [organ]!</span>")
 
 /datum/unarmed_attack/stomp
+	attack_name = "stomp"
 	attack_verb = null
 	attack_noun = list("stomp")
 	attack_sound = "swing_hit"
@@ -269,6 +274,7 @@ var/global/list/sparring_attack_cache = list()
 		if(5)		user.visible_message("<span class='danger'>[pick("[user] landed a powerful stomp on", "[user] stomped down hard on", "[user] slammed [TU.his] [shoes ? copytext(shoes.name, 1, -1) : "foot"] down hard onto")] [target]'s [organ]!</span>") //Devastated lol. No. We want to say that the stomp was powerful or forceful, not that it /wrought devastation/
 
 /datum/unarmed_attack/light_strike
+	attack_name = "light hit"
 	attack_noun = list("tap","light strike")
 	attack_verb = list("tapped", "lightly struck")
 	damage = 3

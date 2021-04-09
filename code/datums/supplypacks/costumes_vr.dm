@@ -21,14 +21,20 @@
 
 /datum/supply_pack/costumes/tesh_smocks_vr
 	name = "Teshari smocks"
+	num_contained = 4
 	contains = list(
-			/obj/item/clothing/under/seromi/smock,
-			/obj/item/clothing/under/seromi/smock/rainbow,
-			/obj/item/clothing/under/seromi/smock/red,
-			/obj/item/clothing/under/seromi/smock/white,
-			/obj/item/clothing/under/seromi/smock/yellow
+			/obj/item/clothing/under/teshari/smock,
+			/obj/item/clothing/under/teshari/smock/white,
+			/obj/item/clothing/under/teshari/smock/red,
+			/obj/item/clothing/under/teshari/smock/yellow,
+			/obj/item/clothing/under/teshari/smock/rainbow,
+			/obj/item/clothing/under/teshari/smock/dress,
+			/obj/item/clothing/under/teshari/smock/blackutilitysmock,
+			/obj/item/clothing/under/teshari/smock/greydress,
+			/obj/item/clothing/under/teshari/smock/blackutility,
+			/obj/item/clothing/under/teshari/smock/bluegreydress
 			)
-	cost = 25
+	cost = 20
 	containertype = /obj/structure/closet/crate
 	containername = "Teshari smocks crate"
 
@@ -36,18 +42,18 @@
 	name = "Teshari undercoats"
 	num_contained = 4
 	contains = list(
-			/obj/item/clothing/under/seromi/undercoat/standard/blue_grey,
-			/obj/item/clothing/under/seromi/undercoat/standard/brown_grey,
-			/obj/item/clothing/under/seromi/undercoat/standard/green_grey,
-			/obj/item/clothing/under/seromi/undercoat/standard/lightgrey_grey,
-			/obj/item/clothing/under/seromi/undercoat/standard/orange,
-			/obj/item/clothing/under/seromi/undercoat/standard/orange_grey,
-			/obj/item/clothing/under/seromi/undercoat/standard/pink_grey,
-			/obj/item/clothing/under/seromi/undercoat/standard/purple_grey,
-			/obj/item/clothing/under/seromi/undercoat/standard/rainbow,
-			/obj/item/clothing/under/seromi/undercoat/standard/red_grey,
-			/obj/item/clothing/under/seromi/undercoat/standard/white_grey,
-			/obj/item/clothing/under/seromi/undercoat/standard/yellow_grey
+			/obj/item/clothing/under/teshari/undercoat/standard/orange_grey,
+			/obj/item/clothing/under/teshari/undercoat/standard/rainbow,
+			/obj/item/clothing/under/teshari/undercoat/standard/lightgrey_grey,
+			/obj/item/clothing/under/teshari/undercoat/standard/white_grey,
+			/obj/item/clothing/under/teshari/undercoat/standard/red_grey,
+			/obj/item/clothing/under/teshari/undercoat/standard/orange,
+			/obj/item/clothing/under/teshari/undercoat/standard/yellow_grey,
+			/obj/item/clothing/under/teshari/undercoat/standard/green_grey,
+			/obj/item/clothing/under/teshari/undercoat/standard/blue_grey,
+			/obj/item/clothing/under/teshari/undercoat/standard/purple_grey,
+			/obj/item/clothing/under/teshari/undercoat/standard/pink_grey,
+			/obj/item/clothing/under/teshari/undercoat/standard/brown_grey
 			)
 	cost = 20
 	containertype = /obj/structure/closet/crate
@@ -57,19 +63,18 @@
 	name = "Teshari undercoats (black)"
 	num_contained = 4
 	contains = list(
-			/obj/item/clothing/under/seromi/undercoat/standard/black,
-			/obj/item/clothing/under/seromi/undercoat/standard/black_blue,
-			/obj/item/clothing/under/seromi/undercoat/standard/black_brown,
-			/obj/item/clothing/under/seromi/undercoat/standard/black_green,
-			/obj/item/clothing/under/seromi/undercoat/standard/black_grey,
-			/obj/item/clothing/under/seromi/undercoat/standard/black_lightgrey,
-			/obj/item/clothing/under/seromi/undercoat/standard/black_midgrey,
-			/obj/item/clothing/under/seromi/undercoat/standard/black_orange,
-			/obj/item/clothing/under/seromi/undercoat/standard/black_pink,
-			/obj/item/clothing/under/seromi/undercoat/standard/black_purple,
-			/obj/item/clothing/under/seromi/undercoat/standard/black_red,
-			/obj/item/clothing/under/seromi/undercoat/standard/black_white,
-			/obj/item/clothing/under/seromi/undercoat/standard/black_yellow
+			/obj/item/clothing/under/teshari/undercoat,
+			/obj/item/clothing/under/teshari/undercoat/standard/black_orange,
+			/obj/item/clothing/under/teshari/undercoat/standard/black_grey,
+			/obj/item/clothing/under/teshari/undercoat/standard/black_white,
+			/obj/item/clothing/under/teshari/undercoat/standard/black_red,
+			/obj/item/clothing/under/teshari/undercoat/standard/black,
+			/obj/item/clothing/under/teshari/undercoat/standard/black_yellow,
+			/obj/item/clothing/under/teshari/undercoat/standard/black_green,
+			/obj/item/clothing/under/teshari/undercoat/standard/black_blue,
+			/obj/item/clothing/under/teshari/undercoat/standard/black_purple,
+			/obj/item/clothing/under/teshari/undercoat/standard/black_pink,
+			/obj/item/clothing/under/teshari/undercoat/standard/black_brown
 			)
 	cost = 20
 	containertype = /obj/structure/closet/crate
@@ -79,18 +84,18 @@
 	name = "Teshari cloaks"
 	num_contained = 4
 	contains = list(
-			/obj/item/clothing/suit/storage/seromi/cloak/standard/blue_grey,
-			/obj/item/clothing/suit/storage/seromi/cloak/standard/brown_grey,
-			/obj/item/clothing/suit/storage/seromi/cloak/standard/green_grey,
-			/obj/item/clothing/suit/storage/seromi/cloak/standard/lightgrey_grey,
-			/obj/item/clothing/suit/storage/seromi/cloak/standard/orange,
-			/obj/item/clothing/suit/storage/seromi/cloak/standard/orange_grey,
-			/obj/item/clothing/suit/storage/seromi/cloak/standard/pink_grey,
-			/obj/item/clothing/suit/storage/seromi/cloak/standard/purple_grey,
-			/obj/item/clothing/suit/storage/seromi/cloak/standard/rainbow,
-			/obj/item/clothing/suit/storage/seromi/cloak/standard/red_grey,
-			/obj/item/clothing/suit/storage/seromi/cloak/standard/white_grey,
-			/obj/item/clothing/suit/storage/seromi/cloak/standard/yellow_grey
+			/obj/item/clothing/suit/storage/teshari/cloak/standard/white,
+			/obj/item/clothing/suit/storage/teshari/cloak/standard/white_grey,
+			/obj/item/clothing/suit/storage/teshari/cloak/standard/red_grey,
+			/obj/item/clothing/suit/storage/teshari/cloak/standard/orange_grey,
+			/obj/item/clothing/suit/storage/teshari/cloak/standard/yellow_grey,
+			/obj/item/clothing/suit/storage/teshari/cloak/standard/green_grey,
+			/obj/item/clothing/suit/storage/teshari/cloak/standard/blue_grey,
+			/obj/item/clothing/suit/storage/teshari/cloak/standard/purple_grey,
+			/obj/item/clothing/suit/storage/teshari/cloak/standard/pink_grey,
+			/obj/item/clothing/suit/storage/teshari/cloak/standard/brown_grey,
+			/obj/item/clothing/suit/storage/teshari/cloak/standard/rainbow,
+			/obj/item/clothing/suit/storage/teshari/cloak/standard/orange
 			)
 	cost = 40
 	containertype = /obj/structure/closet/crate
@@ -100,19 +105,125 @@
 	name = "Teshari cloaks (black)"
 	num_contained = 4
 	contains = list(
-			/obj/item/clothing/suit/storage/seromi/cloak/standard/black,
-			/obj/item/clothing/suit/storage/seromi/cloak/standard/black_blue,
-			/obj/item/clothing/suit/storage/seromi/cloak/standard/black_brown,
-			/obj/item/clothing/suit/storage/seromi/cloak/standard/black_green,
-			/obj/item/clothing/suit/storage/seromi/cloak/standard/black_grey,
-			/obj/item/clothing/suit/storage/seromi/cloak/standard/black_lightgrey,
-			/obj/item/clothing/suit/storage/seromi/cloak/standard/black_midgrey,
-			/obj/item/clothing/suit/storage/seromi/cloak/standard/black_orange,
-			/obj/item/clothing/suit/storage/seromi/cloak/standard/black_pink,
-			/obj/item/clothing/suit/storage/seromi/cloak/standard/black_purple,
-			/obj/item/clothing/suit/storage/seromi/cloak/standard/black_red,
-			/obj/item/clothing/suit/storage/seromi/cloak/standard/black_white,
-			/obj/item/clothing/suit/storage/seromi/cloak/standard/black_yellow
+			/obj/item/clothing/suit/storage/teshari/cloak,
+			/obj/item/clothing/suit/storage/teshari/cloak/standard/black_red,
+			/obj/item/clothing/suit/storage/teshari/cloak/standard/black_orange,
+			/obj/item/clothing/suit/storage/teshari/cloak/standard/black_yellow,
+			/obj/item/clothing/suit/storage/teshari/cloak/standard/black_green,
+			/obj/item/clothing/suit/storage/teshari/cloak/standard/black_blue,
+			/obj/item/clothing/suit/storage/teshari/cloak/standard/black_purple,
+			/obj/item/clothing/suit/storage/teshari/cloak/standard/black_pink,
+			/obj/item/clothing/suit/storage/teshari/cloak/standard/black_brown,
+			/obj/item/clothing/suit/storage/teshari/cloak/standard/black_grey,
+			/obj/item/clothing/suit/storage/teshari/cloak/standard/black_white,
+			/obj/item/clothing/suit/storage/teshari/cloak/standard/black_glow,
+			/obj/item/clothing/suit/storage/teshari/cloak/standard/dark_retrowave
+			)
+	cost = 40
+	containertype = /obj/structure/closet/crate
+	containername = "Teshari cloaks crate"
+
+/datum/supply_pack/costumes/tesh_worksuits_vr
+	name = "Teshari worksuits"
+	num_contained = 4
+	contains = list(
+			/obj/item/clothing/under/teshari/undercoat/standard/worksuit,
+			/obj/item/clothing/under/teshari/undercoat/standard/worksuit/blackpurple,
+			/obj/item/clothing/under/teshari/undercoat/standard/worksuit/blackorange,
+			/obj/item/clothing/under/teshari/undercoat/standard/worksuit/blackblue,
+			/obj/item/clothing/under/teshari/undercoat/standard/worksuit/blackgreen,
+			/obj/item/clothing/under/teshari/undercoat/standard/worksuit/whitered,
+			/obj/item/clothing/under/teshari/undercoat/standard/worksuit/whitepurple,
+			/obj/item/clothing/under/teshari/undercoat/standard/worksuit/whiteorange,
+			/obj/item/clothing/under/teshari/undercoat/standard/worksuit/whiteblue,
+			/obj/item/clothing/under/teshari/undercoat/standard/worksuit/whitegreen
+			)
+	cost = 20
+	containertype = /obj/structure/closet/crate
+	containername = "Teshari worksuits crate"
+
+/datum/supply_pack/randomised/costumes/tesh_beltcloaks_vr
+	name = "Teshari cloaks (belted)"
+	num_contained = 4
+	contains = list(
+			/obj/item/clothing/suit/storage/teshari/beltcloak/standard/orange_grey,
+			/obj/item/clothing/suit/storage/teshari/beltcloak/standard/rainbow,
+			/obj/item/clothing/suit/storage/teshari/beltcloak/standard/lightgrey_grey,
+			/obj/item/clothing/suit/storage/teshari/beltcloak/standard/white_grey,
+			/obj/item/clothing/suit/storage/teshari/beltcloak/standard/red_grey,
+			/obj/item/clothing/suit/storage/teshari/beltcloak/standard/orange,
+			/obj/item/clothing/suit/storage/teshari/beltcloak/standard/yellow_grey,
+			/obj/item/clothing/suit/storage/teshari/beltcloak/standard/green_grey,
+			/obj/item/clothing/suit/storage/teshari/beltcloak/standard/blue_grey,
+			/obj/item/clothing/suit/storage/teshari/beltcloak/standard/purple_grey,
+			/obj/item/clothing/suit/storage/teshari/beltcloak/standard/pink_grey,
+			/obj/item/clothing/suit/storage/teshari/beltcloak/standard/brown_grey
+			)
+	cost = 40
+	containertype = /obj/structure/closet/crate
+	containername = "Teshari cloaks crate"
+
+/datum/supply_pack/randomised/costumes/tesh_beltcloaks_b_vr
+	name = "Teshari cloaks (belted, black)"
+	num_contained = 4
+	contains = list(
+			/obj/item/clothing/suit/storage/teshari/beltcloak,
+			/obj/item/clothing/suit/storage/teshari/beltcloak/standard/black_orange,
+			/obj/item/clothing/suit/storage/teshari/beltcloak/standard/black_grey,
+			/obj/item/clothing/suit/storage/teshari/beltcloak/standard/black_midgrey,
+			/obj/item/clothing/suit/storage/teshari/beltcloak/standard/black_lightgrey,
+			/obj/item/clothing/suit/storage/teshari/beltcloak/standard/black_white,
+			/obj/item/clothing/suit/storage/teshari/beltcloak/standard/black_red,
+			/obj/item/clothing/suit/storage/teshari/beltcloak/standard/black,
+			/obj/item/clothing/suit/storage/teshari/beltcloak/standard/black_yellow,
+			/obj/item/clothing/suit/storage/teshari/beltcloak/standard/black_green,
+			/obj/item/clothing/suit/storage/teshari/beltcloak/standard/black_blue,
+			/obj/item/clothing/suit/storage/teshari/beltcloak/standard/black_purple,
+			/obj/item/clothing/suit/storage/teshari/beltcloak/standard/black_pink,
+			/obj/item/clothing/suit/storage/teshari/beltcloak/standard/black_brown
+			)
+	cost = 40
+	containertype = /obj/structure/closet/crate
+	containername = "Teshari cloaks crate"
+
+/datum/supply_pack/randomised/costumes/tesh_hoodcloaks_vr
+	name = "Teshari cloaks (hooded)"
+	num_contained = 4
+	contains = list(
+			/obj/item/clothing/suit/storage/hooded/teshari/standard/orange_grey,
+			/obj/item/clothing/suit/storage/hooded/teshari/standard/lightgrey_grey,
+			/obj/item/clothing/suit/storage/hooded/teshari/standard/white_grey,
+			/obj/item/clothing/suit/storage/hooded/teshari/standard/red_grey,
+			/obj/item/clothing/suit/storage/hooded/teshari/standard/orange,
+			/obj/item/clothing/suit/storage/hooded/teshari/standard/yellow_grey,
+			/obj/item/clothing/suit/storage/hooded/teshari/standard/green_grey,
+			/obj/item/clothing/suit/storage/hooded/teshari/standard/blue_grey,
+			/obj/item/clothing/suit/storage/hooded/teshari/standard/purple_grey,
+			/obj/item/clothing/suit/storage/hooded/teshari/standard/pink_grey,
+			/obj/item/clothing/suit/storage/hooded/teshari/standard/brown_grey
+			)
+	cost = 40
+	containertype = /obj/structure/closet/crate
+	containername = "Teshari cloaks crate"
+
+/datum/supply_pack/randomised/costumes/tesh_hoodcloaks_b_vr
+	name = "Teshari cloaks (hooded, black)"
+	num_contained = 4
+	contains = list(
+			/obj/item/clothing/suit/storage/hooded/teshari,
+			/obj/item/clothing/suit/storage/hooded/teshari/standard/black_orange,
+			/obj/item/clothing/suit/storage/hooded/teshari/standard/black_grey,
+			/obj/item/clothing/suit/storage/hooded/teshari/standard/black_midgrey,
+			/obj/item/clothing/suit/storage/hooded/teshari/standard/black_lightgrey,
+			/obj/item/clothing/suit/storage/hooded/teshari/standard/black_white,
+			/obj/item/clothing/suit/storage/hooded/teshari/standard/black_red,
+			/obj/item/clothing/suit/storage/hooded/teshari/standard/black,
+			/obj/item/clothing/suit/storage/hooded/teshari/standard/black_yellow,
+			/obj/item/clothing/suit/storage/hooded/teshari/standard/black_green,
+			/obj/item/clothing/suit/storage/hooded/teshari/standard/black_blue,
+			/obj/item/clothing/suit/storage/hooded/teshari/standard/black_purple,
+			/obj/item/clothing/suit/storage/hooded/teshari/standard/black_pink,
+			/obj/item/clothing/suit/storage/hooded/teshari/standard/black_brown
 			)
 	cost = 40
 	containertype = /obj/structure/closet/crate
@@ -262,7 +373,7 @@
 	cost = 60
 	containertype = /obj/structure/closet/crate
 	containername = "Saddlebags crate"
-	
+
 /datum/supply_pack/costumes/knights_gear
 	name = "Knights Gear"
 	contains = list(

@@ -114,6 +114,18 @@
 	w_class = ITEMSIZE_LARGE
 	drop_sound = 'sound/items/drop/rubber.ogg'
 
+/obj/item/toy/colorballoon /// To color it, VV the 'color' var with a hex color code with the # included.
+	name = "balloon"
+	desc = "It's a plain little balloon. Comes in many colors!"
+	throwforce = 0
+	throw_speed = 4
+	throw_range = 20
+	force = 0
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "colorballoon"
+	w_class = ITEMSIZE_LARGE
+	drop_sound = 'sound/items/drop/rubber.ogg'
+
 /*
  * Fake telebeacon
  */
@@ -937,7 +949,7 @@
 /obj/item/toy/plushie/mouse
 	name = "mouse plush"
 	desc = "A plushie of a delightful mouse! What was once considered a vile rodent is now your very best friend."
-	icon_state = "mouseplushie"	//TFF 12/11/19 - updated icon to show a sprite that doesn't replicate a dead mouse. Heck you for that! >:C
+	icon_state = "mouseplushie"
 	pokephrase = "Squeak!"
 
 /obj/item/toy/plushie/kitten
@@ -1439,3 +1451,35 @@
 	desc = "A large king piece for playing chess. It's made of a purple-colored glass."
 	description_info = "The King can move exactly one square horizontally, vertically, or diagonally. If your opponent captures this piece, you lose."
 	icon_state = "b-king"
+
+/// Balloon structures
+
+/obj/structure/balloon
+	name = "generic balloon"
+	desc = "A generic balloon. How boring."
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "ghostballoon"
+	anchored = 0
+	density = 0
+
+/obj/structure/balloon/attack_hand(mob/user)
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+
+	if(user.a_intent == I_HELP)
+		user.visible_message("<span class='notice'><b>\The [user]</b> pokes [src]!</span>","<span class='notice'>You poke [src]!</span>")
+	else if (user.a_intent == I_HURT)
+		user.visible_message("<span class='warning'><b>\The [user]</b> punches [src]!</span>","<span class='warning'>You punch [src]!</span>")
+	else if (user.a_intent == I_GRAB)
+		user.visible_message("<span class='warning'><b>\The [user]</b> attempts to pop [src]!</span>","<span class='warning'>You attempt to pop [src]!</span>")
+	else
+		user.visible_message("<span class='notice'><b>\The [user]</b> lightly bats the [src].</span>","<span class='notice'>You lightly bat the [src].</span>")
+
+/obj/structure/balloon/bat
+	name = "giant bat balloon"
+	desc = "A large balloon in the shape of a spooky bat with orange eyes."
+	icon_state = "batballoon"
+
+/obj/structure/balloon/ghost
+	name = "giant ghost balloon"
+	desc = "Oh no, it's a ghost! Oh wait, it's just a balloon. Phew!"
+	icon_state = "ghostballoon"

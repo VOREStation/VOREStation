@@ -26,7 +26,7 @@
 	switch(action)
 		if("pick")
 			var/dest_key = input("Choose shuttle destination", "Shuttle Destination") as null|anything in shuttle.get_destinations()
-			if(dest_key && CanInteract(usr, global.default_state))
+			if(dest_key && CanInteract(usr, GLOB.tgui_default_state))
 				shuttle.set_destination(dest_key, usr)
 			return TRUE
 

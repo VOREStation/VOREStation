@@ -151,11 +151,11 @@
 	flags_inv = HIDEEARS
 
 /obj/item/clothing/head/ushanka/attack_self(mob/user as mob)
-	if(src.icon_state == "ushankadown")
-		src.icon_state = "ushankaup"
+	if(src.icon_state == initial(icon_state))
+		src.icon_state = "[icon_state]up"
 		to_chat(user, "You raise the ear flaps on the ushanka.")
 	else
-		src.icon_state = "ushankadown"
+		src.icon_state = initial(icon_state)
 		to_chat(user, "You lower the ear flaps on the ushanka.")
 
 /*

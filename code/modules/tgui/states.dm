@@ -20,9 +20,9 @@
 		return
 
 	if(isobserver(user))
-		// // If they turn on ghost AI control, admins can always interact.
-		// if(user.client.advanced_admin_interaction)
-		// 	. = max(., STATUS_INTERACTIVE)
+		// Admins can always interact.
+		if(check_rights(R_ADMIN|R_EVENT, 0, src))
+			. = max(., STATUS_INTERACTIVE)
 
 		// Regular ghosts can always at least view if in range.
 		if(user.client)
@@ -123,3 +123,7 @@
 	if((TK in mutations) && (get_dist(src, src_object) <= 2))
 		return STATUS_INTERACTIVE
 	return ..()
+
+// Topic Extensions for old UIs
+/datum/proc/CanUseTopic(var/mob/user, var/datum/tgui_state/state)
+	return tgui_status(user, state)

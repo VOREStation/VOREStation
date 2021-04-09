@@ -91,16 +91,16 @@
 
 	var/icon/default_worn_icon	//Default on-mob icon
 	var/worn_layer				//Default on-mob layer
-	
+
 	// Pickup/Drop/Equip/Throw Sounds
 	///Used when thrown into a mob
 	var/mob_throw_hit_sound
 	// Sound used when equipping the items into a valid slot.
-	var/equip_sound	
+	var/equip_sound
 	// pickup sound - this is the default
-	var/pickup_sound = 'sound/items/pickup/device.ogg'
+	var/pickup_sound = "generic_pickup"
 	// drop sound - this is the default
-	var/drop_sound = 'sound/items/drop/device.ogg'
+	var/drop_sound = "generic_drop"
 
 	var/tip_timer // reference to timer id for a tooltip we might open soon
 
@@ -354,6 +354,10 @@
 		playsound(src, pickup_sound, 20, preference = /datum/client_preference/pickup_sounds)
 	return
 
+// As above but for items being equipped to an active module on a robot.
+/obj/item/proc/equipped_robot(var/mob/user)
+	return
+
 //Defines which slots correspond to which slot flags
 var/list/global/slot_flags_enumeration = list(
 	"[slot_wear_mask]" = SLOT_MASK,
@@ -468,12 +472,12 @@ var/list/global/slot_flags_enumeration = list(
 
 	if(!canremove)
 		return 0
-	
+
 	if(!slot)
 		if(issilicon(M))
 			return 1 // for stuff in grippers
 		return 0
-	
+
 	if(!M.slot_is_accessible(slot, src, disable_warning? null : M))
 		return 0
 	return 1
@@ -610,9 +614,6 @@ var/list/global/slot_flags_enumeration = list(
 	. = ..()
 	if(blood_overlay)
 		overlays.Remove(blood_overlay)
-	if(istype(src, /obj/item/clothing/gloves))
-		var/obj/item/clothing/gloves/G = src
-		G.transfer_blood = 0
 
 /obj/item/reveal_blood()
 	if(was_bloodied && !fluorescent)
@@ -785,9 +786,11 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 // My best guess as to why this is here would be that it does so little. Still, keep it under all the procs, for sanity's sake.
 /obj/item/device
 	icon = 'icons/obj/device.dmi'
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 
 //Worn icon generation for on-mob sprites
-/obj/item/proc/make_worn_icon(var/body_type,var/slot_name,var/inhands,var/default_icon,var/default_layer,var/icon/clip_mask = null) //VOREStation edit - add 'clip mask' argument.
+/obj/item/proc/make_worn_icon(var/body_type,var/slot_name,var/inhands,var/default_icon,var/default_layer,var/icon/clip_mask = null)
 	//Get the required information about the base icon
 	var/icon/icon2use = get_worn_icon_file(body_type = body_type, slot_name = slot_name, default_icon = default_icon, inhands = inhands)
 	var/state2use = get_worn_icon_state(slot_name = slot_name)
@@ -815,6 +818,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	standing.color = color
 	standing.layer = layer2use
 	if(istype(clip_mask)) //VOREStation Edit - For taur bodies/tails clipping off parts of uniforms and suits.
+		standing.filters += filter(type = "alpha", icon = clip_mask)
+
+	if(istype(clip_mask)) //For taur bodies/tails clipping off parts of uniforms and suits.
 		standing.filters += filter(type = "alpha", icon = clip_mask)
 
 	//Apply any special features
@@ -940,3 +946,12 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 /obj/item/proc/openTip(location, control, params, user)
 	openToolTip(user, src, params, title = name, content = desc)
+
+// These procs are for RPEDs and part ratings. The concept for this was borrowed from /vg/station.
+// Gets the rating of the item, used in stuff like machine construction.
+/obj/item/proc/get_rating()
+	return FALSE
+
+// Like the above, but used for RPED sorting of parts.
+/obj/item/proc/rped_rating()
+	return get_rating()

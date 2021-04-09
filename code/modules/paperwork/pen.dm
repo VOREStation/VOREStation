@@ -129,7 +129,7 @@
 	var/default_icon_state
 
 /obj/item/weapon/pen/blade/Initialize()
-	..()
+	. = ..()
 	active_icon_state = "[icon_state]-x"
 	default_icon_state = icon_state
 
@@ -202,7 +202,8 @@
 
 /obj/item/weapon/pen/reagent/sleepy/New()
 	..()
-	reagents.add_reagent("chloralhydrate", 22)	//Used to be 100 sleep toxin//30 Chloral seems to be fatal, reducing it to 22./N
+	reagents.add_reagent("chloralhydrate", 1)	//VOREStation Edit
+	reagents.add_reagent("stoxin", 14)	//VOREStation Add
 
 
 /*

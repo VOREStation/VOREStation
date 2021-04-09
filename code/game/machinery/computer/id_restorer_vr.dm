@@ -30,14 +30,15 @@
 	if(..()) return
 	if(stat & (NOPOWER|BROKEN)) return
 
+	if(!inserted) // No point in giving you an option what to do if there's no ID to do things with.
+		to_chat(user, "<span class='notice'>No ID is inserted.</span>")
+		return
+
 	var/choice = alert(user,"What do you want to do?","[src]","Restore ID access","Eject ID","Cancel")
 	if(user.incapacitated() || (get_dist(src, user) > 1))
 		return
 	switch(choice)
 		if("Restore ID access")
-			if(!inserted)
-				to_chat(user, "<span class='notice'>No ID is inserted.</span>")
-				return
 			var/mob/living/carbon/human/H = user
 			if(!(istype(H)))
 				to_chat(user, "<span class='warning'>Invalid user detected. Access denied.</span>")
@@ -66,9 +67,6 @@
 				flick(icon_fail, src)
 				return
 		if("Eject ID")
-			if(!inserted)
-				to_chat(user, "<span class='notice'>No ID is inserted.</span>")
-				return
 			if(ishuman(user))
 				inserted.forceMove(get_turf(src))
 				if(!user.get_active_hand())

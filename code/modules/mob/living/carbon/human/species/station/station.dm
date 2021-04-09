@@ -198,7 +198,7 @@
 	home worlds and speak a variety of languages, especially Siik and Akhani."
 	catalogue_data = list(/datum/category_item/catalogue/fauna/tajaran)
 
-	body_temperature = 320.15	//Even more cold resistant, even more flammable
+	body_temperature = 280.15	//Even more cold resistant, even more flammable
 
 	cold_level_1 = 200 //Default 260
 	cold_level_2 = 140 //Default 200
@@ -225,6 +225,7 @@
 	base_color = "#333333"
 
 	reagent_tag = IS_TAJARA
+	allergens = COFFEE
 
 	move_trail = /obj/effect/decal/cleanable/blood/tracks/paw
 
@@ -235,7 +236,7 @@
 		"Your overheated skin itches."
 		)
 
-	cold_discomfort_level = 275
+	cold_discomfort_level = 215
 
 	has_organ = list(    //No appendix.
 		O_HEART =    /obj/item/organ/internal/heart,
@@ -312,6 +313,7 @@
 	breath_heat_level_3 = 1350	//Default 1250
 
 	reagent_tag = IS_SKRELL
+	allergens = MEAT|FISH|DAIRY|EGGS
 
 	has_limbs = list(
 		BP_TORSO =  list("path" = /obj/item/organ/external/chest),

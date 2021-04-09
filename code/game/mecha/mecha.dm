@@ -31,7 +31,10 @@
 	var/initial_icon = null				//Mech type for resetting icon. Only used for reskinning kits (see custom items)
 	var/can_move = 1
 	var/mob/living/carbon/occupant = null
+
 	var/step_in = 10					//Make a step in step_in/10 sec.
+	var/encumbrance_gap = 1			//How many points of slowdown are negated from equipment? Added to the mech's base step_in.
+
 	var/dir_in = 2						//What direction will the mech face when entered/powered on? Defaults to South.
 	var/step_energy_drain = 10
 	var/health = 300 					//Health is health
@@ -193,8 +196,9 @@
 	var/datum/action/innate/mecha/mech_toggle_cloaking/cloak_action = new
 
 	var/weapons_only_cycle = FALSE	//So combat mechs don't switch to their equipment at times.
+
 /obj/mecha/Initialize()
-	..()
+	. = ..()
 
 	for(var/path in starting_components)
 		var/obj/item/mecha_parts/component/C = new path(src)
@@ -204,6 +208,7 @@
 		for(var/path in starting_equipment)
 			var/obj/item/mecha_parts/mecha_equipment/ME = new path(src)
 			ME.attach(src)
+	update_transform()
 
 /obj/mecha/drain_power(var/drain_check)
 
@@ -317,6 +322,8 @@
 	if(smoke_possible)	//Just making sure nothing is running.
 		qdel(smoke_system)
 
+	GLOB.mech_destroyed_roundstat++
+
 	QDEL_NULL(pr_int_temp_processor)
 	QDEL_NULL(pr_inertial_movement)
 	QDEL_NULL(pr_give_air)
@@ -346,10 +353,10 @@
 		C.forceMove(src)
 		cell = C
 		return
-	cell = new(src)
-	cell.name = "mecha power cell"
-	cell.charge = 15000
-	cell.maxcharge = 15000
+	cell = new /obj/item/weapon/cell/mech(src)
+
+/obj/mecha/get_cell()
+	return cell
 
 /obj/mecha/proc/add_cabin()
 	cabin_air = new
@@ -559,12 +566,12 @@
 		target.attack_hand(src.occupant)
 		return 1
 	if(istype(target, /obj/machinery/embedded_controller))
-		target.ui_interact(src.occupant)
+		target.tgui_interact(src.occupant)
 		return 1
 	return 0
 
-/obj/mecha/contents_nano_distance(var/src_object, var/mob/living/user)
-	. = user.shared_living_nano_distance(src_object) //allow them to interact with anything they can interact with normally.
+/obj/mecha/contents_tgui_distance(var/src_object, var/mob/living/user)
+	. = user.shared_living_tgui_distance(src_object) //allow them to interact with anything they can interact with normally.
 	if(. != STATUS_INTERACTIVE)
 		//Allow interaction with the mecha or anything that is part of the mecha
 		if(src_object == src || (src_object in src))
@@ -641,17 +648,20 @@
 /obj/mecha/proc/get_step_delay()
 	var/tally = 0
 
-	if(overload)
-		tally = min(1, round(step_in/2))
+	if(LAZYLEN(equipment))
+		for(var/obj/item/mecha_parts/mecha_equipment/ME in equipment)
+			if(ME.get_step_delay())
+				tally += ME.get_step_delay()
+
+		if(tally <= encumbrance_gap)	// If the total is less than our encumbrance gap, ignore equipment weight.
+			tally = 0
+		else	// Otherwise, start the tally after cutting that gap out.
+			tally -= encumbrance_gap
 
 	for(var/slot in internal_components)
 		var/obj/item/mecha_parts/component/C = internal_components[slot]
 		if(C && C.get_step_delay())
 			tally += C.get_step_delay()
-
-	for(var/obj/item/mecha_parts/mecha_equipment/ME in equipment)
-		if(ME.get_step_delay())
-			tally += ME.get_step_delay()
 
 	var/obj/item/mecha_parts/component/actuator/actuator = internal_components[MECH_ACTUATOR]
 
@@ -674,7 +684,10 @@
 					break
 			break
 
-	return max(1, round(tally, 0.1))
+	if(overload)	// At the end, because this would normally just make the mech *slower* since tally wasn't starting at 0.
+		tally = min(1, round(tally/2))
+
+	return max(1, round(tally, 0.1))	// Round the total to the nearest 10th. Can't go lower than 1 tick. Even humans have a delay longer than that.
 
 /obj/mecha/proc/dyndomove(direction)
 	if(!can_move)
@@ -1566,11 +1579,12 @@
 		src.verbs += /obj/mecha/verb/eject
 		src.Entered(mmi_as_oc)
 		src.Move(src.loc)
-		src.icon_state = src.reset_icon()
+		update_icon()
 		set_dir(dir_in)
 		src.log_message("[mmi_as_oc] moved in as pilot.")
 		if(!hasInternalDamage())
 			src.occupant << sound('sound/mecha/nominal.ogg',volume=50)
+		update_icon()
 		return 1
 	else
 		return 0
@@ -1793,6 +1807,14 @@
 	set src in oview(1)
 	move_inside()
 
+//returns an equipment object if we have one of that type, useful since is_type_in_list won't return the object
+//since is_type_in_list uses caching, this is a slower operation, so only use it if needed
+/obj/mecha/proc/get_equipment(var/equip_type)
+	for(var/obj/item/mecha_parts/mecha_equipment/ME in equipment)
+		if(istype(ME,equip_type))
+			return ME
+	return null
+
 /obj/mecha/proc/move_inside()
 	if (usr.stat || !ishuman(usr))
 		return
@@ -1833,18 +1855,22 @@
 			return
 
 //	to_chat(usr, "You start climbing into [src.name]")
-
-	visible_message("<span class='notice'>\The [usr] starts to climb into [src.name]</span>")
-
-	if(enter_after(40,usr))
-		if(!src.occupant)
-			moved_inside(usr)
-			if(ishuman(occupant)) //Aeiou
-				GrantActions(occupant, 1)
-		else if(src.occupant!=usr)
-			to_chat(usr, "[src.occupant] was faster. Try better next time, loser.")
+	if(get_equipment(/obj/item/mecha_parts/mecha_equipment/runningboard))
+		visible_message("<span class='notice'>\The [usr] is instantly lifted into [src.name] by the running board!</span>")
+		moved_inside(usr)
+		if(ishuman(occupant))
+			GrantActions(occupant, 1)
 	else
-		to_chat(usr, "You stop entering the exosuit.")
+		visible_message("<span class='notice'>\The [usr] starts to climb into [src.name]</span>")
+		if(enter_after(40,usr))
+			if(!src.occupant)
+				moved_inside(usr)
+				if(ishuman(occupant)) //Aeiou
+					GrantActions(occupant, 1)
+			else if(src.occupant!=usr)
+				to_chat(usr, "[src.occupant] was faster. Try better next time, loser.")
+		else
+			to_chat(usr, "You stop entering the exosuit.")
 	return
 
 /obj/mecha/proc/moved_inside(var/mob/living/carbon/human/H as mob)
@@ -1861,7 +1887,7 @@
 		src.forceMove(src.loc)
 		src.verbs += /obj/mecha/verb/eject
 		src.log_append_to_last("[H] moved in as pilot.")
-		src.icon_state = src.reset_icon()
+		update_icon()
 		//VOREStation Edit Add
 		if(occupant.hud_used)
 			minihud = new (occupant.hud_used, src)
@@ -1981,7 +2007,7 @@
 		occupant.clear_alert("mech damage")
 		occupant.in_enclosed_vehicle = 0
 		occupant = null
-		icon_state = src.reset_icon()+"-open"
+		update_icon()
 		set_dir(dir_in)
 		verbs -= /obj/mecha/verb/eject
 
@@ -2640,13 +2666,6 @@
 		cell.give(amount)
 		return 1
 	return 0
-
-/obj/mecha/proc/reset_icon()
-	if (initial_icon)
-		icon_state = initial_icon
-	else
-		icon_state = initial(icon_state)
-	return icon_state
 
 //This is for mobs mostly.
 /obj/mecha/attack_generic(var/mob/user, var/damage, var/attack_message)

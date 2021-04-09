@@ -66,6 +66,7 @@
 	var/last_fired = FALSE			//TRUE: if the turret is cooling down from a shot, FALSE: turret is ready to fire
 	var/shot_delay = 1.5 SECONDS	//1.5 seconds between each shot
 
+	var/targetting_is_configurable = TRUE // if false, you cannot change who this turret attacks via its UI
 	var/check_arrest = TRUE		//checks if the perp is set to arrest
 	var/check_records = TRUE	//checks if a security record exists at all
 	var/check_weapons = FALSE	//checks if it can shoot people that have a weapon they aren't authorized to have
@@ -73,6 +74,7 @@
 	var/check_anomalies = TRUE	//checks if it can shoot at unidentified lifeforms (ie xenos)
 	var/check_synth	 = FALSE 	//if active, will shoot at anything not an AI or cyborg
 	var/check_all = FALSE		//If active, will fire on anything, including synthetics.
+	var/fire_at_movement = FALSE	// If active, will fire on the most recent thing to move in range, as soon as possible.
 	var/ailock = FALSE 			// AI cannot use this
 	var/check_down = FALSE		//If active, will shoot to kill when lethals are also on
 	var/faction = null			//if set, will not fire at people in the same faction for any reason.
@@ -81,6 +83,7 @@
 
 	var/enabled = TRUE			//determines if the turret is on
 	var/lethal = FALSE			//whether in lethal or stun mode
+	var/lethal_is_configurable = TRUE // if false, its lethal setting cannot be changed
 	var/disabled = FALSE
 
 	var/shot_sound 				//what sound should play when the turret fires
@@ -92,6 +95,8 @@
 	var/last_target			//last target fired at, prevents turrets from erratically firing at all valid targets in range
 	var/timeout = 10		// When a turret pops up, then finds nothing to shoot at, this number decrements until 0, when it pops down.
 	var/can_salvage = TRUE	// If false, salvaging doesn't give you anything.
+
+	var/stay_up = FALSE		// If true, the turret will remain open while it is powered.
 
 /obj/machinery/porta_turret/crescent
 	req_one_access = list(access_cent_specops)
@@ -214,6 +219,9 @@
 	req_one_access = list()
 	installation = /obj/item/weapon/gun/energy/lasertag/omni
 
+	targetting_is_configurable = FALSE
+	lethal_is_configurable = FALSE
+
 	locked = FALSE
 	enabled = FALSE
 	anchored = FALSE
@@ -262,43 +270,39 @@
 		if(istype(M.wear_suit, /obj/item/clothing/suit/bluetag) && check_weapons) // Checks if they are a blue player
 			return TURRET_PRIORITY_TARGET
 
-/obj/machinery/porta_turret/lasertag/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	var/data[0]
-	data["access"] = !isLocked(user)
-	data["locked"] = locked
-	data["enabled"] = enabled
-	//data["is_lethal"] = 1 // VOREStation Removal of "Lethal" setting - it does nothing. Rykka did dis.
-	//data["lethal"] = lethal // VOREStation Removal of "Lethal" setting - it does nothing. Rykka did dis.
+/obj/machinery/porta_turret/lasertag/tgui_data(mob/user)
+	var/list/data = list(
+		"locked" = isLocked(user), // does the current user have access?
+		"on" = enabled, // is turret turned on?
+		"lethal" = lethal,
+		"lethal_is_configurable" = lethal_is_configurable
+	)
+	return data
 
-	if(data["access"])
-		var/settings[0]
-		settings[++settings.len] = list("category" = "Target Red", "setting" = "check_synth", "value" = check_synth) // Could not get the UI to work with new vars specifically for lasertag turrets -Nalarac
-		settings[++settings.len] = list("category" = "Target Blue", "setting" = "check_weapons", "value" = check_weapons) // So I'm using these variables since they don't do anything else in this case
-		data["settings"] = settings
+/obj/machinery/porta_turret/pointdefense
+	name = "point-defense turret"
+	turret_type = "core"
+	desc = "A basic ship-mounted rock-breaker."
+	description_info = "This turret is capable of blasting incoming meteors into gravel, but it is very limited in range."
 
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if(!ui)
-		ui = new(user, src, ui_key, "turret_control.tmpl", "Turret Controls", 500, 300)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(1)
+	installation = /obj/item/weapon/gun/energy/mininglaser
 
-/obj/machinery/porta_turret/lasertag/Topic(href, href_list)
-	if(..())
-		return 1
+	check_arrest = FALSE
+	check_records = FALSE
+	check_weapons = FALSE
+	check_access = FALSE
+	check_anomalies = FALSE
+	check_synth	 = FALSE
+	check_all = FALSE
+	fire_at_movement = TRUE
+	stay_up = TRUE
+	ailock = FALSE
+	check_down = FALSE
 
-	if(href_list["command"] && href_list["value"])
-		var/value = text2num(href_list["value"])
-		if(href_list["command"] == "enable")
-			enabled = value
-		//else if(href_list["command"] == "lethal") // VOREStation Removal of "Lethal" setting - it does nothing. Rykka did dis.
-			//lethal = value // VOREStation Removal of "Lethal" setting - it does nothing. Rykka did dis.
-		else if(href_list["command"] == "check_synth")
-			check_synth = value
-		else if(href_list["command"] == "check_weapons")
-			check_weapons = value
-
-		return 1
+/obj/machinery/porta_turret/pointdefense/orderable
+	enabled = FALSE
+	anchored = FALSE
+	locked = FALSE
 
 /obj/machinery/porta_turret/Initialize()
 	//Sets up a spark system
@@ -345,6 +349,8 @@
 	var/obj/item/weapon/gun/energy/E = installation	//All energy-based weapons are applicable
 	var/obj/item/projectile/P = initial(E.projectile_type)
 	//var/obj/item/ammo_casing/shottype = E.projectile_type
+
+	//GLOB.moved_event.register_global(src, /obj/machinery/porta_turret/proc/point_defense) //VOREStation Removal
 
 	projectile = P
 	lethal_projectile = projectile
@@ -401,102 +407,110 @@
 			lethal_shot_sound = 'sound/weapons/eluger.ogg'
 			shot_sound = 'sound/weapons/Taser.ogg'
 
-/obj/machinery/porta_turret/proc/isLocked(mob/user)
-	if(ailock && issilicon(user))
-		to_chat(user, "<span class='notice'>There seems to be a firewall preventing you from accessing this device.</span>")
-		return 1
+		if(/obj/item/weapon/gun/energy/mininglaser)
+			lethal_icon_color = "green"
+			lethal_projectile = /obj/item/projectile/beam/mininglaser
+			lethal_shot_sound = 'sound/weapons/eluger.ogg'
+			icon_color = "red"
+			projectile = /obj/item/projectile/beam/weaklaser
+			shot_sound = 'sound/weapons/Laser.ogg'
 
+/obj/machinery/porta_turret/proc/isLocked(mob/user)
 	if(locked && !issilicon(user))
 		to_chat(user, "<span class='notice'>Controls locked.</span>")
 		return 1
-
-	return 0
+	if(HasController())
+		return TRUE
+	if(isrobot(user) || isAI(user))
+		if(ailock)
+			to_chat(user, "<span class='notice'>There seems to be a firewall preventing you from accessing this device.</span>")
+			return TRUE
+		else
+			return FALSE
+	if(isobserver(user))
+		var/mob/observer/dead/D = user
+		if(D.can_admin_interact())
+			return FALSE
+		else
+			return TRUE
+	if(locked)
+		return TRUE
+	return FALSE
 
 /obj/machinery/porta_turret/attack_ai(mob/user)
-	if(isLocked(user))
-		return
+	tgui_interact(user)
 
-	ui_interact(user)
+/obj/machinery/porta_turret/attack_ghost(mob/user)
+	tgui_interact(user)
 
 /obj/machinery/porta_turret/attack_hand(mob/user)
-	if(isLocked(user))
-		return
-
-	ui_interact(user)
-
-/obj/machinery/porta_turret/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	var/data[0]
-	data["access"] = !isLocked(user)
-	data["locked"] = locked
-	data["enabled"] = enabled
-	data["is_lethal"] = 1
-	data["lethal"] = lethal
-
-	if(data["access"])
-		var/settings[0]
-		settings[++settings.len] = list("category" = "Neutralize All Non-Synthetics", "setting" = "check_synth", "value" = check_synth)
-		settings[++settings.len] = list("category" = "Check Weapon Authorization", "setting" = "check_weapons", "value" = check_weapons)
-		settings[++settings.len] = list("category" = "Check Security Records", "setting" = "check_records", "value" = check_records)
-		settings[++settings.len] = list("category" = "Check Arrest Status", "setting" = "check_arrest", "value" = check_arrest)
-		settings[++settings.len] = list("category" = "Check Access Authorization", "setting" = "check_access", "value" = check_access)
-		settings[++settings.len] = list("category" = "Check misc. Lifeforms", "setting" = "check_anomalies", "value" = check_anomalies)
-		settings[++settings.len] = list("category" = "Neutralize All Entities", "setting" = "check_all", "value" = check_all)
-		settings[++settings.len] = list("category" = "Neutralize Downed Entities", "setting" = "check_down", "value" = check_down)
-		data["settings"] = settings
-
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if(!ui)
-		ui = new(user, src, ui_key, "turret_control.tmpl", "Turret Controls", 500, 300)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(1)
+	tgui_interact(user)
 
 /obj/machinery/porta_turret/proc/HasController()
 	var/area/A = get_area(src)
 	return A && A.turret_controls.len > 0
 
-/obj/machinery/porta_turret/CanUseTopic(var/mob/user)
+/obj/machinery/porta_turret/tgui_interact(mob/user, datum/tgui/ui = null)
 	if(HasController())
-		to_chat(user, "<span class='notice'>Turrets can only be controlled using the assigned turret controller.</span>")
-		return STATUS_CLOSE
-
-	if(isLocked(user))
-		return STATUS_CLOSE
-
+		to_chat(user, "<span class='notice'>[src] can only be controlled using the assigned turret controller.</span>")
+		return
 	if(!anchored)
-		to_chat(user, "<span class='notice'>\The [src] has to be secured first!</span>")
-		return STATUS_CLOSE
+		to_chat(user, "<span class='notice'>[src] has to be secured first!</span>")
+		return
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "PortableTurret", name, 500, 400)
+		ui.open()
 
-	return ..()
+/obj/machinery/porta_turret/tgui_data(mob/user)
+	var/list/data = list(
+		"locked" = isLocked(user), // does the current user have access?
+		"on" = enabled,
+		"targetting_is_configurable" = targetting_is_configurable, // If false, targetting settings don't show up
+		"lethal" = lethal,
+		"lethal_is_configurable" = lethal_is_configurable,
+		"check_weapons" = check_weapons,
+		"neutralize_noaccess" = check_access,
+		"neutralize_norecord" = check_records,
+		"neutralize_criminals" = check_arrest,
+		"neutralize_all" = check_all,
+		"neutralize_nonsynth" = check_synth,
+		"neutralize_unidentified" = check_anomalies,
+		"neutralize_down" = check_down,
+	)
+	return data
 
-/obj/machinery/porta_turret/Topic(href, href_list)
+/obj/machinery/porta_turret/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
-		return 1
+		return TRUE
+	if(isLocked(usr))
+		return TRUE
+	. = TRUE
 
-	if(href_list["command"] && href_list["value"])
-		var/value = text2num(href_list["value"])
-		if(href_list["command"] == "enable")
-			enabled = value
-		else if(href_list["command"] == "lethal")
-			lethal = value
-		else if(href_list["command"] == "check_synth")
-			check_synth = value
-		else if(href_list["command"] == "check_weapons")
-			check_weapons = value
-		else if(href_list["command"] == "check_records")
-			check_records = value
-		else if(href_list["command"] == "check_arrest")
-			check_arrest = value
-		else if(href_list["command"] == "check_access")
-			check_access = value
-		else if(href_list["command"] == "check_anomalies")
-			check_anomalies = value
-		else if(href_list["command"] == "check_all")
-			check_all = value
-		else if(href_list["command"] == "check_down")
-			check_down = value
-
-		return 1
+	switch(action)
+		if("power")
+			enabled = !enabled
+		if("lethal")
+			if(lethal_is_configurable)
+				lethal = !lethal
+	if(targetting_is_configurable)
+		switch(action)
+			if("authweapon")
+				check_weapons = !check_weapons
+			if("authaccess")
+				check_access = !check_access
+			if("authnorecord")
+				check_records = !check_records
+			if("autharrest")
+				check_arrest = !check_arrest
+			if("authxeno")
+				check_anomalies = !check_anomalies
+			if("authsynth")
+				check_synth = !check_synth
+			if("authall")
+				check_all = !check_all
+			if("authdown")
+				check_down = !check_down
 
 /obj/machinery/porta_turret/power_change()
 	if(powered())
@@ -698,6 +712,10 @@
 		popDown()
 		return
 
+	if(stay_up)
+		timeout = 10
+		popUp()
+
 	var/list/targets = list()			//list of primary targets
 	var/list/secondarytargets = list()	//targets that are least important
 
@@ -720,13 +738,21 @@
 	if(!tryToShootAt(targets))
 		if(!tryToShootAt(secondarytargets)) // if no valid targets, go for secondary targets
 			timeout--
-			if(timeout <= 0)
+			if(timeout <= 0 && !stay_up)
 				spawn()
 					popDown() // no valid targets, close the cover
 
 	if(auto_repair && (health < maxhealth))
 		use_power(20000)
 		health = min(health+1, maxhealth) // 1HP for 20kJ
+
+// We're expecting the first arg to be a target, for this we don't care about previous and next turfs.
+/obj/machinery/porta_turret/proc/point_defense(var/atom/movable/Targ)
+	if((stat & (NOPOWER|BROKEN)) || !fire_at_movement)	// Are we even able or supposed to fire at non-moving targets?
+		return
+
+	if((isliving(Targ) && assess_living(Targ)) || ((istype(Targ, /obj/item) || istype(Targ, /obj/effect/meteor)) && Targ.invisibility < INVISIBILITY_LEVEL_ONE && Targ in view(7,src)))	// Is the target a living thing, if so, is it a valid target? Or if it's not living, is it in sight?
+		target(Targ)	// Yes? Blast it.
 
 /obj/machinery/porta_turret/proc/assess_and_assign(var/mob/living/L, var/list/targets, var/list/secondarytargets)
 	switch(assess_living(L))
@@ -754,10 +780,10 @@
 	if(L.stat == DEAD && !emagged)		//if the perp is dead, no need to bother really
 		return TURRET_NOT_TARGET	//move onto next potential victim!
 
-	if(get_dist(src, L) > 7)	//if it's too far away, why bother?
+	if(get_dist(src, get_turf(L)) > 7)	//if it's too far away, why bother?
 		return TURRET_NOT_TARGET
 
-	if(!(L in check_trajectory(L, src)))	//check if we have true line of sight
+	if(!(L in check_trajectory(get_turf(L), src)))	//check if we have true line of sight
 		return TURRET_NOT_TARGET
 
 	if(emagged)		// If emagged not even the dead get a rest
@@ -864,8 +890,9 @@
 		last_target = target
 		spawn()
 			popUp()				//pop the turret up if it's not already up.
-		set_dir(get_dir(src, target))	//even if you can't shoot, follow the target
-		playsound(src, 'sound/machines/turrets/turret_rotate.ogg', 100, 1) // Play rotating sound
+		if(dir != get_dir(src, target))
+			set_dir(get_dir(src, target))	//even if you can't shoot, follow the target
+			playsound(src, 'sound/machines/turrets/turret_rotate.ogg', 100, 1) // Play rotating sound
 		spawn()
 			shootAt(target)
 		return 1
@@ -929,6 +956,9 @@
 	var/check_weapons
 	var/check_anomalies
 	var/check_all
+	var/check_down
+	var/fire_at_movement
+	var/stay_up
 	var/ailock
 
 /obj/machinery/porta_turret/proc/setState(var/datum/turret_checks/TC)
@@ -944,6 +974,9 @@
 	check_weapons = TC.check_weapons
 	check_anomalies = TC.check_anomalies
 	check_all = TC.check_all
+	check_down = TC.check_down
+	fire_at_movement = TC.fire_at_movement
+	stay_up = TC.stay_up
 	ailock = TC.ailock
 
 	power_change()

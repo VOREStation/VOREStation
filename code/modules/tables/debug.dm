@@ -7,7 +7,7 @@
 		material = get_material_by_name("debugium")
 		..()
 
-/material/debug
+/datum/material/debug
 	name = "debugium"
 	stack_type = /obj/item/stack/material/debug
 	icon_base = "debug"

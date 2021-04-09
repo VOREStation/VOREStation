@@ -37,14 +37,15 @@
 			var/mob/M = mob
 			spawn(0) // It's possible that it could be deleted in the meantime, or that it runtimes.
 				if(M)
-					//VOREStation edit
-					if(istype(M, /mob/observer/dead/))
+					if(isobserver(M))
+						//VOREStation Edit Start
 						var/mob/observer/dead/D = M
 						if(ckey || (src in view(D)))
 							M.show_message(message, m_type)
+							message = "<span class='emote'><B>[src]</B> ([ghost_follow_link(src, M)]) [input]</span>"
 					else
 						M.show_message(message, m_type)
-					//End VOREStation edit
+						//VOREStation Edit End
 
 		for(var/obj in o_viewers)
 			var/obj/O = obj

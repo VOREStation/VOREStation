@@ -86,6 +86,13 @@
 
 	integrated_object_type = /obj/item/weapon/melee/energy/sword
 
+/obj/item/organ/internal/augment/armmounted/hand/blade
+	name = "handblade implant"
+	desc = "A small implant that fits neatly into the hand. It deploys a small, but dangerous blade."
+	icon_state = "augment_handblade"
+
+	integrated_object_type = /obj/item/weapon/melee/augment/blade
+
 /*
  * Shoulder augment.
  */
@@ -137,6 +144,14 @@
 		var/mob/living/carbon/human/H = owner
 		H.add_modifier(/datum/modifier/melee_surge, 0.75 MINUTES)
 
+/obj/item/organ/internal/augment/armmounted/shoulder/blade
+	name = "armblade implant"
+	desc = "A large implant that fits into a subject's arm. It deploys a large metal blade by some painful means."
+
+	icon_state = "augment_armblade"
+
+	integrated_object_type = /obj/item/weapon/melee/augment/blade/arm
+
 // The toolkit / multi-tool implant.
 
 /obj/item/organ/internal/augment/armmounted/shoulder/multiple
@@ -174,7 +189,7 @@
 		)
 
 /obj/item/organ/internal/augment/armmounted/shoulder/multiple/Initialize()
-	..()
+	. = ..()
 
 	if(integrated_object)
 		integrated_tools[integrated_object_type] = integrated_object

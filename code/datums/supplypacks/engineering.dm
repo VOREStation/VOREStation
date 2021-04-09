@@ -77,6 +77,14 @@
 	containertype = /obj/structure/closet/crate/focalpoint
 	containername = "advanced hull shield generator crate"
 
+/datum/supply_pack/eng/pointdefense
+	name = "Point Defense Turret"
+	contains = list(/obj/machinery/porta_turret/pointdefense/orderable)
+	cost = 70
+	containertype = /obj/structure/closet/crate/large/secure/heph
+	containername = "point defense crate"
+	access = access_security
+
 /datum/supply_pack/eng/electrical
 	name = "Electrical maintenance crate"
 	contains = list(
@@ -149,6 +157,13 @@
 	contains = list(/obj/machinery/the_singularitygen)
 	containertype = /obj/structure/closet/crate/secure/einstein
 	containername = "Singularity Generator crate"
+	access = access_ce
+
+/datum/supply_pack/eng/engine/tesla_gen
+	name = "Tesla Generator crate"
+	contains = list(/obj/machinery/the_singularitygen/tesla)
+	containertype = /obj/structure/closet/crate/secure/einstein
+	containername = "Tesla Generator crate"
 	access = access_ce
 
 /datum/supply_pack/eng/engine/collector

@@ -49,10 +49,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 /datum/controller/subsystem/ticker/Initialize()
 	pregame_timeleft = config.pregame_time
 	send2mainirc("Server lobby is loaded and open at byond://[config.serverurl ? config.serverurl : (config.server ? config.server : "[world.address]:[world.port]")]")
-
-	// Set up the global announcer
-	GLOB.autospeaker = new (null, null, null, 1)
-
+	GLOB.autospeaker = new (null, null, null, 1) //Set up Global Announcer
 	return ..()
 
 /datum/controller/subsystem/ticker/fire(resumed = FALSE)
@@ -185,11 +182,6 @@ var/global/datum/controller/subsystem/ticker/ticker
 	var/list/adm = get_admin_counts()
 	if(adm["total"] == 0)
 		send2adminirc("A round has started with no admins online.")
-
-/*	supply_controller.process() 		//Start the supply shuttle regenerating points -- TLE // handled in scheduler
-	master_controller.process()		//Start master_controller.process()
-	lighting_controller.process()	//Start processing DynamicAreaLighting updates
-	*/
 
 	current_state = GAME_STATE_PLAYING
 	Master.SetRunLevel(RUNLEVEL_GAME)
@@ -484,6 +476,11 @@ var/global/datum/controller/subsystem/ticker/ticker
 	var/dronecount = 0
 
 	for (var/mob/living/silicon/robot/robo in mob_list)
+
+		if(istype(robo, /mob/living/silicon/robot/platform))
+			var/mob/living/silicon/robot/platform/tank = robo
+			if(!tank.has_had_player)
+				continue
 
 		if(istype(robo,/mob/living/silicon/robot/drone) && !istype(robo,/mob/living/silicon/robot/drone/swarm))
 			dronecount++

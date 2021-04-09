@@ -78,10 +78,54 @@
 	glass_name = "Pink Moo"
 	glass_desc = "A very familiar looking drink. ...moo?"
 
+/datum/reagent/ethanol/originalsin
+	name = "Original Sin"
+	id = "originalsin"
+	description = "Angel Ichor, entirely transformed by one drop of apple juice"
+	taste_description = "the apple Eve gave to Adam"
+	color = "#99CC35"
+	strength = 17
+
+	glass_name = "Original Sin"
+	glass_desc = "A drink so fine, you may just risk eternal damnation!"
+
+/datum/reagent/ethanol/newyorksour
+	name = "New York Sour"
+	id = "newyorksour"
+	description = "Whiskey sour, with a layer of wine and egg white."
+	taste_description = "refreshing lemoned whiskey, smoothed with wine"
+	color = "#FFBF3C"
+	strength = 17
+
+	glass_name = "New York Sour"
+	glass_desc = "A carefully poured three layered drink"
+
+/datum/reagent/ethanol/windgarita
+	name = "WND-Garita"
+	id = "windgarita"
+	description = "A highly questionable combination of margarita and Space Mountain Wind"
+	taste_description = "like sin, and some tequilia"
+	color = "#90D93D"
+	strength = 15
+
+	glass_name = "WND-Garita"
+	glass_desc = "Who the hell comes up with these drinks?!"
+
+/datum/reagent/ethanol/mudslide
+	name = "Mudslide"
+	id = "mudslide"
+	description = "Vodka, Kahlua and Irish Cream together at last."
+	taste_description = "a mocha milkshake, with a splash of vodka."
+	color = "#8B6338"
+	strength = 13
+
+	glass_name = "Mudslide"
+	glass_desc = "A richly coloured drink, comes with a chocolate garnish!"
+
 /datum/reagent/ethanol/monstertamer/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 
-	if(M.species.gets_food_nutrition) //it's still food!
+	if(M.species.organic_food_coeff) //it's still food!
 		switch(alien)
 			if(IS_DIONA) //Diona don't get any nutrition from nutriment or protein.
 			if(IS_SKRELL)
@@ -107,7 +151,7 @@
 	..()
 	if(alien == IS_SKRELL)
 		M.adjustToxLoss(removed)  //Equivalent to half as much protein, since it's half protein.
-	if(M.species.gets_food_nutrition)
+	if(M.species.organic_food_coeff)
 		if(alien == IS_SLIME || alien == IS_CHIMERA) //slimes and chimera can get nutrition from injected nutriment and protein
 			M.adjust_nutrition(alt_nutriment_factor * removed)
 
@@ -386,7 +430,7 @@
 /datum/reagent/ethanol/hairoftherat/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 
-	if(M.species.gets_food_nutrition) //it's still food!
+	if(M.species.organic_food_coeff) //it's still food!
 		switch(alien)
 			if(IS_DIONA) //Diona don't get any nutrition from nutriment or protein.
 			if(IS_SKRELL)
@@ -412,6 +456,6 @@
 	..()
 	if(alien == IS_SKRELL)
 		M.adjustToxLoss(removed)  //Equivalent to half as much protein, since it's half protein.
-	if(M.species.gets_food_nutrition)
+	if(M.species.organic_food_coeff)
 		if(alien == IS_SLIME || alien == IS_CHIMERA) //slimes and chimera can get nutrition from injected nutriment and protein
 			M.nutrition += (alt_nutriment_factor * removed)

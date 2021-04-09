@@ -43,7 +43,7 @@ GLOBAL_LIST_EMPTY(event_listen_count)
 	for(var/entry in GLOB.all_observable_events.events)
 		var/decl/observ/event = entry
 		if(event.unregister_global(listener))
-			log_debug("[event] - [listener] was deleted while still registered to global events.")
+		//	log_debug("[event] - [listener] was deleted while still registered to global events.") // TODO: Apply axe, reimplement with datum component listeners
 			if(!(--listen_count))
 				return
 
@@ -55,7 +55,7 @@ GLOBAL_LIST_EMPTY(event_listen_count)
 		if(proc_owners)
 			for(var/proc_owner in proc_owners)
 				if(event.unregister(event_source, proc_owner))
-					log_debug("[event] - [event_source] was deleted while still being listened to by [proc_owner].")
+				//	log_debug("[event] - [event_source] was deleted while still being listened to by [proc_owner].") // TODO: Apply axe, reimplement with datum component listeners
 					if(!(--source_listener_count))
 						return
 
@@ -65,6 +65,6 @@ GLOBAL_LIST_EMPTY(event_listen_count)
 		var/decl/observ/event = entry
 		for(var/event_source in event.event_sources)
 			if(event.unregister(event_source, listener))
-				log_debug("[event] - [listener] was deleted while still listening to [event_source].")
+			//	log_debug("[event] - [listener] was deleted while still listening to [event_source].") // TODO: Apply axe, reimplement with datum component listeners
 				if(!(--listener_count))
 					return

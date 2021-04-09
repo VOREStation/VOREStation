@@ -14,6 +14,25 @@
 /obj/structure/lattice,
 /turf/space,
 /area/space)
+"ae" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/yellow/border{
+	dir = 4
+	},
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	pixel_x = 28
+	},
+/obj/effect/floor_decal/corner/yellow/bordercorner,
+/obj/structure/cable/cyan{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/tiled,
+/area/engineering/engine_room)
 "af" = (
 /turf/simulated/wall/r_wall,
 /area/engineering/engine_room)
@@ -67,6 +86,7 @@
 /area/engineering/engine_waste)
 "an" = (
 /obj/machinery/field_generator,
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor,
 /area/engineering/engine_waste)
 "ao" = (
@@ -102,6 +122,12 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
 	},
 /turf/simulated/floor,
 /area/engineering/engine_waste)
@@ -141,6 +167,9 @@
 /obj/item/stack/cable_coil/random,
 /obj/item/weapon/tool/wrench,
 /obj/item/weapon/tool/screwdriver,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
 /turf/simulated/floor,
 /area/engineering/engine_waste)
 "ax" = (
@@ -456,26 +485,6 @@
 /obj/effect/floor_decal/corner/yellow/bordercorner{
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
-/area/engineering/engine_room)
-"aZ" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/yellow/border{
-	dir = 4
-	},
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "east bump";
-	pixel_x = 28
-	},
-/obj/structure/cable/cyan{
-	d2 = 2;
-	dir = 8;
-	icon_state = "0-2"
-	},
-/obj/effect/floor_decal/corner/yellow/bordercorner,
 /turf/simulated/floor/tiled,
 /area/engineering/engine_room)
 "ba" = (
@@ -2596,7 +2605,7 @@ az
 aF
 aN
 aV
-aZ
+ae
 bk
 cF
 cw

@@ -72,8 +72,8 @@
 		teleport_y = src.y
 
 /obj/effect/step_trigger/teleporter/to_underdark
-	icon = 'icons/obj/stairs.dmi'
-	icon_state = "stairs"
+	icon = 'icons/obj/structures/stairs_64x64.dmi'
+	icon_state = ""
 	invisibility = 0
 /obj/effect/step_trigger/teleporter/to_underdark/Initialize()
 	. = ..()
@@ -85,8 +85,8 @@
 			teleport_z = Z.z
 
 /obj/effect/step_trigger/teleporter/from_underdark
-	icon = 'icons/obj/stairs.dmi'
-	icon_state = "stairs"
+	icon = 'icons/obj/structures/stairs_64x64.dmi'
+	icon_state = ""
 	invisibility = 0
 /obj/effect/step_trigger/teleporter/from_underdark/Initialize()
 	. = ..()
@@ -366,7 +366,7 @@ var/global/list/latejoin_tram   = list()
 
 /obj/structure/closet/secure_closet/guncabinet/excursion/New()
 	..()
-	for(var/i = 1 to 3)
+	for(var/i = 1 to 2)
 		new /obj/item/weapon/gun/energy/locked/frontier(src)
 
 // Used at centcomm for the elevator
@@ -404,24 +404,6 @@ var/global/list/latejoin_tram   = list()
 	build_path = /obj/machinery/computer/security/xenobio
 	network = list(NETWORK_XENOBIO)
 	req_access = list()
-
-//Dance pole
-/obj/structure/dancepole
-	name = "dance pole"
-	desc = "Engineered for your entertainment"
-	icon = 'icons/obj/objects_vr.dmi'
-	icon_state = "dancepole"
-	density = 0
-	anchored = 1
-
-/obj/structure/dancepole/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if(O.is_wrench())
-		anchored = !anchored
-		playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
-		if(anchored)
-			to_chat(user, "<font color='blue'>You secure \the [src].</font>")
-		else
-			to_chat(user, "<font color='blue'>You unsecure \the [src].</font>")
 //
 // ### Wall Machines On Full Windows ###
 // To make sure wall-mounted machines placed on full-tile windows are clickable they must be above the window

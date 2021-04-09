@@ -12,9 +12,13 @@ var/list/floor_decals = list()
 
 /obj/effect/floor_decal/New(var/newloc, var/newdir, var/newcolour)
 	supplied_dir = newdir
-	if(newcolour) color = newcolour
+	if(newcolour)
+		color = newcolour
 	..(newloc)
 
+// TODO: identify what is causing these atoms to be qdeleted in New()/Initialize() 
+// somewhere in this chain. Alternatively repath to /obj/floor_decal or some other 
+// abstract handler that explicitly doesn't invoke any obj behavior.
 /obj/effect/floor_decal/Initialize()
 	add_to_turf_decals()
 	initialized = TRUE
@@ -42,11 +46,11 @@ var/list/floor_decals = list()
 	name = "reset marker"
 
 /obj/effect/floor_decal/reset/Initialize()
+	..()
 	var/turf/T = get_turf(src)
 	if(T.decals && T.decals.len)
 		T.decals.Cut()
 		T.update_icon()
-	initialized = TRUE
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/floor_decal/corner

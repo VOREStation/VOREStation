@@ -159,6 +159,13 @@
 	icon_state = "scrubsnavyblue"
 	item_state_slots = list(slot_r_hand_str = "blue", slot_l_hand_str = "blue")
 
+/obj/item/clothing/under/rank/medical/scrubs/white
+	name = "scrubs"
+	desc = "It's made of a special fiber that provides minor protection against biohazards"
+	icon_state = "scrubs"
+	item_state_slots = list(slot_r_hand_str = "white", slot_l_hand_str = "white")
+	index = 1
+
 /obj/item/clothing/under/rank/psych
 	desc = "A basic white jumpsuit. It has turqouise markings that denote the wearer as a psychiatrist."
 	name = "psychiatrist's jumpsuit"

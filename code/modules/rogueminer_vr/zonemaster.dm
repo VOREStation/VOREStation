@@ -127,6 +127,8 @@
 
 	rm_controller.dbg("ZM(pa): The asteroid has [A.map.len] X-lists.")
 
+	var/list/changedturfs = list()
+
 	for(var/Ix=1, Ix <= A.map.len, Ix++)
 		var/list/curr_x = A.map[Ix]
 		rm_controller.dbg("ZM(pa): Now doing X:[Ix] which has [curr_x.len] Y-lists.")
@@ -153,15 +155,17 @@
 
 					rm_controller.dbg("ZM(pa): Replacing [P.type] with [T].")
 					var/turf/newturf = P.ChangeTurf(T)
+					changedturfs += newturf
 					switch(newturf.type)
 						if(/turf/simulated/mineral/vacuum)
 							place_resources(newturf)
 
-					newturf.update_icon(1)
 				else //Anything not a turf
 					rm_controller.dbg("ZM(pa): Creating [T].")
 					new T(spot)
 
+	for(var/turf/T in changedturfs)
+		T.update_icon(1)
 
 /datum/rogue/zonemaster/proc/place_resources(var/turf/simulated/mineral/M)
 	#define XENOARCH_SPAWN_CHANCE 0.3

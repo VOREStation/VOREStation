@@ -1,5 +1,5 @@
 
-/material/steel/generate_recipes()
+/datum/material/steel/generate_recipes()
 	. = ..()
 	recipes += new/datum/stack_recipe_list("mounted chairs", list(
 		new/datum/stack_recipe("mounted chair", /obj/structure/bed/chair/bay/chair, 2, one_per_turf = 1, on_floor = 1, time = 10),
@@ -31,7 +31,7 @@
 	recipes += new/datum/stack_recipe("dropship seat", /obj/structure/bed/chair/bay/shuttle, 4, one_per_turf = 1, on_floor = 1, time = 20)
 	recipes += new/datum/stack_recipe("small teshari nest", /obj/structure/bed/chair/bay/chair/padded/red/smallnest, 2, one_per_turf = 1, on_floor = 1, time = 10)
 	recipes += new/datum/stack_recipe("large teshari nest", /obj/structure/bed/chair/bay/chair/padded/red/bignest, 4, one_per_turf = 1, on_floor = 1, time = 20)
-
+	recipes += new/datum/stack_recipe("dance pole", /obj/structure/dancepole, 2, one_per_turf = 1, on_floor = 1, time = 20)
 	recipes += new/datum/stack_recipe("light switch frame", /obj/item/frame/lightswitch, 2)
 	recipes += new/datum/stack_recipe_list("sofas", list(
 		new/datum/stack_recipe("red sofa middle", /obj/structure/bed/chair/sofa, 1, one_per_turf = 1, on_floor = 1), \
@@ -80,11 +80,11 @@
 		new/datum/stack_recipe("orange sofa corner", /obj/structure/bed/chair/sofa/orange/corner, 1, one_per_turf = 1, on_floor = 1), \
 		))
 
-/material/durasteel/generate_recipes()
+/datum/material/durasteel/generate_recipes()
 	. = ..()
 	recipes += new/datum/stack_recipe("durasteel fishing rod", /obj/item/weapon/material/fishing_rod/modern/strong, 2)
 	recipes += new/datum/stack_recipe("whetstone", /obj/item/weapon/whetstone, 2, time = 30)
 
-/material/plastitanium/generate_recipes()
+/datum/material/plastitanium/generate_recipes()
 	. = ..()
 	recipes += new/datum/stack_recipe("whetstone", /obj/item/weapon/whetstone, 2, time = 20)

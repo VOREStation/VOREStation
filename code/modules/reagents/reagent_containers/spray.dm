@@ -6,7 +6,6 @@
 	item_state = "cleaner"
 	center_of_mass = list("x" = 16,"y" = 10)
 	flags = OPENCONTAINER|NOBLUDGEON
-	//TFF 24/12/19 - Let people print more spray bottles if needed.
 	matter = list("glass" = 300, DEFAULT_WALL_MATERIAL = 300)
 	slot_flags = SLOT_BELT
 	throwforce = 3
@@ -226,7 +225,7 @@
 	var/obj/item/hose_connector/input/active/InputSocket
 
 /obj/item/weapon/reagent_containers/spray/chemsprayer/hosed/Initialize()
-	..()
+	. = ..()
 
 	InputSocket = new(src)
 

@@ -21,6 +21,18 @@ export const COLORS = {
     centcom: '#00c100',
     other: '#c38312',
   },
+  manifest: {
+    command: "#3333FF",
+    security: "#8e0000",
+    medical: "#006600",
+    engineering: "#b27300",
+    science: "#a65ba6",
+    cargo: "#bb9040",
+    planetside: "#555555",
+    civilian: "#a32800",
+    miscellaneous: "#666666",
+    silicon: "#222222",
+  },
   // Damage type colors
   damageType: {
     oxy: '#3498db',

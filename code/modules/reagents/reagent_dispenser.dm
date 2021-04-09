@@ -134,6 +134,18 @@
 /obj/structure/reagent_dispensers/foam/Initialize()
 	. = ..()
 	reagents.add_reagent("firefoam",1000)
+
+/obj/structure/reagent_dispensers/fueltank/barrel
+	name = "hazardous barrel"
+	desc = "An open-topped barrel full of nasty-looking liquid."
+	icon_state = "barrel"
+	modded = TRUE
+
+/obj/structure/reagent_dispensers/fueltank/barrel/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if (W.is_wrench()) //can't wrench it shut, it's always open
+		return
+	return ..()
+
 //VOREStation Add End
 
 

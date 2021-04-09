@@ -10,6 +10,8 @@
 	w_class = ITEMSIZE_SMALL
 	attack_verb = list("called", "rang")
 	hitsound = 'sound/weapons/ring.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
+	pickup_sound = 'sound/items/pickup/device.ogg'
 
 /obj/item/weapon/rsp
 	name = "\improper Rapid-Seed-Producer (RSP)"
@@ -22,6 +24,8 @@
 	var/stored_matter = 0
 	var/mode = 1
 	w_class = ITEMSIZE_NORMAL
+	drop_sound = 'sound/items/drop/device.ogg'
+	pickup_sound = 'sound/items/pickup/device.ogg'
 
 /obj/item/weapon/soap
 	name = "soap"
@@ -35,7 +39,6 @@
 	throwforce = 0
 	throw_speed = 4
 	throw_range = 20
-	drop_sound = 'sound/misc/slip.ogg'
 
 /obj/item/weapon/soap/nanotrasen
 	desc = "A NanoTrasen-brand bar of soap. Smells of phoron."
@@ -149,6 +152,8 @@
 	throw_range = 20
 	matter = list(DEFAULT_WALL_MATERIAL = 100)
 	origin_tech = list(TECH_MAGNET = 1)
+	drop_sound = 'sound/items/drop/device.ogg'
+	pickup_sound = 'sound/items/pickup/device.ogg'
 
 /obj/item/weapon/staff
 	name = "wizards staff"
@@ -196,6 +201,8 @@
 	item_state = "std_mod"
 	w_class = ITEMSIZE_SMALL
 	var/mtype = 1						// 1=electronic 2=hardware
+	drop_sound = 'sound/items/drop/component.ogg'
+	pickup_sound = 'sound/items/pickup/component.ogg'
 
 /obj/item/weapon/module/card_reader
 	name = "card reader module"
@@ -226,7 +233,6 @@
 	icon_state = "power_mod"
 	item_state = "std_mod"
 	desc = "Charging circuits for power cells."
-
 
 /obj/item/device/camera_bug
 	name = "camera bug"
@@ -291,7 +297,7 @@
 
 /obj/item/weapon/storage/part_replacer
 	name = "rapid part exchange device"
-	desc = "Special mechanical module made to store, sort, and apply standard machine parts."
+	desc = "A special mechanical module made to store, sort, and apply standard machine parts."
 	icon_state = "RPED"
 	w_class = ITEMSIZE_HUGE
 	can_hold = list(/obj/item/weapon/stock_parts)
@@ -303,10 +309,13 @@
 	display_contents_with_number = 1
 	max_w_class = ITEMSIZE_NORMAL
 	max_storage_space = 100
+	drop_sound = 'sound/items/drop/device.ogg'
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	var/panel_req = TRUE
 
 /obj/item/weapon/storage/part_replacer/adv
 	name = "advanced rapid part exchange device"
-	desc = "Special mechanical module made to store, sort, and apply standard machine parts.  This one has a greatly upgraded storage capacity"
+	desc = "A special mechanical module made to store, sort, and apply standard machine parts.  This one has a greatly upgraded storage capacity."
 	icon_state = "RPED"
 	w_class = ITEMSIZE_HUGE
 	can_hold = list(/obj/item/weapon/stock_parts)
@@ -319,6 +328,31 @@
 	max_w_class = ITEMSIZE_NORMAL
 	max_storage_space = 400
 
+/obj/item/weapon/storage/part_replacer/adv/discount_bluespace
+	name = "discount bluespace rapid part exchange device"
+	desc = "A special mechanical module made to store, sort, and apply standard machine parts.  This one has a further increased storage capacity, \
+	and the ability to work on machines with closed maintenance panels."
+	storage_slots = 400
+	max_storage_space = 800
+	panel_req = FALSE
+
+/obj/item/weapon/storage/part_replacer/drop_contents() // hacky-feeling tier-based drop system
+	hide_from(usr)
+	var/turf/T = get_turf(src)
+	var/lowest_rating = INFINITY // We want the lowest-part tier rating in the RPED so we only drop the lowest-tier parts.
+	/*
+	* Why not just use the stock part's rating variable?
+	* Future-proofing for a potential future where stock parts aren't the only thing that can fit in an RPED.
+	* see: /tg/ and /vg/'s RPEDs fitting power cells, beakers, etc.
+	*/
+	for(var/obj/item/B in contents)
+		if(B.rped_rating() < lowest_rating)
+			lowest_rating = B.rped_rating()
+	for(var/obj/item/B in contents)
+		if(B.rped_rating() > lowest_rating)
+			continue
+		remove_from_storage(B, T)
+	
 /obj/item/weapon/stock_parts
 	name = "stock part"
 	desc = "What?"
@@ -326,12 +360,16 @@
 	icon = 'icons/obj/stock_parts.dmi'
 	w_class = ITEMSIZE_SMALL
 	var/rating = 1
-	drop_sound = 'sound/items/drop/glass.ogg'
+	drop_sound = 'sound/items/drop/component.ogg'
+	pickup_sound = 'sound/items/pickup/component.ogg'
 
 /obj/item/weapon/stock_parts/New()
 	src.pixel_x = rand(-5.0, 5)
 	src.pixel_y = rand(-5.0, 5)
 	..()
+
+/obj/item/weapon/stock_parts/get_rating()
+	return rating
 
 //Rank 1
 

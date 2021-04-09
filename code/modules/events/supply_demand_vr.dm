@@ -84,17 +84,9 @@
 		var/datum/supply_demand_order/random = pick(required_items)
 		command_announcement.Announce("What happened? Accounting is here right now and they're already asking where that [random.name] is. Damn, I gotta go", my_department)
 		var/message = "The delivery deadline was reached with the following needs outstanding:<hr>"
-		for (var/datum/supply_demand_order/req in required_items)
+		for(var/datum/supply_demand_order/req in required_items)
 			message += req.describe() + "<br>"
-		for (var/obj/machinery/computer/communications/C in machines)
-			if(C.operable())
-				var/obj/item/weapon/paper/P = new /obj/item/weapon/paper( C.loc )
-				P.name = "'[my_department] Mission Summary'"
-				P.info = message
-				P.update_space(P.info)
-				P.update_icon()
-				C.messagetitle.Add("[my_department] Mission Summary")
-				C.messagetext.Add(P.info)
+		post_comm_message("'[my_department] Mission Summary'", message)
 /**
  * Event Handler for responding to the supply shuttle arriving at centcom.
  */

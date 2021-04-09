@@ -73,7 +73,7 @@
 
 				var/mob/living/carbon/human/D = B.data["donor"]
 				pathogen_pool.Add(list(list(\
-					"name" = "[D.get_species()] [B.name]", \
+					"name" = "[istype(D) ? "[D.get_species()] " : ""][B.name]", \
 					"dna" = B.data["blood_DNA"], \
 					"unique_id" = V.uniqueID, \
 					"reference" = "\ref[V]", \

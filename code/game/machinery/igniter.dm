@@ -48,6 +48,7 @@
 	desc = "A wall-mounted ignition device."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "migniter"
+	layer = ABOVE_WINDOW_LAYER
 	var/id = null
 	var/disable = 0
 	var/last_spark = 0

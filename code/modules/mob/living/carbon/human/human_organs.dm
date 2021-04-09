@@ -5,6 +5,7 @@
 		update_icons_body() //Body handles eyes
 		update_eyes() //For floating eyes only
 
+/*
 /mob/living/carbon/var/list/internal_organs = list()
 /mob/living/carbon/human/var/list/organs = list()
 /mob/living/carbon/human/var/list/organs_by_name = list() // map organ names to organs
@@ -13,6 +14,7 @@
 /mob/living/carbon/human/proc/get_bodypart_name(var/zone)
 	var/obj/item/organ/external/E = get_organ(zone)
 	if(E) . = E.name
+*/
 
 /mob/living/carbon/human/proc/recheck_bad_external_organs()
 	var/damage_this_tick = getToxLoss()
@@ -194,3 +196,11 @@
 	var/list/all_bits = internal_organs|organs
 	for(var/obj/item/organ/O in all_bits)
 		O.set_dna(dna)
+
+/mob/living/carbon/human/proc/set_gender(var/g)
+	if(g != gender)
+		gender = g
+	
+	if(dna.GetUIState(DNA_UI_GENDER) ^ gender == FEMALE) // XOR will catch both cases where they do not match
+		dna.SetUIState(DNA_UI_GENDER, gender == FEMALE)
+		sync_organ_dna(dna)

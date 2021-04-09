@@ -69,7 +69,8 @@
 		//Organs and blood
 		handle_organs()
 		stabilize_body_temperature() //Body temperature adjusts itself (self-regulation)
-		weightgain() //VORESTATION EDIT
+		weightgain() 			//VOREStation Addition
+		process_weaver_silk()	//VOREStation Addition
 		handle_shock()
 
 		handle_pain()
@@ -77,7 +78,7 @@
 		handle_medical_side_effects()
 
 		handle_heartbeat()
-		handle_nif() //VOREStation Add
+		handle_nif() 			//VOREStation Addition
 		if(!client)
 			species.handle_npc(src)
 
@@ -1265,7 +1266,7 @@
 		//VOREStation Add - Vampire hunger alert
 		else if(get_species() == SPECIES_CUSTOM)
 			var/datum/species/custom/C = species
-			if(/datum/trait/bloodsucker in C.traits)
+			if(/datum/trait/neutral/bloodsucker in C.traits)
 				fat_alert = /obj/screen/alert/fat/vampire
 				hungry_alert = /obj/screen/alert/hungry/vampire
 				starving_alert = /obj/screen/alert/starving/vampire
@@ -1290,13 +1291,19 @@
 			clear_fullscreen("blind")
 			clear_alert("blind")
 
-		if(disabilities & NEARSIGHTED)	//this looks meh but saves a lot of memory by not requiring to add var/prescription
-			if(glasses)					//to every /obj/item
+		var/apply_nearsighted_overlay = FALSE
+		if(disabilities & NEARSIGHTED)
+			apply_nearsighted_overlay = TRUE
+
+			if(glasses)
 				var/obj/item/clothing/glasses/G = glasses
-				if(!G.prescription)
-					set_fullscreen(disabilities & NEARSIGHTED, "impaired", /obj/screen/fullscreen/impaired, 1)
-			else if (!nif || !nif.flag_check(NIF_V_CORRECTIVE,NIF_FLAGS_VISION))	//VOREStation Edit - NIF
-				set_fullscreen(disabilities & NEARSIGHTED, "impaired", /obj/screen/fullscreen/impaired, 1)
+				if(G.prescription)
+					apply_nearsighted_overlay = FALSE
+
+			if(nif && nif.flag_check(NIF_V_CORRECTIVE, NIF_FLAGS_VISION)) // VOREStation Edit - NIF
+				apply_nearsighted_overlay = FALSE
+
+		set_fullscreen(apply_nearsighted_overlay, "nearsighted", /obj/screen/fullscreen/impaired, 1)
 
 		set_fullscreen(eye_blurry, "blurry", /obj/screen/fullscreen/blurry)
 		set_fullscreen(druggy, "high", /obj/screen/fullscreen/high)
@@ -1317,6 +1324,8 @@
 					if(!O.up)
 						found_welder = 1
 				if(!found_welder && nif && nif.flag_check(NIF_V_UVFILTER,NIF_FLAGS_VISION))	found_welder = 1 //VOREStation Add - NIF
+				if(istype(glasses, /obj/item/clothing/glasses/sunglasses/thinblindfold))
+					found_welder = 1
 				if(!found_welder && istype(head, /obj/item/clothing/head/welding))
 					var/obj/item/clothing/head/welding/O = head
 					if(!O.up)
@@ -1546,7 +1555,8 @@
 		custom_pain("[pick("It hurts so much", "You really need some painkillers", "Dear god, the pain")]!", 40)
 
 	if(shock_stage >= 30)
-		if(shock_stage == 30) emote("me",1,"is having trouble keeping their eyes open.")
+		if(shock_stage == 30 && !isbelly(loc)) //VOREStation Edit
+			emote("me",1,"is having trouble keeping their eyes open.")
 		eye_blurry = max(2, eye_blurry)
 		stuttering = max(stuttering, 5)
 
@@ -1554,7 +1564,8 @@
 		to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please&#44; just end the pain", "Your whole body is going numb")]!</span>")
 
 	if (shock_stage >= 60)
-		if(shock_stage == 60) emote("me",1,"'s body becomes limp.")
+		if(shock_stage == 60 && !isbelly(loc)) //VOREStation Edit
+			emote("me",1,"'s body becomes limp.")
 		if (prob(2))
 			to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please&#44; just end the pain", "Your whole body is going numb")]!</span>")
 			Weaken(20)
@@ -1570,7 +1581,8 @@
 			Paralyse(5)
 
 	if(shock_stage == 150)
-		emote("me",1,"can no longer stand, collapsing!")
+		if(!isbelly(loc)) //VOREStation Edit
+			emote("me",1,"can no longer stand, collapsing!")
 		Weaken(20)
 
 	if(shock_stage >= 150)

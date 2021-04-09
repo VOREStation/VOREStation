@@ -30,6 +30,10 @@
 				/obj/item/clothing/head/helmet/space/void/engineering/alt
 			),
 			prob(5);list(
+				/obj/item/clothing/suit/space/void/engineering/hazmat,
+				/obj/item/clothing/head/helmet/space/void/engineering/hazmat
+			),
+			prob(5);list(
 				/obj/item/clothing/suit/space/void/engineering/construction,
 				/obj/item/clothing/head/helmet/space/void/engineering/construction
 			),
@@ -109,7 +113,35 @@
 			)
 		)
 
+/obj/random/multiple/voidsuit/engineering
+	name = "Random Engineering Voidsuit"
+	desc = "This is a random engineering voidsuit."
+	icon = 'icons/obj/clothing/spacesuits.dmi'
+	icon_state = "rig-engineering"
 
+/obj/random/multiple/voidsuit/engineering/item_to_spawn()
+	return pick(
+			prob(35);list(
+				/obj/item/clothing/suit/space/void/engineering,
+				/obj/item/clothing/head/helmet/space/void/engineering
+			),
+			prob(5);list(
+				/obj/item/clothing/suit/space/void/engineering/alt,
+				/obj/item/clothing/head/helmet/space/void/engineering/alt
+			),
+			prob(15);list(
+				/obj/item/clothing/suit/space/void/engineering/hazmat,
+				/obj/item/clothing/head/helmet/space/void/engineering/hazmat
+			),
+			prob(15);list(
+				/obj/item/clothing/suit/space/void/engineering/construction,
+				/obj/item/clothing/head/helmet/space/void/engineering/construction
+			),
+			prob(5);list(
+				/obj/item/clothing/suit/space/void/engineering/salvage,
+				/obj/item/clothing/head/helmet/space/void/engineering/salvage
+			)
+		)
 
 /obj/random/multiple/voidsuit/security
 	name = "Random Security Voidsuit"

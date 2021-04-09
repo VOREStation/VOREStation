@@ -22,7 +22,7 @@
 	icon_state = "nt_headset_alt"
 
 /obj/item/device/radio/headset
-	sprite_sheets = list(SPECIES_TESHARI = 'icons/mob/species/seromi/ears.dmi',
+	sprite_sheets = list(SPECIES_TESHARI = 'icons/mob/species/teshari/ears.dmi',
 						SPECIES_WEREBEAST = 'icons/mob/species/werebeast/ears.dmi')
 
 /obj/item/device/radio/headset/mob_headset	//Adminbus headset for simplemob shenanigans.
@@ -84,7 +84,6 @@
 	desc = "A headset used by pilots, has access to the explorer channel."
 	icon_state = "pilot_headset"
 	adhoc_fallback = TRUE
-	ks2type = /obj/item/device/encryptionkey/pilot
 
 /obj/item/device/radio/headset/pilot/alt
 	name = "pilot's bowman headset"
@@ -120,7 +119,7 @@
 	desc = "A headset used by volunteers to expedition teams, has access to the exploration channel."
 	icon_state = "pilot_headset"
 	adhoc_fallback = TRUE
-	ks2type = /obj/item/device/encryptionkey/pilot
+	ks2type = /obj/item/device/encryptionkey/explorer
 
 /obj/item/device/radio/headset/talon
 	name = "talon headset"

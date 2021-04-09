@@ -14,6 +14,7 @@
 	ammo_type = /obj/item/ammo_casing/a762
 	load_method = SINGLE_CASING|SPEEDLOADER
 	action_sound = 'sound/weapons/riflebolt.ogg'
+	pump_animation = null
 
 /obj/item/weapon/gun/projectile/shotgun/pump/rifle/practice // For target practice
 	desc = "A bolt-action rifle with a lightweight synthetic wood stock, designed for competitive shooting. Comes shipped with practice rounds pre-loaded into the gun. Popular among professional marksmen. Uses 7.62mm rounds."
@@ -66,4 +67,4 @@
 	desc = "An iconic manually operated lever action rifle, offering adequate stopping power due to it's still powerful cartridge while at the same time having a rather respectable firing rate due to it's mechanism. It is very probable this is a replica instead of a museum piece, but rifles of this pattern still see usage as colonist guns in some far off regions. Uses 7.62mm rounds."
 	item_state = "levercarabine" // That isn't how carbine is spelled ya knob! :U
 	icon_state = "levercarabine"
-	animated_pump = 1
+	pump_animation = "levercarabine-cycling"

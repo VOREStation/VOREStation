@@ -61,19 +61,19 @@ GLOBAL_DATUM_INIT(tgui_default_state, /datum/tgui_state/default, new)
 
 	return STATUS_CLOSE
 
-/mob/living/simple_animal/default_can_use_tgui_topic(src_object)
+/mob/living/simple_mob/default_can_use_tgui_topic(src_object)
 	. = shared_tgui_interaction(src_object)
 	if(. > STATUS_CLOSE)
 		. = min(., shared_living_tgui_distance(src_object)) //simple animals can only use things they're near.
 
 /mob/living/silicon/pai/default_can_use_tgui_topic(src_object)
 	// pAIs can only use themselves and the owner's radio.
-	if((src_object == src || src_object == radio) && !stat)
+	if((src_object == src || src_object == radio || src_object == communicator) && !stat)
 		return STATUS_INTERACTIVE
 	else
 		return ..()
 
 /mob/observer/dead/default_can_use_tgui_topic()
-	if(check_rights(R_ADMIN, 0, src))
+	if(check_rights(R_ADMIN|R_EVENT, 0, src))
 		return STATUS_INTERACTIVE				// Admins are more equal
 	return STATUS_UPDATE						// Ghosts can view updates

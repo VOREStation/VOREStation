@@ -12,8 +12,7 @@
 	var/deadly_hold = TRUE	// Does the stomach do damage to mobs eaten by its owner? Xenos should probably have this FALSE.
 
 /obj/item/organ/internal/stomach/Initialize()
-	..()
-
+	. = ..()
 	if(reagents)
 		reagents.maximum_volume = 30
 	else
@@ -63,5 +62,11 @@
 	..()
 	if(owner && owner.stat != DEAD)
 		owner.bodytemperature += round(owner.robobody_count * 0.25, 0.1)
+
+		if(ishuman(owner))
+			var/mob/living/carbon/human/H = owner
+
+			if(H.ingested?.total_volume && H.bloodstr)
+				H.ingested.trans_to_holder(H.bloodstr, rand(2,5))
 
 	return

@@ -2,7 +2,7 @@
 
 /obj/item/weapon/robot_module/robot/syndicate
 	name = "illegal robot module"
-	hide_on_manifest = 1
+	hide_on_manifest = TRUE
 	languages = list(
 					LANGUAGE_SOL_COMMON = 1,
 					LANGUAGE_TRADEBAND = 1,
@@ -36,6 +36,12 @@
 	loc = R
 	src.modules += new /obj/item/weapon/pinpointer/shuttle/merc(src)
 	src.modules += new /obj/item/weapon/melee/energy/sword(src)
+
+	var/datum/matter_synth/cloth = new /datum/matter_synth/cloth(40000)
+	synths += cloth
+
+	var/obj/item/stack/sandbags/cyborg/SB = new /obj/item/stack/sandbags/cyborg(src)
+	SB.synths += list(cloth)
 
 	var/jetpack = new/obj/item/weapon/tank/jetpack/carbondioxide(src)
 	src.modules += jetpack

@@ -31,8 +31,8 @@
 	return 1
 
 /obj/item/borg/upgrade/bellysizeupgrade
-	name = "robotic Hound process capacity upgrade Module"
-	desc = "Used to upgrade a hound belly capacity. This only affects total volume and such, you won't be able to support more than one patient. Usable once."
+	name = "robohound capacity expansion module"
+	desc = "Used to double a robohound's belly capacity. This only affects total volume, and won't allow support of more than one patient in case of sleeper bellies. Can only be applied once."
 	icon_state = "cyborg_upgrade2"
 	item_state = "cyborg_upgrade"
 	require_module = 1

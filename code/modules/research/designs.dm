@@ -68,9 +68,19 @@ other types of metals and chemistry for reagents).
 /datum/design/item
 	build_type = PROTOLATHE
 
-//Make sure items don't get free power
+//Make sure items don't get free power, or resources. Also make things be recycled with proper values.
 /datum/design/item/Fabricate()
 	var/obj/item/I = ..()
+
+	if(LAZYLEN(materials))
+		if(!LAZYLEN(I.matter))
+			I.matter = list()
+		else
+			I.matter.Cut()
+
+		for(var/matname in materials)
+			I.matter[matname] = materials[matname]
+
 	var/obj/item/weapon/cell/C = I.get_cell()
 	if(C)
 		C.charge = 0

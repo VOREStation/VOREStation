@@ -6,36 +6,36 @@
 		"tgui.bundle.css" = 'tgui/packages/tgui/public/tgui.bundle.css',
 	)
 
-// /datum/asset/simple/headers
-// 	assets = list(
-// 		"alarm_green.gif" 			= 'icons/program_icons/alarm_green.gif',
-// 		"alarm_red.gif" 			= 'icons/program_icons/alarm_red.gif',
-// 		"batt_5.gif" 				= 'icons/program_icons/batt_5.gif',
-// 		"batt_20.gif" 				= 'icons/program_icons/batt_20.gif',
-// 		"batt_40.gif" 				= 'icons/program_icons/batt_40.gif',
-// 		"batt_60.gif" 				= 'icons/program_icons/batt_60.gif',
-// 		"batt_80.gif" 				= 'icons/program_icons/batt_80.gif',
-// 		"batt_100.gif" 				= 'icons/program_icons/batt_100.gif',
-// 		"charging.gif" 				= 'icons/program_icons/charging.gif',
-// 		"downloader_finished.gif" 	= 'icons/program_icons/downloader_finished.gif',
-// 		"downloader_running.gif" 	= 'icons/program_icons/downloader_running.gif',
-// 		"ntnrc_idle.gif"			= 'icons/program_icons/ntnrc_idle.gif',
-// 		"ntnrc_new.gif"				= 'icons/program_icons/ntnrc_new.gif',
-// 		"power_norm.gif"			= 'icons/program_icons/power_norm.gif',
-// 		"power_warn.gif"			= 'icons/program_icons/power_warn.gif',
-// 		"sig_high.gif" 				= 'icons/program_icons/sig_high.gif',
-// 		"sig_low.gif" 				= 'icons/program_icons/sig_low.gif',
-// 		"sig_lan.gif" 				= 'icons/program_icons/sig_lan.gif',
-// 		"sig_none.gif" 				= 'icons/program_icons/sig_none.gif',
-// 		"smmon_0.gif" 				= 'icons/program_icons/smmon_0.gif',
-// 		"smmon_1.gif" 				= 'icons/program_icons/smmon_1.gif',
-// 		"smmon_2.gif" 				= 'icons/program_icons/smmon_2.gif',
-// 		"smmon_3.gif" 				= 'icons/program_icons/smmon_3.gif',
-// 		"smmon_4.gif" 				= 'icons/program_icons/smmon_4.gif',
-// 		"smmon_5.gif" 				= 'icons/program_icons/smmon_5.gif',
-// 		"smmon_6.gif" 				= 'icons/program_icons/smmon_6.gif',
-// 		"borg_mon.gif"				= 'icons/program_icons/borg_mon.gif'
-// 	)
+/datum/asset/simple/headers
+	assets = list(
+		"alarm_green.gif" 			= 'icons/program_icons/alarm_green.gif',
+		"alarm_red.gif" 			= 'icons/program_icons/alarm_red.gif',
+		"batt_5.gif" 				= 'icons/program_icons/batt_5.gif',
+		"batt_20.gif" 				= 'icons/program_icons/batt_20.gif',
+		"batt_40.gif" 				= 'icons/program_icons/batt_40.gif',
+		"batt_60.gif" 				= 'icons/program_icons/batt_60.gif',
+		"batt_80.gif" 				= 'icons/program_icons/batt_80.gif',
+		"batt_100.gif" 				= 'icons/program_icons/batt_100.gif',
+		"charging.gif" 				= 'icons/program_icons/charging.gif',
+		"downloader_finished.gif" 	= 'icons/program_icons/downloader_finished.gif',
+		"downloader_running.gif" 	= 'icons/program_icons/downloader_running.gif',
+		"ntnrc_idle.gif"			= 'icons/program_icons/ntnrc_idle.gif',
+		"ntnrc_new.gif"				= 'icons/program_icons/ntnrc_new.gif',
+		"power_norm.gif"			= 'icons/program_icons/power_norm.gif',
+		"power_warn.gif"			= 'icons/program_icons/power_warn.gif',
+		"sig_high.gif" 				= 'icons/program_icons/sig_high.gif',
+		"sig_low.gif" 				= 'icons/program_icons/sig_low.gif',
+		"sig_lan.gif" 				= 'icons/program_icons/sig_lan.gif',
+		"sig_none.gif" 				= 'icons/program_icons/sig_none.gif',
+		"smmon_0.gif" 				= 'icons/program_icons/smmon_0.gif',
+		"smmon_1.gif" 				= 'icons/program_icons/smmon_1.gif',
+		"smmon_2.gif" 				= 'icons/program_icons/smmon_2.gif',
+		"smmon_3.gif" 				= 'icons/program_icons/smmon_3.gif',
+		"smmon_4.gif" 				= 'icons/program_icons/smmon_4.gif',
+		"smmon_5.gif" 				= 'icons/program_icons/smmon_5.gif',
+		"smmon_6.gif" 				= 'icons/program_icons/smmon_6.gif',
+		// "borg_mon.gif"				= 'icons/program_icons/borg_mon.gif'
+	)
 
 // /datum/asset/simple/radar_assets
 // 	assets = list(
@@ -206,15 +206,15 @@
 // 		"none_button.png" = 'html/none_button.png',
 // 	)
 
-// /datum/asset/simple/arcade
-// 	assets = list(
-// 		"boss1.gif" = 'icons/UI_Icons/Arcade/boss1.gif',
-// 		"boss2.gif" = 'icons/UI_Icons/Arcade/boss2.gif',
-// 		"boss3.gif" = 'icons/UI_Icons/Arcade/boss3.gif',
-// 		"boss4.gif" = 'icons/UI_Icons/Arcade/boss4.gif',
-// 		"boss5.gif" = 'icons/UI_Icons/Arcade/boss5.gif',
-// 		"boss6.gif" = 'icons/UI_Icons/Arcade/boss6.gif',
-// 		)
+/datum/asset/simple/arcade
+	assets = list(
+		"boss1.gif" = 'icons/UI_Icons/Arcade/boss1.gif',
+		"boss2.gif" = 'icons/UI_Icons/Arcade/boss2.gif',
+		"boss3.gif" = 'icons/UI_Icons/Arcade/boss3.gif',
+		"boss4.gif" = 'icons/UI_Icons/Arcade/boss4.gif',
+		"boss5.gif" = 'icons/UI_Icons/Arcade/boss5.gif',
+		"boss6.gif" = 'icons/UI_Icons/Arcade/boss6.gif',
+		)
 
 // /datum/asset/spritesheet/simple/achievements
 // 	name ="achievements"
@@ -433,45 +433,6 @@
 // 	Insert("polycrystal", 'icons/obj/telescience.dmi', "polycrystal")
 // 	..()
 
-/datum/asset/nanoui
-	var/list/common = list()
-
-	var/list/common_dirs = list(
-		"nano/css/",
-		"nano/images/",
-		"nano/images/modular_computers/",
-		"nano/js/"
-	)
-	var/list/template_dirs = list(
-		"nano/templates/"
-	)
-
-/datum/asset/nanoui/register()
-	// Crawl the directories to find files.
-	for(var/path in common_dirs)
-		var/list/filenames = flist(path)
-		for(var/filename in filenames)
-			if(copytext(filename, length(filename)) != "/") // Ignore directories.
-				if(fexists(path + filename))
-					common[filename] = fcopy_rsc(path + filename)
-					register_asset(filename, common[filename])
-	// Combine all templates into a single bundle.
-	var/list/template_data = list()
-	for(var/path in template_dirs)
-		var/list/filenames = flist(path)
-		for(var/filename in filenames)
-			if(copytext(filename, length(filename) - 4) == ".tmpl") // Ignore directories.
-				template_data[filename] = file2text(path + filename)
-	var/template_bundle = "function nanouiTemplateBundle(){return [json_encode(template_data)];}"
-	var/fname = "data/nano_templates_bundle.js"
-	fdel(fname)
-	text2file(template_bundle, fname)
-	register_asset("nano_templates_bundle.js", fcopy_rsc(fname))
-	fdel(fname)
-
-/datum/asset/nanoui/send(client)
-	send_asset_list(client, common)
-
 //Pill sprites for UIs
 /datum/asset/chem_master
 	var/assets = list()
@@ -523,3 +484,30 @@
 /datum/asset/spritesheet/sheetmaterials/register()
 	InsertAll("", 'icons/obj/stacks.dmi')
 	..()
+
+// Nanomaps
+/datum/asset/simple/nanomaps
+	// It REALLY doesnt matter too much if these arent up to date
+	// They are relatively big
+	assets = list(
+		// VOREStation Edit: We don't need Southern Cross
+		// "southern_cross_nanomap_z1.png"		= 'icons/_nanomaps/southern_cross_nanomap_z1.png',
+		// "southern_cross_nanomap_z10.png"	= 'icons/_nanomaps/southern_cross_nanomap_z10.png',
+		// "southern_cross_nanomap_z2.png"		= 'icons/_nanomaps/southern_cross_nanomap_z2.png',
+		// "southern_cross_nanomap_z3.png"		= 'icons/_nanomaps/southern_cross_nanomap_z3.png',
+		// "southern_cross_nanomap_z5.png"		= 'icons/_nanomaps/southern_cross_nanomap_z5.png',
+		// "southern_cross_nanomap_z6.png"		= 'icons/_nanomaps/southern_cross_nanomap_z6.png',
+		"tether_nanomap_z1.png"				= 'icons/_nanomaps/tether_nanomap_z1.png',
+		"tether_nanomap_z2.png"				= 'icons/_nanomaps/tether_nanomap_z2.png',
+		"tether_nanomap_z3.png"				= 'icons/_nanomaps/tether_nanomap_z3.png',
+		"tether_nanomap_z4.png"				= 'icons/_nanomaps/tether_nanomap_z4.png',
+		"tether_nanomap_z5.png"				= 'icons/_nanomaps/tether_nanomap_z5.png',
+		"tether_nanomap_z6.png"				= 'icons/_nanomaps/tether_nanomap_z6.png',
+		"tether_nanomap_z7.png"				= 'icons/_nanomaps/tether_nanomap_z7.png',
+		"tether_nanomap_z8.png"				= 'icons/_nanomaps/tether_nanomap_z8.png',
+		"tether_nanomap_z9.png"				= 'icons/_nanomaps/tether_nanomap_z9.png',
+		"tether_nanomap_z10.png"			= 'icons/_nanomaps/tether_nanomap_z10.png',
+		"tether_nanomap_z13.png"			= 'icons/_nanomaps/tether_nanomap_z13.png',
+		"tether_nanomap_z14.png"			= 'icons/_nanomaps/tether_nanomap_z14.png',
+		// VOREStation Edit End
+	)

@@ -46,7 +46,7 @@
 	var/is_vampire = 0 //VOREStation Edit START
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(H.species.gets_food_nutrition == 0)
+		if(H.species.organic_food_coeff == 0)
 			H.adjust_nutrition(removed)
 			is_vampire = 1 //VOREStation Edit END
 	if(alien == IS_SLIME)	// Treat it like nutriment for the jello, but not equivalent.

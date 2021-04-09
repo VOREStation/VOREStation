@@ -92,11 +92,11 @@
 	else
 		return ..()
 
-/obj/item/device/perfect_tele/proc/unload_ammo(mob/user)
+/obj/item/device/perfect_tele/proc/unload_ammo(mob/user, var/ignore_inactive_hand_check = 0)
 	if(battery_lock)
 		to_chat(user,"<span class='notice'>[src] does not have a battery port.</span>")
 		return
-	if(user.get_inactive_hand() == src && power_source)
+	if((user.get_inactive_hand() == src || ignore_inactive_hand_check) && power_source)
 		to_chat(user,"<span class='notice'>You eject \the [power_source] from \the [src].</span>")
 		user.put_in_hands(power_source)
 		power_source = null
@@ -111,7 +111,7 @@
 		return FALSE
 	return TRUE
 
-/obj/item/device/perfect_tele/attack_self(mob/user)
+/obj/item/device/perfect_tele/attack_self(mob/user, var/radial_menu_anchor = src)
 	if(loc_network)
 		for(var/obj/item/device/perfect_tele_beacon/stationary/nb in premade_tele_beacons)
 			if(nb.tele_network == loc_network)
@@ -124,8 +124,7 @@
 		and tele-vore. Make sure you carefully examine someone's OOC prefs before teleporting them if you are \
 		going to use this device for ERP purposes. This device records all warnings given and teleport events for \
 		admin review in case of pref-breaking, so just don't do it.","OOC WARNING")
-
-	var/choice = show_radial_menu(user, src, radial_images, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = TRUE)
+	var/choice = show_radial_menu(user, radial_menu_anchor, radial_images, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = TRUE)
 
 	if(!choice)
 		return
@@ -281,7 +280,7 @@
 	//Seems okay to me!
 	return TRUE
 
-/obj/item/device/perfect_tele/afterattack(mob/living/target, mob/living/user, proximity)
+/obj/item/device/perfect_tele/afterattack(mob/living/target, mob/living/user, proximity, var/ignore_fail_chance = 0)
 	//No, you can't teleport people from over there.
 	if(!proximity)
 		return
@@ -312,11 +311,12 @@
 				R.force_dismount(rider)
 
 	//Failure chance
-	if(prob(failure_chance) && beacons.len >= 2)
-		var/list/wrong_choices = beacons - destination.tele_name
-		var/wrong_name = pick(wrong_choices)
-		destination = beacons[wrong_name]
-		to_chat(user,"<span class='warning'>\The [src] malfunctions and sends you to the wrong beacon!</span>")
+	if (!ignore_fail_chance)
+		if(prob(failure_chance) && beacons.len >= 2)
+			var/list/wrong_choices = beacons - destination.tele_name
+			var/wrong_name = pick(wrong_choices)
+			destination = beacons[wrong_name]
+			to_chat(user,"<span class='warning'>\The [src] malfunctions and sends you to the wrong beacon!</span>")
 
 	//Destination beacon vore checking
 	var/turf/dT = get_turf(destination)
@@ -552,3 +552,7 @@ GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/device/perfect_tele_beac
 	loc_network = "unkthree"
 /obj/item/device/perfect_tele/frontier/unknown/four
 	loc_network = "unkfour"
+/obj/item/device/perfect_tele/frontier/unknown/five
+	loc_network = "unkfive"
+/obj/item/device/perfect_tele/frontier/unknown/six
+	loc_network = "unksix"

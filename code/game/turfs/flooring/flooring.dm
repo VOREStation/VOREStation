@@ -146,6 +146,16 @@ var/list/flooring_types
 	flags = TURF_REMOVE_SHOVEL
 	icon = 'icons/turf/outdoors.dmi'
 	icon_base = "grass_sif"
+	build_type = /obj/item/stack/tile/grass/sif
+	has_base_range = 1
+
+/decl/flooring/grass/sif/forest
+	name = "thick growth"
+	desc = "A natural moss that has adapted to the sheer cold climate."
+	flags = TURF_REMOVE_SHOVEL
+	icon = 'icons/turf/outdoors.dmi'
+	icon_base = "grass_sif_dark"
+	build_type = /obj/item/stack/tile/grass/sif/forest
 	has_base_range = 1
 
 /decl/flooring/water
@@ -369,7 +379,7 @@ var/list/flooring_types
 
 /decl/flooring/linoleum
 	name = "linoleum"
-	desc = "It's like the 2390's all over again."
+	desc = "It's like the 2090's all over again."		// VOREStation Lore Edit - we're not past 2390's yet
 	icon = 'icons/turf/flooring/linoleum.dmi'
 	icon_base = "lino"
 	can_paint = 1
