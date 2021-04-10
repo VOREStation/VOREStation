@@ -4,8 +4,9 @@
 
 // Old Exploration is too WIP to use right now
 /obj/machinery/suit_cycler/exploration
-	req_access = list(access_explorer)
-	departments = list("Exploration","No Change")
+	req_access = null
+	req_one_access = list(access_explorer,access_medical_equip)
+	departments = list("Exploration","Expedition Medic","No Change")
 
 /obj/machinery/suit_cycler/pilot
 	req_access = list(access_pilot)

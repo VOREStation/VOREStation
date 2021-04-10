@@ -632,7 +632,7 @@
 /obj/machinery/suit_cycler/exploration
 	name = "Explorer suit cycler"
 	model_text = "Exploration"
-	departments = list("Exploration","Old Exploration","No Change")
+	departments = list("Exploration","Expedition Medic","Old Exploration","No Change")
 
 /obj/machinery/suit_cycler/exploration/Initialize()
 	species -= SPECIES_TESHARI
@@ -1113,6 +1113,9 @@
 		if("Exploration")
 			parent_helmet = /obj/item/clothing/head/helmet/space/void/exploration
 			parent_suit = /obj/item/clothing/suit/space/void/exploration
+		if("Expedition Medic")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/expedition_medical
+			parent_suit = /obj/item/clothing/suit/space/void/expedition_medical
 		if("Old Exploration")
 			parent_helmet = /obj/item/clothing/head/helmet/space/void/exploration/alt
 			parent_suit = /obj/item/clothing/suit/space/void/exploration/alt
