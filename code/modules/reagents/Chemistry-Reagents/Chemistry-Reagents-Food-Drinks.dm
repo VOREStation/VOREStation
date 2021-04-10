@@ -4156,8 +4156,6 @@
 	reagent_state = LIQUID
 	nutriment_factor = 40 //very filling
 	color = "#d169b2"
-<<<<<<< HEAD
-=======
 
 //ADDITIONS BELOW THIS LINE MADE ON 04/03/2021
 
@@ -4183,4 +4181,3 @@
 	nutriment_factor = 2
 	glass_name = "kvass"
 	glass_desc = "A hearty glass of Slavic brew."
->>>>>>> a0ff9a0... Boda Tweaks and Russian Drinks V2 (#8023)
