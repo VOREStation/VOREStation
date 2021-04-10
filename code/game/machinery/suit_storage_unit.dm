@@ -1114,8 +1114,8 @@
 			parent_helmet = /obj/item/clothing/head/helmet/space/void/exploration
 			parent_suit = /obj/item/clothing/suit/space/void/exploration
 		if("Expedition Medic")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/exploration_medical
-			parent_suit = /obj/item/clothing/suit/space/void/exploration_medical
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/expedition_medical
+			parent_suit = /obj/item/clothing/suit/space/void/expedition_medical
 		if("Old Exploration")
 			parent_helmet = /obj/item/clothing/head/helmet/space/void/exploration/alt
 			parent_suit = /obj/item/clothing/suit/space/void/exploration/alt

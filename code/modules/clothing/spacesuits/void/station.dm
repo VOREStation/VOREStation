@@ -337,7 +337,7 @@
 	/obj/item/weapon/shovel,/obj/item/ammo_magazine,/obj/item/weapon/gun)
 
 //SAR
-/obj/item/clothing/head/helmet/space/void/exploration_medical
+/obj/item/clothing/head/helmet/space/void/expedition_medical
 	name = "exploration medic\'s voidsuit helmet"
 	desc = "A radiation-resistant helmet made especially for exploring unknown planetary environments. Has a reinforced high-vis bubble style visor."
 	icon_state = "helm_exp_medic"
@@ -346,7 +346,7 @@
 	armor = list(melee = 25, bullet = 10, laser = 20,energy = 30, bomb = 25, bio = 100, rad = 70)
 	light_overlay = "helmet_light_dual" //explorer_light
 
-/obj/item/clothing/suit/space/void/exploration_medical
+/obj/item/clothing/suit/space/void/expedition_medical
 	name = "exploration medic\'s voidsuit"
 	desc = "A hazard and radiation resistant voidsuit, featuring the Explorer emblem and a green cross on its chest plate. Seems to be a little lighter and more flexible than the regular explorer issue."
 	icon_state = "void_exp_medic"
