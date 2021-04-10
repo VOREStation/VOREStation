@@ -738,7 +738,7 @@
 /datum/gear/fluff/kiyoshi_cloak
 	path = /obj/item/clothing/accessory/poncho/fluff/cloakglowing
 	display_name = "glowing cloak"
-	ckeywhitelist = list("drainquake")
+	ckeywhitelist = list("pastelprincedan")
 	character_name = list("Kiyoshi Maki", "Masumi Maki")
 
 //  Q CKEYS
