@@ -6,9 +6,6 @@ SUBSYSTEM_DEF(planets)
 	flags = SS_BACKGROUND
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 
-	var/static/list/new_outdoor_turfs = list()
-	var/static/list/new_outdoor_walls = list()
-
 	var/static/list/planets = list()
 	var/static/list/z_to_planet = list()
 
@@ -20,7 +17,6 @@ SUBSYSTEM_DEF(planets)
 /datum/controller/subsystem/planets/Initialize(timeofday)
 	admin_notice("<span class='danger'>Initializing planetary weather.</span>", R_DEBUG)
 	createPlanets()
-	allocateTurfs(TRUE)
 	..()
 
 /datum/controller/subsystem/planets/proc/createPlanets()
@@ -36,64 +32,36 @@ SUBSYSTEM_DEF(planets)
 				continue
 			z_to_planet[Z] = NP
 
-/datum/controller/subsystem/planets/proc/addTurf(var/turf/T,var/is_edge)
-	if(is_edge)
-		new_outdoor_walls |= T
-	else
-		new_outdoor_turfs |= T
+// DO NOT CALL THIS DIRECTLY UNLESS IT'S IN INITIALIZE,
+// USE turf/simulated/proc/make_indoors() and\
+//     tyrf/simulated/proc/make_outdoors()
+/datum/controller/subsystem/planets/proc/addTurf(var/turf/T)
+	if(z_to_planet.len >= T.z && z_to_planet[T.z])
+		var/datum/planet/P = z_to_planet[T.z]
+		if(!istype(P))
+			return
+		if(istype(T, /turf/unsimulated/wall/planetary))	
+			P.planet_walls += T
+		else if(istype(T, /turf/simulated) && T.outdoors)
+			P.planet_floors += T
+			T.vis_contents |= P.weather_holder.visuals
+			T.vis_contents |= P.weather_holder.special_visuals		
+
 
 /datum/controller/subsystem/planets/proc/removeTurf(var/turf/T,var/is_edge)
-	if(is_edge)
-		new_outdoor_walls -= T
-	else
-		new_outdoor_turfs -= T
-
 	if(z_to_planet.len >= T.z)
 		var/datum/planet/P = z_to_planet[T.z]
 		if(!P)
 			return
-		if(is_edge)
-			P.planet_floors -= T
-		else
+		if(istype(T, /turf/unsimulated/wall/planetary))
 			P.planet_walls -= T
-		T.vis_contents -= P.weather_holder.visuals
-		T.vis_contents -= P.weather_holder.special_visuals
-
-/datum/controller/subsystem/planets/proc/allocateTurfs(var/initial = FALSE)
-	var/list/currentlist = new_outdoor_turfs
-	while(currentlist.len)
-		var/turf/simulated/OT = currentlist[currentlist.len]
-		currentlist.len--
-		if(istype(OT) && OT.outdoors && z_to_planet.len >= OT.z && z_to_planet[OT.z])
-			var/datum/planet/P = z_to_planet[OT.z]
-			P.planet_floors |= OT
-			OT.vis_contents |= P.weather_holder.visuals
-			OT.vis_contents |= P.weather_holder.special_visuals
-		if(!initial && MC_TICK_CHECK)
-			return
-
-	currentlist = new_outdoor_walls
-	while(currentlist.len)
-		var/turf/unsimulated/wall/planetary/PW = currentlist[currentlist.len]
-		currentlist.len--
-		if(istype(PW) && z_to_planet.len >= PW.z && z_to_planet[PW.z])
-			var/datum/planet/P = z_to_planet[PW.z]
-			P.planet_walls |= PW
-		if(!initial && MC_TICK_CHECK)
-			return
-
-/datum/controller/subsystem/planets/proc/unallocateTurf(var/turf/simulated/T)
-	if(istype(T) && z_to_planet[T.z])
-		var/datum/planet/P = z_to_planet[T.z]
-		P.planet_floors -= T
-		T.vis_contents -= P.weather_holder.visuals
-		T.vis_contents -= P.weather_holder.special_visuals
+		else
+			P.planet_floors -= T
+			T.vis_contents -= P.weather_holder.visuals
+			T.vis_contents -= P.weather_holder.special_visuals
 
 
 /datum/controller/subsystem/planets/fire(resumed = 0)
-	if(new_outdoor_turfs.len || new_outdoor_walls.len)
-		allocateTurfs()
-
 	if(!resumed)
 		src.currentrun = planets.Copy()
 
@@ -153,8 +121,7 @@ SUBSYSTEM_DEF(planets)
 	var/lum_g = new_brightness * GetGreenPart(new_color) / 255
 	var/lum_b = new_brightness * GetBluePart (new_color) / 255
 	var/static/update_gen = -1 // Used to prevent double-processing corners. Otherwise would happen when looping over adjacent turfs.
-	for(var/I in P.planet_floors)
-		var/turf/simulated/T = I
+	for(var/turf/simulated/T as anything in P.planet_floors)
 		if(!T.lighting_corners_initialised)
 			T.generate_missing_corners()
 		for(var/C in T.get_corners())
