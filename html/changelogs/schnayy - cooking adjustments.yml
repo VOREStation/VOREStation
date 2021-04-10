@@ -1,0 +1,10 @@
+author: schnayy
+
+delete-after: True
+
+changes: 
+  - rscadd: "Adds the reagent yeast. It can be found in the kitchen vendor and in cargo kitchen supply crates."
+  - tweak: "Bread now calls for 5 units yeast instead of an egg, and baguettes and croissants call for 5 units yeast in addition to former ingredients."
+  - rscadd: "Corn oil added to the Dinnerware vendor and the Booze-o-Mat."
+  - imageadd: "Sprites for peanut butter, mayo, and yeast condiments."
+  - bugfix: "Boiled slime core now links to the proper sprite."
