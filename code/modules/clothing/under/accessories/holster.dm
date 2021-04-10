@@ -36,7 +36,6 @@
 	w_class = max(w_class, holstered.w_class)
 	user.visible_message("<span class='notice'>[user] holsters \the [holstered].</span>", "<span class='notice'>You holster \the [holstered].</span>")
 	name = "occupied [initial(name)]"
-	update_icon()
 
 /obj/item/clothing/accessory/holster/proc/clear_holster()
 	holstered = null
