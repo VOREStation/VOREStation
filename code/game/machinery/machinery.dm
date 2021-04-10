@@ -428,7 +428,10 @@ Class Procs:
 	for(var/obj/I in contents)
 		if(istype(I,/obj/item/weapon/card/id))
 			I.forceMove(src.loc)
+<<<<<<< HEAD
 	
+=======
+>>>>>>> 157fe17... fixes typo in qerr quem ID (#8026)
 	if(!circuit)
 		return 0
 	var/obj/structure/frame/A = new /obj/structure/frame(src.loc)
