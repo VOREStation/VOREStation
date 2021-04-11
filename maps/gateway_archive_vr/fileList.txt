@@ -12,6 +12,3 @@
 #maps/RandomZLevels/blackmarketpackers.dmm
 #maps/RandomZLevels/beach.dmm
 #maps/RandomZLevels/zoo.dmm
-
-#This one works with the Tether, uncomment when gateway code is unfucked
-#maps/RandomZLevels/snow_outpost.dmm

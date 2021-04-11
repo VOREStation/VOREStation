@@ -329,12 +329,32 @@
 
 /obj/item/clothing/suit/space/void/exploration
 	name = "exploration voidsuit"
-	desc = "A lightweight, radiation-resistant voidsuit, featuring the Explorer emblem on its chest plate. Designed for exploring unknown planetary environments."
+	desc = "A hazard and radiation resistant voidsuit, featuring the Explorer emblem on its chest plate. Designed for exploring unknown planetary environments."
 	icon_state = "void_explorer"
 	item_state_slots = list(slot_r_hand_str = "skrell_suit_black", slot_l_hand_str = "skrell_suit_black")
 	armor = list(melee = 40, bullet = 15, laser = 25,energy = 35, bomb = 30, bio = 100, rad = 70)
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/stack/flag,/obj/item/device/healthanalyzer,/obj/item/device/gps,/obj/item/device/radio/beacon, \
 	/obj/item/weapon/shovel,/obj/item/ammo_magazine,/obj/item/weapon/gun)
+
+//SAR
+/obj/item/clothing/head/helmet/space/void/expedition_medical
+	name = "exploration medic\'s voidsuit helmet"
+	desc = "A radiation-resistant helmet made especially for exploring unknown planetary environments. Has a reinforced high-vis bubble style visor."
+	icon_state = "helm_exp_medic"
+	item_state = "helm_exp_medic"
+	item_state_slots = list(slot_r_hand_str = "syndicate-helm-black", slot_l_hand_str = "syndicate-helm-black")
+	armor = list(melee = 25, bullet = 10, laser = 20,energy = 30, bomb = 25, bio = 100, rad = 70)
+	light_overlay = "helmet_light_dual" //explorer_light
+
+/obj/item/clothing/suit/space/void/expedition_medical
+	name = "exploration medic\'s voidsuit"
+	desc = "A hazard and radiation resistant voidsuit, featuring the Explorer emblem and a green cross on its chest plate. Seems to be a little lighter and more flexible than the regular explorer issue."
+	icon_state = "void_exp_medic"
+	slowdown = 0.75
+	item_state_slots = list(slot_r_hand_str = "skrell_suit_black", slot_l_hand_str = "skrell_suit_black")
+	armor = list(melee = 25, bullet = 10, laser = 20,energy = 30, bomb = 25, bio = 100, rad = 70)
+	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/stack/flag,/obj/item/device/healthanalyzer,/obj/item/device/gps,/obj/item/device/radio/beacon, \
+	/obj/item/weapon/shovel,/obj/item/ammo_magazine,/obj/item/weapon/gun,/obj/item/weapon/storage/firstaid,/obj/item/stack/medical)
 
 /obj/item/clothing/head/helmet/space/void/exploration/alt
 	desc = "A radiation-resistant helmet retrofitted for exploring unknown planetary environments."

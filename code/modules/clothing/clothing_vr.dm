@@ -153,7 +153,6 @@
 		SPECIES_VOX = 'icons/mob/species/vox/suit.dmi',
 		SPECIES_WEREBEAST = 'icons/mob/species/werebeast/suit.dmi')
 
-//TFF 5/8/19 - sets Vorestation /obj/item/clothing/under sensor setting default?
 /obj/item/clothing/under
 	sensor_mode = 3
 	var/sensorpref = 5
@@ -162,7 +161,6 @@
 		SPECIES_VOX = 'icons/mob/species/vox/uniform.dmi',
 		SPECIES_WEREBEAST = 'icons/mob/species/werebeast/uniform.dmi')
 
-//TFF 5/8/19 - define numbers and specifics for suit sensor settings
 /obj/item/clothing/under/New(var/mob/living/carbon/human/H)
 	..()
 	sensorpref = isnull(H) ? 1 : (ishuman(H) ? H.sensorpref : 1)

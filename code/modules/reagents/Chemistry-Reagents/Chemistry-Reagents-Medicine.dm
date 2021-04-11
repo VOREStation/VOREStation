@@ -1450,7 +1450,7 @@
 
 /datum/reagent/qerr_quem
 	name = "Qerr-quem"
-	id = "querr_quem"
+	id = "qerr_quem"
 	description = "A potent stimulant and anti-anxiety medication, made for the Qerr-Katish."
 	taste_description = "mint"
 	reagent_state = LIQUID

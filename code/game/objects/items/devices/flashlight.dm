@@ -294,7 +294,7 @@
 	icon_state = "lamp"
 	force = 10
 	center_of_mass = list("x" = 13,"y" = 11)
-	brightness_on = 10	//TFF 27/11/19 - post refactor fix for intensity levels.
+	brightness_on = 10
 	w_class = ITEMSIZE_LARGE
 	power_use = 0
 	on = 1

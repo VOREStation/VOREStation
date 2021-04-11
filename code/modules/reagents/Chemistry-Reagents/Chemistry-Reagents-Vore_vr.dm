@@ -13,8 +13,7 @@
 	mrate_static = TRUE
 
 /datum/reagent/macrocillin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(M.size_range_check(M.size_multiplier))
-		M.resize(M.size_multiplier+0.01)//Incrrease 1% per tick.
+	M.resize(M.size_multiplier+0.01, uncapped = M.has_large_resize_bounds()) //Incrrease 1% per tick.
 	return
 
 /datum/reagent/microcillin
@@ -27,8 +26,7 @@
 	mrate_static = TRUE
 
 /datum/reagent/microcillin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(M.size_range_check(M.size_multiplier))
-		M.resize(M.size_multiplier-0.01) //Decrease 1% per tick.
+	M.resize(M.size_multiplier-0.01, uncapped = M.has_large_resize_bounds()) //Decrease 1% per tick.
 	return
 
 

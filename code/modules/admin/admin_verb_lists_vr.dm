@@ -155,6 +155,7 @@ var/list/admin_verbs_fun = list(
 	/client/proc/smite,
 	/client/proc/smite_vr, //VOREStation Add,
 	/client/proc/admin_lightning_strike,
+	/client/proc/resize //VOREStation Add,
 	)
 
 var/list/admin_verbs_spawn = list(

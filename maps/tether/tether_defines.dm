@@ -143,7 +143,6 @@
 		/area/rnd/miscellaneous_lab
 		)
 
-//TFF 5/4/20 - Mining Ops move, airlock path change
 	unit_test_exempt_from_atmos = list(
 		/area/engineering/atmos_intake, // Outside,
 		/area/rnd/external, //  Outside,
@@ -165,7 +164,6 @@
 		)
 
 	lateload_single_pick = list(
-		list("Snow Outpost"),
 		list("Carp Farm"),
 		list("Snow Field"),
 		list("Listening Post")
@@ -191,7 +189,6 @@
 	belter_belt_z = 		list(Z_LEVEL_ROGUEMINE_1,
 						 		 Z_LEVEL_ROGUEMINE_2)
 
-//TFF 16/4/20 - mining outpost shuttle defines
 	mining_station_z =		list(Z_LEVEL_SPACE_HIGH)
 	mining_outpost_z =		list(Z_LEVEL_SURFACE_MINE)
 

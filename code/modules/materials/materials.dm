@@ -53,9 +53,10 @@ var/list/name_to_material
 /proc/populate_material_list(force_remake=0)
 	if(name_to_material && !force_remake) return // Already set up!
 	name_to_material = list()
-	for(var/type in typesof(/datum/material) - /datum/material)
+	for(var/type in subtypesof(/datum/material))
 		var/datum/material/new_mineral = new type
 		if(!new_mineral.name)
+			qdel(new_mineral)
 			continue
 		name_to_material[lowertext(new_mineral.name)] = new_mineral
 	return 1
