@@ -128,6 +128,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 	anchored = TRUE
 	circuit = /obj/item/weapon/circuitboard/pointdefense
 	idle_power_usage = 0.1 KILOWATTS
+	active_power_usage = 1 KILOWATTS
 	appearance_flags = PIXEL_SCALE
 	var/active = TRUE
 	var/charge_cooldown = 1 SECOND  //time between it can fire at different targets
@@ -256,10 +257,16 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 	var/obj/effect/meteor/M = target.resolve()
 	if(!istype(M))
 		return
+	if(use_power_oneoff(active_power_usage) < active_power_usage)
+		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+		s.set_up(5, 1, src)
+		s.start()
+		visible_message("[src] sputters as browns out while attempting to fire.")
+		flick(src, "[initial(icon_state)]_off")
+		return
 	//We throw a laser but it doesnt have to hit for meteor to explode
 	var/obj/item/projectile/beam/pointdefense/beam = new(get_turf(src))
 	playsound(src, 'sound/weapons/mandalorian.ogg', 75, 1)
-	use_power_oneoff(idle_power_usage * 10)
 	beam.launch_projectile(target = M.loc, user = src)
 
 /obj/machinery/power/pointdefense/process()
