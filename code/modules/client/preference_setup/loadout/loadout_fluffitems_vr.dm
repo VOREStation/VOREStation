@@ -736,7 +736,7 @@
 	character_name = list("Scylla Casmus")
 
 /datum/gear/fluff/kiyoshi_cloak
-	path = /obj/item/clothing/accessory/poncho/fluff/cloakglowing
+	path = /obj/item/clothing/accessory/poncho/roles/cloak/fluff/cloakglowing
 	display_name = "glowing cloak"
 	ckeywhitelist = list("pastelprincedan")
 	character_name = list("Kiyoshi Maki", "Masumi Maki")
