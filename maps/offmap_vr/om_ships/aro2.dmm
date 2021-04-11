@@ -130,7 +130,7 @@
 /area/aro2/room1)
 "aI" = (
 /obj/effect/floor_decal/industrial/warning/full,
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "aroship"
 	},
 /obj/structure/cable/cyan{
@@ -235,7 +235,7 @@
 /area/aro2/room1)
 "bd" = (
 /obj/effect/floor_decal/industrial/warning/full,
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "aroship"
 	},
 /obj/structure/cable/cyan{
@@ -703,7 +703,7 @@
 /area/aro2/boatdeck)
 "el" = (
 /obj/effect/floor_decal/industrial/warning/full,
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "aroship"
 	},
 /obj/structure/cable/cyan,
@@ -3040,7 +3040,7 @@
 /area/aro2/starboardbay)
 "Ed" = (
 /obj/effect/floor_decal/industrial/warning/full,
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "aroship"
 	},
 /obj/structure/cable/cyan{
@@ -3392,7 +3392,7 @@
 /area/shuttle/aroboat2)
 "HF" = (
 /obj/effect/floor_decal/industrial/warning/full,
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "aroship"
 	},
 /obj/structure/cable/cyan{
@@ -3546,7 +3546,7 @@
 /area/aro2/portbay)
 "Jg" = (
 /obj/effect/floor_decal/industrial/warning/full,
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "aroship"
 	},
 /obj/structure/cable/cyan{
@@ -3955,7 +3955,7 @@
 /area/aro2/boatdeck)
 "MR" = (
 /obj/effect/floor_decal/industrial/warning/full,
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "aroship"
 	},
 /obj/structure/cable/cyan{
@@ -4072,7 +4072,7 @@
 /area/aro2/cockpit)
 "OK" = (
 /obj/effect/floor_decal/industrial/warning/full,
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "aroship"
 	},
 /obj/structure/cable/cyan,
@@ -4186,7 +4186,7 @@
 /area/aro2/portbay)
 "PF" = (
 /obj/effect/floor_decal/industrial/warning/full,
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "aroship"
 	},
 /obj/structure/cable/cyan{
@@ -4795,7 +4795,7 @@
 /area/aro2/boatdeck)
 "Wg" = (
 /obj/effect/floor_decal/industrial/warning/full,
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "aroship"
 	},
 /obj/structure/cable/cyan{

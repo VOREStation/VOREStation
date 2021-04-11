@@ -563,7 +563,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/recreation)
 "bG" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "mercenary_pd"
 	},
 /turf/simulated/floor/reinforced/airless,
@@ -635,7 +635,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/armoury_st)
 "bT" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "mercenary_pd"
 	},
 /turf/simulated/floor/reinforced/airless,
@@ -826,7 +826,7 @@
 /turf/simulated/floor/plating,
 /area/ship/manta/engine)
 "cI" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "mercenary_pd"
 	},
 /turf/simulated/floor/reinforced/airless,
@@ -1766,7 +1766,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/bridge)
 "hq" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "mercenary_pd"
 	},
 /turf/simulated/floor/reinforced/airless,
@@ -2296,7 +2296,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/bridge)
 "jh" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "mercenary_pd"
 	},
 /turf/simulated/floor/reinforced/airless,
@@ -3229,7 +3229,7 @@
 /turf/simulated/floor/plating,
 /area/ship/manta/engine)
 "nJ" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "mercenary_pd"
 	},
 /turf/simulated/floor/reinforced/airless,
@@ -3590,7 +3590,7 @@
 /turf/space,
 /area/space)
 "pi" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "mercenary_pd"
 	},
 /turf/simulated/floor/reinforced/airless,
@@ -3868,7 +3868,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/hallways_aft)
 "qQ" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "mercenary_pd"
 	},
 /turf/simulated/floor/reinforced/airless,
@@ -3932,7 +3932,7 @@
 /turf/simulated/floor/reinforced/airless,
 /area/ship/manta/mech_bay)
 "rp" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "mercenary_pd"
 	},
 /turf/simulated/floor/reinforced/airless,
@@ -4031,7 +4031,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/engineering)
 "rR" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "mercenary_pd"
 	},
 /turf/simulated/floor/reinforced/airless,
@@ -4304,7 +4304,7 @@
 /turf/simulated/floor/wood,
 /area/ship/manta/barracks)
 "ts" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "mercenary_pd"
 	},
 /turf/simulated/floor/reinforced/airless,
@@ -7166,7 +7166,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/manta/bridge)
 "FZ" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "mercenary_pd"
 	},
 /turf/simulated/floor/reinforced/airless,
