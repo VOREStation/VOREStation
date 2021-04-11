@@ -6,7 +6,7 @@
 	},
 /area/shuttle/tabiranth)
 "ab" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "tabiranth_pd"
 	},
 /turf/simulated/floor/reinforced/airless{
