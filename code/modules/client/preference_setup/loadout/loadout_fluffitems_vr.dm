@@ -61,9 +61,9 @@
 	character_name = list("Xander Bevin")
 
 /datum/gear/fluff/charlotte_cigarettes
-	path = /obj/item/weapon/storage/fancy/cigar/charlotte
+	path = /obj/item/weapon/storage/fancy/cigarettes/charlotte
 	display_name = "Charlotte's cigarette case"
-	ckeywhitelist = list("AlFalah")
+	ckeywhitelist = list("alfalah")
 	character_name = list("Charlotte Graves")
 
 /datum/gear/fluff/lynn_penlight
