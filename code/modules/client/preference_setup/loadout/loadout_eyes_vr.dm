@@ -1,9 +1,12 @@
 /datum/gear/eyes/medical
-	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist", "Field Medic")
+	allowed_roles = list("Medical Doctor", "Chief Medical Officer", "Chemist", "Paramedic", "Geneticist", "Psychiatrist", "Field Medic", "Talon Doctor")
 
 /datum/gear/eyes/meson
 	display_name = "Optical Meson Scanners (Engineering, Science)"
-	allowed_roles = list("Station Engineer","Chief Engineer","Atmospheric Technician", "Scientist", "Research Director", "Explorer", "Pathfinder")
+	allowed_roles = list("Station Engineer", "Chief Engineer", "Atmospheric Technician", "Scientist", "Research Director", "Explorer", "Pathfinder", "Talon Engineer")
+
+/datum/gear/eyes/security
+	allowed_roles = list("Security Officer", "Head of Security", "Warden", "Detective", "Talon Guard")
 
 /datum/gear/eyes/arglasses
 	display_name = "AR glasses"
