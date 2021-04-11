@@ -73,7 +73,7 @@ proc/get_deepspace(x,y)
 /mob/lost_in_space()
 	return isnull(client)
 
-/mob/living/lost_in_space()
+/mob/living/carbon/human/lost_in_space()
 	return FALSE
 	// return isnull(client) && !key && stat == DEAD // Allows bodies that players have ghosted from to be deleted - Ater
 

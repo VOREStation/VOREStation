@@ -53,7 +53,7 @@
 		"Chirp" = list("chirps","chirrups","cheeps"),
 		"Feline" = list("purrs","yowls","meows"),
 		"Canine" = list("yaps","barks","woofs"),
-		"Rodent" = list("squeaks", "SQUEAKS", "sqiks")	//VOREStation Edit - TFF 22/11/19 - CHOMPStation port of pAI additions,
+		"Rodent" = list("squeaks", "SQUEAKS", "sqiks")	//VOREStation Edit
 		)
 
 	var/obj/item/weapon/pai_cable/cable		// The cable we produce and use when door or camera jacking
@@ -330,8 +330,7 @@
 
 	close_up()
 
-//VOREStation Removal Start - TFF 22/11/19 - Refactored in pai_vr.dm
-/*
+/* //VOREStation Removal Start
 /mob/living/silicon/pai/proc/choose_chassis()
 	set category = "pAI Commands"
 	set name = "Choose Chassis"

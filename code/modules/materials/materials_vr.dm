@@ -92,3 +92,13 @@
 	wire_product = null
 	rod_product = /obj/item/stack/material/glass/plastitanium
 	composite_material = list(MAT_PLASTITANIUM = SHEET_MATERIAL_AMOUNT, "glass" = SHEET_MATERIAL_AMOUNT)
+
+/datum/material/gold/hull
+	name = MAT_GOLDHULL
+	stack_type = /obj/item/stack/material/gold/hull
+	icon_base = "hull"
+	icon_reinf = "reinf_mesh"
+	explosion_resistance = 50
+
+/datum/material/gold/hull/place_sheet(var/turf/target) //Deconstructed into normal plasteel sheets.
+	new /obj/item/stack/material/gold(target)

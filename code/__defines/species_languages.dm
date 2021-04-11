@@ -49,11 +49,13 @@
 #define AG_SLEEPY	0x40	// fatigue/exhaustion
 
 // Species spawn flags
-#define SPECIES_IS_WHITELISTED    0x1    // Must be whitelisted to play.
-#define SPECIES_IS_RESTRICTED     0x2    // Is not a core/normally playable species. (castes, mutantraces)
-#define SPECIES_CAN_JOIN                  0x4    // Species is selectable in chargen.
-#define SPECIES_NO_FBP_CONSTRUCTION 0x8    // FBP of this species can't be made in-game.
-#define SPECIES_NO_FBP_CHARGEN      0x10    // FBP of this species can't be selected at chargen.
+#define SPECIES_IS_WHITELISTED      0x1  // Must be whitelisted to play.
+#define SPECIES_IS_RESTRICTED       0x2  // Is not a core/normally playable species. (castes, mutantraces)
+#define SPECIES_CAN_JOIN            0x4  // Species is selectable in chargen.
+#define SPECIES_NO_FBP_CONSTRUCTION 0x8  // FBP of this species can't be made in-game.
+#define SPECIES_NO_FBP_CHARGEN      0x10 // FBP of this species can't be selected at chargen.
+#define SPECIES_NO_POSIBRAIN        0x20 // FBP of this species cannot have a positronic brain.
+#define SPECIES_NO_DRONEBRAIN       0x40 // FBP of this species cannot have a drone intelligence.
 
 // Species appearance flags
 #define HAS_SKIN_TONE     0x1    // Skin tone selectable in chargen. (0-255)

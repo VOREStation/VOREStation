@@ -1410,7 +1410,6 @@
 	contraband = list(/obj/item/clothing/head/syndicatefake = 1,
 					/obj/item/clothing/suit/syndicatefake = 1)
 
-//TFF 19/12/19 - Brig version of a seed storage vendor
 /obj/machinery/seed_storage/brig
 	name = "Prisoners' food seed storage"
 	starting_seeds = list(
@@ -4540,7 +4539,6 @@
 					/obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat = 10)
 	vend_delay = 15
 
-//TFF 19/12/19 - Brig version of a seed storage vendor
 /obj/machinery/seed_storage/brig
 	name = "Prisoners' food seed storage"
 	starting_seeds = list(

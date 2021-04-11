@@ -428,7 +428,7 @@ Class Procs:
 	for(var/obj/I in contents)
 		if(istype(I,/obj/item/weapon/card/id))
 			I.forceMove(src.loc)
-	//TFF 3/6/19 - port Cit RP fix of infinite frames. If it doesn't have a circuit board, don't create a frame. Return a smack instead. BONK!
+	
 	if(!circuit)
 		return 0
 	var/obj/structure/frame/A = new /obj/structure/frame(src.loc)

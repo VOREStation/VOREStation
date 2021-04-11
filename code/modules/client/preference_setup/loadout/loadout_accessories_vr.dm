@@ -44,7 +44,6 @@
 	display_name = "collar, holo"
 	path = /obj/item/clothing/accessory/collar/holo
 
-//TFF 17/6/19 - public loadout addition: Indigestible Holocollar
 /datum/gear/collar/holo/indigestible
 	display_name = "collar, holo (indigestible)"
 	path = /obj/item/clothing/accessory/collar/holo/indigestible

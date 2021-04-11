@@ -67,9 +67,8 @@
 
 	//Tanning!
 	for(var/obj/item/stack/hairlesshide/HH in washing)
-		var/obj/item/stack/WL = new HH.wet_type(src)
-		if(istype(WL))
-			WL.amount = HH.amount
+		var/obj/item/stack/wetleather/WL = new(src)
+		WL.amount = HH.amount
 		washing -= HH
 		HH.forceMove(get_turf(src))
 		HH.use(HH.amount)

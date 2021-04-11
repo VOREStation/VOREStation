@@ -43,7 +43,6 @@
 	else
 		icon_state = "dbchime-standby"
 
-//TFF 3/6/19 - Port Cit RP fix of infinite frames. ToDo: Make it so that you can completely deconstruct it and reconstruct it.
 /obj/machinery/doorbell_chime/attackby(obj/item/W as obj, mob/user as mob)
 	src.add_fingerprint(user)
 	if(default_deconstruction_screwdriver(user, W))
