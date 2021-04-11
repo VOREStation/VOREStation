@@ -35,7 +35,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/salamander_wreck)
 "bk" = (
-/obj/machinery/pointdefense{
+/obj/machinery/power/pointdefense{
 	id_tag = "salamander_wreck_pd"
 	},
 /turf/simulated/floor/airless,
@@ -1275,7 +1275,7 @@
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/shuttle/salamander_wreck_engineering)
 "tA" = (
-/obj/machinery/pointdefense{
+/obj/machinery/power/pointdefense{
 	id_tag = "salamander_wreck_pd"
 	},
 /turf/simulated/floor/airless,
