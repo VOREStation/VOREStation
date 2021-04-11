@@ -291,56 +291,6 @@
 	// HUD update time
 	update_xenochimera_hud(H, danger, feral_state)
 
-
-/datum/species/xenochimera/produceCopy(var/datum/species/to_copy,var/list/traits,var/mob/living/carbon/human/H)
-	ASSERT(to_copy)
-	ASSERT(istype(H))
-
-	if(ispath(to_copy))
-		to_copy = "[initial(to_copy.name)]"
-	if(istext(to_copy))
-		to_copy = GLOB.all_species[to_copy]
-
-	var/datum/species/xenochimera/new_copy = new()
-
-	//Initials so it works with a simple path passed, or an instance
-	new_copy.base_species = to_copy.name
-	new_copy.icobase = to_copy.icobase
-	new_copy.deform = to_copy.deform
-	new_copy.tail = to_copy.tail
-	new_copy.tail_animation = to_copy.tail_animation
-	new_copy.icobase_tail = to_copy.icobase_tail
-	new_copy.color_mult = to_copy.color_mult
-	new_copy.primitive_form = to_copy.primitive_form
-	new_copy.appearance_flags = to_copy.appearance_flags
-	new_copy.flesh_color = to_copy.flesh_color
-	new_copy.base_color = to_copy.base_color
-	new_copy.blood_mask = to_copy.blood_mask
-	new_copy.damage_mask = to_copy.damage_mask
-	new_copy.damage_overlays = to_copy.damage_overlays
-	new_copy.traits = traits
-
-	//If you had traits, apply them
-	if(new_copy.traits)
-		for(var/trait in new_copy.traits)
-			var/datum/trait/T = all_traits[trait]
-			T.apply(new_copy,H)
-
-	//Set up a mob
-	H.species = new_copy
-	H.icon_state = lowertext(new_copy.get_bodytype())
-
-	if(new_copy.holder_type)
-		H.holder_type = new_copy.holder_type
-
-	if(H.dna)
-		H.dna.ready_dna(H)
-
-	return new_copy
-
-/datum/species/xenochimera/get_bodytype()
-	return base_species
-
 /datum/species/xenochimera/get_race_key()
 	var/datum/species/real = GLOB.all_species[base_species]
 	return real.race_key

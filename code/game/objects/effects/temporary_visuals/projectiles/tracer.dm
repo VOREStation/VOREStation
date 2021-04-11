@@ -129,3 +129,5 @@
 	light_power = 0.5
 	light_color = "#80F5FF"
 //VOREStation edit ends
+/obj/effect/projectile/tracer/pointdefense
+	icon_state = "beam_pointdef"
