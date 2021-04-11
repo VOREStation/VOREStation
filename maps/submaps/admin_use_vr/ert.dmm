@@ -4,7 +4,7 @@
 /turf/space,
 /area/space)
 "ab" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "vonbraun_pd"
 	},
 /turf/simulated/floor/reinforced/airless,
@@ -33,7 +33,7 @@
 /turf/simulated/floor/reinforced/airless,
 /area/ship/ert/mech_bay)
 "ag" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "vonbraun_pd"
 	},
 /turf/simulated/floor/reinforced/airless,
@@ -132,7 +132,7 @@
 /turf/simulated/floor/reinforced,
 /area/shuttle/ert_ship_boat)
 "aC" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "vonbraun_pd"
 	},
 /turf/simulated/floor/reinforced/airless,
@@ -191,7 +191,7 @@
 /turf/simulated/floor/tiled/white,
 /area/ship/ert/med_surg)
 "aV" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "vonbraun_pd"
 	},
 /turf/simulated/floor/reinforced/airless,
@@ -660,7 +660,7 @@
 /obj/machinery/light/no_nightshift{
 	dir = 8
 	},
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "vonbraun_pd"
 	},
 /turf/simulated/floor/reinforced/airless,
@@ -1282,7 +1282,7 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 1
 	},
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "vonbraun_pd"
 	},
 /obj/machinery/light/no_nightshift{
@@ -1324,7 +1324,7 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 8
 	},
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "vonbraun_pd"
 	},
 /obj/machinery/light/no_nightshift{
@@ -3154,7 +3154,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/bridge)
 "sB" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "vonbraun_pd"
 	},
 /turf/simulated/floor/reinforced/airless,
@@ -6597,7 +6597,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/ert_ship_boat)
 "Nk" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "vonbraun_pd"
 	},
 /obj/machinery/light/no_nightshift{
@@ -6811,7 +6811,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/hangar)
 "Om" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "vonbraun_pd"
 	},
 /turf/simulated/floor/reinforced/airless,
@@ -8078,7 +8078,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/hangar)
 "WF" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "vonbraun_pd"
 	},
 /turf/simulated/floor/reinforced/airless,
@@ -8422,7 +8422,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/engineering)
 "ZL" = (
-/obj/machinery/power/pointdefense{
+/obj/machinery/pointdefense{
 	id_tag = "vonbraun_pd"
 	},
 /turf/simulated/floor/reinforced/airless,

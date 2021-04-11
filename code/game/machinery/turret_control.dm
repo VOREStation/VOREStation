@@ -196,9 +196,6 @@
 	TC.check_weapons = check_weapons
 	TC.check_anomalies = check_anomalies
 	TC.check_all = check_all
-	TC.check_down = check_down
-	TC.stay_up = stay_up
-	TC.fire_at_movement = fire_at_movement
 	TC.ailock = ailock
 
 	if(istype(control_area))

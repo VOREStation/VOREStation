@@ -3,6 +3,9 @@ var/list/exploration_cartridges = list(
 	/obj/item/weapon/cartridge/sar
 	)
 
+/obj/item/weapon/cartridge
+	slot_flags = SLOT_EARS
+
 /obj/item/weapon/cartridge/explorer
 	name = "\improper Explorator cartridge"
 	icon_state = "cart-e"
@@ -24,6 +27,7 @@ var/list/exploration_cartridges = list(
 	desc = "It feels heavier for some reason."
 	w_class = ITEMSIZE_SMALL
 	icon_state = "cart-lib"
+	show_examine = FALSE
 	var/slots = 1
 	var/obj/item/weapon/storage/internal/hold
 

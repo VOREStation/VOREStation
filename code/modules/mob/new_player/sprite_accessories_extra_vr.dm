@@ -728,3 +728,9 @@
 	icon_state = "unathilongfrills"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr/thunderthighs
+	name = "Boosted Thighs"
+	icon_state = "thunderthighs"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_L_LEG,BP_R_LEG)
