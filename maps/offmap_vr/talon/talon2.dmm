@@ -2454,7 +2454,7 @@
 /obj/structure/cable/green{
 	icon_state = "0-2"
 	},
-/obj/machinery/pointdefense{
+/obj/machinery/power/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/effect/floor_decal/techfloor{
@@ -3085,7 +3085,7 @@
 /turf/simulated/floor/tiled/eris/steel,
 /area/talon/decktwo/central_hallway)
 "CB" = (
-/obj/machinery/pointdefense{
+/obj/machinery/power/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/structure/cable/green{
@@ -4025,7 +4025,7 @@
 /turf/simulated/floor/hull/airless,
 /area/talon/maintenance/decktwo_solars)
 "RA" = (
-/obj/machinery/pointdefense{
+/obj/machinery/power/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/effect/floor_decal/techfloor{
@@ -4067,7 +4067,7 @@
 /turf/simulated/floor/tiled/eris/techmaint_panels,
 /area/talon/decktwo/central_hallway)
 "Sb" = (
-/obj/machinery/pointdefense{
+/obj/machinery/power/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/structure/cable/green{

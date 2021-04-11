@@ -9355,7 +9355,7 @@
 /turf/simulated/floor/wood,
 /area/mothership/breakroom)
 "uh" = (
-/obj/machinery/pointdefense{
+/obj/machinery/power/pointdefense{
 	id_tag = "warship_pd"
 	},
 /turf/simulated/floor/reinforced/airless{
