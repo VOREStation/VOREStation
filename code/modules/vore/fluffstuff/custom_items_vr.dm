@@ -1370,5 +1370,5 @@
 	storage_slots = 7
 	can_hold = list(/obj/item/clothing/mask/smokable/cigarette, /obj/item/weapon/flame/lighter, /obj/item/trash/cigbutt)
 	icon_type = "cigarette"
-	brand = "\improper Professional 120
+	brand = "\improper Professional 120"
 	starts_with = list(/obj/item/clothing/mask/smokable/cigarette = 7)
