@@ -485,7 +485,7 @@ var/global/list/remainless_species = list(SPECIES_PROMETHEAN,
 		hair_accesories_list[path] = instance
 
 	// Custom species traits
-	paths = typesof(/datum/trait) - /datum/trait
+	paths = typesof(/datum/trait) - /datum/trait - /datum/trait/negative - /datum/trait/neutral - /datum/trait/positive
 	for(var/path in paths)
 		var/datum/trait/instance = new path()
 		if(!instance.name)

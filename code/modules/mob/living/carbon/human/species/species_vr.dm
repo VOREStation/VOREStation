@@ -44,7 +44,7 @@
 		nif.nifsofts = nifsofts
 	else
 		..()
-/datum/species/proc/produceCopy(var/list/traits,var/mob/living/carbon/human/H)	
+/datum/species/proc/produceCopy(var/list/traits, var/mob/living/carbon/human/H, var/custom_base)
 	//If species allows custom base, and custom base is set, apply it, otherwise use default.
 	ASSERT(src)
 	ASSERT(istype(H))
@@ -81,7 +81,11 @@
 	//Makes thorough copy of species datum.
 	for(var/i in vars)
 		if(S.vars[i] != vars[i] && !islist(vars[i])) //If vars are same, no point in copying.
-			if(whitelist && !(i in whitelist) && i in blacklist) //If whitelist is provided, only vars in the list will be copied.
+			if(i in blacklist)
+				continue
+			if(whitelist)//If whitelist is provided, only vars in the list will be copied.
+				if(i in whitelist)
+					S.vars[i] = vars[i]
 				continue
 			S.vars[i] = vars[i]
 
