@@ -57,6 +57,8 @@
 		var/list/organ_data = has_limbs[organ]
 		new_copy.has_limbs[organ] = organ_data.Copy()
 
+	new_copy.traits = traits
+
 	//If you had traits, apply them
 	if(new_copy.traits)
 		for(var/trait in new_copy.traits)
