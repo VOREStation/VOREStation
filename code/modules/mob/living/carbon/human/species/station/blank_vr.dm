@@ -46,8 +46,8 @@
 	var/datum/species/real = GLOB.all_species[base_species]
 	return real.race_key
 
-/datum/species/custom/produceCopy(var/list/traits,var/mob/living/carbon/human/H,var/custom_base)
-	. = ..(traits, H)
+/datum/species/custom/produceCopy(var/list/traits, var/mob/living/carbon/human/H, var/custom_base)
+	. = ..(traits, H, custom_base)
 	if(selects_bodytype && custom_base)
 		var/datum/species/S = GLOB.all_species[custom_base]
 		S.copy_variables(., copy_vars)
