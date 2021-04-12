@@ -60,6 +60,12 @@
 	ckeywhitelist = list("aegisoa")
 	character_name = list("Xander Bevin")
 
+/datum/gear/fluff/charlotte_cigarettes
+	path = /obj/item/weapon/storage/fancy/cigarettes/charlotte
+	display_name = "Charlotte's cigarette case"
+	ckeywhitelist = list("alfalah")
+	character_name = list("Charlotte Graves")
+
 /datum/gear/fluff/lynn_penlight
 	path = /obj/item/device/flashlight/pen/fluff/lynn
 	display_name = "Lynn's Penlight"
