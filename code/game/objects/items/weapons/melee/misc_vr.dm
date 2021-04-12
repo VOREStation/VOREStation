@@ -7,7 +7,7 @@
 		slot_l_hand_str = 'icons/mob/items/lefthand_melee_vr.dmi',
 		slot_r_hand_str = 'icons/mob/items/righthand_melee_vr.dmi',
 		)
-	force = 25
+	force = 15
 	throwforce = 10
 	w_class = ITEMSIZE_NORMAL
 	sharp = 1
