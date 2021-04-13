@@ -48,12 +48,8 @@
 
 /datum/species/custom/produceCopy(var/list/traits, var/mob/living/carbon/human/H, var/custom_base)
 	. = ..(traits, H, custom_base)
-	if(selects_bodytype && custom_base)
-		var/datum/species/S = GLOB.all_species[custom_base]
-		S.copy_variables(., copy_vars)
 	H.maxHealth = H.species.total_health
 	H.hunger_rate = H.species.hunger_factor
-	return .
 
 // Stub species overrides for shoving trait abilities into
 

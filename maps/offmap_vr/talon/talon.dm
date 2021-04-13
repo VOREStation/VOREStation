@@ -345,7 +345,7 @@ Once in open space, consider disabling nonessential power-consuming electronics 
 
 	starts_with = list(
 		/obj/item/weapon/material/knife/tacknife/survival,
-		/obj/item/clothing/head/pilot,
+		/obj/item/clothing/head/ompilot,
 		/obj/item/clothing/under/rank/pilot1,
 		/obj/item/clothing/suit/storage/toggle/bomber/pilot,
 		/obj/item/clothing/gloves/fingerless,
