@@ -212,7 +212,7 @@
 	..()
 
 //////////////////////////////////////////////////////////////
-//TFF 12/4/20 Surface Mining Outpost Shuttle
+// Surface Mining Outpost Shuttle
 
 /datum/shuttle/autodock/ferry/surface_mining_outpost
 	name = "Mining Outpost"

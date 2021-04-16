@@ -2287,4 +2287,47 @@ Departamental Swimsuits, for general use
 
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|FEET|ARMS|HANDS
 
+//PastelPrinceDan: Kiyoshi Maki
+/obj/item/clothing/accessory/poncho/roles/cloak/fluff/cloakglowing
+	name = "glowing cloak"
+	desc = "A fancy cloak with a RGB LED color strip along the trim, cycling through the colors of the rainbow."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "rgb"
+	item_state = "rgb"
+	overlay_state = "rgb"
+	icon_override = 'icons/vore/custom_onmob_vr.dmi'
+	var/is_dark = FALSE
 
+/obj/item/clothing/accessory/poncho/roles/cloak/fluff/cloakglowing/equipped()
+	..()
+	var/mob/living/carbon/human/H = loc
+	if(istype(H) && H.wear_suit == src)
+		icon_override = 'icons/vore/custom_onmob_vr.dmi'
+	update_clothing_icon()
+
+/obj/item/clothing/accessory/poncho/roles/cloak/fluff/cloakglowing/dropped()
+	icon_override = 'icons/vore/custom_onmob_vr.dmi'
+
+/obj/item/clothing/accessory/poncho/roles/cloak/fluff/cloakglowing/proc/colorswap(mob/user)
+	if(user.canmove && !user.stat)
+		src.is_dark = !src.is_dark
+		if (src.is_dark)
+			icon_state = "rgbd"
+			item_state = "rgbd"
+			overlay_state = "rgbd"
+			to_chat(user, "The polychromic plates in your cloak activate, turning it black.")
+		else
+			icon_state = "rgb"
+			item_state = "rgb"
+			overlay_state = "rgb"
+			to_chat(user, "The polychromic plates in your cloak activate, turning it white.")
+		has_suit.update_clothing_icon()
+
+/obj/item/clothing/accessory/poncho/roles/cloak/fluff/cloakglowing/verb/color_verb()
+	set name = "Swap color"
+	set category = "Object"
+	set src in usr
+	if(!istype(usr, /mob/living)) return
+	if(usr.stat) return
+
+	colorswap(usr)

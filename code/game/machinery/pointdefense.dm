@@ -9,6 +9,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 /obj/machinery/pointdefense_control
 	name = "fire assist mainframe"
 	desc = "A specialized computer designed to synchronize a variety of weapon systems and a vessel's astronav data."
+	description_info = "To connect the mainframe to turrets, use a multitool to set the ident tag to that of the turrets."
 	icon = 'icons/obj/pointdefense.dmi'
 	icon_state = "control"
 	density = TRUE
@@ -122,7 +123,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 	icon = 'icons/obj/pointdefense.dmi'
 	icon_state = "pointdefense2"
 	desc = "A Kuiper pattern anti-meteor battery. Capable of destroying most threats in a single salvo."
-	description_info = "Must have the same ident tag as a fire assist mainframe on the same facility."
+	description_info = "Must have the same ident tag as a fire assist mainframe on the same facility. Use a multitool to set the ident tag."
 	density = TRUE
 	anchored = TRUE
 	circuit = /obj/item/weapon/circuitboard/pointdefense
@@ -134,7 +135,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 	var/last_shot = 0
 	var/kill_range = 18
 	var/rotation_speed = 0.25 SECONDS  //How quickly we turn to face threats
-	var/engaging = FALSE
+	var/weakref/engaging = null // The meteor we're shooting at
 	var/id_tag = null
 
 /obj/machinery/power/pointdefense/Initialize()
@@ -235,8 +236,9 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 /obj/machinery/power/pointdefense/proc/Shoot(var/weakref/target)
 	var/obj/effect/meteor/M = target.resolve()
 	if(!istype(M))
+		engaging = null
 		return
-	engaging = TRUE
+	engaging = target
 	var/Angle = round(Get_Angle(src,M))
 	var/matrix/rot_matrix = matrix()
 	rot_matrix.Turn(Angle)
@@ -246,12 +248,11 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 	set_dir(ATAN2(transform.b, transform.a) > 0 ? NORTH : SOUTH)
 
 /obj/machinery/power/pointdefense/proc/finish_shot(var/weakref/target)
-	//Cleanup from list
-	var/obj/machinery/pointdefense_control/PC = get_controller()
-	if(istype(PC))
-		PC.targets -= target
 
-	engaging = FALSE
+	var/obj/machinery/pointdefense_control/PC = get_controller()
+	engaging = null
+	PC.targets -= target
+
 	last_shot = world.time
 	var/obj/effect/meteor/M = target.resolve()
 	if(!istype(M))
@@ -267,8 +268,6 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 	var/obj/item/projectile/beam/pointdefense/beam = new(get_turf(src))
 	playsound(src, 'sound/weapons/mandalorian.ogg', 75, 1)
 	beam.launch_projectile(target = M.loc, user = src)
-	M.make_debris()
-	qdel(M)
 
 /obj/machinery/power/pointdefense/process()
 	..()
@@ -281,42 +280,58 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 	if(dir != desiredir)
 		set_dir(desiredir)
 	*/
+
 	if(LAZYLEN(GLOB.meteor_list) > 0)
 		find_and_shoot()
 
 /obj/machinery/power/pointdefense/proc/find_and_shoot()
+	// There ARE meteors to shoot
 	if(LAZYLEN(GLOB.meteor_list) == 0)
 		return
+	// We can shoot
 	if(engaging || ((world.time - last_shot) < charge_cooldown))
 		return
 
 	var/obj/machinery/pointdefense_control/PC = get_controller()
 	if(!istype(PC))
 		return
+	
+	// Compile list of known targets
+	var/list/existing_targets = list()
+	for(var/weakref/WR in PC.targets)
+		var/obj/effect/meteor/M = WR.resolve()
+		existing_targets += M
 
-	var/list/connected_z_levels = GetConnectedZlevels(get_z(src))
-	for(var/obj/effect/meteor/M in GLOB.meteor_list)
-		var/already_targeted = FALSE
-		for(var/weakref/WR in PC.targets)
-			var/obj/effect/meteor/m = WR.resolve()
-			if(m == M)
-				already_targeted = TRUE
-				break
-			if(!istype(m))
-				PC.targets -= WR
-
-		if(already_targeted)
-			continue
-
-		if(!(M.z in connected_z_levels))
-			continue
-		if(get_dist(M, src) > kill_range)
-			continue
-		if(!emagged && space_los(M))
+	// First, try and acquire new targets
+	var/list/potential_targets = GLOB.meteor_list.Copy() - existing_targets
+	for(var/obj/effect/meteor/M in potential_targets)
+		if(targeting_check(M))
 			var/weakref/target = weakref(M)
 			PC.targets += target
+			engaging = target
 			Shoot(target)
 			return
+
+	// Then, focus fire on existing targets
+	for(var/obj/effect/meteor/M in existing_targets)
+		if(targeting_check(M))
+			var/weakref/target = weakref(M)
+			engaging = target
+			Shoot(target)
+			return
+		
+/obj/machinery/power/pointdefense/proc/targeting_check(var/obj/effect/meteor/M)
+	// Target in range
+	var/list/connected_z_levels = GetConnectedZlevels(get_z(src))
+	if(!(M.z in connected_z_levels))
+		return FALSE
+	if(get_dist(M, src) > kill_range)
+		return FALSE
+	// If we can shoot it, then shoot
+	if(emagged || !space_los(M))
+		return FALSE
+	
+	return TRUE
 
 /obj/machinery/power/pointdefense/RefreshParts()
 	. = ..()
@@ -352,32 +367,3 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 	active = FALSE
 	update_icon()
 	return TRUE
-
-//
-// Projectile Beam Definitions
-//
-
-/obj/item/projectile/beam/pointdefense
-	name = "point defense salvo"
-	icon_state = "laser"
-	damage = 15
-	damage_type = ELECTROCUTE //You should be safe inside a voidsuit
-	sharp = FALSE //"Wide" spectrum beam
-	light_color = COLOR_GOLD
-
-	muzzle_type = /obj/effect/projectile/muzzle/pointdefense
-	tracer_type = /obj/effect/projectile/tracer/pointdefense
-	impact_type = /obj/effect/projectile/impact/pointdefense
-
-
-/obj/effect/projectile/tracer/pointdefense
-	icon = 'icons/obj/projectiles_vr.dmi'
-	icon_state = "beam_pointdef"
-
-/obj/effect/projectile/muzzle/pointdefense
-	icon = 'icons/obj/projectiles_vr.dmi'
-	icon_state = "muzzle_pointdef"
-
-/obj/effect/projectile/impact/pointdefense
-	icon = 'icons/obj/projectiles_vr.dmi'
-	icon_state = "impact_pointdef"

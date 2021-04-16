@@ -310,26 +310,27 @@ var/global/list/additional_antag_types = list()
 	for(var/mob/M in player_list)
 		if(M.client)
 			clients++
+			var/M_area_type = (get_turf(M))?.loc?.type
 			if(ishuman(M))
 				if(M.stat != DEAD)
 					surviving_humans++
-					if(M.loc && M.loc.loc && M.loc.loc.type in escape_locations)
+					if(M_area_type in escape_locations)
 						escaped_humans++
 			if(M.stat != DEAD)
 				surviving_total++
-				if(M.loc && M.loc.loc && M.loc.loc.type in escape_locations)
+				if(M_area_type in escape_locations)
 					escaped_total++
 
-				if(M.loc && M.loc.loc && M.loc.loc.type == /area/shuttle/escape/centcom)
+				if(M_area_type == /area/shuttle/escape/centcom)
 					escaped_on_shuttle++
 
-				if(M.loc && M.loc.loc && M.loc.loc.type == /area/shuttle/escape_pod1/centcom)
+				if(M_area_type == /area/shuttle/escape_pod1/centcom)
 					escaped_on_pod_1++
-				if(M.loc && M.loc.loc && M.loc.loc.type == /area/shuttle/escape_pod2/centcom)
+				if(M_area_type == /area/shuttle/escape_pod2/centcom)
 					escaped_on_pod_2++
-				if(M.loc && M.loc.loc && M.loc.loc.type == /area/shuttle/escape_pod3/centcom)
+				if(M_area_type == /area/shuttle/escape_pod3/centcom)
 					escaped_on_pod_3++
-				if(M.loc && M.loc.loc && M.loc.loc.type == /area/shuttle/escape_pod5/centcom)
+				if(M_area_type == /area/shuttle/escape_pod5/centcom)
 					escaped_on_pod_5++
 
 			if(isobserver(M))

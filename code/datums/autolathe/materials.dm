@@ -1,38 +1,23 @@
-
-/datum/category_item/autolathe/materials/metal
-	name = "steel sheets"
-	path =/obj/item/stack/material/steel
+/datum/category_item/autolathe/materials
 	is_stack = TRUE
-	no_scale = TRUE //prevents material duplication exploits
+	no_scale = TRUE // Prevents material duplaction exploits
 
-/datum/category_item/autolathe/materials/glass
-	name = "glass sheets"
-	path =/obj/item/stack/material/glass
-	is_stack = TRUE
-	no_scale = TRUE //prevents material duplication exploits
+/datum/category_item/autolathe/materials/New(var/loc, var/mat)
+	if(istype(mat, /obj/item/stack/material))
+		var/obj/item/stack/material/M = mat
+		name = M.name
+		resources = M.matter.Copy()
+		max_stack = M.max_amount
+		path = M.type
+	else if(istype(mat, /datum/material))
+		var/datum/material/M = mat
+		var/obj/item/stack/material/S = M.stack_type
+		name = initial(S.name)
+		resources = M.get_matter()
+		max_stack = initial(S.max_amount)
+		path = S
+	. = ..()
 
-/datum/category_item/autolathe/materials/rglass
-	name = "reinforced glass sheets"
-	path =/obj/item/stack/material/glass/reinforced
-	is_stack = TRUE
-	no_scale = TRUE //prevents material duplication exploits
-
-/datum/category_item/autolathe/materials/rods
+/datum/category_item/autolathe/materials/rods // Not strictly a material, so they need their own define
 	name = "metal rods"
 	path =/obj/item/stack/rods
-	is_stack = TRUE
-	no_scale = TRUE //prevents material duplication exploits
-
-/datum/category_item/autolathe/materials/plasteel
-	name = "plasteel sheets"
-	path =/obj/item/stack/material/plasteel
-	is_stack = TRUE
-	no_scale = TRUE //prevents material duplication exploits
-	resources = list(MAT_PLASTEEL = 2000)
-
-/datum/category_item/autolathe/materials/plastic
-	name = "plastic sheets"
-	path =/obj/item/stack/material/plastic
-	is_stack = TRUE
-	no_scale = TRUE //prevents material duplication exploits
-	resources = list(MAT_PLASTIC = 2000)

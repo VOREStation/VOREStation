@@ -1027,6 +1027,10 @@
 			var/turf/end_T = get_turf(target)
 			if(end_T)
 				add_attack_logs(src,M,"Thrown via grab to [end_T.x],[end_T.y],[end_T.z]")
+			if(ishuman(M))
+				var/mob/living/carbon/human/N = M
+				if((N.health + N.halloss) < config.health_threshold_crit || N.stat == DEAD)
+					N.adjustBruteLoss(rand(10,30))
 			src.drop_from_inventory(G)
 
 	src.drop_from_inventory(item)

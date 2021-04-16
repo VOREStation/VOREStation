@@ -186,25 +186,135 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/hallways_port)
 "aS" = (
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
 /obj/structure/table/steel_reinforced,
+/obj/item/weapon/cell/device/weapon{
+	pixel_x = -12;
+	pixel_y = -6
+	},
+/obj/item/weapon/cell/device/weapon{
+	pixel_x = -10;
+	pixel_y = -6
+	},
+/obj/item/weapon/cell/device/weapon{
+	pixel_x = -8;
+	pixel_y = -6
+	},
+/obj/item/weapon/cell/device/weapon{
+	pixel_x = -6;
+	pixel_y = -6
+	},
+/obj/item/weapon/cell/device/weapon{
+	pixel_x = -4;
+	pixel_y = -6
+	},
+/obj/item/weapon/cell/device/weapon{
+	pixel_x = -2;
+	pixel_y = -6
+	},
+/obj/item/weapon/cell/device/weapon{
+	pixel_y = -6
+	},
+/obj/item/weapon/cell/device/weapon{
+	pixel_x = 2;
+	pixel_y = -6
+	},
+/obj/item/weapon/cell/device/weapon{
+	pixel_x = 4;
+	pixel_y = -6
+	},
+/obj/item/weapon/cell/device/weapon{
+	pixel_x = 6;
+	pixel_y = -6
+	},
+/obj/item/weapon/cell/device/weapon{
+	pixel_x = 8;
+	pixel_y = -6
+	},
+/obj/item/weapon/cell/device/weapon{
+	pixel_x = 10;
+	pixel_y = -6
+	},
+/obj/item/weapon/cell/device/weapon{
+	pixel_x = -12
+	},
+/obj/item/weapon/cell/device/weapon{
+	pixel_x = -10
+	},
+/obj/item/weapon/cell/device/weapon{
+	pixel_x = -8
+	},
+/obj/item/weapon/cell/device/weapon{
+	pixel_x = -6
+	},
+/obj/item/weapon/cell/device/weapon{
+	pixel_x = -4
+	},
+/obj/item/weapon/cell/device/weapon{
+	pixel_x = -2
+	},
+/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/cell/device/weapon{
+	pixel_x = 2
+	},
+/obj/item/weapon/cell/device/weapon{
+	pixel_x = 4
+	},
+/obj/item/weapon/cell/device/weapon{
+	pixel_x = 6
+	},
+/obj/item/weapon/cell/device/weapon{
+	pixel_x = 8
+	},
+/obj/item/weapon/cell/device/weapon{
+	pixel_x = 10
+	},
+/obj/item/weapon/cell/device/weapon{
+	pixel_x = -12;
+	pixel_y = 6
+	},
+/obj/item/weapon/cell/device/weapon{
+	pixel_x = -10;
+	pixel_y = 6
+	},
+/obj/item/weapon/cell/device/weapon{
+	pixel_x = -8;
+	pixel_y = 6
+	},
+/obj/item/weapon/cell/device/weapon{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/weapon/cell/device/weapon{
+	pixel_x = -4;
+	pixel_y = 6
+	},
+/obj/item/weapon/cell/device/weapon{
+	pixel_x = -2;
+	pixel_y = 6
+	},
+/obj/item/weapon/cell/device/weapon{
+	pixel_y = 6
+	},
+/obj/item/weapon/cell/device/weapon{
+	pixel_x = 2;
+	pixel_y = 6
+	},
+/obj/item/weapon/cell/device/weapon{
+	pixel_x = 4;
+	pixel_y = 6
+	},
+/obj/item/weapon/cell/device/weapon{
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/obj/item/weapon/cell/device/weapon{
+	pixel_x = 8;
+	pixel_y = 6
+	},
+/obj/item/weapon/cell/device/weapon{
+	pixel_x = 10;
+	pixel_y = 6
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/armoury_st)
 "aU" = (
@@ -241,17 +351,21 @@
 /area/ship/manta/armoury_st)
 "aZ" = (
 /obj/structure/table/rack,
-/obj/item/weapon/gun/energy/sizegun,
-/obj/item/weapon/gun/energy/sizegun,
-/obj/item/weapon/gun/energy/sizegun,
-/obj/item/weapon/gun/energy/sizegun,
+/obj/item/weapon/gun/energy/sizegun{
+	pixel_y = 6
+	},
+/obj/item/weapon/gun/energy/sizegun{
+	pixel_y = 2
+	},
+/obj/item/weapon/gun/energy/sizegun{
+	pixel_y = -2
+	},
+/obj/item/weapon/gun/energy/sizegun{
+	pixel_y = -6
+	},
 /obj/effect/floor_decal/techfloor{
 	dir = 4
 	},
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/armoury_st)
 "bc" = (
@@ -459,10 +573,22 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 8
 	},
-/obj/item/device/binoculars,
-/obj/item/device/binoculars,
-/obj/item/device/binoculars,
-/obj/item/device/binoculars,
+/obj/item/device/binoculars{
+	pixel_x = -6;
+	pixel_y = -6
+	},
+/obj/item/device/binoculars{
+	pixel_x = -2;
+	pixel_y = -2
+	},
+/obj/item/device/binoculars{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/device/binoculars{
+	pixel_x = 6;
+	pixel_y = 6
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/armoury_st)
 "bL" = (
@@ -476,12 +602,27 @@
 /obj/machinery/light_switch{
 	pixel_y = 23
 	},
+/obj/item/clothing/glasses/thermal{
+	pixel_x = -4;
+	pixel_y = -4
+	},
+/obj/item/clothing/glasses/thermal{
+	pixel_x = -2;
+	pixel_y = -2
+	},
 /obj/item/clothing/glasses/thermal,
-/obj/item/clothing/glasses/thermal,
-/obj/item/clothing/glasses/thermal,
-/obj/item/clothing/glasses/thermal,
-/obj/item/clothing/glasses/thermal,
-/obj/item/clothing/glasses/thermal,
+/obj/item/clothing/glasses/thermal{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/clothing/glasses/thermal{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/item/clothing/glasses/thermal{
+	pixel_x = 6;
+	pixel_y = 6
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/armoury_st)
 "bP" = (
@@ -578,16 +719,24 @@
 /turf/space,
 /area/space)
 "cn" = (
-/obj/structure/table/rack,
-/obj/item/weapon/material/knife/tacknife/combatknife,
-/obj/item/weapon/material/knife/tacknife/combatknife,
-/obj/item/weapon/material/knife/tacknife/combatknife,
-/obj/item/weapon/material/knife/tacknife/combatknife,
-/obj/item/weapon/material/knife/tacknife/combatknife,
-/obj/item/weapon/material/knife/tacknife/combatknife,
-/obj/machinery/recharger/wallcharger{
-	pixel_x = 5;
-	pixel_y = -32
+/obj/structure/table/rack/steel,
+/obj/item/weapon/material/knife/tacknife/combatknife{
+	pixel_x = -7
+	},
+/obj/item/weapon/material/knife/tacknife/combatknife{
+	pixel_x = -4
+	},
+/obj/item/weapon/material/knife/tacknife/combatknife{
+	pixel_x = -1
+	},
+/obj/item/weapon/material/knife/tacknife/combatknife{
+	pixel_x = 2
+	},
+/obj/item/weapon/material/knife/tacknife/combatknife{
+	pixel_x = 5
+	},
+/obj/item/weapon/material/knife/tacknife/combatknife{
+	pixel_x = 8
 	},
 /obj/effect/floor_decal/techfloor,
 /turf/simulated/floor/tiled/techfloor,
@@ -617,11 +766,23 @@
 /area/ship/manta/med)
 "ct" = (
 /obj/structure/table/rack,
+/obj/item/device/radio{
+	pixel_x = -4;
+	pixel_y = -4
+	},
+/obj/item/device/radio{
+	pixel_x = -2;
+	pixel_y = -2
+	},
 /obj/item/device/radio,
-/obj/item/device/radio,
-/obj/item/device/radio,
-/obj/item/device/radio,
-/obj/item/device/radio,
+/obj/item/device/radio{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/device/radio{
+	pixel_x = 4;
+	pixel_y = 4
+	},
 /obj/machinery/recharger/wallcharger{
 	pixel_x = 5;
 	pixel_y = -32
@@ -691,12 +852,22 @@
 /area/ship/manta/holding)
 "cP" = (
 /obj/structure/table/rack,
+/obj/item/weapon/storage/belt/utility/full{
+	pixel_y = -4
+	},
+/obj/item/weapon/storage/belt/utility/full{
+	pixel_y = -2
+	},
 /obj/item/weapon/storage/belt/utility/full,
-/obj/item/weapon/storage/belt/utility/full,
-/obj/item/weapon/storage/belt/utility/full,
-/obj/item/weapon/storage/belt/utility/full,
-/obj/item/weapon/storage/belt/utility/full,
-/obj/item/weapon/storage/belt/utility/full,
+/obj/item/weapon/storage/belt/utility/full{
+	pixel_y = 2
+	},
+/obj/item/weapon/storage/belt/utility/full{
+	pixel_y = 4
+	},
+/obj/item/weapon/storage/belt/utility/full{
+	pixel_y = 6
+	},
 /obj/effect/floor_decal/techfloor{
 	dir = 1
 	},
@@ -714,17 +885,35 @@
 /area/ship/manta/armoury_st)
 "cQ" = (
 /obj/structure/table/rack,
+/obj/item/weapon/tool/crowbar/red{
+	pixel_x = -4
+	},
+/obj/item/weapon/tool/crowbar/red{
+	pixel_x = 2
+	},
 /obj/item/weapon/tool/crowbar/red,
-/obj/item/weapon/tool/crowbar/red,
-/obj/item/weapon/tool/crowbar/red,
-/obj/item/weapon/tool/crowbar/red,
-/obj/item/weapon/tool/crowbar/red,
+/obj/item/weapon/tool/crowbar/red{
+	pixel_x = 2
+	},
+/obj/item/weapon/tool/crowbar/red{
+	pixel_x = 4
+	},
+/obj/item/device/flashlight/maglight{
+	pixel_y = 6
+	},
+/obj/item/device/flashlight/maglight{
+	pixel_y = 4
+	},
+/obj/item/device/flashlight/maglight{
+	pixel_y = 2
+	},
 /obj/item/device/flashlight/maglight,
-/obj/item/device/flashlight/maglight,
-/obj/item/device/flashlight/maglight,
-/obj/item/device/flashlight/maglight,
-/obj/item/device/flashlight/maglight,
-/obj/item/device/flashlight/maglight,
+/obj/item/device/flashlight/maglight{
+	pixel_y = -2
+	},
+/obj/item/device/flashlight/maglight{
+	pixel_y = -4
+	},
 /obj/effect/floor_decal/techfloor{
 	dir = 4
 	},
@@ -898,6 +1087,15 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/recreation)
+"dM" = (
+/obj/effect/floor_decal/techfloor{
+	dir = 8
+	},
+/obj/structure/table/rack,
+/obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster,
+/obj/item/mecha_parts/mecha_equipment/runningboard/limited,
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/manta/mech_bay)
 "dO" = (
 /obj/machinery/shipsensors{
 	dir = 1
@@ -1020,10 +1218,10 @@
 "ep" = (
 /obj/machinery/chemical_dispenser/full,
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/reagent_containers/glass/beaker/large,
 /obj/effect/floor_decal/techfloor{
 	dir = 9
 	},
+/obj/item/weapon/reagent_containers/glass/beaker/large,
 /turf/simulated/floor/tiled/white,
 /area/ship/manta/med)
 "er" = (
@@ -1049,22 +1247,22 @@
 "eB" = (
 /obj/machinery/chemical_dispenser/ert,
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/reagent_containers/glass/beaker/large,
 /obj/effect/floor_decal/techfloor{
 	dir = 1
 	},
 /obj/machinery/light/no_nightshift{
 	dir = 1
 	},
+/obj/item/weapon/reagent_containers/glass/beaker/large,
 /turf/simulated/floor/tiled/white,
 /area/ship/manta/med)
 "eF" = (
 /obj/machinery/chemical_dispenser/biochemistry/full,
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/reagent_containers/glass/beaker/large,
 /obj/effect/floor_decal/techfloor{
 	dir = 5
 	},
+/obj/item/weapon/reagent_containers/glass/beaker/large,
 /turf/simulated/floor/tiled/white,
 /area/ship/manta/med)
 "eG" = (
@@ -1383,6 +1581,13 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/recreation)
+"gu" = (
+/obj/effect/floor_decal/techfloor,
+/obj/structure/table/steel_reinforced,
+/obj/item/weapon/storage/belt/utility/full,
+/obj/item/device/multitool,
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/manta/engineering)
 "gB" = (
 /obj/effect/floor_decal/techfloor,
 /obj/structure/cable/orange{
@@ -1702,7 +1907,9 @@
 /area/ship/manta/hallways_aft)
 "hU" = (
 /obj/structure/table/rack,
-/obj/item/weapon/gun/projectile/automatic/c20r,
+/obj/item/weapon/gun/projectile/automatic/c20r{
+	pixel_y = 4
+	},
 /obj/item/weapon/gun/projectile/automatic/c20r,
 /obj/item/ammo_magazine/m10mm,
 /obj/item/ammo_magazine/m10mm,
@@ -1714,7 +1921,9 @@
 /obj/machinery/light/no_nightshift{
 	dir = 8
 	},
-/obj/item/weapon/gun/projectile/automatic/c20r,
+/obj/item/weapon/gun/projectile/automatic/c20r{
+	pixel_y = -4
+	},
 /obj/item/ammo_magazine/m10mm,
 /obj/item/ammo_magazine/m10mm,
 /turf/simulated/floor/tiled/techfloor,
@@ -1770,8 +1979,12 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 5
 	},
-/obj/item/weapon/gun/projectile/sec/wood,
-/obj/item/weapon/gun/projectile/sec/wood,
+/obj/item/weapon/gun/projectile/sec/wood{
+	pixel_y = 4
+	},
+/obj/item/weapon/gun/projectile/sec/wood{
+	pixel_y = -4
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/armoury_st)
 "ik" = (
@@ -2409,7 +2622,6 @@
 /turf/simulated/floor/plating,
 /area/ship/manta/hallways_port)
 "kT" = (
-/obj/machinery/portable_atmospherics/canister/phoron/engine_setup,
 /turf/simulated/floor/plating,
 /area/ship/manta/hallways_port)
 "kW" = (
@@ -2484,7 +2696,9 @@
 /area/ship/manta/hallways_aft)
 "lj" = (
 /obj/structure/table/rack,
-/obj/item/weapon/gun/projectile/automatic/c20r,
+/obj/item/weapon/gun/projectile/automatic/c20r{
+	pixel_y = 4
+	},
 /obj/item/weapon/gun/projectile/automatic/c20r,
 /obj/item/ammo_magazine/m10mm,
 /obj/item/ammo_magazine/m10mm,
@@ -2493,7 +2707,9 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 8
 	},
-/obj/item/weapon/gun/projectile/automatic/c20r,
+/obj/item/weapon/gun/projectile/automatic/c20r{
+	pixel_y = -4
+	},
 /obj/item/ammo_magazine/m10mm,
 /obj/item/ammo_magazine/m10mm,
 /turf/simulated/floor/tiled/techfloor,
@@ -2506,8 +2722,12 @@
 	dir = 4
 	},
 /obj/structure/table/rack,
-/obj/item/weapon/gun/projectile/automatic/sts35,
-/obj/item/weapon/gun/projectile/automatic/sts35,
+/obj/item/weapon/gun/projectile/automatic/sts35{
+	pixel_y = -3
+	},
+/obj/item/weapon/gun/projectile/automatic/sts35{
+	pixel_y = 3
+	},
 /obj/item/ammo_magazine/m545,
 /obj/item/ammo_magazine/m545,
 /obj/item/ammo_magazine/m545,
@@ -2752,14 +2972,13 @@
 /area/ship/manta/hallways_aft)
 "mp" = (
 /obj/structure/table/rack,
-/obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster,
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/mortar,
 /obj/machinery/alarm/alarms_hidden{
 	pixel_y = 26
 	},
 /obj/effect/floor_decal/techfloor{
 	dir = 9
 	},
+/obj/item/mecha_parts/mecha_equipment/cloak,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/mech_bay)
 "ms" = (
@@ -3174,6 +3393,14 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/mech_bay)
+"ou" = (
+/obj/effect/floor_decal/techfloor{
+	dir = 8
+	},
+/obj/structure/table/rack,
+/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/xray,
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/manta/mech_bay)
 "ov" = (
 /obj/machinery/power/apc/hyper{
 	alarms_hidden = 1;
@@ -3202,46 +3429,47 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 4
 	},
+/obj/structure/table/rack,
+/obj/item/mecha_parts/mecha_equipment/tool/passenger{
+	pixel_x = -4
+	},
+/obj/item/mecha_parts/mecha_equipment/tool/passenger{
+	pixel_x = 4
+	},
+/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/mech_bay)
 "oD" = (
 /obj/structure/table/rack,
-/obj/item/weapon/gun/energy/laser,
-/obj/item/weapon/gun/energy/laser,
+/obj/item/weapon/gun/energy/laser{
+	pixel_y = 3
+	},
+/obj/item/weapon/gun/energy/laser{
+	pixel_y = -3
+	},
 /obj/effect/floor_decal/techfloor{
 	dir = 8
 	},
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/armoury_st)
 "oE" = (
-/obj/structure/cable/orange{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/cable/orange{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+/obj/effect/floor_decal/techfloor{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 4
+/obj/structure/table/rack,
+/obj/item/weapon/gun/projectile/automatic/sts35{
+	pixel_y = 3
 	},
-/obj/effect/floor_decal/techfloor/corner{
-	dir = 10
+/obj/item/weapon/gun/projectile/automatic/sts35{
+	pixel_y = -3
 	},
-/obj/effect/floor_decal/techfloor/corner{
-	dir = 9
-	},
+/obj/item/ammo_magazine/m545,
+/obj/item/ammo_magazine/m545,
+/obj/item/ammo_magazine/m545,
+/obj/item/ammo_magazine/m545,
+/obj/item/ammo_magazine/m545/ap,
 /turf/simulated/floor/tiled/techfloor,
-/area/ship/manta/engineering)
+/area/ship/manta/armoury_st)
 "oF" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 4
@@ -3271,8 +3499,12 @@
 	dir = 8;
 	pixel_x = 26
 	},
-/obj/item/weapon/gun/projectile/sec/wood,
-/obj/item/weapon/gun/projectile/sec/wood,
+/obj/item/weapon/gun/projectile/sec/wood{
+	pixel_y = 4
+	},
+/obj/item/weapon/gun/projectile/sec/wood{
+	pixel_y = -4
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/armoury_st)
 "oP" = (
@@ -3301,10 +3533,13 @@
 /turf/simulated/floor/tiled/dark,
 /area/ship/manta/recreation)
 "oT" = (
-/obj/mecha/combat/gygax/dark,
-/obj/machinery/mech_recharger,
 /obj/effect/floor_decal/techfloor{
 	dir = 1
+	},
+/obj/effect/floor_decal/industrial/outline/red,
+/obj/machinery/mech_recharger,
+/obj/mecha/combat/gygax/dark{
+	desc = "A lightweight combat exosuit, based off the standard Gygax chassis but no doubt thoroughly customized and upgraded."
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/mech_bay)
@@ -3371,6 +3606,13 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 4
 	},
+/obj/structure/table/rack,
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/grenade/clusterbang{
+	pixel_y = 4
+	},
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/grenade/concussion{
+	pixel_y = -4
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/mech_bay)
 "py" = (
@@ -3402,8 +3644,9 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/hallways_port)
 "pE" = (
-/obj/machinery/meter,
-/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/machinery/atmospherics/binary/pump/on{
+	dir = 1
+	},
 /turf/simulated/floor/plating,
 /area/ship/manta/atmos)
 "pH" = (
@@ -3452,13 +3695,7 @@
 /turf/simulated/floor/plating,
 /area/ship/manta/atmos)
 "pW" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 5
-	},
-/obj/structure/catwalk,
+/obj/machinery/atmospherics/binary/pump/on,
 /turf/simulated/floor/plating,
 /area/ship/manta/atmos)
 "pX" = (
@@ -3714,12 +3951,13 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 10
 	},
+/obj/structure/table/rack,
+/obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/mech_bay)
 "ry" = (
 /obj/structure/table/rack,
 /obj/item/mecha_parts/mecha_equipment/tool/jetpack,
-/obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/xray,
 /obj/effect/floor_decal/techfloor{
 	dir = 6
 	},
@@ -3768,9 +4006,6 @@
 /turf/simulated/floor/tiled/white,
 /area/ship/manta/med)
 "rH" = (
-/obj/structure/railing{
-	dir = 8
-	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 8
 	},
@@ -4141,6 +4376,7 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 10
 	},
+/obj/structure/table/steel,
 /turf/simulated/floor/tiled/dark,
 /area/ship/manta/holding)
 "tN" = (
@@ -4405,6 +4641,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
+/obj/structure/table/steel,
 /turf/simulated/floor/tiled/dark,
 /area/ship/manta/holding)
 "uV" = (
@@ -4521,6 +4758,10 @@
 /obj/machinery/door/firedoor/border_only,
 /obj/structure/grille,
 /obj/structure/window/titanium/full,
+/obj/structure/window/titanium,
+/obj/structure/window/titanium{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/engineering)
 "vH" = (
@@ -4802,11 +5043,21 @@
 /area/ship/manta/engineering)
 "ww" = (
 /obj/structure/table/rack,
+/obj/item/weapon/storage/firstaid/combat{
+	pixel_x = -4;
+	pixel_y = -4
+	},
 /obj/item/weapon/storage/firstaid/combat,
-/obj/item/weapon/storage/firstaid/combat,
-/obj/item/weapon/storage/firstaid/combat,
-/obj/item/weapon/reagent_containers/hypospray,
-/obj/item/weapon/reagent_containers/hypospray,
+/obj/item/weapon/storage/firstaid/combat{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/item/weapon/reagent_containers/hypospray{
+	pixel_x = 3
+	},
+/obj/item/weapon/reagent_containers/hypospray{
+	pixel_x = -3
+	},
 /obj/effect/floor_decal/techfloor{
 	dir = 4
 	},
@@ -5064,7 +5315,6 @@
 /turf/simulated/floor/plating,
 /area/ship/manta/dock_star)
 "xE" = (
-/obj/structure/catwalk,
 /obj/machinery/light_switch{
 	pixel_y = 23
 	},
@@ -5155,26 +5405,9 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/hallways_star)
 "xQ" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/machinery/door/airlock/glass_engineeringatmos{
-	req_one_access = list(150)
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/structure/cable/orange{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/effect/floor_decal/techfloor,
-/obj/effect/floor_decal/techfloor{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/techfloor,
+/obj/structure/catwalk,
+/obj/structure/railing,
+/turf/simulated/floor/plating,
 /area/ship/manta/atmos)
 "xT" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel,
@@ -5186,6 +5419,10 @@
 /obj/machinery/door/firedoor/border_only,
 /obj/structure/grille,
 /obj/structure/window/titanium/full,
+/obj/structure/window/titanium{
+	dir = 1
+	},
+/obj/structure/window/titanium,
 /turf/simulated/floor/plating,
 /area/ship/manta/engine)
 "xW" = (
@@ -5230,8 +5467,26 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/barracks)
 "yh" = (
-/obj/structure/railing,
-/turf/simulated/floor/plating,
+/obj/machinery/door/firedoor/border_only,
+/obj/machinery/door/airlock/glass_engineeringatmos{
+	req_one_access = list(150)
+	},
+/obj/effect/floor_decal/techfloor,
+/obj/effect/floor_decal/techfloor{
+	dir = 1
+	},
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/atmos)
 "yj" = (
 /obj/machinery/power/port_gen/pacman/super/potato,
@@ -5371,6 +5626,7 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 9
 	},
+/obj/structure/table/steel,
 /turf/simulated/floor/tiled/dark,
 /area/ship/manta/holding)
 "yy" = (
@@ -5419,6 +5675,7 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 9
 	},
+/obj/structure/table/steel,
 /turf/simulated/floor/tiled/dark,
 /area/ship/manta/holding)
 "yO" = (
@@ -5482,12 +5739,14 @@
 /turf/simulated/floor/tiled/dark,
 /area/ship/manta/holding)
 "yW" = (
-/obj/structure/railing{
+/obj/structure/railing,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/catwalk,
-/obj/structure/railing,
 /turf/simulated/floor/plating,
 /area/ship/manta/atmos)
 "yY" = (
@@ -5601,12 +5860,12 @@
 	dir = 4;
 	pixel_x = -23
 	},
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/gun/energy/netgun,
-/obj/item/weapon/gun/energy/netgun,
+/obj/item/weapon/gun/energy/netgun{
+	pixel_y = -3
+	},
+/obj/item/weapon/gun/energy/netgun{
+	pixel_y = 3
+	},
 /obj/item/weapon/gun/energy/plasmastun,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/armoury_st)
@@ -5623,22 +5882,42 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 4
 	},
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/armoury_st)
 "zy" = (
 /obj/structure/table/rack,
-/obj/item/weapon/tank/jetpack/oxygen,
-/obj/item/weapon/tank/jetpack/oxygen,
-/obj/item/weapon/tank/jetpack/oxygen,
-/obj/item/weapon/tank/jetpack/oxygen,
-/obj/item/weapon/tank/jetpack/oxygen,
-/obj/item/weapon/tank/jetpack/oxygen,
-/obj/item/weapon/tank/jetpack/oxygen,
-/obj/item/weapon/tank/jetpack/oxygen,
+/obj/item/weapon/tank/jetpack/oxygen{
+	pixel_x = -6;
+	pixel_y = -6
+	},
+/obj/item/weapon/tank/jetpack/oxygen{
+	pixel_x = 6;
+	pixel_y = -6
+	},
+/obj/item/weapon/tank/jetpack/oxygen{
+	pixel_x = -6;
+	pixel_y = -2
+	},
+/obj/item/weapon/tank/jetpack/oxygen{
+	pixel_x = 6;
+	pixel_y = -2
+	},
+/obj/item/weapon/tank/jetpack/oxygen{
+	pixel_x = -6;
+	pixel_y = 2
+	},
+/obj/item/weapon/tank/jetpack/oxygen{
+	pixel_x = 6;
+	pixel_y = 2
+	},
+/obj/item/weapon/tank/jetpack/oxygen{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/weapon/tank/jetpack/oxygen{
+	pixel_x = 6;
+	pixel_y = 6
+	},
 /obj/effect/floor_decal/techfloor{
 	dir = 8
 	},
@@ -5706,7 +5985,7 @@
 /turf/simulated/floor/plating,
 /area/ship/manta/engine)
 "zR" = (
-/turf/simulated/wall/shull,
+/turf/simulated/wall/rshull,
 /area/ship/manta/engineering)
 "zS" = (
 /obj/structure/bed/chair/comfy/black{
@@ -5766,6 +6045,11 @@
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/ship/manta/gunnery)
+"Ah" = (
+/obj/effect/floor_decal/industrial/outline,
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/turf/simulated/floor/plating,
+/area/ship/manta/atmos)
 "Aj" = (
 /obj/effect/floor_decal/techfloor,
 /obj/structure/cable/orange{
@@ -6010,6 +6294,9 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 6
 	},
+/obj/structure/table/steel_reinforced,
+/obj/item/clothing/suit/space/void/refurb/engineering,
+/obj/item/clothing/head/helmet/space/void/refurb/engineering,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/engineering)
 "BN" = (
@@ -6178,8 +6465,12 @@
 /area/ship/manta/recreation)
 "CT" = (
 /obj/structure/table/rack,
-/obj/item/weapon/gun/energy/plasmastun,
-/obj/item/weapon/gun/energy/plasmastun,
+/obj/item/weapon/gun/energy/plasmastun{
+	pixel_y = -3
+	},
+/obj/item/weapon/gun/energy/plasmastun{
+	pixel_y = 3
+	},
 /obj/effect/floor_decal/techfloor{
 	dir = 10
 	},
@@ -6194,6 +6485,11 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/armoury_st)
+"Da" = (
+/obj/machinery/portable_atmospherics/canister/phoron/engine_setup,
+/obj/effect/floor_decal/industrial/outline/red,
+/turf/simulated/floor/plating,
+/area/ship/manta/atmos)
 "Db" = (
 /obj/structure/table/standard,
 /obj/item/device/radio/headset/syndicate,
@@ -6248,8 +6544,14 @@
 /area/ship/manta/dock_port)
 "Dg" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/box/frags,
-/obj/item/weapon/storage/box/frags,
+/obj/item/weapon/storage/box/frags{
+	pixel_x = -2;
+	pixel_y = -2
+	},
+/obj/item/weapon/storage/box/frags{
+	pixel_x = 2;
+	pixel_y = 2
+	},
 /obj/effect/floor_decal/techfloor{
 	dir = 9
 	},
@@ -6361,10 +6663,22 @@
 /area/ship/manta/bridge)
 "Dy" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/clothing/suit/storage/vest/heavy/merc,
-/obj/item/clothing/suit/storage/vest/heavy/merc,
-/obj/item/clothing/suit/storage/vest/heavy/merc,
-/obj/item/clothing/suit/storage/vest/heavy/merc,
+/obj/item/clothing/suit/storage/vest/heavy/merc{
+	pixel_x = 6;
+	pixel_y = 6
+	},
+/obj/item/clothing/suit/storage/vest/heavy/merc{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/clothing/suit/storage/vest/heavy/merc{
+	pixel_x = -2;
+	pixel_y = -2
+	},
+/obj/item/clothing/suit/storage/vest/heavy/merc{
+	pixel_x = -6;
+	pixel_y = -6
+	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
@@ -6387,10 +6701,6 @@
 	dir = 4;
 	pixel_x = 26
 	},
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/armoury_st)
 "DB" = (
@@ -6580,14 +6890,38 @@
 /area/ship/manta/hallways_aft)
 "EE" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/backpack/dufflebag/syndie/med,
-/obj/item/weapon/storage/backpack/dufflebag/syndie/med,
-/obj/item/weapon/storage/backpack/dufflebag/syndie/ammo,
-/obj/item/weapon/storage/backpack/dufflebag/syndie/ammo,
-/obj/item/weapon/storage/backpack/dufflebag/syndie,
-/obj/item/weapon/storage/backpack/dufflebag/syndie,
-/obj/item/weapon/storage/backpack/dufflebag/syndie,
-/obj/item/weapon/storage/backpack/dufflebag/syndie,
+/obj/item/weapon/storage/backpack/dufflebag/syndie/med{
+	pixel_x = -4;
+	pixel_y = -6
+	},
+/obj/item/weapon/storage/backpack/dufflebag/syndie/med{
+	pixel_x = 4;
+	pixel_y = -6
+	},
+/obj/item/weapon/storage/backpack/dufflebag/syndie/ammo{
+	pixel_x = 4;
+	pixel_y = -2
+	},
+/obj/item/weapon/storage/backpack/dufflebag/syndie/ammo{
+	pixel_x = -4;
+	pixel_y = -2
+	},
+/obj/item/weapon/storage/backpack/dufflebag/syndie{
+	pixel_x = 4;
+	pixel_y = 2
+	},
+/obj/item/weapon/storage/backpack/dufflebag/syndie{
+	pixel_x = -4;
+	pixel_y = 2
+	},
+/obj/item/weapon/storage/backpack/dufflebag/syndie{
+	pixel_x = 4;
+	pixel_y = 6
+	},
+/obj/item/weapon/storage/backpack/dufflebag/syndie{
+	pixel_x = -4;
+	pixel_y = 6
+	},
 /obj/effect/floor_decal/techfloor{
 	dir = 4
 	},
@@ -6732,9 +7066,15 @@
 "Fx" = (
 /obj/structure/table/rack,
 /obj/item/weapon/gun/launcher/rocket,
-/obj/item/ammo_casing/rocket,
-/obj/item/ammo_casing/rocket,
-/obj/item/ammo_casing/rocket,
+/obj/item/ammo_casing/rocket{
+	pixel_y = -3
+	},
+/obj/item/ammo_casing/rocket{
+	pixel_y = -6
+	},
+/obj/item/ammo_casing/rocket{
+	pixel_y = -9
+	},
 /obj/effect/floor_decal/techfloor{
 	dir = 6
 	},
@@ -6875,8 +7215,11 @@
 /turf/simulated/floor/wood,
 /area/ship/manta/barracks)
 "Gr" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
+	dir = 4
 	},
 /obj/structure/catwalk,
 /turf/simulated/floor/plating,
@@ -6976,15 +7319,22 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 8
+/obj/effect/floor_decal/techfloor/corner{
+	dir = 10
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 8
+/obj/effect/floor_decal/techfloor/corner{
+	dir = 9
 	},
 /obj/effect/floor_decal/techfloor{
 	dir = 8
 	},
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/engineering)
 "GY" = (
@@ -7104,12 +7454,28 @@
 /area/ship/manta/bridge)
 "HS" = (
 /obj/structure/table/rack,
-/obj/item/weapon/pinpointer/nukeop,
-/obj/item/weapon/pinpointer/nukeop,
-/obj/item/weapon/pinpointer/nukeop,
-/obj/item/weapon/pinpointer/nukeop,
-/obj/item/weapon/pinpointer/nukeop,
-/obj/item/weapon/pinpointer/nukeop,
+/obj/item/weapon/pinpointer/nukeop{
+	pixel_x = -6;
+	pixel_y = -4
+	},
+/obj/item/weapon/pinpointer/nukeop{
+	pixel_x = 6;
+	pixel_y = -4
+	},
+/obj/item/weapon/pinpointer/nukeop{
+	pixel_x = -6
+	},
+/obj/item/weapon/pinpointer/nukeop{
+	pixel_x = 6
+	},
+/obj/item/weapon/pinpointer/nukeop{
+	pixel_x = -6;
+	pixel_y = 4
+	},
+/obj/item/weapon/pinpointer/nukeop{
+	pixel_x = 6;
+	pixel_y = 4
+	},
 /obj/machinery/recharger/wallcharger{
 	pixel_x = 5;
 	pixel_y = -32
@@ -7212,8 +7578,12 @@
 /area/ship/manta/teleporter)
 "Iq" = (
 /obj/structure/table/rack,
-/obj/item/weapon/gun/energy/xray,
-/obj/item/weapon/gun/energy/xray,
+/obj/item/weapon/gun/energy/xray{
+	pixel_y = 3
+	},
+/obj/item/weapon/gun/energy/xray{
+	pixel_y = -3
+	},
 /obj/effect/floor_decal/techfloor{
 	dir = 4
 	},
@@ -7274,13 +7644,15 @@
 /area/ship/manta/engine)
 "IJ" = (
 /obj/structure/table/rack,
-/obj/item/weapon/gun/energy/gun,
-/obj/item/weapon/gun/energy/gun,
+/obj/item/weapon/gun/energy/gun{
+	pixel_y = 3
+	},
+/obj/item/weapon/gun/energy/gun{
+	pixel_y = -3
+	},
 /obj/effect/floor_decal/techfloor{
 	dir = 8
 	},
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/armoury_st)
 "IK" = (
@@ -7333,8 +7705,6 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 4
 	},
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/armoury_st)
 "Jd" = (
@@ -7444,10 +7814,22 @@
 /area/ship/manta/bridge)
 "Jt" = (
 /obj/structure/table/rack,
-/obj/item/clothing/shoes/magboots,
-/obj/item/clothing/shoes/magboots,
-/obj/item/clothing/shoes/magboots,
-/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/shoes/magboots{
+	pixel_x = -6;
+	pixel_y = -6
+	},
+/obj/item/clothing/shoes/magboots{
+	pixel_x = -2;
+	pixel_y = -2
+	},
+/obj/item/clothing/shoes/magboots{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/clothing/shoes/magboots{
+	pixel_x = 6;
+	pixel_y = 6
+	},
 /obj/effect/floor_decal/techfloor{
 	dir = 8
 	},
@@ -7656,21 +8038,21 @@
 /area/ship/manta/dock_star)
 "KA" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/clothing/under/saare,
-/obj/item/clothing/under/saare,
-/obj/item/clothing/under/saare,
-/obj/item/clothing/under/saare,
-/obj/item/clothing/accessory/armor/helmcover/saare,
-/obj/item/clothing/accessory/armor/helmcover/saare,
-/obj/item/clothing/accessory/armor/helmcover/saare,
-/obj/item/clothing/accessory/armor/helmcover/saare,
-/obj/item/clothing/accessory/storage/pouches/large/green,
-/obj/item/clothing/accessory/storage/pouches/large/green,
-/obj/item/clothing/accessory/storage/pouches/large/green,
-/obj/item/clothing/accessory/storage/pouches/large/green,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
+/obj/item/clothing/under/saare/service,
+/obj/item/clothing/under/saare/service,
+/obj/item/clothing/under/saare/service,
+/obj/item/clothing/under/saare/service,
+/obj/item/clothing/accessory/armor/helmcover/saare,
+/obj/item/clothing/accessory/armor/helmcover/saare,
+/obj/item/clothing/accessory/armor/helmcover/saare,
+/obj/item/clothing/accessory/armor/helmcover/saare,
+/obj/item/clothing/accessory/storage/pouches/large/green,
+/obj/item/clothing/accessory/storage/pouches/large/green,
+/obj/item/clothing/accessory/storage/pouches/large/green,
+/obj/item/clothing/accessory/storage/pouches/large/green,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/barracks)
 "KE" = (
@@ -7801,6 +8183,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
+/obj/structure/table/steel,
 /turf/simulated/floor/tiled/dark,
 /area/ship/manta/holding)
 "Le" = (
@@ -7872,13 +8255,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/hangar)
 "LH" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/structure/catwalk,
+/obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/plating,
 /area/ship/manta/atmos)
 "LI" = (
@@ -7917,6 +8294,7 @@
 /obj/machinery/atmospherics/pipe/manifold/visible{
 	dir = 4
 	},
+/obj/machinery/meter,
 /turf/simulated/floor/plating,
 /area/ship/manta/atmos)
 "LT" = (
@@ -7998,10 +8376,13 @@
 /area/ship/manta/hallways_aft)
 "Mg" = (
 /obj/structure/sign/nosmoking_1,
-/turf/simulated/wall/shull,
+/turf/simulated/wall/rshull,
 /area/ship/manta/engineering)
 "Mh" = (
 /obj/effect/floor_decal/techfloor,
+/obj/structure/table/steel_reinforced,
+/obj/item/clothing/gloves/yellow,
+/obj/item/clothing/glasses/meson/aviator,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/engineering)
 "Mk" = (
@@ -8089,6 +8470,11 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/ship/manta/holding)
+"Mz" = (
+/obj/effect/floor_decal/industrial/outline/red,
+/obj/machinery/portable_atmospherics/canister/phoron/engine_setup,
+/turf/simulated/floor/plating,
+/area/ship/manta/atmos)
 "ME" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
@@ -8152,35 +8538,64 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
+/obj/structure/table/steel,
 /turf/simulated/floor/tiled/dark,
 /area/ship/manta/holding)
 "Nb" = (
 /obj/structure/table/rack,
-/obj/item/clothing/accessory/storage/black_vest,
-/obj/item/clothing/accessory/storage/black_vest,
-/obj/item/clothing/accessory/storage/black_vest,
-/obj/item/clothing/accessory/storage/black_vest,
-/obj/item/clothing/accessory/storage/black_vest,
-/obj/item/clothing/accessory/storage/black_vest,
+/obj/item/clothing/accessory/storage/black_vest{
+	pixel_y = -7
+	},
+/obj/item/clothing/accessory/storage/black_vest{
+	pixel_y = -4
+	},
+/obj/item/clothing/accessory/storage/black_vest{
+	pixel_y = -1
+	},
+/obj/item/clothing/accessory/storage/black_vest{
+	pixel_y = 2
+	},
+/obj/item/clothing/accessory/storage/black_vest{
+	pixel_y = 5
+	},
+/obj/item/clothing/accessory/storage/black_vest{
+	pixel_y = 8
+	},
 /obj/machinery/recharger/wallcharger{
 	pixel_x = 5;
 	pixel_y = -32
 	},
 /obj/effect/floor_decal/techfloor,
-/obj/item/clothing/accessory/holster/armpit,
-/obj/item/clothing/accessory/holster/armpit,
-/obj/item/clothing/accessory/holster/armpit,
-/obj/item/clothing/accessory/holster/armpit,
-/obj/item/clothing/accessory/holster/armpit,
-/obj/item/clothing/accessory/holster/armpit,
+/obj/item/clothing/accessory/holster/armpit{
+	pixel_y = -7
+	},
+/obj/item/clothing/accessory/holster/armpit{
+	pixel_y = -4
+	},
+/obj/item/clothing/accessory/holster/armpit{
+	pixel_y = -1
+	},
+/obj/item/clothing/accessory/holster/armpit{
+	pixel_y = 2
+	},
+/obj/item/clothing/accessory/holster/armpit{
+	pixel_y = 5
+	},
+/obj/item/clothing/accessory/holster/armpit{
+	pixel_y = 8
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/armoury_st)
 "Nc" = (
 /obj/structure/table/rack,
 /obj/item/weapon/storage/box/shotgunshells/large,
 /obj/item/weapon/storage/box/shotgunammo/large,
-/obj/item/weapon/gun/projectile/shotgun/pump/combat,
-/obj/item/weapon/gun/projectile/shotgun/pump/combat,
+/obj/item/weapon/gun/projectile/shotgun/pump/combat{
+	pixel_y = 4
+	},
+/obj/item/weapon/gun/projectile/shotgun/pump/combat{
+	pixel_y = -4
+	},
 /obj/effect/floor_decal/techfloor{
 	dir = 8
 	},
@@ -8224,8 +8639,12 @@
 /area/ship/manta/barracks)
 "Nq" = (
 /obj/structure/table/rack,
-/obj/item/weapon/gun/energy/sniperrifle,
-/obj/item/weapon/gun/energy/sniperrifle,
+/obj/item/weapon/gun/energy/sniperrifle{
+	pixel_y = 3
+	},
+/obj/item/weapon/gun/energy/sniperrifle{
+	pixel_y = -3
+	},
 /obj/effect/floor_decal/techfloor{
 	dir = 4
 	},
@@ -8266,16 +8685,18 @@
 /area/ship/manta/dock_port)
 "Ny" = (
 /obj/structure/table/rack,
-/obj/item/weapon/gun/energy/gun,
-/obj/item/weapon/gun/energy/gun,
+/obj/item/weapon/gun/energy/gun{
+	pixel_y = 3
+	},
+/obj/item/weapon/gun/energy/gun{
+	pixel_y = -3
+	},
 /obj/effect/floor_decal/techfloor{
 	dir = 10
 	},
 /obj/machinery/light/no_nightshift{
 	dir = 8
 	},
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/armoury_st)
 "NA" = (
@@ -8302,16 +8723,26 @@
 /obj/machinery/light/no_nightshift{
 	dir = 4
 	},
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/armoury_st)
 "NH" = (
 /obj/structure/table/rack,
-/obj/item/clothing/shoes/magboots,
-/obj/item/clothing/shoes/magboots,
-/obj/item/clothing/shoes/magboots,
-/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/shoes/magboots{
+	pixel_x = -6;
+	pixel_y = -6
+	},
+/obj/item/clothing/shoes/magboots{
+	pixel_x = -2;
+	pixel_y = -2
+	},
+/obj/item/clothing/shoes/magboots{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/clothing/shoes/magboots{
+	pixel_x = 6;
+	pixel_y = 6
+	},
 /obj/effect/floor_decal/techfloor{
 	dir = 10
 	},
@@ -8363,9 +8794,18 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/armoury_st)
 "NV" = (
-/obj/machinery/light_switch{
-	dir = 8;
-	pixel_x = 23
+/obj/structure/railing,
+/obj/structure/catwalk,
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
 /turf/simulated/floor/plating,
 /area/ship/manta/atmos)
@@ -8515,7 +8955,7 @@
 /area/ship/manta/holding)
 "OO" = (
 /obj/structure/sign/warning/radioactive,
-/turf/simulated/wall/shull,
+/turf/simulated/wall/rshull,
 /area/ship/manta/engineering)
 "OQ" = (
 /obj/machinery/recharge_station,
@@ -8971,8 +9411,12 @@
 /obj/item/ammo_magazine/m9mm,
 /obj/item/ammo_magazine/m9mm,
 /obj/item/ammo_magazine/m9mm,
-/obj/item/weapon/gun/projectile/luger,
-/obj/item/weapon/gun/projectile/luger/brown,
+/obj/item/weapon/gun/projectile/luger{
+	pixel_y = 6
+	},
+/obj/item/weapon/gun/projectile/luger/brown{
+	pixel_y = -6
+	},
 /obj/effect/floor_decal/techfloor{
 	dir = 8
 	},
@@ -9051,8 +9495,12 @@
 /area/ship/manta/holding)
 "RM" = (
 /obj/structure/table/rack,
-/obj/item/weapon/gun/energy/lasercannon,
-/obj/item/weapon/gun/energy/lasercannon,
+/obj/item/weapon/gun/energy/lasercannon{
+	pixel_y = 3
+	},
+/obj/item/weapon/gun/energy/lasercannon{
+	pixel_y = -3
+	},
 /obj/item/weapon/cell/device/weapon,
 /obj/item/weapon/cell/device/weapon,
 /obj/item/weapon/cell/device/weapon,
@@ -9111,14 +9559,35 @@
 	dir = 1;
 	pixel_y = -23
 	},
+/obj/item/clothing/mask/gas/half{
+	pixel_x = -8;
+	pixel_y = -8
+	},
+/obj/item/clothing/mask/gas/half{
+	pixel_x = -6;
+	pixel_y = -6
+	},
+/obj/item/clothing/mask/gas/half{
+	pixel_x = -4;
+	pixel_y = -4
+	},
+/obj/item/clothing/mask/gas/half{
+	pixel_x = -2;
+	pixel_y = -2
+	},
 /obj/item/clothing/mask/gas/half,
-/obj/item/clothing/mask/gas/half,
-/obj/item/clothing/mask/gas/half,
-/obj/item/clothing/mask/gas/half,
-/obj/item/clothing/mask/gas/half,
-/obj/item/clothing/mask/gas/half,
-/obj/item/clothing/mask/gas/half,
-/obj/item/clothing/mask/gas/half,
+/obj/item/clothing/mask/gas/half{
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/clothing/mask/gas/half{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/item/clothing/mask/gas/half{
+	pixel_x = 6;
+	pixel_y = 6
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/armoury_st)
 "RY" = (
@@ -9148,6 +9617,10 @@
 /obj/machinery/door/firedoor/border_only,
 /obj/structure/grille,
 /obj/structure/window/titanium/full,
+/obj/structure/window/titanium{
+	dir = 1
+	},
+/obj/structure/window/titanium,
 /turf/simulated/floor/plating,
 /area/ship/manta/engine)
 "Sb" = (
@@ -9197,9 +9670,10 @@
 /obj/machinery/alarm/alarms_hidden{
 	pixel_y = 26
 	},
-/obj/structure/catwalk,
 /obj/structure/railing,
-/obj/effect/floor_decal/industrial/warning,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 6
+	},
 /turf/simulated/floor/plating,
 /area/ship/manta/magazine)
 "Sq" = (
@@ -9502,6 +9976,12 @@
 	},
 /turf/simulated/floor/wood,
 /area/ship/manta/barracks/bed_2)
+"TD" = (
+/obj/machinery/light/small,
+/obj/effect/floor_decal/industrial/outline,
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/turf/simulated/floor/plating,
+/area/ship/manta/atmos)
 "TH" = (
 /obj/structure/ship_munition/disperser_charge/emp,
 /obj/structure/railing{
@@ -9515,12 +9995,28 @@
 /area/ship/manta/hallways_port)
 "TM" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/toolbox/syndicate,
-/obj/item/weapon/storage/toolbox/syndicate,
-/obj/item/weapon/storage/toolbox/syndicate,
-/obj/item/weapon/storage/toolbox/syndicate,
-/obj/item/weapon/storage/toolbox/syndicate,
-/obj/item/weapon/storage/toolbox/syndicate,
+/obj/item/weapon/storage/toolbox/syndicate{
+	pixel_x = -4;
+	pixel_y = -4
+	},
+/obj/item/weapon/storage/toolbox/syndicate{
+	pixel_x = 4;
+	pixel_y = -4
+	},
+/obj/item/weapon/storage/toolbox/syndicate{
+	pixel_x = -4
+	},
+/obj/item/weapon/storage/toolbox/syndicate{
+	pixel_x = 4
+	},
+/obj/item/weapon/storage/toolbox/syndicate{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/weapon/storage/toolbox/syndicate{
+	pixel_x = 4;
+	pixel_y = 4
+	},
 /obj/effect/floor_decal/techfloor{
 	dir = 8
 	},
@@ -9813,8 +10309,12 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 8
 	},
-/obj/item/weapon/gun/energy/darkmatter,
-/obj/item/weapon/gun/energy/darkmatter,
+/obj/item/weapon/gun/energy/darkmatter{
+	pixel_y = 3
+	},
+/obj/item/weapon/gun/energy/darkmatter{
+	pixel_y = -3
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/armoury_as)
 "Vk" = (
@@ -9836,10 +10336,18 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 4
 	},
-/obj/item/weapon/gun/projectile/automatic/bullpup,
-/obj/item/weapon/gun/projectile/automatic/bullpup,
-/obj/item/weapon/gun/projectile/automatic/bullpup,
-/obj/item/weapon/gun/projectile/automatic/bullpup,
+/obj/item/weapon/gun/projectile/automatic/bullpup{
+	pixel_y = 6
+	},
+/obj/item/weapon/gun/projectile/automatic/bullpup{
+	pixel_y = 2
+	},
+/obj/item/weapon/gun/projectile/automatic/bullpup{
+	pixel_y = -2
+	},
+/obj/item/weapon/gun/projectile/automatic/bullpup{
+	pixel_y = -6
+	},
 /obj/item/ammo_magazine/m762m,
 /obj/item/ammo_magazine/m762m,
 /obj/item/ammo_magazine/m762m,
@@ -9880,12 +10388,22 @@
 /area/ship/manta/engineering)
 "VA" = (
 /obj/structure/table/rack,
+/obj/item/weapon/tank/emergency/oxygen/double{
+	pixel_x = 6
+	},
+/obj/item/weapon/tank/emergency/oxygen/double{
+	pixel_x = 4
+	},
+/obj/item/weapon/tank/emergency/oxygen/double{
+	pixel_x = 2
+	},
 /obj/item/weapon/tank/emergency/oxygen/double,
-/obj/item/weapon/tank/emergency/oxygen/double,
-/obj/item/weapon/tank/emergency/oxygen/double,
-/obj/item/weapon/tank/emergency/oxygen/double,
-/obj/item/weapon/tank/emergency/oxygen/double,
-/obj/item/weapon/tank/emergency/oxygen/double,
+/obj/item/weapon/tank/emergency/oxygen/double{
+	pixel_x = -2
+	},
+/obj/item/weapon/tank/emergency/oxygen/double{
+	pixel_x = -4
+	},
 /obj/effect/floor_decal/techfloor{
 	dir = 9
 	},
@@ -9911,17 +10429,41 @@
 /area/ship/manta/bridge)
 "VF" = (
 /obj/item/weapon/shield/energy,
-/obj/item/weapon/shield/energy,
-/obj/item/weapon/shield/energy,
-/obj/item/weapon/shield/energy,
-/obj/item/weapon/shield/energy,
-/obj/item/weapon/shield/energy,
-/obj/item/weapon/melee/energy/sword/red,
-/obj/item/weapon/melee/energy/sword/red,
-/obj/item/weapon/melee/energy/sword/red,
-/obj/item/weapon/melee/energy/sword/red,
-/obj/item/weapon/melee/energy/sword/red,
-/obj/item/weapon/melee/energy/sword/red,
+/obj/item/weapon/shield/energy{
+	pixel_x = -8;
+	pixel_y = 8
+	},
+/obj/item/weapon/shield/energy{
+	pixel_x = -8
+	},
+/obj/item/weapon/shield/energy{
+	pixel_y = 8
+	},
+/obj/item/weapon/shield/energy{
+	pixel_x = 8
+	},
+/obj/item/weapon/shield/energy{
+	pixel_x = 8;
+	pixel_y = 8
+	},
+/obj/item/weapon/melee/energy/sword/red{
+	pixel_x = 18
+	},
+/obj/item/weapon/melee/energy/sword/red{
+	pixel_x = 15
+	},
+/obj/item/weapon/melee/energy/sword/red{
+	pixel_x = 12
+	},
+/obj/item/weapon/melee/energy/sword/red{
+	pixel_x = 9
+	},
+/obj/item/weapon/melee/energy/sword/red{
+	pixel_x = 6
+	},
+/obj/item/weapon/melee/energy/sword/red{
+	pixel_x = 3
+	},
 /obj/structure/table/steel_reinforced,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
@@ -9960,6 +10502,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/item/weapon/storage/firstaid/fire,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/armoury_st)
 "VM" = (
@@ -10021,6 +10564,7 @@
 /area/ship/manta/armoury_st)
 "Wi" = (
 /obj/machinery/light/small,
+/obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/plating,
 /area/ship/manta/atmos)
 "Wn" = (
@@ -10213,19 +10757,16 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/bridge)
 "Xp" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = 23
 	},
+/obj/structure/catwalk,
 /obj/structure/cable/orange{
 	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/structure/railing,
-/obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/ship/manta/atmos)
 "Xq" = (
@@ -10279,13 +10820,6 @@
 /area/ship/manta/barracks)
 "XB" = (
 /obj/structure/table/rack,
-/obj/item/device/flashlight/flare,
-/obj/item/device/flashlight/flare,
-/obj/item/device/flashlight/flare,
-/obj/item/device/flashlight/flare,
-/obj/item/device/flashlight/flare,
-/obj/item/device/flashlight/flare,
-/obj/item/device/flashlight/flare,
 /obj/machinery/recharger/wallcharger{
 	pixel_x = 5;
 	pixel_y = -32
@@ -10295,6 +10829,14 @@
 	},
 /obj/machinery/light/no_nightshift{
 	dir = 4
+	},
+/obj/item/weapon/storage/box/flare{
+	pixel_x = -2;
+	pixel_y = -2
+	},
+/obj/item/weapon/storage/box/flare{
+	pixel_x = 2;
+	pixel_y = 2
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/armoury_st)
@@ -10506,6 +11048,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
+/obj/structure/table/steel,
 /turf/simulated/floor/tiled/dark,
 /area/ship/manta/holding)
 "YA" = (
@@ -10672,7 +11215,6 @@
 /area/ship/manta/holding)
 "Zn" = (
 /obj/structure/table/rack,
-/obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster,
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/grenade/frag,
 /obj/effect/floor_decal/techfloor{
 	dir = 10
@@ -18580,7 +19122,7 @@ Aw
 zo
 lm
 mp
-Oq
+ou
 rs
 PW
 PW
@@ -18724,7 +19266,7 @@ lm
 RS
 JL
 ZS
-Oq
+dM
 zr
 PW
 PW
@@ -19125,7 +19667,7 @@ ZT
 ih
 lo
 oO
-lo
+oE
 by
 wp
 zx
@@ -19861,11 +20403,11 @@ AC
 ZU
 VG
 VG
+qM
+qM
+xQ
 SI
-yh
-SI
-SI
-SI
+LH
 ZU
 Va
 vB
@@ -20149,7 +20691,7 @@ qM
 qM
 rK
 SI
-SI
+Da
 ZU
 UH
 vM
@@ -20287,11 +20829,11 @@ VP
 ZU
 AA
 Dn
-BU
 pW
+BU
 Gr
 SI
-SI
+Mz
 ZU
 Oi
 vO
@@ -20430,10 +20972,10 @@ ZU
 bw
 Qb
 qM
-LH
+qM
 yW
 HD
-Wi
+TD
 ZU
 Ni
 RK
@@ -20575,7 +21117,7 @@ pV
 Xp
 NV
 SI
-SI
+Ah
 ZU
 Ni
 LU
@@ -20714,8 +21256,8 @@ ZU
 ZU
 ZU
 ZU
-xQ
 ZU
+yh
 ZU
 ZU
 ZU
@@ -20856,7 +21398,7 @@ WN
 Xa
 LM
 LM
-oE
+LM
 GS
 UR
 xp
@@ -21853,7 +22395,7 @@ qw
 Vz
 wM
 Gk
-Mh
+gu
 Mg
 Va
 vK

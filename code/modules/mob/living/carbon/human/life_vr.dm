@@ -78,10 +78,3 @@
 	// Moving around increases germ_level faster
 	if(germ_level < GERM_LEVEL_MOVE_CAP && prob(8))
 		germ_level++
-
-/mob/living/carbon/human/proc/handle_unnatural_size()
-	if(!in_dorms())
-		if(src.size_multiplier > 2)
-			src.resize(2)
-		else if (src.size_multiplier < 0.25)
-			src.resize(0.25)

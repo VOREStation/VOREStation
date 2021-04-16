@@ -58,7 +58,7 @@
 	desc = "It's beef. It's roasted. It's been a staple of dining tradition for centuries."
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "roastbeef"
-	trash = /obj/item/trash/plate	//TFF 30/11/19 - Roast beef are put on plates, not waffle trays, you dunce~
+	trash = /obj/item/trash/plate
 	nutriment_amt = 8
 	nutriment_desc = list("cooked meat" = 5)
 

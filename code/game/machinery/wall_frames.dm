@@ -105,7 +105,7 @@
 	desc = "Used for building lights."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "tube-construct-item"
-	refund_amt = 2	//TFF 17/1/20 - Oversight fix for infinite steel produciton.
+	refund_amt = 2
 	build_machine_type = /obj/machinery/light_construct
 	reverse = 1
 

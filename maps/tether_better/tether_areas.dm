@@ -250,7 +250,6 @@
 	name = "\improper Vacant Prep Area"
 /area/vacant/vacant_site/gateway/lower
 	name = "\improper Lower Vacant Prep Area"
-//TFF 5/4/20 - Mining Ops move	TODO Change all Vacant areas to construction_site per vermin event location announcement.
 /area/construction/vacant_mining_ops
 	name = "\improper Vacant Mining Operations"
 
@@ -267,7 +266,6 @@
 /area/tether/surfacebase/emergency_storage/atrium
 	name = "\improper Atrium Emergency Storage"
 
-//TFF 7/4/20 - New areas for Surface Cargo bits as well as the Mining Outpost. Some former ones deleted. Others renamed.
 // Surface Cargo/Mining EVA/Warehouse/Mining Outpost adadditions
 /area/tether/surfacebase/cargo
 	name = "Surface Cargo Foyer"
@@ -650,7 +648,6 @@
 	name = "Atmospherics Gas Storage"
 	icon_state = "atmos"
 
-//TFF 11/12/19 - Minor refactor, makes mice spawn only in Atmos.
 /area/engineering/atmos_intake
 	name = "\improper Atmospherics Intake"
 	icon_state = "atmos"
@@ -776,7 +773,6 @@
 /area/rnd/robotics/resleeving
     name = "\improper Robotics Resleeving"
 
-//TFF 28/8/19 - cleanup of areas placement
 /area/rnd/research/testingrange
 	name = "\improper Weapons Testing Range"
 	icon_state = "firingrange"
@@ -787,7 +783,6 @@
 
 
 //Outpost areas
-//TFF 28/8/19 - cleanup of areas placement
 /area/rnd/outpost
 	name = "\improper Research Outpost Hallway"
 	icon_state = "research"
@@ -939,7 +934,6 @@
 	name = "Public Meeting Room"
 	icon_state = "blue"
 	sound_env = SMALL_SOFTFLOOR
-//TFF 28/8/19 - cleanup of areas placement
 /area/chapel/observation
 	name = "\improper Chapel Observation"
 	icon_state = "chapel"
@@ -1003,7 +997,6 @@
 	flags = RAD_SHIELDED
 	soundproofed = TRUE
 
-//TFF 28/8/19 - cleanup of areas placement
 /area/crew_quarters/sleep/vistor_room_1
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 	soundproofed = TRUE
@@ -1412,7 +1405,6 @@
 /area/shuttle/securiship/engines
 	name = "\improper Securiship Engines"
 
-//TFF 5/4/20 - Mining Ops move
 // Asteroid Mining belter and Mining Outpost shuttles and refinery/gear areas
 /area/quartermaster/belterdock
 	name = "\improper Cargo Belter Access"
@@ -1460,7 +1452,6 @@ area/shuttle/mining_outpost/shuttle
 	name = "\improper Ninjacraft"
 	icon_state = "shuttle2"
 
-//TFF 28/8/19 - cleanup of areas placement
 /area/teleporter/departing
 	name = "\improper Long-Range Teleporter"
 	icon_state = "teleporter"

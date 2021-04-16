@@ -112,7 +112,7 @@
 	'sound/ambience/generic/generic2.ogg',\
 	'sound/ambience/generic/generic3.ogg'\
 	)
-// 'sound/ambience/generic/generic4.ogg'\
+// 'sound/ambience/generic/generic4.ogg'
 
 // Sounds of PA announcements, presumably involving shuttles?
 #define AMBIENCE_ARRIVALS list(\

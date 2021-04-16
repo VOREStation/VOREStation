@@ -492,6 +492,7 @@ This function restores all organs.
 	switch(damagetype)
 		if(BRUTE)
 			damageoverlaytemp = 20
+			if(nif && nif.flag_check(NIF_C_BRUTEARMOR,NIF_FLAGS_COMBAT)){damage *= 0.7}
 			damage = damage*species.brute_mod
 
 			for(var/datum/modifier/M in modifiers)
@@ -504,6 +505,7 @@ This function restores all organs.
 				UpdateDamageIcon()
 		if(BURN)
 			damageoverlaytemp = 20
+			if(nif && nif.flag_check(NIF_C_BURNARMOR,NIF_FLAGS_COMBAT)){damage *= 0.7}
 			damage = damage*species.burn_mod
 
 			for(var/datum/modifier/M in modifiers)
