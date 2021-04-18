@@ -1570,6 +1570,13 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
+/obj/machinery/button/remote/airlock{
+	id = "bathroomlock28";
+	name = "Bathroom Lock";
+	pixel_x = -20;
+	pixel_y = -10;
+	specialfunctions = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/security/security_bathroom)
 "ade" = (
@@ -3327,12 +3334,13 @@
 /turf/simulated/wall/rshull,
 /area/shuttle/excursion/general)
 "agd" = (
-/obj/machinery/atmospherics/unary/engine{
-	dir = 1
+/obj/machinery/door/airlock/security{
+	id_tag = "bathroomlock28";
+	name = "Security Restroom";
+	req_one_access = list(1,38)
 	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/excursion/general)
+/turf/simulated/floor/tiled/white,
+/area/security/security_bathroom)
 "age" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -3354,31 +3362,35 @@
 /turf/simulated/floor/tiled/eris/steel/cyancorner,
 /area/shuttle/medivac/cockpit)
 "agf" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
+/obj/machinery/atmospherics/unary/engine{
+	dir = 1
 	},
-/turf/simulated/floor/tiled/asteroid_steel/airless,
+/turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/mining_outpost/shuttle)
+/area/shuttle/excursion/general)
 "agg" = (
 /turf/simulated/floor/airless,
 /area/space)
 "agh" = (
-/obj/structure/shuttle/engine/propulsion{
+/obj/machinery/light/small{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/asteroid_steel/airless,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/mining_outpost/shuttle)
-"agi" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_r"
+/obj/machinery/button/remote/airlock{
+	id = "bathroomlock27";
+	name = "Asteroid Medical Toilet Lock";
+	pixel_x = -20;
+	pixel_y = -10;
+	specialfunctions = 4
 	},
-/turf/simulated/floor/tiled/asteroid_steel/airless,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/mining_outpost/shuttle)
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/medical_restroom)
+"agi" = (
+/obj/machinery/door/airlock/medical{
+	id_tag = "bathroomlock27";
+	name = "Rest Room"
+	},
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/medical_restroom)
 "agj" = (
 /obj/machinery/access_button{
 	command = "cycle_exterior";
@@ -3391,6 +3403,14 @@
 	},
 /turf/simulated/floor/airless,
 /area/space)
+"agk" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_l"
+	},
+/turf/simulated/floor/tiled/asteroid_steel/airless,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/mining_outpost/shuttle)
 "agl" = (
 /obj/machinery/door/airlock/glass_external,
 /obj/effect/floor_decal/industrial/hatch/yellow,
@@ -3401,6 +3421,21 @@
 /obj/structure/grille,
 /turf/space,
 /area/space)
+"agn" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/asteroid_steel/airless,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/mining_outpost/shuttle)
+"ago" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_r"
+	},
+/turf/simulated/floor/tiled/asteroid_steel/airless,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/mining_outpost/shuttle)
 "agx" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	frequency = 1379;
@@ -21001,12 +21036,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/medical_restroom)
-"aZx" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/white,
-/area/crew_quarters/medical_restroom)
 "aZy" = (
 /obj/structure/bed/chair/bay/shuttle{
 	dir = 1
@@ -31331,8 +31360,8 @@ aab
 aab
 aKE
 aQf
-aZx
-aMd
+agh
+agi
 aZu
 aTf
 aKE
@@ -34547,7 +34576,7 @@ abw
 aaB
 adS
 add
-aSX
+agd
 aST
 aew
 aUT
@@ -36114,7 +36143,7 @@ aUJ
 aXb
 afT
 aez
-agd
+agf
 ams
 aXq
 abe
@@ -36256,7 +36285,7 @@ wRt
 eug
 afT
 aeG
-agd
+agf
 ams
 aXq
 abe
@@ -37392,7 +37421,7 @@ ikk
 efQ
 wPF
 aeG
-agd
+agf
 ams
 aSx
 krj
@@ -37534,7 +37563,7 @@ iEV
 tEV
 xiw
 aeH
-agd
+agf
 ams
 eAm
 abe
@@ -39571,11 +39600,11 @@ avt
 avt
 adD
 aZS
-agf
-agh
-agh
-agh
-agi
+agk
+agn
+agn
+agn
+ago
 baB
 adD
 avt
