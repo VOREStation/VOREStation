@@ -2101,23 +2101,9 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/processing)
 "adh" = (
-/obj/machinery/papershredder,
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/floor_decal/borderfloor{
-	dir = 10
-	},
-/obj/effect/floor_decal/corner/red/border{
-	dir = 10
-	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 8
-	},
-/obj/effect/floor_decal/corner/red/bordercorner2{
-	dir = 8
-	},
-/turf/simulated/floor/tiled,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor/plating,
 /area/tether/surfacebase/security/iaa/officecommon)
 "adi" = (
 /obj/machinery/door/airlock/glass_security{
@@ -29542,10 +29528,24 @@
 /turf/simulated/floor/tiled/dark,
 /area/bridge)
 "aYk" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tether)
+/obj/machinery/papershredder,
+/obj/machinery/light{
+	dir = 2
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/red/border{
+	dir = 10
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/red/bordercorner2{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/security/iaa/officecommon)
 "aYl" = (
 /obj/structure/lattice,
 /obj/structure/disposalpipe/down,
@@ -29981,12 +29981,10 @@
 /turf/simulated/floor/tiled/white,
 /area/rnd/outpost/xenobiology/outpost_first_aid)
 "aZg" = (
-/obj/machinery/atmospherics/unary/engine{
-	dir = 1
-	},
+/obj/structure/shuttle/engine/propulsion,
 /turf/simulated/floor/reinforced,
 /turf/simulated/shuttle/plating/carry,
-/area/shuttle/tourbus/general)
+/area/shuttle/tether)
 "aZh" = (
 /obj/machinery/door/airlock/glass_command{
 	name = "Bridge";
@@ -30955,6 +30953,13 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
+"baI" = (
+/obj/machinery/atmospherics/unary/engine{
+	dir = 1
+	},
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tourbus/general)
 "baJ" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -51507,7 +51512,7 @@ aac
 fzy
 fzy
 aTY
-fzy
+adh
 jYD
 vEm
 waR
@@ -51649,7 +51654,7 @@ aac
 fzy
 aeq
 afn
-adh
+aYk
 jYD
 efR
 vkv
@@ -54412,7 +54417,7 @@ jML
 jHw
 jpB
 aVJ
-aZg
+baI
 aKU
 aOI
 aPb
@@ -55264,7 +55269,7 @@ caw
 jHw
 gHh
 aVJ
-aZg
+baI
 aKU
 aOI
 aKj
@@ -57249,7 +57254,7 @@ aNk
 uSA
 aNJ
 aNP
-aYk
+aZg
 aKU
 abg
 aOk
@@ -57391,7 +57396,7 @@ aNl
 aNl
 aNK
 aNP
-aYk
+aZg
 aKU
 abg
 aOk
@@ -57533,7 +57538,7 @@ aNm
 aNl
 aNK
 aNP
-aYk
+aZg
 aKU
 abg
 aOk
