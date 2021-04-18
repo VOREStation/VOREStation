@@ -48,6 +48,6 @@
 [i]Transponder[/i]: Transmitting (MIL), NanoTrasen
 [b]Notice[/b]: Experimental vessel"}
 	color = "#8800ff" //Indigo
-	vessel_mass = 5000
+	vessel_mass = 3000
 	vessel_size = SHIP_SIZE_SMALL
 	shuttle = "NDV Tabiranth"
