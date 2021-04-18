@@ -195,6 +195,12 @@
 	ckeywhitelist = list("bacon12366")
 	character_name = list("Elly Brown")
 
+/datum/gear/fluff/alibig_medal
+	path = /obj/item/clothing/accessory/medal/conduct
+	display_name = "Ali Big's Conduct Medal"
+	ckeywhitelist = list("bigbababooey")
+	character_name = list("Ali Big")
+
 //  C CKEYS
 /datum/gear/fluff/cappy_watch
 	path = /obj/item/clothing/accessory/watch
