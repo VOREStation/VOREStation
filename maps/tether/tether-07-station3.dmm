@@ -1566,9 +1566,12 @@
 /turf/simulated/floor/tiled/monotile,
 /area/tether/exploration)
 "add" = (
-/obj/machinery/button/remote/airlock,
-/turf/simulated/floor/tiled,
-/area/security/hallwayaux)
+/obj/machinery/atmospherics/unary/engine{
+	dir = 1
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/excursion/general)
 "ade" = (
 /obj/machinery/door/airlock/glass_security{
 	name = "Break Room";
@@ -3485,9 +3488,13 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/excursion/general)
 "agq" = (
-/obj/machinery/button/remote/airlock,
-/turf/simulated/wall,
-/area/security/breakroom)
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_l"
+	},
+/turf/simulated/floor/tiled/asteroid_steel/airless,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/mining_outpost/shuttle)
 "agr" = (
 /obj/structure/toilet,
 /obj/machinery/light/small{
@@ -3511,12 +3518,12 @@
 /turf/simulated/floor/tiled/white,
 /area/security/security_bathroom)
 "agt" = (
-/obj/machinery/atmospherics/unary/engine{
-	dir = 1
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
 	},
-/turf/space,
+/turf/simulated/floor/tiled/asteroid_steel/airless,
 /turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/excursion/general)
+/area/shuttle/mining_outpost/shuttle)
 "agu" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -3540,7 +3547,7 @@
 "agw" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8;
-	icon_state = "propulsion_l"
+	icon_state = "propulsion_r"
 	},
 /turf/simulated/floor/tiled/asteroid_steel/airless,
 /turf/simulated/shuttle/plating/airless/carry,
@@ -3559,21 +3566,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/excursion/general)
-"agz" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/asteroid_steel/airless,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/mining_outpost/shuttle)
-"agA" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_r"
-	},
-/turf/simulated/floor/tiled/asteroid_steel/airless,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/mining_outpost/shuttle)
 "agJ" = (
 /turf/simulated/mineral/vacuum,
 /area/maintenance/station/ai)
@@ -34035,8 +34027,8 @@ aSa
 iUO
 ain
 abu
-add
-agq
+aiR
+aYT
 ajp
 ajC
 anY
@@ -36173,7 +36165,7 @@ aUJ
 aXb
 afT
 aez
-agt
+add
 ams
 aXq
 abe
@@ -36315,7 +36307,7 @@ wRt
 eug
 afT
 aeG
-agt
+add
 ams
 aXq
 abe
@@ -37451,7 +37443,7 @@ ikk
 efQ
 wPF
 aeG
-agt
+add
 ams
 aSx
 krj
@@ -37593,7 +37585,7 @@ iEV
 tEV
 xiw
 aeH
-agt
+add
 ams
 eAm
 abe
@@ -39630,11 +39622,11 @@ avt
 avt
 adD
 aZS
+agq
+agt
+agt
+agt
 agw
-agz
-agz
-agz
-agA
 baB
 adD
 avt
