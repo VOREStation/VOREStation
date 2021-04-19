@@ -11,7 +11,7 @@ export const Uplink = (props, context) => {
   const { data } = useBackend(context);
 
   const [screen, setScreen] = useLocalState(context, 'screen', 0);
-  
+
   const { telecrystals } = data;
   return (
     <Window
@@ -28,10 +28,10 @@ export const Uplink = (props, context) => {
         ) || screen === 1 && (
           <ExploitableInformation />
         ) || (
-          <Section color="bad">
-            Error
-          </Section>
-        )}
+            <Section color="bad">
+              Error
+            </Section>
+          )}
       </Window.Content>
     </Window>
   );
@@ -74,10 +74,10 @@ const UplinkHeader = (props, context) => {
             {discount_name} - {discount_amount}% off. Offer expires at: {offer_expiry}
           </Box>
         ) || (
-          <Box>
-            No items currently discounted.
-          </Box>
-        )}
+            <Box>
+              No items currently discounted.
+            </Box>
+          )}
       </Section>
     </Section>
   );
@@ -137,7 +137,7 @@ const ExploitableInformation = (props, context) => {
             <LabeledList.Divider />
             <LabeledList.Item>Acquired Information</LabeledList.Item>
             <LabeledList.Item label="Notes">
-              {exploit.nanoui_exploit_record}
+              {exploit.nanoui_exploit_record.split("<br>").map(m => <Box key={m}>{m}</Box>)}
             </LabeledList.Item>
           </LabeledList>
         </Box>
