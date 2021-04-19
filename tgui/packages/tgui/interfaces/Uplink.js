@@ -28,10 +28,10 @@ export const Uplink = (props, context) => {
         ) || screen === 1 && (
           <ExploitableInformation />
         ) || (
-            <Section color="bad">
-              Error
-            </Section>
-          )}
+          <Section color="bad">
+            Error
+          </Section>
+        )}
       </Window.Content>
     </Window>
   );
@@ -74,10 +74,10 @@ const UplinkHeader = (props, context) => {
             {discount_name} - {discount_amount}% off. Offer expires at: {offer_expiry}
           </Box>
         ) || (
-            <Box>
-              No items currently discounted.
-            </Box>
-          )}
+          <Box>
+            No items currently discounted.
+          </Box>
+        )}
       </Section>
     </Section>
   );

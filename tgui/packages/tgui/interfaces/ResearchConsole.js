@@ -107,8 +107,8 @@ const ResearchConsoleViewDesigns = (props, context) => {
           ))}
         </LabeledList>
       )) || (
-          <Box color="warning">No designs found.</Box>
-        )}
+        <Box color="warning">No designs found.</Box>
+      )}
     </Section>
   );
 };
@@ -193,22 +193,22 @@ const TechDisk = (props, context) => {
           </Box>
         </Box>
       ) || (
+        <Box>
           <Box>
-            <Box>
-              This disk has no data stored on it.
+            This disk has no data stored on it.
           </Box>
-            <Button
-              icon="save"
-              onClick={() => setSaveDialog(true)}>
-              Load Tech To Disk
+          <Button
+            icon="save"
+            onClick={() => setSaveDialog(true)}>
+            Load Tech To Disk
           </Button>
-            <Button
-              icon="eject"
-              onClick={() => act("eject_tech")}>
-              Eject Disk
+          <Button
+            icon="eject"
+            onClick={() => act("eject_tech")}>
+            Eject Disk
           </Button>
-          </Box>
-        )}
+        </Box>
+      )}
     </Box>
   );
 };
@@ -305,22 +305,22 @@ const DataDisk = (props, context) => {
           </Box>
         </Box>
       ) || (
-          <Box>
-            <Box mb={0.5}>
-              This disk has no data stored on it.
+        <Box>
+          <Box mb={0.5}>
+            This disk has no data stored on it.
           </Box>
-            <Button
-              icon="save"
-              onClick={() => setSaveDialog(true)}>
-              Load Design To Disk
+          <Button
+            icon="save"
+            onClick={() => setSaveDialog(true)}>
+            Load Design To Disk
           </Button>
-            <Button
-              icon="eject"
-              onClick={() => act("eject_design")}>
-              Eject Disk
+          <Button
+            icon="eject"
+            onClick={() => act("eject_design")}>
+            Eject Disk
           </Button>
-          </Box>
-        )}
+        </Box>
+      )}
     </Box>
   );
 };
@@ -384,10 +384,10 @@ const ResearchConsoleDestructiveAnalyzer = (props, context) => {
                     {tech.level}&nbsp;&nbsp;{tech.current && "(Current: " + tech.current + ")"}
                   </LabeledList.Item>
                 )) || (
-                    <LabeledList.Item label="Error">
-                      No origin tech found.
-                    </LabeledList.Item>
-                  )}
+                  <LabeledList.Item label="Error">
+                    No origin tech found.
+                  </LabeledList.Item>
+                )}
               </LabeledList>
             </LabeledList.Item>
           </LabeledList>
@@ -405,10 +405,10 @@ const ResearchConsoleDestructiveAnalyzer = (props, context) => {
           </Button>
         </Box>
       ) || (
-          <Box>
-            No Item Loaded. Standing-by...
-          </Box>
-        )}
+        <Box>
+          No Item Loaded. Standing-by...
+        </Box>
+      )}
     </Section>
   );
 };
@@ -631,10 +631,10 @@ const ResearchConsoleConstructor = (props, context) => {
               </LabeledList.Item>
             );
           }) || (
-              <Box m={1}>
-                Queue Empty.
-              </Box>
-            )}
+            <Box m={1}>
+              Queue Empty.
+            </Box>
+          )}
         </LabeledList>
       ) || protoTab === 2 && (
         <LabeledList>
@@ -685,10 +685,10 @@ const ResearchConsoleConstructor = (props, context) => {
                 </Button>
               </LabeledList.Item>
             )) || (
-                <LabeledList.Item label="Empty">
-                  No chems detected
-                </LabeledList.Item>
-              )}
+              <LabeledList.Item label="Empty">
+                No chems detected
+              </LabeledList.Item>
+            )}
           </LabeledList>
           <Button
             mt={1}
@@ -698,10 +698,10 @@ const ResearchConsoleConstructor = (props, context) => {
           </Button>
         </Box>
       ) || (
-          <Box>
-            Error
-          </Box>
-        )}
+        <Box>
+          Error
+        </Box>
+      )}
     </Section>
   );
 };
@@ -752,13 +752,13 @@ const ResearchConsoleSettings = (props, context) => {
               </Button>
             </Fragment>
           ) || (
-              <Button
-                fluid
-                icon="link"
-                onClick={() => act("togglesync")}>
-                Connect to Research Network
-              </Button>
-            )}
+            <Button
+              fluid
+              icon="link"
+              onClick={() => act("togglesync")}>
+              Connect to Research Network
+            </Button>
+          )}
           <Button
             fluid
             icon="lock"
@@ -813,10 +813,10 @@ const ResearchConsoleSettings = (props, context) => {
           </LabeledList>
         </Box>
       ) || (
-          <Box>
-            Error
-          </Box>
-        )}
+        <Box>
+          Error
+        </Box>
+      )}
     </Section>
   );
 };
@@ -826,7 +826,7 @@ const menus = [
   {
     name: "Circuit Imprinter",
     icon: "digital-tachograph",
-    template: <ResearchConsoleConstructor name="Circuit Imprinter" />
+    template: <ResearchConsoleConstructor name="Circuit Imprinter" />,
   },
   { name: "Destructive Analyzer", icon: "eraser", template: <ResearchConsoleDestructiveAnalyzer /> },
   { name: "Settings", icon: "cog", template: <ResearchConsoleSettings /> },

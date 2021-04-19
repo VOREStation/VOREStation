@@ -519,13 +519,13 @@ const PartLists = (props, context) => {
           forceShow
           placeholder="No matching results..." />
       )) || (
-          Object.keys(partsList).map(category => (
-            <PartCategory
-              key={category}
-              name={category}
-              parts={partsList[category]} />
-          ))
-        )}
+        Object.keys(partsList).map(category => (
+          <PartCategory
+            key={category}
+            name={category}
+            parts={partsList[category]} />
+        ))
+      )}
     </Fragment>
   );
 };
@@ -674,12 +674,12 @@ const Queue = (props, context) => {
                   icon="stop"
                   onClick={() => act("stop_queue")} />
               )) || (
-                  <Button
-                    disabled={!queue.length}
-                    content="Build Queue"
-                    icon="play"
-                    onClick={() => act("build_queue")} />
-                )}
+                <Button
+                  disabled={!queue.length}
+                  content="Build Queue"
+                  icon="play"
+                  onClick={() => act("build_queue")} />
+              )}
             </Fragment>
           }>
           <Flex
