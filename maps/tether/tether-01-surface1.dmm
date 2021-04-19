@@ -12225,7 +12225,6 @@
 /area/tether/surfacebase/outside/outside1)
 "auJ" = (
 /obj/machinery/door/airlock{
-	id_tag = "bathroomlock8";
 	name = "Surface Brig Restroom"
 	},
 /obj/machinery/door/firedoor,
@@ -12354,13 +12353,6 @@
 	},
 /obj/machinery/light/small{
 	dir = 4
-	},
-/obj/machinery/button/remote/airlock{
-	id = "bathroomlock8";
-	name = "Surface Brig Bathroom Lock";
-	pixel_x = -20;
-	pixel_y = 10;
-	specialfunctions = 4
 	},
 /turf/simulated/floor/tiled/freezer,
 /area/tether/surfacebase/security/brig/bathroom)

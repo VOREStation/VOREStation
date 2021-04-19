@@ -7872,7 +7872,7 @@
 	pixel_x = -1
 	},
 /obj/machinery/button/remote/airlock{
-	id = "bathroomlock20";
+	id = "bathroomlock19";
 	name = "Engineering Washroom Toilet 1 Lock";
 	pixel_x = 10;
 	pixel_y = 22;
@@ -7890,7 +7890,7 @@
 /area/maintenance/abandonedlibrary)
 "aoS" = (
 /obj/machinery/door/airlock{
-	id_tag = "bathroomlock20";
+	id_tag = "bathroomlock19";
 	name = "Engineering Washroom Toilet 1"
 	},
 /obj/machinery/door/firedoor/glass,
@@ -7938,7 +7938,7 @@
 	dir = 8
 	},
 /obj/machinery/button/remote/airlock{
-	id = "bathroomlock21";
+	id = "bathroomlock20";
 	name = "Engineering Washroom Toilet 2 Lock";
 	pixel_x = 10;
 	pixel_y = 22;
@@ -7948,7 +7948,7 @@
 /area/crew_quarters/sleep/engi_wash)
 "aoZ" = (
 /obj/machinery/door/airlock{
-	id_tag = "bathroomlock21";
+	id_tag = "bathroomlock20";
 	name = "Engineering Washroom Toilet 2"
 	},
 /obj/machinery/door/firedoor/glass,
@@ -7966,7 +7966,7 @@
 	pixel_x = -1
 	},
 /obj/machinery/button/remote/airlock{
-	id = "bathroomlock22";
+	id = "bathroomlock21";
 	name = "Engineering Washroom Toilet 3 Lock";
 	pixel_x = 10;
 	pixel_y = 22;
@@ -7976,7 +7976,7 @@
 /area/crew_quarters/sleep/engi_wash)
 "apb" = (
 /obj/machinery/door/airlock{
-	id_tag = "bathroomlock22";
+	id_tag = "bathroomlock21";
 	name = "Engineering Washroom Toilet 3"
 	},
 /obj/machinery/door/firedoor/glass,
@@ -8007,7 +8007,7 @@
 	dir = 1
 	},
 /obj/machinery/button/remote/airlock{
-	id = "bathroomlock23";
+	id = "bathroomlock22";
 	name = "Unit 1 Lock";
 	pixel_x = 10;
 	pixel_y = 22;
@@ -8017,7 +8017,7 @@
 /area/crew_quarters/toilet)
 "apf" = (
 /obj/machinery/door/airlock{
-	id_tag = "bathroomlock23";
+	id_tag = "bathroomlock22";
 	name = "Unit 1"
 	},
 /turf/simulated/floor/tiled/white,
@@ -8036,7 +8036,7 @@
 	dir = 1
 	},
 /obj/machinery/button/remote/airlock{
-	id = "bathroomlock24";
+	id = "bathroomlock23";
 	name = "Unit 2 Lock";
 	pixel_x = 10;
 	pixel_y = 22;
@@ -8046,7 +8046,7 @@
 /area/crew_quarters/toilet)
 "api" = (
 /obj/machinery/door/airlock{
-	id_tag = "bathroomlock24";
+	id_tag = "bathroomlock23";
 	name = "Unit 2"
 	},
 /turf/simulated/floor/tiled/white,

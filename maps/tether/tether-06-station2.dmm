@@ -402,7 +402,6 @@
 "aQ" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock{
-	id_tag = "bathroomlock25";
 	name = "Brig Restroom"
 	},
 /turf/simulated/floor/tiled/freezer,
@@ -634,13 +633,6 @@
 	},
 /obj/machinery/light/small{
 	dir = 4
-	},
-/obj/machinery/button/remote/airlock{
-	id = "bathroomlock25";
-	name = "Bathroom Lock";
-	pixel_x = -20;
-	pixel_y = 10;
-	specialfunctions = 4
 	},
 /turf/simulated/floor/tiled/freezer,
 /area/security/brig/bathroom)
@@ -9606,7 +9598,7 @@
 	dir = 1
 	},
 /obj/machinery/button/remote/airlock{
-	id = "bathroomlock26";
+	id = "bathroomlock24";
 	name = "Bathroom Lock";
 	pixel_x = -20;
 	pixel_y = -10;
@@ -9616,7 +9608,7 @@
 /area/medical/recoveryrestroom)
 "oF" = (
 /obj/machinery/door/airlock/medical{
-	id_tag = "bathroomlock26";
+	id_tag = "bathroomlock24";
 	name = "Rest Room";
 	req_one_access = list()
 	},

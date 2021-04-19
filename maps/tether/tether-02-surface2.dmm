@@ -5531,7 +5531,7 @@
 /area/maintenance/lower/public_garden_maintenence/upper)
 "aiF" = (
 /obj/machinery/door/airlock{
-	id_tag = "bathroomlock13";
+	id_tag = "bathroomlock12";
 	name = "Surface Recovery Toilet 1"
 	},
 /obj/machinery/door/firedoor/glass,
@@ -5590,7 +5590,7 @@
 	dir = 1
 	},
 /obj/machinery/button/remote/airlock{
-	id = "bathroomlock13";
+	id = "bathroomlock12";
 	name = "Surface Recovery Toilet 1 Lock";
 	pixel_x = -10;
 	pixel_y = 22;
@@ -6181,7 +6181,7 @@
 /area/tether/surfacebase/medical/recoveryward)
 "ajC" = (
 /obj/machinery/door/airlock{
-	id_tag = "bathroomlock14";
+	id_tag = "bathroomlock13";
 	name = "Surface Recovery Toilet 2"
 	},
 /obj/machinery/door/firedoor/glass,
@@ -6812,7 +6812,7 @@
 	dir = 1
 	},
 /obj/machinery/button/remote/airlock{
-	id = "bathroomlock14";
+	id = "bathroomlock13";
 	name = "Surface Recovery Toilet 2 Lock";
 	pixel_x = -10;
 	pixel_y = 22;
@@ -7604,7 +7604,7 @@
 /area/tether/surfacebase/medical/uppersouthstairwell)
 "alS" = (
 /obj/machinery/door/airlock{
-	id_tag = "bathroomlock11";
+	id_tag = "bathroomlock10";
 	name = "Surface Toilet 1"
 	},
 /obj/machinery/door/firedoor/glass,
@@ -7618,7 +7618,7 @@
 	dir = 4
 	},
 /obj/machinery/button/remote/airlock{
-	id = "bathroomlock11";
+	id = "bathroomlock10";
 	name = "Surface Medbay Toilet 1 Lock";
 	pixel_x = -10;
 	pixel_y = 22;
@@ -24828,7 +24828,7 @@
 /area/engineering/atmos/storage)
 "aSg" = (
 /obj/machinery/door/airlock{
-	id_tag = "bathroomlock12";
+	id_tag = "bathroomlock11";
 	name = "Surface Medbay Toilet 2"
 	},
 /obj/machinery/door/firedoor/glass,
@@ -24864,7 +24864,7 @@
 	dir = 4
 	},
 /obj/machinery/button/remote/airlock{
-	id = "bathroomlock12";
+	id = "bathroomlock11";
 	name = "Surface Medbay Toilet 2 Lock";
 	pixel_x = -10;
 	pixel_y = 22;
@@ -24960,7 +24960,7 @@
 	dir = 4
 	},
 /obj/machinery/button/remote/airlock{
-	id = "bathroomlock10";
+	id = "bathroomlock9";
 	name = "Surface Security Toilet Lock";
 	pixel_x = -20;
 	pixel_y = -10;
@@ -24995,7 +24995,7 @@
 /area/maintenance/asmaint2)
 "aSw" = (
 /obj/machinery/door/airlock/security{
-	id_tag = "bathroomlock10";
+	id_tag = "bathroomlock9";
 	name = "Surface Security Toilet";
 	req_one_access = list(1,38)
 	},
@@ -25004,14 +25004,14 @@
 /area/tether/surfacebase/security/brig/bathroom)
 "aSx" = (
 /obj/machinery/door/airlock{
-	id_tag = "bathroomlock19";
+	id_tag = "bathroomlock18";
 	name = "Bar Toilet 2"
 	},
 /turf/simulated/floor/tiled/white,
 /area/rnd/breakroom/bathroom)
 "aSy" = (
 /obj/machinery/door/airlock{
-	id_tag = "bathroomlock9";
+	id_tag = "bathroomlock8";
 	name = "Research Toilet"
 	},
 /turf/simulated/floor/tiled/white,
@@ -25245,7 +25245,7 @@
 	},
 /obj/machinery/light/small,
 /obj/machinery/button/remote/airlock{
-	id = "bathroomlock9";
+	id = "bathroomlock8";
 	name = "Research Toilet Lock";
 	pixel_x = -20;
 	pixel_y = 10;

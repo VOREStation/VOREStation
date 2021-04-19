@@ -3979,7 +3979,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/button/remote/airlock{
-	id = "bathroomlock17";
+	id = "bathroomlock16";
 	name = "Bathroom Lock";
 	pixel_x = -20;
 	pixel_y = -20;
@@ -3992,7 +3992,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/command{
-	id_tag = "bathroomlock17";
+	id_tag = "bathroomlock16";
 	name = "Private Restroom"
 	},
 /turf/simulated/floor/tiled/white,
@@ -13546,7 +13546,7 @@
 /area/crew_quarters/captain)
 "awk" = (
 /obj/machinery/door/airlock{
-	id_tag = "bathroomlock15";
+	id_tag = "bathroomlock14";
 	name = "Recreation Toilet 1"
 	},
 /turf/simulated/floor/tiled/white,
@@ -13912,7 +13912,7 @@
 /area/crew_quarters/recreation_area_restroom)
 "awM" = (
 /obj/machinery/door/airlock{
-	id_tag = "bathroomlock16";
+	id_tag = "bathroomlock15";
 	name = "Recreation Toilet 2"
 	},
 /turf/simulated/floor/tiled/white,
@@ -14164,7 +14164,7 @@
 	dir = 1
 	},
 /obj/machinery/button/remote/airlock{
-	id = "bathroomlock15";
+	id = "bathroomlock14";
 	name = "Recreation Toilet 1 Lock";
 	pixel_x = -20;
 	pixel_y = 10;
@@ -29229,7 +29229,7 @@
 	dir = 1
 	},
 /obj/machinery/button/remote/airlock{
-	id = "bathroomlock16";
+	id = "bathroomlock15";
 	name = "Recreation Toilet 2 Lock";
 	pixel_x = -20;
 	pixel_y = 10;
@@ -29286,7 +29286,7 @@
 /area/hallway/lower/third_south)
 "aXN" = (
 /obj/machinery/door/airlock{
-	id_tag = "bathroomlock18";
+	id_tag = "bathroomlock17";
 	name = "Bar Toilet 1"
 	},
 /turf/simulated/floor/tiled/white,
@@ -29314,13 +29314,6 @@
 /turf/simulated/floor/plating,
 /area/rnd/research_storage)
 "aXQ" = (
-/obj/machinery/door/airlock{
-	id_tag = "bathroomlock19";
-	name = "Bar Toilet 2"
-	},
-/turf/simulated/floor/tiled/white,
-/area/crew_quarters/barrestroom)
-"aXR" = (
 /obj/structure/toilet{
 	dir = 8
 	},
@@ -29328,11 +29321,18 @@
 	dir = 1
 	},
 /obj/machinery/button/remote/airlock{
-	id = "bathroomlock19";
-	name = "Bar Toilet 2 Lock";
+	id = "bathroomlock17";
+	name = "Bar Toilet 1 Lock";
 	pixel_x = -10;
 	pixel_y = 22;
 	specialfunctions = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/barrestroom)
+"aXR" = (
+/obj/machinery/door/airlock{
+	id_tag = "bathroomlock18";
+	name = "Bar Toilet 2"
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/barrestroom)
@@ -59800,7 +59800,7 @@ aTE
 aGK
 aXN
 aGK
-aXQ
+aXR
 aGK
 bfM
 aGK
@@ -59940,9 +59940,9 @@ aJt
 aQf
 aTE
 aGK
-aXO
+aXQ
 aGK
-aXR
+aXO
 aGK
 bfN
 aGK
