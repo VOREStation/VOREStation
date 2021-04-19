@@ -60,6 +60,12 @@
 	ckeywhitelist = list("aegisoa")
 	character_name = list("Xander Bevin")
 
+/datum/gear/fluff/charlotte_cigarettes
+	path = /obj/item/weapon/storage/fancy/cigarettes/charlotte
+	display_name = "Charlotte's cigarette case"
+	ckeywhitelist = list("alfalah")
+	character_name = list("Charlotte Graves")
+
 /datum/gear/fluff/lynn_penlight
 	path = /obj/item/device/flashlight/pen/fluff/lynn
 	display_name = "Lynn's Penlight"
@@ -734,6 +740,12 @@
 	description = "These cherry-red cat-eye shades give you an inclination to eat chalk."
 	ckeywhitelist = list("pimientopyro")
 	character_name = list("Scylla Casmus")
+
+/datum/gear/fluff/kiyoshi_cloak
+	path = /obj/item/clothing/accessory/poncho/roles/cloak/fluff/cloakglowing
+	display_name = "glowing cloak"
+	ckeywhitelist = list("pastelprincedan")
+	character_name = list("Kiyoshi Maki", "Masumi Maki")
 
 //  Q CKEYS
 

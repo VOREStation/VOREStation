@@ -7,7 +7,6 @@
 	illegal = TRUE
 	wear = 3
 	access = 999 //Prevents anyone from buying it without an emag.
-	activates = FALSE //It's armor.
 	combat_flags = (NIF_C_BRUTEARMOR) // Default on when installed, clear when uninstalled
 
 /datum/nifsoft/burn_armor
@@ -19,7 +18,6 @@
 	illegal = TRUE
 	wear = 3
 	access = 999 //Prevents anyone from buying it without an emag.
-	activates = FALSE //It's armor.
 	combat_flags = (NIF_C_BURNARMOR) // Default on when installed, clear when uninstalled
 
 /datum/nifsoft/painkillers
