@@ -5,6 +5,7 @@ import { formatSiUnit, formatMoney } from '../format';
 import { Flex, Section, Tabs, Box, Button, Fragment, ProgressBar, NumberInput, Icon, Input, Tooltip } from '../components';
 import { Window } from '../layouts';
 import { createSearch, toTitleCase } from 'common/string';
+import { toFixed } from 'common/math';
 
 const MATERIAL_KEYS = {
   "steel": "sheet-metal_3",
@@ -41,7 +42,8 @@ const materialArrayToObj = materials => {
   let materialObj = {};
 
   materials.forEach(m => {
-    materialObj[m.name] = m.amount; });
+    materialObj[m.name] = m.amount;
+  });
 
   return materialObj;
 };
@@ -147,7 +149,7 @@ export const ExosuitFabricator = (props, context) => {
     displayMatCost,
     setDisplayMatCost,
   ] = useSharedState(context, "display_mats", false);
-  
+
   const [
     displayAllMat,
     setDisplayAllMat,
@@ -351,6 +353,18 @@ const MaterialAmount = (props, context) => {
     style,
   } = props;
 
+  let amountDisplay = "0";
+  if (amount < 1 && amount > 0) {
+    amountDisplay = toFixed(amount, 2);
+  } else if (formatsi) {
+    amountDisplay = formatSiUnit(amount, 0);
+  } else if (formatmoney) {
+    amountDisplay = formatMoney(amount);
+  } else {
+    amountDisplay = amount;
+  }
+
+
   return (
     <Flex
       direction="column"
@@ -372,9 +386,7 @@ const MaterialAmount = (props, context) => {
         <Box
           textColor={color}
           style={{ "text-align": "center" }}>
-          {(formatsi && formatSiUnit(amount, 0))
-          || (formatmoney && formatMoney(amount))
-          || (amount)}
+          {amountDisplay}
         </Box>
       </Flex.Item>
     </Flex>
@@ -507,13 +519,13 @@ const PartLists = (props, context) => {
           forceShow
           placeholder="No matching results..." />
       )) || (
-        Object.keys(partsList).map(category => (
-          <PartCategory
-            key={category}
-            name={category}
-            parts={partsList[category]} />
-        ))
-      )}
+          Object.keys(partsList).map(category => (
+            <PartCategory
+              key={category}
+              name={category}
+              parts={partsList[category]} />
+          ))
+        )}
     </Fragment>
   );
 };
@@ -559,7 +571,7 @@ const PartCategory = (props, context) => {
               <Flex.Item>
                 <Button
                   disabled={buildingPart
-                  || (part.format.textColor === COLOR_BAD)}
+                    || (part.format.textColor === COLOR_BAD)}
                   color="good"
                   height="20px"
                   mr={1}
@@ -590,8 +602,8 @@ const PartCategory = (props, context) => {
                   height="20px"
                   tooltip={
                     "Build Time: "
-                  + part.printTime + "s. "
-                  + (part.desc || "")
+                    + part.printTime + "s. "
+                    + (part.desc || "")
                   }
                   tooltipPosition="left" />
               </Flex.Item>
@@ -662,12 +674,12 @@ const Queue = (props, context) => {
                   icon="stop"
                   onClick={() => act("stop_queue")} />
               )) || (
-                <Button
-                  disabled={!queue.length}
-                  content="Build Queue"
-                  icon="play"
-                  onClick={() => act("build_queue")} />
-              )}
+                  <Button
+                    disabled={!queue.length}
+                    content="Build Queue"
+                    icon="play"
+                    onClick={() => act("build_queue")} />
+                )}
             </Fragment>
           }>
           <Flex
@@ -760,7 +772,7 @@ const QueueList = (props, context) => {
               mr={1}
               icon="minus-circle"
               color="bad"
-              onClick={() => act("del_queue_part", { index: index+1 })} />
+              onClick={() => act("del_queue_part", { index: index + 1 })} />
           </Flex.Item>
           <Flex.Item>
             <Box
@@ -817,7 +829,7 @@ const BeingBuilt = (props, context) => {
       printTime,
     } = buildingPart;
 
-    const timeLeft = Math.ceil(duration/10);
+    const timeLeft = Math.ceil(duration / 10);
 
     return (
       <Box>
