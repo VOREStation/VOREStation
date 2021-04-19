@@ -88,9 +88,9 @@
 	desc = "The Zorren are the remnants of an ancient precursor which resided in the Coreward Periphery 3000 to 4000 \
 	years ago, residing on a planet called “Menhir”, which we call Virgo 4. Zorren organise themselves through various \
 	feudal-styled kingdoms and monarchies, of which the most prominent is the Kingdom of An-Tahk-Et. They are obsessed \
-	over their ancient heritage and the power of the noble houses comes through the control and excavation of old \
-	technology of their precursors, leading to a massive divide between commoners, who live as serfs and the nobility, \
-	who in comparable conditions as wealthy members of the Diaspora."
+	over their ancient heritage and the power of the noble houses comes through the control and excavation of old technology \
+	of their precursors, leading to a massive divide between commoners, who live as serfs and the nobility, who live in \
+	comparable conditions as wealthy members of the Diaspora."
 	value = CATALOGUER_REWARD_TRIVIAL
 
 /datum/category_item/catalogue/fauna/shadekin
