@@ -579,12 +579,12 @@
 /turf/simulated/floor,
 /area/maintenance/cargo)
 "abj" = (
-/obj/structure/catwalk,
-/obj/machinery/light/small{
+/obj/machinery/atmospherics/unary/engine{
 	dir = 1
 	},
-/turf/simulated/floor,
-/area/maintenance/station/ai)
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/excursion/general)
 "abk" = (
 /obj/structure/railing,
 /obj/machinery/light/small{
@@ -3503,12 +3503,13 @@
 /turf/simulated/floor/tiled/white,
 /area/security/security_bathroom)
 "agr" = (
-/obj/machinery/atmospherics/unary/engine{
-	dir = 1
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_l"
 	},
-/turf/space,
+/turf/simulated/floor/tiled/asteroid_steel/airless,
 /turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/excursion/general)
+/area/shuttle/mining_outpost/shuttle)
 "ags" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -3531,20 +3532,12 @@
 /area/crew_quarters/medical_restroom)
 "agu" = (
 /obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
-	},
-/turf/simulated/floor/tiled/asteroid_steel/airless,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/mining_outpost/shuttle)
-"agv" = (
-/obj/structure/shuttle/engine/propulsion{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/asteroid_steel/airless,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/mining_outpost/shuttle)
-"agw" = (
+"agv" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8;
 	icon_state = "propulsion_r"
@@ -36165,7 +36158,7 @@ aUJ
 aXb
 afT
 aez
-agr
+abj
 ams
 aXq
 abe
@@ -36307,7 +36300,7 @@ wRt
 eug
 afT
 aeG
-agr
+abj
 ams
 aXq
 abe
@@ -37443,7 +37436,7 @@ ikk
 efQ
 wPF
 aeG
-agr
+abj
 ams
 aSx
 krj
@@ -37585,7 +37578,7 @@ iEV
 tEV
 xiw
 aeH
-agr
+abj
 ams
 eAm
 abe
@@ -37878,7 +37871,7 @@ abe
 abe
 adV
 aSi
-abj
+aib
 aib
 aib
 agJ
@@ -39622,11 +39615,11 @@ avt
 avt
 adD
 aZS
+agr
+agu
+agu
 agu
 agv
-agv
-agv
-agw
 baB
 adD
 avt

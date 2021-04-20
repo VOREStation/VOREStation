@@ -61,7 +61,7 @@
 	character_name = list("Xander Bevin")
 
 /datum/gear/fluff/charlotte_cigarettes
-	path = /obj/item/weapon/storage/fancy/cigarettes/charlotte
+	path = /obj/item/weapon/storage/fancy/fluff/charlotte
 	display_name = "Charlotte's cigarette case"
 	ckeywhitelist = list("alfalah")
 	character_name = list("Charlotte Graves")
@@ -104,6 +104,12 @@
 /datum/gear/fluff/astra_medal
 	path = /obj/item/clothing/accessory/medal/conduct
 	display_name = "Astra's Conduct Medal"
+	ckeywhitelist = list("astraether")
+	character_name = list("Astra Ether")
+
+/datum/gear/fluff/astra_medal_2
+	path = /obj/item/clothing/accessory/medal/silver/unity
+	display_name = "Astra's Unity Medal"
 	ckeywhitelist = list("astraether")
 	character_name = list("Astra Ether")
 
