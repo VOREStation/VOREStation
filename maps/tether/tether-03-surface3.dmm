@@ -2101,23 +2101,9 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/processing)
 "adh" = (
-/obj/machinery/papershredder,
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/floor_decal/borderfloor{
-	dir = 10
-	},
-/obj/effect/floor_decal/corner/red/border{
-	dir = 10
-	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 8
-	},
-/obj/effect/floor_decal/corner/red/bordercorner2{
-	dir = 8
-	},
-/turf/simulated/floor/tiled,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor/plating,
 /area/tether/surfacebase/security/iaa/officecommon)
 "adi" = (
 /obj/machinery/door/airlock/glass_security{
@@ -3988,17 +3974,29 @@
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/surface_three_hall)
 "afO" = (
-/obj/machinery/door/airlock{
-	name = "Unit 1"
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/button/remote/airlock{
+	id = "bathroomlock16";
+	name = "Bathroom Lock";
+	pixel_x = -20;
+	pixel_y = -20;
+	specialfunctions = 4
 	},
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/recreation_area_restroom)
+/area/crew_quarters/captain)
 "afP" = (
-/obj/machinery/door/airlock{
-	name = "Unit 2"
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/command{
+	id_tag = "bathroomlock16";
+	name = "Private Restroom"
 	},
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/recreation_area_restroom)
+/area/crew_quarters/captain)
 "afQ" = (
 /obj/machinery/door/airlock{
 	name = "Unit 3"
@@ -13547,12 +13545,12 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/captain)
 "awk" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 6
+/obj/machinery/door/airlock{
+	id_tag = "bathroomlock14";
+	name = "Recreation Toilet 1"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/captain)
+/area/crew_quarters/recreation_area_restroom)
 "awl" = (
 /obj/structure/toilet{
 	dir = 8
@@ -13913,11 +13911,9 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/recreation_area_restroom)
 "awM" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/structure/toilet{
-	dir = 1
+/obj/machinery/door/airlock{
+	id_tag = "bathroomlock15";
+	name = "Recreation Toilet 2"
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/recreation_area_restroom)
@@ -14161,16 +14157,21 @@
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
 "axf" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock/command{
-	name = "Private Restroom";
-	req_access = newlist();
-	req_one_access = newlist()
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/structure/toilet{
+	dir = 1
+	},
+/obj/machinery/button/remote/airlock{
+	id = "bathroomlock14";
+	name = "Recreation Toilet 1 Lock";
+	pixel_x = -20;
+	pixel_y = 10;
+	specialfunctions = 4
 	},
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/captain)
+/area/crew_quarters/recreation_area_restroom)
 "axg" = (
 /turf/simulated/wall,
 /area/library)
@@ -29221,10 +29222,21 @@
 /turf/simulated/floor/plating,
 /area/rnd/research_storage)
 "aXI" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tether)
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/structure/toilet{
+	dir = 1
+	},
+/obj/machinery/button/remote/airlock{
+	id = "bathroomlock15";
+	name = "Recreation Toilet 2 Lock";
+	pixel_x = -20;
+	pixel_y = 10;
+	specialfunctions = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/recreation_area_restroom)
 "aXJ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -29273,18 +29285,57 @@
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
 "aXN" = (
-/obj/machinery/atmospherics/unary/engine{
+/obj/machinery/door/airlock{
+	id_tag = "bathroomlock17";
+	name = "Bar Toilet 1"
+	},
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/barrestroom)
+"aXO" = (
+/obj/structure/toilet{
+	dir = 8
+	},
+/obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tourbus/general)
+/obj/machinery/button/remote/airlock{
+	id = "bathroomlock18";
+	name = "Bar Toilet 2 Lock";
+	pixel_x = -10;
+	pixel_y = 22;
+	specialfunctions = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/barrestroom)
 "aXP" = (
 /obj/structure/disposalpipe/up{
 	dir = 8
 	},
 /turf/simulated/floor/plating,
 /area/rnd/research_storage)
+"aXQ" = (
+/obj/structure/toilet{
+	dir = 8
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/button/remote/airlock{
+	id = "bathroomlock17";
+	name = "Bar Toilet 1 Lock";
+	pixel_x = -10;
+	pixel_y = 22;
+	specialfunctions = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/barrestroom)
+"aXR" = (
+/obj/machinery/door/airlock{
+	id_tag = "bathroomlock18";
+	name = "Bar Toilet 2"
+	},
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/barrestroom)
 "aXS" = (
 /obj/structure/bed/chair/comfy,
 /obj/machinery/camera/network/civilian,
@@ -29476,6 +29527,25 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/bridge)
+"aYk" = (
+/obj/machinery/papershredder,
+/obj/machinery/light{
+	dir = 2
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/red/border{
+	dir = 10
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/red/bordercorner2{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/security/iaa/officecommon)
 "aYl" = (
 /obj/structure/lattice,
 /obj/structure/disposalpipe/down,
@@ -29910,6 +29980,11 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/rnd/outpost/xenobiology/outpost_first_aid)
+"aZg" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tether)
 "aZh" = (
 /obj/machinery/door/airlock/glass_command{
 	name = "Bridge";
@@ -30878,6 +30953,13 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
+"baI" = (
+/obj/machinery/atmospherics/unary/engine{
+	dir = 1
+	},
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tourbus/general)
 "baJ" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -32603,12 +32685,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/barbackmaintenance)
-"bdL" = (
-/obj/machinery/door/airlock{
-	name = "Unit 1"
-	},
-/turf/simulated/floor/tiled/white,
-/area/crew_quarters/barrestroom)
 "bdM" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -32739,15 +32815,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
-"bef" = (
-/obj/structure/toilet{
-	dir = 8
-	},
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/white,
-/area/crew_quarters/barrestroom)
 "beg" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -32816,12 +32883,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
-"bel" = (
-/obj/machinery/door/airlock{
-	name = "Unit 2"
-	},
-/turf/simulated/floor/tiled/white,
-/area/crew_quarters/barrestroom)
 "bem" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -51451,7 +51512,7 @@ aac
 fzy
 fzy
 aTY
-fzy
+adh
 jYD
 vEm
 waR
@@ -51593,7 +51654,7 @@ aac
 fzy
 aeq
 afn
-adh
+aYk
 jYD
 efR
 vkv
@@ -51902,8 +51963,8 @@ aiD
 afj
 rAe
 sla
-afP
-awM
+awk
+axf
 afj
 arn
 aEi
@@ -52186,8 +52247,8 @@ aiG
 afj
 aqD
 awo
-afO
 awM
+aXI
 afj
 arn
 afh
@@ -54356,7 +54417,7 @@ jML
 jHw
 jpB
 aVJ
-aXN
+baI
 aKU
 aOI
 aPb
@@ -55014,8 +55075,8 @@ ajR
 akn
 alj
 aqc
-awk
-axf
+afO
+afP
 aZl
 aZx
 aZL
@@ -55208,7 +55269,7 @@ caw
 jHw
 gHh
 aVJ
-aXN
+baI
 aKU
 aOI
 aKj
@@ -57193,7 +57254,7 @@ aNk
 uSA
 aNJ
 aNP
-aXI
+aZg
 aKU
 abg
 aOk
@@ -57335,7 +57396,7 @@ aNl
 aNl
 aNK
 aNP
-aXI
+aZg
 aKU
 abg
 aOk
@@ -57477,7 +57538,7 @@ aNm
 aNl
 aNK
 aNP
-aXI
+aZg
 aKU
 abg
 aOk
@@ -59737,9 +59798,9 @@ aJt
 aGx
 aTE
 aGK
-bdL
+aXN
 aGK
-bel
+aXR
 aGK
 bfM
 aGK
@@ -59879,9 +59940,9 @@ aJt
 aQf
 aTE
 aGK
-bef
+aXQ
 aGK
-bef
+aXO
 aGK
 bfN
 aGK

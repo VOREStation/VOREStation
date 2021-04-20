@@ -1570,6 +1570,13 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
+/obj/machinery/button/remote/airlock{
+	id = "bathroomlock25";
+	name = "Security Toilet Lock";
+	pixel_x = -20;
+	pixel_y = -10;
+	specialfunctions = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/security/security_bathroom)
 "ade" = (
@@ -3488,13 +3495,41 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/excursion/general)
 "agq" = (
+/obj/machinery/door/airlock/security{
+	id_tag = "bathroomlock25";
+	name = "Security Restroom";
+	req_one_access = list(1,38)
+	},
+/turf/simulated/floor/tiled/white,
+/area/security/security_bathroom)
+"agr" = (
 /obj/machinery/atmospherics/unary/engine{
 	dir = 1
 	},
 /turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/excursion/general)
-"agr" = (
+"ags" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/machinery/button/remote/airlock{
+	id = "bathroomlock26";
+	name = "Medical Toilet Lock";
+	pixel_x = -20;
+	pixel_y = -10;
+	specialfunctions = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/medical_restroom)
+"agt" = (
+/obj/machinery/door/airlock/medical{
+	id_tag = "bathroomlock26";
+	name = "Rest Room"
+	},
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/medical_restroom)
+"agu" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8;
 	icon_state = "propulsion_l"
@@ -3502,14 +3537,14 @@
 /turf/simulated/floor/tiled/asteroid_steel/airless,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/mining_outpost/shuttle)
-"ags" = (
+"agv" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/asteroid_steel/airless,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/mining_outpost/shuttle)
-"agt" = (
+"agw" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8;
 	icon_state = "propulsion_r"
@@ -21056,12 +21091,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/medical_restroom)
-"aZx" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/white,
-/area/crew_quarters/medical_restroom)
 "aZy" = (
 /obj/structure/bed/chair/bay/shuttle{
 	dir = 1
@@ -31353,8 +31382,8 @@ aab
 aab
 aKE
 aQf
-aZx
-aMd
+ags
+agt
 aZu
 aTf
 aKE
@@ -34569,7 +34598,7 @@ abw
 aaB
 adS
 add
-aSX
+agq
 aST
 aew
 aUT
@@ -36136,7 +36165,7 @@ aUJ
 aXb
 afT
 aez
-agq
+agr
 ams
 aXq
 abe
@@ -36278,7 +36307,7 @@ wRt
 eug
 afT
 aeG
-agq
+agr
 ams
 aXq
 abe
@@ -37414,7 +37443,7 @@ ikk
 efQ
 wPF
 aeG
-agq
+agr
 ams
 aSx
 krj
@@ -37556,7 +37585,7 @@ iEV
 tEV
 xiw
 aeH
-agq
+agr
 ams
 eAm
 abe
@@ -39593,11 +39622,11 @@ avt
 avt
 adD
 aZS
-agr
-ags
-ags
-ags
-agt
+agu
+agv
+agv
+agv
+agw
 baB
 adD
 avt

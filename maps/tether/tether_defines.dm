@@ -164,9 +164,9 @@
 		)
 
 	lateload_single_pick = list(
-		list("Carp Farm"),
-		list("Snow Field"),
-		list("Listening Post")
+		//list("Carp Farm"),
+		//list("Snow Field"),
+		//list("Listening Post")
 		)
 
 	ai_shell_restricted = TRUE
