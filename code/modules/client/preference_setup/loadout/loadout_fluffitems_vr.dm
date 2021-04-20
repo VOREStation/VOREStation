@@ -95,17 +95,17 @@
 	character_name = list("Aronai Sieyes")
 
 /datum/gear/fluff/astra_ritualknife
-    path = /obj/item/weapon/material/knife/ritual/fluff/astra
-    display_name = "Polished Ritual Knife"
-    description = "A well kept strange ritual knife, There is a small tag with the name 'Astra Ether' on it. They are probably looking for this."
-    ckeywhitelist = list("astraether")
-    character_name = list("Astra Ether")
+	path = /obj/item/weapon/material/knife/ritual/fluff/astra
+	display_name = "Polished Ritual Knife"
+	description = "A well kept strange ritual knife, There is a small tag with the name 'Astra Ether' on it. They are probably looking for this."
+	ckeywhitelist = list("astraether")
+	character_name = list("Astra Ether")
 
 /datum/gear/fluff/astra_medal
 	path = /obj/item/clothing/accessory/medal/conduct
 	display_name = "Astra's Conduct Medal"
-    ckeywhitelist = list("astraether")
-    character_name = list("Astra Ether")
+	ckeywhitelist = list("astraether")
+	character_name = list("Astra Ether")
 
 /datum/gear/fluff/collar/azura
 	path = /obj/item/clothing/accessory/collar/azura
