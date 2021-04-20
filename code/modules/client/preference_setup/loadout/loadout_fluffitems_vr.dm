@@ -107,6 +107,12 @@
 	ckeywhitelist = list("astraether")
 	character_name = list("Astra Ether")
 
+/datum/gear/fluff/astra_medal_2
+	path = /obj/item/clothing/accessory/medal/silver/unity
+	display_name = "Astra's Unity Medal"
+	ckeywhitelist = list("astraether")
+	character_name = list("Astra Ether")
+
 /datum/gear/fluff/collar/azura
 	path = /obj/item/clothing/accessory/collar/azura
 	display_name = "collar, Azura"
