@@ -576,6 +576,13 @@
 	character_name = list("Ashley Kifer")
 
 //  L CKEYS
+
+/datum/gear/fluff/kenzie_medal
+	path = /obj/item/clothing/accessory/medal/conduct
+	display_name = "Kenzie's Conduct Medal"
+	ckeywhitelist = list("lm40")
+	character_name = list("Kenzie Houser")
+
 /datum/gear/fluff/kenzie_hypospray
 	path = /obj/item/weapon/reagent_containers/hypospray/vial/kenzie
 	display_name = "Kenzie's Hypospray"
