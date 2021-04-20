@@ -5531,7 +5531,8 @@
 /area/maintenance/lower/public_garden_maintenence/upper)
 "aiF" = (
 /obj/machinery/door/airlock{
-	name = "Restroom"
+	id_tag = "bathroomlock12";
+	name = "Surface Recovery Toilet 1"
 	},
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled/white,
@@ -5587,6 +5588,13 @@
 	},
 /obj/machinery/light/small{
 	dir = 1
+	},
+/obj/machinery/button/remote/airlock{
+	id = "bathroomlock12";
+	name = "Surface Recovery Toilet 1 Lock";
+	pixel_x = -10;
+	pixel_y = 22;
+	specialfunctions = 4
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/recoveryward)
@@ -6173,15 +6181,10 @@
 /area/tether/surfacebase/medical/recoveryward)
 "ajC" = (
 /obj/machinery/door/airlock{
-	name = "Restroom"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
+	id_tag = "bathroomlock13";
+	name = "Surface Recovery Toilet 2"
 	},
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/recoveryward)
 "ajD" = (
@@ -6802,12 +6805,21 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/uppersouthstairwell)
 "akH" = (
-/obj/machinery/door/airlock{
-	name = "Restroom"
+/obj/structure/toilet{
+	dir = 8
 	},
-/obj/machinery/door/firedoor/glass,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/button/remote/airlock{
+	id = "bathroomlock13";
+	name = "Surface Recovery Toilet 2 Lock";
+	pixel_x = -10;
+	pixel_y = 22;
+	specialfunctions = 4
+	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/uppersouthstairwell)
+/area/tether/surfacebase/medical/recoveryward)
 "akI" = (
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 6
@@ -7592,7 +7604,8 @@
 /area/tether/surfacebase/medical/uppersouthstairwell)
 "alS" = (
 /obj/machinery/door/airlock{
-	name = "Restroom"
+	id_tag = "bathroomlock10";
+	name = "Surface Toilet 1"
 	},
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled/white,
@@ -7603,6 +7616,13 @@
 	},
 /obj/machinery/light/small{
 	dir = 4
+	},
+/obj/machinery/button/remote/airlock{
+	id = "bathroomlock10";
+	name = "Surface Medbay Toilet 1 Lock";
+	pixel_x = -10;
+	pixel_y = 22;
+	specialfunctions = 4
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/bathroom)
@@ -10926,15 +10946,19 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/security/brig/bathroom)
 "ary" = (
-/obj/structure/toilet,
-/obj/effect/landmark/start{
-	name = "Security Officer"
+/obj/machinery/door/airlock{
+	id_tag = "bathroomlock7";
+	name = "Restroom"
 	},
-/obj/machinery/light/small{
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/security/brig/bathroom)
+/area/tether/surfacebase/medical/recoveryward)
 "arz" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 4
@@ -24228,6 +24252,14 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/south)
+"aRe" = (
+/obj/machinery/door/airlock{
+	id_tag = "bathroomlock7";
+	name = "Restroom"
+	},
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/recoveryward)
 "aRf" = (
 /obj/effect/floor_decal/rust,
 /obj/random/drinkbottle,
@@ -24794,6 +24826,14 @@
 /obj/machinery/shieldgen,
 /turf/simulated/floor/plating,
 /area/engineering/atmos/storage)
+"aSg" = (
+/obj/machinery/door/airlock{
+	id_tag = "bathroomlock11";
+	name = "Surface Medbay Toilet 2"
+	},
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/bathroom)
 "aSh" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 4
@@ -24816,6 +24856,30 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/engineering/pumpstation)
+"aSj" = (
+/obj/structure/toilet{
+	dir = 8
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/button/remote/airlock{
+	id = "bathroomlock11";
+	name = "Surface Medbay Toilet 2 Lock";
+	pixel_x = -10;
+	pixel_y = 22;
+	specialfunctions = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/bathroom)
+"aSk" = (
+/obj/machinery/door/airlock{
+	id_tag = "bathroomlock7";
+	name = "Restroom"
+	},
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/bathroom)
 "aSl" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -24882,6 +24946,28 @@
 /obj/random/maintenance/clean,
 /turf/simulated/floor,
 /area/maintenance/lower/south)
+"aSr" = (
+/obj/machinery/door/airlock{
+	id_tag = "bathroomlock7";
+	name = "Restroom"
+	},
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/uppersouthstairwell)
+"aSs" = (
+/obj/structure/toilet,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/button/remote/airlock{
+	id = "bathroomlock9";
+	name = "Surface Security Toilet Lock";
+	pixel_x = -20;
+	pixel_y = -10;
+	specialfunctions = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/security/brig/bathroom)
 "aSt" = (
 /obj/structure/cable/green{
 	icon_state = "0-4"
@@ -24907,6 +24993,29 @@
 /obj/machinery/door/airlock/maintenance/common,
 /turf/simulated/floor/plating,
 /area/maintenance/asmaint2)
+"aSw" = (
+/obj/machinery/door/airlock/security{
+	id_tag = "bathroomlock9";
+	name = "Surface Security Toilet";
+	req_one_access = list(1,38)
+	},
+/obj/machinery/door/firedoor,
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/security/brig/bathroom)
+"aSx" = (
+/obj/machinery/door/airlock{
+	id_tag = "bathroomlock18";
+	name = "Bar Toilet 2"
+	},
+/turf/simulated/floor/tiled/white,
+/area/rnd/breakroom/bathroom)
+"aSy" = (
+/obj/machinery/door/airlock{
+	id_tag = "bathroomlock8";
+	name = "Research Toilet"
+	},
+/turf/simulated/floor/tiled/white,
+/area/rnd/breakroom/bathroom)
 "aSz" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/green{
@@ -25130,6 +25239,20 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/plating,
 /area/engineering/atmos/storage)
+"aSU" = (
+/obj/structure/toilet{
+	dir = 1
+	},
+/obj/machinery/light/small,
+/obj/machinery/button/remote/airlock{
+	id = "bathroomlock8";
+	name = "Research Toilet Lock";
+	pixel_x = -20;
+	pixel_y = 10;
+	specialfunctions = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/rnd/breakroom/bathroom)
 "aSV" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/plating,
@@ -27458,18 +27581,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/janitor)
-"aXs" = (
-/obj/machinery/door/airlock{
-	name = "Unit 2"
-	},
-/turf/simulated/floor/tiled/white,
-/area/rnd/breakroom/bathroom)
-"aXt" = (
-/obj/machinery/door/airlock{
-	name = "Unit 1"
-	},
-/turf/simulated/floor/tiled/white,
-/area/rnd/breakroom/bathroom)
 "aXu" = (
 /obj/machinery/alarm{
 	pixel_y = 22
@@ -27740,13 +27851,6 @@
 "aXZ" = (
 /obj/machinery/light/small,
 /obj/machinery/recharge_station,
-/turf/simulated/floor/tiled/white,
-/area/rnd/breakroom/bathroom)
-"aYa" = (
-/obj/structure/toilet{
-	dir = 1
-	},
-/obj/machinery/light/small,
 /turf/simulated/floor/tiled/white,
 /area/rnd/breakroom/bathroom)
 "aYb" = (
@@ -41955,8 +42059,8 @@ agr
 aom
 apA
 aqF
-ary
-asz
+aSs
+aSw
 atM
 auo
 avk
@@ -42713,7 +42817,7 @@ aUm
 aVc
 aVH
 aWD
-aXs
+aSx
 aXZ
 aUm
 ayZ
@@ -42997,8 +43101,8 @@ aPJ
 aVe
 aVJ
 aWD
-aXt
-aYa
+aSy
+aSU
 aUm
 aZb
 aAf
@@ -49192,9 +49296,9 @@ aiP
 akq
 alS
 akq
-alS
+aSg
 akq
-alS
+aSk
 akq
 abp
 bpC
@@ -49334,7 +49438,7 @@ ajz
 akq
 alT
 akq
-alT
+aSj
 akq
 atb
 akq
@@ -49478,7 +49582,7 @@ aar
 aar
 aiK
 aiK
-akH
+aSr
 aiK
 aiK
 aiK
@@ -51178,7 +51282,7 @@ adi
 adi
 adi
 ahN
-ajC
+ary
 ahN
 ahN
 ahN
@@ -51745,9 +51849,9 @@ adt
 ahN
 aiF
 ahN
-aiF
+ajC
 ahN
-aiF
+aRe
 ahN
 abh
 auL
@@ -51887,7 +51991,7 @@ adt
 ahN
 aiI
 ahN
-aiI
+akH
 ahN
 aoH
 ahN
