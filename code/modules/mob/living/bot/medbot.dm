@@ -12,10 +12,7 @@
 #define MEDBOT_MAX_INJECTION 15
 #define MEDBOT_MIN_HEAL 0.1
 #define MEDBOT_MAX_HEAL 75
-<<<<<<< HEAD
 
-=======
->>>>>>> 6526ca1... Updates all bots to use TGUI, and adds mute button for certain bots (#8035)
 /mob/living/bot/medbot
 	name = "Medibot"
 	desc = "A little medical robot. He looks somewhat underwhelmed."
@@ -274,11 +271,7 @@
 	
 	usr.set_machine(src)
 	add_fingerprint(usr)
-<<<<<<< HEAD
 	
-=======
-
->>>>>>> 6526ca1... Updates all bots to use TGUI, and adds mute button for certain bots (#8035)
 	. = TRUE
 	switch(action)
 		if("power")
@@ -318,10 +311,6 @@
 		if("declaretreatment")
 			declare_treatment = !declare_treatment
 			. = TRUE
-<<<<<<< HEAD
-
-=======
->>>>>>> 6526ca1... Updates all bots to use TGUI, and adds mute button for certain bots (#8035)
 
 /mob/living/bot/medbot/emag_act(var/remaining_uses, var/mob/user)
 	. = ..()

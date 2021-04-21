@@ -70,19 +70,6 @@
 		ui.open()
 
 /mob/living/bot/mulebot/tgui_data(mob/user)
-<<<<<<< HEAD
-	var/list/data = list(
-		"suffix" = suffix,
-		"power" = on,
-		"issilicon" = issilicon(user),
-		"load" = load,
-		"locked" = locked,
-		"auto_return" = auto_return,
-		"crates_only" = crates_only,
-		"hatch" = open,
-		"safety" = safety,
-	)
-=======
 	var/list/data = ..()
 	data["suffix"] = suffix
 	data["power"] = on
@@ -93,7 +80,6 @@
 	data["crates_only"] = crates_only
 	data["hatch"] = open
 	data["safety"] = safety
->>>>>>> 6526ca1... Updates all bots to use TGUI, and adds mute button for certain bots (#8035)
 	return data
 
 /mob/living/bot/mulebot/tgui_act(action, params)
