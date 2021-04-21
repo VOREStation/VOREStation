@@ -27,6 +27,7 @@
 	name = "laser"
 	icon_state = "laser"
 	damage = 0
+	excavation_amount = 0
 	damage_type = BURN
 	check_armour = "laser"
 	eyeblur = 2
@@ -159,6 +160,7 @@
 	name = "lasertag beam"
 	damage = 0
 	eyeblur = 0
+	excavation_amount = 0
 	no_attack_log = 1
 	damage_type = BURN
 	check_armour = "laser"
