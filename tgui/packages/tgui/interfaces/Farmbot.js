@@ -93,8 +93,7 @@ export const Farmbot = (props, context) => {
                 </LabeledList.Item>
               </LabeledList>
             </Section>
-            {/* VOREStation Edit: No automatic hydroponics with the lagbot */}
-            {/* <Section level={2} title="Plant controls">
+            <Section level={2} title="Plant controls">
               <LabeledList>
                 <LabeledList.Item label="Collect produce">
                   <Button
@@ -113,8 +112,7 @@ export const Farmbot = (props, context) => {
                   </Button>
                 </LabeledList.Item>
               </LabeledList>
-            </Section> */}
-            {/* VOREStation Edit End */}
+            </Section>
           </Section>
         ) || null}
       </Window.Content>

@@ -10,6 +10,7 @@
 	wait_if_pulled = 1
 	min_target_dist = 0
 
+	var/vocal = 1
 	var/cleaning = 0
 	var/wet_floors = 0
 	var/spray_blood = 0
@@ -26,7 +27,11 @@
 	return ..()
 
 /mob/living/bot/cleanbot/handleIdle()
+<<<<<<< HEAD
 	if(!wet_floors && !spray_blood && prob(2))
+=======
+	if(!wet_floors && !spray_blood && vocal && prob(2))
+>>>>>>> 6526ca1... Updates all bots to use TGUI, and adds mute button for certain bots (#8035)
 		custom_emote(2, "makes an excited booping sound!")
 		playsound(src, 'sound/machines/synth_yes.ogg', 50, 0)
 
@@ -163,20 +168,34 @@
 	data["on"] = on
 	data["open"] = open
 	data["locked"] = locked
+<<<<<<< HEAD
 
 	data["blood"] = blood
 	data["patrol"] = will_patrol
+=======
+	
+	data["blood"] = blood
+	data["patrol"] = will_patrol
+	data["vocal"] = vocal
+>>>>>>> 6526ca1... Updates all bots to use TGUI, and adds mute button for certain bots (#8035)
 
 	data["wet_floors"] = wet_floors
 	data["spray_blood"] = spray_blood
 	data["version"] = "v2.0"
 	return data
 
+<<<<<<< HEAD
 /mob/living/bot/cleanbot/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return TRUE
 	usr.set_machine(src)
 	add_fingerprint(usr)
+=======
+mob/living/bot/cleanbot/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	if(..())
+		return TRUE
+	usr.set_machine(src)
+>>>>>>> 6526ca1... Updates all bots to use TGUI, and adds mute button for certain bots (#8035)
 	switch(action)
 		if("start")
 			if(on)
@@ -192,6 +211,12 @@
 			will_patrol = !will_patrol
 			patrol_path = null
 			. = TRUE
+<<<<<<< HEAD
+=======
+		if("vocal")
+			vocal = !vocal
+			. = TRUE
+>>>>>>> 6526ca1... Updates all bots to use TGUI, and adds mute button for certain bots (#8035)
 		if("wet_floors")
 			wet_floors = !wet_floors
 			to_chat(usr, "<span class='notice'>You twiddle the screw.</span>")

@@ -35,6 +35,7 @@
 	if(!ui)
 		ui = new(user, src, "Farmbot", name)
 		ui.open()
+<<<<<<< HEAD
 
 /mob/living/bot/farmbot/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
@@ -65,6 +66,38 @@
 
 
 /mob/living/bot/farmbot/attack_hand(mob/user)
+=======
+
+/mob/living/bot/farmbot/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
+
+	data["on"] = on
+	data["tank"] = !!tank
+	if(tank)
+		data["tankVolume"] = tank.reagents.total_volume
+		data["tankMaxVolume"] = tank.reagents.maximum_volume
+	data["locked"] = locked
+
+	data["waters_trays"] = null
+	data["refills_water"] = null
+	data["uproots_weeds"] = null
+	data["replaces_nutriment"] = null
+	data["collects_produce"] = null
+	data["removes_dead"] = null
+
+	if(!locked)
+		data["waters_trays"] = waters_trays
+		data["refills_water"] = refills_water
+		data["uproots_weeds"] = uproots_weeds
+		data["replaces_nutriment"] = replaces_nutriment
+		data["collects_produce"] = collects_produce
+		data["removes_dead"] = removes_dead
+	
+	return data
+
+
+mob/living/bot/farmbot/attack_hand(mob/user)
+>>>>>>> 6526ca1... Updates all bots to use TGUI, and adds mute button for certain bots (#8035)
 	. = ..()
 	if(.)
 		return
@@ -83,6 +116,7 @@
 /mob/living/bot/farmbot/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return TRUE
+<<<<<<< HEAD
 
 	add_fingerprint(usr)
 
@@ -95,10 +129,28 @@
 			else
 				turn_on()
 			. = TRUE
+=======
+	
+	add_fingerprint(usr)
+>>>>>>> 6526ca1... Updates all bots to use TGUI, and adds mute button for certain bots (#8035)
 
+	switch(action)
+		if("power")
+			if(!access_scanner.allowed(src))
+				return FALSE
+			if(on)
+				turn_off()
+			else
+				turn_on()
+			. = TRUE
+	
 	if(locked)
 		return TRUE
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> 6526ca1... Updates all bots to use TGUI, and adds mute button for certain bots (#8035)
 	switch(action)
 		if("water")
 			waters_trays = !waters_trays
@@ -112,6 +164,7 @@
 		if("replacenutri")
 			replaces_nutriment = !replaces_nutriment
 			. = TRUE
+<<<<<<< HEAD
 		// VOREStation Edit: No automatic hydroponics
 		// if("collect")
 		// 	collects_produce = !collects_produce
@@ -121,6 +174,14 @@
 		// 	. = TRUE
 		// VOREStation Edit End
 
+=======
+		if("collect")
+			collects_produce = !collects_produce
+			. = TRUE
+		if("removedead")
+			removes_dead = !removes_dead
+			. = TRUE
+>>>>>>> 6526ca1... Updates all bots to use TGUI, and adds mute button for certain bots (#8035)
 
 /mob/living/bot/farmbot/update_icons()
 	if(on && action)

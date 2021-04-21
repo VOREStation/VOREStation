@@ -12,6 +12,7 @@
 	wait_if_pulled = 1
 	min_target_dist = 0
 
+	var/vocal = 1
 	var/amount = 10 // 1 for tile, 2 for lattice
 	var/maxAmount = 60
 	var/tilemake = 0 // When it reaches 100, bot makes a tile
@@ -41,7 +42,12 @@
 	data["on"] = on
 	data["open"] = open
 	data["locked"] = locked
+<<<<<<< HEAD
 
+=======
+	
+	data["vocal"] = vocal
+>>>>>>> 6526ca1... Updates all bots to use TGUI, and adds mute button for certain bots (#8035)
 	data["amount"] = amount
 
 	data["possible_bmode"] = list("NORTH", "EAST", "SOUTH", "WEST")
@@ -56,7 +62,11 @@
 		data["eattiles"] = eattiles
 		data["maketiles"] = maketiles
 		data["bmode"] = dir2text(targetdirection)
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> 6526ca1... Updates all bots to use TGUI, and adds mute button for certain bots (#8035)
 	return data
 
 /mob/living/bot/floorbot/attack_hand(var/mob/user)
@@ -74,8 +84,13 @@
 /mob/living/bot/floorbot/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return TRUE
+<<<<<<< HEAD
 
 	add_fingerprint(usr)
+=======
+	
+	add_fingerprint(src)
+>>>>>>> 6526ca1... Updates all bots to use TGUI, and adds mute button for certain bots (#8035)
 
 	switch(action)
 		if("start")
@@ -84,11 +99,21 @@
 			else
 				turn_on()
 			. = TRUE
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> 6526ca1... Updates all bots to use TGUI, and adds mute button for certain bots (#8035)
 	if(locked && !issilicon(usr))
 		return
 
 	switch(action)
+<<<<<<< HEAD
+=======
+		if("vocal")
+			vocal = !vocal
+			. = TRUE
+>>>>>>> 6526ca1... Updates all bots to use TGUI, and adds mute button for certain bots (#8035)
 		if("improve")
 			improvefloors = !improvefloors
 			. = TRUE
@@ -101,6 +126,10 @@
 		if("bridgemode")
 			targetdirection = text2dir(params["dir"])
 			. = TRUE
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6526ca1... Updates all bots to use TGUI, and adds mute button for certain bots (#8035)
 
 /mob/living/bot/floorbot/handleRegular()
 	++tilemake
@@ -108,7 +137,7 @@
 		tilemake = 0
 		addTiles(1)
 
-	if(prob(1))
+	if(vocal && prob(1))
 		custom_emote(2, "makes an excited beeping sound!")
 		playsound(src, 'sound/machines/twobeep.ogg', 50, 0)
 
