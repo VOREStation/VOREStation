@@ -108,10 +108,7 @@
 	data["check_arrest"] = null
 	data["arrest_type"] = null
 	data["declare_arrests"] = null
-<<<<<<< HEAD
-=======
 	data["bot_patrolling"] = null
->>>>>>> 6526ca1... Updates all bots to use TGUI, and adds mute button for certain bots (#8035)
 	data["will_patrol"] = null
 
 	if(!locked || issilicon(user))
@@ -120,13 +117,8 @@
 		data["check_arrest"] = check_arrest
 		data["arrest_type"] = arrest_type
 		data["declare_arrests"] = declare_arrests
-<<<<<<< HEAD
-		if(using_map.bot_patrolling)
-			data["will_patrol"] = will_patrol
-=======
 		data["bot_patrolling"] = using_map.bot_patrolling
 		data["patrol"] = will_patrol
->>>>>>> 6526ca1... Updates all bots to use TGUI, and adds mute button for certain bots (#8035)
 
 	return data
 
@@ -136,11 +128,7 @@
 /mob/living/bot/secbot/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return
-<<<<<<< HEAD
-
-=======
 	
->>>>>>> 6526ca1... Updates all bots to use TGUI, and adds mute button for certain bots (#8035)
 	add_fingerprint(usr)
 
 	switch(action)
