@@ -115,7 +115,7 @@
 	name = "Mudslide"
 	id = "mudslide"
 	description = "Vodka, Kahlua and Irish Cream together at last."
-	taste_description = "a mocha milkshake, with a splash of vodka."
+	taste_description = "a mocha milkshake, with a splash of vodka"
 	color = "#8B6338"
 	strength = 13
 
@@ -169,7 +169,7 @@
 	name = "Galactic Panic Attack"
 	id = "galacticpanic"
 	description = "The absolute worst thing you could ever put in your body."
-	taste_description = "an entire galaxy collasping in on itself."
+	taste_description = "an entire galaxy collasping in on itself"
 	strength = 10
 	druggy = 50
 	halluci = 30
@@ -195,7 +195,7 @@
 	name = "Space Bulldog"
 	id = "bulldog"
 	description = "An inventive kahlua recipe."
-	taste_description = "fizzy, creamy, soda and coffee hell."
+	taste_description = "fizzy, creamy, soda and coffee hell"
 	strength = 30
 	color = "#d3785d"
 
@@ -207,7 +207,7 @@
 	name = "Negroni Sbagliato"
 	id = "sbagliato"
 	description = "A drink invented because a bartender was too drunk."
-	taste_description = "sweet bubbly wine and vermouth."
+	taste_description = "sweet bubbly wine and vermouth"
 	strength = 30
 	color = "#d3785d"
 
@@ -219,7 +219,7 @@
 	name = "Italian Crisis"
 	id = "italiancrisis"
 	description = "This drink was concocted by a madwoman, causing the Italian Crisis of 2123."
-	taste_description = "cola, fruit, fizz, coffee, and cream swirled together in an old boot."
+	taste_description = "cola, fruit, fizz, coffee, and cream swirled together in an old boot"
 	strength = 20
 	druggy = 0
 	halluci = 0
@@ -233,7 +233,7 @@
 	name = "Sweet Rush"
 	id = "sugarrush"
 	description = "A favorite drink amongst poor bartenders living in Neo Detroit."
-	taste_description = "sweet bubblegum vodka."
+	taste_description = "sweet bubblegum vodka"
 	strength = 30
 	color = "#d3785d"
 
@@ -244,7 +244,7 @@
 	name = "Lotus"
 	id = "lotus"
 	description = "The result of making one mistake after another and trying to cover it up with sugar."
-	taste_description = "rich, sweet fruit and even more sugar."
+	taste_description = "rich, sweet fruit and even more sugar"
 	strength = 25
 	color = "#d3785d"
 
@@ -255,7 +255,7 @@
 	name = "Dumb Shroom Juice"
 	id = "shroomjuice"
 	description = "The mushroom farmer didn't sort through their stock very well."
-	taste_description = "sweet and sour citrus with a savory kick."
+	taste_description = "sweet and sour citrus with a savory kick"
 	strength = 100
 	druggy = 30
 	halluci = 30
@@ -269,7 +269,7 @@
 	name = "Russian Roulette"
 	id = "russianroulette"
 	description = "The perfect drink for wagering your liver on a game of cards."
-	taste_description = "coffee, vodka, cream, and a hot metal slug."
+	taste_description = "coffee, vodka, cream, and a hot metal slug"
 	strength = 30
 	var/adj_dizzy = 30
 	color = "#d3785d"
@@ -285,7 +285,7 @@
 	name = "The Love Maker"
 	id = "lovemaker"
 	description = "A drink said to help one find true love."
-	taste_description = "sweet fruit and honey."
+	taste_description = "sweet fruit and honey"
 	strength = 30
 	druggy = 0
 	halluci = 0
@@ -301,7 +301,7 @@
 	name = "Honey Shot"
 	id = "honeyshot"
 	description = "The perfect drink for bees."
-	taste_description = "sweet tart grenadine flavored with honey."
+	taste_description = "sweet tart grenadine flavored with honey"
 	strength = 40
 	var/adj_dizzy = 10
 	color = "#d3785d"
@@ -313,7 +313,7 @@
 	name = "Appletini"
 	id = "appletini"
 	description = "A classic cocktail using every grandma's favorite fruit."
-	taste_description = "green sour apple with a hint of alcohol."
+	taste_description = "green sour apple with a hint of alcohol"
 	strength = 45
 	color = "#d3785d"
 
@@ -324,7 +324,7 @@
 	name = "Glowing Appletini"
 	id = "glowingappletini"
 	description = "A new nuclear take on a pre-modern classic!"
-	taste_description = "overwhelmingly sour apples powered by a nuclear fission reactor."
+	taste_description = "overwhelmingly sour apples powered by a nuclear fission reactor"
 	strength = 30
 	druggy = 20
 	var/adj_dizzy = 20
@@ -337,7 +337,7 @@
 	name = "Slow Comfortable Screw Against the Wall"
 	id = "scsatw"
 	description = "The screwdriver's bigger cousin."
-	taste_description = "smooth, savory booze and tangy orange juice."
+	taste_description = "smooth, savory booze and tangy orange juice"
 	strength = 30
 	druggy = 0
 	halluci = 0
@@ -351,7 +351,7 @@
 	name = "Choccy Milk"
 	id = "choccymilk"
 	description = "Coco and milk, a timeless classic."
-	taste_description = "sophisticated bittersweet chocolate mixed with silky, creamy, whole milk."
+	taste_description = "sophisticated bittersweet chocolate mixed with silky, creamy, whole milk"
 	color = "#d3785d"
 
 	glass_name = "Choccy Milk"
@@ -361,7 +361,7 @@
 	name = "Red Space Flush"
 	id = "redspaceflush"
 	description = "A drink made by imbueing the essence of redspace into the spirits."
-	taste_description = "whiskey and rum strung out through a hellish dimensional rift."
+	taste_description = "whiskey and rum strung out through a hellish dimensional rift"
 	strength = 30
 	druggy = 10
 	var/adj_dizzy = 10
@@ -374,7 +374,7 @@
 	name = "Graveyard"
 	id = "graveyard"
 	description = "The result of taking a cup and filling it with all the drinks at the fountain."
-	taste_description = "sugar and fizz."
+	taste_description = "sugar and fizz"
 	color = "#d3785d"
 
 	glass_name = "Graveyard"
@@ -384,7 +384,7 @@
 	name = "Giant Beer"
 	id = "bigbeer"
 	description = "Bars in Neo Detroit started to sell this drink when the city put mandatory drink limits in 2289."
-	taste_description = "beer, but bigger."
+	taste_description = "beer, but bigger"
 	strength = 40
 	color = "#d3785d"
 
@@ -395,7 +395,7 @@
 	name = "Sweet Tea"
 	id = "sweettea"
 	description = "Tea that is sweetened with some form of sweetener."
-	taste_description = "tea that is sweet."
+	taste_description = "tea that is sweet"
 	color = "#d3785d"
 
 	glass_name = "Sweet Tea"
@@ -405,7 +405,7 @@
 	name = "Unsweetened Tea"
 	id = "unsweettea"
 	description = "A sick experiment to take the sweetness out of tea after sugar has been added resulted in this."
-	taste_description = "bland, slightly bitter, discount black tea."
+	taste_description = "bland, slightly bitter, discount black tea"
 	strength = 80
 	druggy = 10
 	color = "#d3785d"
@@ -417,7 +417,7 @@
 	name = "Hair of the Rat"
 	id = "hairoftherat"
 	description = "A meatier version of the monster tamer, complete with extra meat."
-	taste_description = "meat, whiskey, ground meat, and more meat."
+	taste_description = "meat, whiskey, ground meat, and more meat"
 	strength = 45
 	color = "#d3785d"
 	metabolism = REM * 3.5 // about right for mixing nutriment and ethanol.
