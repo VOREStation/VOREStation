@@ -147,12 +147,22 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		anim_time = 1 //Thud
 
 	if(lying && !species.prone_icon) //Only rotate them if we're not drawing a specific icon for being prone.
+<<<<<<< HEAD
 		M.Turn(90)
 		M.Scale(desired_scale_y, desired_scale_x)//VOREStation Edit
 		if(species.icon_height == 64)//VOREStation Edit
 			M.Translate(13,-22)
 		else
 			M.Translate(1,-6)
+=======
+		var/randn = rand(1, 2)
+		if(randn <= 1) // randomly choose a rotation
+			M.Turn(-90)
+		else
+			M.Turn(90)
+		M.Scale(desired_scale_x, desired_scale_y)
+		M.Translate(1,-6)
+>>>>>>> 6fcca25... Merge pull request #8038 from Novacat/nova-accessory
 		layer = MOB_LAYER -0.01 // Fix for a byond bug where turf entry order no longer matters
 	else
 		M.Scale(desired_scale_x, desired_scale_y)//VOREStation Edit
