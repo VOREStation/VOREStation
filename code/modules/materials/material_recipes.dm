@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /datum/material/proc/get_recipes()
 	if(!recipes)
 		generate_recipes()
@@ -276,3 +277,5 @@
 	recipes += new/datum/stack_recipe("[display_name] armor plate", /obj/item/weapon/material/armor_plating, 1, time = 20, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE)
 	recipes += new/datum/stack_recipe("empty sandbag", /obj/item/stack/emptysandbag, 2, time = 2 SECONDS, pass_stack_color = TRUE, supplied_material = "[name]")
 	recipes += new/datum/stack_recipe("whip", /obj/item/weapon/material/whip, 5, time = 15 SECONDS, pass_stack_color = TRUE, supplied_material = "[name]")
+=======
+>>>>>>> 33c51d9... Merge pull request #8022 from Atermonera/materials_refactor
