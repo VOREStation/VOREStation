@@ -187,12 +187,15 @@
 		to_chat(usr, "<span class='warning'>\The [A] already covers the entire room.</span>")
 		return
 
+<<<<<<< HEAD
 	move_turfs_to_area(turfs, A)
 	to_chat(usr, "<span class='notice'>Expanded \the [A] by [turfs.len] turfs</span>")
 	spawn(5)
 		interact()
 	return
 
+=======
+>>>>>>> 8728919... Merge pull request #8040 from Novacat/nova-runtimes
 /obj/item/blueprints/proc/move_turfs_to_area(var/list/turf/turfs, var/area/A)
 	for(var/T in turfs)
 		ChangeArea(T, A)
