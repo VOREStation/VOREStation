@@ -4747,6 +4747,7 @@
 	desc = "A Shop-n-Large brand vending machine! Enjoy all your favorites!"
 	vend_delay = 30
 	product_slogans = "Shop Shop-n-Large!, Buy! Buy! Buy!, Try our new Bread Tube! Now with 10% less sawdust!"
+	icon = 'icons/obj/vending_vr.dmi'
 	icon_state = "snlvendor"
 
 	products = list(/obj/item/weapon/reagent_containers/food/snacks/tuna = 8,
@@ -4789,6 +4790,7 @@
 /obj/machinery/vending/sovietvend //ADDITION 04/20/2021
 	name = "Ration Station"
 	desc = "An old ration vendor unit. How it even still functional?"
+	icon = 'icons/obj/vending_vr.dmi'
 	icon_state = "sovietvend"
 	product_ads = "For Tsar and Country.;Have you fulfilled your nutrition quota today?;Very nice!;We are simple people, for this is all we eat.;If there is a person, there is a problem. If there is no person, then there is no problem."
 	products = list(/obj/item/weapon/reagent_containers/food/snacks/packaged/genration = 8,
