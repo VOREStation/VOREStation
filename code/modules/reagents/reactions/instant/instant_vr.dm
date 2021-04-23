@@ -401,5 +401,13 @@
 				for(var/j = 1, j <= rand(1, 3), j++)
 					step(C, pick(NORTH,SOUTH,EAST,WEST))
 
+/decl/chemical_reaction/instant/slime/sapphire_mutation
+	name = "Slime Mutation Toxins"
+	id = "slime_mutation_tox"
+	result = "mutationtoxin"
+	required_reagents = list("blood" = 5)
+	result_amount = 30
+	required = /obj/item/slime_extract/sapphire
+
 /decl/chemical_reaction/instant/biomass
 	result_amount = 6	// Roughly 120u per phoron sheet
