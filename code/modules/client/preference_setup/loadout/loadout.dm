@@ -66,11 +66,13 @@ var/list/gear_datums = list()
 	for(var/gear_name in gear_datums)
 		var/datum/gear/G = gear_datums[gear_name]
 
-		if(G.whitelisted && !is_alien_whitelisted(preference_mob, GLOB.all_species[G.whitelisted]))
-			continue
+		//VOREStation Edit Start
+		//if(G.whitelisted != pref.species)
+		//	continue
+		
 		if(max_cost && G.cost > max_cost)
 			continue
-		//VOREStation Edit Start
+		
 		if(preference_mob && preference_mob.client)
 			if(G.ckeywhitelist && !(preference_mob.ckey in G.ckeywhitelist))
 				continue
