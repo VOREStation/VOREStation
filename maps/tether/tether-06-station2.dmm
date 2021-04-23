@@ -2350,7 +2350,9 @@
 	dir = 8
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals9,
-/obj/machinery/vending/snack,
+/obj/machinery/vending/snix{
+	dir = 1
+	},
 /turf/simulated/floor/tiled,
 /area/security/brig/visitation)
 "dy" = (
@@ -2484,7 +2486,9 @@
 	dir = 8
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals9,
-/obj/machinery/vending/cola,
+/obj/machinery/vending/cola/soft{
+	dir = 1
+	},
 /turf/simulated/floor/tiled,
 /area/security/brig/visitation)
 "dN" = (
@@ -5335,7 +5339,7 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals7,
-/obj/machinery/vending/snack,
+/obj/machinery/vending/sol,
 /turf/simulated/floor/tiled,
 /area/engineering/foyer_mezzenine)
 "iw" = (
@@ -6650,11 +6654,11 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 5
 	},
-/obj/machinery/vending/fitness{
-	dir = 4
-	},
 /obj/machinery/light{
 	dir = 8
+	},
+/obj/machinery/vending/snix{
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/tether/exploration/hallway)
@@ -6841,7 +6845,7 @@
 /obj/effect/floor_decal/corner/purple/border{
 	dir = 10
 	},
-/obj/machinery/vending/snack{
+/obj/machinery/vending/snlvend{
 	dir = 4
 	},
 /turf/simulated/floor/tiled,

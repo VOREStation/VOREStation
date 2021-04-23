@@ -11064,7 +11064,6 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/recreation_area_restroom)
 "arE" = (
-/obj/machinery/vending/cola,
 /obj/effect/floor_decal/corner/lightgrey{
 	dir = 9
 	},
@@ -11081,10 +11080,10 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals9,
+/obj/machinery/vending/cola/soft,
 /turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/surface_three_hall)
 "arF" = (
-/obj/machinery/vending/fitness,
 /obj/effect/floor_decal/corner/lightgrey{
 	dir = 9
 	},
@@ -11101,6 +11100,7 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals9,
+/obj/machinery/vending/snix,
 /turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/surface_three_hall)
 "arG" = (
@@ -24920,7 +24920,7 @@
 /turf/simulated/wall,
 /area/rnd/outpost/xenobiology/outpost_breakroom)
 "aPU" = (
-/obj/machinery/vending/fitness{
+/obj/machinery/vending/snlvend{
 	dir = 4
 	},
 /turf/simulated/floor/tiled,
@@ -35249,14 +35249,14 @@
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/topairlock)
 "biU" = (
-/obj/machinery/vending/snack{
-	dir = 4
-	},
 /obj/effect/floor_decal/corner/lightgrey{
 	dir = 5
 	},
 /obj/effect/floor_decal/corner/lightgrey{
 	dir = 10
+	},
+/obj/machinery/vending/sol{
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/cafeteria)
@@ -42009,6 +42009,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
+"trb" = (
+/obj/machinery/vending/weeb{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/eris/steel/bar_dance,
+/area/tether/surfacebase/barbackmaintenance)
 "trA" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 8
@@ -58527,7 +58533,7 @@ ben
 bfD
 bfQ
 aCn
-bea
+trb
 bec
 aac
 aac

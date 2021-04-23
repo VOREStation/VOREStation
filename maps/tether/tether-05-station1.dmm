@@ -2976,7 +2976,6 @@
 /turf/simulated/wall,
 /area/tether/station/visitorhallway/office)
 "afJ" = (
-/obj/machinery/vending/snack,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -2986,6 +2985,7 @@
 /obj/effect/floor_decal/corner/lightgrey{
 	dir = 6
 	},
+/obj/machinery/vending/sol,
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
 "afK" = (
@@ -8534,10 +8534,10 @@
 /turf/simulated/floor/carpet,
 /area/maintenance/abandonedlibrary)
 "apX" = (
-/obj/machinery/vending/snack{
+/obj/effect/floor_decal/corner/white/diagonal,
+/obj/machinery/vending/snlvend{
 	dir = 8
 	},
-/obj/effect/floor_decal/corner/white/diagonal,
 /turf/simulated/floor/tiled,
 /area/engineering/break_room)
 "apY" = (

@@ -8379,7 +8379,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 8
 	},
-/obj/machinery/vending/snack,
+/obj/machinery/vending/snlvend,
 /turf/simulated/floor/tiled,
 /area/hallway/station/upper)
 "att" = (

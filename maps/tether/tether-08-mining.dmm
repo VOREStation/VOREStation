@@ -831,7 +831,7 @@
 /obj/effect/floor_decal/corner/brown/bordercorner2{
 	dir = 6
 	},
-/obj/machinery/vending/snack{
+/obj/machinery/vending/snlvend{
 	dir = 1
 	},
 /turf/simulated/floor/tiled,
