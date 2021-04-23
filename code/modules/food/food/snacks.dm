@@ -6795,7 +6795,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/goma_dango //ADDITION 04/14/2021
 	name = "\improper Goma dango"
 	icon = 'icons/obj/food_snacks.dmi'
-	icon_state = "dango"
+	icon_state = "goma_dango"
 	trash = /obj/item/trash/stick
 	desc = "Sticky rice balls served on a skewer with a crispy rice flour outer layer and a thick red bean paste inner layer."
 	nutriment_desc = list("rice" = 4, "earthy flavor" = 1)
@@ -6805,7 +6805,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/hanami_dango //ADDITION 04/14/2021
 	name = "\improper Hanami dango"
 	icon = 'icons/obj/food_snacks.dmi'
-	icon_state = "dango"
+	icon_state = "hanami_dango"
 	trash = /obj/item/trash/stick
 	desc = "Three rice balls, each with a unique flavoring, served on a skewer. A traditional Japanese treat."
 	description_fluff = "Hanami dango is a traditional Japanese treat that is normally served during Hanami, a tradition dated back as early as the 8th century. Hanami, or cherry blossom viewing, is a spring time celebration that celebrates the cherry blossoms turning of color. It is a time of renewal, of life, and of beauty."
