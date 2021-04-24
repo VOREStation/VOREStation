@@ -53,31 +53,16 @@
 	var/image/overlay_dumping
 	var/image/overlay_connected
 
-// Our unique beaker, used in its unique recipes to ensure things can only react inside this machine and minimize oddities from trying to transfer to a machine and back.
-	var/obj/item/weapon/reagent_containers/glass/distilling/Reservoir
-
 	var/obj/item/weapon/reagent_containers/glass/InputBeaker
 	var/obj/item/weapon/reagent_containers/glass/OutputBeaker
 
 // A multiplier for the production amount. This should really only ever be lower than one, otherwise you end up with duping.
 	var/efficiency = 1
 
-/obj/item/weapon/reagent_containers/glass/distilling
-	name = "distilling chamber"
-	desc = "You should not be seeing this."
-	volume = 600
-
-	var/obj/machinery/portable_atmospherics/powered/reagent_distillery/Master
-
-/obj/item/weapon/reagent_containers/glass/distilling/Destroy()
-	Master = null
-	..()
-
 /obj/machinery/portable_atmospherics/powered/reagent_distillery/Initialize()
 	. = ..()
 
-	Reservoir = new (src)
-	Reservoir.Master = src
+	create_reagents(600, /datum/reagents/distilling)
 
 	if(!base_state)
 		base_state = icon_state
@@ -107,8 +92,6 @@
 	overlay_connected = image(icon = src.icon, icon_state = "[base_state]-connector")
 
 /obj/machinery/portable_atmospherics/powered/reagent_distillery/Destroy()
-	qdel(Reservoir)
-	Reservoir = null
 	if(InputBeaker)
 		qdel(InputBeaker)
 		InputBeaker = null
@@ -134,8 +117,8 @@
 			else
 				. += "<span class='notice'>\The [src]'s input beaker is empty!</span>"
 
-		if(Reservoir.reagents.reagent_list.len)
-			. += "<span class='notice'>\The [src]'s internal buffer holds [Reservoir.reagents.total_volume] units of liquid.</span>"
+		if(reagents.reagent_list.len)
+			. += "<span class='notice'>\The [src]'s internal buffer holds [reagents.total_volume] units of liquid.</span>"
 		else
 			. += "<span class='notice'>\The [src]'s internal buffer is empty!</span>"
 
@@ -164,7 +147,7 @@
 	to_chat(user, "<span class='notice'>You press \the [src]'s chamber agitator button.</span>")
 	if(on)
 		visible_message("<span class='notice'>\The [src] rattles to life.</span>")
-		Reservoir.reagents.handle_reactions()
+		reagents.handle_reactions()
 	else
 		spawn(1 SECOND)
 			to_chat(user, "<span class='notice'>Nothing happens..</span>")
@@ -341,12 +324,12 @@
 			visible_message("<span class='notice'>\The [src]'s motors wind down.</span>")
 			on = FALSE
 
-		if(InputBeaker && Reservoir.reagents.total_volume < Reservoir.reagents.maximum_volume)
-			InputBeaker.reagents.trans_to_holder(Reservoir.reagents, amount = rand(10,20))
+		if(InputBeaker && reagents.total_volume < reagents.maximum_volume)
+			InputBeaker.reagents.trans_to_holder(reagents, amount = rand(10,20))
 
 		if(OutputBeaker && OutputBeaker.reagents.total_volume < OutputBeaker.reagents.maximum_volume)
 			use_power(power_rating * CELLRATE * 0.5)
-			Reservoir.reagents.trans_to_holder(OutputBeaker.reagents, amount = rand(1, 5))
+			reagents.trans_to_holder(OutputBeaker.reagents, amount = rand(1, 5))
 
 	update_icon()
 
