@@ -47,7 +47,11 @@ AMITA_TURF_CREATE(/turf/simulated/floor/outdoors/grass/sif)
 /turf/simulated/floor/outdoors/grass/amita/lighter
 	name = "thick growth"
 	icon = 'icons/turf/floors_vr.dmi'
-	icon_state = "grass_amita1"
+	icon_state = "grass_amita_light1"
+
+/turf/simulated/floor/outdoors/grass/amita/lighter/New()
+	..()
+	icon_state = "grass_amita_light[rand(1,5)]"
 
 /turf/simulated/floor/tiled/concrete
 	name = "conrete floor"
