@@ -104,7 +104,8 @@
 		else if (E.is_dislocated())
 			stance_damage += 0.5
 
-		if(E) limb_pain = E.organ_can_feel_pain()
+		if(E && (!E.is_usable() || E.is_broken() || E.is_dislocated())) //VOREStation Edit
+			limb_pain = E.organ_can_feel_pain()
 
 	// Canes and crutches help you stand (if the latter is ever added)
 	// One cane mitigates a broken leg+foot, or a missing foot.

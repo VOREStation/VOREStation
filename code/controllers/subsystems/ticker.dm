@@ -462,20 +462,25 @@ var/global/datum/controller/subsystem/ticker/ticker
 
 	for (var/mob/living/silicon/ai/aiPlayer in mob_list)
 		if (aiPlayer.stat != 2)
-			to_world("<span class='filter_system'><b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws at the end of the round were:</b></span>")
+			to_world("<span class='filter_system'><b>[aiPlayer.name]'s laws at the end of the round were:</b></span>") // VOREStation edit
 		else
-			to_world("<span class='filter_system'><b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws when it was deactivated were:</b></span>")
+			to_world("<span class='filter_system'><b>[aiPlayer.name]'s laws when it was deactivated were:</b></span>") // VOREStation edit
 		aiPlayer.show_laws(1)
 
 		if (aiPlayer.connected_robots.len)
 			var/robolist = "<b>The AI's loyal minions were:</b> "
 			for(var/mob/living/silicon/robot/robo in aiPlayer.connected_robots)
-				robolist += "[robo.name][robo.stat?" (Deactivated) (Played by: [robo.key]), ":" (Played by: [robo.key]), "]"
+				robolist += "[robo.name][robo.stat?" (Deactivated), ":", "]"  // VOREStation edit
 			to_world("<span class='filter_system'>[robolist]</span>")
 
 	var/dronecount = 0
 
 	for (var/mob/living/silicon/robot/robo in mob_list)
+
+		if(istype(robo, /mob/living/silicon/robot/platform))
+			var/mob/living/silicon/robot/platform/tank = robo
+			if(!tank.has_had_player)
+				continue
 
 		if(istype(robo,/mob/living/silicon/robot/drone) && !istype(robo,/mob/living/silicon/robot/drone/swarm))
 			dronecount++
@@ -483,9 +488,9 @@ var/global/datum/controller/subsystem/ticker/ticker
 
 		if (!robo.connected_ai)
 			if (robo.stat != 2)
-				to_world("<span class='filter_system'><b>[robo.name] (Played by: [robo.key]) survived as an AI-less stationbound synthetic! Its laws were:</b></span>")
+				to_world("<span class='filter_system'><b>[robo.name] survived as an AI-less stationbound synthetic! Its laws were:</b></span>") // VOREStation edit
 			else
-				to_world("<span class='filter_system'><b>[robo.name] (Played by: [robo.key]) was unable to survive the rigors of being a stationbound synthetic without an AI. Its laws were:</b></span>")
+				to_world("<span class='filter_system'><b>[robo.name] was unable to survive the rigors of being a stationbound synthetic without an AI. Its laws were:</b></span>") // VOREStation edit
 
 			if(robo) //How the hell do we lose robo between here and the world messages directly above this?
 				robo.laws.show_laws(world)

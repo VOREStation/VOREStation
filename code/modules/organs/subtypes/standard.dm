@@ -334,7 +334,7 @@
 	if(!iscarbon(owner) || !owner.species)
 		return
 
-	var/icon/eyecon
+	var/icon/eyecon //VOREStation Add
 
 	//Eye color/icon
 	var/should_have_eyes = owner.should_have_organ(O_EYES)
@@ -390,7 +390,7 @@
 /obj/item/organ/external/head/skrell
 	eye_icon = "skrell_eyes_s"
 
-/obj/item/organ/external/head/seromi
+/obj/item/organ/external/head/teshari
 	eye_icon = "eyes_seromi"
 
 /obj/item/organ/external/head/no_eyes

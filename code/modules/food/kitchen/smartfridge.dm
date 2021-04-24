@@ -187,10 +187,10 @@
 
 		for(var/obj/item/stack/wetleather/WL in I.instances)
 			if(!WL.wetness)
-				if(WL.amount == 1)
+				if(WL.amount)
 					WL.forceMove(get_turf(src))
+					WL.dry()
 				I.instances -= WL
-				WL.dry()
 				break
 
 			WL.wetness = max(0, WL.wetness - rand(1, 3))

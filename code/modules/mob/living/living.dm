@@ -848,8 +848,12 @@
 
 	if(lying)
 		density = 0
-		if(l_hand) unEquip(l_hand)
-		if(r_hand) unEquip(r_hand)
+		if(l_hand) 
+			unEquip(l_hand)
+		if(r_hand) 
+			unEquip(r_hand)
+		for(var/obj/item/weapon/holder/holder in get_mob_riding_slots())
+			unEquip(holder)
 		update_water() // Submerges the mob.
 	else
 		density = initial(density)
@@ -876,6 +880,10 @@
 		//VOREStation Add End
 
 	return canmove
+
+// Mob holders in these slots will be spilled if the mob goes prone.
+/mob/living/proc/get_mob_riding_slots()
+	return list(back)
 
 // Adds overlays for specific modifiers.
 // You'll have to add your own implementation for non-humans currently, just override this proc.
@@ -1019,6 +1027,10 @@
 			var/turf/end_T = get_turf(target)
 			if(end_T)
 				add_attack_logs(src,M,"Thrown via grab to [end_T.x],[end_T.y],[end_T.z]")
+			if(ishuman(M))
+				var/mob/living/carbon/human/N = M
+				if((N.health + N.halloss) < config.health_threshold_crit || N.stat == DEAD)
+					N.adjustBruteLoss(rand(10,30))
 			src.drop_from_inventory(G)
 
 	src.drop_from_inventory(item)

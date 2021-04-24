@@ -155,7 +155,7 @@
 	flags = 0
 /datum/language/skrell
 	flags = 0
-/datum/language/seromi
+/datum/language/teshari
 	flags = 0
 /datum/language/zaddat
 	flags = 0

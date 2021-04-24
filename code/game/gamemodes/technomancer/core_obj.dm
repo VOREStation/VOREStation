@@ -13,7 +13,7 @@
 		TECH_COMBAT = 7, TECH_MAGNET = 9, TECH_DATA = 5
 		)
 	sprite_sheets = list(
-		"Teshari" = 'icons/mob/species/seromi/back.dmi'
+		SPECIES_TESHARI = 'icons/mob/species/teshari/back.dmi'
 		)
 	var/energy = 10000
 	var/max_energy = 10000
@@ -30,7 +30,7 @@
 		"wizard's cloak"	= "wizard_cloak"
 		)
 
-	// Some spell-specific variables go here, since spells themselves are temporary.  Cores are more long term and more accessable than \
+	// Some spell-specific variables go here, since spells themselves are temporary.  Cores are more long term and more accessable than
 	// mind datums.  It may also allow creative players to try to pull off a 'soul jar' scenario.
 	var/list/summoned_mobs = list()	// Maintained horribly with maintain_summon_list().
 	var/list/wards_in_use = list()	// Wards don't count against the cap for other summons.

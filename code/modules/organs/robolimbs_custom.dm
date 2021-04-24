@@ -164,7 +164,7 @@ VS Edit - anyone can select these. */
 	icon = 'icons/mob/human_races/cyberlimbs/DSITeshari/dsi_teshari.dmi'
 	lifelike = 1
 	skin_tone = 1
-	suggested_species = "Teshari"
+	suggested_species = SPECIES_TESHARI
 
 /datum/robolimb/dsi_teshari/New()
 	species_cannot_use = GLOB.all_species.Copy()

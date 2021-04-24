@@ -14,6 +14,8 @@
 /obj/machinery/computer/gyrotron_control/New()
 	..()
 	monitor = new(src)
+	monitor.gyro_tag = id_tag
+	monitor.scan_range = scan_range
 
 /obj/machinery/computer/gyrotron_control/Destroy()
 	QDEL_NULL(monitor)

@@ -1,5 +1,5 @@
 /decl/hierarchy/outfit/job/assistant/worker
-	id_type = /obj/item/weapon/card/id/civilian
+	id_type = /obj/item/weapon/card/id/civilian/service
 
 /decl/hierarchy/outfit/job/assistant/cargo
 	id_type = /obj/item/weapon/card/id/cargo
@@ -16,3 +16,6 @@
 
 /decl/hierarchy/outfit/job/assistant/officer
 	id_type = /obj/item/weapon/card/id/security
+
+/decl/hierarchy/outfit/job/assistant/entertainer
+	id_type = /obj/item/weapon/card/id/civilian/entertainer

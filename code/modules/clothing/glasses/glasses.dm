@@ -31,8 +31,8 @@ BLIND     // can't see anything
 	pickup_sound = 'sound/items/pickup/accessory.ogg'
 
 	sprite_sheets = list(
-		"Teshari" = 'icons/mob/species/seromi/eyes.dmi',
-		"Vox" = 'icons/mob/species/vox/eyes.dmi'
+		SPECIES_TESHARI = 'icons/mob/species/teshari/eyes.dmi',
+		SPECIES_VOX = 'icons/mob/species/vox/eyes.dmi'
 		)
 
 /obj/item/clothing/glasses/update_clothing_icon()

@@ -291,7 +291,7 @@
 	The image seems important."
 	listing_name = "Safety - Mech Operation"
 
-//VOREStation Removal Start TFF 17/12/19 - lore not used in our station's own lore.
+//VOREStation Removal Start
 /*
 /datum/poster/nanotrasen/nt_4
 	icon_state = "ntposter04"

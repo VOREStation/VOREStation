@@ -77,7 +77,7 @@
 #define DO_AUTOPILOT 5
 
 // Setting this much higher than 1024 could allow spammers to DOS the server easily.
-#define MAX_MESSAGE_LEN       2048 //VOREStation Edit - I'm not sure about "easily". It can be a little longer.
+#define MAX_MESSAGE_LEN       4096 //VOREStation Edit - I'm not sure about "easily". It can be a little longer.
 #define MAX_PAPER_MESSAGE_LEN 6144
 #define MAX_BOOK_MESSAGE_LEN  24576
 #define MAX_RECORD_LENGTH	  24576
@@ -502,3 +502,5 @@ GLOBAL_LIST_INIT(all_volume_channels, list(
 #define APPEARANCECHANGER_CHANGED_F_HAIRSTYLE "Facial Hair Style"
 #define APPEARANCECHANGER_CHANGED_F_HAIRCOLOR "Facial Hair Color"
 #define APPEARANCECHANGER_CHANGED_EYES "Eye Color"
+
+#define GET_DECL(D) (ispath(D, /decl) ? (decls_repository.fetched_decls[D] || decls_repository.get_decl(D)) : null)

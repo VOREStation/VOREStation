@@ -109,13 +109,13 @@
 	desc = "You should probably run instead of gawking at this."
 	icon = 'icons/obj/meteor.dmi'
 	icon_state = "small"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	var/hits = 4
 	var/hitpwr = 2 //Level of ex_act to be called on hit.
 	var/dest
 	pass_flags = PASSTABLE
-	var/heavy = 0
+	var/heavy = FALSE
 	var/z_original
 
 	var/meteordrop = /obj/item/weapon/ore/iron
@@ -147,7 +147,7 @@
 		get_hit()
 
 /obj/effect/meteor/Destroy()
-	walk(src,0) //this cancels the walk_towards() proc
+	walk(src,FALSE) //this cancels the walk_towards() proc
 	GLOB.meteor_list -= src
 	return ..()
 
@@ -162,10 +162,10 @@
 			ram_turf(get_turf(A))
 			get_hit()
 		else
-			die(0)
+			die(FALSE)
 
 /obj/effect/meteor/CanPass(atom/movable/mover, turf/target)
-	return istype(mover, /obj/effect/meteor) ? 1 : ..()
+	return istype(mover, /obj/effect/meteor) ? TRUE : ..()
 
 /obj/effect/meteor/proc/ram_turf(var/turf/T)
 	//first bust whatever is in the turf
@@ -190,9 +190,9 @@
 /obj/effect/meteor/proc/get_hit()
 	hits--
 	if(hits <= 0)
-		die(1)
+		die(TRUE)
 
-/obj/effect/meteor/proc/die(var/explode = 1)
+/obj/effect/meteor/proc/die(var/explode = TRUE)
 	make_debris()
 	meteor_effect(explode)
 	qdel(src)
@@ -209,16 +209,13 @@
 /obj/effect/meteor/bullet_act(var/obj/item/projectile/Proj)
 	if(Proj.excavation_amount)
 		get_hit()
-		if(!QDELETED(src))
-			wall_power -= Proj.excavation_amount + Proj.damage + (Proj.hitscan * 25)	// Instant-impact projectiles are inherently better at dealing with meteors.
-			wall_power = max(1, wall_power)
 
-			if(wall_power < Proj.excavation_amount)
-				if(prob(min(90, 100 - Proj.damage)))
-					die(TRUE)
-				else
-					die(FALSE)
-				return
+	if(!QDELETED(src))
+		wall_power -= Proj.excavation_amount + Proj.damage + (Proj.hitscan * 25)	// Instant-impact projectiles are inherently better at dealing with meteors.
+
+		if(wall_power <= 0)
+			die(FALSE) // If you kill the meteor, then it dies.
+			return
 	return
 
 /obj/effect/meteor/proc/make_debris()

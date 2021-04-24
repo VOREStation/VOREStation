@@ -97,6 +97,11 @@
 	icon_state = "eyes_sergal"
 	body_parts = list(BP_HEAD)
 
+/datum/sprite_accessory/marking/vr/closedeyes
+	name = "Closed Eyes"
+	icon_state = "eyes_closed"
+	body_parts = list(BP_HEAD)
+
 /datum/sprite_accessory/marking/vr/brows
 	name = "Eyebrows"
 	icon_state = "brows"
@@ -723,3 +728,9 @@
 	icon_state = "unathilongfrills"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr/thunderthighs
+	name = "Boosted Thighs"
+	icon_state = "thunderthighs"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_L_LEG,BP_R_LEG)

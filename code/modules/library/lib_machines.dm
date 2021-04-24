@@ -286,12 +286,17 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 				var/DBQuery/query = dbcon_old.NewQuery("SELECT id, author, title, category FROM library ORDER BY [sortby]")
 				query.Execute()
 
+				var/show_admin_options = check_rights(R_ADMIN, show_msg = FALSE)
+
 				while(query.NextRow())
 					var/id = query.item[1]
 					var/author = query.item[2]
 					var/title = query.item[3]
 					var/category = query.item[4]
-					dat += "<tr><td>[author]</td><td>[title]</td><td>[category]</td><td><A href='?src=\ref[src];targetid=[id]'>\[Order\]</A></td></tr>"
+					dat += "<tr><td>[author]</td><td>[title]</td><td>[category]</td><td><A href='?src=\ref[src];targetid=[id]'>\[Order\]</A>"
+					if(show_admin_options) // This isn't the only check, since you can just href-spoof press this button. Just to tidy things up.
+						dat += "<A href='?src=\ref[src];delid=[id]'>\[Del\]</A>"
+					dat += "</td></tr>"
 				dat += "</table>"
 			dat += "<BR><A href='?src=\ref[src];switchscreen=0'>(Return to main menu)</A><BR>"
 
@@ -451,6 +456,18 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 				B.item_state = B.icon_state
 				src.visible_message("[src]'s printer hums as it produces a completely bound book. How did it do that?")
 				break
+
+	if(href_list["delid"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/sqlid = sanitizeSQL(href_list["delid"])
+		establish_old_db_connection()
+		if(!dbcon_old.IsConnected())
+			alert("Connection to Archive has been severed. Aborting.")
+		else
+			var/DBQuery/query = dbcon_old.NewQuery("DELETE FROM library WHERE id=[sqlid]")
+			query.Execute()
+
 	if(href_list["orderbyid"])
 		var/orderid = input("Enter your order:") as num|null
 		if(orderid)

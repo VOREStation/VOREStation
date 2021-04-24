@@ -194,10 +194,8 @@
 	return
 
 /obj/item/blueprints/proc/move_turfs_to_area(var/list/turf/turfs, var/area/A)
-	A.contents.Add(turfs)
-		//oldarea.contents.Remove(usr.loc) // not needed
-		//T.loc = A //error: cannot change constant value
-
+	for(var/T in turfs)
+		ChangeArea(T, A)
 
 /obj/item/blueprints/proc/edit_area()
 	var/area/A = get_area()

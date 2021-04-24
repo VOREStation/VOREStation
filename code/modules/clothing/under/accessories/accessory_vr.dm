@@ -14,7 +14,7 @@
 	var/customized = 0
 	var/icon_previous_override
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/mob/species/seromi/ties_vr.dmi'
+		SPECIES_TESHARI = 'icons/mob/species/teshari/ties_vr.dmi'
 		)
 
 //Forces different sprite sheet on equip
@@ -64,7 +64,7 @@
 	var/writtenon = 0
 	var/icon_previous_override
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/mob/species/seromi/ties_vr.dmi'
+		SPECIES_TESHARI = 'icons/mob/species/teshari/ties_vr.dmi'
 		)
 
 //Forces different sprite sheet on equip
@@ -365,4 +365,4 @@
 	icon_state = "silverthree"
 	item_state = "silverthree"
 	overlay_state = "silverthree"
-	desc = "A silver medal awarded to a group which has demonstrated exceptional teamwork to achieve a notable feat. This one has two bronze service stars, denoting that it has been awarded three times."
+	desc = "A silver medal awarded to a group which has demonstrated exceptional teamwork to achieve a notable feat. This one has three bronze service stars, denoting that it has been awarded four times."
