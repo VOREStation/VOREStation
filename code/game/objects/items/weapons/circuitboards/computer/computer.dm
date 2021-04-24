@@ -21,8 +21,8 @@
 	name = T_BOARD("medical records console")
 	build_path = /obj/machinery/computer/med_data
 
-/obj/item/weapon/circuitboard/med_data/laptop
-	name = T_BOARD("medical records laptop")
+/obj/item/weapon/circuitboard/med_data/pcu
+	name = T_BOARD("medical records PCU")
 	build_path = /obj/machinery/computer/med_data/laptop
 
 /obj/item/weapon/circuitboard/scan_consolenew
