@@ -165,9 +165,9 @@
 /obj/item/weapon/reagent_containers/spray/chemsprayer
 	name = "chem sprayer"
 	desc = "A utility used to spray large amounts of reagent in a given area."
-	icon = 'icons/obj/gun.dmi'
+	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "chemsprayer"
-	item_state = "chemsprayer"
+//	item_state = "chemsprayer" //TODO: in_hand sprite
 	center_of_mass = list("x" = 16,"y" = 16)
 	throwforce = 3
 	w_class = ITEMSIZE_NORMAL
