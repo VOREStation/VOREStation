@@ -168,6 +168,7 @@
 	desc = "The ARG-62-R AR Glasses are capable of displaying information on individuals. \
 	They... don't seem to do anything particularly interesting? But hey, at least they look kinda science-y."
 	mode = "sci"
+	item_flags = AIRTIGHT
 
 /obj/item/clothing/glasses/omnihud/eng/meson
 	name = "meson scanner HUD"
