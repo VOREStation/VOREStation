@@ -189,12 +189,14 @@
 			return 0
 	return ..()
 
-//Expedition Frontier Phaser
+////////////////Expedition Frontier Phaser////////////////
+
 /obj/item/weapon/gun/energy/locked/frontier
 	name = "frontier phaser"
 	desc = "An extraordinarily rugged laser weapon, built to last and requiring effectively no maintenance. Includes a built-in crank charger for recharging away from civilization. This one has a safety interlock that prevents firing while in proximity to the facility."
+	description_fluff = "The NT Brand Model E2 Secured Phaser System, a specialty phaser that has an intergrated chip that prevents the user from opperating the weapon within the vicinity of any NanoTrasen opperated outposts/stations/bases. However, this chip can be disabled so the weapon CAN BE used in the vicinity of any NanoTrasen opperated outposts/stations/bases. The weapon doesn't use traditional weapon power cells and instead works via a pump action that recharges the internal cells. It is a staple amongst exploration personell who usually don't have the license to opperate a lethal weapon through NT and provides them with a weapon that can be recharged away from civilization."
 	icon = 'icons/obj/gun_vr.dmi'
-	icon_state = "phaser"
+	icon_state = "phaserb"
 	item_state = "phaser"
 	item_icons = list(slot_l_hand_str = 'icons/mob/items/lefthand_guns_vr.dmi', slot_r_hand_str = 'icons/mob/items/righthand_guns_vr.dmi', "slot_belt" = 'icons/mob/belt_vr.dmi')
 	fire_sound = 'sound/weapons/laser2.ogg'
@@ -249,18 +251,20 @@
 	locked = 0
 	lockable = 0
 
-//Phaser Carbine - Reskinned phaser
+////////////////Phaser Carbine////////////////
+
 /obj/item/weapon/gun/energy/locked/frontier/carbine
 	name = "frontier carbine"
-	desc = "An ergonomically improved version of the venerable frontier phaser, the carbine is a fairly new weapon, and has only been produced in limited numbers so far. Includes a built-in crank charger for recharging away from civilization. This one has a safety interlock that prevents firing while in proximity to the facility."
+	desc = "An ergonomically improved version of the venerable frontier phaser. Includes a built-in crank charger for recharging away from civilization. This one has a safety interlock that prevents firing while in proximity to the facility."
+	description_fluff = "The NT Brand Model AT2 Secured Phaser System, a specialty phaser that has an intergrated chip that prevents the user from opperating the weapon within the vicinity of any NanoTrasen opperated outposts/stations/bases. However, this chip can be disabled so the weapon CAN BE used in the vicinity of any NanoTrasen opperated outposts/stations/bases. The weapon doesn't use traditional weapon power cells and instead works via a pump action that recharges the internal cells. It is a staple amongst exploration personell who usually don't have the license to opperate a lethal weapon through NT and provides them with a weapon that can be recharged away from civilization."
 	icon = 'icons/obj/gun_vr.dmi'
-	icon_state = "carbinekill"
-	item_state = "retro"
+	icon_state = "carbkill"
+	item_state = "energykill"
 	item_icons = list(slot_l_hand_str = 'icons/mob/items/lefthand_guns.dmi', slot_r_hand_str = 'icons/mob/items/righthand_guns.dmi')
 
-	modifystate = "carbinekill"
+	modifystate = "carbkill"
 	firemodes = list(
-		list(mode_name="lethal", fire_delay=12, projectile_type=/obj/item/projectile/beam/blue, modifystate="carbinekill", charge_cost = 300),
+		list(mode_name="lethal", fire_delay=12, projectile_type=/obj/item/projectile/beam/carbine/blue, modifystate="carbinekill", charge_cost = 300),
 		list(mode_name="low-power", fire_delay=8, projectile_type=/obj/item/projectile/beam/weaklaser/blue, modifystate="carbinestun", charge_cost = 80),
 	)
 
@@ -272,12 +276,13 @@
 	..()
 
 /obj/item/weapon/gun/energy/locked/frontier/carbine/unlocked
-	desc = "An ergonomically improved version of the venerable frontier phaser, the carbine is a fairly new weapon, and has only been produced in limited numbers so far."
+	desc = "An ergonomically improved version of the venerable frontier phaser. Includes a built-in crank charger for recharging away from civilization."
 	req_access = newlist() //for toggling safety
 	locked = 0
 	lockable = 0
 
-//Expeditionary Holdout Phaser Pistol
+////////////////Expeditionary Holdout Phaser Pistol////////////////
+
 /obj/item/weapon/gun/energy/locked/frontier/holdout
 	name = "holdout frontier phaser"
 	desc = "An minaturized weapon designed for the purpose of expeditionary support to defend themselves on the field. Includes a built-in crank charger for recharging away from civilization. This one has a safety interlock that prevents firing while in proximity to the facility."

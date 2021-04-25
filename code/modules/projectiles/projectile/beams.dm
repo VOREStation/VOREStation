@@ -44,7 +44,6 @@
 	damage = 30
 	armor_penetration = 10
 
-
 /obj/item/projectile/beam/midlaser
 	damage = 40
 	armor_penetration = 10
@@ -282,7 +281,6 @@
 	damage = 5
 	agony = 10
 
-
 //
 // Projectile Beam Definitions
 //
@@ -300,3 +298,5 @@
 	muzzle_type = /obj/effect/projectile/muzzle/pointdefense
 	tracer_type = /obj/effect/projectile/tracer/pointdefense
 	impact_type = /obj/effect/projectile/impact/pointdefense
+
+

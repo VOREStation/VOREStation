@@ -43,6 +43,18 @@
 	impact_type = /obj/effect/projectile/impact/laser_blue
 
 /obj/item/projectile/beam/weaklaser/blue
+	icon_state = "bluelaser"
+	light_color = "#0066FF"
+
+	muzzle_type = /obj/effect/projectile/muzzle/laser_blue
+	tracer_type = /obj/effect/projectile/tracer/laser_blue
+	impact_type = /obj/effect/projectile/impact/laser_blue
+
+/obj/item/projectile/beam/carbine/blue //double the damage of weaklaser
+	damage = 30
+	icon_state = "bluelaser"
+	light_color = "#0066FF"
+
 	muzzle_type = /obj/effect/projectile/muzzle/laser_blue
 	tracer_type = /obj/effect/projectile/tracer/laser_blue
 	impact_type = /obj/effect/projectile/impact/laser_blue
@@ -80,3 +92,5 @@
 			M.adjustToxLoss(-5)
 			M.adjustOxyLoss(-5)
 	return 1
+
+
