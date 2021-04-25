@@ -9,6 +9,7 @@
 /obj/machinery/computer/skills//TODO:SANITY //[TO DO] Change name to PCU and update mapdata to include replacement computers
 	name = "\improper employment records PCU"
 	desc = "A personal computer unit that's used to view, edit and maintain employment records."
+	icon = 'icons/obj/computer_vr.dmi'
 	icon_state = "pcu"
 	icon_keyboard = "pcu_key"
 	icon_screen = "pcu_generic"
