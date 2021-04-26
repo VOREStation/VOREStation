@@ -23,7 +23,6 @@
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "boltaction_p"
 	item_state = "boltaction_p"
-	item_icons = list(slot_l_hand_str = 'icons/mob/items/lefthand_guns_vr.dmi', slot_r_hand_str = 'icons/mob/items/righthand_guns_vr.dmi')
 	max_shells = 4
 	ammo_type = /obj/item/ammo_casing/a762/practice
 
@@ -93,7 +92,6 @@
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "boltaction_s"
 	item_state = "boltaction_p"
-	item_icons = list(slot_l_hand_str = 'icons/mob/items/lefthand_guns_vr.dmi', slot_r_hand_str = 'icons/mob/items/righthand_guns_vr.dmi')
 	fire_sound = 'sound/weapons/Gunshot_generic_rifle.ogg'
 	max_shells = 4
 	slot_flags = null
