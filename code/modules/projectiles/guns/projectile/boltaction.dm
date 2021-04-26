@@ -84,3 +84,20 @@
 	caliber = "7.62mm"
 	load_method = SINGLE_CASING
 
+////////////////////////surplus gun - for derelicts (04/26/2021)////////////////////////
+
+/obj/item/weapon/gun/projectile/shotgun/pump/surplus
+	name = "surplus rifle"
+	desc = "An ancient weapon from an era long pas, crude in design, but still just as effective as any modern interpretation. Uses 7.62mm rounds."
+	icon = 'icons/obj/gun_vr.dmi'
+	icon_state = "boltaction_s"
+	item_state = "boltaction_p"
+	fire_sound = 'sound/weapons/Gunshot_generic_rifle.ogg'
+	max_shells = 4
+	slot_flags = null
+	caliber = "7.62mm"
+	origin_tech = list(TECH_COMBAT = 1) // Old(er) as shit rifle doesn't have very good tech.
+	ammo_type = /obj/item/ammo_casing/a762
+	load_method = SINGLE_CASING|SPEEDLOADER
+	action_sound = 'sound/weapons/riflebolt.ogg'
+	pump_animation = null
