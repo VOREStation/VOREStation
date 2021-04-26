@@ -9,6 +9,7 @@
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "boltaction_p"
 	item_state = "boltaction_p"
+	item_icons = list(slot_l_hand_str = 'icons/mob/items/lefthand_guns_vr.dmi', slot_r_hand_str = 'icons/mob/items/righthand_guns_vr.dmi')
 	max_shells = 4
 
 /obj/item/weapon/gun/projectile/shotgun/pump/rifle/ceremonial
@@ -32,7 +33,7 @@
 	max_shells = 5
 	caliber = "7.62mm"
 	load_method = SINGLE_CASING
-	pump_animation = null 
+	pump_animation = null
 
 ////////////////////////surplus gun - for derelicts (04/26/2021)////////////////////////
 
@@ -42,6 +43,7 @@
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "boltaction_s"
 	item_state = "boltaction_p"
+	item_icons = list(slot_l_hand_str = 'icons/mob/items/lefthand_guns_vr.dmi', slot_r_hand_str = 'icons/mob/items/righthand_guns_vr.dmi')
 	fire_sound = 'sound/weapons/Gunshot_generic_rifle.ogg'
 	max_shells = 4
 	slot_flags = null
@@ -50,4 +52,4 @@
 	ammo_type = /obj/item/ammo_casing/a762
 	load_method = SINGLE_CASING|SPEEDLOADER
 	action_sound = 'sound/weapons/riflebolt.ogg'
-	pump_animation = null 
+	pump_animation = null
