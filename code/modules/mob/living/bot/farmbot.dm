@@ -96,9 +96,18 @@
 				turn_on()
 			. = TRUE
 
+	switch(action)
+		if("power")
+			if(!access_scanner.allowed(src))
+				return FALSE
+			if(on)
+				turn_off()
+			else
+				turn_on()
+			. = TRUE
+	
 	if(locked)
 		return TRUE
-
 	switch(action)
 		if("water")
 			waters_trays = !waters_trays

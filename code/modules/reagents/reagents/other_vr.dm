@@ -28,14 +28,6 @@
 					BI.forceMove(torso)
 					torso.implants += BI
 
-/datum/chemical_reaction/slime/sapphire_mutation
-	name = "Slime Mutation Toxins"
-	id = "slime_mutation_tox"
-	result = "mutationtoxin"
-	required_reagents = list("blood" = 5)
-	result_amount = 30
-	required = /obj/item/slime_extract/sapphire
-
 /datum/reagent/nif_repair_nanites
 	name = "Programmed Nanomachines"
 	id = "nifrepairnanites"

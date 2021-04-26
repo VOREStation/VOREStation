@@ -1,4 +1,4 @@
-/datum/chemical_reaction/distilling
+/decl/chemical_reaction/distilling
 //	name = null
 //	id = null
 //	result = null
@@ -26,32 +26,19 @@
 	var/list/temp_range = list(T0C, T20C)
 	var/temp_shift = 0 // How much the temperature changes when the reaction occurs.
 
-/datum/chemical_reaction/distilling/can_happen(var/datum/reagents/holder)
-	//check that all the required reagents are present
-	if(!holder.has_all_reagents(required_reagents))
-		return 0
+/decl/chemical_reaction/distilling/can_happen(var/datum/reagents/holder)
+	if(!istype(holder, /datum/reagents/distilling) || !istype(holder.my_atom, /obj/machinery/portable_atmospherics/powered/reagent_distillery))
+		return FALSE
 
-	//check that all the required catalysts are present in the required amount
-	if(!holder.has_all_reagents(catalysts))
-		return 0
+	// Super special temperature check.
+	var/obj/machinery/portable_atmospherics/powered/reagent_distillery/RD = holder.my_atom
+	if(RD.current_temp < temp_range[1] || RD.current_temp > temp_range[2])
+		return FALSE
 
-	//check that none of the inhibitors are present in the required amount
-	if(holder.has_any_reagent(inhibitors))
-		return 0
-
-	if(!istype(holder.my_atom, /obj/item/weapon/reagent_containers/glass/distilling))
-		return 0
-
-	else // Super special temperature check.
-		var/obj/item/weapon/reagent_containers/glass/distilling/D = holder.my_atom
-		var/obj/machinery/portable_atmospherics/powered/reagent_distillery/RD = D.Master
-		if(RD.current_temp < temp_range[1] || RD.current_temp > temp_range[2])
-			return 0
-
-	return 1
+	return ..()
 
 /*
-/datum/chemical_reaction/distilling/on_reaction(var/datum/reagents/holder, var/created_volume)
+/decl/chemical_reaction/distilling/on_reaction(var/datum/reagents/holder, var/created_volume)
 	if(istype(holder.my_atom, /obj/item/weapon/reagent_containers/glass/distilling))
 		var/obj/item/weapon/reagent_containers/glass/distilling/D = holder.my_atom
 		var/obj/machinery/portable_atmospherics/powered/reagent_distillery/RD = D.Master
@@ -62,7 +49,7 @@
 // Subtypes //
 
 // Biomass
-/datum/chemical_reaction/distilling/biomass
+/decl/chemical_reaction/distilling/biomass
 	name = "Distilling Biomass"
 	id = "distill_biomass"
 	result = "biomass"
@@ -73,7 +60,7 @@
 	temp_shift = -2
 
 // Medicinal
-/datum/chemical_reaction/distilling/inaprovalaze
+/decl/chemical_reaction/distilling/inaprovalaze
 	name = "Distilling Inaprovalaze"
 	id = "distill_inaprovalaze"
 	result = "inaprovalaze"
@@ -84,7 +71,7 @@
 
 	temp_range = list(T0C + 100, T0C + 120)
 
-/datum/chemical_reaction/distilling/bicaridaze
+/decl/chemical_reaction/distilling/bicaridaze
 	name = "Distilling Bicaridaze"
 	id = "distill_bicaridaze"
 	result = "bicaridaze"
@@ -95,7 +82,7 @@
 
 	temp_range = list(T0C + 110, T0C + 130)
 
-/datum/chemical_reaction/distilling/dermalaze
+/decl/chemical_reaction/distilling/dermalaze
 	name = "Distilling Dermalaze"
 	id = "distill_dermalaze"
 	result = "dermalaze"
@@ -106,7 +93,7 @@
 
 	temp_range = list(T0C + 115, T0C + 130)
 
-/datum/chemical_reaction/distilling/spacomycaze
+/decl/chemical_reaction/distilling/spacomycaze
 	name = "Distilling Spacomycaze"
 	id = "distill_spacomycaze"
 	result = "spacomycaze"
@@ -117,7 +104,7 @@
 
 	temp_range = list(T0C + 100, T0C + 120)
 
-/datum/chemical_reaction/distilling/tricorlidaze
+/decl/chemical_reaction/distilling/tricorlidaze
 	name = "Distilling Tricorlidaze"
 	id = "distill_tricorlidaze"
 	result = "tricorlidaze"
@@ -128,7 +115,7 @@
 
 	temp_range = list(T0C + 100, T0C + 120)
 
-/datum/chemical_reaction/distilling/synthplas
+/decl/chemical_reaction/distilling/synthplas
 	name = "Distilling Synthplas"
 	id = "distill_synthplas"
 	result = "synthblood_dilute"
@@ -140,7 +127,7 @@
 	temp_range = list(T0C + 110, T0C + 130)
 
 // Alcohol
-/datum/chemical_reaction/distilling/beer
+/decl/chemical_reaction/distilling/beer
 	name = "Distilling Beer"
 	id = "distill_beer"
 	result = "beer"
@@ -151,7 +138,7 @@
 
 	temp_range = list(T20C, T20C + 2)
 
-/datum/chemical_reaction/distilling/ale
+/decl/chemical_reaction/distilling/ale
 	name = "Distilling Ale"
 	id = "distill_ale"
 	result = "ale"
@@ -165,7 +152,7 @@
 	temp_range = list(T0C + 7, T0C + 13)
 
 // Unique
-/datum/chemical_reaction/distilling/berserkjuice
+/decl/chemical_reaction/distilling/berserkjuice
 	name = "Distilling Brute Juice"
 	id = "distill_brutejuice"
 	result = "berserkmed"
@@ -175,7 +162,7 @@
 	temp_range = list(T0C + 600, T0C + 700)
 	temp_shift = 4
 
-/datum/chemical_reaction/distilling/berserkjuice/on_reaction(var/datum/reagents/holder, var/created_volume)
+/decl/chemical_reaction/distilling/berserkjuice/on_reaction(var/datum/reagents/holder, var/created_volume)
 	..()
 
 	if(prob(1))
@@ -183,7 +170,7 @@
 		explosion(T, -1, rand(-1, 1), rand(1,2), rand(3,5))
 	return
 
-/datum/chemical_reaction/distilling/cryogel
+/decl/chemical_reaction/distilling/cryogel
 	name = "Distilling Cryogellatin"
 	id = "distill_cryoslurry"
 	result = "cryoslurry"
@@ -194,7 +181,7 @@
 	temp_range = list(0, 15)
 	temp_shift = 20
 
-/datum/chemical_reaction/distilling/cryogel/on_reaction(var/datum/reagents/holder, var/created_volume)
+/decl/chemical_reaction/distilling/cryogel/on_reaction(var/datum/reagents/holder, var/created_volume)
 	..()
 
 	if(prob(1))
@@ -204,7 +191,7 @@
 		F.start()
 	return
 
-/datum/chemical_reaction/distilling/lichpowder
+/decl/chemical_reaction/distilling/lichpowder
 	name = "Distilling Lichpowder"
 	id = "distill_lichpowder"
 	result = "lichpowder"
@@ -215,7 +202,7 @@
 
 	temp_range = list(T0C + 100, T0C + 150)
 
-/datum/chemical_reaction/distilling/necroxadone
+/decl/chemical_reaction/distilling/necroxadone
 	name = "Distilling Necroxadone"
 	id = "distill_necroxadone"
 	result = "necroxadone"

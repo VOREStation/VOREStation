@@ -238,14 +238,6 @@
 	reagent_state = SOLID
 	color = "#D0D0D0"
 
-/datum/reagent/uranium
-	name ="Uranium"
-	id = "uranium"
-	description = "A silvery-white metallic chemical element in the actinide series, weakly radioactive."
-	taste_description = "metal"
-	reagent_state = SOLID
-	color = "#B8B8C0"
-
 /datum/reagent/platinum
 	name = "Platinum"
 	id = "platinum"
@@ -253,6 +245,14 @@
 	taste_description = "metal"
 	reagent_state = SOLID
 	color = "#777777"
+
+/datum/reagent/uranium
+	name ="Uranium"
+	id = "uranium"
+	description = "A silvery-white metallic chemical element in the actinide series, weakly radioactive."
+	taste_description = "metal"
+	reagent_state = SOLID
+	color = "#B8B8C0"
 
 /datum/reagent/uranium/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
 	affect_ingest(M, alien, removed)
@@ -267,6 +267,55 @@
 			if(!glow)
 				new /obj/effect/decal/cleanable/greenglow(T)
 			return
+
+/datum/reagent/hydrogen/deuterium
+	name = "Deuterium"
+	id = "deuterium"
+	description = "A isotope of hydrogen. It has one extra neutron, and shares all chemical characteristics with hydrogen."
+
+/datum/reagent/hydrogen/tritium
+	name = "Tritium"
+	id = "tritium"
+	description = "A radioactive isotope of hydrogen. It has two extra neutrons, and shares all other chemical characteristics with hydrogen."
+
+/datum/reagent/lithium/lithium6
+	name = "Lithium-6"
+	id = "lithium6"
+	description = "An isotope of lithium. It has 3 neutrons, but shares all chemical characteristics with regular lithium."
+	
+/datum/reagent/helium/helium3
+	name = "Helium-3"
+	id = "helium3"
+	description = "An isotope of helium. It only has one neutron, but shares all chemical characteristics with regular helium."
+	taste_mult = 0
+	reagent_state = GAS
+	color = "#808080"
+
+/datum/reagent/boron/boron11
+	name = "Boron-11"
+	id = "boron11"
+	description = "An isotope of boron. It has 6 neutrons."
+	taste_description = "metallic" // Apparently noone on the internet knows what boron tastes like. Or at least they won't share
+
+/datum/reagent/supermatter
+	name = "Supermatter"
+	id = "supermatter"
+	description = "The immense power of a supermatter crystal, in liquid form. You're not entirely sure how that's possible, but it's probably best handled with care."
+	taste_description = "taffy" // 0. The supermatter is tasty, tasty taffy.
+
+// Same as if you boop it wrong. It touches you, you die
+/datum/reagent/supermatter/affect_touch(mob/living/carbon/M, alien, removed)
+	. = ..()
+	M.ash()
+
+/datum/reagent/supermatter/affect_ingest(mob/living/carbon/M, alien, removed)
+	. = ..()
+	M.ash()
+	
+/datum/reagent/supermatter/affect_blood(mob/living/carbon/M, alien, removed)
+	. = ..()
+	M.ash()
+	
 
 /datum/reagent/adrenaline
 	name = "Adrenaline"

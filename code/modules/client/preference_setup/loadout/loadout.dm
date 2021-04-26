@@ -66,8 +66,10 @@ var/list/gear_datums = list()
 	for(var/gear_name in gear_datums)
 		var/datum/gear/G = gear_datums[gear_name]
 
-		if(G.whitelisted && !is_alien_whitelisted(preference_mob, GLOB.all_species[G.whitelisted]))
-			continue
+		//VOREStation Removal Start - No need for species-based whitelists for species clothes
+		//if(G.whitelisted && G.whitelisted != pref.species)
+		//	continue
+		//VOREStation Removal End
 		if(max_cost && G.cost > max_cost)
 			continue
 		//VOREStation Edit Start

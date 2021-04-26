@@ -634,10 +634,6 @@
 	model_text = "Exploration"
 	departments = list("Exploration","Expedition Medic","Old Exploration","No Change")
 
-/obj/machinery/suit_cycler/exploration/Initialize()
-	species -= SPECIES_TESHARI
-	return ..()
-
 /obj/machinery/suit_cycler/pilot
 	name = "Pilot suit cycler"
 	model_text = "Pilot"

@@ -25,7 +25,7 @@ export const CookingAppliance = (props, context) => {
               <ProgressBar
                 color={temperatureEnough ? "good" : "blue"}
                 value={temperature}
-                maxValue={optimalTemp + 100}>
+                maxValue={optimalTemp}>
                 <AnimatedNumber value={temperature} />&deg;C / {optimalTemp}&deg;C
               </ProgressBar>
             </LabeledList.Item>

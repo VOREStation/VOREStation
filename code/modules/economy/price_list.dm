@@ -13,7 +13,7 @@
 //---Beverages---//
 //***************//
 
-/datum/reagent/var/price_tag = null
+/datum/reagent/var/price_tag = 0
 
 
 // Juices, soda and similar //
