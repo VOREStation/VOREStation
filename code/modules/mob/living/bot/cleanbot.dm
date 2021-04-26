@@ -28,8 +28,7 @@
 
 /mob/living/bot/cleanbot/handleIdle()
 	if(!wet_floors && !spray_blood && vocal && prob(2))
-		custom_emote(2, "makes an excited booping sound!")
-		playsound(src, 'sound/machines/synth_yes.ogg', 50, 0)
+		playsound(src, 'sound/machines/synth_yes.ogg', 10, 0)
 
 	if(wet_floors && prob(5)) // Make a mess
 		if(istype(loc, /turf/simulated))
