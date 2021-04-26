@@ -503,7 +503,6 @@
 		attempt_msg = "<span class='warning'>It seems like [prey] is gonna end up inside [pred]'s [lowertext(belly.name)] as [pred] comes sliding over!</span>"
 		success_msg = "<span class='warning'>[prey] suddenly slips inside of [pred]'s [lowertext(belly.name)] as [pred] slides into them!</span>"
 	else if(user == pred) //CHOMPEdit End //Feeding someone to yourself
-	if(user == pred) //Feeding someone to yourself
 		attempt_msg = "<span class='warning'>[pred] is attempting to [lowertext(belly.vore_verb)] [prey] into their [lowertext(belly.name)]!</span>"
 		success_msg = "<span class='warning'>[pred] manages to [lowertext(belly.vore_verb)] [prey] into their [lowertext(belly.name)]!</span>"
 	else //Feeding someone to another person
