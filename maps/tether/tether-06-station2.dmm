@@ -10285,7 +10285,6 @@
 /area/ai_monitored/storage/eva)
 "qj" = (
 /obj/structure/table/woodentable,
-/obj/item/device/binoculars,
 /obj/item/weapon/folder/blue,
 /obj/structure/cable/green{
 	d1 = 1;
