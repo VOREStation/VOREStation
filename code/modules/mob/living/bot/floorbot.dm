@@ -68,7 +68,6 @@
 	if(!emagged)
 		emagged = 1
 		if(user)
-			to_chat(user, "<span class='notice'>The [src] buzzes and beeps.</span>")
 			playsound(src, 'sound/machines/buzzbeep.ogg', 50, 0)
 		return 1
 
@@ -113,8 +112,7 @@
 		addTiles(1)
 
 	if(vocal && prob(1))
-		custom_emote(2, "makes an excited beeping sound!")
-		playsound(src, 'sound/machines/twobeep.ogg', 50, 0)
+		playsound(src, 'sound/machines/twobeep.ogg', 10, 0)
 
 /mob/living/bot/floorbot/handleAdjacentTarget()
 	if(get_turf(target) == src.loc)
