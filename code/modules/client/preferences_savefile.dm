@@ -82,10 +82,12 @@
 		player_setup.load_character(S)
 		S.cd = "/character[default_slot]"
 		player_setup.save_character(S)
-		sanitize_preferences()
 
+<<<<<<< HEAD
 	player_setup.load_character(S)
 	clear_character_previews() // Recalculate them on next show
+=======
+>>>>>>> a083c7a... Sanitizes languages, ears/wings/tail prefs on login (#8030)
 	return 1
 
 /datum/preferences/proc/save_character()
