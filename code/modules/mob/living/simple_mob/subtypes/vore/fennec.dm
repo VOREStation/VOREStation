@@ -11,7 +11,7 @@
 	However, despite this they are passive and do not actively hunt as their bodies have grown accustomed \
 	to less available food sources.\
 	<br>\
-	Fennec foxes reach sexual maturity at around nine months and mate between January and April\
+	Fennec foxes reach sexual maturity at around nine months and mate between January and April \
 	They usually breed only once per year. After mating, the male becomes very aggressive and protects \
 	the female, provides her with food during pregnancy and lactation.\
 	<br>\

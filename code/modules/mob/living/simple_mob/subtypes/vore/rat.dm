@@ -3,12 +3,12 @@
 	desc = "Classification: Mus muscular\
 	<br><br>\
 	Rats are various medium-sized, long-tailed rodents. Species of rats are found throughout the order Rodentia, \
-	but stereotypical rats are found in the genus Rattus. This specific species of rat is a mutated decendant from lab rats.\
+	but stereotypical rats are found in the genus Rattus. This specific species of rat is a mutated decendant from lab rats. \
 	It is unclear what experiment caused this species to grow to such an unnatural size, however it hasn't effected the rat's \
 	general docile nature. When encounterd by human's or other species it generally ignores them unless provoked.\
 	<br>\
 	Rats become sexually mature at age 6 weeks, but reach social maturity at about 5 to 6 months of age. \
-	The average lifespan of rats varies by species, but many only live about a year due to predation.\
+	The average lifespan of rats varies by species, but many only live about a year due to predation. \
 	However, due to the large nature of this particular species of rat, predation is usually not that much of an issue. \
 	This doesn't mean that there is an overpopulation, though, quite the opposite. Giant Rats are rare and this is usually \
 	due to small litter sizes and lack of proper food sources. Areas that one would typically see a Giant Rat is large garbage \
