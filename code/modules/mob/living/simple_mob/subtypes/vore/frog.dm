@@ -1,4 +1,4 @@
-datum/category_item/catalogue/fauna/fennec
+datum/category_item/catalogue/fauna/frog
 	name = "Wildlife - Giant Frog"
 	desc = "Classification: Anura gigantus\
     <br><br>\
