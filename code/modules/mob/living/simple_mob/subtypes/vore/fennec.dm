@@ -1,10 +1,23 @@
-/datum/category_item/catalogue/fauna/fennec		//TODO: VIRGO_LORE_WRITING_WIP
+/datum/category_item/catalogue/fauna/fennec
 	name = "Wildlife - Fennec"
-	desc = "A small, dusty, big-eared sandfox, native to Virgo 4. It looks like a Zorren that's on all fours, \
-	and it's easy to see the resemblance to the little dunefox-like critters the Zorren are. However, the fennecs \
-	lack the sentience the Zorren have, and are therefore naught more than cute little critters, with a hungry \
-	attitude, willing to eat damn near anything they come across or can bump into. Bapping them will make them stop."
-	value = CATALOGUER_REWARD_TRIVIAL
+	desc = "Classification: Vulpes zerda\
+    <br><br>\
+    The Fennec fox is a small crepuscular fox native to Earth in Sol that nearly went extinct in the 2030s.\
+    Through conservation efforts and the rise of space colonies, the Fennec was brought back from the brink \
+    and is now labeled as 'Least Concern'. During the great Sol Expansion Period, Fennec were brought with \
+    colonist as a means of companionship and as a ecosystem balance for desert worlds such as Virgo 4. \
+    Their presence on Virgo 4 spans back to when the colony was first established and now modern Virgo \
+    Fennec are upwards of five times larger than their Sol cousins and have gained a larger appetite. \
+    However, despite this they are passive and do not actively hunt as their bodies have grown accustomed \
+    to less available food sources.\
+    <br>\
+    Fennec foxes reach sexual maturity at around nine months and mate between January and April\
+    They usually breed only once per year. After mating, the male becomes very aggressive and protects \
+    the female, provides her with food during pregnancy and lactation.\
+    <br>\
+    These animals, despite their current Conservation status, are a protected species and are not to be \
+    harmed, hunted, or captured by anyone. Severe consequences may result in violation of this order."
+    value = CATALOGUER_REWARD_TRIVIAL
 
 /mob/living/simple_mob/vore/fennec
 	name = "fennec" //why isn't this in the fox file, fennecs are foxes silly.
