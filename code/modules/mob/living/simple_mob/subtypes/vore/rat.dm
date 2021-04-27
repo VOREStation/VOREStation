@@ -4,7 +4,7 @@
 	<br><br>\
 	Rats are various medium-sized, long-tailed rodents. Species of rats are found throughout the order Rodentia, \
 	but stereotypical rats are found in the genus Rattus. This specific species of rat is a mutated decendant from lab rats. \
-	It is unclear what experiment caused this species to grow to such an unnatural size, however it hasn't effected the rat's \
+	It is unclear what experiment caused this species to grow to such an unnatural size, however it hasn't affected the rat's \
 	general docile nature. When encounterd by human's or other species it generally ignores them unless provoked.\
 	<br>\
 	Rats become sexually mature at age 6 weeks, but reach social maturity at about 5 to 6 months of age. \
