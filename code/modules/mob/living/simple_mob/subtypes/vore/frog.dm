@@ -14,7 +14,7 @@
 	order to make use of the ephemeral pools before they dry up. Because of this, the Frog population is through the roof and has \
 	become a major issue for various colonies and stations.\
 	<br>\
-    These animals, are considered an invasive species, and thus hunters are encouraged to hunt them."
+	These animals, are considered an invasive species, and thus hunters are encouraged to hunt them."
 	value = CATALOGUER_REWARD_TRIVIAL
 
 /mob/living/simple_mob/vore/aggressive/frog

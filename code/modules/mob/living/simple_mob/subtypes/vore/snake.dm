@@ -14,9 +14,9 @@
 	This species of snake is nonvenomous and use their large bodies to primarily subdue their prey. \
 	Nonvenomous snakes either swallow prey alive or kill them by constriction - this is dependant on the prey. \
 	<br>\
-    This snake is extremely hostile to all wildlife and living beings and should be avoided at all costs. \
-    People who spot these creatures are urged to inform the nearest militant entity so that they can be \
-    dealt with in a professional manner."
+	This snake is extremely hostile to all wildlife and living beings and should be avoided at all costs. \
+	People who spot these creatures are urged to inform the nearest militant entity so that they can be \
+	dealt with in a professional manner."
 	value = CATALOGUER_REWARD_HARD
 
 /mob/living/simple_mob/vore/aggressive/giant_snake

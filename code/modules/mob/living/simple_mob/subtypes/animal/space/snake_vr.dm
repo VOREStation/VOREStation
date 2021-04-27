@@ -10,8 +10,8 @@
 	This species of snake is nonvenomous and use their large bodies to primarily subdue their prey. \
 	Nonvenomous snakes either swallow prey alive or kill them by constriction - this is dependant on the prey. \
 	<br>\
-    These animals are a protected species and are not to be harmed, hunted, or captured by anyone. \
-    Severe consequences may result in violation of this order."
+	These animals are a protected species and are not to be harmed, hunted, or captured by anyone. \
+	Severe consequences may result in violation of this order."
 	value = CATALOGUER_REWARD_TRIVIAL
 
 /mob/living/simple_mob/animal/passive/snake
