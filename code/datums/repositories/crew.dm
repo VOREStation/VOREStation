@@ -32,22 +32,29 @@ var/global/datum/repository/crew/crew_repository = new()
 
 				var/list/crewmemberData = list("dead"=0, "oxy"=-1, "tox"=-1, "fire"=-1, "brute"=-1, "area"="", "x"=-1, "y"=-1, "ref" = "\ref[H]")
 
-				crewmemberData["sensor_type"] = C.sensor_mode
+				//VOREStation Edit Start
+				var/real_sensors = C.sensor_mode
+				if(real_sensors > SUIT_SENSOR_BINARY && seclevel2num(get_security_level()) <= SEC_LEVEL_GREEN && seclevel2num(get_security_level()) != SEC_LEVEL_VIOLET)			//Code Green (and maybe lower if that ever happens?) only gets binary.
+					real_sensors = SUIT_SENSOR_BINARY
+				else if(real_sensors > SUIT_SENSOR_VITAL && seclevel2num(get_security_level()) < SEC_LEVEL_BLUE && seclevel2num(get_security_level()) != SEC_LEVEL_VIOLET)		//Codes Yellow and Orange get the vitals but not tracking.
+					real_sensors = SUIT_SENSOR_VITAL
+				crewmemberData["sensor_type"] = real_sensors																										//Code Blue and above + Code Violet get all the sensors
+				//VOREStation Edit End
 				crewmemberData["name"] = H.get_authentification_name(if_no_id="Unknown")
 				crewmemberData["rank"] = H.get_authentification_rank(if_no_id="Unknown", if_no_job="No Job")
 				crewmemberData["assignment"] = H.get_assignment(if_no_id="Unknown", if_no_job="No Job")
 
-				if(C.sensor_mode >= SUIT_SENSOR_BINARY)
+				if(real_sensors >= SUIT_SENSOR_BINARY)	//VOREStation Edit
 					crewmemberData["dead"] = H.stat == DEAD
 
-				if(C.sensor_mode >= SUIT_SENSOR_VITAL)
+				if(real_sensors >= SUIT_SENSOR_VITAL)	//VOREStation Edit
 					crewmemberData["stat"] = H.stat
 					crewmemberData["oxy"] = round(H.getOxyLoss(), 1)
 					crewmemberData["tox"] = round(H.getToxLoss(), 1)
 					crewmemberData["fire"] = round(H.getFireLoss(), 1)
 					crewmemberData["brute"] = round(H.getBruteLoss(), 1)
 
-				if(C.sensor_mode >= SUIT_SENSOR_TRACKING)
+				if(real_sensors >= SUIT_SENSOR_TRACKING)//VOREStation Edit
 					var/area/A = get_area(H)
 					crewmemberData["area"] = sanitize(A.get_name())
 					crewmemberData["x"] = pos.x
