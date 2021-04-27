@@ -5,7 +5,7 @@
 	A frog is any member of a diverse and largely carnivorous group of short-bodied, tailless amphibians composing \
 	the order Anura. This specific species - Anura gigantus - is a mutated form of Frogs, largly due to exposure to mutagen chemicals. \
 	These Giant Frogs are decendants from scientific frogs that were used for study during the great Sol Expansion Period. \
-	Modern day Giant Frogs have reveted to a more feral state compared to their original anncestors and are hostile \
+	Modern day Giant Frogs have reverted to a more feral state compared to their original ancestors and are hostile \
 	towards humans and other small wildlife - hunting them for food.\
 	<br>\
 	The particular breed of Frog that was originally used in the scientific experiments were known as explosive breeders.\
