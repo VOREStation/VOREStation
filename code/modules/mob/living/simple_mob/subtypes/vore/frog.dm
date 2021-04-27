@@ -15,7 +15,7 @@
     become a major issue for various colonies and stations.\
     <br>\
     These animals, are considered an invasive species, and thus hunters are encouraged to hunt them."
-    value = CATALOGUER_REWARD_TRIVIAL
+	value = CATALOGUER_REWARD_TRIVIAL
 
 /mob/living/simple_mob/vore/aggressive/frog
 	name = "giant frog"

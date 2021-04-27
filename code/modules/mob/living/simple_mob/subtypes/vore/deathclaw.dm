@@ -13,7 +13,7 @@
     <br>\
     These creatures are considered an invasive species, and thus hunters are encouraged to hunt them \
     although they are cautioned when doing so due to the danger that the creature poses."
-    value = CATALOGUER_REWARD_HARD
+	value = CATALOGUER_REWARD_HARD
 
 /mob/living/simple_mob/vore/aggressive/deathclaw
 	name = "deathclaw"
