@@ -167,6 +167,7 @@
 		//list("Carp Farm"),
 		//list("Snow Field"),
 		//list("Listening Post")
+		//list("Xenobiology station") //commented until gateway re-added.
 		)
 
 	ai_shell_restricted = TRUE
