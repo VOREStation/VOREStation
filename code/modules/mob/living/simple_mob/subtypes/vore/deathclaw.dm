@@ -18,6 +18,7 @@
 /mob/living/simple_mob/vore/aggressive/deathclaw
 	name = "deathclaw"
 	desc = "Big! Big! The size of three men! Claws as long as my forearm! Ripped apart! Ripped apart!"
+	tt_desc = "Trioceros dominus"
 
 	icon_dead = "deathclaw-dead"
 	icon_living = "deathclaw"
