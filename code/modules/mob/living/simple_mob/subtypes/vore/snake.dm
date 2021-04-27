@@ -6,7 +6,7 @@
 	Like all other squamates, snakes are ectothermic, amniote vertebrates covered in overlapping scales. \
 	Many species of snakes have skulls with several more joints than their lizard ancestors, \
 	enabling them to swallow prey much larger than their heads with their highly mobile jaws. \
-	This particular species of snake has likely been mutated by the many phoron deposites in the region and \
+	This particular species of snake has likely been mutated by the many phoron deposits in the region and \
 	has grown to an unnatural size. Biologically this snake is no different than that of the common snake, \
 	but this species has been known to have increased hostility towards wildlife. Scientists are still studying \
 	this new species for any differences in behavior or biology beyond the increase in size. \
