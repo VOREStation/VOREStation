@@ -1,18 +1,18 @@
 /datum/category_item/catalogue/fauna/deathclaw
 	name = "Creature - Deathclaw"
 	desc = "Classification: Trioceros dominus\
-    <br><br>\
-    Originally the Deathclaw was a top secret genetics project run by a now defucnt defence company lost to time.\
-    The creatures are known to attack humans and other animals regularly to protect their territoy \
-    or to hunt for food. It is speculated that they escaped roughly around the time the Hegemony War \
-    broke out as sighting of these beasts in the wild began around that time. \
-    <br>\
-    Deathclaws are a large, carnivorous, bipedal reptile species, designed for maximum lethality. \
-    Deathclaws are made even more dangerous by their reproductive instincts. deathclaws are an oviparous species, \
-    female deathclaws will lay eggs in clusters, sired by the strongest male deathclaws in the pack, typically the alpha male.\
-    <br>\
-    These creatures are considered an invasive species, and thus hunters are encouraged to hunt them \
-    although they are cautioned when doing so due to the danger that the creature poses."
+	<br><br>\
+	Originally the Deathclaw was a top secret genetics project run by a now defucnt defence company lost to time.\
+	The creatures are known to attack humans and other animals regularly to protect their territoy \
+	or to hunt for food. It is speculated that they escaped roughly around the time the Hegemony War \
+	broke out as sighting of these beasts in the wild began around that time. \
+	<br>\
+	Deathclaws are a large, carnivorous, bipedal reptile species, designed for maximum lethality. \
+	Deathclaws are made even more dangerous by their reproductive instincts. deathclaws are an oviparous species, \
+	female deathclaws will lay eggs in clusters, sired by the strongest male deathclaws in the pack, typically the alpha male.\
+	<br>\
+	These creatures are considered an invasive species, and thus hunters are encouraged to hunt them \
+	although they are cautioned when doing so due to the danger that the creature poses."
 	value = CATALOGUER_REWARD_HARD
 
 /mob/living/simple_mob/vore/aggressive/deathclaw
