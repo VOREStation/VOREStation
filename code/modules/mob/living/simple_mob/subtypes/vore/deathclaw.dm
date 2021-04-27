@@ -2,8 +2,8 @@
 	name = "Creature - Deathclaw"
 	desc = "Classification: Trioceros dominus\
 	<br><br>\
-	Originally the Deathclaw was a top secret genetics project run by a now defucnt defence company lost to time.\
-	The creatures are known to attack humans and other animals regularly to protect their territoy \
+	Originally the Deathclaw was a top secret genetics project run by a now defunct defence company lost to time.\
+	The creatures are known to attack humans and other animals regularly to protect their territory \
 	or to hunt for food. It is speculated that they escaped roughly around the time the Hegemony War \
 	broke out as sighting of these beasts in the wild began around that time. \
 	<br>\
