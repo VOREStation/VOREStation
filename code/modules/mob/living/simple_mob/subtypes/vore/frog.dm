@@ -2,7 +2,7 @@
 	name = "Wildlife - Giant Frog"
 	desc = "Classification: Anura gigantus\
 	<br><br>\
-	A frog is any member of a diverse and largely carnivorous group of short-bodied, tailless amphibians composing\
+	A frog is any member of a diverse and largely carnivorous group of short-bodied, tailless amphibians composing \
 	the order Anura. This specific species - Anura gigantus - is a mutated form of Frogs, largly due to exposure to mutagen chemicals. \
 	These Giant Frogs are decendants from scientific frogs that were used for study during the great Sol Expansion Period. \
 	Modern day Giant Frogs have reveted to a more feral state compared to their original anncestors and are hostile \
