@@ -23,6 +23,7 @@
 	name = "fennec" //why isn't this in the fox file, fennecs are foxes silly.
 	desc = "It's a dusty big-eared sandfox! Adorable!"
 	tt_desc = "Vulpes zerda"
+	catalogue_data = list(/datum/category_item/catalogue/fauna/fennec)
 
 	icon_state = "fennec"
 	icon_living = "fennec"
