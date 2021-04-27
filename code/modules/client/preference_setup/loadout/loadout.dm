@@ -62,14 +62,21 @@ var/list/gear_datums = list()
 
 /datum/category_item/player_setup_item/loadout/proc/valid_gear_choices(var/max_cost)
 	. = list()
-	var/mob/preference_mob = preference_mob()
 	for(var/gear_name in gear_datums)
 		var/datum/gear/G = gear_datums[gear_name]
 
+<<<<<<< HEAD
 		//VOREStation Removal Start - No need for species-based whitelists for species clothes
 		//if(G.whitelisted && G.whitelisted != pref.species)
 		//	continue
 		//VOREStation Removal End
+=======
+		if(G.whitelisted && config.loadout_whitelist != LOADOUT_WHITELIST_OFF)
+			if(config.loadout_whitelist == LOADOUT_WHITELIST_STRICT && G.whitelisted != pref.species)
+				continue
+			if(config.loadout_whitelist == LOADOUT_WHITELIST_LAX && !is_alien_whitelisted(preference_mob(), GLOB.all_species[G.whitelisted]))	
+				continue
+>>>>>>> 11bbd31... Merge pull request #8055 from Atermonera/loadout_whitelist_fix
 		if(max_cost && G.cost > max_cost)
 			continue
 		//VOREStation Edit Start
