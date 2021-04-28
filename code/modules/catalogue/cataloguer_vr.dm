@@ -57,3 +57,7 @@
 	icon_state = "tricorder_med"
 	scan_range = 3
 	toolspeed = 1
+
+/obj/item/device/cataloguer
+	icon = 'icons/obj/device_vr.dmi'
+	icon_state = "cataloguer"
