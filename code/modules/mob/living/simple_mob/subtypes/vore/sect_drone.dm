@@ -1,6 +1,6 @@
 /datum/category_item/catalogue/fauna/sect_drone
 	name = "Creature - Sect Drone"
-	desc = "Classification: S Insecta gigantus\
+	desc = "Classification: V Insecta gigantus\
 	<br><br>\
 	A massively-sized insect that is native to Virgo 3B. Much like its queen, it bears the combined physical traits \
 	of several of Earth's insects. Its forelegs have claws bearing serrated edges much like a Mantis, which it uses \
@@ -21,7 +21,7 @@
 	name = "sect drone"
 	desc = "A large, chitin-plated insectoid whose multiple cyan eyes cast a frightful blue light. Its \
 	abdomen has an unusually soft and... flexible-looking underbelly..."
-	tt_desc = "S Insecta gigantus"
+	tt_desc = "V Insecta gigantus"
 	catalogue_data = list(/datum/category_item/catalogue/fauna/sect_drone)
 
 	icon_dead = "sect_drone_dead"

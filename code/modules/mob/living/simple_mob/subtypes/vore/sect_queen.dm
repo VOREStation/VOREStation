@@ -2,7 +2,7 @@
 
 /datum/category_item/catalogue/fauna/sect_queen
 	name = "Creature - Sect Queen"
-	desc = "Classification: S Insecta maximus gigantus\
+	desc = "Classification: V Insecta maximus gigantus\
 	<br><br>\
 	A massively-sized insect that is native - although rarely spotted outside of its colony - to Virgo 3B. \
 	It bears the combined physical traits of several of Earth's insects. Its forelegs have claws bearing serrated \
@@ -24,7 +24,7 @@
 	name = "sect queen"
 	desc = "A titanic, chitin-plated insectoid whose multiple crimson eyes cast a frightful red light. Its \
 	abdomen has an unusually soft and... flexible-looking underbelly..."
-	tt_desc = "S Insecta maximus gigantus"
+	tt_desc = "V Insecta maximus gigantus"
 	catalogue_data = list(/datum/category_item/catalogue/fauna/sect_queen)
 
 	icon_dead = "sect_queen_dead"

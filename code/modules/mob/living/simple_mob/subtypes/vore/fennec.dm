@@ -1,6 +1,6 @@
 /datum/category_item/catalogue/fauna/fennec
 	name = "Wildlife - Fennec"
-	desc = "Classification: Vulpes zerda\
+	desc = "Classification: E Vulpes zerda\
 	<br><br>\
 	The Fennec fox is a small crepuscular fox native to Earth in Sol that nearly went extinct in the 2030s.\
 	Through conservation efforts and the rise of space colonies, the Fennec was brought back from the brink \
@@ -22,7 +22,7 @@
 /mob/living/simple_mob/vore/fennec
 	name = "fennec" //why isn't this in the fox file, fennecs are foxes silly.
 	desc = "It's a dusty big-eared sandfox! Adorable!"
-	tt_desc = "Vulpes zerda"
+	tt_desc = "E Vulpes zerda"
 	catalogue_data = list(/datum/category_item/catalogue/fauna/fennec)
 
 	icon_state = "fennec"
