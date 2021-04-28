@@ -62,6 +62,7 @@ var/list/gear_datums = list()
 
 /datum/category_item/player_setup_item/loadout/proc/valid_gear_choices(var/max_cost)
 	. = list()
+	var/mob/preference_mob = preference_mob() //VOREStation Add
 	for(var/gear_name in gear_datums)
 		var/datum/gear/G = gear_datums[gear_name]
 
