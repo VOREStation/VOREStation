@@ -18327,6 +18327,11 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/item/device/radio/intercom{
+	dir = 4;
+	name = "Station Intercom (General)";
+	pixel_x = 24
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
 "aDQ" = (
@@ -38464,6 +38469,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
+"eQX" = (
+/obj/machinery/hologram/holopad,
+/turf/simulated/mineral/floor/cave{
+	name = "dirt"
+	},
+/area/tether/surfacebase/public_garden_three)
 "faL" = (
 /obj/structure/lattice,
 /obj/structure/cable/orange{
@@ -40711,6 +40722,10 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/recreation_area_restroom)
+"oqB" = (
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden_three)
 "orc" = (
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/lower/medsec_maintenance)
@@ -48609,7 +48624,7 @@ ajt
 aDg
 aDB
 aDG
-aDg
+oqB
 aDR
 aDr
 aDr
@@ -48742,7 +48757,7 @@ aUF
 aDa
 aDa
 aDa
-aDa
+eQX
 aDa
 aDa
 aDa
