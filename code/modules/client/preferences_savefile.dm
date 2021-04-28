@@ -83,11 +83,7 @@
 		S.cd = "/character[default_slot]"
 		player_setup.save_character(S)
 
-<<<<<<< HEAD
-	player_setup.load_character(S)
-	clear_character_previews() // Recalculate them on next show
-=======
->>>>>>> a083c7a... Sanitizes languages, ears/wings/tail prefs on login (#8030)
+	clear_character_previews() // VOREStation Edit
 	return 1
 
 /datum/preferences/proc/save_character()
