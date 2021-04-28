@@ -27,6 +27,9 @@
 /area/talon_v2/central_hallway
 	name = "\improper Talon - Central Hallway"
 	icon_state = "gray-c"
+/area/talon_v2/central_hallway/fore
+	name = "\improper Talon - Central Fore Hallway"
+	icon_state = "gray-f"
 /area/talon_v2/central_hallway/port
 	name = "\improper Talon - Central Port Hallway"
 	icon_state = "gray-p"
