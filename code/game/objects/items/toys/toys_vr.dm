@@ -303,20 +303,20 @@
 	icon_state = "chewtoy_poly"
 
 /obj/item/toy/chewtoy/attack_self(mob/user)
-	playsound(loc, 'sound/items/drop/plushie.ogg', 50, 1) //TODO: get a real squeaky toy sound
+	playsound(loc, 'sound/items/drop/plushie.ogg', 50, 1)
 	user.visible_message("<span class='notice'><b>\The [user]</b> gnaws on [src]!</span>","<span class='notice'>You gnaw on [src]!</span>")
 
-/obj/item/toy/cat_toy
+/obj/item/toy/cat_toy //TODO: make runtime and cat subtypes follow mobs holding this
 	name = "toy mouse"
 	desc = "A colorful toy mouse!"
-	icon = 'icons/obj/toy.dmi'
+	icon = 'icons/obj/toy_vr.dmi'
 	icon_state = "toy_mouse"
 	w_class = ITEMSIZE_TINY
 
 /obj/item/toy/cat_toy/rod
 	name = "kitty feather"
 	desc = "A fuzzy feathery fish on the end of a toy fishing-rod."
-	icon = 'icons/obj/toy.dmi'
+	icon = 'icons/obj/toy_vr.dmi'
 	icon_state = "cat_toy"
 	w_class = ITEMSIZE_SMALL
 
