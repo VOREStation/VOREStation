@@ -10,11 +10,11 @@
 	<br>\
 	It is not uncommon for a Sect Drone to go out alone to search for potential prey to bring back to the nest. \
 	Regardless of reason, it is cautioned against approaching a Sect Drone as, like their queen, their behaviour is wildly \
-	inconsistent. A Sect Drone can vary from hositle to docile depending on certain factors that scientists have \
+	inconsistent. A Sect Drone can vary from hostile to docile depending on certain factors that scientists have \
 	yet to uncover. \
 	<br>\
 	The lack  of chitin on the underside of its abdomen is deliberate, as the flesh is very elastic and stretchable, \
-	allowing the drone to carry multiple large prey inside of its stomach with realitive ease."
+	allowing the drone to carry multiple large prey inside of its stomach with relative ease."
 	value = CATALOGUER_REWARD_MEDIUM
 
 /mob/living/simple_mob/vore/sect_drone
