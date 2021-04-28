@@ -27,6 +27,12 @@
 /area/talon_v2/central_hallway
 	name = "\improper Talon - Central Hallway"
 	icon_state = "gray-c"
+/area/talon_v2/central_hallway/port
+	name = "\improper Talon - Central Port Hallway"
+	icon_state = "gray-p"
+/area/talon_v2/central_hallway/star
+	name = "\improper Talon - Central Starboard Hallway"
+	icon_state = "gray-s"
 /area/talon_v2/bridge_hallway
 	name = "\improper Talon - Bridge Hallway"
 	icon_state = "gray"
@@ -65,6 +71,9 @@
 	icon_state = "yellow"
 /area/talon_v2/engineering/unused
 	name = "\improper Talon - Unused Room"
+	icon_state = "gray"
+/area/talon_v2/engineering/unused2
+	name = "\improper Talon - Unused Room 2"
 	icon_state = "gray"
 
 /area/talon_v2/armory
