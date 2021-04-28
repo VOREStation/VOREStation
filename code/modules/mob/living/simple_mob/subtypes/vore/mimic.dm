@@ -18,9 +18,6 @@
 /obj/structure/closet/crate/mimic
 	name = "old crate"
 	desc = "A rectangular steel crate. This one looks particularly unstable."
-	tt_desc = "Mimus vorare"
-	catalogue_data = list(/datum/category_item/catalogue/fauna/mimic)
-
 	var/mimic_chance = 30
 	var/mimic_active = TRUE
 
@@ -76,9 +73,12 @@
 /mob/living/simple_mob/vore/aggressive/mimic
 	name = "crate"
 	desc = "A rectangular steel crate."
+	tt_desc = "Mimus vorare"
+	catalogue_data = list(/datum/category_item/catalogue/fauna/mimic)
+
 	icon_state = "crate"
 	icon_living = "crate"
-	icon = 'icons/obj/storage_vr.dmi'
+	icon = 'icons/obj/storage.dmi'
 
 	faction = "mimic"
 
