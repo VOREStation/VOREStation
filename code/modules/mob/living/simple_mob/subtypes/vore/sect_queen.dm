@@ -12,7 +12,7 @@
 	Though rarely seen, it is not uncommon for a queen to go out alone to search for potential new nesting grounds \
 	or perhaps it does so to seek bigger prey that its much smaller drones might be unable to acquire. \
 	Regardless of reason, it is cautioned against approaching a Sect Queen as their behaviour is wildly \
-	inconsistent. A Sect Queen can vary from hostile to docile depending on certain factors that scientists have \
+	inconsistent. A Sect Queen can vary from hositle to docile depending on certain factors that scientists have \
 	yet to uncover. \
 	<br>\
 	The lack  of chitin on the underside of its abdomen is deliberate, as the flesh is very elastic and stretchable, \
@@ -25,6 +25,7 @@
 	desc = "A titanic, chitin-plated insectoid whose multiple crimson eyes cast a frightful red light. Its \
 	abdomen has an unusually soft and... flexible-looking underbelly..."
 	tt_desc = "S Insecta maximus gigantus"
+	catalogue_data = list(/datum/category_item/catalogue/fauna/sect_queen)
 
 	icon_dead = "sect_queen_dead"
 	icon_living = "sect_queen"

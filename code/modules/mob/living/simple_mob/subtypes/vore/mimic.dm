@@ -73,8 +73,7 @@
 /mob/living/simple_mob/vore/aggressive/mimic
 	name = "crate"
 	desc = "A rectangular steel crate."
-	tt_desc = "Mimus vorare"
-	catalogue_data = list(/datum/category_item/catalogue/fauna/mimic)
+
 
 	icon_state = "crate"
 	icon_living = "crate"
@@ -114,6 +113,8 @@
 	showvoreprefs = 0 //Hides mechanical vore prefs for mimics. You can't see their gaping maws when they're just sitting idle.
 
 /mob/living/simple_mob/vore/aggressive/mimic
+	tt_desc = "Mimus vorare"
+	catalogue_data = list(/datum/category_item/catalogue/fauna/mimic)
 	vore_active = 1
 	vore_pounce_chance = 10
 	swallowTime = 3 SECONDS

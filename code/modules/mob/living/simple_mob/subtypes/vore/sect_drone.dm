@@ -10,11 +10,11 @@
 	<br>\
 	It is not uncommon for a Sect Drone to go out alone to search for potential prey to bring back to the nest. \
 	Regardless of reason, it is cautioned against approaching a Sect Drone as, like their queen, their behaviour is wildly \
-	inconsistent. A Sect Drone can vary from hostile to docile depending on certain factors that scientists have \
+	inconsistent. A Sect Drone can vary from hositle to docile depending on certain factors that scientists have \
 	yet to uncover. \
 	<br>\
 	The lack  of chitin on the underside of its abdomen is deliberate, as the flesh is very elastic and stretchable, \
-	allowing the drone to carry multiple large prey inside of its stomach with relative ease."
+	allowing the drone to carry multiple large prey inside of its stomach with realitive ease."
 	value = CATALOGUER_REWARD_MEDIUM
 
 /mob/living/simple_mob/vore/sect_drone
@@ -22,6 +22,7 @@
 	desc = "A large, chitin-plated insectoid whose multiple cyan eyes cast a frightful blue light. Its \
 	abdomen has an unusually soft and... flexible-looking underbelly..."
 	tt_desc = "S Insecta gigantus"
+	catalogue_data = list(/datum/category_item/catalogue/fauna/sect_drone)
 
 	icon_dead = "sect_drone_dead"
 	icon_living = "sect_drone"
