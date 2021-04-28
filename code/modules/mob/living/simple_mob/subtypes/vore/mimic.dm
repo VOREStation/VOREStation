@@ -12,13 +12,14 @@
 	months at a time - the main reason that they prey on humanoids to begin with. They reproduced asexually \
 	by splitting their mass, the young growing to adulthood within a few years time.\
 	<br>\
-	Mimics had no concerns beyond surviving and acquiring food."
+	Mimics have no concerns beyond surviving and acquiring food."
 	value = CATALOGUER_REWARD_HARD
 
 /obj/structure/closet/crate/mimic
 	name = "old crate"
 	desc = "A rectangular steel crate. This one looks particularly unstable."
 	tt_desc = "Mimus vorare"
+	catalogue_data = list(/datum/category_item/catalogue/fauna/mimic)
 
 	var/mimic_chance = 30
 	var/mimic_active = TRUE
