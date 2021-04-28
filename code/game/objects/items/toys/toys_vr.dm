@@ -129,6 +129,7 @@
 * Toy xeno
 * Fake gun * 2
 * Toy chainsaw
+* Random tabletop miniature spawner
 */
 
 /obj/item/toy/plushie/ipc
@@ -141,7 +142,18 @@
 /obj/item/weapon/reagent_containers/food/snacks/slice/bread
 	var/toasted = FALSE
 
+/obj/item/weapon/reagent_containers/food/snacks/tastybread
+	var/toasted = FALSE
+
 /obj/item/weapon/reagent_containers/food/snacks/slice/bread/afterattack(atom/A, mob/user as mob, proximity)
+	if(istype(A, /obj/item/toy/plushie/ipc) && !toasted)
+		toasted = TRUE
+		icon = 'icons/obj/toy_vr.dmi'
+		icon_state = "toast"
+		to_chat(user, "<span class='notice'> You insert bread into the toaster. </span>")
+		playsound(loc, 'sound/machines/ding.ogg', 50, 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/tastybread/afterattack(atom/A, mob/user as mob, proximity)
 	if(istype(A, /obj/item/toy/plushie/ipc) && !toasted)
 		toasted = TRUE
 		icon = 'icons/obj/toy_vr.dmi'
@@ -656,3 +668,12 @@
 
 /obj/item/toy/chainsaw/proc/cooldownreset()
 	cooldown = 0
+
+/obj/random/miniature
+	name = "Random miniature"
+	desc = "This is a random miniature."
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "aliencharacter"
+
+/obj/random/mech_toy/item_to_spawn()
+	return pick(typesof(/obj/item/toy/character))
