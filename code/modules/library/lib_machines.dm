@@ -286,13 +286,15 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 				var/DBQuery/query = dbcon_old.NewQuery("SELECT id, author, title, category FROM library ORDER BY [sortby]")
 				query.Execute()
 
+				var/show_admin_options = check_rights(R_ADMIN, show_msg = FALSE)
+
 				while(query.NextRow())
 					var/id = query.item[1]
 					var/author = query.item[2]
 					var/title = query.item[3]
 					var/category = query.item[4]
 					dat += "<tr><td>[author]</td><td>[title]</td><td>[category]</td><td><A href='?src=\ref[src];targetid=[id]'>\[Order\]</A>"
-					if(check_rights(R_ADMIN)) // This isn't the only check, since you can just href-spoof press this button. Just to tidy things up.
+					if(show_admin_options) // This isn't the only check, since you can just href-spoof press this button. Just to tidy things up.
 						dat += "<A href='?src=\ref[src];delid=[id]'>\[Del\]</A>"
 					dat += "</td></tr>"
 				dat += "</table>"

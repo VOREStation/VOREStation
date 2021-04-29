@@ -247,10 +247,20 @@
 			/obj/item/clothing/suit/radiation = 3,
 			/obj/item/clothing/head/radiation = 3
 			)
-	name = "Radiation suits package"
+	name = "Radiation suits package (Humanoid)"
 	cost = 20
 	containertype = /obj/structure/closet/radiation
 	containername = "Radiation suit locker"
+
+/datum/supply_pack/eng/radsuitteshari
+	contains = list(
+			/obj/item/clothing/suit/radiation/teshari = 3,
+			/obj/item/clothing/head/radiation/teshari = 3
+			)
+	name = "Radiation suits package (Teshari)"
+	cost = 40
+	containertype = /obj/structure/closet/crate/aether
+	containername = "Teshari radiation suit locker"
 
 /datum/supply_pack/eng/pacman_parts
 	name = "P.A.C.M.A.N. portable generator parts"

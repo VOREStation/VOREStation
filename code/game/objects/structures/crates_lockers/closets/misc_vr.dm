@@ -176,7 +176,6 @@
 		/obj/item/stack/marker_beacon/thirty,
 		/obj/item/weapon/material/knife/tacknife/survival,
 		/obj/item/weapon/material/knife/machete/deluxe,
-		/obj/item/weapon/gun/energy/locked/frontier/carbine,
 		/obj/item/clothing/accessory/holster/machete,
 		/obj/random/explorer_shield,
 		/obj/item/weapon/reagent_containers/food/snacks/liquidfood,

@@ -118,19 +118,19 @@
 
 	return FALSE
 
-/datum/chemical_reaction/blob_reconstitution
+/decl/chemical_reaction/instant/blob_reconstitution
 	name = "Hostile Blob Revival"
 	id = "blob_revival"
 	result = null
 	required_reagents = list("phoron" = 60)
 	result_amount = 1
 
-/datum/chemical_reaction/blob_reconstitution/can_happen(var/datum/reagents/holder)
+/decl/chemical_reaction/instant/blob_reconstitution/can_happen(var/datum/reagents/holder)
 	if(holder.my_atom && istype(holder.my_atom, /obj/item/weapon/blobcore_chunk))
 		return ..()
 	return FALSE
 
-/datum/chemical_reaction/blob_reconstitution/on_reaction(var/datum/reagents/holder)
+/decl/chemical_reaction/instant/blob_reconstitution/on_reaction(var/datum/reagents/holder)
 	var/obj/item/weapon/blobcore_chunk/chunk = holder.my_atom
 	if(chunk.can_genesis && chunk.regen())
 		chunk.visible_message("<span class='notice'>[chunk] bubbles, surrounding itself with a rapidly expanding mass of [chunk.blob_type.name]!</span>")
@@ -138,14 +138,14 @@
 	else
 		chunk.visible_message("<span class='warning'>[chunk] shifts strangely, but falls still.</span>")
 
-/datum/chemical_reaction/blob_reconstitution/domination
+/decl/chemical_reaction/instant/blob_reconstitution/domination
 	name = "Allied Blob Revival"
 	id = "blob_friend"
 	result = null
 	required_reagents = list("hydrophoron" = 40, "peridaxon" = 20, "mutagen" = 20)
 	result_amount = 1
 
-/datum/chemical_reaction/blob_reconstitution/domination/on_reaction(var/datum/reagents/holder)
+/decl/chemical_reaction/instant/blob_reconstitution/domination/on_reaction(var/datum/reagents/holder)
 	var/obj/item/weapon/blobcore_chunk/chunk = holder.my_atom
 	if(chunk.can_genesis && chunk.regen("neutral"))
 		chunk.visible_message("<span class='notice'>[chunk] bubbles, surrounding itself with a rapidly expanding mass of [chunk.blob_type.name]!</span>")
