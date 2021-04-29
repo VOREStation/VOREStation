@@ -66,28 +66,26 @@
 	gear_tweaks += new/datum/gear_tweak/path(toytype)
 
 /datum/gear/chewtoy
-	display_name = "chew toy selection"
+	display_name = "animal toy selection"
 	path = /obj/item/toy/chewtoy
 
 /datum/gear/chewtoy/New()
 	..()
 	var/toytype = list()
 	toytype["Bone"] = /obj/item/toy/chewtoy
-	toytype["Tall"] = /obj/item/toy/chewtoy/tall
+	toytype["Classic"] = /obj/item/toy/chewtoy/tall
+	toytype["Mouse"] = /obj/item/toy/cat_toy
+	toytype["Feather rod"] = /obj/item/toy/cat_toy/rod
 	gear_tweaks += new/datum/gear_tweak/path(toytype)
 
 /datum/gear/chewtoy_poly
-	display_name = "chew toy, bone, colorable"
+	display_name = "animal toy selection, colorable"
 	path = /obj/item/toy/chewtoy/poly
-
-/datum/gear/chewtoy_tall_poly
-	display_name = "chew toy, tall, colorable"
-	path = /obj/item/toy/chewtoy/tall/poly
 
 /datum/gear/chewtoy_poly/New()
 	..()
-	gear_tweaks += gear_tweak_free_color_choice
-
-/datum/gear/chewtoy_tall_poly/New()
-	..()
+	var/toytype = list()
+	toytype["Bone"] = /obj/item/toy/chewtoy/poly
+	toytype["Classic"] = /obj/item/toy/chewtoy/tall/poly
+	gear_tweaks += new/datum/gear_tweak/path(toytype)
 	gear_tweaks += gear_tweak_free_color_choice
