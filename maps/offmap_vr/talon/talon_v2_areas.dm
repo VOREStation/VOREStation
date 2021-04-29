@@ -11,10 +11,10 @@
 	icon_state = "dark-s"
 
 /area/talon_v2/maintenance/wing_port
-	name = "\improper Talon - Port Wing"
+	name = "\improper Talon - Port Wing Cargo Bay"
 	icon_state = "gray-p"
 /area/talon_v2/maintenance/wing_starboard
-	name = "\improper Talon - Starboard Wing"
+	name = "\improper Talon - Starboard Wing Cargo Bay"
 	icon_state = "gray-s"
 
 /area/talon_v2/maintenance/aft_port
@@ -111,5 +111,5 @@
 	name = "\improper Talon - Restrooms"
 	icon_state = "gray"
 /area/talon_v2/crew_quarters/meditation
-	name = "\improper Talon - Meditation Room"
+	name = "\improper Talon - Observation Room"
 	icon_state = "blue"
