@@ -108,6 +108,66 @@ good luck<br>\
 <br>\
 <i>Harry Townes</i>"}
 
+/obj/item/weapon/paper/talon_power
+	name = "new power setup"
+	info = {"to whoever's saddled with running this rustbucket this week,<br>\
+good news! you may have noticed the entire ship was replaced pretty much overnight.<br>\
+that or it changed shape or something? whatever, not important.<br>\
+what <b>is</b> important is that it no longer runs off solar arrays. now we have a pair of tritium generators.<br>\
+they're in the shielded compartment just across from the big white SMES bricks.<br>\
+jam the tritium pucks in the hoppers (not too rough though) and fire them up!<br>\
+you shouldn't need to push power generation past 50kW per generator unless it's an emergency, so let it run slow and save the fuel.<br>\
+congrats, power is good to go!<br>\
+<br>\
+<i>Harry Townes</i>"}
+
+/obj/item/weapon/paper/talon_doctor
+	name = "new medical bay"
+	info = {"to whoever's stuck babysitting everyone's booboos,<br>\
+good news! you may have noticed the entire ship was replaced pretty much overnight.<br>\
+that or it changed shape or something? whatever, not important.<br>\
+anyway, head through the starboard-aft door in your quarters and go through the bathrooms (congrats you have priority bathroom access)<br>\
+to get to your medical bay. layout hasn't changed very much, somehow. it's easy to get to from the shuttle though, so that's nice?<br>\
+whatever. enjoy the change of scenery. or don't.<br>\
+<br>\
+<i>Harry Townes</i>"}
+
+/obj/item/weapon/paper/talon_guard
+	name = "new brig"
+	info = {"to whoever's stuck enforcing some semblance of order on this hulk,<br>\
+good news! you may have noticed the entire ship was replaced pretty much overnight.<br>\
+that or it changed shape or something? whatever, not important.<br>\
+what matters is that the brig is now located through the port-aft door in your quarters.<br>\
+there's only two cells with no meeting space in the middle or whatever the heck that was, but no huge loss right?<br>\
+as for actual security matters, be aware there might be a few loose wall panels around the ship.<br>\
+nothing that would let anyone get anywhere particularly sensitive, or escape the cells, but enough to sneak around a bit maybe<br>\
+so stay sharp eh?<br>\
+<br>\
+<i>Harry Townes</i>"}
+
+/obj/item/weapon/paper/talon_captain
+	name = "storage space"
+	info = {"to whoever's stuck at the helm of this farce of an operation,<br>\
+good news! you may have noticed the entire ship was replaced pretty much overnight.<br>\
+that or it changed shape or something? whatever, not important.<br>\
+it is essential that I tell you that there is most definitely not a new smuggling compartment hidden under your end table<br>\
+unfortunately I couldn't possibly tell you the fictional combination for a hypothetical compartment that doesn't exist<br>\
+have fun!<br>\
+<br>\
+<i>Harry Townes</i>"}
+
+/obj/item/weapon/paper/talon_pilot
+	name = "new shuttle"
+	info = {"to whoever's stuck flying this ungreased beast,<br>\
+good news! you may have noticed the entire ship was replaced pretty much overnight.<br>\
+that or it changed shape or something? whatever, not important.<br>\
+<br>\
+what is important is that the shuttle has been replaced. it is now capable of fully independent flight away from the ship!<br>\
+but the rear airlock is a bit fussy. be sure to use the manual switches on each side of the airlock if you're matching another airlock and one side is exposed to vacuum or a hostile atmosphere!<br>\
+also be sure that it's locked down before you take off, the automatic switch is a bit stupid sometimes!<br>\
+<br>\
+<i>Harry Townes</i>"}
+
 //Prevents remote control of drones
 /obj/machinery/drone_fabricator/talon
 	name = "somewhat glitchy drone fabricator"
