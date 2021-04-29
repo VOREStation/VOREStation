@@ -144,30 +144,18 @@
 /turf/simulated/floor/tiled,
 /area/security/brig/visitation)
 "ap" = (
-/obj/effect/floor_decal/borderfloor/shifted{
-	dir = 4
+/obj/effect/floor_decal/corner/white/border{
+	dir = 8
 	},
-/obj/effect/floor_decal/corner/red/border/shifted{
-	dir = 4
+/obj/item/weapon/paper/crumpled{
+	name = "basketball"
 	},
-/obj/effect/floor_decal/corner/red{
-	dir = 6
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/machinery/flasher{
+	id = "AsteroidSecFlash"
 	},
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
-	},
-/obj/machinery/button/remote/airlock{
-	id = "visitdoor";
-	name = "Visitation Access";
-	pixel_y = -24
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/tiled,
-/area/security/brig/visitation)
+/turf/simulated/floor/tiled/monotile,
+/area/security/brig)
 "aq" = (
 /obj/machinery/light{
 	dir = 4
@@ -388,13 +376,11 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/brig)
 "aO" = (
-/obj/effect/floor_decal/corner/white/border{
-	dir = 8
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/machinery/flasher{
+	id = "AsteroidSecFlash"
 	},
-/obj/item/weapon/paper/crumpled{
-	name = "basketball"
-	},
-/turf/simulated/floor/tiled/monotile,
+/turf/simulated/floor/tiled,
 /area/security/brig)
 "aP" = (
 /turf/simulated/mineral/floor/vacuum,
@@ -1833,16 +1819,35 @@
 /turf/simulated/floor/tiled/steel_dirty,
 /area/security/brig)
 "cO" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
+/obj/effect/floor_decal/borderfloor/shifted{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/red/border/shifted{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/red{
+	dir = 6
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/obj/machinery/button/remote/airlock{
+	id = "visitdoor";
+	name = "Visitation Access";
+	pixel_y = -24
 	},
 /obj/structure/cable/green{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/dark,
-/area/security/brig)
+/obj/machinery/button/flasher{
+	id = "AsteroidVisitingFlash";
+	pixel_x = -10;
+	pixel_y = -20
+	},
+/turf/simulated/floor/tiled,
+/area/security/brig/visitation)
 "cP" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/cable/green{
@@ -1948,12 +1953,24 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/recstorage)
 "cW" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/green,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/obj/effect/floor_decal/borderfloor/shifted{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/red/border/shifted{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/red{
 	dir = 9
 	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/obj/machinery/flasher{
+	id = "AsteroidVisitingFlash";
+	pixel_y = -20
+	},
 /turf/simulated/floor/tiled,
-/area/security/brig)
+/area/security/brig/visitation)
 "cX" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/green{
@@ -2260,20 +2277,20 @@
 /turf/simulated/floor/tiled,
 /area/security/security_cell_hallway)
 "dt" = (
-/obj/effect/floor_decal/borderfloor/shifted{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
 	},
-/obj/effect/floor_decal/corner/red/border/shifted{
-	dir = 8
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
-/obj/effect/floor_decal/corner/red{
-	dir = 9
+/obj/machinery/flasher{
+	id = "AsteroidSecFlash";
+	pixel_y = -20
 	},
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
-	},
-/turf/simulated/floor/tiled,
-/area/security/brig/visitation)
+/turf/simulated/floor/tiled/dark,
+/area/security/brig)
 "du" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 8
@@ -2513,11 +2530,13 @@
 /turf/simulated/floor/tiled/steel_dirty,
 /area/security/brig)
 "dQ" = (
-/obj/effect/floor_decal/industrial/warning,
 /obj/machinery/atmospherics/pipe/simple/hidden/green,
-/obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
+	},
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/machinery/flasher{
+	id = "AsteroidSecFlash"
 	},
 /turf/simulated/floor/tiled,
 /area/security/brig)
@@ -7775,20 +7794,38 @@
 /turf/simulated/floor/tiled,
 /area/hallway/station/starboard)
 "lU" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
+/obj/effect/floor_decal/industrial/warning,
+/obj/machinery/atmospherics/pipe/simple/hidden/green,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
 	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1)
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/machinery/flasher{
+	id = "AsteroidSecFlash"
+	},
+/turf/simulated/floor/tiled,
+/area/security/brig)
 "lV" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
 	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1)
+/obj/effect/floor_decal/corner/red/border{
+	dir = 1
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/red/bordercorner2{
+	dir = 4
+	},
+/obj/machinery/button/flasher{
+	id = "AsteroidSecFlash";
+	pixel_x = 20;
+	pixel_y = 20
+	},
+/turf/simulated/floor/tiled,
+/area/security/security_cell_hallway)
 "lW" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -9557,13 +9594,30 @@
 /turf/simulated/floor/tiled,
 /area/hallway/station/starboard)
 "oB" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_r"
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
-/turf/space,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/large_escape_pod1)
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/green{
+	dir = 5
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/machinery/flasher{
+	id = "AsteroidSecFlash"
+	},
+/turf/simulated/floor/tiled,
+/area/security/brig)
 "oC" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -9586,10 +9640,13 @@
 /turf/simulated/floor/tiled,
 /area/hallway/station/starboard)
 "oD" = (
-/obj/structure/stairs/spawner/west,
-/turf/simulated/sky/virgo3b/west,
-/turf/simulated/floor/tiled/white,
-/area/medical/biostorage)
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_l"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1)
 "oE" = (
 /obj/structure/toilet{
 	pixel_y = 6
@@ -9614,6 +9671,26 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/recoveryrestroom)
+"oG" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1)
+"oH" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8;
+	icon_state = "propulsion_r"
+	},
+/turf/space,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/large_escape_pod1)
+"oI" = (
+/obj/structure/stairs/spawner/west,
+/turf/simulated/sky/virgo3b/west,
+/turf/simulated/floor/tiled/white,
+/area/medical/biostorage)
 "oM" = (
 /turf/simulated/open,
 /area/engineering/foyer_mezzenine)
@@ -18720,27 +18797,6 @@
 /obj/item/weapon/book/manual/medical_diagnostics_manual,
 /turf/simulated/floor/tiled/white,
 /area/maintenance/station/sec_lower)
-"Nc" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/green{
-	dir = 5
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
-	},
-/turf/simulated/floor/tiled,
-/area/security/brig)
 "Nf" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -18756,21 +18812,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/locker_room)
-"Ng" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/red/border{
-	dir = 1
-	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/red/bordercorner2{
-	dir = 4
-	},
-/turf/simulated/floor/tiled,
-/area/security/security_cell_hallway)
 "Nm" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -27169,7 +27210,7 @@ bh
 af
 ao
 dk
-ap
+cO
 dj
 dL
 Tk
@@ -27453,7 +27494,7 @@ Fq
 af
 cG
 do
-dt
+cW
 af
 XR
 UT
@@ -28157,22 +28198,22 @@ UO
 Hc
 aS
 EE
-aO
+ap
 ak
 bm
-DF
+aO
 ar
 bb
 bt
-cW
+dQ
 bv
 bB
 es
-dQ
+lU
 Ye
 cn
 YK
-Nc
+oB
 hQ
 YN
 jf
@@ -28487,7 +28528,7 @@ vE
 wm
 ws
 xj
-oD
+oI
 vT
 aP
 aP
@@ -28597,7 +28638,7 @@ cd
 ce
 bK
 Zu
-Ng
+lV
 JD
 TY
 aE
@@ -28873,13 +28914,13 @@ XT
 GM
 aS
 aY
-cO
+dt
 aS
 aY
-cO
+dt
 aS
 aY
-cO
+dt
 aS
 PJ
 Ph
@@ -35426,11 +35467,11 @@ hl
 DI
 RX
 DL
-lU
-lV
-lV
-lV
-oB
+oD
+oG
+oG
+oG
+oH
 oY
 sW
 ef

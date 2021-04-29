@@ -40,7 +40,7 @@ var/list/mining_overlay_cache = list()
 	var/datum/artifact_find/artifact_find
 	var/ignore_mapgen
 
-	var/ore_types = list(
+	var/static/list/ore_types = list(
 		"hematite" = /obj/item/weapon/ore/iron,
 		"uranium" = /obj/item/weapon/ore/uranium,
 		"gold" = /obj/item/weapon/ore/gold,
