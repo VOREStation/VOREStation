@@ -5,7 +5,7 @@
 	name = "compact cataloguer"
 	desc = "A compact hand-held device, used for compiling information about an object by scanning it. \
 	Alt+click to highlight scannable objects around you."
-	icon = 'icons/vore/device_vr.dmi'
+	icon = 'icons/obj/device_vr.dmi'
 	icon_state = "compact"
 	action_button_name = "Toggle Cataloguer"
 	var/deployed = TRUE
