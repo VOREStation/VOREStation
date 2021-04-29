@@ -731,20 +731,36 @@
 
 
 /obj/item/toy/snake_popper/attackby(obj/O, mob/user, params)
-	if(istype(O, /obj/item/toy/plushie/snakeplushie))
-		if(popped)
+	if(istype(O, /obj/item/toy/plushie/snakeplushie) || !real)
+		if(popped && !real)
 			qdel(O)
 			popped = 0
 			icon_state = "tastybread"
 
 /obj/item/toy/snake_popper/attack(mob/living/M as mob, mob/user as mob)
-	if(istype(M,/mob/living/carbon/human) || !real)
-		var/obj/item/toy/C = new /obj/item/toy/plushie/snakeplushie(get_turf(loc))
-		playsound(C, 'sound/items/confetti.ogg', 50, 0)
-		popped = 1
-		icon_state = "tastybread_popped"
-		M.Stun(1)
-		C.throw_at(get_step(src, pick(alldirs)), 9, 1, src)
+	if(istype(M,/mob/living/carbon/human))
+		if(!popped)
+			to_chat(user, "<span class='warning'>A snake popped out of [src]!</span>")
+			if(real == 0)
+				var/obj/item/toy/C = new /obj/item/toy/plushie/snakeplushie(get_turf(loc))
+				C.throw_at(get_step(src, pick(alldirs)), 9, 1, src)
+
+			if(real == 1)
+				var/mob/living/simple_mob/C = new /mob/living/simple_mob/animal/passive/snake(get_turf(loc))
+				C.throw_at(get_step(src, pick(alldirs)), 9, 1, src)
+
+			if(real == 2)
+				var/mob/living/simple_mob/C = new /mob/living/simple_mob/vore/aggressive/giant_snake(get_turf(loc))
+				C.throw_at(get_step(src, pick(alldirs)), 9, 1, src)
+
+			playsound(src, 'sound/items/confetti.ogg', 50, 0)
+			icon_state = "tastybread_popped"
+			popped = 1
+			user.Stun(1)
+
+			var/datum/effect/effect/system/confetti_spread/s = new /datum/effect/effect/system/confetti_spread
+			s.set_up(5, 1, src)
+			s.start()
 
 /obj/item/toy/snake_popper/emag_act(remaining_charges, mob/user)
 	if(real != 2)
