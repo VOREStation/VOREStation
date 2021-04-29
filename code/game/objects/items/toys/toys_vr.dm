@@ -343,15 +343,24 @@
 	icon = 'icons/obj/toy_vr.dmi'
 	icon_state = "cat_toy"
 	w_class = ITEMSIZE_SMALL
+	item_state = "fishing_rod"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items/lefthand_material.dmi',
+		slot_r_hand_str = 'icons/mob/items/righthand_material.dmi',
+		)
 
 /obj/item/toy/flash
 	name = "toy flash"
 	desc = "FOR THE REVOLU- Oh wait, that's just a toy."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "flash"
-	item_state = "flashtool"
+	item_state = "flash"
 	w_class = ITEMSIZE_TINY
 	var/cooldown = 0
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items/lefthand.dmi',
+		slot_r_hand_str = 'icons/mob/items/righthand.dmi',
+		)
 
 /obj/item/toy/flash/attack(mob/living/M, mob/user)
 	if(!cooldown)
