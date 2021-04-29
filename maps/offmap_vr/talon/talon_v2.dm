@@ -46,7 +46,7 @@ var/global/list/latejoin_talon = list()
 	color = "#aacccc"
 	vessel_mass = 10000
 	vessel_size = SHIP_SIZE_LARGE
-	initial_generic_waypoints = list("talon_v2_near_fore_port", "talon_v2_near_fore_star", "talon_v2_near_aft_port", "talon_v2_near_aft_star")
+	initial_generic_waypoints = list("talon_v2_near_fore_port", "talon_v2_near_fore_star", "talon_v2_near_aft_port", "talon_v2_near_aft_star", "talon_v2_wing_port", "talon_v2_wing_star")
 	initial_restricted_waypoints = list("Talon's boat" = list("offmap_spawn_talonboat"))
 
 	skybox_icon = 'talon.dmi' //Art by Gwyvern, distributed under Creative Commons license
@@ -459,3 +459,11 @@ good luck<br>\
 /obj/effect/shuttle_landmark/premade/talon_v2_near_aft_star
 	name = "Near ITV Talon (Aft-Starboard)"
 	landmark_tag = "talon_v2_near_aft_star"
+
+/obj/effect/shuttle_landmark/premade/talon_v2_wing_port
+	name = "ITV Talon (Port Wingtip)"
+	landmark_tag = "talon_v2_wing_port"
+
+/obj/effect/shuttle_landmark/premade/talon_v2_wing_star
+	name = "ITV Talon (Starboard Wingtip)"
+	landmark_tag = "talon_v2_wing_star"
