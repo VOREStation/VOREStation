@@ -130,6 +130,7 @@
 * Fake gun * 2
 * Toy chainsaw
 * Random tabletop miniature spawner
+* snake popper
 */
 
 /obj/item/toy/plushie/ipc
@@ -240,12 +241,23 @@
 /obj/item/toy/plushie/marketable_pip/proc/cooldownreset()
 	cooldown = 0
 
-
 /obj/item/toy/plushie/moth
 	name = "moth plushie"
 	desc = "A cute plushie of cartoony moth. It's ultra fluffy but leaves dust everywhere."
 	icon = 'icons/obj/toy_vr.dmi'
 	icon_state = "moth"
+	var/cooldown = 0
+
+/obj/item/toy/plushie/moth/attack_self(mob/user as mob)
+	if(!cooldown)
+		playsound(user, 'sound/voice/moth/scream_moth.ogg', 10, 0)
+		src.visible_message("<span class='danger'>Aaaaaaa.</span>")
+		cooldown = 1
+		addtimer(CALLBACK(src, .proc/cooldownreset), 50)
+	return ..()
+
+/obj/item/toy/plushie/moth/proc/cooldownreset()
+	cooldown = 0
 
 /obj/item/toy/plushie/crab
 	name = "crab plushie"
@@ -523,7 +535,7 @@
 				O.forceMove(src)
 				stored_minature = O
 		else
-			user.visible_message("<span class='notice'>You stop feedeeding \the [O] into \the [src].</span></span>","<span class='notice'>[user] stops feeding \the [O] into \the [src]!/span>")
+			user.visible_message("<span class='notice'>You stop feeding \the [O] into \the [src].</span></span>","<span class='notice'>[user] stops feeding \the [O] into \the [src]!/span>")
 
 	else ..()
 
@@ -614,6 +626,7 @@
 		playsound(src, 'sound/effects/snap.ogg', 50, 1)
 		user.visible_message("<span class='danger'>[src] goes off!</span>")
 		shake_camera(user, 2, 1)
+		user.Stun(1)
 		post_shot(user)
 		return TRUE
 	else
@@ -675,5 +688,66 @@
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "aliencharacter"
 
-/obj/random/mech_toy/item_to_spawn()
+/obj/random/miniature/item_to_spawn()
 	return pick(typesof(/obj/item/toy/character))
+
+/obj/item/toy/snake_popper
+	name = "bread tube"
+	desc = "Bread in a tube. Chewy...and surprisingly tasty."
+	description_fluff = "This is the product that brought Centauri Provisions into the limelight. A product of the earliest extrasolar colony of Heaven, the Bread Tube, while bland, contains all the nutrients a spacer needs to get through the day and is decidedly edible when compared to some of its competitors. Due to the high-fructose corn syrup content of NanoTrasen's own-brand bread tubes, many jurisdictions classify them as a confectionary."
+	icon = 'icons/obj/toy_vr.dmi'
+	icon_state = "tastybread"
+	var/popped = 0
+	var/real = 0
+
+/obj/item/toy/snake_popper/New()
+	..()
+	if(prob(0.1))
+		real = 1
+
+/obj/item/toy/snake_popper/attack_self(mob/user as mob)
+	if(!popped)
+		to_chat(user, "<span class='warning'>A snake popped out of [src]!</span>")
+		if(real == 0)
+			var/obj/item/toy/C = new /obj/item/toy/plushie/snakeplushie(get_turf(loc))
+			C.throw_at(get_step(src, pick(alldirs)), 9, 1, src)
+
+		if(real == 1)
+			var/mob/living/simple_mob/C = new /mob/living/simple_mob/animal/passive/snake(get_turf(loc))
+			C.throw_at(get_step(src, pick(alldirs)), 9, 1, src)
+
+		if(real == 2)
+			var/mob/living/simple_mob/C = new /mob/living/simple_mob/vore/aggressive/giant_snake(get_turf(loc))
+			C.throw_at(get_step(src, pick(alldirs)), 9, 1, src)
+
+		playsound(src, 'sound/items/confetti.ogg', 50, 0)
+		icon_state = "tastybread_popped"
+		popped = 1
+		user.Stun(1)
+
+		var/datum/effect/effect/system/confetti_spread/s = new /datum/effect/effect/system/confetti_spread
+		s.set_up(5, 1, src)
+		s.start()
+
+
+/obj/item/toy/snake_popper/attackby(obj/O, mob/user, params)
+	if(istype(O, /obj/item/toy/plushie/snakeplushie))
+		if(popped)
+			qdel(O)
+			popped = 0
+			icon_state = "tastybread"
+
+/obj/item/toy/snake_popper/attack(mob/living/M as mob, mob/user as mob)
+	if(istype(M,/mob/living/carbon/human) || !real)
+		var/obj/item/toy/C = new /obj/item/toy/plushie/snakeplushie(get_turf(loc))
+		playsound(C, 'sound/items/confetti.ogg', 50, 0)
+		popped = 1
+		icon_state = "tastybread_popped"
+		M.Stun(1)
+		C.throw_at(get_step(src, pick(alldirs)), 9, 1, src)
+
+/obj/item/toy/snake_popper/emag_act(remaining_charges, mob/user)
+	if(real != 2)
+		real = 2
+		to_chat(user, "<span class='notice'>You short out the bluespace refill system of [src].</span>")
+
