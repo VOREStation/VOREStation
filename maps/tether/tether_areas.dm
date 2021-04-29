@@ -52,26 +52,14 @@
 /area/turbolift/t_surface/level3
 	name = "surface (level 3)"
 	lift_floor_label = "Surface 3"
-	lift_floor_name = "Bridge, Science, Bar, Pool"
+	lift_floor_name = "Bridge, Science, Bar, Pool, Medical, Security"
 	lift_announce_str = "Arriving at Base Level 3."
 
 /area/turbolift/t_station/level1
-	name = "asteroid (level 1)"
-	lift_floor_label = "Asteroid 1"
-	lift_floor_name = "Eng, Secondary Bridge, Park, Cryo, Visitor Offices"
-	lift_announce_str = "Arriving at Station Level 1."
-
-/area/turbolift/t_station/level2
-	name = "asteroid (level 2)"
-	lift_floor_label = "Asteroid 2"
-	lift_floor_name = "Exploration, AI Core, EVA Gear"
-	lift_announce_str = "Arriving at Station Level 2."
-
-/area/turbolift/t_station/level3
-	name = "asteroid (level 3)"
-	lift_floor_label = "Asteroid 3"
-	lift_floor_name = "Medical, Security, Cargo"
-	lift_announce_str = "Arriving at Station Level 3."
+	name = "asteroid station"
+	lift_floor_label = "Asteroid"
+	lift_floor_name = "Eng, Cryo, Docks, Cargo, Exploration, Cafe, AI, EVA, Gateway"
+	lift_announce_str = "Arriving at Asteroid Station Level."
 
 /area/vacant/vacant_restaurant_upper
 	name = "\improper Vacant Restaurant"
@@ -957,6 +945,9 @@
 	icon_state = "dk_yellow"
 /area/tether/station/dock_two
 	name = "\improper Dock Two"
+	icon_state = "dk_yellow"
+/area/tether/station/dock_three
+	name = "\improper Dock Three"
 	icon_state = "dk_yellow"
 
 /area/maintenance/station/abandonedholodeck
