@@ -18,8 +18,6 @@
 							/obj/item/clothing/head/cowboy_hat/small				= 2,
 							/obj/item/toy/stickhorse								= 2,
 							/obj/item/toy/rock										= 2,
-							/obj/item/toy/cat_toy									= 2,
-							/obj/item/toy/cat_toy/rod								= 2,
 							/obj/item/toy/flash										= 2,
 							/obj/item/toy/redbutton									= 2,
 							/obj/item/toy/gnome										= 2,
@@ -32,5 +30,6 @@
 							/obj/item/toy/russian_revolver							= 1,
 							/obj/item/toy/russian_revolver/trick_revolver			= 1,
 							/obj/item/toy/chainsaw									= 1,
-							/obj/random/miniature									= 1
+							/obj/random/miniature									= 1,
+							/obj/item/toy/snake_popper								= 1
 							)
