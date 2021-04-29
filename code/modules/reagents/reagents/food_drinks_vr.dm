@@ -507,7 +507,7 @@
 /datum/reagent/drink/soda/shamblers
 	name = "Shambler's Juice"
 	id = "shamblers"
-	description = "A strange off-brand beverage that's shambling with flavor."
+	description = "A strange off-brand beverage that's bursting with flavor."
 	taste_description = "carbonated metallic soda"
 	reagent_state = LIQUID
 	color = "#f00060"
