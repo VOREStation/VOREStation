@@ -25,6 +25,22 @@
 	. = ..()
 	reagents.add_reagent("water", 30)
 
+/obj/item/weapon/reagent_containers/food/drinks/cans/icecoffee
+	name = "\improper Café Del Consumir"
+	desc = "A can of deliciously sweet iced coffee that originates from Earth."
+	description_fluff = "Café Del Consumir originates from a small coffee brewery in México \
+	that still opperates to this day. Café Del Consumir prides itself on being true to form \
+	and retaining its original recipe. They've been producing and selling thier product across \
+	the galaxy for decades without fail. NanoTrasen has attempted to by out the small company for \
+	years now, howerver all attempts they've made have failed."
+	icon = 'icons/obj/drinks_vr.dmi'
+	icon_state = "coffeecan"
+	center_of_mass = list("x"=16, "y"=10)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/icecoffee/Initialize()
+	. = ..()
+	reagents.add_reagent("icecoffee", 30)
+
 /obj/item/weapon/reagent_containers/food/drinks/cans/buzz
 	name = "\improper Buzz Fuzz"
 	desc = "Uses real honey, making it a sweet tooth's dream drink."
