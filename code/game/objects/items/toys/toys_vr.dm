@@ -538,7 +538,7 @@
 			if(O.loc != user)
 				to_chat(user, "<span class='alert'>\The [O] is too far away to feed into \the [src]!</span>")
 			else
-				user.visible_message("<span class='notice'>You feed \the [O] into \the [src]!</span></span>","<span class='notice'>[user] feeds \the [O] into \the [src]!</span>")
+				user.visible_message("<span class='notice'>You feed \the [O] into \the [src]!</span>","<span class='notice'>[user] feeds \the [O] into \the [src]!</span>")
 				user.unEquip(O)
 				O.forceMove(src)
 				stored_minature = O
