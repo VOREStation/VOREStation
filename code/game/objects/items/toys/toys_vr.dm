@@ -330,7 +330,7 @@
 	playsound(loc, 'sound/items/drop/plushie.ogg', 50, 1)
 	user.visible_message("<span class='notice'><b>\The [user]</b> gnaws on [src]!</span>","<span class='notice'>You gnaw on [src]!</span>")
 
-/obj/item/toy/cat_toy //TODO: make runtime and cat subtypes follow mobs holding this
+/obj/item/toy/cat_toy
 	name = "toy mouse"
 	desc = "A colorful toy mouse!"
 	icon = 'icons/obj/toy_vr.dmi'
@@ -390,12 +390,11 @@
 		for(var/mob/M in range(10, src)) // Checks range
 			if(!M.stat && !istype(M, /mob/living/silicon/ai)) // Checks to make sure whoever's getting shaken is alive/not the AI
 				sleep(2) // Short delay to match up with the explosion sound
-				shake_camera(M, 2, 1) // Shakes player camera 2 squares for 1 second.
-
+				shake_camera(M, 2, 1)
 	else
 		to_chat(user, "<span class='alert'>Nothing happens.</span>")
 
-/obj/item/toy/gnome //TODO: half life 2 reference
+/obj/item/toy/gnome
 	name = "garden gnome"
 	desc = "It's a gnome, not a gnelf. Made of weak ceramic."
 	icon = 'icons/obj/toy_vr.dmi'
@@ -654,7 +653,7 @@
 	..()
 	fake_bullets = rand(2, 7)
 
-/obj/item/toy/russian_revolver/trick_revolver/examine(mob/user) //Sneaky sneaky
+/obj/item/toy/russian_revolver/trick_revolver/examine(mob/user)
 	. = ..()
 	. += "Has [fake_bullets] round\s remaining."
 	. += "[fake_bullets] of those are live rounds."
