@@ -69,14 +69,16 @@
 /area/talon_v2/engineering/atmospherics
 	name = "\improper Talon - Atmospherics"
 	icon_state = "dark-a"
-/area/talon_v2/engineering/refinery
+
+/area/talon_v2/refining
 	name = "\improper Talon - Refinery"
 	icon_state = "yellow"
-/area/talon_v2/engineering/unused
-	name = "\improper Talon - Unused Room"
+
+/area/talon_v2/anomaly_storage
+	name = "\improper Talon - Anomaly Storage"
 	icon_state = "gray"
-/area/talon_v2/engineering/unused2
-	name = "\improper Talon - Unused Room 2"
+/area/talon_v2/unused
+	name = "\improper Talon - Unused Room"
 	icon_state = "gray"
 
 /area/talon_v2/armory
