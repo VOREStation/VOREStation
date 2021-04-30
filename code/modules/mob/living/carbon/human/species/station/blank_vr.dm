@@ -25,8 +25,6 @@
 
 	genders = list(MALE, FEMALE, PLURAL, NEUTER)
 
-	inherent_verbs = list(/mob/living/proc/ventcrawl)
-
 	spawn_flags = SPECIES_CAN_JOIN
 	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR
 
