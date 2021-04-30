@@ -20,7 +20,7 @@
 	min_age = 18
 	max_age = 200
 	health_hud_intensity = 2
-	num_alternate_languages = 3
+	num_alternate_languages = 5
 	assisted_langs = list(LANGUAGE_EAL, LANGUAGE_ROOTLOCAL, LANGUAGE_ROOTGLOBAL, LANGUAGE_VOX)
 
 	genders = list(MALE, FEMALE, PLURAL, NEUTER)
