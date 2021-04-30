@@ -169,8 +169,8 @@ datum/preferences
 		if(!IsGuestKey(C.key))
 			load_path(C.ckey)
 			if(load_preferences())
-				if(load_character())
-					return
+				load_character()
+
 
 /datum/preferences/Destroy()
 	. = ..()
