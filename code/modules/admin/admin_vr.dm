@@ -8,5 +8,7 @@
 		traitors.spawn_uplink(H)
 		H.mind.tcrystals = DEFAULT_TELECRYSTAL_AMOUNT
 		H.mind.accept_tcrystals = 1
+		var/msg = "[key_name(usr)] has given [H.ckey] an uplink."
+		message_admins(msg)
 	else
 		to_chat(usr, "You do not have access to this command.")
