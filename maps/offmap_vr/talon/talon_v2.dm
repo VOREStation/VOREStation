@@ -527,3 +527,239 @@ also be sure that it's locked down before you take off, the automatic switch is 
 /obj/effect/shuttle_landmark/premade/talon_v2_wing_star
 	name = "ITV Talon (Starboard Wingtip)"
 	landmark_tag = "talon_v2_wing_star"
+	
+/obj/random/multiple/corp_crate/talon_cargo
+	name = "random corporate crate (talon)"
+	desc = "A random corporate crate with thematic contents. No weapons, no SAARE cashbox, 50% chance to not appear."
+	icon = 'icons/obj/storage.dmi'
+	spawn_nothing_percentage = 50
+	icon_state = "crate"
+
+/obj/random/multiple/corp_crate/talon_cargo/item_to_spawn()
+	return pick(
+			prob(10);list(
+				/obj/random/tank,
+				/obj/random/tank,
+				/obj/random/tank,
+				/obj/item/clothing/mask/breath,
+				/obj/item/clothing/mask/breath,
+				/obj/item/clothing/mask/breath,
+				/obj/structure/closet/crate/aether //AETHER AIRSUPPLY
+			),
+			prob(5);list(
+				/obj/random/multiple/voidsuit/vintage,
+				/obj/random/multiple/voidsuit/vintage,
+				/obj/random/tank,
+				/obj/random/tank,
+				/obj/item/clothing/mask/breath,
+				/obj/item/clothing/mask/breath,
+				/obj/structure/closet/crate/aether //AETHER OLDSUITS
+			),
+			prob(10);list(
+				/obj/random/mre,
+				/obj/random/mre,
+				/obj/random/mre,
+				/obj/random/mre,
+				/obj/random/mre,
+				/obj/structure/closet/crate/centauri //CENTAURI MRES
+			),
+			prob(10);list(
+				/obj/random/drinksoft,
+				/obj/random/drinksoft,
+				/obj/random/drinksoft,
+				/obj/random/drinksoft,
+				/obj/random/drinksoft,
+				/obj/structure/closet/crate/freezer/centauri //CENTAURI SODA
+			),
+			prob(10);list(
+				/obj/random/snack,
+				/obj/random/snack,
+				/obj/random/snack,
+				/obj/random/snack,
+				/obj/random/snack,
+				/obj/structure/closet/crate/freezer/centauri //CENTAURI SNACKS
+			),
+			prob(10);list(
+				/obj/random/powercell,
+				/obj/random/powercell,
+				/obj/random/powercell,
+				/obj/random/powercell,
+				/obj/structure/closet/crate/einstein //EINSTEIN BATTERYPACK
+			),
+			prob(5);list(
+				/obj/item/weapon/circuitboard/smes,
+				/obj/random/smes_coil,
+				/obj/random/smes_coil,
+				/obj/structure/closet/crate/focalpoint //FOCAL SMES
+			),
+			prob(10);list(
+				/obj/item/weapon/module/power_control,
+				/obj/item/stack/cable_coil,
+				/obj/item/frame/apc,
+				/obj/item/weapon/cell/apc,
+				/obj/structure/closet/crate/focalpoint //FOCAL APC
+			),
+			prob(5);list(
+				/obj/random/drinkbottle,
+				/obj/random/drinkbottle,
+				/obj/random/drinkbottle,
+				/obj/random/cigarettes,
+				/obj/random/cigarettes,
+				/obj/random/cigarettes,
+				/obj/structure/closet/crate/gilthari //GILTHARI LUXURY
+			),
+			prob(10);list(
+				/obj/random/tech_supply/nofail,
+				/obj/random/tech_supply/component/nofail,
+				/obj/random/tech_supply/component/nofail,
+				/obj/random/tech_supply/component/nofail,
+				/obj/random/tech_supply/component/nofail,
+				/obj/structure/closet/crate/grayson //GRAYSON TECH
+			),
+			prob(15);list(
+				/obj/random/multiple/ore_pile,
+				/obj/random/multiple/ore_pile,
+				/obj/random/multiple/ore_pile,
+				/obj/random/multiple/ore_pile,
+				/obj/structure/closet/crate/grayson //GRAYSON ORES
+			),
+			prob(10);list(
+				/obj/random/material/refined,
+				/obj/random/material/refined,
+				/obj/random/material/refined,
+				/obj/random/material/refined,
+				/obj/structure/closet/crate/grayson //GRAYSON MATS
+			),
+			prob(5);list(
+				/obj/random/multiple/voidsuit/security,
+				/obj/random/tank,
+				/obj/item/clothing/mask/breath,
+				/obj/structure/closet/crate/secure/nanotrasen //NTSEC SUIT
+			),
+			prob(5);list(
+				/obj/random/multiple/voidsuit/medical,
+				/obj/random/tank,
+				/obj/item/clothing/mask/breath,
+				/obj/structure/closet/crate/secure/veymed //VM SUIT
+			),
+			prob(5);list(
+				/obj/random/multiple/voidsuit/mining,
+				/obj/random/tank,
+				/obj/item/clothing/mask/breath,
+				/obj/structure/closet/crate/grayson //GRAYSON SUIT
+			),
+			prob(5);list(
+				/obj/random/multiple/voidsuit/engineering,
+				/obj/random/tank,
+				/obj/item/clothing/mask/breath,
+				/obj/structure/closet/crate/xion //XION SUIT
+			),
+			prob(10);list(
+				/obj/random/firstaid,
+				/obj/random/medical,
+				/obj/random/medical,
+				/obj/random/medical,
+				/obj/random/medical/lite,
+				/obj/random/medical/lite,
+				/obj/structure/closet/crate/veymed //VM GRABBAG
+			),
+			prob(10);list(
+				/obj/random/firstaid,
+				/obj/random/firstaid,
+				/obj/random/firstaid,
+				/obj/random/firstaid,
+				/obj/random/unidentified_medicine/fresh_medicine,
+				/obj/random/unidentified_medicine/fresh_medicine,
+				/obj/structure/closet/crate/veymed //VM FAKS
+			),
+			prob(10);list(
+				/obj/random/tech_supply/nofail,
+				/obj/random/tech_supply/nofail,
+				/obj/random/tech_supply/nofail,
+				/obj/random/tech_supply/nofail,
+				/obj/random/tech_supply/nofail,
+				/obj/structure/closet/crate/xion //XION SUPPLY
+			),
+			prob(10);list(
+				/obj/random/firstaid,
+				/obj/random/medical,
+				/obj/random/medical/pillbottle,
+				/obj/random/medical/pillbottle,
+				/obj/random/medical/lite,
+				/obj/random/medical/lite,
+				/obj/structure/closet/crate/zenghu //ZENGHU GRABBAG
+			),
+			prob(10);list(
+				/obj/random/medical/pillbottle,
+				/obj/random/medical/pillbottle,
+				/obj/random/medical/pillbottle,
+				/obj/random/medical/pillbottle,
+				/obj/random/unidentified_medicine/fresh_medicine,
+				/obj/random/unidentified_medicine/fresh_medicine,
+				/obj/structure/closet/crate/zenghu //ZENGHU PILLS
+			),
+			prob(10);list(
+				/obj/item/device/toner,
+				/obj/item/device/toner,
+				/obj/item/device/toner,
+				/obj/item/weapon/clipboard,
+				/obj/item/weapon/clipboard,
+				/obj/item/weapon/pen/red,
+				/obj/item/weapon/pen/blue,
+				/obj/item/weapon/pen/blue,
+				/obj/item/device/camera_film,
+				/obj/item/weapon/folder/blue,
+				/obj/item/weapon/folder/red,
+				/obj/item/weapon/folder/yellow,
+				/obj/item/weapon/hand_labeler,
+				/obj/item/weapon/tape_roll,
+				/obj/item/weapon/paper_bin,
+				/obj/item/sticky_pad/random,
+				/obj/structure/closet/crate/ummarcar //UMMARCAR OFFICE TRASH
+			),
+			prob(5);list(
+				/obj/item/weapon/reagent_containers/food/snacks/unajerky,
+				/obj/item/weapon/reagent_containers/food/snacks/unajerky,
+				/obj/item/weapon/reagent_containers/food/snacks/unajerky,
+				/obj/item/weapon/reagent_containers/food/snacks/unajerky,
+				/obj/item/weapon/reagent_containers/food/snacks/unajerky,
+				/obj/item/weapon/reagent_containers/food/snacks/unajerky,
+				/obj/item/weapon/reagent_containers/food/snacks/unajerky,
+				/obj/item/weapon/reagent_containers/food/snacks/unajerky,
+				/obj/structure/closet/crate/unathi //UNAJERKY
+			),
+			prob(10);list(
+				/obj/item/weapon/reagent_containers/glass/bucket,
+				/obj/item/weapon/mop,
+				/obj/item/clothing/under/rank/janitor,
+				/obj/item/weapon/cartridge/janitor,
+				/obj/item/clothing/gloves/black,
+				/obj/item/clothing/head/soft/purple,
+				/obj/item/weapon/storage/belt/janitor,
+				/obj/item/clothing/shoes/galoshes,
+				/obj/item/weapon/storage/bag/trash,
+				/obj/item/device/lightreplacer,
+				/obj/item/weapon/reagent_containers/spray/cleaner,
+				/obj/item/weapon/reagent_containers/glass/rag,
+				/obj/item/weapon/grenade/chem_grenade/cleaner,
+				/obj/item/weapon/grenade/chem_grenade/cleaner,
+				/obj/item/weapon/grenade/chem_grenade/cleaner,
+				/obj/structure/closet/crate/galaksi //GALAKSI JANITOR SUPPLIES
+			),
+			prob(5);list(
+				/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
+				/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
+				/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
+				/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
+				/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
+				/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
+				/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
+				/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
+				/obj/structure/closet/crate/allico //GUMMIES
+			),
+			prob(2);list(
+				/obj/item/weapon/tank/phoron/pressurized,
+				/obj/item/weapon/tank/phoron/pressurized,
+				/obj/structure/closet/crate/secure/phoron //HQ FUEL TANKS
+			)
+		)
