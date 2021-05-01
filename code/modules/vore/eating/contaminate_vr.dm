@@ -96,7 +96,7 @@ var/list/gurgled_overlays = list(
 // Special handling of gurgle_contaminate
 //////////////
 /obj/item/weapon/card/id/gurgle_contaminate(var/atom/movable/item_storage = null)
-	digest_act(item_storage) //Digesting these anyway
+	digest_act(item_storage) //Contamination and digestion does same thing to these
 	return TRUE
 
 /obj/item/device/pda/gurgle_contaminate(var/atom/movable/item_storage = null)
