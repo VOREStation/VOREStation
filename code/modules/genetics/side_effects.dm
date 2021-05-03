@@ -21,7 +21,7 @@
 	duration = 10*30
 
 	start(mob/living/carbon/human/H)
-		H.emote("me", 1, "starts turning very red..")
+		H.custom_emote(VISIBLE_MESSAGE, "starts turning very red..")
 
 	finish(mob/living/carbon/human/H)
 		if(!H.reagents.has_reagent("dexalin"))
@@ -37,7 +37,7 @@
 	duration = 10*60
 
 	start(mob/living/carbon/human/H)
-		H.emote("me", 1, "'s limbs start shivering uncontrollably.")
+		H.custom_emote(VISIBLE_MESSAGE, "'s limbs start shivering uncontrollably.")
 
 	finish(mob/living/carbon/human/H)
 		if(!H.reagents.has_reagent("bicaridine"))
@@ -54,7 +54,7 @@
 	duration = 10*90
 
 	start(mob/living/carbon/human/H)
-		H.emote("me", 1, "has drool running down from [H.gender == MALE ? "his" : H.gender == FEMALE ? "her" : "their"] mouth.")
+		H.custom_emote(VISIBLE_MESSAGE, "has drool running down from [H.gender == MALE ? "his" : H.gender == FEMALE ? "her" : "their"] mouth.")
 
 	finish(mob/living/carbon/human/H)
 		if(!H.reagents.has_reagent("anti_toxin"))
@@ -69,7 +69,7 @@
 
 	start(mob/living/carbon/human/H)
 		var/datum/gender/T = gender_datums[H.get_visible_gender()]
-		H.emote("me", 1, "has drool running down from [T.his] mouth.")
+		H.custom_emote(VISIBLE_MESSAGE, "has drool running down from [T.his] mouth.")
 
 	finish(mob/living/carbon/human/H)
 		if(!H.reagents.has_reagent("anti_toxin"))
