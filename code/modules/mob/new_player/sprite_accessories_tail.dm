@@ -922,7 +922,6 @@
 	icon_state = "shadekin-short"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
-	//apply_restrictions = TRUE
 	//species_allowed = list(SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW)
 
 /datum/sprite_accessory/tail/wartacosushi_tail //brightened +20RGB from matching roboparts
