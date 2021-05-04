@@ -80,3 +80,6 @@
 		H.internals.icon_state = "internal1"
 	*/
 	return ..()
+
+/datum/species/custom/can_breathe_water()
+	return /datum/trait/positive/water_breather in traits
