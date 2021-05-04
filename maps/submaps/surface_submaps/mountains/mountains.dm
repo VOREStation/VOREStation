@@ -42,7 +42,6 @@
 #include "excavation1.dmm"
 #include "spatial_anomaly.dmm"
 #include "speakeasy_vr.dmm"
-#include "Campsite_vr.dmm"
 #endif
 
 // The 'mountains' is the mining z-level, and has a lot of caves.
