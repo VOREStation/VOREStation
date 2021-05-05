@@ -22,7 +22,11 @@ var/list/_robot_default_emotes = list(
 	/decl/emote/audible/synth/deny,
 	/decl/emote/audible/synth/dwoop,
 	/decl/emote/audible/synth/security,
-	/decl/emote/audible/synth/security/halt
+	/decl/emote/audible/synth/security/halt,
+	//VOREStation Add
+	/decl/emote/visible/mlem,
+	/decl/emote/visible/blep
+	//VOREStation Add End
 )
 
 /mob/living/silicon/robot/get_default_emotes()
