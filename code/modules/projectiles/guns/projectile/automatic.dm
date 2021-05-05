@@ -389,9 +389,18 @@
 		)
 
 /obj/item/weapon/gun/projectile/automatic/tommygun/update_icon()
-	..()
-	icon_state = (ammo_magazine)? "tommygun" : "tommygun-empty"
-//	update_held_icon()
+	//VOREStation Edit Start - vr sprite
+	if(istype(ammo_magazine,/obj/item/ammo_magazine/m45tommy))
+		icon_state = "tommygun-mag"
+		item_state = icon_state
+	else if(istype(ammo_magazine,/obj/item/ammo_magazine/m45tommydrum))
+		icon_state = "tommygun-drum"
+		item_state = icon_state
+	else
+		icon_state = "tommygun-empty"
+		item_state = icon_state
+	update_held_icon()
+	//VOREStation Edit End
 
 /obj/item/weapon/gun/projectile/automatic/bullpup // Admin abuse assault rifle. ToDo: Make this less shit. Maybe remove its autofire, and make it spawn with only 10 rounds at start.
 	name = "bullpup rifle"

@@ -368,6 +368,8 @@ var/global/list/latejoin_tram   = list()
 	..()
 	for(var/i = 1 to 2)
 		new /obj/item/weapon/gun/energy/locked/frontier(src)
+	for(var/i = 1 to 2)
+		new /obj/item/weapon/gun/energy/locked/frontier/holdout(src)
 
 // Used at centcomm for the elevator
 /obj/machinery/cryopod/robot/door/dorms

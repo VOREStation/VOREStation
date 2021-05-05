@@ -28,7 +28,7 @@
 	// Determines if the accessory will be skipped or included in random hair generations
 	var/gender = NEUTER
 
-	// Restrict some styles to specific species
+	// Restrict some styles to specific species. Set to null to perform no checking.
 	var/list/species_allowed = list(SPECIES_HUMAN,SPECIES_PROMETHEAN,SPECIES_HUMAN_VATBORN)
 
 	// Whether or not the accessory can be affected by colouration
@@ -38,7 +38,6 @@
 
 	// Ckey of person allowed to use this, if defined.
 	var/list/ckeys_allowed = null
-	var/apply_restrictions = FALSE		//whether to apply restrictions for specific tails/ears/wings
 
 /*
 ////////////////////////////

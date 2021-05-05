@@ -632,6 +632,12 @@
 	ckeywhitelist = list("luminescentring")
 	character_name = list("Briana Moore")
 
+/datum/gear/fluff/entchtut_medal
+	path = /obj/item/clothing/accessory/medal/conduct
+	display_name = "Entchtut's Conduct Medal"
+	ckeywhitelist = list("littlebigkid2000")
+	character_name = list("Entchtut Cenein")
+
 //  M CKEYS
 /datum/gear/fluff/phi_box
 	path = /obj/item/weapon/storage/box/fluff/phi
@@ -805,6 +811,18 @@
 	ckeywhitelist = list("rboys2")
 	character_name = list("Clara Mali")
 	cost = 1
+
+/datum/gear/fluff/luna_sci_medal
+	path = /obj/item/clothing/accessory/medal/nobel_science
+	display_name = "LUNA's Nobel Science Award"
+	ckeywhitelist = list("residentcody")
+	character_name = list("LUNA")
+	
+/datum/gear/fluff/luna_conduct_medal
+	path = /obj/item/clothing/accessory/medal/conduct
+	display_name = "LUNA's Distinguished Conduct Medal"
+	ckeywhitelist = list("residentcody")
+	character_name = list("LUNA")
 
 /datum/gear/fluff/nikki_dorky_outfit
 	path = /obj/item/weapon/storage/box/fluff
