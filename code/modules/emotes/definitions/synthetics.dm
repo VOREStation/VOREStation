@@ -35,7 +35,7 @@
 	emote_sound = 'sound/voice/biamthelaw.ogg'
 
 /decl/emote/audible/synth/security/check_user(var/mob/living/silicon/robot/user)
-	return (istype(user) && istype(user.module, /obj/item/weapon/robot_module/robot/security))
+	return (istype(user) && (istype(user.module, /obj/item/weapon/robot_module/robot/security) || istype(user.module, /obj/item/weapon/robot_module/robot/knine))) //VOREStation Add - knine module
 
 /decl/emote/audible/synth/security/halt
 	key = "halt"
