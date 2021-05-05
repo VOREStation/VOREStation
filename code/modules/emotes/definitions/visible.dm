@@ -60,7 +60,7 @@
 
 /decl/emote/visible/flash
 	key = "flash"
-	emote_message_3p = "flash USER_HIS lights quickly."
+	emote_message_3p = "flash USER_THEIR lights quickly."
 
 /decl/emote/visible/blink
 	key = "blink"

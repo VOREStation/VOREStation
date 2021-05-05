@@ -35,7 +35,7 @@
 
 /decl/emote/audible/gnarl
 	key = "gnarl"
-	emote_message_3p = "gnarls and shows USER_HIS teeth."
+	emote_message_3p = "gnarls and shows USER_THEIR teeth."
 
 /decl/emote/audible/multichirp
 	key = "mchirp"
@@ -176,7 +176,7 @@
 
 /decl/emote/audible/crack
 	key = "crack"
-	emote_message_3p = "cracks USER_HIS knuckles."
+	emote_message_3p = "cracks USER_THEIR knuckles."
 	emote_sound = 'sound/voice/knuckles.ogg'
 
 /decl/emote/audible/squish

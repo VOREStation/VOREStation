@@ -30,7 +30,7 @@
 
 /decl/emote/audible/synth/security
 	key = "law"
-	emote_message_3p = "shows USER_HIS legal authorization barcode."
+	emote_message_3p = "shows USER_THEIR legal authorization barcode."
 	emote_message_3p_target = "shows TARGET USER_THEIR legal authorization barcode."
 	emote_sound = 'sound/voice/biamthelaw.ogg'
 

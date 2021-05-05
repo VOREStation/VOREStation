@@ -1,9 +1,9 @@
 /decl/emote/audible/snap
 	key = "snap"
 	emote_message_1p = "You snap your fingers."
-	emote_message_3p = "snaps USER_HIS fingers."
+	emote_message_3p = "snaps USER_THEIR fingers."
 	emote_message_1p_target = "You snap your fingers at TARGET."
-	emote_message_3p_target = "snaps USER_HIS fingers at TARGET."
+	emote_message_3p_target = "snaps USER_THEIR fingers at TARGET."
 	emote_sound = 'sound/effects/fingersnap.ogg'
 
 /decl/emote/audible/snap/proc/can_snap(var/atom/user)
