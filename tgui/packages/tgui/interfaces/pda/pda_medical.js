@@ -85,7 +85,7 @@ export const pda_medical = (props, context) => {
                 {medical.cdi_d}
               </LabeledList.Item>
               <LabeledList.Item label="Important Notes">
-                {medical.notes}
+                {medical.notes.split("\n").map(m => <Box key={m}>{m}</Box>) || "No data found."}
               </LabeledList.Item>
             </LabeledList>
           ) || (
