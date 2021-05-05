@@ -1,20 +1,4 @@
 // Not specifically /human type because those won't allow FBPs to use them
-/decl/emote/helper/nif/check_user(mob/living/carbon/human/user)
-    if(!istype(user) || !user.nif)
-        return FALSE
-    return ..()
-
-/decl/emote/helper/nif/nsay
-    key = "nsay"
-/decl/emote/helper/nsay/do_emote(var/mob/living/carbon/human/user, var/extra_params)
-    user.nsay()
-
-/decl/emote/helper/nif/nme
-    key = "nme"
-/decl/emote/helper/nme/do_emote(var/mob/living/carbon/human/user, var/extra_params)
-    user.nme()
-
-
 /decl/emote/helper/vwag
     key = "vwag"
     emote_message_3p = ""

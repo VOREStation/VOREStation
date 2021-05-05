@@ -128,9 +128,6 @@ var/list/_human_default_emotes = list(
 	/decl/emote/visible/mlem,
 	/decl/emote/visible/blep,
 	
-	/decl/emote/helper/nif/nsay,
-	/decl/emote/helper/nif/nme,
-	
 	/decl/emote/helper/vwag,
 	/decl/emote/helper/vflap
 	//VOREStation Add End

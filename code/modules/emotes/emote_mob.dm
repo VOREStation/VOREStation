@@ -44,6 +44,14 @@
 		act = copytext(tempstr,1,splitpoint)
 		message = copytext(tempstr,splitpoint+1,0)
 
+	//VOREStation Add - NIF soulcatcher shortcuts
+	if(act == "nsay")
+		return nsay(message)
+
+	if(act == "nme")
+		return nme(message)
+	//VOREStation Add End
+
 	var/decl/emote/use_emote = usable_emotes[act]
 	if(!use_emote)
 		to_chat(src, SPAN_WARNING("Unknown emote '[act]'. Type <b>say *help</b> for a list of usable emotes."))
