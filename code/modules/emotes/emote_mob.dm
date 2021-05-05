@@ -28,7 +28,7 @@
 
 		if(act == "custom")
 			if(!message)
-				message = sanitize(input("Enter an emote to display.") as text|null)
+				message = sanitize_or_reflect(input(src,"Choose an emote to display.") as text|null, src) //VOREStation Edit - Reflect too long messages, within reason
 			if(!message)
 				return
 			if (!m_type)

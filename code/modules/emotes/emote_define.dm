@@ -160,7 +160,7 @@
 		if(islist(sound_to_play) && length(sound_to_play))
 			sound_to_play = pick(sound_to_play)
 	if(sound_to_play)
-		playsound(user.loc, sound_to_play, use_sound["vol"], 0)
+		playsound(user.loc, sound_to_play, use_sound["vol"], 0, preference = /datum/client_preference/emote_noises) //VOREStation Add - Preference
 
 /decl/emote/proc/check_user(var/atom/user)
 	return TRUE
