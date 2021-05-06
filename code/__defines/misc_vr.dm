@@ -18,6 +18,11 @@
 
 #define ANNOUNCER_NAME "Facility PA"
 
+//Gun classifications for locker sanity
+#define GUN_SIDEARM	0	//one handed sidearms, pistols and the sort.
+#define GUN_LONGARM	1	//shotguns, rifles, etc.
+#define GUN_HEAVY	2	//Stuff too large to sprite in the lockers.
+
 //For custom species
 #define STARTING_SPECIES_POINTS 2
 #define MAX_SPECIES_TRAITS 5

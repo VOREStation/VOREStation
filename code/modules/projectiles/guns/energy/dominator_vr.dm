@@ -24,6 +24,8 @@
 
 	var/emagged = FALSE
 
+	locker_class = GUN_LONGARM
+
 
 /obj/item/weapon/gun/energy/gun/fluff/dominator/special_check(mob/user)
 	if(!emagged && mode_name == "lethal" && get_security_level() == "green")

@@ -8,6 +8,7 @@
 	projectile_type = /obj/item/projectile/beam
 	charge_cost = 120
 	sel_mode = 2
+	locker_class = GUN_LONGARM
 
 	firemodes = list(
 		list(mode_name="stun", projectile_type=/obj/item/projectile/beam/stun, fire_delay=null, charge_cost = 120),
@@ -40,6 +41,7 @@
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	icon_state = "lpistol"
 	charge_cost = 480
+	locker_class = GUN_SIDEARM
 
 /obj/item/weapon/gun/energy/pulse_rifle/compact/admin
 	name = "\improper LP2 Grasshopper Deluxe"

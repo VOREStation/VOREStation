@@ -11,3 +11,4 @@
 	projectile_type = /obj/item/projectile/beam/energy_net
 	charge_cost = 800
 	fire_delay = 50
+	locker_class = GUN_HEAVY

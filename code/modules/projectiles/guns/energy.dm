@@ -23,6 +23,7 @@
 	var/charge_delay = 75	//delay between firing and charging
 
 	var/battery_lock = 0	//If set, weapon cannot switch batteries
+	locker_class = GUN_SIDEARM
 
 /obj/item/weapon/gun/energy/New()
 	..()

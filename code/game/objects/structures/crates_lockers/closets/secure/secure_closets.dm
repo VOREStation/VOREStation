@@ -48,7 +48,7 @@
 		playsound(src, 'sound/machines/click.ogg', 15, 1, -3)
 		for(var/mob/O in viewers(user, 3))
 			if((O.client && !( O.blinded )))
-				to_chat(O, "<span class='notice'>The locker has been [locked ? null : "un"]locked by [user].</span>")
+				to_chat(O, "<span class='notice'>\The [src] has been [locked ? null : "un"]locked by [user].</span>")
 		update_icon()
 	else
 		to_chat(user, "<span class='notice'>Access Denied</span>")
@@ -84,7 +84,7 @@
 		if(W)
 			W.forceMove(loc)
 	else if(istype(W, /obj/item/weapon/melee/energy/blade))
-		if(emag_act(INFINITY, user, "<span class='danger'>The locker has been sliced open by [user] with \an [W]</span>!", "<span class='danger'>You hear metal being sliced and sparks flying.</span>"))
+		if(emag_act(INFINITY, user, "<span class='danger'>\The [src] has been sliced open by [user] with \an [W]</span>!", "<span class='danger'>You hear metal being sliced and sparks flying.</span>"))
 			var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 			spark_system.set_up(5, 0, loc)
 			spark_system.start()
