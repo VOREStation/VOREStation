@@ -72,8 +72,8 @@ export const pda_security = (props, context) => {
               <LabeledList.Item label="Details">
                 {security.ma_crim_d}
               </LabeledList.Item>
-              <LabeledList.Item label="Important Notes:">
-                {security.notes.split("\n").map(m => <Box key={m}>{m}</Box>) || "No data found."}
+              <LabeledList.Item label="Important Notes:" prewrap>
+                {security.notes || "No data found."}
               </LabeledList.Item>
             </LabeledList>
           ) || (
