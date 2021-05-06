@@ -53,6 +53,7 @@
 		sync_organ_dna()
 
 	//verbs |= /mob/living/proc/toggle_selfsurgery //VOREStation Removal
+	AddComponent(/datum/component/personal_crafting)
 
 /mob/living/carbon/human/Destroy()
 	human_mob_list -= src
@@ -1161,6 +1162,9 @@
 
 	//A slew of bits that may be affected by our species change
 	regenerate_icons()
+
+	// Update our available emote list.
+	update_emotes()
 
 	if(species)
 		//if(mind) //VOREStation Removal

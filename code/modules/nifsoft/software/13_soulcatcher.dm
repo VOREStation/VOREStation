@@ -45,14 +45,14 @@
 /datum/nifsoft/soulcatcher/install()
 	if((. = ..()))
 		nif.set_flag(NIF_O_SCOTHERS,NIF_FLAGS_OTHER)	//Required on install, because other_flags aren't sufficient for our complicated settings.
-		nif.human.verbs |= /mob/living/carbon/human/proc/nsay
-		nif.human.verbs |= /mob/living/carbon/human/proc/nme
+		nif.human.verbs |= /mob/living/carbon/human/nsay
+		nif.human.verbs |= /mob/living/carbon/human/nme
 
 /datum/nifsoft/soulcatcher/uninstall()
 	QDEL_LIST_NULL(brainmobs)
 	if((. = ..()) && nif && nif.human) //Sometimes NIFs are deleted outside of a human
-		nif.human.verbs -= /mob/living/carbon/human/proc/nsay
-		nif.human.verbs -= /mob/living/carbon/human/proc/nme
+		nif.human.verbs -= /mob/living/carbon/human/nsay
+		nif.human.verbs -= /mob/living/carbon/human/nme
 
 /datum/nifsoft/soulcatcher/proc/save_settings()
 	if(!nif)
@@ -476,20 +476,26 @@
 
 ///////////////////
 //Verbs for humans
-/mob/living/carbon/human/proc/nsay(message as text|null)
+/mob/proc/nsay(message as text|null)
 	set name = "NSay"
 	set desc = "Speak into your NIF's Soulcatcher."
 	set category = "IC"
 
+	to_chat(src, SPAN_WARNING("You must be a humanoid with a NIF implanted to use that."))
+
+/mob/living/carbon/human/nsay(message as text|null)
+	if(stat != CONSCIOUS)
+		to_chat(src,SPAN_WARNING("You can't use NSay while unconscious."))
+		return
 	if(!nif)
-		to_chat(src,"<span class='warning'>You can't use NSay without a NIF.</span>")
+		to_chat(src,SPAN_WARNING("You can't use NSay without a NIF."))
 		return
 	var/datum/nifsoft/soulcatcher/SC = nif.imp_check(NIF_SOULCATCHER)
 	if(!SC)
-		to_chat(src,"<span class='warning'>You need the Soulcatcher software to use NSay.</span>")
+		to_chat(src,SPAN_WARNING("You need the Soulcatcher software to use NSay."))
 		return
 	if(!SC.brainmobs.len)
-		to_chat(src,"<span class='warning'>You need a loaded mind to use NSay.</span>")
+		to_chat(src,SPAN_WARNING("You need a loaded mind to use NSay."))
 		return
 	if(!message)
 		message = input("Type a message to say.","Speak into Soulcatcher") as text|null
@@ -497,20 +503,26 @@
 		var/sane_message = sanitize(message)
 		SC.say_into(sane_message,src)
 
-/mob/living/carbon/human/proc/nme(message as text|null)
+/mob/proc/nme(message as text|null)
 	set name = "NMe"
 	set desc = "Emote into your NIF's Soulcatcher."
 	set category = "IC"
+	
+	to_chat(src, SPAN_WARNING("You must be a humanoid with a NIF implanted to use that."))
 
+/mob/living/carbon/human/nme(message as text|null)
+	if(stat != CONSCIOUS)
+		to_chat(src,SPAN_WARNING("You can't use NMe while unconscious."))
+		return
 	if(!nif)
-		to_chat(src,"<span class='warning'>You can't use NMe without a NIF.</span>")
+		to_chat(src,SPAN_WARNING("You can't use NMe without a NIF."))
 		return
 	var/datum/nifsoft/soulcatcher/SC = nif.imp_check(NIF_SOULCATCHER)
 	if(!SC)
-		to_chat(src,"<span class='warning'>You need the Soulcatcher software to use NMe.</span>")
+		to_chat(src,SPAN_WARNING("You need the Soulcatcher software to use NMe."))
 		return
 	if(!SC.brainmobs.len)
-		to_chat(src,"<span class='warning'>You need a loaded mind to use NMe.</span>")
+		to_chat(src,SPAN_WARNING("You need a loaded mind to use NMe."))
 		return
 
 	if(!message)
@@ -563,7 +575,7 @@
 	QDEL_NULL(eyeobj)
 	soulcatcher.notify_into("[src] ended AR projection.")
 
-/mob/living/carbon/brain/caught_soul/verb/nsay(message as text|null)
+/mob/living/carbon/brain/caught_soul/verb/nsay_brain(message as text|null)
 	set name = "NSay"
 	set desc = "Speak into the NIF's Soulcatcher (circumventing AR speaking)."
 	set category = "Soulcatcher"
@@ -574,7 +586,7 @@
 		var/sane_message = sanitize(message)
 		soulcatcher.say_into(sane_message,src,null)
 
-/mob/living/carbon/brain/caught_soul/verb/nme(message as text|null)
+/mob/living/carbon/brain/caught_soul/verb/nme_brain(message as text|null)
 	set name = "NMe"
 	set desc = "Emote into the NIF's Soulcatcher (circumventing AR speaking)."
 	set category = "Soulcatcher"

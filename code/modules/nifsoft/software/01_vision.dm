@@ -34,9 +34,9 @@
 
 /datum/nifsoft/ar_eng
 	name = "AR Overlay (Eng)"
-	desc = "Like the civilian model, but provides station alert notices."
+	desc = "Like the civilian model, but provides ... well, nothing. For now."
 	list_pos = NIF_ENGINE_AR
-	cost = 375
+	cost = 250
 	access = access_engine
 	a_drain = 0.01
 	planes_enabled = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_AUGMENTED)
@@ -47,7 +47,7 @@
 	name = "AR Overlay (Sci)"
 	desc = "Like the civilian model, but provides ... well, nothing. For now."
 	list_pos = NIF_SCIENCE_AR
-	cost = 375
+	cost = 250
 	access = access_research
 	a_drain = 0.01
 	planes_enabled = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_AUGMENTED)

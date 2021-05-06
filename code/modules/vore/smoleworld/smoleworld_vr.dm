@@ -60,7 +60,7 @@
 	recipes += new/datum/stack_recipe("smole houses", /obj/structure/smolebuilding/houses, 2, time = 10)
 	recipes += new/datum/stack_recipe("smole business", /obj/structure/smolebuilding/business, 2, time = 10)
 	recipes += new/datum/stack_recipe("smole warehouses", /obj/structure/smolebuilding/warehouses, 2, time = 10)
-	recipes += new/datum/stack_recipe("smole musem", /obj/structure/smolebuilding/musem, 2, time = 10)
+	recipes += new/datum/stack_recipe("smole museum", /obj/structure/smolebuilding/museum, 2, time = 10)
 
 /datum/material/smolebricks
 	name = "smolebricks"
@@ -86,7 +86,7 @@
 //smolebrick case to make for easy bricks.
 /obj/item/weapon/storage/smolebrickcase
 	name = "smolebrick case"
-	desc = "you feel the power of imagination."
+	desc = "You feel the power of imagination."
 	icon = 'icons/vore/smoleworld_vr.dmi'
 	icon_state = "smolestorage"
 	throw_speed = 1
@@ -152,10 +152,10 @@
 	anchored = 1
 
 /obj/structure/smoletrack/roadF
-	name = "road fourway piece"
+	name = "road four-way piece"
 	icon = 'icons/vore/smoleworld_vr.dmi'
 	icon_state = "carfourway"
-	desc = "A fourway road piece."
+	desc = "A four-way road piece."
 	anchored = 1
 
 //buildings code
@@ -279,10 +279,10 @@
 	icon = 'icons/vore/smoleworld_vr.dmi'
 	icon_state = "smolewarehouses"
 
-/obj/structure/smolebuilding/musem
-	name = "smole musem"
+/obj/structure/smolebuilding/museum
+	name = "smole museum"
 	icon = 'icons/vore/smoleworld_vr.dmi'
-	icon_state = "smolemusem"
+	icon_state = "smolemuseum"
 //
 //CAR STUFF < WILL BE MESSED WITH IN A LATER UPDATE COMMENTED OUT FOR NOW
 ///obj/item/smolecar
@@ -357,8 +357,8 @@
 	drop_sound = 'sound/items/drop/basketball.ogg'
 
 /obj/item/weapon/reagent_containers/food/snacks/snackplanet/virgo3b
-	name = "virgo3bB"
-	desc = "A sticky jelly jaw breaker in the shape of Virgo3B, it even has a tiny tether!"
+	name = "Virgo 3B"
+	desc = "A sticky jelly jaw breaker in the shape of Virgo-3B, it even has a tiny tether!"
 	icon = 'icons/vore/smoleworld_vr.dmi'
 	icon_state = "sp_Virgo3B"
 	bitesize = 3
@@ -379,8 +379,8 @@
 	drop_sound = 'sound/items/drop/basketball.ogg'
 
 /obj/item/weapon/reagent_containers/food/snacks/snackplanet/virgoprime
-	name = "virgo prime"
-	desc = "Its a orange jaw breaker in the shape Virgo Prime!"
+	name = "Virgo Prime"
+	desc = "It's a orange jaw breaker in the shape of Virgo Prime!"
 	icon = 'icons/vore/smoleworld_vr.dmi'
 	icon_state = "sp_virgoprime"
 	bitesize = 3
@@ -391,7 +391,7 @@
 
 /obj/item/weapon/storage/bagoplanets
 	name = "bag o' planets"
-	desc = "A cosmic bag of fist  sized candy planets."
+	desc = "A cosmic bag of fist-sized candy planets."
 	icon = 'icons/vore/smoleworld_vr.dmi'
 	icon_state = "sp_storage"
 	w_class = ITEMSIZE_LARGE

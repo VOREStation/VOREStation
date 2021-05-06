@@ -1971,7 +1971,12 @@
 			if("show")
 				show_player_info(ckey)
 			if("list")
-				PlayerNotesPage(text2num(href_list["index"]))
+				var/filter
+				if(href_list["filter"] && href_list["filter"] != "0")
+					filter = url_decode(href_list["filter"])
+				PlayerNotesPage(text2num(href_list["index"]), filter)
+			if("filter")
+				PlayerNotesFilter()
 		return
 
 mob/living/proc/can_centcom_reply()
