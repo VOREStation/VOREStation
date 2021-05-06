@@ -163,3 +163,7 @@
 /area/submap/spatial_anomaly
 	name = "POI - Spatial Anomaly"
 	ambience = AMBIENCE_FOREBODING
+
+/area/submap/Speakeasy  //VOREStation add
+	name = "POI - Speakeasy"
+	requires_power = FALSE

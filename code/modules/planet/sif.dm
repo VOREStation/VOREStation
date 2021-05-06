@@ -156,6 +156,9 @@ var/datum/planet/sif/planet_sif = null
 	sky_visible = TRUE
 	observed_message = "The sky is clear."
 
+	outdoor_sounds_type = /datum/looping_sound/weather/wind/gentle
+	indoor_sounds_type = /datum/looping_sound/weather/wind/gentle/indoors
+
 /datum/weather/sif/overcast
 	name = "overcast"
 	light_modifier = 0.8
@@ -174,6 +177,9 @@ var/datum/planet/sif/planet_sif = null
 		"It's very cloudy."
 		)
 
+	outdoor_sounds_type = /datum/looping_sound/weather/wind/gentle
+	indoor_sounds_type = /datum/looping_sound/weather/wind/gentle/indoors
+
 /datum/weather/sif/light_snow
 	name = "light snow"
 	icon_state = "snowfall_light"
@@ -191,6 +197,9 @@ var/datum/planet/sif/planet_sif = null
 		"Small snowflakes begin to fall from above.",
 		"It begins to snow lightly.",
 		)
+
+	outdoor_sounds_type = /datum/looping_sound/weather/wind/gentle
+	indoor_sounds_type = /datum/looping_sound/weather/wind/gentle/indoors
 
 /datum/weather/sif/snow
 	name = "moderate snow"
@@ -282,8 +291,8 @@ var/datum/planet/sif/planet_sif = null
 	transition_messages = list(
 		"The sky is dark, and rain falls down upon you."
 	)
-//	outdoor_sounds_type = /datum/looping_sound/weather/rain
-//	indoor_sounds_type = /datum/looping_sound/weather/rain/indoors
+	outdoor_sounds_type = /datum/looping_sound/weather/rain
+	indoor_sounds_type = /datum/looping_sound/weather/rain/indoors
 
 /datum/weather/sif/rain/process_effects()
 	..()
@@ -327,8 +336,8 @@ var/datum/planet/sif/planet_sif = null
 		"Loud thunder is heard in the distance.",
 		"A bright flash heralds the approach of a storm."
 	)
-//	outdoor_sounds_type = /datum/looping_sound/weather/rain
-//	indoor_sounds_type = /datum/looping_sound/weather/rain/indoors
+	outdoor_sounds_type = /datum/looping_sound/weather/rain/heavy
+	indoor_sounds_type = /datum/looping_sound/weather/rain/heavy/indoors
 
 
 	transition_chances = list(

@@ -433,38 +433,5 @@ proc/get_radio_key_from_channel(var/channel)
 /mob/proc/GetVoice()
 	return name
 
-/mob/living/emote(var/act, var/type, var/message) //emote code is terrible, this is so that anything that isn't
-	if(stat)			                          //already snowflaked to shit can call the parent and handle emoting sanely
-		return FALSE
-
-	if(..(act, type, message))
-		return TRUE
-
-	if(act && type && message)
-		log_emote(message, src)
-
-		for(var/mob/M in dead_mob_list)
-			if(!M.client)
-				continue
-
-			if(isnewplayer(M))
-				continue
-
-			if(isobserver(M) && M.is_preference_enabled(/datum/client_preference/ghost_sight))
-				M.show_message(message)
-
-		switch(type)
-			if(1) // Visible
-				visible_message(message)
-				return TRUE
-			if(2) // Audible
-				audible_message(message)
-				return TRUE
-	else
-		if(act == "help")
-			return // Mobs handle this individually
-		to_chat(src, "<span class='warning'>Unusable emote '[act]'. Say *help for a list.</span>")
-
-
 /mob/proc/speech_bubble_appearance()
 	return "normal"

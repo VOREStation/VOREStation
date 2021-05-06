@@ -542,7 +542,7 @@
 
 // VOREStation Add - Ears/Tails/Wings
 /datum/tgui_module/appearance_changer/proc/can_use_sprite(datum/sprite_accessory/X, mob/living/carbon/human/target, mob/user)
-	if(X.apply_restrictions && !(target.species.name in X.species_allowed))
+	if(!isnull(X.species_allowed) && !(target.species.name in X.species_allowed))
 		return FALSE
 
 	if(LAZYLEN(X.ckeys_allowed) && !(user?.ckey in X.ckeys_allowed) && !(target.ckey in X.ckeys_allowed))
