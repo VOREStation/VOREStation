@@ -4,6 +4,8 @@
 	icon_state = "baseold"
 	req_one_access = list(access_armory)
 	closet_appearance = null
+	anchored = TRUE
+	density = TRUE
 
 /obj/structure/closet/secure_closet/guncabinet/Initialize()
 	. = ..()
@@ -12,6 +14,26 @@
 /obj/structure/closet/secure_closet/guncabinet/toggle()
 	..()
 	update_icon()
+
+/obj/structure/closet/secure_closet/guncabinet/open() //Don't dump everything to the floor, why would this be a good idea?
+	if(opened)
+		return FALSE
+	if(!can_open())
+		return FALSE
+	opened = TRUE
+	playsound(src, open_sound, 15, 1, -3)
+	update_icon()
+	return TRUE
+
+/obj/structure/closet/secure_closet/guncabinet/close() //Don't auto scoop
+	if(!opened)
+		return FALSE
+	if(!can_close())
+		return FALSE
+	opened = FALSE
+	playsound(src, close_sound, 15, 1, -3)
+	update_icon()
+	return TRUE
 
 /obj/structure/closet/secure_closet/guncabinet/update_icon()
 	overlays.Cut()
@@ -53,6 +75,7 @@
 /obj/structure/closet/secure_closet/guncabinet/fancy
 	name = "arms locker"
 	icon_state = "shotguncase"
+	desc = "A strong cabinet used for securing firearms."
 	var/case_type = GUN_LONGARM
 	var/gun_category = /obj/item/weapon/gun
 	var/capacity = 5
@@ -66,7 +89,7 @@
 		var/obj/item/weapon/gun/G = W
 		if(G.locker_class == case_type)
 			if(LAZYLEN(contents) < capacity)
-				G.forceMove(src)
+				user.remove_from_mob(G,src)
 				to_chat(user, "<span class='notice'>You place [G] in [src].</span>")
 				update_icon()
 			else
@@ -75,10 +98,6 @@
 		else
 			to_chat(user, "<span class='notice'>You can't seem to fit [G] in [src] properly.</span>")
 		return
-
-	else if(user.a_intent != I_HURT && !locked)
-		opened = !opened
-		update_icon()
 
 	else if(istype(W, /obj/item/weapon/weldingtool) && !opened && locked)
 		var/obj/item/weapon/weldingtool/WT = W
@@ -96,20 +115,17 @@
 			spark_system.start()
 			playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
 			playsound(src, "sparks", 50, 1)
-	else
-		togglelock(user)
 
 /obj/structure/closet/secure_closet/guncabinet/fancy/attack_hand(mob/user as mob)
-	. = ..()
-	if(.)
-		return
 	if(issilicon(user) || isalien(user) || !Adjacent(usr))
 		return
 	if(contents.len && opened)
 		ShowWindow(user)
-	else
+		return
+	if(locked)
 		togglelock(user)
-		update_icon()
+	else
+		toggle(user)
 
 /obj/structure/closet/secure_closet/guncabinet/fancy/proc/ShowWindow(mob/user)
 	var/dat = {"<div class='block'>
@@ -126,6 +142,7 @@
 	popup.open(0)
 
 /obj/structure/closet/secure_closet/guncabinet/fancy/Topic(href, href_list)
+	..()
 	if(href_list["retrieve"])
 		var/obj/item/O = locate(href_list["retrieve"]) in contents
 		if(!O || !istype(O))
@@ -137,6 +154,7 @@
 			if(!usr.put_in_hands(O))
 				O.forceMove(get_turf(src))
 			update_icon()
+		updateDialog()
 
 /obj/structure/closet/secure_closet/guncabinet/fancy/update_icon()
 	cut_overlays()
@@ -163,6 +181,7 @@
 			add_overlay("[icon_state]_locked")
 		else
 			add_overlay("[icon_state]_unlocked")
+		return
 
 /obj/structure/closet/secure_closet/guncabinet/fancy/shotgun
 	name = "long arms locker"
@@ -171,6 +190,7 @@
 /obj/structure/closet/secure_closet/guncabinet/fancy/rifle
 	name = "long arms locker"
 	icon_state = "riflecase"
+	desc = "A strong cabinet used for securing firearms. This one is for long arms such as rifles and shotguns."
 
 
 /obj/structure/closet/secure_closet/guncabinet/fancy/rifle/wood
@@ -180,6 +200,7 @@
 /obj/structure/closet/secure_closet/guncabinet/fancy/pistol
 	name = "small arms locker"
 	icon_state = "pistolcase"
+	desc = "A strong cabinet used for securing firearms. This one is for hand-held sidearms."
 	case_type = GUN_SIDEARM
 	capacity = 10
 
@@ -191,19 +212,21 @@
 	if(LAZYLEN(contents))
 		for(var/i in 1 to contents.len)
 			gunrow++
-			if(contents.len <=5) //hopefully avoids layering issues + infinite rows
+			if(contents.len <=5) //hopefully avoids layering issues + infinite rows (it doesnt)
 				racked = FALSE
 			if(gunrow >= gunmax && !racked) // start the next row of sprites atop of the previous row
 				racked = TRUE
 				gunrow = 0
 			var/obj/item/I = contents[i]	//we've already made sure there's only guns
 			var/mutable_appearance/gun_overlay = mutable_appearance(icon, I.icon_state)
-			gun_overlay.pixel_x = 3 * (gunrow - 1)
 			if(racked)
+				gun_overlay.pixel_x = 3 * gunrow
 				gun_overlay.pixel_y = -1
 			else
 				gun_overlay.pixel_y = 1
+				gun_overlay.pixel_x = 3 * (gunrow - 1)
 			add_overlay(gun_overlay)
+
 	if(welded)
 		add_overlay("[icon_state]_cut")
 		layer = OBJ_LAYER
@@ -221,6 +244,7 @@
 			add_overlay("[icon_state]_locked")
 		else
 			add_overlay("[icon_state]_unlocked")
+		return
 
 /obj/structure/closet/secure_closet/guncabinet/fancy/pistol/wood
 	icon_state = "fancypistol"
