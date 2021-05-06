@@ -71,6 +71,8 @@
 		/obj/item/weapon/tape_roll,
 		/obj/item/device/integrated_electronics/wirer,
 		/obj/item/device/integrated_electronics/debugger, //Vorestation edit adding debugger to toolbelt can hold list
+		/obj/item/weapon/shovel/spade, //VOREStation edit. If it can hold minihoes and hatchers, why not the gardening spade?
+		/obj/item/stack/nanopaste //VOREStation edit. Think of it as a tube of superglue. Belts hold that all the time.
 		)
 
 /obj/item/weapon/storage/belt/utility/full
@@ -349,7 +351,8 @@
 		/obj/item/device/megaphone,
 		/obj/item/taperoll,
 		/obj/item/weapon/reagent_containers/spray,
-		/obj/item/weapon/soap
+		/obj/item/weapon/soap,
+		/obj/item/device/lightreplacer //VOREStation edit
 		)
 
 /obj/item/weapon/storage/belt/archaeology
