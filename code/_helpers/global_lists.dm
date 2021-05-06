@@ -236,12 +236,16 @@ GLOBAL_LIST_EMPTY(mannequins)
 		var/datum/sprite_accessory/wing/instance = new path()
 		wing_styles_list[path] = instance
 
+<<<<<<< HEAD
 	// VOREStation Add - Vore Modes!
 	paths = typesof(/datum/digest_mode)
 	for(var/T in paths)
 		var/datum/digest_mode/DM = new T
 		GLOB.digest_modes[DM.id] = DM
 	// VOREStation Add End
+=======
+	init_crafting_recipes(GLOB.crafting_recipes)
+>>>>>>> 26f17d2... Merge pull request #8060 from ShadowLarkens/personal_crafting
 
 /*
 	// Custom species traits
@@ -278,8 +282,13 @@ GLOBAL_LIST_EMPTY(mannequins)
 	return 1 // Hooks must return 1
 
 
-	return 1
-
+/// Inits the crafting recipe list, sorting crafting recipe requirements in the process.
+/proc/init_crafting_recipes(list/crafting_recipes)
+	for(var/path in subtypesof(/datum/crafting_recipe))
+		var/datum/crafting_recipe/recipe = new path()
+		recipe.reqs = sortList(recipe.reqs, /proc/cmp_crafting_req_priority)
+		crafting_recipes += recipe
+	return crafting_recipes
 /* // Uncomment to debug chemical reaction list.
 /client/verb/debug_chemical_list()
 

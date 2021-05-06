@@ -40,6 +40,7 @@
 #include "code\__defines\chemistry_vr.dm"
 #include "code\__defines\color.dm"
 #include "code\__defines\construction.dm"
+#include "code\__defines\crafting.dm"
 #include "code\__defines\damage_organs.dm"
 #include "code\__defines\dna.dm"
 #include "code\__defines\exosuit_fab.dm"
@@ -90,6 +91,7 @@
 #include "code\__defines\tgs.config.dm"
 #include "code\__defines\tgs.dm"
 #include "code\__defines\tgui.dm"
+#include "code\__defines\tools.dm"
 #include "code\__defines\turfs.dm"
 #include "code\__defines\typeids.dm"
 #include "code\__defines\unit_tests.dm"
@@ -133,6 +135,7 @@
 #include "code\_helpers\names.dm"
 #include "code\_helpers\sanitize_values.dm"
 #include "code\_helpers\storage.dm"
+#include "code\_helpers\string_lists.dm"
 #include "code\_helpers\text.dm"
 #include "code\_helpers\text_vr.dm"
 #include "code\_helpers\time.dm"
@@ -337,7 +340,14 @@
 #include "code\datums\autolathe\tools.dm"
 #include "code\datums\autolathe\tools_vr.dm"
 #include "code\datums\components\_component.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\datums\components\resize_guard.dm"
+=======
+#include "code\datums\components\crafting\crafting.dm"
+#include "code\datums\components\crafting\crafting_external.dm"
+#include "code\datums\components\crafting\recipes.dm"
+#include "code\datums\components\crafting\tool_quality.dm"
+>>>>>>> 26f17d2... Merge pull request #8060 from ShadowLarkens/personal_crafting:polaris.dme
 #include "code\datums\elements\_element.dm"
 #include "code\datums\game_masters\_common.dm"
 #include "code\datums\helper_datums\construction_datum.dm"
@@ -1712,7 +1722,10 @@
 #include "code\modules\ai\interfaces.dm"
 #include "code\modules\ai\say_list.dm"
 #include "code\modules\ai\ai_holder_subtypes\simple_mob_ai.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\modules\ai\ai_holder_subtypes\simple_mob_ai_vr.dm"
+=======
+>>>>>>> 26f17d2... Merge pull request #8060 from ShadowLarkens/personal_crafting:polaris.dme
 #include "code\modules\ai\ai_holder_subtypes\slime_xenobio_ai.dm"
 #include "code\modules\alarm\alarm.dm"
 #include "code\modules\alarm\alarm_handler.dm"

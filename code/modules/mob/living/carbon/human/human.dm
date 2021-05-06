@@ -52,7 +52,12 @@
 		dna.real_name = real_name
 		sync_organ_dna()
 
+<<<<<<< HEAD
 	//verbs |= /mob/living/proc/toggle_selfsurgery //VOREStation Removal
+=======
+	verbs |= /mob/living/proc/toggle_selfsurgery
+	AddComponent(/datum/component/personal_crafting)
+>>>>>>> 26f17d2... Merge pull request #8060 from ShadowLarkens/personal_crafting
 
 /mob/living/carbon/human/Destroy()
 	human_mob_list -= src
