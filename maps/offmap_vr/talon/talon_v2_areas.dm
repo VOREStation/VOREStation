@@ -52,7 +52,7 @@
 	icon_state = "red"
 
 /area/talon_v2/engineering
-	name = "\improper Talon - Engineering Core"
+	name = "\improper Talon - Engineering"
 	icon_state = "yellow"
 /area/talon_v2/engineering/port
 	name = "\improper Talon - Port Engineering"
@@ -69,6 +69,9 @@
 /area/talon_v2/engineering/atmospherics
 	name = "\improper Talon - Atmospherics"
 	icon_state = "dark-a"
+/area/talon_v2/engineering/generators
+	name = "\improper Talon - Generator Core"
+	icon_state = "yellow"
 
 /area/talon_v2/refining
 	name = "\improper Talon - Refinery"

@@ -115,9 +115,14 @@ good news! you may have noticed the entire ship was replaced pretty much overnig
 that or it changed shape or something? whatever, not important.<br>\
 what <b>is</b> important is that it no longer runs off solar arrays. now we have a pair of tritium generators.<br>\
 they're in the shielded compartment just across from the big white SMES bricks.<br>\
-jam the tritium pucks in the hoppers (not too rough though) and fire them up!<br>\
+jam the tritium pucks in the hoppers (not too rough and messy though) and fire them up!<br>\
 you shouldn't need to push power generation past 50kW per generator unless it's an emergency, so let it run slow and save the fuel.<br>\
 congrats, power is good to go!<br>\
+<br>\
+just remember to actually go anywhere you'll also need to flip the output of each engine room's pumps up.<br>\
+if you somehow, <i>somehow</i>, start to run low on fuel, there are two reserve tanks and twelve(!) empty tanks.<br>\
+pray you can make it to the fuel depot on what gas you have left and fill up the tanks there.<br>\
+alternately maybe you can trade some off those nanotrasen corpos down on 3B. atmosphere's full of the stuff, I'm sure they won't miss a little.<br>\
 <br>\
 <i>Harry Townes</i>"}
 
