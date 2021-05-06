@@ -517,3 +517,15 @@
 	trans_to(T, total_volume, multiplier, copy)
 	if (total_volume <= 0)
 		qdel(src)
+		
+/**
+ * Calls [/datum/reagent/proc/on_update] on every reagent in this holder
+ *
+ * Arguments:
+ * * atom/A - passed to on_update
+ */
+/datum/reagents/proc/conditional_update(atom/A)
+	var/list/cached_reagents = reagent_list
+	for(var/datum/reagent/reagent as anything in cached_reagents)
+		reagent.on_update(A)
+	update_total()

@@ -53,6 +53,7 @@
 		sync_organ_dna()
 
 	//verbs |= /mob/living/proc/toggle_selfsurgery //VOREStation Removal
+	AddComponent(/datum/component/personal_crafting)
 
 /mob/living/carbon/human/Destroy()
 	human_mob_list -= src
