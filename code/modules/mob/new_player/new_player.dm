@@ -28,8 +28,10 @@
 
 /mob/new_player/proc/new_player_panel_proc()
 	var/output = "<div align='center'>"
+	/* VOREStation Removal
 	output += "[using_map.get_map_info()]"
 	output +="<hr>"
+	VOREStation Removal End */
 	output += "<p><a href='byond://?src=\ref[src];show_preferences=1'>Character Setup</A></p>"
 
 	if(!ticker || ticker.current_state <= GAME_STATE_PREGAME)
@@ -79,7 +81,7 @@
 	if(GLOB.news_data.station_newspaper && !client.seen_news)
 		show_latest_news(GLOB.news_data.station_newspaper)
 
-	panel = new(src, "Welcome","Welcome", 500, 480, src)
+	panel = new(src, "Welcome","Welcome", 210, 300, src) // VOREStation Edit
 	panel.set_window_options("can_close=0")
 	panel.set_content(output)
 	panel.open()
