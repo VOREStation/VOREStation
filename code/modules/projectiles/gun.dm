@@ -105,6 +105,9 @@
 	var/flight_x_offset = 0
 	var/flight_y_offset = 0
 
+	//Because I can't be assed to sort everything by subtype right now. use GUN_SIDEARM for pistols and GUN_LONGARM for rifles
+	var/locker_class = GUN_HEAVY	//just so you can't cram sniper rifles and HMGs into my lockers - Pooj
+
 /obj/item/weapon/gun/CtrlClick(mob/user)
 	if(can_flashlight && ishuman(user) && src.loc == usr && !user.incapacitated(INCAPACITATION_ALL))
 		toggle_flashlight()
