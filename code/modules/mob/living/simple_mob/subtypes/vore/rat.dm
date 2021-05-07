@@ -12,7 +12,7 @@
 	However, due to the large nature of this particular species of rat, predation is usually not that much of an issue. \
 	This doesn't mean that there is an overpopulation, though, quite the opposite. Giant Rats are rare and this is usually \
 	due to small litter sizes and lack of proper food sources. Areas that one would typically see a Giant Rat is large garbage \
-	disposals or areas that have large amounts of live food (other rats, mice, etc.) such as maint tunnels. \
+	disposals or areas that have large amounts of live food (other rats, mice, etc.) such as maintenance tunnels. \
 	<br>\
 	Male rats are called bucks; unmated females, does, pregnant or parent females, dams; and infants, kittens or pups. \
 	A group of rats is referred to as a mischief."
