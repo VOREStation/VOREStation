@@ -67,3 +67,7 @@
 	sun["color"] = new_color
 	needs_work |= PLANET_PROCESS_SUN
 
+/datum/planet/proc/get_sun_angle()
+	var/relatime = current_time.hours_until_noon()
+	var/pm = (relatime <= 0)
+	return (180 + sun_position * (pm ? 180 : -180))

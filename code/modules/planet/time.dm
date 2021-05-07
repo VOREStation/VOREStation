@@ -42,6 +42,27 @@
 /datum/time/proc/make_random_time()
 	return new type(rand(0, seconds_in_day - 1))
 
+// 'day' as in not hours since the epoch
+/datum/time/proc/get_day_hour()
+	var/day_seconds = seconds_stored % seconds_in_day
+	return FLOOR(day_seconds / seconds_in_hour, 1)
+
+/datum/time/proc/get_day_minute()
+	var/day_seconds = seconds_stored % seconds_in_day
+	return day_seconds % seconds_in_hour
+
+/datum/time/proc/get_day_second()
+	var/day_seconds = seconds_stored % seconds_in_day
+	return day_seconds % seconds_in_minute
+
+// negative return values mean noon is behind you
+/datum/time/proc/hours_until_noon()
+	var/day_seconds = seconds_stored % seconds_in_day
+	var/day_hour = day_seconds / seconds_in_hour
+	var/midday = (seconds_in_day / seconds_in_hour) / 2
+
+	return (midday - day_hour)
+
 // This works almost exactly like time2text.
 // The advantage of this is that it can handle time systems beyond 24h.
 // The downside is a lack of date capability.

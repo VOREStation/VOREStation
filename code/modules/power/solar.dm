@@ -2,6 +2,7 @@
 #define SOLAR_AUTO_START_NO     0 // Will never start itself.
 #define SOLAR_AUTO_START_YES    1 // Will always start itself.
 #define SOLAR_AUTO_START_CONFIG 2 // Will start itself if config allows it (default is no).
+#define SOLAR_PLANET_SUN_DIV	8 // Adjustable depending on how bright your planets usually are
 
 GLOBAL_VAR_INIT(solar_gen_rate, 1500)
 GLOBAL_LIST_EMPTY(solars_list)
@@ -98,20 +99,33 @@ GLOBAL_LIST_EMPTY(solars_list)
 
 //calculates the fraction of the SSsun.sunlight that the panel recieves
 /obj/machinery/power/solar/proc/update_solar_exposure()
-	if(!SSsun.sun)
+	var/datum/planet/P = SSplanets.z_to_planet[z]
+	if(!SSsun.sun && !P)
 		return
 	if(obscured)
 		sunfrac = 0
 		return
 
-	//find the smaller angle between the direction the panel is facing and the direction of the SSsun.sun (the sign is not important here)
-	var/p_angle = min(abs(adir - SSsun.sun.angle), 360 - abs(adir - SSsun.sun.angle))
+	var/p_angle = 0
+	var/additional_factor
+	var/sun_angle = SSsun.sun.angle
+	
+	if(P)
+		sun_angle = P.get_sun_angle()
 
-	if(p_angle > 90)			// if facing more than 90deg from SSsun.sun, zero output
+		var/brightness = P.sun["brightness"] || 5 // Backup plan!
+		additional_factor = brightness / SOLAR_PLANET_SUN_DIV // Adjustable to whatever your common planets have
+
+	//find the smaller angle between the direction the panel is facing and the direction of the sun
+	p_angle = min(abs(adir - sun_angle), 360 - abs(adir - sun_angle))
+
+	if(p_angle > 90)			// if facing more than 90deg from sun, zero output
 		sunfrac = 0
 		return
 
 	sunfrac = cos(p_angle) ** 2
+	if(!isnull(additional_factor))
+		sunfrac *= additional_factor
 	//isn't the power recieved from the incoming light proportionnal to cos(p_angle) (Lambert's cosine law) rather than cos(p_angle)^2 ?
 
 /obj/machinery/power/solar/process()//TODO: remove/add this from machines to save on processing as needed ~Carn PRIORITY
@@ -169,25 +183,42 @@ GLOBAL_LIST_EMPTY(solars_list)
 
 //trace towards SSsun.sun to see if we're in shadow
 /obj/machinery/power/solar/proc/occlusion()
+	var/turf/T = get_turf(src)
+	if(!T)
+		obscured = TRUE
+		return
+	
+	//Multiz check
+	var/turf/Ta = GetAbove(T)
+	if(Ta?.opacity) // Will be null if there's no turf above, presumably open
+		obscured = TRUE
+		return
 
-	var/ax = x		// start at the solar panel
-	var/ay = y
-	var/turf/T = null
-
-	for(var/i = 1 to 20)		// 20 steps is enough
-		ax += SSsun.sun.dx	// do step
-		ay += SSsun.sun.dy
-
-		T = locate( round(ax,0.5),round(ay,0.5),z)
-
-		if(!T || T.x == 1 || T.x==world.maxx || T.y==1 || T.y==world.maxy)		// not obscured if we reach the edge
-			break
-
-		if(T.opacity)			// if we hit a solid turf, panel is obscured
-			obscured = 1
+	var/datum/planet/P = SSplanets.z_to_planet[z]
+	if(P)
+		if(!T?.outdoors) // Null if not on a turf (I'll consider that obscured), 0 if not outdoors, both become true
+			obscured = TRUE
 			return
+	else
+		// Ye olde line trace method
+		var/ax = x		// start at the solar panel
+		var/ay = y
+		var/turf/Tb = null
 
-	obscured = 0		// if hit the edge or stepped 20 times, not obscured
+		for(var/i = 1 to 20)		// 20 steps is enough
+			ax += SSsun.sun.dx	// do step
+			ay += SSsun.sun.dy
+
+			Tb = locate( round(ax,0.5),round(ay,0.5),z)
+
+			if(!Tb || Tb.x == 1 || Tb.x==world.maxx || Tb.y==1 || Tb.y==world.maxy)		// not obscured if we reach the edge
+				break
+
+			if(Tb.opacity)			// if we hit a solid turf, panel is obscured
+				obscured = TRUE
+				return
+
+	obscured = FALSE		// if hit the edge or stepped 20 times, not obscured
 	update_solar_exposure()
 
 
@@ -309,7 +340,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 		track = 2 // Auto tracking mode.
 		search_for_connected()
 		if(connected_tracker)
-			connected_tracker.set_angle(SSsun.sun.angle)
+			connected_tracker.set_angle_to_sun()
 		set_panels(cdir)
 
 // This would use LateInitialize(), however the powernet does not appear to exist during that time.
@@ -359,7 +390,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 				cdir = targetdir //...the current direction is the targetted one (and rotates panels to it)
 		if(2) // auto-tracking
 			if(connected_tracker)
-				connected_tracker.set_angle(SSsun.sun.angle)
+				connected_tracker.set_angle_to_sun()
 
 	set_panels(cdir)
 	updateDialog()
@@ -396,7 +427,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 	data["generated"] = round(lastgen)
 	data["generated_ratio"] = data["generated"] / round(max(connected_panels.len, 1) * GLOB.solar_gen_rate)
 
-	data["sun_angle"] = SSsun.sun.angle
+	data["sun_angle"] = connected_tracker ? connected_tracker.get_sun_angle() : 0
 	data["array_angle"] = cdir
 	data["rotation_rate"] = trackrate
 	data["max_rotation_rate"] = 7200
@@ -487,7 +518,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 			track = mode
 			if(track == 2)
 				if(connected_tracker)
-					connected_tracker.set_angle(SSsun.sun.angle)
+					connected_tracker.set_angle_to_sun()
 					set_panels(cdir)
 			else if(track == 1) //begin manual tracking
 				targetdir = cdir

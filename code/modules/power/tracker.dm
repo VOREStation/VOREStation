@@ -49,6 +49,12 @@
 	if(powernet && (powernet == control.powernet)) //update if we're still in the same powernet
 		control.cdir = angle
 
+/obj/machinery/power/tracker/proc/set_angle_to_sun()
+	var/sun_angle = get_sun_angle()
+	if(isnull(sun_angle))
+		log_error("Solar tracker can't find sun angle")
+	set_angle(sun_angle)
+
 /obj/machinery/power/tracker/attackby(var/obj/item/weapon/W, var/mob/user)
 
 	if(W.is_crowbar())
@@ -65,6 +71,17 @@
 			qdel(src)
 		return
 	..()
+
+/obj/machinery/power/tracker/proc/get_sun_angle()
+	var/datum/planet/P = SSplanets.z_to_planet[z]
+	if(P)
+		return P.get_sun_angle()
+	else if(SSsun?.sun)
+		return SSsun.sun.angle
+
+	return null
+
+
 
 // Tracker Electronic
 
